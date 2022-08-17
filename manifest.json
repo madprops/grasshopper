@@ -1,6 +1,6 @@
 {
     "manifest_version": 2,
-    "name": "GrassHopper",
+    "name": "Grasshopper",
     "version": "1.0",
     "description": "Go to your favorites URLs quickly",
     "permissions": [
@@ -13,7 +13,7 @@
         "default_icon": {
             "128": "icon128.png"
         },
-        "default_title": "GrassHopper",
+        "default_title": "Grasshopper",
         "default_popup": "popup.html"
     },
     "commands": {
