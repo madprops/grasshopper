@@ -13,7 +13,7 @@ App.setup_items = function () {
       for (let item of App.favorite_items) {
         item.element.remove()
       }
-      
+
       App.process_favorites()
     }
 
@@ -53,20 +53,32 @@ App.process_items = function (container, items, type) {
   let list = App.el("#list")
   let i = 0
 
-  let favorite = type === "favorites"
+  let favorite_urls
 
-  for (let item of items) {    
-    let curl = App.pathname(item.url)
+  if (type === "history") {
+    favorite_urls = App.favorites.map(x => x.url)
+  }
 
-    if (!curl) {
+  for (let item of items) {
+    if (!item.url) {
       continue
     }
+
+    let curl = new URL(item.url).hostname
 
     if (added.includes(item.url)) {
       continue
     }
     
     added.push(item.url)
+
+    let favorite
+
+    if (type === "favorites") {
+      favorite = true
+    } else {
+      favorite = favorite_urls.includes(item.url)
+    }
     
     let el = document.createElement("div")
     el.classList.add("item")
@@ -83,7 +95,6 @@ App.process_items = function (container, items, type) {
       title: item.title || curl,
       url: item.url,
       clean_url: curl,
-      date: item.lastVisitTime,
       favorite: favorite,
       created: false,
       filled: false,
@@ -147,11 +158,7 @@ App.create_item_element = function (item) {
 
 // Fully create the item element
 App.fill_item_element = function (item) {
-  let days = Math.round(App.get_hours(item.date) / 24)
-  let s = App.plural(days, "day", "days")
-  let visited = `(Visited ${s} ago)`
-  
-  item.element.title = `${item.url} ${visited}`
+  item.element.title = item.url
 
   let icon = App.el(".item_icon", item.element)
   jdenticon.update(icon, App.get_unit(item.clean_url).toLowerCase())
@@ -355,7 +362,6 @@ App.add_favorite = function (item) {
   o.title = item.title
   o.url = item.url
   o.title = item.title
-  o.lastVisitDate = Date.now()
   App.favorites.unshift(o)
   App.favorites = App.favorites.slice(0, App.max_favorites)
   App.save_favorites()
