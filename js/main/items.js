@@ -142,11 +142,14 @@ App.start_item_observer = function () {
 
 // Create an item element
 App.create_item_element = function (item) {
+  let icon_container = document.createElement("div")
+  icon_container.classList.add("item_icon_container")
   let icon = document.createElement("canvas")
   icon.classList.add("item_icon")
   icon.width = 25
   icon.height = 25
-  item.element.append(icon)
+  icon_container.append(icon)
+  item.element.append(icon_container)
 
   let text = document.createElement("div")
   text.classList.add("item_text")
@@ -381,6 +384,13 @@ App.remove_favorite = function (item) {
     if (it.url === item.url) {
       App.favorites.splice(i, 1)
       App.save_favorites()
+      break
+    }
+  }
+
+  for (let item2 of App.history_items) {
+    if (item2.url === item.url) {
+      item2.element.classList.remove("favorite")
       break
     }
   }

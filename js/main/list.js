@@ -7,7 +7,7 @@ App.setup_list = function () {
       let el = e.target.closest(".item")
       let item = App.get_items()[el.dataset.index]
 
-      if (e.target.closest(".item_icon")) {
+      if (e.target.closest(".item_icon_container")) {
         if (App.max_favorites > 0) {
           if (item.favorite) {
             App.remove_favorite(item)
