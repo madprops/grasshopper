@@ -16,6 +16,7 @@ App.setup_favorites()
 App.setup_events()
 App.setup_list()
 App.setup_ui()
+App.set_version()
 
 // Start
 if (App.favorites.length > 0) {
