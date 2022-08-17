@@ -51,7 +51,6 @@ App.empty_history = function () {
 // Get items from history
 App.get_history = function () {
   App.history_items = []
-
   App.history_fetched = true
   browser.history.search({
     text: "",

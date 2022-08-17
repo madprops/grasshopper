@@ -88,3 +88,15 @@ App.create_debouncer = function (func, delay) {
     }
   })()
 }
+
+// Locale number
+App.locale_number = function (n) {
+  n = parseInt(n)
+  return n.toLocaleString()
+}
+
+// Only numbers
+App.only_numbers = function (s) {
+  s = s.toString()
+  return parseInt(s.replace(/\D/g, ""))
+}

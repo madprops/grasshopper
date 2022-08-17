@@ -11,37 +11,61 @@ App.setup_configure = function () {
   })
 
   App.el("#configure_history_max_results_input").addEventListener("blur", function () {
-    let n = parseInt(this.value)
+    let n = App.only_numbers(this.value)
 
     if (!isNaN(n)) {
+      if (n < 1) {
+        n = 1
+      }
+
+      if (n > 100000) {
+        n = 100000
+      }
+
       App.config.history_max_results = n
       App.save_config()
-    } else {
-      this.value = App.config.history_max_results
     }
+
+    App.fill_config()
   })
 
   App.el("#configure_history_months_input").addEventListener("blur", function () {
-    let n = parseInt(this.value)
+    let n = App.only_numbers(this.value)
 
     if (!isNaN(n)) {
+      if (n < 1) {
+        n = 1
+      }
+            
+      if (n > 120) {
+        n = 120
+      }
+
       App.config.history_months = n
       App.save_config()
-    } else {
-      this.value = App.config.history_months
     }
+
+    App.fill_config()
   })
 
   App.el("#configure_max_favorites_input").addEventListener("blur", function () {
-    let n = parseInt(this.value)
+    let n = App.only_numbers(this.value)
 
     if (!isNaN(n)) {
+      if (n < 1) {
+        n = 1
+      }
+
+      if (n > 10000) {
+        n = 10000
+      }
+
       App.config.max_favorites = n
       App.save_config()
       App.get_favorites()
-    } else {
-      this.value = App.config.max_favorites
     }
+
+    App.fill_config()
   })
 
   App.el("#configure_defaults").addEventListener("click", function () {
@@ -88,7 +112,7 @@ App.show_configure = function () {
 
 // Fill config
 App.fill_config = function () {
-  App.el("#configure_history_max_results_input").value = App.config.history_max_results
-  App.el("#configure_history_months_input").value = App.config.history_months
-  App.el("#configure_max_favorites_input").value = App.config.max_favorites
+  App.el("#configure_history_max_results_input").value = App.locale_number(App.config.history_max_results)
+  App.el("#configure_history_months_input").value = App.locale_number(App.config.history_months)
+  App.el("#configure_max_favorites_input").value = App.locale_number(App.config.max_favorites)
 }
