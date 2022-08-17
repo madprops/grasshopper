@@ -89,9 +89,11 @@ body, html {
 }
 
 .item_icon_container {
+  position: relative;
   display: flex;
   align-items: center;
   justify-content: center;
+  height: 100%;
 }
 
 .item_icon {
