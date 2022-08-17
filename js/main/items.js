@@ -39,7 +39,7 @@ App.get_history = function () {
   App.history_fetched = true
   browser.history.search({
     text: "",
-    maxResults: 2500,
+    maxResults: App.history_max_results,
     startTime: Date.now() - (1000 * 60 * 60 * 24 * 30 * App.history_months)
   }).then(function (items) {
     App.process_items(App.history_items, items, "history")
@@ -49,7 +49,6 @@ App.get_history = function () {
 
 // When results are found
 App.process_items = function (container, items, type) {
-  let added = []
   let list = App.el("#list")
   let i = 0
 
@@ -60,7 +59,7 @@ App.process_items = function (container, items, type) {
   }
 
   for (let item of items) {
-    if (!item.url || added.includes(item.url)) {
+    if (!item.url) {
       continue
     }
 
@@ -71,8 +70,6 @@ App.process_items = function (container, items, type) {
     } catch (err) {
       continue
     }
-    
-    added.push(item.url)
 
     let favorite
 
@@ -112,7 +109,6 @@ App.process_items = function (container, items, type) {
 
   // Check performance
   App.log(`Results: ${items.length}`)
-  App.log(`Items: ${container.length}`)
 }
 
 // Start intersection observer to check visibility
