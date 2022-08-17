@@ -4,6 +4,10 @@ App.history_fetched = false
 App.setup_items = function () {
   App.start_item_observer()
 
+  App.filter = App.create_debouncer(function () {
+    App.do_filter()
+  }, 250)  
+
   App.el("#filter").addEventListener("input", function () {
     App.filter()
   })
@@ -272,11 +276,6 @@ App.select_item = function (s_item, scroll = true) {
     App.selected_item.element.scrollIntoView({block: "nearest"})
   }
 }
-
-  // Modal filter debouncer
-App.filter = App.create_debouncer(function () {
-  App.do_filter()
-}, 250)
 
 // Do items filter
 App.do_filter = function () {
