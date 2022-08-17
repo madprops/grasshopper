@@ -1,5 +1,3 @@
-App.history_fetched = false
-
 // Setup items
 App.setup_items = function () {
   App.start_item_observer()
@@ -43,8 +41,8 @@ App.get_history = function () {
   App.history_fetched = true
   browser.history.search({
     text: "",
-    maxResults: App.history_max_results,
-    startTime: Date.now() - (1000 * 60 * 60 * 24 * 30 * App.history_months)
+    maxResults: App.config.history_max_results,
+    startTime: Date.now() - (1000 * 60 * 60 * 24 * 30 * App.config.history_months)
   }).then(function (items) {
     App.process_items(App.history_items, items, "history")
     App.show_history()
@@ -334,7 +332,7 @@ App.setup_favorites = function () {
     App.favorites = []
   }
 
-  App.favorites = App.favorites.slice(0, App.max_favorites)
+  App.favorites = App.favorites.slice(0, App.config.max_favorites)
   App.process_favorites()
 }
 
@@ -369,7 +367,19 @@ App.add_favorite = function (item) {
   o.url = item.url
   o.title = item.title
   App.favorites.unshift(o)
-  App.favorites = App.favorites.slice(0, App.max_favorites)
+  let removed = App.favorites.slice(App.config.max_favorites)
+  App.favorites = App.favorites.slice(0, App.config.max_favorites)
+
+  // Remove items that are no longer favorite
+  for (let r of removed) {
+    let r_item = App.get_item_by_url(App.history_items, r.url)
+
+    if (r_item) {
+      r_item.favorite = false
+      r_item.element.classList.remove("favorite")
+    }
+  }
+
   App.save_favorites()
 }
 
@@ -390,6 +400,7 @@ App.remove_favorite = function (item) {
 
   for (let item2 of App.history_items) {
     if (item2.url === item.url) {
+      item2.favorite = false
       item2.element.classList.remove("favorite")
       break
     }

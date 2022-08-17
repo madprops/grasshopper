@@ -13,10 +13,15 @@
     <script src="js/main/list.js"></script>
     <script src="js/main/ui.js"></script>
     <script src="js/main/filter.js"></script>
+    <script src="js/main/configure.js"></script>
   </head>
   <body>
     <div id="main">
-      <div id="trademark">G R A S S H O P P E R&nbsp;&nbsp;&nbsp;<span id="version"></span></div>
+      <div id="info">
+        <div id="trademark">G R A S S H O P P E R</div>
+        <div id="version"></div>
+        <div id="configure_button" class="action">Configure</div>
+      </div>
 
       <div id="top_container" class="unselectable">
         <input type="text" id="filter" autocomplete="off" placeholder="Click icons to favorite">
@@ -28,18 +33,28 @@
       </div>
 
       <div id="list" class="unselectable"></div>
-    </div>
+      
+      <div id="configure" class="hidden">
+        <div class="configure_item">
+          <div>Max History Results</div>
+          <div class="configure_info">Maximum number of history items to fetch</div>
+          <input type="text" id="configure_history_max_results_input" class="configure_input">
+        </div>
+        <div class="configure_item">
+          <div>Max History Months</div>
+          <div class="configure_info">Maximum number of months to go back in history</div>
+          <input type="text" id="configure_history_months_input" class="configure_input">
+        </div>
+        <div class="configure_item">
+          <div>Max Favorites</div>
+          <div class="configure_info">Maximum number of favorite items to remember</div>
+          <input type="text" id="configure_max_favorites_input" class="configure_input">
+        </div>
 
-    <div id="editor_container" class="hidden">
-      <div id="editor_buttons">
-        <div id="editor_done" class="action underline unselectable">Done</div>
-        <div id="editor_defaults" class="action underline unselectable">Defaults</div>
-        <div id="editor_help" class="action underline unselectable">Help</div>
-        <div id="editor_info" class="float_right"></div>
+        <div id="configure_defaults" class="action">Restore Defaults</div>
       </div>
-
-      <div id="editor"></div>
     </div>
-    <script src="js/main/main.js" type="module"></script>
+
+    <script src="js/main/main.js"></script>
   </body>
 </html>

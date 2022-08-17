@@ -1,5 +1,9 @@
 App.setup_events = function () {
   document.addEventListener("keydown", function (e) {
+    if (App.layout !== "main") {
+      return
+    }
+    
     App.focus_filter()
 
     if (e.key === "Enter") {
