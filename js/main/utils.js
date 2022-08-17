@@ -73,3 +73,18 @@ App.plural = function (n, singular, plural) {
 App.log = function (s) {
   console.log(s)
 }
+
+// Centralized function to create debouncers
+App.create_debouncer = function (func, delay) {
+  return (function () {
+    let timer
+
+    return function (...args) {
+      clearTimeout(timer)
+
+      timer = setTimeout(function () {
+        func(...args)
+      }, delay)
+    }
+  })()
+}

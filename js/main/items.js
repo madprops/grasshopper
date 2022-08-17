@@ -5,7 +5,7 @@ App.setup_items = function () {
   App.start_item_observer()
 
   App.el("#filter").addEventListener("input", function () {
-    App.do_filter(this.value.trim())
+    App.filter()
   })
 
   App.el("#favorites_button").addEventListener("click", function () {
@@ -18,8 +18,8 @@ App.setup_items = function () {
     }
 
     App.set_mode("favorites")
-    App.do_filter()
     App.clear_filter()
+    App.do_filter()
   })  
 
   App.el("#history_button").addEventListener("click", function () {
@@ -273,8 +273,14 @@ App.select_item = function (s_item, scroll = true) {
   }
 }
 
+  // Modal filter debouncer
+App.filter = App.create_debouncer(function () {
+  App.do_filter()
+}, 250)
+
 // Do items filter
-App.do_filter = function (value = "") {
+App.do_filter = function () {
+  let value = App.el("#filter").value.trim()
   let items = App.get_items()
   let words = value.toLowerCase().split(" ").filter(x => x !== "")
   
@@ -314,8 +320,8 @@ App.clear_filter = function () {
 // Show history
 App.show_history = function () {
   App.set_mode("history")
-  App.do_filter()
   App.clear_filter()
+  App.do_filter()
 }
 
 // Get favorite local storage
