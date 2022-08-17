@@ -1,0 +1,24 @@
+{
+    "manifest_version": 2,
+    "name": "GrassHopper",
+    "version": "1.65",
+    "description": "Go to your favorites URLs quickly",
+    "permissions": [
+        "history"
+    ],
+    "icons": {
+        "128": "icon128.png"
+    },
+    "browser_action": {
+        "default_icon": {
+            "128": "icon128.png"
+        },
+        "default_title": "GrassHopper",
+        "default_popup": "popup.html"
+    },
+    "commands": {
+        "_execute_browser_action": {
+
+        }
+    }
+}

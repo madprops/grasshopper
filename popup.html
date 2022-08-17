@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <link rel="stylesheet" href="css/style.css">
+    <script src="js/libs/jdenticon.js"></script>
+    <script src="js/main/app.js"></script>
+    <script src="js/main/utils.js"></script>
+    <script src="js/main/settings.js"></script>
+    <script src="js/main/events.js"></script>
+    <script src="js/main/favorites.js"></script>
+    <script src="js/main/buttons.js"></script>
+    <script src="js/main/items.js"></script>
+    <script src="js/main/list.js"></script>
+    <script src="js/main/ui.js"></script>
+    <script src="js/main/filter.js"></script>
+  </head>
+  <body>
+    <div id="main">
+      <div id="top_container" class="unselectable">
+        <div id="filter_container">
+          <input type="text" id="filter" autocomplete="off" placeholder="Click icons to favorite">
+  
+          <div id="buttons">
+            <button id="filter_btn_favorites" class="button actionbox" title="Show all items">Favorites</button>
+            <button id="filter_btn_history" class="button actionbox" title="Show all items">History</button>
+          </div>
+        </div>
+      </div>
+
+      <div id="list" class="unselectable"></div>
+    </div>
+
+    <div id="editor_container" class="hidden">
+      <div id="editor_buttons">
+        <div id="editor_done" class="action underline unselectable">Done</div>
+        <div id="editor_defaults" class="action underline unselectable">Defaults</div>
+        <div id="editor_help" class="action underline unselectable">Help</div>
+        <div id="editor_info" class="float_right"></div>
+      </div>
+
+      <div id="editor"></div>
+    </div>
+    <script src="js/main/main.js" type="module"></script>
+  </body>
+</html>
