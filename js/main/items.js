@@ -12,11 +12,7 @@ App.setup_items = function () {
 
   App.el("#favorites_button").addEventListener("click", function () {
     if (App.favorites_need_refresh) {
-      for (let item of App.favorite_items) {
-        item.element.remove()
-      }
-
-      App.process_favorites()
+      App.reload_favorites()
     }
 
     App.set_mode("favorites")
@@ -32,6 +28,24 @@ App.setup_items = function () {
 
     App.show_history()
   })
+}
+
+// Reload favorites
+App.reload_favorites = function () {
+  for (let item of App.favorite_items) {
+    item.element.remove()
+  }
+
+  App.process_favorites()
+}
+
+// Empty history
+App.empty_history = function () {
+  for (let item of App.history_items) {
+    item.element.remove()
+  }
+
+  App.history_fetched = false
 }
 
 // Get items from history
@@ -326,14 +340,19 @@ App.show_history = function () {
 
 // Get favorite local storage
 App.setup_favorites = function () {
+  App.get_favorites()
+  App.process_favorites()
+}
+
+// Get favorites
+App.get_favorites = function () {
   App.favorites = App.get_local_storage(App.ls_favorites)
 
   if (App.favorites === null) {
     App.favorites = []
   }
 
-  App.favorites = App.favorites.slice(0, App.config.max_favorites)
-  App.process_favorites()
+  App.favorites = App.favorites.slice(0, App.config.max_favorites)  
 }
 
 // Get favorite items

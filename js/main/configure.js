@@ -38,6 +38,7 @@ App.setup_configure = function () {
     if (!isNaN(n)) {
       App.config.max_favorites = n
       App.save_config()
+      App.get_favorites()
     } else {
       this.value = App.config.max_favorites
     }
@@ -78,6 +79,9 @@ App.show_configure = function () {
     App.el("#top_container").classList.remove("hidden")
     App.el("#list").classList.remove("hidden")
     App.el("#configure").classList.add("hidden")
+    App.reload_favorites()
+    App.empty_history()
+    App.show_favorites()
     App.layout = "main"
   }
 }
