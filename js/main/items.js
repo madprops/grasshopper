@@ -8,7 +8,7 @@ App.setup_items = function () {
     App.do_filter(this.value.trim())
   })
 
-  App.el("#filter_btn_favorites").addEventListener("click", function () {
+  App.el("#favorites_button").addEventListener("click", function () {
     if (App.favorites_need_refresh) {
       for (let item of App.favorite_items) {
         item.element.remove()
@@ -22,7 +22,7 @@ App.setup_items = function () {
     App.clear_filter()
   })  
 
-  App.el("#filter_btn_history").addEventListener("click", function () {
+  App.el("#history_button").addEventListener("click", function () {
     if (!App.history_fetched) {
       App.get_history()
       return
@@ -400,10 +400,10 @@ App.set_mode = function (mode) {
   App.mode = mode
 
   if (mode === "favorites") {
-    App.el("#filter_btn_favorites").classList.add("button_selected")
-    App.el("#filter_btn_history").classList.remove("button_selected")
+    App.el("#favorites_button").classList.add("button_selected")
+    App.el("#history_button").classList.remove("button_selected")
   } else {
-    App.el("#filter_btn_history").classList.add("button_selected")
-    App.el("#filter_btn_favorites").classList.remove("button_selected")
+    App.el("#history_button").classList.add("button_selected")
+    App.el("#favorites_button").classList.remove("button_selected")
   }
 }

@@ -21,22 +21,9 @@ body, html {
 
 #top_container {
   display: flex;
-  flex-direction: row-reverse;
-  align-items: center;
-  justify-content: center;
-  gap: 0.77rem;
-}
-
-.top_container_column {
-  flex-direction: column !important;
-}
-
-#filter_container {
-  display: flex;
   flex-direction: row;
   align-items: center;
   justify-content: center;
-  flex-grow: 0;
 }
 
 #filter {
@@ -150,4 +137,9 @@ body, html {
 
 .unselectable {
   user-select: none;
+}
+
+#trademark {
+  text-align: center;
+  margin-bottom: 0.5rem;
 }
