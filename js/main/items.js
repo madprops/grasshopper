@@ -60,13 +60,15 @@ App.process_items = function (container, items, type) {
   }
 
   for (let item of items) {
-    if (!item.url) {
+    if (!item.url || added.includes(item.url)) {
       continue
     }
 
-    let curl = new URL(item.url).hostname
+    let curl
 
-    if (added.includes(item.url)) {
+    try {
+      curl = new URL(item.url).hostname
+    } catch (err) {
       continue
     }
     
