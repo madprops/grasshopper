@@ -6,7 +6,7 @@ App.setup_configure = function () {
     App.config = App.default_config()
   }
 
-  App.el("#configure_button").addEventListener("click", function () {
+  App.ev(App.el("#configure_button"), "click", function () {
     App.show_configure()
   })
 
@@ -14,7 +14,7 @@ App.setup_configure = function () {
     let name = item.dataset.name
     let input = App.el("input", item)
 
-    input.addEventListener("blur", function () {
+    App.ev(input, "blur", function () {
       let n = App.only_numbers(input.value)
       let max = parseInt(item.dataset.max)
       let min = parseInt(item.dataset.min)
@@ -35,14 +35,14 @@ App.setup_configure = function () {
       App.fill_config_input(item)
     })
 
-    App.el(".config_default_button", item).addEventListener("click", function () {
+    App.ev(App.el(".config_default_button", item), "click", function () {
       if (confirm("Are you sure?")) {
         App.restore_config_default(item)
       }
     })
   }
 
-  App.el("#config_defaults").addEventListener("click", function () {
+  App.ev(App.el("#config_defaults"), "click", function () {
     if (confirm("Are you sure?")) {
       for (let item of App.els(".configure_item")) {
         App.restore_config_default(item)

@@ -2,7 +2,7 @@ App.setup_list = function () {
   let list = App.el("#list")
 
   // When list items are clicked
-  list.addEventListener("click", function (e) {
+  App.ev(list, "click", function (e) {
     if (e.target.closest(".item")) {
       let el = e.target.closest(".item")
       let item = App.get_item_by_url(App.get_items(), el.dataset.url)
@@ -22,7 +22,7 @@ App.setup_list = function () {
   })
 
   // When list items are clicked
-  list.addEventListener("auxclick", function (e) {
+  App.ev(list, "auxclick", function (e) {
     if (e.target.closest(".item")) {
       let el = e.target.closest(".item")
       let item = App.get_item_by_url(App.get_items(), el.dataset.url)
@@ -31,7 +31,7 @@ App.setup_list = function () {
   })
 
   // When list items get hovered
-  list.addEventListener("mouseover", function (e) {
+  App.ev(list, "mouseover", function (e) {
     if (e.target.closest(".item")) {
       let el = e.target.closest(".item")
       let item = App.get_item_by_url(App.get_items(), el.dataset.url)

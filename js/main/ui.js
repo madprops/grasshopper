@@ -6,7 +6,7 @@ App.setup_ui = function () {
     App.el("#top_container").classList.add("top_container_column")
   }
 
-  App.el("#help_button").addEventListener("click", function () {
+  App.ev(App.el("#help_button"), "click", function () {
     App.show_help()
   })
 }

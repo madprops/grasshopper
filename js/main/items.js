@@ -6,11 +6,11 @@ App.setup_items = function () {
     App.do_filter()
   }, 250)  
 
-  App.el("#filter").addEventListener("input", function () {
+  App.ev(App.el("#filter"), "input", function () {
     App.filter()
   })
 
-  App.el("#favorites_button").addEventListener("click", function () {
+  App.ev(App.el("#favorites_button"), "click", function () {
     if (App.favorites_need_refresh) {
       App.reload_favorites()
     }
@@ -20,7 +20,7 @@ App.setup_items = function () {
     App.do_filter()
   })  
 
-  App.el("#history_button").addEventListener("click", function () {
+  App.ev(App.el("#history_button"), "click", function () {
     if (!App.history_fetched) {
       App.get_history()
       return
@@ -94,9 +94,7 @@ App.process_items = function (container, items, type) {
       favorite = favorite_urls.includes(item.url)
     }
     
-    let el = document.createElement("div")
-    el.classList.add("item")
-    el.classList.add("hidden")
+    let el = App.create("div", "item hidden")
     el.dataset.url = item.url
     App.item_observer.observe(el)
 
@@ -151,17 +149,14 @@ App.start_item_observer = function () {
 
 // Create an item element
 App.create_item_element = function (item) {
-  let icon_container = document.createElement("div")
-  icon_container.classList.add("item_icon_container")
-  let icon = document.createElement("canvas")
-  icon.classList.add("item_icon")
+  let icon_container = App.create("div", "item_icon_container")
+  let icon = App.create("canvas", "item_icon")
   icon.width = 25
   icon.height = 25
   icon_container.append(icon)
   item.element.append(icon_container)
 
-  let text = document.createElement("div")
-  text.classList.add("item_text")
+  let text = App.create("div", "item_text")
   let text_content = item.title || item.url
   text_content = text_content.substring(0, 250)
   text.textContent = text_content

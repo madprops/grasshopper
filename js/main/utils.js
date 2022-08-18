@@ -21,7 +21,7 @@ App.open_tab = function (url, close = true) {
     
     if (item) {
       if (item[0] > 0) {
-        App.swap_in_array(App.favorites, item[0], 0)
+        App.move_in_array(App.favorites, item[0], 0)
         App.save_favorites()
       }
     }
@@ -113,6 +113,31 @@ App.only_numbers = function (s) {
   return parseInt(s.replace(/\D/g, ""))
 }
 
-App.swap_in_array = function(arr, from, to) {
+// Move an item in an array
+App.move_in_array = function(arr, from, to) {
   arr.splice(to, 0, arr.splice(from, 1)[0])
+}
+
+// Create an html element
+App.create = function (type, classes = "", id = "") {
+  let el = document.createElement(type)
+
+  if (classes) {
+    let classlist = classes.split(" ").filter(x => x != "")
+  
+    for (let cls of classlist) {
+      el.classList.add(cls)
+    }
+  }
+
+  if (id) {
+    el.id = id
+  }
+
+  return el
+}
+
+// Add an event listener
+App.ev = function (element, action, callback, extra) {
+  element.addEventListener(action, callback, extra)
 }
