@@ -10,71 +10,37 @@ App.setup_configure = function () {
     App.show_configure()
   })
 
-  App.el("#configure_history_max_results_input").addEventListener("blur", function () {
-    let n = App.only_numbers(this.value)
+  for (let item of App.els(".configure_item")) {
+    let name = item.dataset.name
+    let input = App.el("input", item)
 
-    if (!isNaN(n)) {
-      if (n < 1) {
-        n = 1
+    input.addEventListener("blur", function () {
+      let n = App.only_numbers(input.value)
+
+      if (!isNaN(n)) {
+        if (n < item.dataset.min) {
+          n = item.dataset.min
+        }
+
+        if (n > item.dataset.max) {
+          n = item.dataset.max
+        }
+
+        App.config[name] = n
+        App.save_config()
       }
 
-      if (n > 100000) {
-        n = 100000
+      App.fill_config_input(item)
+    })
+
+    App.el(".config_default_button", item).addEventListener("click", function () {
+      if (confirm("Are you sure?")) {
+        App.config[name] = App.default_config()[name]
+        App.save_config()
+        App.fill_config_input(item)
       }
-
-      App.config.history_max_results = n
-      App.save_config()
-    }
-
-    App.fill_config()
-  })
-
-  App.el("#configure_history_months_input").addEventListener("blur", function () {
-    let n = App.only_numbers(this.value)
-
-    if (!isNaN(n)) {
-      if (n < 1) {
-        n = 1
-      }
-            
-      if (n > 120) {
-        n = 120
-      }
-
-      App.config.history_months = n
-      App.save_config()
-    }
-
-    App.fill_config()
-  })
-
-  App.el("#configure_max_favorites_input").addEventListener("blur", function () {
-    let n = App.only_numbers(this.value)
-
-    if (!isNaN(n)) {
-      if (n < 1) {
-        n = 1
-      }
-
-      if (n > 10000) {
-        n = 10000
-      }
-
-      App.config.max_favorites = n
-      App.save_config()
-      App.get_favorites()
-    }
-
-    App.fill_config()
-  })
-
-  App.el("#configure_defaults").addEventListener("click", function () {
-    if (confirm("Are you sure?")) {
-      App.config = App.default_config()
-      App.save_config()
-      App.fill_config()
-    }
-  })  
+    })
+  }
 }
 
 // Default config
@@ -97,7 +63,11 @@ App.show_configure = function () {
     App.el("#top_container").classList.add("hidden")
     App.el("#list").classList.add("hidden")
     App.el("#configure").classList.remove("hidden")
-    App.fill_config()
+
+    for (let item of App.els(".configure_item")) {
+      App.fill_config_input(item)
+    }
+
     App.layout = "configure"
   } else {
     App.el("#top_container").classList.remove("hidden")
@@ -111,8 +81,7 @@ App.show_configure = function () {
 }
 
 // Fill config
-App.fill_config = function () {
-  App.el("#configure_history_max_results_input").value = App.locale_number(App.config.history_max_results)
-  App.el("#configure_history_months_input").value = App.locale_number(App.config.history_months)
-  App.el("#configure_max_favorites_input").value = App.locale_number(App.config.max_favorites)
+App.fill_config_input = function (item) {
+  let name = item.dataset.name
+  App.el("input", item).value = App.locale_number(App.config[name])
 }

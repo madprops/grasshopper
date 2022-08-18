@@ -35,23 +35,24 @@
       <div id="list" class="unselectable"></div>
       
       <div id="configure" class="hidden">
-        <div class="configure_item">
+        <div class="configure_item" data-name="history_max_results" data-max="100000" data-min="1">
           <div>Max History Results</div>
           <div class="configure_info">Maximum number of history items to fetch</div>
-          <input type="text" id="configure_history_max_results_input" class="configure_input">
+          <input type="text" class="configure_input">
+          <div class="config_default_button action">Restore Default</div>
         </div>
-        <div class="configure_item">
+        <div class="configure_item" data-name="history_months" data-max="120" data-min="1">
           <div>Max History Months</div>
           <div class="configure_info">Maximum number of months to go back in history</div>
-          <input type="text" id="configure_history_months_input" class="configure_input">
+          <input type="text" class="configure_input">
+          <div class="config_default_button action">Restore Default</div>
         </div>
-        <div class="configure_item">
+        <div class="configure_item" data-name="max_favorites" data-max="10000" data-min="1">
           <div>Max Favorites</div>
           <div class="configure_info">Maximum number of favorite items to remember</div>
-          <input type="text" id="configure_max_favorites_input" class="configure_input">
+          <input type="text" class="configure_input">
+          <div class="config_default_button action">Restore Default</div>
         </div>
-
-        <div id="configure_defaults" class="action">Restore Defaults</div>
       </div>
     </div>
 
