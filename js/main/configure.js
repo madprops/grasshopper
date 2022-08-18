@@ -100,4 +100,12 @@ App.show_configure = function () {
 App.fill_config_input = function (item) {
   let name = item.dataset.name
   App.el("input", item).value = App.locale_number(App.config[name])
+
+  let def = App.el(".config_default_button", item)
+
+  if (App.config[name] === App.default_config()[name]) {
+    def.classList.add("hidden")
+  } else {
+    def.classList.remove("hidden")
+  }
 }
