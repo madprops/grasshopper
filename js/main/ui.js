@@ -19,14 +19,17 @@ App.set_version = function () {
 
 // Show a help message
 App.show_help = function () {
-  let s = ""
-  s += "This is a tool to go back to often-used URLs quickly.\n"
-  s += "There's 2 modes, Favorites, and History.\n"
-  s += "Favorites are items you save by clicking the icons on the left.\n"
-  s += "History searches the browser history so you can save favorites.\n"
-  s += "History is only fetched when necessary, so it's fast.\n"
-  s += "Some settings are configurable in Configure.\n"
-  s = s.trim()
+  let lines = [
+    "This is a tool to go back to often-used URLs quickly.",
+    "There's 2 modes, Favorites, and History.",
+    "Favorites are items you save by clicking the icons on the left.",
+    "History searches the browser history so you can save favorites.",
+    "History is only fetched when necessary, so it's fast.",
+    "History is only fetched when necessary, so it's fast.",
+    "Type something to filter with a more precise search.",
+    "Items are ordered by last visit date, most recent at the top.",
+    "Some settings are configurable in Configure.",
+  ]
 
-  alert(s)
+  alert(lines.join("\n"))
 }
