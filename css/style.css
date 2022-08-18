@@ -29,9 +29,8 @@ body, html {
   flex-grow: 0;
 }
 
-#configure_button {
+.info_button {
   text-decoration: underline;
-  cursor: pointer;
 }
 
 #top_container {
