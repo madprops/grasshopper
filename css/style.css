@@ -191,3 +191,8 @@ body, html {
   margin-top: 0.3rem;
   text-decoration: underline;
 }
+
+#config_defaults {
+  text-decoration: underline;
+  font-size: 1.1rem;
+}

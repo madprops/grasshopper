@@ -16,14 +16,16 @@ App.setup_configure = function () {
 
     input.addEventListener("blur", function () {
       let n = App.only_numbers(input.value)
+      let max = parseInt(item.dataset.max)
+      let min = parseInt(item.dataset.min)
 
       if (!isNaN(n)) {
-        if (n < item.dataset.min) {
-          n = item.dataset.min
+        if (n < min) {
+          n = min
         }
 
-        if (n > item.dataset.max) {
-          n = item.dataset.max
+        if (n > max) {
+          n = max
         }
 
         App.config[name] = n
@@ -35,12 +37,26 @@ App.setup_configure = function () {
 
     App.el(".config_default_button", item).addEventListener("click", function () {
       if (confirm("Are you sure?")) {
-        App.config[name] = App.default_config()[name]
-        App.save_config()
-        App.fill_config_input(item)
+        App.restore_config_default(item)
       }
     })
   }
+
+  App.el("#config_defaults").addEventListener("click", function () {
+    if (confirm("Are you sure?")) {
+      for (let item of App.els(".configure_item")) {
+        App.restore_config_default(item)
+      }
+    }
+  })
+}
+
+// Restore config default
+App.restore_config_default = function (item) {
+  let name = item.dataset.name
+  App.config[name] = App.default_config()[name]
+  App.save_config()
+  App.fill_config_input(item)
 }
 
 // Default config
