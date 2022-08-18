@@ -24,7 +24,6 @@ App.show_help = function () {
   s += "There's 2 modes, Favorites, and History.\n"
   s += "Favorites are items you save by clicking the icons on the left.\n"
   s += "History searches the browser history so you can save favorites.\n"
-  s += "You can use the mousewheel on the icons to change their positon.\n"
   s += "Some settings are configurable in Configure.\n"
   s += "History is only fetched when necessary, so it's fast.\n"
   s = s.trim()

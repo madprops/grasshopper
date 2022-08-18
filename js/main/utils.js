@@ -15,6 +15,18 @@ App.get_unit = function (curl) {
 
 // Open a new tab with a url
 App.open_tab = function (url, close = true) {
+  // Move favorite to first position
+  if (App.mode === "favorites") {
+    let item = App.get_favorite_by_url(url)
+    
+    if (item) {
+      if (item[0] > 0) {
+        App.swap_in_array(App.favorites, item[0], 0)
+        App.save_favorites()
+      }
+    }
+  }
+
   browser.tabs.create({url: url, active: close})
 
   if (close) {

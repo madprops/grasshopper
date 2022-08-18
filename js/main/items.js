@@ -450,44 +450,11 @@ App.set_mode = function (mode) {
   }
 }
 
-// Move item up
-App.move_item_up = function (item) {
-  let el = item.element
-  let prev = el.previousElementSibling
-
-  if (prev) {
-    el.parentNode.insertBefore(el, prev)
-
-    for (let [i, fav] of App.favorites.entries()) {
-      if (fav.url === item.url) {
-        if (i > 0) {
-          App.swap_in_array(App.favorites, i, i - 1)
-          App.save_favorites()
-        }
-        
-        break
-      }
-    }    
-  }
-}
-
-// Move item down
-App.move_item_down = function (item) {
-  let el = item.element
-  let next = el.nextElementSibling
-
-  if (next) {
-    el.parentNode.insertBefore(next, el)
-
-    for (let [i, fav] of App.favorites.entries()) {
-      if (fav.url === item.url) {
-        if (i < App.favorites.length - 1) {
-          App.swap_in_array(App.favorites, i, i + 1)
-          App.save_favorites()
-        }
-
-        break
-      }
+// Get favorite by url
+App.get_favorite_by_url = function (url) {
+  for (let [i, item] of App.favorites.entries()) {
+    if (item.url === url) {
+      return [i, item]
     }
   }
 }
