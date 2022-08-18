@@ -97,7 +97,7 @@ App.process_items = function (container, items, type) {
     let el = document.createElement("div")
     el.classList.add("item")
     el.classList.add("hidden")
-    el.dataset.index = i
+    el.dataset.url = item.url
     App.item_observer.observe(el)
 
     if (favorite) {
@@ -105,7 +105,6 @@ App.process_items = function (container, items, type) {
     }
 
     let obj = {
-      index: i,
       title: item.title || curl,
       url: item.url,
       clean_url: curl,
@@ -141,8 +140,7 @@ App.start_item_observer = function () {
         continue
       }
       
-      let el = entry.target
-      let item = App.get_items()[el.dataset.index]
+      let item = App.get_item_by_url(App.get_items(), entry.target.dataset.url)
 
       if (item.created && !item.hidden && !item.filled) {
         App.fill_item_element(item)
@@ -449,5 +447,47 @@ App.set_mode = function (mode) {
   } else {
     App.el("#history_button").classList.add("button_selected")
     App.el("#favorites_button").classList.remove("button_selected")
+  }
+}
+
+// Move item up
+App.move_item_up = function (item) {
+  let el = item.element
+  let prev = el.previousElementSibling
+
+  if (prev) {
+    el.parentNode.insertBefore(el, prev)
+
+    for (let [i, fav] of App.favorites.entries()) {
+      if (fav.url === item.url) {
+        if (i > 0) {
+          App.swap_in_array(App.favorites, i, i - 1)
+          App.save_favorites()
+        }
+        
+        break
+      }
+    }    
+  }
+}
+
+// Move item down
+App.move_item_down = function (item) {
+  let el = item.element
+  let next = el.nextElementSibling
+
+  if (next) {
+    el.parentNode.insertBefore(next, el)
+
+    for (let [i, fav] of App.favorites.entries()) {
+      if (fav.url === item.url) {
+        if (i < App.favorites.length - 1) {
+          App.swap_in_array(App.favorites, i, i + 1)
+          App.save_favorites()
+        }
+
+        break
+      }
+    }
   }
 }

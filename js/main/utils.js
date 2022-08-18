@@ -100,3 +100,7 @@ App.only_numbers = function (s) {
   s = s.toString()
   return parseInt(s.replace(/\D/g, ""))
 }
+
+App.swap_in_array = function(arr, from, to) {
+  arr.splice(to, 0, arr.splice(from, 1)[0])
+}
