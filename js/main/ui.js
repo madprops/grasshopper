@@ -25,7 +25,6 @@ App.show_help = function () {
     "Favorites are items you save by clicking the icons on the left.",
     "History searches the browser history so you can save favorites.",
     "History is only fetched when necessary, so it's fast.",
-    "History is only fetched when necessary, so it's fast.",
     "Type something to filter with a more precise search.",
     "Items are ordered by last visit date, most recent at the top.",
     "Some settings are configurable in Configure.",
