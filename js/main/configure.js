@@ -108,4 +108,10 @@ App.fill_config_input = function (item) {
   } else {
     def.classList.remove("hidden")
   }
+
+  if (App.els(".config_default_button").some(x => !x.classList.contains("hidden"))) {
+    App.el("#config_defaults").classList.remove("hidden")
+  } else {
+    App.el("#config_defaults").classList.add("hidden")
+  }
 }
