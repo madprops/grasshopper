@@ -121,8 +121,9 @@ body, html {
 
 .favorite .item_icon {
   outline: 2px solid gold;
+  outline-offset: 2px;
   border-radius: 50%;
-  margin-right: calc(0.5rem + 2px);
+  margin-right: calc(0.5rem + 4px);
 }
 
 .selected {
