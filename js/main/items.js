@@ -412,6 +412,7 @@ App.add_favorite = function (item) {
   }
 
   App.save_favorites()
+  App.update_footer()
 }
 
 // Remove a favorite item
@@ -441,6 +442,7 @@ App.remove_favorite = function (item) {
   }
 
   item.element.remove()
+  App.update_footer()
 }
 
 // Select next item
@@ -453,12 +455,12 @@ App.select_next_item = function (item) {
     n_item = App.element_to_item(next.element)
   } else if (prev) {
     n_item = App.element_to_item(prev.element)
-  } else if (App.favorite_items.length > 0) {
-    n_item = App.favorite_items[0]
   }
   
   if (n_item) {
     App.select_item(n_item)
+  } else {
+    App.selected_item = undefined
   }
 }
 
