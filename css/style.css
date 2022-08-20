@@ -118,7 +118,6 @@ body, html {
   height: 25px;
   margin: 0.5rem;
   border-radius: 50%;
-  transition: box-shadow 100ms;
 }
 
 .favorites_item .item_icon {
