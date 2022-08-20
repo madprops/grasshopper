@@ -1,6 +1,10 @@
+:root {
+	--icon_size: 1.4rem;
+}
+
 body, html {
   font-family: sans-serif;
-  font-size: 18px;
+  font-size: 17px;
   background-color: #252933;
   color: white;
   width: 700px;
@@ -45,11 +49,11 @@ body, html {
   background-color: #99A7D6;
   border-width: 0;
   font-size: 1rem;
-  padding: 0.2rem;
+  padding: 0.11rem;
   color: black;
   flex-grow: 0;
-  width: 250px;
-  outline: 1px solid blue;
+  width: 14rem;
+  outline: 1px solid rgb(217, 217, 217);
   margin-right: 0.5rem;
 }
 
@@ -114,8 +118,8 @@ body, html {
 .item_icon {
   flex-grow: 0;
   flex-shrink: 0;
-  width: 25px;
-  height: 25px;
+  width: var(--icon_size);
+  height: var(--icon_size);
   margin: 0.5rem;
   border-radius: 50%;
 }
