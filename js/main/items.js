@@ -4,29 +4,23 @@ App.setup_items = function () {
 
   App.filter = App.create_debouncer(function () {
     App.do_filter()
-  }, 250)  
+  }, 222)
 
   App.ev(App.el("#filter"), "input", function () {
     App.filter()
   })
 
-  App.ev(App.el("#favorites_button"), "click", function () {
-    if (App.favorites_need_refresh) {
-      App.reload_favorites()
-    }
-
-    App.set_mode("favorites")
+  App.ev(App.el("#clear_button"), "click", function () {
     App.clear_filter()
     App.do_filter()
+  })    
+
+  App.ev(App.el("#favorites_button"), "click", function () {
+    App.change_to_favorites()
   })  
 
   App.ev(App.el("#history_button"), "click", function () {
-    if (!App.history_fetched) {
-      App.get_history()
-      return
-    }
-
-    App.show_history()
+    App.change_to_history()
   })
 }
 
@@ -85,18 +79,20 @@ App.process_items = function (container, items, type) {
     } catch (err) {
       continue
     }
+    
+    let el = App.create("div", "item hidden")
+    el.dataset.url = item.url
+    App.item_observer.observe(el)
 
     let favorite
 
     if (type === "favorites") {
       favorite = true
     } else {
-      favorite = favorite_urls.includes(item.url)
-    }
-    
-    let el = App.create("div", "item hidden")
-    el.dataset.url = item.url
-    App.item_observer.observe(el)
+      if (favorite_urls.includes(item.url)) {
+        continue
+      }
+    }    
 
     if (favorite) {
       el.classList.add("favorite")
@@ -326,7 +322,6 @@ App.clear_filter = function () {
 // Show history
 App.show_history = function () {
   App.set_mode("history")
-  App.clear_filter()
   App.do_filter()
 }
 
@@ -452,4 +447,33 @@ App.get_favorite_by_url = function (url) {
       return [i, item]
     }
   }
+}
+
+// Change mode
+App.change_mode = function () {
+  if (App.mode === "favorites") {
+    App.change_to_history()
+  } else {
+    App.change_to_favorites()
+  }
+}
+
+// Change to history
+App.change_to_history = function () {
+  if (!App.history_fetched) {
+    App.get_history()
+    return
+  }
+
+  App.show_history()
+}
+
+// Change to favorites
+App.change_to_favorites = function () {
+  if (App.favorites_need_refresh) {
+    App.reload_favorites()
+  }
+
+  App.set_mode("favorites")
+  App.do_filter()
 }

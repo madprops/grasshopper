@@ -50,13 +50,14 @@ body, html {
   flex-grow: 0;
   width: 250px;
   outline: 1px solid blue;
+  margin-right: 0.5rem;
 }
 
 #buttons {
   display: flex;
   flex-direction: row;
   gap: 0.5rem;
-  margin-left: 0.5rem;
+  margin-right: 0.5rem;
 }
 
 .button {

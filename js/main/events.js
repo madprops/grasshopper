@@ -28,6 +28,9 @@ App.setup_events = function () {
       }
 
       e.preventDefault()
+    } else if (e.key === "Tab") {
+      App.change_mode()
+      e.preventDefault()
     }
   })
 }
