@@ -274,6 +274,8 @@ App.select_item = function (s_item, scroll = true) {
   if (scroll) {
     App.selected_item.element.scrollIntoView({block: "nearest"})
   }
+
+  App.update_footer()
 }
 
 // Do items filter
@@ -302,6 +304,10 @@ App.do_filter = function () {
     } else {
       App.hide_item(item)
     }
+  }
+
+  if (!selected) {
+    App.update_footer()
   }
 }
 
@@ -521,4 +527,13 @@ App.element_to_item = function (el) {
 App.item_is_visible = function (item) {
   let hidden = item.element.classList.contains("hidden") || item.element.classList.contains("removed")
   return !hidden
+}
+
+// Update the footer
+App.update_footer = function () {
+  if (App.selected_item && App.item_is_visible(App.selected_item)) {
+    App.el("#footer").textContent = App.selected_item.url
+  } else {
+    App.el("#footer").textContent = "No Results"
+  }
 }

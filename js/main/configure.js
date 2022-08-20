@@ -76,9 +76,13 @@ App.save_config = function () {
 // Show configure
 App.show_configure = function () {
   if (App.layout === "main") {
-    App.el("#top_container").classList.add("hidden")
-    App.el("#list").classList.add("hidden")
-    App.el("#configure").classList.remove("hidden")
+    for (let item of App.els(".main_layout")) {
+      item.classList.add("hidden")
+    }
+
+    for (let item of App.els(".configure_layout")) {
+      item.classList.remove("hidden")
+    }
 
     for (let item of App.els(".configure_item")) {
       App.fill_config_input(item)
@@ -86,9 +90,14 @@ App.show_configure = function () {
 
     App.layout = "configure"
   } else {
-    App.el("#top_container").classList.remove("hidden")
-    App.el("#list").classList.remove("hidden")
-    App.el("#configure").classList.add("hidden")
+    for (let item of App.els(".main_layout")) {
+      item.classList.remove("hidden")
+    }
+
+    for (let item of App.els(".configure_layout")) {
+      item.classList.add("hidden")
+    }
+    
     App.reload_favorites()
     App.empty_history()
     App.show_favorites()
