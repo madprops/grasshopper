@@ -8,7 +8,9 @@ App.setup_events = function () {
 
     if (e.key === "Enter") {
       if (e.shiftKey) {
-        App.toggle_favorite(App.selected_item)
+        let item = App.selected_item
+        App.select_next_item(item)
+        App.toggle_favorite(item)
       } else {
         if (App.selected_item) {
           App.open_tab(App.selected_item.url)

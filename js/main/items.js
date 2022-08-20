@@ -357,10 +357,6 @@ App.save_favorites = function () {
 
 // Add a favorite item
 App.add_favorite = function (item) {
-  if (App.selected_item === item) {
-    App.select_next_item(item)
-  }
-
   item.element.classList.add("removed")
 
   for (let i=0; i<App.favorites.length; i++) {
@@ -392,10 +388,6 @@ App.add_favorite = function (item) {
 
 // Remove a favorite item
 App.remove_favorite = function (item) {
-  if (App.selected_item === item) {
-    App.select_next_item(item)
-  }
-
   for (let [i, it] of App.favorite_items.entries()) {
     if (it.url === item.url) {
       App.favorite_items.splice(i, 1)
