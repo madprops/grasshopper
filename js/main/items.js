@@ -155,6 +155,12 @@ App.create_item_element = function (item) {
 
 // Fully create the item element
 App.fill_item_element = function (item) {
+  if (item.type === "favorites") {
+    item.element.classList.add("favorites_item")
+  } else {
+    item.element.classList.add("history_item")
+  }
+
   item.element.title = item.url
 
   let icon = App.el(".item_icon", item.element)

@@ -112,10 +112,6 @@ body, html {
   height: 100%;
 }
 
-.item_icon_container:hover .item_icon {
-  box-shadow: 0 0 0.3rem currentColor;
-}
-
 .item_icon {
   flex-grow: 0;
   flex-shrink: 0;
@@ -124,6 +120,14 @@ body, html {
   margin: 0.5rem;
   border-radius: 50%;
   transition: box-shadow 100ms;
+}
+
+.favorites_item .item_icon {
+  box-shadow: 0 0 0.3rem currentColor;
+}
+
+.history_item .item_icon_container:hover .item_icon {
+  box-shadow: 0 0 0.3rem currentColor;
 }
 
 .selected {
