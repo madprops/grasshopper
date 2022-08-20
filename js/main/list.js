@@ -8,12 +8,10 @@ App.setup_list = function () {
       let item = App.get_item_by_url(App.get_items(), el.dataset.url)
 
       if (e.target.closest(".item_icon_container")) {
-        if (App.config.max_favorites > 0) {
-          if (item.favorite) {
-            App.remove_favorite(item)
-          } else {
-            App.add_favorite(item)
-          }
+        if (App.mode === "favorites") {
+          App.remove_favorite(item)
+        } else {
+          App.add_favorite(item)
         }
       } else if (e.target.closest(".item_text")) {
         App.open_tab(item.url)

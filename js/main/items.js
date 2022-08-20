@@ -13,7 +13,7 @@ App.setup_items = function () {
   App.ev(App.el("#clear_button"), "click", function () {
     App.clear_filter()
     App.do_filter()
-  })    
+  })
 
   App.ev(App.el("#favorites_button"), "click", function () {
     App.change_to_favorites()
@@ -59,8 +59,6 @@ App.get_history = function () {
 // When results are found
 App.process_items = function (container, items, type) {
   let list = App.el("#list")
-  let i = 0
-
   let favorite_urls
 
   if (type === "history") {
@@ -84,25 +82,18 @@ App.process_items = function (container, items, type) {
     el.dataset.url = item.url
     App.item_observer.observe(el)
 
-    let favorite
-
     if (type === "favorites") {
       favorite = true
     } else {
       if (favorite_urls.includes(item.url)) {
-        continue
+        el.classList.add("removed")
       }
-    }    
-
-    if (favorite) {
-      el.classList.add("favorite")
     }
 
     let obj = {
       title: item.title || curl,
       url: item.url,
       clean_url: curl,
-      favorite: favorite,
       created: false,
       filled: false,
       hidden: true,
@@ -111,8 +102,6 @@ App.process_items = function (container, items, type) {
     
     container.push(obj)
     list.append(el)
-
-    i += 1
   }
 
   // Check performance
@@ -357,8 +346,7 @@ App.save_favorites = function () {
 
 // Add a favorite item
 App.add_favorite = function (item) {
-  item.favorite = true
-  item.element.classList.add("favorite")
+  item.element.classList.add("removed")
 
   // Remove from list first
   for (let i=0; i<App.favorites.length; i++) {
@@ -381,8 +369,7 @@ App.add_favorite = function (item) {
     let r_item = App.get_item_by_url(App.history_items, r.url)
 
     if (r_item) {
-      r_item.favorite = false
-      r_item.element.classList.remove("favorite")
+      r_item.element.classList.add("removed")
     }
   }
 
@@ -391,8 +378,7 @@ App.add_favorite = function (item) {
 
 // Remove a favorite item
 App.remove_favorite = function (item) {
-  item.favorite = false
-  item.element.classList.remove("favorite")
+  item.element.remove()
 
   for (let i=0; i<App.favorites.length; i++) {
     let it = App.favorites[i]
@@ -406,11 +392,10 @@ App.remove_favorite = function (item) {
 
   for (let item2 of App.history_items) {
     if (item2.url === item.url) {
-      item2.favorite = false
-      item2.element.classList.remove("favorite")
+      item2.element.classList.remove("removed")
       break
     }
-  }
+  }  
 }
 
 // Show favorites
