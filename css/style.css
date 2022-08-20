@@ -62,7 +62,6 @@ body, html {
 
 .button {
   font-size: 0.95rem;
-  min-width: 2rem;
   cursor: pointer;
   flex-shrink: 0;
   background-color: transparent;
