@@ -145,7 +145,7 @@ App.create_item_element = function (item) {
 
   let text = App.create("div", "item_text")
   let text_content = item.title || item.url
-  text_content = text_content.substring(0, 250)
+  text_content = text_content.substring(0, 140)
   text.textContent = text_content
 
   item.element.append(text)
