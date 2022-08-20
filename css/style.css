@@ -102,7 +102,7 @@ body, html {
   cursor: pointer;
   border: 1px solid grey;
   border-spacing: 0.5rem;
-  border-radius: 25px;
+  border-radius: 20px;
   align-items: center;
 }
 
