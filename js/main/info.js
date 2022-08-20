@@ -1,18 +1,9 @@
 // Arrange items depending on space
-App.setup_ui = function () {
-  let top = App.el("#top_container")
-  
-  if (top.scrollWidth > top.clientWidth) {
-    App.el("#top_container").classList.add("top_container_column")
-  }
-
+App.setup_info = function () {
   App.ev(App.el("#help_button"), "click", function () {
     App.show_help()
   })
-}
 
-// Set version in trademark
-App.set_version = function () {
   let manifest = browser.runtime.getManifest()
   App.el("#version").textContent = `v${manifest.version}`
 }
@@ -30,6 +21,7 @@ App.show_help = function () {
     "You can use the arrows to select items up and down.",
     "You can use Tab to switch between Favorites and History.",
     "You can use Shift + Enter to add/remove a favorite.",
+    "You can middle click an item to open without exiting.",
     "Some settings are configurable in Configure.",
   ]
 

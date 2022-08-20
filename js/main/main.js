@@ -19,8 +19,7 @@ App.setup_items()
 App.setup_favorites()
 App.setup_keyboard()
 App.setup_list()
-App.setup_ui()
-App.set_version()
+App.setup_info()
 
 // Start
 if (App.favorites.length > 0) {
