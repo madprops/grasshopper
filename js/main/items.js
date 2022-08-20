@@ -385,63 +385,34 @@ App.save_favorites = function () {
 
 // Add a favorite item
 App.add_favorite = function (item) {
-  item.element.classList.add("removed")
-
-  for (let i=0; i<App.favorites.length; i++) {
-    if (App.favorites[i].url === item.url) {
-      App.favorites.splice(i, 1)
-      break
-    }
-  }  
-
+  App.favorites = App.favorites.filter(x => x.url !== item.url)
+  
   let o = {}
-  o.title = item.title
   o.url = item.url
   o.title = item.title
+  
   App.favorites.unshift(o)
-  let removed = App.favorites.slice(App.config.max_favorites)
   App.favorites = App.favorites.slice(0, App.config.max_favorites)
-
-  // Remove items that are no longer favorite
-  for (let r of removed) {
-    let r_item = App.get_item_by_url(App.history_items, r.url)
-
-    if (r_item) {
-      r_item.element.classList.add("removed")
-    }
-  }
-
+  
+  item.element.classList.add("removed")
   App.save_favorites()
   App.update_footer()
 }
 
 // Remove a favorite item
 App.remove_favorite = function (item) {
-  for (let [i, it] of App.favorite_items.entries()) {
+  App.favorite_items = App.favorite_items.filter(x => x.url !== item.url)
+  App.favorites = App.favorites.filter(x => x.url !== item.url)
+
+  for (let it of App.history_items) {
     if (it.url === item.url) {
-      App.favorite_items.splice(i, 1)
-      break
-    }
-  }  
-
-  for (let i=0; i<App.favorites.length; i++) {
-    let it = App.favorites[i]
-
-    if (it.url === item.url) {
-      App.favorites.splice(i, 1)
-      App.save_favorites()
-      break
-    }
-  }
-
-  for (let item2 of App.history_items) {
-    if (item2.url === item.url) {
-      item2.element.classList.remove("removed")
+      it.element.classList.remove("removed")
       break
     }
   }
 
   item.element.remove()
+  App.save_favorites()
   App.update_footer()
 }
 
