@@ -1,9 +1,14 @@
 :root {
-	--icon_size: 1.4rem;
+	--icon_size: 1.2rem;
+}
+
+@font-face {
+	font-family: imported_font;
+	src: url(Roboto-Regular.ttf);
 }
 
 body, html {
-  font-family: sans-serif;
+  font-family: imported_font;
   font-size: 17px;
   color: white;
   width: 700px;
