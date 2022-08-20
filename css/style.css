@@ -36,7 +36,7 @@ body, html {
   flex-direction: row;
   align-items: center;
   justify-content: center;
-  gap: 1rem;
+  gap: 0.8rem;
   margin-bottom: 0.6rem;
   flex-grow: 0;
 }
@@ -60,7 +60,7 @@ body, html {
   padding: 0.11rem;
   color: black;
   flex-grow: 0;
-  width: 14rem;
+  width: 12rem;
   outline: 1px solid rgb(217, 217, 217);
   margin-right: 0.5rem;
 }
