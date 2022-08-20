@@ -27,6 +27,9 @@ App.show_help = function () {
     "History is only fetched when necessary, so it's fast.",
     "Type something to filter with a more precise search.",
     "Items are ordered by last visit date, most recent at the top.",
+    "You can use the arrows to select items up and down.",
+    "You can use Tab to switch between Favorites and History.",
+    "You can use Shift + Enter to add/remove a favorite.",
     "Some settings are configurable in Configure.",
   ]
 

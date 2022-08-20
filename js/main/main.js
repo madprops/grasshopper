@@ -17,7 +17,7 @@ App.history_items = []
 App.setup_configure()
 App.setup_items()
 App.setup_favorites()
-App.setup_events()
+App.setup_keyboard()
 App.setup_list()
 App.setup_ui()
 App.set_version()

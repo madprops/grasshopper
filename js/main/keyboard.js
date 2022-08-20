@@ -1,4 +1,4 @@
-App.setup_events = function () {
+App.setup_keyboard = function () {
   App.ev(document, "keydown", function (e) {
     if (App.layout !== "main") {
       return
@@ -8,9 +8,11 @@ App.setup_events = function () {
 
     if (e.key === "Enter") {
       if (e.shiftKey) {
-        let item = App.selected_item
-        App.select_next_item(item)
-        App.toggle_favorite(item)
+        if (App.selected_item) {
+          let item = App.selected_item
+          App.select_next_item(item)
+          App.toggle_favorite(item)
+        }
       } else {
         if (App.selected_item) {
           App.open_tab(App.selected_item.url)
