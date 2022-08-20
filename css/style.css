@@ -182,6 +182,7 @@ body, html {
   justify-content: center;
   gap: 1.2rem;
   margin-top: 1rem;
+  margin-bottom: 1rem;
   overflow: auto;
 }
 
@@ -232,7 +233,6 @@ body, html {
 #config_defaults {
   text-decoration: underline;
   font-size: 1.1rem;
-  padding-bottom: 1rem;
 }
 
 .removed {
