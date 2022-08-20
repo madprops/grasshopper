@@ -160,8 +160,6 @@ App.fill_item_element = function (item) {
     item.element.classList.add("history_item")
   }
 
-  item.element.title = item.url
-
   let icon = App.el(".item_icon", item.element)
   jdenticon.update(icon, App.get_unit(item.clean_url).toLowerCase())
 
