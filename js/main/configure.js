@@ -62,7 +62,7 @@ App.restore_config_default = function (item) {
 // Default config
 App.default_config = function () {
   return {
-    history_max_results: 3000,
+    history_max_results: 2500,
     history_months: 12,
     max_favorites: 1000,
   }

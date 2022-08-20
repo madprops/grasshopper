@@ -44,6 +44,7 @@ App.empty_history = function () {
 
 // Get items from history
 App.get_history = function () {
+  console.time("Get history")
   App.history_items = []
   App.history_fetched = true
   browser.history.search({
@@ -53,6 +54,7 @@ App.get_history = function () {
   }).then(function (items) {
     App.process_items(App.history_items, items, "history")
     App.show_history()
+    console.timeEnd("Get history")
   })
 }
 
@@ -97,7 +99,8 @@ App.process_items = function (container, items, type) {
       created: false,
       filled: false,
       hidden: true,
-      element: el
+      element: el,
+      type: type
     }
     
     container.push(obj)
@@ -156,6 +159,9 @@ App.fill_item_element = function (item) {
 
   let icon = App.el(".item_icon", item.element)
   jdenticon.update(icon, App.get_unit(item.clean_url).toLowerCase())
+
+  let icon_title = item.type === "favorites" ? "Remove from favorites" : "Add to favorites"
+  App.el(".item_icon_container", item.element).title = icon_title
 
   item.filled = true
   App.log("Element created")
