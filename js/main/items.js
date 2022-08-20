@@ -285,8 +285,18 @@ App.do_filter = function () {
   App.hide_other_items()
 
   function matched (item) {
-    return words.every(x => item.title.toLowerCase().includes(x)) || 
+    let match = words.every(x => item.title.toLowerCase().includes(x)) || 
       words.every(x => item.url.toLowerCase().includes(x))
+    
+    if (!match) {
+      return false
+    }
+
+    if (App.item_is_removed(item)) {
+      return false
+    }
+
+    return true
   }
 
   let selected = false
@@ -513,9 +523,19 @@ App.element_to_item = function (el) {
   return App.get_item_by_url(App.get_items(), el.dataset.url)
 }
 
+// Item is hidden
+App.item_is_hidden = function (item) {
+  return item.element.classList.contains("hidden")
+}
+
+// Item is removed
+App.item_is_removed = function (item) {
+  return item.element.classList.contains("removed")
+}
+
 // Check if item is visible
 App.item_is_visible = function (item) {
-  let hidden = item.element.classList.contains("hidden") || item.element.classList.contains("removed")
+  let hidden = App.item_is_hidden(item) || App.item_is_removed(item)
   return !hidden
 }
 
