@@ -423,16 +423,18 @@ App.remove_favorite = function (item) {
 App.select_next_item = function (item) {
   let prev = App.get_prev_visible_item(item)
   let next = App.get_next_visible_item(item)
+  let n_item
 
-  if (prev) {
-    let item = App.element_to_item(prev.element)
-    App.select_item(item)
-  } else if (next) {
-    let item = App.element_to_item(next.element)
-    App.select_item(item)      
+  if (next) {
+    n_item = App.element_to_item(next.element)
+  } else if (prev) {
+    n_item = App.element_to_item(prev.element)
   } else if (App.favorite_items.length > 0) {
-    let item = App.favorite_items[0]
-    App.select_item(item)
+    n_item = App.favorite_items[0]
+  }
+  
+  if (n_item) {
+    App.select_item(n_item)
   }
 }
 
