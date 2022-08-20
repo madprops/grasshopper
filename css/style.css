@@ -5,13 +5,13 @@
 body, html {
   font-family: sans-serif;
   font-size: 17px;
-  background-color: #252933;
   color: white;
   width: 700px;
   height: 600px;
   margin: 0;
   padding: 0;
   overflow: hidden;
+  background-color: transparent;
 }
 
 #main {
@@ -21,6 +21,9 @@ body, html {
   width: 100%;
   padding: 0.5rem;
   box-sizing: border-box;
+  border: 2px solid white;
+  border-radius: 10px;
+  background-color: #252933;
 }
 
 #info {
