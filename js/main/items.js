@@ -62,6 +62,7 @@ App.get_history = function () {
 App.process_items = function (container, items, type) {
   let list = App.el("#list")
   let favorite_urls
+  let urls = []
 
   if (type === "history") {
     favorite_urls = App.favorites.map(x => x.url)
@@ -72,29 +73,37 @@ App.process_items = function (container, items, type) {
       continue
     }
 
+    let url = App.remove_hash(item.url)
+
+    if (urls.includes(url)) {
+      continue
+    }
+
     let curl
 
     try {
-      curl = new URL(item.url).hostname
+      curl = new URL(url).hostname
     } catch (err) {
       continue
     }
+
+    urls.push(url)
     
     let el = App.create("div", "item hidden")
-    el.dataset.url = item.url
+    el.dataset.url = url
     App.item_observer.observe(el)
 
     if (type === "favorites") {
       favorite = true
     } else {
-      if (favorite_urls.includes(item.url)) {
+      if (favorite_urls.includes(url)) {
         el.classList.add("removed")
       }
     }
 
     let obj = {
       title: item.title || curl,
-      url: item.url,
+      url: url,
       clean_url: curl,
       created: false,
       filled: false,

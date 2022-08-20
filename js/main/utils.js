@@ -141,3 +141,8 @@ App.create = function (type, classes = "", id = "") {
 App.ev = function (element, action, callback, extra) {
   element.addEventListener(action, callback, extra)
 }
+
+// Remove hash from url
+App.remove_hash = function (url) {
+  return url.split("#")[0]
+}
