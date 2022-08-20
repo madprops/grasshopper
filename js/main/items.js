@@ -30,6 +30,10 @@ App.reload_favorites = function () {
     item.element.remove()
   }
 
+  if (App.mode === "favorites") {
+    App.selected_item = undefined
+  }
+  
   App.process_favorites()
 }
 
@@ -45,6 +49,11 @@ App.empty_history = function () {
 // Get items from history
 App.get_history = function () {
   console.time("Get history")
+
+  if (App.mode === "history") {
+    App.selected_item = undefined
+  }
+
   App.history_items = []
   App.history_fetched = true
   browser.history.search({

@@ -35,6 +35,25 @@ App.setup_configure = function () {
       App.fill_config_input(item)
     })
 
+    App.ev(App.el("#configure_favorites"), "blur", function () {
+      try {
+        let json
+        let v = this.value.trim()
+
+        if (!v) {
+          json = []
+        } else {
+          json = JSON.parse(v)
+        }
+
+        this.value = App.nice_json(json)
+        App.favorites = json
+        App.save_favorites()
+      } catch (err) {
+        alert(err)
+      }
+    })
+
     App.ev(App.el(".config_default_button", item), "click", function () {
       if (confirm("Are you sure?")) {
         App.restore_config_default(item)
@@ -87,6 +106,8 @@ App.show_configure = function () {
     for (let item of App.els(".configure_item")) {
       App.fill_config_input(item)
     }
+
+    App.el("#configure_favorites").value = App.nice_json(App.favorites)
 
     App.layout = "configure"
   } else {

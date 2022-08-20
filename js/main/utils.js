@@ -146,3 +146,8 @@ App.ev = function (element, action, callback, extra) {
 App.remove_hash = function (url) {
   return url.split("#")[0]
 }
+
+// Nice json string
+App.nice_json = function (json) {
+  return JSON.stringify(json, undefined, 2)
+}
