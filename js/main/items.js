@@ -98,7 +98,6 @@ App.process_items = function (container, items, type) {
       clean_url: curl,
       created: false,
       filled: false,
-      hidden: true,
       element: el,
       type: type
     }
@@ -126,9 +125,9 @@ App.start_item_observer = function () {
         continue
       }
       
-      let item = App.get_item_by_url(App.get_items(), entry.target.dataset.url)
+      let item = App.element_to_item(entry.target)
 
-      if (item.created && !item.hidden && !item.filled) {
+      if (item.created && App.item_is_visible(item) && !item.filled) {
         App.fill_item_element(item)
       }
     }
@@ -200,7 +199,7 @@ App.get_next_visible_item = function (o_item) {
     let item = items[i]
 
     if (waypoint) {
-      if (item.created && !item.hidden) {
+      if (item.created && App.item_is_visible(item)) {
         return item
       }
     }
@@ -220,7 +219,7 @@ App.get_prev_visible_item = function (o_item) {
     let item = items[i]
 
     if (waypoint) {
-      if (item.created && !item.hidden) {
+      if (item.created && App.item_is_visible(item)) {
         return item
       }
     }
@@ -242,8 +241,6 @@ App.get_item_by_url = function (items, url) {
 
 // Make item visible
 App.show_item = function (item) {
-  item.hidden = false
-
   if (!item.created) {
     App.create_item_element(item)
   }
@@ -253,8 +250,6 @@ App.show_item = function (item) {
 
 // Make an item not visible
 App.hide_item = function (item) {
-  item.hidden = true
-
   if (!item.created) {
     return
   }
@@ -358,15 +353,18 @@ App.save_favorites = function () {
 
 // Add a favorite item
 App.add_favorite = function (item) {
+  if (App.selected_item === item) {
+    App.select_next_item(item)
+  }
+
   item.element.classList.add("removed")
 
-  // Remove from list first
   for (let i=0; i<App.favorites.length; i++) {
     if (App.favorites[i].url === item.url) {
       App.favorites.splice(i, 1)
       break
     }
-  }
+  }  
 
   let o = {}
   o.title = item.title
@@ -390,7 +388,16 @@ App.add_favorite = function (item) {
 
 // Remove a favorite item
 App.remove_favorite = function (item) {
-  item.element.remove()
+  if (App.selected_item === item) {
+    App.select_next_item(item)
+  }
+
+  for (let [i, it] of App.favorite_items.entries()) {
+    if (it.url === item.url) {
+      App.favorite_items.splice(i, 1)
+      break
+    }
+  }  
 
   for (let i=0; i<App.favorites.length; i++) {
     let it = App.favorites[i]
@@ -407,7 +414,26 @@ App.remove_favorite = function (item) {
       item2.element.classList.remove("removed")
       break
     }
-  }  
+  }
+
+  item.element.remove()
+}
+
+// Select next item
+App.select_next_item = function (item) {
+  let prev = App.get_prev_visible_item(item)
+  let next = App.get_next_visible_item(item)
+
+  if (prev) {
+    let item = App.element_to_item(prev.element)
+    App.select_item(item)
+  } else if (next) {
+    let item = App.element_to_item(next.element)
+    App.select_item(item)      
+  } else if (App.favorite_items.length > 0) {
+    let item = App.favorite_items[0]
+    App.select_item(item)
+  }
 }
 
 // Show favorites
@@ -473,4 +499,24 @@ App.change_to_favorites = function () {
 
   App.set_mode("favorites")
   App.do_filter()
+}
+
+// Toggle favorite
+App.toggle_favorite = function (item) {
+  if (App.mode === "favorites") {
+    App.remove_favorite(item)
+  } else {
+    App.add_favorite(item)
+  }
+}
+
+// Element to item
+App.element_to_item = function (el) {
+  return App.get_item_by_url(App.get_items(), el.dataset.url)
+}
+
+// Check if item is visible
+App.item_is_visible = function (item) {
+  let hidden = item.element.classList.contains("hidden") || item.element.classList.contains("removed")
+  return !hidden
 }

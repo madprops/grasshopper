@@ -7,8 +7,12 @@ App.setup_events = function () {
     App.focus_filter()
 
     if (e.key === "Enter") {
-      if (App.selected_item) {
-        App.open_tab(App.selected_item.url)
+      if (e.shiftKey) {
+        App.toggle_favorite(App.selected_item)
+      } else {
+        if (App.selected_item) {
+          App.open_tab(App.selected_item.url)
+        }
       }
 
       e.preventDefault()
