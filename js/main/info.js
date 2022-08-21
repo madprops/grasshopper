@@ -32,7 +32,7 @@ App.show_help = function () {
     "You can use the Delete key to clear the filter.",
     "You can middle click an item to open without exiting.",
     "Some settings are configurable in Configure.",
-    "Favorites and Configuration are synced to your account if possible.",
+    "Favorites and Configuration are sync'd to your account.",
   ]
 
   alert(lines.join("\n"))
