@@ -13,17 +13,20 @@ App.ls_config = "config_v1"
 App.favorite_items = []
 App.history_items = []
 
-// Setup functions
-App.setup_configure()
-App.setup_items()
-App.setup_favorites()
-App.setup_keyboard()
-App.setup_list()
-App.setup_info()
+App.init = async function () {
+  App.setup_items()
+  App.setup_keyboard()
+  App.setup_list()
+  App.setup_info()
 
-// Start
-if (App.favorites.length > 0) {
-  App.show_favorites()
-} else {
-  App.get_history()
+  await App.setup_configure()
+  await App.get_favorites()
+
+  if (App.favorites.length > 0) {
+    App.show_favorites()
+  } else {
+    App.get_history()
+  }
 }
+
+App.init()

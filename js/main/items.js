@@ -353,21 +353,17 @@ App.show_history = function () {
   App.do_filter()
 }
 
-// Get favorite local storage
-App.setup_favorites = function () {
-  App.get_favorites()
-  App.process_favorites()
-}
-
 // Get favorites
-App.get_favorites = function () {
-  App.favorites = App.get_local_storage(App.ls_favorites)
+App.get_favorites = async function () {
+  let ans = await browser.storage.sync.get(App.ls_favorites) 
 
-  if (App.favorites === null) {
+  if (ans[App.ls_favorites]) {
+    App.favorites = ans[App.ls_favorites]
+  } else {
     App.favorites = []
   }
 
-  App.favorites = App.favorites.slice(0, App.config.max_favorites)  
+  App.process_favorites()
 }
 
 // Get favorite items
@@ -377,9 +373,11 @@ App.process_favorites = function () {
   App.favorites_need_refresh = false
 }
 
-// Saves the favorite localStorage object
-App.save_favorites = function () {
-  App.save_local_storage(App.ls_favorites, App.favorites)
+// Saves the favorite storage object
+App.save_favorites = async function () {
+  let o = {}
+  o[App.ls_favorites] = App.favorites
+  await browser.storage.sync.set(o)
   App.favorites_need_refresh = true
 }
 

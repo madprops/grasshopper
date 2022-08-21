@@ -4,7 +4,8 @@
     "version": "1.7",
     "description": "Go to your favorites URLs quickly",
     "permissions": [
-        "history"
+        "history",
+        "storage"
     ],
     "icons": {
         "128": "icon128.png"
@@ -19,6 +20,12 @@
     "commands": {
         "_execute_browser_action": {
 
+        }
+    },
+    "browser_specific_settings": {
+        "gecko": {
+            "id": "grasshopper_urls@mp.com",
+            "strict_min_version": "90.0"
         }
     }
 }

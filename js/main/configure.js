@@ -1,10 +1,14 @@
 // Setup configure
-App.setup_configure = function () {
-  App.config = App.get_local_storage(App.ls_config)
+App.setup_configure = async function () {
+  let ans = await browser.storage.sync.get(App.ls_config)
 
-  if (App.config === null) {
+  if (ans[App.ls_config]) {
+    App.config = ans[App.ls_config]
+  } else {
     App.config = App.default_config()
   }
+
+  console.log(App.config)
 
   App.ev(App.el("#configure_button"), "click", function () {
     App.show_configure()
@@ -89,7 +93,9 @@ App.default_config = function () {
 
 // Save config
 App.save_config = function () {
-  App.save_local_storage(this.ls_config, App.config)
+  let o = {}
+  o[App.ls_config] = App.config
+  browser.storage.sync.set(o)
 }
 
 // Show configure
