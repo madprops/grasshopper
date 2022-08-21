@@ -1,18 +1,18 @@
-// Setup configure
-App.setup_configure = async function () {
+// Get config object
+App.get_config = async function () {
+  App.log("Getting config")
   let ans = await browser.storage.sync.get(App.ls_config)
 
   if (ans[App.ls_config]) {
     App.config = ans[App.ls_config]
   } else {
     App.config = App.default_config()
-  }
+  }  
+}
 
-  console.log(App.config)
-
-  App.ev(App.el("#configure_button"), "click", function () {
-    App.show_configure()
-  })
+// Setup configure
+App.setup_configure = function () {
+  App.log("Setting up configure")
 
   for (let item of App.els(".configure_item")) {
     let name = item.dataset.name
@@ -72,6 +72,8 @@ App.setup_configure = async function () {
       }
     }
   })
+
+  App.configure_setup = true
 }
 
 // Restore config default
@@ -93,6 +95,7 @@ App.default_config = function () {
 
 // Save config
 App.save_config = function () {
+  App.log("Saving config")
   let o = {}
   o[App.ls_config] = App.config
   browser.storage.sync.set(o)

@@ -69,6 +69,8 @@ App.get_history = function () {
 
 // When results are found
 App.process_items = function (container, items, type) {
+  console.log("Processing:", type)
+
   let list = App.el("#list")
   let favorite_urls
   let urls = []
@@ -355,6 +357,7 @@ App.show_history = function () {
 
 // Get favorites
 App.get_favorites = async function () {
+  App.log("Getting favorites")
   let ans = await browser.storage.sync.get(App.ls_favorites) 
 
   if (ans[App.ls_favorites]) {
@@ -375,6 +378,7 @@ App.process_favorites = function () {
 
 // Saves the favorite storage object
 App.save_favorites = async function () {
+  App.log("Getting config")
   let o = {}
   o[App.ls_favorites] = App.favorites
   await browser.storage.sync.set(o)

@@ -4,6 +4,7 @@ App.layout = "main"
 // For internal checks
 App.favorites_need_refresh = false
 App.history_fetched = false
+App.configure_setup = false
 
 // Local storage paths
 App.ls_favorites = "favorites_v1"
@@ -19,7 +20,7 @@ App.init = async function () {
   App.setup_list()
   App.setup_info()
 
-  await App.setup_configure()
+  await App.get_config()
   await App.get_favorites()
 
   if (App.favorites.length > 0) {
