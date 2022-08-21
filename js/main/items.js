@@ -69,7 +69,7 @@ App.get_history = function () {
 
 // When results are found
 App.process_items = function (container, items, type) {
-  console.log("Processing:", type)
+  App.log("Processing:", type)
 
   let list = App.el("#list")
   let favorite_urls
