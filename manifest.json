@@ -24,7 +24,7 @@
     },
     "browser_specific_settings": {
         "gecko": {
-            "id": "grasshopper@mp.com",
+            "id": "{23aee10d-1130-4694-80ef-428e287ba83d}",
             "strict_min_version": "90.0"
         }
     }
