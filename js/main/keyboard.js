@@ -39,6 +39,10 @@ App.setup_keyboard = function () {
     } else if (e.key === "Tab") {
       App.change_mode()
       e.preventDefault()
+    } else if (e.key === "Delete") {
+      App.clear_filter()
+      App.do_filter()
+      e.preventDefault()
     }
   })
 }

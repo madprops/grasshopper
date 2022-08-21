@@ -29,6 +29,7 @@ App.show_help = function () {
     "You can use the arrows to select items up and down.",
     "You can use Tab to switch between Favorites and History.",
     "You can use Shift + Enter to add/remove a favorite.",
+    "You can use the Delete key to clear the filter.",
     "You can middle click an item to open without exiting.",
     "Some settings are configurable in Configure.",
   ]

@@ -1,0 +1,110 @@
+// Get favorites
+App.get_favorites = async function () {
+  App.log("Getting favorites")
+  let ans = await browser.storage.sync.get(App.ls_favorites) 
+
+  if (ans[App.ls_favorites]) {
+    App.favorites = ans[App.ls_favorites]
+  } else {
+    App.favorites = []
+  }
+
+  App.process_favorites()
+}
+
+// Get favorite items
+App.process_favorites = function () {
+  App.favorite_items = []
+  App.process_items(App.favorite_items, App.favorites, "favorites")
+  App.favorites_need_refresh = false
+}
+
+// Saves the favorite storage object
+App.save_favorites = async function () {
+  App.log("Getting config")
+  let o = {}
+  o[App.ls_favorites] = App.favorites
+  await browser.storage.sync.set(o)
+  App.favorites_need_refresh = true
+}
+
+// Add a favorite item
+App.add_favorite = function (item) {
+  App.favorites = App.favorites.filter(x => x.url !== item.url)
+  
+  let o = {}
+  o.url = item.url
+  o.title = item.title
+  
+  App.favorites.unshift(o)
+  App.favorites = App.favorites.slice(0, App.config.max_favorites)
+  
+  item.element.classList.add("removed")
+  App.save_favorites()
+  App.update_footer()
+}
+
+// Remove a favorite item
+App.remove_favorite = function (item) {
+  App.favorite_items = App.favorite_items.filter(x => x.url !== item.url)
+  App.favorites = App.favorites.filter(x => x.url !== item.url)
+
+  for (let it of App.history_items) {
+    if (it.url === item.url) {
+      it.element.classList.remove("removed")
+      break
+    }
+  }
+
+  item.element.remove()
+  App.save_favorites()
+  App.update_footer()
+}
+
+// Show favorites
+App.show_favorites = function () {
+  App.set_mode("favorites")
+  App.clear_filter()
+  App.do_filter()
+}
+
+// Get favorite by url
+App.get_favorite_by_url = function (url) {
+  for (let [i, item] of App.favorites.entries()) {
+    if (item.url === url) {
+      return [i, item]
+    }
+  }
+}
+
+// Reload favorites
+App.reload_favorites = function () {
+  for (let item of App.favorite_items) {
+    item.element.remove()
+  }
+
+  if (App.mode === "favorites") {
+    App.selected_item = undefined
+  }
+  
+  App.process_favorites()
+}
+
+// Toggle favorite
+App.toggle_favorite = function (item) {
+  if (App.mode === "favorites") {
+    App.remove_favorite(item)
+  } else {
+    App.add_favorite(item)
+  }
+}
+
+// Change to favorites
+App.change_to_favorites = function () {
+  if (App.favorites_need_refresh) {
+    App.reload_favorites()
+  }
+
+  App.set_mode("favorites")
+  App.do_filter()
+}
