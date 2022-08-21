@@ -26,7 +26,7 @@ App.setup_items = function () {
 
 // When results are found
 App.process_items = function (container, items, type) {
-  App.log("Processing:", type)
+  App.log(`Processing: ${type}`)
 
   let list = App.el("#list")
   let favorite_urls

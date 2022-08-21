@@ -1,13 +1,6 @@
 // Get config object
 App.get_config = async function () {
-  App.log("Getting config")
-  let ans = await browser.storage.sync.get(App.ls_config)
-
-  if (ans[App.ls_config]) {
-    App.config = ans[App.ls_config]
-  } else {
-    App.config = App.default_config()
-  }  
+  App.config = await App.get_storage(App.ls_config, App.default_config())
 }
 
 // Setup configure
@@ -94,11 +87,8 @@ App.default_config = function () {
 }
 
 // Save config
-App.save_config = function () {
-  App.log("Saving config")
-  let o = {}
-  o[App.ls_config] = App.config
-  browser.storage.sync.set(o)
+App.save_config = async function () {
+  await App.save_storage(App.ls_config, App.config)
 }
 
 // Show configure

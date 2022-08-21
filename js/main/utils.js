@@ -128,3 +128,23 @@ App.remove_hash = function (url) {
 App.nice_json = function (json) {
   return JSON.stringify(json, undefined, 2)
 }
+
+// Get storage
+App.get_storage = async function (name, def) {
+  App.log(`Getting: ${name}`)
+  let ans = await browser.storage.sync.get(name) 
+
+  if (ans[name]) {
+    return ans[name]
+  } else {
+    return def
+  }
+}
+
+// Save storage
+App.save_storage = async function (name, value) {
+  App.log(`Saving: ${name}`)
+  let o = {}
+  o[name] = value
+  await browser.storage.sync.set(o)
+}

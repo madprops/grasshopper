@@ -1,14 +1,6 @@
 // Get favorites
 App.get_favorites = async function () {
-  App.log("Getting favorites")
-  let ans = await browser.storage.sync.get(App.ls_favorites) 
-
-  if (ans[App.ls_favorites]) {
-    App.favorites = ans[App.ls_favorites]
-  } else {
-    App.favorites = []
-  }
-
+  App.favorites = await App.get_storage(App.ls_favorites, [])
   App.process_favorites()
 }
 
@@ -21,10 +13,7 @@ App.process_favorites = function () {
 
 // Saves the favorite storage object
 App.save_favorites = async function () {
-  App.log("Getting config")
-  let o = {}
-  o[App.ls_favorites] = App.favorites
-  await browser.storage.sync.set(o)
+  await App.save_storage(App.ls_favorites, App.favorites)
   App.favorites_need_refresh = true
 }
 
