@@ -91,7 +91,7 @@ App.only_numbers = function (s) {
 }
 
 // Move an item in an array
-App.move_in_array = function(arr, from, to) {
+App.move_in_array = function (arr, from, to) {
   arr.splice(to, 0, arr.splice(from, 1)[0])
 }
 
