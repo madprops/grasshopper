@@ -42,24 +42,31 @@
       <div id="footer" class="main_layout"></div>
       
       <div id="configure" class="hidden unselectable configure_layout">
-        <div class="configure_item" data-name="history_max_results" data-max="100000" data-min="1">
+        <div class="configure_item" data-name="history_max_results" data-max="100000" data-min="1" data-type="input">
           <div>Max History Results</div>
           <div class="configure_info">Maximum number of history items to fetch</div>
           <input type="text" class="configure_input">
           <div class="config_default_button action">Restore Default</div>
         </div>
 
-        <div class="configure_item" data-name="history_months" data-max="120" data-min="1">
+        <div class="configure_item" data-name="history_months" data-max="120" data-min="1" data-type="input">
           <div>Max History Months</div>
           <div class="configure_info">Maximum number of months to go back in history</div>
           <input type="text" class="configure_input">
           <div class="config_default_button action">Restore Default</div>
         </div>
 
-        <div class="configure_item" data-name="max_favorites" data-max="10000" data-min="1">
+        <div class="configure_item" data-name="max_favorites" data-max="10000" data-min="1" data-type="input">
           <div>Max Favorites</div>
           <div class="configure_info">Maximum number of favorite items to remember</div>
           <input type="text" class="configure_input">
+          <div class="config_default_button action">Restore Default</div>
+        </div>
+
+        <div class="configure_item" data-name="favorite_on_visit" data-type="checkbox">
+          <div>Favorite on Visit</div>
+          <div class="configure_info">Visiting a history item adds it to favorites automatically</div>
+          <input type="checkbox" class="configure_checkbox">
           <div class="config_default_button action">Restore Default</div>
         </div>
 

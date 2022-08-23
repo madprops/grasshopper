@@ -15,7 +15,10 @@ App.get_unit = function (curl) {
 
 // Open a new tab with a url
 App.open_tab = function (item, close = true) {
-  App.add_favorite(item)
+  if (App.mode === "favorites" || App.config.favorite_on_visit) {
+    App.add_favorite(item)
+  }
+
   browser.tabs.create({url: item.url, active: close})
 
   if (close) {
