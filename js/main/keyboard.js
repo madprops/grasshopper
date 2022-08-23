@@ -15,7 +15,7 @@ App.setup_keyboard = function () {
         }
       } else {
         if (App.selected_item) {
-          App.open_tab(App.selected_item.url)
+          App.open_tab(App.selected_item)
         }
       }
 

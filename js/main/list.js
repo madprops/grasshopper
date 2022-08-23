@@ -11,7 +11,7 @@ App.setup_list = function () {
         App.selected_item = undefined
         App.toggle_favorite(item)
       } else if (e.target.closest(".item_text")) {
-        App.open_tab(item.url)
+        App.open_tab(item)
       }
     }
   })
@@ -21,7 +21,7 @@ App.setup_list = function () {
     if (e.target.closest(".item")) {
       let el = e.target.closest(".item")
       let item = App.get_item_by_url(App.get_items(), el.dataset.url)
-      App.open_tab(item.url, false)
+      App.open_tab(item, false)
     }
   })
 
