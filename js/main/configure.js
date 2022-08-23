@@ -4,7 +4,7 @@ App.default_config = function () {
     history_max_results: 3000,
     history_max_months: 12,
     max_favorites: 1000,
-    max_text_length: 140,
+    max_text_length: 200,
     favorite_on_visit: true,
     text_mode: "title",
   }
