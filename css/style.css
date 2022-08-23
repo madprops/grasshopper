@@ -65,6 +65,11 @@ body, html {
   margin-right: 0.5rem;
 }
 
+#filter_mode {
+  font-size: 0.9rem;
+  margin-right: 0.5rem;
+}
+
 #buttons {
   display: flex;
   flex-direction: row;

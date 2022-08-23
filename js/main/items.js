@@ -22,6 +22,11 @@ App.setup_items = function () {
   App.ev(App.el("#history_button"), "click", function () {
     App.change_to_history()
   })
+
+  App.ev(App.el("#filter_mode"), "change", function () {
+    App.filter_mode = this.value
+    App.do_filter()
+  })
 }
 
 // When results are found
@@ -272,8 +277,16 @@ App.do_filter = function () {
   App.hide_other_items()
 
   function matched (item) {
-    let match = words.every(x => item.title.toLowerCase().includes(x)) || 
-      words.every(x => item.url.toLowerCase().includes(x))
+    let match
+
+    if (App.filter_mode === "title_url") {
+      match = words.every(x => item.title.toLowerCase().includes(x)) || 
+        words.every(x => item.url.toLowerCase().includes(x))
+    } else if (App.filter_mode === "title") {
+      match = words.every(x => item.title.toLowerCase().includes(x))
+    } else if (App.filter_mode === "url") {
+      match = words.every(x => item.url.toLowerCase().includes(x))
+    }
     
     if (!match) {
       return false
