@@ -12,6 +12,7 @@ App.setup_items = function () {
 
   App.ev(App.el("#clear_button"), "click", function () {
     App.clear_filter()
+    App.reset_filter_mode()
     App.do_filter()
   })
 
@@ -24,7 +25,6 @@ App.setup_items = function () {
   })
 
   App.ev(App.el("#filter_mode"), "change", function () {
-    App.filter_mode = this.value
     App.do_filter()
   })
 }
@@ -273,18 +273,19 @@ App.do_filter = function () {
   let value = App.el("#filter").value.trim()
   let items = App.get_items()
   let words = value.toLowerCase().split(" ").filter(x => x !== "")
+  let filter_mode = App.el("#filter_mode").value
   
   App.hide_other_items()
 
   function matched (item) {
     let match
 
-    if (App.filter_mode === "title_url") {
+    if (filter_mode === "title_url") {
       match = words.every(x => item.title.toLowerCase().includes(x)) || 
         words.every(x => item.url.toLowerCase().includes(x))
-    } else if (App.filter_mode === "title") {
+    } else if (filter_mode === "title") {
       match = words.every(x => item.title.toLowerCase().includes(x))
-    } else if (App.filter_mode === "url") {
+    } else if (filter_mode === "url") {
       match = words.every(x => item.url.toLowerCase().includes(x))
     }
     
@@ -405,4 +406,9 @@ App.update_footer = function () {
   } else {
     App.el("#footer").textContent = "No Results"
   }
+}
+
+// Reset filter mode
+App.reset_filter_mode = function () {
+  App.el("#filter_mode").value = "title_url"
 }
