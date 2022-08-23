@@ -1,13 +1,3 @@
-// Escape non alphanumeric chars
-App.escape_special_chars = function (s) {
-  return s.replace(/[^A-Za-z0-9]/g, "\\$&")
-}
-
-// Remove root url from the start of a url
-App.pathname = function (url) {
-  return new URL(url).pathname.replace(/\/$/, "").replace(/^\//, "")
-}
-
 // Get first part of a url
 App.get_unit = function (curl) {
   return curl.split("/")[0].split("?")[0].split("#")[0]
@@ -34,20 +24,6 @@ App.el = function (query, root = document) {
 // Select an array of elements
 App.els = function (query, root = document) {
   return Array.from(root.querySelectorAll(query))
-}
-
-// Count occurences of a character
-App.count = function (s, b) {
-  return s.split(b).length
-}
-
-// Get singular or plural
-App.plural = function (n, singular, plural) {
-  if (n === 1) {
-    return `${n} ${singular}`
-  } else {
-    return `${n} ${plural}`
-  }
 }
 
 // Print a message
@@ -80,11 +56,6 @@ App.locale_number = function (n) {
 App.only_numbers = function (s) {
   s = s.toString()
   return parseInt(s.replace(/\D/g, ""))
-}
-
-// Move an item in an array
-App.move_in_array = function (arr, from, to) {
-  arr.splice(to, 0, arr.splice(from, 1)[0])
 }
 
 // Create an html element
