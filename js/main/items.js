@@ -121,9 +121,19 @@ App.create_item_element = function (item) {
   item.element.append(icon_container)
 
   let text = App.create("div", "item_text")
-  let text_content = item.title || item.url
-  text_content = text_content.substring(0, 140)
-  text.textContent = text_content
+
+  let content
+  
+  if (App.config.text_mode === "title") {
+    content = item.title || item.url
+    item.footer = item.url || item.title
+  } else if (App.config.text_mode === "url") {
+    content = item.url || item.title
+    item.footer = item.title || item.url
+  }
+
+  content = content.substring(0, App.config.max_text_length)
+  text.textContent = content
 
   item.element.append(text)
   item.created = true
@@ -378,7 +388,7 @@ App.item_is_visible = function (item) {
 // Update the footer
 App.update_footer = function () {
   if (App.selected_item && App.item_is_visible(App.selected_item)) {
-    App.el("#footer").textContent = App.selected_item.url
+    App.el("#footer").textContent = App.selected_item.footer
   } else {
     App.el("#footer").textContent = "No Results"
   }

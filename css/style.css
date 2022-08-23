@@ -191,7 +191,7 @@ body, html {
 }
 
 .configure_info {
-  max-width: 14rem;
+  max-width: 10rem;
   text-align: center;
   margin-bottom: 0.5rem;
   font-size: 0.9rem;
@@ -200,6 +200,11 @@ body, html {
 
 .configure_input {
   width: 8rem;
+  font-size: 1rem;
+  text-align: center;
+}
+
+.configure_select {
   font-size: 1rem;
   text-align: center;
 }

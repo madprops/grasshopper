@@ -1,3 +1,15 @@
+// Default config
+App.default_config = function () {
+  return {
+    history_max_results: 3000,
+    history_max_months: 12,
+    max_favorites: 1000,
+    max_text_length: 140,
+    favorite_on_visit: true,
+    text_mode: "title",
+  }
+}
+
 // Get config object
 App.get_config = async function () {
   App.config = await App.get_storage(App.ls_config, App.default_config())
@@ -56,6 +68,14 @@ App.setup_configure = function () {
         App.save_config()
         App.fill_config_input(item)
       })      
+    } else if (type === "select") {
+      let select = App.el("select", item)
+  
+      App.ev(select, "change", function () {
+        App.config[name] = select.value
+        App.save_config()
+        App.fill_config_input(item)
+      })      
     }
 
     App.ev(App.el(".config_default_button", item), "click", function () {
@@ -82,16 +102,6 @@ App.restore_config_default = function (item) {
   App.config[name] = App.default_config()[name]
   App.save_config()
   App.fill_config_input(item)
-}
-
-// Default config
-App.default_config = function () {
-  return {
-    history_max_results: 2500,
-    history_months: 12,
-    max_favorites: 1000,
-    favorite_on_visit: true
-  }
 }
 
 // Save config
@@ -140,6 +150,8 @@ App.fill_config_input = function (item) {
     App.el("input", item).value = App.locale_number(App.config[name])
   } else if (type === "checkbox") {
     App.el("input", item).checked = App.config[name]
+  } else if (type === "select") {
+    App.el("select", item).value = App.config[name]
   }
 
   let def = App.el(".config_default_button", item)

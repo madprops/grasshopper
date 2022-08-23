@@ -20,7 +20,7 @@ App.get_history = function () {
   browser.history.search({
     text: "",
     maxResults: App.config.history_max_results,
-    startTime: Date.now() - (1000 * 60 * 60 * 24 * 30 * App.config.history_months)
+    startTime: Date.now() - (1000 * 60 * 60 * 24 * 30 * App.config.history_max_months)
   }).then(function (items) {
     App.process_items(App.history_items, items, "history")
     App.show_history()
