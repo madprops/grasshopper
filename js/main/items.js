@@ -326,7 +326,7 @@ App.do_filter = function () {
   if (App.mouse_over_disabled) {
     setTimeout(function () {
       App.mouse_over_disabled = false
-    }, 500)
+    }, 200)
   }
 }
 
