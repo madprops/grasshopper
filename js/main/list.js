@@ -27,6 +27,10 @@ App.setup_list = function () {
 
   // When list items get hovered
   App.ev(list, "mouseover", function (e) {
+    if (App.mouse_over_disabled) {
+      return
+    }
+    
     if (e.target.closest(".item")) {
       let el = e.target.closest(".item")
       let item = App.get_item_by_url(App.get_items(), el.dataset.url)

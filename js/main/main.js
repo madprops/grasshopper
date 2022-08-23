@@ -5,6 +5,7 @@ App.layout = "main"
 App.favorites_need_refresh = false
 App.history_fetched = false
 App.configure_setup = false
+App.mouse_over_disabled = true
 
 // Local storage paths
 App.ls_favorites = "favorites_v1"

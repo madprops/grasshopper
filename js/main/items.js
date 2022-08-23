@@ -86,8 +86,9 @@ App.process_items = function (container, items, type) {
     
     container.push(obj)
     list.append(el)
-  }
 
+  }
+  
   // Check performance
   App.log(`Results: ${items.length}`)
 }
@@ -270,6 +271,8 @@ App.select_item = function (s_item, scroll = true) {
 
 // Do items filter
 App.do_filter = function () {
+  App.log("Doing filter")
+
   let value = App.el("#filter").value.trim()
   let items = App.get_items()
   let words = value.toLowerCase().split(" ").filter(x => x !== "")
@@ -317,6 +320,13 @@ App.do_filter = function () {
 
   if (!selected) {
     App.update_footer()
+  }
+
+  // Avoid auto selecting when showing the window
+  if (App.mouse_over_disabled) {
+    setTimeout(function () {
+      App.mouse_over_disabled = false
+    }, 500)
   }
 }
 
