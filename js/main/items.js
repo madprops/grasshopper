@@ -132,7 +132,7 @@ App.create_item_element = function (item) {
     item.footer = item.title || item.url
   }
 
-  content = content.substring(0, App.config.max_text_length)
+  content = content.substring(0, App.config.max_text_length).trim()
   text.textContent = content
 
   item.element.append(text)
