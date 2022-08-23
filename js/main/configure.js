@@ -65,14 +65,6 @@ App.setup_configure = function () {
     })  
   }
 
-  App.ev(App.el("#configure_favorites"), "blur", function () {
-    if (App.nice_json(App.favorites) !== this.value) {
-      if (confirm("Modify favorites?")) {
-        App.modify_favorites()
-      }
-    }
-  })
-
   App.ev(App.el("#config_defaults"), "click", function () {
     if (confirm("Are you sure?")) {
       for (let item of App.els(".configure_item")) {
@@ -122,8 +114,6 @@ App.show_configure = function () {
       App.fill_config_input(item)
     }
 
-    App.el("#configure_favorites").value = App.nice_json(App.favorites)
-
     App.layout = "configure"
   } else {
     for (let item of App.els(".main_layout")) {
@@ -165,26 +155,4 @@ App.fill_config_input = function (item) {
   } else {
     App.el("#config_defaults").classList.add("hidden")
   }
-}
-
-// Modify the favorites json
-App.modify_favorites = function () {
-  let el = App.el("#configure_favorites")
-
-  try {
-    let json
-    let v = el.value.trim()
-
-    if (!v) {
-      json = []
-    } else {
-      json = JSON.parse(v)
-    }
-
-    el.value = App.nice_json(json)
-    App.favorites = json
-    App.save_favorites()
-  } catch (err) {
-    alert(err)
-  }  
 }

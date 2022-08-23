@@ -214,24 +214,6 @@ body, html {
   text-decoration: underline;
 }
 
-#configure_favorites_section {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-}
-
-#configure_favorites {
-  width: 28rem;
-  height: 5rem;
-  outline: none;
-  border: none;
-  font-size: 0.8rem;
-  margin-top: 0.5rem;
-  overflow: auto;
-  white-space: pre;
-}
-
 #config_defaults {
   text-decoration: underline;
   font-size: 1.1rem;
