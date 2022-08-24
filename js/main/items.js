@@ -110,7 +110,7 @@ App.start_item_observer = function () {
       
       let item = App.element_to_item(entry.target)
 
-      if (item.created && App.item_is_visible(item) && !item.filled) {
+      if (item.created && !item.filled && App.item_is_visible(item)) {
         App.fill_item_element(item)
       }
     }
@@ -319,6 +319,7 @@ App.do_filter = function () {
   }
 
   if (!selected) {
+    App.selected_item = undefined
     App.update_footer()
   }
 
@@ -411,7 +412,7 @@ App.item_is_visible = function (item) {
 
 // Update the footer
 App.update_footer = function () {
-  if (App.selected_item && App.item_is_visible(App.selected_item)) {
+  if (App.selected_item) {
     App.el("#footer").textContent = App.selected_item.footer
   } else {
     App.el("#footer").textContent = "No Results"
