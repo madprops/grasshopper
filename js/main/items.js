@@ -52,7 +52,7 @@ App.process_items = function (container, items, type) {
       continue
     }
 
-    let url_obj, hostname, pathname, clean_url
+    let url_obj
 
     try {
       url_obj = new URL(item.url)
@@ -62,9 +62,9 @@ App.process_items = function (container, items, type) {
 
     urls.push(url)
 
-    hostname = App.remove_slashes(url_obj.hostname)
-    pathname = App.remove_slashes(url_obj.pathname)
-    clean_url = App.remove_slashes(url_obj.origin + url_obj.pathname)
+    let hostname = App.remove_slashes(url_obj.hostname)
+    let pathname = App.remove_slashes(url_obj.pathname)
+    let clean_url = App.remove_slashes(url_obj.origin + url_obj.pathname)
     
     let el = App.create("div", "item hidden")
     el.dataset.url = url
