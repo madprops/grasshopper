@@ -17,9 +17,9 @@ App.history_items = []
 
 App.init = async function () {
   App.setup_items()
-  App.setup_keyboard()
   App.setup_list()
   App.setup_info()
+  App.setup_keyboard()
 
   await App.get_config()
   await App.get_favorites()
