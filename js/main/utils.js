@@ -4,8 +4,16 @@ App.remove_slashes = function (s) {
 }
 
 // Open a new tab with a url
-App.open_tab = function (item, close = true) {
+App.open_tab = async function (item, close = true) {
   if (App.mode === "favorites" || App.config.favorite_on_visit) {
+    if (App.mode === "favorites") {
+      let h = await App.get_history_item(item.url)
+
+      if (h) {
+        item.title = h.title
+      }
+    }
+    
     App.add_favorite(item)
   }
 

@@ -8,7 +8,7 @@ App.empty_history = function () {
 }
 
 // Get items from history
-App.get_history = function () {
+App.get_history = async function () {
   console.time("Get history")
 
   if (App.mode === "history") {
@@ -17,15 +17,16 @@ App.get_history = function () {
 
   App.history_items = []
   App.history_fetched = true
-  browser.history.search({
+  
+  let items = await browser.history.search({
     text: "",
     maxResults: App.config.history_max_results,
     startTime: Date.now() - (1000 * 60 * 60 * 24 * 30 * App.config.history_max_months)
-  }).then(function (items) {
-    App.process_items(App.history_items, items, "history")
-    App.show_history()
-    console.timeEnd("Get history")
   })
+
+  App.process_items(App.history_items, items, "history")
+  App.show_history()
+  console.timeEnd("Get history")
 }
 
 // Show history
@@ -44,4 +45,17 @@ App.change_to_history = function () {
   }
 
   App.show_history()
+}
+
+// Get a an item from history
+App.get_history_item = async function (url) {
+  let months = 3
+  
+  let items = await browser.history.search({
+    text: url,
+    maxResults: 1,
+    startTime: Date.now() - (1000 * 60 * 60 * 24 * 30 * months)
+  })
+
+  return items[0]
 }
