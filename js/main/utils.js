@@ -1,6 +1,6 @@
 // Remove end char
 App.remove_slashes = function (s) {
-  return s.replace(/\/+$/g, "")
+  return s.replace(/^\/+/g, "").replace(/\/+$/g, "")
 }
 
 // Open a new tab with a url

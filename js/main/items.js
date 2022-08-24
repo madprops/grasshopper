@@ -93,7 +93,6 @@ App.process_items = function (container, items, type) {
     
     container.push(obj)
     list.append(el)
-
   }
   
   // Check performance
@@ -142,7 +141,10 @@ App.create_item_element = function (item) {
     item.footer = item.url || item.title
   } else if (App.config.text_mode === "url") {
     content = item.url || item.title
-    item.footer = item.title || item.url
+    item.footer = item.title || item.pathname
+  } else if (App.config.text_mode === "path") {
+    content = item.pathname || item.hostname
+    item.footer = item.title || item.pathname
   }
 
   content = content.substring(0, App.config.max_text_length).trim()
@@ -302,8 +304,13 @@ App.do_filter = function () {
 
       if (match) {
         let n = App.only_numbers(filter_mode)
-        let parts = item.pathname.split("/")
-        return n === parts.length
+
+        if (!item.pathname) {
+          match = n === 1
+        } else {
+          let parts = item.pathname.split("/")
+          match = n === parts.length + 1
+        }
       }
     }
     
