@@ -57,15 +57,6 @@ App.show_favorites = function () {
   App.do_filter()
 }
 
-// Get favorite by url
-App.get_favorite_by_url = function (url) {
-  for (let [i, item] of App.favorites.entries()) {
-    if (item.url === url) {
-      return [i, item]
-    }
-  }
-}
-
 // Reload favorites
 App.reload_favorites = function () {
   for (let item of App.favorite_items) {
