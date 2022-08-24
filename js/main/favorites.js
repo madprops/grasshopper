@@ -90,6 +90,8 @@ App.toggle_favorite = function (item) {
 
 // Change to favorites
 App.change_to_favorites = function () {
+  App.log("Mode changed to favorites")
+
   if (App.favorites_need_refresh) {
     App.reload_favorites()
   }

@@ -36,6 +36,8 @@ App.show_history = function () {
 
 // Change to history
 App.change_to_history = function () {
+  App.log("Mode changed to history")
+  
   if (!App.history_fetched) {
     App.get_history()
     return

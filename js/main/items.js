@@ -81,7 +81,7 @@ App.process_items = function (container, items, type) {
     }
 
     let obj = {
-      title: item.title,
+      title: item.title || pathname,
       url: url,
       hostname: hostname,
       pathname: pathname,
