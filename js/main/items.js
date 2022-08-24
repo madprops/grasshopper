@@ -52,21 +52,19 @@ App.process_items = function (container, items, type) {
       continue
     }
 
-    let hostname, pathname
+    let url_obj, hostname, pathname, clean_url
 
     try {
-      hostname = App.remove_slashes(new URL(url).hostname)
+      url_obj = new URL(item.url)
     } catch (err) {
       continue
     }
 
-    try {
-      pathname = App.remove_slashes(new URL(url).pathname)
-    } catch (err) {
-      continue
-    }    
-
     urls.push(url)
+
+    hostname = App.remove_slashes(url_obj.hostname)
+    pathname = App.remove_slashes(url_obj.pathname)
+    clean_url = App.remove_slashes(url_obj.origin + url_obj.pathname)
     
     let el = App.create("div", "item hidden")
     el.dataset.url = url
@@ -80,9 +78,14 @@ App.process_items = function (container, items, type) {
       }
     }
 
+    let title = item.title || pathname
+
     let obj = {
-      title: item.title || pathname,
+      title: title,
+      title_lower: title.toLowerCase(),
       url: url,
+      clean_url: clean_url,
+      clean_url_lower: clean_url.toLowerCase(),
       hostname: hostname,
       pathname: pathname,
       created: false,
@@ -293,14 +296,14 @@ App.do_filter = function () {
     let match
 
     if (filter_mode === "title_url") {
-      match = words.every(x => item.title.toLowerCase().includes(x)) || 
-        words.every(x => item.url.toLowerCase().includes(x))
+      match = words.every(x => item.title_lower.includes(x)) || 
+        words.every(x => item.clean_url_lower.includes(x))
     } else if (filter_mode === "title") {
-      match = words.every(x => item.title.toLowerCase().includes(x))
+      match = words.every(x => item.title_lower.includes(x))
     } else if (filter_mode === "url") {
-      match = words.every(x => item.url.toLowerCase().includes(x))
+      match = words.every(x => item.clean_url_lower.includes(x))
     } else if (filter_mode.startsWith("url_")) {
-      match = words.every(x => item.url.toLowerCase().includes(x))
+      match = words.every(x => item.clean_url_lower.includes(x))
 
       if (match) {
         let n = App.only_numbers(filter_mode)
