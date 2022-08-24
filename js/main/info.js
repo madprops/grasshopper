@@ -25,7 +25,8 @@ App.show_help = function () {
     "History searches the browser history so you can save favorites.",
     "History is only fetched when necessary, so it's fast.",
     "Opening a history item will automatically add it to favorites.",
-    "Type something to filter with a more precise search.",
+    "Type something to filter the items.",
+    "The filter has different modes for more precise search.",
     "Items are ordered by last visit date, most recent at the top.",
     "You can use the arrows to select items up and down.",
     "You can use Tab to switch between Favorites and History.",
@@ -34,6 +35,7 @@ App.show_help = function () {
     "You can middle click an item to open without exiting.",
     "Some settings are configurable in Configure.",
     "Favorites and Configuration are sync'd to your account.",
+    "URL Level refers to the path's deepness (aa/bb/cc == 3).",
   ]
 
   alert(lines.join("\n"))
