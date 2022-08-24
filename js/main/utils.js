@@ -1,6 +1,6 @@
-// Get first part of a url
-App.get_unit = function (curl) {
-  return curl.split("/")[0].split("?")[0].split("#")[0]
+// Remove end char
+App.remove_slashes = function (s) {
+  return s.replace(/\/+$/g, "")
 }
 
 // Open a new tab with a url

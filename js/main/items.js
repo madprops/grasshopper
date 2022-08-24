@@ -52,13 +52,19 @@ App.process_items = function (container, items, type) {
       continue
     }
 
-    let curl
+    let hostname, pathname
 
     try {
-      curl = new URL(url).hostname
+      hostname = App.remove_slashes(new URL(url).hostname)
     } catch (err) {
       continue
     }
+
+    try {
+      pathname = App.remove_slashes(new URL(url).pathname)
+    } catch (err) {
+      continue
+    }    
 
     urls.push(url)
     
@@ -75,9 +81,10 @@ App.process_items = function (container, items, type) {
     }
 
     let obj = {
-      title: item.title || curl,
+      title: item.title,
       url: url,
-      clean_url: curl,
+      hostname: hostname,
+      pathname: pathname,
       created: false,
       filled: false,
       element: el,
@@ -154,7 +161,7 @@ App.fill_item_element = function (item) {
   }
 
   let icon = App.el(".item_icon", item.element)
-  jdenticon.update(icon, App.get_unit(item.clean_url).toLowerCase())
+  jdenticon.update(icon, item.hostname)
 
   let icon_title = item.type === "favorites" ? "Remove from favorites" : "Add to favorites"
   App.el(".item_icon_container", item.element).title = icon_title
@@ -290,6 +297,14 @@ App.do_filter = function () {
       match = words.every(x => item.title.toLowerCase().includes(x))
     } else if (filter_mode === "url") {
       match = words.every(x => item.url.toLowerCase().includes(x))
+    } else if (filter_mode.startsWith("url_")) {
+      match = words.every(x => item.url.toLowerCase().includes(x))
+
+      if (match) {
+        let n = App.only_numbers(filter_mode)
+        let parts = item.pathname.split("/")
+        return n === parts.length
+      }
     }
     
     if (!match) {
