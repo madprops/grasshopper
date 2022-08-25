@@ -49,7 +49,7 @@ App.change_to_history = function () {
 
 // Get a an item from history
 App.get_history_item = async function (url) {
-  if (App.history_fetched) {
+  if (App.history_items.length > 0) {
     for (let item of App.history_items) {
       if (item.url === url) {
         return item
