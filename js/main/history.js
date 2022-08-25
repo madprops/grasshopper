@@ -8,7 +8,7 @@ App.empty_history = function () {
 }
 
 // Get items from history
-App.get_history = async function () {
+App.get_history = async function (show = true) {
   console.time("Get history")
 
   if (App.mode === "history") {
@@ -25,7 +25,13 @@ App.get_history = async function () {
   })
 
   App.process_items(App.history_items, items, "history")
-  App.show_history()
+
+  if (show) {
+    App.show_history()
+  } else {
+    App.do_filter()
+  }
+
   console.timeEnd("Get history")
 }
 

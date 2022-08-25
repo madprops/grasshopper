@@ -16,11 +16,21 @@ App.setup_items = function () {
     App.do_filter()
   })
 
-  App.ev(App.el("#favorites_button"), "click", function () {
+  App.ev(App.el("#favorites_button"), "click", function (e) {
+    if (e.shiftKey) {
+      App.show_both()
+      return
+    }
+
     App.change_to_favorites()
   })  
 
-  App.ev(App.el("#history_button"), "click", function () {
+  App.ev(App.el("#history_button"), "click", function (e) {
+    if (e.shiftKey) {
+      App.show_both()
+      return
+    }
+
     App.change_to_history()
   })
 
@@ -178,8 +188,10 @@ App.fill_item_element = function (item) {
 App.get_items = function () {
   if (App.mode === "favorites") {
     return App.favorite_items || []
-  } else {
+  } else if (App.mode === "history") {
     return App.history_items || []
+  } else {
+    return App.favorite_items.concat(App.history_items)
   }
 }
 
@@ -187,8 +199,10 @@ App.get_items = function () {
 App.get_other_items = function () {
   if (App.mode === "favorites") {
     return App.history_items || []
-  } else {
+  } else if (App.mode === "history") {
     return App.favorite_items || []
+  } else {
+    return []
   }
 }
 
@@ -343,8 +357,12 @@ App.do_filter = function () {
   }
 
   if (!selected) {
-    App.selected_item = undefined
-    App.update_footer()
+    if (App.mode !== "both") {
+      App.show_both()
+    } else {
+      App.selected_item = undefined
+      App.update_footer()
+    }
   }
 
   // Avoid auto selecting when showing the window
@@ -396,9 +414,12 @@ App.set_mode = function (mode) {
   if (mode === "favorites") {
     App.el("#favorites_button").classList.add("button_selected")
     App.el("#history_button").classList.remove("button_selected")
-  } else {
+  } else if (mode === "history") {
     App.el("#history_button").classList.add("button_selected")
     App.el("#favorites_button").classList.remove("button_selected")
+  } else if (mode === "both") {
+    App.el("#history_button").classList.add("button_selected")
+    App.el("#favorites_button").classList.add("button_selected")
   }
 }
 
@@ -507,4 +528,15 @@ App.set_item_text = function (item) {
 
   content = content.substring(0, App.config.max_text_length).trim()
   App.el(".item_text", item.element).textContent = content
+}
+
+// Show favorites and history
+App.show_both = function () {
+  App.set_mode("both")
+
+  if (!App.history_fetched) {
+    App.get_history(false)
+  } else {
+    App.do_filter()
+  }
 }
