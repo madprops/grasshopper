@@ -4,6 +4,10 @@ App.setup_keyboard = function () {
       return
     }
 
+    if (NeedContext.open) {
+      return
+    }
+
     App.focus_filter()
 
     if (e.key === "Enter") {

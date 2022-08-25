@@ -349,9 +349,7 @@ App.do_filter = function () {
 
   // Avoid auto selecting when showing the window
   if (App.mouse_over_disabled) {
-    setTimeout(function () {
-      App.mouse_over_disabled = false
-    }, 200)
+    App.enable_mouse_over()
   }
 }
 

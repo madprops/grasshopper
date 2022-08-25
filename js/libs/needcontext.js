@@ -3,6 +3,19 @@
 // Main object
 const NeedContext = {}
 
+// Overridable function to perform after show
+NeedContext.after_show = function () {}
+
+// Overridable function to perform after hide
+NeedContext.after_hide = function () {}
+
+// Set defaults
+NeedContext.set_defaults = function () {
+  NeedContext.open = false
+  NeedContext.keydown = false
+  NeedContext.mousedown = false
+}
+
 // Show based on an element
 NeedContext.show_on_element = function (el, items) {
   let rect = el.getBoundingClientRect()
@@ -56,13 +69,7 @@ NeedContext.show = function (x, y, items) {
   NeedContext.items = items
   NeedContext.select_item(0)
   NeedContext.open = true
-}
-
-// Set defaults
-NeedContext.set_defaults = function () {
-  NeedContext.open = false
-  NeedContext.keydown = false
-  NeedContext.mousedown = false
+  NeedContext.after_show()
 }
 
 // Hide the menu
@@ -70,6 +77,7 @@ NeedContext.hide = function () {
   if (NeedContext.open) {
     NeedContext.container.remove()
     NeedContext.set_defaults()
+    NeedContext.after_hide()
   }
 }
 

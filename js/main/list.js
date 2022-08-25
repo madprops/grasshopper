@@ -39,4 +39,19 @@ App.setup_list = function () {
       App.select_item(item, false)
     }
   })
+
+  NeedContext.after_show = function () {
+    App.mouse_over_disabled = true
+  }
+
+  NeedContext.after_hide = function () {
+    App.enable_mouse_over()
+  }
+}
+
+// Enable mouse over with a timeout
+App.enable_mouse_over = function () {
+  setTimeout(function () {
+    App.mouse_over_disabled = false
+  }, 200)
 }
