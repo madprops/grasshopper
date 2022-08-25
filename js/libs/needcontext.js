@@ -137,7 +137,7 @@ NeedContext.init = function () {
     }    
   `
 
-  style.innerHTML = css
+  style.innerText = css
   document.head.appendChild(style)
 
   document.addEventListener("mousedown", function (e) {
