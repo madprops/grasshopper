@@ -110,9 +110,7 @@ App.update_favorite_info = async function (item) {
   let h = await App.get_history_item(item.url)
 
   if (h) {
-    item.title = h.title
-    item.title_lower = h.title.toLowerCase()
-    App.remake_element(item)    
+    App.update_item_title(item, h.title)    
     App.update_favorite(item)
   }
 }

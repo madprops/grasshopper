@@ -147,22 +147,8 @@ App.create_item_element = function (item) {
   item.element.append(icon_container)
 
   let text = App.create("div", "item_text")
-  let content
-  
-  if (App.config.text_mode === "title") {
-    content = item.title || item.url
-    item.footer = item.url || item.title
-  } else if (App.config.text_mode === "url") {
-    content = item.url || item.title
-    item.footer = item.title || item.pathname
-  } else if (App.config.text_mode === "path") {
-    content = item.pathname || item.hostname
-    item.footer = item.title || item.pathname
-  }
-
-  content = content.substring(0, App.config.max_text_length).trim()
-  text.textContent = content
   item.element.append(text)
+  App.set_item_text(item)
 
   let menu = App.create("div", "item_menu")
   menu.textContent = "Menu"
@@ -499,11 +485,28 @@ App.show_item_menu = function (item) {
   }
 }
 
-// Create and fill an item
-App.remake_element = function (item) {
-  item.element.innerHTML = ""
-  item.created = false
-  item.filled = false
-  App.create_item_element(item)
-  App.fill_item_element(item)
+// Update an item's title
+App.update_item_title = function (item, title) {
+  item.title = title
+  item.title_lower = title.toLowerCase()
+  App.set_item_text(item)
+}
+
+// Set the text of an item
+App.set_item_text = function (item) {
+  let content
+  
+  if (App.config.text_mode === "title") {
+    content = item.title || item.url
+    item.footer = item.url || item.title
+  } else if (App.config.text_mode === "url") {
+    content = item.url || item.title
+    item.footer = item.title || item.pathname
+  } else if (App.config.text_mode === "path") {
+    content = item.pathname || item.hostname
+    item.footer = item.title || item.pathname
+  }
+
+  content = content.substring(0, App.config.max_text_length).trim()
+  App.el(".item_text", item.element).textContent = content
 }
