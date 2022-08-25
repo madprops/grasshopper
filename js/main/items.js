@@ -42,64 +42,75 @@ App.process_items = function (container, items, type) {
   }
 
   for (let item of items) {
-    if (!item.url) {
+    let obj = App.process_item(type, item, favorite_urls)
+
+    if (!obj) {
       continue
     }
 
-    let url = App.remove_hash(item.url)
-
-    if (urls.includes(url)) {
+    if (urls.includes(obj.url)) {
       continue
     }
 
-    let url_obj
-
-    try {
-      url_obj = new URL(item.url)
-    } catch (err) {
-      continue
-    }
-
-    urls.push(url)
-
-    let hostname = App.remove_slashes(url_obj.hostname)
-    let pathname = App.remove_slashes(url_obj.pathname)
-    let clean_url = App.remove_slashes(url_obj.origin + url_obj.pathname)
-    
-    let el = App.create("div", "item hidden")
-    el.dataset.url = url
-    App.item_observer.observe(el)
-
-    if (type === "favorites") {
-      favorite = true
-    } else {
-      if (favorite_urls.includes(url)) {
-        el.classList.add("removed")
-      }
-    }
-
-    let title = item.title || pathname
-
-    let obj = {
-      title: title,
-      title_lower: title.toLowerCase(),
-      url: url,
-      clean_url: clean_url,
-      clean_url_lower: clean_url.toLowerCase(),
-      hostname: hostname,
-      pathname: pathname,
-      created: false,
-      filled: false,
-      element: el,
-      type: type
-    }
-    
+    urls.push(obj.url)
     container.push(obj)
-    list.append(el)
+    list.append(obj.element)
   }
   
   // Check performance
   App.log(`Results: ${items.length}`)
+}
+
+// Process an item
+App.process_item = function (type, item, excluded) {
+  if (!item.url) {
+    return
+  }
+
+  let url = App.remove_hash(item.url)
+  let url_obj
+
+  try {
+    url_obj = new URL(item.url)
+  } catch (err) {
+    return
+  }
+
+  let hostname = App.remove_slashes(url_obj.hostname)
+  let pathname = App.remove_slashes(url_obj.pathname)
+  let clean_url = App.remove_slashes(url_obj.origin + url_obj.pathname)
+  
+  let el = App.create("div", "item hidden")
+  el.dataset.url = url
+  App.item_observer.observe(el)
+
+  if (type === "favorites") {
+    favorite = true
+  }
+
+  if (excluded) {
+    if (excluded.includes(url)) {
+      el.classList.add("removed")
+    }
+  }
+
+  let title = item.title || pathname
+
+  let obj = {
+    title: title,
+    title_lower: title.toLowerCase(),
+    url: url,
+    clean_url: clean_url,
+    clean_url_lower: clean_url.toLowerCase(),
+    hostname: hostname,
+    pathname: pathname,
+    created: false,
+    filled: false,
+    element: el,
+    type: type
+  }
+
+  return obj
 }
 
 // Start intersection observer to check visibility
@@ -136,7 +147,6 @@ App.create_item_element = function (item) {
   item.element.append(icon_container)
 
   let text = App.create("div", "item_text")
-
   let content
   
   if (App.config.text_mode === "title") {
@@ -152,8 +162,11 @@ App.create_item_element = function (item) {
 
   content = content.substring(0, App.config.max_text_length).trim()
   text.textContent = content
-
   item.element.append(text)
+
+  let menu = App.create("div", "item_menu")
+  menu.textContent = "Menu"
+  item.element.append(menu)
   item.created = true
 }
 
@@ -447,4 +460,43 @@ App.update_footer = function () {
 // Reset filter mode
 App.reset_filter_mode = function () {
   App.el("#filter_mode").value = "title_url"
+}
+
+// Show item context menu
+App.show_item_menu = function (item) {
+  let items = []
+
+  if (App.mode === "favorites") {
+    items.push({
+      text: "Update",
+      action: function () {
+        App.update_favorite(item)
+      }
+    })
+  }
+
+  items.push({
+    text: "Cancel",
+    action: function () {}
+  })
+
+  if (items.length > 0) {
+    NeedContext.show_on_element(App.el(".item_menu", item.element), items)
+  }
+}
+
+// Update the title of an item
+App.update_item_title = function (item, title) {
+  item.title = title
+  item.title_lower = title.toLowerCase()
+  App.remake_element(item)
+}
+
+// Create and fill an item
+App.remake_element = function (item) {
+  item.element.innerHTML = ""
+  item.created = false
+  item.filled = false
+  App.create_item_element(item)
+  App.fill_item_element(item)
 }

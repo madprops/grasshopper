@@ -28,7 +28,10 @@ App.add_favorite = function (item) {
   App.favorites.unshift(o)
   App.favorites = App.favorites.slice(0, App.config.max_favorites)
   
-  item.element.classList.add("removed")
+  if (App.mode === "history") {
+    item.element.classList.add("removed")
+  }
+
   App.save_favorites()
   App.update_footer()
 }
@@ -89,4 +92,14 @@ App.change_to_favorites = function () {
 
   App.set_mode("favorites")
   App.do_filter()
+}
+
+// Update a favorite item
+App.update_favorite = async function (item) {
+  let h = await App.get_history_item(item.url)
+
+  if (h) {
+    App.update_item_title(item, h.title)
+    App.add_favorite(item)
+  }
 }

@@ -12,6 +12,8 @@ App.setup_list = function () {
         App.toggle_favorite(item)
       } else if (e.target.closest(".item_text")) {
         App.open_tab(item)
+      } else if (e.target.closest(".item_menu")) {
+        App.show_item_menu(item)
       }
     }
   })
