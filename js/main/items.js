@@ -466,6 +466,20 @@ App.reset_filter_mode = function () {
 App.show_item_menu = function (item) {
   let items = []
 
+  items.push({
+    text: "Copy URL",
+    action: function () {
+      App.copy_to_clipboard(item.url)
+    }
+  })
+
+  items.push({
+    text: "Copy Title",
+    action: function () {
+      App.copy_to_clipboard(item.title)
+    }
+  })
+
   if (App.mode === "favorites") {
     items.push({
       text: "Update",
@@ -473,7 +487,7 @@ App.show_item_menu = function (item) {
         App.update_favorite_info(item)
       }
     })
-  }
+  }  
 
   items.push({
     text: "Cancel",
