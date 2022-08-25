@@ -219,7 +219,8 @@ body, html {
 }
 
 .configure_select {
-  font-size: 0.9rem;
+  width: 8rem;
+  font-size: 1rem;
   text-align: center;
 }
 
