@@ -36,6 +36,9 @@ App.show_help = function () {
     "Some settings are configurable in Configure.",
     "Favorites and Configuration are sync'd to your account.",
     "URL Level refers to the path's deepness (aa/bb/cc == 3).",
+    "Shift + Clicking Favorites or History activates both buttons.",
+    "When both buttons are active all results will appear.",
+    "If filtering in one mode yields no results, both buttons activate.",
   ]
 
   alert(lines.join("\n"))
