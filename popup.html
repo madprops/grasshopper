@@ -79,15 +79,8 @@
           <div class="configure_info">How long the text of the items can be</div>
           <input type="text" class="configure_input">
           <div class="config_default_button action">Restore Default</div>
-        </div>        
-
-        <div class="configure_item" data-name="favorite_on_visit" data-type="checkbox">
-          <div>Favorite on Visit</div>
-          <div class="configure_info">Visiting a history item adds it to favorites automatically</div>
-          <input type="checkbox" class="configure_checkbox">
-          <div class="config_default_button action">Restore Default</div>
-        </div>
-
+        </div>      
+        
         <div class="configure_item" data-name="text_mode" data-type="select">
           <div>Text Mode</div>
           <div class="configure_info">What to show as the text of the items</div>
@@ -97,7 +90,21 @@
             <option value="path">Path</option>
           </select>
           <div class="config_default_button action">Restore Default</div>
-        </div>        
+        </div>          
+
+        <div class="configure_item" data-name="favorite_on_visit" data-type="checkbox">
+          <div>Favorite on Visit</div>
+          <div class="configure_info">Visiting a history item adds it to favorites automatically</div>
+          <input type="checkbox" class="configure_checkbox">
+          <div class="config_default_button action">Restore Default</div>
+        </div>
+
+        <div class="configure_item" data-name="both_on_empty" data-type="checkbox">
+          <div>Both on Empty</div>
+          <div class="configure_info">Search in both Favorites and History when there are no results</div>
+          <input type="checkbox" class="configure_checkbox">
+          <div class="config_default_button action">Restore Default</div>
+        </div>      
 
         <div id="config_defaults" class="action">Restore All Defaults</div>
       </div>

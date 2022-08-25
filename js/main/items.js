@@ -357,7 +357,7 @@ App.do_filter = function () {
   }
 
   if (!selected) {
-    if (App.mode !== "both") {
+    if (App.config.both_on_empty && App.mode !== "both") {
       App.show_both()
     } else {
       App.selected_item = undefined

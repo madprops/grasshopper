@@ -7,6 +7,7 @@ App.default_config = function () {
     max_text_length: 200,
     favorite_on_visit: true,
     text_mode: "title",
+    both_on_empty: true,
   }
 }
 
