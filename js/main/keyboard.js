@@ -47,6 +47,11 @@ App.setup_keyboard = function () {
       App.clear_filter()
       App.do_filter()
       e.preventDefault()
+    } else if (e.key === " ") {
+      if (e.shiftKey) {
+        App.show_item_menu(App.selected_item)
+        e.preventDefault()
+      }
     }
   })
 }
