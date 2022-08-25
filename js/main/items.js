@@ -470,7 +470,7 @@ App.show_item_menu = function (item) {
     items.push({
       text: "Update",
       action: function () {
-        App.update_favorite(item)
+        App.update_favorite_info(item)
       }
     })
   }
@@ -483,13 +483,6 @@ App.show_item_menu = function (item) {
   if (items.length > 0) {
     NeedContext.show_on_element(App.el(".item_menu", item.element), items)
   }
-}
-
-// Update the title of an item
-App.update_item_title = function (item, title) {
-  item.title = title
-  item.title_lower = title.toLowerCase()
-  App.remake_element(item)
 }
 
 // Create and fill an item

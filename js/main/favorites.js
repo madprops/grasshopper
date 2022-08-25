@@ -53,6 +53,17 @@ App.remove_favorite = function (item) {
   App.update_footer()
 }
 
+// Update a favorite item
+App.update_favorite = function (item) {
+  for (let it of App.favorites) {
+    if (it.url === item.url) {
+      it.title = item.title
+      App.save_favorites()
+      return
+    }
+  }
+}
+
 // Show favorites
 App.show_favorites = function () {
   App.set_mode("favorites")
@@ -95,11 +106,13 @@ App.change_to_favorites = function () {
 }
 
 // Update a favorite item
-App.update_favorite = async function (item) {
+App.update_favorite_info = async function (item) {
   let h = await App.get_history_item(item.url)
 
   if (h) {
-    App.update_item_title(item, h.title)
-    App.add_favorite(item)
+    item.title = h.title
+    item.title_lower = h.title.toLowerCase()
+    App.remake_element(item)    
+    App.update_favorite(item)
   }
 }
