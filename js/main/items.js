@@ -415,23 +415,17 @@ App.hide_other_items = function () {
 // Set app mode
 App.set_mode = function (mode) {
   App.mode = mode
-  let cursor
 
   if (mode === "favorites") {
     App.el("#favorites_button").classList.add("button_selected")
     App.el("#history_button").classList.remove("button_selected")
-    cursor = "pointer"
   } else if (mode === "history") {
     App.el("#history_button").classList.add("button_selected")
     App.el("#favorites_button").classList.remove("button_selected")
-    cursor = "pointer"
   } else if (mode === "both") {
     App.el("#history_button").classList.add("button_selected")
     App.el("#favorites_button").classList.add("button_selected")
-    cursor = "default"
   }
-
-  document.documentElement.style.setProperty("--icon_cursor", cursor)
 }
 
 // Change mode

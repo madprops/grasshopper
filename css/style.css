@@ -1,6 +1,5 @@
 :root {
 	--icon_size: 1.2rem;
-  --icon_cursor: "pointer";
 }
 
 @font-face {
@@ -140,7 +139,6 @@ body, html {
   align-items: center;
   justify-content: center;
   height: 100%;
-  cursor: var(--icon_cursor);
 }
 
 .item_icon {

@@ -28,7 +28,7 @@ App.add_favorite = function (item) {
   App.favorites.unshift(o)
   App.favorites = App.favorites.slice(0, App.config.max_favorites)
   
-  if (App.mode === "history") {
+  if (item.type === "history") {
     item.element.classList.add("removed")
   }
 
@@ -86,9 +86,9 @@ App.reload_favorites = function () {
 
 // Toggle favorite
 App.toggle_favorite = function (item) {
-  if (App.mode === "favorites") {
+  if (item.type === "favorites") {
     App.remove_favorite(item)
-  } else if (App.mode === "history") {
+  } else if (item.type === "history") {
     App.add_favorite(item)
   }
 }
