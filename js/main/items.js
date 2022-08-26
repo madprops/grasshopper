@@ -158,7 +158,7 @@ App.create_item_element = function (item) {
 
   let text = App.create("div", "item_text")
   item.element.append(text)
-  
+
   if (App.config.single_line) {
     text.classList.add("single_line")
   }
@@ -475,6 +475,7 @@ App.reset_filter_mode = function () {
 // Show item context menu
 App.show_item_menu = function (item) {
   let items = []
+  let text = App.el(".item_text", item.element)
 
   items.push({
     text: "Copy URL",
@@ -489,6 +490,16 @@ App.show_item_menu = function (item) {
       App.copy_to_clipboard(item.title)
     }
   })
+
+  if (App.config.single_line && App.is_overflowing(text)) {
+    items.push({
+      text: "Expand",
+      action: function () {
+        App.update_favorite_info(item)
+        text.classList.remove("single_line")
+      }
+    })
+  }
 
   if (App.mode === "favorites") {
     items.push({

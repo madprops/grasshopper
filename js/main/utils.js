@@ -111,3 +111,8 @@ App.save_storage = async function (name, value) {
 App.copy_to_clipboard = function (text) {
   navigator.clipboard.writeText(text)
 }
+
+// Check if an element is overflowing
+App.is_overflowing = function (el) {
+  return el.scrollHeight > el.clientHeight || el.scrollWidth > el.clientWidth;
+}
