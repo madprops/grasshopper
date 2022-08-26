@@ -38,6 +38,7 @@ App.get_history = async function (show = true) {
 // Show history
 App.show_history = function () {
   App.set_mode("history")
+  App.clear_filter()
   App.do_filter()
 }
 
