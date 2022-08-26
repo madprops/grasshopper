@@ -5,7 +5,7 @@ App.remove_slashes = function (s) {
 
 // Open a new tab with a url
 App.open_tab = async function (item, close = true) {
-  if (App.mode === "favorites" || App.config.favorite_on_visit) {    
+  if (item.type === "favorites" || App.config.favorite_on_visit) {    
     App.add_favorite(item)
   }
 

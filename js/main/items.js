@@ -501,7 +501,7 @@ App.show_item_menu = function (item) {
     })
   }
 
-  if (App.mode === "favorites") {
+  if (item.type === "favorites") {
     items.push({
       text: "Update",
       action: function () {
