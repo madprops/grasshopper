@@ -88,7 +88,7 @@ App.reload_favorites = function () {
 App.toggle_favorite = function (item) {
   if (App.mode === "favorites") {
     App.remove_favorite(item)
-  } else {
+  } else if (App.mode === "history") {
     App.add_favorite(item)
   }
 }
