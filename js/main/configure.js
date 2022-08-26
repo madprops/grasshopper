@@ -8,6 +8,7 @@ App.default_config = function () {
     favorite_on_visit: true,
     text_mode: "title",
     both_on_empty: true,
+    single_line: true
   }
 }
 

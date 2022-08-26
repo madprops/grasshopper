@@ -158,6 +158,11 @@ App.create_item_element = function (item) {
 
   let text = App.create("div", "item_text")
   item.element.append(text)
+  
+  if (App.config.single_line) {
+    text.classList.add("single_line")
+  }
+
   App.set_item_text(item)
 
   let menu = App.create("div", "item_menu")
