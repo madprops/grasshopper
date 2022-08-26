@@ -102,8 +102,7 @@ App.change_to_favorites = function () {
   }
 
   App.set_mode("favorites")
-  App.clear_filter()
-  App.do_filter()
+  App.do_filter("mode_change")
 }
 
 // Update a favorite item

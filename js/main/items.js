@@ -295,7 +295,7 @@ App.select_item = function (s_item, scroll = true) {
 }
 
 // Do items filter
-App.do_filter = function () {
+App.do_filter = function (mode = "typed") {
   App.log("Doing filter")
 
   let value = App.el("#filter").value.trim()
@@ -357,7 +357,7 @@ App.do_filter = function () {
   }
 
   if (!selected) {
-    if (App.config.both_on_empty && App.mode !== "both") {
+    if (App.config.both_on_empty && App.mode !== "both" && mode !== "mode_change") {
       App.show_both()
     } else {
       App.selected_item = undefined
