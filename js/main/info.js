@@ -39,6 +39,7 @@ App.show_help = function () {
     "Shift + Clicking Favorites or History activates both buttons.",
     "When both buttons are active all results will appear.",
     "If filtering in one mode yields no results, both buttons activate.",
+    "You can also use Shift + Tab to select both buttons.",
   ]
 
   alert(lines.join("\n"))

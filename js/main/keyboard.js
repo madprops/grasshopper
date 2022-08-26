@@ -41,7 +41,12 @@ App.setup_keyboard = function () {
 
       e.preventDefault()
     } else if (e.key === "Tab") {
-      App.change_mode()
+      if (e.shiftKey) {
+        App.show_both()
+      } else {
+        App.change_mode()
+      }
+
       e.preventDefault()
     } else if (e.key === "Delete") {
       App.clear_filter()
