@@ -359,7 +359,6 @@ App.do_filter = function (mode = "typed") {
 
       if (!selected) {
         if (App.item_is_visible(item)) {
-          console.log(item.element)
           App.select_item(item)
           selected = true
         }
