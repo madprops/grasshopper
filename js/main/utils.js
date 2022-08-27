@@ -1,6 +1,16 @@
 // Remove end char
 App.remove_slashes = function (s) {
-  return s.replace(/^\/+/g, "").replace(/\/+$/g, "")
+  return App.remove_slashes_end(App.remove_slashes_start(s))
+}
+
+// Remove slashes from start
+App.remove_slashes_start = function (s) {
+  return s.replace(/^\/+/g, "")
+}
+
+// Remove slashes from ending
+App.remove_slashes_end = function (s) {
+  return s.replace(/\/+$/g, "")
 }
 
 // Open a new tab with a url

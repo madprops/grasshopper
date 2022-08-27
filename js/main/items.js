@@ -44,21 +44,27 @@ App.process_items = function (container, items, type) {
   App.log(`Processing: ${type}`)
 
   let list = App.el("#list")
-  let favorite_urls
   let urls = []
+  let removed = []
 
   if (type === "history") {
-    favorite_urls = App.favorites.map(x => x.url)
+    removed = App.favorite_items.map(x => x.url)
   }
 
   for (let item of items) {
-    let obj = App.process_item(type, item, favorite_urls)
-
-    if (!obj) {
+    if (!item.url) {
       continue
     }
 
-    if (urls.includes(obj.url)) {
+    item.url = App.remove_slashes_end(App.remove_hash(item.url))
+
+    if (urls.includes(item.url)) {
+      continue
+    }
+
+    let obj = App.process_item(type, item, removed)
+
+    if (!obj) {
       continue
     }
 
@@ -72,12 +78,7 @@ App.process_items = function (container, items, type) {
 }
 
 // Process an item
-App.process_item = function (type, item, excluded) {
-  if (!item.url) {
-    return
-  }
-
-  let url = App.remove_hash(item.url)
+App.process_item = function (type, item, removed) {
   let url_obj
 
   try {
@@ -91,15 +92,15 @@ App.process_item = function (type, item, excluded) {
   let clean_url = App.remove_slashes(url_obj.origin + url_obj.pathname)
   
   let el = App.create("div", "item hidden")
-  el.dataset.url = url
+  el.dataset.url = item.url
   App.item_observer.observe(el)
 
   if (type === "favorites") {
     favorite = true
   }
 
-  if (excluded) {
-    if (excluded.includes(url)) {
+  if (removed) {
+    if (removed.includes(item.url)) {
       el.classList.add("removed")
     }
   }
@@ -109,7 +110,7 @@ App.process_item = function (type, item, excluded) {
   let obj = {
     title: title,
     title_lower: title.toLowerCase(),
-    url: url,
+    url: item.url,
     clean_url: clean_url,
     clean_url_lower: clean_url.toLowerCase(),
     hostname: hostname,
