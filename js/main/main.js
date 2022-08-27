@@ -16,6 +16,7 @@ App.favorite_items = []
 App.history_items = []
 
 App.init = async function () {
+  App.setup_windows()
   App.setup_items()
   App.setup_list()
   App.setup_info()

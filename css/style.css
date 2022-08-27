@@ -45,6 +45,18 @@ body, html {
   text-decoration: underline;
 }
 
+#help_container {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  margin: 0.5rem;
+}
+
+.help_item {
+  text-align: left;
+  font-size: 1rem;
+}
+
 #top_container {
   display: flex;
   flex-direction: row;
@@ -262,4 +274,16 @@ body, html {
   overflow: hidden;
   border-top: 1px solid rgb(29, 117, 146);
   white-space: nowrap;
+}
+
+#edit_input {
+  font-size: 1rem;
+  width: 20rem;
+  margin: 1rem;
+  padding: 0.25rem;
+}
+
+#edit_submit {
+  font-size: 1.2rem;
+  margin-bottom: 1rem;
 }

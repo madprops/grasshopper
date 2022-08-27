@@ -104,25 +104,25 @@ App.change_to_favorites = function () {
 
 // Edit the title of a favorite
 App.edit_favorite_title = function (item) {
-  let new_title = prompt("Enter new Title", item.title)
-
-  if (new_title) {
-    item.title = new_title
-    App.add_favorite(item)
-    App.reload_favorites()
-    App.do_filter()
-  }
+  App.prompt("Enter New Title", item.title, function (value) {
+    if (value) {
+      item.title = value
+      App.add_favorite(item)
+      App.reload_favorites()
+      App.do_filter()
+    }
+  })
 }
 
 // Edit the url of a favorite
 App.edit_favorite_url = function (item) {
-  let new_url = prompt("Enter new URL", item.url)
-
-  if (new_url) {
-    App.remove_favorite(item)
-    item.url = new_url
-    App.add_favorite(item)
-    App.reload_favorites()
-    App.do_filter()
-  }
+  App.prompt("Enter New URL", item.url, function (value) {
+    if (value) {
+      App.remove_favorite(item)
+      item.url = value
+      App.add_favorite(item)
+      App.reload_favorites()
+      App.do_filter()
+    }
+  })
 }

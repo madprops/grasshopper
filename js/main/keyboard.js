@@ -8,6 +8,17 @@ App.setup_keyboard = function () {
       return
     }
 
+    if (App.msg_help.any_open()) {
+      if (App.msg_edit.is_open()) {
+        if (e.key === "Enter") {
+          App.submit_edit()
+          e.preventDefault()
+        }
+      }
+
+      return
+    }
+
     App.focus_filter()
 
     if (e.key === "Enter") {
