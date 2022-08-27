@@ -27,9 +27,12 @@ App.add_favorite = function (item) {
   
   App.favorites.unshift(o)
   App.favorites = App.favorites.slice(0, App.config.max_favorites)
-  
-  if (item.type === "history") {
-    item.element.classList.add("removed")
+    
+  for (let it of App.history_items) {
+    if (it.url === item.url) {
+      it.element.classList.add("removed")
+      break
+    }
   }
 
   App.save_favorites()
@@ -110,7 +113,34 @@ App.update_favorite_info = async function (item) {
   let h = await App.get_history_item(item.original_url)
 
   if (h) {
-    App.update_item_title(item, h.title)    
-    App.update_favorite(item)
+    item.title = h.title
+    App.add_favorite(item)
+    App.reload_favorites()
+    App.do_filter()
+  }
+}
+
+// Edit the title of a favorite
+App.edit_favorite_title = function (item) {
+  let new_title = prompt("Enter new Title", item.title)
+
+  if (new_title) {
+    item.title = new_title
+    App.add_favorite(item)
+    App.reload_favorites()
+    App.do_filter()
+  }
+}
+
+// Edit the url of a favorite
+App.edit_favorite_url = function (item) {
+  let new_url = prompt("Enter new URL", item.url)
+
+  if (new_url) {
+    App.remove_favorite(item)
+    item.url = new_url
+    App.add_favorite(item)
+    App.reload_favorites()
+    App.do_filter()
   }
 }
