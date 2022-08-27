@@ -84,8 +84,10 @@ App.toggle_favorite = function (item) {
     App.add_favorite(item)
   }
 
-  App.reload_favorites()
-  App.do_filter()
+  if (App.mode === "both") {
+    App.reload_favorites()
+    App.do_filter()
+  }
 }
 
 // Change to favorites
