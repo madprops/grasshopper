@@ -519,8 +519,7 @@ App.show_item_menu = function (item) {
     items.push({
       text: "Expand",
       action: function () {
-        App.update_favorite_info(item)
-        text.classList.remove("single_line")
+        App.expand_item(item)
       }
     })
   }
@@ -537,13 +536,6 @@ App.show_item_menu = function (item) {
       text: "Edit URL",
       action: function () {
         App.edit_favorite_url(item)
-      }
-    })
-
-    items.push({
-      text: "Update",
-      action: function () {
-        App.update_favorite_info(item)
       }
     })
   }
@@ -578,4 +570,10 @@ App.remove_items_by_url = function (url) {
       item.element.classList.add("removed")
     }
   }
+}
+
+// Expand a single line item
+App.expand_item = function (item) {
+  let text = App.el(".item_text", item.element)
+  text.classList.remove("single_line")
 }
