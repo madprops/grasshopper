@@ -1,6 +1,3 @@
-// Main mode
-App.layout = "main"
-
 // For internal checks
 App.favorites_need_refresh = false
 App.history_fetched = false

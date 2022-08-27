@@ -113,34 +113,18 @@ App.save_config = async function () {
 
 // Show configure
 App.show_configure = function () {
-  if (App.layout === "main") {
-    for (let item of App.els(".main_layout")) {
-      item.classList.add("hidden")
-    }
-
-    for (let item of App.els(".configure_layout")) {
-      item.classList.remove("hidden")
-    }
-
-    for (let item of App.els(".configure_item")) {
-      App.fill_config_input(item)
-    }
-
-    App.layout = "configure"
-  } else {
-    for (let item of App.els(".main_layout")) {
-      item.classList.remove("hidden")
-    }
-
-    for (let item of App.els(".configure_layout")) {
-      item.classList.add("hidden")
-    }
-    
-    App.reload_favorites()
-    App.empty_history()
-    App.show_favorites()
-    App.layout = "main"
+  for (let item of App.els(".configure_item")) {
+    App.fill_config_input(item)
   }
+  
+  App.msg_configure.show()
+}
+
+// After the config window closes
+App.on_configure_close = function () {
+  App.reload_favorites()
+  App.empty_history()
+  App.show_favorites()
 }
 
 // Fill config

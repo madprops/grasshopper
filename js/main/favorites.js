@@ -104,7 +104,7 @@ App.change_to_favorites = function () {
 
 // Edit the title of a favorite
 App.edit_favorite_title = function (item) {
-  App.prompt("Enter New Title", item.title, function (value) {
+  App.show_edit("Enter New Title", item.title, function (value) {
     if (value) {
       item.title = value
       App.add_favorite(item)
@@ -116,7 +116,7 @@ App.edit_favorite_title = function (item) {
 
 // Edit the url of a favorite
 App.edit_favorite_url = function (item) {
-  App.prompt("Enter New URL", item.url, function (value) {
+  App.show_edit("Enter New URL", item.url, function (value) {
     if (value) {
       App.remove_favorite(item)
       item.url = value

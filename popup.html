@@ -29,7 +29,7 @@
         <div id="help_button" class="info_button action">Help</div>
       </div>
 
-      <div id="top_container" class="unselectable main_layout">
+      <div id="top_container" class="unselectable">
         <div id="buttons">
           <button id="favorites_button" class="button actionbox">Favorites</button>
           <button id="history_button" class="button actionbox">History</button>
@@ -50,14 +50,16 @@
         
       </div>
 
-      <div id="list" class="unselectable main_layout">
+      <div id="list" class="unselectable">
         <div id="list_favorites" class="list"></div>
         <div id="list_history" class="list"></div>
       </div>
 
-      <div id="footer" class="main_layout"></div>
-      
-      <div id="configure" class="hidden unselectable configure_layout">
+      <div id="footer" class="unselectable"></div>
+    </div>
+
+    <script id="template_configure" type="" class="template">
+      <div id="configure" class="unselectable">
         <div class="configure_item" data-name="history_max_results" data-max="100000" data-min="1" data-type="input">
           <div>Max History Results</div>
           <div class="configure_info">Maximum number of history items to fetch</div>
@@ -120,7 +122,7 @@
 
         <div id="config_defaults" class="action">Restore All Defaults</div>
       </div>
-    </div>
+    </script>
 
     <script src="js/main/main.js"></script>
   </body>

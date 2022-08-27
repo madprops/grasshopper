@@ -1,22 +1,37 @@
+// Create all the Handlebars templates
+App.setup_templates = function () {
+  App.els(".template").forEach(it => {
+    App[it.id] = App.el(`#${it.id}`).innerHTML.trim()
+  })
+}
+
+// Setup the modal windows
 App.setup_windows = function () {
+  App.setup_templates()
+  
   let settings = {
-    class: "blue",
     enable_titlebar: true,
     window_x: "inner_right",
     disable_content_padding: true,
+    center_titlebar: true,
   }
 
-  let settings_window = Object.assign({
+  let settings_window = Object.assign({}, settings, {
     window_height: "100vh",
     window_min_height: "100vh",
     window_max_height: "100vh",
     window_width: "100vw",
     window_min_width: "100vw",
     window_max_width: "100vw",
-  }, settings)
+  })
 
-  App.msg_help = Msg.factory(Object.assign(settings_window, {}))
-  App.msg_edit = Msg.factory(Object.assign(settings, {}))
+  App.msg_help = Msg.factory(Object.assign({}, settings_window))
+  App.msg_edit = Msg.factory(Object.assign({}, settings))
+  App.msg_configure = Msg.factory(Object.assign({}, settings_window, {
+    after_close: function () {
+      App.on_configure_close()
+    } 
+  }))
 
   let edit_html = `<input id="edit_input" type="text">`
   edit_html += `<div id="edit_submit" class="action unselectable">Submit</div>`
@@ -25,6 +40,9 @@ App.setup_windows = function () {
   App.ev(App.el("#edit_submit"), "click", function () {
     App.submit_edit()
   })
+
+  App.msg_configure.set_title("Configure")
+  App.msg_configure.set(App.template_configure)
 }
 
 // Show a help message
@@ -53,28 +71,31 @@ App.show_help = function () {
     "You can also use Shift + Tab to select both buttons.",
   ]
 
-  let s = `<div id="help_container">`
+  let info = `<div id="help_container">`
 
   for (let line of lines) {
-    s += `<div class="help_item">${line}</div>`
+    info += `<div>${line}</div>`
   }
 
-  s += "</div>"
+  info += "</div>"
 
-  App.msg_help.show(["Information", s])
+  App.msg_help.show(["Information", info])
 }
 
-App.prompt = function (title, value, callback) {
+// Show a prompt to edit something
+App.show_edit = function (title, value, callback) {
   App.edit_callback = callback
   App.msg_edit.set_title(title)
   
+  let input = App.el("#edit_input")
+  input.value = value
+  
   App.msg_edit.show(function () {
-    let input = App.el("#edit_input")
-    input.value = value
     input.focus()
   })
 }
 
+// Submit edit action
 App.submit_edit = function () {
   if (App.edit_callback) {
     App.edit_callback(App.el("#edit_input").value.trim())

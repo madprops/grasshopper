@@ -17,6 +17,7 @@ body, html {
   padding: 0;
   overflow: hidden;
   background-color: transparent;
+  background-color: black;
 }
 
 #main {
@@ -49,12 +50,10 @@ body, html {
   display: flex;
   flex-direction: column;
   gap: 0.5rem;
-  margin: 0.5rem;
-}
-
-.help_item {
-  text-align: left;
+  margin-top: 1rem;
+  margin-bottom: 1rem;
   font-size: 1rem;
+  align-items: center;
 }
 
 #top_container {
@@ -216,8 +215,8 @@ body, html {
   flex-direction: column;
   align-items: center;
   gap: 1.2rem;
-  padding-top: 1rem;
-  padding-bottom: 1rem;
+  margin-top: 1rem;
+  margin-bottom: 1rem;
   overflow: auto;
 }
 
@@ -281,6 +280,7 @@ body, html {
   width: 20rem;
   margin: 1rem;
   padding: 0.25rem;
+  text-align: center;
 }
 
 #edit_submit {
@@ -288,6 +288,21 @@ body, html {
   margin-bottom: 1rem;
 }
 
+.Msg-window {
+	background-color: #252933 !important;
+	color: white !important;
+}
+
 .Msg-titlebar {
+  background-color: #2e333f !important;
+	color: white !important;
   user-select: none !important;
+}
+
+.Msg-window-inner-x {
+	background-color: #2e333f !important;
+}
+
+.Msg-window-inner-x:hover {
+	background-color: #3d4352 !important;
 }
