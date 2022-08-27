@@ -62,13 +62,14 @@ App.process_items = function (container, items, type) {
       continue
     }
 
+    urls.push(item.url)
+
     let obj = App.process_item(type, item, removed)
 
     if (!obj) {
       continue
     }
 
-    urls.push(obj.url)
     container.push(obj)
     list.append(obj.element)
   }
