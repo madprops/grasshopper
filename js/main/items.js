@@ -196,7 +196,7 @@ App.get_items = function () {
   } else if (App.mode === "history") {
     return App.history_items || []
   } else {
-    return App.favorite_items.concat(App.history_items)
+    return App.get_all_items()
   }
 }
 
@@ -209,6 +209,11 @@ App.get_other_items = function () {
   } else {
     return []
   }
+}
+
+// Get all items
+App.get_all_items = function () {
+  return App.favorite_items.concat(App.history_items)
 }
 
 // Get next item that is visible
@@ -353,8 +358,11 @@ App.do_filter = function (mode = "typed") {
       App.show_item(item)
 
       if (!selected) {
-        App.select_item(item)
-        selected = true
+        if (App.item_is_visible(item)) {
+          console.log(item.element)
+          App.select_item(item)
+          selected = true
+        }
       }
     } else {
       App.hide_item(item)
@@ -460,7 +468,7 @@ App.item_is_visible = function (item) {
 
 // Update the footer
 App.update_footer = function () {
-  if (App.selected_item) {
+  if (App.selected_item && App.item_is_visible(App.selected_item)) {
     App.el("#footer").textContent = App.selected_item.footer
   } else {
     App.el("#footer").textContent = "No Results"
@@ -508,7 +516,14 @@ App.show_item_menu = function (item) {
         App.update_favorite_info(item)
       }
     })
-  }  
+  }
+
+  items.push({
+    text: "Forget",
+    action: function () {
+      App.forget_item(item)
+    }
+  })
 
   items.push({
     text: "Cancel",
@@ -522,6 +537,10 @@ App.show_item_menu = function (item) {
 
 // Update an item's title
 App.update_item_title = function (item, title) {
+  if (!title) {
+    title = item.pathname
+  }
+
   item.title = title
   item.title_lower = title.toLowerCase()
   App.set_item_text(item)
@@ -554,5 +573,31 @@ App.show_both = function () {
     App.get_history(false)
   } else {
     App.do_filter()
+  }
+}
+
+// Forget an item from favorites and history
+App.forget_item = function (item) {
+  if (confirm("Are you sure you want to forget this from history?")) {
+    App.forget_from_history(item)
+    App.remove_favorite(item)
+    App.remove_items_by_url(item.url)
+    
+    if (App.selected_item === item) {
+      App.selected_item = undefined
+    }
+
+    App.update_footer()
+  }
+}
+
+// Remove items that match a url
+App.remove_items_by_url = function (url) {
+  let items = App.get_all_items()
+
+  for (let item of items) {
+    if (item.url === url) {
+      item.element.classList.add("removed")
+    }
   }
 }

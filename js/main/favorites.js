@@ -48,7 +48,7 @@ App.remove_favorite = function (item) {
     }
   }
 
-  item.element.remove()
+  item.element.classList.add("removed")
   App.save_favorites()
   App.update_footer()
 }

@@ -78,3 +78,11 @@ App.get_history_item = async function (url) {
 App.history_months = function () {
   return Date.now() - (1000 * 60 * 60 * 24 * 30 * App.config.history_max_months)
 }
+
+// Forget an item from history
+App.forget_from_history = function (item) {
+  if (item.url) {
+    App.log(`Forgetting from history: ${item.url}`)
+    browser.history.deleteUrl({url: item.url})
+  }
+}
