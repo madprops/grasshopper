@@ -287,3 +287,7 @@ body, html {
   font-size: 1.2rem;
   margin-bottom: 1rem;
 }
+
+.Msg-titlebar {
+  user-select: none !important;
+}

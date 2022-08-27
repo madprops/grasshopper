@@ -19,7 +19,7 @@ App.setup_windows = function () {
   App.msg_edit = Msg.factory(Object.assign(settings, {}))
 
   let edit_html = `<input id="edit_input" type="text">`
-  edit_html += `<div id="edit_submit" class="action">Submit</div>`
+  edit_html += `<div id="edit_submit" class="action unselectable">Submit</div>`
   App.msg_edit.set(edit_html)
 
   App.ev(App.el("#edit_submit"), "click", function () {
