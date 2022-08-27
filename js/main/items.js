@@ -43,7 +43,7 @@ App.setup_items = function () {
 App.process_items = function (container, items, type) {
   App.log(`Processing: ${type}`)
 
-  let list = App.el("#list")
+  let list = App.el(`#list_${type}`)
   let urls = []
   let removed = []
 
@@ -142,6 +142,10 @@ App.start_item_observer = function () {
         continue
       }
       
+      if (!entry.target.classList.contains("item")) {
+        return
+      }
+
       let item = App.element_to_item(entry.target)
 
       if (item.created && !item.filled && App.item_is_visible(item)) {
@@ -369,6 +373,8 @@ App.do_filter = function (mode = "typed") {
   }
 
   let selected = false
+  let matched_favorite = false  
+  let matched_history = false
 
   for (let item of items) {
     if (matched(item)) {
@@ -380,8 +386,26 @@ App.do_filter = function (mode = "typed") {
           selected = true
         }
       }
+
+      if (App.mode === "both") {
+        if (item.type === "favorites") {
+          matched_favorite = true
+        } else if (item.type === "history") {
+          matched_history = true
+        }
+      }
     } else {
       App.hide_item(item)
+    }
+  }
+
+  if (App.mode === "both") {
+    if (!matched_favorite) {
+      App.hide_list_favorites()
+    }
+  
+    if (!matched_history) {
+      App.hide_list_history()
     }
   }
 
@@ -431,9 +455,36 @@ App.select_next_item = function (item) {
 
 // Hide all items
 App.hide_other_items = function () {
-  for (let item of App.get_other_items()) {
-    App.hide_item(item)
+  if (App.mode === "favorites") {
+    App.show_list_favorites()
+    App.hide_list_history()
+  } else if (App.mode === "history") {
+    App.show_list_history()
+    App.hide_list_favorites()
+  } else {
+    App.show_list_favorites()
+    App.show_list_history()
   }
+}
+
+// Show list favorites
+App.show_list_favorites = function () {
+  App.el("#list_favorites").classList.remove("hidden")
+}
+
+// Hide list favorites
+App.hide_list_favorites = function () {
+  App.el("#list_favorites").classList.add("hidden")
+}
+
+// Show list history
+App.show_list_history = function () {
+  App.el("#list_history").classList.remove("hidden")
+}
+
+// Hide list history
+App.hide_list_history = function () {
+  App.el("#list_history").classList.add("hidden")
 }
 
 // Set app mode

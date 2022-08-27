@@ -93,11 +93,17 @@ body, html {
 #list {
   display: flex;
   flex-direction: column;
-  gap: 0.5rem;
-  overflow-y: auto;
-  overflow-x: hidden;
   margin-top: 1rem;
   flex-grow: 1;
+  overflow-y: auto;
+  overflow-x: hidden;
+  gap: 0.5rem;
+}
+
+.list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
 }
 
 .item {
