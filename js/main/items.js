@@ -334,8 +334,6 @@ App.do_filter = function (mode = "typed") {
   let words = value.toLowerCase().split(" ").filter(x => x !== "")
   let filter_mode = App.el("#filter_mode").value
   
-  App.hide_other_items()
-
   function matched (item) {
     let match
 
@@ -501,6 +499,8 @@ App.set_mode = function (mode) {
     App.el("#history_button").classList.add("button_selected")
     App.el("#favorites_button").classList.add("button_selected")
   }
+
+  App.hide_other_items()
 }
 
 // Change mode
