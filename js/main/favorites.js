@@ -107,7 +107,7 @@ App.change_to_favorites = function () {
 
 // Update a favorite item
 App.update_favorite_info = async function (item) {
-  let h = await App.get_history_item(item.url)
+  let h = await App.get_history_item(item.original_url)
 
   if (h) {
     App.update_item_title(item, h.title)    

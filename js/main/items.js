@@ -56,6 +56,7 @@ App.process_items = function (container, items, type) {
       continue
     }
 
+    let original_url = item.url
     item.url = App.remove_slashes_end(App.remove_hash(item.url))
 
     if (urls.includes(item.url)) {
@@ -70,6 +71,7 @@ App.process_items = function (container, items, type) {
       continue
     }
 
+    obj.original_url = original_url
     container.push(obj)
     list.append(obj.element)
   }
@@ -520,13 +522,6 @@ App.show_item_menu = function (item) {
   }
 
   items.push({
-    text: "Forget",
-    action: function () {
-      App.forget_item(item)
-    }
-  })
-
-  items.push({
     text: "Cancel",
     action: function () {}
   })
@@ -574,21 +569,6 @@ App.show_both = function () {
     App.get_history(false)
   } else {
     App.do_filter()
-  }
-}
-
-// Forget an item from favorites and history
-App.forget_item = function (item) {
-  if (confirm("Are you sure you want to forget this from history?")) {
-    App.forget_from_history(item)
-    App.remove_favorite(item)
-    App.remove_items_by_url(item.url)
-    
-    if (App.selected_item === item) {
-      App.selected_item = undefined
-    }
-
-    App.update_footer()
   }
 }
 
