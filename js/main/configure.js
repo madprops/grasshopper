@@ -34,6 +34,8 @@ App.get_config = async function () {
 // Setup configure
 App.setup_configure = function () {
   App.log("Setting up configure")
+  App.msg_configure.set_title("Configure")
+  App.msg_configure.set(App.template_configure)
 
   for (let item of App.els(".configure_item")) {
     let name = item.dataset.name
@@ -95,7 +97,7 @@ App.setup_configure = function () {
     }
   })
 
-  App.configure_setup = true
+  App.configure_ready = true
 }
 
 // Restore config default

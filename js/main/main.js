@@ -1,8 +1,10 @@
 // For internal checks
 App.favorites_need_refresh = false
 App.history_fetched = false
-App.configure_setup = false
 App.mouse_over_disabled = true
+App.configure_ready = false
+App.help_ready = false
+App.edit_ready = false
 
 // Local storage paths
 App.ls_favorites = "favorites_v1"

@@ -32,21 +32,12 @@ App.setup_windows = function () {
       App.on_configure_close()
     } 
   }))
-
-  let edit_html = `<input id="edit_input" type="text">`
-  edit_html += `<div id="edit_submit" class="action unselectable">Submit</div>`
-  App.msg_edit.set(edit_html)
-
-  App.ev(App.el("#edit_submit"), "click", function () {
-    App.submit_edit()
-  })
-
-  App.msg_configure.set_title("Configure")
-  App.msg_configure.set(App.template_configure)
 }
 
-// Show a help message
-App.show_help = function () {
+// Create the help message
+App.setup_help = function () {
+  App.log("Setting up help")
+
   let lines = [
     "This is a tool to go back to often-used URLs quickly.",
     "There's 2 modes, Favorites, and History.",
@@ -79,11 +70,23 @@ App.show_help = function () {
 
   info += "</div>"
 
-  App.msg_help.show(["Information", info])
+
+  App.msg_help.set_title("Information")
+  App.msg_help.set(info)
+  App.help_ready = true
+}
+
+// Show the help window
+App.show_help = function () {
+  App.msg_help.show()
 }
 
 // Show a prompt to edit something
 App.show_edit = function (title, value, callback) {
+  if (!App.edit_ready) {
+    App.setup_edit()
+  }
+
   App.edit_callback = callback
   App.msg_edit.set_title(title)
   
@@ -102,4 +105,19 @@ App.submit_edit = function () {
   }
 
   App.msg_edit.close()
+}
+
+// Setup the edit widget
+App.setup_edit = function () {
+  App.log("Setting up edit")
+
+  let edit_html = `<input id="edit_input" type="text">`
+  edit_html += `<div id="edit_submit" class="action unselectable">Submit</div>`
+  App.msg_edit.set(edit_html)
+
+  App.ev(App.el("#edit_submit"), "click", function () {
+    App.submit_edit()
+  })
+
+  App.edit_ready = true
 }
