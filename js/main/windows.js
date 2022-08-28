@@ -24,6 +24,8 @@ App.setup_windows = function () {
     window_min_width: "100vw",
     window_max_width: "100vw",
   })
+
+  App.msg_main = Msg.factory()
 }
 
 // Create the help message
