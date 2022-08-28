@@ -14,6 +14,12 @@ App.setup_windows = function () {
     window_x: "inner_right",
     disable_content_padding: true,
     center_titlebar: true,
+    after_show: function () {
+      App.modal_open = true
+    },
+    after_close: function () {
+      App.modal_open = false
+    }
   }
 
   App.msg_settings_window = Object.assign({}, App.msg_settings, {
@@ -24,8 +30,6 @@ App.setup_windows = function () {
     window_min_width: "100vw",
     window_max_width: "100vw",
   })
-
-  App.msg_main = Msg.factory()
 }
 
 // Create the help message

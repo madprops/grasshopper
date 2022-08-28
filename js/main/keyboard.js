@@ -4,8 +4,8 @@ App.setup_keyboard = function () {
       return
     }
 
-    if (App.msg_main.any_open()) {
-      if (App.msg_edit.is_open()) {
+    if (App.modal_open) {
+      if (App.msg_edit && App.msg_edit.is_open()) {
         if (e.key === "Enter") {
           App.submit_edit()
           e.preventDefault()
