@@ -36,7 +36,12 @@ App.setup_configure = function () {
   App.log("Setting up configure")
 
   App.msg_configure = Msg.factory(Object.assign({}, App.msg_settings_window, {
+    after_show: function () {
+      App.msg_settings.after_show()
+      App.config_edit_obj = Object.assign({}, App.config)
+    },
     after_close: function () {
+      App.msg_settings.after_close()
       App.on_configure_close()
     } 
   }))
@@ -131,9 +136,20 @@ App.show_configure = function () {
 
 // After the config window closes
 App.on_configure_close = function () {
-  App.reload_favorites()
-  App.empty_history()
-  App.show_favorites()
+  let changed = false
+
+  for (let key in App.config_edit_obj) {
+    if (App.config_edit_obj[key] !== App.config[key]) {
+      changed = true
+      break
+    }
+  }
+
+  if (changed) {
+    App.reload_favorites()
+    App.empty_history()
+    App.show_favorites()
+  }
 }
 
 // Fill config
