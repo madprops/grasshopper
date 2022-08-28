@@ -9,14 +9,14 @@ App.setup_templates = function () {
 App.setup_windows = function () {
   App.setup_templates()
   
-  let settings = {
+  App.msg_settings = {
     enable_titlebar: true,
     window_x: "inner_right",
     disable_content_padding: true,
     center_titlebar: true,
   }
 
-  let settings_window = Object.assign({}, settings, {
+  App.msg_settings_window = Object.assign({}, App.msg_settings, {
     window_height: "100vh",
     window_min_height: "100vh",
     window_max_height: "100vh",
@@ -24,19 +24,12 @@ App.setup_windows = function () {
     window_min_width: "100vw",
     window_max_width: "100vw",
   })
-
-  App.msg_help = Msg.factory(Object.assign({}, settings_window))
-  App.msg_edit = Msg.factory(Object.assign({}, settings))
-  App.msg_configure = Msg.factory(Object.assign({}, settings_window, {
-    after_close: function () {
-      App.on_configure_close()
-    } 
-  }))
 }
 
 // Create the help message
 App.setup_help = function () {
   App.log("Setting up help")
+  App.msg_help = Msg.factory(Object.assign({}, App.msg_settings_window))
 
   let lines = [
     "This is a tool to go back to often-used URLs quickly.",
@@ -110,6 +103,7 @@ App.submit_edit = function () {
 // Setup the edit widget
 App.setup_edit = function () {
   App.log("Setting up edit")
+  App.msg_edit = Msg.factory(Object.assign({}, App.msg_settings))
 
   let edit_html = `<input id="edit_input" type="text">`
   edit_html += `<div id="edit_submit" class="action unselectable">Submit</div>`

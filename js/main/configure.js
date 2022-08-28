@@ -34,6 +34,13 @@ App.get_config = async function () {
 // Setup configure
 App.setup_configure = function () {
   App.log("Setting up configure")
+
+  App.msg_configure = Msg.factory(Object.assign({}, App.msg_settings_window, {
+    after_close: function () {
+      App.on_configure_close()
+    } 
+  }))
+
   App.msg_configure.set_title("Configure")
   App.msg_configure.set(App.template_configure)
 
