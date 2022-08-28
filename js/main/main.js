@@ -5,6 +5,7 @@ App.mouse_over_disabled = true
 App.configure_ready = false
 App.help_ready = false
 App.edit_ready = false
+App.modal_open = false
 
 // Local storage paths
 App.ls_favorites = "favorites_v1"
