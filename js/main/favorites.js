@@ -227,14 +227,6 @@ App.show_add_favorite = async function () {
 
   let urls = []
   let items = []
-
-  items.push({
-    text: "< Enter Info Manually >",
-    action: function () {
-      App.show_add()
-    }
-  })
-
   let favorite_urls = App.favorite_urls()
 
   for (let h of history) {
@@ -267,6 +259,13 @@ App.show_add_favorite = async function () {
       }
     })
   }
+
+  items.push({
+    text: "< Enter Info Manually >",
+    action: function () {
+      App.show_add()
+    }
+  })  
 
   NeedContext.show_on_element(App.el("#add_favorite_button"), items)
 }
