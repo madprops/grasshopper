@@ -214,8 +214,7 @@ App.submit_favorites_data = function () {
     let new_json = App.from_easy_data(value)
     App.favorites = App.remove_duplicates(new_json)
     App.save_favorites()
-    App.reload_favorites()
     App.empty_history()
-    App.show_favorites()    
+    App.change_to_favorites() 
   }
 }
