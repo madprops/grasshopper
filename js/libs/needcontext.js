@@ -35,6 +35,10 @@ NeedContext.show = function (x, y, items) {
     el.textContent = item.text
     el.dataset.index = i
 
+    if (item.title) {
+      el.title = item.title
+    }
+
     el.addEventListener("mouseenter", function () {
       NeedContext.select_item(parseInt(el.dataset.index))
     })

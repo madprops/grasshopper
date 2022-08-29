@@ -259,11 +259,18 @@ body, html {
 }
 
 #edit_input {
+  margin: 1rem;
+}
+
+.text_input {
   font-size: 1rem;
   width: 22rem;
-  margin: 1rem;
   padding: 0.25rem;
   text-align: center;
+}
+
+#add_url_input {
+  margin: 1rem;
 }
 
 .submit {

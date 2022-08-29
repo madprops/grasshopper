@@ -37,6 +37,10 @@ App.setup_items = function () {
   App.ev(App.el("#filter_mode"), "change", function () {
     App.do_filter()
   })
+
+  App.ev(App.el("#add_favorite_button"), "click", function (e) {
+    App.show_add_favorite()
+  })  
 }
 
 // When results are found
@@ -48,7 +52,7 @@ App.process_items = function (container, items, type) {
   let removed = []
 
   if (type === "history") {
-    removed = App.favorite_items.map(x => x.url)
+    removed = App.favorite_urls()
   }
 
   for (let item of items) {
@@ -57,7 +61,7 @@ App.process_items = function (container, items, type) {
     }
 
     let original_url = item.url
-    item.url = App.remove_slashes_end(App.remove_hash(item.url))
+    item.url = App.format_url(item.url)
 
     if (urls.includes(item.url)) {
       continue

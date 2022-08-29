@@ -6,6 +6,7 @@ App.modal_open = false
 App.configure_ready = false
 App.help_ready = false
 App.edit_ready = false
+App.add_ready = false
 App.favorites_data_ready = false
 
 // Local storage paths

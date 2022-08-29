@@ -212,3 +212,118 @@ App.setup_edit = function () {
 
   App.edit_ready = true
 }
+
+// Get favorite urls
+App.favorite_urls = function () {
+  return App.favorite_items.map(x => x.url)
+}
+
+// Show recent history in a contex menu and other options
+App.show_add_favorite = async function () {
+  let history = await browser.history.search({
+    text: "",
+    maxResults: 15,
+  })
+
+  let urls = []
+  let items = []
+
+  items.push({
+    text: "< Enter Info Manually >",
+    action: function () {
+      App.show_add()
+    }
+  })
+
+  let favorite_urls = App.favorite_urls()
+
+  for (let h of history) {
+    let url = App.format_url(h.url)
+
+    if (favorite_urls.includes(url)) {
+      continue
+    }
+
+    if (urls.includes(url)) {
+      continue
+    }
+
+    urls.push(url)
+
+    let title = h.title || h.url
+    title = title.substring(0, 65)
+
+    items.push({
+      text: title,
+      title: h.url,
+      action: function () {
+        App.add_favorite({
+          title: h.title,
+          url: h.url
+        })
+
+        App.reload_favorites()
+        App.do_filter()
+      }
+    })
+  }
+
+  NeedContext.show_on_element(App.el("#add_favorite_button"), items)
+}
+
+// Setup add favorite
+App.setup_add = function () {
+  App.log("Setting up add")
+  App.msg_add = Msg.factory(Object.assign({}, App.msg_settings))
+  App.msg_add.set_title("Add Favorite")
+  App.msg_add.set(App.template_add)
+
+  App.ev(App.el("#add_submit"), "click", function () {
+    App.submit_add()
+  })
+
+  App.add_ready = true
+}
+
+// Show add favorite
+App.show_add = function () {
+  if (!App.add_ready) {
+    App.setup_add()
+  }
+
+  App.msg_add.show(function () {
+    App.el("#add_title_input").focus()
+  })
+}
+
+// Submit add favorite
+App.submit_add = function () {
+  let title_el = App.el("#add_title_input")
+  let url_el = App.el("#add_url_input")
+  let title = title_el.value.trim()
+  let url = url_el.value.trim()
+
+  if (!title || !url) {
+    return
+  }
+
+  try {
+    url_obj = new URL(url)
+  } catch (err) {
+    alert("Invalid URL")
+    return
+  } 
+
+  App.msg_add.close()
+  title_el.value = ""
+  url_el.value = ""  
+
+  let item = {
+    title: title,
+    url: url 
+  }
+
+  App.add_favorite(item)
+  App.reload_favorites()
+  App.do_filter()
+}

@@ -12,6 +12,13 @@ App.setup_keyboard = function () {
         }
       }
 
+      else if (App.msg_add && App.msg_add.is_open()) {
+        if (e.key === "Enter") {
+          App.submit_add()
+          e.preventDefault()
+        }
+      }      
+
       return
     }
 

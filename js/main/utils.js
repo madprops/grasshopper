@@ -141,3 +141,8 @@ App.remove_duplicates = function (list) {
 
   return new_list
 }
+
+// The way to format urls
+App.format_url = function (url) {
+  return App.remove_slashes_end(App.remove_hash(url))
+}
