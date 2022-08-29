@@ -26,14 +26,13 @@
         <div id="help_button" class="underline action">Help</div>
       </div>
 
-      <div id="top_container" class="flex_row_center unselectable">
-        <div id="buttons">
-          <button id="add_favorite_button" class="button actionbox" title="Quick Add Favorite">+</button>
-          <button id="favorites_button" class="button actionbox">Favorites</button>
-          <button id="history_button" class="button actionbox">History</button>
-        </div>
-        
+      <div id="top_container" class="flex_row_center unselectable">    
+        <button id="add_favorite_button" class="button actionbox" title="Quick Add Favorite">+</button>
+        <button id="favorites_button" class="button actionbox">Favorites</button>
+        <button id="history_button" class="button actionbox">History</button>
+
         <input type="text" id="filter" autocomplete="off" placeholder="Type to filter...">
+        <input id="case_sensitive" type="checkbox" title="Case Sensitive">
         
         <select id="filter_mode">
           <option value="title_url" selected>Title and URL</option>
@@ -42,7 +41,6 @@
           <option value="url_1">URL Level 1</option>
           <option value="url_2">URL Level 2</option>
           <option value="url_3">URL Level 3</option>
-          <option value="case_sensitive">Case Sensitive</option>
         </select>
 
         <button id="clear_button" class="button actionbox">Clear</button>

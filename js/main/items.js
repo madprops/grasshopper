@@ -13,6 +13,7 @@ App.setup_items = function () {
   App.ev(App.el("#clear_button"), "click", function () {
     App.clear_filter()
     App.reset_filter_mode()
+    App.reset_case_sensitive()
     App.do_filter()
   })
 
@@ -40,6 +41,10 @@ App.setup_items = function () {
 
   App.ev(App.el("#add_favorite_button"), "click", function (e) {
     App.show_add_favorite()
+  })  
+
+  App.ev(App.el("#case_sensitive"), "change", function () {
+    App.do_filter()
   })  
 }
 
@@ -336,23 +341,26 @@ App.do_filter = function (mode = "typed") {
   let value = App.el("#filter").value.trim()
   let items = App.get_items()
   let words = value.split(" ").filter(x => x !== "")
-  let words_lower = words.map(x => x.toLowerCase())
   let filter_mode = App.el("#filter_mode").value
+  let case_sensitive = App.el("#case_sensitive").checked
+  let filter_words = case_sensitive ? words : words.map(x => x.toLowerCase())
   
   App.hide_other_items()
 
   function matched (item) {
     let match
+    let title = case_sensitive ? item.title : item.title_lower
+    let clean_url = case_sensitive ? item.clean_url : item.clean_url_lower
 
     if (filter_mode === "title_url") {
-      match = words_lower.every(x => item.title_lower.includes(x)) || 
-        words_lower.every(x => item.clean_url_lower.includes(x))
+      match = filter_words.every(x => title.includes(x)) || 
+        filter_words.every(x => clean_url.includes(x))
     } else if (filter_mode === "title") {
-      match = words_lower.every(x => item.title_lower.includes(x))
+      match = filter_words.every(x => title.includes(x))
     } else if (filter_mode === "url") {
-      match = words_lower.every(x => item.clean_url_lower.includes(x))
+      match = filter_words.every(x => clean_url.includes(x))
     } else if (filter_mode.startsWith("url_")) {
-      match = words_lower.every(x => item.clean_url_lower.includes(x))
+      match = filter_words.every(x => clean_url.includes(x))
 
       if (match) {
         let n = App.only_numbers(filter_mode)
@@ -364,9 +372,6 @@ App.do_filter = function (mode = "typed") {
           match = n === parts.length + 1
         }
       }
-    } else if (filter_mode === "case_sensitive") {
-      match = words.every(x => item.title.includes(x)) || 
-        words.every(x => item.clean_url.includes(x))
     }
     
     if (!match) {
@@ -553,6 +558,11 @@ App.update_footer = function () {
 // Reset filter mode
 App.reset_filter_mode = function () {
   App.el("#filter_mode").value = "title_url"
+}
+
+// Reset case sensitive
+App.reset_case_sensitive = function () {
+  App.el("#case_sensitive").checked = false
 }
 
 // Show item context menu

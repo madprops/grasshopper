@@ -50,6 +50,7 @@ body, html {
 
 #top_container {
   flex-grow: 0;
+  gap: 0.5rem;
 }
 
 #filter {
@@ -61,19 +62,15 @@ body, html {
   flex-grow: 0;
   width: 10rem;
   outline: 1px solid rgb(217, 217, 217);
-  margin-right: 0.5rem;
+}
+
+#case_sensitive {
+  width: 1.2rem;
+  height: 1.2rem;
 }
 
 #filter_mode {
   font-size: 0.9rem;
-  margin-right: 0.5rem;
-}
-
-#buttons {
-  display: flex;
-  flex-direction: row;
-  gap: 0.5rem;
-  margin-right: 0.5rem;
 }
 
 .button {
