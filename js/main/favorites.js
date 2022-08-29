@@ -223,6 +223,7 @@ App.show_add_favorite = async function () {
   let history = await browser.history.search({
     text: "",
     maxResults: 15,
+    startTime: App.history_months()
   })
 
   let urls = []
