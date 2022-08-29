@@ -613,13 +613,8 @@ App.show_item_menu = function (item) {
     })
   }
 
-  items.push({
-    text: "Cancel",
-    action: function () {}
-  })
-
   if (items.length > 0) {
-    NeedContext.show_on_element(App.el(".item_menu", item.element), items)
+    NeedContext.show_on_element(App.el(".item_menu", item.element,), items, {close_button: true})
   }
 }
 

@@ -17,21 +17,40 @@ NeedContext.set_defaults = function () {
 }
 
 // Show based on an element
-NeedContext.show_on_element = function (el, items) {
+NeedContext.show_on_element = function (el, items, options = {}) {
   let rect = el.getBoundingClientRect()
-  NeedContext.show(rect.left, rect.top, items)
+  NeedContext.show(rect.left, rect.top, items, options)
 }
 
 // Show the menu
-NeedContext.show = function (x, y, items) {
+NeedContext.show = function (x, y, items, options = {}) {
+  options = Object.assign({
+    close_button: false
+  }, options)
+
   NeedContext.hide()
 
   let container = document.createElement("div")
   container.id = "needcontext-container"
+
+  items = items.slice(0)
+
+  if (options.close_button) {
+    items.push({
+      text: "Close",
+      action: function () {},
+      alternative: true
+    })
+  }
   
   for (let [i, item] of items.entries()) {
     let el = document.createElement("div")
     el.classList.add("needcontext-item")
+    
+    if (item.alternative) {
+      el.classList.add("needcontext-alternative")
+    }
+
     el.textContent = item.text
     el.dataset.index = i
 
@@ -143,6 +162,15 @@ NeedContext.init = function () {
       padding-top: 3px;
       padding-bottom: 3px;
     }
+
+    .needcontext-alternative {
+      background-color: rgba(78, 78, 82, 0.2);
+      font-size: 0.9rem;
+    }
+
+    .needcontext-alternative:hover {
+      font-weight: bold;
+    }    
 
     .needcontext-item-selected {
       background-color: rgba(0, 0, 0, 0.18);
