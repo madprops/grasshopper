@@ -51,7 +51,9 @@ App.setup_list = function () {
 
 // Enable mouse over with a timeout
 App.enable_mouse_over = function () {
-  setTimeout(function () {
+  clearTimeout(App.enable_mouse_over_timeout)
+
+  App.enable_mouse_over_timeout = setTimeout(function () {
     App.mouse_over_disabled = false
   }, 200)
 }

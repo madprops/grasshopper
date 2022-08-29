@@ -19,6 +19,8 @@ App.setup_windows = function () {
     },
     after_close: function () {
       App.modal_open = false
+      App.mouse_over_disabled = true
+      App.enable_mouse_over()
     }
   }
 
