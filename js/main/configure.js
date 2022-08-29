@@ -154,9 +154,8 @@ App.on_configure_close = function () {
   }
 
   if (changed) {
-    App.reload_favorites()
     App.empty_history()
-    App.show_favorites()
+    App.change_to_favorites(true)
   }
 }
 
