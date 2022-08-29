@@ -222,7 +222,7 @@ App.favorite_urls = function () {
 App.show_add_favorite = async function () {
   let history = await browser.history.search({
     text: "",
-    maxResults: 15,
+    maxResults: 100,
     startTime: App.history_months()
   })
 
@@ -259,6 +259,10 @@ App.show_add_favorite = async function () {
         App.do_filter()
       }
     })
+
+    if (items.length === 14) {
+      break
+    }
   }
 
   items.push({
