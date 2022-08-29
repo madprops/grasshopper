@@ -575,16 +575,16 @@ App.show_item_menu = function (item) {
   let text = App.el(".item_text", item.element)
 
   items.push({
-    text: "Copy Title",
-    action: function () {
-      App.copy_to_clipboard(item.title)
-    }
-  })
-
-  items.push({
     text: "Copy URL",
     action: function () {
       App.copy_to_clipboard(item.url)
+    }
+  }) 
+  
+  items.push({
+    text: "Copy Title",
+    action: function () {
+      App.copy_to_clipboard(item.title)
     }
   })  
 
