@@ -321,3 +321,8 @@ body, html {
   margin-right: 0.6rem;
   opacity: 0.6;
 }
+
+#info_container {
+  font-size: 1.2rem;
+  margin: 1rem;
+}

@@ -8,6 +8,8 @@ App.help_ready = false
 App.edit_ready = false
 App.add_ready = false
 App.favorites_data_ready = false
+App.info_ready = false
+App.info_window_ready = false
 
 // Local storage paths
 App.ls_favorites = "favorites_v1"
@@ -21,7 +23,6 @@ App.init = async function () {
   App.setup_windows()
   App.setup_items()
   App.setup_list()
-  App.setup_info()
   App.setup_keyboard()
 
   await App.get_config()

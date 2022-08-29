@@ -46,6 +46,10 @@ App.setup_items = function () {
   App.ev(App.el("#case_sensitive"), "change", function () {
     App.do_filter()
   })  
+
+  App.ev(App.el("#info_button"), "click", function () {  
+    App.show_info_menu()
+  })
 }
 
 // When results are found

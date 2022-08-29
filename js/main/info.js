@@ -1,18 +1,22 @@
-// Arrange items depending on space
+// Setup info
 App.setup_info = function () {
-  App.ev(App.el("#info_button"), "click", function () {  
-    App.show_info_menu()
-  })
-  
-  // App.ev(App.el("#help_button"), "click", function () {
-  //   App.show_help()
-  // })
+  App.log("Setting up info")
+  App.msg_info = Msg.factory(Object.assign({}, App.msg_settings))
+  App.info_ready = true
 }
 
-// Create the help message
-App.setup_help = function () {
-  App.log("Setting up help")
-  App.msg_help = Msg.factory(Object.assign({}, App.msg_settings_window))
+// Setup info window
+App.setup_info_window = function () {
+  App.log("Setting up info window")
+  App.msg_info_window = Msg.factory(Object.assign({}, App.msg_settings_window))
+  App.info_window_ready = true
+}
+
+// Show the help window
+App.show_help = function () {
+  if (!App.info_window_ready) {
+    App.setup_info_window()
+  }
 
   let lines = [
     "This is a tool to go back to often-used URLs quickly.",
@@ -48,19 +52,8 @@ App.setup_help = function () {
 
   info += "</div>"
 
-
-  App.msg_help.set_title("Information")
-  App.msg_help.set(info)
-  App.help_ready = true
-}
-
-// Show the help window
-App.show_help = function () {
-  if (!App.help_ready) {
-    App.setup_help()
-  }
-    
-  App.msg_help.show()
+  App.msg_info_window.set_title("Help")
+  App.msg_info_window.show(info)
 }
 
 // Show info menu
@@ -93,6 +86,14 @@ App.show_info_menu = function () {
 
 // Show about information
 App.show_about = function () {
+  if (!App.info_ready) {
+    App.setup_info()
+  }
+
   let manifest = browser.runtime.getManifest()
-  alert(`Grasshopper v${manifest.version}`)
+  let s = `Grasshopper v${manifest.version}`
+  let info = `<div id="info_container">${s}</div>`
+
+  App.msg_info.set_title("About")
+  App.msg_info.show(info)
 }
