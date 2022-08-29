@@ -236,6 +236,8 @@ App.show_item_editor = function (item) {
     App.el("#add_url_input").value = item.url
   }
 
+  App.item_editor_item = item
+
   App.msg_item_editor.show(function () {
     App.el("#add_title_input").focus()
   })
@@ -260,6 +262,11 @@ App.submit_item_editor = function () {
   } 
 
   App.msg_item_editor.close()
+
+  if (App.item_editor_item) {
+    App.remove_favorite(App.item_editor_item)
+  }
+
   title_el.value = ""
   url_el.value = ""  
 
