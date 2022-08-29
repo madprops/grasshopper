@@ -252,7 +252,7 @@ App.show_add_favorite = async function () {
       action: function () {
         App.add_favorite({
           title: h.title,
-          url: h.url
+          url: url
         })
 
         App.reload_favorites()
