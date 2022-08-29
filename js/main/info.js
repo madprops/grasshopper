@@ -1,15 +1,12 @@
 // Arrange items depending on space
 App.setup_info = function () {
-  App.ev(App.el("#configure_button"), "click", function () {  
-    App.show_configure()
+  App.ev(App.el("#info_button"), "click", function () {  
+    App.show_info_menu()
   })
   
-  App.ev(App.el("#help_button"), "click", function () {
-    App.show_help()
-  })
-
-  let manifest = browser.runtime.getManifest()
-  App.el("#version").textContent = `v${manifest.version}`
+  // App.ev(App.el("#help_button"), "click", function () {
+  //   App.show_help()
+  // })
 }
 
 // Create the help message
@@ -64,4 +61,38 @@ App.show_help = function () {
   }
     
   App.msg_help.show()
+}
+
+// Show info menu
+App.show_info_menu = function () {
+  let items = []
+
+  items.push({
+    text: "Configure",
+    action: function () {
+      App.show_configure()
+    }
+  })
+
+  items.push({
+    text: "Help",
+    action: function () {
+      App.show_help()
+    }
+  })
+
+  items.push({
+    text: "About",
+    action: function () {
+      App.show_about()
+    }
+  })
+
+  NeedContext.show_on_element(App.el("#info_button"), items)
+}
+
+// Show about information
+App.show_about = function () {
+  let manifest = browser.runtime.getManifest()
+  alert(`Grasshopper v${manifest.version}`)
 }
