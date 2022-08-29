@@ -84,7 +84,7 @@ body, html {
 #list {
   display: flex;
   flex-direction: column;
-  margin-top: 1rem;
+  margin-top: 0.8rem;
   flex-grow: 1;
   overflow-y: auto;
   overflow-x: hidden;
