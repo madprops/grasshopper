@@ -173,3 +173,42 @@ App.from_easy_data = function (datastring) {
 
   return obs
 }
+
+// Show a prompt to edit something
+App.show_edit = function (title, value, callback) {
+  if (!App.edit_ready) {
+    App.setup_edit()
+  }
+
+  App.edit_callback = callback
+  App.msg_edit.set_title(title)
+  
+  let input = App.el("#edit_input")
+  input.value = value
+  
+  App.msg_edit.show(function () {
+    input.focus()
+  })
+}
+
+// Submit edit action
+App.submit_edit = function () {
+  if (App.edit_callback) {
+    App.edit_callback(App.el("#edit_input").value.trim())
+  }
+
+  App.msg_edit.close()
+}
+
+// Setup the edit widget
+App.setup_edit = function () {
+  App.log("Setting up edit")
+  App.msg_edit = Msg.factory(Object.assign({}, App.msg_settings))
+  App.msg_edit.set(App.template_edit)
+
+  App.ev(App.el("#edit_submit"), "click", function () {
+    App.submit_edit()
+  })
+
+  App.edit_ready = true
+}
