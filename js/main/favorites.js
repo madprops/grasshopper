@@ -148,14 +148,20 @@ App.from_easy_data = function (datastring) {
   if (!s) {
     return []
   }
-  
+
   let items = datastring.split("\n\n")
   let obs = []
 
   for (let item of items) {
+    let it = item.trim()
+
+    if (!it) {
+      continue
+    }
+
     let o = {}
 
-    for (let line of item.split("\n")) {
+    for (let line of it.split("\n")) {
       let [key, ...value] = line.split(":")
       key = key.trim()
       value = value.join(":").trim()
