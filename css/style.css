@@ -256,11 +256,6 @@ body, html {
   text-decoration: underline;
 }
 
-#config_defaults {
-  text-decoration: underline;
-  font-size: 1.1rem;
-}
-
 .removed {
   display: none;
 }
@@ -283,7 +278,7 @@ body, html {
   text-align: center;
 }
 
-#edit_submit {
+.submit {
   font-size: 1.2rem;
   margin-bottom: 1rem;
 }
@@ -305,4 +300,13 @@ body, html {
 
 .Msg-window-inner-x:hover {
 	background-color: #3d4352 !important;
+}
+
+#favorites_data_textarea {
+  font-size: 0.9rem;
+  width: 28rem;
+  margin: 1rem;
+  padding: 0.25rem;
+  text-align: left;
+  white-space: pre;
 }

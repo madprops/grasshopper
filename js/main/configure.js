@@ -3,7 +3,7 @@ App.default_config = function () {
   return {
     history_max_results: 3000,
     history_max_months: 12,
-    max_favorites: 1000,
+    max_favorites: 2000,
     max_text_length: 200,
     favorite_on_visit: true,
     text_mode: "title",
@@ -101,6 +101,10 @@ App.setup_configure = function () {
     })  
   }
 
+  App.ev(App.el("#config_favorites_data"), "click", function () {  
+    App.show_favorites_data()
+  })
+
   App.ev(App.el("#config_defaults"), "click", function () {
     if (confirm("Are you sure?")) {
       for (let item of App.els(".configure_item")) {
@@ -127,6 +131,10 @@ App.save_config = async function () {
 
 // Show configure
 App.show_configure = function () {
+  if (!App.configure_ready) {
+    App.setup_configure()
+  }
+
   for (let item of App.els(".configure_item")) {
     App.fill_config_input(item)
   }
@@ -177,5 +185,44 @@ App.fill_config_input = function (item) {
     App.el("#config_defaults").classList.remove("hidden")
   } else {
     App.el("#config_defaults").classList.add("hidden")
+  }
+}
+
+// Configure favorites data
+App.configure_favorites_data = function () {
+  App.log("Setting up favorites data")
+  App.msg_favorites_data = Msg.factory(Object.assign({}, App.msg_settings))
+  App.msg_favorites_data.set_title("Favorites Data")
+  App.msg_favorites_data.set(App.template_favorites_data)
+  
+  App.ev(App.el("#favorites_data_submit"), "click", function () {
+    App.submit_favorites_data()
+  })
+
+  App.favorites_data_ready = true
+}
+
+// Show the favorites data editor
+App.show_favorites_data = function () {
+  if (!App.favorites_data_ready) {
+    App.configure_favorites_data()
+  }
+
+  App.el("#favorites_data_textarea").value = App.to_easy_data(App.favorites)
+  App.msg_favorites_data.show()
+}
+
+// Submit favorites data change
+App.submit_favorites_data = function () {
+  if (confirm("Are you sure you want to modify the favorites data?")) {
+    let value = App.el("#favorites_data_textarea").value
+    let new_json = App.from_easy_data(value)
+    App.favorites = new_json
+    App.msg_favorites_data.close()
+
+    App.save_favorites()
+    App.reload_favorites()
+    App.empty_history()
+    App.show_favorites()    
   }
 }

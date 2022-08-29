@@ -2,10 +2,11 @@
 App.favorites_need_refresh = false
 App.history_fetched = false
 App.mouse_over_disabled = true
+App.modal_open = false
 App.configure_ready = false
 App.help_ready = false
 App.edit_ready = false
-App.modal_open = false
+App.favorites_data_ready = false
 
 // Local storage paths
 App.ls_favorites = "favorites_v1"

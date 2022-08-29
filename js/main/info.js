@@ -1,18 +1,10 @@
 // Arrange items depending on space
 App.setup_info = function () {
-  App.ev(App.el("#configure_button"), "click", function () {
-    if (!App.configure_ready) {
-      App.setup_configure()
-    }
-  
+  App.ev(App.el("#configure_button"), "click", function () {  
     App.show_configure()
   })
   
   App.ev(App.el("#help_button"), "click", function () {
-    if (!App.help_ready) {
-      App.setup_help()
-    }
-
     App.show_help()
   })
 

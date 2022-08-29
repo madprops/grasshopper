@@ -66,22 +66,22 @@
           <input type="text" class="configure_input">
           <div class="config_default_button action">Restore Default</div>
         </div>
-
+        
         <div class="configure_item" data-name="history_max_months" data-max="120" data-min="1" data-type="input">
           <div>Max History Months</div>
           <div class="configure_info">Maximum number of months to go back in history</div>
           <input type="text" class="configure_input">
           <div class="config_default_button action">Restore Default</div>
-        </div>
-
-        <div class="configure_item" data-name="max_favorites" data-max="10000" data-min="1" data-type="input">
-          <div>Max Favorites</div>
+          </div>
+          
+          <div class="configure_item" data-name="max_favorites" data-max="10000" data-min="1" data-type="input">
+            <div>Max Favorites</div>
           <div class="configure_info">Maximum number of favorite items to remember</div>
           <input type="text" class="configure_input">
           <div class="config_default_button action">Restore Default</div>
-        </div>
+          </div>
 
-        <div class="configure_item" data-name="max_text_length" data-max="2000" data-min="1" data-type="input">
+          <div class="configure_item" data-name="max_text_length" data-max="2000" data-min="1" data-type="input">
           <div>Max Text Length</div>
           <div class="configure_info">How long the text of the items can be</div>
           <input type="text" class="configure_input">
@@ -95,11 +95,11 @@
             <option value="title">Title</option>
             <option value="url">URL</option>
             <option value="path">Path</option>
-          </select>
-          <div class="config_default_button action">Restore Default</div>
-        </div>          
+            </select>
+            <div class="config_default_button action">Restore Default</div>
+            </div>          
 
-        <div class="configure_item" data-name="favorite_on_visit" data-type="checkbox">
+            <div class="configure_item" data-name="favorite_on_visit" data-type="checkbox">
           <div>Favorite on Visit</div>
           <div class="configure_info">Visiting a history item adds it to favorites automatically</div>
           <input type="checkbox" class="configure_checkbox">
@@ -120,9 +120,20 @@
           <div class="config_default_button action">Restore Default</div>
         </div>          
 
-        <div id="config_defaults" class="action">Restore All Defaults</div>
+        <button id="config_favorites_data" class="button action">Edit Favorites Data</button>
+        <button id="config_defaults" class="button action">Restore All Defaults</button>
       </div>
     </script>
+
+    <script id="template_edit" type="" class="template">
+      <input id="edit_input" type="text">
+      <div id="edit_submit" class="action unselectable submit">Submit</div>
+    </script>
+
+    <script id="template_favorites_data" type="" class="template">
+      <textarea id="favorites_data_textarea" rows="14"></textarea>
+      <div id="favorites_data_submit" class="action unselectable submit">Submit</div>
+    </script>    
 
     <script src="js/main/main.js"></script>
   </body>

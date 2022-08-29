@@ -77,6 +77,10 @@ App.setup_help = function () {
 
 // Show the help window
 App.show_help = function () {
+  if (!App.help_ready) {
+    App.setup_help()
+  }
+    
   App.msg_help.show()
 }
 
@@ -110,10 +114,7 @@ App.submit_edit = function () {
 App.setup_edit = function () {
   App.log("Setting up edit")
   App.msg_edit = Msg.factory(Object.assign({}, App.msg_settings))
-
-  let edit_html = `<input id="edit_input" type="text">`
-  edit_html += `<div id="edit_submit" class="action unselectable">Submit</div>`
-  App.msg_edit.set(edit_html)
+  App.msg_edit.set(App.template_edit)
 
   App.ev(App.el("#edit_submit"), "click", function () {
     App.submit_edit()
