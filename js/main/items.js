@@ -335,7 +335,8 @@ App.do_filter = function (mode = "typed") {
 
   let value = App.el("#filter").value.trim()
   let items = App.get_items()
-  let words = value.toLowerCase().split(" ").filter(x => x !== "")
+  let words = value.split(" ").filter(x => x !== "")
+  let words_lower = words.map(x => x.toLowerCase())
   let filter_mode = App.el("#filter_mode").value
   
   App.hide_other_items()
@@ -344,14 +345,14 @@ App.do_filter = function (mode = "typed") {
     let match
 
     if (filter_mode === "title_url") {
-      match = words.every(x => item.title_lower.includes(x)) || 
-        words.every(x => item.clean_url_lower.includes(x))
+      match = words_lower.every(x => item.title_lower.includes(x)) || 
+        words_lower.every(x => item.clean_url_lower.includes(x))
     } else if (filter_mode === "title") {
-      match = words.every(x => item.title_lower.includes(x))
+      match = words_lower.every(x => item.title_lower.includes(x))
     } else if (filter_mode === "url") {
-      match = words.every(x => item.clean_url_lower.includes(x))
+      match = words_lower.every(x => item.clean_url_lower.includes(x))
     } else if (filter_mode.startsWith("url_")) {
-      match = words.every(x => item.clean_url_lower.includes(x))
+      match = words_lower.every(x => item.clean_url_lower.includes(x))
 
       if (match) {
         let n = App.only_numbers(filter_mode)
@@ -363,6 +364,9 @@ App.do_filter = function (mode = "typed") {
           match = n === parts.length + 1
         }
       }
+    } else if (filter_mode === "case_sensitive") {
+      match = words.every(x => item.title.includes(x)) || 
+        words.every(x => item.clean_url.includes(x))
     }
     
     if (!match) {
