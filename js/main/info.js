@@ -40,6 +40,7 @@ App.setup_help = function () {
     "If filtering in one mode yields no results, both buttons activate.",
     "You can also use Shift + Tab to select both buttons.",
     "Shift + Space opens an item's menu.",
+    "Shift + ArrowDown shows the quick add favorite.",
   ]
 
   let info = `<div id="help_container">`
