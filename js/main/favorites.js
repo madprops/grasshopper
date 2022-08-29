@@ -103,31 +103,6 @@ App.change_to_favorites = function (force = false) {
   App.do_filter("mode_change")
 }
 
-// Edit the title of a favorite
-App.edit_favorite_title = function (item) {
-  App.show_edit("Enter New Title", item.title, function (value) {
-    if (value) {
-      item.title = value
-      App.add_favorite(item)
-      App.reload_favorites()
-      App.do_filter()
-    }
-  })
-}
-
-// Edit the url of a favorite
-App.edit_favorite_url = function (item) {
-  App.show_edit("Enter New URL", item.url, function (value) {
-    if (value) {
-      App.remove_favorite(item)
-      item.url = value
-      App.add_favorite(item)
-      App.reload_favorites()
-      App.do_filter()
-    }
-  })
-}
-
 // Simply data into an easily editable list
 App.to_easy_data = function (list) {
   let items = []
@@ -173,45 +148,6 @@ App.from_easy_data = function (datastring) {
   }
 
   return obs
-}
-
-// Show a prompt to edit something
-App.show_edit = function (title, value, callback) {
-  if (!App.edit_ready) {
-    App.setup_edit()
-  }
-
-  App.edit_callback = callback
-  App.msg_edit.set_title(title)
-  
-  let input = App.el("#edit_input")
-  input.value = value
-  
-  App.msg_edit.show(function () {
-    input.focus()
-  })
-}
-
-// Submit edit action
-App.submit_edit = function () {
-  if (App.edit_callback) {
-    App.edit_callback(App.el("#edit_input").value.trim())
-  }
-
-  App.msg_edit.close()
-}
-
-// Setup the edit widget
-App.setup_edit = function () {
-  App.log("Setting up edit")
-  App.msg_edit = Msg.factory(Object.assign({}, App.msg_settings))
-  App.msg_edit.set(App.template_edit)
-
-  App.ev(App.el("#edit_submit"), "click", function () {
-    App.submit_edit()
-  })
-
-  App.edit_ready = true
 }
 
 // Get favorite urls
@@ -268,40 +204,45 @@ App.show_add_favorite = async function () {
   items.push({
     text: "< Enter Info Manually >",
     action: function () {
-      App.show_add()
+      App.show_item_editor()
     }
   })  
 
   NeedContext.show_on_element(App.el("#add_favorite_button"), items)
 }
 
-// Setup add favorite
-App.setup_add = function () {
-  App.log("Setting up add")
-  App.msg_add = Msg.factory(Object.assign({}, App.msg_settings))
-  App.msg_add.set_title("Add Favorite")
-  App.msg_add.set(App.template_add)
+// Setup item editor
+App.setup_item_editor = function () {
+  App.log("Setting up item editor")
+  App.msg_item_editor = Msg.factory(Object.assign({}, App.msg_settings))
+  App.msg_item_editor.set_title("Add Favorite")
+  App.msg_item_editor.set(App.template_add)
 
   App.ev(App.el("#add_submit"), "click", function () {
-    App.submit_add()
+    App.submit_item_editor()
   })
 
-  App.add_ready = true
+  App.item_editor_ready = true
 }
 
-// Show add favorite
-App.show_add = function () {
-  if (!App.add_ready) {
-    App.setup_add()
+// Show item editor
+App.show_item_editor = function (item) {
+  if (!App.item_editor_ready) {
+    App.setup_item_editor()
+  }
+  
+  if (item) {
+    App.el("#add_title_input").value = item.title
+    App.el("#add_url_input").value = item.url
   }
 
-  App.msg_add.show(function () {
+  App.msg_item_editor.show(function () {
     App.el("#add_title_input").focus()
   })
 }
 
-// Submit add favorite
-App.submit_add = function () {
+// Submit item editor action
+App.submit_item_editor = function () {
   let title_el = App.el("#add_title_input")
   let url_el = App.el("#add_url_input")
   let title = title_el.value.trim()
@@ -318,7 +259,7 @@ App.submit_add = function () {
     return
   } 
 
-  App.msg_add.close()
+  App.msg_item_editor.close()
   title_el.value = ""
   url_el.value = ""  
 

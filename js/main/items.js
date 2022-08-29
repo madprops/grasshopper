@@ -597,18 +597,11 @@ App.show_item_menu = function (item) {
     })
   }
 
-  if (item.type === "favorites") {
+  if (item.type === "favorites") {        
     items.push({
-      text: "Edit Title",
+      text: "Edit",
       action: function () {
-        App.edit_favorite_title(item)
-      }
-    })
-        
-    items.push({
-      text: "Edit URL",
-      action: function () {
-        App.edit_favorite_url(item)
+        App.show_item_editor(item)
       }
     })
   }

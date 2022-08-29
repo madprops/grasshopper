@@ -5,16 +5,9 @@ App.setup_keyboard = function () {
     }
 
     if (App.modal_open) {
-      if (App.msg_edit && App.msg_edit.is_open()) {
+      if (App.msg_item_editor && App.msg_item_editor.is_open()) {
         if (e.key === "Enter") {
-          App.submit_edit()
-          e.preventDefault()
-        }
-      }
-
-      else if (App.msg_add && App.msg_add.is_open()) {
-        if (e.key === "Enter") {
-          App.submit_add()
+          App.submit_item_editor()
           e.preventDefault()
         }
       }      
