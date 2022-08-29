@@ -209,11 +209,10 @@ App.show_favorites_data = function () {
 // Submit favorites data change
 App.submit_favorites_data = function () {
   if (confirm("Are you sure you want to modify the favorites data?")) {
+    App.msg_favorites_data.close()
     let value = App.el("#favorites_data_textarea").value
     let new_json = App.from_easy_data(value)
-    App.favorites = new_json
-    App.msg_favorites_data.close()
-
+    App.favorites = App.remove_duplicates(new_json)
     App.save_favorites()
     App.reload_favorites()
     App.empty_history()

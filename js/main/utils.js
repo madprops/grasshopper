@@ -126,3 +126,18 @@ App.copy_to_clipboard = function (text) {
 App.is_overflowing = function (el) {
   return el.scrollHeight > el.clientHeight || el.scrollWidth > el.clientWidth;
 }
+
+// Remove duplicate objects
+App.remove_duplicates = function (list) {
+  let urls = []
+  let new_list = []
+
+  for (let item of list) {
+    if (!urls.includes(item.url)) {
+      new_list.push(item)
+      urls.push(item.url)
+    }
+  }
+
+  return new_list
+}
