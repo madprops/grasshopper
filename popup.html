@@ -22,14 +22,14 @@
   </head>
   <body>
     <div id="main">
-      <div id="info" class="unselectable">
+      <div id="info" class="flex_row_center unselectable">
         <div id="trademark">G R A S S H O P P E R</div>
         <div id="version"></div>
-        <div id="configure_button" class="info_button action">Configure</div>
-        <div id="help_button" class="info_button action">Help</div>
+        <div id="configure_button" class="underline action">Configure</div>
+        <div id="help_button" class="underline action">Help</div>
       </div>
 
-      <div id="top_container" class="unselectable">
+      <div id="top_container" class="flex_row_center unselectable">
         <div id="buttons">
           <button id="favorites_button" class="button actionbox">Favorites</button>
           <button id="history_button" class="button actionbox">History</button>
@@ -119,9 +119,14 @@
           <input type="checkbox" class="configure_checkbox">
           <div class="config_default_button action">Restore Default</div>
         </div>          
-
-        <button id="config_favorites_data" class="button action">Edit Favorites Data</button>
-        <button id="config_defaults" class="button action">Restore All Defaults</button>
+      </div>
+    </script>
+    
+    <script id="template_configure_title" type="" class="template">
+      <div class="flex_row_center">
+        <div id="config_defaults" class="underline action">Restore Defaults</div>
+        <div class="titlebar_separator">|</div>
+        <div id="config_favorites_data" class="underline action">Edit Favorites</div>
       </div>
     </script>
 

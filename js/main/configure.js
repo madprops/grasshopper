@@ -46,7 +46,7 @@ App.setup_configure = function () {
     } 
   }))
 
-  App.msg_configure.set_title("Configure")
+  App.msg_configure.set_title(App.template_configure_title)
   App.msg_configure.set(App.template_configure)
 
   for (let item of App.els(".configure_item")) {
@@ -179,12 +179,6 @@ App.fill_config_input = function (item) {
     def.classList.add("hidden")
   } else {
     def.classList.remove("hidden")
-  }
-
-  if (App.els(".config_default_button").some(x => !x.classList.contains("hidden"))) {
-    App.el("#config_defaults").classList.remove("hidden")
-  } else {
-    App.el("#config_defaults").classList.add("hidden")
   }
 }
 
