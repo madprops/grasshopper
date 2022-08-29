@@ -614,7 +614,7 @@ App.show_item_menu = function (item) {
   }
 
   if (items.length > 0) {
-    NeedContext.show_on_element(App.el(".item_menu", item.element,), items, {close_button: true})
+    NeedContext.show_on_element(App.el(".item_menu", item.element), items)
   }
 }
 

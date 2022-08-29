@@ -272,7 +272,7 @@ App.show_add_favorite = async function () {
     }
   })  
 
-  NeedContext.show_on_element(App.el("#add_favorite_button"), items, {close_button: true})
+  NeedContext.show_on_element(App.el("#add_favorite_button"), items)
 }
 
 // Setup add favorite

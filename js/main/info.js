@@ -81,7 +81,7 @@ App.show_info_menu = function () {
     }
   })
 
-  NeedContext.show_on_element(App.el("#info_button"), items, {close_button: true})
+  NeedContext.show_on_element(App.el("#info_button"), items)
 }
 
 // Show about information
