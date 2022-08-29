@@ -53,27 +53,6 @@ App.change_to_history = function () {
   App.show_history()
 }
 
-// Get a an item from history
-App.get_history_item = async function (url) {
-  if (App.history_items.length > 0) {
-    for (let item of App.history_items) {
-      if (item.url === url) {
-        return item
-      }
-    }
-  } else {
-    let items = await browser.history.search({
-      text: url,
-      maxResults: 1,
-      startTime: App.history_months()
-    })
-
-    if (items.length > 0) {
-      return items[0]
-    }
-  }
-}
-
 // Get history months date
 App.history_months = function () {
   return Date.now() - (1000 * 60 * 60 * 24 * 30 * App.config.history_max_months)
