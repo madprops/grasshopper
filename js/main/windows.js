@@ -1,6 +1,6 @@
 // Create all the Handlebars templates
 App.setup_templates = function () {
-  App.els(".template").forEach(it => {
+  App.els("template").forEach(it => {
     App[it.id] = App.el(`#${it.id}`).innerHTML.trim()
   })
 }

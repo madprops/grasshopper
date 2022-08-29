@@ -7,16 +7,13 @@
     <script src="js/libs/msg.js"></script>
     <script src="js/main/app.js"></script>
     <script src="js/main/utils.js"></script>
-    <script src="js/main/settings.js"></script>
     <script src="js/main/keyboard.js"></script>
     <script src="js/main/favorites.js"></script>
-    <script src="js/main/buttons.js"></script>
     <script src="js/main/items.js"></script>
     <script src="js/main/favorites.js"></script>
     <script src="js/main/history.js"></script>
     <script src="js/main/list.js"></script>
     <script src="js/main/info.js"></script>
-    <script src="js/main/filter.js"></script>
     <script src="js/main/windows.js"></script>
     <script src="js/main/configure.js"></script>
   </head>
@@ -59,7 +56,7 @@
       <div id="footer" class="unselectable"></div>
     </div>
 
-    <script id="template_configure" type="" class="template">
+    <template id="template_configure">
       <div id="configure" class="unselectable">
         <div class="configure_item" data-name="history_max_results" data-max="100000" data-min="1" data-type="input">
           <div>Max History Results</div>
@@ -121,31 +118,31 @@
           <div class="config_default_button action">Restore Default</div>
         </div>          
       </div>
-    </script>
+    </template>
     
-    <script id="template_configure_title" type="" class="template">
+    <template id="template_configure_title">
       <div class="flex_row_center">
         <div id="config_defaults" class="underline action">Restore Defaults</div>
         <div class="titlebar_separator">|</div>
         <div id="config_favorites_data" class="underline action">Edit Favorites</div>
       </div>
-    </script>
+    </template>
 
-    <script id="template_edit" type="" class="template">
+    <template id="template_edit">
       <input id="edit_input" class="text_input" type="text">
       <div id="edit_submit" class="action unselectable submit">Submit</div>
-    </script>
+    </template>
 
-    <script id="template_add" type="" class="template">
+    <template id="template_add">
       <input id="add_title_input" class="text_input" type="text" placeholder="Title">
       <input id="add_url_input" class="text_input" type="text" placeholder="URL">
       <div id="add_submit" class="action unselectable submit">Submit</div>
-    </script>      
+    </template>      
 
-    <script id="template_favorites_data" type="" class="template">
+    <template id="template_favorites_data">
       <textarea id="favorites_data_textarea" rows="14"></textarea>
       <div id="favorites_data_submit" class="action unselectable submit">Submit</div>
-    </script>      
+    </template>      
 
     <script src="js/main/main.js"></script>
   </body>

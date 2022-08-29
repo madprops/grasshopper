@@ -202,7 +202,8 @@ App.show_favorites_data = function () {
     App.configure_favorites_data()
   }
 
-  App.el("#favorites_data_textarea").value = App.to_easy_data(App.favorites)
+  let easy_data = App.to_easy_data(App.favorites)
+  App.el("#favorites_data_textarea").value = easy_data
   App.msg_favorites_data.show()
 }
 
