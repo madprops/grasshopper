@@ -12,8 +12,8 @@ App.process_favorites = function () {
 }
 
 // Saves the favorite storage object
-App.save_favorites = async function () {
-  await App.save_storage(App.ls_favorites, App.favorites)
+App.save_favorites = function () {
+  App.save_storage(App.ls_favorites, App.favorites)
   App.favorites_need_refresh = true
 }
 
