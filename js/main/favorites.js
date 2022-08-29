@@ -215,7 +215,7 @@ App.show_add_favorite = async function () {
 App.setup_item_editor = function () {
   App.log("Setting up item editor")
   App.msg_item_editor = Msg.factory(Object.assign({}, App.msg_settings))
-  App.msg_item_editor.set_title("Add Favorite")
+  App.msg_item_editor.set_title("Item Editor")
   App.msg_item_editor.set(App.template_add)
 
   App.ev(App.el("#add_submit"), "click", function () {
