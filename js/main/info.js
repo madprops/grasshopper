@@ -92,7 +92,11 @@ App.show_about = function () {
 
   let manifest = browser.runtime.getManifest()
   let s = `Grasshopper v${manifest.version}`
-  let info = `<div id="info_container">${s}</div>`
+  let info = `<div id="about_container">`
+  info += `<div id="about_text">${s}</div>`
+  info += `<div id="about_author">By madprops (2022)</div>`
+  info += `<img src="img/icon.jpg" id="about_image">`
+  info += `</div>`
 
   App.msg_info.set_title("About")
   App.msg_info.show(info)

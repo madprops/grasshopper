@@ -322,7 +322,19 @@ body, html {
   opacity: 0.6;
 }
 
-#info_container {
-  font-size: 1.2rem;
+#about_container {
   margin: 1rem;
+}
+
+#about_text {
+  font-size: 1.2rem;
+}
+
+#about_author {
+  margin-top: 0.5rem;
+}
+
+#about_image {
+  margin-top: 1rem;
+  width: 250px;
 }
