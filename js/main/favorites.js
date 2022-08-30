@@ -102,53 +102,6 @@ App.change_to_favorites = function (force = false) {
   App.do_filter("mode_change")
 }
 
-// Simply data into an easily editable list
-App.to_easy_data = function (list) {
-  let items = []
-
-  for (let item of list) {
-    let props = []
-    props.push(`title: ${item.title}`)
-    props.push(`url: ${item.url}`)
-    items.push(props.join("\n"))
-  }
-
-  return items.join("\n\n")
-}
-
-// Simply data into an easily editable list
-App.from_easy_data = function (datastring) {
-  let s = datastring.trim()
-
-  if (!s) {
-    return []
-  }
-
-  let items = datastring.split("\n\n")
-  let obs = []
-
-  for (let item of items) {
-    let it = item.trim()
-
-    if (!it) {
-      continue
-    }
-
-    let o = {}
-
-    for (let line of it.split("\n")) {
-      let [key, ...value] = line.split(":")
-      key = key.trim()
-      value = value.join(":").trim()
-      o[key] = value
-    }
-
-    obs.push(o)
-  }
-
-  return obs
-}
-
 // Get favorite urls
 App.favorite_urls = function () {
   return App.favorite_items.map(x => x.url)
