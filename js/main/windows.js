@@ -19,9 +19,9 @@ App.setup_windows = function () {
     },
     after_close: function () {
       App.modal_open = false
-      App.mouse_over_disabled = true
+      App.disable_mouse_over()
       App.enable_mouse_over()
-    }
+    },
   }
 
   App.msg_settings_window = Object.assign({}, App.msg_settings, {

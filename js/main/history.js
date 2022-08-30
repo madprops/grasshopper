@@ -37,7 +37,6 @@ App.get_history = async function (show = true) {
 
 // Show history
 App.show_history = function () {
-  App.mouse_over_disabled = true
   App.set_mode("history")
   App.do_filter("mode_change")
 }

@@ -1,6 +1,7 @@
 // Do items filter
 App.do_filter = function (mode = "typed") {
   App.log("Doing filter")
+  App.disable_mouse_over()
 
   let value = App.el("#filter").value.trim()
   let items = App.get_items()

@@ -98,7 +98,6 @@ App.change_to_favorites = function (force = false) {
     App.reload_favorites()
   }
 
-  App.mouse_over_disabled = true
   App.set_mode("favorites")
   App.do_filter("mode_change")
 }
