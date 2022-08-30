@@ -3,6 +3,7 @@ App.setup_items = function () {
   App.start_item_observer()
 
   App.filter = App.create_debouncer(function () {
+    App.mouse_over_disabled = true
     App.do_filter()
   }, 222)
 
