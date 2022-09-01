@@ -64,6 +64,12 @@ App.do_filter = function (mode = "typed") {
         num_visible += 1
       }
 
+      // Show first items quickly
+      // Show all items if filter is used
+      if (keep_showing && !value && num_visible === App.initial_items) {
+        keep_showing = false
+      }      
+
       if (!selected) {
         if (App.item_is_visible(item)) {
           App.select_item(item)
@@ -77,10 +83,6 @@ App.do_filter = function (mode = "typed") {
         } else if (item.type === "history") {
           matched_history = true
         }
-      }
-
-      if (keep_showing && !value && num_visible === 20) {
-        keep_showing = false
       }
     } else {
       App.hide_item(item)

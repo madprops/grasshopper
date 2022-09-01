@@ -9,6 +9,7 @@ App.item_editor = false
 App.favorites_data_ready = false
 App.info_ready = false
 App.info_window_ready = false
+App.initial_items = 100
 
 // Local storage paths
 App.ls_favorites = "favorites_v1"
