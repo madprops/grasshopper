@@ -53,10 +53,16 @@ App.do_filter = function (mode = "typed") {
   let selected = false
   let matched_favorite = false  
   let matched_history = false
+  let num_visible = 0
+  let keep_showing = true
+  let all_match = !value
 
   for (let item of items) {
-    if (matched(item)) {
-      App.show_item(item)
+    if (all_match || matched(item)) {
+      if (keep_showing) {
+        App.show_item(item)
+        num_visible += 1
+      }
 
       if (!selected) {
         if (App.item_is_visible(item)) {
@@ -71,6 +77,10 @@ App.do_filter = function (mode = "typed") {
         } else if (item.type === "history") {
           matched_history = true
         }
+      }
+
+      if (keep_showing && !value && num_visible === 20) {
+        keep_showing = false
       }
     } else {
       App.hide_item(item)

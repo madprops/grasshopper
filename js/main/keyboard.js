@@ -40,15 +40,11 @@ App.setup_keyboard = function () {
 
       e.preventDefault()
     } else if (e.key === "ArrowDown") {
-      if (e.shiftKey) {
-        App.show_add_favorite()
-      } else {
-        let item = App.get_next_visible_item(App.selected_item)
-  
-        if (item) {
-          App.select_item(item)
-        }
-      }      
+      let item = App.get_next_visible_item(App.selected_item)
+
+      if (item) {
+        App.select_item(item)
+      }
 
       e.preventDefault()
     } else if (e.key === "Tab") {

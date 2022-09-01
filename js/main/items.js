@@ -39,10 +39,6 @@ App.setup_items = function () {
     App.do_filter()
   })
 
-  App.ev(App.el("#add_favorite_button"), "click", function (e) {
-    App.show_add_favorite()
-  })  
-
   App.ev(App.el("#case_sensitive"), "change", function () {
     App.do_filter()
   })  
