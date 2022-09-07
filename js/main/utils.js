@@ -114,11 +114,6 @@ App.save_storage = async function (name, value) {
   await browser.storage.sync.set(o)
 }
 
-// Copy text to the clipboard
-App.copy_to_clipboard = function (text) {
-  navigator.clipboard.writeText(text)
-}
-
 // Remove duplicate objects
 App.remove_duplicates = function (list) {
   let urls = []

@@ -156,10 +156,6 @@ App.create_item_element = function (item) {
   content = content.substring(0, 200).trim()
   text.textContent = content  
   item.element.append(text)
-
-  let menu = App.create("div", "item_menu")
-  menu.textContent = "Menu"
-  item.element.append(menu)
   item.created = true
 }
 
@@ -320,26 +316,6 @@ App.update_footer = function () {
   } else {
     App.el("#footer").textContent = "No Results"
   }
-}
-
-// Show item context menu
-App.show_item_menu = function (item) {
-  let items = [
-    {
-      text: "Copy URL",
-      action: function () {
-        App.copy_to_clipboard(item.url)
-      }
-    },
-    {
-      text: "Copy Title",
-      action: function () {
-        App.copy_to_clipboard(item.title)
-      }
-    }    
-  ]
-
-  NeedContext.show_on_element(App.el(".item_menu", item.element), items)
 }
 
 // Remove items that match a url

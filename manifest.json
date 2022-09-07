@@ -5,8 +5,7 @@
     "description": "Go to your favorites URLs quickly",
     "permissions": [
         "history",
-        "storage",
-        "clipboardWrite"
+        "storage"
     ],
     "icons": {
         "128": "icon128.png"

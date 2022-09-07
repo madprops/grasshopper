@@ -7,11 +7,7 @@ App.setup_list = function () {
       let el = e.target.closest(".item")
       let item = App.get_item_by_url(App.get_all_items(), el.dataset.url)
 
-      if (e.target.closest(".item_menu")) {
-        App.show_item_menu(item)
-      } else {
-        App.open_tab(item)
-      }
+      App.open_tab(item)
     }
   })
 
