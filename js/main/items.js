@@ -55,8 +55,7 @@ App.process_item = function (type, item, removed) {
   }
 
   let hostname = App.remove_slashes(url_obj.hostname)
-  let pathname = App.remove_slashes(url_obj.pathname)
-  let clean_url = App.remove_slashes(url_obj.origin + url_obj.pathname)
+  let path = App.remove_slashes(hostname + url_obj.pathname)
   
   let el = App.create("div", "item hidden")
   el.dataset.id = App.current_id
@@ -79,16 +78,15 @@ App.process_item = function (type, item, removed) {
     }
   }
 
-  let title = item.title || pathname
+  let title = item.title || path
 
   let obj = {
     title: title,
     title_lower: title.toLowerCase(),
     url: item.url,
-    clean_url: clean_url,
-    clean_url_lower: clean_url.toLowerCase(),
+    path: path,
+    path_lower: path.toLowerCase(),
     hostname: hostname,
-    pathname: pathname,
     created: false,
     filled: false,
     element: el,
@@ -140,16 +138,13 @@ App.create_item_element = function (item) {
   let text = App.create("div", "item_text")
   let content
   
-  if (App.config.text_mode === "title") {
-    content = item.title || item.url
-    item.footer = item.url || item.title
-  } else if (App.config.text_mode === "url") {
-    content = item.url || item.title
-    item.footer = item.title || item.pathname
-  } else if (App.config.text_mode === "path") {
-    content = item.pathname || item.hostname
-    item.footer = item.title || item.pathname
-  }
+  if (App.config.text_mode === "path") {
+    content = item.path || item.title
+    item.footer = item.title || item.path
+  } else if (App.config.text_mode === "title") {
+    content = item.title || item.path
+    item.footer = item.path || item.title
+  } 
   
   content = content.substring(0, 200).trim()
   text.textContent = content  
@@ -222,7 +217,7 @@ App.get_prev_visible_item = function (o_item) {
 // Get the item of a recent
 App.get_item_by_id = function (items, id) {
   id = parseInt(id)
-  
+
   for (let item of items) {
     if (item.id === id) {
       return item

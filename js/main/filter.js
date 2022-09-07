@@ -45,25 +45,25 @@ App.do_filter = function () {
   function matched (item) {
     let match
     let title = case_sensitive ? item.title : item.title_lower
-    let clean_url = case_sensitive ? item.clean_url : item.clean_url_lower
+    let path = case_sensitive ? item.path : item.path_lower
 
     if (filter_mode === "title_url") {
       match = filter_words.every(x => title.includes(x)) || 
-        filter_words.every(x => clean_url.includes(x))
+        filter_words.every(x => path.includes(x))
     } else if (filter_mode === "title") {
       match = filter_words.every(x => title.includes(x))
     } else if (filter_mode === "url") {
-      match = filter_words.every(x => clean_url.includes(x))
+      match = filter_words.every(x => path.includes(x))
     } else if (filter_mode.startsWith("url_")) {
-      match = filter_words.every(x => clean_url.includes(x))
+      match = filter_words.every(x => path.includes(x))
 
       if (match) {
         let n = App.only_numbers(filter_mode)
 
-        if (!item.pathname) {
+        if (!item.path) {
           match = n === 1
         } else {
-          let parts = item.pathname.split("/")
+          let parts = item.path.split("/")
           match = n === parts.length + 1
         }
       }
