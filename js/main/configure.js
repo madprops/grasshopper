@@ -119,7 +119,6 @@ App.show_configure = function () {
     App.fill_config_input(item)
   }
   
-  App.config_changed = false
   App.msg_configure.show()
 }
 
@@ -134,7 +133,7 @@ App.on_configure_close = function () {
     }
   }
 
-  if (App.config_changed || changed) {
+  if (changed) {
     App.start_items()
   }
 }

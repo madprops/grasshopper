@@ -1,5 +1,9 @@
 App.setup_keyboard = function () {
   App.ev(document, "keydown", function (e) {
+    if (App.modal_open) {
+      return
+    }
+    
     App.focus_filter()
 
     if (e.key === "Enter") {

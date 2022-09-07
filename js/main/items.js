@@ -59,7 +59,7 @@ App.process_item = function (type, item, removed) {
   let clean_url = App.remove_slashes(url_obj.origin + url_obj.pathname)
   
   let el = App.create("div", "item hidden")
-  el.dataset.url = item.url
+  el.dataset.id = App.current_id
 
   if (type === "recent") {
     el.classList.add("recent_item")
@@ -92,9 +92,11 @@ App.process_item = function (type, item, removed) {
     created: false,
     filled: false,
     element: el,
-    type: type
+    type: type,
+    id: App.current_id
   }
 
+  App.current_id += 1
   return obj
 }
 
@@ -218,9 +220,11 @@ App.get_prev_visible_item = function (o_item) {
 }
 
 // Get the item of a recent
-App.get_item_by_url = function (items, url) {
+App.get_item_by_id = function (items, id) {
+  id = parseInt(id)
+  
   for (let item of items) {
-    if (item.url === url) {
+    if (item.id === id) {
       return item
     }
   }
@@ -286,7 +290,7 @@ App.select_next_item = function (item) {
 
 // Element to item
 App.element_to_item = function (el) {
-  return App.get_item_by_url(App.get_all_items(), el.dataset.url)
+  return App.get_item_by_id(App.get_all_items(), el.dataset.id)
 }
 
 // Item is hidden
@@ -334,6 +338,7 @@ App.get_slice = function (type) {
 App.start_items = async function () {
   App.log("-- Starting items --")
 
+  App.current_id = 0
   App.el("#list_recent").innerHTML = ""
   App.el("#list_history").innerHTML = ""
 

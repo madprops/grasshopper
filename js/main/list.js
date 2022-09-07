@@ -5,7 +5,7 @@ App.setup_list = function () {
   App.ev(list, "click", function (e) {
     if (e.target.closest(".item")) {
       let el = e.target.closest(".item")
-      let item = App.get_item_by_url(App.get_all_items(), el.dataset.url)
+      let item = App.get_item_by_id(App.get_all_items(), el.dataset.id)
 
       App.open_tab(item)
     }
@@ -15,7 +15,7 @@ App.setup_list = function () {
   App.ev(list, "auxclick", function (e) {
     if (e.target.closest(".item")) {
       let el = e.target.closest(".item")
-      let item = App.get_item_by_url(App.get_all_items(), el.dataset.url)
+      let item = App.get_item_by_id(App.get_all_items(), el.dataset.id)
       App.open_tab(item, false)
     }
   })
@@ -28,7 +28,7 @@ App.setup_list = function () {
     
     if (e.target.closest(".item")) {
       let el = e.target.closest(".item")
-      let item = App.get_item_by_url(App.get_all_items(), el.dataset.url)
+      let item = App.get_item_by_id(App.get_all_items(), el.dataset.id)
       App.select_item(item, false)
     }
   })
