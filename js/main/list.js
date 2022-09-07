@@ -59,3 +59,14 @@ App.enable_mouse_over = function () {
     App.mouse_over_disabled = false
   }, 200)
 }
+
+// Switch to the other list
+App.switch_list = function () {
+  if (App.selected_item) {
+    App.select_item(
+      App.get_first_visible_item(
+        App.other_list(App.selected_item.type)
+      )
+    )
+  }
+}

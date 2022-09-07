@@ -178,7 +178,7 @@ App.get_all_items = function () {
 
 // Get next item that is visible
 App.get_next_visible_item = function (o_item) {
-  let items = App.get_all_items()
+  let items = App.get_items(o_item.type)
   let waypoint = false
 
   for (let i=0; i<items.length; i++) {
@@ -196,9 +196,18 @@ App.get_next_visible_item = function (o_item) {
   }
 }
 
+// Get first visible item of a list
+App.get_first_visible_item = function (type) {
+  for (let item of App.get_items(type)) {
+    if (App.item_is_visible(item)) {
+      return item
+    }
+  }
+}
+
 // Get prev item that is visible
 App.get_prev_visible_item = function (o_item) {
-  let items = App.get_all_items()
+  let items = App.get_items(o_item.type)
   let waypoint = false
 
   for (let i=items.length-1; i>=0; i--) {
@@ -350,7 +359,7 @@ App.remove_items_by_url = function (url) {
 
 // Get the initial items of a list
 App.get_slice = function (type) {
-  return App[`${type}_items`].slice(0, App.initial_items)
+  return App.get_items(type).slice(0, App.initial_items)
 }
 
 // Show initial items
@@ -367,4 +376,14 @@ App.start_items = async function () {
   App.process_history()
 
   App.do_filter()
+}
+
+// Get other list type string
+App.other_list = function (type) {
+  return type === "recent" ? "history" : "recent"
+}
+
+// Get items of a type
+App.get_items = function (type) {
+  return App[`${type}_items`]
 }
