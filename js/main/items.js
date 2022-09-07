@@ -346,11 +346,6 @@ App.start_items = async function () {
   App.do_filter()
 }
 
-// Get other list type string
-App.other_list = function (type) {
-  return type === "recent" ? "history" : "recent"
-}
-
 // Get items of a type
 App.get_items = function (type) {
   return App[`${type}_items`]

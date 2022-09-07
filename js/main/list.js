@@ -51,10 +51,19 @@ App.enable_mouse_over = function () {
 // Switch to the other list
 App.switch_list = function () {
   if (App.selected_item) {
+    App.disable_mouse_over()
+
     App.select_item(
       App.get_first_visible_item(
         App.other_list(App.selected_item.type)
       )
     )
+    
+    App.enable_mouse_over()
   }
+}
+
+// Get other list type string
+App.other_list = function (type) {
+  return type === "recent" ? "history" : "recent"
 }
