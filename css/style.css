@@ -128,15 +128,6 @@ body, html {
   overflow: hidden;
 }
 
-.item_menu {
-  padding-right: 0.5rem;
-  padding-left: 0.8rem;
-}
-
-.item_menu:hover {
-  text-decoration: underline;
-}
-
 .item_icon_container {
   position: relative;
   display: flex;
