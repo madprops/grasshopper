@@ -41,7 +41,7 @@ App.do_filter = function () {
   } else {
     items = App.get_all_items()
   }
-  
+
   function matched (item) {
     let match
     let title = case_sensitive ? item.title : item.title_lower

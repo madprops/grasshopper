@@ -4,9 +4,7 @@ App.default_config = function () {
     history_max_results: 2000,
     history_max_months: 12,
     max_recent: 2000,
-    max_text_length: 200,
     text_mode: "title",
-    single_line: true
   }
 }
 

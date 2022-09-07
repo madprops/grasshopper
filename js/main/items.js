@@ -152,12 +152,8 @@ App.create_item_element = function (item) {
     content = item.pathname || item.hostname
     item.footer = item.title || item.pathname
   }
-
-  if (App.config.single_line) {
-    text.classList.add("single_line")
-  }
   
-  content = content.substring(0, App.config.max_text_length).trim()
+  content = content.substring(0, 200).trim()
   text.textContent = content  
   item.element.append(text)
 
