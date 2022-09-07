@@ -104,7 +104,6 @@ body, html {
   cursor: pointer;
   border: 1px solid grey;
   border-spacing: 0.5rem;
-  border-radius: 20px;
   align-items: center;
 }
 
@@ -131,7 +130,6 @@ body, html {
   width: var(--icon_size);
   height: var(--icon_size);
   margin: 0.5rem;
-  border-radius: 50%;
 }
 
 .selected {
