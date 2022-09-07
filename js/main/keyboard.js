@@ -3,7 +3,7 @@ App.setup_keyboard = function () {
     if (App.modal_open) {
       return
     }
-    
+
     App.focus_filter()
 
     if (e.key === "Enter") {
@@ -27,6 +27,7 @@ App.setup_keyboard = function () {
       e.preventDefault()
     } else if (e.key === "Tab") {
       App.switch_list()
+      e.preventDefault()
     }
   })
 }
