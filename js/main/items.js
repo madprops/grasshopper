@@ -324,26 +324,22 @@ App.update_footer = function () {
 
 // Show item context menu
 App.show_item_menu = function (item) {
-  let items = []
-  let text = App.el(".item_text", item.element)
+  let items = [
+    {
+      text: "Copy URL",
+      action: function () {
+        App.copy_to_clipboard(item.url)
+      }
+    },
+    {
+      text: "Copy Title",
+      action: function () {
+        App.copy_to_clipboard(item.title)
+      }
+    }    
+  ]
 
-  items.push({
-    text: "Copy URL",
-    action: function () {
-      App.copy_to_clipboard(item.url)
-    }
-  }) 
-  
-  items.push({
-    text: "Copy Title",
-    action: function () {
-      App.copy_to_clipboard(item.title)
-    }
-  })  
-
-  if (items.length > 0) {
-    NeedContext.show_on_element(App.el(".item_menu", item.element), items)
-  }
+  NeedContext.show_on_element(App.el(".item_menu", item.element), items)
 }
 
 // Remove items that match a url

@@ -20,20 +20,19 @@ App.show_help = function () {
 
   let lines = [
     "This is an addon to go back to often-used URLs quickly.",
-    "There's 2 panes, Recent, and History.",
+    "There are 2 lists, Recent, and History.",
     "Recent are items you visited recently through this addon.",
     "History shows the recent browser history minus Recent.",
     "Type something to filter the items.",
     "The filter has different modes for more precise search.",
     "Items are ordered by last visit date, most recent at the top.",
     "You can use the arrows to select items up and down.",
+    "Use Enter to visit the currently selected item.",
     "You can use Tab to switch between Recent and History.",
-    "You can use the Delete key to clear the filter.",
     "You can middle click an item to open without exiting.",
     "Some settings are configurable in Configure.",
     "Recent and Configuration are sync'd to your account.",
     "URL Level refers to the path's deepness (aa/bb/cc == 3).",
-    "Shift + Space opens an item's menu.",
   ]
 
   let info = `<div id="help_container">`

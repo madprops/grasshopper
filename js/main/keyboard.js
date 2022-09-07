@@ -27,11 +27,6 @@ App.setup_keyboard = function () {
       e.preventDefault()
     } else if (e.key === "Tab") {
       App.switch_list()
-    } else if (e.key === " ") {
-      if (e.shiftKey) {
-        App.show_item_menu(App.selected_item)
-        e.preventDefault()
-      }
     }
   })
 }
