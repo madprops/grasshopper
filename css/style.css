@@ -102,6 +102,12 @@ body, html {
   border-radius: 10px;
 }
 
+.list_title {
+  background-color: rgb(100, 100, 100);
+  color: white;
+  padding: 0.25rem;
+}
+
 .item {
   display: flex;
   flex-direction: row;
