@@ -1,10 +1,8 @@
 // For internal checks
 App.mouse_over_disabled = true
 App.modal_open = false
-App.configure_ready = false
 App.help_ready = false
-App.info_ready = false
-App.info_window_ready = false
+App.about_ready = false
 App.initial_items = 100
 
 // Local storage paths
@@ -18,6 +16,8 @@ App.init = async function () {
   App.setup_filter()
   App.setup_list()
   App.setup_keyboard()
+  App.setup_configure()
+  App.setup_about()
   App.start_items()
 }
 

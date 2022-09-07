@@ -32,17 +32,6 @@ body, html {
   background-color: #252933;
 }
 
-#help_container {
-  display: flex;
-  flex-direction: column;
-  gap: 0.5rem;
-  margin-top: 1rem;
-  margin-bottom: 1rem;
-  font-size: 1rem;
-  align-items: center;
-  font-size: 1.2rem;
-}
-
 #top_container {
   flex-grow: 0;
   gap: 0.5rem;
@@ -306,4 +295,22 @@ body, html {
 #about_image {
   margin-top: 1rem;
   width: 250px;
+}
+
+#about_button {
+  height: 1.5rem;
+  margin-right: 0.25rem;
+  box-shadow: 0 0 0.3rem currentColor;
+  cursor: pointer;
+}
+
+#about_info {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  margin-top: 1rem;
+  margin-bottom: 2rem;
+  font-size: 1rem;
+  align-items: center;
+  font-size: 1.2rem;
 }

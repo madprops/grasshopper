@@ -29,7 +29,9 @@ App.get_config = async function () {
 
 // Setup configure
 App.setup_configure = function () {
-  App.log("Setting up configure")
+  App.ev(App.el("#configure_button"), "click", function () {  
+    App.show_configure()
+  })
 
   App.msg_configure = Msg.factory(Object.assign({}, App.msg_settings_window, {
     after_show: function () {
@@ -96,8 +98,6 @@ App.setup_configure = function () {
       }
     })  
   }
-
-  App.configure_ready = true
 }
 
 // Restore config default
@@ -115,10 +115,6 @@ App.save_config = async function () {
 
 // Show configure
 App.show_configure = function () {
-  if (!App.configure_ready) {
-    App.setup_configure()
-  }
-
   for (let item of App.els(".configure_item")) {
     App.fill_config_input(item)
   }

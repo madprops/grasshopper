@@ -32,14 +32,6 @@ App.setup_list = function () {
       App.select_item(item, false)
     }
   })
-
-  NeedContext.after_show = function () {
-    App.disable_mouse_over()
-  }
-
-  NeedContext.after_hide = function () {
-    App.enable_mouse_over()
-  }
 }
 
 // Disable mouse over

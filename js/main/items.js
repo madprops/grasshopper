@@ -1,10 +1,6 @@
 // Setup items
 App.setup_items = function () {
   App.start_item_observer()
-
-  App.ev(App.el("#info_button"), "click", function () {  
-    App.show_info_menu()
-  })
 }
 
 // When results are found

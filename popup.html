@@ -3,7 +3,6 @@
   <head>
     <link rel="stylesheet" href="css/style.css">
     <script src="js/libs/jdenticon.js"></script>
-    <script src="js/libs/needcontext.js"></script>
     <script src="js/libs/msg.js"></script>
     <script src="js/main/app.js"></script>
     <script src="js/main/utils.js"></script>
@@ -12,7 +11,7 @@
     <script src="js/main/recent.js"></script>
     <script src="js/main/history.js"></script>
     <script src="js/main/list.js"></script>
-    <script src="js/main/info.js"></script>
+    <script src="js/main/about.js"></script>
     <script src="js/main/windows.js"></script>
     <script src="js/main/configure.js"></script>
     <script src="js/main/filter.js"></script>
@@ -20,6 +19,7 @@
   <body>
     <div id="main">
       <div id="top_container" class="flex_row_center unselectable">
+        <img id="about_button" src="img/icon.jpg">
         <input type="text" id="filter" autocomplete="off" placeholder="Type to filter...">
         <input id="case_sensitive" type="checkbox" title="Case Sensitive">
         
@@ -33,7 +33,7 @@
         </select>
 
         <button id="clear_button" class="button actionbox">Clear</button>
-        <button id="info_button" class="button actionbox">?</button>
+        <button id="configure_button" class="button actionbox">Configure</button>
       </div>
 
       <div id="list" class="unselectable">
@@ -85,6 +85,30 @@
     <template id="template_favorites_data">
       <textarea id="favorites_data_textarea" rows="14"></textarea>
       <div id="favorites_data_submit" class="action unselectable submit">Submit</div>
+    </template>   
+
+    <template id="template_about">
+      <div id="about_container">
+        <div id="about_text"></div>
+        <div id="about_author">By madprops (2022)</div>
+        <img src="img/icon.jpg" id="about_image">
+        <div id="about_info">
+          <div>This is an addon to go back to often-used URLs quickly.</div>
+          <div>There are 2 lists, Recent, and History.</div>
+          <div>Recent are items you visited recently through this addon.</div>
+          <div>History shows the recent browser history minus Recent.</div>
+          <div>Type something to filter the items.</div>
+          <div>The filter has different modes for more precise search.</div>
+          <div>Items are ordered by last visit date, most recent at the top.</div>
+          <div>You can use the arrows to select items up and down.</div>
+          <div>Use Enter to visit the currently selected item.</div>
+          <div>You can use Tab to switch between Recent and History.</div>
+          <div>You can middle click an item to open without exiting.</div>
+          <div>Some settings are configurable in Configure.</div>
+          <div>Recent and Configuration are sync'd to your account.</div>
+          <div>URL Level refers to the path's deepness (aa/bb/cc == 3).</div>        
+        </div>
+      </div>
     </template>   
 
     <script src="js/main/main.js"></script>
