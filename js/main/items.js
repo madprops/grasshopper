@@ -2,47 +2,6 @@
 App.setup_items = function () {
   App.start_item_observer()
 
-  App.filter = App.create_debouncer(function () {
-    App.do_filter()
-  }, 222)
-
-  App.ev(App.el("#filter"), "input", function () {
-    App.filter()
-  })
-
-  App.ev(App.el("#clear_button"), "click", function () {
-    App.clear_filter()
-    App.reset_filter_mode()
-    App.reset_case_sensitive()
-    App.do_filter()
-  })
-
-  App.ev(App.el("#favorites_button"), "click", function (e) {
-    if (e.shiftKey) {
-      App.show_both()
-      return
-    }
-
-    App.change_to_favorites()
-  })  
-
-  App.ev(App.el("#history_button"), "click", function (e) {
-    if (e.shiftKey) {
-      App.show_both()
-      return
-    }
-
-    App.change_to_history()
-  })
-
-  App.ev(App.el("#filter_mode"), "change", function () {
-    App.do_filter()
-  })
-
-  App.ev(App.el("#case_sensitive"), "change", function () {
-    App.do_filter()
-  })  
-
   App.ev(App.el("#info_button"), "click", function () {  
     App.show_info_menu()
   })
@@ -57,7 +16,7 @@ App.process_items = function (container, items, type) {
   let removed = []
 
   if (type === "history") {
-    removed = App.favorite_urls()
+    removed = App.recent_urls()
   }
 
   for (let item of items) {
@@ -105,10 +64,17 @@ App.process_item = function (type, item, removed) {
   
   let el = App.create("div", "item hidden")
   el.dataset.url = item.url
+
+  if (type === "recent") {
+    el.classList.add("recent_item")
+  } else {
+    el.classList.add("history_item")
+  }
+
   App.item_observer.observe(el)
 
-  if (type === "favorites") {
-    favorite = true
+  if (type === "recent") {
+    recent = true
   }
 
   if (removed) {
@@ -203,52 +169,20 @@ App.create_item_element = function (item) {
 
 // Fully create the item element
 App.fill_item_element = function (item) {
-  if (item.type === "favorites") {
-    item.element.classList.add("favorites_item")
-  } else {
-    item.element.classList.add("history_item")
-  }
-
   let icon = App.el(".item_icon", item.element)
   jdenticon.update(icon, item.hostname)
-
-  let icon_title = item.type === "favorites" ? "Remove from favorites" : "Add to favorites"
-  App.el(".item_icon_container", item.element).title = icon_title
-
   item.filled = true
   App.log("Element created")
 }
 
-// Get the active items
-App.get_items = function () {
-  if (App.mode === "favorites") {
-    return App.favorite_items || []
-  } else if (App.mode === "history") {
-    return App.history_items || []
-  } else {
-    return App.get_all_items()
-  }
-}
-
-// Get the other items
-App.get_other_items = function () {
-  if (App.mode === "favorites") {
-    return App.history_items || []
-  } else if (App.mode === "history") {
-    return App.favorite_items || []
-  } else {
-    return []
-  }
-}
-
 // Get all items
 App.get_all_items = function () {
-  return App.favorite_items.concat(App.history_items)
+  return App.recent_items.concat(App.history_items)
 }
 
 // Get next item that is visible
 App.get_next_visible_item = function (o_item) {
-  let items = App.get_items()
+  let items = App.get_all_items()
   let waypoint = false
 
   for (let i=0; i<items.length; i++) {
@@ -268,7 +202,7 @@ App.get_next_visible_item = function (o_item) {
 
 // Get prev item that is visible
 App.get_prev_visible_item = function (o_item) {
-  let items = App.get_items()
+  let items = App.get_all_items()
   let waypoint = false
 
   for (let i=items.length-1; i>=0; i--) {
@@ -286,7 +220,7 @@ App.get_prev_visible_item = function (o_item) {
   }
 }
 
-// Get the item of a favorite
+// Get the item of a recent
 App.get_item_by_url = function (items, url) {
   for (let item of items) {
     if (item.url === url) {
@@ -300,7 +234,7 @@ App.show_item = function (item) {
   if (!item.created) {
     App.create_item_element(item)
   }
-
+  
   item.element.classList.remove("hidden")
 }
 
@@ -316,7 +250,7 @@ App.hide_item = function (item) {
 // Make an item selected
 // Unselect all the others
 App.select_item = function (s_item, scroll = true) {
-  let items = App.get_items()
+  let items = App.get_all_items()
 
   for (let item of items) {
     if (item.created) {
@@ -353,68 +287,9 @@ App.select_next_item = function (item) {
   }
 }
 
-// Hide all items
-App.hide_other_items = function () {
-  if (App.mode === "favorites") {
-    App.show_list_favorites()
-    App.hide_list_history()
-  } else if (App.mode === "history") {
-    App.show_list_history()
-    App.hide_list_favorites()
-  } else {
-    App.show_list_favorites()
-    App.show_list_history()
-  }
-}
-
-// Show list favorites
-App.show_list_favorites = function () {
-  App.el("#list_favorites").classList.remove("hidden")
-}
-
-// Hide list favorites
-App.hide_list_favorites = function () {
-  App.el("#list_favorites").classList.add("hidden")
-}
-
-// Show list history
-App.show_list_history = function () {
-  App.el("#list_history").classList.remove("hidden")
-}
-
-// Hide list history
-App.hide_list_history = function () {
-  App.el("#list_history").classList.add("hidden")
-}
-
-// Set app mode
-App.set_mode = function (mode) {
-  App.mode = mode
-
-  if (mode === "favorites") {
-    App.el("#favorites_button").classList.add("button_selected")
-    App.el("#history_button").classList.remove("button_selected")
-  } else if (mode === "history") {
-    App.el("#history_button").classList.add("button_selected")
-    App.el("#favorites_button").classList.remove("button_selected")
-  } else if (mode === "both") {
-    App.el("#history_button").classList.add("button_selected")
-    App.el("#favorites_button").classList.add("button_selected")
-  }
-}
-
-// Change mode
-App.change_mode = function () {
-  if (App.mode === "favorites") {
-    App.change_to_history()
-  } else {
-    App.change_to_favorites()
-  }
-}
-
 // Element to item
 App.element_to_item = function (el) {
-  return App.get_item_by_url(App.get_items(), el.dataset.url)
+  return App.get_item_by_url(App.get_all_items(), el.dataset.url)
 }
 
 // Item is hidden
@@ -461,37 +336,8 @@ App.show_item_menu = function (item) {
     }
   })  
 
-  if (App.config.single_line && App.is_overflowing(text)) {
-    items.push({
-      text: "Expand",
-      action: function () {
-        App.expand_item(item)
-      }
-    })
-  }
-
-  if (item.type === "favorites") {        
-    items.push({
-      text: "Edit",
-      action: function () {
-        App.show_item_editor(item)
-      }
-    })
-  }
-
   if (items.length > 0) {
     NeedContext.show_on_element(App.el(".item_menu", item.element), items)
-  }
-}
-
-// Show favorites and history
-App.show_both = function () {
-  App.set_mode("both")
-
-  if (!App.history_fetched) {
-    App.get_history(false)
-  } else {
-    App.do_filter()
   }
 }
 
@@ -506,8 +352,23 @@ App.remove_items_by_url = function (url) {
   }
 }
 
-// Expand a single line item
-App.expand_item = function (item) {
-  let text = App.el(".item_text", item.element)
-  text.classList.remove("single_line")
+// Get the initial items of a list
+App.get_slice = function (type) {
+  return App[`${type}_items`].slice(0, App.initial_items)
+}
+
+// Show initial items
+App.start_items = async function () {
+  App.log("-- Starting items --")
+
+  App.el("#list_recent").innerHTML = ""
+  App.el("#list_history").innerHTML = ""
+
+  await App.get_recent()
+  App.process_recent()
+
+  await App.get_history()
+  App.process_history()
+
+  App.do_filter()
 }

@@ -1,17 +1,47 @@
+// Setup filter
+App.setup_filter = function () {
+  App.filter = App.create_debouncer(function () {
+    App.do_filter()
+  }, 222)
+
+  App.ev(App.el("#filter"), "input", function () {
+    App.filter()
+  })
+
+  App.ev(App.el("#clear_button"), "click", function () {
+    App.clear_filter()
+    App.reset_filter_mode()
+    App.reset_case_sensitive()
+    App.do_filter()
+  })
+
+  App.ev(App.el("#filter_mode"), "change", function () {
+    App.do_filter()
+  })
+
+  App.ev(App.el("#case_sensitive"), "change", function () {
+    App.do_filter()
+  })   
+}
+
 // Do items filter
-App.do_filter = function (mode = "typed") {
-  App.log("Doing filter")
+App.do_filter = function () {    
+  App.log("<< Doing filter >>")
   App.disable_mouse_over()
 
   let value = App.el("#filter").value.trim()
-  let items = App.get_items()
   let words = value.split(" ").filter(x => x !== "")
   let filter_mode = App.el("#filter_mode").value
   let case_sensitive = App.el("#case_sensitive").checked
   let filter_words = case_sensitive ? words : words.map(x => x.toLowerCase())
-  
-  App.hide_other_items()
+  let items
 
+  if (!value) {
+    items = App.get_slice("recent").concat(App.get_slice("history"))
+  } else {
+    items = App.get_all_items()
+  }
+  
   function matched (item) {
     let match
     let title = case_sensitive ? item.title : item.title_lower
@@ -51,24 +81,11 @@ App.do_filter = function (mode = "typed") {
   }
 
   let selected = false
-  let matched_favorite = false  
-  let matched_history = false
-  let num_visible = 0
-  let keep_showing = true
   let all_match = !value
 
   for (let item of items) {
     if (all_match || matched(item)) {
-      if (keep_showing) {
-        App.show_item(item)
-        num_visible += 1
-      }
-
-      // Show first items quickly
-      // Show all items if filter is used
-      if (keep_showing && !value && num_visible === App.initial_items) {
-        keep_showing = false
-      }      
+      App.show_item(item)    
 
       if (!selected) {
         if (App.item_is_visible(item)) {
@@ -76,36 +93,14 @@ App.do_filter = function (mode = "typed") {
           selected = true
         }
       }
-
-      if (App.mode === "both") {
-        if (item.type === "favorites") {
-          matched_favorite = true
-        } else if (item.type === "history") {
-          matched_history = true
-        }
-      }
     } else {
       App.hide_item(item)
     }
   }
 
-  if (App.mode === "both") {
-    if (!matched_favorite) {
-      App.hide_list_favorites()
-    }
-  
-    if (!matched_history) {
-      App.hide_list_history()
-    }
-  }
-
   if (!selected) {
-    if (App.config.both_on_empty && App.mode !== "both" && mode !== "mode_change") {
-      App.show_both()
-    } else {
-      App.selected_item = undefined
-      App.update_footer()
-    }
+    App.selected_item = undefined
+    App.update_footer()
   }
 
   // Avoid auto selecting when showing the window

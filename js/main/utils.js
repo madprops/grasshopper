@@ -15,10 +15,7 @@ App.remove_slashes_end = function (s) {
 
 // Open a new tab with a url
 App.open_tab = async function (item, close = true) {
-  if (item.type === "favorites" || App.config.favorite_on_visit) {    
-    App.add_favorite(item)
-  }
-
+  App.add_recent(item)
   browser.tabs.create({url: item.url, active: close})
 
   if (close) {
@@ -120,11 +117,6 @@ App.save_storage = async function (name, value) {
 // Copy text to the clipboard
 App.copy_to_clipboard = function (text) {
   navigator.clipboard.writeText(text)
-}
-
-// Check if an element is overflowing
-App.is_overflowing = function (el) {
-  return el.scrollHeight > el.clientHeight || el.scrollWidth > el.clientWidth;
 }
 
 // Remove duplicate objects

@@ -1,13 +1,11 @@
 // Default config
 App.default_config = function () {
   return {
-    history_max_results: 4000,
+    history_max_results: 2000,
     history_max_months: 12,
-    max_favorites: 2000,
+    max_recent: 2000,
     max_text_length: 200,
-    favorite_on_visit: true,
     text_mode: "title",
-    both_on_empty: true,
     single_line: true
   }
 }
@@ -46,7 +44,7 @@ App.setup_configure = function () {
     } 
   }))
 
-  App.msg_configure.set_title(App.template_configure_title)
+  App.msg_configure.set_title("Configure")
   App.msg_configure.set(App.template_configure)
 
   for (let item of App.els(".configure_item")) {
@@ -101,18 +99,6 @@ App.setup_configure = function () {
     })  
   }
 
-  App.ev(App.el("#config_favorites_data"), "click", function () {  
-    App.show_favorites_data()
-  })
-
-  App.ev(App.el("#config_defaults"), "click", function () {
-    if (confirm("Are you sure?")) {
-      for (let item of App.els(".configure_item")) {
-        App.restore_config_default(item)
-      }
-    }
-  })
-
   App.configure_ready = true
 }
 
@@ -139,6 +125,7 @@ App.show_configure = function () {
     App.fill_config_input(item)
   }
   
+  App.config_changed = false
   App.msg_configure.show()
 }
 
@@ -153,9 +140,8 @@ App.on_configure_close = function () {
     }
   }
 
-  if (changed) {
-    App.empty_history()
-    App.change_to_favorites(true)
+  if (App.config_changed || changed) {
+    App.start_items()
   }
 }
 
@@ -178,43 +164,5 @@ App.fill_config_input = function (item) {
     def.classList.add("hidden")
   } else {
     def.classList.remove("hidden")
-  }
-}
-
-// Configure favorites data
-App.configure_favorites_data = function () {
-  App.log("Setting up favorites data")
-  App.msg_favorites_data = Msg.factory(Object.assign({}, App.msg_settings))
-  App.msg_favorites_data.set_title("Favorites Data")
-  App.msg_favorites_data.set(App.template_favorites_data)
-  
-  App.ev(App.el("#favorites_data_submit"), "click", function () {
-    App.submit_favorites_data()
-  })
-
-  App.favorites_data_ready = true
-}
-
-// Show the favorites data editor
-App.show_favorites_data = function () {
-  if (!App.favorites_data_ready) {
-    App.configure_favorites_data()
-  }
-
-  let easy_data = App.to_easy_data(App.favorites)
-  App.el("#favorites_data_textarea").value = easy_data
-  App.msg_favorites_data.show()
-}
-
-// Submit favorites data change
-App.submit_favorites_data = function () {
-  if (confirm("Are you sure you want to modify the favorites data?")) {
-    App.msg_favorites_data.close()
-    let value = App.el("#favorites_data_textarea").value
-    let new_json = App.from_easy_data(value)
-    App.favorites = App.remove_duplicates(new_json)
-    App.save_favorites()
-    App.empty_history()
-    App.change_to_favorites() 
   }
 }

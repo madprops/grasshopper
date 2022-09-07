@@ -8,28 +8,23 @@
     <script src="js/main/app.js"></script>
     <script src="js/main/utils.js"></script>
     <script src="js/main/keyboard.js"></script>
-    <script src="js/main/favorites.js"></script>
     <script src="js/main/items.js"></script>
-    <script src="js/main/favorites.js"></script>
+    <script src="js/main/recent.js"></script>
     <script src="js/main/history.js"></script>
     <script src="js/main/list.js"></script>
     <script src="js/main/info.js"></script>
     <script src="js/main/windows.js"></script>
     <script src="js/main/configure.js"></script>
-    <script src="js/main/item_editor.js"></script>
     <script src="js/main/filter.js"></script>
   </head>
   <body>
     <div id="main">
-      <div id="top_container" class="flex_row_center unselectable">    
-        <button id="favorites_button" class="button actionbox">Favorites</button>
-        <button id="history_button" class="button actionbox">History</button>
-
+      <div id="top_container" class="flex_row_center unselectable">
         <input type="text" id="filter" autocomplete="off" placeholder="Type to filter...">
         <input id="case_sensitive" type="checkbox" title="Case Sensitive">
         
         <select id="filter_mode">
-          <option value="title_url" selected>Title & URL</option>
+          <option value="title_url" selected>Title and URL</option>
           <option value="title">Only Title</option>
           <option value="url">Only URL</option>
           <option value="url_1">URL Level 1</option>
@@ -42,7 +37,9 @@
       </div>
 
       <div id="list" class="unselectable">
-        <div id="list_favorites" class="list"></div>
+        <div class="list_title">Recent</div>
+        <div id="list_recent" class="list"></div>
+        <div class="list_title">History</div>
         <div id="list_history" class="list"></div>
       </div>
 
@@ -65,9 +62,9 @@
           <div class="config_default_button action">Restore Default</div>
           </div>
           
-          <div class="configure_item" data-name="max_favorites" data-max="10000" data-min="1" data-type="input">
+          <div class="configure_item" data-name="max_recent" data-max="10000" data-min="1" data-type="input">
             <div>Max Favorites</div>
-          <div class="configure_info">Maximum number of favorite items to remember</div>
+          <div class="configure_info">Maximum number of recent items to remember</div>
           <input type="text" class="configure_input">
           <div class="config_default_button action">Restore Default</div>
           </div>
@@ -86,23 +83,9 @@
             <option value="title">Title</option>
             <option value="url">URL</option>
             <option value="path">Path</option>
-            </select>
-            <div class="config_default_button action">Restore Default</div>
-            </div>          
-
-            <div class="configure_item" data-name="favorite_on_visit" data-type="checkbox">
-          <div>Favorite on Visit</div>
-          <div class="configure_info">Visiting a history item adds it to favorites automatically</div>
-          <input type="checkbox" class="configure_checkbox">
+          </select>
           <div class="config_default_button action">Restore Default</div>
-        </div>
-
-        <div class="configure_item" data-name="both_on_empty" data-type="checkbox">
-          <div>Both on Empty</div>
-          <div class="configure_info">Search in both Favorites and History when there are no results</div>
-          <input type="checkbox" class="configure_checkbox">
-          <div class="config_default_button action">Restore Default</div>
-        </div>      
+        </div>            
 
         <div class="configure_item" data-name="single_line" data-type="checkbox">
           <div>Single Line</div>
@@ -111,21 +94,7 @@
           <div class="config_default_button action">Restore Default</div>
         </div>          
       </div>
-    </template>
-    
-    <template id="template_configure_title">
-      <div class="flex_row_center">
-        <div id="config_defaults" class="underline action">Restore Defaults</div>
-        <div class="titlebar_separator">|</div>
-        <div id="config_favorites_data" class="underline action">Edit Favorites</div>
-      </div>
-    </template>
-
-    <template id="template_add">
-      <input id="add_title_input" class="text_input" type="text" placeholder="Title">
-      <input id="add_url_input" class="text_input" type="text" placeholder="URL">
-      <div id="add_submit" class="action unselectable submit">Submit</div>
-    </template>      
+    </template>  
 
     <template id="template_favorites_data">
       <textarea id="favorites_data_textarea" rows="14"></textarea>
