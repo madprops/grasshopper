@@ -9,10 +9,7 @@ App.setup_filter = function () {
   })
 
   App.ev(App.el("#clear_button"), "click", function () {
-    App.clear_filter()
-    App.reset_filter_mode()
-    App.reset_case_sensitive()
-    App.do_filter()
+    App.clear()
   })
 
   App.ev(App.el("#filter_mode"), "change", function () {
@@ -107,6 +104,8 @@ App.do_filter = function () {
   if (App.mouse_over_disabled) {
     App.enable_mouse_over()
   }
+
+  App.scroll_lists()
 }
 
 // Focus the filter
@@ -127,4 +126,12 @@ App.reset_filter_mode = function () {
 // Reset case sensitive
 App.reset_case_sensitive = function () {
   App.el("#case_sensitive").checked = false
+}
+
+// Clear some state
+App.clear = function () {
+  App.clear_filter()
+  App.reset_filter_mode()
+  App.reset_case_sensitive()
+  App.do_filter()
 }

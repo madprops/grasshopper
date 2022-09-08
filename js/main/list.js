@@ -58,7 +58,7 @@ App.switch_list = function () {
         App.other_list(App.selected_item.type)
       )
     )
-    
+
     App.enable_mouse_over()
   }
 }
@@ -66,4 +66,15 @@ App.switch_list = function () {
 // Get other list type string
 App.other_list = function (type) {
   return type === "recent" ? "history" : "recent"
+}
+
+// Scroll lists to top
+App.scroll_lists = function () {
+  App.get_list("recent").scrolltop = 0
+  App.get_list("history").scrolltop = 0
+}
+
+// Get a list
+App.get_list = function (type) {
+  return App.el(`#${type}_list`)
 }

@@ -7,7 +7,7 @@ App.setup_items = function () {
 App.process_items = function (container, items, type) {
   App.log(`Processing: ${type}`)
 
-  let list = App.el(`#list_${type}`)
+  let list = App.get_list(type)
   let urls = []
   let removed = []
 
@@ -334,8 +334,8 @@ App.start_items = async function () {
   App.log("-- Starting items --")
 
   App.current_id = 0
-  App.el("#list_recent").innerHTML = ""
-  App.el("#list_history").innerHTML = ""
+  App.el("#recent_list").innerHTML = ""
+  App.el("#history_list").innerHTML = ""
 
   await App.get_recent()
   App.process_recent()
