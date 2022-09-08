@@ -32,9 +32,17 @@ body, html {
   background-color: #252933;
 }
 
-#top_container {
+#top {
   flex-grow: 0;
   gap: 0.5rem;
+  justify-content: flex-start;
+  margin-left: 0.5rem;
+}
+
+#about_button {
+  margin-right: 0.5rem;
+  cursor: pointer;
+  font-size: 1.1rem;
 }
 
 #filter {
@@ -44,7 +52,7 @@ body, html {
   padding: 0.11rem;
   color: black;
   flex-grow: 0;
-  width: 12rem;
+  width: 10rem;
   outline: 1px solid rgb(217, 217, 217);
 }
 
@@ -281,13 +289,6 @@ body, html {
 #about_image {
   margin-top: 1rem;
   width: 300px;
-}
-
-#about_button {
-  height: 1.5rem;
-  margin-right: 0.35rem;
-  box-shadow: 0 0 0.3rem currentColor;
-  cursor: pointer;
 }
 
 #about_info {
