@@ -61,7 +61,7 @@ App.do_filter = function () {
           match = n === 1
         } else {
           let parts = item.path.split("/")
-          match = n === parts.length + 1
+          match = n === parts.length
         }
       }
     }
@@ -78,10 +78,9 @@ App.do_filter = function () {
   }
 
   let selected = false
-  let all_match = !value
 
   for (let item of items) {
-    if (all_match || matched(item)) {
+    if (matched(item)) {
       App.show_item(item)    
 
       if (!selected) {
