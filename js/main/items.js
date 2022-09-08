@@ -4,16 +4,9 @@ App.setup_items = function () {
 }
 
 // When results are found
-App.process_items = function (container, items, type) {
-  App.log(`Processing: ${type}`)
-
-  let list = App.get_list(type)
+App.process_items = function (container, items) {
+  let list = App.el("#list")
   let urls = []
-  let removed = []
-
-  if (type === "history") {
-    removed = App.recent_urls()
-  }
 
   for (let item of items) {
     if (!item.url) {
@@ -29,7 +22,7 @@ App.process_items = function (container, items, type) {
 
     urls.push(item.url)
 
-    let obj = App.process_item(type, item, removed)
+    let obj = App.process_item(item)
 
     if (!obj) {
       continue
@@ -45,7 +38,7 @@ App.process_items = function (container, items, type) {
 }
 
 // Process an item
-App.process_item = function (type, item, removed) {
+App.process_item = function (item) {
   let url_obj
 
   try {
@@ -56,28 +49,9 @@ App.process_item = function (type, item, removed) {
 
   let hostname = App.remove_slashes(url_obj.hostname)
   let path = App.remove_slashes(hostname + url_obj.pathname)
-  
   let el = App.create("div", "item hidden")
   el.dataset.id = App.current_id
-
-  if (type === "recent") {
-    el.classList.add("recent_item")
-  } else {
-    el.classList.add("history_item")
-  }
-
   App.item_observer.observe(el)
-
-  if (type === "recent") {
-    recent = true
-  }
-
-  if (removed) {
-    if (removed.includes(item.url)) {
-      el.classList.add("removed")
-    }
-  }
-
   let title = item.title || path
 
   let obj = {
@@ -90,7 +64,6 @@ App.process_item = function (type, item, removed) {
     created: false,
     filled: false,
     element: el,
-    type: type,
     id: App.current_id
   }
 
@@ -158,14 +131,9 @@ App.fill_item_element = function (item) {
   App.log("Element created")
 }
 
-// Get all items
-App.get_all_items = function () {
-  return App.recent_items.concat(App.history_items)
-}
-
-// Get first visible item of a list
-App.get_first_visible_item = function (type) {
-  for (let item of App.get_items(type)) {
+// Get first visible item of the list
+App.get_first_visible_item = function () {
+  for (let item of App.items) {
     if (App.item_is_visible(item)) {
       return item
     }
@@ -174,7 +142,7 @@ App.get_first_visible_item = function (type) {
 
 // Get next item that is visible
 App.get_next_visible_item = function (o_item) {
-  let items = App.get_items(o_item.type)
+  let items = App.items
   let waypoint = false
 
   for (let i=0; i<items.length; i++) {
@@ -194,7 +162,7 @@ App.get_next_visible_item = function (o_item) {
 
 // Get prev item that is visible
 App.get_prev_visible_item = function (o_item) {
-  let items = App.get_items(o_item.type)
+  let items = App.items
   let waypoint = false
 
   for (let i=items.length-1; i>=0; i--) {
@@ -212,11 +180,11 @@ App.get_prev_visible_item = function (o_item) {
   }
 }
 
-// Get the item of a recent
-App.get_item_by_id = function (items, id) {
+// Get an item by id dataset
+App.get_item_by_id = function (id) {
   id = parseInt(id)
 
-  for (let item of items) {
+  for (let item of App.items) {
     if (item.id === id) {
       return item
     }
@@ -244,7 +212,7 @@ App.hide_item = function (item) {
 // Make an item selected
 // Unselect all the others
 App.select_item = function (s_item, scroll = true) {
-  let items = App.get_all_items()
+  let items = App.items
 
   for (let item of items) {
     if (item.created) {
@@ -264,7 +232,7 @@ App.select_item = function (s_item, scroll = true) {
 
 // Element to item
 App.element_to_item = function (el) {
-  return App.get_item_by_id(App.get_all_items(), el.dataset.id)
+  return App.get_item_by_id(el.dataset.id)
 }
 
 // Item is hidden
@@ -292,29 +260,17 @@ App.update_footer = function () {
   }
 }
 
-// Get the initial items of a list
-App.get_slice = function (type) {
-  return App.get_items(type).slice(0, App.initial_items)
+// Get the initial items
+App.get_slice = function () {
+  return App.items.slice(0, App.initial_items)
 }
 
 // Show initial items
 App.start_items = async function () {
   App.log("-- Starting items --")
-
   App.current_id = 0
-  App.get_list("recent").innerHTML = ""
-  App.get_list("history").innerHTML = ""
-
-  await App.get_recent()
-  App.process_recent()
-
+  App.el("#list").innerHTML = ""
   await App.get_history()
   App.process_history()
-
   App.do_filter()
-}
-
-// Get items of a type
-App.get_items = function (type) {
-  return App[`${type}_items`]
 }

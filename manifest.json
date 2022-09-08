@@ -4,8 +4,7 @@
     "version": "2.0",
     "description": "Go to your favorites URLs quickly",
     "permissions": [
-        "history",
-        "storage"
+        "history"
     ],
     "icons": {
         "128": "icon128.png"

@@ -34,9 +34,9 @@ App.do_filter = function () {
   let items
 
   if (!value) {
-    items = App.get_slice("recent").concat(App.get_slice("history"))
+    items = App.get_slice()
   } else {
-    items = App.get_all_items()
+    items = App.items
   }
 
   function matched (item) {
@@ -104,7 +104,7 @@ App.do_filter = function () {
     App.enable_mouse_over()
   }
 
-  App.scroll_lists()
+  App.scroll_list()
 }
 
 // Focus the filter

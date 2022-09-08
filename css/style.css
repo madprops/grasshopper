@@ -81,21 +81,6 @@ body, html {
   gap: 0.5rem;
 }
 
-.list {
-  display: flex;
-  flex-direction: column;
-  gap: 0.5rem;
-  height: 50%;
-  overflow-y: auto;
-  overflow-x: hidden;
-}
-
-.list_title {
-  background-color: rgb(100, 100, 100);
-  color: white;
-  padding: 0.25rem;
-}
-
 .item {
   display: flex;
   flex-direction: row;

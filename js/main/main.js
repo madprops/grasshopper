@@ -4,10 +4,7 @@ App.modal_open = false
 App.help_ready = false
 App.about_ready = false
 App.initial_items = 100
-
-// Local storage paths
-App.ls_recent = "recent_v1"
-App.ls_config = "config_v1"
+App.ls_config = "config_v2"
 
 App.init = async function () {
   await App.get_config()

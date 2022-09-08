@@ -1,10 +1,9 @@
 // Default config
 App.default_config = function () {
   return {
-    history_max_results: 2000,
+    history_max_results: 3000,
     history_max_months: 12,
-    max_recent: 2000,
-    text_mode: "path",
+    text_mode: "title",
   }
 }
 

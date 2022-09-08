@@ -8,7 +8,6 @@
     <script src="js/main/utils.js"></script>
     <script src="js/main/keyboard.js"></script>
     <script src="js/main/items.js"></script>
-    <script src="js/main/recent.js"></script>
     <script src="js/main/history.js"></script>
     <script src="js/main/list.js"></script>
     <script src="js/main/about.js"></script>
@@ -36,13 +35,7 @@
         <button id="configure_button" class="button actionbox">Configure</button>
       </div>
 
-      <div id="list" class="unselectable">
-        <div class="list_title">Recent (Items you visited recently through this addon)</div>
-        <div id="recent_list" class="list"></div>
-        <div class="list_title">History (Your most recent browser history minus recent)</div>
-        <div id="history_list" class="list"></div>
-      </div>
-
+      <div id="list" class="list"></div>
       <div id="footer" class="unselectable"></div>
     </div>
 
@@ -60,21 +53,14 @@
           <div class="configure_info">Maximum number of months to go back in history</div>
           <input type="text" class="configure_input">
           <div class="config_default_button action">Restore Default</div>
-        </div>
-          
-        <div class="configure_item" data-name="max_recent" data-max="10000" data-min="1" data-type="input">
-            <div>Max Recent</div>
-          <div class="configure_info">Maximum number of recent items to remember</div>
-          <input type="text" class="configure_input">
-          <div class="config_default_button action">Restore Default</div>
-        </div>    
+        </div>  
         
         <div class="configure_item" data-name="text_mode" data-type="select">
           <div>Text Mode</div>
           <div class="configure_info">What to show as the text of the items</div>
           <select class="configure_select">
-            <option value="path">Path</option>
             <option value="title">Title</option>
+            <option value="path">Path</option>
           </select>
           <div class="config_default_button action">Restore Default</div>
         </div>                    
@@ -93,18 +79,14 @@
         <img src="img/icon.png" id="about_image">
         <div id="about_info">
           <div>This is an addon to go back to often-used URLs quickly.</div>
-          <div>There are 2 lists, Recent, and History.</div>
-          <div>Recent are items you visited recently through this addon.</div>
-          <div>History shows the recent browser history minus Recent.</div>
+          <div>History shows the recent browser history.</div>
           <div>Type something to filter the items.</div>
           <div>The filter has different modes for more precise search.</div>
           <div>Items are ordered by last visit date, most recent at the top.</div>
           <div>You can use the arrows to select items up and down.</div>
           <div>Use Enter to visit the currently selected item.</div>
-          <div>You can use Tab to switch between Recent and History.</div>
           <div>You can middle click an item to open without exiting.</div>
           <div>Some settings are configurable in Configure.</div>
-          <div>Recent and Configuration are sync'd to your account.</div>
           <div>URL Level refers to the path's deepness (aa/bb/cc == 3).</div>        
         </div>
       </div>

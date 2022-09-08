@@ -15,7 +15,6 @@ App.remove_slashes_end = function (s) {
 
 // Open a new tab with a url
 App.open_tab = async function (item, close = true) {
-  App.add_recent(item)
   browser.tabs.create({url: item.url, active: close})
 
   if (close) {
@@ -95,23 +94,26 @@ App.remove_hash = function (url) {
 }
 
 // Get storage
-App.get_storage = async function (name, def) {
-  App.log(`Getting: ${name}`)
-  let ans = await browser.storage.sync.get(name) 
+App.get_storage = function (name, def) {
+  let obj
 
-  if (ans[name]) {
-    return ans[name]
+  if (localStorage[name]) {
+    try {
+      obj = JSON.parse(localStorage.getItem(name))
+    } catch (err) {
+      localStorage.removeItem(name)
+      obj = def
+    }
   } else {
-    return def
+    obj = def
   }
+
+  return obj
 }
 
 // Save storage
-App.save_storage = async function (name, value) {
-  App.log(`Saving: ${name}`)
-  let o = {}
-  o[name] = value
-  await browser.storage.sync.set(o)
+App.save_storage = async function (name, obj) {
+  localStorage.setItem(name, JSON.stringify(obj))
 }
 
 // The way to format urls

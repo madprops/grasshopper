@@ -5,7 +5,7 @@ App.setup_list = function () {
   App.ev(list, "click", function (e) {
     if (e.target.closest(".item")) {
       let el = e.target.closest(".item")
-      let item = App.get_item_by_id(App.get_all_items(), el.dataset.id)
+      let item = App.get_item_by_id(el.dataset.id)
 
       App.open_tab(item)
     }
@@ -15,7 +15,7 @@ App.setup_list = function () {
   App.ev(list, "auxclick", function (e) {
     if (e.target.closest(".item")) {
       let el = e.target.closest(".item")
-      let item = App.get_item_by_id(App.get_all_items(), el.dataset.id)
+      let item = App.get_item_by_id(el.dataset.id)
       App.open_tab(item, false)
     }
   })
@@ -28,7 +28,7 @@ App.setup_list = function () {
     
     if (e.target.closest(".item")) {
       let el = e.target.closest(".item")
-      let item = App.get_item_by_id(App.get_all_items(), el.dataset.id)
+      let item = App.get_item_by_id(el.dataset.id)
       App.select_item(item, false)
     }
   })
@@ -52,29 +52,12 @@ App.enable_mouse_over = function () {
 App.switch_list = function () {
   if (App.selected_item) {
     App.disable_mouse_over()
-
-    App.select_item(
-      App.get_first_visible_item(
-        App.other_list(App.selected_item.type)
-      )
-    )
-
+    App.select_item(App.get_first_visible_item())
     App.enable_mouse_over()
   }
 }
 
-// Get other list type string
-App.other_list = function (type) {
-  return type === "recent" ? "history" : "recent"
-}
-
 // Scroll lists to top
-App.scroll_lists = function () {
-  App.get_list("recent").scrollTop = 0
-  App.get_list("history").scrollTop = 0
-}
-
-// Get a list
-App.get_list = function (type) {
-  return App.el(`#${type}_list`)
+App.scroll_list = function () {
+  App.el("#list").scrollTop = 0
 }

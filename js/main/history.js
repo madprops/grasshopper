@@ -1,7 +1,5 @@
 // Get items from history
 App.get_history = async function (show = true) {
-  App.history_items = []
-  
   App.history = await browser.history.search({
     text: "",
     maxResults: App.config.history_max_results,
@@ -16,6 +14,6 @@ App.history_months = function () {
 
 // Process histroy items
 App.process_history = function () {
-  App.history_items = []
-  App.process_items(App.history_items, App.history, "history")
+  App.items = []
+  App.process_items(App.items, App.history)
 }
