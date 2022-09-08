@@ -22,22 +22,20 @@ App.setup_filter = function () {
 }
 
 // Do items filter
-App.do_filter = function () {    
-  App.log("<< Doing filter >>")
-  App.disable_mouse_over()
-
+App.do_filter = async function () {    
   let value = App.el("#filter").value.trim()
-  let words = value.split(" ").filter(x => x !== "")
   let filter_mode = App.el("#filter_mode").value
+
+  if (!App.full_history) {
+    if (value || filter_mode !== App.default_filter_mode) {
+      await App.get_full_history()
+    }
+  }
+  
+  App.log(`<< Filtering ${App.items.length} items >>`)
+  let words = value.split(" ").filter(x => x !== "")
   let case_sensitive = App.el("#case_sensitive").checked
   let filter_words = case_sensitive ? words : words.map(x => x.toLowerCase())
-  let items
-
-  if (!value) {
-    items = App.get_slice()
-  } else {
-    items = App.items
-  }
 
   function matched (item) {
     let match
@@ -78,8 +76,9 @@ App.do_filter = function () {
   }
 
   let selected = false
+  App.disable_mouse_over()
 
-  for (let item of items) {
+  for (let item of App.items) {
     if (matched(item)) {
       App.show_item(item)    
 
@@ -117,7 +116,7 @@ App.clear_filter = function () {
 
 // Reset filter mode
 App.reset_filter_mode = function () {
-  App.el("#filter_mode").value = "title_url"
+  App.el("#filter_mode").value = App.default_filter_mode
 }
 
 // Reset case sensitive

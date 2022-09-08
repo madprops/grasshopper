@@ -3,8 +3,9 @@ App.mouse_over_disabled = true
 App.modal_open = false
 App.help_ready = false
 App.about_ready = false
-App.initial_items = 100
+App.slice_size = 250
 App.ls_config = "config_v2"
+App.default_filter_mode = "title_url"
 
 App.init = async function () {
   await App.get_config()
@@ -15,7 +16,9 @@ App.init = async function () {
   App.setup_keyboard()
   App.setup_configure()
   App.setup_about()
-  App.start_items()
+  
+  await App.get_history_slice()
+  App.do_filter()
 }
 
 App.init()

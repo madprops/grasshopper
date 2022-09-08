@@ -93,7 +93,7 @@ App.remove_hash = function (url) {
   return url.split("#")[0]
 }
 
-// Get storage
+// Get local storage
 App.get_storage = function (name, def) {
   let obj
 
@@ -111,7 +111,7 @@ App.get_storage = function (name, def) {
   return obj
 }
 
-// Save storage
+// Save local storage
 App.save_storage = async function (name, obj) {
   localStorage.setItem(name, JSON.stringify(obj))
 }

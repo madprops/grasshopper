@@ -4,7 +4,10 @@ App.setup_items = function () {
 }
 
 // When results are found
-App.process_items = function (container, items) {
+App.process_items = function (items) {
+  App.el("#list").innerHTML = ""
+  App.current_id = 0
+  App.items = []
   let list = App.el("#list")
   let urls = []
 
@@ -29,12 +32,9 @@ App.process_items = function (container, items) {
     }
 
     obj.original_url = original_url
-    container.push(obj)
+    App.items.push(obj)
     list.append(obj.element)
   }
-  
-  // Check performance
-  App.log(`Results: ${items.length}`)
 }
 
 // Process an item
@@ -258,19 +258,4 @@ App.update_footer = function () {
   } else {
     App.el("#footer").textContent = "No Results"
   }
-}
-
-// Get the initial items
-App.get_slice = function () {
-  return App.items.slice(0, App.initial_items)
-}
-
-// Show initial items
-App.start_items = async function () {
-  App.log("-- Starting items --")
-  App.current_id = 0
-  App.el("#list").innerHTML = ""
-  await App.get_history()
-  App.process_history()
-  App.do_filter()
 }

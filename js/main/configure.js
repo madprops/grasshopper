@@ -8,8 +8,8 @@ App.default_config = function () {
 }
 
 // Get config object
-App.get_config = async function () {
-  App.config = await App.get_storage(App.ls_config, App.default_config())
+App.get_config = function () {
+  App.config = App.get_storage(App.ls_config, App.default_config())
 
   let defs = App.default_config()
   let save = false
@@ -108,8 +108,8 @@ App.restore_config_default = function (item) {
 }
 
 // Save config
-App.save_config = async function () {
-  await App.save_storage(App.ls_config, App.config)
+App.save_config = function () {
+  App.save_storage(App.ls_config, App.config)
 }
 
 // Show configure
