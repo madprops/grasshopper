@@ -88,22 +88,35 @@ body, html {
   border: 1px solid grey;
   border-spacing: 0.5rem;
   align-items: center;
-  padding: 0.35rem;
-  gap: 0.35rem;
-  min-height: 1.1rem;
+}
+
+.item_icon_container {
+  flex-grow: 0;
+  flex-shrink: 0;
+  padding-left: 0.35rem;
+  padding-right: 0.35rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .item_icon {
-  flex-grow: 0;
-  flex-shrink: 0;
   width: var(--icon_size);
   height: var(--icon_size);
+  transition: box-shadow 100ms;
 }
+
+.item_icon_container:hover .item_icon {
+  box-shadow: 0 0 0.3rem currentColor;
+}
+
 
 .item_text {
   width: 100%;
   white-space: nowrap;
   overflow: hidden;
+  padding-top: 0.35rem;
+  padding-bottom: 0.35rem;
 }
 
 .selected {

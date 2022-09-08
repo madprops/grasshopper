@@ -98,11 +98,13 @@ App.start_item_observer = function () {
 
 // Create an item element
 App.create_item_element = function (item) {
-  let icon = App.create("canvas", "item_icon actionbox")
+  let icon_container = App.create("div", "item_icon_container")
+  let icon = App.create("canvas", "item_icon")
   icon.width = 25
   icon.height = 25
   jdenticon.update(icon, item.hostname)
-  item.element.append(icon)
+  icon_container.append(icon)
+  item.element.append(icon_container)
 
   let text = App.create("div", "item_text")
   let content
@@ -256,6 +258,6 @@ App.show_item_menu = function (item) {
     }
   ]
 
-  let menu = App.el(".item_icon", item.element)
+  let menu = App.el(".item_icon_container", item.element)
   NeedContext.show_on_element(menu, items)
 }
