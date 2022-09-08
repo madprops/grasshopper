@@ -1,7 +1,7 @@
 // Default config
 App.default_config = function () {
   return {
-    history_max_results: 3000,
+    history_max_results: 10000,
     history_max_months: 12,
     text_mode: "title",
   }
@@ -133,7 +133,7 @@ App.on_configure_close = function () {
   }
 
   if (changed) {
-    App.clear_filter()
+    App.clear()
     App.get_history()
   }
 }

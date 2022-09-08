@@ -10,6 +10,7 @@ App.setup_filter = function () {
 
   App.ev(App.el("#clear_button"), "click", function () {
     App.clear()
+    App.do_filter()
   })
 
   App.ev(App.el("#filter_mode"), "change", function () {
@@ -130,5 +131,4 @@ App.clear = function () {
   App.clear_filter()
   App.reset_filter_mode()
   App.reset_case_sensitive()
-  App.do_filter()
 }
