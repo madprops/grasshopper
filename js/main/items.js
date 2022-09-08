@@ -131,15 +131,6 @@ App.fill_item_element = function (item) {
   App.log("Element created")
 }
 
-// Get first visible item of the list
-App.get_first_visible_item = function () {
-  for (let item of App.items) {
-    if (App.item_is_visible(item)) {
-      return item
-    }
-  }
-}
-
 // Get next item that is visible
 App.get_next_visible_item = function (o_item) {
   let items = App.items
