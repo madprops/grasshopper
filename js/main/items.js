@@ -165,6 +165,15 @@ App.get_all_items = function () {
   return App.recent_items.concat(App.history_items)
 }
 
+// Get first visible item of a list
+App.get_first_visible_item = function (type) {
+  for (let item of App.get_items(type)) {
+    if (App.item_is_visible(item)) {
+      return item
+    }
+  }
+}
+
 // Get next item that is visible
 App.get_next_visible_item = function (o_item) {
   let items = App.get_items(o_item.type)
@@ -181,15 +190,6 @@ App.get_next_visible_item = function (o_item) {
 
     if (item === o_item) {
       waypoint = true
-    }
-  }
-}
-
-// Get first visible item of a list
-App.get_first_visible_item = function (type) {
-  for (let item of App.get_items(type)) {
-    if (App.item_is_visible(item)) {
-      return item
     }
   }
 }
@@ -264,25 +264,6 @@ App.select_item = function (s_item, scroll = true) {
   App.update_footer()
 }
 
-// Select next item
-App.select_next_item = function (item) {
-  let prev = App.get_prev_visible_item(item)
-  let next = App.get_next_visible_item(item)
-  let n_item
-
-  if (next) {
-    n_item = App.element_to_item(next.element)
-  } else if (prev) {
-    n_item = App.element_to_item(prev.element)
-  }
-  
-  if (n_item) {
-    App.select_item(n_item)
-  } else {
-    App.selected_item = undefined
-  }
-}
-
 // Element to item
 App.element_to_item = function (el) {
   return App.get_item_by_id(App.get_all_items(), el.dataset.id)
@@ -313,17 +294,6 @@ App.update_footer = function () {
   }
 }
 
-// Remove items that match a url
-App.remove_items_by_url = function (url) {
-  let items = App.get_all_items()
-
-  for (let item of items) {
-    if (item.url === url) {
-      item.element.classList.add("removed")
-    }
-  }
-}
-
 // Get the initial items of a list
 App.get_slice = function (type) {
   return App.get_items(type).slice(0, App.initial_items)
@@ -334,8 +304,8 @@ App.start_items = async function () {
   App.log("-- Starting items --")
 
   App.current_id = 0
-  App.el("#recent_list").innerHTML = ""
-  App.el("#history_list").innerHTML = ""
+  App.get_list("recent").innerHTML = ""
+  App.get_list("history").innerHTML = ""
 
   await App.get_recent()
   App.process_recent()

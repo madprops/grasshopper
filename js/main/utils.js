@@ -114,21 +114,6 @@ App.save_storage = async function (name, value) {
   await browser.storage.sync.set(o)
 }
 
-// Remove duplicate objects
-App.remove_duplicates = function (list) {
-  let urls = []
-  let new_list = []
-
-  for (let item of list) {
-    if (!urls.includes(item.url)) {
-      new_list.push(item)
-      urls.push(item.url)
-    }
-  }
-
-  return new_list
-}
-
 // The way to format urls
 App.format_url = function (url) {
   return App.remove_slashes_end(App.remove_hash(url))

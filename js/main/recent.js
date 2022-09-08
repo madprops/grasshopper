@@ -36,23 +36,6 @@ App.add_recent = function (item) {
   App.update_footer()
 }
 
-// Remove a recent item
-App.remove_recent = function (item) {
-  App.recent_items = App.recent_items.filter(x => x.url !== item.url)
-  App.recent = App.recent.filter(x => x.url !== item.url)
-
-  for (let it of App.history_items) {
-    if (it.url === item.url) {
-      it.element.classList.remove("removed")
-      break
-    }
-  }
-
-  item.element.classList.add("removed")
-  App.save_recent()
-  App.update_footer()
-}
-
 // Get recent urls
 App.recent_urls = function () {
   return App.recent_items.map(x => x.url)

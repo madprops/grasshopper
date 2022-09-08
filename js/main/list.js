@@ -70,8 +70,8 @@ App.other_list = function (type) {
 
 // Scroll lists to top
 App.scroll_lists = function () {
-  App.get_list("recent").scrolltop = 0
-  App.get_list("history").scrolltop = 0
+  App.get_list("recent").scrollTop = 0
+  App.get_list("history").scrollTop = 0
 }
 
 // Get a list

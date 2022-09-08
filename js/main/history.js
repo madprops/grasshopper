@@ -1,10 +1,3 @@
-// Empty history
-App.empty_history = function () {
-  for (let item of App.history_items) {
-    item.element.remove()
-  }
-}
-
 // Get items from history
 App.get_history = async function (show = true) {
   App.history_items = []
