@@ -19,8 +19,6 @@ App.setup_windows = function () {
     },
     after_close: function () {
       App.modal_open = false
-      App.disable_mouse_over()
-      App.enable_mouse_over()
     },
   }
 

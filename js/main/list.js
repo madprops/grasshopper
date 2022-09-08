@@ -47,17 +47,3 @@ App.enable_mouse_over = function () {
     App.mouse_over_disabled = false
   }, 200)
 }
-
-// Switch to the other list
-App.switch_list = function () {
-  if (App.selected_item) {
-    App.disable_mouse_over()
-    App.select_item(App.get_first_visible_item())
-    App.enable_mouse_over()
-  }
-}
-
-// Scroll lists to top
-App.scroll_list = function () {
-  App.el("#list").scrollTop = 0
-}

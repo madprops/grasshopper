@@ -103,8 +103,6 @@ App.do_filter = function () {
   if (App.mouse_over_disabled) {
     App.enable_mouse_over()
   }
-
-  App.scroll_list()
 }
 
 // Focus the filter
