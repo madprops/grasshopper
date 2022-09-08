@@ -1,7 +1,6 @@
 // For internal checks
 App.mouse_over_disabled = true
 App.modal_open = false
-App.help_ready = false
 App.about_ready = false
 App.slice_size = 250
 App.ls_config = "config_v2"
