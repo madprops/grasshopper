@@ -1,1 +1,1 @@
-Firefox addon for quickly accesing history.
+Firefox addon for quickly accessing history.
