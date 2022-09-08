@@ -16,7 +16,7 @@ App.init = function () {
   App.setup_keyboard()
   App.setup_configure()
   App.setup_about()
-  App.get_history_slice()
+  App.get_history()
 }
 
 App.init()

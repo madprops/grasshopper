@@ -134,7 +134,7 @@ App.on_configure_close = function () {
 
   if (changed) {
     App.clear_filter()
-    App.get_history_slice()
+    App.get_history()
   }
 }
 
