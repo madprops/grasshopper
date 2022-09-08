@@ -133,7 +133,7 @@ App.on_configure_close = function () {
   }
 
   if (changed) {
-    App.start_items()
+    App.start_history()
   }
 }
 

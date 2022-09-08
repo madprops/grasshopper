@@ -30,3 +30,10 @@ App.get_full_history = async function () {
 App.history_months = function () {
   return Date.now() - (1000 * 60 * 60 * 24 * 30 * App.config.history_max_months)
 }
+
+// Start history items
+App.start_history = async function () {
+  await App.get_history_slice()
+  App.clear_filter()
+  App.do_filter()
+}

@@ -8,7 +8,7 @@ App.ls_config = "config_v2"
 App.default_filter_mode = "title_url"
 
 App.init = async function () {
-  await App.get_config()
+  App.get_config()
   App.setup_windows()
   App.setup_items()
   App.setup_filter()
@@ -16,9 +16,7 @@ App.init = async function () {
   App.setup_keyboard()
   App.setup_configure()
   App.setup_about()
-  
-  await App.get_history_slice()
-  App.do_filter()
+  App.start_history()
 }
 
 App.init()
