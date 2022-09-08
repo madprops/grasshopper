@@ -2,6 +2,7 @@
 App.mouse_over_disabled = true
 App.modal_open = false
 App.about_ready = false
+App.configure_ready = false
 App.slice_size = 250
 App.ls_config = "config_v2"
 App.default_filter_mode = "title_url"

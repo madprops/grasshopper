@@ -26,12 +26,17 @@ App.get_config = function () {
   }
 }
 
-// Setup configure
+// Setup configure button
 App.setup_configure = function () {
   App.ev(App.el("#configure_button"), "click", function () {  
     App.show_configure()
   })
+}
 
+// Setup configure window
+App.setup_configure_window = function () {
+  App.log("Setup: Configure")
+  
   App.msg_configure = Msg.factory(Object.assign({}, App.msg_settings_window, {
     after_show: function () {
       App.msg_settings.after_show()
@@ -97,6 +102,8 @@ App.setup_configure = function () {
       }
     })  
   }
+
+  App.configure_ready = true
 }
 
 // Restore config default
@@ -114,6 +121,10 @@ App.save_config = function () {
 
 // Show configure
 App.show_configure = function () {
+  if (!App.configure_ready) {
+    App.setup_configure_window()
+  }
+
   for (let item of App.els(".configure_item")) {
     App.fill_config_input(item)
   }

@@ -16,6 +16,7 @@ App.show_about = function () {
 
 // Setup about window
 App.setup_about_window = function () {
+  App.log("Setup: About")
   App.msg_about = Msg.factory(Object.assign({}, App.msg_settings_window))  
   App.msg_about.set_title("About")
   App.msg_about.set(App.template_about)
