@@ -88,8 +88,6 @@ body, html {
   height: 50%;
   overflow-y: auto;
   overflow-x: hidden;
-  border: 1px solid white;
-  border-radius: 10px;
 }
 
 .list_title {
