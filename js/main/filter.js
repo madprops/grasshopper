@@ -22,13 +22,14 @@ App.setup_filter = function () {
 }
 
 // Do items filter
-App.do_filter = async function () {    
+App.do_filter = function () {    
   let value = App.el("#filter").value.trim()
   let filter_mode = App.el("#filter_mode").value
 
   if (!App.full_history) {
     if (value || filter_mode !== App.default_filter_mode) {
-      await App.get_full_history()
+      App.get_full_history()
+      return
     }
   }
   

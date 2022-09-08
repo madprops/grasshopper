@@ -133,7 +133,8 @@ App.on_configure_close = function () {
   }
 
   if (changed) {
-    App.start_history()
+    App.clear_filter()
+    App.get_history_slice()
   }
 }
 

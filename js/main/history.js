@@ -9,7 +9,8 @@ App.get_history_slice = async function () {
     startTime: App.history_months()
   })
 
-  App.process_items(items)   
+  App.process_items(items) 
+  App.do_filter()  
 }
 
 // Get items from history
@@ -23,17 +24,11 @@ App.get_full_history = async function () {
     startTime: App.history_months()
   })
 
-  App.process_items(items)  
+  App.process_items(items)
+  App.do_filter()
 }
 
 // Get history months date
 App.history_months = function () {
   return Date.now() - (1000 * 60 * 60 * 24 * 30 * App.config.history_max_months)
-}
-
-// Start history items
-App.start_history = async function () {
-  await App.get_history_slice()
-  App.clear_filter()
-  App.do_filter()
 }
