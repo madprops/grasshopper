@@ -103,23 +103,14 @@ body, html {
   border: 1px solid grey;
   border-spacing: 0.5rem;
   align-items: center;
+  padding: 0.35rem;
+  gap: 0.35rem;
 }
 
 .item_text {
-  padding-top: 0.5rem;
-  padding-bottom: 0.5rem;
-  padding-right: 0.5rem;
   width: 100%;
   white-space: nowrap;
   overflow: hidden;
-}
-
-.item_icon_container {
-  position: relative;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  height: 100%;
 }
 
 .item_icon {
@@ -127,7 +118,6 @@ body, html {
   flex-shrink: 0;
   width: var(--icon_size);
   height: var(--icon_size);
-  margin: 0.5rem;
 }
 
 .selected {
