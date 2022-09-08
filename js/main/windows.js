@@ -1,14 +1,5 @@
-// Create all the Handlebars templates
-App.setup_templates = function () {
-  App.els("template").forEach(it => {
-    App[it.id] = App.el(`#${it.id}`).innerHTML.trim()
-  })
-}
-
 // Setup the modal windows
 App.setup_windows = function () {
-  App.setup_templates()
-  
   App.msg_settings = {
     enable_titlebar: true,
     window_x: "inner_right",
@@ -30,4 +21,9 @@ App.setup_windows = function () {
     window_min_width: "100vw",
     window_max_width: "100vw",
   })
+}
+
+// Get a template
+App.get_template = function (id) {
+  return App.el(`#template_${id}`).innerHTML.trim()
 }

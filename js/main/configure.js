@@ -36,7 +36,7 @@ App.setup_configure = function () {
 // Setup configure window
 App.setup_configure_window = function () {
   App.log("Setup: Configure")
-  
+
   App.msg_configure = Msg.factory(Object.assign({}, App.msg_settings_window, {
     after_show: function () {
       App.msg_settings.after_show()
@@ -49,7 +49,7 @@ App.setup_configure_window = function () {
   }))
 
   App.msg_configure.set_title("Configure")
-  App.msg_configure.set(App.template_configure)
+  App.msg_configure.set(App.get_template("configure"))
 
   for (let item of App.els(".configure_item")) {
     let name = item.dataset.name
