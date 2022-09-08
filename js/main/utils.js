@@ -120,3 +120,8 @@ App.save_storage = function (name, obj) {
 App.format_url = function (url) {
   return App.remove_slashes_end(App.remove_hash(url))
 }
+
+// Remove protocol like https://
+App.remove_protocol = function (url) {
+  return url.replace(/^https?:\/\//, "")
+}

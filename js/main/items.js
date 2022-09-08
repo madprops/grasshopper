@@ -16,7 +16,6 @@ App.process_items = function (items) {
       continue
     }
 
-    let original_url = item.url
     item.url = App.format_url(item.url)
 
     if (urls.includes(item.url)) {
@@ -31,7 +30,6 @@ App.process_items = function (items) {
       continue
     }
 
-    obj.original_url = original_url
     App.items.push(obj)
     list.append(obj.element)
   }
@@ -48,7 +46,7 @@ App.process_item = function (item) {
   }
 
   let hostname = App.remove_slashes(url_obj.hostname)
-  let path = App.remove_slashes(hostname + url_obj.pathname)
+  let path = App.remove_protocol(item.url)
   let el = App.create("div", "item hidden")
   el.dataset.id = App.current_id
   App.item_observer.observe(el)
