@@ -1,6 +1,6 @@
 App.setup_keyboard = function () {
   App.ev(document, "keydown", function (e) {
-    if (App.modal_open) {
+    if (App.modal_open || NeedContext.open) {
       return
     }
 

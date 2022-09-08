@@ -60,7 +60,6 @@ App.process_item = function (item) {
     path_lower: path.toLowerCase(),
     hostname: hostname,
     created: false,
-    filled: false,
     element: el,
     id: App.current_id
   }
@@ -90,8 +89,8 @@ App.start_item_observer = function () {
 
       let item = App.element_to_item(entry.target)
 
-      if (item.created && !item.filled && App.item_is_visible(item)) {
-        App.fill_item_element(item)
+      if (!item.created && App.item_is_visible(item)) {
+        App.create_item_element(item)
       }
     }
   }, options)
@@ -99,9 +98,10 @@ App.start_item_observer = function () {
 
 // Create an item element
 App.create_item_element = function (item) {
-  let icon = App.create("canvas", "item_icon")
+  let icon = App.create("canvas", "item_icon actionbox")
   icon.width = 25
   icon.height = 25
+  jdenticon.update(icon, item.hostname)
   item.element.append(icon)
 
   let text = App.create("div", "item_text")
@@ -118,14 +118,8 @@ App.create_item_element = function (item) {
   content = content.substring(0, 200).trim()
   text.textContent = content  
   item.element.append(text)
-  item.created = true
-}
 
-// Fully create the item element
-App.fill_item_element = function (item) {
-  let icon = App.el(".item_icon", item.element)
-  jdenticon.update(icon, item.hostname)
-  item.filled = true
+  item.created = true
   App.log("Element created")
 }
 
@@ -181,11 +175,7 @@ App.get_item_by_id = function (id) {
 }
 
 // Make item visible
-App.show_item = function (item) {
-  if (!item.created) {
-    App.create_item_element(item)
-  }
-  
+App.show_item = function (item) {  
   item.element.classList.remove("hidden")
 }
 
@@ -247,4 +237,25 @@ App.update_footer = function () {
   } else {
     App.el("#footer").textContent = "No Results"
   }
+}
+
+// Show item menu
+App.show_item_menu = function (item) {
+  let items = [
+    {
+      text: "Copy URL",
+      action: function () {
+        App.copy_to_clipboard(item.url)
+      }
+    },
+    {
+      text: "Copy Title",
+      action: function () {
+        App.copy_to_clipboard(item.title)
+      }
+    }
+  ]
+
+  let menu = App.el(".item_icon", item.element)
+  NeedContext.show_on_element(menu, items)
 }

@@ -125,3 +125,8 @@ App.format_url = function (url) {
 App.remove_protocol = function (url) {
   return url.replace(/^https?:\/\//, "")
 }
+
+// Copy text to the clipboard
+App.copy_to_clipboard = function (text) {
+  navigator.clipboard.writeText(text)
+}

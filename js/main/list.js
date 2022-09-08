@@ -7,7 +7,11 @@ App.setup_list = function () {
       let el = e.target.closest(".item")
       let item = App.get_item_by_id(el.dataset.id)
 
-      App.open_tab(item)
+      if (e.target.closest(".item_icon")) {
+        App.show_item_menu(item)
+      } else {
+        App.open_tab(item)
+      }      
     }
   })
 

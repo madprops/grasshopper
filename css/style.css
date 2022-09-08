@@ -90,12 +90,7 @@ body, html {
   align-items: center;
   padding: 0.35rem;
   gap: 0.35rem;
-}
-
-.item_text {
-  width: 100%;
-  white-space: nowrap;
-  overflow: hidden;
+  min-height: 1.1rem;
 }
 
 .item_icon {
@@ -103,6 +98,12 @@ body, html {
   flex-shrink: 0;
   width: var(--icon_size);
   height: var(--icon_size);
+}
+
+.item_text {
+  width: 100%;
+  white-space: nowrap;
+  overflow: hidden;
 }
 
 .selected {
