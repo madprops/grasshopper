@@ -14,7 +14,7 @@ App.remove_slashes_end = function (s) {
 }
 
 // Open a new tab with a url
-App.open_tab = async function (item, close = true) {
+App.open_tab = function (item, close = true) {
   browser.tabs.create({url: item.url, active: close})
 
   if (close) {
@@ -112,7 +112,7 @@ App.get_storage = function (name, def) {
 }
 
 // Save local storage
-App.save_storage = async function (name, obj) {
+App.save_storage = function (name, obj) {
   localStorage.setItem(name, JSON.stringify(obj))
 }
 
