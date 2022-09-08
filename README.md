@@ -1,3 +1,3 @@
-Firefox addon
+Firefox addon for quickly accesing history.
 
-Recent & History
+![](https://i.imgur.com/X4t8FWf.jpg)
