@@ -188,10 +188,6 @@ App.show_item = function (item) {
 
 // Make an item not visible
 App.hide_item = function (item) {
-  if (!item.created) {
-    return
-  }
-
   item.element.classList.add("hidden")
 }
 
