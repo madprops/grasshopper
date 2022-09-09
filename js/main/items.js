@@ -114,13 +114,13 @@ App.create_item_element = function (item) {
 
   let content
   
-  if (App.config.text_mode === "path") {
-    content = item.path || item.title
-    item.footer = item.title || item.path
-  } else if (App.config.text_mode === "title") {
+  if (App.config.text_mode === "title") {
     content = item.title || item.path
     item.footer = item.path || item.title
-  } 
+  } else if (App.config.text_mode === "url") {
+    content = item.path || item.title
+    item.footer = item.title || item.path
+  }
   
   content = content.substring(0, 200).trim()
   let text = App.el(".item_text", item.element)
