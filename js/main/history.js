@@ -24,5 +24,5 @@ App.get_history = async function (type = "slice") {
 
 // Get history months date
 App.history_months = function () {
-  return Date.now() - (1000 * 60 * 60 * 24 * 30 * App.config.history_max_months)
+  return Date.now() - (1000 * 60 * 60 * 24 * 30 * App.history_max_months)
 }

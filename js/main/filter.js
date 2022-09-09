@@ -2,7 +2,7 @@
 App.setup_filter = function () {
   App.filter = App.create_debouncer(function () {
     App.do_filter()
-  }, 222)
+  }, App.filter_delay)
 
   App.ev(App.el("#filter"), "input", function () {
     App.filter()

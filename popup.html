@@ -43,21 +43,14 @@
     <template id="template_configure">
       <div id="configure" class="unselectable">
         <div class="configure_item" data-name="history_max_results" data-max="100000" data-min="1" data-type="input">
-          <div>Max History Results</div>
+          <div class="configure_title">Max History Results</div>
           <div class="configure_info">Maximum number of history items to fetch</div>
           <input type="text" class="configure_input">
           <div class="config_default_button action">Restore Default</div>
         </div>
         
-        <div class="configure_item" data-name="history_max_months" data-max="120" data-min="1" data-type="input">
-          <div>Max History Months</div>
-          <div class="configure_info">Maximum number of months to go back in history</div>
-          <input type="text" class="configure_input">
-          <div class="config_default_button action">Restore Default</div>
-        </div>  
-        
         <div class="configure_item" data-name="text_mode" data-type="select">
-          <div>Text Mode</div>
+          <div class="configure_title">Text Mode</div>
           <div class="configure_info">What to show as the text of the items</div>
           <select class="configure_select">
             <option value="title">Title</option>
@@ -74,8 +67,13 @@
         <div id="about_author">By madprops (2022)</div>
         <img src="img/icon.png" id="about_image">
         <div id="about_info">
-          <div>This is an addon to go back to often-used URLs quickly.</div>
+          <div>This is an addon to go back to recent URLs quickly.</div>
+          <div>It uses your local browser history.</div>
+          <div>Clicking the items opens the websites.</div>
+          <div>On first load it fetches only a small slice of the history.</div>
           <div>Type something to filter the items.</div>
+          <div>When the filter is used, a fuller history is fetched.</div>
+          <div>The items are fully created once they come into view.</div>
           <div>The filter has different modes for more precise search.</div>
           <div>Items are ordered by last visit date, most recent at the top.</div>
           <div>You can use the arrows to select items up and down.</div>
