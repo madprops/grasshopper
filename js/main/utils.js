@@ -130,3 +130,23 @@ App.remove_protocol = function (url) {
 App.copy_to_clipboard = function (text) {
   navigator.clipboard.writeText(text)
 }
+
+// Get state
+App.get_state = function () {
+  App.state = App.get_storage(App.ls_state, {})
+  let changed = false
+
+  if (!App.state.text_mode) {
+    App.state.text_mode = "title"
+    changed = true
+  }
+
+  if (changed) {
+    App.save_state()
+  }
+}
+
+// Save state
+App.save_state = function () {
+  App.save_storage(App.ls_state, App.state)
+}

@@ -3,10 +3,12 @@ App.setup_items = function () {
   App.start_item_observer()
 
   let text_mode = App.el("#text_mode")
+  text_mode.value = App.state.text_mode
 
   App.ev(text_mode, "change", function () {
-    App.text_mode = text_mode.value
+    App.state.text_mode = text_mode.value
     App.update_text()
+    App.save_state()
   })
 }
 
@@ -130,10 +132,10 @@ App.create_item_element = function (item) {
 App.get_item_text = function (item) {
   let content
   
-  if (App.text_mode === "title") {
+  if (App.state.text_mode === "title") {
     content = item.title || item.path
     item.footer = item.path || item.title
-  } else if (App.text_mode === "url") {
+  } else if (App.state.text_mode === "url") {
     content = item.path || item.title
     item.footer = item.title || item.path
   }
