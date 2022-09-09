@@ -121,15 +121,14 @@ App.create_item_element = function (item) {
   icon_container.append(icon)
   item.element.prepend(icon_container)
 
-  let text = App.el(".item_text", item.element)
-  text.textContent = App.get_item_text(item)
+  App.set_item_text(item)
 
   item.created = true
   App.log("Element created")
 }
 
 // Set item text content
-App.get_item_text = function (item) {
+App.set_item_text = function (item) {
   let content
   
   if (App.state.text_mode === "title") {
@@ -141,15 +140,15 @@ App.get_item_text = function (item) {
   }
   
   content = content.substring(0, 200).trim()
-  return content
+  let text = App.el(".item_text", item.element)
+  text.textContent = content
 }
 
 // Change item text mode
 App.update_text = function () {
   for (let item of App.items) {
     if (item.created) {
-      let text = App.el(".item_text", item.element)
-      text.textContent = App.get_item_text(item)      
+      App.set_item_text(item)      
     }
   }
 }
