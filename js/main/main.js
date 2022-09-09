@@ -8,6 +8,7 @@ App.ls_config = "config_v2"
 App.default_filter_mode = "title_url"
 App.history_max_months = 24
 App.filter_delay = 222
+App.items = []
 
 App.init = function () {
   App.get_config()

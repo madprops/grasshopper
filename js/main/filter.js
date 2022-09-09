@@ -24,6 +24,10 @@ App.setup_filter = function () {
 
 // Do items filter
 App.do_filter = function () {    
+  if (App.items.length === 0) {
+    return
+  }
+
   let value = App.el("#filter").value.trim()
   let filter_mode = App.el("#filter_mode").value
 
