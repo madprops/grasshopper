@@ -1,29 +1,38 @@
-// Setup the modal windows
-App.setup_windows = function () {
-  App.msg_settings = {
-    enable_titlebar: true,
-    window_x: "inner_right",
-    disable_content_padding: true,
-    center_titlebar: true,
-    after_show: function () {
-      App.modal_open = true
-    },
-    after_close: function () {
-      App.modal_open = false
-    },
-  }
+// Show a window on top with some content
+App.show_window = function (html) {
+  App.el("#show_window_content").innerHTML = html
+  App.el("#show_window").style.display = "flex"
+  App.window_open = true
+}
 
-  App.msg_settings_window = Object.assign({}, App.msg_settings, {
-    window_height: "100vh",
-    window_min_height: "100vh",
-    window_max_height: "100vh",
-    window_width: "100vw",
-    window_min_width: "100vw",
-    window_max_width: "100vw",
-  })
+// Hide the show window
+App.hide_window = function () {
+  let win = App.el("#show_window")
+  win.style.display = "none"
+  App.window_open = false
 }
 
 // Get a template
 App.get_template = function (id) {
   return App.el(`#template_${id}`).innerHTML.trim()
+}
+
+// Show about information
+App.show_about = function () {
+  let template = App.get_template("about")
+  App.show_window(template)
+  let manifest = browser.runtime.getManifest()
+  let s = `Grasshopper v${manifest.version}`
+  App.el("#about_text").textContent = s
+}
+
+// Setup windows
+App.setup_windows = function () {
+  App.ev(App.el("#about_button"), "click", function () {  
+    App.show_about()
+  })
+
+  App.ev(App.el("#show_window_top"), "click", function () {
+    App.hide_window()
+  })
 }

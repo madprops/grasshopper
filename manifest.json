@@ -1,7 +1,7 @@
 {
     "manifest_version": 2,
     "name": "Grasshopper",
-    "version": "2.4",
+    "version": "2.5",
     "description": "Go to your favorites URLs quickly",
     "permissions": [
         "history"

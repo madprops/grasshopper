@@ -5,10 +5,10 @@ App.get_history = async function (type = "slice") {
   let max
 
   if (type === "slice") {
-    max = App.slice_size
+    max = App.history_slice_results
     App.full_history = false
   } else if (type === "full") {
-    max = App.config.history_max_results
+    max = App.history_max_results
     App.full_history = true
   }
 

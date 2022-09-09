@@ -1,6 +1,13 @@
 // Setup items
 App.setup_items = function () {
   App.start_item_observer()
+
+  let text_mode = App.el("#text_mode")
+
+  App.ev(text_mode, "change", function () {
+    App.text_mode = text_mode.value
+    App.update_text()
+  })
 }
 
 // When results are found
@@ -112,22 +119,37 @@ App.create_item_element = function (item) {
   icon_container.append(icon)
   item.element.prepend(icon_container)
 
+  let text = App.el(".item_text", item.element)
+  text.textContent = App.get_item_text(item)
+
+  item.created = true
+  App.log("Element created")
+}
+
+// Set item text content
+App.get_item_text = function (item) {
   let content
   
-  if (App.config.text_mode === "title") {
+  if (App.text_mode === "title") {
     content = item.title || item.path
     item.footer = item.path || item.title
-  } else if (App.config.text_mode === "url") {
+  } else if (App.text_mode === "url") {
     content = item.path || item.title
     item.footer = item.title || item.path
   }
   
   content = content.substring(0, 200).trim()
-  let text = App.el(".item_text", item.element)
-  text.textContent = content  
+  return content
+}
 
-  item.created = true
-  App.log("Element created")
+// Change item text mode
+App.update_text = function () {
+  for (let item of App.items) {
+    if (item.created) {
+      let text = App.el(".item_text", item.element)
+      text.textContent = App.get_item_text(item)      
+    }
+  }
 }
 
 // Get next item that is visible

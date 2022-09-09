@@ -61,7 +61,7 @@ body, html {
   height: 1.2rem;
 }
 
-#filter_mode {
+.top_select {
   font-size: 0.9rem;
 }
 
@@ -279,7 +279,12 @@ body, html {
 }
 
 #about_container {
-  margin: 1rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding-top: 1rem;
+  padding-bottom: 2rem;
 }
 
 #about_text {
@@ -300,8 +305,33 @@ body, html {
   flex-direction: column;
   gap: 0.5rem;
   margin-top: 1rem;
-  margin-bottom: 2rem;
   font-size: 1rem;
   align-items: center;
   font-size: 1.2rem;
+}
+
+#show_window {
+  position: fixed;
+  display: none;
+  flex-direction: column;
+  top: 0;
+  left: 0;
+  background-color: rgb(65, 65, 128);
+  z-index: 9999999;
+  width: 100vw;
+  height: 100vh;
+}
+
+#show_window_top {
+  background-color: rgb(88, 93, 217);
+  text-align: center;
+  padding-top: 0.35rem;
+  padding-bottom: 0.35rem;
+  flex-grow: 0;
+  flex-shrink: 0;
+}
+
+#show_window_content {
+  overflow-y: auto;
+  overflow-x: hidden;
 }
