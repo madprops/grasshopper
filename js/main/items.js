@@ -162,7 +162,7 @@ App.get_next_visible_item = function (o_item) {
     let item = items[i]
 
     if (waypoint) {
-      if (item.created && App.item_is_visible(item)) {
+      if (App.item_is_visible(item)) {
         return item
       }
     }
@@ -218,6 +218,10 @@ App.hide_item = function (item) {
 // Unselect all the others
 App.select_item = function (s_item, scroll = true) {
   let items = App.items
+
+  if (!s_item.created) {
+    App.create_item_element(s_item)
+  }
 
   for (let item of items) {
     if (item.created) {

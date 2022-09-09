@@ -3,6 +3,7 @@ App.items = []
 App.window_open = false
 App.mouse_over_disabled = true
 App.filter_delay = 222
+App.disable_mouse_delay = 200
 App.history_slice_results = 200
 App.history_max_results = 10000
 App.history_max_months = 24

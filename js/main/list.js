@@ -49,5 +49,5 @@ App.enable_mouse_over = function () {
 
   App.enable_mouse_over_timeout = setTimeout(function () {
     App.mouse_over_disabled = false
-  }, 200)
+  }, App.disable_mouse_delay)
 }
