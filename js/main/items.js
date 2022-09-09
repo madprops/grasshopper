@@ -47,8 +47,14 @@ App.process_item = function (item) {
 
   let hostname = App.remove_slashes(url_obj.hostname)
   let path = App.remove_protocol(item.url)
+  
   let el = App.create("div", "item hidden")
   el.dataset.id = App.current_id
+  
+  let text = App.create("div", "item_text")
+  text.textContent = "Empty"
+  el.append(text)
+
   App.item_observer.observe(el)
   let title = item.title || path
 
@@ -104,9 +110,8 @@ App.create_item_element = function (item) {
   icon.height = 25
   jdenticon.update(icon, item.hostname)
   icon_container.append(icon)
-  item.element.append(icon_container)
+  item.element.prepend(icon_container)
 
-  let text = App.create("div", "item_text")
   let content
   
   if (App.config.text_mode === "path") {
@@ -118,8 +123,8 @@ App.create_item_element = function (item) {
   } 
   
   content = content.substring(0, 200).trim()
+  let text = App.el(".item_text", item.element)
   text.textContent = content  
-  item.element.append(text)
 
   item.created = true
   App.log("Element created")
