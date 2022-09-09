@@ -34,13 +34,13 @@ body, html {
 
 #top {
   flex-grow: 0;
-  gap: 0.5rem;
+  gap: 0.7rem;
   justify-content: flex-start;
   margin-left: 0.35rem;
 }
 
 #about_button {
-  margin-right: 0.5rem;
+  margin-right: 0.35rem;
   cursor: pointer;
   font-size: 1.1rem;
 }
@@ -94,7 +94,6 @@ body, html {
   flex-direction: row;
   cursor: pointer;
   border: 1px solid grey;
-  border-spacing: 0.5rem;
   align-items: center;
 }
 
