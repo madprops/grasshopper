@@ -4,7 +4,8 @@
     "version": "2.6",
     "description": "Go to your favorites URLs quickly",
     "permissions": [
-        "history"
+        "history",
+        "tabs"
     ],
     "icons": {
         "128": "icon128.png"

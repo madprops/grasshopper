@@ -18,8 +18,9 @@ App.get_history = async function (type = "slice") {
     startTime: App.history_months()
   })
 
-  App.process_items(items) 
-  App.do_filter()  
+  App.history_items = []
+  App.process_items(items, "history", App.history_items) 
+  App.do_filter()
 }
 
 // Get history months date

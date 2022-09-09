@@ -24,10 +24,6 @@ App.setup_filter = function () {
 
 // Do items filter
 App.do_filter = function () {    
-  if (App.items.length === 0) {
-    return
-  }
-
   let value = App.el("#filter").value.trim()
   let filter_mode = App.el("#filter_mode").value
 
@@ -37,8 +33,10 @@ App.do_filter = function () {
       return
     }
   }
+
+  let items = App.get_all_items()
   
-  App.log(`<< Filtering ${App.items.length} items >>`)
+  App.log(`<< Filtering ${items.length} items >>`)
   let words = value.split(" ").filter(x => x !== "")
   let case_sensitive = App.el("#case_sensitive").checked
   let filter_words = case_sensitive ? words : words.map(x => x.toLowerCase())
@@ -84,7 +82,7 @@ App.do_filter = function () {
   let selected = false
   App.disable_mouse_over()
 
-  for (let item of App.items) {
+  for (let item of items) {
     if (matched(item)) {
       App.show_item(item)    
 

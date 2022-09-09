@@ -1,5 +1,5 @@
-App.setup_list = function () {
-  let list = App.el("#list")
+App.setup_lists = function () {
+  let list = App.el("#lists")
 
   // When list items are clicked
   App.ev(list, "click", function (e) {
@@ -50,4 +50,9 @@ App.enable_mouse_over = function () {
   App.enable_mouse_over_timeout = setTimeout(function () {
     App.mouse_over_disabled = false
   }, App.disable_mouse_delay)
+}
+
+// Get a list
+App.get_list = function (list) {
+  return App.el(`#${list}`)
 }

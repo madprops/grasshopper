@@ -13,11 +13,10 @@ App.setup_items = function () {
 }
 
 // When results are found
-App.process_items = function (items) {
-  App.el("#list").innerHTML = ""
-  App.current_id = 0
-  App.items = []
-  let list = App.el("#list")
+App.process_items = function (items, list, container) {
+  let list_el = App.el(`#${list}`)
+  list_el.innerHTML = ""
+  App[`${list}_id`] = 0
   let urls = []
 
   for (let item of items) {
@@ -33,19 +32,19 @@ App.process_items = function (items) {
 
     urls.push(item.url)
 
-    let obj = App.process_item(item)
-
+    let obj = App.process_item(item, list)
+    
     if (!obj) {
       continue
     }
-
-    App.items.push(obj)
-    list.append(obj.element)
+    
+    container.push(obj)
+    list_el.append(obj.element)
   }
 }
 
 // Process an item
-App.process_item = function (item) {
+App.process_item = function (item, list) {
   let url_obj
 
   try {
@@ -56,9 +55,10 @@ App.process_item = function (item) {
 
   let hostname = App.remove_slashes(url_obj.hostname)
   let path = App.remove_protocol(item.url)
+  let id = `${list}_${App[`${list}_id`]}`
   
-  let el = App.create("div", "item hidden")
-  el.dataset.id = App.current_id
+  let el = App.create("div", `item hidden ${list}_item`)
+  el.dataset.id = id
   
   let text = App.create("div", "item_text")
   text.textContent = "Empty"
@@ -76,10 +76,12 @@ App.process_item = function (item) {
     hostname: hostname,
     created: false,
     element: el,
-    id: App.current_id
+    id: id,
+    tab_id: item.id,
+    list: list
   }
 
-  App.current_id += 1
+  App[`${list}_id`] += 1
   return obj
 }
 
@@ -87,7 +89,7 @@ App.process_item = function (item) {
 // Used for lazy-loading components
 App.start_item_observer = function () {
   let options = {
-    root: App.el("#list"),
+    root: App.el("#lists"),
     rootMargin: "0px",
     threshold: 0.1,
   }
@@ -144,9 +146,14 @@ App.set_item_text = function (item) {
   text.textContent = content
 }
 
+// Get all items
+App.get_all_items = function () {
+  return App.tab_items.concat(App.history_items)
+}
+
 // Change item text mode
 App.update_text = function () {
-  for (let item of App.items) {
+  for (let item of App.get_all_items()) {
     if (item.created) {
       App.set_item_text(item)      
     }
@@ -155,7 +162,7 @@ App.update_text = function () {
 
 // Get next item that is visible
 App.get_next_visible_item = function (o_item) {
-  let items = App.items
+  let items = App.get_list(o_item.list)
   let waypoint = false
 
   for (let i=0; i<items.length; i++) {
@@ -175,7 +182,7 @@ App.get_next_visible_item = function (o_item) {
 
 // Get prev item that is visible
 App.get_prev_visible_item = function (o_item) {
-  let items = App.items
+  let items = App.get_list(o_item.list)
   let waypoint = false
 
   for (let i=items.length-1; i>=0; i--) {
@@ -195,9 +202,7 @@ App.get_prev_visible_item = function (o_item) {
 
 // Get an item by id dataset
 App.get_item_by_id = function (id) {
-  id = parseInt(id)
-
-  for (let item of App.items) {
+  for (let item of App.get_all_items()) {
     if (item.id === id) {
       return item
     }
@@ -217,16 +222,12 @@ App.hide_item = function (item) {
 // Make an item selected
 // Unselect all the others
 App.select_item = function (s_item, scroll = true) {
-  let items = App.items
-
   if (!s_item.created) {
     App.create_item_element(s_item)
   }
 
-  for (let item of items) {
-    if (item.created) {
-      item.element.classList.remove("selected")
-    }
+  for (let el of App.els(".selected")) {
+    el.classList.remove("selected")
   }
 
   App.selected_item = s_item

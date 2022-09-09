@@ -15,10 +15,14 @@ App.remove_slashes_end = function (s) {
 
 // Open a new tab with a url
 App.open_tab = function (item, close = true) {
-  browser.tabs.create({url: item.url, active: close})
-
-  if (close) {
+  if (item.list === "tabs") {
+    browser.tabs.update(item.tab_id, {active: true})
     window.close()
+  } else if (item.list === "history") {
+    browser.tabs.create({url: item.url, active: close})
+    if (close) {
+      window.close()
+    }
   }
 }
 

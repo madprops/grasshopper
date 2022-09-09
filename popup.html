@@ -9,6 +9,7 @@
     <script src="js/main/keyboard.js"></script>
     <script src="js/main/items.js"></script>
     <script src="js/main/history.js"></script>
+    <script src="js/main/tabs.js"></script>
     <script src="js/main/list.js"></script>
     <script src="js/main/about.js"></script>
     <script src="js/main/windows.js"></script>
@@ -38,7 +39,11 @@
         <button id="clear_button" class="button actionbox">Clear</button>
       </div>
 
-      <div id="list" class="list"></div>
+      <div id="lists">
+        <div id="tabs" class="list"></div>
+        <div id="history" class="list"></div>
+      </div>
+
       <div id="footer" class="unselectable"></div>
     </div>
 
@@ -54,7 +59,7 @@
         <img src="img/icon.png" id="about_image">
         <div id="about_info">
           <div>This is an addon to go back to recent URLs quickly.</div>
-          <div>It uses your local browser history.</div>
+          <div>It uses open tabs and browser history.</div>
           <div>Clicking the items opens the websites.</div>
           <div>On first load it fetches only a small slice of the history.</div>
           <div>Type something to filter the items.</div>

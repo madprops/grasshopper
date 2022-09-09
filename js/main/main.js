@@ -1,5 +1,6 @@
 // For internal checks
-App.items = []
+App.tab_items = []
+App.history_items = []
 App.window_open = false
 App.mouse_over_disabled = true
 App.filter_delay = 222
@@ -15,8 +16,9 @@ App.init = function () {
   App.setup_windows()
   App.setup_items()
   App.setup_filter()
-  App.setup_list()
+  App.setup_lists()
   App.setup_keyboard()
+  App.get_tabs()
   App.get_history()
 }
 
