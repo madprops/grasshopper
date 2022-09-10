@@ -15,15 +15,6 @@ App.setup_lists = function () {
     }
   })
 
-  // When list items are clicked
-  App.ev(list, "auxclick", function (e) {
-    if (e.target.closest(".item")) {
-      let el = e.target.closest(".item")
-      let item = App.get_item_by_id(el.dataset.id)
-      App.open_tab(item, false)
-    }
-  })
-
   // When list items get hovered
   App.ev(list, "mouseover", function (e) {
     if (App.mouse_over_disabled) {
@@ -55,4 +46,17 @@ App.enable_mouse_over = function () {
 // Get a list
 App.get_list = function (list) {
   return App.el(`#${list}`)
+}
+
+// Get and process lists
+App.get_lists = async function (history_mode = "slice") {
+  let tabs = await App.get_tabs()
+  App.tab_items = []
+  App.process_items(tabs, "tabs", App.tab_items)
+
+  let history = await App.get_history(history_mode)
+  App.history_items = []
+  App.process_items(history, "history", App.history_items) 
+  
+  App.do_filter()  
 }

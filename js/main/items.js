@@ -18,6 +18,11 @@ App.process_items = function (items, list, container) {
   list_el.innerHTML = ""
   App[`${list}_id`] = 0
   let urls = []
+  let tab_urls
+
+  if (list === "history") {
+    tab_urls = App.tab_items.map(x => x.url)
+  }
 
   for (let item of items) {
     if (!item.url) {
@@ -28,6 +33,12 @@ App.process_items = function (items, list, container) {
 
     if (urls.includes(item.url)) {
       continue
+    }
+
+    if (list === "history") {
+      if (tab_urls.includes(item.url)) {
+        continue
+      }
     }
 
     urls.push(item.url)

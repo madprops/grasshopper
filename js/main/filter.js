@@ -29,7 +29,7 @@ App.do_filter = function () {
 
   if (!App.full_history) {
     if (value || filter_mode !== App.default_filter_mode) {
-      App.get_history("full")
+      App.get_lists("full")
       return
     }
   }
