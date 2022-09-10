@@ -81,14 +81,15 @@ App.do_filter = function (list) {
     return true
   }
 
-  let selected = App.selected_item !== undefined && App.item_is_visible(App.selected_item)
+  let selected = false
+  let is_tabs = App.selected_item && App.selected_item.list === "tabs"
   App.disable_mouse_over()
 
   for (let item of items) {
     if (matched(item)) {
       App.show_item(item)    
 
-      if (!selected) {
+      if (!selected && !is_tabs) {
         if (App.item_is_visible(item)) {
           App.select_item(item)
           selected = true
@@ -100,7 +101,10 @@ App.do_filter = function (list) {
   }
 
   if (!selected) {
-    App.update_footer()
+    if (!App.selected_item || !App.item_is_visible(App.selected_item)) {
+      App.selected_item = undefined
+      App.update_footer()
+    }
   }
 
   // Avoid auto selecting when showing the window
