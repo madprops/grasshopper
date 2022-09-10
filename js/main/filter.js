@@ -35,6 +35,10 @@ App.do_filter = function () {
   }
 
   let items = App.get_all_items()
+
+  if (items.length === 0) {
+    return
+  }
   
   App.log(`<< Filtering ${items.length} items >>`)
   let words = value.split(" ").filter(x => x !== "")
