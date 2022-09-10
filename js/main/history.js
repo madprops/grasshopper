@@ -1,5 +1,5 @@
 // Get items from history
-App.get_history = async function (type) {
+App.get_history = async function (type = "slice") {
   App.log(`Getting history: ${type}`)
   
   let max
@@ -18,7 +18,9 @@ App.get_history = async function (type) {
     startTime: App.history_months()
   })
 
-  return items
+  App.history_items = []
+  App.process_items(items, "history", App.history_items) 
+  App.do_filter("history")
 }
 
 // Get history months date

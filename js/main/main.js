@@ -19,7 +19,8 @@ App.init = function () {
   App.setup_lists()
   App.setup_keyboard()
   App.get_tabs()
-  App.get_lists()
+  App.get_tabs()
+  App.get_history()
 }
 
 App.init()

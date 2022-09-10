@@ -1,7 +1,7 @@
 // Setup filter
 App.setup_filter = function () {
   App.filter = App.create_debouncer(function () {
-    App.do_filter()
+    App.filter_lists()
   }, App.filter_delay)
 
   App.ev(App.el("#filter"), "input", function () {
@@ -10,33 +10,35 @@ App.setup_filter = function () {
 
   App.ev(App.el("#clear_button"), "click", function () {
     App.clear()
-    App.do_filter()
+    App.filter_lists()
   })
 
   App.ev(App.el("#filter_mode"), "change", function () {
-    App.do_filter()
+    App.filter_lists()
   })
 
   App.ev(App.el("#case_sensitive"), "change", function () {
-    App.do_filter()
+    App.filter_lists()
   })   
 }
 
 // Do items filter
-App.do_filter = function () {    
+App.do_filter = function (list) {    
   let value = App.el("#filter").value.trim()
   let filter_mode = App.el("#filter_mode").value
 
-  if (!App.full_history) {
-    if (value || filter_mode !== App.default_filter_mode) {
-      App.get_lists("full")
-      return
+  if (list === "history") {
+    if (!App.full_history) {
+      if (value || filter_mode !== App.default_filter_mode) {
+        App.get_history("full")
+        return
+      }
     }
   }
 
-  let items = App.get_all_items()
+  let items = App.get_items(list)
   
-  App.log(`<< Filtering ${items.length} items >>`)
+  App.log(`<< Filtering ${list} | ${items.length} items >>`)
   let words = value.split(" ").filter(x => x !== "")
   let case_sensitive = App.el("#case_sensitive").checked
   let filter_words = case_sensitive ? words : words.map(x => x.toLowerCase())
@@ -108,6 +110,12 @@ App.do_filter = function () {
   }
 
   App.scroll_lists()
+}
+
+// Do list filters
+App.filter_lists = function () {
+  App.do_filter("tabs")
+  App.do_filter("history")
 }
 
 // Focus the filter

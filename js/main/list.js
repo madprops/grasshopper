@@ -48,19 +48,6 @@ App.get_list = function (list) {
   return App.el(`#${list}`)
 }
 
-// Get and process lists
-App.get_lists = async function (history_mode = "slice") {
-  let tabs = await App.get_tabs()
-  App.tab_items = []
-  App.process_items(tabs, "tabs", App.tab_items)
-
-  let history = await App.get_history(history_mode)
-  App.history_items = []
-  App.process_items(history, "history", App.history_items) 
-
-  App.do_filter()  
-}
-
 // Switch to the other list
 App.switch_list = function () {
   if (App.selected_item) {
