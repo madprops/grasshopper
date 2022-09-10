@@ -57,6 +57,23 @@ App.get_lists = async function (history_mode = "slice") {
   let history = await App.get_history(history_mode)
   App.history_items = []
   App.process_items(history, "history", App.history_items) 
-  
+
   App.do_filter()  
+}
+
+// Switch to the other list
+App.switch_list = function () {
+  if (App.selected_item) {
+    let list = App.get_other_list(App.selected_item.list)
+    let item = App.get_first_visible_item(list)
+    
+    if (item) {
+      App.select_item(item)
+    }
+  }
+}
+
+// Get other list
+App.get_other_list = function (list) {
+  return list == "tabs" ? "history" : "tabs"
 }

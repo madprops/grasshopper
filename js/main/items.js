@@ -173,7 +173,7 @@ App.update_text = function () {
 
 // Get next item that is visible
 App.get_next_visible_item = function (o_item) {
-  let items = App.get_list(o_item.list)
+  let items = App.get_items(o_item.list)
   let waypoint = false
 
   for (let i=0; i<items.length; i++) {
@@ -193,7 +193,7 @@ App.get_next_visible_item = function (o_item) {
 
 // Get prev item that is visible
 App.get_prev_visible_item = function (o_item) {
-  let items = App.get_list(o_item.list)
+  let items = App.get_items(o_item.list)
   let waypoint = false
 
   for (let i=items.length-1; i>=0; i--) {
@@ -209,6 +209,23 @@ App.get_prev_visible_item = function (o_item) {
       waypoint = true
     }
   }
+}
+
+// Get first visible item
+App.get_first_visible_item = function (list) {
+  let items = App.get_items(list)
+  console.log(items)
+  
+  for (item of items) {
+    if (App.item_is_visible(item)) {
+      return item
+    }
+  }
+}
+
+// Get items of a list
+App.get_items = function (list) {
+  return list === "tabs" ? App.tab_items : App.history_items
 }
 
 // Get an item by id dataset
