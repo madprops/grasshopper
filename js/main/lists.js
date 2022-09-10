@@ -107,12 +107,14 @@ App.get_tabs = async function () {
 }
 
 // Show tabs and history
-App.show_lists = async function () {
-  let tabs = await App.get_tabs()
-  App.tab_items = []
-  App.process_items(tabs, "tabs", App.tab_items)
+App.show_lists = async function (mode = "slice") {
+  if (mode === "slice") {
+    let tabs = await App.get_tabs()
+    App.tab_items = []
+    App.process_items(tabs, "tabs", App.tab_items)
+  }
 
-  let history = await App.get_history("slice")
+  let history = await App.get_history(mode)
   App.history_items = []
   App.process_items(history, "history", App.history_items)
 

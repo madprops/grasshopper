@@ -23,16 +23,24 @@ App.setup_filter = function () {
 }
 
 // Do items filter
-App.do_filter = function (list) {   
+App.do_filter = function () {   
   let value = App.el("#filter").value.trim()
   let filter_mode = App.el("#filter_mode").value
+
+  if (!App.full_history) {
+    if (value || filter_mode !== App.default_filter_mode) {
+      App.show_lists("full")
+      return
+    }
+  }
+
   let items = App.get_all_items()
 
   if (items.length === 0) {
     return
   }
   
-  App.log(`<< Filtering ${list} | ${items.length} items >>`)
+  App.log(`<< Filtering ${items.length} items >>`)
   let words = value.split(" ").filter(x => x !== "")
   let case_sensitive = App.el("#case_sensitive").checked
   let filter_words = case_sensitive ? words : words.map(x => x.toLowerCase())
