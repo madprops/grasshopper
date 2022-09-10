@@ -21,11 +21,5 @@
         "_execute_browser_action": {
 
         }
-    },
-    "browser_specific_settings": {
-        "gecko": {
-            "id": "{23aee10d-1130-4694-80ef-428e287ba83d}",
-            "strict_min_version": "90.0"
-        }
     }
 }
