@@ -110,7 +110,6 @@ body, html {
   overflow-x: hidden;
   overflow-y: auto;
   border: 3px solid grey;
-  transition: border-color 250ms;
   flex-grow: 1;
   gap: 0.5rem;
 }
@@ -121,7 +120,6 @@ body, html {
   cursor: pointer;
   border: 1px solid grey;
   align-items: center;
-  transition: border-color 180ms;
 }
 
 .item_icon_container {
