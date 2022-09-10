@@ -115,10 +115,6 @@ body, html {
   gap: 0.5rem;
 }
 
-.list:hover {
-  border-color: rgb(217, 217, 217);
-}
-
 .item {
   display: flex;
   flex-direction: row;
