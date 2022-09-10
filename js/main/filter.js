@@ -23,7 +23,7 @@ App.setup_filter = function () {
 }
 
 // Do items filter
-App.do_filter = function (list) {    
+App.do_filter = function (list) {   
   let value = App.el("#filter").value.trim()
   let filter_mode = App.el("#filter_mode").value
 

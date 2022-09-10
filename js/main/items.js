@@ -214,7 +214,6 @@ App.get_prev_visible_item = function (o_item) {
 // Get first visible item
 App.get_first_visible_item = function (list) {
   let items = App.get_items(list)
-  console.log(items)
   
   for (item of items) {
     if (App.item_is_visible(item)) {
