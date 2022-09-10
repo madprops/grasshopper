@@ -91,9 +91,7 @@ App.get_history = async function (mode = "slice") {
     startTime: App.history_months()
   })
 
-  App.history_items = []
-  App.process_items(items, "history", App.history_items)
-  App.do_filter("history")
+  return items
 }
 
 // Get history months date
@@ -105,13 +103,18 @@ App.history_months = function () {
 App.get_tabs = async function () {
   let items = await browser.tabs.query({ currentWindow: true })
   items.sort((a, b) => (a.lastAccessed < b.lastAccessed) ? 1 : -1)
-  App.tab_items = []
-  App.process_items(items, "tabs", App.tab_items)
-  App.do_filter("tabs")
+  return items
 }
 
-// Filter tabs and history
-App.filter_lists = function () {
-  App.do_filter("tabs")
-  App.do_filter("history")
+// Show tabs and history
+App.show_lists = async function () {
+  let tabs = await App.get_tabs()
+  App.tab_items = []
+  App.process_items(tabs, "tabs", App.tab_items)
+
+  let history = await App.get_history("slice")
+  App.history_items = []
+  App.process_items(history, "history", App.history_items)
+
+  App.do_filter()
 }

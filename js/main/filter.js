@@ -1,7 +1,7 @@
 // Setup filter
 App.setup_filter = function () {
   App.filter = App.create_debouncer(function () {
-    App.filter_lists()
+    App.do_filter()
   }, App.filter_delay)
 
   App.ev(App.el("#filter"), "input", function () {
@@ -10,15 +10,15 @@ App.setup_filter = function () {
 
   App.ev(App.el("#clear_button"), "click", function () {
     App.clear()
-    App.filter_lists()
+    App.do_filter()
   })
 
   App.ev(App.el("#filter_mode"), "change", function () {
-    App.filter_lists()
+    App.do_filter()
   })
 
   App.ev(App.el("#case_sensitive"), "change", function () {
-    App.filter_lists()
+    App.do_filter()
   })   
 }
 
@@ -26,17 +26,7 @@ App.setup_filter = function () {
 App.do_filter = function (list) {   
   let value = App.el("#filter").value.trim()
   let filter_mode = App.el("#filter_mode").value
-
-  if (list === "history") {
-    if (!App.full_history) {
-      if (value || filter_mode !== App.default_filter_mode) {
-        App.get_history("full")
-        return
-      }
-    }
-  }
-
-  let items = App.get_items(list)
+  let items = App.get_all_items()
 
   if (items.length === 0) {
     return
@@ -86,13 +76,6 @@ App.do_filter = function (list) {
   }
 
   let selected = false
-  
-  if (list !== "tabs") {
-    if (App.selected_item && App.item_is_visible(App.selected_item)) {
-      selected = true
-    }
-  }
-
   App.disable_mouse_over()
 
   for (let item of items) {
