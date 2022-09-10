@@ -115,7 +115,7 @@ body, html {
   gap: 0.5rem;
 }
 
-.list_container:hover {
+.list:hover {
   border-color: rgb(217, 217, 217);
 }
 
