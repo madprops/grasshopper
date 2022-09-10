@@ -90,10 +90,9 @@ body, html {
   gap: 0.5rem;
 }
 
-.list {
+.list_container {
   display: flex;
   flex-direction: column;
-  gap: 0.5rem;
   flex-grow: 1;
   flex-shrink: 1;
   max-height: 100%;
@@ -101,11 +100,22 @@ body, html {
   height: 50%;
   overflow-x: hidden;
   overflow-y: auto;
-  border: 3px solid grey;
-  transition: border-color 250ms;
+  gap: 0.5rem;
 }
 
-.list:hover {
+.list {
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  overflow-x: hidden;
+  overflow-y: auto;
+  border: 3px solid grey;
+  transition: border-color 250ms;
+  flex-grow: 1;
+  gap: 0.5rem;
+}
+
+.list_container:hover {
   border-color: rgb(217, 217, 217);
 }
 
