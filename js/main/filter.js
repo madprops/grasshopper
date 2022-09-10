@@ -81,7 +81,7 @@ App.do_filter = function (list) {
     return true
   }
 
-  let selected = false
+  let selected = App.selected_item !== undefined && App.item_is_visible(App.selected_item)
   App.disable_mouse_over()
 
   for (let item of items) {
@@ -100,7 +100,6 @@ App.do_filter = function (list) {
   }
 
   if (!selected) {
-    App.selected_item = undefined
     App.update_footer()
   }
 
