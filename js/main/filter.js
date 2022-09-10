@@ -1,7 +1,7 @@
 // Setup filter
 App.setup_filter = function () {
   App.filter = App.create_debouncer(function () {
-    App.filter_lists()
+    App.do_filter()
   }, App.filter_delay)
 
   App.ev(App.el("#filter"), "input", function () {
@@ -10,35 +10,33 @@ App.setup_filter = function () {
 
   App.ev(App.el("#clear_button"), "click", function () {
     App.clear()
-    App.filter_lists()
+    App.do_filter()
   })
 
   App.ev(App.el("#filter_mode"), "change", function () {
-    App.filter_lists()
+    App.do_filter()
   })
 
   App.ev(App.el("#case_sensitive"), "change", function () {
-    App.filter_lists()
+    App.do_filter()
   })   
 }
 
 // Do items filter
-App.do_filter = function (list) {    
+App.do_filter = function () {    
   let value = App.el("#filter").value.trim()
   let filter_mode = App.el("#filter_mode").value
 
-  if (list === "history") {
-    if (!App.full_history) {
-      if (value || filter_mode !== App.default_filter_mode) {
-        App.get_history("full")
-        return
-      }
+  if (!App.full_history) {
+    if (value || filter_mode !== App.default_filter_mode) {
+      App.get_lists("full")
+      return
     }
   }
 
-  let items = App.get_items(list)
+  let items = App.get_all_items()
   
-  App.log(`<< Filtering ${list} | ${items.length} items >>`)
+  App.log(`<< Filtering ${items.length} items >>`)
   let words = value.split(" ").filter(x => x !== "")
   let case_sensitive = App.el("#case_sensitive").checked
   let filter_words = case_sensitive ? words : words.map(x => x.toLowerCase())
@@ -82,14 +80,13 @@ App.do_filter = function (list) {
   }
 
   let selected = false
-  let is_tabs = App.selected_item && App.selected_item.list === "tabs"
   App.disable_mouse_over()
 
   for (let item of items) {
     if (matched(item)) {
       App.show_item(item)    
 
-      if (!selected && !is_tabs) {
+      if (!selected) {
         if (App.item_is_visible(item)) {
           App.select_item(item)
           selected = true
@@ -101,10 +98,8 @@ App.do_filter = function (list) {
   }
 
   if (!selected) {
-    if (!App.selected_item || !App.item_is_visible(App.selected_item)) {
-      App.selected_item = undefined
-      App.update_footer()
-    }
+    App.selected_item = undefined
+    App.update_footer()
   }
 
   // Avoid auto selecting when showing the window
@@ -113,12 +108,6 @@ App.do_filter = function (list) {
   }
 
   App.scroll_lists()
-}
-
-// Do list filters
-App.filter_lists = function () {
-  App.do_filter("tabs")
-  App.do_filter("history")
 }
 
 // Focus the filter

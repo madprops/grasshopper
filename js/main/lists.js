@@ -70,3 +70,51 @@ App.scroll_lists = function () {
   App.get_list("tabs").scrollTop = 0
   App.get_list("history").scrollTop = 0
 }
+
+// Get tabs and history
+App.get_lists = async function (history_mode = "slice") {
+  let tabs = await App.get_tabs()
+  App.tab_items = []
+  App.process_items(tabs, "tabs", App.tab_items)
+
+  let history = await App.get_history(history_mode)
+  App.history_items = []
+  App.process_items(history, "history", App.history_items) 
+
+  App.do_filter()
+}
+
+// Get items from history
+App.get_history = async function (mode) {
+  App.log(`Getting history: ${mode}`)
+  
+  let max
+
+  if (mode === "slice") {
+    max = App.history_slice_results
+    App.full_history = false
+  } else if (mode === "full") {
+    max = App.history_max_results
+    App.full_history = true
+  }
+
+  let items = await browser.history.search({
+    text: "",
+    maxResults: max,
+    startTime: App.history_months()
+  })
+
+  return items
+}
+
+// Get history months date
+App.history_months = function () {
+  return Date.now() - (1000 * 60 * 60 * 24 * 30 * App.history_max_months)
+}
+
+// Get list of open tabs
+App.get_tabs = async function () {
+  let items = await browser.tabs.query({ currentWindow: true })
+  items.sort((a, b) => (a.lastAccessed < b.lastAccessed) ? 1 : -1)
+  return items
+}
