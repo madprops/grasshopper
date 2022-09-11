@@ -126,7 +126,7 @@ body, html {
   flex-grow: 0;
   flex-shrink: 0;
   padding-left: 0.35rem;
-  padding-right: 0.35rem;
+  padding-right: 0.5rem;
   display: flex;
   align-items: center;
   justify-content: center;
