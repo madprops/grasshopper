@@ -32,19 +32,21 @@ App.close_tab = function (item) {
 
 // Setup tabs
 App.setup_tabs = async function () {
-  App.closed_tabs = await browser.sessions.getRecentlyClosed()
-
   App.ev(App.el("#undo_button"), "click", function () {
-    if (App.closed_tabs.length > 0) {
-      App.restore_tab()
-    }
+    App.restore_tab()
   })
 }
 
 // Restore a closed tab
 App.restore_tab = async function () {
-  App.open_tab(App.closed_tabs.shift().tab, false)
-  let tabs = await App.get_tabs()
-  App.process_tabs(tabs)
-  App.do_filter()
+  let closed = await browser.sessions.getRecentlyClosed()
+
+  if (closed.length > 0) {
+    let tab = closed[0].tab
+    await browser.sessions.forgetClosedTab(tab.windowId, tab.sessionId)
+    App.open_tab(tab, false)
+    let tabs = await App.get_tabs()
+    App.process_tabs(tabs)
+    App.do_filter()
+  }
 }
