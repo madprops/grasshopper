@@ -105,12 +105,12 @@ App.prepend_tab = function (tab) {
 // Show closed tabs
 App.show_closed_tabs = async function () {
   let closed = await browser.sessions.getRecentlyClosed()
-  let container = App.create("div", "", "closed_container")
+  let container = App.create("div", "unselectable", "closed_container")
+  let urls = []
 
   for (let c of closed) {
     if (c.tab) {
-      let div = App.create("div", "closed_item action")
-
+      c.tab.url = App.format_url(c.tab.url)
       let url_obj
 
       try {
@@ -118,13 +118,21 @@ App.show_closed_tabs = async function () {
       } catch (err) {
         continue
       }
-    
+
+      if (urls.includes(c.tab.url)) {
+        continue
+      }
+
+      urls.push(c.tab.url)
+      
+      let div = App.create("div", "closed_item action")
       let hostname = App.remove_slashes(url_obj.hostname)
       let icon = App.get_gen_icon(hostname)
       div.append(icon)
       let text = App.create("div")
       text.textContent = c.tab.title
       div.append(text)
+      div.title = c.tab.url
       
       App.ev(div, "click", function () {
         App.restore_tab(c.tab)

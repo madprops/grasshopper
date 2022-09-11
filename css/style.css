@@ -371,4 +371,6 @@ body, html {
   border: 1px solid grey;
   gap: 0.5rem;
   padding: 0.5rem;
+  white-space: nowrap;
+  overflow: hidden;
 }
