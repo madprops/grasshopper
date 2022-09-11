@@ -41,6 +41,8 @@ App.setup_lists = function () {
         
         if (item.list === "tabs") {
           App.close_tab(item)
+        } else {
+          App.open_tab(item, false)
         }
       }
     }

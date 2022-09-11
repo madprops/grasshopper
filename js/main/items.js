@@ -31,11 +31,11 @@ App.process_items = function (items, list, container) {
 
     item.url = App.format_url(item.url)
 
-    if (urls.includes(item.url)) {
-      continue
-    }
-
     if (list === "history") {
+      if (urls.includes(item.url)) {
+        continue
+      }
+      
       if (tab_urls.includes(item.url)) {
         continue
       }

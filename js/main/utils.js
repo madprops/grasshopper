@@ -14,14 +14,16 @@ App.remove_slashes_end = function (s) {
 }
 
 // Open a new tab with a url
-App.open_tab = function (item) {
+App.open_tab = function (item, close = true) {
   if (item.list === "tabs") {
     browser.tabs.update(item.tab_id, {active: true})
   } else if (item.list === "history") {
     browser.tabs.create({url: item.url, active: true})
   }
 
-  window.close()
+  if (close) {
+    window.close()
+  }
 }
 
 // Close a tab
