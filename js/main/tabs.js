@@ -35,6 +35,10 @@ App.setup_tabs = async function () {
   App.ev(App.el("#undo_button"), "click", function () {
     App.restore_tab()
   })
+
+  App.ev(App.el("#new_button"), "click", function () {
+    App.new_tab()
+  })  
 }
 
 // Restore a closed tab
@@ -49,4 +53,10 @@ App.restore_tab = async function () {
     App.process_tabs(tabs)
     App.do_filter()
   }
+}
+
+// Open a new tab
+App.new_tab = function () {
+  browser.tabs.create({active: true})
+  window.close()
 }
