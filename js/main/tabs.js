@@ -103,5 +103,6 @@ App.prepend_tab = function (tab) {
   let item = App.process_item(tab, "tabs", [])
   App.tab_items.unshift(item)
   App.el("#tabs").prepend(item.element)
+  App.create_item_element(item)
   App.show_item(item)
 }
