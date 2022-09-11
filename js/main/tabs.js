@@ -83,7 +83,12 @@ App.get_item_by_tab_id = function (tab_id) {
 App.update_tab = function (item, info) {
   for (let [i, it] of App.tab_items.entries()) {
     if (it.tab_id === item.tab_id) {
-      let item = App.process_item(info, "tabs", [])
+      let item = App.process_item({
+        item: info,
+        list: "tabs",
+        id: it.id
+      })
+
       App.tab_items[i].element.replaceWith(item.element)
       App.tab_items[i] = item
       App.create_item_element(item)
@@ -95,7 +100,11 @@ App.update_tab = function (item, info) {
 
 // Prepend tab to the top
 App.prepend_tab = function (tab) {
-  let item = App.process_item(tab, "tabs", [])
+  let item = App.process_item({
+    item: tab,
+    list: "tabs"
+  })
+    
   App.tab_items.unshift(item)
   App.el("#tabs").prepend(item.element)
   App.create_item_element(item)

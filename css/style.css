@@ -145,10 +145,6 @@ body, html {
   padding-bottom: 0.35rem;
 }
 
-.item_close:hover {
-  text-decoration: underline;
-}
-
 .selected {
   background-color: #4c5261;
 }

@@ -16,7 +16,7 @@ App.setup_items = function () {
 App.process_items = function (items, list, container) {
   let list_el = App.el(`#${list}`)
   list_el.innerHTML = ""
-  App[`${list}_id`] = 0
+  App[`${list}_id`] = 1
   let exclude = [] 
 
   if (list === "history") {
@@ -28,7 +28,11 @@ App.process_items = function (items, list, container) {
       continue
     }
 
-    let obj = App.process_item(item, list, exclude)
+    let obj = App.process_item({
+      item: item, 
+      list: list, 
+      exclude: exclude
+    })
 
     if (list === "history") {
       exclude.push(item.url)    
@@ -44,11 +48,25 @@ App.process_items = function (items, list, container) {
 }
 
 // Process an item
-App.process_item = function (item, list, exclude) {
-  item.url = App.format_url(item.url)
+// Args: item, list, exclude, id
+App.process_item = function (args) {
+  let update
 
-  if (list === "history") {
-    if (exclude.includes(item.url)) {
+  if (args.id === undefined) {
+    args.id = `${args.list}_${App[`${args.list}_id`]}`
+    update = false
+  } else {
+    update = true
+  }
+
+  if (args.exclude === undefined) {
+    args.exclude = []
+  }
+
+  args.item.url = App.format_url(args.item.url)
+
+  if (args.list === "history") {
+    if (args.exclude.includes(args.item.url)) {
       return
     }
   }   
@@ -56,38 +74,40 @@ App.process_item = function (item, list, exclude) {
   let url_obj
 
   try {
-    url_obj = new URL(item.url)
+    url_obj = new URL(args.item.url)
   } catch (err) {
     return
   }
 
   let hostname = App.remove_slashes(url_obj.hostname)
-  let path = App.remove_protocol(item.url)
-  let id = `${list}_${App[`${list}_id`]}`
+  let path = App.remove_protocol(args.item.url)
   
-  let el = App.create("div", `item hidden ${list}_item`)
-  el.dataset.id = id
+  let el = App.create("div", `item hidden ${args.list}_item`)
+  el.dataset.id = args.id
   App.empty_item_element(el)
 
   App.item_observer.observe(el)
-  let title = item.title || path
+  let title = args.item.title || path
 
   let obj = {
     title: title,
     title_lower: title.toLowerCase(),
-    url: item.url,
+    url: args.item.url,
     path: path,
     path_lower: path.toLowerCase(),
     hostname: hostname,
     created: false,
     element: el,
-    id: id,
-    tab_id: item.id,
-    list: list,
-    favicon: item.favIconUrl
+    id: args.id,
+    tab_id: args.item.id,
+    list: args.list,
+    favicon: args.item.favIconUrl
   }
 
-  App[`${list}_id`] += 1
+  if (!update) {
+    App[`${args.list}_id`] += 1
+  }
+
   return obj
 }
 
@@ -110,7 +130,11 @@ App.start_item_observer = function () {
         return
       }
 
-      let item = App.element_to_item(entry.target)
+      let item = App.get_item_by_id(entry.target.dataset.id)
+
+      if (!item) {
+        continue
+      }
 
       if (!item.created && App.item_is_visible(item)) {
         App.create_item_element(item)
@@ -307,11 +331,6 @@ App.select_item = function (s_item, scroll = true) {
   if (s_item.list === "tabs") {
     browser.tabs.warmup(s_item.tab_id)
   }
-}
-
-// Element to item
-App.element_to_item = function (el) {
-  return App.get_item_by_id(el.dataset.id)
 }
 
 // Item is hidden
