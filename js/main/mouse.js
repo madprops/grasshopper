@@ -9,12 +9,10 @@ App.setup_mouse = function () {
 
       if (e.target.closest(".item_close")) {
         App.close_tab(item)
+      } else if (e.target.closest(".item_icon_container")) {
+        App.show_item_menu(item)
       } else {
-        if (e.target.closest(".item_icon_container")) {
-          App.show_item_menu(item)
-        } else if (e.target.closest(".item_text")) {
-          App.open_tab(item)
-        }      
+        App.open_tab(item)
       }
     }
   })

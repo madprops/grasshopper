@@ -109,16 +109,13 @@ body, html {
   position: relative;
   overflow-x: hidden;
   overflow-y: auto;
-  border: 1px solid grey;
   flex-grow: 1;
-  gap: 0.5rem;
 }
 
 .item {
   display: flex;
   flex-direction: row;
   cursor: pointer;
-  border: 1px solid grey;
   align-items: center;
 }
 
@@ -158,8 +155,7 @@ body, html {
 }
 
 .selected {
-  border-color: white;
-  background-color: #2B303B;
+  background-color: #585e6d;
 }
 
 .hidden {
@@ -365,12 +361,15 @@ body, html {
   overflow-x: hidden;
 }
 
+#closed_container {
+  margin-top: 0.5rem;
+}
+
 .closed_item {
   display: flex;
   flex-direction: row;
-  border: 1px solid grey;
   gap: 0.5rem;
-  padding: 0.5rem;
+  padding: 0.45rem;
   white-space: nowrap;
   overflow: hidden;
 }

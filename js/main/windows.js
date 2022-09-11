@@ -7,7 +7,6 @@ App.show_window = function (html) {
 
 // Show a window on top with some content
 App.show_window_2 = function (el) {
-  console.log(el)
   App.el("#show_window_content").innerHTML = ""
   App.el("#show_window_content").append(el)
   App.el("#show_window").style.display = "flex"
