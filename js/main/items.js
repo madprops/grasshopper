@@ -211,7 +211,7 @@ App.update_text = function () {
 
 // Get next item that is visible
 App.get_next_visible_item = function (o_item) {
-  let items = App.get_items(o_item.list)
+  let items = App.get_all_items()
   let waypoint = false
 
   for (let i=0; i<items.length; i++) {
@@ -231,7 +231,7 @@ App.get_next_visible_item = function (o_item) {
 
 // Get prev item that is visible
 App.get_prev_visible_item = function (o_item) {
-  let items = App.get_items(o_item.list)
+  let items = App.get_all_items()
   let waypoint = false
 
   for (let i=items.length-1; i>=0; i--) {
