@@ -125,6 +125,15 @@ App.start_item_observer = function () {
   }, options)
 }
 
+// Get generated icon
+App.get_gen_icon = function (item) {
+  let icon = App.create("canvas", "item_icon")
+  icon.width = 25
+  icon.height = 25
+  jdenticon.update(icon, item.hostname)
+  return icon
+}
+
 // Create an item element
 App.create_item_element = function (item) {
   let icon_container = App.create("div", "item_icon_container")
@@ -135,18 +144,27 @@ App.create_item_element = function (item) {
     icon.loading = "lazy"
     icon.width = 25
     icon.height = 25
+    
+    App.ev(icon, "error", function () {
+      let icon = App.get_gen_icon(item)
+      this.replaceWith(icon)
+    })
+
     icon.src = item.favicon
   } else {
-    icon = App.create("canvas", "item_icon")
-    icon.width = 25
-    icon.height = 25
-    jdenticon.update(icon, item.hostname)
+    icon = App.get_gen_icon(item)
   }
 
   icon_container.append(icon)
   item.element.prepend(icon_container)
 
   App.set_item_text(item)
+
+  if (item.list === "tabs") {
+    let close = App.create("div", "item_close action unselectable")
+    close.textContent = "Close"
+    item.element.append(close)
+  }
 
   item.created = true
   App.log("Element created")
@@ -325,15 +343,6 @@ App.show_item_menu = function (item) {
       }
     }
   ]
-
-  if (item.list === "tabs") {
-    items.push({
-      text: "Close",
-      action: function () {
-        App.close_tab(item)
-      }
-    })
-  }
 
   let menu = App.el(".item_icon_container", item.element)
   NeedContext.show_on_element(menu, items)

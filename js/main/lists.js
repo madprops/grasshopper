@@ -7,11 +7,15 @@ App.setup_lists = function () {
       let el = e.target.closest(".item")
       let item = App.get_item_by_id(el.dataset.id)
 
-      if (e.target.closest(".item_icon_container")) {
-        App.show_item_menu(item)
-      } else if (e.target.closest(".item_text")) {
-        App.open_tab(item)
-      }      
+      if (e.target.closest(".item_close")) {
+        App.close_tab(item)
+      } else {
+        if (e.target.closest(".item_icon_container")) {
+          App.show_item_menu(item)
+        } else if (e.target.closest(".item_text")) {
+          App.open_tab(item)
+        }      
+      }
     }
   })
 
