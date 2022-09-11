@@ -326,6 +326,15 @@ App.show_item_menu = function (item) {
     }
   ]
 
+  if (item.list === "tabs") {
+    items.push({
+      text: "Close",
+      action: function () {
+        App.close_tab(item)
+      }
+    })
+  }
+
   let menu = App.el(".item_icon_container", item.element)
   NeedContext.show_on_element(menu, items)
 }

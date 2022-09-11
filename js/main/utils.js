@@ -27,6 +27,7 @@ App.open_tab = function (item) {
 // Close a tab
 App.close_tab = function (item) {
   browser.tabs.remove(item.tab_id)
+  App.remove_item(item)
 }
 
 // Select a single element

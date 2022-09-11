@@ -37,7 +37,6 @@ App.setup_lists = function () {
         
         if (item.list === "tabs") {
           App.close_tab(item)
-          App.remove_item(item)
         }
       }
     }
