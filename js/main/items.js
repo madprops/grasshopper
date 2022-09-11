@@ -359,7 +359,7 @@ App.update_footer = function () {
 }
 
 // Show item menu
-App.show_item_menu = function (item) {
+App.show_item_menu = function (item, x, y) {
   let items = [
     {
       text: "Copy URL",
@@ -375,8 +375,7 @@ App.show_item_menu = function (item) {
     }
   ]
 
-  let menu = App.el(".item_icon_container", item.element)
-  NeedContext.show_on_element(menu, items)
+  NeedContext.show(x, y, items)
 }
 
 // Remove an item

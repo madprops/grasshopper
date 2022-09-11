@@ -14,6 +14,7 @@ NeedContext.set_defaults = function () {
   NeedContext.open = false
   NeedContext.keydown = false
   NeedContext.mousedown = false
+  NeedContext.first_mousedown = false
 }
 
 // Show based on an element
@@ -57,6 +58,11 @@ NeedContext.show = function (x, y, items) {
   
   main.append(overlay)
   main.append(container)
+
+  main.addEventListener("contextmenu", function (e) {
+    e.preventDefault()
+  })
+
   document.body.appendChild(main)
   
   let c = document.querySelector("#needcontext-container")
@@ -183,6 +189,12 @@ NeedContext.init = function () {
     if (!NeedContext.open) {
       return
     }
+    
+    NeedContext.first_mousedown = true
+
+    if (e.button !== 0) {
+      return
+    }
 
     if (e.target.closest("#needcontext-container")) {
       NeedContext.mousedown = true
@@ -194,8 +206,15 @@ NeedContext.init = function () {
       return
     }
 
+    if (e.button !== 0) {
+      NeedContext.mousedown = false
+      return
+    }
+
     if (!e.target.closest("#needcontext-container")) {
-      NeedContext.hide()
+      if (NeedContext.first_mousedown) {
+        NeedContext.hide()
+      }
     } else if (NeedContext.mousedown) {
       NeedContext.select_action()
     }

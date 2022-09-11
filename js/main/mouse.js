@@ -1,16 +1,14 @@
 App.setup_mouse = function () {
-  let list = App.el("#lists")
+  let lists = App.el("#lists")
 
   // When list items are clicked
-  App.ev(list, "click", function (e) {
+  App.ev(lists, "click", function (e) {
     if (e.target.closest(".item")) {
       let el = e.target.closest(".item")
       let item = App.get_item_by_id(el.dataset.id)
 
       if (e.target.closest(".item_close")) {
         App.close_tab(item)
-      } else if (e.target.closest(".item_icon_container")) {
-        App.show_item_menu(item)
       } else {
         App.open_tab(item)
       }
@@ -18,7 +16,7 @@ App.setup_mouse = function () {
   })
 
   // When list items get hovered
-  App.ev(list, "mouseover", function (e) {
+  App.ev(lists, "mouseover", function (e) {
     if (App.mouse_over_disabled) {
       return
     }
@@ -31,7 +29,7 @@ App.setup_mouse = function () {
   })
 
   // When list items are middle clicked
-  App.ev(list, "auxclick", function (e) {
+  App.ev(lists, "auxclick", function (e) {
     if (e.button === 1) {
       if (e.target.closest(".item")) {
         let el = e.target.closest(".item")
@@ -44,5 +42,14 @@ App.setup_mouse = function () {
         }
       }
     }
-  })  
+  })
+
+  App.ev(lists, "contextmenu", function (e) {
+    if (e.target.closest(".item")) {
+      let el = e.target.closest(".item")
+      let item = App.get_item_by_id(el.dataset.id)
+      App.show_item_menu(item, e.clientX, e.clientY)
+      e.preventDefault()
+    }
+  })
 }
