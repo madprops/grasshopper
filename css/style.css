@@ -109,7 +109,7 @@ body, html {
   position: relative;
   overflow-x: hidden;
   overflow-y: auto;
-  border: 3px solid grey;
+  border: 2px solid grey;
   flex-grow: 1;
   gap: 0.5rem;
 }
