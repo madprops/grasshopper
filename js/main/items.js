@@ -65,7 +65,7 @@ App.process_item = function (item, list, exclude) {
   let path = App.remove_protocol(item.url)
   let id = `${list}_${App[`${list}_id`]}`
   
-  let el = App.create("div", `item hidden ${list}_item action`)
+  let el = App.create("div", `item hidden ${list}_item`)
   el.dataset.id = id
   App.empty_item_element(el)
 
