@@ -364,3 +364,11 @@ body, html {
   overflow-y: auto;
   overflow-x: hidden;
 }
+
+.closed_item {
+  display: flex;
+  flex-direction: row;
+  border: 1px solid grey;
+  gap: 0.5rem;
+  padding: 0.5rem;
+}

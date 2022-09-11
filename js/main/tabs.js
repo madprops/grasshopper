@@ -32,8 +32,8 @@ App.close_tab = function (item) {
 
 // Setup tabs
 App.setup_tabs = async function () {
-  App.ev(App.el("#undo_button"), "click", function () {
-    App.restore_tab()
+  App.ev(App.el("#closed_button"), "click", function () {
+    App.show_closed_tabs()
   })
 
   App.ev(App.el("#new_button"), "click", function () {
@@ -47,14 +47,9 @@ App.setup_tabs = async function () {
 }
 
 // Restore a closed tab
-App.restore_tab = async function () {
-  let closed = await browser.sessions.getRecentlyClosed()
-
-  if (closed.length > 0) {
-    let tab = closed[0].tab
-    await browser.sessions.forgetClosedTab(tab.windowId, tab.sessionId)
-    App.open_tab(tab, false)
-  }
+App.restore_tab = async function (tab) {
+  await browser.sessions.forgetClosedTab(tab.windowId, tab.sessionId)
+  App.open_tab(tab, true)
 }
 
 // Open a new tab
@@ -105,4 +100,39 @@ App.prepend_tab = function (tab) {
   App.el("#tabs").prepend(item.element)
   App.create_item_element(item)
   App.show_item(item)
+}
+
+// Show closed tabs
+App.show_closed_tabs = async function () {
+  let closed = await browser.sessions.getRecentlyClosed()
+  let container = App.create("div", "", "closed_container")
+
+  for (let c of closed) {
+    if (c.tab) {
+      let div = App.create("div", "closed_item action")
+
+      let url_obj
+
+      try {
+        url_obj = new URL(c.tab.url)
+      } catch (err) {
+        continue
+      }
+    
+      let hostname = App.remove_slashes(url_obj.hostname)
+      let icon = App.get_gen_icon(hostname)
+      div.append(icon)
+      let text = App.create("div")
+      text.textContent = c.tab.title
+      div.append(text)
+      
+      App.ev(div, "click", function () {
+        App.restore_tab(c.tab)
+      })
+
+      container.append(div)
+    }
+  }
+
+  App.show_window_2(container)
 }

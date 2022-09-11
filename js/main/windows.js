@@ -5,6 +5,15 @@ App.show_window = function (html) {
   App.window_open = true
 }
 
+// Show a window on top with some content
+App.show_window_2 = function (el) {
+  console.log(el)
+  App.el("#show_window_content").innerHTML = ""
+  App.el("#show_window_content").append(el)
+  App.el("#show_window").style.display = "flex"
+  App.window_open = true
+}
+
 // Hide the show window
 App.hide_window = function () {
   let win = App.el("#show_window")

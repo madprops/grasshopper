@@ -120,11 +120,11 @@ App.start_item_observer = function () {
 }
 
 // Get generated icon
-App.get_gen_icon = function (item) {
+App.get_gen_icon = function (hostname) {
   let icon = App.create("canvas", "item_icon")
   icon.width = 25
   icon.height = 25
-  jdenticon.update(icon, item.hostname)
+  jdenticon.update(icon, hostname)
   return icon
 }
 
@@ -136,7 +136,7 @@ App.get_img_icon = function (item) {
   icon.height = 25
   
   App.ev(icon, "error", function () {
-    let icon = App.get_gen_icon(item)
+    let icon = App.get_gen_icon(item.hostname)
     this.replaceWith(icon)
   })
 
@@ -160,7 +160,7 @@ App.create_item_element = function (item) {
   if (item.favicon) {
     icon = App.get_img_icon(item)
   } else {
-    icon = App.get_gen_icon(item)
+    icon = App.get_gen_icon(item.hostname)
   }
 
   icon_container.append(icon)
@@ -303,6 +303,10 @@ App.select_item = function (s_item, scroll = true) {
   }
 
   App.update_footer()
+
+  if (s_item.list === "tabs") {
+    browser.tabs.warmup(s_item.tab_id)
+  }
 }
 
 // Element to item
