@@ -100,7 +100,7 @@ body, html {
   height: 50%;
   overflow-x: hidden;
   overflow-y: auto;
-  gap: 0.5rem;
+  gap: 0.25rem;
 }
 
 .list {
@@ -122,7 +122,6 @@ body, html {
 .item_icon_container {
   flex-grow: 0;
   flex-shrink: 0;
-  padding-left: 0.35rem;
   padding-right: 0.5rem;
   display: flex;
   align-items: center;
