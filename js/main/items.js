@@ -89,7 +89,8 @@ App.process_item = function (item, list) {
     element: el,
     id: id,
     tab_id: item.id,
-    list: list
+    list: list,
+    favicon: item.favIconUrl
   }
 
   App[`${list}_id`] += 1
@@ -127,10 +128,21 @@ App.start_item_observer = function () {
 // Create an item element
 App.create_item_element = function (item) {
   let icon_container = App.create("div", "item_icon_container")
-  let icon = App.create("canvas", "item_icon")
-  icon.width = 25
-  icon.height = 25
-  jdenticon.update(icon, item.hostname)
+  let icon
+
+  if (item.favicon) {
+    icon = App.create("img", "item_icon")
+    icon.loading = "lazy"
+    icon.width = 25
+    icon.height = 25
+    icon.src = item.favicon
+  } else {
+    icon = App.create("canvas", "item_icon")
+    icon.width = 25
+    icon.height = 25
+    jdenticon.update(icon, item.hostname)
+  }
+
   icon_container.append(icon)
   item.element.prepend(icon_container)
 
@@ -316,4 +328,17 @@ App.show_item_menu = function (item) {
 
   let menu = App.el(".item_icon_container", item.element)
   NeedContext.show_on_element(menu, items)
+}
+
+// Remove an item
+App.remove_item = function (item) {
+  let items = App.get_items(item.list)
+  item.element.remove()
+
+  for (let [i, it] of items.entries()) {
+    if (it.id === item.id) {
+      items.splice(i, 1)
+      break
+    }
+  }
 }

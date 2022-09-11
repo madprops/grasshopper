@@ -24,6 +24,11 @@ App.open_tab = function (item) {
   window.close()
 }
 
+// Close a tab
+App.close_tab = function (item) {
+  browser.tabs.remove(item.tab_id)
+}
+
 // Select a single element
 App.el = function (query, root = document) {
   return root.querySelector(query)

@@ -27,6 +27,21 @@ App.setup_lists = function () {
       App.select_item(item, false)
     }
   })
+
+  // When list items are middle clicked
+  App.ev(list, "auxclick", function (e) {
+    if (e.button === 1) {
+      if (e.target.closest(".item")) {
+        let el = e.target.closest(".item")
+        let item = App.get_item_by_id(el.dataset.id)
+        
+        if (item.list === "tabs") {
+          App.close_tab(item)
+          App.remove_item(item)
+        }
+      }
+    }
+  })  
 }
 
 // Disable mouse over
