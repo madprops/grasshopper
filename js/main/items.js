@@ -17,11 +17,10 @@ App.process_items = function (items, list, container) {
   let list_el = App.el(`#${list}`)
   list_el.innerHTML = ""
   App[`${list}_id`] = 0
-  let urls = []
-  let tab_urls
+  let exclude = [] 
 
   if (list === "history") {
-    tab_urls = App.tab_items.map(x => x.url)
+    exclude = App.tab_items.map(x => x.url)
   }
 
   for (let item of items) {
@@ -29,21 +28,11 @@ App.process_items = function (items, list, container) {
       continue
     }
 
-    item.url = App.format_url(item.url)
+    let obj = App.process_item(item, list, exclude)
 
     if (list === "history") {
-      if (urls.includes(item.url)) {
-        continue
-      }
-      
-      if (tab_urls.includes(item.url)) {
-        continue
-      }
+      exclude.push(item.url)    
     }
-
-    urls.push(item.url)
-
-    let obj = App.process_item(item, list)
     
     if (!obj) {
       continue
@@ -55,7 +44,15 @@ App.process_items = function (items, list, container) {
 }
 
 // Process an item
-App.process_item = function (item, list) {
+App.process_item = function (item, list, exclude) {
+  item.url = App.format_url(item.url)
+
+  if (list === "history") {
+    if (exclude.includes(item.url)) {
+      return
+    }
+  }   
+
   let url_obj
 
   try {

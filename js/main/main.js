@@ -13,6 +13,7 @@ App.ls_state = "state_v1"
 
 App.init = function () {
   App.get_state()
+  App.setup_tabs()
   App.setup_windows()
   App.setup_items()
   App.setup_filter()

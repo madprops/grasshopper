@@ -5,7 +5,8 @@
     "description": "Go to your favorites URLs quickly",
     "permissions": [
         "history",
-        "tabs"
+        "tabs",
+        "sessions"
     ],
     "icons": {
         "128": "icon128.png"

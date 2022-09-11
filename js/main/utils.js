@@ -13,25 +13,6 @@ App.remove_slashes_end = function (s) {
   return s.replace(/\/+$/g, "")
 }
 
-// Open a new tab with a url
-App.open_tab = function (item, close = true) {
-  if (item.list === "tabs") {
-    browser.tabs.update(item.tab_id, {active: true})
-  } else if (item.list === "history") {
-    browser.tabs.create({url: item.url, active: true})
-  }
-
-  if (close) {
-    window.close()
-  }
-}
-
-// Close a tab
-App.close_tab = function (item) {
-  browser.tabs.remove(item.tab_id)
-  App.remove_item(item)
-}
-
 // Select a single element
 App.el = function (query, root = document) {
   return root.querySelector(query)

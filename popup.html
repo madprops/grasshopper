@@ -9,13 +9,15 @@
     <script src="js/main/keyboard.js"></script>
     <script src="js/main/items.js"></script>
     <script src="js/main/lists.js"></script>
+    <script src="js/main/tabs.js"></script>
+    <script src="js/main/history.js"></script>
     <script src="js/main/windows.js"></script>
     <script src="js/main/filter.js"></script>
   </head>
   <body>
     <div id="main">
       <div id="top" class="flex_row_center unselectable">
-        <div id="about_button" class="action">Grasshopper</div>
+        <div id="about_button" class="action">GH</div>
         <input type="text" id="filter" autocomplete="off" placeholder="Type to filter...">
         <input id="case_sensitive" type="checkbox" title="Case Sensitive">
         
@@ -34,6 +36,7 @@
         </select>
 
         <button id="clear_button" class="button actionbox">Clear</button>
+        <button id="undo_button" class="button actionbox">Undo</button>
       </div>
 
       <div id="lists">
