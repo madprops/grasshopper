@@ -40,13 +40,9 @@ App.setup_tabs = async function () {
     App.new_tab()
   })  
 
-  App.refresh_tabs = App.create_debouncer(function () {
-    App.do_refresh_tabs()
-  }, App.refresh_tabs_delay)
-
-  browser.tabs.onUpdated.addListener(function () {
-    App.el("#tabs_title").textContent = "Tabs (loading)"
-    App.refresh_tabs()
+  browser.tabs.onUpdated.addListener(function (tab_id) {
+    App.log("Tab updated")
+    App.refresh_tab(tab_id)
   })
 }
 
@@ -68,9 +64,44 @@ App.new_tab = function () {
 }
 
 // Refresh tabs
-App.do_refresh_tabs = async function () {
-  let tabs = await App.get_tabs()
-  App.process_tabs(tabs)
-  App.do_filter()
-  App.el("#tabs_title").textContent = "Tabs"
+App.refresh_tab = async function (tab_id) {
+  let item = App.get_item_by_tab_id(tab_id)
+  let info = await browser.tabs.get(tab_id)
+
+  if (item) {
+    App.update_tab(item, info)
+  } else {
+    App.prepend_tab(info)
+  }
+}
+
+// Get tab by tab id
+App.get_item_by_tab_id = function (tab_id) {
+  for (let item of App.tab_items) {
+    if (item.tab_id === tab_id) {
+      return item
+    }
+  }
+}
+
+// Update a tab
+App.update_tab = function (item, info) {
+  for (let [i, it] of App.tab_items.entries()) {
+    if (it.tab_id === item.tab_id) {
+      let item = App.process_item(info, "tabs", [])
+      App.tab_items[i].element.replaceWith(item.element)
+      App.tab_items[i] = item
+      App.create_item_element(item)
+      App.show_item(item)
+      break
+    }
+  }
+}
+
+// Prepend tab to the top
+App.prepend_tab = function (tab) {
+  let item = App.process_item(tab, "tabs", [])
+  App.tab_items.unshift(item)
+  App.el("#tabs").prepend(item.element)
+  App.show_item(item)
 }

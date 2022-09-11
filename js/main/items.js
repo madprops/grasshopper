@@ -67,10 +67,7 @@ App.process_item = function (item, list, exclude) {
   
   let el = App.create("div", `item hidden ${list}_item`)
   el.dataset.id = id
-  
-  let text = App.create("div", "item_text")
-  text.textContent = "Empty"
-  el.append(text)
+  App.empty_item_element(el)
 
   App.item_observer.observe(el)
   let title = item.title || path
@@ -131,23 +128,37 @@ App.get_gen_icon = function (item) {
   return icon
 }
 
+// Get image favicon
+App.get_img_icon = function (item) {
+  let icon = App.create("img", "item_icon")
+  icon.loading = "lazy"
+  icon.width = 25
+  icon.height = 25
+  
+  App.ev(icon, "error", function () {
+    let icon = App.get_gen_icon(item)
+    this.replaceWith(icon)
+  })
+
+  icon.src = item.favicon
+  return icon
+}
+
+// Get an empty item element
+App.empty_item_element = function (el) {
+  el.innerHTML = ""
+  let text = App.create("div", "item_text")
+  text.textContent = "Empty"
+  el.append(text)
+}
+
 // Create an item element
 App.create_item_element = function (item) {
   let icon_container = App.create("div", "item_icon_container")
   let icon
 
   if (item.favicon) {
-    icon = App.create("img", "item_icon")
-    icon.loading = "lazy"
-    icon.width = 25
-    icon.height = 25
-    
-    App.ev(icon, "error", function () {
-      let icon = App.get_gen_icon(item)
-      this.replaceWith(icon)
-    })
-
-    icon.src = item.favicon
+    icon = App.get_img_icon(item)
   } else {
     icon = App.get_gen_icon(item)
   }
