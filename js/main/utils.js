@@ -49,12 +49,6 @@ App.locale_number = function (n) {
   return n.toLocaleString()
 }
 
-// Only numbers
-App.only_numbers = function (s) {
-  s = s.toString()
-  return parseInt(s.replace(/\D/g, ""))
-}
-
 // Create an html element
 App.create = function (type, classes = "", id = "") {
   let el = document.createElement(type)

@@ -57,19 +57,6 @@ App.do_filter = function () {
       match = filter_words.every(x => title.includes(x))
     } else if (filter_mode === "url") {
       match = filter_words.every(x => path.includes(x))
-    } else if (filter_mode.startsWith("url_")) {
-      match = filter_words.every(x => path.includes(x))
-
-      if (match) {
-        let n = App.only_numbers(filter_mode)
-
-        if (!item.path) {
-          match = n === 1
-        } else {
-          let parts = item.path.split("/")
-          match = n === parts.length
-        }
-      }
     }
     
     if (!match) {
