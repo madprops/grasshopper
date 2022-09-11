@@ -33,14 +33,14 @@ App.process_items = function (items, list, container) {
       list: list, 
       exclude: exclude
     })
-
-    if (list === "history") {
-      exclude.push(item.url)    
-    }
     
     if (!obj) {
       continue
     }
+
+    if (list === "history") {
+      exclude.push(obj.url)    
+    }    
     
     container.push(obj)
     list_el.append(obj.element)
@@ -205,13 +205,20 @@ App.create_item_element = function (item) {
 // Set item text content
 App.set_item_text = function (item) {
   let content
-  
+  let purl
+
+  if (item.url.startsWith("http://")) {
+    purl = item.url
+  } else {
+    purl = item.path
+  }
+
   if (App.state.text_mode === "title") {
-    content = item.title || item.path
-    item.footer = item.path || item.title
+    content = item.title || purl
+    item.footer = purl || item.title
   } else if (App.state.text_mode === "url") {
-    content = item.path || item.title
-    item.footer = item.title || item.path
+    content = purl || item.title
+    item.footer = item.title || purl
   }
   
   content = content.substring(0, 200).trim()
