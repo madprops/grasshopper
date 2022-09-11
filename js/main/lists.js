@@ -75,7 +75,9 @@ App.switch_list = function () {
     let item = App.get_first_visible_item(list)
     
     if (item) {
+      App.disable_mouse_over()
       App.select_item(item)
+      App.enable_mouse_over()
     }
   }
 }
