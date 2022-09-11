@@ -54,3 +54,12 @@ App.show_lists = async function (mode = "slice") {
 
   App.do_filter()
 }
+
+// Set list title
+App.set_list_title = function (list, num) {
+  if (list === "tabs") {
+    App.el("#tabs_title").textContent = `Tabs (${num})`
+  } else if (list === "history") {
+    App.el("#history_title").textContent = `History (${num})`
+  }
+}

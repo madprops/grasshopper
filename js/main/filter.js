@@ -84,6 +84,8 @@ App.do_filter = function () {
   }
 
   let selected = false
+  let num_tabs = 0
+  let num_history = 0
   App.disable_mouse_over()
 
   for (let item of items) {
@@ -95,6 +97,12 @@ App.do_filter = function () {
           App.select_item(item)
           selected = true
         }
+      }
+
+      if (item.list === "tabs") {
+        num_tabs += 1
+      } else if (item.list === "history") {
+        num_history += 1
       }
     } else {
       App.hide_item(item)
@@ -112,6 +120,8 @@ App.do_filter = function () {
   }
 
   App.scroll_lists()
+  App.set_list_title("tabs", num_tabs)
+  App.set_list_title("history", num_history)
 }
 
 // Focus the filter
