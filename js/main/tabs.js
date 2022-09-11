@@ -39,6 +39,15 @@ App.setup_tabs = async function () {
   App.ev(App.el("#new_button"), "click", function () {
     App.new_tab()
   })  
+
+  App.refresh_tabs = App.create_debouncer(function () {
+    App.do_refresh_tabs()
+  }, App.refresh_tabs_delay)
+
+  browser.tabs.onUpdated.addListener(function () {
+    App.el("#tabs_title").textContent = "Tabs (loading)"
+    App.refresh_tabs()
+  })
 }
 
 // Restore a closed tab
@@ -49,9 +58,6 @@ App.restore_tab = async function () {
     let tab = closed[0].tab
     await browser.sessions.forgetClosedTab(tab.windowId, tab.sessionId)
     App.open_tab(tab, false)
-    let tabs = await App.get_tabs()
-    App.process_tabs(tabs)
-    App.do_filter()
   }
 }
 
@@ -59,4 +65,12 @@ App.restore_tab = async function () {
 App.new_tab = function () {
   browser.tabs.create({active: true})
   window.close()
+}
+
+// Refresh tabs
+App.do_refresh_tabs = async function () {
+  let tabs = await App.get_tabs()
+  App.process_tabs(tabs)
+  App.do_filter()
+  App.el("#tabs_title").textContent = "Tabs"
 }

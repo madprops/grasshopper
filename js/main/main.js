@@ -4,6 +4,7 @@ App.history_items = []
 App.window_open = false
 App.mouse_over_disabled = true
 App.filter_delay = 222
+App.refresh_tabs_delay = 1000
 App.disable_mouse_delay = 200
 App.history_slice_results = 250
 App.history_max_results = 1000 * 5
@@ -17,7 +18,7 @@ App.init = function () {
   App.setup_windows()
   App.setup_items()
   App.setup_filter()
-  App.setup_lists()
+  App.setup_mouse()
   App.setup_keyboard()
   App.show_lists()
 }
