@@ -42,7 +42,6 @@ App.setup_tabs = async function () {
   })  
 
   browser.tabs.onUpdated.addListener(function (tab_id) {
-    App.log("Tab updated")
     App.refresh_tab(tab_id)
   })
 }
@@ -63,6 +62,7 @@ App.new_tab = function () {
 App.refresh_tab = async function (tab_id) {
   let item = App.get_item_by_tab_id(tab_id)
   let info = await browser.tabs.get(tab_id)
+  console.log(info.title)
 
   if (item) {
     App.update_tab(item, info)
@@ -84,8 +84,6 @@ App.get_item_by_tab_id = function (tab_id) {
 App.update_tab = function (item, info) {
   for (let [i, it] of App.tab_items.entries()) {
     if (it.tab_id === item.tab_id) {
-      let selected = it === App.selected_item
-
       let item = App.process_item({
         item: info,
         list: "tabs",
@@ -95,12 +93,7 @@ App.update_tab = function (item, info) {
       App.tab_items[i].element.replaceWith(item.element)
       App.tab_items[i] = item
       App.create_item_element(item)
-      App.show_item(item)
-
-      if (selected) {
-        App.select_item(item)
-      }
-
+      App.do_filter()
       break
     }
   }
@@ -112,11 +105,10 @@ App.prepend_tab = function (tab) {
     item: tab,
     list: "tabs"
   })
-    
+
   App.tab_items.unshift(item)
   App.el("#tabs").prepend(item.element)
   App.create_item_element(item)
-  App.show_item(item)
   App.do_filter()
 }
 
