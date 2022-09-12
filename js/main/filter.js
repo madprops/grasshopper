@@ -66,8 +66,7 @@ App.do_filter = function (select_new = true) {
     return true
   }
 
-  let to_select
-  let selected = false
+  let selected
   let num_tabs = 0
   let num_history = 0
   App.disable_mouse_over()
@@ -77,8 +76,7 @@ App.do_filter = function (select_new = true) {
       App.show_item(item)
 
       if (!selected) {
-        selected = true
-        to_select = item
+        selected = item
       }
 
       if (item.list === "tabs") {
@@ -91,15 +89,15 @@ App.do_filter = function (select_new = true) {
     }
   }
 
-  if (App.selected_item) {
-    if (!App.item_is_visible(App.selected_item)) {
-      if (selected) {
-        App.select_item(to_select)
-      }
+  if (!select_new && App.selected_item) {
+    if (App.item_is_visible(App.selected_item)) {
+      selected = App.selected_item
     }
   }
 
-  if (!selected) {
+  if (selected) {
+    App.select_item(selected)
+  } else {
     App.selected_item = undefined
     App.update_footer()
   }
