@@ -28,6 +28,7 @@ App.open_tab = function (item, close = true) {
 App.close_tab = function (item) {
   browser.tabs.remove(item.tab_id)
   App.remove_item(item)
+  App.do_filter()
 }
 
 // Setup tabs
