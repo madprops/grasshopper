@@ -23,7 +23,7 @@ App.setup_filter = function () {
 }
 
 // Do items filter
-App.do_filter = function () {   
+App.do_filter = function (select_new = true) {   
   let value = App.el("#filter").value.trim()
   let filter_mode = App.el("#filter_mode").value
 
@@ -63,13 +63,10 @@ App.do_filter = function () {
       return false
     }
 
-    if (App.item_is_removed(item)) {
-      return false
-    }
-
     return true
   }
 
+  let to_select
   let selected = false
   let num_tabs = 0
   let num_history = 0
@@ -77,13 +74,11 @@ App.do_filter = function () {
 
   for (let item of items) {
     if (matched(item)) {
-      App.show_item(item)    
+      App.show_item(item)
 
       if (!selected) {
-        if (App.item_is_visible(item)) {
-          App.select_item(item)
-          selected = true
-        }
+        selected = true
+        to_select = item
       }
 
       if (item.list === "tabs") {
@@ -93,6 +88,14 @@ App.do_filter = function () {
       }
     } else {
       App.hide_item(item)
+    }
+  }
+
+  if (App.selected_item) {
+    if (!App.item_is_visible(App.selected_item)) {
+      if (selected) {
+        App.select_item(to_select)
+      }
     }
   }
 

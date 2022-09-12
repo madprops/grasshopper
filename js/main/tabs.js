@@ -93,7 +93,7 @@ App.update_tab = function (item, info) {
       App.tab_items[i].element.replaceWith(item.element)
       App.tab_items[i] = item
       App.create_item_element(item)
-      App.do_filter()
+      App.do_filter(false)
       break
     }
   }
@@ -109,7 +109,7 @@ App.prepend_tab = function (tab) {
   App.tab_items.unshift(item)
   App.el("#tabs").prepend(item.element)
   App.create_item_element(item)
-  App.do_filter()
+  App.do_filter(false)
 }
 
 // Show closed tabs

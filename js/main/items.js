@@ -340,19 +340,9 @@ App.select_item = function (s_item, scroll = true) {
   }
 }
 
-// Item is hidden
-App.item_is_hidden = function (item) {
-  return item.element.classList.contains("hidden")
-}
-
-// Item is removed
-App.item_is_removed = function (item) {
-  return item.element.classList.contains("removed")
-}
-
 // Check if item is visible
 App.item_is_visible = function (item) {
-  let hidden = App.item_is_hidden(item) || App.item_is_removed(item)
+  let hidden = item.element.classList.contains("hidden")
   return !hidden
 }
 
