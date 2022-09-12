@@ -23,7 +23,16 @@ App.setup_filter = function () {
 }
 
 // Do items filter
-App.do_filter = function (select_new = true) {   
+// Args: select_new, disable_mouse_over
+App.do_filter = function (args = {}) {
+  if (args.select_new === undefined) {
+    args.select_new = true
+  }
+
+  if (args.disable_mouse_over === undefined) {
+    args.disable_mouse_over = true
+  }
+
   let value = App.el("#filter").value.trim()
   let filter_mode = App.el("#filter_mode").value
 
@@ -69,7 +78,10 @@ App.do_filter = function (select_new = true) {
   let selected
   let num_tabs = 0
   let num_history = 0
-  App.disable_mouse_over()
+
+  if (args.disable_mouse_over) {
+    App.disable_mouse_over()
+  }
 
   for (let item of items) {
     if (matched(item)) {
@@ -89,7 +101,7 @@ App.do_filter = function (select_new = true) {
     }
   }
 
-  if (!select_new && App.selected_item) {
+  if (!args.select_new && App.selected_item) {
     if (App.item_is_visible(App.selected_item)) {
       selected = App.selected_item
     }
