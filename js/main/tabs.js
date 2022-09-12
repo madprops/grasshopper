@@ -14,9 +14,9 @@ App.process_tabs = function (tabs) {
 // Open a new tab with a url
 App.open_tab = function (item, close = true) {
   if (item.list === "tabs") {
-    browser.tabs.update(item.tab_id, {active: true})
+    browser.tabs.update(item.tab_id, {active: close})
   } else {
-    browser.tabs.create({url: item.url, active: true})
+    browser.tabs.create({url: item.url, active: close})
   }
 
   if (close) {
@@ -99,7 +99,7 @@ App.update_tab = function (item, info) {
       if (selected) {
         App.select_item(item)
       }
-      
+
       break
     }
   }
@@ -116,6 +116,7 @@ App.prepend_tab = function (tab) {
   App.el("#tabs").prepend(item.element)
   App.create_item_element(item)
   App.show_item(item)
+  App.do_filter()
 }
 
 // Show closed tabs
