@@ -1,3 +1,8 @@
+:root {
+	--dark_color: #252933;
+  --grey_color: #4c5261;
+}
+
 @font-face {
 	font-family: imported_font;
 	src: url(Roboto-Regular.ttf);
@@ -25,7 +30,7 @@ body, html {
   box-sizing: border-box;
   border: 2px solid white;
   border-radius: 10px;
-  background-color: #252933;
+  background-color: var(--dark_color);
 }
 
 #top {
@@ -146,7 +151,7 @@ body, html {
 }
 
 .selected {
-  background-color: #4c5261;
+  background-color: var(--grey_color);
 }
 
 .hidden {
@@ -242,25 +247,6 @@ body, html {
   white-space: nowrap;
 }
 
-.Msg-window {
-	background-color: #252933 !important;
-	color: white !important;
-}
-
-.Msg-titlebar {
-  background-color: #2e333f !important;
-	color: white !important;
-  user-select: none !important;
-}
-
-.Msg-window-inner-x {
-	background-color: #2e333f !important;
-}
-
-.Msg-window-inner-x:hover {
-	background-color: #3d4352 !important;
-}
-
 #favorites_data_textarea {
   font-size: 0.9rem;
   width: 28rem;
@@ -332,14 +318,14 @@ body, html {
   flex-direction: column;
   top: 0;
   left: 0;
-  background-color: rgb(65, 65, 128);
+  background-color: var(--dark_color);
   z-index: 9999999;
   width: 100vw;
   height: 100vh;
 }
 
 #show_window_top {
-  background-color: rgb(88, 93, 217);
+  background-color: var(--grey_color);
   text-align: center;
   padding-top: 0.35rem;
   padding-bottom: 0.35rem;
