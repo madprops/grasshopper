@@ -137,7 +137,14 @@ App.show_closed_tabs = async function () {
       
       let div = App.create("div", "closed_item action")
       let hostname = App.remove_slashes(url_obj.hostname)
-      let icon = App.get_gen_icon(hostname)
+      let icon
+
+      if (c.tab.favIconUrl) {
+        icon = App.get_img_icon(c.tab.favIconUrl, hostname)
+      } else {
+        icon = App.get_gen_icon(hostname)
+      }
+
       div.append(icon)
       let text = App.create("div")
       text.textContent = c.tab.title

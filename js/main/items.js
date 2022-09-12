@@ -153,18 +153,18 @@ App.get_gen_icon = function (hostname) {
 }
 
 // Get image favicon
-App.get_img_icon = function (item) {
+App.get_img_icon = function (favicon, hostname) {
   let icon = App.create("img", "item_icon")
   icon.loading = "lazy"
   icon.width = 25
   icon.height = 25
   
   App.ev(icon, "error", function () {
-    let icon = App.get_gen_icon(item.hostname)
+    let icon = App.get_gen_icon(hostname)
     this.replaceWith(icon)
   })
 
-  icon.src = item.favicon
+  icon.src = favicon
   return icon
 }
 
@@ -182,7 +182,7 @@ App.create_item_element = function (item) {
   let icon
 
   if (item.favicon) {
-    icon = App.get_img_icon(item)
+    icon = App.get_img_icon(item.favicon, item.hostname)
   } else {
     icon = App.get_gen_icon(item.hostname)
   }
