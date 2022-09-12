@@ -28,7 +28,7 @@ body, html {
   width: 100%;
   padding: 0.5rem;
   box-sizing: border-box;
-  border: 2px solid white;
+  border: 1px solid white;
   border-radius: 10px;
   background-color: var(--dark_color);
 }
