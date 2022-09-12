@@ -113,6 +113,20 @@ body, html {
   flex-grow: 1;
 }
 
+#tabs_title {
+  border-top: 1px solid grey;
+  border-bottom: 1px solid grey;
+  padding-top: 0.25rem;
+  padding-bottom: 0.25rem;
+}
+
+#history_title {
+  border-top: 1px solid grey;
+  border-bottom: 1px solid grey;
+  padding-top: 0.25rem;
+  padding-bottom: 0.25rem;  
+}
+
 .item {
   display: flex;
   flex-direction: row;

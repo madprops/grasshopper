@@ -59,9 +59,9 @@ App.setup_tabs = async function () {
 }
 
 // Restore a closed tab
-App.restore_tab = async function (tab) {
+App.restore_tab = async function (tab, close = true) {
   await browser.sessions.forgetClosedTab(tab.windowId, tab.sessionId)
-  App.open_tab(tab, true)
+  App.open_tab(tab, close)
 }
 
 // Open a new tab
@@ -164,6 +164,13 @@ App.show_closed_tabs = async function () {
       
       App.ev(div, "click", function () {
         App.restore_tab(c.tab)
+      })
+
+      App.ev(div, "auxclick", function (e) {
+        if (e.button === 1) {
+          App.restore_tab(c.tab, false)
+          div.remove()
+        }
       })
 
       container.append(div)
