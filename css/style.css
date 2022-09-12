@@ -325,7 +325,7 @@ body, html {
 }
 
 #show_window_top {
-  background-color: var(--grey_color);
+  background-color: rgb(58, 62, 80);
   text-align: center;
   padding-top: 0.35rem;
   padding-bottom: 0.35rem;
@@ -339,7 +339,7 @@ body, html {
 }
 
 #closed_container {
-  margin-top: 0.5rem;
+  margin: 0.5rem;
 }
 
 .closed_item {
@@ -349,4 +349,9 @@ body, html {
   padding: 0.45rem;
   white-space: nowrap;
   overflow: hidden;
+  cursor: pointer;
+}
+
+.closed_item:hover {
+  background-color: var(--grey_color);
 }

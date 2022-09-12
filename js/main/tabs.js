@@ -135,7 +135,7 @@ App.show_closed_tabs = async function () {
 
       urls.push(c.tab.url)
       
-      let div = App.create("div", "closed_item action")
+      let div = App.create("div", "closed_item")
       let hostname = App.remove_slashes(url_obj.hostname)
       let icon
 
