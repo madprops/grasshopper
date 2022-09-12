@@ -17,7 +17,12 @@ App.open_tab = function (item, close = true) {
     browser.tabs.update(item.tab_id, {active: close})
   } else {
     browser.tabs.create({url: item.url, active: close})
-    App.remove_item(item)
+  }
+
+  if (item.list === "history") {
+    if (!close) {
+      App.remove_item(item)
+    }
   }
 
   if (close) {
