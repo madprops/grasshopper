@@ -17,6 +17,7 @@ App.open_tab = function (item, close = true) {
     browser.tabs.update(item.tab_id, {active: close})
   } else {
     browser.tabs.create({url: item.url, active: close})
+    App.remove_item(item)
   }
 
   if (close) {
@@ -26,7 +27,13 @@ App.open_tab = function (item, close = true) {
 
 // Close a tab
 App.close_tab = function (item) {
+  item.closed = true
   browser.tabs.remove(item.tab_id)
+
+  if (!App.get_history_item_by_url(item.url)) {
+    App.prepend_history(item)
+  }
+
   App.remove_item(item)
   App.do_filter({disable_mouse_over: false})
 }
@@ -62,7 +69,6 @@ App.new_tab = function () {
 App.refresh_tab = async function (tab_id) {
   let item = App.get_item_by_tab_id(tab_id)
   let info = await browser.tabs.get(tab_id)
-  console.log(info.title)
 
   if (item) {
     App.update_tab(item, info)

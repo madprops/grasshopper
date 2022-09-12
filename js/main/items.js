@@ -88,6 +88,7 @@ App.process_item = function (args) {
 
   App.item_observer.observe(el)
   let title = args.item.title || path
+  let tab_id = args.list === "tabs" ? args.item.id : undefined
 
   let obj = {
     title: title,
@@ -99,7 +100,7 @@ App.process_item = function (args) {
     created: false,
     element: el,
     id: args.id,
-    tab_id: args.item.id,
+    tab_id: tab_id,
     list: args.list,
     favicon: args.item.favIconUrl
   }
@@ -318,6 +319,10 @@ App.hide_item = function (item) {
 // Make an item selected
 // Unselect all the others
 App.select_item = function (s_item, scroll = true) {
+  if (s_item.closed) {
+    return
+  }
+  
   if (!s_item.created) {
     App.create_item_element(s_item)
   }
