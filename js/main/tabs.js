@@ -40,7 +40,7 @@ App.close_tab = function (item) {
   }
 
   App.remove_item(item)
-  App.do_filter({disable_mouse_over: false})
+  App.do_filter({select_new: false, disable_mouse_over: false})
 }
 
 // Setup tabs
