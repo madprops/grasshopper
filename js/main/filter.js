@@ -35,8 +35,9 @@ App.do_filter = function (args = {}) {
 
   let value = App.el("#filter").value.trim()
   let filter_mode = App.el("#filter_mode").value
+  let tabs_only = filter_mode === "playing"
 
-  if (!App.full_history) {
+  if (!tabs_only && !App.full_history) {
     if (value || filter_mode !== App.default_filter_mode) {
       App.show_lists("full")
       return
