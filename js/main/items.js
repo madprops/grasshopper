@@ -87,8 +87,13 @@ App.process_item = function (args) {
   App.empty_item_element(el)
 
   App.item_observer.observe(el)
-  let title = args.item.title || path
+  let title = args.item.title || path 
   let tab_id = args.list === "tabs" ? args.item.id : undefined
+  let status = ""
+
+  if (args.item.audible) {
+    status = "Playing"
+  }
 
   let obj = {
     title: title,
@@ -103,7 +108,9 @@ App.process_item = function (args) {
     tab_id: tab_id,
     list: args.list,
     favicon: args.item.favIconUrl,
-    audible: args.item.audible
+    audible: args.item.audible,
+    status: status,
+    status_lower: status.toLowerCase()
   }
 
   if (!update) {
@@ -222,13 +229,12 @@ App.set_item_text = function (item) {
     content = purl || item.title
     item.footer = item.title || purl
   }
+
+  if (item.status) {
+    content = `(${item.status}) ${content}`
+  }
   
   content = content.substring(0, 200).trim()
-
-  if (item.audible) {
-    content = `(Playing) ${content}`
-  }
-
   let text = App.el(".item_text", item.element)
   text.textContent = content
 }

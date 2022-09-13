@@ -58,14 +58,19 @@ App.do_filter = function (args = {}) {
     let match
     let title = case_sensitive ? item.title : item.title_lower
     let path = case_sensitive ? item.path : item.path_lower
-
+    
     if (filter_mode === "title_url") {
       match = filter_words.every(x => title.includes(x)) || 
-        filter_words.every(x => path.includes(x))
+      filter_words.every(x => path.includes(x))
     } else if (filter_mode === "title") {
       match = filter_words.every(x => title.includes(x))
     } else if (filter_mode === "url") {
       match = filter_words.every(x => path.includes(x))
+    }
+    
+    if (item.status) {
+      let status = case_sensitive ? item.status : item.status_lower
+      match = match || filter_words.every(x => status.includes(x))
     }
     
     if (!match) {
