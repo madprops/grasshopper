@@ -119,7 +119,6 @@ App.do_filter = function (args = {}) {
     App.select_item(selected)
   } else {
     App.selected_item = undefined
-    App.update_footer()
   }
 
   // Avoid auto selecting when showing the window
