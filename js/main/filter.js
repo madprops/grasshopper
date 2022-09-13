@@ -68,7 +68,7 @@ App.do_filter = function (args = {}) {
       match = filter_words.every(x => path.includes(x))
     }
     
-    if (item.status) {
+    if (!match && item.status) {
       let status = case_sensitive ? item.status : item.status_lower
       match = match || filter_words.every(x => status.includes(x))
     }
