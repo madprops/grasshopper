@@ -125,7 +125,10 @@ App.do_filter = function (args = {}) {
     App.enable_mouse_over()
   }
 
-  App.scroll_lists()
+  if (selected) {
+    App.scroll_list(App.get_other_list(selected.list))
+  }
+
   App.set_list_title("tabs", num_tabs)
   App.set_list_title("history", num_history)
 }

@@ -36,10 +36,9 @@ App.get_other_list = function (list) {
   return list == "tabs" ? "history" : "tabs"
 }
 
-// Scroll lists to top
-App.scroll_lists = function () {
-  App.get_list("tabs").scrollTop = 0
-  App.get_list("history").scrollTop = 0
+// Scroll a list to the top
+App.scroll_list = function (list) {
+  App.get_list(list).scrollTop = 0
 }
 
 // Show tabs and history
