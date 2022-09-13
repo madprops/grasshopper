@@ -66,6 +66,8 @@ App.do_filter = function (args = {}) {
       match = filter_words.every(x => title.includes(x))
     } else if (filter_mode === "url") {
       match = filter_words.every(x => path.includes(x))
+    } else if (filter_mode === "playing") {
+      match = item.status === "Playing"
     }
     
     if (!match && item.status) {
