@@ -1,1 +1,3 @@
-Firefox addon for quickly accessing history.
+Tab management extension.
+
+![https://i.imgur.com/pOquLFy.jpg]
