@@ -1,6 +1,9 @@
 :root {
-	--dark_color: #252933;
-  --grey_color: #4c5261;
+	--background_color: #252933;
+	--alt_background_color: #3a3e50;
+  --selected_color: #4c5261;
+  --separator_color: #677495;
+  --filter_color: #99a7d6;
 }
 
 @font-face {
@@ -17,7 +20,7 @@ body, html {
   margin: 0;
   padding: 0;
   overflow: hidden;
-  background-color: var(--dark_color);;
+  background-color: var(--background_color);
 }
 
 #main {
@@ -27,7 +30,7 @@ body, html {
   width: 100%;
   padding: 0.5rem;
   box-sizing: border-box;
-  background-color: var(--dark_color);
+  background-color: var(--background_color);
 }
 
 #top {
@@ -44,14 +47,14 @@ body, html {
 }
 
 #filter {
-  background-color: #99A7D6;
+  background-color: var(--filter_color);
   border-width: 0;
   font-size: 1rem;
-  padding: 0.11rem;
+  padding: 0.12rem;
   color: black;
   flex-grow: 0;
   width: 10rem;
-  outline: 1px solid rgb(217, 217, 217);
+  outline: none;
 }
 
 #case_sensitive {
@@ -70,11 +73,6 @@ body, html {
   background-color: transparent;
   color: white;
   min-width: 1.5rem;
-}
-
-.button_selected {
-  background-color: #6FE2C8;
-  color: black;
 }
 
 #lists {
@@ -110,16 +108,9 @@ body, html {
   flex-grow: 1;
 }
 
-#tabs_title {
-  border-top: 1px solid grey;
-  border-bottom: 1px solid grey;
-  padding-top: 0.25rem;
-  padding-bottom: 0.25rem;
-}
-
-#history_title {
-  border-top: 1px solid grey;
-  border-bottom: 1px solid grey;
+.list_title {
+  border-top: 1px solid var(--separator_color);
+  border-bottom: 1px solid var(--separator_color);
   padding-top: 0.25rem;
   padding-bottom: 0.25rem;  
 }
@@ -162,15 +153,11 @@ body, html {
 }
 
 .selected {
-  background-color: var(--grey_color);
+  background-color: var(--selected_color);
 }
 
 .hidden {
   display: none !important;
-}
-
-.highlighted {
-  background-color: #99EDC3;
 }
 
 .action, .actionbox {
@@ -257,7 +244,7 @@ body, html {
   padding-top: 0.5rem;
   height: 1.5rem;
   overflow: hidden;
-  border-top: 1px solid rgb(29, 117, 146);
+  border-top: 1px solid var(--separator_color);
   white-space: nowrap;
 }
 
@@ -332,14 +319,14 @@ body, html {
   flex-direction: column;
   top: 0;
   left: 0;
-  background-color: var(--dark_color);
+  background-color: var(--background_color);
   z-index: 9999999;
   width: 100vw;
   height: 100vh;
 }
 
 #show_window_top {
-  background-color: rgb(58, 62, 80);
+  background-color: var(--alt_background_color);
   text-align: center;
   padding-top: 0.35rem;
   padding-bottom: 0.35rem;
@@ -367,5 +354,5 @@ body, html {
 }
 
 .closed_item:hover {
-  background-color: var(--grey_color);
+  background-color: var(--line_color);
 }
