@@ -95,6 +95,8 @@ App.get_item_by_tab_id = function (tab_id) {
 App.update_tab = function (item, info) {
   for (let [i, it] of App.tab_items.entries()) {
     if (it.tab_id === item.tab_id) {
+      let selected = App.selected_item === it
+
       let item = App.process_item({
         item: info,
         list: "tabs",
@@ -104,6 +106,11 @@ App.update_tab = function (item, info) {
       App.tab_items[i].element.replaceWith(item.element)
       App.tab_items[i] = item
       App.create_item_element(item)
+
+      if (selected) {
+        App.select_item(item)
+      }
+            
       App.do_filter({select_new: false, disable_mouse_over: false})
       break
     }

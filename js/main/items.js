@@ -102,7 +102,8 @@ App.process_item = function (args) {
     id: args.id,
     tab_id: tab_id,
     list: args.list,
-    favicon: args.item.favIconUrl
+    favicon: args.item.favIconUrl,
+    audible: args.item.audible
   }
 
   if (!update) {
@@ -223,6 +224,11 @@ App.set_item_text = function (item) {
   }
   
   content = content.substring(0, 200).trim()
+
+  if (item.audible) {
+    content = `(Playing) ${content}`
+  }
+
   let text = App.el(".item_text", item.element)
   text.textContent = content
 }
