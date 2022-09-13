@@ -37,11 +37,9 @@ App.do_filter = function (args = {}) {
   let filter_mode = App.el("#filter_mode").value
   let tabs_only = filter_mode === "playing"
 
-  if (!tabs_only && !App.full_history) {
-    if (value || filter_mode !== App.default_filter_mode) {
-      App.show_lists("full")
-      return
-    }
+  if (!tabs_only && !App.full_history && value) {
+    App.show_lists("full")
+    return
   }
 
   let items = App.get_all_items()
@@ -143,7 +141,7 @@ App.clear_filter = function () {
 
 // Reset filter mode
 App.reset_filter_mode = function () {
-  App.el("#filter_mode").value = App.default_filter_mode
+  App.el("#filter_mode").value = "title_url"
 }
 
 // Reset case sensitive

@@ -9,7 +9,6 @@ App.disable_mouse_delay = 200
 App.history_slice_results = 250
 App.history_max_results = 1000 * 6
 App.history_max_months = 24
-App.default_filter_mode = "title_url"
 App.ls_state = "state_v1"
 
 App.init = function () {
