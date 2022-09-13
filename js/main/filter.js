@@ -89,7 +89,7 @@ App.do_filter = function (args = {}) {
   }
 
   for (let item of items) {
-    if (matched(item)) {
+    if (!value || matched(item)) {
       App.show_item(item)
 
       if (!selected) {
