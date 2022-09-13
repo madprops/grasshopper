@@ -258,7 +258,7 @@ App.get_next_visible_item = function (o_item) {
   let items = App.get_all_items()
   let waypoint = false
 
-  if (!App.selected_item || !App.item_is_visible(App.selected_item)) {
+  if (!App.selected_valid()) {
     waypoint = true
   }
 
@@ -282,7 +282,7 @@ App.get_prev_visible_item = function (o_item) {
   let items = App.get_all_items()
   let waypoint = false
 
-  if (!App.selected_item || !App.item_is_visible(App.selected_item)) {
+  if (!App.selected_valid()) {
     waypoint = true
   }  
 
@@ -390,7 +390,7 @@ App.item_is_visible = function (item) {
 
 // Update the footer
 App.update_footer = function () {
-  if (App.selected_item && App.item_is_visible(App.selected_item)) {
+  if (App.selected_valid()) {
     App.el("#footer").textContent = App.selected_item.footer
   } else {
     App.el("#footer").textContent = "No Results"
@@ -446,4 +446,9 @@ App.select_item_below = function () {
   if (item) {
     App.select_item({item: item, disable_mouse_over: true})
   }
+}
+
+// Check if selected is valid
+App.selected_valid = function () {
+  return App.selected_item && App.item_is_visible(App.selected_item)
 }

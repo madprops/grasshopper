@@ -7,7 +7,10 @@ App.setup_keyboard = function () {
     App.focus_filter()
 
     if (e.key === "Enter") {
-      App.open_tab(App.selected_item)
+      if (App.selected_valid()) {
+        App.open_tab(App.selected_item)
+      }
+      
       e.preventDefault()
     } else if (e.key === "ArrowUp") {
       App.select_item_above()
