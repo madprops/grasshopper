@@ -248,6 +248,19 @@ body, html {
   display: none;
 }
 
+#footer {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  flex-grow: 0;
+  flex-shrink: 0;
+  padding-top: 0.5rem;
+  height: 1.5rem;
+  overflow: hidden;
+  border-top: 1px solid rgb(29, 117, 146);
+  white-space: nowrap;
+}
+
 #favorites_data_textarea {
   font-size: 0.9rem;
   width: 28rem;

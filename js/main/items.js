@@ -215,7 +215,6 @@ App.create_item_element = function (item) {
 App.set_item_text = function (item) {
   let content
   let purl
-  let title
 
   if (item.url.startsWith("http://")) {
     purl = item.url
@@ -225,10 +224,10 @@ App.set_item_text = function (item) {
 
   if (App.state.text_mode === "title") {
     content = item.title || purl
-    title = purl || item.title
+    item.footer = purl || item.title
   } else if (App.state.text_mode === "url") {
     content = purl || item.title
-    title = item.title || purl
+    item.footer = item.title || purl
   }
 
   if (item.status) {
@@ -237,7 +236,6 @@ App.set_item_text = function (item) {
   
   content = content.substring(0, 200).trim()
   let text = App.el(".item_text", item.element)
-  item.element.title = title
   text.textContent = content
 }
 
@@ -365,6 +363,8 @@ App.select_item = function (args) {
     App.selected_item.element.scrollIntoView({block: "nearest"})
   }
 
+  App.update_footer()
+
   if (args.item.list === "tabs") {
     browser.tabs.warmup(args.item.tab_id)
   }
@@ -378,6 +378,15 @@ App.select_item = function (args) {
 App.item_is_visible = function (item) {
   let hidden = item.element.classList.contains("hidden")
   return !hidden
+}
+
+// Update the footer
+App.update_footer = function () {
+  if (App.selected_item && App.item_is_visible(App.selected_item)) {
+    App.el("#footer").textContent = App.selected_item.footer
+  } else {
+    App.el("#footer").textContent = "No Results"
+  }
 }
 
 // Show item menu
