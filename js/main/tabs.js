@@ -108,7 +108,7 @@ App.update_tab = function (item, info) {
       App.create_item_element(item)
 
       if (selected) {
-        App.select_item(item)
+        App.select_item({item: item})
       }
             
       App.do_filter({select_new: false, disable_mouse_over: false})

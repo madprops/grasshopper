@@ -332,28 +332,45 @@ App.hide_item = function (item) {
 
 // Make an item selected
 // Unselect all the others
-App.select_item = function (s_item, scroll = true) {
-  if (s_item.closed) {
+// Args: item, scroll, disable_mouse_over
+App.select_item = function (args) {
+  if (args.scroll === undefined) {
+    args.scroll = true
+  }
+
+  if (args.disable_mouse_over === undefined) {
+    args.disable_mouse_over = false
+  }  
+
+  if (args.item.closed) {
     return
   }
+
+  if (args.disable_mouse_over) {
+    App.disable_mouse_over()
+  }
   
-  if (!s_item.created) {
-    App.create_item_element(s_item)
+  if (!args.item.created) {
+    App.create_item_element(args.item)
   }
 
   for (let el of App.els(".selected")) {
     el.classList.remove("selected")
   }
 
-  App.selected_item = s_item
+  App.selected_item = args.item
   App.selected_item.element.classList.add("selected")
 
-  if (scroll) {
+  if (args.scroll) {
     App.selected_item.element.scrollIntoView({block: "nearest"})
   }
 
-  if (s_item.list === "tabs") {
-    browser.tabs.warmup(s_item.tab_id)
+  if (args.item.list === "tabs") {
+    browser.tabs.warmup(args.item.tab_id)
+  }
+
+  if (args.disable_mouse_over) {
+    App.enable_mouse_over()
   }
 }
 
@@ -393,5 +410,23 @@ App.remove_item = function (item) {
       items.splice(i, 1)
       break
     }
+  }
+}
+
+// Select item above
+App.select_item_above = function () {
+  let item = App.get_prev_visible_item(App.selected_item)
+
+  if (item) {
+    App.select_item({item: item, disable_mouse_over: true})
+  }
+}
+
+// Select item below
+App.select_item_below = function () {
+  let item = App.get_next_visible_item(App.selected_item)
+
+  if (item) {
+    App.select_item({item: item, disable_mouse_over: true})
   }
 }

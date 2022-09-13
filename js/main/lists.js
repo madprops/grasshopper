@@ -25,7 +25,7 @@ App.switch_list = function () {
     
     if (item) {
       App.disable_mouse_over()
-      App.select_item(item)
+      App.select_item({item: item})
       App.enable_mouse_over()
     }
   }

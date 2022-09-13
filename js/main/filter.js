@@ -116,7 +116,7 @@ App.do_filter = function (args = {}) {
   }
 
   if (selected) {
-    App.select_item(selected)
+    App.select_item({item: selected})
   } else {
     App.selected_item = undefined
   }

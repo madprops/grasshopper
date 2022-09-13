@@ -24,7 +24,7 @@ App.setup_mouse = function () {
     if (e.target.closest(".item")) {
       let el = e.target.closest(".item")
       let item = App.get_item_by_id(el.dataset.id)
-      App.select_item(item, false)
+      App.select_item({item: item, scroll: false})
     }
   })
 

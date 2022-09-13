@@ -10,24 +10,10 @@ App.setup_keyboard = function () {
       App.open_tab(App.selected_item)
       e.preventDefault()
     } else if (e.key === "ArrowUp") {
-      let item = App.get_prev_visible_item(App.selected_item)
-
-      if (item) {
-        App.disable_mouse_over()
-        App.select_item(item)
-        App.enable_mouse_over()
-      }
-
+      App.select_item_above()
       e.preventDefault()
     } else if (e.key === "ArrowDown") {
-      let item = App.get_next_visible_item(App.selected_item)
-
-      if (item) {
-        App.disable_mouse_over()
-        App.select_item(item)
-        App.enable_mouse_over()
-      }
-
+      App.select_item_below()
       e.preventDefault()
     } else if (e.key === "Tab") {
       App.switch_list()
