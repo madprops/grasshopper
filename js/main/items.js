@@ -258,6 +258,10 @@ App.get_next_visible_item = function (o_item) {
   let items = App.get_all_items()
   let waypoint = false
 
+  if (!App.selected_item || !App.item_is_visible(App.selected_item)) {
+    waypoint = true
+  }
+
   for (let i=0; i<items.length; i++) {
     let item = items[i]
 
@@ -277,6 +281,10 @@ App.get_next_visible_item = function (o_item) {
 App.get_prev_visible_item = function (o_item) {
   let items = App.get_all_items()
   let waypoint = false
+
+  if (!App.selected_item || !App.item_is_visible(App.selected_item)) {
+    waypoint = true
+  }  
 
   for (let i=items.length-1; i>=0; i--) {
     let item = items[i]
