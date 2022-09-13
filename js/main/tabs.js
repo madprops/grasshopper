@@ -31,9 +31,12 @@ App.open_tab = function (item, close = true) {
 }
 
 // Close a tab
-App.close_tab = function (item) {
+App.close_tab = function (item, close_tab = true) {
   item.closed = true
-  browser.tabs.remove(item.tab_id)
+
+  if (close_tab) {
+    browser.tabs.remove(item.tab_id)
+  }
 
   if (!App.get_history_item_by_url(item.url)) {
     App.prepend_history(item)
@@ -56,6 +59,10 @@ App.setup_tabs = async function () {
   browser.tabs.onUpdated.addListener(function (tab_id) {
     App.refresh_tab(tab_id)
   })
+
+  browser.tabs.onRemoved.addListener(function (tab_id) {
+    App.clean_closed_tab(tab_id)
+  })  
 }
 
 // Restore a closed tab
@@ -185,4 +192,13 @@ App.show_closed_tabs = async function () {
   }
 
   App.show_window_2(container)
+}
+
+// Remove item of a closed tab
+App.clean_closed_tab = function (tab_id) {
+  let item = App.get_item_by_tab_id(tab_id)
+
+  if (item) {
+    App.close_tab(item, false)
+  }
 }
