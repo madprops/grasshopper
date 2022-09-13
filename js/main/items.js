@@ -335,7 +335,7 @@ App.select_item = function (args) {
   if (args.scroll === undefined) {
     args.scroll = true
   }
-
+  
   if (args.disable_mouse_over === undefined) {
     args.disable_mouse_over = false
   }  
@@ -343,7 +343,7 @@ App.select_item = function (args) {
   if (args.item.closed) {
     return
   }
-
+  
   if (args.disable_mouse_over) {
     App.disable_mouse_over()
   }

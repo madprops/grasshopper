@@ -93,7 +93,7 @@ App.do_filter = function (args = {}) {
     if (matched(item)) {
       App.show_item(item)
 
-      if (!selected) {
+      if (args.select_new && !selected) {
         selected = item
       }
 
@@ -107,16 +107,9 @@ App.do_filter = function (args = {}) {
     }
   }
 
-  if (!args.select_new && App.selected_item) {
-    if (App.item_is_visible(App.selected_item)) {
-      selected = App.selected_item
-    }
-  }
-
   if (selected) {
     App.select_item({item: selected})
   } else {
-    App.selected_item = undefined
     App.update_footer()
   }
 
