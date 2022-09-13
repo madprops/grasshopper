@@ -354,5 +354,5 @@ body, html {
 }
 
 .closed_item:hover {
-  background-color: var(--line_color);
+  background-color: var(--selected_color);
 }
