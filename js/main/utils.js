@@ -135,3 +135,12 @@ App.get_state = function () {
 App.save_state = function () {
   App.save_storage(App.ls_state, App.state)
 }
+
+// Get singular or plural
+App.plural = function (n, singular, plural) {
+  if (n === 1) {
+    return `${n} ${singular}`
+  } else {
+    return `${n} ${plural}`
+  }
+}

@@ -265,8 +265,10 @@ App.confirm_tabs_close = async function (tabs) {
   if (tabs.length === 0) {
     return
   }
-  
-  if (confirm(`Close ${tabs.length} tabs?`)) {
+
+  let s = App.plural(tabs.length, "tab", "tabs")
+
+  if (confirm(`Close ${s}?`)) {
     for (let tab of tabs) {
       App.close_tab(tab)
     }
