@@ -239,7 +239,7 @@ App.set_item_text = function (item) {
   }
 
   if (item.status.includes("pinned")) {
-    content = `[*] ${content}`
+    content = `(Pin) ${content}`
   }  
   
   content = content.substring(0, 200).trim()
