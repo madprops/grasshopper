@@ -57,7 +57,6 @@ App.setup_tabs = async function () {
   })  
 
   browser.tabs.onUpdated.addListener(function (tab_id) {
-    console.log(tab_id)
     App.refresh_tab(tab_id)
   })
 
