@@ -237,6 +237,10 @@ App.set_item_text = function (item) {
   if (item.status.includes("playing")) {
     content = `(Playing) ${content}`
   }
+
+  if (item.status.includes("pinned")) {
+    content = `[*] ${content}`
+  }  
   
   content = content.substring(0, 200).trim()
   let text = App.el(".item_text", item.element)
@@ -456,6 +460,22 @@ App.show_item_menu = function (item, x, y) {
         App.close_unpinned_tabs()
       }
     }) 
+
+    if (item.status.includes("pinned")) {
+      items.push({
+        text: "Unpin",
+        action: function () {
+          App.unpin_tab(item)
+        }
+      }) 
+    } else {
+      items.push({
+        text: "Pin",
+        action: function () {
+          App.pin_tab(item)
+        }
+      })
+    }
   }
 
   NeedContext.show(x, y, items)
@@ -525,4 +545,15 @@ App.get_item_index = function (item) {
 // Count visible items from a list
 App.count_visible_items = function (list) {
   return App.get_items(list).filter(x => App.item_is_visible(x)).length
+}
+
+// Add to the item status array
+App.add_item_status = function (item, status) {
+  App.remove_item_status(item, status)
+  item.status.push(status)
+}
+
+// Remove from the item status array
+App.remove_item_status = function (item, status) {
+  item.status = item.status.filter(x => x !== status)
 }

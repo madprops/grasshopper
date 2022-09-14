@@ -57,6 +57,7 @@ App.setup_tabs = async function () {
   })  
 
   browser.tabs.onUpdated.addListener(function (tab_id) {
+    console.log(tab_id)
     App.refresh_tab(tab_id)
   })
 
@@ -273,4 +274,16 @@ App.confirm_tabs_close = async function (tabs) {
       App.close_tab(tab)
     }
   }
+}
+
+// Pin a tab
+App.pin_tab = function (item) {
+  browser.tabs.update(item.tab_id, {pinned: true})
+  App.add_item_status(item, "pinned")
+}
+
+// Unpin a tab
+App.unpin_tab = function (item) {
+  browser.tabs.update(item.tab_id, {pinned: false})
+  App.remove_item_status(item, "pinned")
 }
