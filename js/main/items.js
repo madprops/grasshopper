@@ -507,7 +507,7 @@ App.select_item_below = function () {
 
 // Check if selected is valid
 App.selected_valid = function () {
-  return App.selected_item && App.item_is_visible(App.selected_item)
+  return App.selected_item && !App.selected_item.closed && App.item_is_visible(App.selected_item)
 }
 
 // Get index of item in list
