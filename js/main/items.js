@@ -113,7 +113,8 @@ App.process_item = function (args) {
     list: args.list,
     favicon: args.item.favIconUrl,
     audible: args.item.audible,
-    status: status
+    status: status,
+    closed: false
   }
 
   if (!update) {
