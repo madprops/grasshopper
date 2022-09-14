@@ -58,6 +58,10 @@ App.do_filter = function (args = {}) {
   }
 
   function matched (item) {
+    if (tabs_only && item.list !== "tabs") {
+      return false
+    }
+
     let match
     let title = case_sensitive ? item.title : item.title_lower
     let path = case_sensitive ? item.path : item.path_lower
