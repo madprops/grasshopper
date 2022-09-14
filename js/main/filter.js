@@ -35,7 +35,7 @@ App.do_filter = function (args = {}) {
 
   let value = App.el("#filter").value.trim()
   let filter_mode = App.el("#filter_mode").value
-  let tabs_only = filter_mode === "playing"
+  let tabs_only = filter_mode === "playing" || filter_mode === "pinned"
 
   if (!tabs_only && !App.full_history && value) {
     App.show_lists("full")
@@ -53,22 +53,27 @@ App.do_filter = function (args = {}) {
   let case_sensitive = App.el("#case_sensitive").checked
   let filter_words = case_sensitive ? words : words.map(x => x.toLowerCase())
 
+  function check (what) {
+    return filter_words.every(x => what.includes(x))
+  }
+
   function matched (item) {
     let match
     let title = case_sensitive ? item.title : item.title_lower
     let path = case_sensitive ? item.path : item.path_lower
     
     if (filter_mode === "title_url") {
-      match = filter_words.every(x => title.includes(x)) || 
-      filter_words.every(x => path.includes(x))
+      match = check(title) || check(path)
     } else if (filter_mode === "title") {
-      match = filter_words.every(x => title.includes(x))
+      match = check(title)
     } else if (filter_mode === "url") {
-      match = filter_words.every(x => path.includes(x))
+      match = check(path)
     } else if (filter_mode === "playing") {
-      match = item.status.includes("Playing")
+      match = item.status.includes("Playing") &&
+      (check(title) || check(path))    
     } else if (filter_mode === "pinned") {
-      match = item.status.includes("Pinned")
+      match = item.status.includes("Pinned") &&
+      (check(title) || check(path))  
     }
         
     if (!match) {
