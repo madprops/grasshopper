@@ -92,11 +92,11 @@ App.process_item = function (args) {
   let status = []
 
   if (args.item.audible) {
-    status.push("Playing")
+    status.push("playing")
   }
 
   if (args.item.pinned) {
-    status.push("Pinned")
+    status.push("pinned")
   }
 
   let obj = {
@@ -233,7 +233,7 @@ App.set_item_text = function (item) {
     item.footer = item.title || purl
   }
 
-  if (item.status.includes("Playing")) {
+  if (item.status.includes("playing")) {
     content = `(Playing) ${content}`
   }
   

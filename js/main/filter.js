@@ -73,10 +73,10 @@ App.do_filter = function (args = {}) {
     } else if (filter_mode === "url") {
       match = check(path)
     } else if (filter_mode === "playing") {
-      match = item.status.includes("Playing") &&
+      match = item.status.includes("playing") &&
       (check(title) || check(path))    
     } else if (filter_mode === "pinned") {
-      match = item.status.includes("Pinned") &&
+      match = item.status.includes("pinned") &&
       (check(title) || check(path))  
     }
         

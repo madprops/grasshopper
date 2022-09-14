@@ -252,7 +252,7 @@ App.close_unpinned_tabs = function () {
   let tabs = []
 
   for (let it of App.tab_items) {
-    if (!it.status.includes("Pinned")) {
+    if (!it.status.includes("pinned")) {
       tabs.push(it)
     }
   }
