@@ -192,10 +192,6 @@ NeedContext.init = function () {
     
     NeedContext.first_mousedown = true
 
-    if (e.button !== 0) {
-      return
-    }
-
     if (e.target.closest("#needcontext-container")) {
       NeedContext.mousedown = true
     }
@@ -203,11 +199,6 @@ NeedContext.init = function () {
 
   document.addEventListener("mouseup", function (e) {
     if (!NeedContext.open) {
-      return
-    }
-
-    if (e.button !== 0) {
-      NeedContext.mousedown = false
       return
     }
 
