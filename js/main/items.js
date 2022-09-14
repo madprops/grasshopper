@@ -452,10 +452,24 @@ App.show_item_menu = function (item, x, y) {
     items.push({
       text: "Keep Pins",
       action: function () {
-        App.close_unpinned_tabs(item)
+        App.close_unpinned_tabs()
       }
     }) 
   }
+
+  NeedContext.show(x, y, items)
+}
+
+// Menu for tabs without a specific item
+App.show_tabs_menu = function (x, y) {
+  let items = [
+    {
+      text: "Keep Pins",
+      action: function () {
+        App.close_unpinned_tabs()
+      }
+    }    
+  ]
 
   NeedContext.show(x, y, items)
 }
