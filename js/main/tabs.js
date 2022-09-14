@@ -202,3 +202,56 @@ App.clean_closed_tab = function (tab_id) {
     App.close_tab(item, false)
   }
 }
+
+// Close tabs above
+App.close_tabs_above = function (item) {
+  let tabs = []
+
+  for (let it of App.tab_items) {
+    if (it !== item) {
+      tabs.push(it)
+    } else {
+      break
+    }
+  }
+  
+  App.confirm_tabs_close(tabs)
+}
+
+// Close tabs below
+App.close_tabs_below = function (item) {
+  let tabs = []
+  let waypoint = false
+
+  for (let it of App.tab_items) {
+    if (waypoint) {
+      tabs.push(it)
+    } else if (it === item) {
+      waypoint = true
+    }
+  }
+  
+  App.confirm_tabs_close(tabs)
+}
+
+// Close other tabs
+App.close_other_tabs = function (item) {
+  let tabs = []
+
+  for (let it of App.tab_items) {
+    if (it !== item) {
+      tabs.push(it)
+    }
+  }
+  
+  App.confirm_tabs_close(tabs)
+}
+
+// Confirm tab close
+App.confirm_tabs_close = async function (tabs) {
+  if (confirm(`Close ${tabs.length} tabs?`)) {
+    for (let tab of tabs) {
+      App.close_tab(tab)
+    }
+  }
+}

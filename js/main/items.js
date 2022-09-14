@@ -414,6 +414,39 @@ App.show_item_menu = function (item, x, y) {
     }
   ]
 
+  if (item.list === "tabs") {
+    let index = App.get_item_index(item)
+
+    if (index >= 0) {
+      if (index > 0) {
+        items.push({
+          text: "Close Above",
+          action: function () {
+            App.close_tabs_above(item)
+          }
+        })
+      }
+  
+      if (index < App.tab_items.length - 1) {
+        items.push({
+          text: "Close Below",
+          action: function () {
+            App.close_tabs_below(item)
+          }
+        })   
+      }
+    }
+
+    if (App.tab_items.length > 1) {
+      items.push({
+        text: "Close Others",
+        action: function () {
+          App.close_other_tabs(item)
+        }
+      })    
+    }
+  }
+
   NeedContext.show(x, y, items)
 }
 
@@ -451,4 +484,15 @@ App.select_item_below = function () {
 // Check if selected is valid
 App.selected_valid = function () {
   return App.selected_item && App.item_is_visible(App.selected_item)
+}
+
+// Get index of item in list
+App.get_item_index = function (item) {
+  for (let [i, it] of App.get_items(item.list).entries()) {
+    if (it === item) {
+      return i
+    }
+  }
+
+  return -1
 }
