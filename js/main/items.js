@@ -546,14 +546,3 @@ App.get_item_index = function (item) {
 App.count_visible_items = function (list) {
   return App.get_items(list).filter(x => App.item_is_visible(x)).length
 }
-
-// Add to the item status array
-App.add_item_status = function (item, status) {
-  App.remove_item_status(item, status)
-  item.status.push(status)
-}
-
-// Remove from the item status array
-App.remove_item_status = function (item, status) {
-  item.status = item.status.filter(x => x !== status)
-}

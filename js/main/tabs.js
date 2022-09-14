@@ -278,11 +278,9 @@ App.confirm_tabs_close = async function (tabs) {
 // Pin a tab
 App.pin_tab = function (item) {
   browser.tabs.update(item.tab_id, {pinned: true})
-  App.add_item_status(item, "pinned")
 }
 
 // Unpin a tab
 App.unpin_tab = function (item) {
   browser.tabs.update(item.tab_id, {pinned: false})
-  App.remove_item_status(item, "pinned")
 }
