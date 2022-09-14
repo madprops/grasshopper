@@ -89,10 +89,14 @@ App.process_item = function (args) {
   App.item_observer.observe(el)
   let title = args.item.title || path 
   let tab_id = args.list === "tabs" ? args.item.id : undefined
-  let status = ""
+  let status = []
 
   if (args.item.audible) {
-    status = "Playing"
+    status.push("Playing")
+  }
+
+  if (args.item.pinned) {
+    status.push("Pinned")
   }
 
   let obj = {
@@ -109,8 +113,7 @@ App.process_item = function (args) {
     list: args.list,
     favicon: args.item.favIconUrl,
     audible: args.item.audible,
-    status: status,
-    status_lower: status.toLowerCase()
+    status: status
   }
 
   if (!update) {
@@ -230,8 +233,8 @@ App.set_item_text = function (item) {
     item.footer = item.title || purl
   }
 
-  if (item.status) {
-    content = `(${item.status}) ${content}`
+  if (item.status.includes("Playing")) {
+    content = `(Playing) ${content}`
   }
   
   content = content.substring(0, 200).trim()
@@ -445,6 +448,13 @@ App.show_item_menu = function (item, x, y) {
         }
       })    
     }
+
+    items.push({
+      text: "Keep Pins",
+      action: function () {
+        App.close_unpinned_tabs(item)
+      }
+    }) 
   }
 
   NeedContext.show(x, y, items)

@@ -247,8 +247,25 @@ App.close_other_tabs = function (item) {
   App.confirm_tabs_close(tabs)
 }
 
+// Close all tabs except pins
+App.close_unpinned_tabs = function () {
+  let tabs = []
+
+  for (let it of App.tab_items) {
+    if (!it.status.includes("Pinned")) {
+      tabs.push(it)
+    }
+  }
+  
+  App.confirm_tabs_close(tabs)  
+}
+
 // Confirm tab close
 App.confirm_tabs_close = async function (tabs) {
+  if (tabs.length === 0) {
+    return
+  }
+  
   if (confirm(`Close ${tabs.length} tabs?`)) {
     for (let tab of tabs) {
       App.close_tab(tab)

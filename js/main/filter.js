@@ -66,14 +66,11 @@ App.do_filter = function (args = {}) {
     } else if (filter_mode === "url") {
       match = filter_words.every(x => path.includes(x))
     } else if (filter_mode === "playing") {
-      match = item.status === "Playing"
+      match = item.status.includes("Playing")
+    } else if (filter_mode === "pinned") {
+      match = item.status.includes("Pinned")
     }
-    
-    if (!match && item.status) {
-      let status = case_sensitive ? item.status : item.status_lower
-      match = match || filter_words.every(x => status.includes(x))
-    }
-    
+        
     if (!match) {
       return false
     }
