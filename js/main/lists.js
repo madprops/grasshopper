@@ -62,3 +62,8 @@ App.set_list_title = function (list, num) {
     App.el("#history_title").textContent = `History (${num})`
   }
 }
+
+// Count and update list titles
+App.update_list_title = function (list) {
+  App.set_list_title(list, App.count_visible_items(list))
+}

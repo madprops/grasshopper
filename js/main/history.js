@@ -42,7 +42,8 @@ App.prepend_history = function (info) {
   App.history_items.unshift(item)
   App.el("#history").prepend(item.element)
   App.create_item_element(item)
-  App.do_filter({select_new: false, disable_mouse_over: false})  
+  App.show_item(item)
+  App.update_list_title("history")
 }
 
 // Get history item by url

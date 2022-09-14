@@ -521,3 +521,8 @@ App.get_item_index = function (item) {
 
   return -1
 }
+
+// Count visible items from a list
+App.count_visible_items = function (list) {
+  return App.get_items(list).filter(x => App.item_is_visible(x)).length
+}
