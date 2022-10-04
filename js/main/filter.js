@@ -35,7 +35,7 @@ App.do_filter = function (args = {}) {
 
   let value = App.el("#filter").value.trim()
   let filter_mode = App.el("#filter_mode").value
-  let tabs_only = filter_mode === "playing" || filter_mode === "pinned"
+  let tabs_only = filter_mode === "playing" || filter_mode === "pins"
 
   if (!tabs_only && !App.full_history && value) {
     App.show_lists("full")
@@ -75,7 +75,7 @@ App.do_filter = function (args = {}) {
     } else if (filter_mode === "playing") {
       match = item.status.includes("playing") &&
       (check(title) || check(path))    
-    } else if (filter_mode === "pinned") {
+    } else if (filter_mode === "pins") {
       match = item.status.includes("pinned") &&
       (check(title) || check(path))  
     }

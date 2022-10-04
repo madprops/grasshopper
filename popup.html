@@ -20,11 +20,10 @@
       <div id="top" class="flex_row_center unselectable">
         <div id="about_button" class="action">G</div>
         <input type="text" id="filter" autocomplete="off" placeholder="Type to filter...">
-        <input id="case_sensitive" type="checkbox" title="Case Sensitive">
         
         <select id="filter_mode" class="top_select">
           <option value="title_url" selected>All</option>
-          <option value="pinned">Pinned</option>
+          <option value="pins">Pins</option>
           <option value="playing">Playing</option>
           <option value="title">Filter Title</option>
           <option value="url">Filter URL</option>
@@ -34,6 +33,8 @@
           <option value="title" selected>Show Title</option>
           <option value="url">Show URL</option>
         </select>
+
+        <input id="case_sensitive" type="checkbox" title="Case Sensitive">
 
         <button id="clear_button" class="button actionbox">Clear</button>
         <button id="closed_button" class="button actionbox">Closed</button>
