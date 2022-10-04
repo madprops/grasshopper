@@ -8,7 +8,7 @@ App.setup_mouse = function () {
 
   // When the button is released
   App.ev(lists, "mouseup", function (e) {
-    if (!App.first_mousedown) {
+    if (e.button !== 0 || !App.first_mousedown) {
       return
     }
 
