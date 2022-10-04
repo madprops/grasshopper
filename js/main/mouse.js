@@ -1,8 +1,17 @@
 App.setup_mouse = function () {
   let lists = App.el("#lists")
 
-  // When list items are clicked
-  App.ev(lists, "click", function (e) {
+  // When the button is pressed
+  App.ev(App.el("#main"), "mousedown", function (e) {
+    App.first_mousedown = true
+  })  
+
+  // When the button is released
+  App.ev(lists, "mouseup", function (e) {
+    if (!App.first_mousedown) {
+      return
+    }
+
     if (e.target.closest(".item")) {
       let el = e.target.closest(".item")
       let item = App.get_item_by_id(el.dataset.id)

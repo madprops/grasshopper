@@ -257,7 +257,7 @@ body, html {
   white-space: pre;
 }
 
-.underline {
+.underline:hover {
   text-decoration: underline;
 }
 

@@ -206,7 +206,7 @@ App.create_item_element = function (item) {
   App.set_item_text(item)
 
   if (item.list === "tabs") {
-    let close = App.create("div", "item_close action unselectable")
+    let close = App.create("div", "item_close underline unselectable")
     close.textContent = "Close"
     item.element.append(close)
   }
