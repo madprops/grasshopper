@@ -25,7 +25,7 @@ App.els = function (query, root = document) {
 
 // Print a message
 App.log = function (s) {
-  console.log(s)
+  console.info(s)
 }
 
 // Centralized function to create debouncers
