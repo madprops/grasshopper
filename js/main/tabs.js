@@ -105,7 +105,10 @@ App.prepend_tab = function (tab) {
 
 // Show closed tabs
 App.show_closed_tabs = async function () {
-  let closed = await browser.sessions.getRecentlyClosed()
+  let closed = await browser.sessions.getRecentlyClosed({
+    maxResults: 25
+  })
+
   let container = App.create("div", "unselectable", "closed_container")
   let urls = []
 
