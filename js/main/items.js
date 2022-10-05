@@ -36,7 +36,11 @@ App.process_items = function (items) {
 
 // Process an item
 App.process_item = function (item) {
-  item.url = App.format_url(item.url)  
+  if (!item.url) {
+    return
+  }
+  
+  item.url = App.format_url(item.url)
 
   let url_obj
 
@@ -122,7 +126,7 @@ App.get_img_icon = function (favicon) {
   icon.loading = "lazy"
   icon.width = 25
   icon.height = 25
-  
+
   App.ev(icon, "error", function () {
     this.classList.add("invisible")
   })
@@ -142,11 +146,7 @@ App.empty_item_element = function (el) {
 // Create an item element
 App.create_item_element = function (item) {
   let icon_container = App.create("div", "item_icon_container")
-  let icon
-
-  if (item.favicon) {
-    icon = App.get_img_icon(item.favicon, item.hostname)
-  } 
+  let icon = App.get_img_icon(item.favicon, item.hostname)
 
   icon_container.append(icon)
   item.element.prepend(icon_container)
