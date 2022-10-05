@@ -1,29 +1,13 @@
-// Get list of open tabs
+// Get open tabs
 App.get_tabs = async function () {
   let items = await browser.tabs.query({ currentWindow: true })
   items.sort((a, b) => (a.lastAccessed < b.lastAccessed) ? 1 : -1)
   return items
 }
 
-// Process tabs
-App.process_tabs = function (tabs) {
-  App.tab_items = []
-  App.process_items(tabs, "tabs", App.tab_items)
-}
-
 // Open a new tab with a url
 App.open_tab = function (item, close = true) {
-  if (item.list === "tabs") {
-    browser.tabs.update(item.tab_id, {active: close})
-  } else {
-    browser.tabs.create({url: item.url, active: close})
-  }
-
-  if (item.list === "history") {
-    if (!close) {
-      App.remove_item(item)
-    }
-  }
+  browser.tabs.update(item.id, {active: close})
 
   if (close) {
     window.close()
@@ -35,15 +19,10 @@ App.close_tab = function (item, close_tab = true) {
   item.closed = true
 
   if (close_tab) {
-    browser.tabs.remove(item.tab_id)
-  }
-
-  if (!App.get_history_item_by_url(item.url)) {
-    App.prepend_history(item)
+    browser.tabs.remove(item.id)
   }
 
   App.remove_item(item)
-  App.update_list_title("tabs")
 }
 
 // Setup tabs
@@ -56,19 +35,23 @@ App.setup_tabs = async function () {
     App.new_tab()
   })  
 
-  browser.tabs.onUpdated.addListener(function (tab_id) {
-    App.refresh_tab(tab_id)
+  browser.tabs.onUpdated.addListener(function (id) {
+    App.refresh_tab(id)
   })
 
-  browser.tabs.onRemoved.addListener(function (tab_id) {
-    App.clean_closed_tab(tab_id)
+  browser.tabs.onRemoved.addListener(function (id) {
+    App.clean_closed_tab(id)
   })  
 }
 
 // Restore a closed tab
 App.restore_tab = async function (tab, close = true) {
   await browser.sessions.forgetClosedTab(tab.windowId, tab.sessionId)
-  App.open_tab(tab, close)
+  browser.tabs.create({url: tab.url, active: close})
+
+  if (close) {
+    window.close()
+  }
 }
 
 // Open a new tab
@@ -78,9 +61,9 @@ App.new_tab = function () {
 }
 
 // Refresh tabs
-App.refresh_tab = async function (tab_id) {
-  let item = App.get_item_by_tab_id(tab_id)
-  let info = await browser.tabs.get(tab_id)
+App.refresh_tab = async function (id) {
+  let item = App.get_item_by_id(id)
+  let info = await browser.tabs.get(id)
 
   if (item) {
     App.update_tab(item, info)
@@ -89,24 +72,14 @@ App.refresh_tab = async function (tab_id) {
   }
 }
 
-// Get tab by tab id
-App.get_item_by_tab_id = function (tab_id) {
-  for (let item of App.tab_items) {
-    if (item.tab_id === tab_id) {
-      return item
-    }
-  }
-}
-
 // Update a tab
 App.update_tab = function (item, info) {
   for (let [i, it] of App.tab_items.entries()) {
-    if (it.tab_id === item.tab_id) {
+    if (it.id === item.id) {
       let selected = App.selected_item === it
 
       let item = App.process_item({
         item: info,
-        list: "tabs",
         id: it.id
       })
 
@@ -128,7 +101,6 @@ App.update_tab = function (item, info) {
 App.prepend_tab = function (tab) {
   let item = App.process_item({
     item: tab,
-    list: "tabs"
   })
 
   App.tab_items.unshift(item)
@@ -146,7 +118,6 @@ App.show_closed_tabs = async function () {
   for (let c of closed) {
     if (c.tab) {
       c.tab.url = App.format_url(c.tab.url)
-      let url_obj
 
       try {
         url_obj = new URL(c.tab.url)
@@ -161,14 +132,7 @@ App.show_closed_tabs = async function () {
       urls.push(c.tab.url)
       
       let div = App.create("div", "closed_item")
-      let hostname = App.remove_slashes(url_obj.hostname)
-      let icon
-
-      if (c.tab.favIconUrl) {
-        icon = App.get_img_icon(c.tab.favIconUrl, hostname)
-      } else {
-        icon = App.get_gen_icon(hostname)
-      }
+      let icon = App.get_img_icon(c.tab.favIconUrl)
 
       div.append(icon)
       let text = App.create("div")
@@ -195,8 +159,8 @@ App.show_closed_tabs = async function () {
 }
 
 // Remove item of a closed tab
-App.clean_closed_tab = function (tab_id) {
-  let item = App.get_item_by_tab_id(tab_id)
+App.clean_closed_tab = function (id) {
+  let item = App.get_item_by_id(id)
 
   if (item) {
     App.close_tab(item, false)
@@ -277,10 +241,17 @@ App.confirm_tabs_close = async function (tabs) {
 
 // Pin a tab
 App.pin_tab = function (item) {
-  browser.tabs.update(item.tab_id, {pinned: true})
+  browser.tabs.update(item.id, {pinned: true})
 }
 
 // Unpin a tab
 App.unpin_tab = function (item) {
-  browser.tabs.update(item.tab_id, {pinned: false})
+  browser.tabs.update(item.id, {pinned: false})
+}
+
+// Show tabs
+App.show_tabs = async function () {
+  let tabs = await App.get_tabs()
+  App.process_items(tabs)
+  App.do_filter()
 }

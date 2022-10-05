@@ -18,9 +18,6 @@ App.setup_keyboard = function () {
     } else if (e.key === "ArrowDown") {
       App.select_item_below()
       e.preventDefault()
-    } else if (e.key === "Tab") {
-      App.switch_list()
-      e.preventDefault()
     }
   })
 }

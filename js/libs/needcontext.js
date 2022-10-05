@@ -165,7 +165,7 @@ NeedContext.init = function () {
       flex-direction: column;
       gap: 3px;
       user-select: none;
-      border: 3px solid #2B2F39;
+      border: 1px solid #2B2F39;
       border-radius: 5px;
       cursor: pointer;
     }

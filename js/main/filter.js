@@ -35,20 +35,12 @@ App.do_filter = function (args = {}) {
 
   let value = App.el("#filter").value.trim()
   let filter_mode = App.el("#filter_mode").value
-  let tabs_only = filter_mode === "playing" || filter_mode === "pins"
 
-  if (!tabs_only && !App.full_history && value) {
-    App.show_lists("full")
-    return
-  }
-
-  let items = App.get_all_items()
-
-  if (items.length === 0) {
+  if (App.tab_items.length === 0) {
     return
   }
   
-  App.log(`<< Filtering ${items.length} items >>`)
+  App.log(`<< Filtering ${App.tab_items.length} items >>`)
   let words = value.split(" ").filter(x => x !== "")
   let case_sensitive = App.el("#case_sensitive").checked
   let filter_words = case_sensitive ? words : words.map(x => x.toLowerCase())
@@ -58,10 +50,6 @@ App.do_filter = function (args = {}) {
   }
 
   function matched (item) {
-    if (tabs_only && item.list !== "tabs") {
-      return false
-    }
-
     let match
     let title = case_sensitive ? item.title : item.title_lower
     let path = case_sensitive ? item.path : item.path_lower
@@ -88,14 +76,13 @@ App.do_filter = function (args = {}) {
   }
 
   let selected
-  let num_tabs = 0
-  let num_history = 0
+  let num_matched = 0
 
   if (args.disable_mouse_over) {
     App.disable_mouse_over()
   }
 
-  for (let item of items) {
+  for (let item of App.tab_items) {
     if (matched(item)) {
       App.show_item(item)
 
@@ -103,11 +90,7 @@ App.do_filter = function (args = {}) {
         selected = item
       }
 
-      if (item.list === "tabs") {
-        num_tabs += 1
-      } else if (item.list === "history") {
-        num_history += 1
-      }
+      num_matched += 1
     } else {
       App.hide_item(item)
     }
@@ -123,13 +106,6 @@ App.do_filter = function (args = {}) {
   if (App.mouse_over_disabled) {
     App.enable_mouse_over()
   }
-
-  if (selected) {
-    App.scroll_list(App.get_other_list(selected.list))
-  }
-
-  App.set_list_title("tabs", num_tabs)
-  App.set_list_title("history", num_history)
 }
 
 // Focus the filter

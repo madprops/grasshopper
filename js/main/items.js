@@ -13,112 +13,72 @@ App.setup_items = function () {
 }
 
 // When results are found
-App.process_items = function (items, list, container) {
-  let list_el = App.el(`#${list}`)
-  list_el.innerHTML = ""
-  App[`${list}_id`] = 1
-  let exclude = [] 
-
-  if (list === "history") {
-    exclude = App.tab_items.map(x => x.url)
-  }
+App.process_items = function (items) {
+  let container = App.el("#tabs")
+  container.innerHTML = ""
+  App.tab_items = []
 
   for (let item of items) {
     if (!item.url) {
       continue
     }
 
-    let obj = App.process_item({
-      item: item, 
-      list: list, 
-      exclude: exclude
-    })
+    let obj = App.process_item(item)
     
     if (!obj) {
       continue
-    }
-
-    if (list === "history") {
-      exclude.push(obj.url)    
-    }    
+    }  
     
-    container.push(obj)
-    list_el.append(obj.element)
+    App.tab_items.push(obj)
+    container.append(obj.element)
   }
 }
 
 // Process an item
-// Args: item, list, exclude, id
-App.process_item = function (args) {
-  let update
-
-  if (args.id === undefined) {
-    args.id = `${args.list}_${App[`${args.list}_id`]}`
-    update = false
-  } else {
-    update = true
-  }
-
-  if (args.exclude === undefined) {
-    args.exclude = []
-  }
-
-  args.item.url = App.format_url(args.item.url)
-
-  if (args.list === "history") {
-    if (args.exclude.includes(args.item.url)) {
-      return
-    }
-  }   
+App.process_item = function (item) {
+  item.url = App.format_url(item.url)  
 
   let url_obj
 
   try {
-    url_obj = new URL(args.item.url)
+    url_obj = new URL(item.url)
   } catch (err) {
     return
   }
 
   let hostname = App.remove_slashes(url_obj.hostname)
-  let path = App.remove_protocol(args.item.url)
+  let path = App.remove_protocol(item.url)
   
-  let el = App.create("div", `item hidden ${args.list}_item`)
-  el.dataset.id = args.id
+  let el = App.create("div", "item hidden")
+  el.dataset.id = item.id
   App.empty_item_element(el)
 
   App.item_observer.observe(el)
-  let title = args.item.title || path 
-  let tab_id = args.list === "tabs" ? args.item.id : undefined
+  let title = item.title || path 
   let status = []
 
-  if (args.item.audible) {
+  if (item.audible) {
     status.push("playing")
   }
 
-  if (args.item.pinned) {
+  if (item.pinned) {
     status.push("pinned")
   }
 
   let obj = {
+    id: item.id,
     title: title,
     title_lower: title.toLowerCase(),
-    url: args.item.url,
+    url: item.url,
     path: path,
     path_lower: path.toLowerCase(),
     hostname: hostname,
     created: false,
     element: el,
-    id: args.id,
-    tab_id: tab_id,
-    list: args.list,
-    favicon: args.item.favIconUrl,
-    audible: args.item.audible,
+    favicon: item.favIconUrl,
+    audible: item.audible,
     status: status,
     closed: false
-  }
-
-  if (!update) {
-    App[`${args.list}_id`] += 1
   }
 
   return obj
@@ -128,7 +88,7 @@ App.process_item = function (args) {
 // Used for lazy-loading components
 App.start_item_observer = function () {
   let options = {
-    root: App.el("#lists"),
+    root: App.el("#tabs"),
     rootMargin: "0px",
     threshold: 0.1,
   }
@@ -156,25 +116,15 @@ App.start_item_observer = function () {
   }, options)
 }
 
-// Get generated icon
-App.get_gen_icon = function (hostname) {
-  let icon = App.create("canvas", "item_icon")
-  icon.width = 25
-  icon.height = 25
-  jdenticon.update(icon, hostname)
-  return icon
-}
-
 // Get image favicon
-App.get_img_icon = function (favicon, hostname) {
+App.get_img_icon = function (favicon) {
   let icon = App.create("img", "item_icon")
   icon.loading = "lazy"
   icon.width = 25
   icon.height = 25
   
   App.ev(icon, "error", function () {
-    let icon = App.get_gen_icon(hostname)
-    this.replaceWith(icon)
+    this.classList.add("invisible")
   })
 
   icon.src = favicon
@@ -196,20 +146,16 @@ App.create_item_element = function (item) {
 
   if (item.favicon) {
     icon = App.get_img_icon(item.favicon, item.hostname)
-  } else {
-    icon = App.get_gen_icon(item.hostname)
-  }
+  } 
 
   icon_container.append(icon)
   item.element.prepend(icon_container)
 
   App.set_item_text(item)
 
-  if (item.list === "tabs") {
-    let close = App.create("div", "item_close underline unselectable")
-    close.textContent = "Close"
-    item.element.append(close)
-  }
+  let close = App.create("div", "item_close underline unselectable")
+  close.textContent = "Close"
+  item.element.append(close)
 
   item.created = true
   App.log("Element created")
@@ -247,14 +193,9 @@ App.set_item_text = function (item) {
   text.textContent = content
 }
 
-// Get all items
-App.get_all_items = function () {
-  return App.tab_items.concat(App.history_items)
-}
-
 // Change item text mode
 App.update_text = function () {
-  for (let item of App.get_all_items()) {
+  for (let item of App.tab_items) {
     if (item.created) {
       App.set_item_text(item)      
     }
@@ -263,7 +204,7 @@ App.update_text = function () {
 
 // Get next item that is visible
 App.get_next_visible_item = function (o_item) {
-  let items = App.get_all_items()
+  let items = App.tab_items
   let waypoint = false
 
   if (!App.selected_valid()) {
@@ -287,15 +228,14 @@ App.get_next_visible_item = function (o_item) {
 
 // Get prev item that is visible
 App.get_prev_visible_item = function (o_item) {
-  let items = App.get_all_items()
   let waypoint = false
 
   if (!App.selected_valid()) {
     waypoint = true
   }  
 
-  for (let i=items.length-1; i>=0; i--) {
-    let item = items[i]
+  for (let i=App.tab_items.length-1; i>=0; i--) {
+    let item = App.tab_items[i]
 
     if (waypoint) {
       if (item.created && App.item_is_visible(item)) {
@@ -309,25 +249,11 @@ App.get_prev_visible_item = function (o_item) {
   }
 }
 
-// Get first visible item
-App.get_first_visible_item = function (list) {
-  let items = App.get_items(list)
-  
-  for (item of items) {
-    if (App.item_is_visible(item)) {
-      return item
-    }
-  }
-}
-
-// Get items of a list
-App.get_items = function (list) {
-  return list === "tabs" ? App.tab_items : App.history_items
-}
-
 // Get an item by id dataset
 App.get_item_by_id = function (id) {
-  for (let item of App.get_all_items()) {
+  id = parseInt(id)
+
+  for (let item of App.tab_items) {
     if (item.id === id) {
       return item
     }
@@ -380,10 +306,7 @@ App.select_item = function (args) {
   }
 
   App.update_footer()
-
-  if (args.item.list === "tabs") {
-    browser.tabs.warmup(args.item.tab_id)
-  }
+  browser.tabs.warmup(args.item.id)
 
   if (args.disable_mouse_over) {
     App.enable_mouse_over()
@@ -422,60 +345,58 @@ App.show_item_menu = function (item, x, y) {
     }
   ]
 
-  if (item.list === "tabs") {
-    let index = App.get_item_index(item)
+  let index = App.get_item_index(item)
 
-    if (index >= 0) {
-      if (index > 0) {
-        items.push({
-          text: "Close Above",
-          action: function () {
-            App.close_tabs_above(item)
-          }
-        })
-      }
-  
-      if (index < App.tab_items.length - 1) {
-        items.push({
-          text: "Close Below",
-          action: function () {
-            App.close_tabs_below(item)
-          }
-        })   
-      }
-    }
-
-    if (App.tab_items.length > 1) {
+  if (index >= 0) {
+    if (index > 0) {
       items.push({
-        text: "Close Others",
+        text: "Close Above",
         action: function () {
-          App.close_other_tabs(item)
-        }
-      })    
-    }
-
-    items.push({
-      text: "Keep Pins",
-      action: function () {
-        App.close_unpinned_tabs()
-      }
-    }) 
-
-    if (item.status.includes("pinned")) {
-      items.push({
-        text: "Unpin",
-        action: function () {
-          App.unpin_tab(item)
-        }
-      }) 
-    } else {
-      items.push({
-        text: "Pin",
-        action: function () {
-          App.pin_tab(item)
+          App.close_tabs_above(item)
         }
       })
     }
+
+    if (index < App.tab_items.length - 1) {
+      items.push({
+        text: "Close Below",
+        action: function () {
+          App.close_tabs_below(item)
+        }
+      })   
+    }
+  }
+
+  if (App.tab_items.length > 1) {
+    items.push({
+      text: "Close Others",
+      action: function () {
+        App.close_other_tabs(item)
+      }
+    })    
+  }
+
+  items.push({
+    text: "Keep Pins",
+    action: function () {
+      App.close_unpinned_tabs()
+    }
+  }) 
+
+  if (item.status.includes("pinned")) {
+    items.push({
+      text: "Unpin",
+      action: function () {
+        App.unpin_tab(item)
+      }
+    }) 
+  } else {
+    items.push({
+      text: "Pin",
+      action: function () {
+        App.pin_tab(item)
+      }
+    })
   }
 
   NeedContext.show(x, y, items)
@@ -497,7 +418,7 @@ App.show_tabs_menu = function (x, y) {
 
 // Remove an item
 App.remove_item = function (item) {
-  let items = App.get_items(item.list)
+  let items = App.tab_items
   item.element.remove()
 
   for (let [i, it] of items.entries()) {
@@ -531,9 +452,9 @@ App.selected_valid = function () {
   return App.selected_item && !App.selected_item.closed && App.item_is_visible(App.selected_item)
 }
 
-// Get index of item in list
+// Get index of item
 App.get_item_index = function (item) {
-  for (let [i, it] of App.get_items(item.list).entries()) {
+  for (let [i, it] of App.tab_items.entries()) {
     if (it === item) {
       return i
     }
@@ -542,7 +463,7 @@ App.get_item_index = function (item) {
   return -1
 }
 
-// Count visible items from a list
-App.count_visible_items = function (list) {
-  return App.get_items(list).filter(x => App.item_is_visible(x)).length
+// Count visible items
+App.count_visible_items = function () {
+  return App.tab_items.filter(x => App.item_is_visible(x)).length
 }

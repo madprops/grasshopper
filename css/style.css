@@ -75,44 +75,16 @@ body, html {
   min-width: 1.5rem;
 }
 
-#lists {
-  display: flex;
-  flex-direction: column;
-  flex-grow: 1;
-  flex-shrink: 1;
+#tabs {
   margin-top: 0.8rem;
-  overflow-x: hidden;
-  overflow-y: auto;
-  gap: 0.5rem;
-}
-
-.list_container {
   display: flex;
   flex-direction: column;
   flex-grow: 1;
   flex-shrink: 1;
-  max-height: 100%;
   position: relative;
-  height: 50%;
+  height: 100%;
   overflow-x: hidden;
   overflow-y: auto;
-  gap: 0.25rem;
-}
-
-.list {
-  display: flex;
-  flex-direction: column;
-  position: relative;
-  overflow-x: hidden;
-  overflow-y: auto;
-  flex-grow: 1;
-}
-
-.list_title {
-  border-top: 1px solid var(--separator_color);
-  border-bottom: 1px solid var(--separator_color);
-  padding-top: 0.25rem;
-  padding-bottom: 0.25rem;  
 }
 
 .item {
@@ -355,4 +327,8 @@ body, html {
 
 .closed_item:hover {
   background-color: var(--selected_color);
+}
+
+.invisible {
+  visibility: hidden;
 }

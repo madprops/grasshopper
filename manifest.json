@@ -1,10 +1,9 @@
 {
     "manifest_version": 2,
     "name": "Grasshopper",
-    "version": "3.21",
-    "description": "Go to your favorites URLs quickly",
+    "version": "4.0",
+    "description": "Alternative tab manager",
     "permissions": [
-        "history",
         "tabs",
         "sessions"
     ],
