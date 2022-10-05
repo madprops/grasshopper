@@ -145,66 +145,8 @@ body, html {
 	box-shadow: 0 0 0.3rem currentColor;
 }
 
-.float_right {
-  margin-left: auto;
-}
-
 .unselectable {
   user-select: none;
-}
-
-#configure {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 1.5rem;
-  margin-top: 1.5rem;
-  margin-bottom: 1.5rem;
-  overflow: auto;
-}
-
-.configure_item {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
-
-.configure_title {
-  font-size: 1.2rem;
-  margin-bottom: 0.35rem;
-}
-
-.configure_info {
-  max-width: 10rem;
-  text-align: center;
-  margin-bottom: 0.7rem;
-  opacity: 0.8;
-}
-
-.configure_input {
-  width: 8rem;
-  font-size: 1rem;
-  text-align: center;
-}
-
-.configure_select {
-  width: 8rem;
-  font-size: 1rem;
-  text-align: center;
-}
-
-.configure_checkbox {
-  width: 1.1rem;
-  height: 1.1rem;
-}
-
-.config_default_button {
-  margin-top: 0.5rem;
-  text-decoration: underline;
-}
-
-.removed {
-  display: none;
 }
 
 #footer {
@@ -218,15 +160,6 @@ body, html {
   overflow: hidden;
   border-top: 1px solid var(--separator_color);
   white-space: nowrap;
-}
-
-#favorites_data_textarea {
-  font-size: 0.9rem;
-  width: 28rem;
-  margin: 1rem;
-  padding: 0.25rem;
-  text-align: left;
-  white-space: pre;
 }
 
 .underline:hover {
