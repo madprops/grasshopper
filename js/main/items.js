@@ -19,10 +19,6 @@ App.process_items = function (items) {
   App.tab_items = []
 
   for (let item of items) {
-    if (!item.url) {
-      continue
-    }
-
     let obj = App.process_item(item)
     
     if (!obj) {
@@ -37,12 +33,10 @@ App.process_items = function (items) {
 // Process an item
 App.process_item = function (item) {
   if (!item.url) {
-    return
+    return false
   }
   
   item.url = App.format_url(item.url)
-
-  let url_obj
 
   try {
     url_obj = new URL(item.url)
@@ -50,7 +44,6 @@ App.process_item = function (item) {
     return
   }
 
-  let hostname = App.remove_slashes(url_obj.hostname)
   let path = App.remove_protocol(item.url)
   
   let el = App.create("div", "item hidden")
@@ -76,7 +69,6 @@ App.process_item = function (item) {
     url: item.url,
     path: path,
     path_lower: path.toLowerCase(),
-    hostname: hostname,
     created: false,
     element: el,
     favicon: item.favIconUrl,
@@ -148,7 +140,7 @@ App.empty_item_element = function (el) {
 
 // Create an item element
 App.create_item_element = function (item) {
-  let icon = App.get_img_icon(item.favicon, item.hostname)
+  let icon = App.get_img_icon(item.favicon)
   item.element.prepend(icon)
 
   App.set_item_text(item)

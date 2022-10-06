@@ -1,8 +1,3 @@
-// Remove end char
-App.remove_slashes = function (s) {
-  return App.remove_slashes_end(App.remove_slashes_start(s))
-}
-
 // Remove slashes from start
 App.remove_slashes_start = function (s) {
   return s.replace(/^\/+/g, "")
