@@ -246,16 +246,25 @@ body, html {
   display: flex;
   flex-direction: column;
   align-items: center;
+  height: 100%;
+  overflow: hidden;
+  box-sizing: border-box;
 }
 
 #closed_filter {
-  margin-top: 0.44rem;
+  margin-top: 0.42rem;
   width: 14rem;
+  flex-grow: 0;
+  flex-shrink: 0;
 }
 
 #closed_container {
   margin-top: 0.77rem;
   width: 100%;
+  flex-grow: 1;
+  flex-shrink: 1;
+  overflow-y: auto;
+  overflow-x: hidden;
 }
 
 .closed_item {
