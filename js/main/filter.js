@@ -40,7 +40,6 @@ App.do_filter = function (args = {}) {
     return
   }
   
-  App.log(`<< Filtering ${App.tab_items.length} items >>`)
   let words = value.split(" ").filter(x => x !== "")
   let case_sensitive = App.el("#case_sensitive").checked
   let filter_words = case_sensitive ? words : words.map(x => x.toLowerCase())
@@ -76,7 +75,6 @@ App.do_filter = function (args = {}) {
   }
 
   let selected
-  let num_matched = 0
 
   if (args.disable_mouse_over) {
     App.disable_mouse_over()
@@ -89,8 +87,6 @@ App.do_filter = function (args = {}) {
       if (args.select_new && !selected) {
         selected = item
       }
-
-      num_matched += 1
     } else {
       App.hide_item(item)
     }

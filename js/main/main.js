@@ -12,7 +12,6 @@ App.init = function () {
   App.get_state()
   App.setup_tabs()
   App.setup_windows()
-  App.setup_items()
   App.setup_filter()
   App.setup_mouse()
   App.setup_keyboard()

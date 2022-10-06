@@ -16,6 +16,10 @@ App.open_tab = function (item, close = true) {
 
 // Close a tab
 App.close_tab = function (item, close_tab = true) {
+  if (!item) {
+    return
+  }
+
   item.closed = true
 
   if (close_tab) {
@@ -83,9 +87,9 @@ App.update_tab = function (item, info) {
         break
       }
 
+      App.create_item_element(item)
       App.tab_items[i].element.replaceWith(item.element)
       App.tab_items[i] = item
-      App.create_item_element(item)
 
       if (selected) {
         App.select_item({item: item})
@@ -106,8 +110,8 @@ App.prepend_tab = function (tab) {
   }
 
   App.tab_items.unshift(item)
-  App.el("#tabs").prepend(item.element)
   App.create_item_element(item)
+  App.el("#tabs").prepend(item.element)
   App.do_filter({select_new: false, disable_mouse_over: false})
 }
 

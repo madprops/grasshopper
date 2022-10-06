@@ -1,17 +1,3 @@
-// Setup items
-App.setup_items = function () {
-  App.start_item_observer()
-
-  let text_mode = App.el("#text_mode")
-  text_mode.value = App.state.text_mode
-
-  App.ev(text_mode, "change", function () {
-    App.state.text_mode = text_mode.value
-    App.update_text()
-    App.save_state()
-  })
-}
-
 // When results are found
 App.process_items = function (items) {
   let container = App.el("#tabs")
@@ -45,12 +31,6 @@ App.process_item = function (item) {
   }
 
   let path = App.remove_protocol(item.url)
-  
-  let el = App.create("div", "item hidden")
-  el.dataset.id = item.id
-  App.empty_item_element(el)
-
-  App.item_observer.observe(el)
   let title = item.title || path 
   let status = []
 
@@ -69,47 +49,15 @@ App.process_item = function (item) {
     url: item.url,
     path: path,
     path_lower: path.toLowerCase(),
-    created: false,
-    element: el,
     favicon: item.favIconUrl,
     audible: item.audible,
     status: status,
     closed: false
   }
 
+  App.create_item_element(obj)
+
   return obj
-}
-
-// Start intersection observer to check visibility
-// Used for lazy-loading components
-App.start_item_observer = function () {
-  let options = {
-    root: App.el("#tabs"),
-    rootMargin: "0px",
-    threshold: 0.1,
-  }
-  
-  App.item_observer = new IntersectionObserver(function (entries) {
-    for (let entry of entries) {
-      if (!entry.isIntersecting) {
-        continue
-      }
-      
-      if (!entry.target.classList.contains("item")) {
-        return
-      }
-
-      let item = App.get_item_by_id(entry.target.dataset.id)
-
-      if (!item) {
-        continue
-      }
-
-      if (!item.created && App.item_is_visible(item)) {
-        App.create_item_element(item)
-      }
-    }
-  }, options)
 }
 
 // Get image favicon
@@ -130,27 +78,22 @@ App.get_img_icon = function (favicon) {
   return icon_container
 }
 
-// Get an empty item element
-App.empty_item_element = function (el) {
-  el.innerHTML = ""
-  let text = App.create("div", "item_text")
-  text.textContent = "Empty"
-  el.append(text)
-}
-
 // Create an item element
 App.create_item_element = function (item) {
-  let icon = App.get_img_icon(item.favicon)
-  item.element.prepend(icon)
+  item.element = App.create("div", "item")
+  item.element.dataset.id = item.id
 
+  let icon = App.get_img_icon(item.favicon)
+  item.element.append(icon)
+
+  let text = App.create("div", "item_text")
+  text.textContent = "Empty"
+  item.element.append(text)
   App.set_item_text(item)
 
   let close = App.create("div", "item_close underline unselectable")
   close.textContent = "Close"
   item.element.append(close)
-
-  item.created = true
-  App.log("Element created")
 }
 
 // Set item text content
@@ -188,9 +131,7 @@ App.set_item_text = function (item) {
 // Change item text mode
 App.update_text = function () {
   for (let item of App.tab_items) {
-    if (item.created) {
-      App.set_item_text(item)      
-    }
+    App.set_item_text(item)
   }
 }
 
@@ -230,7 +171,7 @@ App.get_prev_visible_item = function (o_item) {
     let item = App.tab_items[i]
 
     if (waypoint) {
-      if (item.created && App.item_is_visible(item)) {
+      if (App.item_is_visible(item)) {
         return item
       }
     }
@@ -280,10 +221,6 @@ App.select_item = function (args) {
   
   if (args.disable_mouse_over) {
     App.disable_mouse_over()
-  }
-  
-  if (!args.item.created) {
-    App.create_item_element(args.item)
   }
 
   for (let el of App.els(".selected")) {

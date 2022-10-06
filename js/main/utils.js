@@ -13,11 +13,6 @@ App.els = function (query, root = document) {
   return Array.from(root.querySelectorAll(query))
 }
 
-// Print a message
-App.log = function (s) {
-  console.info(s)
-}
-
 // Centralized function to create debouncers
 App.create_debouncer = function (func, delay) {
   return (function () {
