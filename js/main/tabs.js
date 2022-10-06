@@ -286,7 +286,8 @@ App.filter_closed_tabs = function () {
   let value = App.el("#closed_filter").value.toLowerCase().trim()
 
   for (let item of App.els(".closed_item")) {
-    if (item.dataset.title.includes(value) || item.dataset.url.includes(value)) {
+    if (item.dataset.title.toLowerCase().includes(value) || 
+        item.dataset.url.toLowerCase().includes(value)) {
       item.classList.remove("hidden")
     } else {
       item.classList.add("hidden")
