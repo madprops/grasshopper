@@ -122,6 +122,7 @@ App.start_item_observer = function () {
 
 // Get image favicon
 App.get_img_icon = function (favicon) {
+  let icon_container = App.create("div", "item_icon_container")
   let icon = App.create("img", "item_icon")
   icon.loading = "lazy"
   icon.width = 25
@@ -132,7 +133,9 @@ App.get_img_icon = function (favicon) {
   })
 
   icon.src = favicon
-  return icon
+
+  icon_container.append(icon)
+  return icon_container
 }
 
 // Get an empty item element
@@ -145,11 +148,8 @@ App.empty_item_element = function (el) {
 
 // Create an item element
 App.create_item_element = function (item) {
-  let icon_container = App.create("div", "item_icon_container")
   let icon = App.get_img_icon(item.favicon, item.hostname)
-
-  icon_container.append(icon)
-  item.element.prepend(icon_container)
+  item.element.prepend(icon)
 
   App.set_item_text(item)
 

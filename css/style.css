@@ -76,7 +76,7 @@ body, html {
 }
 
 #tabs {
-  margin-top: 0.8rem;
+  margin-top: 0.55rem;
   display: flex;
   flex-direction: column;
   flex-grow: 1;
@@ -92,7 +92,8 @@ body, html {
   flex-direction: row;
   cursor: pointer;
   align-items: center;
-  align-items: stretch;
+  padding-top: 0.5rem;
+  padding-bottom: 0.5rem;
 }
 
 .item_icon_container {
@@ -113,15 +114,11 @@ body, html {
   width: 100%;
   white-space: nowrap;
   overflow: hidden;
-  padding-top: 0.35rem;
-  padding-bottom: 0.35rem;
   margin-right: 0.5rem;
 }
 
 .item_close {
   padding-right: 0.5rem;
-  padding-top: 0.35rem;
-  padding-bottom: 0.35rem;
 }
 
 .selected {
@@ -245,17 +242,17 @@ body, html {
 }
 
 #closed_container {
-  margin: 0.5rem;
+  padding: 0.5rem;
+  padding-top: 0.55rem;
 }
 
 .closed_item {
   display: flex;
   flex-direction: row;
-  gap: 0.5rem;
-  padding: 0.45rem;
-  white-space: nowrap;
-  overflow: hidden;
   cursor: pointer;
+  align-items: center;
+  padding-top: 0.5rem;
+  padding-bottom: 0.5rem;
 }
 
 .closed_item:hover {
