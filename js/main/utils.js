@@ -1,8 +1,3 @@
-// Remove slashes from start
-App.remove_slashes_start = function (s) {
-  return s.replace(/^\/+/g, "")
-}
-
 // Remove slashes from ending
 App.remove_slashes_end = function (s) {
   return s.replace(/\/+$/g, "")
@@ -36,12 +31,6 @@ App.create_debouncer = function (func, delay) {
       }, delay)
     }
   })()
-}
-
-// Locale number
-App.locale_number = function (n) {
-  n = parseInt(n)
-  return n.toLocaleString()
 }
 
 // Create an html element
