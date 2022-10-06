@@ -256,6 +256,8 @@ body, html {
 #closed_container {
   margin-top: 0.77rem;
   width: 100%;
+  white-space: nowrap;
+  overflow: hidden;
 }
 
 .closed_item {
