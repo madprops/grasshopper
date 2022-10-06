@@ -256,8 +256,6 @@ body, html {
 #closed_container {
   margin-top: 0.77rem;
   width: 100%;
-  white-space: nowrap;
-  overflow: hidden;
 }
 
 .closed_item {
@@ -267,6 +265,8 @@ body, html {
   align-items: center;
   padding-top: 0.5rem;
   padding-bottom: 0.5rem;
+  white-space: nowrap;
+  overflow: hidden;
 }
 
 .closed_item:hover {
