@@ -18,6 +18,7 @@ App.hide_window = function () {
   let win = App.el("#show_window")
   win.style.display = "none"
   App.window_open = false
+  App.window_mode = "none"
 }
 
 // Get a template
@@ -32,6 +33,7 @@ App.show_about = function () {
   let manifest = browser.runtime.getManifest()
   let s = `Grasshopper v${manifest.version}`
   App.el("#about_text").textContent = s
+  App.window_mode = "about"
 }
 
 // Setup windows

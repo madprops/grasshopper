@@ -181,6 +181,7 @@ App.show_closed_tabs = async function () {
   })
 
   filter.focus()
+  App.window_mode = "closed_tabs"
 }
 
 // Remove item of a closed tab
@@ -293,4 +294,8 @@ App.filter_closed_tabs = function () {
       item.classList.add("hidden")
     }
   }
+}
+
+App.focus_closed_filter = function () {
+  App.el("#closed_filter").focus()
 }

@@ -1,5 +1,10 @@
 App.setup_keyboard = function () {
   App.ev(document, "keydown", function (e) {
+    if (App.window_mode === "closed_tabs") {
+      App.focus_closed_filter()
+      return
+    }
+
     if (App.window_open || NeedContext.open) {
       return
     }
