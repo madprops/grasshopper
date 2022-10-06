@@ -259,22 +259,45 @@ App.update_footer = function () {
 
 // Show item menu
 App.show_item_menu = function (item, x, y) {
-  let items = [
-    {
-      text: "Copy URL",
-      action: function () {
-        App.copy_to_clipboard(item.url)
-      }
-    },
-    {
-      text: "Copy Title",
-      action: function () {
-        App.copy_to_clipboard(item.title)
-      }
-    }
-  ]
-
+  let items = []
   let index = App.get_item_index(item)
+
+  if (item.status.includes("pinned")) {
+    items.push({
+      text: "Unpin",
+      action: function () {
+        App.unpin_tab(item)
+      }
+    }) 
+  } else {
+    items.push({
+      text: "Pin",
+      action: function () {
+        App.pin_tab(item)
+      }
+    })
+  }
+
+  items.push({
+    text: "Copy URL",
+    action: function () {
+      App.copy_to_clipboard(item.url)
+    }
+  })
+
+  items.push({
+    text: "Copy Title",
+    action: function () {
+      App.copy_to_clipboard(item.title)
+    }
+  })
+
+  items.push({
+    text: "Keep Pins",
+    action: function () {
+      App.close_unpinned_tabs()
+    }
+  })   
 
   if (index >= 0) {
     if (index > 0) {
@@ -303,29 +326,6 @@ App.show_item_menu = function (item, x, y) {
         App.close_other_tabs(item)
       }
     })    
-  }
-
-  items.push({
-    text: "Keep Pins",
-    action: function () {
-      App.close_unpinned_tabs()
-    }
-  }) 
-
-  if (item.status.includes("pinned")) {
-    items.push({
-      text: "Unpin",
-      action: function () {
-        App.unpin_tab(item)
-      }
-    }) 
-  } else {
-    items.push({
-      text: "Pin",
-      action: function () {
-        App.pin_tab(item)
-      }
-    })
   }
 
   NeedContext.show(x, y, items)
