@@ -16,7 +16,7 @@
     <div id="main" class="unselectable">
       <div id="top" class="flex_row_center">
         <div id="about_button" class="action">G</div>
-        <input type="text" id="filter" autocomplete="off" placeholder="Type to filter...">
+        <input type="text" id="filter" class="filter" autocomplete="off" placeholder="Type to filter...">
         
         <select id="filter_mode" class="top_select">
           <option value="title_url" selected>All</option>
@@ -43,7 +43,7 @@
     </div>
 
     <div id="show_window">
-      <div id="show_window_top" class="unselectable action">Close</div>
+      <div id="show_window_top" class="unselectable action">Go Back</div>
       <div id="show_window_content"></div>
     </div>
 
@@ -53,7 +53,12 @@
         <div id="about_author">By madprops (2022)</div>
         <img src="img/icon.png" id="about_image">
       </div>
-    </template>   
+    </template>  
+    
+    <template id="template_closed">
+      <input type="text" id="closed_filter" class="filter" autocomplete="off" placeholder="Type to filter...">
+      <div id="closed_container" class="unselectable"></div>
+    </template>
 
     <script src="js/main/main.js"></script>
   </body>

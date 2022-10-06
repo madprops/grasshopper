@@ -121,7 +121,9 @@ App.show_closed_tabs = async function () {
     maxResults: 25
   })
 
-  let container = App.create("div", "unselectable", "closed_container")
+  let el = App.create("div", "", "closed_main")
+  el.innerHTML = App.get_template("closed")
+  let container = App.el("#closed_container", el)
   let urls = []
 
   for (let c of closed) {
@@ -148,6 +150,8 @@ App.show_closed_tabs = async function () {
       text.textContent = c.tab.title
       div.append(text)
       div.title = c.tab.url
+      div.dataset.url = c.tab.url
+      div.dataset.title = c.tab.title
       
       App.ev(div, "click", function () {
         App.restore_tab(c.tab)
@@ -164,7 +168,19 @@ App.show_closed_tabs = async function () {
     }
   }
 
-  App.show_window_2(container)
+  App.show_window_2(el)
+
+  let filter = App.el("#closed_filter", el)
+
+  App.closed_filter = App.create_debouncer(function () {
+    App.filter_closed_tabs()
+  }, App.filter_delay)
+  
+  App.ev(filter, "input", function () {
+    App.closed_filter()
+  })
+
+  filter.focus()
 }
 
 // Remove item of a closed tab
@@ -263,4 +279,17 @@ App.show_tabs = async function () {
   let tabs = await App.get_tabs()
   App.process_items(tabs)
   App.do_filter()
+}
+
+// Filter closed tabs
+App.filter_closed_tabs = function () {
+  let value = App.el("#closed_filter").value.toLowerCase().trim()
+
+  for (let item of App.els(".closed_item")) {
+    if (item.dataset.title.includes(value) || item.dataset.url.includes(value)) {
+      item.classList.remove("hidden")
+    } else {
+      item.classList.add("hidden")
+    }
+  }
 }

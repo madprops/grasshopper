@@ -46,7 +46,7 @@ body, html {
   font-size: 1.1rem;
 }
 
-#filter {
+.filter {
   background-color: var(--filter_color);
   border-width: 0;
   font-size: 1rem;
@@ -241,9 +241,15 @@ body, html {
   overflow-x: hidden;
 }
 
+#closed_main {
+  padding: 0.7rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
 #closed_container {
-  padding: 0.5rem;
-  padding-top: 0.55rem;
+  margin-top: 0.5rem;
 }
 
 .closed_item {
