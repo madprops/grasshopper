@@ -28,7 +28,6 @@ body, html {
   flex-direction: column;
   height: 100%;
   width: 100%;
-  padding: 0.5rem;
   box-sizing: border-box;
   background-color: var(--background_color);
 }
@@ -37,7 +36,8 @@ body, html {
   flex-grow: 0;
   gap: 0.7rem;
   justify-content: flex-start;
-  margin-left: 0.35rem;
+  padding-left: 0.8rem;
+  padding-top: 0.8rem;
 }
 
 #about_button {
@@ -92,8 +92,7 @@ body, html {
   flex-direction: row;
   cursor: pointer;
   align-items: center;
-  padding-top: 0.5rem;
-  padding-bottom: 0.5rem;
+  padding: 0.5rem;
 }
 
 .item_icon_container {
@@ -115,10 +114,6 @@ body, html {
   white-space: nowrap;
   overflow: hidden;
   margin-right: 0.5rem;
-}
-
-.item_close {
-  padding-right: 0.5rem;
 }
 
 .selected {

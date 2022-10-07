@@ -23,6 +23,8 @@ App.setup_keyboard = function () {
     } else if (e.key === "ArrowDown") {
       App.select_item_below()
       e.preventDefault()
+    } else if (e.key === "Delete") {
+      App.close_tab(App.selected_item)
     }
   })
 }
