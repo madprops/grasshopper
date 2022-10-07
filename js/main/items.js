@@ -1,3 +1,15 @@
+// Setup items
+App.setup_items = function () {
+  let text_mode = App.el("#text_mode")
+  text_mode.value = App.state.text_mode
+
+  App.ev(text_mode, "change", function () {
+    App.state.text_mode = text_mode.value
+    App.update_text()
+    App.save_state()
+  })
+}
+
 // When results are found
 App.process_items = function (items) {
   let container = App.el("#tabs")
