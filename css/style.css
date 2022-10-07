@@ -254,6 +254,7 @@ body, html {
 
 #closed_container {
   margin-top: 0.77rem;
+  margin-bottom: 0.5rem;
   width: 100%;
   flex-grow: 1;
   flex-shrink: 1;
