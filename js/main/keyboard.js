@@ -24,7 +24,9 @@ App.setup_keyboard = function () {
       App.select_item_below()
       e.preventDefault()
     } else if (e.key === "Delete") {
-      App.close_tab(App.selected_item)
+      if (App.item_is_visible(App.selected_item)) {
+        App.close_tab(App.selected_item)
+      }
     }
   })
 }
