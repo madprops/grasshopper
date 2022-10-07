@@ -1,17 +1,8 @@
 App.setup_mouse = function () {
   let container = App.el("#tabs")
 
-  // When the button is pressed
-  App.ev(App.el("#main"), "mousedown", function (e) {
-    App.first_mousedown = true
-  })  
-
   // When the button is released
-  App.ev(container, "mouseup", function (e) {
-    if (e.button !== 0 || !App.first_mousedown) {
-      return
-    }
-
+  App.ev(container, "click", function (e) {
     if (e.target.closest(".item")) {
       let el = e.target.closest(".item")
       let item = App.get_item_by_id(el.dataset.id)
