@@ -237,7 +237,6 @@ body, html {
 }
 
 #closed_main {
-  padding: 0.7rem;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -247,7 +246,7 @@ body, html {
 }
 
 #closed_filter {
-  margin-top: 0.42rem;
+  margin-top: 0.8rem;
   width: 14rem;
   flex-grow: 0;
   flex-shrink: 0;
@@ -267,8 +266,7 @@ body, html {
   flex-direction: row;
   cursor: pointer;
   align-items: center;
-  padding-top: 0.5rem;
-  padding-bottom: 0.5rem;
+  padding: 0.5rem;
   white-space: nowrap;
   overflow: hidden;
 }
