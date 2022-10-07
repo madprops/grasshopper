@@ -10,45 +10,51 @@ App.show_closed_tabs = async function () {
   let urls = []
 
   for (let c of closed) {
-    if (c.tab) {
-      c.tab.url = App.format_url(c.tab.url)
-
-      try {
-        url_obj = new URL(c.tab.url)
-      } catch (err) {
-        continue
-      }
-
-      if (urls.includes(c.tab.url)) {
-        continue
-      }
-
-      urls.push(c.tab.url)
-      
-      let div = App.create("div", "closed_item")
-      let icon = App.get_img_icon(c.tab.favIconUrl)
-
-      div.append(icon)
-      let text = App.create("div")
-      text.textContent = c.tab.title
-      div.append(text)
-      div.title = c.tab.url
-      div.dataset.url = c.tab.url
-      div.dataset.title = c.tab.title
-      
-      App.ev(div, "click", function () {
-        App.restore_tab(c.tab)
-      })
-
-      App.ev(div, "auxclick", function (e) {
-        if (e.button === 1) {
-          App.restore_tab(c.tab, false)
-          div.remove()
-        }
-      })
-
-      container.append(div)
+    if (!c.tab) {
+      continue
     }
+
+    if (c.tab.url.startsWith("about:")) {
+      continue
+    }
+
+    c.tab.url = App.format_url(c.tab.url)
+
+    try {
+      url_obj = new URL(c.tab.url)
+    } catch (err) {
+      continue
+    }
+
+    if (urls.includes(c.tab.url)) {
+      continue
+    }
+
+    urls.push(c.tab.url)
+    
+    let div = App.create("div", "closed_item")
+    let icon = App.get_img_icon(c.tab.favIconUrl)
+
+    div.append(icon)
+    let text = App.create("div")
+    text.textContent = c.tab.title
+    div.append(text)
+    div.title = c.tab.url
+    div.dataset.url = c.tab.url
+    div.dataset.title = c.tab.title
+    
+    App.ev(div, "click", function () {
+      App.restore_tab(c.tab)
+    })
+
+    App.ev(div, "auxclick", function (e) {
+      if (e.button === 1) {
+        App.restore_tab(c.tab, false)
+        div.remove()
+      }
+    })
+
+    container.append(div)
   }
 
   App.show_window_2(el)
