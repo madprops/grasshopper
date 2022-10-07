@@ -20,6 +20,12 @@ App.close_tab = function (item, close_tab = true) {
     return
   }
 
+  let next_item
+
+  if (item === App.selected_item) {
+    next_item = App.get_next_visible_item(item) || App.get_prev_visible_item(item)
+  }  
+
   item.closed = true
 
   if (close_tab) {
@@ -27,6 +33,10 @@ App.close_tab = function (item, close_tab = true) {
   }
 
   App.remove_item(item)
+
+  if (next_item) {
+    App.select_item({item: next_item, disable_mouse_over: true})
+  }  
 }
 
 // Setup tabs
