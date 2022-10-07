@@ -70,6 +70,7 @@ App.show_closed_tabs = async function () {
   })
 
   filter.focus()
+  container.scrollTop = 0
   App.window_mode = "closed_tabs"
 }
 
