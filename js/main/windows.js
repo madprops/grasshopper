@@ -5,9 +5,7 @@ App.get_template = function (id) {
 
 // Create a window
 App.create_window = function (id) {
-  let w = {
-    open: false
-  }
+  let w = {}
 
   let el = App.create("div", "window_main")
   let top = App.create("div", "window_top action unselectable")
@@ -28,13 +26,11 @@ App.create_window = function (id) {
 
   w.show = function () {
     w.element.style.display = "flex"
-    w.open = true
     App.window_mode = id
   }
   
   w.hide = function () {
     w.element.style.display = "none"
-    w.open = false
     App.window_mode = "none"
   }
 

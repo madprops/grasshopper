@@ -17,7 +17,7 @@ App.setup_keyboard = function () {
       return
     }
 
-    if (App.window_open || NeedContext.open) {
+    if (App.window_mode !== "none" || NeedContext.open) {
       return
     }
 
