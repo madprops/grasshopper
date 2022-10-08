@@ -231,22 +231,28 @@ body, html {
   flex-shrink: 0;
 }
 
+.window_top_2 {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  margin-top: 0.8rem;
+}
+
+.window_x {
+  margin-left: auto;
+  padding-right: 1rem;
+  font-size: 1.2rem;
+}
+
 .window_content {
   overflow-y: auto;
   overflow-x: hidden;
 }
 
-#closed_tabs_main {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  height: 100%;
-  overflow: hidden;
-  box-sizing: border-box;
-}
-
 #closed_tabs_filter {
-  margin-top: 0.8rem;
+  margin-left: auto;
   width: 14rem;
   flex-grow: 0;
   flex-shrink: 0;
