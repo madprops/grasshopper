@@ -53,4 +53,13 @@ App.setup_windows = function () {
   })
 
   App.create_window("closed_tabs") 
+  let filter = App.el("#closed_tabs_filter")
+
+  App.filter_closed_tabs = App.create_debouncer(function () {
+    App.do_filter_closed_tabs()
+  }, App.filter_delay)
+  
+  App.ev(filter, "input", function () {
+    App.filter_closed_tabs()
+  })  
 }
