@@ -147,7 +147,7 @@ body, html {
   align-items: center;
   flex-grow: 0;
   flex-shrink: 0;
-  padding-top: 0.5rem;
+  padding: 0.5rem;
   height: 1.5rem;
   overflow: hidden;
   border-top: 1px solid var(--separator_color);
