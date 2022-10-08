@@ -60,7 +60,7 @@ App.setup_tabs = async function () {
 
 // Restore a closed tab
 App.restore_tab = async function (tab, close = true) {
-  await browser.sessions.forgetClosedTab(tab.windowId, tab.sessionId)
+  await browser.sessions.forgetClosedTab(tab.window_id, tab.session_id)
   browser.tabs.create({url: tab.url, active: close})
 
   if (close) {

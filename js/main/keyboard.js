@@ -1,7 +1,19 @@
 App.setup_keyboard = function () {
   App.ev(document, "keydown", function (e) {
     if (App.window_mode === "closed_tabs") {
-      App.focus_closed_filter()
+      App.focus_closed_tabs_filter()
+
+      if (e.key === "Enter") {
+        App.closed_tab_action()
+        e.preventDefault()
+      } else if (e.key === "ArrowUp") {
+        App.closed_tab_above()
+        e.preventDefault()
+      } else if (e.key === "ArrowDown") {
+        App.closed_tab_below()
+        e.preventDefault()
+      } 
+
       return
     }
 

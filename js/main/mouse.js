@@ -40,6 +40,7 @@ App.setup_mouse = function () {
     }
   })
 
+  // On context menu action
   App.ev(container, "contextmenu", function (e) {
     if (e.target.closest(".item")) {
       let el = e.target.closest(".item")
@@ -51,6 +52,41 @@ App.setup_mouse = function () {
       e.preventDefault()
     }
   })
+
+  let ctc = App.el("#closed_tabs_container")
+
+  // On closed tabs click
+  App.ev(ctc, "click", function (e) {
+    if (e.target.closest(".closed_tabs_item")) {
+      let el = e.target.closest(".closed_tabs_item")
+      let index = el.dataset.index
+      let tab = App.closed_tabs[index]
+      App.restore_tab(tab)
+    }
+  })
+
+  // On closed tabs middle click
+  App.ev(ctc, "auxclick", function (e) {
+    if (e.button === 1) {
+      if (e.target.closest(".closed_tabs_item")) {
+        let el = e.target.closest(".closed_tabs_item")
+        let index = el.dataset.index
+        let tab = App.closed_tabs[index]
+        App.restore_tab(tab, false)
+        el.remove()
+      }
+    }
+  })  
+  
+  // When closed tabs items get hovered
+  App.ev(ctc, "mouseover", function (e) {   
+    if (e.target.closest(".closed_tabs_item")) {
+      let el = e.target.closest(".closed_tabs_item")
+      let index = el.dataset.index
+      let tab = App.closed_tabs[index]
+      App.select_closed_tab(tab)
+    }
+  })  
 }
 
 // Disable mouse over

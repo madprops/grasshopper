@@ -43,11 +43,6 @@
       <div id="footer"></div>
     </div>
 
-    <div id="show_window">
-      <div id="show_window_top" class="unselectable action">Go Back</div>
-      <div id="show_window_content"></div>
-    </div>
-
     <template id="template_about">
       <div id="about_container">
         <div id="about_text"></div>
@@ -56,9 +51,11 @@
       </div>
     </template>  
     
-    <template id="template_closed">
-      <input type="text" id="closed_filter" class="filter" autocomplete="off" placeholder="Type to filter...">
-      <div id="closed_container" class="unselectable"></div>
+    <template id="template_closed_tabs">
+      <div id="closed_tabs_main">
+        <input type="text" id="closed_tabs_filter" class="filter" autocomplete="off" placeholder="Type to filter...">
+        <div id="closed_tabs_container" class="unselectable"></div>
+      </div>
     </template>
 
     <script src="js/main/main.js"></script>

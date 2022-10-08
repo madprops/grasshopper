@@ -4,10 +4,13 @@ App.show_closed_tabs = async function () {
     maxResults: 25
   })
 
-  let el = App.create("div", "", "closed_main")
-  el.innerHTML = App.get_template("closed")
-  let container = App.el("#closed_container", el)
+  let container = App.el("#closed_tabs_container")
+  container.innerHTML = ""
+
   let urls = []
+  let selected = false
+  App.closed_tabs = []
+  let index = 0
 
   for (let c of closed) {
     if (!c.tab) {
@@ -32,46 +35,51 @@ App.show_closed_tabs = async function () {
 
     urls.push(c.tab.url)
     
-    let div = App.create("div", "closed_item")
+    let div = App.create("div", "closed_tabs_item")
     let icon = App.get_img_icon(c.tab.favIconUrl)
-
     div.append(icon)
+
     let text = App.create("div")
     text.textContent = c.tab.title
     div.append(text)
-    div.title = c.tab.url
-    div.dataset.url = c.tab.url
-    div.dataset.title = c.tab.title
-    
-    App.ev(div, "click", function () {
-      App.restore_tab(c.tab)
-    })
 
-    App.ev(div, "auxclick", function (e) {
-      if (e.button === 1) {
-        App.restore_tab(c.tab, false)
-        div.remove()
-      }
-    })
+    div.title = c.tab.url
+    div.dataset.index = index
 
     container.append(div)
+
+    let ct = {
+      index: index,
+      url: c.tab.url,
+      title: c.tab.title,
+      window_id: c.tab.windowId,
+      session_id: c.tab.sessionId,
+      element: div
+    }
+
+    index += 1
+
+    App.closed_tabs.push(ct)
+
+    if (!selected) {
+      App.select_closed_tab(ct)
+      selected = true
+    }    
   }
 
-  App.show_window_2(el)
+  let filter = App.el("#closed_tabs_filter")
 
-  let filter = App.el("#closed_filter", el)
-
-  App.closed_filter = App.create_debouncer(function () {
+  App.closed_tabs_filter = App.create_debouncer(function () {
     App.filter_closed_tabs()
   }, App.filter_delay)
   
   App.ev(filter, "input", function () {
-    App.closed_filter()
+    App.closed_tabs_filter()
   })
 
   filter.focus()
   container.scrollTop = 0
-  App.window_mode = "closed_tabs"
+  App.windows["closed_tabs"].show()
 }
 
 // Remove item of a closed tab
@@ -85,9 +93,9 @@ App.clean_closed_tab = function (id) {
 
 // Filter closed tabs
 App.filter_closed_tabs = function () {
-  let value = App.el("#closed_filter").value.toLowerCase().trim()
+  let value = App.el("#closed_tabs_filter").value.toLowerCase().trim()
 
-  for (let item of App.els(".closed_item")) {
+  for (let item of App.els(".closed_tabs_item")) {
     if (item.dataset.title.toLowerCase().includes(value) || 
         item.dataset.url.toLowerCase().includes(value)) {
       item.classList.remove("hidden")
@@ -97,6 +105,44 @@ App.filter_closed_tabs = function () {
   }
 }
 
-App.focus_closed_filter = function () {
-  App.el("#closed_filter").focus()
+// Focus the closed tabs filter
+App.focus_closed_tabs_filter = function () {
+  App.el("#closed_tabs_filter").focus()
+}
+
+// Select a closed tab
+App.select_closed_tab = function (tab) {
+  for (let el of App.els(".closed_tabs_item")) {
+    el.classList.remove("selected")
+  }
+
+  tab.element.classList.add("selected")
+  App.selected_closed_tab = tab
+}
+
+// Selected closed tab action
+App.closed_tab_action = function () {
+  App.restore_tab(App.selected_closed_tab)
+}
+
+// Select item above
+App.closed_tab_above = function () {
+  let i = App.selected_closed_tab.index
+  
+  if (i === 0) {
+    return
+  }
+
+  App.select_closed_tab(App.closed_tabs[i - 1])
+}
+
+// Select item below
+App.closed_tab_below = function () {
+  let i = App.selected_closed_tab.index
+  
+  if (i >= App.closed_tabs.length - 1) {
+    return
+  }
+
+  App.select_closed_tab(App.closed_tabs[i + 1])
 }

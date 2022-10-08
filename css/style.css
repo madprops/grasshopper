@@ -210,7 +210,7 @@ body, html {
   font-size: 1.2rem;
 }
 
-#show_window {
+.window_main {
   position: fixed;
   display: none;
   flex-direction: column;
@@ -222,7 +222,7 @@ body, html {
   height: 100vh;
 }
 
-#show_window_top {
+.window_top {
   background-color: var(--alt_background_color);
   text-align: center;
   padding-top: 0.35rem;
@@ -231,12 +231,12 @@ body, html {
   flex-shrink: 0;
 }
 
-#show_window_content {
+.window_content {
   overflow-y: auto;
   overflow-x: hidden;
 }
 
-#closed_main {
+#closed_tabs_main {
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -245,14 +245,14 @@ body, html {
   box-sizing: border-box;
 }
 
-#closed_filter {
+#closed_tabs_filter {
   margin-top: 0.8rem;
   width: 14rem;
   flex-grow: 0;
   flex-shrink: 0;
 }
 
-#closed_container {
+#closed_tabs_container {
   margin-top: 0.77rem;
   margin-bottom: 0.5rem;
   width: 100%;
@@ -262,7 +262,7 @@ body, html {
   overflow-x: hidden;
 }
 
-.closed_item {
+.closed_tabs_item {
   display: flex;
   flex-direction: row;
   cursor: pointer;
@@ -270,10 +270,6 @@ body, html {
   padding: 0.5rem;
   white-space: nowrap;
   overflow: hidden;
-}
-
-.closed_item:hover {
-  background-color: var(--selected_color);
 }
 
 .invisible {

@@ -1,48 +1,56 @@
-// Show a window on top with some content
-App.show_window = function (html) {
-  App.el("#show_window_content").innerHTML = html
-  App.el("#show_window").style.display = "flex"
-  App.window_open = true
-}
-
-// Show a window on top with some content
-App.show_window_2 = function (el) {
-  App.el("#show_window_content").innerHTML = ""
-  App.el("#show_window_content").append(el)
-  App.el("#show_window").style.display = "flex"
-  App.window_open = true
-}
-
-// Hide the show window
-App.hide_window = function () {
-  let win = App.el("#show_window")
-  win.style.display = "none"
-  App.window_open = false
-  App.window_mode = "none"
-}
-
 // Get a template
 App.get_template = function (id) {
   return App.el(`#template_${id}`).innerHTML.trim()
 }
 
-// Show about information
-App.show_about = function () {
-  let template = App.get_template("about")
-  App.show_window(template)
-  let manifest = browser.runtime.getManifest()
-  let s = `Grasshopper v${manifest.version}`
-  App.el("#about_text").textContent = s
-  App.window_mode = "about"
+// Create a window
+App.create_window = function (id) {
+  let w = {
+    open: false
+  }
+
+  let el = App.create("div", "window_main")
+  let top = App.create("div", "window_top action unselectable")
+  top.textContent = "Go Back"
+
+  App.ev(top, "click", function () {
+    w.hide()
+  })
+
+  el.append(top)
+
+  let content = App.create("div", "window_content")
+  content.innerHTML = App.get_template(id)
+  el.append(content)
+
+  w.element = el
+  document.body.append(el)
+
+  w.show = function () {
+    w.element.style.display = "flex"
+    w.open = true
+    App.window_mode = id
+  }
+  
+  w.hide = function () {
+    w.element.style.display = "none"
+    w.open = false
+    App.window_mode = "none"
+  }
+
+  App.windows[id] = w
 }
 
 // Setup windows
 App.setup_windows = function () {
+  App.create_window("about")
+  let manifest = browser.runtime.getManifest()
+  let s = `Grasshopper v${manifest.version}`
+  App.el("#about_text").textContent = s
+
   App.ev(App.el("#about_button"), "click", function () {  
-    App.show_about()
+    App.windows["about"].show()
   })
 
-  App.ev(App.el("#show_window_top"), "click", function () {
-    App.hide_window()
-  })
+  App.create_window("closed_tabs") 
 }
