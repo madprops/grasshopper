@@ -77,6 +77,14 @@ App.new_tab = function () {
 // Refresh tabs
 App.refresh_tab = async function (id) {
   let item = App.get_item_by_id(id)
+
+  if (!item) {
+    App.tab_items.push({
+      id: id,
+      empty: true
+    })
+  }
+
   let info = await browser.tabs.get(id)
 
   if (item) {
@@ -113,6 +121,15 @@ App.update_tab = function (item, info) {
 
 // Prepend tab to the top
 App.prepend_tab = function (tab) {
+  for (let [i, it] of App.tab_items.entries()) {
+    if (it.id === tab.id) {
+      if (it.empty) {
+        App.tab_items.splice(i, 1)
+        break
+      }
+    }
+  }
+
   let item = App.process_item(tab)
 
   if (!item) {

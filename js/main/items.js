@@ -64,7 +64,8 @@ App.process_item = function (item) {
     favicon: item.favIconUrl,
     audible: item.audible,
     status: status,
-    closed: false
+    closed: false,
+    empty: false
   }
 
   App.create_item_element(obj)

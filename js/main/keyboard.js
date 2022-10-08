@@ -35,10 +35,6 @@ App.setup_keyboard = function () {
     } else if (e.key === "ArrowDown") {
       App.select_item_below()
       e.preventDefault()
-    } else if (e.key === "Delete") {
-      if (App.item_is_visible(App.selected_item)) {
-        App.close_tab(App.selected_item)
-      }
     }
   })
 }
