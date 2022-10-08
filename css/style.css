@@ -256,6 +256,7 @@ body, html {
   width: 14rem;
   flex-grow: 0;
   flex-shrink: 0;
+  text-align: center;
 }
 
 #closed_tabs_container {
