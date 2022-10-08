@@ -8,9 +8,8 @@ App.setup_filter = function () {
     App.filter()
   })
 
-  App.ev(App.el("#clear_button"), "click", function () {
-    App.clear()
-    App.do_filter()
+  App.ev(App.el("#new_button"), "click", function () {
+    App.new_tab()
   })
 
   App.ev(App.el("#filter_mode"), "change", function () {
@@ -107,26 +106,4 @@ App.do_filter = function (args = {}) {
 // Focus the filter
 App.focus_filter = function () {
   App.el("#filter").focus()
-}
-
-// Clear filter
-App.clear_filter = function () {
-  App.el("#filter").value = ""
-}
-
-// Reset filter mode
-App.reset_filter_mode = function () {
-  App.el("#filter_mode").value = "title_url"
-}
-
-// Reset case sensitive
-App.reset_case_sensitive = function () {
-  App.el("#case_sensitive").checked = false
-}
-
-// Clear some state
-App.clear = function () {
-  App.clear_filter()
-  App.reset_filter_mode()
-  App.reset_case_sensitive()
 }

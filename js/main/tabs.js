@@ -72,6 +72,12 @@ App.restore_tab = async function (tab, close = true) {
   }
 }
 
+// Open a new tab
+App.new_tab = function () {
+  browser.tabs.create({active: true})
+  window.close()
+}
+
 // Sort tabs in proper order
 App.sort_tabs = function () {
   App.show_tabs(false)
