@@ -73,7 +73,7 @@ App.setup_mouse = function () {
         let index = el.dataset.index
         let tab = App.closed_tabs[index]
         App.restore_tab(tab, false)
-        el.remove()
+        App.remove_closed_tab(tab)
       }
     }
   })  

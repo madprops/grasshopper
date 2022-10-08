@@ -123,35 +123,68 @@ App.closed_tab_action = function () {
   App.restore_tab(App.selected_closed_tab)
 }
 
-// Select item above
-App.closed_tab_above = function () {
-  let i = App.selected_closed_tab.index
+// Get previous visible closed tab
+App.get_prev_visible_closed_tab = function (t) {
+  let i = t.index
 
   for (let tab of App.closed_tabs.slice(0).reverse()) {
     if (tab.index < i) {
       if (App.closed_tab_is_visible(tab)) {
-        App.select_closed_tab(tab)
-        return
+        return tab
       }
     }
   }
 }
 
-// Select item below
-App.closed_tab_below = function () {
-  let i = App.selected_closed_tab.index
+// Get next visible closed tab
+App.get_next_visible_closed_tab = function (t) {
+  let i = t.index
 
   for (let tab of App.closed_tabs) {
     if (tab.index > i) {
       if (App.closed_tab_is_visible(tab)) {
-        App.select_closed_tab(tab)
-        return
+        return tab
       }
     }
+  }
+}
+
+// Get closed tab above
+App.closed_tab_above = function () {
+  let tab = App.get_prev_visible_closed_tab(App.selected_closed_tab)
+
+  if (tab) {
+    App.select_closed_tab(tab)
+  }
+}
+
+// Get closed tab below
+App.closed_tab_below = function () {
+  let tab = App.get_next_visible_closed_tab(App.selected_closed_tab)
+
+  if (tab) {
+    App.select_closed_tab(tab)
   }
 }
 
 // Check if closed tab is visible
 App.closed_tab_is_visible = function (tab) {
   return !tab.element.classList.contains("hidden")
+}
+
+// Remove a closed tab from the list
+App.remove_closed_tab = function (tab) {
+  let next_item = App.get_next_visible_closed_tab(tab) || App.get_prev_visible_closed_tab(tab)
+  tab.element.remove()
+  
+  if (next_item) {
+    App.select_closed_tab(next_item)
+  }
+
+  for (let [i, t] of App.closed_tabs.entries()) {
+    if (t === tab) {
+      App.closed_tabs.splice(i, 1)
+      break
+    }
+  }
 }
