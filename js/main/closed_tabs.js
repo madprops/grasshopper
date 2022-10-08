@@ -65,6 +65,7 @@ App.show_closed_tabs = async function () {
   container.scrollTop = 0
   App.windows["closed_tabs"].show()
   App.select_first_closed_tab()
+  App.el("#closed_tabs_filter").value = ""
   App.focus_closed_tabs_filter()
 }
 
