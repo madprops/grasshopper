@@ -70,7 +70,7 @@ App.show_closed_tabs = async function () {
 // Select first closed tab
 App.select_first_closed_tab = function () {
   for (let tab of App.closed_tabs) {
-    if (!tab.element.classList.contains("hidden")) {
+    if (App.closed_tab_is_visible(tab)) {
       App.select_closed_tab(tab)
       return
     }
@@ -125,21 +125,32 @@ App.closed_tab_action = function () {
 // Select item above
 App.closed_tab_above = function () {
   let i = App.selected_closed_tab.index
-  
-  if (i === 0) {
-    return
-  }
 
-  App.select_closed_tab(App.closed_tabs[i - 1])
+  for (let tab of App.closed_tabs.slice(0).reverse()) {
+    if (tab.index < i) {
+      if (App.closed_tab_is_visible(tab)) {
+        App.select_closed_tab(tab)
+        return
+      }
+    }
+  }
 }
 
 // Select item below
 App.closed_tab_below = function () {
   let i = App.selected_closed_tab.index
-  
-  if (i >= App.closed_tabs.length - 1) {
-    return
-  }
 
-  App.select_closed_tab(App.closed_tabs[i + 1])
+  for (let tab of App.closed_tabs) {
+    if (tab.index > i) {
+      if (App.closed_tab_is_visible(tab)) {
+        App.select_closed_tab(tab)
+        return
+      }
+    }
+  }
+}
+
+// Check if closed tab is visible
+App.closed_tab_is_visible = function (tab) {
+  return !tab.element.classList.contains("hidden")
 }
