@@ -302,14 +302,7 @@ App.show_item_menu = function (item, x, y) {
     action: function () {
       App.copy_to_clipboard(item.title)
     }
-  })
-
-  items.push({
-    text: "Keep Pins",
-    action: function () {
-      App.close_unpinned_tabs()
-    }
-  })   
+  }) 
 
   if (index >= 0) {
     if (index > 0) {
@@ -339,20 +332,6 @@ App.show_item_menu = function (item, x, y) {
       }
     })    
   }
-
-  NeedContext.show(x, y, items)
-}
-
-// Menu for tabs without a specific item
-App.show_tabs_menu = function (x, y) {
-  let items = [
-    {
-      text: "Keep Pins",
-      action: function () {
-        App.close_unpinned_tabs()
-      }
-    }    
-  ]
 
   NeedContext.show(x, y, items)
 }

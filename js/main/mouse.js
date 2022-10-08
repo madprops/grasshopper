@@ -47,9 +47,6 @@ App.setup_mouse = function () {
       let item = App.get_item_by_id(el.dataset.id)
       App.show_item_menu(item, e.clientX, e.clientY)
       e.preventDefault()
-    } else if (e.target.closest("#tabs")) {
-      App.show_tabs_menu(e.clientX, e.clientY)
-      e.preventDefault()
     }
   })
 

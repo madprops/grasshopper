@@ -1,11 +1,7 @@
 // Get open tabs
-App.get_tabs = async function (sort) {
+App.get_tabs = async function () {
   let items = await browser.tabs.query({ currentWindow: true })
-
-  if (sort) {
-    items.sort((a, b) => (a.lastAccessed < b.lastAccessed) ? 1 : -1)
-  }
-  
+  items.sort((a, b) => (a.lastAccessed < b.lastAccessed) ? 1 : -1)
   return items
 }
 
@@ -45,13 +41,13 @@ App.close_tab = function (item, close_tab = true) {
 
 // Setup tabs
 App.setup_tabs = async function () {
+  App.ev(App.el("#clean_button"), "click", function () {
+    App.close_unpinned_tabs()
+  })
+
   App.ev(App.el("#closed_button"), "click", function () {
     App.show_closed_tabs()
   })
-
-  App.ev(App.el("#sort_button"), "click", function () {
-    App.sort_tabs()
-  })  
 
   browser.tabs.onUpdated.addListener(function (id) {
     App.refresh_tab(id)
@@ -76,11 +72,6 @@ App.restore_tab = async function (tab, close = true) {
 App.new_tab = function () {
   browser.tabs.create({active: true})
   window.close()
-}
-
-// Sort tabs in proper order
-App.sort_tabs = function () {
-  App.show_tabs(false)
 }
 
 // Refresh tabs
@@ -217,8 +208,8 @@ App.unpin_tab = function (item) {
 }
 
 // Show tabs
-App.show_tabs = async function (sort = true) {
-  let tabs = await App.get_tabs(sort)
+App.show_tabs = async function () {
+  let tabs = await App.get_tabs()
   App.process_items(tabs)
   App.do_filter()
 }
