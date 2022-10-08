@@ -53,7 +53,8 @@ App.show_closed_tabs = async function () {
       title: c.tab.title,
       window_id: c.tab.windowId,
       session_id: c.tab.sessionId,
-      element: div
+      element: div,
+      removed: false
     }
 
     index += 1
@@ -128,7 +129,7 @@ App.get_prev_visible_closed_tab = function (t) {
   let i = t.index
 
   for (let tab of App.closed_tabs.slice(0).reverse()) {
-    if (tab.index < i) {
+    if (!tab.removed && tab.index < i) {
       if (App.closed_tab_is_visible(tab)) {
         return tab
       }
@@ -141,7 +142,7 @@ App.get_next_visible_closed_tab = function (t) {
   let i = t.index
 
   for (let tab of App.closed_tabs) {
-    if (tab.index > i) {
+    if (!tab.removed && tab.index > i) {
       if (App.closed_tab_is_visible(tab)) {
         return tab
       }
@@ -181,10 +182,5 @@ App.remove_closed_tab = function (tab) {
     App.select_closed_tab(next_item)
   }
 
-  for (let [i, t] of App.closed_tabs.entries()) {
-    if (t === tab) {
-      App.closed_tabs.splice(i, 1)
-      break
-    }
-  }
+  tab.removed = true
 }
