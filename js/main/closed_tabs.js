@@ -115,6 +115,7 @@ App.select_closed_tab = function (tab) {
 
   tab.element.classList.add("selected")
   App.selected_closed_tab = tab
+  App.selected_closed_tab.element.scrollIntoView({block: "nearest"})
 }
 
 // Selected closed tab action
