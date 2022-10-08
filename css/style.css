@@ -238,11 +238,14 @@ body, html {
   justify-content: center;
   width: 100%;
   margin-top: 0.8rem;
+  padding-right: 1rem;
 }
 
 .window_x {
+  right: 0rem;
+  padding: 0.8rem;
+  position: absolute;
   margin-left: auto;
-  padding-right: 1rem;
   font-size: 1.2rem;
 }
 
@@ -252,7 +255,6 @@ body, html {
 }
 
 #closed_tabs_filter {
-  margin-left: auto;
   width: 14rem;
   flex-grow: 0;
   flex-shrink: 0;
