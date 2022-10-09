@@ -100,7 +100,6 @@ App.create_item_element = function (item) {
   item.element.append(icon)
 
   let text = App.create("div", "item_text")
-  text.textContent = "Empty"
   item.element.append(text)
   App.set_item_text(item)
 
