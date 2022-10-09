@@ -92,7 +92,6 @@ body, html {
   flex-direction: row;
   cursor: pointer;
   align-items: center;
-  padding: 0.5rem;
 }
 
 .item_icon_container {
@@ -107,6 +106,7 @@ body, html {
 .item_icon {
   width: 1.2rem;
   height: 1.2rem;
+  padding-left: 0.5rem;
 }
 
 .item_text {
@@ -114,6 +114,10 @@ body, html {
   white-space: nowrap;
   overflow: hidden;
   margin-right: 0.5rem;
+}
+
+.item_close {
+  padding: 0.5rem;
 }
 
 .selected {
