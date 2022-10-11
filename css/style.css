@@ -111,7 +111,7 @@ body, html {
 
 .item_text {
   width: 100%;
-  white-space: nowrap;
+  white-space: pre;
   overflow: hidden;
   margin-right: 0.5rem;
 }

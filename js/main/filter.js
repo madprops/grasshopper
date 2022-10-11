@@ -64,7 +64,10 @@ App.do_filter = function (args = {}) {
     } else if (filter_mode === "pins") {
       match = item.status.includes("pinned") &&
       (check(title) || check(path))  
-    }
+    } else if (filter_mode === "muted") {
+      match = item.status.includes("muted") &&
+      (check(title) || check(path))    
+    } 
         
     if (!match) {
       return false

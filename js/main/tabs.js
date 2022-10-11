@@ -232,6 +232,16 @@ App.unpin_tab = function (item) {
   browser.tabs.update(item.id, {pinned: false})
 }
 
+// Mute a tab
+App.mute_tab = function (item) {
+  browser.tabs.update(item.id, {muted: true})
+}
+
+// Unmute a tab
+App.unmute_tab = function (item) {
+  browser.tabs.update(item.id, {muted: false})
+}
+
 // Show tabs
 App.show_tabs = async function (sort = true) {
   let tabs = await App.get_tabs(sort)

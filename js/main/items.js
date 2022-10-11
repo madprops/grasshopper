@@ -54,6 +54,10 @@ App.process_item = function (item) {
     status.push("pinned")
   }
 
+  if (item.mutedInfo.muted) {
+    status.push("muted")
+  }  
+
   let obj = {
     id: item.id,
     title: title,
@@ -110,7 +114,7 @@ App.create_item_element = function (item) {
 
 // Set item text content
 App.set_item_text = function (item) {
-  let content
+  let content = ""
   let purl
 
   if (item.url.startsWith("http://")) {
@@ -119,20 +123,34 @@ App.set_item_text = function (item) {
     purl = item.path
   }
 
-  if (App.state.text_mode === "title") {
-    content = item.title || purl
-    item.footer = purl || item.title
-  } else if (App.state.text_mode === "url") {
-    content = purl || item.title
-    item.footer = item.title || purl
-  }
+  let has_status = false
 
   if (item.status.includes("playing")) {
     content = `(Playing) ${content}`
+    has_status = true
   }
 
   if (item.status.includes("pinned")) {
     content = `(Pin) ${content}`
+    has_status = true
+  }
+
+  if (item.status.includes("muted")) {
+    content = `(Muted) ${content}`
+    has_status = true
+  }
+
+  if (has_status) {
+    content = content.trim()
+    content += "  "
+  }
+
+  if (App.state.text_mode === "title") {
+    content += item.title || purl
+    item.footer = purl || item.title
+  } else if (App.state.text_mode === "url") {
+    content += purl || item.title
+    item.footer = item.title || purl
   }  
   
   content = content.substring(0, 200).trim()
@@ -289,6 +307,22 @@ App.show_item_menu = function (item, x, y) {
       }
     })
   }
+
+  if (item.status.includes("muted")) {
+    items.push({
+      text: "Unmute",
+      action: function () {
+        App.unmute_tab(item)
+      }
+    }) 
+  } else {
+    items.push({
+      text: "Mute",
+      action: function () {
+        App.mute_tab(item)
+      }
+    })
+  }  
 
   items.push({
     text: "Copy URL",
