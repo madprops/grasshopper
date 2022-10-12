@@ -278,11 +278,6 @@ App.go_to_playing_tab = function () {
   let first
 
   for (let tab of tabs) {
-    if (!waypoint && tab.active) {
-      waypoint = true
-      continue
-    }
-
     if (tab.audible) {
       if (!first) {
         first = tab
@@ -292,6 +287,11 @@ App.go_to_playing_tab = function () {
         App.open_tab(tab)
         return
       }
+    }
+        
+    if (!waypoint && tab.active) {
+      waypoint = true
+      continue
     }
   }
 
