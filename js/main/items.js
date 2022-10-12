@@ -123,25 +123,22 @@ App.set_item_text = function (item) {
     purl = item.path
   }
 
-  let has_status = false
-
-  if (item.status.includes("playing")) {
-    content = `(Playing) ${content}`
-    has_status = true
-  }
+  let status = []
 
   if (item.status.includes("pinned")) {
-    content = `(Pin) ${content}`
-    has_status = true
+    status.push("(Pin)")
   }
 
+  if (item.status.includes("playing")) {
+    status.push("(Playing)")
+  }
+  
   if (item.status.includes("muted")) {
-    content = `(Muted) ${content}`
-    has_status = true
+    status.push("(Muted)")
   }
 
-  if (has_status) {
-    content = content.trim()
+  if (status.length > 0) {
+    content = status.join(" ")
     content += "  "
   }
 
