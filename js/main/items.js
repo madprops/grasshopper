@@ -115,14 +115,6 @@ App.create_item_element = function (item) {
 // Set item text content
 App.set_item_text = function (item) {
   let content = ""
-  let purl
-
-  if (item.url.startsWith("http://")) {
-    purl = item.url
-  } else {
-    purl = item.path
-  }
-
   let status = []
 
   if (item.status.includes("pinned")) {
@@ -141,6 +133,14 @@ App.set_item_text = function (item) {
     content = status.join(" ")
     content += "  "
   }
+
+  let purl
+
+  if (item.url.startsWith("http://")) {
+    purl = item.url
+  } else {
+    purl = item.path
+  }  
 
   if (App.state.text_mode === "title") {
     content += item.title || purl
