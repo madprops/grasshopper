@@ -118,19 +118,19 @@ App.set_item_text = function (item) {
   let status = []
 
   if (item.status.includes("pinned")) {
-    status.push("(Pin)")
+    status.push("Pin")
   }
 
   if (item.status.includes("playing")) {
-    status.push("(Playing)")
+    status.push("Playing")
   }
   
   if (item.status.includes("muted")) {
-    status.push("(Muted)")
+    status.push("Muted")
   }
 
   if (status.length > 0) {
-    content = status.join(" ")
+    content = status.map(x => `(${x})`).join(" ")
     content += "  "
   }
 
