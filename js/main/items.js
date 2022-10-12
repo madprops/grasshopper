@@ -44,19 +44,6 @@ App.process_item = function (item) {
 
   let path = App.remove_protocol(item.url)
   let title = item.title || path 
-  let status = []
-
-  if (item.audible) {
-    status.push("playing")
-  }
-
-  if (item.pinned) {
-    status.push("pinned")
-  }
-
-  if (item.mutedInfo.muted) {
-    status.push("muted")
-  }  
 
   let obj = {
     id: item.id,
@@ -67,13 +54,15 @@ App.process_item = function (item) {
     path_lower: path.toLowerCase(),
     favicon: item.favIconUrl,
     audible: item.audible,
-    status: status,
+    pinned: item.pinned,
+    muted: item.mutedInfo.muted,
     closed: false,
-    empty: false
+    empty: false,
+    index: item.index,
+    active: item.active
   }
 
   App.create_item_element(obj)
-
   return obj
 }
 
@@ -117,15 +106,15 @@ App.set_item_text = function (item) {
   let content = ""
   let status = []
 
-  if (item.status.includes("pinned")) {
+  if (item.pinned) {
     status.push("Pin")
   }
 
-  if (item.status.includes("playing")) {
+  if (item.audible) {
     status.push("Playing")
   }
   
-  if (item.status.includes("muted")) {
+  if (item.muted) {
     status.push("Muted")
   }
 
@@ -289,7 +278,7 @@ App.show_item_menu = function (item, x, y) {
   let items = []
   let index = App.get_item_index(item)
 
-  if (item.status.includes("pinned")) {
+  if (item.pinned) {
     items.push({
       text: "Unpin",
       action: function () {
@@ -305,7 +294,7 @@ App.show_item_menu = function (item, x, y) {
     })
   }
 
-  if (item.status.includes("muted")) {
+  if (item.muted) {
     items.push({
       text: "Unmute",
       action: function () {

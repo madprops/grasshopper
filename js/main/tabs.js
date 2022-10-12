@@ -1,12 +1,22 @@
 // Get open tabs
 App.get_tabs = async function (sort) {
-  let items = await browser.tabs.query({ currentWindow: true })
+  let tabs = await browser.tabs.query({ currentWindow: true })
 
   if (sort) {
-    items.sort((a, b) => (a.lastAccessed < b.lastAccessed) ? 1 : -1)
+    App.sort_tabs_by_access(tabs)
   }
   
-  return items
+  return tabs
+}
+
+// Sort tabs by access
+App.sort_tabs_by_access = function (tabs) {
+  tabs.sort((a, b) => (a.lastAccessed < b.lastAccessed) ? 1 : -1)
+}
+
+// Sort tabs by index
+App.sort_tabs_by_index = function (tabs) {
+  tabs.sort((a, b) => (a.index > b.index) ? 1 : -1)
 }
 
 // Open a new tab with a url
@@ -55,6 +65,10 @@ App.setup_tabs = async function () {
 
   App.ev(App.el("#closed_button"), "click", function () {
     App.show_closed_tabs()
+  })
+
+  App.ev(App.el("#playing_button"), "click", function () {
+    App.go_to_playing_tab()
   })
 
   browser.tabs.onUpdated.addListener(function (id) {
@@ -199,7 +213,7 @@ App.close_unpinned_tabs = function () {
   let tabs = []
 
   for (let it of App.tab_items) {
-    if (!it.status.includes("pinned")) {
+    if (!it.pinned) {
       tabs.push(it)
     }
   }
@@ -253,4 +267,36 @@ App.show_tabs = async function (sort = true) {
 App.sort_tabs = function () {
   App.show_tabs(App.sorted)
   App.sorted = !App.sorted
+}
+
+// Go the a tab emitting sound
+// Traverse in tab index order
+App.go_to_playing_tab = function () {
+  let tabs = App.tab_items.slice(0)
+  App.sort_tabs_by_index(tabs)
+  let waypoint = false
+  let first
+
+  for (let tab of tabs) {
+    if (!waypoint && tab.active) {
+      waypoint = true
+      continue
+    }
+
+    if (tab.audible) {
+      if (!first) {
+        first = tab
+      }
+
+      if (waypoint) {
+        App.open_tab(tab)
+        return
+      }
+    }
+  }
+
+  // If none found then pick the first one
+  if (first) {
+    App.open_tab(first)
+  }
 }

@@ -8,10 +8,6 @@ App.setup_filter = function () {
     App.filter()
   })
 
-  App.ev(App.el("#new_button"), "click", function () {
-    App.new_tab()
-  })
-
   App.ev(App.el("#filter_mode"), "change", function () {
     App.do_filter()
   })
@@ -59,13 +55,13 @@ App.do_filter = function (args = {}) {
     } else if (filter_mode === "url") {
       match = check(path)
     } else if (filter_mode === "playing") {
-      match = item.status.includes("playing") &&
+      match = item.audible &&
       (check(title) || check(path))    
     } else if (filter_mode === "pins") {
-      match = item.status.includes("pinned") &&
+      match = item.pinned &&
       (check(title) || check(path))  
     } else if (filter_mode === "muted") {
-      match = item.status.includes("muted") &&
+      match = item.muted &&
       (check(title) || check(path))    
     } 
         
