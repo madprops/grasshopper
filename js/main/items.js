@@ -8,6 +8,10 @@ App.setup_items = function () {
     App.update_text()
     App.save_state()
   })
+
+  NeedContext.after_hide = function () {
+    App.disable_mouse_over()
+  }
 }
 
 // When results are found
