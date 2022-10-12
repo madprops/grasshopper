@@ -11,6 +11,7 @@ App.setup_items = function () {
 
   NeedContext.after_hide = function () {
     App.disable_mouse_over()
+    App.enable_mouse_over()
   }
 }
 
