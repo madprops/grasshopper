@@ -4,8 +4,13 @@ App.setup_keyboard = function () {
       App.focus_closed_tabs_filter()
 
       if (e.key === "Enter") {
-        App.closed_tab_action()
-        e.preventDefault()
+        if (e.shiftKey) {
+          App.windows["closed_tabs"].hide()
+          e.preventDefault()
+        } else {
+          App.closed_tab_action()
+          e.preventDefault()
+        }
       } else if (e.key === "ArrowUp") {
         App.closed_tab_above()
         e.preventDefault()
@@ -24,26 +29,41 @@ App.setup_keyboard = function () {
     App.focus_filter()
 
     if (e.key === "Enter") {
-      if (App.selected_valid()) {
-        App.open_tab(App.selected_item)
+      if (e.shiftKey) {
+        App.show_closed_tabs()
+        e.preventDefault()
+      } else {
+        if (App.selected_valid()) {
+          App.open_tab(App.selected_item)
+          e.preventDefault()
+        }
       }
-      
-      e.preventDefault()
     } else if (e.key === "ArrowUp") {
       if (e.shiftKey) {
-        App.move_tab_up(App.selected_item)
-        e.preventDefault()
+        if (App.selected_valid()) {
+          App.move_tab_up(App.selected_item)
+          e.preventDefault()
+        }
       } else {
         App.select_item_above()
         e.preventDefault()
       }
     } else if (e.key === "ArrowDown") {
       if (e.shiftKey) {
-        App.move_tab_down(App.selected_item)
-        e.preventDefault()
+        if (App.selected_valid()) {
+          App.move_tab_down(App.selected_item)
+          e.preventDefault()
+        }
       } else {
         App.select_item_below()
         e.preventDefault()
+      }
+    } else if (e.key === "Delete") {
+      if (e.shiftKey) {
+        if (App.selected_valid()) {
+          App.close_tab(App.selected_item)
+          e.preventDefault()
+        }
       }
     }
   })
