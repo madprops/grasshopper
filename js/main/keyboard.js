@@ -30,11 +30,21 @@ App.setup_keyboard = function () {
       
       e.preventDefault()
     } else if (e.key === "ArrowUp") {
-      App.select_item_above()
-      e.preventDefault()
+      if (e.shiftKey) {
+        App.move_tab_up(App.selected_item)
+        e.preventDefault()
+      } else {
+        App.select_item_above()
+        e.preventDefault()
+      }
     } else if (e.key === "ArrowDown") {
-      App.select_item_below()
-      e.preventDefault()
+      if (e.shiftKey) {
+        App.move_tab_down(App.selected_item)
+        e.preventDefault()
+      } else {
+        App.select_item_below()
+        e.preventDefault()
+      }
     }
   })
 }

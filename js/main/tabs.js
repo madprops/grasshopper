@@ -257,10 +257,10 @@ App.unmute_tab = function (item) {
 }
 
 // Show tabs
-App.show_tabs = async function (sort = true) {
+App.show_tabs = async function (sort = true, filter_args = {}) {
   let tabs = await App.get_tabs(sort)
   App.process_items(tabs)
-  App.do_filter()
+  App.do_filter(filter_args)
 }
 
 // Sort tabs
@@ -288,7 +288,7 @@ App.go_to_playing_tab = function () {
         return
       }
     }
-        
+
     if (!waypoint && tab.active) {
       waypoint = true
       continue
@@ -299,4 +299,25 @@ App.go_to_playing_tab = function () {
   if (first) {
     App.open_tab(first)
   }
+}
+
+// Move tab up
+App.move_tab_up = function (tab) {
+  if (tab.index > 0) {
+    browser.tabs.move(tab.id, {index: tab.index - 1})
+  }
+
+  App.show_tabs(false, {
+    select_tab_id: tab.id,
+    disable_mouse_over: true
+  })
+}
+
+// Move tab down
+App.move_tab_down = function (tab) {
+  browser.tabs.move(tab.id, {index: tab.index + 1})
+  App.show_tabs(false, {
+    select_tab_id: tab.id,
+    disable_mouse_over: true
+  })
 }

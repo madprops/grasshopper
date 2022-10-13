@@ -82,8 +82,15 @@ App.do_filter = function (args = {}) {
     if (matched(item)) {
       App.show_item(item)
 
-      if (args.select_new && !selected) {
-        selected = item
+      if (!selected) {
+        if (args.select_tab_id) {
+          if (item.id === args.select_tab_id) {
+            selected = item
+            args.select_tab_id = undefined
+          }
+        } else if (args.select_new) {
+          selected = item
+        }
       }
     } else {
       App.hide_item(item)

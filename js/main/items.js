@@ -329,6 +329,20 @@ App.show_item_menu = function (item, x, y) {
     }
   }) 
 
+  items.push({
+    text: "Move Up",
+    action: function () {
+      App.move_tab_up(item)
+    }
+  })
+
+  items.push({
+    text: "Move Down",
+    action: function () {
+      App.move_tab_down(item)
+    }
+  })
+
   if (index >= 0) {
     if (index > 0) {
       items.push({
