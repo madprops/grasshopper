@@ -4,21 +4,20 @@ App.setup_keyboard = function () {
       App.focus_closed_tabs_filter()
 
       if (e.key === "Enter") {
-        if (e.shiftKey) {
-          App.windows["closed_tabs"].hide()
-          App.flash_mouse_over()
-          e.preventDefault()
-        } else {
-          App.closed_tab_action()
-          e.preventDefault()
-        }
+        App.closed_tab_action()
+        e.preventDefault()
       } else if (e.key === "ArrowUp") {
         App.closed_tab_above()
         e.preventDefault()
       } else if (e.key === "ArrowDown") {
         App.closed_tab_below()
         e.preventDefault()
-      } 
+      } else if (e.key === "6") {
+        if (e.ctrlKey) {
+          App.windows["closed_tabs"].hide()
+          e.preventDefault()
+        }
+      }
 
       return
     }
@@ -30,15 +29,9 @@ App.setup_keyboard = function () {
     App.focus_filter()
 
     if (e.key === "Enter") {
-      if (e.shiftKey) {
-        App.show_closed_tabs()
-        App.flash_mouse_over()
+      if (App.selected_valid()) {
+        App.open_tab(App.selected_tab)
         e.preventDefault()
-      } else {
-        if (App.selected_valid()) {
-          App.open_tab(App.selected_tab)
-          e.preventDefault()
-        }
       }
     } else if (e.key === "ArrowUp") {
       if (e.shiftKey) {
@@ -66,6 +59,41 @@ App.setup_keyboard = function () {
           App.close_tab(App.selected_tab)
           e.preventDefault()
         }
+      }
+    } else if (e.key === "1") {
+      if (e.ctrlKey) {
+        App.el("#filter_mode").focus()
+        e.preventDefault()
+      }
+    } else if (e.key === "2") {
+      if (e.ctrlKey) {
+        App.el("#text_mode").focus()
+        e.preventDefault()
+      }
+    } else if (e.key === "3") {
+      if (e.ctrlKey) {
+        App.el("#case_sensitive").checked = !App.el("#case_sensitive").checked
+        e.preventDefault()
+      }
+    } else if (e.key === "4") {
+      if (e.ctrlKey) {
+        App.sort_tabs()
+        e.preventDefault()
+      }
+    } else if (e.key === "5") {
+      if (e.ctrlKey) {
+        App.close_unpinned_tabs()
+        e.preventDefault()
+      }
+    } else if (e.key === "6") {
+      if (e.ctrlKey) {
+        App.show_closed_tabs()
+        e.preventDefault()
+      }
+    } else if (e.key === "7") {
+      if (e.ctrlKey) {
+        App.go_to_playing_tab()
+        e.preventDefault()
       }
     }
   })
