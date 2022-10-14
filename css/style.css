@@ -116,8 +116,13 @@ body, html {
   margin-right: 0.5rem;
 }
 
-.item_close {
+.item_button {
   padding: 0.5rem;
+  user-select: none;
+}
+
+.item_button:hover {
+  text-decoration: underline;
 }
 
 .selected {
@@ -156,10 +161,6 @@ body, html {
   overflow: hidden;
   border-top: 1px solid var(--separator_color);
   white-space: nowrap;
-}
-
-.underline:hover {
-  text-decoration: underline;
 }
 
 .flex_column_center {
@@ -272,17 +273,6 @@ body, html {
   flex-shrink: 1;
   overflow-y: auto;
   overflow-x: hidden;
-}
-
-.closed_tabs_item {
-  display: flex;
-  flex-direction: row;
-  cursor: pointer;
-  align-items: center;
-  padding: 0.5rem;
-  padding-left: 0;
-  white-space: nowrap;
-  overflow: hidden;
 }
 
 .invisible {

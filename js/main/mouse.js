@@ -3,11 +3,11 @@ App.setup_mouse = function () {
 
   // When the button is released
   App.ev(container, "click", function (e) {
-    if (e.target.closest(".item")) {
-      let el = e.target.closest(".item")
+    if (e.target.closest(".tabs_item")) {
+      let el = e.target.closest(".tabs_item")
       let item = App.get_item_by_id(el.dataset.id)
 
-      if (e.target.closest(".item_close")) {
+      if (e.target.closest(".tabs_close")) {
         App.close_tab(item)
       } else {
         App.open_tab(item)
@@ -20,9 +20,9 @@ App.setup_mouse = function () {
     if (App.mouse_over_disabled) {
       return
     }
-    
-    if (e.target.closest(".item")) {
-      let el = e.target.closest(".item")
+
+    if (e.target.closest(".tabs_item")) {
+      let el = e.target.closest(".tabs_item")
       let item = App.get_item_by_id(el.dataset.id)
       App.select_item({item: item, scroll: false})
     }
@@ -31,8 +31,8 @@ App.setup_mouse = function () {
   // When items are middle clicked
   App.ev(container, "auxclick", function (e) {
     if (e.button === 1) {
-      if (e.target.closest(".item")) {
-        let el = e.target.closest(".item")
+      if (e.target.closest(".tabs_item")) {
+        let el = e.target.closest(".tabs_item")
         let item = App.get_item_by_id(el.dataset.id)
         
         App.close_tab(item)
@@ -42,8 +42,8 @@ App.setup_mouse = function () {
 
   // On context menu action
   App.ev(container, "contextmenu", function (e) {
-    if (e.target.closest(".item")) {
-      let el = e.target.closest(".item")
+    if (e.target.closest(".tabs_item")) {
+      let el = e.target.closest(".tabs_item")
       let item = App.get_item_by_id(el.dataset.id)
       App.show_item_menu(item, e.clientX, e.clientY)
       e.preventDefault()
@@ -58,7 +58,13 @@ App.setup_mouse = function () {
       let el = e.target.closest(".closed_tabs_item")
       let index = el.dataset.index
       let tab = App.closed_tabs[index]
-      App.restore_tab(tab)
+
+      if (e.target.closest(".closed_tabs_restore")) {
+        App.restore_tab(tab, false)
+        App.remove_closed_tab(tab)
+      } else {
+        App.restore_tab(tab)
+      }
     }
   })
 

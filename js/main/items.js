@@ -91,7 +91,7 @@ App.get_img_icon = function (favicon) {
 
 // Create an item element
 App.create_item_element = function (item) {
-  item.element = App.create("div", "item")
+  item.element = App.create("div", "item tabs_item")
   item.element.dataset.id = item.id
 
   let icon = App.get_img_icon(item.favicon)
@@ -101,7 +101,7 @@ App.create_item_element = function (item) {
   item.element.append(text)
   App.set_item_text(item)
 
-  let close = App.create("div", "item_close underline unselectable")
+  let close = App.create("div", "item_button tabs_close")
   close.textContent = "Close"
   item.element.append(close)
 }

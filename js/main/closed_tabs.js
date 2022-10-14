@@ -34,17 +34,21 @@ App.show_closed_tabs = async function () {
 
     urls.push(c.tab.url)
     
-    let div = App.create("div", "closed_tabs_item")
+    let div = App.create("div", "item closed_tabs_item")
     let icon = App.get_img_icon(c.tab.favIconUrl)
     div.append(icon)
 
-    let text = App.create("div")
+    let text = App.create("div", "item_text")
     text.textContent = c.tab.title
     div.append(text)
 
     div.title = c.tab.url
     div.dataset.index = index
-
+    
+    let restore = App.create("div", "item_button closed_tabs_restore")
+    restore.textContent = "Restore"
+    div.append(restore)
+    
     container.append(div)
 
     let ct = {
