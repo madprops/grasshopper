@@ -83,6 +83,10 @@ App.setup_mouse = function () {
   
   // When closed tabs get hovered
   App.ev(ctc, "mouseover", function (e) {   
+    if (App.mouse_over_disabled) {
+      return
+    }
+        
     if (e.target.closest(".closed_tabs_item")) {
       let el = e.target.closest(".closed_tabs_item")
       let index = el.dataset.index
@@ -104,4 +108,10 @@ App.enable_mouse_over = function () {
   App.enable_mouse_over_timeout = setTimeout(function () {
     App.mouse_over_disabled = false
   }, App.disable_mouse_delay)
+}
+
+// Enable and disable mouse over
+App.flash_mouse_over = function () {
+  App.disable_mouse_over()
+  App.enable_mouse_over()
 }

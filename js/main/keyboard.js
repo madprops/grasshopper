@@ -6,6 +6,7 @@ App.setup_keyboard = function () {
       if (e.key === "Enter") {
         if (e.shiftKey) {
           App.windows["closed_tabs"].hide()
+          App.flash_mouse_over()
           e.preventDefault()
         } else {
           App.closed_tab_action()
@@ -31,6 +32,7 @@ App.setup_keyboard = function () {
     if (e.key === "Enter") {
       if (e.shiftKey) {
         App.show_closed_tabs()
+        App.flash_mouse_over()
         e.preventDefault()
       } else {
         if (App.selected_valid()) {

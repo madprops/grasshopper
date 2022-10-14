@@ -65,8 +65,7 @@ App.setup_tabs = async function () {
   })
 
   NeedContext.after_hide = function () {
-    App.disable_mouse_over()
-    App.enable_mouse_over()
+    App.flash_mouse_over()
   }
 
   App.ev(App.el("#sort_button"), "click", function () {
