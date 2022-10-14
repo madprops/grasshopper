@@ -17,7 +17,7 @@ App.setup_filter = function () {
   })   
 }
 
-// Do items filter
+// Do tab filter
 // Args: select_new, disable_mouse_over
 App.do_filter = function (args = {}) {
   if (args.select_new === undefined) {
@@ -31,7 +31,7 @@ App.do_filter = function (args = {}) {
   let value = App.el("#filter").value.trim()
   let filter_mode = App.el("#filter_mode").value
 
-  if (App.tab_items.length === 0) {
+  if (App.tabs.length === 0) {
     return
   }
   
@@ -43,10 +43,10 @@ App.do_filter = function (args = {}) {
     return filter_words.every(x => what.includes(x))
   }
 
-  function matched (item) {
+  function matched (tab) {
     let match
-    let title = case_sensitive ? item.title : item.title_lower
-    let path = case_sensitive ? item.path : item.path_lower
+    let title = case_sensitive ? tab.title : tab.title_lower
+    let path = case_sensitive ? tab.path : tab.path_lower
     
     if (filter_mode === "title_url") {
       match = check(title) || check(path)
@@ -55,13 +55,13 @@ App.do_filter = function (args = {}) {
     } else if (filter_mode === "url") {
       match = check(path)
     } else if (filter_mode === "playing") {
-      match = item.audible &&
+      match = tab.audible &&
       (check(title) || check(path))    
     } else if (filter_mode === "pins") {
-      match = item.pinned &&
+      match = tab.pinned &&
       (check(title) || check(path))  
     } else if (filter_mode === "muted") {
-      match = item.muted &&
+      match = tab.muted &&
       (check(title) || check(path))    
     } 
         
@@ -78,27 +78,27 @@ App.do_filter = function (args = {}) {
     App.disable_mouse_over()
   }
 
-  for (let item of App.tab_items) {
-    if (matched(item)) {
-      App.show_item(item)
+  for (let tab of App.tabs) {
+    if (matched(tab)) {
+      App.show_tab(tab)
 
       if (!selected) {
         if (args.select_tab_id) {
-          if (item.id === args.select_tab_id) {
-            selected = item
+          if (tab.id === args.select_tab_id) {
+            selected = tab
             args.select_tab_id = undefined
           }
         } else if (args.select_new) {
-          selected = item
+          selected = tab
         }
       }
     } else {
-      App.hide_item(item)
+      App.hide_tab(tab)
     }
   }
 
   if (selected) {
-    App.select_item({item: selected})
+    App.select_tab({tab: selected})
   } else {
     App.update_footer()
   }

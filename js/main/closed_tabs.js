@@ -82,12 +82,12 @@ App.select_first_closed_tab = function () {
   }
 }
 
-// Remove item of a closed tab
+// Remove a closed tab
 App.clean_closed_tab = function (id) {
-  let item = App.get_item_by_id(id)
+  let tab = App.get_tab_by_id(id)
 
-  if (item) {
-    App.close_tab(item, false)
+  if (tab) {
+    App.close_tab(tab, false)
   }
 }
 
@@ -179,11 +179,11 @@ App.closed_tab_is_visible = function (tab) {
 
 // Remove a closed tab from the list
 App.remove_closed_tab = function (tab) {
-  let next_item = App.get_next_visible_closed_tab(tab) || App.get_prev_visible_closed_tab(tab)
+  let next_tab = App.get_next_visible_closed_tab(tab) || App.get_prev_visible_closed_tab(tab)
   tab.element.remove()
   
-  if (next_item) {
-    App.select_closed_tab(next_item)
+  if (next_tab) {
+    App.select_closed_tab(next_tab)
   }
 
   tab.removed = true

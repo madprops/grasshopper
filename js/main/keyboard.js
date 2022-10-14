@@ -34,34 +34,34 @@ App.setup_keyboard = function () {
         e.preventDefault()
       } else {
         if (App.selected_valid()) {
-          App.open_tab(App.selected_item)
+          App.open_tab(App.selected_tab)
           e.preventDefault()
         }
       }
     } else if (e.key === "ArrowUp") {
       if (e.shiftKey) {
         if (App.selected_valid()) {
-          App.move_tab_up(App.selected_item)
+          App.move_tab_up(App.selected_tab)
           e.preventDefault()
         }
       } else {
-        App.select_item_above()
+        App.select_tab_above()
         e.preventDefault()
       }
     } else if (e.key === "ArrowDown") {
       if (e.shiftKey) {
         if (App.selected_valid()) {
-          App.move_tab_down(App.selected_item)
+          App.move_tab_down(App.selected_tab)
           e.preventDefault()
         }
       } else {
-        App.select_item_below()
+        App.select_tab_below()
         e.preventDefault()
       }
     } else if (e.key === "Delete") {
       if (e.shiftKey) {
         if (App.selected_valid()) {
-          App.close_tab(App.selected_item)
+          App.close_tab(App.selected_tab)
           e.preventDefault()
         }
       }

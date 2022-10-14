@@ -5,17 +5,17 @@ App.setup_mouse = function () {
   App.ev(container, "click", function (e) {
     if (e.target.closest(".tabs_item")) {
       let el = e.target.closest(".tabs_item")
-      let item = App.get_item_by_id(el.dataset.id)
+      let tab = App.get_tab_by_id(el.dataset.id)
 
       if (e.target.closest(".tabs_close")) {
-        App.close_tab(item)
+        App.close_tab(tab)
       } else {
-        App.open_tab(item)
+        App.open_tab(tab)
       }
     }
   })
 
-  // When items get hovered
+  // When tabs get hovered
   App.ev(container, "mouseover", function (e) {
     if (App.mouse_over_disabled) {
       return
@@ -23,19 +23,19 @@ App.setup_mouse = function () {
 
     if (e.target.closest(".tabs_item")) {
       let el = e.target.closest(".tabs_item")
-      let item = App.get_item_by_id(el.dataset.id)
-      App.select_item({item: item, scroll: false})
+      let tab = App.get_tab_by_id(el.dataset.id)
+      App.select_tab({tab: tab, scroll: false})
     }
   })
 
-  // When items are middle clicked
+  // When tabs are middle clicked
   App.ev(container, "auxclick", function (e) {
     if (e.button === 1) {
       if (e.target.closest(".tabs_item")) {
         let el = e.target.closest(".tabs_item")
-        let item = App.get_item_by_id(el.dataset.id)
+        let tab = App.get_tab_by_id(el.dataset.id)
         
-        App.close_tab(item)
+        App.close_tab(tab)
       }
     }
   })
@@ -44,8 +44,8 @@ App.setup_mouse = function () {
   App.ev(container, "contextmenu", function (e) {
     if (e.target.closest(".tabs_item")) {
       let el = e.target.closest(".tabs_item")
-      let item = App.get_item_by_id(el.dataset.id)
-      App.show_item_menu(item, e.clientX, e.clientY)
+      let tab = App.get_tab_by_id(el.dataset.id)
+      App.show_tab_menu(tab, e.clientX, e.clientY)
       e.preventDefault()
     }
   })
@@ -81,7 +81,7 @@ App.setup_mouse = function () {
     }
   })  
   
-  // When closed tabs items get hovered
+  // When closed tabs get hovered
   App.ev(ctc, "mouseover", function (e) {   
     if (e.target.closest(".closed_tabs_item")) {
       let el = e.target.closest(".closed_tabs_item")
