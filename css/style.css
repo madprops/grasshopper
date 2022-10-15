@@ -201,9 +201,9 @@ body, html {
   display: flex;
   flex-direction: column;
   gap: 1rem;
-  border: 1px solid rgb(114, 114, 114);
+  border: 1px solid rgba(114, 114, 114, 0.4);
   padding: 1rem;
-  background-color: rgba(69, 67, 94, 0.5);
+  background-color: rgba(69, 67, 94, 0.2);
   font-size: 1.1rem;
 }
 
