@@ -201,8 +201,14 @@ body, html {
   display: flex;
   flex-direction: column;
   gap: 1rem;
-  border: 1px solid grey;
+  border: 1px solid rgb(72, 72, 72);
   padding: 1rem;
+  background-color: rgb(42, 41, 54);
+  font-size: 1.1rem;
+}
+
+.about_shortcut_1 {
+  font-weight: bold;
 }
 
 .window_main {
