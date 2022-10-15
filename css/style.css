@@ -34,7 +34,7 @@ body, html {
 
 #top {
   flex-grow: 0;
-  gap: 0.7rem;
+  gap: 0.65rem;
   justify-content: flex-start;
   padding-left: 0.8rem;
   padding-top: 0.8rem;
@@ -192,27 +192,17 @@ body, html {
   padding-bottom: 2rem;
 }
 
-#about_text {
+#about_name {
   font-size: 1.2rem;
 }
 
-#about_author {
-  margin-top: 0.5rem;
-}
-
-#about_image {
+#about_shortcuts {
   margin-top: 1rem;
-  width: 300px;
-}
-
-#about_info {
   display: flex;
   flex-direction: column;
-  gap: 0.5rem;
-  margin-top: 1rem;
-  font-size: 1rem;
-  align-items: center;
-  font-size: 1.2rem;
+  gap: 1rem;
+  border: 1px solid grey;
+  padding: 1rem;
 }
 
 .window_main {

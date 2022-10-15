@@ -50,26 +50,3 @@ App.create_window = function (args) {
 
   App.windows[args.id] = w
 }
-
-// Setup windows
-App.setup_windows = function () {
-  App.create_window({id:"about", top: "panel"})
-  let manifest = browser.runtime.getManifest()
-  let s = `Grasshopper v${manifest.version}`
-  App.el("#about_text").textContent = s
-
-  App.ev(App.el("#about_button"), "click", function () {  
-    App.windows["about"].show()
-  })
-
-  App.create_window({id:"closed_tabs", top: "x"}) 
-  let filter = App.el("#closed_tabs_filter")
-
-  App.filter_closed_tabs = App.create_debouncer(function () {
-    App.do_filter_closed_tabs()
-  }, App.filter_delay)
-  
-  App.ev(filter, "input", function () {
-    App.filter_closed_tabs()
-  })
-}

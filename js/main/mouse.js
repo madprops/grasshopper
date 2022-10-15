@@ -59,7 +59,7 @@ App.setup_mouse = function () {
       let index = el.dataset.index
       let tab = App.closed_tabs[index]
 
-      if (e.target.closest(".closed_tabs_restore")) {
+      if (e.target.closest(".closed_tabs_open")) {
         App.restore_tab(tab, false)
         App.remove_closed_tab(tab)
       } else {
@@ -86,7 +86,7 @@ App.setup_mouse = function () {
     if (App.mouse_over_disabled) {
       return
     }
-        
+
     if (e.target.closest(".closed_tabs_item")) {
       let el = e.target.closest(".closed_tabs_item")
       let index = el.dataset.index

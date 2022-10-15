@@ -11,8 +11,9 @@ App.sorted = false
 
 App.init = function () {
   App.get_state()
-  App.setup_windows()
   App.setup_tabs()
+  App.setup_closed_tabs()
+  App.setup_about()
   App.setup_filter()
   App.setup_mouse()
   App.setup_keyboard()

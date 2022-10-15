@@ -11,11 +11,12 @@
     <script src="js/main/closed_tabs.js"></script>
     <script src="js/main/windows.js"></script>
     <script src="js/main/filter.js"></script>
+    <script src="js/main/about.js"></script>
   </head>
   <body>
     <div id="main" class="unselectable">
       <div id="top" class="flex_row_center">
-        <div id="about_button" class="action" title="Ctrl + Up/Down to move tabs | Ctrl + Del to close tabs">G</div>
+        <div id="about_button" class="action">G</div>
         <input type="text" id="filter" class="filter" autocomplete="off" placeholder="Type to filter...">
         
         <select id="filter_mode" class="top_select" title="Filter Mode (Ctrl + 1)">
@@ -46,9 +47,20 @@
 
     <template id="template_about">
       <div id="about_container">
-        <div id="about_text"></div>
-        <div id="about_author">By madprops (2022)</div>
-        <img src="img/icon.png" id="about_image">
+        <div id="about_name"></div>
+        <div id="about_shortcuts">
+          <div>Arrow Up: Select tab above</div>
+          <div>Arrow Down: Select tab below</div>
+          <div>Enter: Open tab</div>
+          <div>Ctrl + Delete: Close tab</div>
+          <div>Ctrl + 1: Focus filter mode</div>
+          <div>Ctrl + 2: Focus text mode</div>
+          <div>Ctrl + 3: Toggle case sensitive</div>
+          <div>Ctrl + 4: Sort tabs</div>
+          <div>Ctrl + 5: Clean tabs</div>
+          <div>Ctrl + 6: Show closed tabs</div>
+          <div>Ctrl + 7: Go to playing tab</div>
+        </div>
       </div>
     </template>  
     

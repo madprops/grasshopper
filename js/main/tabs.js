@@ -54,7 +54,7 @@ App.close_tab = function (tab, close_tab = true) {
 }
 
 // Setup tabs
-App.setup_tabs = async function () {
+App.setup_tabs = function () {
   let text_mode = App.el("#text_mode")
   text_mode.value = App.state.text_mode
 
@@ -94,8 +94,8 @@ App.setup_tabs = async function () {
 }
 
 // Restore a closed tab
-App.restore_tab = async function (tab, close = true) {
-  await browser.sessions.forgetClosedTab(tab.window_id, tab.session_id)
+App.restore_tab = function (tab, close = true) {
+  browser.sessions.forgetClosedTab(tab.window_id, tab.session_id)
   browser.tabs.create({url: tab.url, active: close})
 
   if (close) {
@@ -235,7 +235,7 @@ App.close_unpinned_tabs = function () {
 }
 
 // Confirm tab close
-App.confirm_tabs_close = async function (tabs) {
+App.confirm_tabs_close = function (tabs) {
   if (tabs.length === 0) {
     return
   }

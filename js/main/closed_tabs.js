@@ -1,3 +1,17 @@
+// Setup closed tabs
+App.setup_closed_tabs = function () {
+  App.create_window({id:"closed_tabs", top: "x"}) 
+  let filter = App.el("#closed_tabs_filter")
+
+  App.filter_closed_tabs = App.create_debouncer(function () {
+    App.do_filter_closed_tabs()
+  }, App.filter_delay)
+  
+  App.ev(filter, "input", function () {
+    App.filter_closed_tabs()
+  })
+}
+
 // Show closed tabs
 App.show_closed_tabs = async function () {
   let closed = await browser.sessions.getRecentlyClosed({
@@ -45,9 +59,9 @@ App.show_closed_tabs = async function () {
     div.title = c.tab.url
     div.dataset.index = index
     
-    let restore = App.create("div", "item_button closed_tabs_restore")
-    restore.textContent = "Restore"
-    div.append(restore)
+    let open = App.create("div", "item_button closed_tabs_open")
+    open.textContent = "Open"
+    div.append(open)
     
     container.append(div)
 
