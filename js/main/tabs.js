@@ -34,6 +34,12 @@ App.close_tab = function (tab, close_tab = true) {
     return
   }
 
+  if (tab.audible) {
+    if (!confirm("Close playing tab?")) {
+      return
+    }
+  }
+
   let next_tab
 
   if (tab === App.selected_tab) {
