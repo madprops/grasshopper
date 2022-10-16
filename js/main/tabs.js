@@ -225,7 +225,7 @@ App.close_other_tabs = function (tab) {
       if (it.audible) {
         continue
       }
-            
+
       tabs.push(it)
     }
   }
@@ -254,16 +254,16 @@ App.confirm_tabs_close = function (tabs) {
     return
   }
 
-  let normal_tabs = 0
+  let num_tabs = 0
 
   for (let tab of tabs) {
     if (tab.url !== "about:newtab") {
-      normal_tabs += 1
+      num_tabs += 1
     }
   }
 
-  if (normal_tabs.length > 0) {
-    let s = App.plural(normal_tabs.length, "tab", "tabs")
+  if (num_tabs > 0) {
+    let s = App.plural(num_tabs, "tab", "tabs")
   
     if (confirm(`Close ${s}?`)) {
       for (let tab of tabs) {
