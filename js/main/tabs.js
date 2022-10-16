@@ -73,7 +73,7 @@ App.setup_tabs = function () {
   })
 
   App.ev(App.el("#clean_button"), "click", function () {
-    App.close_unpinned_tabs()
+    App.clean_tabs()
   })
 
   App.ev(App.el("#closed_button"), "click", function () {
@@ -221,17 +221,30 @@ App.close_other_tabs = function (tab) {
   App.confirm_tabs_close(tabs)
 }
 
-// Close all tabs except pins
-App.close_unpinned_tabs = function () {
+// Close all tabs except pinned and audible tabs
+App.clean_tabs = function () {
   let tabs = []
+  let confirm = false
 
   for (let it of App.tabs) {
-    if (!it.pinned) {
-      tabs.push(it)
+    if (it.pinned || it.audible) {
+      continue
+    }
+    
+    tabs.push(it)
+
+    if (it.url !== "about:newtab") {
+      confirm = true
     }
   }
   
-  App.confirm_tabs_close(tabs)  
+  if (confirm) {
+    App.confirm_tabs_close(tabs)  
+  } else {
+    for (let tab of tabs) {
+      App.close_tab(tab)
+    }
+  }
 }
 
 // Confirm tab close

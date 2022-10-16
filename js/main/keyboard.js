@@ -88,7 +88,7 @@ App.setup_keyboard = function () {
       }
     } else if (e.key === "5") {
       if (e.ctrlKey) {
-        App.close_unpinned_tabs()
+        App.clean_tabs()
         e.preventDefault()
       }
     } else if (e.key === "6") {
