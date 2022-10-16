@@ -93,7 +93,18 @@ App.setup_mouse = function () {
       let tab = App.closed_tabs[index]
       App.select_closed_tab(tab)
     }
-  })  
+  })
+
+  // On context menu action
+  App.ev(ctc, "contextmenu", function (e) {
+    if (e.target.closest(".closed_tabs_item")) {
+      let el = e.target.closest(".closed_tabs_item")
+      let index = el.dataset.index
+      let tab = App.closed_tabs[index]
+      App.show_closed_tab_menu(tab, e.clientX, e.clientY)
+      e.preventDefault()
+    }
+  })
 }
 
 // Disable mouse over
