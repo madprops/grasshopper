@@ -183,6 +183,10 @@ App.close_tabs_above = function (tab) {
 
   for (let it of App.tabs) {
     if (it !== tab) {
+      if (it.audible) {
+        continue
+      }
+
       tabs.push(it)
     } else {
       break
@@ -199,6 +203,10 @@ App.close_tabs_below = function (tab) {
 
   for (let it of App.tabs) {
     if (waypoint) {
+      if (it.audible) {
+        continue
+      }
+
       tabs.push(it)
     } else if (it === tab) {
       waypoint = true
@@ -214,6 +222,10 @@ App.close_other_tabs = function (tab) {
 
   for (let it of App.tabs) {
     if (it !== tab) {
+      if (it.audible) {
+        continue
+      }
+            
       tabs.push(it)
     }
   }
@@ -224,27 +236,16 @@ App.close_other_tabs = function (tab) {
 // Close all tabs except pinned and audible tabs
 App.clean_tabs = function () {
   let tabs = []
-  let confirm = false
 
   for (let it of App.tabs) {
     if (it.pinned || it.audible) {
       continue
     }
-    
-    tabs.push(it)
 
-    if (it.url !== "about:newtab") {
-      confirm = true
-    }
+    tabs.push(it)
   }
   
-  if (confirm) {
-    App.confirm_tabs_close(tabs)  
-  } else {
-    for (let tab of tabs) {
-      App.close_tab(tab)
-    }
-  }
+  App.confirm_tabs_close(tabs)  
 }
 
 // Confirm tab close
@@ -253,9 +254,23 @@ App.confirm_tabs_close = function (tabs) {
     return
   }
 
-  let s = App.plural(tabs.length, "tab", "tabs")
+  let normal_tabs = 0
 
-  if (confirm(`Close ${s}?`)) {
+  for (let tab of tabs) {
+    if (tab.url !== "about:newtab") {
+      normal_tabs += 1
+    }
+  }
+
+  if (normal_tabs.length > 0) {
+    let s = App.plural(normal_tabs.length, "tab", "tabs")
+  
+    if (confirm(`Close ${s}?`)) {
+      for (let tab of tabs) {
+        App.close_tab(tab)
+      }
+    }
+  } else {
     for (let tab of tabs) {
       App.close_tab(tab)
     }
