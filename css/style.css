@@ -53,8 +53,11 @@ body, html {
   padding: 0.12rem;
   color: black;
   flex-grow: 0;
-  width: 10rem;
   outline: none;
+}
+
+#filter {
+  width: 6.5rem;
 }
 
 #case_sensitive {

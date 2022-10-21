@@ -90,6 +90,10 @@ App.setup_tabs = function () {
     App.go_to_playing_tab()
   })
 
+  App.ev(App.el("#new_button"), "click", function () {
+    App.new_tab()
+  })
+
   browser.tabs.onUpdated.addListener(function (id) {
     App.refresh_tab(id)
   })
