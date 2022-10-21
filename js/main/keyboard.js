@@ -101,6 +101,11 @@ App.setup_keyboard = function () {
         App.go_to_playing_tab()
         e.preventDefault()
       }
+    } else if (e.key === "8") {
+      if (e.ctrlKey) {
+        App.new_tab()
+        e.preventDefault()
+      }
     }
   })
 }
