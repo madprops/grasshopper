@@ -6,7 +6,7 @@ App.get_template = function (id) {
 // Create a window
 App.create_window = function (args) {
   let w = {}
-  let el = App.create("div", "window_main")
+  let el = App.create("div", "window_main", `window_${args.id}`)
 
   if (args.top === "panel") {
     let top = App.create("div", "window_top action unselectable")
@@ -31,7 +31,7 @@ App.create_window = function (args) {
     el.append(top)
   }
 
-  let content = App.create("div", "window_content")
+  let content = App.create("div", "window_content main")
   content.innerHTML = App.get_template(args.id)
   el.append(content)
 

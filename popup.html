@@ -14,7 +14,7 @@
     <script src="js/main/about.js"></script>
   </head>
   <body>
-    <div id="main" class="unselectable">
+    <div id="main" class="main unselectable">
       <div id="top" class="flex_row_center">
         <div id="about_button" class="action">G</div>
         <input type="text" id="filter" class="filter" autocomplete="off" placeholder="Filter">
@@ -43,7 +43,7 @@
       </div>
 
       <div id="tabs"></div>
-      <div id="footer"></div>
+      <div id="footer" class="footer"></div>
     </div>
 
     <template id="template_about">
@@ -112,6 +112,7 @@
     
     <template id="template_closed_tabs">
       <div id="closed_tabs_container" class="unselectable"></div>
+      <div id="closed_tabs_footer" class="footer unselectable">Hello world</div>
     </template>
 
     <template id="template_closed_tabs_top">

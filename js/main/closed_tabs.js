@@ -53,10 +53,26 @@ App.show_closed_tabs = async function () {
     div.append(icon)
 
     let text = App.create("div", "item_text")
-    text.textContent = c.tab.title
+    let path = App.remove_protocol(c.tab.url)
+    let content, purl, footer
+
+    if (c.tab.url.startsWith("http://")) {
+      purl = c.tab.url
+    } else {
+      purl = path
+    }  
+
+    if (App.state.text_mode === "title") {
+      content = c.tab.title || purl
+      footer = purl || tab.title
+    } else if (App.state.text_mode === "url") {
+      content = purl || c.tab.title
+      footer = c.tab.title || purl
+    }  
+
+    text.textContent = content
     div.append(text)
 
-    div.title = c.tab.url
     div.dataset.index = index
     
     let open = App.create("div", "item_button closed_tabs_open")
@@ -72,7 +88,8 @@ App.show_closed_tabs = async function () {
       window_id: c.tab.windowId,
       session_id: c.tab.sessionId,
       element: div,
-      removed: false
+      removed: false,
+      footer: footer
     }
 
     index += 1
@@ -136,6 +153,7 @@ App.select_closed_tab = function (tab) {
   tab.element.classList.add("selected")
   App.selected_closed_tab = tab
   App.selected_closed_tab.element.scrollIntoView({block: "nearest"})
+  App.update_closed_tabs_footer()
 }
 
 // Selected closed tab action
@@ -223,4 +241,14 @@ App.show_closed_tab_menu = function (tab, x, y) {
   }) 
 
   NeedContext.show(x, y, items)
+}
+
+
+// Update the closed tabs footer
+App.update_closed_tabs_footer = function () {
+  if (App.selected_valid()) {
+    App.el("#closed_tabs_footer").textContent = App.selected_closed_tab.footer
+  } else {
+    App.el("#closed_tabs_footer").textContent = "No Results"
+  }
 }
