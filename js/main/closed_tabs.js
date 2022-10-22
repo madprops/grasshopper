@@ -49,7 +49,7 @@ App.show_closed_tabs = async function () {
     urls.push(c.tab.url)
     
     let div = App.create("div", "item closed_tabs_item")
-    let icon = App.get_img_icon(c.tab.favIconUrl)
+    let icon = App.get_img_icon(c.tab.favIconUrl, c.tab.url)
     div.append(icon)
 
     let text = App.create("div", "item_text")
