@@ -1,6 +1,6 @@
 // Setup about
 App.setup_about = function () {
-  App.create_window({id:"about", top: "panel"})
+  App.create_window({id:"about"})
   let manifest = browser.runtime.getManifest()
   let s = `Grasshopper v${manifest.version}`
   App.el("#about_name").textContent = s

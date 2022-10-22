@@ -7,29 +7,17 @@ App.get_template = function (id) {
 App.create_window = function (args) {
   let w = {}
   let el = App.create("div", "window_main", `window_${args.id}`)
+  let top = App.create("div", "window_top")
+  top.innerHTML = App.get_template(`${args.id}_top`)
+  let x = App.create("div", "window_x action unselectable")
+  x.textContent = "x"
+  top.append(x)
 
-  if (args.top === "panel") {
-    let top = App.create("div", "window_top action unselectable")
-    top.textContent = "Go Back"
-  
-    App.ev(top, "click", function () {
-      w.hide()
-    })
+  App.ev(x, "click", function () {
+    w.hide()
+  })
 
-    el.append(top)
-  } else if (args.top === "x") {
-    let top = App.create("div", "window_top_2")
-    top.innerHTML = App.get_template(`${args.id}_top`)
-    let x = App.create("div", "window_x action unselectable")
-    x.textContent = "x"
-    top.append(x)
-  
-    App.ev(x, "click", function () {
-      w.hide()
-    })
-
-    el.append(top)
-  }
+  el.append(top)
 
   let content = App.create("div", "window_content main")
   content.innerHTML = App.get_template(args.id)
