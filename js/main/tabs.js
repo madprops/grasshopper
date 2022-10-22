@@ -5,7 +5,7 @@ App.get_tabs = async function (sort) {
   if (sort) {
     App.sort_tabs_by_access(tabs)
   }
-  
+
   return tabs
 }
 
@@ -44,7 +44,7 @@ App.close_tab = function (tab, close_tab = true) {
 
   if (tab === App.selected_tab) {
     next_tab = App.get_next_visible_tab(tab) || App.get_prev_visible_tab(tab)
-  }  
+  }
 
   tab.closed = true
 
@@ -56,7 +56,7 @@ App.close_tab = function (tab, close_tab = true) {
 
   if (next_tab) {
     App.select_tab({tab: next_tab, disable_mouse_over: true})
-  }  
+  }
 }
 
 // Setup tabs
@@ -100,7 +100,7 @@ App.setup_tabs = function () {
 
   browser.tabs.onRemoved.addListener(function (id) {
     App.clean_closed_tab(id)
-  })  
+  })
 }
 
 // Restore a closed tab
@@ -157,7 +157,7 @@ App.update_tab = function (o_tab, info) {
       if (selected) {
         App.select_tab({tab: tab})
       }
-            
+
       App.do_filter({select_new: false, disable_mouse_over: false})
       break
     }
@@ -202,7 +202,7 @@ App.close_tabs_above = function (tab) {
       break
     }
   }
-  
+
   App.confirm_tabs_close(tabs)
 }
 
@@ -222,7 +222,7 @@ App.close_tabs_below = function (tab) {
       waypoint = true
     }
   }
-  
+
   App.confirm_tabs_close(tabs)
 }
 
@@ -239,7 +239,7 @@ App.close_other_tabs = function (tab) {
       tabs.push(it)
     }
   }
-  
+
   App.confirm_tabs_close(tabs)
 }
 
@@ -254,8 +254,8 @@ App.clean_tabs = function () {
 
     tabs.push(it)
   }
-  
-  App.confirm_tabs_close(tabs)  
+
+  App.confirm_tabs_close(tabs)
 }
 
 // Confirm tab close
@@ -274,7 +274,7 @@ App.confirm_tabs_close = function (tabs) {
 
   if (num_tabs > 0) {
     let s = App.plural(num_tabs, "tab", "tabs")
-  
+
     if (confirm(`Close ${s}?`)) {
       for (let tab of tabs) {
         App.close_tab(tab)
@@ -381,11 +381,11 @@ App.process_tabs = function (tabs) {
 
   for (let tab of tabs) {
     let obj = App.process_tab(tab)
-    
+
     if (!obj) {
       continue
-    }  
-    
+    }
+
     App.tabs.push(obj)
     container.append(obj.element)
   }
@@ -396,7 +396,7 @@ App.process_tab = function (tab) {
   if (!tab.url) {
     return false
   }
-  
+
   tab.url = App.format_url(tab.url)
 
   try {
@@ -406,7 +406,7 @@ App.process_tab = function (tab) {
   }
 
   let path = App.remove_protocol(tab.url)
-  let title = tab.title || path 
+  let title = tab.title || path
 
   let obj = {
     id: tab.id,
@@ -470,7 +470,6 @@ App.get_img_icon = function (favicon, url) {
   })
 
   icon.src = favicon
-
   icon_container.append(icon)
   return icon_container
 }
@@ -487,7 +486,7 @@ App.set_tab_text = function (tab) {
   if (tab.audible) {
     status.push("Playing")
   }
-  
+
   if (tab.muted) {
     status.push("Muted")
   }
@@ -503,7 +502,7 @@ App.set_tab_text = function (tab) {
     purl = tab.url
   } else {
     purl = tab.path
-  }  
+  }
 
   if (App.state.text_mode === "title") {
     content += tab.title || purl
@@ -511,8 +510,8 @@ App.set_tab_text = function (tab) {
   } else if (App.state.text_mode === "url") {
     content += purl || tab.title
     tab.footer = tab.title || purl
-  }  
-  
+  }
+
   content = content.substring(0, 200).trim()
   let text = App.el(".item_text", tab.element)
   text.textContent = content
@@ -554,7 +553,7 @@ App.get_prev_visible_tab = function (o_tab) {
 
   if (!App.selected_valid()) {
     waypoint = true
-  }  
+  }
 
   for (let i=App.tabs.length-1; i>=0; i--) {
     let tab = App.tabs[i]
@@ -583,7 +582,7 @@ App.get_tab_by_id = function (id) {
 }
 
 // Make tab visible
-App.show_tab = function (tab) {  
+App.show_tab = function (tab) {
   tab.element.classList.remove("hidden")
 }
 
@@ -599,15 +598,15 @@ App.select_tab = function (args) {
   if (args.scroll === undefined) {
     args.scroll = true
   }
-  
+
   if (args.disable_mouse_over === undefined) {
     args.disable_mouse_over = false
-  }  
+  }
 
   if (args.tab.closed) {
     return
   }
-  
+
   if (args.disable_mouse_over) {
     App.disable_mouse_over()
   }
@@ -657,7 +656,7 @@ App.show_tab_menu = function (tab, x, y) {
       action: function () {
         App.unpin_tab(tab)
       }
-    }) 
+    })
   } else {
     items.push({
       text: "Pin",
@@ -673,7 +672,7 @@ App.show_tab_menu = function (tab, x, y) {
       action: function () {
         App.unmute_tab(tab)
       }
-    }) 
+    })
   } else {
     items.push({
       text: "Mute",
@@ -681,7 +680,7 @@ App.show_tab_menu = function (tab, x, y) {
         App.mute_tab(tab)
       }
     })
-  }  
+  }
 
   items.push({
     text: "Copy URL",
@@ -695,7 +694,7 @@ App.show_tab_menu = function (tab, x, y) {
     action: function () {
       App.copy_to_clipboard(tab.title)
     }
-  }) 
+  })
 
   items.push({
     text: "Move Up",
@@ -727,7 +726,7 @@ App.show_tab_menu = function (tab, x, y) {
         action: function () {
           App.close_tabs_below(tab)
         }
-      })   
+      })
     }
   }
 
@@ -737,7 +736,7 @@ App.show_tab_menu = function (tab, x, y) {
       action: function () {
         App.close_other_tabs(tab)
       }
-    })    
+    })
   }
 
   NeedContext.show(x, y, items)
