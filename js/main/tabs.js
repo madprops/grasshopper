@@ -434,7 +434,7 @@ App.create_tab_element = function (tab) {
   tab.element = App.create("div", "item tabs_item")
   tab.element.dataset.id = tab.id
 
-  let icon = App.get_img_icon(tab.favicon)
+  let icon = App.get_img_icon(tab.favicon, tab.url)
   tab.element.append(icon)
 
   let text = App.create("div", "item_text")
@@ -447,7 +447,7 @@ App.create_tab_element = function (tab) {
 }
 
 // Get image favicon
-App.get_img_icon = function (favicon) {
+App.get_img_icon = function (favicon, url) {
   let icon_container = App.create("div", "item_icon_container")
   let icon = App.create("img", "item_icon")
   icon.loading = "lazy"
@@ -455,7 +455,18 @@ App.get_img_icon = function (favicon) {
   icon.height = 25
 
   App.ev(icon, "error", function () {
-    this.classList.add("invisible")
+    let hostname = App.get_hostname(url) || "hostname"
+
+    if (!hostname) {
+      this.classList.add("invisible")
+      return
+    }
+
+    let icon_2 = App.create("canvas", "item_icon")
+    icon_2.width = 25
+    icon_2.height = 25
+    jdenticon.update(icon_2, hostname)
+    this.replaceWith(icon_2)
   })
 
   icon.src = favicon

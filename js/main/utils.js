@@ -123,3 +123,16 @@ App.plural = function (n, singular, plural) {
     return `${n} ${plural}`
   }
 }
+
+// Get url hostname
+App.get_hostname = function (url) {
+  let url_obj
+
+  try {
+    url_obj = new URL(url)
+  } catch (err) {
+    return ""
+  }
+
+  return App.remove_slashes_end(url_obj.hostname)
+}
