@@ -506,9 +506,9 @@ App.set_tab_text = function (tab) {
 
   if (App.state.text_mode === "title") {
     content += tab.title || purl
-    tab.footer = purl || tab.title
+    tab.footer = decodeURI(purl) || tab.title
   } else if (App.state.text_mode === "url") {
-    content += purl || tab.title
+    content += decodeURI(purl) || tab.title
     tab.footer = tab.title || purl
   }
 

@@ -64,9 +64,9 @@ App.show_closed_tabs = async function () {
 
     if (App.state.text_mode === "title") {
       content = c.tab.title || purl
-      footer = purl || tab.title
+      footer = decodeURI(purl) || tab.title
     } else if (App.state.text_mode === "url") {
-      content = purl || c.tab.title
+      content = decodeURI(purl) || c.tab.title
       footer = c.tab.title || purl
     }  
 
