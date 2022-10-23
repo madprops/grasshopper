@@ -43,11 +43,12 @@
         <button id="new_button" class="button actionbox" title="Open a new tab (Ctrl + 8)">New</button>
       </div>
 
-      <div id="tabs"></div>
+      <div id="tabs" class="container"></div>
       <div id="footer" class="footer"></div>
     </div>
 
     <template id="template_about">
+      <div id="about_name"></div>
       <div id="about_shortcuts">
         <div class="about_shortcuts_item">
           <div>Arrow Up</div>
@@ -109,11 +110,11 @@
     </template>  
 
     <template id="template_about_top">
-      <div id="about_name"></div>
+      
     </template>
     
     <template id="template_closed_tabs">
-      <div id="closed_tabs_container" class="unselectable"></div>
+      <div id="closed_tabs_container" class="container unselectable"></div>
       <div id="closed_tabs_footer" class="footer unselectable">Hello world</div>
     </template>
 

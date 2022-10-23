@@ -32,6 +32,18 @@ body, html {
   background-color: var(--background_color);
 }
 
+.container {
+  margin-top: 0.8rem;
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+  flex-shrink: 1;
+  position: relative;
+  height: 100%;
+  overflow-x: hidden;
+  overflow-y: auto;
+}
+
 #top {
   flex-grow: 0;
   gap: 0.65rem;
@@ -76,18 +88,6 @@ body, html {
   background-color: transparent;
   color: white;
   min-width: 1.5rem;
-}
-
-#tabs {
-  margin-top: 0.8rem;
-  display: flex;
-  flex-direction: column;
-  flex-grow: 1;
-  flex-shrink: 1;
-  position: relative;
-  height: 100%;
-  overflow-x: hidden;
-  overflow-y: auto;
 }
 
 .item {
@@ -188,10 +188,12 @@ body, html {
 
 #about_name {
   font-size: 1.2rem;
+  align-self: center;
 }
 
 #about_shortcuts {
-  margin-top: 1rem;
+  margin-top: 1.5rem;
+  margin-bottom: 1.5rem;
   display: flex;
   flex-direction: column;
   gap: 1.4rem;
@@ -238,8 +240,8 @@ body, html {
   justify-content: center;
   width: 100%;
   margin-top: 0.8rem;
-  margin-bottom: 0.8rem;
   padding-right: 1rem;
+  min-height: 1rem;
 }
 
 .window_x {
@@ -255,17 +257,6 @@ body, html {
   flex-grow: 0;
   flex-shrink: 0;
   text-align: center;
-}
-
-#closed_tabs_container {
-  height: 100%;
-  width: 100%;
-  flex-grow: 1;
-  flex-shrink: 1;
-  overflow-y: auto;
-  overflow-x: hidden;
-  position: relative;
-  margin-bottom: 0.5rem;
 }
 
 .invisible {
