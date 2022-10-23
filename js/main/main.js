@@ -14,7 +14,7 @@ App.init = function () {
   App.setup_tabs()
   App.setup_closed_tabs()
   App.setup_about()
-  App.setup_filter()
+  App.setup_filter_tabs()
   App.setup_mouse()
   App.setup_keyboard()
   App.show_tabs()

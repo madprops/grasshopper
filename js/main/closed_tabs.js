@@ -145,12 +145,17 @@ App.focus_closed_tabs_filter = function () {
 }
 
 // Select a closed tab
-App.select_closed_tab = function (tab) {
+App.select_closed_tab = function (tab, disable_mouse_over = false) {
   for (let el of App.els(".closed_tabs_item")) {
     el.classList.remove("selected")
   }
 
   tab.element.classList.add("selected")
+
+  if (disable_mouse_over) {
+    App.flash_mouse_over()
+  }
+
   App.selected_closed_tab = tab
   App.selected_closed_tab.element.scrollIntoView({block: "nearest"})
   App.update_closed_tabs_footer()
@@ -192,7 +197,7 @@ App.closed_tab_above = function () {
   let tab = App.get_prev_visible_closed_tab(App.selected_closed_tab)
 
   if (tab) {
-    App.select_closed_tab(tab)
+    App.select_closed_tab(tab, true)
   }
 }
 
@@ -201,7 +206,7 @@ App.closed_tab_below = function () {
   let tab = App.get_next_visible_closed_tab(App.selected_closed_tab)
 
   if (tab) {
-    App.select_closed_tab(tab)
+    App.select_closed_tab(tab, true)
   }
 }
 

@@ -34,6 +34,7 @@ body, html {
 
 .container {
   margin-top: 0.8rem;
+  margin-bottom: 0.5rem;
   display: flex;
   flex-direction: column;
   flex-grow: 1;

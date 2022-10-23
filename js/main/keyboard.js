@@ -32,7 +32,7 @@ App.setup_keyboard = function () {
       return
     }
 
-    App.focus_filter()
+    App.focus_tabs_filter()
 
     if (e.key === "Enter") {
       if (App.selected_valid()) {
