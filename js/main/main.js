@@ -9,7 +9,7 @@ App.window_mode = "none"
 App.windows = {}
 App.sorted = false
 App.history_max_months = 12
-App.history_max_items = 1000 * 2
+App.history_max_items = 1000 * 3
 
 App.init = function () {
   App.get_state()
