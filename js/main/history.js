@@ -109,8 +109,12 @@ App.show_history = async function () {
   container.scrollTop = 0
   App.windows["history"].show()
   App.select_first_history_item()
-  App.el("#history_filter").value = App.el("#filter").value
-  App.do_filter_history()
+  let v = App.el("#filter").value.trim()
+  App.el("#history_filter").value = v
+
+  if (v) {
+    App.do_filter_history()
+  }  
 }
 
 // Select first history item
