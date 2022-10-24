@@ -126,6 +126,7 @@ App.clean_closed_tab = function (id) {
 // Filter closed tabs
 App.do_filter_closed_tabs = function () {
   let value = App.el("#closed_tabs_filter").value.toLowerCase().trim()
+  App.disable_mouse_over()
 
   for (let tab of App.closed_tabs) {
     if (tab.title.toLowerCase().includes(value) || 
@@ -137,6 +138,7 @@ App.do_filter_closed_tabs = function () {
   }
 
   App.select_first_closed_tab()
+  App.enable_mouse_over()
 }
 
 // Focus the closed tabs filter
