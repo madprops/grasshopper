@@ -18,11 +18,6 @@ App.setup_keyboard = function () {
       } else if (e.key === "ArrowDown") {
         App.closed_tab_below()
         e.preventDefault()
-      } else if (e.key === "6") {
-        if (e.ctrlKey) {
-          App.windows["closed_tabs"].hide()
-          e.preventDefault()
-        }
       }
 
       return
@@ -46,11 +41,6 @@ App.setup_keyboard = function () {
       } else if (e.key === "ArrowDown") {
         App.history_item_below()
         e.preventDefault()
-      } else if (e.key === "6") {
-        if (e.ctrlKey) {
-          App.windows["history"].hide()
-          e.preventDefault()
-        }
       }
 
       return
