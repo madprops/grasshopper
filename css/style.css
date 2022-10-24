@@ -183,14 +183,9 @@ body, html {
   align-self: center;
 }
 
-.about_shortcuts_item {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
-
-.about_shortcuts_item div:first-of-type {
-  font-weight: bold;
+#about_image {
+  margin-top: 1rem;
+  width: 22rem;
 }
 
 .window_main {
