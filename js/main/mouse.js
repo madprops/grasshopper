@@ -16,7 +16,8 @@ App.setup_mouse = function () {
   })
 
   // When tabs get hovered
-  App.ev(container, "mouseover", function (e) {
+  App.ev(container, "mousemove", function (e) {
+    console.log(e)
     if (e.target.closest(".tabs_item")) {
       let el = e.target.closest(".tabs_item")
       let tab = App.get_tab_by_id(el.dataset.id)
@@ -78,7 +79,7 @@ App.setup_mouse = function () {
   })  
   
   // When closed tabs get hovered
-  App.ev(ctc, "mouseover", function (e) {   
+  App.ev(ctc, "mousemove", function (e) {   
     if (e.target.closest(".closed_tabs_item")) {
       let el = e.target.closest(".closed_tabs_item")
       let index = el.dataset.index
@@ -131,7 +132,7 @@ App.setup_mouse = function () {
   })  
   
   // When history get hovered
-  App.ev(hc, "mouseover", function (e) {   
+  App.ev(hc, "mousemove", function (e) {   
     if (e.target.closest(".history_item")) {
       let el = e.target.closest(".history_item")
       let index = el.dataset.index
