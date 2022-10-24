@@ -141,17 +141,12 @@ App.history_item_is_visible = function (item) {
 }
 
 // Select a history item
-App.select_history_item = function (item, disable_mouse_over = false) {
+App.select_history_item = function (item) {
   for (let el of App.els(".history_item")) {
     el.classList.remove("selected")
   }
 
   item.element.classList.add("selected")
-
-  if (disable_mouse_over) {
-    App.flash_mouse_over()
-  }
-
   App.selected_history_item = item
   App.selected_history_item.element.scrollIntoView({block: "nearest"})
   App.update_history_footer()
@@ -244,8 +239,6 @@ App.history_item_below = function () {
 // Filter history tabs
 App.do_filter_history = function () {
   let value = App.el("#history_filter").value.trim()
-  App.disable_mouse_over()
-  
   let words = value.split(" ").filter(x => x !== "")
   let case_sensitive = App.el("#history_case_sensitive").checked
   let filter_mode = App.el("#history_filter_mode").value
@@ -281,7 +274,6 @@ App.do_filter_history = function () {
 
   App.select_first_history_item()
   App.update_history_footer()
-  App.enable_mouse_over()
 }
 
 // Check if selected history item is valid

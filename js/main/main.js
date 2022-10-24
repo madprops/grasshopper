@@ -1,9 +1,7 @@
 // For internal checks
 App.tabs = []
-App.mouse_over_disabled = true
 App.filter_delay = 111
 App.refresh_tabs_delay = 500
-App.disable_mouse_delay = 111
 App.window_mode = "none"
 App.windows = {}
 App.sorted = false

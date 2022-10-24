@@ -136,8 +136,6 @@ App.clean_closed_tab = function (id) {
 // Filter closed tabs
 App.do_filter_closed_tabs = function () {
   let value = App.el("#closed_tabs_filter").value.trim()
-  App.disable_mouse_over()
-  
   let words = value.split(" ").filter(x => x !== "")
   let case_sensitive = App.el("#closed_tabs_case_sensitive").checked
   let filter_mode = App.el("#closed_tabs_filter_mode").value
@@ -173,7 +171,6 @@ App.do_filter_closed_tabs = function () {
 
   App.select_first_closed_tab()
   App.update_closed_tabs_footer()
-  App.enable_mouse_over()
 }
 
 // Focus the closed tabs filter
@@ -182,17 +179,12 @@ App.focus_closed_tabs_filter = function () {
 }
 
 // Select a closed tab
-App.select_closed_tab = function (tab, disable_mouse_over = false) {
+App.select_closed_tab = function (tab) {
   for (let el of App.els(".closed_tabs_item")) {
     el.classList.remove("selected")
   }
 
   tab.element.classList.add("selected")
-
-  if (disable_mouse_over) {
-    App.flash_mouse_over()
-  }
-
   App.selected_closed_tab = tab
   App.selected_closed_tab.element.scrollIntoView({block: "nearest"})
   App.update_closed_tabs_footer()

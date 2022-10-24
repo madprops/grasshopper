@@ -17,10 +17,6 @@ App.setup_mouse = function () {
 
   // When tabs get hovered
   App.ev(container, "mouseover", function (e) {
-    if (App.mouse_over_disabled) {
-      return
-    }
-
     if (e.target.closest(".tabs_item")) {
       let el = e.target.closest(".tabs_item")
       let tab = App.get_tab_by_id(el.dataset.id)
@@ -83,10 +79,6 @@ App.setup_mouse = function () {
   
   // When closed tabs get hovered
   App.ev(ctc, "mouseover", function (e) {   
-    if (App.mouse_over_disabled) {
-      return
-    }
-
     if (e.target.closest(".closed_tabs_item")) {
       let el = e.target.closest(".closed_tabs_item")
       let index = el.dataset.index
@@ -140,10 +132,6 @@ App.setup_mouse = function () {
   
   // When history get hovered
   App.ev(hc, "mouseover", function (e) {   
-    if (App.mouse_over_disabled) {
-      return
-    }
-
     if (e.target.closest(".history_item")) {
       let el = e.target.closest(".history_item")
       let index = el.dataset.index
@@ -162,24 +150,4 @@ App.setup_mouse = function () {
       e.preventDefault()
     }
   })  
-}
-
-// Disable mouse over
-App.disable_mouse_over = function () {
-  App.mouse_over_disabled = true
-}
-
-// Enable mouse over with a timeout
-App.enable_mouse_over = function () {
-  clearTimeout(App.enable_mouse_over_timeout)
-
-  App.enable_mouse_over_timeout = setTimeout(function () {
-    App.mouse_over_disabled = false
-  }, App.disable_mouse_delay)
-}
-
-// Enable and disable mouse over
-App.flash_mouse_over = function () {
-  App.disable_mouse_over()
-  App.enable_mouse_over()
 }

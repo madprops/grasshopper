@@ -55,16 +55,12 @@ App.close_tab = function (tab, close_tab = true) {
   App.remove_tab(tab)
 
   if (next_tab) {
-    App.select_tab({tab: next_tab, disable_mouse_over: true})
+    App.select_tab({tab: next_tab})
   }
 }
 
 // Setup tabs
 App.setup_tabs = function () {
-  NeedContext.after_hide = function () {
-    App.flash_mouse_over()
-  }
-
   App.ev(App.el("#sort_button"), "click", function () {
     App.sort_tabs()
   })
@@ -165,7 +161,7 @@ App.update_tab = function (o_tab, info) {
         App.select_tab({tab: tab})
       }
 
-      App.do_filter_tabs({select_new: false, disable_mouse_over: false})
+      App.do_filter_tabs({select_new: false})
       break
     }
   }
@@ -191,7 +187,7 @@ App.prepend_tab = function (info) {
   App.tabs.unshift(tab)
   App.create_tab_element(tab)
   App.el("#tabs").prepend(tab.element)
-  App.do_filter_tabs({select_new: false, disable_mouse_over: false})
+  App.do_filter_tabs({select_new: false})
 }
 
 // Close tabs above
@@ -366,8 +362,7 @@ App.move_tab_up = function (tab) {
   }
 
   App.show_tabs(false, {
-    select_tab_id: tab.id,
-    disable_mouse_over: true
+    select_tab_id: tab.id
   })
 }
 
@@ -375,8 +370,7 @@ App.move_tab_up = function (tab) {
 App.move_tab_down = function (tab) {
   browser.tabs.move(tab.id, {index: tab.index + 1})
   App.show_tabs(false, {
-    select_tab_id: tab.id,
-    disable_mouse_over: true
+    select_tab_id: tab.id
   })
 }
 
@@ -567,22 +561,14 @@ App.hide_tab = function (tab) {
 
 // Make a tab selected
 // Unselect all the others
-// Args: tab, scroll, disable_mouse_over
+// Args: tab, scroll
 App.select_tab = function (args) {
   if (args.scroll === undefined) {
     args.scroll = true
   }
 
-  if (args.disable_mouse_over === undefined) {
-    args.disable_mouse_over = false
-  }
-
   if (args.tab.closed) {
     return
-  }
-
-  if (args.disable_mouse_over) {
-    App.disable_mouse_over()
   }
 
   for (let el of App.els(".selected")) {
@@ -598,10 +584,6 @@ App.select_tab = function (args) {
 
   App.update_footer()
   browser.tabs.warmup(args.tab.id)
-
-  if (args.disable_mouse_over) {
-    App.enable_mouse_over()
-  }
 }
 
 // Check if a tab is visible
@@ -733,7 +715,7 @@ App.select_tab_above = function () {
   let tab = App.get_prev_visible_tab(App.selected_tab)
 
   if (tab) {
-    App.select_tab({tab: tab, disable_mouse_over: true})
+    App.select_tab({tab: tab})
   }
 }
 
@@ -742,7 +724,7 @@ App.select_tab_below = function () {
   let tab = App.get_next_visible_tab(App.selected_tab)
 
   if (tab) {
-    App.select_tab({tab: tab, disable_mouse_over: true})
+    App.select_tab({tab: tab})
   }
 }
 
@@ -768,14 +750,10 @@ App.count_visible_tabs = function () {
 }
 
 // Do tab filter
-// Args: select_new, disable_mouse_over
+// Args: select_new
 App.do_filter_tabs = function (args = {}) {
   if (args.select_new === undefined) {
     args.select_new = true
-  }
-
-  if (args.disable_mouse_over === undefined) {
-    args.disable_mouse_over = true
   }
 
   let value = App.el("#filter").value.trim()
@@ -820,10 +798,6 @@ App.do_filter_tabs = function (args = {}) {
 
   let selected
 
-  if (args.disable_mouse_over) {
-    App.disable_mouse_over()
-  }
-
   for (let tab of App.tabs) {
     if (matched(tab)) {
       App.show_tab(tab)
@@ -847,11 +821,6 @@ App.do_filter_tabs = function (args = {}) {
     App.select_tab({tab: selected})
   } else {
     App.update_footer()
-  }
-
-  // Avoid auto selecting when showing the window
-  if (App.mouse_over_disabled) {
-    App.enable_mouse_over()
   }
 }
 
