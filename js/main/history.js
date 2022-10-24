@@ -288,3 +288,24 @@ App.do_filter_history = function () {
 App.selected_history_item_valid = function () {
   return App.selected_history_item && !App.selected_history_item.removed && App.tab_is_visible(App.selected_history_item)
 }
+
+// Show history item menu
+App.show_history_item_menu = function (tab, x, y) {
+  let items = []
+
+  items.push({
+    text: "Copy URL",
+    action: function () {
+      App.copy_to_clipboard(tab.url)
+    }
+  })
+
+  items.push({
+    text: "Copy Title",
+    action: function () {
+      App.copy_to_clipboard(tab.title)
+    }
+  }) 
+
+  NeedContext.show(x, y, items)
+}

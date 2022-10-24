@@ -264,7 +264,7 @@ App.remove_closed_tab = function (tab) {
   tab.removed = true
 }
 
-// Show tab menu
+// Show closed tab menu
 App.show_closed_tab_menu = function (tab, x, y) {
   let items = []
 
@@ -284,7 +284,6 @@ App.show_closed_tab_menu = function (tab, x, y) {
 
   NeedContext.show(x, y, items)
 }
-
 
 // Update the closed tabs footer
 App.update_closed_tabs_footer = function () {
