@@ -21,20 +21,15 @@
           <input type="text" id="filter" class="filter" autocomplete="off" placeholder="Filter">
           
           <select id="filter_mode" class="top_select" title="Filter Mode">
-            <option value="title_url" selected>All</option>
+            <option value="all" selected>All</option>
             <option value="pins">Pins</option>
             <option value="playing">Playing</option>
             <option value="muted">Muted</option>
             <option value="title">Title</option>
             <option value="url">URL</option>
           </select>
-    
-          <select id="text_mode" class="top_select" title="Text Mode">
-            <option value="title" selected>Title</option>
-            <option value="url">URL</option>
-          </select>
   
-          <input id="case_sensitive" type="checkbox" title="Case Sensitive">
+          <input id="case_sensitive" type="checkbox" title="Case Sensitive" class="checkbox">
         </div>
 
         <div class="flex_row_center gap_1">
@@ -66,7 +61,17 @@
     </template>
 
     <template id="template_closed_tabs_top">
-      <input type="text" id="closed_tabs_filter" class="filter center_text" autocomplete="off" placeholder="Closed Tabs">
+      <div class="flex_row_center gap_1">
+        <input type="text" id="closed_tabs_filter" class="filter" autocomplete="off" placeholder="Closed">
+        
+        <select id="closed_tabs_filter_mode" class="top_select" title="Filter Mode">
+          <option value="all" selected>All</option>
+          <option value="title">Title</option>
+          <option value="url">URL</option>
+        </select>
+
+        <input id="closed_tabs_case_sensitive" type="checkbox" title="Case Sensitive" class="checkbox">
+      </div>
     </template>
 
     <template id="template_history">
@@ -75,7 +80,17 @@
     </template>
 
     <template id="template_history_top">
-      <input type="text" id="history_filter" class="filter center_text" autocomplete="off" placeholder="History">
+      <div class="flex_row_center gap_1">
+        <input type="text" id="history_filter" class="filter" autocomplete="off" placeholder="History">
+        
+        <select id="history_filter_mode" class="top_select" title="Filter Mode">
+          <option value="all" selected>All</option>
+          <option value="title">Title</option>
+          <option value="url">URL</option>
+        </select>
+
+        <input id="history_case_sensitive" type="checkbox" title="Case Sensitive" class="checkbox">
+      </div>
     </template>
 
     <script src="js/main/main.js"></script>

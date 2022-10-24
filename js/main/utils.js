@@ -57,29 +57,6 @@ App.remove_hash = function (url) {
   return url.split("#")[0]
 }
 
-// Get local storage
-App.get_storage = function (name, def) {
-  let obj
-
-  if (localStorage[name]) {
-    try {
-      obj = JSON.parse(localStorage.getItem(name))
-    } catch (err) {
-      localStorage.removeItem(name)
-      obj = def
-    }
-  } else {
-    obj = def
-  }
-
-  return obj
-}
-
-// Save local storage
-App.save_storage = function (name, obj) {
-  localStorage.setItem(name, JSON.stringify(obj))
-}
-
 // The way to format urls
 App.format_url = function (url) {
   return App.remove_slashes_end(App.remove_hash(url))
@@ -93,26 +70,6 @@ App.remove_protocol = function (url) {
 // Copy text to the clipboard
 App.copy_to_clipboard = function (text) {
   navigator.clipboard.writeText(text)
-}
-
-// Get state
-App.get_state = function () {
-  App.state = App.get_storage(App.ls_state, {})
-  let changed = false
-
-  if (!App.state.text_mode) {
-    App.state.text_mode = "title"
-    changed = true
-  }
-
-  if (changed) {
-    App.save_state()
-  }
-}
-
-// Save state
-App.save_state = function () {
-  App.save_storage(App.ls_state, App.state)
 }
 
 // Get singular or plural

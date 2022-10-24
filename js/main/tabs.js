@@ -61,15 +61,6 @@ App.close_tab = function (tab, close_tab = true) {
 
 // Setup tabs
 App.setup_tabs = function () {
-  let text_mode = App.el("#text_mode")
-  text_mode.value = App.state.text_mode
-
-  App.ev(text_mode, "change", function () {
-    App.state.text_mode = text_mode.value
-    App.update_text()
-    App.save_state()
-  })
-
   NeedContext.after_hide = function () {
     App.flash_mouse_over()
   }
@@ -101,6 +92,22 @@ App.setup_tabs = function () {
   browser.tabs.onRemoved.addListener(function (id) {
     App.clean_closed_tab(id)
   })
+
+  App.filter = App.create_debouncer(function () {
+    App.do_filter_tabs()
+  }, App.filter_delay)
+
+  App.ev(App.el("#filter"), "input", function () {
+    App.filter()
+  })
+
+  App.ev(App.el("#filter_mode"), "change", function () {
+    App.do_filter_tabs()
+  })
+
+  App.ev(App.el("#case_sensitive"), "change", function () {
+    App.do_filter_tabs()
+  })    
 }
 
 // Restore a closed tab
@@ -476,13 +483,8 @@ App.set_tab_text = function (tab) {
     purl = tab.path
   }
 
-  if (App.state.text_mode === "title") {
-    content += tab.title || purl
-    tab.footer = decodeURI(purl) || tab.title
-  } else if (App.state.text_mode === "url") {
-    content += decodeURI(purl) || tab.title
-    tab.footer = tab.title || purl
-  }
+  content += tab.title || purl
+  tab.footer = decodeURI(purl) || tab.title
 
   content = content.substring(0, 200).trim()
   let text = App.el(".item_text", tab.element)
@@ -765,25 +767,6 @@ App.count_visible_tabs = function () {
   return App.tabs.filter(x => App.tab_is_visible(x)).length
 }
 
-// Setup filter
-App.setup_filter_tabs = function () {
-  App.filter = App.create_debouncer(function () {
-    App.do_filter_tabs()
-  }, App.filter_delay)
-
-  App.ev(App.el("#filter"), "input", function () {
-    App.filter()
-  })
-
-  App.ev(App.el("#filter_mode"), "change", function () {
-    App.do_filter_tabs()
-  })
-
-  App.ev(App.el("#case_sensitive"), "change", function () {
-    App.do_filter_tabs()
-  })   
-}
-
 // Do tab filter
 // Args: select_new, disable_mouse_over
 App.do_filter_tabs = function (args = {}) {
@@ -811,11 +794,11 @@ App.do_filter_tabs = function (args = {}) {
   }
 
   function matched (tab) {
-    let match
+    let match = false
     let title = case_sensitive ? tab.title : tab.title_lower
     let path = case_sensitive ? tab.path : tab.path_lower
     
-    if (filter_mode === "title_url") {
+    if (filter_mode === "all") {
       match = check(title) || check(path)
     } else if (filter_mode === "title") {
       match = check(title)
@@ -832,11 +815,7 @@ App.do_filter_tabs = function (args = {}) {
       (check(title) || check(path))    
     } 
         
-    if (!match) {
-      return false
-    }
-
-    return true
+    return match
   }
 
   let selected

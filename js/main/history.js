@@ -13,6 +13,14 @@ App.setup_history = function () {
   App.ev(App.el("#history_filter"), "input", function () {
     App.filter_history()
   })  
+
+  App.ev(App.el("#history_filter_mode"), "change", function () {
+    App.do_filter_history()
+  })
+
+  App.ev(App.el("#history_case_sensitive"), "change", function () {
+    App.do_filter_history()
+  })    
 }
 
 // Get items from history
@@ -66,7 +74,7 @@ App.show_history = async function () {
 
     let text = App.create("div", "item_text")
     let path = App.remove_protocol(c.url)
-    let content, purl, footer
+    let purl
 
     if (c.url.startsWith("http://")) {
       purl = c.url
@@ -74,13 +82,8 @@ App.show_history = async function () {
       purl = path
     }  
 
-    if (App.state.text_mode === "title") {
-      content = c.title || purl
-      footer = decodeURI(purl) || c.title
-    } else if (App.state.text_mode === "url") {
-      content = decodeURI(purl) || c.title
-      footer = c.title || purl
-    }  
+    let content = c.title || purl
+    let footer = decodeURI(purl) || c.title
 
     text.textContent = content
     div.append(text)
@@ -92,13 +95,18 @@ App.show_history = async function () {
     div.append(open)
     
     container.append(div)
+    let title = c.title || path
 
     let item = {
       index: index,
       url: c.url,
-      title: c.title || "No Title",
+      title: title,
+      title_lower: title.toLowerCase(),
       element: div,
-      footer: footer
+      footer: footer,
+      path: path,
+      path_lower: path.toLowerCase(),
+      removed: false
     }
 
     index += 1
@@ -151,7 +159,7 @@ App.select_history_item = function (item, disable_mouse_over = false) {
 
 // Update history footer
 App.update_history_footer = function () {
-  if (App.selected_valid()) {
+  if (App.selected_history_item_valid()) {
     App.el("#history_footer").textContent = App.selected_history_item.footer
   } else {
     App.el("#history_footer").textContent = "No Results"
@@ -233,20 +241,50 @@ App.history_item_below = function () {
   }
 }
 
-// Filter history items
+// Filter history tabs
 App.do_filter_history = function () {
-  let value = App.el("#history_filter").value.toLowerCase().trim()
+  let value = App.el("#history_filter").value.trim()
   App.disable_mouse_over()
+  
+  let words = value.split(" ").filter(x => x !== "")
+  let case_sensitive = App.el("#history_case_sensitive").checked
+  let filter_mode = App.el("#history_filter_mode").value
+  let filter_words = case_sensitive ? words : words.map(x => x.toLowerCase())
 
-  for (let item of App.history_items) {
-    if (item.title.toLowerCase().includes(value) || 
-        item.url.toLowerCase().includes(value)) {
-      item.element.classList.remove("hidden")
+  function check (what) {
+    return filter_words.every(x => what.includes(x))
+  }
+
+  function matched (it) {
+    let match = false
+    let title = case_sensitive ? it.title : it.title_lower
+    let path = case_sensitive ? it.path : it.path_lower
+    
+    if (filter_mode === "all") {
+      match = check(title) || check(path)
+    } else if (filter_mode === "title") {
+      match = check(title)
+    } else if (filter_mode === "url") {
+      match = check(path)
+    }
+
+    return match
+  }
+
+  for (let it of App.history_items) {
+    if (matched(it)) {
+      it.element.classList.remove("hidden")
     } else {
-      item.element.classList.add("hidden")
+      it.element.classList.add("hidden")
     }
   }
 
   App.select_first_history_item()
+  App.update_history_footer()
   App.enable_mouse_over()
+}
+
+// Check if selected history item is valid
+App.selected_history_item_valid = function () {
+  return App.selected_history_item && !App.selected_history_item.removed && App.tab_is_visible(App.selected_history_item)
 }

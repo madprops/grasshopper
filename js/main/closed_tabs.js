@@ -9,6 +9,14 @@ App.setup_closed_tabs = function () {
   App.ev(App.el("#closed_tabs_filter"), "input", function () {
     App.filter_closed_tabs()
   })
+
+  App.ev(App.el("#closed_tabs_filter_mode"), "change", function () {
+    App.do_filter_closed_tabs()
+  })
+
+  App.ev(App.el("#closed_tabs_case_sensitive"), "change", function () {
+    App.do_filter_closed_tabs()
+  })    
 }
 
 // Show closed tabs
@@ -53,7 +61,7 @@ App.show_closed_tabs = async function () {
 
     let text = App.create("div", "item_text")
     let path = App.remove_protocol(c.tab.url)
-    let content, purl, footer
+    let purl
 
     if (c.tab.url.startsWith("http://")) {
       purl = c.tab.url
@@ -61,13 +69,8 @@ App.show_closed_tabs = async function () {
       purl = path
     }  
 
-    if (App.state.text_mode === "title") {
-      content = c.tab.title || purl
-      footer = decodeURI(purl) || tab.title
-    } else if (App.state.text_mode === "url") {
-      content = decodeURI(purl) || c.tab.title
-      footer = c.tab.title || purl
-    }  
+    let content = c.tab.title || purl
+    let footer = decodeURI(purl) || tab.title
 
     text.textContent = content
     div.append(text)
@@ -79,16 +82,20 @@ App.show_closed_tabs = async function () {
     div.append(open)
     
     container.append(div)
+    let title = c.tab.title || path
 
     let ct = {
       index: index,
       url: c.tab.url,
-      title: c.tab.title || "No Title",
+      title: title,
+      title_lower: title.toLowerCase(),
       window_id: c.tab.windowId,
       session_id: c.tab.sessionId,
       element: div,
       removed: false,
-      footer: footer
+      footer: footer,
+      path: path,
+      path_lower: path.toLowerCase()
     }
 
     index += 1
@@ -128,19 +135,44 @@ App.clean_closed_tab = function (id) {
 
 // Filter closed tabs
 App.do_filter_closed_tabs = function () {
-  let value = App.el("#closed_tabs_filter").value.toLowerCase().trim()
+  let value = App.el("#closed_tabs_filter").value.trim()
   App.disable_mouse_over()
+  
+  let words = value.split(" ").filter(x => x !== "")
+  let case_sensitive = App.el("#closed_tabs_case_sensitive").checked
+  let filter_mode = App.el("#closed_tabs_filter_mode").value
+  let filter_words = case_sensitive ? words : words.map(x => x.toLowerCase())
 
-  for (let tab of App.closed_tabs) {
-    if (tab.title.toLowerCase().includes(value) || 
-        tab.url.toLowerCase().includes(value)) {
-      tab.element.classList.remove("hidden")
+  function check (what) {
+    return filter_words.every(x => what.includes(x))
+  }
+
+  function matched (it) {
+    let match = false
+    let title = case_sensitive ? it.title : it.title_lower
+    let path = case_sensitive ? it.path : it.path_lower
+    
+    if (filter_mode === "all") {
+      match = check(title) || check(path)
+    } else if (filter_mode === "title") {
+      match = check(title)
+    } else if (filter_mode === "url") {
+      match = check(path)
+    }
+
+    return match
+  }
+
+  for (let it of App.closed_tabs) {
+    if (matched(it)) {
+      it.element.classList.remove("hidden")
     } else {
-      tab.element.classList.add("hidden")
+      it.element.classList.add("hidden")
     }
   }
 
   App.select_first_closed_tab()
+  App.update_closed_tabs_footer()
   App.enable_mouse_over()
 }
 
@@ -256,9 +288,14 @@ App.show_closed_tab_menu = function (tab, x, y) {
 
 // Update the closed tabs footer
 App.update_closed_tabs_footer = function () {
-  if (App.selected_valid()) {
+  if (App.selected_closed_tab_valid()) {
     App.el("#closed_tabs_footer").textContent = App.selected_closed_tab.footer
   } else {
     App.el("#closed_tabs_footer").textContent = "No Results"
   }
+}
+
+// Check if selected closed tab is valid
+App.selected_closed_tab_valid = function () {
+  return App.selected_closed_tab && !App.selected_closed_tab.removed && App.tab_is_visible(App.selected_closed_tab)
 }
