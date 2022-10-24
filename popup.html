@@ -20,7 +20,7 @@
         <div class="flex_row_center gap_1">
           <input type="text" id="filter" class="filter" autocomplete="off" placeholder="Filter">
           
-          <select id="filter_mode" class="top_select" title="Filter Mode (Ctrl + 1)">
+          <select id="filter_mode" class="top_select" title="Filter Mode">
             <option value="title_url" selected>All</option>
             <option value="pins">Pins</option>
             <option value="playing">Playing</option>
@@ -29,22 +29,22 @@
             <option value="url">URL</option>
           </select>
     
-          <select id="text_mode" class="top_select" title="Text Mode (Ctrl + 2)">
+          <select id="text_mode" class="top_select" title="Text Mode">
             <option value="title" selected>Title</option>
             <option value="url">URL</option>
           </select>
   
-          <input id="case_sensitive" type="checkbox" title="Case Sensitive (Ctrl + 3)">
+          <input id="case_sensitive" type="checkbox" title="Case Sensitive">
         </div>
 
         <div class="flex_row_center gap_1">
-          <button id="sort_button" class="button actionbox" title="Show different tab order (Ctrl + 4)">Sort</button>
-          <button id="clean_button" class="button actionbox" title="Close all but pinned and audible tabs (Ctrl + 5)">Clean</button>
-          <button id="closed_button" class="button actionbox" title="Open recently closed tabs (Ctrl + 6)">Closed</button>
-          <button id="history_button" class="button actionbox" title="Open a new tab (Ctrl + 7)">History</button>
-          <button id="playing_button" class="button actionbox" title="Go to a tab emitting sound (Ctrl + 8)">Playing</button>
-          <button id="new_button" class="button actionbox" title="Open a new tab (Ctrl + 9)">New</button>
-          <button id="about_button" class="button actionbox" title="Open a new tab (Ctrl + 0)">?</button>
+          <button id="sort_button" class="button actionbox" title="Show different tab order">Sort</button>
+          <button id="clean_button" class="button actionbox" title="Close all but pinned and audible tabs">Clean</button>
+          <button id="closed_button" class="button actionbox" title="Open recently closed tabs">Closed</button>
+          <button id="history_button" class="button actionbox" title="Open a new tab">History</button>
+          <button id="playing_button" class="button actionbox" title="Go to a tab emitting sound">Playing</button>
+          <button id="new_button" class="button actionbox" title="Open a new tab">New</button>
+          <button id="about_button" class="button actionbox" title="Open a new tab">?</button>
         </div>
       </div>
 
@@ -54,64 +54,6 @@
 
     <template id="template_about">
       <div id="about_name"></div>
-      <div id="about_shortcuts">
-        <div class="about_shortcuts_item">
-          <div>Arrow Up</div>
-          <div>Select tab above</div>
-        </div>
-        <div class="about_shortcuts_item">
-          <div>Arrow Down</div>
-          <div>Select tab below</div>
-        </div>
-        <div class="about_shortcuts_item">
-          <div>Enter</div>
-          <div>Open tab</div>
-        </div>
-        <div class="about_shortcuts_item">
-          <div>Ctrl + Up</div>
-          <div>Move tab above</div>
-        </div>
-        <div class="about_shortcuts_item">
-          <div>Ctrl + Down</div>
-          <div>Move tab below</div>
-        </div>
-        <div class="about_shortcuts_item">
-          <div>Ctrl + Delete</div>
-          <div>Close tab</div>
-        </div>
-        <div class="about_shortcuts_item">
-          <div>Ctrl + 1</div>
-          <div>Focus filter mode</div>
-        </div>
-        <div class="about_shortcuts_item">
-          <div>Ctrl + 2</div>
-          <div>Focus text mode</div>
-        </div>
-        <div class="about_shortcuts_item">
-          <div>Ctrl + 3</div>
-          <div>Toggle case sensitive</div>
-        </div>
-        <div class="about_shortcuts_item">
-          <div>Ctrl + 4</div>
-          <div>Sort tabs</div>
-        </div>
-        <div class="about_shortcuts_item">
-          <div>Ctrl + 5</div>
-          <div>Clean tabs</div>
-        </div>
-        <div class="about_shortcuts_item">
-          <div>Ctrl + 6</div>
-          <div>Show closed tabs</div>
-        </div>
-        <div class="about_shortcuts_item">
-          <div>Ctrl + 7</div>
-          <div>Go to playing tab</div>
-        </div>
-        <div class="about_shortcuts_item">
-          <div>Ctrl + 8</div>
-          <div>Open new tab</div>
-        </div>          
-      </div>
     </template>  
 
     <template id="template_about_top">

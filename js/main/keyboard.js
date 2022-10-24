@@ -94,56 +94,6 @@ App.setup_keyboard = function () {
           e.preventDefault()
         }
       }
-    } else if (e.key === "1") {
-      if (e.ctrlKey) {
-        App.el("#filter_mode").focus()
-        e.preventDefault()
-      }
-    } else if (e.key === "2") {
-      if (e.ctrlKey) {
-        App.el("#text_mode").focus()
-        e.preventDefault()
-      }
-    } else if (e.key === "3") {
-      if (e.ctrlKey) {
-        App.el("#case_sensitive").checked = !App.el("#case_sensitive").checked
-        e.preventDefault()
-      }
-    } else if (e.key === "4") {
-      if (e.ctrlKey) {
-        App.sort_tabs()
-        e.preventDefault()
-      }
-    } else if (e.key === "5") {
-      if (e.ctrlKey) {
-        App.clean_tabs()
-        e.preventDefault()
-      }
-    } else if (e.key === "6") {
-      if (e.ctrlKey) {
-        App.show_closed_tabs()
-        e.preventDefault()
-      }
-    } else if (e.key === "7") {
-      if (e.ctrlKey) {
-        App.show_history()
-        e.preventDefault()
-      }
-    } else if (e.key === "8") {
-      if (e.ctrlKey) {
-        App.go_to_playing_tab()
-        e.preventDefault()
-      }
-    } else if (e.key === "9") {
-      if (e.ctrlKey) {
-        App.new_tab()
-        e.preventDefault()
-      }
-    } else if (e.key === "0") {
-      if (e.ctrlKey) {
-        App.show_about()
-        e.preventDefault()
-      }
     }
   })
 }
