@@ -83,7 +83,7 @@ App.show_closed_tabs = async function () {
     let ct = {
       index: index,
       url: c.tab.url,
-      title: c.tab.title,
+      title: c.tab.title || "No Title",
       window_id: c.tab.windowId,
       session_id: c.tab.sessionId,
       element: div,

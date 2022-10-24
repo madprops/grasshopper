@@ -93,17 +93,17 @@ App.show_history = async function () {
     
     container.append(div)
 
-    let ct = {
+    let item = {
       index: index,
       url: c.url,
-      title: c.title,
+      title: c.title || "No Title",
       element: div,
       footer: footer
     }
 
     index += 1
 
-    App.history_items.push(ct)  
+    App.history_items.push(item)  
   }
 
   container.scrollTop = 0

@@ -148,6 +148,7 @@ App.setup_mouse = function () {
       let el = e.target.closest(".history_item")
       let index = el.dataset.index
       let item = App.history_items[index]
+      console.log(item)
       App.select_history_item(item)
     }
   })
