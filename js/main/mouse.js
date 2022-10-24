@@ -105,6 +105,63 @@ App.setup_mouse = function () {
       e.preventDefault()
     }
   })
+
+  let hc = App.el("#history_container")
+
+  // On history item click
+  App.ev(hc, "click", function (e) {
+    if (e.target.closest(".history_item")) {
+      let el = e.target.closest(".history_item")
+      let index = el.dataset.index
+      let item = App.history_items[index]
+
+      if (e.target.closest(".history_open")) {
+        App.open_history_item(item, false)
+      } else {
+        App.open_history_item(item)
+      }
+
+      App.remove_history_item(item)
+    }
+  })
+
+  // On history middle click
+  App.ev(hc, "auxclick", function (e) {
+    if (e.button === 1) {
+      if (e.target.closest(".history_item")) {
+        let el = e.target.closest(".history_item")
+        let index = el.dataset.index
+        let item = App.history_items[index]
+        App.open_history_item(item, false)
+        App.remove_history_item(item)
+      }
+    }
+  })  
+  
+  // When history get hovered
+  App.ev(hc, "mouseover", function (e) {   
+    if (App.mouse_over_disabled) {
+      return
+    }
+
+    if (e.target.closest(".history_item")) {
+      let el = e.target.closest(".history_item")
+      let index = el.dataset.index
+      let item = App.history_items[index]
+      App.select_history_item(item)
+    }
+  })
+
+  // On context menu action
+  App.ev(hc, "contextmenu", function (e) {
+    if (e.target.closest(".history_item")) {
+      let el = e.target.closest(".history_item")
+      let index = el.dataset.index
+      let item = App.history_items[index]
+      App.show_history_item_menu(item, e.clientX, e.clientY)
+      e.preventDefault()
+    }
+  })  
 }
 
 // Disable mouse over

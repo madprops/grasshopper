@@ -28,6 +28,34 @@ App.setup_keyboard = function () {
       return
     }
 
+    if (App.window_mode === "history") {
+      App.focus_history_filter()
+
+      if (e.key === "Enter") {
+        if (e.ctrlKey) {
+          App.open_history_item(App.selected_history_item, false)
+          App.remove_history_item(App.selected_history_item)          
+          e.preventDefault()
+        } else {
+          App.history_item_action()
+          e.preventDefault()
+        }
+      } else if (e.key === "ArrowUp") {
+        App.history_item_above()
+        e.preventDefault()
+      } else if (e.key === "ArrowDown") {
+        App.history_item_below()
+        e.preventDefault()
+      } else if (e.key === "6") {
+        if (e.ctrlKey) {
+          App.windows["history"].hide()
+          e.preventDefault()
+        }
+      }
+
+      return
+    }    
+
     if (App.window_mode !== "none" || NeedContext.open) {
       return
     }
@@ -98,12 +126,22 @@ App.setup_keyboard = function () {
       }
     } else if (e.key === "7") {
       if (e.ctrlKey) {
-        App.go_to_playing_tab()
+        App.show_history()
         e.preventDefault()
       }
     } else if (e.key === "8") {
       if (e.ctrlKey) {
+        App.go_to_playing_tab()
+        e.preventDefault()
+      }
+    } else if (e.key === "9") {
+      if (e.ctrlKey) {
         App.new_tab()
+        e.preventDefault()
+      }
+    } else if (e.key === "0") {
+      if (e.ctrlKey) {
+        App.show_about()
         e.preventDefault()
       }
     }

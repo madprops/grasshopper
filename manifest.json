@@ -1,11 +1,12 @@
 {
     "manifest_version": 2,
     "name": "Grasshopper",
-    "version": "5.7",
+    "version": "6.0",
     "description": "Alternative tab manager",
     "permissions": [
         "tabs",
-        "sessions"
+        "sessions",
+        "history"
     ],
     "icons": {
         "128": "icon128.png"

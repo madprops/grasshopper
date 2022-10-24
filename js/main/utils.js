@@ -136,3 +136,32 @@ App.get_hostname = function (url) {
 
   return App.remove_slashes_end(url_obj.hostname)
 }
+
+// Get image favicon
+App.get_img_icon = function (favicon, url) {
+  let icon_container = App.create("div", "item_icon_container")
+  let icon = App.create("img", "item_icon")
+  icon.loading = "lazy"
+  icon.width = 25
+  icon.height = 25
+
+  App.ev(icon, "error", function () {
+    icon_container.replaceWith(App.get_jdenticon(url))
+  })
+
+  icon.src = favicon
+  icon_container.append(icon)
+  return icon_container
+}
+
+// Get jdenticon icon
+App.get_jdenticon = function (url) {
+  let icon_container = App.create("div", "item_icon_container")
+  let hostname = App.get_hostname(url) || "hostname"
+  let icon = App.create("canvas", "item_icon")
+  icon.width = 25
+  icon.height = 25
+  jdenticon.update(icon, hostname)
+  icon_container.append(icon)
+  return icon_container
+}

@@ -446,34 +446,6 @@ App.create_tab_element = function (tab) {
   tab.element.append(close)
 }
 
-// Get image favicon
-App.get_img_icon = function (favicon, url) {
-  let icon_container = App.create("div", "item_icon_container")
-  let icon = App.create("img", "item_icon")
-  icon.loading = "lazy"
-  icon.width = 25
-  icon.height = 25
-
-  App.ev(icon, "error", function () {
-    let hostname = App.get_hostname(url) || "hostname"
-
-    if (!hostname) {
-      this.classList.add("invisible")
-      return
-    }
-
-    let icon_2 = App.create("canvas", "item_icon")
-    icon_2.width = 25
-    icon_2.height = 25
-    jdenticon.update(icon_2, hostname)
-    this.replaceWith(icon_2)
-  })
-
-  icon.src = favicon
-  icon_container.append(icon)
-  return icon_container
-}
-
 // Set tab text content
 App.set_tab_text = function (tab) {
   let content = ""

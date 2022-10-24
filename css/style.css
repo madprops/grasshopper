@@ -53,12 +53,6 @@ body, html {
   padding-top: 0.8rem;
 }
 
-#about_button {
-  margin-right: 0.25rem;
-  cursor: pointer;
-  font-size: 1.1rem;
-}
-
 .filter {
   background-color: var(--filter_color);
   border-width: 0;
@@ -70,7 +64,7 @@ body, html {
 }
 
 #filter {
-  width: 6.5rem;
+  width: 10rem;
 }
 
 #case_sensitive {
@@ -257,9 +251,16 @@ body, html {
   width: 14rem;
   flex-grow: 0;
   flex-shrink: 0;
-  text-align: center;
 }
 
 .invisible {
   visibility: hidden;
+}
+
+.gap_1 {
+  gap: 0.5rem;
+}
+
+.center_text {
+  text-align: center;
 }

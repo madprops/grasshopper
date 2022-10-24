@@ -1,13 +1,12 @@
 // Setup closed tabs
 App.setup_closed_tabs = function () {
-  App.create_window({id:"closed_tabs"}) 
-  let filter = App.el("#closed_tabs_filter")
+  App.create_window({id: "closed_tabs"}) 
 
   App.filter_closed_tabs = App.create_debouncer(function () {
     App.do_filter_closed_tabs()
   }, App.filter_delay)
   
-  App.ev(filter, "input", function () {
+  App.ev(App.el("#closed_tabs_filter"), "input", function () {
     App.filter_closed_tabs()
   })
 }
