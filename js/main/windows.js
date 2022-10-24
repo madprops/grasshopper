@@ -27,6 +27,7 @@ App.create_window = function (args) {
   document.body.append(el)
 
   w.show = function () {
+    App.hide_all_windows()
     w.element.style.display = "flex"
     App.window_mode = args.id
   }
@@ -37,4 +38,22 @@ App.create_window = function (args) {
   }
 
   App.windows[args.id] = w
+}
+
+// Cycle between windows
+App.cycle_windows = function () {
+  if (App.window_mode === "closed_tabs") {
+    App.show_history()
+  } else if (App.window_mode === "history") {
+    App.windows["history"].hide()
+  } else {
+    App.show_closed_tabs()
+  }
+}
+
+// Hide all windows
+App.hide_all_windows = function () {
+  for (let id in App.windows) {
+    App.windows[id].hide()
+  }
 }

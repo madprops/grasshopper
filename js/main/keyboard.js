@@ -1,5 +1,11 @@
 App.setup_keyboard = function () {
   App.ev(document, "keydown", function (e) {
+    if (e.key === "Tab") {
+      if (!e.ctrlKey && !e.shiftKey) {
+        App.cycle_windows()
+      }
+    }
+
     if (App.window_mode === "closed_tabs") {
       App.focus_closed_tabs_filter()
 
