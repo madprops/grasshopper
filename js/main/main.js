@@ -1,7 +1,6 @@
 // For internal checks
 App.tabs = []
 App.filter_delay = 111
-App.refresh_tabs_delay = 500
 App.window_mode = "none"
 App.windows = {}
 App.sorted = false
