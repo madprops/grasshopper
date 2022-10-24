@@ -17,7 +17,6 @@ App.setup_mouse = function () {
 
   // When tabs get hovered
   App.ev(container, "mousemove", function (e) {
-    console.log(e)
     if (e.target.closest(".tabs_item")) {
       let el = e.target.closest(".tabs_item")
       let tab = App.get_tab_by_id(el.dataset.id)
