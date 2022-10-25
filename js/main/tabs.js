@@ -34,6 +34,10 @@ App.confirm_close_tab = function (tab) {
     if (confirm("Close pinned tab?")) {
       App.close_tab(tab)
     }
+  } else if (tab.audible) {
+    if (confirm("Close playing tab?")) {
+      App.close_tab(tab)
+    }
   } else {
     App.close_tab(tab)
   }
@@ -43,12 +47,6 @@ App.confirm_close_tab = function (tab) {
 App.close_tab = function (tab, close_tab = true) {
   if (!tab) {
     return
-  }
-
-  if (tab.audible) {
-    if (!confirm("Close playing tab?")) {
-      return
-    }
   }
 
   let next_tab
