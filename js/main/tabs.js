@@ -30,12 +30,12 @@ App.open_tab = function (tab, close = true) {
 
 // Close tab with possible confirm
 App.confirm_close_tab = function (tab) {
-  if (tab.pinned) {
-    if (confirm("Close pinned tab?")) {
+  if (tab.audible) {
+    if (confirm("Close playing tab?")) {
       App.close_tab(tab)
     }
-  } else if (tab.audible) {
-    if (confirm("Close playing tab?")) {
+  } else if (tab.pinned) {
+    if (confirm("Close pinned tab?")) {
       App.close_tab(tab)
     }
   } else {
