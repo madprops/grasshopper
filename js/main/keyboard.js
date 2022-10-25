@@ -86,7 +86,7 @@ App.setup_keyboard = function () {
     } else if (e.key === "Delete") {
       if (e.ctrlKey) {
         if (App.selected_valid()) {
-          App.close_tab(App.selected_tab)
+          App.confirm_close_tab(App.selected_tab)
           e.preventDefault()
         }
       }

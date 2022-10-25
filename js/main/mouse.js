@@ -8,7 +8,7 @@ App.setup_mouse = function () {
       let tab = App.get_tab_by_id(el.dataset.id)
 
       if (e.target.closest(".tabs_close")) {
-        App.close_tab(tab)
+        App.confirm_close_tab(tab)
       } else {
         App.open_tab(tab)
       }
@@ -31,7 +31,7 @@ App.setup_mouse = function () {
         let el = e.target.closest(".tabs_item")
         let tab = App.get_tab_by_id(el.dataset.id)
         
-        App.close_tab(tab)
+        App.confirm_close_tab(tab)
       }
     }
   })

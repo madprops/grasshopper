@@ -180,11 +180,11 @@ body, html {
 
 #about_name {
   font-size: 1.2rem;
-  align-self: center;
 }
 
 #about_image {
   margin-top: 1rem;
+  margin-bottom: 1rem;
   width: 22rem;
 }
 

@@ -28,6 +28,15 @@ App.open_tab = function (tab, close = true) {
   }
 }
 
+// Close tab with possible confirm
+App.confirm_close_tab = function (tab) {
+  if (tab.pinned) {
+    if (confirm("Close pinned tab?")) {
+      App.close_tab(tab)
+    }
+  }
+}
+
 // Close a tab
 App.close_tab = function (tab, close_tab = true) {
   if (!tab) {
