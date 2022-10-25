@@ -34,6 +34,8 @@ App.confirm_close_tab = function (tab) {
     if (confirm("Close pinned tab?")) {
       App.close_tab(tab)
     }
+  } else {
+    App.close_tab(tab)
   }
 }
 
