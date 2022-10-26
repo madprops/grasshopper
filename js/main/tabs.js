@@ -1,11 +1,7 @@
 // Get open tabs
-App.get_tabs = async function (sort) {
+App.get_tabs = async function () {
   let tabs = await browser.tabs.query({ currentWindow: true })
-
-  if (sort) {
-    App.sort_tabs_by_access(tabs)
-  }
-
+  App.sort_tabs_by_access(tabs)
   return tabs
 }
 
@@ -70,10 +66,6 @@ App.close_tab = function (tab, close_tab = true) {
 
 // Setup tabs
 App.setup_tabs = function () {
-  App.ev(App.el("#sort_button"), "click", function () {
-    App.sort_tabs()
-  })
-
   App.ev(App.el("#clean_button"), "click", function () {
     App.clean_tabs()
   })
@@ -199,62 +191,6 @@ App.prepend_tab = function (info) {
   App.do_filter_tabs({select_new: false})
 }
 
-// Close tabs above
-App.close_tabs_above = function (tab) {
-  let tabs = []
-
-  for (let it of App.tabs) {
-    if (it !== tab) {
-      if (it.audible) {
-        continue
-      }
-
-      tabs.push(it)
-    } else {
-      break
-    }
-  }
-
-  App.confirm_tabs_close(tabs)
-}
-
-// Close tabs below
-App.close_tabs_below = function (tab) {
-  let tabs = []
-  let waypoint = false
-
-  for (let it of App.tabs) {
-    if (waypoint) {
-      if (it.audible) {
-        continue
-      }
-
-      tabs.push(it)
-    } else if (it === tab) {
-      waypoint = true
-    }
-  }
-
-  App.confirm_tabs_close(tabs)
-}
-
-// Close other tabs
-App.close_other_tabs = function (tab) {
-  let tabs = []
-
-  for (let it of App.tabs) {
-    if (it !== tab) {
-      if (it.audible) {
-        continue
-      }
-
-      tabs.push(it)
-    }
-  }
-
-  App.confirm_tabs_close(tabs)
-}
-
 // Close all tabs except pinned and audible tabs
 App.clean_tabs = function () {
   let tabs = []
@@ -320,16 +256,10 @@ App.unmute_tab = function (tab) {
 }
 
 // Show tabs
-App.show_tabs = async function (sort = true, filter_args = {}) {
-  let tabs = await App.get_tabs(sort)
+App.show_tabs = async function (filter_args = {}) {
+  let tabs = await App.get_tabs()
   App.process_tabs(tabs)
   App.do_filter_tabs(filter_args)
-}
-
-// Sort tabs
-App.sort_tabs = function () {
-  App.show_tabs(App.sorted)
-  App.sorted = !App.sorted
 }
 
 // Go the a tab emitting sound
@@ -362,25 +292,6 @@ App.go_to_playing_tab = function () {
   if (first) {
     App.open_tab(first)
   }
-}
-
-// Move tab up
-App.move_tab_up = function (tab) {
-  if (tab.index > 0) {
-    browser.tabs.move(tab.id, {index: tab.index - 1})
-  }
-
-  App.show_tabs(false, {
-    select_tab_id: tab.id
-  })
-}
-
-// Move tab down
-App.move_tab_down = function (tab) {
-  browser.tabs.move(tab.id, {index: tab.index + 1})
-  App.show_tabs(false, {
-    select_tab_id: tab.id
-  })
 }
 
 // When results are found
@@ -613,7 +524,6 @@ App.update_footer = function () {
 // Show tab menu
 App.show_tab_menu = function (tab, x, y) {
   let items = []
-  let index = App.get_tab_index(tab)
 
   if (tab.pinned) {
     items.push({
@@ -660,49 +570,6 @@ App.show_tab_menu = function (tab, x, y) {
       App.copy_to_clipboard(tab.title)
     }
   })
-
-  items.push({
-    text: "Move Up",
-    action: function () {
-      App.move_tab_up(tab)
-    }
-  })
-
-  items.push({
-    text: "Move Down",
-    action: function () {
-      App.move_tab_down(tab)
-    }
-  })
-
-  if (index >= 0) {
-    if (index > 0) {
-      items.push({
-        text: "Close Above",
-        action: function () {
-          App.close_tabs_above(tab)
-        }
-      })
-    }
-
-    if (index < App.tabs.length - 1) {
-      items.push({
-        text: "Close Below",
-        action: function () {
-          App.close_tabs_below(tab)
-        }
-      })
-    }
-  }
-
-  if (App.tabs.length > 1) {
-    items.push({
-      text: "Close Others",
-      action: function () {
-        App.close_other_tabs(tab)
-      }
-    })
-  }
 
   NeedContext.show(x, y, items)
 }
@@ -800,7 +667,10 @@ App.do_filter_tabs = function (args = {}) {
     } else if (filter_mode === "muted") {
       match = tab.muted &&
       (check(title) || check(path))    
-    } 
+    } else if (filter_mode === "normal") {
+      match = !tab.audible && !tab.pinned &&
+      (check(title) || check(path)) 
+    }
         
     return match
   }

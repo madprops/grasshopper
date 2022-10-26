@@ -64,25 +64,11 @@ App.setup_keyboard = function () {
         e.preventDefault()
       }
     } else if (e.key === "ArrowUp") {
-      if (e.ctrlKey) {
-        if (App.selected_valid()) {
-          App.move_tab_up(App.selected_tab)
-          e.preventDefault()
-        }
-      } else {
-        App.select_tab_above()
-        e.preventDefault()
-      }
+      App.select_tab_above()
+      e.preventDefault()
     } else if (e.key === "ArrowDown") {
-      if (e.ctrlKey) {
-        if (App.selected_valid()) {
-          App.move_tab_down(App.selected_tab)
-          e.preventDefault()
-        }
-      } else {
-        App.select_tab_below()
-        e.preventDefault()
-      }
+      App.select_tab_below()
+      e.preventDefault()
     } else if (e.key === "Delete") {
       if (e.ctrlKey) {
         if (App.selected_valid()) {
