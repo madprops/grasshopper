@@ -716,12 +716,12 @@ App.focus_tabs_filter = function () {
 
 // Close all tabs
 App.close_all_tabs = async function () {
-  if (true) {
+  if (confirm("Close other tabs?")) {
     for (let tab of App.tabs) {
       if (tab.active) {
         continue
       }
-
+      
       browser.tabs.remove(tab.id)
     }
 
