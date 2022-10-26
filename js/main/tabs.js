@@ -1,6 +1,6 @@
 // Get open tabs
 App.get_tabs = async function () {
-  let tabs = await browser.tabs.query({ currentWindow: true })
+  let tabs = await browser.tabs.query({currentWindow: true})
   App.sort_tabs_by_access(tabs)
   return tabs
 }
@@ -68,6 +68,12 @@ App.close_tab = function (tab, close_tab = true) {
 App.setup_tabs = function () {
   App.ev(App.el("#clean_button"), "click", function () {
     App.clean_tabs()
+  })
+
+  App.ev(App.el("#clean_button"), "auxclick", function (e) {
+    if (e.which === 2) {
+      App.close_all_tabs()
+    }
   })
 
   App.ev(App.el("#closed_button"), "click", function () {
@@ -706,4 +712,19 @@ App.do_filter_tabs = function (args = {}) {
 // Focus the tabs filter
 App.focus_tabs_filter = function () {
   App.el("#filter").focus()
+}
+
+// Close all tabs
+App.close_all_tabs = async function () {
+  if (true) {
+    for (let tab of App.tabs) {
+      if (tab.active) {
+        continue
+      }
+
+      browser.tabs.remove(tab.id)
+    }
+
+    window.close()
+  }
 }
