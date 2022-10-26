@@ -61,7 +61,7 @@ body, html {
   color: black;
   flex-grow: 0;
   outline: none;
-  width: 10rem;
+  width: 9rem;
 }
 
 .checkbox {
