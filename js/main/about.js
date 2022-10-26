@@ -10,4 +10,8 @@ App.setup_about = function () {
     App.el("#about_stats").textContent = `${s} open`
     App.windows["about"].show()
   })
+
+  App.ev(App.el("#about_close_all"), "click", function () {
+    App.close_all_tabs()
+  })
 }

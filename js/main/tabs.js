@@ -70,12 +70,6 @@ App.setup_tabs = function () {
     App.clean_tabs()
   })
 
-  App.ev(App.el("#clean_button"), "auxclick", function (e) {
-    if (e.which === 2) {
-      App.close_all_tabs()
-    }
-  })
-
   App.ev(App.el("#closed_button"), "click", function () {
     App.show_closed_tabs()
   })
@@ -716,7 +710,7 @@ App.focus_tabs_filter = function () {
 
 // Close all tabs
 App.close_all_tabs = async function () {
-  if (confirm("Close other tabs?")) {
+  if (confirm("Close all tabs?")) {
     for (let tab of App.tabs) {
       if (tab.active) {
         continue

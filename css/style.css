@@ -185,7 +185,7 @@ body, html {
 #about_image {
   margin-top: 1rem;
   margin-bottom: 1rem;
-  width: 22rem;
+  width: 20rem;
 }
 
 .window_main {
@@ -234,4 +234,8 @@ body, html {
 
 .gap_1 {
   gap: 0.5rem;
+}
+
+.underline {
+  text-decoration: underline;
 }
