@@ -188,3 +188,58 @@ App.do_item_filter = function (mode) {
   App.select_first_item(mode)
   App.update_footer(mode)
 }
+
+// Show item menu
+App.show_item_menu = function (mode, tab, x, y) {
+  let items = []
+
+  if (mode === "tabs") {
+    if (tab.pinned) {
+      items.push({
+        text: "Unpin",
+        action: function () {
+          App.unpin_tab(tab)
+        }
+      })
+    } else {
+      items.push({
+        text: "Pin",
+        action: function () {
+          App.pin_tab(tab)
+        }
+      })
+    }
+  
+    if (tab.muted) {
+      items.push({
+        text: "Unmute",
+        action: function () {
+          App.unmute_tab(tab)
+        }
+      })
+    } else {
+      items.push({
+        text: "Mute",
+        action: function () {
+          App.mute_tab(tab)
+        }
+      })
+    }
+  }
+
+  items.push({
+    text: "Copy URL",
+    action: function () {
+      App.copy_to_clipboard(tab.url)
+    }
+  })
+
+  items.push({
+    text: "Copy Title",
+    action: function () {
+      App.copy_to_clipboard(tab.title)
+    }
+  })
+
+  NeedContext.show(x, y, items)
+}

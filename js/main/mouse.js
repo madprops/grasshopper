@@ -41,7 +41,7 @@ App.setup_mouse = function () {
     if (e.target.closest(".tabs_item")) {
       let el = e.target.closest(".tabs_item")
       let tab = App.get_tab_by_id(el.dataset.id)
-      App.show_tab_menu(tab, e.clientX, e.clientY)
+      App.show_item_menu("tabs", tab, e.clientX, e.clientY)
       e.preventDefault()
     }
   })
@@ -93,7 +93,7 @@ App.setup_mouse = function () {
       let el = e.target.closest(".closed_tabs_item")
       let index = el.dataset.index
       let tab = App.closed_tabs_items[index]
-      App.show_closed_tab_menu(tab, e.clientX, e.clientY)
+      App.show_item_menu("closed_tabs", tab, e.clientX, e.clientY)
       e.preventDefault()
     }
   })
@@ -146,7 +146,7 @@ App.setup_mouse = function () {
       let el = e.target.closest(".history_item")
       let index = el.dataset.index
       let item = App.history_items[index]
-      App.show_history_item_menu(item, e.clientX, e.clientY)
+      App.show_item_menu("history", item, e.clientX, e.clientY)
       e.preventDefault()
     }
   })  
