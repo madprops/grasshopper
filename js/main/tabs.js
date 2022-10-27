@@ -94,7 +94,7 @@ App.setup_tabs = function () {
     App.do_filter_tabs()
   }, App.filter_delay)
 
-  App.ev(App.el("#filter"), "input", function () {
+  App.ev(App.el("#tabs_filter"), "input", function () {
     App.filter()
   })
 
@@ -128,7 +128,7 @@ App.refresh_tab = async function (id) {
   let tab = App.get_tab_by_id(id)
 
   if (!tab) {
-    App.tabs.push({
+    App.tabs_items.push({
       id: id,
       empty: true
     })
@@ -145,7 +145,7 @@ App.refresh_tab = async function (id) {
 
 // Update a tab
 App.update_tab = function (o_tab, info) {
-  for (let [i, it] of App.tabs.entries()) {
+  for (let [i, it] of App.tabs_items.entries()) {
     if (it.id === o_tab.id) {
       let selected = App.selected_tabs_item === it
       let tab = App.process_tab(info)
@@ -155,8 +155,8 @@ App.update_tab = function (o_tab, info) {
       }
 
       App.create_tab_element(tab)
-      App.tabs[i].element.replaceWith(tab.element)
-      App.tabs[i] = tab
+      App.tabs_items[i].element.replaceWith(tab.element)
+      App.tabs_items[i] = tab
 
       if (selected) {
         App.select_item("tabs", tab)
@@ -170,10 +170,10 @@ App.update_tab = function (o_tab, info) {
 
 // Prepend tab to the top
 App.prepend_tab = function (info) {
-  for (let [i, it] of App.tabs.entries()) {
+  for (let [i, it] of App.tabs_items.entries()) {
     if (it.id === info.id) {
       if (it.empty) {
-        App.tabs.splice(i, 1)
+        App.tabs_items.splice(i, 1)
         break
       }
     }
@@ -185,7 +185,7 @@ App.prepend_tab = function (info) {
     return
   }
 
-  App.tabs.unshift(tab)
+  App.tabs_items.unshift(tab)
   App.create_tab_element(tab)
   App.el("#tabs").prepend(tab.element)
   App.do_filter_tabs({select_new: false})
@@ -195,7 +195,7 @@ App.prepend_tab = function (info) {
 App.clean_tabs = function () {
   let tabs = []
 
-  for (let it of App.tabs) {
+  for (let it of App.tabs_items) {
     if (it.pinned || it.audible) {
       continue
     }
@@ -265,7 +265,7 @@ App.show_tabs = async function (filter_args = {}) {
 // Go the a tab emitting sound
 // Traverse in tab index order
 App.go_to_playing_tab = function () {
-  let tabs = App.tabs.slice(0)
+  let tabs = App.tabs_items.slice(0)
   App.sort_tabs_by_index(tabs)
   let waypoint = false
   let first
@@ -298,7 +298,7 @@ App.go_to_playing_tab = function () {
 App.process_tabs = function (tabs) {
   let container = App.el("#tabs")
   container.innerHTML = ""
-  App.tabs = []
+  App.tabs_items = []
 
   for (let tab of tabs) {
     let obj = App.process_tab(tab)
@@ -307,7 +307,7 @@ App.process_tabs = function (tabs) {
       continue
     }
 
-    App.tabs.push(obj)
+    App.tabs_items.push(obj)
     container.append(obj.element)
   }
 }
@@ -407,7 +407,7 @@ App.set_tab_text = function (tab) {
 
 // Change tab text mode
 App.update_text = function () {
-  for (let tab of App.tabs) {
+  for (let tab of App.tabs_items) {
     App.set_tab_text(tab)
   }
 }
@@ -416,7 +416,7 @@ App.update_text = function () {
 App.get_tab_by_id = function (id) {
   id = parseInt(id)
 
-  for (let tab of App.tabs) {
+  for (let tab of App.tabs_items) {
     if (tab.id === id) {
       return tab
     }
@@ -490,9 +490,9 @@ App.show_tab_menu = function (tab, x, y) {
 App.remove_tab = function (tab) {
   tab.element.remove()
 
-  for (let [i, it] of App.tabs.entries()) {
+  for (let [i, it] of App.tabs_items.entries()) {
     if (it.id === tab.id) {
-      App.tabs.splice(i, 1)
+      App.tabs_items.splice(i, 1)
       break
     }
   }
@@ -500,7 +500,7 @@ App.remove_tab = function (tab) {
 
 // Get index of tab
 App.get_tab_index = function (tab) {
-  for (let [i, it] of App.tabs.entries()) {
+  for (let [i, it] of App.tabs_items.entries()) {
     if (it === tab) {
       return i
     }
@@ -511,7 +511,7 @@ App.get_tab_index = function (tab) {
 
 // Count visible tabs
 App.count_visible_tabs = function () {
-  return App.tabs.filter(x => App.item_is_visible(x)).length
+  return App.tabs_items.filter(x => App.item_is_visible(x)).length
 }
 
 // Do tab filter
@@ -521,10 +521,10 @@ App.do_filter_tabs = function (args = {}) {
     args.select_new = true
   }
 
-  let value = App.el("#filter").value.trim()
+  let value = App.el("#tabs_filter").value.trim()
   let filter_mode = App.el("#filter_mode").value
 
-  if (App.tabs.length === 0) {
+  if (App.tabs_items.length === 0) {
     return
   }
   
@@ -566,7 +566,7 @@ App.do_filter_tabs = function (args = {}) {
 
   let selected
 
-  for (let tab of App.tabs) {
+  for (let tab of App.tabs_items) {
     if (matched(tab)) {
       App.show_tab(tab)
 
@@ -592,15 +592,10 @@ App.do_filter_tabs = function (args = {}) {
   }
 }
 
-// Focus the tabs filter
-App.focus_tabs_filter = function () {
-  App.el("#filter").focus()
-}
-
 // Close all tabs
 App.close_all_tabs = async function () {
   if (confirm("Close all tabs?")) {
-    for (let tab of App.tabs) {
+    for (let tab of App.tabs_items) {
       if (tab.active) {
         continue
       }
@@ -614,5 +609,5 @@ App.close_all_tabs = async function () {
 
 // Return pinned tabs
 App.get_pinned_tabs = function () {
-  return App.tabs.filter(x => x.pinned)
+  return App.tabs_items.filter(x => x.pinned)
 }

@@ -29,7 +29,7 @@ App.show_closed_tabs = async function () {
   container.innerHTML = ""
 
   let urls = []
-  App.closed_tabs = []
+  App.closed_tabs_items = []
   let index = 0
 
   for (let c of closed) {
@@ -100,13 +100,13 @@ App.show_closed_tabs = async function () {
 
     index += 1
 
-    App.closed_tabs.push(ct)  
+    App.closed_tabs_items.push(ct)  
   }
 
   container.scrollTop = 0
   App.windows["closed_tabs"].show()
   App.select_first_item("closed_tabs")
-  let v = App.el("#filter").value.trim()
+  let v = App.el("#tabs_filter").value.trim()
   App.el("#closed_tabs_filter").value = v
 
   if (v) {
@@ -151,7 +151,7 @@ App.do_filter_closed_tabs = function () {
     return match
   }
 
-  for (let it of App.closed_tabs) {
+  for (let it of App.closed_tabs_items) {
     if (matched(it)) {
       it.element.classList.remove("hidden")
     } else {
@@ -171,18 +171,6 @@ App.focus_closed_tabs_filter = function () {
 // Selected closed tab action
 App.closed_tab_action = function () {
   App.restore_tab(App.selected_closed_tab)
-}
-
-// Remove a closed tab from the list
-App.remove_closed_tab = function (tab) {
-  let next_tab = App.get_next_visible_item("closed_tabs") || App.get_prev_visible_item("closed_tabs")
-  tab.element.remove()
-  
-  if (next_tab) {
-    App.select_item("closed_tabs", next_tab)
-  }
-
-  tab.removed = true
 }
 
 // Show closed tab menu

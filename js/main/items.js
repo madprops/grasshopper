@@ -45,7 +45,7 @@ App.get_next_visible_item = function (mode) {
     waypoint = true
   }
   
-  let items = App[mode]
+  let items = App[`${mode}_items`]
   let o_item = App[`selected_${mode}_item`]
 
   for (let i=0; i<items.length; i++) {
@@ -71,7 +71,7 @@ App.get_prev_visible_item = function (mode) {
     waypoint = true
   }
 
-  let items = App[mode]
+  let items = App[`${mode}_items`]
   let o_item = App[`selected_${mode}_item`]
 
   for (let i=items.length-1; i>=0; i--) {
@@ -113,10 +113,22 @@ App.selected_valid = function (mode) {
 
 // Select first item
 App.select_first_item = function (mode) {
-  for (let item of App[mode]) {
+  for (let item of App[`${mode}_items`]) {
     if (App.item_is_visible(item)) {
       App.select_item(mode, item)
       return
     }
   }
+}
+
+// Remove an item from the list
+App.remove_item = function (mode, item) {
+  let next_item = App.get_next_visible_item(mode, item) || App.get_prev_visible_item(mode, item)
+  item.element.remove()
+  
+  if (next_item) {
+    App.select_item(mode, next_item)
+  }
+
+  item.closed = true
 }

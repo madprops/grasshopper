@@ -44,10 +44,10 @@ App.setup_keyboard = function () {
           e.preventDefault()
         }
       } else if (e.key === "ArrowUp") {
-        App.history_item_above()
+        App.select_item_above("history")
         e.preventDefault()
       } else if (e.key === "ArrowDown") {
-        App.history_item_below()
+        App.select_item_below("history")
         e.preventDefault()
       }
 

@@ -116,49 +116,13 @@ App.show_history = async function () {
 
   container.scrollTop = 0
   App.windows["history"].show()
-  App.select_first_history_item()
-  let v = App.el("#filter").value.trim()
+  App.select_first_item("history")
+  let v = App.el("#tabs_filter").value.trim()
   App.el("#history_filter").value = v
 
   if (v) {
     App.do_filter_history()
   }  
-}
-
-// Select first history item
-App.select_first_history_item = function () {
-  for (let item of App.history_items) {
-    if (App.history_item_is_visible(item)) {
-      App.select_history_item(item)
-      return
-    }
-  }
-}
-
-// Check if history item is visible
-App.history_item_is_visible = function (item) {
-  return !item.element.classList.contains("hidden")
-}
-
-// Select a history item
-App.select_history_item = function (item) {
-  for (let el of App.els(".history_item")) {
-    el.classList.remove("selected")
-  }
-
-  item.element.classList.add("selected")
-  App.selected_history_item = item
-  App.selected_history_item.element.scrollIntoView({block: "nearest"})
-  App.update_history_footer()
-}
-
-// Update history footer
-App.update_history_footer = function () {
-  if (App.selected_history_item_valid()) {
-    App.el("#history_footer").textContent = App.selected_history_item.footer
-  } else {
-    App.el("#history_footer").textContent = "No Results"
-  }
 }
 
 // Open history item
@@ -170,70 +134,9 @@ App.open_history_item = function (item, close = true) {
   }
 }
 
-// Remove a history item from the list
-App.remove_history_item = function (item) {
-  let next_item = App.get_next_visible_history_item(item) || App.get_prev_visible_history_item(item)
-  item.element.remove()
-  
-  if (next_item) {
-    App.select_history_item(next_item)
-  }
-
-  item.closed = true
-}
-
-// Get previous visible history item
-App.get_prev_visible_history_item = function (t) {
-  let i = t.index
-
-  for (let item of App.history_items.slice(0).reverse()) {
-    if (!item.closed && item.index < i) {
-      if (App.history_item_is_visible(item)) {
-        return item
-      }
-    }
-  }
-}
-
-// Get next visible history item
-App.get_next_visible_history_item = function (t) {
-  let i = t.index
-
-  for (let item of App.history_items) {
-    if (!item.closed && item.index > i) {
-      if (App.history_item_is_visible(item)) {
-        return item
-      }
-    }
-  }
-}
-
 // Selected history item action
 App.history_item_action = function () {
   App.open_history_item(App.selected_history_item)
-}
-
-// Focus the history filter
-App.focus_history_filter = function () {
-  App.el("#history_filter").focus()
-}
-
-// Get history item above
-App.history_item_above = function () {
-  let item = App.get_prev_visible_history_item(App.selected_history_item)
-
-  if (item) {
-    App.select_history_item(item, true)
-  }
-}
-
-// Get history item below
-App.history_item_below = function () {
-  let item = App.get_next_visible_history_item(App.selected_history_item)
-
-  if (item) {
-    App.select_history_item(item, true)
-  }
 }
 
 // Filter history tabs
@@ -272,13 +175,8 @@ App.do_filter_history = function () {
     }
   }
 
-  App.select_first_history_item()
+  App.select_first_item("history")
   App.update_history_footer()
-}
-
-// Check if selected history item is valid
-App.selected_history_item_valid = function () {
-  return App.selected_history_item && !App.selected_history_item.closed && App.tab_is_visible(App.selected_history_item)
 }
 
 // Show history item menu
