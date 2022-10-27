@@ -239,3 +239,7 @@ body, html {
 .underline {
   text-decoration: underline;
 }
+
+.bigger {
+  font-size: 1.1rem;
+}
