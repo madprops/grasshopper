@@ -21,10 +21,10 @@ App.setup_keyboard = function () {
           e.preventDefault()
         }
       } else if (e.key === "ArrowUp") {
-        App.closed_tab_above()
+        App.select_item_above("closed_tabs")
         e.preventDefault()
       } else if (e.key === "ArrowDown") {
-        App.closed_tab_below()
+        App.select_item_below("closed_tabs")
         e.preventDefault()
       }
 
@@ -61,20 +61,20 @@ App.setup_keyboard = function () {
     App.focus_tabs_filter()
 
     if (e.key === "Enter") {
-      if (App.selected_valid()) {
-        App.open_tab(App.selected_tab)
+      if (App.selected_valid("tabs")) {
+        App.open_tab(App.selected_tabs_item)
         e.preventDefault()
       }
     } else if (e.key === "ArrowUp") {
-      App.select_tab_above()
+      App.select_item_above("tabs")
       e.preventDefault()
     } else if (e.key === "ArrowDown") {
-      App.select_tab_below()
+      App.select_item_below("tabs")
       e.preventDefault()
     } else if (e.key === "Delete") {
       if (e.ctrlKey) {
-        if (App.selected_valid()) {
-          App.confirm_close_tab(App.selected_tab)
+        if (App.selected_valid("tabs")) {
+          App.confirm_close_tab(App.selected_tabs_item)
           e.preventDefault()
         }
       }

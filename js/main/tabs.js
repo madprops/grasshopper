@@ -47,7 +47,7 @@ App.close_tab = function (tab, close_tab = true) {
 
   let next_tab
 
-  if (tab === App.selected_tab) {
+  if (tab === App.selected_tabs_item) {
     next_tab = App.get_next_visible_tab(tab) || App.get_prev_visible_tab(tab)
   }
 
@@ -60,7 +60,7 @@ App.close_tab = function (tab, close_tab = true) {
   App.remove_tab(tab)
 
   if (next_tab) {
-    App.select_tab(next_tab)
+    App.select_item("tabs", next_tab)
   }
 }
 
@@ -147,7 +147,7 @@ App.refresh_tab = async function (id) {
 App.update_tab = function (o_tab, info) {
   for (let [i, it] of App.tabs.entries()) {
     if (it.id === o_tab.id) {
-      let selected = App.selected_tab === it
+      let selected = App.selected_tabs_item === it
       let tab = App.process_tab(info)
 
       if (!tab) {
@@ -159,7 +159,7 @@ App.update_tab = function (o_tab, info) {
       App.tabs[i] = tab
 
       if (selected) {
-        App.select_tab(tab)
+        App.select_item("tabs", tab)
       }
 
       App.do_filter_tabs({select_new: false})
@@ -412,52 +412,6 @@ App.update_text = function () {
   }
 }
 
-// Get next tab that is visible
-App.get_next_visible_tab = function (o_tab) {
-  let waypoint = false
-
-  if (!App.selected_valid()) {
-    waypoint = true
-  }
-
-  for (let i=0; i<App.tabs.length; i++) {
-    let tab = App.tabs[i]
-
-    if (waypoint) {
-      if (App.tab_is_visible(tab)) {
-        return tab
-      }
-    }
-
-    if (tab === o_tab) {
-      waypoint = true
-    }
-  }
-}
-
-// Get prev tab that is visible
-App.get_prev_visible_tab = function (o_tab) {
-  let waypoint = false
-
-  if (!App.selected_valid()) {
-    waypoint = true
-  }
-
-  for (let i=App.tabs.length-1; i>=0; i--) {
-    let tab = App.tabs[i]
-
-    if (waypoint) {
-      if (App.tab_is_visible(tab)) {
-        return tab
-      }
-    }
-
-    if (tab === o_tab) {
-      waypoint = true
-    }
-  }
-}
-
 // Get a tab by id dataset
 App.get_tab_by_id = function (id) {
   id = parseInt(id)
@@ -477,40 +431,6 @@ App.show_tab = function (tab) {
 // Make a tab not visible
 App.hide_tab = function (tab) {
   tab.element.classList.add("hidden")
-}
-
-// Make a tab selected
-// Unselect all the others
-App.select_tab = function (tab) {
-  if (tab.closed) {
-    return
-  }
-
-  for (let el of App.els(".selected")) {
-    el.classList.remove("selected")
-  }
-
-  App.selected_tab = tab
-  App.selected_tab.element.classList.add("selected")
-  App.selected_tab.element.scrollIntoView({block: "nearest"})
-
-  App.update_footer()
-  browser.tabs.warmup(tab.id)
-}
-
-// Check if a tab is visible
-App.tab_is_visible = function (tab) {
-  let hidden = tab.element.classList.contains("hidden")
-  return !hidden
-}
-
-// Update the footer
-App.update_footer = function () {
-  if (App.selected_valid()) {
-    App.el("#footer").textContent = App.selected_tab.footer
-  } else {
-    App.el("#footer").textContent = "No Results"
-  }
 }
 
 // Show tab menu
@@ -578,29 +498,6 @@ App.remove_tab = function (tab) {
   }
 }
 
-// Select tab above
-App.select_tab_above = function () {
-  let tab = App.get_prev_visible_tab(App.selected_tab)
-
-  if (tab) {
-    App.select_tab(tab)
-  }
-}
-
-// Select tab below
-App.select_tab_below = function () {
-  let tab = App.get_next_visible_tab(App.selected_tab)
-
-  if (tab) {
-    App.select_tab(tab)
-  }
-}
-
-// Check if selected is valid
-App.selected_valid = function () {
-  return App.selected_tab && !App.selected_tab.closed && App.tab_is_visible(App.selected_tab)
-}
-
 // Get index of tab
 App.get_tab_index = function (tab) {
   for (let [i, it] of App.tabs.entries()) {
@@ -614,7 +511,7 @@ App.get_tab_index = function (tab) {
 
 // Count visible tabs
 App.count_visible_tabs = function () {
-  return App.tabs.filter(x => App.tab_is_visible(x)).length
+  return App.tabs.filter(x => App.item_is_visible(x)).length
 }
 
 // Do tab filter
@@ -689,7 +586,7 @@ App.do_filter_tabs = function (args = {}) {
   }
 
   if (selected) {
-    App.select_tab(selected)
+    App.select_item("tabs", selected)
   } else {
     App.update_footer()
   }

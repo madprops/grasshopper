@@ -20,7 +20,7 @@ App.setup_mouse = function () {
     if (e.target.closest(".tabs_item")) {
       let el = e.target.closest(".tabs_item")
       let tab = App.get_tab_by_id(el.dataset.id)
-      App.select_tab(tab)
+      App.select_item("tabs", tab)
     }
   })
 
@@ -83,7 +83,7 @@ App.setup_mouse = function () {
       let el = e.target.closest(".closed_tabs_item")
       let index = el.dataset.index
       let tab = App.closed_tabs[index]
-      App.select_closed_tab(tab)
+      App.select_item("closed_tabs", tab)
     }
   })
 

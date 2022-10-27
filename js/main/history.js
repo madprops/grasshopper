@@ -179,7 +179,7 @@ App.remove_history_item = function (item) {
     App.select_history_item(next_item)
   }
 
-  item.removed = true
+  item.closed = true
 }
 
 // Get previous visible history item
@@ -187,7 +187,7 @@ App.get_prev_visible_history_item = function (t) {
   let i = t.index
 
   for (let item of App.history_items.slice(0).reverse()) {
-    if (!item.removed && item.index < i) {
+    if (!item.closed && item.index < i) {
       if (App.history_item_is_visible(item)) {
         return item
       }
@@ -200,7 +200,7 @@ App.get_next_visible_history_item = function (t) {
   let i = t.index
 
   for (let item of App.history_items) {
-    if (!item.removed && item.index > i) {
+    if (!item.closed && item.index > i) {
       if (App.history_item_is_visible(item)) {
         return item
       }
@@ -278,7 +278,7 @@ App.do_filter_history = function () {
 
 // Check if selected history item is valid
 App.selected_history_item_valid = function () {
-  return App.selected_history_item && !App.selected_history_item.removed && App.tab_is_visible(App.selected_history_item)
+  return App.selected_history_item && !App.selected_history_item.closed && App.tab_is_visible(App.selected_history_item)
 }
 
 // Show history item menu
