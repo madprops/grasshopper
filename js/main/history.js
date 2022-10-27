@@ -138,24 +138,3 @@ App.open_history_item = function (item, close = true) {
 App.history_item_action = function () {
   App.open_history_item(App.selected_history_item)
 }
-
-// Show history item menu
-App.show_history_item_menu = function (tab, x, y) {
-  let items = []
-
-  items.push({
-    text: "Copy URL",
-    action: function () {
-      App.copy_to_clipboard(tab.url)
-    }
-  })
-
-  items.push({
-    text: "Copy Title",
-    action: function () {
-      App.copy_to_clipboard(tab.title)
-    }
-  }) 
-
-  NeedContext.show(x, y, items)
-}

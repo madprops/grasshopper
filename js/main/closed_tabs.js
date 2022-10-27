@@ -127,24 +127,3 @@ App.clean_closed_tab = function (id) {
 App.closed_tab_action = function () {
   App.restore_tab(App.selected_closed_tab)
 }
-
-// Show closed tab menu
-App.show_closed_tab_menu = function (tab, x, y) {
-  let items = []
-
-  items.push({
-    text: "Copy URL",
-    action: function () {
-      App.copy_to_clipboard(tab.url)
-    }
-  })
-
-  items.push({
-    text: "Copy Title",
-    action: function () {
-      App.copy_to_clipboard(tab.title)
-    }
-  }) 
-
-  NeedContext.show(x, y, items)
-}
