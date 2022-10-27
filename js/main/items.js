@@ -149,10 +149,10 @@ App.do_item_filter = function (mode, select = true) {
     return filter_words.every(x => what.includes(x))
   }
 
-  function matched (tab) {
+  function matched (item) {
     let match = false
-    let title = case_sensitive ? tab.title : tab.title_lower
-    let path = case_sensitive ? tab.path : tab.path_lower
+    let title = case_sensitive ? item.title : item.title_lower
+    let path = case_sensitive ? item.path : item.path_lower
     
     if (filter_mode === "all") {
       match = check(title) || check(path)
@@ -161,16 +161,16 @@ App.do_item_filter = function (mode, select = true) {
     } else if (filter_mode === "url") {
       match = check(path)
     } else if (filter_mode === "playing") {
-      match = tab.audible &&
+      match = item.audible &&
       (check(title) || check(path))    
     } else if (filter_mode === "pins") {
-      match = tab.pinned &&
+      match = item.pinned &&
       (check(title) || check(path))  
     } else if (filter_mode === "muted") {
-      match = tab.muted &&
+      match = item.muted &&
       (check(title) || check(path))    
     } else if (filter_mode === "normal") {
-      match = !tab.audible && !tab.pinned &&
+      match = !item.audible && !item.pinned &&
       (check(title) || check(path)) 
     }
         
@@ -188,43 +188,43 @@ App.do_item_filter = function (mode, select = true) {
   if (select) {
     App.select_first_item(mode)
   }
-  
+
   App.update_footer(mode)
 }
 
 // Show item menu
-App.show_item_menu = function (mode, tab, x, y) {
+App.show_item_menu = function (mode, item, x, y) {
   let items = []
 
   if (mode === "tabs") {
-    if (tab.pinned) {
+    if (item.pinned) {
       items.push({
         text: "Unpin",
         action: function () {
-          App.unpin_tab(tab)
+          App.unpin_tab(item)
         }
       })
     } else {
       items.push({
         text: "Pin",
         action: function () {
-          App.pin_tab(tab)
+          App.pin_tab(item)
         }
       })
     }
   
-    if (tab.muted) {
+    if (item.muted) {
       items.push({
         text: "Unmute",
         action: function () {
-          App.unmute_tab(tab)
+          App.unmute_tab(item)
         }
       })
     } else {
       items.push({
         text: "Mute",
         action: function () {
-          App.mute_tab(tab)
+          App.mute_tab(item)
         }
       })
     }
@@ -233,16 +233,147 @@ App.show_item_menu = function (mode, tab, x, y) {
   items.push({
     text: "Copy URL",
     action: function () {
-      App.copy_to_clipboard(tab.url)
+      App.copy_to_clipboard(item.url)
     }
   })
 
   items.push({
     text: "Copy Title",
     action: function () {
-      App.copy_to_clipboard(tab.title)
+      App.copy_to_clipboard(item.title)
     }
   })
 
   NeedContext.show(x, y, items)
+}
+
+// Process items
+App.process_items = function (mode, items) {
+  let container = App.el(`#${mode}_container`)
+  container.innerHTML = ""
+  App[`${mode}_items`] = []
+  App[`${mode}_idx`] = 0
+
+  for (let item of items) {
+    let obj = App.process_item(mode, item)
+
+    if (!obj) {
+      continue
+    }
+
+    App[`${mode}_items`].push(obj)
+    container.append(obj.element)
+  }
+}
+
+// Process an item
+App.process_item = function (mode, item) {
+  if (!item.url) {
+    return false
+  }
+
+  item.url = App.format_url(item.url)
+
+  try {
+    url_obj = new URL(item.url)
+  } catch (err) {
+    return
+  }
+
+  let path = App.remove_protocol(item.url)
+  let title = item.title || path
+
+  let obj = {
+    id: item.id || App[`${mode}_idx`],
+    title: title,
+    title_lower: title.toLowerCase(),
+    url: item.url,
+    path: path,
+    path_lower: path.toLowerCase(),
+    favicon: item.favIconUrl,
+    closed: false,
+    empty: false,
+  }
+  
+  if (mode === "tabs") {
+    obj.id = item.id
+    obj.index = item.index,
+    obj.active = item.active
+    obj.pinned = item.pinned
+    obj.audible = item.audible
+    obj.muted = item.mutedInfo.muted
+  }
+
+  App.create_item_element(mode, obj)
+  App[`${mode}_idx`] += 1
+  return obj
+}
+
+// Create an item element
+App.create_item_element = function (mode, item) {
+  item.element = App.create("div", `item ${mode}_item`)
+  item.element.dataset.id = item.id
+
+  let icon = App.get_img_icon(item.favicon, item.url)
+  item.element.append(icon)
+
+  let text = App.create("div", "item_text")
+  item.element.append(text)
+  App.set_item_text(mode, item)
+
+  let close = App.create("div", "item_button action_button")
+  close.textContent = "Close"
+  item.element.append(close)
+}
+
+// Set item text content
+App.set_item_text = function (mode, item) {
+  let content = ""
+
+  if (mode === "tabs") {
+    let status = []
+  
+    if (item.pinned) {
+      status.push("Pin")
+    }
+  
+    if (item.audible) {
+      status.push("Playing")
+    }
+  
+    if (item.muted) {
+      status.push("Muted")
+    }
+  
+    if (status.length > 0) {
+      content = status.map(x => `(${x})`).join(" ")
+      content += "  "
+    }
+  }
+
+  let purl
+
+  if (item.url.startsWith("http://")) {
+    purl = item.url
+  } else {
+    purl = item.path
+  }
+
+  content += item.title || purl
+  item.footer = decodeURI(purl) || item.title
+
+  content = content.substring(0, 200).trim()
+  let text = App.el(".item_text", item.element)
+  text.textContent = content
+}
+
+// Get an item by the id dataset
+App.get_item_by_id = function (mode, id) {
+  id = id.toString()
+
+  for (let item of App[`${mode}_items`]) {
+    if (item.id.toString() === id) {
+      return item
+    }
+  }
 }

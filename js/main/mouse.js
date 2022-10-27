@@ -1,13 +1,13 @@
 App.setup_mouse = function () {
-  let container = App.el("#tabs")
+  let tabs = App.el("#tabs_container")
 
   // When the button is released
-  App.ev(container, "click", function (e) {
+  App.ev(tabs, "click", function (e) {
     if (e.target.closest(".tabs_item")) {
       let el = e.target.closest(".tabs_item")
-      let tab = App.get_tab_by_id(el.dataset.id)
+      let tab = App.get_item_by_id("tabs", el.dataset.id)
 
-      if (e.target.closest(".tabs_close")) {
+      if (e.target.closest(".action_button")) {
         App.confirm_close_tab(tab)
       } else {
         App.open_tab(tab)
@@ -16,20 +16,20 @@ App.setup_mouse = function () {
   })
 
   // When tabs get hovered
-  App.ev(container, "mousemove", function (e) {
+  App.ev(tabs, "mousemove", function (e) {
     if (e.target.closest(".tabs_item")) {
       let el = e.target.closest(".tabs_item")
-      let tab = App.get_tab_by_id(el.dataset.id)
+      let tab = App.get_item_by_id("tabs", el.dataset.id)
       App.select_item("tabs", tab)
     }
   })
 
   // When tabs are middle clicked
-  App.ev(container, "auxclick", function (e) {
+  App.ev(tabs, "auxclick", function (e) {
     if (e.button === 1) {
       if (e.target.closest(".tabs_item")) {
         let el = e.target.closest(".tabs_item")
-        let tab = App.get_tab_by_id(el.dataset.id)
+        let tab = App.get_item_by_id("tabs", el.dataset.id)
         
         App.confirm_close_tab(tab)
       }
@@ -37,25 +37,25 @@ App.setup_mouse = function () {
   })
 
   // On context menu action
-  App.ev(container, "contextmenu", function (e) {
+  App.ev(tabs, "contextmenu", function (e) {
     if (e.target.closest(".tabs_item")) {
       let el = e.target.closest(".tabs_item")
-      let tab = App.get_tab_by_id(el.dataset.id)
+      let tab = App.get_item_by_id("tabs", el.dataset.id)
       App.show_item_menu("tabs", tab, e.clientX, e.clientY)
       e.preventDefault()
     }
   })
 
-  let ctc = App.el("#closed_tabs_container")
+  let closed_tabs = App.el("#closed_tabs_container")
 
   // On closed tabs click
-  App.ev(ctc, "click", function (e) {
+  App.ev(closed_tabs, "click", function (e) {
     if (e.target.closest(".closed_tabs_item")) {
       let el = e.target.closest(".closed_tabs_item")
-      let index = el.dataset.index
-      let tab = App.closed_tabs_items[index]
+      let id = el.dataset.id
+      let tab = App.get_item_by_id("closed_tabs", id)
 
-      if (e.target.closest(".closed_tabs_open")) {
+      if (e.target.closest(".action_button")) {
         App.restore_tab(tab, false)
         App.remove_item("closed_tabs", tab)
       } else {
@@ -65,12 +65,12 @@ App.setup_mouse = function () {
   })
 
   // On closed tabs middle click
-  App.ev(ctc, "auxclick", function (e) {
+  App.ev(closed_tabs, "auxclick", function (e) {
     if (e.button === 1) {
       if (e.target.closest(".closed_tabs_item")) {
         let el = e.target.closest(".closed_tabs_item")
-        let index = el.dataset.index
-        let tab = App.closed_tabs_items[index]
+        let id = el.dataset.id
+        let tab = App.get_item_by_id("closed_tabs", id)
         App.restore_tab(tab, false)
         App.remove_item("closed_tabs", tab)
       }
@@ -78,36 +78,36 @@ App.setup_mouse = function () {
   })  
   
   // When closed tabs get hovered
-  App.ev(ctc, "mousemove", function (e) {   
+  App.ev(closed_tabs, "mousemove", function (e) {   
     if (e.target.closest(".closed_tabs_item")) {
       let el = e.target.closest(".closed_tabs_item")
-      let index = el.dataset.index
-      let tab = App.closed_tabs_items[index]
+      let id = el.dataset.id
+      let tab = App.get_item_by_id("closed_tabs", id)
       App.select_item("closed_tabs", tab)
     }
   })
 
   // On context menu action
-  App.ev(ctc, "contextmenu", function (e) {
+  App.ev(closed_tabs, "contextmenu", function (e) {
     if (e.target.closest(".closed_tabs_item")) {
       let el = e.target.closest(".closed_tabs_item")
-      let index = el.dataset.index
-      let tab = App.closed_tabs_items[index]
+      let id = el.dataset.id
+      let tab = App.get_item_by_id("closed_tabs", id)
       App.show_item_menu("closed_tabs", tab, e.clientX, e.clientY)
       e.preventDefault()
     }
   })
 
-  let hc = App.el("#history_container")
+  let history = App.el("#history_container")
 
   // On history item click
-  App.ev(hc, "click", function (e) {
+  App.ev(history, "click", function (e) {
     if (e.target.closest(".history_item")) {
       let el = e.target.closest(".history_item")
-      let index = el.dataset.index
-      let item = App.history_items[index]
+      let id = el.dataset.id
+      let item = App.get_item_by_id("history", id)
 
-      if (e.target.closest(".history_open")) {
+      if (e.target.closest(".action_button")) {
         App.open_history_item(item, false)
       } else {
         App.open_history_item(item)
@@ -118,12 +118,12 @@ App.setup_mouse = function () {
   })
 
   // On history middle click
-  App.ev(hc, "auxclick", function (e) {
+  App.ev(history, "auxclick", function (e) {
     if (e.button === 1) {
       if (e.target.closest(".history_item")) {
         let el = e.target.closest(".history_item")
-        let index = el.dataset.index
-        let item = App.history_items[index]
+        let id = el.dataset.id
+        let item = App.get_item_by_id("history", id)
         App.open_history_item(item, false)
         App.remove_item("history", item)
       }
@@ -131,21 +131,21 @@ App.setup_mouse = function () {
   })  
   
   // When history get hovered
-  App.ev(hc, "mousemove", function (e) {   
+  App.ev(history, "mousemove", function (e) {   
     if (e.target.closest(".history_item")) {
       let el = e.target.closest(".history_item")
-      let index = el.dataset.index
-      let item = App.history_items[index]
+      let id = el.dataset.id
+      let item = App.get_item_by_id("history", id)
       App.select_item("history", item)
     }
   })
 
   // On context menu action
-  App.ev(hc, "contextmenu", function (e) {
+  App.ev(history, "contextmenu", function (e) {
     if (e.target.closest(".history_item")) {
       let el = e.target.closest(".history_item")
-      let index = el.dataset.index
-      let item = App.history_items[index]
+      let id = el.dataset.id
+      let item = App.get_item_by_id("history", id)
       App.show_item_menu("history", item, e.clientX, e.clientY)
       e.preventDefault()
     }

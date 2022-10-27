@@ -42,87 +42,11 @@ App.history_months = function () {
 // Show history
 App.show_history = async function () {
   let items = await App.get_history()
-  let container = App.el("#history_container")
-  container.innerHTML = ""
-
-  let urls = []
-  App.history_items = []
-  let index = 0
-
-  for (let c of items) {
-    if (c.url.startsWith("about:")) {
-      continue
-    }
-
-    c.url = App.format_url(c.url)
-
-    try {
-      url_obj = new URL(c.url)
-    } catch (err) {
-      continue
-    }
-
-    if (urls.includes(c.url)) {
-      continue
-    }
-
-    urls.push(c.url)
-    
-    let div = App.create("div", "item history_item")
-    let icon = App.get_jdenticon(c.url)
-    div.append(icon)
-
-    let text = App.create("div", "item_text")
-    let path = App.remove_protocol(c.url)
-    let purl
-
-    if (c.url.startsWith("http://")) {
-      purl = c.url
-    } else {
-      purl = path
-    }  
-
-    let content = c.title || purl
-    let footer = decodeURI(purl) || c.title
-
-    text.textContent = content
-    div.append(text)
-
-    div.dataset.index = index
-    
-    let open = App.create("div", "item_button history_open")
-    open.textContent = "Open"
-    div.append(open)
-    
-    container.append(div)
-    let title = c.title || path
-
-    let item = {
-      index: index,
-      url: c.url,
-      title: title,
-      title_lower: title.toLowerCase(),
-      element: div,
-      footer: footer,
-      path: path,
-      path_lower: path.toLowerCase(),
-      removed: false
-    }
-
-    index += 1
-
-    App.history_items.push(item)  
-  }
-
-  container.scrollTop = 0
-  App.windows["history"].show()
-  App.select_first_item("history")
+  App.process_items("history", items)
   let v = App.el("#tabs_filter").value.trim()
   App.el("#history_filter").value = v
-
-  if (v) {
-    App.do_item_filter("history")
-  }  
+  App.do_item_filter("history")
+  App.windows["history"].show()
 }
 
 // Open history item

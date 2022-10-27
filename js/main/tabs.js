@@ -113,7 +113,7 @@ App.new_tab = function () {
 
 // Refresh tabs
 App.refresh_tab = async function (id) {
-  let tab = App.get_tab_by_id(id)
+  let tab = App.get_item_by_id("tabs", id)
 
   if (!tab) {
     App.tabs_items.push({
@@ -136,7 +136,7 @@ App.update_tab = function (o_tab, info) {
   for (let [i, it] of App.tabs_items.entries()) {
     if (it.id === o_tab.id) {
       let selected = App.selected_tabs_item === it
-      let tab = App.process_tab(info)
+      let tab = App.process_item("tabs", info)
 
       if (!tab) {
         break
@@ -167,7 +167,7 @@ App.prepend_tab = function (info) {
     }
   }
 
-  let tab = App.process_tab(info)
+  let tab = App.process_item("tabs", info)
 
   if (!tab) {
     return
@@ -246,7 +246,7 @@ App.unmute_tab = function (tab) {
 // Show tabs
 App.show_tabs = async function (filter_args = {}) {
   let tabs = await App.get_tabs()
-  App.process_tabs(tabs)
+  App.process_items("tabs", tabs)
   App.do_item_filter("tabs")
 }
 
@@ -279,135 +279,6 @@ App.go_to_playing_tab = function () {
   // If none found then pick the first one
   if (first) {
     App.open_tab(first)
-  }
-}
-
-// When results are found
-App.process_tabs = function (tabs) {
-  let container = App.el("#tabs")
-  container.innerHTML = ""
-  App.tabs_items = []
-
-  for (let tab of tabs) {
-    let obj = App.process_tab(tab)
-
-    if (!obj) {
-      continue
-    }
-
-    App.tabs_items.push(obj)
-    container.append(obj.element)
-  }
-}
-
-// Process a tab
-App.process_tab = function (tab) {
-  if (!tab.url) {
-    return false
-  }
-
-  tab.url = App.format_url(tab.url)
-
-  try {
-    url_obj = new URL(tab.url)
-  } catch (err) {
-    return
-  }
-
-  let path = App.remove_protocol(tab.url)
-  let title = tab.title || path
-
-  let obj = {
-    id: tab.id,
-    title: title,
-    title_lower: title.toLowerCase(),
-    url: tab.url,
-    path: path,
-    path_lower: path.toLowerCase(),
-    favicon: tab.favIconUrl,
-    audible: tab.audible,
-    pinned: tab.pinned,
-    muted: tab.mutedInfo.muted,
-    closed: false,
-    empty: false,
-    index: tab.index,
-    active: tab.active
-  }
-
-  App.create_tab_element(obj)
-  return obj
-}
-
-// Create a tab element
-App.create_tab_element = function (tab) {
-  tab.element = App.create("div", "item tabs_item")
-  tab.element.dataset.id = tab.id
-
-  let icon = App.get_img_icon(tab.favicon, tab.url)
-  tab.element.append(icon)
-
-  let text = App.create("div", "item_text")
-  tab.element.append(text)
-  App.set_tab_text(tab)
-
-  let close = App.create("div", "item_button tabs_close")
-  close.textContent = "Close"
-  tab.element.append(close)
-}
-
-// Set tab text content
-App.set_tab_text = function (tab) {
-  let content = ""
-  let status = []
-
-  if (tab.pinned) {
-    status.push("Pin")
-  }
-
-  if (tab.audible) {
-    status.push("Playing")
-  }
-
-  if (tab.muted) {
-    status.push("Muted")
-  }
-
-  if (status.length > 0) {
-    content = status.map(x => `(${x})`).join(" ")
-    content += "  "
-  }
-
-  let purl
-
-  if (tab.url.startsWith("http://")) {
-    purl = tab.url
-  } else {
-    purl = tab.path
-  }
-
-  content += tab.title || purl
-  tab.footer = decodeURI(purl) || tab.title
-
-  content = content.substring(0, 200).trim()
-  let text = App.el(".item_text", tab.element)
-  text.textContent = content
-}
-
-// Change tab text mode
-App.update_text = function () {
-  for (let tab of App.tabs_items) {
-    App.set_tab_text(tab)
-  }
-}
-
-// Get a tab by id dataset
-App.get_tab_by_id = function (id) {
-  id = parseInt(id)
-
-  for (let tab of App.tabs_items) {
-    if (tab.id === id) {
-      return tab
-    }
   }
 }
 
