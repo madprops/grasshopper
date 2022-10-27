@@ -722,3 +722,8 @@ App.close_all_tabs = async function () {
     window.close()
   }
 }
+
+// Return pinned tabs
+App.get_pinned_tabs = function () {
+  return App.tabs.filter(x => x.pinned)
+}

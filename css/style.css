@@ -12,7 +12,7 @@
 }
 
 body, html {
-  font-family: imported_font;
+  font-family: imported_font, sans-serif;
   font-size: 17px;
   color: white;
   width: 700px;
