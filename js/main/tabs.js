@@ -41,11 +41,9 @@ App.confirm_close_tab = function (tab) {
 
 // Close a tab
 App.close_tab = function (tab, close_tab = true) {
-  if (!tab) {
+  if (!tab || tab.closed) {
     return
   }
-
-  tab.closed = true
 
   if (close_tab) {
     browser.tabs.remove(tab.id)

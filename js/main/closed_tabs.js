@@ -188,8 +188,3 @@ App.show_closed_tab_menu = function (tab, x, y) {
 
   NeedContext.show(x, y, items)
 }
-
-// Check if selected closed tab is valid
-App.selected_closed_tab_valid = function () {
-  return App.selected_closed_tab && !App.selected_closed_tab.removed && App.tab_is_visible(App.selected_closed_tab)
-}
