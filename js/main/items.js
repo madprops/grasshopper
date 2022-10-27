@@ -136,3 +136,55 @@ App.remove_item = function (mode, item) {
 App.focus_filter = function (mode) {
   App.el(`#${mode}_filter`).focus()
 }
+
+// Filter items
+App.do_item_filter = function (mode) {
+  let value = App.el(`#${mode}_filter`).value.trim()
+  let words = value.split(" ").filter(x => x !== "")
+  let case_sensitive = App.el(`#${mode}_case_sensitive`).checked
+  let filter_mode = App.el(`#${mode}_filter_mode`).value
+  let filter_words = case_sensitive ? words : words.map(x => x.toLowerCase())
+
+  function check (what) {
+    return filter_words.every(x => what.includes(x))
+  }
+
+  function matched (tab) {
+    let match = false
+    let title = case_sensitive ? tab.title : tab.title_lower
+    let path = case_sensitive ? tab.path : tab.path_lower
+    
+    if (filter_mode === "all") {
+      match = check(title) || check(path)
+    } else if (filter_mode === "title") {
+      match = check(title)
+    } else if (filter_mode === "url") {
+      match = check(path)
+    } else if (filter_mode === "playing") {
+      match = tab.audible &&
+      (check(title) || check(path))    
+    } else if (filter_mode === "pins") {
+      match = tab.pinned &&
+      (check(title) || check(path))  
+    } else if (filter_mode === "muted") {
+      match = tab.muted &&
+      (check(title) || check(path))    
+    } else if (filter_mode === "normal") {
+      match = !tab.audible && !tab.pinned &&
+      (check(title) || check(path)) 
+    }
+        
+    return match
+  }
+
+  for (let it of App[`${mode}_items`]) {
+    if (matched(it)) {
+      it.element.classList.remove("hidden")
+    } else {
+      it.element.classList.add("hidden")
+    }
+  }
+
+  App.select_first_item(mode)
+  App.update_footer(mode)
+}

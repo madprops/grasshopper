@@ -7,7 +7,7 @@ App.setup_history = function () {
   })
 
   App.filter_history = App.create_debouncer(function () {
-    App.do_filter_history()
+    App.do_item_filter("history")
   }, App.filter_delay)
   
   App.ev(App.el("#history_filter"), "input", function () {
@@ -15,11 +15,11 @@ App.setup_history = function () {
   })  
 
   App.ev(App.el("#history_filter_mode"), "change", function () {
-    App.do_filter_history()
+    App.do_item_filter("history")
   })
 
   App.ev(App.el("#history_case_sensitive"), "change", function () {
-    App.do_filter_history()
+    App.do_item_filter("history")
   })    
 }
 
@@ -121,7 +121,7 @@ App.show_history = async function () {
   App.el("#history_filter").value = v
 
   if (v) {
-    App.do_filter_history()
+    App.do_item_filter("history")
   }  
 }
 
@@ -137,46 +137,6 @@ App.open_history_item = function (item, close = true) {
 // Selected history item action
 App.history_item_action = function () {
   App.open_history_item(App.selected_history_item)
-}
-
-// Filter history tabs
-App.do_filter_history = function () {
-  let value = App.el("#history_filter").value.trim()
-  let words = value.split(" ").filter(x => x !== "")
-  let case_sensitive = App.el("#history_case_sensitive").checked
-  let filter_mode = App.el("#history_filter_mode").value
-  let filter_words = case_sensitive ? words : words.map(x => x.toLowerCase())
-
-  function check (what) {
-    return filter_words.every(x => what.includes(x))
-  }
-
-  function matched (it) {
-    let match = false
-    let title = case_sensitive ? it.title : it.title_lower
-    let path = case_sensitive ? it.path : it.path_lower
-    
-    if (filter_mode === "all") {
-      match = check(title) || check(path)
-    } else if (filter_mode === "title") {
-      match = check(title)
-    } else if (filter_mode === "url") {
-      match = check(path)
-    }
-
-    return match
-  }
-
-  for (let it of App.history_items) {
-    if (matched(it)) {
-      it.element.classList.remove("hidden")
-    } else {
-      it.element.classList.add("hidden")
-    }
-  }
-
-  App.select_first_item("history")
-  App.update_footer("history")
 }
 
 // Show history item menu

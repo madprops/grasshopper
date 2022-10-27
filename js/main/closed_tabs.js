@@ -3,7 +3,7 @@ App.setup_closed_tabs = function () {
   App.create_window("closed_tabs")
 
   App.filter_closed_tabs = App.create_debouncer(function () {
-    App.do_filter_closed_tabs()
+    App.do_item_filter("closed_tabs")
   }, App.filter_delay)
   
   App.ev(App.el("#closed_tabs_filter"), "input", function () {
@@ -11,11 +11,11 @@ App.setup_closed_tabs = function () {
   })
 
   App.ev(App.el("#closed_tabs_filter_mode"), "change", function () {
-    App.do_filter_closed_tabs()
+    App.do_item_filter("closed_tabs")
   })
 
   App.ev(App.el("#closed_tabs_case_sensitive"), "change", function () {
-    App.do_filter_closed_tabs()
+    App.do_item_filter("closed_tabs")
   })    
 }
 
@@ -110,7 +110,7 @@ App.show_closed_tabs = async function () {
   App.el("#closed_tabs_filter").value = v
 
   if (v) {
-    App.do_filter_closed_tabs()
+    App.do_item_filter("closed_tabs")
   }
 }
 
@@ -121,46 +121,6 @@ App.clean_closed_tab = function (id) {
   if (tab) {
     App.close_tab(tab, false)
   }
-}
-
-// Filter closed tabs
-App.do_filter_closed_tabs = function () {
-  let value = App.el("#closed_tabs_filter").value.trim()
-  let words = value.split(" ").filter(x => x !== "")
-  let case_sensitive = App.el("#closed_tabs_case_sensitive").checked
-  let filter_mode = App.el("#closed_tabs_filter_mode").value
-  let filter_words = case_sensitive ? words : words.map(x => x.toLowerCase())
-
-  function check (what) {
-    return filter_words.every(x => what.includes(x))
-  }
-
-  function matched (it) {
-    let match = false
-    let title = case_sensitive ? it.title : it.title_lower
-    let path = case_sensitive ? it.path : it.path_lower
-    
-    if (filter_mode === "all") {
-      match = check(title) || check(path)
-    } else if (filter_mode === "title") {
-      match = check(title)
-    } else if (filter_mode === "url") {
-      match = check(path)
-    }
-
-    return match
-  }
-
-  for (let it of App.closed_tabs_items) {
-    if (matched(it)) {
-      it.element.classList.remove("hidden")
-    } else {
-      it.element.classList.add("hidden")
-    }
-  }
-
-  App.select_first_item("closed_tabs")
-  App.update_footer("closed_tabs")
 }
 
 // Selected closed tab action
