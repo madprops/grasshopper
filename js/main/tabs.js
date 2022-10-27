@@ -142,7 +142,7 @@ App.update_tab = function (o_tab, info) {
         break
       }
 
-      App.create_tab_element(tab)
+      App.create_item_element("tabs", tab)
       App.tabs_items[i].element.replaceWith(tab.element)
       App.tabs_items[i] = tab
 
@@ -174,8 +174,8 @@ App.prepend_tab = function (info) {
   }
 
   App.tabs_items.unshift(tab)
-  App.create_tab_element(tab)
-  App.el("#tabs").prepend(tab.element)
+  App.create_item_element("tabs", tab)
+  App.el("#tabs_container").prepend(tab.element)
   App.do_item_filter("tabs", false)
 }
 
@@ -300,4 +300,13 @@ App.close_all_tabs = async function () {
 // Return pinned tabs
 App.get_pinned_tabs = function () {
   return App.tabs_items.filter(x => x.pinned)
+}
+
+// Remove a closed tab
+App.clean_closed_tab = function (id) {
+  let tab = App.get_item_by_id("tabs", id)
+
+  if (tab) {
+    App.close_tab(tab, false)
+  }
 }

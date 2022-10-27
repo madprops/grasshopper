@@ -23,6 +23,11 @@ App.setup_history = function () {
   })    
 }
 
+// Get history months date
+App.history_months = function () {
+  return Date.now() - (1000 * 60 * 60 * 24 * 30 * App.history_max_months)
+}
+
 // Get items from history
 App.get_history = async function () {
   let items = await browser.history.search({
@@ -32,11 +37,6 @@ App.get_history = async function () {
   })
 
   return items
-}
-
-// Get history months date
-App.history_months = function () {
-  return Date.now() - (1000 * 60 * 60 * 24 * 30 * App.history_max_months)
 }
 
 // Show history

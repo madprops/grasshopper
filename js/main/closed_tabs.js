@@ -19,13 +19,19 @@ App.setup_closed_tabs = function () {
   })    
 }
 
-// Show closed tabs
-App.show_closed_tabs = async function () {
-  let closed = await browser.sessions.getRecentlyClosed({
+// Get closed tabs
+App.get_closed_tabs = async function () {
+  let items = await browser.sessions.getRecentlyClosed({
     maxResults: 25
   })
 
-  let tabs = closed.map(x => x.tab)
+  return items
+}
+
+// Show closed tabs
+App.show_closed_tabs = async function () {
+  let items = await App.get_closed_tabs()
+  let tabs = items.map(x => x.tab)
   App.process_items("closed_tabs", tabs)
   let v = App.el("#tabs_filter").value.trim()
   App.el("#closed_tabs_filter").value = v
@@ -33,16 +39,7 @@ App.show_closed_tabs = async function () {
   App.windows["closed_tabs"].show()
 }
 
-// Remove a closed tab
-App.clean_closed_tab = function (id) {
-  let tab = App.get_tab_by_id(id)
-
-  if (tab) {
-    App.close_tab(tab, false)
-  }
-}
-
 // Selected closed tab action
 App.closed_tab_action = function () {
-  App.restore_tab(App.selected_closed_tab)
+  App.restore_tab(App.selected_closed_tabs_item)
 }

@@ -268,7 +268,7 @@ App.process_items = function (mode, items) {
 
 // Process an item
 App.process_item = function (mode, item) {
-  if (!item.url) {
+  if (!item || !item.url) {
     return false
   }
 
@@ -296,12 +296,14 @@ App.process_item = function (mode, item) {
   }
   
   if (mode === "tabs") {
-    obj.id = item.id
     obj.index = item.index,
     obj.active = item.active
     obj.pinned = item.pinned
     obj.audible = item.audible
     obj.muted = item.mutedInfo.muted
+  } else if (mode === "closed_tabs") {
+    obj.window_id = item.windowId
+    obj.session_id = item.sessionId
   }
 
   App.create_item_element(mode, obj)

@@ -13,8 +13,8 @@ App.setup_keyboard = function () {
 
       if (e.key === "Enter") {
         if (e.ctrlKey) {
-          App.restore_tab(App.selected_closed_tab, false)
-          App.remove_closed_tab(App.selected_closed_tab)          
+          App.restore_tab(App.selected_closed_tabs_item, false)
+          App.remove_closed_tab(App.selected_closed_tabs_item)          
           e.preventDefault()
         } else {
           App.closed_tab_action()
