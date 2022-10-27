@@ -18,7 +18,7 @@ App.setup_keyboard = function () {
       if (e.key === "Enter") {
         if (e.ctrlKey) {
           App.restore_tab(App.selected_closed_tabs_item, false)
-          App.remove_closed_tab(App.selected_closed_tabs_item)          
+          App.remove_item("closed_tabs", App.selected_closed_tabs_item)          
           e.preventDefault()
         } else {
           App.closed_tab_action()
@@ -39,7 +39,7 @@ App.setup_keyboard = function () {
       if (e.key === "Enter") {
         if (e.ctrlKey) {
           App.open_history_item(App.selected_history_item, false)
-          App.remove_history_item(App.selected_history_item)          
+          App.remove_item("history", App.selected_history_item)          
           e.preventDefault()
         } else {
           App.history_item_action()
