@@ -12,7 +12,7 @@ App.select_item = function (mode, item) {
   App[`selected_${mode}_item`].element.classList.add("selected")
   App[`selected_${mode}_item`].element.scrollIntoView({block: "nearest"})
 
-  App.update_footer()
+  App.update_footer(mode)
 
   if (mode === "tabs") {
     browser.tabs.warmup(item.id)
@@ -131,4 +131,8 @@ App.remove_item = function (mode, item) {
   }
 
   item.closed = true
+}
+
+App.focus_filter = function (mode) {
+  App.el(`#${mode}_filter`).focus()
 }

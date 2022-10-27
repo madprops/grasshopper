@@ -160,12 +160,7 @@ App.do_filter_closed_tabs = function () {
   }
 
   App.select_first_item("closed_tabs")
-  App.update_closed_tabs_footer()
-}
-
-// Focus the closed tabs filter
-App.focus_closed_tabs_filter = function () {
-  App.el("#closed_tabs_filter").focus()
+  App.update_footer("closed_tabs")
 }
 
 // Selected closed tab action
@@ -192,15 +187,6 @@ App.show_closed_tab_menu = function (tab, x, y) {
   }) 
 
   NeedContext.show(x, y, items)
-}
-
-// Update the closed tabs footer
-App.update_closed_tabs_footer = function () {
-  if (App.selected_closed_tab_valid()) {
-    App.el("#closed_tabs_footer").textContent = App.selected_closed_tab.footer
-  } else {
-    App.el("#closed_tabs_footer").textContent = "No Results"
-  }
 }
 
 // Check if selected closed tab is valid

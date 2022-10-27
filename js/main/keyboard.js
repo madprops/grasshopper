@@ -9,7 +9,7 @@ App.setup_keyboard = function () {
     }
 
     if (App.window_mode === "closed_tabs") {
-      App.focus_closed_tabs_filter()
+      App.focus_filter("closed_tabs")
 
       if (e.key === "Enter") {
         if (e.ctrlKey) {
@@ -32,7 +32,7 @@ App.setup_keyboard = function () {
     }
 
     if (App.window_mode === "history") {
-      App.focus_history_filter()
+      App.focus_filter("history")
 
       if (e.key === "Enter") {
         if (e.ctrlKey) {
@@ -58,7 +58,7 @@ App.setup_keyboard = function () {
       return
     }
 
-    App.focus_tabs_filter()
+    App.focus_filter("tabs")
 
     if (e.key === "Enter") {
       if (App.selected_valid("tabs")) {

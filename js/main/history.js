@@ -176,7 +176,7 @@ App.do_filter_history = function () {
   }
 
   App.select_first_item("history")
-  App.update_history_footer()
+  App.update_footer("history")
 }
 
 // Show history item menu

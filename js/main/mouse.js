@@ -53,11 +53,11 @@ App.setup_mouse = function () {
     if (e.target.closest(".closed_tabs_item")) {
       let el = e.target.closest(".closed_tabs_item")
       let index = el.dataset.index
-      let tab = App.closed_tabs[index]
+      let tab = App.closed_tabs_items[index]
 
       if (e.target.closest(".closed_tabs_open")) {
         App.restore_tab(tab, false)
-        App.remove_closed_tab(tab)
+        App.remove_item("closed_tabs", tab)
       } else {
         App.restore_tab(tab)
       }
@@ -70,9 +70,9 @@ App.setup_mouse = function () {
       if (e.target.closest(".closed_tabs_item")) {
         let el = e.target.closest(".closed_tabs_item")
         let index = el.dataset.index
-        let tab = App.closed_tabs[index]
+        let tab = App.closed_tabs_items[index]
         App.restore_tab(tab, false)
-        App.remove_closed_tab(tab)
+        App.remove_item("closed_tabs", tab)
       }
     }
   })  
@@ -82,7 +82,7 @@ App.setup_mouse = function () {
     if (e.target.closest(".closed_tabs_item")) {
       let el = e.target.closest(".closed_tabs_item")
       let index = el.dataset.index
-      let tab = App.closed_tabs[index]
+      let tab = App.closed_tabs_items[index]
       App.select_item("closed_tabs", tab)
     }
   })
@@ -92,7 +92,7 @@ App.setup_mouse = function () {
     if (e.target.closest(".closed_tabs_item")) {
       let el = e.target.closest(".closed_tabs_item")
       let index = el.dataset.index
-      let tab = App.closed_tabs[index]
+      let tab = App.closed_tabs_items[index]
       App.show_closed_tab_menu(tab, e.clientX, e.clientY)
       e.preventDefault()
     }
@@ -113,7 +113,7 @@ App.setup_mouse = function () {
         App.open_history_item(item)
       }
 
-      App.remove_history_item(item)
+      App.remove_item("history", item)
     }
   })
 
@@ -125,7 +125,7 @@ App.setup_mouse = function () {
         let index = el.dataset.index
         let item = App.history_items[index]
         App.open_history_item(item, false)
-        App.remove_history_item(item)
+        App.remove_item("history", item)
       }
     }
   })  
@@ -136,7 +136,7 @@ App.setup_mouse = function () {
       let el = e.target.closest(".history_item")
       let index = el.dataset.index
       let item = App.history_items[index]
-      App.select_history_item(item)
+      App.select_item("history", item)
     }
   })
 

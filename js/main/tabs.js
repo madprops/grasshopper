@@ -45,23 +45,13 @@ App.close_tab = function (tab, close_tab = true) {
     return
   }
 
-  let next_tab
-
-  if (tab === App.selected_tabs_item) {
-    next_tab = App.get_next_visible_tab(tab) || App.get_prev_visible_tab(tab)
-  }
-
   tab.closed = true
 
   if (close_tab) {
     browser.tabs.remove(tab.id)
   }
 
-  App.remove_tab(tab)
-
-  if (next_tab) {
-    App.select_item("tabs", next_tab)
-  }
+  App.remove_item("tabs", tab)
 }
 
 // Setup tabs
@@ -588,7 +578,7 @@ App.do_filter_tabs = function (args = {}) {
   if (selected) {
     App.select_item("tabs", selected)
   } else {
-    App.update_footer()
+    App.update_footer("tabs")
   }
 }
 
