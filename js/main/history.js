@@ -1,6 +1,6 @@
 // Setup history
 App.setup_history = function () {
-  App.create_window({id: "history"}) 
+  App.create_window("history") 
 
   App.ev(App.el("#history_button"), "click", function () {  
     App.show_history()

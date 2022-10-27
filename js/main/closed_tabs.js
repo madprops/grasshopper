@@ -1,6 +1,6 @@
 // Setup closed tabs
 App.setup_closed_tabs = function () {
-  App.create_window({id: "closed_tabs"}) 
+  App.create_window("closed_tabs")
 
   App.filter_closed_tabs = App.create_debouncer(function () {
     App.do_filter_closed_tabs()

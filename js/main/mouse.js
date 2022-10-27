@@ -20,7 +20,7 @@ App.setup_mouse = function () {
     if (e.target.closest(".tabs_item")) {
       let el = e.target.closest(".tabs_item")
       let tab = App.get_tab_by_id(el.dataset.id)
-      App.select_tab({tab: tab, scroll: false})
+      App.select_tab(tab)
     }
   })
 

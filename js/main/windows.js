@@ -4,11 +4,11 @@ App.get_template = function (id) {
 }
 
 // Create a window
-App.create_window = function (args) {
+App.create_window = function (id) {
   let w = {}
-  let el = App.create("div", "window_main", `window_${args.id}`)
+  let el = App.create("div", "window_main", `window_${id}`)
   let top = App.create("div", "window_top")
-  top.innerHTML = App.get_template(`${args.id}_top`)
+  top.innerHTML = App.get_template(`${id}_top`)
   let x = App.create("div", "window_x action unselectable")
   x.textContent = "x"
   top.append(x)
@@ -20,7 +20,7 @@ App.create_window = function (args) {
   el.append(top)
 
   let content = App.create("div", "window_content main")
-  content.innerHTML = App.get_template(args.id)
+  content.innerHTML = App.get_template(id)
   el.append(content)
 
   w.element = el
@@ -29,7 +29,7 @@ App.create_window = function (args) {
   w.show = function () {
     App.hide_all_windows()
     w.element.style.display = "flex"
-    App.window_mode = args.id
+    App.window_mode = id
   }
   
   w.hide = function () {
@@ -37,7 +37,7 @@ App.create_window = function (args) {
     App.window_mode = "none"
   }
 
-  App.windows[args.id] = w
+  App.windows[id] = w
 }
 
 // Cycle between windows

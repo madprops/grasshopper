@@ -60,7 +60,7 @@ App.close_tab = function (tab, close_tab = true) {
   App.remove_tab(tab)
 
   if (next_tab) {
-    App.select_tab({tab: next_tab})
+    App.select_tab(next_tab)
   }
 }
 
@@ -159,7 +159,7 @@ App.update_tab = function (o_tab, info) {
       App.tabs[i] = tab
 
       if (selected) {
-        App.select_tab({tab: tab})
+        App.select_tab(tab)
       }
 
       App.do_filter_tabs({select_new: false})
@@ -481,13 +481,8 @@ App.hide_tab = function (tab) {
 
 // Make a tab selected
 // Unselect all the others
-// Args: tab, scroll
-App.select_tab = function (args) {
-  if (args.scroll === undefined) {
-    args.scroll = true
-  }
-
-  if (args.tab.closed) {
+App.select_tab = function (tab) {
+  if (tab.closed) {
     return
   }
 
@@ -495,15 +490,12 @@ App.select_tab = function (args) {
     el.classList.remove("selected")
   }
 
-  App.selected_tab = args.tab
+  App.selected_tab = tab
   App.selected_tab.element.classList.add("selected")
-
-  if (args.scroll) {
-    App.selected_tab.element.scrollIntoView({block: "nearest"})
-  }
+  App.selected_tab.element.scrollIntoView({block: "nearest"})
 
   App.update_footer()
-  browser.tabs.warmup(args.tab.id)
+  browser.tabs.warmup(tab.id)
 }
 
 // Check if a tab is visible
@@ -591,7 +583,7 @@ App.select_tab_above = function () {
   let tab = App.get_prev_visible_tab(App.selected_tab)
 
   if (tab) {
-    App.select_tab({tab: tab})
+    App.select_tab(tab)
   }
 }
 
@@ -600,7 +592,7 @@ App.select_tab_below = function () {
   let tab = App.get_next_visible_tab(App.selected_tab)
 
   if (tab) {
-    App.select_tab({tab: tab})
+    App.select_tab(tab)
   }
 }
 
@@ -697,7 +689,7 @@ App.do_filter_tabs = function (args = {}) {
   }
 
   if (selected) {
-    App.select_tab({tab: selected})
+    App.select_tab(selected)
   } else {
     App.update_footer()
   }
