@@ -34,7 +34,7 @@ App.create_window = function (id) {
   
   w.hide = function () {
     w.element.style.display = "none"
-    App.window_mode = "none"
+    App.window_mode = "tabs"
   }
 
   App.windows[id] = w

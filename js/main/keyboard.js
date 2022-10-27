@@ -1,5 +1,9 @@
 App.setup_keyboard = function () {
   App.ev(document, "keydown", function (e) {
+    if (NeedContext.open) {
+      return
+    }
+    
     if (e.key === "Tab") {
       if (!e.ctrlKey && !e.shiftKey) {
         App.cycle_windows()
@@ -29,9 +33,7 @@ App.setup_keyboard = function () {
       }
 
       return
-    }
-
-    if (App.window_mode === "history") {
+    } else if (App.window_mode === "history") {
       App.focus_filter("history")
 
       if (e.key === "Enter") {
@@ -52,30 +54,26 @@ App.setup_keyboard = function () {
       }
 
       return
-    }    
-
-    if (App.window_mode !== "none" || NeedContext.open) {
-      return
-    }
-
-    App.focus_filter("tabs")
-
-    if (e.key === "Enter") {
-      if (App.selected_valid("tabs")) {
-        App.open_tab(App.selected_tabs_item)
-        e.preventDefault()
-      }
-    } else if (e.key === "ArrowUp") {
-      App.select_item_above("tabs")
-      e.preventDefault()
-    } else if (e.key === "ArrowDown") {
-      App.select_item_below("tabs")
-      e.preventDefault()
-    } else if (e.key === "Delete") {
-      if (e.ctrlKey) {
+    } else if (App.window_mode === "tabs") {
+      App.focus_filter("tabs")
+  
+      if (e.key === "Enter") {
         if (App.selected_valid("tabs")) {
-          App.confirm_close_tab(App.selected_tabs_item)
+          App.open_tab(App.selected_tabs_item)
           e.preventDefault()
+        }
+      } else if (e.key === "ArrowUp") {
+        App.select_item_above("tabs")
+        e.preventDefault()
+      } else if (e.key === "ArrowDown") {
+        App.select_item_below("tabs")
+        e.preventDefault()
+      } else if (e.key === "Delete") {
+        if (e.ctrlKey) {
+          if (App.selected_valid("tabs")) {
+            App.confirm_close_tab(App.selected_tabs_item)
+            e.preventDefault()
+          }
         }
       }
     }

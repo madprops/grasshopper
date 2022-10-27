@@ -1,7 +1,7 @@
 // For internal checks
 App.tabs = []
 App.filter_delay = 111
-App.window_mode = "none"
+App.window_mode = "tabs"
 App.windows = {}
 App.history_max_months = 12
 App.history_max_items = 1000 * 3
