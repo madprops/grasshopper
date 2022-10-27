@@ -17,6 +17,10 @@ App.setup_closed_tabs = function () {
   App.ev(App.el("#closed_tabs_case_sensitive"), "change", function () {
     App.do_item_filter("closed_tabs")
   })    
+
+  App.ev(App.el("#closed_tabs_next"), "click", function () {
+    App.cycle_windows()
+  })    
 }
 
 // Get closed tabs

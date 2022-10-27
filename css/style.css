@@ -232,6 +232,10 @@ body, html {
   margin-right: 0.8rem;
 }
 
+.window_next {
+  margin-left: 0.8rem;
+}
+
 .invisible {
   visibility: hidden;
 }

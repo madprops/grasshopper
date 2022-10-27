@@ -20,6 +20,10 @@ App.setup_history = function () {
 
   App.ev(App.el("#history_case_sensitive"), "change", function () {
     App.do_item_filter("history")
+  })
+  
+  App.ev(App.el("#history_next"), "click", function () {
+    App.cycle_windows()
   })    
 }
 
