@@ -6,7 +6,7 @@ App.setup_about = function () {
   App.el("#about_name").textContent = s
 
   App.ev(App.el("#about_button"), "click", function () {
-    let s = App.plural(App.tabs.length, "tab", "tabs")
+    let s = App.plural(App.tabs_items.length, "tab", "tabs")
     let p = App.plural(App.get_pinned_tabs().length, "pin", "pins")
     App.el("#about_stats").textContent = `${s} open (${p})`
     App.windows["about"].show()
