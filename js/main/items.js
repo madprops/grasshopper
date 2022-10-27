@@ -138,7 +138,7 @@ App.focus_filter = function (mode) {
 }
 
 // Filter items
-App.do_item_filter = function (mode) {
+App.do_item_filter = function (mode, select = true) {
   let value = App.el(`#${mode}_filter`).value.trim()
   let words = value.split(" ").filter(x => x !== "")
   let case_sensitive = App.el(`#${mode}_case_sensitive`).checked
@@ -185,7 +185,10 @@ App.do_item_filter = function (mode) {
     }
   }
 
-  App.select_first_item(mode)
+  if (select) {
+    App.select_first_item(mode)
+  }
+  
   App.update_footer(mode)
 }
 

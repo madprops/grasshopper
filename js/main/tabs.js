@@ -150,7 +150,7 @@ App.update_tab = function (o_tab, info) {
         App.select_item("tabs", tab)
       }
 
-      App.do_item_filter("tabs")
+      App.do_item_filter("tabs", false)
       break
     }
   }
@@ -176,7 +176,7 @@ App.prepend_tab = function (info) {
   App.tabs_items.unshift(tab)
   App.create_tab_element(tab)
   App.el("#tabs").prepend(tab.element)
-  App.do_item_filter("tabs")
+  App.do_item_filter("tabs", false)
 }
 
 // Close all tabs except pinned and audible tabs
