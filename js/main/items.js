@@ -361,8 +361,13 @@ App.set_item_text = function (mode, item) {
     purl = item.path
   }
 
-  content += item.title || purl
-  item.footer = decodeURI(purl) || item.title
+  if (App.state.text_mode === "title") {
+    content += item.title || purl
+    item.footer = decodeURI(purl) || item.title
+  } else if (App.state.text_mode === "url") {
+    content += decodeURI(purl) || item.title
+    item.footer = item.title || purl
+  }
 
   content = content.substring(0, 200).trim()
   let text = App.el(".item_text", item.element)

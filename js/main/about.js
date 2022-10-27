@@ -15,4 +15,13 @@ App.setup_about = function () {
   App.ev(App.el("#about_close_all"), "click", function () {
     App.close_all_tabs()
   })
+
+  let text_mode = App.el("#about_text_mode")
+  text_mode.value = App.state.text_mode
+
+  App.ev(text_mode, "change", function () {
+    App.state.text_mode = text_mode.value
+    App.save_state()
+    App.show_tabs()
+  })
 }

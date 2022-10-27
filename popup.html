@@ -5,6 +5,7 @@
     <script src="js/libs/needcontext.js"></script>
     <script src="js/libs/jdenticon.js"></script>
     <script src="js/main/app.js"></script>
+    <script src="js/main/storage.js"></script>
     <script src="js/main/utils.js"></script>
     <script src="js/main/mouse.js"></script>
     <script src="js/main/keyboard.js"></script>
@@ -21,7 +22,7 @@
         <div class="flex_row_center gap_1">
           <input type="text" id="tabs_filter" class="filter" autocomplete="off" placeholder="Filter">
           
-          <select id="tabs_filter_mode" class="top_select" title="Filter Mode">
+          <select id="tabs_filter_mode" class="select" title="Filter Mode">
             <option value="all" selected>All</option>
             <option value="pins">Pins</option>
             <option value="playing">Playing</option>
@@ -54,6 +55,10 @@
         <img id="about_image" src="img/image.png">
         <div id="about_stats" class="bigger"></div>
         <div id="about_close_all" class="underline action bigger">Close All Tabs</div>
+        <select id="about_text_mode" class="select">
+          <option value="title">Show Titles</option>
+          <option value="url">Show URLs</option>
+        </select>
       </div>
     </template>  
 
@@ -71,7 +76,7 @@
         <div class="window_title unselectable">Closed</div>
         <input type="text" id="closed_tabs_filter" class="filter" autocomplete="off" placeholder="Filter">
         
-        <select id="closed_tabs_filter_mode" class="top_select" title="Filter Mode">
+        <select id="closed_tabs_filter_mode" class="select" title="Filter Mode">
           <option value="all" selected>All</option>
           <option value="title">Title</option>
           <option value="url">URL</option>
@@ -91,7 +96,7 @@
         <div class="window_title unselectable">History</div>
         <input type="text" id="history_filter" class="filter" autocomplete="off" placeholder="Filter">
         
-        <select id="history_filter_mode" class="top_select" title="Filter Mode">
+        <select id="history_filter_mode" class="select" title="Filter Mode">
           <option value="all" selected>All</option>
           <option value="title">Title</option>
           <option value="url">URL</option>

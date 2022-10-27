@@ -69,7 +69,7 @@ body, html {
   height: 1.2rem;
 }
 
-.top_select {
+.select {
   font-size: 0.88rem;
 }
 
@@ -185,7 +185,11 @@ body, html {
 #about_image {
   margin-top: 1rem;
   margin-bottom: 1rem;
-  width: 20rem;
+  width: 16rem;
+}
+
+#about_text_mode {
+  margin-top: 0.8rem;
 }
 
 .window_main {

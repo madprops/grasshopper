@@ -5,8 +5,10 @@ App.window_mode = "none"
 App.windows = {}
 App.history_max_months = 12
 App.history_max_items = 1000 * 3
+App.ls_state = "state_v2"
 
 App.init = function () {
+  App.get_state()
   App.setup_tabs()
   App.setup_closed_tabs()
   App.setup_history()
