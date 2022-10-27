@@ -98,9 +98,9 @@ App.item_is_visible = function (item) {
 // Updates a footer
 App.update_footer = function (mode) {
   if (App.selected_valid(mode)) {
-    App.el("#footer").textContent = App.selected_tabs_item.footer
+    App.el(`#${mode}_footer`).textContent = App[`selected_${mode}_item`].footer
   } else {
-    App.el("#footer").textContent = "No Results"
+    App.el(`#${mode}_footer`).textContent = "No Results"
   }
 }
 
