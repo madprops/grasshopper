@@ -59,7 +59,7 @@ App.setup_tabs = function () {
   })
 
   App.ev(App.el("#closed_button"), "click", function () {
-    App.show_closed_tabs()
+    App.show_window("closed_tabs")
   })
 
   App.ev(App.el("#playing_button"), "click", function () {

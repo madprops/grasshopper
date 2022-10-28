@@ -43,11 +43,11 @@ App.create_window = function (id) {
 // Cycle between windows
 App.cycle_windows = function () {
   if (App.window_mode === "closed_tabs") {
-    App.show_history()
+    App.show_window("history")
   } else if (App.window_mode === "history") {
     App.windows["history"].hide()
   } else {
-    App.show_closed_tabs()
+    App.show_window("closed_tabs")
   }
 }
 
@@ -56,4 +56,15 @@ App.hide_all_windows = function () {
   for (let id in App.windows) {
     App.windows[id].hide()
   }
+}
+
+// Show a window by mode
+App.show_window = async function (mode) {
+  App.el(`#${mode}_container`).innerHTML = ""
+  App.windows[mode].show()
+  let items = await App[`get_${mode}`]()
+  App.process_items(mode, items)
+  let v = App.el("#tabs_filter").value.trim()
+  App.el(`#${mode}_filter`).value = v
+  App.do_item_filter(mode)
 }

@@ -29,18 +29,7 @@ App.get_closed_tabs = async function () {
     maxResults: 25
   })
 
-  return items
-}
-
-// Show closed tabs
-App.show_closed_tabs = async function () {
-  let items = await App.get_closed_tabs()
-  let tabs = items.map(x => x.tab)
-  App.process_items("closed_tabs", tabs)
-  let v = App.el("#tabs_filter").value.trim()
-  App.el("#closed_tabs_filter").value = v
-  App.do_item_filter("closed_tabs")
-  App.windows["closed_tabs"].show()
+  return items.map(x => x.tab)
 }
 
 // Selected closed tabs action

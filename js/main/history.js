@@ -3,7 +3,7 @@ App.setup_history = function () {
   App.create_window("history") 
 
   App.ev(App.el("#history_button"), "click", function () {  
-    App.show_history()
+    App.show_window("history")
   })
 
   App.filter_history = App.create_debouncer(function () {
@@ -41,16 +41,6 @@ App.get_history = async function () {
   })
 
   return items
-}
-
-// Show history
-App.show_history = async function () {
-  let items = await App.get_history()
-  App.process_items("history", items)
-  let v = App.el("#tabs_filter").value.trim()
-  App.el("#history_filter").value = v
-  App.do_item_filter("history")
-  App.windows["history"].show()
 }
 
 // Open history item
