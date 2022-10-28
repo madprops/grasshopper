@@ -323,9 +323,15 @@ App.create_item_element = function (mode, item) {
   item.element.append(text)
   App.set_item_text(mode, item)
 
-  let close = App.create("div", "item_button action_button")
-  close.textContent = "Close"
-  item.element.append(close)
+  let action = App.create("div", "item_button action_button")
+
+  if (mode === "tabs") {
+    action.textContent = "Close"
+  } else if (mode === "closed_tabs" || mode === "history") {
+    action.textContent = "Open"
+  }
+  
+  item.element.append(action)
 }
 
 // Set item text content
