@@ -4,7 +4,7 @@ App.filter_delay = 111
 App.window_mode = "tabs"
 App.windows = {}
 App.history_max_months = 12
-App.history_max_items = 1000 * 3
+App.history_max_items = 1000 * 5
 App.ls_state = "state_v2"
 
 App.init = function () {
