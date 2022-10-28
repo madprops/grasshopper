@@ -58,10 +58,6 @@ App.setup_tabs = function () {
     App.clean_tabs()
   })
 
-  App.ev(App.el("#closed_button"), "click", function () {
-    App.show_window("closed_tabs")
-  })
-
   App.ev(App.el("#playing_button"), "click", function () {
     App.go_to_playing_tab()
   })
