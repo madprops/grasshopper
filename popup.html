@@ -55,16 +55,21 @@
         <img id="about_image" src="img/image.png">
         <div id="about_stats" class="bigger"></div>
         <div id="about_close_all" class="underline action bigger">Close All Tabs</div>
-        <select id="about_text_mode" class="select">
+
+        <select id="about_text_mode" class="select about_select">
           <option value="title">Show Title</option>
           <option value="url">Show URL</option>
         </select>
+
+        <select id="about_history_results" class="select about_select" title="Filter Mode">
+          <option value="fast">History: Fast</option>
+          <option value="normal">History: Normal</option>
+          <option value="deep">History: Deep</option>
+        </select>          
       </div>
     </template>  
 
-    <template id="template_about_top">
-
-    </template>
+    <template id="template_about_top"></template>
     
     <template id="template_closed_tabs">
       <div id="closed_tabs_container" class="container unselectable"></div>

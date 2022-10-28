@@ -31,6 +31,11 @@ App.get_state = function () {
     changed = true
   }
 
+  if (!App.state.history_results) {
+    App.state.history_results = "normal"
+    changed = true
+  }
+
   if (changed) {
     App.save_state()
   }

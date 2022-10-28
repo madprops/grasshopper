@@ -24,4 +24,13 @@ App.setup_about = function () {
     App.save_state()
     App.show_tabs()
   })
+
+  let history_results = App.el("#about_history_results")
+  history_results.value = App.state.history_results
+
+  App.ev(history_results, "change", function () {
+    App.state.history_results = history_results.value
+    App.save_state()
+    App.show_tabs()
+  })  
 }

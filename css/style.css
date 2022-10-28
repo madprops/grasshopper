@@ -188,7 +188,7 @@ body, html {
   width: 16rem;
 }
 
-#about_text_mode {
+.about_select {
   margin-top: 0.8rem;
 }
 
