@@ -310,3 +310,9 @@ App.clean_closed_tab = function (id) {
     App.close_tab(tab, false)
   }
 }
+
+// Tabs action
+App.tabs_action = function () {
+  App.open_tab(App.selected_tabs_item)
+  e.preventDefault()
+}

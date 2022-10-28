@@ -63,6 +63,12 @@ App.open_history_item = function (item, close = true) {
 }
 
 // Selected history item action
-App.history_item_action = function () {
+App.history_action = function () {
   App.open_history_item(App.selected_history_item)
+}
+
+// Action alt
+App.history_action_alt = function () {
+  App.open_history_item(App.selected_history_item, false)
+  App.remove_item("history", App.selected_history_item)  
 }

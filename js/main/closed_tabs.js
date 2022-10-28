@@ -43,7 +43,13 @@ App.show_closed_tabs = async function () {
   App.windows["closed_tabs"].show()
 }
 
-// Selected closed tab action
-App.closed_tab_action = function () {
+// Selected closed tabs action
+App.closed_tabs_action = function () {
   App.restore_tab(App.selected_closed_tabs_item)
+}
+
+// Action alt
+App.closed_tabs_action_alt = function () {
+  App.restore_tab(App.selected_closed_tabs_item, false)
+  App.remove_item("closed_tabs", App.selected_closed_tabs_item)   
 }
