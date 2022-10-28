@@ -9,6 +9,10 @@ App.select_item = function (mode, item) {
     return
   }
 
+  if (!item.created) {
+    App.create_item_element(mode, item)
+  }
+
   for (let el of App.els(`.${mode}_item`)) {
     el.classList.remove("selected")
   }

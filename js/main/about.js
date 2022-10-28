@@ -31,6 +31,14 @@ App.setup_about = function () {
   App.ev(history_results, "change", function () {
     App.state.history_results = history_results.value
     App.save_state()
-    App.show_tabs()
   })  
+
+  let theme = App.el("#about_theme")
+  theme.value = App.state.theme
+
+  App.ev(theme, "change", function () {
+    App.state.theme = theme.value
+    App.save_state()
+    App.apply_theme()
+  }) 
 }

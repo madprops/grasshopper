@@ -36,6 +36,11 @@ App.get_state = function () {
     changed = true
   }
 
+  if (!App.state.theme) {
+    App.state.theme = "dark"
+    changed = true
+  }
+
   if (changed) {
     App.save_state()
   }

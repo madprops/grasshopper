@@ -8,6 +8,7 @@ App.ls_state = "state_v2"
 
 App.init = function () {
   App.get_state()
+  App.apply_theme()
   App.setup_tabs()
   App.setup_closed_tabs()
   App.setup_history()

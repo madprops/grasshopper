@@ -1,6 +1,6 @@
 :root {
+  --font_color: white;
 	--background_color: #252933;
-	--alt_background_color: #3a3e50;
   --selected_color: #4c5261;
   --separator_color: #677495;
   --filter_color: #99a7d6;
@@ -14,7 +14,7 @@
 body, html {
   font-family: imported_font, sans-serif;
   font-size: 17px;
-  color: white;
+  color: var(--font_color);
   width: 700px;
   height: 600px;
   margin: 0;
@@ -78,7 +78,7 @@ body, html {
   cursor: pointer;
   flex-shrink: 0;
   background-color: transparent;
-  color: white;
+  color: var(--font_color);
   min-width: 1.5rem;
 }
 
