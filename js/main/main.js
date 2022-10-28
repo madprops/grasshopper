@@ -14,6 +14,7 @@ App.init = function () {
   App.setup_about()
   App.setup_mouse()
   App.setup_keyboard()
+  App.setup_items()
   App.show_tabs()
 }
 

@@ -89,6 +89,10 @@ body, html {
   align-items: center;
 }
 
+.item_empty {
+  min-height: 1.6rem;
+}
+
 .item_icon_container {
   flex-grow: 0;
   flex-shrink: 0;

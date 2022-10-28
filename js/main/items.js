@@ -1,3 +1,8 @@
+// Setup items
+App.setup_items = function () {
+  App.start_item_observers()
+}
+
 // Select an item
 App.select_item = function (mode, item) {
   if (item.closed) {
@@ -293,6 +298,7 @@ App.process_item = function (mode, item) {
     favicon: item.favIconUrl,
     closed: false,
     empty: false,
+    created: false
   }
   
   if (mode === "tabs") {
@@ -306,16 +312,22 @@ App.process_item = function (mode, item) {
     obj.session_id = item.sessionId
   }
 
-  App.create_item_element(mode, obj)
+  App.create_empty_item_element(mode, obj)
   App[`${mode}_idx`] += 1
   return obj
 }
 
+// Create empty item
+App.create_empty_item_element = function (mode, item) {
+  item.element = App.create("div", `item ${mode}_item item_empty`)
+  item.element.dataset.id = item.id
+  App[`${mode}_item_observer`].observe(item.element)
+}
+
 // Create an item element
 App.create_item_element = function (mode, item) {
-  item.element = App.create("div", `item ${mode}_item`)
-  item.element.dataset.id = item.id
-
+  item.element.classList.remove("item_empty")
+  
   let icon = App.get_img_icon(item.favicon, item.url)
   item.element.append(icon)
 
@@ -332,6 +344,8 @@ App.create_item_element = function (mode, item) {
   }
   
   item.element.append(action)
+  item.created = true
+  console.info(`Item created in ${mode}`)
 }
 
 // Set item text content
@@ -389,4 +403,44 @@ App.get_item_by_id = function (mode, id) {
       return item
     }
   }
+}
+
+// Used for lazy-loading components
+App.start_item_observers = function () {
+  let modes = ["tabs", "closed_tabs", "history"]
+
+  for (let mode of modes) {
+    let options = {
+      root: App.el(`#${mode}_container`),
+      rootMargin: "0px",
+      threshold: 0.1,
+    }
+
+    App.intersection_observer(mode, options)
+  }
+}
+
+// Start intersection observer
+App.intersection_observer = function (mode, options) {
+  App[`${mode}_item_observer`] = new IntersectionObserver(function (entries) {
+    for (let entry of entries) {
+      if (!entry.isIntersecting) {
+        continue
+      }
+      
+      if (!entry.target.classList.contains("item")) {
+        return
+      }
+
+      let item = App.get_item_by_id(mode, entry.target.dataset.id)
+
+      if (!item) {
+        continue
+      }
+
+      if (!item.created && App.item_is_visible(item)) {
+        App.create_item_element(mode, item)
+      }
+    }
+  }, options)
 }
