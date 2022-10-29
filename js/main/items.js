@@ -5,10 +5,6 @@ App.setup_items = function () {
 
 // Select an item
 App.select_item = function (mode, item) {
-  if (item.closed) {
-    return
-  }
-
   if (!item.created) {
     App.create_item_element(mode, item)
   }
@@ -116,7 +112,6 @@ App.update_footer = function (mode) {
 // Check if selected is valid
 App.selected_valid = function (mode) {
   return App[`selected_${mode}_item`] && 
-  !App[`selected_${mode}_item`].closed && 
   App.item_is_visible(App[`selected_${mode}_item`])
 }
 
@@ -133,13 +128,19 @@ App.select_first_item = function (mode) {
 // Remove an item from the list
 App.remove_item = function (mode, item) {
   let next_item = App.get_next_visible_item(mode, item) || App.get_prev_visible_item(mode, item)
+  let items = App[`${mode}_items`]
   item.element.remove()
+  
+  for (let [i, it] of items.entries()) {
+    if (it.id === item.id) {
+      items.splice(i, 1)
+      break
+    }
+  }
   
   if (next_item) {
     App.select_item(mode, next_item)
   }
-
-  item.closed = true
 }
 
 App.focus_filter = function (mode) {
@@ -300,7 +301,6 @@ App.process_item = function (mode, item) {
     path: path,
     path_lower: path.toLowerCase(),
     favicon: item.favIconUrl,
-    closed: false,
     empty: false,
     created: false
   }
