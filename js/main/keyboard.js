@@ -16,7 +16,12 @@ App.setup_keyboard = function () {
       App.focus_filter("tabs")
   
       if (e.key === "Enter") {
-        App.tabs_action()
+        if (e.ctrlKey) {
+          App.confirm_close_tab(App.selected_tabs_item)
+        } else {
+          App.tabs_action()
+        }
+        
         e.preventDefault()
       } else if (e.key === "ArrowUp") {
         App.select_item_above("tabs")
@@ -24,18 +29,13 @@ App.setup_keyboard = function () {
       } else if (e.key === "ArrowDown") {
         App.select_item_below("tabs")
         e.preventDefault()
-      } else if (e.key === "Delete") {
-        if (e.ctrlKey) {
-          App.confirm_close_tab(App.selected_tabs_item)
-          e.preventDefault()
-        }
       }
     } else if (App.window_mode === "closed_tabs") {
       App.focus_filter("closed_tabs")
 
       if (e.key === "Enter") {
         if (e.ctrlKey) {
-          App.closes_tabs_action_alt()       
+          App.closed_tabs_action_alt()       
           e.preventDefault()
         } else {
           App.closed_tabs_action()

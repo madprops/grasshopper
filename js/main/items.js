@@ -130,9 +130,10 @@ App.remove_item = function (mode, item) {
   let next_item = App.get_next_visible_item(mode, item) || App.get_prev_visible_item(mode, item)
   let items = App[`${mode}_items`]
   item.element.remove()
+  let id = item.id.toString()
   
   for (let [i, it] of items.entries()) {
-    if (it.id === item.id) {
+    if (it.id.toString() === id) {
       items.splice(i, 1)
       break
     }
@@ -140,6 +141,8 @@ App.remove_item = function (mode, item) {
   
   if (next_item) {
     App.select_item(mode, next_item)
+  } else {
+    App.select_first_item(mode)
   }
 }
 
@@ -188,6 +191,10 @@ App.do_item_filter = function (mode, select = true) {
   }
 
   for (let it of App[`${mode}_items`]) {
+    if (!it.element) {
+      continue
+    }
+
     if (matched(it)) {
       it.element.classList.remove("hidden")
     } else {
