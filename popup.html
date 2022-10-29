@@ -51,27 +51,32 @@
     </div>
 
     <template id="template_about">
-      <div class="flex_column_center gap_1">
+      <div id="about_container" class="flex_column_center">
         <div id="about_name"></div>
         <img id="about_image" src="img/image.png">
         <div id="about_stats" class="bigger"></div>
-        <div id="about_close_all" class="underline action bigger unselectable">Close All Tabs</div>
 
-        <select id="about_text_mode" class="select about_select">
+        <select id="about_text_mode" class="select">
           <option value="title">Text: Title</option>
           <option value="url">Text: URL</option>
         </select>
 
-        <select id="about_history_results" class="select about_select" title="Filter Mode">
-          <option value="fast">History: Fast</option>
-          <option value="normal">History: Normal</option>
-          <option value="deep">History: Deep</option>
-        </select>   
+        <div class="flex_row_center gap_1">
+          <select id="about_history_results" class="select" title="Filter Mode">
+            <option value="fast">History: Fast</option>
+            <option value="normal">History: Normal</option>
+            <option value="deep">History: Deep</option>
+          </select>
+
+          <button id="about_history_results_info">?</button>
+        </div>
         
-        <select id="about_theme" class="select about_select" title="Filter Mode">
+        <select id="about_theme" class="select" title="Filter Mode">
           <option value="dark">Theme: Dark</option>
           <option value="light">Theme: Light</option>
-        </select>         
+        </select>   
+        
+        <button id="about_close_all" class="button_2">Close All Tabs</button>
       </div>
     </template>  
 

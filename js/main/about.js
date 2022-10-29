@@ -41,4 +41,8 @@ App.setup_about = function () {
     App.save_state()
     App.apply_theme()
   }) 
+
+  App.ev(App.el("#about_history_results_info"), "click", function () {
+    App.show_history_results_info()
+  })  
 }
