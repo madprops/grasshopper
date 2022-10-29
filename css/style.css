@@ -74,6 +74,10 @@ body, html {
   font-size: 0.88rem;
 }
 
+.select_2 {
+  font-size: 0.95rem;
+}
+
 .button {
   font-size: 0.95rem;
   cursor: pointer;
