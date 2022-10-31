@@ -4,7 +4,7 @@ App.apply_theme = function () {
     App.set_css_var("font_color", "white")
     App.set_css_var("background_color", "#252933")
     App.set_css_var("selected_color", "#4c5261")
-    App.set_css_var("separator_color", "#677495")
+    App.set_css_var("separator_color", "#58678c")
     App.set_css_var("filter_background_color", "#99a7d6")
     App.set_css_var("filter_font_color", "black")
   } else if (App.state.theme === "light") {

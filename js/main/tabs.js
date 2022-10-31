@@ -162,11 +162,18 @@ App.prepend_tab = function (info) {
       }
     }
   }
-
+  
   let tab = App.process_item("tabs", info)
-
+  
   if (!tab) {
     return
+  }
+  
+  for (let [i, it] of App.tabs_items.entries()) {
+    if (it.url === tab.url) {
+      App.tabs_items.splice(i, 1)
+      break
+    }
   }
 
   App.tabs_items.unshift(tab)

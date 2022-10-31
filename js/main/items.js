@@ -270,13 +270,16 @@ App.process_items = function (mode, items) {
   container.innerHTML = ""
   App[`${mode}_items`] = []
   App[`${mode}_idx`] = 0
+  let exclude = []
 
   for (let item of items) {
-    let obj = App.process_item(mode, item)
+    let obj = App.process_item(mode, item, exclude)
 
     if (!obj) {
       continue
     }
+
+    exclude.push(obj.url)
 
     App[`${mode}_items`].push(obj)
     container.append(obj.element)
@@ -284,12 +287,16 @@ App.process_items = function (mode, items) {
 }
 
 // Process an item
-App.process_item = function (mode, item) {
+App.process_item = function (mode, item, exclude = []) {
   if (!item || !item.url) {
     return false
   }
 
   item.url = App.format_url(item.url)
+
+  if (exclude.includes(item.url)) {
+    return false
+  }
 
   try {
     url_obj = new URL(item.url)
