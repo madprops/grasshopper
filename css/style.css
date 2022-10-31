@@ -48,7 +48,7 @@ body, html {
 .filter {
   background-color: var(--filter_background_color);
   color: var(--filter_font_color);
-  outline: 1px solid var(--filter_outline_color);
+  outline: 1px solid var(--separator_color);
   border-width: 0;
   font-size: 1rem;
   padding: 0.12rem;
@@ -76,6 +76,8 @@ body, html {
   background-color: transparent;
   color: var(--font_color);
   min-width: 1.5rem;
+  border: none;
+  border: 2px solid var(--separator_color);
 }
 
 .button_2 {

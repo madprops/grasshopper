@@ -7,7 +7,6 @@ App.apply_theme = function () {
     App.set_css_var("separator_color", "rgb(200, 200, 200)")
     App.set_css_var("filter_background_color", "rgb(200, 200, 200)")
     App.set_css_var("filter_font_color", "black")
-    App.set_css_var("filter_outline_color", "rgba(0, 0, 0, 0.4)")
   } 
   
   else if (App.state.theme === "hacker") {
@@ -17,7 +16,6 @@ App.apply_theme = function () {
     App.set_css_var("separator_color", "rgba(0, 255, 0, 0.4)")
     App.set_css_var("filter_background_color", "black")
     App.set_css_var("filter_font_color", "rgb(0, 255, 0)")
-    App.set_css_var("filter_outline_color", "green")
   } 
   
   else if (App.state.theme === "freezer") {
@@ -27,7 +25,6 @@ App.apply_theme = function () {
     App.set_css_var("separator_color", "rgba(255, 255, 255, 0.4)")
     App.set_css_var("filter_background_color", "white")
     App.set_css_var("filter_font_color", "black")
-    App.set_css_var("filter_outline_color", "black")
   } 
 
   else {
@@ -37,7 +34,6 @@ App.apply_theme = function () {
     App.set_css_var("separator_color", "#58678c")
     App.set_css_var("filter_background_color", "#99a7d6")
     App.set_css_var("filter_font_color", "black")
-    App.set_css_var("filter_outline_color", "rgba(255, 255, 255, 0.4)")
   }
 }
 
