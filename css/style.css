@@ -63,6 +63,10 @@ body, html {
 
 .select {
   font-size: 0.88rem;
+  background-color: transparent;
+  color: var(--font_color);
+  border: none;
+  border: 2px solid var(--separator_color);
 }
 
 .select_2 {
