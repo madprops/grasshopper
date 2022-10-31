@@ -1,3 +1,8 @@
+:root {
+  --alt_color_1: rgba(255, 255, 255, 0.25);
+  --alt_color_2: rgba(255, 255, 255, 0.4);
+}
+
 @font-face {
 	font-family: imported_font;
 	src: url(Roboto-Regular.ttf);
@@ -192,6 +197,10 @@ body, html {
   width: 10rem;
 }
 
+#about_close_all {
+  margin-bottom: 5rem;
+}
+
 .window_main {
   position: fixed;
   display: none;
@@ -247,6 +256,18 @@ body, html {
 
 .gap_1 {
   gap: 0.5rem;
+}
+
+.gap_2 {
+  gap: 1rem;
+}
+
+.gap_3 {
+  gap: 1.5rem;
+}
+
+.gap_4 {
+  gap: 2rem;
 }
 
 .underline {

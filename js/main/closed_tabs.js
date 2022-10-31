@@ -1,34 +1,34 @@
 // Setup closed tabs
 App.setup_closed_tabs = function () {
-  App.create_window("closed_tabs")
+  App.create_window("closed_tabs", function () {  
+    App.filter_closed_tabs = App.create_debouncer(function () {
+      App.do_item_filter("closed_tabs")
+    }, App.filter_delay)
+    
+    App.ev(App.el("#closed_tabs_filter"), "input", function () {
+      App.filter_closed_tabs()
+    })
+  
+    App.ev(App.el("#closed_tabs_filter_mode"), "change", function () {
+      App.do_item_filter("closed_tabs")
+    })
+  
+    App.ev(App.el("#closed_tabs_case_sensitive"), "change", function () {
+      App.do_item_filter("closed_tabs")
+    })    
+  
+    App.ev(App.el("#closed_tabs_next"), "click", function () {
+      App.cycle_windows()
+    })   
+    
+    App.ev(App.el("#closed_tabs_prev"), "click", function () {
+      App.cycle_windows(true)
+    })
+  })
 
   App.ev(App.el("#closed_button"), "click", function () {
     App.show_window("closed_tabs")
-  })  
-
-  App.filter_closed_tabs = App.create_debouncer(function () {
-    App.do_item_filter("closed_tabs")
-  }, App.filter_delay)
-  
-  App.ev(App.el("#closed_tabs_filter"), "input", function () {
-    App.filter_closed_tabs()
   })
-
-  App.ev(App.el("#closed_tabs_filter_mode"), "change", function () {
-    App.do_item_filter("closed_tabs")
-  })
-
-  App.ev(App.el("#closed_tabs_case_sensitive"), "change", function () {
-    App.do_item_filter("closed_tabs")
-  })    
-
-  App.ev(App.el("#closed_tabs_next"), "click", function () {
-    App.cycle_windows()
-  })   
-  
-  App.ev(App.el("#closed_tabs_prev"), "click", function () {
-    App.cycle_windows(true)
-  })   
 }
 
 // Get closed tabs

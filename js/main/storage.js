@@ -41,6 +41,16 @@ App.get_state = function () {
     changed = true
   }
 
+  if (!App.state.font_color) {
+    App.state.font_color = "#ffffff"
+    changed = true
+  }
+
+  if (!App.state.background_color) {
+    App.state.background_color = "#252933"
+    changed = true
+  }  
+
   if (changed) {
     App.save_state()
   }

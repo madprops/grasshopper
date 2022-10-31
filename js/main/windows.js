@@ -4,7 +4,7 @@ App.get_template = function (id) {
 }
 
 // Create a window
-App.create_window = function (id) {
+App.create_window = function (id, setup = function() {}) {
   let w = {}
   let el = App.create("div", "window_main", `window_${id}`)
   let top = App.create("div", "window_top")
@@ -25,8 +25,15 @@ App.create_window = function (id) {
 
   w.element = el
   document.body.append(el)
+  w.setup = false
 
   w.show = function () {
+    if (!w.setup) {
+      setup()
+      w.setup = true
+      console.info(`${id} window setup`)
+    }
+
     App.hide_all_windows()
     w.element.style.display = "flex"
     App.window_mode = id
