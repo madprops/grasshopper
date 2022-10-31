@@ -41,13 +41,23 @@ App.create_window = function (id) {
 }
 
 // Cycle between windows
-App.cycle_windows = function () {
-  if (App.window_mode === "closed_tabs") {
-    App.show_window("history")
-  } else if (App.window_mode === "history") {
-    App.windows["history"].hide()
+App.cycle_windows = function (reverse = false) {
+  if (reverse) {
+    if (App.window_mode === "closed_tabs") {
+      App.windows["closed_tabs"].hide()
+    } else if (App.window_mode === "history") {
+      App.show_window("closed_tabs")
+    } else {
+      App.show_window("history")
+    }
   } else {
-    App.show_window("closed_tabs")
+    if (App.window_mode === "closed_tabs") {
+      App.show_window("history")
+    } else if (App.window_mode === "history") {
+      App.windows["history"].hide()
+    } else {
+      App.show_window("closed_tabs")
+    }
   }
 }
 

@@ -3,10 +3,10 @@ App.setup_keyboard = function () {
     if (NeedContext.open) {
       return
     }
-    
+
     if (e.key === "Tab") {
-      if (!e.ctrlKey && !e.shiftKey) {
-        App.cycle_windows()
+      if (!e.ctrlKey) {
+        App.cycle_windows(e.shiftKey)
         e.preventDefault()
         return
       }
