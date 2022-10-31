@@ -241,6 +241,10 @@ body, html {
   margin-left: 0.8rem;
 }
 
+.window_prev {
+  margin-right: 0.8rem;
+}
+
 .invisible {
   visibility: hidden;
 }

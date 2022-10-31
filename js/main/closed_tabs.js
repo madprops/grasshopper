@@ -24,7 +24,11 @@ App.setup_closed_tabs = function () {
 
   App.ev(App.el("#closed_tabs_next"), "click", function () {
     App.cycle_windows()
-  })    
+  })   
+  
+  App.ev(App.el("#closed_tabs_prev"), "click", function () {
+    App.cycle_windows(true)
+  })   
 }
 
 // Get closed tabs

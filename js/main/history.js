@@ -24,7 +24,11 @@ App.setup_history = function () {
   
   App.ev(App.el("#history_next"), "click", function () {
     App.cycle_windows()
-  })    
+  }) 
+  
+  App.ev(App.el("#history_prev"), "click", function () {
+    App.cycle_windows(true)
+  })  
 }
 
 // Get history months date
