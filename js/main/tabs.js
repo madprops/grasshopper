@@ -40,16 +40,12 @@ App.confirm_close_tab = function (tab) {
 }
 
 // Close a tab
-App.close_tab = function (tab, close_tab = true) {
+App.close_tab = function (tab) {
   if (!tab) {
     return
   }
 
-  if (close_tab) {
-    browser.tabs.remove(tab.id)
-  }
-
-  App.remove_item("tabs", tab)
+  browser.tabs.remove(tab.id)
 }
 
 // Setup tabs
@@ -286,8 +282,8 @@ App.go_to_playing_tab = function () {
 }
 
 // Close all tabs
-App.close_all_tabs = async function () {
-  if (confirm("Close all tabs?")) {
+App.close_all_tabs = function () {
+  if (confirm("Close all tabs except the current one?")) {
     for (let tab of App.tabs_items) {
       if (tab.active) {
         continue
@@ -310,7 +306,7 @@ App.clean_closed_tab = function (id) {
   let tab = App.get_item_by_id("tabs", id)
 
   if (tab) {
-    App.close_tab(tab, false)
+    App.remove_item("tabs", tab)
   }
 }
 

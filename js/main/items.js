@@ -280,7 +280,6 @@ App.process_items = function (mode, items) {
     }
 
     exclude.push(obj.url)
-
     App[`${mode}_items`].push(obj)
     container.append(obj.element)
   }
