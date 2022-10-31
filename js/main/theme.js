@@ -10,7 +10,7 @@ App.apply_theme = function () {
     App.set_css_var("filter_outline_color", "rgba(0, 0, 0, 0.4)")
   } 
   
-  else if (App.state.theme === "hackerman") {
+  else if (App.state.theme === "hacker") {
     App.set_css_var("font_color", "rgb(0, 255, 0)")
     App.set_css_var("background_color", "black")
     App.set_css_var("selected_color", "rgba(0, 255, 0, 0.2)")
