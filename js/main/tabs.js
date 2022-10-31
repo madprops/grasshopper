@@ -289,7 +289,7 @@ App.close_all_tabs = function () {
         continue
       }
       
-      browser.tabs.remove(tab.id)
+      App.close_tab(tab)
     }
 
     window.close()
