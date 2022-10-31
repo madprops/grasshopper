@@ -253,10 +253,6 @@ body, html {
   text-decoration: underline;
 }
 
-.bigger {
-  font-size: 1.1rem;
-}
-
 .separator {
   border-top: 1px solid var(--alt_color_2);
   width: 12rem;
