@@ -1,7 +1,17 @@
+// Setup theme
+App.setup_theme = function () {
+  App.colorlib = ColorLib()
+  App.apply_theme()
+}
+
 // Apply theme
 App.apply_theme = function () {
-  App.set_css_var("font_color", App.state.font_color)
-  App.set_css_var("background_color", App.state.background_color)
+  let background_color = App.state.color
+  let font_color = App.colorlib.get_lighter_or_darker(background_color, 0.66)
+  let alt_color = App.colorlib.get_lighter_or_darker(background_color, 0.11)
+  App.set_css_var("background_color", background_color)
+  App.set_css_var("font_color", font_color)
+  App.set_css_var("alt_color", alt_color)
 }
 
 // Set css variable

@@ -30,31 +30,18 @@ App.setup_about = function () {
       App.show_history_results_info()
     })  
   
-    let font_color = AColorPicker.createPicker(App.el("#font_color_picker"), {
+    let color = AColorPicker.createPicker(App.el("#color_picker"), {
       showAlpha: false,
       showHSL: false,
       showRGB: false,
-      color: App.state.font_color
+      color: App.state.color
     })
 
-    font_color.on("change", function (picker, color) {
-      App.state.font_color = color
+    color.on("change", function (picker, color) {
+      App.state.color = color
       App.save_state()
       App.apply_theme()
-    })
-
-    let background_color = AColorPicker.createPicker(App.el("#background_color_picker"), {
-      showAlpha: false,
-      showHSL: false,
-      showRGB: false,
-      color: App.state.background_color
-    })
-
-    background_color.on("change", function (picker, color) {
-      App.state.background_color = color
-      App.save_state()
-      App.apply_theme()
-    })
+    })  
   })
 
   App.ev(App.el("#about_button"), "click", function () {
