@@ -42,11 +42,11 @@ App.get_history = async function () {
   let r = App.state.history_results
 
   if (r === "fast") {
-    results = 1000 * 1
+    results = 1000 * 2
   } else if (r === "normal") {
-    results = 1000 * 5
-  } else if (r === "deep") {
     results = 1000 * 10
+  } else if (r === "deep") {
+    results = 1000 * 20
   }
 
   let items = await browser.history.search({
@@ -81,8 +81,8 @@ App.history_action_alt = function () {
 // Show history results info
 App.show_history_results_info = function () {
   let s = ""
-  s += "Fast = 1k results\n"
-  s += "Normal = 5k results\n"
-  s += "Deep = 10k results"
+  s += "Fast = 2k results\n"
+  s += "Normal = 10k results\n"
+  s += "Deep = 20k results"
   alert(s)
 }
