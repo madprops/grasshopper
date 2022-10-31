@@ -46,9 +46,9 @@ body, html {
 }
 
 .filter {
-  background-color: var(--filter_background_color);
-  color: var(--filter_font_color);
-  outline: 1px solid var(--separator_color);
+  background-color: var(--alt_color_1);
+  color: var(--font_color);
+  outline: 1px solid var(--alt_color_2);
   border-width: 0;
   font-size: 1rem;
   padding: 0.1rem;
@@ -66,7 +66,7 @@ body, html {
   background-color: transparent;
   color: var(--font_color);
   border: none;
-  border: 2px solid var(--separator_color);
+  border: 2px solid var(--alt_color_2);
 }
 
 .select_2 {
@@ -81,7 +81,7 @@ body, html {
   color: var(--font_color);
   min-width: 1.5rem;
   border: none;
-  border: 2px solid var(--separator_color);
+  border: 2px solid var(--alt_color_2);
 }
 
 .button_2 {
@@ -134,7 +134,7 @@ body, html {
 }
 
 .selected {
-  background-color: var(--selected_color);
+  background-color: var(--alt_color_1);
 }
 
 .hidden {
@@ -167,7 +167,7 @@ body, html {
   padding: 0.5rem;
   height: 1.5rem;
   overflow: hidden;
-  border-top: 1px solid var(--separator_color);
+  border-top: 1px solid var(--alt_color_2);
   white-space: nowrap;
 }
 
@@ -269,6 +269,6 @@ body, html {
 }
 
 .separator {
-  border-top: 1px solid var(--separator_color);
+  border-top: 1px solid var(--alt_color_2);
   width: 12rem;
 }
