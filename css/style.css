@@ -48,11 +48,11 @@ body, html {
 .filter {
   background-color: var(--filter_background_color);
   color: var(--filter_font_color);
+  outline: 1px solid var(--filter_outline_color);
   border-width: 0;
   font-size: 1rem;
   padding: 0.12rem;
   flex-grow: 0;
-  outline: none;
   width: 9rem;
 }
 
@@ -223,6 +223,7 @@ body, html {
   margin-top: 0.8rem;
   padding-right: 1rem;
   min-height: 1rem;
+  flex-shrink: 0;
 }
 
 .window_x {
