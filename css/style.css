@@ -84,13 +84,6 @@ body, html {
   border: 2px solid var(--alt_color_2);
 }
 
-.button_2 {
-  font-size: 0.95rem;
-  cursor: pointer;
-  flex-shrink: 0;
-  min-width: 1.5rem;
-}
-
 .item {
   display: flex;
   flex-direction: row;
