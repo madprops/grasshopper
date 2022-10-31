@@ -69,10 +69,6 @@ body, html {
   border: 2px solid var(--alt_color_2);
 }
 
-.select_2 {
-  font-size: 0.95rem;
-}
-
 .button {
   font-size: 0.95rem;
   cursor: pointer;
