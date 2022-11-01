@@ -528,8 +528,14 @@ App.setup_item_window = function (mode) {
     App.ev(App.el(`#${mode}_filter`), "input", function () {
       item_filter()
     })  
+
+    let filter_mode = App.el(`#${mode}_filter_mode`)
   
-    App.ev(App.el(`#${mode}_filter_mode`), "change", function () {
+    App.ev(filter_mode, "change", function () {
+      App.do_item_filter(mode)
+    })
+    
+    App.wrap_select(filter_mode, function () {
       App.do_item_filter(mode)
     })
 
