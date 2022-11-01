@@ -4,11 +4,11 @@ App.filter_delay = 111
 App.window_mode = "tabs"
 App.windows = {}
 App.history_max_months = 12
-App.ls_state = "state_v2"
+App.ls_state = "state_v5"
 App.max_stars = 1000 * 5
 
-App.init = function () {
-  App.get_state()
+App.init = async function () {
+  await App.get_state()
   App.setup_theme()
   App.setup_tabs()
   App.setup_stars()
