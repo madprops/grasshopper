@@ -5,21 +5,28 @@ App.get_template = function (id) {
 
 // Create a window
 App.create_window = function (args) {
+  if (args.close_button === undefined) {
+    args.close_button = true
+  }
+
   let w = {}
   let el = App.create("div", "window_main", `window_${args.id}`)
   let top = App.create("div", "window_top")
   top.innerHTML = App.get_template(`${args.id}_top`)
-  let x = App.create("div", "window_x action unselectable")
-  x.textContent = "x"
-  top.append(x)
 
-  App.ev(x, "click", function () {
-    w.hide()
-  })
+  if (args.close_button) {
+    let x = App.create("div", "window_x action unselectable")
+    x.textContent = "x"
+    top.append(x)
+  
+    App.ev(x, "click", function () {
+      w.hide()
+    })
+  }
 
   el.append(top)
 
-  let content = App.create("div", "window_content main")
+  let content = App.create("div", "window_content")
   content.innerHTML = App.get_template(args.id)
   el.append(content)
 
@@ -43,8 +50,7 @@ App.create_window = function (args) {
     if (args.on_hide) {
       args.on_hide()
     } else {
-      App.hide_window(w)
-      App.window_mode = "tabs"
+      App.show_item_window("tabs")
     }
   }
 

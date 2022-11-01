@@ -50,6 +50,8 @@ App.close_tab = function (tab) {
 
 // Setup tabs
 App.setup_tabs = function () {
+  App.create_window({id:"tabs", close_button: false})
+
   App.ev(App.el("#clean_button"), "click", function () {
     App.clean_tabs()
   })
@@ -80,7 +82,7 @@ App.setup_tabs = function () {
 
   App.ev(App.el("#tabs_filter_mode"), "change", function () {
     App.do_item_filter("tabs")
-  })
+  })  
 }
 
 // Restore a closed tab
@@ -236,13 +238,6 @@ App.mute_tab = function (tab) {
 // Unmute a tab
 App.unmute_tab = function (tab) {
   browser.tabs.update(tab.id, {muted: false})
-}
-
-// Show tabs
-App.show_tabs = async function (filter_args = {}) {
-  let tabs = await App.get_tabs()
-  App.process_items("tabs", tabs)
-  App.do_item_filter("tabs")
 }
 
 // Go the a tab emitting sound

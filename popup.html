@@ -21,72 +21,35 @@
     <script src="js/main/about.js"></script>
   </head>
   <body>
-    <div id="main" class="main unselectable">
-      <div id="top" class="flex_row_center">
-        <div class="flex_row_center gap_1">
-          <input type="text" id="tabs_filter" class="filter" autocomplete="off" placeholder="Filter">
-          
-          <select id="tabs_filter_mode" class="select" title="Filter Mode">
-            <option value="all" selected>All</option>
-            <option value="pins">Pins</option>
-            <option value="playing">Playing</option>
-            <option value="muted">Muted</option>
-            <option value="normal">Normal</option>
-            <option value="title">Title</option>
-            <option value="url">URL</option>
-          </select>
-        </div>
+    <template id="template_tabs">
+      <div id="tabs_container" class="container unselectable"></div>
+      <div id="tabs_footer" class="footer unselectable"></div>
+    </template>
 
-        <div class="flex_row_center gap_1">
-          <button id="stars_button" class="button actionbox" title="Show favorite locations">Stars</button>
-          <button id="closed_tabs_button" class="button actionbox" title="Open recently closed tabs">Closed</button>
-          <button id="history_button" class="button actionbox" title="Show recent history">History</button>
-          <button id="playing_button" class="button actionbox" title="Go to a tab emitting sound">Playing</button>
-          <button id="clean_button" class="button actionbox" title="Close all normal tabs">Clean</button>
-          <button id="about_button" class="button actionbox" title="About & Settings">?</button>
-          <button id="new_button" class="button actionbox" title="New Tab">+</button>
-        </div>
-      </div>
-
-      <div id="tabs_container" class="container"></div>
-      <div id="tabs_footer" class="footer"></div>
-    </div>
-
-    <template id="template_about">
-      <div id="about_container" class="flex_column_center">
-        <div id="about_name" class="bigger" title="Made by madprops in 2022"></div>
-        <div class="separator"></div>
-        <div id="about_stats"></div>
-        <div class="separator"></div>
-
-        <select id="about_text_mode" class="select">
-          <option value="title">Text Mode: Title</option>
-          <option value="url">Text Mode: URL</option>
-        </select>
-
-        <div class="flex_row_center gap_1">
-          <select id="about_history_results" class="select" title="Filter Mode">
-            <option value="fast">History: Fast</option>
-            <option value="normal">History: Normal</option>
-            <option value="deep">History: Deep</option>
-          </select>
-
-          <button id="about_history_results_info" class="button actionbox">?</button>
-        </div>
-
-        <div id="color_picker"></div>
-
-        <div class="separator"></div>
+    <template id="template_tabs_top">
+      <div class="flex_row_center gap_1">
+        <input type="text" id="tabs_filter" class="filter" autocomplete="off" placeholder="Filter">
         
-        <button id="about_close_all" class="button">Close All Tabs</button>
+        <select id="tabs_filter_mode" class="select" title="Filter Mode">
+          <option value="all" selected>All</option>
+          <option value="pins">Pins</option>
+          <option value="playing">Playing</option>
+          <option value="muted">Muted</option>
+          <option value="normal">Normal</option>
+          <option value="title">Title</option>
+          <option value="url">URL</option>
+        </select>
       </div>
-    </template>  
 
-    <template id="template_about_top"></template>
-    
-    <template id="template_closed_tabs">
-      <div id="closed_tabs_container" class="container unselectable"></div>
-      <div id="closed_tabs_footer" class="footer unselectable"></div>
+      <div class="flex_row_center gap_1">
+        <button id="stars_button" class="button actionbox" title="Show favorite locations">Stars</button>
+        <button id="closed_tabs_button" class="button actionbox" title="Open recently closed tabs">Closed</button>
+        <button id="history_button" class="button actionbox" title="Show recent history">History</button>
+        <button id="playing_button" class="button actionbox" title="Go to a tab emitting sound">Playing</button>
+        <button id="clean_button" class="button actionbox" title="Close all normal tabs">Clean</button>
+        <button id="about_button" class="button actionbox" title="About & Settings">?</button>
+        <button id="new_button" class="button actionbox" title="New Tab">+</button>
+      </div>
     </template>
 
     <template id="template_stars">
@@ -109,6 +72,31 @@
         <button id="stars_new_button" class="button actionbox" title="New Star">+</button>
         <div id="stars_next" class="action unselectable window_next" title="Next (Tab)"> --&gt;</div>
       </div>
+    </template>  
+    
+    <template id="template_star_editor">
+      <div class="flex_column_center gap_2" id="star_editor_container">
+        <div class="flex_column_center gap_1">
+          <div>Title</div>
+          <input type="text" id="star_editor_title" class="input_text">
+        </div>
+        
+        <div class="flex_column_center gap_1">
+          <div>URL</div>
+          <input type="text" id="star_editor_url" class="input_text">
+        </div>
+
+        <button id="star_editor_save" class="button actionbox">Save</button>
+      </div>
+    </template>
+
+    <template id="template_star_editor_top">
+      <div id="star_editor_info" class="bigger"></div>
+    </template>    
+    
+    <template id="template_closed_tabs">
+      <div id="closed_tabs_container" class="container unselectable"></div>
+      <div id="closed_tabs_footer" class="footer unselectable"></div>
     </template>    
 
     <template id="template_closed_tabs_top">
@@ -148,25 +136,37 @@
       </div>
     </template>
 
-    <template id="template_star_editor">
-      <div class="flex_column_center gap_2" id="star_editor_container">
-        <div class="flex_column_center gap_1">
-          <div>Title</div>
-          <input type="text" id="star_editor_title" class="input_text">
+    <template id="template_about">
+      <div id="about_container" class="flex_column_center">
+        <div id="about_name" class="bigger" title="Made by madprops in 2022"></div>
+        <div class="separator"></div>
+        <div id="about_stats"></div>
+        <div class="separator"></div>
+
+        <select id="about_text_mode" class="select">
+          <option value="title">Text Mode: Title</option>
+          <option value="url">Text Mode: URL</option>
+        </select>
+
+        <div class="flex_row_center gap_1">
+          <select id="about_history_results" class="select" title="Filter Mode">
+            <option value="fast">History: Fast</option>
+            <option value="normal">History: Normal</option>
+            <option value="deep">History: Deep</option>
+          </select>
+
+          <button id="about_history_results_info" class="button actionbox">?</button>
         </div>
+
+        <div id="color_picker"></div>
+
+        <div class="separator"></div>
         
-        <div class="flex_column_center gap_1">
-          <div>URL</div>
-          <input type="text" id="star_editor_url" class="input_text">
-        </div>
-
-        <button id="star_editor_save" class="button actionbox">Save</button>
+        <button id="about_close_all" class="button">Close All Tabs</button>
       </div>
-    </template>
+    </template>  
 
-    <template id="template_star_editor_top">
-      <div id="star_editor_info" class="bigger"></div>
-    </template>
+    <template id="template_about_top"></template>    
 
     <script src="js/main/main.js"></script>
   </body>

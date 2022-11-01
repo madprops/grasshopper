@@ -15,13 +15,59 @@ body, html {
   background-color: var(--background_color);
 }
 
-.main {
+.window_main {
+  position: fixed;
+  display: none;
+  flex-direction: column;
+  top: 0;
+  left: 0;
+  background-color: var(--background_color);
+  z-index: 9999999;
+  width: 100vw;
+  height: 100vh;
+}
+
+.window_content {
   display: flex;
   flex-direction: column;
   height: 100%;
   width: 100%;
   box-sizing: border-box;
-  background-color: var(--background_color);
+  background-color: var(--background_color);  
+  overflow-y: auto;
+  overflow-x: hidden;
+}
+
+.window_top {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  margin-top: 0.8rem;
+  padding-right: 1rem;
+  min-height: 1rem;
+  flex-shrink: 0;
+}
+
+.window_x {
+  right: 0rem;
+  padding: 0.8rem;
+  padding-right: 1rem;
+  position: absolute;
+  font-size: 1.2rem;
+}
+
+.window_title {
+  margin-right: 0.8rem;
+}
+
+.window_next {
+  margin-left: 0.8rem;
+}
+
+.window_prev {
+  margin-right: 0.8rem;
 }
 
 .container {
@@ -35,14 +81,6 @@ body, html {
   height: 100%;
   overflow-x: hidden;
   overflow-y: auto;
-}
-
-#top {
-  flex-grow: 0;
-  gap: 0.65rem;
-  justify-content: flex-start;
-  padding-left: 0.8rem;
-  padding-top: 0.8rem;
 }
 
 .filter {
@@ -172,55 +210,6 @@ body, html {
 
 #about_close_all {
   margin-bottom: 5rem;
-}
-
-.window_main {
-  position: fixed;
-  display: none;
-  flex-direction: column;
-  top: 0;
-  left: 0;
-  background-color: var(--background_color);
-  z-index: 9999999;
-  width: 100vw;
-  height: 100vh;
-}
-
-.window_content {
-  overflow-y: auto;
-  overflow-x: hidden;
-}
-
-.window_top {
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  justify-content: center;
-  width: 100%;
-  margin-top: 0.8rem;
-  padding-right: 1rem;
-  min-height: 1rem;
-  flex-shrink: 0;
-}
-
-.window_x {
-  right: 0rem;
-  padding: 0.8rem;
-  padding-right: 1rem;
-  position: absolute;
-  font-size: 1.2rem;
-}
-
-.window_title {
-  margin-right: 0.8rem;
-}
-
-.window_next {
-  margin-left: 0.8rem;
-}
-
-.window_prev {
-  margin-right: 0.8rem;
 }
 
 .invisible {

@@ -459,9 +459,7 @@ App.get_item_by_url = function (mode, url) {
 
 // Used for lazy-loading components
 App.start_item_observers = function () {
-  let modes = ["tabs", "stars", "closed_tabs", "history"]
-
-  for (let mode of modes) {
+  for (let mode of App.item_windows) {
     let options = {
       root: App.el(`#${mode}_container`),
       rootMargin: "0px",
@@ -499,11 +497,17 @@ App.intersection_observer = function (mode, options) {
 
 // Show a window by mode
 App.show_item_window = async function (mode) {
+  let last_mode = App.window_mode
+
+  if (!App.item_windows.includes(last_mode)) {
+    last_mode = "tabs"
+  }
+
   App.el(`#${mode}_container`).innerHTML = ""
   App.windows[mode].show()
   let items = await App[`get_${mode}`]()
   App.process_items(mode, items)
-  let v = App.el("#tabs_filter").value.trim()
+  let v = App.el(`#${last_mode}_filter`).value.trim()
   App.el(`#${mode}_filter`).value = v
   App.do_item_filter(mode)
 }
@@ -541,7 +545,7 @@ App.setup_item_window = function (mode) {
 App.cycle_item_windows = function (reverse = false) {
   if (reverse) {
     if (App.window_mode === "stars") {
-      App.windows["stars"].hide()
+      App.show_item_window("tabs")
     } else if (App.window_mode === "closed_tabs") {
       App.show_item_window("stars")
     } else if (App.window_mode === "history") {
@@ -555,7 +559,7 @@ App.cycle_item_windows = function (reverse = false) {
     } else if (App.window_mode === "closed_tabs") {
       App.show_item_window("history")
     } else if (App.window_mode === "history") {
-      App.windows["history"].hide()
+      App.show_item_window("tabs")
     } else {
       App.show_item_window("stars")
     }
