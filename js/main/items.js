@@ -517,12 +517,12 @@ App.setup_item_window = function (mode, args = {}) {
   args.id = mode
 
   args.setup = function () {
-    App.filter_stars = App.create_debouncer(function () {
+    let item_filter = App.create_debouncer(function () {
       App.do_item_filter(mode)
     }, App.filter_delay)
     
     App.ev(App.el(`#${mode}_filter`), "input", function () {
-      App.filter_stars()
+      item_filter()
     })  
   
     App.ev(App.el(`#${mode}_filter_mode`), "change", function () {
