@@ -1,6 +1,6 @@
 // For internal checks
 App.tabs = []
-App.filter_delay = 111
+App.filter_delay = 123
 App.color_delay = 123
 App.window_mode = "tabs"
 App.windows = {}
