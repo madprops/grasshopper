@@ -18,3 +18,10 @@ App.apply_theme = function () {
 App.set_css_var = function (name, value) {
   document.documentElement.style.setProperty(`--${name}`, value)
 }
+
+// Change the color
+App.do_change_color = function (color) {
+  App.state.color = color
+  App.save_state()
+  App.apply_theme()
+}

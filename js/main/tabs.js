@@ -52,24 +52,28 @@ App.close_tab = function (tab) {
 App.setup_tabs = function () {
   App.setup_item_window("tabs")
 
-  App.ev(App.el("#clean_button"), "click", function () {
+  App.ev(App.el("#tabs_clean_button"), "click", function () {
     App.clean_tabs()
   })
 
-  App.ev(App.el("#playing_button"), "click", function () {
+  App.ev(App.el("#tabs_playing_button"), "click", function () {
     App.go_to_playing_tab()
   })
 
-  App.ev(App.el("#new_button"), "click", function () {
+  App.ev(App.el("#tabs_new_button"), "click", function () {
     App.new_tab()
   })
 
   browser.tabs.onUpdated.addListener(function (id) {
-    App.refresh_tab(id)
+    if (App.window_mode === "tabs") {
+      App.refresh_tab(id)
+    }
   })
 
   browser.tabs.onRemoved.addListener(function (id) {
-    App.clean_closed_tab(id)
+    if (App.window_mode === "tabs") {
+      App.clean_closed_tab(id)
+    }
   })
 }
 
@@ -91,10 +95,6 @@ App.new_tab = function () {
 
 // Refresh tabs
 App.refresh_tab = async function (id) {
-  if (App.window_mode !== "tabs") {
-    return
-  }
-
   let tab = App.get_item_by_id("tabs", id)
 
   if (!tab) {
@@ -140,8 +140,10 @@ App.update_tab = function (o_tab, info) {
 
 // Prepend tab to the top
 App.prepend_tab = function (info) {
+  let id = info.id.toString()
+
   for (let [i, it] of App.tabs_items.entries()) {
-    if (it.id === info.id) {
+    if (it.id.toString() === id) {
       if (it.empty) {
         App.tabs_items.splice(i, 1)
         break
@@ -155,13 +157,6 @@ App.prepend_tab = function (info) {
     return
   }
   
-  for (let [i, it] of App.tabs_items.entries()) {
-    if (it.url === tab.url) {
-      App.tabs_items.splice(i, 1)
-      break
-    }
-  }
-
   App.tabs_items.unshift(tab)
   App.create_item_element("tabs", tab)
   App.el("#tabs_container").prepend(tab.element)

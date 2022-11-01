@@ -1,6 +1,7 @@
 // For internal checks
 App.tabs = []
 App.filter_delay = 111
+App.color_delay = 155
 App.window_mode = "tabs"
 App.windows = {}
 App.history_max_months = 12

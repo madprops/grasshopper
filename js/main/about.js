@@ -38,10 +38,12 @@ App.setup_about = function () {
       color: App.state.color
     })
 
+    let change_color = App.create_debouncer(function (color) {
+      App.do_change_color(color)
+    }, App.color_delay)
+
     color.on("change", function (picker, color) {
-      App.state.color = color
-      App.save_state()
-      App.apply_theme()
+      change_color(color)
     })  
   }}) 
 }
