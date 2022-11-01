@@ -33,7 +33,8 @@ App.setup_about = function () {
     let color = AColorPicker.createPicker(App.el("#color_picker"), {
       showAlpha: false,
       showHSL: false,
-      showRGB: false,
+      showHEX: false,
+      showRGB: true,
       color: App.state.color
     })
 
