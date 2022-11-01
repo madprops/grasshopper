@@ -513,8 +513,10 @@ App.show_item_window = async function (mode) {
 }
 
 // Setup an item window
-App.setup_item_window = function (mode) {
-  App.create_window({id: mode, setup: function () {  
+App.setup_item_window = function (mode, args = {}) {
+  args.id = mode
+
+  args.setup = function () {
     App.filter_stars = App.create_debouncer(function () {
       App.do_item_filter(mode)
     }, App.filter_delay)
@@ -526,19 +528,19 @@ App.setup_item_window = function (mode) {
     App.ev(App.el(`#${mode}_filter_mode`), "change", function () {
       App.do_item_filter(mode)
     })
+  
+    for (let m of App.item_windows) {
+      if (m === mode) {
+        continue
+      }
+  
+      App.ev(App.el(`#${mode}_${m}_button`), "click", function () {
+        App.show_item_window(m)
+      })
+    }
+  }
 
-    App.ev(App.el(`#${mode}_next`), "click", function () {
-      App.cycle_item_windows()
-    }) 
-    
-    App.ev(App.el(`#${mode}_prev`), "click", function () {
-      App.cycle_item_windows(true)
-    })
-  }})
-
-  App.ev(App.el(`#${mode}_button`), "click", function () {  
-    App.show_item_window(mode)
-  })   
+  App.create_window(args) 
 }
 
 // Cycle between item windows

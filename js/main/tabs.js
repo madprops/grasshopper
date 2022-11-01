@@ -50,7 +50,7 @@ App.close_tab = function (tab) {
 
 // Setup tabs
 App.setup_tabs = function () {
-  App.create_window({id:"tabs", close_button: false})
+  App.setup_item_window("tabs", {close_button: false})
 
   App.ev(App.el("#clean_button"), "click", function () {
     App.clean_tabs()
@@ -71,18 +71,6 @@ App.setup_tabs = function () {
   browser.tabs.onRemoved.addListener(function (id) {
     App.clean_closed_tab(id)
   })
-
-  App.filter = App.create_debouncer(function () {
-    App.do_item_filter("tabs")
-  }, App.filter_delay)
-
-  App.ev(App.el("#tabs_filter"), "input", function () {
-    App.filter()
-  })
-
-  App.ev(App.el("#tabs_filter_mode"), "change", function () {
-    App.do_item_filter("tabs")
-  })  
 }
 
 // Restore a closed tab
@@ -106,7 +94,7 @@ App.refresh_tab = async function (id) {
   if (App.window_mode !== "tabs") {
     return
   }
-  
+
   let tab = App.get_item_by_id("tabs", id)
 
   if (!tab) {

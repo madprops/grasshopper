@@ -40,9 +40,9 @@
           <option value="url">URL</option>
         </select>
 
-        <button id="stars_button" class="button actionbox" title="Show favorite locations">Stars</button>
-        <button id="closed_tabs_button" class="button actionbox" title="Open recently closed tabs">Closed</button>
-        <button id="history_button" class="button actionbox" title="Show recent history">History</button>
+        <button id="tabs_stars_button" class="button actionbox" title="Show favorite locations">Stars</button>
+        <button id="tabs_closed_tabs_button" class="button actionbox" title="Open recently closed tabs">Closed</button>
+        <button id="tabs_history_button" class="button actionbox" title="Show recent history">History</button>
         <button id="playing_button" class="button actionbox" title="Go to a tab emitting sound">Playing</button>
         <button id="clean_button" class="button actionbox" title="Close all normal tabs">Clean</button>
         <button id="about_button" class="button actionbox" title="About & Settings">?</button>
@@ -57,7 +57,6 @@
 
     <template id="template_stars_top">
       <div class="flex_row_center gap_1">
-        <div id="stars_prev" class="action unselectable window_prev" title="Prev (Shift + Tab)"> &lt;--</div>
         <div id="stars_title" class="window_title unselectable">Stars</div>
         <input type="text" id="stars_filter" class="filter" autocomplete="off" placeholder="Filter">
         
@@ -67,8 +66,10 @@
           <option value="url">URL</option>
         </select>
 
+        <button id="stars_tabs_button" class="button actionbox" title="Open recently closed tabs">Tabs</button>
+        <button id="stars_closed_tabs_button" class="button actionbox" title="Open recently closed tabs">Closed</button>
+        <button id="stars_history_button" class="button actionbox" title="Show recent history">History</button>
         <button id="stars_new_button" class="button actionbox" title="New Star">+</button>
-        <div id="stars_next" class="action unselectable window_next" title="Next (Tab)"> --&gt;</div>
       </div>
     </template>  
     
@@ -99,7 +100,6 @@
 
     <template id="template_closed_tabs_top">
       <div class="flex_row_center gap_1">
-        <div id="closed_tabs_prev" class="action unselectable window_prev" title="Prev (Shift + Tab)"> &lt;--</div>
         <div id="closed_tabs_title" class="window_title unselectable">Closed</div>
         <input type="text" id="closed_tabs_filter" class="filter" autocomplete="off" placeholder="Filter">
         
@@ -109,7 +109,9 @@
           <option value="url">URL</option>
         </select>
 
-        <div id="closed_tabs_next" class="action unselectable window_next" title="Next (Tab)"> --&gt;</div>
+        <button id="closed_tabs_tabs_button" class="button actionbox" title="Open recently closed tabs">Tabs</button>
+        <button id="closed_tabs_stars_button" class="button actionbox" title="Open recently closed tabs">Stars</button>
+        <button id="closed_tabs_history_button" class="button actionbox" title="Show recent history">History</button>
       </div>
     </template>
 
@@ -120,7 +122,6 @@
 
     <template id="template_history_top">
       <div class="flex_row_center gap_1">
-        <div id="history_prev" class="action unselectable window_prev" title="Prev (Shift + Tab)"> &lt;--</div>
         <div id="history_title" class="window_title unselectable">History</div>
         <input type="text" id="history_filter" class="filter" autocomplete="off" placeholder="Filter">
         
@@ -130,7 +131,9 @@
           <option value="url">URL</option>
         </select>
 
-        <div id="history_next" class="action unselectable window_next" title="Next (Tab)"> --&gt;</div>
+        <button id="history_tabs_button" class="button actionbox" title="Open recently closed tabs">Tabs</button>
+        <button id="history_stars_button" class="button actionbox" title="Show recent history">Stars</button>
+        <button id="history_closed_tabs_button" class="button actionbox" title="Open recently closed tabs">Closed</button>
       </div>
     </template>
 
