@@ -89,6 +89,7 @@ body, html {
 .item_icon_container {
   flex-grow: 0;
   flex-shrink: 0;
+  padding: 0.5rem;
   padding-right: 0.66rem;
   display: flex;
   align-items: center;
@@ -98,7 +99,6 @@ body, html {
 .item_icon {
   width: 1.2rem;
   height: 1.2rem;
-  padding-left: 0.5rem;
 }
 
 .item_text {
@@ -106,15 +106,6 @@ body, html {
   white-space: pre;
   overflow: hidden;
   margin-right: 0.5rem;
-}
-
-.item_button {
-  padding: 0.5rem;
-  user-select: none;
-}
-
-.item_button:hover {
-  text-decoration: underline;
 }
 
 .selected {

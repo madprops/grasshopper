@@ -210,7 +210,6 @@ App.do_item_filter = function (mode, select = true) {
 
 // Show item menu
 App.show_item_menu = function (mode, item, x, y) {
-  console.log(App.stars_items)
   let items = []
 
   if (mode === "tabs") {
@@ -273,6 +272,15 @@ App.show_item_menu = function (mode, item, x, y) {
       text: "Star",
       action: function () {
         App.star_item(item)
+      }
+    })
+  }
+
+  if (mode === "tabs") {
+    items.push({
+      text: "Close",
+      action: function () {
+        App.confirm_close_tab(item)
       }
     })
   }
@@ -370,17 +378,8 @@ App.create_item_element = function (mode, item) {
 
   let text = App.create("div", "item_text")
   item.element.append(text)
-  App.set_item_text(mode, item)
-
-  let action = App.create("div", "item_button action_button")
-
-  if (mode === "tabs") {
-    action.textContent = "Close"
-  } else if (mode === "stars" || mode === "closed_tabs" || mode === "history") {
-    action.textContent = "Open"
-  }
+  App.set_item_text(mode, item)  
   
-  item.element.append(action)
   item.created = true
   console.info(`Item created in ${mode}`)
 }

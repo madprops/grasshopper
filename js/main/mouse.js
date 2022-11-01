@@ -6,12 +6,7 @@ App.setup_mouse = function () {
     if (e.target.closest(".tabs_item")) {
       let el = e.target.closest(".tabs_item")
       let tab = App.get_item_by_id("tabs", el.dataset.id)
-
-      if (e.target.closest(".action_button")) {
-        App.confirm_close_tab(tab)
-      } else {
-        App.open_tab(tab)
-      }
+      App.open_tab(tab)
     }
   })
 
@@ -54,13 +49,7 @@ App.setup_mouse = function () {
       let el = e.target.closest(".closed_tabs_item")
       let id = el.dataset.id
       let tab = App.get_item_by_id("closed_tabs", id)
-
-      if (e.target.closest(".action_button")) {
-        App.restore_tab(tab, false)
-        App.remove_item("closed_tabs", tab)
-      } else {
-        App.restore_tab(tab)
-      }
+      App.restore_tab(tab)
     }
   })
 
@@ -106,14 +95,7 @@ App.setup_mouse = function () {
       let el = e.target.closest(".history_item")
       let id = el.dataset.id
       let item = App.get_item_by_id("history", id)
-
-      if (e.target.closest(".action_button")) {
-        App.open_history_item(item, false)
-      } else {
-        App.open_history_item(item)
-      }
-
-      App.remove_item("history", item)
+      App.open_history_item(item)
     }
   })
 
@@ -159,14 +141,7 @@ App.setup_mouse = function () {
       let el = e.target.closest(".stars_item")
       let id = el.dataset.id
       let item = App.get_item_by_id("stars", id)
-
-      if (e.target.closest(".action_button")) {
-        App.open_stars_item(item, false)
-      } else {
-        App.open_stars_item(item)
-      }
-
-      App.remove_item("stars", item)
+      App.open_stars_item(item)
     }
   })
 
