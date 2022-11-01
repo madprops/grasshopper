@@ -50,7 +50,7 @@ App.close_tab = function (tab) {
 
 // Setup tabs
 App.setup_tabs = function () {
-  App.setup_item_window("tabs", {close_button: false})
+  App.setup_item_window("tabs")
 
   App.ev(App.el("#clean_button"), "click", function () {
     App.clean_tabs()

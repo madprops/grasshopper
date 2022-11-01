@@ -513,8 +513,10 @@ App.show_item_window = async function (mode) {
 }
 
 // Setup an item window
-App.setup_item_window = function (mode, args = {}) {
+App.setup_item_window = function (mode) {
+  let args = {}
   args.id = mode
+  args.close_button = false
 
   args.setup = function () {
     let item_filter = App.create_debouncer(function () {
