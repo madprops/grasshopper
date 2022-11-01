@@ -1,30 +1,6 @@
 // Setup history
 App.setup_history = function () {
-  App.create_window("history", function () {  
-    App.filter_history = App.create_debouncer(function () {
-      App.do_item_filter("history")
-    }, App.filter_delay)
-    
-    App.ev(App.el("#history_filter"), "input", function () {
-      App.filter_history()
-    })  
-  
-    App.ev(App.el("#history_filter_mode"), "change", function () {
-      App.do_item_filter("history")
-    })
-    
-    App.ev(App.el("#history_next"), "click", function () {
-      App.cycle_windows()
-    }) 
-    
-    App.ev(App.el("#history_prev"), "click", function () {
-      App.cycle_windows(true)
-    })
-  })
-
-  App.ev(App.el("#history_button"), "click", function () {  
-    App.show_window("history")
-  })  
+  App.setup_window("history") 
 }
 
 // Get history months date

@@ -89,3 +89,32 @@ App.show_window = async function (mode) {
   App.el(`#${mode}_filter`).value = v
   App.do_item_filter(mode)
 }
+
+// Setup a window
+App.setup_window = function (mode) {
+  App.create_window(mode, function () {  
+    App.filter_stars = App.create_debouncer(function () {
+      App.do_item_filter(mode)
+    }, App.filter_delay)
+    
+    App.ev(App.el(`#${mode}_filter`), "input", function () {
+      App.filter_stars()
+    })  
+  
+    App.ev(App.el(`#${mode}_filter_mode`), "change", function () {
+      App.do_item_filter(mode)
+    })
+
+    App.ev(App.el(`#${mode}_next`), "click", function () {
+      App.cycle_windows()
+    }) 
+    
+    App.ev(App.el(`#${mode}_prev`), "click", function () {
+      App.cycle_windows(true)
+    })
+  })
+
+  App.ev(App.el(`#${mode}_button`), "click", function () {  
+    App.show_window(mode)
+  })   
+}

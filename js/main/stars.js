@@ -1,31 +1,6 @@
 // Setup stars
 App.setup_stars = function () {
-  App.create_window("stars", function () {  
-    App.filter_stars = App.create_debouncer(function () {
-      App.do_item_filter("stars")
-    }, App.filter_delay)
-    
-    App.ev(App.el("#stars_filter"), "input", function () {
-      App.filter_stars()
-    })  
-  
-    App.ev(App.el("#stars_filter_mode"), "change", function () {
-      App.do_item_filter("stars")
-    })
-
-    App.ev(App.el("#stars_next"), "click", function () {
-      App.cycle_windows()
-    }) 
-    
-    App.ev(App.el("#stars_prev"), "click", function () {
-      App.cycle_windows(true)
-    })
-  })
-
-  App.ev(App.el("#stars_button"), "click", function () {  
-    App.show_window("stars")
-  })  
-
+  App.setup_window("stars")
   App.stars_items = App.get_stars()
 }
 
