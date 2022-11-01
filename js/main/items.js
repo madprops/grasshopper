@@ -295,7 +295,10 @@ App.process_items = function (mode, items) {
       continue
     }
 
-    exclude.push(obj.url)
+    if (mode !== "tabs") {
+      exclude.push(obj.url)
+    }
+    
     App[`${mode}_items`].push(obj)
     container.append(obj.element)
   }
