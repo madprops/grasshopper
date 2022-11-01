@@ -43,7 +43,8 @@ App.star_item = function (item) {
   App.stars_items.unshift({
     id: `${Date.now()}_${item.url.substring(0, 100)}`,
     url: item.url,
-    title: item.title
+    title: item.title,
+    date: Date.now()
   })
 
   App.state.stars = App.stars_items.slice(0, App.max_stars)
