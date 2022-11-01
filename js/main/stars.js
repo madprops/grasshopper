@@ -36,6 +36,7 @@ App.stars_action = function () {
 
 // Open stars item
 App.open_stars_item = function (item, close = true) {
+  App.star_item(item)
   browser.tabs.create({url: item.url, active: close})
 
   if (close) {
@@ -57,13 +58,13 @@ App.star_item = function (item) {
     }
   }
 
-  App.stars_items.push({
+  App.stars_items.unshift({
     id: `${Date.now()}_${item.url.substring(0, 100)}`,
     url: item.url,
     title: item.title
   })
 
-  App.state.stars = App.stars_items
+  App.state.stars = App.stars_items.slice(0, App.max_stars)
   App.save_state()
 }
 
@@ -80,6 +81,6 @@ App.unstar_item = function (item) {
     item.element.remove()
   }
 
-  App.state.stars = App.stars_items
+  App.state.stars = App.stars_items.slice(0, App.max_stars)
   App.save_state()
 }

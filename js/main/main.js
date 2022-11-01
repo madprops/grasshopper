@@ -5,6 +5,7 @@ App.window_mode = "tabs"
 App.windows = {}
 App.history_max_months = 12
 App.ls_state = "state_v2"
+App.max_stars = 1000 * 5
 
 App.init = function () {
   App.get_state()
