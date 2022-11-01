@@ -51,6 +51,7 @@ body, html {
   padding-right: 1rem;
   min-height: 1rem;
   flex-shrink: 0;
+  padding-bottom: 0.8rem;
 }
 
 .window_top_center {
@@ -74,7 +75,6 @@ body, html {
 }
 
 .container {
-  margin-top: 0.8rem;
   margin-bottom: 0.5rem;
   display: flex;
   flex-direction: column;
