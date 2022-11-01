@@ -161,7 +161,7 @@ body, html {
   display: none !important;
 }
 
-.action, .actionbox {
+.action, .actionbox, .button {
   cursor: pointer;
   transition: text-shadow 100ms, box-shadow 100ms;
 }
@@ -170,7 +170,7 @@ body, html {
   text-shadow: 0 0 1rem currentColor;
 }
 
-.actionbox:hover {
+.actionbox:hover, .button:hover {
 	box-shadow: 0 0 0.3rem currentColor;
 }
 
