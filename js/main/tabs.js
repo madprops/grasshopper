@@ -103,6 +103,10 @@ App.new_tab = function () {
 
 // Refresh tabs
 App.refresh_tab = async function (id) {
+  if (App.window_mode !== "tabs") {
+    return
+  }
+  
   let tab = App.get_item_by_id("tabs", id)
 
   if (!tab) {
