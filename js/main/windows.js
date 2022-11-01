@@ -50,20 +50,24 @@ App.create_window = function (id, setup = function() {}) {
 // Cycle between windows
 App.cycle_windows = function (reverse = false) {
   if (reverse) {
-    if (App.window_mode === "closed_tabs") {
-      App.windows["closed_tabs"].hide()
+    if (App.window_mode === "stars") {
+      App.windows["stars"].hide()
+    } else if (App.window_mode === "closed_tabs") {
+      App.show_window("stars")
     } else if (App.window_mode === "history") {
       App.show_window("closed_tabs")
     } else {
       App.show_window("history")
     }
   } else {
-    if (App.window_mode === "closed_tabs") {
+    if (App.window_mode === "stars") {
+      App.show_window("closed_tabs")
+    } else if (App.window_mode === "closed_tabs") {
       App.show_window("history")
     } else if (App.window_mode === "history") {
       App.windows["history"].hide()
     } else {
-      App.show_window("closed_tabs")
+      App.show_window("stars")
     }
   }
 }
