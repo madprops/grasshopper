@@ -1,3 +1,7 @@
+:root {
+  --widget_height: 1.7rem;
+}
+
 @font-face {
 	font-family: imported_font;
 	src: url(Roboto-Regular.ttf);
@@ -83,17 +87,20 @@ body, html {
 }
 
 .filter {
+  height: var(--widget_height);
   background-color: var(--alt_color);
   color: var(--font_color);
-  outline: 1px solid var(--alt_color);
+  outline: none;
   border-width: 0;
   font-size: 1rem;
-  padding: 0.025rem;
   flex-grow: 0;
   width: 9rem;
+  padding: 0;
+  padding-left: 0.25rem;
 }
 
 .select {
+  height: var(--widget_height);
   font-size: 0.88rem;
   background-color: transparent;
   color: var(--font_color);
@@ -102,6 +109,7 @@ body, html {
 }
 
 .button {
+  height: var(--widget_height);
   font-size: 0.92rem;
   cursor: pointer;
   flex-shrink: 0;
