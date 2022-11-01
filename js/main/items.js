@@ -496,3 +496,68 @@ App.intersection_observer = function (mode, options) {
     }
   }, options)
 }
+
+// Show a window by mode
+App.show_item_window = async function (mode) {
+  App.el(`#${mode}_container`).innerHTML = ""
+  App.windows[mode].show()
+  let items = await App[`get_${mode}`]()
+  App.process_items(mode, items)
+  let v = App.el("#tabs_filter").value.trim()
+  App.el(`#${mode}_filter`).value = v
+  App.do_item_filter(mode)
+}
+
+// Setup an item window
+App.setup_item_window = function (mode) {
+  App.create_window({id: mode, setup: function () {  
+    App.filter_stars = App.create_debouncer(function () {
+      App.do_item_filter(mode)
+    }, App.filter_delay)
+    
+    App.ev(App.el(`#${mode}_filter`), "input", function () {
+      App.filter_stars()
+    })  
+  
+    App.ev(App.el(`#${mode}_filter_mode`), "change", function () {
+      App.do_item_filter(mode)
+    })
+
+    App.ev(App.el(`#${mode}_next`), "click", function () {
+      App.cycle_item_windows()
+    }) 
+    
+    App.ev(App.el(`#${mode}_prev`), "click", function () {
+      App.cycle_item_windows(true)
+    })
+  }})
+
+  App.ev(App.el(`#${mode}_button`), "click", function () {  
+    App.show_item_window(mode)
+  })   
+}
+
+// Cycle between item windows
+App.cycle_item_windows = function (reverse = false) {
+  if (reverse) {
+    if (App.window_mode === "stars") {
+      App.windows["stars"].hide()
+    } else if (App.window_mode === "closed_tabs") {
+      App.show_item_window("stars")
+    } else if (App.window_mode === "history") {
+      App.show_item_window("closed_tabs")
+    } else {
+      App.show_item_window("history")
+    }
+  } else {
+    if (App.window_mode === "stars") {
+      App.show_item_window("closed_tabs")
+    } else if (App.window_mode === "closed_tabs") {
+      App.show_item_window("history")
+    } else if (App.window_mode === "history") {
+      App.windows["history"].hide()
+    } else {
+      App.show_item_window("stars")
+    }
+  }
+}

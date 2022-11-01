@@ -1,6 +1,6 @@
 // Setup about
 App.setup_about = function () {
-  App.create_window("about", function () {
+  App.create_window({id: "about", setup: function () {
     let manifest = browser.runtime.getManifest()
     let s = `Grasshopper v${manifest.version}`
     App.el("#about_name").textContent = s
@@ -43,7 +43,7 @@ App.setup_about = function () {
       App.save_state()
       App.apply_theme()
     })  
-  })
+  }})
 
   App.ev(App.el("#about_button"), "click", function () {
     let s = App.plural(App.tabs_items.length, "tab", "tabs")

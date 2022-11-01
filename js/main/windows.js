@@ -4,11 +4,11 @@ App.get_template = function (id) {
 }
 
 // Create a window
-App.create_window = function (id, setup = function() {}) {
+App.create_window = function (args) {
   let w = {}
-  let el = App.create("div", "window_main", `window_${id}`)
+  let el = App.create("div", "window_main", `window_${args.id}`)
   let top = App.create("div", "window_top")
-  top.innerHTML = App.get_template(`${id}_top`)
+  top.innerHTML = App.get_template(`${args.id}_top`)
   let x = App.create("div", "window_x action unselectable")
   x.textContent = "x"
   top.append(x)
@@ -20,7 +20,7 @@ App.create_window = function (id, setup = function() {}) {
   el.append(top)
 
   let content = App.create("div", "window_content main")
-  content.innerHTML = App.get_template(id)
+  content.innerHTML = App.get_template(args.id)
   el.append(content)
 
   w.element = el
@@ -28,93 +28,37 @@ App.create_window = function (id, setup = function() {}) {
   w.setup = false
 
   w.show = function () {
-    if (!w.setup) {
-      setup()
+    if (args.setup && !w.setup) {
+      args.setup()
       w.setup = true
-      console.info(`${id} window setup`)
+      console.info(`${args.id} window setup`)
     }
 
     App.hide_all_windows()
     w.element.style.display = "flex"
-    App.window_mode = id
+    App.window_mode = args.id
   }
   
   w.hide = function () {
-    w.element.style.display = "none"
-    App.window_mode = "tabs"
+    if (args.on_hide) {
+      args.on_hide()
+    } else {
+      App.hide_window(w)
+      App.window_mode = "tabs"
+    }
   }
 
-  App.windows[id] = w
+  App.windows[args.id] = w
 }
 
-// Cycle between windows
-App.cycle_windows = function (reverse = false) {
-  if (reverse) {
-    if (App.window_mode === "stars") {
-      App.windows["stars"].hide()
-    } else if (App.window_mode === "closed_tabs") {
-      App.show_window("stars")
-    } else if (App.window_mode === "history") {
-      App.show_window("closed_tabs")
-    } else {
-      App.show_window("history")
-    }
-  } else {
-    if (App.window_mode === "stars") {
-      App.show_window("closed_tabs")
-    } else if (App.window_mode === "closed_tabs") {
-      App.show_window("history")
-    } else if (App.window_mode === "history") {
-      App.windows["history"].hide()
-    } else {
-      App.show_window("stars")
-    }
-  }
+// Hide window
+App.hide_window = function (w) {
+  w.element.style.display = "none"
 }
 
 // Hide all windows
 App.hide_all_windows = function () {
   for (let id in App.windows) {
-    App.windows[id].hide()
+    App.hide_window(App.windows[id])
   }
-}
-
-// Show a window by mode
-App.show_window = async function (mode) {
-  App.el(`#${mode}_container`).innerHTML = ""
-  App.windows[mode].show()
-  let items = await App[`get_${mode}`]()
-  App.process_items(mode, items)
-  let v = App.el("#tabs_filter").value.trim()
-  App.el(`#${mode}_filter`).value = v
-  App.do_item_filter(mode)
-}
-
-// Setup a window
-App.setup_window = function (mode) {
-  App.create_window(mode, function () {  
-    App.filter_stars = App.create_debouncer(function () {
-      App.do_item_filter(mode)
-    }, App.filter_delay)
-    
-    App.ev(App.el(`#${mode}_filter`), "input", function () {
-      App.filter_stars()
-    })  
-  
-    App.ev(App.el(`#${mode}_filter_mode`), "change", function () {
-      App.do_item_filter(mode)
-    })
-
-    App.ev(App.el(`#${mode}_next`), "click", function () {
-      App.cycle_windows()
-    }) 
-    
-    App.ev(App.el(`#${mode}_prev`), "click", function () {
-      App.cycle_windows(true)
-    })
-  })
-
-  App.ev(App.el(`#${mode}_button`), "click", function () {  
-    App.show_window(mode)
-  })   
 }

@@ -1,6 +1,6 @@
 // Setup history
 App.setup_history = function () {
-  App.setup_window("history") 
+  App.setup_item_window("history") 
 }
 
 // Get history months date

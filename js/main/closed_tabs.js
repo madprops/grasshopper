@@ -1,6 +1,6 @@
 // Setup closed tabs
 App.setup_closed_tabs = function () {
-  App.setup_window("closed_tabs")
+  App.setup_item_window("closed_tabs")
 }
 
 // Get closed tabs
