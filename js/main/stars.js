@@ -68,7 +68,6 @@ App.unstar_item = function (item) {
 // Show stars editor
 App.show_star_editor = function (item) {
   App.star_edited = item
-  App.el("#star_editor_info").textContent = "Edit Star"
   App.el("#star_editor_title").value = item.title
   App.el("#star_editor_url").value = item.url
   App.windows["star_editor"].show()
@@ -106,7 +105,6 @@ App.update_star = function () {
 // Add a new star manually
 App.new_star = function () {
   App.star_edited = undefined
-  App.el("#star_editor_info").textContent = "New Star"
   App.el("#star_editor_title").value = ""
   App.el("#star_editor_url").value = ""
   App.windows["star_editor"].show()
