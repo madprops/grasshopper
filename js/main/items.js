@@ -533,6 +533,7 @@ App.setup_item_window = function (mode) {
       App.do_item_filter(mode)
     })
 
+    let top = App.el(`#${mode}_top_container`)
     let select = App.create("select", "select item_select", `${mode}_select`)
 
     for (let m of App.item_windows) {
@@ -547,21 +548,20 @@ App.setup_item_window = function (mode) {
       select.append(option)
     }
 
-    let option = App.create("option")
-    option.value = "about"
-    option.textContent = "About"
-    select.append(option)
-
     App.ev(select, "change", function () {
-      if (this.value === "about") {
-        App.show_about()
-        return
-      }
-
       App.show_item_window(this.value)
     })
 
-    App.el(`#${mode}_select_container`).append(select)
+    top.prepend(select)
+
+    let g = App.create("div", "menu_icon action unselectable")
+    g.textContent = "G"
+    
+    App.ev(g, "click", function () {
+      App.show_about()
+    })
+
+    top.prepend(g)    
   }
 
   App.create_window(args) 
