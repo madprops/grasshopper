@@ -548,10 +548,15 @@ App.setup_item_window = function (mode) {
       select.append(option)
     }
 
+    let on_change = function (select) {
+      App.show_item_window(select.value)
+    }
+
     App.ev(select, "change", function () {
-      App.show_item_window(this.value)
+      on_change(select)
     })
 
+    App.wrap_select(select, on_change)
     top.prepend(select)
 
     let g = App.create("div", "menu_icon action unselectable")

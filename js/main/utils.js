@@ -122,3 +122,29 @@ App.get_jdenticon = function (url) {
   icon_container.append(icon)
   return icon_container
 }
+
+// Wrap select for extra functionality
+App.wrap_select = function (select, on_change) {
+  select.addEventListener("wheel", function(e) {
+    if (this.hasFocus) {
+      return
+    }
+    
+    if (e.deltaY < 0) {
+      if (this.selectedIndex === 0) {
+        return
+      }
+
+      this.selectedIndex -= 1
+    } else if (e.deltaY > 0) {
+      if (this.selectedIndex === this.length - 1) {
+        return
+      }
+
+      this.selectedIndex += 1
+    }
+
+    on_change(select)
+    e.preventDefault()
+  })
+}
