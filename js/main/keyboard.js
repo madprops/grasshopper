@@ -1,3 +1,21 @@
+// Setup bindings for window
+App.check_window_keyboard = function (e) {
+  let mode = App.window_mode
+  App.focus_filter(mode)
+
+  if (e.key === "Enter") {
+    App[`${mode}_action`]()
+    e.preventDefault()
+  } else if (e.key === "ArrowUp") {
+    App.select_item_above(mode)
+    e.preventDefault()
+  } else if (e.key === "ArrowDown") {
+    App.select_item_below(mode)
+    e.preventDefault()
+  }
+}
+
+// Setup keybindings
 App.setup_keyboard = function () {
   App.ev(document, "keydown", function (e) {
     if (NeedContext.open) {
@@ -12,84 +30,6 @@ App.setup_keyboard = function () {
       }
     }
 
-    if (App.window_mode === "tabs") {
-      App.focus_filter("tabs")
-  
-      if (e.key === "Enter") {
-        if (e.ctrlKey) {
-          App.confirm_close_tab(App.selected_tabs_item)
-        } else {
-          App.tabs_action()
-        }
-        
-        e.preventDefault()
-      } else if (e.key === "ArrowUp") {
-        App.select_item_above("tabs")
-        e.preventDefault()
-      } else if (e.key === "ArrowDown") {
-        App.select_item_below("tabs")
-        e.preventDefault()
-      }
-    } else if (App.window_mode === "closed_tabs") {
-      App.focus_filter("closed_tabs")
-
-      if (e.key === "Enter") {
-        if (e.ctrlKey) {
-          App.closed_tabs_action_alt()       
-          e.preventDefault()
-        } else {
-          App.closed_tabs_action()
-          e.preventDefault()
-        }
-      } else if (e.key === "ArrowUp") {
-        App.select_item_above("closed_tabs")
-        e.preventDefault()
-      } else if (e.key === "ArrowDown") {
-        App.select_item_below("closed_tabs")
-        e.preventDefault()
-      }
-
-      return
-    } else if (App.window_mode === "history") {
-      App.focus_filter("history")
-
-      if (e.key === "Enter") {
-        if (e.ctrlKey) {
-          App.history_action_alt()        
-          e.preventDefault()
-        } else {
-          App.history_action()
-          e.preventDefault()
-        }
-      } else if (e.key === "ArrowUp") {
-        App.select_item_above("history")
-        e.preventDefault()
-      } else if (e.key === "ArrowDown") {
-        App.select_item_below("history")
-        e.preventDefault()
-      }
-
-      return
-    } else if (App.window_mode === "stars") {
-      App.focus_filter("stars")
-
-      if (e.key === "Enter") {
-        if (e.ctrlKey) {
-          App.stars_action_alt()        
-          e.preventDefault()
-        } else {
-          App.stars_action()
-          e.preventDefault()
-        }
-      } else if (e.key === "ArrowUp") {
-        App.select_item_above("stars")
-        e.preventDefault()
-      } else if (e.key === "ArrowDown") {
-        App.select_item_below("stars")
-        e.preventDefault()
-      }
-
-      return
-    }
+    App.check_window_keyboard(e)
   })
 }

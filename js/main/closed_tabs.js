@@ -16,9 +16,3 @@ App.get_closed_tabs = async function () {
 App.closed_tabs_action = function () {
   App.restore_tab(App.selected_closed_tabs_item)
 }
-
-// Action alt
-App.closed_tabs_action_alt = function () {
-  App.restore_tab(App.selected_closed_tabs_item, false)
-  App.remove_item("closed_tabs", App.selected_closed_tabs_item)   
-}

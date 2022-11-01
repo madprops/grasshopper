@@ -1,3 +1,4 @@
+// Setup mouse
 App.setup_mouse = function () {
   let tabs = App.el("#tabs_container")
 
@@ -25,7 +26,6 @@ App.setup_mouse = function () {
       if (e.target.closest(".tabs_item")) {
         let el = e.target.closest(".tabs_item")
         let tab = App.get_item_by_id("tabs", el.dataset.id)
-        
         App.confirm_close_tab(tab)
       }
     }
@@ -52,19 +52,6 @@ App.setup_mouse = function () {
       App.restore_tab(tab)
     }
   })
-
-  // On closed tabs middle click
-  App.ev(closed_tabs, "auxclick", function (e) {
-    if (e.button === 1) {
-      if (e.target.closest(".closed_tabs_item")) {
-        let el = e.target.closest(".closed_tabs_item")
-        let id = el.dataset.id
-        let tab = App.get_item_by_id("closed_tabs", id)
-        App.restore_tab(tab, false)
-        App.remove_item("closed_tabs", tab)
-      }
-    }
-  })  
   
   // When closed tabs get hovered
   App.ev(closed_tabs, "mousemove", function (e) {   
@@ -97,20 +84,7 @@ App.setup_mouse = function () {
       let item = App.get_item_by_id("history", id)
       App.open_history_item(item)
     }
-  })
-
-  // On history middle click
-  App.ev(history, "auxclick", function (e) {
-    if (e.button === 1) {
-      if (e.target.closest(".history_item")) {
-        let el = e.target.closest(".history_item")
-        let id = el.dataset.id
-        let item = App.get_item_by_id("history", id)
-        App.open_history_item(item, false)
-        App.remove_item("history", item)
-      }
-    }
-  })  
+  }) 
   
   // When history get hovered
   App.ev(history, "mousemove", function (e) {   
@@ -144,19 +118,6 @@ App.setup_mouse = function () {
       App.open_stars_item(item)
     }
   })
-
-  // On stars middle click
-  App.ev(stars, "auxclick", function (e) {
-    if (e.button === 1) {
-      if (e.target.closest(".stars_item")) {
-        let el = e.target.closest(".stars_item")
-        let id = el.dataset.id
-        let item = App.get_item_by_id("stars", id)
-        App.open_stars_item(item, false)
-        App.remove_item("stars", item)
-      }
-    }
-  })  
   
   // When stars get hovered
   App.ev(stars, "mousemove", function (e) {   

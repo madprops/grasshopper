@@ -44,12 +44,6 @@ App.history_action = function () {
   App.open_history_item(App.selected_history_item)
 }
 
-// Action alt
-App.history_action_alt = function () {
-  App.open_history_item(App.selected_history_item, false)
-  App.remove_item("history", App.selected_history_item)  
-}
-
 // Show history results info
 App.show_history_results_info = function () {
   let s = ""
