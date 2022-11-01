@@ -1,6 +1,10 @@
 // Setup stars
 App.setup_stars = function () {
   App.setup_window("stars")
+
+  App.ev(App.el("#stars_new_button"), "click", function () {
+    App.new_star()
+  })
   
   App.create_window("star_editor", function () {
     App.ev(App.el("#star_editor_save"), "click", function () {
@@ -62,6 +66,7 @@ App.unstar_item = function (item) {
 // Show stars editor
 App.show_star_editor = function (item) {
   App.star_edited = item
+  App.el("#star_editor_info").textContent = "Edit Star"
   App.el("#star_editor_title").value = item.title
   App.el("#star_editor_url").value = item.url
   App.windows["star_editor"].show()
@@ -70,10 +75,23 @@ App.show_star_editor = function (item) {
 
 // Update star information
 App.update_star = function () {
-  let title = App.el("#star_editor_title").value
-  let url = App.el("#star_editor_url").value
+  let title = App.el("#star_editor_title").value.trim()
+  let url = App.el("#star_editor_url").value.trim()
 
-  App.unstar_item(App.star_edited)
+  if (!title || !url) {
+    return
+  }
+
+  try {
+    new URL(url)
+  } catch (err) {
+    alert("Invalid URL")
+    return
+  }
+
+  if (App.star_edited) {
+    App.unstar_item(App.star_edited)
+  }
 
   App.star_item({
     title: title,
@@ -81,4 +99,14 @@ App.update_star = function () {
   })
 
   App.show_window("stars")
+}
+
+// Add a new star manually
+App.new_star = function () {
+  App.star_edited = undefined
+  App.el("#star_editor_info").textContent = "New Star"
+  App.el("#star_editor_title").value = ""
+  App.el("#star_editor_url").value = ""
+  App.windows["star_editor"].show()
+  App.el("#star_editor_title").focus()
 }
