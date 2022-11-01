@@ -47,10 +47,10 @@ body, html {
   flex-direction: row;
   align-items: center;
   width: 100%;
-  margin-top: 0.8rem;
   padding-right: 1rem;
   min-height: 1rem;
   flex-shrink: 0;
+  padding-top: 0.8rem;
   padding-bottom: 0.8rem;
 }
 
