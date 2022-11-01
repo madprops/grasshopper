@@ -70,17 +70,8 @@ App.star_item = function (item) {
 
 // Remove an item from stars
 App.unstar_item = function (item) {
-  for (let [i, it] of App.stars_items.entries()) {
-    if (it.url === item.url) {
-      App.stars_items.splice(i, 1)
-      break
-    }
-  }
-
-  if (item.mode === "stars") {
-    item.element.remove()
-  }
-
+  let star = App.get_item_by_url("stars", item.url)
+  App.remove_item("stars", star)
   App.state.stars = App.stars_items.slice(0, App.max_stars)
   App.save_state()
 }
