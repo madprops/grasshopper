@@ -1,6 +1,13 @@
 // Setup stars
 App.setup_stars = function () {
   App.setup_window("stars")
+  
+  App.create_window("star_editor", function () {
+    App.ev(App.el("#star_editor_save"), "click", function () {
+      App.update_star()
+    })
+  })
+
   App.stars_items = App.get_stars()
 }
 
@@ -49,4 +56,28 @@ App.unstar_item = function (item) {
   App.remove_item("stars", star)
   App.state.stars = App.stars_items.slice(0, App.max_stars)
   App.save_state()
+}
+
+// Show stars editor
+App.show_star_editor = function (item) {
+  App.star_edited = item
+  App.el("#star_editor_title").value = item.title
+  App.el("#star_editor_url").value = item.url
+  App.windows["star_editor"].show()
+  App.el("#star_editor_title").focus()
+}
+
+// Update star information
+App.update_star = function () {
+  let title = App.el("#star_editor_title").value
+  let url = App.el("#star_editor_url").value
+
+  App.unstar_item(App.star_edited)
+
+  App.star_item({
+    title: title,
+    url: url
+  })
+
+  App.show_window("stars")
 }

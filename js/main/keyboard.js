@@ -22,6 +22,10 @@ App.setup_keyboard = function () {
       return
     }
 
+    if (App.window_mode === "star_editor") {
+      return
+    }
+
     if (e.key === "Tab") {
       if (!e.ctrlKey) {
         App.cycle_windows(e.shiftKey)

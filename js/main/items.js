@@ -283,6 +283,13 @@ App.show_item_menu = function (mode, item, x, y) {
         App.confirm_close_tab(item)
       }
     })
+  } else if (mode === "stars") {
+    items.push({
+      text: "Edit",
+      action: function () {
+        App.show_star_editor(item)
+      }
+    })
   }
 
   NeedContext.show(x, y, items)
@@ -379,7 +386,7 @@ App.create_item_element = function (mode, item) {
   let text = App.create("div", "item_text")
   item.element.append(text)
   App.set_item_text(mode, item)  
-  
+
   item.created = true
   console.info(`Item created in ${mode}`)
 }

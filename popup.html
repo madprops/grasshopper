@@ -54,7 +54,7 @@
 
     <template id="template_about">
       <div id="about_container" class="flex_column_center">
-        <div id="about_name" title="Made by madprops in 2022"></div>
+        <div class="bigger" title="Made by madprops in 2022"></div>
         <div class="separator"></div>
         <div id="about_stats"></div>
         <div class="separator"></div>
@@ -145,6 +145,26 @@
 
         <div id="history_next" class="action unselectable window_next" title="Next (Tab)"> --&gt;</div>
       </div>
+    </template>
+
+    <template id="template_star_editor">
+      <div class="flex_column_center gap_2" id="star_editor_container">
+        <div class="flex_column_center gap_1">
+          <div>Title</div>
+          <input type="text" id="star_editor_title" class="input_text">
+        </div>
+        
+        <div class="flex_column_center gap_1">
+          <div>URL</div>
+          <input type="text" id="star_editor_url" class="input_text">
+        </div>
+
+        <button id="star_editor_save" class="button actionbox">Save</button>
+      </div>
+    </template>
+
+    <template id="template_star_editor_top">
+      <div class="bigger">Edit Star</div>
     </template>
 
     <script src="js/main/main.js"></script>

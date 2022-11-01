@@ -170,10 +170,6 @@ body, html {
   gap: 1.2rem;
 }
 
-#about_name {
-  font-size: 1.2rem;
-}
-
 #about_close_all {
   margin-bottom: 5rem;
 }
@@ -254,4 +250,24 @@ body, html {
 .separator {
   border-top: 1px solid var(--alt_color);
   width: 12rem;
+}
+
+.input_text {
+  background-color: var(--alt_color);
+  color: var(--font_color);
+  outline: 1px solid var(--alt_color);
+  border-width: 0;
+  font-size: 1rem;
+  padding: 0.05rem;
+  flex-grow: 0;
+  width: 16rem;
+  text-align: center;
+}
+
+.bigger {
+  font-size: 1.2rem;
+}
+
+#star_editor_container {
+  margin-top: 2rem;
 }
