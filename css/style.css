@@ -103,7 +103,7 @@ body, html {
 }
 
 .button {
-  font-size: 0.95rem;
+  font-size: 0.92rem;
   cursor: pointer;
   flex-shrink: 0;
   background-color: transparent;
