@@ -70,6 +70,26 @@ App.setup_keyboard = function () {
       }
 
       return
+    } else if (App.window_mode === "stars") {
+      App.focus_filter("stars")
+
+      if (e.key === "Enter") {
+        if (e.ctrlKey) {
+          App.stars_action_alt()        
+          e.preventDefault()
+        } else {
+          App.stars_action()
+          e.preventDefault()
+        }
+      } else if (e.key === "ArrowUp") {
+        App.select_item_above("stars")
+        e.preventDefault()
+      } else if (e.key === "ArrowDown") {
+        App.select_item_below("stars")
+        e.preventDefault()
+      }
+
+      return
     }
   })
 }

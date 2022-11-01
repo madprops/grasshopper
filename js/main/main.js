@@ -10,6 +10,7 @@ App.init = function () {
   App.get_state()
   App.setup_theme()
   App.setup_tabs()
+  App.setup_stars()
   App.setup_closed_tabs()
   App.setup_history()
   App.setup_about()

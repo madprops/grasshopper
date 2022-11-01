@@ -14,6 +14,7 @@
     <script src="js/main/keyboard.js"></script>
     <script src="js/main/items.js"></script>
     <script src="js/main/tabs.js"></script>
+    <script src="js/main/stars.js"></script>
     <script src="js/main/closed_tabs.js"></script>
     <script src="js/main/history.js"></script>
     <script src="js/main/windows.js"></script>
@@ -34,17 +35,16 @@
             <option value="title">Title</option>
             <option value="url">URL</option>
           </select>
-  
-          <input id="tabs_case_sensitive" type="checkbox" title="Case Sensitive" class="checkbox">
         </div>
 
         <div class="flex_row_center gap_1">
+          <button id="stars_button" class="button actionbox" title="Show favorite locations">Stars</button>
           <button id="closed_button" class="button actionbox" title="Open recently closed tabs">Closed</button>
           <button id="history_button" class="button actionbox" title="Show recent history">History</button>
           <button id="playing_button" class="button actionbox" title="Go to a tab emitting sound">Playing</button>
           <button id="clean_button" class="button actionbox" title="Close all normal tabs">Clean</button>
-          <button id="new_button" class="button actionbox" title="Open a new tab">New</button>
-          <button id="about_button" class="button actionbox" title="About">?</button>
+          <button id="about_button" class="button actionbox" title="About & Settings">?</button>
+          <button id="new_button" class="button actionbox" title="New Tab">+</button>
         </div>
       </div>
 
@@ -71,7 +71,7 @@
             <option value="deep">History: Deep</option>
           </select>
 
-          <button id="about_history_results_info" class="button">?</button>
+          <button id="about_history_results_info" class="button actionbox">?</button>
         </div>
 
         <div id="color_picker"></div>
@@ -89,6 +89,27 @@
       <div id="closed_tabs_footer" class="footer unselectable"></div>
     </template>
 
+    <template id="template_stars">
+      <div id="stars_container" class="container unselectable"></div>
+      <div id="stars_footer" class="footer unselectable"></div>
+    </template>
+
+    <template id="template_stars_top">
+      <div class="flex_row_center gap_1">
+        <div id="stars_prev" class="action unselectable window_prev" title="Prev (Shift + Tab)"> &lt;--</div>
+        <div id="stars_title" class="window_title unselectable">Stars</div>
+        <input type="text" id="stars_filter" class="filter" autocomplete="off" placeholder="Filter">
+        
+        <select id="stars_filter_mode" class="select" title="Filter Mode">
+          <option value="all" selected>All</option>
+          <option value="title">Title</option>
+          <option value="url">URL</option>
+        </select>
+
+        <div id="stars_next" class="action unselectable window_next" title="Next (Tab)"> --&gt;</div>
+      </div>
+    </template>    
+
     <template id="template_closed_tabs_top">
       <div class="flex_row_center gap_1">
         <div id="closed_tabs_prev" class="action unselectable window_prev" title="Prev (Shift + Tab)"> &lt;--</div>
@@ -101,7 +122,6 @@
           <option value="url">URL</option>
         </select>
 
-        <input id="closed_tabs_case_sensitive" type="checkbox" title="Case Sensitive" class="checkbox">
         <div id="closed_tabs_next" class="action unselectable window_next" title="Next (Tab)"> --&gt;</div>
       </div>
     </template>
@@ -123,7 +143,6 @@
           <option value="url">URL</option>
         </select>
 
-        <input id="history_case_sensitive" type="checkbox" title="Case Sensitive" class="checkbox">
         <div id="history_next" class="action unselectable window_next" title="Next (Tab)"> --&gt;</div>
       </div>
     </template>

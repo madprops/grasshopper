@@ -154,9 +154,8 @@ App.focus_filter = function (mode) {
 App.do_item_filter = function (mode, select = true) {
   let value = App.el(`#${mode}_filter`).value.trim()
   let words = value.split(" ").filter(x => x !== "")
-  let case_sensitive = App.el(`#${mode}_case_sensitive`).checked
   let filter_mode = App.el(`#${mode}_filter_mode`).value
-  let filter_words = case_sensitive ? words : words.map(x => x.toLowerCase())
+  let filter_words = words.map(x => x.toLowerCase())
 
   function check (what) {
     return filter_words.every(x => what.includes(x))
@@ -164,8 +163,8 @@ App.do_item_filter = function (mode, select = true) {
 
   function matched (item) {
     let match = false
-    let title = case_sensitive ? item.title : item.title_lower
-    let path = case_sensitive ? item.path : item.path_lower
+    let title = item.title_lower
+    let path = item.path_lower
     
     if (filter_mode === "all") {
       match = check(title) || check(path)
@@ -211,6 +210,7 @@ App.do_item_filter = function (mode, select = true) {
 
 // Show item menu
 App.show_item_menu = function (mode, item, x, y) {
+  console.log(App.stars_items)
   let items = []
 
   if (mode === "tabs") {
@@ -260,6 +260,22 @@ App.show_item_menu = function (mode, item, x, y) {
       App.copy_to_clipboard(item.title)
     }
   })
+
+  if (App.get_item_by_url("stars", item.url)) {
+    items.push({
+      text: "Un-Star",
+      action: function () {
+        App.unstar_item(item)
+      }
+    })
+  } else {
+    items.push({
+      text: "Star",
+      action: function () {
+        App.star_item(item)
+      }
+    })
+  }
 
   NeedContext.show(x, y, items)
 }
@@ -315,7 +331,8 @@ App.process_item = function (mode, item, exclude = []) {
     path_lower: path.toLowerCase(),
     favicon: item.favIconUrl,
     empty: false,
-    created: false
+    created: false,
+    mode: mode
   }
   
   if (mode === "tabs") {
@@ -356,7 +373,7 @@ App.create_item_element = function (mode, item) {
 
   if (mode === "tabs") {
     action.textContent = "Close"
-  } else if (mode === "closed_tabs" || mode === "history") {
+  } else if (mode === "stars" || mode === "closed_tabs" || mode === "history") {
     action.textContent = "Open"
   }
   
@@ -411,7 +428,7 @@ App.set_item_text = function (mode, item) {
   text.textContent = content
 }
 
-// Get an item by the id dataset
+// Get an item by id
 App.get_item_by_id = function (mode, id) {
   id = id.toString()
 
@@ -422,9 +439,18 @@ App.get_item_by_id = function (mode, id) {
   }
 }
 
+// Get an item by url
+App.get_item_by_url = function (mode, url) {
+  for (let item of App[`${mode}_items`]) {
+    if (item.url === url) {
+      return item
+    }
+  }
+}
+
 // Used for lazy-loading components
 App.start_item_observers = function () {
-  let modes = ["tabs", "closed_tabs", "history"]
+  let modes = ["tabs", "stars", "closed_tabs", "history"]
 
   for (let mode of modes) {
     let options = {

@@ -81,10 +81,6 @@ App.setup_tabs = function () {
   App.ev(App.el("#tabs_filter_mode"), "change", function () {
     App.do_item_filter("tabs")
   })
-
-  App.ev(App.el("#tabs_case_sensitive"), "change", function () {
-    App.do_item_filter("tabs")
-  })    
 }
 
 // Restore a closed tab

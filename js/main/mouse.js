@@ -150,4 +150,57 @@ App.setup_mouse = function () {
       e.preventDefault()
     }
   })  
+
+  let stars = App.el("#stars_container")
+
+  // On stars item click
+  App.ev(stars, "click", function (e) {
+    if (e.target.closest(".stars_item")) {
+      let el = e.target.closest(".stars_item")
+      let id = el.dataset.id
+      let item = App.get_item_by_id("stars", id)
+
+      if (e.target.closest(".action_button")) {
+        App.open_stars_item(item, false)
+      } else {
+        App.open_stars_item(item)
+      }
+
+      App.remove_item("stars", item)
+    }
+  })
+
+  // On stars middle click
+  App.ev(stars, "auxclick", function (e) {
+    if (e.button === 1) {
+      if (e.target.closest(".stars_item")) {
+        let el = e.target.closest(".stars_item")
+        let id = el.dataset.id
+        let item = App.get_item_by_id("stars", id)
+        App.open_stars_item(item, false)
+        App.remove_item("stars", item)
+      }
+    }
+  })  
+  
+  // When stars get hovered
+  App.ev(stars, "mousemove", function (e) {   
+    if (e.target.closest(".stars_item")) {
+      let el = e.target.closest(".stars_item")
+      let id = el.dataset.id
+      let item = App.get_item_by_id("stars", id)
+      App.select_item("stars", item)
+    }
+  })
+
+  // On context menu action
+  App.ev(stars, "contextmenu", function (e) {
+    if (e.target.closest(".stars_item")) {
+      let el = e.target.closest(".stars_item")
+      let id = el.dataset.id
+      let item = App.get_item_by_id("stars", id)
+      App.show_item_menu("stars", item, e.clientX, e.clientY)
+      e.preventDefault()
+    }
+  })   
 }

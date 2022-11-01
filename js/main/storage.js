@@ -41,6 +41,11 @@ App.get_state = function () {
     changed = true
   } 
 
+  if (!App.state.stars) {
+    App.state.stars = []
+    changed = true
+  }   
+
   if (changed) {
     App.save_state()
   }
