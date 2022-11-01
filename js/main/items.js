@@ -509,6 +509,7 @@ App.show_item_window = async function (mode) {
   App.process_items(mode, items)
   let v = App.el(`#${last_mode}_filter`).value.trim()
   App.el(`#${mode}_filter`).value = v
+  App.el(`#${mode}_select`).value = mode
   App.do_item_filter(mode)
 }
 
@@ -530,16 +531,26 @@ App.setup_item_window = function (mode) {
     App.ev(App.el(`#${mode}_filter_mode`), "change", function () {
       App.do_item_filter(mode)
     })
-  
+
+    let select = App.create("select", "select", `${mode}_select`)
+
     for (let m of App.item_windows) {
+      let option = App.create("option")
+      
       if (m === mode) {
-        continue
+        option.selected = true
       }
-  
-      App.ev(App.el(`#${mode}_${m}_button`), "click", function () {
-        App.show_item_window(m)
-      })
+
+      option.value = m
+      option.textContent = App.item_name(m)
+      select.append(option)
     }
+
+    App.ev(select, "change", function () {
+      App.show_item_window(this.value)
+    })
+
+    App.el(`#${mode}_select_container`).append(select)
   }
 
   App.create_window(args) 
@@ -567,5 +578,18 @@ App.cycle_item_windows = function (reverse = false) {
     } else {
       App.show_item_window("stars")
     }
+  }
+}
+
+// Get item name by mode
+App.item_name = function (mode) {
+  if (mode === "tabs") {
+    return "Tabs"
+  } else if (mode === "stars") {
+    return "Stars"
+  } else if (mode === "closed_tabs") {
+    return "Closed"
+  } else if (mode === "history") {
+    return "History"
   }
 }

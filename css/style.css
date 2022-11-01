@@ -81,7 +81,7 @@ body, html {
   outline: 1px solid var(--alt_color);
   border-width: 0;
   font-size: 1rem;
-  padding: 0.05rem;
+  padding: 0.025rem;
   flex-grow: 0;
   width: 9rem;
 }
