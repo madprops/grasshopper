@@ -42,12 +42,19 @@ body, html {
   display: flex;
   flex-direction: row;
   align-items: center;
-  justify-content: center;
   width: 100%;
   margin-top: 0.8rem;
   padding-right: 1rem;
   min-height: 1rem;
   flex-shrink: 0;
+}
+
+.window_top_center {
+  justify-content: center;
+}
+
+.window_top_left {
+  justify-content: start;
 }
 
 .window_x {
@@ -251,4 +258,8 @@ body, html {
 
 #star_editor_container {
   margin-top: 2rem;
+}
+
+.item_select {
+  margin-left: 0.66rem;
 }

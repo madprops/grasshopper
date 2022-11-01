@@ -518,6 +518,7 @@ App.setup_item_window = function (mode) {
   let args = {}
   args.id = mode
   args.close_button = false
+  args.align_top = "left"
 
   args.setup = function () {
     let item_filter = App.create_debouncer(function () {
@@ -532,7 +533,7 @@ App.setup_item_window = function (mode) {
       App.do_item_filter(mode)
     })
 
-    let select = App.create("select", "select", `${mode}_select`)
+    let select = App.create("select", "select item_select", `${mode}_select`)
 
     for (let m of App.item_windows) {
       let option = App.create("option")
@@ -546,7 +547,17 @@ App.setup_item_window = function (mode) {
       select.append(option)
     }
 
+    let option = App.create("option")
+    option.value = "about"
+    option.textContent = "About"
+    select.append(option)
+
     App.ev(select, "change", function () {
+      if (this.value === "about") {
+        App.show_about()
+        return
+      }
+
       App.show_item_window(this.value)
     })
 

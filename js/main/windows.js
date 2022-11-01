@@ -9,9 +9,13 @@ App.create_window = function (args) {
     args.close_button = true
   }
 
+  if (args.align_top === undefined) {
+    args.align_top = "center"
+  }
+
   let w = {}
   let el = App.create("div", "window_main", `window_${args.id}`)
-  let top = App.create("div", "window_top")
+  let top = App.create("div", `window_top window_top_${args.align_top}`)
   top.innerHTML = App.get_template(`${args.id}_top`)
 
   if (args.close_button) {

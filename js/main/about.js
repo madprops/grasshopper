@@ -43,12 +43,13 @@ App.setup_about = function () {
       App.save_state()
       App.apply_theme()
     })  
-  }})
+  }}) 
+}
 
-  App.ev(App.el("#about_button"), "click", function () {
-    let s = App.plural(App.tabs_items.length, "tab", "tabs")
-    let p = App.plural(App.get_pinned_tabs().length, "pin", "pins")
-    App.el("#about_stats").textContent = `${s} open (${p})`
-    App.windows["about"].show()
-  })  
+// Show the about window
+App.show_about = function () {
+  let s = App.plural(App.tabs_items.length, "tab", "tabs")
+  let p = App.plural(App.get_pinned_tabs().length, "pin", "pins")
+  App.el("#about_stats").textContent = `${s} open (${p})`
+  App.windows["about"].show()
 }
