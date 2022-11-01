@@ -100,7 +100,7 @@ App.update_star = function () {
     url: url
   })
 
-  App.show_item_window("stars")
+  App.windows["star_editor"].hide()
 }
 
 // Add a new star manually
