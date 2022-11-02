@@ -652,7 +652,7 @@ App.make_items_select = function (mode) {
   }
 
   let on_change = function (select) {
-    App.show_item_window(select.value, true)
+    App.show_item_window(select.value)
   }
 
   App.ev(select, "change", function () {
