@@ -408,7 +408,7 @@ App.set_item_text = function (mode, item) {
   let purl
 
   if (item.url.startsWith("http://")) {
-    purl = item.url
+    purl = `(http) ${item.path}`
   } else {
     purl = item.path
   }
