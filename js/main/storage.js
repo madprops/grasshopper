@@ -47,7 +47,6 @@ App.stor_reset_settings = async function () {
   if (confirm ("Reset settings to defaults?")) {
     App.settings = {}
     await App.stor_save_settings()
-    alert("Window needs to restart")
     window.close()
   }
 }
