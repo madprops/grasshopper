@@ -144,10 +144,8 @@ App.update_tab = function (o_tab, info) {
 
 // Prepend tab to the top
 App.prepend_tab = function (info) {
-  let id = info.id.toString()
-
   for (let [i, it] of App.tabs_items.entries()) {
-    if (it.id.toString() === id) {
+    if (it.id === info.id) {
       if (it.empty) {
         App.tabs_items.splice(i, 1)
         break
