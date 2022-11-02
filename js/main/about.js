@@ -44,14 +44,30 @@ App.setup_about = function () {
 
     color.on("change", function (picker, color) {
       change_color(color)
-    })  
+    })
+
+    let window_order = App.el("#window_order")
+
+    for (let m of App.state.window_order) {
+      let el = App.create("div", "window_order_item")
+      el.dataset.mode = m
+      el.textContent = App.item_name(m)
+      window_order.append(el)
+    }
+
+    let drag = dragula([window_order])
+
+    drag.on("drop", function () {
+      App.update_window_order()
+    })
   }}) 
 }
 
 // Show the about window
-App.show_about = function () {
-  let s = App.plural(App.tabs_items.length, "tab", "tabs")
-  let p = App.plural(App.get_pinned_tabs().length, "pin", "pins")
+App.show_about = async function () {
+  let tab_count = await App.get_tab_count()
+  let s = App.plural(tab_count.all, "tab", "tabs")
+  let p = App.plural(tab_count.pins, "pin", "pins")
   App.el("#about_stats").textContent = `${s} open (${p})`
   App.windows["about"].show()
 }

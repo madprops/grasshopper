@@ -292,3 +292,22 @@ App.clean_closed_tab = function (id) {
 App.tabs_action = function () {
   App.open_tab(App.selected_tabs_item)
 }
+
+// Get tab count
+App.get_tab_count = async function () {
+  let tabs = await browser.tabs.query({currentWindow: true})
+
+  let ans = {}
+  ans.all = 0
+  ans.pins = 0
+  
+  for (let tab of tabs) {
+    ans.all += 1
+    
+    if (tab.pinned) {
+      ans.pins += 1
+    }
+  }
+
+  return ans
+}

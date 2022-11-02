@@ -54,7 +54,7 @@ App.create_window = function (args) {
     if (args.on_hide) {
       args.on_hide()
     } else {
-      App.show_item_window("tabs")
+      App.show_first_item_window()
     }
   }
 

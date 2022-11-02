@@ -30,6 +30,11 @@ App.get_state = async function () {
     changed = true
   }   
 
+  if (!App.state.window_order) {
+    App.state.window_order = ["tabs", "stars", "closed", "history"]
+    changed = true
+  }   
+
   if (changed) {
     App.save_state()
   }

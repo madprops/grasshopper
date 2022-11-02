@@ -359,7 +359,7 @@ App.process_item = function (mode, item, exclude = []) {
     obj.pinned = item.pinned
     obj.audible = item.audible
     obj.muted = item.mutedInfo.muted
-  } else if (mode === "closed_tabs") {
+  } else if (mode === "closed") {
     obj.window_id = item.windowId
     obj.session_id = item.sessionId
   }
@@ -540,29 +540,7 @@ App.setup_item_window = function (mode) {
     })
 
     let top = App.el(`#${mode}_top_container`)
-    let select = App.create("select", "select item_select", `${mode}_select`)
-
-    for (let m of App.item_windows) {
-      let option = App.create("option")
-      
-      if (m === mode) {
-        option.selected = true
-      }
-
-      option.value = m
-      option.textContent = App.item_name(m)
-      select.append(option)
-    }
-
-    let on_change = function (select) {
-      App.show_item_window(select.value)
-    }
-
-    App.ev(select, "change", function () {
-      on_change(select)
-    })
-
-    App.wrap_select(select, on_change)
+    let select = App.make_items_select(mode)
     top.prepend(select)
 
     let g = App.create("div", "menu_icon action unselectable")
@@ -583,17 +561,17 @@ App.cycle_item_windows = function (reverse = false) {
   if (reverse) {
     if (App.window_mode === "stars") {
       App.show_item_window("tabs")
-    } else if (App.window_mode === "closed_tabs") {
+    } else if (App.window_mode === "closed") {
       App.show_item_window("stars")
     } else if (App.window_mode === "history") {
-      App.show_item_window("closed_tabs")
+      App.show_item_window("closed")
     } else {
       App.show_item_window("history")
     }
   } else {
     if (App.window_mode === "stars") {
-      App.show_item_window("closed_tabs")
-    } else if (App.window_mode === "closed_tabs") {
+      App.show_item_window("closed")
+    } else if (App.window_mode === "closed") {
       App.show_item_window("history")
     } else if (App.window_mode === "history") {
       App.show_item_window("tabs")
@@ -609,9 +587,61 @@ App.item_name = function (mode) {
     return "Tabs"
   } else if (mode === "stars") {
     return "Stars"
-  } else if (mode === "closed_tabs") {
+  } else if (mode === "closed") {
     return "Closed"
   } else if (mode === "history") {
     return "History"
   }
+}
+
+// Update window order
+App.update_window_order = function () {
+  let boxes = App.els(".window_order_item", App.el("#window_order"))
+  App.state.window_order = boxes.map(x => x.dataset.mode)
+  App.save_state()
+  App.remake_items_selects()
+}
+
+// Make items select
+App.make_items_select = function (mode) {
+  let select = App.create("select", "select item_select", `${mode}_select`)
+
+  for (let m of App.state.window_order) {
+    let option = App.create("option")
+    
+    if (m === mode) {
+      option.selected = true
+    }
+
+    option.value = m
+    option.textContent = App.item_name(m)
+    select.append(option)
+  }
+
+  let on_change = function (select) {
+    App.show_item_window(select.value)
+  }
+
+  App.ev(select, "change", function () {
+    on_change(select)
+  })
+
+  App.wrap_select(select, on_change)
+  return select
+}
+
+// Remake item selects
+App.remake_items_selects = function () {
+  for (let mode of App.state.window_order) {
+    let select = App.el(`#${mode}_select`)
+    
+    if (select) {
+      select.replaceWith(App.make_items_select(mode))
+    }
+  }
+}
+
+// Show first item window
+App.show_first_item_window = function () {
+  App.show_item_window(App.state.window_order[0])
 }

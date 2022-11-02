@@ -1,11 +1,13 @@
 <!DOCTYPE html>
 <html>
   <head>
+    <link rel="stylesheet" href="css/dragula.css">
     <link rel="stylesheet" href="css/style.css">
     <script src="js/libs/needcontext.js"></script>
     <script src="js/libs/jdenticon.js"></script>
     <script src="js/libs/colorlib.js"></script>
     <script src="js/libs/acolorpicker.min.js"></script>
+    <script src="js/libs/dragula.min.js"></script>
     <script src="js/main/app.js"></script>
     <script src="js/main/state.js"></script>
     <script src="js/main/utils.js"></script>
@@ -15,7 +17,7 @@
     <script src="js/main/items.js"></script>
     <script src="js/main/tabs.js"></script>
     <script src="js/main/stars.js"></script>
-    <script src="js/main/closed_tabs.js"></script>
+    <script src="js/main/closed.js"></script>
     <script src="js/main/history.js"></script>
     <script src="js/main/windows.js"></script>
     <script src="js/main/about.js"></script>
@@ -85,16 +87,16 @@
       <div class="bigger">Star Editor</div>
     </template>    
     
-    <template id="template_closed_tabs">
-      <div id="closed_tabs_container" class="container unselectable"></div>
-      <div id="closed_tabs_footer" class="footer unselectable"></div>
+    <template id="template_closed">
+      <div id="closed_container" class="container unselectable"></div>
+      <div id="closed_footer" class="footer unselectable"></div>
     </template>    
 
-    <template id="template_closed_tabs_top">
-      <div class="flex_row_center gap_1" id="closed_tabs_top_container">
-        <input type="text" id="closed_tabs_filter" class="filter" autocomplete="off" placeholder="Filter">
+    <template id="template_closed_top">
+      <div class="flex_row_center gap_1" id="closed_top_container">
+        <input type="text" id="closed_filter" class="filter" autocomplete="off" placeholder="Filter">
         
-        <select id="closed_tabs_filter_mode" class="select" title="Filter Mode">
+        <select id="closed_filter_mode" class="select" title="Filter Mode">
           <option value="all" selected>All</option>
           <option value="title">Title</option>
           <option value="url">URL</option>
@@ -142,6 +144,10 @@
         </div>
 
         <div id="color_picker"></div>
+
+        <div class="separator"></div>
+
+        <div id="window_order" class="unselectable" title="Window Order"></div>
 
         <div class="separator"></div>
         

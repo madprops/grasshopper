@@ -44,6 +44,6 @@ App.setup_window_mouse = function (mode) {
 App.setup_mouse = function () {
   App.setup_window_mouse("tabs")
   App.setup_window_mouse("stars")
-  App.setup_window_mouse("closed_tabs")
+  App.setup_window_mouse("closed")
   App.setup_window_mouse("history") 
 }
