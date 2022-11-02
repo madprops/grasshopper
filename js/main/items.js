@@ -558,27 +558,30 @@ App.setup_item_window = function (mode) {
 
 // Cycle between item windows
 App.cycle_item_windows = function (reverse = false) {
+  let modes = App.state.window_order
+  let index = modes.indexOf(App.window_mode)
+  console.log(index)
+  let new_mode
+
+  if (index === -1) {
+    return
+  }
+
   if (reverse) {
-    if (App.window_mode === "stars") {
-      App.show_item_window("tabs")
-    } else if (App.window_mode === "closed") {
-      App.show_item_window("stars")
-    } else if (App.window_mode === "history") {
-      App.show_item_window("closed")
+    if (index === 0) {
+      new_mode = modes.slice(-1)
     } else {
-      App.show_item_window("history")
+      new_mode = modes[index - 1]
     }
   } else {
-    if (App.window_mode === "stars") {
-      App.show_item_window("closed")
-    } else if (App.window_mode === "closed") {
-      App.show_item_window("history")
-    } else if (App.window_mode === "history") {
-      App.show_item_window("tabs")
+    if (index === modes.length - 1) {
+      new_mode = modes[0]
     } else {
-      App.show_item_window("stars")
+      new_mode = modes[index + 1]
     }
   }
+
+  App.show_item_window(new_mode)
 }
 
 // Get item name by mode
