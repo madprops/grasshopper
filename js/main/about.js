@@ -48,19 +48,19 @@ App.setup_about = function () {
       let el = App.create("div", "window_order_item flex_row_center gap_2")
       el.dataset.mode = m
 
-      let up = App.create("button", "button")
+      let text = App.create("div", "window_order_item_text")
+      text.textContent = App.item_name(m)
+      el.append(text)
+
+      let up = App.create("button", "button up_down_button")
       up.textContent = "Up"
       el.append(up)
 
       App.ev(up, "click", function () {
         App.window_order_up(el)
-      })
+      })      
 
-      let text = App.create("div", "window_order_item_text")
-      text.textContent = App.item_name(m)
-      el.append(text)
-
-      let down = App.create("button", "button")
+      let down = App.create("button", "button up_down_button")
       down.textContent = "Down"
       el.append(down)
 

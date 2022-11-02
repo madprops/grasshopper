@@ -279,3 +279,7 @@ body, html {
   text-align: center;
   width: 5rem;
 }
+
+.up_down_button {
+  width: 4rem;
+}

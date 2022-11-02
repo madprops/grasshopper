@@ -608,6 +608,26 @@ App.update_window_order = function () {
   App.remake_items_selects()
 }
 
+// Window order up
+App.window_order_up = function (el) {
+  let prev = el.previousElementSibling
+
+  if (prev) {
+    el.parentNode.insertBefore(el, prev)
+    App.update_window_order()
+  }
+}
+
+// Window order down
+App.window_order_down = function (el) {
+  let next = el.nextElementSibling
+
+  if (next) {
+    el.parentNode.insertBefore(next, el)
+    App.update_window_order()
+  }
+}
+
 // Make items select
 App.make_items_select = function (mode) {
   let select = App.create("select", "select item_select", `${mode}_select`)
@@ -650,28 +670,6 @@ App.remake_items_selects = function () {
 // Show first item window
 App.show_first_item_window = function () {
   App.show_item_window(App.state.window_order[0])
-}
-
-// Window order up
-App.window_order_up = function (el) {
-  let prev = el.previousElementSibling
-
-  if (prev) {
-    el.parentNode.insertBefore(el, prev)
-  }
-
-  App.update_window_order()
-}
-
-// Window order down
-App.window_order_down = function (el) {
-  let next = el.nextElementSibling
-
-  if (next) {
-    el.parentNode.insertBefore(next, el)
-  }
-
-  App.update_window_order()
 }
 
 // Focus an open tab or launch a new one
