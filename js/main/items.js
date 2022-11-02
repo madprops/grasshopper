@@ -560,7 +560,6 @@ App.setup_item_window = function (mode) {
 App.cycle_item_windows = function (reverse = false) {
   let modes = App.state.window_order
   let index = modes.indexOf(App.window_mode)
-  console.log(index)
   let new_mode
 
   if (index === -1) {
