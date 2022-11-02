@@ -673,7 +673,7 @@ App.show_first_item_window = function () {
 }
 
 // Focus an open tab or launch a new one
-App.focus_or_open_item = async function (item, close = true) {
+App.focus_or_open_item = async function (item) {
   let tabs = await App.get_tabs()
 
   for (let tab of tabs) {
@@ -683,9 +683,6 @@ App.focus_or_open_item = async function (item, close = true) {
     }
   }
   
-  browser.tabs.create({url: item.url, active: close})
-
-  if (close) {
-    window.close()
-  }
+  browser.tabs.create({url: item.url, active: true})
+  window.close()
 }

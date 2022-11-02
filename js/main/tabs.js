@@ -49,12 +49,9 @@ App.sort_tabs_by_index = function (tabs) {
 }
 
 // Open a new tab
-App.focus_tab = function (tab, close = true) {
-  browser.tabs.update(tab.id, {active: close})
-
-  if (close) {
-    window.close()
-  }
+App.focus_tab = function (tab) {
+  browser.tabs.update(tab.id, {active: true})
+  window.close()
 }
 
 // Close tab with possible confirm
@@ -79,16 +76,6 @@ App.close_tab = function (tab) {
   }
 
   browser.tabs.remove(tab.id)
-}
-
-// Restore a closed tab
-App.restore_tab = function (tab, close = true) {
-  browser.sessions.forgetClosedTab(tab.window_id, tab.session_id)
-  browser.tabs.create({url: tab.url, active: close})
-
-  if (close) {
-    window.close()
-  }
 }
 
 // Open a new tab
