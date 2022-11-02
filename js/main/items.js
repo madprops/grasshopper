@@ -326,7 +326,7 @@ App.process_item = function (mode, item) {
     return
   }
 
-  let path = App.remove_protocol(item.url)
+  let path = App.remove_protocol(App.remove_slashes_end(item.url))
   let title = item.title || path
 
   let obj = {
