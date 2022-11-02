@@ -1,16 +1,15 @@
-// For internal checks
-App.tabs = []
+App.stor_settings = "settings_v1"
+App.stor_stars = "stars_v1"
+App.windows = {}
 App.filter_delay = 123
 App.color_delay = 123
-App.window_mode = "tabs"
-App.windows = {}
 App.history_max_months = 12
-App.ls_state = "state_v5"
 App.max_stars = 1000 * 5
 App.item_windows = ["tabs", "stars", "closed", "history"]
 
 App.init = async function () {
-  await App.get_state()
+  await App.stor_get_settings()
+  await App.stor_get_stars()
   App.setup_theme()
   App.setup_tabs()
   App.setup_stars()

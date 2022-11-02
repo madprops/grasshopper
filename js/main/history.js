@@ -11,7 +11,7 @@ App.history_months = function () {
 // Get items from history
 App.get_history = async function () {
   let results
-  let r = App.state.history_results
+  let r = App.settings.history_results
 
   if (r === "fast") {
     results = 1000 * 2

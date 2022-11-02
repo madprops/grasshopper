@@ -6,20 +6,19 @@ App.setup_about = function () {
     App.el("#about_name").textContent = s
   
     let text_mode = App.el("#about_text_mode")
-    text_mode.value = App.state.text_mode
+    text_mode.value = App.settings.text_mode
   
     App.ev(text_mode, "change", function () {
-      App.state.text_mode = text_mode.value
-      App.save_state()
-      App.show_tabs()
+      App.settings.text_mode = text_mode.value
+      App.stor_save_settings()
     })
   
     let history_results = App.el("#about_history_results")
-    history_results.value = App.state.history_results
+    history_results.value = App.settings.history_results
   
     App.ev(history_results, "change", function () {
-      App.state.history_results = history_results.value
-      App.save_state()
+      App.settings.history_results = history_results.value
+      App.stor_save_settings()
     })  
   
     App.ev(App.el("#about_history_results_info"), "click", function () {
@@ -31,7 +30,7 @@ App.setup_about = function () {
       showHSL: false,
       showHEX: false,
       showRGB: true,
-      color: App.state.color
+      color: App.settings.color
     })
 
     let change_color = App.create_debouncer(function (color) {
@@ -44,7 +43,7 @@ App.setup_about = function () {
 
     let window_order = App.el("#window_order")
 
-    for (let m of App.state.window_order) {
+    for (let m of App.settings.window_order) {
       let el = App.create("div", "window_order_item flex_row_center gap_2")
       el.dataset.mode = m
 
@@ -70,5 +69,9 @@ App.setup_about = function () {
 
       window_order.append(el)
     }
+
+    App.ev(App.el("#about_defaults_button"), "click", function () {
+      App.reset_settings()
+    })
   }}) 
 }

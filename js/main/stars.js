@@ -25,7 +25,7 @@ App.stars_action = function () {
 
 // Get stars
 App.get_stars = function () {
-  return App.state.stars
+  return App.stars.items
 }
 
 // Add an item to stars
@@ -44,16 +44,16 @@ App.star_item = function (item) {
     date: Date.now()
   })
 
-  App.state.stars = App.stars_items.slice(0, App.max_stars)
-  App.save_state()
+  App.stars.items = App.stars_items.slice(0, App.max_stars)
+  App.stor_save_stars()
 }
 
 // Remove an item from stars
 App.unstar_item = function (item) {
   let star = App.get_item_by_url("stars", item.url)
   App.remove_item("stars", star)
-  App.state.stars = App.stars_items.slice(0, App.max_stars)
-  App.save_state()
+  App.stars.items = App.stars_items.slice(0, App.max_stars)
+  App.stor_save_stars()
 }
 
 // Show stars editor

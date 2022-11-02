@@ -1,0 +1,80 @@
+// Get settings from sync storage
+App.stor_get_settings = async function () {
+  let obj = await browser.storage.sync.get(App.stor_settings)
+  
+  if (Object.keys(obj).length === 0) {
+    App.settings = {}
+  } else {
+    App.settings = obj[App.stor_settings]
+  }
+
+  let changed = false
+
+  if (!App.settings.text_mode) {
+    App.settings.text_mode = "title"
+    changed = true
+  }
+
+  if (!App.settings.history_results) {
+    App.settings.history_results = "normal"
+    changed = true
+  }
+
+  if (!App.settings.color) {
+    App.settings.color = "rgb(37, 41, 51)"
+    changed = true
+  }   
+
+  if (!App.settings.window_order) {
+    App.settings.window_order = ["tabs", "stars", "closed", "history"]
+    changed = true
+  }   
+
+  if (changed) {
+    App.stor_save_settings()
+  }
+}
+
+// Save settings to sync storage
+App.stor_save_settings = async function () {
+  let o = {}
+  o[App.stor_settings] = App.settings
+  await browser.storage.sync.set(o)
+}
+
+// Reset settings to default
+App.stor_reset_settings = function () {
+  App.settings = {}
+  App.stor_save_settings()
+  App.get_settings()
+  App.setup_about()
+}
+
+// Get stars from sync storage
+App.stor_get_stars = async function () {
+  let obj = await browser.storage.sync.get(App.stor_stars)
+  
+  if (Object.keys(obj).length === 0) {
+    App.stars = {}
+  } else {
+    App.stars = obj[App.stor_stars]
+  }
+
+  let changed = false
+
+  if (!App.stars.items) {
+    App.stars.items = []
+    changed = true
+  } 
+
+  if (changed) {
+    App.stor_save_stars()
+  }
+}
+
+// Save stars to sync storage
+App.stor_save_stars = async function () {
+  let o = {}
+  o[App.stor_stars] = App.stars
+  await browser.storage.sync.set(o)
+}

@@ -13,6 +13,10 @@ App.create_window = function (args) {
     args.align_top = "center"
   }
 
+  if (args.id in App.windows) {
+    App.windows[args.id].element.remove()
+  }
+
   let w = {}
   let el = App.create("div", "window_main", `window_${args.id}`)
   let top = App.create("div", `window_top window_top_${args.align_top}`)
