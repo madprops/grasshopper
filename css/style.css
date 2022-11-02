@@ -212,7 +212,6 @@ body, html {
 }
 
 #about_container {
-  gap: 1.2rem;
   margin-bottom: 5rem;
 }
 
@@ -268,6 +267,10 @@ body, html {
 .menu_icon {
   margin-left: 0.66rem;
   margin-right: 0.3rem;
+}
+
+#window_order {
+  border: 1px solid var(--alt_color);
 }
 
 .window_order_item {

@@ -301,33 +301,22 @@ App.process_items = function (mode, items) {
   container.innerHTML = ""
   App[`${mode}_items`] = []
   App[`${mode}_idx`] = 0
-  let exclude = []
 
   for (let item of items) {
-    let obj = App.process_item(mode, item, exclude)
+    let obj = App.process_item(mode, item)
 
     if (!obj) {
       continue
     }
 
-    if (mode !== "tabs") {
-      exclude.push(obj.url)
-    }
-    
     App[`${mode}_items`].push(obj)
     container.append(obj.element)
   }
 }
 
 // Process an item
-App.process_item = function (mode, item, exclude = []) {
+App.process_item = function (mode, item) {
   if (!item || !item.url) {
-    return false
-  }
-
-  item.url = App.format_url(item.url)
-
-  if (exclude.includes(item.url)) {
     return false
   }
 
@@ -684,7 +673,7 @@ App.focus_or_open_item = async function (item) {
   let tabs = await App.get_tabs()
 
   for (let tab of tabs) {
-    if (App.format_url(tab.url) === item.url) {
+    if (App.urls_equals(tab.url, item.url)) {
       App.focus_tab(tab)
       return
     }

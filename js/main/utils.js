@@ -1,8 +1,3 @@
-// Remove slashes from ending
-App.remove_slashes_end = function (s) {
-  return s.replace(/\/+$/g, "")
-}
-
 // Select a single element
 App.el = function (query, root = document) {
   return root.querySelector(query)
@@ -52,16 +47,6 @@ App.ev = function (element, action, callback, extra) {
   element.addEventListener(action, callback, extra)
 }
 
-// Remove hash from url
-App.remove_hash = function (url) {
-  return url.split("#")[0]
-}
-
-// The way to format urls
-App.format_url = function (url) {
-  return App.remove_slashes_end(App.remove_hash(url))
-}
-
 // Remove protocol like https://
 App.remove_protocol = function (url) {
   return url.replace(/^https?:\/\//, "")
@@ -91,7 +76,7 @@ App.get_hostname = function (url) {
     return ""
   }
 
-  return App.remove_slashes_end(url_obj.hostname)
+  return url_obj.hostname
 }
 
 // Get image favicon
@@ -151,4 +136,14 @@ App.wrap_select = function (select, on_change) {
     on_change(select)
     e.preventDefault()
   })
+}
+
+// Check if urls match
+App.urls_equals = function (u1, u2) {
+  return App.remove_slashes_end(u1) === App.remove_slashes_end(u2)
+}
+
+// Remove slashes from ending
+App.remove_slashes_end = function (s) {
+  return s.replace(/\/+$/g, "")
 }
