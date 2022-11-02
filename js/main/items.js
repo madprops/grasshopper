@@ -271,7 +271,7 @@ App.show_item_menu = function (mode, item, x, y) {
     items.push({
       text: "Star",
       action: function () {
-        App.star_item(item)
+        App.new_star(item.title, item.url)
       }
     })
   }

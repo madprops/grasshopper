@@ -94,10 +94,10 @@ App.update_star = function () {
 }
 
 // Add a new star manually
-App.new_star = function () {
+App.new_star = function (title = "", url = "") {
   App.star_edited = undefined
-  App.el("#star_editor_title").value = ""
-  App.el("#star_editor_url").value = ""
+  App.el("#star_editor_title").value = title
+  App.el("#star_editor_url").value = url
   App.windows["star_editor"].show()
   App.el("#star_editor_title").focus()
 }
