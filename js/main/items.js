@@ -459,7 +459,7 @@ App.get_item_by_url = function (mode, url) {
 
 // Used for lazy-loading components
 App.start_item_observers = function () {
-  for (let mode of App.item_windows) {
+  for (let mode of App.settings.window_order) {
     let options = {
       root: App.el(`#${mode}_container`),
       rootMargin: "0px",
@@ -499,7 +499,7 @@ App.intersection_observer = function (mode, options) {
 App.show_item_window = async function (mode) {
   let last_mode = App.window_mode
 
-  if (!App.item_windows.includes(last_mode)) {
+  if (!App.settings.window_order.includes(last_mode)) {
     last_mode = "tabs"
   }
 
