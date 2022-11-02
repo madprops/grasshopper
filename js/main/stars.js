@@ -120,5 +120,5 @@ App.new_star = function () {
 App.show_stars_info = async function () {
   let n = App.state.stars.length
   let s = App.plural(n, "star", "stars")
-  alert(s)
+  alert(`${s} saved`)
 }
