@@ -648,3 +648,25 @@ App.remake_items_selects = function () {
 App.show_first_item_window = function () {
   App.show_item_window(App.state.window_order[0])
 }
+
+// Window order up
+App.window_order_up = function (el) {
+  let prev = el.previousElementSibling
+
+  if (prev) {
+    el.parentNode.insertBefore(el, prev)
+  }
+
+  App.update_window_order()
+}
+
+// Window order down
+App.window_order_down = function (el) {
+  let next = el.nextElementSibling
+
+  if (next) {
+    el.parentNode.insertBefore(next, el)
+  }
+
+  App.update_window_order()
+}

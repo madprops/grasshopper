@@ -49,17 +49,31 @@ App.setup_about = function () {
     let window_order = App.el("#window_order")
 
     for (let m of App.state.window_order) {
-      let el = App.create("div", "window_order_item")
+      let el = App.create("div", "window_order_item flex_row_center gap_2")
       el.dataset.mode = m
-      el.textContent = App.item_name(m)
+
+      let up = App.create("button", "button")
+      up.textContent = "Up"
+      el.append(up)
+
+      App.ev(up, "click", function () {
+        App.window_order_up(el)
+      })
+
+      let text = App.create("div", "window_order_item_text")
+      text.textContent = App.item_name(m)
+      el.append(text)
+
+      let down = App.create("button", "button")
+      down.textContent = "Down"
+      el.append(down)
+
+      App.ev(down, "click", function () {
+        App.window_order_down(el)
+      })      
+
       window_order.append(el)
     }
-
-    let drag = dragula([window_order])
-
-    drag.on("drop", function () {
-      App.update_window_order()
-    })
   }}) 
 }
 
