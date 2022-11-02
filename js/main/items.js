@@ -246,6 +246,15 @@ App.show_item_menu = function (mode, item, x, y) {
     }
   }
 
+  if (!App.get_item_by_url("stars", item.url)) {
+    items.push({
+      text: "Add Star",
+      action: function () {
+        App.new_star(item.title, item.url)
+      }
+    })
+  }  
+
   items.push({
     text: "Copy URL",
     action: function () {
@@ -259,15 +268,6 @@ App.show_item_menu = function (mode, item, x, y) {
       App.copy_to_clipboard(item.title)
     }
   })
-
-  if (!App.get_item_by_url("stars", item.url)) {
-    items.push({
-      text: "Star",
-      action: function () {
-        App.new_star(item.title, item.url)
-      }
-    })
-  }
 
   if (mode === "tabs") {
     items.push({
