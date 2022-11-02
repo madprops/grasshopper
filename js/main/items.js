@@ -260,14 +260,7 @@ App.show_item_menu = function (mode, item, x, y) {
     }
   })
 
-  if (App.get_item_by_url("stars", item.url)) {
-    items.push({
-      text: "Un-Star",
-      action: function () {
-        App.unstar_item(item)
-      }
-    })
-  } else {
+  if (!App.get_item_by_url("stars", item.url)) {
     items.push({
       text: "Star",
       action: function () {
@@ -285,9 +278,16 @@ App.show_item_menu = function (mode, item, x, y) {
     })
   } else if (mode === "stars") {
     items.push({
-      text: "Edit",
+      text: "Edit Star",
       action: function () {
         App.show_star_editor(item)
+      }
+    })
+
+    items.push({
+      text: "Un-Star",
+      action: function () {
+        App.unstar_item(item)
       }
     })
   }
