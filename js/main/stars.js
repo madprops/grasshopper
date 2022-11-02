@@ -2,6 +2,10 @@
 App.setup_stars = function () {
   App.setup_item_window("stars")
 
+  App.ev(App.el("#stars_info_button"), "click", function () {
+    App.show_stars_info()
+  })
+
   App.ev(App.el("#stars_new_button"), "click", function () {
     App.new_star()
   })
@@ -109,4 +113,12 @@ App.new_star = function () {
   App.el("#star_editor_url").value = ""
   App.windows["star_editor"].show()
   App.el("#star_editor_title").focus()
+}
+
+
+// Show information about stars
+App.show_stars_info = async function () {
+  let n = App.state.stars.length
+  let s = App.plural(n, "star", "stars")
+  alert(s)
 }
