@@ -129,21 +129,25 @@ App.wrap_select = function (select, on_change) {
     if (this.hasFocus) {
       return
     }
+
+    let index
     
     if (e.deltaY < 0) {
       if (this.selectedIndex === 0) {
-        return
+        index = this.length - 1
+      } else {
+        index = this.selectedIndex - 1
       }
 
-      this.selectedIndex -= 1
     } else if (e.deltaY > 0) {
       if (this.selectedIndex === this.length - 1) {
-        return
+        index = 0
+      } else {
+        index = this.selectedIndex + 1
       }
-
-      this.selectedIndex += 1
     }
 
+    this.selectedIndex = index
     on_change(select)
     e.preventDefault()
   })

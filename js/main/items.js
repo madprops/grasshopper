@@ -516,6 +516,8 @@ App.show_item_window = async function (mode, repeat_filter = false) {
   } else {
     App.el(`#${mode}_filter`).value = ""
   }
+
+  App.focus_filter(mode)
 }
 
 // Setup an item window
