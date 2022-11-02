@@ -282,29 +282,11 @@ App.tabs_action = function () {
   App.focus_tab(App.selected_tabs_item)
 }
 
-// Get tab count
-App.get_tab_count = async function () {
-  let tabs = await browser.tabs.query({currentWindow: true})
-
-  let ans = {}
-  ans.all = 0
-  ans.pins = 0
-  
-  for (let tab of tabs) {
-    ans.all += 1
-    
-    if (tab.pinned) {
-      ans.pins += 1
-    }
-  }
-
-  return ans
-}
-
 // Show information about tabs
 App.show_tabs_info = async function () {
-  let tab_count = await App.get_tab_count()
-  let s = App.plural(tab_count.all, "tab", "tabs")
-  let p = App.plural(tab_count.pins, "pin", "pins")
+  let all = App.tabs_items.length
+  let pins = App.tabs_items.filter(x => x.pinned).length  
+  let s = App.plural(all, "tab", "tabs")
+  let p = App.plural(pins, "pin", "pins")
   alert(`${s} open (${p})`)
 }
