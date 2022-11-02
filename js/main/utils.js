@@ -60,9 +60,9 @@ App.copy_to_clipboard = function (text) {
 // Get singular or plural
 App.plural = function (n, singular, plural) {
   if (n === 1) {
-    return `${n} ${singular}`
+    return `${n.toLocaleString()} ${singular}`
   } else {
-    return `${n} ${plural}`
+    return `${n.toLocaleString()} ${plural}`
   }
 }
 
