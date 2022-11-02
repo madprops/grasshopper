@@ -5,10 +5,6 @@ App.setup_about = function () {
     let s = `Grasshopper v${manifest.version}`
     App.el("#about_name").textContent = s
   
-    App.ev(App.el("#about_close_all"), "click", function () {
-      App.close_all_tabs()
-    })
-  
     let text_mode = App.el("#about_text_mode")
     text_mode.value = App.state.text_mode
   
@@ -75,13 +71,4 @@ App.setup_about = function () {
       window_order.append(el)
     }
   }}) 
-}
-
-// Show the about window
-App.show_about = async function () {
-  let tab_count = await App.get_tab_count()
-  let s = App.plural(tab_count.all, "tab", "tabs")
-  let p = App.plural(tab_count.pins, "pin", "pins")
-  App.el("#about_stats").textContent = `${s} open (${p})`
-  App.windows["about"].show()
 }

@@ -213,9 +213,6 @@ body, html {
 
 #about_container {
   gap: 1.2rem;
-}
-
-#about_close_all {
   margin-bottom: 5rem;
 }
 
@@ -281,5 +278,5 @@ body, html {
 
 .window_order_item_text {
   text-align: center;
-  width: 6rem;
+  width: 5rem;
 }

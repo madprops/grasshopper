@@ -64,6 +64,14 @@ App.setup_tabs = function () {
     App.new_tab()
   })
 
+  App.ev(App.el("#tabs_wipe_button"), "click", function () {
+    App.wipe_tabs()
+  })
+
+  App.ev(App.el("#tabs_info_button"), "click", function () {
+    App.show_tabs_info()
+  })
+
   browser.tabs.onUpdated.addListener(function (id) {
     if (App.window_mode === "tabs") {
       App.refresh_tab(id)
@@ -259,8 +267,8 @@ App.go_to_playing_tab = function () {
   }
 }
 
-// Close all tabs
-App.close_all_tabs = function () {
+// Close all tabs except the current one
+App.wipe_tabs = function () {
   if (confirm("Close all tabs except the current one?")) {
     for (let tab of App.tabs_items) {
       if (tab.active) {
@@ -310,4 +318,12 @@ App.get_tab_count = async function () {
   }
 
   return ans
+}
+
+// Show information about tabs
+App.show_tabs_info = async function () {
+  let tab_count = await App.get_tab_count()
+  let s = App.plural(tab_count.all, "tab", "tabs")
+  let p = App.plural(tab_count.pins, "pin", "pins")
+  alert(`${s} open (${p})`)
 }
