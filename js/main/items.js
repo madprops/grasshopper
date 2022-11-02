@@ -496,7 +496,7 @@ App.intersection_observer = function (mode, options) {
 }
 
 // Show a window by mode
-App.show_item_window = async function (mode) {
+App.show_item_window = async function (mode, repeat_filter = false) {
   let last_mode = App.window_mode
 
   if (!App.settings.window_order.includes(last_mode)) {
@@ -507,10 +507,15 @@ App.show_item_window = async function (mode) {
   App.windows[mode].show()
   let items = await App[`get_${mode}`]()
   App.process_items(mode, items)
-  let v = App.el(`#${last_mode}_filter`).value.trim()
-  App.el(`#${mode}_filter`).value = v
   App.el(`#${mode}_select`).value = mode
-  App.do_item_filter(mode)
+  
+  if (repeat_filter) {
+    let v = App.el(`#${last_mode}_filter`).value.trim()
+    App.el(`#${mode}_filter`).value = v
+    App.do_item_filter(mode)
+  } else {
+    App.el(`#${mode}_filter`).value = ""
+  }
 }
 
 // Setup an item window
@@ -584,7 +589,7 @@ App.cycle_item_windows = function (reverse = false) {
     }
   }
 
-  App.show_item_window(new_mode)
+  App.show_item_window(new_mode, true)
 }
 
 // Get item name by mode
@@ -645,7 +650,7 @@ App.make_items_select = function (mode) {
   }
 
   let on_change = function (select) {
-    App.show_item_window(select.value)
+    App.show_item_window(select.value, true)
   }
 
   App.ev(select, "change", function () {
