@@ -52,3 +52,10 @@ App.show_history_results_info = function () {
   s += "Deep = 20k results"
   alert(s)
 }
+
+// Show information about history
+App.show_history_info = async function () {
+  let n = App.history_items.length
+  let s = App.plural(n, "history result", "history results")
+  alert(s)
+}

@@ -16,3 +16,8 @@ App.get_closed = async function () {
 App.closed_action = function () {
   App.restore_tab(App.selected_closed_item)
 }
+
+// Show information about closed tabs
+App.show_closed_info = async function () {
+  alert("These are recently closed tabs")
+}

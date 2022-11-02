@@ -1,3 +1,36 @@
+// Setup tabs
+App.setup_tabs = function () {
+  App.setup_item_window("tabs")
+
+  App.ev(App.el("#tabs_clean_button"), "click", function () {
+    App.clean_tabs()
+  })
+
+  App.ev(App.el("#tabs_playing_button"), "click", function () {
+    App.go_to_playing_tab()
+  })
+
+  App.ev(App.el("#tabs_new_button"), "click", function () {
+    App.new_tab()
+  })
+
+  App.ev(App.el("#tabs_wipe_button"), "click", function () {
+    App.wipe_tabs()
+  })
+
+  browser.tabs.onUpdated.addListener(function (id) {
+    if (App.window_mode === "tabs") {
+      App.refresh_tab(id)
+    }
+  })
+
+  browser.tabs.onRemoved.addListener(function (id) {
+    if (App.window_mode === "tabs") {
+      App.clean_closed_tab(id)
+    }
+  })
+}
+
 // Get open tabs
 App.get_tabs = async function () {
   let tabs = await browser.tabs.query({currentWindow: true})
@@ -46,43 +79,6 @@ App.close_tab = function (tab) {
   }
 
   browser.tabs.remove(tab.id)
-}
-
-// Setup tabs
-App.setup_tabs = function () {
-  App.setup_item_window("tabs")
-
-  App.ev(App.el("#tabs_clean_button"), "click", function () {
-    App.clean_tabs()
-  })
-
-  App.ev(App.el("#tabs_playing_button"), "click", function () {
-    App.go_to_playing_tab()
-  })
-
-  App.ev(App.el("#tabs_new_button"), "click", function () {
-    App.new_tab()
-  })
-
-  App.ev(App.el("#tabs_wipe_button"), "click", function () {
-    App.wipe_tabs()
-  })
-
-  App.ev(App.el("#tabs_info_button"), "click", function () {
-    App.show_tabs_info()
-  })
-
-  browser.tabs.onUpdated.addListener(function (id) {
-    if (App.window_mode === "tabs") {
-      App.refresh_tab(id)
-    }
-  })
-
-  browser.tabs.onRemoved.addListener(function (id) {
-    if (App.window_mode === "tabs") {
-      App.clean_closed_tab(id)
-    }
-  })
 }
 
 // Restore a closed tab

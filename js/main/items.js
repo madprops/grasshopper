@@ -534,6 +534,10 @@ App.setup_item_window = function (mode) {
     App.ev(filter_mode, "change", function () {
       App.do_item_filter(mode)
     })
+
+    App.ev(App.el(`#${mode}_info_button`), "click", function () {
+      App[`show_${mode}_info`]()
+    })
     
     App.wrap_select(filter_mode, function () {
       App.do_item_filter(mode)
