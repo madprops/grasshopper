@@ -43,11 +43,13 @@ App.stor_save_settings = async function () {
 }
 
 // Reset settings to default
-App.stor_reset_settings = function () {
-  App.settings = {}
-  App.stor_save_settings()
-  App.get_settings()
-  App.setup_about()
+App.stor_reset_settings = async function () {
+  if (confirm ("Reset settings to defaults?")) {
+    App.settings = {}
+    await App.stor_save_settings()
+    alert("Window needs to restart")
+    window.close()
+  }
 }
 
 // Get stars from sync storage

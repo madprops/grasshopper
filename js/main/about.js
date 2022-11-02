@@ -71,7 +71,7 @@ App.setup_about = function () {
     }
 
     App.ev(App.el("#about_defaults_button"), "click", function () {
-      App.reset_settings()
+      App.stor_reset_settings()
     })
   }}) 
 }
