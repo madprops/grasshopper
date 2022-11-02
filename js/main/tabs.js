@@ -49,7 +49,7 @@ App.sort_tabs_by_index = function (tabs) {
 }
 
 // Open a new tab
-App.open_tab = function (tab, close = true) {
+App.focus_tab = function (tab, close = true) {
   browser.tabs.update(tab.id, {active: close})
 
   if (close) {
@@ -246,7 +246,7 @@ App.go_to_playing_tab = function () {
       }
 
       if (waypoint) {
-        App.open_tab(tab)
+        App.focus_tab(tab)
         return
       }
     }
@@ -259,7 +259,7 @@ App.go_to_playing_tab = function () {
 
   // If none found then pick the first one
   if (first) {
-    App.open_tab(first)
+    App.focus_tab(first)
   }
 }
 
@@ -294,7 +294,7 @@ App.clean_closed_tab = function (id) {
 
 // Tabs action
 App.tabs_action = function () {
-  App.open_tab(App.selected_tabs_item)
+  App.focus_tab(App.selected_tabs_item)
 }
 
 // Get tab count

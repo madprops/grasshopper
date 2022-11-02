@@ -30,18 +30,9 @@ App.get_history = async function () {
   return items
 }
 
-// Open history item
-App.open_history_item = function (item, close = true) {
-  browser.tabs.create({url: item.url, active: close})
-
-  if (close) {
-    window.close()
-  }
-}
-
 // Selected history item action
 App.history_action = function () {
-  App.open_history_item(App.selected_history_item)
+  App.focus_or_open_item(App.selected_history_item)
 }
 
 // Show history results info

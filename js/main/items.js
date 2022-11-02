@@ -673,3 +673,21 @@ App.window_order_down = function (el) {
 
   App.update_window_order()
 }
+
+// Focus an open tab or launch a new one
+App.focus_or_open_item = async function (item, close = true) {
+  let tabs = await App.get_tabs()
+
+  for (let tab of tabs) {
+    if (App.format_url(tab.url) === item.url) {
+      App.focus_tab(tab)
+      return
+    }
+  }
+  
+  browser.tabs.create({url: item.url, active: close})
+
+  if (close) {
+    window.close()
+  }
+}

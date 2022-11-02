@@ -19,17 +19,8 @@ App.setup_stars = function () {
 
 // Selected stars item action
 App.stars_action = function () {
-  App.open_stars_item(App.selected_stars_item)
-}
-
-// Open stars item
-App.open_stars_item = function (item, close = true) {
-  App.star_item(item)
-  browser.tabs.create({url: item.url, active: close})
-
-  if (close) {
-    window.close()
-  }
+  App.star_item(App.selected_stars_item)
+  App.focus_or_open_item(App.selected_stars_item)
 }
 
 // Get stars
