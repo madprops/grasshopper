@@ -1,11 +1,11 @@
 // Get settings from sync storage
 App.stor_get_settings = async function () {
-  let obj = await browser.storage.sync.get(App.stor_settings)
+  let obj = await browser.storage.sync.get(App.stor_settings_name)
   
   if (Object.keys(obj).length === 0) {
     App.settings = {}
   } else {
-    App.settings = obj[App.stor_settings]
+    App.settings = obj[App.stor_settings_name]
   }
 
   let changed = false
@@ -38,7 +38,7 @@ App.stor_get_settings = async function () {
 // Save settings to sync storage
 App.stor_save_settings = async function () {
   let o = {}
-  o[App.stor_settings] = App.settings
+  o[App.stor_settings_name] = App.settings
   await browser.storage.sync.set(o)
 }
 
@@ -53,12 +53,12 @@ App.stor_reset_settings = async function () {
 
 // Get stars from sync storage
 App.stor_get_stars = async function () {
-  let obj = await browser.storage.sync.get(App.stor_stars)
+  let obj = await browser.storage.sync.get(App.stor_stars_name)
   
   if (Object.keys(obj).length === 0) {
     App.stars = {}
   } else {
-    App.stars = obj[App.stor_stars]
+    App.stars = obj[App.stor_stars_name]
   }
 
   let changed = false
@@ -76,6 +76,6 @@ App.stor_get_stars = async function () {
 // Save stars to sync storage
 App.stor_save_stars = async function () {
   let o = {}
-  o[App.stor_stars] = App.stars
+  o[App.stor_stars_name] = App.stars
   await browser.storage.sync.set(o)
 }
