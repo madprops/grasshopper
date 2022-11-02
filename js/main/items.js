@@ -287,7 +287,7 @@ App.show_item_menu = function (mode, item, x, y) {
     items.push({
       text: "Un-Star",
       action: function () {
-        App.unstar_item(item)
+        App.confirm_unstar_item(item)
       }
     })
   }

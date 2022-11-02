@@ -109,3 +109,10 @@ App.show_stars_info = async function () {
   let s = App.plural(n, "star", "stars")
   alert(`${s} saved`)
 }
+
+// Confirm un-star item
+App.confirm_unstar_item = function (item) {
+  if (confirm("Remove this star?")) {
+    App.unstar_item(item)
+  }
+}
