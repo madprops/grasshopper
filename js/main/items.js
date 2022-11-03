@@ -292,6 +292,10 @@ App.show_item_menu = function (mode, item, x, y) {
     })
   }
 
+  if (App[`selected_${mode}`] !== item) {
+    App.select_item(mode, item)
+  }
+
   NeedContext.show(x, y, items)
 }
 
