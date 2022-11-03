@@ -13,8 +13,6 @@ App.setup_stars = function () {
   }, on_hide: function () {
     App.show_window(App.last_window_mode)
   }})
-
-  App.stars_items = App.get_stars()
 }
 
 // Selected stars item action
@@ -46,6 +44,10 @@ App.star_item = function (item) {
     date_added: Date.now(),
     date_last_visit: Date.now()
   })
+
+  if (App.stars.items.length > App.max_stars) {
+    App.stars.items.pop()
+  }
 
   App.stor_save_stars()
 }
@@ -111,8 +113,17 @@ App.star_editor_save = function () {
 
 // Get star by id
 App.get_star_by_id = function (id) {
-  for (let it of App.get_stars()) {
+  for (let it of App.stars.items) {
     if (it.id === id) {
+      return it
+    }
+  }
+}
+
+// Get star by url (first result)
+App.get_star_by_url = function (url) {
+  for (let it of App.stars.items) {
+    if (App.urls_equal(it.url, url)) {
       return it
     }
   }

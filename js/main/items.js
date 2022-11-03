@@ -246,7 +246,7 @@ App.show_item_menu = function (mode, item, x, y) {
     }
   }
 
-  if (!App.get_item_by_url("stars", item.url)) {
+  if (!App.get_star_by_url(item.url)) {
     items.push({
       text: "Add Star",
       action: function () {
