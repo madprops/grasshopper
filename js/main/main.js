@@ -4,7 +4,7 @@ App.windows = {}
 App.filter_delay = 123
 App.color_delay = 123
 App.history_max_months = 12
-App.max_stars = 2
+App.max_stars = 1000 * 5
 
 App.init = async function () {
   await App.stor_get_settings()
