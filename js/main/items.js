@@ -505,7 +505,10 @@ App.show_item_window = async function (mode, repeat_filter = false) {
   if (repeat_filter) {
     let v = App.el(`#${last_mode}_filter`).value.trim()
     App.el(`#${mode}_filter`).value = v
-    App.do_item_filter(mode)
+
+    if (v) {
+      App.do_item_filter(mode)
+    }
   } else {
     App.el(`#${mode}_filter`).value = ""
   }
