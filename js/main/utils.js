@@ -139,7 +139,7 @@ App.wrap_select = function (select, on_change) {
 }
 
 // Check if urls match
-App.urls_equals = function (u1, u2) {
+App.urls_equal = function (u1, u2) {
   return App.remove_slashes_end(u1) === App.remove_slashes_end(u2)
 }
 

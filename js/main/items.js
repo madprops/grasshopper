@@ -330,7 +330,7 @@ App.process_item = function (mode, item) {
     return
   }
 
-  let path = App.remove_protocol(item.url)
+  let path = App.remove_protocol(App.remove_slashes_end(item.url))
   let title = item.title || path
 
   let obj = {
@@ -444,7 +444,7 @@ App.get_item_by_id = function (mode, id) {
 // Get an item by url
 App.get_item_by_url = function (mode, url) {
   for (let item of App[`${mode}_items`]) {
-    if (App.urls_equals(item.url, url)) {
+    if (App.urls_equal(item.url, url)) {
       return item
     }
   }
@@ -681,7 +681,7 @@ App.focus_or_open_item = async function (item) {
   let tabs = await App.get_tabs()
 
   for (let tab of tabs) {
-    if (App.urls_equals(tab.url, item.url)) {
+    if (App.urls_equal(tab.url, item.url)) {
       App.focus_tab(tab)
       return
     }

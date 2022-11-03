@@ -24,7 +24,7 @@ App.setup_keyboard = function () {
 
     if (App.window_mode === "star_editor") {
       if (e.key === "Enter") {
-        App.update_star()
+        App.star_editor_save()
         e.preventDefault()
       }
 

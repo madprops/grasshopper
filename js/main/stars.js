@@ -8,7 +8,7 @@ App.setup_stars = function () {
   
   App.create_window({id: "star_editor", setup: function () {
     App.ev(App.el("#star_editor_save"), "click", function () {
-      App.update_star()
+      App.star_editor_save()
     })
   }, on_hide: function () {
     App.show_window(App.last_window_mode)
@@ -25,26 +25,37 @@ App.stars_action = function () {
 
 // Get stars
 App.get_stars = function () {
-  return App.stars.items
+  let stars = App.stars.items
+  stars.sort((a, b) => (a.date_last_visit < b.date_last_visit) ? 1 : -1)
+  console.log(stars)
+  return stars
+}
+
+// Update star data
+App.update_star = function (item) {
+  item.date_last_visit = Date.now()
+  item.visits += 1
+  App.stor_save_stars()
 }
 
 // Add an item to stars
 App.star_item = function (item) {
-  for (let [i, it] of App.stars_items.entries()) {
-    if (it.url === item.url) {
-      App.stars_items.splice(i, 1)
-      break
+  for (let it of App.get_stars()) {
+    if (App.urls_equal(it.url, item.url)) {
+      App.update_star(it)
+      return
     }
   }
 
-  App.stars_items.unshift({
+  App.stars.items.unshift({
     id: `${Date.now()}_${item.url.substring(0, 45)}`,
     url: item.url,
     title: item.title,
-    date: Date.now()
+    date_added: Date.now(),
+    date_last_visit: Date.now(),
+    visits: 1
   })
 
-  App.stars.items = App.stars_items.slice(0, App.max_stars)
   App.stor_save_stars()
 }
 
@@ -66,7 +77,7 @@ App.show_star_editor = function (item) {
 }
 
 // Update star information
-App.update_star = function () {
+App.star_editor_save = function () {
   let title = App.el("#star_editor_title").value.trim()
   let url = App.el("#star_editor_url").value.trim()
 
@@ -82,15 +93,32 @@ App.update_star = function () {
   }
 
   if (App.star_edited) {
-    App.unstar_item(App.star_edited)
-  }
+    let star = App.get_star_by_id(App.star_edited.id)
 
+    if (star) {
+      star.title = title
+      star.url = url
+      App.update_star(star)
+      App.windows["star_editor"].hide()
+      return
+    }
+  }
+    
   App.star_item({
     title: title,
     url: url
   })
 
   App.windows["star_editor"].hide()
+}
+
+// Get star by id
+App.get_star_by_id = function (id) {
+  for (let it of App.get_stars()) {
+    if (it.id === id) {
+      return it
+    }
+  }
 }
 
 // Add a new star manually

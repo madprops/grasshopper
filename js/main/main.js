@@ -1,5 +1,5 @@
 App.stor_settings_name = "settings_v1"
-App.stor_stars_name = "stars_v1"
+App.stor_stars_name = "stars_v5"
 App.windows = {}
 App.filter_delay = 123
 App.color_delay = 123
