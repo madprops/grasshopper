@@ -34,7 +34,6 @@ App.get_stars = function () {
 // Update star data
 App.update_star = function (item) {
   item.date_last_visit = Date.now()
-  item.visits += 1
   App.stor_save_stars()
 }
 
@@ -45,8 +44,7 @@ App.star_item = function (item) {
     url: item.url,
     title: item.title,
     date_added: Date.now(),
-    date_last_visit: Date.now(),
-    visits: 1
+    date_last_visit: Date.now()
   })
 
   App.stor_save_stars()
