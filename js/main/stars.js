@@ -39,13 +39,6 @@ App.update_star = function (item) {
 
 // Add an item to stars
 App.star_item = function (item) {
-  for (let it of App.get_stars()) {
-    if (App.urls_equal(it.url, item.url)) {
-      App.update_star(it)
-      return
-    }
-  }
-
   App.stars.items.unshift({
     id: `${Date.now()}_${item.url.substring(0, 45)}`,
     url: item.url,
