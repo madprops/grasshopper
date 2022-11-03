@@ -38,7 +38,7 @@ App.star_item = function (item) {
   }
 
   App.stars_items.unshift({
-    id: `${Date.now()}_${item.url.substring(0, 100)}`,
+    id: `${Date.now()}_${item.url.substring(0, 45)}`,
     url: item.url,
     title: item.title,
     date: Date.now()
