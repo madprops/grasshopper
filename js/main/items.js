@@ -327,7 +327,7 @@ App.process_item = function (mode, item) {
   try {
     url_obj = new URL(item.url)
   } catch (err) {
-    return
+    return false
   }
 
   let path = App.remove_protocol(App.remove_slashes_end(item.url))
