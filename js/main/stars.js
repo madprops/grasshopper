@@ -19,7 +19,8 @@ App.setup_stars = function () {
 
 // Selected stars item action
 App.stars_action = function () {
-  App.star_item(App.selected_stars_item)
+  let star = App.get_star_by_id(App.selected_stars_item.id)
+  App.update_star(star)
   App.focus_or_open_item(App.selected_stars_item)
 }
 
