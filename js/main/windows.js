@@ -47,6 +47,7 @@ App.create_window = function (args) {
 
     App.hide_all_windows()
     w.element.style.display = "flex"
+    App.last_window_mode = App.window_mode
     App.window_mode = args.id
   }
   
@@ -70,5 +71,14 @@ App.hide_window = function (w) {
 App.hide_all_windows = function () {
   for (let id in App.windows) {
     App.hide_window(App.windows[id])
+  }
+}
+
+// Centralized function to show windows
+App.show_window = function (mode) {
+  if (App.settings.window_order.includes(mode)) {
+    App.show_item_window(mode)
+  } else {
+    App.windows[mode].show()
   }
 }

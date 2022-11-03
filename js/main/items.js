@@ -547,7 +547,7 @@ App.setup_item_window = function (mode) {
     g.textContent = "G"
     
     App.ev(g, "click", function () {
-      App.windows["about"].show()
+      App.show_window("about")
     })
 
     top.prepend(g)    
