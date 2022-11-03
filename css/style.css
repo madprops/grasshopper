@@ -201,18 +201,8 @@ body, html {
   justify-content: center;
 }
 
-.titlebar_separator {
-  margin-left: 0.6rem;
-  margin-right: 0.6rem;
-  opacity: 0.6;
-}
-
 #about_container {
   margin-bottom: 5rem;
-}
-
-.invisible {
-  visibility: hidden;
 }
 
 .gap_1 {
