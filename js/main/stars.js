@@ -27,7 +27,6 @@ App.stars_action = function () {
 App.get_stars = function () {
   let stars = App.stars.items
   stars.sort((a, b) => (a.date_last_visit < b.date_last_visit) ? 1 : -1)
-  console.log(stars)
   return stars
 }
 
