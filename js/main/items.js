@@ -510,6 +510,7 @@ App.show_item_window = async function (mode, repeat_filter = false) {
     App.el(`#${mode}_filter`).value = ""
   }
 
+  App.select_first_item(mode)
   App.focus_filter(mode)
 }
 
