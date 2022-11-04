@@ -54,21 +54,6 @@ App.focus_tab = function (tab) {
   window.close()
 }
 
-// Close tab with possible confirm
-App.confirm_close_tab = function (tab) {
-  if (tab.audible) {
-    if (confirm("Close playing tab?")) {
-      App.close_tab(tab)
-    }
-  } else if (tab.pinned) {
-    if (confirm("Close pinned tab?")) {
-      App.close_tab(tab)
-    }
-  } else {
-    App.close_tab(tab)
-  }
-}
-
 // Close a tab
 App.close_tab = function (tab) {
   if (!tab) {

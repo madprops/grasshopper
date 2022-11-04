@@ -273,7 +273,7 @@ App.show_item_menu = function (mode, item, x, y) {
     items.push({
       text: "Close",
       action: function () {
-        App.confirm_close_tab(item)
+        App.close_tab(item)
       }
     })
   } else if (mode === "stars") {
