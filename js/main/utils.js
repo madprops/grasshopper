@@ -147,3 +147,13 @@ App.urls_equal = function (u1, u2) {
 App.remove_slashes_end = function (s) {
   return s.replace(/\/+$/g, "")
 }
+
+// Remove hash from url
+App.remove_hash = function (url) {
+  return url.split("#")[0]
+}
+
+// The way to format urls
+App.format_url = function (url) {
+  return App.remove_slashes_end(App.remove_hash(url))
+}

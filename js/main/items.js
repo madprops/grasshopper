@@ -305,12 +305,17 @@ App.process_items = function (mode, items) {
   container.innerHTML = ""
   App[`${mode}_items`] = []
   App[`${mode}_idx`] = 0
+  let exclude = []
 
   for (let item of items) {
-    let obj = App.process_item(mode, item)
+    let obj = App.process_item(mode, item, exclude)
 
     if (!obj) {
       continue
+    }
+
+    if (mode !== "tabs") {
+      exclude.push(obj.url)
     }
 
     App[`${mode}_items`].push(obj)
@@ -319,7 +324,7 @@ App.process_items = function (mode, items) {
 }
 
 // Process an item
-App.process_item = function (mode, item) {
+App.process_item = function (mode, item, exclude = []) {
   if (!item || !item.url) {
     return false
   }
@@ -330,14 +335,20 @@ App.process_item = function (mode, item) {
     return false
   }
 
-  let path = App.remove_protocol(App.remove_slashes_end(item.url))
+  let url = App.format_url(item.url)
+
+  if (exclude.includes(url)) {
+    return false
+  }
+
+  let path = App.remove_protocol(url)
   let title = item.title || path
 
   let obj = {
     id: item.id || App[`${mode}_idx`],
     title: title,
     title_lower: title.toLowerCase(),
-    url: item.url,
+    url: url,
     path: path,
     path_lower: path.toLowerCase(),
     favicon: item.favIconUrl,
