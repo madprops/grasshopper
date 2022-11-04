@@ -166,7 +166,10 @@ App.clean_tabs = function () {
   
       App.close_tab(tab)
     }
+
+    console.info("Cleaned tabs")
   })
+
 }
 
 // Close all tabs except the current one
@@ -179,6 +182,8 @@ App.wipe_tabs = function () {
       
       App.close_tab(tab)
     }
+    
+    console.info("Wiped tabs")
   })
 }
 

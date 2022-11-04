@@ -22,5 +22,8 @@ App.show_confirm = function (title, message, action) {
 // Do confirm action
 App.run_confirm_action = function () {
   App.confirm_action()
-  App.show_last_window()
+
+  setTimeout(function () {
+    App.show_last_window()
+  }, 500)
 }
