@@ -13,22 +13,29 @@ App.create_window = function (args) {
     args.align_top = "center"
   }
 
-  let w = {}
-  let el = App.create("div", "window_main", `window_${args.id}`)
-  let top = App.create("div", `window_top window_top_${args.align_top}`)
-  top.innerHTML = App.get_template(`${args.id}_top`)
-
-  if (args.close_button) {
-    let x = App.create("div", "window_x action unselectable")
-    x.textContent = "x"
-    top.append(x)
-  
-    App.ev(x, "click", function () {
-      w.hide()
-    })
+  if (args.show_top === undefined) {
+    args.show_top = true
   }
 
-  el.append(top)
+  let w = {}
+  let el = App.create("div", "window_main", `window_${args.id}`)
+
+  if (args.show_top) {
+    let top = App.create("div", `window_top window_top_${args.align_top}`)
+    top.innerHTML = App.get_template(`${args.id}_top`)
+  
+    if (args.close_button) {
+      let x = App.create("div", "window_x action unselectable")
+      x.textContent = "x"
+      top.append(x)
+    
+      App.ev(x, "click", function () {
+        w.hide()
+      })
+    }
+  
+    el.append(top)
+  }
 
   let content = App.create("div", "window_content")
   content.innerHTML = App.get_template(args.id)

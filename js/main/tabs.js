@@ -2,20 +2,20 @@
 App.setup_tabs = function () {
   App.setup_item_window("tabs")
 
-  App.ev(App.el("#tabs_clean_button"), "click", function () {
-    App.clean_tabs()
-  })
-
   App.ev(App.el("#tabs_playing_button"), "click", function () {
     App.go_to_playing_tab()
   })
 
-  App.ev(App.el("#tabs_new_button"), "click", function () {
-    App.new_tab()
+  App.ev(App.el("#tabs_clean_button"), "click", function () {
+    App.clean_tabs()
   })
 
   App.ev(App.el("#tabs_wipe_button"), "click", function () {
     App.wipe_tabs()
+  })  
+
+  App.ev(App.el("#tabs_new_button"), "click", function () {
+    App.new_tab()
   })
 
   browser.tabs.onUpdated.addListener(function (id) {
@@ -154,46 +154,28 @@ App.prepend_tab = function (info) {
 
 // Close all tabs except pinned and audible tabs
 App.clean_tabs = function () {
-  let tabs = []
-
-  for (let it of App.tabs_items) {
-    if (it.pinned || it.audible) {
-      continue
-    }
-
-    tabs.push(it)
-  }
-
-  App.confirm_tabs_close(tabs)
-}
-
-// Confirm tab close
-App.confirm_tabs_close = function (tabs) {
-  if (tabs.length === 0) {
-    return
-  }
-
-  let num_tabs = 0
-
-  for (let tab of tabs) {
-    if (tab.url !== "about:newtab") {
-      num_tabs += 1
-    }
-  }
-
-  if (num_tabs > 0) {
-    let s = App.plural(num_tabs, "tab", "tabs")
-
-    if (confirm(`Close ${s}?`)) {
-      for (let tab of tabs) {
-        App.close_tab(tab)
+  App.show_confirm("Clean Tabs", "Close all normal tabs keeping only pins and playing tabs", function () {
+    for (let tab of App.tabs_items) {
+      if (tab.pinned || tab.audible) {
+        continue
       }
-    }
-  } else {
-    for (let tab of tabs) {
+  
       App.close_tab(tab)
     }
-  }
+  })
+}
+
+// Close all tabs except the current one
+App.wipe_tabs = function () {
+  App.show_confirm("Wipe Tabs", "Close ALL tabs except the current one", function () {
+    for (let tab of App.tabs_items) {
+      if (tab.active) {
+        continue
+      }
+      
+      App.close_tab(tab)
+    }
+  })
 }
 
 // Pin a tab
@@ -245,21 +227,6 @@ App.go_to_playing_tab = function () {
   // If none found then pick the first one
   if (first) {
     App.focus_tab(first)
-  }
-}
-
-// Close all tabs except the current one
-App.wipe_tabs = function () {
-  if (confirm("Close all tabs except the current one?")) {
-    for (let tab of App.tabs_items) {
-      if (tab.active) {
-        continue
-      }
-      
-      App.close_tab(tab)
-    }
-
-    window.close()
   }
 }
 

@@ -272,3 +272,13 @@ body, html {
 .up_down_button {
   width: 4rem;
 }
+
+#confirm_container {
+  height: 100%;
+}
+
+#confirm_button {
+  background-color: var(--alt_color);
+  color: white;
+  border-color: var(--alt_color);
+}
