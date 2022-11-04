@@ -42,15 +42,6 @@ App.stor_save_settings = async function () {
   await browser.storage.sync.set(o)
 }
 
-// Reset settings to default
-App.stor_reset_settings = async function () {
-  if (confirm ("Reset settings to defaults?")) {
-    App.settings = {}
-    await App.stor_save_settings()
-    window.close()
-  }
-}
-
 // Get stars from sync storage
 App.stor_get_stars = async function () {
   let obj = await browser.storage.sync.get(App.stor_stars_name)
@@ -78,4 +69,13 @@ App.stor_save_stars = async function () {
   let o = {}
   o[App.stor_stars_name] = App.stars
   await browser.storage.sync.set(o)
+}
+
+// Reset settings to default
+App.stor_reset_settings = async function () {
+  if (confirm("Reset settings to defaults?")) {
+    App.settings = {}
+    await App.stor_save_settings()
+    window.close()
+  }
 }
