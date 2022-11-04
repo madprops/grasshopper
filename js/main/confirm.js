@@ -6,7 +6,7 @@ App.setup_confirm = function () {
     })
 
     App.ev(App.el("#confirm_cancel_button"), "click", function () {
-      App.windows["confirm"].hide()
+      App.show_last_window()
     })
   }})
 }
@@ -22,5 +22,5 @@ App.show_confirm = function (title, message, action) {
 // Do confirm action
 App.run_confirm_action = function () {
   App.confirm_action()
-  App.windows["confirm"].hide()
+  App.show_last_window()
 }

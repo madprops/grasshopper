@@ -11,7 +11,7 @@ App.setup_stars = function () {
       App.star_editor_save()
     })
   }, on_hide: function () {
-    App.show_window(App.last_window_mode)
+    App.show_last_window()
   }})
 }
 

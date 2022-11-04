@@ -89,3 +89,8 @@ App.show_window = function (mode) {
     App.windows[mode].show()
   }
 }
+
+// Show the last window
+App.show_last_window = function () {
+  App.show_window(App.last_window_mode)
+}
