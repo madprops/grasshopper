@@ -30,8 +30,8 @@ App.stor_get_settings = async function () {
     changed = true
   }   
 
-  if (App.settings.warn_on_close === undefined) {
-    App.settings.warn_on_close = true
+  if (App.settings.warn_on_tab_close === undefined) {
+    App.settings.warn_on_tab_close = true
   }
 
   if (changed) {

@@ -56,7 +56,7 @@ App.focus_tab = function (tab) {
 
 // Close tab with possible confirm
 App.confirm_close_tab = function (tab) {
-  if (App.settings.warn_on_close) {
+  if (App.settings.warn_on_tab_close) {
     if (tab.audible) {
       if (confirm("Close playing tab?")) {
         App.close_tab(tab)

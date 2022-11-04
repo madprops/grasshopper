@@ -25,11 +25,11 @@ App.setup_about = function () {
       App.show_history_results_info()
     })  
 
-    let warn_on_close = App.el("#about_warn_on_close")
-    warn_on_close.value = App.settings.warn_on_close ? "warn" : "no_warn"
+    let warn_on_tab_close = App.el("#about_warn_on_tab_close")
+    warn_on_tab_close.value = App.settings.warn_on_tab_close ? "warn" : "no_warn"
   
-    App.ev(warn_on_close, "change", function () {
-      App.settings.warn_on_close = warn_on_close.value === "warn"
+    App.ev(warn_on_tab_close, "change", function () {
+      App.settings.warn_on_tab_close = warn_on_tab_close.value === "warn"
       App.stor_save_settings()
     })      
   
