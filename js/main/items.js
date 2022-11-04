@@ -509,9 +509,14 @@ App.show_item_window = async function (mode, repeat_filter = false) {
 
   App.el(`#${mode}_container`).innerHTML = ""
   App.windows[mode].show()
-  let items = await App[`get_${mode}`]()
-  App.process_items(mode, items)
   App.el(`#${mode}_select`).value = mode
+  let items = await App[`get_${mode}`]()
+
+  if (mode !== App.window_mode) {
+    return
+  }
+
+  App.process_items(mode, items)
   
   if (repeat_filter) {
     let v = App.el(`#${last_mode}_filter`).value.trim()
