@@ -5,6 +5,10 @@ App.setup_items = function () {
 
 // Select an item
 App.select_item = function (mode, item) {
+  if (App[`selected_${mode}_item`] === item) {
+    return
+  }
+
   if (!item.created) {
     App.create_item_element(mode, item)
   }
