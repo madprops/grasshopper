@@ -11,7 +11,7 @@ App.setup_about = function () {
     App.ev(text_mode, "change", function () {
       App.settings.text_mode = text_mode.value
       App.stor_save_settings()
-    })
+    })  
   
     let history_results = App.el("#about_history_results")
     history_results.value = App.settings.history_results
@@ -24,6 +24,14 @@ App.setup_about = function () {
     App.ev(App.el("#about_history_results_info"), "click", function () {
       App.show_history_results_info()
     })  
+
+    let warn_on_close = App.el("#about_warn_on_close")
+    warn_on_close.value = App.settings.warn_on_close ? "warn" : "no_warn"
+  
+    App.ev(warn_on_close, "change", function () {
+      App.settings.warn_on_close = warn_on_close.value === "warn"
+      App.stor_save_settings()
+    })      
   
     let color = AColorPicker.createPicker(App.el("#color_picker"), {
       showAlpha: false,

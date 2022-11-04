@@ -33,7 +33,7 @@ App.setup_window_mouse = function (mode) {
         if (e.target.closest(`.${mode}_item`)) {
           let el = e.target.closest(`.${mode}_item`)
           let item = App.get_item_by_id(mode, el.dataset.id)
-          App.close_tab(item)
+          App.confirm_close_tab(item)
         }
       }
     })

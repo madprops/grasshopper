@@ -10,25 +10,29 @@ App.stor_get_settings = async function () {
 
   let changed = false
 
-  if (!App.settings.text_mode) {
+  if (App.settings.text_mode === undefined) {
     App.settings.text_mode = "title"
     changed = true
   }
 
-  if (!App.settings.history_results) {
+  if (App.settings.history_results === undefined) {
     App.settings.history_results = "normal"
     changed = true
   }
 
-  if (!App.settings.color) {
+  if (App.settings.color === undefined) {
     App.settings.color = "rgb(37, 41, 51)"
     changed = true
   }   
 
-  if (!App.settings.window_order) {
+  if (App.settings.window_order === undefined) {
     App.settings.window_order = ["tabs", "stars", "closed", "history"]
     changed = true
   }   
+
+  if (App.settings.warn_on_close === undefined) {
+    App.settings.warn_on_close = true
+  }
 
   if (changed) {
     App.stor_save_settings()
@@ -54,7 +58,7 @@ App.stor_get_stars = async function () {
 
   let changed = false
 
-  if (!App.stars.items) {
+  if (App.stars.items === undefined) {
     App.stars.items = []
     changed = true
   } 
