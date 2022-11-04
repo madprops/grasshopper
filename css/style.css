@@ -251,8 +251,8 @@ body, html {
 }
 
 .menu_icon {
-  margin-left: 0.66rem;
-  margin-right: 0.3rem;
+  padding-left: 0.66rem;
+  padding-right: 0.3rem;
 }
 
 #window_order {
