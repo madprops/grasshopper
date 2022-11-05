@@ -205,6 +205,10 @@ body, html {
   margin-bottom: 5rem;
 }
 
+.about_select {
+  width: 12rem;
+}
+
 .gap_1 {
   gap: 0.5rem;
 }

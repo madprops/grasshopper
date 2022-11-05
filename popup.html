@@ -134,22 +134,18 @@
         <div id="about_name" class="bigger" title="Made by madprops in 2022"></div>
         <div class="separator"></div>
         
-        <select id="about_text_mode" class="select" title="Main text to display on the items">
+        <select id="about_text_mode" class="select about_select" title="Main text to display on the items">
           <option value="title">Text Mode: Title</option>
           <option value="url">Text Mode: URL</option>
         </select>
         
-        <div class="flex_row_center gap_1">
-          <select id="about_history_results" class="select" title="How many history results">
-            <option value="fast">History: Fast</option>
-            <option value="normal">History: Normal</option>
-            <option value="deep">History: Deep</option>
-          </select>
+        <select id="about_history_results" class="select about_select" title="How many history results (2k | 10k | 20k)">
+          <option value="fast">History: Fast</option>
+          <option value="normal">History: Normal</option>
+          <option value="deep">History: Deep</option>
+        </select>
           
-          <button id="about_history_results_info" class="button">?</button>
-        </div>
-
-        <select id="about_warn_on_tab_close" class="select" title="This is the warning when closing pins or audible tabs">
+        <select id="about_warn_on_tab_close" class="select about_select" title="This is the warning when closing pins or audible tabs">
           <option value="warn">Warn On Tab Close</option>
           <option value="no_warn">No Warn On Tab Close</option>
         </select>        

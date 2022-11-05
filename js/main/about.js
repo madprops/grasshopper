@@ -20,10 +20,6 @@ App.setup_about = function () {
       App.settings.history_results = history_results.value
       App.stor_save_settings()
     })  
-  
-    App.ev(App.el("#about_history_results_info"), "click", function () {
-      App.show_history_results_info()
-    })  
 
     let warn_on_tab_close = App.el("#about_warn_on_tab_close")
     warn_on_tab_close.value = App.settings.warn_on_tab_close ? "warn" : "no_warn"
