@@ -105,8 +105,7 @@ App.get_prev_visible_item = function (mode) {
 
 // Check if an item is visible
 App.item_is_visible = function (item) {
-  let hidden = item.element.classList.contains("hidden")
-  return !hidden
+  return !item.element.classList.contains("hidden")
 }
 
 // Updates a footer
@@ -214,15 +213,25 @@ App.do_item_filter = function (mode) {
     }
 
     if (matched(it)) {
-      it.element.classList.remove("hidden")
+      App.show_item(it)
     } else {
-      it.element.classList.add("hidden")
+      App.hide_item(it)
     }
   }
   
   App[`selected_${mode}_item`] = undefined
   App.select_first_item(mode)
   App.update_footer(mode)
+}
+
+// Show item
+App.show_item = function (it) {
+  it.element.classList.remove("hidden")
+}
+
+// Hide item
+App.hide_item = function (it) {
+  it.element.classList.add("hidden")
 }
 
 // Show item menu

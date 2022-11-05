@@ -108,16 +108,26 @@ App.refresh_tab = async function (id) {
 App.update_tab = function (o_tab, info) {
   for (let [i, it] of App.tabs_items.entries()) {
     if (it.id === o_tab.id) {
-      let selected = App.selected_tabs_item === it
       let tab = App.process_item("tabs", info)
-
+      
       if (!tab) {
         break
       }
 
+      if (!App.item_is_visible(it)) {
+        App.hide_item(tab)
+      }
+      
+      let selected = App.selected_tabs_item === it
+
       App.create_item_element("tabs", tab)
       App.tabs_items[i].element.replaceWith(tab.element)
       App.tabs_items[i] = tab
+
+      if (selected) {
+        App.select_item("tabs", tab)
+      }
+
       break
     }
   }
@@ -143,6 +153,7 @@ App.prepend_tab = function (info) {
   App.tabs_items.unshift(tab)
   App.create_item_element("tabs", tab)
   App.el("#tabs_container").prepend(tab.element)
+  App.filt
 }
 
 // Close all tabs except pinned and audible tabs
