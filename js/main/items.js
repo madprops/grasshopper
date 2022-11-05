@@ -162,6 +162,10 @@ App.focus_filter = function (mode) {
 
 // Filter items
 App.do_item_filter = function (mode, select = true) {
+  if (!App[`${mode}_items`]) {
+    return
+  }
+
   let value = App.el(`#${mode}_filter`).value.trim()
   let words = value.split(" ").filter(x => x !== "")
   let filter_mode = App.el(`#${mode}_filter_mode`).value
@@ -601,7 +605,7 @@ App.cycle_item_windows = function (reverse = false) {
 
   if (reverse) {
     if (index === 0) {
-      new_mode = modes.slice(-1)
+      new_mode = modes.slice(-1)[0]
     } else {
       new_mode = modes[index - 1]
     }
