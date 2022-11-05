@@ -1,6 +1,10 @@
 // Setup items
 App.setup_items = function () {
   App.start_item_observers()
+
+  App.get_items = App.create_debouncer(function (mode) {
+    App.do_get_items(mode)
+  }, App.get_items_delay)
 }
 
 // Select an item
@@ -516,7 +520,7 @@ App.intersection_observer = function (mode, options) {
 }
 
 // Show a window by mode
-App.show_item_window = async function (mode, repeat_filter = false) {
+App.show_item_window = function (mode, repeat_filter = false) {
   let last_mode = App.window_mode
 
   if (!App.settings.window_order.includes(last_mode)) {
@@ -534,7 +538,12 @@ App.show_item_window = async function (mode, repeat_filter = false) {
   } else {
     App.el(`#${mode}_filter`).value = ""
   }
-    
+
+  App.get_items(mode)
+}
+
+// Get items to show in windows
+App.do_get_items = async function (mode) {
   let items = await App[`get_${mode}`]()
 
   if (mode !== App.window_mode) {
@@ -543,7 +552,7 @@ App.show_item_window = async function (mode, repeat_filter = false) {
 
   App.process_items(mode, items)
   App.do_item_filter(mode)
-  App.focus_filter(mode)
+  App.focus_filter(mode)  
 }
 
 // Setup an item window

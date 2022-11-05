@@ -3,6 +3,7 @@ App.stor_stars_name = "stars_v6"
 App.windows = {}
 App.filter_delay = 123
 App.color_delay = 123
+App.get_items_delay = 123
 App.history_max_months = 12
 App.max_stars = 1000 * 5
 
