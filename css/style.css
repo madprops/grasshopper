@@ -251,8 +251,9 @@ body, html {
   font-size: 1.2rem;
 }
 
-#star_editor_container {
-  margin-top: 2rem;
+#star_info {
+  margin-top: 1rem;
+  margin-bottom: 1rem;
 }
 
 .menu_icon {
