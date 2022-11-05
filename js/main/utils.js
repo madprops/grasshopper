@@ -109,7 +109,7 @@ App.get_jdenticon = function (url) {
 }
 
 // Wrap select for extra functionality
-App.wrap_select = function (select, on_change) {
+App.wrap_select = function (select, on_change, cycle = false) {
   select.addEventListener("wheel", function(e) {
     if (this.hasFocus) {
       return
@@ -119,14 +119,24 @@ App.wrap_select = function (select, on_change) {
     
     if (e.deltaY < 0) {
       if (this.selectedIndex === 0) {
-        index = this.length - 1
+        if (cycle) {
+          index = this.length - 1
+        } else {
+          return
+        }
+
       } else {
         index = this.selectedIndex - 1
       }
 
     } else if (e.deltaY > 0) {
       if (this.selectedIndex === this.length - 1) {
-        index = 0
+        if (cycle) {
+          index = 0
+        } else {
+          return
+        }
+        
       } else {
         index = this.selectedIndex + 1
       }

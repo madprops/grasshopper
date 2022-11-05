@@ -520,7 +520,7 @@ App.intersection_observer = function (mode, options) {
 }
 
 // Show a window by mode
-App.show_item_window = function (mode, repeat_filter = false) {
+App.show_item_window = function (mode, cycle = false) {
   let last_mode = App.window_mode
 
   if (!App.settings.window_order.includes(last_mode)) {
@@ -532,14 +532,18 @@ App.show_item_window = function (mode, repeat_filter = false) {
   App.el(`#${mode}_select`).value = mode
   App.empty_footer(mode)
 
-  if (repeat_filter) {
+  if (cycle) {
     let v = App.el(`#${last_mode}_filter`).value.trim()
     App.el(`#${mode}_filter`).value = v
   } else {
     App.el(`#${mode}_filter`).value = ""
   }
 
-  App.get_items(mode)
+  if (cycle) {
+    App.get_items(mode)
+  } else {
+    App.do_get_items(mode)
+  }
 }
 
 // Get items to show in windows
@@ -686,15 +690,14 @@ App.make_items_select = function (mode) {
     select.append(option)
   }
 
-  let on_change = function (select) {
-    App.show_item_window(select.value)
-  }
-
   App.ev(select, "change", function () {
-    on_change(select)
+    App.show_item_window(select.value)
+  })
+  
+  App.wrap_select(select, function () {
+    App.show_item_window(select.value, true)
   })
 
-  App.wrap_select(select, on_change)
   return select
 }
 
