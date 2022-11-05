@@ -34,6 +34,13 @@ App.show_closed_info = async function () {
 // Forget closed tab
 App.forget_closed_tab = function (tab) {
   browser.sessions.forgetClosedTab(tab.window_id, tab.session_id)
+  
+  for (let it of App.closed_items_original) {
+    if (it && App.format_url(it.url) === tab.url) {
+      browser.sessions.forgetClosedTab(it.windowId, it.sessionId)
+    }
+  }
+  
   App.remove_item("closed", tab)
 }
 
