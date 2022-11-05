@@ -316,6 +316,13 @@ App.show_item_menu = function (mode, item, x, y) {
         App.confirm_unstar_item(item)
       }
     })
+  } else if (mode === "closed") {
+    items.push({
+      text: "Forget",
+      action: function () {
+        App.forget_closed_tab(item)
+      }
+    })
   }
 
   if (App[`selected_${mode}_item`] !== item) {
@@ -332,6 +339,7 @@ App.process_items = function (mode, items) {
   App[`${mode}_items`] = []
   App[`${mode}_idx`] = 0
   let exclude = []
+  App[`${mode}_items_original`] = items
 
   for (let item of items) {
     let obj = App.process_item(mode, item, exclude)
