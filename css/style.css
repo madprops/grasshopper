@@ -285,7 +285,6 @@ body, html {
 
 #confirm_button {
   background-color: var(--alt_color);
-  color: white;
   border-color: var(--alt_color);
 }
 
