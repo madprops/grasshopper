@@ -166,7 +166,7 @@ App.focus_filter = function (mode) {
 }
 
 // Filter items
-App.do_item_filter = function (mode, select = true) {
+App.do_item_filter = function (mode) {
   if (!App[`${mode}_items`]) {
     return
   }
@@ -219,13 +219,9 @@ App.do_item_filter = function (mode, select = true) {
       it.element.classList.add("hidden")
     }
   }
-
+  
   App[`selected_${mode}_item`] = undefined
-
-  if (select) {
-    App.select_first_item(mode)
-  }
-
+  App.select_first_item(mode)
   App.update_footer(mode)
 }
 
@@ -725,18 +721,25 @@ App.show_first_item_window = function () {
 }
 
 // Focus an open tab or launch a new one
-App.focus_or_open_item = async function (item) {
-  let tabs = await App.get_tabs()
-
-  for (let tab of tabs) {
-    if (App.urls_equal(tab.url, item.url)) {
-      App.focus_tab(tab)
-      return
+App.focus_or_open_item = async function (item, close = true) {
+  if (close) {
+    let tabs = await App.get_tabs()
+  
+    for (let tab of tabs) {
+      if (App.urls_equal(tab.url, item.url)) {
+        App.focus_tab(tab)
+        return
+      }
     }
   }
   
-  browser.tabs.create({url: item.url, active: true})
-  window.close()
+  browser.tabs.create({url: item.url, active: close})
+
+  if (close) {
+    window.close()
+  } else {
+    item.element.classList.add("clicked")
+  }
 }
 
 // Get window order

@@ -4,7 +4,7 @@ App.check_window_keyboard = function (e) {
   App.focus_filter(mode)
 
   if (e.key === "Enter") {
-    App[`${mode}_action`]()
+    App[`${mode}_action`](App[`selected_${mode}_item`])
     e.preventDefault()
   } else if (e.key === "ArrowUp") {
     App.select_item_above(mode)

@@ -2,42 +2,32 @@
 App.setup_window_mouse = function (mode) {
   let container = App.el(`#${mode}_container`)
 
-  App.ev(container, "click", function (e) {
-    if (e.target.closest(`.${mode}_item`)) {
-      let el = e.target.closest(`.${mode}_item`)
-      let item = App.get_item_by_id(mode, el.dataset.id)
-      App[`${mode}_action`](item)
-    }
-  })
-
   App.ev(container, "mousemove", function (e) {
     if (e.target.closest(`.${mode}_item`)) {
-      let el = e.target.closest(`.${mode}_item`)
-      let item = App.get_item_by_id(mode, el.dataset.id)
-      App.select_item(mode, item)
-    }
-  })
-
-  App.ev(container, "contextmenu", function (e) {
-    if (e.target.closest(`.${mode}_item`)) {
-      let el = e.target.closest(`.${mode}_item`)
-      let item = App.get_item_by_id(mode, el.dataset.id)
-      App.show_item_menu(mode, item, e.clientX, e.clientY)
-      e.preventDefault()
+      App.select_item(mode, App.get_cursor_item(mode, e))
     }
   })  
 
-  if (mode === "tabs") {
-    App.ev(container, "auxclick", function (e) {
-      if (e.button === 1) {
-        if (e.target.closest(`.${mode}_item`)) {
-          let el = e.target.closest(`.${mode}_item`)
-          let item = App.get_item_by_id(mode, el.dataset.id)
-          App.confirm_close_tab(item)
-        }
+  App.ev(container, "click", function (e) {
+    if (e.target.closest(`.${mode}_item`)) {
+      App[`${mode}_action`](App.get_cursor_item(mode, e))
+    }
+  })
+
+  App.ev(container, "auxclick", function (e) {
+    if (e.button === 1) {
+      if (e.target.closest(`.${mode}_item`)) {
+        App[`${mode}_action_alt`](App.get_cursor_item(mode, e))
       }
-    })
-  }  
+    }
+  })  
+
+  App.ev(container, "contextmenu", function (e) {
+    if (e.target.closest(`.${mode}_item`)) {
+      App.show_item_menu(mode, App.get_cursor_item(mode, e), e.clientX, e.clientY)
+      e.preventDefault()
+    }
+  })  
 }
 
 // Setup mouse for each window
@@ -46,4 +36,11 @@ App.setup_mouse = function () {
   App.setup_window_mouse("stars")
   App.setup_window_mouse("closed")
   App.setup_window_mouse("history") 
+}
+
+// Get item under cursor
+App.get_cursor_item = function (mode, e) {
+  let el = e.target.closest(`.${mode}_item`)
+  let item = App.get_item_by_id(mode, el.dataset.id)
+  return item
 }

@@ -288,3 +288,7 @@ body, html {
   color: white;
   border-color: var(--alt_color);
 }
+
+.clicked {
+  background-color: var(--alt_color) !important;
+}

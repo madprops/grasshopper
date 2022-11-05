@@ -30,9 +30,14 @@ App.get_history = async function () {
   return items
 }
 
-// Selected history item action
-App.history_action = function () {
-  App.focus_or_open_item(App.selected_history_item)
+// History action
+App.history_action = function (item) {
+  App.focus_or_open_item(item)
+}
+
+// History action alt
+App.history_action_alt = function (item) {
+  App.focus_or_open_item(item, false)
 }
 
 // Show history results info

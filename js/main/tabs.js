@@ -118,12 +118,6 @@ App.update_tab = function (o_tab, info) {
       App.create_item_element("tabs", tab)
       App.tabs_items[i].element.replaceWith(tab.element)
       App.tabs_items[i] = tab
-
-      if (selected) {
-        App.select_item("tabs", tab)
-      }
-
-      App.do_item_filter("tabs", false)
       break
     }
   }
@@ -149,7 +143,6 @@ App.prepend_tab = function (info) {
   App.tabs_items.unshift(tab)
   App.create_item_element("tabs", tab)
   App.el("#tabs_container").prepend(tab.element)
-  App.do_item_filter("tabs", false)
 }
 
 // Close all tabs except pinned and audible tabs
@@ -250,8 +243,13 @@ App.clean_closed_tab = function (id) {
 }
 
 // Tabs action
-App.tabs_action = function () {
-  App.focus_tab(App.selected_tabs_item)
+App.tabs_action = function (item) {
+  App.focus_tab(item)
+}
+
+// Tabs action alt
+App.tabs_action_alt = function (item) {
+  App.confirm_close_tab(item)
 }
 
 // Show information about tabs

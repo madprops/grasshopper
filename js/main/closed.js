@@ -12,9 +12,14 @@ App.get_closed = async function () {
   return items.map(x => x.tab)
 }
 
-// Selected closed tabs action
-App.closed_action = function () {
-  App.focus_or_open_item(App.selected_closed_item)
+// Closed tabs action
+App.closed_action = function (item) {
+  App.focus_or_open_item(item)
+}
+
+// Closed tabs action alt
+App.closed_action_alt = function (item) {
+  App.focus_or_open_item(item, false)
 }
 
 // Show information about closed tabs
