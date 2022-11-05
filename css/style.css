@@ -244,6 +244,7 @@ body, html {
   flex-grow: 0;
   width: 18rem;
   text-align: center;
+  padding: 0.2rem;
 }
 
 .bigger {
