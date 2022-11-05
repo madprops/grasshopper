@@ -2,7 +2,7 @@
 App.setup_stars = function () {
   App.setup_item_window("stars")
 
-  App.ev(App.el("#stars_new_button"), "click", function () {
+  App.ev(App.el("#stars_add_button"), "click", function () {
     App.new_star()
   })
   
