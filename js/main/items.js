@@ -311,13 +311,6 @@ App.show_item_menu = function (mode, item, x, y) {
         App.confirm_unstar_item(item)
       }
     })
-  } else if (mode === "closed") {
-    items.push({
-      text: "Forget",
-      action: function () {
-        App.forget_closed_tab(item)
-      }
-    })
   }
 
   if (App[`selected_${mode}_item`] !== item) {
