@@ -109,13 +109,19 @@ App.update_footer = function (mode) {
   if (App.selected_valid(mode)) {
     App.el(`#${mode}_footer`).textContent = App[`selected_${mode}_item`].footer
   } else {
-    App.el(`#${mode}_footer`).textContent = "No Results"
+    App.empty_footer(mode)
   }
+}
+
+// Empty the footer
+App.empty_footer = function (mode) {
+  App.el(`#${mode}_footer`).textContent = "No Results"
 }
 
 // Check if selected is valid
 App.selected_valid = function (mode) {
   return App[`selected_${mode}_item`] && 
+  App[`selected_${mode}_item`].created &&
   App.item_is_visible(App[`selected_${mode}_item`])
 }
 
@@ -204,6 +210,8 @@ App.do_item_filter = function (mode, select = true) {
       it.element.classList.add("hidden")
     }
   }
+
+  App[`selected_${mode}_item`] = undefined
 
   if (select) {
     App.select_first_item(mode)
@@ -296,7 +304,7 @@ App.show_item_menu = function (mode, item, x, y) {
     })
   }
 
-  if (App[`selected_${mode}`] !== item) {
+  if (App[`selected_${mode}_item`] !== item) {
     App.select_item(mode, item)
   }
 
@@ -514,6 +522,7 @@ App.show_item_window = async function (mode, repeat_filter = false) {
   App.el(`#${mode}_container`).innerHTML = ""
   App.windows[mode].show()
   App.el(`#${mode}_select`).value = mode
+  App.empty_footer(mode)
 
   if (repeat_filter) {
     let v = App.el(`#${last_mode}_filter`).value.trim()
