@@ -59,27 +59,23 @@ App.confirm_close_tab = function (tab) {
   if (App.settings.warn_on_tab_close) {
     if (tab.audible) {
       if (confirm("Close playing tab?")) {
-        App.close_tab(tab)
+        App.close_tab(tab.id)
       }
     } else if (tab.pinned) {
       if (confirm("Close pinned tab?")) {
-        App.close_tab(tab)
+        App.close_tab(tab.id)
       }
     } else {
-      App.close_tab(tab)
+      App.close_tab(tab.id)
     }
   } else {
-    App.close_tab(tab)
+    App.close_tab(tab.id)
   }
 }
 
 // Close a tab
-App.close_tab = function (tab) {
-  if (!tab) {
-    return
-  }
-
-  browser.tabs.remove(tab.id)
+App.close_tab = function (id) {
+  browser.tabs.remove(id)
 }
 
 // Open a new tab
@@ -164,7 +160,7 @@ App.clean_tabs = function () {
         continue
       }
   
-      App.close_tab(tab)
+      App.close_tab(tab.id)
     }
 
     console.info("Cleaned tabs")
@@ -180,7 +176,7 @@ App.wipe_tabs = function () {
         continue
       }
       
-      App.close_tab(tab)
+      App.close_tab(tab.id)
     }
     
     console.info("Wiped tabs")
