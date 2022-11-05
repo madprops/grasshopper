@@ -23,12 +23,27 @@ App.stor_get_settings = async function () {
   if (App.settings.color === undefined) {
     App.settings.color = "rgb(37, 41, 51)"
     changed = true
-  }   
+  }
 
-  if (App.settings.window_order === undefined) {
-    App.settings.window_order = ["tabs", "stars", "closed", "history"]
+  if (App.settings.tabs_index === undefined) {
+    App.settings.tabs_index = 0
     changed = true
-  }   
+  }
+
+  if (App.settings.stars_index === undefined) {
+    App.settings.stars_index = 1
+    changed = true
+  }
+
+  if (App.settings.closed_index === undefined) {
+    App.settings.closed_index = 2
+    changed = true
+  }
+
+  if (App.settings.history_index === undefined) {
+    App.settings.history_index = 3
+    changed = true
+  }
 
   if (App.settings.warn_on_tab_close === undefined) {
     App.settings.warn_on_tab_close = true

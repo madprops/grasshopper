@@ -47,7 +47,7 @@ App.setup_about = function () {
 
     let window_order = App.el("#window_order")
 
-    for (let m of App.settings.window_order) {
+    for (let m of App.window_order) {
       let el = App.create("div", "window_order_item flex_row_center gap_2")
       el.dataset.mode = m
 

@@ -1,5 +1,6 @@
 // Setup items
 App.setup_items = function () {
+  App.get_window_order()
   App.start_item_observers()
 
   App.get_items = App.create_debouncer(function (mode) {
@@ -483,7 +484,7 @@ App.get_item_by_url = function (mode, url) {
 
 // Used for lazy-loading components
 App.start_item_observers = function () {
-  for (let mode of App.settings.window_order) {
+  for (let mode of App.window_order) {
     let options = {
       root: App.el(`#${mode}_container`),
       rootMargin: "0px",
@@ -523,7 +524,7 @@ App.intersection_observer = function (mode, options) {
 App.show_item_window = function (mode, cycle = false) {
   let last_mode = App.window_mode
 
-  if (!App.settings.window_order.includes(last_mode)) {
+  if (!App.window_order.includes(last_mode)) {
     last_mode = "tabs"
   }
 
@@ -608,7 +609,7 @@ App.setup_item_window = function (mode) {
 
 // Cycle between item windows
 App.cycle_item_windows = function (reverse = false) {
-  let modes = App.settings.window_order
+  let modes = App.window_order
   let index = modes.indexOf(App.window_mode)
   let new_mode
 
@@ -649,8 +650,14 @@ App.item_name = function (mode) {
 // Update window order
 App.update_window_order = function () {
   let boxes = App.els(".window_order_item", App.el("#window_order"))
-  App.settings.window_order = boxes.map(x => x.dataset.mode)
+  let modes = boxes.map(x => x.dataset.mode)
+
+  for (let [i, mode] of modes.entries()) {
+    App.settings[`${mode}_index`] = i
+  }
+
   App.stor_save_settings()
+  App.get_window_order()
   App.remake_items_selects()
 }
 
@@ -678,7 +685,7 @@ App.window_order_down = function (el) {
 App.make_items_select = function (mode) {
   let select = App.create("select", "select item_select", `${mode}_select`)
 
-  for (let m of App.settings.window_order) {
+  for (let m of App.window_order) {
     let option = App.create("option")
     
     if (m === mode) {
@@ -703,7 +710,7 @@ App.make_items_select = function (mode) {
 
 // Remake item selects
 App.remake_items_selects = function () {
-  for (let mode of App.settings.window_order) {
+  for (let mode of App.window_order) {
     let select = App.el(`#${mode}_select`)
     
     if (select) {
@@ -714,7 +721,7 @@ App.remake_items_selects = function () {
 
 // Show first item window
 App.show_first_item_window = function () {
-  App.show_item_window(App.settings.window_order[0])
+  App.show_item_window(App.window_order[0])
 }
 
 // Focus an open tab or launch a new one
@@ -730,4 +737,17 @@ App.focus_or_open_item = async function (item) {
   
   browser.tabs.create({url: item.url, active: true})
   window.close()
+}
+
+// Get window order
+App.get_window_order = function () {
+  let modes = ["tabs", "stars", "closed", "history"]
+  let items = []
+
+  for (let mode of modes) {
+    items.push({mode: mode, index: App.settings[`${mode}_index`]})
+  }
+
+  items.sort((a, b) => (a.index > b.index) ? 1 : -1)
+  App.window_order = items.map(x => x.mode)
 }
