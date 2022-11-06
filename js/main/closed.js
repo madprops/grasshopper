@@ -1,10 +1,6 @@
 // Setup closed tabs
 App.setup_closed = function () {
   App.setup_item_window("closed")
-
-  App.ev(App.el("#closed_forget_button"), "click", function () {
-    App.forget_all_closed_tabs()
-  })
 }
 
 // Get closed tabs
@@ -29,27 +25,4 @@ App.closed_action_alt = function (item) {
 // Show information about closed tabs
 App.show_closed_info = async function () {
   alert("These are recently closed tabs")
-}
-
-// Forget closed tab
-App.forget_closed_tab = function (tab) {
-  for (let it of App.closed_items_original) {
-    if (it && App.format_url(it.url) === tab.url) {
-      browser.sessions.forgetClosedTab(it.windowId, it.sessionId)
-    }
-  }
-  
-  App.remove_item("closed", tab)
-}
-
-// Forget all closed tabs
-App.forget_all_closed_tabs = function () {
-  App.show_confirm("Forget Closed Tabs", 
-  "Remove all the closed tabs from history", function () {
-    for (let tab of App.closed_items_original) {
-      if (tab) {
-        browser.sessions.forgetClosedTab(tab.windowId, tab.sessionId)
-      }
-    }
-  })
 }

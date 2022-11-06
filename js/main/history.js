@@ -49,17 +49,6 @@ App.show_history_info = function () {
   alert(s)
 }
 
-// Forget history item
-App.forget_history_item = function (item) {
-  for (let it of App.history_items_original) {
-    if (it && App.format_url(it.url) === item.url) {
-      browser.history.deleteUrl({url: it.url})
-    }
-  }
-  
-  App.remove_item("history", item)
-}
-
 // Show information about history
 App.show_history_info = async function () {
   let n = App.history_items.length
