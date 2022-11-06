@@ -41,7 +41,7 @@ App.history_action_alt = function (item) {
 }
 
 // Show history results info
-App.show_history_results_info = function () {
+App.show_history_info = function () {
   let s = ""
   s += "Fast = 2k results\n"
   s += "Normal = 10k results\n"
@@ -58,4 +58,11 @@ App.forget_history_item = function (item) {
   }
   
   App.remove_item("history", item)
+}
+
+// Show information about history
+App.show_history_info = async function () {
+  let n = App.history_items.length
+  let s = App.plural(n, "history result", "history results")
+  alert(s)
 }
