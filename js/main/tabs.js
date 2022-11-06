@@ -153,7 +153,6 @@ App.prepend_tab = function (info) {
   App.tabs_items.unshift(tab)
   App.create_item_element("tabs", tab)
   App.el("#tabs_container").prepend(tab.element)
-  App.filt
 }
 
 // Close all tabs except pinned and audible tabs

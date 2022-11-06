@@ -48,3 +48,14 @@ App.show_history_results_info = function () {
   s += "Deep = 20k results"
   alert(s)
 }
+
+// Forget history item
+App.forget_history_item = function (item) {
+  for (let it of App.history_items_original) {
+    if (it && App.format_url(it.url) === item.url) {
+      browser.history.deleteUrl({url: it.url})
+    }
+  }
+  
+  App.remove_item("history", item)
+}
