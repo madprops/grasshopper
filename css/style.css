@@ -283,15 +283,6 @@ body, html {
   width: 4rem;
 }
 
-#confirm_container {
-  height: 100%;
-}
-
-#confirm_button {
-  background-color: var(--alt_color);
-  border-color: var(--alt_color);
-}
-
 .clicked {
   background-color: var(--alt_color) !important;
 }

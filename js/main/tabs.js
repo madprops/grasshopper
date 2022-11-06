@@ -153,7 +153,7 @@ App.prepend_tab = function (info) {
 
 // Close all tabs except pinned and audible tabs
 App.clean_tabs = function () {
-  App.show_confirm("Clean Tabs", "Close all normal tabs keeping only pins and playing tabs", function () {
+  if (confirm("Are you sure?")) {
     for (let tab of App.tabs_items) {
       if (tab.pinned || tab.audible) {
         continue
@@ -161,10 +161,9 @@ App.clean_tabs = function () {
   
       App.close_tab(tab.id)
     }
-
+  
     console.info("Cleaned tabs")
-  })
-
+  }
 }
 
 // Pin a tab
