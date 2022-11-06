@@ -8,10 +8,6 @@ App.setup_tabs = function () {
 
   App.ev(App.el("#tabs_clean_button"), "click", function () {
     App.clean_tabs()
-  })
-
-  App.ev(App.el("#tabs_wipe_button"), "click", function () {
-    App.wipe_tabs()
   })  
 
   App.ev(App.el("#tabs_new_button"), "click", function () {
@@ -169,21 +165,6 @@ App.clean_tabs = function () {
     console.info("Cleaned tabs")
   })
 
-}
-
-// Close all tabs except the current one
-App.wipe_tabs = function () {
-  App.show_confirm("Wipe Tabs", "Close ALL tabs except the current one", function () {
-    for (let tab of App.tabs_items) {
-      if (tab.active) {
-        continue
-      }
-      
-      App.close_tab(tab.id)
-    }
-    
-    console.info("Wiped tabs")
-  })
 }
 
 // Pin a tab
