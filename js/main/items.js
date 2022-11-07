@@ -689,7 +689,7 @@ App.window_order_down = function (el) {
 
 // Make items select
 App.make_items_select = function (mode) {
-  let select = App.create("select", "select item_select", `${mode}_select`)
+  let select = App.create("select", "select item_select top_select", `${mode}_select`)
 
   for (let m of App.window_order) {
     let option = App.create("option")
