@@ -150,7 +150,7 @@ App.new_star = function (title = "", url = "") {
 
 
 // Show information about stars
-App.show_stars_info = async function () {
+App.show_stars_info = function () {
   let n = App.stars_items.length
   let s = App.plural(n, "star", "stars")
   alert(`${s} saved`)

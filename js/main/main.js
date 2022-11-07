@@ -6,6 +6,7 @@ App.color_delay = 150
 App.get_items_delay = 150
 App.history_max_months = 12
 App.max_stars = 1000 * 5
+App.max_closed = 25
 
 App.init = async function () {
   await App.stor_get_settings()

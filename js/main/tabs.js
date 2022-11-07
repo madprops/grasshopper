@@ -255,7 +255,7 @@ App.tabs_action_alt = function (item) {
 }
 
 // Show information about tabs
-App.show_tabs_info = async function () {
+App.show_tabs_info = function () {
   let all = App.tabs_items.length
   let pins = App.tabs_items.filter(x => x.pinned).length  
   let s = App.plural(all, "tab", "tabs")

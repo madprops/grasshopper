@@ -6,7 +6,7 @@ App.setup_closed = function () {
 // Get closed tabs
 App.get_closed = async function () {
   let items = await browser.sessions.getRecentlyClosed({
-    maxResults: 25
+    maxResults: App.max_closed
   })
 
   return items.map(x => x.tab)
@@ -23,6 +23,6 @@ App.closed_action_alt = function (item) {
 }
 
 // Show information about closed tabs
-App.show_closed_info = async function () {
-  alert("These are recently closed tabs")
+App.show_closed_info = function () {
+  alert(`These are recently closed tabs. Max is ${App.max_closed} items`)
 }

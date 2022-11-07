@@ -50,7 +50,7 @@ App.show_history_info = function () {
 }
 
 // Show information about history
-App.show_history_info = async function () {
+App.show_history_info = function () {
   let n = App.history_items.length
   let s = App.plural(n, "history result", "history results")
   alert(s)
