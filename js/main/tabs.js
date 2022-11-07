@@ -162,6 +162,10 @@ App.clean_tabs = function () {
     
     ids.push(tab.id)
   }
+
+  if (ids.length === 0) {
+    return
+  }
   
   let s = App.plural(ids.length, "tab", "tabs")
 
