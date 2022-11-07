@@ -593,7 +593,7 @@ App.setup_item_window = function (mode) {
     })
     
     App.wrap_select(filter_mode, function () {
-      App.do_item_filter(mode)
+      item_filter(mode)
     })
 
     let top = App.el(`#${mode}_top_container`)
