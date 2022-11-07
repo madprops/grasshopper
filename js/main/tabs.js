@@ -22,7 +22,7 @@ App.setup_tabs = function () {
 
   browser.tabs.onRemoved.addListener(function (id) {
     if (App.window_mode === "tabs") {
-      App.clean_closed_tab(id)
+      App.remove_closed_tab(id)
     }
   })
 }
@@ -153,15 +153,23 @@ App.prepend_tab = function (info) {
 
 // Close all tabs except pinned and audible tabs
 App.clean_tabs = function () {
-  if (confirm("Close all normal tabs?")) {
-    for (let tab of App.tabs_items) {
-      if (tab.pinned || tab.audible) {
-        continue
-      }
-  
-      App.close_tab(tab.id)
+  let ids = []
+
+  for (let tab of App.tabs_items) {
+    if (tab.pinned || tab.audible) {
+      continue
     }
+    
+    ids.push(tab.id)
+  }
   
+  let s = App.plural(ids.length, "tab", "tabs")
+
+  if (confirm(`Close all normal tabs? (${s})`)) {
+    for (let id of ids) {
+      App.close_tab(id)
+    }
+
     console.info("Cleaned tabs")
   }
 }
@@ -224,7 +232,7 @@ App.get_pinned_tabs = function () {
 }
 
 // Remove a closed tab
-App.clean_closed_tab = function (id) {
+App.remove_closed_tab = function (id) {
   let tab = App.get_item_by_id("tabs", id)
 
   if (tab) {
