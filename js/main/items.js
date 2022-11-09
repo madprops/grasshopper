@@ -165,24 +165,14 @@ App.focus_filter = function (mode) {
 }
 
 // Filter items
-App.do_item_filter = async function (mode) {  
-  let value = App.el(`#${mode}_filter`).value.trim()
-
-  if (mode === "history") {
-    if (!value) {
-      return
-    }
-    
-    let items = await App.get_history(value)
-    App.process_items("history", items)
-  }
-
+App.do_item_filter = function (mode) {  
   if (!App[`${mode}_items`]) {
     return
   }  
 
-  let words = value.split(" ").filter(x => x !== "")
+  let value = App.el(`#${mode}_filter`).value.trim()
   let filter_mode = App.el(`#${mode}_filter_mode`).value
+  let words = value.split(" ").filter(x => x !== "")
   let filter_words = words.map(x => x.toLowerCase())
 
   function check (what) {
@@ -544,7 +534,10 @@ App.show_item_window = function (mode, cycle = false) {
     last_mode = "tabs"
   }
 
-  App.el(`#${mode}_container`).innerHTML = ""
+  if (mode !== "history") {
+    App.el(`#${mode}_container`).innerHTML = ""
+  }
+  
   App.windows[mode].show()
   App.el(`#${mode}_select`).value = mode
   App.empty_footer(mode)
@@ -556,7 +549,11 @@ App.show_item_window = function (mode, cycle = false) {
     App.el(`#${mode}_filter`).value = ""
   }
 
-  App.el(`#${mode}_filter_mode`).selectedIndex = 0
+  let filter_mode = App.el(`#${mode}_filter_mode`)
+
+  if (filter_mode) {
+    filter_mode.selectedIndex = 0
+  }
 
   if (mode === "history") {
     App.focus_filter(mode)    
@@ -597,16 +594,22 @@ App.setup_item_window = function (mode) {
   args.align_top = "left"
 
   args.setup = function () {
-    let filter_delay
+    let filter_delay, filter_function
 
     if (mode === "history") {
       filter_delay = App.long_filter_delay
+      filter_function = function () {
+        App.search_history()
+      }
     } else {
       filter_delay = App.filter_delay
+      filter_function = function () {
+        App.do_item_filter(mode)
+      }
     }
 
     let item_filter = App.create_debouncer(function () {
-      App.do_item_filter(mode)
+      filter_function()
     }, filter_delay)
     
     App.ev(App.el(`#${mode}_filter`), "input", function () {
@@ -614,17 +617,19 @@ App.setup_item_window = function (mode) {
     })  
 
     let filter_mode = App.el(`#${mode}_filter_mode`)
+
+    if (filter_mode) {
+      App.ev(filter_mode, "change", function () {
+        App.do_item_filter(mode)
+      })
   
-    App.ev(filter_mode, "change", function () {
-      App.do_item_filter(mode)
-    })
+      App.wrap_select(filter_mode, function () {
+        item_filter(mode)
+      })    
+    }
 
     App.ev(App.el(`#${mode}_info_button`), "click", function () {
       App[`show_${mode}_info`]()
-    })
-    
-    App.wrap_select(filter_mode, function () {
-      item_filter(mode)
     })
 
     let top = App.el(`#${mode}_top_container`)

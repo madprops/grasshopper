@@ -29,18 +29,25 @@ App.history_action_alt = function (item) {
   App.focus_or_open_item(item, false)
 }
 
-// Show history results info
-App.show_history_info = function () {
-  let s = ""
-  s += "Fast = 2k results\n"
-  s += "Normal = 10k results\n"
-  s += "Deep = 20k results"
-  alert(s)
-}
-
 // Show information about history
 App.show_history_info = function () {
-  let n = App.history_items.length
-  let s = App.plural(n, "history result", "history results")
-  alert(s)
+  if (App.history_items) {
+    let n = App.history_items.length
+    let s = App.plural(n, "history result", "history results")
+    alert(s)
+  } else {
+    alert("Search the history")
+  }
+}
+
+// Search the history
+App.search_history = async function () {
+  let value = App.el("#history_filter").value.trim()
+
+  if (!value) {
+    return
+  }
+  
+  let items = await App.get_history(value)
+  App.process_items("history", items)
 }
