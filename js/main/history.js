@@ -50,4 +50,5 @@ App.search_history = async function () {
   
   let items = await App.get_history(value)
   App.process_items("history", items)
+  App.select_first_item("history")
 }
