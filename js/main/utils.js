@@ -111,6 +111,8 @@ App.get_jdenticon = function (url) {
 // Wrap select for extra functionality
 App.wrap_select = function (select, on_change, cycle = false) {
   select.addEventListener("wheel", function(e) {
+    e.preventDefault()
+
     if (this.hasFocus) {
       return
     }
@@ -144,7 +146,6 @@ App.wrap_select = function (select, on_change, cycle = false) {
 
     this.selectedIndex = index
     on_change(select)
-    e.preventDefault()
   })
 }
 
