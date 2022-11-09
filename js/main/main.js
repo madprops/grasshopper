@@ -2,11 +2,11 @@ App.stor_settings_name = "settings_v1"
 App.stor_stars_name = "stars_v6"
 App.windows = {}
 App.filter_delay = 125
-App.long_filter_delay = 500
+App.long_filter_delay = 350
 App.color_delay = 125
 App.get_items_delay = 125
-App.history_max_results = 500
-App.history_max_months = 12
+App.history_max_results = 300
+App.history_max_months = 24
 App.max_stars = 1000 * 5
 App.max_closed = 25
 

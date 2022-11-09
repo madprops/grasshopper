@@ -559,6 +559,7 @@ App.show_item_window = function (mode, cycle = false) {
   App.el(`#${mode}_filter_mode`).selectedIndex = 0
 
   if (mode === "history") {
+    App.focus_filter(mode)    
     return
   }
 
