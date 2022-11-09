@@ -551,6 +551,8 @@ App.show_item_window = function (mode, cycle = false) {
     App.el(`#${mode}_filter`).value = ""
   }
 
+  App.el(`#${mode}_filter_mode`).selectedIndex = 0
+
   if (cycle) {
     App.get_items(mode)
   } else {
@@ -567,7 +569,6 @@ App.do_get_items = async function (mode) {
   }
 
   App.process_items(mode, items)
-  App.do_item_filter(mode)
   App.focus_filter(mode)  
 }
 
