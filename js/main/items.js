@@ -191,10 +191,9 @@ App.do_item_filter = function (mode) {
     
     if (filter_mode === "all") {
       match = check(title) || check(path)
-    } else if (filter_mode === "title") {
-      match = check(title)
-    } else if (filter_mode === "url") {
-      match = check(path)
+    } else if (filter_mode === "normal") {
+      match = !item.audible && !item.pinned &&
+      (check(title) || check(path)) 
     } else if (filter_mode === "playing") {
       match = item.audible &&
       (check(title) || check(path))    
@@ -204,9 +203,6 @@ App.do_item_filter = function (mode) {
     } else if (filter_mode === "muted") {
       match = item.muted &&
       (check(title) || check(path))    
-    } else if (filter_mode === "normal") {
-      match = !item.audible && !item.pinned &&
-      (check(title) || check(path)) 
     }
         
     return match
@@ -728,7 +724,7 @@ App.window_order_down = function (el) {
 
 // Make items select
 App.make_items_select = function (mode) {
-  let select = App.create("select", "select item_select top_select", `${mode}_select`)
+  let select = App.create("select", "select item_select", `${mode}_select`)
 
   for (let m of App.window_order) {
     let option = App.create("option")

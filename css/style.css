@@ -104,10 +104,6 @@ body, html {
   border: 2px solid var(--alt_color);
 }
 
-.top_select {
-  width: 5rem;
-}
-
 .button {
   height: var(--widget_height);
   font-size: 0.92rem;

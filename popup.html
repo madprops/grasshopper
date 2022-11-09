@@ -33,14 +33,12 @@
       <div class="flex_row_center gap_1" id="tabs_top_container">
         <input type="text" id="tabs_filter" class="filter" autocomplete="off" placeholder="Filter">
         
-        <select id="tabs_filter_mode" class="select top_select" title="Filter Mode">
+        <select id="tabs_filter_mode" class="select" title="Filter Mode">
           <option value="all" selected>All</option>
           <option value="pins">Pins</option>
           <option value="normal">Normal</option>
           <option value="playing">Playing</option>
           <option value="muted">Muted</option>
-          <option value="title">Title</option>
-          <option value="url">URL</option>
         </select>
 
         <button id="tabs_info_button" class="button" title="Information">Info</button>
@@ -58,13 +56,6 @@
     <template id="template_stars_top">
       <div class="flex_row_center gap_1" id="stars_top_container">
         <input type="text" id="stars_filter" class="filter" autocomplete="off" placeholder="Filter">
-        
-        <select id="stars_filter_mode" class="select top_select" title="Filter Mode">
-          <option value="all" selected>All</option>
-          <option value="title">Title</option>
-          <option value="url">URL</option>
-        </select>
-
         <button id="stars_info_button" class="button" title="Information">Info</button>
         <button id="stars_add_button" class="button" title="Add Star">Add</button>
       </div>
@@ -103,13 +94,6 @@
     <template id="template_closed_top">
       <div class="flex_row_center gap_1" id="closed_top_container">
         <input type="text" id="closed_filter" class="filter" autocomplete="off" placeholder="Filter">
-        
-        <select id="closed_filter_mode" class="select top_select" title="Filter Mode">
-          <option value="all" selected>All</option>
-          <option value="title">Title</option>
-          <option value="url">URL</option>
-        </select>
-
         <button id="closed_info_button" class="button" title="Information">Info</button>
       </div>
     </template>
