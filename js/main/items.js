@@ -552,12 +552,6 @@ App.show_item_window = function (mode, cycle = false) {
     filter_mode.selectedIndex = 0
   }
 
-  if (mode === "history") {
-    App.focus_filter(mode)
-    App.search_history()
-    return
-  }
-
   if (cycle) {
     App.get_items(mode)
   } else {
@@ -567,6 +561,12 @@ App.show_item_window = function (mode, cycle = false) {
 
 // Get items to show in windows
 App.do_get_items = async function (mode) {
+  if (mode === "history") {
+    App.focus_filter(mode)
+    App.search_history()
+    return
+  }
+    
   let items = await App[`get_${mode}`]()
 
   if (mode !== App.window_mode) {
