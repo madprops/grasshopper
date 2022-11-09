@@ -3,7 +3,7 @@ App.setup_stars = function () {
   App.setup_item_window("stars")
 
   App.ev(App.el("#stars_add_button"), "click", function () {
-    App.new_star()
+    App.add_star()
   })
   
   App.create_window({id: "star_editor", setup: function () {
@@ -152,7 +152,7 @@ App.get_star_by_url = async function (url) {
 }
 
 // Add a new star manually
-App.new_star = function (title = "", url = "") {
+App.add_star = function (title = "", url = "") {
   App.star_edited = undefined
   App.el("#star_editor_title").value = title
   App.el("#star_editor_url").value = url
@@ -172,5 +172,16 @@ App.show_stars_info = function () {
 App.confirm_unstar_item = function (item) {
   if (confirm("Remove this star?")) {
     App.unstar_item(item)
+  }
+}
+
+// Add a star or edit an existing one
+App.add_or_edit_star = async function (item) {
+  let star = await App.get_star_by_url(item.url)
+
+  if (star) {
+    App.show_star_editor(star)
+  } else {
+    App.add_star(item.title, item.url)
   }
 }

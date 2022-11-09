@@ -272,19 +272,14 @@ App.show_item_menu = async function (mode, item, x, y) {
     }
   }
 
-  
   if (mode !== "stars") {
-    let starred = await App.get_star_by_url(item.url)
-
-    if (!starred) {
-      items.push({
-        text: "Add Star",
-        action: function () {
-          App.new_star(item.title, item.url)
-        }
-      })
-    }  
-  }
+    items.push({
+      text: "Star",
+      action: function () {
+        App.add_or_edit_star(item)
+      }
+    })
+  }    
 
   items.push({
     text: "Copy URL",
