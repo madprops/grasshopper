@@ -533,11 +533,8 @@ App.show_item_window = function (mode, cycle = false) {
   if (!App.window_order.includes(last_mode)) {
     last_mode = "tabs"
   }
-
-  if (mode !== "history") {
-    App.el(`#${mode}_container`).innerHTML = ""
-  }
   
+  App.el(`#${mode}_container`).innerHTML = ""
   App.windows[mode].show()
   App.el(`#${mode}_select`).value = mode
   App.empty_footer(mode)
