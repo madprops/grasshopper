@@ -617,7 +617,7 @@ App.setup_item_window = function (mode) {
       })
   
       App.wrap_select(filter_mode, function () {
-        item_filter(mode)
+        App.do_item_filter(mode)
       })    
     }
 
