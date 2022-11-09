@@ -111,7 +111,7 @@ App.item_is_visible = function (item) {
 // Updates a footer
 App.update_footer = function (mode) {
   if (App.selected_valid(mode)) {
-    App.el(`#${mode}_footer`).textContent = App[`selected_${mode}_item`].footer
+    App.set_footer(mode, App[`selected_${mode}_item`].footer)
   } else {
     App.empty_footer(mode)
   }
@@ -119,7 +119,12 @@ App.update_footer = function (mode) {
 
 // Empty the footer
 App.empty_footer = function (mode) {
-  App.el(`#${mode}_footer`).textContent = "No Results"
+  App.set_footer(mode, "No Results")
+}
+
+// Set footer
+App.set_footer = function (mode, text) {
+  App.el(`#${mode}_footer`).textContent = text
 }
 
 // Check if selected is valid
@@ -566,7 +571,7 @@ App.do_get_items = async function (mode) {
     App.search_history()
     return
   }
-    
+
   let items = await App[`get_${mode}`]()
 
   if (mode !== App.window_mode) {
