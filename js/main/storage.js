@@ -65,7 +65,6 @@ App.stor_save_settings = async function () {
 
 // Get stars from sync storage
 App.stor_get_stars = async function () {
-  console.time()
   let obj = await browser.storage.sync.get(App.stor_stars_name)
   
   if (Object.keys(obj).length === 0) {
@@ -85,7 +84,6 @@ App.stor_get_stars = async function () {
     App.stor_save_stars()
   }
 
-  console.timeEnd()
   console.info("Stor: Got stars")
 }
 
