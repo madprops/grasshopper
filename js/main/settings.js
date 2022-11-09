@@ -1,11 +1,11 @@
-// Setup about
-App.setup_about = function () {
-  App.create_window({id: "about", setup: function () {
+// Setup settings
+App.setup_settings = function () {
+  App.create_window({id: "settings", setup: function () {
     let manifest = browser.runtime.getManifest()
     let s = `Grasshopper v${manifest.version}`
-    App.el("#about_name").textContent = s
+    App.el("#settings_name").textContent = s
   
-    let text_mode = App.el("#about_text_mode")
+    let text_mode = App.el("#settings_text_mode")
     text_mode.value = App.settings.text_mode
   
     App.ev(text_mode, "change", function () {
@@ -13,7 +13,7 @@ App.setup_about = function () {
       App.stor_save_settings()
     })  
   
-    let history_results = App.el("#about_history_results")
+    let history_results = App.el("#settings_history_results")
     history_results.value = App.settings.history_results
   
     App.ev(history_results, "change", function () {
@@ -21,7 +21,7 @@ App.setup_about = function () {
       App.stor_save_settings()
     })  
 
-    let warn_on_tab_close = App.el("#about_warn_on_tab_close")
+    let warn_on_tab_close = App.el("#settings_warn_on_tab_close")
     warn_on_tab_close.value = App.settings.warn_on_tab_close ? "warn" : "no_warn"
   
     App.ev(warn_on_tab_close, "change", function () {
@@ -74,7 +74,7 @@ App.setup_about = function () {
       window_order.append(el)
     }
 
-    App.ev(App.el("#about_defaults_button"), "click", function () {
+    App.ev(App.el("#settings_defaults_button"), "click", function () {
       App.stor_reset_settings()
     })
   }}) 

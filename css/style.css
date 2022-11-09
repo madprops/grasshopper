@@ -205,11 +205,11 @@ body, html {
   justify-content: center;
 }
 
-#about_container {
+#settings_container {
   margin-bottom: 5rem;
 }
 
-.about_select {
+.settings_select {
   width: 12rem;
 }
 

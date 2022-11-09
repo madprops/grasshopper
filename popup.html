@@ -20,7 +20,7 @@
     <script src="js/main/closed.js"></script>
     <script src="js/main/history.js"></script>
     <script src="js/main/windows.js"></script>
-    <script src="js/main/about.js"></script>
+    <script src="js/main/settings.js"></script>
   </head>
   
   <body>
@@ -133,23 +133,23 @@
       </div>
     </template>
 
-    <template id="template_about">
-      <div id="about_container" class="flex_column_center gap_3">
-        <div id="about_name" class="bigger" title="Made by madprops in 2022"></div>
+    <template id="template_settings">
+      <div id="settings_container" class="flex_column_center gap_3">
+        <div id="settings_name" class="bigger" title="Made by madprops in 2022"></div>
         <div class="separator"></div>
         
-        <select id="about_text_mode" class="select about_select" title="Main text to display on the items">
+        <select id="settings_text_mode" class="select settings_select" title="Main text to display on the items">
           <option value="title">Text Mode: Title</option>
           <option value="url">Text Mode: URL</option>
         </select>
         
-        <select id="about_history_results" class="select about_select" title="How many history results (2k | 10k | 20k)">
+        <select id="settings_history_results" class="select settings_select" title="How many history results (2k | 10k | 20k)">
           <option value="fast">History: Fast</option>
           <option value="normal">History: Normal</option>
           <option value="deep">History: Deep</option>
         </select>
           
-        <select id="about_warn_on_tab_close" class="select about_select" title="This is the warning when closing pins or audible tabs">
+        <select id="settings_warn_on_tab_close" class="select settings_select" title="This is the warning when closing pins or audible tabs">
           <option value="warn">Warn On Tab Close</option>
           <option value="no_warn">No Warn On Tab Close</option>
         </select>        
@@ -164,11 +164,11 @@
 
         <div class="separator"></div>
         
-        <button id="about_defaults_button" class="button">Reset Settings</div>
+        <button id="settings_defaults_button" class="button">Reset Settings</div>
       </div>
     </template>  
 
-    <template id="template_about_top"></template></template>
+    <template id="template_settings_top"></template></template>
 
     <script src="js/main/main.js"></script>
   </body>

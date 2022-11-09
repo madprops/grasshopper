@@ -15,7 +15,7 @@ App.init = async function () {
   App.setup_stars()
   App.setup_closed()
   App.setup_history()
-  App.setup_about()
+  App.setup_settings()
   App.setup_mouse()
   App.setup_keyboard()
   App.setup_items()
