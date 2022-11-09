@@ -128,7 +128,7 @@ App.star_editor_save = function () {
 // Get star by id
 App.get_star_by_id = async function (id) {
   if (!App.stars) {
-    await App.stor_get_stars()
+    await App.get_stars()
   }
 
   for (let it of App.stars.items) {
@@ -141,7 +141,7 @@ App.get_star_by_id = async function (id) {
 // Get star by url (first result)
 App.get_star_by_url = async function (url) {
   if (!App.stars) {
-    await App.stor_get_stars()
+    await App.get_stars()
   }
 
   for (let it of App.stars.items) {
