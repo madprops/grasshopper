@@ -30,7 +30,11 @@ App.create_window = function (args) {
       top.append(x)
     
       App.ev(x, "click", function () {
-        w.hide()
+        if (args.on_x) {
+          args.on_x()
+        } else {
+          w.hide()
+        }
       })
     }
   

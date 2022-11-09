@@ -10,7 +10,7 @@ App.setup_stars = function () {
     App.ev(App.el("#star_editor_save"), "click", function () {
       App.star_editor_save()
     })
-  }, on_hide: function () {
+  }, on_x: function () {
     App.show_last_window()
   }})
 }
@@ -112,7 +112,7 @@ App.star_editor_save = async function () {
       star.title = title
       star.url = url
       App.update_star(star)
-      App.windows["star_editor"].hide()
+      App.show_item_window("stars")
       return
     }
   }
@@ -122,7 +122,7 @@ App.star_editor_save = async function () {
     url: url
   })
 
-  App.windows["star_editor"].hide()
+  App.show_item_window("stars")
 }
 
 // Get star by id
