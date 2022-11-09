@@ -9,21 +9,10 @@ App.history_months = function () {
 }
 
 // Get items from history
-App.get_history = async function () {
-  let results
-  let r = App.settings.history_results
-
-  if (r === "fast") {
-    results = 1000 * 2
-  } else if (r === "normal") {
-    results = 1000 * 10
-  } else if (r === "deep") {
-    results = 1000 * 20
-  }
-
+App.get_history = async function (text) {
   let items = await browser.history.search({
-    text: "",
-    maxResults: results,
+    text: text,
+    maxResults: App.history_max_results,
     startTime: App.history_months()
   })
 

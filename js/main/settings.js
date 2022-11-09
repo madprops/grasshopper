@@ -12,14 +12,6 @@ App.setup_settings = function () {
       App.settings.text_mode = text_mode.value
       App.stor_save_settings()
     })  
-  
-    let history_results = App.el("#settings_history_results")
-    history_results.value = App.settings.history_results
-  
-    App.ev(history_results, "change", function () {
-      App.settings.history_results = history_results.value
-      App.stor_save_settings()
-    })  
 
     let warn_on_tab_close = App.el("#settings_warn_on_tab_close")
     warn_on_tab_close.value = App.settings.warn_on_tab_close ? "warn" : "no_warn"

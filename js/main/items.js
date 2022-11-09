@@ -165,12 +165,22 @@ App.focus_filter = function (mode) {
 }
 
 // Filter items
-App.do_item_filter = function (mode) {
-  if (!App[`${mode}_items`]) {
-    return
+App.do_item_filter = async function (mode) {  
+  let value = App.el(`#${mode}_filter`).value.trim()
+
+  if (mode === "history") {
+    if (!value) {
+      return
+    }
+    
+    let items = await App.get_history(value)
+    App.process_items("history", items)
   }
 
-  let value = App.el(`#${mode}_filter`).value.trim()
+  if (!App[`${mode}_items`]) {
+    return
+  }  
+
   let words = value.split(" ").filter(x => x !== "")
   let filter_mode = App.el(`#${mode}_filter_mode`).value
   let filter_words = words.map(x => x.toLowerCase())
@@ -548,6 +558,10 @@ App.show_item_window = function (mode, cycle = false) {
 
   App.el(`#${mode}_filter_mode`).selectedIndex = 0
 
+  if (mode === "history") {
+    return
+  }
+
   if (cycle) {
     App.get_items(mode)
   } else {
@@ -582,9 +596,17 @@ App.setup_item_window = function (mode) {
   args.align_top = "left"
 
   args.setup = function () {
+    let filter_delay
+
+    if (mode === "history") {
+      filter_delay = App.long_filter_delay
+    } else {
+      filter_delay = App.filter_delay
+    }
+
     let item_filter = App.create_debouncer(function () {
       App.do_item_filter(mode)
-    }, App.filter_delay)
+    }, filter_delay)
     
     App.ev(App.el(`#${mode}_filter`), "input", function () {
       item_filter()

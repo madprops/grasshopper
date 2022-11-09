@@ -15,11 +15,6 @@ App.stor_get_settings = async function () {
     changed = true
   }
 
-  if (App.settings.history_results === undefined) {
-    App.settings.history_results = "normal"
-    changed = true
-  }
-
   if (App.settings.color === undefined) {
     App.settings.color = "rgb(37, 41, 51)"
     changed = true

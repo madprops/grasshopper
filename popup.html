@@ -121,7 +121,7 @@
 
     <template id="template_history_top">
       <div class="flex_row_center gap_1" id="history_top_container">
-        <input type="text" id="history_filter" class="filter" autocomplete="off" placeholder="Filter">
+        <input type="text" id="history_filter" class="filter" autocomplete="off" placeholder="Search">
         
         <select id="history_filter_mode" class="select top_select" title="Filter Mode">
           <option value="all" selected>All</option>
@@ -141,12 +141,6 @@
         <select id="settings_text_mode" class="select settings_select" title="Main text to display on the items">
           <option value="title">Text Mode: Title</option>
           <option value="url">Text Mode: URL</option>
-        </select>
-        
-        <select id="settings_history_results" class="select settings_select" title="How many history results (2k | 10k | 20k)">
-          <option value="fast">History: Fast</option>
-          <option value="normal">History: Normal</option>
-          <option value="deep">History: Deep</option>
         </select>
           
         <select id="settings_warn_on_tab_close" class="select settings_select" title="This is the warning when closing pins or audible tabs">
