@@ -26,8 +26,8 @@ App.stars_action_alt = function (item) {
 }
 
 // Open star
-App.open_star = function (item, close = true) {
-  let star = App.get_star_by_id(item.id)
+App.open_star = async function (item, close = true) {
+  let star = await App.get_star_by_id(item.id)
   App.update_star(star)
   App.focus_or_open_item(App.selected_stars_item, close)
 }
@@ -90,7 +90,7 @@ App.show_star_editor = function (item) {
 }
 
 // Update star information
-App.star_editor_save = function () {
+App.star_editor_save = async function () {
   let title = App.el("#star_editor_title").value.trim()
   let url = App.el("#star_editor_url").value.trim()
 
@@ -106,7 +106,7 @@ App.star_editor_save = function () {
   }
 
   if (App.star_edited) {
-    let star = App.get_star_by_id(App.star_edited.id)
+    let star = await App.get_star_by_id(App.star_edited.id)
 
     if (star) {
       star.title = title
