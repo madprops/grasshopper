@@ -33,7 +33,11 @@ App.open_star = function (item, close = true) {
 }
 
 // Get stars
-App.get_stars = function () {
+App.get_stars = async function () {
+  if (!App.stars) {
+    await App.stor_get_stars()
+  }
+
   let stars = App.stars.items
   stars.sort((a, b) => (a.date_last_visit < b.date_last_visit) ? 1 : -1)
   return stars
@@ -122,7 +126,11 @@ App.star_editor_save = function () {
 }
 
 // Get star by id
-App.get_star_by_id = function (id) {
+App.get_star_by_id = async function (id) {
+  if (!App.stars) {
+    await App.stor_get_stars()
+  }
+
   for (let it of App.stars.items) {
     if (it.id === id) {
       return it
@@ -131,7 +139,11 @@ App.get_star_by_id = function (id) {
 }
 
 // Get star by url (first result)
-App.get_star_by_url = function (url) {
+App.get_star_by_url = async function (url) {
+  if (!App.stars) {
+    await App.stor_get_stars()
+  }
+
   for (let it of App.stars.items) {
     if (App.urls_equal(it.url, url)) {
       return it

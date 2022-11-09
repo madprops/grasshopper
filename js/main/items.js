@@ -235,7 +235,7 @@ App.hide_item = function (it) {
 }
 
 // Show item menu
-App.show_item_menu = function (mode, item, x, y) {
+App.show_item_menu = async function (mode, item, x, y) {
   let items = []
 
   if (mode === "tabs") {
@@ -272,14 +272,19 @@ App.show_item_menu = function (mode, item, x, y) {
     }
   }
 
-  if (!App.get_star_by_url(item.url)) {
-    items.push({
-      text: "Add Star",
-      action: function () {
-        App.new_star(item.title, item.url)
-      }
-    })
-  }  
+  
+  if (mode !== "stars") {
+    let starred = await App.get_star_by_url(item.url)
+
+    if (!starred) {
+      items.push({
+        text: "Add Star",
+        action: function () {
+          App.new_star(item.title, item.url)
+        }
+      })
+    }  
+  }
 
   items.push({
     text: "Copy URL",

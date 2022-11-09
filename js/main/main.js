@@ -10,7 +10,6 @@ App.max_closed = 25
 
 App.init = async function () {
   await App.stor_get_settings()
-  await App.stor_get_stars()
   App.setup_theme()
   App.setup_tabs()
   App.setup_stars()
