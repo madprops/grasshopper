@@ -4,7 +4,6 @@ App.windows = {}
 App.filter_delay = 125
 App.long_filter_delay = 250
 App.color_delay = 125
-App.get_items_delay = 125
 App.history_max_results = 1000
 App.history_max_months = 24
 App.max_stars = 1000 * 5

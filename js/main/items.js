@@ -2,10 +2,6 @@
 App.setup_items = function () {
   App.get_window_order()
   App.start_item_observers()
-
-  App.get_items = App.create_debouncer(function (mode) {
-    App.do_get_items(mode)
-  }, App.get_items_delay)
 }
 
 // Select an item
@@ -535,7 +531,7 @@ App.intersection_observer = function (mode, options) {
 }
 
 // Show a window by mode
-App.show_item_window = function (mode, cycle = false) {
+App.show_item_window = async function (mode, cycle = false) {
   let last_mode = App.window_mode
 
   if (!App.window_order.includes(last_mode)) {
@@ -560,35 +556,26 @@ App.show_item_window = function (mode, cycle = false) {
     filter_mode.selectedIndex = 0
   }
 
-  if (cycle) {
-    App.get_items(mode)
-  } else {
-    App.do_get_items(mode)
-  }
-}
-
-// Get items to show in windows
-App.do_get_items = async function (mode) {
   if (mode === "history") {
     App.focus_filter(mode)
     App.search_history()
     return
   }
-
+  
   let items = await App[`get_${mode}`]()
-
+  
   if (mode !== App.window_mode) {
     return
   }
-
+  
   App.process_items(mode, items)
-
+  
   if (App.el(`#${mode}_filter`).value) {
     App.do_item_filter(mode)
   } else {
     App.select_first_item(mode)
   }
-
+  
   App.focus_filter(mode)  
 }
 
