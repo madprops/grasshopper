@@ -8,7 +8,7 @@ App.setup_theme = function () {
 App.apply_theme = function () {
   let background_color = App.settings.color
   let font_color = App.colorlib.get_lighter_or_darker(background_color, 0.7)
-  let alt_color = App.colorlib.get_lighter_or_darker(background_color, 0.11)
+  let alt_color = App.colorlib.get_lighter_or_darker(background_color, 0.12)
   App.set_css_var("background_color", background_color)
   App.set_css_var("font_color", font_color)
   App.set_css_var("alt_color", alt_color)
