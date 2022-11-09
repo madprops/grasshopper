@@ -1,7 +1,7 @@
 {
     "manifest_version": 2,
     "name": "Grasshopper",
-    "version": "26",
+    "version": "27",
     "description": "Alternative tab manager",
     "permissions": [
         "tabs",
