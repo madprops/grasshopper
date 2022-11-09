@@ -556,7 +556,8 @@ App.show_item_window = function (mode, cycle = false) {
   }
 
   if (mode === "history") {
-    App.focus_filter(mode)    
+    App.focus_filter(mode)
+    App.search_history()
     return
   }
 
