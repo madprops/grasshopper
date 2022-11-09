@@ -569,6 +569,7 @@ App.do_get_items = async function (mode) {
   }
 
   App.process_items(mode, items)
+  App.select_first_item(mode)
   App.focus_filter(mode)  
 }
 
