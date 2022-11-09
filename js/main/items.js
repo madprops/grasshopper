@@ -569,7 +569,13 @@ App.do_get_items = async function (mode) {
   }
 
   App.process_items(mode, items)
-  App.select_first_item(mode)
+
+  if (App.el(`#${mode}_filter`).value) {
+    App.do_item_filter(mode)
+  } else {
+    App.select_first_item(mode)
+  }
+
   App.focus_filter(mode)  
 }
 
