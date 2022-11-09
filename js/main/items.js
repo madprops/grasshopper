@@ -176,33 +176,40 @@ App.do_item_filter = function (mode) {
   }  
 
   let value = App.el(`#${mode}_filter`).value.trim()
-  let filter_mode = App.el(`#${mode}_filter_mode`).value
+
+  let filter_mode
+  let filter_mode_select = App.el(`#${mode}_filter_mode`)
+
+  if (filter_mode_select) {
+    filter_mode = filter_mode_select.value
+  } else {
+    filter_mode = "all"
+  }
+
   let words = value.split(" ").filter(x => x !== "")
   let filter_words = words.map(x => x.toLowerCase())
 
-  function check (what) {
-    return filter_words.every(x => what.includes(x))
+  function check (title, path) {
+    return filter_words.every(x => title.includes(x) || path.includes(x))
   }
 
   function matched (item) {
     let match = false
     let title = item.title_lower
     let path = item.path_lower
-    
-    if (filter_mode === "all") {
-      match = check(title) || check(path)
-    } else if (filter_mode === "normal") {
-      match = !item.audible && !item.pinned &&
-      (check(title) || check(path)) 
-    } else if (filter_mode === "playing") {
-      match = item.audible &&
-      (check(title) || check(path))    
-    } else if (filter_mode === "pins") {
-      match = item.pinned &&
-      (check(title) || check(path))  
-    } else if (filter_mode === "muted") {
-      match = item.muted &&
-      (check(title) || check(path))    
+
+    if (check(title, path)) {
+      if (filter_mode === "all") {
+        match = true
+      } else if (filter_mode === "normal") {
+        match = !item.audible && !item.pinned
+      } else if (filter_mode === "playing") {
+        match = item.audible
+      } else if (filter_mode === "pins") {
+        match = item.pinned
+      } else if (filter_mode === "muted") {
+        match = item.muted
+      }
     }
         
     return match
