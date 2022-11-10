@@ -415,12 +415,8 @@ App.create_empty_item_element = function (mode, item) {
 App.create_item_element = function (mode, item) {
   item.element.classList.remove("item_empty")
   
-  let icon = App.get_img_icon(item.favicon, item.url)
+  let icon = App.get_img_icon(item.favicon, item.url, item.pinned)
   item.element.append(icon)
-
-  if (item.pinned) {
-    App.el(".item_icon_container", item.element).classList.add("pinned")
-  }
 
   let text = App.create("div", "item_text")
   item.element.append(text)
@@ -431,7 +427,7 @@ App.create_item_element = function (mode, item) {
 }
 
 // Get image favicon
-App.get_img_icon = function (favicon, url) {
+App.get_img_icon = function (favicon, url, pinned = false) {
   let icon_container = App.create("div", "item_icon_container")
   let icon = App.create("img", "item_icon")
   icon.loading = "lazy"
@@ -439,12 +435,27 @@ App.get_img_icon = function (favicon, url) {
   icon.height = 25
 
   App.ev(icon, "error", function () {
-    icon_container.replaceWith(App.get_jdenticon(url))
+    let ident = App.get_jdenticon(url)
+    icon_container.replaceWith(ident)
+
+    if (pinned) {
+      App.pin_item_icon(ident)
+    }
   })
 
   icon.src = favicon
   icon_container.append(icon)
+
+  if (pinned) {
+    App.pin_item_icon(icon_container)
+  }
+  
   return icon_container
+}
+
+// Pin item icon
+App.pin_item_icon = function (container) {
+  container.classList.add("pinned")
 }
 
 // Set item text content
