@@ -31,10 +31,10 @@ App.history_action_alt = function (item) {
 
 // Show information about history
 App.show_history_info = function () {
-  if (App.history_items.length > 0) {
-    let n = App.history_items.length
-    let s = App.plural(n, "history result", "history results")
-    alert(s)
+  let num = App.els(".history_item").length
+
+  if (num > 0) {
+    alert(App.plural(num, "history result", "history results"))
   } else {
     alert("Search the history")
   }
@@ -42,7 +42,6 @@ App.show_history_info = function () {
 
 // Search the history
 App.search_history = async function () {
-  App.history_items = []
   let value = App.el("#history_filter").value.trim()
 
   if (!value) {
