@@ -139,3 +139,8 @@ App.remove_hash = function (url) {
 App.format_url = function (url) {
   return App.remove_slashes_end(App.remove_hash(url))
 }
+
+// Get a random int from min to max
+App.get_random_int = function (min, max) {
+  return Math.floor(Math.random() * (max - min + 1) + min)
+}

@@ -53,6 +53,10 @@ App.setup_settings = function () {
     start_color_picker("alt")
     start_color_picker("pin")
 
+    App.ev(App.el("#settings_random_theme"), "click", function () {
+      App.random_theme()
+    })
+
     let window_order = App.el("#window_order")
 
     for (let m of App.window_order) {
