@@ -44,6 +44,10 @@ App.stor_get_settings = async function () {
     App.settings.warn_on_tab_close = true
   }
 
+  if (App.settings.pin_style === undefined) {
+    App.settings.pin_style = "groove"
+  }  
+
   if (changed) {
     App.stor_save_settings()
   }

@@ -12,6 +12,7 @@ App.apply_theme = function () {
   App.set_css_var("background_color", background_color)
   App.set_css_var("font_color", font_color)
   App.set_css_var("alt_color", alt_color)
+  App.set_css_var("pin_style", App.settings.pin_style)
 }
 
 // Set css variable
