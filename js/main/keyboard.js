@@ -2,6 +2,16 @@
 App.check_window_keyboard = function (e) {
   let mode = App.window_mode
 
+  if (mode === "history") {
+    if (App.el("#history_search") !== document.activeElement && 
+        App.el("#history_filter") !== document.activeElement
+    ) {
+      App.el("#history_search").focus()
+    }
+  } else {
+    App.focus_filter(mode)
+  }
+
   if (e.key === "Enter") {
     App[`${mode}_action`](App[`selected_${mode}_item`])
     e.preventDefault()
