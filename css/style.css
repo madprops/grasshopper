@@ -134,9 +134,11 @@ body, html {
   display: flex;
   align-items: center;
   justify-content: center;
-  border: 2px solid transparent;
+  border-width: 2px;
+  border-color: transparent;
   border-radius: 50%;
   margin-left: 0.5rem;
+  border-style: solid;
 }
 
 .item_icon {
@@ -288,5 +290,5 @@ body, html {
 }
 
 .pinned {
-  border: 2px solid currentColor;
+  border-color: currentColor;
 }
