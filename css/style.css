@@ -140,6 +140,9 @@ body, html {
 .item_icon {
   width: 1.2rem;
   height: 1.2rem;
+  border: 2px solid transparent;
+  border-spacing: 0.6rem;
+  border-radius: 50%;
 }
 
 .item_text {
@@ -281,4 +284,8 @@ body, html {
 
 .clicked {
   background-color: var(--alt_color) !important;
+}
+
+.pinned {
+  border: 2px solid currentColor;
 }

@@ -418,6 +418,10 @@ App.create_item_element = function (mode, item) {
   let icon = App.get_img_icon(item.favicon, item.url)
   item.element.append(icon)
 
+  if (item.pinned) {
+    App.el(".item_icon", item.element).classList.add("pinned")
+  }
+
   let text = App.create("div", "item_text")
   item.element.append(text)
   App.set_item_text(mode, item)  
@@ -426,17 +430,30 @@ App.create_item_element = function (mode, item) {
   console.info(`Item created in ${mode}`)
 }
 
+// Get image favicon
+App.get_img_icon = function (favicon, url) {
+  let icon_container = App.create("div", "item_icon_container")
+  let icon = App.create("img", "item_icon")
+  icon.loading = "lazy"
+  icon.width = 25
+  icon.height = 25
+
+  App.ev(icon, "error", function () {
+    icon_container.replaceWith(App.get_jdenticon(url))
+  })
+
+  icon.src = favicon
+  icon_container.append(icon)
+  return icon_container
+}
+
 // Set item text content
 App.set_item_text = function (mode, item) {
   let content = ""
 
   if (mode === "tabs") {
     let status = []
-  
-    if (item.pinned) {
-      status.push("Pin")
-    }
-  
+    
     if (item.audible) {
       status.push("Playing")
     }
