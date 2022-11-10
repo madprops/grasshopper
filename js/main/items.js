@@ -592,16 +592,16 @@ App.show_item_window = async function (mode, cycle = false) {
     filter_mode.selectedIndex = 0
   }
 
+  let items
+
   if (mode === "history") {
-    App.focus_filter(mode)
-    App.search_history()
-    return
-  }
-  
-  let items = await App[`get_${mode}`]()
-  
-  if (mode !== App.window_mode) {
-    return
+    items = App.history_items
+  } else {
+    items = await App[`get_${mode}`]()
+    
+    if (mode !== App.window_mode) {
+      return
+    }
   }
   
   App.process_items(mode, items)
@@ -612,7 +612,11 @@ App.show_item_window = async function (mode, cycle = false) {
     App.select_first_item(mode)
   }
   
-  App.focus_filter(mode)  
+  if (mode === "history") {
+    App.el("#history_search").focus()
+  } else {
+    App.focus_filter(mode)  
+  }
 }
 
 // Setup an item window
@@ -623,20 +627,8 @@ App.setup_item_window = function (mode) {
   args.align_top = "left"
 
   args.setup = function () {
-    let filter_function
-
-    if (mode === "history") {
-      filter_function = function () {
-        App.search_history()
-      }
-    } else {
-      filter_function = function () {
-        App.do_item_filter(mode)
-      }
-    }
-
     let item_filter = App.create_debouncer(function () {
-      filter_function()
+      App.do_item_filter(mode)
     }, App.filter_delay)
     
     App.ev(App.el(`#${mode}_filter`), "input", function () {

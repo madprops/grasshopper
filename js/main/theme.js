@@ -33,21 +33,42 @@ App.to_rgba = function (rgb, alpha) {
 }
 
 // Pick a random theme
-App.random_theme = function () {
-  let background_color = App.random_rgb_color()
-  let text_color = App.colorlib.get_lighter_or_darker(background_color, 0.7)
+App.random_theme = function (mode) {
+  let colors 
+  
+  if (mode === "dark") {
+    colors = App.get_dark_theme()
+  } else if (mode === "light") {
+    colors = App.get_light_theme()
+  }
 
-  App.background_color_picker.color = background_color
-  App.text_color_picker.color = text_color
+  App.background_color_picker.color = colors.bg_color
+  App.text_color_picker.color = colors.text_color
 
   App.apply_theme()
   App.stor_save_settings()
 }
 
-// Random rgb color
-App.random_rgb_color = function () {
-  let r = App.get_random_int(0, 255)
-  let g = App.get_random_int(0, 255)
-  let b = App.get_random_int(0, 255)
-  return `rgb(${r}, ${g}, ${b})`
+// Get a random dark theme
+App.get_dark_theme = function () {
+  let bg_color = App.colorlib.get_dark_color()
+  let text_color = App.colorlib.get_random_hex()
+  
+  if (App.colorlib.is_dark(text_color)) {
+    text_color = App.colorlib.get_lighter_or_darker(text_color, 0.66)
+  }
+
+  return {bg_color: bg_color, text_color: text_color}
+}
+
+// Get a random light theme
+App.get_light_theme = function () {
+  let bg_color = App.colorlib.get_light_color()
+  let text_color = App.colorlib.get_random_hex()
+  
+  if (App.colorlib.is_light(text_color)) {
+    text_color = App.colorlib.get_lighter_or_darker(text_color, 0.66)
+  }
+
+  return {bg_color: bg_color, text_color: text_color}
 }

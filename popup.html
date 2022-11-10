@@ -105,7 +105,8 @@
 
     <template id="template_history_top">
       <div class="flex_row_center gap_1" id="history_top_container">
-        <input type="text" id="history_filter" class="filter" autocomplete="off" placeholder="Search">
+        <input type="text" id="history_search" class="filter" autocomplete="off" placeholder="Search">
+        <input type="text" id="history_filter" class="filter" autocomplete="off" placeholder="Filter">
         <button id="history_info_button" class="button" title="Information">Info</button>
       </div>
     </template>
@@ -149,11 +150,13 @@
         <div id="window_order" class="unselectable" title="Window Order"></div>
 
         <div class="separator"></div>
-        
+
         <div class="flex_row_center gap_2">
-          <button id="settings_defaults_button" class="button">Reset Settings</button>
-          <button id="settings_random_theme" class="button">Random Theme</button>
+          <button id="settings_dark_theme" class="button">Dark Theme</button>
+          <button id="settings_light_theme" class="button">Light Theme</button>
         </div>
+        
+        <button id="settings_defaults_button" class="button">Reset Settings</button>
       </div>
     </template>  
 

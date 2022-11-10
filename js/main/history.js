@@ -1,6 +1,16 @@
 // Setup history
 App.setup_history = function () {
-  App.setup_item_window("history") 
+  App.setup_item_window("history")
+
+  let search_filter = App.create_debouncer(function () {
+    App.search_history()
+  }, App.filter_delay)
+
+  App.ev(App.el("#history_search"), "input", function () {
+    search_filter()
+  })
+
+  App.history_items = []
 }
 
 // Get history months date
@@ -42,7 +52,7 @@ App.show_history_info = function () {
 
 // Search the history
 App.search_history = async function () {
-  let value = App.el("#history_filter").value.trim()
+  let value = App.el("#history_search").value.trim()
 
   if (!value) {
     App.el("#history_container").innerHTML = ""

@@ -51,8 +51,12 @@ App.setup_settings = function () {
     start_color_picker("background")
     start_color_picker("text")
 
-    App.ev(App.el("#settings_random_theme"), "click", function () {
-      App.random_theme()
+    App.ev(App.el("#settings_dark_theme"), "click", function () {
+      App.random_theme("dark")
+    })
+
+    App.ev(App.el("#settings_light_theme"), "click", function () {
+      App.random_theme("light")
     })
 
     let window_order = App.el("#window_order")
