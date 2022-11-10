@@ -678,6 +678,20 @@ App.cycle_item_windows = function (reverse = false) {
     return
   }
 
+  if (App.window_mode === "history") {
+    if (reverse) {
+      if (App.el("#history_filter") === document.activeElement) {
+        App.el("#history_search").focus()
+        return
+      }
+    } else {
+      if (App.el("#history_search") === document.activeElement) {
+        App.el("#history_filter").focus()
+        return
+      }
+    }
+  }
+
   if (reverse) {
     if (index === 0) {
       new_mode = modes.slice(-1)[0]
