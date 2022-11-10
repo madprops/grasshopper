@@ -28,23 +28,29 @@ App.setup_settings = function () {
       App.settings.pin_style = pin_style.value
       App.apply_theme()
       App.stor_save_settings()
-    })     
+    })  
+
+    function start_color_picker (name) {
+      let color_picker = AColorPicker.createPicker(App.el(`#${name}_color_picker`), {
+        showAlpha: false,
+        showHSL: false,
+        showHEX: false,
+        showRGB: true,
+        color: App.settings[`${name}_color`]
+      })
   
-    let color = AColorPicker.createPicker(App.el("#color_picker"), {
-      showAlpha: false,
-      showHSL: false,
-      showHEX: false,
-      showRGB: true,
-      color: App.settings.color
-    })
+      let change_color = App.create_debouncer(function (color_picker) {
+        App.do_change_color(name, color_picker)
+      }, App.color_delay)
+  
+      color_picker.on("change", function (picker, color_picker) {
+        change_color(color_picker)
+      })        
+    }
 
-    let change_color = App.create_debouncer(function (color) {
-      App.do_change_color(color)
-    }, App.color_delay)
-
-    color.on("change", function (picker, color) {
-      change_color(color)
-    })
+    start_color_picker("background")
+    start_color_picker("text")
+    start_color_picker("pin")
 
     let window_order = App.el("#window_order")
 

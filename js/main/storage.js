@@ -15,8 +15,18 @@ App.stor_get_settings = async function () {
     changed = true
   }
 
-  if (App.settings.color === undefined) {
-    App.settings.color = "rgb(37, 41, 51)"
+  if (App.settings.background_color === undefined) {
+    App.settings.background_color = "rgb(37, 41, 51)"
+    changed = true
+  }
+
+  if (App.settings.text_color === undefined) {
+    App.settings.text_color = "rgb(220, 220, 220)"
+    changed = true
+  }
+
+  if (App.settings.pin_color === undefined) {
+    App.settings.pin_color = "rgb(128, 128, 128)"
     changed = true
   }
 
@@ -42,11 +52,18 @@ App.stor_get_settings = async function () {
 
   if (App.settings.warn_on_tab_close === undefined) {
     App.settings.warn_on_tab_close = true
+    changed = true
   }
 
   if (App.settings.pin_style === undefined) {
     App.settings.pin_style = "groove"
+    changed = true
   }  
+
+  if (App.settings.pin_color === undefined) {
+    App.settings.pin_color = "auto"
+    changed = true
+  }    
 
   if (changed) {
     App.stor_save_settings()

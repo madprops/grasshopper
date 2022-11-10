@@ -10,7 +10,7 @@
 body, html {
   font-family: imported_font, sans-serif;
   font-size: 17px;
-  color: var(--font_color);
+  color: var(--text_color);
   width: 700px;
   height: 600px;
   margin: 0;
@@ -85,7 +85,7 @@ body, html {
 .filter {
   height: var(--widget_height);
   background-color: var(--alt_color);
-  color: var(--font_color);
+  color: var(--text_color);
   outline: none;
   border-width: 0;
   font-size: 1rem;
@@ -99,7 +99,7 @@ body, html {
   height: var(--widget_height);
   font-size: 0.88rem;
   background-color: transparent;
-  color: var(--font_color);
+  color: var(--text_color);
   border: none;
   border: 2px solid var(--alt_color);
 }
@@ -110,7 +110,7 @@ body, html {
   cursor: pointer;
   flex-shrink: 0;
   background-color: transparent;
-  color: var(--font_color);
+  color: var(--text_color);
   min-width: 1.5rem;
   border: none;
   border: 2px solid var(--alt_color);
@@ -139,6 +139,11 @@ body, html {
   border-radius: 50%;
   outline-style: var(--pin_style);
   outline-offset: 1px;
+}
+
+.pinned {
+  outline-color: var(--pin_color);
+  box-shadow: 0 0 0.7rem currentColor;
 }
 
 .item_text {
@@ -237,7 +242,7 @@ body, html {
 
 .input_text {
   background-color: var(--alt_color);
-  color: var(--font_color);
+  color: var(--text_color);
   outline: 1px solid var(--alt_color);
   border-width: 0;
   font-size: 1rem;
@@ -282,9 +287,4 @@ body, html {
 
 .clicked {
   background-color: var(--alt_color) !important;
-}
-
-.pinned {
-  outline-color: currentColor;
-  box-shadow: 0 0 0.7rem currentColor;
 }
