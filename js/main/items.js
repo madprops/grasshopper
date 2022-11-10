@@ -568,6 +568,11 @@ App.intersection_observer = function (mode, options) {
 
 // Show a window by mode
 App.show_item_window = async function (mode, cycle = false) {
+  if (mode === "history") {
+    App.show_history(cycle)
+    return
+  }
+
   let last_mode = App.window_mode
 
   if (!App.window_order.includes(last_mode)) {
@@ -579,12 +584,15 @@ App.show_item_window = async function (mode, cycle = false) {
   App.el(`#${mode}_select`).value = mode
   App.empty_footer(mode)
 
+  let value
+
   if (cycle) {
-    let v = App.el(`#${last_mode}_filter`).value.trim()
-    App.el(`#${mode}_filter`).value = v
+    value = App.el(`#${last_mode}_filter`).value.trim()
   } else {
-    App.el(`#${mode}_filter`).value = ""
+    value = ""
   }
+
+  App.el(`#${mode}_filter`).value = value
 
   let filter_mode = App.el(`#${mode}_filter_mode`)
 
@@ -592,31 +600,21 @@ App.show_item_window = async function (mode, cycle = false) {
     filter_mode.selectedIndex = 0
   }
 
-  let items
-
-  if (mode === "history") {
-    items = App.history_items
-  } else {
-    items = await App[`get_${mode}`]()
-    
-    if (mode !== App.window_mode) {
-      return
-    }
+  let items = await App[`get_${mode}`]()
+  
+  if (mode !== App.window_mode) {
+    return
   }
   
   App.process_items(mode, items)
-  
-  if (App.el(`#${mode}_filter`).value) {
+
+  if (value) {
     App.do_item_filter(mode)
   } else {
     App.select_first_item(mode)
   }
   
-  if (mode === "history") {
-    App.el("#history_search").focus()
-  } else {
-    App.focus_filter(mode)  
-  }
+  App.focus_filter(mode)  
 }
 
 // Setup an item window

@@ -60,6 +60,38 @@ App.search_history = async function () {
   }
   
   let items = await App.get_history(value)
+
+  if (App.window_mode !== "history") {
+    return
+  }
+
   App.process_items("history", items)
   App.select_first_item("history")
+}
+
+// Show history window
+App.show_history = function (cycle = false) {
+  let last_mode = App.window_mode
+
+  if (!App.window_order.includes(last_mode)) {
+    last_mode = "tabs"
+  }
+    
+  App.el("#history_container").innerHTML = ""
+  App.windows["history"].show()
+  App.el("#history_select").value = "history"
+  App.empty_footer("history")
+
+  let value
+
+  if (cycle) {
+    value = App.el(`#${last_mode}_filter`).value.trim()
+  } else {
+    value = ""
+  }
+
+  let history_search = App.el("#history_search")
+  history_search.value = value
+  history_search.focus()
+  App.search_history()
 }
