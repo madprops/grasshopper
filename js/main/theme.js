@@ -9,10 +9,10 @@ App.apply_theme = function () {
   App.set_css_var("background_color", App.settings.background_color)
   App.set_css_var("text_color", App.settings.text_color)
   App.set_css_var("pin_style", App.settings.pin_style)
-  App.set_css_var("pin_color", App.settings.pin_color)
-
-  let alt_color = App.to_rgba(App.settings.alt_color, 0.14)
+  
+  let alt_color = App.to_rgba(App.settings.text_color, 0.14)
   App.set_css_var("alt_color", alt_color)
+  
 }
 
 // Set css variable
@@ -39,8 +39,9 @@ App.random_theme = function () {
 
   App.settings.background_color = background_color
   App.settings.text_color = text_color
-  App.settings.alt_color = text_color
-  App.settings.pin_color = text_color
+
+  App.el("#background_color_picker").value = App.settings.background_color
+  App.el("#text_color_picker").value = App.settings.text_color
 
   App.apply_theme()
   App.stor_save_settings()

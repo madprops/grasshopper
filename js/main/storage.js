@@ -25,16 +25,6 @@ App.stor_get_settings = async function () {
     changed = true
   }
 
-  if (App.settings.alt_color === undefined) {
-    App.settings.alt_color = "rgb(220, 220, 220)"
-    changed = true
-  }
-
-  if (App.settings.pin_color === undefined) {
-    App.settings.pin_color = "rgb(128, 128, 128)"
-    changed = true
-  }
-
   if (App.settings.tabs_index === undefined) {
     App.settings.tabs_index = 0
     changed = true
@@ -63,12 +53,7 @@ App.stor_get_settings = async function () {
   if (App.settings.pin_style === undefined) {
     App.settings.pin_style = "groove"
     changed = true
-  }  
-
-  if (App.settings.pin_color === undefined) {
-    App.settings.pin_color = "auto"
-    changed = true
-  }    
+  }     
 
   if (changed) {
     App.stor_save_settings()

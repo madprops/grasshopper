@@ -50,8 +50,6 @@ App.setup_settings = function () {
 
     start_color_picker("background")
     start_color_picker("text")
-    start_color_picker("alt")
-    start_color_picker("pin")
 
     App.ev(App.el("#settings_random_theme"), "click", function () {
       App.random_theme()
