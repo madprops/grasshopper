@@ -143,7 +143,6 @@ body, html {
 
 .pinned {
   outline-color: var(--text_color);
-  box-shadow: 0 0 0.7rem currentColor;
 }
 
 .item_text {
