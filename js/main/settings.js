@@ -50,6 +50,7 @@ App.setup_settings = function () {
 
     start_color_picker("background")
     start_color_picker("text")
+    start_color_picker("alt")
     start_color_picker("pin")
 
     let window_order = App.el("#window_order")

@@ -25,6 +25,11 @@ App.stor_get_settings = async function () {
     changed = true
   }
 
+  if (App.settings.alt_color === undefined) {
+    App.settings.alt_color = "rgb(63, 67, 75)"
+    changed = true
+  }
+
   if (App.settings.pin_color === undefined) {
     App.settings.pin_color = "rgb(128, 128, 128)"
     changed = true
