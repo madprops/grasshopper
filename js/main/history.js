@@ -45,6 +45,7 @@ App.search_history = async function () {
   let value = App.el("#history_filter").value.trim()
 
   if (!value) {
+    App.el("#history_container").innerHTML = ""
     return
   }
   
