@@ -130,19 +130,18 @@ body, html {
 .item_icon_container {
   flex-grow: 0;
   flex-shrink: 0;
-  padding: 0.5rem;
-  padding-right: 0.66rem;
+  margin-right: 0.66rem;
   display: flex;
   align-items: center;
   justify-content: center;
+  border: 2px solid transparent;
+  border-radius: 50%;
+  margin-left: 0.5rem;
 }
 
 .item_icon {
   width: 1.2rem;
   height: 1.2rem;
-  border: 2px solid transparent;
-  border-spacing: 0.6rem;
-  border-radius: 50%;
 }
 
 .item_text {
@@ -150,6 +149,8 @@ body, html {
   white-space: pre;
   overflow: hidden;
   margin-right: 0.5rem;
+  padding-top: 0.5rem;
+  padding-bottom: 0.5rem;
 }
 
 .selected {

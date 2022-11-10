@@ -115,7 +115,6 @@ App.update_tab = function (o_tab, info) {
       }
       
       let selected = App.selected_tabs_item === it
-
       App.create_item_element("tabs", tab)
       App.tabs_items[i].element.replaceWith(tab.element)
       App.tabs_items[i] = tab

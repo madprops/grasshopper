@@ -419,7 +419,7 @@ App.create_item_element = function (mode, item) {
   item.element.append(icon)
 
   if (item.pinned) {
-    App.el(".item_icon", item.element).classList.add("pinned")
+    App.el(".item_icon_container", item.element).classList.add("pinned")
   }
 
   let text = App.create("div", "item_text")
