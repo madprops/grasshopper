@@ -51,7 +51,7 @@ App.stor_get_settings = async function () {
   }
 
   if (App.settings.pin_style === undefined) {
-    App.settings.pin_style = "groove"
+    App.settings.pin_style = "dotted"
     changed = true
   }     
 
