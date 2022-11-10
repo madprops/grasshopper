@@ -127,24 +127,18 @@ body, html {
   min-height: 1.6rem;
 }
 
-.item_icon_container {
-  display: flex;
-  flex-grow: 0;
-  flex-shrink: 0;
+.item_icon {
+  width: 1.2rem;
+  height: 1.2rem;
   margin-right: 0.7rem;
   margin-left: 0.5rem;
-  align-items: center;
-  justify-content: center;
+  flex-grow: 0;
+  flex-shrink: 0;
   outline-width: 2px;
   outline-color: transparent;
   border-radius: 50%;
   outline-style: solid;
   outline-offset: 1px;
-}
-
-.item_icon {
-  width: 1.2rem;
-  height: 1.2rem;
 }
 
 .item_text {

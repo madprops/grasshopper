@@ -79,18 +79,6 @@ App.get_hostname = function (url) {
   return url_obj.hostname
 }
 
-// Get jdenticon icon
-App.get_jdenticon = function (url) {
-  let icon_container = App.create("div", "item_icon_container")
-  let hostname = App.get_hostname(url) || "hostname"
-  let icon = App.create("canvas", "item_icon")
-  icon.width = 25
-  icon.height = 25
-  jdenticon.update(icon, hostname)
-  icon_container.append(icon)
-  return icon_container
-}
-
 // Wrap select for extra functionality
 App.wrap_select = function (select, on_change, cycle = false) {
   select.addEventListener("wheel", function(e) {

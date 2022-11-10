@@ -428,34 +428,42 @@ App.create_item_element = function (mode, item) {
 
 // Get image favicon
 App.get_img_icon = function (favicon, url, pinned = false) {
-  let icon_container = App.create("div", "item_icon_container")
   let icon = App.create("img", "item_icon")
   icon.loading = "lazy"
   icon.width = 25
   icon.height = 25
 
   App.ev(icon, "error", function () {
-    let ident = App.get_jdenticon(url)
-    icon_container.replaceWith(ident)
+    let icon_2 = App.get_jdenticon(url)
+    icon.replaceWith(icon_2)
 
     if (pinned) {
-      App.pin_item_icon(ident)
+      App.pin_item_icon(icon_2)
     }
   })
 
   icon.src = favicon
-  icon_container.append(icon)
 
   if (pinned) {
-    App.pin_item_icon(icon_container)
+    App.pin_item_icon(icon)
   }
   
-  return icon_container
+  return icon
 }
 
 // Pin item icon
-App.pin_item_icon = function (container) {
-  container.classList.add("pinned")
+App.pin_item_icon = function (icon) {
+  icon.classList.add("pinned")
+}
+
+// Get jdenticon icon
+App.get_jdenticon = function (url) {
+  let hostname = App.get_hostname(url) || "hostname"
+  let icon = App.create("canvas", "item_icon")
+  icon.width = 25
+  icon.height = 25
+  jdenticon.update(icon, hostname)
+  return icon
 }
 
 // Set item text content
