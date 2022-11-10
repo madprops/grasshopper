@@ -236,7 +236,7 @@ body, html {
 
 .separator {
   border-top: 1px solid var(--alt_color);
-  width: 12rem;
+  width: 14rem;
 }
 
 .input_text {
