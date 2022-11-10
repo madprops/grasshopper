@@ -26,7 +26,7 @@ App.stor_get_settings = async function () {
   }
 
   if (App.settings.alt_color === undefined) {
-    App.settings.alt_color = "rgb(63, 67, 75)"
+    App.settings.alt_color = "rgb(220, 220, 220)"
     changed = true
   }
 
