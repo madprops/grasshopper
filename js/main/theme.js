@@ -37,11 +37,8 @@ App.random_theme = function () {
   let background_color = App.random_rgb_color()
   let text_color = App.colorlib.get_lighter_or_darker(background_color, 0.7)
 
-  App.settings.background_color = background_color
-  App.settings.text_color = text_color
-
-  App.el("#background_color_picker").value = App.settings.background_color
-  App.el("#text_color_picker").value = App.settings.text_color
+  App.background_color_picker.color = background_color
+  App.text_color_picker.color = text_color
 
   App.apply_theme()
   App.stor_save_settings()
