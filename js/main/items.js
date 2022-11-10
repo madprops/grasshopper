@@ -587,15 +587,13 @@ App.setup_item_window = function (mode) {
   args.align_top = "left"
 
   args.setup = function () {
-    let filter_delay, filter_function
+    let filter_function
 
     if (mode === "history") {
-      filter_delay = App.long_filter_delay
       filter_function = function () {
         App.search_history()
       }
     } else {
-      filter_delay = App.filter_delay
       filter_function = function () {
         App.do_item_filter(mode)
       }
@@ -603,7 +601,7 @@ App.setup_item_window = function (mode) {
 
     let item_filter = App.create_debouncer(function () {
       filter_function()
-    }, filter_delay)
+    }, App.filter_delay)
     
     App.ev(App.el(`#${mode}_filter`), "input", function () {
       item_filter()
