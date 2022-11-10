@@ -1,7 +1,7 @@
 App.stor_settings_name = "settings_v1"
 App.stor_stars_name = "stars_v6"
 App.windows = {}
-App.filter_delay = 300
+App.filter_delay = 250
 App.color_delay = 150
 App.history_max_results = 1000
 App.history_max_months = 24
