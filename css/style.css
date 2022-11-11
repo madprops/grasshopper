@@ -139,13 +139,12 @@ body, html {
   outline-width: 2px;
   border-radius: 50%;
   outline-offset: 1px;
-  outline-style: solid;
-  outline-color: var(--alt_color_2);
+  outline-color: transparent;
+  outline-style: var(--pin_style);
 }
 
 .pinned {
   outline-color: var(--text_color);
-  outline-style: var(--pin_style);
 }
 
 .item_text {
