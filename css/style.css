@@ -140,11 +140,12 @@ body, html {
   border-radius: 50%;
   outline-offset: 1px;
   outline-color: var(--alt_color);
-  outline-style: var(--pin_style);
+  outline-style: solid;
 }
 
 .pinned {
   outline-color: var(--text_color);
+  outline-style: var(--pin_style);
 }
 
 .item_text {
