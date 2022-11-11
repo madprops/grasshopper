@@ -335,8 +335,8 @@ App.process_items = function (mode, items) {
   container.innerHTML = ""
   App[`${mode}_items`] = []
   App[`${mode}_idx`] = 0
-  let exclude = []
   App[`${mode}_items_original`] = items
+  let exclude = []
 
   for (let item of items) {
     let obj = App.process_item(mode, item, exclude)
@@ -345,7 +345,7 @@ App.process_items = function (mode, items) {
       continue
     }
 
-    if (mode !== "tabs") {
+    if (mode === "closed" || mode === "history") {
       exclude.push(obj.url)
     }
 

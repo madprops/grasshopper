@@ -60,6 +60,7 @@ App.create_window = function (args) {
     w.element.style.display = "flex"
     App.last_window_mode = App.window_mode
     App.window_mode = args.id
+    content.scrollTop = 0
   }
   
   w.hide = function () {
