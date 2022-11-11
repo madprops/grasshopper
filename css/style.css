@@ -101,7 +101,7 @@ body, html {
   background-color: transparent;
   color: var(--text_color);
   border: none;
-  border: 2px solid var(--alt_color);
+  border: 1px solid var(--alt_color_2);
 }
 
 .button {
@@ -113,7 +113,7 @@ body, html {
   color: var(--text_color);
   min-width: 1.5rem;
   border: none;
-  border: 2px solid var(--alt_color);
+  border: 1px solid var(--alt_color_2);
 }
 
 .item {
@@ -140,7 +140,7 @@ body, html {
   border-radius: 50%;
   outline-offset: 1px;
   outline-style: solid;
-  outline-color: var(--alt_color);
+  outline-color: var(--alt_color_2);
 }
 
 .pinned {
@@ -189,7 +189,7 @@ body, html {
   padding: 0.5rem;
   height: 1.5rem;
   overflow: hidden;
-  border-top: 1px solid var(--alt_color);
+  border-top: 1px solid var(--alt_color_2);
   white-space: nowrap;
 }
 
@@ -268,7 +268,7 @@ body, html {
 }
 
 #window_order {
-  border: 1px solid var(--alt_color);
+  border: 1px solid var(--alt_color_2);
 }
 
 .window_order_item {

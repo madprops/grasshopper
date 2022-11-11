@@ -12,6 +12,9 @@ App.apply_theme = function () {
   
   let alt_color = App.colorlib.rgb_to_rgba(App.settings.text_color, 0.14)
   App.set_css_var("alt_color", alt_color)
+  
+  let alt_color_2 = App.colorlib.rgb_to_rgba(App.settings.text_color, 0.22)
+  App.set_css_var("alt_color_2", alt_color_2)
 }
 
 // Set css variable
