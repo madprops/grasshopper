@@ -137,10 +137,10 @@ body, html {
   flex-grow: 0;
   flex-shrink: 0;
   outline-width: 2px;
-  outline-color: transparent;
   border-radius: 50%;
-  outline-style: var(--pin_style);
   outline-offset: 1px;
+  outline-color: var(--alt_color);
+  outline-style: var(--pin_style);
 }
 
 .pinned {
