@@ -100,7 +100,6 @@ body, html {
   font-size: 0.88rem;
   background-color: transparent;
   color: var(--text_color);
-  border: none;
   border: 1px solid var(--alt_color_2);
 }
 
