@@ -76,22 +76,16 @@ App.show_history = function (cycle = false) {
   if (!App.window_order.includes(last_mode)) {
     last_mode = "tabs"
   }
-    
+
+  let search = App.el("#history_search")
+  let filter = App.el("#history_filter")
+
   App.el("#history_container").innerHTML = ""
+  search.value = App.get_last_window_value(cycle)
   App.windows["history"].show()
   App.el("#history_select").value = "history"
   App.empty_footer("history")
-
-  let value
-
-  if (cycle) {
-    value = App.el(`#${last_mode}_filter`).value.trim()
-  } else {
-    value = ""
-  }
-
-  let history_search = App.el("#history_search")
-  history_search.value = value
-  history_search.focus()
+  filter.value = ""
+  search.focus()
   App.search_history()
 }

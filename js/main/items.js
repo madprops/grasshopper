@@ -566,34 +566,43 @@ App.intersection_observer = function (mode, options) {
   }, options)
 }
 
+// Get last window value
+App.get_last_window_value = function (cycle) {
+  let last_mode = App.window_mode
+
+  if (!App.window_order.includes(last_mode)) {
+    last_mode = "tabs"
+  }
+
+  let value = ""
+
+  if (cycle) {
+    let search = App.el(`#${last_mode}_search`)
+
+    if (search && search.value.trim()) {
+      value = search.value.trim()
+    } else {
+      value = App.el(`#${last_mode}_filter`).value.trim()
+    }
+  }
+
+  return value
+}
+
 // Show a window by mode
 App.show_item_window = async function (mode, cycle = false) {
   if (mode === "history") {
     App.show_history(cycle)
     return
   }
-
-  let last_mode = App.window_mode
-
-  if (!App.window_order.includes(last_mode)) {
-    last_mode = "tabs"
-  }
   
   App.el(`#${mode}_container`).innerHTML = ""
+  let value = App.get_last_window_value(cycle)
+  App.el(`#${mode}_filter`).value = value
   App.windows[mode].show()
   App.el(`#${mode}_select`).value = mode
   App.empty_footer(mode)
-
-  let value
-
-  if (cycle) {
-    value = App.el(`#${last_mode}_filter`).value.trim()
-  } else {
-    value = ""
-  }
-
-  App.el(`#${mode}_filter`).value = value
-
+  
   let filter_mode = App.el(`#${mode}_filter_mode`)
 
   if (filter_mode) {
