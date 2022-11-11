@@ -8,6 +8,7 @@ App.setup_theme = function () {
 App.apply_theme = function () {
   App.set_css_var("background_color", App.settings.background_color)
   App.set_css_var("text_color", App.settings.text_color)
+  App.set_css_var("pin_style", App.settings.pin_style)
   
   let alt_color = App.colorlib.rgb_to_rgba(App.settings.text_color, 0.14)
   App.set_css_var("alt_color", alt_color)

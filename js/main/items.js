@@ -415,7 +415,7 @@ App.create_empty_item_element = function (mode, item) {
 App.create_item_element = function (mode, item) {
   item.element.classList.remove("item_empty")
   
-  let icon = App.get_img_icon(item.favicon, item.url)
+  let icon = App.get_img_icon(item.favicon, item.url, item.pinned)
   item.element.append(icon)
 
   let text = App.create("div", "item_text")
@@ -427,7 +427,7 @@ App.create_item_element = function (mode, item) {
 }
 
 // Get image favicon
-App.get_img_icon = function (favicon, url) {
+App.get_img_icon = function (favicon, url, pinned = false) {
   let icon = App.create("img", "item_icon")
   icon.loading = "lazy"
   icon.width = 25
@@ -436,10 +436,24 @@ App.get_img_icon = function (favicon, url) {
   App.ev(icon, "error", function () {
     let icon_2 = App.get_jdenticon(url)
     icon.replaceWith(icon_2)
+
+    if (pinned) {
+      App.pin_item_icon(icon_2)
+    }
   })
 
   icon.src = favicon
+
+  if (pinned) {
+    App.pin_item_icon(icon)
+  }
+  
   return icon
+}
+
+// Pin item icon
+App.pin_item_icon = function (icon) {
+  icon.classList.add("pinned")
 }
 
 // Get jdenticon icon
@@ -458,10 +472,6 @@ App.set_item_text = function (mode, item) {
 
   if (mode === "tabs") {
     let status = []
-
-    if (item.pinned) {
-      status.push("+")
-    }
     
     if (item.audible) {
       status.push("Playing")
