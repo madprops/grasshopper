@@ -260,11 +260,6 @@ body, html {
   margin-bottom: 1rem;
 }
 
-.menu_icon {
-  padding-left: 0.66rem;
-  padding-right: 0.3rem;
-}
-
 #window_order {
   border: 1px solid var(--alt_color_2);
 }
