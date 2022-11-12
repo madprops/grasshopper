@@ -660,16 +660,7 @@ App.setup_item_window = function (mode) {
 
     let top = App.el(`#${mode}_top_container`)
     let select = App.make_items_select(mode)
-    top.prepend(select)
-
-    let g = App.create("div", "menu_icon action unselectable")
-    g.textContent = "G"
-    
-    App.ev(g, "click", function () {
-      App.show_window("settings")
-    })
-
-    top.prepend(g)    
+    top.prepend(select) 
   }
 
   App.create_window(args) 
@@ -779,13 +770,22 @@ App.make_items_select = function (mode) {
     select.append(option)
   }
 
+  let settings = App.create("option")
+  settings.value = "settings"
+  settings.textContent = "Settings"
+  select.append(settings)
+
   App.ev(select, "change", function () {
-    App.show_item_window(select.value)
+    if (select.value === "settings") {
+      App.show_window("settings")
+    } else {
+      App.show_item_window(select.value)
+    }
   })
   
   App.wrap_select(select, function () {
     App.show_item_window(select.value, true)
-  })
+  }, App.window_order.length)
 
   return select
 }

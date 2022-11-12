@@ -80,7 +80,7 @@ App.get_hostname = function (url) {
 }
 
 // Wrap select for extra functionality
-App.wrap_select = function (select, on_change, cycle = false) {
+App.wrap_select = function (select, on_change, max = -1) {
   select.addEventListener("wheel", function(e) {
     e.preventDefault()
 
@@ -89,27 +89,17 @@ App.wrap_select = function (select, on_change, cycle = false) {
     }
 
     let index
+    let max_length = max > -1 ? max : this.length
     
     if (e.deltaY < 0) {
       if (this.selectedIndex === 0) {
-        if (cycle) {
-          index = this.length - 1
-        } else {
-          return
-        }
-
+        return
       } else {
         index = this.selectedIndex - 1
       }
-
     } else if (e.deltaY > 0) {
-      if (this.selectedIndex === this.length - 1) {
-        if (cycle) {
-          index = 0
-        } else {
-          return
-        }
-        
+      if (this.selectedIndex === max_length - 1) {
+        return
       } else {
         index = this.selectedIndex + 1
       }

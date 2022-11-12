@@ -286,3 +286,7 @@ body, html {
 .clicked {
   background-color: var(--alt_color) !important;
 }
+
+.item_top_container {
+  margin-left: 0.5rem;
+}
