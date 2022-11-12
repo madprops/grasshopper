@@ -51,7 +51,7 @@ App.stor_get_settings = async function () {
   }
 
   if (App.settings.pin_style === undefined) {
-    App.settings.pin_style = "dotted"
+    App.settings.pin_style = "solid"
     changed = true
   }     
 

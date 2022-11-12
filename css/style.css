@@ -139,14 +139,14 @@ body, html {
   margin-left: 0.6rem;
   flex-grow: 0;
   flex-shrink: 0;
-  outline-width: 2px;
+  border-width: 2px;
   border-radius: 50%;
-  outline-color: transparent;
-  outline-style: var(--pin_style);
+  border-color: transparent;
+  border-style: var(--pin_style);
 }
 
 .pinned {
-  outline-color: var(--text_color);
+  border-color: var(--text_color);
 }
 
 .item_text {
