@@ -3,9 +3,9 @@ App.stor_stars_name = "stars_v6"
 App.windows = {}
 App.filter_delay = 250
 App.color_delay = 150
-App.history_max_results = 600
+App.history_max_results = 800
 App.history_max_months = 24
-App.max_stars = 1000 * 5
+App.max_stars = 1000 * 2
 App.max_closed = 25
 
 App.init = async function () {
