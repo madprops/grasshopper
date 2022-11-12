@@ -20,15 +20,6 @@ App.setup_settings = function () {
       App.settings.warn_on_tab_close = warn_on_tab_close.value === "warn"
       App.stor_save_settings()
     })   
-    
-    let pin_style = App.el("#settings_pin_style")
-    pin_style.value = App.settings.pin_style
-  
-    App.ev(pin_style, "change", function () {
-      App.settings.pin_style = pin_style.value
-      App.apply_theme()
-      App.stor_save_settings()
-    })  
 
     function start_color_picker (name) {
       App[`${name}_color_picker`] = AColorPicker.createPicker(App.el(`#${name}_color_picker`), {

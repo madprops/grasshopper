@@ -139,14 +139,6 @@ body, html {
   margin-left: 0.6rem;
   flex-grow: 0;
   flex-shrink: 0;
-  border-width: 2px;
-  border-radius: 50%;
-  border-color: transparent;
-  border-style: var(--pin_style);
-}
-
-.pinned {
-  border-color: var(--text_color);
 }
 
 .item_text {
@@ -154,6 +146,10 @@ body, html {
   white-space: pre;
   overflow: hidden;
   margin-right: 0.5rem;
+}
+
+.pinned {
+  font-weight: bold;
 }
 
 .selected {

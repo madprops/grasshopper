@@ -48,12 +48,7 @@ App.stor_get_settings = async function () {
   if (App.settings.warn_on_tab_close === undefined) {
     App.settings.warn_on_tab_close = true
     changed = true
-  }
-
-  if (App.settings.pin_style === undefined) {
-    App.settings.pin_style = "solid"
-    changed = true
-  }     
+  }    
 
   if (changed) {
     App.stor_save_settings()

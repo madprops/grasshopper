@@ -436,24 +436,10 @@ App.get_img_icon = function (favicon, url, pinned = false) {
   App.ev(icon, "error", function () {
     let icon_2 = App.get_jdenticon(url)
     icon.replaceWith(icon_2)
-
-    if (pinned) {
-      App.pin_item_icon(icon_2)
-    }
   })
 
   icon.src = favicon
-
-  if (pinned) {
-    App.pin_item_icon(icon)
-  }
-  
   return icon
-}
-
-// Pin item icon
-App.pin_item_icon = function (icon) {
-  icon.classList.add("pinned")
 }
 
 // Get jdenticon icon
@@ -506,6 +492,10 @@ App.set_item_text = function (mode, item) {
   content = content.substring(0, 200).trim()
   let text = App.el(".item_text", item.element)
   text.textContent = content
+
+  if (item.pinned) {
+    text.classList.add("pinned")
+  }
 }
 
 // Get an item by id
