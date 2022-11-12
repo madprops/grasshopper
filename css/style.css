@@ -171,7 +171,7 @@ body, html {
 }
 
 .actionbox:hover, .button:hover {
-	box-shadow: 0 0 0.3rem currentColor;
+	box-shadow: 0 0 0.2rem currentColor;
 }
 
 .unselectable {
