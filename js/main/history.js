@@ -66,7 +66,12 @@ App.search_history = async function () {
   }
 
   App.process_items("history", items)
-  App.select_first_item("history")
+
+  if (App.el("#history_filter").value.trim()) {
+    App.do_item_filter("history")
+  } else {
+    App.select_first_item("history")
+  }
 }
 
 // Show history window
