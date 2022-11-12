@@ -55,7 +55,9 @@ App.search_history = async function () {
   let value = App.el("#history_search").value.trim()
 
   if (!value) {
+    App.history_items = []
     App.el("#history_container").innerHTML = ""
+    App.empty_footer("history")
     return
   }
   
