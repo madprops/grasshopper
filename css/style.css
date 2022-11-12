@@ -104,15 +104,19 @@ body, html {
 }
 
 .button {
-  height: var(--widget_height);
   font-size: 0.92rem;
   cursor: pointer;
   flex-shrink: 0;
-  background-color: transparent;
-  color: var(--text_color);
   min-width: 1.5rem;
   border: none;
+  background-color: transparent;
+  height: var(--widget_height);
+  color: var(--text_color);
   border: 1px solid var(--alt_color_2);
+}
+
+.button:hover {
+  background-color: var(--alt_color);
 }
 
 .item {
@@ -161,17 +165,13 @@ body, html {
   display: none !important;
 }
 
-.action, .actionbox, .button {
+.action {
   cursor: pointer;
   transition: text-shadow 100ms, box-shadow 100ms;
 }
 
 .action:hover {
   text-shadow: 0 0 1rem currentColor;
-}
-
-.actionbox:hover, .button:hover {
-	box-shadow: 0 0 0.2rem currentColor;
 }
 
 .unselectable {
