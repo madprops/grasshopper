@@ -1,5 +1,6 @@
 :root {
   --widget_height: 1.7rem;
+  --item_margin: 0.55rem;
 }
 
 @font-face {
@@ -136,7 +137,7 @@ body, html {
   width: 1.2rem;
   height: 1.2rem;
   margin-right: 0.66rem;
-  margin-left: 0.5rem;
+  margin-left: var(--item_margin);
   flex-grow: 0;
   flex-shrink: 0;
 }
@@ -150,10 +151,14 @@ body, html {
 
 .item_info {
   width: 2.2rem;
-  margin-right: 0.5rem;
+  margin-right: var(--item_margin);
   flex-grow: 0;
   flex-shrink: 0;
   text-align: right;
+}
+
+.item_top_container {
+  margin-left: var(--item_margin);
 }
 
 .selected {
@@ -279,8 +284,4 @@ body, html {
 
 .clicked {
   background-color: var(--alt_color) !important;
-}
-
-.item_top_container {
-  margin-left: 0.5rem;
 }
