@@ -189,11 +189,15 @@ body, html {
   align-items: center;
   flex-grow: 0;
   flex-shrink: 0;
-  padding: 0.5rem;
-  height: 1.5rem;
+  padding-right: 0;
+  padding-top: 0.25rem;
+  padding-bottom: 0.25rem;
   overflow: hidden;
-  border-top: 1px solid var(--alt_color_2);
   white-space: nowrap;
+  height: 1.5rem;
+  border-top: 1px solid var(--alt_color_2);
+  margin-left: var(--item_margin);
+  margin-right: var(--item_margin);
 }
 
 .flex_column_center {
