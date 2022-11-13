@@ -425,6 +425,7 @@ App.create_item_element = function (mode, item) {
   if (mode === "tabs" && item.pinned) {
     let pin = App.create("div", "item_info")
     pin.textContent = "[+]"  
+    pin.title = "Pinned"
     item.element.append(pin)
   }
 

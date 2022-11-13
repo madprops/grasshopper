@@ -149,7 +149,7 @@ body, html {
 }
 
 .item_info {
-  margin-left: 1rem;
+  margin-left: 0.8rem;
   margin-right: 0.5rem;
   flex-grow: 0;
   flex-shrink: 0;
