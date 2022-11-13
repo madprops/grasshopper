@@ -149,10 +149,11 @@ body, html {
 }
 
 .item_info {
-  margin-left: 0.8rem;
+  width: 2.2rem;
   margin-right: 0.5rem;
   flex-grow: 0;
   flex-shrink: 0;
+  text-align: right;
 }
 
 .selected {
