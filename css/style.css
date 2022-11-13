@@ -72,7 +72,7 @@ body, html {
 }
 
 .container {
-  margin-bottom: 0.5rem;
+  margin-bottom: var(--item_margin);
   display: flex;
   flex-direction: column;
   flex-grow: 1;
@@ -147,15 +147,12 @@ body, html {
   width: 100%;
   white-space: pre;
   overflow: hidden;
-  margin-right: 0.5rem;
+  margin-right: var(--item_margin);
 }
 
 .item_info {
-  width: 2.2rem;
+  margin-left: 1.1rem;
   margin-right: var(--item_margin);
-  flex-grow: 0;
-  flex-shrink: 0;
-  text-align: right;
 }
 
 .item_top_container {
@@ -284,4 +281,8 @@ body, html {
 
 .clicked {
   background-color: var(--alt_color) !important;
+}
+
+.invisible {
+  visibility: hidden;
 }

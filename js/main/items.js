@@ -420,16 +420,20 @@ App.create_item_element = function (mode, item) {
 
   let text = App.create("div", "item_text")
   item.element.append(text)
-  App.set_item_text(mode, item)  
+  App.set_item_text(mode, item)
 
-  let info = App.create("div", "item_info")
-  
-  if (mode === "tabs" && item.pinned) {
+  if (mode === "tabs") {
+    let info = App.create("div", "item_info")
     info.textContent = "(+)"  
     info.title = "Pinned"
+
+    if (!item.pinned) {
+      info.classList.add("invisible")
+    }
+
+    item.element.append(info)
   }
 
-  item.element.append(info)
   item.created = true
   console.info(`Item created in ${mode}`)
 }
