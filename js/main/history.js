@@ -19,10 +19,10 @@ App.history_months = function () {
 }
 
 // Get items from history
-App.get_history = async function (text, max_results = App.history_max_results) {
+App.get_history = async function (text = "") {
   let items = await browser.history.search({
     text: text,
-    maxResults: max_results,
+    maxResults: App.history_max_results,
     startTime: App.history_months()
   })
 
@@ -66,25 +66,4 @@ App.search_history = async function () {
   } else {
     App.select_first_item("history")
   }
-}
-
-// Show history window
-App.show_history = function (cycle = false) {
-  let last_mode = App.window_mode
-
-  if (!App.window_order.includes(last_mode)) {
-    last_mode = "tabs"
-  }
-
-  let search = App.el("#history_search")
-  let filter = App.el("#history_filter")
-
-  App.el("#history_container").innerHTML = ""
-  filter.value = App.get_last_window_value(cycle)
-  App.windows["history"].show()
-  App.el("#history_select").value = "history"
-  App.empty_footer("history")
-  search.value = ""
-  filter.focus()
-  App.search_history()
 }

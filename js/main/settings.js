@@ -57,7 +57,7 @@ App.setup_settings = function () {
       el.dataset.mode = m
 
       let text = App.create("div", "window_order_item_text")
-      text.textContent = App.item_name(m)
+      text.textContent = App.capitalize(m)
       el.append(text)
 
       let up = App.create("button", "button up_down_button")

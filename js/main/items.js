@@ -584,12 +584,7 @@ App.get_last_window_value = function (cycle) {
 }
 
 // Show a window by mode
-App.show_item_window = async function (mode, cycle = false) {
-  if (mode === "history") {
-    App.show_history(cycle)
-    return
-  }
-  
+App.show_item_window = async function (mode, cycle = false) {  
   App.el(`#${mode}_container`).innerHTML = ""
   let value = App.get_last_window_value(cycle)
   App.el(`#${mode}_filter`).value = value
@@ -701,19 +696,6 @@ App.cycle_item_windows = function (reverse = false) {
   App.show_item_window(new_mode, true)
 }
 
-// Get item name by mode
-App.item_name = function (mode) {
-  if (mode === "tabs") {
-    return "Tabs"
-  } else if (mode === "stars") {
-    return "Stars"
-  } else if (mode === "closed") {
-    return "Closed"
-  } else if (mode === "history") {
-    return "History"
-  }
-}
-
 // Update window order
 App.update_window_order = function () {
   let boxes = App.els(".window_order_item", App.el("#window_order"))
@@ -760,7 +742,7 @@ App.make_items_select = function (mode) {
     }
 
     option.value = m
-    option.textContent = App.item_name(m)
+    option.textContent = App.capitalize(m)
     select.append(option)
   }
 

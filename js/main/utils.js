@@ -129,3 +129,8 @@ App.remove_hash = function (url) {
 App.format_url = function (url) {
   return App.remove_slashes_end(App.remove_hash(url))
 }
+
+// Capitalize first letter of a string
+App.capitalize = function (s) {
+  return s.charAt(0).toUpperCase() + s.slice(1)
+}

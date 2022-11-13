@@ -48,11 +48,11 @@ body, html {
   flex-direction: row;
   align-items: center;
   width: 100%;
-  padding-right: 1rem;
   min-height: 1rem;
   flex-shrink: 0;
   padding-top: 0.66rem;
   padding-bottom: 0.74rem;
+  padding-right: 1rem;
 }
 
 .window_top_center {
