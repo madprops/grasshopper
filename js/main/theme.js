@@ -38,7 +38,7 @@ App.random_theme = function (mode) {
     colors = App.get_light_theme()
   }
 
-  App.background_color_picker.color = colors.bg_color
+  App.background_color_picker.color = colors.background_color
   App.text_color_picker.color = colors.text_color
 
   App.apply_theme()
@@ -47,24 +47,24 @@ App.random_theme = function (mode) {
 
 // Get a random dark theme
 App.get_dark_theme = function () {
-  let bg_color = App.colorlib.get_dark_color()
+  let background_color = App.colorlib.get_dark_color()
   let text_color = App.colorlib.get_random_hex()
   
   if (App.colorlib.is_dark(text_color)) {
     text_color = App.colorlib.get_lighter_or_darker(text_color, 0.66)
   }
 
-  return {bg_color: bg_color, text_color: text_color}
+  return {background_color: background_color, text_color: text_color}
 }
 
 // Get a random light theme
 App.get_light_theme = function () {
-  let bg_color = App.colorlib.get_light_color()
+  let background_color = App.colorlib.get_light_color()
   let text_color = App.colorlib.get_random_hex()
   
   if (App.colorlib.is_light(text_color)) {
     text_color = App.colorlib.get_lighter_or_darker(text_color, 0.66)
   }
 
-  return {bg_color: bg_color, text_color: text_color}
+  return {background_color: background_color, text_color: text_color}
 }
