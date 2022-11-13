@@ -422,6 +422,12 @@ App.create_item_element = function (mode, item) {
   item.element.append(text)
   App.set_item_text(mode, item)  
 
+  if (mode === "tabs" && item.pinned) {
+    let pin = App.create("div", "item_info")
+    pin.textContent = "[+]"  
+    item.element.append(pin)
+  }
+
   item.created = true
   console.info(`Item created in ${mode}`)
 }
@@ -492,10 +498,6 @@ App.set_item_text = function (mode, item) {
   content = content.substring(0, 200).trim()
   let text = App.el(".item_text", item.element)
   text.textContent = content
-
-  if (item.pinned) {
-    text.classList.add("pinned")
-  }
 }
 
 // Get an item by id
