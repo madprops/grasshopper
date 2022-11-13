@@ -385,7 +385,8 @@ App.process_item = function (mode, item, exclude = []) {
     favicon: item.favIconUrl,
     empty: false,
     created: false,
-    mode: mode
+    mode: mode,
+    protocol: url_obj.protocol
   }
   
   if (mode === "tabs") {
@@ -487,8 +488,8 @@ App.set_item_text = function (mode, item) {
 
   let purl
 
-  if (item.url.startsWith("http://")) {
-    purl = `(http) ${item.path}`
+  if (item.protocol !== "https:") {
+    purl = `(${item.protocol.replace(":", "")}) ${item.path}`
   } else {
     purl = item.path
   }
