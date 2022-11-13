@@ -136,6 +136,7 @@ body, html {
 .item_icon {
   width: 1.1rem;
   height: 1.1rem;
+  object-fit: contain;
   margin-right: 0.66rem;
   margin-left: var(--item_margin);
   flex-grow: 0;
