@@ -253,7 +253,7 @@ body, html {
   padding: 0.2rem;
 }
 
-.input_text_small {
+.small_text {
   background-color: transparent;
   color: var(--text_color);
   outline: 1px solid var(--alt_color_2);
