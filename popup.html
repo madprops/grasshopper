@@ -120,17 +120,33 @@
           <option value="title">Text Mode: Title</option>
           <option value="url">Text Mode: URL</option>
         </select> 
+
+        <div class="separator"></div>
         
         <select id="settings_warn_on_tab_close" class="select settings_select" title="This is the warning when closing pins or audible tabs">
           <option value="warn">Warn On Tab Close</option>
           <option value="no_warn">No Warn On Tab Close</option>
         </select>     
-        
+
         <div class="separator"></div>
 
         <div class="flex_column_center gap_2">
+          <div class="unselectable" title="How many results to fetch from history">History Max Results:</div>
+          <input type="text" id="settings_history_max_results" class="settings_small_text">
+        </div>
+
+        <div class="separator"></div>        
+
+        <div class="flex_column_center gap_2">
+          <div class="unselectable" title="How deep to search in history">History Max Months:</div>
+          <input type="text" id="settings_history_max_months" class="settings_small_text">
+        </div>
+
+        <div class="separator"></div>        
+
+        <div class="flex_column_center gap_2">
           <div class="unselectable" title="Pinned tab indicator">Pin Icon:</div>
-          <input type="text" id="settings_pin_icon" class="small_text">
+          <input type="text" id="settings_pin_icon" class="settings_small_text">
         </div>
 
         <div class="separator"></div>

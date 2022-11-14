@@ -8,7 +8,9 @@ App.default_settings = {
   closed_index: 2,
   history_index: 3,
   warn_on_tab_close: true,
-  pin_icon: "(+)"
+  pin_icon: "(+)",
+  history_max_results: 1000,
+  history_max_months: 24
 }
 
 // Get settings from sync storage

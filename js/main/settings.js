@@ -36,6 +36,36 @@ App.setup_settings = function () {
       App.stor_save_settings()
     })
 
+    let history_max_results = App.el("#settings_history_max_results")
+    history_max_results.value = App.settings.history_max_results.toLocaleString()
+
+    App.ev(history_max_results, "blur", function () {
+      let num = parseInt(history_max_results.value)
+
+      if (isNaN(num)) {
+        num = App.default_settings.history_max_results
+      }
+
+      history_max_results.value = num.toLocaleString()
+      App.settings.history_max_results = num
+      App.stor_save_settings()
+    })
+
+    let history_max_months = App.el("#settings_history_max_months")
+    history_max_months.value = App.settings.history_max_months.toLocaleString()
+
+    App.ev(history_max_months, "blur", function () {
+      let num = parseInt(history_max_months.value)
+
+      if (isNaN(num)) {
+        num = App.default_settings.history_max_months
+      }
+
+      history_max_months.value = num.toLocaleString()
+      App.settings.history_max_months = num
+      App.stor_save_settings()
+    })    
+
     function start_color_picker (name) {
       App[`${name}_color_picker`] = AColorPicker.createPicker(App.el(`#${name}_color_picker`), {
         showAlpha: false,

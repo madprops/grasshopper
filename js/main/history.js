@@ -22,8 +22,8 @@ App.history_months = function () {
 App.get_history = async function (text = "") {
   let items = await browser.history.search({
     text: text,
-    maxResults: App.history_max_results,
-    startTime: App.history_months()
+    maxResults: App.settings.history_max_results,
+    startTime: App.settings.history_max_months
   })
 
   return items
