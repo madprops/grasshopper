@@ -240,8 +240,8 @@ body, html {
   width: 14rem;
 }
 
-.input_text {
-  background-color: transparent;
+.editor_text {
+  background-color: var(--alt_color);
   color: var(--text_color);
   outline: 1px solid var(--alt_color_2);
   border-width: 0;
