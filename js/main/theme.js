@@ -100,13 +100,18 @@ App.detect_theme = async function (update_pickers = true) {
       App.stor_save_settings()
     }
   } else {
-    App.set_default_theme()
+    App.set_default_theme(update_pickers)
   }
 }
 
 // Set default theme
 App.set_default_theme = function () {
-  App.background_color_picker.color = "rgb(37, 41, 51)"
-  App.text_color_picker.color = "rgb(220, 220, 220)"
-  App.stor_save_settings()
+  if (App.update_pickers) {
+    App.background_color_picker.color = "rgb(37, 41, 51)"
+    App.text_color_picker.color = "rgb(220, 220, 220)"
+  } else {
+    App.settings.background_color = "rgb(37, 41, 51)"
+    App.settings.text_color = "rgb(220, 220, 220)"
+    App.stor_save_settings()
+  }
 }
