@@ -76,8 +76,8 @@ App.setup_settings = function () {
 
     function start_color_picker (name) {
       App[`${name}_color_picker`] = AColorPicker.createPicker(App.el(`#${name}_color_picker`), {
-        showAlpha: false,
-        showHSL: false,
+        showAlpha: true,
+        showHSL: true,
         showHEX: false,
         showRGB: true,
         color: App.settings[`${name}_color`]
