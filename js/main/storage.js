@@ -1,3 +1,16 @@
+// Default settings values
+App.default_settings = {
+  text_mode: "title",
+  background_color: "rgb(37, 41, 51)",
+  text_color: "rgb(220, 220, 220)",
+  tabs_index: 0,
+  stars_index: 1,
+  closed_index: 2,
+  history_index: 3,
+  warn_on_tab_close: true,
+  pin_icon: "(+)"
+}
+
 // Get settings from sync storage
 App.stor_get_settings = async function () {
   let obj = await browser.storage.sync.get(App.stor_settings_name)
@@ -9,51 +22,13 @@ App.stor_get_settings = async function () {
   }
 
   let changed = false
-
-  if (App.settings.text_mode === undefined) {
-    App.settings.text_mode = "title"
-    changed = true
+  
+  for (let key in App.default_settings) {
+    if (App.settings[key] === undefined) {
+      App.settings[key] = App.default_settings[key]
+      changed = true
+    }
   }
-
-  if (App.settings.background_color === undefined) {
-    App.settings.background_color = "rgb(37, 41, 51)"
-    changed = true
-  }
-
-  if (App.settings.text_color === undefined) {
-    App.settings.text_color = "rgb(220, 220, 220)"
-    changed = true
-  }
-
-  if (App.settings.tabs_index === undefined) {
-    App.settings.tabs_index = 0
-    changed = true
-  }
-
-  if (App.settings.stars_index === undefined) {
-    App.settings.stars_index = 1
-    changed = true
-  }
-
-  if (App.settings.closed_index === undefined) {
-    App.settings.closed_index = 2
-    changed = true
-  }
-
-  if (App.settings.history_index === undefined) {
-    App.settings.history_index = 3
-    changed = true
-  }
-
-  if (App.settings.warn_on_tab_close === undefined) {
-    App.settings.warn_on_tab_close = true
-    changed = true
-  }    
-
-  if (App.settings.pin_icon === undefined) {
-    App.settings.pin_icon = "(+)"
-    changed = true
-  }    
 
   if (changed) {
     App.stor_save_settings()
