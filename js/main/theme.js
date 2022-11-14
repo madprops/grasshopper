@@ -68,3 +68,15 @@ App.get_light_theme = function () {
 
   return {background_color: background_color, text_color: text_color}
 }
+
+// Try to detect and apply the browser's theme
+App.detect_theme = async function () {
+  let theme = await browser.theme.getCurrent()
+  let background_color = theme.colors.toolbar
+  let text_color = theme.colors.toolbar_text
+
+  if (background_color && text_color) {
+    App.background_color_picker.color = background_color
+    App.text_color_picker.color = text_color
+  }
+}

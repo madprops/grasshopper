@@ -103,6 +103,10 @@ App.setup_settings = function () {
       App.random_theme("light")
     })
 
+    App.ev(App.el("#settings_detect_theme"), "click", function () {
+      App.detect_theme()     
+    })
+
     let window_order = App.el("#window_order")
 
     for (let m of App.window_order) {
