@@ -20,14 +20,6 @@ body, html {
   background-color: var(--background_color);
 }
 
-*:not(textarea):not(input) {
-	scrollbar-width: none !important;
-}
-
-*:not(textarea):not(input)::-webkit-scrollbar {
-	width: 0 !important;
-}
-
 .window_main {
   position: fixed;
   display: none;
@@ -89,6 +81,14 @@ body, html {
   height: 100%;
   overflow-x: hidden;
   overflow-y: auto;
+}
+
+.container {
+	scrollbar-width: none !important;
+}
+
+.container::-webkit-scrollbar {
+	width: 0 !important;
 }
 
 .filter {
