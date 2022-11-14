@@ -42,12 +42,7 @@ App.history_action_alt = function (item) {
 // Show information about history
 App.show_history_info = function () {
   let num = App.els(".history_item").length
-
-  if (num > 0) {
-    alert(App.plural(num, "history result", "history results"))
-  } else {
-    alert("Search the history")
-  }
+  alert(App.plural(num, "history result", "history results"))
 }
 
 // Search the history
