@@ -102,7 +102,6 @@ body, html {
   background-color: transparent;
   color: var(--text_color);
   border: 1px solid var(--alt_color_2);
-  text-align: center;
 }
 
 .button {
@@ -213,6 +212,7 @@ body, html {
 
 .settings_select {
   width: 12rem;
+  text-align: center;
 }
 
 .gap_1 {
