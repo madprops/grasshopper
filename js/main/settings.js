@@ -28,7 +28,7 @@ App.setup_settings = function () {
       let pin = pin_icon.value.trim()
 
       if (!pin) {
-        pin = App.settings.pin_icon
+        pin = "(+)"
       }
 
       pin_icon.value = pin
