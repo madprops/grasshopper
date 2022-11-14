@@ -84,10 +84,10 @@ body, html {
 }
 
 .filter {
-  height: var(--widget_height);
-  background-color: var(--alt_color);
+  background-color: transparent;
   color: var(--text_color);
-  outline: none;
+  outline: 1px solid var(--alt_color_2);
+  height: var(--widget_height);
   border-width: 0;
   font-size: 1rem;
   flex-grow: 0;
@@ -241,9 +241,9 @@ body, html {
 }
 
 .input_text {
-  background-color: var(--alt_color);
+  background-color: transparent;
   color: var(--text_color);
-  outline: 1px solid var(--alt_color);
+  outline: 1px solid var(--alt_color_2);
   border-width: 0;
   font-size: 1rem;
   padding: 0.05rem;
@@ -254,9 +254,9 @@ body, html {
 }
 
 .input_text_small {
-  background-color: var(--alt_color);
+  background-color: transparent;
   color: var(--text_color);
-  outline: 1px solid var(--alt_color);
+  outline: 1px solid var(--alt_color_2);
   border-width: 0;
   font-size: 1rem;
   padding: 0.05rem;
