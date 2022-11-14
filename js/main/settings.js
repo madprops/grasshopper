@@ -40,7 +40,7 @@ App.setup_settings = function () {
     history_max_results.value = App.settings.history_max_results.toLocaleString()
 
     App.ev(history_max_results, "blur", function () {
-      let num = parseInt(history_max_results.value)
+      let num = App.string_to_int(history_max_results.value)
 
       if (isNaN(num)) {
         num = App.default_settings.history_max_results
@@ -55,7 +55,7 @@ App.setup_settings = function () {
     history_max_months.value = App.settings.history_max_months.toLocaleString()
 
     App.ev(history_max_months, "blur", function () {
-      let num = parseInt(history_max_months.value)
+      let num = App.string_to_int(history_max_months.value)
 
       if (isNaN(num)) {
         num = App.default_settings.history_max_months

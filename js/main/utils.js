@@ -134,3 +134,8 @@ App.format_url = function (url) {
 App.capitalize = function (s) {
   return s.charAt(0).toUpperCase() + s.slice(1)
 }
+
+// String to int converter
+App.string_to_int = function (s) {
+  return parseInt(s.replace(/[^0-9]/g, ""))
+}
