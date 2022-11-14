@@ -18,7 +18,14 @@ body, html {
   padding: 0;
   overflow: hidden;
   background-color: var(--background_color);
-	scrollbar-color: var(--alt_color_2) transparent;
+}
+
+*:not(textarea):not(input) {
+	scrollbar-width: none !important;
+}
+
+*:not(textarea):not(input)::-webkit-scrollbar {
+	width: 0 !important;
 }
 
 .window_main {
