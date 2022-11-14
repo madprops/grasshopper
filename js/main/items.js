@@ -617,6 +617,10 @@ App.show_item_window = async function (mode, cycle = false) {
   } else {
     App.select_first_item(mode)
   }
+
+  if (mode === "history") {
+    App.el("#history_search").value = ""
+  }
   
   App.focus_filter(mode)  
 }
