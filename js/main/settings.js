@@ -26,8 +26,14 @@ App.setup_settings = function () {
 
     App.ev(pin_icon, "blur", function () {
       let pin = pin_icon.value.trim()
+
+      if (!pin) {
+        pin = App.settings.pin_icon
+      }
+
       pin_icon.value = pin
       App.settings.pin_icon = pin
+      App.stor_save_settings()
     })
 
     function start_color_picker (name) {
