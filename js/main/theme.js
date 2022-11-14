@@ -106,12 +106,15 @@ App.detect_theme = async function (update_pickers = true) {
 
 // Set default theme
 App.set_default_theme = function () {
+  let background_color = "rgb(37, 41, 51)"
+  let text_color = "rgb(220, 220, 220)"
+  
   if (App.update_pickers) {
-    App.background_color_picker.color = "rgb(37, 41, 51)"
-    App.text_color_picker.color = "rgb(220, 220, 220)"
+    App.background_color_picker.color = background_color
+    App.text_color_picker.color = text_color
   } else {
-    App.settings.background_color = "rgb(37, 41, 51)"
-    App.settings.text_color = "rgb(220, 220, 220)"
+    App.settings.background_color = background_color
+    App.settings.text_color = text_color
     App.stor_save_settings()
   }
 }
