@@ -39,6 +39,7 @@
           <option value="normal">Normal</option>
           <option value="playing">Playing</option>
           <option value="muted">Muted</option>
+          <option value="insecure">Insecure</option>
         </select>
 
         <button id="tabs_info_button" class="button" title="Information">Info</button>
@@ -56,6 +57,12 @@
     <template id="template_stars_top">
       <div class="flex_row_center gap_1 item_top_container" id="stars_top_container">
         <input type="text" id="stars_filter" class="filter" autocomplete="off" placeholder="Filter">
+
+        <select id="stars_filter_mode" class="select" title="Filter Mode">
+          <option value="all" selected>All</option>
+          <option value="insecure">Insecure</option>
+        </select>
+
         <button id="stars_info_button" class="button" title="Information">Info</button>
         <button id="stars_add_button" class="button" title="Add Star">Add</button>
       </div>
@@ -94,6 +101,12 @@
     <template id="template_closed_top">
       <div class="flex_row_center gap_1 item_top_container" id="closed_top_container">
         <input type="text" id="closed_filter" class="filter" autocomplete="off" placeholder="Filter">
+
+        <select id="closed_filter_mode" class="select" title="Filter Mode">
+          <option value="all" selected>All</option>
+          <option value="insecure">Insecure</option>
+        </select>
+
         <button id="closed_info_button" class="button" title="Information">Info</button>
       </div>
     </template>
@@ -107,6 +120,12 @@
       <div class="flex_row_center gap_1 item_top_container" id="history_top_container">
         <input type="text" id="history_filter" class="filter" autocomplete="off" placeholder="Filter">
         <input type="text" id="history_search" class="filter" autocomplete="off" placeholder="Search">
+
+        <select id="history_filter_mode" class="select" title="Filter Mode">
+          <option value="all" selected>All</option>
+          <option value="insecure">Insecure</option>
+        </select>
+
         <button id="history_info_button" class="button" title="Information">Info</button>
       </div>
     </template>
