@@ -425,7 +425,7 @@ App.create_item_element = function (mode, item) {
 
   if (mode === "tabs") {
     let info = App.create("div", "item_info")
-    info.textContent = "(+)"  
+    info.textContent = App.settings.pin_icon
     info.title = "Pinned"
 
     if (!item.pinned) {

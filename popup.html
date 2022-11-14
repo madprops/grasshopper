@@ -1,8 +1,8 @@
 <!DOCTYPE html>
 <html>
-  <title>Grasshopper</title>
-  
   <head>
+    <title>Grasshopper</title>
+    <meta charset="UTF-8">
     <link rel="stylesheet" href="css/style.css">
     <script src="js/libs/needcontext.js"></script>
     <script src="js/libs/jdenticon.js"></script>
@@ -124,12 +124,14 @@
         <select id="settings_warn_on_tab_close" class="select settings_select" title="This is the warning when closing pins or audible tabs">
           <option value="warn">Warn On Tab Close</option>
           <option value="no_warn">No Warn On Tab Close</option>
-        </select>        
-
+        </select>     
+        
+        <div class="separator"></div>
+        <div class="unselectable">Pin Icon:</div>
+        <input type="text" id="settings_pin_icon" class="input_text_small">
         <div class="separator"></div>
 
         <div class="unselectable">Window Order:</div>
-        
         <div id="window_order" class="unselectable"></div>
 
         <div class="separator"></div>

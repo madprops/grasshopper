@@ -102,6 +102,7 @@ body, html {
   background-color: transparent;
   color: var(--text_color);
   border: 1px solid var(--alt_color_2);
+  text-align: center;
 }
 
 .button {
@@ -248,6 +249,19 @@ body, html {
   padding: 0.05rem;
   flex-grow: 0;
   width: 18rem;
+  text-align: center;
+  padding: 0.2rem;
+}
+
+.input_text_small {
+  background-color: var(--alt_color);
+  color: var(--text_color);
+  outline: 1px solid var(--alt_color);
+  border-width: 0;
+  font-size: 1rem;
+  padding: 0.05rem;
+  flex-grow: 0;
+  width: 5rem;
   text-align: center;
   padding: 0.2rem;
 }

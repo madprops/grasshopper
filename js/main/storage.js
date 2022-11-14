@@ -50,6 +50,11 @@ App.stor_get_settings = async function () {
     changed = true
   }    
 
+  if (App.settings.pin_icon === undefined) {
+    App.settings.pin_icon = "(+)"
+    changed = true
+  }    
+
   if (changed) {
     App.stor_save_settings()
   }

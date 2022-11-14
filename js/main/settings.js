@@ -19,7 +19,16 @@ App.setup_settings = function () {
     App.ev(warn_on_tab_close, "change", function () {
       App.settings.warn_on_tab_close = warn_on_tab_close.value === "warn"
       App.stor_save_settings()
-    })   
+    })
+
+    let pin_icon = App.el("#settings_pin_icon")
+    pin_icon.value = App.settings.pin_icon
+
+    App.ev(pin_icon, "blur", function () {
+      let pin = pin_icon.value.trim()
+      pin_icon.value = pin
+      App.settings.pin_icon = pin
+    })
 
     function start_color_picker (name) {
       App[`${name}_color_picker`] = AColorPicker.createPicker(App.el(`#${name}_color_picker`), {
