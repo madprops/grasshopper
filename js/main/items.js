@@ -205,6 +205,8 @@ App.do_item_filter = function (mode) {
         match = item.pinned
       } else if (filter_mode === "muted") {
         match = item.muted
+      } else if (filter_mode === "secure") {
+        match = item.protocol === "https:"
       } else if (filter_mode === "insecure") {
         match = item.protocol === "http:"
       }
