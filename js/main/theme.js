@@ -15,10 +15,12 @@ App.apply_theme = function (tried = false) {
     
     let alt_color_2 = App.colorlib.rgb_to_rgba(App.settings.text_color, 0.22)
     App.set_css_var("alt_color_2", alt_color_2)
-  } catch {
+  } catch (e) {
     if (tried) {
       return
     }
+
+    console.error(e)
 
     let colors = App.fallback_theme()
     App.background_color = colors.background_color
@@ -81,43 +83,10 @@ App.get_light_theme = function () {
   return {background_color: background_color, text_color: text_color}
 }
 
-// Get browser theme
-App.get_browser_theme = async function () {
-  let theme = await browser.theme.getCurrent()
-  let colors
-
-  if (theme.colors.toolbar && theme.colors.toolbar_text) {
-    colors = {
-      background_color: theme.colors.toolbar,
-      text_color: theme.colors.toolbar_text
-    }
-  } else {
-    colors = App.fallback_theme()
-  }
-
-  let div = App.create("div", "hidden")
-  document.body.append(div)
-  
-  div.style.color = colors.background_color
-  colors.background_color = window.getComputedStyle(div).color
-  
-  div.style.color = colors.text_color
-  colors.text_color = window.getComputedStyle(div).color
-
-  return colors
-}
-
 // Return the default theme
 App.fallback_theme = function () {
   return {
     background_color: "rgb(37, 41, 51)",
     text_color: "rgb(220, 220, 220)"
   }
-}
-
-// Try to detect and apply the browser's theme
-App.detect_theme = async function () {
-  let colors = await App.get_browser_theme()
-  App.background_color_picker.setColor(colors.background_color)
-  App.text_color_picker.setColor(colors.text_color)
 }

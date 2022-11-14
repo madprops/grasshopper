@@ -76,8 +76,8 @@ App.setup_settings = function () {
 
     function start_color_picker (name) {
       App[`${name}_color_picker`] = AColorPicker.createPicker(App.el(`#${name}_color_picker`), {
-        showAlpha: true,
-        showHSL: true,
+        showAlpha: false,
+        showHSL: false,
         showHEX: false,
         showRGB: true,
         color: App.settings[`${name}_color`]
@@ -101,10 +101,6 @@ App.setup_settings = function () {
 
     App.ev(App.el("#settings_light_theme"), "click", function () {
       App.random_theme("light")
-    })
-
-    App.ev(App.el("#settings_detect_theme"), "click", function () {
-      App.detect_theme()     
     })
 
     let window_order = App.el("#window_order")

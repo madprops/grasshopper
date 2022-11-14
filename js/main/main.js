@@ -20,12 +20,6 @@ App.init = async function () {
 
   // Show first window
   App.show_first_item_window()
-
-  // Apply browser theme if theme is unset
-  if (!App.settings.background_color || !App.settings.text_color) {
-    App.show_window("settings")
-    App.detect_theme()
-  }
 }
 
 App.init()
