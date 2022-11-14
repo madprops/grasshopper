@@ -97,11 +97,11 @@ body, html {
 }
 
 .select {
-  height: var(--widget_height);
   font-size: 0.88rem;
   background-color: transparent;
   color: var(--text_color);
   border: 1px solid var(--alt_color_2);
+  height: var(--widget_height);
 }
 
 .button {
@@ -229,10 +229,6 @@ body, html {
 
 .gap_4 {
   gap: 2rem;
-}
-
-.underline {
-  text-decoration: underline;
 }
 
 .separator {
