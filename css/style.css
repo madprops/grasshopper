@@ -125,8 +125,8 @@ body, html {
   flex-direction: row;
   cursor: pointer;
   align-items: center;
-  padding-top: 0.44rem;
-  padding-bottom: 0.44rem;  
+  padding-top: 0.45rem;
+  padding-bottom: 0.45rem;  
 }
 
 .item_empty {
@@ -186,7 +186,7 @@ body, html {
   align-items: center;
   overflow: hidden;
   white-space: nowrap;
-  height: 2.2rem;
+  height: 2.5rem;
   border-top: 1px solid var(--alt_color_2);
   margin-left: var(--item_margin);
   margin-right: var(--item_margin);
