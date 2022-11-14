@@ -64,7 +64,15 @@ App.setup_settings = function () {
       history_max_months.value = num.toLocaleString()
       App.settings.history_max_months = num
       App.stor_save_settings()
-    })    
+    })  
+  
+    let clean_active_tab = App.el("#settings_clean_active_tab")
+    clean_active_tab.checked = App.settings.clean_active_tab
+
+    App.ev(clean_active_tab, "change", function () {
+      App.settings.clean_active_tab = clean_active_tab.checked
+      App.stor_save_settings()
+    })
 
     function start_color_picker (name) {
       App[`${name}_color_picker`] = AColorPicker.createPicker(App.el(`#${name}_color_picker`), {

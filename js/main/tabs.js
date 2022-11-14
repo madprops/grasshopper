@@ -158,6 +158,10 @@ App.clean_tabs = function () {
     if (tab.pinned || tab.audible) {
       continue
     }
+
+    if (tab.active && !App.settings.clean_active_tab) {
+      continue
+    }
     
     ids.push(tab.id)
   }
