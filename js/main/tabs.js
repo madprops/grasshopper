@@ -147,6 +147,7 @@ App.prepend_tab = function (info) {
   
   App.tabs_items.unshift(tab)
   App.create_item_element("tabs", tab)
+  App.update_info("tabs")
   App.el("#tabs_container").prepend(tab.element)
 }
 
@@ -245,6 +246,8 @@ App.remove_closed_tab = function (id) {
   if (tab) {
     App.remove_item("tabs", tab)
   }
+
+  App.update_info("tabs")
 }
 
 // Tabs action
@@ -255,13 +258,4 @@ App.tabs_action = function (item) {
 // Tabs action alt
 App.tabs_action_alt = function (item) {
   App.confirm_close_tab(item)
-}
-
-// Show information about tabs
-App.show_tabs_info = function () {
-  let all = App.tabs_items.length
-  let pins = App.tabs_items.filter(x => x.pinned).length  
-  let s = App.plural(all, "tab", "tabs")
-  let p = App.plural(pins, "pin", "pins")
-  alert(`${s} open (${p})`)
 }

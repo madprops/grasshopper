@@ -160,14 +160,6 @@ App.add_star = function (title = "", url = "") {
   App.el("#star_editor_title").focus()
 }
 
-
-// Show information about stars
-App.show_stars_info = function () {
-  let n = App.stars_items.length
-  let s = App.plural(n, "star", "stars")
-  alert(`${s} saved`)
-}
-
 // Confirm un-star item
 App.confirm_unstar_item = function (item) {
   if (confirm("Remove this star?")) {

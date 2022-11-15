@@ -39,12 +39,6 @@ App.history_action_alt = function (item) {
   App.focus_or_open_item(item, false)
 }
 
-// Show information about history
-App.show_history_info = function () {
-  let num = App.els(".history_item").length
-  alert(App.plural(num, "history result", "history results"))
-}
-
 // Search the history
 App.search_history = async function () {
   let value = App.el("#history_search").value.trim()

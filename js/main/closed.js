@@ -21,8 +21,3 @@ App.closed_action = function (item) {
 App.closed_action_alt = function (item) {
   App.focus_or_open_item(item, false)
 }
-
-// Show information about closed tabs
-App.show_closed_info = function () {
-  alert(`These are recently closed tabs. Max is ${App.max_closed} items`)
-}

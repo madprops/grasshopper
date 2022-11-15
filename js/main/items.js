@@ -356,6 +356,8 @@ App.process_items = function (mode, items) {
     App[`${mode}_items`].push(obj)
     container.append(obj.element)
   }
+
+  App.update_info(mode)
 }
 
 // Process an item
@@ -657,10 +659,6 @@ App.setup_item_window = function (mode) {
       })    
     }
 
-    App.ev(App.el(`#${mode}_info_button`), "click", function () {
-      App[`show_${mode}_info`]()
-    })
-
     let top = App.el(`#${mode}_top_container`)
     let select = App.make_items_select(mode)
     top.prepend(select) 
@@ -829,4 +827,11 @@ App.get_window_order = function () {
 
   items.sort((a, b) => (a.index > b.index) ? 1 : -1)
   App.window_order = items.map(x => x.mode)
+}
+
+// Update item info
+App.update_info = function (mode) {
+  let n = App[`${mode}_items`].length
+  let s = App.plural(n, "item", "items")
+  App.el(`#${mode}_info`).textContent = s
 }

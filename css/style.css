@@ -310,3 +310,7 @@ body, html {
 .invisible {
   visibility: hidden;
 }
+
+.info {
+  padding-left: 0.5rem;
+}
