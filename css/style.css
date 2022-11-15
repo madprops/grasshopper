@@ -84,6 +84,14 @@ body, html {
   overflow-y: auto;
 }
 
+.container {
+	scrollbar-width: none !important;
+}
+
+.container::-webkit-scrollbar {
+	width: 0 !important;
+}
+
 .filter {
   background-color: transparent;
   color: var(--text_color);
