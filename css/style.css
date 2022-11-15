@@ -123,6 +123,8 @@ body, html {
   height: var(--widget_height);
   color: var(--text_color);
   border: 1px solid var(--alt_color_2);
+  padding-left: 0.25rem;
+  padding-right: 0.25rem;
 }
 
 .button:hover {
