@@ -41,7 +41,7 @@ App.create_window = function (args) {
     el.append(top)
   }
 
-  let content = App.create("div", "window_content")
+  let content = App.create("div", "window_content", `window_content_${args.id}`)
   content.innerHTML = App.get_template(args.id)
   el.append(content)
 

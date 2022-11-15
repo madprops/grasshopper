@@ -75,3 +75,18 @@ App.get_light_theme = function () {
 
   return {background_color: background_color, text_color: text_color}
 }
+
+// Attempt to detect browser theme
+App.detect_theme = async function () {
+  let theme = await browser.theme.getCurrent()
+
+  if (theme.colors.toolbar && theme.colors.toolbar_text) {
+    if (theme.colors.toolbar !== theme.colors.toolbar_text) {
+      App.background_color_picker.setColor(theme.colors.toolbar)
+      App.text_color_picker.setColor(theme.colors.toolbar_text)
+      return
+    }
+  }
+
+  alert("Theme couldn't be detected")
+}
