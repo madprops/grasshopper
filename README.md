@@ -1,3 +1,5 @@
 Tab management extension.
 
-![](https://i.imgur.com/50hlPKi.jpg)
+Check info and screenshots here:
+
+https://madprops.github.io/grasshopper/
