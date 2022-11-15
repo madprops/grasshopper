@@ -758,12 +758,22 @@ App.make_items_select = function (mode) {
     select.append(option)
   }
 
+  let separator = App.create("option")
+  separator.value = "none"
+  separator.textContent = "------"
+  separator.disabled = true
+  select.append(separator)
+
   let settings = App.create("option")
   settings.value = "settings"
   settings.textContent = "Settings"
   select.append(settings)
 
   App.ev(select, "change", function () {
+    if (select.value === "none") {
+      return
+    }
+
     if (select.value === "settings") {
       App.show_window("settings")
     } else {
