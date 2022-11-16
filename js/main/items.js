@@ -385,7 +385,7 @@ App.show_move_menu = async function (x, y, item) {
     let text
 
     if (win.id === App.window_id) {
-      text = "This window"
+      text = "This Window"
     } else {
       let s = `${win.title.substring(0, 30).trim()} (ID: ${win.id})`
       text = `Move to: ${s}`
