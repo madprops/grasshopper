@@ -407,7 +407,6 @@ App.show_move_menu = async function (x, y, item) {
 // Show tab more menu
 App.show_more_menu = async function (x, y, item) {
   let items = []
-  let wins = await browser.windows.getAll({populate: false})
 
   items.push({
     text: "Duplicate",
@@ -421,6 +420,15 @@ App.show_more_menu = async function (x, y, item) {
       text: "Suspend",
       action: function () {
         App.suspend_tab(item)
+      }
+    })  
+  }
+
+  if (!item.discared) {
+    items.push({
+      text: "Similar",
+      action: function () {
+        App.set_filter("tabs", App.get_hostname(item.url))
       }
     })  
   }
@@ -954,4 +962,10 @@ App.update_info = function (mode) {
   let n = App[`${mode}_items`].length
   let s = App.plural(n, "item", "items")
   App.el(`#${mode}_info`).textContent = s
+}
+
+// Set item filter
+App.set_filter = function (mode, text) {
+  App.el(`#${mode}_filter`).value = text
+  App.do_item_filter(mode)
 }
