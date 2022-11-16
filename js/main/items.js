@@ -247,7 +247,7 @@ App.hide_item = function (it) {
 }
 
 // Show item menu
-App.show_item_menu = async function (mode, item, x, y) {
+App.show_item_menu = function (mode, item, x, y) {
   let items = []
 
   if (mode === "tabs") {
