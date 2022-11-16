@@ -446,20 +446,25 @@ App.create_item_element = function (mode, item) {
   let text = App.create("div", "item_text")
   item.element.append(text)
   App.set_item_text(mode, item)
+  let info_container = App.create("div", "item_info_container")
 
   if (mode === "tabs") {
-    let info = App.create("div", "item_info")
-    info.textContent = App.settings.pin_icon
-    
-    if (item.pinned) {
-      info.title = "Pinned"
-    } else {
-      info.classList.add("invisible")
+    if (item.window_id !== App.window_id) {
+      let info = App.create("div", "item_info")
+      info.textContent = "(A)"
+      info.title = "(Alien) This tab belongs to another window"
+      info_container.append(info)
     }
 
-    item.element.append(info)
+    if (item.pinned) {
+      let info = App.create("div", "item_info")
+      info.textContent = App.settings.pin_icon
+      info.title = "Pinned"  
+      info_container.append(info)
+    }
   }
 
+  item.element.append(info_container)
   item.created = true
   console.info(`Item created in ${mode}`)
 }
