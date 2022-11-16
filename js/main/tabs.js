@@ -343,7 +343,9 @@ App.show_tabs_menu = function () {
     if (tab.discarded) {
       has_suspended = true
     } else {
-      has_unsuspended = true
+      if (App.is_http(tab)) {
+        has_unsuspended = true
+      }
     }
   }
 
