@@ -323,6 +323,13 @@ App.show_item_menu = function (mode, item, x, y) {
     })
 
     items.push({
+      text: "Move...",
+      action: function () {
+        App.show_move_menu(x, y, item)
+      }
+    })    
+
+    items.push({
       text: "Close",
       action: function () {
         App.confirm_close_tab(item)
@@ -346,6 +353,23 @@ App.show_item_menu = function (mode, item, x, y) {
 
   if (App[`selected_${mode}_item`] !== item) {
     App.select_item(mode, item)
+  }
+
+  NeedContext.show(x, y, items)
+}
+
+// Show tab move menu
+App.show_move_menu = async function (x, y, item) {
+  let items = []
+  let wins = await browser.windows.getAll({populate: false})
+
+  for (let win of wins) {
+    items.push({
+      text: `Move to window ${win.id}`,
+      action: function () {
+        App.move_tab(item, win.id)
+      }
+    })
   }
 
   NeedContext.show(x, y, items)

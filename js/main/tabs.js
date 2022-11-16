@@ -34,7 +34,7 @@ App.get_tabs = async function () {
   if (!App.settings.all_windows) {
     tabs = await browser.tabs.query({currentWindow: true})
   } else {
-    let wins = await browser.windows.getAll({populate:true})
+    let wins = await browser.windows.getAll({populate: true})
 
     for (let win of wins) {
       for (let tab of win.tabs) {
@@ -290,6 +290,12 @@ App.detach_tab = async function (tab) {
   }
 
   browser.windows.create({tabId: tab.id})
+}
+
+// Move tab to another existing window
+App.move_tab = async function (tab, window_id) {
+  await browser.tabs.move(tab.id, {index: -1, windowId: window_id})
+  browser.tabs.update(tab.id, {active: true})
 }
 
 // Duplicate a tab
