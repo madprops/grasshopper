@@ -194,7 +194,7 @@ App.clean_tabs = function () {
   let ids = []
 
   for (let tab of App.tabs_items) {
-    if (tab.pinned || tab.audible || !App.is_http(tab)) {
+    if (tab.pinned || tab.audible) {
       continue
     }
 
