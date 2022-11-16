@@ -320,12 +320,7 @@ App.duplicate_tab = function (tab) {
 // Suspend a tab
 App.suspend_tab = async function (tab) {
   if (tab.active) {
-    for (let it of App.tabs_items) {
-      if (it.id !== tab.id) {
-        await App.focus_tab(it, false)
-        break
-      }
-    }
+    await browser.tabs.create({active: true})
   }
 
   browser.tabs.discard(tab.id)
@@ -336,13 +331,54 @@ App.show_tabs_menu = function () {
   let items = []
 
   items.push({
+    text: "Pin all tabs",
+    action: function () {
+      App.pin_all_tabs()
+    }
+  })  
+
+  items.push({
     text: "Unpin all tabs",
     action: function () {
       App.unpin_all_tabs()
     }
   })
 
+  items.push({
+    text: "Suspend all tabs",
+    action: function () {
+      App.suspend_all_tabs()
+    }
+  })  
+
   NeedContext.show_on_element(App.el("#tabs_more_button"), items)
+}
+
+// Pin all the tabs
+App.pin_all_tabs = function () {
+  let ids = []
+
+  for (let tab of App.tabs_items) {
+    if (tab.pinned) {
+      continue
+    }
+    
+    ids.push(tab.id)
+  }
+
+  if (ids.length === 0) {
+    return
+  }
+  
+  let s = App.plural(ids.length, "tab", "tabs")
+
+  if (confirm(`Pin all tabs? (${s})`)) {
+    for (let id of ids) {
+      App.pin_tab(id)
+    }
+
+    console.info("Pinned all tabs")
+  }  
 }
 
 // Unpin all the tabs
@@ -369,5 +405,32 @@ App.unpin_all_tabs = function () {
     }
 
     console.info("Unpinned all tabs")
+  }  
+}
+
+// Suspend all the tabs
+App.suspend_all_tabs = async function () {
+  let tabs = []
+
+  for (let tab of App.tabs_items) {
+    if (tab.zzz) {
+      continue
+    }
+    
+    tabs.push(tab)
+  }
+
+  if (tabs.length === 0) {
+    return
+  }
+  
+  let s = App.plural(tabs.length, "tab", "tabs")
+
+  if (confirm(`Suspend all tabs? (${s})`)) {
+    for (let tab of tabs) {
+      App.suspend_tab(tab)
+    }
+
+    console.info("Suspended all tabs")
   }  
 }
