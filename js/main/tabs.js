@@ -14,10 +14,6 @@ App.setup_tabs = function () {
     App.show_tabs_menu()
   })
 
-  App.ev(App.el("#tabs_new_button"), "click", function () {
-    App.new_tab()
-  })
-
   browser.tabs.onUpdated.addListener(function (id) {
     if (App.window_mode === "tabs") {
       App.refresh_tab(id)
@@ -325,35 +321,42 @@ App.show_tabs_menu = function () {
   let items = []
 
   items.push({
-    text: "Pin all tabs",
+    text: "New Tab",
+    action: function () {
+      App.new_tab()
+    }
+  })    
+
+  items.push({
+    text: "Pin All Tabs",
     action: function () {
       App.pin_all_tabs()
     }
   })  
 
   items.push({
-    text: "Unpin all tabs",
+    text: "Unpin All Tabs",
     action: function () {
       App.unpin_all_tabs()
     }
   })
 
   items.push({
-    text: "Suspend all tabs",
+    text: "Suspend All Tabs",
     action: function () {
       App.suspend_all_tabs()
     }
   })  
 
   items.push({
-    text: "Suspend normal tabs",
+    text: "Suspend Normal Tabs",
     action: function () {
       App.suspend_normal_tabs()
     }
   })    
 
   items.push({
-    text: "Close suspended tabs",
+    text: "Close Suspended Tabs",
     action: function () {
       App.close_suspended_tabs()
     }
@@ -361,9 +364,9 @@ App.show_tabs_menu = function () {
 
   if (App.el("#tabs_filter").value.trim()) {
     items.push({
-      text: "Close visible tabs",
+      text: "Close Filtered Tabs",
       action: function () {
-        App.close_visible_tabs()
+        App.close_filtered_tabs()
       }
     })  
   }
@@ -497,7 +500,7 @@ App.close_suspended_tabs = function () {
 }
 
 // Close tabs that appear after a filter
-App.close_visible_tabs = function () {
+App.close_filtered_tabs = function () {
   let ids = []
 
   for (let tab of App.tabs_items) {
@@ -514,7 +517,7 @@ App.close_visible_tabs = function () {
   
   let s = App.plural(ids.length, "tab", "tabs")
 
-  if (confirm(`Close visible tabs? (${s})`)) {
+  if (confirm(`Close filtered tabs? (${s})`)) {
     for (let id of ids) {
       App.close_tab(id)
     }
