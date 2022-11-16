@@ -53,10 +53,6 @@ NeedContext.show = function (x, y, items) {
       NeedContext.select_item(parseInt(el.dataset.index))
     })
 
-    if (item.autohide === undefined) {
-      item.autohide = true
-    }
-
     container.append(el)
   }
   
@@ -133,11 +129,9 @@ NeedContext.select_down = function () {
 
 // Do the selected action
 NeedContext.select_action = function () {
-  NeedContext.items[NeedContext.index].action()
-  
-  if (NeedContext.items[NeedContext.autohide]) {
-    NeedContext.hide()
-  }
+  let item = NeedContext.items[NeedContext.index]
+  NeedContext.hide()
+  item.action()
 }
 
 // Prepare css and events
