@@ -29,9 +29,22 @@ App.setup_tabs = function () {
 
 // Get open tabs
 App.get_tabs = async function () {
-  let tabs = await browser.tabs.query({currentWindow: true})
+  let tabs = []
+
+  if (!App.settings.show_all_windows) {
+    tabs = await browser.tabs.query({currentWindow: true})
+  } else {
+    let wins = await browser.windows.getAll({populate:true})
+
+    for (let win of wins) {
+      for (let tab of win.tabs) {
+        tabs.push(tab)
+      }
+    }
+  }
+
   App.sort_tabs_by_access(tabs)
-  return tabs
+  return tabs  
 }
 
 // Sort tabs by access
@@ -46,6 +59,7 @@ App.sort_tabs_by_index = function (tabs) {
 
 // Open a new tab
 App.focus_tab = function (tab) {
+  browser.windows.update(tab.window_id, {focused: true})
   browser.tabs.update(tab.id, {active: true})
   window.close()
 }

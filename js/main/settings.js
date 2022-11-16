@@ -78,6 +78,14 @@ App.setup_settings = function () {
       App.settings.clean_active_tab = clean_active_tab.checked
       App.stor_save_settings()
     })
+  
+    let show_all_windows = App.el("#settings_show_all_windows")
+    show_all_windows.checked = App.settings.show_all_windows
+
+    App.ev(show_all_windows, "change", function () {
+      App.settings.show_all_windows = show_all_windows.checked
+      App.stor_save_settings()
+    })
 
     function start_color_picker (name) {
       App[`${name}_color_picker`] = AColorPicker.createPicker(App.el(`#${name}_color_picker`), {

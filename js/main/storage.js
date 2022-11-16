@@ -11,7 +11,8 @@ App.default_settings = {
   pin_icon: "(+)",
   history_max_results: 1000,
   history_max_months: 24,
-  clean_active_tab: true
+  clean_active_tab: true,
+  show_all_windows: false
 }
 
 // Get settings from sync storage

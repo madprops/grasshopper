@@ -407,7 +407,9 @@ App.process_item = function (mode, item, exclude = []) {
     created: false,
     mode: mode,
     protocol: url_obj.protocol,
-    closed: false
+    closed: false,
+    window_id: item.windowId,
+    session_id: item.sessionId
   }
   
   if (mode === "tabs") {
@@ -416,9 +418,6 @@ App.process_item = function (mode, item, exclude = []) {
     obj.pinned = item.pinned
     obj.audible = item.audible
     obj.muted = item.mutedInfo.muted
-  } else if (mode === "closed") {
-    obj.window_id = item.windowId
-    obj.session_id = item.sessionId
   }
 
   App.create_empty_item_element(mode, obj)
