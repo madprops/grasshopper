@@ -131,6 +131,10 @@ body, html {
   background-color: var(--alt_color);
 }
 
+.button:active {
+  background-color: var(--alt_color_2);
+}
+
 .item {
   display: flex;
   flex-direction: row;
