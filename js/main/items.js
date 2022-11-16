@@ -297,8 +297,7 @@ App.show_item_menu = function (mode, item, x, y) {
     text: "Copy...",
     action: function () {
       App.show_copy_menu(x, y, item)
-    },
-    autohide: false
+    }
   })
 
   if (mode === "tabs") {
@@ -313,8 +312,7 @@ App.show_item_menu = function (mode, item, x, y) {
       text: "Move...",
       action: function () {
         App.show_move_menu(x, y, item)
-      },
-      autohide: false
+      }
     })    
 
     items.push({
