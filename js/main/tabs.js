@@ -366,78 +366,80 @@ App.show_tabs_menu = function () {
     }
   }
 
-  if (has_unpinned) {
-    items.push({
-      text: "Pin All Tabs",
-      action: function () {
-        App.pin_all_tabs()
+  if (has_filter) {
+    if (has_visible) {
+      items.push({
+        text: "Close Normal Filtered Tabs",
+        action: function () {
+          App.close_filtered_tabs()
+        }
+      }) 
+  
+      items.push({
+        text: "Close All Filtered Tabs",
+        action: function () {
+          App.close_filtered_tabs(false)
+        }
+      })  
+  
+      if (has_unsuspended) {
+        items.push({
+          text: "Suspend Normal Filtered Tabs",
+          action: function () {
+            App.suspend_filtered_tabs()
+          }
+        }) 
+  
+        items.push({
+          text: "Suspend All Filtered Tabs",
+          action: function () {
+            App.suspend_filtered_tabs(false)
+          }
+        })
       }
-    })
-  }
-
-  if (has_pinned) {
-    items.push({
-      text: "Unpin All Tabs",
-      action: function () {
-        App.unpin_all_tabs()
-      }
-    })
-  }
-
-  if (has_unsuspended) {
-    items.push({
-      text: "Suspend All Tabs",
-      action: function () {
-        App.suspend_tabs(false)
-      }
-    })  
-
-    items.push({
-      text: "Suspend Normal Tabs",
-      action: function () {
-        App.suspend_tabs()
-      }
-    })
-  }
-
-  if (has_suspended) {
-    items.push({
-      text: "Close Suspended Tabs",
-      action: function () {
-        App.close_suspended_tabs()
-      }
-    })
-  }
-
-  if (has_filter && has_visible) {
-    items.push({
-      text: "Close All Filtered Tabs",
-      action: function () {
-        App.close_filtered_tabs(false)
-      }
-    })  
-
-    items.push({
-      text: "Close Normal Filtered Tabs",
-      action: function () {
-        App.close_filtered_tabs()
-      }
-    })  
-    
+    }
+  } else {
+    if (has_unpinned) {
+      items.push({
+        text: "Pin All Tabs",
+        action: function () {
+          App.pin_all_tabs()
+        }
+      })
+    }
+  
+    if (has_pinned) {
+      items.push({
+        text: "Unpin All Tabs",
+        action: function () {
+          App.unpin_all_tabs()
+        }
+      })
+    }
+  
     if (has_unsuspended) {
       items.push({
-        text: "Suspend All Filtered Tabs",
+        text: "Suspend Normal Tabs",
         action: function () {
-          App.suspend_filtered_tabs(false)
+          App.suspend_tabs()
         }
-      }) 
-
+      })
+  
       items.push({
-        text: "Suspend Normal Filtered Tabs",
+        text: "Suspend All Tabs",
         action: function () {
-          App.suspend_filtered_tabs()
+          App.suspend_tabs(false)
         }
-      }) 
+      })  
+    }
+  
+    if (has_suspended) {
+      items.push({
+        text: "Close Suspended Tabs",
+        action: function () {
+          App.close_suspended_tabs()
+        }
+      })
     }
   }
 
