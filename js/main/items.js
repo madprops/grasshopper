@@ -364,8 +364,20 @@ App.show_move_menu = async function (x, y, item) {
   let wins = await browser.windows.getAll({populate: false})
 
   for (let win of wins) {
+    if (item.window_id === win.id) {
+      continue
+    }
+    
+    let text
+
+    if (win.id === App.window_id) {
+      text = "This window"
+    } else {
+      text = `Move to window ${win.id}`
+    }
+
     items.push({
-      text: `Move to window ${win.id}`,
+      text: text,
       action: function () {
         App.move_tab(item, win.id)
       }
