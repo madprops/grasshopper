@@ -290,15 +290,18 @@ App.detach_tab = async function (tab) {
   }
 
   browser.windows.create({tabId: tab.id})
+  window.close()
 }
 
 // Move tab to another existing window
 App.move_tab = async function (tab, window_id) {
   await browser.tabs.move(tab.id, {index: -1, windowId: window_id})
   browser.tabs.update(tab.id, {active: true})
+  window.close()
 }
 
 // Duplicate a tab
 App.duplicate_tab = function (tab) {
   browser.tabs.create({active: true, url: tab.url})
+  window.close()
 }
