@@ -215,7 +215,7 @@ App.clean_tabs = function () {
   
   let s = App.plural(ids.length, "tab", "tabs")
 
-  if (confirm(`Close all normal tabs? (${s})`)) {
+  if (confirm(`Close normal tabs? (${s})`)) {
     for (let id of ids) {
       App.close_tab(id)
     }
@@ -469,6 +469,6 @@ App.suspend_normal_tabs = function () {
       App.suspend_tab(tab)
     }
 
-    console.info("Suspended all normal tabs")
+    console.info("Suspend normal tabs")
   }  
 }
