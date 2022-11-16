@@ -8,7 +8,7 @@ App.max_closed = 25
 
 
 App.init = async function () {
-  let win = await browser.windows.getLastFocused()
+  let win = await browser.windows.getCurrent({populate: false})
   App.window_id = win.id
 
   await App.stor_get_settings()
