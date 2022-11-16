@@ -327,91 +327,103 @@ App.show_tabs_menu = function () {
     }
   })
 
-  if (App.el("#tabs_filter").value.trim()) {
-    items.push({
-      text: "Close Normal Filtered Tabs",
-      action: function () {
-        App.close_filtered_tabs("normal")
-      }
-    }) 
+  items.push({
+    text: "Pin All Tabs",
+    action: function () {
+      App.pin_all_tabs()
+    }
+  })
 
-    items.push({
-      text: "Close Pinned Filtered Tabs",
-      action: function () {
-        App.close_filtered_tabs("pinned")
-      }
-    })       
+  items.push({
+    text: "Unpin All Tabs",
+    action: function () {
+      App.unpin_all_tabs()
+    }
+  })
 
-    items.push({
-      text: "Close All Filtered Tabs",
-      action: function () {
-        App.close_filtered_tabs("all")
-      }
-    })  
+  items.push({
+    text: "Suspend Normal Tabs",
+    action: function () {
+      App.suspend_tabs("normal")
+    }
+  })
 
-    items.push({
-      text: "Suspend Normal Filtered Tabs",
-      action: function () {
-        App.suspend_filtered_tabs("normal")
-      }
-    }) 
+  items.push({
+    text: "Suspend Pinned Tabs",
+    action: function () {
+      App.suspend_tabs("pinned")
+    }
+  }) 
 
-    items.push({
-      text: "Suspend Pinned Filtered Tabs",
-      action: function () {
-        App.suspend_filtered_tabs("pinned")
-      }
-    })
+  items.push({
+    text: "Suspend All Tabs",
+    action: function () {
+      App.suspend_tabs("all")
+    }
+  })  
 
-    items.push({
-      text: "Suspend All Filtered Tabs",
-      action: function () {
-        App.suspend_filtered_tabs("all")
-      }
-    })
-  } else {
-    items.push({
-      text: "Pin All Tabs",
-      action: function () {
-        App.pin_all_tabs()
-      }
-    })
-  
-    items.push({
-      text: "Unpin All Tabs",
-      action: function () {
-        App.unpin_all_tabs()
-      }
-    })
-  
-    items.push({
-      text: "Suspend Normal Tabs",
-      action: function () {
-        App.suspend_tabs("normal")
-      }
-    })
-  
-    items.push({
-      text: "Suspend Pinned Tabs",
-      action: function () {
-        App.suspend_tabs("pinned")
-      }
-    }) 
-  
-    items.push({
-      text: "Suspend All Tabs",
-      action: function () {
-        App.suspend_tabs("all")
-      }
-    })  
+  items.push({
+    text: "Close Suspended Tabs",
+    action: function () {
+      App.close_suspended_tabs()
+    }
+  })
 
-    items.push({
-      text: "Close Suspended Tabs",
-      action: function () {
-        App.close_suspended_tabs()
-      }
-    })
-  }
+  items.push({
+    text: "Filtered...",
+    action: function () {
+      App.show_filtered_menu()
+    }
+  })
+
+  NeedContext.show_on_element(App.el("#tabs_more_button"), items)
+}
+
+// Show filtered menu
+App.show_filtered_menu = function () {
+  let items = []
+
+  items.push({
+    text: "Close Normal Filtered Tabs",
+    action: function () {
+      App.close_filtered_tabs("normal")
+    }
+  }) 
+
+  items.push({
+    text: "Close Pinned Filtered Tabs",
+    action: function () {
+      App.close_filtered_tabs("pinned")
+    }
+  })       
+
+  items.push({
+    text: "Close All Filtered Tabs",
+    action: function () {
+      App.close_filtered_tabs("all")
+    }
+  })  
+
+  items.push({
+    text: "Suspend Normal Filtered Tabs",
+    action: function () {
+      App.suspend_filtered_tabs("normal")
+    }
+  }) 
+
+  items.push({
+    text: "Suspend Pinned Filtered Tabs",
+    action: function () {
+      App.suspend_filtered_tabs("pinned")
+    }
+  })
+
+  items.push({
+    text: "Suspend All Filtered Tabs",
+    action: function () {
+      App.suspend_filtered_tabs("all")
+    }
+  })
 
   NeedContext.show_on_element(App.el("#tabs_more_button"), items)
 }
