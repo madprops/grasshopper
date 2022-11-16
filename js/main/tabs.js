@@ -58,13 +58,16 @@ App.sort_tabs_by_index = function (tabs) {
 }
 
 // Open a new tab
-App.focus_tab = function (tab) {
+App.focus_tab = async function (tab, close = true) {
   if (tab.window_id) {
-    browser.windows.update(tab.window_id, {focused: true})
+    await browser.windows.update(tab.window_id, {focused: true})
   }
 
-  browser.tabs.update(tab.id, {active: true})
-  window.close()
+  await browser.tabs.update(tab.id, {active: true})
+
+  if (close) {
+    window.close()
+  }
 }
 
 // Close tab with possible confirm
@@ -298,4 +301,18 @@ App.move_tab = async function (tab, window_id) {
 App.duplicate_tab = function (tab) {
   browser.tabs.create({active: true, url: tab.url})
   window.close()
+}
+
+// Suspend a tab
+App.suspend_tab = async function (tab) {
+  if (tab.active) {
+    for (let it of App.tabs_items) {
+      if (it.id !== tab.id) {
+        await App.focus_tab(it, false)
+        break
+      }
+    }
+  }
+
+  browser.tabs.discard(tab.id)
 }

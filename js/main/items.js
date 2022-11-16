@@ -209,6 +209,8 @@ App.do_item_filter = function (mode) {
         match = item.protocol === "https:"
       } else if (filter_mode === "insecure") {
         match = item.protocol === "http:"
+      } else if (filter_mode === "suspended") {
+        match = item.discarded
       } else if (filter_mode === "window") {
         match = item.window_id === App.window_id
       } else if (filter_mode === "alien") {
@@ -291,14 +293,7 @@ App.show_item_menu = function (mode, item, x, y) {
         App.add_or_edit_star(item)
       }
     })
-  }    
-
-  items.push({
-    text: "Copy...",
-    action: function () {
-      App.show_copy_menu(x, y, item)
-    }
-  })
+  }
 
   if (mode === "tabs") {
     items.push({
@@ -306,7 +301,21 @@ App.show_item_menu = function (mode, item, x, y) {
       action: function () {
         App.show_move_menu(x, y, item)
       }
+    })  
+
+    items.push({
+      text: "Copy...",
+      action: function () {
+        App.show_copy_menu(x, y, item)
+      }
     })    
+    
+    items.push({
+      text: "More...",
+      action: function () {
+        App.show_more_menu(x, y, item)
+      }
+    })     
 
     items.push({
       text: "Close",
@@ -361,14 +370,7 @@ App.show_copy_menu = function (x, y, item) {
 // Show tab move menu
 App.show_move_menu = async function (x, y, item) {
   let items = []
-  let wins = await browser.windows.getAll({populate: false})
-
-  items.push({
-    text: "Duplicate",
-    action: function () {
-      App.duplicate_tab(item)
-    }
-  })  
+  let wins = await browser.windows.getAll({populate: false}) 
   
   items.push({
     text: "New Window",
@@ -397,6 +399,30 @@ App.show_move_menu = async function (x, y, item) {
         App.move_tab(item, win.id)
       }
     })
+  }
+
+  NeedContext.show(x, y, items)
+}
+
+// Show tab more menu
+App.show_more_menu = async function (x, y, item) {
+  let items = []
+  let wins = await browser.windows.getAll({populate: false})
+
+  items.push({
+    text: "Duplicate",
+    action: function () {
+      App.duplicate_tab(item)
+    }
+  })  
+
+  if (!item.discared) {
+    items.push({
+      text: "Suspend",
+      action: function () {
+        App.suspend_tab(item)
+      }
+    })  
   }
 
   NeedContext.show(x, y, items)
@@ -464,7 +490,7 @@ App.process_item = function (mode, item, exclude = []) {
     protocol: url_obj.protocol,
     closed: false,
     window_id: item.windowId,
-    session_id: item.sessionId
+    session_id: item.sessionId,
   }
   
   if (mode === "tabs") {
@@ -473,6 +499,7 @@ App.process_item = function (mode, item, exclude = []) {
     obj.pinned = item.pinned
     obj.audible = item.audible
     obj.muted = item.mutedInfo.muted
+    obj.discarded = item.discarded
   }
 
   App.create_empty_item_element(mode, obj)
@@ -552,6 +579,10 @@ App.set_item_text = function (mode, item) {
 
   if (mode === "tabs") {
     let status = []
+
+    if (item.discarded) {
+      status.push("zzz")
+    }
     
     if (item.audible) {
       status.push("Playing")
