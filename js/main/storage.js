@@ -12,8 +12,6 @@ App.default_settings = {
   alien_icon: "(A)",
   history_max_results: 1000,
   history_max_months: 24,
-  clean_active_tab: true,
-  clean_suspended_tabs: true,
   all_windows: true,
 }
 

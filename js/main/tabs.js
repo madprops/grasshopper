@@ -194,15 +194,7 @@ App.clean_tabs = function () {
   let ids = []
 
   for (let tab of App.tabs_items) {
-    if (tab.pinned || tab.audible) {
-      continue
-    }
-
-    if (tab.active && !App.settings.clean_active_tab) {
-      continue
-    }
-
-    if (tab.discarded && !App.settings.clean_suspended_tabs) {
+    if (tab.pinned || tab.audible || tab.active || tab.discarded) {
       continue
     }
     
@@ -362,6 +354,13 @@ App.show_tabs_menu = function () {
     }
   })    
 
+  items.push({
+    text: "Close suspended tabs",
+    action: function () {
+      App.close_suspended_tabs()
+    }
+  })    
+
   NeedContext.show_on_element(App.el("#tabs_more_button"), items)
 }
 
@@ -469,6 +468,33 @@ App.suspend_normal_tabs = function () {
       App.suspend_tab(tab)
     }
 
-    console.info("Suspend normal tabs")
+    console.info("Suspended normal tabs")
   }  
+}
+
+// Close all suspended tabs
+App.close_suspended_tabs = function () {
+  let ids = []
+
+  for (let tab of App.tabs_items) {
+    if (!tab.discarded) {
+      continue
+    }
+    
+    ids.push(tab.id)
+  }
+
+  if (ids.length === 0) {
+    return
+  }
+  
+  let s = App.plural(ids.length, "tab", "tabs")
+
+  if (confirm(`Close suspended tabs? (${s})`)) {
+    for (let id of ids) {
+      App.close_tab(id)
+    }
+
+    console.info("Closed suspended tabs")
+  }
 }
