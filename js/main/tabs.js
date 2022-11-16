@@ -355,6 +355,13 @@ App.show_tabs_menu = function () {
     }
   })  
 
+  items.push({
+    text: "Suspend normal tabs",
+    action: function () {
+      App.suspend_normal_tabs()
+    }
+  })    
+
   NeedContext.show_on_element(App.el("#tabs_more_button"), items)
 }
 
@@ -413,7 +420,7 @@ App.unpin_all_tabs = function () {
 }
 
 // Suspend all the tabs
-App.suspend_all_tabs = async function () {
+App.suspend_all_tabs = function () {
   let tabs = []
 
   for (let tab of App.tabs_items) {
@@ -436,5 +443,32 @@ App.suspend_all_tabs = async function () {
     }
 
     console.info("Suspended all tabs")
+  }  
+}
+
+// Suspend normal tabs
+App.suspend_normal_tabs = function () {
+  let tabs = []
+
+  for (let tab of App.tabs_items) {
+    if (tab.zzz || tab.pinned || tab.audible) {
+      continue
+    }
+    
+    tabs.push(tab)
+  }
+
+  if (tabs.length === 0) {
+    return
+  }
+  
+  let s = App.plural(tabs.length, "tab", "tabs")
+
+  if (confirm(`Suspend normal tabs? (${s})`)) {
+    for (let tab of tabs) {
+      App.suspend_tab(tab)
+    }
+
+    console.info("Suspended all normal tabs")
   }  
 }
