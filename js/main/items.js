@@ -209,6 +209,8 @@ App.do_item_filter = function (mode) {
         match = item.protocol === "https:"
       } else if (filter_mode === "insecure") {
         match = item.protocol === "http:"
+      } else if (filter_mode === "window") {
+        match = item.window_id === App.window_id
       }
     }
         
