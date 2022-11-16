@@ -369,12 +369,14 @@ App.show_tabs_menu = function () {
     }
   })
 
-  items.push({
-    text: "Filtered...",
-    action: function () {
-      App.show_filtered_menu()
-    }
-  })
+  if (App.el("#tabs_filter").value.trim()) {
+    items.push({
+      text: "Filtered...",
+      action: function () {
+        App.show_filtered_menu()
+      }
+    })
+  }
 
   NeedContext.show_on_element(App.el("#tabs_more_button"), items)
 }
