@@ -120,13 +120,13 @@ App.setup_settings = function () {
       App.detect_theme()
     })
 
-    let window_order = App.el("#window_order")
+    let tab_order = App.el("#tab_order")
 
-    for (let m of App.window_order) {
-      let el = App.create("div", "window_order_item flex_row_center gap_2")
+    for (let m of App.tab_order) {
+      let el = App.create("div", "tab_order_item flex_row_center gap_2")
       el.dataset.mode = m
 
-      let text = App.create("div", "window_order_item_text")
+      let text = App.create("div", "tab_order_item_text")
       text.textContent = App.capitalize(m)
       el.append(text)
 
@@ -135,7 +135,7 @@ App.setup_settings = function () {
       el.append(up)
 
       App.ev(up, "click", function () {
-        App.window_order_up(el)
+        App.tab_order_up(el)
       })      
 
       let down = App.create("button", "button up_down_button")
@@ -143,10 +143,10 @@ App.setup_settings = function () {
       el.append(down)
 
       App.ev(down, "click", function () {
-        App.window_order_down(el)
+        App.tab_order_down(el)
       })      
 
-      window_order.append(el)
+      tab_order.append(el)
     }
 
     App.ev(App.el("#settings_defaults_button"), "click", function () {

@@ -88,7 +88,7 @@ App.hide_all_windows = function () {
 
 // Centralized function to show windows
 App.show_window = function (mode) {
-  if (App.window_order.includes(mode)) {
+  if (App.tab_order.includes(mode)) {
     App.show_item_window(mode)
   } else {
     App.windows[mode].show()
