@@ -26,6 +26,10 @@ App.setup_tabs = function () {
 
   browser.tabs.onActivated.addListener(function (ans) {
     if (App.window_mode === "tabs") {
+      for (let tab of App.tabs_items) {
+        tab.active = false
+      }
+
       App.refresh_tab(ans.tabId)
     }
   })  
