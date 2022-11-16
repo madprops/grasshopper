@@ -305,6 +305,20 @@ App.show_item_menu = async function (mode, item, x, y) {
 
   if (mode === "tabs") {
     items.push({
+      text: "Duplicate",
+      action: function () {
+        App.duplicate_tab(item)
+      }
+    })
+    
+    items.push({
+      text: "Detach",
+      action: function () {
+        App.detach_tab(item)
+      }
+    })
+
+    items.push({
       text: "Close",
       action: function () {
         App.confirm_close_tab(item)
@@ -392,7 +406,8 @@ App.process_item = function (mode, item, exclude = []) {
     empty: false,
     created: false,
     mode: mode,
-    protocol: url_obj.protocol
+    protocol: url_obj.protocol,
+    closed: false
   }
   
   if (mode === "tabs") {

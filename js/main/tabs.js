@@ -19,7 +19,7 @@ App.setup_tabs = function () {
       App.refresh_tab(id)
     }
   })
-
+  
   browser.tabs.onRemoved.addListener(function (id) {
     if (App.window_mode === "tabs") {
       App.remove_closed_tab(id)
@@ -84,7 +84,11 @@ App.new_tab = function () {
 App.refresh_tab = async function (id) {
   let tab = App.get_item_by_id("tabs", id)
 
-  if (!tab) {
+  if (tab) {
+    if (tab.closed) {
+      return
+    }
+  } else {
     App.tabs_items.push({
       id: id,
       empty: true
@@ -258,4 +262,14 @@ App.tabs_action = function (item) {
 // Tabs action alt
 App.tabs_action_alt = function (item) {
   App.confirm_close_tab(item)
+}
+
+// Open tab in new window
+App.detach_tab = async function (tab) {
+  browser.windows.create({tabId: tab.id})
+}
+
+// Duplicate a tab
+App.duplicate_tab = function (tab) {
+  browser.tabs.create({active: true, url: tab.url})
 }

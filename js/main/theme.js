@@ -82,8 +82,20 @@ App.detect_theme = async function () {
 
   if (theme.colors.toolbar && theme.colors.toolbar_text) {
     if (theme.colors.toolbar !== theme.colors.toolbar_text) {
-      App.background_color_picker.setColor(theme.colors.toolbar)
-      App.text_color_picker.setColor(theme.colors.toolbar_text)
+      let d1 = App.create("div", "hidden")
+      d1.style.color = theme.colors.toolbar
+      document.body.append(d1)
+
+      let d2 = App.create("div", "hidden")
+      d2.style.color = theme.colors.toolbar_text
+      document.body.append(d2)
+
+      App.background_color_picker.setColor(window.getComputedStyle(d1).color)
+      App.text_color_picker.setColor(window.getComputedStyle(d2).color)
+
+      d1.remove()
+      d2.remove()
+      
       return
     }
   }
