@@ -31,7 +31,7 @@ App.setup_tabs = function () {
 App.get_tabs = async function () {
   let tabs = []
 
-  if (!App.settings.show_all_windows) {
+  if (!App.settings.all_windows) {
     tabs = await browser.tabs.query({currentWindow: true})
   } else {
     let wins = await browser.windows.getAll({populate:true})
@@ -280,6 +280,12 @@ App.tabs_action_alt = function (item) {
 
 // Open tab in new window
 App.detach_tab = async function (tab) {
+  if (App.settings.confirm_detach) {
+    if (!confirm("Detach tab?")) {
+      return
+    }
+  }
+
   browser.windows.create({tabId: tab.id})
 }
 

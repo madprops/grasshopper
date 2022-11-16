@@ -12,7 +12,8 @@ App.default_settings = {
   history_max_results: 1000,
   history_max_months: 24,
   clean_active_tab: true,
-  show_all_windows: true
+  all_windows: true,
+  confirm_detach: true
 }
 
 // Get settings from sync storage
