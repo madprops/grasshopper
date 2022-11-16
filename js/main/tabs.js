@@ -332,19 +332,36 @@ App.show_tabs_menu = function () {
   let has_suspended = false
   let has_unsuspended = false
   let has_filter = App.el("#tabs_filter").value.trim()
+  let has_visible = false
   
   for (let tab of App.tabs_items) {
-    if (tab.pinned) {
-      has_pinned = true
-    } else {
-      has_unpinned = true
+    if (!has_pinned) {
+      if (tab.pinned) {
+        has_pinned = true
+      } 
     }
 
-    if (tab.discarded) {
-      has_suspended = true
-    } else {
+    if (!has_unpinned) {
+      if (!tab.pinned) {
+        has_unpinned = true
+      }
+    }
+
+    if (!has_suspended) {
+      if (tab.discarded) {
+        has_suspended = true
+      }
+    }
+
+    if (!has_unsuspended) {
       if (App.is_http(tab)) {
         has_unsuspended = true
+      }
+    }
+
+    if (!has_visible) {
+      if (App.item_is_visible(tab)) {
+        has_visible = true
       }
     }
   }
@@ -392,7 +409,7 @@ App.show_tabs_menu = function () {
     })
   }
 
-  if (has_filter) {
+  if (has_filter && has_visible) {
     items.push({
       text: "Close All Filtered Tabs",
       action: function () {
