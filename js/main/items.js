@@ -757,7 +757,6 @@ App.setup_item_window = function (mode) {
     }, App.filter_delay)
 
     let filter = App.el(`#${mode}_filter`)
-    let search = App.el(`#${mode}_search`)
     
     App.ev(filter, "input", function () {
       item_filter()
@@ -777,15 +776,8 @@ App.setup_item_window = function (mode) {
 
     App.ev(App.el(`#${mode}_clear_filter`), "click", function () {
       filter.value = ""
-      App.focus_filter(mode)
-
-      if (search) {
-        search.value = ""
-        App.search_history()
-        return
-      }
-
       App.do_item_filter(mode)
+      App.focus_filter(mode)
     })
 
     let top = App.el(`#${mode}_top_container`)

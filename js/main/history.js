@@ -10,6 +10,11 @@ App.setup_history = function () {
     search_filter()
   })
 
+  App.ev(App.el("#history_clear_search"), "click", function () {
+    App.el("#history_search").value = ""
+    App.search_history()
+  })
+
   App.history_items = []
 }
 
