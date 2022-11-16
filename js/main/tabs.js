@@ -189,12 +189,12 @@ App.prepend_tab = function (info) {
   App.el("#tabs_container").prepend(tab.element)
 }
 
-// Close all tabs except pinned and audible tabs
+// Close all normal tabs
 App.clean_tabs = function () {
   let ids = []
 
   for (let tab of App.tabs_items) {
-    if (tab.pinned || tab.audible) {
+    if (tab.pinned || tab.audible || !App.is_http(tab)) {
       continue
     }
 
@@ -424,7 +424,7 @@ App.suspend_all_tabs = function () {
   let tabs = []
 
   for (let tab of App.tabs_items) {
-    if (tab.zzz) {
+    if (tab.discarded) {
       continue
     }
     
@@ -451,7 +451,7 @@ App.suspend_normal_tabs = function () {
   let tabs = []
 
   for (let tab of App.tabs_items) {
-    if (tab.zzz || tab.pinned || tab.audible) {
+    if (tab.discarded || tab.pinned || tab.audible || !App.is_http(tab)) {
       continue
     }
     

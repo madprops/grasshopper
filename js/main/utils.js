@@ -139,3 +139,8 @@ App.capitalize = function (s) {
 App.string_to_int = function (s) {
   return parseInt(s.replace(/[^0-9]/g, ""))
 }
+
+// Check if item's protocol is http
+App.is_http = function (item) {
+  return item.protocol === "http:" || item.protocol === "https:"
+}
