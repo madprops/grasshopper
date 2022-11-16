@@ -885,7 +885,12 @@ App.focus_or_open_item = async function (item, close = true) {
   
     for (let tab of tabs) {
       if (App.urls_equal(tab.url, item.url)) {
-        App.focus_tab(tab)
+        let o = {
+          id: tab.id,
+          window_id: tab.windowId
+        }
+
+        App.focus_tab(o)
         return
       }
     }
