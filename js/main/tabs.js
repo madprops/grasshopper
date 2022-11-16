@@ -325,50 +325,101 @@ App.show_tabs_menu = function () {
     action: function () {
       App.new_tab()
     }
-  })    
-
-  items.push({
-    text: "Pin All Tabs",
-    action: function () {
-      App.pin_all_tabs()
-    }
   })  
 
-  items.push({
-    text: "Unpin All Tabs",
-    action: function () {
-      App.unpin_all_tabs()
+  let has_pinned = false
+  let has_unpinned = false
+  let has_suspended = false
+  let has_unsuspended = false
+  let has_filter = App.el("#tabs_filter").value.trim()
+  
+  for (let tab of App.tabs_items) {
+    if (tab.pinned) {
+      has_pinned = true
+    } else {
+      has_unpinned = true
     }
-  })
 
-  items.push({
-    text: "Suspend All Tabs",
-    action: function () {
-      App.suspend_all_tabs()
+    if (tab.discarded) {
+      has_suspended = true
+    } else {
+      has_unsuspended = true
     }
-  })  
+  }
 
-  items.push({
-    text: "Suspend Normal Tabs",
-    action: function () {
-      App.suspend_normal_tabs()
-    }
-  })    
-
-  items.push({
-    text: "Close Suspended Tabs",
-    action: function () {
-      App.close_suspended_tabs()
-    }
-  })   
-
-  if (App.el("#tabs_filter").value.trim()) {
+  if (has_unpinned) {
     items.push({
-      text: "Close Filtered Tabs",
+      text: "Pin All Tabs",
+      action: function () {
+        App.pin_all_tabs()
+      }
+    })
+  }
+
+  if (has_pinned) {
+    items.push({
+      text: "Unpin All Tabs",
+      action: function () {
+        App.unpin_all_tabs()
+      }
+    })
+  }
+
+  if (has_unsuspended) {
+    items.push({
+      text: "Suspend All Tabs",
+      action: function () {
+        App.suspend_tabs(false)
+      }
+    })  
+
+    items.push({
+      text: "Suspend Normal Tabs",
+      action: function () {
+        App.suspend_tabs()
+      }
+    })
+  }
+
+  if (has_suspended) {
+    items.push({
+      text: "Close Suspended Tabs",
+      action: function () {
+        App.close_suspended_tabs()
+      }
+    })
+  }
+
+  if (has_filter) {
+    items.push({
+      text: "Close All Filtered Tabs",
+      action: function () {
+        App.close_filtered_tabs(false)
+      }
+    })  
+
+    items.push({
+      text: "Close Normal Filtered Tabs",
       action: function () {
         App.close_filtered_tabs()
       }
     })  
+    
+    if (has_unsuspended) {
+      items.push({
+        text: "Suspend All Filtered Tabs",
+        action: function () {
+          App.suspend_filtered_tabs(false)
+        }
+      }) 
+
+      items.push({
+        text: "Suspend Normal Filtered Tabs",
+        action: function () {
+          App.suspend_filtered_tabs()
+        }
+      }) 
+    }
   }
 
   NeedContext.show_on_element(App.el("#tabs_more_button"), items)
@@ -424,38 +475,19 @@ App.unpin_all_tabs = function () {
   }  
 }
 
-// Suspend all the tabs
-App.suspend_all_tabs = function () {
-  let tabs = []
-
-  for (let tab of App.tabs_items) {
-    if (tab.discarded) {
-      continue
-    }
-    
-    tabs.push(tab)
-  }
-
-  if (tabs.length === 0) {
-    return
-  }
-  
-  let s = App.plural(tabs.length, "tab", "tabs")
-
-  if (confirm(`Suspend all tabs? (${s})`)) {
-    for (let tab of tabs) {
-      App.suspend_tab(tab)
-    }
-  }  
-}
-
 // Suspend normal tabs
-App.suspend_normal_tabs = function () {
+App.suspend_tabs = function (normal = true) {
   let tabs = []
 
   for (let tab of App.tabs_items) {
-    if (tab.discarded || tab.pinned || tab.audible || !App.is_http(tab)) {
+    if (!App.is_http(tab)) {
       continue
+    }
+
+    if (normal) {
+      if (tab.discarded || tab.pinned || tab.audible) {
+        continue
+      }
     }
     
     tabs.push(tab)
@@ -500,10 +532,16 @@ App.close_suspended_tabs = function () {
 }
 
 // Close tabs that appear after a filter
-App.close_filtered_tabs = function () {
+App.close_filtered_tabs = function (normal = true) {
   let ids = []
 
   for (let tab of App.tabs_items) {
+    if (normal) {
+      if (tab.pinned || tab.audible || tab.active || tab.discarded) {
+        continue
+      }
+    }
+
     if (!App.item_is_visible(tab)) {
       continue
     }
@@ -520,6 +558,41 @@ App.close_filtered_tabs = function () {
   if (confirm(`Close filtered tabs? (${s})`)) {
     for (let id of ids) {
       App.close_tab(id)
+    }
+  }
+}
+
+// Close tabs that appear after a filter
+App.suspend_filtered_tabs = function (normal = true) {
+  let tabs = []
+
+  for (let tab of App.tabs_items) {
+    if (!App.is_http(tab)) {
+      continue
+    }
+
+    if (normal) {
+      if (tab.discarded || tab.pinned || tab.audible) {
+        continue
+      }
+    }
+
+    if (!App.item_is_visible(tab)) {
+      continue
+    }
+    
+    tabs.push(tab)
+  }
+
+  if (tabs.length === 0) {
+    return
+  }
+  
+  let s = App.plural(tabs.length, "tab", "tabs")
+
+  if (confirm(`Close filtered tabs? (${s})`)) {
+    for (let tab of tabs) {
+      App.suspend_tab(tab)
     }
   }
 }
