@@ -59,7 +59,10 @@ App.sort_tabs_by_index = function (tabs) {
 
 // Open a new tab
 App.focus_tab = function (tab) {
-  browser.windows.update(tab.window_id, {focused: true})
+  if (tab.window_id) {
+    browser.windows.update(tab.window_id, {focused: true})
+  }
+
   browser.tabs.update(tab.id, {active: true})
   window.close()
 }
