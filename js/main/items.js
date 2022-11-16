@@ -302,13 +302,6 @@ App.show_item_menu = function (mode, item, x, y) {
 
   if (mode === "tabs") {
     items.push({
-      text: "Duplicate",
-      action: function () {
-        App.duplicate_tab(item)
-      }
-    })
-
-    items.push({
       text: "Move...",
       action: function () {
         App.show_move_menu(x, y, item)
@@ -369,6 +362,13 @@ App.show_copy_menu = function (x, y, item) {
 App.show_move_menu = async function (x, y, item) {
   let items = []
   let wins = await browser.windows.getAll({populate: false})
+
+  items.push({
+    text: "Duplicate",
+    action: function () {
+      App.duplicate_tab(item)
+    }
+  })  
   
   items.push({
     text: "New Window",
