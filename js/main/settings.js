@@ -41,6 +41,21 @@ App.setup_settings = function () {
       App.stor_save_settings()
     })
 
+    let alien_icon = App.el("#settings_alien_icon")
+    alien_icon.value = App.settings.alien_icon
+
+    App.ev(alien_icon, "blur", function () {
+      let pin = alien_icon.value.trim()
+
+      if (!pin) {
+        pin = App.default_settings.alien_icon
+      }
+
+      alien_icon.value = pin
+      App.settings.alien_icon = pin
+      App.stor_save_settings()
+    })    
+
     let history_max_results = App.el("#settings_history_max_results")
     history_max_results.value = App.settings.history_max_results.toLocaleString()
 

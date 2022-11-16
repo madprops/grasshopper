@@ -449,17 +449,17 @@ App.create_item_element = function (mode, item) {
   let info_container = App.create("div", "item_info_container")
 
   if (mode === "tabs") {
-    if (item.window_id !== App.window_id) {
-      let info = App.create("div", "item_info")
-      info.textContent = "(A)"
-      info.title = "(Alien) This tab belongs to another window"
-      info_container.append(info)
-    }
-
     if (item.pinned) {
       let info = App.create("div", "item_info")
       info.textContent = App.settings.pin_icon
       info.title = "Pinned"  
+      info_container.append(info)
+    }
+        
+    if (item.window_id !== App.window_id) {
+      let info = App.create("div", "item_info")
+      info.textContent = App.settings.alien_icon
+      info.title = "(Alien) This tab belongs to another window"
       info_container.append(info)
     }
   }
