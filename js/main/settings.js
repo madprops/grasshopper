@@ -92,15 +92,7 @@ App.setup_settings = function () {
     App.ev(clean_active_tab, "change", function () {
       App.settings.clean_active_tab = clean_active_tab.checked
       App.stor_save_settings()
-    })
-
-    let confirm_detach = App.el("#settings_confirm_detach")
-    confirm_detach.checked = App.settings.confirm_detach
-
-    App.ev(confirm_detach, "change", function () {
-      App.settings.confirm_detach = confirm_detach.checked
-      App.stor_save_settings()
-    })    
+    })  
   
     let all_windows = App.el("#settings_all_windows")
     all_windows.checked = App.settings.all_windows

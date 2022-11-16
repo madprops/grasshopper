@@ -283,12 +283,6 @@ App.tabs_action_alt = function (item) {
 
 // Open tab in new window
 App.detach_tab = async function (tab) {
-  if (App.settings.confirm_detach) {
-    if (!confirm("Detach tab?")) {
-      return
-    }
-  }
-
   browser.windows.create({tabId: tab.id})
   window.close()
 }

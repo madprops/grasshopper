@@ -294,17 +294,11 @@ App.show_item_menu = function (mode, item, x, y) {
   }    
 
   items.push({
-    text: "Copy URL",
+    text: "Copy...",
     action: function () {
-      App.copy_to_clipboard(item.url)
-    }
-  })
-
-  items.push({
-    text: "Copy Title",
-    action: function () {
-      App.copy_to_clipboard(item.title)
-    }
+      App.show_copy_menu(x, y, item)
+    },
+    autohide: false
   })
 
   if (mode === "tabs") {
@@ -314,19 +308,13 @@ App.show_item_menu = function (mode, item, x, y) {
         App.duplicate_tab(item)
       }
     })
-    
-    items.push({
-      text: "Detach",
-      action: function () {
-        App.detach_tab(item)
-      }
-    })
 
     items.push({
       text: "Move...",
       action: function () {
         App.show_move_menu(x, y, item)
-      }
+      },
+      autohide: false
     })    
 
     items.push({
@@ -358,10 +346,38 @@ App.show_item_menu = function (mode, item, x, y) {
   NeedContext.show(x, y, items)
 }
 
+// Show copy menu
+App.show_copy_menu = function (x, y, item) {
+  let items = []
+
+  items.push({
+    text: "Copy URL",
+    action: function () {
+      App.copy_to_clipboard(item.url)
+    }
+  })
+
+  items.push({
+    text: "Copy Title",
+    action: function () {
+      App.copy_to_clipboard(item.title)
+    }
+  })
+
+  NeedContext.show(x, y, items)
+}
+
 // Show tab move menu
 App.show_move_menu = async function (x, y, item) {
   let items = []
   let wins = await browser.windows.getAll({populate: false})
+  
+  items.push({
+    text: "New Window",
+    action: function () {
+      App.detach_tab(item)
+    }
+  })  
 
   for (let win of wins) {
     if (item.window_id === win.id) {
