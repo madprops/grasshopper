@@ -1,6 +1,6 @@
 // Setup items
 App.setup_items = function () {
-  App.get_tab_order()
+  App.get_item_order()
   App.start_item_observers()
 }
 
@@ -552,7 +552,7 @@ App.get_item_by_url = function (mode, url) {
 
 // Used for lazy-loading components
 App.start_item_observers = function () {
-  for (let mode of App.tab_order) {
+  for (let mode of App.item_order) {
     let options = {
       root: App.el(`#${mode}_container`),
       rootMargin: "0px",
@@ -592,7 +592,7 @@ App.intersection_observer = function (mode, options) {
 App.get_last_window_value = function (cycle) {
   let last_mode = App.window_mode
 
-  if (!App.tab_order.includes(last_mode)) {
+  if (!App.item_order.includes(last_mode)) {
     last_mode = "tabs"
   }
 
@@ -685,7 +685,7 @@ App.setup_item_window = function (mode) {
 
 // Cycle between item windows
 App.cycle_item_windows = function (reverse = false) {
-  let modes = App.tab_order
+  let modes = App.item_order
   let index = modes.indexOf(App.window_mode)
   let new_mode
 
@@ -725,8 +725,8 @@ App.cycle_item_windows = function (reverse = false) {
 }
 
 // Update window order
-App.update_tab_order = function () {
-  let boxes = App.els(".tab_order_item", App.el("#tab_order"))
+App.update_item_order = function () {
+  let boxes = App.els(".item_order_item", App.el("#item_order"))
   let modes = boxes.map(x => x.dataset.mode)
 
   for (let [i, mode] of modes.entries()) {
@@ -734,27 +734,27 @@ App.update_tab_order = function () {
   }
 
   App.stor_save_settings()
-  App.get_tab_order()
+  App.get_item_order()
   App.remake_items_selects()
 }
 
 // Window order up
-App.tab_order_up = function (el) {
+App.item_order_up = function (el) {
   let prev = el.previousElementSibling
 
   if (prev) {
     el.parentNode.insertBefore(el, prev)
-    App.update_tab_order()
+    App.update_item_order()
   }
 }
 
 // Window order down
-App.tab_order_down = function (el) {
+App.item_order_down = function (el) {
   let next = el.nextElementSibling
 
   if (next) {
     el.parentNode.insertBefore(next, el)
-    App.update_tab_order()
+    App.update_item_order()
   }
 }
 
@@ -762,7 +762,7 @@ App.tab_order_down = function (el) {
 App.make_items_select = function (mode) {
   let select = App.create("select", "select item_select", `${mode}_select`)
 
-  for (let m of App.tab_order) {
+  for (let m of App.item_order) {
     let option = App.create("option")
     
     if (m === mode) {
@@ -799,14 +799,14 @@ App.make_items_select = function (mode) {
   
   App.wrap_select(select, function () {
     App.show_item_window(select.value, true)
-  }, App.tab_order.length)
+  }, App.item_order.length)
 
   return select
 }
 
 // Remake item selects
 App.remake_items_selects = function () {
-  for (let mode of App.tab_order) {
+  for (let mode of App.item_order) {
     let select = App.el(`#${mode}_select`)
     
     if (select) {
@@ -817,7 +817,7 @@ App.remake_items_selects = function () {
 
 // Show first item window
 App.show_first_item_window = function () {
-  App.show_item_window(App.tab_order[0])
+  App.show_item_window(App.item_order[0])
 }
 
 // Focus an open tab or launch a new one
@@ -843,7 +843,7 @@ App.focus_or_open_item = async function (item, close = true) {
 }
 
 // Get window order
-App.get_tab_order = function () {
+App.get_item_order = function () {
   let modes = ["tabs", "stars", "closed", "history"]
   let items = []
 
@@ -852,7 +852,7 @@ App.get_tab_order = function () {
   }
 
   items.sort((a, b) => (a.index > b.index) ? 1 : -1)
-  App.tab_order = items.map(x => x.mode)
+  App.item_order = items.map(x => x.mode)
 }
 
 // Update item info

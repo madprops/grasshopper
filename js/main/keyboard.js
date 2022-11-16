@@ -48,7 +48,7 @@ App.setup_keyboard = function () {
       }
     }
 
-    if (App.tab_order.includes(App.window_mode)) {
+    if (App.item_order.includes(App.window_mode)) {
       App.check_window_keyboard(e)
     }
   })
