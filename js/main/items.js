@@ -257,14 +257,14 @@ App.show_item_menu = function (mode, item, x, y) {
       items.push({
         text: "Unpin",
         action: function () {
-          App.unpin_tab(item)
+          App.unpin_tab(item.id)
         }
       })
     } else {
       items.push({
         text: "Pin",
         action: function () {
-          App.pin_tab(item)
+          App.pin_tab(item.id)
         }
       })
     }
@@ -273,14 +273,14 @@ App.show_item_menu = function (mode, item, x, y) {
       items.push({
         text: "Unmute",
         action: function () {
-          App.unmute_tab(item)
+          App.unmute_tab(item.id)
         }
       })
     } else {
       items.push({
         text: "Mute",
         action: function () {
-          App.mute_tab(item)
+          App.mute_tab(item.id)
         }
       })
     }

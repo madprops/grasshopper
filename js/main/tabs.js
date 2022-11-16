@@ -10,6 +10,10 @@ App.setup_tabs = function () {
     App.clean_tabs()
   })  
 
+  App.ev(App.el("#tabs_more_button"), "click", function () {
+    App.show_tabs_menu()
+  })
+
   App.ev(App.el("#tabs_new_button"), "click", function () {
     App.new_tab()
   })
@@ -217,23 +221,23 @@ App.clean_tabs = function () {
 }
 
 // Pin a tab
-App.pin_tab = function (tab) {
-  browser.tabs.update(tab.id, {pinned: true})
+App.pin_tab = function (id) {
+  browser.tabs.update(id, {pinned: true})
 }
 
 // Unpin a tab
-App.unpin_tab = function (tab) {
-  browser.tabs.update(tab.id, {pinned: false})
+App.unpin_tab = function (id) {
+  browser.tabs.update(id, {pinned: false})
 }
 
 // Mute a tab
-App.mute_tab = function (tab) {
-  browser.tabs.update(tab.id, {muted: true})
+App.mute_tab = function (id) {
+  browser.tabs.update(id, {muted: true})
 }
 
 // Unmute a tab
-App.unmute_tab = function (tab) {
-  browser.tabs.update(tab.id, {muted: false})
+App.unmute_tab = function (id) {
+  browser.tabs.update(id, {muted: false})
 }
 
 // Go the a tab emitting sound
@@ -325,4 +329,45 @@ App.suspend_tab = async function (tab) {
   }
 
   browser.tabs.discard(tab.id)
+}
+
+// Show tabs menu
+App.show_tabs_menu = function () {
+  let items = []
+
+  items.push({
+    text: "Unpin all tabs",
+    action: function () {
+      App.unpin_all_tabs()
+    }
+  })
+
+  NeedContext.show_on_element(App.el("#tabs_more_button"), items)
+}
+
+// Unpin all the tabs
+App.unpin_all_tabs = function () {
+  let ids = []
+
+  for (let tab of App.tabs_items) {
+    if (!tab.pinned) {
+      continue
+    }
+    
+    ids.push(tab.id)
+  }
+
+  if (ids.length === 0) {
+    return
+  }
+  
+  let s = App.plural(ids.length, "tab", "tabs")
+
+  if (confirm(`Unpin all tabs? (${s})`)) {
+    for (let id of ids) {
+      App.unpin_tab(id)
+    }
+
+    console.info("Unpinned all tabs")
+  }  
 }
