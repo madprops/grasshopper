@@ -89,6 +89,14 @@ App.setup_settings = function () {
       App.stor_save_settings()
     })  
   
+    let clean_suspended_tabs = App.el("#settings_clean_suspended_tabs")
+    clean_suspended_tabs.checked = App.settings.clean_suspended_tabs
+
+    App.ev(clean_suspended_tabs, "change", function () {
+      App.settings.clean_suspended_tabs = clean_suspended_tabs.checked
+      App.stor_save_settings()
+    })  
+  
     let all_windows = App.el("#settings_all_windows")
     all_windows.checked = App.settings.all_windows
 

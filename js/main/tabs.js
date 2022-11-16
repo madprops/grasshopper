@@ -19,6 +19,12 @@ App.setup_tabs = function () {
       App.refresh_tab(id)
     }
   })
+
+  browser.tabs.onActivated.addListener(function (ans) {
+    if (App.window_mode === "tabs") {
+      App.refresh_tab(ans.tabId)
+    }
+  })  
   
   browser.tabs.onRemoved.addListener(function (id) {
     if (App.window_mode === "tabs") {
@@ -185,6 +191,10 @@ App.clean_tabs = function () {
     }
 
     if (tab.active && !App.settings.clean_active_tab) {
+      continue
+    }
+
+    if (tab.discarded && !App.settings.clean_suspended_tabs) {
       continue
     }
     
