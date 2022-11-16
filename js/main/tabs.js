@@ -371,14 +371,21 @@ App.show_tabs_menu = function () {
       items.push({
         text: "Close Normal Filtered Tabs",
         action: function () {
-          App.close_filtered_tabs()
+          App.close_filtered_tabs("normal")
         }
       }) 
+
+      items.push({
+        text: "Close Pinned Filtered Tabs",
+        action: function () {
+          App.close_filtered_tabs("pinned")
+        }
+      })       
   
       items.push({
         text: "Close All Filtered Tabs",
         action: function () {
-          App.close_filtered_tabs(false)
+          App.close_filtered_tabs("all")
         }
       })  
   
@@ -386,14 +393,21 @@ App.show_tabs_menu = function () {
         items.push({
           text: "Suspend Normal Filtered Tabs",
           action: function () {
-            App.suspend_filtered_tabs()
+            App.suspend_filtered_tabs("normal")
           }
         }) 
+
+        items.push({
+          text: "Suspend Pinned Filtered Tabs",
+          action: function () {
+            App.suspend_filtered_tabs("pinned")
+          }
+        })
   
         items.push({
           text: "Suspend All Filtered Tabs",
           action: function () {
-            App.suspend_filtered_tabs(false)
+            App.suspend_filtered_tabs("all")
           }
         })
       }
@@ -421,14 +435,21 @@ App.show_tabs_menu = function () {
       items.push({
         text: "Suspend Normal Tabs",
         action: function () {
-          App.suspend_tabs()
+          App.suspend_tabs("normal")
         }
       })
+
+      items.push({
+        text: "Suspend Pinned Tabs",
+        action: function () {
+          App.suspend_tabs("pinned")
+        }
+      }) 
   
       items.push({
         text: "Suspend All Tabs",
         action: function () {
-          App.suspend_tabs(false)
+          App.suspend_tabs("all")
         }
       })  
     }
@@ -497,7 +518,7 @@ App.unpin_all_tabs = function () {
 }
 
 // Suspend normal tabs
-App.suspend_tabs = function (normal = true) {
+App.suspend_tabs = function (type) {
   let tabs = []
 
   for (let tab of App.tabs_items) {
@@ -505,8 +526,12 @@ App.suspend_tabs = function (normal = true) {
       continue
     }
 
-    if (normal) {
+    if (type === "normal") {
       if (tab.discarded || tab.pinned || tab.audible) {
+        continue
+      }
+    } else if (type === "pinned") {
+      if (!tab.pinned) {
         continue
       }
     }
@@ -553,12 +578,16 @@ App.close_suspended_tabs = function () {
 }
 
 // Close tabs that appear after a filter
-App.close_filtered_tabs = function (normal = true) {
+App.close_filtered_tabs = function (type) {
   let ids = []
 
   for (let tab of App.tabs_items) {
-    if (normal) {
+    if (type === "normal") {
       if (tab.pinned || tab.audible || tab.active || tab.discarded) {
+        continue
+      }
+    } else if (type === "pinned") {
+      if (!tab.pinned) {
         continue
       }
     }
@@ -584,7 +613,7 @@ App.close_filtered_tabs = function (normal = true) {
 }
 
 // Close tabs that appear after a filter
-App.suspend_filtered_tabs = function (normal = true) {
+App.suspend_filtered_tabs = function (type) {
   let tabs = []
 
   for (let tab of App.tabs_items) {
@@ -592,8 +621,12 @@ App.suspend_filtered_tabs = function (normal = true) {
       continue
     }
 
-    if (normal) {
+    if (type === "normal") {
       if (tab.discarded || tab.pinned || tab.audible) {
+        continue
+      }
+    } else if (type === "pinned") {
+      if (!tab.pinned) {
         continue
       }
     }
