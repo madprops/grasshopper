@@ -755,8 +755,11 @@ App.setup_item_window = function (mode) {
     let item_filter = App.create_debouncer(function () {
       App.do_item_filter(mode)
     }, App.filter_delay)
+
+    let filter = App.el(`#${mode}_filter`)
+    let search = App.el(`#${mode}_search`)
     
-    App.ev(App.el(`#${mode}_filter`), "input", function () {
+    App.ev(filter, "input", function () {
       item_filter()
     })  
 
@@ -771,6 +774,19 @@ App.setup_item_window = function (mode) {
         App.do_item_filter(mode)
       })    
     }
+
+    App.ev(App.el(`#${mode}_clear_filter`), "click", function () {
+      filter.value = ""
+      App.focus_filter(mode)
+
+      if (search) {
+        search.value = ""
+        App.search_history()
+        return
+      }
+
+      App.do_item_filter(mode)
+    })
 
     let top = App.el(`#${mode}_top_container`)
     let select = App.make_items_select(mode)

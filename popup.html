@@ -32,6 +32,7 @@
     <template id="template_tabs_top">
       <div class="flex_row_center gap_1 item_top_container" id="tabs_top_container">
         <input type="text" id="tabs_filter" class="filter" autocomplete="off" placeholder="Filter">
+        <button id="tabs_clear_filter" class="button">X</button>
         
         <select id="tabs_filter_mode" class="select" title="Filter Mode">
           <option value="all" selected>All</option>
@@ -61,6 +62,7 @@
     <template id="template_stars_top">
       <div class="flex_row_center gap_1 item_top_container" id="stars_top_container">
         <input type="text" id="stars_filter" class="filter" autocomplete="off" placeholder="Filter">
+        <button id="stars_clear_filter" class="button">X</button>
 
         <select id="stars_filter_mode" class="select" title="Filter Mode">
           <option value="all" selected>All</option>
@@ -96,6 +98,27 @@
 
     <template id="template_star_editor_top">
       <div class="bigger">Star Editor</div>
+    </template>   
+    
+    <template id="template_history">
+      <div id="history_container" class="container unselectable"></div>
+      <div id="history_footer" class="footer unselectable"></div>
+    </template>
+
+    <template id="template_history_top">
+      <div class="flex_row_center gap_1 item_top_container" id="history_top_container">
+        <input type="text" id="history_filter" class="filter" autocomplete="off" placeholder="Filter">
+        <input type="text" id="history_search" class="filter" autocomplete="off" placeholder="Search">
+        <button id="history_clear_filter" class="button">X</button>
+
+        <select id="history_filter_mode" class="select" title="Filter Mode">
+          <option value="all" selected>All</option>
+          <option value="secure">Secure</option>
+          <option value="insecure">Insecure</option>
+        </select>
+
+        <div id="history_info" class="info unselectable"></div>
+      </div>
     </template>    
     
     <template id="template_closed">
@@ -106,6 +129,7 @@
     <template id="template_closed_top">
       <div class="flex_row_center gap_1 item_top_container" id="closed_top_container">
         <input type="text" id="closed_filter" class="filter" autocomplete="off" placeholder="Filter">
+        <button id="closed_clear_filter" class="button">X</button>
 
         <select id="closed_filter_mode" class="select" title="Filter Mode">
           <option value="all" selected>All</option>
@@ -113,26 +137,6 @@
           <option value="insecure">Insecure</option>
         </select>
         <div id="closed_info" class="info unselectable"></div>
-      </div>
-    </template>
-
-    <template id="template_history">
-      <div id="history_container" class="container unselectable"></div>
-      <div id="history_footer" class="footer unselectable"></div>
-    </template>
-
-    <template id="template_history_top">
-      <div class="flex_row_center gap_1 item_top_container" id="history_top_container">
-        <input type="text" id="history_filter" class="filter" autocomplete="off" placeholder="Filter">
-        <input type="text" id="history_search" class="filter" autocomplete="off" placeholder="Search">
-
-        <select id="history_filter_mode" class="select" title="Filter Mode">
-          <option value="all" selected>All</option>
-          <option value="secure">Secure</option>
-          <option value="insecure">Insecure</option>
-        </select>
-
-        <div id="history_info" class="info unselectable"></div>
       </div>
     </template>
 
