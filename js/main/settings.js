@@ -4,11 +4,6 @@ App.setup_settings = function () {
     let manifest = browser.runtime.getManifest()
     let s = `Grasshopper v${manifest.version}`
     App.el("#settings_name").textContent = s
-    let content = App.el("#window_content_settings")
-
-    App.ev(App.el("#settings_bottom"), "click", function () {
-      content.scrollTop = content.scrollHeight
-    })
   
     let text_mode = App.el("#settings_text_mode")
     text_mode.value = App.settings.text_mode
