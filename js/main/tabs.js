@@ -211,8 +211,6 @@ App.clean_tabs = function () {
     for (let id of ids) {
       App.close_tab(id)
     }
-
-    console.info("Cleaned tabs")
   }
 }
 
@@ -359,7 +357,16 @@ App.show_tabs_menu = function () {
     action: function () {
       App.close_suspended_tabs()
     }
-  })    
+  })   
+
+  if (App.el("#tabs_filter").value.trim()) {
+    items.push({
+      text: "Close visible tabs",
+      action: function () {
+        App.close_visible_tabs()
+      }
+    })  
+  }
 
   NeedContext.show_on_element(App.el("#tabs_more_button"), items)
 }
@@ -386,8 +393,6 @@ App.pin_all_tabs = function () {
     for (let id of ids) {
       App.pin_tab(id)
     }
-
-    console.info("Pinned all tabs")
   }  
 }
 
@@ -413,8 +418,6 @@ App.unpin_all_tabs = function () {
     for (let id of ids) {
       App.unpin_tab(id)
     }
-
-    console.info("Unpinned all tabs")
   }  
 }
 
@@ -440,8 +443,6 @@ App.suspend_all_tabs = function () {
     for (let tab of tabs) {
       App.suspend_tab(tab)
     }
-
-    console.info("Suspended all tabs")
   }  
 }
 
@@ -467,8 +468,6 @@ App.suspend_normal_tabs = function () {
     for (let tab of tabs) {
       App.suspend_tab(tab)
     }
-
-    console.info("Suspended normal tabs")
   }  
 }
 
@@ -494,7 +493,30 @@ App.close_suspended_tabs = function () {
     for (let id of ids) {
       App.close_tab(id)
     }
+  }
+}
 
-    console.info("Closed suspended tabs")
+// Close tabs that appear after a filter
+App.close_visible_tabs = function () {
+  let ids = []
+
+  for (let tab of App.tabs_items) {
+    if (!App.item_is_visible(tab)) {
+      continue
+    }
+    
+    ids.push(tab.id)
+  }
+
+  if (ids.length === 0) {
+    return
+  }
+  
+  let s = App.plural(ids.length, "tab", "tabs")
+
+  if (confirm(`Close visible tabs? (${s})`)) {
+    for (let id of ids) {
+      App.close_tab(id)
+    }
   }
 }
