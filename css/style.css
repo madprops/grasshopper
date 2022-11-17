@@ -319,3 +319,7 @@ body, html {
 .faded {
   opacity: 0.333;
 }
+
+.clear_filter_button {
+  font-size: 0.8rem;
+}

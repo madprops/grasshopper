@@ -770,7 +770,7 @@ App.setup_item_window = function (mode) {
     win.append(container)
     win.append(footer)
 
-    let clear_filter = App.create("button", "button", `${mode}_clear_filter`)
+    let clear_filter = App.create("button", "button clear_filter_button", `${mode}_clear_filter`)
     clear_filter.textContent = "X"
 
     App.ev(clear_filter, "click", function () {
