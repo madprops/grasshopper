@@ -560,7 +560,6 @@ App.create_item_element = function (mode, item) {
   } else {
     let launched = App.create("div", "item_info item_info_launched faded")
     launched.textContent = "*"
-    launched.title = "(Launched) This item was launched"
     info_container.append(launched)
   }
 
@@ -967,7 +966,7 @@ App.focus_or_open_item = async function (item, close = true) {
   if (close) {
     window.close()
   } else {
-    App.el(".item_info_launched", item.element).classList.remove("faded")
+    App.show_launched(item)
   }
 }
 
@@ -1028,4 +1027,11 @@ App.clear_filter = function (mode) {
   App.el(`#${mode}_filter`).value = ""
   App.do_item_filter(mode)
   App.focus_filter(mode)
+}
+
+// Show launched indicator
+App.show_launched = function (item) {
+  let launched = App.el(".item_info_launched", item.element)
+  launched.classList.remove("faded")
+  launched.title = "(Launched) This item was launched"  
 }
