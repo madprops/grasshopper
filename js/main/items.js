@@ -546,8 +546,6 @@ App.create_item_element = function (mode, item) {
       if (item.window_id === App.window_id) {
         here.title = "This tab belongs to the current window"
         here.classList.remove("faded")
-      } else {
-        here.title = "This tab doesn't belong to the current window"
       }
     }     
 
@@ -558,13 +556,10 @@ App.create_item_element = function (mode, item) {
     if (item.pinned) {
       pin.title = "This tab is pinned"  
       pin.classList.remove("faded")
-    } else {
-      pin.title = "This tab is not pinned"
-    }  
+    }
   } else {
     let launched = App.create("div", "item_info item_info_launched faded")
     launched.textContent = "*"
-    launched.title = "Not launched with middle click yet"
     info_container.append(launched)
   }
 
