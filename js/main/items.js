@@ -782,6 +782,7 @@ App.setup_item_window = function (mode) {
 
     if (generic_filter_mode) {
       let select = App.create("select", "select", `${mode}_filter_mode`)
+      select.title = "Filter Mode"
       
       let o1 = App.create("option")
       o1.value = "all"
