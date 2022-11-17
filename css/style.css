@@ -315,3 +315,13 @@ body, html {
 .clear_filter_button {
   font-size: 0.8rem;
 }
+
+#needcontext-container {
+  background-color: var(--background_color) !important;
+  color: var(--text_color) !important;
+  border-color: var(--alt_color_3) !important;
+}
+
+.needcontext-item-selected {
+  background-color: var(--alt_color) !important;
+}
