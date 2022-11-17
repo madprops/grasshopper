@@ -318,6 +318,11 @@ App.suspend_tab = async function (tab) {
 
 // Show tabs menu
 App.show_tabs_menu = function () {
+  if (App.el("#tabs_filter").value.trim()) {
+    App.show_filtered_menu()
+    return
+  }
+
   let items = []
 
   items.push({
@@ -368,15 +373,6 @@ App.show_tabs_menu = function () {
       App.close_suspended_tabs()
     }
   })
-
-  if (App.el("#tabs_filter").value.trim()) {
-    items.push({
-      text: "Filtered...",
-      action: function () {
-        App.show_filtered_menu()
-      }
-    })
-  }
 
   NeedContext.show_on_element(App.el("#tabs_more_button"), items)
 }
@@ -522,7 +518,7 @@ App.suspend_tabs = function (type) {
   
   let s = App.plural(tabs.length, "tab", "tabs")
 
-  if (confirm(`Suspend normal tabs? (${s})`)) {
+  if (confirm(`Suspend tabs? (${s})`)) {
     for (let tab of tabs) {
       App.suspend_tab(tab)
     }
