@@ -194,7 +194,7 @@ App.clean_tabs = function () {
   let ids = []
 
   for (let tab of App.tabs_items) {
-    if (!App.tab_is_normal(tab)) {
+    if (!tab.visible || !App.tab_is_normal(tab)) {
       continue
     }
     
@@ -322,14 +322,6 @@ App.suspend_tab = async function (tab) {
 
 // Show tabs menu
 App.show_tabs_menu = function () {
-  if (App.el("#tabs_filter").value.trim()) {
-    if (App.any_item_visible("tabs")) {
-      App.show_filtered_menu()
-    }
-
-    return
-  }
-
   let items = []
 
   items.push({
@@ -377,41 +369,6 @@ App.show_close_menu = function () {
   NeedContext.show_on_element(App.el("#tabs_more_button"), items)
 }
 
-// Show filtered menu
-App.show_filtered_menu = function () {
-  let items = [] 
-
-  items.push({
-    text: "Pin Filtered Tabs",
-    action: function () {
-      App.pin_filtered_tabs()
-    }
-  }) 
-
-  items.push({
-    text: "Unpin Filtered Tabs",
-    action: function () {
-      App.unpin_filtered_tabs()
-    }
-  })    
-
-  items.push({
-    text: "Suspend Filtered Tabs...",
-    action: function () {
-      App.show_suspend_filtered_menu()
-    }
-  })  
-
-  items.push({
-    text: "Close Filtered Tabs...",
-    action: function () {
-      App.show_close_filtered_menu()
-    }
-  }) 
-
-  NeedContext.show_on_element(App.el("#tabs_more_button"), items)
-}
-
 // Show suspend menu
 App.show_suspend_menu = function () {
   let items = []
@@ -440,75 +397,12 @@ App.show_suspend_menu = function () {
   NeedContext.show_on_element(App.el("#tabs_more_button"), items)
 }
 
-// Close filtered menu
-App.show_close_filtered_menu = function () {
-  let items = []
-
-  items.push({
-    text: "Close Normal Filtered Tabs",
-    action: function () {
-      App.close_filtered_tabs("normal")
-    }
-  }) 
-
-  items.push({
-    text: "Close Pinned Filtered Tabs",
-    action: function () {
-      App.close_filtered_tabs("pinned")
-    }
-  })       
-
-  items.push({
-    text: "Close Suspended Filtered Tabs",
-    action: function () {
-      App.close_filtered_tabs("suspended")
-    }
-  })       
-
-  items.push({
-    text: "Close All Filtered Tabs",
-    action: function () {
-      App.close_filtered_tabs("all")
-    }
-  })
-
-  NeedContext.show_on_element(App.el("#tabs_more_button"), items)
-}
-
-// Suspend filtered menu
-App.show_suspend_filtered_menu = function () {
-  let items = []
-
-  items.push({
-    text: "Suspend Normal Filtered Tabs",
-    action: function () {
-      App.suspend_filtered_tabs("normal")
-    }
-  }) 
-
-  items.push({
-    text: "Suspend Pinned Filtered Tabs",
-    action: function () {
-      App.suspend_filtered_tabs("pinned")
-    }
-  })
-
-  items.push({
-    text: "Suspend All Filtered Tabs",
-    action: function () {
-      App.suspend_filtered_tabs("all")
-    }
-  })
-
-  NeedContext.show_on_element(App.el("#tabs_more_button"), items)
-}
-
 // Pin all the tabs
 App.pin_all_tabs = function () {
   let ids = []
 
   for (let tab of App.tabs_items) {
-    if (tab.pinned) {
+    if (!tab.visible || tab.pinned) {
       continue
     }
     
@@ -533,7 +427,7 @@ App.unpin_all_tabs = function () {
   let ids = []
 
   for (let tab of App.tabs_items) {
-    if (!tab.pinned) {
+    if (!tab.visible || !tab.pinned) {
       continue
     }
     
@@ -558,6 +452,10 @@ App.suspend_tabs = function (type) {
   let tabs = []
 
   for (let tab of App.tabs_items) {
+    if (!tab.visible) {
+      continue
+    }
+
     if (!App.is_http(tab)) {
       continue
     }
@@ -593,7 +491,7 @@ App.close_suspended_tabs = function () {
   let ids = []
 
   for (let tab of App.tabs_items) {
-    if (!tab.discarded) {
+    if (!tab.visible || !tab.discarded) {
       continue
     }
     
@@ -609,142 +507,6 @@ App.close_suspended_tabs = function () {
   if (confirm(`Close suspended tabs? (${s})`)) {
     for (let id of ids) {
       App.close_tab(id)
-    }
-  }
-}
-
-// Close tabs that appear after a filter
-App.close_filtered_tabs = function (type) {
-  let ids = []
-
-  for (let tab of App.tabs_items) {
-    if (type === "normal") {
-      if (!App.tab_is_normal(tab)) {
-        continue
-      }
-    } else if (type === "pinned") {
-      if (!tab.pinned) {
-        continue
-      }
-    } else if (type === "suspended") {
-      if (!tab.discarded) {
-        continue
-      }
-    }
-
-    if (!tab.visible) {
-      continue
-    }
-    
-    ids.push(tab.id)
-  }
-
-  if (ids.length === 0) {
-    return
-  }
-  
-  let s = App.plural(ids.length, "tab", "tabs")
-
-  if (confirm(`Close filtered tabs? (${s})`)) {
-    for (let id of ids) {
-      App.close_tab(id)
-    }
-  }
-}
-
-// Close tabs that appear after a filter
-App.suspend_filtered_tabs = function (type) {
-  let tabs = []
-
-  for (let tab of App.tabs_items) {
-    if (!App.is_http(tab)) {
-      continue
-    }
-
-    if (type === "normal") {
-      if (!App.tab_is_normal(tab)) {
-        continue
-      }
-    } else if (type === "pinned") {
-      if (!tab.pinned) {
-        continue
-      }
-    }
-
-    if (!tab.visible) {
-      continue
-    }
-    
-    tabs.push(tab)
-  }
-
-  if (tabs.length === 0) {
-    return
-  }
-  
-  let s = App.plural(tabs.length, "tab", "tabs")
-
-  if (confirm(`Suspend filtered tabs? (${s})`)) {
-    for (let tab of tabs) {
-      App.suspend_tab(tab)
-    }
-  }
-}
-
-// Pin tabs that appear after a filter
-App.pin_filtered_tabs = function () {
-  let ids = []
-
-  for (let tab of App.tabs_items) {
-    if (tab.pinned) {
-      continue
-    }
-
-    if (!tab.visible) {
-      continue
-    }    
-
-    ids.push(tab.id)
-  }
-
-  if (ids.length === 0) {
-    return
-  }
-  
-  let s = App.plural(ids.length, "tab", "tabs")
-
-  if (confirm(`Pin filtered tabs? (${s})`)) {
-    for (let id of ids) {
-      App.pin_tab(id)
-    }
-  }
-}
-
-// Unpin tabs that appear after a filter
-App.unpin_filtered_tabs = function () {
-  let ids = []
-
-  for (let tab of App.tabs_items) {
-    if (!tab.pinned) {
-      continue
-    }
-
-    if (!tab.visible) {
-      continue
-    }    
-
-    ids.push(tab.id)
-  }
-
-  if (ids.length === 0) {
-    return
-  }
-  
-  let s = App.plural(ids.length, "tab", "tabs")
-
-  if (confirm(`Unpin filtered tabs? (${s})`)) {
-    for (let id of ids) {
-      App.unpin_tab(id)
     }
   }
 }
