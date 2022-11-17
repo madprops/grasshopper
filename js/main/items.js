@@ -557,6 +557,11 @@ App.create_item_element = function (mode, item) {
     if (item.pinned) {
       pin.classList.remove("faded")
     }    
+  } else {
+    let launched = App.create("div", "item_info item_info_launched faded")
+    launched.textContent = "*"
+    launched.title = "(Launched) This item was launched"
+    info_container.append(launched)
   }
 
   item.element.append(info_container)
@@ -964,7 +969,7 @@ App.focus_or_open_item = async function (item, close = true) {
   if (close) {
     window.close()
   } else {
-    item.element.classList.add("clicked")
+    App.el(".item_info_launched", item.element).classList.remove("faded")
   }
 }
 

@@ -312,16 +312,8 @@ body, html {
   width: 4rem;
 }
 
-.clicked {
-  background-color: var(--alt_color) !important;
-}
-
 .invisible {
   visibility: hidden;
-}
-
-.info {
-  padding-left: 0.35rem;
 }
 
 .faded {
