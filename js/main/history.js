@@ -13,6 +13,7 @@ App.setup_history = function () {
   App.ev(App.el("#history_clear_search"), "click", function () {
     App.el("#history_search").value = ""
     App.search_history()
+    App.focus_filter("history")
   })
 
   App.history_items = []

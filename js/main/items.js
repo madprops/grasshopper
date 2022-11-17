@@ -765,15 +765,30 @@ App.setup_item_window = function (mode) {
     let win = App.el(`#window_content_${mode}`)
     let container = App.create("div", "container unselectable", `${mode}_container`)
     let footer = App.create("div", "footer unselectable", `${mode}_footer`)
-    
+    let top = App.el(`#${mode}_top_container`)
+
     win.append(container)
     win.append(footer)
 
-    let filter = App.el(`#${mode}_filter`)
+    let clear_filter = App.create("button", "button", `${mode}_clear_filter`)
+    clear_filter.textContent = "X"
+
+    App.ev(clear_filter, "click", function () {
+      App.clear_filter(mode)
+    })  
+
+    top.prepend(clear_filter)
     
+    let filter = App.create("input", "filter", `${mode}_filter`)
+    filter.type = "text"
+    filter.autocomplete = "off"
+    filter.placeholder = "Filter"
+
     App.ev(filter, "input", function () {
       item_filter()
     })  
+
+    top.prepend(filter)
 
     let filter_mode = App.el(`#${mode}_filter_mode`)
 
@@ -787,17 +802,12 @@ App.setup_item_window = function (mode) {
       })    
     }
 
-    App.ev(App.el(`#${mode}_clear_filter`), "click", function () {
-      App.clear_filter()
-    })  
-
     let footer_left = App.create("div", "footer_left")
     footer.append(footer_left)
 
     let footer_right = App.create("div", "footer_right")
     footer.append(footer_right)
 
-    let top = App.el(`#${mode}_top_container`)
     let select = App.make_items_select(mode)
     top.prepend(select) 
     App.setup_window_mouse(mode) 
