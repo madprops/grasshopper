@@ -989,7 +989,12 @@ App.update_info = function (mode) {
   let n2 = App[`${mode}_items`].length.toLocaleString()
   let footer = App.el(`#${mode}_footer`)
   let left = App.el(".footer_left", footer)
-  left.textContent = `(${n1}/${n2})`
+
+  if (n1 === n2) {
+    left.textContent = `(${n1})`
+  } else {
+    left.textContent = `(${n1}/${n2})`
+  }
 }
 
 // Set item filter
