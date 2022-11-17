@@ -61,6 +61,10 @@ App.create_window = function (args) {
     App.last_window_mode = App.window_mode
     App.window_mode = args.id
     content.scrollTop = 0
+
+    if (args.after_show) {
+      args.after_show()
+    }
   }
   
   w.hide = function () {

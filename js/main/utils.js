@@ -144,3 +144,8 @@ App.string_to_int = function (s) {
 App.is_http = function (item) {
   return item.protocol === "http:" || item.protocol === "https:"
 }
+
+// Get a nice date string
+App.nice_date = function (date = Date.now()) {
+  return dateFormat(date, "dd/mmm/yy | h:MM:ss tt")
+}

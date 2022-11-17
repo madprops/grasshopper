@@ -12,6 +12,14 @@ App.setup_stars = function () {
     })
   }, on_x: function () {
     App.show_last_window()
+  }, after_show: function () {
+    let added = App.el("#star_editor_added")
+
+    if (App.star_edited && App.star_edited.date_added) {
+      added.textContent = App.nice_date(App.star_edited.date_added)
+    } else {
+      added.textContent = "Right Now"
+    }
   }})
 }
 
@@ -80,8 +88,8 @@ App.unstar_item = function (item) {
 }
 
 // Show stars editor
-App.show_star_editor = function (item) {
-  App.star_edited = item
+App.show_star_editor = async function (item) {
+  App.star_edited = await App.get_star_by_id(item.id)
   App.el("#star_editor_title").value = item.title
   App.el("#star_editor_url").value = item.url
   App.show_window("star_editor")
