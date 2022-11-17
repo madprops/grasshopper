@@ -184,12 +184,15 @@ App.update_star_editor_info = function () {
   let info = App.el("#star_editor_info")
   let added = App.el("#star_editor_added")
   let visited = App.el("#star_editor_visited")
+  let save = App.el("#star_editor_save")
 
   if (App.star_edited && App.star_edited.date_added) {
+    save.textContent = "Update"
     visited.textContent = App.nice_date(App.star_edited.date_last_visit)
     added.textContent = App.nice_date(App.star_edited.date_added)
     info.classList.remove("hidden")
   } else {
+    save.textContent = "Save"
     info.classList.add("hidden")
   }
 }
