@@ -558,8 +558,7 @@ App.create_item_element = function (mode, item) {
       pin.classList.remove("faded")
     }
   } else {
-    let launched = App.create("div", "item_info item_info_launched faded")
-    launched.textContent = "*"
+    let launched = App.create("div", "item_info item_info_launched")
     info_container.append(launched)
   }
 
@@ -1047,6 +1046,5 @@ App.clear_filter = function (mode) {
 // Show launched indicator
 App.show_launched = function (item) {
   let launched = App.el(".item_info_launched", item.element)
-  launched.classList.remove("faded")
-  launched.title = "Launched"  
+  launched.textContent = "(Launched)"
 }
