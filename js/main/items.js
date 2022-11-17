@@ -564,7 +564,7 @@ App.create_item_element = function (mode, item) {
   } else {
     let launched = App.create("div", "item_info item_info_launched faded")
     launched.textContent = "*"
-    launched.title = "Not launched"
+    launched.title = "Not launched with middle click yet"
     info_container.append(launched)
   }
 
