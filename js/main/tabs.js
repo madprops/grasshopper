@@ -401,6 +401,13 @@ App.show_filtered_menu = function () {
   let items = []
 
   items.push({
+    text: "New Tab",
+    action: function () {
+      App.new_tab()
+    }
+  })  
+
+  items.push({
     text: "Pin Filtered Tabs",
     action: function () {
       App.pin_filtered_tabs()
