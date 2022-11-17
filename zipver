@@ -9,7 +9,7 @@ def main()
     if file.start_with? name and file.include? ".zip" then
       version = File.basename(file, ".*").gsub(/[^0-9]/, "")
       new_version = version.to_i + 1
-      zip_name = "{name}_v#{new_version}.zip"
+      zip_name = "#{name}_v#{new_version}.zip"
       `zip #{zip_name} -x \*.zip -r \*`
       puts "Created #{zip_name}"
       return
