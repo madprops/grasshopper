@@ -533,7 +533,7 @@ App.close_suspended_tabs = function () {
 }
 
 // Close pinned tabs
-App.close_suspended_tabs = function () {
+App.close_pinned_tabs = function () {
   let ids = []
 
   for (let tab of App.tabs_items) {
