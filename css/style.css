@@ -208,7 +208,7 @@ body, html {
   border-top: 1px solid var(--alt_color_2);
   margin-left: var(--item_margin);
   margin-right: var(--item_margin);
-  gap: 0.45rem;
+  gap: 0.466rem;
 }
 
 .flex_column_center {
