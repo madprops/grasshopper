@@ -601,7 +601,7 @@ App.set_item_text = function (mode, item) {
     let status = []
 
     if (item.discarded) {
-      status.push("zzz")
+      status.push("Suspended")
     }
     
     if (item.audible) {
@@ -777,7 +777,7 @@ App.setup_item_window = function (mode) {
     })  
 
     top.prepend(clear_filter)
-    
+
     let generic_filter_mode = App.el(".generic_filter_mode", top)
 
     if (generic_filter_mode) {
