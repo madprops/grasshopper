@@ -353,13 +353,6 @@ App.show_tabs_menu = function () {
     }
   })
 
-  items.push({
-    text: "Close Suspended Tabs",
-    action: function () {
-      App.close_suspended_tabs()
-    }
-  })
-
   NeedContext.show_on_element(App.el("#tabs_more_button"), items)
 }
 
@@ -422,6 +415,13 @@ App.show_suspend_menu = function () {
       App.suspend_tabs("all")
     }
   }) 
+
+  items.push({
+    text: "Close Suspended Tabs",
+    action: function () {
+      App.close_suspended_tabs()
+    }
+  })  
   
   NeedContext.show_on_element(App.el("#tabs_more_button"), items)
 }
