@@ -789,9 +789,7 @@ App.setup_item_window = function (mode) {
     }
 
     App.ev(App.el(`#${mode}_clear_filter`), "click", function () {
-      filter.value = ""
-      App.do_item_filter(mode)
-      App.focus_filter(mode)
+      App.clear_filter()
     })  
 
     let footer = App.el(`#${mode}_footer`)
@@ -1023,4 +1021,11 @@ App.get_num_visible = function (mode) {
   }
 
   return n
+}
+
+// Clear the filter
+App.clear_filter = function (mode) {
+  App.el(`#${mode}_filter`).value = ""
+  App.do_item_filter(mode)
+  App.focus_filter(mode)
 }

@@ -573,6 +573,8 @@ App.close_tabs = function () {
       App.close_tab(id)
     }
   }
+
+  App.clear_filter("tabs")
 }
 
 // Check if tab is normal
