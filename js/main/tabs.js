@@ -429,7 +429,7 @@ App.pin_all_tabs = function () {
   
   let s = App.plural(ids.length, "tab", "tabs")
 
-  if (confirm(`Pin all tabs? (${s})`)) {
+  if (confirm(`Pin tabs? (${s})`)) {
     for (let id of ids) {
       App.pin_tab(id)
     }
@@ -454,7 +454,7 @@ App.unpin_all_tabs = function () {
   
   let s = App.plural(ids.length, "tab", "tabs")
 
-  if (confirm(`Unpin all tabs? (${s})`)) {
+  if (confirm(`Unpin tabs? (${s})`)) {
     for (let id of ids) {
       App.unpin_tab(id)
     }
