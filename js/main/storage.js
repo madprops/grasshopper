@@ -9,7 +9,7 @@ App.default_settings = {
   closed_index: 3,
   warn_on_tab_close: true,
   pin_icon: "(+)",
-  here_icon: "*",
+  here_icon: "H",
   history_max_results: 1000,
   history_max_months: 24,
   all_windows: true,
