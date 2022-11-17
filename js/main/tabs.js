@@ -194,7 +194,7 @@ App.clean_tabs = function () {
   let ids = []
 
   for (let tab of App.tabs_items) {
-    if (tab.pinned || tab.audible || tab.active || tab.discarded) {
+    if (!App.tab_is_normal(tab)) {
       continue
     }
     
@@ -393,7 +393,28 @@ App.show_filtered_menu = function () {
     action: function () {
       App.unpin_filtered_tabs()
     }
-  })   
+  })    
+
+  items.push({
+    text: "Close Filtered Tabs...",
+    action: function () {
+      App.show_close_filtered_menu()
+    }
+  }) 
+
+  items.push({
+    text: "Suspend Filtered Tabs...",
+    action: function () {
+      App.show_suspend_filtered_menu()
+    }
+  })  
+
+  NeedContext.show_on_element(App.el("#tabs_more_button"), items)
+}
+
+// Close filtered menu
+App.show_close_filtered_menu = function () {
+  let items = []
 
   items.push({
     text: "Close Normal Filtered Tabs",
@@ -414,7 +435,14 @@ App.show_filtered_menu = function () {
     action: function () {
       App.close_filtered_tabs("all")
     }
-  })  
+  })
+
+  NeedContext.show_on_element(App.el("#tabs_more_button"), items)
+}
+
+// Suspend filtered menu
+App.show_suspend_filtered_menu = function () {
+  let items = []
 
   items.push({
     text: "Suspend Normal Filtered Tabs",
@@ -556,7 +584,7 @@ App.close_filtered_tabs = function (type) {
 
   for (let tab of App.tabs_items) {
     if (type === "normal") {
-      if (tab.pinned || tab.audible || tab.active || tab.discarded) {
+      if (!App.tab_is_normal(tab)) {
         continue
       }
     } else if (type === "pinned") {
@@ -595,7 +623,7 @@ App.suspend_filtered_tabs = function (type) {
     }
 
     if (type === "normal") {
-      if (tab.discarded || tab.pinned || tab.audible) {
+      if (!App.tab_is_normal(tab)) {
         continue
       }
     } else if (type === "pinned") {
@@ -680,4 +708,10 @@ App.unpin_filtered_tabs = function () {
       App.unpin_tab(id)
     }
   }
+}
+
+// Check if tab is normal
+App.tab_is_normal = function (tab) {
+  let special = tab.pinned || tab.audible || tab.discarded
+  return !special
 }
