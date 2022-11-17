@@ -14,6 +14,10 @@ App.setup_tabs = function () {
     App.show_tabs_menu()
   })
 
+  App.ev(App.el("#tabs_new_button"), "click", function () {
+    App.new_tab()
+  })
+
   browser.tabs.onUpdated.addListener(function (id) {
     if (App.window_mode === "tabs") {
       App.refresh_tab(id)
@@ -316,40 +320,17 @@ App.suspend_tab = async function (tab) {
   browser.tabs.discard(tab.id)
 }
 
-// Show tabs limited menu
-App.show_tabs_limited_menu = function () {
-  let items = []
-
-  items.push({
-    text: "New Tab",
-    action: function () {
-      App.new_tab()
-    }
-  }) 
-  
-  NeedContext.show_on_element(App.el("#tabs_more_button"), items)  
-}
-
 // Show tabs menu
 App.show_tabs_menu = function () {
   if (App.el("#tabs_filter").value.trim()) {
     if (App.any_item_visible("tabs")) {
       App.show_filtered_menu()
-    } else {
-      App.show_tabs_limited_menu()
     }
 
     return
   }
 
   let items = []
-
-  items.push({
-    text: "New Tab",
-    action: function () {
-      App.new_tab()
-    }
-  })
 
   items.push({
     text: "Pin All Tabs",
@@ -398,14 +379,7 @@ App.show_tabs_menu = function () {
 
 // Show filtered menu
 App.show_filtered_menu = function () {
-  let items = []
-
-  items.push({
-    text: "New Tab",
-    action: function () {
-      App.new_tab()
-    }
-  })  
+  let items = [] 
 
   items.push({
     text: "Pin Filtered Tabs",

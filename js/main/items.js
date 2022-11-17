@@ -115,7 +115,9 @@ App.empty_footer = function (mode) {
 
 // Set footer
 App.set_footer = function (mode, text) {
-  App.el(`#${mode}_footer`).textContent = text
+  let footer = App.el(`#${mode}_footer`)
+  let right = App.el(".footer_right", footer)
+  right.textContent = text
 }
 
 // Check if selected is valid
@@ -231,6 +233,7 @@ App.do_item_filter = function (mode) {
   App[`selected_${mode}_item`] = undefined
   App.select_first_item(mode)
   App.update_footer(mode)
+  App.update_info(mode)
 }
 
 // Show item
@@ -782,7 +785,14 @@ App.setup_item_window = function (mode) {
       filter.value = ""
       App.do_item_filter(mode)
       App.focus_filter(mode)
-    })
+    })  
+
+    let footer = App.el(`#${mode}_footer`)
+    let footer_left = App.create("div", "footer_left")
+    footer.append(footer_left)
+
+    let footer_right = App.create("div", "footer_right")
+    footer.append(footer_right)
 
     let top = App.el(`#${mode}_top_container`)
     let select = App.make_items_select(mode)
@@ -971,9 +981,11 @@ App.get_item_order = function () {
 
 // Update item info
 App.update_info = function (mode) {
-  let n = App[`${mode}_items`].length
-  let s = App.plural(n, "item", "items")
-  App.el(`#${mode}_info`).textContent = s
+  let n1 = App.get_num_visible(mode).toLocaleString()
+  let n2 = App[`${mode}_items`].length.toLocaleString()
+  let footer = App.el(`#${mode}_footer`)
+  let left = App.el(".footer_left", footer)
+  left.textContent = `(${n1}/${n2})`
 }
 
 // Set item filter
@@ -991,4 +1003,17 @@ App.any_item_visible = function (mode) {
   }
 
   return false
+}
+
+// Get number of visible items
+App.get_num_visible = function (mode) {
+  let n = 0
+
+  for (let item of App[`${mode}_items`]) {
+    if (item.visible) {
+      n += 1
+    }
+  }
+
+  return n
 }
