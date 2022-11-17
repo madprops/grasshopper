@@ -62,7 +62,7 @@ App.get_next_visible_item = function (mode) {
     let item = items[i]
 
     if (waypoint) {
-      if (App.item_is_visible(item)) {
+      if (item.visible) {
         return item
       }
     }
@@ -88,7 +88,7 @@ App.get_prev_visible_item = function (mode) {
     let item = items[i]
 
     if (waypoint) {
-      if (App.item_is_visible(item)) {
+      if (item.visible) {
         return item
       }
     }
@@ -97,11 +97,6 @@ App.get_prev_visible_item = function (mode) {
       waypoint = true
     }
   }
-}
-
-// Check if an item is visible
-App.item_is_visible = function (item) {
-  return !item.element.classList.contains("hidden")
 }
 
 // Updates a footer
@@ -127,13 +122,13 @@ App.set_footer = function (mode, text) {
 App.selected_valid = function (mode) {
   return App[`selected_${mode}_item`] && 
   App[`selected_${mode}_item`].created &&
-  App.item_is_visible(App[`selected_${mode}_item`])
+  App[`selected_${mode}_item`].visible
 }
 
 // Select first item
 App.select_first_item = function (mode) {
   for (let item of App[`${mode}_items`]) {
-    if (App.item_is_visible(item)) {
+    if (item.visible) {
       App.select_item(mode, item)
       return
     }
@@ -241,11 +236,13 @@ App.do_item_filter = function (mode) {
 // Show item
 App.show_item = function (it) {
   it.element.classList.remove("hidden")
+  it.visible = true
 }
 
 // Hide item
 App.hide_item = function (it) {
   it.element.classList.add("hidden")
+  it.visible = false
 }
 
 // Show item menu
@@ -499,6 +496,7 @@ App.process_item = function (mode, item, exclude = []) {
     closed: false,
     window_id: item.windowId,
     session_id: item.sessionId,
+    visible: true
   }
   
   if (mode === "tabs") {
@@ -684,7 +682,7 @@ App.intersection_observer = function (mode, options) {
         continue
       }
 
-      if (!item.created && App.item_is_visible(item)) {
+      if (!item.created && item.visible) {
         App.create_item_element(mode, item)
       }
     }
@@ -982,4 +980,15 @@ App.update_info = function (mode) {
 App.set_filter = function (mode, text) {
   App.el(`#${mode}_filter`).value = text
   App.do_item_filter(mode)
+}
+
+// Any item visible
+App.any_item_visible = function (mode) {
+  for (let item of App[`${mode}_items`]) {
+    if (item.visible) {
+      return true
+    }
+  }
+
+  return false
 }

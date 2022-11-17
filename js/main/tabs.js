@@ -144,7 +144,7 @@ App.update_tab = function (o_tab, info) {
         break
       }
 
-      if (!App.item_is_visible(it)) {
+      if (!it.visible) {
         App.hide_item(tab)
       }
       
@@ -316,10 +316,29 @@ App.suspend_tab = async function (tab) {
   browser.tabs.discard(tab.id)
 }
 
+// Show tabs limited menu
+App.show_tabs_limited_menu = function () {
+  let items = []
+
+  items.push({
+    text: "New Tab",
+    action: function () {
+      App.new_tab()
+    }
+  }) 
+  
+  NeedContext.show_on_element(App.el("#tabs_more_button"), items)  
+}
+
 // Show tabs menu
 App.show_tabs_menu = function () {
   if (App.el("#tabs_filter").value.trim()) {
-    App.show_filtered_menu()
+    if (App.any_item_visible("tabs")) {
+      App.show_filtered_menu()
+    } else {
+      App.show_tabs_limited_menu()
+    }
+
     return
   }
 
@@ -565,7 +584,7 @@ App.close_filtered_tabs = function (type) {
       }
     }
 
-    if (!App.item_is_visible(tab)) {
+    if (!tab.visible) {
       continue
     }
     
@@ -604,7 +623,7 @@ App.suspend_filtered_tabs = function (type) {
       }
     }
 
-    if (!App.item_is_visible(tab)) {
+    if (!tab.visible) {
       continue
     }
     
@@ -633,7 +652,7 @@ App.pin_filtered_tabs = function () {
       continue
     }
 
-    if (!App.item_is_visible(tab)) {
+    if (!tab.visible) {
       continue
     }    
 
@@ -662,7 +681,7 @@ App.unpin_filtered_tabs = function () {
       continue
     }
 
-    if (!App.item_is_visible(tab)) {
+    if (!tab.visible) {
       continue
     }    
 
