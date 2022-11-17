@@ -781,7 +781,7 @@ App.setup_item_window = function (mode) {
     let generic_filter_mode = App.el(".generic_filter_mode", top)
 
     if (generic_filter_mode) {
-      let select = App.create("select", "select", `${mode}_filter_mode`)
+      let select = App.create("select", "select filter_mode_select", `${mode}_filter_mode`)
       select.title = "Filter Mode"
       
       let o1 = App.create("option")

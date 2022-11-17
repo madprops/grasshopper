@@ -103,6 +103,9 @@ body, html {
   color: var(--text_color);
   border: 1px solid var(--alt_color_2);
   height: var(--widget_height);
+}
+
+.filter_mode_select {
   width: 5rem;
 }
 
