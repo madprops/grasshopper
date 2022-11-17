@@ -541,20 +541,20 @@ App.create_item_element = function (mode, item) {
     if (App.settings.all_windows) {
       let here = App.create("div", "item_info faded")
       here.textContent = App.settings.here_icon
-      here.title = "(Here) This tab belongs to the current window"
       info_container.append(here)
-  
+      
       if (item.window_id === App.window_id) {
+        here.title = "(Here) This tab belongs to the current window"
         here.classList.remove("faded")
       }
     }     
 
     let pin = App.create("div", "item_info faded")
     pin.textContent = App.settings.pin_icon
-    pin.title = "(Pin) This tab is pinned"  
     info_container.append(pin)
-
+    
     if (item.pinned) {
+      pin.title = "(Pin) This tab is pinned"  
       pin.classList.remove("faded")
     }    
   } else {
