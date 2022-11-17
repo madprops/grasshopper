@@ -164,6 +164,8 @@ App.focus_filter = function (mode) {
 
 // Filter items
 App.do_item_filter = function (mode) {  
+  console.info(`Filter: ${mode}`)
+
   if (!App[`${mode}_items`]) {
     return
   }  
