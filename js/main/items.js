@@ -619,20 +619,12 @@ App.set_item_text = function (mode, item) {
     }
   }
 
-  let purl
-
-  if (item.protocol !== "https:") {
-    purl = `(${item.protocol.replace(":", "")}) ${item.path}`
-  } else {
-    purl = item.path
-  }
-
   if (App.settings.text_mode === "title") {
-    content += item.title || purl
-    item.footer = decodeURI(purl) || item.title
+    content += item.title || item.path
+    item.footer = decodeURI(item.path) || item.title
   } else if (App.settings.text_mode === "url") {
-    content += decodeURI(purl) || item.title
-    item.footer = item.title || purl
+    content += decodeURI(item.path) || item.title
+    item.footer = item.title || item.path
   }
 
   content = content.substring(0, 200).trim()
