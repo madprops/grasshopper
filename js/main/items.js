@@ -210,9 +210,9 @@ App.do_item_filter = function (mode) {
         match = item.protocol === "http:"
       } else if (filter_mode === "suspended") {
         match = item.discarded
-      } else if (filter_mode === "here") {
+      } else if (filter_mode === "this_window") {
         match = item.window_id === App.window_id
-      } else if (filter_mode === "alien") {
+      } else if (filter_mode === "other_window") {
         match = item.window_id !== App.window_id
       }
     }
@@ -540,7 +540,7 @@ App.create_item_element = function (mode, item) {
   if (mode === "tabs") {   
     if (App.settings.all_windows) {
       let here = App.create("div", "item_info faded")
-      here.textContent = App.settings.here_icon
+      here.textContent = App.settings.in_window_icon
       info_container.append(here)
       
       if (item.window_id === App.window_id) {

@@ -22,6 +22,7 @@
     <script src="js/main/history.js"></script>
     <script src="js/main/windows.js"></script>
     <script src="js/main/settings.js"></script>
+
   </head>
   
   <body>
@@ -36,8 +37,8 @@
           <option value="suspended">Suspended</option>
           <option value="secure">Secure</option>
           <option value="insecure">Insecure</option>
-          <option value="here">Here</option>
-          <option value="alien">Alien</option>
+          <option value="this_window">This Window</option>
+          <option value="other_window">Other Window</option>
         </select>
 
         <button id="tabs_playing_button" class="button" title="Go To A Tab Emitting Sound">Playing</button>
@@ -137,16 +138,16 @@
 
         <div class="separator"></div>        
 
-        <div class="flex_column_center gap_2" title="Pinned tab indicator">
+        <div class="flex_column_center gap_2" title="Indicates that the tab is pinned">
           <div class="unselectable">Pin Icon</div>
           <input type="text" id="settings_pin_icon" class="settings_small_text">
         </div>
 
         <div class="separator"></div>
         
-        <div class="flex_column_center gap_2" title="Indicate that the tab belongs to the current window">
-          <div class="unselectable">Here Icon</div>
-          <input type="text" id="settings_here_icon" class="settings_small_text">
+        <div class="flex_column_center gap_2" title="Indicates that the tab belongs to the current window">
+          <div class="unselectable">In Window Icon</div>
+          <input type="text" id="settings_in_window_icon" class="settings_small_text">
         </div>    
         
         <div class="separator"></div>

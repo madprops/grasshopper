@@ -36,18 +36,18 @@ App.setup_settings = function () {
       App.stor_save_settings()
     })
 
-    let here_icon = App.el("#settings_here_icon")
-    here_icon.value = App.settings.here_icon
+    let in_window_icon = App.el("#settings_in_window_icon")
+    in_window_icon.value = App.settings.in_window_icon
 
-    App.ev(here_icon, "blur", function () {
-      let pin = here_icon.value.trim()
+    App.ev(in_window_icon, "blur", function () {
+      let pin = in_window_icon.value.trim()
 
       if (!pin) {
-        pin = App.default_settings.here_icon
+        pin = App.default_settings.in_window_icon
       }
 
-      here_icon.value = pin
-      App.settings.here_icon = pin
+      in_window_icon.value = pin
+      App.settings.in_window_icon = pin
       App.stor_save_settings()
     })    
 
