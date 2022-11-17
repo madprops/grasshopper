@@ -71,12 +71,12 @@
           <option value="insecure">Insecure</option>
         </select>
 
-        <button id="stars_add_button" class="button" title="Add Star">Add</button>
+        <button id="stars_new_button" class="button" title="New Star">+</button>
       </div>
     </template>  
     
     <template id="template_star_editor">
-      <div class="flex_column_center gap_3" id="star_editor_container">
+      <div class="flex_column_center gap_4" id="star_editor_container">
         <div id="star_info" class="flex_column_center gap_2">
           <div>Stars are like bookmarks that you manually add</div>
           <div>Use them to launch or focus tabs</div>
@@ -92,9 +92,16 @@
           <input type="text" id="star_editor_url" class="editor_text">
         </div>
 
-        <div class="flex_row_center gap_1">
-          <div>Added:</div>
-          <div id="star_editor_added"></div>
+        <div id="star_editor_info" class="flex_column_center gap_1">
+          <div class="flex_row_center gap_1">
+            <div>Last Visit:</div>
+            <div id="star_editor_visited"></div>
+          </div>
+
+          <div class="flex_row_center gap_1">
+            <div>Added On:</div>
+            <div id="star_editor_added"></div>
+          </div>
         </div>
 
         <button id="star_editor_save" class="button">Save</button>

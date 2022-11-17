@@ -2,8 +2,8 @@
 App.setup_stars = function () {
   App.setup_item_window("stars")
 
-  App.ev(App.el("#stars_add_button"), "click", function () {
-    App.add_star()
+  App.ev(App.el("#stars_new_button"), "click", function () {
+    App.new_star()
   })
   
   App.create_window({id: "star_editor", setup: function () {
@@ -13,13 +13,7 @@ App.setup_stars = function () {
   }, on_x: function () {
     App.show_last_window()
   }, after_show: function () {
-    let added = App.el("#star_editor_added")
-
-    if (App.star_edited && App.star_edited.date_added) {
-      added.textContent = App.nice_date(App.star_edited.date_added)
-    } else {
-      added.textContent = "Right Now"
-    }
+    App.update_star_editor_info()
   }})
 }
 
@@ -159,7 +153,7 @@ App.get_star_by_url = async function (url) {
 }
 
 // Add a new star manually
-App.add_star = function (title = "", url = "") {
+App.new_star = function (title = "", url = "") {
   App.star_edited = undefined
   App.el("#star_editor_title").value = title
   App.el("#star_editor_url").value = url
@@ -182,5 +176,20 @@ App.add_or_edit_star = async function (item) {
     App.show_star_editor(star)
   } else {
     App.add_star(item.title, item.url)
+  }
+}
+
+// Update star editor info
+App.update_star_editor_info = function () {
+  let info = App.el("#star_editor_info")
+  let added = App.el("#star_editor_added")
+  let visited = App.el("#star_editor_visited")
+
+  if (App.star_edited && App.star_edited.date_added) {
+    visited.textContent = App.nice_date(App.star_edited.date_last_visit)
+    added.textContent = App.nice_date(App.star_edited.date_added)
+    info.classList.remove("hidden")
+  } else {
+    info.classList.add("hidden")
   }
 }
