@@ -36,18 +36,18 @@ App.setup_settings = function () {
       App.stor_save_settings()
     })
 
-    let alien_icon = App.el("#settings_alien_icon")
-    alien_icon.value = App.settings.alien_icon
+    let here_icon = App.el("#settings_here_icon")
+    here_icon.value = App.settings.here_icon
 
-    App.ev(alien_icon, "blur", function () {
-      let pin = alien_icon.value.trim()
+    App.ev(here_icon, "blur", function () {
+      let pin = here_icon.value.trim()
 
       if (!pin) {
-        pin = App.default_settings.alien_icon
+        pin = App.default_settings.here_icon
       }
 
-      alien_icon.value = pin
-      App.settings.alien_icon = pin
+      here_icon.value = pin
+      App.settings.here_icon = pin
       App.stor_save_settings()
     })    
 

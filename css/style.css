@@ -323,3 +323,7 @@ body, html {
 .info {
   padding-left: 0.35rem;
 }
+
+.faded {
+  opacity: 0.25;
+}

@@ -211,7 +211,7 @@ App.do_item_filter = function (mode) {
         match = item.protocol === "http:"
       } else if (filter_mode === "suspended") {
         match = item.discarded
-      } else if (filter_mode === "window") {
+      } else if (filter_mode === "here") {
         match = item.window_id === App.window_id
       } else if (filter_mode === "alien") {
         match = item.window_id !== App.window_id
@@ -534,20 +534,26 @@ App.create_item_element = function (mode, item) {
   App.set_item_text(mode, item)
   let info_container = App.create("div", "item_info_container")
 
-  if (mode === "tabs") {
+  if (mode === "tabs") {   
+    if (App.settings.all_windows) {
+      let here = App.create("div", "item_info faded")
+      here.textContent = App.settings.here_icon
+      here.title = "(Here) This tab belongs to the current window"
+      info_container.append(here)
+  
+      if (item.window_id === App.window_id) {
+        here.classList.remove("faded")
+      }
+    }     
+
+    let pin = App.create("div", "item_info faded")
+    pin.textContent = App.settings.pin_icon
+    pin.title = "(Pin) This tab is pinned"  
+    info_container.append(pin)
+
     if (item.pinned) {
-      let info = App.create("div", "item_info")
-      info.textContent = App.settings.pin_icon
-      info.title = "Pinned"  
-      info_container.append(info)
-    }
-        
-    if (item.window_id !== App.window_id) {
-      let info = App.create("div", "item_info")
-      info.textContent = App.settings.alien_icon
-      info.title = "(Alien) This tab belongs to another window"
-      info_container.append(info)
-    }
+      pin.classList.remove("faded")
+    }    
   }
 
   item.element.append(info_container)
