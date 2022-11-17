@@ -25,11 +25,6 @@
   </head>
   
   <body>
-    <template id="template_tabs">
-      <div id="tabs_container" class="container unselectable"></div>
-      <div id="tabs_footer" class="footer unselectable"></div>
-    </template>
-
     <template id="template_tabs_top">
       <div class="flex_row_center gap_1 item_top_container" id="tabs_top_container">
         <input type="text" id="tabs_filter" class="filter" autocomplete="off" placeholder="Filter">
@@ -55,11 +50,6 @@
       </div>
     </template>
 
-    <template id="template_stars">
-      <div id="stars_container" class="container unselectable"></div>
-      <div id="stars_footer" class="footer unselectable"></div>
-    </template>
-
     <template id="template_stars_top">
       <div class="flex_row_center gap_1 item_top_container" id="stars_top_container">
         <input type="text" id="stars_filter" class="filter" autocomplete="off" placeholder="Filter">
@@ -74,7 +64,35 @@
         <button id="stars_new_button" class="button" title="New Star">+</button>
       </div>
     </template>  
-    
+
+    <template id="template_history_top">
+      <div class="flex_row_center gap_1 item_top_container" id="history_top_container">
+        <input type="text" id="history_filter" class="filter" autocomplete="off" placeholder="Filter">
+        <button id="history_clear_filter" class="button" title="Clear Filter">X</button>
+        <input type="text" id="history_search" class="filter" autocomplete="off" placeholder="Search">
+        <button id="history_clear_search" class="button" title="Clear Search">X</button>
+
+        <select id="history_filter_mode" class="select" title="Filter Mode">
+          <option value="all" selected>All</option>
+          <option value="secure">Secure</option>
+          <option value="insecure">Insecure</option>
+        </select>
+      </div>
+    </template>  
+
+    <template id="template_closed_top">
+      <div class="flex_row_center gap_1 item_top_container" id="closed_top_container">
+        <input type="text" id="closed_filter" class="filter" autocomplete="off" placeholder="Filter">
+        <button id="closed_clear_filter" class="button" title="Clear Filter">X</button>
+
+        <select id="closed_filter_mode" class="select" title="Filter Mode">
+          <option value="all" selected>All</option>
+          <option value="secure">Secure</option>
+          <option value="insecure">Insecure</option>
+        </select>
+      </div>
+    </template>
+
     <template id="template_star_editor">
       <div class="flex_column_center gap_4" id="star_editor_container">
         <div id="star_info" class="flex_column_center gap_2">
@@ -110,45 +128,7 @@
 
     <template id="template_star_editor_top">
       <div class="bigger">Star Editor</div>
-    </template>   
-    
-    <template id="template_history">
-      <div id="history_container" class="container unselectable"></div>
-      <div id="history_footer" class="footer unselectable"></div>
-    </template>
-
-    <template id="template_history_top">
-      <div class="flex_row_center gap_1 item_top_container" id="history_top_container">
-        <input type="text" id="history_filter" class="filter" autocomplete="off" placeholder="Filter">
-        <button id="history_clear_filter" class="button" title="Clear Filter">X</button>
-        <input type="text" id="history_search" class="filter" autocomplete="off" placeholder="Search">
-        <button id="history_clear_search" class="button" title="Clear Search">X</button>
-
-        <select id="history_filter_mode" class="select" title="Filter Mode">
-          <option value="all" selected>All</option>
-          <option value="secure">Secure</option>
-          <option value="insecure">Insecure</option>
-        </select>
-      </div>
-    </template>    
-    
-    <template id="template_closed">
-      <div id="closed_container" class="container unselectable"></div>
-      <div id="closed_footer" class="footer unselectable"></div>
-    </template>    
-
-    <template id="template_closed_top">
-      <div class="flex_row_center gap_1 item_top_container" id="closed_top_container">
-        <input type="text" id="closed_filter" class="filter" autocomplete="off" placeholder="Filter">
-        <button id="closed_clear_filter" class="button" title="Clear Filter">X</button>
-
-        <select id="closed_filter_mode" class="select" title="Filter Mode">
-          <option value="all" selected>All</option>
-          <option value="secure">Secure</option>
-          <option value="insecure">Insecure</option>
-        </select>
-      </div>
-    </template>
+    </template>       
 
     <template id="template_settings">
       <div id="settings_container" class="flex_column_center gap_3">

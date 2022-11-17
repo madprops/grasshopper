@@ -175,7 +175,7 @@ App.add_or_edit_star = async function (item) {
   if (star) {
     App.show_star_editor(star)
   } else {
-    App.add_star(item.title, item.url)
+    App.new_star(item.title, item.url)
   }
 }
 

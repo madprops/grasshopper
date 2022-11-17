@@ -290,7 +290,7 @@ App.show_item_menu = function (mode, item, x, y) {
 
   if (mode !== "stars") {
     items.push({
-      text: "Star",
+      text: "Star...",
       action: function () {
         App.add_or_edit_star(item)
       }
@@ -327,7 +327,7 @@ App.show_item_menu = function (mode, item, x, y) {
     })
   } else if (mode === "stars") {
     items.push({
-      text: "Edit Star",
+      text: "Edit Star...",
       action: function () {
         App.show_star_editor(item)
       }
@@ -720,12 +720,13 @@ App.get_last_window_value = function (cycle) {
 
 // Show a window by mode
 App.show_item_window = async function (mode, cycle = false) {  
-  App.el(`#${mode}_container`).innerHTML = ""
   let value = App.get_last_window_value(cycle)
-  App.el(`#${mode}_filter`).value = value
   App.windows[mode].show()
-  App.el(`#${mode}_select`).value = mode
   App.empty_footer(mode)
+
+  App.el(`#${mode}_container`).innerHTML = ""
+  App.el(`#${mode}_filter`).value = value
+  App.el(`#${mode}_select`).value = mode
   
   let filter_mode = App.el(`#${mode}_filter_mode`)
 
@@ -766,6 +767,13 @@ App.setup_item_window = function (mode) {
       App.do_item_filter(mode)
     }, App.filter_delay)
 
+    let win = App.el(`#window_content_${mode}`)
+    let container = App.create("div", "container unselectable", `${mode}_container`)
+    let footer = App.create("div", "footer unselectable", `${mode}_footer`)
+    
+    win.append(container)
+    win.append(footer)
+
     let filter = App.el(`#${mode}_filter`)
     
     App.ev(filter, "input", function () {
@@ -788,7 +796,6 @@ App.setup_item_window = function (mode) {
       App.clear_filter()
     })  
 
-    let footer = App.el(`#${mode}_footer`)
     let footer_left = App.create("div", "footer_left")
     footer.append(footer_left)
 
@@ -798,6 +805,7 @@ App.setup_item_window = function (mode) {
     let top = App.el(`#${mode}_top_container`)
     let select = App.make_items_select(mode)
     top.prepend(select) 
+    App.setup_window_mouse(mode) 
   }
 
   App.create_window(args) 

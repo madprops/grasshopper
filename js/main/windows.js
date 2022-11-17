@@ -1,6 +1,10 @@
 // Get a template
 App.get_template = function (id) {
-  return App.el(`#template_${id}`).innerHTML.trim()
+  let template = App.el(`#template_${id}`)
+
+  if (template) {
+    return template.innerHTML.trim()
+  }
 }
 
 // Create a window
@@ -22,7 +26,11 @@ App.create_window = function (args) {
 
   if (args.show_top) {
     let top = App.create("div", `window_top window_top_${args.align_top}`)
-    top.innerHTML = App.get_template(`${args.id}_top`)
+    let top_html = App.get_template(`${args.id}_top`)
+
+    if (top_html) {
+      top.innerHTML = top_html
+    }
   
     if (args.close_button) {
       let x = App.create("div", "window_x action unselectable")
@@ -42,9 +50,13 @@ App.create_window = function (args) {
   }
 
   let content = App.create("div", "window_content", `window_content_${args.id}`)
-  content.innerHTML = App.get_template(args.id)
-  el.append(content)
+  let content_html = App.get_template(args.id)
 
+  if (content_html) {
+    content.innerHTML = content_html
+  }
+
+  el.append(content)
   w.element = el
   document.body.append(el)
   w.setup = false

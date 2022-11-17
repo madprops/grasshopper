@@ -30,14 +30,6 @@ App.setup_window_mouse = function (mode) {
   })  
 }
 
-// Setup mouse for each window
-App.setup_mouse = function () {
-  App.setup_window_mouse("tabs")
-  App.setup_window_mouse("stars")
-  App.setup_window_mouse("closed")
-  App.setup_window_mouse("history") 
-}
-
 // Get item under cursor
 App.get_cursor_item = function (mode, e) {
   let el = e.target.closest(`.${mode}_item`)
