@@ -8,7 +8,7 @@ App.default_settings = {
   history_index: 2,
   closed_index: 3,
   warn_on_tab_close: true,
-  pin_icon: "(+)",
+  pin_icon: "+",
   in_window_icon: "W",
   history_max_results: 1000,
   history_max_months: 24,
