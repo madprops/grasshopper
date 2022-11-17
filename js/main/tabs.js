@@ -352,7 +352,28 @@ App.show_tabs_menu = function () {
       App.show_suspend_menu()
     }
   })
+  
+  items.push({
+    text: "Close Tabs...",
+    action: function () {
+      App.show_close_menu()
+    }
+  })
+  
+  NeedContext.show_on_element(App.el("#tabs_more_button"), items)
+}
 
+// Show close menu
+App.show_close_menu = function () {
+  let items = []
+
+  items.push({
+    text: "Close Suspended Tabs",
+    action: function () {
+      App.close_suspended_tabs()
+    }
+  })  
+  
   NeedContext.show_on_element(App.el("#tabs_more_button"), items)
 }
 
@@ -375,18 +396,18 @@ App.show_filtered_menu = function () {
   })    
 
   items.push({
-    text: "Close Filtered Tabs...",
-    action: function () {
-      App.show_close_filtered_menu()
-    }
-  }) 
-
-  items.push({
     text: "Suspend Filtered Tabs...",
     action: function () {
       App.show_suspend_filtered_menu()
     }
   })  
+
+  items.push({
+    text: "Close Filtered Tabs...",
+    action: function () {
+      App.show_close_filtered_menu()
+    }
+  }) 
 
   NeedContext.show_on_element(App.el("#tabs_more_button"), items)
 }
@@ -415,13 +436,6 @@ App.show_suspend_menu = function () {
       App.suspend_tabs("all")
     }
   }) 
-
-  items.push({
-    text: "Close Suspended Tabs",
-    action: function () {
-      App.close_suspended_tabs()
-    }
-  })  
   
   NeedContext.show_on_element(App.el("#tabs_more_button"), items)
 }
@@ -441,6 +455,13 @@ App.show_close_filtered_menu = function () {
     text: "Close Pinned Filtered Tabs",
     action: function () {
       App.close_filtered_tabs("pinned")
+    }
+  })       
+
+  items.push({
+    text: "Close Suspended Filtered Tabs",
+    action: function () {
+      App.close_filtered_tabs("suspended")
     }
   })       
 
@@ -603,6 +624,10 @@ App.close_filtered_tabs = function (type) {
       }
     } else if (type === "pinned") {
       if (!tab.pinned) {
+        continue
+      }
+    } else if (type === "suspended") {
+      if (!tab.discarded) {
         continue
       }
     }
