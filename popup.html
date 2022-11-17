@@ -33,11 +33,11 @@
           <option value="normal">Normal</option>
           <option value="playing">Playing</option>
           <option value="muted">Muted</option>
+          <option value="suspended">Suspended</option>
           <option value="secure">Secure</option>
           <option value="insecure">Insecure</option>
           <option value="here">Here</option>
           <option value="alien">Alien</option>
-          <option value="suspended">zzz</option>
         </select>
 
         <button id="tabs_playing_button" class="button" title="Go To A Tab Emitting Sound">Playing</button>
@@ -49,12 +49,7 @@
 
     <template id="template_stars_top">
       <div class="flex_row_center gap_1 item_top_container" id="stars_top_container">
-        <select id="stars_filter_mode" class="select" title="Filter Mode">
-          <option value="all" selected>All</option>
-          <option value="secure">Secure</option>
-          <option value="insecure">Insecure</option>
-        </select>
-
+        <div class="generic_filter_mode"></div>
         <button id="stars_new_button" class="button" title="New Star">+</button>
       </div>
     </template>  
@@ -63,22 +58,13 @@
       <div class="flex_row_center gap_1 item_top_container" id="history_top_container">
         <input type="text" id="history_search" class="filter" autocomplete="off" placeholder="Search">
         <button id="history_clear_search" class="button" title="Clear Search">X</button>
-
-        <select id="history_filter_mode" class="select" title="Filter Mode">
-          <option value="all" selected>All</option>
-          <option value="secure">Secure</option>
-          <option value="insecure">Insecure</option>
-        </select>
+        <div class="generic_filter_mode"></div>
       </div>
     </template>  
 
     <template id="template_closed_top">
       <div class="flex_row_center gap_1 item_top_container" id="closed_top_container">
-        <select id="closed_filter_mode" class="select" title="Filter Mode">
-          <option value="all" selected>All</option>
-          <option value="secure">Secure</option>
-          <option value="insecure">Insecure</option>
-        </select>
+        <div class="generic_filter_mode"></div>
       </div>
     </template>
 

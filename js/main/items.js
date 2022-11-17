@@ -778,6 +778,30 @@ App.setup_item_window = function (mode) {
 
     top.prepend(clear_filter)
     
+    let generic_filter_mode = App.el(".generic_filter_mode", top)
+
+    if (generic_filter_mode) {
+      let select = App.create("select", "select", `${mode}_filter_mode`)
+      
+      let o1 = App.create("option")
+      o1.value = "all"
+      o1.selected = true
+      o1.textContent = "All"
+      select.append(o1)
+
+      let o2 = App.create("option")
+      o2.value = "secure"
+      o2.textContent = "Secure"
+      select.append(o2)
+
+      let o3 = App.create("option")
+      o3.value = "insecure"
+      o3.textContent = "Insecure"
+      select.append(o3)
+
+      generic_filter_mode.replaceWith(select)
+    }
+    
     let filter = App.create("input", "filter", `${mode}_filter`)
     filter.type = "text"
     filter.autocomplete = "off"

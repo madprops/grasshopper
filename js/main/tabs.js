@@ -374,6 +374,13 @@ App.show_close_menu = function () {
   })
 
   items.push({
+    text: "Close Pinned Tabs",
+    action: function () {
+      App.close_pinned_tabs()
+    }
+  })  
+
+  items.push({
     text: "Close All Tabs",
     action: function () {
       App.close_tabs()
@@ -519,6 +526,31 @@ App.close_suspended_tabs = function () {
   let s = App.plural(ids.length, "tab", "tabs")
 
   if (confirm(`Close suspended tabs? (${s})`)) {
+    for (let id of ids) {
+      App.close_tab(id)
+    }
+  }
+}
+
+// Close pinned tabs
+App.close_suspended_tabs = function () {
+  let ids = []
+
+  for (let tab of App.tabs_items) {
+    if (!tab.visible || !tab.pinned) {
+      continue
+    }
+    
+    ids.push(tab.id)
+  }
+
+  if (ids.length === 0) {
+    return
+  }
+  
+  let s = App.plural(ids.length, "tab", "tabs")
+
+  if (confirm(`Close pinned tabs? (${s})`)) {
     for (let id of ids) {
       App.close_tab(id)
     }
