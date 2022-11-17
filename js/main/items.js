@@ -408,6 +408,15 @@ App.show_move_menu = async function (x, y, item) {
 App.show_more_menu = async function (x, y, item) {
   let items = []
 
+  if (!item.discared) {
+    items.push({
+      text: "Similar",
+      action: function () {
+        App.set_filter("tabs", App.get_hostname(item.url))
+      }
+    })  
+  }  
+
   items.push({
     text: "Duplicate",
     action: function () {
@@ -422,16 +431,7 @@ App.show_more_menu = async function (x, y, item) {
         App.suspend_tab(item)
       }
     })  
-  }
-
-  if (!item.discared) {
-    items.push({
-      text: "Similar",
-      action: function () {
-        App.set_filter("tabs", App.get_hostname(item.url))
-      }
-    })  
-  }
+  }  
 
   NeedContext.show(x, y, items)
 }
