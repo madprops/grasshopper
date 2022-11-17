@@ -344,28 +344,14 @@ App.show_tabs_menu = function () {
     action: function () {
       App.unpin_all_tabs()
     }
-  })
-
-  items.push({
-    text: "Suspend Normal Tabs",
-    action: function () {
-      App.suspend_tabs("normal")
-    }
-  })
-
-  items.push({
-    text: "Suspend Pinned Tabs",
-    action: function () {
-      App.suspend_tabs("pinned")
-    }
   }) 
 
   items.push({
-    text: "Suspend All Tabs",
+    text: "Suspend Tabs...",
     action: function () {
-      App.suspend_tabs("all")
+      App.show_suspend_menu()
     }
-  })  
+  })
 
   items.push({
     text: "Close Suspended Tabs",
@@ -409,6 +395,34 @@ App.show_filtered_menu = function () {
     }
   })  
 
+  NeedContext.show_on_element(App.el("#tabs_more_button"), items)
+}
+
+// Show suspend menu
+App.show_suspend_menu = function () {
+  let items = []
+
+  items.push({
+    text: "Suspend Normal Tabs",
+    action: function () {
+      App.suspend_tabs("normal")
+    }
+  })
+
+  items.push({
+    text: "Suspend Pinned Tabs",
+    action: function () {
+      App.suspend_tabs("pinned")
+    }
+  }) 
+
+  items.push({
+    text: "Suspend All Tabs",
+    action: function () {
+      App.suspend_tabs("all")
+    }
+  }) 
+  
   NeedContext.show_on_element(App.el("#tabs_more_button"), items)
 }
 
