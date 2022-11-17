@@ -360,11 +360,25 @@ App.show_close_menu = function () {
   let items = []
 
   items.push({
+    text: "Close Playing Tabs",
+    action: function () {
+      App.close_playing_tabs()
+    }
+  }) 
+
+  items.push({
     text: "Close Suspended Tabs",
     action: function () {
       App.close_suspended_tabs()
     }
-  })  
+  })
+
+  items.push({
+    text: "Close All Tabs",
+    action: function () {
+      App.close_tabs()
+    }
+  })
   
   NeedContext.show_on_element(App.el("#tabs_more_button"), items)
 }
@@ -397,7 +411,7 @@ App.show_suspend_menu = function () {
   NeedContext.show_on_element(App.el("#tabs_more_button"), items)
 }
 
-// Pin all the tabs
+// Pin tabs
 App.pin_all_tabs = function () {
   let ids = []
 
@@ -422,7 +436,7 @@ App.pin_all_tabs = function () {
   }  
 }
 
-// Unpin all the tabs
+// Unpin tabs
 App.unpin_all_tabs = function () {
   let ids = []
 
@@ -486,7 +500,7 @@ App.suspend_tabs = function (type) {
   }  
 }
 
-// Close all suspended tabs
+// Close suspended tabs
 App.close_suspended_tabs = function () {
   let ids = []
 
@@ -505,6 +519,56 @@ App.close_suspended_tabs = function () {
   let s = App.plural(ids.length, "tab", "tabs")
 
   if (confirm(`Close suspended tabs? (${s})`)) {
+    for (let id of ids) {
+      App.close_tab(id)
+    }
+  }
+}
+
+// Close playing tabs
+App.close_playing_tabs = function () {
+  let ids = []
+
+  for (let tab of App.tabs_items) {
+    if (!tab.visible || !tab.audible) {
+      continue
+    }
+    
+    ids.push(tab.id)
+  }
+
+  if (ids.length === 0) {
+    return
+  }
+  
+  let s = App.plural(ids.length, "tab", "tabs")
+
+  if (confirm(`Close playing tabs? (${s})`)) {
+    for (let id of ids) {
+      App.close_tab(id)
+    }
+  }
+}
+
+// Close tabs
+App.close_tabs = function () {
+  let ids = []
+
+  for (let tab of App.tabs_items) {
+    if (!tab.visible) {
+      continue
+    }
+    
+    ids.push(tab.id)
+  }
+
+  if (ids.length === 0) {
+    return
+  }
+  
+  let s = App.plural(ids.length, "tab", "tabs")
+
+  if (confirm(`Close tabs? (${s})`)) {
     for (let id of ids) {
       App.close_tab(id)
     }
