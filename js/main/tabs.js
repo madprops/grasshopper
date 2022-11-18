@@ -73,7 +73,6 @@ App.sort_tabs_by_index = function (tabs) {
 
 // Open a new tab
 App.focus_tab = async function (tab, close = true) {
-  console.log(tab.window_id)
   if (tab.window_id) {
     await browser.windows.update(tab.window_id, {focused: true})
   }
