@@ -286,10 +286,6 @@ body, html {
   font-size: 1.2rem;
 }
 
-#star_info {
-  margin-top: 1rem;
-}
-
 #item_order {
   border: 1px solid var(--alt_color_2);
 }

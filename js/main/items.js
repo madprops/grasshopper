@@ -540,7 +540,7 @@ App.create_item_element = function (mode, item) {
   if (mode === "tabs") {   
     if (App.settings.all_windows) {
       let here = App.create("div", "item_info faded")
-      here.textContent = App.settings.in_window_icon
+      here.textContent = App.settings.window_icon
       info_container.append(here)
       
       if (item.window_id === App.window_id) {

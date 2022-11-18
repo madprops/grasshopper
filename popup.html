@@ -71,6 +71,8 @@
 
     <template id="template_star_editor">
       <div class="flex_column_center gap_4" id="star_editor_container">
+        <div class="bigger">Star Editor</div>
+
         <div id="star_info" class="flex_column_center gap_2">
           <div>Stars are like bookmarks that you manually add</div>
           <div>Use them to launch or focus tabs</div>
@@ -101,10 +103,6 @@
         <button id="star_editor_save" class="button">Save</button>
       </div>
     </template>
-
-    <template id="template_star_editor_top">
-      <div class="bigger">Star Editor</div>
-    </template>       
 
     <template id="template_settings">
       <div id="settings_container" class="flex_column_center gap_3">
@@ -146,8 +144,8 @@
         <div class="separator"></div>
         
         <div class="flex_column_center gap_2" title="Indicates that the tab belongs to the current window">
-          <div class="unselectable">In Window Icon</div>
-          <input type="text" id="settings_in_window_icon" class="settings_small_text">
+          <div class="unselectable">Window Icon</div>
+          <input type="text" id="settings_window_icon" class="settings_small_text">
         </div>    
         
         <div class="separator"></div>
@@ -191,8 +189,6 @@
         <button id="settings_defaults_button" class="button" title="Reset settings to defaults">Reset Settings</button>
       </div>
     </template>  
-
-    <template id="template_settings_top"></template>
 
     <script src="js/main/main.js"></script>
   </body>
