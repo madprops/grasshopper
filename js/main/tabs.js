@@ -86,21 +86,15 @@ App.focus_tab = async function (tab, close = true) {
 
 // Close tab with possible confirm
 App.confirm_close_tab = function (tab) {
-  if (App.settings.warn_on_tab_close) {
-    if (tab.audible) {
-      if (confirm("Close playing tab?")) {
-        App.close_tab(tab.id)
+  if (!App.tab_is_normal(tab)) {
+    if (App.settings.warn_on_tab_close) {
+      if (!confirm("Close tab?")) {
+        return
       }
-    } else if (tab.pinned) {
-      if (confirm("Close pinned tab?")) {
-        App.close_tab(tab.id)
-      }
-    } else {
-      App.close_tab(tab.id)
     }
-  } else {
-    App.close_tab(tab.id)
   }
+  
+  App.close_tab(tab.id)
 }
 
 // Close a tab
