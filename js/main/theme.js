@@ -61,7 +61,7 @@ App.get_dark_theme = function () {
   let text_color = App.colorlib.get_random_hex()
   
   if (App.colorlib.is_dark(text_color)) {
-    text_color = App.colorlib.get_lighter_or_darker(text_color, 0.66)
+    text_color = App.colorlib.get_lighter_or_darker(text_color, 0.7)
   }
 
   return {background_color: background_color, text_color: text_color}
@@ -73,7 +73,7 @@ App.get_light_theme = function () {
   let text_color = App.colorlib.get_random_hex()
   
   if (App.colorlib.is_light(text_color)) {
-    text_color = App.colorlib.get_lighter_or_darker(text_color, 0.66)
+    text_color = App.colorlib.get_lighter_or_darker(text_color, 0.7)
   }
 
   return {background_color: background_color, text_color: text_color}
