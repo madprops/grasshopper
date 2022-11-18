@@ -539,23 +539,23 @@ App.create_item_element = function (mode, item) {
 
   if (mode === "tabs") {   
     if (App.settings.all_windows) {
-      let here = App.create("div", "item_info faded")
-      here.textContent = App.settings.window_icon
-      info_container.append(here)
+      let window_icon = App.create("div", "item_info faded")
+      window_icon.textContent = App.settings.window_icon
+      info_container.append(window_icon)
       
       if (item.window_id === App.window_id) {
-        here.title = "This tab belongs to the current window"
-        here.classList.remove("faded")
+        window_icon.title = "This tab belongs to the current window"
+        window_icon.classList.remove("faded")
       }
     }     
 
-    let pin = App.create("div", "item_info faded")
-    pin.textContent = App.settings.pin_icon
-    info_container.append(pin)
+    let pin_icon = App.create("div", "item_info faded")
+    pin_icon.textContent = App.settings.pin_icon
+    info_container.append(pin_icon)
     
     if (item.pinned) {
-      pin.title = "This tab is pinned"  
-      pin.classList.remove("faded")
+      pin_icon.title = "This tab is pinned"  
+      pin_icon.classList.remove("faded")
     }
   } else {
     let launched = App.create("div", "item_info item_info_launched")
@@ -942,6 +942,11 @@ App.make_items_select = function (mode) {
   settings.textContent = "Settings"
   select.append(settings)
 
+  let about = App.create("option")
+  about.value = "about"
+  about.textContent = "About"
+  select.append(about)
+
   App.ev(select, "change", function () {
     if (select.value === "none") {
       return
@@ -949,6 +954,8 @@ App.make_items_select = function (mode) {
 
     if (select.value === "settings") {
       App.show_window("settings")
+    } else if (select.value === "about") {
+      App.show_window("about")
     } else {
       App.show_item_window(select.value)
     }

@@ -325,3 +325,8 @@ body, html {
 .needcontext-item-selected {
   background-color: var(--alt_color) !important;
 }
+
+#about_shortcuts {
+  background-color: var(--alt_color);
+  padding: 1.5rem;
+}

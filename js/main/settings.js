@@ -1,10 +1,6 @@
 // Setup settings
 App.setup_settings = function () {
   App.create_window({id: "settings", setup: function () {
-    let manifest = browser.runtime.getManifest()
-    let s = `Grasshopper v${manifest.version}`
-    App.el("#settings_name").textContent = s
-
     // Selects
     for (let select of App.els(".settings_select")) {
       let setting = select.dataset.setting

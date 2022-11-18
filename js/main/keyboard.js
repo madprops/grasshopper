@@ -13,7 +13,15 @@ App.check_window_keyboard = function (e) {
   }
 
   if (e.key === "Enter") {
-    App[`${mode}_action`](App[`selected_${mode}_item`])
+    let item = App[`selected_${mode}_item`]
+
+    if (e.shiftKey) {
+      let rect = item.element.getBoundingClientRect()
+      App.show_item_menu(mode, item, rect.left, rect.top)
+    } else {
+      App[`${mode}_action`](item)
+    }
+
     e.preventDefault()
   } else if (e.key === "ArrowUp") {
     App.select_item_above(mode)
@@ -28,6 +36,10 @@ App.check_window_keyboard = function (e) {
 App.setup_keyboard = function () {
   App.ev(document, "keydown", function (e) {
     if (NeedContext.open) {
+      if (e.shiftKey && e.key === "Enter") {
+        NeedContext.hide()
+      }
+
       return
     }
 

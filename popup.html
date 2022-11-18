@@ -22,6 +22,7 @@
     <script src="js/main/history.js"></script>
     <script src="js/main/windows.js"></script>
     <script src="js/main/settings.js"></script>
+    <script src="js/main/about.js"></script>
 
   </head>
   
@@ -106,7 +107,7 @@
 
     <template id="template_settings">
       <div id="settings_container" class="flex_column_center gap_3">
-        <div id="settings_name" class="bigger unselectable" title="Made by madprops in 2022"></div>
+        <div class="bigger unselectable">Settings</div>
 
         <select id="settings_text_mode" class="select settings_select" title="Main text to display on the items" data-setting="text_mode">
           <option value="title">Text Mode: Title</option>
@@ -189,6 +190,21 @@
         <button id="settings_defaults_button" class="button" title="Reset settings to defaults">Reset Settings</button>
       </div>
     </template>  
+
+    <template id="template_about">
+      <div id="about_container" class="flex_column_center gap_3">
+        <div id="about_name" class="bigger"></div>
+        <div id="about_author">Made by madprops in 2022</div>
+        
+        <div id="about_shortcuts" class="flex_column_center gap_2">
+          <div>Hover items with the mouse and click to focus or launch them</div>
+          <div>Use the Up, Down, and Enter keys to navigate and pick items</div>
+          <div>Use Middle Click to either close tabs or launch items</div>
+          <div>Right click items to show their menu</div>
+          <div>Use Shift + Enter to open the menu with the keyboard</div>
+        </div>
+      </div>
+    </template>
 
     <script src="js/main/main.js"></script>
   </body>
