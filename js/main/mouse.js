@@ -17,7 +17,7 @@ App.setup_window_mouse = function (mode) {
   App.ev(container, "auxclick", function (e) {
     if (e.button === 1) {
       if (e.target.closest(`.${mode}_item`)) {
-        App[`${mode}_action_alt`](App.get_cursor_item(mode, e))
+        App[`${mode}_action_alt`](App.get_cursor_item(mode, e), e.shiftKey)
       }
     }
   })  

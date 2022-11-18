@@ -73,6 +73,7 @@ App.sort_tabs_by_index = function (tabs) {
 
 // Open a new tab
 App.focus_tab = async function (tab, close = true) {
+  console.log(tab.window_id)
   if (tab.window_id) {
     await browser.windows.update(tab.window_id, {focused: true})
   }
@@ -297,8 +298,12 @@ App.tabs_action = function (item) {
 }
 
 // Tabs action alt
-App.tabs_action_alt = function (item) {
-  App.confirm_close_tab(item)
+App.tabs_action_alt = function (item, shift_key) {
+  if (shift_key) {
+    App.close_tab(item.id)
+  } else {
+    App.confirm_close_tab(item)
+  }
 }
 
 // Open tab in new window
