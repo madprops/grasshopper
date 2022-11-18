@@ -320,6 +320,7 @@ body, html {
   background-color: var(--background_color) !important;
   color: var(--text_color) !important;
   border-color: var(--alt_color_3) !important;
+  font-size: var(--text_size) !important;
 }
 
 .needcontext-item-selected {
