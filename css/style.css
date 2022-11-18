@@ -135,11 +135,13 @@ body, html {
   display: flex;
   flex-direction: row;
   cursor: pointer;
-  align-items: center; 
+  align-items: center;
+  padding-top: 0.45rem;
+  padding-bottom: 0.45rem;  
 }
 
 .item_empty {
-  min-height: 1.8rem;
+  min-height: 1.6rem;
 }
 
 .item_icon {
@@ -157,8 +159,6 @@ body, html {
   white-space: pre;
   overflow: hidden;
   margin-right: var(--item_margin);
-  padding-top: 0.45rem;
-  padding-bottom: 0.45rem; 
 }
 
 .item_info_container {
