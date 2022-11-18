@@ -226,7 +226,9 @@ body, html {
 }
 
 .settings_select {
-  width: 11rem;
+  width: 6.5rem;
+  padding: 0.2rem;
+  font-size: 1rem;
   text-align: center;
 }
 
@@ -236,7 +238,6 @@ body, html {
   outline: 1px solid var(--alt_color_2);
   border-width: 0;
   font-size: 1rem;
-  padding: 0.05rem;
   flex-grow: 0;
   width: 6rem;
   text-align: center;
