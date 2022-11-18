@@ -18,26 +18,35 @@ App.default_settings = {
 
 // Setup settings
 App.setup_settings = function () {
+  App.create_window({id: "settings_basic", setup: function () {
+    App.start_basic_settings()
+  }, on_x: function () {
+    App.show_window("settings")
+  }})
+
+  App.create_window({id: "settings_order", setup: function () {
+    App.start_order_settings()
+  }, on_x: function () {
+    App.show_window("settings")
+  }})  
+
+  App.create_window({id: "settings_theme", setup: function () {
+    App.start_theme_settings()
+  }, on_x: function () {
+    App.show_window("settings")
+  }})  
+
   App.create_window({id: "settings", setup: function () {
-    // Basic settings
     App.ev(App.el("#settings_show_basic"), "click", function () {
-      App.start_basic_settings()
-      App.el("#settings_basic").classList.remove("hidden")
-      this.remove()
+      App.show_window("settings_basic")
     })
 
-    // Item Order
     App.ev(App.el("#settings_show_order"), "click", function () {
-      App.start_order_settings()
-      App.el("#settings_order").classList.remove("hidden")
-      this.remove()
+      App.show_window("settings_order")
     })
     
-    // Color pickers
     App.ev(App.el("#settings_show_theme"), "click", function () {
-      App.start_theme_settings()      
-      App.el("#settings_theme").classList.remove("hidden")
-      this.remove()
+      App.show_window("settings_theme")
     })
 
     App.ev(App.el("#settings_defaults_button"), "click", function () {

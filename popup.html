@@ -113,107 +113,125 @@
 
         <button id="settings_show_basic" class="button">Show Basic Settings</button>
 
-        <div id="settings_basic" class="hidden flex_column_center gap_3 unselectable">
-          <div class="flex_column_center gap_2" title="Main text to display on the items">
-            <div class="unselectable">Text Mode</div>
-            <select id="settings_text_mode" class="select settings_select"  data-setting="text_mode">
-              <option value="title">Title</option>
-              <option value="url">URL</option>
-            </select>    
-          </div>
-  
-          <div class="separator"></div>
-  
-          <div class="flex_column_center gap_2" title="How many results to fetch from history">
-            <div class="unselectable">History Max Results</div>
-            <input type="text" id="settings_history_max_results" class="settings_text" data-setting="history_max_results" data-type="number" data-min="100" data-max="10000">
-          </div>
-  
-          <div class="separator"></div>        
-  
-          <div class="flex_column_center gap_2" title="How deep to search in history">
-            <div class="unselectable">History Max Months</div>
-            <input type="text" id="settings_history_max_months" class="settings_text" data-setting="history_max_months" data-type="number" data-min="1" data-max="100">
-          </div>
-  
-          <div class="separator"></div>        
-  
-          <div class="flex_column_center gap_2" title="Indicates that the tab is pinned">
-            <div class="unselectable">Pin Icon</div>
-            <input type="text" id="settings_pin_icon" class="settings_text" data-setting="pin_icon" data-type="text">
-          </div>
-  
-          <div class="separator"></div>
-          
-          <div class="flex_column_center gap_2" title="Indicates that the tab belongs to the current window">
-            <div class="unselectable">Window Icon</div>
-            <input type="text" id="settings_window_icon" class="settings_text" data-setting="window_icon" data-type="text">
-          </div>    
-          
-          <div class="separator"></div>
-          
-          <div class="flex_column_center gap_2" title="Base text size. Affects the size of the whole interface">
-            <div class="unselectable">Text Size</div>
-            <input type="text" id="settings_text_size" class="settings_text" data-setting="text_size" data-type="number" data-action="theme" data-min="12" data-max="22">
-          </div>
-  
-          <div class="separator"></div>
-  
-          <div class="flex_column_center gap_2" title="This is the warning when closing special tabs">
-            <div class="unselectable">Warn On Close</div>
-            <input type="checkbox" id="settings_warn_on_tab_close" class="settings_checkbox" data-setting="warn_on_tab_close">
-          </div>  
-          
-          <div class="separator"></div>
-          
-          <div class="flex_column_center gap_2" title="Whether to show tabs from all windows">
-            <div class="unselectable">All Windows</div>
-            <input type="checkbox" id="settings_all_windows" class="settings_checkbox" data-setting="all_windows">
-          </div>        
-        </div>
-
         <div class="separator"></div>
 
-        <button id="settings_show_order" class="button">Show Order Settings</button>
-
-        <div id="settings_order" class="hidden flex_column_center gap_3 unselectable">
-          <div class="flex_column_center gap_2" title="The order of item windows">
-            <div>Item Order</div>
-            <div id="item_order"></div>
-          </div>
-        </div>        
+        <button id="settings_show_order" class="button">Show Order Settings</button>     
 
         <div class="separator"></div>
 
         <button id="settings_show_theme" class="button">Show Theme Settings</button>
-
-        <div id="settings_theme" class="hidden flex_column_center gap_3 unselectable">
-          <div class="flex_column_center gap_2" title="Theme background color">
-            <div>Background Color</div>
-            <div id="background_color_picker"></div>
-          </div>
-  
-          <div class="separator"></div>
-  
-          <div class="flex_column_center gap_2" title="Theme text color">
-            <div>Text Color</div>
-            <div id="text_color_picker"></div>
-          </div>
-  
-          <div class="separator"></div>
-          
-          <div class="flex_row_center gap_2">
-            <button id="settings_dark_theme" class="button" title="Random dark theme">Dark Theme</button>
-            <button id="settings_light_theme" class="button" title="Random light theme">Light Theme</button>
-            <button id="settings_detect_theme" class="button" title="Detect browser theme">Detect Theme</button>
-          </div>
-        </div>
         
         <div class="separator"></div>
         
         <button id="settings_defaults_button" class="button" title="Reset settings to defaults">Reset Settings</button>
       </div>
     </template>  
+
+    <template id="template_settings_basic">
+      <div id="settings_basic" class="settings_container">
+        <div class="bigger unselectable">Basic Settings</div>
+
+        <div class="separator"></div>
+
+        <div class="flex_column_center gap_2" title="Main text to display on the items">
+          <div class="unselectable">Text Mode</div>
+          <select id="settings_text_mode" class="select settings_select"  data-setting="text_mode">
+            <option value="title">Title</option>
+            <option value="url">URL</option>
+          </select>    
+        </div>
+
+        <div class="separator"></div>
+
+        <div class="flex_column_center gap_2" title="How many results to fetch from history">
+          <div class="unselectable">History Max Results</div>
+          <input type="text" id="settings_history_max_results" class="settings_text" data-setting="history_max_results" data-type="number" data-min="100" data-max="10000">
+        </div>
+
+        <div class="separator"></div>        
+
+        <div class="flex_column_center gap_2" title="How deep to search in history">
+          <div class="unselectable">History Max Months</div>
+          <input type="text" id="settings_history_max_months" class="settings_text" data-setting="history_max_months" data-type="number" data-min="1" data-max="100">
+        </div>
+
+        <div class="separator"></div>        
+
+        <div class="flex_column_center gap_2" title="Indicates that the tab is pinned">
+          <div class="unselectable">Pin Icon</div>
+          <input type="text" id="settings_pin_icon" class="settings_text" data-setting="pin_icon" data-type="text">
+        </div>
+
+        <div class="separator"></div>
+        
+        <div class="flex_column_center gap_2" title="Indicates that the tab belongs to the current window">
+          <div class="unselectable">Window Icon</div>
+          <input type="text" id="settings_window_icon" class="settings_text" data-setting="window_icon" data-type="text">
+        </div>    
+        
+        <div class="separator"></div>
+        
+        <div class="flex_column_center gap_2" title="Base text size. Affects the size of the whole interface">
+          <div class="unselectable">Text Size</div>
+          <input type="text" id="settings_text_size" class="settings_text" data-setting="text_size" data-type="number" data-action="theme" data-min="12" data-max="22">
+        </div>
+
+        <div class="separator"></div>
+
+        <div class="flex_column_center gap_2" title="This is the warning when closing special tabs">
+          <div class="unselectable">Warn On Close</div>
+          <input type="checkbox" id="settings_warn_on_tab_close" class="settings_checkbox" data-setting="warn_on_tab_close">
+        </div>  
+        
+        <div class="separator"></div>
+        
+        <div class="flex_column_center gap_2" title="Whether to show tabs from all windows">
+          <div class="unselectable">All Windows</div>
+          <input type="checkbox" id="settings_all_windows" class="settings_checkbox" data-setting="all_windows">
+        </div>        
+      </div>      
+    </template>
+
+    <template id="template_settings_order">
+      <div id="settings_order" class="settings_container">
+        <div class="bigger unselectable">Order Settings</div>
+
+        <div class="separator"></div>
+                
+        <div class="flex_column_center gap_2" title="The order of item windows">
+          <div>Item Order</div>
+          <div id="item_order"></div>
+        </div>
+      </div>        
+    </template>
+
+    <template id="template_settings_theme">
+      <div id="settings_theme" class="settings_container">
+        <div class="bigger unselectable">Theme Settings</div>
+
+        <div class="separator"></div>
+
+        <div class="flex_column_center gap_2" title="Theme background color">
+          <div>Background Color</div>
+          <div id="background_color_picker"></div>
+        </div>
+
+        <div class="separator"></div>
+
+        <div class="flex_column_center gap_2" title="Theme text color">
+          <div>Text Color</div>
+          <div id="text_color_picker"></div>
+        </div>
+
+        <div class="separator"></div>
+        
+        <div class="flex_row_center gap_2">
+          <button id="settings_dark_theme" class="button" title="Random dark theme">Dark Theme</button>
+          <button id="settings_light_theme" class="button" title="Random light theme">Light Theme</button>
+          <button id="settings_detect_theme" class="button" title="Detect browser theme">Detect Theme</button>
+        </div>
+      </div>
+    </template>
 
     <template id="template_about">
       <div id="about_container" class="flex_column_center gap_3">
