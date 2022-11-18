@@ -84,7 +84,7 @@ App.setup_settings = function () {
         el.value = App.settings[setting].toLocaleString()
     
         App.ev(el, "blur", function () {
-          let val = App.string_to_int(el.value)
+          let val = parseInt(el.value)
     
           if (isNaN(val)) {
             val = App.default_settings[setting]
