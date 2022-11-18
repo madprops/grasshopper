@@ -226,10 +226,11 @@ body, html {
 }
 
 .settings_select {
-  width: 6.5rem;
+  width: 6rem;
   padding: 0.2rem;
   font-size: 1rem;
   text-align: center;
+  box-sizing: border-box;
 }
 
 .settings_text {
@@ -242,6 +243,7 @@ body, html {
   width: 6rem;
   text-align: center;
   padding: 0.2rem;
+  box-sizing: border-box;
 }
 
 .settings_checkbox {
