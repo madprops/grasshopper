@@ -920,7 +920,7 @@ App.item_order_down = function (el) {
 App.make_items_select = function (mode) {
   let select = App.create("select", "select item_select", `${mode}_select`)
 
-  for (let m of App.item_order) {
+  for (let [i, m] of App.item_order.entries()) {
     let option = App.create("option")
     
     if (m === mode) {
@@ -928,7 +928,7 @@ App.make_items_select = function (mode) {
     }
 
     option.value = m
-    option.textContent = App.capitalize(m)
+    option.textContent = `${i + 1}. ${App.capitalize(m)}`
     select.append(option)
   }
 
