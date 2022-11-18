@@ -265,6 +265,21 @@ App.get_pinned_tabs = function () {
   return App.tabs_items.filter(x => x.pinned)
 }
 
+// Return playing tabs
+App.get_playing_tabs = function () {
+  return App.tabs_items.filter(x => x.audible)
+}
+
+// Return muted tabs
+App.get_muted_tabs = function () {
+  return App.tabs_items.filter(x => x.muted)
+}
+
+// Return suspended tabs
+App.get_suspended_tabs = function () {
+  return App.tabs_items.filter(x => x.discarded)
+}
+
 // Remove a closed tab
 App.remove_closed_tab = function (id) {
   let tab = App.get_item_by_id("tabs", id)
@@ -317,6 +332,13 @@ App.suspend_tab = async function (tab) {
 // Show tabs menu
 App.show_tabs_menu = function () {
   let items = []
+
+  items.push({
+    text: "Information",
+    action: function () {
+      App.show_tabs_information()
+    }
+  })
 
   items.push({
     text: "Pin All Tabs",
@@ -639,4 +661,23 @@ App.close_tabs = function () {
 App.tab_is_normal = function (tab) {
   let special = tab.pinned || tab.audible || tab.discarded
   return !special
+}
+
+// Show tabs information
+App.show_tabs_information = function () {
+  let all = App.tabs_items.length
+  let pins = App.get_pinned_tabs().length
+  let playing = App.get_playing_tabs().length
+  let muted = App.get_muted_tabs().length
+  let suspended = App.get_suspended_tabs().length
+
+  let s = "Tab Count:\n\n"
+
+  s += `All: ${all}\n`
+  s += `Pins: ${pins}\n`
+  s += `Playing: ${playing}\n`
+  s += `Muted: ${muted}\n`
+  s += `Suspended: ${suspended}`
+
+  alert(s)
 }
