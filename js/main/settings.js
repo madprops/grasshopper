@@ -105,56 +105,18 @@ App.setup_settings = function () {
     }
 
     // Item Order
-    let item_order = App.el("#item_order")
+    App.ev(App.el("#item_order_show"), "click", function () {
+      App.start_item_order()
+    })
+    
+    // Color pickers
+    App.ev(App.el("#background_color_picker_show"), "click", function () {
+      App.start_color_picker("background")
+    })
 
-    for (let m of App.item_order) {
-      let el = App.create("div", "item_order_item flex_row_center gap_2")
-      el.dataset.mode = m
-
-      let text = App.create("div", "item_order_item_text")
-      text.textContent = App.capitalize(m)
-      el.append(text)
-
-      let up = App.create("button", "button up_down_button")
-      up.textContent = "Up"
-      el.append(up)
-
-      App.ev(up, "click", function () {
-        App.item_order_up(el)
-      })      
-
-      let down = App.create("button", "button up_down_button")
-      down.textContent = "Down"
-      el.append(down)
-
-      App.ev(down, "click", function () {
-        App.item_order_down(el)
-      })      
-
-      item_order.append(el)
-    }    
-
-    // Color Pickers
-    function start_color_picker (name) {
-      App[`${name}_color_picker`] = AColorPicker.createPicker(App.el(`#${name}_color_picker`), {
-        showAlpha: false,
-        showHSL: false,
-        showHEX: false,
-        showRGB: true,
-        color: App.settings[`${name}_color`]
-      })
-  
-      let change_color = App.create_debouncer(function (color) {
-        App.do_change_color(name, color)
-      }, App.color_delay)
-  
-      App[`${name}_color_picker`].on("change", function (picker, color) {
-        change_color(color)
-      })        
-    }
-
-    start_color_picker("background")
-    start_color_picker("text")
+    App.ev(App.el("#text_color_picker_show"), "click", function () {
+      App.start_color_picker("text")
+    })
 
     // Themes
     App.ev(App.el("#settings_dark_theme"), "click", function () {
@@ -173,4 +135,61 @@ App.setup_settings = function () {
       App.stor_reset_settings()
     })
   }}) 
+}
+
+// Start a color picker
+App.start_color_picker = function (name) {
+  App.el(`#${name}_color_picker_show`).remove()
+  let el = App.el(`#${name}_color_picker`)
+  el.classList.remove("hidden")
+
+  App[`${name}_color_picker`] = AColorPicker.createPicker(el, {
+    showAlpha: false,
+    showHSL: false,
+    showHEX: false,
+    showRGB: true,
+    color: App.settings[`${name}_color`]
+  })
+
+  let change_color = App.create_debouncer(function (color) {
+    App.do_change_color(name, color)
+  }, App.color_delay)
+
+  App[`${name}_color_picker`].on("change", function (picker, color) {
+    change_color(color)
+  })        
+}
+
+// Start window order
+App.start_item_order = function () {
+  App.el("#item_order_show").remove()
+  let container = App.el("#item_order")
+  container.classList.remove("hidden")
+
+  for (let m of App.item_order) {
+    let el = App.create("div", "item_order_item flex_row_center gap_2")
+    el.dataset.mode = m
+
+    let text = App.create("div", "item_order_item_text")
+    text.textContent = App.capitalize(m)
+    el.append(text)
+
+    let up = App.create("button", "button up_down_button")
+    up.textContent = "Up"
+    el.append(up)
+
+    App.ev(up, "click", function () {
+      App.item_order_up(el)
+    })      
+
+    let down = App.create("button", "button up_down_button")
+    down.textContent = "Down"
+    el.append(down)
+
+    App.ev(down, "click", function () {
+      App.item_order_down(el)
+    })      
+
+    container.append(el)
+  }  
 }
