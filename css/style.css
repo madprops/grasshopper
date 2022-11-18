@@ -10,7 +10,7 @@
 
 body, html {
   font-family: imported_font, sans-serif;
-  font-size: 17px;
+  font-size: var(--text_size);
   color: var(--text_color);
   width: 700px;
   height: 600px;
@@ -226,7 +226,7 @@ body, html {
 }
 
 .settings_select {
-  width: 12rem;
+  width: 11rem;
   text-align: center;
 }
 
@@ -296,8 +296,8 @@ body, html {
 }
 
 .item_order_item_text {
-  text-align: center;
-  width: 5rem;
+  text-align: flex-start;
+  width: 4rem;
 }
 
 .up_down_button {

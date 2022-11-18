@@ -1,20 +1,3 @@
-// Default settings values
-App.default_settings = {
-  text_mode: "title",
-  background_color: "rgb(37, 41, 51)",
-  text_color: "rgb(220, 220, 220)",
-  tabs_index: 0,
-  stars_index: 1,
-  history_index: 2,
-  closed_index: 3,
-  warn_on_tab_close: true,
-  pin_icon: "+",
-  window_icon: "w",
-  history_max_results: 1000,
-  history_max_months: 24,
-  all_windows: true,
-}
-
 // Get settings from sync storage
 App.stor_get_settings = async function () {
   let obj = await browser.storage.sync.get(App.stor_settings_name)

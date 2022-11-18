@@ -1,9 +1,34 @@
+// Default settings values
+App.default_settings = {
+  text_mode: "title",
+  background_color: "rgb(37, 41, 51)",
+  text_color: "rgb(220, 220, 220)",
+  tabs_index: 0,
+  stars_index: 1,
+  history_index: 2,
+  closed_index: 3,
+  warn_on_tab_close: true,
+  pin_icon: "+",
+  window_icon: "w",
+  history_max_results: 1000,
+  history_max_months: 24,
+  all_windows: true,
+  text_size: 17
+}
+
 // Setup settings
 App.setup_settings = function () {
   App.create_window({id: "settings", setup: function () {
+    function do_action (what) {
+      if (what === "theme") {
+        App.apply_theme()
+      }
+    }
+
     // Selects
-    for (let select of App.els(".settings_select")) {
-      let setting = select.dataset.setting
+    for (let item of App.els(".settings_select")) {
+      let setting = item.dataset.setting
+      let action = item.dataset.action
 
       let el = App.el(`#settings_${setting}`)
       el.value = App.settings[setting]
@@ -11,12 +36,14 @@ App.setup_settings = function () {
       App.ev(el, "change", function () {
         App.settings[setting] = el.value
         App.stor_save_settings()
-      })  
+        do_action(action)        
+      })
     }
 
     // Checkboxes
-    for (let box of App.els(".settings_checkbox")) {
-      let setting = box.dataset.setting
+    for (let item of App.els(".settings_checkbox")) {
+      let setting = item.dataset.setting
+      let action = item.dataset.action
 
       let el = App.el(`#settings_${setting}`)
       el.checked = App.settings[setting]
@@ -24,13 +51,17 @@ App.setup_settings = function () {
       App.ev(el, "change", function () {
         App.settings[setting] = el.checked
         App.stor_save_settings()
+        do_action(action)
       })
     }
 
     // Input Texts
-    for (let text of App.els(".settings_small_text")) {
-      let setting = text.dataset.setting
-      let type = text.dataset.type
+    for (let item of App.els(".settings_small_text")) {
+      let setting = item.dataset.setting
+      let type = item.dataset.type
+      let min = parseInt(item.dataset.min)
+      let max = parseInt(item.dataset.max)
+      let action = item.dataset.action
 
       if (type === "text") {
         let el = App.el(`#settings_${setting}`)
@@ -46,6 +77,7 @@ App.setup_settings = function () {
           el.value = val
           App.settings[setting] = val
           App.stor_save_settings()
+          do_action(action)          
         })
       } else if (type === "number") {
         let el = App.el(`#settings_${setting}`)
@@ -57,10 +89,17 @@ App.setup_settings = function () {
           if (isNaN(val)) {
             val = App.default_settings[setting]
           }
+
+          if (min && min > val) {
+            val = min
+          } else if (max && max < val) {
+            val = max
+          }
     
           el.value = val.toLocaleString()
           App.settings[setting] = val
           App.stor_save_settings()
+          do_action(action)          
         })
       }
     }
