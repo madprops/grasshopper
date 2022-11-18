@@ -4,124 +4,73 @@ App.setup_settings = function () {
     let manifest = browser.runtime.getManifest()
     let s = `Grasshopper v${manifest.version}`
     App.el("#settings_name").textContent = s
-  
-    let text_mode = App.el("#settings_text_mode")
-    text_mode.value = App.settings.text_mode
-  
-    App.ev(text_mode, "change", function () {
-      App.settings.text_mode = text_mode.value
-      App.stor_save_settings()
-    })  
 
-    let warn_on_tab_close = App.el("#settings_warn_on_tab_close")
-    warn_on_tab_close.value = App.settings.warn_on_tab_close ? "warn" : "no_warn"
-  
-    App.ev(warn_on_tab_close, "change", function () {
-      App.settings.warn_on_tab_close = warn_on_tab_close.value === "warn"
-      App.stor_save_settings()
-    })
+    // Selects
+    for (let select of App.els(".settings_select")) {
+      let setting = select.dataset.setting
 
-    let pin_icon = App.el("#settings_pin_icon")
-    pin_icon.value = App.settings.pin_icon
-
-    App.ev(pin_icon, "blur", function () {
-      let pin = pin_icon.value.trim()
-
-      if (!pin) {
-        pin = App.default_settings.pin_icon
-      }
-
-      pin_icon.value = pin
-      App.settings.pin_icon = pin
-      App.stor_save_settings()
-    })
-
-    let window_icon = App.el("#settings_window_icon")
-    window_icon.value = App.settings.window_icon
-
-    App.ev(window_icon, "blur", function () {
-      let pin = window_icon.value.trim()
-
-      if (!pin) {
-        pin = App.default_settings.window_icon
-      }
-
-      window_icon.value = pin
-      App.settings.window_icon = pin
-      App.stor_save_settings()
-    })    
-
-    let history_max_results = App.el("#settings_history_max_results")
-    history_max_results.value = App.settings.history_max_results.toLocaleString()
-
-    App.ev(history_max_results, "blur", function () {
-      let num = App.string_to_int(history_max_results.value)
-
-      if (isNaN(num)) {
-        num = App.default_settings.history_max_results
-      }
-
-      history_max_results.value = num.toLocaleString()
-      App.settings.history_max_results = num
-      App.stor_save_settings()
-    })
-
-    let history_max_months = App.el("#settings_history_max_months")
-    history_max_months.value = App.settings.history_max_months.toLocaleString()
-
-    App.ev(history_max_months, "blur", function () {
-      let num = App.string_to_int(history_max_months.value)
-
-      if (isNaN(num)) {
-        num = App.default_settings.history_max_months
-      }
-
-      history_max_months.value = num.toLocaleString()
-      App.settings.history_max_months = num
-      App.stor_save_settings()
-    })  
-  
-    let all_windows = App.el("#settings_all_windows")
-    all_windows.checked = App.settings.all_windows
-
-    App.ev(all_windows, "change", function () {
-      App.settings.all_windows = all_windows.checked
-      App.stor_save_settings()
-    })
-
-    function start_color_picker (name) {
-      App[`${name}_color_picker`] = AColorPicker.createPicker(App.el(`#${name}_color_picker`), {
-        showAlpha: false,
-        showHSL: false,
-        showHEX: false,
-        showRGB: true,
-        color: App.settings[`${name}_color`]
-      })
-  
-      let change_color = App.create_debouncer(function (color) {
-        App.do_change_color(name, color)
-      }, App.color_delay)
-  
-      App[`${name}_color_picker`].on("change", function (picker, color) {
-        change_color(color)
-      })        
+      let el = App.el(`#settings_${setting}`)
+      el.value = App.settings[setting]
+    
+      App.ev(el, "change", function () {
+        App.settings[setting] = el.value
+        App.stor_save_settings()
+      })  
     }
 
-    start_color_picker("background")
-    start_color_picker("text")
+    // Checkboxes
+    for (let box of App.els(".settings_checkbox")) {
+      let setting = box.dataset.setting
 
-    App.ev(App.el("#settings_dark_theme"), "click", function () {
-      App.random_theme("dark")
-    })
+      let el = App.el(`#settings_${setting}`)
+      el.checked = App.settings[setting]
+    
+      App.ev(el, "change", function () {
+        App.settings[setting] = el.checked
+        App.stor_save_settings()
+      })
+    }
 
-    App.ev(App.el("#settings_light_theme"), "click", function () {
-      App.random_theme("light")
-    })
+    // Input Texts
+    for (let text of App.els(".settings_small_text")) {
+      let setting = text.dataset.setting
+      let type = text.dataset.type
 
-    App.ev(App.el("#settings_detect_theme"), "click", function () {
-      App.detect_theme()
-    })
+      if (type === "text") {
+        let el = App.el(`#settings_${setting}`)
+        el.value = App.settings[setting]
+    
+        App.ev(el, "blur", function () {
+          let val = el.value.trim()
+    
+          if (!val) {
+            val = App.default_settings[setting]
+          }
+    
+          el.value = val
+          App.settings[setting] = val
+          App.stor_save_settings()
+        })
+      } else if (type === "number") {
+        let el = App.el(`#settings_${setting}`)
+        el.value = App.settings[setting].toLocaleString()
+    
+        App.ev(el, "blur", function () {
+          let val = App.string_to_int(el.value)
+    
+          if (isNaN(val)) {
+            val = App.default_settings[setting]
+          }
+    
+          el.value = val.toLocaleString()
+          App.settings[setting] = val
+          App.stor_save_settings()
+        })
+      }
+    }
 
+    // Item Order
+    
     let item_order = App.el("#item_order")
 
     for (let m of App.item_order) {
@@ -149,7 +98,43 @@ App.setup_settings = function () {
       })      
 
       item_order.append(el)
+    }    
+
+    // Color Pickers
+    function start_color_picker (name) {
+      App[`${name}_color_picker`] = AColorPicker.createPicker(App.el(`#${name}_color_picker`), {
+        showAlpha: false,
+        showHSL: false,
+        showHEX: false,
+        showRGB: true,
+        color: App.settings[`${name}_color`]
+      })
+  
+      let change_color = App.create_debouncer(function (color) {
+        App.do_change_color(name, color)
+      }, App.color_delay)
+  
+      App[`${name}_color_picker`].on("change", function (picker, color) {
+        change_color(color)
+      })        
     }
+
+    start_color_picker("background")
+    start_color_picker("text")
+
+    // Theme
+
+    App.ev(App.el("#settings_dark_theme"), "click", function () {
+      App.random_theme("dark")
+    })
+
+    App.ev(App.el("#settings_light_theme"), "click", function () {
+      App.random_theme("light")
+    })
+
+    App.ev(App.el("#settings_detect_theme"), "click", function () {
+      App.detect_theme()
+    })
 
     App.ev(App.el("#settings_defaults_button"), "click", function () {
       App.stor_reset_settings()

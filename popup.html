@@ -108,51 +108,51 @@
       <div id="settings_container" class="flex_column_center gap_3">
         <div id="settings_name" class="bigger unselectable" title="Made by madprops in 2022"></div>
 
-        <select id="settings_text_mode" class="select settings_select" title="Main text to display on the items">
+        <select id="settings_text_mode" class="select settings_select" title="Main text to display on the items" data-setting="text_mode">
           <option value="title">Text Mode: Title</option>
           <option value="url">Text Mode: URL</option>
-        </select> 
-
-        <div class="separator"></div>
-        
-        <select id="settings_warn_on_tab_close" class="select settings_select" title="This is the warning when closing pins or audible tabs">
-          <option value="warn">Warn On Tab Close</option>
-          <option value="no_warn">No Warn On Tab Close</option>
-        </select>     
+        </select>    
 
         <div class="separator"></div>
 
         <div class="flex_column_center gap_2" title="How many results to fetch from history">
           <div class="unselectable">History Max Results</div>
-          <input type="text" id="settings_history_max_results" class="settings_small_text">
+          <input type="text" id="settings_history_max_results" class="settings_small_text" data-setting="history_max_results" data-type="number">
         </div>
 
         <div class="separator"></div>        
 
         <div class="flex_column_center gap_2" title="How deep to search in history">
           <div class="unselectable">History Max Months</div>
-          <input type="text" id="settings_history_max_months" class="settings_small_text">
+          <input type="text" id="settings_history_max_months" class="settings_small_text" data-setting="history_max_months" data-type="number">
         </div>
 
         <div class="separator"></div>        
 
         <div class="flex_column_center gap_2" title="Indicates that the tab is pinned">
           <div class="unselectable">Pin Icon</div>
-          <input type="text" id="settings_pin_icon" class="settings_small_text">
+          <input type="text" id="settings_pin_icon" class="settings_small_text" data-setting="pin_icon" data-type="text">
         </div>
 
         <div class="separator"></div>
         
         <div class="flex_column_center gap_2" title="Indicates that the tab belongs to the current window">
           <div class="unselectable">Window Icon</div>
-          <input type="text" id="settings_window_icon" class="settings_small_text">
+          <input type="text" id="settings_window_icon" class="settings_small_text" data-setting="window_icon" data-type="text">
         </div>    
+        
+        <div class="separator"></div>
+
+        <div class="flex_column_center gap_2" title="Whether to show tabs from all windows">
+          <div class="unselectable">Warn On Close</div>
+          <input type="checkbox" id="settings_warn_on_tab_close" class="settings_checkbox" data-setting="warn_on_tab_close">
+        </div>  
         
         <div class="separator"></div>
         
         <div class="flex_column_center gap_2" title="Whether to show tabs from all windows">
           <div class="unselectable">All Windows</div>
-          <input type="checkbox" id="settings_all_windows" class="settings_checkbox">
+          <input type="checkbox" id="settings_all_windows" class="settings_checkbox" data-setting="all_windows">
         </div>        
 
         <div class="separator"></div>
