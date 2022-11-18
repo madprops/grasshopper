@@ -1,10 +1,12 @@
 #!/usr/bin/env ruby
+require "json"
 
 # Main function
 def main()
-  name = ARGV[0]
-  version = ARGV[1]
-  zip_name = "#{name}_v#{version}.zip"
+  file = File.read("manifest.json")
+  manifest = JSON.parse(file)
+  version = manifest["version"]
+  zip_name = "grasshopper_v#{version}.zip"
   `zip #{zip_name} -x \*.zip -r \*`
   puts "Created #{zip_name}"
 end
