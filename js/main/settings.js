@@ -116,25 +116,25 @@ App.setup_settings = function () {
       App.start_color_picker("background")
       App.start_color_picker("text")
       App.el("#settings_theme").classList.remove("hidden")
+
+      App.ev(App.el("#settings_dark_theme"), "click", function () {
+        App.random_theme("dark")
+      })
+  
+      App.ev(App.el("#settings_light_theme"), "click", function () {
+        App.random_theme("light")
+      })
+  
+      App.ev(App.el("#settings_detect_theme"), "click", function () {
+        App.detect_theme()
+      })
+
       this.remove()
-    })
-
-    // Themes
-    App.ev(App.el("#settings_dark_theme"), "click", function () {
-      App.random_theme("dark")
-    })
-
-    App.ev(App.el("#settings_light_theme"), "click", function () {
-      App.random_theme("light")
-    })
-
-    App.ev(App.el("#settings_detect_theme"), "click", function () {
-      App.detect_theme()
     })
 
     App.ev(App.el("#settings_defaults_button"), "click", function () {
       App.stor_reset_settings()
-    })
+    })    
   }}) 
 }
 
