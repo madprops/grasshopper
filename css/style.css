@@ -340,8 +340,12 @@ body, html {
 }
 
 #about_shortcuts {
+  display: flex;
+  flex-direction: column;
   background-color: var(--alt_color);
   padding: 1.5rem;
+  align-items: flex-start;
+  gap: 0.8rem;
 }
 
 a:visited, a:link, a:hover {
