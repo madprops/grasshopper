@@ -107,15 +107,16 @@ App.setup_settings = function () {
     // Item Order
     App.ev(App.el("#item_order_show"), "click", function () {
       App.start_item_order()
+      App.el("#settings_order").classList.remove("hidden")
+      this.remove()
     })
     
     // Color pickers
-    App.ev(App.el("#background_color_picker_show"), "click", function () {
+    App.ev(App.el("#settings_show_theme"), "click", function () {
       App.start_color_picker("background")
-    })
-
-    App.ev(App.el("#text_color_picker_show"), "click", function () {
       App.start_color_picker("text")
+      App.el("#settings_theme").classList.remove("hidden")
+      this.remove()
     })
 
     // Themes
@@ -139,9 +140,7 @@ App.setup_settings = function () {
 
 // Start a color picker
 App.start_color_picker = function (name) {
-  App.el(`#${name}_color_picker_show`).remove()
   let el = App.el(`#${name}_color_picker`)
-  el.classList.remove("hidden")
 
   App[`${name}_color_picker`] = AColorPicker.createPicker(el, {
     showAlpha: false,
@@ -162,9 +161,7 @@ App.start_color_picker = function (name) {
 
 // Start window order
 App.start_item_order = function () {
-  App.el("#item_order_show").remove()
   let container = App.el("#item_order")
-  container.classList.remove("hidden")
 
   for (let m of App.item_order) {
     let el = App.create("div", "item_order_item flex_row_center gap_2")
