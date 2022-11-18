@@ -934,7 +934,7 @@ App.make_items_select = function (mode) {
 
   let separator = App.create("option")
   separator.value = "none"
-  separator.textContent = "------"
+  separator.textContent = "--------"
   separator.disabled = true
   select.append(separator)
 
