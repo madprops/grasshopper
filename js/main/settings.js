@@ -70,7 +70,6 @@ App.setup_settings = function () {
     }
 
     // Item Order
-    
     let item_order = App.el("#item_order")
 
     for (let m of App.item_order) {
@@ -122,8 +121,7 @@ App.setup_settings = function () {
     start_color_picker("background")
     start_color_picker("text")
 
-    // Theme
-
+    // Themes
     App.ev(App.el("#settings_dark_theme"), "click", function () {
       App.random_theme("dark")
     })
