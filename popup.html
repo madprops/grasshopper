@@ -109,21 +109,13 @@
       <div class="settings_container unselectable">
         <div class="bigger">Settings</div>
 
-        <div class="separator"></div>
+        <button id="settings_show_basic" class="button settings_button">1. Basic Settings</button>
 
-        <button id="settings_show_basic" class="button settings_main_button">1. Basic Settings</button>
+        <button id="settings_show_order" class="button settings_button">2. Order Settings</button>     
 
-        <div class="separator"></div>
-
-        <button id="settings_show_order" class="button settings_main_button">2. Order Settings</button>     
-
-        <div class="separator"></div>
-
-        <button id="settings_show_theme" class="button settings_main_button">3. Theme Settings</button>
+        <button id="settings_show_theme" class="button settings_button">3. Theme Settings</button>
         
-        <div class="separator"></div>
-        
-        <button id="settings_defaults_button" class="button settings_main_button" title="Reset settings to defaults">Reset Settings</button>
+        <button id="settings_defaults_button" class="button settings_button" title="Reset settings to defaults">Reset Settings</button>
       </div>
     </template>  
 
@@ -219,10 +211,10 @@
 
         <div class="separator"></div>
         
-        <div class="flex_row_center gap_2">
-          <button id="settings_dark_theme" class="button" title="Random dark theme">Dark Theme</button>
-          <button id="settings_light_theme" class="button" title="Random light theme">Light Theme</button>
-          <button id="settings_detect_theme" class="button" title="Detect browser theme">Detect Theme</button>
+        <div class="flex_column_center gap_2">
+          <button id="settings_dark_theme" class="button settings_button" title="Random dark theme">Dark Theme</button>
+          <button id="settings_light_theme" class="button settings_button" title="Random light theme">Light Theme</button>
+          <button id="settings_detect_theme" class="button settings_button" title="Detect browser theme">Detect Theme</button>
         </div>
       </div>
     </template>
