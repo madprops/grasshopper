@@ -354,9 +354,23 @@ App.show_close_menu = function () {
   let items = []
 
   items.push({
+    text: "Close Pinned Tabs",
+    action: function () {
+      App.close_pinned_tabs()
+    }
+  })    
+
+  items.push({
     text: "Close Playing Tabs",
     action: function () {
       App.close_playing_tabs()
+    }
+  }) 
+
+  items.push({
+    text: "Close Muted Tabs",
+    action: function () {
+      App.close_muted_tabs()
     }
   }) 
 
@@ -366,13 +380,6 @@ App.show_close_menu = function () {
       App.close_suspended_tabs()
     }
   })
-
-  items.push({
-    text: "Close Pinned Tabs",
-    action: function () {
-      App.close_pinned_tabs()
-    }
-  })  
 
   items.push({
     text: "Close All Tabs",
@@ -570,6 +577,31 @@ App.close_playing_tabs = function () {
   let s = App.plural(ids.length, "tab", "tabs")
 
   if (confirm(`Close playing tabs? (${s})`)) {
+    for (let id of ids) {
+      App.close_tab(id)
+    }
+  }
+}
+
+// Close muted tabs
+App.close_muted_tabs = function () {
+  let ids = []
+
+  for (let tab of App.tabs_items) {
+    if (!tab.visible || !tab.muted) {
+      continue
+    }
+    
+    ids.push(tab.id)
+  }
+
+  if (ids.length === 0) {
+    return
+  }
+  
+  let s = App.plural(ids.length, "tab", "tabs")
+
+  if (confirm(`Close muted tabs? (${s})`)) {
     for (let id of ids) {
       App.close_tab(id)
     }
