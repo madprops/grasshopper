@@ -343,3 +343,7 @@ body, html {
   background-color: var(--alt_color);
   padding: 1.5rem;
 }
+
+a:visited, a:link, a:hover {
+	color: var(--text_color);
+}
