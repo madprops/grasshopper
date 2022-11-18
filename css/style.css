@@ -232,7 +232,7 @@ body, html {
   text-align: center;
 }
 
-.settings_small_text {
+.settings_text {
   background-color: transparent;
   color: var(--text_color);
   outline: 1px solid var(--alt_color_2);

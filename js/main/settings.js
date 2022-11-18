@@ -56,7 +56,7 @@ App.setup_settings = function () {
     }
 
     // Input Texts
-    for (let item of App.els(".settings_small_text")) {
+    for (let item of App.els(".settings_text")) {
       let setting = item.dataset.setting
       let type = item.dataset.type
       let min = parseInt(item.dataset.min)
