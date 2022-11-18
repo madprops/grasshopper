@@ -19,116 +19,24 @@ App.default_settings = {
 // Setup settings
 App.setup_settings = function () {
   App.create_window({id: "settings", setup: function () {
-    function do_action (what) {
-      if (what === "theme") {
-        App.apply_theme()
-      }
-    }
-
-    // Selects
-    for (let item of App.els(".settings_select")) {
-      let setting = item.dataset.setting
-      let action = item.dataset.action
-
-      let el = App.el(`#settings_${setting}`)
-      el.value = App.settings[setting]
-    
-      App.ev(el, "change", function () {
-        App.settings[setting] = el.value
-        App.stor_save_settings()
-        do_action(action)        
-      })
-    }
-
-    // Checkboxes
-    for (let item of App.els(".settings_checkbox")) {
-      let setting = item.dataset.setting
-      let action = item.dataset.action
-
-      let el = App.el(`#settings_${setting}`)
-      el.checked = App.settings[setting]
-    
-      App.ev(el, "change", function () {
-        App.settings[setting] = el.checked
-        App.stor_save_settings()
-        do_action(action)
-      })
-    }
-
-    // Input Texts
-    for (let item of App.els(".settings_text")) {
-      let setting = item.dataset.setting
-      let type = item.dataset.type
-      let min = parseInt(item.dataset.min)
-      let max = parseInt(item.dataset.max)
-      let action = item.dataset.action
-
-      if (type === "text") {
-        let el = App.el(`#settings_${setting}`)
-        el.value = App.settings[setting]
-    
-        App.ev(el, "blur", function () {
-          let val = el.value.trim()
-    
-          if (!val) {
-            val = App.default_settings[setting]
-          }
-    
-          el.value = val
-          App.settings[setting] = val
-          App.stor_save_settings()
-          do_action(action)          
-        })
-      } else if (type === "number") {
-        let el = App.el(`#settings_${setting}`)
-        el.value = App.settings[setting].toLocaleString()
-    
-        App.ev(el, "blur", function () {
-          let val = parseInt(el.value)
-    
-          if (isNaN(val)) {
-            val = App.default_settings[setting]
-          }
-
-          if (min && min > val) {
-            val = min
-          } else if (max && max < val) {
-            val = max
-          }
-    
-          el.value = val.toLocaleString()
-          App.settings[setting] = val
-          App.stor_save_settings()
-          do_action(action)          
-        })
-      }
-    }
+    // Basic settings
+    App.ev(App.el("#settings_show_basic"), "click", function () {
+      App.start_basic_settings()
+      App.el("#settings_basic").classList.remove("hidden")
+      this.remove()
+    })
 
     // Item Order
-    App.ev(App.el("#item_order_show"), "click", function () {
-      App.start_item_order()
+    App.ev(App.el("#settings_show_order"), "click", function () {
+      App.start_order_settings()
       App.el("#settings_order").classList.remove("hidden")
       this.remove()
     })
     
     // Color pickers
     App.ev(App.el("#settings_show_theme"), "click", function () {
-      App.start_color_picker("background")
-      App.start_color_picker("text")
+      App.start_theme_settings()      
       App.el("#settings_theme").classList.remove("hidden")
-
-      App.ev(App.el("#settings_dark_theme"), "click", function () {
-        App.random_theme("dark")
-      })
-  
-      App.ev(App.el("#settings_light_theme"), "click", function () {
-        App.random_theme("light")
-      })
-  
-      App.ev(App.el("#settings_detect_theme"), "click", function () {
-        App.detect_theme()
-      })
-
       this.remove()
     })
 
@@ -138,29 +46,46 @@ App.setup_settings = function () {
   }}) 
 }
 
-// Start a color picker
-App.start_color_picker = function (name) {
-  let el = App.el(`#${name}_color_picker`)
+// Start theme settings
+App.start_theme_settings = function () {
+  function start_color_picker (name) {
+    let el = App.el(`#${name}_color_picker`)
 
-  App[`${name}_color_picker`] = AColorPicker.createPicker(el, {
-    showAlpha: false,
-    showHSL: false,
-    showHEX: false,
-    showRGB: true,
-    color: App.settings[`${name}_color`]
+    App[`${name}_color_picker`] = AColorPicker.createPicker(el, {
+      showAlpha: false,
+      showHSL: false,
+      showHEX: false,
+      showRGB: true,
+      color: App.settings[`${name}_color`]
+    })
+  
+    let change_color = App.create_debouncer(function (color) {
+      App.do_change_color(name, color)
+    }, App.color_delay)
+  
+    App[`${name}_color_picker`].on("change", function (picker, color) {
+      change_color(color)
+    })     
+  }
+
+  start_color_picker("background")
+  start_color_picker("text")
+  
+  App.ev(App.el("#settings_dark_theme"), "click", function () {
+    App.random_theme("dark")
   })
-
-  let change_color = App.create_debouncer(function (color) {
-    App.do_change_color(name, color)
-  }, App.color_delay)
-
-  App[`${name}_color_picker`].on("change", function (picker, color) {
-    change_color(color)
-  })        
+  
+  App.ev(App.el("#settings_light_theme"), "click", function () {
+    App.random_theme("light")
+  })
+  
+  App.ev(App.el("#settings_detect_theme"), "click", function () {
+    App.detect_theme()
+  })
 }
 
 // Start window order
-App.start_item_order = function () {
+App.start_order_settings = function () {
   let container = App.el("#item_order")
 
   for (let m of App.item_order) {
@@ -188,5 +113,93 @@ App.start_item_order = function () {
     })      
 
     container.append(el)
+  }  
+}
+
+// Start basic settings
+App.start_basic_settings = function () {
+  function do_action (what) {
+    if (what === "theme") {
+      App.apply_theme()
+    }
+  }
+
+  // Selects
+  for (let item of App.els(".settings_select")) {
+    let setting = item.dataset.setting
+    let action = item.dataset.action
+
+    let el = App.el(`#settings_${setting}`)
+    el.value = App.settings[setting]
+  
+    App.ev(el, "change", function () {
+      App.settings[setting] = el.value
+      App.stor_save_settings()
+      do_action(action)        
+    })
+  }
+
+  // Checkboxes
+  for (let item of App.els(".settings_checkbox")) {
+    let setting = item.dataset.setting
+    let action = item.dataset.action
+
+    let el = App.el(`#settings_${setting}`)
+    el.checked = App.settings[setting]
+  
+    App.ev(el, "change", function () {
+      App.settings[setting] = el.checked
+      App.stor_save_settings()
+      do_action(action)
+    })
+  }
+
+  // Input Texts
+  for (let item of App.els(".settings_text")) {
+    let setting = item.dataset.setting
+    let type = item.dataset.type
+    let min = parseInt(item.dataset.min)
+    let max = parseInt(item.dataset.max)
+    let action = item.dataset.action
+
+    if (type === "text") {
+      let el = App.el(`#settings_${setting}`)
+      el.value = App.settings[setting]
+  
+      App.ev(el, "blur", function () {
+        let val = el.value.trim()
+  
+        if (!val) {
+          val = App.default_settings[setting]
+        }
+  
+        el.value = val
+        App.settings[setting] = val
+        App.stor_save_settings()
+        do_action(action)          
+      })
+    } else if (type === "number") {
+      let el = App.el(`#settings_${setting}`)
+      el.value = App.settings[setting].toLocaleString()
+  
+      App.ev(el, "blur", function () {
+        let val = parseInt(el.value)
+  
+        if (isNaN(val)) {
+          val = App.default_settings[setting]
+        }
+
+        if (min && min > val) {
+          val = min
+        } else if (max && max < val) {
+          val = max
+        }
+  
+        el.value = val.toLocaleString()
+        App.settings[setting] = val
+        App.stor_save_settings()
+        do_action(action)          
+      })
+    }
   }  
 }
