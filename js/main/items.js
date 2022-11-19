@@ -173,7 +173,7 @@ App.do_item_filter = function (mode) {
   let value = App.el(`#${mode}_filter`).value.trim()
 
   if (value === "iddqd") {
-    App.el(`#window_${mode}`).classList.add("invert")
+    App.el("#main").classList.add("invert")
     return
   }
 

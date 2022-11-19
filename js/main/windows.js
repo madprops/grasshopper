@@ -58,7 +58,7 @@ App.create_window = function (args) {
 
   el.append(content)
   w.element = el
-  document.body.append(el)
+  App.el("#main").append(el)
   w.setup = false
 
   w.show = function () {
