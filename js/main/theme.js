@@ -84,7 +84,6 @@ App.get_light_theme = function () {
 // Attempt to detect browser theme
 App.detect_theme = async function () {
   let theme = await browser.theme.getCurrent()
-  console.log(theme)
 
   if (theme.colors.toolbar && theme.colors.toolbar_text) {
     if (theme.colors.toolbar !== theme.colors.toolbar_text) {
