@@ -174,6 +174,11 @@ App.do_item_filter = function (mode) {
 
   if (value === "iddqd") {
     App.el("#main").classList.add("invert")
+    App.set_filter(mode, "")
+    return
+  } else if (value === "idkfa") {
+    App.el("#main").classList.add("hue_rotate")
+    App.set_filter(mode, "")
     return
   }
 
