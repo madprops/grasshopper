@@ -19,7 +19,7 @@ App.setup_stars = function () {
   }, after_show: function () {
     App.update_star_editor_info()
   }, on_hide: function () {
-    App.windows[App.last_window_mode].show(false)
+    App.show_last_window()
   }})
 }
 
@@ -88,8 +88,9 @@ App.unstar_item = function () {
     return
   }
 
-  App.remove_item("stars", App.star_edited)
-  App.hide
+  if (App.stars_items) {
+    App.remove_item("stars", App.selected_stars_item)
+  }
   
   for (let [i, it] of App.stars.items.entries()) {
     if (it.id === App.star_edited.id) {

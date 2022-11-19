@@ -116,5 +116,5 @@ App.show_window = function (mode) {
 
 // Show the last window
 App.show_last_window = function () {
-  App.show_window(App.last_window_mode)
+  App.windows[App.last_window_mode].show(false)
 }
