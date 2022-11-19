@@ -126,37 +126,9 @@ App.refresh_tab = async function (id) {
   let info = await browser.tabs.get(id)
 
   if (tab) {
-    App.update_tab(tab, info)
+    App.update_item("tabs", tab.id, info)
   } else {
     App.prepend_tab(info)
-  }
-}
-
-// Update a tab
-App.update_tab = function (o_tab, info) {
-  for (let [i, it] of App.tabs_items.entries()) {
-    if (it.id === o_tab.id) {
-      let tab = App.process_item("tabs", info)
-      
-      if (!tab) {
-        break
-      }
-
-      if (!it.visible) {
-        App.hide_item(tab)
-      }
-      
-      let selected = App.selected_tabs_item === it
-      App.create_item_element("tabs", tab)
-      App.tabs_items[i].element.replaceWith(tab.element)
-      App.tabs_items[i] = tab
-
-      if (selected) {
-        App.select_item("tabs", tab)
-      }
-
-      break
-    }
   }
 }
 

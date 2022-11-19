@@ -139,6 +139,11 @@ App.star_editor_save = async function () {
       star.title = title
       star.url = url
       App.update_star(star)
+
+      if (App.stars_items) {
+        App.update_item("stars", App.star_edited.id, star)
+      }
+
       App.hide_star_editor()
       return
     }

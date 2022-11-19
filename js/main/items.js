@@ -1077,3 +1077,33 @@ App.show_launched = function (item) {
   let launched = App.el(".item_info_launched", item.element)
   launched.textContent = "(Launched)"
 }
+
+// Update item
+App.update_item = function (mode, id, source) {
+  for (let [i, it] of App[`${mode}_items`].entries()) {
+    if (it.id !== id) {
+      continue
+    }
+    
+    let new_item = App.process_item(mode, source)
+      
+    if (!new_item) {
+      break
+    }
+
+    if (!it.visible) {
+      App.hide_item(new_item)
+    }
+
+    let selected = App[`selected_${mode}_item`] === it
+    App.create_item_element(mode, new_item)
+    App[`${mode}_items`][i].element.replaceWith(new_item.element)
+    App[`${mode}_items`][i] = new_item
+
+    if (selected) {
+      App.select_item(mode, new_item)
+    }
+
+    break
+  }
+}
