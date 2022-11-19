@@ -20,10 +20,6 @@ body, html {
   background-color: var(--background_color);
 }
 
-#main {
-  overflow: hidden;
-}
-
 .window_main {
   position: fixed;
   display: none;
