@@ -156,6 +156,8 @@ App.remove_item = function (mode, item) {
   } else {
     App.select_first_item(mode)
   }
+
+  App.update_info(mode)
 }
 
 App.focus_filter = function (mode) {

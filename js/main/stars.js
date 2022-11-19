@@ -89,7 +89,11 @@ App.unstar_item = function () {
   }
 
   if (App.stars_items) {
-    App.remove_item("stars", App.selected_stars_item)
+    let item = App.get_item_by_id("stars", App.star_edited.id)
+
+    if (item) {
+      App.remove_item("stars", item)
+    }
   }
   
   for (let [i, it] of App.stars.items.entries()) {

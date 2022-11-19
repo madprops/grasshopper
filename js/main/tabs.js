@@ -287,8 +287,6 @@ App.remove_closed_tab = function (id) {
   if (tab) {
     App.remove_item("tabs", tab)
   }
-
-  App.update_info("tabs")
 }
 
 // Tabs action
