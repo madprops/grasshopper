@@ -339,6 +339,10 @@ body, html {
   background-color: var(--alt_color) !important;
 }
 
+#about_container {
+  padding-bottom: 2rem;
+}
+
 #about_shortcuts {
   display: flex;
   flex-direction: column;
