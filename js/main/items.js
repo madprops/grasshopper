@@ -297,20 +297,20 @@ App.show_item_menu = function (mode, item, x, y) {
     })
   }
 
+  items.push({
+    text: "Copy...",
+    action: function () {
+      App.show_copy_menu(x, y, item)
+    }
+  })  
+
   if (mode === "tabs") {
     items.push({
       text: "Move...",
       action: function () {
         App.show_move_menu(x, y, item)
       }
-    })  
-
-    items.push({
-      text: "Copy...",
-      action: function () {
-        App.show_copy_menu(x, y, item)
-      }
-    })    
+    })     
     
     items.push({
       text: "More...",
