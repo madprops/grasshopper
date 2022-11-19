@@ -10,11 +10,22 @@ App.setup_stars = function () {
     App.ev(App.el("#star_editor_save"), "click", function () {
       App.star_editor_save()
     })
+
+    App.ev(App.el("#star_editor_unstar"), "click", function () {
+      App.unstar_item()
+    })
   }, on_x: function () {
     App.show_last_window()
   }, after_show: function () {
     App.update_star_editor_info()
+  }, on_hide: function () {
+    App.windows[App.last_window_mode].show(false)
   }})
+}
+
+// Hide star editor
+App.hide_star_editor = function () {
+  App.windows.star_editor.hide()
 }
 
 // Stars action
@@ -68,17 +79,27 @@ App.star_item = function (item) {
 }
 
 // Remove an item from stars
-App.unstar_item = function (item) {
-  App.remove_item("stars", item)
+App.unstar_item = function () {
+  if (!App.star_edited) {
+    return
+  }
+
+  if (!confirm("Remove this star?")) {
+    return
+  }
+
+  App.remove_item("stars", App.star_edited)
+  App.hide
   
   for (let [i, it] of App.stars.items.entries()) {
-    if (it.id === item.id) {
+    if (it.id === App.star_edited.id) {
       App.stars.items.splice(i, 1)
       break
     }
   }
 
   App.stor_save_stars()
+  App.hide_star_editor()
 }
 
 // Show stars editor
@@ -90,7 +111,7 @@ App.show_star_editor = async function (item) {
   App.el("#star_editor_title").focus()
 }
 
-// Update star information
+// Add or update star information
 App.star_editor_save = async function () {
   let title = App.el("#star_editor_title").value.trim()
   let url = App.el("#star_editor_url").value.trim()
@@ -113,7 +134,7 @@ App.star_editor_save = async function () {
       star.title = title
       star.url = url
       App.update_star(star)
-      App.show_item_window("stars")
+      App.hide_star_editor()
       return
     }
   }
@@ -123,7 +144,7 @@ App.star_editor_save = async function () {
     url: url
   })
 
-  App.show_item_window("stars")
+  App.hide_star_editor()
 }
 
 // Get star by id
@@ -161,13 +182,6 @@ App.new_star = function (title = "", url = "") {
   App.el("#star_editor_title").focus()
 }
 
-// Confirm un-star item
-App.confirm_unstar_item = function (item) {
-  if (confirm("Remove this star?")) {
-    App.unstar_item(item)
-  }
-}
-
 // Add a star or edit an existing one
 App.add_or_edit_star = async function (item) {
   let star = await App.get_star_by_url(item.url)
@@ -186,13 +200,15 @@ App.update_star_editor_info = function () {
   let visited = App.el("#star_editor_visited")
   let save = App.el("#star_editor_save")
 
-  if (App.star_edited && App.star_edited.date_added) {
+  if (App.star_edited) {
     save.textContent = "Update"
     visited.textContent = App.nice_date(App.star_edited.date_last_visit)
     added.textContent = App.nice_date(App.star_edited.date_added)
     info.classList.remove("hidden")
+    App.el("#star_editor_unstar").classList.remove("hidden")
   } else {
     save.textContent = "Save"
     info.classList.add("hidden")
+    App.el("#star_editor_unstar").classList.add("hidden")
   }
 }

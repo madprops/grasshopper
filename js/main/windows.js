@@ -61,7 +61,7 @@ App.create_window = function (args) {
   App.el("#main").append(el)
   w.setup = false
 
-  w.show = function () {
+  w.show = function (scroll = true) {
     if (args.setup && !w.setup) {
       args.setup()
       w.setup = true
@@ -72,7 +72,10 @@ App.create_window = function (args) {
     w.element.style.display = "flex"
     App.last_window_mode = App.window_mode
     App.window_mode = args.id
-    content.scrollTop = 0
+
+    if (scroll) {
+      content.scrollTop = 0
+    }
 
     if (args.after_show) {
       args.after_show()

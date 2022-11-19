@@ -298,14 +298,12 @@ App.show_item_menu = function (mode, item, x, y) {
     }
   }
 
-  if (mode !== "stars") {
-    items.push({
-      text: "Star...",
-      action: function () {
-        App.add_or_edit_star(item)
-      }
-    })
-  }
+  items.push({
+    text: "Star...",
+    action: function () {
+      App.add_or_edit_star(item)
+    }
+  })
 
   items.push({
     text: "Copy...",
@@ -333,20 +331,6 @@ App.show_item_menu = function (mode, item, x, y) {
       text: "Close",
       action: function () {
         App.confirm_close_tab(item)
-      }
-    })
-  } else if (mode === "stars") {
-    items.push({
-      text: "Edit Star...",
-      action: function () {
-        App.show_star_editor(item)
-      }
-    })
-
-    items.push({
-      text: "Un-Star",
-      action: function () {
-        App.confirm_unstar_item(item)
       }
     })
   }
