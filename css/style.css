@@ -355,3 +355,7 @@ body, html {
 a:visited, a:link, a:hover {
 	color: var(--text_color);
 }
+
+.invert {
+  filter: invert(100%);
+}
