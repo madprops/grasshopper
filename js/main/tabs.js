@@ -1,22 +1,34 @@
 // Setup tabs
 App.setup_tabs = function () {
-  App.setup_item_window("tabs")
+  let filter_modes = [
+    ["all", "All"],
+    ["pins", "Pins"],
+    ["normal", "Normal"],
+    ["playing", "Playing"],
+    ["muted", "Muted"],
+    ["suspended", "Suspended"],
+    ["secure", "Secure"],
+    ["insecure", "Insecure"],
+    ["this_window", "This Window"],
+    ["other_window", "Other Window"]
+  ]
 
-  App.ev(App.el("#tabs_playing_button"), "click", function () {
-    App.go_to_playing_tab()
-  })
+  let buttons = [
+    ["tabs_playing_button", "Go To A Tab Emitting Sound", "Playing", function () {
+      App.go_to_playing_tab()
+    }],
+    ["tabs_clean_button", "Close Normal Tabs", "Clean", function () {
+      App.clean_tabs()
+    }],
+    ["tabs_more_button", "More Actions", "More", function () {
+      App.show_tabs_menu()
+    }],
+    ["tabs_new_button", "New Tab", "+", function () {
+      App.new_tab()
+    }]
+  ]
 
-  App.ev(App.el("#tabs_clean_button"), "click", function () {
-    App.clean_tabs()
-  })  
-
-  App.ev(App.el("#tabs_more_button"), "click", function () {
-    App.show_tabs_menu()
-  })
-
-  App.ev(App.el("#tabs_new_button"), "click", function () {
-    App.new_tab()
-  })
+  App.setup_item_window("tabs", filter_modes, buttons)
 
   browser.tabs.onUpdated.addListener(function (id) {
     if (App.window_mode === "tabs") {

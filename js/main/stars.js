@@ -1,10 +1,12 @@
 // Setup stars
 App.setup_stars = function () {
-  App.setup_item_window("stars")
+  let buttons = [
+    ["stars_new_button", "New Star", "+", function () {
+      App.new_star()
+    }]
+  ]
 
-  App.ev(App.el("#stars_new_button"), "click", function () {
-    App.new_star()
-  })
+  App.setup_item_window("stars", [], buttons)
   
   App.create_window({id: "star_editor", setup: function () {
     App.ev(App.el("#star_editor_save"), "click", function () {

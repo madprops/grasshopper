@@ -766,7 +766,7 @@ App.show_item_window = async function (mode, cycle = false) {
 }
 
 // Setup an item window
-App.setup_item_window = function (mode) {
+App.setup_item_window = function (mode, filter_modes, buttons) {
   let args = {}
   args.id = mode
   args.close_button = false
@@ -780,11 +780,37 @@ App.setup_item_window = function (mode) {
     let win = App.el(`#window_content_${mode}`)
     let container = App.create("div", "container unselectable", `${mode}_container`)
     let footer = App.create("div", "footer unselectable", `${mode}_footer`)
-    let top = App.el(`#${mode}_top_container`)
+    let top = App.create("div", "item_top_container", `${mode}_top_container`)
+    App.el(`#window_top_${mode}`).append(top)
 
     win.append(container)
     win.append(footer)
 
+    let footer_left = App.create("div", "footer_left")
+    footer.append(footer_left)
+
+    let footer_right = App.create("div", "footer_right")
+    footer.append(footer_right)
+
+    App.setup_window_mouse(mode)     
+
+    // 1
+    let items_select = App.make_items_select(mode)
+    top.append(items_select) 
+
+    let filter = App.create("input", "filter", `${mode}_filter`)
+    filter.type = "text"
+    filter.autocomplete = "off"
+    filter.placeholder = "Filter"
+
+    // 2
+    App.ev(filter, "input", function () {
+      item_filter()
+    })  
+
+    top.append(filter)  
+    
+    // 3
     let clear_filter = App.create("button", "button clear_filter_button", `${mode}_clear_filter`)
     clear_filter.title = "Clear Filter"
     clear_filter.textContent = "X"
@@ -794,65 +820,58 @@ App.setup_item_window = function (mode) {
       App.clear_filter(mode)
     })  
 
-    top.prepend(clear_filter)
+    top.append(clear_filter)
 
-    let generic_filter_mode = App.el(".generic_filter_mode", top)
+    // 4
+    let filter_mode_select = App.create("select", "select filter_mode_select", `${mode}_filter_mode`)
+    filter_mode_select.title = "Filter Mode"
 
-    if (generic_filter_mode) {
-      let select = App.create("select", "select filter_mode_select", `${mode}_filter_mode`)
-      select.title = "Filter Mode"
-      
+    if (filter_modes) {
+      for (let m of filter_modes) {
+        let o = App.create("option")
+        o.value = m[0]
+        o.selected = true
+        o.textContent = m[1]
+        filter_mode_select.append(o)
+      }
+    } else { 
       let o1 = App.create("option")
       o1.value = "all"
       o1.selected = true
       o1.textContent = "All"
-      select.append(o1)
+      filter_mode_select.append(o1)
 
       let o2 = App.create("option")
       o2.value = "secure"
       o2.textContent = "Secure"
-      select.append(o2)
+      filter_mode_select.append(o2)
 
       let o3 = App.create("option")
       o3.value = "insecure"
       o3.textContent = "Insecure"
-      select.append(o3)
-
-      generic_filter_mode.replaceWith(select)
+      filter_mode_select.append(o3)
     }
     
-    let filter = App.create("input", "filter", `${mode}_filter`)
-    filter.type = "text"
-    filter.autocomplete = "off"
-    filter.placeholder = "Filter"
+    App.ev(filter_mode_select, "change", function () {
+      App.do_item_filter(mode)
+    })
 
-    App.ev(filter, "input", function () {
-      item_filter()
+    App.wrap_select(filter_mode_select, function () {
+      App.do_item_filter(mode)
     })  
 
-    top.prepend(filter)
+    top.append(filter_mode_select)
 
-    let filter_mode = App.el(`#${mode}_filter_mode`)
-
-    if (filter_mode) {
-      App.ev(filter_mode, "change", function () {
-        App.do_item_filter(mode)
-      })
-  
-      App.wrap_select(filter_mode, function () {
-        App.do_item_filter(mode)
-      })    
-    }
-
-    let footer_left = App.create("div", "footer_left")
-    footer.append(footer_left)
-
-    let footer_right = App.create("div", "footer_right")
-    footer.append(footer_right)
-
-    let select = App.make_items_select(mode)
-    top.prepend(select) 
-    App.setup_window_mouse(mode) 
+    // 5
+    if (buttons) {
+      for (let b of buttons) {
+        let button = App.create("button", "button", b[0])
+        button.title = b[1]
+        button.textContent = b[2]
+        App.ev(button, "click", b[3])
+        top.append(button)
+      }
+    }    
   }
 
   App.create_window(args) 

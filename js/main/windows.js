@@ -25,7 +25,7 @@ App.create_window = function (args) {
   let el = App.create("div", "window_main", `window_${args.id}`)
 
   if (args.show_top) {
-    let top = App.create("div", `window_top window_top_${args.align_top}`)
+    let top = App.create("div", `window_top window_top_${args.align_top}`, `window_top_${args.id}`)
     let top_html = App.get_template(`${args.id}_top`)
 
     if (top_html) {
