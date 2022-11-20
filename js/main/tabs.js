@@ -315,14 +315,14 @@ App.show_tabs_menu = function () {
   })
 
   items.push({
-    text: "Pin All Tabs",
+    text: "Pin Tabs",
     action: function () {
       App.pin_all_tabs()
     }
   })
 
   items.push({
-    text: "Unpin All Tabs",
+    text: "Unpin Tabs",
     action: function () {
       App.unpin_all_tabs()
     }
@@ -347,14 +347,7 @@ App.show_tabs_menu = function () {
 
 // Show close menu
 App.show_close_menu = function () {
-  let items = []
-
-  items.push({
-    text: "Close Pinned Tabs",
-    action: function () {
-      App.close_pinned_tabs()
-    }
-  })    
+  let items = []  
 
   items.push({
     text: "Close Playing Tabs",
@@ -362,20 +355,6 @@ App.show_close_menu = function () {
       App.close_playing_tabs()
     }
   }) 
-
-  items.push({
-    text: "Close Muted Tabs",
-    action: function () {
-      App.close_muted_tabs()
-    }
-  }) 
-
-  items.push({
-    text: "Close Suspended Tabs",
-    action: function () {
-      App.close_suspended_tabs()
-    }
-  })
 
   items.push({
     text: "Close All Tabs",
@@ -504,56 +483,6 @@ App.suspend_tabs = function (type) {
   }  
 }
 
-// Close suspended tabs
-App.close_suspended_tabs = function () {
-  let ids = []
-
-  for (let tab of App.tabs_items) {
-    if (!tab.visible || !tab.discarded) {
-      continue
-    }
-    
-    ids.push(tab.id)
-  }
-
-  if (ids.length === 0) {
-    return
-  }
-  
-  let s = App.plural(ids.length, "tab", "tabs")
-
-  if (confirm(`Close suspended tabs? (${s})`)) {
-    for (let id of ids) {
-      App.close_tab(id)
-    }
-  }
-}
-
-// Close pinned tabs
-App.close_pinned_tabs = function () {
-  let ids = []
-
-  for (let tab of App.tabs_items) {
-    if (!tab.visible || !tab.pinned) {
-      continue
-    }
-    
-    ids.push(tab.id)
-  }
-
-  if (ids.length === 0) {
-    return
-  }
-  
-  let s = App.plural(ids.length, "tab", "tabs")
-
-  if (confirm(`Close pinned tabs? (${s})`)) {
-    for (let id of ids) {
-      App.close_tab(id)
-    }
-  }
-}
-
 // Close playing tabs
 App.close_playing_tabs = function () {
   let ids = []
@@ -573,31 +502,6 @@ App.close_playing_tabs = function () {
   let s = App.plural(ids.length, "tab", "tabs")
 
   if (confirm(`Close playing tabs? (${s})`)) {
-    for (let id of ids) {
-      App.close_tab(id)
-    }
-  }
-}
-
-// Close muted tabs
-App.close_muted_tabs = function () {
-  let ids = []
-
-  for (let tab of App.tabs_items) {
-    if (!tab.visible || !tab.muted) {
-      continue
-    }
-    
-    ids.push(tab.id)
-  }
-
-  if (ids.length === 0) {
-    return
-  }
-  
-  let s = App.plural(ids.length, "tab", "tabs")
-
-  if (confirm(`Close muted tabs? (${s})`)) {
     for (let id of ids) {
       App.close_tab(id)
     }
@@ -627,13 +531,11 @@ App.close_tabs = function () {
       App.close_tab(id)
     }
   }
-
-  App.clear_filter("tabs")
 }
 
 // Check if tab is normal
 App.tab_is_normal = function (tab) {
-  let special = tab.pinned || tab.audible || tab.discarded
+  let special = tab.pinned || tab.audible
   return !special
 }
 

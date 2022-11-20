@@ -158,6 +158,12 @@ App.remove_item = function (mode, item) {
   }
 
   App.update_info(mode)
+
+  if (App.el(`#${mode}_filter`).value.trim()) {
+    if (App.get_num_visible(mode) === 0) {
+      App.clear_filter(mode)
+    }
+  }
 }
 
 App.focus_filter = function (mode) {
