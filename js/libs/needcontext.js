@@ -119,12 +119,28 @@ NeedContext.select_item = function (index) {
 
 // Select an item above
 NeedContext.select_up = function () {
-  NeedContext.select_item(Math.max(0, NeedContext.index - 1))
+  let index
+
+  if (NeedContext.index === 0) {
+    index = NeedContext.items.length - 1
+  } else {
+    index = NeedContext.index - 1
+  }
+  
+  NeedContext.select_item(index)
 }
 
 // Select an item below
 NeedContext.select_down = function () {
-  NeedContext.select_item(Math.min(NeedContext.items.length - 1, NeedContext.index + 1))
+  let index
+
+  if (NeedContext.index === NeedContext.items.length - 1) {
+    index = 0
+  } else {
+    index = NeedContext.index + 1
+  }
+
+  NeedContext.select_item(index)
 }
 
 // Do the selected action
