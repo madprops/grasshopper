@@ -128,10 +128,10 @@ NeedContext.select_down = function () {
 }
 
 // Do the selected action
-NeedContext.select_action = function () {
+NeedContext.select_action = function (e) {
   let item = NeedContext.items[NeedContext.index]
   NeedContext.hide()
-  item.action()
+  item.action(e)
 }
 
 // Prepare css and events
@@ -208,7 +208,7 @@ NeedContext.init = function () {
         NeedContext.hide()
       }
     } else if (NeedContext.mousedown) {
-      NeedContext.select_action()
+      NeedContext.select_action(e)
     }
 
     NeedContext.mousedown = false
@@ -246,7 +246,7 @@ NeedContext.init = function () {
     if (e.key === "Escape") {
       NeedContext.hide()
     } else if (e.key === "Enter") {
-      NeedContext.select_action()
+      NeedContext.select_action(e)
     }
 
     e.preventDefault()

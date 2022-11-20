@@ -316,29 +316,29 @@ App.show_tabs_menu = function () {
 
   items.push({
     text: "Pin/Unpin...",
-    action: function () {
-      App.show_pin_menu()
+    action: function (e) {
+      App.show_pin_menu(e)
     }
   })  
 
   items.push({
     text: "Mute/Unmute...",
-    action: function () {
-      App.show_mute_menu()
+    action: function (e) {
+      App.show_mute_menu(e)
     }
   })    
 
   items.push({
     text: "Suspend Tabs...",
-    action: function () {
-      App.show_suspend_menu()
+    action: function (e) {
+      App.show_suspend_menu(e)
     }
   })
   
   items.push({
     text: "Close Tabs...",
-    action: function () {
-      App.show_close_menu()
+    action: function (e) {
+      App.show_close_menu(e)
     }
   })
   
@@ -346,7 +346,7 @@ App.show_tabs_menu = function () {
 }
 
 // Show pin menu
-App.show_pin_menu = function () {
+App.show_pin_menu = function (e) {
   let items = []
 
   items.push({
@@ -363,11 +363,15 @@ App.show_pin_menu = function () {
     }
   }) 
 
-  NeedContext.show_on_element(App.el("#tabs_more_button"), items)
+  if (e.clientX && e.clientY) {
+    NeedContext.show(e.clientX, e.clientY, items)
+  } else {
+    NeedContext.show_on_element(App.el("#tabs_more_button"), items)
+  }
 }
 
 // Show mute menu
-App.show_mute_menu = function () {
+App.show_mute_menu = function (e) {
   let items = []
 
   items.push({
@@ -384,11 +388,15 @@ App.show_mute_menu = function () {
     }
   }) 
   
-  NeedContext.show_on_element(App.el("#tabs_more_button"), items)
+  if (e.clientX && e.clientY) {
+    NeedContext.show(e.clientX, e.clientY, items)
+  } else {
+    NeedContext.show_on_element(App.el("#tabs_more_button"), items)
+  }
 }
 
 // Show close menu
-App.show_close_menu = function () {
+App.show_close_menu = function (e) {
   let items = []  
 
   items.push({
@@ -405,11 +413,15 @@ App.show_close_menu = function () {
     }
   })
   
-  NeedContext.show_on_element(App.el("#tabs_more_button"), items)
+  if (e.clientX && e.clientY) {
+    NeedContext.show(e.clientX, e.clientY, items)
+  } else {
+    NeedContext.show_on_element(App.el("#tabs_more_button"), items)
+  }
 }
 
 // Show suspend menu
-App.show_suspend_menu = function () {
+App.show_suspend_menu = function (e) {
   let items = []
 
   items.push({
@@ -433,7 +445,11 @@ App.show_suspend_menu = function () {
     }
   }) 
   
-  NeedContext.show_on_element(App.el("#tabs_more_button"), items)
+  if (e.clientX && e.clientY) {
+    NeedContext.show(e.clientX, e.clientY, items)
+  } else {
+    NeedContext.show_on_element(App.el("#tabs_more_button"), items)
+  }
 }
 
 // Pin tabs
