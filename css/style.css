@@ -327,10 +327,6 @@ body, html {
   opacity: 0.311;
 }
 
-.clear_filter_button {
-  font-size: 0.8rem;
-}
-
 #needcontext-container {
   background-color: var(--background_color) !important;
   color: var(--text_color) !important;

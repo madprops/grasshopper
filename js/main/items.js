@@ -857,9 +857,9 @@ App.setup_item_window = function (mode, filter_modes, buttons) {
     top.append(filter_mode_select) 
     
     //
-    let clear_filter = App.create("button", "button clear_filter_button", `${mode}_clear_filter`)
+    let clear_filter = App.create("button", "button", `${mode}_clear_filter`)
     clear_filter.title = "Clear Filter"
-    clear_filter.textContent = "X"
+    clear_filter.textContent = "Clear"
 
     App.ev(clear_filter, "click", function () {
       App.clear_filter_mode(mode)
