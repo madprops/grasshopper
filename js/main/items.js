@@ -176,11 +176,6 @@ App.do_item_filter = async function (mode) {
 
   let value = App.el(`#${mode}_filter`).value.trim()
 
-  if (value.startsWith("?")) {
-    return
-  }
-
-
   if (mode === "history") {
     await App.search_history()
   }

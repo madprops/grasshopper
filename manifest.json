@@ -7,8 +7,7 @@
         "tabs",
         "sessions",
         "history",
-        "storage",
-        "search"
+        "storage"
     ],
     "icons": {
         "128": "icon128.png"
