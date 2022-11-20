@@ -10,11 +10,7 @@ App.setup_window_mouse = function (mode) {
 
   App.ev(container, "click", function (e) {
     if (e.target.closest(`.${mode}_item`)) {
-      if (e.target.closest(".item_icon")) {
-        App.show_item_menu(App.get_cursor_item(mode, e), e.clientX, e.clientY)
-      } else {
-        App[`${mode}_action`](App.get_cursor_item(mode, e))
-      }
+      App[`${mode}_action`](App.get_cursor_item(mode, e))
     }
   })
 
