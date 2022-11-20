@@ -208,8 +208,13 @@ App.do_item_filter = async function (mode) {
     filter_mode = "all"
   }
 
-  let words = value.split(" ").filter(x => x !== "")
-  let filter_words = words.map(x => x.toLowerCase())
+  let skip = !value && filter_mode === "all"
+  let words, filter_words
+
+  if (!skip) {
+    words = value.split(" ").filter(x => x !== "")
+    filter_words = words.map(x => x.toLowerCase())
+  }
 
   function check (title, path) {
     return filter_words.every(x => title.includes(x) || path.includes(x))
@@ -252,7 +257,7 @@ App.do_item_filter = async function (mode) {
       continue
     }
 
-    if (matched(it)) {
+    if (skip || matched(it)) {
       App.show_item(it)
     } else {
       App.hide_item(it)
