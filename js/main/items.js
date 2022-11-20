@@ -178,6 +178,10 @@ App.do_item_filter = async function (mode) {
 
   if (mode === "history") {
     await App.search_history()
+
+    if (App.window_mode !== "history") {
+      return
+    }
   }
 
   if (!App[`${mode}_items`]) {
