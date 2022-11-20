@@ -174,6 +174,13 @@ App.focus_filter = function (mode) {
 App.do_item_filter = async function (mode) {  
   console.info(`Filter: ${mode}`)
 
+  let value = App.el(`#${mode}_filter`).value.trim()
+
+  if (value.startsWith("?")) {
+    return
+  }
+
+
   if (mode === "history") {
     await App.search_history()
   }
@@ -181,8 +188,6 @@ App.do_item_filter = async function (mode) {
   if (!App[`${mode}_items`]) {
     return
   }  
-
-  let value = App.el(`#${mode}_filter`).value.trim()
 
   if (value === "iddqd") {
     App.el("#main").classList.add("invert")

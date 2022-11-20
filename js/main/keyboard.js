@@ -4,6 +4,13 @@ App.check_window_keyboard = function (e) {
   App.focus_filter(mode)
 
   if (e.key === "Enter") {
+    let filter = App.el(`#${mode}_filter`).value.trim()
+    
+    if (filter.startsWith("?")) {
+      App.search(filter)
+      return
+    }
+
     let item = App[`selected_${mode}_item`]
 
     if (e.shiftKey) {
