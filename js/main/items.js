@@ -441,14 +441,7 @@ App.show_more_menu = async function (e, x, item) {
         }
       }
     })  
-  }  
-
-  items.push({
-    text: "Audible",
-    action: function () {
-      App.mute_other_tabs(item)
-    }
-  })   
+  }   
 
   App.show_submenu(e, x, item.element, items)
 }
