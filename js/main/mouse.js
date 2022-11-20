@@ -4,14 +4,14 @@ App.setup_window_mouse = function (mode) {
 
   App.ev(container, "mousemove", function (e) {
     if (e.target.closest(`.${mode}_item`)) {
-      App.select_item(mode, App.get_cursor_item(mode, e))
+      App.select_item(App.get_cursor_item(mode, e))
     }
   })  
 
   App.ev(container, "click", function (e) {
     if (e.target.closest(`.${mode}_item`)) {
       if (e.target.closest(".item_icon")) {
-        App.show_item_menu(mode, App.get_cursor_item(mode, e), e.clientX, e.clientY)
+        App.show_item_menu(App.get_cursor_item(mode, e), e.clientX, e.clientY)
       } else {
         App[`${mode}_action`](App.get_cursor_item(mode, e))
       }
@@ -28,7 +28,7 @@ App.setup_window_mouse = function (mode) {
 
   App.ev(container, "contextmenu", function (e) {
     if (e.target.closest(`.${mode}_item`)) {
-      App.show_item_menu(mode, App.get_cursor_item(mode, e), e.clientX, e.clientY)
+      App.show_item_menu(App.get_cursor_item(mode, e), e.clientX, e.clientY)
       e.preventDefault()
     }
   })  

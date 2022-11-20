@@ -1,7 +1,7 @@
 // Setup stars
 App.setup_stars = function () {
   let buttons = [
-    ["stars_new_button", "New Star", "+", function () {
+    ["New Star", "+", function () {
       App.new_star()
     }]
   ]
@@ -94,7 +94,7 @@ App.unstar_item = function () {
     let item = App.get_item_by_id("stars", App.star_edited.id)
 
     if (item) {
-      App.remove_item("stars", item)
+      App.remove_item(item)
     }
   }
   

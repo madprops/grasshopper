@@ -14,16 +14,16 @@ App.setup_tabs = function () {
   ]
 
   let buttons = [
-    ["tabs_playing_button", "Go To A Tab Emitting Sound", "Playing", function () {
+    ["Go To A Tab Emitting Sound", "Playing", function () {
       App.go_to_playing_tab()
     }],
-    ["tabs_clean_button", "Close Normal Tabs", "Clean", function () {
+    ["Close Normal Tabs", "Clean", function () {
       App.clean_tabs()
     }],
-    ["tabs_more_button", "More Actions", "More", function () {
+    ["More Actions", "More", function () {
       App.show_tabs_menu()
     }],
-    ["tabs_new_button", "New Tab", "+", function () {
+    ["New Tab", "+", function () {
       App.new_tab()
     }]
   ]
@@ -170,7 +170,7 @@ App.prepend_tab = function (info) {
   }
   
   App.tabs_items.unshift(tab)
-  App.create_item_element("tabs", tab)
+  App.create_item_element(tab)
   App.update_info("tabs")
   App.el("#tabs_container").prepend(tab.element)
 }
@@ -277,7 +277,7 @@ App.remove_closed_tab = function (id) {
   let tab = App.get_item_by_id("tabs", id)
 
   if (tab) {
-    App.remove_item("tabs", tab)
+    App.remove_item(tab)
   }
 }
 

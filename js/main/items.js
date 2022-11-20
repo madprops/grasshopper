@@ -5,26 +5,26 @@ App.setup_items = function () {
 }
 
 // Select an item
-App.select_item = function (mode, item) {
-  if (App[`selected_${mode}_item`] === item) {
+App.select_item = function (item) {
+  if (App[`selected_${item.mode}_item`] === item) {
     return
   }
 
   if (!item.created) {
-    App.create_item_element(mode, item)
+    App.create_item_element(item)
   }
 
-  for (let el of App.els(`.${mode}_item`)) {
+  for (let el of App.els(`.${item.mode}_item`)) {
     el.classList.remove("selected")
   }
 
-  App[`selected_${mode}_item`] = item
-  App[`selected_${mode}_item`].element.classList.add("selected")
-  App[`selected_${mode}_item`].element.scrollIntoView({block: "nearest"})
+  App[`selected_${item.mode}_item`] = item
+  App[`selected_${item.mode}_item`].element.classList.add("selected")
+  App[`selected_${item.mode}_item`].element.scrollIntoView({block: "nearest"})
 
-  App.update_footer(mode)
+  App.update_footer(item.mode)
 
-  if (mode === "tabs") {
+  if (item.mode === "tabs") {
     browser.tabs.warmup(item.id)
   }
 }
@@ -34,7 +34,7 @@ App.select_item_above = function (mode) {
   let item = App.get_prev_visible_item(mode)
 
   if (item) {
-    App.select_item(mode, item)
+    App.select_item(item)
   }
 }
 
@@ -43,7 +43,7 @@ App.select_item_below = function (mode) {
   let item = App.get_next_visible_item(mode)
 
   if (item) {
-    App.select_item(mode, item)
+    App.select_item(item)
   }
 }
 
@@ -131,15 +131,16 @@ App.selected_valid = function (mode) {
 App.select_first_item = function (mode) {
   for (let item of App[`${mode}_items`]) {
     if (item.visible) {
-      App.select_item(mode, item)
+      App.select_item(item)
       return
     }
   }
 }
 
 // Remove an item from the list
-App.remove_item = function (mode, item) {
-  let next_item = App.get_next_visible_item(mode, item) || App.get_prev_visible_item(mode, item)
+App.remove_item = function (item) {
+  let mode = item.mode
+  let next_item = App.get_next_visible_item(mode) || App.get_prev_visible_item(mode)
   let items = App[`${mode}_items`]
   item.element.remove()
   let id = item.id.toString()
@@ -152,7 +153,7 @@ App.remove_item = function (mode, item) {
   }
   
   if (next_item) {
-    App.select_item(mode, next_item)
+    App.select_item(next_item)
   } else {
     App.select_first_item(mode)
   }
@@ -277,10 +278,10 @@ App.hide_item = function (it) {
 }
 
 // Show item menu
-App.show_item_menu = function (mode, item, x, y) {
+App.show_item_menu = function (item, x, y) {
   let items = []
 
-  if (mode === "tabs") {
+  if (item.mode === "tabs") {
     if (item.pinned) {
       items.push({
         text: "Unpin",
@@ -321,6 +322,15 @@ App.show_item_menu = function (mode, item, x, y) {
     }
   })
 
+  if (!item.discared) {
+    items.push({
+      text: "Filter",
+      action: function () {
+        App.filter_domain(item)
+      }
+    })  
+  } 
+
   items.push({
     text: "Copy...",
     action: function (e) {
@@ -328,7 +338,7 @@ App.show_item_menu = function (mode, item, x, y) {
     }
   })  
 
-  if (mode === "tabs") {
+  if (item.mode === "tabs") {
     items.push({
       text: "Move...",
       action: function (e) {
@@ -351,8 +361,8 @@ App.show_item_menu = function (mode, item, x, y) {
     })
   }
 
-  if (App[`selected_${mode}_item`] !== item) {
-    App.select_item(mode, item)
+  if (App[`selected_${item.mode}_item`] !== item) {
+    App.select_item(item)
   }
 
   NeedContext.show(x, y, items)
@@ -418,16 +428,7 @@ App.show_move_menu = async function (e, x, item) {
 
 // Show tab more menu
 App.show_more_menu = async function (e, x, item) {
-  let items = []
-
-  if (!item.discared) {
-    items.push({
-      text: "Similar",
-      action: function () {
-        App.set_filter("tabs", App.get_hostname(item.url))
-      }
-    })  
-  }  
+  let items = [] 
 
   items.push({
     text: "Duplicate",
@@ -538,20 +539,20 @@ App.process_item = function (mode, item, exclude = []) {
     obj.discarded = item.discarded
   }
 
-  App.create_empty_item_element(mode, obj)
+  App.create_empty_item_element(obj)
   App[`${mode}_idx`] += 1
   return obj
 }
 
 // Create empty item
-App.create_empty_item_element = function (mode, item) {
-  item.element = App.create("div", `item ${mode}_item item_empty`)
+App.create_empty_item_element = function (item) {
+  item.element = App.create("div", `item ${item.mode}_item item_empty`)
   item.element.dataset.id = item.id
-  App[`${mode}_item_observer`].observe(item.element)
+  App[`${item.mode}_item_observer`].observe(item.element)
 }
 
 // Create an item element
-App.create_item_element = function (mode, item) {
+App.create_item_element = function (item) {
   item.element.classList.remove("item_empty")
   
   let icon = App.get_img_icon(item.favicon, item.url, item.pinned)
@@ -559,10 +560,10 @@ App.create_item_element = function (mode, item) {
 
   let text = App.create("div", "item_text")
   item.element.append(text)
-  App.set_item_text(mode, item)
+  App.set_item_text(item)
   let info_container = App.create("div", "item_info_container")
 
-  if (mode === "tabs") {   
+  if (item.mode === "tabs") {   
     if (App.settings.all_windows) {
       let window_icon = App.create("div", "item_info faded")
       window_icon.textContent = App.settings.window_icon
@@ -589,11 +590,11 @@ App.create_item_element = function (mode, item) {
 
   item.element.append(info_container)
   item.created = true
-  console.info(`Item created in ${mode}`)
+  console.info(`Item created in ${item.mode}`)
 }
 
 // Get image favicon
-App.get_img_icon = function (favicon, url, pinned = false) {
+App.get_img_icon = function (favicon, url) {
   let icon = App.create("img", "item_icon")
   icon.loading = "lazy"
   icon.width = 25
@@ -619,10 +620,10 @@ App.get_jdenticon = function (url) {
 }
 
 // Set item text content
-App.set_item_text = function (mode, item) {
+App.set_item_text = function (item) {
   let content = ""
 
-  if (mode === "tabs") {
+  if (item.mode === "tabs") {
     let status = []
 
     if (item.discarded) {
@@ -708,7 +709,7 @@ App.intersection_observer = function (mode, options) {
       }
 
       if (!item.created && item.visible) {
-        App.create_item_element(mode, item)
+        App.create_item_element(item)
       }
     }
   }, options)
@@ -865,10 +866,10 @@ App.setup_item_window = function (mode, filter_modes, buttons) {
     // 5
     if (buttons) {
       for (let b of buttons) {
-        let button = App.create("button", "button", b[0])
-        button.title = b[1]
-        button.textContent = b[2]
-        App.ev(button, "click", b[3])
+        let button = App.create("button", "button")
+        button.title = b[0]
+        button.textContent = b[1]
+        App.ev(button, "click", b[2])
         top.append(button)
       }
     }    
@@ -985,7 +986,7 @@ App.make_items_select = function (mode) {
   })
   
   App.wrap_select(select, function () {
-    App.show_item_window(select.value, true)
+    App.show_item_window(select.value)
   }, App.item_order.length)
 
   return select
@@ -1122,12 +1123,12 @@ App.update_item = function (mode, id, source) {
     }
 
     let selected = App[`selected_${mode}_item`] === it
-    App.create_item_element(mode, new_item)
+    App.create_item_element(new_item)
     App[`${mode}_items`][i].element.replaceWith(new_item.element)
     App[`${mode}_items`][i] = new_item
 
     if (selected) {
-      App.select_item(mode, new_item)
+      App.select_item(new_item)
     }
 
     break
@@ -1141,4 +1142,9 @@ App.clear_filter_mode = function (mode) {
   if (filter_mode) {
     filter_mode.selectedIndex = 0
   }
+}
+
+// Show similar tabs
+App.filter_domain = function (item) {
+  App.set_filter(item.mode, App.get_hostname(item.url))
 }

@@ -8,7 +8,7 @@ App.check_window_keyboard = function (e) {
 
     if (e.shiftKey) {
       let rect = item.element.getBoundingClientRect()
-      App.show_item_menu(mode, item, rect.left, rect.top)
+      App.show_item_menu(item, rect.left, rect.top)
     } else {
       App[`${mode}_action`](item)
     }
