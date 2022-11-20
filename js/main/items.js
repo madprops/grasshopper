@@ -436,7 +436,9 @@ App.show_more_menu = async function (e, x, item) {
     items.push({
       text: "Suspend",
       action: function () {
-        App.suspend_tab(item)
+        if (App.tab_is_normal(item) || confirm("Suspend tab?")) {
+          App.suspend_tab(item)
+        }
       }
     })  
   }  
