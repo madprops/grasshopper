@@ -18,6 +18,12 @@ App.setup_tabs = function () {
     App.new_tab()
   })
 
+  App.ev(App.el("#tabs_new_button"), "auxclick", function (e) {
+    if (e.button == 1) {
+      App.new_tab(false)
+    }
+  })
+
   browser.tabs.onUpdated.addListener(function (id) {
     if (App.window_mode === "tabs") {
       App.refresh_tab(id)
@@ -103,9 +109,12 @@ App.close_tab = function (id) {
 }
 
 // Open a new tab
-App.new_tab = function () {
+App.new_tab = function (close = true) {
   browser.tabs.create({active: true})
-  window.close()
+
+  if (close) {
+    window.close()
+  }
 }
 
 // Refresh tabs
