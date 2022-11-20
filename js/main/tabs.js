@@ -345,16 +345,6 @@ App.show_tabs_menu = function () {
   NeedContext.show_on_element(App.el("#tabs_more_button"), items)
 }
 
-// Show tabs submenu
-App.show_tabs_submenu = function (e, items) {
-  if (e.clientX && e.clientY) {
-    let x = App.get_coords(App.el("#tabs_more_button")).x
-    NeedContext.show(x, e.clientY, items)
-  } else {
-    NeedContext.show_on_element(App.el("#tabs_more_button"), items)
-  }
-}
-
 // Show pin menu
 App.show_pin_menu = function (e) {
   let items = []
@@ -373,7 +363,7 @@ App.show_pin_menu = function (e) {
     }
   }) 
 
-  App.show_tabs_submenu(e, items)
+  App.show_submenu(e, undefined, App.el("#tabs_more_button"), items)
 }
 
 // Show mute menu
@@ -394,28 +384,7 @@ App.show_mute_menu = function (e) {
     }
   }) 
   
-  App.show_tabs_submenu(e, items)
-}
-
-// Show close menu
-App.show_close_menu = function (e) {
-  let items = []  
-
-  items.push({
-    text: "Close Playing Tabs",
-    action: function () {
-      App.close_playing_tabs()
-    }
-  }) 
-
-  items.push({
-    text: "Close Tabs",
-    action: function () {
-      App.close_tabs()
-    }
-  })
-  
-  App.show_tabs_submenu(e, items)
+  App.show_submenu(e, undefined, App.el("#tabs_more_button"), items)
 }
 
 // Show suspend menu
@@ -443,7 +412,28 @@ App.show_suspend_menu = function (e) {
     }
   }) 
   
-  App.show_tabs_submenu(e, items)
+  App.show_submenu(e, undefined, App.el("#tabs_more_button"), items)
+}
+
+// Show close menu
+App.show_close_menu = function (e) {
+  let items = []  
+
+  items.push({
+    text: "Close Playing Tabs",
+    action: function () {
+      App.close_playing_tabs()
+    }
+  }) 
+
+  items.push({
+    text: "Close Tabs",
+    action: function () {
+      App.close_tabs()
+    }
+  })
+  
+  App.show_submenu(e, undefined, App.el("#tabs_more_button"), items)
 }
 
 // Pin tabs
@@ -658,4 +648,19 @@ App.show_tabs_information = function () {
   s += `Suspended: ${suspended}`
 
   alert(s)
+}
+
+// Mute other playing tabs
+App.mute_other_tabs = function (tab) {
+  if (tab.muted) {
+    App.unmute_tab(tab.id)
+  }
+
+  for (let it of App.tabs_items) {
+    if (it !== tab) {
+      if (it.audible) {
+        App.mute_tab(it.id)
+      }
+    }
+  }
 }

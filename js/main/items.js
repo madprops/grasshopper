@@ -319,23 +319,23 @@ App.show_item_menu = function (mode, item, x, y) {
 
   items.push({
     text: "Copy...",
-    action: function () {
-      App.show_copy_menu(x, y, item)
+    action: function (e) {
+      App.show_copy_menu(e, x, item)
     }
   })  
 
   if (mode === "tabs") {
     items.push({
       text: "Move...",
-      action: function () {
-        App.show_move_menu(x, y, item)
+      action: function (e) {
+        App.show_move_menu(e, x, item)
       }
     })     
     
     items.push({
       text: "More...",
-      action: function () {
-        App.show_more_menu(x, y, item)
+      action: function (e) {
+        App.show_more_menu(e, x, item)
       }
     })     
 
@@ -355,7 +355,7 @@ App.show_item_menu = function (mode, item, x, y) {
 }
 
 // Show copy menu
-App.show_copy_menu = function (x, y, item) {
+App.show_copy_menu = function (e, x, item) {
   let items = []
 
   items.push({
@@ -372,11 +372,11 @@ App.show_copy_menu = function (x, y, item) {
     }
   })
 
-  NeedContext.show(x, y, items)
+  App.show_submenu(e, x, item.element, items)
 }
 
 // Show tab move menu
-App.show_move_menu = async function (x, y, item) {
+App.show_move_menu = async function (e, x, item) {
   let items = []
   let wins = await browser.windows.getAll({populate: false}) 
   
@@ -409,11 +409,11 @@ App.show_move_menu = async function (x, y, item) {
     })
   }
 
-  NeedContext.show(x, y, items)
+  App.show_submenu(e, x, item.element, items)
 }
 
 // Show tab more menu
-App.show_more_menu = async function (x, y, item) {
+App.show_more_menu = async function (e, x, item) {
   let items = []
 
   if (!item.discared) {
@@ -441,7 +441,27 @@ App.show_more_menu = async function (x, y, item) {
     })  
   }  
 
-  NeedContext.show(x, y, items)
+  items.push({
+    text: "Audible",
+    action: function () {
+      App.mute_other_tabs(item)
+    }
+  })   
+
+  App.show_submenu(e, x, item.element, items)
+}
+
+// Show submenu
+App.show_submenu = function (e, x, el, items) {
+  if (x === undefined) {
+    x = App.get_coords(el).x
+  }
+
+  if (e.clientY) {
+    NeedContext.show(x, e.clientY, items)
+  } else {
+    NeedContext.show_on_element(el, items)
+  }
 }
 
 // Process items
