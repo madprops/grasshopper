@@ -87,10 +87,8 @@ App.focus_tab = async function (tab, close = true) {
 // Close tab with possible confirm
 App.confirm_close_tab = function (tab) {
   if (!App.tab_is_normal(tab)) {
-    if (App.settings.warn_on_tab_close) {
-      if (!confirm("Close tab?")) {
-        return
-      }
+    if (!confirm("Close tab?")) {
+      return
     }
   }
   

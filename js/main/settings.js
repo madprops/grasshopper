@@ -7,7 +7,6 @@ App.default_settings = {
   stars_index: 1,
   history_index: 2,
   closed_index: 3,
-  warn_on_tab_close: true,
   pin_icon: "+",
   window_icon: "w",
   all_windows: true,
