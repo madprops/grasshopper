@@ -165,8 +165,12 @@ App.focus_filter = function (mode) {
 }
 
 // Filter items
-App.do_item_filter = function (mode) {  
+App.do_item_filter = async function (mode) {  
   console.info(`Filter: ${mode}`)
+
+  if (mode === "history") {
+    await App.search_history()
+  }
 
   if (!App[`${mode}_items`]) {
     return
@@ -737,10 +741,6 @@ App.show_item_window = async function (mode, cycle = false) {
   } else {
     App.select_first_item(mode)
   }
-
-  if (mode === "history") {
-    App.el("#history_search").value = ""
-  }
   
   App.focus_filter(mode)  
 }
@@ -845,20 +845,6 @@ App.cycle_item_windows = function (reverse = false) {
 
   if (index === -1) {
     return
-  }
-
-  if (App.window_mode === "history") {
-    if (reverse) {
-      if (App.el("#history_search") === document.activeElement) {
-        App.el("#history_filter").focus()
-        return
-      }
-    } else {
-      if (App.el("#history_filter") === document.activeElement) {
-        App.el("#history_search").focus()
-        return
-      }
-    }
   }
 
   if (reverse) {

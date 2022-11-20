@@ -1,16 +1,7 @@
 // Setup bindings for window
 App.check_window_keyboard = function (e) {
   let mode = App.window_mode
-
-  if (mode === "history") {
-    if (App.el("#history_filter") !== document.activeElement && 
-        App.el("#history_search") !== document.activeElement
-    ) {
-      App.el("#history_filter").focus()
-    }
-  } else {
-    App.focus_filter(mode)
-  }
+  App.focus_filter(mode)
 
   if (e.key === "Enter") {
     let item = App[`selected_${mode}_item`]

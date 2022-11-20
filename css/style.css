@@ -171,6 +171,9 @@ body, html {
 
 .item_top_container {
   margin-left: var(--item_margin);
+  display: flex;
+  flex-direction: row;
+  gap: 1rem;
 }
 
 .selected {
