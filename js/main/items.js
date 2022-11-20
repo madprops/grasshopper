@@ -727,12 +727,7 @@ App.show_item_window = async function (mode, cycle = false) {
   App.el(`#${mode}_container`).innerHTML = ""
   App.el(`#${mode}_filter`).value = value
   App.el(`#${mode}_select`).value = mode
-  
-  let filter_mode = App.el(`#${mode}_filter_mode`)
-
-  if (filter_mode) {
-    filter_mode.selectedIndex = 0
-  }
+  App.clear_filter_mode(mode)
 
   let items = await App[`get_${mode}`]()
   
@@ -776,6 +771,7 @@ App.setup_item_window = function (mode) {
     clear_filter.textContent = "X"
 
     App.ev(clear_filter, "click", function () {
+      App.clear_filter_mode(mode)
       App.clear_filter(mode)
     })  
 
@@ -1097,5 +1093,14 @@ App.update_item = function (mode, id, source) {
     }
 
     break
+  }
+}
+
+// Select the first filter mode item
+App.clear_filter_mode = function (mode) {
+  let filter_mode = App.el(`#${mode}_filter_mode`)
+
+  if (filter_mode) {
+    filter_mode.selectedIndex = 0
   }
 }
