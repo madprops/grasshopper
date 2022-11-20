@@ -1,7 +1,7 @@
 // Setup stars
 App.setup_stars = function () {
   let buttons = [
-    ["New Star", "+", function () {
+    ["New Star", "New", function () {
       App.new_star()
     }]
   ]

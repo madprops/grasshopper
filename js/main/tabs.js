@@ -23,7 +23,7 @@ App.setup_tabs = function () {
     ["More Actions", "More", function () {
       App.show_tabs_menu(this)
     }],
-    ["New Tab", "+", function () {
+    ["New Tab", "New", function () {
       App.new_tab()
     }]
   ]

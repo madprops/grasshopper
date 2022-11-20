@@ -800,35 +800,23 @@ App.setup_item_window = function (mode, filter_modes, buttons) {
 
     App.setup_window_mouse(mode)     
 
-    // 1
+    //
     let items_select = App.make_items_select(mode)
-    top.append(items_select) 
+    top.append(items_select)     
 
     let filter = App.create("input", "filter", `${mode}_filter`)
     filter.type = "text"
     filter.autocomplete = "off"
     filter.placeholder = "Filter"
 
-    // 2
+    //
     App.ev(filter, "input", function () {
       item_filter()
     })  
 
     top.append(filter)  
     
-    // 3
-    let clear_filter = App.create("button", "button clear_filter_button", `${mode}_clear_filter`)
-    clear_filter.title = "Clear Filter"
-    clear_filter.textContent = "X"
-
-    App.ev(clear_filter, "click", function () {
-      App.clear_filter_mode(mode)
-      App.clear_filter(mode)
-    })  
-
-    top.append(clear_filter)
-
-    // 4
+    //
     let filter_mode_select = App.create("select", "select filter_mode_select", `${mode}_filter_mode`)
     filter_mode_select.title = "Filter Mode"
 
@@ -866,9 +854,21 @@ App.setup_item_window = function (mode, filter_modes, buttons) {
       App.do_item_filter(mode)
     })  
 
-    top.append(filter_mode_select)
+    top.append(filter_mode_select) 
+    
+    //
+    let clear_filter = App.create("button", "button clear_filter_button", `${mode}_clear_filter`)
+    clear_filter.title = "Clear Filter"
+    clear_filter.textContent = "X"
 
-    // 5
+    App.ev(clear_filter, "click", function () {
+      App.clear_filter_mode(mode)
+      App.clear_filter(mode)
+    })  
+
+    top.append(clear_filter)      
+
+    //
     if (buttons) {
       for (let b of buttons) {
         let button = App.create("button", "button")
