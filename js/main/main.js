@@ -5,6 +5,8 @@ App.filter_delay = 250
 App.color_delay = 150
 App.max_stars = 1000 * 2
 App.max_closed = 25
+App.history_max_results = 250
+App.history_max_months = 12
 
 
 App.init = async function () {
