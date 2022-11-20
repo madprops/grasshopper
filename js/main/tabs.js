@@ -21,7 +21,7 @@ App.setup_tabs = function () {
       App.clean_tabs()
     }],
     ["More Actions", "More", function () {
-      App.show_tabs_menu()
+      App.show_tabs_menu(this)
     }],
     ["New Tab", "+", function () {
       App.new_tab()
@@ -324,7 +324,7 @@ App.suspend_tab = async function (tab) {
 }
 
 // Show tabs menu
-App.show_tabs_menu = function () {
+App.show_tabs_menu = function (button) {
   let items = []
 
   items.push({
@@ -337,36 +337,36 @@ App.show_tabs_menu = function () {
   items.push({
     text: "Pin/Unpin...",
     action: function (e) {
-      App.show_pin_menu(e)
+      App.show_pin_menu(e, button)
     }
   })  
 
   items.push({
     text: "Mute/Unmute...",
     action: function (e) {
-      App.show_mute_menu(e)
+      App.show_mute_menu(e, button)
     }
   })    
 
   items.push({
     text: "Suspend Tabs...",
     action: function (e) {
-      App.show_suspend_menu(e)
+      App.show_suspend_menu(e, button)
     }
   })
   
   items.push({
     text: "Close Tabs...",
     action: function (e) {
-      App.show_close_menu(e)
+      App.show_close_menu(e, button)
     }
   })
   
-  NeedContext.show_on_element(App.el("#tabs_more_button"), items)
+  NeedContext.show_on_element(button, items)
 }
 
 // Show pin menu
-App.show_pin_menu = function (e) {
+App.show_pin_menu = function (e, button) {
   let items = []
 
   items.push({
@@ -383,11 +383,11 @@ App.show_pin_menu = function (e) {
     }
   }) 
 
-  App.show_submenu(e, undefined, App.el("#tabs_more_button"), items)
+  App.show_submenu(e, undefined, button, items)
 }
 
 // Show mute menu
-App.show_mute_menu = function (e) {
+App.show_mute_menu = function (e, button) {
   let items = []
 
   items.push({
@@ -404,11 +404,11 @@ App.show_mute_menu = function (e) {
     }
   }) 
   
-  App.show_submenu(e, undefined, App.el("#tabs_more_button"), items)
+  App.show_submenu(e, undefined, button, items)
 }
 
 // Show suspend menu
-App.show_suspend_menu = function (e) {
+App.show_suspend_menu = function (e, button) {
   let items = []
 
   items.push({
@@ -432,11 +432,11 @@ App.show_suspend_menu = function (e) {
     }
   }) 
   
-  App.show_submenu(e, undefined, App.el("#tabs_more_button"), items)
+  App.show_submenu(e, undefined, button, items)
 }
 
 // Show close menu
-App.show_close_menu = function (e) {
+App.show_close_menu = function (e, button) {
   let items = []  
 
   items.push({
@@ -460,7 +460,7 @@ App.show_close_menu = function (e) {
     }
   })
   
-  App.show_submenu(e, undefined, App.el("#tabs_more_button"), items)
+  App.show_submenu(e, undefined, button, items)
 }
 
 // Pin tabs
