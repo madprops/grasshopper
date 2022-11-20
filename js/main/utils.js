@@ -93,13 +93,13 @@ App.wrap_select = function (select, on_change, max = -1) {
     
     if (e.deltaY < 0) {
       if (this.selectedIndex === 0) {
-        return
+        index = max_length - 1
       } else {
         index = this.selectedIndex - 1
       }
     } else if (e.deltaY > 0) {
       if (this.selectedIndex === max_length - 1) {
-        return
+        index = 0
       } else {
         index = this.selectedIndex + 1
       }
