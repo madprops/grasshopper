@@ -315,18 +315,18 @@ App.show_tabs_menu = function () {
   })
 
   items.push({
-    text: "Pin Tabs",
+    text: "Pin/Unpin...",
     action: function () {
-      App.pin_all_tabs()
+      App.show_pin_menu()
     }
-  })
+  })  
 
   items.push({
-    text: "Unpin Tabs",
+    text: "Mute/Unmute...",
     action: function () {
-      App.unpin_all_tabs()
+      App.show_mute_menu()
     }
-  }) 
+  })    
 
   items.push({
     text: "Suspend Tabs...",
@@ -341,6 +341,48 @@ App.show_tabs_menu = function () {
       App.show_close_menu()
     }
   })
+  
+  NeedContext.show_on_element(App.el("#tabs_more_button"), items)
+}
+
+// Show pin menu
+App.show_pin_menu = function () {
+  let items = []
+
+  items.push({
+    text: "Pin Tabs",
+    action: function () {
+      App.pin_all_tabs()
+    }
+  })
+
+  items.push({
+    text: "Unpin Tabs",
+    action: function () {
+      App.unpin_all_tabs()
+    }
+  }) 
+
+  NeedContext.show_on_element(App.el("#tabs_more_button"), items)
+}
+
+// Show mute menu
+App.show_mute_menu = function () {
+  let items = []
+
+  items.push({
+    text: "Mute Tabs",
+    action: function () {
+      App.mute_tabs()
+    }
+  }) 
+
+  items.push({
+    text: "Unmute Tabs",
+    action: function () {
+      App.unmute_tabs()
+    }
+  }) 
   
   NeedContext.show_on_element(App.el("#tabs_more_button"), items)
 }
@@ -529,6 +571,56 @@ App.close_tabs = function () {
   if (confirm(`Close tabs? (${s})`)) {
     for (let id of ids) {
       App.close_tab(id)
+    }
+  }
+}
+
+// Mute tabs
+App.mute_tabs = function () {
+  let ids = []
+
+  for (let tab of App.tabs_items) {
+    if (!tab.visible || !tab.audible || tab.muted) {
+      continue
+    }
+    
+    ids.push(tab.id)
+  }
+
+  if (ids.length === 0) {
+    return
+  }
+  
+  let s = App.plural(ids.length, "tab", "tabs")
+
+  if (confirm(`Mute playing tabs? (${s})`)) {
+    for (let id of ids) {
+      App.mute_tab(id)
+    }
+  }
+}
+
+// Unmute tabs
+App.unmute_tabs = function () {
+  let ids = []
+
+  for (let tab of App.tabs_items) {
+    if (!tab.visible || !tab.muted) {
+      continue
+    }
+    
+    ids.push(tab.id)
+  }
+
+  if (ids.length === 0) {
+    return
+  }
+  
+  let s = App.plural(ids.length, "tab", "tabs")
+
+  if (confirm(`Unmute muted tabs? (${s})`)) {
+    for (let id of ids) {
+      App.unmute_tab(id)
     }
   }
 }
