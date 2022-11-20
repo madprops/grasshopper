@@ -144,3 +144,9 @@ App.is_http = function (item) {
 App.nice_date = function (date = Date.now()) {
   return dateFormat(date, "dd/mmm/yy | h:MM:ss tt")
 }
+
+// Get item coords
+App.get_coords = function (el) {
+  let rect = el.getBoundingClientRect()
+  return {x: rect.left, y: rect.top}
+}

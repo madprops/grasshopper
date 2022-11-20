@@ -187,7 +187,7 @@ NeedContext.init = function () {
   document.head.appendChild(style)
 
   document.addEventListener("mousedown", function (e) {
-    if (!NeedContext.open) {
+    if (!NeedContext.open || !e.target) {
       return
     }
     
@@ -199,7 +199,7 @@ NeedContext.init = function () {
   })  
 
   document.addEventListener("mouseup", function (e) {
-    if (!NeedContext.open) {
+    if (!NeedContext.open || !e.target) {
       return
     }
 

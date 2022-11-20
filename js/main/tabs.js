@@ -345,6 +345,16 @@ App.show_tabs_menu = function () {
   NeedContext.show_on_element(App.el("#tabs_more_button"), items)
 }
 
+// Show tabs submenu
+App.show_tabs_submenu = function (e, items) {
+  if (e.clientX && e.clientY) {
+    let x = App.get_coords(App.el("#tabs_more_button")).x
+    NeedContext.show(x, e.clientY, items)
+  } else {
+    NeedContext.show_on_element(App.el("#tabs_more_button"), items)
+  }
+}
+
 // Show pin menu
 App.show_pin_menu = function (e) {
   let items = []
@@ -363,11 +373,7 @@ App.show_pin_menu = function (e) {
     }
   }) 
 
-  if (e.clientX && e.clientY) {
-    NeedContext.show(e.clientX, e.clientY, items)
-  } else {
-    NeedContext.show_on_element(App.el("#tabs_more_button"), items)
-  }
+  App.show_tabs_submenu(e, items)
 }
 
 // Show mute menu
@@ -388,11 +394,7 @@ App.show_mute_menu = function (e) {
     }
   }) 
   
-  if (e.clientX && e.clientY) {
-    NeedContext.show(e.clientX, e.clientY, items)
-  } else {
-    NeedContext.show_on_element(App.el("#tabs_more_button"), items)
-  }
+  App.show_tabs_submenu(e, items)
 }
 
 // Show close menu
@@ -407,17 +409,13 @@ App.show_close_menu = function (e) {
   }) 
 
   items.push({
-    text: "Close All Tabs",
+    text: "Close Tabs",
     action: function () {
       App.close_tabs()
     }
   })
   
-  if (e.clientX && e.clientY) {
-    NeedContext.show(e.clientX, e.clientY, items)
-  } else {
-    NeedContext.show_on_element(App.el("#tabs_more_button"), items)
-  }
+  App.show_tabs_submenu(e, items)
 }
 
 // Show suspend menu
@@ -445,11 +443,7 @@ App.show_suspend_menu = function (e) {
     }
   }) 
   
-  if (e.clientX && e.clientY) {
-    NeedContext.show(e.clientX, e.clientY, items)
-  } else {
-    NeedContext.show_on_element(App.el("#tabs_more_button"), items)
-  }
+  App.show_tabs_submenu(e, items)
 }
 
 // Pin tabs
