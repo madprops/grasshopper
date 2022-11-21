@@ -541,11 +541,11 @@ App.create_item_element = function (item) {
   App.set_item_text(item)
 
   if (item.mode === "tabs") {   
-    let pin_icon = App.create("div", "item_info item_info_pin faded")
+    let pin_icon = App.create("div", "item_info item_info_pin invisible")
     pin_icon.textContent = "(+)"
     
     if (item.pinned) {
-      pin_icon.classList.remove("faded")
+      pin_icon.classList.remove("invisible")
       pin_icon.classList.add("action")
       pin_icon.title = "This tab is pinned"
     }

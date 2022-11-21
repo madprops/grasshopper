@@ -329,10 +329,6 @@ body, html {
   visibility: hidden;
 }
 
-.faded {
-  opacity: 0.311;
-}
-
 #needcontext-container {
   background-color: var(--background_color) !important;
   color: var(--text_color) !important;
