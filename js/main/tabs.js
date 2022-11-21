@@ -39,20 +39,20 @@ App.setup_tabs = function () {
 
     ["Mute/Unmute...", undefined, [
     {
-      text: "Mute Tabs",
+      text: "Mute Playing",
       action: function () {
         App.mute_tabs()
       }
     },
     {
-      text: "Unmute Tabs",
+      text: "Unmute Muted",
       action: function () {
         App.unmute_tabs()
       }
     }
     ]],
 
-    ["Suspend Tabs...", undefined, [
+    ["Suspend...", undefined, [
     {
       text: "Suspend Normal",
       action: function () {
@@ -73,7 +73,7 @@ App.setup_tabs = function () {
     }
     ]],
 
-    ["Close Tabs...", undefined, [
+    ["Close...", undefined, [
     {
       text: "Close Normal",
       action: function () {
