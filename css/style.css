@@ -136,8 +136,7 @@ body, html {
   flex-direction: row;
   cursor: pointer;
   align-items: center;
-  padding-top: 0.45rem;
-  padding-bottom: 0.45rem;  
+  min-height: 2.2rem;  
 }
 
 .item_empty {
@@ -161,12 +160,14 @@ body, html {
   margin-right: var(--item_margin);
 }
 
-.item_info_container {
+.item_info {
   display: flex;
   flex-direction: row;
   margin-right: var(--item_margin);
   margin-left: 1.1rem;
   gap: 0.5rem;
+  align-self: stretch;
+  align-items: center;
 }
 
 .item_top_container {

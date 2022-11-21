@@ -7,8 +7,6 @@ App.default_settings = {
   stars_index: 1,
   history_index: 2,
   closed_index: 3,
-  pin_icon: "+",
-  window_icon: "w",
   all_windows: true,
   text_size: 17
 }

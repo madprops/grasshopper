@@ -701,3 +701,12 @@ App.show_tabs_information = function () {
 
   alert(s)
 }
+
+// Pin or unpin
+App.toggle_pin = function (item) {
+  if (item.pinned) {
+    App.unpin_tab(item.id)
+  } else {
+    App.pin_tab(item.id)
+  }
+}

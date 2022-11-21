@@ -10,7 +10,13 @@ App.setup_window_mouse = function (mode) {
 
   App.ev(container, "click", function (e) {
     if (e.target.closest(`.${mode}_item`)) {
-      App[`${mode}_action`](App.get_cursor_item(mode, e))
+      let item = App.get_cursor_item(mode, e)
+
+      if (e.target.closest(".item_info_pin")) {
+        App.toggle_pin(item)
+      } else {
+        App[`${mode}_action`](item)
+      }
     }
   })
 

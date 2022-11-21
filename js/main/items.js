@@ -566,34 +566,22 @@ App.create_item_element = function (item) {
   let text = App.create("div", "item_text")
   item.element.append(text)
   App.set_item_text(item)
-  let info_container = App.create("div", "item_info_container")
 
   if (item.mode === "tabs") {   
-    if (App.settings.all_windows) {
-      let window_icon = App.create("div", "item_info faded")
-      window_icon.textContent = App.settings.window_icon
-      info_container.append(window_icon)
-      
-      if (item.window_id === App.window_id) {
-        window_icon.title = "This tab belongs to the current window"
-        window_icon.classList.remove("faded")
-      }
-    }     
-
-    let pin_icon = App.create("div", "item_info faded")
-    pin_icon.textContent = App.settings.pin_icon
-    info_container.append(pin_icon)
+    let pin_icon = App.create("div", "item_info item_info_pin faded")
+    pin_icon.textContent = "(Pin)"
     
     if (item.pinned) {
-      pin_icon.title = "This tab is pinned"  
       pin_icon.classList.remove("faded")
+      pin_icon.classList.add("action")
     }
+
+    item.element.append(pin_icon)
   } else {
     let launched = App.create("div", "item_info item_info_launched")
-    info_container.append(launched)
+    item.element.append(launched)
   }
 
-  item.element.append(info_container)
   item.created = true
   console.info(`Item created in ${item.mode}`)
 }
