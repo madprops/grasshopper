@@ -1151,5 +1151,11 @@ App.clear_filter_mode = function (mode) {
 
 // Show similar tabs
 App.filter_domain = function (item) {
-  App.set_filter(item.mode, App.get_hostname(item.url))
+  let hostname = App.get_hostname(item.url)
+
+  if (!hostname && item.url.includes(":")) {
+    hostname = item.url.split(":")[0] + ":"
+  }
+
+  App.set_filter(item.mode, hostname)
 }
