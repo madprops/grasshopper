@@ -327,14 +327,12 @@ App.show_item_menu = function (item, x, y) {
     }
   })
 
-  if (!item.discared) {
-    items.push({
-      text: "Filter",
-      action: function () {
-        App.filter_domain(item)
-      }
-    })  
-  } 
+  items.push({
+    text: "Filter",
+    action: function () {
+      App.filter_domain(item)
+    }
+  })  
 
   items.push({
     text: "Copy...",
@@ -442,7 +440,7 @@ App.show_more_menu = async function (e, x, item) {
     }
   })  
 
-  if (!item.discared) {
+  if (!item.discarded) {
     items.push({
       text: "Suspend",
       action: function () {
