@@ -1157,5 +1157,9 @@ App.filter_domain = function (item) {
     hostname = item.url.split(":")[0] + ":"
   }
 
+  if (!hostname) {
+    return
+  }
+
   App.set_filter(item.mode, hostname)
 }
