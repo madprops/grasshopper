@@ -17,7 +17,7 @@ App.setup_tabs = function () {
     ["New Tab", function () {
       App.new_tab()
     }],    
-    ["Got To Playing", function () {
+    ["Go To Playing", function () {
       App.go_to_playing_tab()
     }],
     ["Pin/Unpin...", function (e, button) {
