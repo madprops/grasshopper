@@ -325,10 +325,6 @@ body, html {
   width: 4rem;
 }
 
-.invisible {
-  visibility: hidden;
-}
-
 #needcontext-container {
   background-color: var(--background_color) !important;
   color: var(--text_color) !important;
@@ -367,4 +363,8 @@ a:visited, a:link, a:hover {
 
 #star_editor_container {
   padding-bottom: 2rem;
+}
+
+.transparent {
+  opacity: 0
 }
