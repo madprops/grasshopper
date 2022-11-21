@@ -24,13 +24,13 @@ App.setup_tabs = function () {
 
     ["Pin/Unpin...", undefined, [
     {
-      text: "Pin Tabs",
+      text: "Pin All",
       action: function () {
         App.pin_all_tabs()
       }
     },
     {
-      text: "Unpin Tabs",
+      text: "Unpin All",
       action: function () {
         App.unpin_all_tabs()
       }
