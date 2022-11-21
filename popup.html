@@ -24,7 +24,7 @@
     <script src="js/main/settings.js"></script>
     <script src="js/main/about.js"></script>
   </head>
-  
+
   <body>
     <div id="main"></div>
 
@@ -41,7 +41,7 @@
           <div>Title</div>
           <input type="text" id="star_editor_title" class="editor_text">
         </div>
-        
+
         <div class="flex_column_center gap_1">
           <div>URL</div>
           <input type="text" id="star_editor_url" class="editor_text">
@@ -72,17 +72,24 @@
 
         <button id="settings_show_basic" class="button settings_button">1. Basic Settings</button>
 
-        <button id="settings_show_order" class="button settings_button">2. Order Settings</button>     
+        <button id="settings_show_order" class="button settings_button">2. Order Settings</button>
 
         <button id="settings_show_theme" class="button settings_button">3. Theme Settings</button>
-        
+
         <button id="settings_defaults_button" class="button settings_button" title="Reset settings to defaults">Reset Settings</button>
       </div>
-    </template>  
+    </template>
 
     <template id="template_settings_basic">
       <div class="settings_container unselectable">
         <div class="bigger">Basic Settings</div>
+
+        <div class="separator"></div>
+
+        <div class="flex_column_center gap_2" title="Whether to show tabs from all windows">
+          <div>All Windows</div>
+          <input type="checkbox" id="settings_all_windows" class="settings_checkbox" data-setting="all_windows">
+        </div>
 
         <div class="separator"></div>
 
@@ -91,37 +98,30 @@
           <select id="settings_text_mode" class="select settings_select"  data-setting="text_mode">
             <option value="title">Title</option>
             <option value="url">URL</option>
-          </select>    
-        </div> 
-        
+          </select>
+        </div>
+
         <div class="separator"></div>
-        
+
         <div class="flex_column_center gap_2" title="Base text size. Affects the size of the whole interface">
           <div>Text Size</div>
           <input type="text" id="settings_text_size" class="settings_text" data-setting="text_size" data-type="number" data-action="theme" data-min="12" data-max="22">
         </div>
 
         <div class="separator"></div>
-        
+
         <div class="flex_column_center gap_2" title="Search engine to use on queries">
           <div>Search Engine</div>
           <input type="text" id="settings_search_engine" class="settings_text settings_text_long" data-setting="search_engine" data-type="text">
         </div>
-        
-        <div class="separator"></div>
-        
-        <div class="flex_column_center gap_2" title="Whether to show tabs from all windows">
-          <div>All Windows</div>
-          <input type="checkbox" id="settings_all_windows" class="settings_checkbox" data-setting="all_windows">
-        </div>        
-      </div>      
+      </div>
     </template>
 
     <template id="template_settings_order">
       <div class="settings_container unselectable">
         <div class="bigger">Order Settings</div>
         <div id="item_order"></div>
-      </div>        
+      </div>
     </template>
 
     <template id="template_settings_theme">
@@ -143,7 +143,7 @@
         </div>
 
         <div class="separator"></div>
-        
+
         <div class="flex_column_center gap_2">
           <button id="settings_dark_theme" class="button settings_button" title="Random dark theme">Dark Theme</button>
           <button id="settings_light_theme" class="button settings_button" title="Random light theme">Light Theme</button>
