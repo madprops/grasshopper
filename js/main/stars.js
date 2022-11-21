@@ -4,6 +4,10 @@ App.setup_stars = function () {
     ["New Star", function () {
       App.new_star()
     }],
+
+    ["Un-Star", function () {
+      App.unstar_stars()
+    }],
   ]
 
   App.setup_item_window("stars", undefined, menu_items)
@@ -65,19 +69,22 @@ App.update_star = function (item) {
 
 // Add an item to stars
 App.star_item = function (item) {
-  App.stars.items.unshift({
+  let obj = {
     id: `${Date.now()}_${item.url.substring(0, 45)}`,
     url: item.url,
     title: item.title,
     date_added: Date.now(),
     date_last_visit: Date.now()
-  })
+  }
+
+  App.stars.items.unshift(obj)
 
   if (App.stars.items.length > App.max_stars) {
     App.stars.items.pop()
   }
 
   App.stor_save_stars()
+  return obj
 }
 
 // Remove an item from stars
@@ -90,23 +97,24 @@ App.unstar_item = function () {
     return
   }
 
-  if (App.stars_items) {
-    let item = App.get_item_by_id("stars", App.star_edited.id)
-
-    if (item) {
-      App.remove_item(item)
-    }
-  }
-  
-  for (let [i, it] of App.stars.items.entries()) {
-    if (it.id === App.star_edited.id) {
-      App.stars.items.splice(i, 1)
-      break
-    }
-  }
-
-  App.stor_save_stars()
+  App.do_unstar([App.star_edited.id])
   App.hide_star_editor()
+}
+
+// Do unstar action
+App.do_unstar = function (ids) {
+  for (let id of ids) {
+    if (App.stars_items) {
+      let item = App.get_item_by_id("stars", id)
+  
+      if (item) {
+        App.remove_item(item)
+      }
+    }
+  }
+
+  App.stars.items = App.stars.items.filter(x => !ids.includes(x.id))
+  App.stor_save_stars()
 }
 
 // Show stars editor
@@ -151,11 +159,12 @@ App.star_editor_save = async function () {
     }
   }
     
-  App.star_item({
+  let new_star = App.star_item({
     title: title,
     url: url
   })
 
+  App.prepend_star(new_star)
   App.hide_star_editor()
 }
 
@@ -222,5 +231,42 @@ App.update_star_editor_info = function () {
     save.textContent = "Save"
     info.classList.add("hidden")
     App.el("#star_editor_unstar").classList.add("hidden")
+  }
+}
+
+// Unstar multiple stars
+App.unstar_stars = function () {
+  let ids = []
+
+  for (let star of App.stars_items) {
+    if (!star.visible) {
+      continue
+    }
+    
+    ids.push(star.id)
+  }
+
+  if (ids.length === 0) {
+    return
+  }
+  
+  let s = App.plural(ids.length, "star", "stars")
+
+  if (confirm(`Remove stars? (${s})`)) {
+    App.do_unstar(ids)
+  }
+}
+
+// Prepend a star
+App.prepend_star = function (star) {
+  if (App.last_window_mode === "stars") {
+    let item = App.process_item("stars", star)
+
+    if (item) {
+      App.stars_items.unshift(item)
+      App.create_item_element(item)
+      App.update_info("stars")
+      App.el("#stars_container").prepend(item.element)
+    }
   }
 }
