@@ -200,8 +200,8 @@ App.close_tab = function (id) {
 }
 
 // Open a new tab
-App.new_tab = function () {
-  browser.tabs.create({active: true})
+App.new_tab = function (url = undefined) {
+  browser.tabs.create({active: true, url: url})
   window.close()
 }
 

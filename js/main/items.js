@@ -174,6 +174,11 @@ App.focus_filter = function (mode) {
 // Filter items
 App.do_item_filter = async function (mode) {  
   console.info(`Filter: ${mode}`)
+  let value = App.el(`#${mode}_filter`).value.trim()
+
+  if (value.startsWith("?")) {
+    return
+  }
 
   if (mode === "history") {
     await App.search_history()
@@ -182,8 +187,6 @@ App.do_item_filter = async function (mode) {
       return
     }
   }
-
-  let value = App.el(`#${mode}_filter`).value.trim()
 
   if (!App[`${mode}_items`]) {
     return

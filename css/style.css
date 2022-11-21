@@ -256,6 +256,10 @@ body, html {
   box-sizing: border-box;
 }
 
+.settings_text_long {
+  width: 16rem;
+}
+
 .settings_checkbox {
   width: 1.1rem;
   height: 1.1rem;
