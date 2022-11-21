@@ -336,24 +336,30 @@ App.show_item_menu = function (item, x, y) {
 
   items.push({
     text: "Copy...",
-    action: function (e) {
-      App.show_copy_menu(e, x, item)
-    }
+    items: [
+    {
+      text: "Copy URL",
+      action: function () {
+        App.copy_to_clipboard(item.url)
+      }
+    },
+    {
+      text: "Copy Title",
+      action: function () {
+        App.copy_to_clipboard(item.title)
+      }
+    }]
   })  
 
   if (item.mode === "tabs") {
     items.push({
       text: "Move...",
-      action: function (e) {
-        App.show_move_menu(e, x, item)
-      }
+      get_items: async function () { return await App.get_move_menu_items(item) }
     })     
     
     items.push({
       text: "More...",
-      action: function (e) {
-        App.show_more_menu(e, x, item)
-      }
+      get_items: function () { return App.get_more_menu_items(item) }
     })     
 
     items.push({
@@ -371,29 +377,8 @@ App.show_item_menu = function (item, x, y) {
   NeedContext.show(x, y, items)
 }
 
-// Show copy menu
-App.show_copy_menu = function (e, x, item) {
-  let items = []
-
-  items.push({
-    text: "Copy URL",
-    action: function () {
-      App.copy_to_clipboard(item.url)
-    }
-  })
-
-  items.push({
-    text: "Copy Title",
-    action: function () {
-      App.copy_to_clipboard(item.title)
-    }
-  })
-
-  App.show_submenu(e, x, item.element, items)
-}
-
 // Show tab move menu
-App.show_move_menu = async function (e, x, item) {
+App.get_move_menu_items = async function (item) {
   let items = []
   let wins = await browser.windows.getAll({populate: false}) 
   
@@ -426,11 +411,11 @@ App.show_move_menu = async function (e, x, item) {
     })
   }
 
-  App.show_submenu(e, x, item.element, items)
+  return items
 }
 
 // Show tab more menu
-App.show_more_menu = async function (e, x, item) {
+App.get_more_menu_items = function (item) {
   let items = [] 
 
   items.push({
@@ -451,20 +436,7 @@ App.show_more_menu = async function (e, x, item) {
     })  
   }   
 
-  App.show_submenu(e, x, item.element, items)
-}
-
-// Show submenu
-App.show_submenu = function (e, x, el, items) {
-  if (x === undefined) {
-    x = App.get_coords(el).x
-  }
-
-  if (e.clientY) {
-    NeedContext.show(x, e.clientY, items)
-  } else {
-    NeedContext.show_on_element(el, items)
-  }
+  return items
 }
 
 // Process items
@@ -865,9 +837,13 @@ App.setup_item_window = function (mode, filter_modes, menu_items) {
         let items = []
 
         for (let item of menu_items) {
-          items.push({text: item[0], action: function (e) {
-            item[1](e, menu)
-          }})
+          if (item[1]) {
+            items.push({text: item[0], action: function () {
+              item[1]()
+            }})
+          } else if (item[2]) {
+            items.push({text: item[0], items:item[2]})
+          }
         }
         
         NeedContext.show_on_element(menu, items)

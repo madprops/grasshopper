@@ -16,22 +16,89 @@ App.setup_tabs = function () {
   let menu_items = [
     ["New Tab", function () {
       App.new_tab()
-    }],    
+    }], 
+
     ["Go To Playing", function () {
       App.go_to_playing_tab()
     }],
-    ["Pin/Unpin...", function (e, button) {
-      App.show_pin_menu(e, button)
-    }],
-    ["Mute/Unmute...", function (e, button) {
-      App.show_mute_menu(e, button)
-    }],
-    ["Suspend Tabs...", function (e, button) {
-      App.show_suspend_menu(e, button)
-    }],
-    ["Close Tabs...", function (e, button) {
-      App.show_close_menu(e, button)
-    }],
+
+    ["Pin/Unpin...", undefined, [
+    {
+      text: "Pin Tabs",
+      action: function () {
+        App.pin_all_tabs()
+      }
+    },
+    {
+      text: "Unpin Tabs",
+      action: function () {
+        App.unpin_all_tabs()
+      }
+    }
+    ]],
+
+    ["Mute/Unmute...", undefined, [
+    {
+      text: "Mute Tabs",
+      action: function () {
+        App.mute_tabs()
+      }
+    },
+    {
+      text: "Unmute Tabs",
+      action: function () {
+        App.unmute_tabs()
+      }
+    }
+    ]],
+
+    ["Suspend Tabs...", undefined, [
+    {
+      text: "Suspend Normal",
+      action: function () {
+        App.suspend_tabs("normal")
+      }
+    },
+    {
+      text: "Suspend Pinned",
+      action: function () {
+        App.suspend_tabs("pinned")
+      }
+    },
+    {
+      text: "Suspend All",
+      action: function () {
+        App.suspend_tabs("all")
+      }
+    }
+    ]],
+
+    ["Close Tabs...", undefined, [
+    {
+      text: "Close Normal",
+      action: function () {
+        App.close_normal_tabs()
+      }
+    },
+    {
+      text: "Close Playing",
+      action: function () {
+        App.close_playing_tabs()
+      }
+    },
+    {
+      text: "Close Suspended",
+      action: function () {
+        App.close_suspended_tabs()
+      }
+    },
+    {
+      text: "Close All",
+      action: function () {
+        App.close_tabs()
+      }
+    }
+    ]],
   ]
 
   App.setup_item_window("tabs", filter_modes, menu_items)
@@ -302,111 +369,6 @@ App.suspend_tab = async function (tab) {
   }
 
   browser.tabs.discard(tab.id)
-}
-
-// Show pin menu
-App.show_pin_menu = function (e, button) {
-  let items = []
-
-  items.push({
-    text: "Pin Tabs",
-    action: function () {
-      App.pin_all_tabs()
-    }
-  })
-
-  items.push({
-    text: "Unpin Tabs",
-    action: function () {
-      App.unpin_all_tabs()
-    }
-  }) 
-
-  App.show_submenu(e, undefined, button, items)
-}
-
-// Show mute menu
-App.show_mute_menu = function (e, button) {
-  let items = []
-
-  items.push({
-    text: "Mute Tabs",
-    action: function () {
-      App.mute_tabs()
-    }
-  }) 
-
-  items.push({
-    text: "Unmute Tabs",
-    action: function () {
-      App.unmute_tabs()
-    }
-  }) 
-  
-  App.show_submenu(e, undefined, button, items)
-}
-
-// Show suspend menu
-App.show_suspend_menu = function (e, button) {
-  let items = []
-
-  items.push({
-    text: "Suspend Normal",
-    action: function () {
-      App.suspend_tabs("normal")
-    }
-  })
-
-  items.push({
-    text: "Suspend Pinned",
-    action: function () {
-      App.suspend_tabs("pinned")
-    }
-  }) 
-
-  items.push({
-    text: "Suspend All",
-    action: function () {
-      App.suspend_tabs("all")
-    }
-  }) 
-  
-  App.show_submenu(e, undefined, button, items)
-}
-
-// Show close menu
-App.show_close_menu = function (e, button) {
-  let items = []  
-
-  items.push({
-    text: "Close Normal",
-    action: function () {
-      App.close_normal_tabs()
-    }
-  }) 
-
-  items.push({
-    text: "Close Playing",
-    action: function () {
-      App.close_playing_tabs()
-    }
-  }) 
-
-  items.push({
-    text: "Close Suspended",
-    action: function () {
-      App.close_suspended_tabs()
-    }
-  }) 
-
-  items.push({
-    text: "Close All",
-    action: function () {
-      App.close_tabs()
-    }
-  })
-  
-  App.show_submenu(e, undefined, button, items)
 }
 
 // Pin tabs

@@ -15,6 +15,8 @@ NeedContext.set_defaults = function () {
   NeedContext.keydown = false
   NeedContext.mousedown = false
   NeedContext.first_mousedown = false
+  NeedContext.last_x = 0
+  NeedContext.last_y = 0
 }
 
 // Show based on an element
@@ -83,6 +85,9 @@ NeedContext.show = function (x, y, items) {
     x = document.body.clientWidth - c.offsetWidth - 5
   }
 
+  NeedContext.last_x = x
+  NeedContext.last_y = y
+
   c.style.left = `${x}px`
   c.style.top = `${y}px`
   
@@ -144,10 +149,29 @@ NeedContext.select_down = function () {
 }
 
 // Do the selected action
-NeedContext.select_action = function (e) {
+NeedContext.select_action = async function (e) {
+  let x = NeedContext.last_x
+  let y = NeedContext.last_y
   let item = NeedContext.items[NeedContext.index]
+
+  function show_below (items) {
+    if (e.clientY) {
+      y = e.clientY
+    }
+
+    NeedContext.show(x, y, items)
+  }
+
   NeedContext.hide()
-  item.action(e)
+
+  if (item.action) {
+    item.action(e)
+  } else if (item.items) {
+    show_below(item.items)
+  } else if (item.get_items) {
+    let items = await item.get_items()
+    show_below(items)
+  }
 }
 
 // Prepare css and events
