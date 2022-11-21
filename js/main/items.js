@@ -761,7 +761,7 @@ App.show_item_window = async function (mode, cycle = false) {
 }
 
 // Setup an item window
-App.setup_item_window = function (mode, filter_modes, buttons) {
+App.setup_item_window = function (mode, filter_modes, menu_items) {
   let args = {}
   args.id = mode
   args.close_button = false
@@ -855,18 +855,28 @@ App.setup_item_window = function (mode, filter_modes, buttons) {
       App.clear_filter(mode)
     })  
 
-    top.append(clear_filter)      
+    top.append(clear_filter)    
 
     //
-    if (buttons) {
-      for (let b of buttons) {
-        let button = App.create("button", "button")
-        button.title = b[0]
-        button.textContent = b[1]
-        App.ev(button, "click", b[2])
-        top.append(button)
-      }
-    }    
+    if (menu_items) {
+      let menu = App.create("button", "button", `${mode}_menu`)
+      menu.title = "More Options"
+      menu.textContent = "Menu"
+
+      App.ev(menu, "click", function () {
+        let items = []
+
+        for (let item of menu_items) {
+          items.push({text: item[0], action: function (e) {
+            item[1](e, menu)
+          }})
+        }
+        
+        NeedContext.show_on_element(menu, items)
+      })
+  
+      top.append(menu)  
+    }
   }
 
   App.create_window(args) 

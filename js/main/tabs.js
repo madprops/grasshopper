@@ -13,22 +13,28 @@ App.setup_tabs = function () {
     ["other_window", "Other Window"]
   ]
 
-  let buttons = [
-    ["Go To A Tab Emitting Sound", "Playing", function () {
+  let menu_items = [
+    ["New Tab", function () {
+      App.new_tab()
+    }],    
+    ["Got To Playing", function () {
       App.go_to_playing_tab()
     }],
-    ["Close Normal Tabs", "Clean", function () {
-      App.clean_tabs()
+    ["Pin/Unpin...", function (e, button) {
+      App.show_pin_menu(e, button)
     }],
-    ["More Actions", "More", function () {
-      App.show_tabs_menu(this)
+    ["Mute/Unmute...", function (e, button) {
+      App.show_mute_menu(e, button)
     }],
-    ["New Tab", "New", function () {
-      App.new_tab()
-    }]
+    ["Suspend Tabs...", function (e, button) {
+      App.show_suspend_menu(e, button)
+    }],
+    ["Close Tabs...", function (e, button) {
+      App.show_close_menu(e, button)
+    }],
   ]
 
-  App.setup_item_window("tabs", filter_modes, buttons)
+  App.setup_item_window("tabs", filter_modes, menu_items)
 
   browser.tabs.onUpdated.addListener(function (id) {
     if (App.window_mode === "tabs") {
@@ -175,31 +181,6 @@ App.prepend_tab = function (info) {
   App.el("#tabs_container").prepend(tab.element)
 }
 
-// Close all normal tabs
-App.clean_tabs = function () {
-  let ids = []
-
-  for (let tab of App.tabs_items) {
-    if (!tab.visible || !App.tab_is_normal(tab)) {
-      continue
-    }
-    
-    ids.push(tab.id)
-  }
-
-  if (ids.length === 0) {
-    return
-  }
-  
-  let s = App.plural(ids.length, "tab", "tabs")
-
-  if (confirm(`Close normal tabs? (${s})`)) {
-    for (let id of ids) {
-      App.close_tab(id)
-    }
-  }
-}
-
 // Pin a tab
 App.pin_tab = function (id) {
   browser.tabs.update(id, {pinned: true})
@@ -323,48 +304,6 @@ App.suspend_tab = async function (tab) {
   browser.tabs.discard(tab.id)
 }
 
-// Show tabs menu
-App.show_tabs_menu = function (button) {
-  let items = []
-
-  items.push({
-    text: "Information",
-    action: function () {
-      App.show_tabs_information()
-    }
-  })
-
-  items.push({
-    text: "Pin/Unpin...",
-    action: function (e) {
-      App.show_pin_menu(e, button)
-    }
-  })  
-
-  items.push({
-    text: "Mute/Unmute...",
-    action: function (e) {
-      App.show_mute_menu(e, button)
-    }
-  })    
-
-  items.push({
-    text: "Suspend Tabs...",
-    action: function (e) {
-      App.show_suspend_menu(e, button)
-    }
-  })
-  
-  items.push({
-    text: "Close Tabs...",
-    action: function (e) {
-      App.show_close_menu(e, button)
-    }
-  })
-  
-  NeedContext.show_on_element(button, items)
-}
-
 // Show pin menu
 App.show_pin_menu = function (e, button) {
   let items = []
@@ -438,6 +377,13 @@ App.show_suspend_menu = function (e, button) {
 // Show close menu
 App.show_close_menu = function (e, button) {
   let items = []  
+
+  items.push({
+    text: "Close Normal",
+    action: function () {
+      App.close_normal_tabs()
+    }
+  }) 
 
   items.push({
     text: "Close Playing",
@@ -596,6 +542,31 @@ App.close_suspended_tabs = function () {
   let s = App.plural(ids.length, "tab", "tabs")
 
   if (confirm(`Close suspended tabs? (${s})`)) {
+    for (let id of ids) {
+      App.close_tab(id)
+    }
+  }
+}
+
+// Close normal tabs
+App.close_normal_tabs = function () {
+  let ids = []
+
+  for (let tab of App.tabs_items) {
+    if (!tab.visible || !App.tab_is_normal(tab)) {
+      continue
+    }
+    
+    ids.push(tab.id)
+  }
+
+  if (ids.length === 0) {
+    return
+  }
+  
+  let s = App.plural(ids.length, "tab", "tabs")
+
+  if (confirm(`Close normal tabs? (${s})`)) {
     for (let id of ids) {
       App.close_tab(id)
     }
