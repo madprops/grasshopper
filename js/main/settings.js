@@ -14,23 +14,21 @@ App.default_settings = {
 
 // Setup settings
 App.setup_settings = function () {
+  function on_x () {
+    App.show_last_window()
+  }
+
   App.create_window({id: "settings_basic", setup: function () {
     App.start_basic_settings()
-  }, on_x: function () {
-    App.show_window("settings")
-  }})
+  }, on_x: on_x})
 
   App.create_window({id: "settings_order", setup: function () {
     App.start_order_settings()
-  }, on_x: function () {
-    App.show_window("settings")
-  }})  
+  }, on_x: on_x})  
 
   App.create_window({id: "settings_theme", setup: function () {
     App.start_theme_settings()
-  }, on_x: function () {
-    App.show_window("settings")
-  }})  
+  }, on_x: on_x})  
 
   App.create_window({id: "settings", setup: function () {
     App.ev(App.el("#settings_show_basic"), "click", function () {
