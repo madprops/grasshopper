@@ -1,7 +1,7 @@
 // Default settings values
 App.default_settings = {
   text_mode: "title",
-  background_color: "rgb(87, 92, 111)",
+  background_color: "rgb(88, 92, 111)",
   text_color: "rgb(234, 238, 255)",
   tabs_index: 0,
   stars_index: 1,
