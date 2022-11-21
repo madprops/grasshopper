@@ -205,7 +205,13 @@ App.new_star = function (title = "", url = "") {
 
 // Add a star or edit an existing one
 App.add_or_edit_star = async function (item) {
-  let star = await App.get_star_by_url(item.url)
+  let star
+
+  if (item.mode === "stars") {
+    star = await App.get_star_by_id(item.id)
+  } else{
+    star = await App.get_star_by_url(item.url)
+  }
 
   if (star) {
     App.show_star_editor(star)
