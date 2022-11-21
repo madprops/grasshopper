@@ -621,12 +621,13 @@ App.tab_is_normal = function (tab) {
 }
 
 // Show tabs information
-App.show_tabs_information = function () {
+App.show_tabs_information = async function () {
   let all = App.tabs_items.length
   let pins = App.get_pinned_tabs().length
   let playing = App.get_playing_tabs().length
   let muted = App.get_muted_tabs().length
   let suspended = App.get_suspended_tabs().length
+  let windows = await browser.windows.getAll({populate: false})
 
   let s = "Tab Count:\n\n"
 
@@ -634,7 +635,8 @@ App.show_tabs_information = function () {
   s += `Pins: ${pins}\n`
   s += `Playing: ${playing}\n`
   s += `Muted: ${muted}\n`
-  s += `Suspended: ${suspended}`
+  s += `Suspended: ${suspended}\n`
+  s += `Windows: ${windows.length}`
 
   alert(s)
 }
