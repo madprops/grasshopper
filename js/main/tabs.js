@@ -18,6 +18,10 @@ App.setup_tabs = function () {
       App.new_tab()
     }], 
 
+    ["Information", function () {
+      App.show_tabs_information()
+    }],
+
     ["Go To Playing", function () {
       App.go_to_playing_tab()
     }],
