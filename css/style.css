@@ -381,8 +381,8 @@ a:visited, a:link, a:hover {
 }
 
 .popup_container {
-  padding-top: 1.25rem;
-  padding-bottom: 1.25rem;
+  padding-top: 1.5rem;
+  padding-bottom: 1.5rem;
   padding-left: 2.5rem;
   padding-right: 2.5rem;
   display: flex;
