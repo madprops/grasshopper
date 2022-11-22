@@ -64,7 +64,7 @@ App.setup_tabs = function () {
       }
     },
     {
-      text: "Suspend Pinned",
+      text: "Suspend Pins",
       action: function () {
         App.suspend_tabs("pinned")
       }
@@ -94,6 +94,12 @@ App.setup_tabs = function () {
       text: "Close Suspended",
       action: function () {
         App.close_suspended_tabs()
+      }
+    },
+    {
+      text: "Close Pins",
+      action: function () {
+        App.close_pinned_tabs()
       }
     },
     {
@@ -533,6 +539,31 @@ App.close_normal_tabs = function () {
   let s = App.plural(ids.length, "tab", "tabs")
 
   if (confirm(`Close normal tabs? (${s})`)) {
+    for (let id of ids) {
+      App.close_tab(id)
+    }
+  }
+}
+
+// Close pinned tabs
+App.close_pinned_tabs = function () {
+  let ids = []
+
+  for (let tab of App.tabs_items) {
+    if (!tab.visible || !tab.pinned) {
+      continue
+    }
+    
+    ids.push(tab.id)
+  }
+
+  if (ids.length === 0) {
+    return
+  }
+  
+  let s = App.plural(ids.length, "tab", "tabs")
+
+  if (confirm(`Close pinned tabs? (${s})`)) {
     for (let id of ids) {
       App.close_tab(id)
     }
