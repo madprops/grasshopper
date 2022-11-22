@@ -21,11 +21,15 @@ App.create_window = function (args) {
     args.show_top = true
   }
 
+  if (args.cls === undefined) {
+    args.cls = "normal"
+  }
+
   let w = {}
-  let el = App.create("div", "window_main", `window_${args.id}`)
+  let el = App.create("div", `window_main window_main_${args.cls}`, `window_${args.id}`)
 
   if (args.show_top) {
-    let top = App.create("div", `window_top window_top_${args.align_top}`, `window_top_${args.id}`)
+    let top = App.create("div", `window_top window_top_${args.align_top} window_top_${args.cls}`, `window_top_${args.id}`)
     let top_html = App.get_template(`${args.id}_top`)
 
     if (top_html) {
@@ -49,7 +53,7 @@ App.create_window = function (args) {
     el.append(top)
   }
 
-  let content = App.create("div", "window_content", `window_content_${args.id}`)
+  let content = App.create("div", `window_content window_content_${args.cls}`, `window_content_${args.id}`)
   let content_html = App.get_template(args.id)
 
   if (content_html) {
@@ -117,4 +121,34 @@ App.show_window = function (mode) {
 // Show the last window
 App.show_last_window = function () {
   App.windows[App.last_window_mode].show(false)
+}
+
+// Create a popup
+App.create_popup = function (args) {
+  let p = {}
+  p.setup = false
+  
+  let popup = App.create("div", "popup_main", `popup_${args.id}`)
+  popup.innerHTML = App.get_template(args.id)
+  App.el("#main").append(popup)
+  p.element = popup
+
+  p.show = function () {
+    if (args.setup && !App.popups[args.id].setup) {
+      args.setup()
+    }
+    
+    p.element.style.display = "flex"
+  }
+  
+  p.hide = function () {
+    p.element.style.display = "none"
+  }
+  
+  App.popups[args.id] = p
+}
+
+// Show popup
+App.show_popup = function (id) {
+  App.popups[id].show()
 }

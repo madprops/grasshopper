@@ -1,6 +1,7 @@
 App.stor_settings_name = "settings_v1"
 App.stor_stars_name = "stars_v6"
 App.windows = {}
+App.popups = {}
 App.filter_delay = 250
 App.color_delay = 150
 App.max_stars = 1000 * 2
@@ -23,6 +24,7 @@ App.init = async function () {
   App.setup_settings()
   App.setup_about()
   App.setup_keyboard()
+  App.setup_confirm()
   App.setup_items()
 
   // Show first window

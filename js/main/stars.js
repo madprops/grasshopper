@@ -93,12 +93,10 @@ App.unstar_item = function () {
     return
   }
 
-  if (!confirm("Remove this star?")) {
-    return
-  }
-
-  App.do_unstar([App.star_edited.id])
-  App.hide_star_editor()
+  App.show_confirm("Remove this star?", function () {
+    App.do_unstar([App.star_edited.id])
+    App.hide_star_editor()
+  })
 }
 
 // Do unstar action
@@ -258,9 +256,9 @@ App.unstar_stars = function () {
   
   let s = App.plural(ids.length, "star", "stars")
 
-  if (confirm(`Remove stars? (${s})`)) {
+  App.show_confirm(`Remove stars? (${s})`, function () {
     App.do_unstar(ids)
-  }
+  })
 }
 
 // Prepend a star
