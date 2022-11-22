@@ -669,7 +669,7 @@ App.show_tabs_information = async function () {
   s += `Suspended: ${suspended}\n`
   s += `Windows: ${windows.length}`
 
-  alert(s)
+  App.show_alert(s)
 }
 
 // Pin or unpin

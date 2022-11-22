@@ -380,11 +380,11 @@ a:visited, a:link, a:hover {
   text-align: left;
 }
 
-#confirm_container {
+.popup_container {
   padding-top: 2rem;
   padding-bottom: 2rem;
-  padding-left: 5rem;
-  padding-right: 5rem;
+  padding-left: 4rem;
+  padding-right: 4rem;
   display: flex;
   flex-direction: column;
   gap: 1rem;
@@ -406,4 +406,8 @@ a:visited, a:link, a:hover {
   position: fixed;
   top: 0;
   left: 0;
+}
+
+#alert_message {
+  white-space: pre;
 }

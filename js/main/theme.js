@@ -105,5 +105,5 @@ App.detect_theme = async function () {
     }
   }
 
-  alert("Theme couldn't be detected")
+  App.show_alert("Theme couldn't be detected")
 }

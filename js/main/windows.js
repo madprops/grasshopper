@@ -122,33 +122,3 @@ App.show_window = function (mode) {
 App.show_last_window = function () {
   App.windows[App.last_window_mode].show(false)
 }
-
-// Create a popup
-App.create_popup = function (args) {
-  let p = {}
-  p.setup = false
-  
-  let popup = App.create("div", "popup_main", `popup_${args.id}`)
-  popup.innerHTML = App.get_template(args.id)
-  App.el("#main").append(popup)
-  p.element = popup
-
-  p.show = function () {
-    if (args.setup && !App.popups[args.id].setup) {
-      args.setup()
-    }
-    
-    p.element.style.display = "flex"
-  }
-  
-  p.hide = function () {
-    p.element.style.display = "none"
-  }
-  
-  App.popups[args.id] = p
-}
-
-// Show popup
-App.show_popup = function (id) {
-  App.popups[id].show()
-}

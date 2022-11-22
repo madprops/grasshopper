@@ -136,7 +136,7 @@ App.star_editor_save = async function () {
   try {
     new URL(url)
   } catch (err) {
-    alert("Invalid URL")
+    App.show_alert("Invalid URL")
     return
   }
 
