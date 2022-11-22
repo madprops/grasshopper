@@ -279,17 +279,10 @@ body, html {
   width: 14rem;
 }
 
-.editor_text {
-  background-color: var(--alt_color);
-  color: var(--text_color);
-  outline: 1px solid var(--alt_color_2);
-  border-width: 0;
-  font-size: 1rem;
-  padding: 0.05rem;
-  flex-grow: 0;
+.star_editor_text {
   width: 18rem;
+  background-color: var(--alt_color);
   text-align: center;
-  padding: 0.2rem;
 }
 
 .bigger {
