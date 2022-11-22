@@ -127,21 +127,6 @@ App.start_basic_settings = function () {
     }
   }
 
-  // Selects
-  for (let item of App.els(".settings_select")) {
-    let setting = item.dataset.setting
-    let action = item.dataset.action
-
-    let el = App.el(`#settings_${setting}`)
-    el.value = App.settings[setting]
-  
-    App.ev(el, "change", function () {
-      App.settings[setting] = el.value
-      App.stor_save_settings()
-      do_action(action)        
-    })
-  }
-
   // Checkboxes
   for (let item of App.els(".settings_checkbox")) {
     let setting = item.dataset.setting
@@ -205,4 +190,32 @@ App.start_basic_settings = function () {
       })
     }
   }  
+
+  let text_mode = App.el("#settings_text_mode")
+
+  App.ev(text_mode, "click", function () {
+    let items = []
+
+    items.push({
+      text: "Title",
+      action: function () {
+        text_mode.textContent = "Title"
+        App.settings.text_mode = "title"
+        App.stor_save_settings()
+      }
+    })
+
+    items.push({
+      text: "URL",
+      action: function () {
+        text_mode.textContent = "URL"
+        App.settings.text_mode = "url"
+        App.stor_save_settings()
+      }
+    })
+
+    NeedContext.show_on_element(this, items)
+  })
+
+  text_mode.textContent = App.settings.text_mode == "url" ? "URL" : "Title"
 }

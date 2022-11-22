@@ -96,10 +96,7 @@
 
         <div class="flex_column_center gap_2" title="Main text to display on the items. The opposite displays in the footer">
           <div>Text Mode</div>
-          <select id="settings_text_mode" class="select settings_select"  data-setting="text_mode">
-            <option value="title">Title</option>
-            <option value="url">URL</option>
-          </select>
+          <button id="settings_text_mode" class="settings_menu button"  data-setting="text_mode"></button>
         </div>
 
         <div class="separator"></div>
@@ -121,7 +118,7 @@
     <template id="template_settings_order">
       <div class="settings_container unselectable">
         <div class="bigger">Order Settings</div>
-        <div id="item_order" title="Order of the select or Tab. The items on top appear first"></div>
+        <div id="item_order" title="Item order. The items on top appear first"></div>
       </div>
     </template>
 
@@ -161,7 +158,7 @@
         </div>
 
         <div id="about_shortcuts">
-          <div>Switch item windows with the top-left select or (Shift) Tab</div>
+          <div>Switch item windows with the top-left menu or (Shift) Tab</div>
           <div>Use Up, Down, and Enter keys to navigate and pick items</div>
           <div>Type anytime to filter items, press Tab to carry the filter</div>
           <div>Right Click or Shift + Enter to show context menu</div>

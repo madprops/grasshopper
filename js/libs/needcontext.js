@@ -20,13 +20,14 @@ NeedContext.set_defaults = function () {
 }
 
 // Show based on an element
-NeedContext.show_on_element = function (el, items, number) {
+NeedContext.show_on_element = function (el, items) {
   let rect = el.getBoundingClientRect()
-  NeedContext.show(rect.left, rect.top + el.clientHeight, items, number)
+  NeedContext.show(rect.left, rect.top + el.clientHeight, items)
+  document.querySelector("#needcontext-container").style.minWidth = `${el.clientWidth}px`
 }
 
 // Show the menu
-NeedContext.show = function (x, y, items, number = false) {
+NeedContext.show = function (x, y, items) {
   NeedContext.hide()
 
   let main = document.createElement("div")
@@ -43,13 +44,7 @@ NeedContext.show = function (x, y, items, number = false) {
   for (let [i, item] of items.entries()) {
     let el = document.createElement("div")
     el.classList.add("needcontext-item")
-
-    if (number) {
-      el.textContent = `${i + 1}. ${item.text}`
-    } else {
-      el.textContent = item.text
-    }
-
+    el.textContent = item.text
     el.dataset.index = i
 
     if (item.title) {
@@ -158,14 +153,13 @@ NeedContext.select_action = async function (e, index = NeedContext.index) {
   let x = NeedContext.last_x
   let y = NeedContext.last_y
   let item = NeedContext.items[index]
-  let number = item.number_items
 
   function show_below (items) {
     if (e.clientY) {
       y = e.clientY
     }
 
-    NeedContext.show(x, y, items, number)
+    NeedContext.show(x, y, items)
   }
 
   NeedContext.hide()
@@ -293,8 +287,6 @@ NeedContext.init = function () {
       NeedContext.hide()
     } else if (e.key === "Enter") {
       NeedContext.select_action(e)
-    } else if (!isNaN(e.key)) {
-      NeedContext.select_action(e, e.key - 1)
     }
 
     e.preventDefault()

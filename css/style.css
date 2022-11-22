@@ -97,20 +97,8 @@ body, html {
   padding-left: 0.25rem;
 }
 
-.select {
-  font-size: 0.88rem;
-  background-color: transparent;
-  color: var(--text_color);
-  border: 1px solid var(--alt_color_2);
-  height: var(--widget_height);
-}
-
-.filter_mode_select {
-  width: 5rem;
-}
-
 .button {
-  font-size: 0.92rem;
+  font-size: 1rem;
   cursor: pointer;
   flex-shrink: 0;
   min-width: 1.5rem;
@@ -237,12 +225,12 @@ body, html {
   justify-content: center;
 }
 
-.settings_select {
-  width: 6rem;
+.settings_button {
   padding: 0.2rem;
   font-size: 1rem;
   text-align: center;
   box-sizing: border-box;
+  width: 10rem;
 }
 
 .settings_text {
@@ -262,13 +250,13 @@ body, html {
   width: 16rem;
 }
 
+.settings_menu {
+  width: 6rem;
+}
+
 .settings_checkbox {
   width: 1.07rem;
   height: 1.07rem;
-}
-
-.settings_button {
-  width: 10rem;
 }
 
 .gap_1 {
