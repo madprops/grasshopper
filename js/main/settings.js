@@ -202,7 +202,8 @@ App.start_basic_settings = function () {
         text_mode.textContent = "Title"
         App.settings.text_mode = "title"
         App.stor_save_settings()
-      }
+      },
+      selected: App.settings.text_mode === "title"
     })
 
     items.push({
@@ -211,11 +212,12 @@ App.start_basic_settings = function () {
         text_mode.textContent = "URL"
         App.settings.text_mode = "url"
         App.stor_save_settings()
-      }
+      },
+      selected: App.settings.text_mode === "url"
     })
 
     NeedContext.show_on_element(this, items, true)
   })
 
-  text_mode.textContent = App.settings.text_mode == "url" ? "URL" : "Title"
+  text_mode.textContent = App.settings.text_mode === "url" ? "URL" : "Title"
 }
