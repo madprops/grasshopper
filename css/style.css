@@ -100,6 +100,7 @@ body, html {
 .filter {
   flex-grow: 0;
   width: 10rem;
+  background-color: var(--alt_color);
 }
 
 .button {
