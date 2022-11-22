@@ -64,9 +64,9 @@ App.stor_save_stars = async function () {
 
 // Reset settings to default
 App.stor_reset_settings = async function () {
-  if (confirm("Reset settings to defaults?")) {
+  App.show_confirm("Reset settings to defaults?", async function () {
     App.settings = {}
     await App.stor_save_settings()
     window.close()
-  }
+  })
 }
