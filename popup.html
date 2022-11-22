@@ -61,8 +61,8 @@
         </div>
 
         <div class="flex_row_center gap_2">
-          <button id="star_editor_unstar" class="button">Un-Star</button>
-          <button id="star_editor_save" class="button">Save</button>
+          <div id="star_editor_unstar" class="button">Un-Star</div>
+          <div id="star_editor_save" class="button">Save</div>
         </div>
       </div>
     </template>
@@ -70,14 +70,10 @@
     <template id="template_settings">
       <div class="settings_container unselectable">
         <div class="bigger">Settings</div>
-
-        <button id="settings_show_basic" class="button settings_button">Basic Settings</button>
-
-        <button id="settings_show_order" class="button settings_button">Order Settings</button>
-
-        <button id="settings_show_theme" class="button settings_button">Theme Settings</button>
-
-        <button id="settings_defaults_button" class="button settings_button" title="Reset settings to defaults">Reset Settings</button>
+        <div id="settings_show_basic" class="button settings_button">Basic Settings</div>
+        <div id="settings_show_order" class="button settings_button">Order Settings</div>div
+        <div id="settings_show_theme" class="button settings_button">Theme Settings</div>
+        <div id="settings_defaults_button" class="button settings_button" title="Reset settings to defaults">Reset Settings</div>
       </div>
     </template>
 
@@ -96,7 +92,7 @@
 
         <div class="flex_column_center gap_2" title="Main text to display on the items. The opposite is displayed in the footer">
           <div>Text Mode</div>
-          <button id="settings_text_mode" class="settings_menu button"  data-setting="text_mode"></button>
+          <div id="settings_text_mode" class="settings_menu button"  data-setting="text_mode"></div>
         </div>
 
         <div class="separator"></div>
@@ -143,9 +139,9 @@
         <div class="separator"></div>
 
         <div class="flex_column_center gap_2">
-          <button id="settings_dark_theme" class="button settings_button" title="Random dark theme">Dark Theme</button>
-          <button id="settings_light_theme" class="button settings_button" title="Random light theme">Light Theme</button>
-          <button id="settings_detect_theme" class="button settings_button" title="Detect browser theme">Detect Theme</button>
+          <div id="settings_dark_theme" class="button settings_button" title="Random dark theme">Dark Theme</div>
+          <div id="settings_light_theme" class="button settings_button" title="Random light theme">Light Theme</div>
+          <div id="settings_detect_theme" class="button settings_button" title="Detect browser theme">Detect Theme</div>
         </div>
       </div>
     </template>
@@ -181,8 +177,8 @@
       <div id="confirm_message"></div>
 
       <div class="flex_row_center gap_2">
-        <button id="confirm_no" class="button">Cancel</button>
-        <button id="confirm_yes" class="button colored">Confirm</button>
+        <div id="confirm_no" class="button">Cancel</div>
+        <div id="confirm_yes" class="button colored">Confirm</div>
       </div>
     </template>
 

@@ -760,7 +760,7 @@ App.setup_item_window = function (mode, menu_items) {
     App.setup_window_mouse(mode)     
 
     //
-    let item_picker = App.create("button", "button top_menu", `${mode}_item_picker`)
+    let item_picker = App.create("div", "button top_menu", `${mode}_item_picker`)
     item_picker.title = "Main Menu"
     item_picker.textContent = App.capitalize(mode)
 
@@ -791,7 +791,7 @@ App.setup_item_window = function (mode, menu_items) {
     top.append(filter)  
     
     //
-    let filter_mode = App.create("button", "button top_menu", `${mode}_filter_mode`)
+    let filter_mode = App.create("div", "button top_menu", `${mode}_filter_mode`)
     filter_mode.title = "Filter Mode"
 
     if (!App[`${mode}_filter_modes`]) {
@@ -818,7 +818,7 @@ App.setup_item_window = function (mode, menu_items) {
 
     //
     if (menu_items) {
-      let menu = App.create("button", "button", `${mode}_menu`)
+      let menu = App.create("div", "button", `${mode}_menu`)
       menu.title = "Items Menu (Shift + Space)"
       menu.textContent = "Menu"
 
