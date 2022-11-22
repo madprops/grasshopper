@@ -351,21 +351,18 @@ App.show_item_menu = function (item, x, y) {
       action: function () {
         App.copy_to_clipboard(item.title)
       }
-    }],
-    number_items: true
+    }]
   })  
 
   if (item.mode === "tabs") {
     items.push({
       text: "Move...",
-      get_items: async function () { return await App.get_move_menu_items(item) },
-      number_items: true
+      get_items: async function () { return await App.get_move_menu_items(item) }
     })     
     
     items.push({
       text: "More...",
-      get_items: function () { return App.get_more_menu_items(item) },
-      number_items: true
+      get_items: function () { return App.get_more_menu_items(item) }
     })     
 
     items.push({
@@ -380,7 +377,7 @@ App.show_item_menu = function (item, x, y) {
     App.select_item(item)
   }
 
-  NeedContext.show(x, y, items, true)
+  NeedContext.show(x, y, items)
 }
 
 // Show tab move menu
@@ -848,11 +845,11 @@ App.setup_item_window = function (mode, filter_modes, menu_items) {
               item[1]()
             }})
           } else if (item[2]) {
-            items.push({text: item[0], items:item[2], number_items: true})
+            items.push({text: item[0], items:item[2]})
           }
         }
         
-        NeedContext.show_on_element(menu, items, true)
+        NeedContext.show_on_element(menu, items)
       }
 
       App.ev(menu, "click", function () {
