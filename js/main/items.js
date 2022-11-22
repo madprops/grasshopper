@@ -713,8 +713,6 @@ App.show_item_window = async function (mode, cycle = false) {
   App.el(`#${mode}_filter_mode`).textContent = "All"
   App[`${mode}_filter_mode`] = "all"
 
-  App.clear_filter_mode(mode)
-
   let items = await App[`get_${mode}`]()
   
   if (mode !== App.window_mode) {
@@ -816,19 +814,7 @@ App.setup_item_window = function (mode, menu_items) {
       }
     })
 
-    top.append(filter_mode) 
-    
-    //
-    let clear_filter = App.create("button", "button", `${mode}_clear_filter`)
-    clear_filter.title = "Clear Filter"
-    clear_filter.textContent = "Clear"
-
-    App.ev(clear_filter, "click", function () {
-      App.clear_filter_mode(mode)
-      App.clear_filter(mode)
-    })  
-
-    top.append(clear_filter)    
+    top.append(filter_mode)   
 
     //
     if (menu_items) {
@@ -1085,15 +1071,6 @@ App.update_item = function (mode, id, source) {
   }
 }
 
-// Select the first filter mode item
-App.clear_filter_mode = function (mode) {
-  let filter_mode = App.el(`#${mode}_filter_mode`)
-
-  if (filter_mode) {
-    filter_mode.selectedIndex = 0
-  }
-}
-
 // Show similar tabs
 App.filter_domain = function (item) {
   let hostname = App.get_hostname(item.url)
@@ -1171,5 +1148,10 @@ App.cycle_filter_modes = function (mode, reverse = true) {
 App.set_filter_mode = function (mode, filter_mode) {
   App[`${mode}_filter_mode`] = filter_mode[0]
   App.el(`#${mode}_filter_mode`).textContent = filter_mode[1]
+
+  if (filter_mode[0] === "all") {
+    App.clear_filter(mode)
+  }
+
   App.do_item_filter(mode)
 }
