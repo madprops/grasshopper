@@ -1,5 +1,6 @@
 :root {
-  --widget_height: 1.7rem;
+  --widget_padding_vert: 0.25rem;
+  --widget_padding_hor: 0.35rem;
   --item_margin: 0.55rem;
 }
 
@@ -84,17 +85,21 @@ body, html {
   overflow-y: auto;
 }
 
-.filter {
+.text {
+  font-size: 1rem;
   background-color: transparent;
   color: var(--text_color);
   outline: 1px solid var(--alt_color_2);
-  height: var(--widget_height);
   border-width: 0;
-  font-size: 1rem;
+  padding: 0;
+  padding-left: var(--widget_padding_hor);
+  padding-top: var(--widget_padding_vert);
+  padding-bottom: var(--widget_padding_vert);
+}
+
+.filter {
   flex-grow: 0;
   width: 10rem;
-  padding: 0;
-  padding-left: 0.25rem;
 }
 
 .button {
@@ -103,14 +108,16 @@ body, html {
   flex-shrink: 0;
   min-width: 1.5rem;
   background-color: transparent;
-  height: var(--widget_height);
   color: var(--text_color);
-  border: 1px solid var(--alt_color_2);
-  padding-left: 0.25rem;
-  padding-right: 0.25rem;
+  border-width: 0;
+  outline: 1px solid var(--alt_color_2);
   white-space: nowrap;
   overflow: hidden;
   text-align: center;
+  padding-top: var(--widget_padding_vert);
+  padding-bottom: var(--widget_padding_vert);
+  padding-left: var(--widget_padding_hor);
+  padding-right: var(--widget_padding_hor);
 }
 
 .button:hover {
@@ -226,28 +233,19 @@ body, html {
 }
 
 .settings_button {
-  padding: 0.2rem;
-  font-size: 1rem;
-  text-align: center;
-  box-sizing: border-box;
   width: 10rem;
 }
 
 .settings_text {
-  background-color: transparent;
-  color: var(--text_color);
-  outline: 1px solid var(--alt_color_2);
-  border-width: 0;
-  font-size: 1rem;
   flex-grow: 0;
   width: 6rem;
   text-align: center;
-  padding: 0.2rem;
-  box-sizing: border-box;
 }
 
 .settings_text_long {
+  flex-grow: 0;
   width: 16rem;
+  text-align: center;
 }
 
 .settings_menu {

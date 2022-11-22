@@ -780,7 +780,7 @@ App.setup_item_window = function (mode, menu_items) {
 
     top.append(item_picker)     
 
-    let filter = App.create("input", "filter", `${mode}_filter`)
+    let filter = App.create("input", "text filter", `${mode}_filter`)
     filter.type = "text"
     filter.autocomplete = "off"
     filter.placeholder = "Filter"
