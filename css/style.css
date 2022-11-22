@@ -372,3 +372,15 @@ a:visited, a:link, a:hover {
 .transparent:hover {
   opacity: 0.311;
 }
+
+.item_picker {
+  width: 5rem;
+  text-align: left;
+}
+
+.filter_mode {
+  width: 5rem;
+  text-align: left;
+  white-space: nowrap;
+  overflow: hidden;
+}

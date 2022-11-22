@@ -10,7 +10,7 @@ App.setup_stars = function () {
     }],
   ]
 
-  App.setup_item_window("stars", undefined, menu_items)
+  App.setup_item_window("stars", menu_items)
   
   App.create_window({id: "star_editor", setup: function () {
     App.ev(App.el("#star_editor_save"), "click", function () {

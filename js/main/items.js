@@ -202,15 +202,7 @@ App.do_item_filter = async function (mode) {
     return
   }
 
-  let filter_mode
-  let filter_mode_select = App.el(`#${mode}_filter_mode`)
-
-  if (filter_mode_select) {
-    filter_mode = filter_mode_select.value
-  } else {
-    filter_mode = "all"
-  }
-
+  let filter_mode = App[`${mode}_filter_mode`]
   let skip = !value && filter_mode === "all"
   let words, filter_words
 
@@ -713,7 +705,10 @@ App.show_item_window = async function (mode, cycle = false) {
 
   App.el(`#${mode}_container`).innerHTML = ""
   App.el(`#${mode}_filter`).value = value
-  // App.el(`#${mode}_item_picker`).textContent = App.capitalize(mode)
+  App.el(`#${mode}_item_picker`).textContent = App.capitalize(mode)
+  App.el(`#${mode}_filter_mode`).textContent = "All"
+  App[`${mode}_filter_mode`] = "all"
+
   App.clear_filter_mode(mode)
 
   let items = await App[`get_${mode}`]()
@@ -734,7 +729,7 @@ App.show_item_window = async function (mode, cycle = false) {
 }
 
 // Setup an item window
-App.setup_item_window = function (mode, filter_modes, menu_items) {
+App.setup_item_window = function (mode, menu_items) {
   let args = {}
   args.id = mode
   args.close_button = false
@@ -763,11 +758,20 @@ App.setup_item_window = function (mode, filter_modes, menu_items) {
     App.setup_window_mouse(mode)     
 
     //
-    let item_picker = App.create("button", "button", `${mode}_item_picker`)
-    item_picker.textContent = "#"
+    let item_picker = App.create("button", "button item_picker", `${mode}_item_picker`)
+    item_picker.title = "Main Menu"
+    item_picker.textContent = App.capitalize(mode)
 
     App.ev(item_picker, "click", function () {
       App.show_item_picker(this)
+    })
+
+    App.ev(item_picker, "wheel", function (e) {
+      if (e.deltaY < 0) {
+        App.cycle_item_windows(true)
+      } else {
+        App.cycle_item_windows(false)
+      }
     })
 
     top.append(item_picker)     
@@ -775,7 +779,7 @@ App.setup_item_window = function (mode, filter_modes, menu_items) {
     let filter = App.create("input", "filter", `${mode}_filter`)
     filter.type = "text"
     filter.autocomplete = "off"
-    filter.placeholder = App.capitalize(mode)
+    filter.placeholder = "Filter"
 
     //
     App.ev(filter, "input", function () {
@@ -785,44 +789,30 @@ App.setup_item_window = function (mode, filter_modes, menu_items) {
     top.append(filter)  
     
     //
-    let filter_mode_select = App.create("select", "select filter_mode_select", `${mode}_filter_mode`)
-    filter_mode_select.title = "Filter Mode"
+    let filter_mode = App.create("button", "button filter_mode", `${mode}_filter_mode`)
+    filter_mode.title = "Filter Mode"
 
-    if (filter_modes) {
-      for (let m of filter_modes) {
-        let o = App.create("option")
-        o.value = m[0]
-        o.selected = true
-        o.textContent = m[1]
-        filter_mode_select.append(o)
-      }
-    } else { 
-      let o1 = App.create("option")
-      o1.value = "all"
-      o1.selected = true
-      o1.textContent = "All"
-      filter_mode_select.append(o1)
-
-      let o2 = App.create("option")
-      o2.value = "secure"
-      o2.textContent = "Secure"
-      filter_mode_select.append(o2)
-
-      let o3 = App.create("option")
-      o3.value = "insecure"
-      o3.textContent = "Insecure"
-      filter_mode_select.append(o3)
+    if (!App[`${mode}_filter_modes`]) {
+      App[`${mode}_filter_modes`] = [
+        ["all", "All"],
+        ["secure", "Secure"],
+        ["insecure", "Insecure"],
+      ]
     }
-    
-    App.ev(filter_mode_select, "change", function () {
-      App.do_item_filter(mode)
+
+    App.ev(filter_mode, "click", function () {
+      App.show_filter_mode(mode)
     })
 
-    App.wrap_select(filter_mode_select, function () {
-      App.do_item_filter(mode)
-    })  
+    App.ev(filter_mode, "wheel", function (e) {
+      if (e.deltaY < 0) {
+        App.cycle_filter_modes(mode, true)
+      } else {
+        App.cycle_filter_modes(mode, false)
+      }
+    })
 
-    top.append(filter_mode_select) 
+    top.append(filter_mode) 
     
     //
     let clear_filter = App.create("button", "button", `${mode}_clear_filter`)
@@ -941,6 +931,20 @@ App.show_item_picker = function (btn) {
       }
     })
   }
+
+  items.push({
+    text: "Settings",
+    action: function () {
+      App.show_window("settings")
+    }
+  })
+
+  items.push({
+    text: "About",
+    action: function () {
+      App.show_window("about")
+    }
+  })
 
   NeedContext.show_on_element(btn, items)
 }
@@ -1104,4 +1108,64 @@ App.filter_domain = function (item) {
 // Show current item menu
 App.show_menu = function () {
   App[`show_${App.window_mode}_menu`]()
+}
+
+// Show filter mode
+App.show_filter_mode = function (mode) {
+  let items = []
+
+  for (let filter_mode of App[`${mode}_filter_modes`]) {
+    items.push({
+      text: filter_mode[1],
+      action: function () {
+        App.set_filter_mode(mode, filter_mode)
+      }
+    })
+  }
+
+  NeedContext.show_on_element(App.el(`#${mode}_filter_mode`), items)
+}
+
+// Cycle filter modes
+App.cycle_filter_modes = function (mode, reverse = true) {
+  let modes = App[`${mode}_filter_modes`]
+  let waypoint = false
+
+  if (reverse) {
+    for (let filter_mode of modes.slice(0).reverse()) {
+      if (waypoint) {
+        App.set_filter_mode(mode, filter_mode)
+        return
+      }
+
+      if (filter_mode[0] === App[`${mode}_filter_mode`]) {
+        waypoint = true
+      }
+    }
+  } else {
+    for (let filter_mode of modes) {
+      if (waypoint) {
+        App.set_filter_mode(mode, filter_mode)
+        return
+      }
+
+      if (filter_mode[0] === App[`${mode}_filter_mode`]) {
+        waypoint = true
+      }
+    }
+  }
+
+  // If no result
+  if (reverse) {
+    App.set_filter_mode(mode, modes[modes.length - 1])
+  } else {
+    App.set_filter_mode(mode, modes[0])
+  }
+}
+
+// Set filter mode
+App.set_filter_mode = function (mode, filter_mode) {
+  App[`${mode}_filter_mode`] = filter_mode[0]
+  App.el(`#${mode}_filter_mode`).textContent = filter_mode[1]
+  App.do_item_filter(mode)
 }

@@ -1,6 +1,6 @@
 // Setup tabs
 App.setup_tabs = function () {
-  let filter_modes = [
+  App.tabs_filter_modes = [
     ["all", "All"],
     ["pins", "Pins"],
     ["normal", "Normal"],
@@ -111,7 +111,7 @@ App.setup_tabs = function () {
     ]],
   ]
 
-  App.setup_item_window("tabs", filter_modes, menu_items)
+  App.setup_item_window("tabs", menu_items)
 
   browser.tabs.onUpdated.addListener(function (id) {
     if (App.window_mode === "tabs") {
