@@ -224,7 +224,7 @@ App.do_item_filter = async function (mode) {
       if (filter_mode === "all") {
         match = true
       } else if (filter_mode === "normal") {
-        match = !item.audible && !item.pinned
+        match = App.tab_is_normal(item)
       } else if (filter_mode === "playing") {
         match = item.audible
       } else if (filter_mode === "pins") {
