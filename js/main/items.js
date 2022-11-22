@@ -836,10 +836,10 @@ App.setup_item_window = function (mode, filter_modes, menu_items) {
     //
     if (menu_items) {
       let menu = App.create("button", "button", `${mode}_menu`)
-      menu.title = "More Options"
+      menu.title = "Items Menu (Shift + Space)"
       menu.textContent = "Menu"
 
-      App.ev(menu, "click", function () {
+      App[`show_${mode}_menu`] = function () {
         let items = []
 
         for (let item of menu_items) {
@@ -853,6 +853,10 @@ App.setup_item_window = function (mode, filter_modes, menu_items) {
         }
         
         NeedContext.show_on_element(menu, items, true)
+      }
+
+      App.ev(menu, "click", function () {
+        App.show_menu()
       })
   
       top.append(menu)  
@@ -1141,4 +1145,9 @@ App.filter_domain = function (item) {
   }
 
   App.set_filter(item.mode, hostname)
+}
+
+// Show current item menu
+App.show_menu = function () {
+  App[`show_${App.window_mode}_menu`]()
 }

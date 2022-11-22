@@ -58,6 +58,12 @@ App.setup_keyboard = function () {
     }
 
     if (App.item_order.includes(App.window_mode)) {
+      if (e.shiftKey && e.key === " ") {
+        App.show_menu()
+        e.preventDefault()
+        return
+      }
+
       App.check_window_keyboard(e)
     }
   })
