@@ -8,7 +8,7 @@ App.setup_window_mouse = function (mode) {
     }
   })  
 
-  App.ev(container, "click", function (e) {
+  App.ev(container, "mouseup", function (e) {
     if (e.target.closest(`.${mode}_item`)) {
       let item = App.get_cursor_item(mode, e)
 
