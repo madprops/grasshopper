@@ -154,10 +154,10 @@ NeedContext.select_down = function () {
 }
 
 // Do the selected action
-NeedContext.select_action = async function (e) {
+NeedContext.select_action = async function (e, index = NeedContext.index) {
   let x = NeedContext.last_x
   let y = NeedContext.last_y
-  let item = NeedContext.items[NeedContext.index]
+  let item = NeedContext.items[index]
   let number = item.number_items
 
   function show_below (items) {
@@ -293,6 +293,8 @@ NeedContext.init = function () {
       NeedContext.hide()
     } else if (e.key === "Enter") {
       NeedContext.select_action(e)
+    } else if (!isNaN(e.key)) {
+      NeedContext.select_action(e, e.key - 1)
     }
 
     e.preventDefault()
