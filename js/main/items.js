@@ -180,6 +180,16 @@ App.do_item_filter = async function (mode) {
     return
   }
 
+  if (value === "iddqd") {
+    App.el("#main").classList.add("invert")
+    App.set_filter(mode, "")
+    return
+  } else if (value === "idkfa") {
+    App.el("#main").classList.add("hue_rotate")
+    App.set_filter(mode, "")
+    return
+  }
+
   if (mode === "history") {
     await App.search_history()
 
@@ -191,16 +201,6 @@ App.do_item_filter = async function (mode) {
   if (!App[`${mode}_items`]) {
     return
   }  
-
-  if (value === "iddqd") {
-    App.el("#main").classList.add("invert")
-    App.set_filter(mode, "")
-    return
-  } else if (value === "idkfa") {
-    App.el("#main").classList.add("hue_rotate")
-    App.set_filter(mode, "")
-    return
-  }
 
   let filter_mode = App[`${mode}_filter_mode`]
   let skip = !value && filter_mode === "all"
