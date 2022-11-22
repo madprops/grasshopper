@@ -114,13 +114,15 @@ body, html {
   cursor: pointer;
   flex-shrink: 0;
   min-width: 1.5rem;
-  border: none;
   background-color: transparent;
   height: var(--widget_height);
   color: var(--text_color);
   border: 1px solid var(--alt_color_2);
   padding-left: 0.25rem;
   padding-right: 0.25rem;
+  white-space: nowrap;
+  overflow: hidden;
+  text-align: left;
 }
 
 .button:hover {
@@ -375,12 +377,8 @@ a:visited, a:link, a:hover {
 
 .item_picker {
   width: 5rem;
-  text-align: left;
 }
 
 .filter_mode {
   width: 5rem;
-  text-align: left;
-  white-space: nowrap;
-  overflow: hidden;
 }
