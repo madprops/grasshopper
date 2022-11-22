@@ -20,10 +20,13 @@ NeedContext.set_defaults = function () {
 }
 
 // Show based on an element
-NeedContext.show_on_element = function (el, items) {
+NeedContext.show_on_element = function (el, items, expand = false) {
   let rect = el.getBoundingClientRect()
   NeedContext.show(rect.left, rect.top + el.clientHeight, items)
-  document.querySelector("#needcontext-container").style.minWidth = `${el.clientWidth}px`
+
+  if (expand) {
+    document.querySelector("#needcontext-container").style.minWidth = `${el.clientWidth}px`
+  }
 }
 
 // Show the menu

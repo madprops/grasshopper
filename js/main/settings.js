@@ -214,7 +214,7 @@ App.start_basic_settings = function () {
       }
     })
 
-    NeedContext.show_on_element(this, items)
+    NeedContext.show_on_element(this, items, true)
   })
 
   text_mode.textContent = App.settings.text_mode == "url" ? "URL" : "Title"
