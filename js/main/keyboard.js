@@ -42,6 +42,10 @@ App.setup_keyboard = function () {
       return
     }
 
+    if (App.popup_open) {
+      return
+    }
+
     if (App.window_mode === "star_editor") {
       if (e.key === "Enter") {
         App.star_editor_save()

@@ -23,10 +23,12 @@ App.create_popup = function (args) {
     }
     
     p.element.style.display = "flex"
+    App.popup_open = true
   }
   
   p.hide = function () {
     p.element.style.display = "none"
+    App.popup_open = false
   }
   
   App.popups[args.id] = p
@@ -35,6 +37,11 @@ App.create_popup = function (args) {
 // Show popup
 App.show_popup = function (id) {
   App.popups[id].show()
+}
+
+// Hide popup
+App.hide_popup = function (id) {
+  App.popups[id].hide()
 }
 
 // Setup popups
