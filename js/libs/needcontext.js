@@ -43,6 +43,7 @@ NeedContext.show = function (x, y, items) {
   container.id = "needcontext-container"
 
   items = items.slice(0)
+  let selected_index = 0
   
   for (let [i, item] of items.entries()) {
     let el = document.createElement("div")
@@ -52,6 +53,10 @@ NeedContext.show = function (x, y, items) {
 
     if (item.title) {
       el.title = item.title
+    }
+
+    if (item.selected) {
+      selected_index = i
     }
 
     el.addEventListener("mouseenter", function () {
@@ -96,7 +101,7 @@ NeedContext.show = function (x, y, items) {
   
   NeedContext.main = main
   NeedContext.items = items
-  NeedContext.select_item(0)
+  NeedContext.select_item(selected_index)
   NeedContext.open = true
   NeedContext.after_show()
 }

@@ -24,7 +24,12 @@ App.check_window_keyboard = function (e) {
     App.select_item_above(mode)
     e.preventDefault()
   } else if (e.key === "ArrowDown") {
-    App.select_item_below(mode)
+    if (e.shiftKey) {
+      App.show_filter_mode(mode)
+    } else {
+      App.select_item_below(mode)
+    }
+
     e.preventDefault()
   }
 }

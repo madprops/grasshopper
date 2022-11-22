@@ -914,11 +914,14 @@ App.show_item_picker = function (btn) {
   let items = []
 
   for (let [i, m] of App.item_order.entries()) {
+    let selected = App.window_mode === m
+
     items.push({
       text: App.capitalize(m),
       action: function () {
         App.show_item_window(m)
-      }
+      },
+      selected: selected
     })
   }
 
@@ -1096,11 +1099,14 @@ App.show_filter_mode = function (mode) {
   let items = []
 
   for (let filter_mode of App[`${mode}_filter_modes`]) {
+    let selected = App[`${mode}_filter_mode`] === filter_mode[0]
+
     items.push({
       text: filter_mode[1],
       action: function () {
         App.set_filter_mode(mode, filter_mode)
-      }
+      },
+      selected: selected
     })
   }
 
