@@ -35,6 +35,8 @@ App.setup_keyboard = function () {
     if (NeedContext.open) {
       if (e.shiftKey && e.key === "Enter") {
         NeedContext.hide()
+      } else if (e.shiftKey && e.key === " ") {
+        NeedContext.hide()
       }
 
       return
@@ -58,7 +60,7 @@ App.setup_keyboard = function () {
     }
 
     if (App.item_order.includes(App.window_mode)) {
-      if (e.shiftKey && e.key === " ") {
+      if (e.shiftKey && e.key === " ") {        
         App.show_menu()
         e.preventDefault()
         return
