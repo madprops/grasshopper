@@ -713,7 +713,7 @@ App.show_item_window = async function (mode, cycle = false) {
 
   App.el(`#${mode}_container`).innerHTML = ""
   App.el(`#${mode}_filter`).value = value
-  App.el(`#${mode}_select`).value = mode
+  // App.el(`#${mode}_item_picker`).textContent = App.capitalize(mode)
   App.clear_filter_mode(mode)
 
   let items = await App[`get_${mode}`]()
@@ -763,13 +763,19 @@ App.setup_item_window = function (mode, filter_modes, menu_items) {
     App.setup_window_mouse(mode)     
 
     //
-    let items_select = App.make_items_select(mode)
-    top.append(items_select)     
+    let item_picker = App.create("button", "button", `${mode}_item_picker`)
+    item_picker.textContent = "#"
+
+    App.ev(item_picker, "click", function () {
+      App.show_item_picker(this)
+    })
+
+    top.append(item_picker)     
 
     let filter = App.create("input", "filter", `${mode}_filter`)
     filter.type = "text"
     filter.autocomplete = "off"
-    filter.placeholder = "Filter"
+    filter.placeholder = App.capitalize(mode)
 
     //
     App.ev(filter, "input", function () {
@@ -901,7 +907,6 @@ App.update_item_order = function () {
 
   App.stor_save_settings()
   App.get_item_order()
-  App.remake_items_selects()
 }
 
 // Window order up
@@ -924,68 +929,20 @@ App.item_order_down = function (el) {
   }
 }
 
-// Make items select
-App.make_items_select = function (mode) {
-  let select = App.create("select", "select item_select", `${mode}_select`)
+// Show item picker
+App.show_item_picker = function (btn) {
+  let items = []
 
   for (let [i, m] of App.item_order.entries()) {
-    let option = App.create("option")
-    
-    if (m === mode) {
-      option.selected = true
-    }
-
-    option.value = m
-    option.textContent = `${i + 1}. ${App.capitalize(m)}`
-    select.append(option)
+    items.push({
+      text: App.capitalize(m),
+      action: function () {
+        App.show_item_window(m)
+      }
+    })
   }
 
-  let separator = App.create("option")
-  separator.value = "none"
-  separator.textContent = "--------"
-  separator.disabled = true
-  select.append(separator)
-
-  let settings = App.create("option")
-  settings.value = "settings"
-  settings.textContent = "Settings"
-  select.append(settings)
-
-  let about = App.create("option")
-  about.value = "about"
-  about.textContent = "About"
-  select.append(about)
-
-  App.ev(select, "change", function () {
-    if (select.value === "none") {
-      return
-    }
-
-    if (select.value === "settings") {
-      App.show_window("settings")
-    } else if (select.value === "about") {
-      App.show_window("about")
-    } else {
-      App.show_item_window(select.value)
-    }
-  })
-  
-  App.wrap_select(select, function () {
-    App.show_item_window(select.value)
-  }, App.item_order.length)
-
-  return select
-}
-
-// Remake item selects
-App.remake_items_selects = function () {
-  for (let mode of App.item_order) {
-    let select = App.el(`#${mode}_select`)
-    
-    if (select) {
-      select.replaceWith(App.make_items_select(mode))
-    }
-  }
+  NeedContext.show_on_element(btn, items)
 }
 
 // Show first item window

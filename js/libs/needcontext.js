@@ -22,7 +22,7 @@ NeedContext.set_defaults = function () {
 // Show based on an element
 NeedContext.show_on_element = function (el, items, number) {
   let rect = el.getBoundingClientRect()
-  NeedContext.show(rect.left, rect.top, items, number)
+  NeedContext.show(rect.left, rect.top + el.clientHeight, items, number)
 }
 
 // Show the menu
