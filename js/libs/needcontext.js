@@ -2,6 +2,7 @@
 
 // Main object
 const NeedContext = {}
+NeedContext.created = false
 
 // Overridable function to perform after show
 NeedContext.after_show = function () {}
@@ -47,20 +48,21 @@ NeedContext.filter = function (key) {
 }
 
 // Show based on an element
-NeedContext.show_on_element = function (el, items) {
+NeedContext.show_on_element = function (el, items, expand = false, margin = 0) {
   let rect = el.getBoundingClientRect()
-  NeedContext.show(rect.left, rect.top, items)
-}
+  NeedContext.show(rect.left, rect.top + margin, items)
 
-// Show based on an element
-NeedContext.show_on_element_2 = function (el, items) {
-  let rect = el.getBoundingClientRect()
-  NeedContext.show(rect.left, rect.top + el.clientHeight, items)
-  document.querySelector("#needcontext-container").style.minWidth = `${el.clientWidth}px`
+  if (expand) {
+    document.querySelector("#needcontext-container").style.minWidth = `${el.clientWidth}px`
+  }
 }
 
 // Show the menu
 NeedContext.show = function (x, y, items) {
+  if (!NeedContext.created) {
+    NeedContext.create()
+  }
+
   NeedContext.hide()
 
   items = items.slice(0)
@@ -354,6 +356,11 @@ NeedContext.init = function () {
     e.preventDefault()
   })
 
+  NeedContext.set_defaults()
+}
+
+// Create elements
+NeedContext.create = function () {
   NeedContext.main = document.createElement("div")
   NeedContext.main.id = "needcontext-main" 
   NeedContext.main.classList.add("needcontext-hidden") 
@@ -367,10 +374,8 @@ NeedContext.init = function () {
   
   NeedContext.main.append(NeedContext.container)
   document.body.appendChild(NeedContext.main)
-  NeedContext.set_defaults()
+  NeedContext.created = true
 }
 
 // Start
-window.onload = function () {
-  NeedContext.init()
-}
+NeedContext.init()
