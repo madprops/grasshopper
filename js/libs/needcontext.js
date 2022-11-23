@@ -21,12 +21,28 @@ NeedContext.set_defaults = function () {
 
 // Filter from keyboard input
 NeedContext.filter = function (key) {
-  for (let item of NeedContext.items) {
+  let selected = false
+
+  for (let [i, item] of NeedContext.items.entries()) {
     if (!item.text.toLowerCase().startsWith(key)) {
-      item.element.style.display = "none"
+      item.element.classList.add("needcontext-hidden")
     } else {
-      item.element.style.display = "unset"
+      item.element.classList.remove("needcontext-hidden")
+
+      if (!selected) {
+        NeedContext.select_item(i)
+      }
+
+      selected = true
     }
+  }
+
+  if (!selected) {
+    for (let item of NeedContext.items) {
+      item.element.classList.remove("needcontext-hidden")
+    }
+
+    NeedContext.select_item(0)
   }
 }
 
@@ -97,14 +113,14 @@ NeedContext.show = function (x, y, items) {
   NeedContext.items = items
   NeedContext.select_item(selected_index)
   NeedContext.open = true
-  NeedContext.main.style.display = "unset"
+  NeedContext.main.classList.remove("needcontext-hidden")
   NeedContext.after_show()
 }
 
 // Hide the menu
 NeedContext.hide = function () {
   if (NeedContext.open) {
-    NeedContext.main.style.display = "none"
+    NeedContext.main.classList.add("needcontext-hidden")
     NeedContext.set_defaults()
     NeedContext.after_hide()
   }
@@ -184,13 +200,16 @@ NeedContext.init = function () {
 
   let css = `
     #needcontext-main {
-      display: none;
       position: fixed;
       z-index: 999999999;
       width: 100%;
       height: 100%;
       top: 0;
       left: 0;
+    }
+
+    .needcontext-hidden {
+      display: none;
     }
     
     #needcontext-container {
@@ -288,13 +307,16 @@ NeedContext.init = function () {
       NeedContext.select_action(e)
     } else if (e.key.match(/^[a-z0-9]{1}$/i)) {
       NeedContext.filter(e.key)
+    } else if (e.key === "Backspace") {
+      NeedContext.filter("")
     }
 
     e.preventDefault()
   })
 
   NeedContext.main = document.createElement("div")
-  NeedContext.main.id = "needcontext-main"  
+  NeedContext.main.id = "needcontext-main" 
+  NeedContext.main.classList.add("needcontext-hidden") 
 
   NeedContext.container = document.createElement("div")
   NeedContext.container.id = "needcontext-container"
