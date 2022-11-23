@@ -138,6 +138,10 @@ body, html {
   background-color: transparent;
 }
 
+.button_2:hover {
+  background-color: transparent;
+}
+
 .item {
   display: flex;
   flex-direction: row;
