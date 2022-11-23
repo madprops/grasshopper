@@ -259,8 +259,20 @@ App.unstar_stars = function () {
   let s = App.plural(ids.length, "star", "stars")
 
   App.show_confirm(`Remove stars? (${s})`, function () {
+    App.stars_backup = App.stars.items.slice(0)
     App.do_unstar(ids)
+    App.show_alert("Stars have been deleted", "Undo", function () {
+      App.undo_unstar_stars()
+    })
   })
+}
+
+// Undo unstar stars
+App.undo_unstar_stars = function () {
+  App.stars.items = App.stars_backup
+  App.stor_save_stars()
+  App.show_window("stars")
+  App.show_alert("Stars have been restored")
 }
 
 // Prepend a star

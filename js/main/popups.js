@@ -18,13 +18,15 @@ App.create_popup = function (args) {
   p.element = popup
 
   p.show = function () {
-    if (args.setup && !App.popups[args.id].setup) {
+    if (args.setup && !p.setup) {
       args.setup()
     }
     
     p.element.style.display = "flex"
     App.popup_open = true
     App.popup_mode = args.id
+    p.setup = true
+    console.info(`${args.id} popup setup`)
   }
   
   p.hide = function () {
@@ -61,7 +63,13 @@ App.setup_popups = function () {
   })
 
   App.create_popup({
-    id: "alert"
+    id: "alert",
+    setup: function () {
+      App.ev(App.el("#alert_button"), "click", function () {
+        App.hide_popup("alert")
+        App.alert_action()
+      })
+    }
   })
 }
 
@@ -75,8 +83,8 @@ App.show_confirm = function (message, action) {
 
 // Confirm yes
 App.confirm_yes = function () {
+  App.hide_popup("confirm")
   App.confirm_action()
-  App.popups.confirm.hide()
 }
 
 // Confirm no
@@ -85,8 +93,18 @@ App.confirm_no = function () {
 }
 
 // Show alert
-App.show_alert = function (message) {
+App.show_alert = function (message, button, action) {
+  App.alert_action = action
   App.el("#alert_message").textContent = message
+  let btn = App.el("#alert_button")
+
+  if (button) {
+    btn.textContent = button
+    btn.classList.remove("hidden")
+  } else {
+    btn.classList.add("hidden")
+  }
+
   App.show_popup("alert")
 }
 
