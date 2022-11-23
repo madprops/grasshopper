@@ -104,6 +104,11 @@ body, html {
   background-color: var(--alt_color);
 }
 
+.filter::placeholder {
+  color: var(--text_color);
+  opacity: 0.77;
+}
+
 .button {
   font-size: 1rem;
   cursor: pointer;
