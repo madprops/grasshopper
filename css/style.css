@@ -173,7 +173,7 @@ body, html {
   margin-left: var(--item_margin);
   display: flex;
   flex-direction: row;
-  gap: 0.5rem;
+  gap: 0.8rem;
 }
 
 .selected {
