@@ -112,7 +112,6 @@ NeedContext.show = function (x, y, items) {
   c.style.top = `${y}px`
 
   NeedContext.items = items
-  NeedContext.items_reversed = items.slice(0).reverse()
   NeedContext.select_item(selected_index)
   NeedContext.open = true
   NeedContext.main.classList.remove("needcontext-hidden")
@@ -148,7 +147,9 @@ NeedContext.select_up = function () {
   let waypoint = false
   let first_visible
 
-  for (let item of NeedContext.items_reversed) {
+  for (let i=NeedContext.items.length-1; i>=0; i--) {
+    let item = NeedContext.items[i]
+
     if (!NeedContext.is_visible(item.element)) {
       continue
     }
@@ -175,7 +176,9 @@ NeedContext.select_down = function () {
   let waypoint = false
   let first_visible
 
-  for (let item of NeedContext.items) {
+  for (let i=0; i<NeedContext.items.length; i++) {
+    let item = NeedContext.items[i]
+
     if (!NeedContext.is_visible(item.element)) {
       continue
     }
