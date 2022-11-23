@@ -737,18 +737,23 @@ App.save_tab_state = async function (n) {
 
 // Load tab state
 App.load_tab_state = async function (n) {
-  App.show_confirm(`Load tab state #${n}?`, async function () {
-    if (!App.tab_state) {
-      await App.stor_get_tab_state()
-    }
-  
-    let urls = App.tab_state[n]
-  
-    if (urls) {
-      for (let url of urls) {
-        if (!App.get_item_by_url("tabs", url)) {
-          App.open_tab(url, false)
-        }
+  if (!App.tab_state) {
+    await App.stor_get_tab_state()
+  }
+
+  let urls = App.tab_state[n]
+
+  if (!urls) {
+    App.show_alert("Nothing saved here yet")
+    return
+  }
+
+  let s = App.plural(urls.length, "tab", "tabs")
+
+  App.show_confirm(`Load tab state #${n}? (${s})`, async function () {  
+    for (let url of urls) {
+      if (!App.get_item_by_url("tabs", url)) {
+        App.open_tab(url, false)
       }
     }
   })
