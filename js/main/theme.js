@@ -19,7 +19,7 @@ App.apply_theme = function () {
     let alt_color_3 = App.colorlib.rgb_to_rgba(App.settings.text_color, 0.50)
     App.set_css_var("alt_color_3", alt_color_3)
 
-    let alt_background = App.colorlib.rgb_to_rgba(App.settings.background_color, 0.44)
+    let alt_background = App.colorlib.rgb_to_rgba(App.settings.background_color, 0.55)
     App.set_css_var("alt_background", alt_background)
 
     App.set_css_var("text_size", App.settings.text_size + "px")    
