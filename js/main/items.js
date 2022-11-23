@@ -632,8 +632,10 @@ App.get_item_by_id = function (mode, id) {
 // Get an item by url
 App.get_item_by_url = function (mode, url) {
   for (let item of App[`${mode}_items`]) {
-    if (App.urls_equal(item.url, url)) {
-      return item
+    if (item.url) {
+      if (App.urls_equal(item.url, url)) {
+        return item
+      }
     }
   }
 }
