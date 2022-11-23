@@ -779,20 +779,12 @@ App.setup_item_window = function (mode, menu_items) {
     let filter = App.create("input", "text filter", `${mode}_filter`)
     filter.type = "text"
     filter.autocomplete = "off"
-    filter.placeholder = "Filter"
+    filter.placeholder = "Type to filter..."
 
     //
     App.ev(filter, "input", function () {
       item_filter()
-    })  
-
-    App.ev(filter, "blur", function () {
-      setTimeout(function () {
-        if (mode === App.window_mode) {
-          App.focus_filter(mode)
-        }
-      }, 800)
-    })  
+    })   
 
     top.append(filter)  
     
