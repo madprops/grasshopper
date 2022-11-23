@@ -310,7 +310,7 @@ body, html {
 }
 
 #needcontext-main {
-  background-color: var(--alt_background);
+    background-color: var(--alt_background);
 }
 
 #needcontext-container {
