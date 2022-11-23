@@ -1,5 +1,6 @@
 App.stor_settings_name = "settings_v1"
 App.stor_stars_name = "stars_v6"
+App.stor_tab_state_name = "tab_state_v1"
 App.windows = {}
 App.popups = {}
 App.filter_delay = 250

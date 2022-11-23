@@ -26,6 +26,48 @@ App.setup_tabs = function () {
       App.show_tabs_information()
     }],
 
+    ["Save State...", undefined, [
+      {
+        text: "Save on #1",
+        action: function () {
+          App.save_tab_state(1)
+        }
+      },
+      {
+        text: "Save on #2",
+        action: function () {
+          App.save_tab_state(2)
+        }
+      },
+      {
+        text: "Save on #3",
+        action: function () {
+          App.save_tab_state(3)
+        }
+      }
+    ]], 
+    
+    ["Load State...", undefined, [
+      {
+        text: "Load #1",
+        action: function () {
+          App.load_tab_state(1)
+        }
+      },
+      {
+        text: "Load #2",
+        action: function () {
+          App.load_tab_state(2)
+        }
+      },
+      {
+        text: "Load #3",
+        action: function () {
+          App.load_tab_state(3)
+        }
+      }
+    ]],     
+
     ["Pin/Unpin...", undefined, [
     {
       text: "Pin All",
@@ -679,4 +721,47 @@ App.toggle_pin = function (item) {
   } else {
     App.pin_tab(item.id)
   }
+}
+
+// Save tab state
+App.save_tab_state = async function (n) {
+  if (!App.tab_state) {
+    await App.stor_get_tab_state()
+  }
+
+  App.tab_state[n] = App.get_tab_state()
+  App.stor_save_tab_state()
+}
+
+// Load tab state
+App.load_tab_state = async function (n) {
+  if (!App.tab_state) {
+    await App.stor_get_tab_state()
+  }
+
+  let urls = App.tab_state[n]
+
+  if (urls) {
+    for (let url of urls) {
+      if (!App.get_item_by_url("tabs", url)) {
+        App.open_tab(url, false)
+      }
+    }
+  }
+}
+
+// Get tab state
+App.get_tab_state = function () {
+  let urls = []
+
+  for (let tab of App.tabs_items) {
+    urls.push(tab.url)
+  }
+
+  return urls
+}
+
+// Open a tab
+App.open_tab = function (url, close = true) {
+  browser.tabs.create({url: url, active: close})
 }

@@ -962,8 +962,8 @@ App.focus_or_open_item = async function (item, close = true) {
       }
     }
   }
-  
-  browser.tabs.create({url: item.url, active: close})
+
+  App.open_tab(item.url, close)
 
   if (close) {
     window.close()

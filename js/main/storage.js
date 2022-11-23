@@ -70,3 +70,34 @@ App.stor_reset_settings = async function () {
     window.close()
   })
 }
+
+// Get tab state from sync storage
+App.stor_get_tab_state = async function () {
+  let obj = await browser.storage.sync.get(App.stor_tab_state_name)
+  
+  if (Object.keys(obj).length === 0) {
+    App.tab_state = {}
+  } else {
+    App.tab_state = obj[App.stor_tab_state_name]
+  }
+
+  let changed = false
+
+  if (App.tab_state.items === undefined) {
+    App.tab_state.items = {}
+    changed = true
+  } 
+
+  if (changed) {
+    App.stor_save_tab_state()
+  }
+
+  console.info("Stor: Got tab state")
+}
+
+// Save tab state to sync storage
+App.stor_save_tab_state = async function () {
+  let o = {}
+  o[App.stor_tab_state_name] = App.tab_state
+  await browser.storage.sync.set(o)
+}
