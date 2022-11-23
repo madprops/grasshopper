@@ -135,6 +135,14 @@ body, html {
   background-color: var(--alt_color_2);
 }
 
+.button_2 {
+  background-color: transparent;
+}
+
+.button_2:hover {
+  background-color: var(--alt_color);
+}
+
 .item {
   display: flex;
   flex-direction: row;
