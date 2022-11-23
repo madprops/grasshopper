@@ -70,6 +70,7 @@ NeedContext.show = function (x, y, items) {
     el.classList.add("needcontext-item")
     el.textContent = item.text
     el.dataset.index = i
+    item.index = i
 
     if (item.title) {
       el.title = item.title
@@ -111,6 +112,7 @@ NeedContext.show = function (x, y, items) {
   c.style.top = `${y}px`
 
   NeedContext.items = items
+  NeedContext.items_reversed = items.slice(0).reverse()
   NeedContext.select_item(selected_index)
   NeedContext.open = true
   NeedContext.main.classList.remove("needcontext-hidden")
@@ -143,28 +145,56 @@ NeedContext.select_item = function (index) {
 
 // Select an item above
 NeedContext.select_up = function () {
-  let index
+  let waypoint = false
+  let first_visible
 
-  if (NeedContext.index === 0) {
-    index = NeedContext.items.length - 1
-  } else {
-    index = NeedContext.index - 1
+  for (let item of NeedContext.items_reversed) {
+    if (!NeedContext.is_visible(item.element)) {
+      continue
+    }
+
+    if (first_visible === undefined) {
+      first_visible = item.index
+    }    
+
+    if (waypoint) {
+      NeedContext.select_item(item.index)
+      return
+    }
+
+    if (item.index === NeedContext.index) {
+      waypoint = true
+    }
   }
-  
-  NeedContext.select_item(index)
+
+  NeedContext.select_item(first_visible)
 }
 
 // Select an item below
 NeedContext.select_down = function () {
-  let index
+  let waypoint = false
+  let first_visible
 
-  if (NeedContext.index === NeedContext.items.length - 1) {
-    index = 0
-  } else {
-    index = NeedContext.index + 1
+  for (let item of NeedContext.items) {
+    if (!NeedContext.is_visible(item.element)) {
+      continue
+    }
+
+    if (first_visible === undefined) {
+      first_visible = item.index
+    }
+
+    if (waypoint) {
+      NeedContext.select_item(item.index)
+      return
+    }
+
+    if (item.index === NeedContext.index) {
+      waypoint = true
+    }
   }
 
-  NeedContext.select_item(index)
+  NeedContext.select_item(first_visible)
 }
 
 // Do the selected action
@@ -192,6 +222,11 @@ NeedContext.select_action = async function (e, index = NeedContext.index) {
     let items = await item.get_items()
     show_below(items)
   }
+}
+
+// Check if item is hidden
+NeedContext.is_visible = function (el) {
+  return !el.classList.contains("needcontext-hidden")
 }
 
 // Prepare css and events
@@ -334,5 +369,4 @@ NeedContext.init = function () {
 
 window.onload = function () {
   NeedContext.init()
-
 }
