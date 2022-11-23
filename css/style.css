@@ -309,6 +309,10 @@ body, html {
   width: 4rem;
 }
 
+#needcontext-main {
+  background-color: var(--alt_background);
+}
+
 #needcontext-container {
   background-color: var(--background_color) !important;
   color: var(--text_color) !important;
