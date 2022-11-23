@@ -84,10 +84,11 @@ NeedContext.show = function (x, y, items) {
       NeedContext.select_item(parseInt(el.dataset.index))
     })
 
-    NeedContext.date = Date.now()
     item.element = el
     c.append(el)
   }
+
+  NeedContext.main.classList.remove("needcontext-hidden")
   
   if (y < 5) {
     y = 5
@@ -114,7 +115,6 @@ NeedContext.show = function (x, y, items) {
   NeedContext.items = items
   NeedContext.select_item(selected_index)
   NeedContext.open = true
-  NeedContext.main.classList.remove("needcontext-hidden")
   NeedContext.after_show()
 }
 
@@ -204,7 +204,6 @@ NeedContext.select_down = function () {
 NeedContext.select_action = async function (e, index = NeedContext.index) {
   let x = NeedContext.last_x
   let y = NeedContext.last_y
-  let date = NeedContext.date
   let item = NeedContext.items[index]
 
   function show_below (items) {

@@ -24,6 +24,7 @@ App.create_popup = function (args) {
     
     p.element.style.display = "flex"
     App.popup_open = true
+    App.popup_mode = args.id
   }
   
   p.hide = function () {
@@ -69,6 +70,7 @@ App.show_confirm = function (message, action) {
   App.confirm_action = action
   App.el("#confirm_message").textContent = message
   App.show_popup("confirm")
+  App.focus_confirm_yes()
 }
 
 // Confirm yes
@@ -86,4 +88,27 @@ App.confirm_no = function () {
 App.show_alert = function (message) {
   App.el("#alert_message").textContent = message
   App.show_popup("alert")
+}
+
+// Focus the no button
+App.focus_confirm_no = function () {
+  App.el("#confirm_no").classList.add("colored")
+  App.el("#confirm_yes").classList.remove("colored")
+  App.confirm_mode = "no"
+}
+
+// Focus the yes button
+App.focus_confirm_yes = function () {
+  App.el("#confirm_no").classList.remove("colored")
+  App.el("#confirm_yes").classList.add("colored")
+  App.confirm_mode = "yes"
+}
+
+// Confirm action yes or no
+App.confirm_enter = function () {
+  if (App.confirm_mode === "yes") {
+    App.confirm_yes()
+  } else {
+    App.confirm_no()
+  }
 }
