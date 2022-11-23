@@ -8,7 +8,7 @@ App.default_settings = {
   history_index: 2,
   closed_index: 3,
   all_windows: true,
-  text_size: 17,
+  text_size: 18,
   search_engine: "https://google.com/search?q="
 }
 
