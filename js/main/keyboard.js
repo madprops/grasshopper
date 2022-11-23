@@ -44,10 +44,12 @@ App.setup_keyboard = function () {
         NeedContext.hide()
       }
 
+      e.preventDefault()
       return
     }
 
     if (App.popup_open) {
+      e.preventDefault()
       return
     }
 

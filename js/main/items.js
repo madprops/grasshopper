@@ -788,6 +788,14 @@ App.setup_item_window = function (mode, menu_items) {
       item_filter()
     })  
 
+    App.ev(filter, "blur", function () {
+      setTimeout(function () {
+        if (mode === App.window_mode) {
+          App.focus_filter(mode)
+        }
+      }, 800)
+    })  
+
     top.append(filter)  
     
     //
