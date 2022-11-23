@@ -57,6 +57,14 @@ App.setup_popups = function () {
       App.ev(App.el("#confirm_no"), "click", function () {
         App.confirm_no()
       })
+
+      App.ev(App.el("#confirm_yes"), "mouseenter", function () {
+        App.focus_confirm_yes()
+      })
+    
+      App.ev(App.el("#confirm_no"), "mouseenter", function () {
+        App.focus_confirm_no()
+      })      
     }
   })
 

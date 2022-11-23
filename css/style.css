@@ -116,17 +116,18 @@ body, html {
   background-color: var(--alt_color);
   color: var(--text_color);
   border-width: 0;
-  outline: 1px solid var(--alt_color_2);
   text-align: center;
   padding-top: var(--widget_padding_vert);
   padding-bottom: var(--widget_padding_vert);
   padding-left: var(--widget_padding_hor);
   padding-right: var(--widget_padding_hor);
   user-select: none;
+  outline: 1px solid var(--alt_color_2);
 }
 
 .button:hover {
   background-color: var(--alt_color_2);
+  outline: 1px solid var(--alt_color_3);
 }
 
 .button:active {
@@ -135,10 +136,6 @@ body, html {
 
 .button_2 {
   background-color: transparent;
-}
-
-.button_2:hover {
-  background-color: var(--alt_color);
 }
 
 .item {
@@ -289,7 +286,6 @@ body, html {
 
 .star_editor_text {
   width: 18rem;
-  background-color: var(--alt_color);
   text-align: center;
 }
 
