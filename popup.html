@@ -99,7 +99,11 @@
 
         <div class="flex_column_center gap_2" title="Base text size. Affects the size of the whole interface">
           <div>Text Size</div>
-          <input type="text" id="settings_text_size" class="text settings_text" data-setting="text_size" data-type="number" data-action="theme" data-min="12" data-max="22">
+          <div class="flex_row_center gap_2">
+            <div class="button" id="settings_text_size_minus">&lt;</div>
+            <input type="text" id="settings_text_size" class="text settings_text" data-setting="text_size" data-type="number" data-action="theme" data-min="12" data-max="22">
+            <div class="button" id="settings_text_size_plus">&gt;</div>
+          </div>
         </div>
 
         <div class="separator"></div>

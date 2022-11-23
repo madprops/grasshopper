@@ -149,9 +149,16 @@ App.start_basic_settings = function () {
     let min = parseInt(item.dataset.min)
     let max = parseInt(item.dataset.max)
     let action = item.dataset.action
+    let el = App.el(`#settings_${setting}`)
+
+    function set_number (val) {
+      el.value = val.toLocaleString()
+      App.settings[setting] = val
+      App.stor_save_settings()
+      do_action(action)  
+    }    
 
     if (type === "text") {
-      let el = App.el(`#settings_${setting}`)
       el.value = App.settings[setting]
   
       App.ev(el, "blur", function () {
@@ -167,7 +174,6 @@ App.start_basic_settings = function () {
         do_action(action)          
       })
     } else if (type === "number") {
-      let el = App.el(`#settings_${setting}`)
       el.value = App.settings[setting].toLocaleString()
   
       App.ev(el, "blur", function () {
@@ -182,11 +188,16 @@ App.start_basic_settings = function () {
         } else if (max && max < val) {
           val = max
         }
-  
-        el.value = val.toLocaleString()
-        App.settings[setting] = val
-        App.stor_save_settings()
-        do_action(action)          
+
+        set_number(val)
+      })
+
+      App.ev(App.el(`#settings_${setting}_minus`), "click", function () {
+        set_number(App.settings[setting] - 1)
+      })
+      
+      App.ev(App.el(`#settings_${setting}_plus`), "click", function () {
+        set_number(App.settings[setting] + 1)
       })
     }
   }  
