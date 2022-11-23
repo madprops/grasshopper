@@ -20,13 +20,13 @@ App.create_popup = function (args) {
   p.show = function () {
     if (args.setup && !p.setup) {
       args.setup()
+      p.setup = true
+      console.info(`${args.id} popup setup`)      
     }
     
     p.element.style.display = "flex"
     App.popup_open = true
     App.popup_mode = args.id
-    p.setup = true
-    console.info(`${args.id} popup setup`)
   }
   
   p.hide = function () {
