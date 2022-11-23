@@ -176,6 +176,7 @@ body, html {
   align-self: stretch;
   justify-self: stretch;
   align-items: center;
+  cursor:default
 }
 
 .item_top_container {

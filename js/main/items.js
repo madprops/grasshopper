@@ -536,11 +536,11 @@ App.create_item_element = function (item) {
 
   if (item.mode === "tabs") {   
     let pin_icon = App.create("div", "item_info item_info_pin transparent")
+    pin_icon.classList.add("action")
     pin_icon.textContent = "(+)"
     
     if (item.pinned) {
       pin_icon.classList.remove("transparent")
-      pin_icon.classList.add("action")
       pin_icon.title = "This tab is pinned"
     }
 
