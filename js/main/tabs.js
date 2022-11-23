@@ -44,7 +44,19 @@ App.setup_tabs = function () {
         action: function () {
           App.save_tab_state(3)
         }
-      }
+      },
+      {
+        text: "Save on #4",
+        action: function () {
+          App.save_tab_state(4)
+        }
+      },
+      {
+        text: "Save on #5",
+        action: function () {
+          App.save_tab_state(5)
+        }
+      }            
     ]], 
     
     ["Load State...", undefined, [
@@ -64,6 +76,18 @@ App.setup_tabs = function () {
         text: "Load #3",
         action: function () {
           App.load_tab_state(3)
+        }
+      },
+      {
+        text: "Load #4",
+        action: function () {
+          App.load_tab_state(4)
+        }
+      },
+      {
+        text: "Load #5",
+        action: function () {
+          App.load_tab_state(5)
         }
       }
     ]],     
