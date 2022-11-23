@@ -19,6 +19,17 @@ NeedContext.set_defaults = function () {
   NeedContext.last_y = 0
 }
 
+// Filter from keyboard input
+NeedContext.filter = function (key) {
+  for (let item of NeedContext.items) {
+    if (!item.text.toLowerCase().startsWith(key)) {
+      item.element.style.display = "none"
+    } else {
+      item.element.style.display = "unset"
+    }
+  }
+}
+
 // Show based on an element
 NeedContext.show_on_element = function (el, items, expand = false) {
   let rect = el.getBoundingClientRect()
@@ -34,10 +45,7 @@ NeedContext.show = function (x, y, items) {
   NeedContext.hide()
 
   let main = document.createElement("div")
-  main.id = "needcontext-main"
-
-  let overlay = document.createElement("div")
-  overlay.id = "needcontext-overlay"  
+  main.id = "needcontext-main"  
 
   let container = document.createElement("div")
   container.id = "needcontext-container"
@@ -63,10 +71,10 @@ NeedContext.show = function (x, y, items) {
       NeedContext.select_item(parseInt(el.dataset.index))
     })
 
+    item.element = el
     container.append(el)
   }
   
-  main.append(overlay)
   main.append(container)
 
   main.addEventListener("contextmenu", function (e) {
@@ -195,12 +203,6 @@ NeedContext.init = function () {
       top: 0;
       left: 0;
     }
-
-    #needcontext-overlay {
-      position: relative;
-      z-index: 1;
-      background-color: transparent;
-    }
     
     #needcontext-container {
       z-index: 2
@@ -295,6 +297,8 @@ NeedContext.init = function () {
       NeedContext.hide()
     } else if (e.key === "Enter") {
       NeedContext.select_action(e)
+    } else if (e.key.match(/^[a-z0-9]{1}$/i)) {
+      NeedContext.filter(e.key)
     }
 
     e.preventDefault()
