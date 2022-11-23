@@ -47,13 +47,16 @@ NeedContext.filter = function (key) {
 }
 
 // Show based on an element
-NeedContext.show_on_element = function (el, items, expand = false) {
+NeedContext.show_on_element = function (el, items) {
   let rect = el.getBoundingClientRect()
   NeedContext.show(rect.left, rect.top, items)
+}
 
-  if (expand) {
-    document.querySelector("#needcontext-container").style.minWidth = `${el.clientWidth}px`
-  }
+// Show based on an element
+NeedContext.show_on_element_2 = function (el, items) {
+  let rect = el.getBoundingClientRect()
+  NeedContext.show(rect.left, rect.top + el.clientHeight, items)
+  document.querySelector("#needcontext-container").style.minWidth = `${el.clientWidth}px`
 }
 
 // Show the menu
@@ -368,7 +371,6 @@ NeedContext.init = function () {
 }
 
 // Start
-
 window.onload = function () {
   NeedContext.init()
 }
