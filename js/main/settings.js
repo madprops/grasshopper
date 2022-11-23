@@ -152,6 +152,18 @@ App.start_basic_settings = function () {
     let el = App.el(`#settings_${setting}`)
 
     function set_number (val) {
+      val = parseInt(val)
+  
+      if (isNaN(val)) {
+        val = App.default_settings[setting]
+      }
+
+      if (min && min > val) {
+        val = min
+      } else if (max && max < val) {
+        val = max
+      }
+
       el.value = val.toLocaleString()
       App.settings[setting] = val
       App.stor_save_settings()
@@ -177,19 +189,7 @@ App.start_basic_settings = function () {
       el.value = App.settings[setting].toLocaleString()
   
       App.ev(el, "blur", function () {
-        let val = parseInt(el.value)
-  
-        if (isNaN(val)) {
-          val = App.default_settings[setting]
-        }
-
-        if (min && min > val) {
-          val = min
-        } else if (max && max < val) {
-          val = max
-        }
-
-        set_number(val)
+        set_number(el.value)
       })
 
       App.ev(App.el(`#settings_${setting}_minus`), "click", function () {
