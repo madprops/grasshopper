@@ -835,7 +835,7 @@ App.setup_item_window = function (mode, menu_items) {
           }
         }
         
-        NeedContext.show_on_element(menu, items)
+        NeedContext.show_on_element(menu, items, true)
       }
 
       App.ev(menu, "click", function () {
@@ -939,7 +939,7 @@ App.show_item_picker = function (btn) {
     }
   })
 
-  NeedContext.show_on_element(btn, items)
+  NeedContext.show_on_element(btn, items, true)
 }
 
 // Show first item window
@@ -1110,7 +1110,7 @@ App.show_filter_mode = function (mode) {
     })
   }
 
-  NeedContext.show_on_element(App.el(`#${mode}_filter_mode`), items)
+  NeedContext.show_on_element(App.el(`#${mode}_filter_mode`), items, true)
 }
 
 // Cycle filter modes
