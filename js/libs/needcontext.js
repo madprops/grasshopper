@@ -1,4 +1,4 @@
-// needcontext v1.0
+// needcontext v2.0
 
 // Main object
 const NeedContext = {}
@@ -44,14 +44,10 @@ NeedContext.show_on_element = function (el, items, expand = false) {
 NeedContext.show = function (x, y, items) {
   NeedContext.hide()
 
-  let main = document.createElement("div")
-  main.id = "needcontext-main"  
-
-  let container = document.createElement("div")
-  container.id = "needcontext-container"
-
   items = items.slice(0)
   let selected_index = 0
+  let c = NeedContext.container
+  c.innerHTML = ""
   
   for (let [i, item] of items.entries()) {
     let el = document.createElement("div")
@@ -71,20 +67,11 @@ NeedContext.show = function (x, y, items) {
       NeedContext.select_item(parseInt(el.dataset.index))
     })
 
+    NeedContext.date = Date.now()
     item.element = el
-    container.append(el)
+    c.append(el)
   }
   
-  main.append(container)
-
-  main.addEventListener("contextmenu", function (e) {
-    e.preventDefault()
-  })
-
-  document.body.appendChild(main)
-  
-  let c = document.querySelector("#needcontext-container")
-
   if (y < 5) {
     y = 5
   }
@@ -106,18 +93,18 @@ NeedContext.show = function (x, y, items) {
 
   c.style.left = `${x}px`
   c.style.top = `${y}px`
-  
-  NeedContext.main = main
+
   NeedContext.items = items
   NeedContext.select_item(selected_index)
   NeedContext.open = true
+  NeedContext.main.style.display = "unset"
   NeedContext.after_show()
 }
 
 // Hide the menu
 NeedContext.hide = function () {
   if (NeedContext.open) {
-    NeedContext.main.remove()
+    NeedContext.main.style.display = "none"
     NeedContext.set_defaults()
     NeedContext.after_hide()
   }
@@ -168,6 +155,7 @@ NeedContext.select_down = function () {
 NeedContext.select_action = async function (e, index = NeedContext.index) {
   let x = NeedContext.last_x
   let y = NeedContext.last_y
+  let date = NeedContext.date
   let item = NeedContext.items[index]
 
   function show_below (items) {
@@ -196,6 +184,7 @@ NeedContext.init = function () {
 
   let css = `
     #needcontext-main {
+      display: none;
       position: fixed;
       z-index: 999999999;
       width: 100%;
@@ -304,8 +293,24 @@ NeedContext.init = function () {
     e.preventDefault()
   })
 
+  NeedContext.main = document.createElement("div")
+  NeedContext.main.id = "needcontext-main"  
+
+  NeedContext.container = document.createElement("div")
+  NeedContext.container.id = "needcontext-container"
+  
+  NeedContext.main.addEventListener("contextmenu", function (e) {
+    e.preventDefault()
+  })
+  
+  NeedContext.main.append(NeedContext.container)
+  document.body.appendChild(NeedContext.main)
   NeedContext.set_defaults()
 }
 
 // Start
-NeedContext.init()
+
+window.onload = function () {
+  NeedContext.init()
+
+}
