@@ -765,14 +765,15 @@ App.load_tab_state = async function (n) {
     await App.stor_get_tab_state()
   }
 
-  let urls = App.tab_state[n]
+  let items = App.tab_state[n]
 
-  if (!urls) {
+  if (!items) {
     App.show_alert("Nothing saved here yet")
     return
   }
-
-  let s = App.plural(urls.length, "tab", "tabs")
+  
+  let urls = items.map(x => x.url)
+  let s = App.plural(items.length, "tab", "tabs")
 
   App.show_confirm(`Load tab state #${n}? (${s})`, async function () {  
     for (let item of App.tabs_items) {
@@ -781,9 +782,13 @@ App.load_tab_state = async function (n) {
       }
     }
 
-    for (let url of urls) {
-      if (!App.get_item_by_url("tabs", url)) {
-        App.open_tab(url, false)
+    for (let item of items) {
+      if (!App.get_item_by_url("tabs", item.url)) {
+        let tab = await App.open_tab(item.url, false)
+
+        if (item.pinned) (
+          App.pin_tab(tab.id)
+        )
       }
     }
   })
@@ -791,16 +796,20 @@ App.load_tab_state = async function (n) {
 
 // Get tab state
 App.get_tab_state = function () {
-  let urls = []
+  let items = []
 
   for (let tab of App.tabs_items) {
-    urls.push(tab.url)
+    items.push({
+      url: tab.url,
+      pinned: tab.pinned
+    })
   }
 
-  return urls
+  return items
 }
 
 // Open a tab
-App.open_tab = function (url, close = true) {
-  browser.tabs.create({url: url, active: close})
+App.open_tab = async function (url, close = true) {
+  let tab = await browser.tabs.create({url: url, active: close})
+  return tab
 }
