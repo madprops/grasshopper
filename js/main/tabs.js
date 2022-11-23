@@ -725,29 +725,33 @@ App.toggle_pin = function (item) {
 
 // Save tab state
 App.save_tab_state = async function (n) {
-  if (!App.tab_state) {
-    await App.stor_get_tab_state()
-  }
-
-  App.tab_state[n] = App.get_tab_state()
-  App.stor_save_tab_state()
+  App.show_confirm(`Save tab state on #${n}?`, async function () {
+    if (!App.tab_state) {
+      await App.stor_get_tab_state()
+    }
+  
+    App.tab_state[n] = App.get_tab_state()
+    App.stor_save_tab_state()
+  })
 }
 
 // Load tab state
 App.load_tab_state = async function (n) {
-  if (!App.tab_state) {
-    await App.stor_get_tab_state()
-  }
-
-  let urls = App.tab_state[n]
-
-  if (urls) {
-    for (let url of urls) {
-      if (!App.get_item_by_url("tabs", url)) {
-        App.open_tab(url, false)
+  App.show_confirm(`Load tab state #${n}?`, async function () {
+    if (!App.tab_state) {
+      await App.stor_get_tab_state()
+    }
+  
+    let urls = App.tab_state[n]
+  
+    if (urls) {
+      for (let url of urls) {
+        if (!App.get_item_by_url("tabs", url)) {
+          App.open_tab(url, false)
+        }
       }
     }
-  }
+  })
 }
 
 // Get tab state
