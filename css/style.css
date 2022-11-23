@@ -117,13 +117,11 @@ body, html {
   color: var(--text_color);
   border-width: 0;
   outline: 1px solid var(--alt_color_2);
-  white-space: nowrap;
-  overflow: hidden;
   text-align: center;
   padding-top: var(--widget_padding_vert);
   padding-bottom: var(--widget_padding_vert);
   padding-left: var(--widget_padding_hor);
-  border-right: var(--widget_padding_hor) solid transparent;
+  padding-right: var(--widget_padding_hor);
   user-select: none;
 }
 
@@ -369,8 +367,8 @@ a:visited, a:link, a:hover {
   opacity: 0.311;
 }
 
-.top_menu {
-  width: 5rem;
+.top_button {
+  min-width: 4.2rem;
 }
 
 .popup_container {
