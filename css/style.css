@@ -118,7 +118,7 @@ body, html {
   padding-top: var(--widget_padding_vert);
   padding-bottom: var(--widget_padding_vert);
   padding-left: var(--widget_padding_hor);
-  padding-right: var(--widget_padding_hor);
+  border-right: var(--widget_padding_hor) solid transparent;
 }
 
 .button:hover {
