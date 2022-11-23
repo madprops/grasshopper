@@ -775,6 +775,12 @@ App.load_tab_state = async function (n) {
   let s = App.plural(urls.length, "tab", "tabs")
 
   App.show_confirm(`Load tab state #${n}? (${s})`, async function () {  
+    for (let item of App.tabs_items) {
+      if (!urls.includes(item.url)) {
+        App.close_tab(item.id)
+      }
+    }
+
     for (let url of urls) {
       if (!App.get_item_by_url("tabs", url)) {
         App.open_tab(url, false)
