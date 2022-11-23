@@ -824,7 +824,7 @@ App.setup_item_window = function (mode, menu_items) {
 
     //
     if (menu_items) {
-      let menu = App.create("div", "button", `${mode}_menu`)
+      let menu = App.create("div", "button top_menu", `${mode}_menu`)
       menu.title = "Items Menu (Shift + Space)"
       menu.textContent = "Menu"
 

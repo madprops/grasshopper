@@ -101,7 +101,6 @@ body, html {
 .filter {
   flex-grow: 0;
   width: 10rem;
-  background-color: var(--alt_color);
 }
 
 .filter::placeholder {
@@ -114,7 +113,7 @@ body, html {
   cursor: pointer;
   flex-shrink: 0;
   min-width: 1.5rem;
-  background-color: transparent;
+  background-color: var(--alt_color);
   color: var(--text_color);
   border-width: 0;
   outline: 1px solid var(--alt_color_2);
@@ -129,7 +128,7 @@ body, html {
 }
 
 .button:hover {
-  background-color: var(--alt_color);
+  background-color: var(--alt_color_2);
 }
 
 .button:active {
@@ -364,7 +363,6 @@ a:visited, a:link, a:hover {
 
 .top_menu {
   width: 5rem;
-  text-align: left;
 }
 
 .popup_container {
