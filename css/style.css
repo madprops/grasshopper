@@ -144,10 +144,6 @@ body, html {
   min-height: 2.2rem;  
 }
 
-.item_empty {
-  min-height: 1.6rem;
-}
-
 .item_icon {
   width: 1.11rem;
   height: 1.11rem;

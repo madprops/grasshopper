@@ -520,15 +520,13 @@ App.process_item = function (mode, item, exclude = []) {
 
 // Create empty item
 App.create_empty_item_element = function (item) {
-  item.element = App.create("div", `item ${item.mode}_item item_empty`)
+  item.element = App.create("div", `item ${item.mode}_item`)
   item.element.dataset.id = item.id
   App[`${item.mode}_item_observer`].observe(item.element)
 }
 
 // Create an item element
 App.create_item_element = function (item) {
-  item.element.classList.remove("item_empty")
-  
   let icon = App.get_img_icon(item.favicon, item.url, item.pinned)
   item.element.append(icon)
 
