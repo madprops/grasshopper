@@ -130,3 +130,10 @@ App.confirm_enter = function () {
     App.confirm_no()
   }
 }
+
+// Alert action
+App.alert_enter = function () {
+  if (App.alert_action) {
+    App.alert_action()
+  }
+}
