@@ -555,9 +555,7 @@ App.close_playing_tabs = function () {
   let s = App.plural(ids.length, "tab", "tabs")
 
   App.show_confirm(`Close playing tabs? (${s})`, function () {
-    for (let id of ids) {
-      App.close_tab(id)
-    }
+    App.do_close_tabs(ids)
   })
 }
 
@@ -580,9 +578,7 @@ App.close_suspended_tabs = function () {
   let s = App.plural(ids.length, "tab", "tabs")
 
   App.show_confirm(`Close suspended tabs? (${s})`, function () {
-    for (let id of ids) {
-      App.close_tab(id)
-    }
+    App.do_close_tabs(ids)
   })
 }
 
@@ -605,9 +601,7 @@ App.close_normal_tabs = function () {
   let s = App.plural(ids.length, "tab", "tabs")
 
   App.show_confirm(`Close normal tabs? (${s})`, function () {
-    for (let id of ids) {
-      App.close_tab(id)
-    }
+    App.do_close_tabs(ids)
   })
 }
 
@@ -630,9 +624,7 @@ App.close_pinned_tabs = function () {
   let s = App.plural(ids.length, "tab", "tabs")
 
   App.show_confirm(`Close pinned tabs? (${s})`, function () {
-    for (let id of ids) {
-      App.close_tab(id)
-    }
+    App.do_close_tabs(ids)
   })
 }
 
@@ -655,9 +647,7 @@ App.close_tabs = function () {
   let s = App.plural(ids.length, "tab", "tabs")
 
   App.show_confirm(`Close tabs? (${s})`, function () {
-    for (let id of ids) {
-      App.close_tab(id)
-    }
+    App.do_close_tabs(ids)
   })
 }
 
@@ -771,7 +761,12 @@ App.load_tab_state = async function (n) {
     App.show_alert(`Nothing saved on #${n}`)
     return
   }
-  
+
+  App.do_load_tab_state(items)
+}
+
+// Do load tab state
+App.do_load_tab_state = function (items, confirm = true) {
   let urls = items.map(x => x.url)
   let to_open = items.slice(0)
   let to_close = []
@@ -802,7 +797,7 @@ App.load_tab_state = async function (n) {
   let s1 = App.plural(to_open.length, "tab", "tabs")
   let s2 = App.plural(to_close.length, "tab", "tabs")
 
-  App.show_confirm(`Load #${n}. Open ${s1} and close ${s2}?`, async function () {
+  async function restore () {
     for (let item of to_close) {
       App.close_tab(item.id)
     }
@@ -813,8 +808,16 @@ App.load_tab_state = async function (n) {
       if (item.pinned) (
         App.pin_tab(tab.id)
       )          
-    }
-  })
+    }    
+  }
+
+  if (confirm) {
+    App.show_confirm(`Open ${s1} and close ${s2}?`, function () {
+      restore()
+    })
+  } else {
+    restore()
+  }
 }
 
 // Get tab state
@@ -836,4 +839,11 @@ App.get_tab_state = function () {
 App.open_tab = async function (url, close = true, discarded = false) {
   let tab = await browser.tabs.create({url: url, active: close, discarded: discarded})
   return tab
+}
+
+// Do tabs close with ids
+App.do_close_tabs = function (ids) {
+  for (let id of ids) {
+    App.close_tab(id)
+  }
 }
