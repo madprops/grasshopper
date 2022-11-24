@@ -559,6 +559,10 @@ App.close_tabs = function (include, exclude) {
       continue
     }
 
+    if (!App.is_http(tab)) {
+      continue
+    }
+
     if (include) {
       if (include === "normal") {
         if (!App.tab_is_normal(tab)) {
