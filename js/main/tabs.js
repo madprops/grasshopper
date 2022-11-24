@@ -147,27 +147,33 @@ App.setup_tabs = function () {
     {
       text: "Close Normal",
       action: function () {
-        App.close_normal_tabs()
+        App.close_tabs("normal")
       }
     },
     {
       text: "Close Playing",
       action: function () {
-        App.close_playing_tabs()
+        App.close_tabs("audible")
       }
     },
     {
       text: "Close Suspended",
       action: function () {
-        App.close_suspended_tabs()
+        App.close_tabs("discarded")
       }
     },
     {
       text: "Close Pins",
       action: function () {
-        App.close_pinned_tabs()
+        App.close_tabs("pinned")
       }
     },
+    {
+      text: "Close Others",
+      action: function () {
+        App.close_tabs(undefined, "active")
+      }
+    },    
     {
       text: "Close All",
       action: function () {
@@ -544,88 +550,26 @@ App.suspend_tabs = function (type) {
   })
 }
 
-// Close playing tabs
-App.close_playing_tabs = function () {
-  let ids = []
-
-  for (let tab of App.tabs_items) {
-    if (!tab.visible || !tab.audible) {
-      continue
-    }
-    
-    ids.push(tab.id)
-  }
-
-  if (ids.length === 0) {
-    return
-  }
-  
-  App.do_close_tabs(ids)
-}
-
-// Close suspended tabs
-App.close_suspended_tabs = function () {
-  let ids = []
-
-  for (let tab of App.tabs_items) {
-    if (!tab.visible || !tab.discarded) {
-      continue
-    }
-    
-    ids.push(tab.id)
-  }
-
-  if (ids.length === 0) {
-    return
-  }
-  
-  App.do_close_tabs(ids)
-}
-
-// Close normal tabs
-App.close_normal_tabs = function () {
-  let ids = []
-
-  for (let tab of App.tabs_items) {
-    if (!tab.visible || !App.tab_is_normal(tab)) {
-      continue
-    }
-    
-    ids.push(tab.id)
-  }
-
-  if (ids.length === 0) {
-    return
-  }
-  
-  App.do_close_tabs(ids)
-}
-
-// Close pinned tabs
-App.close_pinned_tabs = function () {
-  let ids = []
-
-  for (let tab of App.tabs_items) {
-    if (!tab.visible || !tab.pinned) {
-      continue
-    }
-    
-    ids.push(tab.id)
-  }
-
-  if (ids.length === 0) {
-    return
-  }
-  
-  App.do_close_tabs(ids)
-}
-
 // Close tabs
-App.close_tabs = function () {
+App.close_tabs = function (include, exclude) {
   let ids = []
 
   for (let tab of App.tabs_items) {
     if (!tab.visible) {
+      continue
+    }
+
+    if (include) {
+      if (include === "normal") {
+        if (!App.tab_is_normal(tab)) {
+          continue
+        }
+      } else if (!tab[include]) {
+        continue
+      }
+    }
+
+    if (exclude && tab[exclude]) {
       continue
     }
     
