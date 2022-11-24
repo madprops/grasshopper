@@ -57,6 +57,12 @@ App.setup_keyboard = function () {
         } else if (e.key === "Enter") {
           App.confirm_enter()
         }
+      } else if (App.popup_mode === "alert") {
+        if (e.key === "Enter") {
+          if (App.alert_action) {
+            App.alert_action()
+          }
+        }
       }
 
       e.preventDefault()
