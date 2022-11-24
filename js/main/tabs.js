@@ -265,9 +265,11 @@ App.confirm_close_tab = function (tab) {
     }
 
     App.show_confirm(s, function () {
+      App.backup_tabs()
       App.close_tab(tab.id)
     })
   } else {
+    App.backup_tabs()
     App.close_tab(tab.id)
   }
 }
@@ -835,7 +837,7 @@ App.do_close_tabs = function (ids) {
   let s = App.plural(ids.length, "tab", "tabs")
 
   App.show_confirm(`Close tabs? (${s})`, function () {
-    App.tabs_backup = App.get_tab_state()
+    App.backup_tabs()
 
     for (let id of ids) {
       App.close_tab(id)
@@ -864,4 +866,9 @@ App.undo_close = function () {
     App.do_load_tab_state(App.tabs_backup)
     App.tabs_backup = undefined
   }
+}
+
+// Backup tab state
+App.backup_tabs = function () {
+  App.tabs_backup = App.get_tab_state()
 }
