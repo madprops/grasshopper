@@ -552,11 +552,7 @@ App.close_playing_tabs = function () {
     return
   }
   
-  let s = App.plural(ids.length, "tab", "tabs")
-
-  App.show_confirm(`Close playing tabs? (${s})`, function () {
-    App.do_close_tabs(ids)
-  })
+  App.do_close_tabs(ids)
 }
 
 // Close suspended tabs
@@ -575,11 +571,7 @@ App.close_suspended_tabs = function () {
     return
   }
   
-  let s = App.plural(ids.length, "tab", "tabs")
-
-  App.show_confirm(`Close suspended tabs? (${s})`, function () {
-    App.do_close_tabs(ids)
-  })
+  App.do_close_tabs(ids)
 }
 
 // Close normal tabs
@@ -598,11 +590,7 @@ App.close_normal_tabs = function () {
     return
   }
   
-  let s = App.plural(ids.length, "tab", "tabs")
-
-  App.show_confirm(`Close normal tabs? (${s})`, function () {
-    App.do_close_tabs(ids)
-  })
+  App.do_close_tabs(ids)
 }
 
 // Close pinned tabs
@@ -621,11 +609,7 @@ App.close_pinned_tabs = function () {
     return
   }
   
-  let s = App.plural(ids.length, "tab", "tabs")
-
-  App.show_confirm(`Close pinned tabs? (${s})`, function () {
-    App.do_close_tabs(ids)
-  })
+  App.do_close_tabs(ids)
 }
 
 // Close tabs
@@ -644,11 +628,7 @@ App.close_tabs = function () {
     return
   }
   
-  let s = App.plural(ids.length, "tab", "tabs")
-
-  App.show_confirm(`Close tabs? (${s})`, function () {
-    App.do_close_tabs(ids)
-  })
+  App.do_close_tabs(ids)
 }
 
 // Mute tabs
@@ -846,9 +826,13 @@ App.open_tab = async function (url, close = true, discarded = false) {
 
 // Do tabs close with ids
 App.do_close_tabs = function (ids) {
-  for (let id of ids) {
-    App.close_tab(id)
-  }
+  let s = App.plural(ids.length, "tab", "tabs")
+
+  App.show_confirm(`Close tabs? (${s})`, function () {
+    for (let id of ids) {
+      App.close_tab(id)
+    }
+  })  
 }
 
 // Get http or https tabs
