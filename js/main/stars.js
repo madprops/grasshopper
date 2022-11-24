@@ -80,7 +80,7 @@ App.star_item = function (item) {
   App.stars.items.unshift(obj)
 
   if (App.stars.items.length > App.max_stars) {
-    App.stars.items.pop()
+    App.stars.items = App.stars.items.slice(0, App.max_stars)
   }
 
   App.stor_save_stars()
