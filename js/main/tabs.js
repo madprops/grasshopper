@@ -768,7 +768,7 @@ App.load_tab_state = async function (n) {
   let items = App.tab_state[n]
 
   if (!items) {
-    App.show_alert("Nothing saved here yet")
+    App.show_alert(`Nothing saved on #${n}`)
     return
   }
   
