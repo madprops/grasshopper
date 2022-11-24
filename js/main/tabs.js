@@ -173,7 +173,13 @@ App.setup_tabs = function () {
       action: function () {
         App.close_tabs()
       }
-    }
+    },
+    {
+      text: "Undo",
+      action: function () {
+        App.undo_close()
+      }
+    }    
     ]],
   ]
 
@@ -829,6 +835,8 @@ App.do_close_tabs = function (ids) {
   let s = App.plural(ids.length, "tab", "tabs")
 
   App.show_confirm(`Close tabs? (${s})`, function () {
+    App.tabs_backup = App.get_tab_state()
+
     for (let id of ids) {
       App.close_tab(id)
     }
@@ -846,4 +854,14 @@ App.get_http_tabs = function () {
   }
 
   return tabs
+}
+
+// Uno tabs close
+App.undo_close = function () {
+  if (!App.tabs_backup) {
+    App.show_alert("Nothing to undo")
+  } else {
+    App.do_load_tab_state(App.tabs_backup)
+    App.tabs_backup = undefined
+  }
 }
