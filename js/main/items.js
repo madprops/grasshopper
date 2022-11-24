@@ -346,12 +346,7 @@ App.show_item_menu = function (item, x, y) {
     }]
   })  
 
-  if (item.mode === "tabs") {
-    items.push({
-      text: "Move...",
-      get_items: async function () { return await App.get_move_menu_items(item) }
-    })     
-    
+  if (item.mode === "tabs") {    
     items.push({
       text: "More...",
       get_items: function () { return App.get_more_menu_items(item) }
@@ -434,6 +429,11 @@ App.get_more_menu_items = function (item) {
       }
     })  
   }   
+
+  items.push({
+    text: "Move...",
+    get_items: async function () { return await App.get_move_menu_items(item) }
+  })  
 
   return items
 }
