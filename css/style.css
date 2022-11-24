@@ -404,6 +404,6 @@ a:visited, a:link, a:hover {
   left: 0;
 }
 
-#alert_message {
+.pre {
   white-space: pre;
 }

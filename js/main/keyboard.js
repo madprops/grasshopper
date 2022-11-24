@@ -57,9 +57,9 @@ App.setup_keyboard = function () {
         } else if (e.key === "Enter") {
           App.confirm_enter()
         }
-      } else if (App.popup_mode === "alert") {
+      } else if (App.popup_mode === "dialog") {
         if (e.key === "Enter") {
-          App.alert_enter()
+          App.dialog_enter()
         }
       }
 

@@ -259,9 +259,11 @@ App.unstar_stars = function () {
   App.show_confirm(`Remove stars? (${s})`, function () {
     App.stars_backup = App.stars.items.slice(0)
     App.do_unstar(ids)
-    App.show_alert("Stars have been deleted", "Undo", function () {
-      App.undo_unstar_stars()
-    })
+    App.show_dialog("Stars have been deleted", [
+      ["Undo", function () {
+        App.undo_unstar_stars()
+      }]
+    ])
   })
 }
 

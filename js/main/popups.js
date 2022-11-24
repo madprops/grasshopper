@@ -61,15 +61,13 @@ App.setup_popups = function () {
       })    
     }
   })
+  
+  App.create_popup({
+    id: "alert"
+  })
 
   App.create_popup({
-    id: "alert",
-    setup: function () {
-      App.ev(App.el("#alert_button"), "click", function () {
-        App.hide_popup("alert")
-        App.alert_action()
-      })
-    }
+    id: "dialog"
   })
 }
 
@@ -93,18 +91,8 @@ App.confirm_no = function () {
 }
 
 // Show alert
-App.show_alert = function (message, button, action) {
-  App.alert_action = action
+App.show_alert = function (message) {
   App.el("#alert_message").textContent = message
-  let btn = App.el("#alert_button")
-
-  if (button) {
-    btn.textContent = button
-    btn.classList.remove("hidden")
-  } else {
-    btn.classList.add("hidden")
-  }
-
   App.show_popup("alert")
 }
 
@@ -131,9 +119,30 @@ App.confirm_enter = function () {
   }
 }
 
-// Alert action
-App.alert_enter = function () {
-  if (App.alert_action) {
-    App.alert_action()
+// Show dialog with a list of buttons
+App.show_dialog = function (message, buttons) {
+  App.el("#dialog_message").textContent = message
+  let btns = App.el("#dialog_buttons")
+  btns.innerHTML = ""
+
+  for (let button of buttons) {
+    let btn = App.create("div", "button")
+    btn.textContent = button[0]
+    
+    App.ev(btn, "click", function () {
+      App.hide_popup("dialog")
+      button[1]()
+    })
+
+    btns.append(btn)
   }
+
+  App.dialog_buttons = buttons
+  App.show_popup("dialog")
+}
+
+// Dialog action
+App.dialog_enter = function () {
+  App.hide_popup("dialog")
+  App.dialog_buttons[0][1]()
 }
