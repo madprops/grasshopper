@@ -60,6 +60,10 @@ App.setup_keyboard = function () {
       } else if (App.popup_mode === "dialog") {
         if (e.key === "Enter") {
           App.dialog_enter()
+        } else if (e.key === "ArrowLeft") {
+          App.dialog_left()
+        } else if (e.key === "ArrowRight") {
+          App.dialog_right()
         }
       }
 

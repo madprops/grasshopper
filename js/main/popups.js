@@ -48,20 +48,7 @@ App.hide_popup = function (id) {
 }
 
 // Setup popups
-App.setup_popups = function () {
-  App.create_popup({
-    id: "confirm",
-    setup: function () {
-      App.ev(App.el("#confirm_yes"), "click", function () {
-        App.confirm_yes()
-      })
-    
-      App.ev(App.el("#confirm_no"), "click", function () {
-        App.confirm_no()
-      })    
-    }
-  })
-  
+App.setup_popups = function () {  
   App.create_popup({
     id: "alert"
   })
@@ -71,52 +58,10 @@ App.setup_popups = function () {
   })
 }
 
-// Show confirm window
-App.show_confirm = function (message, action) {
-  App.confirm_action = action
-  App.el("#confirm_message").textContent = message
-  App.show_popup("confirm")
-  App.focus_confirm_yes()
-}
-
-// Confirm yes
-App.confirm_yes = function () {
-  App.hide_popup("confirm")
-  App.confirm_action()
-}
-
-// Confirm no
-App.confirm_no = function () {
-  App.popups.confirm.hide()
-}
-
 // Show alert
 App.show_alert = function (message) {
   App.el("#alert_message").textContent = message
   App.show_popup("alert")
-}
-
-// Focus the no button
-App.focus_confirm_no = function () {
-  App.el("#confirm_no").classList.add("hovered")
-  App.el("#confirm_yes").classList.remove("hovered")
-  App.confirm_mode = "no"
-}
-
-// Focus the yes button
-App.focus_confirm_yes = function () {
-  App.el("#confirm_no").classList.remove("hovered")
-  App.el("#confirm_yes").classList.add("hovered")
-  App.confirm_mode = "yes"
-}
-
-// Confirm action yes or no
-App.confirm_enter = function () {
-  if (App.confirm_mode === "yes") {
-    App.confirm_yes()
-  } else {
-    App.confirm_no()
-  }
 }
 
 // Show dialog with a list of buttons
@@ -134,15 +79,63 @@ App.show_dialog = function (message, buttons) {
       button[1]()
     })
 
+    if (button[2]) {
+      btn.classList.add("button_2")
+    }
+
     btns.append(btn)
+    button.element = btn
   }
 
   App.dialog_buttons = buttons
+  App.focus_dialog_button(buttons.length - 1)
   App.show_popup("dialog")
+}
+
+// Focus dialog button
+App.focus_dialog_button = function (index) {
+  for (let [i, btn] of App.dialog_buttons.entries()) {
+    if (i === index) {
+      btn.element.classList.add("hovered")
+    } else {
+      btn.element.classList.remove("hovered")
+    }
+  }
+
+  App.dialog_index = index
+}
+
+// Focus left button in dialog
+App.dialog_left = function () {
+  if (App.dialog_index > 0) {
+    App.focus_dialog_button(App.dialog_index - 1)
+  }
+}
+
+// Focus right button in dialog
+App.dialog_right = function () {
+  if (App.dialog_index < App.dialog_buttons.length - 1) {
+    App.focus_dialog_button(App.dialog_index + 1)
+  }
 }
 
 // Dialog action
 App.dialog_enter = function () {
   App.hide_popup("dialog")
-  App.dialog_buttons[0][1]()
+  App.dialog_buttons[App.dialog_index][1]()
+}
+
+// Show a confirm dialog template
+App.show_confirm = function (message, action) {
+  let buttons = [
+    ["Cancel", function () {
+      App.hide_popup("dialog")
+    }, true],
+
+    ["Confirm", function () {
+      action()
+    }]
+  ]
+
+  App.show_dialog(message, buttons)
 }
