@@ -227,14 +227,12 @@ App.update_star_editor_info = function () {
 
   if (App.star_edited) {
     save.textContent = "Update"
-    save.classList.add("colored")
     visited.textContent = App.nice_date(App.star_edited.date_last_visit)
     added.textContent = App.nice_date(App.star_edited.date_added)
     info.classList.remove("hidden")
     App.el("#star_editor_unstar").classList.remove("hidden")
   } else {
     save.textContent = "Save"
-    save.classList.remove("colored")
     info.classList.add("hidden")
     App.el("#star_editor_unstar").classList.add("hidden")
   }

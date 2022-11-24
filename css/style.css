@@ -142,6 +142,10 @@ body, html {
   background-color: transparent;
 }
 
+.hovered {
+  outline: 1px solid var(--alt_color_3);
+}
+
 .item {
   display: flex;
   flex-direction: row;
@@ -402,8 +406,4 @@ a:visited, a:link, a:hover {
 
 #alert_message {
   white-space: pre;
-}
-
-.colored {
-  background-color: var(--alt_color);
 }

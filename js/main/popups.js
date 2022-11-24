@@ -110,15 +110,15 @@ App.show_alert = function (message, button, action) {
 
 // Focus the no button
 App.focus_confirm_no = function () {
-  App.el("#confirm_no").classList.add("colored")
-  App.el("#confirm_yes").classList.remove("colored")
+  App.el("#confirm_no").classList.add("hovered")
+  App.el("#confirm_yes").classList.remove("hovered")
   App.confirm_mode = "no"
 }
 
 // Focus the yes button
 App.focus_confirm_yes = function () {
-  App.el("#confirm_no").classList.remove("colored")
-  App.el("#confirm_yes").classList.add("colored")
+  App.el("#confirm_no").classList.remove("hovered")
+  App.el("#confirm_yes").classList.add("hovered")
   App.confirm_mode = "yes"
 }
 
