@@ -9,7 +9,7 @@ App.create_popup = function (args) {
   popup.append(container)
   
   App.ev(popup, "click", function (e) {
-    if (!e.target.closest(".popup_container")) {
+    if (e.target.isConnected && !e.target.closest(".popup_container")) {
       App.popups[args.id].hide()
     }
   })
@@ -25,8 +25,8 @@ App.create_popup = function (args) {
     }
     
     p.element.style.display = "flex"
-    App.popup_open = true
     App.popup_mode = args.id
+    App.popup_open = true
   }
   
   p.hide = function () {
@@ -128,13 +128,8 @@ App.dialog_enter = function () {
 // Show a confirm dialog template
 App.show_confirm = function (message, action) {
   let buttons = [
-    ["Cancel", function () {
-      App.hide_popup("dialog")
-    }, true],
-
-    ["Confirm", function () {
-      action()
-    }]
+    ["Cancel", function (){}, true],
+    ["Confirm", action]
   ]
 
   App.show_dialog(message, buttons)
