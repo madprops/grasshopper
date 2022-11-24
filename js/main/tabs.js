@@ -773,23 +773,46 @@ App.load_tab_state = async function (n) {
   }
   
   let urls = items.map(x => x.url)
-  let s = App.plural(items.length, "tab", "tabs")
+  let to_open = items.slice(0)
+  let to_close = []
 
-  App.show_confirm(`Load tab state #${n}? (${s})`, async function () {  
-    for (let item of App.tabs_items) {
-      if (!urls.includes(item.url)) {
-        App.close_tab(item.id)
+  for (let item of App.tabs_items) {
+    for (let [i, it] of to_open.entries()) {
+      if (item.url === it.url) {
+        to_open.splice(i, 1)
+        break
       }
     }
+  }
 
-    for (let item of items) {
-      if (!App.get_item_by_url("tabs", item.url)) {
-        let tab = await App.open_tab(item.url, false)
+  for (let item of App.tabs_items) {
+    let i = urls.indexOf(item.url)
 
-        if (item.pinned) (
-          App.pin_tab(tab.id)
-        )
-      }
+    if (i === -1) {
+      to_close.push(item)
+    } else {
+      urls.splice(i, 1)
+    }
+  } 
+
+  if (to_open.length === 0 && to_close.length === 0) {
+    return
+  }
+  
+  let s1 = App.plural(to_open.length, "tab", "tabs")
+  let s2 = App.plural(to_close.length, "tab", "tabs")
+
+  App.show_confirm(`Load #${n}. Open ${s1} and close ${s2}?`, async function () {
+    for (let item of to_close) {
+      App.close_tab(item.id)
+    }
+
+    for (let item of to_open) {
+      let tab = await App.open_tab(item.url, false)
+
+      if (item.pinned) (
+        App.pin_tab(tab.id)
+      )          
     }
   })
 }
