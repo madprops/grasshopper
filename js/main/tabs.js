@@ -770,8 +770,9 @@ App.do_load_tab_state = function (items, confirm = true) {
   let urls = items.map(x => x.url)
   let to_open = items.slice(0)
   let to_close = []
+  let tabs = App.get_http_tabs()
 
-  for (let item of App.tabs_items) {
+  for (let item of tabs) {
     for (let [i, it] of to_open.entries()) {
       if (item.url === it.url) {
         to_open.splice(i, 1)
@@ -780,7 +781,7 @@ App.do_load_tab_state = function (items, confirm = true) {
     }
   }
 
-  for (let item of App.tabs_items) {
+  for (let item of tabs) {
     let i = urls.indexOf(item.url)
 
     if (i === -1) {
@@ -825,11 +826,13 @@ App.get_tab_state = function () {
   let items = []
 
   for (let tab of App.tabs_items) {
-    items.push({
-      url: tab.url,
-      pinned: tab.pinned,
-      discarded: tab.discarded
-    })
+    if (App.is_http(tab)) {
+      items.push({
+        url: tab.url,
+        pinned: tab.pinned,
+        discarded: tab.discarded
+      })
+    }
   }
 
   return items
@@ -846,4 +849,17 @@ App.do_close_tabs = function (ids) {
   for (let id of ids) {
     App.close_tab(id)
   }
+}
+
+// Get http or https tabs
+App.get_http_tabs = function () {
+  let tabs = []
+
+  for (let tab of App.tabs_items) {
+    if (App.is_http(tab)) {
+      tabs.push(tab)
+    }
+  }
+
+  return tabs
 }
