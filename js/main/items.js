@@ -761,7 +761,7 @@ App.setup_item_window = function (mode, menu_items) {
 
     //
     let item_picker = App.create("div", "button top_button", `${mode}_item_picker`)
-    item_picker.title = "Main Menu"
+    item_picker.title = "Main Menu (Tab)"
     item_picker.textContent = App.capitalize(mode)
 
     App.ev(item_picker, "click", function () {
@@ -792,7 +792,7 @@ App.setup_item_window = function (mode, menu_items) {
     
     //
     let filter_mode = App.create("div", "button top_button", `${mode}_filter_mode`)
-    filter_mode.title = "Filter Mode"
+    filter_mode.title = "Filter Mode (Shift + Down)"
 
     if (!App[`${mode}_filter_modes`]) {
       App[`${mode}_filter_modes`] = [
