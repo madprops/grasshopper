@@ -555,11 +555,7 @@ App.close_tabs = function (include, exclude) {
   let ids = []
 
   for (let tab of App.tabs_items) {
-    if (!tab.visible) {
-      continue
-    }
-
-    if (!App.is_http(tab)) {
+    if (!tab.visible || !App.is_http(tab)) {
       continue
     }
 
