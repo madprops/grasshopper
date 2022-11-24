@@ -808,7 +808,7 @@ App.load_tab_state = async function (n) {
     }
 
     for (let item of to_open) {
-      let tab = await App.open_tab(item.url, false)
+      let tab = await App.open_tab(item.url, false, item.discarded)
 
       if (item.pinned) (
         App.pin_tab(tab.id)
@@ -824,7 +824,8 @@ App.get_tab_state = function () {
   for (let tab of App.tabs_items) {
     items.push({
       url: tab.url,
-      pinned: tab.pinned
+      pinned: tab.pinned,
+      discarded: tab.discarded
     })
   }
 
@@ -832,7 +833,7 @@ App.get_tab_state = function () {
 }
 
 // Open a tab
-App.open_tab = async function (url, close = true) {
-  let tab = await browser.tabs.create({url: url, active: close})
+App.open_tab = async function (url, close = true, discarded = false) {
+  let tab = await browser.tabs.create({url: url, active: close, discarded: discarded})
   return tab
 }
