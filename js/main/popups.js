@@ -58,7 +58,11 @@ App.setup_popups = function () {
   })
 
   App.create_popup({
-    id: "textarea"
+    id: "textarea", setup: function () {
+      App.ev(App.el("#textarea_copy"), "click", function () {
+        App.textarea_copy()
+      })
+    }
   })
 
   App.create_popup({
@@ -152,6 +156,13 @@ App.show_textarea = function (message, text) {
   App.el("#textarea_message").textContent = message
   App.el("#textarea_text").value = text
   App.show_popup("textarea")
+}
+
+// Copy textarea to clipboard
+App.textarea_copy = function () {
+  App.hide_popup("textarea")
+  App.copy_to_clipboard(App.el("#textarea_text").value.trim())
+  App.show_alert("Copied to clipboard")
 }
 
 // Show input

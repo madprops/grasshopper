@@ -414,14 +414,6 @@ a:visited, a:link, a:hover {
   font-size: 1rem;
   outline: none;
   border: none;
-}
-
-#textarea_text {
-  width: 66vw;
-  height: 66vh;
-}
-
-#input_text {
-  width: 55vw;
-  height: 55vh;
+  width: 60vw;
+  height: 40vh;
 }
