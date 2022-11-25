@@ -50,11 +50,11 @@ App.select_item_below = function (mode) {
 // Get next item that is visible
 App.get_next_visible_item = function (mode) {
   let waypoint = false
-  
+
   if (!App.selected_valid(mode)) {
     waypoint = true
   }
-  
+
   let items = App[`${mode}_items`]
   let o_item = App[`selected_${mode}_item`]
 
@@ -122,7 +122,7 @@ App.set_footer = function (mode, text) {
 
 // Check if selected is valid
 App.selected_valid = function (mode) {
-  return App[`selected_${mode}_item`] && 
+  return App[`selected_${mode}_item`] &&
   App[`selected_${mode}_item`].created &&
   App[`selected_${mode}_item`].visible
 }
@@ -144,14 +144,14 @@ App.remove_item = function (item) {
   let items = App[`${mode}_items`]
   item.element.remove()
   let id = item.id.toString()
-  
+
   for (let [i, it] of items.entries()) {
     if (it.id.toString() === id) {
       items.splice(i, 1)
       break
     }
   }
-  
+
   if (next_item) {
     App.select_item(next_item)
   } else {
@@ -172,7 +172,7 @@ App.focus_filter = function (mode) {
 }
 
 // Filter items
-App.do_item_filter = async function (mode) {  
+App.do_item_filter = async function (mode) {
   console.info(`Filter: ${mode}`)
   let value = App.el(`#${mode}_filter`).value.trim()
 
@@ -200,7 +200,7 @@ App.do_item_filter = async function (mode) {
 
   if (!App[`${mode}_items`]) {
     return
-  }  
+  }
 
   let filter_mode = App[`${mode}_filter_mode`]
   let skip = !value && filter_mode === "all"
@@ -243,7 +243,7 @@ App.do_item_filter = async function (mode) {
         match = item.window_id !== App.window_id
       }
     }
-        
+
     return match
   }
 
@@ -258,7 +258,7 @@ App.do_item_filter = async function (mode) {
       App.hide_item(it)
     }
   }
-  
+
   App[`selected_${mode}_item`] = undefined
   App.select_first_item(mode)
   App.update_footer(mode)
@@ -297,7 +297,7 @@ App.show_item_menu = function (item, x, y) {
         }
       })
     }
-  
+
     if (item.muted) {
       items.push({
         text: "Unmute",
@@ -320,7 +320,7 @@ App.show_item_menu = function (item, x, y) {
     action: function () {
       App.filter_domain(item)
     }
-  }) 
+  })
 
   items.push({
     text: "Star...",
@@ -344,13 +344,13 @@ App.show_item_menu = function (item, x, y) {
         App.copy_to_clipboard(item.title)
       }
     }]
-  })  
+  })
 
-  if (item.mode === "tabs") {    
+  if (item.mode === "tabs") {
     items.push({
       text: "More...",
       get_items: function () { return App.get_more_menu_items(item) }
-    })     
+    })
 
     items.push({
       text: "Close",
@@ -370,20 +370,20 @@ App.show_item_menu = function (item, x, y) {
 // Show tab move menu
 App.get_move_menu_items = async function (item) {
   let items = []
-  let wins = await browser.windows.getAll({populate: false}) 
-  
+  let wins = await browser.windows.getAll({populate: false})
+
   items.push({
     text: "New Window",
     action: function () {
       App.detach_tab(item)
     }
-  })  
+  })
 
   for (let win of wins) {
     if (item.window_id === win.id) {
       continue
     }
-    
+
     let text
 
     if (win.id === App.window_id) {
@@ -406,14 +406,14 @@ App.get_move_menu_items = async function (item) {
 
 // Show tab more menu
 App.get_more_menu_items = function (item) {
-  let items = [] 
+  let items = []
 
   items.push({
     text: "Duplicate",
     action: function () {
       App.duplicate_tab(item)
     }
-  })  
+  })
 
   if (!item.discarded) {
     items.push({
@@ -427,13 +427,13 @@ App.get_more_menu_items = function (item) {
           })
         }
       }
-    })  
-  }   
+    })
+  }
 
   items.push({
     text: "Move...",
     get_items: async function () { return await App.get_move_menu_items(item) }
-  })  
+  })
 
   return items
 }
@@ -503,7 +503,7 @@ App.process_item = function (mode, item, exclude = []) {
     session_id: item.sessionId,
     visible: true
   }
-  
+
   if (mode === "tabs") {
     obj.index = item.index,
     obj.active = item.active
@@ -534,11 +534,11 @@ App.create_item_element = function (item) {
   item.element.append(text)
   App.set_item_text(item)
 
-  if (item.mode === "tabs") {   
+  if (item.mode === "tabs") {
     let pin_icon = App.create("div", "item_info item_info_pin transparent")
     pin_icon.classList.add("action")
     pin_icon.textContent = "(+)"
-    
+
     if (item.pinned) {
       pin_icon.classList.remove("transparent")
       pin_icon.title = "This tab is pinned"
@@ -590,15 +590,15 @@ App.set_item_text = function (item) {
     if (item.discarded) {
       status.push("Suspended")
     }
-    
+
     if (item.audible) {
       status.push("Playing")
     }
-  
+
     if (item.muted) {
       status.push("Muted")
     }
-  
+
     if (status.length > 0) {
       content = status.map(x => `(${x})`).join(" ")
       content += "  "
@@ -660,7 +660,7 @@ App.intersection_observer = function (mode, options) {
       if (!entry.isIntersecting) {
         continue
       }
-      
+
       if (!entry.target.classList.contains("item")) {
         return
       }
@@ -702,7 +702,7 @@ App.get_last_window_value = function (cycle) {
 }
 
 // Show a window by mode
-App.show_item_window = async function (mode, cycle = false) {  
+App.show_item_window = async function (mode, cycle = false) {
   let value = App.get_last_window_value(cycle)
   App.windows[mode].show()
   App.empty_footer(mode)
@@ -714,11 +714,11 @@ App.show_item_window = async function (mode, cycle = false) {
   App[`${mode}_filter_mode`] = "all"
 
   let items = await App[`get_${mode}`]()
-  
+
   if (mode !== App.window_mode) {
     return
   }
-  
+
   App.process_items(mode, items)
 
   if (value) {
@@ -726,8 +726,8 @@ App.show_item_window = async function (mode, cycle = false) {
   } else {
     App.select_first_item(mode)
   }
-  
-  App.focus_filter(mode)  
+
+  App.focus_filter(mode)
 }
 
 // Setup an item window
@@ -757,7 +757,7 @@ App.setup_item_window = function (mode, menu_items) {
     let footer_right = App.create("div", "footer_right")
     footer.append(footer_right)
 
-    App.setup_window_mouse(mode)     
+    App.setup_window_mouse(mode)
 
     //
     let item_picker = App.create("div", "button top_button", `${mode}_item_picker`)
@@ -776,20 +776,20 @@ App.setup_item_window = function (mode, menu_items) {
       }
     })
 
-    top.append(item_picker)     
+    top.append(item_picker)
 
+    //
     let filter = App.create("input", "text filter", `${mode}_filter`)
     filter.type = "text"
     filter.autocomplete = "off"
     filter.placeholder = "Type to filter..."
 
-    //
     App.ev(filter, "input", function () {
       item_filter()
-    })   
+    })
 
-    top.append(filter)  
-    
+    top.append(filter)
+
     //
     let filter_mode = App.create("div", "button top_button", `${mode}_filter_mode`)
     filter_mode.title = "Filter Mode (Shift + Down)"
@@ -814,7 +814,7 @@ App.setup_item_window = function (mode, menu_items) {
       }
     })
 
-    top.append(filter_mode)   
+    top.append(filter_mode)
 
     //
     if (menu_items) {
@@ -834,19 +834,19 @@ App.setup_item_window = function (mode, menu_items) {
             items.push({text: item[0], items:item[2]})
           }
         }
-        
+
         NeedContext.show_on_element(menu, items, true, menu.clientHeight)
       }
 
       App.ev(menu, "click", function () {
         App.show_menu()
       })
-  
-      top.append(menu)  
+
+      top.append(menu)
     }
   }
 
-  App.create_window(args) 
+  App.create_window(args)
 }
 
 // Cycle between item windows
@@ -951,7 +951,7 @@ App.show_first_item_window = function () {
 App.focus_or_open_item = async function (item, close = true) {
   if (close) {
     let tabs = await App.get_tabs()
-  
+
     for (let tab of tabs) {
       if (App.urls_equal(tab.url, item.url)) {
         let o = {
@@ -1050,9 +1050,9 @@ App.update_item = function (mode, id, source) {
     if (it.id !== id) {
       continue
     }
-    
+
     let new_item = App.process_item(mode, source)
-      
+
     if (!new_item) {
       break
     }
