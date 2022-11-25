@@ -339,10 +339,6 @@ body, html {
   padding-bottom: 3rem;
 }
 
-#about_shortcuts_container {
-  margin-top: 0.8rem;
-}
-
 #about_shortcuts > div {
   background-color: var(--alt_color);
   padding: 0rem;
