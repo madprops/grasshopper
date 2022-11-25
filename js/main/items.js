@@ -322,6 +322,10 @@ App.show_item_menu = function (item, x, y) {
         }
       })
     }
+
+    items.push({
+      separator: true
+    })
   }
 
   items.push({
