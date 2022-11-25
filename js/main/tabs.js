@@ -14,7 +14,7 @@ App.setup_tabs = function () {
   ]
 
   let menu_items = [
-    ["New Tab", function () {
+    ["New", function () {
       App.new_tab()
     }], 
 
@@ -26,71 +26,38 @@ App.setup_tabs = function () {
       App.show_tabs_information()
     }],
 
-    ["Save State...", undefined, [
+    ["Star Tabs...", undefined, [
       {
-        text: "Save on #1",
+        text: "Star Normal",
         action: function () {
-          App.save_tab_state(1)
+          App.star_tabs("normal")
         }
       },
       {
-        text: "Save on #2",
+        text: "Star Pins",
         action: function () {
-          App.save_tab_state(2)
+          App.star_tabs("pinned")
         }
       },
       {
-        text: "Save on #3",
+        text: "Star All",
         action: function () {
-          App.save_tab_state(3)
+          App.star_tabs("all")
         }
-      },
-      {
-        text: "Save on #4",
-        action: function () {
-          App.save_tab_state(4)
-        }
-      },
-      {
-        text: "Save on #5",
-        action: function () {
-          App.save_tab_state(5)
-        }
-      }            
-    ]], 
-    
-    ["Load State...", undefined, [
-      {
-        text: "Load #1",
-        action: function () {
-          App.load_tab_state(1)
-        }
-      },
-      {
-        text: "Load #2",
-        action: function () {
-          App.load_tab_state(2)
-        }
-      },
-      {
-        text: "Load #3",
-        action: function () {
-          App.load_tab_state(3)
-        }
-      },
-      {
-        text: "Load #4",
-        action: function () {
-          App.load_tab_state(4)
-        }
-      },
-      {
-        text: "Load #5",
-        action: function () {
-          App.load_tab_state(5)
-        }
-      }
+      }   
     ]],     
+
+    ["Tab State...", undefined, [
+      {
+        text: "Save State...",
+        items: App.get_save_tab_state_items()
+      },
+
+      {
+        text: "Load State...",
+        items: App.get_load_tab_state_items()
+      }
+    ]],  
 
     ["Pin/Unpin...", undefined, [
       {
@@ -141,28 +108,7 @@ App.setup_tabs = function () {
           App.suspend_tabs("all")
         }
       }
-    ]],
-
-    ["Star...", undefined, [
-      {
-        text: "Star Normal",
-        action: function () {
-          App.star_tabs("normal")
-        }
-      },
-      {
-        text: "Star Pins",
-        action: function () {
-          App.star_tabs("pinned")
-        }
-      },
-      {
-        text: "Star All",
-        action: function () {
-          App.star_tabs("all")
-        }
-      }   
-    ]],    
+    ]],   
 
     ["Close...", undefined, [
       {
@@ -880,4 +826,80 @@ App.star_tabs = async function (type) {
     App.stor_save_stars()
     App.show_alert("Stars created")
   })  
+}
+
+// Get save tab state items
+App.get_save_tab_state_items = function () {
+  let items = [
+    {
+      text: "Save on #1",
+      action: function () {
+        App.save_tab_state(1)
+      }
+    },
+    {
+      text: "Save on #2",
+      action: function () {
+        App.save_tab_state(2)
+      }
+    },
+    {
+      text: "Save on #3",
+      action: function () {
+        App.save_tab_state(3)
+      }
+    },
+    {
+      text: "Save on #4",
+      action: function () {
+        App.save_tab_state(4)
+      }
+    },
+    {
+      text: "Save on #5",
+      action: function () {
+        App.save_tab_state(5)
+      }
+    }  
+  ]
+
+  return items 
+}
+
+// Get load tab state items
+App.get_load_tab_state_items = function () {
+  let items = [
+    {
+      text: "Load #1",
+      action: function () {
+        App.load_tab_state(1)
+      }
+    },
+    {
+      text: "Load #2",
+      action: function () {
+        App.load_tab_state(2)
+      }
+    },
+    {
+      text: "Load #3",
+      action: function () {
+        App.load_tab_state(3)
+      }
+    },
+    {
+      text: "Load #4",
+      action: function () {
+        App.load_tab_state(4)
+      }
+    },
+    {
+      text: "Load #5",
+      action: function () {
+        App.load_tab_state(5)
+      }
+    } 
+  ]
+
+  return items
 }
