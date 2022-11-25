@@ -344,7 +344,7 @@ body, html {
   flex-direction: column;
   background-color: var(--alt_color);
   padding: 1.5rem;
-  align-items: flex-start;
+  align-items: center;
   gap: 0.6rem;
 }
 
