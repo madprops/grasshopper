@@ -336,16 +336,18 @@ body, html {
 }
 
 #about_container {
-  padding-bottom: 2rem;
+  padding-bottom: 3rem;
 }
 
-#about_shortcuts {
-  display: flex;
-  flex-direction: column;
+#about_shortcuts_container {
+  margin-top: 0.8rem;
+}
+
+#about_shortcuts > div {
   background-color: var(--alt_color);
-  padding: 1.5rem;
-  align-items: center;
-  gap: 0.6rem;
+  padding: 0rem;
+  width: 100%;
+  padding: 0.5rem;
 }
 
 a:visited, a:link, a:hover {
