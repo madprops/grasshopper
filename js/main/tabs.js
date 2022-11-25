@@ -22,8 +22,6 @@ App.setup_tabs = function () {
       App.show_tabs_information()
     }],  
     
-    ["--separator--"],
-
     ["Tab State...", undefined, [
       {
         text: "Save State...",
@@ -35,6 +33,8 @@ App.setup_tabs = function () {
         items: App.get_load_tab_state_items()
       }
     ]], 
+
+    ["--separator--"],
     
     ["Star Tabs...", undefined, [
       {
