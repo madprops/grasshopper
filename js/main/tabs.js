@@ -456,7 +456,7 @@ App.suspend_tabs = function (type) {
   let tabs = []
 
   for (let tab of App.tabs_items) {
-    if (!tab.visible) {
+    if (!tab.visible || !tab.is_http(tab)) {
       continue
     }
 
