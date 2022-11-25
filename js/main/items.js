@@ -939,7 +939,7 @@ App.show_item_picker = function (btn) {
     let selected = App.window_mode === m
 
     items.push({
-      text: `${i + 1}. ${App.capitalize(m)}`,
+      text: App.capitalize(m),
       action: function () {
         App.show_item_window(m)
       },
