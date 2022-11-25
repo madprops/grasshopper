@@ -10,7 +10,7 @@ App.setup_tabs = function () {
     ["secure", "Secure"],
     ["insecure", "Insecure"],
     ["this_window", "This Window"],
-    ["other_window", "Other Window"]
+    ["other_windows", "Other Windows"]
   ]
 
   let menu_items = [

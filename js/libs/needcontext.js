@@ -117,6 +117,8 @@ NeedContext.show = function (x, y, items) {
   c.style.left = `${x}px`
   c.style.top = `${y}px`
 
+  document.querySelector("#needcontext-container").style.minWidth = "unset"
+
   NeedContext.items = items
   NeedContext.select_item(selected_index)
   NeedContext.open = true

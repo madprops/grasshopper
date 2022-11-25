@@ -239,7 +239,7 @@ App.do_item_filter = async function (mode) {
         match = item.discarded
       } else if (filter_mode === "this_window") {
         match = item.window_id === App.window_id
-      } else if (filter_mode === "other_window") {
+      } else if (filter_mode === "other_windows") {
         match = item.window_id !== App.window_id
       }
     }
@@ -709,8 +709,8 @@ App.show_item_window = async function (mode, cycle = false) {
 
   App.el(`#${mode}_container`).innerHTML = ""
   App.el(`#${mode}_filter`).value = value
-  App.el(`#${mode}_item_picker`).textContent = App.capitalize(mode)
-  App.el(`#${mode}_filter_mode`).textContent = "All"
+  App.el(`#${mode}_item_picker`).textContent = `${App.get_mode_index(mode) + 1}. ${App.capitalize(mode)}`
+  App.el(`#${mode}_filter_mode`).textContent = "Show: All"
   App[`${mode}_filter_mode`] = "all"
 
   let items = await App[`get_${mode}`]()
@@ -917,7 +917,7 @@ App.show_item_picker = function (btn) {
     let selected = App.window_mode === m
 
     items.push({
-      text: App.capitalize(m),
+      text: `${i + 1}. ${App.capitalize(m)}`,
       action: function () {
         App.show_item_window(m)
       },
@@ -1102,7 +1102,7 @@ App.show_filter_mode = function (mode) {
     let selected = App[`${mode}_filter_mode`] === filter_mode[0]
 
     items.push({
-      text: filter_mode[1],
+      text: `Show: ${filter_mode[1]}`,
       action: function () {
         App.set_filter_mode(mode, filter_mode)
       },
@@ -1154,11 +1154,20 @@ App.cycle_filter_modes = function (mode, reverse = true) {
 // Set filter mode
 App.set_filter_mode = function (mode, filter_mode) {
   App[`${mode}_filter_mode`] = filter_mode[0]
-  App.el(`#${mode}_filter_mode`).textContent = filter_mode[1]
+  App.el(`#${mode}_filter_mode`).textContent = `Show: ${filter_mode[1]}`
 
   if (filter_mode[0] === "all") {
     App.clear_filter(mode)
   }
 
   App.do_item_filter(mode)
+}
+
+// Get mode index
+App.get_mode_index = function (mode) {
+  for (let [i, it] of App.item_order.entries()) {
+    if (it === mode) {
+      return i
+    }
+  }
 }
