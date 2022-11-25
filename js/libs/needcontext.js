@@ -69,25 +69,33 @@ NeedContext.show = function (x, y, items) {
   let selected_index = 0
   let c = NeedContext.container
   c.innerHTML = ""
+  let index = 0
   
-  for (let [i, item] of items.entries()) {
+  for (let item of items) {
     let el = document.createElement("div")
-    el.classList.add("needcontext-item")
-    el.textContent = item.text
-    el.dataset.index = i
-    item.index = i
+    
+    if (item.separator) {
+      el.classList.add("needcontext-separator")
+    } else {
+      el.classList.add("needcontext-item")
+      el.textContent = item.text
+      el.dataset.index = index
+      item.index = index
+  
+      if (item.title) {
+        el.title = item.title
+      }
+  
+      if (item.selected) {
+        selected_index = index
+      }
+  
+      el.addEventListener("mouseenter", function () {
+        NeedContext.select_item(parseInt(el.dataset.index))
+      })
 
-    if (item.title) {
-      el.title = item.title
+      index += 1
     }
-
-    if (item.selected) {
-      selected_index = i
-    }
-
-    el.addEventListener("mouseenter", function () {
-      NeedContext.select_item(parseInt(el.dataset.index))
-    })
 
     item.element = el
     c.append(el)
@@ -157,6 +165,10 @@ NeedContext.select_up = function () {
   for (let i=NeedContext.items.length-1; i>=0; i--) {
     let item = NeedContext.items[i]
 
+    if (item.separator) {
+      continue
+    }
+
     if (!NeedContext.is_visible(item.element)) {
       continue
     }
@@ -185,6 +197,10 @@ NeedContext.select_down = function () {
 
   for (let i=0; i<NeedContext.items.length; i++) {
     let item = NeedContext.items[i]
+
+    if (item.separator) {
+      continue
+    }
 
     if (!NeedContext.is_visible(item.element)) {
       continue
@@ -278,6 +294,15 @@ NeedContext.init = function () {
       padding-right: 10px;
       padding-top: 3px;
       padding-bottom: 3px;
+    }   
+
+    .needcontext-separator {
+      border-top: 1px solid currentColor;
+      margin-left: 10px;
+      margin-right: 10px;
+      margin-top: 3px;
+      margin-bottom: 3px;
+      opacity: 0.7;
     }   
 
     .needcontext-item-selected {

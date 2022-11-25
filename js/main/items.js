@@ -933,6 +933,10 @@ App.show_item_picker = function (btn) {
       selected: selected
     })
   }
+  
+  items.push({
+    separator: true
+  })
 
   items.push({
     text: "Settings",
