@@ -18,10 +18,6 @@ App.setup_tabs = function () {
       App.new_tab()
     }], 
 
-    ["Playing Tab", function () {
-      App.go_to_playing_tab()
-    }],
-
     ["Information", function () {
       App.show_tabs_information()
     }],
@@ -203,12 +199,13 @@ App.get_tabs = async function () {
 
 // Sort tabs by access
 App.sort_tabs_by_access = function (tabs) {
-  tabs.sort((a, b) => (a.lastAccessed < b.lastAccessed) ? 1 : -1)
-}
-
-// Sort tabs by index
-App.sort_tabs_by_index = function (tabs) {
-  tabs.sort((a, b) => (a.index > b.index) ? 1 : -1)
+  tabs.sort(function (a, b) {
+    if (a.audible === b.audible){
+      return a.lastAccessed > b.lastAccessed ? -1 : 1
+    } else {
+      return a.audible > b.audible ? -1 : 1
+    }
+  })
 }
 
 // Open a new tab
@@ -323,38 +320,6 @@ App.mute_tab = function (id) {
 // Unmute a tab
 App.unmute_tab = function (id) {
   browser.tabs.update(id, {muted: false})
-}
-
-// Go the a tab emitting sound
-// Traverse in tab index order
-App.go_to_playing_tab = function () {
-  let tabs = App.tabs_items.slice(0)
-  App.sort_tabs_by_index(tabs)
-  let waypoint = false
-  let first
-
-  for (let tab of tabs) {
-    if (tab.audible) {
-      if (!first) {
-        first = tab
-      }
-
-      if (waypoint) {
-        App.focus_tab(tab)
-        return
-      }
-    }
-
-    if (!waypoint && tab.active) {
-      waypoint = true
-      continue
-    }
-  }
-
-  // If none found then pick the first one
-  if (first) {
-    App.focus_tab(first)
-  }
 }
 
 // Return pinned tabs
