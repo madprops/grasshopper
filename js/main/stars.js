@@ -305,12 +305,21 @@ App.export_stars = function () {
 // Use star json to replace stars
 App.import_stars = function () {
   App.show_input("Paste the data text here", function (text) {
-    let json = JSON.parse(text)
+    let json 
+
+    try {
+      json = JSON.parse(text)
+    } catch (err) {
+      App.show_alert("Invalid JSON")
+      return
+    }
 
     if (json) {
-      App.stars.items = json
-      App.stor_save_stars()
-      App.show_window("stars")
+      App.show_confirm("Use this data?", function () {
+        App.stars.items = json
+        App.stor_save_stars()
+        App.show_window("stars")
+      })
     }
   })
 }
