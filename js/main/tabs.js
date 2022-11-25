@@ -359,6 +359,7 @@ App.tabs_action = function (item) {
 // Tabs action alt
 App.tabs_action_alt = function (item, shift_key) {
   if (shift_key) {
+    App.backup_tabs()
     App.close_tab(item.id)
   } else {
     App.confirm_close_tab(item)
@@ -563,7 +564,7 @@ App.unmute_tabs = function () {
 
 // Check if tab is normal
 App.tab_is_normal = function (tab) {
-  let special = tab.pinned || tab.audible || tab.discarded || !App.is_http(tab)
+  let special = tab.pinned || tab.audible || tab.discarded
   return !special
 }
 
