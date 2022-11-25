@@ -25,7 +25,7 @@ NeedContext.filter = function (key) {
   let selected = false
 
   for (let [i, item] of NeedContext.items.entries()) {
-    if (!item.text.toLowerCase().startsWith(key)) {
+    if (item.separator || !item.text.toLowerCase().startsWith(key)) {
       item.element.classList.add("needcontext-hidden")
     } else {
       item.element.classList.remove("needcontext-hidden")
