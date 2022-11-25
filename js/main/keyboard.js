@@ -49,6 +49,10 @@ App.setup_keyboard = function () {
     }
 
     if (App.popup_open) {
+      if (App.popup_mode === "textarea" || App.popup_mode === "input") {
+        return
+      }
+            
       if (App.popup_mode === "confirm") {
         if (e.key === "ArrowLeft") {
           App.focus_confirm_no()

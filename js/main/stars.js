@@ -8,6 +8,14 @@ App.setup_stars = function () {
     ["Un-Star", function () {
       App.unstar_stars()
     }],
+
+    ["Export", function () {
+      App.export_stars()
+    }],
+
+    ["Import", function () {
+      App.import_stars()
+    }]    
   ]
 
   App.setup_item_window("stars", menu_items)
@@ -287,4 +295,22 @@ App.prepend_star = function (star) {
       App.el("#stars_container").prepend(item.element)
     }
   }
+}
+
+// Display stars json
+App.export_stars = function () {
+  App.show_textarea("Copy this to import it later", JSON.stringify(App.stars.items, null, 2))
+}
+
+// Use star json to replace stars
+App.import_stars = function () {
+  App.show_input("Paste the data text here", function (text) {
+    let json = JSON.parse(text)
+
+    if (json) {
+      App.stars.items = json
+      App.stor_save_stars()
+      App.show_window("stars")
+    }
+  })
 }

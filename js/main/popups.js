@@ -56,6 +56,18 @@ App.setup_popups = function () {
   App.create_popup({
     id: "dialog"
   })
+
+  App.create_popup({
+    id: "textarea"
+  })
+
+  App.create_popup({
+    id: "input", setup: function () {
+      App.ev(App.el("#input_submit"), "click", function () {
+        App.input_enter()
+      })
+    }
+  })
 }
 
 // Show alert
@@ -133,4 +145,27 @@ App.show_confirm = function (message, action) {
   ]
 
   App.show_dialog(message, buttons)
+}
+
+// Show textarea
+App.show_textarea = function (message, text) {
+  App.el("#textarea_message").textContent = message
+  App.el("#textarea_text").value = text
+  App.show_popup("textarea")
+}
+
+// Show input
+App.show_input = function (message, action) {
+  App.input_action = action
+  App.el("#input_message").textContent = message
+  let  input_text = App.el("#input_text")
+  input_text.value = ""
+  App.show_popup("input")
+  input_text.focus()
+}
+
+// On input enter
+App.input_enter = function () {
+  App.hide_popup("input")
+  App.input_action(App.el("#input_text").value.trim())
 }

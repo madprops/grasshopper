@@ -379,8 +379,8 @@ a:visited, a:link, a:hover {
 .popup_container {
   padding-top: 1.5rem;
   padding-bottom: 1.5rem;
-  padding-left: 2.5rem;
-  padding-right: 2.5rem;
+  padding-left: 2.2rem;
+  padding-right: 2.2rem;
   display: flex;
   flex-direction: column;
   gap: 1rem;
@@ -406,4 +406,22 @@ a:visited, a:link, a:hover {
 
 .pre {
   white-space: pre;
+}
+
+.textarea {
+  background-color: var(--alt_color);
+  color: var(--text_color);
+  font-size: 1rem;
+  outline: none;
+  border: none;
+}
+
+#textarea_text {
+  width: 66vw;
+  height: 66vh;
+}
+
+#input_text {
+  width: 55vw;
+  height: 55vh;
 }
