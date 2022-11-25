@@ -76,22 +76,30 @@ App.update_star = function (item) {
 }
 
 // Add an item to stars
-App.star_item = function (item) {
+App.star_item = async function (item, save = true) {
+  if (!App.stars) {
+    await App.get_stars()
+  }
+    
   let obj = {
-    id: `${Date.now()}_${item.url.substring(0, 45)}`,
+    id: `${Date.now()}_${App.star_counter}`,
     url: item.url,
     title: item.title,
     date_added: Date.now(),
     date_last_visit: Date.now()
   }
 
+  App.star_counter += 1
   App.stars.items.unshift(obj)
 
   if (App.stars.items.length > App.max_stars) {
     App.stars.items = App.stars.items.slice(0, App.max_stars)
   }
 
-  App.stor_save_stars()
+  if (save) {
+    App.stor_save_stars()
+  }
+  
   return obj
 }
 

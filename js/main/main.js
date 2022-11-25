@@ -9,6 +9,7 @@ App.max_stars = 1000 * 2
 App.max_closed = 25
 App.history_max_results = 600
 App.history_max_months = 12
+App.star_counter = 0
 
 App.init = async function () {
   let win = await browser.windows.getCurrent({populate: false})

@@ -93,99 +93,120 @@ App.setup_tabs = function () {
     ]],     
 
     ["Pin/Unpin...", undefined, [
-    {
-      text: "Pin All",
-      action: function () {
-        App.pin_all_tabs()
+      {
+        text: "Pin All",
+        action: function () {
+          App.pin_all_tabs()
+        }
+      },
+      {
+        text: "Unpin All",
+        action: function () {
+          App.unpin_all_tabs()
+        }
       }
-    },
-    {
-      text: "Unpin All",
-      action: function () {
-        App.unpin_all_tabs()
-      }
-    }
     ]],
 
     ["Mute/Unmute...", undefined, [
-    {
-      text: "Mute Playing",
-      action: function () {
-        App.mute_tabs()
+      {
+        text: "Mute Playing",
+        action: function () {
+          App.mute_tabs()
+        }
+      },
+      {
+        text: "Unmute Muted",
+        action: function () {
+          App.unmute_tabs()
+        }
       }
-    },
-    {
-      text: "Unmute Muted",
-      action: function () {
-        App.unmute_tabs()
-      }
-    }
     ]],
 
     ["Suspend...", undefined, [
-    {
-      text: "Suspend Normal",
-      action: function () {
-        App.suspend_tabs("normal")
+      {
+        text: "Suspend Normal",
+        action: function () {
+          App.suspend_tabs("normal")
+        }
+      },
+      {
+        text: "Suspend Pins",
+        action: function () {
+          App.suspend_tabs("pinned")
+        }
+      },
+      {
+        text: "Suspend All",
+        action: function () {
+          App.suspend_tabs("all")
+        }
       }
-    },
-    {
-      text: "Suspend Pins",
-      action: function () {
-        App.suspend_tabs("pinned")
-      }
-    },
-    {
-      text: "Suspend All",
-      action: function () {
-        App.suspend_tabs("all")
-      }
-    }
     ]],
 
+    ["Star...", undefined, [
+      {
+        text: "Star Normal",
+        action: function () {
+          App.star_tabs("normal")
+        }
+      },
+      {
+        text: "Star Pins",
+        action: function () {
+          App.star_tabs("pinned")
+        }
+      },
+      {
+        text: "Star All",
+        action: function () {
+          App.star_tabs("all")
+        }
+      }   
+    ]],    
+
     ["Close...", undefined, [
-    {
-      text: "Close Normal",
-      action: function () {
-        App.close_tabs("normal")
-      }
-    },
-    {
-      text: "Close Playing",
-      action: function () {
-        App.close_tabs("audible")
-      }
-    },
-    {
-      text: "Close Suspended",
-      action: function () {
-        App.close_tabs("discarded")
-      }
-    },
-    {
-      text: "Close Pins",
-      action: function () {
-        App.close_tabs("pinned")
-      }
-    },
-    {
-      text: "Close Others",
-      action: function () {
-        App.close_tabs(undefined, "active")
-      }
-    },    
-    {
-      text: "Close All",
-      action: function () {
-        App.close_tabs()
-      }
-    },
-    {
-      text: "Undo",
-      action: function () {
-        App.undo_close()
-      }
-    }    
+      {
+        text: "Close Normal",
+        action: function () {
+          App.close_tabs("normal")
+        }
+      },
+      {
+        text: "Close Playing",
+        action: function () {
+          App.close_tabs("audible")
+        }
+      },
+      {
+        text: "Close Suspended",
+        action: function () {
+          App.close_tabs("discarded")
+        }
+      },
+      {
+        text: "Close Pins",
+        action: function () {
+          App.close_tabs("pinned")
+        }
+      },
+      {
+        text: "Close Others",
+        action: function () {
+          App.close_tabs(undefined, "active")
+        }
+      },    
+      {
+        text: "Close All",
+        action: function () {
+          App.close_tabs()
+        }
+      },
+      {
+        text: "Undo",
+        action: function () {
+          App.undo_close()
+        }
+      }    
     ]],
   ]
 
@@ -815,4 +836,48 @@ App.undo_close = function () {
 // Backup tab state
 App.backup_tabs = function () {
   App.tabs_backup = App.get_tab_state()
+}
+
+// Star tabs
+App.star_tabs = async function (type) {
+  let tabs = []
+
+  for (let tab of App.tabs_items) {
+    if (!tab.visible || !App.is_http(tab)) {
+      continue
+    }
+
+    if (type === "normal") {
+      if (!App.tab_is_normal(tab)) {
+        continue
+      }
+    } else if (type === "pinned") {
+      if (!tab.pinned) {
+        continue
+      }
+    }
+    
+    let exists = await App.get_star_by_url(tab.url)
+
+    if (exists) {
+      continue
+    }
+
+    tabs.push(tab)
+  }
+
+  if (tabs.length === 0) {
+    return
+  }
+
+  let s = App.plural(tabs.length, "tab", "tabs")
+
+  App.show_confirm(`Star tabs? (${s})`, async function () {
+    for (let tab of tabs) {
+      await App.star_item(tab, false)
+    }
+
+    App.stor_save_stars()
+    App.show_alert("Stars created")
+  })  
 }
