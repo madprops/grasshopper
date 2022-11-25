@@ -20,8 +20,20 @@ App.setup_tabs = function () {
 
     ["Information", function () {
       App.show_tabs_information()
-    }],
+    }],    
 
+    ["Tab State...", undefined, [
+      {
+        text: "Save State...",
+        items: App.get_save_tab_state_items()
+      },
+
+      {
+        text: "Load State...",
+        items: App.get_load_tab_state_items()
+      }
+    ]], 
+    
     ["Star Tabs...", undefined, [
       {
         text: "Star Normal",
@@ -42,18 +54,6 @@ App.setup_tabs = function () {
         }
       }   
     ]],     
-
-    ["Tab State...", undefined, [
-      {
-        text: "Save State...",
-        items: App.get_save_tab_state_items()
-      },
-
-      {
-        text: "Load State...",
-        items: App.get_load_tab_state_items()
-      }
-    ]],  
 
     ["(Un) Pin...", undefined, [
       {
@@ -686,14 +686,12 @@ App.do_load_tab_state = function (items, confirm = true) {
 App.get_tab_state = function () {
   let items = []
 
-  for (let tab of App.tabs_items) {
-    if (App.is_http(tab)) {
-      items.push({
-        url: tab.url,
-        pinned: tab.pinned,
-        discarded: tab.discarded
-      })
-    }
+  for (let tab of App.get_http_tabs()) {
+    items.push({
+      url: tab.url,
+      pinned: tab.pinned,
+      discarded: tab.discarded
+    })
   }
 
   return items
