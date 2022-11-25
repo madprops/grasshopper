@@ -124,6 +124,12 @@ App.setup_tabs = function () {
         }
       },
       {
+        text: "Close Muted",
+        action: function () {
+          App.close_tabs("muted")
+        }
+      },      
+      {
         text: "Close Suspended",
         action: function () {
           App.close_tabs("discarded")
