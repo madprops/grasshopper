@@ -166,11 +166,12 @@ App.textarea_copy = function () {
 }
 
 // Show input
-App.show_input = function (message, action) {
+App.show_input = function (message, button, action) {
   App.input_action = action
   App.el("#input_message").textContent = message
   let  input_text = App.el("#input_text")
   input_text.value = ""
+  App.el("#input_submit").textContent = button
   App.show_popup("input")
   input_text.focus()
 }

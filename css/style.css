@@ -414,4 +414,5 @@ a:visited, a:link, a:hover {
   border: none;
   width: 60vw;
   height: 40vh;
+  resize: none;
 }

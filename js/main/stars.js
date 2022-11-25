@@ -314,7 +314,11 @@ App.export_stars = function () {
 
 // Use star json to replace stars
 App.import_stars = function () {
-  App.show_input("Paste the data text here", function (text) {
+  App.show_input("Paste the data text here", "Import", function (text) {
+    if (!text) {
+      return
+    }
+    
     let json 
 
     try {
