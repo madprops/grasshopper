@@ -329,7 +329,7 @@ App.show_item_menu = function (item, x, y) {
   }
 
   items.push({
-    text: "Star...",
+    text: "Star",
     action: function () {
       App.add_or_edit_star(item)
     }
@@ -343,7 +343,7 @@ App.show_item_menu = function (item, x, y) {
   })
 
   items.push({
-    text: "Copy...",
+    text: "Copy",
     items: [
     {
       text: "Copy URL",
@@ -361,7 +361,7 @@ App.show_item_menu = function (item, x, y) {
 
   if (item.mode === "tabs") {
     items.push({
-      text: "More...",
+      text: "More",
       get_items: function () { return App.get_more_menu_items(item) }
     })
 
@@ -448,7 +448,7 @@ App.get_more_menu_items = function (item) {
   }
 
   items.push({
-    text: "Move...",
+    text: "Move",
     get_items: async function () { return await App.get_move_menu_items(item) }
   })
 

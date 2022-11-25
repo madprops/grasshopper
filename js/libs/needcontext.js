@@ -10,6 +10,9 @@ NeedContext.after_show = function () {}
 // Overridable function to perform after hide
 NeedContext.after_hide = function () {}
 
+// Minimum menu width
+NeedContext.min_width = "unset"
+
 // Set defaults
 NeedContext.set_defaults = function () {
   NeedContext.open = false
@@ -127,7 +130,7 @@ NeedContext.show = function (x, y, items) {
   c.style.left = `${x}px`
   c.style.top = `${y}px`
 
-  document.querySelector("#needcontext-container").style.minWidth = "unset"
+  document.querySelector("#needcontext-container").style.minWidth = NeedContext.min_width
 
   NeedContext.select_item(selected_index)
   NeedContext.open = true

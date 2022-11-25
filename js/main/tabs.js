@@ -22,21 +22,21 @@ App.setup_tabs = function () {
       App.show_tabs_information()
     }],  
     
-    ["Tab State...", undefined, [
+    ["Tab State", undefined, [
       {
-        text: "Save State...",
+        text: "Save State",
         items: App.get_save_tab_state_items()
       },
 
       {
-        text: "Load State...",
+        text: "Load State",
         items: App.get_load_tab_state_items()
       }
     ]], 
 
     ["--separator--"],
     
-    ["Star Tabs...", undefined, [
+    ["Star Tabs", undefined, [
       {
         text: "Star Normal",
         action: function () {
@@ -57,7 +57,7 @@ App.setup_tabs = function () {
       }   
     ]],     
 
-    ["(Un) Pin...", undefined, [
+    ["(Un) Pin", undefined, [
       {
         text: "Pin All",
         action: function () {
@@ -72,7 +72,7 @@ App.setup_tabs = function () {
       }
     ]],
 
-    ["(Un) Mute...", undefined, [
+    ["(Un) Mute", undefined, [
       {
         text: "Mute Playing",
         action: function () {
@@ -87,7 +87,7 @@ App.setup_tabs = function () {
       }
     ]],
 
-    ["Suspend...", undefined, [
+    ["Suspend", undefined, [
       {
         text: "Suspend Normal",
         action: function () {
@@ -110,7 +110,7 @@ App.setup_tabs = function () {
     
     ["--separator--"],    
 
-    ["Close...", undefined, [
+    ["Close", undefined, [
       {
         text: "Close Normal",
         action: function () {
