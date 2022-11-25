@@ -148,6 +148,9 @@ App.setup_tabs = function () {
         }
       },
       {
+        separator: true
+      },
+      {
         text: "Undo",
         action: function () {
           App.undo_close()
