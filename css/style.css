@@ -345,7 +345,7 @@ body, html {
   background-color: var(--alt_color);
   padding: 1.5rem;
   align-items: flex-start;
-  gap: 0.8rem;
+  gap: 0.6rem;
 }
 
 a:visited, a:link, a:hover {
