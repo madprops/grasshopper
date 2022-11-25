@@ -129,6 +129,15 @@ App.selected_valid = function (mode) {
 
 // Select first item
 App.select_first_item = function (mode) {
+  if (mode === "tabs") {
+    for (let tab of App.tabs_items) {
+      if (tab.active) {
+        App.select_item(tab)
+        return
+      }
+    }
+  }
+
   for (let item of App[`${mode}_items`]) {
     if (item.visible) {
       App.select_item(item)
