@@ -329,16 +329,16 @@ App.show_item_menu = function (item, x, y) {
   }
 
   items.push({
-    text: "Filter",
+    text: "Star...",
     action: function () {
-      App.filter_domain(item)
+      App.add_or_edit_star(item)
     }
   })
 
   items.push({
-    text: "Star...",
+    text: "Filter",
     action: function () {
-      App.add_or_edit_star(item)
+      App.filter_domain(item)
     }
   })
 
