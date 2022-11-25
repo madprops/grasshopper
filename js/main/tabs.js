@@ -14,7 +14,7 @@ App.setup_tabs = function () {
   ]
 
   let menu_items = [
-    ["New", function () {
+    ["New Tab", function () {
       App.new_tab()
     }], 
 
@@ -59,7 +59,7 @@ App.setup_tabs = function () {
       }
     ]],  
 
-    ["Pin/Unpin...", undefined, [
+    ["(Un) Pin...", undefined, [
       {
         text: "Pin All",
         action: function () {
@@ -74,7 +74,7 @@ App.setup_tabs = function () {
       }
     ]],
 
-    ["Mute/Unmute...", undefined, [
+    ["(Un) Mute...", undefined, [
       {
         text: "Mute Playing",
         action: function () {
