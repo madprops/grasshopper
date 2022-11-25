@@ -227,7 +227,6 @@ App.focus_tab = async function (tab, close = true) {
 
 // Close tab with possible confirm
 App.confirm_close_tab = function (tab) {
-  console.log(tab)
   if (!App.tab_is_normal(tab)) {
     let s
 
