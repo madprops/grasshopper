@@ -70,6 +70,7 @@ NeedContext.show = function (x, y, items) {
   let c = NeedContext.container
   c.innerHTML = ""
   let index = 0
+  NeedContext.items = []
   
   for (let item of items) {
     let el = document.createElement("div")
@@ -95,6 +96,7 @@ NeedContext.show = function (x, y, items) {
       })
 
       index += 1
+      NeedContext.items.push(item)
     }
 
     item.element = el
@@ -127,7 +129,6 @@ NeedContext.show = function (x, y, items) {
 
   document.querySelector("#needcontext-container").style.minWidth = "unset"
 
-  NeedContext.items = items
   NeedContext.select_item(selected_index)
   NeedContext.open = true
   NeedContext.after_show()
@@ -165,10 +166,6 @@ NeedContext.select_up = function () {
   for (let i=NeedContext.items.length-1; i>=0; i--) {
     let item = NeedContext.items[i]
 
-    if (item.separator) {
-      continue
-    }
-
     if (!NeedContext.is_visible(item.element)) {
       continue
     }
@@ -197,10 +194,6 @@ NeedContext.select_down = function () {
 
   for (let i=0; i<NeedContext.items.length; i++) {
     let item = NeedContext.items[i]
-
-    if (item.separator) {
-      continue
-    }
 
     if (!NeedContext.is_visible(item.element)) {
       continue

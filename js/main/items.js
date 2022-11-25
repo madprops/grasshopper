@@ -362,6 +362,10 @@ App.show_item_menu = function (item, x, y) {
     })
 
     items.push({
+      separator: true
+    })    
+
+    items.push({
       text: "Close",
       action: function () {
         App.confirm_close_tab(item)
@@ -835,6 +839,11 @@ App.setup_item_window = function (mode, menu_items) {
         let items = []
 
         for (let item of menu_items) {
+          if (item[0] === "--separator--") {
+            items.push({separator: true})
+            continue
+          }
+
           if (item[1]) {
             items.push({text: item[0], action: function () {
               item[1]()
