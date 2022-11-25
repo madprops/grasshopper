@@ -452,12 +452,8 @@ App.suspend_tabs = function (type) {
       continue
     }
 
-    if (!App.is_http(tab)) {
-      continue
-    }
-
     if (type === "normal") {
-      if (tab.discarded || tab.pinned || tab.audible) {
+      if (!App.tab_is_normal(tab)) {
         continue
       }
     } else if (type === "pinned") {
@@ -487,7 +483,7 @@ App.close_tabs = function (include, exclude) {
   let ids = []
 
   for (let tab of App.tabs_items) {
-    if (!tab.visible || !App.is_http(tab)) {
+    if (!tab.visible) {
       continue
     }
 
@@ -567,7 +563,7 @@ App.unmute_tabs = function () {
 
 // Check if tab is normal
 App.tab_is_normal = function (tab) {
-  let special = tab.pinned || tab.audible || tab.discarded
+  let special = tab.pinned || tab.audible || tab.discarded || !App.is_http(tab)
   return !special
 }
 
@@ -754,7 +750,7 @@ App.star_tabs = async function (type) {
   let tabs = []
 
   for (let tab of App.tabs_items) {
-    if (!tab.visible || !App.is_http(tab)) {
+    if (!tab.visible) {
       continue
     }
 
