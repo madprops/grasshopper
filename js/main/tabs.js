@@ -18,7 +18,7 @@ App.setup_tabs = function () {
       App.new_tab()
     }], 
 
-    ["Go To Playing", function () {
+    ["Playing Tab", function () {
       App.go_to_playing_tab()
     }],
 
