@@ -1221,6 +1221,12 @@ App.set_filter_mode = function (mode, filter_mode) {
   App.el(`#${mode}_filter_mode`).textContent = `Show: ${filter_mode[1]}`
 
   if (filter_mode[0] === "all") {
+    if (mode === "tabs" && App.tab_sort_mode === "access") {
+      App.tab_sort_mode = "index"
+      App.show_item_window("tabs")
+      return
+    }
+
     App.clear_filter(mode)
   }
 

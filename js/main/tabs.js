@@ -13,7 +13,7 @@ App.setup_tabs = function () {
 
   let actions = [
     ["Recent", function () {
-      App.sort_tabs()
+      App.show_recent_tabs()
     }],   
     
     ["New Tab", function () {
@@ -902,8 +902,8 @@ App.do_move_tab_index = async function (id, index) {
   return ans
 }
 
-// Change sort mode
-App.sort_tabs = function () {
-  App.tab_sort_mode = App.tab_sort_mode === "index" ? "access" : "index"
+// Show recent tabs
+App.show_recent_tabs = function () {
+  App.tab_sort_mode = "access"
   App.show_item_window("tabs")
 }
