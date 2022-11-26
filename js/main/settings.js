@@ -9,7 +9,8 @@ App.default_settings = {
   closed_index: 3,
   all_windows: true,
   text_size: 17,
-  search_engine: "https://google.com/search?q="
+  search_engine: "https://google.com/search?q=",
+  tabs_sort_mode: "access"
 }
 
 // Setup settings
@@ -200,35 +201,35 @@ App.start_basic_settings = function () {
         set_number(App.settings[setting] + 1)
       })
     }
-  }  
+  } 
 
-  let text_mode = App.el("#settings_text_mode")
+  function make_menu (id, opts, current) {
+    let el = App.el(`#settings_${id}`)
+  
+    App.ev(el, "click", function () {
+      let items = []
 
-  App.ev(text_mode, "click", function () {
-    let items = []
-
-    items.push({
-      text: "Title",
-      action: function () {
-        text_mode.textContent = "Title"
-        App.settings.text_mode = "title"
-        App.stor_save_settings()
-      },
-      selected: App.settings.text_mode === "title"
+      for (let o of opts) {
+        items.push({
+          text: o[0],
+          action: function () {
+            el.textContent = o[0]
+            App.settings[id] = o[1]
+            App.stor_save_settings()
+          },
+          selected: App.settings[id] === o[1]
+        })  
+      }
+  
+      NeedContext.show_on_element(this, items, true, this.clientHeight)  
     })
+  
+    el.textContent = current
+  }
 
-    items.push({
-      text: "URL",
-      action: function () {
-        text_mode.textContent = "URL"
-        App.settings.text_mode = "url"
-        App.stor_save_settings()
-      },
-      selected: App.settings.text_mode === "url"
-    })
-
-    NeedContext.show_on_element(this, items, true, this.clientHeight)
-  })
-
-  text_mode.textContent = App.settings.text_mode === "url" ? "URL" : "Title"
+  make_menu("text_mode", [["Title", "title"], ["URL", "url"]], 
+  App.settings.text_mode === "url" ? "URL" : "Title")
+  
+  make_menu("tabs_sort_mode", [["Access", "access"], ["Index", "index"]], 
+  App.settings.tabs_sort_mode === "access" ? "Access" : "Index")
 }
