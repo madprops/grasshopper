@@ -181,8 +181,8 @@ App.start_basic_settings = function () {
   let sort_mode_items = [
     ["Index", "index"], 
     ["Access", "access"],
-    ["Title", "title"]
-    ["Type", "type"], 
+    ["Title", "title"],
+    ["Type", "type"]
   ]
 
   App.settings_make_menu("tab_sort_mode", sort_mode_items)
