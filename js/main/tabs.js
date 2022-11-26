@@ -311,10 +311,11 @@ App.append_tab = function (info) {
     return
   }
   
-  App.tabs_items.unshift(tab)
+  App.tabs_items.push(tab)
   App.create_item_element(tab)
   App.update_info("tabs")
   App.el("#tabs_container").append(tab.element)
+  App.select_item(tab)
 }
 
 // Pin a tab
