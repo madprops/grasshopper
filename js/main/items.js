@@ -184,7 +184,7 @@ App.focus_filter = function (mode) {
 App.do_item_filter = async function (mode) {
   console.info(`Filter: ${mode}`)
   let value = App.el(`#${mode}_filter`).value.trim()
-  
+
   if (value === "iddqd") {
     App.el("#main").classList.add("invert")
     App.set_filter(mode, "")
@@ -1240,4 +1240,16 @@ App.get_item_element_index = function (mode, el) {
   let container = App.el(`#${mode}_container`)
   let nodes = Array.prototype.slice.call(container.children)
   return nodes.indexOf(el)
+}
+
+// Move item from one index to another
+App.move_item = function (mode, id, index) {
+  let item = App.get_item_by_id(mode, id)
+
+  for (let [i, it] of App[`${mode}_items`].entries()) {
+    if (i === index) {
+      it.element.before(item.element)
+      break
+    }
+  }
 }

@@ -175,13 +175,13 @@ App.setup_tabs = function () {
     }
   })
 
-  browser.tabs.onActivated.addListener(function (ans) {
+  browser.tabs.onActivated.addListener(function (e) {
     if (App.window_mode === "tabs") {
       for (let tab of App.tabs_items) {
         tab.active = false
       }
 
-      App.refresh_tab(ans.tabId)
+      App.refresh_tab(e.tabId)
     }
   })  
   
@@ -190,6 +190,10 @@ App.setup_tabs = function () {
       App.remove_closed_tab(id)
     }
   })
+
+  browser.tabs.onMoved.addListener(function (id, e) {
+    App.move_item("tabs", id, e.toIndex)
+  })  
 }
 
 // Get open tabs
