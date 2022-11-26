@@ -874,31 +874,33 @@ App.setup_item_window = function (mode, actions) {
           }
           
           e.dataTransfer.setDragImage(new Image(), 0, 0)
-          e.dataTransfer.dropEffect = 'move'
-          App.drag_element = e.target.closest(".item")
           App.drag_y = e.clientY
+          App.drag_element = e.target.closest(".item")
         })
 
         container.addEventListener("dragend", function (e) {
-          let nodes = Array.prototype.slice.call(container.children)
-          let index = nodes.indexOf(App.drag_element)
+          let index = App.get_item_element_index(mode, App.drag_element)
           App.update_tab_index(App.drag_element, index)
         })
 
         container.addEventListener("dragover", function (e) {
+          let direction = e.clientY > App.drag_y ? "down" : "up"
+          
           if (e.target.closest(".item")) {
             let item = e.target.closest(".item")
             
             if (App.drag_target !== item) {
               App.drag_target = item
 
-              if (e.clientY > App.drag_y) {
+              if (direction === "down") {
                 App.drag_element.before(App.drag_target)
               } else {
                 App.drag_target.before(App.drag_element)
               }
             }
           }
+
+          App.drag_y = e.clientY
         })
       }      
 
@@ -1234,4 +1236,11 @@ App.get_mode_index = function (mode) {
       return i
     }
   }
+}
+
+// Get item's element index
+App.get_item_element_index = function (mode, el) {
+  let container = App.el(`#${mode}_container`)
+  let nodes = Array.prototype.slice.call(container.children)
+  return nodes.indexOf(el)
 }
