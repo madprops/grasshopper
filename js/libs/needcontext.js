@@ -283,6 +283,8 @@ NeedContext.init = function () {
       border: 1px solid #2B2F39;
       border-radius: 5px;
       cursor: pointer;
+      padding-top: 6px;
+      padding-bottom: 6px;
     }
 
     .needcontext-item {
