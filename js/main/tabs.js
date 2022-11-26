@@ -680,7 +680,7 @@ App.do_load_tab_state = function (items, confirm = true) {
     } else {
       urls.splice(i, 1)
     }
-  } 
+  }
 
   if (to_open.length === 0 && to_close.length === 0) {
     return
@@ -699,8 +699,12 @@ App.do_load_tab_state = function (items, confirm = true) {
 
       if (item.pinned) (
         App.pin_tab(tab.id)
-      )          
-    }    
+      )
+
+      await App.do_move_tab_index(tab.id, item.index)
+    }
+
+    App.show_item_window("tabs")
   }
 
   if (confirm) {
@@ -720,7 +724,8 @@ App.get_tab_state = function () {
     items.push({
       url: tab.url,
       pinned: tab.pinned,
-      discarded: tab.discarded
+      discarded: tab.discarded,
+      index: tab.index
     })
   }
 
@@ -896,9 +901,15 @@ App.get_load_tab_state_items = function () {
 
 // Update tab index
 App.update_tab_index = async function (el, index) {
-  let ans = await browser.tabs.move(parseInt(el.dataset.id), {index: index})
+  let ans = await App.do_move_tab_index(parseInt(el.dataset.id), index)
   
   if (ans.length === 0) {
     App.show_item_window("tabs")
   }
+}
+
+// Do tab index move
+App.do_move_tab_index = async function (id, index) {
+  let ans = await browser.tabs.move(id, {index: index})
+  return ans
 }

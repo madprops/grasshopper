@@ -128,7 +128,16 @@ App.selected_valid = function (mode) {
 }
 
 // Select first item
-App.select_first_item = function (mode) {
+App.select_first_item = function (mode, by_active = false) {
+  if (mode === "tabs" && by_active) {
+    for (let item of App[`${mode}_items`]) {
+      if (item.visible && item.active) {
+        App.select_item(item)
+        return
+      }
+    }  
+  }
+
   for (let item of App[`${mode}_items`]) {
     if (item.visible) {
       App.select_item(item)
@@ -518,7 +527,8 @@ App.process_item = function (mode, item, exclude = []) {
     obj.pinned = item.pinned
     obj.audible = item.audible
     obj.muted = item.mutedInfo.muted
-    obj.discarded = item.discarded
+    obj.discarded = item.discarded,
+    obj.index = item.index
   }
 
   App.create_empty_item_element(obj)
@@ -732,7 +742,7 @@ App.show_item_window = async function (mode, cycle = false) {
   if (value) {
     App.do_item_filter(mode)
   } else {
-    App.select_first_item(mode)
+    App.select_first_item(mode, true)
   }
 
   App.focus_filter(mode)
