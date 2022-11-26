@@ -1245,11 +1245,18 @@ App.get_item_element_index = function (mode, el) {
 // Move item from one index to another
 App.move_item = function (mode, id, index) {
   let item = App.get_item_by_id(mode, id)
+  let from_index = App.get_item_element_index(mode, item.element)
 
-  for (let [i, it] of App[`${mode}_items`].entries()) {
+  for (let [i, el] of App.els(`.${mode}_item`).entries()) {
     if (i === index) {
-      it.element.before(item.element)
-      break
+      if (el === item.element) {
+        return
+      }
+
+      el.before(item.element)
+      App[`${mode}_items`].splice(from_index, 1)
+      App[`${mode}_items`].splice(i, 0, item)
+      return
     }
   }
 }
