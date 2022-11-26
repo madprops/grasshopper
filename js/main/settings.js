@@ -165,13 +165,9 @@ App.settings_make_menu = function (id, opts) {
 
 // Setup settings
 App.setup_settings = function () {
-  function on_x () {
-    App.show_last_window()
-  }
-
   App.create_window({id: "settings_theme", setup: function () {
     App.start_theme_settings()
-  }, on_x: on_x})  
+  }})  
 
   App.create_window({id: "settings", setup: function () {
     let container = App.el("#settings_container")
