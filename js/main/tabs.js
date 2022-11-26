@@ -668,29 +668,45 @@ App.do_load_tab_state = function (items, confirm = true) {
       urls.splice(i, 1)
     }
   }
-
-  if (to_open.length === 0 && to_close.length === 0) {
-    return
-  }
   
   let s1 = App.plural(to_open.length, "tab", "tabs")
   let s2 = App.plural(to_close.length, "tab", "tabs")
 
   async function restore () {
+    App.show_alert("Restoring...")
     for (let item of to_close) {
       App.close_tab(item.id)
     }
 
-    let opened = []
-
     for (let item of to_open) {
-      let tab = await App.open_tab(item.url, false, {pinned: item.pinned, discarded: item.discarded})
-      opened.push([tab, item])
+      await App.open_tab(item.url, false, {pinned: item.pinned, discarded: item.discarded})
     }
 
-    for (let o of opened) {
-      await App.do_move_tab_index(o[0].id, o[1].index)
-    }
+    setTimeout(async function () {
+      let tabs = App.tabs_items.slice(0)
+  
+      for (let tab of tabs) {
+        tab.xset = false
+      }
+  
+      for (let item of items) {
+        for (let tab of tabs) {
+          if (!item.empty && (item.url === tab.url)) {
+            if (!tab.xset) {
+              tab.index = item.index
+              tab.xset = true
+            }
+          }
+        }
+      }
+
+      for (let tab of tabs) {
+        await App.do_move_tab_index(tab.id, tab.index)
+      }
+
+      App.hide_popup("alert")
+      App.show_item_window("tabs")
+    }, 1000)
 
     App.show_item_window("tabs")
   }
