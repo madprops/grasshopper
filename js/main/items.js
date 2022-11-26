@@ -855,6 +855,20 @@ App.setup_item_window = function (mode, actions) {
         App.show_menu()
       })
 
+      if (mode === "tabs") {
+        new Sortable(container, {
+          animation: 150,
+          dragClass: "sortable_ghost",
+          onMove: function () {
+            if (App.settings.tab_sort_mode !== "index") {
+              return false
+            }
+          }, onEnd: function (e) {
+            App.update_tab_index(e.item, e.newIndex)
+          }
+        })
+      }      
+
       top.append(menu)
     }
   }

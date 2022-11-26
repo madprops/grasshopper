@@ -910,3 +910,12 @@ App.get_load_tab_state_items = function () {
 
   return items
 }
+
+// Update tab index
+App.update_tab_index = async function (el, index) {
+  let ans = await browser.tabs.move(parseInt(el.dataset.id), {index: index})
+  
+  if (ans.length === 0) {
+    App.show_item_window("tabs")
+  }
+}

@@ -10,7 +10,7 @@ App.default_settings = {
   all_windows: true,
   text_size: 17,
   search_engine: "https://google.com/search?q=",
-  tab_sort_mode: "type"
+  tab_sort_mode: "index"
 }
 
 // Settings action list after mods
@@ -179,10 +179,10 @@ App.start_basic_settings = function () {
   App.settings_make_menu("text_mode", [["Title", "title"], ["URL", "url"]])
 
   let sort_mode_items = [
-    ["Type", "type"], 
     ["Index", "index"], 
     ["Access", "access"],
     ["Title", "title"]
+    ["Type", "type"], 
   ]
 
   App.settings_make_menu("tab_sort_mode", sort_mode_items)
