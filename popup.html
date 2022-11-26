@@ -68,35 +68,17 @@
     </template>
 
     <template id="template_settings">
-      <div class="settings_container unselectable">
+      <div id="settings_container" class="settings_container unselectable">
         <div class="bigger">Settings</div>
-        <div id="settings_show_basic" class="button settings_button">Basic Settings</div>
-        <div id="settings_show_theme" class="button settings_button">Theme Settings</div>
-        <div id="settings_show_advanced" class="button settings_button">Advanced Settings</div>
-        <div id="settings_defaults_button" class="button settings_button" title="Reset settings to defaults">Reset Settings</div>
-      </div>
-    </template>
-
-    <template id="template_settings_basic">
-      <div id="settings_basic_container" class="settings_container unselectable">
-        <div class="bigger">Basic Settings</div>
-
         <div class="separator"></div>
 
-        <div class="flex_column_center gap_2" title="Whether to show tabs from all windows">
-          <div>All Windows</div>
-          <input type="checkbox" id="settings_all_windows" class="settings_checkbox" data-setting="all_windows">
-        </div>
-
-        <div class="separator"></div>
-        
         <div class="flex_column_center gap_2" title="Main text to display on the items. The opposite is displayed in the footer">
           <div>Text Mode</div>
           <div id="settings_text_mode" class="settings_menu button"  data-setting="text_mode"></div>
         </div>
 
         <div class="separator"></div>
-
+        
         <div class="flex_column_center gap_2" title="Base text size. Affects the size of the whole interface">
           <div>Text Size</div>
           <div class="flex_row_center gap_1">
@@ -105,6 +87,25 @@
             <div class="button" id="settings_text_size_plus">&gt;</div>
           </div>
         </div>
+        
+        <div class="separator"></div>
+
+        <div class="flex_column_center gap_2" title="The items on top appear first">
+          <div>Item Order</div>
+          <div id="item_order"></div>
+        </div>
+
+        <div class="separator"></div>
+        
+        <div class="flex_column_center gap_2" title="Search engine to use on queries. You do queries by starting the filter with '?'">
+          <div>Search Engine</div>
+          <input type="text" autocomplete="off" id="settings_search_engine" class="text settings_text_long" data-setting="search_engine" data-type="text">
+        </div>  
+        
+        <div class="separator"></div>
+
+        <div id="settings_show_theme" class="button settings_button">Theme Settings</div>
+        <div id="settings_defaults_button" class="button settings_button" title="Reset settings to defaults">Reset Settings</div>
       </div>
     </template>
 
@@ -135,25 +136,6 @@
         </div>
       </div>
     </template>
-
-    <template id="template_settings_advanced">
-      <div id="settings_advanced_container" class="settings_container unselectable">
-        <div class="bigger">Advanced Settings</div>
-        <div class="separator"></div>
-        
-        <div class="flex_column_center gap_2" title="The items on top appear first">
-          <div>Item Order</div>
-          <div id="item_order"></div>
-        </div>
-
-        <div class="separator"></div>
-
-        <div class="flex_column_center gap_2" title="Search engine to use on queries. You do queries by starting the filter with '?'">
-          <div>Search Engine</div>
-          <input type="text" autocomplete="off" id="settings_search_engine" class="text settings_text_long" data-setting="search_engine" data-type="text">
-        </div>         
-      </div>     
-    </template>    
 
     <template id="template_about">
       <div id="about_container" class="flex_column_center gap_2">        

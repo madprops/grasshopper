@@ -7,9 +7,40 @@ App.default_settings = {
   stars_index: 1,
   history_index: 2,
   closed_index: 3,
-  all_windows: true,
   text_size: 17,
   search_engine: "https://google.com/search?q="
+}
+
+// Start item order
+App.start_item_order = function () {
+  let item_order = App.el("#item_order")
+
+  for (let m of App.item_order) {
+    let el = App.create("div", "item_order_item flex_row_center gap_2")
+    el.dataset.mode = m
+
+    let text = App.create("div", "item_order_item_text")
+    text.textContent = App.capitalize(m)
+    el.append(text)
+
+    let up = App.create("button", "button up_down_button")
+    up.textContent = "Up"
+    el.append(up)
+
+    App.ev(up, "click", function () {
+      App.item_order_up(el)
+    })      
+
+    let down = App.create("button", "button up_down_button")
+    down.textContent = "Down"
+    el.append(down)
+
+    App.ev(down, "click", function () {
+      App.item_order_down(el)
+    })      
+
+    item_order.append(el)
+  }
 }
 
 // Settings action list after mods
@@ -139,27 +170,17 @@ App.setup_settings = function () {
     App.show_last_window()
   }
 
-  App.create_window({id: "settings_basic", setup: function () {
-    App.start_basic_settings()
-  }, on_x: on_x}) 
-
   App.create_window({id: "settings_theme", setup: function () {
     App.start_theme_settings()
   }, on_x: on_x})  
 
-  App.create_window({id: "settings_advanced", setup: function () {
-    App.start_advanced_settings()
-  }, on_x: on_x})   
-
   App.create_window({id: "settings", setup: function () {
-    App.ev(App.el("#settings_show_basic"), "click", function () {
-      App.show_window("settings_basic")
-    })
+    let container = App.el("#settings_container")
+    App.settings_setup_checkboxes(container)
+    App.settings_setup_text(container)
+    App.settings_make_menu("text_mode", [["Title", "title"], ["URL", "url"]])
+    App.start_item_order()
 
-    App.ev(App.el("#settings_show_advanced"), "click", function () {
-      App.show_window("settings_advanced")
-    })
-    
     App.ev(App.el("#settings_show_theme"), "click", function () {
       App.show_window("settings_theme")
     })
@@ -168,14 +189,6 @@ App.setup_settings = function () {
       App.stor_reset_settings()
     })    
   }}) 
-}
-
-// Start basic settings
-App.start_basic_settings = function () {
-  let container = App.el("#settings_basic_container")
-  App.settings_setup_checkboxes(container)
-  App.settings_setup_text(container)
-  App.settings_make_menu("text_mode", [["Title", "title"], ["URL", "url"]])
 }
 
 // Start theme settings
@@ -214,39 +227,4 @@ App.start_theme_settings = function () {
   App.ev(App.el("#settings_detect_theme"), "click", function () {
     App.detect_theme()
   })
-}
-
-// Start advanced settings
-App.start_advanced_settings = function () {
-  let container = App.el("#settings_advanced_container")
-  App.settings_setup_text(container)
-
-  let item_order = App.el("#item_order")
-
-  for (let m of App.item_order) {
-    let el = App.create("div", "item_order_item flex_row_center gap_2")
-    el.dataset.mode = m
-
-    let text = App.create("div", "item_order_item_text")
-    text.textContent = App.capitalize(m)
-    el.append(text)
-
-    let up = App.create("button", "button up_down_button")
-    up.textContent = "Up"
-    el.append(up)
-
-    App.ev(up, "click", function () {
-      App.item_order_up(el)
-    })      
-
-    let down = App.create("button", "button up_down_button")
-    down.textContent = "Down"
-    el.append(down)
-
-    App.ev(down, "click", function () {
-      App.item_order_down(el)
-    })      
-
-    item_order.append(el)
-  }
 }

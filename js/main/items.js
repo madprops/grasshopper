@@ -869,6 +869,10 @@ App.setup_item_window = function (mode, actions) {
 
       if (mode === "tabs") {
         container.addEventListener("dragstart", function (e) {
+          if (App.tab_sort_mode !== "index") {
+            return false
+          }
+          
           e.dataTransfer.setDragImage(new Image(), 0, 0)
           e.dataTransfer.dropEffect = 'move'
           App.drag_element = e.target.closest(".item")

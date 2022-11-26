@@ -8,9 +8,7 @@ App.setup_tabs = function () {
     ["muted", "Muted"],
     ["suspended", "Suspended"],
     ["secure", "Secure"],
-    ["insecure", "Insecure"],
-    ["this_window", "This Window"],
-    ["other_windows", "Other Windows"]
+    ["insecure", "Insecure"]
   ]
 
   let actions = [
@@ -196,19 +194,7 @@ App.setup_tabs = function () {
 
 // Get open tabs
 App.get_tabs = async function () {
-  let tabs = []
-
-  if (!App.settings.all_windows) {
-    tabs = await browser.tabs.query({currentWindow: true})
-  } else {
-    let wins = await browser.windows.getAll({populate: true})
-
-    for (let win of wins) {
-      for (let tab of win.tabs) {
-        tabs.push(tab)
-      }
-    }
-  }
+  let tabs = await browser.tabs.query({currentWindow: true})
 
   if (App.tab_sort_mode === "index") {
     App.sort_tabs_by_index(tabs)
@@ -229,7 +215,11 @@ App.sort_tabs_by_access = function (tabs) {
 // Sort tabs by index
 App.sort_tabs_by_index = function (tabs) {
   tabs.sort(function (a, b) {
-    return a.index < b.index ? -1 : 1
+    if (a.windowId === b.windowId) {
+      return a.index < b.index ? -1 : 1
+    } else {
+      return a.windowId < b.windowId ? -1 : 1
+    }
   })
 }
 
@@ -895,11 +885,7 @@ App.get_load_tab_state_items = function () {
 }
 
 // Update tab index
-App.update_tab_index = async function (el, index) {
-  if (App.tab_sort_mode !== "index") {
-    return false
-  }
-    
+App.update_tab_index = async function (el, index) {    
   let ans = await App.do_move_tab_index(parseInt(el.dataset.id), index)
   
   if (ans.length === 0) {
