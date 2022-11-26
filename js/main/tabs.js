@@ -176,7 +176,6 @@ App.setup_tabs = function () {
   })
   
   browser.tabs.onActivated.addListener(function (e) {
-    console.log(2)
     if (App.window_mode === "tabs") {
       for (let tab of App.tabs_items) {
         tab.active = false
@@ -312,6 +311,7 @@ App.append_tab = function (info) {
     return
   }
   
+  App.update_indexes("tabs")
   App.tabs_items.push(tab)
   App.create_item_element(tab)
   App.update_info("tabs")
@@ -681,8 +681,15 @@ App.do_load_tab_state = function (items, confirm = true) {
       App.close_tab(item.id)
     }
 
+    let opened = []
+
     for (let item of to_open) {
-      await App.open_tab(item.url, false, {pinned: item.pinned, discarded: item.discarded, index: item.index})
+      let tab = await App.open_tab(item.url, false, {pinned: item.pinned, discarded: item.discarded})
+      opened.push([tab, item])
+    }
+
+    for (let o of opened) {
+      await App.do_move_tab_index(o[0].id, o[1].index)
     }
 
     App.show_item_window("tabs")

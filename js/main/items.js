@@ -475,6 +475,7 @@ App.process_items = function (mode, items) {
     container.append(obj.element)
   }
 
+  App.update_indexes(mode)
   App.update_info(mode)
 }
 
@@ -518,13 +519,11 @@ App.process_item = function (mode, item, exclude = []) {
   }
 
   if (mode === "tabs") {
-    obj.index = item.index,
     obj.active = item.active
     obj.pinned = item.pinned
     obj.audible = item.audible
     obj.muted = item.mutedInfo.muted
-    obj.discarded = item.discarded,
-    obj.index = item.index
+    obj.discarded = item.discarded
   }
 
   App.create_empty_item_element(obj)
@@ -1252,6 +1251,13 @@ App.get_item_element_index = function (mode, el) {
 // Update index of item in array
 App.update_item_index = function (mode, from_index, to_index) {
   let spliced = App[`${mode}_items`].splice(from_index, 1)[0]
-  spliced.index = to_index
   App[`${mode}_items`].splice(to_index, 0, spliced)
+  App.update_indexes(mode)
+}
+
+// Update indexes
+App.update_indexes = function (mode) {
+  for (let [i, item] of App[`${mode}_items`].entries()) {
+    item.index = i
+  }
 }
