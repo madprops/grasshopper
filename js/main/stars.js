@@ -1,6 +1,6 @@
 // Setup stars
 App.setup_stars = function () {
-  let menu_items = [
+  let actions = [
     ["New Star", function () {
       App.new_star()
     }],
@@ -20,7 +20,7 @@ App.setup_stars = function () {
     }]    
   ]
 
-  App.setup_item_window("stars", menu_items)
+  App.setup_item_window("stars", actions)
   
   App.create_window({id: "star_editor", setup: function () {
     App.ev(App.el("#star_editor_save"), "click", function () {
@@ -318,7 +318,7 @@ App.import_stars = function () {
     if (!text) {
       return
     }
-    
+
     let json 
 
     try {

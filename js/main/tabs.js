@@ -13,7 +13,7 @@ App.setup_tabs = function () {
     ["other_windows", "Other Windows"]
   ]
 
-  let menu_items = [
+  let actions = [
     ["New Tab", function () {
       App.new_tab()
     }], 
@@ -165,7 +165,7 @@ App.setup_tabs = function () {
     ]],
   ]
 
-  App.setup_item_window("tabs", menu_items)
+  App.setup_item_window("tabs", actions)
 
   browser.tabs.onUpdated.addListener(function (id) {
     if (App.window_mode === "tabs") {

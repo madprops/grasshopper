@@ -748,7 +748,7 @@ App.show_item_window = async function (mode, cycle = false) {
 }
 
 // Setup an item window
-App.setup_item_window = function (mode, menu_items) {
+App.setup_item_window = function (mode, actions) {
   let args = {}
   args.id = mode
   args.close_button = false
@@ -834,7 +834,7 @@ App.setup_item_window = function (mode, menu_items) {
     top.append(filter_mode)
 
     //
-    if (menu_items) {
+    if (actions) {
       let menu = App.create("div", "button top_button", `${mode}_menu`)
       menu.title = "Item Actions (Shift + Space)"
       menu.textContent = "Actions"
@@ -842,7 +842,7 @@ App.setup_item_window = function (mode, menu_items) {
       App[`show_${mode}_menu`] = function () {
         let items = []
 
-        for (let item of menu_items) {
+        for (let item of actions) {
           if (item[0] === "--separator--") {
             items.push({separator: true})
             continue
