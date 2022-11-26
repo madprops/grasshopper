@@ -902,7 +902,7 @@ App.do_move_tab_index = async function (id, index) {
   return ans
 }
 
-// Change sort mod
+// Change sort mode
 App.sort_tabs = function () {
   App.tab_sort_mode = App.tab_sort_mode === "index" ? "access" : "index"
   App.show_item_window("tabs")
