@@ -29,5 +29,10 @@
             "id": "{23aee10d-1130-4694-80ef-428e287ba83d}",
             "strict_min_version": "99.0"
         } 
+    },
+    "sidebar_action": {
+        "default_title": "Grasshopper",
+        "default_panel": "popup.html",
+        "default_icon": "icon128.png"
     }
 }
