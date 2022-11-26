@@ -873,11 +873,12 @@ App.setup_item_window = function (mode, actions) {
           e.dataTransfer.setDragImage(new Image(), 0, 0)
           App.drag_y = e.clientY
           App.drag_element = e.target.closest(".item")
+          App.drag_index = App.get_item_element_index(mode, App.drag_element)
         })
 
         container.addEventListener("dragend", function (e) {
-          let index = App.get_item_element_index(mode, App.drag_element)
-          App.update_tab_index(App.drag_element, index)
+          let new_index = App.get_item_element_index(mode, App.drag_element)
+          App.update_tab_index(App.drag_element, App.drag_index, new_index)
         })
 
         container.addEventListener("dragover", function (e) {
@@ -1242,21 +1243,8 @@ App.get_item_element_index = function (mode, el) {
   return nodes.indexOf(el)
 }
 
-// Move item from one index to another
-App.move_item = function (mode, id, index) {
-  let item = App.get_item_by_id(mode, id)
-  let from_index = App.get_item_element_index(mode, item.element)
-
-  for (let [i, el] of App.els(`.${mode}_item`).entries()) {
-    if (i === index) {
-      if (el === item.element) {
-        return
-      }
-
-      el.before(item.element)
-      App[`${mode}_items`].splice(from_index, 1)
-      App[`${mode}_items`].splice(i, 0, item)
-      return
-    }
-  }
+// Update index of item in array
+App.update_item_index = function (mode, from_index, to_index) {
+  let spliced = App[`${mode}_items`].splice(from_index, 1)[0]
+  App[`${mode}_items`].splice(to_index, 0, spliced)
 }
