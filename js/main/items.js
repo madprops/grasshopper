@@ -128,16 +128,7 @@ App.selected_valid = function (mode) {
 }
 
 // Select first item
-App.select_first_item = function (mode, focus_active = false) {
-  if (focus_active && mode === "tabs") {
-    for (let tab of App.tabs_items) {
-      if (tab.visible && tab.active) {
-        App.select_item(tab)
-        return
-      }
-    }
-  }
-
+App.select_first_item = function (mode) {
   for (let item of App[`${mode}_items`]) {
     if (item.visible) {
       App.select_item(item)
@@ -741,7 +732,7 @@ App.show_item_window = async function (mode, cycle = false) {
   if (value) {
     App.do_item_filter(mode)
   } else {
-    App.select_first_item(mode, true)
+    App.select_first_item(mode)
   }
 
   App.focus_filter(mode)

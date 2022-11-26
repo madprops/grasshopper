@@ -14,6 +14,10 @@ App.setup_tabs = function () {
   ]
 
   let actions = [
+    ["Sort", function () {
+      App.change_tabs_sort_mode()
+    }], 
+
     ["New Tab", function () {
       App.new_tab()
     }], 
@@ -206,15 +210,27 @@ App.get_tabs = async function () {
     }
   }
 
-  App.sort_tabs_by_access(tabs)
+  if (App.tabs_sort_mode === "access") {
+    App.sort_tabs_by_access(tabs)
+  } else if (App.tabs_sort_mode === "type") {
+    App.sort_tabs_by_type(tabs)
+  }
+
   return tabs  
 }
 
 // Sort tabs by access
 App.sort_tabs_by_access = function (tabs) {
   tabs.sort(function (a, b) {
+    return a.lastAccessed > b.lastAccessed ? -1 : 1
+  })
+}
+
+// Sort tabs by type
+App.sort_tabs_by_type = function (tabs) {
+  tabs.sort(function (a, b) {
     if (a.audible === b.audible){
-      return a.lastAccessed > b.lastAccessed ? -1 : 1
+      return a.index < b.index ? -1 : 1
     } else {
       return a.audible > b.audible ? -1 : 1
     }
@@ -875,4 +891,15 @@ App.get_load_tab_state_items = function () {
   ]
 
   return items
+}
+
+// Change tabs sort mode
+App.change_tabs_sort_mode = function () {
+  if (App.tabs_sort_mode === "access") {
+    App.tabs_sort_mode = "type"
+  } else {
+    App.tabs_sort_mode = "access"
+  }
+
+  App.show_item_window("tabs")
 }
