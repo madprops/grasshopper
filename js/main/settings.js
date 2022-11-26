@@ -229,6 +229,8 @@ App.start_theme_settings = function () {
 // Start advanced settings
 App.start_advanced_settings = function () {
   let container = App.el("#settings_advanced_container")
+  App.settings_setup_text(container)
+  
   let item_order = App.el("#item_order")
 
   for (let m of App.item_order) {
@@ -256,7 +258,5 @@ App.start_advanced_settings = function () {
     })      
 
     item_order.append(el)
-  }  
-
-  App.settings_setup_text(container)
+  }
 }
