@@ -870,6 +870,7 @@ App.setup_item_window = function (mode, actions) {
       if (mode === "tabs") {
         container.addEventListener("dragstart", function (e) {
           if (App.tab_sort_mode !== "index") {
+            e.preventDefault()
             return false
           }
           
