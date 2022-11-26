@@ -14,6 +14,10 @@ App.setup_tabs = function () {
   ]
 
   let actions = [
+    ["Sort", function () {
+      App.sort_tabs()
+    }],
+
     ["New Tab", function () {
       App.new_tab()
     }], 
@@ -206,11 +210,9 @@ App.get_tabs = async function () {
     }
   }
 
-  if (App.settings.tab_sort_mode === "index") {
+  if (App.tab_sort_mode === "index") {
     App.sort_tabs_by_index(tabs)
-  } else if (App.settings.tab_sort_mode === "title") {
-    App.sort_tabs_by_title(tabs)
-  } else {
+  } else if (App.tab_sort_mode === "access") {
     App.sort_tabs_by_access(tabs)
   }
 
@@ -912,4 +914,10 @@ App.update_tab_index = async function (el, index) {
 App.do_move_tab_index = async function (id, index) {
   let ans = await browser.tabs.move(id, {index: index})
   return ans
+}
+
+// Change sort mod
+App.sort_tabs = function () {
+  App.tab_sort_mode = App.tab_sort_mode === "index" ? "access" : "index"
+  App.show_item_window("tabs")
 }
