@@ -131,7 +131,7 @@ App.selected_valid = function (mode) {
 App.select_first_item = function (mode) {
   if (mode === "tabs") {
     for (let tab of App.tabs_items) {
-      if (tab.active) {
+      if (tab.visible && tab.active) {
         App.select_item(tab)
         return
       }
@@ -836,8 +836,8 @@ App.setup_item_window = function (mode, menu_items) {
     //
     if (menu_items) {
       let menu = App.create("div", "button top_button", `${mode}_menu`)
-      menu.title = "Items Menu (Shift + Space)"
-      menu.textContent = "Menu"
+      menu.title = "Item Actions (Shift + Space)"
+      menu.textContent = "Actions"
 
       App[`show_${mode}_menu`] = function () {
         let items = []
