@@ -290,12 +290,12 @@ App.refresh_tab = async function (id) {
   if (tab) {
     App.update_item("tabs", tab.id, info)
   } else {
-    App.prepend_tab(info)
+    App.append_tab(info)
   }
 }
 
-// Prepend tab to the top
-App.prepend_tab = function (info) {
+// Append tab to the top
+App.append_tab = function (info) {
   for (let [i, it] of App.tabs_items.entries()) {
     if (it.id === info.id) {
       if (it.empty) {
@@ -314,7 +314,7 @@ App.prepend_tab = function (info) {
   App.tabs_items.unshift(tab)
   App.create_item_element(tab)
   App.update_info("tabs")
-  App.el("#tabs_container").prepend(tab.element)
+  App.el("#tabs_container").append(tab.element)
 }
 
 // Pin a tab
