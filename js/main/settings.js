@@ -177,7 +177,15 @@ App.start_basic_settings = function () {
   App.settings_setup_checkboxes(container)
   App.settings_setup_text(container)
   App.settings_make_menu("text_mode", [["Title", "title"], ["URL", "url"]])
-  App.settings_make_menu("tabs_sort_mode", [["Type", "type"], ["Index", "index"], ["Access", "access"]])
+
+  let sort_mode_items = [
+    ["Type", "type"], 
+    ["Index", "index"], 
+    ["Access", "access"],
+    ["Title", "title"]
+  ]
+
+  App.settings_make_menu("tabs_sort_mode", sort_mode_items)
 }
 
 // Start theme settings

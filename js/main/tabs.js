@@ -210,10 +210,12 @@ App.get_tabs = async function () {
     App.sort_tabs_by_index(tabs)
   } else if (App.settings.tabs_sort_mode === "type") {
     App.sort_tabs_by_type(tabs)
+  } else if (App.settings.tabs_sort_mode === "title") {
+    App.sort_tabs_by_title(tabs)
   } else {
     App.sort_tabs_by_access(tabs)
   }
-
+  
   return tabs  
 }
 
@@ -243,6 +245,13 @@ App.sort_tabs_by_type = function (tabs) {
     } else {
       return a.audible > b.audible ? -1 : 1
     }
+  })
+}
+
+// Sort tabs by title
+App.sort_tabs_by_title = function (tabs) {
+  tabs.sort(function (a, b) {
+    return a.title < b.title ? -1 : 1
   })
 }
 
