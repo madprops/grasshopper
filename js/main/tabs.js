@@ -174,8 +174,9 @@ App.setup_tabs = function () {
       App.refresh_tab(id)
     }
   })
-
+  
   browser.tabs.onActivated.addListener(function (e) {
+    console.log(2)
     if (App.window_mode === "tabs") {
       for (let tab of App.tabs_items) {
         tab.active = false
@@ -674,6 +675,8 @@ App.do_load_tab_state = function (items, confirm = true) {
   
   let s1 = App.plural(to_open.length, "tab", "tabs")
   let s2 = App.plural(to_close.length, "tab", "tabs")
+  console.log(to_close)
+  console.log(to_open)
 
   async function restore () {
     for (let item of to_close) {
@@ -681,13 +684,7 @@ App.do_load_tab_state = function (items, confirm = true) {
     }
 
     for (let item of to_open) {
-      let tab = await App.open_tab(item.url, false, item.discarded)
-
-      if (item.pinned) (
-        App.pin_tab(tab.id)
-      )
-
-      await App.do_move_tab_index(tab.id, item.index)
+      await App.open_tab(item.url, false, {pinned: item.pinned, discarded: item.discarded, index: item.index})
     }
 
     App.show_item_window("tabs")
@@ -719,8 +716,14 @@ App.get_tab_state = function () {
 }
 
 // Open a tab
-App.open_tab = async function (url, close = true, discarded = false) {
-  let tab = await browser.tabs.create({url: url, active: close, discarded: discarded})
+App.open_tab = async function (url, close = true, args = {}) {
+  let opts = {}
+  opts.url = url
+  opts.active = close
+  opts = Object.assign(opts, args)
+  console.log(opts)
+
+  let tab = await browser.tabs.create(opts)
   return tab
 }
 
