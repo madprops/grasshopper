@@ -206,16 +206,16 @@ App.get_tabs = async function () {
     }
   }
 
-  if (App.settings.tabs_sort_mode === "index") {
+  if (App.settings.tab_sort_mode === "index") {
     App.sort_tabs_by_index(tabs)
-  } else if (App.settings.tabs_sort_mode === "type") {
+  } else if (App.settings.tab_sort_mode === "type") {
     App.sort_tabs_by_type(tabs)
-  } else if (App.settings.tabs_sort_mode === "title") {
+  } else if (App.settings.tab_sort_mode === "title") {
     App.sort_tabs_by_title(tabs)
   } else {
     App.sort_tabs_by_access(tabs)
   }
-  
+
   return tabs  
 }
 

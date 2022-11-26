@@ -10,7 +10,7 @@ App.default_settings = {
   all_windows: true,
   text_size: 17,
   search_engine: "https://google.com/search?q=",
-  tabs_sort_mode: "type"
+  tab_sort_mode: "type"
 }
 
 // Settings action list after mods
@@ -185,7 +185,7 @@ App.start_basic_settings = function () {
     ["Title", "title"]
   ]
 
-  App.settings_make_menu("tabs_sort_mode", sort_mode_items)
+  App.settings_make_menu("tab_sort_mode", sort_mode_items)
 }
 
 // Start theme settings
@@ -230,7 +230,7 @@ App.start_theme_settings = function () {
 App.start_advanced_settings = function () {
   let container = App.el("#settings_advanced_container")
   App.settings_setup_text(container)
-  
+
   let item_order = App.el("#item_order")
 
   for (let m of App.item_order) {
