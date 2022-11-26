@@ -71,6 +71,14 @@ App.get_next_visible_item = function (mode) {
       waypoint = true
     }
   }
+
+  for (let i=0; i<items.length; i++) {
+    let item = items[i]
+
+    if (item.visible) {
+      return item
+    }
+  }
 }
 
 // Get prev item that is visible
@@ -97,6 +105,14 @@ App.get_prev_visible_item = function (mode) {
       waypoint = true
     }
   }
+
+  for (let i=items.length-1; i>=0; i--) {
+    let item = items[i]
+
+    if (item.visible) {
+      return item
+    }
+  }  
 }
 
 // Updates a footer
