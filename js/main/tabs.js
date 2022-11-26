@@ -208,8 +208,6 @@ App.get_tabs = async function () {
 
   if (App.settings.tab_sort_mode === "index") {
     App.sort_tabs_by_index(tabs)
-  } else if (App.settings.tab_sort_mode === "type") {
-    App.sort_tabs_by_type(tabs)
   } else if (App.settings.tab_sort_mode === "title") {
     App.sort_tabs_by_title(tabs)
   } else {
@@ -226,25 +224,10 @@ App.sort_tabs_by_access = function (tabs) {
   })
 }
 
-// Sort tabs by type
+// Sort tabs by index
 App.sort_tabs_by_index = function (tabs) {
   tabs.sort(function (a, b) {
     return a.index < b.index ? -1 : 1
-  })
-}
-
-// Sort tabs by type
-App.sort_tabs_by_type = function (tabs) {
-  tabs.sort(function (a, b) {
-    if (a.audible === b.audible){
-      if (a.pinned === b.pinned) {
-        return a.lastAccessed > b.lastAccessed ? -1 : 1
-      } else {
-        return a.pinned > b.pinned ? -1 : 1
-      }
-    } else {
-      return a.audible > b.audible ? -1 : 1
-    }
   })
 }
 
