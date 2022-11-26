@@ -675,8 +675,6 @@ App.do_load_tab_state = function (items, confirm = true) {
   
   let s1 = App.plural(to_open.length, "tab", "tabs")
   let s2 = App.plural(to_close.length, "tab", "tabs")
-  console.log(to_close)
-  console.log(to_open)
 
   async function restore () {
     for (let item of to_close) {
@@ -721,7 +719,6 @@ App.open_tab = async function (url, close = true, args = {}) {
   opts.url = url
   opts.active = close
   opts = Object.assign(opts, args)
-  console.log(opts)
 
   let tab = await browser.tabs.create(opts)
   return tab
