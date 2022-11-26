@@ -10,13 +10,7 @@ App.check_window_keyboard = function (e) {
       let rect = item.element.getBoundingClientRect()
       App.show_item_menu(item, rect.left, rect.top)
     } else {
-      let filter = App.el(`#${mode}_filter`).value.trim()
-
-      if (filter.startsWith("?")) {
-        App.search(filter)
-      } else {
-        App[`${mode}_action`](item)
-      }
+      App[`${mode}_action`](item)
     }
 
     e.preventDefault()
@@ -102,10 +96,4 @@ App.setup_keyboard = function () {
       App.check_window_keyboard(e)
     }
   })
-}
-
-// Perform a search
-App.search = function (s) {
-  let q = encodeURIComponent(s.replace(/^\?+/, "").trim())
-  App.new_tab(App.settings.search_engine + q)
 }
