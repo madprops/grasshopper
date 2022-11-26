@@ -1246,5 +1246,6 @@ App.get_item_element_index = function (mode, el) {
 // Update index of item in array
 App.update_item_index = function (mode, from_index, to_index) {
   let spliced = App[`${mode}_items`].splice(from_index, 1)[0]
+  spliced.index = to_index
   App[`${mode}_items`].splice(to_index, 0, spliced)
 }
