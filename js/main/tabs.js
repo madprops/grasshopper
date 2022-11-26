@@ -895,11 +895,6 @@ App.get_load_tab_state_items = function () {
 
 // Change tabs sort mode
 App.change_tabs_sort_mode = function () {
-  if (App.tabs_sort_mode === "access") {
-    App.tabs_sort_mode = "type"
-  } else {
-    App.tabs_sort_mode = "access"
-  }
-
+  App.tabs_sort_mode = App.tabs_sort_mode === "access" ? "type" : "access"
   App.show_item_window("tabs")
 }
