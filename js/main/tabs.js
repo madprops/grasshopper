@@ -14,13 +14,13 @@ App.setup_tabs = function () {
   ]
 
   let actions = [
-    ["Sort", function () {
+    ["Recent", function () {
       App.sort_tabs()
-    }],
-
+    }],   
+    
     ["New Tab", function () {
       App.new_tab()
-    }], 
+    }],  
 
     ["Information", function () {
       App.show_tabs_information()
@@ -230,13 +230,6 @@ App.sort_tabs_by_access = function (tabs) {
 App.sort_tabs_by_index = function (tabs) {
   tabs.sort(function (a, b) {
     return a.index < b.index ? -1 : 1
-  })
-}
-
-// Sort tabs by title
-App.sort_tabs_by_title = function (tabs) {
-  tabs.sort(function (a, b) {
-    return a.title < b.title ? -1 : 1
   })
 }
 
@@ -903,6 +896,10 @@ App.get_load_tab_state_items = function () {
 
 // Update tab index
 App.update_tab_index = async function (el, index) {
+  if (App.tab_sort_mode !== "index") {
+    return false
+  }
+    
   let ans = await App.do_move_tab_index(parseInt(el.dataset.id), index)
   
   if (ans.length === 0) {

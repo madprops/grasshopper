@@ -869,11 +869,7 @@ App.setup_item_window = function (mode, actions) {
         new Sortable(container, {
           animation: 150,
           dragClass: "sortable_ghost",
-          onMove: function () {
-            if (App.tab_sort_mode !== "index") {
-              return false
-            }
-          }, onEnd: function (e) {
+          onEnd: function (e) {
             App.update_tab_index(e.item, e.newIndex)
           }
         })
