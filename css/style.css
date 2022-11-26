@@ -151,7 +151,7 @@ body, html {
   flex-direction: row;
   cursor: pointer;
   align-items: center;
-  min-height: 2.1rem;  
+  min-height: 2.1rem;
 }
 
 .item_icon {

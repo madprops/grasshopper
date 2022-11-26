@@ -545,6 +545,8 @@ App.create_empty_item_element = function (item) {
 
 // Create an item element
 App.create_item_element = function (item) {
+  item.element.draggable = true
+
   let icon = App.get_img_icon(item.favicon, item.url, item.pinned)
   item.element.append(icon)
 
@@ -866,11 +868,32 @@ App.setup_item_window = function (mode, actions) {
       })
 
       if (mode === "tabs") {
-        new Sortable(container, {
-          animation: 150,
-          dragClass: "sortable_ghost",
-          onEnd: function (e) {
-            App.update_tab_index(e.item, e.newIndex)
+        container.addEventListener("dragstart", function (e) {
+          e.dataTransfer.setDragImage(new Image(), 0, 0)
+          e.dataTransfer.dropEffect = 'move'
+          App.drag_element = e.target.closest(".item")
+          App.drag_y = e.clientY
+        })
+
+        container.addEventListener("dragend", function (e) {
+          let nodes = Array.prototype.slice.call(container.children)
+          let index = nodes.indexOf(App.drag_element)
+          App.update_tab_index(App.drag_element, index)
+        })
+
+        container.addEventListener("dragover", function (e) {
+          if (e.target.closest(".item")) {
+            let item = e.target.closest(".item")
+            
+            if (App.drag_target !== item) {
+              App.drag_target = item
+
+              if (e.clientY > App.drag_y) {
+                App.drag_element.before(App.drag_target)
+              } else {
+                App.drag_target.before(App.drag_element)
+              }
+            }
           }
         })
       }      
