@@ -203,13 +203,15 @@ App.start_basic_settings = function () {
     }
   } 
 
-  function make_menu (id, opts, current) {
+  function make_menu (id, opts) {
     let el = App.el(`#settings_${id}`)
   
     App.ev(el, "click", function () {
       let items = []
 
       for (let o of opts) {
+        let selected = App.settings[id] === o[1]
+
         items.push({
           text: o[0],
           action: function () {
@@ -217,19 +219,20 @@ App.start_basic_settings = function () {
             App.settings[id] = o[1]
             App.stor_save_settings()
           },
-          selected: App.settings[id] === o[1]
+          selected: selected
         })  
       }
   
       NeedContext.show_on_element(this, items, true, this.clientHeight)  
     })
-  
-    el.textContent = current
+
+    for (let o of opts) {
+      if (App.settings[id] === o[1]) {
+        el.textContent = o[0]
+      }
+    }    
   }
 
-  make_menu("text_mode", [["Title", "title"], ["URL", "url"]], 
-  App.settings.text_mode === "url" ? "URL" : "Title")
-  
-  make_menu("tabs_sort_mode", [["Access", "access"], ["Index", "index"]], 
-  App.settings.tabs_sort_mode === "access" ? "Access" : "Index")
+  make_menu("text_mode", [["Title", "title"], ["URL", "url"]])
+  make_menu("tabs_sort_mode", [["Access", "access"], ["Index", "index"]])
 }
