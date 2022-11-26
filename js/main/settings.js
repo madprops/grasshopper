@@ -10,7 +10,128 @@ App.default_settings = {
   all_windows: true,
   text_size: 17,
   search_engine: "https://google.com/search?q=",
-  tabs_sort_mode: "access"
+  tabs_sort_mode: "type"
+}
+
+// Settings action list after mods
+App.settings_do_action = function (what) {
+  if (what === "theme") {
+    App.apply_theme()
+  }
+}
+
+// Setup checkboxes in a container
+App.settings_setup_checkboxes = function (container) {
+  let items = App.els(".settings_checkbox", container) 
+
+  for (let item of items) {
+    let setting = item.dataset.setting
+    let action = item.dataset.action
+
+    let el = App.el(`#settings_${setting}`)
+    el.checked = App.settings[setting]
+  
+    App.ev(el, "change", function () {
+      App.settings[setting] = el.checked
+      App.stor_save_settings()
+      App.settings_do_action(action)
+    })
+  }
+}
+
+// Setup text elements in a container
+App.settings_setup_text = function (container) {
+  let items = App.els(".settings_text", container).concat(App.els(".settings_text_long", container))
+
+  for (let item of items) {
+    let setting = item.dataset.setting
+    let type = item.dataset.type
+    let min = parseInt(item.dataset.min)
+    let max = parseInt(item.dataset.max)
+    let action = item.dataset.action
+    let el = App.el(`#settings_${setting}`)
+  
+    function set_number (val) {
+      val = parseInt(val)
+  
+      if (isNaN(val)) {
+        val = App.default_settings[setting]
+      }
+  
+      if (min && min > val) {
+        val = min
+      } else if (max && max < val) {
+        val = max
+      }
+  
+      el.value = val.toLocaleString()
+      App.settings[setting] = val
+      App.stor_save_settings()
+      App.settings_do_action(action)  
+    }    
+  
+    if (type === "text") {
+      el.value = App.settings[setting]
+  
+      App.ev(el, "blur", function () {
+        let val = el.value.trim()
+  
+        if (!val) {
+          val = App.default_settings[setting]
+        }
+  
+        el.value = val
+        App.settings[setting] = val
+        App.stor_save_settings()
+        App.settings_do_action(action)          
+      })
+    } else if (type === "number") {
+      el.value = App.settings[setting].toLocaleString()
+  
+      App.ev(el, "blur", function () {
+        set_number(el.value)
+      })
+  
+      App.ev(App.el(`#settings_${setting}_minus`), "click", function () {
+        set_number(App.settings[setting] - 1)
+      })
+      
+      App.ev(App.el(`#settings_${setting}_plus`), "click", function () {
+        set_number(App.settings[setting] + 1)
+      })
+    }
+  }
+}
+
+// Prepare a select menu
+App.settings_make_menu = function (id, opts) {
+  let el = App.el(`#settings_${id}`)
+
+  App.ev(el, "click", function () {
+    let items = []
+
+    for (let o of opts) {
+      let selected = App.settings[id] === o[1]
+
+      items.push({
+        text: o[0],
+        action: function () {
+          el.textContent = o[0]
+          App.settings[id] = o[1]
+          App.stor_save_settings()
+        },
+        selected: selected
+      })  
+    }
+
+    NeedContext.show_on_element(this, items, true, this.clientHeight)  
+  })
+
+  for (let o of opts) {
+    if (App.settings[id] === o[1]) {
+      el.textContent = o[0]
+    }
+  }    
 }
 
 // Setup settings
@@ -21,23 +142,23 @@ App.setup_settings = function () {
 
   App.create_window({id: "settings_basic", setup: function () {
     App.start_basic_settings()
-  }, on_x: on_x})
-
-  App.create_window({id: "settings_order", setup: function () {
-    App.start_order_settings()
-  }, on_x: on_x})  
+  }, on_x: on_x}) 
 
   App.create_window({id: "settings_theme", setup: function () {
     App.start_theme_settings()
   }, on_x: on_x})  
+
+  App.create_window({id: "settings_advanced", setup: function () {
+    App.start_advanced_settings()
+  }, on_x: on_x})   
 
   App.create_window({id: "settings", setup: function () {
     App.ev(App.el("#settings_show_basic"), "click", function () {
       App.show_window("settings_basic")
     })
 
-    App.ev(App.el("#settings_show_order"), "click", function () {
-      App.show_window("settings_order")
+    App.ev(App.el("#settings_show_advanced"), "click", function () {
+      App.show_window("settings_advanced")
     })
     
     App.ev(App.el("#settings_show_theme"), "click", function () {
@@ -48,6 +169,15 @@ App.setup_settings = function () {
       App.stor_reset_settings()
     })    
   }}) 
+}
+
+// Start basic settings
+App.start_basic_settings = function () {
+  let container = App.el("#settings_basic_container")
+  App.settings_setup_checkboxes(container)
+  App.settings_setup_text(container)
+  App.settings_make_menu("text_mode", [["Title", "title"], ["URL", "url"]])
+  App.settings_make_menu("tabs_sort_mode", [["Type", "type"], ["Index", "index"], ["Access", "access"]])
 }
 
 // Start theme settings
@@ -88,9 +218,10 @@ App.start_theme_settings = function () {
   })
 }
 
-// Start window order
-App.start_order_settings = function () {
-  let container = App.el("#item_order")
+// Start advanced settings
+App.start_advanced_settings = function () {
+  let container = App.el("#settings_advanced_container")
+  let item_order = App.el("#item_order")
 
   for (let m of App.item_order) {
     let el = App.create("div", "item_order_item flex_row_center gap_2")
@@ -116,123 +247,8 @@ App.start_order_settings = function () {
       App.item_order_down(el)
     })      
 
-    container.append(el)
+    item_order.append(el)
   }  
-}
 
-// Start basic settings
-App.start_basic_settings = function () {
-  function do_action (what) {
-    if (what === "theme") {
-      App.apply_theme()
-    }
-  }
-
-  // Checkboxes
-  for (let item of App.els(".settings_checkbox")) {
-    let setting = item.dataset.setting
-    let action = item.dataset.action
-
-    let el = App.el(`#settings_${setting}`)
-    el.checked = App.settings[setting]
-  
-    App.ev(el, "change", function () {
-      App.settings[setting] = el.checked
-      App.stor_save_settings()
-      do_action(action)
-    })
-  }
-
-  // Input Texts
-  for (let item of App.els(".settings_text").concat(App.els(".settings_text_long"))) {
-    let setting = item.dataset.setting
-    let type = item.dataset.type
-    let min = parseInt(item.dataset.min)
-    let max = parseInt(item.dataset.max)
-    let action = item.dataset.action
-    let el = App.el(`#settings_${setting}`)
-
-    function set_number (val) {
-      val = parseInt(val)
-  
-      if (isNaN(val)) {
-        val = App.default_settings[setting]
-      }
-
-      if (min && min > val) {
-        val = min
-      } else if (max && max < val) {
-        val = max
-      }
-
-      el.value = val.toLocaleString()
-      App.settings[setting] = val
-      App.stor_save_settings()
-      do_action(action)  
-    }    
-
-    if (type === "text") {
-      el.value = App.settings[setting]
-  
-      App.ev(el, "blur", function () {
-        let val = el.value.trim()
-  
-        if (!val) {
-          val = App.default_settings[setting]
-        }
-  
-        el.value = val
-        App.settings[setting] = val
-        App.stor_save_settings()
-        do_action(action)          
-      })
-    } else if (type === "number") {
-      el.value = App.settings[setting].toLocaleString()
-  
-      App.ev(el, "blur", function () {
-        set_number(el.value)
-      })
-
-      App.ev(App.el(`#settings_${setting}_minus`), "click", function () {
-        set_number(App.settings[setting] - 1)
-      })
-      
-      App.ev(App.el(`#settings_${setting}_plus`), "click", function () {
-        set_number(App.settings[setting] + 1)
-      })
-    }
-  } 
-
-  function make_menu (id, opts) {
-    let el = App.el(`#settings_${id}`)
-  
-    App.ev(el, "click", function () {
-      let items = []
-
-      for (let o of opts) {
-        let selected = App.settings[id] === o[1]
-
-        items.push({
-          text: o[0],
-          action: function () {
-            el.textContent = o[0]
-            App.settings[id] = o[1]
-            App.stor_save_settings()
-          },
-          selected: selected
-        })  
-      }
-  
-      NeedContext.show_on_element(this, items, true, this.clientHeight)  
-    })
-
-    for (let o of opts) {
-      if (App.settings[id] === o[1]) {
-        el.textContent = o[0]
-      }
-    }    
-  }
-
-  make_menu("text_mode", [["Title", "title"], ["URL", "url"]])
-  make_menu("tabs_sort_mode", [["Access", "access"], ["Index", "index"]])
+  App.settings_setup_text(container)
 }

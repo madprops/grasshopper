@@ -206,10 +206,12 @@ App.get_tabs = async function () {
     }
   }
 
-  if (App.settings.tabs_sort_mode === "access") {
-    App.sort_tabs_by_access(tabs)
-  } else if (App.settings.tabs_sort_mode === "index") {
+  if (App.settings.tabs_sort_mode === "index") {
     App.sort_tabs_by_index(tabs)
+  } else if (App.settings.tabs_sort_mode === "type") {
+    App.sort_tabs_by_type(tabs)
+  } else {
+    App.sort_tabs_by_access(tabs)
   }
 
   return tabs  
@@ -226,6 +228,21 @@ App.sort_tabs_by_access = function (tabs) {
 App.sort_tabs_by_index = function (tabs) {
   tabs.sort(function (a, b) {
     return a.index < b.index ? -1 : 1
+  })
+}
+
+// Sort tabs by type
+App.sort_tabs_by_type = function (tabs) {
+  tabs.sort(function (a, b) {
+    if (a.audible === b.audible){
+      if (a.pinned === b.pinned) {
+        return a.lastAccessed > b.lastAccessed ? -1 : 1
+      } else {
+        return a.pinned > b.pinned ? -1 : 1
+      }
+    } else {
+      return a.audible > b.audible ? -1 : 1
+    }
   })
 }
 

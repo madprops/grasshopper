@@ -71,14 +71,14 @@
       <div class="settings_container unselectable">
         <div class="bigger">Settings</div>
         <div id="settings_show_basic" class="button settings_button">Basic Settings</div>
-        <div id="settings_show_order" class="button settings_button">Order Settings</div>
         <div id="settings_show_theme" class="button settings_button">Theme Settings</div>
+        <div id="settings_show_advanced" class="button settings_button">Advanced Settings</div>
         <div id="settings_defaults_button" class="button settings_button" title="Reset settings to defaults">Reset Settings</div>
       </div>
     </template>
 
     <template id="template_settings_basic">
-      <div class="settings_container unselectable">
+      <div id="settings_basic_container" class="settings_container unselectable">
         <div class="bigger">Basic Settings</div>
 
         <div class="separator"></div>
@@ -96,8 +96,8 @@
         </div>
         
         <div class="separator"></div>
-        
-        <div class="flex_column_center gap_2" title="How to order tabs, access or index">
+
+        <div class="flex_column_center gap_2" title="How to order the tabs">
           <div>Tabs Sort Mode</div>
           <div id="settings_tabs_sort_mode" class="settings_menu button"  data-setting="tabs_sort_mode"></div>
         </div>
@@ -112,25 +112,11 @@
             <div class="button" id="settings_text_size_plus">&gt;</div>
           </div>
         </div>
-
-        <div class="separator"></div>
-
-        <div class="flex_column_center gap_2" title="Search engine to use on queries. You do queries by starting the filter with '?'">
-          <div>Search Engine</div>
-          <input type="text" autocomplete="off" id="settings_search_engine" class="text settings_text_long" data-setting="search_engine" data-type="text">
-        </div>
-      </div>
-    </template>
-
-    <template id="template_settings_order">
-      <div class="settings_container unselectable">
-        <div class="bigger">Order Settings</div>
-        <div id="item_order" title="Item order. The items on top appear first"></div>
       </div>
     </template>
 
     <template id="template_settings_theme">
-      <div class="settings_container unselectable">
+      <div id="settings_theme_container" class="settings_container unselectable">
         <div class="bigger">Theme Settings</div>
 
         <div class="separator"></div>
@@ -156,6 +142,20 @@
         </div>
       </div>
     </template>
+
+    <template id="template_settings_advanced">
+      <div id="settings_advanced_container" class="settings_container unselectable">
+        <div class="bigger">Advanced Settings</div>
+        <div id="item_order" title="Item order. The items on top appear first"></div>
+
+        <div class="separator"></div>
+
+        <div class="flex_column_center gap_2" title="Search engine to use on queries. You do queries by starting the filter with '?'">
+          <div>Search Engine</div>
+          <input type="text" autocomplete="off" id="settings_search_engine" class="text settings_text_long" data-setting="search_engine" data-type="text">
+        </div>         
+      </div>     
+    </template>    
 
     <template id="template_about">
       <div id="about_container" class="flex_column_center gap_2">        
