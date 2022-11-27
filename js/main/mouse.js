@@ -4,6 +4,10 @@ App.setup_window_mouse = function (mode) {
 
   App.ev(container, "mouseover", function (e) {
     if (e.target.closest(`.${mode}_item`)) {
+      if (App.select_blocked) {
+        return
+      }
+
       let item = App.get_cursor_item(mode, e)
       App.select_item(item)
     }
