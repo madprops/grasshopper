@@ -7,7 +7,11 @@ App.default_settings = {
   stars_index: 1,
   history_index: 2,
   closed_index: 3,
-  text_size: 17
+  text_size: 17,
+  pin_icon: "(+)",
+  playing_icon: "(Playing)",
+  muted_icon: "(Muted)",
+  suspended_icon: "(Suspended)"
 }
 
 // Start item order
@@ -165,6 +169,11 @@ App.settings_make_menu = function (id, opts) {
 
 // Setup settings
 App.setup_settings = function () {
+  App.create_window({id: "settings_icons", setup: function () {
+    let container = App.el("#settings_icons_container")
+    App.settings_setup_text(container)
+  }}) 
+
   App.create_window({id: "settings_theme", setup: function () {
     App.start_theme_settings()
   }})  
@@ -175,6 +184,10 @@ App.setup_settings = function () {
     App.settings_setup_text(container)
     App.settings_make_menu("text_mode", [["Title", "title"], ["URL", "url"]])
     App.start_item_order()
+
+    App.ev(App.el("#settings_show_icons"), "click", function () {
+      App.show_window("settings_icons")
+    })
 
     App.ev(App.el("#settings_show_theme"), "click", function () {
       App.show_window("settings_theme")

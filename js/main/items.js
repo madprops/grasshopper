@@ -572,7 +572,7 @@ App.create_item_element = function (item) {
   if (item.mode === "tabs") {
     let pin_icon = App.create("div", "item_info item_info_pin transparent")
     pin_icon.classList.add("action")
-    pin_icon.textContent = "(+)"
+    pin_icon.textContent = App.settings.pin_icon
 
     if (item.pinned) {
       pin_icon.classList.remove("transparent")
@@ -623,19 +623,19 @@ App.set_item_text = function (item) {
     let status = []
 
     if (item.discarded) {
-      status.push("Suspended")
+      status.push(App.settings.suspended_icon)
     }
 
     if (item.audible) {
-      status.push("Playing")
+      status.push(App.settings.playing_icon)
     }
 
     if (item.muted) {
-      status.push("Muted")
+      status.push(App.settings.muted_icon)
     }
 
     if (status.length > 0) {
-      content = status.map(x => `(${x})`).join(" ")
+      content = status.join(" ")
       content += "  "
     }
   }

@@ -97,10 +97,45 @@
         
         <div class="separator"></div>
 
+        <div id="settings_show_icons" class="button settings_button">Icon Settings</div>
         <div id="settings_show_theme" class="button settings_button">Theme Settings</div>
         <div id="settings_defaults_button" class="button settings_button" title="Reset settings to defaults">Reset Settings</div>
       </div>
     </template>
+
+    <template id="template_settings_icons">
+      <div id="settings_icons_container" class="settings_container unselectable">
+        <div class="bigger">Icon Settings</div>
+
+        <div class="separator"></div>
+
+        <div class="flex_column_center gap_2" title="Icon to show on pinned tabs">
+          <div>Pin Icon</div>
+          <input type="text" autocomplete="off" id="settings_pin_icon" class="text settings_text" data-setting="pin_icon" data-type="text">
+        </div>  
+
+        <div class="separator"></div>
+
+        <div class="flex_column_center gap_2" title="Icon to show on playing tabs">
+          <div>Playing Icon</div>
+          <input type="text" autocomplete="off" id="settings_playing_icon" class="text settings_text" data-setting="playing_icon" data-type="text">
+        </div> 
+
+        <div class="separator"></div>
+
+        <div class="flex_column_center gap_2" title="Icon to show on muted tabs">
+          <div>Muted Icon</div>
+          <input type="text" autocomplete="off" id="settings_muted_icon" class="text settings_text" data-setting="muted_icon" data-type="text">
+        </div>  
+        
+        <div class="separator"></div>
+
+        <div class="flex_column_center gap_2" title="Icon to show on suspended tabs">
+          <div>Suspended Icon</div>
+          <input type="text" autocomplete="off" id="settings_suspended_icon" class="text settings_text" data-setting="suspended_icon" data-type="text">
+        </div>        
+      </div>
+    </template>    
 
     <template id="template_settings_theme">
       <div id="settings_theme_container" class="settings_container unselectable">
