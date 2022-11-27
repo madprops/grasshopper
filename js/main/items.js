@@ -5,7 +5,7 @@ App.setup_items = function () {
 }
 
 // Select an item
-App.select_item = function (item, highlight = false) {
+App.select_item = function (item) {
   if (App[`selected_${item.mode}_item`] === item) {
     return
   }
@@ -16,14 +16,12 @@ App.select_item = function (item, highlight = false) {
 
   App[`selected_${item.mode}_item`] = item
   
-  if (highlight) {    
-    for (let el of App.els(`.${item.mode}_item`)) {
-      el.classList.remove("selected")
-    }
-
-    App[`selected_${item.mode}_item`].element.classList.add("selected")  
-    App[`selected_${item.mode}_item`].element.scrollIntoView({block: "nearest"})
+  for (let el of App.els(`.${item.mode}_item`)) {
+    el.classList.remove("selected")
   }
+
+  App[`selected_${item.mode}_item`].element.classList.add("selected")  
+  App[`selected_${item.mode}_item`].element.scrollIntoView({block: "nearest"})
 
   App.update_footer(item.mode)
 
