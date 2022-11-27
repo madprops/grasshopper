@@ -6,6 +6,11 @@ App.setup_items = function () {
 
 // Select an item
 App.select_item = function (item) {
+  if (App.select_next) {
+    item = App.select_next
+    App.select_next = undefined
+  }
+
   if (App[`selected_${item.mode}_item`] === item) {
     return
   }
@@ -911,11 +916,8 @@ App.setup_item_window = function (mode, actions) {
 
         container.addEventListener("dragend", function () {
           let new_index = App.get_item_element_index(mode, App.drag_element)
+          App.select_next = App.drag_item
           App.update_tab_index(App.drag_element, new_index)
-
-          setTimeout(function () {
-            App.select_item(App.drag_item)
-          }, 11)
         })
 
         container.addEventListener("dragover", function (e) {

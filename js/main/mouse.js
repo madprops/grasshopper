@@ -2,7 +2,7 @@
 App.setup_window_mouse = function (mode) {
   let container = App.el(`#${mode}_container`)
 
-  App.ev(container, "mouseenter", function (e) {
+  App.ev(container, "mouseover", function (e) {
     if (e.target.closest(`.${mode}_item`)) {
       let item = App.get_cursor_item(mode, e)
       App.select_item(item)
