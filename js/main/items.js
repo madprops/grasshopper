@@ -4,11 +4,19 @@ App.setup_items = function () {
   App.start_item_observers()
 }
 
+// Block select for some ms
+App.block_select = function () {
+  App.select_blocked = true
+
+  setTimeout(function () {
+    App.select_blocked = false
+  }, 100)
+}
+
 // Select an item
 App.select_item = function (item) {
-  if (App.select_next) {
-    item = App.select_next
-    App.select_next = undefined
+  if (App.select_blocked) {
+    return
   }
 
   if (App[`selected_${item.mode}_item`] === item) {
@@ -915,8 +923,8 @@ App.setup_item_window = function (mode, actions) {
         })
 
         container.addEventListener("dragend", function () {
+          App.block_select()
           let new_index = App.get_item_element_index(mode, App.drag_element)
-          App.select_next = App.drag_item
           App.update_tab_index(App.drag_element, new_index)
         })
 
