@@ -538,7 +538,6 @@ App.process_item = function (mode, item, exclude = []) {
   }
 
   if (mode === "tabs") {
-    obj.index = item.index
     obj.active = item.active
     obj.pinned = item.pinned
     obj.audible = item.audible
@@ -1267,23 +1266,12 @@ App.get_mode_index = function (mode) {
 
 // Get item's element index
 App.get_item_element_index = function (mode, el) {
-  let container = App.el(`#${mode}_container`)
-  let nodes = Array.prototype.slice.call(container.children)
+  let nodes = Array.prototype.slice.call(App.els(`.${mode}_item`))
   return nodes.indexOf(el)
 }
 
-// Update indexes
-App.update_indexes = function (mode) {
-  for (let [i, item] of App[`${mode}_items`].entries()) {
-    item.index = i
-  }
-
-  App.sort_items_by_index(mode)
-}
-
-// Sort items by index
-App.sort_items_by_index = function (mode) {
-  App[`${mode}_items`].sort(function (a, b) {
-    return a.index < b.index ? -1 : 1
-  })
+// Move an item to another place in an item list
+App.move_item = function (mode, from_index, to_index) {
+  let it = App[`${mode}_items`].splice(from_index, 1)[0]
+  App[`${mode}_items`].splice(to_index, 0, it)
 }

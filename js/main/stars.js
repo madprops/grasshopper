@@ -299,7 +299,6 @@ App.prepend_star = function (star) {
     let item = App.process_item("stars", star)
 
     if (item) {
-      App.update_indexes("stars")
       App.stars_items.unshift(item)
       App.create_item_element(item)
       App.update_info("stars")

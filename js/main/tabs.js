@@ -190,6 +190,10 @@ App.setup_tabs = function () {
       App.remove_closed_tab(id)
     }
   })
+
+  browser.tabs.onMoved.addListener(function (id, info) {
+    App.move_item("tabs", info.fromIndex, info.toIndex)
+  })
 }
 
 // Get open tabs
@@ -307,11 +311,19 @@ App.append_tab = function (info) {
     return
   }
   
-  App.update_indexes("tabs")
   App.tabs_items.push(tab)
+  App.tabs_items.splice(info.index, 0, tab)
   App.create_item_element(tab)
   App.update_info("tabs")
   App.el("#tabs_container").append(tab.element)
+  let container = App.el("#tabs_container")
+
+  if (info.index === 0) {
+    App.el("#tabs_container").prepend(tab.element)
+  } else {
+    container.insertBefore(tab.element, App.els(".tabs_item")[info.index])
+  }
+
   App.select_item(tab)
 }
 
@@ -682,8 +694,6 @@ App.do_load_tab_state = function (items, confirm = true) {
       }
     }
 
-    App.sort_items_by_index("tabs")
-
     setTimeout(async function () {
       setTimeout(function () {
         App.hide_popup("alert")
@@ -694,11 +704,10 @@ App.do_load_tab_state = function (items, confirm = true) {
         tab.xset = false
       }
   
-      for (let [i, item] of items.entries()) {
+      for (let item of items) {
         for (let tab of App.tabs_items) {                  
           if (!item.empty && (item.url === tab.url)) {         
             if (!tab.xset) {
-              tab.index = i
               tab.pinned = item.pinned
               tab.discarded = item.discarded
               tab.xset = true
@@ -708,7 +717,7 @@ App.do_load_tab_state = function (items, confirm = true) {
         }
       }      
 
-      for (let tab of App.tabs_items.slice(0).reverse()) {
+      for (let [i, tab] of App.tabs_items.slice(0).reverse().entries()) {
         try {
           if (tab.pinned) {
             await App.pin_tab(tab.id)
@@ -718,9 +727,7 @@ App.do_load_tab_state = function (items, confirm = true) {
             await App.suspend_tab(tab)
           }          
 
-          if (tab.index !== undefined) {
-            await App.do_move_tab_index(tab.id, tab.index)
-          }
+          await App.do_move_tab_index(tab.id, i)
         } catch (err) {
           console.error(err)
         }
@@ -946,9 +953,6 @@ App.update_tab_index = async function (el, to_index) {
   
   if (ans.length === 0) {
     App.show_item_window("tabs")
-  } else {
-    item.index = to_index
-    App.sort_items_by_index("tabs")
   }
 }
 
