@@ -959,5 +959,4 @@ App.do_move_tab_index = async function (id, index) {
 App.show_recent_tabs = function () {
   App.tab_sort_mode = "access"
   App.show_item_window("tabs")
-  App.el("#main").classList.add("hue_rotate")
 }
