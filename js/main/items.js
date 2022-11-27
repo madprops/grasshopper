@@ -908,6 +908,11 @@ App.setup_item_window = function (mode, actions) {
             e.preventDefault()
             return false
           }
+
+          if (App.settings.lock_drag && !e.shiftKey) {
+            e.preventDefault()
+            return
+          }
           
           App.drag_y = e.clientY
           App.drag_element = e.target.closest(".item")
