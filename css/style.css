@@ -152,7 +152,7 @@ body, html {
   cursor: pointer;
   align-items: center;
   min-height: 2.1rem;
-  transition: text-shadow 171ms, box-shadow 171ms, background-color 250ms;
+  transition: background-color 212ms;
 }
 
 .item_icon {
@@ -193,8 +193,8 @@ body, html {
   gap: 0.8rem;
 }
 
-.item:hover {
-  text-shadow: 0 0 0.6rem currentColor;
+.item:hover .item_text {
+  text-decoration: underline;
 }
 
 .selected {
