@@ -152,7 +152,6 @@ body, html {
   cursor: pointer;
   align-items: center;
   min-height: 2.1rem;
-  transition: background-color 212ms;
 }
 
 .item_icon {
