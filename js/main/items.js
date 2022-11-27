@@ -4,8 +4,13 @@ App.setup_items = function () {
   App.start_item_observers()
 }
 
+// Do select highlight
+App.do_select_highlight = function (mode) {
+
+}
+
 // Select an item
-App.select_item = function (item) {
+App.select_item = function (item, highlight = false) {
   if (App[`selected_${item.mode}_item`] === item) {
     return
   }
@@ -14,13 +19,16 @@ App.select_item = function (item) {
     App.create_item_element(item)
   }
 
+  App[`selected_${item.mode}_item`] = item
+  App[`selected_${item.mode}_item`].element.scrollIntoView({block: "nearest"})
+
   for (let el of App.els(`.${item.mode}_item`)) {
     el.classList.remove("selected")
   }
 
-  App[`selected_${item.mode}_item`] = item
-  App[`selected_${item.mode}_item`].element.classList.add("selected")
-  App[`selected_${item.mode}_item`].element.scrollIntoView({block: "nearest"})
+  if (highlight) {  
+    App[`selected_${item.mode}_item`].element.classList.add("selected")  
+  }
 
   App.update_footer(item.mode)
 
@@ -34,7 +42,7 @@ App.select_item_above = function (mode) {
   let item = App.get_prev_visible_item(mode)
 
   if (item) {
-    App.select_item(item)
+    App.select_item(item, true)
   }
 }
 
@@ -43,7 +51,7 @@ App.select_item_below = function (mode) {
   let item = App.get_next_visible_item(mode)
 
   if (item) {
-    App.select_item(item)
+    App.select_item(item, true)
   }
 }
 
@@ -152,7 +160,7 @@ App.select_first_item = function (mode, by_active = false) {
   if (mode === "tabs" && by_active) {
     for (let item of App[`${mode}_items`]) {
       if (item.visible && item.active) {
-        App.select_item(item)
+        App.select_item(item, true)
         return
       }
     }  
@@ -160,7 +168,7 @@ App.select_first_item = function (mode, by_active = false) {
 
   for (let item of App[`${mode}_items`]) {
     if (item.visible) {
-      App.select_item(item)
+      App.select_item(item, true)
       return
     }
   }

@@ -152,6 +152,7 @@ body, html {
   cursor: pointer;
   align-items: center;
   min-height: 2.1rem;
+  transition: text-shadow 171ms, box-shadow 171ms, background-color 250ms;
 }
 
 .item_icon {
@@ -180,7 +181,7 @@ body, html {
   align-self: stretch;
   justify-self: stretch;
   align-items: center;
-  cursor:default
+  cursor: default;
 }
 
 .item_top_container {
@@ -188,6 +189,10 @@ body, html {
   display: flex;
   flex-direction: row;
   gap: 0.8rem;
+}
+
+.item:hover {
+  text-shadow: 0 0 1rem currentColor;
 }
 
 .selected {
@@ -200,7 +205,7 @@ body, html {
 
 .action {
   cursor: pointer;
-  transition: text-shadow 100ms;
+  transition: text-shadow 171ms;
 }
 
 .action:hover {
