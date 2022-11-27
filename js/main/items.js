@@ -14,8 +14,8 @@ App.block_select = function () {
 }
 
 // Select an item
-App.select_item = function (item) {
-  if (App.select_blocked) {
+App.select_item = function (item, force = false) {
+  if (!force && App.select_blocked) {
     return
   }
 
@@ -1182,7 +1182,7 @@ App.update_item = function (mode, id, source) {
     App[`${mode}_items`][i] = new_item
 
     if (selected) {
-      App.select_item(new_item)
+      App.select_item(new_item, true)
     }
 
     break
