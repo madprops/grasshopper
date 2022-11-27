@@ -16,11 +16,11 @@ App.select_item = function (item, highlight = false) {
 
   App[`selected_${item.mode}_item`] = item
   
-  for (let el of App.els(`.${item.mode}_item`)) {
-    el.classList.remove("selected")
-  }
-  
-  if (highlight) {  
+  if (highlight) {    
+    for (let el of App.els(`.${item.mode}_item`)) {
+      el.classList.remove("selected")
+    }
+
     App[`selected_${item.mode}_item`].element.classList.add("selected")  
     App[`selected_${item.mode}_item`].element.scrollIntoView({block: "nearest"})
   }
