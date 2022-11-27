@@ -48,7 +48,7 @@ App.select_item_below = function (mode) {
 }
 
 // Get next item that is visible
-App.get_next_visible_item = function (mode) {
+App.get_next_visible_item = function (mode, wrap = true) {
   let waypoint = false
 
   if (!App.selected_valid(mode)) {
@@ -72,17 +72,19 @@ App.get_next_visible_item = function (mode) {
     }
   }
 
-  for (let i=0; i<items.length; i++) {
-    let item = items[i]
-
-    if (item.visible) {
-      return item
+  if (wrap) {
+    for (let i=0; i<items.length; i++) {
+      let item = items[i]
+  
+      if (item.visible) {
+        return item
+      }
     }
   }
 }
 
 // Get prev item that is visible
-App.get_prev_visible_item = function (mode) {
+App.get_prev_visible_item = function (mode, wrap = true) {
   let waypoint = false
 
   if (!App.selected_valid(mode)) {
@@ -106,13 +108,15 @@ App.get_prev_visible_item = function (mode) {
     }
   }
 
-  for (let i=items.length-1; i>=0; i--) {
-    let item = items[i]
-
-    if (item.visible) {
-      return item
+  if (wrap) {
+    for (let i=items.length-1; i>=0; i--) {
+      let item = items[i]
+  
+      if (item.visible) {
+        return item
+      }
     }
-  }  
+  }
 }
 
 // Updates a footer
@@ -165,7 +169,7 @@ App.select_first_item = function (mode, by_active = false) {
 // Remove an item from the list
 App.remove_item = function (item) {
   let mode = item.mode
-  let next_item = App.get_next_visible_item(mode) || App.get_prev_visible_item(mode)
+  let next_item = App.get_next_visible_item(mode, false) || App.get_prev_visible_item(mode, false)
   let items = App[`${mode}_items`]
   item.element.remove()
   let id = item.id.toString()
