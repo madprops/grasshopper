@@ -212,10 +212,6 @@ App.do_item_filter = async function (mode) {
     App.el("#main").classList.add("invert")
     App.set_filter(mode, "")
     return
-  } else if (value === "idkfa") {
-    App.el("#main").classList.add("hue_rotate")
-    App.set_filter(mode, "")
-    return
   }
 
   if (mode === "history") {
@@ -744,6 +740,7 @@ App.show_item_window = async function (mode, cycle = false) {
   App.windows[mode].show()
   App.empty_footer(mode)
 
+  App.el("#main").classList.remove("hue_rotate")
   App.el(`#${mode}_container`).innerHTML = ""
   App.el(`#${mode}_filter`).value = value
   App.el(`#${mode}_item_picker`).textContent = `${App.get_mode_index(mode) + 1}. ${App.capitalize(mode)}`
