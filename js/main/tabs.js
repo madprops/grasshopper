@@ -682,35 +682,33 @@ App.do_load_tab_state = function (items, confirm = true) {
       }
     }
 
-    let tabs = App.tabs_items
-  
-    for (let tab of tabs) {
-      tab.xset = false
-    }
-
-    for (let [i, item] of items.entries()) {
-      for (let tab of tabs) {
-        if (!item.empty && (item.url === tab.url)) {
-          if (!tab.xset) {
-            tab.index = i
-            tab.pinned = item.pinned
-            tab.discarded = item.discarded
-            tab.xset = true
-            break
-          }
-        }
-      }
-    }
-
     App.sort_items_by_index("tabs")
 
     setTimeout(async function () {
-      setTimeout(async function () {
+      setTimeout(function () {
         App.hide_popup("alert")
         App.show_item_window("tabs")
       }, 900)
 
-      for (let tab of tabs.slice(0).reverse()) {
+      for (let tab of App.tabs_items) {
+        tab.xset = false
+      }
+  
+      for (let [i, item] of items.entries()) {
+        for (let tab of App.tabs_items) {                  
+          if (!item.empty && (item.url === tab.url)) {         
+            if (!tab.xset) {
+              tab.index = i
+              tab.pinned = item.pinned
+              tab.discarded = item.discarded
+              tab.xset = true
+              break
+            }
+          }
+        }
+      }      
+
+      for (let tab of App.tabs_items.slice(0).reverse()) {
         try {
           if (tab.pinned) {
             await App.pin_tab(tab.id)
