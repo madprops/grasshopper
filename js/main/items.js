@@ -572,7 +572,9 @@ App.create_empty_item_element = function (item) {
 
 // Create an item element
 App.create_item_element = function (item) {
-  item.element.draggable = true
+  if (item.mode === "tabs") {
+    item.element.draggable = true
+  }
 
   let icon = App.get_img_icon(item.favicon, item.url, item.pinned)
   item.element.append(icon)
