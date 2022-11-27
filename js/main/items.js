@@ -179,7 +179,6 @@ App.select_first_item = function (mode, by_active = false) {
 // Remove an item from the list
 App.remove_item = function (item) {
   let mode = item.mode
-  let next_item = App.get_next_visible_item(mode, false) || App.get_prev_visible_item(mode, false)
   let items = App[`${mode}_items`]
   item.element.remove()
   let id = item.id.toString()
@@ -191,10 +190,14 @@ App.remove_item = function (item) {
     }
   }
 
-  if (next_item) {
-    App.select_item(next_item)
-  } else {
-    App.select_first_item(mode)
+  if (item.mode !== "tabs") {
+    let next_item = App.get_next_visible_item(mode, false) || App.get_prev_visible_item(mode, false)
+  
+    if (next_item) {
+      App.select_item(next_item)
+    } else {
+      App.select_first_item(mode)
+    }
   }
 
   App.update_info(mode)
@@ -1157,7 +1160,7 @@ App.update_item = function (mode, id, source) {
       App.hide_item(new_item)
     }
 
-    let selected = App[`selected_${mode}_item`] === it
+    let selected = new_item.active || App[`selected_${mode}_item`] === it
     App.create_item_element(new_item)
     App[`${mode}_items`][i].element.replaceWith(new_item.element)
     App[`${mode}_items`][i] = new_item
