@@ -4,11 +4,6 @@ App.setup_items = function () {
   App.start_item_observers()
 }
 
-// Do select highlight
-App.do_select_highlight = function (mode) {
-
-}
-
 // Select an item
 App.select_item = function (item, highlight = false) {
   if (App[`selected_${item.mode}_item`] === item) {
@@ -20,14 +15,14 @@ App.select_item = function (item, highlight = false) {
   }
 
   App[`selected_${item.mode}_item`] = item
-  App[`selected_${item.mode}_item`].element.scrollIntoView({block: "nearest"})
-
+  
   for (let el of App.els(`.${item.mode}_item`)) {
     el.classList.remove("selected")
   }
-
+  
   if (highlight) {  
     App[`selected_${item.mode}_item`].element.classList.add("selected")  
+    App[`selected_${item.mode}_item`].element.scrollIntoView({block: "nearest"})
   }
 
   App.update_footer(item.mode)

@@ -167,9 +167,10 @@ body, html {
 
 .item_text {
   width: 100%;
-  white-space: pre;
+  white-space: nowrap;
   overflow: hidden;
   margin-right: var(--item_margin);
+  flex-shrink: 1;
 }
 
 .item_info {
@@ -182,6 +183,7 @@ body, html {
   justify-self: stretch;
   align-items: center;
   cursor: default;
+  flex-shrink: 0;
 }
 
 .item_top_container {
@@ -192,7 +194,7 @@ body, html {
 }
 
 .item:hover {
-  text-shadow: 0 0 1rem currentColor;
+  text-shadow: 0 0 0.6rem currentColor;
 }
 
 .selected {
