@@ -316,14 +316,7 @@ App.append_tab = function (info) {
   App.create_item_element(tab)
   App.update_info("tabs")
   App.el("#tabs_container").append(tab.element)
-  let container = App.el("#tabs_container")
-
-  if (info.index === 0) {
-    App.el("#tabs_container").prepend(tab.element)
-  } else {
-    container.insertBefore(tab.element, App.els(".tabs_item")[info.index])
-  }
-
+  App.move_item_element("tabs", tab.element, info.index)
   App.select_item(tab)
 }
 

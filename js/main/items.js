@@ -1274,4 +1274,16 @@ App.get_item_element_index = function (mode, el) {
 App.move_item = function (mode, from_index, to_index) {
   let it = App[`${mode}_items`].splice(from_index, 1)[0]
   App[`${mode}_items`].splice(to_index, 0, it)
+  App.move_item_element(mode, it.element, to_index)
+}
+
+// Move item element
+App.move_item_element = function (mode, el, index) {
+  let container = App.el(`#${mode}_container`)
+
+  if (index === 0) {
+    container.prepend(el)
+  } else {
+    container.insertBefore(el, App.els(`.${mode}_item`)[index])
+  }
 }
