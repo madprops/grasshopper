@@ -272,52 +272,24 @@ App.new_tab = function (url = undefined) {
 
 // Refresh tabs
 App.refresh_tab = async function (id) {
+  let info = await browser.tabs.get(id)
   let tab = App.get_item_by_id("tabs", id)
 
   if (tab) {
     if (tab.closed) {
       return
     }
-  } else {
-    App.tabs_items.push({
-      id: id,
-      empty: true
-    })
-  }
 
-  let info = await browser.tabs.get(id)
-
-  if (tab) {
     App.update_item("tabs", tab.id, info)
   } else {
-    App.append_tab(info)
+    let tab = App.process_item("tabs", info)
+    App.tabs_items.splice(info.index, 0, tab)
+    App.create_item_element(tab)
+    App.el("#tabs_container").append(tab.element)
+    App.move_item_element("tabs", tab.element, info.index)
+    App.select_item(tab)
+    App.update_info("tabs")
   }
-}
-
-// Append tab to the top
-App.append_tab = function (info) {
-  for (let [i, it] of App.tabs_items.entries()) {
-    if (it.id === info.id) {
-      if (it.empty) {
-        App.tabs_items.splice(i, 1)
-        break
-      }
-    }
-  }
-  
-  let tab = App.process_item("tabs", info)
-  
-  if (!tab) {
-    return
-  }
-  
-  App.tabs_items.push(tab)
-  App.tabs_items.splice(info.index, 0, tab)
-  App.create_item_element(tab)
-  App.update_info("tabs")
-  App.el("#tabs_container").append(tab.element)
-  App.move_item_element("tabs", tab.element, info.index)
-  App.select_item(tab)
 }
 
 // Pin a tab
