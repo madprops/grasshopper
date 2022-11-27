@@ -35,7 +35,7 @@ App.select_item_above = function (mode) {
   let item = App.get_prev_visible_item(mode)
 
   if (item) {
-    App.select_item(item, true)
+    App.select_item(item)
   }
 }
 
@@ -44,7 +44,7 @@ App.select_item_below = function (mode) {
   let item = App.get_next_visible_item(mode)
 
   if (item) {
-    App.select_item(item, true)
+    App.select_item(item)
   }
 }
 
@@ -162,7 +162,7 @@ App.select_first_item = function (mode, by_active = false) {
   if (mode === "tabs" && by_active) {
     for (let item of App[`${mode}_items`]) {
       if (item.visible && item.active) {
-        App.select_item(item, true)
+        App.select_item(item)
         return
       }
     }  
@@ -170,7 +170,7 @@ App.select_first_item = function (mode, by_active = false) {
 
   for (let item of App[`${mode}_items`]) {
     if (item.visible) {
-      App.select_item(item, true)
+      App.select_item(item)
       return
     }
   }
