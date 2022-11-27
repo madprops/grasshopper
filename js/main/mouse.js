@@ -4,7 +4,8 @@ App.setup_window_mouse = function (mode) {
 
   App.ev(container, "mouseover", function (e) {
     if (e.target.closest(`.${mode}_item`)) {
-      App.update_footer_from_item(App.get_cursor_item(mode, e))
+      let item = App.get_cursor_item(mode, e)
+      App.update_footer_from_item(item)
     }
   })  
 
@@ -25,7 +26,8 @@ App.setup_window_mouse = function (mode) {
   App.ev(container, "auxclick", function (e) {
     if (e.button === 1) {
       if (e.target.closest(`.${mode}_item`)) {
-        App[`${mode}_action_alt`](App.get_cursor_item(mode, e), e.shiftKey)
+        let item = App.get_cursor_item(mode, e)
+        App[`${mode}_action_alt`](item, e.shiftKey)
       }
     }
   })  
