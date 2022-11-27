@@ -129,15 +129,6 @@ App.update_footer = function (mode) {
   }
 }
 
-// Updates a footer
-App.update_footer_from_item = function (item) {
-  if (App.selected_valid(item.mode)) {
-    App.set_footer(item.mode, item.footer)
-  } else {
-    App.empty_footer(item.mode)
-  }
-}
-
 // Empty the footer
 App.empty_footer = function (mode) {
   App.set_footer(mode, "No Results")
@@ -595,6 +586,14 @@ App.create_item_element = function (item) {
   } else {
     let launched = App.create("div", "item_info item_info_launched")
     item.element.append(launched)
+  }
+
+  if (item.active) {
+    for (let el of App.els(`.${item.mode}_item`)) {
+      el.classList.remove("active")
+    }
+
+    item.element.classList.add("active")  
   }
 
   item.created = true

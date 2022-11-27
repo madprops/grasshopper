@@ -192,12 +192,12 @@ body, html {
   gap: 0.8rem;
 }
 
-.item:hover .item_text {
-  text-decoration: underline;
-}
-
 .selected {
   background-color: var(--alt_color);
+}
+
+.active {
+  text-decoration: underline;
 }
 
 .hidden {

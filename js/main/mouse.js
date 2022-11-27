@@ -5,7 +5,7 @@ App.setup_window_mouse = function (mode) {
   App.ev(container, "mouseover", function (e) {
     if (e.target.closest(`.${mode}_item`)) {
       let item = App.get_cursor_item(mode, e)
-      App.update_footer_from_item(item)
+      App.select_item(item)
     }
   })  
 
