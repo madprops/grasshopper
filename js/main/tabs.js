@@ -712,16 +712,16 @@ App.do_load_tab_state = function (items, confirm = true) {
 
       for (let tab of tabs.slice(0).reverse()) {
         try {
-          if (tab.index !== undefined) {
-            await App.do_move_tab_index(tab.id, tab.index)
-          }
-  
           if (tab.pinned) {
             await App.pin_tab(tab.id)
           }
-  
+
           if (tab.discarded) {
             await App.suspend_tab(tab)
+          }          
+
+          if (tab.index !== undefined) {
+            await App.do_move_tab_index(tab.id, tab.index)
           }
         } catch (err) {
           console.error(err)
