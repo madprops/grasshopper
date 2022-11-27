@@ -662,25 +662,33 @@ App.do_load_tab_state = function (items, confirm = true) {
         App.hide_popup("alert")
         App.show_item_window("tabs")
       }, 900)
+      
+      let tabs = App.tabs_items.slice(0)
 
-      for (let tab of App.tabs_items) {
+      for (let tab of tabs) {
         tab.xset = false
+        tab.xindex = tabs.length
       }
   
-      for (let item of items) {
-        for (let tab of App.tabs_items) {                  
+      for (let [i, item] of items.entries()) {
+        for (let tab of tabs) {                  
           if (!item.empty && (item.url === tab.url)) {         
             if (!tab.xset) {
               tab.pinned = item.pinned
               tab.discarded = item.discarded
               tab.xset = true
+              tab.xindex = i
               break
             }
           }
         }
-      }      
+      }
 
-      for (let [i, tab] of App.tabs_items.slice(0).reverse().entries()) {
+      tabs.sort(function (a, b) {
+        return a.xindex < b.xindex ? -1 : 1
+      })
+
+      for (let [i, tab] of tabs.entries()) {
         try {
           if (tab.pinned) {
             await App.pin_tab(tab.id)
