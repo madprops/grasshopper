@@ -169,14 +169,18 @@ App.settings_make_menu = function (id, opts) {
 
 // Setup settings
 App.setup_settings = function () {
-  App.create_window({id: "settings_icons", setup: function () {
-    let container = App.el("#settings_icons_container")
-    App.settings_setup_text(container)
-  }}) 
+  function on_x () {
+    App.show_last_window()
+  }
 
   App.create_window({id: "settings_theme", setup: function () {
     App.start_theme_settings()
-  }})  
+  }, on_x: on_x}) 
+
+  App.create_window({id: "settings_icons", setup: function () {
+    let container = App.el("#settings_icons_container")
+    App.settings_setup_text(container)
+  }, on_x: on_x})  
 
   App.create_window({id: "settings", setup: function () {
     let container = App.el("#settings_container")
@@ -185,13 +189,13 @@ App.setup_settings = function () {
     App.settings_make_menu("text_mode", [["Title", "title"], ["URL", "url"]])
     App.start_item_order()
 
-    App.ev(App.el("#settings_show_icons"), "click", function () {
-      App.show_window("settings_icons")
-    })
-
     App.ev(App.el("#settings_show_theme"), "click", function () {
       App.show_window("settings_theme")
     })
+
+    App.ev(App.el("#settings_show_icons"), "click", function () {
+      App.show_window("settings_icons")
+    })    
 
     App.ev(App.el("#settings_defaults_button"), "click", function () {
       App.stor_reset_settings()
