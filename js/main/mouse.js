@@ -2,6 +2,12 @@
 App.setup_window_mouse = function (mode) {
   let container = App.el(`#${mode}_container`)
 
+  App.ev(container, "mousemove", function (e) {
+    if (e.target.closest(`.${mode}_item`)) {
+      App.update_footer_from_item(App.get_cursor_item(mode, e))
+    }
+  })  
+
   App.ev(container, "click", function (e) {
     if (e.target.closest(`.${mode}_item`)) {
       let item = App.get_cursor_item(mode, e)
