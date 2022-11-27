@@ -927,8 +927,16 @@ App.get_load_tab_state_items = function () {
 }
 
 // Update tab index
-App.update_tab_index = async function (el, to_index) {    
-  let ans = await App.do_move_tab_index(parseInt(el.dataset.id), to_index)
+App.update_tab_index = async function (el, to_index) {  
+  let id = parseInt(el.dataset.id)
+  
+  if (App.tabs_items[to_index].pinned) {
+    await App.pin_tab(id)
+  } else {
+    await App.unpin_tab(id)
+  }
+
+  let ans = await App.do_move_tab_index(id, to_index)
   
   if (ans.length === 0) {
     App.show_item_window("tabs")
