@@ -196,7 +196,7 @@ body, html {
   background-color: var(--alt_color);
 }
 
-.active {
+.active .item_text {
   text-decoration: underline;
 }
 
