@@ -900,19 +900,22 @@ App.setup_item_window = function (mode, actions) {
             return false
           }
           
-          App.drag_element = e.target.closest(".item")
           App.drag_y = e.clientY
+          App.drag_element = e.target.closest(".item")
           let id = App.drag_element.dataset.id
-          let item = App.get_item_by_id(mode, id)
-          e.dataTransfer.setDragImage(new Image(), 0, 0)
-          e.dataTransfer.setData("text/plain", item.url)
           App.drag_item = App.get_item_by_id(mode, id)
+          e.dataTransfer.setDragImage(new Image(), 0, 0)
+          e.dataTransfer.setData("text/plain", App.drag_item.url)
           App.select_item(App.drag_item)
         })
 
-        container.addEventListener("dragend", function (e) {
+        container.addEventListener("dragend", function () {
           let new_index = App.get_item_element_index(mode, App.drag_element)
           App.update_tab_index(App.drag_element, new_index)
+
+          setTimeout(function () {
+            App.select_item(App.drag_item)
+          }, 11)
         })
 
         container.addEventListener("dragover", function (e) {
