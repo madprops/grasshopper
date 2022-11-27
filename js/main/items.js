@@ -495,7 +495,6 @@ App.process_items = function (mode, items) {
     container.append(obj.element)
   }
 
-  App.update_indexes(mode)
   App.update_info(mode)
 }
 
@@ -539,6 +538,7 @@ App.process_item = function (mode, item, exclude = []) {
   }
 
   if (mode === "tabs") {
+    obj.index = item.index
     obj.active = item.active
     obj.pinned = item.pinned
     obj.audible = item.audible
@@ -895,12 +895,11 @@ App.setup_item_window = function (mode, actions) {
           let id = App.drag_element.dataset.id
           App.drag_item = App.get_item_by_id(mode, id)
           App.select_item(App.drag_item)
-          App.drag_index = App.get_item_element_index(mode, App.drag_element)
         })
 
         container.addEventListener("dragend", function (e) {
           let new_index = App.get_item_element_index(mode, App.drag_element)
-          App.update_tab_index(App.drag_element, App.drag_index, new_index)
+          App.update_tab_index(App.drag_element, new_index)
         })
 
         container.addEventListener("dragover", function (e) {
@@ -1273,16 +1272,18 @@ App.get_item_element_index = function (mode, el) {
   return nodes.indexOf(el)
 }
 
-// Update index of item in array
-App.update_item_index = function (mode, from_index, to_index) {
-  let spliced = App[`${mode}_items`].splice(from_index, 1)[0]
-  App[`${mode}_items`].splice(to_index, 0, spliced)
-  App.update_indexes(mode)
-}
-
 // Update indexes
 App.update_indexes = function (mode) {
   for (let [i, item] of App[`${mode}_items`].entries()) {
     item.index = i
   }
+
+  App.sort_items_by_index(mode)
+}
+
+// Sort items by index
+App.sort_items_by_index = function (mode) {
+  App[`${mode}_items`].sort(function (a, b) {
+    return a.index < b.index ? -1 : 1
+  })
 }

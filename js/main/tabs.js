@@ -215,11 +215,7 @@ App.sort_tabs_by_access = function (tabs) {
 // Sort tabs by index
 App.sort_tabs_by_index = function (tabs) {
   tabs.sort(function (a, b) {
-    if (a.windowId === b.windowId) {
-      return a.index < b.index ? -1 : 1
-    } else {
-      return a.windowId < b.windowId ? -1 : 1
-    }
+    return a.index < b.index ? -1 : 1
   })
 }
 
@@ -320,23 +316,23 @@ App.append_tab = function (info) {
 }
 
 // Pin a tab
-App.pin_tab = function (id) {
-  browser.tabs.update(id, {pinned: true})
+App.pin_tab = async function (id) {
+  await browser.tabs.update(id, {pinned: true})
 }
 
 // Unpin a tab
-App.unpin_tab = function (id) {
-  browser.tabs.update(id, {pinned: false})
+App.unpin_tab = async function (id) {
+  await browser.tabs.update(id, {pinned: false})
 }
 
 // Mute a tab
-App.mute_tab = function (id) {
-  browser.tabs.update(id, {muted: true})
+App.mute_tab = async function (id) {
+  await browser.tabs.update(id, {muted: true})
 }
 
 // Unmute a tab
-App.unmute_tab = function (id) {
-  browser.tabs.update(id, {muted: false})
+App.unmute_tab = async function (id) {
+  await browser.tabs.update(id, {muted: false})
 }
 
 // Return pinned tabs
@@ -408,7 +404,7 @@ App.suspend_tab = async function (tab) {
     await browser.tabs.create({active: true})
   }
 
-  browser.tabs.discard(tab.id)
+  await browser.tabs.discard(tab.id)
 }
 
 // Pin tabs
@@ -679,34 +675,59 @@ App.do_load_tab_state = function (items, confirm = true) {
     }
 
     for (let item of to_open) {
-      await App.open_tab(item.url, false, {pinned: item.pinned, discarded: item.discarded})
+      try {
+        await App.open_tab(item.url, false)
+      } catch (e) {
+        console.error(e)
+      }
     }
 
-    setTimeout(async function () {
-      let tabs = App.tabs_items.slice(0)
+    let tabs = App.tabs_items
   
+    for (let tab of tabs) {
+      tab.xset = false
+    }
+
+    for (let [i, item] of items.entries()) {
       for (let tab of tabs) {
-        tab.xset = false
-      }
-  
-      for (let item of items) {
-        for (let tab of tabs) {
-          if (!item.empty && (item.url === tab.url)) {
-            if (!tab.xset) {
-              tab.index = item.index
-              tab.xset = true
-            }
+        if (!item.empty && (item.url === tab.url)) {
+          if (!tab.xset) {
+            tab.index = i
+            tab.pinned = item.pinned
+            tab.discarded = item.discarded
+            tab.xset = true
+            break
           }
         }
       }
+    }
 
-      for (let tab of tabs) {
-        await App.do_move_tab_index(tab.id, tab.index)
-      }
+    App.sort_items_by_index("tabs")
 
-      App.hide_popup("alert")
-      App.show_item_window("tabs")
-    }, 1000)
+    setTimeout(async function () {
+      setTimeout(async function () {
+        App.hide_popup("alert")
+        App.show_item_window("tabs")
+      }, 900)
+
+      for (let tab of tabs.slice(0).reverse()) {
+        try {
+          if (tab.index !== undefined) {
+            await App.do_move_tab_index(tab.id, tab.index)
+          }
+  
+          if (tab.pinned) {
+            await App.pin_tab(tab.id)
+          }
+  
+          if (tab.discarded) {
+            await App.suspend_tab(tab)
+          }
+        } catch (err) {
+          console.error(err)
+        }
+      }  
+    }, 900)  
 
     App.show_item_window("tabs")
   }
@@ -729,7 +750,6 @@ App.get_tab_state = function () {
       url: tab.url,
       pinned: tab.pinned,
       discarded: tab.discarded,
-      index: tab.index
     })
   }
 
@@ -909,13 +929,15 @@ App.get_load_tab_state_items = function () {
 }
 
 // Update tab index
-App.update_tab_index = async function (el, from_index, to_index) {    
+App.update_tab_index = async function (el, to_index) {    
   let ans = await App.do_move_tab_index(parseInt(el.dataset.id), to_index)
   
   if (ans.length === 0) {
     App.show_item_window("tabs")
   } else {
-    App.update_item_index("tabs", from_index, to_index)
+    let item = App.get_item_by_id("tabs", el.dataset.id)
+    item.index = to_index
+    App.sort_items_by_index("tabs")
   }
 }
 
