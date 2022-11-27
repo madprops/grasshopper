@@ -1283,6 +1283,10 @@ App.move_item_element = function (mode, el, to_index) {
   let items = App.els(`.${mode}_item`)
   let from_index = items.indexOf(el)
 
+  if (from_index === to_index) {
+    return
+  }
+
   if (to_index === 0) {
     container.prepend(el)
   } else {
