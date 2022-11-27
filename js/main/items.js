@@ -892,6 +892,9 @@ App.setup_item_window = function (mode, actions) {
           e.dataTransfer.setDragImage(new Image(), 0, 0)
           App.drag_y = e.clientY
           App.drag_element = e.target.closest(".item")
+          let id = App.drag_element.dataset.id
+          App.drag_item = App.get_item_by_id(mode, id)
+          App.select_item(App.drag_item)
           App.drag_index = App.get_item_element_index(mode, App.drag_element)
         })
 
@@ -914,6 +917,8 @@ App.setup_item_window = function (mode, actions) {
               } else {
                 App.drag_target.before(App.drag_element)
               }
+
+              App.select_item(App.drag_item)
             }
           }
 
