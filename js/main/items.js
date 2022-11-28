@@ -644,25 +644,30 @@ App.get_jdenticon = function (url) {
 // Set item text content
 App.set_item_text = function (item) {
   if (item.mode === "tabs") {
-    let status = []
+    let icons = []
 
     if (item.discarded) {
-      status.push(App.settings.suspended_icon)
+      icons.push(App.settings.suspended_icon)
     }
 
     if (item.audible) {
-      status.push(App.settings.playing_icon)
+      icons.push(App.settings.playing_icon)
     }
 
     if (item.muted) {
-      status.push(App.settings.muted_icon)
+      icons.push(App.settings.muted_icon)
     }
 
-    if (status.length > 0) {
-      status_text = status.join(" ")
-      let status_el = App.el(".item_status", item.element)
-      status_el.classList.remove("hidden")
-      App.el(".item_status", item.element).textContent = status_text
+    if (icons.length > 0) {
+      let status = App.el(".item_status", item.element)
+
+      for (let icon of icons) {
+        let el = App.create("div")
+        el.textContent = icon
+        status.append(el)
+      }
+
+      status.classList.remove("hidden")
     }
   }
 

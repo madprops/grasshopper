@@ -166,7 +166,11 @@ body, html {
 }
 
 .item_status {
+  display: flex;
+  flex-direction: row;
+  gap: var(--icon_margin);
   margin-right: var(--icon_margin);
+  flex-shrink: 0;
 }
 
 .item_text {
