@@ -5,6 +5,21 @@
   --icon_margin: 0.66rem;
 }
 
+@font-face {
+	font-family: gh_sans;
+	src: url(Roboto-Regular.ttf);
+}
+
+@font-face {
+	font-family: gh_comic;
+	src: url(ComicNeue-Regular.ttf);
+}
+
+@font-face {
+	font-family: gh_cursive;
+	src: url(CedarvilleCursive-Regular.ttf);
+}
+
 body, html {
   font-family: var(--font), sans-serif;
   font-size: var(--text_size);
@@ -99,6 +114,7 @@ body, html {
 }
 
 .filter::placeholder {
+  font-family: var(--font);
   color: var(--text_color);
   opacity: 0.77;
 }
