@@ -580,6 +580,9 @@ App.create_item_element = function (item) {
   let icon = App.get_img_icon(item.favicon, item.url, item.pinned)
   item.element.append(icon)
 
+  let status = App.create("div", "item_status hidden")
+  item.element.append(status)
+
   let text = App.create("div", "item_text")
   item.element.append(text)
   App.set_item_text(item)
@@ -640,8 +643,6 @@ App.get_jdenticon = function (url) {
 
 // Set item text content
 App.set_item_text = function (item) {
-  let content = ""
-
   if (item.mode === "tabs") {
     let status = []
 
@@ -658,16 +659,20 @@ App.set_item_text = function (item) {
     }
 
     if (status.length > 0) {
-      content = status.join(" ")
-      content += "  "
+      status_text = status.join(" ")
+      let status_el = App.el(".item_status", item.element)
+      status_el.classList.remove("hidden")
+      App.el(".item_status", item.element).textContent = status_text
     }
   }
 
+  let content
+
   if (App.settings.text_mode === "title") {
-    content += item.title || item.path
+    content = item.title || item.path
     item.footer = decodeURI(item.path) || item.title
   } else if (App.settings.text_mode === "url") {
-    content += decodeURI(item.path) || item.title
+    content = decodeURI(item.path) || item.title
     item.footer = item.title || item.path
   }
 

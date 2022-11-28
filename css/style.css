@@ -2,6 +2,7 @@
   --widget_padding_vert: 0.22rem;
   --widget_padding_hor: 0.33rem;
   --item_margin: 0.55rem;
+  --icon_margin: 0.66rem;
 }
 
 @font-face {
@@ -158,10 +159,14 @@ body, html {
   width: 1.11rem;
   height: 1.11rem;
   object-fit: contain;
-  margin-right: 0.66rem;
   margin-left: var(--item_margin);
+  margin-right: var(--icon_margin);
   flex-grow: 0;
   flex-shrink: 0;
+}
+
+.item_status {
+  margin-right: var(--icon_margin);
 }
 
 .item_text {
