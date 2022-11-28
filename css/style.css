@@ -267,7 +267,7 @@ body, html {
 }
 
 .settings_button {
-  width: 10rem;
+  min-width: 9rem;
 }
 
 .settings_text {
