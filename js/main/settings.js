@@ -8,7 +8,7 @@ App.default_settings = {
   text_size: {value: 17, category: "normal"},
   lock_drag: {value: false, category: "normal"},
   warn_on_close: {value: true, category: "normal"},
-  font: {value: "default", category: "normal"},
+  font: {value: "gh_sans", category: "normal"},
   background_color: {value: "rgb(88, 92, 111)", category: "theme"},
   text_color: {value: "rgb(234, 238, 255)", category: "theme"},
   pin_icon: {value: "(+)", category: "icons"},
@@ -200,7 +200,7 @@ App.setup_settings = function () {
     App.settings_setup_text(container)
     App.settings_make_menu("text_mode", [["Title", "title"], ["URL", "url"]])
     App.settings_make_menu("font", [
-      ["Default", "default"], 
+      ["Sans", "gh_sans"], 
       ["Serif", "serif"],
       ["Mono", "monospace"],
       ["Comic", "gh_comic"],

@@ -23,16 +23,7 @@ App.apply_theme = function () {
     App.set_css_var("alt_background", alt_background)
 
     App.set_css_var("text_size", App.settings.text_size + "px")
-
-    let font
-
-    if (App.settings.font === "default") {
-      font = "gh_sans"
-    } else {
-      font = App.settings.font
-    }
-
-    App.set_css_var("font", font)
+    App.set_css_var("font", App.settings.font)
   } catch (e) {
     App.settings.background_color = App.default_settings.background_color.value
     App.settings.text_color = App.default_settings.text_color.value
