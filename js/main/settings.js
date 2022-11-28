@@ -182,6 +182,10 @@ App.setup_settings = function () {
   App.create_window({id: "settings_icons", setup: function () {
     let container = App.el("#settings_icons_container")
     App.settings_setup_text(container)
+
+    App.ev(App.el("#settings_default_icons"), "click", function () {
+      App.restore_default_icons()
+    })
   }, on_x: on_x})  
 
   App.create_window({id: "settings", setup: function () {
@@ -240,5 +244,30 @@ App.start_theme_settings = function () {
   
   App.ev(App.el("#settings_detect_theme"), "click", function () {
     App.detect_theme()
+  })
+  
+  App.ev(App.el("#settings_default_theme"), "click", function () {
+    App.restore_default_theme()
+  })
+}
+
+// Restore the default theme
+App.restore_default_theme = function () {
+  App.background_color_picker.setColor(App.default_settings.background_color)
+  App.text_color_picker.setColor(App.default_settings.text_color)
+}
+
+// Restore default icons
+App.restore_default_icons = function () {
+  App.show_confirm("Restore default icons?", function () {
+    for (let key in App.settings) {
+      if (key.endsWith("_icon")) {
+        let value = App.default_settings[key]
+        App.settings[key] = value
+        App.el(`#settings_${key}`).value = value
+      }
+    }
+
+    App.stor_save_settings()
   })
 }

@@ -55,9 +55,6 @@ App.random_theme = function (mode) {
 
   App.background_color_picker.setColor(colors.background_color)
   App.text_color_picker.setColor(colors.text_color)
-
-  App.apply_theme()
-  App.stor_save_settings()
 }
 
 // Get a random dark theme
