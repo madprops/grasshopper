@@ -1180,7 +1180,7 @@ App.update_item = function (mode, id, source) {
       App.hide_item(new_item)
     }
 
-    let selected = new_item.active || App[`selected_${mode}_item`] === it
+    let selected = App[`selected_${mode}_item`] === it
     App.create_item_element(new_item)
     App[`${mode}_items`][i].element.replaceWith(new_item.element)
     App[`${mode}_items`][i] = new_item

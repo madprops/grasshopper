@@ -287,7 +287,6 @@ App.refresh_tab = async function (id) {
     App.create_item_element(tab)
     App.el("#tabs_container").append(tab.element)
     App.move_item_element("tabs", tab.element, info.index)
-    App.select_item(tab)
     App.update_info("tabs")
   }
 }
