@@ -12,7 +12,8 @@ App.default_settings = {
   playing_icon: "(Playing)",
   muted_icon: "(Muted)",
   suspended_icon: "(Suspended)",
-  lock_drag: false
+  lock_drag: false,
+  warn_on_close: true,
 }
 
 // Start item order

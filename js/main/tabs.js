@@ -348,7 +348,12 @@ App.tabs_action = function (item) {
 
 // Tabs action alt
 App.tabs_action_alt = function (item, shift_key) {
-  if (shift_key) {
+  App.check_tab_close(item, shift_key)
+}
+
+// Check tab close
+App.check_tab_close = function (item, bypass = false) {
+  if (bypass || !App.settings.warn_on_close) {
     App.backup_tabs()
     App.close_tab(item.id)
   } else {

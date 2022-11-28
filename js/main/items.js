@@ -400,7 +400,7 @@ App.show_item_menu = function (item, x, y) {
     items.push({
       text: "Close",
       action: function () {
-        App.confirm_close_tab(item)
+        App.check_tab_close(item)
       }
     })
   }
