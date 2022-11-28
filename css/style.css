@@ -5,21 +5,6 @@
   --icon_margin: 0.66rem;
 }
 
-@font-face {
-	font-family: gh_sans;
-	src: url(Roboto-Regular.ttf);
-}
-
-@font-face {
-	font-family: gh_comic;
-	src: url(ComicNeue-Regular.ttf);
-}
-
-@font-face {
-	font-family: gh_cursive;
-	src: url(CedarvilleCursive-Regular.ttf);
-}
-
 body, html {
   font-family: var(--font), sans-serif;
   font-size: var(--text_size);
@@ -102,7 +87,6 @@ body, html {
   color: var(--text_color);
   outline: 1px solid var(--alt_color_2);
   border-width: 0;
-  padding: 0;
   padding-left: var(--widget_padding_hor);
   padding-right: var(--widget_padding_hor);
   padding-top: var(--widget_padding_vert);
