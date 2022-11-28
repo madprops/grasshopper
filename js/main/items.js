@@ -276,10 +276,8 @@ App.do_item_filter = async function (mode) {
         match = item.protocol === "http:"
       } else if (filter_mode === "suspended") {
         match = item.discarded
-      } else if (filter_mode === "this_window") {
-        match = item.window_id === App.window_id
-      } else if (filter_mode === "other_windows") {
-        match = item.window_id !== App.window_id
+      } else if (filter_mode === "active") {
+        match = item.active
       }
     }
 

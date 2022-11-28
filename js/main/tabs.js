@@ -8,7 +8,8 @@ App.setup_tabs = function () {
     ["muted", "Muted"],
     ["suspended", "Suspended"],
     ["secure", "Secure"],
-    ["insecure", "Insecure"]
+    ["insecure", "Insecure"],
+    ["active", "Active"],
   ]
 
   let actions = [
