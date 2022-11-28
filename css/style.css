@@ -113,12 +113,6 @@ body, html {
   width: 10rem;
 }
 
-.filter::placeholder {
-  font-family: var(--font);
-  color: var(--text_color);
-  opacity: 0.77;
-}
-
 .button {
   font-size: 1rem;
   cursor: pointer;
@@ -445,4 +439,13 @@ a:visited, a:link, a:hover {
 
 .sortable_ghost {
   display: none;
+}
+
+input {
+  font-family: var(--font);
+}
+
+input::placeholder {
+  color: var(--text_color);
+  opacity: 0.77;
 }
