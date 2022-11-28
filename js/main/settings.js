@@ -8,6 +8,7 @@ App.default_settings = {
   text_size: {value: 17, category: "normal"},
   lock_drag: {value: false, category: "normal"},
   warn_on_close: {value: true, category: "normal"},
+  font: {value: "default", category: "normal"},
   background_color: {value: "rgb(88, 92, 111)", category: "theme"},
   text_color: {value: "rgb(234, 238, 255)", category: "theme"},
   pin_icon: {value: "(+)", category: "icons"},
@@ -28,7 +29,7 @@ App.start_item_order = function () {
     text.textContent = App.capitalize(m)
     el.append(text)
 
-    let up = App.create("button", "button up_down_button")
+    let up = App.create("div", "button up_down_button")
     up.textContent = "Up"
     el.append(up)
 
@@ -36,7 +37,7 @@ App.start_item_order = function () {
       App.item_order_up(el)
     })      
 
-    let down = App.create("button", "button up_down_button")
+    let down = App.create("div", "button up_down_button")
     down.textContent = "Down"
     el.append(down)
 
@@ -139,7 +140,11 @@ App.settings_setup_text = function (container) {
 }
 
 // Prepare a select menu
-App.settings_make_menu = function (id, opts) {
+App.settings_make_menu = function (id, opts, action) {
+  if (!action) {
+    action = function () {}
+  }
+
   let el = App.el(`#settings_${id}`)
 
   App.ev(el, "click", function () {
@@ -154,6 +159,7 @@ App.settings_make_menu = function (id, opts) {
           el.textContent = o[0]
           App.settings[id] = o[1]
           App.stor_save_settings()
+          action()
         },
         selected: selected
       })  
@@ -193,6 +199,15 @@ App.setup_settings = function () {
     App.settings_setup_checkboxes(container)
     App.settings_setup_text(container)
     App.settings_make_menu("text_mode", [["Title", "title"], ["URL", "url"]])
+    App.settings_make_menu("font", [
+      ["Default", "default"], 
+      ["Serif", "serif"], 
+      ["Monospace", "monospace"],
+      ["Comic", "gh_comic"],
+      ["Cursive", "gh_cursive"],
+    ], function () {
+      App.apply_theme()
+    })
     App.start_item_order()
 
     App.ev(App.el("#settings_show_theme"), "click", function () {
