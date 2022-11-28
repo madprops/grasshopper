@@ -12,7 +12,7 @@ App.stor_get_settings = async function () {
   
   for (let key in App.default_settings) {
     if (App.settings[key] === undefined) {
-      App.settings[key] = App.default_settings[key]
+      App.settings[key] = App.default_settings[key].value
       changed = true
     }
   }

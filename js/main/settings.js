@@ -90,7 +90,7 @@ App.settings_setup_text = function (container) {
       val = parseInt(val)
   
       if (isNaN(val)) {
-        val = App.default_settings[setting]
+        val = App.default_settings[setting].value
       }
   
       if (min && min > val) {
@@ -112,7 +112,7 @@ App.settings_setup_text = function (container) {
         let val = el.value.trim()
   
         if (!val) {
-          val = App.default_settings[setting]
+          val = App.default_settings[setting].value
         }
   
         el.value = val

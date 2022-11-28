@@ -24,8 +24,8 @@ App.apply_theme = function () {
 
     App.set_css_var("text_size", App.settings.text_size + "px")    
   } catch (e) {
-    App.settings.background_color = App.default_settings.background_color
-    App.settings.text_color = App.default_settings.text_color
+    App.settings.background_color = App.default_settings.background_color.value
+    App.settings.text_color = App.default_settings.text_color.value
     App.stor_save_settings()
     App.apply_theme()
   }
