@@ -62,15 +62,6 @@ App.stor_save_stars = async function () {
   await browser.storage.sync.set(o)
 }
 
-// Reset settings to default
-App.stor_reset_settings = async function () {
-  App.show_confirm("Reset settings to defaults?", async function () {
-    App.settings = {}
-    await App.stor_save_settings()
-    window.close()
-  })
-}
-
 // Get tab state from sync storage
 App.stor_get_tab_state = async function () {
   let obj = await browser.storage.sync.get(App.stor_tab_state_name)

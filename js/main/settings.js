@@ -1,19 +1,19 @@
 // Default settings values
 App.default_settings = {
-  text_mode: "title",
-  background_color: "rgb(88, 92, 111)",
-  text_color: "rgb(234, 238, 255)",
-  tabs_index: 0,
-  stars_index: 1,
-  history_index: 2,
-  closed_index: 3,
-  text_size: 17,
-  pin_icon: "(+)",
-  playing_icon: "(Playing)",
-  muted_icon: "(Muted)",
-  suspended_icon: "(Suspended)",
-  lock_drag: false,
-  warn_on_close: true,
+  text_mode: {value: "title", category: "normal"},
+  tabs_index: {value: 0, category: "normal"},
+  stars_index: {value: 1, category: "normal"},
+  history_index: {value: 2, category: "normal"},
+  closed_index: {value: 3, category: "normal"},
+  text_size: {value: 17, category: "normal"},
+  lock_drag: {value: false, category: "normal"},
+  warn_on_close: {value: true, category: "normal"},
+  background_color: {value: "rgb(88, 92, 111)", category: "theme"},
+  text_color: {value: "rgb(234, 238, 255)", category: "theme"},
+  pin_icon: {value: "(+)", category: "icons"},
+  playing_icon: {value: "(Playing)", category: "icons"},
+  muted_icon: {value: "(Muted)", category: "icons"},
+  suspended_icon: {value: "(Suspended)", category: "icons"},
 }
 
 // Start item order
@@ -184,7 +184,7 @@ App.setup_settings = function () {
     App.settings_setup_text(container)
 
     App.ev(App.el("#settings_default_icons"), "click", function () {
-      App.restore_default_icons()
+      App.restore_default_icon_settings()
     })
   }, on_x: on_x})  
 
@@ -204,7 +204,7 @@ App.setup_settings = function () {
     })    
 
     App.ev(App.el("#settings_defaults_button"), "click", function () {
-      App.stor_reset_settings()
+      App.restore_default_normal_settings()
     })    
   }}) 
 }
@@ -247,22 +247,45 @@ App.start_theme_settings = function () {
   })
   
   App.ev(App.el("#settings_default_theme"), "click", function () {
-    App.restore_default_theme()
+    App.restore_default_theme_settings()
+  })
+}
+
+// Restore default normal settings
+App.restore_default_normal_settings = function () {
+  App.show_confirm("Restore default settings?", function () {
+    for (let key in App.default_settings) {
+      let item = App.default_settings[key]
+  
+      if (item.category === "normal") {
+        App.settings[key] = item.value
+      }
+    }
+
+    App.stor_save_settings()
+    window.close()    
   })
 }
 
 // Restore the default theme
-App.restore_default_theme = function () {
-  App.background_color_picker.setColor(App.default_settings.background_color)
-  App.text_color_picker.setColor(App.default_settings.text_color)
+App.restore_default_theme_settings = function () {
+  for (let key in App.default_settings) {
+    let item = App.default_settings[key]
+
+    if (item.category === "theme") {
+      App[`${key}_picker`].setColor(App.default_settings[key].value)
+    }
+  }
 }
 
 // Restore default icons
-App.restore_default_icons = function () {
+App.restore_default_icon_settings = function () {
   App.show_confirm("Restore default icons?", function () {
     for (let key in App.settings) {
-      if (key.endsWith("_icon")) {
-        let value = App.default_settings[key]
+      let item = App.default_settings[key]
+
+      if (item.category === "icons") {
+        let value = App.default_settings[key].value
         App.settings[key] = value
         App.el(`#settings_${key}`).value = value
       }
