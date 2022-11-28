@@ -70,6 +70,18 @@
     <template id="template_settings">
       <div id="settings_container" class="settings_container unselectable">
         <div class="bigger">Settings</div>
+
+        <div class="separator"></div>
+
+        <div id="settings_defaults_button" class="button settings_button" title="Restore settings to defaults">Default Settings</div>
+        
+        <div class="separator"></div>
+        
+        <div class="flex_row_center gap_2">
+          <div id="settings_show_theme" class="button settings_button">Theme Settings</div>
+          <div id="settings_show_icons" class="button settings_button">Icon Settings</div>
+        </div>        
+
         <div class="separator"></div>
 
         <div class="flex_column_center gap_2" title="Main text to display on the items. The opposite is displayed in the footer">
@@ -109,21 +121,24 @@
           <div>Item Order</div>
           <div id="item_order"></div>
         </div>
-        
-        <div class="separator"></div>
-        
-        <div id="settings_defaults_button" class="button settings_button" title="Restore settings to defaults">Default Settings</div>
-        
-        <div class="separator"></div>
-
-        <div id="settings_show_theme" class="button settings_button">Theme Settings</div>
-        <div id="settings_show_icons" class="button settings_button">Icon Settings</div>
       </div>
     </template>   
 
     <template id="template_settings_theme">
       <div id="settings_theme_container" class="settings_container unselectable">
         <div class="bigger">Theme Settings</div>
+
+        <div class="separator"></div>
+        
+        <div class="flex_row_center gap_2">
+          <div id="settings_dark_theme" class="button settings_button" title="Random dark theme">Dark Theme</div>
+          <div id="settings_light_theme" class="button settings_button" title="Random light theme">Light Theme</div>
+        </div>
+
+        <div class="flex_row_center gap_2">
+          <div id="settings_detect_theme" class="button settings_button" title="Detect browser theme">Detect Theme</div>
+          <div id="settings_default_theme" class="button settings_button" title="Restore default theme">Default Theme</div>
+        </div>
 
         <div class="separator"></div>
 
@@ -138,19 +153,16 @@
           <div>Text Color</div>
           <div id="text_color_picker"></div>
         </div>
-
-        <div class="separator"></div>
-
-        <div id="settings_dark_theme" class="button settings_button" title="Random dark theme">Dark Theme</div>
-        <div id="settings_light_theme" class="button settings_button" title="Random light theme">Light Theme</div>
-        <div id="settings_detect_theme" class="button settings_button" title="Detect browser theme">Detect Theme</div>
-        <div id="settings_default_theme" class="button settings_button" title="Restore default theme">Default Theme</div>
       </div>
     </template>
 
     <template id="template_settings_icons">
       <div id="settings_icons_container" class="settings_container unselectable">
         <div class="bigger">Icon Settings</div>
+
+        <div class="separator"></div>
+        
+        <div id="settings_default_icons" class="button settings_button" title="Restore default icons">Default Icons</div>         
 
         <div class="separator"></div>
 
@@ -178,11 +190,7 @@
         <div class="flex_column_center gap_2" title="Icon to show on suspended tabs">
           <div>Suspended Icon</div>
           <input type="text" autocomplete="off" id="settings_suspended_icon" class="text settings_text" data-setting="suspended_icon" data-type="text">
-        </div>    
-        
-        <div class="separator"></div>
-
-        <div id="settings_default_icons" class="button settings_button" title="Restore default icons">Default Icons</div>      
+        </div>         
       </div>
     </template>     
 
