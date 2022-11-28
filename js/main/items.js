@@ -180,6 +180,17 @@ App.select_first_item = function (mode, by_active = false) {
 App.remove_item = function (item) {
   let mode = item.mode
   let items = App[`${mode}_items`]
+
+  if (App[`selected_${mode}_item`] === item) {
+    let next_item = App.get_next_visible_item(mode, false) || App.get_prev_visible_item(mode, false)
+  
+    if (next_item) {
+      App.select_item(next_item)
+    } else {
+      App.select_first_item(mode)
+    }
+  }
+
   item.element.remove()
   let id = item.id.toString()
 
@@ -187,16 +198,6 @@ App.remove_item = function (item) {
     if (it.id.toString() === id) {
       items.splice(i, 1)
       break
-    }
-  }
-
-  if (item.mode !== "tabs") {
-    let next_item = App.get_next_visible_item(mode, false) || App.get_prev_visible_item(mode, false)
-  
-    if (next_item) {
-      App.select_item(next_item)
-    } else {
-      App.select_first_item(mode)
     }
   }
 
