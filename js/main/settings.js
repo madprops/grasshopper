@@ -202,7 +202,7 @@ App.setup_settings = function () {
     App.settings_make_menu("font", [
       ["Default", "default"], 
       ["Serif", "serif"],
-      ["Monospace", "monospace"],
+      ["Mono", "monospace"],
       ["Comic", "gh_comic"],
       ["Cursive", "gh_cursive"],
     ], function () {
