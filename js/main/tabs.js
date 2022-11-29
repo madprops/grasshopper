@@ -181,12 +181,6 @@ App.setup_tabs = function () {
       App.on_tab_activated(e)
     }
   })  
-
-  browser.tabs.onActivated.addListener(function (e) {
-    if (App.window_mode === "tabs") {
-      App.on_tab_activated(e)
-    }
-  })  
   
   browser.tabs.onRemoved.addListener(function (id) {
     if (App.window_mode === "tabs") {
@@ -983,51 +977,11 @@ App.highlight_tab = async function (tab) {
 
 // On tab activated
 App.on_tab_activated = async function (e) {
-  let highlighted = await browser.tabs.query({highlighted: true, active: true}) 
-
-  for (let item of App.tabs_items) {
-    if (item.active) {
-      let matched = false
-
-      for (let tab of highlighted) {
-        if (tab.id === item.id) {
-          matched = true
-          break
-        }
-      }
-
-      if (!matched) {
-        item.active = false
-        item.highlighted = false
-        App.refresh_tab(item.id)
-      }
-    }
-  }
-
-  for (let tab of highlighted) {
-    for (let item of App.tabs_items) {
-      if (tab.id === item.id) {
-        item.active = tab.active
-        item.highlighted = tab.highlighted
-        App.refresh_tab(item.id)
-        break
-      }
-    }
-  }
-
-  let exists = false
-
   for (let tab of App.tabs_items) {
-    if (tab.id === e.tabId) {
-      exists = true
-      break
-    }
+    tab.active = false
   }
-
-  if (!exists) {
-    App.refresh_tab(e.tabId)
-    return
-  }
+  
+  App.refresh_tab(e.tabId)
 }
 
 // Get highlighted tabs
