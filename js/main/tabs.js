@@ -928,11 +928,7 @@ App.update_tab_index = async function () {
     pinned = App.tabs_items[index_last].pinned
   } else {
     pinned = App.tabs_items[index_first].pinned
-  }  
-
-  // if (App.drag_start_index < index_first) {
-  //   items.reverse()
-  // }
+  }
 
   for (let tab of items) {
     if (pinned) {
