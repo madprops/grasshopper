@@ -937,7 +937,6 @@ App.setup_item_window = function (mode, actions) {
 
         container.addEventListener("dragend", function () {
           App.block_select()
-
           let target = App.get_item_by_id(mode, App.drag_target.dataset.id)
 
           if ((target.pinned && !App.drag_item.pinned) || (!target.pinned && App.drag_item.pinned)) {
@@ -959,7 +958,7 @@ App.setup_item_window = function (mode, actions) {
           if (e.target.closest(".item")) {
             let el = e.target.closest(".item")
             
-            if (el !== App.drag_element && App.drag_target !== el) {
+            if (el !== App.drag_element) {
               App.drag_target = el
               
               let els = []
