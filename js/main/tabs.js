@@ -911,19 +911,34 @@ App.get_load_tab_state_items = function () {
 
 // Update tab index
 App.update_tab_index = async function () {  
-  let to_index = App.get_item_element_index("tabs", App.selected_tabs_item.element)
-  let target_pinned = App.tabs_items[to_index].pinned
+  let target_pinned
+  let highlighted = App.get_highlighted_tabs()
+  let index_first = App.get_item_element_index("tabs", highlighted[0].element)
   
-  for (let tab of App.tabs_items) {
-    if (tab.active || tab.highlighted) {
-      if (target_pinned) {
+  if (App.drag_start_index > index_first) {
+    let index_last = App.get_item_element_index("tabs", highlighted[highlighted.length - 1].element)
+    target_pinned = App.tabs_items[index_last].pinned
+  } else {
+    target_pinned = App.tabs_items[index_first].pinned
+  }
+
+  if (App.drag_start_index < index_first) {
+    highlighted.reverse()
+  }
+
+  for (let tab of highlighted) {
+    if (target_pinned) {
+      if (!tab.pinned) {
         await App.pin_tab(tab.id)
-      } else {
+      }
+    } else {
+      if (App.pinned) {
         await App.unpin_tab(tab.id)
       }
-      
-      await App.do_move_tab_index(tab.id, App.get_item_element_index("tabs", tab.element))
     }
+    
+    let index = App.get_item_element_index("tabs", tab.element)
+    await App.do_move_tab_index(tab.id, index)
   }
 }
 
@@ -993,4 +1008,17 @@ App.on_tab_activated = async function (e) {
     App.refresh_tab(e.tabId)
     return
   }
+}
+
+// Get highlighted tabs
+App.get_highlighted_tabs = function () {
+  let ans = []
+
+  for (let tab of App.tabs_items) {
+    if (tab.active || tab.highlighted) {
+      ans.push(tab)
+    }
+  }
+
+  return ans
 }
