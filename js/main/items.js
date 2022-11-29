@@ -969,6 +969,7 @@ App.setup_item_window = function (mode, actions) {
             let el = e.target.closest(".item")
 
             if (App.drag_els.includes(el)) {
+              e.preventDefault()
               return
             }
             
