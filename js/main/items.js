@@ -949,21 +949,12 @@ App.setup_item_window = function (mode, actions) {
         container.addEventListener("dragend", function () {
           let target = App.get_item_by_id(mode, App.drag_target.dataset.id)
 
-          if (target.pinned) {
-            for (let el of App.drag_els) {
-              if (!App.get_item_by_id(mode, el.dataset.id).pinned) {
-                App.show_item_window("tabs")
-                return
-              }
-            }
-          }
+          for (let el of App.drag_els) {
+            let item = App.get_item_by_id(mode, el.dataset.id)
 
-          if (!target.pinned) {
-            for (let el of App.drag_els) {
-              if (App.get_item_by_id(mode, el.dataset.id).pinned) {
-                App.show_item_window("tabs")
-                return
-              }
+            if ((target.pinned && !item.pinned) || (!target.pinned && item.pinned)) {
+              App.show_item_window("tabs")
+              return
             }
           }
           
@@ -976,18 +967,20 @@ App.setup_item_window = function (mode, actions) {
           
           if (e.target.closest(".item")) {
             let el = e.target.closest(".item")
-            
-            if (el !== App.drag_element) {
-              App.drag_target = el
-              
-              if (direction === "down") {
-                App.drag_target.after(...App.drag_els)
-              } else {
-                App.drag_target.before(...App.drag_els)
-              }
 
-              App.select_item(App.drag_item)
+            if (App.drag_els.includes(el)) {
+              return
             }
+            
+            App.drag_target = el
+            
+            if (direction === "down") {
+              App.drag_target.after(...App.drag_els)
+            } else {
+              App.drag_target.before(...App.drag_els)
+            }
+
+            App.select_item(App.drag_item)
           }
 
           App.drag_y = e.clientY
