@@ -211,7 +211,7 @@ body, html {
 }
 
 .active {
-  animation: blink 0.77s ease-in-out infinite;
+  animation: blink 0.8s ease-in-out infinite;
 }
 
 .selected {
