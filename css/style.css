@@ -205,10 +205,6 @@ body, html {
   gap: 0.8rem;
 }
 
-.active {
-  background-color: var(--alt_color_0);
-}
-
 .selected {
   background-color: var(--alt_color_1);
 }
