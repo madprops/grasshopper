@@ -20,6 +20,11 @@
 	src: url(CedarvilleCursive-Regular.ttf);
 }
 
+@keyframes blink {
+  0%, 100%  {opacity: 1}
+  50% {opacity: 0.33}
+}
+
 body, html {
   font-family: var(--font), sans-serif;
   font-size: var(--text_size);
@@ -203,6 +208,10 @@ body, html {
   display: flex;
   flex-direction: row;
   gap: 0.8rem;
+}
+
+.active .item_icon {
+  animation: blink 0.77s ease-in-out infinite;
 }
 
 .selected {

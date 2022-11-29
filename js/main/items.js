@@ -601,6 +601,14 @@ App.create_item_element = function (item) {
     item.element.append(launched)
   }
 
+  if (item.active) {
+    for (let el of App.els(`.${item.mode}_item`)) {
+      el.classList.remove("active")
+    }
+
+    item.element.classList.add("active")  
+  }  
+
   item.created = true
   console.info(`Item created in ${item.mode}`)
 }
