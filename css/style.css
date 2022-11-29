@@ -20,11 +20,6 @@
 	src: url(DancingScript-Regular.ttf);
 }
 
-@keyframes blink {
-  0%, 100%  {opacity: 1}
-  50% {opacity: 0.55}
-}
-
 body, html {
   font-family: var(--font), sans-serif;
   font-size: var(--text_size);
@@ -211,7 +206,7 @@ body, html {
 }
 
 .active {
-  animation: blink 0.8s ease-in-out infinite;
+  opacity: 0.66;
 }
 
 .selected {
