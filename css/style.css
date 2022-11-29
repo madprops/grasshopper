@@ -22,7 +22,7 @@
 
 @keyframes blink {
   0%, 100%  {opacity: 1}
-  50% {opacity: 0.33}
+  50% {opacity: 0.55}
 }
 
 body, html {
@@ -210,7 +210,7 @@ body, html {
   gap: 0.8rem;
 }
 
-.active .item_icon {
+.active {
   animation: blink 0.77s ease-in-out infinite;
 }
 
