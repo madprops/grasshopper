@@ -931,10 +931,8 @@ App.update_tab_index = async function () {
   }  
 
   // if (App.drag_start_index < index_first) {
-  //   highlighted.reverse()
+  //   items.reverse()
   // }
-
-  let index = index_first
 
   for (let tab of items) {
     if (pinned) {
@@ -946,9 +944,11 @@ App.update_tab_index = async function () {
         await App.unpin_tab(tab.id)
       }
     }
+  }
 
+  for (let tab of App.tabs_items.slice(0)) {
+    let index = App.get_item_element_index("tabs", tab.element)
     await App.do_move_tab_index(tab.id, index)
-    index += 1
   }
 }
 
@@ -980,7 +980,7 @@ App.on_tab_activated = async function (e) {
   for (let tab of App.tabs_items) {
     tab.active = false
   }
-  
+
   App.refresh_tab(e.tabId)
 }
 
