@@ -269,7 +269,7 @@ NeedContext.init = function () {
     }
     
     #needcontext-container {
-      z-index: 2
+      z-index: 2;
       position: relative;
       position: absolute;
       background-color: white;
