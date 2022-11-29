@@ -118,7 +118,7 @@ body, html {
   cursor: pointer;
   flex-shrink: 0;
   min-width: 1.5rem;
-  background-color: var(--alt_color);
+  background-color: var(--alt_color_1);
   color: var(--text_color);
   border-width: 0;
   text-align: center;
@@ -205,12 +205,12 @@ body, html {
   gap: 0.8rem;
 }
 
-.selected {
-  background-color: var(--alt_color);
+.active {
+  background-color: var(--alt_color_0);
 }
 
-.active .item_text {
-  text-decoration: underline;
+.selected {
+  background-color: var(--alt_color_1);
 }
 
 .hidden {
@@ -308,7 +308,7 @@ body, html {
 }
 
 .separator {
-  border-top: 1px solid var(--alt_color);
+  border-top: 1px solid var(--alt_color_1);
   width: 14rem;
 }
 
@@ -352,7 +352,7 @@ body, html {
 }
 
 .needcontext-item-selected {
-  background-color: var(--alt_color) !important;
+  background-color: var(--alt_color_1) !important;
 }
 
 #about_container {
@@ -360,7 +360,7 @@ body, html {
 }
 
 #about_shortcuts > div {
-  background-color: var(--alt_color);
+  background-color: var(--alt_color_1);
   padding: 0rem;
   width: 100%;
   padding: 0.5rem;
@@ -405,7 +405,7 @@ a:visited, a:link, a:hover {
   align-items: center;
   justify-content: center;
   background-color: var(--background_color);
-  border: 2px solid var(--alt_color);
+  border: 2px solid var(--alt_color_1);
   color: var(--text_color);
 }
 
@@ -427,7 +427,7 @@ a:visited, a:link, a:hover {
 }
 
 .textarea {
-  background-color: var(--alt_color);
+  background-color: var(--alt_color_1);
   color: var(--text_color);
   font-size: 1rem;
   outline: none;
