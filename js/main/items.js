@@ -937,10 +937,10 @@ App.setup_item_window = function (mode, actions) {
 
         container.addEventListener("dragend", function () {
           App.block_select()
-          
+
           let target = App.get_item_by_id(mode, App.drag_target.dataset.id)
 
-          if (target.pinned && !App.drag_item.pinned) {
+          if ((target.pinned && !App.drag_item.pinned) || (!target.pinned && App.drag_item.pinned)) {
             if (App.drag_prev) {
               App.drag_prev.after(App.drag_element)
             } else if (App.drag_after) {
