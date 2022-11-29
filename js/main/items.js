@@ -551,7 +551,6 @@ App.process_item = function (mode, item, exclude = []) {
 
   if (mode === "tabs") {
     obj.active = item.active
-    obj.highlighted = item.highlighted
     obj.pinned = item.pinned
     obj.audible = item.audible
     obj.muted = item.mutedInfo.muted
@@ -602,10 +601,10 @@ App.create_item_element = function (item) {
     item.element.append(launched)
   }
 
-  if (item.active || item.highlighted) { 
-    item.element.classList.add("active")  
+  if (item.highlighted) { 
+    item.element.classList.add("highlighted")  
   } else {
-    item.element.classList.remove("active")
+    item.element.classList.remove("highlighted")
   }
 
   item.created = true
@@ -950,10 +949,14 @@ App.setup_item_window = function (mode, actions) {
               
               let els = []
 
-              for (let tab of App[`${mode}_items`]) {
-                if (tab.active || tab.highlighted) {
-                  els.push(tab.element)
+              if (App.drag_item.highlighted) {
+                for (let tab of App[`${mode}_items`]) {
+                  if (tab.highlighted) {
+                    els.push(tab.element)
+                  }
                 }
+              } else {
+                els.push(App.drag_element)
               }
 
               if (direction === "down") {

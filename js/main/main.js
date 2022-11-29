@@ -19,8 +19,8 @@ App.init = async function () {
   App.window_id = win.id
 
   await App.stor_get_settings()
-  await App.setup_theme()
-
+  
+  App.setup_theme()
   App.setup_tabs()
   App.setup_stars()
   App.setup_history()

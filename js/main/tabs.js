@@ -181,6 +181,12 @@ App.setup_tabs = function () {
       App.on_tab_activated(e)
     }
   })  
+
+  browser.tabs.onActivated.addListener(function (e) {
+    if (App.window_mode === "tabs") {
+      App.on_tab_activated(e)
+    }
+  })  
   
   browser.tabs.onRemoved.addListener(function (id) {
     if (App.window_mode === "tabs") {
@@ -911,23 +917,33 @@ App.get_load_tab_state_items = function () {
 
 // Update tab index
 App.update_tab_index = async function () {  
-  let target_pinned
+  let pinned, index_first, items
   let highlighted = App.get_highlighted_tabs()
-  let index_first = App.get_item_element_index("tabs", highlighted[0].element)
-  
-  if (App.drag_start_index > index_first) {
-    let index_last = App.get_item_element_index("tabs", highlighted[highlighted.length - 1].element)
-    target_pinned = App.tabs_items[index_last].pinned
+  let item = App.get_item_by_id("tabs", parseInt(App.drag_element.dataset.id))
+
+  if (item.highlighted) {
+    index_first = App.get_item_element_index("tabs", highlighted[0].element)
+    items = highlighted
   } else {
-    target_pinned = App.tabs_items[index_first].pinned
+    index_first = App.get_item_element_index("tabs", App.drag_element)
+    items = [item]
   }
 
-  if (App.drag_start_index < index_first) {
-    highlighted.reverse()
-  }
+  if (App.drag_start_index > index_first) {
+    let index_last = App.get_item_element_index("tabs", items[items.length - 1].element)
+    pinned = App.tabs_items[index_last].pinned
+  } else {
+    pinned = App.tabs_items[index_first].pinned
+  }  
 
-  for (let tab of highlighted) {
-    if (target_pinned) {
+  // if (App.drag_start_index < index_first) {
+  //   highlighted.reverse()
+  // }
+
+  let index = index_first
+
+  for (let tab of items) {
+    if (pinned) {
       if (!tab.pinned) {
         await App.pin_tab(tab.id)
       }
@@ -936,9 +952,9 @@ App.update_tab_index = async function () {
         await App.unpin_tab(tab.id)
       }
     }
-    
-    let index = App.get_item_element_index("tabs", tab.element)
+
     await App.do_move_tab_index(tab.id, index)
+    index += 1
   }
 }
 
@@ -957,21 +973,23 @@ App.show_recent_tabs = function () {
 // Highlight a tab
 App.highlight_tab = async function (tab) {
   if (tab.highlighted) {
-    await browser.tabs.update(tab.id, {highlighted: false})
+    tab.element.classList.remove("highlighted")
   } else {
-    await browser.tabs.update(tab.id, {highlighted: true})
+    tab.element.classList.add("highlighted")
   }
+
+  tab.highlighted = !tab.highlighted
 }
 
 // On tab activated
 App.on_tab_activated = async function (e) {
-  let tabs = await browser.tabs.query({highlighted: true}) 
+  let highlighted = await browser.tabs.query({highlighted: true, active: true}) 
 
   for (let item of App.tabs_items) {
     if (item.active) {
       let matched = false
 
-      for (let tab of tabs) {
+      for (let tab of highlighted) {
         if (tab.id === item.id) {
           matched = true
           break
@@ -980,15 +998,17 @@ App.on_tab_activated = async function (e) {
 
       if (!matched) {
         item.active = false
+        item.highlighted = false
         App.refresh_tab(item.id)
       }
     }
   }
 
-  for (let tab of tabs) {
+  for (let tab of highlighted) {
     for (let item of App.tabs_items) {
       if (tab.id === item.id) {
-        item.active = true
+        item.active = tab.active
+        item.highlighted = tab.highlighted
         App.refresh_tab(item.id)
         break
       }
@@ -1015,7 +1035,7 @@ App.get_highlighted_tabs = function () {
   let ans = []
 
   for (let tab of App.tabs_items) {
-    if (tab.active || tab.highlighted) {
+    if (tab.highlighted) {
       ans.push(tab)
     }
   }
