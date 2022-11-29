@@ -925,8 +925,6 @@ App.setup_item_window = function (mode, actions) {
           
           App.drag_y = e.clientY
           App.drag_element = e.target.closest(".item")
-          App.drag_prev = App.drag_element.previousElementSibling
-          App.drag_after = App.drag_element.nextElementSibling
           let id = App.drag_element.dataset.id
           App.drag_item = App.get_item_by_id(mode, id)
           App.drag_start_index = App.get_item_element_index(mode, App.drag_element)
@@ -936,19 +934,14 @@ App.setup_item_window = function (mode, actions) {
         })
 
         container.addEventListener("dragend", function () {
-          App.block_select()
           let target = App.get_item_by_id(mode, App.drag_target.dataset.id)
-
+          
           if ((target.pinned && !App.drag_item.pinned) || (!target.pinned && App.drag_item.pinned)) {
-            if (App.drag_prev) {
-              App.drag_prev.after(App.drag_element)
-            } else if (App.drag_after) {
-              App.drag_after.before(App.drag_element)
-            }
-
+            App.show_item_window("tabs")
             return
           }
-
+          
+          App.block_select()
           App.update_tab_index()
         })
 
