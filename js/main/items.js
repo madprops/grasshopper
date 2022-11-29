@@ -930,15 +930,41 @@ App.setup_item_window = function (mode, actions) {
           App.drag_start_index = App.get_item_element_index(mode, App.drag_element)
           e.dataTransfer.setDragImage(new Image(), 0, 0)
           e.dataTransfer.setData("text/plain", App.drag_item.url)
+
+          App.drag_els = []
+
+          if (App.drag_item.highlighted) {
+            for (let tab of App[`${mode}_items`]) {
+              if (tab.highlighted) {
+                App.drag_els.push(tab.element)
+              }
+            }
+          } else {
+            App.drag_els.push(App.drag_element)
+          }
+
           App.select_item(App.drag_item)
         })
 
         container.addEventListener("dragend", function () {
           let target = App.get_item_by_id(mode, App.drag_target.dataset.id)
-          
-          if ((target.pinned && !App.drag_item.pinned) || (!target.pinned && App.drag_item.pinned)) {
-            App.show_item_window("tabs")
-            return
+
+          if (target.pinned) {
+            for (let el of App.drag_els) {
+              if (!App.get_item_by_id(mode, el.dataset.id).pinned) {
+                App.show_item_window("tabs")
+                return
+              }
+            }
+          }
+
+          if (!target.pinned) {
+            for (let el of App.drag_els) {
+              if (App.get_item_by_id(mode, el.dataset.id).pinned) {
+                App.show_item_window("tabs")
+                return
+              }
+            }
           }
           
           App.block_select()
@@ -954,22 +980,10 @@ App.setup_item_window = function (mode, actions) {
             if (el !== App.drag_element) {
               App.drag_target = el
               
-              let els = []
-
-              if (App.drag_item.highlighted) {
-                for (let tab of App[`${mode}_items`]) {
-                  if (tab.highlighted) {
-                    els.push(tab.element)
-                  }
-                }
-              } else {
-                els.push(App.drag_element)
-              }
-
               if (direction === "down") {
-                App.drag_target.after(...els)
+                App.drag_target.after(...App.drag_els)
               } else {
-                App.drag_target.before(...els)
+                App.drag_target.before(...App.drag_els)
               }
 
               App.select_item(App.drag_item)
