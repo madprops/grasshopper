@@ -94,8 +94,12 @@ NeedContext.show = function (x, y, items) {
         selected_index = index
       }
   
-      el.addEventListener("mouseenter", function () {
-        NeedContext.select_item(parseInt(el.dataset.index))
+      el.addEventListener("mousemove", function () {
+        let index = parseInt(el.dataset.index)
+        
+        if (NeedContext.index !== index) {
+          NeedContext.select_item(index)
+        }
       })
 
       index += 1
