@@ -201,8 +201,8 @@ App.setup_settings = function () {
     App.settings_make_menu("text_mode", [["Title", "title"], ["URL", "url"]])
     App.settings_make_menu("font", [
       ["Sans", "gh_sans"], 
-      ["Serif", "serif"],
-      ["Mono", "monospace"],
+      ["Serif", "gh_serif"],
+      ["Mono", "gh_mono"],
       ["Comic", "gh_comic"],
       ["Cursive", "gh_cursive"],
     ], function () {

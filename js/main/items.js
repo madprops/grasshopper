@@ -846,7 +846,7 @@ App.setup_item_window = function (mode, actions) {
     let filter = App.create("input", "text filter", `${mode}_filter`)
     filter.type = "text"
     filter.autocomplete = "off"
-    filter.placeholder = "Type to filter..."
+    filter.placeholder = "Type to filter"
 
     App.ev(filter, "input", function () {
       item_filter()

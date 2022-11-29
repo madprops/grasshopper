@@ -11,6 +11,16 @@
 }
 
 @font-face {
+	font-family: gh_serif;
+	src: url(RobotoSerif-Regular.ttf);
+}
+
+@font-face {
+	font-family: gh_mono;
+	src: url(RobotoMono-Regular.ttf);
+}
+
+@font-face {
 	font-family: gh_comic;
 	src: url(ComicNeue-Regular.ttf);
 }
