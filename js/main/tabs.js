@@ -910,41 +910,10 @@ App.get_load_tab_state_items = function () {
 }
 
 // Update tab index
-App.update_tab_index = async function () {  
-  let pinned, index_first, items
-  let highlighted = App.get_highlighted_tabs()
-  let item = App.get_item_by_id("tabs", parseInt(App.drag_element.dataset.id))
-
-  if (item.highlighted) {
-    index_first = App.get_item_element_index("tabs", highlighted[0].element)
-    items = highlighted
-  } else {
-    index_first = App.get_item_element_index("tabs", App.drag_element)
-    items = [item]
-  }
-
-  if (App.drag_start_index > index_first) {
-    let index_last = App.get_item_element_index("tabs", items[items.length - 1].element)
-    pinned = App.tabs_items[index_last].pinned
-  } else {
-    pinned = App.tabs_items[index_first].pinned
-  }
-
-  for (let tab of items) {
-    if (pinned) {
-      if (!tab.pinned) {
-        await App.pin_tab(tab.id)
-      }
-    } else {
-      if (App.pinned) {
-        await App.unpin_tab(tab.id)
-      }
-    }
-  }
-
-  for (let tab of App.tabs_items.slice(0)) {
-    let index = App.get_item_element_index("tabs", tab.element)
-    await App.do_move_tab_index(tab.id, index)
+App.update_tab_index = async function () {
+  for (let el of App.els(".tabs_item")) {
+    let index = App.get_item_element_index("tabs", el)
+    await App.do_move_tab_index(parseInt(el.dataset.id), index)
   }
 }
 
