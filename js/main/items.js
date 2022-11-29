@@ -551,6 +551,7 @@ App.process_item = function (mode, item, exclude = []) {
 
   if (mode === "tabs") {
     obj.active = item.active
+    obj.highlighted = item.highlighted
     obj.pinned = item.pinned
     obj.audible = item.audible
     obj.muted = item.mutedInfo.muted
@@ -601,13 +602,11 @@ App.create_item_element = function (item) {
     item.element.append(launched)
   }
 
-  if (item.active) {
-    for (let el of App.els(`.${item.mode}_item`)) {
-      el.classList.remove("active")
-    }
-
+  if (item.active || item.highlighted) { 
     item.element.classList.add("active")  
-  }  
+  } else {
+    item.element.classList.remove("active")
+  }
 
   item.created = true
   console.info(`Item created in ${item.mode}`)
@@ -936,8 +935,7 @@ App.setup_item_window = function (mode, actions) {
 
         container.addEventListener("dragend", function () {
           App.block_select()
-          let new_index = App.get_item_element_index(mode, App.drag_element)
-          App.update_tab_index(App.drag_element, new_index)
+          App.update_tab_index()
         })
 
         container.addEventListener("dragover", function (e) {
@@ -948,11 +946,19 @@ App.setup_item_window = function (mode, actions) {
             
             if (App.drag_target !== item) {
               App.drag_target = item
+              
+              let els = []
+
+              for (let tab of App[`${mode}_items`]) {
+                if (tab.active || tab.highlighted) {
+                  els.push(tab.element)
+                }
+              }
 
               if (direction === "down") {
-                App.drag_element.before(App.drag_target)
+                App.drag_target.after(...els)
               } else {
-                App.drag_target.before(App.drag_element)
+                App.drag_target.before(...els)
               }
 
               App.select_item(App.drag_item)

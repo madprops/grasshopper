@@ -178,11 +178,7 @@ App.setup_tabs = function () {
   
   browser.tabs.onActivated.addListener(function (e) {
     if (App.window_mode === "tabs") {
-      for (let tab of App.tabs_items) {
-        tab.active = false
-      }
-
-      App.refresh_tab(e.tabId)
+      App.on_tab_activated(e)
     }
   })  
   
@@ -342,12 +338,16 @@ App.remove_closed_tab = function (id) {
 }
 
 // Tabs action
-App.tabs_action = function (item) {
-  App.focus_tab(item)
+App.tabs_action = function (item, shift_key = false) {
+  if (shift_key) {
+    App.highlight_tab(item)
+  } else {
+    App.focus_tab(item)
+  }
 }
 
 // Tabs action alt
-App.tabs_action_alt = function (item, shift_key) {
+App.tabs_action_alt = function (item, shift_key = false) {
   App.check_tab_close(item, shift_key)
 }
 
@@ -910,25 +910,20 @@ App.get_load_tab_state_items = function () {
 }
 
 // Update tab index
-App.update_tab_index = async function (el, to_index) {  
-  let id = parseInt(el.dataset.id)
-  let item = App.get_item_by_id("tabs", id)
+App.update_tab_index = async function () {  
+  let to_index = App.get_item_element_index("tabs", App.selected_tabs_item.element)
   let target_pinned = App.tabs_items[to_index].pinned
   
-  if (item.pinned) {
-    if (!target_pinned) {
-      await App.unpin_tab(id)
-    }    
-  } else {
-    if (target_pinned) {
-      await App.pin_tab(id)
-    }    
-  }
-
-  let ans = await App.do_move_tab_index(id, to_index)
-  
-  if (ans.length === 0) {
-    App.show_item_window("tabs")
+  for (let tab of App.tabs_items) {
+    if (tab.active || tab.highlighted) {
+      if (target_pinned) {
+        await App.pin_tab(tab.id)
+      } else {
+        await App.unpin_tab(tab.id)
+      }
+      
+      await App.do_move_tab_index(tab.id, App.get_item_element_index("tabs", tab.element))
+    }
   }
 }
 
@@ -942,4 +937,60 @@ App.do_move_tab_index = async function (id, index) {
 App.show_recent_tabs = function () {
   App.tab_sort_mode = "access"
   App.show_item_window("tabs")
+}
+
+// Highlight a tab
+App.highlight_tab = async function (tab) {
+  if (tab.highlighted) {
+    await browser.tabs.update(tab.id, {highlighted: false})
+  } else {
+    await browser.tabs.update(tab.id, {highlighted: true})
+  }
+}
+
+// On tab activated
+App.on_tab_activated = async function (e) {
+  let tabs = await browser.tabs.query({highlighted: true}) 
+
+  for (let item of App.tabs_items) {
+    if (item.active) {
+      let matched = false
+
+      for (let tab of tabs) {
+        if (tab.id === item.id) {
+          matched = true
+          break
+        }
+      }
+
+      if (!matched) {
+        item.active = false
+        App.refresh_tab(item.id)
+      }
+    }
+  }
+
+  for (let tab of tabs) {
+    for (let item of App.tabs_items) {
+      if (tab.id === item.id) {
+        item.active = true
+        App.refresh_tab(item.id)
+        break
+      }
+    }
+  }
+
+  let exists = false
+
+  for (let tab of App.tabs_items) {
+    if (tab.id === e.tabId) {
+      exists = true
+      break
+    }
+  }
+
+  if (!exists) {
+    App.refresh_tab(e.tabId)
+    return
+  }
 }
