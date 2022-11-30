@@ -205,6 +205,7 @@ App.setup_settings = function () {
       ["Mono", "gh_mono"],
       ["Comic", "gh_comic"],
       ["Cursive", "gh_cursive"],
+      ["Funone", "gh_funone"],
     ], function () {
       App.apply_theme()
     })

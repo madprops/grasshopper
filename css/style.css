@@ -30,6 +30,11 @@
 	src: url(DancingScript-Regular.ttf);
 }
 
+@font-face {
+	font-family: gh_funone;
+	src: url(NerkoOne-Regular.ttf);
+}
+
 body, html {
   font-family: var(--font), sans-serif;
   font-size: var(--text_size);
