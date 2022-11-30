@@ -967,7 +967,7 @@ App.setup_item_window = function (mode, actions) {
           }
 
           App.block_select()
-          App.dehighlight()
+          App.dehighlight(mode)
           App.update_tab_index()
         })
 
