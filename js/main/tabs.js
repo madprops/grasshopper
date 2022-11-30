@@ -340,7 +340,9 @@ App.remove_closed_tab = function (id) {
 // Tabs action
 App.tabs_action = function (item, shift_key = false) {
   if (shift_key) {
-    App.toggle_highlight_tab(item)
+    if (App.tab_sort_mode === "index") {
+      App.toggle_highlight_tab(item)
+    }
   } else {
     App.focus_tab(item)
   }

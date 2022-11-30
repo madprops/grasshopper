@@ -1382,3 +1382,18 @@ App.move_item_element = function (mode, el, to_index) {
     }
   }
 }
+
+// Highlight a range of items
+App.highlight_range = function (item) {
+  if (item.mode === "tabs" && App.tab_sort_mode !== "index") {
+    return
+  }
+
+  if (App.selection_mouse_down) {
+    if (App.selection_mode === undefined) {
+      App.selection_mode = !item.highlighted
+    }
+
+    App.toggle_highlight_tab(item, App.selection_mode)
+  }
+}

@@ -9,15 +9,7 @@ App.setup_window_mouse = function (mode) {
       }
 
       let item = App.get_cursor_item(mode, e)
-      
-      if (App.selection_mouse_down) {
-        if (App.selection_mode === undefined) {
-          App.selection_mode = !item.highlighted
-        }
-  
-        App.toggle_highlight_tab(item, App.selection_mode)
-      }      
-
+      App.highlight_range(item)
       App.select_item(item)
     }
   })  
