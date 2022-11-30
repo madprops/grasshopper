@@ -931,61 +931,63 @@ App.setup_item_window = function (mode, actions) {
           e.dataTransfer.setDragImage(new Image(), 0, 0)
           e.dataTransfer.setData("text/plain", App.drag_item.url)
 
-          App.drag_els = []
+          App.drag_items = []
 
           if (App.drag_item.highlighted) {
             for (let tab of App[`${mode}_items`]) {
               if (tab.highlighted) {
-                App.drag_els.push(tab.element)
+                App.drag_items.push(tab)
               }
             }
           } else {
-            App.drag_els.push(App.drag_element)
+            App.drag_items.push(App.drag_item)
+          }
+
+          App.drag_els = []
+
+          for (let tab of App.drag_items) {
+            App.drag_els.push(tab.element)
           }
 
           App.select_item(App.drag_item)
         })
 
         container.addEventListener("dragend", function () {
-          App.dehighlight_tabs()
-          let target = App.get_item_by_id(mode, App.drag_target.dataset.id)
-
-          for (let el of App.drag_els) {
-            let item = App.get_item_by_id(mode, el.dataset.id)
-
-            if ((target.pinned && !item.pinned) || (!target.pinned && item.pinned)) {
-              App.show_item_window("tabs")
-              return
-            }
-          }
-          
           App.block_select()
+          App.dehighlight_tabs()
           App.update_tab_index()
         })
 
         container.addEventListener("dragover", function (e) {
           let direction = e.clientY > App.drag_y ? "down" : "up"
+          App.drag_y = e.clientY
           
           if (e.target.closest(".item")) {
             let el = e.target.closest(".item")
 
             if (App.drag_els.includes(el)) {
               e.preventDefault()
-              return
+              return false
             }
-            
-            App.drag_target = el
-            
+
+            let target = App.get_item_by_id(mode, el.dataset.id)
+
+            for (let item of App.drag_items) {
+              if ((target.pinned && !item.pinned) || (!target.pinned && item.pinned)) {
+                e.preventDefault()
+                return false
+              }
+            }
+
             if (direction === "down") {
-              App.drag_target.after(...App.drag_els)
+              el.after(...App.drag_els)
             } else {
-              App.drag_target.before(...App.drag_els)
+              el.before(...App.drag_els)
             }
 
             App.select_item(App.drag_item)
           }
 
-          App.drag_y = e.clientY
           e.preventDefault()
           return false
         })
