@@ -1009,7 +1009,7 @@ App.setup_item_window = function (mode, actions) {
     }
 
     if (mode === "tabs") {
-      
+
     }
   }
 
