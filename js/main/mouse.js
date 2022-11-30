@@ -9,22 +9,19 @@ App.setup_window_mouse = function (mode) {
       }
 
       let item = App.get_cursor_item(mode, e)
-      App.select_item(item)
-    }
-  })  
-  
-  App.ev(container, "mouseover", function (e) {
-    if (e.target.closest(`.${mode}_item`)) {
+      
       if (App.selection_mouse_down) {
-        let item = App.get_cursor_item(mode, e)
+        
         if (App.selection_mode === undefined) {
           App.selection_mode = !item.highlighted
         }
   
         App.toggle_highlight_tab(item, App.selection_mode)
-      }
+      }      
+
+      App.select_item(item)
     }
-  })
+  })  
 
   App.ev(container, "click", function (e) {
     if (e.target.closest(`.${mode}_item`)) {
