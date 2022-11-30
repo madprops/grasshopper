@@ -1459,17 +1459,26 @@ App.item_in_action = function (highlights, item) {
 
 // Launch highlighted items
 App.launch_items = function (mode) {
+  let items
   let highlights = App.get_highlights(mode)
 
   if (highlights.length === 0) {
-    App.show_alert("Highlight items to launch with Shift + Click")
-    return
+    let filter = App.el(`#${mode}_filter`).value.trim()
+
+    if (!filter) {
+      App.show_alert("No items highlighted or filtered")
+      return
+    } else {
+      items = App[`${mode}_items`].filter(x => x.visible)
+    }
+  } else {
+    items = highlights
   }
 
-  let s = App.plural(highlights.length, "items", "item")
+  let s = App.plural(items.length, "items", "item")
   
   App.show_confirm(`Launch ${s}?`, function () {
-    for (let item of highlights) {
+    for (let item of items) {
       App.open_tab(item.url, false)
       App.show_launched(item)
     }
