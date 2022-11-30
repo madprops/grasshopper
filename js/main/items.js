@@ -1475,7 +1475,7 @@ App.launch_items = function (mode) {
     items = highlights
   }
 
-  let s = App.plural(items.length, "items", "item")
+  let s = App.plural(items.length, "item", "items")
   
   App.show_confirm(`Launch ${s}?`, function () {
     for (let item of items) {
