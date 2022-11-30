@@ -546,7 +546,8 @@ App.process_item = function (mode, item, exclude = []) {
     closed: false,
     window_id: item.windowId,
     session_id: item.sessionId,
-    visible: true
+    visible: true,
+    highlighted: false
   }
 
   if (mode === "tabs") {
@@ -918,7 +919,7 @@ App.setup_item_window = function (mode, actions) {
             return false
           }
 
-          if (App.settings.lock_drag && !e.shiftKey) {
+          if (App.settings.lock_drag && !e.ctrlKey) {
             e.preventDefault()
             return
           }
@@ -949,10 +950,15 @@ App.setup_item_window = function (mode, actions) {
             App.drag_els.push(tab.element)
           }
 
+          App.drag_moved = false
           App.select_item(App.drag_item)
         })
 
         container.addEventListener("dragend", function () {
+          if (!App.drag_moved) {
+            return
+          }
+
           App.block_select()
           App.dehighlight_tabs()
           App.update_tab_index()
@@ -985,6 +991,7 @@ App.setup_item_window = function (mode, actions) {
               el.before(...App.drag_els)
             }
 
+            App.drag_moved = true
             App.select_item(App.drag_item)
           }
 
@@ -995,7 +1002,50 @@ App.setup_item_window = function (mode, actions) {
 
       top.append(menu)
     }
+
+    if (mode === "tabs") {
+      let selection = new SelectionArea({
+        container: container,
+        selectables: [".item"],
+        behaviour: {
+          startThreshold: 50,
+        },
+        features: {
+          singleTap: {
+            allow: false
+          }
+        }
+      })
+  
+      selection.on('beforestart', function (e) {
+        if (!e.event.shiftKey) {
+          return false
+        }
+      }).on("stop", function (e) {
+        if (e.store.selected.length === 0) {
+          return
+        }
+
+        let first_item = App.get_item_by_id(mode, parseInt(e.store.selected[0].dataset.id))
+        let highlight = !first_item.highlighted        
+
+        for (let tab of App.get_highlighted_tabs()) {
+          App.toggle_highlight_tab(tab, false)
+        }        
+
+        for (let el of e.store.selected) {
+          let item = App.get_item_by_id(mode, parseInt(el.dataset.id))
+
+          if (highlight) {
+            App.toggle_highlight_tab(item, true)
+          } else {
+            App.toggle_highlight_tab(item, false)
+          }
+        }
+      })
+    }
   }
+
 
   App.create_window(args)
 }

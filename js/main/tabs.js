@@ -930,14 +930,22 @@ App.show_recent_tabs = function () {
 }
 
 // Highlight a tab
-App.toggle_highlight_tab = async function (tab) {
-  if (tab.highlighted) {
-    tab.element.classList.remove("highlighted")
+App.toggle_highlight_tab = async function (tab, what) {
+  let highlight
+
+  if (what !== undefined) {
+    highlight = what
   } else {
-    tab.element.classList.add("highlighted")
+    highlight = !tab.highlighted
   }
 
-  tab.highlighted = !tab.highlighted
+  if (highlight) {
+    tab.element.classList.add("highlighted")
+  } else {
+    tab.element.classList.remove("highlighted")
+  }
+
+  tab.highlighted = highlight
 }
 
 // On tab activated

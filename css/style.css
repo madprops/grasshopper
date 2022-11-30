@@ -459,3 +459,9 @@ input::placeholder {
   color: var(--text_color);
   opacity: 0.77;
 }
+
+.selection-area {
+  background: rgba(46, 115, 252, 0.11);
+  border: 2px solid rgba(98, 155, 255, 0.81);
+  border-radius: 0.1em;
+}
