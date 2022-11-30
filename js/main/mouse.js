@@ -11,7 +11,6 @@ App.setup_window_mouse = function (mode) {
       let item = App.get_cursor_item(mode, e)
       
       if (App.selection_mouse_down) {
-        
         if (App.selection_mode === undefined) {
           App.selection_mode = !item.highlighted
         }
