@@ -394,12 +394,23 @@ App.suspend_tab = async function (tab) {
 // Pin tabs
 App.pin_all_tabs = function () {
   let ids = []
+  let highlights = App.get_highlights("tabs")
 
   for (let tab of App.tabs_items) {
-    if (!tab.visible || tab.pinned) {
+    if (highlights.length > 0) {
+      if (!highlights.includes(tab)) {
+        continue
+      }
+    } else {
+      if (!tab.visible) {
+        continue
+      }
+    }
+
+    if (tab.pinned) {
       continue
     }
-    
+
     ids.push(tab.id)
   }
 
@@ -419,9 +430,20 @@ App.pin_all_tabs = function () {
 // Unpin tabs
 App.unpin_all_tabs = function () {
   let ids = []
+  let highlights = App.get_highlights("tabs")
 
   for (let tab of App.tabs_items) {
-    if (!tab.visible || !tab.pinned) {
+    if (highlights.length > 0) {
+      if (!highlights.includes(tab)) {
+        continue
+      }
+    } else {
+      if (!tab.visible) {
+        continue
+      }
+    }
+
+    if (!tab.pinned) {
       continue
     }
     
@@ -442,22 +464,37 @@ App.unpin_all_tabs = function () {
 }
 
 // Suspend normal tabs
-App.suspend_tabs = function (type) {
+App.suspend_tabs = function (include, exclude) {
   let tabs = []
+  let highlights = App.get_highlights("tabs")
 
   for (let tab of App.tabs_items) {
-    if (!tab.visible || !App.is_http(tab)) {
+    if (highlights.length > 0) {
+      if (!highlights.includes(tab)) {
+        continue
+      }
+    } else {
+      if (!tab.visible) {
+        continue
+      }
+    }
+
+    if (!App.is_http(tab)) {
       continue
     }
 
-    if (type === "normal") {
-      if (!App.tab_is_normal(tab)) {
+    if (include) {
+      if (include === "normal") {
+        if (!App.tab_is_normal(tab)) {
+          continue
+        }
+      } else if (!tab[include]) {
         continue
       }
-    } else if (type === "pinned") {
-      if (!tab.pinned) {
-        continue
-      }
+    }
+
+    if (exclude && tab[exclude]) {
+      continue
     }
     
     tabs.push(tab)
@@ -479,10 +516,17 @@ App.suspend_tabs = function (type) {
 // Close tabs
 App.close_tabs = function (include, exclude) {
   let ids = []
+  let highlights = App.get_highlights("tabs")
 
   for (let tab of App.tabs_items) {
-    if (!tab.visible) {
-      continue
+    if (highlights.length > 0) {
+      if (!highlights.includes(tab)) {
+        continue
+      }
+    } else {
+      if (!tab.visible) {
+        continue
+      }
     }
 
     if (include) {
@@ -938,17 +982,4 @@ App.on_tab_activated = async function (e) {
   }
 
   App.refresh_tab(e.tabId)
-}
-
-// Get highlighted tabs
-App.get_highlighted_tabs = function () {
-  let ans = []
-
-  for (let tab of App.tabs_items) {
-    if (tab.highlighted) {
-      ans.push(tab)
-    }
-  }
-
-  return ans
 }

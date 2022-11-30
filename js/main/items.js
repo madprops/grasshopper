@@ -242,7 +242,7 @@ App.do_item_filter = async function (mode) {
   }
 
   App.dehighlight(mode)
-  
+
   let filter_mode = App[`${mode}_filter_mode`]
   let skip = !value && filter_mode === "all"
   let words, filter_words
@@ -1426,4 +1426,17 @@ App.toggle_highlight = async function (item, what) {
   }
 
   item.highlighted = highlight
+}
+
+// Get highlighted items
+App.get_highlights = function (mode) {
+  let ans = []
+
+  for (let item of App[`${mode}_items`]) {
+    if (item.highlighted) {
+      ans.push(item)
+    }
+  }
+
+  return ans
 }
