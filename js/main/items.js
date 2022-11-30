@@ -947,6 +947,7 @@ App.setup_item_window = function (mode, actions) {
         })
 
         container.addEventListener("dragend", function () {
+          App.dehighlight_tabs()
           let target = App.get_item_by_id(mode, App.drag_target.dataset.id)
 
           for (let el of App.drag_els) {

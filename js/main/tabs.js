@@ -340,7 +340,7 @@ App.remove_closed_tab = function (id) {
 // Tabs action
 App.tabs_action = function (item, shift_key = false) {
   if (shift_key) {
-    App.highlight_tab(item)
+    App.toggle_highlight_tab(item)
   } else {
     App.focus_tab(item)
   }
@@ -930,7 +930,7 @@ App.show_recent_tabs = function () {
 }
 
 // Highlight a tab
-App.highlight_tab = async function (tab) {
+App.toggle_highlight_tab = async function (tab) {
   if (tab.highlighted) {
     tab.element.classList.remove("highlighted")
   } else {
@@ -960,4 +960,13 @@ App.get_highlighted_tabs = function () {
   }
 
   return ans
+}
+
+// Dehighlight all tabs
+App.dehighlight_tabs = function () {
+  for (let tab of App.tabs_items) {
+    if (tab.highlighted) {
+      App.toggle_highlight_tab(tab)
+    }
+  }
 }
