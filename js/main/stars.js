@@ -259,10 +259,17 @@ App.update_star_editor_info = function () {
 // Unstar multiple stars
 App.unstar_stars = function () {
   let ids = []
+  let highlights = App.get_highlights("stars")
 
   for (let star of App.stars_items) {
-    if (!star.visible) {
-      continue
+    if (highlights.length > 0) {
+      if (!highlights.includes(star)) {
+        continue
+      }
+    } else {
+      if (!star.visible) {
+        continue
+      }
     }
     
     ids.push(star.id)

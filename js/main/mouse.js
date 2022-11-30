@@ -23,7 +23,9 @@ App.setup_window_mouse = function (mode) {
           App.toggle_pin(item)
         }
       } else {
-        App[`${mode}_action`](item, e.shiftKey)
+        if (!e.shiftKey) {
+          App[`${mode}_action`](item)
+        }
       }
     }
   })

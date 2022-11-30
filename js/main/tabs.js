@@ -338,12 +338,8 @@ App.remove_closed_tab = function (id) {
 }
 
 // Tabs action
-App.tabs_action = function (item, shift_key = false) {
-  if (shift_key) {
-    //
-  } else {
-    App.focus_tab(item)
-  }
+App.tabs_action = function (item) {
+  App.focus_tab(item)
 }
 
 // Tabs action alt
