@@ -1462,6 +1462,7 @@ App.launch_items = function (mode) {
   let highlights = App.get_highlights(mode)
 
   if (highlights.length === 0) {
+    App.show_alert("Highlight items to launch with Shift + Click")
     return
   }
 
