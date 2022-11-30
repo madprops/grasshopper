@@ -11,6 +11,7 @@ App.history_max_results = 600
 App.history_max_months = 12
 App.star_counter = 0
 App.tab_sort_mode = "index"
+App.selection_moved_min = 5
 
 NeedContext.min_width = "4.5rem"
 
