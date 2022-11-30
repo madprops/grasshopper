@@ -21,7 +21,6 @@ App.setup_window_mouse = function (mode) {
           App.selection_mode = !item.highlighted
         }
   
-        console.log(1)
         App.toggle_highlight_tab(item, App.selection_mode)
       }
     }
