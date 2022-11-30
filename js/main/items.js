@@ -241,6 +241,8 @@ App.do_item_filter = async function (mode) {
     return
   }
 
+  App.dehighlight(mode)
+  
   let filter_mode = App[`${mode}_filter_mode`]
   let skip = !value && filter_mode === "all"
   let words, filter_words
@@ -965,7 +967,7 @@ App.setup_item_window = function (mode, actions) {
           }
 
           App.block_select()
-          App.dehighlight_tabs()
+          App.dehighlight()
           App.update_tab_index()
         })
 
@@ -1394,6 +1396,34 @@ App.highlight_range = function (item) {
       App.selection_mode = !item.highlighted
     }
 
-    App.toggle_highlight_tab(item, App.selection_mode)
+    App.toggle_highlight(item, App.selection_mode)
   }
+}
+
+// Dehighlight items
+App.dehighlight = function (mode) {
+  for (let item of App[`${mode}_items`]) {
+    if (item.highlighted) {
+      App.toggle_highlight(item)
+    }
+  }
+}
+
+// Highlight or dehighlight an item
+App.toggle_highlight = async function (item, what) {
+  let highlight
+
+  if (what !== undefined) {
+    highlight = what
+  } else {
+    highlight = !item.highlighted
+  }
+
+  if (highlight) {
+    item.element.classList.add("highlighted")
+  } else {
+    item.element.classList.remove("highlighted")
+  }
+
+  item.highlighted = highlight
 }
