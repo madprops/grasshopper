@@ -8,7 +8,7 @@ App.setup_window_mouse = function (mode) {
         return
       }
 
-      let item = App.get_cursor_item(mode, e  )
+      let item = App.get_cursor_item(mode, e)
       App.highlight_range(item)
       App.select_item(item)
     }
@@ -32,6 +32,11 @@ App.setup_window_mouse = function (mode) {
     if (e.shiftKey) {
       App.selection_mouse_down = true
       App.selection_moved = 0
+
+      if (e.target.closest(`.${mode}_item`)) {
+        let item = App.get_cursor_item(mode, e)
+        App.highlight_range(item)
+      }
     }
   }) 
 

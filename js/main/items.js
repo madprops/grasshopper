@@ -1395,15 +1395,11 @@ App.highlight_range = function (item) {
     return
   }
 
-  App.selection_moved += 1
-
-  if (App.selection_moved >= App.selection_moved_min) {
-    if (App.selection_mode === undefined) {
-      App.selection_mode = !item.highlighted
-    }
-
-    App.toggle_highlight(item, App.selection_mode)
+  if (App.selection_mode === undefined) {
+    App.selection_mode = !item.highlighted
   }
+
+  App.toggle_highlight(item, App.selection_mode)
 }
 
 // Dehighlight items
