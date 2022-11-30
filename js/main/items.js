@@ -919,6 +919,11 @@ App.setup_item_window = function (mode, actions) {
             return false
           }
 
+          if (e.shiftKey) {
+            e.preventDefault()
+            return
+          }
+
           if (App.settings.lock_drag && !e.ctrlKey) {
             e.preventDefault()
             return
