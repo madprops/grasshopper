@@ -35,6 +35,12 @@
 	src: url(NerkoOne-Regular.ttf);
 }
 
+@keyframes rotate {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
 body, html {
   font-family: var(--font), sans-serif;
   font-size: var(--text_size);
@@ -222,6 +228,10 @@ body, html {
 
 .highlighted {
   opacity: 0.66;
+}
+
+.highlighted .item_icon {
+  animation: rotate 1s linear infinite;
 }
 
 .selected {
