@@ -391,14 +391,8 @@ App.pin_all_tabs = function () {
   let highlights = App.get_highlights("tabs")
 
   for (let tab of App.tabs_items) {
-    if (highlights.length > 0) {
-      if (!highlights.includes(tab)) {
-        continue
-      }
-    } else {
-      if (!tab.visible) {
-        continue
-      }
+    if (!App.item_in_action(highlights, tab)) {
+      continue
     }
 
     if (tab.pinned) {
@@ -427,14 +421,8 @@ App.unpin_all_tabs = function () {
   let highlights = App.get_highlights("tabs")
 
   for (let tab of App.tabs_items) {
-    if (highlights.length > 0) {
-      if (!highlights.includes(tab)) {
-        continue
-      }
-    } else {
-      if (!tab.visible) {
-        continue
-      }
+    if (!App.item_in_action(highlights, tab)) {
+      continue
     }
 
     if (!tab.pinned) {
@@ -463,14 +451,8 @@ App.suspend_tabs = function (include, exclude) {
   let highlights = App.get_highlights("tabs")
 
   for (let tab of App.tabs_items) {
-    if (highlights.length > 0) {
-      if (!highlights.includes(tab)) {
-        continue
-      }
-    } else {
-      if (!tab.visible) {
-        continue
-      }
+    if (!App.item_in_action(highlights, tab)) {
+      continue
     }
 
     if (!App.is_http(tab)) {
@@ -513,14 +495,8 @@ App.close_tabs = function (include, exclude) {
   let highlights = App.get_highlights("tabs")
 
   for (let tab of App.tabs_items) {
-    if (highlights.length > 0) {
-      if (!highlights.includes(tab)) {
-        continue
-      }
-    } else {
-      if (!tab.visible) {
-        continue
-      }
+    if (!App.item_in_action(highlights, tab)) {
+      continue
     }
 
     if (include) {
@@ -832,9 +808,10 @@ App.backup_tabs = function () {
 // Star tabs
 App.star_tabs = async function (type) {
   let tabs = []
+  let highlights = App.get_highlights("tabs")
 
   for (let tab of App.tabs_items) {
-    if (!tab.visible) {
+    if (!App.item_in_action(highlights, tab)) {
       continue
     }
 

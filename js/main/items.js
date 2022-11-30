@@ -1442,3 +1442,18 @@ App.get_highlights = function (mode) {
 
   return ans
 }
+
+// Item is to be included in action
+App.item_in_action = function (highlights, item) {
+  if (highlights.length > 0) {
+    if (!highlights.includes(item)) {
+      return false
+    }
+  } else {
+    if (!item.visible) {
+      return false
+    }
+  }
+
+  return true
+}

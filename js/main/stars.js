@@ -262,14 +262,8 @@ App.unstar_stars = function () {
   let highlights = App.get_highlights("stars")
 
   for (let star of App.stars_items) {
-    if (highlights.length > 0) {
-      if (!highlights.includes(star)) {
-        continue
-      }
-    } else {
-      if (!star.visible) {
-        continue
-      }
+    if (!App.item_in_action(highlights, star)) {
+      continue
     }
     
     ids.push(star.id)
