@@ -9,6 +9,16 @@ App.setup_window_mouse = function (mode) {
       }
 
       let item = App.get_cursor_item(mode, e)
+
+      if (App.selection_mouse_down) {
+        if (App.selection_mode === undefined) {
+          App.selection_mode = !item.highlighted
+        }
+
+        App.toggle_highlight_tab(item, App.selection_mode)
+        return
+      }
+
       App.select_item(item)
     }
   })  
@@ -26,6 +36,15 @@ App.setup_window_mouse = function (mode) {
       }
     }
   })
+
+  App.ev(container, "mousedown", function () {
+    App.selection_mouse_down = true
+  }) 
+
+  App.ev(container, "mouseup", function () {
+    App.selection_mouse_down = false
+    App.selection_mode = undefined
+  }) 
 
   App.ev(container, "auxclick", function (e) {
     if (e.button === 1) {

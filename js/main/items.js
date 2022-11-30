@@ -1009,48 +1009,9 @@ App.setup_item_window = function (mode, actions) {
     }
 
     if (mode === "tabs") {
-      let selection = new SelectionArea({
-        container: container,
-        selectables: [".item"],
-        behaviour: {
-          startThreshold: 50,
-        },
-        features: {
-          singleTap: {
-            allow: false
-          }
-        }
-      })
-  
-      selection.on('beforestart', function (e) {
-        if (!e.event.shiftKey) {
-          return false
-        }
-      }).on("stop", function (e) {
-        if (e.store.selected.length === 0) {
-          return
-        }
-
-        let first_item = App.get_item_by_id(mode, parseInt(e.store.selected[0].dataset.id))
-        let highlight = !first_item.highlighted        
-
-        for (let tab of App.get_highlighted_tabs()) {
-          App.toggle_highlight_tab(tab, false)
-        }        
-
-        for (let el of e.store.selected) {
-          let item = App.get_item_by_id(mode, parseInt(el.dataset.id))
-
-          if (highlight) {
-            App.toggle_highlight_tab(item, true)
-          } else {
-            App.toggle_highlight_tab(item, false)
-          }
-        }
-      })
+      
     }
   }
-
 
   App.create_window(args)
 }
