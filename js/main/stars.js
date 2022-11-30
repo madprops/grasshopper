@@ -9,6 +9,10 @@ App.setup_stars = function () {
       App.unstar_stars()
     }],
 
+    ["Launch", function () {
+      App.launch_items("stars")
+    }], 
+
     ["--separator--"],
 
     ["Export", function () {

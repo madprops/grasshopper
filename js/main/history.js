@@ -1,6 +1,12 @@
 // Setup history
 App.setup_history = function () {
-  App.setup_item_window("history")
+  let actions = [
+    ["Launch", function () {
+      App.launch_items("history")
+    }], 
+  ]
+  
+  App.setup_item_window("history", actions)
 }
 
 // Get history months date

@@ -1122,19 +1122,18 @@ App.show_first_item_window = function () {
 
 // Focus an open tab or launch a new one
 App.focus_or_open_item = async function (item, close = true) {
-  if (close) {
-    let tabs = await App.get_tabs()
+  let tabs = await App.get_tabs()
 
-    for (let tab of tabs) {
-      if (App.urls_equal(tab.url, item.url)) {
-        let o = {
-          id: tab.id,
-          window_id: tab.windowId
-        }
-
-        App.focus_tab(o)
-        return
+  for (let tab of tabs) {
+    if (App.urls_equal(tab.url, item.url)) {
+      let o = {
+        id: tab.id,
+        window_id: tab.windowId
       }
+
+      App.focus_tab(o)
+      window.close()
+      return
     }
   }
 
@@ -1456,4 +1455,24 @@ App.item_in_action = function (highlights, item) {
   }
 
   return true
+}
+
+// Launch highlighted items
+App.launch_items = function (mode) {
+  let highlights = App.get_highlights(mode)
+
+  if (highlights.length === 0) {
+    return
+  }
+
+  let s = App.plural(highlights.length, "items", "item")
+  
+  App.show_confirm(`Launch ${s}?`, function () {
+    for (let item of highlights) {
+      App.open_tab(item.url, false)
+      App.show_launched(item)
+    }
+  })
+
+  App.dehighlight(mode)
 }

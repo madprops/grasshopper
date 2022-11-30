@@ -1,6 +1,12 @@
 // Setup closed tabs
 App.setup_closed = function () {
-  App.setup_item_window("closed")
+  let actions = [
+    ["Launch", function () {
+      App.launch_items("closed")
+    }], 
+  ]
+
+  App.setup_item_window("closed", actions)
 }
 
 // Get closed tabs
