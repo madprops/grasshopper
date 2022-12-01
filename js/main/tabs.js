@@ -640,7 +640,7 @@ App.do_load_tab_state = function (items, confirm = true) {
   let urls = items.map(x => x.url)
   let to_open = items.slice(0)
   let to_close = []
-  let tabs = App.get_http_tabs()
+  let tabs = App.tabs_items
 
   for (let item of tabs) {
     for (let [i, it] of to_open.entries()) {
@@ -713,6 +713,8 @@ App.do_load_tab_state = function (items, confirm = true) {
         try {
           if (tab.pinned) {
             await App.pin_tab(tab.id)
+          } else {
+            await App.unpin_tab(tab.id)
           }
 
           if (tab.discarded) {
@@ -742,7 +744,7 @@ App.do_load_tab_state = function (items, confirm = true) {
 App.get_tab_state = function () {
   let items = []
 
-  for (let tab of App.get_http_tabs()) {
+  for (let tab of App.tabs_items) {
     items.push({
       url: tab.url,
       pinned: tab.pinned,
