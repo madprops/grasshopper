@@ -1335,6 +1335,12 @@ App.set_filter_mode = function (mode, filter_mode) {
       return
     }
 
+    if (mode === "history" && App.history_mode === "today") {
+      App.history_mode = "max"
+      App.show_item_window("history")
+      return
+    }
+
     App.clear_filter(mode)
   }
 

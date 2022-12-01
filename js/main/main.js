@@ -7,8 +7,9 @@ App.filter_delay = 250
 App.color_delay = 150
 App.max_stars = 1000 * 2
 App.max_closed = 25
-App.history_max_results = 600
-App.history_max_months = 12
+App.history_max_results = 640
+App.history_max_months = 18
+App.history_mode = "max"
 App.star_counter = 0
 App.tab_sort_mode = "index"
 

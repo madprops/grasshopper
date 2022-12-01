@@ -1,17 +1,25 @@
 // Setup history
 App.setup_history = function () {
   let actions = [
+    ["Today", function () {
+      App.show_today_history()
+    }], 
+
     ["Launch", function () {
       App.launch_items("history")
     }], 
   ]
-  
+
   App.setup_item_window("history", actions)
 }
 
-// Get history months date
-App.history_months = function () {
-  return Date.now() - (1000 * 60 * 60 * 24 * 30 * App.history_max_months)
+// Get history date
+App.history_time = function () {
+  if (App.history_mode === "max") {
+    return Date.now() - (1000 * 60 * 60 * 24 * 30 * App.history_max_months)
+  } else if (App.history_mode === "today") {
+    return Date.now() - (1000 * 60 * 60 * 24)
+  }
 }
 
 // Get items from history
@@ -19,7 +27,7 @@ App.get_history = async function (text = "") {
   let items = await browser.history.search({
     text: text,
     maxResults: App.history_max_results,
-    startTime: App.history_months()
+    startTime: App.history_time()
   })
 
   return items
@@ -45,4 +53,10 @@ App.search_history = async function () {
   }
 
   App.process_items("history", items)
+}
+
+// Show today's history
+App.show_today_history = function () {
+  App.history_mode = "today"
+  App.show_item_window("history")
 }
