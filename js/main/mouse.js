@@ -50,7 +50,14 @@ App.setup_window_mouse = function (mode) {
         App.highlight_range(item)
       }      
 
+      clearInterval(App.selection_interval)
+
       App.selection_interval = setInterval(function () {
+        if (!App.selection_mouse_down) {
+          clearInterval(App.selection_interval)
+          return
+        }
+
         if (!App.last_mousemove_e) {
           return
         }
