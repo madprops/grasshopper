@@ -9,9 +9,10 @@ App.max_stars = 1000 * 2
 App.max_closed = 25
 App.history_max_results = 640
 App.history_max_months = 18
-App.history_mode = "max"
 App.star_counter = 0
-App.tab_sort_mode = "index"
+App.tabs_mode = "normal"
+App.stars_mode = "normal"
+App.history_mode = "normal"
 
 NeedContext.min_width = "4.5rem"
 

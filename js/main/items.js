@@ -916,7 +916,7 @@ App.setup_item_window = function (mode, actions) {
 
       if (mode === "tabs") {
         container.addEventListener("dragstart", function (e) {
-          if (App.tab_sort_mode !== "index") {
+          if (mode === "tabs" && App.tabs_mode !== "normal") {
             e.preventDefault()
             return false
           }
@@ -1329,14 +1329,20 @@ App.set_filter_mode = function (mode, filter_mode) {
   App.el(`#${mode}_filter_mode`).textContent = `Show: ${filter_mode[1]}`
 
   if (filter_mode[0] === "all") {
-    if (mode === "tabs" && App.tab_sort_mode === "access") {
-      App.tab_sort_mode = "index"
+    if (mode === "tabs" && App.tabs_mode === "access") {
+      App.tabs_mode = "normal"
       App.show_item_window("tabs")
       return
     }
 
+    if (mode === "stars" && App.stars_mode === "favorites") {
+      App.stars_mode = "normal"
+      App.show_item_window("stars")
+      return
+    }
+
     if (mode === "history" && App.history_mode === "today") {
-      App.history_mode = "max"
+      App.history_mode = "normal"
       App.show_item_window("history")
       return
     }
@@ -1396,7 +1402,7 @@ App.highlight_range = function (item) {
     return
   }
 
-  if (item.mode === "tabs" && App.tab_sort_mode !== "index") {
+  if (item.mode === "tabs" && App.tabs_mode !== "normal") {
     return
   }
 

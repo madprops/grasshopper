@@ -197,9 +197,9 @@ App.setup_tabs = function () {
 App.get_tabs = async function () {
   let tabs = await browser.tabs.query({currentWindow: true})
 
-  if (App.tab_sort_mode === "index") {
+  if (App.tabs_mode === "normal") {
     App.sort_tabs_by_index(tabs)
-  } else if (App.tab_sort_mode === "access") {
+  } else if (App.tabs_mode === "access") {
     App.sort_tabs_by_access(tabs)
   }
 
@@ -942,7 +942,7 @@ App.do_move_tab_index = async function (id, index) {
 
 // Show recent tabs
 App.show_recent_tabs = function () {
-  App.tab_sort_mode = "access"
+  App.tabs_mode = "access"
   App.show_item_window("tabs")
 }
 

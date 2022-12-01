@@ -9,6 +9,10 @@ App.setup_stars = function () {
       App.unstar_stars()
     }],
 
+    ["Favorites", function () {
+      App.show_favorite_stars()
+    }],     
+
     ["Launch", function () {
       App.launch_items("stars")
     }], 
@@ -71,7 +75,12 @@ App.get_stars = async function () {
     await App.stor_get_stars()
   }
 
-  App.stars.items.sort((a, b) => (a.date_last_visit < b.date_last_visit) ? 1 : -1)
+  if (App.stars_mode === "normal") {
+    App.stars.items.sort((a, b) => (a.date_last_visit < b.date_last_visit) ? 1 : -1)
+  } else if (App.stars_mode === "favorites") {
+    App.stars.items.sort((a, b) => (a.visits < b.visits) ? 1 : -1)
+  }
+
   return App.stars.items
 }
 
@@ -345,4 +354,10 @@ App.import_stars = function () {
       })
     }
   })
+}
+
+// Show favorite stars
+App.show_favorite_stars = function () {
+  App.stars_mode = "favorites"
+  App.show_item_window("stars")
 }

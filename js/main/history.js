@@ -15,7 +15,7 @@ App.setup_history = function () {
 
 // Get history date
 App.history_time = function () {
-  if (App.history_mode === "max") {
+  if (App.history_mode === "normal") {
     return Date.now() - (1000 * 60 * 60 * 24 * 30 * App.history_max_months)
   } else if (App.history_mode === "today") {
     return Date.now() - (1000 * 60 * 60 * 24)
