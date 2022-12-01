@@ -106,7 +106,7 @@ App.setup_tabs = function () {
       {
         text: "Suspend All",
         action: function () {
-          App.suspend_tabs("all")
+          App.suspend_tabs()
         }
       }
     ]], 
