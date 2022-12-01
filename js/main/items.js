@@ -1401,14 +1401,6 @@ App.move_item_element = function (mode, el, to_index) {
 
 // Highlight a range of items
 App.highlight_range = function (item) {
-  if (!App.selection_mouse_down) {
-    return
-  }
-
-  if (item.mode === "tabs" && App.tabs_mode !== "normal") {
-    return
-  }
-
   if (App.selection_mode === undefined) {
     App.selection_mode = !item.highlighted
   }
