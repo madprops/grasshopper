@@ -14,7 +14,7 @@ App.block_select = function () {
 }
 
 // Select an item
-App.select_item = function (item) {
+App.select_item = function (item, center = false) {
   if (App[`selected_${item.mode}_item`] === item) {
     return
   }
@@ -30,7 +30,9 @@ App.select_item = function (item) {
   }
 
   App[`selected_${item.mode}_item`].element.classList.add("selected")  
-  App[`selected_${item.mode}_item`].element.scrollIntoView({block: "nearest"})
+
+  let scroll = center ? "center" : "nearest"
+  App[`selected_${item.mode}_item`].element.scrollIntoView({block: scroll})
 
   App.update_footer(item.mode)
 
@@ -162,7 +164,7 @@ App.select_first_item = function (mode, by_active = false) {
   if (mode === "tabs" && by_active) {
     for (let item of App[`${mode}_items`]) {
       if (item.visible && item.active) {
-        App.select_item(item)
+        App.select_item(item, true)
         return
       }
     }  
