@@ -49,6 +49,16 @@ App.stor_get_stars = async function () {
   } 
 
   for (let star of App.stars.items) {
+    if (star.date_added === undefined) {
+      star.date_added = Date.now()
+      changed = true
+    }
+    
+    if (star.date_last_visit === undefined) {
+      star.date_last_visit = Date.now()
+      changed = true
+    }
+
     if (star.visits === undefined) {
       star.visits = 0
       changed = true
