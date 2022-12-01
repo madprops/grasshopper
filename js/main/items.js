@@ -910,8 +910,6 @@ App.setup_item_window = function (mode, actions) {
           } else if (item.items) {
             items.push({text: item.text, items:item.items})
           }
-
-          console.log(items)
         }
 
         NeedContext.show_on_element(menu, items, true, menu.clientHeight)

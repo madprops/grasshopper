@@ -924,7 +924,6 @@ App.show_normal_tabs = function () {
 
 // Show recent tabs
 App.show_recent_tabs = function () {
-  console.log(11)
   App.tabs_mode = "access"
   App.show_item_window("tabs")
 }
