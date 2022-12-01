@@ -13,146 +13,126 @@ App.setup_tabs = function () {
   ]
 
   let actions = [
-    ["Recent", function () {
+    {name:"Recent", action: function () {
       App.show_recent_tabs()
-    }],   
+    }},   
     
-    ["New Tab", function () {
+    {name: "New Tab", action: function () {
       App.new_tab()
-    }],  
+    }},  
 
-    ["Information", function () {
+    {name: "Information", action: function () {
       App.show_tabs_information()
-    }],  
+    }},  
     
-    ["Tab State", undefined, [
+    {name: "Tab State", items: [
       {
-        text: "Save State",
-        items: App.get_save_tab_state_items()
+        text: "Save State", items: App.get_save_tab_state_items()
       },
-
       {
-        text: "Load State",
-        items: App.get_load_tab_state_items()
+        text: "Load State", items: App.get_load_tab_state_items()
       }
-    ]], 
+    ]}, 
 
-    ["--separator--"],
+    {name: "--separator--"},
     
-    ["Star Tabs", undefined, [
+    {name: "Star Tabs", items: [
       {
-        text: "Star Normal",
-        action: function () {
+        text: "Star Normal", action: function () {
           App.star_tabs("normal")
         }
       },
       {
-        text: "Star Pins",
-        action: function () {
+        text: "Star Pins", action: function () {
           App.star_tabs("pinned")
         }
       },
       {
-        text: "Star All",
-        action: function () {
+        text: "Star All", action: function () {
           App.star_tabs("all")
         }
       }   
-    ]],     
+    ]},     
 
-    ["(Un) Pin", undefined, [
+    {name: "(Un) Pin", items: [
       {
-        text: "Pin All",
-        action: function () {
+        text: "Pin All", action: function () {
           App.pin_all_tabs()
         }
       },
       {
-        text: "Unpin All",
-        action: function () {
+        text: "Unpin All", action: function () {
           App.unpin_all_tabs()
         }
       }
-    ]],
+    ]},
 
-    ["(Un) Mute", undefined, [
+    {name: "(Un) Mute", items: [
       {
-        text: "Mute Playing",
-        action: function () {
+        text: "Mute Playing", action: function () {
           App.mute_tabs()
         }
       },
       {
-        text: "Unmute Muted",
-        action: function () {
+        text: "Unmute Muted", action: function () {
           App.unmute_tabs()
         }
       }
-    ]],
+    ]},
 
-    ["Suspend", undefined, [
+    {name: "Suspend", items: [
       {
-        text: "Suspend Normal",
-        action: function () {
+        text: "Suspend Normal", action: function () {
           App.suspend_tabs("normal")
         }
       },
       {
-        text: "Suspend Pins",
-        action: function () {
+        text: "Suspend Pins", action: function () {
           App.suspend_tabs("pinned")
         }
       },
       {
-        text: "Suspend All",
-        action: function () {
+        text: "Suspend All", action: function () {
           App.suspend_tabs()
         }
       }
-    ]], 
+    ]}, 
     
-    ["--separator--"],    
+    {name: "--separator--"},    
 
-    ["Close", undefined, [
+    {name: "Close", items: [
       {
-        text: "Close Normal",
-        action: function () {
+        text: "Close Normal", action: function () {
           App.close_tabs("normal")
         }
       },
       {
-        text: "Close Playing",
-        action: function () {
+        text: "Close Playing", action: function () {
           App.close_tabs("audible")
         }
       },
       {
-        text: "Close Muted",
-        action: function () {
+        text: "Close Muted", action: function () {
           App.close_tabs("muted")
         }
       },      
       {
-        text: "Close Suspended",
-        action: function () {
+        text: "Close Suspended", action: function () {
           App.close_tabs("discarded")
         }
       },
       {
-        text: "Close Pins",
-        action: function () {
+        text: "Close Pins", action: function () {
           App.close_tabs("pinned")
         }
       },
       {
-        text: "Close Others",
-        action: function () {
+        text: "Close Others", action: function () {
           App.close_tabs(undefined, "active")
         }
       },    
       {
-        text: "Close All",
-        action: function () {
+        text: "Close All", action: function () {
           App.close_tabs()
         }
       },
@@ -160,12 +140,11 @@ App.setup_tabs = function () {
         separator: true
       },
       {
-        text: "Undo",
-        action: function () {
+        text: "Undo", action: function () {
           App.undo_close()
         }
       }    
-    ]],
+    ]},
   ]
 
   App.setup_item_window("tabs", actions)
@@ -929,8 +908,15 @@ App.do_move_tab_index = async function (id, index) {
   return ans
 }
 
+// Show normal tabs
+App.show_normal_tabs = function () {
+  App.tabs_mode = "normal"
+  App.show_item_window("tabs")
+}
+
 // Show recent tabs
 App.show_recent_tabs = function () {
+  console.log(11)
   App.tabs_mode = "access"
   App.show_item_window("tabs")
 }

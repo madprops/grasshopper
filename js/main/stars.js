@@ -1,31 +1,31 @@
 // Setup stars
 App.setup_stars = function () {
   let actions = [
-    ["Favorites", function () {
+    {name: "Favorites", action: function () {
       App.show_favorite_stars()
-    }], 
+    }}, 
         
-    ["New Star", function () {
+    {name: "New Star", action: function () {
       App.new_star()
-    }],
+    }},
 
-    ["Un-Star", function () {
+    {name: "Un-Star", action: function () {
       App.unstar_stars()
-    }],    
+    }},    
 
-    ["Launch", function () {
+    {name: "Launch", action: function () {
       App.launch_items("stars")
-    }], 
+    }}, 
 
-    ["--separator--"],
+    {name: "--separator--"},
 
-    ["Export", function () {
+    {name: "Export", action: function () {
       App.export_stars()
-    }],
+    }},
 
-    ["Import", function () {
+    {name: "Import", action: function () {
       App.import_stars()
-    }]    
+    }},
   ]
 
   App.setup_item_window("stars", actions)

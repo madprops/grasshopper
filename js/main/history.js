@@ -1,13 +1,13 @@
 // Setup history
 App.setup_history = function () {
   let actions = [
-    ["Today", function () {
+    {name: "Today", action: function () {
       App.show_today_history()
-    }], 
+    }}, 
 
-    ["Launch", function () {
+    {name: "Launch", action: function () {
       App.launch_items("history")
-    }], 
+    }}, 
   ]
 
   App.setup_item_window("history", actions)
