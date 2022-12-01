@@ -60,11 +60,11 @@ App.setup_window_mouse = function (mode) {
         let bottom = top + container.offsetHeight
   
         if (y - top <= 50) {
-          container.scrollTop -= 20
+          container.scrollTop -= 12
         } else if (bottom - y <= 50) {
-          container.scrollTop += 20
+          container.scrollTop += 12
         }
-      }, 100)
+      }, 140)
     }
   }) 
 
