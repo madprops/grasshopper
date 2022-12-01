@@ -11,7 +11,7 @@ App.setup_window_mouse = function (mode) {
       }
   
       let item = App.get_cursor_item(mode, e)
-      App.select_item(item)
+      App.select_item(item, "none")
     }
   })  
   
