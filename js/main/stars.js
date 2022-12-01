@@ -1,29 +1,37 @@
 // Setup stars
 App.setup_stars = function () {
   let actions = [
-    {name: "Favorites", action: function () {
-      App.show_favorite_stars()
+    {conditional: function () {
+      if (App.stars_mode === "normal") {
+        return {text: "Favorites", action: function () {
+          App.show_favorite_stars()
+        }}
+      } else {
+        return {text: "Normal", action: function () {
+          App.show_normal_stars()
+        }}
+      }
     }}, 
         
-    {name: "New Star", action: function () {
+    {text: "New Star", action: function () {
       App.new_star()
     }},
 
-    {name: "Un-Star", action: function () {
+    {text: "Un-Star", action: function () {
       App.unstar_stars()
     }},    
 
-    {name: "Launch", action: function () {
+    {text: "Launch", action: function () {
       App.launch_items("stars")
     }}, 
 
-    {name: "--separator--"},
+    {text: "--separator--"},
 
-    {name: "Export", action: function () {
+    {text: "Export", action: function () {
       App.export_stars()
     }},
 
-    {name: "Import", action: function () {
+    {text: "Import", action: function () {
       App.import_stars()
     }},
   ]
@@ -354,6 +362,12 @@ App.import_stars = function () {
       })
     }
   })
+}
+
+// Show normal stars
+App.show_normal_stars = function () {
+  App.stars_mode = "normal"
+  App.show_item_window("stars")
 }
 
 // Show favorite stars

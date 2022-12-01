@@ -13,19 +13,27 @@ App.setup_tabs = function () {
   ]
 
   let actions = [
-    {name:"Recent", action: function () {
-      App.show_recent_tabs()
+    {conditional: function () {
+      if (App.tabs_mode === "normal") {
+        return {text: "Recent", action: function () {
+          App.show_recent_tabs()
+        }}
+      } else {
+        return {text: "Normal", action: function () {
+          App.show_normal_tabs()
+        }}
+      }
     }},   
     
-    {name: "New Tab", action: function () {
+    {text: "New Tab", action: function () {
       App.new_tab()
     }},  
 
-    {name: "Information", action: function () {
+    {text: "Information", action: function () {
       App.show_tabs_information()
     }},  
     
-    {name: "Tab State", items: [
+    {text: "Tab State", items: [
       {
         text: "Save State", items: App.get_save_tab_state_items()
       },
@@ -34,9 +42,9 @@ App.setup_tabs = function () {
       }
     ]}, 
 
-    {name: "--separator--"},
+    {text: "--separator--"},
     
-    {name: "Star Tabs", items: [
+    {text: "Star Tabs", items: [
       {
         text: "Star Normal", action: function () {
           App.star_tabs("normal")
@@ -54,7 +62,7 @@ App.setup_tabs = function () {
       }   
     ]},     
 
-    {name: "(Un) Pin", items: [
+    {text: "(Un) Pin", items: [
       {
         text: "Pin All", action: function () {
           App.pin_all_tabs()
@@ -67,7 +75,7 @@ App.setup_tabs = function () {
       }
     ]},
 
-    {name: "(Un) Mute", items: [
+    {text: "(Un) Mute", items: [
       {
         text: "Mute Playing", action: function () {
           App.mute_tabs()
@@ -80,7 +88,7 @@ App.setup_tabs = function () {
       }
     ]},
 
-    {name: "Suspend", items: [
+    {text: "Suspend", items: [
       {
         text: "Suspend Normal", action: function () {
           App.suspend_tabs("normal")
@@ -98,9 +106,9 @@ App.setup_tabs = function () {
       }
     ]}, 
     
-    {name: "--separator--"},    
+    {text: "--separator--"},    
 
-    {name: "Close", items: [
+    {text: "Close", items: [
       {
         text: "Close Normal", action: function () {
           App.close_tabs("normal")

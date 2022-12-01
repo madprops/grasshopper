@@ -1,11 +1,20 @@
 // Setup history
 App.setup_history = function () {
   let actions = [
-    {name: "Today", action: function () {
-      App.show_today_history()
+
+    {conditional: function () {
+      if (App.history_mode === "normal") {
+        return {text: "Today", action: function () {
+          App.show_today_history()
+        }}
+      } else {
+        return {text: "Normal", action: function () {
+          App.show_normal_history()
+        }}
+      }
     }}, 
 
-    {name: "Launch", action: function () {
+    {text: "Launch", action: function () {
       App.launch_items("history")
     }}, 
   ]
@@ -53,6 +62,12 @@ App.search_history = async function () {
   }
 
   App.process_items("history", items)
+}
+
+// Show normal history
+App.show_normal_history = function () {
+  App.history_mode = "normal"
+  App.show_item_window("history")
 }
 
 // Show today's history

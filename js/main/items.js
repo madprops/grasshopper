@@ -896,18 +896,22 @@ App.setup_item_window = function (mode, actions) {
         let items = []
 
         for (let item of actions) {
-          if (item.name === "--separator--") {
+          if (item.text === "--separator--") {
             items.push({separator: true})
             continue
           }
 
-          if (item.action) {
-            items.push({text: item.name, action: function () {
+          if (item.conditional) {
+            items.push(item.conditional())
+          } else if (item.action) {
+            items.push({text: item.text, action: function () {
               item.action()
             }})
           } else if (item.items) {
-            items.push({text: item.name, items:item.items})
+            items.push({text: item.text, items:item.items})
           }
+
+          console.log(items)
         }
 
         NeedContext.show_on_element(menu, items, true, menu.clientHeight)
@@ -1011,10 +1015,6 @@ App.setup_item_window = function (mode, actions) {
       }      
 
       top.append(menu)
-    }
-
-    if (mode === "tabs") {
-
     }
   }
 
