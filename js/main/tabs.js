@@ -779,19 +779,6 @@ App.do_close_tabs = function (ids) {
   })  
 }
 
-// Get http or https tabs
-App.get_http_tabs = function () {
-  let tabs = []
-
-  for (let tab of App.tabs_items) {
-    if (App.is_http(tab)) {
-      tabs.push(tab)
-    }
-  }
-
-  return tabs
-}
-
 // Uno tabs close
 App.undo_close = function () {
   if (!App.tabs_backup) {
