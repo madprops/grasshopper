@@ -1,17 +1,17 @@
 // Setup stars
 App.setup_stars = function () {
   let actions = [
+    ["Favorites", function () {
+      App.show_favorite_stars()
+    }], 
+        
     ["New Star", function () {
       App.new_star()
     }],
 
     ["Un-Star", function () {
       App.unstar_stars()
-    }],
-
-    ["Favorites", function () {
-      App.show_favorite_stars()
-    }],     
+    }],    
 
     ["Launch", function () {
       App.launch_items("stars")
