@@ -776,7 +776,7 @@ App.show_item_window = async function (mode, cycle = false) {
 
   App.el(`#${mode}_container`).innerHTML = ""
   App.el(`#${mode}_filter`).value = value
-  App.el(`#${mode}_item_picker`).textContent = `${App.get_mode_index(mode) + 1}. ${App.capitalize(mode)}`
+  App.el(`#${mode}_main_menu`).textContent = `${App.get_mode_index(mode) + 1}. ${App.capitalize(mode)}`
   App.el(`#${mode}_filter_mode`).textContent = "Show: All"
   App[`${mode}_filter_mode`] = "all"
 
@@ -827,15 +827,15 @@ App.setup_item_window = function (mode, actions) {
     App.setup_window_mouse(mode)
 
     //
-    let item_picker = App.create("div", "button top_button", `${mode}_item_picker`)
-    item_picker.title = "Main Menu (Tab)"
-    item_picker.textContent = App.capitalize(mode)
+    let main_menu = App.create("div", "button top_button", `${mode}_main_menu`)
+    main_menu.title = "Main Menu (Tab)"
+    main_menu.textContent = App.capitalize(mode)
 
-    App.ev(item_picker, "click", function () {
-      App.show_item_picker(this)
+    App.ev(main_menu, "click", function () {
+      App.show_main_menu(this)
     })
 
-    App.ev(item_picker, "wheel", function (e) {
+    App.ev(main_menu, "wheel", function (e) {
       if (e.deltaY < 0) {
         App.cycle_item_windows(true)
       } else {
@@ -843,7 +843,7 @@ App.setup_item_window = function (mode, actions) {
       }
     })
 
-    top.append(item_picker)
+    top.append(main_menu)
 
     //
     let filter = App.create("input", "text filter", `${mode}_filter`)
@@ -1019,7 +1019,7 @@ App.setup_item_window = function (mode, actions) {
 }
 
 // Cycle between item windows
-App.cycle_item_windows = function (reverse = false) {
+App.cycle_item_windows = function (reverse = false, cycle = false) {
   let modes = App.item_order
   let index = modes.indexOf(App.window_mode)
   let new_mode
@@ -1042,7 +1042,7 @@ App.cycle_item_windows = function (reverse = false) {
     }
   }
 
-  App.show_item_window(new_mode, true)
+  App.show_item_window(new_mode, cycle)
 }
 
 // Update window order
@@ -1078,8 +1078,8 @@ App.item_order_down = function (el) {
   }
 }
 
-// Show item picker
-App.show_item_picker = function (btn) {
+// Show main menu
+App.show_main_menu = function (btn) {
   let items = []
 
   for (let [i, m] of App.item_order.entries()) {
