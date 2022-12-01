@@ -71,7 +71,7 @@ App.setup_window_mouse = function (mode) {
         } else if (bottom - y <= 50) {
           container.scrollTop += 12
         }
-      }, 140)
+      }, 120)
     }
   }) 
 
