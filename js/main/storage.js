@@ -48,6 +48,13 @@ App.stor_get_stars = async function () {
     changed = true
   } 
 
+  for (let star of App.stars.items) {
+    if (star.visits === undefined) {
+      star.visits = 0
+      changed = true
+    }
+  }
+
   if (changed) {
     App.stor_save_stars()
   }

@@ -78,6 +78,7 @@ App.get_stars = async function () {
 // Update star data
 App.update_star = function (item) {
   item.date_last_visit = Date.now()
+  item.visits += 1
   App.stor_save_stars()
 }
 
@@ -92,7 +93,8 @@ App.star_item = async function (item, save = true) {
     url: item.url,
     title: item.title,
     date_added: Date.now(),
-    date_last_visit: Date.now()
+    date_last_visit: Date.now(),
+    visits: 0
   }
 
   App.star_counter += 1
@@ -243,12 +245,14 @@ App.add_or_edit_star = async function (item) {
 // Update star editor info
 App.update_star_editor_info = function () {
   let info = App.el("#star_editor_info")
-  let added = App.el("#star_editor_added")
+  let visits = App.el("#star_editor_visits")
   let visited = App.el("#star_editor_visited")
+  let added = App.el("#star_editor_added")
   let save = App.el("#star_editor_save")
 
   if (App.star_edited) {
     save.textContent = "Update"
+    visits.textContent = App.star_edited.visits.toLocaleString()
     visited.textContent = App.nice_date(App.star_edited.date_last_visit)
     added.textContent = App.nice_date(App.star_edited.date_added)
     info.classList.remove("hidden")
