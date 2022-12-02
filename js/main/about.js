@@ -23,6 +23,14 @@ App.setup_about = function () {
       App.show_full_about_info()
     })
 
+    let info_full = App.el("#about_info_full")
+
+    for (let item of App.about_info_items) {
+      let el = App.create("div")
+      el.textContent = item
+      info_full.append(el)
+    }    
+
     let manifest = browser.runtime.getManifest()
     let s = `Grasshopper v${manifest.version}`
     App.el("#about_name").textContent = s
@@ -71,6 +79,10 @@ App.next_about_info = function (manual = true) {
 
 // Start about info
 App.start_about_info = function () {
+  App.el("#about_info").classList.remove("hidden")
+  App.el("#about_image").classList.remove("hidden")
+  App.el("#about_info_full").classList.add("hidden")
+  
   App.about_info_interval = setInterval(function () {
     App.next_about_info(false)
   }, 3000)
@@ -86,12 +98,5 @@ App.show_full_about_info = function () {
   App.stop_about_info()
   App.el("#about_info").classList.add("hidden")
   App.el("#about_image").classList.add("hidden")
-  
-  let container = App.el("#about_info_full")
-
-  for (let item of App.about_info_items) {
-    let el = App.create("div")
-    el.textContent = item
-    container.append(el)
-  }
+  App.el("#about_info_full").classList.remove("hidden")
 }
