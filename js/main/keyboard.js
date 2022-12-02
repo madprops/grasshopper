@@ -1,7 +1,18 @@
 // Setup bindings for window
 App.check_window_keyboard = function (e) {
   let mode = App.window_mode
-  App.focus_filter(mode)
+
+  if (e.key === "Tab" && !e.ctrlKey) {
+    App.cycle_item_windows(e.shiftKey, true)
+    e.preventDefault()
+    return
+  }
+
+  if (e.key === " " && e.shiftKey ) {        
+    App.show_menu()
+    e.preventDefault()
+    return
+  }
 
   if (e.key === "Enter") {
     let item = App[`selected_${mode}_item`]
@@ -25,6 +36,8 @@ App.check_window_keyboard = function (e) {
     }
 
     e.preventDefault()
+  } else {
+    App.focus_filter(mode)
   }
 }
 
@@ -78,21 +91,7 @@ App.setup_keyboard = function () {
       return
     }
 
-    if (e.key === "Tab") {
-      if (!e.ctrlKey) {
-        App.cycle_item_windows(e.shiftKey, true)
-        e.preventDefault()
-        return
-      }
-    }
-
     if (App.item_order.includes(App.window_mode)) {
-      if (e.shiftKey && e.key === " ") {        
-        App.show_menu()
-        e.preventDefault()
-        return
-      }
-
       App.check_window_keyboard(e)
     }
   })
