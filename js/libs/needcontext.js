@@ -27,17 +27,19 @@ NeedContext.set_defaults = function () {
 NeedContext.filter = function (key) {
   let selected = false
 
-  for (let [i, item] of NeedContext.items.entries()) {
-    if (item.separator || !item.text.toLowerCase().startsWith(key)) {
-      item.element.classList.add("needcontext-hidden")
-    } else {
-      item.element.classList.remove("needcontext-hidden")
-
-      if (!selected) {
-        NeedContext.select_item(i)
+  if (key) {
+    for (let [i, item] of NeedContext.items.entries()) {
+      if (item.separator || !item.text.toLowerCase().startsWith(key)) {
+        item.element.classList.add("needcontext-hidden")
+      } else {
+        item.element.classList.remove("needcontext-hidden")
+  
+        if (!selected) {
+          NeedContext.select_item(i)
+        }
+  
+        selected = true
       }
-
-      selected = true
     }
   }
 
