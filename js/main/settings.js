@@ -289,7 +289,7 @@ App.restore_default_theme_settings = function () {
     let item = App.default_settings[key]
 
     if (item.category === "theme") {
-      App[`${key}_picker`].setColor(App.default_settings[key].value)
+      App[`${key}_picker`].setColor(item.value)
     }
   }
 }
@@ -297,13 +297,12 @@ App.restore_default_theme_settings = function () {
 // Restore default icons
 App.restore_default_icon_settings = function () {
   App.show_confirm("Restore default icons?", function () {
-    for (let key in App.settings) {
+    for (let key in App.default_settings) {
       let item = App.default_settings[key]
 
       if (item.category === "icons") {
-        let value = App.default_settings[key].value
-        App.settings[key] = value
-        App.el(`#settings_${key}`).value = value
+        App.settings[key] = item.value
+        App.el(`#settings_${key}`).value = item.value
       }
     }
 
