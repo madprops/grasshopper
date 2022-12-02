@@ -77,7 +77,7 @@ App.next_about_info = function (manual = true) {
 App.start_about_info = function () {
   App.about_info_interval = setInterval(function () {
     App.next_about_info(false)
-  }, 2500)
+  }, 3000)
 }
 
 // Stop about info
