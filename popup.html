@@ -85,10 +85,6 @@
 
         <div class="separator"></div>
 
-        <div id="settings_defaults_button" class="button settings_button" title="Restore settings to defaults">Default Settings</div>
-
-        <div class="separator"></div>
-
         <div class="flex_column_center gap_2" title="If this is enabled, dragging requires holding Ctrl to work">
           <div>Lock Drag</div>
           <input type="checkbox" class="settings_checkbox" id="settings_lock_drag" data-setting="lock_drag">
@@ -132,6 +128,10 @@
           <div>Item Order</div>
           <div id="settings_item_order"></div>
         </div>
+
+        <div class="separator"></div>
+
+        <div id="settings_defaults_button" class="button settings_button" title="Restore settings to defaults">Default Settings</div>
       </div>
     </template>   
 
@@ -141,14 +141,20 @@
 
         <div class="separator"></div>
         
-        <div class="flex_row_center gap_2">
-          <div id="settings_dark_theme" class="button settings_button" title="Random dark theme">Dark Theme</div>
-          <div id="settings_light_theme" class="button settings_button" title="Random light theme">Light Theme</div>
+        <div class="flex_column_center gap_2">
+          <div>Keep clicking for random themes</div>
+          
+          <div class="flex_row_center gap_2">
+            <div id="settings_dark_theme" class="button settings_button" title="Random dark theme">Dark Theme</div>
+            <div id="settings_light_theme" class="button settings_button" title="Random light theme">Light Theme</div>
+          </div>
         </div>
 
-        <div class="flex_row_center gap_2">
+        <div class="separator"></div>        
+
+        <div class="flex_column_center gap_2">
+          <div>Try to detect the browser's theme</div>
           <div id="settings_detect_theme" class="button settings_button" title="Detect browser theme">Detect Theme</div>
-          <div id="settings_default_theme" class="button settings_button" title="Restore default theme">Default Theme</div>
         </div>
 
         <div class="separator"></div>
@@ -159,21 +165,21 @@
         </div>
 
         <div class="separator"></div>
-
+        
         <div class="flex_column_center gap_2" title="Theme text color">
           <div>Text Color</div>
           <div id="settings_text_color_picker"></div>
         </div>
+
+        <div class="separator"></div>
+
+        <div id="settings_default_theme" class="button settings_button" title="Restore default theme">Default Theme</div>
       </div>
     </template>
 
     <template id="template_settings_icons">
       <div id="settings_icons_container" class="settings_container unselectable">
-        <div class="bigger">Icon Settings</div>
-
-        <div class="separator"></div>
-        
-        <div id="settings_default_icons" class="button settings_button" title="Restore default icons">Default Icons</div>         
+        <div class="bigger">Icon Settings</div>        
 
         <div class="separator"></div>
 
@@ -201,7 +207,11 @@
         <div class="flex_column_center gap_2" title="Icon to show on suspended tabs">
           <div>Suspended Icon</div>
           <input type="text" autocomplete="off" id="settings_suspended_icon" class="text settings_text" data-setting="suspended_icon" data-type="text">
-        </div>         
+        </div> 
+        
+        <div class="separator"></div>
+        
+        <div id="settings_default_icons" class="button settings_button" title="Restore default icons">Default Icons</div>         
       </div>
     </template>     
 
