@@ -261,23 +261,27 @@ App.add_or_edit_star = async function (item) {
 
 // Update star editor info
 App.update_star_editor_info = function () {
+  let about = App.el("#star_editor_about")
   let info = App.el("#star_editor_info")
   let visits = App.el("#star_editor_visits")
   let visited = App.el("#star_editor_visited")
   let added = App.el("#star_editor_added")
   let save = App.el("#star_editor_save")
+  let unstar = App.el("#star_editor_unstar")
 
   if (App.star_edited) {
     save.textContent = "Update"
     visits.textContent = App.star_edited.visits.toLocaleString()
     visited.textContent = App.nice_date(App.star_edited.date_last_visit)
     added.textContent = App.nice_date(App.star_edited.date_added)
+    about.classList.add("hidden")
     info.classList.remove("hidden")
-    App.el("#star_editor_unstar").classList.remove("hidden")
+    unstar.classList.remove("hidden")
   } else {
     save.textContent = "Save"
+    about.classList.remove("hidden")
     info.classList.add("hidden")
-    App.el("#star_editor_unstar").classList.add("hidden")
+    unstar.classList.add("hidden")
   }
 }
 
