@@ -31,6 +31,10 @@ App.setup_about = function () {
     let s = `Grasshopper v${manifest.version}`
     App.el("#about_name").textContent = s
     App.update_about_info()
+  }, after_show: function () {
+    App.start_about_info()
+  }, after_hide: function () {
+    App.stop_about_info()
   }})
 }
 
@@ -40,7 +44,11 @@ App.update_about_info = function () {
 }
 
 // Previous about info
-App.prev_about_info = function () {
+App.prev_about_info = function (manual = true) {
+  if (manual) {
+    App.stop_about_info()
+  }
+
   App.about_info_index -= 1
 
   if (App.about_info_index < 0) {
@@ -51,7 +59,11 @@ App.prev_about_info = function () {
 }
 
 // Next about info
-App.next_about_info = function () {
+App.next_about_info = function (manual = true) {
+  if (manual) {
+    App.stop_about_info()
+  }
+
   App.about_info_index += 1
 
   if (App.about_info_index >= App.about_info_items.length) {
@@ -59,4 +71,16 @@ App.next_about_info = function () {
   }
 
   App.update_about_info()
+}
+
+// Start about info
+App.start_about_info = function () {
+  App.about_info_interval = setInterval(function () {
+    App.next_about_info(false)
+  }, 2000)
+}
+
+// Stop about info
+App.stop_about_info = function () {
+  clearInterval(App.about_info_interval)
 }

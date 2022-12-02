@@ -91,6 +91,10 @@ App.create_window = function (args) {
       args.on_hide()
     } else {
       App.show_first_item_window()
+
+      if (args.after_hide) {
+        args.after_hide()
+      }
     }
   }
 
