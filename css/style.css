@@ -393,6 +393,11 @@ body, html {
   overflow: hidden;
 }
 
+#about_image {
+  padding-top: 2rem;
+  width: 20rem;
+}
+
 a:visited, a:link, a:hover {
 	color: var(--text_color);
 }

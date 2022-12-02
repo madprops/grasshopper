@@ -19,12 +19,8 @@ App.setup_about = function () {
 
     App.about_info_index = 0
 
-    App.ev(App.el("#about_info_prev"), "click", function () {
-      App.prev_about_info()
-    })
-
-    App.ev(App.el("#about_info_next"), "click", function () {
-      App.next_about_info()
+    App.ev(App.el("#about_info"), "click", function () {
+      App.show_full_about_info()
     })
 
     let manifest = browser.runtime.getManifest()
@@ -83,4 +79,19 @@ App.start_about_info = function () {
 // Stop about info
 App.stop_about_info = function () {
   clearInterval(App.about_info_interval)
+}
+
+// Show full about info
+App.show_full_about_info = function () {
+  App.stop_about_info()
+  App.el("#about_info").classList.add("hidden")
+  App.el("#about_image").classList.add("hidden")
+  
+  let container = App.el("#about_info_full")
+
+  for (let item of App.about_info_items) {
+    let el = App.create("div")
+    el.textContent = item
+    container.append(el)
+  }
 }
