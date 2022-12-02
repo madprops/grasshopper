@@ -42,11 +42,15 @@ NeedContext.filter = function (key) {
   }
 
   if (!selected) {
-    for (let item of NeedContext.items) {
-      item.element.classList.remove("needcontext-hidden")
+    for (let el of document.querySelectorAll(".needcontext-item")) {
+      el.classList.remove("needcontext-hidden")
     }
 
     NeedContext.select_item(0)
+  } else {
+    for (let el of document.querySelectorAll(".needcontext-separator")) {
+      el.classList.add("needcontext-hidden")
+    }
   }
 }
 
@@ -77,11 +81,12 @@ NeedContext.show = function (x, y, items) {
   
   for (let item of items) {
     let el = document.createElement("div")
+    el.classList.add("needcontext-item")
     
     if (item.separator) {
       el.classList.add("needcontext-separator")
     } else {
-      el.classList.add("needcontext-item")
+      el.classList.add("needcontext-normal")
       el.textContent = item.text
       el.dataset.index = index
       item.index = index
@@ -152,7 +157,7 @@ NeedContext.hide = function () {
 
 // Select an item by index
 NeedContext.select_item = function (index) {
-  let els = Array.from(document.querySelectorAll(".needcontext-item"))
+  let els = Array.from(document.querySelectorAll(".needcontext-normal"))
 
   for (let [i, el] of els.entries()) {
     if (i === index) {
