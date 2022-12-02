@@ -45,7 +45,7 @@ body, html {
   font-family: var(--font), sans-serif;
   font-size: var(--text_size);
   color: var(--text_color);
-  width: 700px;
+  width: 720px;
   height: 600px;
   margin: 0;
   padding: 0;
