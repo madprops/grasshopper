@@ -285,13 +285,15 @@ App.restore_default_normal_settings = function () {
 
 // Restore the default theme
 App.restore_default_theme_settings = function () {
-  for (let key in App.default_settings) {
-    let item = App.default_settings[key]
-
-    if (item.category === "theme") {
-      App[`${key}_picker`].setColor(item.value)
+  App.show_confirm("Restore default theme?", function () {
+    for (let key in App.default_settings) {
+      let item = App.default_settings[key]
+  
+      if (item.category === "theme") {
+        App[`${key}_picker`].setColor(item.value)
+      }
     }
-  }
+  })
 }
 
 // Restore default icons
