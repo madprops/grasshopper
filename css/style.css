@@ -384,11 +384,13 @@ body, html {
   padding-bottom: 3rem;
 }
 
-#about_shortcuts > div {
+#about_info {
   background-color: var(--alt_color_1);
-  padding: 0rem;
   width: 100%;
   padding: 0.5rem;
+  text-align: center;
+  width: 27rem;
+  overflow: hidden;
 }
 
 a:visited, a:link, a:hover {

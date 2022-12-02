@@ -86,6 +86,18 @@ App.setup_keyboard = function () {
       }
     }
 
+    if (App.window_mode === "about") {
+      if (e.key === "ArrowLeft") {
+        App.prev_about_info()
+        e.preventDefault()
+        return
+      } else if (e.key === "ArrowRight") {
+        App.next_about_info()
+        e.preventDefault()
+        return
+      }
+    }
+
     if (App.item_order.includes(App.window_mode)) {
       if (e.shiftKey && e.key === " ") {        
         App.show_menu()
