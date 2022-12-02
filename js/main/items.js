@@ -779,7 +779,7 @@ App.show_item_window = async function (mode, cycle = false) {
 
   App.el(`#${mode}_container`).innerHTML = ""
   App.el(`#${mode}_filter`).value = value
-  App.el(`#${mode}_main_menu`).textContent = `${App.get_mode_index(mode) + 1}. ${App.capitalize(mode)}`
+  App.el(`#${mode}_main_menu`).textContent = App.capitalize(mode)
   App.el(`#${mode}_filter_mode`).textContent = "Show: All"
   App[`${mode}_filter_mode`] = "all"
 
@@ -832,7 +832,6 @@ App.setup_item_window = function (mode, actions) {
     //
     let main_menu = App.create("div", "button top_button", `${mode}_main_menu`)
     main_menu.title = "Main Menu (Tab)"
-    main_menu.textContent = App.capitalize(mode)
 
     App.ev(main_menu, "click", function () {
       App.show_main_menu(this)
