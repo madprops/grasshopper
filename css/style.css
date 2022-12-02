@@ -398,6 +398,13 @@ body, html {
   width: 51%;
 }
 
+#about_info_full {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 0.25rem;
+}
+
 a:visited, a:link, a:hover {
 	color: var(--text_color);
 }
