@@ -389,7 +389,7 @@ body, html {
   width: 100%;
   padding: 0.5rem;
   text-align: center;
-  width: 27rem;
+  width: 70%;
   overflow: hidden;
 }
 
@@ -464,10 +464,6 @@ a:visited, a:link, a:hover {
   resize: none;
 }
 
-.sortable_ghost {
-  display: none;
-}
-
 input {
   font-family: var(--font), sans-serif;
 }
@@ -475,4 +471,8 @@ input {
 input::placeholder {
   color: var(--text_color);
   opacity: 0.77;
+}
+
+.full_width {
+  width: 100%;
 }
