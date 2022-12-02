@@ -25,10 +25,16 @@ App.check_window_keyboard = function (e) {
     }
 
     e.preventDefault()
-  } else if (e.key === "ArrowUp") {
+    return
+  } 
+  
+  if (e.key === "ArrowUp") {
     App.select_item_above(mode)
     e.preventDefault()
-  } else if (e.key === "ArrowDown") {
+    return
+  } 
+  
+  if (e.key === "ArrowDown") {
     if (e.shiftKey) {
       App.show_filter_mode(mode)
     } else {
@@ -36,9 +42,10 @@ App.check_window_keyboard = function (e) {
     }
 
     e.preventDefault()
-  } else {
-    App.focus_filter(mode)
+    return
   }
+
+  App.focus_filter(mode)
 }
 
 // Setup keybindings
