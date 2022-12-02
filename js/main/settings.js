@@ -19,7 +19,7 @@ App.default_settings = {
 
 // Start item order
 App.start_item_order = function () {
-  let item_order = App.el("#item_order")
+  let item_order = App.el("#settings_item_order")
 
   for (let m of App.item_order) {
     let el = App.create("div", "item_order_item flex_row_center gap_2")
@@ -228,7 +228,7 @@ App.setup_settings = function () {
 // Start theme settings
 App.start_theme_settings = function () {
   function start_color_picker (name) {
-    let el = App.el(`#${name}_color_picker`)
+    let el = App.el(`#settings_${name}_color_picker`)
 
     App[`${name}_color_picker`] = AColorPicker.createPicker(el, {
       showAlpha: false,

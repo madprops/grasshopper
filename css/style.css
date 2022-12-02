@@ -346,7 +346,7 @@ body, html {
   font-size: 1.2rem;
 }
 
-#item_order {
+#settings_item_order {
   border: 1px solid var(--alt_color_2);
 }
 

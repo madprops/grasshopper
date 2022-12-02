@@ -1048,7 +1048,7 @@ App.cycle_item_windows = function (reverse = false, cycle = false) {
 
 // Update window order
 App.update_item_order = function () {
-  let boxes = App.els(".item_order_item", App.el("#item_order"))
+  let boxes = App.els(".item_order_item", App.el("#settings_item_order"))
   let modes = boxes.map(x => x.dataset.mode)
 
   for (let [i, mode] of modes.entries()) {
