@@ -206,7 +206,7 @@ App.remove_item = function (item) {
 
   App.update_info(mode)
 
-  if (App.el(`#${mode}_filter`).value.trim()) {
+  if (App.get_filter(mode)) {
     if (App.get_num_visible(mode) === 0) {
       App.clear_filter(mode)
     }
@@ -220,7 +220,7 @@ App.focus_filter = function (mode) {
 // Filter items
 App.do_item_filter = async function (mode) {
   console.info(`Filter: ${mode}`)
-  let value = App.el(`#${mode}_filter`).value.trim()
+  let value = App.get_filter(mode)
 
   if (value === "iddqd") {
     App.el("#main").classList.add("invert")
@@ -764,7 +764,7 @@ App.get_last_window_value = function (cycle) {
     if (search && search.value.trim()) {
       value = search.value.trim()
     } else {
-      value = App.el(`#${last_mode}_filter`).value.trim()
+      value = App.get_filter(last_mode)
     }
   }
 
@@ -778,11 +778,11 @@ App.show_item_window = async function (mode, cycle = false) {
   App.empty_footer(mode)
 
   App.el(`#${mode}_container`).innerHTML = ""
-  App.el(`#${mode}_filter`).value = value
   App.el(`#${mode}_main_menu`).textContent = App.capitalize(mode)
+  App.set_filter(mode, value, false)
 
   let m = App[`${mode}_filter_modes`][0]
-  App.set_filter_mode(mode, m)
+  App.set_filter_mode(mode, m, false)
   App[`${mode}_filter_mode`] = m[0]
 
   let items = await App[`get_${mode}`]()
@@ -1176,9 +1176,17 @@ App.update_info = function (mode) {
 }
 
 // Set item filter
-App.set_filter = function (mode, text) {
+App.set_filter = function (mode, text, action = true) {
   App.el(`#${mode}_filter`).value = text
-  App.do_item_filter(mode)
+
+  if (action) {
+    App.do_item_filter(mode)
+  }
+}
+
+// Get filter value
+App.get_filter = function (mode) {
+  return App.el(`#${mode}_filter`).value.trim()
 }
 
 // Any item visible
@@ -1207,7 +1215,7 @@ App.get_num_visible = function (mode) {
 
 // Clear the filter
 App.clear_filter = function (mode) {
-  App.el(`#${mode}_filter`).value = ""
+  App.set_filter(mode, "", false)
   App.do_item_filter(mode)
   App.focus_filter(mode)
 }
@@ -1326,7 +1334,7 @@ App.cycle_filter_modes = function (mode, reverse = true) {
 }
 
 // Set filter mode
-App.set_filter_mode = function (mode, filter_mode) {
+App.set_filter_mode = function (mode, filter_mode, action = true) {
   App[`${mode}_filter_mode`] = filter_mode[0]
 
   let s = filter_mode[1]
@@ -1337,8 +1345,10 @@ App.set_filter_mode = function (mode, filter_mode) {
 
   App.el(`#${mode}_filter_mode`).textContent = s
 
-  if (filter_mode[0] === "all") {
-    App.clear_filter(mode)
+  if (action) {
+    if (filter_mode[0] === "all") {
+      App.clear_filter(mode)
+    }
   }
 
   App.do_item_filter(mode)
@@ -1458,7 +1468,7 @@ App.launch_items = function (mode) {
   let highlights = App.get_highlights(mode)
 
   if (highlights.length === 0) {
-    let filter = App.el(`#${mode}_filter`).value.trim()
+    let filter = App.get_filter(mode)
 
     if (!filter) {
       App.show_alert("No items highlighted or filtered")
