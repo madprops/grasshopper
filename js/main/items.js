@@ -819,7 +819,23 @@ App.setup_item_window = function (mode, actions) {
     let footer = App.create("div", "footer unselectable", `${mode}_footer`)
     let top = App.create("div", "item_top_container", `${mode}_top_container`)
     App.el(`#window_top_${mode}`).append(top)
+    
+    let scroller_top = App.create("div", "scroller scroller_top unselectable action hidden")
+    scroller_top.textContent = "Go To Top"
 
+    App.ev(scroller_top, "click", function () {
+      App.goto_top(mode)
+    })
+    
+    let scroller_bottom = App.create("div", "scroller scroller_bottom unselectable action hidden")
+    scroller_bottom.textContent = "Go To Bottom"
+
+    App.ev(scroller_top, "click", function () {
+      App.goto_bottom(mode)
+    })
+    
+    win.append(scroller_top)
+    win.append(scroller_bottom)
     win.append(container)
     win.append(footer)
 
@@ -1015,6 +1031,15 @@ App.setup_item_window = function (mode, actions) {
 
       top.append(menu)
     }
+
+    App.ev(container, "scroll", function () {
+      console.log(container.scrollTop)
+      if (container.scrollTop > 5) {
+        scroller_top.classList.remove("hidden")
+      } else {
+        scroller_top.classList.add("hidden")
+      }
+    })
   }
 
   App.create_window(args)
@@ -1490,4 +1515,9 @@ App.launch_items = function (mode) {
   })
 
   App.dehighlight(mode)
+}
+
+// Scroll container to top
+App.goto_top = function (mode) {
+  App.el(`#${mode}_container`).scrollTop = 0
 }
