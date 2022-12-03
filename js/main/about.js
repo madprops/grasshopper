@@ -22,6 +22,19 @@ App.setup_about = function () {
       App.show_full_about_info()
     })
 
+    let image = App.el("#about_image")
+
+    App.ev(image, "click", function () {
+      if (image.classList.contains("hue_rotate")) {
+        image.classList.remove("hue_rotate")
+        image.classList.add("invert")
+      } else if (image.classList.contains("invert")) {
+        image.classList.remove("invert")
+      } else {
+        image.classList.add("hue_rotate")
+      }
+    })
+
     let info_full = App.el("#about_info_full")
 
     for (let item of App.about_info_items) {
