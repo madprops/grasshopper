@@ -788,7 +788,17 @@ App.undo_close = function () {
 
 // Backup tab state
 App.backup_tabs = function () {
+  if (App.backup_tabs_locked) {
+    return
+  }
+
   App.tabs_backup = App.get_tab_state()
+  App.backup_tabs_locked = true
+
+  // This is to be able to undo multiple-quick-single close operations
+  setTimeout(function () {
+    App.backup_tabs_locked = false
+  }, 1234)
 }
 
 // Star tabs
