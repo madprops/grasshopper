@@ -286,7 +286,7 @@ body, html {
   display: flex;
   flex-direction: column;
   margin-bottom: 3rem;
-  gap: 1.25rem;
+  gap: 2.5rem;
   align-items: center;
   justify-content: center;
 }
@@ -330,11 +330,6 @@ body, html {
 
 .gap_4 {
   gap: 2rem;
-}
-
-.separator {
-  border-top: 1px solid var(--alt_color_1);
-  width: 14rem;
 }
 
 .star_editor_text {
