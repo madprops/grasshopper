@@ -286,7 +286,7 @@ body, html {
   display: flex;
   flex-direction: column;
   margin-bottom: 3rem;
-  gap: 2.5rem;
+  gap: 2rem;
   align-items: center;
   justify-content: center;
 }
@@ -299,6 +299,14 @@ body, html {
   flex-grow: 0;
   width: 6rem;
   text-align: center;
+}
+
+.settings_column {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 0.8rem;
 }
 
 .settings_text_long {
