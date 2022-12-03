@@ -889,7 +889,7 @@ App.setup_item_window = function (mode, actions) {
 
     //
     if (actions) {
-      let menu = App.create("div", "button top_button", `${mode}_menu`)
+      let menu = App.create("div", "button", `${mode}_menu`)
       menu.title = "Item Actions (Shift + Space)"
       menu.textContent = "Actions"
 
