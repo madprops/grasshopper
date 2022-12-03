@@ -1033,7 +1033,6 @@ App.setup_item_window = function (mode, actions) {
     }
 
     App.ev(container, "scroll", function () {
-      console.log(container.scrollTop)
       if (container.scrollTop > 5) {
         scroller_top.classList.remove("hidden")
       } else {
