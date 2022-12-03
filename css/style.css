@@ -74,7 +74,7 @@ body, html {
   background-color: var(--background_color);  
   overflow-y: auto;
   overflow-x: hidden;
-  scrollbar-color: var(--alt_color_3) var(--alt_color_2);
+  scrollbar-color: var(--alt_color_3) var(--alt_color_1);
 }
 
 .window_top {
