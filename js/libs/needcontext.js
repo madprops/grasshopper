@@ -298,7 +298,7 @@ NeedContext.init = function () {
       padding-bottom: 6px;
     }
 
-    .needcontext-item {
+    .needcontext-normal {
       padding-left: 10px;
       padding-right: 10px;
       padding-top: 3px;
