@@ -28,7 +28,7 @@ App.apply_theme = function () {
     App.settings.background_color = App.default_settings.background_color.value
     App.settings.text_color = App.default_settings.text_color.value
     App.stor_save_settings()
-    App.apply_theme()
+    window.close()
   }
 }
 
