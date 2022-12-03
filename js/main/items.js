@@ -780,8 +780,10 @@ App.show_item_window = async function (mode, cycle = false) {
   App.el(`#${mode}_container`).innerHTML = ""
   App.el(`#${mode}_filter`).value = value
   App.el(`#${mode}_main_menu`).textContent = App.capitalize(mode)
-  App.el(`#${mode}_filter_mode`).textContent = "Show: All"
-  App[`${mode}_filter_mode`] = "all"
+
+  let m = App[`${mode}_filter_modes`][0]
+  App.set_filter_mode(mode, m)
+  App[`${mode}_filter_mode`] = m[0]
 
   let items = await App[`get_${mode}`]()
 
@@ -1274,7 +1276,7 @@ App.show_filter_mode = function (mode) {
     let selected = App[`${mode}_filter_mode`] === filter_mode[0]
 
     items.push({
-      text: `Show: ${filter_mode[1]}`,
+      text: filter_mode[1],
       action: function () {
         App.set_filter_mode(mode, filter_mode)
       },
@@ -1326,7 +1328,14 @@ App.cycle_filter_modes = function (mode, reverse = true) {
 // Set filter mode
 App.set_filter_mode = function (mode, filter_mode) {
   App[`${mode}_filter_mode`] = filter_mode[0]
-  App.el(`#${mode}_filter_mode`).textContent = `Show: ${filter_mode[1]}`
+
+  let s = filter_mode[1]
+
+  if (s === "All") {
+    s = "Show: All"
+  }
+
+  App.el(`#${mode}_filter_mode`).textContent = s
 
   if (filter_mode[0] === "all") {
     App.clear_filter(mode)
