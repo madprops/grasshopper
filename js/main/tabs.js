@@ -249,9 +249,12 @@ App.close_tab = function (id) {
 }
 
 // Open a new tab
-App.new_tab = function (url = undefined) {
-  browser.tabs.create({active: true, url: url})
-  window.close()
+App.new_tab = async function (url = undefined, close = true) {
+  await browser.tabs.create({active: close, url: url})
+
+  if (close) {
+    window.close()
+  }
 }
 
 // Refresh tabs
@@ -629,20 +632,21 @@ App.do_load_tab_state = function (items, confirm = true) {
   let to_close = []
   let tabs = App.tabs_items
 
-  for (let item of tabs) {
-    for (let [i, it] of to_open.entries()) {
-      if (item.url === it.url) {
+  for (let tab of tabs) {
+    for (let [i, item] of to_open.entries()) {
+      if ((tab.url === item.url) || (item.url === "about" && !App.is_http(tab))) {
         to_open.splice(i, 1)
         break
       }
     }
   }
 
-  for (let item of tabs) {
-    let i = urls.indexOf(item.url)
+  for (let tab of tabs) {
+    let url = App.is_http(tab) ? tab.url : "about"
+    let i = urls.indexOf(url)
 
     if (i === -1) {
-      to_close.push(item)
+      to_close.push(tab)
     } else {
       urls.splice(i, 1)
     }
@@ -659,7 +663,11 @@ App.do_load_tab_state = function (items, confirm = true) {
 
     for (let item of to_open) {
       try {
-        await App.open_tab(item.url, false)
+        if (item.url === "about") {
+          await App.new_tab(undefined, false)
+        } else {
+          await App.open_tab(item.url, false)
+        }
       } catch (e) {
         console.error(e)
       }
@@ -680,7 +688,7 @@ App.do_load_tab_state = function (items, confirm = true) {
   
       for (let [i, item] of items.entries()) {
         for (let tab of tabs) {                  
-          if (!item.empty && (item.url === tab.url)) {         
+          if ((!item.empty && (item.url === tab.url)) || (item.url === "about" && !App.is_http(tab))) {
             if (!tab.xset) {
               tab.pinned = item.pinned
               tab.discarded = item.discarded
@@ -732,8 +740,10 @@ App.get_tab_state = function () {
   let items = []
 
   for (let tab of App.tabs_items) {
+    let url = App.is_http(tab) ? tab.url : "about"
+
     items.push({
-      url: tab.url,
+      url: url,
       pinned: tab.pinned,
       discarded: tab.discarded,
     })
