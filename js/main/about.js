@@ -2,9 +2,9 @@
 App.setup_about = function () {
   App.create_window({id: "about", setup: function () {
     App.about_info_items = [
-      "Switch item windows with the top-left menu or (Shift) Tab",
+      "Navigate with the top-left menu or (Shift) Tab",
       "Up, Down, and Enter keys to navigate and pick items",
-      "Type anytime to filter items, press Tab to carry the filter",
+      "Type anytime to filter items, press Tab to reuse",
       "Right Click or Shift + Enter to show context menus",
       "Use Middle Click to either close items or launch items",
       "Shift + Middle Click on items to bypass confirmations",
