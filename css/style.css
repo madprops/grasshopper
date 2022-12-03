@@ -501,11 +501,6 @@ input::placeholder {
 }
 
 .scroller_top {
-  top: 3rem;
-  right: 1rem;
-}
-
-.scroller_bottom {
-  bottom: 0;
-  left: 0;
+  top: 2.8rem;
+  right: 0.8rem;
 }

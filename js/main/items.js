@@ -827,15 +827,7 @@ App.setup_item_window = function (mode, actions) {
       App.goto_top(mode)
     })
     
-    let scroller_bottom = App.create("div", "scroller scroller_bottom unselectable action hidden")
-    scroller_bottom.textContent = "Go To Bottom"
-
-    App.ev(scroller_top, "click", function () {
-      App.goto_bottom(mode)
-    })
-    
     win.append(scroller_top)
-    win.append(scroller_bottom)
     win.append(container)
     win.append(footer)
 
