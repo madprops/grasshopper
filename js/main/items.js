@@ -1625,6 +1625,12 @@ App.star_items = async function (mode) {
 App.highlight_items = function (mode) {
   let what
 
+  let highlights = App.get_highlights(mode)
+
+  if (highlights.length > 0) {
+    what = false
+  }
+
   for (let item of App[`${mode}_items`]) {
     if (item.visible) {
       if (what === undefined) {
