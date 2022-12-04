@@ -636,10 +636,10 @@ App.undo_close = function () {
 // Backup tab state
 App.backup_tabs = function () {
   if (App.backup_tabs_locked) {
+    App.lock_backup_tabs()
     return
   }
 
-  console.log(111)
   App.tabs_backup = App.get_tab_state()
   App.backup_tabs_locked = true
   App.lock_backup_tabs()
