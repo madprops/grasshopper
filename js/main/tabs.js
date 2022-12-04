@@ -398,6 +398,7 @@ App.pin_all_tabs = function () {
   }
   
   let s = App.plural(ids.length, "tab", "tabs")
+  App.dehighlight("tabs")
 
   App.show_confirm(`Pin tabs? (${s})`, function () {
     for (let id of ids) {
@@ -428,6 +429,7 @@ App.unpin_all_tabs = function () {
   }
   
   let s = App.plural(ids.length, "tab", "tabs")
+  App.dehighlight("tabs")
 
   App.show_confirm(`Unpin tabs? (${s})`, function () {
     for (let id of ids) {
@@ -472,6 +474,7 @@ App.suspend_tabs = function (include, exclude) {
   }
   
   let s = App.plural(tabs.length, "tab", "tabs")
+  App.dehighlight("tabs")
 
   App.show_confirm(`Suspend tabs? (${s})`, function () {
     for (let tab of tabs) {
@@ -531,6 +534,7 @@ App.mute_tabs = function () {
   }
   
   let s = App.plural(ids.length, "tab", "tabs")
+  App.dehighlight("tabs")
 
   App.show_confirm(`Mute playing tabs? (${s})`, function () {
     for (let id of ids) {
@@ -556,6 +560,7 @@ App.unmute_tabs = function () {
   }
   
   let s = App.plural(ids.length, "tab", "tabs")
+  App.dehighlight("tabs")
 
   App.show_confirm(`Unmute muted tabs? (${s})`, function () {
     for (let id of ids) {
@@ -767,6 +772,7 @@ App.open_tab = async function (url, close = true, args = {}) {
 // Do tabs close with ids
 App.do_close_tabs = function (ids) {
   let s = App.plural(ids.length, "tab", "tabs")
+  App.dehighlight("tabs")
 
   App.show_confirm(`Close tabs? (${s})`, function () {
     App.backup_tabs()
@@ -836,13 +842,13 @@ App.star_tabs = async function (type) {
   }
 
   let s = App.plural(tabs.length, "tab", "tabs")
+  App.dehighlight("tabs")
 
   App.show_confirm(`Star tabs? (${s})`, async function () {
     for (let tab of tabs) {
       await App.star_item(tab, false)
     }
 
-    App.dehighlight("tabs")
     App.stor_save_stars()
     App.show_alert("Stars created")
   })  
