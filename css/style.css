@@ -227,7 +227,6 @@ body, html {
 }
 
 .highlighted {
-  filter: brightness(1.6);
   box-shadow: inset 0px 0px 0px 1px var(--alt_color_2);
 }
 
