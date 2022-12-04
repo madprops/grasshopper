@@ -48,7 +48,7 @@ App.history_action = function (item) {
 
 // History action alt
 App.history_action_alt = function (item) {
-  App.focus_or_open_item(item, false)
+  App.launch_item(item, false)
 }
 
 // Search the history

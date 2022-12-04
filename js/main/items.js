@@ -1147,7 +1147,6 @@ App.show_first_item_window = function () {
 
 // Focus an open tab or launch a new one
 App.focus_or_open_item = async function (item, close = true) {
-  App.save_filter(item.mode)
   let tabs = await App.get_tabs()
 
   for (let tab of tabs) {
@@ -1609,6 +1608,7 @@ App.star_items = async function (mode) {
 
 // Launch an item
 App.launch_item = function (item, close = true) {
+  App.save_filter(item.mode)
   App.open_tab(item.url, close)
 
   if (close) {

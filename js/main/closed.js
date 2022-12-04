@@ -25,5 +25,5 @@ App.closed_action = function (item) {
 
 // Closed tabs action alt
 App.closed_action_alt = function (item) {
-  App.focus_or_open_item(item, false)
+  App.launch_item(item, false)
 }
