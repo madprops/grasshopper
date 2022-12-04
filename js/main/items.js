@@ -362,6 +362,15 @@ App.show_item_menu = function (item, x, y) {
     }
   })
 
+  if (item.mode === "stars") {
+    items.push({
+      text: "Remove",
+      action: function () {
+        App.remove_stars()
+      }
+    })    
+  }
+
   items.push({
     text: "Filter",
     action: function () {
@@ -1467,12 +1476,14 @@ App.get_highlights = function (mode) {
 
 // Item is to be included in action
 App.item_in_action = function (highlights, item) {
-  if (App[`selected_${item.mode}_item`] === item) {
-    return true
-  }
-
-  if (highlights.includes(item)) {
-    return true
+  if (highlights.length > 0) {
+    if (highlights.includes(item)) {
+      return true
+    }
+  } else {
+    if (App[`selected_${item.mode}_item`] === item) {
+      return true
+    }
   }
 
   return false

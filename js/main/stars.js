@@ -3,11 +3,7 @@ App.setup_stars = function () {
   let actions = [        
     {text: "New", action: function () {
       App.new_star()
-    }},
-
-    {text: "Remove", action: function () {
-      App.remove_stars()
-    }},  
+    }}, 
 
     {conditional: function () {
       if (App.stars_mode === "normal") {

@@ -48,7 +48,12 @@ App.check_window_keyboard = function (e) {
   if (e.key === "Delete") {
     if (mode === "tabs") {
       App.close_tabs()
+    } else if (mode === "stars") {
+      App.remove_stars()
     }
+
+    e.preventDefault()
+    return
   }
 
   App.focus_filter(mode)
