@@ -8,7 +8,6 @@ App.setup_about = function () {
       "Right Click or Shift + Enter to show context menus",
       "Use Middle Click to either close items or launch items",
       "Shift + Middle Click on items to bypass confirmations",
-      "Actions only apply to visible or highlighted items",
       "Some buttons respond to mousewheel and keyboard",
       "Shift + Click to select multiple items",
       "Shift + Drag to select multiple items",
