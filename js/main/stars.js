@@ -7,11 +7,7 @@ App.setup_stars = function () {
 
     {text: "Remove", action: function () {
       App.remove_stars()
-    }},    
-
-    {text: "Launch", action: function () {
-      App.launch_items("stars")
-    }}, 
+    }},  
 
     {conditional: function () {
       if (App.stars_mode === "normal") {
@@ -23,7 +19,11 @@ App.setup_stars = function () {
           App.show_normal_stars()
         }}
       }
-    }},     
+    }},   
+    
+    {text: "Highlight", action: function () {
+      App.highlight_items("stars")
+    }}, 
 
     {text: "--separator--"},
 

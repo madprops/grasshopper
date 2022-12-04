@@ -1,8 +1,8 @@
 // Setup closed tabs
 App.setup_closed = function () {
   let actions = [
-    {text: "Launch", action: function () {
-      App.launch_items("closed")
+    {text: "Highlight", action: function () {
+      App.highlight_items("closed")
     }}, 
   ]
 
