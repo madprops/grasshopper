@@ -1497,7 +1497,7 @@ App.launch_item = function (item, close = true) {
   }
 }
 
-// Launch highlighted items
+// Launch items
 App.launch_items = function (mode) {
   let items = []
   let highlights = App.get_highlights(mode)

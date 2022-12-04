@@ -78,10 +78,10 @@ App.open_star = async function (item, close = true) {
 }
 
 // Launch star
-App.launch_star = async function (item, close = true) {
+App.launch_star = async function (item) {
   let star = await App.get_star_by_id(item.id)
   App.update_star(star)
-  App.launch_item(star, false)
+  App.launch_item(item, false)
 }
 
 // Get stars
