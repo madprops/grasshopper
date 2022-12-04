@@ -1267,12 +1267,17 @@ App.update_item = function (mode, id, source) {
     }
 
     let selected = App[`selected_${mode}_item`] === it
+    let highlighted = it.highlighted
     App.create_item_element(new_item)
     App[`${mode}_items`][i].element.replaceWith(new_item.element)
     App[`${mode}_items`][i] = new_item
 
     if (selected) {
       App.select_item(new_item)
+    }
+
+    if (highlighted) {
+      App.toggle_highlight(new_item, true)
     }
 
     break
