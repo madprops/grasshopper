@@ -25,15 +25,15 @@ App.setup_tabs = function () {
       }
     }},   
     
-    {text: "New Tab", action: function () {
+    {text: "New", action: function () {
       App.new_tab()
     }},  
 
-    {text: "Information", action: function () {
+    {text: "Info", action: function () {
       App.show_tabs_information()
     }},  
     
-    {text: "Tab State", items: [
+    {text: "State", items: [
       {
         text: "Save State", items: App.get_save_tab_state_items()
       },
@@ -44,7 +44,7 @@ App.setup_tabs = function () {
 
     {text: "--separator--"},
     
-    {text: "Star Tabs", items: [
+    {text: "Star", items: [
       {
         text: "Star Normal", action: function () {
           App.star_tabs("normal")
@@ -62,7 +62,7 @@ App.setup_tabs = function () {
       }   
     ]},     
 
-    {text: "(Un) Pin", items: [
+    {text: "Pin", items: [
       {
         text: "Pin All", action: function () {
           App.pin_all_tabs()
@@ -75,7 +75,7 @@ App.setup_tabs = function () {
       }
     ]},
 
-    {text: "(Un) Mute", items: [
+    {text: "Mute", items: [
       {
         text: "Mute Playing", action: function () {
           App.mute_tabs()
@@ -841,6 +841,7 @@ App.star_tabs = async function (type) {
       await App.star_item(tab, false)
     }
 
+    App.dehighlight("tabs")
     App.stor_save_stars()
     App.show_alert("Stars created")
   })  
