@@ -204,10 +204,10 @@ App.remove_item = function (item) {
     }
   }
 
-  App.update_info(mode)
+  App.update_footer_numbers(mode)
 
   if (App.get_filter(mode)) {
-    if (App.get_num_visible(mode) === 0) {
+    if (App.get_visible(mode).length === 0) {
       App.clear_filter(mode)
     }
   }
@@ -298,7 +298,7 @@ App.do_item_filter = async function (mode) {
   App[`selected_${mode}_item`] = undefined
   App.select_first_item(mode)
   App.update_footer(mode)
-  App.update_info(mode)
+  App.update_footer_numbers(mode)
 }
 
 // Show item
@@ -507,7 +507,7 @@ App.process_items = function (mode, items) {
     container.append(obj.element)
   }
 
-  App.update_info(mode)
+  App.update_footer_numbers(mode)
 }
 
 // Process an item
@@ -1177,17 +1177,12 @@ App.get_item_order = function () {
 }
 
 // Update item info
-App.update_info = function (mode) {
-  let n1 = App.get_num_visible(mode).toLocaleString()
-  let n2 = App[`${mode}_items`].length.toLocaleString()
+App.update_footer_numbers = function (mode) {
+  let n1 = App.get_highlights(mode).length.toLocaleString()
+  let n2 = App.get_visible(mode).length.toLocaleString()
   let footer = App.el(`#${mode}_footer`)
   let left = App.el(".footer_left", footer)
-
-  if (n1 === n2) {
-    left.textContent = `(${n1})`
-  } else {
-    left.textContent = `(${n1}/${n2})`
-  }
+  left.textContent = `(${n1}/${n2})`
 }
 
 // Set item filter
@@ -1216,16 +1211,16 @@ App.any_item_visible = function (mode) {
 }
 
 // Get number of visible items
-App.get_num_visible = function (mode) {
-  let n = 0
+App.get_visible = function (mode) {
+  let items = []
 
   for (let item of App[`${mode}_items`]) {
     if (item.visible) {
-      n += 1
+      items.push(item)
     }
   }
 
-  return n
+  return items
 }
 
 // Clear the filter
@@ -1454,6 +1449,7 @@ App.toggle_highlight = async function (item, what) {
   }
 
   item.highlighted = highlight
+  App.update_footer_numbers(item.mode)
 }
 
 // Get highlighted items

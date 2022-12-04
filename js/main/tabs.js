@@ -155,7 +155,7 @@ App.refresh_tab = async function (id) {
     App.create_item_element(tab)
     App.el("#tabs_container").append(tab.element)
     App.move_item_element("tabs", tab.element, info.index)
-    App.update_info("tabs")
+    App.update_footer_numbers("tabs")
   }
 }
 
