@@ -277,8 +277,6 @@ App.do_item_filter = async function (mode) {
         match = item.muted
       } else if (filter_mode === "suspended") {
         match = item.discarded
-      } else if (filter_mode === "active") {
-        match = item.active
       }
     }
 

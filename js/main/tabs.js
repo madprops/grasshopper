@@ -5,6 +5,8 @@ App.setup_tabs = function () {
     ["pins", "Pins"],
     ["normal", "Normal"],
     ["playing", "Playing"],
+    ["muted", "Muted"],
+    ["suspended", "Suspnd"],
   ]
 
   let actions = [
