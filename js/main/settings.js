@@ -206,8 +206,8 @@ App.setup_settings = function () {
       ["Comic", "gh_comic"],
       ["Cursive", "gh_cursive"],
       ["Funone", "gh_funone"],
-      ["Neat", "gh_neat"],
       ["Cyber", "gh_cyber"],
+      ["Neat", "gh_neat"],
     ], function () {
       App.apply_theme()
     })
