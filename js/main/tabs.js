@@ -74,6 +74,10 @@ App.setup_tabs = function () {
   browser.tabs.onMoved.addListener(function (id, info) {
     App.move_item("tabs", info.fromIndex, info.toIndex)
   })
+
+  App.lock_backup_tabs = App.create_debouncer(function () {
+    App.backup_tabs_locked = false
+  }, 1234)
 }
 
 // Get open tabs
@@ -635,13 +639,10 @@ App.backup_tabs = function () {
     return
   }
 
+  console.log(111)
   App.tabs_backup = App.get_tab_state()
   App.backup_tabs_locked = true
-
-  // This is to be able to undo multiple-quick-single close operations
-  setTimeout(function () {
-    App.backup_tabs_locked = false
-  }, 1234)
+  App.lock_backup_tabs()
 }
 
 // Get save tab state items

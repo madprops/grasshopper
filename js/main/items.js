@@ -1157,19 +1157,12 @@ App.focus_or_open_item = async function (item, close = true) {
         window_id: tab.windowId
       }
 
-      App.focus_tab(o)
-      window.close()
+      App.focus_tab(o, true)
       return
     }
   }
 
-  App.open_tab(item.url, close)
-
-  if (close) {
-    window.close()
-  } else {
-    App.show_launched(item)
-  }
+  App.launch_item(item, close)
 }
 
 // Get window order
@@ -1612,4 +1605,15 @@ App.star_items = async function (mode) {
     App.stor_save_stars()
     App.show_alert("Stars created")
   })  
+}
+
+// Launch an item
+App.launch_item = function (item, close = true) {
+  App.open_tab(item.url, close)
+
+  if (close) {
+    window.close()
+  } else {
+    App.show_launched(item)
+  }
 }
