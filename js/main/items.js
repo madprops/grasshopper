@@ -1418,6 +1418,8 @@ App.move_item_element = function (mode, el, to_index) {
 
 // Highlight a range of items
 App.highlight_range = function (item) {
+  App.shift_down = false
+  
   if (App.selection_mode === undefined) {
     App.selection_mode = !item.highlighted
   }
