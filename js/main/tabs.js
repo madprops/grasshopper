@@ -235,7 +235,6 @@ App.duplicate_tab = function (tab) {
 // Suspend a tab
 App.suspend_tab = async function (tab) {
   let highlights = App.get_highlights("tabs")
-  console.log(highlights.length)
 
   if (highlights.length > 0) {
     App.suspend_tabs()
