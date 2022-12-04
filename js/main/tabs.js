@@ -804,7 +804,5 @@ App.clean_tabs = function () {
     return
   }
 
-  for (let id of ids) {
-    App.close_tab(id)
-  }
+  App.do_close_tabs(ids)
 }
