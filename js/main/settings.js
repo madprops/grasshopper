@@ -7,7 +7,6 @@ App.default_settings = {
   closed_index: {value: 3, category: "normal"},
   text_size: {value: 17, category: "normal"},
   lock_drag: {value: false, category: "normal"},
-  warn_on_close: {value: true, category: "normal"},
   font: {value: "gh_sans", category: "normal"},
   background_color: {value: "rgb(88, 92, 111)", category: "theme"},
   text_color: {value: "rgb(234, 238, 255)", category: "theme"},

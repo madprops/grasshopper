@@ -304,6 +304,7 @@ App.unpin_tabs = function () {
 // Suspend normal tabs
 App.suspend_tabs = function () {
   let tabs = []
+  let warn = false
   let highlights = App.get_highlights("tabs")
   App.dehighlight("tabs")
 
@@ -315,6 +316,10 @@ App.suspend_tabs = function () {
     if (!App.is_http(tab)) {
       continue
     }
+
+    if (tab.pinned || tab.audible) {
+      warn = true
+    }
     
     tabs.push(tab)
   }
@@ -322,12 +327,18 @@ App.suspend_tabs = function () {
   if (tabs.length === 0) {
     return
   }
-  
-  App.show_confirm(`Suspend tabs? (${tabs.length})`, function () {
+
+  if (warn) {
+    App.show_confirm(`Suspend tabs? (${tabs.length})`, function () {
+      for (let tab of tabs) {
+        App.suspend_tab(tab)
+      }      
+    }) 
+  } else {
     for (let tab of tabs) {
       App.suspend_tab(tab)
     }
-  })
+  }
 }
 
 // Close tabs
@@ -353,7 +364,7 @@ App.close_tabs = function (force = false) {
     return
   }
 
-  if (!force && warn && App.settings.warn_on_close) {
+  if (!force && warn) {
     App.show_confirm(`Close tabs? (${ids.length})`, function () {
       App.do_close_tabs(ids)
     }) 
@@ -793,9 +804,7 @@ App.clean_tabs = function () {
     return
   }
 
-  App.show_confirm(`Close normal tabs? (${ids.length})`, function () {
-    for (let id of ids) {
-      App.close_tab(id)
-    }
-  })
+  for (let id of ids) {
+    App.close_tab(id)
+  }
 }
