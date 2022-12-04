@@ -204,7 +204,11 @@ App.star_editor_save = async function () {
     url: url
   })
 
-  App.show_item_window("stars")
+  if (App.last_window_mode === "stars") {
+    App.show_item_window("stars")
+  } else {
+    App.hide_star_editor()
+  }
 }
 
 // Get star by id
