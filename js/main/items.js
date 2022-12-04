@@ -800,6 +800,7 @@ App.show_item_window = async function (mode, cycle = false) {
   }
 
   App.focus_filter(mode)
+  App.check_top(mode)
 }
 
 // Setup an item window
@@ -1018,7 +1019,7 @@ App.setup_item_window = function (mode, actions) {
     }
 
     //
-    let goto_top = App.create("div", "button hidden")
+    let goto_top = App.create("div", "button", `${mode}_top`)
     goto_top.textContent = "Top"
     
     App.ev(goto_top, "click", function () {
@@ -1028,11 +1029,7 @@ App.setup_item_window = function (mode, actions) {
     top.append(goto_top)
 
     App.ev(container, "scroll", function () {
-      if (container.scrollTop > 10) {
-        goto_top.classList.remove("hidden")
-      } else {
-        goto_top.classList.add("hidden")
-      }
+      App.check_top(mode)
     })
   }
 
@@ -1419,7 +1416,7 @@ App.move_item_element = function (mode, el, to_index) {
 // Highlight a range of items
 App.highlight_range = function (item) {
   App.shift_down = false
-  
+
   if (App.selection_mode === undefined) {
     App.selection_mode = !item.highlighted
   }
@@ -1515,4 +1512,16 @@ App.launch_items = function (mode) {
 // Scroll container to top
 App.goto_top = function (mode) {
   App.el(`#${mode}_container`).scrollTop = 0
+}
+
+// Check whether to show the top button
+App.check_top = function (mode) {
+  let container = App.el(`#${mode}_container`)
+  let goto_top = App.el(`#${mode}_top`)
+
+  if (container.scrollTop > 10) {
+    goto_top.classList.remove("disabled")
+  } else {
+    goto_top.classList.add("disabled")
+  }
 }
