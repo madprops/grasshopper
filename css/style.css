@@ -502,6 +502,6 @@ input::placeholder {
 }
 
 .disabled {
-  opacity: 0.66;
+  opacity: 0.63;
   pointer-events: none;
 }
