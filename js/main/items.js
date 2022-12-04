@@ -421,16 +421,13 @@ App.show_item_menu = function (item, x, y) {
 App.get_move_menu_items = async function (item) {
   let items = []
   let wins = await browser.windows.getAll({populate: false})
-  let highlights = App.get_highlights(item.mode)
 
-  if (highlights.length <= 1) {
-    items.push({
-      text: "Detach",
-      action: function () {
-        App.detach_tab(item)
-      }
-    })
-  }
+  items.push({
+    text: "Detach",
+    action: function () {
+      App.detach_tab(item)
+    }
+  })
 
   for (let win of wins) {
     if (item.window_id === win.id) {

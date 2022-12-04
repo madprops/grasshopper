@@ -775,6 +775,7 @@ App.move_tabs = async function (window_id) {
 
   let ids = tabs.map(x => x.id)
   browser.tabs.move(ids, {index: -1, windowId: window_id})
+  window.close()
 }
 
 // Open tab in new window
