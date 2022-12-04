@@ -5,11 +5,6 @@ App.setup_tabs = function () {
     ["pins", "Pins"],
     ["normal", "Normal"],
     ["playing", "Playing"],
-    ["muted", "Muted"],
-    ["suspended", "Suspended"],
-    ["secure", "Secure"],
-    ["insecure", "Insecure"],
-    ["active", "Active"],
   ]
 
   let actions = [
@@ -31,6 +26,10 @@ App.setup_tabs = function () {
       }
     ]}, 
 
+    {text: "Undo", action: function () {
+      App.undo_close()
+    }},
+
     {conditional: function () {
       if (App.tabs_mode === "normal") {
         return {text: "Recent", action: function () {
@@ -41,19 +40,17 @@ App.setup_tabs = function () {
           App.show_normal_tabs()
         }}
       }
-    }},
-
-    {text: "Clean", action: function () {
-      App.clean_tabs()
     }}, 
     
     {text: "Highlight", action: function () {
       App.highlight_items("tabs")
     }}, 
 
-    {text: "Undo", action: function () {
-      App.undo_close()
-    }}
+    {text: "--separator--"},
+
+    {text: "Clean", action: function () {
+      App.clean_tabs()
+    }},
   ]
 
   App.setup_item_window("tabs", actions)
@@ -415,7 +412,7 @@ App.unmute_tabs = function () {
 
 // Check if tab is normal
 App.tab_is_normal = function (tab) {
-  let special = tab.pinned || tab.audible || tab.discarded
+  let special = tab.pinned || tab.audible
   return !special
 }
 

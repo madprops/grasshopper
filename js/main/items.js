@@ -275,10 +275,6 @@ App.do_item_filter = async function (mode) {
         match = item.pinned
       } else if (filter_mode === "muted") {
         match = item.muted
-      } else if (filter_mode === "secure") {
-        match = item.protocol === "https:"
-      } else if (filter_mode === "insecure") {
-        match = item.protocol === "http:"
       } else if (filter_mode === "suspended") {
         match = item.discarded
       } else if (filter_mode === "active") {
@@ -883,8 +879,6 @@ App.setup_item_window = function (mode, actions) {
     if (!App[`${mode}_filter_modes`]) {
       App[`${mode}_filter_modes`] = [
         ["all", "All"],
-        ["secure", "Secure"],
-        ["insecure", "Insecure"],
       ]
     }
 
