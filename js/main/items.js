@@ -2,6 +2,10 @@
 App.setup_items = function () {
   App.get_item_order()
   App.start_item_observers()
+
+  App.save_filter = App.create_debouncer(function () {
+    App.do_save_filter()
+  }, 1000)
 }
 
 // Block select for some ms
@@ -305,6 +309,7 @@ App.do_item_filter = async function (mode) {
   App.select_first_item(mode)
   App.update_footer(mode)
   App.update_info(mode)
+  App.save_filter()
 }
 
 // Show item
@@ -850,6 +855,17 @@ App.setup_item_window = function (mode, actions) {
     })
 
     top.append(main_menu)
+
+    //
+    let filters = App.create("div", "button", `${mode}_filters`)
+    filters.title = "Filters"
+    filters.textContent = "#"
+
+    App.ev(filters, "click", function () {
+      App.show_filters(mode)
+    })
+
+    top.append(filters)    
 
     //
     let filter = App.create("input", "text filter", `${mode}_filter`)
@@ -1525,5 +1541,47 @@ App.check_top = function (mode) {
     goto_top.classList.remove("disabled")
   } else {
     goto_top.classList.add("disabled")
+  }
+}
+
+// Show recent filters
+App.show_filters = function (mode) {
+  let el = App.el(`#${mode}_filters`)
+  let items = []
+
+  items.push({
+    text: "Clear",
+    action: function () {
+      App.clear_filter(mode)
+    }
+  })  
+
+  if (App.filters.items.length > 0) {
+    items.push({
+      separator: true
+    })  
+
+    for (let filter of App.filters.items) {
+      items.push({
+        text: filter,
+        action: function () {
+          App.set_filter(mode, filter)
+        }
+      })
+    }
+  }
+  
+  NeedContext.show_on_element(el, items, true, el.clientHeight)
+}
+
+// Save a filter
+App.do_save_filter = function () {
+  let filter = App.get_filter(App.window_mode)
+
+  if (filter) {
+    App.filters.items = App.filters.items.filter(x => x !== filter)
+    App.filters.items.unshift(filter)
+    App.filters.items = App.filters.items.slice(0, App.max_filters)
+    App.stor_save_filters()
   }
 }
