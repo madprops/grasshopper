@@ -7,41 +7,41 @@
 
 @font-face {
 	font-family: gh_sans;
-	src: url(Roboto-Regular.ttf);
+	src: url(fonts/Roboto-Regular.ttf);
 }
 
 @font-face {
 	font-family: gh_serif;
-	src: url(RobotoSerif-Regular.ttf);
+	src: url(fonts/RobotoSerif-Regular.ttf);
 }
 
 @font-face {
 	font-family: gh_mono;
-	src: url(RobotoMono-Regular.ttf);
+	src: url(fonts/RobotoMono-Regular.ttf);
 }
 @font-face {
 	font-family: gh_comic;
-	src: url(ComicNeue-Regular.ttf);
+	src: url(fonts/ComicNeue-Regular.ttf);
 }
 
 @font-face {
 	font-family: gh_cursive;
-	src: url(DancingScript-Regular.ttf);
+	src: url(fonts/DancingScript-Regular.ttf);
 }
 
 @font-face {
 	font-family: gh_funone;
-	src: url(NerkoOne-Regular.ttf);
+	src: url(fonts/NerkoOne-Regular.ttf);
 }
 
 @font-face {
 	font-family: gh_neat;
-	src: url(Montserrat-Regular.ttf);
+	src: url(fonts/Montserrat-Regular.ttf);
 }
 
 @font-face {
 	font-family: gh_cyber;
-	src: url(ZenDots-Regular.ttf);
+	src: url(fonts/ZenDots-Regular.ttf);
 }
 
 @keyframes rotate {
