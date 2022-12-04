@@ -305,7 +305,6 @@ App.do_item_filter = async function (mode) {
   App.select_first_item(mode)
   App.update_footer(mode)
   App.update_info(mode)
-  App.save_filter()
 }
 
 // Show item

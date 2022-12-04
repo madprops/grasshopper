@@ -330,6 +330,7 @@ App.remove_closed_tab = function (id) {
 
 // Tabs action
 App.tabs_action = function (item) {
+  App.save_filter("tabs")
   App.focus_tab(item)
 }
 
