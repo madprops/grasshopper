@@ -41,119 +41,14 @@ App.setup_tabs = function () {
           App.show_normal_tabs()
         }}
       }
-    }},     
-
-    {text: "--separator--"},
-    
-    {text: "Star", items: [
-      {
-        text: "Star Normal", action: function () {
-          App.star_tabs("normal")
-        }
-      },
-      {
-        text: "Star Pins", action: function () {
-          App.star_tabs("pinned")
-        }
-      },
-      {
-        text: "Star All", action: function () {
-          App.star_tabs("all")
-        }
-      }   
-    ]},     
-
-    {text: "Pin", items: [
-      {
-        text: "Pin All", action: function () {
-          App.pin_all_tabs()
-        }
-      },
-      {
-        text: "Unpin All", action: function () {
-          App.unpin_all_tabs()
-        }
-      }
-    ]},
-
-    {text: "Mute", items: [
-      {
-        text: "Mute Playing", action: function () {
-          App.mute_tabs()
-        }
-      },
-      {
-        text: "Unmute Muted", action: function () {
-          App.unmute_tabs()
-        }
-      }
-    ]},
-
-    {text: "Suspend", items: [
-      {
-        text: "Suspend Normal", action: function () {
-          App.suspend_tabs("normal")
-        }
-      },
-      {
-        text: "Suspend Pins", action: function () {
-          App.suspend_tabs("pinned")
-        }
-      },
-      {
-        text: "Suspend All", action: function () {
-          App.suspend_tabs()
-        }
-      }
-    ]}, 
+    }},
     
     {text: "--separator--"},    
 
-    {text: "Close", items: [
-      {
-        text: "Close Normal", action: function () {
-          App.close_tabs("normal")
-        }
-      },
-      {
-        text: "Close Playing", action: function () {
-          App.close_tabs("audible")
-        }
-      },
-      {
-        text: "Close Muted", action: function () {
-          App.close_tabs("muted")
-        }
-      },      
-      {
-        text: "Close Suspended", action: function () {
-          App.close_tabs("discarded")
-        }
-      },
-      {
-        text: "Close Pins", action: function () {
-          App.close_tabs("pinned")
-        }
-      },
-      {
-        text: "Close Others", action: function () {
-          App.close_tabs(undefined, "active")
-        }
-      },    
-      {
-        text: "Close All", action: function () {
-          App.close_tabs()
-        }
-      },
-      {
-        separator: true
-      },
-      {
-        text: "Undo", action: function () {
-          App.undo_close()
-        }
-      }    
-    ]},
+    {text: "Undo", action: function () {
+        App.undo_close()
+      }
+    },
   ]
 
   App.setup_item_window("tabs", actions)
@@ -218,29 +113,6 @@ App.focus_tab = async function (tab, close = true) {
 
   if (close) {
     window.close()
-  }
-}
-
-// Close tab with possible confirm
-App.confirm_close_tab = function (tab) {
-  if (!App.tab_is_normal(tab)) {
-    let s
-
-    if (tab.audible) {
-      s = "Close playing tab?"
-    } else if (tab.pinned) {
-      s = "Close pinned tab?"
-    } else {
-      s = "Close tab?"
-    }
-
-    App.show_confirm(s, function () {
-      App.backup_tabs()
-      App.close_tab(tab.id)
-    })
-  } else {
-    App.backup_tabs()
-    App.close_tab(tab.id)
   }
 }
 
@@ -339,16 +211,6 @@ App.tabs_action_alt = function (item, shift_key = false) {
   App.check_tab_close(item, shift_key)
 }
 
-// Check tab close
-App.check_tab_close = function (item, bypass = false) {
-  if (bypass || !App.settings.warn_on_close) {
-    App.backup_tabs()
-    App.close_tab(item.id)
-  } else {
-    App.confirm_close_tab(item)
-  }
-}
-
 // Open tab in new window
 App.detach_tab = async function (tab) {
   browser.windows.create({tabId: tab.id})
@@ -370,6 +232,14 @@ App.duplicate_tab = function (tab) {
 
 // Suspend a tab
 App.suspend_tab = async function (tab) {
+  let highlights = App.get_highlights("tabs")
+  console.log(highlights.length)
+
+  if (highlights.length > 0) {
+    App.suspend_tabs()
+    return
+  }
+
   if (tab.active) {
     await browser.tabs.create({active: true})
   }
@@ -378,9 +248,10 @@ App.suspend_tab = async function (tab) {
 }
 
 // Pin tabs
-App.pin_all_tabs = function () {
+App.pin_tabs = function () {
   let ids = []
   let highlights = App.get_highlights("tabs")
+  App.dehighlight("tabs")
 
   for (let tab of App.tabs_items) {
     if (!App.item_in_action(highlights, tab)) {
@@ -398,19 +269,16 @@ App.pin_all_tabs = function () {
     return
   }
   
-  App.dehighlight("tabs")
-
-  App.show_confirm(`Pin tabs? (${ids.length})`, function () {
-    for (let id of ids) {
-      App.pin_tab(id)
-    }
-  })
+  for (let id of ids) {
+    App.pin_tab(id)
+  }
 }
 
 // Unpin tabs
-App.unpin_all_tabs = function () {
+App.unpin_tabs = function () {
   let ids = []
   let highlights = App.get_highlights("tabs")
+  App.dehighlight("tabs")
 
   for (let tab of App.tabs_items) {
     if (!App.item_in_action(highlights, tab)) {
@@ -428,13 +296,9 @@ App.unpin_all_tabs = function () {
     return
   }
   
-  App.dehighlight("tabs")
-
-  App.show_confirm(`Unpin tabs? (${ids.length})`, function () {
-    for (let id of ids) {
-      App.unpin_tab(id)
-    }
-  }) 
+  for (let id of ids) {
+    App.unpin_tab(id)
+  }
 }
 
 // Suspend normal tabs
@@ -482,26 +346,13 @@ App.suspend_tabs = function (include, exclude) {
 }
 
 // Close tabs
-App.close_tabs = function (include, exclude) {
+App.close_tabs = function () {
   let ids = []
   let highlights = App.get_highlights("tabs")
+  App.dehighlight("tabs")
 
   for (let tab of App.tabs_items) {
     if (!App.item_in_action(highlights, tab)) {
-      continue
-    }
-
-    if (include) {
-      if (include === "normal") {
-        if (!App.tab_is_normal(tab)) {
-          continue
-        }
-      } else if (!tab[include]) {
-        continue
-      }
-    }
-
-    if (exclude && tab[exclude]) {
       continue
     }
     
@@ -511,13 +362,29 @@ App.close_tabs = function (include, exclude) {
   if (ids.length === 0) {
     return
   }
+
+  if (App.settings.warn_on_close) {
+    App.show_confirm(`Close tabs? (${ids.length})`, function () {
+      App.do_close_tabs(ids)
+    }) 
+  } else {
+    App.do_close_tabs(ids)
+  }
+}
+
+// Do close tabs
+App.do_close_tabs = function (ids) {
+  App.backup_tabs()
   
-  App.do_close_tabs(ids)
+  for (let id of ids) {
+    App.close_tab(id)
+  }
 }
 
 // Mute tabs
 App.mute_tabs = function () {
   let ids = []
+  App.dehighlight("tabs")
 
   for (let tab of App.tabs_items) {
     if (!tab.visible || !tab.audible || tab.muted) {
@@ -530,8 +397,6 @@ App.mute_tabs = function () {
   if (ids.length === 0) {
     return
   }
-  
-  App.dehighlight("tabs")
 
   App.show_confirm(`Mute playing tabs? (${ids.length})`, function () {
     for (let id of ids) {
@@ -543,6 +408,7 @@ App.mute_tabs = function () {
 // Unmute tabs
 App.unmute_tabs = function () {
   let ids = []
+  App.dehighlight("tabs")
 
   for (let tab of App.tabs_items) {
     if (!tab.visible || !tab.muted) {
@@ -556,8 +422,6 @@ App.unmute_tabs = function () {
     return
   }
   
-  App.dehighlight("tabs")
-
   App.show_confirm(`Unmute muted tabs? (${ids.length})`, function () {
     for (let id of ids) {
       App.unmute_tab(id)
@@ -765,19 +629,6 @@ App.open_tab = async function (url, close = true, args = {}) {
   return tab
 }
 
-// Do tabs close with ids
-App.do_close_tabs = function (ids) {
-  App.dehighlight("tabs")
-
-  App.show_confirm(`Close tabs? (${ids.length})`, function () {
-    App.backup_tabs()
-
-    for (let id of ids) {
-      App.close_tab(id)
-    }
-  })  
-}
-
 // Uno tabs close
 App.undo_close = function () {
   if (!App.tabs_backup) {
@@ -801,51 +652,6 @@ App.backup_tabs = function () {
   setTimeout(function () {
     App.backup_tabs_locked = false
   }, 1234)
-}
-
-// Star tabs
-App.star_tabs = async function (type) {
-  let tabs = []
-  let highlights = App.get_highlights("tabs")
-
-  for (let tab of App.tabs_items) {
-    if (!App.item_in_action(highlights, tab)) {
-      continue
-    }
-
-    if (type === "normal") {
-      if (!App.tab_is_normal(tab)) {
-        continue
-      }
-    } else if (type === "pinned") {
-      if (!tab.pinned) {
-        continue
-      }
-    }
-    
-    let exists = await App.get_star_by_url(tab.url)
-
-    if (exists) {
-      continue
-    }
-
-    tabs.push(tab)
-  }
-
-  if (tabs.length === 0) {
-    return
-  }
-
-  App.dehighlight("tabs")
-
-  App.show_confirm(`Star tabs? (${tabs.length})`, async function () {
-    for (let tab of tabs) {
-      await App.star_item(tab, false)
-    }
-
-    App.stor_save_stars()
-    App.show_alert("Stars created")
-  })  
 }
 
 // Get save tab state items

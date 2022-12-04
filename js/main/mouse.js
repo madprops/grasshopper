@@ -41,6 +41,10 @@ App.setup_window_mouse = function (mode) {
   })
 
   App.ev(container, "mousedown", function (e) {
+    if (e.button !== 0) {
+      return
+    }
+    
     if (e.shiftKey) {
       App.selection_mouse_down = true
       App.selection_moved = 0

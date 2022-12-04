@@ -328,14 +328,14 @@ App.show_item_menu = function (item, x, y) {
       items.push({
         text: "Unpin",
         action: function () {
-          App.unpin_tab(item.id)
+          App.unpin_tabs(item)
         }
       })
     } else {
       items.push({
         text: "Pin",
         action: function () {
-          App.pin_tab(item.id)
+          App.pin_tabs(item)
         }
       })
     }
@@ -344,14 +344,14 @@ App.show_item_menu = function (item, x, y) {
       items.push({
         text: "Unmute",
         action: function () {
-          App.unmute_tab(item.id)
+          App.unmute_tabs(item.id)
         }
       })
     } else {
       items.push({
         text: "Mute",
         action: function () {
-          App.mute_tab(item.id)
+          App.mute_tabs(item.id)
         }
       })
     }
@@ -364,7 +364,7 @@ App.show_item_menu = function (item, x, y) {
   items.push({
     text: "Star",
     action: function () {
-      App.add_or_edit_star(item)
+      App.star_items(item.mode)
     }
   })
 
@@ -405,7 +405,7 @@ App.show_item_menu = function (item, x, y) {
     items.push({
       text: "Close",
       action: function () {
-        App.check_tab_close(item)
+        App.close_tabs()
       }
     })
   }
@@ -1481,17 +1481,15 @@ App.get_highlights = function (mode) {
 
 // Item is to be included in action
 App.item_in_action = function (highlights, item) {
-  if (highlights.length > 0) {
-    if (!highlights.includes(item)) {
-      return false
-    }
-  } else {
-    if (!item.visible) {
-      return false
-    }
+  if (App[`selected_${item.mode}_item`] === item) {
+    return true
   }
 
-  return true
+  if (highlights.includes(item)) {
+    return true
+  }
+
+  return false
 }
 
 // Launch highlighted items
@@ -1580,4 +1578,44 @@ App.save_filter = function (mode) {
     App.filters.items = App.filters.items.slice(0, App.max_filters)
     App.stor_save_filters()
   }
+}
+
+// Star items
+App.star_items = async function (mode) {
+  let highlights = App.get_highlights(mode)
+  App.dehighlight(mode)
+  
+  if (highlights.length === 0) {
+    App.add_or_edit_star(App[`selected_${mode}_item`])
+    return
+  }
+  
+  let items = []
+
+  for (let item of App[`${mode}_items`]) {
+    if (!App.item_in_action(highlights, item)) {
+      continue
+    }
+
+    let exists = await App.get_star_by_url(item.url)
+
+    if (exists) {
+      continue
+    }
+
+    items.push(item)
+  }
+
+  if (items.length === 0) {
+    return
+  }
+
+  App.show_confirm(`Star items? (${items.length})`, async function () {
+    for (let item of items) {
+      await App.star_item(item, false)
+    }
+
+    App.stor_save_stars()
+    App.show_alert("Stars created")
+  })  
 }
