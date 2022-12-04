@@ -208,7 +208,7 @@ App.tabs_action = function (item) {
 
 // Tabs action alt
 App.tabs_action_alt = function (item, shift_key = false) {
-  App.check_tab_close(item, shift_key)
+  App.close_tabs(shift_key)
 }
 
 // Open tab in new window
@@ -305,6 +305,7 @@ App.unpin_tabs = function () {
 App.suspend_tabs = function (include, exclude) {
   let tabs = []
   let highlights = App.get_highlights("tabs")
+  App.dehighlight("tabs")
 
   for (let tab of App.tabs_items) {
     if (!App.item_in_action(highlights, tab)) {
@@ -336,8 +337,6 @@ App.suspend_tabs = function (include, exclude) {
     return
   }
   
-  App.dehighlight("tabs")
-
   App.show_confirm(`Suspend tabs? (${tabs.length})`, function () {
     for (let tab of tabs) {
       App.suspend_tab(tab)
@@ -346,7 +345,7 @@ App.suspend_tabs = function (include, exclude) {
 }
 
 // Close tabs
-App.close_tabs = function () {
+App.close_tabs = function (force = false) {
   let ids = []
   let highlights = App.get_highlights("tabs")
   App.dehighlight("tabs")
@@ -363,7 +362,7 @@ App.close_tabs = function () {
     return
   }
 
-  if (App.settings.warn_on_close) {
+  if (!force && App.settings.warn_on_close) {
     App.show_confirm(`Close tabs? (${ids.length})`, function () {
       App.do_close_tabs(ids)
     }) 
@@ -384,10 +383,11 @@ App.do_close_tabs = function (ids) {
 // Mute tabs
 App.mute_tabs = function () {
   let ids = []
+  let highlights = App.get_highlights("tabs")
   App.dehighlight("tabs")
 
   for (let tab of App.tabs_items) {
-    if (!tab.visible || !tab.audible || tab.muted) {
+    if (!App.item_in_action(highlights, tab)) {
       continue
     }
     
@@ -398,20 +398,19 @@ App.mute_tabs = function () {
     return
   }
 
-  App.show_confirm(`Mute playing tabs? (${ids.length})`, function () {
-    for (let id of ids) {
-      App.mute_tab(id)
-    }
-  })
+  for (let id of ids) {
+    App.mute_tab(id)
+  }
 }
 
 // Unmute tabs
 App.unmute_tabs = function () {
   let ids = []
+  let highlights = App.get_highlights("tabs")
   App.dehighlight("tabs")
 
   for (let tab of App.tabs_items) {
-    if (!tab.visible || !tab.muted) {
+    if (!App.item_in_action(highlights, tab)) {
       continue
     }
     
@@ -422,11 +421,9 @@ App.unmute_tabs = function () {
     return
   }
   
-  App.show_confirm(`Unmute muted tabs? (${ids.length})`, function () {
-    for (let id of ids) {
-      App.unmute_tab(id)
-    }
-  })
+  for (let id of ids) {
+    App.unmute_tab(id)
+  }
 }
 
 // Check if tab is normal

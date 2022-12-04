@@ -469,13 +469,7 @@ App.get_more_menu_items = function (item) {
     items.push({
       text: "Suspend",
       action: function () {
-        if (App.tab_is_normal(item)) {
-          App.suspend_tab(item)
-        } else {
-          App.show_confirm("Suspend tab?", function () {
-            App.suspend_tab(item)
-          })
-        }
+        App.suspend_tabs()
       }
     })
   }
