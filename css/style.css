@@ -35,13 +35,13 @@
 }
 
 @font-face {
-	font-family: gh_neat;
-	src: url(fonts/Montserrat-Regular.ttf);
+	font-family: gh_cyber;
+	src: url(fonts/ZenDots-Regular.ttf);
 }
 
 @font-face {
-	font-family: gh_cyber;
-	src: url(fonts/ZenDots-Regular.ttf);
+	font-family: gh_neat;
+	src: url(fonts/Montserrat-Regular.ttf);
 }
 
 @keyframes rotate {
