@@ -211,17 +211,10 @@ App.tabs_action_alt = function (item, shift_key = false) {
   App.close_tabs(shift_key)
 }
 
-// Open tab in new window
-App.detach_tab = async function (tab) {
-  browser.windows.create({tabId: tab.id})
-  window.close()
-}
-
 // Move tab to another existing window
 App.move_tab = async function (tab, window_id) {
   await browser.tabs.move(tab.id, {index: -1, windowId: window_id})
-  browser.tabs.update(tab.id, {active: true})
-  window.close()
+  browser.tabs.update(tab.id, {active: false})
 }
 
 // Duplicate a tab
@@ -763,7 +756,7 @@ App.on_tab_activated = async function (e) {
 }
 
 // Move tabs
-App.move_tabs = function (window_id) {
+App.move_tabs = async function (window_id) {
   let tabs = []
   let highlights = App.get_highlights("tabs")
   App.dehighlight("tabs")
@@ -780,7 +773,12 @@ App.move_tabs = function (window_id) {
     return
   }
 
-  for (let tab of tabs) {
-    App.move_tab(tab, window_id)
-  }
+  let ids = tabs.map(x => x.id)
+  browser.tabs.move(ids, {index: -1, windowId: window_id})
+}
+
+// Open tab in new window
+App.detach_tab = async function (tab) {
+  browser.windows.create({tabId: tab.id})
+  window.close()
 }
