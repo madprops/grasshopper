@@ -784,6 +784,7 @@ App.show_item_window = async function (mode, cycle = false) {
   let m = App[`${mode}_filter_modes`][0]
   App.set_filter_mode(mode, m, false)
   App[`${mode}_filter_mode`] = m[0]
+  App.el(`#${mode}_top`).classList.add("disabled")
 
   let items = await App[`get_${mode}`]()
 
