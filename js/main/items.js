@@ -1624,7 +1624,6 @@ App.star_items = async function (mode) {
 // Highlight visible items
 App.highlight_items = function (mode) {
   let what
-
   let highlights = App.get_highlights(mode)
 
   if (highlights.length > 0) {
