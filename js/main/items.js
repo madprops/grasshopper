@@ -1499,6 +1499,7 @@ App.launch_items = function (mode) {
   }
 
   let s = App.plural(items.length, "item", "items")
+  App.dehighlight(mode)
   
   App.show_confirm(`Launch ${s}?`, function () {
     for (let item of items) {
@@ -1506,8 +1507,6 @@ App.launch_items = function (mode) {
       App.show_launched(item)
     }
   })
-
-  App.dehighlight(mode)
 }
 
 // Scroll container to top
