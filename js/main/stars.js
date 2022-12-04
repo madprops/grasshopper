@@ -101,6 +101,11 @@ App.update_star = function (item) {
 
 // Add an item to stars
 App.star_item = async function (item, save = true) {
+  if (App.stars_mode !== "normal") {
+    App.stars_mode = "normal"
+    await App.get_stars()
+  }
+
   if (!App.stars) {
     await App.get_stars()
   }
@@ -198,13 +203,12 @@ App.star_editor_save = async function () {
     }
   }
     
-  let new_star = App.star_item({
+  await App.star_item({
     title: title,
     url: url
   })
 
-  App.prepend_star(new_star)
-  App.hide_star_editor()
+  App.show_item_window("stars")
 }
 
 // Get star by id
@@ -321,20 +325,6 @@ App.undo_unstar_stars = function () {
   App.stor_save_stars()
   App.show_window("stars")
   App.show_alert("Stars have been restored")
-}
-
-// Prepend a star
-App.prepend_star = function (star) {
-  if (App.last_window_mode === "stars") {
-    let item = App.process_item("stars", star)
-
-    if (item) {
-      App.stars_items.unshift(item)
-      App.create_item_element(item)
-      App.update_info("stars")
-      App.el("#stars_container").prepend(item.element)
-    }
-  }
 }
 
 // Display stars json
