@@ -391,6 +391,9 @@ body, html {
   text-align: center;
   padding: 0.5rem;
   width: 70%;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 #about_image {
