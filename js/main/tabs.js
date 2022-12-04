@@ -414,7 +414,7 @@ App.unmute_tabs = function () {
 
 // Check if tab is normal
 App.tab_is_normal = function (tab) {
-  let special = tab.pinned || tab.audible
+  let special = tab.pinned || tab.audible || tab.muted || tab.discarded
   return !special
 }
 
