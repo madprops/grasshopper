@@ -1620,9 +1620,15 @@ App.launch_item = function (item, close = true) {
 
 // Highlight visible items
 App.highlight_items = function (mode) {
+  let what
+
   for (let item of App[`${mode}_items`]) {
     if (item.visible) {
-      App.toggle_highlight(item, true)
+      if (what === undefined) {
+        what = !item.highlighted
+      }
+
+      App.toggle_highlight(item, what)
     } else {
       App.toggle_highlight(item, false)
     }
