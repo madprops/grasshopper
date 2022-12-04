@@ -408,6 +408,13 @@ App.show_item_menu = function (item, x, y) {
         App.close_tabs()
       }
     })
+  } else {
+    items.push({
+      text: "Launch",
+      action: function () {
+        App.launch_items(item.mode)
+      }
+    })
   }
 
   if (App[`selected_${item.mode}_item`] !== item) {
@@ -1478,22 +1485,33 @@ App.item_in_action = function (highlights, item) {
   return false
 }
 
+// Launch an item
+App.launch_item = function (item, close = true) {
+  App.save_filter(item.mode)
+  App.open_tab(item.url, close)
+
+  if (close) {
+    window.close()
+  } else {
+    App.show_launched(item)
+  }
+}
+
 // Launch highlighted items
 App.launch_items = function (mode) {
-  let items
+  let items = []
   let highlights = App.get_highlights(mode)
 
-  if (highlights.length === 0) {
-    let filter = App.get_filter(mode)
-
-    if (!filter) {
-      App.show_alert("No items highlighted or filtered")
-      return
-    } else {
-      items = App[`${mode}_items`].filter(x => x.visible)
+  for (let item of App[`${mode}_items`]) {
+    if (!App.item_in_action(highlights, item)) {
+      continue
     }
-  } else {
-    items = highlights
+
+    items.push(item)
+  }
+
+  if (items.length === 0) {
+    return
   }
 
   let s = App.plural(items.length, "item", "items")
@@ -1604,18 +1622,6 @@ App.star_items = async function (mode) {
     App.stor_save_stars()
     App.show_alert("Stars created")
   })  
-}
-
-// Launch an item
-App.launch_item = function (item, close = true) {
-  App.save_filter(item.mode)
-  App.open_tab(item.url, close)
-
-  if (close) {
-    window.close()
-  } else {
-    App.show_launched(item)
-  }
 }
 
 // Highlight visible items
