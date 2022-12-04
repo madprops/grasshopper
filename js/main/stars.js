@@ -306,10 +306,9 @@ App.remove_stars = function () {
     return
   }
   
-  let s = App.plural(ids.length, "star", "stars")
   App.dehighlight("stars")
 
-  App.show_confirm(`Remove stars? (${s})`, function () {
+  App.show_confirm(`Remove stars? (${ids.length})`, function () {
     App.stars_backup = App.stars.items.slice(0)
     App.do_remove(ids)
     App.show_dialog("Stars have been deleted", [

@@ -397,10 +397,9 @@ App.pin_all_tabs = function () {
     return
   }
   
-  let s = App.plural(ids.length, "tab", "tabs")
   App.dehighlight("tabs")
 
-  App.show_confirm(`Pin tabs? (${s})`, function () {
+  App.show_confirm(`Pin tabs? (${ids.length})`, function () {
     for (let id of ids) {
       App.pin_tab(id)
     }
@@ -428,10 +427,9 @@ App.unpin_all_tabs = function () {
     return
   }
   
-  let s = App.plural(ids.length, "tab", "tabs")
   App.dehighlight("tabs")
 
-  App.show_confirm(`Unpin tabs? (${s})`, function () {
+  App.show_confirm(`Unpin tabs? (${ids.length})`, function () {
     for (let id of ids) {
       App.unpin_tab(id)
     }
@@ -473,10 +471,9 @@ App.suspend_tabs = function (include, exclude) {
     return
   }
   
-  let s = App.plural(tabs.length, "tab", "tabs")
   App.dehighlight("tabs")
 
-  App.show_confirm(`Suspend tabs? (${s})`, function () {
+  App.show_confirm(`Suspend tabs? (${tabs.length})`, function () {
     for (let tab of tabs) {
       App.suspend_tab(tab)
     }
@@ -533,10 +530,9 @@ App.mute_tabs = function () {
     return
   }
   
-  let s = App.plural(ids.length, "tab", "tabs")
   App.dehighlight("tabs")
 
-  App.show_confirm(`Mute playing tabs? (${s})`, function () {
+  App.show_confirm(`Mute playing tabs? (${ids.length})`, function () {
     for (let id of ids) {
       App.mute_tab(id)
     }
@@ -559,10 +555,9 @@ App.unmute_tabs = function () {
     return
   }
   
-  let s = App.plural(ids.length, "tab", "tabs")
   App.dehighlight("tabs")
 
-  App.show_confirm(`Unmute muted tabs? (${s})`, function () {
+  App.show_confirm(`Unmute muted tabs? (${ids.length})`, function () {
     for (let id of ids) {
       App.unmute_tab(id)
     }
@@ -771,10 +766,9 @@ App.open_tab = async function (url, close = true, args = {}) {
 
 // Do tabs close with ids
 App.do_close_tabs = function (ids) {
-  let s = App.plural(ids.length, "tab", "tabs")
   App.dehighlight("tabs")
 
-  App.show_confirm(`Close tabs? (${s})`, function () {
+  App.show_confirm(`Close tabs? (${ids.length})`, function () {
     App.backup_tabs()
 
     for (let id of ids) {
@@ -841,10 +835,9 @@ App.star_tabs = async function (type) {
     return
   }
 
-  let s = App.plural(tabs.length, "tab", "tabs")
   App.dehighlight("tabs")
 
-  App.show_confirm(`Star tabs? (${s})`, async function () {
+  App.show_confirm(`Star tabs? (${tabs.length})`, async function () {
     for (let tab of tabs) {
       await App.star_item(tab, false)
     }
