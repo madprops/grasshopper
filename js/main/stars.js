@@ -101,12 +101,8 @@ App.update_star = function (item) {
 
 // Add an item to stars
 App.star_item = async function (item, save = true) {
-  if (App.stars_mode !== "normal") {
+  if (App.stars_mode !== "normal" || !App.stars) {
     App.stars_mode = "normal"
-    await App.get_stars()
-  }
-
-  if (!App.stars) {
     await App.get_stars()
   }
     
