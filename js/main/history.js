@@ -1,6 +1,9 @@
 // Setup history
 App.setup_history = function () {
   let actions = [
+    {text: "Launch", action: function () {
+      App.launch_items("history")
+    }}, 
 
     {conditional: function () {
       if (App.history_mode === "normal") {
@@ -12,11 +15,7 @@ App.setup_history = function () {
           App.show_normal_history()
         }}
       }
-    }}, 
-
-    {text: "Launch", action: function () {
-      App.launch_items("history")
-    }}, 
+    }},     
   ]
 
   App.setup_item_window("history", actions)

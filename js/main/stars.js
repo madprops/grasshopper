@@ -1,9 +1,21 @@
 // Setup stars
 App.setup_stars = function () {
-  let actions = [
+  let actions = [        
+    {text: "New", action: function () {
+      App.new_star()
+    }},
+
+    {text: "Remove", action: function () {
+      App.remove_stars()
+    }},    
+
+    {text: "Launch", action: function () {
+      App.launch_items("stars")
+    }}, 
+
     {conditional: function () {
       if (App.stars_mode === "normal") {
-        return {text: "Favorites", action: function () {
+        return {text: "Favorite", action: function () {
           App.show_favorite_stars()
         }}
       } else {
@@ -11,19 +23,7 @@ App.setup_stars = function () {
           App.show_normal_stars()
         }}
       }
-    }}, 
-        
-    {text: "New Star", action: function () {
-      App.new_star()
-    }},
-
-    {text: "Un-Star", action: function () {
-      App.unstar_stars()
-    }},    
-
-    {text: "Launch", action: function () {
-      App.launch_items("stars")
-    }}, 
+    }},     
 
     {text: "--separator--"},
 
@@ -43,8 +43,8 @@ App.setup_stars = function () {
       App.star_editor_save()
     })
 
-    App.ev(App.el("#star_editor_unstar"), "click", function () {
-      App.unstar_item()
+    App.ev(App.el("#star_editor_remove"), "click", function () {
+      App.remove_star()
     })
   }, on_x: function () {
     App.show_last_window()
@@ -130,19 +130,19 @@ App.star_item = async function (item, save = true) {
 }
 
 // Remove an item from stars
-App.unstar_item = function () {
+App.remove_star = function () {
   if (!App.star_edited) {
     return
   }
 
   App.show_confirm("Remove this star?", function () {
-    App.do_unstar([App.star_edited.id])
+    App.do_remove([App.star_edited.id])
     App.hide_star_editor()
   })
 }
 
-// Do unstar action
-App.do_unstar = function (ids) {
+// Do remove action
+App.do_remove = function (ids) {
   for (let id of ids) {
     if (App.stars_items) {
       let item = App.get_item_by_id("stars", id)
@@ -267,7 +267,7 @@ App.update_star_editor_info = function () {
   let visited = App.el("#star_editor_visited")
   let added = App.el("#star_editor_added")
   let save = App.el("#star_editor_save")
-  let unstar = App.el("#star_editor_unstar")
+  let remove = App.el("#star_editor_remove")
 
   if (App.star_edited) {
     save.textContent = "Update"
@@ -276,17 +276,17 @@ App.update_star_editor_info = function () {
     added.textContent = App.nice_date(App.star_edited.date_added)
     about.classList.add("hidden")
     info.classList.remove("hidden")
-    unstar.classList.remove("hidden")
+    remove.classList.remove("hidden")
   } else {
     save.textContent = "Save"
     about.classList.remove("hidden")
     info.classList.add("hidden")
-    unstar.classList.add("hidden")
+    remove.classList.add("hidden")
   }
 }
 
-// Unstar multiple stars
-App.unstar_stars = function () {
+// Remove multiple stars
+App.remove_stars = function () {
   let ids = []
   let highlights = App.get_highlights("stars")
 
@@ -303,20 +303,21 @@ App.unstar_stars = function () {
   }
   
   let s = App.plural(ids.length, "star", "stars")
+  App.dehighlight("stars")
 
   App.show_confirm(`Remove stars? (${s})`, function () {
     App.stars_backup = App.stars.items.slice(0)
-    App.do_unstar(ids)
+    App.do_remove(ids)
     App.show_dialog("Stars have been deleted", [
       ["Undo", function () {
-        App.undo_unstar_stars()
+        App.undo_remove_stars()
       }]
     ])
   })
 }
 
-// Undo unstar stars
-App.undo_unstar_stars = function () {
+// Undo remove stars
+App.undo_remove_stars = function () {
   App.stars.items = App.stars_backup
   App.stor_save_stars()
   App.show_window("stars")

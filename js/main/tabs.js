@@ -13,17 +13,6 @@ App.setup_tabs = function () {
   ]
 
   let actions = [
-    {conditional: function () {
-      if (App.tabs_mode === "normal") {
-        return {text: "Recent", action: function () {
-          App.show_recent_tabs()
-        }}
-      } else {
-        return {text: "Normal", action: function () {
-          App.show_normal_tabs()
-        }}
-      }
-    }},   
     
     {text: "New", action: function () {
       App.new_tab()
@@ -41,6 +30,18 @@ App.setup_tabs = function () {
         text: "Load State", items: App.get_load_tab_state_items()
       }
     ]}, 
+
+    {conditional: function () {
+      if (App.tabs_mode === "normal") {
+        return {text: "Recent", action: function () {
+          App.show_recent_tabs()
+        }}
+      } else {
+        return {text: "Normal", action: function () {
+          App.show_normal_tabs()
+        }}
+      }
+    }},     
 
     {text: "--separator--"},
     
