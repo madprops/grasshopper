@@ -35,6 +35,16 @@
 	src: url(NerkoOne-Regular.ttf);
 }
 
+@font-face {
+	font-family: gh_neat;
+	src: url(Montserrat-Regular.ttf);
+}
+
+@font-face {
+	font-family: gh_cyber;
+	src: url(ZenDots-Regular.ttf);
+}
+
 @keyframes rotate {
   to {
     transform: rotate(360deg);
