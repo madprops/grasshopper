@@ -761,3 +761,26 @@ App.on_tab_activated = async function (e) {
 
   App.refresh_tab(e.tabId)
 }
+
+// Move tabs
+App.move_tabs = function (window_id) {
+  let tabs = []
+  let highlights = App.get_highlights("tabs")
+  App.dehighlight("tabs")
+
+  for (let tab of App.tabs_items) {
+    if (!App.item_in_action(highlights, tab)) {
+      continue
+    }
+
+    tabs.push(tab)
+  }
+
+  if (tabs.length === 0) {
+    return
+  }
+
+  for (let tab of tabs) {
+    App.move_tab(tab, window_id)
+  }
+}

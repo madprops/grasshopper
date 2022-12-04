@@ -446,7 +446,7 @@ App.get_move_menu_items = async function (item) {
     items.push({
       text: text,
       action: function () {
-        App.move_tab(item, win.id)
+        App.move_tabs(win.id)
       }
     })
   }
