@@ -42,13 +42,18 @@ App.setup_tabs = function () {
         }}
       }
     }},
+
+    {text: "Clean", action: function () {
+      App.clean_tabs()
+    }}, 
     
-    {text: "--separator--"},    
+    {text: "Highlight", action: function () {
+      App.highlight_items("tabs")
+    }}, 
 
     {text: "Undo", action: function () {
-        App.undo_close()
-      }
-    },
+      App.undo_close()
+    }}
   ]
 
   App.setup_item_window("tabs", actions)
@@ -299,7 +304,7 @@ App.unpin_tabs = function () {
 }
 
 // Suspend normal tabs
-App.suspend_tabs = function (include, exclude) {
+App.suspend_tabs = function () {
   let tabs = []
   let highlights = App.get_highlights("tabs")
   App.dehighlight("tabs")
@@ -310,20 +315,6 @@ App.suspend_tabs = function (include, exclude) {
     }
 
     if (!App.is_http(tab)) {
-      continue
-    }
-
-    if (include) {
-      if (include === "normal") {
-        if (!App.tab_is_normal(tab)) {
-          continue
-        }
-      } else if (!tab[include]) {
-        continue
-      }
-    }
-
-    if (exclude && tab[exclude]) {
       continue
     }
     
@@ -783,4 +774,25 @@ App.move_tabs = async function (window_id) {
 App.detach_tab = async function (tab) {
   browser.windows.create({tabId: tab.id})
   window.close()
+}
+
+// Clean tabs
+App.clean_tabs = function () {
+  let ids = []
+
+  for (let tab of App.tabs_items) {
+    if (App.tab_is_normal(tab)) {
+      ids.push(tab.id)
+    }
+  }
+
+  if (ids.length === 0) {
+    return
+  }
+
+  App.show_confirm(`Close normal tabs? (${ids.length})`, function () {
+    for (let id of ids) {
+      App.close_tab(id)
+    }
+  })
 }

@@ -1617,3 +1617,14 @@ App.launch_item = function (item, close = true) {
     App.show_launched(item)
   }
 }
+
+// Highlight visible items
+App.highlight_items = function (mode) {
+  for (let item of App[`${mode}_items`]) {
+    if (item.visible) {
+      App.toggle_highlight(item, true)
+    } else {
+      App.toggle_highlight(item, false)
+    }
+  }
+}
