@@ -227,7 +227,7 @@ body, html {
 }
 
 .highlighted {
-  background-color: var(--alt_color_2);
+  background-color: var(--alt_color_2) !important;
 }
 
 .highlighted .item_icon {
