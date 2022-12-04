@@ -2,10 +2,6 @@
 App.setup_items = function () {
   App.get_item_order()
   App.start_item_observers()
-
-  App.save_filter = App.create_debouncer(function () {
-    App.do_save_filter()
-  }, 1000)
 }
 
 // Block select for some ms
@@ -1158,6 +1154,7 @@ App.show_first_item_window = function () {
 
 // Focus an open tab or launch a new one
 App.focus_or_open_item = async function (item, close = true) {
+  App.save_filter(item.mode)
   let tabs = await App.get_tabs()
 
   for (let tab of tabs) {
@@ -1575,8 +1572,8 @@ App.show_filters = function (mode) {
 }
 
 // Save a filter
-App.do_save_filter = function () {
-  let filter = App.get_filter(App.window_mode)
+App.save_filter = function (mode) {
+  let filter = App.get_filter(mode).toLowerCase()
 
   if (filter) {
     App.filters.items = App.filters.items.filter(x => x !== filter)
