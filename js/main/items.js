@@ -1507,6 +1507,12 @@ App.launch_items = function (mode) {
     return
   }
 
+  if (items.length === 1) {
+    App.open_tab(items[0].url, false)
+    App.show_launched(items[0])
+    return
+  }
+
   let s = App.plural(items.length, "item", "items")
   App.dehighlight(mode)
   

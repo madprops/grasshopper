@@ -333,12 +333,17 @@ App.suspend_tabs = function () {
 // Close tabs
 App.close_tabs = function (force = false) {
   let ids = []
+  let warn = false
   let highlights = App.get_highlights("tabs")
   App.dehighlight("tabs")
 
   for (let tab of App.tabs_items) {
     if (!App.item_in_action(highlights, tab)) {
       continue
+    }
+
+    if (tab.pinned || tab.audible) {
+      warn = true
     }
     
     ids.push(tab.id)
@@ -348,7 +353,7 @@ App.close_tabs = function (force = false) {
     return
   }
 
-  if (!force && App.settings.warn_on_close) {
+  if (!force && warn && App.settings.warn_on_close) {
     App.show_confirm(`Close tabs? (${ids.length})`, function () {
       App.do_close_tabs(ids)
     }) 
