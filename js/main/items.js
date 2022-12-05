@@ -299,6 +299,7 @@ App.do_item_filter = async function (mode) {
   App.select_first_item(mode)
   App.update_footer(mode)
   App.update_footer_numbers(mode)
+  App.save_filter(value)
 }
 
 // Show item
@@ -1156,13 +1157,11 @@ App.focus_or_open_item = async function (item, close = true) {
         window_id: tab.windowId
       }
 
-      App.save_filter(item.mode)
       App.focus_tab(o, true)
       return
     }
   }
 
-  App.save_filter(item.mode)
   App.launch_item(item, close)
 }
 
@@ -1561,9 +1560,7 @@ App.show_filters = function (mode) {
 }
 
 // Save a filter
-App.save_filter = function (mode) {
-  let filter = App.get_filter(mode).toLowerCase()
-
+App.save_filter = function (filter) {
   if (filter) {
     App.filters.items = App.filters.items.filter(x => x !== filter)
     App.filters.items.unshift(filter)
