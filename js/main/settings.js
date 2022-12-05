@@ -25,7 +25,7 @@ App.start_item_order = function () {
     let row = App.create("div", "item_order_row")
     row.dataset.mode = m
 
-    let up = App.create("div", "button up_down_button")
+    let up = App.create("div", "button item_order_button")
     up.textContent = "Up"
     row.append(up)
 
@@ -37,7 +37,7 @@ App.start_item_order = function () {
     text.textContent = App.capitalize(m)
     row.append(text)
 
-    let down = App.create("div", "button up_down_button")
+    let down = App.create("div", "button item_order_button")
     down.textContent = "Down"
     row.append(down)
 
@@ -77,7 +77,7 @@ App.settings_setup_checkboxes = function (container) {
 
 // Setup text elements in a container
 App.settings_setup_text = function (container) {
-  let items = App.els(".settings_text", container).concat(App.els(".settings_text_long", container))
+  let items = App.els(".settings_text", container)
 
   for (let item of items) {
     let setting = item.dataset.setting

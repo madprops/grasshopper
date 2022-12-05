@@ -333,14 +333,8 @@ body, html {
   gap: 0.8rem;
 }
 
-.settings_text_long {
-  flex-grow: 0;
-  width: 16rem;
-  text-align: center;
-}
-
 .settings_menu {
-  width: 6rem;
+  min-width: 6rem;
 }
 
 .settings_checkbox {
@@ -390,8 +384,8 @@ body, html {
   padding-right: 0.8rem;
 }
 
-.up_down_button {
-  width: 4rem;
+.item_order_button {
+  min-width: 4rem;
   display: table-cell;
 }
 
