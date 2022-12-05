@@ -44,6 +44,11 @@
 	src: url(fonts/Montserrat-Regular.ttf);
 }
 
+@font-face {
+	font-family: gh_cool;
+	src: url(fonts/Lobster-Regular.ttf);
+}
+
 @keyframes rotate {
   to {
     transform: rotate(360deg);

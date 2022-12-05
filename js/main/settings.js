@@ -208,6 +208,7 @@ App.setup_settings = function () {
       ["Funone", "gh_funone"],
       ["Cyber", "gh_cyber"],
       ["Neat", "gh_neat"],
+      ["Cool", "gh_cool"],
     ], function () {
       App.apply_theme()
     })
@@ -270,7 +271,7 @@ App.start_theme_settings = function () {
   })
 
   let imgs = App.get_background_image_options()
-  
+
   App.settings_make_menu("background_image", imgs, function () {
     App.apply_theme()
   })
