@@ -10,6 +10,7 @@ App.default_settings = {
   font: {value: "gh_sans", category: "normal"},
   background_color: {value: "rgb(88, 92, 111)", category: "theme"},
   text_color: {value: "rgb(234, 238, 255)", category: "theme"},
+  background_image: {value: "none", category: "theme"},
   pin_icon: {value: "(+)", category: "icons"},
   playing_icon: {value: "(Playing)", category: "icons"},
   muted_icon: {value: "(Muted)", category: "icons"},
@@ -266,6 +267,13 @@ App.start_theme_settings = function () {
   App.ev(App.el("#settings_default_theme"), "click", function () {
     App.restore_default_theme_settings()
   })
+
+  App.settings_make_menu("background_image", 
+    [["None", "none"], ["One", "1"], ["Two", "2"], ["Three", "3"], ["Four", "4"]],
+    function () {
+      App.apply_theme()
+    }
+  )
 }
 
 // Restore default normal settings
@@ -291,9 +299,12 @@ App.restore_default_theme_settings = function () {
       let item = App.default_settings[key]
   
       if (item.category === "theme") {
-        App[`${key}_picker`].setColor(item.value)
+        App.settings[key] = item.value
       }
     }
+
+    App.stor_save_settings()
+    window.close()    
   })
 }
 
@@ -302,13 +313,13 @@ App.restore_default_icon_settings = function () {
   App.show_confirm("Restore default icons?", function () {
     for (let key in App.default_settings) {
       let item = App.default_settings[key]
-
+  
       if (item.category === "icons") {
         App.settings[key] = item.value
-        App.el(`#settings_${key}`).value = item.value
       }
     }
 
     App.stor_save_settings()
+    window.close()    
   })
 }

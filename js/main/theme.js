@@ -10,6 +10,9 @@ App.apply_theme = function () {
     App.set_css_var("background_color", App.settings.background_color)
     App.set_css_var("text_color", App.settings.text_color)
 
+    let main_background = App.colorlib.rgb_to_rgba(App.settings.background_color, 0.94)
+    App.set_css_var("main_background", main_background)
+
     let alt_color_1 = App.colorlib.rgb_to_rgba(App.settings.text_color, 0.14)
     App.set_css_var("alt_color_1", alt_color_1)
     
@@ -24,6 +27,12 @@ App.apply_theme = function () {
 
     App.set_css_var("text_size", App.settings.text_size + "px")
     App.set_css_var("font", App.settings.font)
+
+    if (App.settings.background_image === "none") {
+      App.set_css_var("background_image", "unset")
+    } else {
+      App.set_css_var("background_image", `url(../img/background_${App.settings.background_image}.png)`)
+    }
   } catch (e) {
     App.settings.background_color = App.default_settings.background_color.value
     App.settings.text_color = App.default_settings.text_color.value
