@@ -2,6 +2,10 @@
 App.setup_items = function () {
   App.get_item_order()
   App.start_item_observers()
+
+  App.update_footer_numbers = App.create_debouncer(function (mode) {
+    App.do_update_footer_numbers(mode)
+  }, 200)
 }
 
 // Block select for some ms
@@ -1178,8 +1182,8 @@ App.get_item_order = function () {
   App.item_order = items.map(x => x.mode)
 }
 
-// Update item info
-App.update_footer_numbers = function (mode) {
+// Update footer numbers
+App.do_update_footer_numbers = function (mode) {
   let n1 = App.get_highlights(mode).length.toLocaleString()
   let n2 = App.get_visible(mode).length.toLocaleString()
   let footer = App.el(`#${mode}_footer`)
