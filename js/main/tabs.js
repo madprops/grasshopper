@@ -347,7 +347,6 @@ App.suspend_tabs = function () {
 // Close tabs
 App.close_tabs = function (force = false) {
   let ids = []
-  let warn = false
   let highlights = App.get_highlights("tabs")
   App.dehighlight("tabs")
 

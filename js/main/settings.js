@@ -268,12 +268,15 @@ App.start_theme_settings = function () {
     App.restore_default_settings("theme")
   })
 
-  App.settings_make_menu("background_image", 
-    [["None", "none"], ["One", "1"], ["Two", "2"], ["Three", "3"], ["Four", "4"]],
-    function () {
-      App.apply_theme()
-    }
-  )
+  let imgs = [["None", "none"]]
+
+  for (let i=1; i<=App.num_background_images; i++) {
+    imgs.push([i.toString(), i.toString()])
+  }
+
+  App.settings_make_menu("background_image", imgs, function () {
+    App.apply_theme()
+  })
 }
 
 // Restore default settings
