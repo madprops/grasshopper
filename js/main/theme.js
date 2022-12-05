@@ -31,7 +31,7 @@ App.apply_theme = function () {
     if (App.settings.background_image === "none") {
       App.set_css_var("background_image", "unset")
     } else {
-      App.set_css_var("background_image", `url(../img/background_${App.settings.background_image}.png)`)
+      App.set_css_var("background_image", `url(../img/backgrounds/${App.settings.background_image}.jpg)`)
     }
   } catch (e) {
     App.settings.background_color = App.default_settings.background_color.value
