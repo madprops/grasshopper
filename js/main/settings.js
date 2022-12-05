@@ -175,7 +175,7 @@ App.setup_settings = function () {
     App.settings_make_menu("text_size", App.get_text_size_options(), function () {
       App.apply_theme()
     })
-    
+
     App.settings_make_menu("font", [
       ["Sans", "gh_sans"], 
       ["Serif", "gh_serif"],
@@ -189,7 +189,6 @@ App.setup_settings = function () {
     ], function () {
       App.apply_theme()
     })
-
 
     App.start_item_order()
 
