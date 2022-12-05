@@ -1545,7 +1545,7 @@ App.show_filters = function (mode) {
   let items = []
 
   items.push({
-    text: "Clear",
+    text: "Clear Filter",
     action: function () {
       App.clear_filter(mode)
     }
@@ -1558,12 +1558,23 @@ App.show_filters = function (mode) {
 
     for (let filter of App.filters.items) {
       items.push({
-        text: filter,
+        text: `Filter: ${filter}`,
         action: function () {
           App.set_filter(mode, filter)
         }
       })
     }
+
+    items.push({
+      separator: true
+    })
+
+    items.push({
+      text: "Forget Filters",
+      action: function () {
+        App.forget_filters()
+      }
+    }) 
   }
   
   NeedContext.show_on_element(el, items, true, el.clientHeight)
@@ -1572,11 +1583,18 @@ App.show_filters = function (mode) {
 // Save a filter
 App.save_filter = function (filter) {
   if (filter) {
+    filter = filter.substring(0, 20).trim()
     App.filters.items = App.filters.items.filter(x => x !== filter)
     App.filters.items.unshift(filter)
     App.filters.items = App.filters.items.slice(0, App.max_filters)
     App.stor_save_filters()
   }
+}
+
+// Forget filters
+App.forget_filters = function () {
+  App.filters.items = []
+  App.stor_save_filters()
 }
 
 // Star items
