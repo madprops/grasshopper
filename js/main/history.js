@@ -13,7 +13,7 @@ App.setup_history = function () {
       }
     }},     
 
-    {text: "Highlight", action: function () {
+    {text: "Pick All", action: function () {
       App.highlight_items("history")
     }}, 
   ]

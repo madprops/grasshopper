@@ -1,7 +1,7 @@
 // Setup closed tabs
 App.setup_closed = function () {
   let actions = [
-    {text: "Highlight", action: function () {
+    {text: "Pick All", action: function () {
       App.highlight_items("closed")
     }}, 
   ]

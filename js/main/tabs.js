@@ -43,8 +43,8 @@ App.setup_tabs = function () {
         }}
       }
     }}, 
-    
-    {text: "Highlight", action: function () {
+
+    {text: "Pick All", action: function () {
       App.highlight_items("tabs")
     }}, 
 

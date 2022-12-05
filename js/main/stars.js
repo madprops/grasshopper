@@ -17,7 +17,7 @@ App.setup_stars = function () {
       }
     }},   
     
-    {text: "Highlight", action: function () {
+    {text: "Pick All", action: function () {
       App.highlight_items("stars")
     }}, 
 
