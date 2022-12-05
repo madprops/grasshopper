@@ -63,14 +63,9 @@ App.random_theme = function (mode) {
     colors = App.get_light_theme()
   }
 
-  let imgs = ["none"]
-
-  for (let i=1; i<=App.num_background_images; i++) {
-    imgs.push(i.toString())
-  }
-
-  let random_image = App.random_choice(imgs)
-  App.settings.background_image = random_image
+  let random_image = App.random_choice(App.get_background_image_options())
+  App.settings.background_image = random_image[1]
+  App.el("#settings_background_image").textContent = random_image[0]
   App.background_color_picker.setColor(colors.background_color)
   App.text_color_picker.setColor(colors.text_color)
 }
@@ -124,4 +119,15 @@ App.detect_theme = async function () {
   }
 
   App.show_alert("Theme couldn't be detected")
+}
+
+// Get background image options
+App.get_background_image_options = function () {
+  let imgs = [["0", "none"]]
+
+  for (let i=1; i<=App.num_background_images; i++) {
+    imgs.push([i.toString(), i.toString()])
+  }
+
+  return imgs
 }

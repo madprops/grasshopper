@@ -211,7 +211,7 @@ App.setup_settings = function () {
     ], function () {
       App.apply_theme()
     })
-    
+
     App.start_item_order()
 
     App.ev(App.el("#settings_show_theme"), "click", function () {
@@ -269,12 +269,8 @@ App.start_theme_settings = function () {
     App.restore_default_settings("theme")
   })
 
-  let imgs = [["None", "none"]]
-
-  for (let i=1; i<=App.num_background_images; i++) {
-    imgs.push([i.toString(), i.toString()])
-  }
-
+  let imgs = App.get_background_image_options()
+  
   App.settings_make_menu("background_image", imgs, function () {
     App.apply_theme()
   })
