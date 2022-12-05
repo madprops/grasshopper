@@ -51,6 +51,8 @@ App.setup_about = function () {
     App.start_about_info()
   }, after_hide: function () {
     App.stop_about_info()
+    App.reset_about_image()
+    App.reset_about_info()
   }})
 }
 
@@ -111,4 +113,17 @@ App.show_full_about_info = function () {
   App.el("#about_info").classList.add("hidden")
   App.el("#about_image").classList.add("hidden")
   App.el("#about_info_full").classList.remove("hidden")
+}
+
+// Reset about image
+App.reset_about_image = function () {
+  let image = App.el("#about_image")
+  image.classList.remove("hue_rotate")
+  image.classList.remove("invert")
+}
+
+// Reset about info
+App.reset_about_info = function () {
+  App.about_info_index = 0
+  App.update_about_info()
 }
