@@ -1,5 +1,10 @@
 // Setup stars
 App.setup_stars = function () {
+  App.stars_filter_modes = [
+    ["all", "All"],
+    ["today", "Today"],
+  ]
+
   let actions = [ 
     {text: "Top", action: function () {
       App.goto_top("stars")

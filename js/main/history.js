@@ -1,21 +1,14 @@
 // Setup history
 App.setup_history = function () {
+  App.history_filter_modes = [
+    ["all", "All"],
+    ["today", "Today"],
+  ]
+
   let actions = [
     {text: "Top", action: function () {
       App.goto_top("history")
-    }}, 
-
-    {conditional: function () {
-      if (App.history_mode === "normal") {
-        return {text: "Today", action: function () {
-          App.show_today_history()
-        }}
-      } else {
-        return {text: "Normal", action: function () {
-          App.show_normal_history()
-        }}
-      }
-    }},     
+    }},    
 
     {text: "Pick All", action: function () {
       App.highlight_items("history")
@@ -27,11 +20,7 @@ App.setup_history = function () {
 
 // Get history date
 App.history_time = function () {
-  if (App.history_mode === "normal") {
-    return Date.now() - (1000 * 60 * 60 * 24 * 30 * App.history_max_months)
-  } else if (App.history_mode === "today") {
-    return Date.now() - (1000 * 60 * 60 * 24)
-  }
+  return Date.now() - (1000 * 60 * 60 * 24 * 30 * App.history_max_months)
 }
 
 // Get items from history
@@ -65,16 +54,4 @@ App.search_history = async function () {
   }
 
   App.process_items("history", items)
-}
-
-// Show normal history
-App.show_normal_history = function () {
-  App.history_mode = "normal"
-  App.show_item_window("history")
-}
-
-// Show today's history
-App.show_today_history = function () {
-  App.history_mode = "today"
-  App.show_item_window("history")
 }

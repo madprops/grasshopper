@@ -7,6 +7,7 @@ App.setup_tabs = function () {
     ["muted", "Muted"],
     ["suspended", "Suspended"],
     ["normal", "Normal"],
+    ["today", "Today"],
   ]
 
   let actions = [

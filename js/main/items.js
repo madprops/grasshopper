@@ -267,6 +267,7 @@ App.do_item_filter = async function (mode) {
     let match = false
     let title = item.title_lower
     let path = item.path_lower
+    let today = 1000 * 60 * 60 * 24
 
     if (check(title, path)) {
       if (filter_mode === "all") {
@@ -281,6 +282,8 @@ App.do_item_filter = async function (mode) {
         match = item.muted
       } else if (filter_mode === "suspended") {
         match = item.discarded
+      } else if (filter_mode === "today") {
+        match = (Date.now() - item.date) <= today
       }
     }
 
@@ -572,11 +575,19 @@ App.process_item = function (mode, item, exclude = []) {
   }
 
   if (mode === "tabs") {
+    console.log(item)
     obj.active = item.active
     obj.pinned = item.pinned
     obj.audible = item.audible
     obj.muted = item.mutedInfo.muted
     obj.discarded = item.discarded
+    obj.date = item.lastAccessed
+  } else if (mode === "stars") {
+    obj.date = item.date_last_visit
+  } else if (mode === "history") {
+    obj.date = item.lastVisitTime
+  } else if (mode === "closed") {
+    obj.date = item.lastAccessed
   }
 
   App.create_empty_item_element(obj)
