@@ -466,10 +466,6 @@ App.toggle_pin = function (item) {
 // Save tab state
 App.save_tab_state = async function (n) {
   App.show_confirm(`Save tab state on #${n}?`, async function () {
-    if (!App.tab_state) {
-      await App.stor_get_tab_state()
-    }
-  
     App.tab_state[n] = App.get_tab_state()
     App.stor_save_tab_state()
   })
@@ -477,10 +473,6 @@ App.save_tab_state = async function (n) {
 
 // Load tab state
 App.load_tab_state = async function (n) {
-  if (!App.tab_state) {
-    await App.stor_get_tab_state()
-  }
-
   let items = App.tab_state[n]
 
   if (!items) {
@@ -631,11 +623,11 @@ App.open_tab = async function (url, close = true, args = {}) {
 
 // Uno tabs close
 App.undo_close = function () {
-  if (!App.tabs_backup) {
+  if (!App.tab_state.backup) {
     App.show_alert("Nothing to undo")
   } else {
-    App.do_load_tab_state(App.tabs_backup)
-    App.tabs_backup = undefined
+    App.do_load_tab_state(App.tab_state.backup)
+    App.tab_state.backup = undefined
   }
 }
 
@@ -646,9 +638,10 @@ App.backup_tabs = function () {
     return
   }
 
-  App.tabs_backup = App.get_tab_state()
+  App.tab_state.backup = App.get_tab_state()
   App.backup_tabs_locked = true
   App.lock_backup_tabs()
+  App.stor_save_tab_state()
 }
 
 // Get save tab state items

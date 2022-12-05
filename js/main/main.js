@@ -25,6 +25,7 @@ App.init = async function () {
 
   await App.stor_get_settings()
   await App.stor_get_filters()
+  await App.stor_get_tab_state()
   
   App.setup_theme()
   App.setup_tabs()
