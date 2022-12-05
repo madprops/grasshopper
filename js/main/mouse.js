@@ -1,15 +1,5 @@
 // Setup mouse for window
 App.setup_window_mouse = function (mode) {
-  App.on_mouse_move = App.create_debouncer(function (e) {
-    App.do_on_mouse_move(e)
-  }, 80)
-
-  App.do_on_mouse_move = function (e) {
-    console.log(1)
-    let item = App.get_cursor_item(mode, e)
-    App.select_item(item, "none")
-  }
-
   let container = App.el(`#${mode}_container`)
 
   App.ev(container, "mousemove", function (e) {
@@ -20,7 +10,12 @@ App.setup_window_mouse = function (mode) {
         return
       }
       
-      App.on_mouse_move(e)
+      if (e.target.closest(".selected")) {
+        return
+      }
+
+      let item = App.get_cursor_item(mode, e)
+      App.select_item(item, "none")
     }
   })  
   
