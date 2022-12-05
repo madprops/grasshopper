@@ -211,6 +211,7 @@ App.setup_settings = function () {
     ], function () {
       App.apply_theme()
     })
+    
     App.start_item_order()
 
     App.ev(App.el("#settings_show_theme"), "click", function () {
