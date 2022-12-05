@@ -119,3 +119,25 @@ App.get_coords = function (el) {
   let rect = el.getBoundingClientRect()
   return {x: rect.left, y: rect.top}
 }
+
+// Get a random int from min to max. Optional exclude a number
+App.get_random_int = function (min, max, exclude = undefined) {
+  let num = Math.floor(Math.random() * (max - min + 1) + min)
+
+  if (exclude !== undefined) {
+    if (num === exclude) {
+      if (num + 1 <= max) {
+        num = num + 1
+      } else if (num - 1 >= min) {
+        num = num - 1
+      }
+    }
+  }
+
+  return num
+}
+
+// Get a random choice from a list
+App.random_choice = function (list) {
+  return list[App.get_random_int(0, list.length - 1)]
+}

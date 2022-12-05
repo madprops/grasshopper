@@ -63,6 +63,8 @@ App.random_theme = function (mode) {
     colors = App.get_light_theme()
   }
 
+  let random_image = App.random_choice(["none", "1", "2", "3", "4"])
+  App.settings.background_image = random_image
   App.background_color_picker.setColor(colors.background_color)
   App.text_color_picker.setColor(colors.text_color)
 }
