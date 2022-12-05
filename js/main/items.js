@@ -575,7 +575,6 @@ App.process_item = function (mode, item, exclude = []) {
   }
 
   if (mode === "tabs") {
-    console.log(item)
     obj.active = item.active
     obj.pinned = item.pinned
     obj.audible = item.audible
