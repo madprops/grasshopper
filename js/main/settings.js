@@ -81,61 +81,23 @@ App.settings_setup_text = function (container) {
 
   for (let item of items) {
     let setting = item.dataset.setting
-    let type = item.dataset.type
-    let min = parseInt(item.dataset.min)
-    let max = parseInt(item.dataset.max)
     let action = item.dataset.action
-    let el = App.el(`#settings_${setting}`)
+    let el = App.el(`#settings_${setting}`)  
   
-    function set_number (val) {
-      val = parseInt(val)
-  
-      if (isNaN(val)) {
+    el.value = App.settings[setting]
+
+    App.ev(el, "blur", function () {
+      let val = el.value.trim()
+
+      if (!val) {
         val = App.default_settings[setting].value
       }
-  
-      if (min && min > val) {
-        val = min
-      } else if (max && max < val) {
-        val = max
-      }
-  
-      el.value = val.toLocaleString()
+
+      el.value = val
       App.settings[setting] = val
       App.stor_save_settings()
-      App.settings_do_action(action)  
-    }    
-  
-    if (type === "text") {
-      el.value = App.settings[setting]
-  
-      App.ev(el, "blur", function () {
-        let val = el.value.trim()
-  
-        if (!val) {
-          val = App.default_settings[setting].value
-        }
-  
-        el.value = val
-        App.settings[setting] = val
-        App.stor_save_settings()
-        App.settings_do_action(action)          
-      })
-    } else if (type === "number") {
-      el.value = App.settings[setting].toLocaleString()
-  
-      App.ev(el, "blur", function () {
-        set_number(el.value)
-      })
-  
-      App.ev(App.el(`#settings_${setting}_minus`), "click", function () {
-        set_number(App.settings[setting] - 1)
-      })
-      
-      App.ev(App.el(`#settings_${setting}_plus`), "click", function () {
-        set_number(App.settings[setting] + 1)
-      })
-    }
+      App.settings_do_action(action)          
+    })
   }
 }
 
@@ -172,7 +134,17 @@ App.settings_make_menu = function (id, opts, action) {
     if (App.settings[id] === o[1]) {
       el.textContent = o[0]
     }
-  }    
+  } 
+  
+  App.ev(App.el(`#settings_${id}_prev`), "click", function () {
+    App.settings_menu_cycle(el, id, "prev", opts)
+    App.apply_theme()
+  })
+
+  App.ev(App.el(`#settings_${id}_next`), "click", function () {
+    App.settings_menu_cycle(el, id, "next", opts)
+    App.apply_theme()
+  })
 }
 
 // Setup settings
@@ -199,6 +171,11 @@ App.setup_settings = function () {
     App.settings_setup_checkboxes(container)
     App.settings_setup_text(container)
     App.settings_make_menu("text_mode", [["Title", "title"], ["URL", "url"]])
+    
+    App.settings_make_menu("text_size", App.get_text_size_options(), function () {
+      App.apply_theme()
+    })
+    
     App.settings_make_menu("font", [
       ["Sans", "gh_sans"], 
       ["Serif", "gh_serif"],
@@ -212,6 +189,7 @@ App.setup_settings = function () {
     ], function () {
       App.apply_theme()
     })
+
 
     App.start_item_order()
 
@@ -275,42 +253,43 @@ App.start_theme_settings = function () {
   App.settings_make_menu("background_image", imgs, function () {
     App.apply_theme()
   })
-
-  App.ev(App.el("#settings_background_image_prev"), "click", function () {
-    App.switch_background_image("prev", imgs)
-  })
-
-  App.ev(App.el("#settings_background_image_next"), "click", function () {
-    App.switch_background_image("next", imgs)
-  })
 }
 
-// Switch background image
-App.switch_background_image = function (dir, items) {
-  let waypoint = false
-  let imgs = items.slice(0)
+// Cycle to prev or next item
+App.settings_menu_cycle = function (el, setting, dir, items) {
+  let cycle = true
 
-  if (dir === "prev") {
-    imgs.reverse()
+  if (setting === "text_size") {
+    cycle = false
   }
 
-  let s_img = imgs[0]
+  let waypoint = false
+  items = items.slice(0)
 
-  for (let img of imgs) {
+  if (dir === "prev") {
+    items.reverse()
+  }
+
+  if (cycle) {
+    s_img = items[0]
+  }
+
+  for (let img of items) {
     if (waypoint) {
       s_img = img
       break
     }
     
-    if (img[1] === App.settings.background_image) {
+    if (img[1] === App.settings[setting]) {
       waypoint = true
     }
   }
 
-  App.el("#settings_background_image").textContent = s_img[0]
-  App.settings.background_image = s_img[1]
-  App.apply_theme()
-  App.stor_save_settings()
+  if (s_img) {
+    el.textContent = s_img[0]
+    App.settings[setting] = s_img[1]
+    App.stor_save_settings()
+  }
 }
 
 // Restore default settings
@@ -327,4 +306,26 @@ App.restore_default_settings = function (type) {
     App.stor_save_settings()
     window.close()    
   })
+}
+
+// Get background image options
+App.get_background_image_options = function () {
+  let opts = [["None", "none"]]
+
+  for (let i=1; i<=App.num_background_images; i++) {
+    opts.push([`BG ${i.toString()}`, i.toString()])
+  }
+
+  return opts
+}
+
+// Get text size options
+App.get_text_size_options = function () {
+  let opts = []
+
+  for (let i=14; i<=22; i++) {
+    opts.push([`${i}px`, i])
+  }
+
+  return opts
 }

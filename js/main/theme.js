@@ -120,14 +120,3 @@ App.detect_theme = async function () {
 
   App.show_alert("Theme couldn't be detected")
 }
-
-// Get background image options
-App.get_background_image_options = function () {
-  let imgs = [["None", "none"]]
-
-  for (let i=1; i<=App.num_background_images; i++) {
-    imgs.push([`BG ${i.toString()}`, i.toString()])
-  }
-
-  return imgs
-}
