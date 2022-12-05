@@ -1,6 +1,10 @@
 // Setup history
 App.setup_history = function () {
   let actions = [
+    {text: "Top", action: function () {
+      App.goto_top("history")
+    }}, 
+
     {conditional: function () {
       if (App.history_mode === "normal") {
         return {text: "Today", action: function () {

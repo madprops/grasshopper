@@ -10,6 +10,9 @@ App.setup_tabs = function () {
   ]
 
   let actions = [
+    {text: "Top", action: function () {
+      App.goto_top("tabs")
+    }}, 
     
     {text: "New", action: function () {
       App.new_tab()

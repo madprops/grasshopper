@@ -1036,17 +1036,6 @@ App.setup_item_window = function (mode, actions) {
 
       top.append(menu)
     }
-
-    //
-    let goto_top = App.create("div", "button", `${mode}_top`)
-    goto_top.title = "Go To Top"
-    goto_top.textContent = "Top"
-    
-    App.ev(goto_top, "click", function () {
-      App.goto_top(mode)
-    })
-
-    top.append(goto_top)
   }
 
   App.create_window(args)
