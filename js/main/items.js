@@ -325,13 +325,6 @@ App.hide_item = function (it) {
 App.show_item_menu = function (item, x, y) {
   let items = []
 
-  items.push({
-    text: "Pick",
-    action: function () {
-      App.toggle_highlight(item)
-    }
-  })
-
   if (item.mode === "tabs") {
     if (item.pinned) {
       items.push({
@@ -408,6 +401,13 @@ App.show_item_menu = function (item, x, y) {
         App.copy_to_clipboard(item.title)
       }
     }]
+  })
+
+  items.push({
+    text: "Pick",
+    action: function () {
+      App.toggle_highlight(item)
+    }
   })
 
   if (item.mode === "tabs") {
