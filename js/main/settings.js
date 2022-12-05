@@ -275,6 +275,42 @@ App.start_theme_settings = function () {
   App.settings_make_menu("background_image", imgs, function () {
     App.apply_theme()
   })
+
+  App.ev(App.el("#settings_background_image_prev"), "click", function () {
+    App.switch_background_image("prev", imgs)
+  })
+
+  App.ev(App.el("#settings_background_image_next"), "click", function () {
+    App.switch_background_image("next", imgs)
+  })
+}
+
+// Switch background image
+App.switch_background_image = function (dir, items) {
+  let waypoint = false
+  let imgs = items.slice(0)
+
+  if (dir === "prev") {
+    imgs.reverse()
+  }
+
+  let s_img = imgs[0]
+
+  for (let img of imgs) {
+    if (waypoint) {
+      s_img = img
+      break
+    }
+    
+    if (img[1] === App.settings.background_image) {
+      waypoint = true
+    }
+  }
+
+  App.el("#settings_background_image").textContent = s_img[0]
+  App.settings.background_image = s_img[1]
+  App.apply_theme()
+  App.stor_save_settings()
 }
 
 // Restore default settings
