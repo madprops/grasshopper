@@ -361,6 +361,7 @@ body, html {
 #settings_item_order {
   border: 1px solid var(--alt_color_2);
   display: table;
+  border-spacing: 0.8rem;
 }
 
 .item_order_row {
