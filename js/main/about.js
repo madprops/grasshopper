@@ -13,7 +13,7 @@ App.setup_about = function () {
       "Shift + Drag to select multiple items",
       "Shift + Down to open the filter mode",
       "Shift + Space to open actions",
-      "Single Shift to cancel highlights",
+      "Single Shift to cancel picks",
     ]
 
     App.about_info_index = 0
