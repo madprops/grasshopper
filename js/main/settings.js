@@ -21,30 +21,30 @@ App.start_item_order = function () {
   let item_order = App.el("#settings_item_order")
 
   for (let m of App.item_order) {
-    let el = App.create("div", "item_order_item flex_row_center gap_2")
-    el.dataset.mode = m
-
-    let text = App.create("div", "item_order_item_text")
-    text.textContent = App.capitalize(m)
-    el.append(text)
+    let row = App.create("div", "item_order_row")
+    row.dataset.mode = m
 
     let up = App.create("div", "button up_down_button")
     up.textContent = "Up"
-    el.append(up)
+    row.append(up)
 
     App.ev(up, "click", function () {
-      App.item_order_up(el)
-    })      
+      App.item_order_up(row)
+    })     
+    
+    let text = App.create("div", "item_order_item_text")
+    text.textContent = App.capitalize(m)
+    row.append(text)
 
     let down = App.create("div", "button up_down_button")
     down.textContent = "Down"
-    el.append(down)
+    row.append(down)
 
     App.ev(down, "click", function () {
-      App.item_order_down(el)
+      App.item_order_down(row)
     })      
 
-    item_order.append(el)
+    item_order.append(row)
   }
 }
 
