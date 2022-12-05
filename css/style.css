@@ -301,7 +301,7 @@ body, html {
 }
 
 .settings_button {
-  min-width: 9rem;
+  min-width: 10rem;
 }
 
 .settings_text {
@@ -369,7 +369,7 @@ body, html {
 
 .item_order_item_text {
   text-align: flex-start;
-  width: 4rem;
+  width: 5rem;
 }
 
 .up_down_button {
