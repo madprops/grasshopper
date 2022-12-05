@@ -1158,11 +1158,13 @@ App.focus_or_open_item = async function (item, close = true) {
         window_id: tab.windowId
       }
 
+      App.save_filter(item.mode)
       App.focus_tab(o, true)
       return
     }
   }
 
+  App.save_filter(item.mode)
   App.launch_item(item, close)
 }
 
@@ -1485,7 +1487,6 @@ App.item_in_action = function (highlights, item) {
 
 // Launch an item
 App.launch_item = function (item, close = true) {
-  App.save_filter(item.mode)
   App.open_tab(item.url, close)
 
   if (close) {
@@ -1523,8 +1524,7 @@ App.launch_items = function (mode) {
   
   App.show_confirm(`Launch ${s}?`, function () {
     for (let item of items) {
-      App.open_tab(item.url, false)
-      App.show_launched(item)
+      App.launch_item(item, false)
     }
   })
 }
