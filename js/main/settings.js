@@ -5,7 +5,7 @@ App.default_settings = {
   stars_index: {value: 1, category: "normal"},
   history_index: {value: 2, category: "normal"},
   closed_index: {value: 3, category: "normal"},
-  text_size: {value: 17, category: "normal"},
+  text_size: {value: 18, category: "normal"},
   lock_drag: {value: false, category: "normal"},
   font: {value: "gh_sans", category: "normal"},
   background_color: {value: "rgb(88, 92, 111)", category: "theme"},
