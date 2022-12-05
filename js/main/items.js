@@ -788,7 +788,6 @@ App.show_item_window = async function (mode, cycle = false) {
   let m = App[`${mode}_filter_modes`][0]
   App.set_filter_mode(mode, m, false)
   App[`${mode}_filter_mode`] = m[0]
-  App.el(`#${mode}_top`).classList.add("disabled")
 
   let items = await App[`get_${mode}`]()
 
@@ -805,7 +804,6 @@ App.show_item_window = async function (mode, cycle = false) {
   }
 
   App.focus_filter(mode)
-  App.check_top(mode)
 }
 
 // Setup an item window
@@ -1042,10 +1040,6 @@ App.setup_item_window = function (mode, actions) {
     })
 
     top.append(goto_top)
-
-    App.ev(container, "scroll", function () {
-      App.check_top(mode)
-    })
   }
 
   App.create_window(args)
@@ -1538,18 +1532,6 @@ App.launch_items = function (mode) {
 // Scroll container to top
 App.goto_top = function (mode) {
   App.el(`#${mode}_container`).scrollTop = 0
-}
-
-// Check whether to show the top button
-App.check_top = function (mode) {
-  let container = App.el(`#${mode}_container`)
-  let goto_top = App.el(`#${mode}_top`)
-
-  if (container.scrollTop > 10) {
-    goto_top.classList.remove("disabled")
-  } else {
-    goto_top.classList.add("disabled")
-  }
 }
 
 // Show recent filters
