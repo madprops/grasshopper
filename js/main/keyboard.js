@@ -62,12 +62,6 @@ App.check_window_keyboard = function (e) {
 // Setup keybindings
 App.setup_keyboard = function () {
   App.ev(document, "keydown", function (e) {
-    if (e.key === "Shift") {
-      App.shift_down = true
-    } else {
-      App.shift_down = false
-    }
-
     if (NeedContext.open) {
       if (e.shiftKey && e.key === "Enter") {
         NeedContext.hide()
@@ -118,13 +112,5 @@ App.setup_keyboard = function () {
     if (App.item_order.includes(App.window_mode)) {
       App.check_window_keyboard(e)
     }
-  })
-
-  App.ev(document, "keyup", function (e) {
-    if (App.shift_down) {
-      App.dehighlight(App.window_mode)
-    }
-
-    App.shift_down = false
   })
 }
