@@ -500,3 +500,8 @@ input::placeholder {
 .full_width {
   width: 100%;
 }
+
+.disabled {
+  opacity: 0.63;
+  pointer-events: none;
+}

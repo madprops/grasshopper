@@ -892,6 +892,8 @@ App.setup_item_window = function (mode, actions) {
       App[`${mode}_filter_modes`] = [
         ["all", "All"],
       ]
+
+      filter_mode.classList.add("disabled")
     }
 
     App.ev(filter_mode, "click", function () {
