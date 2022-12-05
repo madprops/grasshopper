@@ -1,10 +1,5 @@
 // Setup history
 App.setup_history = function () {
-  App.history_filter_modes = [
-    ["all", "All"],
-    ["today", "Today"],
-  ]
-
   let actions = [
     {text: "Top", action: function () {
       App.goto_top("history")

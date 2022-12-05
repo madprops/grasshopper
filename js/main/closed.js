@@ -1,10 +1,5 @@
 // Setup closed tabs
 App.setup_closed = function () {
-  App.closed_filter_modes = [
-    ["all", "All"],
-    ["today", "Today"],
-  ]
-
   let actions = [
     {text: "Top", action: function () {
       App.goto_top("closed")

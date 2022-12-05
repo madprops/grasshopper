@@ -1,13 +1,11 @@
 // Setup tabs
 App.setup_tabs = function () {
   App.tabs_filter_modes = [
-    ["all", "All"],
     ["pins", "Pins"],
     ["playing", "Playing"],
     ["muted", "Muted"],
     ["suspended", "Suspended"],
     ["normal", "Normal"],
-    ["today", "Today"],
   ]
 
   let actions = [

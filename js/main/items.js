@@ -902,14 +902,10 @@ App.setup_item_window = function (mode, actions) {
     //
     let filter_mode = App.create("div", "button top_button", `${mode}_filter_mode`)
     filter_mode.title = "Filter Mode (Shift + Down)"
-
-    if (!App[`${mode}_filter_modes`]) {
-      App[`${mode}_filter_modes`] = [
-        ["all", "All"],
-      ]
-
-      filter_mode.classList.add("disabled")
-    }
+    
+    App[`${mode}_filter_modes`] = App[`${mode}_filter_modes`] || []
+    App[`${mode}_filter_modes`].unshift(["all", "All"])
+    App[`${mode}_filter_modes`].push(["today", "Today"])
 
     App.ev(filter_mode, "click", function () {
       App.show_filter_mode(mode)
