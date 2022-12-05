@@ -807,5 +807,7 @@ App.clean_tabs = function () {
     return
   }
 
-  App.do_close_tabs(ids)
+  App.show_confirm(`Close normal tabs? (${ids.length})`, function () {
+    App.do_close_tabs(ids)
+  }) 
 }
