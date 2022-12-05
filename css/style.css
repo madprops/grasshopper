@@ -124,6 +124,7 @@ body, html {
   height: 100%;
   overflow-x: hidden;
   overflow-y: auto;
+  z-index: 9;
 }
 
 .text {
@@ -233,6 +234,7 @@ body, html {
   display: flex;
   flex-direction: row;
   gap: 0.66rem;
+  z-index: 9;
 }
 
 .highlighted {
@@ -508,4 +510,14 @@ input::placeholder {
 .disabled {
   opacity: 0.63;
   pointer-events: none;
+}
+
+.background {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  opacity: 0.1;
 }

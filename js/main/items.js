@@ -829,8 +829,11 @@ App.setup_item_window = function (mode, actions) {
     let container = App.create("div", "container unselectable", `${mode}_container`)
     let footer = App.create("div", "footer unselectable", `${mode}_footer`)
     let top = App.create("div", "item_top_container", `${mode}_top_container`)
+    let background = App.create("canvas", "background")
     App.el(`#window_top_${mode}`).append(top)
     
+    jdenticon.update(background, mode)
+    win.append(background)
     win.append(container)
     win.append(footer)
 
