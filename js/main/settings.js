@@ -190,7 +190,7 @@ App.setup_settings = function () {
     App.settings_setup_text(container)
 
     App.ev(App.el("#settings_default_icons"), "click", function () {
-      App.restore_default_icon_settings()
+      App.restore_default_settings("icons")
     })
   }, on_x: on_x})  
 
@@ -222,7 +222,7 @@ App.setup_settings = function () {
     })    
 
     App.ev(App.el("#settings_defaults_button"), "click", function () {
-      App.restore_default_normal_settings()
+      App.restore_default_settings("normal")
     })    
   }}) 
 }
@@ -265,7 +265,7 @@ App.start_theme_settings = function () {
   })
   
   App.ev(App.el("#settings_default_theme"), "click", function () {
-    App.restore_default_theme_settings()
+    App.restore_default_settings("theme")
   })
 
   App.settings_make_menu("background_image", 
@@ -276,45 +276,13 @@ App.start_theme_settings = function () {
   )
 }
 
-// Restore default normal settings
-App.restore_default_normal_settings = function () {
-  App.show_confirm("Restore default settings?", function () {
+// Restore default settings
+App.restore_default_settings = function (type) {
+  App.show_confirm(`Restore default settings? (${type})`, function () {
     for (let key in App.default_settings) {
       let item = App.default_settings[key]
   
-      if (item.category === "normal") {
-        App.settings[key] = item.value
-      }
-    }
-
-    App.stor_save_settings()
-    window.close()    
-  })
-}
-
-// Restore the default theme
-App.restore_default_theme_settings = function () {
-  App.show_confirm("Restore default theme?", function () {
-    for (let key in App.default_settings) {
-      let item = App.default_settings[key]
-  
-      if (item.category === "theme") {
-        App.settings[key] = item.value
-      }
-    }
-
-    App.stor_save_settings()
-    window.close()    
-  })
-}
-
-// Restore default icons
-App.restore_default_icon_settings = function () {
-  App.show_confirm("Restore default icons?", function () {
-    for (let key in App.default_settings) {
-      let item = App.default_settings[key]
-  
-      if (item.category === "icons") {
+      if (item.category === type) {
         App.settings[key] = item.value
       }
     }
