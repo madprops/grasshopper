@@ -25,6 +25,10 @@ App.create_window = function (args) {
     args.cls = "normal"
   }
 
+  if (args.persistent === undefined) {
+    args.persistent = true
+  }
+
   let w = {}
   let el = App.create("div", `window_main window_main_${args.cls}`, `window_${args.id}`)
 
@@ -66,10 +70,16 @@ App.create_window = function (args) {
   w.setup = false
 
   w.show = function (scroll = true) {
-    if (args.setup && !w.setup) {
-      args.setup()
-      w.setup = true
-      console.info(`${args.id} window setup`)
+    if (!args.persistent) {
+      content.innerHTML = content_html
+    }
+    
+    if (args.setup) {
+      if (!args.persistent || !w.setup) {
+        args.setup()
+        w.setup = true
+        console.info(`${args.id} window setup`)
+      }
     }
 
     App.hide_all_windows()
