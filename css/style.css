@@ -524,7 +524,7 @@ input::placeholder {
   pointer-events: none;
 }
 
-#image_container {
+.media_container {
   width: 100%;
   height: 100%;
   display: flex;
@@ -532,18 +532,18 @@ input::placeholder {
   justify-content: center;
 }
 
-#image_title {
+.media_title {
   max-width: 80%;
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
 }
 
-#image_loading {
+.media_loading {
   width: 12rem;
 }
 
-#image {
+.media {
   width: 90%;
   max-height: 90%;
   object-fit: contain;

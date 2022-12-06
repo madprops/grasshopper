@@ -1212,6 +1212,10 @@ App.show_first_item_window = function () {
 
 // Focus an open tab or launch a new one
 App.focus_or_open_item = async function (item, close = true) {
+  if (App.check_media(item)) {
+    return
+  }
+
   let tabs = await App.get_tabs()
 
   for (let tab of tabs) {
@@ -1711,4 +1715,19 @@ App.highlight_items = function (mode) {
       App.toggle_highlight(item, false)
     }
   }
+}
+
+// Check media
+App.check_media = function (item) {
+  if (App.is_image(item.url)) {
+    App.show_image(item)
+    return true
+  }
+
+  if (App.is_video(item.url)) {
+    App.show_video(item)
+    return true
+  }
+
+  return false
 }

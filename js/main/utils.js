@@ -148,6 +148,12 @@ App.is_image = function (src) {
   return extension && App.image_extensions.includes(extension)
 }
 
+// Check if file name is from a video source
+App.is_video = function (src) {
+  let extension = App.get_extension(src).toLowerCase()
+  return extension && App.video_extensions.includes(extension)
+}
+
 // Extract extension from a string
 App.get_extension = function (s) {
   if (s.startsWith("http://") || s.startsWith("https://")) {
@@ -170,3 +176,4 @@ App.get_extension = function (s) {
 }
 
 App.image_extensions = ["jpg", "jpeg", "png", "gif", "webp", "bmp"]
+App.video_extensions = ["mp4", "webm"]

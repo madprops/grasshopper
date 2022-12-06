@@ -25,6 +25,7 @@
     <script src="js/main/about.js"></script>
     <script src="js/main/popups.js"></script>
     <script src="js/main/image.js"></script>
+    <script src="js/main/video.js"></script>
   </head>
 
   <body>
@@ -224,14 +225,25 @@
     </template>
 
     <template id="template_image">
-      <div id="image_container">
-        <img id="image_loading" src="img/loading.gif" class="hidden">
-        <img id="image">
+      <div id="image_container" class="media_container">
+        <img id="image_loading" src="img/loading.gif" class="media_loading hidden">
+        <img id="image" class="media">
       </div>
     </template>
 
     <template id="template_image_top">
-      <div id="image_title" class="action unselectable"></div>
+      <div id="image_title" class="media_title action unselectable"></div>
+    </template>
+
+    <template id="template_video">
+      <div id="video_container" class="media_container">
+        <img id="video_loading" src="img/loading.gif" class="media_loading hidden">
+        <video id="video" class="media">
+      </div>
+    </template>
+
+    <template id="template_video_top">
+      <div id="video_title" class="media_title action unselectable"></div>
     </template>
 
     <script src="js/main/main.js"></script>

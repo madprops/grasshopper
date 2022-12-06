@@ -213,11 +213,10 @@ App.remove_closed_tab = function (id) {
 
 // Tabs action
 App.tabs_action = function (item) {
-  if (App.is_image(item.url)) {
-    App.show_image(item)
+  if (App.check_media(item)) {
     return
   }
-
+  
   App.focus_tab(item)
 }
 
