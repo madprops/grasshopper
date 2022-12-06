@@ -296,6 +296,8 @@ NeedContext.init = function () {
       cursor: pointer;
       padding-top: 6px;
       padding-bottom: 6px;
+      max-height: 80vh;
+      overflow: auto;
     }
 
     .needcontext-normal {
