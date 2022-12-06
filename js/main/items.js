@@ -272,19 +272,35 @@ App.do_item_filter = async function (mode) {
     if (check(title, path)) {
       if (filter_mode === "all") {
         match = true
-      } else if (filter_mode === "normal") {
+      } 
+      
+      else if (filter_mode === "normal") {
         match = App.tab_is_normal(item)
-      } else if (filter_mode === "playing") {
+      } 
+      
+      else if (filter_mode === "playing") {
         match = item.audible
-      } else if (filter_mode === "pins") {
+      } 
+      
+      else if (filter_mode === "pins") {
         match = item.pinned
-      } else if (filter_mode === "muted") {
+      } 
+      
+      else if (filter_mode === "muted") {
         match = item.muted
-      } else if (filter_mode === "suspended") {
+      } 
+      
+      else if (filter_mode === "suspended") {
         match = item.discarded
-      } else if (filter_mode === "today") {
-        match = (Date.now() - item.date) <= today
+      } 
+
+      else if (filter_mode === "active") {
+        match = item.active
       }
+      
+      else if (filter_mode === "today") {
+        match = (Date.now() - item.date) <= today
+      } 
     }
 
     return match
