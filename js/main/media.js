@@ -15,13 +15,13 @@ App.create_media_windows = function (what) {
 
     if (what === "image") {
       App.ev(media, "load", function () {
-        clearTimeout(App[`${what}_loading_timeout`])
+        App.stop_media_timeout(what)
         media.classList.remove("hidden")
         App.el(`#${what}_loading`).classList.add("hidden")
       })
     } else if (what === "video") {
       App.ev(media, "canplay", function () {
-        clearTimeout(App[`${what}_loading_timeout`])
+        App.stop_media_timeout(what)
         media.classList.remove("hidden")
         App.el(`#${what}_loading`).classList.add("hidden")
         media.play()
@@ -40,26 +40,23 @@ App.create_media_windows = function (what) {
       App.stop_video()
     }
 
-    clearTimeout(App[`${what}_loading_timeout`])
+    App.hide_media_elements(what)
+    App.stop_media_timeout(what)
     App.show_last_window()
   }})
 }
 
 // Show media
 App.show_media = function (what, item) {
-  App.show_window(what)
-  let media = App.el(`#${what}`)
-  let loading = App.el(`#${what}_loading`)
-  
-  media.classList.add("hidden")
-  loading.classList.add("hidden")
-
+  App.hide_media_elements(what)
   App[`current_${what}_item`] = item
-  media.src = item.url
+  App.el(`#${what}`).src = item.url
   
   App[`${what}_loading_timeout`] = setTimeout(function () {
-    loading.classList.remove("hidden")
+    App.el(`#${what}_loading`).classList.remove("hidden")
   }, 500)
+
+  App.show_window(what)
 }
 
 // Hide media
@@ -72,4 +69,15 @@ App.stop_video = function () {
   let video = App.el("#video")
   video.pause()
   video.src = ""
+}
+
+// Hide media
+App.hide_media_elements = function (what) {
+  App.el(`#${what}`).classList.add("hidden")
+  App.el(`#${what}_loading`).classList.add("hidden")
+}
+
+// Stop media timeout
+App.stop_media_timeout = function (what) {
+  clearTimeout(App[`${what}_loading_timeout`])
 }
