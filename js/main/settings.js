@@ -5,9 +5,9 @@ App.default_settings = {
   stars_index: {value: 1, category: "basic"},
   history_index: {value: 2, category: "basic"},
   closed_index: {value: 3, category: "basic"},
-  font_size: {value: 18, category: "basic"},
   lock_drag: {value: false, category: "basic"},
-  font: {value: "gh_sans", category: "basic"},
+  font: {value: "gh_sans", category: "font"},
+  font_size: {value: 18, category: "font"},
   background_color: {value: "rgb(88, 92, 111)", category: "theme"},
   text_color: {value: "rgb(234, 238, 255)", category: "theme"},
   background_image: {value: "none", category: "theme"},
@@ -165,13 +165,8 @@ App.setup_settings = function () {
   App.create_window({id: "settings_basic", setup: function () {
     let container = App.el("#settings_container")
     App.settings_setup_checkboxes(container)
-    App.settings_setup_text(container)
     App.settings_make_menu("text_mode", [["Title", "title"], ["URL", "url"]])
     App.start_item_order()   
-
-    App.ev(App.el("#settings_defaults_button"), "click", function () {
-      App.restore_default_settings("basic")
-    }) 
     
     App.ev(App.el("#basic_settings_prev"), "click", function () {
       App.show_prev_settings()
@@ -179,6 +174,10 @@ App.setup_settings = function () {
 
     App.ev(App.el("#basic_settings_next"), "click", function () {
       App.show_next_settings()
+    })
+
+    App.ev(App.el("#settings_defaults_basic"), "click", function () {
+      App.restore_default_settings("basic")
     })
   }}) 
 
@@ -208,6 +207,10 @@ App.setup_settings = function () {
     App.ev(App.el("#font_settings_next"), "click", function () {
       App.show_next_settings()
     })
+
+    App.ev(App.el("#settings_defaults_font"), "click", function () {
+      App.restore_default_settings("font")
+    })
   }}) 
 
   App.create_window({id: "settings_theme", setup: function () {
@@ -226,16 +229,16 @@ App.setup_settings = function () {
     let container = App.el("#settings_icons_container")
     App.settings_setup_text(container)
 
-    App.ev(App.el("#settings_default_icons"), "click", function () {
-      App.restore_default_settings("icons")
-    })
-
     App.ev(App.el("#icon_settings_prev"), "click", function () {
       App.show_prev_settings()
     })
 
     App.ev(App.el("#icon_settings_next"), "click", function () {
       App.show_next_settings()
+    })
+
+    App.ev(App.el("#settings_default_icons"), "click", function () {
+      App.restore_default_settings("icons")
     })
   }})
 }
@@ -385,4 +388,13 @@ App.show_next_settings = function () {
   }
 
   App.show_window(App.settings_order[index])
+}
+
+// Reset all settings
+App.reset_settings = function () {
+  App.show_confirm("Reset all settings to defaults?", function () {
+    App.settings = {}
+    App.stor_save_settings()
+    window.close()
+  })
 }

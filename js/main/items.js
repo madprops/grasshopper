@@ -1198,6 +1198,12 @@ App.show_main_menu = function (btn) {
           App.show_window("settings_icons")
         }
       },
+      {
+        text: "Reset",
+        action: function () {
+          App.reset_settings()
+        }
+      },
     ]
   })
 
