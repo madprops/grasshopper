@@ -297,6 +297,14 @@ App.do_item_filter = async function (mode) {
       else if (filter_mode === "active") {
         match = item.active
       }
+
+      else if (filter_mode === "secure") {
+        match = item.protocol === "https:"
+      } 
+
+      else if (filter_mode === "insecure") {
+        match = item.protocol === "http:"
+      }
       
       else if (filter_mode === "today") {
         match = (Date.now() - item.date) <= today
@@ -921,6 +929,8 @@ App.setup_item_window = function (mode, actions) {
     
     App[`${mode}_filter_modes`] = App[`${mode}_filter_modes`] || []
     App[`${mode}_filter_modes`].unshift(["all", "All"])
+    App[`${mode}_filter_modes`].push(["secure", "Secure"])
+    App[`${mode}_filter_modes`].push(["insecure", "Insecure"])
     App[`${mode}_filter_modes`].push(["today", "Today"])
 
     App.ev(filter_mode, "click", function () {
