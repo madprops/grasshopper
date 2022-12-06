@@ -298,6 +298,14 @@ App.do_item_filter = async function (mode) {
         match = item.active
       }
 
+      else if (filter_mode === "image") {
+        match = item.image
+      }
+
+      else if (filter_mode === "video") {
+        match = item.video
+      }
+
       else if (filter_mode === "secure") {
         match = item.protocol === "https:"
       } 
@@ -578,6 +586,8 @@ App.process_item = function (mode, item, exclude = []) {
 
   let path = App.remove_protocol(url)
   let title = item.title || path
+  let image = App.is_image(url)
+  let video = App.is_video(url)
 
   let obj = {
     id: item.id || App[`${mode}_idx`],
@@ -595,7 +605,9 @@ App.process_item = function (mode, item, exclude = []) {
     window_id: item.windowId,
     session_id: item.sessionId,
     visible: true,
-    highlighted: false
+    highlighted: false,
+    image: image,
+    video: video,
   }
 
   if (mode === "tabs") {
@@ -929,6 +941,8 @@ App.setup_item_window = function (mode, actions) {
     
     App[`${mode}_filter_modes`] = App[`${mode}_filter_modes`] || []
     App[`${mode}_filter_modes`].unshift(["all", "All"])
+    App[`${mode}_filter_modes`].push(["image", "Image"])
+    App[`${mode}_filter_modes`].push(["video", "Video"])
     App[`${mode}_filter_modes`].push(["secure", "Secure"])
     App[`${mode}_filter_modes`].push(["insecure", "Insecure"])
     App[`${mode}_filter_modes`].push(["today", "Today"])
@@ -1730,12 +1744,12 @@ App.highlight_items = function (mode) {
 
 // Check media
 App.check_media = function (item) {
-  if (App.is_image(item.url)) {
+  if (item.image) {
     App.show_media("image", item)
     return true
   }
 
-  if (App.is_video(item.url)) {
+  if (item.video) {
     App.show_media("video", item)
     return true
   }
