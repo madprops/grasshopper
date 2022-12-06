@@ -21,6 +21,10 @@ App.get_history = async function (text = "") {
 
 // History action
 App.history_action = function (item) {
+  if (App.check_media(item)) {
+    return
+  }
+  
   App.focus_or_open_item(item)
 }
 

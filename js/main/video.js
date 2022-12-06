@@ -15,7 +15,7 @@ App.setup_video = function () {
     })
 
     App.ev(App.el("#video_title"), "click", function () {
-      App.focus_tab(App.current_video_item)
+      App.focus_or_open_item(App.current_video_item)
     })
   }, on_hide: function () {
     App.stop_video()

@@ -216,7 +216,7 @@ App.tabs_action = function (item) {
   if (App.check_media(item)) {
     return
   }
-  
+
   App.focus_tab(item)
 }
 

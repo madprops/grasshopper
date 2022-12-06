@@ -62,6 +62,10 @@ App.hide_star_editor = function () {
 
 // Stars action
 App.stars_action = function (item) {
+  if (App.check_media(item)) {
+    return
+  }
+  
   App.open_star(item)
 }
 

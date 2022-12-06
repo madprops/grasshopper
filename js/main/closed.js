@@ -14,6 +14,10 @@ App.get_closed = async function () {
 
 // Closed tabs action
 App.closed_action = function (item) {
+  if (App.check_media(item)) {
+    return
+  }
+  
   App.focus_or_open_item(item)
 }
 

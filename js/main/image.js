@@ -14,7 +14,7 @@ App.setup_image = function () {
     })
 
     App.ev(App.el("#image_title"), "click", function () {
-      App.focus_tab(App.current_image_item)
+      App.focus_or_open_item(App.current_image_item)
     })
   }, on_hide: function () {
     App.show_last_window()
