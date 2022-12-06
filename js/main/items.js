@@ -1147,9 +1147,26 @@ App.show_main_menu = function (btn) {
 
   items.push({
     text: "Settings",
-    action: function () {
-      App.show_window("settings")
-    }
+    items: [
+      {
+        text: "Normal",
+        action: function () {
+          App.show_window("settings_normal")
+        }
+      },
+      {
+        text: "Theme",
+        action: function () {
+          App.show_window("settings_theme")
+        }
+      },
+      {
+        text: "Icons",
+        action: function () {
+          App.show_window("settings_icons")
+        }
+      },
+    ]
   })
 
   items.push({

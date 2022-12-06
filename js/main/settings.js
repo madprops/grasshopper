@@ -160,24 +160,7 @@ App.settings_make_menu = function (id, opts, action) {
 
 // Setup settings
 App.setup_settings = function () {
-  function on_x () {
-    App.show_last_window()
-  }
-
-  App.create_window({id: "settings_theme", setup: function () {
-    App.start_theme_settings()
-  }, on_x: on_x}) 
-
-  App.create_window({id: "settings_icons", setup: function () {
-    let container = App.el("#settings_icons_container")
-    App.settings_setup_text(container)
-
-    App.ev(App.el("#settings_default_icons"), "click", function () {
-      App.restore_default_settings("icons")
-    })
-  }, on_x: on_x})  
-
-  App.create_window({id: "settings", setup: function () {
+  App.create_window({id: "settings_normal", setup: function () {
     let container = App.el("#settings_container")
     App.settings_setup_checkboxes(container)
     App.settings_setup_text(container)
@@ -201,20 +184,25 @@ App.setup_settings = function () {
       App.apply_theme()
     })
 
-    App.start_item_order()
-
-    App.ev(App.el("#settings_show_theme"), "click", function () {
-      App.show_window("settings_theme")
-    })
-
-    App.ev(App.el("#settings_show_icons"), "click", function () {
-      App.show_window("settings_icons")
-    })    
+    App.start_item_order()   
 
     App.ev(App.el("#settings_defaults_button"), "click", function () {
       App.restore_default_settings("normal")
     })    
   }}) 
+    
+  App.create_window({id: "settings_theme", setup: function () {
+    App.start_theme_settings()
+  }}) 
+
+  App.create_window({id: "settings_icons", setup: function () {
+    let container = App.el("#settings_icons_container")
+    App.settings_setup_text(container)
+
+    App.ev(App.el("#settings_default_icons"), "click", function () {
+      App.restore_default_settings("icons")
+    })
+  }})
 }
 
 // Start theme settings
