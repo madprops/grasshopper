@@ -1,16 +1,6 @@
 // Setup closed tabs
 App.setup_closed = function () {
-  let actions = [
-    {text: "Top", action: function () {
-      App.goto_top("closed")
-    }}, 
-
-    {text: "Pick All", action: function () {
-      App.highlight_items("closed")
-    }}, 
-  ]
-
-  App.setup_item_window("closed", actions)
+  App.setup_item_window("closed")
 }
 
 // Get closed tabs

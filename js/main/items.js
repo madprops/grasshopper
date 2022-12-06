@@ -922,132 +922,143 @@ App.setup_item_window = function (mode, actions) {
     top.append(filter_mode)
 
     //
-    if (actions) {
-      let menu = App.create("div", "button", `${mode}_menu`)
-      menu.title = "Item Actions (Shift + Space)"
-      menu.textContent = "Actions"
+    if (!actions) {
+      actions = [
+        {text: "Top", action: function () {
+          App.goto_top(mode)
+        }},    
+    
+        {text: "Pick All", action: function () {
+          App.highlight_items(mode)
+        }}, 
+      ]
+    }
 
-      App[`show_${mode}_menu`] = function () {
-        let items = []
+    let actions_menu = App.create("div", "button", `${mode}_menu`)
+    actions_menu.title = "Item Actions (Shift + Space)"
+    actions_menu.textContent = "Actions"
 
-        for (let item of actions) {
-          if (item.text === "--separator--") {
-            items.push({separator: true})
-            continue
-          }
+    App[`show_${mode}_menu`] = function () {
+      let items = []
 
-          if (item.conditional) {
-            items.push(item.conditional())
-          } else if (item.action) {
-            items.push({text: item.text, action: function () {
-              item.action()
-            }})
-          } else if (item.items) {
-            items.push({text: item.text, items:item.items})
-          }
+      for (let item of actions) {
+        if (item.text === "--separator--") {
+          items.push({separator: true})
+          continue
         }
 
-        NeedContext.show_on_element(menu, items, true, menu.clientHeight)
+        if (item.conditional) {
+          items.push(item.conditional())
+        } else if (item.action) {
+          items.push({text: item.text, action: function () {
+            item.action()
+          }})
+        } else if (item.items) {
+          items.push({text: item.text, items:item.items})
+        }
       }
 
-      App.ev(menu, "click", function () {
-        App.show_menu()
+      NeedContext.show_on_element(actions_menu, items, true, actions_menu.clientHeight)
+    }
+
+    App.ev(actions_menu, "click", function () {
+      App.show_menu()
+    })
+
+    top.append(actions_menu)
+
+    //
+    if (mode === "tabs") {
+      container.addEventListener("dragstart", function (e) {
+        if (mode === "tabs" && App.tabs_mode !== "normal") {
+          e.preventDefault()
+          return false
+        }
+
+        if (e.shiftKey) {
+          e.preventDefault()
+          return
+        }
+
+        if (App.settings.lock_drag && !e.ctrlKey) {
+          e.preventDefault()
+          return
+        }
+        
+        App.drag_y = e.clientY
+        App.drag_element = e.target.closest(".item")
+        let id = App.drag_element.dataset.id
+        App.drag_item = App.get_item_by_id(mode, id)
+        App.drag_start_index = App.get_item_element_index(mode, App.drag_element)
+        e.dataTransfer.setDragImage(new Image(), 0, 0)
+        e.dataTransfer.setData("text/plain", App.drag_item.url)
+
+        App.drag_items = []
+
+        if (App.drag_item.highlighted) {
+          for (let tab of App[`${mode}_items`]) {
+            if (tab.highlighted) {
+              App.drag_items.push(tab)
+            }
+          }
+        } else {
+          App.drag_items.push(App.drag_item)
+        }
+
+        App.drag_els = []
+
+        for (let tab of App.drag_items) {
+          App.drag_els.push(tab.element)
+        }
+
+        App.drag_moved = false
+        App.select_item(App.drag_item)
       })
 
-      if (mode === "tabs") {
-        container.addEventListener("dragstart", function (e) {
-          if (mode === "tabs" && App.tabs_mode !== "normal") {
+      container.addEventListener("dragend", function () {
+        if (!App.drag_moved) {
+          return
+        }
+
+        App.block_select()
+        App.dehighlight(mode)
+        App.update_tab_index()
+      })
+
+      container.addEventListener("dragover", function (e) {
+        let direction = e.clientY > App.drag_y ? "down" : "up"
+        App.drag_y = e.clientY
+        
+        if (e.target.closest(".item")) {
+          let el = e.target.closest(".item")
+
+          if (App.drag_els.includes(el)) {
             e.preventDefault()
             return false
           }
 
-          if (e.shiftKey) {
-            e.preventDefault()
-            return
-          }
+          let target = App.get_item_by_id(mode, el.dataset.id)
 
-          if (App.settings.lock_drag && !e.ctrlKey) {
-            e.preventDefault()
-            return
-          }
-          
-          App.drag_y = e.clientY
-          App.drag_element = e.target.closest(".item")
-          let id = App.drag_element.dataset.id
-          App.drag_item = App.get_item_by_id(mode, id)
-          App.drag_start_index = App.get_item_element_index(mode, App.drag_element)
-          e.dataTransfer.setDragImage(new Image(), 0, 0)
-          e.dataTransfer.setData("text/plain", App.drag_item.url)
-
-          App.drag_items = []
-
-          if (App.drag_item.highlighted) {
-            for (let tab of App[`${mode}_items`]) {
-              if (tab.highlighted) {
-                App.drag_items.push(tab)
-              }
-            }
-          } else {
-            App.drag_items.push(App.drag_item)
-          }
-
-          App.drag_els = []
-
-          for (let tab of App.drag_items) {
-            App.drag_els.push(tab.element)
-          }
-
-          App.drag_moved = false
-          App.select_item(App.drag_item)
-        })
-
-        container.addEventListener("dragend", function () {
-          if (!App.drag_moved) {
-            return
-          }
-
-          App.block_select()
-          App.dehighlight(mode)
-          App.update_tab_index()
-        })
-
-        container.addEventListener("dragover", function (e) {
-          let direction = e.clientY > App.drag_y ? "down" : "up"
-          App.drag_y = e.clientY
-          
-          if (e.target.closest(".item")) {
-            let el = e.target.closest(".item")
-
-            if (App.drag_els.includes(el)) {
+          for (let item of App.drag_items) {
+            if ((target.pinned && !item.pinned) || (!target.pinned && item.pinned)) {
               e.preventDefault()
               return false
             }
-
-            let target = App.get_item_by_id(mode, el.dataset.id)
-
-            for (let item of App.drag_items) {
-              if ((target.pinned && !item.pinned) || (!target.pinned && item.pinned)) {
-                e.preventDefault()
-                return false
-              }
-            }
-
-            if (direction === "down") {
-              el.after(...App.drag_els)
-            } else {
-              el.before(...App.drag_els)
-            }
-
-            App.drag_moved = true
-            App.select_item(App.drag_item)
           }
 
-          e.preventDefault()
-          return false
-        })
-      }      
+          if (direction === "down") {
+            el.after(...App.drag_els)
+          } else {
+            el.before(...App.drag_els)
+          }
 
-      top.append(menu)
+          App.drag_moved = true
+          App.select_item(App.drag_item)
+        }
+
+        e.preventDefault()
+        return false
+      })
     }
   }
 

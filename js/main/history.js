@@ -1,16 +1,6 @@
 // Setup history
 App.setup_history = function () {
-  let actions = [
-    {text: "Top", action: function () {
-      App.goto_top("history")
-    }},    
-
-    {text: "Pick All", action: function () {
-      App.highlight_items("history")
-    }}, 
-  ]
-
-  App.setup_item_window("history", actions)
+  App.setup_item_window("history")
 }
 
 // Get history date
