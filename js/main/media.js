@@ -28,8 +28,12 @@ App.create_media_windows = function (what) {
       })
     }
 
-    App.ev(App.el(`#${what}_title`), "click", function () {
+    App.ev(App.el(`#${what}_open`), "click", function () {
       App.focus_or_open_item(App[`current_${what}_item`])
+    })
+
+    App.ev(App.el(`#${what}_copy`), "click", function () {
+      App.copy_to_clipboard(App[`current_${what}_item`].url)
     })
   }, on_hide: function () {
     if (what === "video") {
@@ -50,7 +54,6 @@ App.show_media = function (what, item) {
   media.classList.add("hidden")
   loading.classList.add("hidden")
 
-  App.el(`#${what}_title`).textContent = item.url
   App[`current_${what}_item`] = item
   media.src = item.url
   

@@ -532,13 +532,6 @@ input::placeholder {
   justify-content: center;
 }
 
-.media_title {
-  max-width: 80%;
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
-}
-
 .media_loading {
   width: 27%;
 }
