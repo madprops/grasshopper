@@ -179,7 +179,7 @@ App.setup_settings = function () {
     App.ev(App.el("#settings_defaults_basic"), "click", function () {
       App.restore_default_settings("basic")
     })
-  }}) 
+  }, persistent: false}) 
 
   App.create_window({id: "settings_font", setup: function () {
     App.settings_make_menu("font", [
@@ -211,7 +211,7 @@ App.setup_settings = function () {
     App.ev(App.el("#settings_defaults_font"), "click", function () {
       App.restore_default_settings("font")
     })
-  }}) 
+  }, persistent: false}) 
 
   App.create_window({id: "settings_theme", setup: function () {
     App.start_theme_settings()
@@ -223,7 +223,7 @@ App.setup_settings = function () {
     App.ev(App.el("#theme_settings_next"), "click", function () {
       App.show_next_settings()
     })
-  }}) 
+  }, persistent: false}) 
 
   App.create_window({id: "settings_icons", setup: function () {
     let container = App.el("#settings_icons_container")
@@ -240,7 +240,7 @@ App.setup_settings = function () {
     App.ev(App.el("#settings_default_icons"), "click", function () {
       App.restore_default_settings("icons")
     })
-  }})
+  }, persistent: false})
 }
 
 // Start theme settings
@@ -340,7 +340,8 @@ App.restore_default_settings = function (type) {
     }
 
     App.stor_save_settings()
-    window.close()    
+    App.apply_theme()
+    App.show_window(`settings_${type}`)
   })
 }
 

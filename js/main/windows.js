@@ -31,10 +31,11 @@ App.create_window = function (args) {
 
   let w = {}
   let el = App.create("div", `window_main window_main_${args.cls}`, `window_${args.id}`)
+  let top, top_html
 
   if (args.show_top) {
-    let top = App.create("div", `window_top window_top_${args.align_top} window_top_${args.cls}`, `window_top_${args.id}`)
-    let top_html = App.get_template(`${args.id}_top`)
+    top = App.create("div", `window_top window_top_${args.align_top} window_top_${args.cls}`, `window_top_${args.id}`)
+    top_html = App.get_template(`${args.id}_top`)
 
     if (top_html) {
       top.innerHTML = top_html
@@ -72,6 +73,10 @@ App.create_window = function (args) {
   w.show = function (scroll = true) {
     if (!args.persistent) {
       content.innerHTML = content_html
+
+      if (top_html) {
+        top.innerHTML = top_html
+      }
     }
     
     if (args.setup) {
