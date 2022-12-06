@@ -109,6 +109,12 @@ App.setup_keyboard = function () {
       return
     }
 
+    if (App.window_mode === "image") {
+      App.hide_image()
+      e.preventDefault()
+      return
+    }
+
     if (App.item_order.includes(App.window_mode)) {
       App.check_window_keyboard(e)
     }

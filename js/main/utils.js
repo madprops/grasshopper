@@ -141,3 +141,32 @@ App.get_random_int = function (min, max, exclude = undefined) {
 App.random_choice = function (list) {
   return list[App.get_random_int(0, list.length - 1)]
 }
+
+// Check if file name is from an image source
+App.is_image = function (src) {
+  let extension = App.get_extension(src).toLowerCase()
+  return extension && App.image_extensions.includes(extension)
+}
+
+// Extract extension from a string
+App.get_extension = function (s) {
+  if (s.startsWith("http://") || s.startsWith("https://")) {
+    let s2 = s.split("//").slice(1).join("//")
+
+    let matches = s2.match(/\/.*\.(\w+)(?=$|[#?])/)
+
+    if (matches) {
+      return matches[1]
+    }
+  } else {
+    let matches = s.match(/\.(\w+)(?=$|[#?])/)
+
+    if (matches) {
+      return matches[1]
+    }
+  }
+
+  return ""
+}
+
+App.image_extensions = ["jpg", "jpeg", "png", "gif", "webp", "bmp"]
