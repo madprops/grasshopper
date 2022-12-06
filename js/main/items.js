@@ -298,11 +298,11 @@ App.do_item_filter = async function (mode) {
         match = item.active
       }
 
-      else if (filter_mode === "image") {
+      else if (filter_mode === "images") {
         match = item.image
       }
 
-      else if (filter_mode === "video") {
+      else if (filter_mode === "videos") {
         match = item.video
       }
 
@@ -941,8 +941,8 @@ App.setup_item_window = function (mode, actions) {
     
     App[`${mode}_filter_modes`] = App[`${mode}_filter_modes`] || []
     App[`${mode}_filter_modes`].unshift(["all", "All"])
-    App[`${mode}_filter_modes`].push(["image", "Image"])
-    App[`${mode}_filter_modes`].push(["video", "Video"])
+    App[`${mode}_filter_modes`].push(["images", "Images"])
+    App[`${mode}_filter_modes`].push(["videos", "Videos"])
     App[`${mode}_filter_modes`].push(["secure", "Secure"])
     App[`${mode}_filter_modes`].push(["insecure", "Insecure"])
     App[`${mode}_filter_modes`].push(["today", "Today"])
