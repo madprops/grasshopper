@@ -29,7 +29,15 @@ App.create_media_windows = function (what) {
     }
 
     App.ev(App.el(`#${what}_open`), "click", function () {
-      App.focus_or_open_item(App[`current_${what}_item`])
+      let item = App[`current_${what}_item`]
+
+      if (item.mode === "tabs") {
+        App.focus_tab(item)
+      } else if (item.mode === "stars") {
+        App.open_star(item)
+      } else {
+        App.focus_or_open_item(item)
+      }
     })
 
     App.ev(App.el(`#${what}_copy`), "click", function () {
