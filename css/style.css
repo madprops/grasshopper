@@ -122,10 +122,13 @@ body, html {
 }
 
 .window_x {
-  right: 0rem;
-  padding: 0.8rem;
-  padding-right: 1rem;
   position: absolute;
+  top: 0;
+  right: 0;
+  padding-top: 0.66rem;
+  padding-bottom: 0.66rem;
+  padding-left: 1rem;
+  padding-right: 1rem;
   font-size: 1.2rem;
 }
 
