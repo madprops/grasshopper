@@ -402,7 +402,7 @@ body, html {
 }
 
 #needcontext-container {
-  background-color: var(--main_background) !important;
+  background-color: var(--background_color) !important;
   color: var(--text_color) !important;
   border-color: var(--alt_color_3) !important;
   font-size: var(--font_size) !important;
