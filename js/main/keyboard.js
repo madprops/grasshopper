@@ -56,6 +56,12 @@ App.check_window_keyboard = function (e) {
     return
   }
 
+  if (e.ctrlKey && e.key === "a") {
+    App.highlight_items(mode)
+    e.preventDefault()
+    return
+  }
+
   App.focus_filter(mode)
 }
 

@@ -14,6 +14,7 @@ App.setup_about = function () {
       "Shift + Down to open the filter mode",
       "Shift + Space to open actions",
       "Delete key removes items",
+      "Ctrl + A to pick all items",
     ]
 
     App.about_info_index = 0
