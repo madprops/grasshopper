@@ -544,3 +544,8 @@ input::placeholder {
   max-height: 90%;
   object-fit: contain;
 }
+
+.separator {
+  border: 1px solid var(--alt_color_1);
+  width: 14rem;
+}
