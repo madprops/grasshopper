@@ -1599,7 +1599,7 @@ App.show_filters = function (mode) {
   let items = []
 
   items.push({
-    text: "Clear Filter",
+    text: "Clear",
     action: function () {
       App.clear_filter(mode)
     }
@@ -1612,7 +1612,7 @@ App.show_filters = function (mode) {
 
     for (let filter of App.filters.items) {
       items.push({
-        text: `Filter: ${filter}`,
+        text: filter,
         action: function () {
           App.set_filter(mode, filter)
         }
@@ -1624,7 +1624,7 @@ App.show_filters = function (mode) {
     })
 
     items.push({
-      text: "Forget Filters",
+      text: "Forget",
       action: function () {
         App.forget_filters()
       }
