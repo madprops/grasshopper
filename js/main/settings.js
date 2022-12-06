@@ -188,11 +188,27 @@ App.setup_settings = function () {
 
     App.ev(App.el("#settings_defaults_button"), "click", function () {
       App.restore_default_settings("normal")
-    })    
-  }}) 
+    }) 
     
+    App.ev(App.el("#normal_settings_prev"), "click", function () {
+      App.show_window("settings_icons")
+    })
+
+    App.ev(App.el("#normal_settings_next"), "click", function () {
+      App.show_window("settings_theme")
+    })
+  }}) 
+
   App.create_window({id: "settings_theme", setup: function () {
     App.start_theme_settings()
+
+    App.ev(App.el("#theme_settings_prev"), "click", function () {
+      App.show_window("settings_normal")
+    })
+
+    App.ev(App.el("#theme_settings_next"), "click", function () {
+      App.show_window("settings_icons")
+    })
   }}) 
 
   App.create_window({id: "settings_icons", setup: function () {
@@ -201,6 +217,14 @@ App.setup_settings = function () {
 
     App.ev(App.el("#settings_default_icons"), "click", function () {
       App.restore_default_settings("icons")
+    })
+
+    App.ev(App.el("#icon_settings_prev"), "click", function () {
+      App.show_window("settings_theme")
+    })
+
+    App.ev(App.el("#icon_settings_next"), "click", function () {
+      App.show_window("settings_normal")
     })
   }})
 }

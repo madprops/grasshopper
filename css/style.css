@@ -325,6 +325,11 @@ body, html {
   text-align: center;
 }
 
+.settings_title {
+  min-width: 12rem;
+  text-align: center;
+}
+
 .settings_column {
   display: flex;
   flex-direction: column;
