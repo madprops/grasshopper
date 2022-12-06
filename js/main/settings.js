@@ -346,7 +346,7 @@ App.get_text_size_options = function () {
   let opts = []
 
   for (let i=14; i<=22; i++) {
-    opts.push([`${i}px`, i])
+    opts.push([`${i} px`, i])
   }
 
   return opts
