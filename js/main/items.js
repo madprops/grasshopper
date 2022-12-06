@@ -1198,6 +1198,9 @@ App.show_main_menu = function (btn) {
           App.show_window("settings_icons")
         }
       },
+
+      {separator: true},
+      
       {
         text: "Reset",
         action: function () {
