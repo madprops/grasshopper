@@ -533,14 +533,14 @@ input::placeholder {
 }
 
 #image_title {
-  max-width: 80vw;
+  max-width: 80%;
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
 }
 
 #image {
-  width: 80vw;
-  max-height: 80vh;
+  width: 80%;
+  max-height: 80%;
   object-fit: contain;
 }
