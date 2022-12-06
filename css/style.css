@@ -57,7 +57,7 @@
 
 body, html {
   font-family: var(--font), sans-serif;
-  font-size: var(--text_size);
+  font-size: var(--font_size);
   color: var(--text_color);
   width: 720px;
   height: 600px;
@@ -405,7 +405,7 @@ body, html {
   background-color: var(--main_background) !important;
   color: var(--text_color) !important;
   border-color: var(--alt_color_3) !important;
-  font-size: var(--text_size) !important;
+  font-size: var(--font_size) !important;
   font-family: var(--font), sans-serif !important;
 }
 

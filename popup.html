@@ -74,12 +74,12 @@
       </div>
     </template>
 
-    <template id="template_settings_normal">
+    <template id="template_settings_basic">
       <div id="settings_container" class="settings_container unselectable">
         <div class="flex_row_center gap_2">
-          <div id="normal_settings_prev" class="bigger action">&lt;</div>
-          <div class="bigger settings_title">Normal Settings</div>
-          <div id="normal_settings_next" class="bigger action">&gt;</div>
+          <div id="basic_settings_prev" class="bigger action">&lt;</div>
+          <div class="bigger settings_title">Basic Settings</div>
+          <div id="basic_settings_next" class="bigger action">&gt;</div>
         </div>
 
         <div class="settings_column" title="If this is enabled, dragging requires holding Ctrl to work">
@@ -92,16 +92,6 @@
           <div id="settings_text_mode" class="settings_menu button" data-setting="text_mode"></div>
         </div>
 
-        <div class="settings_column" title="What font to use">
-          <div>Font</div>
-          <div id="settings_font" class="settings_menu button" data-setting="font"></div>
-        </div>  
-        
-        <div class="settings_column" title="Base text size. Affects the size of the whole interface">
-          <div>Text Size</div>
-          <div id="settings_text_size" class="settings_menu button" data-setting="text_size"></div>
-        </div>
-
         <div class="settings_column" title="The items on top appear first">
           <div>Item Order</div>
           <div id="settings_item_order"></div>
@@ -110,6 +100,26 @@
         <div id="settings_defaults_button" class="button settings_button" title="Restore default settings">Defaults</div>
       </div>
     </template>   
+
+    <template id="template_settings_font">
+      <div id="settings_theme_container" class="settings_container unselectable">
+        <div class="flex_row_center gap_2">
+          <div id="font_settings_prev" class="bigger action">&lt;</div>
+          <div class="bigger settings_title">Font Settings</div>
+          <div id="font_settings_next" class="bigger action">&gt;</div>
+        </div>
+
+        <div class="settings_column" title="What font to use">
+          <div>Font</div>
+          <div id="settings_font" class="settings_menu button" data-setting="font"></div>
+        </div>  
+        
+        <div class="settings_column" title="Base font size. Affects the size of the whole interface">
+          <div>Font Size</div>
+          <div id="settings_font_size" class="settings_menu button" data-setting="font_size"></div>
+        </div>
+      </div>
+    </template>
 
     <template id="template_settings_theme">
       <div id="settings_theme_container" class="settings_container unselectable">

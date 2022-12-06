@@ -1175,9 +1175,15 @@ App.show_main_menu = function (btn) {
     text: "Settings",
     items: [
       {
-        text: "Normal",
+        text: "Basic",
         action: function () {
-          App.show_window("settings_normal")
+          App.show_window("settings_basic")
+        }
+      },
+      {
+        text: "Font",
+        action: function () {
+          App.show_window("settings_font")
         }
       },
       {

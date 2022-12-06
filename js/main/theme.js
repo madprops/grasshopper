@@ -25,7 +25,7 @@ App.apply_theme = function () {
     let alt_background = App.colorlib.rgb_to_rgba(App.settings.background_color, 0.55)
     App.set_css_var("alt_background", alt_background)
 
-    App.set_css_var("text_size", App.settings.text_size + "px")
+    App.set_css_var("font_size", App.settings.font_size + "px")
     App.set_css_var("font", App.settings.font)
 
     if (App.settings.background_image === "none") {

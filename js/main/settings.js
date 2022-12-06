@@ -1,13 +1,13 @@
 // Default settings values
 App.default_settings = {
-  text_mode: {value: "title", category: "normal"},
-  tabs_index: {value: 0, category: "normal"},
-  stars_index: {value: 1, category: "normal"},
-  history_index: {value: 2, category: "normal"},
-  closed_index: {value: 3, category: "normal"},
-  text_size: {value: 18, category: "normal"},
-  lock_drag: {value: false, category: "normal"},
-  font: {value: "gh_sans", category: "normal"},
+  text_mode: {value: "title", category: "basic"},
+  tabs_index: {value: 0, category: "basic"},
+  stars_index: {value: 1, category: "basic"},
+  history_index: {value: 2, category: "basic"},
+  closed_index: {value: 3, category: "basic"},
+  font_size: {value: 18, category: "basic"},
+  lock_drag: {value: false, category: "basic"},
+  font: {value: "gh_sans", category: "basic"},
   background_color: {value: "rgb(88, 92, 111)", category: "theme"},
   text_color: {value: "rgb(234, 238, 255)", category: "theme"},
   background_image: {value: "none", category: "theme"},
@@ -160,16 +160,29 @@ App.settings_make_menu = function (id, opts, action) {
 
 // Setup settings
 App.setup_settings = function () {
-  App.create_window({id: "settings_normal", setup: function () {
+  App.settings_order = ["settings_basic", "settings_font", "settings_theme", "settings_icons"]
+
+  App.create_window({id: "settings_basic", setup: function () {
     let container = App.el("#settings_container")
     App.settings_setup_checkboxes(container)
     App.settings_setup_text(container)
     App.settings_make_menu("text_mode", [["Title", "title"], ["URL", "url"]])
+    App.start_item_order()   
+
+    App.ev(App.el("#settings_defaults_button"), "click", function () {
+      App.restore_default_settings("basic")
+    }) 
     
-    App.settings_make_menu("text_size", App.get_text_size_options(), function () {
-      App.apply_theme()
+    App.ev(App.el("#basic_settings_prev"), "click", function () {
+      App.show_prev_settings()
     })
 
+    App.ev(App.el("#basic_settings_next"), "click", function () {
+      App.show_next_settings()
+    })
+  }}) 
+
+  App.create_window({id: "settings_font", setup: function () {
     App.settings_make_menu("font", [
       ["Sans", "gh_sans"], 
       ["Serif", "gh_serif"],
@@ -184,18 +197,16 @@ App.setup_settings = function () {
       App.apply_theme()
     })
 
-    App.start_item_order()   
-
-    App.ev(App.el("#settings_defaults_button"), "click", function () {
-      App.restore_default_settings("normal")
-    }) 
-    
-    App.ev(App.el("#normal_settings_prev"), "click", function () {
-      App.show_window("settings_icons")
+    App.settings_make_menu("font_size", App.get_font_size_options(), function () {
+      App.apply_theme()
     })
 
-    App.ev(App.el("#normal_settings_next"), "click", function () {
-      App.show_window("settings_theme")
+    App.ev(App.el("#font_settings_prev"), "click", function () {
+      App.show_prev_settings()
+    })
+
+    App.ev(App.el("#font_settings_next"), "click", function () {
+      App.show_next_settings()
     })
   }}) 
 
@@ -203,11 +214,11 @@ App.setup_settings = function () {
     App.start_theme_settings()
 
     App.ev(App.el("#theme_settings_prev"), "click", function () {
-      App.show_window("settings_normal")
+      App.show_prev_settings()
     })
 
     App.ev(App.el("#theme_settings_next"), "click", function () {
-      App.show_window("settings_icons")
+      App.show_next_settings()
     })
   }}) 
 
@@ -220,11 +231,11 @@ App.setup_settings = function () {
     })
 
     App.ev(App.el("#icon_settings_prev"), "click", function () {
-      App.show_window("settings_theme")
+      App.show_prev_settings()
     })
 
     App.ev(App.el("#icon_settings_next"), "click", function () {
-      App.show_window("settings_normal")
+      App.show_next_settings()
     })
   }})
 }
@@ -281,7 +292,7 @@ App.start_theme_settings = function () {
 App.settings_menu_cycle = function (el, setting, dir, items) {
   let cycle = true
 
-  if (setting === "text_size") {
+  if (setting === "font_size") {
     cycle = false
   }
 
@@ -342,7 +353,7 @@ App.get_background_image_options = function () {
 }
 
 // Get text size options
-App.get_text_size_options = function () {
+App.get_font_size_options = function () {
   let opts = []
 
   for (let i=14; i<=22; i++) {
@@ -350,4 +361,28 @@ App.get_text_size_options = function () {
   }
 
   return opts
+}
+
+// Got to prev settings
+App.show_prev_settings = function () {
+  let index = App.settings_order.indexOf(App.window_mode)
+  index -= 1
+
+  if (index < 0) {
+    index = App.settings_order.length - 1
+  }
+
+  App.show_window(App.settings_order[index])
+}
+
+// Got to next settings
+App.show_next_settings = function () {
+  let index = App.settings_order.indexOf(App.window_mode)
+  index += 1
+
+  if (index >= App.settings_order.length) {
+    index = 0
+  }
+
+  App.show_window(App.settings_order[index])
 }
