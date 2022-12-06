@@ -56,37 +56,13 @@ App.setup_window_mouse = function (mode) {
       if (e.target.closest(`.${mode}_item`)) {
         let item = App.get_cursor_item(mode, e)
         App.highlight_range(item)
-      }      
-
-      clearInterval(App.selection_interval)
-
-      App.selection_interval = setInterval(function () {
-        if (!App.selection_mouse_down) {
-          clearInterval(App.selection_interval)
-          return
-        }
-
-        if (!App.last_mousemove_e) {
-          return
-        }
-
-        let y = App.last_mousemove_e.clientY
-        let top = container.getBoundingClientRect().top
-        let bottom = top + container.offsetHeight
-  
-        if (y - top <= 50) {
-          container.scrollTop -= 12
-        } else if (bottom - y <= 50) {
-          container.scrollTop += 12
-        }
-      }, 120)
+      }
     }
   }) 
 
   App.ev(document, "mouseup", function () {
     App.selection_mouse_down = false
     App.selection_mode = undefined
-    clearInterval(App.selection_interval)
   }) 
 
   App.ev(container, "auxclick", function (e) {
