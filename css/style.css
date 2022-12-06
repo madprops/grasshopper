@@ -539,8 +539,12 @@ input::placeholder {
   text-overflow: ellipsis;
 }
 
+#image_loading {
+  width: 12rem;
+}
+
 #image {
-  width: 80%;
-  max-height: 80%;
+  width: 90%;
+  max-height: 90%;
   object-fit: contain;
 }
