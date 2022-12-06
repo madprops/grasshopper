@@ -135,16 +135,27 @@ App.settings_make_menu = function (id, opts, action) {
       el.textContent = o[0]
     }
   } 
+
+  let buttons = App.create("div", "flex_row_center gap_1")
+  let prev = App.create("div", "button")
+  prev.textContent = "<"
+  let next = App.create("div", "button")
+  next.textContent = ">"
   
-  App.ev(App.el(`#settings_${id}_prev`), "click", function () {
+  App.ev(prev, "click", function () {
     App.settings_menu_cycle(el, id, "prev", opts)
     App.apply_theme()
   })
 
-  App.ev(App.el(`#settings_${id}_next`), "click", function () {
+  App.ev(next, "click", function () {
     App.settings_menu_cycle(el, id, "next", opts)
     App.apply_theme()
   })
+
+  buttons.append(prev)
+  buttons.append(next)
+  el.after(buttons)
+  prev.after(el)
 }
 
 // Setup settings
