@@ -1716,12 +1716,12 @@ App.highlight_items = function (mode) {
 // Check media
 App.check_media = function (item) {
   if (App.is_image(item.url)) {
-    App.show_image(item)
+    App.show_media("image", item)
     return true
   }
 
   if (App.is_video(item.url)) {
-    App.show_video(item)
+    App.show_media("video", item)
     return true
   }
 

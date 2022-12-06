@@ -110,7 +110,13 @@ App.setup_keyboard = function () {
     }
 
     if (App.window_mode === "image") {
-      App.hide_image()
+      App.hide_media("image")
+      e.preventDefault()
+      return
+    }
+
+    if (App.window_mode === "video") {
+      App.hide_media("video")
       e.preventDefault()
       return
     }
