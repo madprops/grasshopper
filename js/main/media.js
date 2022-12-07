@@ -43,6 +43,14 @@ App.create_media_windows = function (what) {
     App.ev(App.el(`#${what}_copy`), "click", function () {
       App.copy_to_clipboard(App[`current_${what}_item`].url)
     })
+
+    App.ev(App.el(`#${what}_prev`), "click", function () {
+      App.cycle_media(App[`current_${what}_item`], what, "prev")
+    })
+
+    App.ev(App.el(`#${what}_next`), "click", function () {
+      App.cycle_media(App[`current_${what}_item`], what, "next")
+    })
   }, on_hide: function () {
     if (what === "video") {
       App.stop_video()

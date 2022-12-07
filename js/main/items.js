@@ -1756,3 +1756,53 @@ App.check_media = function (item) {
 
   return false
 }
+
+// Show prev image
+App.cycle_media = function (item, what, dir) {
+  let items = App.get_visible_media(item.mode, what)
+  
+  if (items.length <= 1) {
+    return
+  }
+  
+  let waypoint = false
+  let next_item
+
+  if (dir === "prev") {
+    items.reverse()
+  }
+
+  for (let it of items) {
+    if (!it[what] || !it.visible) {
+      continue
+    }
+
+    if (waypoint) {
+      next_item = it
+      break
+    }
+
+    if (it === item) {
+      waypoint = true
+    }
+  }
+
+  if (!next_item) {
+    next_item = items[0]
+  }
+
+  App.show_media(what, next_item)
+}
+
+// Get visible media
+App.get_visible_media = function (mode, what) {
+  let items = []
+
+  for (let item of App[`${mode}_items`]) {
+    if (item[what]) {
+      items.push(item)
+    }
+  }
+
+  return items
+}

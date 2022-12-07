@@ -69,6 +69,7 @@ App.create_window = function (args) {
   w.element = el
   App.el("#main").append(el)
   w.setup = false
+  w.visible = false
 
   w.show = function (scroll = true) {
     if (!args.persistent) {
@@ -89,8 +90,11 @@ App.create_window = function (args) {
 
     App.hide_all_windows()
     w.element.style.display = "flex"
-    App.last_window_mode = App.window_mode
-    App.window_mode = args.id
+
+    if (App.window_mode !== args.id) {
+      App.last_window_mode = App.window_mode
+      App.window_mode = args.id
+    }
 
     if (scroll) {
       content.scrollTop = 0
