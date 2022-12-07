@@ -49,6 +49,11 @@
 	src: url(fonts/Lobster-Regular.ttf);
 }
 
+@font-face {
+	font-family: gh_guest;
+	src: url(fonts/guest.ttf);
+}
+
 @keyframes rotate {
   to {
     transform: rotate(360deg);

@@ -192,6 +192,7 @@ App.setup_settings = function () {
       ["Cyber", "gh_cyber"],
       ["Neat", "gh_neat"],
       ["Cool", "gh_cool"],
+      ["Guest", "gh_guest"],
     ], function () {
       App.apply_theme()
     })
