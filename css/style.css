@@ -188,10 +188,6 @@ body, html {
   outline: 1px solid var(--alt_color_3);
 }
 
-.button:active {
-  background-color: var(--alt_color_2);
-}
-
 .button_2 {
   background-color: transparent;
 }
