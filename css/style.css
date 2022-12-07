@@ -185,6 +185,9 @@ body, html {
 
 .button:hover {
   background-color: var(--alt_color_2);
+}
+
+.button:active {
   outline: 1px solid var(--alt_color_3);
 }
 
