@@ -15,7 +15,7 @@ App.tabs_mode = "normal"
 App.stars_mode = "normal"
 App.history_mode = "normal"
 App.max_filters = 8
-App.num_background_images = 8
+App.num_background_images = 9
 
 NeedContext.min_width = "4.5rem"
 
