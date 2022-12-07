@@ -13,6 +13,16 @@ App.create_media_windows = function (what) {
       App.hide_media(what)
     })
 
+    App.ev(App.el(`#${what}_container`), "wheel", function (e) {
+      let direction = e.deltaY > 0 ? "down" : "up"
+
+      if (direction === "up") {
+        App.cycle_media(App[`current_${what}_item`], what, "prev")
+      } else if (direction === "down") {
+        App.cycle_media(App[`current_${what}_item`], what, "next")
+      }
+    })
+
     if (what === "image") {
       App.ev(media, "load", function () {
         App.stop_media_timeout(what)
