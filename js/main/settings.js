@@ -163,22 +163,16 @@ App.setup_settings = function () {
   App.settings_order = ["settings_basic", "settings_font", "settings_theme", "settings_icons"]
 
   App.create_window({id: "settings_basic", setup: function () {
-    let container = App.el("#settings_container")
+    let container = App.el("#settings_basic_container")
     App.settings_setup_checkboxes(container)
     App.settings_make_menu("text_mode", [["Title", "title"], ["URL", "url"]])
     App.start_item_order()   
-    
-    App.ev(App.el("#basic_settings_prev"), "click", function () {
-      App.show_prev_settings()
-    })
-
-    App.ev(App.el("#basic_settings_next"), "click", function () {
-      App.show_next_settings()
-    })
 
     App.ev(App.el("#settings_defaults_basic"), "click", function () {
       App.restore_default_settings("basic")
     })
+
+    App.add_settings_switchers("basic")
   }, persistent: false}) 
 
   App.create_window({id: "settings_font", setup: function () {
@@ -201,47 +195,49 @@ App.setup_settings = function () {
       App.apply_theme()
     })
 
-    App.ev(App.el("#font_settings_prev"), "click", function () {
-      App.show_prev_settings()
-    })
-
-    App.ev(App.el("#font_settings_next"), "click", function () {
-      App.show_next_settings()
-    })
-
     App.ev(App.el("#settings_defaults_font"), "click", function () {
       App.restore_default_settings("font")
     })
+
+    App.add_settings_switchers("font")
   }, persistent: false}) 
 
   App.create_window({id: "settings_theme", setup: function () {
     App.start_theme_settings()
-
-    App.ev(App.el("#theme_settings_prev"), "click", function () {
-      App.show_prev_settings()
-    })
-
-    App.ev(App.el("#theme_settings_next"), "click", function () {
-      App.show_next_settings()
-    })
+    App.add_settings_switchers("theme")
   }, persistent: false}) 
 
   App.create_window({id: "settings_icons", setup: function () {
     let container = App.el("#settings_icons_container")
     App.settings_setup_text(container)
 
-    App.ev(App.el("#icon_settings_prev"), "click", function () {
-      App.show_prev_settings()
-    })
-
-    App.ev(App.el("#icon_settings_next"), "click", function () {
-      App.show_next_settings()
-    })
-
     App.ev(App.el("#settings_default_icons"), "click", function () {
       App.restore_default_settings("icons")
     })
+
+    App.add_settings_switchers("icons")
   }, persistent: false})
+}
+
+// Create settings title switchers
+App.add_settings_switchers = function (category) {
+  let title = App.el(".settings_title", App.el(`#settings_${category}_container`))
+    
+  let prev = App.create("div", "button")
+  prev.textContent = "<"
+  title.before(prev)
+
+  App.ev(prev, "click", function () {
+    App.show_prev_settings()
+  })
+  
+  let next = App.create("div", "button")
+  next.textContent = ">"
+  title.after(next)
+
+  App.ev(next, "click", function () {
+    App.show_next_settings()
+  })
 }
 
 // Start theme settings
