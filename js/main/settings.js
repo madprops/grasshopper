@@ -357,7 +357,7 @@ App.get_background_image_options = function () {
 App.get_font_size_options = function () {
   let opts = []
 
-  for (let i=14; i<=22; i++) {
+  for (let i=12; i<=22; i++) {
     opts.push([`${i} px`, i])
   }
 
