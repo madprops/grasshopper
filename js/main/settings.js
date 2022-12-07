@@ -141,16 +141,19 @@ App.settings_make_menu = function (id, opts, action) {
   prev.textContent = "<"
   let next = App.create("div", "button")
   next.textContent = ">"
-  
-  App.ev(prev, "click", function () {
+
+  function prev_fn () {
     App.settings_menu_cycle(el, id, "prev", opts)
     App.apply_theme()
-  })
+  }
 
-  App.ev(next, "click", function () {
+  function next_fn () {
     App.settings_menu_cycle(el, id, "next", opts)
     App.apply_theme()
-  })
+  }
+  
+  App.ev(prev, "click", prev_fn)
+  App.ev(next, "click", next_fn)
 
   buttons.append(prev)
   buttons.append(next)
