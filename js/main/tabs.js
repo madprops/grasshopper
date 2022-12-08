@@ -10,14 +10,10 @@ App.setup_tabs = function () {
   ]
 
   let actions = [
-    {text: "Playing", action: function () {
-      App.go_to_playing_tab()
-    }}, 
-
     {conditional: function () {
       if (App.tabs_mode === "normal") {
-        return {text: "Recent", action: function () {
-          App.show_recent_tabs()
+        return {text: "Sort", action: function () {
+          App.show_smart_tabs()
         }}
       } else {
         return {text: "Normal", action: function () {
@@ -99,24 +95,28 @@ App.get_tabs = async function () {
 
   if (App.tabs_mode === "normal") {
     App.sort_tabs_by_index(tabs)
-  } else if (App.tabs_mode === "access") {
-    App.sort_tabs_by_access(tabs)
+  } else if (App.tabs_mode === "smart") {
+    App.sort_tabs_by_smart(tabs)
   }
 
   return tabs  
-}
-
-// Sort tabs by access
-App.sort_tabs_by_access = function (tabs) {
-  tabs.sort(function (a, b) {
-    return a.lastAccessed > b.lastAccessed ? -1 : 1
-  })
 }
 
 // Sort tabs by index
 App.sort_tabs_by_index = function (tabs) {
   tabs.sort(function (a, b) {
     return a.index < b.index ? -1 : 1
+  })
+}
+
+// Sort tabs by access
+App.sort_tabs_by_smart = function (tabs) {
+  tabs.sort(function (a, b) {
+    if (a.audible === b.audible){
+      return a.lastAccessed > b.lastAccessed ? -1 : 1
+    } else {
+      return a.audible > b.audible ? -1 : 1
+    }
   })
 }
 
@@ -745,18 +745,6 @@ App.do_move_tab_index = async function (id, index) {
   return ans
 }
 
-// Show normal tabs
-App.show_normal_tabs = function () {
-  App.tabs_mode = "normal"
-  App.show_item_window("tabs")
-}
-
-// Show recent tabs
-App.show_recent_tabs = function () {
-  App.tabs_mode = "access"
-  App.show_item_window("tabs")
-}
-
 // On tab activated
 App.on_tab_activated = async function (e) {
   for (let tab of App.tabs_items) {
@@ -814,32 +802,13 @@ App.clean_tabs = function () {
   }) 
 }
 
-// Go the a tab emitting sound
-App.go_to_playing_tab = function () {
-  let tabs = App.tabs_items.slice(0)
-  let waypoint = false
-  let first
+App.show_smart_tabs = function () {
+  App.tabs_mode = "smart"
+  App.show_item_window("tabs")
+}
 
-  for (let tab of tabs) {
-    if (tab.audible) {
-      if (!first) {
-        first = tab
-      }
-
-      if (waypoint) {
-        App.focus_tab(tab)
-        return
-      }
-    }
-
-    if (!waypoint && tab.active) {
-      waypoint = true
-      continue
-    }
-  }
-
-  // If none found then pick the first one
-  if (first) {
-    App.focus_tab(first)
-  }
+// Show normal tabs
+App.show_normal_tabs = function () {
+  App.tabs_mode = "normal"
+  App.show_item_window("tabs")
 }
