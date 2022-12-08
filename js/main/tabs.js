@@ -10,6 +10,24 @@ App.setup_tabs = function () {
   ]
 
   let actions = [
+    {text: "Playing", action: function () {
+      App.go_to_playing_tab()
+    }}, 
+
+    {conditional: function () {
+      if (App.tabs_mode === "normal") {
+        return {text: "Recent", action: function () {
+          App.show_recent_tabs()
+        }}
+      } else {
+        return {text: "Normal", action: function () {
+          App.show_normal_tabs()
+        }}
+      }
+    }},
+
+    {text: "--separator--"},    
+
     {text: "Top", action: function () {
       App.goto_top("tabs")
     }}, 
@@ -34,18 +52,6 @@ App.setup_tabs = function () {
     {text: "Undo", action: function () {
       App.undo_close()
     }},
-
-    {conditional: function () {
-      if (App.tabs_mode === "normal") {
-        return {text: "Recent", action: function () {
-          App.show_recent_tabs()
-        }}
-      } else {
-        return {text: "Normal", action: function () {
-          App.show_normal_tabs()
-        }}
-      }
-    }}, 
 
     {text: "Pick All", action: function () {
       App.highlight_items("tabs")
@@ -806,4 +812,34 @@ App.clean_tabs = function () {
   App.show_confirm(`Close normal tabs? (${ids.length})`, function () {
     App.do_close_tabs(ids)
   }) 
+}
+
+// Go the a tab emitting sound
+App.go_to_playing_tab = function () {
+  let tabs = App.tabs_items.slice(0)
+  let waypoint = false
+  let first
+
+  for (let tab of tabs) {
+    if (tab.audible) {
+      if (!first) {
+        first = tab
+      }
+
+      if (waypoint) {
+        App.focus_tab(tab)
+        return
+      }
+    }
+
+    if (!waypoint && tab.active) {
+      waypoint = true
+      continue
+    }
+  }
+
+  // If none found then pick the first one
+  if (first) {
+    App.focus_tab(first)
+  }
 }
