@@ -22,6 +22,10 @@ App.setup_stars = function () {
     {text: "New", action: function () {
       App.new_star()
     }}, 
+
+    {text: "Reset", action: function () {
+      App.reset_stars()
+    }}, 
     
     {text: "Pick All", action: function () {
       App.highlight_items("stars")
@@ -385,4 +389,15 @@ App.show_normal_stars = function () {
 App.show_bright_stars = function () {
   App.stars_mode = "bright"
   App.show_item_window("stars")
+}
+
+// Reset star visits
+App.reset_stars = function () {
+  App.show_confirm("Reset all star visits to zero?", function () {
+    for (let star of App.stars.items) {
+      star.visits = 0
+    }
+  })
+
+  App.stor_save_stars()
 }
