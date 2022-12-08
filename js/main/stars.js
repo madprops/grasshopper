@@ -1,14 +1,6 @@
 // Setup stars
 App.setup_stars = function () {
   let actions = [ 
-    {text: "Top", action: function () {
-      App.goto_top("stars")
-    }}, 
-
-    {text: "New", action: function () {
-      App.new_star()
-    }}, 
-
     {conditional: function () {
       if (App.stars_mode === "normal") {
         return {text: "Bright", action: function () {
@@ -19,7 +11,17 @@ App.setup_stars = function () {
           App.show_normal_stars()
         }}
       }
-    }},   
+    }}, 
+    
+    {text: "--separator--"},
+
+    {text: "Top", action: function () {
+      App.goto_top("stars")
+    }}, 
+
+    {text: "New", action: function () {
+      App.new_star()
+    }}, 
     
     {text: "Pick All", action: function () {
       App.highlight_items("stars")
