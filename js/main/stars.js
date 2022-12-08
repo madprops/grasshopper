@@ -104,9 +104,13 @@ App.get_stars = async function () {
 }
 
 // Update star data
-App.update_star = function (item) {
+App.update_star = function (item, add_visit = true) {
   item.date_last_visit = Date.now()
-  item.visits += 1
+
+  if (add_visit) {
+    item.visits += 1
+  }
+
   App.stor_save_stars()
 }
 
@@ -199,7 +203,7 @@ App.star_editor_save = async function () {
     if (star) {
       star.title = title
       star.url = url
-      App.update_star(star)
+      App.update_star(star, false)
 
       if (App.stars_items) {
         App.update_item("stars", App.star_edited.id, star)
