@@ -16,7 +16,8 @@ App.stars_mode = "normal"
 App.history_mode = "normal"
 App.max_filters = 8
 App.num_background_images = 9
-App.theme_color_diff = 0.69
+App.theme_color_diff = 0.74
+console.log(App.theme_color_diff)
 
 NeedContext.min_width = "4.5rem"
 
