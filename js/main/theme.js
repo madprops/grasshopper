@@ -73,14 +73,14 @@ App.random_theme = function (mode) {
 // Get a random dark theme
 App.get_dark_theme = function () {
   let background_color = App.colorlib.get_dark_color()
-  let text_color = App.colorlib.get_lighter_or_darker(background_color, 0.69)
+  let text_color = App.colorlib.get_lighter_or_darker(background_color, App.theme_color_diff)
   return {background_color: background_color, text_color: text_color}
 }
 
 // Get a random light theme
 App.get_light_theme = function () {
   let background_color = App.colorlib.get_light_color()
-  let text_color = App.colorlib.get_lighter_or_darker(background_color, 0.69)
+  let text_color = App.colorlib.get_lighter_or_darker(background_color, App.theme_color_diff)
   return {background_color: background_color, text_color: text_color}
 }
 
@@ -88,24 +88,31 @@ App.get_light_theme = function () {
 App.detect_theme = async function () {
   let theme = await browser.theme.getCurrent()
 
-  if (theme.colors.toolbar && theme.colors.toolbar_text) {
-    if (theme.colors.toolbar !== theme.colors.toolbar_text) {
-      let d1 = App.create("div", "hidden")
-      d1.style.color = theme.colors.toolbar
-      document.body.append(d1)
+  if (theme.colors.toolbar) {
+    let d1 = App.create("div", "hidden")
+    d1.style.color = theme.colors.toolbar
+    document.body.append(d1)
+    let background_color = window.getComputedStyle(d1).color
 
-      let d2 = App.create("div", "hidden")
-      d2.style.color = theme.colors.toolbar_text
-      document.body.append(d2)
+    let text_color
 
-      App.background_color_picker.setColor(window.getComputedStyle(d1).color)
-      App.text_color_picker.setColor(window.getComputedStyle(d2).color)
-
-      d1.remove()
-      d2.remove()
-      
-      return
+    if (theme.colors.toolbar_text && (theme.colors.toolbar !== theme.colors.toolbar_text)) {
+      text_color = theme.colors.toolbar_text
+    } else {
+      text_color = App.colorlib.get_lighter_or_darker(background_color, App.theme_color_diff)
     }
+
+    let d2 = App.create("div", "hidden")
+    d2.style.color = text_color
+    document.body.append(d2)
+
+    App.background_color_picker.setColor(background_color)
+    App.text_color_picker.setColor(text_color)
+
+    d1.remove()
+    d2.remove()
+    
+    return
   }
 
   App.show_alert("Theme couldn't be detected")
