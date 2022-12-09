@@ -397,7 +397,7 @@ App.reset_stars = function () {
     for (let star of App.stars.items) {
       star.visits = 0
     }
-  })
 
-  App.stor_save_stars()
+    App.stor_save_stars()
+  })
 }
