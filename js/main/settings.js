@@ -304,7 +304,7 @@ App.start_theme_settings = function () {
 
 // Cycle to prev or next item
 App.settings_menu_cycle = function (el, setting, dir, items) {
-  let cycle = false
+  let cycle = true
 
   if (setting === "font_size" || setting === "width" || setting === "height") {
     cycle = false
