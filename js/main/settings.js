@@ -6,6 +6,8 @@ App.default_settings = {
   history_index: {value: 2, category: "basic"},
   closed_index: {value: 3, category: "basic"},
   lock_drag: {value: false, category: "basic"},
+  width: {value: 100, category: "basic"},
+  height: {value: 100, category: "basic"},
   font: {value: "gh_sans", category: "font"},
   font_size: {value: 18, category: "font"},
   background_color: {value: "rgb(43, 42, 51)", category: "theme"},
@@ -169,6 +171,15 @@ App.setup_settings = function () {
     let container = App.el("#settings_basic_container")
     App.settings_setup_checkboxes(container)
     App.settings_make_menu("text_mode", [["Title", "title"], ["URL", "url"]])
+    
+    App.settings_make_menu("width", App.get_size_options(), function () {
+      App.apply_theme()
+    })
+
+    App.settings_make_menu("height", App.get_size_options(), function () {
+      App.apply_theme()
+    })
+    
     App.start_item_order()   
 
     App.ev(App.el("#settings_defaults_basic"), "click", function () {
@@ -362,6 +373,17 @@ App.get_font_size_options = function () {
 
   for (let i=12; i<=22; i++) {
     opts.push([`${i} px`, i])
+  }
+
+  return opts
+}
+
+// Get size options
+App.get_size_options = function () {
+  let opts = []
+
+  for (let i=100; i>=50; i-=10) {
+    opts.push([`${i}%`, i])
   }
 
   return opts
