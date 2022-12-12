@@ -382,7 +382,7 @@ App.get_font_size_options = function () {
 App.get_size_options = function () {
   let opts = []
 
-  for (let i=100; i>=50; i-=5) {
+  for (let i=100; i>=60; i-=5) {
     opts.push([`${i}%`, i])
   }
 
