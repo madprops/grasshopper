@@ -28,7 +28,7 @@ App.apply_theme = function () {
     App.set_css_var("font_size", App.settings.font_size + "px")
     App.set_css_var("font", App.settings.font)
     
-    let w = `${(App.settings.width / 100) * 720}px`
+    let w = `${(App.settings.width / 100) * 800}px`
     App.set_css_var("width", w)
 
     let h = `${(App.settings.height / 100) * 600}px`
