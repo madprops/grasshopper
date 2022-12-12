@@ -304,16 +304,16 @@ App.start_theme_settings = function () {
 
 // Cycle to prev or next item
 App.settings_menu_cycle = function (el, setting, dir, items) {
-  let cycle = true
+  let cycle = false
 
-  if (setting === "font_size") {
+  if (setting === "font_size" || setting === "width" || setting === "height") {
     cycle = false
   }
 
   let waypoint = false
   items = items.slice(0)
 
-  if (dir === "prev") {
+  if (dir === "next") {
     items.reverse()
   }
 
@@ -371,7 +371,7 @@ App.get_background_image_options = function () {
 App.get_font_size_options = function () {
   let opts = []
 
-  for (let i=12; i<=22; i++) {
+  for (let i=22; i>=14; i--) {
     opts.push([`${i} px`, i])
   }
 
@@ -382,7 +382,7 @@ App.get_font_size_options = function () {
 App.get_size_options = function () {
   let opts = []
 
-  for (let i=100; i>=50; i-=10) {
+  for (let i=100; i>=50; i-=5) {
     opts.push([`${i}%`, i])
   }
 
