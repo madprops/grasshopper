@@ -86,10 +86,16 @@ App.get_stars = async function () {
     await App.stor_get_stars()
   }
 
-  if (App.stars_mode === "normal") {
+  if (App.stars_sort === "Normal") {
     App.stars.items.sort((a, b) => (a.date_last_visit < b.date_last_visit) ? 1 : -1)
-  } else if (App.stars_mode === "sorted") {
+  } 
+  
+  else if (App.stars_sort === "Special") {
     App.stars.items.sort((a, b) => (a.visits < b.visits) ? 1 : -1)
+  }
+
+  else if (App.stars_sort === "ABC") {
+    App.stars.items.sort((a, b) => (a.title > b.title) ? 1 : -1)
   }
 
   return App.stars.items
@@ -108,8 +114,8 @@ App.update_star = function (item, add_visit = true) {
 
 // Add an item to stars
 App.star_item = async function (item, save = true) {
-  if (App.stars_mode !== "normal" || !App.stars) {
-    App.stars_mode = "normal"
+  if (App.stars_sort !== "normal" || !App.stars) {
+    App.stars_sort = "normal"
     await App.get_stars()
   }
     

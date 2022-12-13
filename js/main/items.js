@@ -153,8 +153,8 @@ App.empty_footer = function (mode) {
 // Set footer
 App.set_footer = function (mode, text) {
   let footer = App.el(`#${mode}_footer`)
-  let right = App.el(".footer_right", footer)
-  right.textContent = text
+  let url = App.el(".footer_url", footer)
+  url.textContent = text
 }
 
 // Check if selected is valid
@@ -836,7 +836,7 @@ App.get_last_window_value = function (cycle) {
 // Show a window by mode
 App.show_item_window = async function (mode, cycle = false, reset_sort = true) {
   if (reset_sort) {
-    App[`${mode}_mode`] = "normal"
+    App[`${mode}_sort`] = "Normal"
   }
 
   let value = App.get_last_window_value(cycle)
@@ -850,6 +850,7 @@ App.show_item_window = async function (mode, cycle = false, reset_sort = true) {
   let m = App[`${mode}_filter_modes`][0]
   App.set_filter_mode(mode, m, false)
   App[`${mode}_filter_mode`] = m[0]
+  App.set_footer_sort(mode)
 
   let items = await App[`get_${mode}`]()
 
@@ -889,11 +890,14 @@ App.setup_item_window = function (mode, actions) {
     win.append(container)
     win.append(footer)
 
-    let footer_left = App.create("div", "footer_left")
-    footer.append(footer_left)
+    let footer_sort = App.create("div", "footer_sort")
+    footer.append(footer_sort)
 
-    let footer_right = App.create("div", "footer_right")
-    footer.append(footer_right)
+    let footer_numbers = App.create("div", "footer_numbers")
+    footer.append(footer_numbers)
+
+    let footer_url = App.create("div", "footer_url")
+    footer.append(footer_url)
 
     App.setup_window_mouse(mode)
 
@@ -1012,17 +1016,15 @@ App.setup_item_window = function (mode, actions) {
     top.append(actions_menu)
     
     //
-    if (mode === "tabs" || mode === "stars") {
-      let sort = App.create("div", "button", `${mode}_sort`)
-      sort.textContent = "Sort"
-      sort.title = "Switch between normal and special sorting"
-      
-      App.ev(sort, "click", function () {
-        App.sort_items(mode)
-      })
-  
-      top.append(sort)
-    }
+    let sort = App.create("div", "button", `${mode}_sort`)
+    sort.textContent = "Sort"
+    sort.title = "Switch between normal and special sorting"
+    
+    App.ev(sort, "click", function () {
+      App.sort_items(mode)
+    })
+
+    top.append(sort)
 
     //
     if (mode === "tabs") {
@@ -1116,6 +1118,8 @@ App.setup_item_window = function (mode, actions) {
         e.preventDefault()
         return false
       })
+
+      App[`${mode}_sort`] = "Normal"
     }
   }
 
@@ -1293,8 +1297,8 @@ App.do_update_footer_numbers = function (mode) {
   let n1 = App.get_highlights(mode).length.toLocaleString()
   let n2 = App.get_visible(mode).length.toLocaleString()
   let footer = App.el(`#${mode}_footer`)
-  let left = App.el(".footer_left", footer)
-  left.textContent = `(${n1}/${n2})`
+  let numbers = App.el(".footer_numbers", footer)
+  numbers.textContent = `(${n1}/${n2})`
 }
 
 // Set item filter
@@ -1826,11 +1830,26 @@ App.get_visible_media = function (mode, what) {
 
 // Sort items
 App.sort_items = function (mode) {
-  if (App[`${mode}_mode`] === "sorted") {
-    App[`${mode}_mode`] = "normal"
-  } else {
-    App[`${mode}_mode`] = "sorted"
+  let m = App[`${mode}_sort`]
+
+  if (m === "Normal") {
+    App[`${mode}_sort`] = "Special"
+  } 
+
+  else if (m === "Special") {
+    App[`${mode}_sort`] = "ABC"
+  }
+  
+  else {
+    App[`${mode}_sort`] = "Normal"
   }
 
   App.show_item_window(mode, false, false)
+}
+
+// Set footer sort
+App.set_footer_sort = function (mode) {
+  let footer = App.el(`#${mode}_footer`)
+  let sort = App.el(".footer_sort", footer)
+  sort.textContent = `Sort: ${App[`${mode}_sort`]}`
 }

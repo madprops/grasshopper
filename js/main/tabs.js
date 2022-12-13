@@ -79,10 +79,16 @@ App.setup_tabs = function () {
 App.get_tabs = async function () {
   let tabs = await browser.tabs.query({currentWindow: true})
 
-  if (App.tabs_mode === "normal") {
+  if (App.tabs_sort === "Normal") {
     App.sort_tabs_by_index(tabs)
-  } else if (App.tabs_mode === "sorted") {
-    App.sort_tabs_by_smart(tabs)
+  } 
+  
+  else if (App.tabs_sort === "Special") {
+    App.sort_tabs_by_special(tabs)
+  }
+
+  else if (App.tabs_sort === "ABC") {
+    App.sort_tabs_by_abc(tabs)
   }
 
   return tabs  
@@ -96,13 +102,20 @@ App.sort_tabs_by_index = function (tabs) {
 }
 
 // Sort tabs by access
-App.sort_tabs_by_smart = function (tabs) {
+App.sort_tabs_by_special = function (tabs) {
   tabs.sort(function (a, b) {
     if (a.audible === b.audible){
       return a.lastAccessed > b.lastAccessed ? -1 : 1
     } else {
       return a.audible > b.audible ? -1 : 1
     }
+  })
+}
+
+// Sort tabs by abc
+App.sort_tabs_by_abc = function (tabs) {
+  tabs.sort(function (a, b) {
+    return a.title > b.title
   })
 }
 
