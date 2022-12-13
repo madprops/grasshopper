@@ -1,5 +1,6 @@
 // Setup history
 App.setup_history = function () {
+  App.history_sort_title = "Special: Most visited items on top"
   App.setup_item_window("history")
 }
 

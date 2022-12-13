@@ -38,6 +38,7 @@ App.setup_tabs = function () {
     }},
   ]
 
+  App.tabs_sort_title = "Special: Sorted by visited date. Playing tabs on top"
   App.setup_item_window("tabs", actions)
 
   browser.tabs.onUpdated.addListener(function (id) {

@@ -972,6 +972,7 @@ App.setup_item_window = function (mode, actions) {
     
     //
     let sort = App.create("div", "item_sort_button button", `${mode}_sort_button`)
+    sort.title = App[`${mode}_sort_title`]
     
     App.ev(sort, "click", function () {
       App.cycle_sort_mode(mode)
