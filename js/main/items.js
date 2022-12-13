@@ -970,6 +970,17 @@ App.setup_item_window = function (mode, actions) {
     top.append(filter_modes)
 
     //
+    let sort = App.create("div", "button", `${mode}_sort`)
+    sort.textContent = "Sort"
+    sort.title = "Switch between normal and special sorting"
+    
+    App.ev(sort, "click", function () {
+      App.sort_items(mode)
+    })
+
+    top.append(sort)    
+
+    //
     if (!actions) {
       actions = [
         {text: "Top", action: function () {
@@ -1014,17 +1025,6 @@ App.setup_item_window = function (mode, actions) {
     })
 
     top.append(actions_menu)
-    
-    //
-    let sort = App.create("div", "button", `${mode}_sort`)
-    sort.textContent = "Sort"
-    sort.title = "Switch between normal and special sorting"
-    
-    App.ev(sort, "click", function () {
-      App.sort_items(mode)
-    })
-
-    top.append(sort)
 
     //
     if (mode === "tabs") {
@@ -1831,7 +1831,7 @@ App.get_visible_media = function (mode, what) {
 // Sort items
 App.sort_items = function (mode) {
   let current = App[`${mode}_sort`]
-  let sorts = ["Normal", "Special", "ABC"]
+  let sorts = ["Normal", "Special"]
 
   let i = sorts.indexOf(current)
   let new_i
