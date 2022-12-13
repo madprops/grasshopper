@@ -890,8 +890,12 @@ App.setup_item_window = function (mode, actions) {
     win.append(container)
     win.append(footer)
 
-    let footer_sort = App.create("div", "footer_sort")
+    let footer_sort = App.create("div", "footer_sort action")
     footer.append(footer_sort)
+
+    App.ev(footer_sort, "click", function () {
+      App.cycle_sort_mode(mode)
+    })
 
     let footer_numbers = App.create("div", "footer_numbers")
     footer.append(footer_numbers)
@@ -981,29 +985,6 @@ App.setup_item_window = function (mode, actions) {
         }}, 
       ]
     }
-
-    actions.unshift({text: "--separator--"})
-
-    actions.unshift({text: "Sort", items: [
-      {
-        text: "Normal",
-        action: function () {
-          App.set_sort_mode(mode, "Normal")
-        }
-      },
-      {
-        text: "Special",
-        action: function () {
-          App.set_sort_mode(mode, "Special")
-        }
-      },
-      {
-        text: "ABC",
-        action: function () {
-          App.set_sort_mode(mode, "ABC")
-        }
-      }            
-    ]})
 
     let actions_menu = App.create("div", "button", `${mode}_actions`)
     actions_menu.title = "Item Actions (Shift + Space)"
@@ -1840,12 +1821,6 @@ App.get_visible_media = function (mode, what) {
   return items
 }
 
-// Set sort mode
-App.set_sort_mode = function (mode, sort_mode) {
-  App[`${mode}_sort`] = sort_mode
-  App.show_item_window(mode, false, false)
-}
-
 // Set footer sort
 App.set_footer_sort = function (mode) {
   let footer = App.el(`#${mode}_footer`)
@@ -1858,4 +1833,22 @@ App.sort_items_by_abc = function (items) {
   items.sort(function (a, b) {
     return a.title > b.title
   })
+}
+
+// Cycle sort mode
+App.cycle_sort_mode = function (mode) {
+  let current = App[`${mode}_sort`]
+  let sorts = ["Normal", "Special", "ABC"]
+
+  let i = sorts.indexOf(current)
+  let new_i
+
+  if (i + 1 >= sorts.length) {
+    new_i = 0
+  } else {
+    new_i = i + 1
+  }
+
+  App[`${mode}_sort`] = sorts[new_i]
+  App.show_item_window(mode, false, false)
 }
