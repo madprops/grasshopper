@@ -9,7 +9,7 @@ App.setup_tabs = function () {
     ["normal", "Normal"],
   ]
 
-  let actions = [    
+  App.tabs_actions = [    
     {text: "New", action: function () {
       App.new_tab()
     }},  
@@ -39,7 +39,7 @@ App.setup_tabs = function () {
   ]
 
   App.tabs_sort_title = "Normal: Sorted by index\nSpecial: Sorted by last visit with playing tabs on top"
-  App.setup_item_window("tabs", actions)
+  App.setup_item_window("tabs")
 
   browser.tabs.onUpdated.addListener(function (id) {
     if (App.window_mode === "tabs") {

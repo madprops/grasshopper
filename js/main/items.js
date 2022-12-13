@@ -869,7 +869,7 @@ App.show_item_window = async function (mode, cycle = false, reset_sort = true) {
 }
 
 // Setup an item window
-App.setup_item_window = function (mode, actions) {
+App.setup_item_window = function (mode) {
   let args = {}
   args.id = mode
   args.close_button = false
@@ -977,19 +977,19 @@ App.setup_item_window = function (mode, actions) {
     top.append(sort)    
 
     //
-    if (!actions) {
-      actions = []
+    if (!App[`${mode}_actions`]) {
+      App[`${mode}_actions`] = []
     }
 
-    actions.unshift({text: "Pick All", action: function () {
+    App[`${mode}_actions`].unshift({text: "Pick All", action: function () {
       App.highlight_items(mode)
     }})
 
-    actions.unshift({text: "Bottom", action: function () {
+    App[`${mode}_actions`].unshift({text: "Bottom", action: function () {
       App.goto_bottom(mode)
     }})
 
-    actions.unshift({text: "Top", action: function () {
+    App[`${mode}_actions`].unshift({text: "Top", action: function () {
       App.goto_top(mode)
     }}) 
 
@@ -1000,7 +1000,7 @@ App.setup_item_window = function (mode, actions) {
     App[`show_${mode}_actions`] = function () {
       let items = []
 
-      for (let item of actions) {
+      for (let item of App[`${mode}_actions`]) {
         if (item.text === "--separator--") {
           items.push({separator: true})
           continue
