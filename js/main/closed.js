@@ -1,6 +1,6 @@
 // Setup closed tabs
 App.setup_closed = function () {
-  App.closed_sort_title = "Special: Sorted by hostname"
+  App.closed_sort_title = "Normal: Recently closed at the top\nSpecial: Sorted by hostname"
   App.setup_item_window("closed")
 }
 

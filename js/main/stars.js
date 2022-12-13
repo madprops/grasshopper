@@ -20,7 +20,7 @@ App.setup_stars = function () {
     }},
   ]
 
-  App.stars_sort_title = "Special: Most visited stars on top"
+  App.stars_sort_title = "Normal: Sorted by last visit\nSpecial: Most visited stars on top"
   App.setup_item_window("stars", actions)
   
   App.create_window({id: "star_editor", setup: function () {
