@@ -903,7 +903,7 @@ App.setup_item_window = function (mode, actions) {
     App.setup_window_mouse(mode)
 
     //
-    let main_menu = App.create("div", "button top_button", `${mode}_main_menu`)
+    let main_menu = App.create("div", "button", `${mode}_main_menu`)
     main_menu.title = "Main Menu (Tab)"
 
     App.ev(main_menu, "click", function () {
@@ -945,7 +945,7 @@ App.setup_item_window = function (mode, actions) {
     top.append(filter)
 
     //
-    let filter_modes = App.create("div", "button top_button", `${mode}_filter_modes`)
+    let filter_modes = App.create("div", "button", `${mode}_filter_modes`)
     filter_modes.title = "Filter Mode (Shift + Down)"
     
     App[`${mode}_filter_modes`] = App[`${mode}_filter_modes`] || []
@@ -1472,14 +1472,7 @@ App.cycle_filter_modes = function (mode, reverse = true) {
 // Set filter mode
 App.set_filter_mode = function (mode, filter_mode, action = true) {
   App[`${mode}_filter_mode`] = filter_mode[0]
-
-  let s = filter_mode[1]
-
-  if (s === "All") {
-    s = "Show: All"
-  }
-
-  App.el(`#${mode}_filter_modes`).textContent = s
+  App.el(`#${mode}_filter_modes`).textContent = filter_mode[1]
 
   if (action) {
     if (filter_mode[0] === "all") {
@@ -1859,5 +1852,5 @@ App.cycle_sort_mode = function (mode) {
 // Set sort mode
 App.set_sort_mode = function (mode, sort_mode) {
   App[`${mode}_sort`] = sort_mode
-  App.el(`#${mode}_sort_button`).textContent = `Sort: ${sort_mode}`
+  App.el(`#${mode}_sort_button`).textContent = sort_mode
 }
