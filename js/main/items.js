@@ -834,7 +834,11 @@ App.get_last_window_value = function (cycle) {
 }
 
 // Show a window by mode
-App.show_item_window = async function (mode, cycle = false) {
+App.show_item_window = async function (mode, cycle = false, reset_sort = true) {
+  if (reset_sort) {
+    App[`${mode}_mode`] = "normal"
+  }
+
   let value = App.get_last_window_value(cycle)
   App.windows[mode].show()
   App.empty_footer(mode)
@@ -936,8 +940,8 @@ App.setup_item_window = function (mode, actions) {
     top.append(filter)
 
     //
-    let filter_mode = App.create("div", "button top_button", `${mode}_filter_mode`)
-    filter_mode.title = "Filter Mode (Shift + Down)"
+    let filter_modes = App.create("div", "button top_button", `${mode}_filter_modes`)
+    filter_modes.title = "Filter Mode (Shift + Down)"
     
     App[`${mode}_filter_modes`] = App[`${mode}_filter_modes`] || []
     App[`${mode}_filter_modes`].unshift(["all", "All"])
@@ -947,11 +951,11 @@ App.setup_item_window = function (mode, actions) {
     App[`${mode}_filter_modes`].push(["insecure", "Insecure"])
     App[`${mode}_filter_modes`].push(["today", "Today"])
 
-    App.ev(filter_mode, "click", function () {
-      App.show_filter_mode(mode)
+    App.ev(filter_modes, "click", function () {
+      App.show_filter_modes(mode)
     })
 
-    App.ev(filter_mode, "wheel", function (e) {
+    App.ev(filter_modes, "wheel", function (e) {
       if (e.deltaY < 0) {
         App.cycle_filter_modes(mode, true)
       } else {
@@ -959,7 +963,7 @@ App.setup_item_window = function (mode, actions) {
       }
     })
 
-    top.append(filter_mode)
+    top.append(filter_modes)
 
     //
     if (!actions) {
@@ -974,11 +978,11 @@ App.setup_item_window = function (mode, actions) {
       ]
     }
 
-    let actions_menu = App.create("div", "button", `${mode}_menu`)
+    let actions_menu = App.create("div", "button", `${mode}_actions`)
     actions_menu.title = "Item Actions (Shift + Space)"
     actions_menu.textContent = "Actions"
 
-    App[`show_${mode}_menu`] = function () {
+    App[`show_${mode}_actions`] = function () {
       let items = []
 
       for (let item of actions) {
@@ -1002,10 +1006,22 @@ App.setup_item_window = function (mode, actions) {
     }
 
     App.ev(actions_menu, "click", function () {
-      App.show_menu()
+      App.show_actions()
     })
 
     top.append(actions_menu)
+    
+    //
+    if (mode === "tabs" || mode === "stars") {
+      let sort = App.create("div", "button", `${mode}_sort`)
+      sort.textContent = "Sort"
+      
+      App.ev(sort, "click", function () {
+        App.sort_items(mode)
+      })
+  
+      top.append(sort)
+    }
 
     //
     if (mode === "tabs") {
@@ -1381,13 +1397,13 @@ App.filter_domain = function (item) {
   App.set_filter(item.mode, hostname)
 }
 
-// Show current item menu
-App.show_menu = function () {
-  App[`show_${App.window_mode}_menu`]()
+// Show the actions menu
+App.show_actions = function () {
+  App[`show_${App.window_mode}_actions`]()
 }
 
-// Show filter mode
-App.show_filter_mode = function (mode) {
+// Show filter modes
+App.show_filter_modes = function (mode) {
   let items = []
 
   for (let filter_mode of App[`${mode}_filter_modes`]) {
@@ -1402,7 +1418,7 @@ App.show_filter_mode = function (mode) {
     })
   }
 
-  let btn = App.el(`#${mode}_filter_mode`)
+  let btn = App.el(`#${mode}_filter_modes`)
   NeedContext.show_on_element(btn, items, true, btn.clientHeight)
 }
 
@@ -1453,7 +1469,7 @@ App.set_filter_mode = function (mode, filter_mode, action = true) {
     s = "Show: All"
   }
 
-  App.el(`#${mode}_filter_mode`).textContent = s
+  App.el(`#${mode}_filter_modes`).textContent = s
 
   if (action) {
     if (filter_mode[0] === "all") {
@@ -1805,4 +1821,15 @@ App.get_visible_media = function (mode, what) {
   }
 
   return items
+}
+
+// Sort items
+App.sort_items = function (mode) {
+  if (App[`${mode}_mode`] === "sorted") {
+    App[`${mode}_mode`] = "normal"
+  } else {
+    App[`${mode}_mode`] = "sorted"
+  }
+
+  App.show_item_window(mode, false, false)
 }

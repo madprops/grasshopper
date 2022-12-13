@@ -10,20 +10,6 @@ App.setup_tabs = function () {
   ]
 
   let actions = [
-    {conditional: function () {
-      if (App.tabs_mode === "normal") {
-        return {text: "Sort", action: function () {
-          App.show_smart_tabs()
-        }}
-      } else {
-        return {text: "Normal", action: function () {
-          App.show_normal_tabs()
-        }}
-      }
-    }},
-
-    {text: "--separator--"},    
-
     {text: "Top", action: function () {
       App.goto_top("tabs")
     }}, 
@@ -95,7 +81,7 @@ App.get_tabs = async function () {
 
   if (App.tabs_mode === "normal") {
     App.sort_tabs_by_index(tabs)
-  } else if (App.tabs_mode === "smart") {
+  } else if (App.tabs_mode === "sorted") {
     App.sort_tabs_by_smart(tabs)
   }
 
@@ -800,15 +786,4 @@ App.clean_tabs = function () {
   App.show_confirm(`Close normal tabs? (${ids.length})`, function () {
     App.do_close_tabs(ids)
   }) 
-}
-
-App.show_smart_tabs = function () {
-  App.tabs_mode = "smart"
-  App.show_item_window("tabs")
-}
-
-// Show normal tabs
-App.show_normal_tabs = function () {
-  App.tabs_mode = "normal"
-  App.show_item_window("tabs")
 }

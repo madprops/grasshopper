@@ -1,20 +1,6 @@
 // Setup stars
 App.setup_stars = function () {
   let actions = [ 
-    {conditional: function () {
-      if (App.stars_mode === "normal") {
-        return {text: "Bright", action: function () {
-          App.show_bright_stars()
-        }}
-      } else {
-        return {text: "Normal", action: function () {
-          App.show_normal_stars()
-        }}
-      }
-    }}, 
-    
-    {text: "--separator--"},
-
     {text: "Top", action: function () {
       App.goto_top("stars")
     }}, 
@@ -102,7 +88,7 @@ App.get_stars = async function () {
 
   if (App.stars_mode === "normal") {
     App.stars.items.sort((a, b) => (a.date_last_visit < b.date_last_visit) ? 1 : -1)
-  } else if (App.stars_mode === "bright") {
+  } else if (App.stars_mode === "sorted") {
     App.stars.items.sort((a, b) => (a.visits < b.visits) ? 1 : -1)
   }
 
@@ -377,18 +363,6 @@ App.import_stars = function () {
       })
     }
   })
-}
-
-// Show normal stars
-App.show_normal_stars = function () {
-  App.stars_mode = "normal"
-  App.show_item_window("stars")
-}
-
-// Show favorite stars
-App.show_bright_stars = function () {
-  App.stars_mode = "bright"
-  App.show_item_window("stars")
 }
 
 // Reset star visits
