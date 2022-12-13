@@ -10,6 +10,8 @@ App.setup_tabs = function () {
   ]
 
   App.tabs_actions = [    
+    {text: "--separator--"},
+    
     {text: "New", action: function () {
       App.new_tab()
     }},  
@@ -30,8 +32,6 @@ App.setup_tabs = function () {
     {text: "Undo", action: function () {
       App.undo_close()
     }},
-
-    {text: "--separator--"},
 
     {text: "Clean", action: function () {
       App.clean_tabs()

@@ -1,6 +1,8 @@
 // Setup stars
 App.setup_stars = function () {
   App.stars_actions = [ 
+    {text: "--separator--"},
+
     {text: "New", action: function () {
       App.new_star()
     }}, 
@@ -8,8 +10,6 @@ App.setup_stars = function () {
     {text: "Reset", action: function () {
       App.reset_stars()
     }}, 
-
-    {text: "--separator--"},
 
     {text: "Export", action: function () {
       App.export_stars()
