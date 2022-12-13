@@ -35,10 +35,6 @@ App.setup_tabs = function () {
       App.undo_close()
     }},
 
-    {text: "Pick All", action: function () {
-      App.highlight_items("tabs")
-    }}, 
-
     {text: "--separator--"},
 
     {text: "Clean", action: function () {

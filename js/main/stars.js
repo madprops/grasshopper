@@ -12,10 +12,6 @@ App.setup_stars = function () {
     {text: "Reset", action: function () {
       App.reset_stars()
     }}, 
-    
-    {text: "Pick All", action: function () {
-      App.highlight_items("stars")
-    }}, 
 
     {text: "--separator--"},
 

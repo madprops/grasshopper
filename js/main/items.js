@@ -563,7 +563,7 @@ App.process_items = function (mode, items) {
     container.append(obj.element)
   }
 
-  App.update_footer_numbers(mode)
+  App.do_update_footer_numbers(mode)
 }
 
 // Process an item
@@ -897,8 +897,13 @@ App.setup_item_window = function (mode, actions) {
       App.cycle_sort_mode(mode)
     })
 
-    let footer_numbers = App.create("div", "footer_numbers")
+    let footer_numbers = App.create("div", "footer_numbers action")
+    footer_numbers.textContent = "(--)"
     footer.append(footer_numbers)
+
+    App.ev(footer_numbers, "click", function () {
+      App.highlight_items(mode)
+    })
 
     let footer_url = App.create("div", "footer_url")
     footer.append(footer_url)
@@ -978,11 +983,7 @@ App.setup_item_window = function (mode, actions) {
       actions = [
         {text: "Top", action: function () {
           App.goto_top(mode)
-        }},    
-    
-        {text: "Pick All", action: function () {
-          App.highlight_items(mode)
-        }}, 
+        }}
       ]
     }
 
@@ -1291,7 +1292,12 @@ App.do_update_footer_numbers = function (mode) {
   let n2 = App.get_visible(mode).length.toLocaleString()
   let footer = App.el(`#${mode}_footer`)
   let numbers = App.el(".footer_numbers", footer)
-  numbers.textContent = `(${n1}/${n2})`
+
+  if (n1 > 0) {
+    numbers.textContent = `(${n1}/${n2})`
+  } else {
+    numbers.textContent = `(${n2})`
+  }
 }
 
 // Set item filter
