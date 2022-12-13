@@ -967,18 +967,7 @@ App.setup_item_window = function (mode, actions) {
       }
     })
 
-    top.append(filter_modes)
-
-    //
-    let sort = App.create("div", "button", `${mode}_sort`)
-    sort.textContent = "Sort"
-    sort.title = "Switch between normal and special sorting"
-    
-    App.ev(sort, "click", function () {
-      App.sort_items(mode)
-    })
-
-    top.append(sort)    
+    top.append(filter_modes)   
 
     //
     if (!actions) {
@@ -992,6 +981,12 @@ App.setup_item_window = function (mode, actions) {
         }}, 
       ]
     }
+
+    actions.unshift({text: "--separator--"})
+
+    actions.unshift({text: "Sort", action: function () {
+      App.sort_items(mode)
+    }})
 
     let actions_menu = App.create("div", "button", `${mode}_actions`)
     actions_menu.title = "Item Actions (Shift + Space)"
