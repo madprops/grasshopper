@@ -459,11 +459,11 @@ a:visited, a:link, a:hover {
 }
 
 .transparent {
-  opacity: 0;
+  opacity: 0.33;
 }
 
 .transparent:hover {
-  opacity: 0.44;
+  opacity: 0.55;
 }
 
 .popup_container {
