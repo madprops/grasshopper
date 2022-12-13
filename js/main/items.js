@@ -3,8 +3,8 @@ App.setup_items = function () {
   App.get_item_order()
   App.start_item_observers()
 
-  App.update_footer_numbers = App.create_debouncer(function (mode) {
-    App.do_update_footer_numbers(mode)
+  App.update_footer_count = App.create_debouncer(function (mode) {
+    App.do_update_footer_count(mode)
   }, 200)
 }
 
@@ -139,7 +139,7 @@ App.get_prev_visible_item = function (mode, wrap = true) {
 // Updates a footer
 App.update_footer = function (mode) {
   if (App.selected_valid(mode)) {
-    App.set_footer(mode, App[`selected_${mode}_item`].footer)
+    App.set_footer_info(mode, App[`selected_${mode}_item`].footer)
   } else {
     App.empty_footer(mode)
   }
@@ -147,14 +147,14 @@ App.update_footer = function (mode) {
 
 // Empty the footer
 App.empty_footer = function (mode) {
-  App.set_footer(mode, "No Results")
+  App.set_footer_info(mode, "No Results")
 }
 
-// Set footer
-App.set_footer = function (mode, text) {
+// Set footer info
+App.set_footer_info = function (mode, text) {
   let footer = App.el(`#${mode}_footer`)
-  let url = App.el(".footer_url", footer)
-  url.textContent = text
+  let info = App.el(".footer_info", footer)
+  info.textContent = text
 }
 
 // Check if selected is valid
@@ -208,7 +208,7 @@ App.remove_item = function (item) {
     }
   }
 
-  App.update_footer_numbers(mode)
+  App.update_footer_count(mode)
 
   if (App.get_filter(mode)) {
     if (App.get_visible(mode).length === 0) {
@@ -337,7 +337,7 @@ App.do_item_filter = async function (mode) {
   App[`selected_${mode}_item`] = undefined
   App.select_first_item(mode)
   App.update_footer(mode)
-  App.update_footer_numbers(mode)
+  App.update_footer_count(mode)
   App.save_filter(value)
 }
 
@@ -563,7 +563,7 @@ App.process_items = function (mode, items) {
     container.append(obj.element)
   }
 
-  App.do_update_footer_numbers(mode)
+  App.do_update_footer_count(mode)
 }
 
 // Process an item
@@ -889,16 +889,12 @@ App.setup_item_window = function (mode, actions) {
     win.append(container)
     win.append(footer)
 
-    let footer_numbers = App.create("div", "footer_numbers action")
-    footer_numbers.textContent = "(--)"
-    footer.append(footer_numbers)
+    let footer_count = App.create("div", "footer_count")
+    footer_count.textContent = "(--)"
+    footer.append(footer_count)
 
-    App.ev(footer_numbers, "click", function () {
-      App.highlight_items(mode)
-    })
-
-    let footer_url = App.create("div", "footer_url")
-    footer.append(footer_url)
+    let footer_info = App.create("div", "footer_info")
+    footer.append(footer_info)
 
     App.setup_window_mouse(mode)
 
@@ -984,6 +980,10 @@ App.setup_item_window = function (mode, actions) {
     if (!actions) {
       actions = []
     }
+
+    actions.unshift({text: "Pick All", action: function () {
+      App.highlight_items(mode)
+    }})
 
     actions.unshift({text: "Bottom", action: function () {
       App.goto_bottom(mode)
@@ -1292,17 +1292,17 @@ App.get_item_order = function () {
   App.item_order = items.map(x => x.mode)
 }
 
-// Update footer numbers
-App.do_update_footer_numbers = function (mode) {
+// Update footer count
+App.do_update_footer_count = function (mode) {
   let n1 = App.get_highlights(mode).length.toLocaleString()
   let n2 = App.get_visible(mode).length.toLocaleString()
   let footer = App.el(`#${mode}_footer`)
-  let numbers = App.el(".footer_numbers", footer)
+  let count = App.el(".footer_count", footer)
 
   if (n1 > 0) {
-    numbers.textContent = `(${n1}/${n2})`
+    count.textContent = `(${n1}/${n2})`
   } else {
-    numbers.textContent = `(${n2})`
+    count.textContent = `(${n2})`
   }
 }
 
@@ -1561,7 +1561,7 @@ App.toggle_highlight = async function (item, what) {
   }
 
   item.highlighted = highlight
-  App.update_footer_numbers(item.mode)
+  App.update_footer_count(item.mode)
 }
 
 // Get highlighted items

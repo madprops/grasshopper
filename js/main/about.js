@@ -9,7 +9,6 @@ App.setup_about = function () {
       "Use Middle Click to either close items or launch items",
       "Shift + Middle Click on items to bypass confirmations",
       "Some buttons respond to mousewheel and keyboard",
-      "Some parts of the footer are clickable",
       "Shift + Click to select multiple items",
       "Shift + Drag to select multiple items",
       "Shift + Down to open the filter mode",
