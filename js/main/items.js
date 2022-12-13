@@ -980,12 +980,16 @@ App.setup_item_window = function (mode, actions) {
 
     //
     if (!actions) {
-      actions = [
-        {text: "Top", action: function () {
-          App.goto_top(mode)
-        }}
-      ]
+      actions = []
     }
+
+    actions.unshift({text: "Bottom", action: function () {
+      App.goto_bottom(mode)
+    }})
+
+    actions.unshift({text: "Top", action: function () {
+      App.goto_top(mode)
+    }}) 
 
     let actions_menu = App.create("div", "button", `${mode}_actions`)
     actions_menu.title = "Item Actions (Shift + Space)"
@@ -1640,6 +1644,11 @@ App.launch_items = function (mode) {
 // Scroll container to top
 App.goto_top = function (mode) {
   App.el(`#${mode}_container`).scrollTop = 0
+}
+
+// Scroll container to bottom
+App.goto_bottom = function (mode) {
+  App.el(`#${mode}_container`).scrollTop = App.el(`#${mode}_container`).scrollHeight
 }
 
 // Show recent filters

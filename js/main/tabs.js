@@ -9,11 +9,7 @@ App.setup_tabs = function () {
     ["normal", "Normal"],
   ]
 
-  let actions = [
-    {text: "Top", action: function () {
-      App.goto_top("tabs")
-    }}, 
-    
+  let actions = [    
     {text: "New", action: function () {
       App.new_tab()
     }},  

@@ -1,10 +1,6 @@
 // Setup stars
 App.setup_stars = function () {
   let actions = [ 
-    {text: "Top", action: function () {
-      App.goto_top("stars")
-    }}, 
-
     {text: "New", action: function () {
       App.new_star()
     }}, 
