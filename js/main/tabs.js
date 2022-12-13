@@ -104,7 +104,7 @@ App.sort_tabs_by_index = function (tabs) {
 // Sort tabs by access
 App.sort_tabs_by_special = function (tabs) {
   tabs.sort(function (a, b) {
-    if (a.audible === b.audible){
+    if (a.audible === b.audible) {
       return a.lastAccessed > b.lastAccessed ? -1 : 1
     } else {
       return a.audible > b.audible ? -1 : 1

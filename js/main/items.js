@@ -1831,14 +1831,7 @@ App.get_visible_media = function (mode, what) {
 // Sort items
 App.sort_items = function (mode) {
   let current = App[`${mode}_sort`]
-  let has_special = mode === "tabs" || mode === "stars"
-  let sorts
-
-  if (has_special) {
-    sorts = ["Normal", "Special", "ABC"]
-  } else {
-    sorts = ["Normal", "ABC"]
-  }
+  let sorts = ["Normal", "Special", "ABC"]
 
   let i = sorts.indexOf(current)
   let new_i

@@ -11,8 +11,12 @@ App.get_closed = async function () {
 
   let items = ans.map(x => x.tab)
 
-  if (App.closed_sort === "Normal") {
-    //
+  if (App.closed_sort === "Special") {
+    items.sort(function (a, b) {
+      let h1 = App.get_hostname(a.url)
+      let h2 = App.get_hostname(b.url)
+      return h1 < h2
+    })
   } 
   
   else if (App.closed_sort === "ABC") {
