@@ -17,6 +17,10 @@ App.get_closed = async function () {
       let h2 = App.get_hostname(b.url)
       return h1 < h2
     })
+  } 
+  
+  else if (App.closed_sort === "ABC") {
+    App.sort_items_by_abc(items)
   }
 
   return items

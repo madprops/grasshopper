@@ -984,9 +984,26 @@ App.setup_item_window = function (mode, actions) {
 
     actions.unshift({text: "--separator--"})
 
-    actions.unshift({text: "Sort", action: function () {
-      App.sort_items(mode)
-    }})
+    actions.unshift({text: "Sort", items: [
+      {
+        text: "Normal",
+        action: function () {
+          App.set_sort_mode(mode, "Normal")
+        }
+      },
+      {
+        text: "Special",
+        action: function () {
+          App.set_sort_mode(mode, "Special")
+        }
+      },
+      {
+        text: "ABC",
+        action: function () {
+          App.set_sort_mode(mode, "ABC")
+        }
+      }            
+    ]})
 
     let actions_menu = App.create("div", "button", `${mode}_actions`)
     actions_menu.title = "Item Actions (Shift + Space)"
@@ -1823,21 +1840,9 @@ App.get_visible_media = function (mode, what) {
   return items
 }
 
-// Sort items
-App.sort_items = function (mode) {
-  let current = App[`${mode}_sort`]
-  let sorts = ["Normal", "Special"]
-
-  let i = sorts.indexOf(current)
-  let new_i
-
-  if (i + 1 >= sorts.length) {
-    new_i = 0
-  } else {
-    new_i = i + 1
-  }
-
-  App[`${mode}_sort`] = sorts[new_i]
+// Set sort mode
+App.set_sort_mode = function (mode, sort_mode) {
+  App[`${mode}_sort`] = sort_mode
   App.show_item_window(mode, false, false)
 }
 
