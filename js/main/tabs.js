@@ -79,10 +79,6 @@ App.get_tabs = async function () {
     App.sort_tabs_by_special(tabs)
   }
 
-  else if (App.tabs_sort === "ABC") {
-    App.sort_items_by_abc(tabs)
-  }
-
   return tabs  
 }
 

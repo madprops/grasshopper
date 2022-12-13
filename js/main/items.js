@@ -835,13 +835,13 @@ App.get_last_window_value = function (cycle) {
 
 // Show a window by mode
 App.show_item_window = async function (mode, cycle = false, reset_sort = true) {
-  if (reset_sort) {
-    App[`${mode}_sort`] = "Normal"
-  }
-
   let value = App.get_last_window_value(cycle)
   App.windows[mode].show()
   App.empty_footer(mode)
+
+  if (reset_sort) {
+    App.set_sort_mode(mode, "Normal")
+  }
 
   App.el(`#${mode}_container`).innerHTML = ""
   App.el(`#${mode}_main_menu`).textContent = App.capitalize(mode)
@@ -850,7 +850,6 @@ App.show_item_window = async function (mode, cycle = false, reset_sort = true) {
   let m = App[`${mode}_filter_modes`][0]
   App.set_filter_mode(mode, m, false)
   App[`${mode}_filter_mode`] = m[0]
-  App.set_footer_sort(mode)
 
   let items = await App[`get_${mode}`]()
 
@@ -889,13 +888,6 @@ App.setup_item_window = function (mode, actions) {
     
     win.append(container)
     win.append(footer)
-
-    let footer_sort = App.create("div", "footer_sort action")
-    footer.append(footer_sort)
-
-    App.ev(footer_sort, "click", function () {
-      App.cycle_sort_mode(mode)
-    })
 
     let footer_numbers = App.create("div", "footer_numbers action")
     footer_numbers.textContent = "(--)"
@@ -976,7 +968,16 @@ App.setup_item_window = function (mode, actions) {
       }
     })
 
-    top.append(filter_modes)   
+    top.append(filter_modes)  
+    
+    //
+    let sort = App.create("div", "item_sort_button button", `${mode}_sort_button`)
+    
+    App.ev(sort, "click", function () {
+      App.cycle_sort_mode(mode)
+    })
+
+    top.append(sort)    
 
     //
     if (!actions) {
@@ -1836,24 +1837,10 @@ App.get_visible_media = function (mode, what) {
   return items
 }
 
-// Set footer sort
-App.set_footer_sort = function (mode) {
-  let footer = App.el(`#${mode}_footer`)
-  let sort = App.el(".footer_sort", footer)
-  sort.textContent = `Sort: ${App[`${mode}_sort`]}`
-}
-
-// Sort items alphabetically
-App.sort_items_by_abc = function (items) {
-  items.sort(function (a, b) {
-    return a.title > b.title
-  })
-}
-
 // Cycle sort mode
 App.cycle_sort_mode = function (mode) {
   let current = App[`${mode}_sort`]
-  let sorts = ["Normal", "Special", "ABC"]
+  let sorts = ["Normal", "Special"]
 
   let i = sorts.indexOf(current)
   let new_i
@@ -1864,6 +1851,12 @@ App.cycle_sort_mode = function (mode) {
     new_i = i + 1
   }
 
-  App[`${mode}_sort`] = sorts[new_i]
+  App.set_sort_mode(mode, sorts[new_i])
   App.show_item_window(mode, false, false)
+}
+
+// Set sort mode
+App.set_sort_mode = function (mode, sort_mode) {
+  App[`${mode}_sort`] = sort_mode
+  App.el(`#${mode}_sort_button`).textContent = `Sort: ${sort_mode}`
 }
