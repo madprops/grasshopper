@@ -1015,6 +1015,7 @@ App.setup_item_window = function (mode, actions) {
     if (mode === "tabs" || mode === "stars") {
       let sort = App.create("div", "button", `${mode}_sort`)
       sort.textContent = "Sort"
+      sort.title = "Switch between normal and special sorting"
       
       App.ev(sort, "click", function () {
         App.sort_items(mode)
