@@ -972,17 +972,7 @@ App.setup_item_window = function (mode) {
       }
     })
 
-    top.append(filter_modes)  
-    
-    //
-    let sort = App.create("div", "item_sort_button button", `${mode}_sort_button`)
-    sort.title = App[`${mode}_sort_title`]
-    
-    App.ev(sort, "click", function () {
-      App.cycle_sort_mode(mode)
-    })
-
-    top.append(sort)    
+    top.append(filter_modes)    
 
     //
     if (!App[`${mode}_actions`]) {
@@ -1037,6 +1027,16 @@ App.setup_item_window = function (mode) {
     })
 
     top.append(actions_menu)
+
+    //
+    let sort = App.create("div", "text_button sort_button action", `${mode}_sort_button`)
+    sort.title = App[`${mode}_sort_title`]
+    
+    App.ev(sort, "click", function () {
+      App.cycle_sort_mode(mode)
+    })
+
+    top.append(sort)      
 
     //
     if (mode === "tabs") {
@@ -1864,7 +1864,7 @@ App.cycle_sort_mode = function (mode) {
 // Set sort mode
 App.set_sort_mode = function (mode, sort_mode) {
   App[`${mode}_sort`] = sort_mode
-  App.el(`#${mode}_sort_button`).textContent = sort_mode
+  App.el(`#${mode}_sort_button`).textContent = `Sort: ${sort_mode}`
 }
 
 // Create an svg icon
