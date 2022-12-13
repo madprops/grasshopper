@@ -199,6 +199,19 @@ body, html {
   background-color: transparent;
 }
 
+.icon_button {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+}
+
+.icon_button svg {
+  width: 1rem;
+  height: 1rem;
+}
+
 .hovered {
   outline: 1px solid var(--alt_color_3);
 }

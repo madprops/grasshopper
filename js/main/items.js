@@ -844,7 +844,7 @@ App.show_item_window = async function (mode, cycle = false, reset_sort = true) {
   }
 
   App.el(`#${mode}_container`).innerHTML = ""
-  App.el(`#${mode}_main_menu`).textContent = App.capitalize(mode)
+  App.el(`#${mode}_main_menu_text`).textContent = App.capitalize(mode)
   App.set_filter(mode, value, false)
 
   let m = App[`${mode}_filter_modes`][0]
@@ -899,8 +899,12 @@ App.setup_item_window = function (mode) {
     App.setup_window_mouse(mode)
 
     //
-    let main_menu = App.create("div", "button", `${mode}_main_menu`)
+    let main_menu = App.create("div", "button icon_button", `${mode}_main_menu`)
     main_menu.title = "Main Menu (Tab)"
+    let main_menu_icon = App.create_icon("#triangle_icon")
+    let main_menu_text = App.create("div", "", `${mode}_main_menu_text`)
+    main_menu.append(main_menu_text)
+    main_menu.append(main_menu_icon)
 
     App.ev(main_menu, "click", function () {
       App.show_main_menu(this)
@@ -941,8 +945,12 @@ App.setup_item_window = function (mode) {
     top.append(filter)
 
     //
-    let filter_modes = App.create("div", "button", `${mode}_filter_modes`)
+    let filter_modes = App.create("div", "button icon_button", `${mode}_filter_modes`)
     filter_modes.title = "Filter Mode (Shift + Down)"
+    let filter_modes_icon = App.create_icon("#triangles_icon")
+    let filter_modes_text = App.create("div", "", `${mode}_filter_modes_text`)
+    filter_modes.append(filter_modes_text)
+    filter_modes.append(filter_modes_icon)
     
     App[`${mode}_filter_modes`] = App[`${mode}_filter_modes`] || []
     App[`${mode}_filter_modes`].unshift(["all", "All"])
@@ -993,9 +1001,13 @@ App.setup_item_window = function (mode) {
       App.goto_top(mode)
     }}) 
 
-    let actions_menu = App.create("div", "button", `${mode}_actions`)
+    let actions_menu = App.create("div", "button icon_button", `${mode}_actions`)
+    let actions_icon = App.create_icon("#triangle_icon")
+    let actions_text = App.create("div")
+    actions_text.textContent = "Actions"
+    actions_menu.append(actions_text)
+    actions_menu.append(actions_icon)
     actions_menu.title = "Item Actions (Shift + Space)"
-    actions_menu.textContent = "Actions"
 
     App[`show_${mode}_actions`] = function () {
       let items = []
@@ -1472,7 +1484,7 @@ App.cycle_filter_modes = function (mode, reverse = true) {
 // Set filter mode
 App.set_filter_mode = function (mode, filter_mode, action = true) {
   App[`${mode}_filter_mode`] = filter_mode[0]
-  App.el(`#${mode}_filter_modes`).textContent = filter_mode[1]
+  App.el(`#${mode}_filter_modes_text`).textContent = filter_mode[1]
 
   if (action) {
     if (filter_mode[0] === "all") {
@@ -1853,4 +1865,13 @@ App.cycle_sort_mode = function (mode) {
 App.set_sort_mode = function (mode, sort_mode) {
   App[`${mode}_sort`] = sort_mode
   App.el(`#${mode}_sort_button`).textContent = sort_mode
+}
+
+// Create an svg icon
+App.create_icon = function (src) {
+  let icon = document.createElementNS("http://www.w3.org/2000/svg", "svg")
+  let icon_use = document.createElementNS("http://www.w3.org/2000/svg", "use")
+  icon_use.href.baseVal = "#triangle_icon"
+  icon.append(icon_use)
+  return icon
 }
