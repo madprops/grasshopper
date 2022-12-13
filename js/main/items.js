@@ -898,6 +898,7 @@ App.setup_item_window = function (mode) {
     })
 
     footer.append(footer_sort)
+    footer.append(App.create_icon("#cube_icon"))
 
     let footer_count = App.create("div", "footer_count action")
     footer_count.textContent = "(--)"
@@ -907,6 +908,7 @@ App.setup_item_window = function (mode) {
     })
 
     footer.append(footer_count)
+    footer.append(App.create_icon("#cube_icon"))
 
     let footer_info = App.create("div", "footer_info")
     footer.append(footer_info)
@@ -1882,7 +1884,7 @@ App.set_sort_mode = function (mode, sort_mode) {
 App.create_icon = function (src) {
   let icon = document.createElementNS("http://www.w3.org/2000/svg", "svg")
   let icon_use = document.createElementNS("http://www.w3.org/2000/svg", "use")
-  icon_use.href.baseVal = "#triangle_icon"
+  icon_use.href.baseVal = src
   icon.append(icon_use)
   return icon
 }

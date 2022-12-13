@@ -312,6 +312,12 @@ body, html {
   gap: 0.5rem;
 }
 
+.footer svg {
+  width: 1rem;
+  height: 1rem;
+  flex-shrink: 0;
+}
+
 .flex_column_center {
   display: flex;
   flex-direction: column;
