@@ -88,7 +88,7 @@ App.get_tabs = async function () {
   }
 
   else if (App.tabs_sort === "ABC") {
-    App.sort_tabs_by_abc(tabs)
+    App.sort_items_by_abc(tabs)
   }
 
   return tabs  
@@ -109,13 +109,6 @@ App.sort_tabs_by_special = function (tabs) {
     } else {
       return a.audible > b.audible ? -1 : 1
     }
-  })
-}
-
-// Sort tabs by abc
-App.sort_tabs_by_abc = function (tabs) {
-  tabs.sort(function (a, b) {
-    return a.title > b.title
   })
 }
 

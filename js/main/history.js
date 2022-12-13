@@ -16,6 +16,14 @@ App.get_history = async function (text = "") {
     startTime: App.history_time()
   })
 
+  if (App.history_sort === "Normal") {
+    //
+  } 
+  
+  else if (App.history_sort === "ABC") {
+    App.sort_items_by_abc(items)
+  }
+
   return items
 }
 

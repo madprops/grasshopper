@@ -5,11 +5,21 @@ App.setup_closed = function () {
 
 // Get closed tabs
 App.get_closed = async function () {
-  let items = await browser.sessions.getRecentlyClosed({
+  let ans = await browser.sessions.getRecentlyClosed({
     maxResults: App.max_closed
   })
 
-  return items.map(x => x.tab)
+  let items = ans.map(x => x.tab)
+
+  if (App.closed_sort === "Normal") {
+    //
+  } 
+  
+  else if (App.closed_sort === "ABC") {
+    App.sort_items_by_abc(items)
+  }
+
+  return items
 }
 
 // Closed tabs action

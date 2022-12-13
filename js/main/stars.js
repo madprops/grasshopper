@@ -95,7 +95,7 @@ App.get_stars = async function () {
   }
 
   else if (App.stars_sort === "ABC") {
-    App.stars.items.sort((a, b) => (a.title > b.title) ? 1 : -1)
+    App.sort_items_by_abc(App.stars.items)
   }
 
   return App.stars.items

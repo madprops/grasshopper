@@ -1830,20 +1830,26 @@ App.get_visible_media = function (mode, what) {
 
 // Sort items
 App.sort_items = function (mode) {
-  let m = App[`${mode}_sort`]
+  let current = App[`${mode}_sort`]
+  let has_special = mode === "tabs" || mode === "stars"
+  let sorts
 
-  if (m === "Normal") {
-    App[`${mode}_sort`] = "Special"
-  } 
-
-  else if (m === "Special") {
-    App[`${mode}_sort`] = "ABC"
-  }
-  
-  else {
-    App[`${mode}_sort`] = "Normal"
+  if (has_special) {
+    sorts = ["Normal", "Special", "ABC"]
+  } else {
+    sorts = ["Normal", "ABC"]
   }
 
+  let i = sorts.indexOf(current)
+  let new_i
+
+  if (i + 1 >= sorts.length) {
+    new_i = 0
+  } else {
+    new_i = i + 1
+  }
+
+  App[`${mode}_sort`] = sorts[new_i]
   App.show_item_window(mode, false, false)
 }
 
@@ -1852,4 +1858,11 @@ App.set_footer_sort = function (mode) {
   let footer = App.el(`#${mode}_footer`)
   let sort = App.el(".footer_sort", footer)
   sort.textContent = `Sort: ${App[`${mode}_sort`]}`
+}
+
+// Sort items alphabetically
+App.sort_items_by_abc = function (items) {
+  items.sort(function (a, b) {
+    return a.title > b.title
+  })
 }
