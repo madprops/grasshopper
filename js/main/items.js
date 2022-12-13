@@ -843,6 +843,7 @@ App.show_item_window = async function (mode, cycle = false, reset_sort = true) {
     App.set_sort_mode(mode, "Normal")
   }
 
+  App.set_footer_sort(mode)
   App.el(`#${mode}_container`).innerHTML = ""
   App.el(`#${mode}_main_menu_text`).textContent = App.capitalize(mode)
   App.set_filter(mode, value, false)
@@ -889,8 +890,21 @@ App.setup_item_window = function (mode) {
     win.append(container)
     win.append(footer)
 
-    let footer_count = App.create("div", "footer_count")
+    let footer_sort = App.create("div", "footer_sort action", `${mode}_footer_sort`)
+    
+    App.ev(footer_sort, "click", function () {
+      App.cycle_sort_mode(mode)
+    })
+
+    footer.append(footer_sort)
+
+    let footer_count = App.create("div", "footer_count action")
     footer_count.textContent = "(--)"
+
+    App.ev(footer_count, "click", function () {
+      App.highlight_items(mode)
+    })
+
     footer.append(footer_count)
 
     let footer_info = App.create("div", "footer_info")
@@ -979,6 +993,10 @@ App.setup_item_window = function (mode) {
       App[`${mode}_actions`] = []
     }
 
+    App[`${mode}_actions`].unshift({text: "Sort", action: function () {
+      App.cycle_sort_mode(mode)
+    }})
+
     App[`${mode}_actions`].unshift({text: "Pick All", action: function () {
       App.highlight_items(mode)
     }})
@@ -1026,17 +1044,7 @@ App.setup_item_window = function (mode) {
       App.show_actions()
     })
 
-    top.append(actions_menu)
-
-    //
-    let sort = App.create("div", "text_button sort_button action", `${mode}_sort_button`)
-    sort.title = App[`${mode}_sort_title`]
-    
-    App.ev(sort, "click", function () {
-      App.cycle_sort_mode(mode)
-    })
-
-    top.append(sort)      
+    top.append(actions_menu)    
 
     //
     if (mode === "tabs") {
@@ -1864,7 +1872,7 @@ App.cycle_sort_mode = function (mode) {
 // Set sort mode
 App.set_sort_mode = function (mode, sort_mode) {
   App[`${mode}_sort`] = sort_mode
-  App.el(`#${mode}_sort_button`).textContent = `Sort: ${sort_mode}`
+  App.set_footer_sort(mode)
 }
 
 // Create an svg icon
@@ -1874,4 +1882,9 @@ App.create_icon = function (src) {
   icon_use.href.baseVal = "#triangle_icon"
   icon.append(icon_use)
   return icon
+}
+
+// Set footer sort
+App.set_footer_sort = function (mode) { 
+  App.el(`#${mode}_footer_sort`).textContent = `Sort: ${App[`${mode}_sort`]}`
 }
