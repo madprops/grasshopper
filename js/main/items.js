@@ -1064,7 +1064,7 @@ App.setup_item_window = function (mode) {
     //
     if (mode === "tabs") {
       container.addEventListener("dragstart", function (e) {
-        if (mode === "tabs" && App.tabs_mode !== "normal") {
+        if (mode === "tabs" && App.sort_state.items.tabs !== "Normal") {
           e.preventDefault()
           return false
         }
