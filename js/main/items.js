@@ -989,9 +989,26 @@ App.setup_item_window = function (mode) {
       App[`${mode}_actions`] = []
     }
 
-    App[`${mode}_actions`].unshift({text: "Sort", action: function () {
-      App.cycle_sort_mode(mode)
-    }})
+    App[`${mode}_actions`].unshift({text: "Sort", items: [
+      {
+        text: "Normal",
+        action: function () {
+          App.set_sort(mode, "Normal")
+        }
+      },
+      {
+        text: "Special",
+        action: function () {
+          App.set_sort(mode, "Special")
+        }
+      },
+      {
+        text: "Alpha",
+        action: function () {
+          App.set_sort(mode, "Alpha")
+        }
+      },
+    ]})
 
     App[`${mode}_actions`].unshift({text: "Pick All", action: function () {
       App.highlight_items(mode)
@@ -1805,7 +1822,12 @@ App.cycle_sort_mode = function (mode) {
     new_i = i + 1
   }
 
-  App.sort_state.items[mode] = sorts[new_i]
+  App.set_sort(mode, sorts[new_i])
+}
+
+// Set sort
+App.set_sort = function (mode, sort) {
+  App.sort_state.items[mode] = sort
   App.stor_save_sort_state()
   App.show_item_window(mode, false)
 }
