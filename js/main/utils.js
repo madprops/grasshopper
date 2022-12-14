@@ -67,6 +67,15 @@ App.plural = function (n, singular, plural) {
   }
 }
 
+// Get singular or plural without the number
+App.plural_2 = function (n, singular, plural) {
+  if (n === 1) {
+    return singular
+  } else {
+    return plural
+  }
+}
+
 // Get url hostname
 App.get_hostname = function (url) {
   let url_obj
