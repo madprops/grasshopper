@@ -478,11 +478,11 @@ a:visited, a:link, a:hover {
 }
 
 .transparent {
-  opacity: 0.33;
+  opacity: 0;
 }
 
 .transparent:hover {
-  opacity: 0.55;
+  opacity: 0.5;
 }
 
 .popup_container {
