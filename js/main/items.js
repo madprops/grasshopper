@@ -1473,7 +1473,7 @@ App.cycle_filter_modes = function (mode, reverse = true) {
   let waypoint = false
 
   if (reverse) {
-    for (let filter_mode of modes.slice(0).reverse()) {
+    for (let filter_mode of structuredClone(modes).reverse()) {
       if (waypoint) {
         App.set_filter_mode(mode, filter_mode)
         return

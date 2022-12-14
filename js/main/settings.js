@@ -311,11 +311,13 @@ App.settings_menu_cycle = function (el, setting, dir, items) {
   }
 
   let waypoint = false
-  items = items.slice(0)
+  items = structuredClone(items)
 
   if (dir === "prev") {
     items.reverse()
   }
+
+  let s_img
 
   if (cycle) {
     s_img = items[0]

@@ -79,7 +79,7 @@ App.get_stars = async function () {
     await App.stor_get_stars()
   }
 
-  let stars = App.stars.items.slice(0)
+  let stars = structuredClone(App.stars.items)
 
   if (App.sort_state.items.stars === "Normal") {
     stars.sort((a, b) => (a.date_last_visit < b.date_last_visit) ? 1 : -1)
@@ -312,22 +312,27 @@ App.remove_stars = function () {
   App.dehighlight("stars")
 
   App.show_confirm(`Remove stars? (${ids.length})`, function () {
-    App.stars_backup = App.stars.items.slice(0)
+    App.backup_stars()
     App.do_remove(ids)
 
     if (ids.length > 1) {
       App.show_dialog("Stars have been deleted", [
         ["Undo", function () {
-          App.undo_remove_stars()
+          App.restore_stars()
         }]
       ])
     }
   })
 }
 
+// Backup stars
+App.backup_stars = function () {
+  App.stars_backup = structuredClone(App.stars.items)
+}
+
 // Undo remove stars
-App.undo_remove_stars = function () {
-  App.stars.items = App.stars_backup
+App.restore_stars = function () {
+  App.stars.items = structuredClone(App.stars_backup)
   App.stor_save_stars()
   App.show_window("stars")
   App.show_alert("Stars have been restored")
@@ -367,10 +372,18 @@ App.import_stars = function () {
 // Reset star visits
 App.reset_stars = function () {
   App.show_confirm("Reset all star visits to zero?", function () {
+    App.backup_stars()
+
     for (let star of App.stars.items) {
       star.visits = 0
     }
 
     App.stor_save_stars()
+
+    App.show_dialog("Star visits have been resetted", [
+      ["Undo", function () {
+        App.restore_stars()
+      }]
+    ])
   })
 }
