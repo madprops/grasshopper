@@ -71,12 +71,13 @@ App.setup_tabs = function () {
 // Get open tabs
 App.get_tabs = async function () {
   let tabs = await browser.tabs.query({currentWindow: true})
+  console.log(App.sort_state.items.tabs)
 
-  if (App.tabs_sort === "Normal") {
+  if (App.sort_state.items.tabs === "Normal") {
     App.sort_tabs_by_index(tabs)
   } 
   
-  else if (App.tabs_sort === "Special") {
+  else if (App.sort_state.items.tabs === "Special") {
     App.sort_tabs_by_special(tabs)
   }
 

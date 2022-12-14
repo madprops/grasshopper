@@ -79,11 +79,11 @@ App.get_stars = async function () {
     await App.stor_get_stars()
   }
 
-  if (App.stars_sort === "Normal") {
+  if (App.sort_state.items.stars === "Normal") {
     App.stars.items.sort((a, b) => (a.date_last_visit < b.date_last_visit) ? 1 : -1)
   } 
   
-  else if (App.stars_sort === "Special") {
+  else if (App.sort_state.items.stars === "Special") {
     App.stars.items.sort((a, b) => (a.visits < b.visits) ? 1 : -1)
   }
 

@@ -833,16 +833,10 @@ App.get_last_window_value = function (cycle) {
 }
 
 // Show a window by mode
-App.show_item_window = async function (mode, cycle = false, reset_sort = true) {
+App.show_item_window = async function (mode, cycle = false) {
   let value = App.get_last_window_value(cycle)
   App.windows[mode].show()
   App.empty_footer(mode)
-
-  if (reset_sort) {
-    App.set_sort_mode(mode, "Normal")
-  }
-
-  App.set_footer_sort(mode)
   App.el(`#${mode}_container`).innerHTML = ""
   App.el(`#${mode}_main_menu_text`).textContent = App.capitalize(mode)
   App.set_filter(mode, value, false)
@@ -850,6 +844,13 @@ App.show_item_window = async function (mode, cycle = false, reset_sort = true) {
   let m = App[`${mode}_filter_modes`][0]
   App.set_filter_mode(mode, m, false)
   App[`${mode}_filter_mode`] = m[0]
+
+  if (!App.sort_state.items[mode]) {
+    App.sort_state.items[mode] = "Normal"
+    App.stor_save_sort_state()
+  }
+
+  App.set_footer_sort(mode)
 
   let items = await App[`get_${mode}`]()
 
@@ -1131,8 +1132,6 @@ App.setup_item_window = function (mode) {
         e.preventDefault()
         return false
       })
-
-      App[`${mode}_sort`] = "Normal"
     }
   }
 
@@ -1790,7 +1789,7 @@ App.get_visible_media = function (mode, what) {
 
 // Cycle sort mode
 App.cycle_sort_mode = function (mode) {
-  let current = App[`${mode}_sort`]
+  let current = App.sort_state.items[mode]
   let sorts = ["Normal", "Special"]
 
   let i = sorts.indexOf(current)
@@ -1802,14 +1801,9 @@ App.cycle_sort_mode = function (mode) {
     new_i = i + 1
   }
 
-  App.set_sort_mode(mode, sorts[new_i])
-  App.show_item_window(mode, false, false)
-}
-
-// Set sort mode
-App.set_sort_mode = function (mode, sort_mode) {
-  App[`${mode}_sort`] = sort_mode
-  App.set_footer_sort(mode)
+  App.sort_state.items[mode] = sorts[new_i]
+  App.stor_save_sort_state()
+  App.show_item_window(mode, false)
 }
 
 // Create an svg icon
@@ -1823,5 +1817,5 @@ App.create_icon = function (src) {
 
 // Set footer sort
 App.set_footer_sort = function (mode) { 
-  App.el(`#${mode}_footer_sort`).textContent = `Sort: ${App[`${mode}_sort`]}`
+  App.el(`#${mode}_footer_sort`).textContent = `Sort: ${App.sort_state.items[mode]}`
 }

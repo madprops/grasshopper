@@ -17,7 +17,7 @@ App.get_history = async function (text = "") {
     startTime: App.history_time()
   })
 
-  if (App.history_sort === "Special") {
+  if (App.sort_state.items.history === "Special") {
     items.sort((a, b) => (a.visitCount < b.visitCount) ? 1 : -1)
   }
 

@@ -110,3 +110,34 @@ App.stor_save_tab_state = async function () {
   o[App.stor_tab_state_name] = App.tab_state
   await browser.storage.sync.set(o)
 }
+
+// Get sort state from sync storage
+App.stor_get_sort_state = async function () {
+  let obj = await browser.storage.sync.get(App.stor_sort_state_name)
+  
+  if (Object.keys(obj).length === 0) {
+    App.sort_state = {}
+  } else {
+    App.sort_state = obj[App.stor_sort_state_name]
+  }
+
+  let changed = false
+
+  if (App.sort_state.items === undefined) {
+    App.sort_state.items = {}
+    changed = true
+  } 
+
+  if (changed) {
+    App.stor_save_sort_state()
+  }
+
+  console.info("Stor: Got sort state")
+}
+
+// Save sort state to sync storage
+App.stor_save_sort_state = async function () {
+  let o = {}
+  o[App.stor_sort_state_name] = App.sort_state
+  await browser.storage.sync.set(o)
+}
