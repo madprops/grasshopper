@@ -9,7 +9,7 @@ App.check_window_keyboard = function (e) {
   }
 
   if (e.key === " " && e.shiftKey ) {        
-    App.show_actions()
+    App.show_actions(mode)
     e.preventDefault()
     return
   }

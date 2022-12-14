@@ -1034,7 +1034,7 @@ App.setup_item_window = function (mode) {
     }
 
     App.ev(actions_menu, "click", function () {
-      App.show_actions()
+      App.show_actions(mode)
     })
 
     top.append(actions_menu)    
@@ -1423,8 +1423,8 @@ App.filter_domain = function (item) {
 }
 
 // Show the actions menu
-App.show_actions = function () {
-  App[`show_${App.window_mode}_actions`]()
+App.show_actions = function (mode) {
+  App[`show_${mode}_actions`]()
 }
 
 // Show filter modes
