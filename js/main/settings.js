@@ -317,26 +317,26 @@ App.settings_menu_cycle = function (el, setting, dir, items) {
     items.reverse()
   }
 
-  let s_img
+  let s_item
 
   if (cycle) {
-    s_img = items[0]
+    s_item = items[0]
   }
 
-  for (let img of items) {
+  for (let item of items) {
     if (waypoint) {
-      s_img = img
+      s_item = item
       break
     }
     
-    if (img[1] === App.settings[setting]) {
+    if (item[1] === App.settings[setting]) {
       waypoint = true
     }
   }
 
-  if (s_img) {
-    el.textContent = s_img[0]
-    App.settings[setting] = s_img[1]
+  if (s_item) {
+    el.textContent = s_item[0]
+    App.settings[setting] = s_item[1]
     App.stor_save_settings()
   }
 }
