@@ -9,7 +9,7 @@ App.check_window_keyboard = function (e) {
   }
 
   if (e.key === " " && e.shiftKey ) {        
-    App.show_menu()
+    App.show_actions()
     e.preventDefault()
     return
   }
@@ -36,7 +36,7 @@ App.check_window_keyboard = function (e) {
   
   if (e.key === "ArrowDown") {
     if (e.shiftKey) {
-      App.show_filter_mode(mode)
+      App.show_filter_modes(mode)
     } else {
       App.select_item_below(mode)
     }
@@ -71,7 +71,13 @@ App.setup_keyboard = function () {
     if (NeedContext.open) {
       if (e.shiftKey && e.key === "Enter") {
         NeedContext.hide()
-      } else if (e.shiftKey && e.key === " ") {
+      } 
+      
+      else if (e.shiftKey && e.key === " ") {
+        NeedContext.hide()
+      }
+
+      else if (e.shiftKey && e.key === "ArrowDown") {
         NeedContext.hide()
       }
 
