@@ -895,7 +895,7 @@ App.setup_item_window = function (mode) {
     win.append(footer)
 
     let footer_sort = App.create("div", "footer_sort action", `${mode}_footer_sort`)
-    footer_sort.title = App[`${mode}_sort_title`] + "\n" + "Alpha: Sort alphanumerically"
+    footer_sort.title = App[`${mode}_sort_title`] + "\n" + "Alpha: Sorted alphanumerically"
     
     App.ev(footer_sort, "click", function () {
       App.cycle_sort_mode(mode)
