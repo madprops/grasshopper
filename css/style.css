@@ -318,6 +318,10 @@ body, html {
   flex-shrink: 0;
 }
 
+.footer div {
+  flex-shrink: 0;
+}
+
 .flex_column_center {
   display: flex;
   flex-direction: column;
@@ -567,16 +571,4 @@ input::placeholder {
 .separator {
   border: 1px solid var(--alt_color_1);
   width: 14rem;
-}
-
-.text_button {
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  justify-content: center;
-}
-
-.sort_button {
-  margin-left: 0.5rem;
-  flex-shrink: 0;
 }
