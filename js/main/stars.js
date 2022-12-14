@@ -79,7 +79,7 @@ App.get_stars = async function () {
     await App.stor_get_stars()
   }
 
-  let stars = structuredClone(App.stars.items)
+  let stars = App.stars.items.slice(0)
 
   if (App.sort_state.items.stars === "Normal") {
     stars.sort((a, b) => (a.date_last_visit < b.date_last_visit) ? 1 : -1)
@@ -332,7 +332,7 @@ App.backup_stars = function () {
 
 // Undo remove stars
 App.restore_stars = function () {
-  App.stars.items = structuredClone(App.stars_backup)
+  App.stars.items = App.stars_backup.slice(0)
   App.stor_save_stars()
   App.show_window("stars")
   App.show_alert("Stars have been restored")

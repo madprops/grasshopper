@@ -311,7 +311,7 @@ App.settings_menu_cycle = function (el, setting, dir, items) {
   }
 
   let waypoint = false
-  items = structuredClone(items)
+  items = items.slice(0)
 
   if (dir === "prev") {
     items.reverse()

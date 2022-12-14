@@ -478,7 +478,7 @@ App.load_tab_state = async function (n) {
 // Do load tab state
 App.do_load_tab_state = function (items, confirm = true) {
   let urls = items.map(x => x.url)
-  let to_open = structuredClone(items)
+  let to_open = items.slice(0)
   let to_close = []
   let tabs = App.tabs_items
 
@@ -529,7 +529,7 @@ App.do_load_tab_state = function (items, confirm = true) {
         App.show_item_window("tabs")
       }, 900)
       
-      let tabs = structuredClone(App.tabs_items)
+      let tabs = App.tabs_items.slice(0)
 
       for (let tab of tabs) {
         tab.xset = false
