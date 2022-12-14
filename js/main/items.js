@@ -858,6 +858,10 @@ App.show_item_window = async function (mode, cycle = false) {
     return
   }
 
+  if (App.sort_state.items[mode] === "Alpha") {
+    App.sort_items_by_alpha(items)
+  }
+
   App.process_items(mode, items)
 
   if (value) {
@@ -891,7 +895,7 @@ App.setup_item_window = function (mode) {
     win.append(footer)
 
     let footer_sort = App.create("div", "footer_sort action", `${mode}_footer_sort`)
-    footer_sort.title = App[`${mode}_sort_title`]
+    footer_sort.title = App[`${mode}_sort_title`] + "\n" + "Alpha: Sort alphanumerically"
     
     App.ev(footer_sort, "click", function () {
       App.cycle_sort_mode(mode)
@@ -1790,7 +1794,7 @@ App.get_visible_media = function (mode, what) {
 // Cycle sort mode
 App.cycle_sort_mode = function (mode) {
   let current = App.sort_state.items[mode]
-  let sorts = ["Normal", "Special"]
+  let sorts = ["Normal", "Special", "Alpha"]
 
   let i = sorts.indexOf(current)
   let new_i
@@ -1818,4 +1822,15 @@ App.create_icon = function (src) {
 // Set footer sort
 App.set_footer_sort = function (mode) { 
   App.el(`#${mode}_footer_sort`).textContent = `Sort: ${App.sort_state.items[mode]}`
+}
+
+// Sort items alphanumerically
+App.sort_items_by_alpha = function (items) {
+  items.sort(function (a, b) {
+    if (App.settings.text_mode === "title") {
+      return a.title > b.title
+    } else if (App.settings.text_mode === "url") {
+      return a.url > b.url
+    }
+  })
 }
