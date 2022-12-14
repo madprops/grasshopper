@@ -578,4 +578,5 @@ input::placeholder {
 
 .sort_button {
   margin-left: 0.5rem;
+  flex-shrink: 0;
 }
