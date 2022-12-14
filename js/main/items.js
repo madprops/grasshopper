@@ -1315,7 +1315,7 @@ App.do_update_footer_count = function (mode) {
   let count = App.el(".footer_count", footer)
   
   if (n1 > 0) {
-    count.textContent = `${s1} / ${s2} items`
+    count.textContent = `${s1} of ${s2} items`
   } else {
     count.textContent = `${s2} ${App.plural_2(n2, "item", "items")}`
   }
