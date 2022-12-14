@@ -79,15 +79,17 @@ App.get_stars = async function () {
     await App.stor_get_stars()
   }
 
+  let stars = App.stars.items.slice(0)
+
   if (App.sort_state.items.stars === "Normal") {
-    App.stars.items.sort((a, b) => (a.date_last_visit < b.date_last_visit) ? 1 : -1)
+    stars.sort((a, b) => (a.date_last_visit < b.date_last_visit) ? 1 : -1)
   } 
   
   else if (App.sort_state.items.stars === "Special") {
-    App.stars.items.sort((a, b) => (a.visits < b.visits) ? 1 : -1)
+    stars.sort((a, b) => (a.visits < b.visits) ? 1 : -1)
   }
 
-  return App.stars.items
+  return stars
 }
 
 // Update star data
@@ -103,8 +105,7 @@ App.update_star = function (item, add_visit = true) {
 
 // Add an item to stars
 App.star_item = async function (item, save = true) {
-  if (App.stars_sort !== "normal" || !App.stars) {
-    App.stars_sort = "normal"
+  if (!App.stars) {
     await App.get_stars()
   }
     
@@ -313,11 +314,14 @@ App.remove_stars = function () {
   App.show_confirm(`Remove stars? (${ids.length})`, function () {
     App.stars_backup = App.stars.items.slice(0)
     App.do_remove(ids)
-    App.show_dialog("Stars have been deleted", [
-      ["Undo", function () {
-        App.undo_remove_stars()
-      }]
-    ])
+
+    if (ids.length > 1) {
+      App.show_dialog("Stars have been deleted", [
+        ["Undo", function () {
+          App.undo_remove_stars()
+        }]
+      ])
+    }
   })
 }
 
