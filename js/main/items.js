@@ -820,13 +820,7 @@ App.get_last_window_value = function (cycle) {
   let value = ""
 
   if (cycle) {
-    let search = App.el(`#${last_mode}_search`)
-
-    if (search && search.value.trim()) {
-      value = search.value.trim()
-    } else {
-      value = App.get_filter(last_mode)
-    }
+    value = App.get_filter(last_mode, false)
   }
 
   return value
@@ -1351,8 +1345,14 @@ App.set_filter = function (mode, text, action = true) {
 }
 
 // Get filter value
-App.get_filter = function (mode) {
-  return App.el(`#${mode}_filter`).value.trim()
+App.get_filter = function (mode, trim = true) {
+  let value = App.el(`#${mode}_filter`).value
+
+  if (trim) {
+    value = value.trim()
+  }
+
+  return value
 }
 
 // Any item visible
