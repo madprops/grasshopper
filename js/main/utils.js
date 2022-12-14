@@ -55,7 +55,7 @@ App.remove_protocol = function (url) {
 // Copy text to the clipboard
 App.copy_to_clipboard = function (text) {
   navigator.clipboard.writeText(text)
-  App.show_alert("Copied to clipboard")
+  App.show_alert("Copied to clipboard", App.alert_autohide_delay)
 }
 
 // Get singular or plural

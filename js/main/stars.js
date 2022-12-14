@@ -335,7 +335,7 @@ App.restore_stars = function () {
   App.stars.items = App.stars_backup
   App.stor_save_stars()
   App.show_window("stars")
-  App.show_alert("Stars have been restored")
+  App.show_alert("Stars have been restored", App.alert_autohide_delay)
 }
 
 // Display stars json

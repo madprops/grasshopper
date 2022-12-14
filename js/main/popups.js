@@ -75,9 +75,16 @@ App.setup_popups = function () {
 }
 
 // Show alert
-App.show_alert = function (message) {
+App.show_alert = function (message, autohide_delay = 0) {
+  clearTimeout(App.alert_autohide)
   App.el("#alert_message").textContent = message
   App.show_popup("alert")
+
+  if (autohide_delay > 0) {
+    App.alert_autohide = setTimeout(function () {
+      App.hide_popup("alert")
+    }, autohide_delay)
+  }
 }
 
 // Show dialog with a list of buttons
@@ -162,7 +169,6 @@ App.show_textarea = function (message, text) {
 App.textarea_copy = function () {
   App.hide_popup("textarea")
   App.copy_to_clipboard(App.el("#textarea_text").value.trim())
-  App.show_alert("Copied to clipboard")
 }
 
 // Show input

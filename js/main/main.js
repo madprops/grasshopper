@@ -14,6 +14,7 @@ App.star_counter = 0
 App.max_filters = 8
 App.num_background_images = 9
 App.theme_color_diff = 0.77
+App.alert_autohide_delay = 1441
 
 NeedContext.min_width = "4.5rem"
 

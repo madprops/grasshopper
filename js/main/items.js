@@ -1717,7 +1717,7 @@ App.star_items = async function (mode) {
     }
 
     App.stor_save_stars()
-    App.show_alert("Stars created")
+    App.show_alert("Stars created", App.alert_autohide_delay)
   })  
 }
 
