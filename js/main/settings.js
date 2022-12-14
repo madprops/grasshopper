@@ -313,7 +313,7 @@ App.settings_menu_cycle = function (el, setting, dir, items) {
   let waypoint = false
   items = items.slice(0)
 
-  if (dir === "next") {
+  if (dir === "prev") {
     items.reverse()
   }
 
@@ -371,7 +371,7 @@ App.get_background_image_options = function () {
 App.get_font_size_options = function () {
   let opts = []
 
-  for (let i=22; i>=14; i--) {
+  for (let i=14; i<=22; i++) {
     opts.push([`${i} px`, i])
   }
 
@@ -382,7 +382,7 @@ App.get_font_size_options = function () {
 App.get_size_options = function () {
   let opts = []
 
-  for (let i=100; i>=60; i-=5) {
+  for (let i=60; i<=100; i+=5) {
     opts.push([`${i}%`, i])
   }
 

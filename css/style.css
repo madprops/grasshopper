@@ -208,8 +208,8 @@ body, html {
 }
 
 .icon_button svg {
-  width: 1rem;
-  height: 1rem;
+  width: 0.66rem;
+  height: 0.66rem;
 }
 
 .hovered {
