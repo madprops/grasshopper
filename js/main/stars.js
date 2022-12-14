@@ -332,7 +332,7 @@ App.backup_stars = function () {
 
 // Undo remove stars
 App.restore_stars = function () {
-  App.stars.items = App.stars_backup.slice(0)
+  App.stars.items = App.stars_backup
   App.stor_save_stars()
   App.show_window("stars")
   App.show_alert("Stars have been restored")
