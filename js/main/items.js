@@ -338,7 +338,6 @@ App.do_item_filter = async function (mode) {
   App.select_first_item(mode)
   App.update_footer(mode)
   App.update_footer_count(mode)
-  App.save_filter(value)
 }
 
 // Show item
@@ -935,18 +934,7 @@ App.setup_item_window = function (mode) {
       }
     })
 
-    top.append(main_menu)
-
-    //
-    let filters = App.create("div", "button", `${mode}_filters`)
-    filters.title = "Filters"
-    filters.textContent = "#"
-
-    App.ev(filters, "click", function () {
-      App.show_filters(mode)
-    })
-
-    top.append(filters)    
+    top.append(main_menu)   
 
     //
     let filter = App.create("input", "text filter", `${mode}_filter`)
@@ -964,7 +952,7 @@ App.setup_item_window = function (mode) {
     //
     let filter_modes = App.create("div", "button icon_button", `${mode}_filter_modes`)
     filter_modes.title = "Filter Mode (Shift + Down)"
-    let filter_modes_icon = App.create_icon("#triangles_icon")
+    let filter_modes_icon = App.create_icon("#triangle_icon")
     let filter_modes_text = App.create("div", "", `${mode}_filter_modes_text`)
     filter_modes.append(filter_modes_text)
     filter_modes.append(filter_modes_icon)
@@ -1671,64 +1659,6 @@ App.goto_top = function (mode) {
 // Scroll container to bottom
 App.goto_bottom = function (mode) {
   App.el(`#${mode}_container`).scrollTop = App.el(`#${mode}_container`).scrollHeight
-}
-
-// Show recent filters
-App.show_filters = function (mode) {
-  let el = App.el(`#${mode}_filters`)
-  let items = []
-
-  items.push({
-    text: "Clear",
-    action: function () {
-      App.clear_filter(mode)
-    }
-  })  
-
-  if (App.filters.items.length > 0) {
-    items.push({
-      separator: true
-    })  
-
-    for (let filter of App.filters.items) {
-      items.push({
-        text: filter,
-        action: function () {
-          App.set_filter(mode, filter)
-        }
-      })
-    }
-
-    items.push({
-      separator: true
-    })
-
-    items.push({
-      text: "Forget",
-      action: function () {
-        App.forget_filters()
-      }
-    }) 
-  }
-  
-  NeedContext.show_on_element(el, items, true, el.clientHeight)
-}
-
-// Save a filter
-App.save_filter = function (filter) {
-  if (filter) {
-    filter = filter.substring(0, 20).trim()
-    App.filters.items = App.filters.items.filter(x => x !== filter)
-    App.filters.items.unshift(filter)
-    App.filters.items = App.filters.items.slice(0, App.max_filters)
-    App.stor_save_filters()
-  }
-}
-
-// Forget filters
-App.forget_filters = function () {
-  App.filters.items = []
-  App.stor_save_filters()
 }
 
 // Star items

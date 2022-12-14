@@ -110,34 +110,3 @@ App.stor_save_tab_state = async function () {
   o[App.stor_tab_state_name] = App.tab_state
   await browser.storage.sync.set(o)
 }
-
-// Get filters from sync storage
-App.stor_get_filters = async function () {
-  let obj = await browser.storage.sync.get(App.stor_filters_name)
-  
-  if (Object.keys(obj).length === 0) {
-    App.filters = {}
-  } else {
-    App.filters = obj[App.stor_filters_name]
-  }
-
-  let changed = false
-
-  if (App.filters.items === undefined) {
-    App.filters.items = []
-    changed = true
-  } 
-
-  if (changed) {
-    App.stor_save_filters()
-  }
-
-  console.info("Stor: Got filters")
-}
-
-// Save filters to sync storage
-App.stor_save_filters = async function () {
-  let o = {}
-  o[App.stor_filters_name] = App.filters
-  await browser.storage.sync.set(o)
-}

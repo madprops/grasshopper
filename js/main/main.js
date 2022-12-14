@@ -1,7 +1,6 @@
 App.stor_settings_name = "settings_v1"
 App.stor_stars_name = "stars_v6"
 App.stor_tab_state_name = "tab_state_v1"
-App.stor_filters_name = "filters_v2"
 App.windows = {}
 App.popups = {}
 App.filter_delay = 250
@@ -25,7 +24,6 @@ App.init = async function () {
   App.window_id = win.id
 
   await App.stor_get_settings()
-  await App.stor_get_filters()
   await App.stor_get_tab_state()
   
   App.setup_theme()
