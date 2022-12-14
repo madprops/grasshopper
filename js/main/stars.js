@@ -79,7 +79,7 @@ App.get_stars = async function () {
     await App.stor_get_stars()
   }
 
-  let stars = App.stars.items.slice(0)
+  let stars = structuredClone(App.stars.items)
 
   if (App.sort_state.items.stars === "Normal") {
     stars.sort((a, b) => (a.date_last_visit < b.date_last_visit) ? 1 : -1)
