@@ -2,6 +2,7 @@
   --widget_padding_vert: 0.22rem;
   --widget_padding_hor: 0.33rem;
   --item_margin: 0.55rem;
+  --item_margin_2: 0.77rem;
   --icon_margin: 0.55rem;
 }
 
@@ -238,7 +239,7 @@ svg {
   height: 1.11rem;
   object-fit: contain;
   margin-left: var(--item_margin);
-  margin-right: var(--icon_margin);
+  margin-right: var(--item_margin_2);
   flex-grow: 0;
   flex-shrink: 0;
 }
