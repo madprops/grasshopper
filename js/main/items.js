@@ -995,26 +995,9 @@ App.setup_item_window = function (mode) {
       App[`${mode}_actions`] = []
     }
 
-    App[`${mode}_actions`].unshift({text: "Sort", items: [
-      {
-        text: "Normal",
-        action: function () {
-          App.set_sort(mode, "Normal")
-        }
-      },
-      {
-        text: "Special",
-        action: function () {
-          App.set_sort(mode, "Special")
-        }
-      },
-      {
-        text: "Alpha",
-        action: function () {
-          App.set_sort(mode, "Alpha")
-        }
-      },
-    ]})
+    App[`${mode}_actions`].unshift({text: "Sort", get_items: function () {
+      return App.get_sort_items(mode)
+    }})
 
     App[`${mode}_actions`].unshift({text: "Pick All", action: function () {
       App.highlight_items(mode)
@@ -1054,7 +1037,9 @@ App.setup_item_window = function (mode) {
             item.action()
           }})
         } else if (item.items) {
-          items.push({text: item.text, items:item.items})
+          items.push({text: item.text, items: item.items})
+        } else if (item.get_items) {
+          items.push({text: item.text, get_items: item.get_items})
         }
       }
 
@@ -1910,8 +1895,8 @@ App.forget_filters = function () {
   App.stor_save_filters()
 }
 
-// Show sort options
-App.show_pick_sort = function (mode, el) {
+// Get sort items
+App.get_sort_items = function (mode) {
   let modes = ["Normal", "Special", "Alpha"]
   let items = []
 
@@ -1925,5 +1910,10 @@ App.show_pick_sort = function (mode, el) {
     })  
   }
 
-  NeedContext.show_on_element(el, items)
+  return items
+}
+
+// Show sort options
+App.show_pick_sort = function (mode, el) {
+  NeedContext.show_on_element(el, App.get_sort_items(mode))
 }
