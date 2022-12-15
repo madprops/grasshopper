@@ -30,7 +30,13 @@ App.history_action = function (item) {
     return
   }
   
-  App.focus_or_open_item(item)
+  let active = App.get_active_items("history")
+
+  if (active.length === 1) {
+    App.focus_or_open_item(active[0])
+  } else if (active.length > 1) {
+    App.launch_items("history")
+  }
 }
 
 // History action alt

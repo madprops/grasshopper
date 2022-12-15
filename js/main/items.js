@@ -1638,21 +1638,6 @@ App.get_highlights = function (mode) {
   return ans
 }
 
-// Item is to be included in action
-App.item_in_action = function (highlights, item) {
-  if (highlights.length > 0) {
-    if (highlights.includes(item)) {
-      return true
-    }
-  } else {
-    if (App[`selected_${item.mode}_item`] === item) {
-      return true
-    }
-  }
-
-  return false
-}
-
 // Launch an item
 App.launch_item = function (item, close = true) {
   App.open_tab(item.url, close)
@@ -1666,20 +1651,7 @@ App.launch_item = function (item, close = true) {
 
 // Launch items
 App.launch_items = function (mode) {
-  let items = []
-  let highlights = App.get_highlights(mode)
-
-  for (let item of App[`${mode}_items`]) {
-    if (!App.item_in_action(highlights, item)) {
-      continue
-    }
-
-    items.push(item)
-  }
-
-  if (items.length === 0) {
-    return
-  }
+  let items = App.get_active_items(mode)
 
   if (items.length === 1) {
     App.open_tab(items[0].url, false)
@@ -1712,20 +1684,10 @@ App.goto_bottom = function (mode) {
 
 // Star items
 App.star_items = async function (mode) {
-  let highlights = App.get_highlights(mode)
-  
-  if (highlights.length === 0) {
-    App.add_or_edit_star(App[`selected_${mode}_item`])
-    return
-  }
-  
   let items = []
+  let active = App.get_active_items(mode)
 
-  for (let item of App[`${mode}_items`]) {
-    if (!App.item_in_action(highlights, item)) {
-      continue
-    }
-
+  for (let item of active) {
     let exists = await App.get_star_by_url(item.url)
 
     if (exists) {
@@ -1955,13 +1917,11 @@ App.show_pick_sort = function (mode, el) {
 
 // Get active items
 App.get_active_items = function (mode) {
-  let items = []
+  let highlights = App.get_highlights(mode)
 
-  for (let item of App[`${mode}_items`]) {
-    if (item.selected || item.highlighted) {
-      items.push(item)
-    }
+  if (highlights.length === 0) {
+    return [App[`selected_${mode}_item`]]
+  } else {
+    return highlights
   }
-
-  return items
 }

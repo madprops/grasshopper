@@ -212,12 +212,6 @@ App.tabs_action_alt = function (item, shift_key = false) {
   App.close_tabs(shift_key)
 }
 
-// Move tab to another existing window
-App.move_tab = async function (tab, window_id) {
-  await browser.tabs.move(tab.id, {index: -1, windowId: window_id})
-  browser.tabs.update(tab.id, {active: false})
-}
-
 // Duplicate a tab
 App.duplicate_tab = function (tab) {
   browser.tabs.create({active: true, url: tab.url})
@@ -243,14 +237,9 @@ App.suspend_tab = async function (tab) {
 // Pin tabs
 App.pin_tabs = function () {
   let ids = []
-  let highlights = App.get_highlights("tabs")
-  App.dehighlight("tabs")
+  let active = App.get_active_items("tabs")
 
-  for (let tab of App.tabs_items) {
-    if (!App.item_in_action(highlights, tab)) {
-      continue
-    }
-
+  for (let tab of active) {
     if (tab.pinned) {
       continue
     }
@@ -265,23 +254,20 @@ App.pin_tabs = function () {
   for (let id of ids) {
     App.pin_tab(id)
   }
+
+  App.dehighlight("tabs")
 }
 
 // Unpin tabs
 App.unpin_tabs = function () {
   let ids = []
-  let highlights = App.get_highlights("tabs")
-  App.dehighlight("tabs")
+  let active = App.get_active_items("tabs")
 
-  for (let tab of App.tabs_items) {
-    if (!App.item_in_action(highlights, tab)) {
-      continue
-    }
-
+  for (let tab of active) {
     if (!tab.pinned) {
       continue
     }
-    
+
     ids.push(tab.id)
   }
 
@@ -292,19 +278,17 @@ App.unpin_tabs = function () {
   for (let id of ids) {
     App.unpin_tab(id)
   }
+
+  App.dehighlight("tabs")
 }
 
 // Suspend normal tabs
 App.suspend_tabs = function () {
   let tabs = []
   let warn = false
-  let highlights = App.get_highlights("tabs")
+  let active = App.get_active_items("tabs")
 
-  for (let tab of App.tabs_items) {
-    if (!App.item_in_action(highlights, tab)) {
-      continue
-    }
-
+  for (let tab of active) {
     if (!App.is_http(tab)) {
       continue
     }
@@ -343,13 +327,9 @@ App.suspend_tabs = function () {
 App.close_tabs = function (force = false) {
   let ids = []
   let warn = false
-  let highlights = App.get_highlights("tabs")
+  let active = App.get_active_items("tabs")
 
-  for (let tab of App.tabs_items) {
-    if (!App.item_in_action(highlights, tab)) {
-      continue
-    }
-
+  for (let tab of active) {
     if (tab.pinned || tab.audible) {
       warn = true
     }
@@ -385,48 +365,24 @@ App.do_close_tabs = function (ids) {
 
 // Mute tabs
 App.mute_tabs = function () {
-  let ids = []
-  let highlights = App.get_highlights("tabs")
+  let active = App.get_active_items("tabs")
+  
+  for (let item of active) {
+    App.mute_tab(item.id)
+  }
+
   App.dehighlight("tabs")
-
-  for (let tab of App.tabs_items) {
-    if (!App.item_in_action(highlights, tab)) {
-      continue
-    }
-    
-    ids.push(tab.id)
-  }
-
-  if (ids.length === 0) {
-    return
-  }
-
-  for (let id of ids) {
-    App.mute_tab(id)
-  }
 }
 
 // Unmute tabs
 App.unmute_tabs = function () {
-  let ids = []
-  let highlights = App.get_highlights("tabs")
-  App.dehighlight("tabs")
-
-  for (let tab of App.tabs_items) {
-    if (!App.item_in_action(highlights, tab)) {
-      continue
-    }
-    
-    ids.push(tab.id)
-  }
-
-  if (ids.length === 0) {
-    return
+  let active = App.get_active_items("tabs")
+  
+  for (let item of active) {
+    App.unmute_tab(item.id)
   }
   
-  for (let id of ids) {
-    App.unmute_tab(id)
-  }
+  App.dehighlight("tabs")
 }
 
 // Check if tab is normal
@@ -745,24 +701,9 @@ App.on_tab_activated = async function (e) {
 
 // Move tabs
 App.move_tabs = async function (window_id) {
-  let tabs = []
-  let highlights = App.get_highlights("tabs")
-  App.dehighlight("tabs")
-
-  for (let tab of App.tabs_items) {
-    if (!App.item_in_action(highlights, tab)) {
-      continue
-    }
-
-    tabs.push(tab)
-  }
-
-  if (tabs.length === 0) {
-    return
-  }
-
-  let ids = tabs.map(x => x.id)
-  browser.tabs.move(ids, {index: -1, windowId: window_id})
+  let active = App.get_active_items("tabs")
+  let ids = active.map(x => x.id)
+  await browser.tabs.move(ids, {index: 0, windowId: window_id})
   window.close()
 }
 

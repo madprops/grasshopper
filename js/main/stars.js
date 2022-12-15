@@ -300,20 +300,8 @@ App.update_star_editor_info = function () {
 
 // Remove multiple stars
 App.remove_stars = function () {
-  let ids = []
-  let highlights = App.get_highlights("stars")
-
-  for (let star of App.stars_items) {
-    if (!App.item_in_action(highlights, star)) {
-      continue
-    }
-    
-    ids.push(star.id)
-  }
-
-  if (ids.length === 0) {
-    return
-  }
+  let active = App.get_active_items("stars")
+  let ids = active.map(x => x.id)
   
   App.show_confirm(`Remove stars? (${ids.length})`, function () {
     App.backup_stars()
