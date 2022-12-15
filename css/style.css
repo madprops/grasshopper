@@ -197,6 +197,11 @@ body, html {
 
 .button_2:hover {
   background-color: transparent;
+  outline: 1px solid var(--alt_color_3);
+}
+
+.button:active {
+  background-color: var(--alt_color_1);
 }
 
 .icon_button {
