@@ -149,10 +149,14 @@ App.dialog_enter = function () {
 }
 
 // Show a confirm dialog template
-App.show_confirm = function (message, action) {
+App.show_confirm = function (message, confirm_action, cancel_action) {
+  if (!cancel_action) {
+    cancel_action = function () {}
+  }
+  
   let buttons = [
-    ["Cancel", function (){}, true],
-    ["Confirm", action]
+    ["Cancel", cancel_action, true],
+    ["Confirm", confirm_action]
   ]
 
   App.show_dialog(message, buttons)

@@ -1688,12 +1688,15 @@ App.launch_items = function (mode) {
   }
 
   let s = App.plural(items.length, "item", "items")
-  App.dehighlight(mode)
   
   App.show_confirm(`Launch ${s}?`, function () {
     for (let item of items) {
       App.launch_item(item, false)
     }
+
+    App.dehighlight(mode)
+  }, function () {
+    App.dehighlight(mode)
   })
 }
 
@@ -1710,7 +1713,6 @@ App.goto_bottom = function (mode) {
 // Star items
 App.star_items = async function (mode) {
   let highlights = App.get_highlights(mode)
-  App.dehighlight(mode)
   
   if (highlights.length === 0) {
     App.add_or_edit_star(App[`selected_${mode}_item`])
@@ -1744,6 +1746,9 @@ App.star_items = async function (mode) {
 
     App.stor_save_stars()
     App.show_alert("Stars created", App.alert_autohide_delay)
+    App.dehighlight(mode)
+  }, function () {
+    App.dehighlight(mode)
   })  
 }
 
@@ -1946,4 +1951,17 @@ App.get_sort_items = function (mode) {
 // Show sort options
 App.show_pick_sort = function (mode, el) {
   NeedContext.show_on_element(el, App.get_sort_items(mode))
+}
+
+// Get active items
+App.get_active_items = function (mode) {
+  let items = []
+
+  for (let item of App[`${mode}_items`]) {
+    if (item.selected || item.highlighted) {
+      items.push(item)
+    }
+  }
+
+  return items
 }

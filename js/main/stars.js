@@ -50,8 +50,14 @@ App.stars_action = function (item) {
   if (App.check_media(item)) {
     return
   }
-  
-  App.open_star(item)
+
+  let active = App.get_active_items("stars")
+
+  if (active.length === 1) {
+    App.open_star(active[0])
+  } else if (active.length > 1) {
+    App.launch_items("stars")
+  }
 }
 
 // Stars action alt
@@ -63,7 +69,7 @@ App.stars_action_alt = function (item) {
 App.open_star = async function (item, close = true) {
   let star = await App.get_star_by_id(item.id)
   App.update_star(star)
-  App.focus_or_open_item(App.selected_stars_item, close)
+  App.focus_or_open_item(item, close)
 }
 
 // Launch star
@@ -309,8 +315,6 @@ App.remove_stars = function () {
     return
   }
   
-  App.dehighlight("stars")
-
   App.show_confirm(`Remove stars? (${ids.length})`, function () {
     App.backup_stars()
     App.do_remove(ids)
@@ -322,6 +326,10 @@ App.remove_stars = function () {
         }]
       ])
     }
+
+    App.dehighlight("stars")
+  }, function () {
+    App.dehighlight("stars")
   })
 }
 

@@ -299,7 +299,6 @@ App.suspend_tabs = function () {
   let tabs = []
   let warn = false
   let highlights = App.get_highlights("tabs")
-  App.dehighlight("tabs")
 
   for (let tab of App.tabs_items) {
     if (!App.item_in_action(highlights, tab)) {
@@ -325,12 +324,18 @@ App.suspend_tabs = function () {
     App.show_confirm(`Suspend tabs? (${tabs.length})`, function () {
       for (let tab of tabs) {
         App.suspend_tab(tab)
-      }      
+      }
+      
+      App.dehighlight("tabs")
+    }, function () {
+      App.dehighlight("tabs")
     }) 
   } else {
     for (let tab of tabs) {
       App.suspend_tab(tab)
     }
+
+    App.dehighlight("tabs")
   }
 }
 
@@ -339,7 +344,6 @@ App.close_tabs = function (force = false) {
   let ids = []
   let warn = false
   let highlights = App.get_highlights("tabs")
-  App.dehighlight("tabs")
 
   for (let tab of App.tabs_items) {
     if (!App.item_in_action(highlights, tab)) {
@@ -360,9 +364,13 @@ App.close_tabs = function (force = false) {
   if (!force && warn) {
     App.show_confirm(`Close tabs? (${ids.length})`, function () {
       App.do_close_tabs(ids)
+      App.dehighlight("tabs")
+    }, function () {
+      App.dehighlight("tabs")
     }) 
   } else {
     App.do_close_tabs(ids)
+    App.dehighlight("tabs")
   }
 }
 
