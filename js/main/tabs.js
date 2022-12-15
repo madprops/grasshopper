@@ -38,7 +38,7 @@ App.setup_tabs = function () {
     }},
   ]
 
-  App.tabs_sort_title = "Normal: Sorted by index\nSpecial: Sorted by last visit with playing tabs on top"
+  App.tabs_sort_title = "Normal: Sorted by index (dragging is enabled)\nSpecial: Sorted by last visit with playing tabs on top"
   App.setup_item_window("tabs")
 
   browser.tabs.onUpdated.addListener(function (id) {

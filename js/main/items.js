@@ -1587,8 +1587,26 @@ App.highlight_range = function (item) {
   if (App.selection_mouse_down && App.selection_mode === undefined) {
     App.selection_mode = !item.highlighted
   }
-
+  
   App.toggle_highlight(item, App.selection_mode)
+
+  if (App.last_highlight && App.last_highlight.highlighted) {
+    let items = App[`${item.mode}_items`]
+    let index_1 = items.indexOf(item)
+    let index_2 = items.indexOf(App.last_highlight)
+
+    if (index_1 < index_2) {
+      for (let it of items.slice(index_1 + 1, index_2)) {
+        App.toggle_highlight(it, App.selection_mode)
+      }
+    } else if (index_1 > index_2) {
+      for (let it of items.slice(index_2 + 1, index_1)) {
+        App.toggle_highlight(it, App.selection_mode)
+      }
+    }
+  }
+
+  App.last_highlight = item
 }
 
 // Dehighlight items
