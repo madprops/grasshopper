@@ -1144,8 +1144,8 @@ App.setup_item_window = function (mode) {
     // Append the top components
     // Easy to re-order this way
     top.append(main_menu)
-    top.append(filter) 
     top.append(filter_modes)
+    top.append(filter) 
     top.append(filters)
     top.append(actions_menu)
   }
