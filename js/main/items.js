@@ -1587,6 +1587,11 @@ App.highlight_range = function (item) {
   if (App.selection_mouse_down && App.selection_mode === undefined) {
     App.selection_mode = !item.highlighted
   }
+
+  if (!App.selection_mode) {
+    App.dehighlight(item.mode)
+    return
+  }
   
   App.toggle_highlight(item, App.selection_mode)
 
