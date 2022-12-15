@@ -1912,28 +1912,18 @@ App.forget_filters = function () {
 
 // Show sort options
 App.show_pick_sort = function (mode, el) {
+  let modes = ["Normal", "Special", "Alpha"]
   let items = []
 
-  items.push({
-    text: "Normal",
-    action: function () {
-      App.set_sort(mode, "Normal")
-    }
-  })
-
-  items.push({
-    text: "Special",
-    action: function () {
-      App.set_sort(mode, "Special")
-    }
-  })
-  
-  items.push({
-    text: "Alpha",
-    action: function () {
-      App.set_sort(mode, "Alpha")
-    }
-  })  
+  for (let m of modes) {
+    items.push({
+      text: m,
+      action: function () {
+        App.set_sort(mode, m)
+      },
+      selected: App.sort_state.items[mode] === m
+    })  
+  }
 
   NeedContext.show_on_element(el, items)
 }
