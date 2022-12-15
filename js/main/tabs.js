@@ -713,7 +713,7 @@ App.move_tabs = async function (window_id) {
 
 // Open tab in new window
 App.detach_tab = async function (tab) {
-  browser.windows.create({tabId: tab.id})
+  browser.windows.create({tabId: tab.id, focused: false})
   window.close()
 }
 
