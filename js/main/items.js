@@ -961,7 +961,7 @@ App.setup_item_window = function (mode) {
 
     //
     let filter_modes = App.create("div", "button icon_button", `${mode}_filter_modes`)
-    filter_modes.title = "Filter Mode (Shift + Down)"
+    filter_modes.title = "Filter Modes (Shift + Down)"
     let filter_modes_icon = App.create_icon("triangle")
     let filter_modes_text = App.create("div", "", `${mode}_filter_modes_text`)
     filter_modes.append(filter_modes_text)
