@@ -897,7 +897,7 @@ App.setup_item_window = function (mode) {
     })
 
     footer.append(footer_sort)
-    footer.append(App.create_icon("cube", 1))
+    footer.append(App.create_icon("cube"))
 
     let footer_count = App.create("div", "footer_count action")
     footer_count.textContent = "(--)"
@@ -907,7 +907,7 @@ App.setup_item_window = function (mode) {
     })
 
     footer.append(footer_count)
-    footer.append(App.create_icon("cube", 1))
+    footer.append(App.create_icon("cube"))
 
     let footer_info = App.create("div", "footer_info")
     footer.append(footer_info)
@@ -917,7 +917,7 @@ App.setup_item_window = function (mode) {
     //
     let main_menu = App.create("div", "button icon_button", `${mode}_main_menu`)
     main_menu.title = "Main Menu (Tab)"
-    let main_menu_icon = App.create_icon("triangle", 2)
+    let main_menu_icon = App.create_icon("triangle")
     let main_menu_text = App.create("div", "", `${mode}_main_menu_text`)
     main_menu.append(main_menu_text)
     main_menu.append(main_menu_icon)
@@ -939,7 +939,7 @@ App.setup_item_window = function (mode) {
     //
     let filters = App.create("div", "button icon_button", `${mode}_filters`)
     filters.title = "Filters"
-    let filters_icon = App.create_icon("star", 1)
+    let filters_icon = App.create_icon("star")
     filters_icon.classList.add("icon_1")
     filters.append(filters_icon)
 
@@ -965,7 +965,7 @@ App.setup_item_window = function (mode) {
     //
     let filter_modes = App.create("div", "button icon_button", `${mode}_filter_modes`)
     filter_modes.title = "Filter Mode (Shift + Down)"
-    let filter_modes_icon = App.create_icon("triangle", 2)
+    let filter_modes_icon = App.create_icon("triangle")
     let filter_modes_text = App.create("div", "", `${mode}_filter_modes_text`)
     filter_modes.append(filter_modes_text)
     filter_modes.append(filter_modes_icon)
@@ -1016,7 +1016,7 @@ App.setup_item_window = function (mode) {
     }}) 
 
     let actions_menu = App.create("div", "button icon_button", `${mode}_actions`)
-    let actions_icon = App.create_icon("triangle", 2)
+    let actions_icon = App.create_icon("triangle")
     let actions_text = App.create("div")
     actions_text.textContent = "Actions"
     actions_menu.append(actions_text)
@@ -1815,7 +1815,7 @@ App.set_sort = function (mode, sort) {
 }
 
 // Create an svg icon
-App.create_icon = function (name, type) {
+App.create_icon = function (name, type = 1) {
   let icon = document.createElementNS("http://www.w3.org/2000/svg", "svg")
   icon.classList.add(`icon_${type}`)
   let icon_use = document.createElementNS("http://www.w3.org/2000/svg", "use")
