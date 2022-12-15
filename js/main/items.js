@@ -1242,12 +1242,6 @@ App.show_main_menu = function (btn) {
         }
       },
       {
-        text: "Font",
-        action: function () {
-          App.show_window("settings_font")
-        }
-      },
-      {
         text: "Theme",
         action: function () {
           App.show_window("settings_theme")

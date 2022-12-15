@@ -8,8 +8,8 @@ App.default_settings = {
   lock_drag: {value: false, category: "basic"},
   width: {value: 90, category: "basic"},
   height: {value: 100, category: "basic"},
-  font: {value: "gh_sans", category: "font"},
-  font_size: {value: 18, category: "font"},
+  font: {value: "gh_sans", category: "basic"},
+  font_size: {value: 18, category: "basic"},
   background_color: {value: "rgb(43, 42, 51)", category: "theme"},
   text_color: {value: "rgb(251, 251, 254)", category: "theme"},
   background_image: {value: "none", category: "theme"},
@@ -165,7 +165,7 @@ App.settings_make_menu = function (id, opts, action) {
 
 // Setup settings
 App.setup_settings = function () {
-  App.settings_order = ["settings_basic", "settings_font", "settings_theme", "settings_icons"]
+  App.settings_order = ["settings_basic", "settings_theme", "settings_icons"]
 
   App.create_window({id: "settings_basic", setup: function () {
     let container = App.el("#settings_basic_container")
@@ -180,16 +180,8 @@ App.setup_settings = function () {
       App.apply_theme()
     })
     
-    App.start_item_order()   
-
-    App.ev(App.el("#settings_defaults_basic"), "click", function () {
-      App.restore_default_settings("basic")
-    })
-
-    App.add_settings_switchers("basic")
-  }, persistent: false}) 
-
-  App.create_window({id: "settings_font", setup: function () {
+    App.start_item_order()  
+    
     App.settings_make_menu("font", [
       ["Sans", "gh_sans"], 
       ["Serif", "gh_serif"],
@@ -207,13 +199,13 @@ App.setup_settings = function () {
 
     App.settings_make_menu("font_size", App.get_font_size_options(), function () {
       App.apply_theme()
+    })    
+
+    App.ev(App.el("#settings_defaults_basic"), "click", function () {
+      App.restore_default_settings("basic")
     })
 
-    App.ev(App.el("#settings_defaults_font"), "click", function () {
-      App.restore_default_settings("font")
-    })
-
-    App.add_settings_switchers("font")
+    App.add_settings_switchers("basic")
   }, persistent: false}) 
 
   App.create_window({id: "settings_theme", setup: function () {
