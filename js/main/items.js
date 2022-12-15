@@ -893,7 +893,7 @@ App.setup_item_window = function (mode) {
     footer_sort.title = App[`${mode}_sort_title`] + "\n" + "Alpha: Sorted alphanumerically"
     
     App.ev(footer_sort, "click", function () {
-      App.cycle_sort_mode(mode)
+      App.show_pick_sort(mode, footer_sort)
     })
 
     footer.append(footer_sort)
@@ -1820,23 +1820,6 @@ App.get_visible_media = function (mode, what) {
   return items
 }
 
-// Cycle sort mode
-App.cycle_sort_mode = function (mode) {
-  let current = App.sort_state.items[mode]
-  let sorts = ["Normal", "Special", "Alpha"]
-
-  let i = sorts.indexOf(current)
-  let new_i
-
-  if (i + 1 >= sorts.length) {
-    new_i = 0
-  } else {
-    new_i = i + 1
-  }
-
-  App.set_sort(mode, sorts[new_i])
-}
-
 // Set sort
 App.set_sort = function (mode, sort) {
   App.sort_state.items[mode] = sort
@@ -1925,4 +1908,32 @@ App.save_filter = function (filter) {
 App.forget_filters = function () {
   App.filters.items = []
   App.stor_save_filters()
+}
+
+// Show sort options
+App.show_pick_sort = function (mode, el) {
+  let items = []
+
+  items.push({
+    text: "Normal",
+    action: function () {
+      App.set_sort(mode, "Normal")
+    }
+  })
+
+  items.push({
+    text: "Special",
+    action: function () {
+      App.set_sort(mode, "Special")
+    }
+  })
+  
+  items.push({
+    text: "Alpha",
+    action: function () {
+      App.set_sort(mode, "Alpha")
+    }
+  })  
+
+  NeedContext.show_on_element(el, items)
 }
