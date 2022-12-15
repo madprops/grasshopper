@@ -61,7 +61,9 @@ App.select_item_above = function (mode, highlight = false) {
     if (highlight) {
       App.check_highlight(mode, item)
     } else {
-      App.dehighlight(mode)
+      if (App.dehighlight(mode)) {
+        return
+      }
     }
 
     App.select_item(item)   
@@ -76,7 +78,9 @@ App.select_item_below = function (mode, highlight = false) {
     if (highlight) {
       App.check_highlight(mode, item)
     } else {
-      App.dehighlight(mode)
+      if (App.dehighlight(mode)) {
+        return
+      }
     }
 
     App.select_item(item)
@@ -1589,11 +1593,16 @@ App.highlight_range = function (item) {
 
 // Dehighlight items
 App.dehighlight = function (mode) {
+  let some = false
+
   for (let item of App[`${mode}_items`]) {
     if (item.highlighted) {
       App.toggle_highlight(item)
+      some = true
     }
   }
+
+  return some
 }
 
 // Highlight or dehighlight an item
