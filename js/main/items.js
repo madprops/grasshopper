@@ -939,7 +939,7 @@ App.setup_item_window = function (mode) {
     //
     let filters = App.create("div", "button icon_button", `${mode}_filters`)
     filters.title = "Filters"
-    let filters_icon = App.create_icon("snowflake", 1)
+    let filters_icon = App.create_icon("star", 1)
     filters_icon.classList.add("icon_1")
     filters.append(filters_icon)
 
