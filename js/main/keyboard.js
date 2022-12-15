@@ -8,12 +8,6 @@ App.check_window_keyboard = function (e) {
     return
   }
 
-  if (e.key === " " && e.shiftKey ) {        
-    App.show_actions(mode)
-    e.preventDefault()
-    return
-  }
-
   if (e.key === "Enter") {
     let item = App[`selected_${mode}_item`]
 
@@ -67,10 +61,6 @@ App.setup_keyboard = function () {
       if (e.shiftKey && e.key === "Enter") {
         NeedContext.hide()
       } 
-      
-      else if (e.shiftKey && e.key === " ") {
-        NeedContext.hide()
-      }
 
       e.preventDefault()
       return
