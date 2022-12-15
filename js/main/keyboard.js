@@ -29,18 +29,13 @@ App.check_window_keyboard = function (e) {
   } 
   
   if (e.key === "ArrowUp") {
-    App.select_item_above(mode)
+    App.select_item_above(mode, e.shiftKey)
     e.preventDefault()
     return
   } 
   
-  if (e.key === "ArrowDown") {
-    if (e.shiftKey) {
-      App.show_filter_modes(mode)
-    } else {
-      App.select_item_below(mode)
-    }
-
+  if (e.key === "ArrowDown") {    
+    App.select_item_below(mode, e.shiftKey)
     e.preventDefault()
     return
   }
@@ -74,10 +69,6 @@ App.setup_keyboard = function () {
       } 
       
       else if (e.shiftKey && e.key === " ") {
-        NeedContext.hide()
-      }
-
-      else if (e.shiftKey && e.key === "ArrowDown") {
         NeedContext.hide()
       }
 

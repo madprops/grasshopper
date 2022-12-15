@@ -47,20 +47,40 @@ App.select_item = function (item, scroll = "nearest") {
 }
 
 // Select item above
-App.select_item_above = function (mode) {
+App.select_item_above = function (mode, highlight = false) {
+  if (highlight) {
+    App.toggle_highlight(App[`selected_${mode}_item`], true)
+  } else {
+    App.dehighlight(mode)
+  }
+
   let item = App.get_prev_visible_item(mode)
 
   if (item) {
     App.select_item(item)
+
+    if (highlight) {
+      App.toggle_highlight(item, true)
+    }    
   }
 }
 
 // Select item below
-App.select_item_below = function (mode) {
+App.select_item_below = function (mode, highlight = false) {
+  if (highlight) {
+    App.toggle_highlight(App[`selected_${mode}_item`], true)
+  } else {
+    App.dehighlight(mode)
+  }
+
   let item = App.get_next_visible_item(mode)
 
   if (item) {
     App.select_item(item)
+
+    if (highlight) {
+      App.toggle_highlight(item, true)
+    }
   }
 }
 
