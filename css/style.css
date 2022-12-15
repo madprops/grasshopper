@@ -217,11 +217,6 @@ body, html {
   height: 1rem !important;
 }
 
-.icon_2 {
-  width: 0.66rem;
-  height: 0.66rem;
-}
-
 svg {
   flex-shrink: 0;
 }
