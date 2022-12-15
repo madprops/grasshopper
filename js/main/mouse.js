@@ -36,8 +36,18 @@ App.setup_window_mouse = function (mode) {
         if (e.target.closest(".item_info_pin")) {
           App.toggle_pin(item)
         }
-      } else {
-        if (!e.shiftKey) {
+      } 
+      
+      else {
+        if (e.shiftKey) {
+          return
+        }
+
+        if (e.ctrlKey) {
+          App.highlight_range(item)
+        }
+
+        else {
           App[`${mode}_action`](item)
         }
       }
