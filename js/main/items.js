@@ -1037,7 +1037,7 @@ App.setup_item_window = function (mode) {
         }
       }
 
-      NeedContext.show_on_element(actions_menu, items, false, actions_menu.clientHeight)
+      NeedContext.show_on_element(actions_menu, items, true, actions_menu.clientHeight)
     }
 
     App.ev(actions_menu, "click", function () {

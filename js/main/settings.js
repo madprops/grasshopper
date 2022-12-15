@@ -16,7 +16,7 @@ App.default_settings = {
   pin_icon: {value: "(+)", category: "icons"},
   playing_icon: {value: "(Playing)", category: "icons"},
   muted_icon: {value: "(Muted)", category: "icons"},
-  suspended_icon: {value: "(Suspended)", category: "icons"},
+  suspended_icon: {value: "(zzz)", category: "icons"},
 }
 
 // Start item order
