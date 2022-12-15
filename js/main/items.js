@@ -934,8 +934,6 @@ App.setup_item_window = function (mode) {
       }
     })
 
-    top.append(main_menu) 
-
     //
     let filters = App.create("div", "button icon_button", `${mode}_filters`)
     filters.title = "Filters"
@@ -945,9 +943,7 @@ App.setup_item_window = function (mode) {
 
     App.ev(filters, "click", function () {
       App.show_filters(mode)
-    })
-
-    top.append(filters)     
+    })   
 
     //
     let filter = App.create("input", "text filter", `${mode}_filter`)
@@ -958,9 +954,7 @@ App.setup_item_window = function (mode) {
 
     App.ev(filter, "input", function () {
       item_filter()
-    })
-
-    top.append(filter)   
+    })  
 
     //
     let filter_modes = App.create("div", "button icon_button", `${mode}_filter_modes`)
@@ -988,9 +982,7 @@ App.setup_item_window = function (mode) {
       } else {
         App.cycle_filter_modes(mode, false)
       }
-    })
-
-    top.append(filter_modes)    
+    })  
 
     //
     if (!App[`${mode}_actions`]) {
@@ -1050,9 +1042,7 @@ App.setup_item_window = function (mode) {
 
     App.ev(actions_menu, "click", function () {
       App.show_actions(mode)
-    })
-
-    top.append(actions_menu)    
+    }) 
 
     //
     if (mode === "tabs") {
@@ -1147,6 +1137,14 @@ App.setup_item_window = function (mode) {
         return false
       })
     }
+
+    // Append the top components
+    // Easy to re-order this way
+    top.append(main_menu)
+    top.append(filter) 
+    top.append(filters)
+    top.append(filter_modes)
+    top.append(actions_menu)
   }
 
   App.create_window(args)
