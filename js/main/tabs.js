@@ -702,11 +702,10 @@ App.on_tab_activated = async function (e) {
 // Move tabs
 App.move_tabs = async function (window_id) {
   let active = App.get_active_items("tabs")
-  let ids = active.map(x => x.id)
 
-  for (let id of ids) {
-    await App.unpin_tab(id)
-    await browser.tabs.move(id, {index: -1, windowId: window_id})
+  for (let item of active) {
+    let index = item.pinned ? 0 : -1
+    await browser.tabs.move(item.id, {index: index, windowId: window_id})
   }
 
   window.close()
