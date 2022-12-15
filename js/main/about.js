@@ -11,10 +11,10 @@ App.setup_about = function () {
       "Some buttons respond to mousewheel and keyboard",
       "Shift + Click to select multiple items",
       "Shift + Drag to select multiple items",
-      "Shift + Down to open the filter mode",
+      "Shift + Up/Down to select multiple items",
       "Shift + Space to open actions",
-      "Delete key removes items",
       "Ctrl + A to pick all items",
+      "Delete key removes items",
     ]
 
     App.about_info_index = 0
