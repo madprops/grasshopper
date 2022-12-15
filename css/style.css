@@ -474,6 +474,10 @@ svg {
   background-color: var(--alt_color_1) !important;
 }
 
+.needcontext-item-selected:active {
+  background-color: var(--alt_color_2) !important;
+}
+
 #about_container {
   padding-bottom: 3rem;
 }
