@@ -274,9 +274,39 @@ svg {
 
 .item_top_container {
   margin-left: var(--item_margin);
+  margin-right: var(--item_margin);
   display: flex;
   flex-direction: row;
+  width: 100%;
   gap: 0.66rem;
+}
+
+.item_top_left {
+  display: flex;
+  flex-direction: row;
+  flex-shrink: 0;
+  gap: 0.66rem;
+  margin-right: auto;
+  justify-content: flex-start;
+  flex: 0 1 33%;
+}
+
+.item_top_center {
+  display: flex;
+  flex-direction: row;
+  flex-shrink: 0;
+  gap: 0.66rem;
+  flex: 0 1 33%;
+  justify-content: center;
+}
+
+.item_top_right {
+  display: flex;
+  flex-direction: row;
+  flex-shrink: 0;
+  gap: 0.66rem;
+  justify-content: flex-end;
+  flex: 0 1 33%;
 }
 
 .highlighted {

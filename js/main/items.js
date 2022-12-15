@@ -938,14 +938,11 @@ App.setup_item_window = function (mode) {
     let filters = App.create("div", "button icon_button", `${mode}_filters`)
     filters.title = "Filters"
     let filters_icon = App.create_icon("triangle")
-    let filters_text = App.create("div")
-    filters_text.textContent = "Filters"
     
     App.ev(filters, "click", function () {
       App.show_filters(mode)
     })   
 
-    filters.append(filters_text)
     filters.append(filters_icon)
 
     //
@@ -1142,12 +1139,20 @@ App.setup_item_window = function (mode) {
     }
 
     // Append the top components
-    // Easy to re-order this way
-    top.append(main_menu)
-    top.append(filter_modes)
-    top.append(filter) 
-    top.append(filters)
-    top.append(actions_menu)
+
+    let left_top = App.create("div", "item_top_left")
+    let center_top = App.create("div", "item_top_center")
+    let right_top = App.create("div", "item_top_right")
+
+    left_top.append(main_menu)
+    left_top.append(filter_modes)
+    center_top.append(filter)
+    center_top.append(filters)
+    right_top.append(actions_menu)
+
+    top.append(left_top)
+    top.append(center_top)
+    top.append(right_top)
   }
 
   App.create_window(args)
