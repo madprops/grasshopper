@@ -12,7 +12,6 @@ App.setup_about = function () {
       "Shift + Click to select multiple items",
       "Shift + Drag to select multiple items",
       "Shift + Up/Down to select multiple items",
-      "Shift + Space to open actions",
       "Ctrl + A to pick all items",
       "Delete key removes items",
     ]
