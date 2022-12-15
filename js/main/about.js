@@ -5,15 +5,15 @@ App.setup_about = function () {
       "Explore with the top-left menu or (Shift) Tab",
       "Up, Down, and Enter keys to navigate and pick items",
       "Type anytime to filter items, press Tab to reuse",
-      "Right Click or Shift + Enter to show context menus",
       "Use Middle Click to either close items or launch items",
       "Shift + Middle Click on items to bypass confirmations",
       "Some buttons respond to mousewheel and keyboard",
+      "Shift + Up/Down to select multiple items",
       "Shift + Click to select multiple items",
       "Shift + Drag to select multiple items",
-      "Shift + Up/Down to select multiple items",
-      "Ctrl + A to pick all items",
+      "Right Click to show context menus",
       "Delete key removes items",
+      "Ctrl + A to pick all items",
     ]
 
     App.about_info_index = 0

@@ -9,15 +9,8 @@ App.check_window_keyboard = function (e) {
   }
 
   if (e.key === "Enter") {
-    let item = App[`selected_${mode}_item`]
-
-    if (e.shiftKey) {
-      let rect = item.element.getBoundingClientRect()
-      App.show_item_menu(item, rect.left, rect.top)
-    } else {
-      App[`${mode}_action`](item)
-    }
-
+    let item = App[`selected_${mode}_item`]    
+    App[`${mode}_action`](item)
     e.preventDefault()
     return
   } 
@@ -57,15 +50,6 @@ App.check_window_keyboard = function (e) {
 // Setup keybindings
 App.setup_keyboard = function () {
   App.ev(document, "keydown", function (e) {
-    if (NeedContext.open) {
-      if (e.shiftKey && e.key === "Enter") {
-        NeedContext.hide()
-      } 
-
-      e.preventDefault()
-      return
-    }
-
     if (App.popup_open) {
       if (App.popup_mode === "textarea" || App.popup_mode === "input") {
         return
