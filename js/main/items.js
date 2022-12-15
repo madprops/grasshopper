@@ -1182,7 +1182,7 @@ App.cycle_item_windows = function (reverse = false, cycle = false) {
 
 // Update window order
 App.update_item_order = function () {
-  let boxes = App.els(".item_order_item", App.el("#settings_item_order"))
+  let boxes = App.els(".item_order_row", App.el("#settings_item_order"))
   let modes = boxes.map(x => x.dataset.mode)
 
   for (let [i, mode] of modes.entries()) {
@@ -1302,10 +1302,9 @@ App.focus_or_open_item = async function (item, close = true) {
 
 // Get window order
 App.get_item_order = function () {
-  let modes = ["tabs", "stars", "closed", "history"]
   let items = []
 
-  for (let mode of modes) {
+  for (let mode of App.item_modes) {
     items.push({mode: mode, index: App.settings[`${mode}_index`]})
   }
 

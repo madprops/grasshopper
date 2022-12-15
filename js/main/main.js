@@ -16,6 +16,7 @@ App.max_filters = 8
 App.num_background_images = 9
 App.theme_color_diff = 0.77
 App.alert_autohide_delay = 1441
+App.item_modes = ["tabs", "stars", "closed", "history"]
 
 NeedContext.min_width = "4.5rem"
 
