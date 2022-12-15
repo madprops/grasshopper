@@ -207,9 +207,18 @@ body, html {
   gap: 0.5rem;
 }
 
-.icon_button svg {
+.icon_1 {
+  width: 1rem;
+  height: 1rem !important;
+}
+
+.icon_2 {
   width: 0.66rem;
   height: 0.66rem;
+}
+
+svg {
+  flex-shrink: 0;
 }
 
 .hovered {
@@ -310,12 +319,6 @@ body, html {
   margin-left: var(--item_margin);
   margin-right: var(--item_margin);
   gap: 0.5rem;
-}
-
-.footer svg {
-  width: 1rem;
-  height: 1rem;
-  flex-shrink: 0;
 }
 
 .footer div {

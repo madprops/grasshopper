@@ -897,7 +897,7 @@ App.setup_item_window = function (mode) {
     })
 
     footer.append(footer_sort)
-    footer.append(App.create_icon("#cube_icon"))
+    footer.append(App.create_icon("cube", 1))
 
     let footer_count = App.create("div", "footer_count action")
     footer_count.textContent = "(--)"
@@ -907,7 +907,7 @@ App.setup_item_window = function (mode) {
     })
 
     footer.append(footer_count)
-    footer.append(App.create_icon("#cube_icon"))
+    footer.append(App.create_icon("cube", 1))
 
     let footer_info = App.create("div", "footer_info")
     footer.append(footer_info)
@@ -917,7 +917,7 @@ App.setup_item_window = function (mode) {
     //
     let main_menu = App.create("div", "button icon_button", `${mode}_main_menu`)
     main_menu.title = "Main Menu (Tab)"
-    let main_menu_icon = App.create_icon("#triangle_icon")
+    let main_menu_icon = App.create_icon("triangle", 2)
     let main_menu_text = App.create("div", "", `${mode}_main_menu_text`)
     main_menu.append(main_menu_text)
     main_menu.append(main_menu_icon)
@@ -935,17 +935,19 @@ App.setup_item_window = function (mode) {
     })
 
     top.append(main_menu) 
-    
+
     //
-    let filters = App.create("div", "button", `${mode}_filters`)
+    let filters = App.create("div", "button icon_button", `${mode}_filters`)
     filters.title = "Filters"
-    filters.textContent = "#"
+    let filters_icon = App.create_icon("snowflake", 1)
+    filters_icon.classList.add("icon_1")
+    filters.append(filters_icon)
 
     App.ev(filters, "click", function () {
       App.show_filters(mode)
     })
 
-    top.append(filters)
+    top.append(filters)     
 
     //
     let filter = App.create("input", "text filter", `${mode}_filter`)
@@ -958,12 +960,12 @@ App.setup_item_window = function (mode) {
       item_filter()
     })
 
-    top.append(filter)
+    top.append(filter)   
 
     //
     let filter_modes = App.create("div", "button icon_button", `${mode}_filter_modes`)
     filter_modes.title = "Filter Mode (Shift + Down)"
-    let filter_modes_icon = App.create_icon("#triangle_icon")
+    let filter_modes_icon = App.create_icon("triangle", 2)
     let filter_modes_text = App.create("div", "", `${mode}_filter_modes_text`)
     filter_modes.append(filter_modes_text)
     filter_modes.append(filter_modes_icon)
@@ -1014,7 +1016,7 @@ App.setup_item_window = function (mode) {
     }}) 
 
     let actions_menu = App.create("div", "button icon_button", `${mode}_actions`)
-    let actions_icon = App.create_icon("#triangle_icon")
+    let actions_icon = App.create_icon("triangle", 2)
     let actions_text = App.create("div")
     actions_text.textContent = "Actions"
     actions_menu.append(actions_text)
@@ -1813,10 +1815,11 @@ App.set_sort = function (mode, sort) {
 }
 
 // Create an svg icon
-App.create_icon = function (src) {
+App.create_icon = function (name, type) {
   let icon = document.createElementNS("http://www.w3.org/2000/svg", "svg")
+  icon.classList.add(`icon_${type}`)
   let icon_use = document.createElementNS("http://www.w3.org/2000/svg", "use")
-  icon_use.href.baseVal = src
+  icon_use.href.baseVal = `#${name}_icon`
   icon.append(icon_use)
   return icon
 }
