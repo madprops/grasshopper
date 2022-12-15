@@ -1001,7 +1001,7 @@ App.setup_item_window = function (mode) {
       return App.get_sort_items(mode)
     }})
 
-    App[`${mode}_actions`].unshift({text: "Pick All", action: function () {
+    App[`${mode}_actions`].unshift({text: "Pick", action: function () {
       App.highlight_items(mode)
     }})
 
