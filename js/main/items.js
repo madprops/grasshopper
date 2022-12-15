@@ -937,13 +937,16 @@ App.setup_item_window = function (mode) {
     //
     let filters = App.create("div", "button icon_button", `${mode}_filters`)
     filters.title = "Filters"
-    let filters_icon = App.create_icon("star")
-    filters_icon.classList.add("icon_1")
-    filters.append(filters_icon)
-
+    let filters_icon = App.create_icon("triangle")
+    let filters_text = App.create("div")
+    filters_text.textContent = "Filters"
+    
     App.ev(filters, "click", function () {
       App.show_filters(mode)
     })   
+
+    filters.append(filters_text)
+    filters.append(filters_icon)
 
     //
     let filter = App.create("input", "text filter", `${mode}_filter`)
@@ -1142,8 +1145,8 @@ App.setup_item_window = function (mode) {
     // Easy to re-order this way
     top.append(main_menu)
     top.append(filter) 
-    top.append(filters)
     top.append(filter_modes)
+    top.append(filters)
     top.append(actions_menu)
   }
 
