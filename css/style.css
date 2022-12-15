@@ -114,9 +114,8 @@ body, html {
   width: 100%;
   min-height: 1rem;
   flex-shrink: 0;
-  padding-top: 0.66rem;
+  padding-top: 0.55rem;
   padding-bottom: 0.71rem;
-  padding-right: 1rem;
 }
 
 .window_top_center {
