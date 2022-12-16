@@ -48,7 +48,7 @@ App.setup_window_mouse = function (mode) {
     if (e.button !== 0) {
       return
     }
-    
+
     if (e.target.closest(`.${mode}_item`)) {
       let item = App.get_cursor_item(mode, e)
   
@@ -56,6 +56,8 @@ App.setup_window_mouse = function (mode) {
         if (e.target.closest(".item_info_pin")) {
           App.toggle_pin(item)
         }
+
+        return
       } 
       
       if (e.shiftKey) {
