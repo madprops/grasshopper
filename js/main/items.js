@@ -1704,6 +1704,12 @@ App.star_items = async function (mode) {
   let items = []
   let active = App.get_active_items(mode)
 
+  if (active.length === 1) {
+    App.add_or_edit_star(active[0])
+    App.dehighlight(mode)
+    return
+  }
+
   for (let item of active) {
     let exists = await App.get_star_by_url(item.url)
 
@@ -1715,6 +1721,7 @@ App.star_items = async function (mode) {
   }
 
   if (items.length === 0) {
+    App.dehighlight(mode)
     return
   }
 
