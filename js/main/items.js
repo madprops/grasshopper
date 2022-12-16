@@ -249,16 +249,6 @@ App.do_item_filter = async function (mode) {
   console.info(`Filter: ${mode}`)
   let value = App.get_filter(mode)
 
-  if (value === "iddqd") {
-    App.el("#main").classList.add("invert")
-    App.set_filter(mode, "")
-    return
-  } else if (value === "idkfa") {
-    App.el("#main").classList.add("hue_rotate")
-    App.set_filter(mode, "")
-    return
-  }
-
   if (mode === "history") {
     await App.search_history()
 
