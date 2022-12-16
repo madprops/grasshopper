@@ -12,7 +12,7 @@ App.setup_about = function () {
       "Shift + Drag to select multiple items",
       "Ctrl + Click to select multiple items",
       "Right Click to show context menus",
-      "Shift + Enter to open context menus",
+      "Shift + Enter to show context menus",
       "Delete key removes items",
       "Ctrl + A to pick all items",
     ]
