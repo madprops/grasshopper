@@ -6,6 +6,10 @@ App.setup_items = function () {
   App.update_footer_count = App.create_debouncer(function (mode) {
     App.do_update_footer_count(mode)
   }, 200)
+
+  App.save_filter = App.create_debouncer(function (mode) {
+    App.do_save_filter(mode)
+  }, 2000)
 }
 
 // Block select for some ms
@@ -1888,8 +1892,8 @@ App.show_filters = function (mode) {
   NeedContext.show_on_element(el, items, true, el.clientHeight)
 }
 
-// Save a filter
-App.save_filter = function (filter) {
+// Do save a filter
+App.do_save_filter = function (filter) {
   if (filter) {
     filter = filter.substring(0, 20).trim()
     App.filters.items = App.filters.items.filter(x => x !== filter)
