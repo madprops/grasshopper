@@ -54,6 +54,10 @@ App.create_media_windows = function (what) {
       App.copy_to_clipboard(App[`current_${what}_item`].url)
     })
 
+    App.ev(App.el(`#${what}_star`), "click", function () {
+      App.add_or_edit_star(App[`current_${what}_item`])
+    })
+
     App.ev(App.el(`#${what}_prev`), "click", function () {
       App.cycle_media(App[`current_${what}_item`], what, "prev")
     })
@@ -82,6 +86,7 @@ App.show_media = function (what, item) {
     App.el(`#${what}_loading`).classList.remove("hidden")
   }, 500)
 
+  App.el(`#${what}_copy`).title = item.url
   App.show_window(what)
 }
 
