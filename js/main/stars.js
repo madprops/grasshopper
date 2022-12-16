@@ -18,6 +18,10 @@ App.setup_stars = function () {
     {text: "Import", action: function () {
       App.import_stars()
     }},
+
+    {text: "Undo", action: function () {
+      App.restore_stars()
+    }}, 
   ]
 
   App.stars_sort_title = "Normal: Sorted by last visit\nSpecial: Most visited stars on top"
@@ -308,11 +312,7 @@ App.remove_stars = function () {
     App.do_remove(ids)
 
     if (ids.length > 1) {
-      App.show_dialog("Stars have been deleted", [
-        ["Undo", function () {
-          App.restore_stars()
-        }]
-      ])
+      App.show_feedback("Stars have been deleted")
     }
 
     App.dehighlight("stars")
@@ -328,10 +328,14 @@ App.backup_stars = function () {
 
 // Undo remove stars
 App.restore_stars = function () {
-  App.stars.items = App.stars_backup
-  App.stor_save_stars()
-  App.show_window("stars")
-  App.show_alert("Stars have been restored", App.alert_autohide_delay)
+  if (App.stars_backup) {
+    App.stars.items = App.stars_backup
+    App.stor_save_stars()
+    App.show_window("stars")
+    App.show_feedback("Stars have been restored")
+  } else {
+    App.show_feedback("Nothing to undo")
+  }
 }
 
 // Display stars json
@@ -375,11 +379,6 @@ App.reset_stars = function () {
     }
 
     App.stor_save_stars()
-
-    App.show_dialog("Star visits have been resetted", [
-      ["Undo", function () {
-        App.restore_stars()
-      }]
-    ])
+    App.show_feedback("Star visits have been resetted")
   })
 }

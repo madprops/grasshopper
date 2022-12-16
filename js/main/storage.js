@@ -93,7 +93,6 @@ App.stor_get_tab_state = async function () {
 
   if (App.tab_state.items === undefined) {
     App.tab_state.items = {}
-    App.tab_state.backup = []
     changed = true
   } 
 

@@ -1619,6 +1619,7 @@ App.dehighlight = function (mode) {
     }
   }
 
+  App.last_highlight = undefined
   return some
 }
 
@@ -1731,7 +1732,7 @@ App.star_items = async function (mode) {
     }
 
     App.stor_save_stars()
-    App.show_alert("Stars created", App.alert_autohide_delay)
+    App.show_feedback("Stars created")
     App.dehighlight(mode)
   }, function () {
     App.dehighlight(mode)

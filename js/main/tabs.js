@@ -432,7 +432,7 @@ App.load_tab_state = async function (n) {
   let items = App.tab_state[n]
 
   if (!items) {
-    App.show_alert(`Nothing saved on #${n}`)
+    App.show_feedback(`Nothing saved on #${n}`)
     return
   }
 
@@ -471,6 +471,7 @@ App.do_load_tab_state = function (items, confirm = true) {
 
   async function restore () {
     App.show_alert("Restoring...")
+
     for (let item of to_close) {
       App.close_tab(item.id)
     }
@@ -579,11 +580,10 @@ App.open_tab = async function (url, close = true, args = {}) {
 
 // Uno tabs close
 App.undo_close = function () {
-  if (!App.tab_state.backup) {
-    App.show_alert("Nothing to undo")
+  if (!App.tabs_backup) {
+    App.show_feedback("Nothing to undo")
   } else {
-    App.do_load_tab_state(App.tab_state.backup)
-    App.tab_state.backup = undefined
+    App.do_load_tab_state(App.tabs_backup)
   }
 }
 
@@ -594,7 +594,7 @@ App.backup_tabs = function () {
     return
   }
 
-  App.tab_state.backup = App.get_tab_state()
+  App.tabs_backup = App.get_tab_state()
   App.backup_tabs_locked = true
   App.lock_backup_tabs()
   App.stor_save_tab_state()

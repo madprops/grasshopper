@@ -87,6 +87,11 @@ App.show_alert = function (message, autohide_delay = 0) {
   }
 }
 
+// Show a message that autohides
+App.show_feedback = function (message) {
+  App.show_alert(message, App.alert_autohide_delay)
+}
+
 // Show dialog with a list of buttons
 App.show_dialog = function (message, buttons) {
   App.el("#dialog_message").textContent = message
@@ -153,7 +158,7 @@ App.show_confirm = function (message, confirm_action, cancel_action) {
   if (!cancel_action) {
     cancel_action = function () {}
   }
-  
+
   let buttons = [
     ["Cancel", cancel_action, true],
     ["Confirm", confirm_action]
