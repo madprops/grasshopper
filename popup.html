@@ -39,7 +39,7 @@
 
     <template id="template_star_editor">
       <div class="flex_column_center gap_4" id="star_editor_container">
-        <div class="bigger">Star Editor</div>
+        <div class="bigger unselectable">Star Editor</div>
 
         <div id="star_editor_about" class="flex_column_center gap_2">
           <div>Stars are like bookmarks that you manually add</div>
@@ -47,12 +47,12 @@
         </div>
 
         <div class="flex_column_center gap_1">
-          <div>Title</div>
+          <div class="unselectable">Title</div>
           <input type="text" autocomplete="off" spellcheck="false" id="star_editor_title" class="text star_editor_text" placeholder="Title of the star">
         </div>
 
         <div class="flex_column_center gap_1">
-          <div>URL</div>
+          <div class="unselectable">URL</div>
           <input type="text" autocomplete="off" spellcheck="false" id="star_editor_url" class="text star_editor_text" placeholder="URL of the star">
         </div>
 
