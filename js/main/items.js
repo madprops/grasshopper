@@ -5,11 +5,11 @@ App.setup_items = function () {
 
   App.update_footer_count = App.create_debouncer(function (mode) {
     App.do_update_footer_count(mode)
-  }, 200)
+  }, App.update_footer_delay)
 
   App.save_filter = App.create_debouncer(function (filter) {
     App.do_save_filter(filter)
-  }, 2000)
+  }, App.save_filter_delay)
 }
 
 // Block select for some ms
@@ -18,7 +18,7 @@ App.block_select = function () {
 
   setTimeout(function () {
     App.select_blocked = false
-  }, 100)
+  }, App.select_block_delay)
 }
 
 // Select an item
@@ -279,12 +279,13 @@ App.do_item_filter = async function (mode) {
   function check (title, path) {
     return filter_words.every(x => title.includes(x) || path.includes(x))
   }
+  
+  let today = 1000 * 60 * 60 * 24
 
   function matched (item) {
     let match = false
     let title = item.title_lower
     let path = item.path_lower
-    let today = 1000 * 60 * 60 * 24
 
     if (check(title, path)) {
       if (filter_mode === "all") {
@@ -700,8 +701,8 @@ App.create_item_element = function (item) {
 App.get_img_icon = function (favicon, url) {
   let icon = App.create("img", "item_icon")
   icon.loading = "lazy"
-  icon.width = 25
-  icon.height = 25
+  icon.width = App.icon_size
+  icon.height = App.icon_size
 
   App.ev(icon, "error", function () {
     let icon_2 = App.get_jdenticon(url)
@@ -716,8 +717,8 @@ App.get_img_icon = function (favicon, url) {
 App.get_jdenticon = function (url) {
   let hostname = App.get_hostname(url) || "hostname"
   let icon = App.create("canvas", "item_icon")
-  icon.width = 25
-  icon.height = 25
+  icon.width = App.icon_size
+  icon.height = App.icon_size
   jdenticon.update(icon, hostname)
   return icon
 }
@@ -762,7 +763,7 @@ App.set_item_text = function (item) {
     item.footer = item.title || item.path
   }
 
-  content = content.substring(0, 200).trim()
+  content = content.substring(0, App.max_text_length).trim()
   let text = App.el(".item_text", item.element)
   text.textContent = content
 }

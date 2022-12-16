@@ -65,7 +65,7 @@ App.setup_tabs = function () {
 
   App.lock_backup_tabs = App.create_debouncer(function () {
     App.backup_tabs_locked = false
-  }, 2000)
+  }, App.lock_backup_delay)
 }
 
 // Get open tabs
@@ -492,7 +492,7 @@ App.do_load_tab_state = function (items, confirm = true) {
       setTimeout(function () {
         App.hide_popup("alert")
         App.show_item_window("tabs")
-      }, 900)
+      }, App.load_tabs_delay)
       
       let tabs = App.tabs_items.slice(0)
 
@@ -536,7 +536,7 @@ App.do_load_tab_state = function (items, confirm = true) {
           console.error(err)
         }
       }  
-    }, 900)  
+    }, App.load_tabs_delay)
 
     App.show_item_window("tabs")
   }

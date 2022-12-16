@@ -3,6 +3,7 @@ App.stor_stars_name = "stars_v6"
 App.stor_tab_state_name = "tab_state_v1"
 App.stor_sort_state_name = "sort_state_v3"
 App.stor_filters_name = "filters_v2"
+App.item_modes = ["tabs", "stars", "closed", "history"]
 App.windows = {}
 App.popups = {}
 App.filter_delay = 250
@@ -16,7 +17,13 @@ App.max_filters = 8
 App.num_background_images = 9
 App.theme_color_diff = 0.77
 App.alert_autohide_delay = 1441
-App.item_modes = ["tabs", "stars", "closed", "history"]
+App.save_filter_delay = 2000
+App.update_footer_delay = 200
+App.select_block_delay = 100
+App.icon_size = 25
+App.max_text_length = 200
+App.lock_backup_delay = 2000
+App.load_tabs_delay = 1000
 
 NeedContext.min_width = "4.5rem"
 
