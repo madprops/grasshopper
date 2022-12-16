@@ -1723,6 +1723,7 @@ App.star_items = async function (mode) {
   }
 
   if (items.length === 0) {
+    App.show_feedback("All these items are stars")
     App.dehighlight(mode)
     return
   }

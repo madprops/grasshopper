@@ -21,7 +21,7 @@ App.icon_size = 25
 
 App.filter_delay = 250
 App.color_delay = 150
-App.alert_autohide_delay = 1441
+App.alert_autohide_delay = 1500
 App.save_filter_delay = 2000
 App.update_footer_delay = 200
 App.select_block_delay = 100
