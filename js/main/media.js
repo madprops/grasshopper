@@ -72,7 +72,7 @@ App.create_media_windows = function (what) {
 
     App.hide_media_elements(what)
     App.stop_media_timeout(what)
-    App.show_last_window()
+    App.raise_window(App[`current_${what}_item`].mode)
   }})
 }
 
