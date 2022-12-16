@@ -28,37 +28,6 @@ App.setup_window_mouse = function (mode) {
     }
   })
 
-  App.ev(container, "click", function (e) {
-    if (e.target.closest(`.${mode}_item`)) {
-      let item = App.get_cursor_item(mode, e)
-
-      if (e.target.closest(".item_info")) {
-        if (e.target.closest(".item_info_pin")) {
-          App.toggle_pin(item)
-        }
-      } 
-      
-      else {
-        if (e.shiftKey) {
-          return
-        }
-
-        if (e.ctrlKey) {
-          App.toggle_highlight(item)
-          App.last_highlight = item
-        }
-
-        else if (e.shiftKey) {
-          App.highlight_range(item)
-        }
-
-        else {
-          App[`${mode}_action`](item)
-        }
-      }
-    }
-  })
-
   App.ev(container, "mousedown", function (e) {
     if (e.button !== 0) {
       return
@@ -72,6 +41,35 @@ App.setup_window_mouse = function (mode) {
         let item = App.get_cursor_item(mode, e)
         App.highlight_range(item)
       }
+    }
+  }) 
+
+  App.ev(container, "mouseup", function (e) {
+    if (e.target.closest(`.${mode}_item`)) {
+      let item = App.get_cursor_item(mode, e)
+  
+      if (e.target.closest(".item_info")) {
+        if (e.target.closest(".item_info_pin")) {
+          App.toggle_pin(item)
+        }
+      } 
+      
+      if (e.shiftKey) {
+        return
+      }
+  
+      if (e.ctrlKey) {
+        App.toggle_highlight(item)
+        App.last_highlight = item
+      }
+  
+      else if (e.shiftKey) {
+        App.highlight_range(item)
+      }
+  
+      else {
+        App[`${mode}_action`](item)
+      }    
     }
   }) 
 
