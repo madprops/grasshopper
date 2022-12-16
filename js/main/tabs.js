@@ -65,7 +65,7 @@ App.setup_tabs = function () {
 
   App.lock_backup_tabs = App.create_debouncer(function () {
     App.backup_tabs_locked = false
-  }, 1234)
+  }, 2000)
 }
 
 // Get open tabs
