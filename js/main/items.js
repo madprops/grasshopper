@@ -7,8 +7,8 @@ App.setup_items = function () {
     App.do_update_footer_count(mode)
   }, 200)
 
-  App.save_filter = App.create_debouncer(function (mode) {
-    App.do_save_filter(mode)
+  App.save_filter = App.create_debouncer(function (filter) {
+    App.do_save_filter(filter)
   }, 2000)
 }
 
