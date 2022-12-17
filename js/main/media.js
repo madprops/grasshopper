@@ -89,6 +89,7 @@ App.show_media = function (what, item) {
   App.hide_media_elements(what)
   App[`current_${what}_item`] = item
   App.el(`#${what}`).src = item.url
+  App.stop_media_timeout(what)
 
   App[`${what}_loading_timeout`] = setTimeout(function () {
     App.el(`#${what}_loading`).classList.remove("hidden")
