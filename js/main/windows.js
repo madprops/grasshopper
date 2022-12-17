@@ -40,12 +40,12 @@ App.create_window = function (args) {
     if (top_html) {
       top.innerHTML = top_html
     }
-  
+
     if (args.close_button) {
       let x = App.create("div", "window_x action unselectable")
       x.textContent = "x"
       top.append(x)
-    
+
       App.ev(x, "click", function () {
         if (args.on_x) {
           args.on_x()
@@ -54,7 +54,7 @@ App.create_window = function (args) {
         }
       })
     }
-  
+
     el.append(top)
   }
 
@@ -79,7 +79,7 @@ App.create_window = function (args) {
         top.innerHTML = top_html
       }
     }
-    
+
     if (args.setup) {
       if (!args.persistent || !w.setup) {
         args.setup()
@@ -104,7 +104,7 @@ App.create_window = function (args) {
       args.after_show()
     }
   }
-  
+
   w.hide = function () {
     if (args.on_hide) {
       args.on_hide()

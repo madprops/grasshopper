@@ -1,15 +1,15 @@
 // Setup stars
 App.setup_stars = function () {
-  App.stars_actions = [ 
+  App.stars_actions = [
     {text: "--separator--"},
 
     {text: "New", action: function () {
       App.new_star()
-    }}, 
+    }},
 
     {text: "Reset", action: function () {
       App.reset_stars()
-    }}, 
+    }},
 
     {text: "Export", action: function () {
       App.export_stars()
@@ -21,12 +21,12 @@ App.setup_stars = function () {
 
     {text: "Undo", action: function () {
       App.restore_stars()
-    }}, 
+    }},
   ]
 
   App.stars_sort_title = "Normal: Sorted by last visit\nSpecial: Most visited stars on top"
   App.setup_item_window("stars")
-  
+
   App.create_window({id: "star_editor", setup: function () {
     App.ev(App.el("#star_editor_save"), "click", function () {
       App.star_editor_save()
@@ -93,8 +93,8 @@ App.get_stars = async function () {
 
   if (App.sort_state.items.stars === "Normal") {
     stars.sort((a, b) => (a.date_last_visit < b.date_last_visit) ? 1 : -1)
-  } 
-  
+  }
+
   else if (App.sort_state.items.stars === "Special") {
     stars.sort((a, b) => (a.visits < b.visits) ? 1 : -1)
   }
@@ -118,7 +118,7 @@ App.star_item = async function (item, save = true) {
   if (!App.stars) {
     await App.get_stars()
   }
-    
+
   let obj = {
     id: `${Date.now()}_${App.star_counter}`,
     url: item.url,
@@ -138,7 +138,7 @@ App.star_item = async function (item, save = true) {
   if (save) {
     App.stor_save_stars()
   }
-  
+
   return obj
 }
 
@@ -159,7 +159,7 @@ App.do_remove_stars = function (ids) {
   for (let id of ids) {
     if (App.stars_items) {
       let item = App.get_item_by_id("stars", id)
-  
+
       if (item) {
         App.remove_item(item)
       }
@@ -211,7 +211,7 @@ App.star_editor_save = async function () {
       return
     }
   }
-    
+
   await App.star_item({
     title: title,
     url: url
@@ -306,7 +306,7 @@ App.update_star_editor_info = function () {
 App.remove_stars = function () {
   let active = App.get_active_items("stars")
   let ids = active.map(x => x.id)
-  
+
   App.show_confirm(`Remove stars? (${ids.length})`, function () {
     App.backup_stars()
     App.do_remove_stars(ids)
@@ -350,7 +350,7 @@ App.import_stars = function () {
       return
     }
 
-    let json 
+    let json
 
     try {
       json = JSON.parse(text)

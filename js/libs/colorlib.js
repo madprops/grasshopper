@@ -468,16 +468,16 @@ const ColorLib = (function () {
 		}
 
     instance.get_rgb_distance = function (a, b) {
-      return Math.sqrt(( (a[0] - b[0]) * (a[0] - b[0]) + 
+      return Math.sqrt(( (a[0] - b[0]) * (a[0] - b[0]) +
                          (a[1] - b[1]) * (a[1] - b[1]) +
-                         (a[2] - b[2]) * (a[2] - b[2]) ) / ( 256 * Math.sqrt(3) ))      
-    }    
+                         (a[2] - b[2]) * (a[2] - b[2]) ) / ( 256 * Math.sqrt(3) ))
+    }
 
     instance.get_rgba_distance = function (a, b) {
-      return Math.sqrt(( (a[0] - b[0]) * (a[0] - b[0]) + 
+      return Math.sqrt(( (a[0] - b[0]) * (a[0] - b[0]) +
                          (a[1] - b[1]) * (a[1] - b[1]) +
                          (a[2] - b[2]) * (a[2] - b[2]) +
-                         (a[3] - b[3]) * (a[3] - b[3]) ) / ( 256 * Math.sqrt(4) ))      
+                         (a[3] - b[3]) * (a[3] - b[3]) ) / ( 256 * Math.sqrt(4) ))
     }
 
     instance.get_dark_color = function () {

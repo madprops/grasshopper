@@ -1,6 +1,6 @@
 // Setup theme
 App.setup_theme = function () {
-  App.colorlib = ColorLib()  
+  App.colorlib = ColorLib()
   App.apply_theme()
 }
 
@@ -15,7 +15,7 @@ App.apply_theme = function () {
 
     let alt_color_1 = App.colorlib.rgb_to_rgba(App.settings.text_color, 0.14)
     App.set_css_var("alt_color_1", alt_color_1)
-    
+
     let alt_color_2 = App.colorlib.rgb_to_rgba(App.settings.text_color, 0.22)
     App.set_css_var("alt_color_2", alt_color_2)
 
@@ -27,7 +27,7 @@ App.apply_theme = function () {
 
     App.set_css_var("font_size", App.settings.font_size + "px")
     App.set_css_var("font", App.settings.font)
-    
+
     let w = `${(App.settings.width / 100) * 800}px`
     App.set_css_var("width", w)
 
@@ -61,8 +61,8 @@ App.do_change_color = function (name, color) {
 
 // Pick a random theme
 App.random_theme = function (mode) {
-  let colors 
-  
+  let colors
+
   if (mode === "dark") {
     colors = App.get_random_theme("dark")
   } else if (mode === "light") {
@@ -115,7 +115,7 @@ App.detect_theme = async function () {
 
     d1.remove()
     d2.remove()
-    
+
     return
   }
 

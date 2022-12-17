@@ -40,7 +40,7 @@ App.init = async function () {
   await App.stor_get_tab_state()
   await App.stor_get_sort_state()
   await App.stor_get_filters()
-  
+
   App.setup_theme()
   App.setup_tabs()
   App.setup_stars()

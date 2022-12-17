@@ -9,17 +9,17 @@ App.setup_tabs = function () {
     ["normal", "Normal"],
   ]
 
-  App.tabs_actions = [    
+  App.tabs_actions = [
     {text: "--separator--"},
-    
+
     {text: "New", action: function () {
       App.new_tab()
-    }},  
+    }},
 
     {text: "Info", action: function () {
       App.show_tabs_information()
-    }},  
-    
+    }},
+
     {text: "State", items: [
       {
         text: "Save State", items: App.get_save_tab_state_items()
@@ -27,7 +27,7 @@ App.setup_tabs = function () {
       {
         text: "Load State", items: App.get_load_tab_state_items()
       }
-    ]}, 
+    ]},
 
     {text: "Undo", action: function () {
       App.undo_close()
@@ -48,13 +48,13 @@ App.setup_tabs = function () {
 
     App.check_playing()
   })
-  
+
   browser.tabs.onActivated.addListener(function (e) {
     if (App.window_mode === "tabs") {
       App.on_tab_activated(e)
     }
-  })  
-  
+  })
+
   browser.tabs.onRemoved.addListener(function (id) {
     if (App.window_mode === "tabs") {
       App.remove_closed_tab(id)
@@ -80,13 +80,13 @@ App.get_tabs = async function () {
 
   if (App.sort_state.items.tabs === "Normal") {
     App.sort_tabs_by_index(tabs)
-  } 
-  
+  }
+
   else if (App.sort_state.items.tabs === "Special") {
     App.sort_tabs_by_special(tabs)
   }
 
-  return tabs  
+  return tabs
 }
 
 // Sort tabs by index
@@ -256,7 +256,7 @@ App.pin_tabs = function () {
   if (ids.length === 0) {
     return
   }
-  
+
   for (let id of ids) {
     App.pin_tab(id)
   }
@@ -280,7 +280,7 @@ App.unpin_tabs = function () {
   if (ids.length === 0) {
     return
   }
-  
+
   for (let id of ids) {
     App.unpin_tab(id)
   }
@@ -302,7 +302,7 @@ App.suspend_tabs = function () {
     if (tab.pinned || tab.audible) {
       warn = true
     }
-    
+
     tabs.push(tab)
   }
 
@@ -315,11 +315,11 @@ App.suspend_tabs = function () {
       for (let tab of tabs) {
         App.suspend_tab(tab)
       }
-      
+
       App.dehighlight("tabs")
     }, function () {
       App.dehighlight("tabs")
-    }) 
+    })
   } else {
     for (let tab of tabs) {
       App.suspend_tab(tab)
@@ -339,7 +339,7 @@ App.close_tabs = function (force = false) {
     if (tab.pinned || tab.audible) {
       warn = true
     }
-    
+
     ids.push(tab.id)
   }
 
@@ -353,7 +353,7 @@ App.close_tabs = function (force = false) {
       App.dehighlight("tabs")
     }, function () {
       App.dehighlight("tabs")
-    }) 
+    })
   } else {
     App.do_close_tabs(ids)
     App.dehighlight("tabs")
@@ -363,7 +363,7 @@ App.close_tabs = function (force = false) {
 // Do close tabs
 App.do_close_tabs = function (ids) {
   App.backup_tabs()
-  
+
   for (let id of ids) {
     App.close_tab(id)
   }
@@ -372,7 +372,7 @@ App.do_close_tabs = function (ids) {
 // Mute tabs
 App.mute_tabs = function () {
   let active = App.get_active_items("tabs")
-  
+
   for (let item of active) {
     App.mute_tab(item.id)
   }
@@ -383,11 +383,11 @@ App.mute_tabs = function () {
 // Unmute tabs
 App.unmute_tabs = function () {
   let active = App.get_active_items("tabs")
-  
+
   for (let item of active) {
     App.unmute_tab(item.id)
   }
-  
+
   App.dehighlight("tabs")
 }
 
@@ -471,7 +471,7 @@ App.do_load_tab_state = function (items, confirm = true) {
       urls.splice(i, 1)
     }
   }
-  
+
   let s1 = App.plural(to_open.length, "tab", "tabs")
   let s2 = App.plural(to_close.length, "tab", "tabs")
 
@@ -499,16 +499,16 @@ App.do_load_tab_state = function (items, confirm = true) {
         App.hide_popup("alert")
         App.show_item_window("tabs")
       }, App.load_tabs_delay)
-      
+
       let tabs = App.tabs_items.slice(0)
 
       for (let tab of tabs) {
         tab.xset = false
         tab.xindex = tabs.length
       }
-  
+
       for (let [i, item] of items.entries()) {
-        for (let tab of tabs) {                  
+        for (let tab of tabs) {
           if ((!item.empty && (item.url === tab.url)) || (item.url === "about" && !App.is_http(tab))) {
             if (!tab.xset) {
               tab.pinned = item.pinned
@@ -535,13 +535,13 @@ App.do_load_tab_state = function (items, confirm = true) {
 
           if (tab.discarded) {
             await App.suspend_tab(tab)
-          }          
+          }
 
           await App.do_move_tab_index(tab.id, i)
         } catch (err) {
           console.error(err)
         }
-      }  
+      }
     }, App.load_tabs_delay)
 
     App.show_item_window("tabs")
@@ -638,10 +638,10 @@ App.get_save_tab_state_items = function () {
       action: function () {
         App.save_tab_state(5)
       }
-    }  
+    }
   ]
 
-  return items 
+  return items
 }
 
 // Get load tab state items
@@ -676,7 +676,7 @@ App.get_load_tab_state_items = function () {
       action: function () {
         App.load_tab_state(5)
       }
-    } 
+    }
   ]
 
   return items
@@ -739,7 +739,7 @@ App.clean_tabs = function () {
 
   App.show_confirm(`Close normal tabs? (${ids.length})`, function () {
     App.do_close_tabs(ids)
-  }) 
+  })
 }
 
 // Show playing icon

@@ -33,8 +33,8 @@ App.start_item_order = function () {
 
     App.ev(up, "click", function () {
       App.item_order_up(row)
-    })     
-    
+    })
+
     let text = App.create("div", "item_order_item_text")
     text.textContent = App.capitalize(m)
     row.append(text)
@@ -45,7 +45,7 @@ App.start_item_order = function () {
 
     App.ev(down, "click", function () {
       App.item_order_down(row)
-    })      
+    })
 
     item_order.append(row)
   }
@@ -60,7 +60,7 @@ App.settings_do_action = function (what) {
 
 // Setup checkboxes in a container
 App.settings_setup_checkboxes = function (container) {
-  let items = App.els(".settings_checkbox", container) 
+  let items = App.els(".settings_checkbox", container)
 
   for (let item of items) {
     let setting = item.dataset.setting
@@ -68,7 +68,7 @@ App.settings_setup_checkboxes = function (container) {
 
     let el = App.el(`#settings_${setting}`)
     el.checked = App.settings[setting]
-  
+
     App.ev(el, "change", function () {
       App.settings[setting] = el.checked
       App.stor_save_settings()
@@ -84,8 +84,8 @@ App.settings_setup_text = function (container) {
   for (let item of items) {
     let setting = item.dataset.setting
     let action = item.dataset.action
-    let el = App.el(`#settings_${setting}`)  
-  
+    let el = App.el(`#settings_${setting}`)
+
     el.value = App.settings[setting]
 
     App.ev(el, "blur", function () {
@@ -98,7 +98,7 @@ App.settings_setup_text = function (container) {
       el.value = val
       App.settings[setting] = val
       App.stor_save_settings()
-      App.settings_do_action(action)          
+      App.settings_do_action(action)
     })
   }
 }
@@ -126,17 +126,17 @@ App.settings_make_menu = function (id, opts, action) {
           action()
         },
         selected: selected
-      })  
+      })
     }
 
-    NeedContext.show_on_element(this, items, true, this.clientHeight)  
+    NeedContext.show_on_element(this, items, true, this.clientHeight)
   })
 
   for (let o of opts) {
     if (App.settings[id] === o[1]) {
       el.textContent = o[0]
     }
-  } 
+  }
 
   let buttons = App.create("div", "flex_row_center gap_1")
   let prev = App.create("div", "button")
@@ -153,7 +153,7 @@ App.settings_make_menu = function (id, opts, action) {
     App.settings_menu_cycle(el, id, "next", opts)
     App.apply_theme()
   }
-  
+
   App.ev(prev, "click", prev_fn)
   App.ev(next, "click", next_fn)
 
@@ -171,7 +171,7 @@ App.setup_settings = function () {
     let container = App.el("#settings_basic_container")
     App.settings_setup_checkboxes(container)
     App.settings_make_menu("text_mode", [["Title", "title"], ["URL", "url"]])
-    
+
     App.settings_make_menu("width", App.get_size_options(), function () {
       App.apply_theme()
     })
@@ -179,11 +179,11 @@ App.setup_settings = function () {
     App.settings_make_menu("height", App.get_size_options(), function () {
       App.apply_theme()
     })
-    
-    App.start_item_order()  
-    
+
+    App.start_item_order()
+
     App.settings_make_menu("font", [
-      ["Sans", "gh_sans"], 
+      ["Sans", "gh_sans"],
       ["Serif", "gh_serif"],
       ["Mono", "gh_mono"],
       ["Comic", "gh_comic"],
@@ -199,19 +199,19 @@ App.setup_settings = function () {
 
     App.settings_make_menu("font_size", App.get_font_size_options(), function () {
       App.apply_theme()
-    })    
+    })
 
     App.ev(App.el("#settings_defaults_basic"), "click", function () {
       App.restore_default_settings("basic")
     })
 
     App.add_settings_switchers("basic")
-  }, persistent: false}) 
+  }, persistent: false})
 
   App.create_window({id: "settings_theme", setup: function () {
     App.start_theme_settings()
     App.add_settings_switchers("theme")
-  }, persistent: false}) 
+  }, persistent: false})
 
   App.create_window({id: "settings_icons", setup: function () {
     let container = App.el("#settings_icons_container")
@@ -228,7 +228,7 @@ App.setup_settings = function () {
 // Create settings title switchers
 App.add_settings_switchers = function (category) {
   let title = App.el(".settings_title", App.el(`#settings_${category}_container`))
-    
+
   let prev = App.create("div", "button")
   prev.textContent = "<"
   title.before(prev)
@@ -236,7 +236,7 @@ App.add_settings_switchers = function (category) {
   App.ev(prev, "click", function () {
     App.show_prev_settings()
   })
-  
+
   let next = App.create("div", "button")
   next.textContent = ">"
   title.after(next)
@@ -258,31 +258,31 @@ App.start_theme_settings = function () {
       showRGB: true,
       color: App.settings[`${name}_color`]
     })
-  
+
     let change_color = App.create_debouncer(function (color) {
       App.do_change_color(name, color)
     }, App.color_delay)
-  
+
     App[`${name}_color_picker`].on("change", function (picker, color) {
       change_color(color)
-    })     
+    })
   }
 
   start_color_picker("background")
   start_color_picker("text")
-  
+
   App.ev(App.el("#settings_dark_theme"), "click", function () {
     App.random_theme("dark")
   })
-  
+
   App.ev(App.el("#settings_light_theme"), "click", function () {
     App.random_theme("light")
   })
-  
+
   App.ev(App.el("#settings_detect_theme"), "click", function () {
     App.detect_theme()
   })
-  
+
   App.ev(App.el("#settings_default_theme"), "click", function () {
     App.restore_default_settings("theme")
   })
@@ -320,7 +320,7 @@ App.settings_menu_cycle = function (el, setting, dir, items) {
       s_item = item
       break
     }
-    
+
     if (item[1] === App.settings[setting]) {
       waypoint = true
     }
@@ -338,7 +338,7 @@ App.restore_default_settings = function (type) {
   App.show_confirm(`Restore default settings? (${type})`, function () {
     for (let key in App.default_settings) {
       let item = App.default_settings[key]
-  
+
       if (item.category === type) {
         App.settings[key] = item.value
       }

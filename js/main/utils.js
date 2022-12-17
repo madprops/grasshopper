@@ -29,7 +29,7 @@ App.create = function (type, classes = "", id = "") {
 
   if (classes) {
     let classlist = classes.split(" ").filter(x => x != "")
-  
+
     for (let cls of classlist) {
       el.classList.add(cls)
     }

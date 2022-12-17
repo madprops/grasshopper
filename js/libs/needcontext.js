@@ -33,11 +33,11 @@ NeedContext.filter = function (key) {
         item.element.classList.add("needcontext-hidden")
       } else {
         item.element.classList.remove("needcontext-hidden")
-  
+
         if (!selected) {
           NeedContext.select_item(i)
         }
-  
+
         selected = true
       }
     }
@@ -80,11 +80,11 @@ NeedContext.show = function (x, y, items) {
   c.innerHTML = ""
   let index = 0
   NeedContext.items = []
-  
+
   for (let item of items) {
     let el = document.createElement("div")
     el.classList.add("needcontext-item")
-    
+
     if (item.separator) {
       el.classList.add("needcontext-separator")
     } else {
@@ -92,18 +92,18 @@ NeedContext.show = function (x, y, items) {
       el.textContent = item.text
       el.dataset.index = index
       item.index = index
-  
+
       if (item.title) {
         el.title = item.title
       }
-  
+
       if (item.selected) {
         selected_index = index
       }
-  
+
       el.addEventListener("mousemove", function () {
         let index = parseInt(el.dataset.index)
-        
+
         if (NeedContext.index !== index) {
           NeedContext.select_item(index)
         }
@@ -118,7 +118,7 @@ NeedContext.show = function (x, y, items) {
   }
 
   NeedContext.main.classList.remove("needcontext-hidden")
-  
+
   if (y < 5) {
     y = 5
   }
@@ -186,7 +186,7 @@ NeedContext.select_up = function () {
 
     if (first_visible === undefined) {
       first_visible = item.index
-    }    
+    }
 
     if (waypoint) {
       NeedContext.select_item(item.index)
@@ -278,7 +278,7 @@ NeedContext.init = function () {
     .needcontext-hidden {
       display: none;
     }
-    
+
     #needcontext-container {
       z-index: 2;
       position: relative;
@@ -305,7 +305,7 @@ NeedContext.init = function () {
       padding-right: 10px;
       padding-top: 3px;
       padding-bottom: 3px;
-    }   
+    }
 
     .needcontext-separator {
       border-top: 1px solid currentColor;
@@ -314,11 +314,11 @@ NeedContext.init = function () {
       margin-top: 3px;
       margin-bottom: 3px;
       opacity: 0.7;
-    }   
+    }
 
     .needcontext-item-selected {
       background-color: rgba(0, 0, 0, 0.18);
-    }    
+    }
   `
 
   style.innerText = css
@@ -328,13 +328,13 @@ NeedContext.init = function () {
     if (!NeedContext.open || !e.target) {
       return
     }
-    
+
     NeedContext.first_mousedown = true
 
     if (e.target.closest("#needcontext-container")) {
       NeedContext.mousedown = true
     }
-  })  
+  })
 
   document.addEventListener("mouseup", function (e) {
     if (!NeedContext.open || !e.target) {
@@ -359,7 +359,7 @@ NeedContext.init = function () {
 
     e.stopPropagation()
     NeedContext.keydown = true
-    
+
     if (e.key === "ArrowUp") {
       NeedContext.select_up()
     } else if (e.key === "ArrowDown") {
@@ -400,16 +400,16 @@ NeedContext.init = function () {
 // Create elements
 NeedContext.create = function () {
   NeedContext.main = document.createElement("div")
-  NeedContext.main.id = "needcontext-main" 
-  NeedContext.main.classList.add("needcontext-hidden") 
+  NeedContext.main.id = "needcontext-main"
+  NeedContext.main.classList.add("needcontext-hidden")
 
   NeedContext.container = document.createElement("div")
   NeedContext.container.id = "needcontext-container"
-  
+
   NeedContext.main.addEventListener("contextmenu", function (e) {
     e.preventDefault()
   })
-  
+
   NeedContext.main.append(NeedContext.container)
   document.body.appendChild(NeedContext.main)
   NeedContext.created = true

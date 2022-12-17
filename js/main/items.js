@@ -32,12 +32,12 @@ App.select_item = function (item, scroll = "nearest") {
   }
 
   App[`selected_${item.mode}_item`] = item
-  
+
   for (let el of App.els(`.${item.mode}_item`)) {
     el.classList.remove("selected")
   }
 
-  App[`selected_${item.mode}_item`].element.classList.add("selected")  
+  App[`selected_${item.mode}_item`].element.classList.add("selected")
 
   if (scroll !== "none") {
     App[`selected_${item.mode}_item`].element.scrollIntoView({block: scroll})
@@ -70,7 +70,7 @@ App.select_item_above = function (mode, highlight = false) {
       }
     }
 
-    App.select_item(item)   
+    App.select_item(item)
   }
 }
 
@@ -119,7 +119,7 @@ App.get_next_visible_item = function (mode, wrap = true) {
   if (wrap) {
     for (let i=0; i<items.length; i++) {
       let item = items[i]
-  
+
       if (item.visible) {
         return item
       }
@@ -155,7 +155,7 @@ App.get_prev_visible_item = function (mode, wrap = true) {
   if (wrap) {
     for (let i=items.length-1; i>=0; i--) {
       let item = items[i]
-  
+
       if (item.visible) {
         return item
       }
@@ -199,7 +199,7 @@ App.select_first_item = function (mode, by_active = false) {
         App.select_item(item, "center")
         return
       }
-    }  
+    }
   }
 
   for (let item of App[`${mode}_items`]) {
@@ -217,7 +217,7 @@ App.remove_item = function (item) {
 
   if (App[`selected_${mode}_item`] === item) {
     let next_item = App.get_next_visible_item(mode, false) || App.get_prev_visible_item(mode, false)
-  
+
     if (next_item) {
       App.select_item(next_item)
     } else {
@@ -279,7 +279,7 @@ App.do_item_filter = async function (mode) {
   function check (title, path) {
     return filter_words.every(x => title.includes(x) || path.includes(x))
   }
-  
+
   let today = 1000 * 60 * 60 * 24
 
   function matched (item) {
@@ -290,27 +290,27 @@ App.do_item_filter = async function (mode) {
     if (check(title, path)) {
       if (filter_mode === "all") {
         match = true
-      } 
-      
+      }
+
       else if (filter_mode === "normal") {
         match = App.tab_is_normal(item)
-      } 
-      
+      }
+
       else if (filter_mode === "playing") {
         match = item.audible
-      } 
-      
+      }
+
       else if (filter_mode === "pins") {
         match = item.pinned
-      } 
-      
+      }
+
       else if (filter_mode === "muted") {
         match = item.muted
-      } 
-      
+      }
+
       else if (filter_mode === "suspended") {
         match = item.discarded
-      } 
+      }
 
       else if (filter_mode === "active") {
         match = item.active
@@ -326,15 +326,15 @@ App.do_item_filter = async function (mode) {
 
       else if (filter_mode === "secure") {
         match = item.protocol === "https:"
-      } 
+      }
 
       else if (filter_mode === "insecure") {
         match = item.protocol === "http:"
       }
-      
+
       else if (filter_mode === "today") {
         match = (Date.now() - item.date) <= today
-      } 
+      }
     }
 
     return match
@@ -426,7 +426,7 @@ App.show_item_menu = function (item, x, y) {
       action: function () {
         App.remove_stars()
       }
-    })    
+    })
   }
 
   items.push({
@@ -468,7 +468,7 @@ App.show_item_menu = function (item, x, y) {
 
     items.push({
       separator: true
-    })    
+    })
 
     items.push({
       text: "Close",
@@ -691,8 +691,8 @@ App.create_item_element = function (item) {
     item.element.append(launched)
   }
 
-  if (item.highlighted) { 
-    item.element.classList.add("highlighted")  
+  if (item.highlighted) {
+    item.element.classList.add("highlighted")
   } else {
     item.element.classList.remove("highlighted")
   }
@@ -907,13 +907,13 @@ App.setup_item_window = function (mode) {
     let footer = App.create("div", "footer unselectable", `${mode}_footer`)
     let top = App.create("div", "item_top_container", `${mode}_top_container`)
     App.el(`#window_top_${mode}`).append(top)
-    
+
     win.append(container)
     win.append(footer)
 
     let footer_sort = App.create("div", "footer_sort action", `${mode}_footer_sort`)
     footer_sort.title = App[`${mode}_sort_title`] + "\n" + "Alpha: Sorted alphanumerically"
-    
+
     App.ev(footer_sort, "click", function () {
       App.show_pick_sort(mode, footer_sort)
     })
@@ -960,10 +960,10 @@ App.setup_item_window = function (mode) {
     let filters = App.create("div", "button icon_button", `${mode}_filters`)
     filters.title = "Filters"
     let filters_icon = App.create_icon("triangle")
-    
+
     App.ev(filters, "click", function () {
       App.show_filters(mode)
-    })   
+    })
 
     filters.append(filters_icon)
 
@@ -976,7 +976,7 @@ App.setup_item_window = function (mode) {
 
     App.ev(filter, "input", function () {
       item_filter()
-    })  
+    })
 
     //
     let filter_modes = App.create("div", "button icon_button", `${mode}_filter_modes`)
@@ -985,7 +985,7 @@ App.setup_item_window = function (mode) {
     let filter_modes_text = App.create("div", "", `${mode}_filter_modes_text`)
     filter_modes.append(filter_modes_text)
     filter_modes.append(filter_modes_icon)
-    
+
     App[`${mode}_filter_modes`] = App[`${mode}_filter_modes`] || []
     App[`${mode}_filter_modes`].unshift(["all", "All"])
     App[`${mode}_filter_modes`].push(["images", "Images"])
@@ -1004,7 +1004,7 @@ App.setup_item_window = function (mode) {
       } else {
         App.cycle_filter_modes(mode, false)
       }
-    })  
+    })
 
     //
     let playing
@@ -1013,11 +1013,11 @@ App.setup_item_window = function (mode) {
       playing = App.create("div", "button icon_button hidden", `${mode}_playing`)
       playing.title = "Go To Playing Tab"
       let playing_icon = App.create_icon("speaker")
-      
+
       App.ev(playing, "click", function () {
         App.go_to_playing()
       })
-  
+
       playing.append(playing_icon)
     }
 
@@ -1042,7 +1042,7 @@ App.setup_item_window = function (mode) {
 
     App[`${mode}_actions`].unshift({text: "Top", action: function () {
       App.goto_top(mode)
-    }}) 
+    }})
 
     let actions_menu = App.create("div", "button icon_button", `${mode}_actions`)
     let actions_icon = App.create_icon("triangle")
@@ -1079,7 +1079,7 @@ App.setup_item_window = function (mode) {
 
     App.ev(actions_menu, "click", function () {
       App.show_actions(mode)
-    }) 
+    })
 
     //
     if (mode === "tabs") {
@@ -1098,7 +1098,7 @@ App.setup_item_window = function (mode) {
           e.preventDefault()
           return
         }
-        
+
         App.drag_y = e.clientY
         App.drag_element = e.target.closest(".item")
         let id = App.drag_element.dataset.id
@@ -1142,7 +1142,7 @@ App.setup_item_window = function (mode) {
       container.addEventListener("dragover", function (e) {
         let direction = e.clientY > App.drag_y ? "down" : "up"
         App.drag_y = e.clientY
-        
+
         if (e.target.closest(".item")) {
           let el = e.target.closest(".item")
 
@@ -1189,7 +1189,7 @@ App.setup_item_window = function (mode) {
     if (playing) {
       right_top.append(playing)
     }
-    
+
     right_top.append(actions_menu)
 
     top.append(left_top)
@@ -1275,7 +1275,7 @@ App.show_main_menu = function (btn) {
       selected: selected
     })
   }
-  
+
   items.push({
     separator: true
   })
@@ -1303,7 +1303,7 @@ App.show_main_menu = function (btn) {
       },
 
       {separator: true},
-      
+
       {
         text: "Reset",
         action: function () {
@@ -1367,7 +1367,7 @@ App.do_update_footer_count = function (mode) {
   let s2 = n2.toLocaleString()
   let footer = App.el(`#${mode}_footer`)
   let count = App.el(".footer_count", footer)
-  
+
   if (n1 > 0) {
     count.textContent = `${s1} of ${s2} items`
   } else {
@@ -1611,7 +1611,7 @@ App.highlight_range = function (item) {
     App.dehighlight(item.mode)
     return
   }
-  
+
   App.toggle_highlight(item, App.selection_mode)
 
   if (App.last_highlight && App.last_highlight.highlighted) {
@@ -1703,7 +1703,7 @@ App.launch_items = function (mode) {
   }
 
   let s = App.plural(items.length, "item", "items")
-  
+
   App.show_confirm(`Launch ${s}?`, function () {
     for (let item of items) {
       App.launch_item(item, false)
@@ -1762,7 +1762,7 @@ App.star_items = async function (mode) {
     App.dehighlight(mode)
   }, function () {
     App.dehighlight(mode)
-  })  
+  })
 }
 
 // Highlight visible items
@@ -1805,11 +1805,11 @@ App.check_media = function (item) {
 // Show prev image
 App.cycle_media = function (item, what, dir) {
   let items = App.get_visible_media(item.mode, what)
-  
+
   if (items.length <= 1) {
     return
   }
-  
+
   let waypoint = false
   let next_item
 
@@ -1870,7 +1870,7 @@ App.create_icon = function (name, type = 1) {
 }
 
 // Set footer sort
-App.set_footer_sort = function (mode) { 
+App.set_footer_sort = function (mode) {
   App.el(`#${mode}_footer_sort`).textContent = `Sort: ${App.sort_state.items[mode]}`
 }
 
@@ -1895,12 +1895,12 @@ App.show_filters = function (mode) {
     action: function () {
       App.clear_filter(mode)
     }
-  })  
+  })
 
   if (App.filters.items.length > 0) {
     items.push({
       separator: true
-    })  
+    })
 
     for (let filter of App.filters.items) {
       items.push({
@@ -1920,9 +1920,9 @@ App.show_filters = function (mode) {
       action: function () {
         App.forget_filters()
       }
-    }) 
+    })
   }
-  
+
   NeedContext.show_on_element(el, items, true, el.clientHeight)
 }
 
@@ -1955,7 +1955,7 @@ App.get_sort_items = function (mode) {
         App.set_sort(mode, m)
       },
       selected: App.sort_state.items[mode] === m
-    })  
+    })
   }
 
   return items

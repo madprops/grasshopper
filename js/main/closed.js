@@ -28,7 +28,7 @@ App.closed_action = function (item) {
   if (App.check_media(item)) {
     return
   }
-  
+
   let active = App.get_active_items("closed")
 
   if (active.length === 1) {

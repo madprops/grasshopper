@@ -2,12 +2,12 @@
 App.create_popup = function (args) {
   let p = {}
   p.setup = false
-  
+
   let popup = App.create("div", "popup_main", `popup_${args.id}`)
   let container = App.create("div", "popup_container", `popup_container_${args.id}`)
   container.innerHTML = App.get_template(args.id)
   popup.append(container)
-  
+
   App.ev(popup, "click", function (e) {
     if (e.target.isConnected && !e.target.closest(".popup_container")) {
       App.popups[args.id].hide()
@@ -21,19 +21,19 @@ App.create_popup = function (args) {
     if (args.setup && !p.setup) {
       args.setup()
       p.setup = true
-      console.info(`${args.id} popup setup`)      
+      console.info(`${args.id} popup setup`)
     }
-    
+
     p.element.style.display = "flex"
     App.popup_mode = args.id
     App.popup_open = true
   }
-  
+
   p.hide = function () {
     p.element.style.display = "none"
     App.popup_open = false
   }
-  
+
   App.popups[args.id] = p
 }
 
@@ -48,7 +48,7 @@ App.hide_popup = function (id) {
 }
 
 // Setup popups
-App.setup_popups = function () {  
+App.setup_popups = function () {
   App.create_popup({
     id: "alert"
   })
@@ -101,7 +101,7 @@ App.show_dialog = function (message, buttons) {
   for (let button of buttons) {
     let btn = App.create("div", "button")
     btn.textContent = button[0]
-    
+
     App.ev(btn, "click", function () {
       App.hide_popup("dialog")
       button[1]()

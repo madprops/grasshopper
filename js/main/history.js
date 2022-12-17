@@ -29,7 +29,7 @@ App.history_action = function (item) {
   if (App.check_media(item)) {
     return
   }
-  
+
   let active = App.get_active_items("history")
 
   if (active.length === 1) {

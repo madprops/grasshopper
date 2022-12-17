@@ -42,7 +42,7 @@ App.setup_about = function () {
       let el = App.create("div")
       el.textContent = item
       info_full.append(el)
-    }    
+    }
 
     let manifest = browser.runtime.getManifest()
     let s = `Grasshopper v${manifest.version}`
@@ -96,7 +96,7 @@ App.start_about_info = function () {
   App.el("#about_info").classList.remove("hidden")
   App.el("#about_image").classList.remove("hidden")
   App.el("#about_info_full").classList.add("hidden")
-  
+
   App.about_info_interval = setInterval(function () {
     App.next_about_info(false)
   }, 3000)
