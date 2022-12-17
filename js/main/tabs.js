@@ -45,6 +45,8 @@ App.setup_tabs = function () {
     if (App.window_mode === "tabs") {
       App.refresh_tab(id)
     }
+
+    App.check_playing()
   })
   
   browser.tabs.onActivated.addListener(function (e) {
@@ -66,6 +68,10 @@ App.setup_tabs = function () {
   App.lock_backup_tabs = App.create_debouncer(function () {
     App.backup_tabs_locked = false
   }, App.lock_backup_delay)
+
+  App.check_playing = App.create_debouncer(function () {
+    App.do_check_playing()
+  }, App.check_playing_delay)
 }
 
 // Get open tabs
@@ -734,4 +740,55 @@ App.clean_tabs = function () {
   App.show_confirm(`Close normal tabs? (${ids.length})`, function () {
     App.do_close_tabs(ids)
   }) 
+}
+
+// Show playing icon
+App.show_playing = function () {
+  App.el("#tabs_playing").classList.remove("hidden")
+}
+
+// Hide playing icon
+App.hide_playing = function () {
+  App.el("#tabs_playing").classList.add("hidden")
+}
+
+// Check if a tab is playing
+App.do_check_playing = function () {
+  let playing = App.get_playing_tabs()
+
+  if (playing.length > 0) {
+    App.show_playing()
+  } else {
+    App.hide_playing()
+  }
+}
+
+// Go the a tab emitting sound
+App.go_to_playing = function () {
+  let tabs = App.tabs_items.slice(0)
+  let waypoint = false
+  let first
+
+  for (let tab of tabs) {
+    if (tab.audible) {
+      if (!first) {
+        first = tab
+      }
+
+      if (waypoint) {
+        App.focus_tab(tab)
+        return
+      }
+    }
+
+    if (!waypoint && tab.active) {
+      waypoint = true
+      continue
+    }
+  }
+
+  // If none found then pick the first one
+  if (first) {
+    App.focus_tab(first)
+  }
 }
