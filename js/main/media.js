@@ -59,11 +59,11 @@ App.create_media_windows = function (what) {
     })
 
     App.ev(App.el(`#${what}_prev`), "click", function () {
-      App.cycle_media(App[`current_${what}_item`], what, "prev")
+      App.media_prev(what)
     })
 
     App.ev(App.el(`#${what}_next`), "click", function () {
-      App.cycle_media(App[`current_${what}_item`], what, "next")
+      App.media_next(what)
     })
   }, on_hide: function () {
     if (what === "video") {
@@ -81,6 +81,7 @@ App.show_media = function (what, item) {
   App.hide_media_elements(what)
   App[`current_${what}_item`] = item
   App.el(`#${what}`).src = item.url
+  console.log(item.url)
 
   App[`${what}_loading_timeout`] = setTimeout(function () {
     App.el(`#${what}_loading`).classList.remove("hidden")
@@ -111,4 +112,14 @@ App.hide_media_elements = function (what) {
 // Stop media timeout
 App.stop_media_timeout = function (what) {
   clearTimeout(App[`${what}_loading_timeout`])
+}
+
+// Media prev
+App.media_prev = function (what) {
+  App.cycle_media(App[`current_${what}_item`], what, "prev")
+}
+
+// Media next
+App.media_next = function (what) {
+  App.cycle_media(App[`current_${what}_item`], what, "next")
 }

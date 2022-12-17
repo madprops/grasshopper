@@ -1603,16 +1603,12 @@ App.move_item_element = function (mode, el, to_index) {
 
 // Highlight a range of items
 App.highlight_range = function (item) {
-  if (App.selection_mouse_down && App.selection_mode === undefined) {
-    App.selection_mode = !item.highlighted
-  }
-
-  if (!App.selection_mode) {
+  if (item.highlighted) {
     App.dehighlight(item.mode)
     return
   }
 
-  App.toggle_highlight(item, App.selection_mode)
+  App.toggle_highlight(item, true)
 
   if (App.last_highlight && App.last_highlight.highlighted) {
     let items = App[`${item.mode}_items`]
@@ -1621,11 +1617,11 @@ App.highlight_range = function (item) {
 
     if (index_1 < index_2) {
       for (let it of items.slice(index_1 + 1, index_2)) {
-        App.toggle_highlight(it, App.selection_mode)
+        App.toggle_highlight(it, true)
       }
     } else if (index_1 > index_2) {
       for (let it of items.slice(index_2 + 1, index_1)) {
-        App.toggle_highlight(it, App.selection_mode)
+        App.toggle_highlight(it, true)
       }
     }
   }

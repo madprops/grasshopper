@@ -81,7 +81,6 @@ App.setup_window_mouse = function (mode) {
 
   App.ev(document, "mouseup", function () {
     App.selection_mouse_down = false
-    App.selection_mode = undefined
   })
 
   App.ev(container, "auxclick", function (e) {

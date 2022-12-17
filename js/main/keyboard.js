@@ -14,7 +14,9 @@ App.check_window_keyboard = function (e) {
     if (e.shiftKey) {
       let rect = item.element.getBoundingClientRect()
       App.show_item_menu(item, rect.left, rect.top)
-    } else {
+    } 
+    
+    else {
       App[`${mode}_action`](item)
     }
 
@@ -37,7 +39,9 @@ App.check_window_keyboard = function (e) {
   if (e.key === "Delete") {
     if (mode === "tabs") {
       App.close_tabs()
-    } else if (mode === "stars") {
+    } 
+    
+    else if (mode === "stars") {
       App.remove_stars()
     }
 
@@ -78,17 +82,27 @@ App.setup_keyboard = function () {
       if (App.popup_mode === "confirm") {
         if (e.key === "ArrowLeft") {
           App.focus_confirm_no()
-        } else if (e.key === "ArrowRight") {
+        } 
+        
+        else if (e.key === "ArrowRight") {
           App.focus_confirm_yes()
-        } else if (e.key === "Enter") {
+        } 
+        
+        else if (e.key === "Enter") {
           App.confirm_enter()
         }
-      } else if (App.popup_mode === "dialog") {
+      } 
+      
+      else if (App.popup_mode === "dialog") {
         if (e.key === "Enter") {
           App.dialog_enter()
-        } else if (e.key === "ArrowLeft") {
+        } 
+        
+        else if (e.key === "ArrowLeft") {
           App.dialog_left()
-        } else if (e.key === "ArrowRight") {
+        } 
+        
+        else if (e.key === "ArrowRight") {
           App.dialog_right()
         }
       }
@@ -107,12 +121,36 @@ App.setup_keyboard = function () {
     }
 
     if (App.window_mode === "image") {
+      if (e.key === "ArrowLeft") {
+        App.media_prev("image")
+        e.preventDefault()
+        return
+      } 
+      
+      else if (e.key === "ArrowRight") {
+        App.media_next("image")
+        e.preventDefault()
+        return
+      }
+
       App.hide_media("image")
       e.preventDefault()
       return
     }
 
     if (App.window_mode === "video") {
+      if (e.key === "ArrowLeft") {
+        App.media_prev("video")
+        e.preventDefault()
+        return
+      } 
+      
+      else if (e.key === "ArrowRight") {
+        App.media_next("video")
+        e.preventDefault()
+        return
+      }
+
       App.hide_media("video")
       e.preventDefault()
       return
