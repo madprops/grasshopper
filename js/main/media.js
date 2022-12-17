@@ -80,7 +80,7 @@ App.create_media_windows = function (what) {
     App.hide_media_elements(what)
     App.stop_media_timeout(what)
     App.raise_window(item.mode)
-    App.select_media_item(item)
+    App.select_item(item)
   }})
 }
 
@@ -167,11 +167,4 @@ App.cycle_media = function (item, what, dir) {
   }
 
   App.show_media(what, next_item)
-}
-
-// Select media item in the item window
-App.select_media_item = function (item) {
-  if (App.item_order.includes(item.mode)) {
-    App.select_item(item)
-  }
 }
