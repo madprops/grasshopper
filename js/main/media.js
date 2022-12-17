@@ -17,9 +17,9 @@ App.create_media_windows = function (what) {
       let direction = e.deltaY > 0 ? "down" : "up"
 
       if (direction === "up") {
-        App.cycle_media(App[`current_${what}_item`], what, "prev")
+        App.media_prev(what)
       } else if (direction === "down") {
-        App.cycle_media(App[`current_${what}_item`], what, "next")
+        App.media_next(what)
       }
     })
 
@@ -29,7 +29,9 @@ App.create_media_windows = function (what) {
         media.classList.remove("hidden")
         App.el(`#${what}_loading`).classList.add("hidden")
       })
-    } else if (what === "video") {
+    } 
+    
+    else if (what === "video") {
       App.ev(media, "canplay", function () {
         App.stop_media_timeout(what)
         media.classList.remove("hidden")
@@ -43,9 +45,13 @@ App.create_media_windows = function (what) {
 
       if (item.mode === "tabs") {
         App.focus_tab(item)
-      } else if (item.mode === "stars") {
+      } 
+      
+      else if (item.mode === "stars") {
         App.open_star(item)
-      } else {
+      } 
+      
+      else {
         App.focus_or_open_item(item)
       }
     })
@@ -70,9 +76,11 @@ App.create_media_windows = function (what) {
       App.stop_video()
     }
 
+    let item = App[`current_${what}_item`]
     App.hide_media_elements(what)
     App.stop_media_timeout(what)
-    App.raise_window(App[`current_${what}_item`].mode)
+    App.raise_window(item.mode)
+    App.select_media_item(item)
   }})
 }
 
@@ -121,4 +129,48 @@ App.media_prev = function (what) {
 // Media next
 App.media_next = function (what) {
   App.cycle_media(App[`current_${what}_item`], what, "next")
+}
+
+// Show prev image
+App.cycle_media = function (item, what, dir) {
+  let items = App.get_visible_media(item.mode, what)
+
+  if (items.length <= 1) {
+    return
+  }
+
+  let waypoint = false
+  let next_item
+
+  if (dir === "prev") {
+    items.reverse()
+  }
+
+  for (let it of items) {
+    if (!it[what] || !it.visible) {
+      continue
+    }
+
+    if (waypoint) {
+      next_item = it
+      break
+    }
+
+    if (it === item) {
+      waypoint = true
+    }
+  }
+
+  if (!next_item) {
+    next_item = items[0]
+  }
+
+  App.show_media(what, next_item)
+}
+
+// Select media item in the item window
+App.select_media_item = function (item) {
+  if (App.item_order.includes(item.mode)) {
+    App.select_item(item)
+  }
 }
