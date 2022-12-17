@@ -10,7 +10,7 @@ App.check_window_keyboard = function (e) {
 
   if (e.key === "Enter") {
     let item = App[`selected_${mode}_item`]
-    
+
     if (e.shiftKey) {
       let rect = item.element.getBoundingClientRect()
       App.show_item_menu(item, rect.left, rect.top)
@@ -20,15 +20,15 @@ App.check_window_keyboard = function (e) {
 
     e.preventDefault()
     return
-  } 
-  
+  }
+
   if (e.key === "ArrowUp") {
     App.select_item_above(mode, e.shiftKey)
     e.preventDefault()
     return
-  } 
-  
-  if (e.key === "ArrowDown") {    
+  }
+
+  if (e.key === "ArrowDown") {
     App.select_item_below(mode, e.shiftKey)
     e.preventDefault()
     return
@@ -60,8 +60,8 @@ App.setup_keyboard = function () {
     if (NeedContext.open) {
       if (e.shiftKey && e.key === "Enter") {
         NeedContext.hide()
-      } 
-      
+      }
+
       else if (e.shiftKey && e.key === " ") {
         NeedContext.hide()
       }
@@ -74,7 +74,7 @@ App.setup_keyboard = function () {
       if (App.popup_mode === "textarea" || App.popup_mode === "input") {
         return
       }
-            
+
       if (App.popup_mode === "confirm") {
         if (e.key === "ArrowLeft") {
           App.focus_confirm_no()

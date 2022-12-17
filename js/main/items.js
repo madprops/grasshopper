@@ -1016,7 +1016,7 @@ App.setup_item_window = function (mode) {
       
       App.ev(playing, "click", function () {
         App.go_to_playing()
-      })   
+      })
   
       playing.append(playing_icon)
     }
@@ -1186,7 +1186,7 @@ App.setup_item_window = function (mode) {
     center_top.append(filter)
     center_top.append(filters)
 
-    if (mode === "tabs") {
+    if (playing) {
       right_top.append(playing)
     }
     
