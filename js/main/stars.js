@@ -149,13 +149,13 @@ App.remove_star = function () {
   }
 
   App.show_confirm("Remove this star?", function () {
-    App.do_remove([App.star_edited.id])
+    App.do_remove_stars([App.star_edited.id])
     App.hide_star_editor()
   })
 }
 
 // Do remove action
-App.do_remove = function (ids) {
+App.do_remove_stars = function (ids) {
   for (let id of ids) {
     if (App.stars_items) {
       let item = App.get_item_by_id("stars", id)
@@ -309,7 +309,7 @@ App.remove_stars = function () {
   
   App.show_confirm(`Remove stars? (${ids.length})`, function () {
     App.backup_stars()
-    App.do_remove(ids)
+    App.do_remove_stars(ids)
 
     if (ids.length > 1) {
       App.show_feedback("Stars have been deleted")
