@@ -1007,15 +1007,19 @@ App.setup_item_window = function (mode) {
     })  
 
     //
-    let playing = App.create("div", "button icon_button hidden", `${mode}_playing`)
-    playing.title = "Go To Playing Tab"
-    let playing_icon = App.create_icon("speaker")
-    
-    App.ev(playing, "click", function () {
-      App.go_to_playing()
-    })   
+    let playing
 
-    playing.append(playing_icon)    
+    if (mode === "tabs") {
+      playing = App.create("div", "button icon_button hidden", `${mode}_playing`)
+      playing.title = "Go To Playing Tab"
+      let playing_icon = App.create_icon("speaker")
+      
+      App.ev(playing, "click", function () {
+        App.go_to_playing()
+      })   
+  
+      playing.append(playing_icon)
+    }
 
     //
     if (!App[`${mode}_actions`]) {
@@ -1181,7 +1185,11 @@ App.setup_item_window = function (mode) {
     left_top.append(filter_modes)
     center_top.append(filter)
     center_top.append(filters)
-    right_top.append(playing)
+
+    if (mode === "tabs") {
+      right_top.append(playing)
+    }
+    
     right_top.append(actions_menu)
 
     top.append(left_top)
