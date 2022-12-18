@@ -152,12 +152,7 @@ App.refresh_tab = async function (id) {
   }
 
   else {
-    let tab = App.process_item("tabs", info)
-    App.tabs_items.splice(info.index, 0, tab)
-    App.create_item_element(tab)
-    App.el("#tabs_container").append(tab.element)
-    App.move_item_element("tabs", tab.element, info.index)
-    App.update_footer_count("tabs")
+    App.insert_item("tabs", info)
   }
 }
 

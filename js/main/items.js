@@ -607,7 +607,7 @@ App.process_items = function (mode, items) {
 }
 
 // Process an item
-App.process_item = function (mode, item, exclude = []) {
+App.process_item = function (mode, item, exclude = [], o_item) {
   if (!item || !item.url) {
     return false
   }
@@ -630,24 +630,19 @@ App.process_item = function (mode, item, exclude = []) {
   let video = App.is_video(url)
 
   let obj = {
-    id: item.id || App[`${mode}_idx`],
     title: title,
     title_lower: title.toLowerCase(),
     url: url,
     path: path,
     path_lower: path.toLowerCase(),
     favicon: item.favIconUrl,
-    empty: false,
-    created: false,
     mode: mode,
     protocol: url_obj.protocol,
-    closed: false,
     window_id: item.windowId,
     session_id: item.sessionId,
-    visible: true,
-    highlighted: false,
     image: image,
     video: video,
+    created: false,
   }
 
   if (mode === "tabs") {
@@ -671,9 +666,22 @@ App.process_item = function (mode, item, exclude = []) {
     obj.date = item.lastAccessed
   }
 
-  App.create_empty_item_element(obj)
-  App[`${mode}_idx`] += 1
-  return obj
+  if (o_item) {
+    o_item = Object.assign(o_item, obj)
+    o_item.element.innerHTML = ""
+    App.create_item_element(o_item)
+  } 
+  
+  else {
+    obj.id = item.id || App[`${mode}_idx`]
+    obj.empty = false
+    obj.closed = false
+    obj.visible = true
+    obj.highlighted = false
+    App.create_empty_item_element(obj)
+    App[`${mode}_idx`] += 1
+    return obj
+  }
 }
 
 // Create empty item
@@ -1487,37 +1495,12 @@ App.show_launched = function (item) {
 }
 
 // Update item
-App.update_item = function (mode, id, source) {
-  for (let [i, it] of App[`${mode}_items`].entries()) {
-    if (it.id !== id) {
-      continue
-    }
-
-    let new_item = App.process_item(mode, source)
-
-    if (!new_item) {
+App.update_item = function (mode, id, info) {
+  for (let item of App[`${mode}_items`]) {
+    if (item.id === id) {
+      App.process_item(mode, info, [], item)
       break
     }
-
-    if (!it.visible) {
-      App.hide_item(new_item)
-    }
-
-    let selected = App[`selected_${mode}_item`] === it
-    let highlighted = it.highlighted
-    App.create_item_element(new_item)
-    App[`${mode}_items`][i].element.replaceWith(new_item.element)
-    App[`${mode}_items`][i] = new_item
-
-    if (selected) {
-      App.select_item(new_item)
-    }
-
-    if (highlighted) {
-      App.toggle_highlight(new_item, true)
-    }
-
-    break
   }
 }
 
@@ -1995,4 +1978,18 @@ App.get_active_items = function (mode) {
   else {
     return highlights
   }
+}
+
+// Insert new item
+App.insert_item = function (mode, info) {
+  let item = App.process_item(mode, info)
+  App[`${mode}_items`].splice(info.index, 0, tab)
+  App.create_item_element(item)
+  App.el("#tabs_container").append(item.element)
+
+  if (mode === "tabs") {
+    App.move_item_element("tabs", item.element, info.index)
+  }
+
+  App.update_footer_count(mode)  
 }
