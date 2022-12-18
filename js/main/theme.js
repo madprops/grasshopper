@@ -36,7 +36,9 @@ App.apply_theme = function () {
 
     if (App.settings.background_image === "none") {
       App.set_css_var("background_image", "unset")
-    } else {
+    } 
+    
+    else {
       App.set_css_var("background_image", `url(../img/backgrounds/${App.settings.background_image}.jpg)`)
     }
   } catch (e) {
@@ -65,7 +67,9 @@ App.random_theme = function (mode) {
 
   if (mode === "dark") {
     colors = App.get_random_theme("dark")
-  } else if (mode === "light") {
+  } 
+  
+  else if (mode === "light") {
     colors = App.get_random_theme("light")
   }
 
@@ -102,7 +106,9 @@ App.detect_theme = async function () {
 
     if (theme.colors.toolbar_text && (theme.colors.toolbar !== theme.colors.toolbar_text)) {
       text_color = theme.colors.toolbar_text
-    } else {
+    } 
+    
+    else {
       text_color = App.colorlib.get_lighter_or_darker(background_color, App.theme_color_diff)
     }
 

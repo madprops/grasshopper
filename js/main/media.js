@@ -18,7 +18,9 @@ App.create_media_windows = function (what) {
 
       if (direction === "up") {
         App.media_prev(what)
-      } else if (direction === "down") {
+      } 
+      
+      else if (direction === "down") {
         App.media_next(what)
       }
     })

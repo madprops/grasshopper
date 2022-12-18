@@ -64,7 +64,9 @@ App.select_item_above = function (mode, highlight = false) {
   if (item) {
     if (highlight) {
       App.check_highlight(mode, item)
-    } else {
+    } 
+    
+    else {
       if (App.dehighlight(mode)) {
         return
       }
@@ -81,7 +83,9 @@ App.select_item_below = function (mode, highlight = false) {
   if (item) {
     if (highlight) {
       App.check_highlight(mode, item)
-    } else {
+    } 
+    
+    else {
       if (App.dehighlight(mode)) {
         return
       }
@@ -167,7 +171,9 @@ App.get_prev_visible_item = function (mode, wrap = true) {
 App.update_footer = function (mode) {
   if (App.selected_valid(mode)) {
     App.set_footer_info(mode, App[`selected_${mode}_item`].footer)
-  } else {
+  } 
+  
+  else {
     App.empty_footer(mode)
   }
 }
@@ -220,7 +226,9 @@ App.remove_item = function (item) {
 
     if (next_item) {
       App.select_item(next_item)
-    } else {
+    } 
+    
+    else {
       App.select_first_item(mode)
     }
   }
@@ -347,7 +355,9 @@ App.do_item_filter = async function (mode) {
 
     if (skip || matched(it)) {
       App.show_item(it)
-    } else {
+    } 
+    
+    else {
       App.hide_item(it)
     }
   }
@@ -383,7 +393,9 @@ App.show_item_menu = function (item, x, y) {
           App.unpin_tabs(item)
         }
       })
-    } else {
+    } 
+    
+    else {
       items.push({
         text: "Pin",
         action: function () {
@@ -399,7 +411,9 @@ App.show_item_menu = function (item, x, y) {
           App.unmute_tabs(item.id)
         }
       })
-    } else {
+    } 
+    
+    else {
       items.push({
         text: "Mute",
         action: function () {
@@ -476,7 +490,9 @@ App.show_item_menu = function (item, x, y) {
         App.close_tabs()
       }
     })
-  } else {
+  } 
+  
+  else {
     items.push({
       text: "Launch",
       action: function () {
@@ -513,7 +529,9 @@ App.get_move_menu_items = async function (item) {
 
     if (win.id === App.window_id) {
       text = "This Window"
-    } else {
+    } 
+    
+    else {
       let s = `${win.title.substring(0, 25).trim()} (ID: ${win.id})`
       text = `Move to: ${s}`
     }
@@ -639,11 +657,17 @@ App.process_item = function (mode, item, exclude = []) {
     obj.muted = item.mutedInfo.muted
     obj.discarded = item.discarded
     obj.date = item.lastAccessed
-  } else if (mode === "stars") {
+  } 
+  
+  else if (mode === "stars") {
     obj.date = item.date_last_visit
-  } else if (mode === "history") {
+  } 
+  
+  else if (mode === "history") {
     obj.date = item.lastVisitTime
-  } else if (mode === "closed") {
+  } 
+  
+  else if (mode === "closed") {
     obj.date = item.lastAccessed
   }
 
@@ -686,14 +710,18 @@ App.create_item_element = function (item) {
     }
 
     item.element.append(pin_icon)
-  } else {
+  } 
+  
+  else {
     let launched = App.create("div", "item_info item_info_launched")
     item.element.append(launched)
   }
 
   if (item.highlighted) {
     item.element.classList.add("highlighted")
-  } else {
+  } 
+  
+  else {
     item.element.classList.remove("highlighted")
   }
 
@@ -762,7 +790,9 @@ App.set_item_text = function (item) {
   if (App.settings.text_mode === "title") {
     content = item.title || item.path
     item.footer = decodeURI(item.path) || item.title
-  } else if (App.settings.text_mode === "url") {
+  } 
+  
+  else if (App.settings.text_mode === "url") {
     content = decodeURI(item.path) || item.title
     item.footer = item.title || item.path
   }
@@ -883,7 +913,9 @@ App.show_item_window = async function (mode, cycle = false) {
 
   if (value) {
     App.do_item_filter(mode)
-  } else {
+  } 
+  
+  else {
     App.select_first_item(mode, true)
   }
 
@@ -951,7 +983,9 @@ App.setup_item_window = function (mode) {
     App.ev(main_menu, "wheel", function (e) {
       if (e.deltaY < 0) {
         App.cycle_item_windows(true)
-      } else {
+      } 
+      
+      else {
         App.cycle_item_windows(false)
       }
     })
@@ -1001,7 +1035,9 @@ App.setup_item_window = function (mode) {
     App.ev(filter_modes, "wheel", function (e) {
       if (e.deltaY < 0) {
         App.cycle_filter_modes(mode, true)
-      } else {
+      } 
+      
+      else {
         App.cycle_filter_modes(mode, false)
       }
     })
@@ -1063,13 +1099,19 @@ App.setup_item_window = function (mode) {
 
         if (item.conditional) {
           items.push(item.conditional())
-        } else if (item.action) {
+        } 
+        
+        else if (item.action) {
           items.push({text: item.text, action: function () {
             item.action()
           }})
-        } else if (item.items) {
+        } 
+        
+        else if (item.items) {
           items.push({text: item.text, items: item.items})
-        } else if (item.get_items) {
+        } 
+        
+        else if (item.get_items) {
           items.push({text: item.text, get_items: item.get_items})
         }
       }
@@ -1115,7 +1157,9 @@ App.setup_item_window = function (mode) {
               App.drag_items.push(tab)
             }
           }
-        } else {
+        } 
+        
+        else {
           App.drag_items.push(App.drag_item)
         }
 
@@ -1162,7 +1206,9 @@ App.setup_item_window = function (mode) {
 
           if (direction === "down") {
             el.after(...App.drag_els)
-          } else {
+          } 
+          
+          else {
             el.before(...App.drag_els)
           }
 
@@ -1213,13 +1259,19 @@ App.cycle_item_windows = function (reverse = false, cycle = false) {
   if (reverse) {
     if (index === 0) {
       new_mode = modes.slice(-1)[0]
-    } else {
+    } 
+    
+    else {
       new_mode = modes[index - 1]
     }
-  } else {
+  } 
+  
+  else {
     if (index === modes.length - 1) {
       new_mode = modes[0]
-    } else {
+    } 
+    
+    else {
       new_mode = modes[index + 1]
     }
   }
@@ -1370,7 +1422,9 @@ App.do_update_footer_count = function (mode) {
 
   if (n1 > 0) {
     count.textContent = `${s1} of ${s2} items`
-  } else {
+  } 
+  
+  else {
     count.textContent = `${s2} ${App.plural_2(n2, "item", "items")}`
   }
 }
@@ -1523,7 +1577,9 @@ App.cycle_filter_modes = function (mode, reverse = true) {
         waypoint = true
       }
     }
-  } else {
+  } 
+  
+  else {
     for (let filter_mode of modes) {
       if (waypoint) {
         App.set_filter_mode(mode, filter_mode)
@@ -1539,7 +1595,9 @@ App.cycle_filter_modes = function (mode, reverse = true) {
   // If no result
   if (reverse) {
     App.set_filter_mode(mode, modes[modes.length - 1])
-  } else {
+  } 
+  
+  else {
     App.set_filter_mode(mode, modes[0])
   }
 }
@@ -1592,10 +1650,14 @@ App.move_item_element = function (mode, el, to_index) {
 
   if (to_index === 0) {
     container.prepend(el)
-  } else {
+  } 
+  
+  else {
     if (from_index < to_index) {
       container.insertBefore(el, items[to_index + 1])
-    } else {
+    } 
+    
+    else {
       container.insertBefore(el, items[to_index])
     }
   }
@@ -1619,7 +1681,9 @@ App.highlight_range = function (item) {
       for (let it of items.slice(index_1 + 1, index_2)) {
         App.toggle_highlight(it, true)
       }
-    } else if (index_1 > index_2) {
+    } 
+    
+    else if (index_1 > index_2) {
       for (let it of items.slice(index_2 + 1, index_1)) {
         App.toggle_highlight(it, true)
       }
@@ -1650,13 +1714,17 @@ App.toggle_highlight = async function (item, what) {
 
   if (what !== undefined) {
     highlight = what
-  } else {
+  } 
+  
+  else {
     highlight = !item.highlighted
   }
 
   if (highlight) {
     item.element.classList.add("highlighted")
-  } else {
+  } 
+  
+  else {
     item.element.classList.remove("highlighted")
   }
 
@@ -1683,7 +1751,9 @@ App.launch_item = function (item, close = true) {
 
   if (close) {
     window.close()
-  } else {
+  } 
+  
+  else {
     App.show_launched(item)
   }
 }
@@ -1777,7 +1847,9 @@ App.highlight_items = function (mode) {
       }
 
       App.toggle_highlight(item, what)
-    } else {
+    } 
+    
+    else {
       App.toggle_highlight(item, false)
     }
   }
@@ -1838,7 +1910,9 @@ App.sort_items_by_alpha = function (items) {
   items.sort(function (a, b) {
     if (App.settings.text_mode === "title") {
       return a.title > b.title
-    } else if (App.settings.text_mode === "url") {
+    } 
+    
+    else if (App.settings.text_mode === "url") {
       return a.url > b.url
     }
   })
@@ -1931,7 +2005,9 @@ App.get_active_items = function (mode) {
 
   if (highlights.length === 0) {
     return [App[`selected_${mode}_item`]]
-  } else {
+  } 
+  
+  else {
     return highlights
   }
 }

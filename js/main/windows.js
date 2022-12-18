@@ -49,7 +49,9 @@ App.create_window = function (args) {
       App.ev(x, "click", function () {
         if (args.on_x) {
           args.on_x()
-        } else {
+        } 
+        
+        else {
           w.hide()
         }
       })
@@ -108,7 +110,9 @@ App.create_window = function (args) {
   w.hide = function () {
     if (args.on_hide) {
       args.on_hide()
-    } else {
+    } 
+    
+    else {
       App.show_first_item_window()
 
       if (args.after_hide) {
@@ -136,7 +140,9 @@ App.hide_all_windows = function () {
 App.show_window = function (mode) {
   if (App.item_order.includes(mode)) {
     App.show_item_window(mode)
-  } else {
+  } 
+  
+  else {
     App.windows[mode].show()
   }
 }

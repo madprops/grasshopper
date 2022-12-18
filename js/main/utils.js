@@ -62,7 +62,9 @@ App.copy_to_clipboard = function (text) {
 App.plural = function (n, singular, plural) {
   if (n === 1) {
     return `${n.toLocaleString()} ${singular}`
-  } else {
+  } 
+  
+  else {
     return `${n.toLocaleString()} ${plural}`
   }
 }
@@ -71,7 +73,9 @@ App.plural = function (n, singular, plural) {
 App.plural_2 = function (n, singular, plural) {
   if (n === 1) {
     return singular
-  } else {
+  } 
+  
+  else {
     return plural
   }
 }
@@ -138,7 +142,9 @@ App.get_random_int = function (min, max, exclude = undefined) {
     if (num === exclude) {
       if (num + 1 <= max) {
         num = num + 1
-      } else if (num - 1 >= min) {
+      } 
+      
+      else if (num - 1 >= min) {
         num = num - 1
       }
     }
@@ -175,7 +181,9 @@ App.get_extension = function (s) {
     if (matches) {
       return matches[1]
     }
-  } else {
+  } 
+  
+  else {
     let matches = s.match(/\.(\w+)(?=$|[#?])/)
 
     if (matches) {

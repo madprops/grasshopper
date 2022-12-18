@@ -4,7 +4,9 @@ App.stor_get_settings = async function () {
 
   if (Object.keys(obj).length === 0) {
     App.settings = {}
-  } else {
+  } 
+  
+  else {
     App.settings = obj[App.stor_settings_name]
   }
 
@@ -37,7 +39,9 @@ App.stor_get_stars = async function () {
 
   if (Object.keys(obj).length === 0) {
     App.stars = {}
-  } else {
+  } 
+  
+  else {
     App.stars = obj[App.stor_stars_name]
   }
 
@@ -85,7 +89,9 @@ App.stor_get_tab_state = async function () {
 
   if (Object.keys(obj).length === 0) {
     App.tab_state = {}
-  } else {
+  } 
+  
+  else {
     App.tab_state = obj[App.stor_tab_state_name]
   }
 
@@ -116,7 +122,9 @@ App.stor_get_sort_state = async function () {
 
   if (Object.keys(obj).length === 0) {
     App.sort_state = {}
-  } else {
+  } 
+  
+  else {
     App.sort_state = obj[App.stor_sort_state_name]
   }
 
@@ -147,7 +155,9 @@ App.stor_get_filters = async function () {
 
   if (Object.keys(obj).length === 0) {
     App.filters = {}
-  } else {
+  } 
+  
+  else {
     App.filters = obj[App.stor_filters_name]
   }
 

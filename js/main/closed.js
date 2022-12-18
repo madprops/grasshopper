@@ -33,7 +33,9 @@ App.closed_action = function (item) {
 
   if (active.length === 1) {
     App.focus_or_open_item(active[0])
-  } else if (active.length > 1) {
+  } 
+  
+  else if (active.length > 1) {
     App.launch_items("closed")
   }
 }
