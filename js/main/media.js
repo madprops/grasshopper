@@ -30,6 +30,10 @@ App.create_media_windows = function (what) {
       })
     }
 
+    App.ev(media, "error", function () {
+      App.media_show_error(what)
+    })
+
     App.ev(App.el(`#${what}_open`), "click", function () {
       let item = App[`current_${what}_item`]
 
@@ -87,6 +91,7 @@ App.show_media = function (what, item) {
 
   App.el(`#${what}_url`).textContent = item.url
   App.show_window(what)
+  App.media_show_loading(what)
 }
 
 // Hide media
@@ -157,4 +162,14 @@ App.cycle_media = function (item, what, dir) {
   }
 
   App.show_media(what, next_item)
+}
+
+// Media show loading
+App.media_show_loading = function (what) {
+  App.el(`#${what}_loading`).textContent = "Loading..."
+}
+
+// Media show error
+App.media_show_error = function (what) {
+  App.el(`#${what}_loading`).textContent = "Loading Error"
 }
