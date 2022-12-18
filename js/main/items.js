@@ -103,7 +103,7 @@ App.select_item_below = function (mode, highlight = false) {
 App.get_next_visible_item = function (mode, wrap = true) {
   let waypoint = false
 
-  if (!App.selected_valid(mode)) {
+  if (!App.get_selected(mode)) {
     waypoint = true
   }
 
@@ -139,7 +139,7 @@ App.get_next_visible_item = function (mode, wrap = true) {
 App.get_prev_visible_item = function (mode, wrap = true) {
   let waypoint = false
 
-  if (!App.selected_valid(mode)) {
+  if (!App.get_selected(mode)) {
     waypoint = true
   }
 
@@ -173,7 +173,7 @@ App.get_prev_visible_item = function (mode, wrap = true) {
 
 // Updates a footer
 App.update_footer = function (mode) {
-  if (App.selected_valid(mode)) {
+  if (App.get_selected(mode)) {
     App.set_footer_info(mode, App.get_selected(mode).footer)
   }
 
