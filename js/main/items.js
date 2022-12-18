@@ -677,6 +677,7 @@ App.process_item = function (mode, item, exclude = [], o_item) {
   else {
     obj.id = item.id || App[`${mode}_idx`]
     obj.empty = false
+    obj.closed = false
     obj.visible = true
     obj.highlighted = false
     App.create_empty_item_element(obj)
