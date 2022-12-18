@@ -594,19 +594,23 @@ input::placeholder {
   text-align: center;
 }
 
+#window_content_image {
+  max-height: 100vh;
+}
+
 .media_container {
   display: flex;
-  align-items: center;
+  align-items: flex-start;
   justify-content: center;
   padding-top: 1.6rem;
   padding-bottom: 1.6rem;
   width: 100%;
+  height: 100%;
+  overflow: hidden;
 }
 
 .media_loading {
-  height: 100%;
-  max-width: 27%;
-  object-fit: contain;
+  font-size: 1.2rem;
 }
 
 .media {

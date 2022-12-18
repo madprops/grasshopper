@@ -158,28 +158,3 @@ App.cycle_media = function (item, what, dir) {
 
   App.show_media(what, next_item)
 }
-
-// Media scroll
-App.media_scroll = function (what, dir) {
-  let el = App.el(`#window_content_${what}`)
-  
-  if (dir === "up") {
-    el.scrollTop -= App.media_scroll_amount
-  }
-
-  else if (dir === "down") {
-    el.scrollTop += App.media_scroll_amount
-  }
-}
-
-// Scroll media to top
-App.media_top = function (what) {
-  let el = App.el(`#window_content_${what}`)
-  el.scrollTop = 0
-}
-
-// Scroll media to bottom
-App.media_bottom = function (what) {
-  let el = App.el(`#window_content_${what}`)
-  el.scrollTop = el.scrollHeight
-}

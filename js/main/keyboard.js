@@ -133,30 +133,6 @@ App.setup_keyboard = function () {
         return
       }
 
-      else if (e.key === "ArrowUp") {
-        App.media_scroll(App.window_mode, "up")
-        e.preventDefault()
-        return
-      }
-
-      else if (e.key === "ArrowDown") {
-        App.media_scroll(App.window_mode, "down")
-        e.preventDefault()
-        return
-      }
-
-      else if (e.key === "Home") {
-        App.media_top(App.window_mode)
-        e.preventDefault()
-        return
-      }
-
-      else if (e.key === "End") {
-        App.media_bottom(App.window_mode)
-        e.preventDefault()
-        return
-      }
-
       App.hide_media(App.window_mode)
       e.preventDefault()
       return
