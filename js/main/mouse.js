@@ -45,58 +45,57 @@ App.setup_window_mouse = function (mode) {
   })
 
   App.ev(container, "mouseup", function (e) {
-    if (e.button !== 0) {
-      return
+    // Main click
+    if (e.button === 0) {
+      if (e.target.closest(`.${mode}_item`)) {
+        let item = App.get_cursor_item(mode, e)
+  
+        if (e.target.closest(".item_info")) {
+          if (e.target.closest(".item_info_pin")) {
+            App.toggle_pin(item)
+          }
+  
+          return
+        }
+  
+        if (e.shiftKey) {
+          return
+        }
+  
+        if (e.ctrlKey) {
+          App.toggle_highlight(item)
+          App.last_highlight = item
+        }
+  
+        else if (e.shiftKey) {
+          App.highlight_range(item)
+        }
+  
+        else {
+          App[`${mode}_action`](item)
+        }
+      }
+    } 
+    
+    // Middle click
+    else if (e.button === 1) {
+      if (e.target.closest(`.${mode}_item`)) {
+        let item = App.get_cursor_item(mode, e)
+        App[`${mode}_action_alt`](item, e.shiftKey)
+      }
     }
 
-    if (e.target.closest(`.${mode}_item`)) {
-      let item = App.get_cursor_item(mode, e)
-
-      if (e.target.closest(".item_info")) {
-        if (e.target.closest(".item_info_pin")) {
-          App.toggle_pin(item)
-        }
-
-        return
-      }
-
-      if (e.shiftKey) {
-        return
-      }
-
-      if (e.ctrlKey) {
-        App.toggle_highlight(item)
-        App.last_highlight = item
-      }
-
-      else if (e.shiftKey) {
-        App.highlight_range(item)
-      }
-
-      else {
-        App[`${mode}_action`](item)
+    // Context click
+    else if (e.button === 2) {
+      if (e.target.closest(`.${mode}_item`)) {
+        App.show_item_menu(App.get_cursor_item(mode, e), e.clientX, e.clientY)
+        e.preventDefault()
       }
     }
   })
 
   App.ev(document, "mouseup", function () {
     App.selection_mouse_down = false
-  })
-
-  App.ev(container, "auxclick", function (e) {
-    if (e.button === 1) {
-      if (e.target.closest(`.${mode}_item`)) {
-        let item = App.get_cursor_item(mode, e)
-        App[`${mode}_action_alt`](item, e.shiftKey)
-      }
-    }
-  })
-
-  App.ev(container, "contextmenu", function (e) {
-    if (e.target.closest(`.${mode}_item`)) {
-      App.show_item_menu(App.get_cursor_item(mode, e), e.clientX, e.clientY)
-      e.preventDefault()
-    }
   })
 }
 

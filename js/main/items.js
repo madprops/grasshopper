@@ -10,10 +10,6 @@ App.setup_items = function () {
   App.save_filter = App.create_debouncer(function (filter) {
     App.do_save_filter(filter)
   }, App.save_filter_delay)
-
-  App.create_item_element = App.create_debouncer(function (item) {
-    App.do_create_item_element(item)
-  }, App.create_item_element_delay)
 }
 
 // Block select for some ms
@@ -32,7 +28,7 @@ App.select_item = function (item, scroll = "nearest") {
   }
 
   if (!item.created) {
-    App.do_create_item_element(item)
+    App.create_item_element(item)
   }
 
   App[`selected_${item.mode}_item`] = item
@@ -696,7 +692,7 @@ App.create_empty_item_element = function (item) {
 }
 
 // Create an item element
-App.do_create_item_element = function (item) {
+App.create_item_element = function (item) {
   item.element.innerHTML = ""
 
   if (item.mode === "tabs") {
@@ -870,7 +866,7 @@ App.intersection_observer = function (mode, options) {
       }
 
       if (!item.created && item.visible) {
-        App.do_create_item_element(item)
+        App.create_item_element(item)
       }
     }
   }, options)
