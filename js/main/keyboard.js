@@ -120,38 +120,44 @@ App.setup_keyboard = function () {
       return
     }
 
-    if (App.window_mode === "image") {
+    if (App.window_mode === "image" || App.window_mode === "video") {
       if (e.key === "ArrowLeft") {
-        App.media_prev("image")
+        App.media_prev(App.window_mode)
         e.preventDefault()
         return
       }
 
       else if (e.key === "ArrowRight") {
-        App.media_next("image")
+        App.media_next(App.window_mode)
         e.preventDefault()
         return
       }
 
-      App.hide_media("image")
-      e.preventDefault()
-      return
-    }
-
-    if (App.window_mode === "video") {
-      if (e.key === "ArrowLeft") {
-        App.media_prev("video")
+      else if (e.key === "ArrowUp") {
+        App.media_scroll(App.window_mode, "up")
         e.preventDefault()
         return
       }
 
-      else if (e.key === "ArrowRight") {
-        App.media_next("video")
+      else if (e.key === "ArrowDown") {
+        App.media_scroll(App.window_mode, "down")
         e.preventDefault()
         return
       }
 
-      App.hide_media("video")
+      else if (e.key === "Home") {
+        App.media_top(App.window_mode)
+        e.preventDefault()
+        return
+      }
+
+      else if (e.key === "End") {
+        App.media_bottom(App.window_mode)
+        e.preventDefault()
+        return
+      }
+
+      App.hide_media(App.window_mode)
       e.preventDefault()
       return
     }
