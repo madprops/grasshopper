@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+
+<head>
+  <meta charset="utf-8">
+  <title>Minesweeper</title>
+  <link rel="stylesheet" type="text/css" href="css/style.css">
+  <script src="../../js/main/app.js"></script>
+</head>
+
+<body>
+  <div id="main">
+    <div id="top">
+      <div id="levels">
+        <div id="level_easy" data-level="easy">Easy</div>
+        <div id="level_normal" data-level="normal" class="level_selected">Normal</div>
+        <div id="level_hard" data-level="hard">Hard</div>
+        <div id="level_expert" data-level="expert">Expert</div>
+      </div>
+      <div id="info">
+        <img id="face" src="img/face_waiting.png" class="face">
+        <div id="mines"></div>
+        <div id="time"></div>
+      </div>
+    </div>
+    <div id="grid"></div>
+  </div>
+  
+  <audio id="audio_explosion" src="audio/explosion.mp3"></audio>
+  <audio id="audio_click" src="audio/click.mp3"></audio>
+  <audio id="audio_victory" src="audio/victory.mp3"></audio>
+  <audio id="audio_start" src="audio/start.mp3"></audio>
+
+  <script src="js/base.js"></script>
+</body>

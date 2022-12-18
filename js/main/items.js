@@ -1372,6 +1372,12 @@ App.show_main_menu = function (btn) {
   })
 
   items.push({
+    text: "Mines", action: function () {
+      App.show_minesweeper()
+    }
+  })
+
+  items.push({
     text: "About",
     action: function () {
       App.show_window("about")
