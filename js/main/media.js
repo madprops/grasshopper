@@ -9,8 +9,14 @@ App.create_media_windows = function (what) {
   App.create_window({id: what, setup: function () {
     let media = App.el(`#${what}`)
 
-    App.ev(App.el(`#${what}_container`), "click", function () {
-      App.hide_media(what)
+    App.ev(App.el(`#${what}_container`), "wheel", function (e) {
+      let direction = e.deltaY > 0 ? "down" : "up"
+
+      if (direction === "up") {
+        App.media_prev(what)
+      } else if (direction === "down") {
+        App.media_next(what)
+      }
     })
 
     if (what === "image") {
@@ -171,5 +177,5 @@ App.media_show_loading = function (what) {
 
 // Media show error
 App.media_show_error = function (what) {
-  App.el(`#${what}_loading`).textContent = "Loading Error"
+  App.el(`#${what}_loading`).textContent = "Couldn't load this image"
 }
