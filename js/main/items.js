@@ -31,7 +31,7 @@ App.select_item = function (item, scroll = "nearest") {
     App.create_item_element(item)
   }
 
-  App[`selected_${item.mode}_item`] = item
+  App.set_selected(item.mode, item)
 
   for (let el of App.els(`.${item.mode}_item`)) {
     el.classList.remove("selected")
@@ -193,6 +193,11 @@ App.set_footer_info = function (mode, text) {
 // Get selected item by mode
 App.get_selected = function (mode) {
   return App[`selected_${mode}_item`]
+}
+
+// Set selected item by mode
+App.set_selected = function (mode, what) {
+  App[`selected_${mode}_item`] = what
 }
 
 // Get items
@@ -365,7 +370,7 @@ App.do_item_filter = async function (mode) {
     }
   }
 
-  App.get_selected(mode) = undefined
+  App.set_selected(mode, undefined)
   App.select_first_item(mode)
   App.update_footer(mode)
   App.update_footer_count(mode)
