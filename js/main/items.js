@@ -10,6 +10,10 @@ App.setup_items = function () {
   App.save_filter = App.create_debouncer(function (filter) {
     App.do_save_filter(filter)
   }, App.save_filter_delay)
+
+  App.create_item_element = App.create_debouncer(function (item) {
+    App.do_create_item_element(item)
+  }, App.create_item_element_delay)
 }
 
 // Block select for some ms
@@ -28,7 +32,7 @@ App.select_item = function (item, scroll = "nearest") {
   }
 
   if (!item.created) {
-    App.create_item_element(item)
+    App.do_create_item_element(item)
   }
 
   App[`selected_${item.mode}_item`] = item
@@ -193,7 +197,6 @@ App.set_footer_info = function (mode, text) {
 // Check if selected is valid
 App.selected_valid = function (mode) {
   return App[`selected_${mode}_item`] &&
-  App[`selected_${mode}_item`].created &&
   App[`selected_${mode}_item`].visible
 }
 
@@ -668,14 +671,12 @@ App.process_item = function (mode, item, exclude = [], o_item) {
 
   if (o_item) {
     o_item = Object.assign(o_item, obj)
-    o_item.element.innerHTML = ""
     App.create_item_element(o_item)
   } 
   
   else {
     obj.id = item.id || App[`${mode}_idx`]
     obj.empty = false
-    obj.closed = false
     obj.visible = true
     obj.highlighted = false
     App.create_empty_item_element(obj)
@@ -692,7 +693,9 @@ App.create_empty_item_element = function (item) {
 }
 
 // Create an item element
-App.create_item_element = function (item) {
+App.do_create_item_element = function (item) {
+  item.element.innerHTML = ""
+
   if (item.mode === "tabs") {
     item.element.draggable = true
   }
@@ -864,7 +867,7 @@ App.intersection_observer = function (mode, options) {
       }
 
       if (!item.created && item.visible) {
-        App.create_item_element(item)
+        App.do_create_item_element(item)
       }
     }
   }, options)
@@ -1984,7 +1987,6 @@ App.get_active_items = function (mode) {
 App.insert_item = function (mode, info) {
   let item = App.process_item(mode, info)
   App[`${mode}_items`].splice(info.index, 0, item)
-  App.create_item_element(item)
   App.el(`#${mode}_container`).append(item.element)
 
   if (mode === "tabs") {

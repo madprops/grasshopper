@@ -30,6 +30,7 @@ App.max_text_length = 200
 App.lock_backup_delay = 2000
 App.load_tabs_delay = 1000
 App.check_playing_delay = 1000
+App.create_item_element_delay = 1000
 
 NeedContext.min_width = "4.5rem"
 
