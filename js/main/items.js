@@ -1855,21 +1855,6 @@ App.highlight_items = function (mode) {
   }
 }
 
-// Check media
-App.check_media = function (item) {
-  if (item.image) {
-    App.show_media("image", item)
-    return true
-  }
-
-  if (item.video) {
-    App.show_media("video", item)
-    return true
-  }
-
-  return false
-}
-
 // Get visible media
 App.get_visible_media = function (mode, what) {
   let items = []

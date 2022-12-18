@@ -185,3 +185,22 @@ App.media_show_loading = function (what) {
 App.media_show_error = function (what) {
   App.el(`#${what}_loading`).textContent = "Couldn't load this image"
 }
+
+// Check media
+App.check_media = function (item) {
+  if (!App.settings.media_viewer) {
+    return false
+  }
+  
+  if (item.image) {
+    App.show_media("image", item)
+    return true
+  }
+
+  if (item.video) {
+    App.show_media("video", item)
+    return true
+  }
+
+  return false
+}

@@ -10,6 +10,7 @@ App.default_settings = {
   height: {value: 100, category: "basic"},
   font: {value: "gh_sans", category: "basic"},
   font_size: {value: 18, category: "basic"},
+  media_viewer: {value: true, category: "basic"},
   background_color: {value: "rgb(43, 42, 51)", category: "theme"},
   text_color: {value: "rgb(251, 251, 254)", category: "theme"},
   background_image: {value: "none", category: "theme"},
