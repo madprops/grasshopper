@@ -145,7 +145,7 @@ App.new_tab = async function (url = undefined, close = true) {
 // Show color screen
 App.show_colorscreen = function () {
   browser.tabs.create({
-    url: browser.extension.getURL("colorscreen/index.html"), active: true
+    url: browser.extension.getURL("plugins/colorscreen/index.html"), active: true
   })
 
   window.close()
