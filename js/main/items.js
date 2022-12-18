@@ -57,7 +57,7 @@ App.select_item = function (item, scroll = "nearest") {
 // Check highlight
 App.check_highlight = function (mode, item) {
   let highlighted = item.highlighted
-  App.toggle_highlight(App[`selected_${mode}_item`], !highlighted)
+  App.toggle_highlight(App.get_selected(mode), !highlighted)
   App.toggle_highlight(item, !highlighted)
 }
 
@@ -107,8 +107,8 @@ App.get_next_visible_item = function (mode, wrap = true) {
     waypoint = true
   }
 
-  let items = App[`${mode}_items`]
-  let o_item = App[`selected_${mode}_item`]
+  let items = App.get_items(mode)
+  let o_item = App.get_selected(mode)
 
   for (let i=0; i<items.length; i++) {
     let item = items[i]
@@ -143,8 +143,8 @@ App.get_prev_visible_item = function (mode, wrap = true) {
     waypoint = true
   }
 
-  let items = App[`${mode}_items`]
-  let o_item = App[`selected_${mode}_item`]
+  let items = App.get_items(mode)
+  let o_item = App.get_selected(mode)
 
   for (let i=items.length-1; i>=0; i--) {
     let item = items[i]
@@ -174,7 +174,7 @@ App.get_prev_visible_item = function (mode, wrap = true) {
 // Updates a footer
 App.update_footer = function (mode) {
   if (App.selected_valid(mode)) {
-    App.set_footer_info(mode, App[`selected_${mode}_item`].footer)
+    App.set_footer_info(mode, App.get_selected(mode).footer)
   }
 
   else {
@@ -194,16 +194,20 @@ App.set_footer_info = function (mode, text) {
   info.textContent = text
 }
 
-// Check if selected is valid
-App.selected_valid = function (mode) {
-  return App[`selected_${mode}_item`] &&
-  App[`selected_${mode}_item`].visible
+// Get selected item by mode
+App.get_selected = function (mode) {
+  return App[`selected_${mode}_item`]
+}
+
+// Get items
+App.get_items = function (mode) {
+  return App[`${mode}_items`]
 }
 
 // Select first item
 App.select_first_item = function (mode, by_active = false) {
   if (mode === "tabs" && by_active) {
-    for (let item of App[`${mode}_items`]) {
+    for (let item of App.get_items(mode)) {
       if (item.visible && item.active) {
         App.select_item(item, "center")
         return
@@ -211,7 +215,7 @@ App.select_first_item = function (mode, by_active = false) {
     }
   }
 
-  for (let item of App[`${mode}_items`]) {
+  for (let item of App.get_items(mode)) {
     if (item.visible) {
       App.select_item(item)
       return
@@ -222,9 +226,9 @@ App.select_first_item = function (mode, by_active = false) {
 // Remove an item from the list
 App.remove_item = function (item) {
   let mode = item.mode
-  let items = App[`${mode}_items`]
+  let items = App.get_items(mode)
 
-  if (App[`selected_${mode}_item`] === item) {
+  if (App.get_selected(mode) === item) {
     let next_item = App.get_next_visible_item(mode, false) || App.get_prev_visible_item(mode, false)
 
     if (next_item) {
@@ -272,7 +276,7 @@ App.do_item_filter = async function (mode) {
     }
   }
 
-  if (!App[`${mode}_items`]) {
+  if (!App.get_items(mode)) {
     return
   }
 
@@ -351,7 +355,7 @@ App.do_item_filter = async function (mode) {
     return match
   }
 
-  for (let it of App[`${mode}_items`]) {
+  for (let it of App.get_items(mode)) {
     if (!it.element) {
       continue
     }
@@ -365,7 +369,7 @@ App.do_item_filter = async function (mode) {
     }
   }
 
-  App[`selected_${mode}_item`] = undefined
+  App.get_selected(mode) = undefined
   App.select_first_item(mode)
   App.update_footer(mode)
   App.update_footer_count(mode)
@@ -598,7 +602,7 @@ App.process_items = function (mode, items) {
       exclude.push(obj.url)
     }
 
-    App[`${mode}_items`].push(obj)
+    App.get_items(mode).push(obj)
     container.append(obj.element)
   }
 
@@ -676,7 +680,6 @@ App.process_item = function (mode, item, exclude = [], o_item) {
   
   else {
     obj.id = item.id || App[`${mode}_idx`]
-    obj.empty = false
     obj.visible = true
     obj.highlighted = false
     App.create_empty_item_element(obj)
@@ -817,7 +820,7 @@ App.set_item_text = function (item) {
 App.get_item_by_id = function (mode, id) {
   id = id.toString()
 
-  for (let item of App[`${mode}_items`]) {
+  for (let item of App.get_items(mode)) {
     if (item.id.toString() === id) {
       return item
     }
@@ -826,7 +829,7 @@ App.get_item_by_id = function (mode, id) {
 
 // Get an item by url
 App.get_item_by_url = function (mode, url) {
-  for (let item of App[`${mode}_items`]) {
+  for (let item of App.get_items(mode)) {
     if (item.url) {
       if (App.urls_equal(item.url, url)) {
         return item
@@ -1163,7 +1166,7 @@ App.setup_item_window = function (mode) {
         App.drag_items = []
 
         if (App.drag_item.highlighted) {
-          for (let tab of App[`${mode}_items`]) {
+          for (let tab of App.get_items(mode)) {
             if (tab.highlighted) {
               App.drag_items.push(tab)
             }
@@ -1462,7 +1465,7 @@ App.get_filter = function (mode, trim = true) {
 
 // Any item visible
 App.any_item_visible = function (mode) {
-  for (let item of App[`${mode}_items`]) {
+  for (let item of App.get_items(mode)) {
     if (item.visible) {
       return true
     }
@@ -1475,7 +1478,7 @@ App.any_item_visible = function (mode) {
 App.get_visible = function (mode) {
   let items = []
 
-  for (let item of App[`${mode}_items`]) {
+  for (let item of App.get_items(mode)) {
     if (item.visible) {
       items.push(item)
     }
@@ -1499,7 +1502,7 @@ App.show_launched = function (item) {
 
 // Update item
 App.update_item = function (mode, id, info) {
-  for (let item of App[`${mode}_items`]) {
+  for (let item of App.get_items(mode)) {
     if (item.id === id) {
       App.process_item(mode, info, [], item)
       break
@@ -1619,8 +1622,8 @@ App.get_item_element_index = function (mode, el) {
 
 // Move an item to another place in an item list
 App.move_item = function (mode, from_index, to_index) {
-  let it = App[`${mode}_items`].splice(from_index, 1)[0]
-  App[`${mode}_items`].splice(to_index, 0, it)
+  let it = App.get_items(mode).splice(from_index, 1)[0]
+  App.get_items(mode).splice(to_index, 0, it)
   App.move_item_element(mode, it.element, to_index)
 }
 
@@ -1683,7 +1686,7 @@ App.highlight_range = function (item) {
 App.dehighlight = function (mode) {
   let some = false
 
-  for (let item of App[`${mode}_items`]) {
+  for (let item of App.get_items(mode)) {
     if (item.highlighted) {
       App.toggle_highlight(item)
       some = true
@@ -1722,7 +1725,7 @@ App.toggle_highlight = async function (item, what) {
 App.get_highlights = function (mode) {
   let ans = []
 
-  for (let item of App[`${mode}_items`]) {
+  for (let item of App.get_items(mode)) {
     if (item.highlighted) {
       ans.push(item)
     }
@@ -1826,7 +1829,7 @@ App.highlight_items = function (mode) {
     what = false
   }
 
-  for (let item of App[`${mode}_items`]) {
+  for (let item of App.get_items(mode)) {
     if (item.visible) {
       if (what === undefined) {
         what = !item.highlighted
@@ -1845,7 +1848,7 @@ App.highlight_items = function (mode) {
 App.get_visible_media = function (mode, what) {
   let items = []
 
-  for (let item of App[`${mode}_items`]) {
+  for (let item of App.get_items(mode)) {
     if (item[what]) {
       items.push(item)
     }
@@ -1975,7 +1978,7 @@ App.get_active_items = function (mode) {
   let highlights = App.get_highlights(mode)
 
   if (highlights.length === 0) {
-    return [App[`selected_${mode}_item`]]
+    return [App.get_selected(mode)]
   }
 
   else {
@@ -1986,7 +1989,7 @@ App.get_active_items = function (mode) {
 // Insert new item
 App.insert_item = function (mode, info) {
   let item = App.process_item(mode, info)
-  App[`${mode}_items`].splice(info.index, 0, item)
+  App.get_items(mode).splice(info.index, 0, item)
   App.el(`#${mode}_container`).append(item.element)
 
   if (mode === "tabs") {

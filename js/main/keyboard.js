@@ -9,7 +9,7 @@ App.check_window_keyboard = function (e) {
   }
 
   if (e.key === "Enter") {
-    let item = App[`selected_${mode}_item`]
+    let item = App.get_selected(mode)
 
     if (e.shiftKey) {
       let rect = item.element.getBoundingClientRect()
