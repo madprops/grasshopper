@@ -129,6 +129,40 @@ const ColorLib = (function () {
 			}
     }
 
+    instance.get_darker = function (rgb, amount = 0.2) {
+			let mode = "rgb"
+
+			if (rgb.startsWith("#")) {
+				mode = "hex"
+				rgb = instance.hex_to_rgb(rgb)
+			}
+
+			let new_rgb = instance.shadeBlendConvert(-amount, rgb)
+
+			if (mode === "rgb") {
+				return new_rgb
+			} else {
+				return instance.rgb_to_hex(new_rgb)
+			}
+    }
+
+    instance.get_lighter = function (rgb, amount = 0.2) {
+			let mode = "rgb"
+
+			if (rgb.startsWith("#")) {
+				mode = "hex"
+				rgb = instance.hex_to_rgb(rgb)
+			}
+
+			let new_rgb = instance.shadeBlendConvert(amount, rgb)
+
+			if (mode === "rgb") {
+				return new_rgb
+			} else {
+				return instance.rgb_to_hex(new_rgb)
+			}
+    }
+
     instance.is_light = function (rgb) {
       if (rgb.startsWith("#")) {
 				rgb = instance.hex_to_rgb(rgb)

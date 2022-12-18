@@ -16,6 +16,10 @@ App.setup_tabs = function () {
       App.new_tab()
     }},
 
+    {text: "Color", action: function () {
+      App.show_colorscreen()
+    }},
+
     {text: "Info", action: function () {
       App.show_tabs_information()
     }},
@@ -32,6 +36,8 @@ App.setup_tabs = function () {
     {text: "Undo", action: function () {
       App.undo_close()
     }},
+
+    {text: "--separator--"},
 
     {text: "Clean", action: function () {
       App.clean_tabs()
@@ -134,6 +140,15 @@ App.new_tab = async function (url = undefined, close = true) {
   if (close) {
     window.close()
   }
+}
+
+// Show color screen
+App.show_colorscreen = function () {
+  browser.tabs.create({
+    url: browser.extension.getURL("colorscreen/index.html"), active: true
+  })
+
+  window.close()
 }
 
 // Refresh tabs
