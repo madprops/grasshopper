@@ -144,10 +144,6 @@ App.refresh_tab = async function (id) {
   let tab = App.get_item_by_id("tabs", id)
 
   if (tab) {
-    if (tab.closed) {
-      return
-    }
-
     App.update_item("tabs", tab.id, info)
   }
 
