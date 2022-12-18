@@ -59,8 +59,8 @@ App.stars_action = function (item) {
 
   if (active.length === 1) {
     App.open_star(active[0])
-  } 
-  
+  }
+
   else if (active.length > 1) {
     App.launch_items("stars")
   }
@@ -221,8 +221,8 @@ App.star_editor_save = async function () {
 
   if (App.last_window_mode === "stars") {
     App.show_item_window("stars")
-  } 
-  
+  }
+
   else {
     App.hide_star_editor()
   }
@@ -269,16 +269,16 @@ App.add_or_edit_star = async function (item) {
 
   if (item.mode === "stars") {
     star = await App.get_star_by_id(item.id)
-  } 
-  
+  }
+
   else{
     star = await App.get_star_by_url(item.url)
   }
 
   if (star) {
     App.show_star_editor(star)
-  } 
-  
+  }
+
   else {
     App.new_star(item.title, item.url)
   }
@@ -302,8 +302,8 @@ App.update_star_editor_info = function () {
     about.classList.add("hidden")
     info.classList.remove("hidden")
     remove.classList.remove("hidden")
-  } 
-  
+  }
+
   else {
     save.textContent = "Save"
     about.classList.remove("hidden")
@@ -343,8 +343,8 @@ App.restore_stars = function () {
     App.stor_save_stars()
     App.show_window("stars")
     App.show_feedback("Stars have been restored")
-  } 
-  
+  }
+
   else {
     App.show_feedback("Nothing to undo")
   }

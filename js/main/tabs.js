@@ -101,8 +101,8 @@ App.sort_tabs_by_special = function (tabs) {
   tabs.sort(function (a, b) {
     if (a.audible === b.audible) {
       return a.lastAccessed > b.lastAccessed ? -1 : 1
-    } 
-    
+    }
+
     else {
       return a.audible > b.audible ? -1 : 1
     }
@@ -147,8 +147,8 @@ App.refresh_tab = async function (id) {
     }
 
     App.update_item("tabs", tab.id, info)
-  } 
-  
+  }
+
   else {
     let tab = App.process_item("tabs", info)
     App.tabs_items.splice(info.index, 0, tab)
@@ -324,8 +324,8 @@ App.suspend_tabs = function () {
     }, function () {
       App.dehighlight("tabs")
     })
-  } 
-  
+  }
+
   else {
     for (let tab of tabs) {
       App.suspend_tab(tab)
@@ -360,8 +360,8 @@ App.close_tabs = function (force = false) {
     }, function () {
       App.dehighlight("tabs")
     })
-  } 
-  
+  }
+
   else {
     App.do_close_tabs(ids)
     App.dehighlight("tabs")
@@ -428,8 +428,8 @@ App.show_tabs_information = function () {
 App.toggle_pin = function (item) {
   if (item.pinned) {
     App.unpin_tab(item.id)
-  } 
-  
+  }
+
   else {
     App.pin_tab(item.id)
   }
@@ -477,8 +477,8 @@ App.do_load_tab_state = function (items, confirm = true) {
 
     if (i === -1) {
       to_close.push(tab)
-    } 
-    
+    }
+
     else {
       urls.splice(i, 1)
     }
@@ -498,8 +498,8 @@ App.do_load_tab_state = function (items, confirm = true) {
       try {
         if (item.url === "about") {
           await App.new_tab(undefined, false)
-        } 
-        
+        }
+
         else {
           await App.open_tab(item.url, false)
         }
@@ -543,8 +543,8 @@ App.do_load_tab_state = function (items, confirm = true) {
         try {
           if (tab.pinned) {
             await App.pin_tab(tab.id)
-          } 
-          
+          }
+
           else {
             await App.unpin_tab(tab.id)
           }
@@ -567,8 +567,8 @@ App.do_load_tab_state = function (items, confirm = true) {
     App.show_confirm(`Open ${s1} and close ${s2}?`, function () {
       restore()
     })
-  } 
-  
+  }
+
   else {
     restore()
   }
@@ -606,8 +606,8 @@ App.open_tab = async function (url, close = true, args = {}) {
 App.undo_close = function () {
   if (!App.tabs_backup) {
     App.show_feedback("Nothing to undo")
-  } 
-  
+  }
+
   else {
     App.do_load_tab_state(App.tabs_backup)
   }
@@ -778,8 +778,8 @@ App.do_check_playing = function () {
 
   if (playing.length > 0) {
     App.show_playing()
-  } 
-  
+  }
+
   else {
     App.hide_playing()
   }
