@@ -23,7 +23,7 @@ App.block_select = function () {
 
 // Select an item
 App.select_item = function (item, scroll = "nearest") {
-  if (App[`selected_${item.mode}_item`] === item) {
+  if (App.get_selected(item.mode) === item) {
     return
   }
 
@@ -37,10 +37,10 @@ App.select_item = function (item, scroll = "nearest") {
     el.classList.remove("selected")
   }
 
-  App[`selected_${item.mode}_item`].element.classList.add("selected")
+  App.get_selected(item.mode).element.classList.add("selected")
 
   if (scroll !== "none") {
-    App[`selected_${item.mode}_item`].element.scrollIntoView({block: scroll})
+    App.get_selected(item.mode).element.scrollIntoView({block: scroll})
   }
 
   App.update_footer(item.mode)
@@ -509,7 +509,7 @@ App.show_item_menu = function (item, x, y) {
     })
   }
 
-  if (App[`selected_${item.mode}_item`] !== item) {
+  if (App.get_selected(item.mode) !== item) {
     App.select_item(item)
   }
 
