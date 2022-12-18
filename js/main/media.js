@@ -13,18 +13,6 @@ App.create_media_windows = function (what) {
       App.hide_media(what)
     })
 
-    App.ev(App.el(`#${what}_container`), "wheel", function (e) {
-      let direction = e.deltaY > 0 ? "down" : "up"
-
-      if (direction === "up") {
-        App.media_prev(what)
-      }
-
-      else if (direction === "down") {
-        App.media_next(what)
-      }
-    })
-
     if (what === "image") {
       App.ev(media, "load", function () {
         App.stop_media_timeout(what)
@@ -97,7 +85,7 @@ App.show_media = function (what, item) {
     App.el(`#${what}_loading`).classList.remove("hidden")
   }, 500)
 
-  App.el(`#${what}_copy`).title = item.url
+  App.el(`#${what}_url`).textContent = item.url
   App.show_window(what)
 }
 

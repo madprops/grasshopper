@@ -243,13 +243,6 @@
     </template>
 
     <template id="template_image">
-      <div id="image_container" class="media_container unselectable">
-        <img id="image_loading" src="img/loading.gif" class="media_loading hidden">
-        <img id="image" class="media">
-      </div>
-    </template>
-
-    <template id="template_image_top">
       <div class="flex_row_center gap_2">
         <div id="image_prev" class="media_copy button">&lt;</div>
         <div id="image_open" class="media_open button">Open</div>
@@ -257,16 +250,18 @@
         <div id="image_star" class="media_copy button">Star</div>
         <div id="image_next" class="media_copy button">&gt;</div>
       </div>
-    </template>
 
-    <template id="template_video">
-      <div id="video_container" class="media_container unselectable">
-        <img id="video_loading" src="img/loading.gif" class="media_loading hidden">
-        <video id="video" class="media" muted>
+      <div id="image_container" class="media_container unselectable">
+        <img id="image_loading" src="img/loading.gif" class="media_loading hidden">
+        <img id="image" class="media">
       </div>
     </template>
 
-    <template id="template_video_top">
+    <template id="template_image_top">
+      <div id="image_url" class="media_url"></div>
+    </template>
+
+    <template id="template_video">
       <div class="flex_row_center gap_2">
         <div id="video_prev" class="media_copy button">&lt;</div>
         <div id="video_open" class="media_open button">Open</div>
@@ -274,6 +269,15 @@
         <div id="video_star" class="media_copy button">Star</div>
         <div id="video_next" class="media_copy button">&gt;</div>
       </div>
+
+      <div id="video_container" class="media_container unselectable">
+        <img id="video_loading" src="img/loading.gif" class="media_loading hidden">
+        <video id="video" class="media" muted>
+      </div>
+    </template>
+
+    <template id="template_video_top">
+      <div id="video_url" class="media_url"></div>
     </template>
 
     <script src="js/main/main.js"></script>
