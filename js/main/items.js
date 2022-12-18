@@ -1366,6 +1366,12 @@ App.show_main_menu = function (btn) {
   })
 
   items.push({
+    text: "Screen", action: function () {
+      App.show_colorscreen()
+    }
+  })
+
+  items.push({
     text: "About",
     action: function () {
       App.show_window("about")
