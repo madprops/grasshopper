@@ -1983,9 +1983,9 @@ App.get_active_items = function (mode) {
 // Insert new item
 App.insert_item = function (mode, info) {
   let item = App.process_item(mode, info)
-  App[`${mode}_items`].splice(info.index, 0, tab)
+  App[`${mode}_items`].splice(info.index, 0, item)
   App.create_item_element(item)
-  App.el("#tabs_container").append(item.element)
+  App.el(`#${mode}_container`).append(item.element)
 
   if (mode === "tabs") {
     App.move_item_element("tabs", item.element, info.index)
