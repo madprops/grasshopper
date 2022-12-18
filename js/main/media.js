@@ -82,6 +82,12 @@ App.create_media_windows = function (what) {
     App.raise_window(item.mode)
     App.select_item(item)
   }})
+
+  App.el(`#${what}_open`).title = "Open Tab"
+  App.el(`#${what}_copy`).title = "Copy URL"
+  App.el(`#${what}_star`).title = "Star Editor"
+  App.el(`#${what}_prev`).title = "Go To Previous"
+  App.el(`#${what}_next`).title = "Go To Next"
 }
 
 // Show media
