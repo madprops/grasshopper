@@ -194,5 +194,37 @@ App.get_extension = function (s) {
   return ""
 }
 
+// Get local storage object
+App.get_local_storage = function (ls_name) {
+  let obj
+
+  if (localStorage[ls_name]) {
+    try {
+      obj = JSON.parse(localStorage.getItem(ls_name))
+    } catch (err) {
+      localStorage.removeItem(ls_name)
+      obj = null
+    }
+  } else {
+    obj = null
+  }
+
+  return obj
+}
+
+// Save local storage object
+App.save_local_storage = function (ls_name, obj) {
+  localStorage.setItem(ls_name, JSON.stringify(obj))
+}
+
+// Get a template
+App.get_template = function (id) {
+  let template = App.el(`#template_${id}`)
+
+  if (template) {
+    return template.innerHTML.trim()
+  }
+}
+
 App.image_extensions = ["jpg", "jpeg", "png", "gif", "webp", "bmp"]
 App.video_extensions = ["mp4", "webm"]

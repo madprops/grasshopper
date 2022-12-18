@@ -1,12 +1,3 @@
-// Get a template
-App.get_template = function (id) {
-  let template = App.el(`#template_${id}`)
-
-  if (template) {
-    return template.innerHTML.trim()
-  }
-}
-
 // Create a window
 App.create_window = function (args) {
   if (args.close_button === undefined) {
