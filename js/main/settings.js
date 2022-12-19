@@ -265,7 +265,7 @@ App.start_theme_settings = function () {
     }, App.color_delay)
 
     App[`${name}_color_picker`].on("change", function (picker, color) {
-      change_color(color)
+      change_color.call(color)
     })
   }
 

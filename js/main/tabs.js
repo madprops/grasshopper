@@ -48,7 +48,7 @@ App.setup_tabs = function () {
       App.refresh_tab(id)
     }
 
-    App.check_playing()
+    App.check_playing.call()
   })
 
   browser.tabs.onActivated.addListener(function (e) {
@@ -609,13 +609,13 @@ App.undo_close = function () {
 // Backup tab state
 App.backup_tabs = function () {
   if (App.backup_tabs_locked) {
-    App.lock_backup_tabs()
+    App.lock_backup_tabs.call()
     return
   }
 
   App.tabs_backup = App.get_tab_state()
   App.backup_tabs_locked = true
-  App.lock_backup_tabs()
+  App.lock_backup_tabs.call()
   App.stor_save_tab_state()
 }
 

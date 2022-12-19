@@ -251,7 +251,7 @@ App.remove_item = function (item) {
     }
   }
 
-  App.update_footer_count(mode)
+  App.update_footer_count.call(mode)
 
   if (App.get_filter(mode)) {
     if (App.get_visible(mode).length === 0) {
@@ -373,8 +373,8 @@ App.do_item_filter = async function (mode) {
   App.set_selected(mode, undefined)
   App.select_first_item(mode)
   App.update_footer(mode)
-  App.update_footer_count(mode)
-  App.save_filter(value)
+  App.update_footer_count.call(mode)
+  App.save_filter.call(value)
 }
 
 // Show item
@@ -1024,7 +1024,7 @@ App.setup_item_window = function (mode) {
     filter.placeholder = "Type to filter"
 
     App.ev(filter, "input", function () {
-      item_filter()
+      item_filter.call()
     })
 
     //
@@ -1709,7 +1709,7 @@ App.toggle_highlight = async function (item, what) {
   }
 
   item.highlighted = highlight
-  App.update_footer_count(item.mode)
+  App.update_footer_count.call(item.mode)
 }
 
 // Get highlighted items
@@ -1937,8 +1937,11 @@ App.do_save_filter = function (filter) {
 
 // Forget filters
 App.forget_filters = function () {
-  App.filters.items = []
-  App.stor_save_filters()
+  App.show_confirm("Forget recent filters?", function () {
+    App.save_filter.cancel()
+    App.filters.items = []
+    App.stor_save_filters()
+  })
 }
 
 // Get sort items
@@ -1987,5 +1990,5 @@ App.insert_item = function (mode, info) {
     App.move_item_element("tabs", item.element, info.index)
   }
 
-  App.update_footer_count(mode)  
+  App.update_footer_count.call(mode)  
 }

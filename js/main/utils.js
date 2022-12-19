@@ -12,14 +12,21 @@ App.els = function (query, root = document) {
 App.create_debouncer = function (func, delay) {
   return (function () {
     let timer
+    let obj = {}
 
-    return function (...args) {
+    obj.call = function (...args) {
       clearTimeout(timer)
 
       timer = setTimeout(function () {
         func(...args)
       }, delay)
     }
+
+    obj.cancel = function () {
+      clearTimeout(timer)
+    }
+
+    return obj
   })()
 }
 
