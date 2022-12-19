@@ -20,11 +20,6 @@ App.setup_window_mouse = function (mode) {
         App.last_highlight = item        
       }
     }
-
-    // Middle click
-    else if (e.button === 1) {
-      App[`${mode}_action_alt`](item, e.shiftKey)
-    }     
   })
 
   App.ev(container, "mouseup", function (e) {
@@ -49,6 +44,11 @@ App.setup_window_mouse = function (mode) {
       }
 
       App[`${mode}_action`](item)          
+    } 
+
+    // Middle click
+    else if (e.button === 1) {
+      App[`${mode}_action_alt`](item, e.shiftKey)
     }     
   })
 
