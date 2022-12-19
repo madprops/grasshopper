@@ -11,16 +11,18 @@ App.setup_stars = function () {
       App.reset_stars()
     }},
 
+    {text: "Undo", action: function () {
+      App.restore_stars()
+    }},
+
+    {text: "--separator--"},
+
     {text: "Export", action: function () {
       App.export_stars()
     }},
 
     {text: "Import", action: function () {
       App.import_stars()
-    }},
-
-    {text: "Undo", action: function () {
-      App.restore_stars()
     }},
   ]
 
