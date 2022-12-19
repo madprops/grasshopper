@@ -17,26 +17,39 @@ App.setup_window_mouse = function (mode) {
 
       else if (e.ctrlKey) {
         App.toggle_highlight(item)
-        App.last_highlight = item
+        App.last_highlight = item        
       }
-
-      else {
-        if (e.target.closest(".item_info")) {
-          if (e.target.closest(".item_info_pin")) {
-            App.toggle_pin(item)
-          }
-  
-          return
-        }
-  
-        App[`${mode}_action`](item)          
-      }
-    } 
+    }
 
     // Middle click
     else if (e.button === 1) {
       App[`${mode}_action_alt`](item, e.shiftKey)
-    } 
+    }     
+  })
+
+  App.ev(container, "mouseup", function (e) {
+    if (!e.target.closest(`.${mode}_item`)) {
+      return
+    }
+
+    let item = App.get_cursor_item(mode, e)
+
+    // Main click
+    if (e.button === 0) {
+      if (e.shiftKey || e.ctrlKey) {
+        return
+      }
+
+      if (e.target.closest(".item_info")) {
+        if (e.target.closest(".item_info_pin")) {
+          App.toggle_pin(item)
+        }
+
+        return
+      }
+
+      App[`${mode}_action`](item)          
+    }     
   })
 
   App.ev(container, "contextmenu", function (e) {
