@@ -183,7 +183,7 @@ App.media_show_loading = function (what) {
 
 // Media show error
 App.media_show_error = function (what) {
-  App.el(`#${what}_loading`).textContent = "Couldn't load this image"
+  App.el(`#${what}_loading`).textContent = "Error"
 }
 
 // Check media
