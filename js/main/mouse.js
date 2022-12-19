@@ -14,11 +14,6 @@ App.setup_window_mouse = function (mode) {
       if (e.shiftKey) {
         App.highlight_range(item)
       }
-
-      else if (e.ctrlKey) {
-        App.toggle_highlight(item)
-        App.last_highlight = item        
-      }
     }
   })
 
@@ -31,7 +26,13 @@ App.setup_window_mouse = function (mode) {
 
     // Main click
     if (e.button === 0) {
-      if (e.shiftKey || e.ctrlKey) {
+      if (e.shiftKey) {
+        return
+      }
+
+      if (e.ctrlKey) {
+        App.toggle_highlight(item)
+        App.last_highlight = item
         return
       }
 
@@ -48,6 +49,10 @@ App.setup_window_mouse = function (mode) {
 
     // Middle click
     else if (e.button === 1) {
+      if (e.ctrlKey) {
+        return
+      }
+
       App[`${mode}_action_alt`](item, e.shiftKey)
     }     
   })
