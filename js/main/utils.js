@@ -10,24 +10,22 @@ App.els = function (query, root = document) {
 
 // Centralized function to create debouncers
 App.create_debouncer = function (func, delay) {
-  return (function () {
-    let timer
-    let obj = {}
+  let timer
+  let obj = {}
 
-    obj.call = function (...args) {
-      clearTimeout(timer)
+  obj.call = function (...args) {
+    clearTimeout(timer)
 
-      timer = setTimeout(function () {
-        func(...args)
-      }, delay)
-    }
+    timer = setTimeout(function () {
+      func(...args)
+    }, delay)
+  }
 
-    obj.cancel = function () {
-      clearTimeout(timer)
-    }
+  obj.cancel = function () {
+    clearTimeout(timer)
+  }
 
-    return obj
-  })()
+  return obj
 }
 
 // Create an html element
