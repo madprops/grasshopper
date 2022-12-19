@@ -899,6 +899,7 @@ App.show_item_window = async function (mode, cycle = false) {
   let value = App.get_last_window_value(cycle)
   App.windows[mode].show()
   App.empty_footer(mode)
+  App[`${mode}_item_filter`].cancel()
   App.el(`#${mode}_container`).innerHTML = ""
   App.el(`#${mode}_main_menu_text`).textContent = App.capitalize(mode)
   App.set_filter(mode, value, false)
@@ -945,7 +946,7 @@ App.setup_item_window = function (mode) {
   args.align_top = "left"
 
   args.setup = function () {
-    let item_filter = App.create_debouncer(function () {
+    App[`${mode}_item_filter`] = App.create_debouncer(function () {
       App.do_item_filter(mode)
     }, App.filter_delay)
 
@@ -1024,7 +1025,7 @@ App.setup_item_window = function (mode) {
     filter.placeholder = "Type to filter"
 
     App.ev(filter, "input", function () {
-      item_filter.call()
+      App[`${mode}_item_filter`].call()
     })
 
     //
