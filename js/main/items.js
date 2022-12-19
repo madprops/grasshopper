@@ -1077,16 +1077,6 @@ App.setup_item_window = function (mode) {
       App[`${mode}_actions`] = []
     }
 
-    App[`${mode}_actions`].unshift({text: "Sort", get_items: function () {
-      return App.get_sort_items(mode)
-    }})
-
-    App[`${mode}_actions`].unshift({text: "Pick", action: function () {
-      App.highlight_items(mode)
-    }})
-
-    App[`${mode}_actions`].unshift({text: "--separator--"})
-
     App[`${mode}_actions`].unshift({text: "Bottom", action: function () {
       App.goto_bottom(mode)
     }})
