@@ -31,7 +31,9 @@ NeedContext.filter = function (key) {
     for (let [i, item] of NeedContext.items.entries()) {
       if (item.separator || !item.text.toLowerCase().startsWith(key)) {
         item.element.classList.add("needcontext-hidden")
-      } else {
+      }
+
+      else {
         item.element.classList.remove("needcontext-hidden")
 
         if (!selected) {
@@ -49,7 +51,9 @@ NeedContext.filter = function (key) {
     }
 
     NeedContext.select_item(0)
-  } else {
+  }
+
+  else {
     for (let el of document.querySelectorAll(".needcontext-separator")) {
       el.classList.add("needcontext-hidden")
     }
@@ -87,7 +91,9 @@ NeedContext.show = function (x, y, items) {
 
     if (item.separator) {
       el.classList.add("needcontext-separator")
-    } else {
+    }
+
+    else {
       el.classList.add("needcontext-normal")
       el.textContent = item.text
       el.dataset.index = index
@@ -164,7 +170,9 @@ NeedContext.select_item = function (index) {
   for (let [i, el] of els.entries()) {
     if (i === index) {
       el.classList.add("needcontext-item-selected")
-    } else {
+    }
+
+    else {
       el.classList.remove("needcontext-item-selected")
     }
   }
@@ -248,9 +256,13 @@ NeedContext.select_action = async function (e, index = NeedContext.index) {
 
   if (item.action) {
     item.action(e)
-  } else if (item.items) {
+  }
+
+  else if (item.items) {
     show_below(item.items)
-  } else if (item.get_items) {
+  }
+
+  else if (item.get_items) {
     let items = await item.get_items()
     show_below(items)
   }
@@ -345,7 +357,9 @@ NeedContext.init = function () {
       if (NeedContext.first_mousedown) {
         NeedContext.hide()
       }
-    } else if (NeedContext.mousedown) {
+    }
+
+    else if (NeedContext.mousedown) {
       NeedContext.select_action(e)
     }
 
@@ -362,7 +376,9 @@ NeedContext.init = function () {
 
     if (e.key === "ArrowUp") {
       NeedContext.select_up()
-    } else if (e.key === "ArrowDown") {
+    }
+
+    else if (e.key === "ArrowDown") {
       NeedContext.select_down()
     }
 
@@ -383,11 +399,17 @@ NeedContext.init = function () {
 
     if (e.key === "Escape") {
       NeedContext.hide()
-    } else if (e.key === "Enter") {
+    }
+
+    else if (e.key === "Enter") {
       NeedContext.select_action(e)
-    } else if (e.key.match(/^[a-z0-9]{1}$/i)) {
+    }
+
+    else if (e.key.match(/^[a-z0-9]{1}$/i)) {
       NeedContext.filter(e.key)
-    } else if (e.key === "Backspace") {
+    }
+
+    else if (e.key === "Backspace") {
       NeedContext.filter("")
     }
 
