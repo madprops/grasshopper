@@ -222,7 +222,7 @@ App.star_editor_save = async function () {
   })
 
   if (App.last_window_mode === "stars") {
-    App.show_item_window.now("stars")
+    App.show_item_window("stars")
   }
 
   else {

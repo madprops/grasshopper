@@ -504,7 +504,7 @@ App.do_load_tab_state = function (items, confirm = true) {
     setTimeout(async function () {
       setTimeout(function () {
         App.hide_popup("alert")
-        App.show_item_window.now("tabs")
+        App.show_item_window("tabs")
       }, App.load_tabs_delay)
 
       let tabs = App.tabs_items.slice(0)

@@ -10,10 +10,6 @@ App.setup_items = function () {
   App.save_filter = App.create_debouncer(function (filter) {
     App.do_save_filter(filter)
   }, App.save_filter_delay)
-
-  App.show_item_window = App.create_debouncer(function (new_mode, cycle) {
-    App.do_show_item_window(new_mode, cycle)
-  }, 1000)
 }
 
 // Block select for some ms
@@ -899,7 +895,7 @@ App.get_last_window_value = function (cycle) {
 }
 
 // Show a window by mode
-App.do_show_item_window = async function (mode, cycle = false) {
+App.show_item_window = async function (mode, cycle = false) {
   let value = App.get_last_window_value(cycle)
   App.windows[mode].show()
   App.empty_footer(mode)
@@ -1285,8 +1281,8 @@ App.cycle_item_windows = function (reverse = false, cycle = false) {
       new_mode = modes[index + 1]
     }
   }
-
-  App.show_item_window.call(new_mode, cycle)
+  
+  App.show_item_window(new_mode, cycle)
 }
 
 // Update window order
@@ -1332,7 +1328,7 @@ App.show_main_menu = function (btn) {
     items.push({
       text: App.capitalize(m),
       action: function () {
-        App.show_item_window.now(m)
+        App.show_item_window(m)
       },
       selected: selected
     })
@@ -1387,7 +1383,7 @@ App.show_main_menu = function (btn) {
 
 // Show first item window
 App.show_first_item_window = function () {
-  App.show_item_window.now(App.item_order[0])
+  App.show_item_window(App.item_order[0])
 }
 
 // Focus an open tab or launch a new one
@@ -1857,7 +1853,7 @@ App.get_visible_media = function (mode, what) {
 App.set_sort = function (mode, sort) {
   App.sort_state.items[mode] = sort
   App.stor_save_sort_state()
-  App.show_item_window.now(mode, false)
+  App.show_item_window(mode, false)
 }
 
 // Create an svg icon

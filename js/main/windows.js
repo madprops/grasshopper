@@ -64,6 +64,16 @@ App.create_window = function (args) {
   w.setup = false
   w.visible = false
 
+  w.check_setup = function () {
+    if (args.setup) {
+      if (!args.persistent || !w.setup) {
+        args.setup()
+        w.setup = true
+        console.info(`${args.id} window setup`)
+      }
+    }
+  }
+
   w.show = function (scroll = true) {
     if (!args.persistent) {
       content.innerHTML = content_html
@@ -73,14 +83,7 @@ App.create_window = function (args) {
       }
     }
 
-    if (args.setup) {
-      if (!args.persistent || !w.setup) {
-        args.setup()
-        w.setup = true
-        console.info(`${args.id} window setup`)
-      }
-    }
-
+    w.check_setup()
     App.hide_all_windows()
     w.element.style.display = "flex"
 
@@ -130,7 +133,7 @@ App.hide_all_windows = function () {
 // Centralized function to show windows
 App.show_window = function (mode) {
   if (App.item_order.includes(mode)) {
-    App.show_item_window.now(mode)
+    App.show_item_window(mode)
   }
 
   else {
