@@ -10,6 +10,10 @@ App.setup_items = function () {
   App.save_filter = App.create_debouncer(function (filter) {
     App.do_save_filter(filter)
   }, App.save_filter_delay)
+
+  App.show_item_window = App.create_debouncer(function (new_mode, cycle) {
+    App.do_show_item_window(new_mode, cycle)
+  }, 1000)
 }
 
 // Block select for some ms
@@ -607,7 +611,7 @@ App.process_items = function (mode, items) {
     container.append(obj.element)
   }
 
-  App.do_update_footer_count(mode)
+  App.update_footer_count.now(mode)
 
   if (mode === "tabs") {
     App.do_check_playing(mode)
@@ -895,7 +899,7 @@ App.get_last_window_value = function (cycle) {
 }
 
 // Show a window by mode
-App.show_item_window = async function (mode, cycle = false) {
+App.do_show_item_window = async function (mode, cycle = false) {
   let value = App.get_last_window_value(cycle)
   App.windows[mode].show()
   App.empty_footer(mode)
@@ -1282,7 +1286,7 @@ App.cycle_item_windows = function (reverse = false, cycle = false) {
     }
   }
 
-  App.show_item_window(new_mode, cycle)
+  App.show_item_window.call(new_mode, cycle)
 }
 
 // Update window order
@@ -1322,13 +1326,13 @@ App.item_order_down = function (el) {
 App.show_main_menu = function (btn) {
   let items = []
 
-  for (let [i, m] of App.item_order.entries()) {
+  for (let m of App.item_order) {
     let selected = App.window_mode === m
 
     items.push({
       text: App.capitalize(m),
       action: function () {
-        App.show_item_window(m)
+        App.show_item_window.now(m)
       },
       selected: selected
     })
@@ -1383,7 +1387,7 @@ App.show_main_menu = function (btn) {
 
 // Show first item window
 App.show_first_item_window = function () {
-  App.show_item_window(App.item_order[0])
+  App.show_item_window.now(App.item_order[0])
 }
 
 // Focus an open tab or launch a new one
@@ -1853,7 +1857,7 @@ App.get_visible_media = function (mode, what) {
 App.set_sort = function (mode, sort) {
   App.sort_state.items[mode] = sort
   App.stor_save_sort_state()
-  App.show_item_window(mode, false)
+  App.show_item_window.now(mode, false)
 }
 
 // Create an svg icon

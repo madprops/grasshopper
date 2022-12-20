@@ -21,9 +21,14 @@ App.create_debouncer = function (func, delay) {
     }, delay)
   }
 
+  obj.now = function (...args) {
+    clearTimeout(timer)
+    func(...args)
+  }
+
   obj.cancel = function () {
     clearTimeout(timer)
-  }
+  }  
 
   return obj
 }
