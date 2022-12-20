@@ -213,5 +213,16 @@ App.get_template = function (id) {
   }
 }
 
+// Fill from the left with c character to get to n ammount
+App.fillpad = function (s, n, c) {
+  let olen = s.length
+
+  for (let i=0; i<(n - olen); i++) {
+    s = c + s
+  }
+
+  return s
+}
+
 App.image_extensions = ["jpg", "jpeg", "png", "gif", "webp", "bmp"]
 App.video_extensions = ["mp4", "webm"]

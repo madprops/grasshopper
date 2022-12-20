@@ -356,7 +356,9 @@ App.get_background_image_options = function () {
   let opts = [["None", "none"]]
 
   for (let i=1; i<=App.num_background_images; i++) {
-    opts.push([`BG ${i.toString()}`, i.toString()])
+    let ii = i.toString()
+    let ns = App.fillpad(ii, 2, 0)
+    opts.push([`BG ${ns}`, ii])
   }
 
   return opts
