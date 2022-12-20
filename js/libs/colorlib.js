@@ -74,7 +74,9 @@ const ColorLib = (function () {
 
         if (matchIndex === undefined) {
           pixelArray.push([red, green, blue, 1])
-        } else {
+        }
+
+        else {
           pixelArray[matchIndex][3]++
         }
       }
@@ -95,7 +97,9 @@ const ColorLib = (function () {
         if (palette[i] === undefined) {
           if (last_p === undefined) {
             palette[i] = [42, 42, 42]
-          } else {
+          }
+
+          else {
             palette[i] = last_p
           }
         }
@@ -118,13 +122,17 @@ const ColorLib = (function () {
 
       if (instance.is_light(rgb)) {
         new_rgb = instance.shadeBlendConvert(-amount, rgb)
-      } else {
+      }
+
+      else {
         new_rgb = instance.shadeBlendConvert(amount, rgb)
       }
 
 			if (mode === "rgb") {
 				return new_rgb
-			} else {
+			}
+
+      else {
 				return instance.rgb_to_hex(new_rgb)
 			}
     }
@@ -141,7 +149,9 @@ const ColorLib = (function () {
 
 			if (mode === "rgb") {
 				return new_rgb
-			} else {
+			}
+
+      else {
 				return instance.rgb_to_hex(new_rgb)
 			}
     }
@@ -158,7 +168,9 @@ const ColorLib = (function () {
 
 			if (mode === "rgb") {
 				return new_rgb
-			} else {
+			}
+
+      else {
 				return instance.rgb_to_hex(new_rgb)
 			}
     }
@@ -179,7 +191,9 @@ const ColorLib = (function () {
       let c = uicolors.map(c => {
         if (c <= 0.03928) {
           return c / 12.92
-        } else {
+        }
+
+        else {
           return Math.pow((c + 0.055) / 1.055, 2.4)
         }
       })
@@ -196,7 +210,9 @@ const ColorLib = (function () {
     instance.get_proper_font = function (rgb) {
       if (instance.is_light(rgb)) {
         return "#000000"
-      } else {
+      }
+
+      else {
         return "#ffffff"
       }
     }
@@ -210,7 +226,9 @@ const ColorLib = (function () {
         for (let i = 0; i < array.length; i++) {
           rgb[i] = `rgb(${array[i][0]}, ${array[i][1]}, ${array[i][2]})`
         }
-      } else {
+      }
+
+      else {
         rgb = `rgb(${array[0]}, ${array[1]}, ${array[2]})`
       }
 
@@ -230,7 +248,9 @@ const ColorLib = (function () {
             .split(",")
           array[i] = split.map(x => parseInt(x))
         }
-      } else {
+      }
+
+      else {
         let split = rgb
           .replace("rgb(", "")
           .replace(")", "")
@@ -305,7 +325,9 @@ const ColorLib = (function () {
       for (let i = 0; i < array.length; i++) {
         if (array[i] < 0) {
           array[i] = 0
-        } else if (array[i] > 255) {
+        }
+
+        else if (array[i] > 255) {
           array[i] = 255
         }
       }
@@ -343,7 +365,9 @@ const ColorLib = (function () {
               (RGB[1] = i(d[1])),
               (RGB[2] = i(d[2])),
               (RGB[3] = d[3] ? parseFloat(d[3]) : -1)
-          } else {
+          }
+
+          else {
             if (l == 8 || l == 6 || l < 4) return null // ErrorCheck
             if (l < 6)
               d =
@@ -383,7 +407,8 @@ const ColorLib = (function () {
         f = this.sbcRip(from),
         t = this.sbcRip(to)
       if (!f || !t) return null // ErrorCheck
-      if (h)
+
+      if (h) {
         return (
           "rgb(" +
           r((t[0] - f[0]) * p + f[0]) +
@@ -401,7 +426,9 @@ const ColorLib = (function () {
                 : t[3]) +
               ")")
         )
-      else
+      }
+
+      else {
         return (
           "#" +
           (
@@ -421,6 +448,7 @@ const ColorLib = (function () {
             .toString(16)
             .slice(f[3] > -1 || t[3] > -1 ? 1 : 3)
         )
+      }
     }
 
     instance.lab2rgb = function (lab) {
