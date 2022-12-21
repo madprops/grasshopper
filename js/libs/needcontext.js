@@ -91,8 +91,8 @@ NeedContext.show = function (x, y, items) {
 
     if (item.separator) {
       el.classList.add("needcontext-separator")
-    }
-
+    } 
+    
     else {
       el.classList.add("needcontext-normal")
       el.textContent = item.text
@@ -293,7 +293,6 @@ NeedContext.init = function () {
 
     #needcontext-container {
       z-index: 2;
-      position: relative;
       position: absolute;
       background-color: white;
       color: black;
@@ -310,6 +309,10 @@ NeedContext.init = function () {
       padding-bottom: 6px;
       max-height: 80vh;
       overflow: auto;
+    }
+
+    .needcontext-item {
+      white-space: nowrap;
     }
 
     .needcontext-normal {
