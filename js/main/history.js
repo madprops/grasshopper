@@ -25,7 +25,7 @@ App.history_action = function (item) {
     return
   }
 
-  App.launch_item(item)
+  App.focus_or_open_item(item)
 }
 
 // History action alt

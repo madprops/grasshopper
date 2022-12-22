@@ -19,7 +19,7 @@ App.closed_action = function (item) {
     return
   }
 
-  App.launch_item("closed")
+  App.focus_or_open_item("closed")
 }
 
 // Closed tabs action alt
