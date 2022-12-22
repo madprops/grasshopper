@@ -8,6 +8,25 @@ App.setup_media = function () {
 App.create_media_windows = function (what) {
   App.create_window({id: what, setup: function () {
     let media = App.el(`#${what}`)
+    let buttons = App.el(`#${what}_buttons`)
+    
+    let prev = App.create("div", "button", `${what}_prev`)
+    prev.textContent = "<"
+    prev.title = "Go To Previous"
+    buttons.append(prev)
+
+    let open = App.create("div", "button", `${what}_open`)
+    open.textContent = "Open Tab"
+    buttons.append(open)
+
+    let copy = App.create("div", "button", `${what}_copy`)
+    copy.textContent = "Copy URL"
+    buttons.append(copy)
+
+    let next = App.create("div", "button", `${what}_next`)
+    next.textContent = ">"
+    next.title = "Go To Next"
+    buttons.append(next)
 
     if (what === "image") {
       App.ev(media, "load", function () {
@@ -62,9 +81,6 @@ App.create_media_windows = function (what) {
     App.raise_window(item.mode)
     App.select_item(item)
   }})
-
-  App.el(`#${what}_prev`).title = "Go To Previous"
-  App.el(`#${what}_next`).title = "Go To Next"
 }
 
 // Show media
