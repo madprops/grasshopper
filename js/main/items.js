@@ -977,7 +977,7 @@ App.setup_item_window = function (mode) {
 
     if (mode === "tabs") {
       playing = App.create("div", "button icon_button hidden", `${mode}_playing`)
-      playing.title = "Go To Playing Tab"
+      playing.title = "Go To Playing Tab (Ctrl + Up)"
       let playing_icon = App.create_icon("speaker")
 
       App.ev(playing, "click", function () {
