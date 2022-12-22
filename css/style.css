@@ -174,7 +174,6 @@ body, html {
   font-size: 1rem;
   cursor: pointer;
   flex-shrink: 0;
-  min-width: 1.5rem;
   background-color: var(--alt_color_1);
   color: var(--text_color);
   border-width: 0;
