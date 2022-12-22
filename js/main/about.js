@@ -13,6 +13,8 @@ App.setup_about = function () {
       "Shift + Click to select item range",
       "Right Click to show context menus",
       "Shift + Enter to show context menus",
+      "Ctrl + Space togles Filter Modes",
+      "Shift + Space toggles Actions",
       "Delete key removes items",
       "Ctrl + A to pick all items",
     ]

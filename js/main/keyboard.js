@@ -51,6 +51,18 @@ App.check_window_keyboard = function (e) {
     return
   }
 
+  if (e.shiftKey && e.key === " ") {
+    App.show_actions(mode)
+    e.preventDefault()
+    return
+  }
+
+  if (e.ctrlKey && e.key === " ") {
+    App.show_filter_modes(mode)
+    e.preventDefault()
+    return
+  }
+
   App.focus_filter(mode)
 }
 
@@ -63,6 +75,10 @@ App.setup_keyboard = function () {
       }
 
       else if (e.shiftKey && e.key === " ") {
+        NeedContext.hide()
+      }
+
+      else if (e.ctrlKey && e.key === " ") {
         NeedContext.hide()
       }
 

@@ -976,7 +976,7 @@ App.setup_item_window = function (mode) {
 
     //
     let filter_modes = App.create("div", "button icon_button", `${mode}_filter_modes`)
-    filter_modes.title = "Filter Modes"
+    filter_modes.title = "Filter Modes (Ctrl + Space)"
     let filter_modes_icon = App.create_icon("triangle")
     let filter_modes_text = App.create("div", "", `${mode}_filter_modes_text`)
     filter_modes.append(filter_modes_text)
@@ -1037,7 +1037,7 @@ App.setup_item_window = function (mode) {
     actions_text.textContent = "Actions"
     actions_menu.append(actions_text)
     actions_menu.append(actions_icon)
-    actions_menu.title = "Item Actions"
+    actions_menu.title = "Actions (Shift + Space)"
 
     App[`show_${mode}_actions`] = function () {
       let items = []
