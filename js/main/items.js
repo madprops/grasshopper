@@ -52,7 +52,6 @@ App.select_item_above = function (mode, highlight = false) {
     if (highlight) {
       App.check_highlight(mode, item)
     }
-
     else {
       if (App.dehighlight(mode)) {
         return
@@ -71,7 +70,6 @@ App.select_item_below = function (mode, highlight = false) {
     if (highlight) {
       App.check_highlight(mode, item)
     }
-
     else {
       if (App.dehighlight(mode)) {
         return
@@ -159,7 +157,6 @@ App.update_footer_info = function (item) {
   if (item) {
     App.set_footer_info(item.mode, item.footer)
   }
-
   else {
     App.empty_footer_info()
   }
@@ -222,7 +219,6 @@ App.remove_item = function (item) {
     if (next_item) {
       App.select_item(next_item)
     }
-
     else {
       App.select_first_item(mode)
     }
@@ -465,7 +461,6 @@ App.show_item_menu = function (item, x, y) {
       }
     })
   }
-
   else {
     items.push({
       text: "Launch",
@@ -1141,11 +1136,11 @@ App.setup_item_window = function (mode) {
 
     left_top.append(main_menu)
     left_top.append(filter)
-    
+
     if (playing) {
       right_top.append(playing)
     }
-    
+
     right_top.append(filter_modes)
     right_top.append(actions_menu)
 
@@ -1174,7 +1169,6 @@ App.cycle_item_windows = function (reverse = false, cycle = false) {
       new_mode = modes[index - 1]
     }
   }
-
   else {
     if (index === modes.length - 1) {
       new_mode = modes[0]
@@ -1397,7 +1391,6 @@ App.cycle_filter_modes = function (mode, reverse = true) {
       }
     }
   }
-
   else {
     for (let filter_mode of modes) {
       if (waypoint) {
@@ -1664,7 +1657,7 @@ App.show_main_menu = function (mode) {
 
     items.push({
       separator: true
-    })    
+    })
   }
 
   for (let m of App.item_order) {

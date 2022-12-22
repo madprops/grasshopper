@@ -9,7 +9,7 @@ App.create_media_windows = function (what) {
   App.create_window({id: what, setup: function () {
     let media = App.el(`#${what}`)
     let buttons = App.el(`#${what}_buttons`)
-    
+
     let prev = App.create("div", "button", `${what}_prev`)
     prev.textContent = "<<"
     prev.title = "Go To Previous"

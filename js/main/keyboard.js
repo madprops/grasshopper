@@ -47,7 +47,6 @@ App.check_window_keyboard = function (e) {
       let rect = item.element.getBoundingClientRect()
       App.show_item_menu(item, rect.left, rect.top)
     }
-
     else {
       App[`${mode}_action`](item)
     }
@@ -87,15 +86,12 @@ App.setup_keyboard = function () {
       if (e.shiftKey && e.key === "Enter") {
         NeedContext.hide()
       }
-
       else if (e.ctrlKey && e.key === "ArrowLeft") {
         NeedContext.hide()
       }
-
       else if (e.ctrlKey && e.key === "ArrowDown") {
         NeedContext.hide()
       }
-
       else if (e.ctrlKey && e.key === "ArrowRight") {
         NeedContext.hide()
       }
@@ -113,25 +109,20 @@ App.setup_keyboard = function () {
         if (e.key === "ArrowLeft") {
           App.focus_confirm_no()
         }
-
         else if (e.key === "ArrowRight") {
           App.focus_confirm_yes()
         }
-
         else if (e.key === "Enter") {
           App.confirm_enter()
         }
       }
-
       else if (App.popup_mode === "dialog") {
         if (e.key === "Enter") {
           App.dialog_enter()
         }
-
         else if (e.key === "ArrowLeft") {
           App.dialog_left()
         }
-
         else if (e.key === "ArrowRight") {
           App.dialog_right()
         }
@@ -147,7 +138,6 @@ App.setup_keyboard = function () {
         e.preventDefault()
         return
       }
-
       else if (e.key === "ArrowRight") {
         App.media_next(App.window_mode)
         e.preventDefault()
