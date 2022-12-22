@@ -11,11 +11,11 @@
         "bookmarks"
     ],
     "icons": {
-        "128": "icon128.png"
+        "128": "img/icon128.png"
     },
     "browser_action": {
         "default_icon": {
-            "128": "icon128.png"
+            "128": "img/icon128.png"
         },
         "default_title": "Grasshopper",
         "default_popup": "popup.html"
