@@ -856,7 +856,12 @@ App.show_item_window = async function (mode, cycle = false) {
     return
   }
 
-  App.process_items(mode, items)
+  if (mode === "history" && value) {
+    // Filter will search
+  }
+  else {
+    App.process_items(mode, items)
+  }
 
   if (value) {
     App.do_item_filter(mode)
