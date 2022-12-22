@@ -32,6 +32,12 @@ App.check_window_keyboard = function (e) {
       e.preventDefault()
       return
     }
+
+    if (e.key === "ArrowUp") {
+      App.go_to_playing()
+      e.preventDefault()
+      return
+    }
   }
 
   if (e.key === "Enter") {

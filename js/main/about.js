@@ -18,6 +18,7 @@ App.setup_about = function () {
       "Ctrl + Left togles Main Menu",
       "Ctrl + Down toggles Filter Modes",
       "Ctrl + Right toggles Actions",
+      "Ctrl + Up goes to playing tab",
     ]
 
     App.about_info_index = 0
