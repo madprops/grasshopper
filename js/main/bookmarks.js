@@ -6,6 +6,11 @@ App.setup_bookmarks = function () {
 // Get bookmarks
 App.get_bookmarks = async function () {
   let bookmarks = await browser.bookmarks.search({})
+
+  bookmarks.sort(function (a, b) {
+    return a.dateAdded > b.dateAdded ? -1 : 1
+  })
+
   return bookmarks
 }
 

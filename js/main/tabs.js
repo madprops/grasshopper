@@ -78,15 +78,12 @@ App.setup_tabs = function () {
 // Get open tabs
 App.get_tabs = async function () {
   let tabs = await browser.tabs.query({currentWindow: true})
-  App.sort_tabs_by_index(tabs)
-  return tabs
-}
 
-// Sort tabs by index
-App.sort_tabs_by_index = function (tabs) {
   tabs.sort(function (a, b) {
     return a.index < b.index ? -1 : 1
   })
+
+  return tabs
 }
 
 // Open a new tab
