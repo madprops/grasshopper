@@ -191,7 +191,7 @@ App.tabs_action = function (item) {
 
 // Tabs action alt
 App.tabs_action_alt = function (item, shift_key = false) {
-  App.close_tabs(shift_key)
+  App.close_tabs(item, shift_key)
 }
 
 // Duplicate a tab
@@ -308,10 +308,17 @@ App.suspend_tabs = function () {
 }
 
 // Close tabs
-App.close_tabs = function (force = false) {
+App.close_tabs = function (item, force = false) {
   let ids = []
   let warn = false
-  let active = App.get_active_items("tabs")
+  let active
+
+  if (item) {
+    active = [item]
+  } 
+  else {
+    active = App.get_active_items("tabs")
+  }
 
   for (let tab of active) {
     if (tab.pinned || tab.audible) {
