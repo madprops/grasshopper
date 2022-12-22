@@ -1491,7 +1491,7 @@ App.highlight_range = function (item) {
         if (!it.visible) {
           continue
         }
-        
+
         App.toggle_highlight(it, true)
       }
     }
@@ -1500,7 +1500,7 @@ App.highlight_range = function (item) {
         if (!it.visible) {
           continue
         }
-        
+
         App.toggle_highlight(it, true)
       }
     }
@@ -1741,7 +1741,7 @@ App.item_action = function (item) {
     if (App.check_media(item)) {
       return
     }
-    
+
     App.focus_or_open_item(item)
-  }  
+  }
 }
