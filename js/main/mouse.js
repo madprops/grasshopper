@@ -63,6 +63,13 @@ App.setup_window_mouse = function (mode) {
       e.preventDefault()
     }
   })
+
+  App.ev(container, "mousemove", function (e) {
+    if (e.target.closest(`.${mode}_item`)) {
+      let item = App.get_cursor_item(mode, e)
+      App.update_footer_info(item)
+    }
+  })
 }
 
 // Get item under cursor

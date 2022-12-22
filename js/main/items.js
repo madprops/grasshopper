@@ -34,7 +34,7 @@ App.select_item = function (item, scroll = "nearest") {
     App.get_selected(item.mode).element.scrollIntoView({block: scroll})
   }
 
-  App.update_footer(item.mode)
+  App.update_footer_info(item)
 
   if (item.mode === "tabs") {
     browser.tabs.warmup(item.id)
@@ -159,18 +159,18 @@ App.get_prev_visible_item = function (mode, wrap = true) {
 }
 
 // Updates a footer
-App.update_footer = function (mode) {
-  if (App.get_selected(mode)) {
-    App.set_footer_info(mode, App.get_selected(mode).footer)
+App.update_footer_info = function (item) {
+  if (item) {
+    App.set_footer_info(item.mode, item.footer)
   }
 
   else {
-    App.empty_footer(mode)
+    App.empty_footer_info(mode)
   }
 }
 
 // Empty the footer
-App.empty_footer = function (mode) {
+App.empty_footer_info = function (mode) {
   App.set_footer_info(mode, "No Results")
 }
 
@@ -359,7 +359,7 @@ App.do_item_filter = async function (mode) {
 
   App.set_selected(mode, undefined)
   App.select_first_item(mode)
-  App.update_footer(mode)
+  App.update_footer_info(App.get_selected(mode))
   App.update_footer_count.call(mode)
   App.save_filter.call(value)
 }
@@ -651,7 +651,7 @@ App.process_item = function (mode, item, exclude = [], o_item) {
 
 // Create empty item
 App.create_empty_item_element = function (item) {
-  item.element = App.create("div", `item ${item.mode}_item`)
+  item.element = App.create("div", `item ${item.mode}_item action`)
   item.element.dataset.id = item.id
   App[`${item.mode}_item_observer`].observe(item.element)
 }
@@ -858,7 +858,7 @@ App.get_last_window_value = function (cycle) {
 App.show_item_window = async function (mode, cycle = false) {
   let value = App.get_last_window_value(cycle)
   App.windows[mode].show()
-  App.empty_footer(mode)
+  App.empty_footer_info(mode)
   App[`${mode}_item_filter`].cancel()
   App.el(`#${mode}_container`).innerHTML = ""
   App.el(`#${mode}_main_menu_text`).textContent = App.get_mode_name(mode)

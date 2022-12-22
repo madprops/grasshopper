@@ -324,10 +324,6 @@ svg {
   background-color: var(--alt_color_1);
 }
 
-.item:hover {
-  filter: brightness(140%);
-}
-
 .hidden {
   display: none !important;
 }
