@@ -10,7 +10,6 @@ App.popups = {}
 App.max_closed = 25
 App.history_max_results = 640
 App.history_max_months = 18
-App.star_counter = 0
 App.max_filters = 8
 App.num_background_images = 10
 App.theme_color_diff = 0.77

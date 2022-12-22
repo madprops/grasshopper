@@ -41,10 +41,6 @@ App.check_window_keyboard = function (e) {
       App.close_tabs()
     }
 
-    else if (mode === "stars") {
-      App.remove_stars()
-    }
-
     e.preventDefault()
     return
   }
