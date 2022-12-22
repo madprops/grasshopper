@@ -22,7 +22,7 @@ App.check_window_keyboard = function (e) {
     }
 
     if (e.key === "ArrowDown") {
-      App.show_filters(mode)
+      App.show_main_menu(mode)
       e.preventDefault()
       return
     }
