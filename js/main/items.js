@@ -1488,11 +1488,19 @@ App.highlight_range = function (item) {
 
     if (index_1 < index_2) {
       for (let it of items.slice(index_1 + 1, index_2)) {
+        if (!it.visible) {
+          continue
+        }
+        
         App.toggle_highlight(it, true)
       }
     }
     else if (index_1 > index_2) {
       for (let it of items.slice(index_2 + 1, index_1)) {
+        if (!it.visible) {
+          continue
+        }
+        
         App.toggle_highlight(it, true)
       }
     }
