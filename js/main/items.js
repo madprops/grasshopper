@@ -277,7 +277,9 @@ App.do_item_filter = async function (mode) {
     }
   }
 
-  if (!App.get_items(mode)) {
+  let items = App.get_items(mode)
+
+  if (!items) {
     return
   }
 
@@ -350,7 +352,7 @@ App.do_item_filter = async function (mode) {
     return match
   }
 
-  for (let it of App.get_items(mode)) {
+  for (let it of items) {
     if (!it.element) {
       continue
     }
