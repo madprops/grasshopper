@@ -14,7 +14,7 @@ App.get_bookmarks = async function () {
   return bookmarks
 }
 
-// Stars action
+// Boomarks action
 App.bookmarks_action = function (item) {
   if (App.check_media(item)) {
     return
@@ -31,7 +31,7 @@ App.bookmarks_action = function (item) {
   }
 }
 
-// Stars action alt
+// Boomarks action alt
 App.bookmarks_action_alt = function (item) {
   App.launch_item(item, false)
 }
