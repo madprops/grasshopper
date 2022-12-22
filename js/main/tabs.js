@@ -121,7 +121,6 @@ App.refresh_tab = async function (id, select = false) {
   if (tab) {
     App.update_item("tabs", tab.id, info)
   }
-
   else {
     tab = App.insert_item("tabs", info)
   }

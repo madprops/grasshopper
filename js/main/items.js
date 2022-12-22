@@ -1840,7 +1840,8 @@ App.insert_item = function (mode, info) {
     App.move_item_element("tabs", item.element, info.index)
   }
 
-  App.update_footer_count.call(mode)  
+  App.update_footer_count.call(mode)
+  return item
 }
 
 // Get mode name
