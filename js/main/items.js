@@ -917,7 +917,7 @@ App.setup_item_window = function (mode) {
 
     //
     let main_menu = App.create("div", "button icon_button", `${mode}_main_menu`)
-    main_menu.title = "Main Menu (Ctrl + Down)"
+    main_menu.title = "Main Menu (Ctrl + Left)"
     let main_menu_icon = App.create_icon("triangle")
 
     App.ev(main_menu, "click", function () {
@@ -948,7 +948,7 @@ App.setup_item_window = function (mode) {
 
     //
     let filter_modes = App.create("div", "button icon_button", `${mode}_filter_modes`)
-    filter_modes.title = "Filter Modes (Ctrl + Left)"
+    filter_modes.title = "Filter Modes (Ctrl + Down)"
     let filter_modes_icon = App.create_icon("triangle")
     let filter_modes_text = App.create("div", "", `${mode}_filter_modes_text`)
     filter_modes.append(filter_modes_text)

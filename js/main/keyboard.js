@@ -16,13 +16,13 @@ App.check_window_keyboard = function (e) {
     }
 
     if (e.key === "ArrowLeft") {
-      App.show_filter_modes(mode)
+      App.show_main_menu(mode)
       e.preventDefault()
       return
     }
 
     if (e.key === "ArrowDown") {
-      App.show_main_menu(mode)
+      App.show_filter_modes(mode)
       e.preventDefault()
       return
     }

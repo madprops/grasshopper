@@ -15,8 +15,8 @@ App.setup_about = function () {
       "Shift + Enter to show context menus",
       "Ctrl + A to pick all items",
       "Delete key removes items",
-      "Ctrl + Left togles Filter Modes",
-      "Ctrl + Down toggles Filters",
+      "Ctrl + Left togles Main Menu",
+      "Ctrl + Down toggles Filter Modes",
       "Ctrl + Right toggles Actions",
     ]
 
