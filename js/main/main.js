@@ -28,10 +28,6 @@ App.close_window = function () {
   window.close()
 }
 
-App.reload_window = function () {
-  browser.runtime.reload()
-}
-
 NeedContext.min_width = "4.5rem"
 
 App.init = async function () {
