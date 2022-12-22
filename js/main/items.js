@@ -869,7 +869,7 @@ App.show_item_window = async function (mode, cycle = false) {
   App.empty_footer(mode)
   App[`${mode}_item_filter`].cancel()
   App.el(`#${mode}_container`).innerHTML = ""
-  App.el(`#${mode}_main_menu_text`).textContent = App.capitalize(mode)
+  App.el(`#${mode}_main_menu_text`).textContent = App.get_mode_name(mode)
   App.set_filter(mode, value, false)
 
   let m = App[`${mode}_filter_modes`][0]
@@ -1272,7 +1272,7 @@ App.show_main_menu = function (btn) {
     let selected = App.window_mode === m
 
     items.push({
-      text: App.capitalize(m),
+      text: App.get_mode_name(m),
       action: function () {
         App.show_item_window(m)
       },
@@ -1850,4 +1850,19 @@ App.insert_item = function (mode, info) {
   }
 
   App.update_footer_count.call(mode)  
+}
+
+// Get mode name
+App.get_mode_name = function (mode) {
+  let s
+
+  if (mode === "bookmarks") {
+    s = "BMarks"
+  }
+
+  else {
+    s = App.capitalize(mode)
+  }
+
+  return s
 }

@@ -37,7 +37,7 @@ App.start_item_order = function () {
     })
 
     let text = App.create("div", "item_order_item_text")
-    text.textContent = App.capitalize(m)
+    text.textContent = App.get_mode_name(m)
     row.append(text)
 
     let down = App.create("div", "button item_order_button")
