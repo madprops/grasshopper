@@ -21,18 +21,7 @@ App.get_history = async function (text = "") {
 
 // History action
 App.history_action = function (item) {
-  if (App.check_media(item)) {
-    return
-  }
-
-  let highlighted = App.get_highlights("history")
-
-  if (highlighted.length > 0) {
-    App.launch_items("history")
-  }
-  else {
-    App.focus_or_open_item(item)
-  }
+  App.item_action(item)
 }
 
 // History action alt

@@ -16,18 +16,7 @@ App.get_bookmarks = async function () {
 
 // Boomarks action
 App.bookmarks_action = function (item) {
-  if (App.check_media(item)) {
-    return
-  }
-
-  let highlighted = App.get_highlights("bookmarks")
-
-  if (highlighted.length > 0) {
-    App.launch_items("bookmarks")
-  }
-  else {
-    App.focus_or_open_item(item)
-  }
+  App.item_action(item)
 }
 
 // Boomarks action alt

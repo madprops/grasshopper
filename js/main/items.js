@@ -1721,3 +1721,19 @@ App.insert_item = function (mode, info) {
 App.get_mode_name = function (mode) {
   return App.capitalize(mode)
 }
+
+// Item action
+App.item_action = function (item) {
+  let highlighted = App.get_highlights(item.mode)
+
+  if (highlighted.length > 0) {
+    App.launch_items(item.mode)
+  }
+  else {
+    if (App.check_media(item)) {
+      return
+    }
+    
+    App.focus_or_open_item(item)
+  }  
+}
