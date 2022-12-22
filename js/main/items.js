@@ -533,16 +533,8 @@ App.get_move_menu_items = async function (item) {
       continue
     }
 
-    let text
-
-    if (win.id === App.window_id) {
-      text = "This Window"
-    }
-
-    else {
-      let s = `${win.title.substring(0, 25).trim()} (ID: ${win.id})`
-      text = `Move to: ${s}`
-    }
+    let s = `${win.title.substring(0, 25).trim()} (ID: ${win.id})`
+    let text = `Move to: ${s}`
 
     items.push({
       text: text,
@@ -663,7 +655,7 @@ App.process_item = function (mode, item, exclude = [], o_item) {
   }
 
   else if (mode === "stars") {
-    obj.date = item.date_last_visit
+    obj.date = item.last_visit
   }
 
   else if (mode === "history") {
@@ -908,8 +900,8 @@ App.show_item_window = async function (mode, cycle = false) {
   App.set_filter_mode(mode, m, false)
   App[`${mode}_filter_mode`] = m[0]
 
-  if (!App.sort_state.items[mode]) {
-    App.sort_state.items[mode] = "Normal"
+  if (!App.sort_state[mode]) {
+    App.sort_state[mode] = "Normal"
     App.stor_save_sort_state()
   }
 
@@ -921,7 +913,7 @@ App.show_item_window = async function (mode, cycle = false) {
     return
   }
 
-  if (App.sort_state.items[mode] === "Alpha") {
+  if (App.sort_state[mode] === "Alpha") {
     App.sort_items_by_alpha(items)
   }
 
@@ -1132,7 +1124,7 @@ App.setup_item_window = function (mode) {
     //
     if (mode === "tabs") {
       container.addEventListener("dragstart", function (e) {
-        if (mode === "tabs" && App.sort_state.items.tabs !== "Normal") {
+        if (mode === "tabs" && App.sort_state.tabs !== "Normal") {
           e.preventDefault()
           return false
         }
@@ -1851,7 +1843,7 @@ App.get_visible_media = function (mode, what) {
 
 // Set sort
 App.set_sort = function (mode, sort) {
-  App.sort_state.items[mode] = sort
+  App.sort_state[mode] = sort
   App.stor_save_sort_state()
   App.show_item_window(mode, false)
 }
@@ -1868,7 +1860,7 @@ App.create_icon = function (name, type = 1) {
 
 // Set footer sort
 App.set_footer_sort = function (mode) {
-  App.el(`#${mode}_footer_sort`).textContent = `Sort: ${App.sort_state.items[mode]}`
+  App.el(`#${mode}_footer_sort`).textContent = `Sort: ${App.sort_state[mode]}`
 }
 
 // Sort items alphanumerically
@@ -1896,12 +1888,12 @@ App.show_filters = function (mode) {
     }
   })
 
-  if (App.filters.items.length > 0) {
+  if (App.filters.length > 0) {
     items.push({
       separator: true
     })
 
-    for (let filter of App.filters.items) {
+    for (let filter of App.filters) {
       items.push({
         text: filter,
         action: function () {
@@ -1929,9 +1921,9 @@ App.show_filters = function (mode) {
 App.do_save_filter = function (filter) {
   if (filter) {
     filter = filter.substring(0, 20).trim()
-    App.filters.items = App.filters.items.filter(x => x !== filter)
-    App.filters.items.unshift(filter)
-    App.filters.items = App.filters.items.slice(0, App.max_filters)
+    App.filters = App.filters.filter(x => x !== filter)
+    App.filters.unshift(filter)
+    App.filters = App.filters.slice(0, App.max_filters)
     App.stor_save_filters()
   }
 }
@@ -1940,7 +1932,7 @@ App.do_save_filter = function (filter) {
 App.forget_filters = function () {
   App.show_confirm("Forget recent filters?", function () {
     App.save_filter.cancel()
-    App.filters.items = []
+    App.filters = []
     App.stor_save_filters()
   })
 }
@@ -1956,7 +1948,7 @@ App.get_sort_items = function (mode) {
       action: function () {
         App.set_sort(mode, m)
       },
-      selected: App.sort_state.items[mode] === m
+      selected: App.sort_state[mode] === m
     })
   }
 

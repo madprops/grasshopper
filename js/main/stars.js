@@ -93,13 +93,13 @@ App.get_stars = async function () {
     await App.stor_get_stars()
   }
 
-  let stars = structuredClone(App.stars.items)
+  let stars = structuredClone(App.stars)
 
-  if (App.sort_state.items.stars === "Normal") {
-    stars.sort((a, b) => (a.date_last_visit < b.date_last_visit) ? 1 : -1)
+  if (App.sort_state.stars === "Normal") {
+    stars.sort((a, b) => (a.last_visit < b.last_visit) ? 1 : -1)
   }
 
-  else if (App.sort_state.items.stars === "Special") {
+  else if (App.sort_state.stars === "Special") {
     stars.sort((a, b) => (a.visits < b.visits) ? 1 : -1)
   }
 
@@ -108,7 +108,7 @@ App.get_stars = async function () {
 
 // Update star data
 App.update_star = function (item, add_visit = true) {
-  item.date_last_visit = Date.now()
+  item.last_visit = Date.now()
 
   if (add_visit) {
     item.visits += 1
@@ -127,16 +127,16 @@ App.star_item = async function (item, save = true) {
     id: `${Date.now()}_${App.star_counter}`,
     url: item.url,
     title: item.title,
-    date_added: Date.now(),
-    date_last_visit: Date.now(),
+    added: Date.now(),
+    last_visit: Date.now(),
     visits: 0
   }
 
   App.star_counter += 1
-  App.stars.items.unshift(obj)
+  App.stars.unshift(obj)
 
-  if (App.stars.items.length > App.max_stars) {
-    App.stars.items = App.stars.items.slice(0, App.max_stars)
+  if (App.stars.length > App.max_stars) {
+    App.stars = App.stars.slice(0, App.max_stars)
   }
 
   if (save) {
@@ -170,7 +170,7 @@ App.do_remove_stars = function (ids) {
     }
   }
 
-  App.stars.items = App.stars.items.filter(x => !ids.includes(x.id))
+  App.stars = App.stars.filter(x => !ids.includes(x.id))
   App.stor_save_stars()
 }
 
@@ -236,7 +236,7 @@ App.get_star_by_id = async function (id) {
     await App.get_stars()
   }
 
-  for (let it of App.stars.items) {
+  for (let it of App.stars) {
     if (it.id === id) {
       return it
     }
@@ -249,7 +249,7 @@ App.get_star_by_url = async function (url) {
     await App.get_stars()
   }
 
-  for (let it of App.stars.items) {
+  for (let it of App.stars) {
     if (App.urls_equal(it.url, url)) {
       return it
     }
@@ -299,8 +299,8 @@ App.update_star_editor_info = function () {
   if (App.star_edited) {
     save.textContent = "Update"
     visits.textContent = App.star_edited.visits.toLocaleString()
-    visited.textContent = App.nice_date(App.star_edited.date_last_visit)
-    added.textContent = App.nice_date(App.star_edited.date_added)
+    visited.textContent = App.nice_date(App.star_edited.last_visit)
+    added.textContent = App.nice_date(App.star_edited.added)
     about.classList.add("hidden")
     info.classList.remove("hidden")
     remove.classList.remove("hidden")
@@ -335,13 +335,13 @@ App.remove_stars = function () {
 
 // Backup stars
 App.backup_stars = function () {
-  App.stars_backup = structuredClone(App.stars.items)
+  App.stars_backup = structuredClone(App.stars)
 }
 
 // Undo remove stars
 App.restore_stars = function () {
   if (App.stars_backup) {
-    App.stars.items = App.stars_backup
+    App.stars = App.stars_backup
     App.stor_save_stars()
     App.show_window("stars")
     App.show_feedback("Stars have been restored")
@@ -354,7 +354,7 @@ App.restore_stars = function () {
 
 // Display stars json
 App.export_stars = function () {
-  App.show_textarea("Copy this to import it later", JSON.stringify(App.stars.items, null, 2))
+  App.show_textarea("Copy this to import it later", JSON.stringify(App.stars, null, 2))
 }
 
 // Use star json to replace stars
@@ -375,7 +375,7 @@ App.import_stars = function () {
 
     if (json) {
       App.show_confirm("Use this data?", function () {
-        App.stars.items = json
+        App.stars = json
         App.stor_save_stars()
         App.show_window("stars")
       })
@@ -388,7 +388,7 @@ App.reset_stars = function () {
   App.show_confirm("Reset all star visits to zero?", function () {
     App.backup_stars()
 
-    for (let star of App.stars.items) {
+    for (let star of App.stars) {
       star.visits = 0
     }
 

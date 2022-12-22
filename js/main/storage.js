@@ -1,15 +1,33 @@
-// Get settings from sync storage
-App.stor_get_settings = async function () {
-  let obj = await browser.storage.sync.get(App.stor_settings_name)
+// Get local storage object
+App.get_local_storage = function (ls_name, fallback) {
+  let obj
 
-  if (Object.keys(obj).length === 0) {
-    App.settings = {}
+  if (localStorage[ls_name]) {
+    try {
+      obj = JSON.parse(localStorage.getItem(ls_name))
+    } catch (err) {
+      localStorage.removeItem(ls_name)
+      obj = null
+    }
+  } else {
+    obj = null
   }
 
-  else {
-    App.settings = obj[App.stor_settings_name]
+  if (!obj) {
+    obj = fallback
   }
 
+  return obj
+}
+
+// Save local storage object
+App.save_local_storage = function (ls_name, obj) {
+  localStorage.setItem(ls_name, JSON.stringify(obj))
+}
+
+// Get settings from storage
+App.stor_get_settings = function () {
+  App.settings = App.get_local_storage(App.stor_settings_name, {})
   let changed = false
 
   for (let key in App.default_settings) {
@@ -26,40 +44,34 @@ App.stor_get_settings = async function () {
   console.info("Stor: Got settings")
 }
 
-// Save settings to sync storage
-App.stor_save_settings = async function () {
-  let o = {}
-  o[App.stor_settings_name] = App.settings
-  await browser.storage.sync.set(o)
+// Save settings to storage
+App.stor_save_settings = function () {
+  App.save_local_storage(App.stor_settings_name, App.settings)
 }
 
-// Get stars from sync storage
-App.stor_get_stars = async function () {
-  let obj = await browser.storage.sync.get(App.stor_stars_name)
-
-  if (Object.keys(obj).length === 0) {
-    App.stars = {}
-  }
-
-  else {
-    App.stars = obj[App.stor_stars_name]
-  }
-
+// Get stars from storage
+App.stor_get_stars = function () {
+  App.stars = App.get_local_storage(App.stor_stars_name, [])
   let changed = false
 
-  if (App.stars.items === undefined) {
-    App.stars.items = []
+  let n1 = App.stars.length
+  App.stars = App.stars.filter(x => x.id)
+  App.stars = App.stars.filter(x => x.title)
+  App.stars = App.stars.filter(x => x.url)
+  let n2 = App.stars.length
+
+  if (n1 !== n2) {
     changed = true
   }
 
-  for (let star of App.stars.items) {
-    if (star.date_added === undefined) {
-      star.date_added = Date.now()
+  for (let star of App.stars) {
+    if (star.added === undefined) {
+      star.added = Date.now()
       changed = true
     }
 
-    if (star.date_last_visit === undefined) {
-      star.date_last_visit = Date.now()
+    if (star.last_visit === undefined) {
+      star.last_visit = Date.now()
       changed = true
     }
 
@@ -76,108 +88,40 @@ App.stor_get_stars = async function () {
   console.info("Stor: Got stars")
 }
 
-// Save stars to sync storage
-App.stor_save_stars = async function () {
-  let o = {}
-  o[App.stor_stars_name] = App.stars
-  await browser.storage.sync.set(o)
+// Save stars to storage
+App.stor_save_stars = function () {
+  App.save_local_storage(App.stor_stars_name, App.stars)
 }
 
-// Get tab state from sync storage
-App.stor_get_tab_state = async function () {
-  let obj = await browser.storage.sync.get(App.stor_tab_state_name)
-
-  if (Object.keys(obj).length === 0) {
-    App.tab_state = {}
-  }
-
-  else {
-    App.tab_state = obj[App.stor_tab_state_name]
-  }
-
-  let changed = false
-
-  if (App.tab_state.items === undefined) {
-    App.tab_state.items = {}
-    changed = true
-  }
-
-  if (changed) {
-    App.stor_save_tab_state()
-  }
-
+// Get tab state from storage
+App.stor_get_tab_state = function () {
+  App.tab_state = App.get_local_storage(App.stor_tab_state_name, {})
   console.info("Stor: Got tab state")
 }
 
-// Save tab state to sync storage
-App.stor_save_tab_state = async function () {
-  let o = {}
-  o[App.stor_tab_state_name] = App.tab_state
-  await browser.storage.sync.set(o)
+// Save tab state to storage
+App.stor_save_tab_state = function () {
+  App.save_local_storage(App.stor_tab_state_name, App.tab_state)
 }
 
-// Get sort state from sync storage
-App.stor_get_sort_state = async function () {
-  let obj = await browser.storage.sync.get(App.stor_sort_state_name)
-
-  if (Object.keys(obj).length === 0) {
-    App.sort_state = {}
-  }
-
-  else {
-    App.sort_state = obj[App.stor_sort_state_name]
-  }
-
-  let changed = false
-
-  if (App.sort_state.items === undefined) {
-    App.sort_state.items = {}
-    changed = true
-  }
-
-  if (changed) {
-    App.stor_save_sort_state()
-  }
-
+// Get sort state from storage
+App.stor_get_sort_state = function () {
+  App.sort_state = App.get_local_storage(App.stor_sort_state_name, {})
   console.info("Stor: Got sort state")
 }
 
-// Save sort state to sync storage
-App.stor_save_sort_state = async function () {
-  let o = {}
-  o[App.stor_sort_state_name] = App.sort_state
-  await browser.storage.sync.set(o)
+// Save sort state to storage
+App.stor_save_sort_state = function () {
+  App.save_local_storage(App.stor_sort_state_name, App.sort_state)
 }
 
-// Get filters from sync storage
-App.stor_get_filters = async function () {
-  let obj = await browser.storage.sync.get(App.stor_filters_name)
-
-  if (Object.keys(obj).length === 0) {
-    App.filters = {}
-  }
-
-  else {
-    App.filters = obj[App.stor_filters_name]
-  }
-
-  let changed = false
-
-  if (App.filters.items === undefined) {
-    App.filters.items = []
-    changed = true
-  }
-
-  if (changed) {
-    App.stor_save_filters()
-  }
-
+// Get filters from storage
+App.stor_get_filters = function () {
+  App.filters = App.get_local_storage(App.stor_filters_name, [])
   console.info("Stor: Got filters")
 }
 
-// Save filters to sync storage
-App.stor_save_filters = async function () {
-  let o = {}
-  o[App.stor_filters_name] = App.filters
-  await browser.storage.sync.set(o)
+// Save filters to storage
+App.stor_save_filters = function () {
+  App.save_local_storage(App.stor_filters_name, App.filters)
 }
