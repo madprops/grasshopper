@@ -75,7 +75,6 @@ const ColorLib = (function () {
         if (matchIndex === undefined) {
           pixelArray.push([red, green, blue, 1])
         }
-
         else {
           pixelArray[matchIndex][3]++
         }
@@ -98,7 +97,6 @@ const ColorLib = (function () {
           if (last_p === undefined) {
             palette[i] = [42, 42, 42]
           }
-
           else {
             palette[i] = last_p
           }
@@ -123,7 +121,6 @@ const ColorLib = (function () {
       if (instance.is_light(rgb)) {
         new_rgb = instance.shadeBlendConvert(-amount, rgb)
       }
-
       else {
         new_rgb = instance.shadeBlendConvert(amount, rgb)
       }
@@ -131,7 +128,6 @@ const ColorLib = (function () {
 			if (mode === "rgb") {
 				return new_rgb
 			}
-
       else {
 				return instance.rgb_to_hex(new_rgb)
 			}
@@ -150,7 +146,6 @@ const ColorLib = (function () {
 			if (mode === "rgb") {
 				return new_rgb
 			}
-
       else {
 				return instance.rgb_to_hex(new_rgb)
 			}
@@ -169,7 +164,6 @@ const ColorLib = (function () {
 			if (mode === "rgb") {
 				return new_rgb
 			}
-
       else {
 				return instance.rgb_to_hex(new_rgb)
 			}
@@ -192,7 +186,6 @@ const ColorLib = (function () {
         if (c <= 0.03928) {
           return c / 12.92
         }
-
         else {
           return Math.pow((c + 0.055) / 1.055, 2.4)
         }
@@ -211,7 +204,6 @@ const ColorLib = (function () {
       if (instance.is_light(rgb)) {
         return "#000000"
       }
-
       else {
         return "#ffffff"
       }
@@ -227,7 +219,6 @@ const ColorLib = (function () {
           rgb[i] = `rgb(${array[i][0]}, ${array[i][1]}, ${array[i][2]})`
         }
       }
-
       else {
         rgb = `rgb(${array[0]}, ${array[1]}, ${array[2]})`
       }
@@ -249,7 +240,6 @@ const ColorLib = (function () {
           array[i] = split.map(x => parseInt(x))
         }
       }
-
       else {
         let split = rgb
           .replace("rgb(", "")
@@ -326,7 +316,6 @@ const ColorLib = (function () {
         if (array[i] < 0) {
           array[i] = 0
         }
-
         else if (array[i] > 255) {
           array[i] = 255
         }
@@ -366,7 +355,6 @@ const ColorLib = (function () {
               (RGB[2] = i(d[2])),
               (RGB[3] = d[3] ? parseFloat(d[3]) : -1)
           }
-
           else {
             if (l == 8 || l == 6 || l < 4) return null // ErrorCheck
             if (l < 6)
@@ -427,7 +415,6 @@ const ColorLib = (function () {
               ")")
         )
       }
-
       else {
         return (
           "#" +
