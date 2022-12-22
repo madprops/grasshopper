@@ -1667,7 +1667,8 @@ App.show_main_menu = function (mode) {
       text: App.get_mode_name(m),
       action: function () {
         App.show_item_window(m)
-      }
+      },
+      selected: m === mode
     })
   }
 
