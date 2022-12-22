@@ -1654,16 +1654,18 @@ App.show_main_menu = function (mode) {
   let el = App.el(`#${mode}_main_menu`)
   let items = []
 
-  items.push({
-    text: "Clear",
-    action: function () {
-      App.clear_filter(mode)
-    }
-  })
+  if (App.get_filter(mode)) {
+    items.push({
+      text: "Clear",
+      action: function () {
+        App.clear_filter(mode)
+      }
+    })
 
-  items.push({
-    separator: true
-  })
+    items.push({
+      separator: true
+    })    
+  }
 
   for (let m of App.item_order) {
     items.push({
