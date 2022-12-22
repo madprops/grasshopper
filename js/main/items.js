@@ -771,7 +771,6 @@ App.set_item_text = function (item) {
 
   if (App.settings.text_mode === "title") {
     content = item.title || item.path
-    console.log(item.path)
     item.footer = decodeURI(item.path) || item.title
   }
 
