@@ -298,35 +298,27 @@ App.do_item_filter = async function (mode) {
       if (filter_mode === "all") {
         match = true
       }
-
       else if (filter_mode === "normal") {
         match = App.tab_is_normal(item)
       }
-
       else if (filter_mode === "playing") {
         match = item.audible
       }
-
       else if (filter_mode === "pins") {
         match = item.pinned
       }
-
       else if (filter_mode === "muted") {
         match = item.muted
       }
-
       else if (filter_mode === "suspended") {
         match = item.discarded
       }
-
       else if (filter_mode === "active") {
         match = item.active
       }
-
       else if (filter_mode === "images") {
         match = item.image
       }
-
       else if (filter_mode === "videos") {
         match = item.video
       }
@@ -349,15 +341,17 @@ App.do_item_filter = async function (mode) {
         selected = it
       }
     }
-
     else {
       App.hide_item(it)
     }
   }
 
-  App.set_selected(mode, selected)
-
-  if (!selected) {
+  App.set_selected(mode, undefined)
+  
+  if (selected) {
+    App.select_item(selected)
+  }
+  else {
     App.select_first_item(mode)
   }
 
@@ -391,7 +385,6 @@ App.show_item_menu = function (item, x, y) {
         }
       })
     }
-
     else {
       items.push({
         text: "Pin",
@@ -409,7 +402,6 @@ App.show_item_menu = function (item, x, y) {
         }
       })
     }
-
     else {
       items.push({
         text: "Mute",
@@ -627,11 +619,9 @@ App.process_item = function (mode, item, exclude = [], o_item) {
     obj.discarded = item.discarded
     obj.date = item.lastAccessed
   }
-
   else if (mode === "history") {
     obj.date = item.lastVisitTime
   }
-
   else if (mode === "closed") {
     obj.date = item.lastAccessed
   }
@@ -639,8 +629,7 @@ App.process_item = function (mode, item, exclude = [], o_item) {
   if (o_item) {
     o_item = Object.assign(o_item, obj)
     App.create_item_element(o_item)
-  } 
-  
+  }
   else {
     obj.id = item.id || App[`${mode}_idx`]
     obj.visible = true
@@ -688,7 +677,6 @@ App.create_item_element = function (item) {
 
     item.element.append(pin_icon)
   }
-
   else {
     let launched = App.create("div", "item_info item_info_launched")
     item.element.append(launched)
@@ -697,7 +685,6 @@ App.create_item_element = function (item) {
   if (item.highlighted) {
     item.element.classList.add("highlighted")
   }
-
   else {
     item.element.classList.remove("highlighted")
   }
@@ -768,7 +755,6 @@ App.set_item_text = function (item) {
     content = item.title || item.path
     item.footer = decodeURI(item.path) || item.title
   }
-
   else if (App.settings.text_mode === "url") {
     content = decodeURI(item.path) || item.title
     item.footer = item.title || item.path
@@ -880,7 +866,6 @@ App.show_item_window = async function (mode, cycle = false) {
   if (value) {
     App.do_item_filter(mode)
   }
-
   else {
     App.select_first_item(mode, true)
   }
@@ -939,7 +924,6 @@ App.setup_item_window = function (mode) {
       if (e.deltaY < 0) {
         App.cycle_item_windows(true)
       }
-
       else {
         App.cycle_item_windows(false)
       }
@@ -977,7 +961,6 @@ App.setup_item_window = function (mode) {
       if (e.deltaY < 0) {
         App.cycle_filter_modes(mode, true)
       }
-
       else {
         App.cycle_filter_modes(mode, false)
       }
@@ -1031,17 +1014,14 @@ App.setup_item_window = function (mode) {
         if (item.conditional) {
           items.push(item.conditional())
         }
-
         else if (item.action) {
           items.push({text: item.text, action: function () {
             item.action()
           }})
         }
-
         else if (item.items) {
           items.push({text: item.text, items: item.items})
         }
-
         else if (item.get_items) {
           items.push({text: item.text, get_items: item.get_items})
         }
@@ -1089,7 +1069,6 @@ App.setup_item_window = function (mode) {
             }
           }
         }
-
         else {
           App.drag_items.push(App.drag_item)
         }
@@ -1137,7 +1116,6 @@ App.setup_item_window = function (mode) {
           if (direction === "down") {
             el.after(...App.drag_els)
           }
-
           else {
             el.before(...App.drag_els)
           }
@@ -1189,7 +1167,6 @@ App.cycle_item_windows = function (reverse = false, cycle = false) {
     if (index === 0) {
       new_mode = modes.slice(-1)[0]
     }
-
     else {
       new_mode = modes[index - 1]
     }
@@ -1199,7 +1176,6 @@ App.cycle_item_windows = function (reverse = false, cycle = false) {
     if (index === modes.length - 1) {
       new_mode = modes[0]
     }
-
     else {
       new_mode = modes[index + 1]
     }
@@ -1289,7 +1265,6 @@ App.do_update_footer_count = function (mode) {
   if (n1 > 0) {
     count.textContent = `${s1} of ${s2} items`
   }
-
   else {
     count.textContent = `${s2} ${App.plural_2(n2, "item", "items")}`
   }
@@ -1437,7 +1412,6 @@ App.cycle_filter_modes = function (mode, reverse = true) {
   if (reverse) {
     App.set_filter_mode(mode, modes[modes.length - 1])
   }
-
   else {
     App.set_filter_mode(mode, modes[0])
   }
@@ -1492,12 +1466,10 @@ App.move_item_element = function (mode, el, to_index) {
   if (to_index === 0) {
     container.prepend(el)
   }
-
   else {
     if (from_index < to_index) {
       container.insertBefore(el, items[to_index + 1])
-    }
-
+    } 
     else {
       container.insertBefore(el, items[to_index])
     }
@@ -1523,7 +1495,6 @@ App.highlight_range = function (item) {
         App.toggle_highlight(it, true)
       }
     }
-
     else if (index_1 > index_2) {
       for (let it of items.slice(index_2 + 1, index_1)) {
         App.toggle_highlight(it, true)
@@ -1556,7 +1527,6 @@ App.toggle_highlight = async function (item, what) {
   if (what !== undefined) {
     highlight = what
   }
-
   else {
     highlight = !item.highlighted
   }
@@ -1564,7 +1534,6 @@ App.toggle_highlight = async function (item, what) {
   if (highlight) {
     item.element.classList.add("highlighted")
   }
-
   else {
     item.element.classList.remove("highlighted")
   }
@@ -1593,7 +1562,6 @@ App.launch_item = function (item, close = true) {
   if (close) {
     App.close_window()
   }
-
   else {
     App.show_launched(item)
   }
@@ -1649,7 +1617,6 @@ App.highlight_items = function (mode) {
 
       App.toggle_highlight(item, what)
     }
-
     else {
       App.toggle_highlight(item, false)
     }
@@ -1758,7 +1725,6 @@ App.get_active_items = function (mode) {
   if (highlights.length === 0) {
     return [App.get_selected(mode)]
   }
-
   else {
     return highlights
   }
