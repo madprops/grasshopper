@@ -330,14 +330,6 @@ App.do_item_filter = async function (mode) {
       else if (filter_mode === "videos") {
         match = item.video
       }
-
-      else if (filter_mode === "secure") {
-        match = item.protocol === "https:"
-      }
-
-      else if (filter_mode === "insecure") {
-        match = item.protocol === "http:"
-      }
     }
 
     return match
@@ -966,8 +958,6 @@ App.setup_item_window = function (mode) {
     App[`${mode}_filter_modes`].unshift(["all", "All"])
     App[`${mode}_filter_modes`].push(["images", "Images"])
     App[`${mode}_filter_modes`].push(["videos", "Videos"])
-    App[`${mode}_filter_modes`].push(["secure", "Secure"])
-    App[`${mode}_filter_modes`].push(["insecure", "Insecure"])
 
     App.ev(filter_modes, "click", function () {
       App.show_filter_modes(mode)
@@ -1685,14 +1675,12 @@ App.show_filters = function (mode) {
   let items = []
 
   for (let m of App.item_order) {
-    if (m !== mode) {
-      items.push({
-        text: App.get_mode_name(m),
-        action: function () {
-          App.show_item_window(m)
-        }
-      })
-    }
+    items.push({
+      text: App.get_mode_name(m),
+      action: function () {
+        App.show_item_window(m)
+      }
+    })
   }
 
   items.push({
@@ -1727,7 +1715,7 @@ App.show_filters = function (mode) {
     items.push({
       text: "Settings",
       action: function () {
-        App.show_window("settings")
+        App.show_window("settings_basic")
       }
     })
 

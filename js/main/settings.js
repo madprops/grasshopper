@@ -409,12 +409,3 @@ App.show_next_settings = function () {
 
   App.show_window(App.settings_order[index])
 }
-
-// Reset all settings
-App.reset_settings = function () {
-  App.show_confirm("Reset all settings to defaults?", function () {
-    App.settings = {}
-    App.stor_save_settings()
-    App.reload_window()
-  })
-}
