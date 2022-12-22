@@ -1136,23 +1136,20 @@ App.setup_item_window = function (mode) {
     }
 
     // Append the top components
-
     let left_top = App.create("div", "item_top_left")
-    let center_top = App.create("div", "item_top_center")
     let right_top = App.create("div", "item_top_right")
 
-    left_top.append(filter_modes)
-    center_top.append(filter)
-    center_top.append(main_menu)
-
+    left_top.append(main_menu)
+    left_top.append(filter)
+    
     if (playing) {
       right_top.append(playing)
     }
-
+    
+    right_top.append(filter_modes)
     right_top.append(actions_menu)
 
     top.append(left_top)
-    top.append(center_top)
     top.append(right_top)
   }
 

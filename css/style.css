@@ -167,6 +167,7 @@ body, html {
 .filter {
   flex-grow: 0;
   width: 9rem;
+  outline: none;
 }
 
 .button {
@@ -291,16 +292,7 @@ svg {
   gap: 0.66rem;
   margin-right: auto;
   justify-content: flex-start;
-  flex: 0 1 33%;
-}
-
-.item_top_center {
-  display: flex;
-  flex-direction: row;
-  flex-shrink: 0;
-  gap: 0.66rem;
-  flex: 0 1 33%;
-  justify-content: center;
+  flex: 0 1 50%;
 }
 
 .item_top_right {
@@ -309,7 +301,7 @@ svg {
   flex-shrink: 0;
   gap: 0.66rem;
   justify-content: flex-end;
-  flex: 0 1 33%;
+  flex: 0 1 50%;
 }
 
 .highlighted {
