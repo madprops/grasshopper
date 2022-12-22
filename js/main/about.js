@@ -33,11 +33,9 @@ App.setup_about = function () {
         image.classList.remove("hue_rotate")
         image.classList.add("invert")
       }
-
       else if (image.classList.contains("invert")) {
         image.classList.remove("invert")
       }
-
       else {
         image.classList.add("hue_rotate")
       }

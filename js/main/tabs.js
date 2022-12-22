@@ -296,7 +296,6 @@ App.suspend_tabs = function () {
       App.dehighlight("tabs")
     })
   }
-
   else {
     for (let tab of tabs) {
       App.suspend_tab(tab)
@@ -339,7 +338,6 @@ App.close_tabs = function (item, force = false) {
       App.dehighlight("tabs")
     })
   }
-
   else {
     App.do_close_tabs(ids)
     App.dehighlight("tabs")
@@ -407,7 +405,6 @@ App.toggle_pin = function (item) {
   if (item.pinned) {
     App.unpin_tab(item.id)
   }
-
   else {
     App.pin_tab(item.id)
   }
@@ -456,7 +453,6 @@ App.do_load_tab_state = function (items, confirm = true) {
     if (i === -1) {
       to_close.push(tab)
     }
-
     else {
       urls.splice(i, 1)
     }
@@ -477,7 +473,6 @@ App.do_load_tab_state = function (items, confirm = true) {
         if (item.url === "about") {
           await App.new_tab(undefined, false)
         }
-
         else {
           await App.open_tab(item.url, false)
         }
@@ -522,7 +517,6 @@ App.do_load_tab_state = function (items, confirm = true) {
           if (tab.pinned) {
             await App.pin_tab(tab.id)
           }
-
           else {
             await App.unpin_tab(tab.id)
           }
@@ -544,7 +538,6 @@ App.do_load_tab_state = function (items, confirm = true) {
       restore()
     })
   }
-
   else {
     restore()
   }
@@ -583,7 +576,6 @@ App.undo_close = function () {
   if (!App.tabs_backup) {
     App.show_feedback("Nothing to undo")
   }
-
   else {
     App.do_load_tab_state(App.tabs_backup)
   }
@@ -755,7 +747,6 @@ App.do_check_playing = function () {
   if (playing.length > 0) {
     App.show_playing()
   }
-
   else {
     App.hide_playing()
   }

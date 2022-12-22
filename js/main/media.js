@@ -16,7 +16,6 @@ App.create_media_windows = function (what) {
         App.el(`#${what}_loading`).classList.add("hidden")
       })
     }
-
     else if (what === "video") {
       App.ev(media, "canplay", function () {
         App.stop_media_timeout(what)
@@ -36,7 +35,6 @@ App.create_media_windows = function (what) {
       if (item.mode === "tabs") {
         App.focus_tab(item)
       }
-
       else {
         App.focus_or_open_item(item)
       }
