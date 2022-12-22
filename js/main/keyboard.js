@@ -111,15 +111,6 @@ App.setup_keyboard = function () {
       return
     }
 
-    if (App.window_mode === "star_editor") {
-      if (e.key === "Enter") {
-        App.star_editor_save()
-        e.preventDefault()
-      }
-
-      return
-    }
-
     if (App.window_mode === "image" || App.window_mode === "video") {
       if (e.key === "ArrowLeft") {
         App.media_prev(App.window_mode)

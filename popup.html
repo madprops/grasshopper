@@ -17,7 +17,7 @@
     <script src="js/main/keyboard.js"></script>
     <script src="js/main/items.js"></script>
     <script src="js/main/tabs.js"></script>
-    <script src="js/main/stars.js"></script>
+    <script src="js/main/bookmarks.js"></script>
     <script src="js/main/closed.js"></script>
     <script src="js/main/history.js"></script>
     <script src="js/main/windows.js"></script>
@@ -39,49 +39,6 @@
 
     <div id="background"></div>
     <div id="main"></div>
-
-    <template id="template_star_editor">
-      <div class="flex_column_center gap_4" id="star_editor_container">
-        <div class="bigger unselectable">Star Editor</div>
-
-        <div id="star_editor_about" class="flex_column_center gap_2">
-          <div>Stars are like bookmarks that you manually add</div>
-          <div>Use them to launch or focus tabs</div>
-        </div>
-
-        <div class="flex_column_center gap_1">
-          <div class="unselectable">Title</div>
-          <input type="text" autocomplete="off" spellcheck="false" id="star_editor_title" class="text star_editor_text" placeholder="Title of the star">
-        </div>
-
-        <div class="flex_column_center gap_1">
-          <div class="unselectable">URL</div>
-          <input type="text" autocomplete="off" spellcheck="false" id="star_editor_url" class="text star_editor_text" placeholder="URL of the star">
-        </div>
-
-        <div id="star_editor_info" class="flex_column_center gap_1">
-          <div class="flex_row_center gap_1">
-            <div>Visits:</div>
-            <div id="star_editor_visits"></div>
-          </div>
-
-          <div class="flex_row_center gap_1">
-            <div>Last Visit:</div>
-            <div id="star_editor_visited"></div>
-          </div>
-
-          <div class="flex_row_center gap_1">
-            <div>Added On:</div>
-            <div id="star_editor_added"></div>
-          </div>
-        </div>
-
-        <div class="flex_row_center gap_2">
-          <div id="star_editor_remove" class="button button_2">Remove</div>
-          <div id="star_editor_save" class="button">Save</div>
-        </div>
-      </div>
-    </template>
 
     <template id="template_settings_basic">
       <div id="settings_basic_container" class="settings_container unselectable">
@@ -252,7 +209,6 @@
         <div id="image_prev" class="media_copy button">&lt;</div>
         <div id="image_open" class="media_open button">Open</div>
         <div id="image_copy" class="media_copy button">Copy</div>
-        <div id="image_star" class="media_copy button">Star</div>
         <div id="image_next" class="media_copy button">&gt;</div>
       </div>
 
@@ -271,7 +227,6 @@
         <div id="video_prev" class="media_copy button">&lt;</div>
         <div id="video_open" class="media_open button">Open</div>
         <div id="video_copy" class="media_copy button">Copy</div>
-        <div id="video_star" class="media_copy button">Star</div>
         <div id="video_next" class="media_copy button">&gt;</div>
       </div>
 

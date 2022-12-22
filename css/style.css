@@ -429,11 +429,6 @@ svg {
   gap: 2rem;
 }
 
-.star_editor_text {
-  width: 18rem;
-  text-align: center;
-}
-
 .bigger {
   font-size: 1.2rem;
 }
@@ -515,10 +510,6 @@ a:visited, a:link, a:hover {
 
 .hue_rotate {
   filter: hue-rotate(90deg);
-}
-
-#star_editor_container {
-  padding-bottom: 3rem;
 }
 
 .transparent {

@@ -1,6 +1,5 @@
 // Setup closed tabs
 App.setup_closed = function () {
-  App.closed_sort_title = "Normal: Recently closed at the top\nSpecial: Sorted by hostname"
   App.setup_item_window("closed")
 }
 
@@ -11,15 +10,6 @@ App.get_closed = async function () {
   })
 
   let items = ans.map(x => x.tab)
-
-  if (App.sort_state.closed === "Special") {
-    items.sort(function (a, b) {
-      let h1 = App.get_hostname(a.url)
-      let h2 = App.get_hostname(b.url)
-      return h1 < h2
-    })
-  }
-
   return items
 }
 

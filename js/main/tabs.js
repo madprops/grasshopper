@@ -40,7 +40,6 @@ App.setup_tabs = function () {
     }},
   ]
 
-  App.tabs_sort_title = "Normal: Sorted by index (dragging is enabled)\nSpecial: Sorted by last visit with playing tabs on top"
   App.setup_item_window("tabs")
 
   browser.tabs.onUpdated.addListener(function (id) {
@@ -79,15 +78,7 @@ App.setup_tabs = function () {
 // Get open tabs
 App.get_tabs = async function () {
   let tabs = await browser.tabs.query({currentWindow: true})
-
-  if (App.sort_state.tabs === "Normal") {
-    App.sort_tabs_by_index(tabs)
-  }
-
-  else if (App.sort_state.tabs === "Special") {
-    App.sort_tabs_by_special(tabs)
-  }
-
+  App.sort_tabs_by_index(tabs)
   return tabs
 }
 
@@ -95,19 +86,6 @@ App.get_tabs = async function () {
 App.sort_tabs_by_index = function (tabs) {
   tabs.sort(function (a, b) {
     return a.index < b.index ? -1 : 1
-  })
-}
-
-// Sort tabs by access
-App.sort_tabs_by_special = function (tabs) {
-  tabs.sort(function (a, b) {
-    if (a.audible === b.audible) {
-      return a.lastAccessed > b.lastAccessed ? -1 : 1
-    }
-
-    else {
-      return a.audible > b.audible ? -1 : 1
-    }
   })
 }
 

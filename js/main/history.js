@@ -1,6 +1,5 @@
 // Setup history
 App.setup_history = function () {
-  App.history_sort_title = "Normal: Sorted by last visit\nSpecial: Most visited items on top"
   App.setup_item_window("history")
 }
 
@@ -16,10 +15,6 @@ App.get_history = async function (text = "") {
     maxResults: App.history_max_results,
     startTime: App.history_time()
   })
-
-  if (App.sort_state.history === "Special") {
-    items.sort((a, b) => (a.visitCount < b.visitCount) ? 1 : -1)
-  }
 
   return items
 }

@@ -37,10 +37,6 @@ App.create_media_windows = function (what) {
         App.focus_tab(item)
       }
 
-      else if (item.mode === "stars") {
-        App.open_star(item)
-      }
-
       else {
         App.focus_or_open_item(item)
       }
@@ -48,10 +44,6 @@ App.create_media_windows = function (what) {
 
     App.ev(App.el(`#${what}_copy`), "click", function () {
       App.copy_to_clipboard(App[`current_${what}_item`].url)
-    })
-
-    App.ev(App.el(`#${what}_star`), "click", function () {
-      App.add_or_edit_star(App[`current_${what}_item`])
     })
 
     App.ev(App.el(`#${what}_prev`), "click", function () {
@@ -75,7 +67,6 @@ App.create_media_windows = function (what) {
 
   App.el(`#${what}_open`).title = "Open Tab"
   App.el(`#${what}_copy`).title = "Copy URL"
-  App.el(`#${what}_star`).title = "Star Editor"
   App.el(`#${what}_prev`).title = "Go To Previous"
   App.el(`#${what}_next`).title = "Go To Next"
 }

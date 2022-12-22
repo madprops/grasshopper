@@ -296,8 +296,6 @@ App.do_item_filter = async function (mode) {
     return filter_words.every(x => title.includes(x) || path.includes(x))
   }
 
-  let today = 1000 * 60 * 60 * 24
-
   function matched (item) {
     let match = false
     let title = item.title_lower
@@ -346,10 +344,6 @@ App.do_item_filter = async function (mode) {
 
       else if (filter_mode === "insecure") {
         match = item.protocol === "http:"
-      }
-
-      else if (filter_mode === "today") {
-        match = (Date.now() - item.date) <= today
       }
     }
 
@@ -432,22 +426,6 @@ App.show_item_menu = function (item, x, y) {
 
     items.push({
       separator: true
-    })
-  }
-
-  items.push({
-    text: "Star",
-    action: function () {
-      App.star_items(item.mode)
-    }
-  })
-
-  if (item.mode === "stars") {
-    items.push({
-      text: "Remove",
-      action: function () {
-        App.remove_stars()
-      }
     })
   }
 
@@ -614,6 +592,7 @@ App.process_item = function (mode, item, exclude = [], o_item) {
 
   try {
     url_obj = new URL(item.url)
+    decodeURI(item.url)
   } catch (err) {
     return false
   }
@@ -652,10 +631,6 @@ App.process_item = function (mode, item, exclude = [], o_item) {
     obj.muted = item.mutedInfo.muted
     obj.discarded = item.discarded
     obj.date = item.lastAccessed
-  }
-
-  else if (mode === "stars") {
-    obj.date = item.last_visit
   }
 
   else if (mode === "history") {
@@ -796,6 +771,7 @@ App.set_item_text = function (item) {
 
   if (App.settings.text_mode === "title") {
     content = item.title || item.path
+    console.log(item.path)
     item.footer = decodeURI(item.path) || item.title
   }
 
@@ -900,21 +876,10 @@ App.show_item_window = async function (mode, cycle = false) {
   App.set_filter_mode(mode, m, false)
   App[`${mode}_filter_mode`] = m[0]
 
-  if (!App.sort_state[mode]) {
-    App.sort_state[mode] = "Normal"
-    App.stor_save_sort_state()
-  }
-
-  App.set_footer_sort(mode)
-
   let items = await App[`get_${mode}`]()
 
   if (mode !== App.window_mode) {
     return
-  }
-
-  if (App.sort_state[mode] === "Alpha") {
-    App.sort_items_by_alpha(items)
   }
 
   App.process_items(mode, items)
@@ -950,16 +915,6 @@ App.setup_item_window = function (mode) {
 
     win.append(container)
     win.append(footer)
-
-    let footer_sort = App.create("div", "footer_sort action", `${mode}_footer_sort`)
-    footer_sort.title = App[`${mode}_sort_title`] + "\n" + "Alpha: Sorted alphanumerically"
-
-    App.ev(footer_sort, "click", function () {
-      App.show_pick_sort(mode, footer_sort)
-    })
-
-    footer.append(footer_sort)
-    footer.append(App.create_icon("cube"))
 
     let footer_count = App.create("div", "footer_count action")
     footer_count.textContent = "(--)"
@@ -1034,7 +989,6 @@ App.setup_item_window = function (mode) {
     App[`${mode}_filter_modes`].push(["videos", "Videos"])
     App[`${mode}_filter_modes`].push(["secure", "Secure"])
     App[`${mode}_filter_modes`].push(["insecure", "Insecure"])
-    App[`${mode}_filter_modes`].push(["today", "Today"])
 
     App.ev(filter_modes, "click", function () {
       App.show_filter_modes(mode)
@@ -1124,7 +1078,7 @@ App.setup_item_window = function (mode) {
     //
     if (mode === "tabs") {
       container.addEventListener("dragstart", function (e) {
-        if (mode === "tabs" && App.sort_state.tabs !== "Normal") {
+        if (mode === "tabs") {
           e.preventDefault()
           return false
         }
@@ -1764,46 +1718,6 @@ App.goto_bottom = function (mode) {
   App.el(`#${mode}_container`).scrollTop = App.el(`#${mode}_container`).scrollHeight
 }
 
-// Star items
-App.star_items = async function (mode) {
-  let items = []
-  let active = App.get_active_items(mode)
-
-  if (active.length === 1) {
-    App.add_or_edit_star(active[0])
-    App.dehighlight(mode)
-    return
-  }
-
-  for (let item of active) {
-    let exists = await App.get_star_by_url(item.url)
-
-    if (exists) {
-      continue
-    }
-
-    items.push(item)
-  }
-
-  if (items.length === 0) {
-    App.show_feedback("All these items are stars")
-    App.dehighlight(mode)
-    return
-  }
-
-  App.show_confirm(`Star items? (${items.length})`, async function () {
-    for (let item of items) {
-      await App.star_item(item, false)
-    }
-
-    App.stor_save_stars()
-    App.show_feedback("Stars created")
-    App.dehighlight(mode)
-  }, function () {
-    App.dehighlight(mode)
-  })
-}
-
 // Highlight visible items
 App.highlight_items = function (mode) {
   let what
@@ -1841,13 +1755,6 @@ App.get_visible_media = function (mode, what) {
   return items
 }
 
-// Set sort
-App.set_sort = function (mode, sort) {
-  App.sort_state[mode] = sort
-  App.stor_save_sort_state()
-  App.show_item_window(mode, false)
-}
-
 // Create an svg icon
 App.create_icon = function (name, type = 1) {
   let icon = document.createElementNS("http://www.w3.org/2000/svg", "svg")
@@ -1856,24 +1763,6 @@ App.create_icon = function (name, type = 1) {
   icon_use.href.baseVal = `#${name}_icon`
   icon.append(icon_use)
   return icon
-}
-
-// Set footer sort
-App.set_footer_sort = function (mode) {
-  App.el(`#${mode}_footer_sort`).textContent = `Sort: ${App.sort_state[mode]}`
-}
-
-// Sort items alphanumerically
-App.sort_items_by_alpha = function (items) {
-  items.sort(function (a, b) {
-    if (App.settings.text_mode === "title") {
-      return a.title > b.title
-    }
-
-    else if (App.settings.text_mode === "url") {
-      return a.url > b.url
-    }
-  })
 }
 
 // Show recent filters
@@ -1935,29 +1824,6 @@ App.forget_filters = function () {
     App.filters = []
     App.stor_save_filters()
   })
-}
-
-// Get sort items
-App.get_sort_items = function (mode) {
-  let modes = ["Normal", "Special", "Alpha"]
-  let items = []
-
-  for (let m of modes) {
-    items.push({
-      text: m,
-      action: function () {
-        App.set_sort(mode, m)
-      },
-      selected: App.sort_state[mode] === m
-    })
-  }
-
-  return items
-}
-
-// Show sort options
-App.show_pick_sort = function (mode, el) {
-  NeedContext.show_on_element(el, App.get_sort_items(mode))
 }
 
 // Get active items

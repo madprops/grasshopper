@@ -1,15 +1,12 @@
 App.stor_settings_name = "settings_v20"
-App.stor_stars_name = "stars_v20"
 App.stor_tab_state_name = "tab_state_v20"
-App.stor_sort_state_name = "sort_state_v20"
 App.stor_filters_name = "filters_v20"
 
-App.item_modes = ["tabs", "stars", "closed", "history"]
+App.item_modes = ["tabs", "bookmarks", "closed", "history"]
 
 App.windows = {}
 App.popups = {}
 
-App.max_stars = 1000 * 3
 App.max_closed = 25
 App.history_max_results = 640
 App.history_max_months = 18
@@ -34,15 +31,14 @@ App.create_item_element_delay = 1000
 
 NeedContext.min_width = "4.5rem"
 
-App.init = function () {
+App.init = async function () {  
   App.stor_get_settings()
   App.stor_get_tab_state()
-  App.stor_get_sort_state()
   App.stor_get_filters()
 
   App.setup_theme()
   App.setup_tabs()
-  App.setup_stars()
+  App.setup_bookmarks()
   App.setup_history()
   App.setup_closed()
   App.setup_settings()
