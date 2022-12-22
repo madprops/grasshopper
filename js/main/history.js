@@ -25,7 +25,14 @@ App.history_action = function (item) {
     return
   }
 
-  App.focus_or_open_item(item)
+  let highlighted = App.get_highlights("history")
+
+  if (highlighted.length > 0) {
+    App.launch_items("history")
+  }
+  else {
+    App.focus_or_open_item(item)
+  }
 }
 
 // History action alt

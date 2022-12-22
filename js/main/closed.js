@@ -19,7 +19,14 @@ App.closed_action = function (item) {
     return
   }
 
-  App.focus_or_open_item("closed")
+  let highlighted = App.get_highlights("closed")
+
+  if (highlighted.length > 0) {
+    App.launch_items("closed")
+  }
+  else {
+    App.focus_or_open_item(item)
+  }
 }
 
 // Closed tabs action alt

@@ -20,7 +20,14 @@ App.bookmarks_action = function (item) {
     return
   }
 
-  App.focus_or_open_item(item)
+  let highlighted = App.get_highlights("bookmarks")
+
+  if (highlighted.length > 0) {
+    App.launch_items("bookmarks")
+  }
+  else {
+    App.focus_or_open_item(item)
+  }
 }
 
 // Boomarks action alt
