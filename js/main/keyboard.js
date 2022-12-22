@@ -8,6 +8,32 @@ App.check_window_keyboard = function (e) {
     return
   }
 
+  if (e.ctrlKey) {
+    if (e.key === "a") {
+      App.highlight_items(mode)
+      e.preventDefault()
+      return
+    }
+  
+    if (e.key === "ArrowLeft") {
+      App.show_filter_modes(mode)
+      e.preventDefault()
+      return
+    }
+  
+    if (e.key === "ArrowDown") {
+      App.show_filters(mode)
+      e.preventDefault()
+      return
+    }
+  
+    if (e.key === "ArrowRight") {
+      App.show_actions(mode)
+      e.preventDefault()
+      return
+    }
+  }
+
   if (e.key === "Enter") {
     let item = App.get_selected(mode)
 
@@ -45,24 +71,6 @@ App.check_window_keyboard = function (e) {
     return
   }
 
-  if (e.ctrlKey && e.key === "a") {
-    App.highlight_items(mode)
-    e.preventDefault()
-    return
-  }
-
-  if (e.shiftKey && e.key === " ") {
-    App.show_actions(mode)
-    e.preventDefault()
-    return
-  }
-
-  if (e.ctrlKey && e.key === " ") {
-    App.show_filter_modes(mode)
-    e.preventDefault()
-    return
-  }
-
   App.focus_filter(mode)
 }
 
@@ -74,11 +82,15 @@ App.setup_keyboard = function () {
         NeedContext.hide()
       }
 
-      else if (e.shiftKey && e.key === " ") {
+      else if (e.ctrlKey && e.key === "ArrowLeft") {
         NeedContext.hide()
       }
 
-      else if (e.ctrlKey && e.key === " ") {
+      else if (e.ctrlKey && e.key === "ArrowDown") {
+        NeedContext.hide()
+      }
+
+      else if (e.ctrlKey && e.key === "ArrowRight") {
         NeedContext.hide()
       }
 
