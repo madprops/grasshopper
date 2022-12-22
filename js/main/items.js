@@ -318,6 +318,12 @@ App.do_item_filter = async function (mode) {
       else if (filter_mode === "videos") {
         match = item.video
       }
+      else if (filter_mode === "http") {
+        match = item.protocol === "http:"
+      }
+      else if (filter_mode === "https") {
+        match = item.protocol === "https:"
+      }
     }
 
     return match
@@ -949,9 +955,9 @@ App.setup_item_window = function (mode) {
     filter_modes.append(filter_modes_icon)
 
     App[`${mode}_filter_modes`] = App[`${mode}_filter_modes`] || []
+    App[`${mode}_filter_modes`].unshift(["videos", "Videos"])
+    App[`${mode}_filter_modes`].unshift(["images", "Images"])
     App[`${mode}_filter_modes`].unshift(["all", "All"])
-    App[`${mode}_filter_modes`].push(["images", "Images"])
-    App[`${mode}_filter_modes`].push(["videos", "Videos"])
 
     App.ev(filter_modes, "click", function () {
       App.show_filter_modes(mode)

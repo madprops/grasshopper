@@ -7,6 +7,8 @@ App.setup_tabs = function () {
     ["suspended", "Suspended"],
     ["active", "Active"],
     ["normal", "Normal"],
+    ["http", "Http"],
+    ["https", "Https"],
   ]
 
   App.tabs_actions = [
