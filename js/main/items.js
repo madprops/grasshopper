@@ -165,13 +165,13 @@ App.update_footer_info = function (item) {
   }
 
   else {
-    App.empty_footer_info(mode)
+    App.empty_footer_info()
   }
 }
 
 // Empty the footer
-App.empty_footer_info = function (mode) {
-  App.set_footer_info(mode, "No Results")
+App.empty_footer_info = function () {
+  App.set_footer_info(App.window_mode, "No Results")
 }
 
 // Set footer info
@@ -858,10 +858,9 @@ App.get_last_window_value = function (cycle) {
 App.show_item_window = async function (mode, cycle = false) {
   let value = App.get_last_window_value(cycle)
   App.windows[mode].show()
-  App.empty_footer_info(mode)
+  App.empty_footer_info()
   App[`${mode}_item_filter`].cancel()
   App.el(`#${mode}_container`).innerHTML = ""
-  App.el(`#${mode}_main_menu_text`).textContent = App.get_mode_name(mode)
   App.set_filter(mode, value, false)
 
   let m = App[`${mode}_filter_modes`][0]
@@ -924,28 +923,6 @@ App.setup_item_window = function (mode) {
     App.setup_window_mouse(mode)
 
     //
-    let main_menu = App.create("div", "button icon_button", `${mode}_main_menu`)
-    main_menu.title = "Main Menu (Tab)"
-    let main_menu_icon = App.create_icon("triangle")
-    let main_menu_text = App.create("div", "", `${mode}_main_menu_text`)
-    main_menu.append(main_menu_text)
-    main_menu.append(main_menu_icon)
-
-    App.ev(main_menu, "click", function () {
-      App.show_main_menu(this)
-    })
-
-    App.ev(main_menu, "wheel", function (e) {
-      if (e.deltaY < 0) {
-        App.cycle_item_windows(true)
-      }
-
-      else {
-        App.cycle_item_windows(false)
-      }
-    })
-
-    //
     let filters = App.create("div", "button icon_button", `${mode}_filters`)
     filters.title = "Filters (Ctrl + Down)"
     let filters_icon = App.create_icon("triangle")
@@ -956,12 +933,22 @@ App.setup_item_window = function (mode) {
 
     filters.append(filters_icon)
 
+    App.ev(filters, "wheel", function (e) {
+      if (e.deltaY < 0) {
+        App.cycle_item_windows(true)
+      }
+
+      else {
+        App.cycle_item_windows(false)
+      }
+    })    
+
     //
     let filter = App.create("input", "text filter", `${mode}_filter`)
     filter.type = "text"
     filter.autocomplete = "off"
     filter.spellcheck = false
-    filter.placeholder = "Type to filter"
+    filter.placeholder = App.get_mode_name(mode)
 
     App.ev(filter, "input", function () {
       App[`${mode}_item_filter`].call()
@@ -1170,7 +1157,6 @@ App.setup_item_window = function (mode) {
     let center_top = App.create("div", "item_top_center")
     let right_top = App.create("div", "item_top_right")
 
-    left_top.append(main_menu)
     left_top.append(filter_modes)
     center_top.append(filter)
     center_top.append(filters)
@@ -1253,69 +1239,6 @@ App.item_order_down = function (el) {
     el.parentNode.insertBefore(next, el)
     App.update_item_order()
   }
-}
-
-// Show main menu
-App.show_main_menu = function (btn) {
-  let items = []
-
-  for (let m of App.item_order) {
-    let selected = App.window_mode === m
-
-    items.push({
-      text: App.get_mode_name(m),
-      action: function () {
-        App.show_item_window(m)
-      },
-      selected: selected
-    })
-  }
-
-  items.push({
-    separator: true
-  })
-
-  items.push({
-    text: "Settings",
-    items: [
-      {
-        text: "Basic",
-        action: function () {
-          App.show_window("settings_basic")
-        }
-      },
-      {
-        text: "Theme",
-        action: function () {
-          App.show_window("settings_theme")
-        }
-      },
-      {
-        text: "Icons",
-        action: function () {
-          App.show_window("settings_icons")
-        }
-      },
-
-      {separator: true},
-
-      {
-        text: "Reset",
-        action: function () {
-          App.reset_settings()
-        }
-      },
-    ]
-  })
-
-  items.push({
-    text: "About",
-    action: function () {
-      App.show_window("about")
-    }
-  })
-
-  NeedContext.show_on_element(btn, items, false, btn.clientHeight)
 }
 
 // Show first item window
@@ -1761,6 +1684,21 @@ App.show_filters = function (mode) {
   let el = App.el(`#${mode}_filters`)
   let items = []
 
+  for (let m of App.item_order) {
+    if (m !== mode) {
+      items.push({
+        text: App.get_mode_name(m),
+        action: function () {
+          App.show_item_window(m)
+        }
+      })
+    }
+  }
+
+  items.push({
+    separator: true
+  })
+
   items.push({
     text: "Clear",
     action: function () {
@@ -1787,9 +1725,16 @@ App.show_filters = function (mode) {
     })
 
     items.push({
-      text: "Forget",
+      text: "Settings",
       action: function () {
-        App.forget_filters()
+        App.show_window("settings")
+      }
+    })
+
+    items.push({
+      text: "About",
+      action: function () {
+        App.show_window("about")
       }
     })
   }
@@ -1806,15 +1751,6 @@ App.do_save_filter = function (filter) {
     App.filters = App.filters.slice(0, App.max_filters)
     App.stor_save_filters()
   }
-}
-
-// Forget filters
-App.forget_filters = function () {
-  App.show_confirm("Forget recent filters?", function () {
-    App.save_filter.cancel()
-    App.filters = []
-    App.stor_save_filters()
-  })
 }
 
 // Get active items
@@ -1846,15 +1782,5 @@ App.insert_item = function (mode, info) {
 
 // Get mode name
 App.get_mode_name = function (mode) {
-  let s
-
-  if (mode === "bookmarks") {
-    s = "BMarks"
-  }
-
-  else {
-    s = App.capitalize(mode)
-  }
-
-  return s
+  return App.capitalize(mode)
 }
