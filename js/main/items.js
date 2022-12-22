@@ -1344,7 +1344,7 @@ App.focus_or_open_item = async function (item, close = true) {
         window_id: tab.windowId
       }
 
-      App.focus_tab(o, true)
+      App.focus_tab(o)
       return
     }
   }
@@ -1678,7 +1678,7 @@ App.launch_item = function (item, close = true) {
   App.open_tab(item.url, close)
 
   if (close) {
-    window.close()
+    App.close_window()
   }
 
   else {

@@ -95,7 +95,7 @@ App.focus_tab = async function (tab, close = true) {
   await browser.tabs.update(tab.id, {active: true})
 
   if (close) {
-    window.close()
+    App.close_window()
   }
 }
 
@@ -109,7 +109,7 @@ App.new_tab = async function (url = undefined, close = true) {
   await browser.tabs.create({active: close, url: url})
 
   if (close) {
-    window.close()
+    App.close_window()
   }
 }
 
@@ -193,7 +193,7 @@ App.tabs_action_alt = function (item, shift_key = false) {
 // Duplicate a tab
 App.duplicate_tab = function (tab) {
   browser.tabs.create({active: true, url: tab.url})
-  window.close()
+  App.close_window()
 }
 
 // Suspend a tab
@@ -700,13 +700,13 @@ App.move_tabs = async function (window_id) {
     await browser.tabs.move(item.id, {index: index, windowId: window_id})
   }
 
-  window.close()
+  App.close_window()
 }
 
 // Open tab in new window
 App.detach_tab = async function (tab) {
   browser.windows.create({tabId: tab.id, focused: false})
-  window.close()
+  App.close_window()
 }
 
 // Clean tabs

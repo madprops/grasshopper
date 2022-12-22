@@ -28,6 +28,14 @@ App.load_tabs_delay = 1000
 App.check_playing_delay = 1000
 App.create_item_element_delay = 1000
 
+App.close_window = function () {
+  window.close()
+}
+
+App.reload_window = function () {
+  browser.runtime.reload()
+}
+
 NeedContext.min_width = "4.5rem"
 
 App.init = async function () {  

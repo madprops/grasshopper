@@ -20,6 +20,11 @@
         "default_title": "Grasshopper",
         "default_popup": "popup.html"
     },
+    "sidebar_action": {
+        "default_title": "Grasshopper",
+        "default_panel": "popup.html",
+        "default_icon": "img/icon128.png"
+    },
     "commands": {
         "_execute_browser_action": {
 

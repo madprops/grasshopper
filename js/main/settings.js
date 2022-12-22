@@ -9,7 +9,7 @@ App.default_settings = {
   width: {value: 90, category: "basic"},
   height: {value: 100, category: "basic"},
   font: {value: "gh_sans", category: "basic"},
-  font_size: {value: 18, category: "basic"},
+  font_size: {value: 17, category: "basic"},
   media_viewer: {value: true, category: "basic"},
   background_color: {value: "rgb(43, 42, 51)", category: "theme"},
   text_color: {value: "rgb(251, 251, 254)", category: "theme"},
@@ -415,6 +415,6 @@ App.reset_settings = function () {
   App.show_confirm("Reset all settings to defaults?", function () {
     App.settings = {}
     App.stor_save_settings()
-    window.close()
+    App.reload_window()
   })
 }
