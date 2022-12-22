@@ -9,7 +9,8 @@ App.get_local_storage = function (ls_name, fallback) {
       localStorage.removeItem(ls_name)
       obj = null
     }
-  } else {
+  }
+  else {
     obj = null
   }
 
@@ -58,15 +59,4 @@ App.stor_get_tab_state = function () {
 // Save tab state to storage
 App.stor_save_tab_state = function () {
   App.save_local_storage(App.stor_tab_state_name, App.tab_state)
-}
-
-// Get filters from storage
-App.stor_get_filters = function () {
-  App.filters = App.get_local_storage(App.stor_filters_name, [])
-  console.info("Stor: Got filters")
-}
-
-// Save filters to storage
-App.stor_save_filters = function () {
-  App.save_local_storage(App.stor_filters_name, App.filters)
 }

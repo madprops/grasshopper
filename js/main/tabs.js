@@ -313,7 +313,7 @@ App.close_tabs = function (item, force = false) {
 
   if (item) {
     active = [item]
-  } 
+  }
   else {
     active = App.get_active_items("tabs")
   }

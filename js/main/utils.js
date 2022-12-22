@@ -28,7 +28,7 @@ App.create_debouncer = function (func, delay) {
 
   obj.cancel = function () {
     clearTimeout(timer)
-  }  
+  }
 
   return obj
 }
@@ -73,7 +73,6 @@ App.plural = function (n, singular, plural) {
   if (n === 1) {
     return `${n.toLocaleString()} ${singular}`
   }
-
   else {
     return `${n.toLocaleString()} ${plural}`
   }
@@ -84,7 +83,6 @@ App.plural_2 = function (n, singular, plural) {
   if (n === 1) {
     return singular
   }
-
   else {
     return plural
   }
@@ -153,7 +151,6 @@ App.get_random_int = function (min, max, exclude = undefined) {
       if (num + 1 <= max) {
         num = num + 1
       }
-
       else if (num - 1 >= min) {
         num = num - 1
       }
@@ -192,7 +189,6 @@ App.get_extension = function (s) {
       return matches[1]
     }
   }
-
   else {
     let matches = s.match(/\.(\w+)(?=$|[#?])/)
 

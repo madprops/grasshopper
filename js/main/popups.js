@@ -126,7 +126,6 @@ App.focus_dialog_button = function (index) {
     if (i === index) {
       btn.element.classList.add("hovered")
     }
-
     else {
       btn.element.classList.remove("hovered")
     }

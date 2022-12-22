@@ -14,19 +14,19 @@ App.check_window_keyboard = function (e) {
       e.preventDefault()
       return
     }
-  
+
     if (e.key === "ArrowLeft") {
       App.show_filter_modes(mode)
       e.preventDefault()
       return
     }
-  
+
     if (e.key === "ArrowDown") {
       App.show_filters(mode)
       e.preventDefault()
       return
     }
-  
+
     if (e.key === "ArrowRight") {
       App.show_actions(mode)
       e.preventDefault()

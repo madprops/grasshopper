@@ -41,7 +41,6 @@ App.create_window = function (args) {
         if (args.on_x) {
           args.on_x()
         }
-
         else {
           w.hide()
         }
@@ -105,7 +104,6 @@ App.create_window = function (args) {
     if (args.on_hide) {
       args.on_hide()
     }
-
     else {
       App.show_first_item_window()
 
@@ -135,7 +133,6 @@ App.show_window = function (mode) {
   if (App.item_order.includes(mode)) {
     App.show_item_window(mode)
   }
-
   else {
     App.windows[mode].show()
   }

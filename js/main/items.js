@@ -6,10 +6,6 @@ App.setup_items = function () {
   App.update_footer_count = App.create_debouncer(function (mode) {
     App.do_update_footer_count(mode)
   }, App.update_footer_delay)
-
-  App.save_filter = App.create_debouncer(function (filter) {
-    App.do_save_filter(filter)
-  }, App.save_filter_delay)
 }
 
 // Select an item
@@ -347,7 +343,7 @@ App.do_item_filter = async function (mode) {
   }
 
   App.set_selected(mode, undefined)
-  
+
   if (selected) {
     App.select_item(selected)
   }
@@ -357,7 +353,6 @@ App.do_item_filter = async function (mode) {
 
   App.update_footer_info(App.get_selected(mode))
   App.update_footer_count.call(mode)
-  App.save_filter.call(value)
 }
 
 // Show item
@@ -910,24 +905,24 @@ App.setup_item_window = function (mode) {
     App.setup_window_mouse(mode)
 
     //
-    let filters = App.create("div", "button icon_button", `${mode}_filters`)
-    filters.title = "Filters (Ctrl + Down)"
-    let filters_icon = App.create_icon("triangle")
+    let main_menu = App.create("div", "button icon_button", `${mode}_main_menu`)
+    main_menu.title = "Main Menu (Ctrl + Down)"
+    let main_menu_icon = App.create_icon("triangle")
 
-    App.ev(filters, "click", function () {
-      App.show_filters(mode)
+    App.ev(main_menu, "click", function () {
+      App.show_main_menu(mode)
     })
 
-    filters.append(filters_icon)
+    main_menu.append(main_menu_icon)
 
-    App.ev(filters, "wheel", function (e) {
+    App.ev(main_menu, "wheel", function (e) {
       if (e.deltaY < 0) {
         App.cycle_item_windows(true)
       }
       else {
         App.cycle_item_windows(false)
       }
-    })    
+    })
 
     //
     let filter = App.create("input", "text filter", `${mode}_filter`)
@@ -1137,7 +1132,7 @@ App.setup_item_window = function (mode) {
 
     left_top.append(filter_modes)
     center_top.append(filter)
-    center_top.append(filters)
+    center_top.append(main_menu)
 
     if (playing) {
       right_top.append(playing)
@@ -1180,7 +1175,7 @@ App.cycle_item_windows = function (reverse = false, cycle = false) {
       new_mode = modes[index + 1]
     }
   }
-  
+
   App.show_item_window(new_mode, cycle)
 }
 
@@ -1469,7 +1464,7 @@ App.move_item_element = function (mode, el, to_index) {
   else {
     if (from_index < to_index) {
       container.insertBefore(el, items[to_index + 1])
-    } 
+    }
     else {
       container.insertBefore(el, items[to_index])
     }
@@ -1646,10 +1641,21 @@ App.create_icon = function (name, type = 1) {
   return icon
 }
 
-// Show recent filters
-App.show_filters = function (mode) {
-  let el = App.el(`#${mode}_filters`)
+// Show main menu
+App.show_main_menu = function (mode) {
+  let el = App.el(`#${mode}_main_menu`)
   let items = []
+
+  items.push({
+    text: "Clear",
+    action: function () {
+      App.clear_filter(mode)
+    }
+  })
+
+  items.push({
+    separator: true
+  })
 
   for (let m of App.item_order) {
     items.push({
@@ -1665,57 +1671,20 @@ App.show_filters = function (mode) {
   })
 
   items.push({
-    text: "Clear",
+    text: "Settings",
     action: function () {
-      App.clear_filter(mode)
+      App.show_window("settings_basic")
     }
   })
 
-  if (App.filters.length > 0) {
-    items.push({
-      separator: true
-    })
-
-    for (let filter of App.filters) {
-      items.push({
-        text: filter,
-        action: function () {
-          App.set_filter(mode, filter)
-        }
-      })
+  items.push({
+    text: "About",
+    action: function () {
+      App.show_window("about")
     }
-
-    items.push({
-      separator: true
-    })
-
-    items.push({
-      text: "Settings",
-      action: function () {
-        App.show_window("settings_basic")
-      }
-    })
-
-    items.push({
-      text: "About",
-      action: function () {
-        App.show_window("about")
-      }
-    })
-  }
+  })
 
   NeedContext.show_on_element(el, items, true, el.clientHeight)
-}
-
-// Do save a filter
-App.do_save_filter = function (filter) {
-  if (filter) {
-    filter = filter.substring(0, 20).trim()
-    App.filters = App.filters.filter(x => x !== filter)
-    App.filters.unshift(filter)
-    App.filters = App.filters.slice(0, App.max_filters)
-    App.stor_save_filters()
-  }
 }
 
 // Get active items

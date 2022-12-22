@@ -168,7 +168,7 @@ App.check_media = function (item) {
   if (!App.settings.media_viewer) {
     return false
   }
-  
+
   if (item.image) {
     App.show_media("image", item)
     return true
