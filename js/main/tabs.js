@@ -114,7 +114,7 @@ App.new_tab = async function (url = undefined, close = true) {
 }
 
 // Refresh tabs
-App.refresh_tab = async function (id) {
+App.refresh_tab = async function (id, select = false) {
   let info = await browser.tabs.get(id)
   let tab = App.get_item_by_id("tabs", id)
 
@@ -123,7 +123,11 @@ App.refresh_tab = async function (id) {
   }
 
   else {
-    App.insert_item("tabs", info)
+    tab = App.insert_item("tabs", info)
+  }
+
+  if (select) {
+    App.select_item(tab)
   }
 }
 
@@ -688,7 +692,7 @@ App.on_tab_activated = async function (e) {
     tab.active = false
   }
 
-  App.refresh_tab(e.tabId)
+  App.refresh_tab(e.tabId, true)
 }
 
 // Move tabs
