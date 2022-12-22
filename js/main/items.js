@@ -12,15 +12,6 @@ App.setup_items = function () {
   }, App.save_filter_delay)
 }
 
-// Block select for some ms
-App.block_select = function () {
-  App.select_blocked = true
-
-  setTimeout(function () {
-    App.select_blocked = false
-  }, App.select_block_delay)
-}
-
 // Select an item
 App.select_item = function (item, scroll = "nearest") {
   if (App.get_selected(item.mode) === item) {
@@ -1131,7 +1122,6 @@ App.setup_item_window = function (mode) {
           return
         }
 
-        App.block_select()
         App.dehighlight(mode)
         App.update_tab_index()
       })

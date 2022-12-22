@@ -63,23 +63,6 @@ App.setup_window_mouse = function (mode) {
       e.preventDefault()
     }
   })
-
-  App.ev(container, "mousemove", function (e) {
-    if (e.target.closest(`.${mode}_item`)) {
-      App.last_mousemove_e = e
-
-      if (App.select_blocked) {
-        return
-      }
-
-      if (e.target.closest(".selected")) {
-        return
-      }
-
-      let item = App.get_cursor_item(mode, e)
-      App.select_item(item, "none")
-    }
-  })
 }
 
 // Get item under cursor

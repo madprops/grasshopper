@@ -21,7 +21,6 @@ App.color_delay = 150
 App.alert_autohide_delay = 1500
 App.save_filter_delay = 2000
 App.update_footer_delay = 200
-App.select_block_delay = 100
 App.max_text_length = 200
 App.lock_backup_delay = 2000
 App.load_tabs_delay = 1000
