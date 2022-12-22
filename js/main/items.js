@@ -335,6 +335,8 @@ App.do_item_filter = async function (mode) {
     return match
   }
 
+  let selected
+
   for (let it of items) {
     if (!it.element) {
       continue
@@ -342,6 +344,10 @@ App.do_item_filter = async function (mode) {
 
     if (skip || matched(it)) {
       App.show_item(it)
+
+      if (it.active) {
+        selected = it
+      }
     }
 
     else {
@@ -349,8 +355,12 @@ App.do_item_filter = async function (mode) {
     }
   }
 
-  App.set_selected(mode, undefined)
-  App.select_first_item(mode)
+  App.set_selected(mode, selected)
+
+  if (!selected) {
+    App.select_first_item(mode)
+  }
+
   App.update_footer_info(App.get_selected(mode))
   App.update_footer_count.call(mode)
   App.save_filter.call(value)
