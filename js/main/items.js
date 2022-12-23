@@ -1369,6 +1369,11 @@ App.highlight_range = function (item) {
 
   App.toggle_highlight(item, true)
 
+  if (!App.last_highlight) {
+    App.last_highlight = App.get_selected(item.mode)
+    App.toggle_highlight(App.last_highlight, true)
+  }
+
   if (App.last_highlight && App.last_highlight.highlighted) {
     let items = App[`${item.mode}_items`]
     let index_1 = items.indexOf(item)
