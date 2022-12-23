@@ -21,5 +21,5 @@ App.bookmarks_action = function (item) {
 
 // Boomarks action alt
 App.bookmarks_action_alt = function (item) {
-  App.launch_item(item, false)
+  App.item_action_alt(item)
 }

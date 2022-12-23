@@ -26,7 +26,7 @@ App.history_action = function (item) {
 
 // History action alt
 App.history_action_alt = function (item) {
-  App.launch_item(item, false)
+  App.item_action_alt(item)
 }
 
 // Search the history

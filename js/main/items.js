@@ -35,6 +35,8 @@ App.select_item = function (item, scroll = "nearest") {
   if (item.mode === "tabs") {
     browser.tabs.warmup(item.id)
   }
+
+  App.dehighlight(item.mode)
 }
 
 // Check highlight
@@ -395,7 +397,7 @@ App.show_item_menu = function (item, x, y) {
       items.push({
         text: "Unmute",
         action: function () {
-          App.unmute_tabs(item.id)
+          App.unmute_tabs(item)
         }
       })
     }
@@ -403,7 +405,7 @@ App.show_item_menu = function (item, x, y) {
       items.push({
         text: "Mute",
         action: function () {
-          App.mute_tabs(item.id)
+          App.mute_tabs(item)
         }
       })
     }
@@ -437,13 +439,6 @@ App.show_item_menu = function (item, x, y) {
     }]
   })
 
-  items.push({
-    text: "Pick",
-    action: function () {
-      App.toggle_highlight(item)
-    }
-  })
-
   if (item.mode === "tabs") {
     items.push({
       text: "More",
@@ -457,7 +452,7 @@ App.show_item_menu = function (item, x, y) {
     items.push({
       text: "Close",
       action: function () {
-        App.close_tabs()
+        App.close_tabs(item)
       }
     })
   }
@@ -465,15 +460,11 @@ App.show_item_menu = function (item, x, y) {
     items.push({
       text: "Launch",
       action: function () {
-        App.launch_items(item.mode)
+        App.launch_items(item)
       }
     })
   }
-
-  if (App.get_selected(item.mode) !== item) {
-    App.select_item(item)
-  }
-
+  
   NeedContext.show(x, y, items)
 }
 
@@ -1571,8 +1562,9 @@ App.launch_item = function (item, close = true) {
 }
 
 // Launch items
-App.launch_items = function (mode) {
-  let items = App.get_active_items(mode)
+App.launch_items = function (item) {
+  let mode = item.mode
+  let items = App.get_active_items(mode, item)
 
   if (items.length === 1) {
     App.open_tab(items[0].url, false)
@@ -1699,11 +1691,16 @@ App.show_main_menu = function (mode) {
 }
 
 // Get active items
-App.get_active_items = function (mode) {
+App.get_active_items = function (mode, item) {
   let highlights = App.get_highlights(mode)
 
   if (highlights.length === 0) {
-    return [App.get_selected(mode)]
+    if (item) {
+      return [item]
+    } 
+    else {
+      return [App.get_selected(mode)]
+    }
   }
   else {
     return highlights
@@ -1734,7 +1731,7 @@ App.item_action = function (item) {
   let highlighted = App.get_highlights(item.mode)
 
   if (highlighted.length > 0) {
-    App.launch_items(item.mode)
+    App.launch_items(item)
   }
   else {
     if (App.check_media(item)) {
@@ -1742,5 +1739,17 @@ App.item_action = function (item) {
     }
 
     App.focus_or_open_item(item)
+  }
+}
+
+// Item action
+App.item_action_alt = function (item) {
+  let highlighted = App.get_highlights(item.mode)
+
+  if (highlighted.length > 0) {
+    App.launch_items(item)
+  }
+  else {
+    App.launch_item(item, false)
   }
 }

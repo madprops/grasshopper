@@ -218,9 +218,9 @@ App.suspend_tab = async function (tab) {
 }
 
 // Pin tabs
-App.pin_tabs = function () {
+App.pin_tabs = function (item) {
   let ids = []
-  let active = App.get_active_items("tabs")
+  let active = App.get_active_items("tabs", item)
 
   for (let tab of active) {
     if (tab.pinned) {
@@ -242,9 +242,9 @@ App.pin_tabs = function () {
 }
 
 // Unpin tabs
-App.unpin_tabs = function () {
+App.unpin_tabs = function (item) {
   let ids = []
-  let active = App.get_active_items("tabs")
+  let active = App.get_active_items("tabs", item)
 
   for (let tab of active) {
     if (!tab.pinned) {
@@ -317,7 +317,7 @@ App.close_tabs = function (item, force = false) {
     active = [item]
   }
   else {
-    active = App.get_active_items("tabs")
+    active = App.get_active_items("tabs", item)
   }
 
   for (let tab of active) {
@@ -356,8 +356,8 @@ App.do_close_tabs = function (ids) {
 }
 
 // Mute tabs
-App.mute_tabs = function () {
-  let active = App.get_active_items("tabs")
+App.mute_tabs = function (item) {
+  let active = App.get_active_items("tabs", item)
 
   for (let item of active) {
     App.mute_tab(item.id)
@@ -367,8 +367,8 @@ App.mute_tabs = function () {
 }
 
 // Unmute tabs
-App.unmute_tabs = function () {
-  let active = App.get_active_items("tabs")
+App.unmute_tabs = function (item) {
+  let active = App.get_active_items("tabs", item)
 
   for (let item of active) {
     App.unmute_tab(item.id)
