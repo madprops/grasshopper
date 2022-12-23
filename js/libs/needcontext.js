@@ -130,12 +130,12 @@ NeedContext.show = function (x, y, items) {
     x = 5
   }
 
-  if ((y + c.offsetHeight) + 5 > document.body.clientHeight) {
-    y = document.body.clientHeight - c.offsetHeight - 5
+  if ((y + c.offsetHeight) + 5 > window.innerHeight) {
+    y = window.innerHeight - c.offsetHeight - 5
   }
 
-  if ((x + c.offsetWidth) + 5 > document.body.clientWidth) {
-    x = document.body.clientWidth - c.offsetWidth - 5
+  if ((x + c.offsetWidth) + 5 > window.innerWidth) {
+    x = window.innerWidth - c.offsetWidth - 5
   }
 
   NeedContext.last_x = x

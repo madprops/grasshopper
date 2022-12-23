@@ -271,7 +271,6 @@ svg {
   align-self: stretch;
   justify-self: stretch;
   align-items: center;
-  cursor: default;
   flex-shrink: 0;
 }
 
