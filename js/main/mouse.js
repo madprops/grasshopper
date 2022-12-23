@@ -39,10 +39,11 @@ App.setup_window_mouse = function (mode) {
       let highlights = App.get_highlights(item.mode)
       
       if (highlights.length > 1) {
-        App.select_item(item)
+        App.dehighlight(item.mode)
         return
       }
-
+      
+      App.select_item(item)
       App[`${mode}_action`](item)
     }
     // Middle click
