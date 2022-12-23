@@ -165,9 +165,10 @@ body, html {
 }
 
 .filter {
-  flex-grow: 0;
-  width: 8rem;
+  flex-grow: 1;
+  flex-shrink: 1;
   outline: none;
+  width: 0;
 }
 
 .button {
