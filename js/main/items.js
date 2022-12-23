@@ -1360,13 +1360,6 @@ App.move_item_element = function (mode, el, to_index) {
 
 // Highlight a range of items
 App.highlight_range = function (item) {
-  if (item.highlighted) {
-    App.dehighlight(item.mode)
-    return
-  }
-
-  App.toggle_highlight(item, true)
-
   if (!App.last_highlight) {
     App.last_highlight = App.get_selected(item.mode)
     App.toggle_highlight(App.last_highlight, true)
@@ -1377,17 +1370,40 @@ App.highlight_range = function (item) {
     let index_1 = items.indexOf(item)
     let index_2 = items.indexOf(App.last_highlight)
 
-    if (index_1 < index_2) {
-      for (let it of items.slice(index_1 + 1, index_2)) {
+    if (item.highlighted) {
+      for (let [i, it] of items.entries()) {
         if (!it.visible) {
           continue
         }
 
-        App.toggle_highlight(it, true)
+        let unhighlight = false
+
+        if (index_1 < index_2) {
+          if (i > index_1) {
+            unhighlight = true
+          }
+        }
+        else {
+          if (i < index_1) {
+            unhighlight = true
+          }
+        }
+
+        if (unhighlight) {
+          App.toggle_highlight(it, false)
+        }
       }
     }
-    else if (index_1 > index_2) {
-      for (let it of items.slice(index_2 + 1, index_1)) {
+    else {
+      let slice
+
+      if (index_1 < index_2) {
+        slice = items.slice(index_1, index_2 + 1)
+      } else {
+        slice = items.slice(index_2 + 1, index_1 + 1)
+      }
+
+      for (let it of slice) {
         if (!it.visible) {
           continue
         }
