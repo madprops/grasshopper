@@ -36,14 +36,6 @@ App.setup_window_mouse = function (mode) {
         return
       }
 
-      if (e.target.closest(".item_info")) {
-        if (e.target.closest(".item_info_pin")) {
-          App.toggle_pin(item)
-        }
-
-        return
-      }
-
       App[`${mode}_action`](item)
     }
     // Middle click
