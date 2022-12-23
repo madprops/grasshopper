@@ -79,7 +79,6 @@ App.create_media_windows = function (what) {
     App.hide_media_elements(what)
     App.stop_media_timeout(what)
     App.raise_window(item.mode)
-    App.select_item(item)
   }})
 }
 
