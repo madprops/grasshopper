@@ -511,10 +511,6 @@ a:visited, a:link, a:hover {
   opacity: 0;
 }
 
-.transparent:hover {
-  opacity: 0.5;
-}
-
 .popup_container {
   padding-top: 1.5rem;
   padding-bottom: 1.5rem;
