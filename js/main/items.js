@@ -1413,6 +1413,11 @@ App.highlight_range = function (item) {
     }
   }
 
+  if (App.get_highlights(item.mode).length <= 1) {
+    App.dehighlight(item.mode)
+    return
+  }
+  
   App.last_highlight = item
 }
 
