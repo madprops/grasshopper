@@ -303,6 +303,10 @@ svg {
   flex: 0 1 50%;
 }
 
+.item:hover {
+  text-decoration: underline;
+}
+
 .highlighted {
   background-color: var(--alt_color_1) !important;
 }

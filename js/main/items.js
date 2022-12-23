@@ -446,7 +446,7 @@ App.show_item_menu = function (item, x, y) {
       }
     })
   }
-  
+
   NeedContext.show(x, y, items)
 }
 
@@ -611,7 +611,7 @@ App.process_item = function (mode, item, exclude = [], o_item) {
 
 // Create empty item
 App.create_empty_item_element = function (item) {
-  item.element = App.create("div", `item ${item.mode}_item action`)
+  item.element = App.create("div", `item ${item.mode}_item`)
   item.element.dataset.id = item.id
   App[`${item.mode}_item_observer`].observe(item.element)
 }
@@ -1417,7 +1417,7 @@ App.highlight_range = function (item) {
     App.dehighlight(item.mode)
     return
   }
-  
+
   App.last_highlight = item
 }
 
@@ -1619,7 +1619,7 @@ App.get_active_items = function (mode, item) {
   if (highlights.length === 0) {
     if (item) {
       return [item]
-    } 
+    }
     else {
       return [App.get_selected(mode)]
     }
