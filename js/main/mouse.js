@@ -36,13 +36,6 @@ App.setup_window_mouse = function (mode) {
         return
       }
 
-      let highlights = App.get_highlights(item.mode)
-      
-      if (highlights.length > 1) {
-        App.dehighlight(item.mode)
-        return
-      }
-      
       App.select_item(item)
       App[`${mode}_action`](item)
     }
