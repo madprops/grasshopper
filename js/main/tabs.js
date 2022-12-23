@@ -311,14 +311,7 @@ App.suspend_tabs = function () {
 App.close_tabs = function (item, force = false) {
   let ids = []
   let warn = false
-  let active
-
-  if (item) {
-    active = [item]
-  }
-  else {
-    active = App.get_active_items("tabs", item)
-  }
+  let active = App.get_active_items("tabs", item)
 
   for (let tab of active) {
     if (tab.pinned || tab.audible) {
