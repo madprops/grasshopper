@@ -256,8 +256,6 @@ App.do_item_filter = async function (mode) {
     return
   }
 
-  App.dehighlight(mode)
-
   let filter_mode = App[`${mode}_filter_mode`]
   let skip = !value && filter_mode === "all"
   let words, filter_words
