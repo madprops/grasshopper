@@ -10,10 +10,6 @@ App.setup_items = function () {
 
 // Select an item
 App.select_item = function (item, scroll = "nearest") {
-  if (App.get_selected(item.mode) === item) {
-    return
-  }
-
   if (!item.created) {
     App.create_item_element(item)
   }
