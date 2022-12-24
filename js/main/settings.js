@@ -6,7 +6,7 @@ App.default_settings = {
   history_index: {value: 2, category: "basic"},
   closed_index: {value: 3, category: "basic"},
   lock_drag: {value: false, category: "basic"},
-  width: {value: 90, category: "basic"},
+  width: {value: 80, category: "basic"},
   height: {value: 100, category: "basic"},
   font: {value: "gh_sans", category: "basic"},
   font_size: {value: 17, category: "basic"},
