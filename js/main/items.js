@@ -529,7 +529,7 @@ App.get_more_menu_items = function (item, multiple) {
     items.push({
       text: "Suspend",
       action: function () {
-        App.suspend_tabs()
+        App.suspend_tabs(item)
       }
     })
   }

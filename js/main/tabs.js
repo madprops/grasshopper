@@ -210,13 +210,6 @@ App.duplicate_tab = function (tab) {
 
 // Suspend a tab
 App.suspend_tab = async function (tab) {
-  let highlights = App.get_highlights("tabs")
-
-  if (highlights.length > 0) {
-    App.suspend_tabs()
-    return
-  }
-
   if (tab.active) {
     await browser.tabs.create({active: true})
   }
@@ -273,10 +266,10 @@ App.unpin_tabs = function (item) {
 }
 
 // Suspend normal tabs
-App.suspend_tabs = function () {
+App.suspend_tabs = function (item) {
   let tabs = []
   let warn = false
-  let active = App.get_active_items("tabs")
+  let active = App.get_active_items("tabs", item)
 
   for (let tab of active) {
     if (!App.is_http(tab)) {
