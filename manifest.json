@@ -1,13 +1,12 @@
 {
     "manifest_version": 2,
     "name": "Grasshopper",
-    "version": "203",
+    "version": "204",
     "description": "Awesome Tab Manager",
     "permissions": [
         "tabs",
         "sessions",
         "history",
-        "storage",
         "bookmarks"
     ],
     "icons": {
@@ -24,16 +23,5 @@
         "default_title": "Grasshopper",
         "default_panel": "popup.html",
         "default_icon": "img/icon128.png"
-    },
-    "commands": {
-        "_execute_browser_action": {
-
-        }
-    },
-    "browser_specific_settings": {
-        "gecko": {
-            "id": "{23aee10d-1130-4694-80ef-428e287ba83d}",
-            "strict_min_version": "99.0"
-        } 
     }
 }
