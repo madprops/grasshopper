@@ -953,10 +953,8 @@ App.setup_item_window = function (mode) {
     //
     let filter_modes = App.create("div", "button icon_button", `${mode}_filter_modes`)
     filter_modes.title = "Filter Modes (Ctrl + Down)"
-    let filter_modes_icon = App.create_icon("triangle")
     let filter_modes_text = App.create("div", "", `${mode}_filter_modes_text`)
     filter_modes.append(filter_modes_text)
-    filter_modes.append(filter_modes_icon)
 
     App[`${mode}_filter_modes`] = App[`${mode}_filter_modes`] || []
     App[`${mode}_filter_modes`].unshift(["videos", "Videos"])
@@ -1005,10 +1003,7 @@ App.setup_item_window = function (mode) {
     }})
 
     let actions_menu = App.create("div", "button icon_button", `${mode}_actions`)
-    let actions_icon = App.create_icon("triangle")
-    let actions_text = App.create("div")
-    actions_text.textContent = "Actions"
-    actions_menu.append(actions_text)
+    let actions_icon = App.create_icon("sun")
     actions_menu.append(actions_icon)
     actions_menu.title = "Actions (Ctrl + Right)"
 
