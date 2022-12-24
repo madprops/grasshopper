@@ -36,45 +36,70 @@ App.select_item = function (item, scroll = "nearest") {
 }
 
 // Check highlight
-App.check_highlight = function (mode, item) {
+App.check_highlight = function (item) {
   let highlighted = item.highlighted
-  App.toggle_highlight(App.get_selected(mode), !highlighted)
   App.toggle_highlight(item, !highlighted)
 }
 
 // Select item above
-App.select_item_above = function (mode, highlight = false) {
+App.select_item_above = function (mode) {
   let item = App.get_prev_visible_item(mode)
 
   if (item) {
-    if (highlight) {
-      App.check_highlight(mode, item)
-    }
-    else {
-      if (App.dehighlight(mode)) {
-        return
-      }
-    }
-
     App.select_item(item)
   }
 }
 
 // Select item below
-App.select_item_below = function (mode, highlight = false) {
+App.select_item_below = function (mode) {
   let item = App.get_next_visible_item(mode)
 
   if (item) {
-    if (highlight) {
-      App.check_highlight(mode, item)
-    }
-    else {
-      if (App.dehighlight(mode)) {
-        return
-      }
+    App.select_item(item)
+  }
+}
+
+// Highlight item above
+App.highlight_item_above = function (mode) {
+  let waypoint = false
+  let highlights = App.get_highlights(mode)
+
+  for (let item of highlights) {
+    if (waypoint) {
+      App.toggle_highlight(item, true)
+      break
     }
 
-    App.select_item(item)
+    if (item === App.last_highlight) {
+      waypoint = true
+    }
+  }
+}
+
+// Highlight next item above or below
+App.highlight_next = function (mode, dir) {
+  let waypoint = false
+  let items = App.get_items(mode).slice(0)
+  let current = App.last_highlight || App.get_selected(mode)
+
+  if (dir === "above") {
+    items.reverse()
+  }
+
+  for (let item of items) {
+    if (!item.visible) {
+      continue
+    }
+
+    if (waypoint) {
+      App.highlight_range(item)
+      break
+    }
+    else {
+      if (item === current) {
+        waypoint = true
+      } 
+    }
   }
 }
 

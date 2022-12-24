@@ -56,13 +56,25 @@ App.check_window_keyboard = function (e) {
   }
 
   if (e.key === "ArrowUp") {
-    App.select_item_above(mode, e.shiftKey)
+    if (e.shiftKey) {
+      App.highlight_next(mode, "above")
+    } 
+    else {
+      App.select_item_above(mode)
+    }
+
     e.preventDefault()
     return
   }
 
   if (e.key === "ArrowDown") {
-    App.select_item_below(mode, e.shiftKey)
+    if (e.shiftKey) {
+      App.highlight_next(mode, "below")
+    } 
+    else {
+      App.select_item_below(mode)
+    }
+
     e.preventDefault()
     return
   }
