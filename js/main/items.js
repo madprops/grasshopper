@@ -877,6 +877,9 @@ App.setup_item_window = function (mode) {
   args.id = mode
   args.close_button = false
   args.align_top = "left"
+  
+  let mode_name = App.get_mode_name(mode)
+  args.sidebar_title = mode_name
 
   args.setup = function () {
     App[`${mode}_item_filter`] = App.create_debouncer(function () {
@@ -932,7 +935,7 @@ App.setup_item_window = function (mode) {
     filter.type = "text"
     filter.autocomplete = "off"
     filter.spellcheck = false
-    filter.placeholder = App.get_mode_name(mode)
+    filter.placeholder = mode_name
 
     App.ev(filter, "input", function () {
       App[`${mode}_item_filter`].call()
