@@ -582,7 +582,8 @@ App.process_item = function (mode, item, exclude = [], o_item) {
   try {
     url_obj = new URL(item.url)
     decodeURI(item.url)
-  } catch (err) {
+  } 
+  catch (err) {
     return false
   }
 

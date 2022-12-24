@@ -471,7 +471,8 @@ App.do_load_tab_state = function (items, confirm = true) {
         else {
           await App.open_tab(item.url, false)
         }
-      } catch (e) {
+      } 
+      catch (e) {
         console.error(e)
       }
     }
@@ -521,7 +522,8 @@ App.do_load_tab_state = function (items, confirm = true) {
           }
 
           await App.do_move_tab_index(tab.id, i)
-        } catch (err) {
+        } 
+        catch (err) {
           console.error(err)
         }
       }
