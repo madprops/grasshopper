@@ -7,7 +7,7 @@ App.default_settings = {
   closed_index: {value: 3, category: "basic"},
   lock_drag: {value: false, category: "basic"},
   width: {value: 80, category: "basic"},
-  height: {value: 100, category: "basic"},
+  height: {value: 90, category: "basic"},
   font: {value: "gh_sans", category: "basic"},
   font_size: {value: 17, category: "basic"},
   media_viewer: {value: true, category: "basic"},
