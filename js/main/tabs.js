@@ -69,6 +69,12 @@ App.setup_tabs = function () {
     }
   })
 
+  browser.tabs.onDetached.addListener(function (id, info) {
+    if (App.window_mode === "tabs" && info.oldWindowId === App.window_id) {
+      App.remove_closed_tab(id)
+    }
+  })
+
   App.lock_backup_tabs = App.create_debouncer(function () {
     App.backup_tabs_locked = false
   }, App.lock_backup_delay)
