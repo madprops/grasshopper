@@ -1356,7 +1356,7 @@ App.move_item_element = function (mode, el, to_index) {
 
 // Highlight a range of items
 App.highlight_range = function (item) {
-  if (!App.last_highlight) {
+  if (!App.last_highlight || !App.last_highlight.highlighted) {
     App.last_highlight = App.get_selected(item.mode)
     App.toggle_highlight(App.last_highlight, true)
   }
@@ -1365,51 +1365,49 @@ App.highlight_range = function (item) {
     return
   }
 
-  if (App.last_highlight && App.last_highlight.highlighted) {
-    let items = App[`${item.mode}_items`]
-    let index_1 = items.indexOf(item)
-    let index_2 = items.indexOf(App.last_highlight)
+  let items = App[`${item.mode}_items`]
+  let index_1 = items.indexOf(item)
+  let index_2 = items.indexOf(App.last_highlight)
 
-    if (item.highlighted) {
-      for (let [i, it] of items.entries()) {
-        if (!it.visible) {
-          continue
-        }
-
-        let unhighlight = false
-
-        if (index_1 < index_2) {
-          if (i > index_1) {
-            unhighlight = true
-          }
-        }
-        else {
-          if (i < index_1) {
-            unhighlight = true
-          }
-        }
-
-        if (unhighlight) {
-          App.toggle_highlight(it, false)
-        }
+  if (item.highlighted) {
+    for (let [i, it] of items.entries()) {
+      if (!it.visible) {
+        continue
       }
-    }
-    else {
-      let slice
+
+      let unhighlight = false
 
       if (index_1 < index_2) {
-        slice = items.slice(index_1, index_2 + 1)
-      } else {
-        slice = items.slice(index_2 + 1, index_1 + 1)
-      }
-
-      for (let it of slice) {
-        if (!it.visible) {
-          continue
+        if (i > index_1) {
+          unhighlight = true
         }
-
-        App.toggle_highlight(it, true)
       }
+      else {
+        if (i < index_1) {
+          unhighlight = true
+        }
+      }
+
+      if (unhighlight) {
+        App.toggle_highlight(it, false)
+      }
+    }
+  }
+  else {
+    let slice
+
+    if (index_1 < index_2) {
+      slice = items.slice(index_1, index_2 + 1)
+    } else {
+      slice = items.slice(index_2 + 1, index_1 + 1)
+    }
+
+    for (let it of slice) {
+      if (!it.visible) {
+        continue
+      }
+
+      App.toggle_highlight(it, true)
     }
   }
 
