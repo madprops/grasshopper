@@ -696,8 +696,8 @@ App.on_tab_activated = async function (e) {
 }
 
 // Move tabs
-App.move_tabs = async function (window_id) {
-  let active = App.get_active_items("tabs")
+App.move_tabs = async function (item, window_id) {
+  let active = App.get_active_items("tabs", item)
 
   for (let item of active) {
     let index = item.pinned ? 0 : -1
