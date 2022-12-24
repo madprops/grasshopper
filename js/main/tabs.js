@@ -44,28 +44,29 @@ App.setup_tabs = function () {
 
   App.setup_item_window("tabs")
 
-  browser.tabs.onUpdated.addListener(function (id) {
-    if (App.window_mode === "tabs") {
+  browser.tabs.onUpdated.addListener(function (id, cinfo, info) {
+    if (App.window_mode === "tabs" && info.windowId === App.window_id) {
       App.refresh_tab(id)
-    }
-
-    App.check_playing.call()
-  })
-
-  browser.tabs.onActivated.addListener(function (e) {
-    if (App.window_mode === "tabs") {
-      App.on_tab_activated(e)
+      App.check_playing.call()
     }
   })
 
-  browser.tabs.onRemoved.addListener(function (id) {
-    if (App.window_mode === "tabs") {
+  browser.tabs.onActivated.addListener(function (info) {
+    if (App.window_mode === "tabs" && info.windowId === App.window_id) {
+      App.on_tab_activated(info)
+    }
+  })
+
+  browser.tabs.onRemoved.addListener(function (id, info) {
+    if (App.window_mode === "tabs" && info.windowId === App.window_id) {
       App.remove_closed_tab(id)
     }
   })
 
   browser.tabs.onMoved.addListener(function (id, info) {
-    App.move_item("tabs", info.fromIndex, info.toIndex)
+    if (App.window_mode === "tabs" && info.windowId === App.window_id) {
+      App.move_item("tabs", info.fromIndex, info.toIndex)
+    }
   })
 
   App.lock_backup_tabs = App.create_debouncer(function () {

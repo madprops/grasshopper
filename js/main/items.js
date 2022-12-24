@@ -380,6 +380,8 @@ App.hide_item = function (it) {
 
 // Show item menu
 App.show_item_menu = function (item, x, y) {
+  let highlights = App.get_highlights(item.mode)
+  let multiple = highlights.length > 0
   let items = []
 
   if (item.mode === "tabs") {
@@ -422,34 +424,36 @@ App.show_item_menu = function (item, x, y) {
     })
   }
 
-  items.push({
-    text: "Filter",
-    action: function () {
-      App.filter_domain(item)
-    }
-  })
+  if (!multiple) {
+    items.push({
+      text: "Filter",
+      action: function () {
+        App.filter_domain(item)
+      }
+    })
 
-  items.push({
-    text: "Copy",
-    items: [
-    {
-      text: "Copy URL",
-      action: function () {
-        App.copy_to_clipboard(item.url)
-      }
-    },
-    {
-      text: "Copy Title",
-      action: function () {
-        App.copy_to_clipboard(item.title)
-      }
-    }]
-  })
+    items.push({
+      text: "Copy",
+      items: [
+      {
+        text: "Copy URL",
+        action: function () {
+          App.copy_to_clipboard(item.url)
+        }
+      },
+      {
+        text: "Copy Title",
+        action: function () {
+          App.copy_to_clipboard(item.title)
+        }
+      }]
+    })
+  }
 
   if (item.mode === "tabs") {
     items.push({
       text: "More",
-      get_items: function () { return App.get_more_menu_items(item) }
+      get_items: function () { return App.get_more_menu_items(item, multiple) }
     })
 
     items.push({
@@ -476,16 +480,18 @@ App.show_item_menu = function (item, x, y) {
 }
 
 // Show tab move menu
-App.get_move_menu_items = async function (item) {
+App.get_move_menu_items = async function (item, multiple) {
   let items = []
   let wins = await browser.windows.getAll({populate: false})
 
-  items.push({
-    text: "Detach",
-    action: function () {
-      App.detach_tab(item)
-    }
-  })
+  if (!multiple) {
+    items.push({
+      text: "Detach",
+      action: function () {
+        App.detach_tab(item)
+      }
+    })
+  }
 
   for (let win of wins) {
     if (item.window_id === win.id) {
@@ -507,15 +513,17 @@ App.get_move_menu_items = async function (item) {
 }
 
 // Show tab more menu
-App.get_more_menu_items = function (item) {
+App.get_more_menu_items = function (item, multiple) {
   let items = []
 
-  items.push({
-    text: "Duplicate",
-    action: function () {
-      App.duplicate_tab(item)
-    }
-  })
+  if (!multiple) {
+    items.push({
+      text: "Duplicate",
+      action: function () {
+        App.duplicate_tab(item)
+      }
+    })
+  }
 
   if (!item.discarded) {
     items.push({
@@ -528,7 +536,7 @@ App.get_more_menu_items = function (item) {
 
   items.push({
     text: "Move",
-    get_items: async function () { return await App.get_move_menu_items(item) }
+    get_items: async function () { return await App.get_move_menu_items(item, multiple) }
   })
 
   return items
