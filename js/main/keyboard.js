@@ -60,6 +60,10 @@ App.check_window_keyboard = function (e) {
       App.highlight_next(mode, "above")
     } 
     else {
+      if (App.dehighlight(mode)) {
+        return
+      }
+
       App.select_item_above(mode)
     }
 
@@ -72,6 +76,10 @@ App.check_window_keyboard = function (e) {
       App.highlight_next(mode, "below")
     } 
     else {
+      if (App.dehighlight(mode)) {
+        return
+      }
+
       App.select_item_below(mode)
     }
 
