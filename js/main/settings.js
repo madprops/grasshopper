@@ -141,9 +141,9 @@ App.settings_make_menu = function (id, opts, action) {
 
   let buttons = App.create("div", "flex_row_center gap_1")
   let prev = App.create("div", "button")
-  prev.textContent = "<<"
+  prev.textContent = "<"
   let next = App.create("div", "button")
-  next.textContent = ">>"
+  next.textContent = ">"
 
   function prev_fn () {
     App.settings_menu_cycle(el, id, "prev", opts)
@@ -231,7 +231,7 @@ App.add_settings_switchers = function (category) {
   let title = App.el(".settings_title", App.el(`#settings_${category}_container`))
 
   let prev = App.create("div", "button")
-  prev.textContent = "<<"
+  prev.textContent = "<"
   title.before(prev)
 
   App.ev(prev, "click", function () {
@@ -239,7 +239,7 @@ App.add_settings_switchers = function (category) {
   })
 
   let next = App.create("div", "button")
-  next.textContent = ">>"
+  next.textContent = ">"
   title.after(next)
 
   App.ev(next, "click", function () {
