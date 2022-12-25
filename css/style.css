@@ -287,24 +287,24 @@ svg {
 .item_top_left {
   display: flex;
   flex-direction: row;
-  flex-shrink: 0;
-  gap: 0.66rem;
   margin-right: auto;
   justify-content: flex-start;
-  flex: 0 1 50%;
+  gap: 0.66rem;
+  flex-grow: 1;
+  flex-shrink: 1;
 }
 
 .item_top_right {
   display: flex;
   flex-direction: row;
-  flex-shrink: 0;
-  gap: 0.66rem;
   justify-content: flex-end;
-  flex: 0 1 50%;
+  gap: 0.66rem;
+  flex-grow: 0;
+  flex-shrink: 0;
 }
 
 .item:hover {
-  opacity: 0.84;
+  opacity: 0.8;
 }
 
 .highlighted {
