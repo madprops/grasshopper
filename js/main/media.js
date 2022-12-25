@@ -11,7 +11,7 @@ App.create_media_windows = function (what) {
     let buttons = App.el(`#${what}_buttons`)
 
     let prev = App.create("div", "button", `${what}_prev`)
-    prev.textContent = "<<"
+    prev.textContent = "<"
     prev.title = "Go To Previous"
     buttons.append(prev)
 
@@ -24,7 +24,7 @@ App.create_media_windows = function (what) {
     buttons.append(copy)
 
     let next = App.create("div", "button", `${what}_next`)
-    next.textContent = ">>"
+    next.textContent = ">"
     next.title = "Go To Next"
     buttons.append(next)
 
@@ -46,6 +46,10 @@ App.create_media_windows = function (what) {
 
     App.ev(media, "error", function () {
       App.media_show_error(what)
+    })
+
+    App.ev(App.el(`#${what}_container`), "click", function () {
+      App.windows[what].hide()
     })
 
     App.ev(App.el(`#${what}_open`), "click", function () {
