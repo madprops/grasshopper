@@ -982,7 +982,7 @@ App.setup_item_window = function (mode) {
     })
 
     //
-    let playing, last
+    let playing, previous
 
     if (mode === "tabs") {
       playing = App.create("div", "button icon_button hidden", `${mode}_playing`)
