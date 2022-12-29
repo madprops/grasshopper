@@ -995,15 +995,15 @@ App.setup_item_window = function (mode) {
 
       playing.append(playing_icon)
 
-      last = App.create("div", "button icon_button", `${mode}_last`)
-      last.title = "Go to last tab"
-      let last_icon = App.create_icon("back")
+      previous = App.create("div", "button icon_button", `${mode}_previous`)
+      previous.title = "Go To Previous Tab (Ctrl + Backspace)"
+      let previous_icon = App.create_icon("back")
 
-      App.ev(last, "click", function () {
-        App.go_to_last_tab()
+      App.ev(previous, "click", function () {
+        App.go_to_previous_tab()
       })
 
-      last.append(last_icon)
+      previous.append(previous_icon)
     }
 
     //
@@ -1072,8 +1072,8 @@ App.setup_item_window = function (mode) {
       right_top.append(playing)
     }
 
-    if (last) {
-      right_top.append(last)
+    if (previous) {
+      right_top.append(previous)
     }
 
     right_top.append(filter_modes)

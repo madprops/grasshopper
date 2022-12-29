@@ -779,8 +779,8 @@ App.go_to_playing = function () {
   }
 }
 
-// Go to last tab
-App.go_to_last_tab = async function () {
+// Go to previous tab
+App.go_to_previous_tab = async function () {
   let tabs = await App.get_tabs()
 
   if (tabs.length <= 1) {

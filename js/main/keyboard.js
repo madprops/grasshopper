@@ -38,6 +38,12 @@ App.check_window_keyboard = function (e) {
       e.preventDefault()
       return
     }
+
+    if (e.key === "Backspace") {
+      App.go_to_previous_tab()
+      e.preventDefault()
+      return
+    }
   }
 
   if (e.key === "Enter") {
