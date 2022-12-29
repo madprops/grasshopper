@@ -26,6 +26,11 @@ App.create_item_element_delay = 1000
 
 App.close_window = function () {
   window.close()
+
+  // Sidebar doesn't close so return to tabs
+  if (App.window_mode !== "tabs") {
+    App.show_item_window("tabs")
+  }
 }
 
 App.set_sidebar_title = function (title) {

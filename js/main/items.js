@@ -691,6 +691,13 @@ App.create_item_element = function (item) {
     item.element.classList.remove("highlighted")
   }
 
+  if (item.pinned) {
+    item.element.classList.add("pinned")
+  } 
+  else {
+    item.element.classList.remove("pinned")
+  }
+
   item.created = true
   console.info(`Item created in ${item.mode}`)
 }
