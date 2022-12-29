@@ -982,7 +982,7 @@ App.setup_item_window = function (mode) {
     })
 
     //
-    let playing
+    let playing, last
 
     if (mode === "tabs") {
       playing = App.create("div", "button icon_button hidden", `${mode}_playing`)
@@ -994,6 +994,16 @@ App.setup_item_window = function (mode) {
       })
 
       playing.append(playing_icon)
+
+      last = App.create("div", "button icon_button", `${mode}_last`)
+      last.title = "Go to last tab"
+      let last_icon = App.create_icon("back")
+
+      App.ev(last, "click", function () {
+        App.go_to_last_tab()
+      })
+
+      last.append(last_icon)
     }
 
     //
@@ -1060,6 +1070,10 @@ App.setup_item_window = function (mode) {
 
     if (playing) {
       right_top.append(playing)
+    }
+
+    if (last) {
+      right_top.append(last)
     }
 
     right_top.append(filter_modes)

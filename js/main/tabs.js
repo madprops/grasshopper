@@ -778,3 +778,18 @@ App.go_to_playing = function () {
     App.focus_tab(first)
   }
 }
+
+// Go to last tab
+App.go_to_last_tab = async function () {
+  let tabs = await App.get_tabs()
+
+  if (tabs.length <= 1) {
+    return
+  }
+
+  tabs.sort(function (a, b) {
+    return a.lastAccessed > b.lastAccessed ? -1 : 1
+  })
+
+  App.focus_tab(tabs[1])
+}
