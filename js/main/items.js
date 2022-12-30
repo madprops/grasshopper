@@ -944,14 +944,12 @@ App.setup_item_window = function (mode) {
 
     //
     let main_menu = App.create("div", "button icon_button", `${mode}_main_menu`)
+    main_menu.textContent = mode_name
     main_menu.title = "Main Menu (Ctrl + Left)"
-    let main_menu_icon = App.create_icon("triangle")
 
     App.ev(main_menu, "click", function () {
       App.show_main_menu(mode)
     })
-
-    main_menu.append(main_menu_icon)
 
     App.ev(main_menu, "wheel", function (e) {
       if (e.deltaY < 0) {
@@ -967,7 +965,7 @@ App.setup_item_window = function (mode) {
     filter.type = "text"
     filter.autocomplete = "off"
     filter.spellcheck = false
-    filter.placeholder = mode_name
+    filter.placeholder = "Type to filter"
 
     App.ev(filter, "input", function () {
       App[`${mode}_item_filter`].call()
@@ -1710,7 +1708,12 @@ App.insert_item = function (mode, info) {
 
 // Get mode name
 App.get_mode_name = function (mode) {
-  return App.capitalize(mode)
+  if (mode === "bookmarks") {
+    return "BMarks"
+  }
+  else {
+    return App.capitalize(mode)
+  }
 }
 
 // Item action

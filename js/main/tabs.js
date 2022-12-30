@@ -4,11 +4,11 @@ App.setup_tabs = function () {
     ["pins", "Pins"],
     ["playing", "Playing"],
     ["muted", "Muted"],
-    ["suspended", "Suspended"],
     ["active", "Active"],
     ["normal", "Normal"],
     ["http", "Http"],
     ["https", "Https"],
+    ["suspended", "zzz"],
   ]
 
   App.tabs_actions = [
