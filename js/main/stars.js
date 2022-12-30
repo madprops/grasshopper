@@ -97,7 +97,7 @@ App.star_item = function (item, save = true) {
   if (App.get_star_by_url(item.url)) {
     return
   }
-  
+
   let obj = {
     id: `${Date.now()}_${App.star_counter}`,
     url: item.url,
