@@ -17,14 +17,17 @@ App.create_media_windows = function (what) {
 
     let open = App.create("div", "button", `${what}_open`)
     open.textContent = "Open"
+    open.title = "Open Tab"
     buttons.append(open)
 
     let star = App.create("div", "button", `${what}_star`)
     star.textContent = "Star"
+    star.title = "Star Editor"
     buttons.append(star)
 
     let copy = App.create("div", "button", `${what}_copy`)
     copy.textContent = "Copy"
+    copy.title = "Copy URL"
     buttons.append(copy)
 
     let next = App.create("div", "button", `${what}_next`)
