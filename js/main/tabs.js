@@ -781,15 +781,21 @@ App.go_to_playing = function () {
 
 // Go to previous tab
 App.go_to_previous_tab = async function () {
-  let tabs = await App.get_tabs()
+  if (Date.now() - App.previous_tab_date > App.previous_tab_date_max) {
+    App.previous_tabs = await App.get_tabs()
+    
+    App.previous_tabs.sort(function (a, b) {
+      return a.lastAccessed > b.lastAccessed ? -1 : 1
+    })
 
-  if (tabs.length <= 1) {
+    App.previous_tab_date = Date.now()
+    App.previous_index = 1
+  }
+
+  if (App.previous_tabs.length <= 1) {
     return
   }
 
-  tabs.sort(function (a, b) {
-    return a.lastAccessed > b.lastAccessed ? -1 : 1
-  })
-
-  App.focus_tab(tabs[1])
+  App.focus_tab(App.previous_tabs[App.previous_index])
+  App.previous_index += 1
 }
