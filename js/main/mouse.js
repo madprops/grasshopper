@@ -117,7 +117,7 @@ App.setup_drag = function (mode, container) {
     App.update_tab_index()
   })
 
-  container.addEventListener("dragover", function (e) {
+  container.addEventListener("dragenter", function (e) {
     let direction = e.clientY > App.drag_y ? "down" : "up"
     App.drag_y = e.clientY
 
