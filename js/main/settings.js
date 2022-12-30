@@ -209,12 +209,12 @@ App.setup_settings = function () {
     })
 
     App.add_settings_switchers("basic")
-  }, persistent: false, sidebar_title: "Settings"})
+  }, persistent: false})
 
   App.create_window({id: "settings_theme", setup: function () {
     App.start_theme_settings()
     App.add_settings_switchers("theme")
-  }, persistent: false, sidebar_title: "Settings"})
+  }, persistent: false})
 
   App.create_window({id: "settings_icons", setup: function () {
     let container = App.el("#settings_icons_container")
@@ -225,7 +225,7 @@ App.setup_settings = function () {
     })
 
     App.add_settings_switchers("icons")
-  }, persistent: false, sidebar_title: "Settings"})
+  }, persistent: false})
 }
 
 // Create settings title switchers

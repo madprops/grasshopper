@@ -162,6 +162,14 @@ App.setup_keyboard = function () {
       return
     }
 
+    if (!App.item_order.includes(App.window_mode)) {
+      if (e.key === "Escape") {
+        App.show_first_item_window()
+        e.preventDefault()
+        return
+      }
+    }
+
     if (App.window_mode === "star_editor") {
       if (e.key === "Enter") {
         App.star_editor_save()

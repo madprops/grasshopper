@@ -59,7 +59,7 @@ App.setup_about = function () {
   }, on_hide: function () {
     App.stop_about_info()
     App.show_last_window()
-  }, persistent: false, sidebar_title: "About"})
+  }, persistent: false})
 }
 
 // Update about info

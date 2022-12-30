@@ -911,8 +911,6 @@ App.setup_item_window = function (mode) {
   args.align_top = "left"
   
   let mode_name = App.get_mode_name(mode)
-  args.sidebar_title = mode_name
-
   args.setup = function () {
     App[`${mode}_item_filter`] = App.create_debouncer(function () {
       App.do_item_filter(mode)

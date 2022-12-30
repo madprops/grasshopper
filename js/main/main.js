@@ -38,19 +38,6 @@ App.close_window = function () {
   }
 }
 
-App.set_sidebar_title = function (title) {
-  let new_title
-
-  if (title) {
-    new_title = `Grasshopper (${title})`
-  } 
-  else {  
-    new_title = "Grasshopper"
-  }
-  
-  browser.sidebarAction.setTitle({title: new_title})
-}
-
 NeedContext.min_width = "4.5rem"
 
 App.init = async function () {

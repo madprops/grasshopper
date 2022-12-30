@@ -84,7 +84,6 @@ App.create_window = function (args) {
 
     w.check_setup()
     App.hide_all_windows()
-    App.set_sidebar_title(args.sidebar_title)
     w.element.style.display = "flex"
 
     if (App.window_mode !== args.id) {
