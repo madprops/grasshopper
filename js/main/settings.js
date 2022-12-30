@@ -21,9 +21,10 @@ App.default_settings = {
   suspended_icon: {value: "(zzz)", category: "icons"},
 }
 
-// Start item order
-App.start_item_order = function () {
+// Make item order control
+App.make_item_order = function () {
   let item_order = App.el("#settings_item_order")
+  item_order.innerHTML = ""
 
   for (let m of App.item_order) {
     let row = App.create("div", "item_order_row")
@@ -182,7 +183,7 @@ App.setup_settings = function () {
       App.apply_theme()
     })
 
-    App.start_item_order()
+    App.make_item_order()
 
     App.settings_make_menu("font", [
       ["Sans", "gh_sans"],
@@ -346,6 +347,8 @@ App.restore_default_settings = function (type) {
       }
     }
 
+    App.get_item_order()
+    App.make_item_order()
     App.stor_save_settings()
     App.apply_theme()
     App.show_window(`settings_${type}`)
