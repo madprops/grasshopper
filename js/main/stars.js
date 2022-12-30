@@ -56,8 +56,8 @@ App.stars_action = function (item) {
 }
 
 // Stars action alt
-App.stars_action_alt = function (item) {
-  App.remove_stars(item)
+App.stars_action_alt = function (item, shift_key) {
+  App.remove_stars(item, shift_key)
 }
 
 // Open star
@@ -278,7 +278,7 @@ App.update_star_editor_info = function () {
 }
 
 // Remove multiple stars
-App.remove_stars = function (item) {
+App.remove_stars = function (item, force = false) {
   let active = App.get_active_items("stars", item)
   let ids = active.map(x => x.id)
 
@@ -291,9 +291,7 @@ App.remove_stars = function (item) {
     }
 
     App.dehighlight("stars")
-  }, function () {
-    App.dehighlight("stars")
-  })
+  }, force)
 }
 
 // Backup stars

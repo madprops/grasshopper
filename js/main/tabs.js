@@ -338,18 +338,12 @@ App.close_tabs = function (item, force = false) {
     return
   }
 
-  if (!force && warn) {
-    App.show_confirm(`Close tabs? (${ids.length})`, function () {
-      App.do_close_tabs(ids)
-      App.dehighlight("tabs")
-    }, function () {
-      App.dehighlight("tabs")
-    })
-  }
-  else {
+  App.show_confirm(`Close tabs? (${ids.length})`, function () {
     App.do_close_tabs(ids)
     App.dehighlight("tabs")
-  }
+  }, function () {
+    App.dehighlight("tabs")
+  }, force || !warn)
 }
 
 // Do close tabs

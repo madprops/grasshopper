@@ -155,7 +155,12 @@ App.dialog_enter = function () {
 }
 
 // Show a confirm dialog template
-App.show_confirm = function (message, confirm_action, cancel_action) {
+App.show_confirm = function (message, confirm_action, cancel_action, force = false) {
+  if (force) {
+    confirm_action()
+    return
+  }
+
   if (!cancel_action) {
     cancel_action = function () {}
   }
