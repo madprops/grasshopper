@@ -347,8 +347,11 @@ App.restore_default_settings = function (type) {
       }
     }
 
-    App.get_item_order()
-    App.make_item_order()
+    if (type === "basic") {
+      App.get_item_order()
+      App.make_item_order()
+    }
+    
     App.stor_save_settings()
     App.apply_theme()
     App.show_window(`settings_${type}`)
