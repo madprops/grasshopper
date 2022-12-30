@@ -162,7 +162,7 @@ App.setup_keyboard = function () {
       return
     }
 
-    if (!App.item_order.includes(App.window_mode)) {
+    if (!App.on_item_window()) {
       if (e.key === "Escape") {
         App.show_first_item_window()
         e.preventDefault()
@@ -196,7 +196,7 @@ App.setup_keyboard = function () {
       return
     }
 
-    if (App.item_order.includes(App.window_mode)) {
+    if (App.on_item_window()) {
       App.check_window_keyboard(e)
     }
   })

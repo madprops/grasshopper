@@ -854,7 +854,7 @@ App.intersection_observer = function (mode, options) {
 App.get_last_window_value = function (cycle) {
   let last_mode = App.window_mode
 
-  if (!App.item_order.includes(last_mode)) {
+  if (!App.on_item_window(last_mode)) {
     last_mode = "tabs"
   }
 
@@ -1750,4 +1750,9 @@ App.item_action_alt = function (item) {
       App.launch_item(item, false)
     }
   }
+}
+
+// Check if on item window
+App.on_item_window = function (mode = App.window_mode) {
+  return App.item_order.includes(mode)
 }
