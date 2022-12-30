@@ -48,18 +48,23 @@ App.setup_tabs = function () {
     if (App.window_mode === "tabs" && info.windowId === App.window_id) {
       App.refresh_tab(id)
       App.check_playing.call()
+      App.check_pins.call()
     }
   })
 
   browser.tabs.onActivated.addListener(function (info) {
     if (App.window_mode === "tabs" && info.windowId === App.window_id) {
       App.on_tab_activated(info)
+      App.check_playing.call()
+      App.check_pins.call()
     }
   })
 
   browser.tabs.onRemoved.addListener(function (id, info) {
     if (App.window_mode === "tabs" && info.windowId === App.window_id) {
       App.remove_closed_tab(id)
+      App.check_playing.call()
+      App.check_pins.call()
     }
   })
 
@@ -72,6 +77,8 @@ App.setup_tabs = function () {
   browser.tabs.onDetached.addListener(function (id, info) {
     if (App.window_mode === "tabs" && info.oldWindowId === App.window_id) {
       App.remove_closed_tab(id)
+      App.check_playing.call()
+      App.check_pins.call()
     }
   })
 
@@ -82,6 +89,10 @@ App.setup_tabs = function () {
   App.check_playing = App.create_debouncer(function () {
     App.do_check_playing()
   }, App.check_playing_delay)
+
+  App.check_pins = App.create_debouncer(function () {
+    App.do_check_pins()
+  }, App.check_pins_delay)
 }
 
 // Get open tabs
@@ -746,6 +757,28 @@ App.do_check_playing = function () {
   }
   else {
     App.hide_playing()
+  }
+}
+
+// Add horizontal line after last pin
+App.do_check_pins = function () {
+  let last
+
+  for (let tab of App.tabs_items) {
+    tab.element.classList.remove("pinline")
+  }
+
+  for (let tab of App.tabs_items) {
+    if (tab.pinned) {
+      last = tab
+    }
+    else {
+      if (last) {
+        last.element.classList.add("pinline")
+      }
+
+      break
+    }
   }
 }
 

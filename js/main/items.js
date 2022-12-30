@@ -585,7 +585,8 @@ App.process_items = function (mode, items) {
   App.update_footer_count.now(mode)
 
   if (mode === "tabs") {
-    App.do_check_playing(mode)
+    App.do_check_playing()
+    App.do_check_pins()
   }
 }
 
@@ -705,13 +706,6 @@ App.create_item_element = function (item) {
   }
   else {
     item.element.classList.remove("highlighted")
-  }
-
-  if (item.pinned) {
-    item.element.classList.add("pinned")
-  } 
-  else {
-    item.element.classList.remove("pinned")
   }
 
   item.created = true

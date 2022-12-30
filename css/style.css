@@ -320,8 +320,8 @@ svg {
   background-color: var(--alt_color_1);
 }
 
-.pinned {
-  border-bottom: 1px solid var(--alt_color_2);
+.pinline {
+  border-bottom: 2px solid var(--alt_color_2);
 }
 
 .hidden {
