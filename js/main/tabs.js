@@ -838,4 +838,8 @@ App.go_to_previous_tab = async function () {
 
   App.focus_tab(App.previous_tabs[App.previous_index])
   App.previous_index += 1
+
+  if (App.previous_index >= App.previous_tabs.length) {
+    App.previous_index = 0
+  }
 }
