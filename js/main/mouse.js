@@ -105,6 +105,7 @@ App.setup_drag = function (mode, container) {
       App.drag_els.push(tab.element)
     }
 
+    App.remove_pinline()
     App.drag_moved = false
   })
 
@@ -113,6 +114,7 @@ App.setup_drag = function (mode, container) {
       return
     }
 
+    App.check_pins.call()
     App.dehighlight(mode)
     App.update_tab_index()
   })

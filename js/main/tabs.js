@@ -762,13 +762,18 @@ App.do_check_playing = function () {
   }
 }
 
+// Remove pinline
+App.remove_pinline = function () {
+  for (let el of App.els("#tabs_container .pinline")) {
+    el.classList.remove("pinline")
+  }
+}
+
 // Add horizontal line after last pin
 App.do_check_pins = function () {
   let last
 
-  for (let tab of App.tabs_items) {
-    tab.element.classList.remove("pinline")
-  }
+  App.remove_pinline()
 
   for (let tab of App.tabs_items) {
     if (tab.pinned) {
