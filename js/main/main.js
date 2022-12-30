@@ -15,6 +15,7 @@ App.theme_color_diff = 0.77
 App.icon_size = 25
 App.media_scroll_amount = 33
 App.star_counter = 1
+App.max_stars = 1000 * 5
 
 App.filter_delay = 250
 App.color_delay = 150
