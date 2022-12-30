@@ -3,7 +3,6 @@
   --widget_padding_hor: 0.33rem;
   --item_margin: 0.45rem;
   --item_margin_2: 0.65rem;
-  --icon_margin: 0.55rem;
 }
 
 @font-face {
@@ -251,8 +250,8 @@ svg {
 .item_status {
   display: flex;
   flex-direction: row;
-  gap: var(--icon_margin);
-  margin-right: var(--icon_margin);
+  gap: var(--item_margin);
+  margin-right: var(--item_margin);
   flex-shrink: 0;
 }
 
