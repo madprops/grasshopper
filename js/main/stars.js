@@ -52,24 +52,12 @@ App.hide_star_editor = function () {
 
 // Stars action
 App.stars_action = function (item) {
-  if (App.check_media(item)) {
-    return
-  }
-
-  let active = App.get_active_items("stars")
-
-  if (active.length === 1) {
-    App.open_star(active[0])
-  }
-
-  else if (active.length > 1) {
-    App.launch_items("stars")
-  }
+  App.item_action(item)
 }
 
 // Stars action alt
 App.stars_action_alt = function (item) {
-  App.launch_star(item)
+  App.item_action_alt(item)
 }
 
 // Open star

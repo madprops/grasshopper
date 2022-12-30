@@ -1734,7 +1734,12 @@ App.item_action = function (item) {
       return
     }
 
-    App.focus_or_open_item(item)
+    if (item.mode === "stars") {
+      App.open_star(item)
+    }
+    else {
+      App.focus_or_open_item(item)
+    }
   }
 }
 
@@ -1746,6 +1751,11 @@ App.item_action_alt = function (item) {
     App.launch_items(item)
   }
   else {
-    App.launch_item(item, false)
+    if (item.mode === "stars") {
+      App.launch_star(item)
+    }
+    else {
+      App.launch_item(item, false)
+    }
   }
 }
