@@ -1027,6 +1027,10 @@ App.setup_item_window = function (mode) {
       App[`${mode}_actions`] = []
     }
 
+    App[`${mode}_actions`].unshift({text: "Clear", action: function () {
+      App.clear_filter(mode)
+    }})
+
     App[`${mode}_actions`].unshift({text: "Bottom", action: function () {
       App.goto_bottom(mode)
     }})
@@ -1082,6 +1086,7 @@ App.setup_item_window = function (mode) {
     let right_top = App.create("div", "item_top_right")
 
     left_top.append(main_menu)
+    left_top.append(filter_modes)
     left_top.append(filter)
 
     if (playing) {
@@ -1092,7 +1097,6 @@ App.setup_item_window = function (mode) {
       right_top.append(previous)
     }
 
-    right_top.append(filter_modes)
     right_top.append(actions_menu)
 
     top.append(left_top)
@@ -1641,19 +1645,6 @@ App.create_icon = function (name, type = 1) {
 App.show_main_menu = function (mode) {
   let el = App.el(`#${mode}_main_menu`)
   let items = []
-
-  if (App.get_filter(mode)) {
-    items.push({
-      text: "Clear",
-      action: function () {
-        App.clear_filter(mode)
-      }
-    })
-
-    items.push({
-      separator: true
-    })
-  }
 
   for (let m of App.item_order) {
     items.push({

@@ -48,7 +48,7 @@ App.create_media_windows = function (what) {
       App.media_show_error(what)
     })
 
-    App.ev(App.el(`#${what}_container`), "click", function () {
+    App.ev(media, "click", function () {
       App.windows[what].hide()
     })
 
