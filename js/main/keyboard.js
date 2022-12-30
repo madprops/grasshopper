@@ -97,6 +97,10 @@ App.check_window_keyboard = function (e) {
     if (mode === "tabs") {
       App.close_tabs()
     }
+    else if (mode === "stars") {
+      let item = App.get_selected(mode)
+      App.remove_stars(item)
+    }    
 
     e.preventDefault()
     return
@@ -157,6 +161,15 @@ App.setup_keyboard = function () {
       e.preventDefault()
       return
     }
+
+    if (App.window_mode === "star_editor") {
+      if (e.key === "Enter") {
+        App.star_editor_save()
+        e.preventDefault()
+      }
+
+      return
+    }    
 
     if (App.window_mode === "image" || App.window_mode === "video") {
       if (e.key === "ArrowLeft") {

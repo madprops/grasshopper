@@ -17,6 +17,7 @@
     <script src="js/main/keyboard.js"></script>
     <script src="js/main/items.js"></script>
     <script src="js/main/tabs.js"></script>
+    <script src="js/main/stars.js"></script>
     <script src="js/main/bookmarks.js"></script>
     <script src="js/main/closed.js"></script>
     <script src="js/main/history.js"></script>
@@ -45,6 +46,52 @@
 
     <div id="background"></div>
     <div id="main"></div>
+
+    <template id="template_star_editor">
+      <div class="flex_column_center gap_4" id="star_editor_container">
+        <div id="star_editor_about" class="flex_column_center gap_2">
+          <div>Remember a URL as a star</div>
+          <div>Use them to launch or focus tabs</div>
+          <div>These are not bookmarks</div>
+        </div>
+
+        <div class="flex_column_center gap_1">
+          <div class="unselectable">Title</div>
+          <input type="text" autocomplete="off" spellcheck="false" id="star_editor_title" class="text star_editor_text" placeholder="Title of the star">
+        </div>
+
+        <div class="flex_column_center gap_1">
+          <div class="unselectable">URL</div>
+          <input type="text" autocomplete="off" spellcheck="false" id="star_editor_url" class="text star_editor_text" placeholder="URL of the star">
+        </div>
+
+        <div id="star_editor_info" class="flex_column_center gap_1">
+          <div class="flex_row_center gap_1">
+            <div>Visits:</div>
+            <div id="star_editor_visits"></div>
+          </div>
+
+          <div class="flex_row_center gap_1">
+            <div>Last Visit:</div>
+            <div id="star_editor_visited"></div>
+          </div>
+
+          <div class="flex_row_center gap_1">
+            <div>Added On:</div>
+            <div id="star_editor_added"></div>
+          </div>
+        </div>
+
+        <div class="flex_row_center gap_2">
+          <div id="star_editor_remove" class="button button_2">Remove</div>
+          <div id="star_editor_save" class="button">Save</div>
+        </div>
+      </div>
+    </template>  
+    
+    <template id="template_star_editor_top">
+      <div>Star Editor</div>
+    </template>
 
     <template id="template_settings_basic">
       <div id="settings_basic_container" class="settings_container unselectable">

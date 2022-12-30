@@ -61,3 +61,37 @@ App.stor_get_tab_state = function () {
 App.stor_save_tab_state = function () {
   App.save_local_storage(App.stor_tab_state_name, App.tab_state)
 }
+
+// Get stars from storage
+App.stor_get_stars = function () {
+  App.stars = App.get_local_storage(App.stor_stars_name, [])
+  let changed = false
+
+  for (let star of App.stars) {
+    if (star.date_added === undefined) {
+      star.date_added = Date.now()
+      changed = true
+    }
+
+    if (star.date_last_visit === undefined) {
+      star.date_last_visit = Date.now()
+      changed = true
+    }
+
+    if (star.visits === undefined) {
+      star.visits = 0
+      changed = true
+    }
+  }
+
+  if (changed) {
+    App.stor_save_stars()
+  }
+
+  console.info("Stor: Got stars")
+}
+
+// Save stars to storage
+App.stor_save_stars = function () {
+  App.save_local_storage(App.stor_stars_name, App.stars)
+}

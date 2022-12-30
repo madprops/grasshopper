@@ -1,7 +1,8 @@
 App.stor_settings_name = "settings_v20"
 App.stor_tab_state_name = "tab_state_v20"
+App.stor_stars_name = "stars_state_v20"
 
-App.item_modes = ["tabs", "bookmarks", "closed", "history"]
+App.item_modes = ["tabs", "stars", "bookmarks", "closed", "history"]
 
 App.windows = {}
 App.popups = {}
@@ -54,9 +55,11 @@ App.init = async function () {
     
   App.stor_get_settings()
   App.stor_get_tab_state()
+  App.stor_get_stars()
 
   App.setup_theme()
   App.setup_tabs()
+  App.setup_stars()
   App.setup_bookmarks()
   App.setup_history()
   App.setup_closed()

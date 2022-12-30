@@ -424,6 +424,22 @@ App.show_item_menu = function (item, x, y) {
     })
   }
 
+  items.push({
+    text: "Star",
+    action: function () {
+      App.star_items(item)
+    }
+  })
+
+  if (item.mode === "stars") {
+    items.push({
+      text: "Remove",
+      action: function () {
+        App.remove_stars(item)
+      }
+    })
+  }  
+
   if (!multiple) {
     items.push({
       text: "Filter",

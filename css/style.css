@@ -132,7 +132,7 @@ body, html {
   position: absolute;
   top: 0;
   right: 0;
-  padding-top: 0.44rem;
+  padding-top: 0.42rem;
   padding-bottom: 0.66rem;
   padding-left: 1rem;
   padding-right: 0.88rem;
@@ -618,4 +618,14 @@ input::placeholder {
 .separator {
   border: 1px solid var(--alt_color_1);
   width: 14rem;
+}
+
+#star_editor_container {
+  padding-top: 1.7rem;
+  padding-bottom: 1.7rem;
+}
+
+.star_editor_text {
+  width: 18rem;
+  text-align: center;
 }

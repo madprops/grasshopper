@@ -2,9 +2,10 @@
 App.default_settings = {
   text_mode: {value: "title", category: "basic"},
   tabs_index: {value: 0, category: "basic"},
-  bookmarks_index: {value: 1, category: "basic"},
-  history_index: {value: 2, category: "basic"},
-  closed_index: {value: 3, category: "basic"},
+  stars_index: {value: 1, category: "basic"},
+  bookmarks_index: {value: 2, category: "basic"},
+  history_index: {value: 3, category: "basic"},
+  closed_index: {value: 4, category: "basic"},
   lock_drag: {value: false, category: "basic"},
   width: {value: 80, category: "basic"},
   height: {value: 90, category: "basic"},
