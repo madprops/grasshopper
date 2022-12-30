@@ -16,11 +16,15 @@ App.create_media_windows = function (what) {
     buttons.append(prev)
 
     let open = App.create("div", "button", `${what}_open`)
-    open.textContent = "Open Tab"
+    open.textContent = "Open"
     buttons.append(open)
 
+    let star = App.create("div", "button", `${what}_star`)
+    star.textContent = "Star"
+    buttons.append(star)
+
     let copy = App.create("div", "button", `${what}_copy`)
-    copy.textContent = "Copy URL"
+    copy.textContent = "Copy"
     buttons.append(copy)
 
     let next = App.create("div", "button", `${what}_next`)
@@ -61,6 +65,11 @@ App.create_media_windows = function (what) {
       else {
         App.focus_or_open_item(item)
       }
+    })
+    
+    App.ev(App.el(`#${what}_star`), "click", function () {
+      let item = App[`current_${what}_item`]
+      App.show_star_editor(item)
     })
 
     App.ev(App.el(`#${what}_copy`), "click", function () {
