@@ -1729,23 +1729,6 @@ App.item_action = function (item) {
   }
 }
 
-// Item action
-App.item_action_alt = function (item) {
-  let highlighted = App.get_highlights(item.mode)
-
-  if (highlighted.length > 0) {
-    App.launch_items(item)
-  }
-  else {
-    if (item.mode === "stars") {
-      App.launch_star(item)
-    }
-    else {
-      App.launch_item(item, false)
-    }
-  }
-}
-
 // Check if on item window
 App.on_item_window = function (mode = App.window_mode) {
   return App.item_order.includes(mode)

@@ -20,5 +20,5 @@ App.closed_action = function (item) {
 
 // Closed tabs action alt
 App.closed_action_alt = function (item) {
-  App.item_action_alt(item)
+  
 }

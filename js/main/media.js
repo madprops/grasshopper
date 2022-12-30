@@ -59,7 +59,7 @@ App.create_media_windows = function (what) {
       App.windows[what].hide()
     })
 
-    App.ev(App.el(`#${what}_open`), "click", function () {
+    App.ev(open, "click", function () {
       let item = App[`current_${what}_item`]
 
       if (item.mode === "tabs") {
@@ -73,12 +73,13 @@ App.create_media_windows = function (what) {
       }
     })
 
-    App.ev(App.el(`#${what}_star`), "click", function () {
+    App.ev(star, "click", function () {
       let item = App[`current_${what}_item`]
-      App.show_star_editor(item)
+      App.star_item(item)
+      star.classList.add("hidden")
     })
 
-    App.ev(App.el(`#${what}_copy`), "click", function () {
+    App.ev(copy, "click", function () {
       App.copy_to_clipboard(App[`current_${what}_item`].url)
     })
 
@@ -115,6 +116,13 @@ App.show_media = function (what, item) {
   App.el(`#${what}_url`).textContent = item.url
   App.show_window(what)
   App.media_show_loading(what)
+
+  if (App.get_star_by_url(item.url)) {
+    App.el(`#${what}_star`).classList.add("hidden")
+  }
+  else {
+    App.el(`#${what}_star`).classList.remove("hidden")
+  }
 }
 
 // Hide media

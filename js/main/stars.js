@@ -57,7 +57,7 @@ App.stars_action = function (item) {
 
 // Stars action alt
 App.stars_action_alt = function (item) {
-  App.item_action_alt(item)
+  App.remove_stars(item)
 }
 
 // Open star
@@ -278,8 +278,8 @@ App.update_star_editor_info = function () {
 }
 
 // Remove multiple stars
-App.remove_stars = function () {
-  let active = App.get_active_items("stars")
+App.remove_stars = function (item) {
+  let active = App.get_active_items("stars", item)
   let ids = active.map(x => x.id)
 
   App.show_confirm(`Remove stars? (${ids.length})`, function () {
