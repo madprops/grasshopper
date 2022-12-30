@@ -65,6 +65,9 @@ App.create_media_windows = function (what) {
       if (item.mode === "tabs") {
         App.focus_tab(item)
       }
+      else if (item.mode === "stars") {
+        App.open_star(item)
+      }
       else {
         App.focus_or_open_item(item)
       }
