@@ -72,7 +72,7 @@ App.create_media_windows = function (what) {
         App.focus_or_open_item(item)
       }
     })
-    
+
     App.ev(App.el(`#${what}_star`), "click", function () {
       let item = App[`current_${what}_item`]
       App.show_star_editor(item)

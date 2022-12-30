@@ -94,7 +94,7 @@ App.get_hostname = function (url) {
 
   try {
     url_obj = new URL(url)
-  } 
+  }
   catch (err) {
     return ""
   }

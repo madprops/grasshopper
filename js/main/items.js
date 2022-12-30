@@ -98,7 +98,7 @@ App.highlight_next = function (mode, dir) {
     else {
       if (item === current) {
         waypoint = true
-      } 
+      }
     }
   }
 }
@@ -438,7 +438,7 @@ App.show_item_menu = function (item, x, y) {
         App.remove_stars(item)
       }
     })
-  }  
+  }
 
   if (!multiple) {
     items.push({
@@ -599,7 +599,7 @@ App.process_item = function (mode, item, exclude = [], o_item) {
   try {
     url_obj = new URL(item.url)
     decodeURI(item.url)
-  } 
+  }
   catch (err) {
     return false
   }
@@ -903,7 +903,7 @@ App.setup_item_window = function (mode) {
   args.id = mode
   args.close_button = false
   args.align_top = "left"
-  
+
   let mode_name = App.get_mode_name(mode)
   args.setup = function () {
     App[`${mode}_item_filter`] = App.create_debouncer(function () {

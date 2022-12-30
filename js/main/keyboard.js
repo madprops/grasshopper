@@ -64,7 +64,7 @@ App.check_window_keyboard = function (e) {
   if (e.key === "ArrowUp") {
     if (e.shiftKey) {
       App.highlight_next(mode, "above")
-    } 
+    }
     else {
       if (App.dehighlight(mode)) {
         return
@@ -80,7 +80,7 @@ App.check_window_keyboard = function (e) {
   if (e.key === "ArrowDown") {
     if (e.shiftKey) {
       App.highlight_next(mode, "below")
-    } 
+    }
     else {
       if (App.dehighlight(mode)) {
         return
@@ -100,7 +100,7 @@ App.check_window_keyboard = function (e) {
     else if (mode === "stars") {
       let item = App.get_selected(mode)
       App.remove_stars(item)
-    }    
+    }
 
     e.preventDefault()
     return
@@ -177,7 +177,7 @@ App.setup_keyboard = function () {
       }
 
       return
-    }    
+    }
 
     if (App.window_mode === "image" || App.window_mode === "video") {
       if (e.key === "ArrowLeft") {

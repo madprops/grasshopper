@@ -44,7 +44,7 @@ NeedContext.min_width = "4.5rem"
 App.init = async function () {
   let win = await browser.windows.getCurrent({populate: false})
   App.window_id = win.id
-    
+
   App.stor_get_settings()
   App.stor_get_tab_state()
   App.stor_get_stars()

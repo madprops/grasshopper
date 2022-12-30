@@ -484,7 +484,7 @@ App.do_load_tab_state = function (items, confirm = true) {
         else {
           await App.open_tab(item.url, false)
         }
-      } 
+      }
       catch (e) {
         console.error(e)
       }
@@ -535,7 +535,7 @@ App.do_load_tab_state = function (items, confirm = true) {
           }
 
           await App.do_move_tab_index(tab.id, i)
-        } 
+        }
         catch (err) {
           console.error(err)
         }
@@ -818,7 +818,7 @@ App.go_to_playing = function () {
 App.go_to_previous_tab = async function () {
   if (Date.now() - App.previous_tab_date > App.previous_tab_date_max) {
     App.previous_tabs = await App.get_tabs()
-    
+
     App.previous_tabs.sort(function (a, b) {
       return a.lastAccessed > b.lastAccessed ? -1 : 1
     })
