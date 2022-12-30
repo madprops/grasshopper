@@ -44,41 +44,43 @@ App.setup_tabs = function () {
 
   App.setup_item_window("tabs")
 
+  function checks () {
+    App.check_playing.call()
+    App.check_pins.call()
+  }
+
   browser.tabs.onUpdated.addListener(function (id, cinfo, info) {
     if (App.window_mode === "tabs" && info.windowId === App.window_id) {
       App.refresh_tab(id)
-      App.check_playing.call()
-      App.check_pins.call()
+      checks()
     }
   })
 
   browser.tabs.onActivated.addListener(function (info) {
     if (App.window_mode === "tabs" && info.windowId === App.window_id) {
       App.on_tab_activated(info)
-      App.check_playing.call()
-      App.check_pins.call()
+      checks()
     }
   })
 
   browser.tabs.onRemoved.addListener(function (id, info) {
     if (App.window_mode === "tabs" && info.windowId === App.window_id) {
       App.remove_closed_tab(id)
-      App.check_playing.call()
-      App.check_pins.call()
+      checks()
     }
   })
 
   browser.tabs.onMoved.addListener(function (id, info) {
     if (App.window_mode === "tabs" && info.windowId === App.window_id) {
       App.move_item("tabs", info.fromIndex, info.toIndex)
+      checks()
     }
   })
 
   browser.tabs.onDetached.addListener(function (id, info) {
     if (App.window_mode === "tabs" && info.oldWindowId === App.window_id) {
       App.remove_closed_tab(id)
-      App.check_playing.call()
-      App.check_pins.call()
+      checks()
     }
   })
 
