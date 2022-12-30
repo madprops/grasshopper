@@ -94,6 +94,10 @@ App.update_star = function (item, add_visit = true) {
 
 // Add an item to stars
 App.star_item = function (item, save = true) {
+  if (App.get_star_by_url(item.url)) {
+    return
+  }
+  
   let obj = {
     id: `${Date.now()}_${App.star_counter}`,
     url: item.url,
@@ -398,4 +402,18 @@ App.star_items = function (item) {
   }, function () {
     App.dehighlight(item.mode)
   })
+}
+
+// Toggle star
+App.toggle_star = function (item) {
+  let star = App.get_star_by_url(item.url)
+
+  if (star) {
+    App.remove_stars(star, true)
+    return false
+  }
+  else {
+    App.star_item(item)
+    return true
+  }
 }

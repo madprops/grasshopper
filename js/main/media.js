@@ -75,8 +75,14 @@ App.create_media_windows = function (what) {
 
     App.ev(star, "click", function () {
       let item = App[`current_${what}_item`]
-      App.star_item(item)
-      star.classList.add("hidden")
+      let starred = App.toggle_star(item)
+
+      if (starred) {
+        star.classList.add("outline")
+      }
+      else {
+        star.classList.remove("outline")
+      }
     })
 
     App.ev(copy, "click", function () {
@@ -118,10 +124,10 @@ App.show_media = function (what, item) {
   App.media_show_loading(what)
 
   if (App.get_star_by_url(item.url)) {
-    App.el(`#${what}_star`).classList.add("hidden")
+    App.el(`#${what}_star`).classList.add("outline")
   }
   else {
-    App.el(`#${what}_star`).classList.remove("hidden")
+    App.el(`#${what}_star`).classList.remove("outline")
   }
 }
 
