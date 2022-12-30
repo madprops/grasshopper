@@ -1425,6 +1425,11 @@ App.move_item_element = function (mode, el, to_index) {
 
 // Highlight a range of items
 App.highlight_range = function (item) {
+  if (App.last_highlight === item) {
+    App.dehighlight(item.mode)
+    return
+  }
+
   if (!App.last_highlight || !App.last_highlight.highlighted) {
     App.last_highlight = App.get_selected(item.mode)
     App.toggle_highlight(App.last_highlight, true)
