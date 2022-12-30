@@ -291,6 +291,8 @@ App.remove_stars = function (item, force = false) {
     }
 
     App.dehighlight("stars")
+  }, function () {
+    App.dehighlight("stars")
   }, force)
 }
 
