@@ -1,6 +1,28 @@
 // Setup bookmarks
 App.setup_bookmarks = function () {
   App.setup_item_window("bookmarks")
+
+  browser.bookmarks.onCreated.addListener(function (id, info) {
+    if (App.window_mode === "bookmarks") {
+      App.insert_item("bookmarks", info)
+    }
+  })
+
+  browser.bookmarks.onRemoved.addListener(function (id, info) {
+    if (App.window_mode === "bookmarks") {
+      let item = App.get_item_by_id("bookmarks", id)
+
+      if (item) {
+        App.remove_item(item)
+      }
+    }
+  })
+
+  browser.bookmarks.onChanged.addListener(function (id, info) {
+    if (App.window_mode === "bookmarks") {
+      App.insert_item("bookmarks", info)
+    }
+  })
 }
 
 // Get bookmarks

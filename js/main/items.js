@@ -1687,11 +1687,22 @@ App.get_active_items = function (mode, item) {
 // Insert new item
 App.insert_item = function (mode, info) {
   let item = App.process_item(mode, info)
-  App.get_items(mode).splice(info.index, 0, item)
-  App.el(`#${mode}_container`).append(item.element)
 
   if (mode === "tabs") {
+    App.get_items(mode).splice(info.index, 0, item)
+    App.el(`#${mode}_container`).append(item.element)
     App.move_item_element("tabs", item.element, info.index)
+  }
+  else {
+    let old = App.get_item_by_url(mode, item.url)
+
+    if (old) {
+      App.remove_item(old)
+    }
+
+    App.get_items(mode).unshift(item)
+    App.el(`#${mode}_container`).prepend(item.element)
+    App.check_filter(mode)
   }
 
   App.update_footer_count.call(mode)
@@ -1732,4 +1743,11 @@ App.item_action = function (item) {
 // Check if on item window
 App.on_item_window = function (mode = App.window_mode) {
   return App.item_order.includes(mode)
+}
+
+// Filter if filter has value
+App.check_filter = function (mode) {
+  if (App.get_filter(mode)) {
+    App.do_item_filter(mode)
+  }
 }

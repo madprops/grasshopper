@@ -1,6 +1,12 @@
 // Setup history
 App.setup_history = function () {
   App.setup_item_window("history")
+
+  browser.history.onVisited.addListener(function (info) {
+    if (App.window_mode === "history") {
+      App.insert_item("history", info)
+    }
+  })
 }
 
 // Get history date
