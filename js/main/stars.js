@@ -3,15 +3,9 @@ App.setup_stars = function () {
   App.stars_actions = [
     {text: "--separator--"},
 
-    {text: "New", action: function () {
-      App.new_star()
-    }},
-
     {text: "Undo", action: function () {
       App.restore_stars()
     }},
-
-    {text: "--separator--"},
 
     {text: "Export", action: function () {
       App.export_stars()

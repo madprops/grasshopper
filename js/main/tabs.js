@@ -35,8 +35,6 @@ App.setup_tabs = function () {
       App.undo_close()
     }},
 
-    {text: "--separator--"},
-
     {text: "Clean", action: function () {
       App.clean_tabs()
     }},

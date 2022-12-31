@@ -1013,6 +1013,21 @@ App.setup_item_window = function (mode) {
     }
 
     //
+    let new_star
+
+    if (mode === "stars") {
+      new_star = App.create("div", "button icon_button")
+      new_star.title = "New Star"
+      let new_star_icon = App.create_icon("plus")
+
+      App.ev(new_star, "click", function () {
+        App.new_star()
+      })
+
+      new_star.append(new_star_icon)
+    }
+
+    //
     if (!App[`${mode}_actions`]) {
       App[`${mode}_actions`] = []
     }
@@ -1085,6 +1100,10 @@ App.setup_item_window = function (mode) {
 
     if (previous) {
       right_top.append(previous)
+    }
+
+    if (new_star) {
+      right_top.append(new_star)
     }
 
     right_top.append(actions_menu)
