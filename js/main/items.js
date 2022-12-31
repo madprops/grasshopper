@@ -235,6 +235,19 @@ App.select_first_item = function (mode, by_active = false) {
 App.remove_item = function (item) {
   let mode = item.mode
   let items = App.get_items(mode)
+
+  if (mode !== "tabs") {
+    if (App.get_selected(mode) === item) {
+      let next_item = App.get_next_visible_item(mode, false) || App.get_prev_visible_item(mode, false)
+    
+      if (next_item) {
+        App.select_item(next_item)
+      } else {
+        App.select_first_item(mode)
+      }
+    }
+  }
+
   item.element.remove()
   let id = item.id.toString()
 
