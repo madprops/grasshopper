@@ -393,7 +393,7 @@ App.toggle_star = function (item) {
   let star = App.get_star_by_url(item.url)
 
   if (star) {
-    App.remove_stars(star, true)
+    App.do_remove_stars([star.id])
     return false
   }
   else {

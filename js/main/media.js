@@ -20,9 +20,10 @@ App.create_media_windows = function (what) {
     open.title = "Open Tab"
     buttons.append(open)
 
-    let star = App.create("div", "button", `${what}_star`)
-    star.textContent = "Star"
-    star.title = "Star Editor"
+    let star = App.create("div", "button icon_button", `${what}_star`)
+    star.title = "Toggle Star"
+    let star_icon = App.create_icon("star")
+    star.append(star_icon)
     buttons.append(star)
 
     let copy = App.create("div", "button", `${what}_copy`)
@@ -76,13 +77,7 @@ App.create_media_windows = function (what) {
     App.ev(star, "click", function () {
       let item = App[`current_${what}_item`]
       let starred = App.toggle_star(item)
-
-      if (starred) {
-        star.classList.add("outline")
-      }
-      else {
-        star.classList.remove("outline")
-      }
+      App.check_media_star(what, starred)
     })
 
     App.ev(copy, "click", function () {
@@ -122,13 +117,7 @@ App.show_media = function (what, item) {
   App.el(`#${what}_url`).textContent = item.url
   App.show_window(what)
   App.media_show_loading(what)
-
-  if (App.get_star_by_url(item.url)) {
-    App.el(`#${what}_star`).classList.add("outline")
-  }
-  else {
-    App.el(`#${what}_star`).classList.remove("outline")
-  }
+  App.check_media_star(what, App.get_star_by_url(item.url))
 }
 
 // Hide media
@@ -228,4 +217,16 @@ App.check_media = function (item) {
   }
 
   return false
+}
+
+// Check to fill or not the star icon
+App.check_media_star = function (what, starred) {
+  let use = App.el(`#${what}_star use`)
+
+  if (starred) {
+    use.href.baseVal = "#star_solid_icon"
+  }
+  else {
+    use.href.baseVal = "#star_icon"
+  }
 }

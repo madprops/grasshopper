@@ -637,7 +637,3 @@ input::placeholder {
   height: 2rem;
   align-self: center;
 }
-
-.outline {
-  outline: 1px solid var(--text_color);
-}

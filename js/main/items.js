@@ -209,7 +209,7 @@ App.set_selected = function (mode, what) {
 
 // Get items
 App.get_items = function (mode) {
-  return App[`${mode}_items`]
+  return App[`${mode}_items`] || []
 }
 
 // Select first item
