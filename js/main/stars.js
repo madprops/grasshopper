@@ -90,8 +90,10 @@ App.update_star = function (item, add_visit = true) {
 
 // Add an item to stars
 App.star_item = function (item, save = true) {
-  if (App.get_star_by_url(item.url)) {
-    return
+  let old = App.get_star_by_url(item.url)
+
+  if (old) {
+    App.do_remove_stars([old.id])
   }
 
   let obj = {
