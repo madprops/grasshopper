@@ -7,10 +7,6 @@ App.setup_stars = function () {
       App.new_star()
     }},
 
-    {text: "Reset", action: function () {
-      App.reset_stars()
-    }},
-
     {text: "Undo", action: function () {
       App.restore_stars()
     }},
@@ -289,11 +285,6 @@ App.remove_stars = function (item, force = false) {
   App.show_confirm(`Remove stars? (${ids.length})`, function () {
     App.backup_stars()
     App.do_remove_stars(ids)
-
-    if (ids.length > 1) {
-      App.show_feedback("Stars have been deleted")
-    }
-
     App.dehighlight("stars")
   }, function () {
     App.dehighlight("stars")
@@ -350,20 +341,6 @@ App.import_stars = function () {
   })
 }
 
-// Reset star visits
-App.reset_stars = function () {
-  App.show_confirm("Reset all star visits to zero?", function () {
-    App.backup_stars()
-
-    for (let star of App.stars) {
-      star.visits = 0
-    }
-
-    App.stor_save_stars()
-    App.show_feedback("Star visits have been resetted")
-  })
-}
-
 // Star items
 App.star_items = function (item) {
   let items = []
@@ -386,7 +363,6 @@ App.star_items = function (item) {
   }
 
   if (items.length === 0) {
-    App.show_feedback("All these items are stars")
     App.dehighlight(item.mode)
     return
   }
@@ -397,7 +373,6 @@ App.star_items = function (item) {
     }
 
     App.stor_save_stars()
-    App.show_feedback("Stars created")
     App.dehighlight(item.mode)
   }, function () {
     App.dehighlight(item.mode)
