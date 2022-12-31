@@ -26,6 +26,10 @@ App.setup_stars = function () {
     App.ev(App.el("#star_editor_remove"), "click", function () {
       App.remove_star()
     })
+
+    App.ev(App.el("#star_editor_clear"), "click", function () {
+      App.clear_star_editor()
+    })
   }, on_x: function () {
     App.show_last_window()
   }, after_show: function () {
@@ -87,7 +91,10 @@ App.star_item = function (item, save = true) {
   let old = App.get_star_by_url(item.url)
 
   if (old) {
-    App.do_remove_stars([old.id])
+    old.title = item.title
+    old.url = item.url
+    App.update_star(old, false)
+    return
   }
 
   let obj = {
@@ -223,6 +230,15 @@ App.new_star = function (title = "", url = "") {
   App.el("#star_editor_title").focus()
 }
 
+// New star with pre-filled details
+App.new_star_from_active = async function () {
+  let tab = await App.get_active_tab()
+
+  if (tab) {
+    App.new_star(tab.title, tab.url)
+  }
+}
+
 // Add a star or edit an existing one
 App.add_or_edit_star = function (item) {
   let star
@@ -251,6 +267,7 @@ App.update_star_editor_info = function () {
   let added = App.el("#star_editor_added")
   let save = App.el("#star_editor_save")
   let remove = App.el("#star_editor_remove")
+  let clear = App.el("#star_editor_clear")
 
   if (App.star_edited) {
     save.textContent = "Update"
@@ -260,12 +277,14 @@ App.update_star_editor_info = function () {
     about.classList.add("hidden")
     info.classList.remove("hidden")
     remove.classList.remove("hidden")
+    clear.classList.add("hidden")
   }
   else {
     save.textContent = "Save"
     about.classList.remove("hidden")
     info.classList.add("hidden")
     remove.classList.add("hidden")
+    clear.classList.remove("hidden")
   }
 }
 
@@ -381,4 +400,11 @@ App.toggle_star = function (item) {
     App.star_item(item)
     return true
   }
+}
+
+// Clear star editor
+App.clear_star_editor = function () {
+  App.el("#star_editor_title").value = ""
+  App.el("#star_editor_url").value = ""
+  App.el("#star_editor_title").focus()
 }

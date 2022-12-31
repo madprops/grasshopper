@@ -835,3 +835,14 @@ App.go_to_previous_tab = async function () {
     App.previous_index = 0
   }
 }
+
+// Get active tab
+App.get_active_tab = async function () {
+  let tabs = await browser.tabs.query({currentWindow: true})
+
+  for (let tab of tabs) {
+    if (tab.active) {
+      return tab
+    }
+  }
+}
