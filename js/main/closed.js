@@ -1,6 +1,12 @@
 // Setup closed tabs
 App.setup_closed = function () {
   App.setup_item_window("closed")
+
+  browser.sessions.onChanged.addListener(function () {
+    if (App.window_mode === "closed") {
+      App.show_item_window("closed")
+    }
+  })
 }
 
 // Get closed tabs
