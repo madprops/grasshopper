@@ -622,11 +622,20 @@ input::placeholder {
 #star_editor_container {
   padding-top: 1.7rem;
   padding-bottom: 1.7rem;
+  align-items: stretch;
+  justify-content: center;
 }
 
 .star_editor_text {
   width: 18rem;
+  max-width: 90%;
   text-align: center;
+}
+
+#star_editor_icon {
+  width: 2rem;
+  height: 2rem;
+  align-self: center;
 }
 
 .outline {
