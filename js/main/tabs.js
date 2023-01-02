@@ -411,15 +411,15 @@ App.toggle_pin = function (item) {
 }
 
 // Save tab state
-App.save_tab_state = async function (n) {
-  App.show_confirm(`Save tab state on #${n}?`, async function () {
+App.save_tab_state = function (n) {
+  App.show_confirm(`Save tab state on #${n}?`, function () {
     App.tab_state[n] = App.get_tab_state()
     App.stor_save_tab_state()
   })
 }
 
 // Load tab state
-App.load_tab_state = async function (n) {
+App.load_tab_state = function (n) {
   let items = App.tab_state[n]
 
   if (!items) {
@@ -708,7 +708,7 @@ App.move_tabs = async function (item, window_id) {
 }
 
 // Open tab in new window
-App.detach_tab = async function (tab) {
+App.detach_tab = function (tab) {
   browser.windows.create({tabId: tab.id, focused: false})
   App.close_window()
 }

@@ -1537,7 +1537,7 @@ App.dehighlight = function (mode) {
 }
 
 // Highlight or dehighlight an item
-App.toggle_highlight = async function (item, what) {
+App.toggle_highlight = function (item, what) {
   let highlight
 
   if (what !== undefined) {
