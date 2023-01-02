@@ -402,7 +402,7 @@ App.toggle_star = function (item, prepend = false) {
     if (prepend) {
       App.insert_item("stars", obj)
     }
-    
+
     return true
   }
 }
