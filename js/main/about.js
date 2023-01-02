@@ -19,6 +19,7 @@ App.setup_about = function () {
       "Ctrl + Down toggles Filter Modes",
       "Ctrl + Right toggles Actions",
       "Ctrl + Up goes to playing tab",
+      "Arrows and Space work in media"
     ]
 
     App.about_info_index = 0

@@ -61,23 +61,11 @@ App.create_media_windows = function (what) {
     })
 
     App.ev(open, "click", function () {
-      let item = App[`current_${what}_item`]
-
-      if (item.mode === "tabs") {
-        App.focus_tab(item)
-      }
-      else if (item.mode === "stars") {
-        App.open_star(item)
-      }
-      else {
-        App.focus_or_open_item(item)
-      }
+      App.open_media(what)
     })
 
     App.ev(star, "click", function () {
-      let item = App[`current_${what}_item`]
-      let starred = App.toggle_star(item)
-      App.check_media_star(what, starred)
+      App.star_media(what)
     })
 
     App.ev(copy, "click", function () {
@@ -228,5 +216,27 @@ App.check_media_star = function (what, starred) {
   }
   else {
     use.href.baseVal = "#star_icon"
+  }
+}
+
+// Toggle star media
+App.star_media = function (what) {
+  let item = App[`current_${what}_item`]
+  let starred = App.toggle_star(item)
+  App.check_media_star(what, starred)
+}
+
+// Open media in tab
+App.open_media = function (what) {
+  let item = App[`current_${what}_item`]
+
+  if (item.mode === "tabs") {
+    App.focus_tab(item)
+  }
+  else if (item.mode === "stars") {
+    App.open_star(item)
+  }
+  else {
+    App.focus_or_open_item(item)
   }
 }

@@ -190,6 +190,16 @@ App.setup_keyboard = function () {
         e.preventDefault()
         return
       }
+      else if (e.key === "ArrowUp") {
+        App.open_media(App.window_mode)
+        e.preventDefault()
+        return
+      }
+      else if (e.key === " ") {
+        App.star_media(App.window_mode)
+        e.preventDefault()
+        return
+      }
 
       App.hide_media(App.window_mode)
       e.preventDefault()
