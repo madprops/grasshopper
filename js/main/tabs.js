@@ -47,16 +47,16 @@ App.setup_tabs = function () {
     App.check_pins.call()
   }
 
-  browser.tabs.onUpdated.addListener(function (id, cinfo, info) {
+  browser.tabs.onUpdated.addListener(async function (id, cinfo, info) {
     if (App.window_mode === "tabs" && info.windowId === App.window_id) {
-      App.refresh_tab(id)
+      await App.refresh_tab(id)
       checks()
     }
   })
 
-  browser.tabs.onActivated.addListener(function (info) {
+  browser.tabs.onActivated.addListener(async function (info) {
     if (App.window_mode === "tabs" && info.windowId === App.window_id) {
-      App.on_tab_activated(info)
+      await App.on_tab_activated(info)
       checks()
     }
   })
@@ -86,11 +86,11 @@ App.setup_tabs = function () {
     App.backup_tabs_locked = false
   }, App.lock_backup_delay)
 
-  App.check_playing = App.create_debouncer(function () {
+  App.check_playing = App.create_throttle(function () {
     App.do_check_playing()
   }, App.check_playing_delay)
 
-  App.check_pins = App.create_debouncer(function () {
+  App.check_pins = App.create_throttle(function () {
     App.do_check_pins()
   }, App.check_pins_delay)
 }
@@ -692,7 +692,7 @@ App.on_tab_activated = async function (e) {
     tab.active = false
   }
 
-  App.refresh_tab(e.tabId, true)
+  await App.refresh_tab(e.tabId, true)
 }
 
 // Move tabs

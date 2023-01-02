@@ -30,15 +30,6 @@ App.check_playing_delay = 650
 App.check_pins_delay = 650
 App.create_item_element_delay = 1000
 
-App.close_window = function () {
-  window.close()
-
-  // Sidebar doesn't close so return to tabs
-  if (App.window_mode !== "tabs") {
-    App.show_item_window("tabs")
-  }
-}
-
 NeedContext.min_width = "4.5rem"
 
 App.init = async function () {

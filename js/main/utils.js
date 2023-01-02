@@ -13,21 +13,61 @@ App.create_debouncer = function (func, delay) {
   let timer
   let obj = {}
 
-  obj.call = function (...args) {
+  function clear () {
     clearTimeout(timer)
+  }
+
+  function run (...args) {
+    func(...args)
+  }
+
+  obj.call = function (...args) {
+    clear()
 
     timer = setTimeout(function () {
-      func(...args)
+      run(...args)
     }, delay)
   }
 
   obj.now = function (...args) {
-    clearTimeout(timer)
-    func(...args)
+    clear()
+    run(...args)
   }
 
   obj.cancel = function () {
+    clear()
+  }
+
+  return obj
+}
+
+// Centralized function to create throttles
+App.create_throttle = function (func, delay) {
+  let timer
+  let obj = {}
+  let last_call = 0
+
+  function clear () {
     clearTimeout(timer)
+  }
+
+  function run (...args) {
+    func(...args)
+    last_call = Date.now()
+  }
+
+  obj.call = function (...args) {
+    if ((Date.now() - last_call) > delay) {
+      clear()
+      run(...args)
+    }
+    else {
+      clear()
+
+      timer = setTimeout(function () {
+        run(...args)
+      }, delay)
+    }
   }
 
   return obj
@@ -218,6 +258,15 @@ App.fillpad = function (s, n, c) {
   }
 
   return s
+}
+
+App.close_window = function () {
+  window.close()
+
+  // Sidebar doesn't close so return to tabs
+  if (App.window_mode !== "tabs") {
+    App.show_item_window("tabs")
+  }
 }
 
 App.image_extensions = ["jpg", "jpeg", "png", "gif", "webp", "bmp"]
