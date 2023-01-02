@@ -222,7 +222,8 @@ App.check_media_star = function (what, starred) {
 // Toggle star media
 App.star_media = function (what) {
   let item = App[`current_${what}_item`]
-  let starred = App.toggle_star(item)
+  let prepend = item.mode === "stars"
+  let starred = App.toggle_star(item, prepend)
   App.check_media_star(what, starred)
 }
 

@@ -389,7 +389,7 @@ App.star_items = function (item) {
 }
 
 // Toggle star
-App.toggle_star = function (item) {
+App.toggle_star = function (item, prepend = false) {
   let star = App.get_star_by_url(item.url)
 
   if (star) {
@@ -397,7 +397,12 @@ App.toggle_star = function (item) {
     return false
   }
   else {
-    App.star_item(item)
+    let obj = App.star_item(item)
+
+    if (prepend) {
+      App.insert_item("stars", obj)
+    }
+    
     return true
   }
 }
