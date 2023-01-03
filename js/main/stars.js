@@ -268,6 +268,7 @@ App.update_star_editor_info = function () {
   let save = App.el("#star_editor_save")
   let remove = App.el("#star_editor_remove")
   let clear = App.el("#star_editor_clear")
+  let icon = App.el("#star_editor_icon")
 
   if (App.star_edited) {
     save.textContent = "Update"
@@ -278,6 +279,7 @@ App.update_star_editor_info = function () {
     info.classList.remove("hidden")
     remove.classList.remove("hidden")
     clear.classList.add("hidden")
+    App.el("use", icon).href.baseVal = "#star_solid_icon"
   }
   else {
     save.textContent = "Save"
@@ -285,6 +287,7 @@ App.update_star_editor_info = function () {
     info.classList.add("hidden")
     remove.classList.add("hidden")
     clear.classList.remove("hidden")
+    App.el("use", icon).href.baseVal = "#star_icon"
   }
 }
 
