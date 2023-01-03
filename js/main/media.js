@@ -12,28 +12,28 @@ App.create_media_windows = function (what) {
 
     let prev = App.create("div", "button", `${what}_prev`)
     prev.textContent = "<"
-    prev.title = "Go To Previous"
+    prev.title = "Go To Previous (Left)"
     buttons.append(prev)
 
     let open = App.create("div", "button", `${what}_open`)
     open.textContent = "Open"
-    open.title = "Open Tab"
+    open.title = "Open Tab (Enter)"
     buttons.append(open)
 
     let star = App.create("div", "button icon_button", `${what}_star`)
-    star.title = "Toggle Star"
+    star.title = "Toggle Star (Space)"
     let star_icon = App.create_icon("star")
     star.append(star_icon)
     buttons.append(star)
 
     let copy = App.create("div", "button", `${what}_copy`)
     copy.textContent = "Copy"
-    copy.title = "Copy URL"
+    copy.title = "Copy URL (Up)"
     buttons.append(copy)
 
     let next = App.create("div", "button", `${what}_next`)
     next.textContent = ">"
-    next.title = "Go To Next"
+    next.title = "Go To Next (Right)"
     buttons.append(next)
 
     if (what === "image") {
@@ -69,7 +69,7 @@ App.create_media_windows = function (what) {
     })
 
     App.ev(copy, "click", function () {
-      App.copy_to_clipboard(App[`current_${what}_item`].url)
+      App.media_copy(what)
     })
 
     App.ev(App.el(`#${what}_prev`), "click", function () {
@@ -240,4 +240,9 @@ App.open_media = function (what) {
   else {
     App.focus_or_open_item(item)
   }
+}
+
+// Copy media url to clipboard
+App.media_copy = function (what) {
+  App.copy_to_clipboard(App[`current_${what}_item`].url)
 }
