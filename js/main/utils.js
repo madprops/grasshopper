@@ -41,38 +41,6 @@ App.create_debouncer = function (func, delay) {
   return obj
 }
 
-// Centralized function to create throttles
-App.create_throttle = function (func, delay) {
-  let timer
-  let obj = {}
-  let last_call = 0
-
-  function clear () {
-    clearTimeout(timer)
-  }
-
-  function run (...args) {
-    func(...args)
-    last_call = Date.now()
-  }
-
-  obj.call = function (...args) {
-    if ((Date.now() - last_call) > delay) {
-      clear()
-      run(...args)
-    }
-    else {
-      clear()
-
-      timer = setTimeout(function () {
-        run(...args)
-      }, delay)
-    }
-  }
-
-  return obj
-}
-
 // Create an html element
 App.create = function (type, classes = "", id = "") {
   let el = document.createElement(type)

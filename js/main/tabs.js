@@ -86,11 +86,11 @@ App.setup_tabs = function () {
     App.backup_tabs_locked = false
   }, App.lock_backup_delay)
 
-  App.check_playing = App.create_throttle(function () {
+  App.check_playing = App.create_debouncer(function () {
     App.do_check_playing()
   }, App.check_playing_delay)
 
-  App.check_pins = App.create_throttle(function () {
+  App.check_pins = App.create_debouncer(function () {
     App.do_check_pins()
   }, App.check_pins_delay)
 }
