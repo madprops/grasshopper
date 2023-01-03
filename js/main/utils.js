@@ -103,8 +103,12 @@ App.remove_protocol = function (url) {
 }
 
 // Copy text to the clipboard
-App.copy_to_clipboard = function (text) {
+App.copy_to_clipboard = function (text, feedback = false) {
   navigator.clipboard.writeText(text)
+
+  if (feedback) {
+    App.show_feedback("Copied to clipboard")
+  }
 }
 
 // Get singular or plural

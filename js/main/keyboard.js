@@ -191,7 +191,7 @@ App.setup_keyboard = function () {
         return
       }
       else if (e.key === "ArrowUp") {
-        App.media_copy(App.window_mode)
+        App.media_copy(App.window_mode, true)
         e.preventDefault()
         return
       }

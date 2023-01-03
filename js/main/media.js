@@ -243,6 +243,6 @@ App.open_media = function (what) {
 }
 
 // Copy media url to clipboard
-App.media_copy = function (what) {
-  App.copy_to_clipboard(App[`current_${what}_item`].url)
+App.media_copy = function (what, feedback = false) {
+  App.copy_to_clipboard(App[`current_${what}_item`].url, feedback)
 }
