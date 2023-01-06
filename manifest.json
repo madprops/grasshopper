@@ -1,7 +1,7 @@
 {
     "manifest_version": 2,
     "name": "Grasshopper",
-    "version": "311",
+    "version": "312",
     "description": "Awesome Tab Manager",
     "permissions": [
         "tabs",
@@ -23,5 +23,13 @@
         "default_title": "Grasshopper",
         "default_panel": "popup.html",
         "default_icon": "img/icon128.png"
-    }
+    },    
+    "commands": {
+        "_execute_browser_action": {
+            "suggested_key": {
+                "default": "Ctrl+Space"
+            },
+            "description": "Show the popup"
+        }
+    }   
 }
