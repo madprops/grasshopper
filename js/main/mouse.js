@@ -62,6 +62,11 @@ App.setup_window_mouse = function (mode) {
       App.update_footer_info(item)
     }
   })
+
+  App.ev(container, "mouseleave", function (e) {
+    let item = App.get_selected(mode)
+    App.update_footer_info(item)
+  })
 }
 
 // Get item under cursor
