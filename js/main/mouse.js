@@ -32,7 +32,6 @@ App.setup_window_mouse = function (mode) {
 
       if (e.ctrlKey) {
         App.toggle_highlight(item)
-        App.last_highlight = item
         return
       }
 

@@ -1517,8 +1517,6 @@ App.highlight_range = function (item) {
     App.dehighlight(item.mode)
     return
   }
-
-  App.last_highlight = item
 }
 
 // Dehighlight items
@@ -1532,7 +1530,6 @@ App.dehighlight = function (mode) {
     }
   }
 
-  App.last_highlight = undefined
   return some
 }
 
@@ -1549,9 +1546,14 @@ App.toggle_highlight = function (item, what) {
 
   if (highlight) {
     item.element.classList.add("highlighted")
+    App.last_highlight = item
   }
   else {
     item.element.classList.remove("highlighted")
+
+    if (App.last_highlight === item) {
+      App.last_highlight = undefined
+    }
   }
 
   item.highlighted = highlight
