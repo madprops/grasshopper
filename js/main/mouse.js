@@ -114,11 +114,12 @@ App.setup_drag = function (mode, container) {
   })
 
   container.addEventListener("dragend", function () {
+    App.check_pins.call()
+    
     if (!App.drag_moved) {
       return
     }
 
-    App.check_pins.call()
     App.dehighlight(mode)
     App.update_tab_index()
   })
