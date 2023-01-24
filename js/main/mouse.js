@@ -77,7 +77,7 @@ App.get_cursor_item = function (mode, e) {
     el.remove()
     return
   }
-  
+
   return item
 }
 
