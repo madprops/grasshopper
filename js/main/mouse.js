@@ -72,6 +72,12 @@ App.setup_window_mouse = function (mode) {
 App.get_cursor_item = function (mode, e) {
   let el = e.target.closest(`.${mode}_item`)
   let item = App.get_item_by_id(mode, el.dataset.id)
+
+  if (!item) {
+    el.remove()
+    return
+  }
+  
   return item
 }
 
@@ -115,7 +121,7 @@ App.setup_drag = function (mode, container) {
 
   container.addEventListener("dragend", function () {
     App.check_pins.call()
-    
+
     if (!App.drag_moved) {
       return
     }
