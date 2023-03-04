@@ -85,7 +85,8 @@ App.get_cursor_item = function (mode, e) {
 App.setup_drag = function (mode, container) {
   container.addEventListener("dragstart", function (e) {
     if (App.settings.lock_drag && !e.ctrlKey) {
-      return
+      e.preventDefault()
+      return false
     }
 
     App.drag_y = e.clientY
