@@ -7,7 +7,8 @@
         "tabs",
         "sessions",
         "history",
-        "bookmarks"
+        "bookmarks",
+        "contextMenus"
     ],
     "icons": {
         "128": "img/icon128.png"
@@ -29,7 +30,13 @@
             "suggested_key": {
                 "default": "Ctrl+Space"
             },
-            "description": "Show the popup"
-        }
+            "description": "Toggle the popup"
+        },
+        "_execute_sidebar_action": {
+            "suggested_key": {
+                "default": "Ctrl+Shift+Space"
+            },
+            "description": "Toggle the sidebar"
+        }      
     }   
 }
