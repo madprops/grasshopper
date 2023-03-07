@@ -662,6 +662,10 @@ App.process_item = function (mode, item, exclude = [], o_item) {
   if (o_item) {
     o_item = Object.assign(o_item, obj)
     App.create_item_element(o_item)
+
+    if (App.get_selected(mode) === o_item) {
+      App.update_footer_info(o_item)
+    }
   }
   else {
     obj.id = item.id || App[`${mode}_idx`]
