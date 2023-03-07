@@ -1202,6 +1202,11 @@ App.show_first_item_window = function () {
 
 // Focus an open tab or launch a new one
 App.focus_or_open_item = async function (item, close = true) {
+  if (!close) {
+    App.launch_item(item, close)
+    return
+  }
+
   let tabs = await App.get_tabs()
 
   for (let tab of tabs) {
