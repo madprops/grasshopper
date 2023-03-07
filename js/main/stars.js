@@ -50,8 +50,8 @@ App.stars_action = function (item) {
 }
 
 // Stars action alt
-App.stars_action_alt = function (item, shift_key) {
-  App.remove_stars(item, shift_key)
+App.stars_action_alt = function (item) {
+  App.item_action(item, false)
 }
 
 // Open star

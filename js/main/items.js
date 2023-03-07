@@ -1758,22 +1758,22 @@ App.get_mode_name = function (mode) {
 }
 
 // Item action
-App.item_action = function (item) {
+App.item_action = function (item, close = true) {
   let highlighted = App.get_highlights(item.mode)
 
   if (highlighted.length > 0) {
     App.launch_items(item)
   }
   else {
-    if (App.check_media(item)) {
+    if (close && App.check_media(item)) {
       return
     }
 
     if (item.mode === "stars") {
-      App.open_star(item)
+      App.open_star(item, close)
     }
     else {
-      App.focus_or_open_item(item)
+      App.focus_or_open_item(item, close)
     }
   }
 }
