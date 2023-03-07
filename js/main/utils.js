@@ -240,7 +240,9 @@ App.close_window = function () {
     App.show_item_window("tabs")
   }
   else {
-    App.clear_filter("tabs")
+    if (App.get_filter("tabs")) {
+      App.clear_filter("tabs")
+    }
   }
 }
 
