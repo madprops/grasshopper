@@ -19,7 +19,7 @@ App.max_stars = 1000 * 5
 App.previous_tab_date = 0
 App.previous_tab_date_max = 3000
 
-App.filter_delay = 250
+App.filter_delay = 200
 App.color_delay = 150
 App.alert_autohide_delay = 1500
 App.update_footer_delay = 200
