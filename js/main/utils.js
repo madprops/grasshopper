@@ -239,6 +239,9 @@ App.close_window = function () {
   if (App.window_mode !== "tabs") {
     App.show_item_window("tabs")
   }
+  else {
+    App.clear_filter("tabs")
+  }
 }
 
 App.image_extensions = ["jpg", "jpeg", "png", "gif", "webp", "bmp"]
