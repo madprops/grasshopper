@@ -114,7 +114,7 @@ App.focus_tab = async function (tab, close = true) {
 
   await browser.tabs.update(tab.id, {active: true})
 
-  if (close) {
+  if (close && App.settings.switch_to_tabs) {
     App.close_window()
   }
 }
