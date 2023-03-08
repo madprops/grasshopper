@@ -19,6 +19,7 @@ App.setup_about = function () {
       "Ctrl + Down toggles Filter Modes",
       "Ctrl + Right toggles Actions",
       "Ctrl + Up goes to playing tab",
+      "Ctrl + Backspace goes to previous tab",
       "Arrows, Enter, and Space work in media"
     ]
 
