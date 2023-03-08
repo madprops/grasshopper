@@ -59,23 +59,6 @@ App.select_item_below = function (mode) {
   }
 }
 
-// Highlight item above
-App.highlight_item_above = function (mode) {
-  let waypoint = false
-  let highlights = App.get_highlights(mode)
-
-  for (let item of highlights) {
-    if (waypoint) {
-      App.toggle_highlight(item, true)
-      break
-    }
-
-    if (item === App.last_highlight) {
-      waypoint = true
-    }
-  }
-}
-
 // Highlight next item above or below
 App.highlight_next = function (mode, dir) {
   let waypoint = false
@@ -1519,6 +1502,9 @@ App.highlight_range = function (item) {
       App.toggle_highlight(it, true)
     }
   }
+
+  // Make sure the item is the last highlight
+  App.toggle_highlight(item, true)
 
   let highlights = App.get_highlights(item.mode)
 
