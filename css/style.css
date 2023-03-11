@@ -405,6 +405,10 @@ svg {
   gap: 0.8rem;
 }
 
+.settings_label {
+  text-align: center;
+}
+
 .settings_menu {
   min-width: 6rem;
 }
