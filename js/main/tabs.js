@@ -805,7 +805,6 @@ App.go_to_playing = function () {
 
 // Empty previous tabs
 App.do_empty_previous_tabs = function () {
-  console.log("Empty prev tabs")
   App.previous_tabs = []
 }
 
