@@ -121,7 +121,7 @@ App.setup_drag = function (mode, container) {
   })
 
   container.addEventListener("dragend", function () {
-    App.check_pins.call()
+    App.show_pinline()
 
     if (!App.drag_moved) {
       return

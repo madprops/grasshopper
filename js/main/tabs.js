@@ -44,7 +44,7 @@ App.setup_tabs = function () {
 
   function checks () {
     App.check_playing()
-    App.add_pinline()
+    App.show_pinline()
   }
 
   browser.tabs.onUpdated.addListener(async function (id, cinfo, info) {
@@ -742,8 +742,8 @@ App.check_playing = function () {
   }
 }
 
-// Add pinline after last pin
-App.add_pinline = function () {
+// Show the pinline after the last pin
+App.show_pinline = function () {
   let last
 
   App.remove_pinline()
@@ -762,7 +762,7 @@ App.add_pinline = function () {
   }
 }
 
-// Remove pinline
+// Remove the pinline
 App.remove_pinline = function () {
   for (let el of App.els("#tabs_container .pinline")) {
     el.classList.remove("pinline")

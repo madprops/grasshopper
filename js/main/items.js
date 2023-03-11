@@ -577,8 +577,8 @@ App.process_items = function (mode, items) {
   App.update_footer_count(mode)
 
   if (mode === "tabs") {
-    App.do_check_playing()
-    App.do_check_pins()
+    App.check_playing()
+    App.show_pinline()
   }
 }
 
