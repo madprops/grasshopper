@@ -2,10 +2,6 @@
 App.setup_items = function () {
   App.get_item_order()
   App.start_item_observers()
-
-  App.update_footer_count = App.create_debouncer(function (mode) {
-    App.do_update_footer_count(mode)
-  }, App.update_footer_delay)
 }
 
 // Select an item
@@ -241,7 +237,7 @@ App.remove_item = function (item) {
     }
   }
 
-  App.update_footer_count.call(mode)
+  App.update_footer_count(mode)
 
   if (App.get_filter(mode)) {
     if (App.get_visible(mode).length === 0) {
@@ -359,7 +355,7 @@ App.do_item_filter = async function (mode) {
   }
 
   App.update_footer_info(App.get_selected(mode))
-  App.update_footer_count.call(mode)
+  App.update_footer_count(mode)
 }
 
 // Show item
@@ -578,7 +574,7 @@ App.process_items = function (mode, items) {
     container.append(obj.element)
   }
 
-  App.update_footer_count.now(mode)
+  App.update_footer_count(mode)
 
   if (mode === "tabs") {
     App.do_check_playing()
@@ -1220,7 +1216,7 @@ App.get_item_order = function () {
 }
 
 // Update footer count
-App.do_update_footer_count = function (mode) {
+App.update_footer_count = function (mode) {
   let n1 = App.get_highlights(mode).length
   let n2 = App.get_visible(mode).length
   let s1 = n1.toLocaleString()
@@ -1552,7 +1548,7 @@ App.toggle_highlight = function (item, what) {
   }
 
   item.highlighted = highlight
-  App.update_footer_count.call(item.mode)
+  App.update_footer_count(item.mode)
 }
 
 // Get highlighted items
@@ -1736,7 +1732,7 @@ App.insert_item = function (mode, info) {
     App.check_filter(mode)
   }
 
-  App.update_footer_count.call(mode)
+  App.update_footer_count(mode)
   return item
 }
 

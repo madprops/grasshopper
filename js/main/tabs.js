@@ -43,8 +43,8 @@ App.setup_tabs = function () {
   App.setup_item_window("tabs")
 
   function checks () {
-    App.check_playing.call()
-    App.check_pins.call()
+    App.check_playing()
+    App.add_pinline()
   }
 
   browser.tabs.onUpdated.addListener(async function (id, cinfo, info) {
@@ -82,17 +82,9 @@ App.setup_tabs = function () {
     }
   })
 
-  App.lock_backup_tabs = App.create_debouncer(function () {
+  App.unlock_backup_tabs = App.create_debouncer(function () {
     App.backup_tabs_locked = false
   }, App.lock_backup_delay)
-
-  App.check_playing = App.create_debouncer(function () {
-    App.do_check_playing()
-  }, App.check_playing_delay)
-
-  App.check_pins = App.create_debouncer(function () {
-    App.do_check_pins()
-  }, App.check_pins_delay)
 }
 
 // Get open tabs
@@ -582,13 +574,13 @@ App.undo_close = function () {
 // Backup tab state
 App.backup_tabs = function () {
   if (App.backup_tabs_locked) {
-    App.lock_backup_tabs.call()
+    App.unlock_backup_tabs.call()
     return
   }
 
   App.tabs_backup = App.get_tab_state()
   App.backup_tabs_locked = true
-  App.lock_backup_tabs.call()
+  App.unlock_backup_tabs.call()
   App.stor_save_tab_state()
 }
 
@@ -739,7 +731,7 @@ App.hide_playing = function () {
 }
 
 // Check if a tab is playing
-App.do_check_playing = function () {
+App.check_playing = function () {
   let playing = App.get_playing_tabs()
 
   if (playing.length > 0) {
@@ -750,15 +742,8 @@ App.do_check_playing = function () {
   }
 }
 
-// Remove pinline
-App.remove_pinline = function () {
-  for (let el of App.els("#tabs_container .pinline")) {
-    el.classList.remove("pinline")
-  }
-}
-
-// Add horizontal line after last pin
-App.do_check_pins = function () {
+// Add pinline after last pin
+App.add_pinline = function () {
   let last
 
   App.remove_pinline()
@@ -774,6 +759,13 @@ App.do_check_pins = function () {
 
       break
     }
+  }
+}
+
+// Remove pinline
+App.remove_pinline = function () {
+  for (let el of App.els("#tabs_container .pinline")) {
+    el.classList.remove("pinline")
   }
 }
 

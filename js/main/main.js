@@ -18,17 +18,12 @@ App.star_counter = 1
 App.max_stars = 1000 * 5
 App.previous_tab_date = 0
 App.previous_tab_date_max = 3000
+App.max_text_length = 200
 
 App.filter_delay = 200
-App.color_delay = 150
 App.alert_autohide_delay = 1500
-App.update_footer_delay = 200
-App.max_text_length = 200
 App.lock_backup_delay = 2000
 App.load_tabs_delay = 1000
-App.check_playing_delay = 650
-App.check_pins_delay = 650
-App.create_item_element_delay = 1000
 
 NeedContext.min_width = "4.5rem"
 

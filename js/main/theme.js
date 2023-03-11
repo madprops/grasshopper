@@ -55,7 +55,7 @@ App.set_css_var = function (name, value) {
 }
 
 // Change a color
-App.do_change_color = function (name, color) {
+App.change_color = function (name, color) {
   App.settings[`${name}_color`] = color
   App.apply_theme()
   App.stor_save_settings()

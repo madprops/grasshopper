@@ -263,12 +263,8 @@ App.start_theme_settings = function () {
       color: App.settings[`${name}_color`]
     })
 
-    let change_color = App.create_debouncer(function (color) {
-      App.do_change_color(name, color)
-    }, App.color_delay)
-
     App[`${name}_color_picker`].on("change", function (picker, color) {
-      change_color.call(color)
+      App.change_color(name, color)
     })
   }
 
