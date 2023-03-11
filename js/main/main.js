@@ -13,11 +13,10 @@ App.history_max_months = 18
 App.num_background_images = 11
 App.theme_color_diff = 0.77
 App.icon_size = 25
-App.media_scroll_amount = 33
 App.star_counter = 1
 App.max_stars = 1000 * 5
 App.previous_tab_date = 0
-App.previous_tab_date_max = 3000
+App.previous_tab_date_max = 2000
 App.max_text_length = 200
 
 App.filter_delay = 200
