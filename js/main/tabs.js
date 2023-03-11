@@ -85,6 +85,10 @@ App.setup_tabs = function () {
   App.unlock_backup_tabs = App.create_debouncer(function () {
     App.backup_tabs_locked = false
   }, App.lock_backup_delay)
+
+  App.empty_previous_tabs = App.create_debouncer(function () {
+    App.do_empty_previous_tabs()
+  }, App.empty_previous_tabs_delay)  
 }
 
 // Get open tabs
@@ -799,28 +803,40 @@ App.go_to_playing = function () {
   }
 }
 
+// Empty previous tabs
+App.do_empty_previous_tabs = function () {
+  console.log("Empty prev tabs")
+  App.previous_tabs = []
+}
+
+// Get previous tabs
+App.get_previous_tabs = async function () {
+  App.previous_tabs = await App.get_tabs()
+
+  App.previous_tabs.sort(function (a, b) {
+    return a.lastAccessed > b.lastAccessed ? -1 : 1
+  })
+
+  App.previous_tabs_index = 1
+}
+
 // Go to previous tab
 App.go_to_previous_tab = async function () {
-  if (Date.now() - App.previous_tab_date > App.previous_tab_date_max) {
-    App.previous_tabs = await App.get_tabs()
-
-    App.previous_tabs.sort(function (a, b) {
-      return a.lastAccessed > b.lastAccessed ? -1 : 1
-    })
-
-    App.previous_tab_date = Date.now()
-    App.previous_index = 1
+  if (App.previous_tabs.length === 0) {
+    await App.get_previous_tabs()
   }
+
+  App.empty_previous_tabs.call()
 
   if (App.previous_tabs.length <= 1) {
     return
   }
 
-  App.focus_tab(App.previous_tabs[App.previous_index])
-  App.previous_index += 1
+  App.focus_tab(App.previous_tabs[App.previous_tabs_index])
+  App.previous_tabs_index += 1
 
-  if (App.previous_index >= App.previous_tabs.length) {
-    App.previous_index = 0
+  if (App.previous_tabs_index >= App.previous_tabs.length) {
+    App.previous_tabs_index = 0
   }
 }
 

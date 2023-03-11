@@ -6,6 +6,7 @@ App.item_modes = ["tabs", "stars", "bookmarks", "closed", "history"]
 
 App.windows = {}
 App.popups = {}
+App.previous_tabs = []
 
 App.max_closed = 25
 App.history_max_results = 640
@@ -15,8 +16,7 @@ App.theme_color_diff = 0.77
 App.icon_size = 25
 App.star_counter = 1
 App.max_stars = 1000 * 5
-App.previous_tab_date = 0
-App.previous_tab_date_max = 2000
+App.empty_previous_tabs_delay = 2000
 App.max_text_length = 200
 
 App.filter_delay = 200
