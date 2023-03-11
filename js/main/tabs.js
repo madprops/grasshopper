@@ -88,7 +88,7 @@ App.setup_tabs = function () {
 
   App.empty_previous_tabs = App.create_debouncer(function () {
     App.do_empty_previous_tabs()
-  }, App.empty_previous_tabs_delay)  
+  }, App.empty_previous_tabs_delay)
 }
 
 // Get open tabs
