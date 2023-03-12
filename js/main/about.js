@@ -20,7 +20,8 @@ App.setup_about = function () {
       "Ctrl + Right toggles Actions",
       "Ctrl + Up goes to playing tab",
       "Ctrl + Backspace goes to previous tab",
-      "Arrows, Enter, and Space work in media"
+      "Arrows, Enter, and Space work in media",
+      "Double click on empty tabs space opens a new tab"
     ]
 
     App.about_info_index = 0
