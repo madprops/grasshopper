@@ -92,7 +92,7 @@ App.setup_tabs = function () {
 
   App.ev(App.el("#window_tabs"), "dblclick", function (e) {
     if (e.target.id === "tabs_container") {
-      console.log(App.new_tab())
+      App.new_tab()
     }
   })
 }
