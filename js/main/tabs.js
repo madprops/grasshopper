@@ -710,7 +710,7 @@ App.clean_tabs = function () {
   let ids = []
 
   for (let tab of App.tabs_items) {
-    if (App.tab_is_normal(tab) || tab.discarded) {
+    if (!tab.pinned && !tab.audible) {
       ids.push(tab.id)
     }
   }
