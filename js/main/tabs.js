@@ -710,7 +710,7 @@ App.clean_tabs = function () {
   let ids = []
 
   for (let tab of App.tabs_items) {
-    if (App.tab_is_normal(tab)) {
+    if (App.tab_is_normal(tab) || tab.discarded) {
       ids.push(tab.id)
     }
   }
@@ -719,7 +719,7 @@ App.clean_tabs = function () {
     return
   }
 
-  App.show_confirm(`Close normal tabs? (${ids.length})`, function () {
+  App.show_confirm(`Clean tabs? (${ids.length})`, function () {
     App.do_close_tabs(ids)
   })
 }
