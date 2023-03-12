@@ -89,6 +89,12 @@ App.setup_tabs = function () {
   App.empty_previous_tabs = App.create_debouncer(function () {
     App.do_empty_previous_tabs()
   }, App.empty_previous_tabs_delay)
+
+  App.ev(App.el("#window_tabs"), "dblclick", function (e) {
+    if (e.target.id === "tabs_container") {
+      console.log(App.new_tab())
+    }
+  })
 }
 
 // Get open tabs
