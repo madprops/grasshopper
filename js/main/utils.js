@@ -172,11 +172,6 @@ App.get_random_int = function (min, max, exclude = undefined) {
   return num
 }
 
-// Get a random choice from a list
-App.random_choice = function (list) {
-  return list[App.get_random_int(0, list.length - 1)]
-}
-
 // Check if file name is from an image source
 App.is_image = function (src) {
   let extension = App.get_extension(src).toLowerCase()

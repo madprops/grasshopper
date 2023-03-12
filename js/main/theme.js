@@ -72,9 +72,6 @@ App.random_theme = function (mode) {
     colors = App.get_random_theme("light")
   }
 
-  let random_image = App.random_choice(App.get_background_image_options())
-  App.settings.background_image = random_image[1]
-  App.el("#settings_background_image").textContent = random_image[0]
   App.background_color_picker.setColor(colors.background_color)
   App.text_color_picker.setColor(colors.text_color)
 }
