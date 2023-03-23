@@ -758,6 +758,10 @@ App.show_pinline = function () {
 
   App.remove_pinline()
 
+  if (App.get_filter("tabs") || App.tabs_filter_mode !== "all") {
+    return
+  }
+
   for (let tab of App.tabs_items) {
     if (tab.pinned) {
       last = tab
@@ -769,6 +773,15 @@ App.show_pinline = function () {
 
       break
     }
+  }
+}
+
+// Check pinline
+App.check_pinline = function () {
+  if (App.get_filter("tabs") || App.tabs_filter_mode !== "all") {
+    App.remove_pinline()
+  } else {
+    App.show_pinline()
   }
 }
 

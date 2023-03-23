@@ -356,6 +356,10 @@ App.do_item_filter = async function (mode) {
 
   App.update_footer_info(App.get_selected(mode))
   App.update_footer_count(mode)
+
+  if (mode === "tabs") {
+    App.check_pinline()
+  }
 }
 
 // Show item
