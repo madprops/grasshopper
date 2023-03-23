@@ -16,10 +16,10 @@ App.default_settings = {
   background_color: {value: "rgb(43, 42, 51)", category: "theme"},
   text_color: {value: "rgb(251, 251, 254)", category: "theme"},
   background_image: {value: "2", category: "theme"},
-  pin_icon: {value: "📌", category: "icons"},
+  pin_icon: {value: "+", category: "icons"},
   playing_icon: {value: "🔊", category: "icons"},
   muted_icon: {value: "🔇", category: "icons"},
-  suspended_icon: {value: "💤", category: "icons"},
+  suspended_icon: {value: "(zzz)", category: "icons"},
 }
 
 // Make item order control
