@@ -752,8 +752,19 @@ App.check_playing = function () {
   }
 }
 
+// Remove the pinline
+App.remove_pinline = function () {
+  for (let el of App.els("#tabs_container .pinline")) {
+    el.classList.remove("pinline")
+  }
+}
+
 // Show the pinline after the last pin
 App.show_pinline = function () {
+  if (!App.tabs_items) {
+    return
+  }
+
   let last
 
   App.remove_pinline()
@@ -782,13 +793,6 @@ App.check_pinline = function () {
     App.remove_pinline()
   } else {
     App.show_pinline()
-  }
-}
-
-// Remove the pinline
-App.remove_pinline = function () {
-  for (let el of App.els("#tabs_container .pinline")) {
-    el.classList.remove("pinline")
   }
 }
 

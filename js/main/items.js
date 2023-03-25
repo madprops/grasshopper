@@ -82,6 +82,17 @@ App.highlight_next = function (mode, dir) {
   }
 }
 
+// Highlight to top
+App.highlight_to_edge = function (mode, dir) {
+  let items = App.get_items(mode).slice(0)
+
+  if (dir === "below") {
+    items.reverse()
+  }
+
+  App.highlight_range(items[0])
+}
+
 // Get next item that is visible
 App.get_next_visible_item = function (mode, wrap = true) {
   let waypoint = false
@@ -1530,6 +1541,10 @@ App.dehighlight = function (mode) {
 
 // Highlight or dehighlight an item
 App.toggle_highlight = function (item, what) {
+  if (!item.visible) {
+    return
+  }
+
   let highlight
 
   if (what !== undefined) {
@@ -1614,6 +1629,18 @@ App.goto_top = function (mode) {
 // Scroll container to bottom
 App.goto_bottom = function (mode) {
   App.el(`#${mode}_container`).scrollTop = App.el(`#${mode}_container`).scrollHeight
+}
+
+// Scroll up a bit
+App.scroll_up = function (mode) {
+  let el = App.el(`#${mode}_container`)
+  el.scrollTop = el.scrollTop -= 50
+}
+
+// Scroll down a bit
+App.scroll_down = function (mode) {
+  let el = App.el(`#${mode}_container`)
+  el.scrollTop = el.scrollTop += 50
 }
 
 // Highlight visible items

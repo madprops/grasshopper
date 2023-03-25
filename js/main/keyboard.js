@@ -14,32 +14,27 @@ App.check_window_keyboard = function (e) {
       e.preventDefault()
       return
     }
-
-    if (e.key === "ArrowLeft") {
+    else if (e.key === "ArrowLeft") {
       App.show_main_menu(mode)
       e.preventDefault()
       return
     }
-
-    if (e.key === "ArrowDown") {
+    else if (e.key === "ArrowDown") {
       App.show_filter_modes(mode)
       e.preventDefault()
       return
     }
-
-    if (e.key === "ArrowRight") {
+    else if (e.key === "ArrowRight") {
       App.show_actions(mode)
       e.preventDefault()
       return
     }
-
-    if (e.key === "ArrowUp") {
+    else if (e.key === "ArrowUp") {
       App.go_to_playing()
       e.preventDefault()
       return
     }
-
-    if (e.key === "Backspace") {
+    else if (e.key === "Backspace") {
       App.go_to_previous_tab()
       e.preventDefault()
       return
@@ -60,8 +55,50 @@ App.check_window_keyboard = function (e) {
     e.preventDefault()
     return
   }
+  else if (e.key === "Home") {
+    if (e.shiftKey) {
+      App.highlight_to_edge(mode, "above")
+    }
+    else {
+      App.goto_top(mode)
+    }
+    
+    e.preventDefault()
+    return
+  }
+  else if (e.key === "End") {
+    if (e.shiftKey) {
+      App.highlight_to_edge(mode, "below")
+    }
+    else {
+      App.goto_bottom(mode)
+    }
+    
+    e.preventDefault()
+    return
+  }
+  else if (e.key === "PageUp") {
+    App.scroll_up(mode)
+    e.preventDefault()
+    return    
+  }
+  else if (e.key === "PageDown") {
+    App.scroll_down(mode)
+    e.preventDefault()
+    return    
+  }
+  else if (e.key === "Home") {
+    if (e.shiftKey) {
+      App.highlight_to_edge(mode, "above")
+      e.preventDefault()
+    }
+    else {
+      App.goto_top(mode)
+    }
 
-  if (e.key === "ArrowUp") {
+    return
+  }    
+  else if (e.key === "ArrowUp") {
     if (e.shiftKey) {
       App.highlight_next(mode, "above")
     }
@@ -76,8 +113,7 @@ App.check_window_keyboard = function (e) {
     e.preventDefault()
     return
   }
-
-  if (e.key === "ArrowDown") {
+  else if (e.key === "ArrowDown") {
     if (e.shiftKey) {
       App.highlight_next(mode, "below")
     }
@@ -92,8 +128,7 @@ App.check_window_keyboard = function (e) {
     e.preventDefault()
     return
   }
-
-  if (e.key === "Delete") {
+  else if (e.key === "Delete") {
     if (mode === "tabs") {
       App.close_tabs()
     }
