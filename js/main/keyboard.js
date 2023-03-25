@@ -62,7 +62,7 @@ App.check_window_keyboard = function (e) {
     else {
       App.goto_top(mode)
     }
-    
+
     e.preventDefault()
     return
   }
@@ -73,19 +73,19 @@ App.check_window_keyboard = function (e) {
     else {
       App.goto_bottom(mode)
     }
-    
+
     e.preventDefault()
     return
   }
   else if (e.key === "PageUp") {
     App.scroll_up(mode)
     e.preventDefault()
-    return    
+    return
   }
   else if (e.key === "PageDown") {
     App.scroll_down(mode)
     e.preventDefault()
-    return    
+    return
   }
   else if (e.key === "Home") {
     if (e.shiftKey) {
@@ -97,7 +97,7 @@ App.check_window_keyboard = function (e) {
     }
 
     return
-  }    
+  }
   else if (e.key === "ArrowUp") {
     if (e.shiftKey) {
       App.highlight_next(mode, "above")
