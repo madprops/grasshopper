@@ -1,10 +1,3 @@
-// Setup windows
-App.setup_windows = function () {
-  App.remove_glow = App.create_debouncer(function () {
-    App.do_remove_glow()
-  }, App.remove_glow_delay)
-}
-
 // Create a window
 App.create_window = function (args) {
   if (args.close_button === undefined) {
@@ -153,15 +146,4 @@ App.show_last_window = function () {
 // Raise window
 App.raise_window = function (mode) {
   App.windows[mode].show(false)
-}
-
-// Glow window for a second
-App.glow = function () {
-  App.el("#window_tabs").classList.add("glow")
-  App.remove_glow.call()
-}
-
-// Do remove flow
-App.do_remove_glow = function () {
-  App.el("#window_tabs").classList.remove("glow")
 }

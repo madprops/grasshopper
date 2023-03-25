@@ -23,7 +23,6 @@ App.filter_delay = 200
 App.alert_autohide_delay = 1500
 App.lock_backup_delay = 2000
 App.load_tabs_delay = 1000
-App.remove_glow_delay = 250
 
 NeedContext.min_width = "4.5rem"
 
@@ -35,7 +34,6 @@ App.init = async function () {
   App.stor_get_tab_state()
   App.stor_get_stars()
 
-  App.setup_windows()
   App.setup_theme()
   App.setup_tabs()
   App.setup_stars()

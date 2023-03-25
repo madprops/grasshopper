@@ -145,7 +145,6 @@ App.refresh_tab = async function (id, select = false) {
   }
   else {
     tab = App.insert_item("tabs", info)
-    App.glow()
   }
 
   if (select) {

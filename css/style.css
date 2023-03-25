@@ -642,7 +642,3 @@ input::placeholder {
   height: 1.7rem;
   align-self: center;
 }
-
-.glow {
-  box-shadow: 0 0 2rem var(--text_color) inset;
-}
