@@ -1541,10 +1541,6 @@ App.dehighlight = function (mode) {
 
 // Highlight or dehighlight an item
 App.toggle_highlight = function (item, what) {
-  if (!item.visible) {
-    return
-  }
-
   let highlight
 
   if (what !== undefined) {
@@ -1552,6 +1548,10 @@ App.toggle_highlight = function (item, what) {
   }
   else {
     highlight = !item.highlighted
+  }
+
+  if (!item.visible) {
+    highlight = false
   }
 
   if (highlight) {
