@@ -23,7 +23,7 @@ App.filter_delay = 200
 App.alert_autohide_delay = 1500
 App.lock_backup_delay = 2000
 App.load_tabs_delay = 1000
-App.remove_glow_delay = 120
+App.remove_glow_delay = 250
 
 NeedContext.min_width = "4.5rem"
 

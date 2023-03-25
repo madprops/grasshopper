@@ -644,5 +644,5 @@ input::placeholder {
 }
 
 .glow {
-  filter: hue-rotate(90deg);
+  box-shadow: 0 0 2rem var(--text_color) inset;
 }
