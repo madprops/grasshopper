@@ -82,7 +82,7 @@ App.highlight_next = function (mode, dir) {
   }
 }
 
-// Highlight to top
+// Highlight towards top or bottom
 App.highlight_to_edge = function (mode, dir) {
   let items = App.get_items(mode).slice(0)
 

@@ -642,3 +642,7 @@ input::placeholder {
   height: 1.7rem;
   align-self: center;
 }
+
+.glow {
+  filter: hue-rotate(90deg);
+}
