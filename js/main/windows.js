@@ -157,7 +157,6 @@ App.raise_window = function (mode) {
 
 // Glow window for a second
 App.glow = function () {
-  console.log(112)
   App.el("#window_tabs").classList.add("glow")
   App.remove_glow.call()
 }
