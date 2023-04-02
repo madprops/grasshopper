@@ -17,6 +17,7 @@ App.default_settings = {
   text_color: {value: "rgb(251, 251, 254)", category: "theme"},
   background_image: {value: "2", category: "theme"},
   pin_icon: {value: "+", category: "icons"},
+  normal_icon: {value: "", category: "icons"},
   playing_icon: {value: "🔊", category: "icons"},
   muted_icon: {value: "🔇", category: "icons"},
   suspended_icon: {value: "(zzz)", category: "icons"},
@@ -93,14 +94,8 @@ App.settings_setup_text = function (container) {
     el.value = App.settings[setting]
 
     App.ev(el, "blur", function () {
-      let val = el.value.trim()
-
-      if (!val) {
-        val = App.default_settings[setting].value
-      }
-
-      el.value = val
-      App.settings[setting] = val
+      el.value = el.value.trim()
+      App.settings[setting] = el.value
       App.stor_save_settings()
       App.settings_do_action(action)
     })
