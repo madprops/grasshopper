@@ -89,8 +89,14 @@ App.setup_drag = function (mode, container) {
       return false
     }
 
+    App.drag_element = e.target.closest(".grasshopper_item")
+    
+    if (!App.drag_element) {
+      e.preventDefault()
+      return false
+    }
+    
     App.drag_y = e.clientY
-    App.drag_element = e.target.closest(".item")
     let id = App.drag_element.dataset.id
     App.drag_item = App.get_item_by_id(mode, id)
     App.drag_start_index = App.get_item_element_index(mode, App.drag_element)
@@ -120,11 +126,18 @@ App.setup_drag = function (mode, container) {
     App.drag_moved = false
   })
 
-  container.addEventListener("dragend", function () {
+  container.addEventListener("dragend", function (e) {
+    if (!App.drag_element) {
+      e.preventDefault()
+      return false
+    }
+
+    App.drag_element = undefined
     App.show_pinline()
 
     if (!App.drag_moved) {
-      return
+      e.preventDefault()      
+      return false
     }
 
     App.dehighlight(mode)
@@ -132,6 +145,11 @@ App.setup_drag = function (mode, container) {
   })
 
   container.addEventListener("dragenter", function (e) {
+    if (!App.drag_element) {
+      e.preventDefault()
+      return false
+    }
+
     let direction = e.clientY > App.drag_y ? "down" : "up"
     App.drag_y = e.clientY
 

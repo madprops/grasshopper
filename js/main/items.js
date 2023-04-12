@@ -673,7 +673,7 @@ App.process_item = function (mode, item, exclude = [], o_item) {
 
 // Create empty item
 App.create_empty_item_element = function (item) {
-  item.element = App.create("div", `item ${item.mode}_item`)
+  item.element = App.create("div", `grasshopper_item item ${item.mode}_item`)
   item.element.dataset.id = item.id
   App[`${item.mode}_item_observer`].observe(item.element)
 }
