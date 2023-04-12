@@ -128,10 +128,12 @@ App.setup_drag = function (mode, container) {
 
   container.addEventListener("dragend", function (e) {
     if (!App.drag_element) {
+      App.drag_element = undefined
       e.preventDefault()
       return false
     }
     
+    App.drag_element = undefined
     App.show_pinline()
 
     if (!App.drag_moved) {
