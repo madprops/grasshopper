@@ -90,12 +90,12 @@ App.setup_drag = function (mode, container) {
     }
 
     App.drag_element = e.target.closest(".grasshopper_item")
-    
+
     if (!App.drag_element) {
       e.preventDefault()
       return false
     }
-    
+
     App.drag_y = e.clientY
     let id = App.drag_element.dataset.id
     App.drag_item = App.get_item_by_id(mode, id)
@@ -132,12 +132,12 @@ App.setup_drag = function (mode, container) {
       e.preventDefault()
       return false
     }
-    
+
     App.drag_element = undefined
     App.show_pinline()
 
     if (!App.drag_moved) {
-      e.preventDefault()      
+      e.preventDefault()
       return false
     }
 
