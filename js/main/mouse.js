@@ -131,8 +131,7 @@ App.setup_drag = function (mode, container) {
       e.preventDefault()
       return false
     }
-
-    App.drag_element = undefined
+    
     App.show_pinline()
 
     if (!App.drag_moved) {
