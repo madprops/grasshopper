@@ -42,43 +42,43 @@ App.setup_tabs = function () {
 
   App.setup_item_window("tabs")
 
-  function checks () {
-    App.check_playing()
-    App.show_pinline()
-  }
-
   browser.tabs.onUpdated.addListener(async function (id, cinfo, info) {
+    console.info(`Tab Updated: ${id}`)
     if (App.window_mode === "tabs" && info.windowId === App.window_id) {
       await App.refresh_tab(id)
-      checks()
+      App.tabs_check()
     }
   })
 
   browser.tabs.onActivated.addListener(async function (info) {
+    console.info(`Tab Activated: ${info.tabId}`)
     if (App.window_mode === "tabs" && info.windowId === App.window_id) {
       await App.on_tab_activated(info)
-      checks()
+      App.tabs_check()
     }
   })
 
   browser.tabs.onRemoved.addListener(function (id, info) {
+    console.info(`Tab Removed: ${id}`)
     if (App.window_mode === "tabs" && info.windowId === App.window_id) {
       App.remove_closed_tab(id)
-      checks()
+      App.tabs_check()
     }
   })
 
   browser.tabs.onMoved.addListener(function (id, info) {
+    console.info(`Tab Moved: ${id}`)
     if (App.window_mode === "tabs" && info.windowId === App.window_id) {
       App.move_item("tabs", info.fromIndex, info.toIndex)
-      checks()
+      App.tabs_check()
     }
   })
 
   browser.tabs.onDetached.addListener(function (id, info) {
+    console.info(`Tab Detached: ${id}`)
     if (App.window_mode === "tabs" && info.oldWindowId === App.window_id) {
       App.remove_closed_tab(id)
-      checks()
+      App.tabs_check()
     }
   })
 
@@ -97,9 +97,22 @@ App.setup_tabs = function () {
   })
 }
 
+// Some checks after tab operations
+App.tabs_check = function () {
+  App.check_playing()
+  App.show_pinline()
+}
+
 // Get open tabs
 App.get_tabs = async function () {
-  let tabs = await browser.tabs.query({currentWindow: true})
+  let tabs
+
+  try {
+    tabs = await browser.tabs.query({currentWindow: true})
+  } catch (err) {
+    console.info("Error at get tabs")
+    return
+  }
 
   tabs.sort(function (a, b) {
     return a.index < b.index ? -1 : 1
@@ -114,7 +127,13 @@ App.focus_tab = async function (tab, close = true) {
     await browser.windows.update(tab.window_id, {focused: true})
   }
 
-  await browser.tabs.update(tab.id, {active: true})
+  try {
+    await browser.tabs.update(tab.id, {active: true})
+  } catch (err) {
+    console.info("Error at focus tab")
+    App.remove_closed_tab(tab.id)
+    App.tabs_check()    
+  }
 
   if (close && App.settings.switch_to_tabs) {
     App.close_window()
@@ -122,13 +141,21 @@ App.focus_tab = async function (tab, close = true) {
 }
 
 // Close a tab
-App.close_tab = function (id) {
-  browser.tabs.remove(id)
+App.close_tab = async function (id) {
+  try {
+    await browser.tabs.remove(id)
+  } catch (err) {
+    console.info("Error at close tab")
+  }
 }
 
 // Open a new tab
 App.new_tab = async function (url = undefined, close = true) {
-  await browser.tabs.create({active: close, url: url})
+  try {
+    await browser.tabs.create({active: close, url: url})
+  } catch (err) {
+    console.info("Error at new tab")
+  }
 
   if (close) {
     App.close_window()
@@ -137,7 +164,15 @@ App.new_tab = async function (url = undefined, close = true) {
 
 // Refresh tabs
 App.refresh_tab = async function (id, select = false) {
-  let info = await browser.tabs.get(id)
+  let info
+
+  try {
+    info = await browser.tabs.get(id)
+  } catch (err) {
+    console.info("Error at refresh tab")
+    return
+  }
+
   let tab = App.get_item_by_id("tabs", id)
 
   if (tab) {
@@ -154,22 +189,38 @@ App.refresh_tab = async function (id, select = false) {
 
 // Pin a tab
 App.pin_tab = async function (id) {
-  await browser.tabs.update(id, {pinned: true})
+  try {
+    await browser.tabs.update(id, {pinned: true})
+  } catch (err) {
+    console.info("Error at pin tab")
+  }
 }
 
 // Unpin a tab
 App.unpin_tab = async function (id) {
-  await browser.tabs.update(id, {pinned: false})
+  try {
+    await browser.tabs.update(id, {pinned: false})
+  } catch (err) {
+    console.info("Error at unpin tab")
+  }
 }
 
 // Mute a tab
 App.mute_tab = async function (id) {
-  await browser.tabs.update(id, {muted: true})
+  try {
+    await browser.tabs.update(id, {muted: true})
+  } catch (err) {
+    console.info("Error at mute tab")
+  }
 }
 
 // Unmute a tab
 App.unmute_tab = async function (id) {
-  await browser.tabs.update(id, {muted: false})
+  try {
+    await browser.tabs.update(id, {muted: false})
+  } catch (err) {
+    console.info("Error at unmute tab")
+  }
 }
 
 // Return pinned tabs
@@ -212,18 +263,31 @@ App.tabs_action_alt = function (item, shift_key = false) {
 }
 
 // Duplicate a tab
-App.duplicate_tab = function (tab) {
-  browser.tabs.create({active: true, url: tab.url})
+App.duplicate_tab = async function (tab) {
+  try {
+    await browser.tabs.create({active: true, url: tab.url})
+  } catch (err) {
+    console.info("Error at duplicate tab")
+  }
+
   App.close_window()
 }
 
 // Suspend a tab
 App.suspend_tab = async function (tab) {
   if (tab.active) {
-    await browser.tabs.create({active: true})
+    try {
+      await browser.tabs.create({active: true})
+    } catch (err) {
+      console.info("Error at suspend tab")
+    }
   }
 
-  await browser.tabs.discard(tab.id)
+  try {
+    await browser.tabs.discard(tab.id)
+  } catch (err) {
+    console.info("Error at suspend tab")
+  }
 }
 
 // Pin tabs
@@ -567,7 +631,14 @@ App.open_tab = async function (url, close = true, args = {}) {
   opts.active = close
   opts = Object.assign(opts, args)
 
-  let tab = await browser.tabs.create(opts)
+  let tab
+
+  try {
+    tab = await browser.tabs.create(opts)
+  } catch (err) {
+    console.info("Error at open tab")
+  }
+
   return tab
 }
 
@@ -680,7 +751,14 @@ App.update_tab_index = async function () {
 
 // Do tab index move
 App.do_move_tab_index = async function (id, index) {
-  let ans = await browser.tabs.move(id, {index: index})
+  let ans
+
+  try {
+    ans = await browser.tabs.move(id, {index: index})
+  } catch (err) {
+    console.info("Error at move tab index")
+  }
+
   return ans
 }
 
@@ -699,7 +777,12 @@ App.move_tabs = async function (item, window_id) {
 
   for (let item of active) {
     let index = item.pinned ? 0 : -1
-    await browser.tabs.move(item.id, {index: index, windowId: window_id})
+
+    try {
+      await browser.tabs.move(item.id, {index: index, windowId: window_id})
+    } catch (err) {
+      console.info("Error at move tabs")
+    }
   }
 
   App.close_window()
@@ -864,7 +947,14 @@ App.go_to_previous_tab = async function () {
 
 // Get active tab
 App.get_active_tab = async function () {
-  let tabs = await browser.tabs.query({currentWindow: true})
+  let tabs
+
+  try {
+    tabs = await browser.tabs.query({currentWindow: true})
+  } catch (err) {
+    console.info("Error at get active tab")
+    return
+  }
 
   for (let tab of tabs) {
     if (tab.active) {

@@ -5,7 +5,7 @@ App.setup_items = function () {
 }
 
 // Select an item
-App.select_item = function (item, scroll = "nearest") {
+App.select_item = async function (item, scroll = "nearest") {
   if (!item.created) {
     App.create_item_element(item)
   }
@@ -25,7 +25,11 @@ App.select_item = function (item, scroll = "nearest") {
   App.update_footer_info(item)
 
   if (item.mode === "tabs") {
-    browser.tabs.warmup(item.id)
+    try {
+      await browser.tabs.warmup(item.id)
+    } catch (err) {
+      console.info("Error at tab warmup")
+    }
   }
 
   App.dehighlight(item.mode)
