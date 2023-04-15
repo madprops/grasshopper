@@ -132,7 +132,7 @@ App.focus_tab = async function (tab, close = true) {
   } catch (err) {
     console.info("Error at focus tab")
     App.remove_closed_tab(tab.id)
-    App.tabs_check()    
+    App.tabs_check()
   }
 
   if (close && App.settings.switch_to_tabs) {
