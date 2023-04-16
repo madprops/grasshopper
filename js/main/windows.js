@@ -148,6 +148,7 @@ App.raise_window = (mode) => {
   App.windows[mode].show(false)
 }
 
+// Setup the main window
 App.setup_window = () => {
   App.ev(window, `blur`, () => {
     NeedContext.hide()
