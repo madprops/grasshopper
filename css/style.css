@@ -105,7 +105,7 @@ body, html {
   box-sizing: border-box;
   overflow-y: auto;
   overflow-x: hidden;
-  scrollbar-color: var(--alt_color_3) var(--alt_color_1);
+  scrollbar-color: var(--alt_color_2) var(--alt_color_1);
   padding-top: 1px;
 }
 
@@ -156,7 +156,7 @@ body, html {
   font-size: 1rem;
   background-color: transparent;
   color: var(--text_color);
-  outline: 1px solid var(--alt_color_2);
+  outline: 1px solid var(--alt_color_1);
   border-width: 0;
   padding-left: var(--widget_padding_hor);
   padding-right: var(--widget_padding_hor);
@@ -184,16 +184,16 @@ body, html {
   padding-left: var(--widget_padding_hor);
   padding-right: var(--widget_padding_hor);
   user-select: none;
-  outline: 1px solid var(--alt_color_2);
+  outline: 1px solid var(--alt_color_1);
   min-width: 1.6rem;
 }
 
 .button:hover {
-  background-color: var(--alt_color_2);
+  background-color: var(--alt_color_1);
 }
 
 .button:active {
-  outline: 1px solid var(--alt_color_3);
+  outline: 1px solid var(--alt_color_2);
 }
 
 .button_2 {
@@ -202,7 +202,7 @@ body, html {
 
 .button_2:hover {
   background-color: transparent;
-  outline: 1px solid var(--alt_color_3);
+  outline: 1px solid var(--alt_color_2);
 }
 
 .button:active {
@@ -227,7 +227,7 @@ svg {
 }
 
 .hovered {
-  outline: 1px solid var(--alt_color_3);
+  outline: 1px solid var(--alt_color_2);
 }
 
 .item {
@@ -321,7 +321,7 @@ svg {
 }
 
 .pinline {
-  border-bottom: 2px solid var(--alt_color_2);
+  border-bottom: 2px solid var(--alt_color_1);
 }
 
 .hidden {
@@ -348,7 +348,7 @@ svg {
   overflow: hidden;
   white-space: nowrap;
   height: 2.5rem;
-  border-top: 1px solid var(--alt_color_2);
+  border-top: 1px solid var(--alt_color_1);
   margin-left: var(--item_margin);
   margin-right: var(--item_margin);
   gap: 0.5rem;
@@ -439,7 +439,7 @@ svg {
 }
 
 #settings_item_order {
-  border: 1px solid var(--alt_color_2);
+  border: 1px solid var(--alt_color_1);
   display: table;
   border-spacing: 0.8rem;
 }
@@ -467,7 +467,7 @@ svg {
 #needcontext-container {
   background-color: var(--background_color) !important;
   color: var(--text_color) !important;
-  border-color: var(--alt_color_3) !important;
+  border-color: var(--alt_color_2) !important;
   font-size: var(--font_size) !important;
   font-family: var(--font), sans-serif !important;
 }
@@ -477,7 +477,7 @@ svg {
 }
 
 .needcontext-item-selected:active {
-  background-color: var(--alt_color_2) !important;
+  background-color: var(--alt_color_1) !important;
 }
 
 #about_container {
