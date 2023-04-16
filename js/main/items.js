@@ -203,11 +203,13 @@ App.set_selected = function (mode, what) {
 
 // Get items
 App.get_items = function (mode) {
-  if (App[`${mode}_items`]) {
-    App[`${mode}_items`] = App[`${mode}_items`].filter(x => x !== undefined)
+  let item_string = `${mode}_items`
+
+  if (App[item_string]) {
+    App[item_string] = App[item_string].filter(x => x !== undefined)
   }
 
-  return App[`${mode}_items`] || []
+  return App[item_string] || []
 }
 
 // Select first item
