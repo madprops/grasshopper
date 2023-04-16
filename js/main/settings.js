@@ -128,7 +128,7 @@ App.settings_make_menu = (id, opts, action) => {
       })
     }
 
-    NeedContext.show_on_element(this, items, true, this.clientHeight)
+    NeedContext.show_on_element(el, items, true, el.clientHeight)
   })
 
   for (let o of opts) {
