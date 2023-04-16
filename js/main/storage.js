@@ -1,5 +1,5 @@
 // Get local storage object
-App.get_local_storage = function (ls_name, fallback) {
+App.get_local_storage = (ls_name, fallback) => {
   let obj
 
   if (localStorage[ls_name]) {
@@ -23,12 +23,12 @@ App.get_local_storage = function (ls_name, fallback) {
 }
 
 // Save local storage object
-App.save_local_storage = function (ls_name, obj) {
+App.save_local_storage = (ls_name, obj) => {
   localStorage.setItem(ls_name, JSON.stringify(obj))
 }
 
 // Get settings from storage
-App.stor_get_settings = function () {
+App.stor_get_settings = () => {
   App.settings = App.get_local_storage(App.stor_settings_name, {})
   let changed = false
 
@@ -47,12 +47,12 @@ App.stor_get_settings = function () {
 }
 
 // Save settings to storage
-App.stor_save_settings = function () {
+App.stor_save_settings = () => {
   App.save_local_storage(App.stor_settings_name, App.settings)
 }
 
 // Get stars from storage
-App.stor_get_stars = function () {
+App.stor_get_stars = () => {
   App.stars = App.get_local_storage(App.stor_stars_name, [])
   let changed = false
 
@@ -81,6 +81,6 @@ App.stor_get_stars = function () {
 }
 
 // Save stars to storage
-App.stor_save_stars = function () {
+App.stor_save_stars = () => {
   App.save_local_storage(App.stor_stars_name, App.stars)
 }

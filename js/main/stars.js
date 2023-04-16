@@ -1,82 +1,82 @@
 // Setup stars
-App.setup_stars = function () {
+App.setup_stars = () => {
   App.stars_actions = [
     {text: "--separator--"},
 
-    {text: "Undo", action: function () {
+    {text: "Undo", action: () => {
       App.restore_stars()
     }},
 
-    {text: "Export", action: function () {
+    {text: "Export", action: () => {
       App.export_stars()
     }},
 
-    {text: "Import", action: function () {
+    {text: "Import", action: () => {
       App.import_stars()
     }},
   ]
 
   App.setup_item_window("stars")
 
-  App.create_window({id: "star_editor", setup: function () {
-    App.ev(App.el("#star_editor_save"), "click", function () {
+  App.create_window({id: "star_editor", setup: () => {
+    App.ev(App.el("#star_editor_save"), "click", () => {
       App.star_editor_save()
     })
 
-    App.ev(App.el("#star_editor_remove"), "click", function () {
+    App.ev(App.el("#star_editor_remove"), "click", () => {
       App.remove_star()
     })
 
-    App.ev(App.el("#star_editor_clear"), "click", function () {
+    App.ev(App.el("#star_editor_clear"), "click", () => {
       App.clear_star_editor()
     })
-  }, on_x: function () {
+  }, on_x: () => {
     App.show_last_window()
-  }, after_show: function () {
+  }, after_show: () => {
     App.update_star_editor_info()
-  }, on_hide: function () {
+  }, on_hide: () => {
     App.show_last_window()
   }})
 }
 
 // Hide star editor
-App.hide_star_editor = function () {
+App.hide_star_editor = () => {
   App.windows.star_editor.hide()
 }
 
 // Stars action
-App.stars_action = function (item) {
+App.stars_action = (item) => {
   App.item_action(item)
 }
 
 // Stars action alt
-App.stars_action_alt = function (item) {
+App.stars_action_alt = (item) => {
   App.item_action(item, false)
 }
 
 // Open star
-App.open_star = function (item, close = true) {
+App.open_star = (item, close = true) => {
   let star = App.get_star_by_id(item.id)
   App.update_star(star)
   App.focus_or_open_item(item, close)
 }
 
 // Launch star
-App.launch_star = function (item) {
+App.launch_star = (item) => {
   let star = App.get_star_by_id(item.id)
   App.update_star(star)
   App.launch_item(item, false)
 }
 
 // Get stars
-App.get_stars = function () {
+App.get_stars = () => {
   let stars = structuredClone(App.stars)
   stars.sort((a, b) => (a.date_last_visit < b.date_last_visit) ? 1 : -1)
   return stars
 }
 
 // Update star data
-App.update_star = function (item, add_visit = true) {
+App.update_star = (item, add_visit = true) => {
   item.date_last_visit = Date.now()
 
   if (add_visit) {
@@ -87,7 +87,7 @@ App.update_star = function (item, add_visit = true) {
 }
 
 // Add an item to stars
-App.star_item = function (item, save = true) {
+App.star_item = (item, save = true) => {
   let old = App.get_star_by_url(item.url)
 
   if (old) {
@@ -121,19 +121,19 @@ App.star_item = function (item, save = true) {
 }
 
 // Remove an item from stars
-App.remove_star = function () {
+App.remove_star = () => {
   if (!App.star_edited) {
     return
   }
 
-  App.show_confirm("Remove this star?", function () {
+  App.show_confirm("Remove this star?", () => {
     App.do_remove_stars([App.star_edited.id])
     App.hide_star_editor()
   })
 }
 
 // Do remove action
-App.do_remove_stars = function (ids) {
+App.do_remove_stars = (ids) => {
   for (let id of ids) {
     if (App.get_items("stars")) {
       let item = App.get_item_by_id("stars", id)
@@ -149,7 +149,7 @@ App.do_remove_stars = function (ids) {
 }
 
 // Show stars editor
-App.show_star_editor = function (item) {
+App.show_star_editor = (item) => {
   App.star_edited = App.get_star_by_id(item.id)
   App.el("#star_editor_title").value = item.title
   App.el("#star_editor_url").value = item.url
@@ -158,7 +158,7 @@ App.show_star_editor = function (item) {
 }
 
 // Add or update star information
-App.star_editor_save = function () {
+App.star_editor_save = () => {
   let title = App.el("#star_editor_title").value.trim()
   let url = App.el("#star_editor_url").value.trim()
 
@@ -204,7 +204,7 @@ App.star_editor_save = function () {
 }
 
 // Get star by id
-App.get_star_by_id = function (id) {
+App.get_star_by_id = (id) => {
   for (let it of App.stars) {
     if (it.id === id) {
       return it
@@ -213,7 +213,7 @@ App.get_star_by_id = function (id) {
 }
 
 // Get star by url (first result)
-App.get_star_by_url = function (url) {
+App.get_star_by_url = (url) => {
   for (let it of App.stars) {
     if (App.urls_equal(it.url, url)) {
       return it
@@ -222,7 +222,7 @@ App.get_star_by_url = function (url) {
 }
 
 // Add a new star manually
-App.new_star = function (title = "", url = "") {
+App.new_star = (title = "", url = "") => {
   App.star_edited = undefined
   App.el("#star_editor_title").value = title
   App.el("#star_editor_url").value = url
@@ -231,7 +231,7 @@ App.new_star = function (title = "", url = "") {
 }
 
 // New star with pre-filled details
-App.new_star_from_active = async function () {
+App.new_star_from_active = async () => {
   let tab = await App.get_active_tab()
 
   if (tab) {
@@ -240,7 +240,7 @@ App.new_star_from_active = async function () {
 }
 
 // Add a star or edit an existing one
-App.add_or_edit_star = function (item) {
+App.add_or_edit_star = (item) => {
   let star
 
   if (item.mode === "stars") {
@@ -259,7 +259,7 @@ App.add_or_edit_star = function (item) {
 }
 
 // Update star editor info
-App.update_star_editor_info = function () {
+App.update_star_editor_info = () => {
   let about = App.el("#star_editor_about")
   let info = App.el("#star_editor_info")
   let visits = App.el("#star_editor_visits")
@@ -292,26 +292,26 @@ App.update_star_editor_info = function () {
 }
 
 // Remove multiple stars
-App.remove_stars = function (item, force = false) {
+App.remove_stars = (item, force = false) => {
   let active = App.get_active_items("stars", item)
   let ids = active.map(x => x.id)
 
-  App.show_confirm(`Remove stars? (${ids.length})`, function () {
+  App.show_confirm(`Remove stars? (${ids.length})`, () => {
     App.backup_stars()
     App.do_remove_stars(ids)
     App.dehighlight("stars")
-  }, function () {
+  }, () => {
     App.dehighlight("stars")
   }, force)
 }
 
 // Backup stars
-App.backup_stars = function () {
+App.backup_stars = () => {
   App.stars_backup = structuredClone(App.stars)
 }
 
 // Undo remove stars
-App.restore_stars = function () {
+App.restore_stars = () => {
   if (App.stars_backup) {
     App.stars = App.stars_backup
     App.stor_save_stars()
@@ -323,13 +323,13 @@ App.restore_stars = function () {
 }
 
 // Display stars json
-App.export_stars = function () {
+App.export_stars = () => {
   App.show_textarea("Copy this to import it later", JSON.stringify(App.stars, null, 2))
 }
 
 // Use star json to replace stars
-App.import_stars = function () {
-  App.show_input("Paste the data text here", "Import", function (text) {
+App.import_stars = () => {
+  App.show_input("Paste the data text here", "Import", (text) => {
     if (!text) {
       return
     }
@@ -344,7 +344,7 @@ App.import_stars = function () {
     }
 
     if (json) {
-      App.show_confirm("Use this data?", function () {
+      App.show_confirm("Use this data?", () => {
         App.stars = json
         App.stor_save_stars()
         App.show_window("stars")
@@ -354,7 +354,7 @@ App.import_stars = function () {
 }
 
 // Star items
-App.star_items = function (item) {
+App.star_items = (item) => {
   let items = []
   let active = App.get_active_items(item.mode, item)
 
@@ -379,20 +379,20 @@ App.star_items = function (item) {
     return
   }
 
-  App.show_confirm(`Star items? (${items.length})`, function () {
+  App.show_confirm(`Star items? (${items.length})`, () => {
     for (let item of items) {
       App.star_item(item, false)
     }
 
     App.stor_save_stars()
     App.dehighlight(item.mode)
-  }, function () {
+  }, () => {
     App.dehighlight(item.mode)
   })
 }
 
 // Toggle star
-App.toggle_star = function (item, prepend = false) {
+App.toggle_star = (item, prepend = false) => {
   let star = App.get_star_by_url(item.url)
 
   if (star) {
@@ -411,7 +411,7 @@ App.toggle_star = function (item, prepend = false) {
 }
 
 // Clear star editor
-App.clear_star_editor = function () {
+App.clear_star_editor = () => {
   App.el("#star_editor_title").value = ""
   App.el("#star_editor_url").value = ""
   App.el("#star_editor_title").focus()

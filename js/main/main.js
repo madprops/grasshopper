@@ -18,7 +18,7 @@ App.filter_delay = 200
 App.alert_autohide_delay = 1500
 NeedContext.min_width = "4.5rem"
 
-App.init = async function () {
+App.init = async () => {
   let win = await browser.windows.getCurrent({populate: false})
   App.window_id = win.id
 

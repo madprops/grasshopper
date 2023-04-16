@@ -1,14 +1,14 @@
 // Setup bookmarks
-App.setup_bookmarks = function () {
+App.setup_bookmarks = () => {
   App.setup_item_window("bookmarks")
 
-  browser.bookmarks.onCreated.addListener(function (id, info) {
+  browser.bookmarks.onCreated.addListener((id, info) => {
     if (App.window_mode === "bookmarks") {
       App.insert_item("bookmarks", info)
     }
   })
 
-  browser.bookmarks.onRemoved.addListener(function (id, info) {
+  browser.bookmarks.onRemoved.addListener((id, info) => {
     if (App.window_mode === "bookmarks") {
       let item = App.get_item_by_id("bookmarks", id)
 
@@ -18,7 +18,7 @@ App.setup_bookmarks = function () {
     }
   })
 
-  browser.bookmarks.onChanged.addListener(function (id, info) {
+  browser.bookmarks.onChanged.addListener((id, info) => {
     if (App.window_mode === "bookmarks") {
       App.insert_item("bookmarks", info)
     }
@@ -26,10 +26,10 @@ App.setup_bookmarks = function () {
 }
 
 // Get bookmarks
-App.get_bookmarks = async function () {
+App.get_bookmarks = async () => {
   let bookmarks = await browser.bookmarks.search({})
 
-  bookmarks.sort(function (a, b) {
+  bookmarks.sort((a, b) => {
     return a.dateAdded > b.dateAdded ? -1 : 1
   })
 
@@ -37,11 +37,11 @@ App.get_bookmarks = async function () {
 }
 
 // Boomarks action
-App.bookmarks_action = function (item) {
+App.bookmarks_action = (item) => {
   App.item_action(item)
 }
 
 // Boomarks action alt
-App.bookmarks_action_alt = function (item) {
+App.bookmarks_action_alt = (item) => {
   App.item_action(item, false)
 }

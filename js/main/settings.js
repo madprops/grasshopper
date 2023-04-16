@@ -24,7 +24,7 @@ App.default_settings = {
 }
 
 // Make item order control
-App.make_item_order = function () {
+App.make_item_order = () => {
   let item_order = App.el("#settings_item_order")
   item_order.innerHTML = ""
 
@@ -36,7 +36,7 @@ App.make_item_order = function () {
     up.textContent = "Up"
     row.append(up)
 
-    App.ev(up, "click", function () {
+    App.ev(up, "click", () => {
       App.item_order_up(row)
     })
 
@@ -48,7 +48,7 @@ App.make_item_order = function () {
     down.textContent = "Down"
     row.append(down)
 
-    App.ev(down, "click", function () {
+    App.ev(down, "click", () => {
       App.item_order_down(row)
     })
 
@@ -57,14 +57,14 @@ App.make_item_order = function () {
 }
 
 // Settings action list after mods
-App.settings_do_action = function (what) {
+App.settings_do_action = (what) => {
   if (what === "theme") {
     App.apply_theme()
   }
 }
 
 // Setup checkboxes in a container
-App.settings_setup_checkboxes = function (container) {
+App.settings_setup_checkboxes = (container) => {
   let items = App.els(".settings_checkbox", container)
 
   for (let item of items) {
@@ -74,7 +74,7 @@ App.settings_setup_checkboxes = function (container) {
     let el = App.el(`#settings_${setting}`)
     el.checked = App.settings[setting]
 
-    App.ev(el, "change", function () {
+    App.ev(el, "change", () => {
       App.settings[setting] = el.checked
       App.stor_save_settings()
       App.settings_do_action(action)
@@ -83,7 +83,7 @@ App.settings_setup_checkboxes = function (container) {
 }
 
 // Setup text elements in a container
-App.settings_setup_text = function (container) {
+App.settings_setup_text = (container) => {
   let items = App.els(".settings_text", container)
 
   for (let item of items) {
@@ -93,7 +93,7 @@ App.settings_setup_text = function (container) {
 
     el.value = App.settings[setting]
 
-    App.ev(el, "blur", function () {
+    App.ev(el, "blur", () => {
       el.value = el.value.trim()
       App.settings[setting] = el.value
       App.stor_save_settings()
@@ -103,14 +103,14 @@ App.settings_setup_text = function (container) {
 }
 
 // Prepare a select menu
-App.settings_make_menu = function (id, opts, action) {
+App.settings_make_menu = (id, opts, action) => {
   if (!action) {
-    action = function () {}
+    action = () => {}
   }
 
   let el = App.el(`#settings_${id}`)
 
-  App.ev(el, "click", function () {
+  App.ev(el, "click", () => {
     let items = []
 
     for (let o of opts) {
@@ -118,7 +118,7 @@ App.settings_make_menu = function (id, opts, action) {
 
       items.push({
         text: o[0],
-        action: function () {
+        action: () => {
           el.textContent = o[0]
           App.settings[id] = o[1]
           App.stor_save_settings()
@@ -163,19 +163,19 @@ App.settings_make_menu = function (id, opts, action) {
 }
 
 // Setup settings
-App.setup_settings = function () {
+App.setup_settings = () => {
   App.settings_order = ["settings_basic", "settings_theme", "settings_icons"]
 
-  App.create_window({id: "settings_basic", setup: function () {
+  App.create_window({id: "settings_basic", setup: () => {
     let container = App.el("#settings_basic_container")
     App.settings_setup_checkboxes(container)
     App.settings_make_menu("text_mode", [["Title", "title"], ["URL", "url"]])
 
-    App.settings_make_menu("width", App.get_size_options(), function () {
+    App.settings_make_menu("width", App.get_size_options(), () => {
       App.apply_theme()
     })
 
-    App.settings_make_menu("height", App.get_size_options(), function () {
+    App.settings_make_menu("height", App.get_size_options(), () => {
       App.apply_theme()
     })
 
@@ -192,31 +192,31 @@ App.setup_settings = function () {
       ["Neat", "gh_neat"],
       ["Cool", "gh_cool"],
       ["Alien", "gh_alien"],
-    ], function () {
+    ], () => {
       App.apply_theme()
     })
 
-    App.settings_make_menu("font_size", App.get_font_size_options(), function () {
+    App.settings_make_menu("font_size", App.get_font_size_options(), () => {
       App.apply_theme()
     })
 
-    App.ev(App.el("#settings_defaults_basic"), "click", function () {
+    App.ev(App.el("#settings_defaults_basic"), "click", () => {
       App.restore_default_settings("basic")
     })
 
     App.add_settings_switchers("basic")
   }, persistent: false})
 
-  App.create_window({id: "settings_theme", setup: function () {
+  App.create_window({id: "settings_theme", setup: () => {
     App.start_theme_settings()
     App.add_settings_switchers("theme")
   }, persistent: false})
 
-  App.create_window({id: "settings_icons", setup: function () {
+  App.create_window({id: "settings_icons", setup: () => {
     let container = App.el("#settings_icons_container")
     App.settings_setup_text(container)
 
-    App.ev(App.el("#settings_default_icons"), "click", function () {
+    App.ev(App.el("#settings_default_icons"), "click", () => {
       App.restore_default_settings("icons")
     })
 
@@ -225,14 +225,14 @@ App.setup_settings = function () {
 }
 
 // Create settings title switchers
-App.add_settings_switchers = function (category) {
+App.add_settings_switchers = (category) => {
   let title = App.el(".settings_title", App.el(`#settings_${category}_container`))
 
   let prev = App.create("div", "button")
   prev.textContent = "<"
   title.before(prev)
 
-  App.ev(prev, "click", function () {
+  App.ev(prev, "click", () => {
     App.show_prev_settings()
   })
 
@@ -240,13 +240,13 @@ App.add_settings_switchers = function (category) {
   next.textContent = ">"
   title.after(next)
 
-  App.ev(next, "click", function () {
+  App.ev(next, "click", () => {
     App.show_next_settings()
   })
 }
 
 // Start theme settings
-App.start_theme_settings = function () {
+App.start_theme_settings = () => {
   function start_color_picker (name) {
     let el = App.el(`#settings_${name}_color_picker`)
 
@@ -258,7 +258,7 @@ App.start_theme_settings = function () {
       color: App.settings[`${name}_color`]
     })
 
-    App[`${name}_color_picker`].on("change", function (picker, color) {
+    App[`${name}_color_picker`].on("change", (picker, color) => {
       App.change_color(name, color)
     })
   }
@@ -266,31 +266,31 @@ App.start_theme_settings = function () {
   start_color_picker("background")
   start_color_picker("text")
 
-  App.ev(App.el("#settings_dark_theme"), "click", function () {
+  App.ev(App.el("#settings_dark_theme"), "click", () => {
     App.random_theme("dark")
   })
 
-  App.ev(App.el("#settings_light_theme"), "click", function () {
+  App.ev(App.el("#settings_light_theme"), "click", () => {
     App.random_theme("light")
   })
 
-  App.ev(App.el("#settings_detect_theme"), "click", function () {
+  App.ev(App.el("#settings_detect_theme"), "click", () => {
     App.detect_theme()
   })
 
-  App.ev(App.el("#settings_default_theme"), "click", function () {
+  App.ev(App.el("#settings_default_theme"), "click", () => {
     App.restore_default_settings("theme")
   })
 
   let imgs = App.get_background_image_options()
 
-  App.settings_make_menu("background_image", imgs, function () {
+  App.settings_make_menu("background_image", imgs, () => {
     App.apply_theme()
   })
 }
 
 // Cycle to prev or next item
-App.settings_menu_cycle = function (el, setting, dir, items) {
+App.settings_menu_cycle = (el, setting, dir, items) => {
   let cycle = true
 
   if (setting === "font_size" || setting === "width" || setting === "height") {
@@ -329,8 +329,8 @@ App.settings_menu_cycle = function (el, setting, dir, items) {
 }
 
 // Restore default settings
-App.restore_default_settings = function (type) {
-  App.show_confirm(`Restore default settings? (${type})`, function () {
+App.restore_default_settings = (type) => {
+  App.show_confirm(`Restore default settings? (${type})`, () => {
     for (let key in App.default_settings) {
       let item = App.default_settings[key]
 
@@ -351,7 +351,7 @@ App.restore_default_settings = function (type) {
 }
 
 // Get background image options
-App.get_background_image_options = function () {
+App.get_background_image_options = () => {
   let opts = [["None", "none"]]
 
   for (let i=1; i<=App.num_background_images; i++) {
@@ -364,7 +364,7 @@ App.get_background_image_options = function () {
 }
 
 // Get text size options
-App.get_font_size_options = function () {
+App.get_font_size_options = () => {
   let opts = []
 
   for (let i=12; i<=22; i++) {
@@ -375,7 +375,7 @@ App.get_font_size_options = function () {
 }
 
 // Get size options
-App.get_size_options = function () {
+App.get_size_options = () => {
   let opts = []
 
   for (let i=50; i<=100; i+=5) {
@@ -386,7 +386,7 @@ App.get_size_options = function () {
 }
 
 // Got to prev settings
-App.show_prev_settings = function () {
+App.show_prev_settings = () => {
   let index = App.settings_order.indexOf(App.window_mode)
   index -= 1
 
@@ -398,7 +398,7 @@ App.show_prev_settings = function () {
 }
 
 // Got to next settings
-App.show_next_settings = function () {
+App.show_next_settings = () => {
   let index = App.settings_order.indexOf(App.window_mode)
   index += 1
 

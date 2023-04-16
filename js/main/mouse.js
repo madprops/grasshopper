@@ -1,8 +1,8 @@
 // Setup mouse for window
-App.setup_window_mouse = function (mode) {
+App.setup_window_mouse = (mode) => {
   let container = App.el(`#${mode}_container`)
 
-  App.ev(container, "mousedown", function (e) {
+  App.ev(container, "mousedown", (e) => {
     if (!e.target.closest(`.${mode}_item`)) {
       return
     }
@@ -17,7 +17,7 @@ App.setup_window_mouse = function (mode) {
     }
   })
 
-  App.ev(container, "mouseup", function (e) {
+  App.ev(container, "mouseup", (e) => {
     if (!e.target.closest(`.${mode}_item`)) {
       return
     }
@@ -48,28 +48,28 @@ App.setup_window_mouse = function (mode) {
     }
   })
 
-  App.ev(container, "contextmenu", function (e) {
+  App.ev(container, "contextmenu", (e) => {
     if (e.target.closest(`.${mode}_item`)) {
       App.show_item_menu(App.get_cursor_item(mode, e), e.clientX, e.clientY)
       e.preventDefault()
     }
   })
 
-  App.ev(container, "mousemove", function (e) {
+  App.ev(container, "mousemove", (e) => {
     if (e.target.closest(`.${mode}_item`)) {
       let item = App.get_cursor_item(mode, e)
       App.update_footer_info(item)
     }
   })
 
-  App.ev(container, "mouseleave", function (e) {
+  App.ev(container, "mouseleave", (e) => {
     let item = App.get_selected(mode)
     App.update_footer_info(item)
   })
 }
 
 // Get item under cursor
-App.get_cursor_item = function (mode, e) {
+App.get_cursor_item = (mode, e) => {
   let el = e.target.closest(`.${mode}_item`)
   let item = App.get_item_by_id(mode, el.dataset.id)
 
@@ -82,8 +82,8 @@ App.get_cursor_item = function (mode, e) {
 }
 
 // Setup drag events
-App.setup_drag = function (mode, container) {
-  container.addEventListener("dragstart", function (e) {
+App.setup_drag = (mode, container) => {
+  container.addEventListener("dragstart", (e) => {
     if (App.settings.lock_drag && !e.ctrlKey) {
       e.preventDefault()
       return false
@@ -126,7 +126,7 @@ App.setup_drag = function (mode, container) {
     App.drag_moved = false
   })
 
-  container.addEventListener("dragend", function (e) {
+  container.addEventListener("dragend", (e) => {
     if (!App.drag_element) {
       App.drag_element = undefined
       e.preventDefault()
@@ -145,7 +145,7 @@ App.setup_drag = function (mode, container) {
     App.update_tab_index()
   })
 
-  container.addEventListener("dragenter", function (e) {
+  container.addEventListener("dragenter", (e) => {
     if (!App.drag_element) {
       e.preventDefault()
       return false

@@ -1,5 +1,5 @@
 // Create a window
-App.create_window = function (args) {
+App.create_window = (args) => {
   if (args.close_button === undefined) {
     args.close_button = true
   }
@@ -37,7 +37,7 @@ App.create_window = function (args) {
       x.textContent = "x"
       top.append(x)
 
-      App.ev(x, "click", function () {
+      App.ev(x, "click", () => {
         if (args.on_x) {
           args.on_x()
         }
@@ -63,7 +63,7 @@ App.create_window = function (args) {
   w.setup = false
   w.visible = false
 
-  w.check_setup = function () {
+  w.check_setup = () => {
     if (args.setup) {
       if (!args.persistent || !w.setup) {
         args.setup()
@@ -73,7 +73,7 @@ App.create_window = function (args) {
     }
   }
 
-  w.show = function (scroll = true) {
+  w.show = (scroll = true) => {
     if (!args.persistent) {
       content.innerHTML = content_html
 
@@ -100,7 +100,7 @@ App.create_window = function (args) {
     }
   }
 
-  w.hide = function () {
+  w.hide = () => {
     if (args.on_hide) {
       args.on_hide()
     }
@@ -117,19 +117,19 @@ App.create_window = function (args) {
 }
 
 // Hide window
-App.hide_window = function (w) {
+App.hide_window = (w) => {
   w.element.style.display = "none"
 }
 
 // Hide all windows
-App.hide_all_windows = function () {
+App.hide_all_windows = () => {
   for (let id in App.windows) {
     App.hide_window(App.windows[id])
   }
 }
 
 // Centralized function to show windows
-App.show_window = function (mode) {
+App.show_window = (mode) => {
   if (App.on_item_window(mode)) {
     App.show_item_window(mode)
   }
@@ -139,17 +139,17 @@ App.show_window = function (mode) {
 }
 
 // Show the last window
-App.show_last_window = function () {
+App.show_last_window = () => {
   App.raise_window(App.last_window_mode)
 }
 
 // Raise window
-App.raise_window = function (mode) {
+App.raise_window = (mode) => {
   App.windows[mode].show(false)
 }
 
-App.setup_window = function () {
-  App.ev(window, "blur", function () {
+App.setup_window = () => {
+  App.ev(window, "blur", () => {
     NeedContext.hide()
   })
 }

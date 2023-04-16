@@ -1,5 +1,5 @@
 // Setup bindings for window
-App.check_window_keyboard = function (e) {
+App.check_window_keyboard = (e) => {
   let mode = App.window_mode
 
   if (e.key === "Tab" && !e.ctrlKey) {
@@ -145,8 +145,8 @@ App.check_window_keyboard = function (e) {
 }
 
 // Setup keybindings
-App.setup_keyboard = function () {
-  App.ev(document, "keydown", function (e) {
+App.setup_keyboard = () => {
+  App.ev(document, "keydown", (e) => {
     if (NeedContext.open) {
       if (e.shiftKey && e.key === "Enter") {
         NeedContext.hide()

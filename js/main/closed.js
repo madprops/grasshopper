@@ -1,8 +1,8 @@
 // Setup closed tabs
-App.setup_closed = function () {
+App.setup_closed = () => {
   App.setup_item_window("closed")
 
-  browser.sessions.onChanged.addListener(function () {
+  browser.sessions.onChanged.addListener(() => {
     if (App.window_mode === "closed") {
       App.show_item_window("closed")
     }
@@ -10,7 +10,7 @@ App.setup_closed = function () {
 }
 
 // Get closed tabs
-App.get_closed = async function () {
+App.get_closed = async () => {
   let ans = await browser.sessions.getRecentlyClosed({
     maxResults: App.max_closed
   })
@@ -20,11 +20,11 @@ App.get_closed = async function () {
 }
 
 // Closed tabs action
-App.closed_action = function (item) {
+App.closed_action = (item) => {
   App.item_action(item)
 }
 
 // Closed tabs action alt
-App.closed_action_alt = function (item) {
+App.closed_action_alt = (item) => {
   App.item_action(item, false)
 }

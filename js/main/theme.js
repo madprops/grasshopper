@@ -1,11 +1,11 @@
 // Setup theme
-App.setup_theme = function () {
+App.setup_theme = () => {
   App.colorlib = ColorLib()
   App.apply_theme()
 }
 
 // Apply theme
-App.apply_theme = function () {
+App.apply_theme = () => {
   try {
     App.set_css_var("background_color", App.settings.background_color)
     App.set_css_var("text_color", App.settings.text_color)
@@ -47,19 +47,19 @@ App.apply_theme = function () {
 }
 
 // Set css variable
-App.set_css_var = function (name, value) {
+App.set_css_var = (name, value) => {
   document.documentElement.style.setProperty(`--${name}`, value)
 }
 
 // Change a color
-App.change_color = function (name, color) {
+App.change_color = (name, color) => {
   App.settings[`${name}_color`] = color
   App.apply_theme()
   App.stor_save_settings()
 }
 
 // Pick a random theme
-App.random_theme = function (mode) {
+App.random_theme = (mode) => {
   let colors
 
   if (mode === "dark") {
@@ -74,7 +74,7 @@ App.random_theme = function (mode) {
 }
 
 // Get a random theme
-App.get_random_theme = function (what) {
+App.get_random_theme = (what) => {
   let background_color = App.colorlib[`get_${what}_color`]()
   let text_color = App.colorlib.get_lighter_or_darker(background_color, App.theme_color_diff)
 
@@ -86,7 +86,7 @@ App.get_random_theme = function (what) {
 }
 
 // Attempt to detect browser theme
-App.detect_theme = async function () {
+App.detect_theme = async () => {
   let theme = await browser.theme.getCurrent()
 
   if (theme.colors.toolbar) {

@@ -1,5 +1,5 @@
 // Setup tabs
-App.setup_tabs = function () {
+App.setup_tabs = () => {
   App.tabs_filter_modes = [
     ["pins", "Pins"],
     ["playing", "Playing"],
@@ -14,22 +14,22 @@ App.setup_tabs = function () {
   App.tabs_actions = [
     {text: "--separator--"},
 
-    {text: "New", action: function () {
+    {text: "New", action: () => {
       App.new_tab()
     }},
 
-    {text: "Info", action: function () {
+    {text: "Info", action: () => {
       App.show_tabs_information()
     }},
 
-    {text: "Clean", action: function () {
+    {text: "Clean", action: () => {
       App.clean_tabs()
     }},
   ]
 
   App.setup_item_window("tabs")
 
-  browser.tabs.onUpdated.addListener(async function (id, cinfo, info) {
+  browser.tabs.onUpdated.addListener(async (id, cinfo, info) => {
     App.log(`Tab Updated: ID: ${id}`)
     if (App.window_mode === "tabs" && info.windowId === App.window_id) {
       await App.refresh_tab(id)
@@ -37,7 +37,7 @@ App.setup_tabs = function () {
     }
   })
 
-  browser.tabs.onActivated.addListener(async function (info) {
+  browser.tabs.onActivated.addListener(async (info) => {
     App.log(`Tab Activated: ID: ${info.tabId}`)
     if (App.window_mode === "tabs" && info.windowId === App.window_id) {
       await App.on_tab_activated(info)
@@ -45,7 +45,7 @@ App.setup_tabs = function () {
     }
   })
 
-  browser.tabs.onRemoved.addListener(function (id, info) {
+  browser.tabs.onRemoved.addListener((id, info) => {
     App.log(`Tab Removed: ID: ${id}`)
     if (App.window_mode === "tabs" && info.windowId === App.window_id) {
       App.remove_closed_tab(id)
@@ -53,7 +53,7 @@ App.setup_tabs = function () {
     }
   })
 
-  browser.tabs.onMoved.addListener(function (id, info) {
+  browser.tabs.onMoved.addListener((id, info) => {
     App.log(`Tab Moved: ID: ${id}`)
     if (App.window_mode === "tabs" && info.windowId === App.window_id) {
       App.move_item("tabs", info.fromIndex, info.toIndex)
@@ -61,7 +61,7 @@ App.setup_tabs = function () {
     }
   })
 
-  browser.tabs.onDetached.addListener(function (id, info) {
+  browser.tabs.onDetached.addListener((id, info) => {
     App.log(`Tab Detached: ID: ${id}`)
     if (App.window_mode === "tabs" && info.oldWindowId === App.window_id) {
       App.remove_closed_tab(id)
@@ -69,11 +69,11 @@ App.setup_tabs = function () {
     }
   })
 
-  App.empty_previous_tabs = App.create_debouncer(function () {
+  App.empty_previous_tabs = App.create_debouncer(() => {
     App.do_empty_previous_tabs()
   }, App.empty_previous_tabs_delay)
 
-  App.ev(App.el("#window_tabs"), "dblclick", function (e) {
+  App.ev(App.el("#window_tabs"), "dblclick", (e) => {
     if (e.target.id === "tabs_container") {
       App.new_tab()
     }
@@ -81,13 +81,13 @@ App.setup_tabs = function () {
 }
 
 // Some checks after tab operations
-App.tabs_check = function () {
+App.tabs_check = () => {
   App.check_playing()
   App.show_pinline()
 }
 
 // Get open tabs
-App.get_tabs = async function () {
+App.get_tabs = async () => {
   let tabs
 
   try {
@@ -97,7 +97,7 @@ App.get_tabs = async function () {
     return
   }
 
-  tabs.sort(function (a, b) {
+  tabs.sort((a, b) => {
     return a.index < b.index ? -1 : 1
   })
 
@@ -105,7 +105,7 @@ App.get_tabs = async function () {
 }
 
 // Open a new tab
-App.focus_tab = async function (tab, close = true) {
+App.focus_tab = async (tab, close = true) => {
   if (tab.window_id) {
     await browser.windows.update(tab.window_id, {focused: true})
   }
@@ -124,7 +124,7 @@ App.focus_tab = async function (tab, close = true) {
 }
 
 // Close a tab
-App.close_tab = async function (id) {
+App.close_tab = async (id) => {
   try {
     await browser.tabs.remove(id)
   } catch (err) {
@@ -133,7 +133,7 @@ App.close_tab = async function (id) {
 }
 
 // Open a new tab
-App.new_tab = async function (url = undefined, close = true) {
+App.new_tab = async (url = undefined, close = true) => {
   try {
     await browser.tabs.create({active: close, url: url})
   } catch (err) {
@@ -146,7 +146,7 @@ App.new_tab = async function (url = undefined, close = true) {
 }
 
 // Refresh tabs
-App.refresh_tab = async function (id, select = false) {
+App.refresh_tab = async (id, select = false) => {
   let info
 
   try {
@@ -171,7 +171,7 @@ App.refresh_tab = async function (id, select = false) {
 }
 
 // Pin a tab
-App.pin_tab = async function (id) {
+App.pin_tab = async (id) => {
   try {
     await browser.tabs.update(id, {pinned: true})
   } catch (err) {
@@ -180,7 +180,7 @@ App.pin_tab = async function (id) {
 }
 
 // Unpin a tab
-App.unpin_tab = async function (id) {
+App.unpin_tab = async (id) => {
   try {
     await browser.tabs.update(id, {pinned: false})
   } catch (err) {
@@ -189,7 +189,7 @@ App.unpin_tab = async function (id) {
 }
 
 // Mute a tab
-App.mute_tab = async function (id) {
+App.mute_tab = async (id) => {
   try {
     await browser.tabs.update(id, {muted: true})
   } catch (err) {
@@ -198,7 +198,7 @@ App.mute_tab = async function (id) {
 }
 
 // Unmute a tab
-App.unmute_tab = async function (id) {
+App.unmute_tab = async (id) => {
   try {
     await browser.tabs.update(id, {muted: false})
   } catch (err) {
@@ -207,27 +207,27 @@ App.unmute_tab = async function (id) {
 }
 
 // Return pinned tabs
-App.get_pinned_tabs = function () {
+App.get_pinned_tabs = () => {
   return App.get_items("tabs").filter(x => x.pinned)
 }
 
 // Return playing tabs
-App.get_playing_tabs = function () {
+App.get_playing_tabs = () => {
   return App.get_items("tabs").filter(x => x.audible)
 }
 
 // Return muted tabs
-App.get_muted_tabs = function () {
+App.get_muted_tabs = () => {
   return App.get_items("tabs").filter(x => x.muted)
 }
 
 // Return suspended tabs
-App.get_suspended_tabs = function () {
+App.get_suspended_tabs = () => {
   return App.get_items("tabs").filter(x => x.discarded)
 }
 
 // Remove a closed tab
-App.remove_closed_tab = function (id) {
+App.remove_closed_tab = (id) => {
   let tab = App.get_item_by_id("tabs", id)
 
   if (tab) {
@@ -236,17 +236,17 @@ App.remove_closed_tab = function (id) {
 }
 
 // Tabs action
-App.tabs_action = function (item) {
+App.tabs_action = (item) => {
   App.focus_tab(item)
 }
 
 // Tabs action alt
-App.tabs_action_alt = function (item, shift_key = false) {
+App.tabs_action_alt = (item, shift_key = false) => {
   App.close_tabs(item, shift_key)
 }
 
 // Duplicate a tab
-App.duplicate_tab = async function (tab) {
+App.duplicate_tab = async (tab) => {
   try {
     await browser.tabs.create({active: true, url: tab.url})
   } catch (err) {
@@ -257,7 +257,7 @@ App.duplicate_tab = async function (tab) {
 }
 
 // Suspend a tab
-App.suspend_tab = async function (tab) {
+App.suspend_tab = async (tab) => {
   if (tab.active) {
     try {
       await browser.tabs.create({active: true})
@@ -274,7 +274,7 @@ App.suspend_tab = async function (tab) {
 }
 
 // Pin tabs
-App.pin_tabs = function (item) {
+App.pin_tabs = (item) => {
   let ids = []
   let active = App.get_active_items("tabs", item)
 
@@ -298,7 +298,7 @@ App.pin_tabs = function (item) {
 }
 
 // Unpin tabs
-App.unpin_tabs = function (item) {
+App.unpin_tabs = (item) => {
   let ids = []
   let active = App.get_active_items("tabs", item)
 
@@ -322,7 +322,7 @@ App.unpin_tabs = function (item) {
 }
 
 // Suspend normal tabs
-App.suspend_tabs = function (item) {
+App.suspend_tabs = (item) => {
   let tabs = []
   let warn = false
   let active = App.get_active_items("tabs", item)
@@ -344,13 +344,13 @@ App.suspend_tabs = function (item) {
   }
 
   if (warn) {
-    App.show_confirm(`Suspend tabs? (${tabs.length})`, function () {
+    App.show_confirm(`Suspend tabs? (${tabs.length})`, () => {
       for (let tab of tabs) {
         App.suspend_tab(tab)
       }
 
       App.dehighlight("tabs")
-    }, function () {
+    }, () => {
       App.dehighlight("tabs")
     })
   }
@@ -364,7 +364,7 @@ App.suspend_tabs = function (item) {
 }
 
 // Close tabs
-App.close_tabs = function (item, force = false) {
+App.close_tabs = (item, force = false) => {
   let ids = []
   let warn = false
   let active = App.get_active_items("tabs", item)
@@ -381,23 +381,23 @@ App.close_tabs = function (item, force = false) {
     return
   }
 
-  App.show_confirm(`Close tabs? (${ids.length})`, function () {
+  App.show_confirm(`Close tabs? (${ids.length})`, () => {
     App.do_close_tabs(ids)
     App.dehighlight("tabs")
-  }, function () {
+  }, () => {
     App.dehighlight("tabs")
   }, force || !warn)
 }
 
 // Do close tabs
-App.do_close_tabs = function (ids) {
+App.do_close_tabs = (ids) => {
   for (let id of ids) {
     App.close_tab(id)
   }
 }
 
 // Mute tabs
-App.mute_tabs = function (item) {
+App.mute_tabs = (item) => {
   let active = App.get_active_items("tabs", item)
 
   for (let item of active) {
@@ -408,7 +408,7 @@ App.mute_tabs = function (item) {
 }
 
 // Unmute tabs
-App.unmute_tabs = function (item) {
+App.unmute_tabs = (item) => {
   let active = App.get_active_items("tabs", item)
 
   for (let item of active) {
@@ -419,13 +419,13 @@ App.unmute_tabs = function (item) {
 }
 
 // Check if tab is normal
-App.tab_is_normal = function (tab) {
+App.tab_is_normal = (tab) => {
   let special = tab.pinned || tab.audible || tab.muted || tab.discarded
   return !special
 }
 
 // Show tabs information
-App.show_tabs_information = function () {
+App.show_tabs_information = () => {
   let all = App.get_items("tabs").length
   let pins = App.get_pinned_tabs().length
   let playing = App.get_playing_tabs().length
@@ -444,7 +444,7 @@ App.show_tabs_information = function () {
 }
 
 // Pin or unpin
-App.toggle_pin = function (item) {
+App.toggle_pin = (item) => {
   if (item.pinned) {
     App.unpin_tab(item.id)
   }
@@ -454,7 +454,7 @@ App.toggle_pin = function (item) {
 }
 
 // Open a tab
-App.open_tab = async function (url, close = true, args = {}) {
+App.open_tab = async (url, close = true, args = {}) => {
   let opts = {}
   opts.url = url
   opts.active = close
@@ -472,7 +472,7 @@ App.open_tab = async function (url, close = true, args = {}) {
 }
 
 // Update tab index
-App.update_tab_index = async function () {
+App.update_tab_index = async () => {
   for (let el of App.els(".tabs_item")) {
     let index = App.get_item_element_index("tabs", el)
     await App.do_move_tab_index(parseInt(el.dataset.id), index)
@@ -480,7 +480,7 @@ App.update_tab_index = async function () {
 }
 
 // Do tab index move
-App.do_move_tab_index = async function (id, index) {
+App.do_move_tab_index = async (id, index) => {
   let ans
 
   try {
@@ -493,7 +493,7 @@ App.do_move_tab_index = async function (id, index) {
 }
 
 // On tab activated
-App.on_tab_activated = async function (e) {
+App.on_tab_activated = async (e) => {
   for (let tab of App.get_items("tabs")) {
     tab.active = false
   }
@@ -502,7 +502,7 @@ App.on_tab_activated = async function (e) {
 }
 
 // Move tabs
-App.move_tabs = async function (item, window_id) {
+App.move_tabs = async (item, window_id) => {
   let active = App.get_active_items("tabs", item)
 
   for (let item of active) {
@@ -519,13 +519,13 @@ App.move_tabs = async function (item, window_id) {
 }
 
 // Open tab in new window
-App.detach_tab = function (tab) {
+App.detach_tab = (tab) => {
   browser.windows.create({tabId: tab.id, focused: false})
   App.close_window()
 }
 
 // Clean tabs
-App.clean_tabs = function () {
+App.clean_tabs = () => {
   let ids = []
 
   for (let tab of App.get_items("tabs")) {
@@ -538,23 +538,23 @@ App.clean_tabs = function () {
     return
   }
 
-  App.show_confirm(`Clean tabs? (${ids.length})`, function () {
+  App.show_confirm(`Clean tabs? (${ids.length})`, () => {
     App.do_close_tabs(ids)
   })
 }
 
 // Show playing icon
-App.show_playing = function () {
+App.show_playing = () => {
   App.el("#tabs_playing").classList.remove("hidden")
 }
 
 // Hide playing icon
-App.hide_playing = function () {
+App.hide_playing = () => {
   App.el("#tabs_playing").classList.add("hidden")
 }
 
 // Check if a tab is playing
-App.check_playing = function () {
+App.check_playing = () => {
   let playing = App.get_playing_tabs()
 
   if (playing.length > 0) {
@@ -566,14 +566,14 @@ App.check_playing = function () {
 }
 
 // Remove the pinline
-App.remove_pinline = function () {
+App.remove_pinline = () => {
   for (let el of App.els("#tabs_container .pinline")) {
     el.classList.remove("pinline")
   }
 }
 
 // Show the pinline after the last pin
-App.show_pinline = function () {
+App.show_pinline = () => {
   let tabs = App.get_items("tabs")
 
   if (!tabs) {
@@ -603,7 +603,7 @@ App.show_pinline = function () {
 }
 
 // Check pinline
-App.check_pinline = function () {
+App.check_pinline = () => {
   if (App.get_filter("tabs") || App.tabs_filter_mode !== "all") {
     App.remove_pinline()
   } else {
@@ -612,7 +612,7 @@ App.check_pinline = function () {
 }
 
 // Go the a tab emitting sound
-App.go_to_playing = function () {
+App.go_to_playing = () => {
   let tabs = App.get_items("tabs").slice(0)
   let waypoint = false
   let first
@@ -642,15 +642,15 @@ App.go_to_playing = function () {
 }
 
 // Empty previous tabs
-App.do_empty_previous_tabs = function () {
+App.do_empty_previous_tabs = () => {
   App.previous_tabs = []
 }
 
 // Get previous tabs
-App.get_previous_tabs = async function () {
+App.get_previous_tabs = async () => {
   App.previous_tabs = await App.get_tabs()
 
-  App.previous_tabs.sort(function (a, b) {
+  App.previous_tabs.sort((a, b) => {
     return a.lastAccessed > b.lastAccessed ? -1 : 1
   })
 
@@ -658,7 +658,7 @@ App.get_previous_tabs = async function () {
 }
 
 // Go to previous tab
-App.go_to_previous_tab = async function () {
+App.go_to_previous_tab = async () => {
   if (App.previous_tabs.length === 0) {
     await App.get_previous_tabs()
   }
@@ -678,7 +678,7 @@ App.go_to_previous_tab = async function () {
 }
 
 // Get active tab
-App.get_active_tab = async function () {
+App.get_active_tab = async () => {
   let tabs
 
   try {
