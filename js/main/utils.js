@@ -241,5 +241,18 @@ App.close_window = function () {
   }
 }
 
+App.log = function (message, mode = "normal") {
+  let icon
+
+  if (mode === "normal") {
+    icon = "🟢"
+  }
+  else if (mode === "error") {
+    icon = "🔴"
+  }
+
+  console.info(`${icon} Grasshopper: ${message}`)
+}
+
 App.image_extensions = ["jpg", "jpeg", "png", "gif", "webp", "bmp"]
 App.video_extensions = ["mp4", "webm"]

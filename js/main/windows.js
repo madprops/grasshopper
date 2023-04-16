@@ -68,7 +68,7 @@ App.create_window = function (args) {
       if (!args.persistent || !w.setup) {
         args.setup()
         w.setup = true
-        console.info(`${args.id} window setup`)
+        App.log(`${args.id} window setup`)
       }
     }
   }

@@ -28,7 +28,7 @@ App.select_item = async function (item, scroll = "nearest") {
     try {
       await browser.tabs.warmup(item.id)
     } catch (err) {
-      console.info("Error at tab warmup")
+      App.log("Error at tab warmup", "error")
     }
   }
 
@@ -271,7 +271,7 @@ App.focus_filter = function (mode) {
 
 // Filter items
 App.do_item_filter = async function (mode) {
-  console.info(`Filter: ${mode}`)
+  App.log(`Filter: ${mode}`)
   let value = App.get_filter(mode)
 
   if (mode === "history") {
@@ -732,7 +732,7 @@ App.create_item_element = function (item) {
   }
 
   item.created = true
-  console.info(`Item created in ${item.mode}`)
+  App.log(`Item created in ${item.mode}`)
 }
 
 // Get image favicon

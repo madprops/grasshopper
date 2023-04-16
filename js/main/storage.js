@@ -43,7 +43,7 @@ App.stor_get_settings = function () {
     App.stor_save_settings()
   }
 
-  console.info("Stor: Got settings")
+  App.log("Stor: Got settings")
 }
 
 // Save settings to storage
@@ -77,7 +77,7 @@ App.stor_get_stars = function () {
     App.stor_save_stars()
   }
 
-  console.info("Stor: Got stars")
+  App.log("Stor: Got stars")
 }
 
 // Save stars to storage

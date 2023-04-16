@@ -21,7 +21,7 @@ App.create_popup = function (args) {
     if (args.setup && !p.setup) {
       args.setup()
       p.setup = true
-      console.info(`${args.id} popup setup`)
+      App.log(`${args.id} popup setup`)
     }
 
     p.element.style.display = "flex"
