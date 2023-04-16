@@ -234,7 +234,8 @@ App.select_first_item = function (mode, by_active = false) {
 // Filter items by id
 App.filter_item_by_id = function (mode, id) {
   id = id.toString()
-  App[`${mode}_items`] = App[`${mode}_items`].filter(x => x.id.toString() !== id)
+  let item_string = `${mode}_items`
+  App[item_string] = App[item_string].filter(x => x.id.toString() !== id)
 }
 
 // Remove an item from the list
