@@ -147,3 +147,9 @@ App.show_last_window = function () {
 App.raise_window = function (mode) {
   App.windows[mode].show(false)
 }
+
+App.setup_window = function () {
+  App.ev(window, "blur", function () {
+    NeedContext.hide()
+  })
+}

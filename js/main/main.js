@@ -42,6 +42,7 @@ App.init = async function () {
   App.setup_keyboard()
   App.setup_popups()
   App.setup_media()
+  App.setup_window()
   App.setup_items()
 
   // Show first window
