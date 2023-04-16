@@ -248,7 +248,8 @@ App.remove_item = (item) => {
 
       if (next_item) {
         App.select_item(next_item)
-      } else {
+      }
+      else {
         App.select_first_item(mode)
       }
     }
@@ -1513,7 +1514,8 @@ App.highlight_range = (item) => {
 
     if (index_1 < index_2) {
       slice = items.slice(index_1, index_2 + 1)
-    } else {
+    }
+    else {
       slice = items.slice(index_2 + 1, index_1 + 1)
     }
 

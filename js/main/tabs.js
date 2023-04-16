@@ -606,7 +606,8 @@ App.show_pinline = () => {
 App.check_pinline = () => {
   if (App.get_filter(`tabs`) || App.tabs_filter_mode !== `all`) {
     App.remove_pinline()
-  } else {
+  }
+  else {
     App.show_pinline()
   }
 }
