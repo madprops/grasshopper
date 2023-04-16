@@ -1,16 +1,16 @@
 // Setup bookmarks
 App.setup_bookmarks = () => {
-  App.setup_item_window("bookmarks")
+  App.setup_item_window(`bookmarks`)
 
   browser.bookmarks.onCreated.addListener((id, info) => {
-    if (App.window_mode === "bookmarks") {
-      App.insert_item("bookmarks", info)
+    if (App.window_mode === `bookmarks`) {
+      App.insert_item(`bookmarks`, info)
     }
   })
 
   browser.bookmarks.onRemoved.addListener((id, info) => {
-    if (App.window_mode === "bookmarks") {
-      let item = App.get_item_by_id("bookmarks", id)
+    if (App.window_mode === `bookmarks`) {
+      let item = App.get_item_by_id(`bookmarks`, id)
 
       if (item) {
         App.remove_item(item)
@@ -19,8 +19,8 @@ App.setup_bookmarks = () => {
   })
 
   browser.bookmarks.onChanged.addListener((id, info) => {
-    if (App.window_mode === "bookmarks") {
-      App.insert_item("bookmarks", info)
+    if (App.window_mode === `bookmarks`) {
+      App.insert_item(`bookmarks`, info)
     }
   })
 }

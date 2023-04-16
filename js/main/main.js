@@ -1,6 +1,6 @@
-App.item_modes = ["tabs", "stars", "bookmarks", "closed", "history"]
-App.stor_settings_name = "settings_v20"
-App.stor_stars_name = "stars_state_v20"
+App.item_modes = [`tabs`, `stars`, `bookmarks`, `closed`, `history`]
+App.stor_settings_name = `settings_v20`
+App.stor_stars_name = `stars_state_v20`
 App.windows = {}
 App.popups = {}
 App.previous_tabs = []
@@ -16,7 +16,7 @@ App.empty_previous_tabs_delay = 2000
 App.max_text_length = 200
 App.filter_delay = 200
 App.alert_autohide_delay = 1500
-NeedContext.min_width = "4.5rem"
+NeedContext.min_width = `4.5rem`
 
 App.init = async () => {
   let win = await browser.windows.getCurrent({populate: false})

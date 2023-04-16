@@ -2,7 +2,7 @@
 App.setup_window_mouse = (mode) => {
   let container = App.el(`#${mode}_container`)
 
-  App.ev(container, "mousedown", (e) => {
+  App.ev(container, `mousedown`, (e) => {
     if (!e.target.closest(`.${mode}_item`)) {
       return
     }
@@ -17,7 +17,7 @@ App.setup_window_mouse = (mode) => {
     }
   })
 
-  App.ev(container, "mouseup", (e) => {
+  App.ev(container, `mouseup`, (e) => {
     if (!e.target.closest(`.${mode}_item`)) {
       return
     }
@@ -48,21 +48,21 @@ App.setup_window_mouse = (mode) => {
     }
   })
 
-  App.ev(container, "contextmenu", (e) => {
+  App.ev(container, `contextmenu`, (e) => {
     if (e.target.closest(`.${mode}_item`)) {
       App.show_item_menu(App.get_cursor_item(mode, e), e.clientX, e.clientY)
       e.preventDefault()
     }
   })
 
-  App.ev(container, "mousemove", (e) => {
+  App.ev(container, `mousemove`, (e) => {
     if (e.target.closest(`.${mode}_item`)) {
       let item = App.get_cursor_item(mode, e)
       App.update_footer_info(item)
     }
   })
 
-  App.ev(container, "mouseleave", (e) => {
+  App.ev(container, `mouseleave`, (e) => {
     let item = App.get_selected(mode)
     App.update_footer_info(item)
   })
@@ -83,13 +83,13 @@ App.get_cursor_item = (mode, e) => {
 
 // Setup drag events
 App.setup_drag = (mode, container) => {
-  container.addEventListener("dragstart", (e) => {
+  container.addEventListener(`dragstart`, (e) => {
     if (App.settings.lock_drag && !e.ctrlKey) {
       e.preventDefault()
       return false
     }
 
-    App.drag_element = e.target.closest(".grasshopper_item")
+    App.drag_element = e.target.closest(`.grasshopper_item`)
 
     if (!App.drag_element) {
       e.preventDefault()
@@ -101,7 +101,7 @@ App.setup_drag = (mode, container) => {
     App.drag_item = App.get_item_by_id(mode, id)
     App.drag_start_index = App.get_item_element_index(mode, App.drag_element)
     e.dataTransfer.setDragImage(new Image(), 0, 0)
-    e.dataTransfer.setData("text/plain", App.drag_item.url)
+    e.dataTransfer.setData(`text/plain`, App.drag_item.url)
 
     App.drag_items = []
 
@@ -126,7 +126,7 @@ App.setup_drag = (mode, container) => {
     App.drag_moved = false
   })
 
-  container.addEventListener("dragend", (e) => {
+  container.addEventListener(`dragend`, (e) => {
     if (!App.drag_element) {
       App.drag_element = undefined
       e.preventDefault()
@@ -145,17 +145,17 @@ App.setup_drag = (mode, container) => {
     App.update_tab_index()
   })
 
-  container.addEventListener("dragenter", (e) => {
+  container.addEventListener(`dragenter`, (e) => {
     if (!App.drag_element) {
       e.preventDefault()
       return false
     }
 
-    let direction = e.clientY > App.drag_y ? "down" : "up"
+    let direction = e.clientY > App.drag_y ? `down` : `up`
     App.drag_y = e.clientY
 
-    if (e.target.closest(".item")) {
-      let el = e.target.closest(".item")
+    if (e.target.closest(`.item`)) {
+      let el = e.target.closest(`.item`)
 
       if (App.drag_els.includes(el)) {
         e.preventDefault()
@@ -171,7 +171,7 @@ App.setup_drag = (mode, container) => {
         }
       }
 
-      if (direction === "down") {
+      if (direction === `down`) {
         el.after(...App.drag_els)
       }
       else {

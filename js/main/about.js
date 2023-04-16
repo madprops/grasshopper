@@ -1,61 +1,61 @@
 // Setup about
 App.setup_about = () => {
-  App.create_window({id: "about", setup: () => {
+  App.create_window({id: `about`, setup: () => {
     App.about_info_items = [
-      "Explore with the top-left menu or (Shift) Tab",
-      "Up, Down, and Enter keys to navigate and pick items",
-      "Type anytime to filter items, press Tab to reuse",
-      "Use Middle Click to close or launch items",
-      "Shift + Middle Click on items to bypass confirmations",
-      "Some buttons respond to mousewheel and keyboard",
-      "Shift + Up/Down to select multiple items",
-      "Ctrl + Click to select multiple items",
-      "Shift + Click to select item range",
-      "Right Click to show context menus",
-      "Shift + Enter to show context menus",
-      "Ctrl + A to pick all items",
-      "Delete key removes items",
-      "Ctrl + Left togles Main Menu",
-      "Ctrl + Down toggles Filter Modes",
-      "Ctrl + Right toggles Actions",
-      "Ctrl + Up goes to playing tab",
-      "Ctrl + Backspace goes to previous tab",
-      "Arrows, Enter, and Space work in media",
-      "Double click on empty tabs space opens a new tab"
+      `Explore with the top-left menu or (Shift) Tab`,
+      `Up, Down, and Enter keys to navigate and pick items`,
+      `Type anytime to filter items, press Tab to reuse`,
+      `Use Middle Click to close or launch items`,
+      `Shift + Middle Click on items to bypass confirmations`,
+      `Some buttons respond to mousewheel and keyboard`,
+      `Shift + Up/Down to select multiple items`,
+      `Ctrl + Click to select multiple items`,
+      `Shift + Click to select item range`,
+      `Right Click to show context menus`,
+      `Shift + Enter to show context menus`,
+      `Ctrl + A to pick all items`,
+      `Delete key removes items`,
+      `Ctrl + Left togles Main Menu`,
+      `Ctrl + Down toggles Filter Modes`,
+      `Ctrl + Right toggles Actions`,
+      `Ctrl + Up goes to playing tab`,
+      `Ctrl + Backspace goes to previous tab`,
+      `Arrows, Enter, and Space work in media`,
+      `Double click on empty tabs space opens a new tab`
     ]
 
     App.about_info_index = 0
 
-    App.ev(App.el("#about_info"), "click", () => {
+    App.ev(App.el(`#about_info`), `click`, () => {
       App.show_full_about_info()
     })
 
-    let image = App.el("#about_image")
+    let image = App.el(`#about_image`)
 
-    App.ev(image, "click", () => {
-      if (image.classList.contains("hue_rotate")) {
-        image.classList.remove("hue_rotate")
-        image.classList.add("invert")
+    App.ev(image, `click`, () => {
+      if (image.classList.contains(`hue_rotate`)) {
+        image.classList.remove(`hue_rotate`)
+        image.classList.add(`invert`)
       }
-      else if (image.classList.contains("invert")) {
-        image.classList.remove("invert")
+      else if (image.classList.contains(`invert`)) {
+        image.classList.remove(`invert`)
       }
       else {
-        image.classList.add("hue_rotate")
+        image.classList.add(`hue_rotate`)
       }
     })
 
-    let info_full = App.el("#about_info_full")
+    let info_full = App.el(`#about_info_full`)
 
     for (let item of App.about_info_items) {
-      let el = App.create("div")
-      el.textContent = item + "."
+      let el = App.create(`div`)
+      el.textContent = item + `.`
       info_full.append(el)
     }
 
     let manifest = browser.runtime.getManifest()
     let s = `Grasshopper v${manifest.version}`
-    App.el("#about_name").textContent = s
+    App.el(`#about_name`).textContent = s
     App.update_about_info()
   }, after_show: () => {
     App.start_about_info()
@@ -67,7 +67,7 @@ App.setup_about = () => {
 
 // Update about info
 App.update_about_info = () => {
-  App.el("#about_info").textContent = App.about_info_items[App.about_info_index]
+  App.el(`#about_info`).textContent = App.about_info_items[App.about_info_index]
 }
 
 // Previous about info
@@ -102,9 +102,9 @@ App.next_about_info = (manual = true) => {
 
 // Start about info
 App.start_about_info = () => {
-  App.el("#about_info").classList.remove("hidden")
-  App.el("#about_image").classList.remove("hidden")
-  App.el("#about_info_full").classList.add("hidden")
+  App.el(`#about_info`).classList.remove(`hidden`)
+  App.el(`#about_image`).classList.remove(`hidden`)
+  App.el(`#about_info_full`).classList.add(`hidden`)
 
   App.about_info_interval = setInterval(() => {
     App.next_about_info(false)
@@ -119,7 +119,7 @@ App.stop_about_info = () => {
 // Show full about info
 App.show_full_about_info = () => {
   App.stop_about_info()
-  App.el("#about_info").classList.add("hidden")
-  App.el("#about_image").classList.add("hidden")
-  App.el("#about_info_full").classList.remove("hidden")
+  App.el(`#about_info`).classList.add(`hidden`)
+  App.el(`#about_image`).classList.add(`hidden`)
+  App.el(`#about_info_full`).classList.remove(`hidden`)
 }

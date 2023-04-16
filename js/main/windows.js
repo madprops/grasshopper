@@ -5,7 +5,7 @@ App.create_window = (args) => {
   }
 
   if (args.align_top === undefined) {
-    args.align_top = "center"
+    args.align_top = `center`
   }
 
   if (args.show_top === undefined) {
@@ -13,7 +13,7 @@ App.create_window = (args) => {
   }
 
   if (args.cls === undefined) {
-    args.cls = "normal"
+    args.cls = `normal`
   }
 
   if (args.persistent === undefined) {
@@ -21,11 +21,11 @@ App.create_window = (args) => {
   }
 
   let w = {}
-  let el = App.create("div", `window_main window_main_${args.cls}`, `window_${args.id}`)
+  let el = App.create(`div`, `window_main window_main_${args.cls}`, `window_${args.id}`)
   let top, top_html
 
   if (args.show_top) {
-    top = App.create("div", `window_top window_top_${args.align_top} window_top_${args.cls}`, `window_top_${args.id}`)
+    top = App.create(`div`, `window_top window_top_${args.align_top} window_top_${args.cls}`, `window_top_${args.id}`)
     top_html = App.get_template(`${args.id}_top`)
 
     if (top_html) {
@@ -33,11 +33,11 @@ App.create_window = (args) => {
     }
 
     if (args.close_button) {
-      let x = App.create("div", "window_x action unselectable")
-      x.textContent = "x"
+      let x = App.create(`div`, `window_x action unselectable`)
+      x.textContent = `x`
       top.append(x)
 
-      App.ev(x, "click", () => {
+      App.ev(x, `click`, () => {
         if (args.on_x) {
           args.on_x()
         }
@@ -50,7 +50,7 @@ App.create_window = (args) => {
     el.append(top)
   }
 
-  let content = App.create("div", `window_content window_content_${args.cls}`, `window_content_${args.id}`)
+  let content = App.create(`div`, `window_content window_content_${args.cls}`, `window_content_${args.id}`)
   let content_html = App.get_template(args.id)
 
   if (content_html) {
@@ -59,7 +59,7 @@ App.create_window = (args) => {
 
   el.append(content)
   w.element = el
-  App.el("#main").append(el)
+  App.el(`#main`).append(el)
   w.setup = false
   w.visible = false
 
@@ -84,7 +84,7 @@ App.create_window = (args) => {
 
     w.check_setup()
     App.hide_all_windows()
-    w.element.style.display = "flex"
+    w.element.style.display = `flex`
 
     if (App.window_mode !== args.id) {
       App.last_window_mode = App.window_mode
@@ -118,7 +118,7 @@ App.create_window = (args) => {
 
 // Hide window
 App.hide_window = (w) => {
-  w.element.style.display = "none"
+  w.element.style.display = `none`
 }
 
 // Hide all windows
@@ -149,7 +149,7 @@ App.raise_window = (mode) => {
 }
 
 App.setup_window = () => {
-  App.ev(window, "blur", () => {
+  App.ev(window, `blur`, () => {
     NeedContext.hide()
   })
 }

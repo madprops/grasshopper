@@ -1,33 +1,33 @@
 // Setup stars
 App.setup_stars = () => {
   App.stars_actions = [
-    {text: "--separator--"},
+    {text: `--separator--`},
 
-    {text: "Undo", action: () => {
+    {text: `Undo`, action: () => {
       App.restore_stars()
     }},
 
-    {text: "Export", action: () => {
+    {text: `Export`, action: () => {
       App.export_stars()
     }},
 
-    {text: "Import", action: () => {
+    {text: `Import`, action: () => {
       App.import_stars()
     }},
   ]
 
-  App.setup_item_window("stars")
+  App.setup_item_window(`stars`)
 
-  App.create_window({id: "star_editor", setup: () => {
-    App.ev(App.el("#star_editor_save"), "click", () => {
+  App.create_window({id: `star_editor`, setup: () => {
+    App.ev(App.el(`#star_editor_save`), `click`, () => {
       App.star_editor_save()
     })
 
-    App.ev(App.el("#star_editor_remove"), "click", () => {
+    App.ev(App.el(`#star_editor_remove`), `click`, () => {
       App.remove_star()
     })
 
-    App.ev(App.el("#star_editor_clear"), "click", () => {
+    App.ev(App.el(`#star_editor_clear`), `click`, () => {
       App.clear_star_editor()
     })
   }, on_x: () => {
@@ -126,7 +126,7 @@ App.remove_star = () => {
     return
   }
 
-  App.show_confirm("Remove this star?", () => {
+  App.show_confirm(`Remove this star?`, () => {
     App.do_remove_stars([App.star_edited.id])
     App.hide_star_editor()
   })
@@ -135,8 +135,8 @@ App.remove_star = () => {
 // Do remove action
 App.do_remove_stars = (ids) => {
   for (let id of ids) {
-    if (App.get_items("stars")) {
-      let item = App.get_item_by_id("stars", id)
+    if (App.get_items(`stars`)) {
+      let item = App.get_item_by_id(`stars`, id)
 
       if (item) {
         App.remove_item(item)
@@ -151,16 +151,16 @@ App.do_remove_stars = (ids) => {
 // Show stars editor
 App.show_star_editor = (item) => {
   App.star_edited = App.get_star_by_id(item.id)
-  App.el("#star_editor_title").value = item.title
-  App.el("#star_editor_url").value = item.url
-  App.show_window("star_editor")
-  App.el("#star_editor_title").focus()
+  App.el(`#star_editor_title`).value = item.title
+  App.el(`#star_editor_url`).value = item.url
+  App.show_window(`star_editor`)
+  App.el(`#star_editor_title`).focus()
 }
 
 // Add or update star information
 App.star_editor_save = () => {
-  let title = App.el("#star_editor_title").value.trim()
-  let url = App.el("#star_editor_url").value.trim()
+  let title = App.el(`#star_editor_title`).value.trim()
+  let url = App.el(`#star_editor_url`).value.trim()
 
   if (!title || !url) {
     return
@@ -169,7 +169,7 @@ App.star_editor_save = () => {
   try {
     new URL(url)
   } catch (err) {
-    App.show_alert("Invalid URL")
+    App.show_alert(`Invalid URL`)
     return
   }
 
@@ -181,8 +181,8 @@ App.star_editor_save = () => {
       star.url = url
       App.update_star(star, false)
 
-      if (App.get_items("stars")) {
-        App.update_item("stars", App.star_edited.id, star)
+      if (App.get_items(`stars`)) {
+        App.update_item(`stars`, App.star_edited.id, star)
       }
 
       App.hide_star_editor()
@@ -195,8 +195,8 @@ App.star_editor_save = () => {
     url: url
   })
 
-  if (App.last_window_mode === "stars") {
-    App.show_item_window("stars")
+  if (App.last_window_mode === `stars`) {
+    App.show_item_window(`stars`)
   }
   else {
     App.hide_star_editor()
@@ -222,12 +222,12 @@ App.get_star_by_url = (url) => {
 }
 
 // Add a new star manually
-App.new_star = (title = "", url = "") => {
+App.new_star = (title = ``, url = ``) => {
   App.star_edited = undefined
-  App.el("#star_editor_title").value = title
-  App.el("#star_editor_url").value = url
-  App.show_window("star_editor")
-  App.el("#star_editor_title").focus()
+  App.el(`#star_editor_title`).value = title
+  App.el(`#star_editor_url`).value = url
+  App.show_window(`star_editor`)
+  App.el(`#star_editor_title`).focus()
 }
 
 // New star with pre-filled details
@@ -243,7 +243,7 @@ App.new_star_from_active = async () => {
 App.add_or_edit_star = (item) => {
   let star
 
-  if (item.mode === "stars") {
+  if (item.mode === `stars`) {
     star = App.get_star_by_id(item.id)
   }
   else{
@@ -260,48 +260,48 @@ App.add_or_edit_star = (item) => {
 
 // Update star editor info
 App.update_star_editor_info = () => {
-  let about = App.el("#star_editor_about")
-  let info = App.el("#star_editor_info")
-  let visits = App.el("#star_editor_visits")
-  let visited = App.el("#star_editor_visited")
-  let added = App.el("#star_editor_added")
-  let save = App.el("#star_editor_save")
-  let remove = App.el("#star_editor_remove")
-  let clear = App.el("#star_editor_clear")
-  let icon = App.el("#star_editor_icon")
+  let about = App.el(`#star_editor_about`)
+  let info = App.el(`#star_editor_info`)
+  let visits = App.el(`#star_editor_visits`)
+  let visited = App.el(`#star_editor_visited`)
+  let added = App.el(`#star_editor_added`)
+  let save = App.el(`#star_editor_save`)
+  let remove = App.el(`#star_editor_remove`)
+  let clear = App.el(`#star_editor_clear`)
+  let icon = App.el(`#star_editor_icon`)
 
   if (App.star_edited) {
-    save.textContent = "Update"
+    save.textContent = `Update`
     visits.textContent = App.star_edited.visits.toLocaleString()
     visited.textContent = App.nice_date(App.star_edited.date_last_visit)
     added.textContent = App.nice_date(App.star_edited.date_added)
-    about.classList.add("hidden")
-    info.classList.remove("hidden")
-    remove.classList.remove("hidden")
-    clear.classList.add("hidden")
-    App.el("use", icon).href.baseVal = "#star_solid_icon"
+    about.classList.add(`hidden`)
+    info.classList.remove(`hidden`)
+    remove.classList.remove(`hidden`)
+    clear.classList.add(`hidden`)
+    App.el(`use`, icon).href.baseVal = `#star_solid_icon`
   }
   else {
-    save.textContent = "Save"
-    about.classList.remove("hidden")
-    info.classList.add("hidden")
-    remove.classList.add("hidden")
-    clear.classList.remove("hidden")
-    App.el("use", icon).href.baseVal = "#star_icon"
+    save.textContent = `Save`
+    about.classList.remove(`hidden`)
+    info.classList.add(`hidden`)
+    remove.classList.add(`hidden`)
+    clear.classList.remove(`hidden`)
+    App.el(`use`, icon).href.baseVal = `#star_icon`
   }
 }
 
 // Remove multiple stars
 App.remove_stars = (item, force = false) => {
-  let active = App.get_active_items("stars", item)
+  let active = App.get_active_items(`stars`, item)
   let ids = active.map(x => x.id)
 
   App.show_confirm(`Remove stars? (${ids.length})`, () => {
     App.backup_stars()
     App.do_remove_stars(ids)
-    App.dehighlight("stars")
+    App.dehighlight(`stars`)
   }, () => {
-    App.dehighlight("stars")
+    App.dehighlight(`stars`)
   }, force)
 }
 
@@ -315,21 +315,21 @@ App.restore_stars = () => {
   if (App.stars_backup) {
     App.stars = App.stars_backup
     App.stor_save_stars()
-    App.show_window("stars")
+    App.show_window(`stars`)
   }
   else {
-    App.show_feedback("Nothing to undo")
+    App.show_feedback(`Nothing to undo`)
   }
 }
 
 // Display stars json
 App.export_stars = () => {
-  App.show_textarea("Copy this to import it later", JSON.stringify(App.stars, null, 2))
+  App.show_textarea(`Copy this to import it later`, JSON.stringify(App.stars, null, 2))
 }
 
 // Use star json to replace stars
 App.import_stars = () => {
-  App.show_input("Paste the data text here", "Import", (text) => {
+  App.show_input(`Paste the data text here`, `Import`, (text) => {
     if (!text) {
       return
     }
@@ -339,15 +339,15 @@ App.import_stars = () => {
     try {
       json = JSON.parse(text)
     } catch (err) {
-      App.show_alert("Invalid JSON")
+      App.show_alert(`Invalid JSON`)
       return
     }
 
     if (json) {
-      App.show_confirm("Use this data?", () => {
+      App.show_confirm(`Use this data?`, () => {
         App.stars = json
         App.stor_save_stars()
-        App.show_window("stars")
+        App.show_window(`stars`)
       })
     }
   })
@@ -403,7 +403,7 @@ App.toggle_star = (item, prepend = false) => {
     let obj = App.star_item(item)
 
     if (prepend) {
-      App.insert_item("stars", obj)
+      App.insert_item(`stars`, obj)
     }
 
     return true
@@ -412,7 +412,7 @@ App.toggle_star = (item, prepend = false) => {
 
 // Clear star editor
 App.clear_star_editor = () => {
-  App.el("#star_editor_title").value = ""
-  App.el("#star_editor_url").value = ""
-  App.el("#star_editor_title").focus()
+  App.el(`#star_editor_title`).value = ``
+  App.el(`#star_editor_url`).value = ``
+  App.el(`#star_editor_title`).focus()
 }

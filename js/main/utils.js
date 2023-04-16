@@ -42,11 +42,11 @@ App.create_debouncer = (func, delay) => {
 }
 
 // Create an html element
-App.create = (type, classes = "", id = "") => {
+App.create = (type, classes = ``, id = ``) => {
   let el = document.createElement(type)
 
   if (classes) {
-    let classlist = classes.split(" ").filter(x => x != "")
+    let classlist = classes.split(` `).filter(x => x != ``)
 
     for (let cls of classlist) {
       el.classList.add(cls)
@@ -67,7 +67,7 @@ App.ev = (element, action, callback, extra) => {
 
 // Remove protocol like https://
 App.remove_protocol = (url) => {
-  return url.replace(/^https?:\/\//, "")
+  return url.replace(/^https?:\/\//, ``)
 }
 
 // Copy text to the clipboard
@@ -75,7 +75,7 @@ App.copy_to_clipboard = (text, feedback = false) => {
   navigator.clipboard.writeText(text)
 
   if (feedback) {
-    App.show_feedback("Copied to clipboard")
+    App.show_feedback(`Copied to clipboard`)
   }
 }
 
@@ -107,7 +107,7 @@ App.get_hostname = (url) => {
     url_obj = new URL(url)
   }
   catch (err) {
-    return ""
+    return ``
   }
 
   return url_obj.hostname
@@ -120,12 +120,12 @@ App.urls_equal = (u1, u2) => {
 
 // Remove slashes from ending
 App.remove_slashes_end = (s) => {
-  return s.replace(/\/+$/g, "")
+  return s.replace(/\/+$/g, ``)
 }
 
 // Remove hash from url
 App.remove_hash = (url) => {
-  return url.split("#")[0]
+  return url.split(`#`)[0]
 }
 
 // The way to format urls
@@ -140,12 +140,12 @@ App.capitalize = (s) => {
 
 // Check if item's protocol is http
 App.is_http = (item) => {
-  return item.protocol === "http:" || item.protocol === "https:"
+  return item.protocol === `http:` || item.protocol === `https:`
 }
 
 // Get a nice date string
 App.nice_date = (date = Date.now()) => {
-  return dateFormat(date, "dd/mmm/yy | h:MM:ss tt")
+  return dateFormat(date, `dd/mmm/yy | h:MM:ss tt`)
 }
 
 // Get item coords
@@ -186,10 +186,10 @@ App.is_video = (src) => {
 
 // Extract extension from a string
 App.get_extension = (s) => {
-  if (s.startsWith("http://") || s.startsWith("https://")) {
+  if (s.startsWith(`http://`) || s.startsWith(`https://`)) {
     let u = new URL(s)
     let url = u.origin + u.pathname
-    let url_2 = url.split("//").slice(1).join("//")
+    let url_2 = url.split(`//`).slice(1).join(`//`)
     let matches = url_2.match(/\/.*\.(\w+)(?=$|[#?])/)
 
     if (matches) {
@@ -204,7 +204,7 @@ App.get_extension = (s) => {
     }
   }
 
-  return ""
+  return ``
 }
 
 // Get a template
@@ -231,28 +231,28 @@ App.close_window = () => {
   window.close()
 
   // Sidebar doesn't close so return to tabs
-  if (App.window_mode !== "tabs") {
-    App.show_item_window("tabs")
+  if (App.window_mode !== `tabs`) {
+    App.show_item_window(`tabs`)
   }
   else {
-    if (App.get_filter("tabs")) {
-      App.clear_filter("tabs")
+    if (App.get_filter(`tabs`)) {
+      App.clear_filter(`tabs`)
     }
   }
 }
 
-App.log = (message, mode = "normal") => {
+App.log = (message, mode = `normal`) => {
   let icon
 
-  if (mode === "normal") {
-    icon = "🟢"
+  if (mode === `normal`) {
+    icon = `🟢`
   }
-  else if (mode === "error") {
-    icon = "🔴"
+  else if (mode === `error`) {
+    icon = `🔴`
   }
 
   console.info(`${icon} Grasshopper: ${message}`)
 }
 
-App.image_extensions = ["jpg", "jpeg", "png", "gif", "webp", "bmp"]
-App.video_extensions = ["mp4", "webm"]
+App.image_extensions = [`jpg`, `jpeg`, `png`, `gif`, `webp`, `bmp`]
+App.video_extensions = [`mp4`, `webm`]

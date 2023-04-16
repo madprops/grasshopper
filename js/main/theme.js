@@ -7,35 +7,35 @@ App.setup_theme = () => {
 // Apply theme
 App.apply_theme = () => {
   try {
-    App.set_css_var("background_color", App.settings.background_color)
-    App.set_css_var("text_color", App.settings.text_color)
+    App.set_css_var(`background_color`, App.settings.background_color)
+    App.set_css_var(`text_color`, App.settings.text_color)
 
     let main_background = App.colorlib.rgb_to_rgba(App.settings.background_color, 0.94)
-    App.set_css_var("main_background", main_background)
+    App.set_css_var(`main_background`, main_background)
 
     let alt_color_1 = App.colorlib.rgb_to_rgba(App.settings.text_color, 0.20)
-    App.set_css_var("alt_color_1", alt_color_1)
+    App.set_css_var(`alt_color_1`, alt_color_1)
 
     let alt_color_2 = App.colorlib.rgb_to_rgba(App.settings.text_color, 0.50)
-    App.set_css_var("alt_color_2", alt_color_2)
+    App.set_css_var(`alt_color_2`, alt_color_2)
 
     let alt_background = App.colorlib.rgb_to_rgba(App.settings.background_color, 0.55)
-    App.set_css_var("alt_background", alt_background)
+    App.set_css_var(`alt_background`, alt_background)
 
-    App.set_css_var("font_size", App.settings.font_size + "px")
-    App.set_css_var("font", App.settings.font)
+    App.set_css_var(`font_size`, App.settings.font_size + `px`)
+    App.set_css_var(`font`, App.settings.font)
 
     let w = `${(App.settings.width / 100) * 800}px`
-    App.set_css_var("width", w)
+    App.set_css_var(`width`, w)
 
     let h = `${(App.settings.height / 100) * 600}px`
-    App.set_css_var("height", h)
+    App.set_css_var(`height`, h)
 
-    if (App.settings.background_image === "none") {
-      App.set_css_var("background_image", "unset")
+    if (App.settings.background_image === `none`) {
+      App.set_css_var(`background_image`, `unset`)
     }
     else {
-      App.set_css_var("background_image", `url(../img/backgrounds/${App.settings.background_image}.jpg)`)
+      App.set_css_var(`background_image`, `url(../img/backgrounds/${App.settings.background_image}.jpg)`)
     }
   }
   catch (e) {
@@ -62,11 +62,11 @@ App.change_color = (name, color) => {
 App.random_theme = (mode) => {
   let colors
 
-  if (mode === "dark") {
-    colors = App.get_random_theme("dark")
+  if (mode === `dark`) {
+    colors = App.get_random_theme(`dark`)
   }
-  else if (mode === "light") {
-    colors = App.get_random_theme("light")
+  else if (mode === `light`) {
+    colors = App.get_random_theme(`light`)
   }
 
   App.background_color_picker.setColor(colors.background_color)
@@ -90,7 +90,7 @@ App.detect_theme = async () => {
   let theme = await browser.theme.getCurrent()
 
   if (theme.colors.toolbar) {
-    let d1 = App.create("div", "hidden")
+    let d1 = App.create(`div`, `hidden`)
     d1.style.color = theme.colors.toolbar
     document.body.append(d1)
     let background_color = window.getComputedStyle(d1).color
@@ -104,7 +104,7 @@ App.detect_theme = async () => {
       text_color = App.colorlib.get_lighter_or_darker(background_color, App.theme_color_diff)
     }
 
-    let d2 = App.create("div", "hidden")
+    let d2 = App.create(`div`, `hidden`)
     d2.style.color = text_color
     document.body.append(d2)
 
@@ -117,5 +117,5 @@ App.detect_theme = async () => {
     return
   }
 
-  App.show_alert("Theme couldn't be detected")
+  App.show_alert(`Theme couldn't be detected`)
 }

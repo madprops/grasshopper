@@ -5,7 +5,7 @@ App.setup_items = () => {
 }
 
 // Select an item
-App.select_item = async (item, scroll = "nearest") => {
+App.select_item = async (item, scroll = `nearest`) => {
   if (!item.created) {
     App.create_item_element(item)
   }
@@ -13,22 +13,22 @@ App.select_item = async (item, scroll = "nearest") => {
   App.set_selected(item.mode, item)
 
   for (let el of App.els(`.${item.mode}_item`)) {
-    el.classList.remove("selected")
+    el.classList.remove(`selected`)
   }
 
-  App.get_selected(item.mode).element.classList.add("selected")
+  App.get_selected(item.mode).element.classList.add(`selected`)
 
-  if (scroll !== "none") {
+  if (scroll !== `none`) {
     App.get_selected(item.mode).element.scrollIntoView({block: scroll})
   }
 
   App.update_footer_info(item)
 
-  if (item.mode === "tabs") {
+  if (item.mode === `tabs`) {
     try {
       await browser.tabs.warmup(item.id)
     } catch (err) {
-      App.log("Error at tab warmup", "error")
+      App.log(`Error at tab warmup`, `error`)
     }
   }
 
@@ -65,7 +65,7 @@ App.highlight_next = (mode, dir) => {
   let items = App.get_items(mode).slice(0)
   let current = App.last_highlight || App.get_selected(mode)
 
-  if (dir === "above") {
+  if (dir === `above`) {
     items.reverse()
   }
 
@@ -90,7 +90,7 @@ App.highlight_next = (mode, dir) => {
 App.highlight_to_edge = (mode, dir) => {
   let items = App.get_items(mode).slice(0)
 
-  if (dir === "below") {
+  if (dir === `below`) {
     items.reverse()
   }
 
@@ -181,13 +181,13 @@ App.update_footer_info = (item) => {
 
 // Empty the footer
 App.empty_footer_info = () => {
-  App.set_footer_info(App.window_mode, "No Results")
+  App.set_footer_info(App.window_mode, `No Results`)
 }
 
 // Set footer info
 App.set_footer_info = (mode, text) => {
   let footer = App.el(`#${mode}_footer`)
-  let info = App.el(".footer_info", footer)
+  let info = App.el(`.footer_info`, footer)
   info.textContent = text
 }
 
@@ -214,10 +214,10 @@ App.get_items = (mode) => {
 
 // Select first item
 App.select_first_item = (mode, by_active = false) => {
-  if (mode === "tabs" && by_active) {
+  if (mode === `tabs` && by_active) {
     for (let item of App.get_items(mode)) {
       if (item.visible && item.active) {
-        App.select_item(item, "center")
+        App.select_item(item, `center`)
         return
       }
     }
@@ -242,7 +242,7 @@ App.filter_item_by_id = (mode, id) => {
 App.remove_item = (item) => {
   let mode = item.mode
 
-  if (mode !== "tabs") {
+  if (mode !== `tabs`) {
     if (App.get_selected(mode) === item) {
       let next_item = App.get_next_visible_item(mode, false) || App.get_prev_visible_item(mode, false)
 
@@ -274,10 +274,10 @@ App.do_item_filter = async (mode) => {
   App.log(`Filter: ${mode}`)
   let value = App.get_filter(mode)
 
-  if (mode === "history") {
+  if (mode === `history`) {
     await App.search_history()
 
-    if (App.window_mode !== "history") {
+    if (App.window_mode !== `history`) {
       return
     }
   }
@@ -289,11 +289,11 @@ App.do_item_filter = async (mode) => {
   }
 
   let filter_mode = App[`${mode}_filter_mode`]
-  let skip = !value && filter_mode === "all"
+  let skip = !value && filter_mode === `all`
   let words, filter_words
 
   if (!skip) {
-    words = value.split(" ").filter(x => x !== "")
+    words = value.split(` `).filter(x => x !== ``)
     filter_words = words.map(x => x.toLowerCase())
   }
 
@@ -307,38 +307,38 @@ App.do_item_filter = async (mode) => {
     let path = item.path_lower
 
     if (check(title, path)) {
-      if (filter_mode === "all") {
+      if (filter_mode === `all`) {
         match = true
       }
-      else if (filter_mode === "normal") {
+      else if (filter_mode === `normal`) {
         match = App.tab_is_normal(item)
       }
-      else if (filter_mode === "playing") {
+      else if (filter_mode === `playing`) {
         match = item.audible
       }
-      else if (filter_mode === "pins") {
+      else if (filter_mode === `pins`) {
         match = item.pinned
       }
-      else if (filter_mode === "muted") {
+      else if (filter_mode === `muted`) {
         match = item.muted
       }
-      else if (filter_mode === "suspended") {
+      else if (filter_mode === `suspended`) {
         match = item.discarded
       }
-      else if (filter_mode === "active") {
+      else if (filter_mode === `active`) {
         match = item.active
       }
-      else if (filter_mode === "images") {
+      else if (filter_mode === `images`) {
         match = item.image
       }
-      else if (filter_mode === "videos") {
+      else if (filter_mode === `videos`) {
         match = item.video
       }
-      else if (filter_mode === "http") {
-        match = item.protocol === "http:"
+      else if (filter_mode === `http`) {
+        match = item.protocol === `http:`
       }
-      else if (filter_mode === "https") {
-        match = item.protocol === "https:"
+      else if (filter_mode === `https`) {
+        match = item.protocol === `https:`
       }
     }
 
@@ -376,20 +376,20 @@ App.do_item_filter = async (mode) => {
   App.update_footer_info(App.get_selected(mode))
   App.update_footer_count(mode)
 
-  if (mode === "tabs") {
+  if (mode === `tabs`) {
     App.check_pinline()
   }
 }
 
 // Show item
 App.show_item = (it) => {
-  it.element.classList.remove("hidden")
+  it.element.classList.remove(`hidden`)
   it.visible = true
 }
 
 // Hide item
 App.hide_item = (it) => {
-  it.element.classList.add("hidden")
+  it.element.classList.add(`hidden`)
   it.visible = false
 }
 
@@ -399,10 +399,10 @@ App.show_item_menu = (item, x, y) => {
   let multiple = highlights.length > 0
   let items = []
 
-  if (item.mode === "tabs") {
+  if (item.mode === `tabs`) {
     if (item.pinned) {
       items.push({
-        text: "Unpin",
+        text: `Unpin`,
         action: () => {
           App.unpin_tabs(item)
         }
@@ -410,7 +410,7 @@ App.show_item_menu = (item, x, y) => {
     }
     else {
       items.push({
-        text: "Pin",
+        text: `Pin`,
         action: () => {
           App.pin_tabs(item)
         }
@@ -419,7 +419,7 @@ App.show_item_menu = (item, x, y) => {
 
     if (item.muted) {
       items.push({
-        text: "Unmute",
+        text: `Unmute`,
         action: () => {
           App.unmute_tabs(item)
         }
@@ -427,7 +427,7 @@ App.show_item_menu = (item, x, y) => {
     }
     else {
       items.push({
-        text: "Mute",
+        text: `Mute`,
         action: () => {
           App.mute_tabs(item)
         }
@@ -440,15 +440,15 @@ App.show_item_menu = (item, x, y) => {
   }
 
   items.push({
-    text: "Star",
+    text: `Star`,
     action: () => {
       App.star_items(item)
     }
   })
 
-  if (item.mode === "stars") {
+  if (item.mode === `stars`) {
     items.push({
-      text: "Remove",
+      text: `Remove`,
       action: () => {
         App.remove_stars(item)
       }
@@ -457,23 +457,23 @@ App.show_item_menu = (item, x, y) => {
 
   if (!multiple) {
     items.push({
-      text: "Filter",
+      text: `Filter`,
       action: () => {
         App.filter_domain(item)
       }
     })
 
     items.push({
-      text: "Copy",
+      text: `Copy`,
       items: [
       {
-        text: "Copy URL",
+        text: `Copy URL`,
         action: () => {
           App.copy_to_clipboard(item.url)
         }
       },
       {
-        text: "Copy Title",
+        text: `Copy Title`,
         action: () => {
           App.copy_to_clipboard(item.title)
         }
@@ -481,9 +481,9 @@ App.show_item_menu = (item, x, y) => {
     })
   }
 
-  if (item.mode === "tabs") {
+  if (item.mode === `tabs`) {
     items.push({
-      text: "More",
+      text: `More`,
       get_items: () => { return App.get_more_menu_items(item, multiple) }
     })
 
@@ -492,7 +492,7 @@ App.show_item_menu = (item, x, y) => {
     })
 
     items.push({
-      text: "Close",
+      text: `Close`,
       action: () => {
         App.close_tabs(item)
       }
@@ -500,7 +500,7 @@ App.show_item_menu = (item, x, y) => {
   }
   else {
     items.push({
-      text: "Launch",
+      text: `Launch`,
       action: () => {
         App.launch_items(item)
       }
@@ -517,7 +517,7 @@ App.get_move_menu_items = async (item, multiple) => {
 
   if (!multiple) {
     items.push({
-      text: "Detach",
+      text: `Detach`,
       action: () => {
         App.detach_tab(item)
       }
@@ -549,7 +549,7 @@ App.get_more_menu_items = (item, multiple) => {
 
   if (!multiple) {
     items.push({
-      text: "Duplicate",
+      text: `Duplicate`,
       action: () => {
         App.duplicate_tab(item)
       }
@@ -558,7 +558,7 @@ App.get_more_menu_items = (item, multiple) => {
 
   if (!item.discarded) {
     items.push({
-      text: "Suspend",
+      text: `Suspend`,
       action: () => {
         App.suspend_tabs(item)
       }
@@ -566,7 +566,7 @@ App.get_more_menu_items = (item, multiple) => {
   }
 
   items.push({
-    text: "Move",
+    text: `Move`,
     get_items: async () => { return await App.get_move_menu_items(item, multiple) }
   })
 
@@ -576,7 +576,7 @@ App.get_more_menu_items = (item, multiple) => {
 // Process items
 App.process_items = (mode, items) => {
   let container = App.el(`#${mode}_container`)
-  container.innerHTML = ""
+  container.innerHTML = ``
   App[`${mode}_items`] = []
   App[`${mode}_idx`] = 0
   App[`${mode}_items_original`] = items
@@ -589,7 +589,7 @@ App.process_items = (mode, items) => {
       continue
     }
 
-    if (mode === "closed" || mode === "history") {
+    if (mode === `closed` || mode === `history`) {
       exclude.push(obj.url)
     }
 
@@ -599,7 +599,7 @@ App.process_items = (mode, items) => {
 
   App.update_footer_count(mode)
 
-  if (mode === "tabs") {
+  if (mode === `tabs`) {
     App.check_playing()
     App.show_pinline()
   }
@@ -646,7 +646,7 @@ App.process_item = (mode, item, exclude = [], o_item) => {
     created: false,
   }
 
-  if (mode === "tabs") {
+  if (mode === `tabs`) {
     obj.active = item.active
     obj.pinned = item.pinned
     obj.audible = item.audible
@@ -654,10 +654,10 @@ App.process_item = (mode, item, exclude = [], o_item) => {
     obj.discarded = item.discarded
     obj.date = item.lastAccessed
   }
-  else if (mode === "history") {
+  else if (mode === `history`) {
     obj.date = item.lastVisitTime
   }
-  else if (mode === "closed") {
+  else if (mode === `closed`) {
     obj.date = item.lastAccessed
   }
 
@@ -681,54 +681,54 @@ App.process_item = (mode, item, exclude = [], o_item) => {
 
 // Create empty item
 App.create_empty_item_element = (item) => {
-  item.element = App.create("div", `grasshopper_item item ${item.mode}_item`)
+  item.element = App.create(`div`, `grasshopper_item item ${item.mode}_item`)
   item.element.dataset.id = item.id
   App[`${item.mode}_item_observer`].observe(item.element)
 }
 
 // Create an item element
 App.create_item_element = (item) => {
-  item.element.innerHTML = ""
+  item.element.innerHTML = ``
 
-  if (item.mode === "tabs") {
+  if (item.mode === `tabs`) {
     item.element.draggable = true
   }
 
   let icon = App.get_img_icon(item.favicon, item.url, item.pinned)
   item.element.append(icon)
 
-  let status = App.create("div", "item_status hidden")
+  let status = App.create(`div`, `item_status hidden`)
   item.element.append(status)
 
-  let text = App.create("div", "item_text")
+  let text = App.create(`div`, `item_text`)
   item.element.append(text)
   App.set_item_text(item)
 
-  if (item.mode === "tabs") {
+  if (item.mode === `tabs`) {
     if (item.pinned && App.settings.pin_icon) {
-      let pin_icon = App.create("div", "item_info item_info_pin")
+      let pin_icon = App.create(`div`, `item_info item_info_pin`)
       pin_icon.textContent = App.settings.pin_icon
-      pin_icon.title = "This tab is pinned"
+      pin_icon.title = `This tab is pinned`
       item.element.append(pin_icon)
     }
 
     if (!item.pinned && App.settings.normal_icon) {
-      let normal_icon = App.create("div", "item_info item_info_normal")
+      let normal_icon = App.create(`div`, `item_info item_info_normal`)
       normal_icon.textContent = App.settings.normal_icon
-      normal_icon.title = "This tab is normal"
+      normal_icon.title = `This tab is normal`
       item.element.append(normal_icon)
     }
   }
   else {
-    let launched = App.create("div", "item_info item_info_launched")
+    let launched = App.create(`div`, `item_info item_info_launched`)
     item.element.append(launched)
   }
 
   if (item.highlighted) {
-    item.element.classList.add("highlighted")
+    item.element.classList.add(`highlighted`)
   }
   else {
-    item.element.classList.remove("highlighted")
+    item.element.classList.remove(`highlighted`)
   }
 
   item.created = true
@@ -737,12 +737,12 @@ App.create_item_element = (item) => {
 
 // Get image favicon
 App.get_img_icon = (favicon, url) => {
-  let icon = App.create("img", "item_icon")
-  icon.loading = "lazy"
+  let icon = App.create(`img`, `item_icon`)
+  icon.loading = `lazy`
   icon.width = App.icon_size
   icon.height = App.icon_size
 
-  App.ev(icon, "error", () => {
+  App.ev(icon, `error`, () => {
     let icon_2 = App.get_jdenticon(url)
     icon.replaceWith(icon_2)
   })
@@ -753,8 +753,8 @@ App.get_img_icon = (favicon, url) => {
 
 // Get jdenticon icon
 App.get_jdenticon = (url) => {
-  let hostname = App.get_hostname(url) || "hostname"
-  let icon = App.create("canvas", "item_icon")
+  let hostname = App.get_hostname(url) || `hostname`
+  let icon = App.create(`canvas`, `item_icon`)
   icon.width = App.icon_size
   icon.height = App.icon_size
   jdenticon.update(icon, hostname)
@@ -763,7 +763,7 @@ App.get_jdenticon = (url) => {
 
 // Set item text content
 App.set_item_text = (item) => {
-  if (item.mode === "tabs") {
+  if (item.mode === `tabs`) {
     let icons = []
 
     if (item.discarded) {
@@ -779,31 +779,31 @@ App.set_item_text = (item) => {
     }
 
     if (icons.length > 0) {
-      let status = App.el(".item_status", item.element)
+      let status = App.el(`.item_status`, item.element)
 
       for (let icon of icons) {
-        let el = App.create("div")
+        let el = App.create(`div`)
         el.textContent = icon
         status.append(el)
       }
 
-      status.classList.remove("hidden")
+      status.classList.remove(`hidden`)
     }
   }
 
   let content
 
-  if (App.settings.text_mode === "title") {
+  if (App.settings.text_mode === `title`) {
     content = item.title || item.path
     item.footer = decodeURI(item.path) || item.title
   }
-  else if (App.settings.text_mode === "url") {
+  else if (App.settings.text_mode === `url`) {
     content = decodeURI(item.path) || item.title
     item.footer = item.title || item.path
   }
 
   content = content.substring(0, App.max_text_length).trim()
-  let text = App.el(".item_text", item.element)
+  let text = App.el(`.item_text`, item.element)
   text.textContent = content
 }
 
@@ -834,7 +834,7 @@ App.start_item_observers = () => {
   for (let mode of App.item_order) {
     let options = {
       root: App.el(`#${mode}_container`),
-      rootMargin: "0px",
+      rootMargin: `0px`,
       threshold: 0.1,
     }
 
@@ -850,7 +850,7 @@ App.intersection_observer = (mode, options) => {
         continue
       }
 
-      if (!entry.target.classList.contains("item")) {
+      if (!entry.target.classList.contains(`item`)) {
         return
       }
 
@@ -872,10 +872,10 @@ App.get_last_window_value = (cycle) => {
   let last_mode = App.window_mode
 
   if (!App.on_item_window(last_mode)) {
-    last_mode = "tabs"
+    last_mode = `tabs`
   }
 
-  let value = ""
+  let value = ``
 
   if (cycle) {
     value = App.get_filter(last_mode, false)
@@ -890,7 +890,7 @@ App.show_item_window = async (mode, cycle = false) => {
   App.windows[mode].show()
   App.empty_footer_info()
   App[`${mode}_item_filter`].cancel()
-  App.el(`#${mode}_container`).innerHTML = ""
+  App.el(`#${mode}_container`).innerHTML = ``
   App.set_filter(mode, value, false)
 
   let m = App[`${mode}_filter_modes`][0]
@@ -903,7 +903,7 @@ App.show_item_window = async (mode, cycle = false) => {
     return
   }
 
-  if (mode === "history" && value) {
+  if (mode === `history` && value) {
     // Filter will search
   }
   else {
@@ -925,7 +925,7 @@ App.setup_item_window = (mode) => {
   let args = {}
   args.id = mode
   args.close_button = false
-  args.align_top = "left"
+  args.align_top = `left`
 
   let mode_name = App.get_mode_name(mode)
   args.setup = () => {
@@ -934,39 +934,39 @@ App.setup_item_window = (mode) => {
     }, App.filter_delay)
 
     let win = App.el(`#window_content_${mode}`)
-    let container = App.create("div", "container unselectable", `${mode}_container`)
-    let footer = App.create("div", "footer unselectable", `${mode}_footer`)
-    let top = App.create("div", "item_top_container", `${mode}_top_container`)
+    let container = App.create(`div`, `container unselectable`, `${mode}_container`)
+    let footer = App.create(`div`, `footer unselectable`, `${mode}_footer`)
+    let top = App.create(`div`, `item_top_container`, `${mode}_top_container`)
     App.el(`#window_top_${mode}`).append(top)
 
     win.append(container)
     win.append(footer)
 
-    let footer_count = App.create("div", "footer_count action")
-    footer_count.textContent = "(--)"
+    let footer_count = App.create(`div`, `footer_count action`)
+    footer_count.textContent = `(--)`
 
-    App.ev(footer_count, "click", () => {
+    App.ev(footer_count, `click`, () => {
       App.highlight_items(mode)
     })
 
     footer.append(footer_count)
-    footer.append(App.create_icon("cube"))
+    footer.append(App.create_icon(`cube`))
 
-    let footer_info = App.create("div", "footer_info")
+    let footer_info = App.create(`div`, `footer_info`)
     footer.append(footer_info)
 
     App.setup_window_mouse(mode)
 
     //
-    let main_menu = App.create("div", "button icon_button", `${mode}_main_menu`)
+    let main_menu = App.create(`div`, `button icon_button`, `${mode}_main_menu`)
     main_menu.textContent = mode_name
-    main_menu.title = "Main Menu (Ctrl + Left)"
+    main_menu.title = `Main Menu (Ctrl + Left)`
 
-    App.ev(main_menu, "click", () => {
+    App.ev(main_menu, `click`, () => {
       App.show_main_menu(mode)
     })
 
-    App.ev(main_menu, "wheel", (e) => {
+    App.ev(main_menu, `wheel`, (e) => {
       if (e.deltaY < 0) {
         App.cycle_item_windows(true)
       }
@@ -976,32 +976,32 @@ App.setup_item_window = (mode) => {
     })
 
     //
-    let filter = App.create("input", "text filter", `${mode}_filter`)
-    filter.type = "text"
-    filter.autocomplete = "off"
+    let filter = App.create(`input`, `text filter`, `${mode}_filter`)
+    filter.type = `text`
+    filter.autocomplete = `off`
     filter.spellcheck = false
-    filter.placeholder = "Type to filter"
+    filter.placeholder = `Type to filter`
 
-    App.ev(filter, "input", () => {
+    App.ev(filter, `input`, () => {
       App[`${mode}_item_filter`].call()
     })
 
     //
-    let filter_modes = App.create("div", "button icon_button", `${mode}_filter_modes`)
-    filter_modes.title = "Filter Modes (Ctrl + Down)"
-    let filter_modes_text = App.create("div", "", `${mode}_filter_modes_text`)
+    let filter_modes = App.create(`div`, `button icon_button`, `${mode}_filter_modes`)
+    filter_modes.title = `Filter Modes (Ctrl + Down)`
+    let filter_modes_text = App.create(`div`, ``, `${mode}_filter_modes_text`)
     filter_modes.append(filter_modes_text)
 
     App[`${mode}_filter_modes`] = App[`${mode}_filter_modes`] || []
-    App[`${mode}_filter_modes`].unshift(["videos", "Videos"])
-    App[`${mode}_filter_modes`].unshift(["images", "Images"])
-    App[`${mode}_filter_modes`].unshift(["all", "All"])
+    App[`${mode}_filter_modes`].unshift([`videos`, `Videos`])
+    App[`${mode}_filter_modes`].unshift([`images`, `Images`])
+    App[`${mode}_filter_modes`].unshift([`all`, `All`])
 
-    App.ev(filter_modes, "click", () => {
+    App.ev(filter_modes, `click`, () => {
       App.show_filter_modes(mode)
     })
 
-    App.ev(filter_modes, "wheel", (e) => {
+    App.ev(filter_modes, `wheel`, (e) => {
       if (e.deltaY < 0) {
         App.cycle_filter_modes(mode, true)
       }
@@ -1013,22 +1013,22 @@ App.setup_item_window = (mode) => {
     //
     let playing, previous
 
-    if (mode === "tabs") {
-      playing = App.create("div", "button icon_button hidden", `${mode}_playing`)
-      playing.title = "Go To Playing Tab (Ctrl + Up)"
-      let playing_icon = App.create_icon("speaker")
+    if (mode === `tabs`) {
+      playing = App.create(`div`, `button icon_button hidden`, `${mode}_playing`)
+      playing.title = `Go To Playing Tab (Ctrl + Up)`
+      let playing_icon = App.create_icon(`speaker`)
 
-      App.ev(playing, "click", () => {
+      App.ev(playing, `click`, () => {
         App.go_to_playing()
       })
 
       playing.append(playing_icon)
 
-      previous = App.create("div", "button icon_button", `${mode}_previous`)
-      previous.title = "Go To Previous Tab (Ctrl + Backspace)"
-      let previous_icon = App.create_icon("back")
+      previous = App.create(`div`, `button icon_button`, `${mode}_previous`)
+      previous.title = `Go To Previous Tab (Ctrl + Backspace)`
+      let previous_icon = App.create_icon(`back`)
 
-      App.ev(previous, "click", () => {
+      App.ev(previous, `click`, () => {
         App.go_to_previous_tab()
       })
 
@@ -1038,12 +1038,12 @@ App.setup_item_window = (mode) => {
     //
     let new_star
 
-    if (mode === "stars") {
-      new_star = App.create("div", "button icon_button")
-      new_star.title = "New Star"
-      let new_star_icon = App.create_icon("plus")
+    if (mode === `stars`) {
+      new_star = App.create(`div`, `button icon_button`)
+      new_star.title = `New Star`
+      let new_star_icon = App.create_icon(`plus`)
 
-      App.ev(new_star, "click", () => {
+      App.ev(new_star, `click`, () => {
         App.new_star_from_active()
       })
 
@@ -1055,28 +1055,28 @@ App.setup_item_window = (mode) => {
       App[`${mode}_actions`] = []
     }
 
-    App[`${mode}_actions`].unshift({text: "Clear", action: () => {
+    App[`${mode}_actions`].unshift({text: `Clear`, action: () => {
       App.clear_filter(mode)
     }})
 
-    App[`${mode}_actions`].unshift({text: "Bottom", action: () => {
+    App[`${mode}_actions`].unshift({text: `Bottom`, action: () => {
       App.goto_bottom(mode)
     }})
 
-    App[`${mode}_actions`].unshift({text: "Top", action: () => {
+    App[`${mode}_actions`].unshift({text: `Top`, action: () => {
       App.goto_top(mode)
     }})
 
-    let actions_menu = App.create("div", "button icon_button", `${mode}_actions`)
-    let actions_icon = App.create_icon("sun")
+    let actions_menu = App.create(`div`, `button icon_button`, `${mode}_actions`)
+    let actions_icon = App.create_icon(`sun`)
     actions_menu.append(actions_icon)
-    actions_menu.title = "Actions (Ctrl + Right)"
+    actions_menu.title = `Actions (Ctrl + Right)`
 
     App[`show_${mode}_actions`] = () => {
       let items = []
 
       for (let item of App[`${mode}_actions`]) {
-        if (item.text === "--separator--") {
+        if (item.text === `--separator--`) {
           items.push({separator: true})
           continue
         }
@@ -1100,18 +1100,18 @@ App.setup_item_window = (mode) => {
       NeedContext.show_on_element(actions_menu, items, true, actions_menu.clientHeight)
     }
 
-    App.ev(actions_menu, "click", () => {
+    App.ev(actions_menu, `click`, () => {
       App.show_actions(mode)
     })
 
     //
-    if (mode === "tabs") {
+    if (mode === `tabs`) {
       App.setup_drag(mode, container)
     }
 
     // Append the top components
-    let left_top = App.create("div", "item_top_left")
-    let right_top = App.create("div", "item_top_right")
+    let left_top = App.create(`div`, `item_top_left`)
+    let right_top = App.create(`div`, `item_top_right`)
 
     left_top.append(main_menu)
     left_top.append(filter_modes)
@@ -1170,7 +1170,7 @@ App.cycle_item_windows = (reverse = false, cycle = false) => {
 
 // Update window order
 App.update_item_order = () => {
-  let boxes = App.els(".item_order_row", App.el("#settings_item_order"))
+  let boxes = App.els(`.item_order_row`, App.el(`#settings_item_order`))
   let modes = boxes.map(x => x.dataset.mode)
 
   for (let [i, mode] of modes.entries()) {
@@ -1249,7 +1249,7 @@ App.update_footer_count = (mode) => {
   let s1 = n1.toLocaleString()
   let s2 = n2.toLocaleString()
   let footer = App.el(`#${mode}_footer`)
-  let count = App.el(".footer_count", footer)
+  let count = App.el(`.footer_count`, footer)
 
   if (n1 > 0) {
     count.textContent = `${s1}/${s2}`
@@ -1305,15 +1305,15 @@ App.get_visible = (mode) => {
 
 // Clear the filter
 App.clear_filter = (mode) => {
-  App.set_filter(mode, "", false)
+  App.set_filter(mode, ``, false)
   App.do_item_filter(mode)
   App.focus_filter(mode)
 }
 
 // Show launched indicator
 App.show_launched = (item) => {
-  let launched = App.el(".item_info_launched", item.element)
-  launched.textContent = "(Launched)"
+  let launched = App.el(`.item_info_launched`, item.element)
+  launched.textContent = `(Launched)`
 }
 
 // Update item
@@ -1330,8 +1330,8 @@ App.update_item = (mode, id, info) => {
 App.filter_domain = (item) => {
   let hostname = App.get_hostname(item.url)
 
-  if (!hostname && item.url.includes(":")) {
-    hostname = item.url.split(":")[0] + ":"
+  if (!hostname && item.url.includes(`:`)) {
+    hostname = item.url.split(`:`)[0] + `:`
   }
 
   if (!hostname) {
@@ -1411,7 +1411,7 @@ App.set_filter_mode = (mode, filter_mode, action = true) => {
   App.el(`#${mode}_filter_modes_text`).textContent = filter_mode[1]
 
   if (action) {
-    if (filter_mode[0] === "all") {
+    if (filter_mode[0] === `all`) {
       App.clear_filter(mode)
     }
   }
@@ -1567,11 +1567,11 @@ App.toggle_highlight = (item, what) => {
   }
 
   if (highlight) {
-    item.element.classList.add("highlighted")
+    item.element.classList.add(`highlighted`)
     App.last_highlight = item
   }
   else {
-    item.element.classList.remove("highlighted")
+    item.element.classList.remove(`highlighted`)
 
     if (App.last_highlight === item) {
       App.last_highlight = undefined
@@ -1620,7 +1620,7 @@ App.launch_items = (item) => {
     return
   }
 
-  let s = App.plural(items.length, "item", "items")
+  let s = App.plural(items.length, `item`, `items`)
 
   App.show_confirm(`Launch ${s}?`, () => {
     for (let item of items) {
@@ -1693,9 +1693,9 @@ App.get_visible_media = (mode, what) => {
 
 // Create an svg icon
 App.create_icon = (name, type = 1) => {
-  let icon = document.createElementNS("http://www.w3.org/2000/svg", "svg")
+  let icon = document.createElementNS(`http://www.w3.org/2000/svg`, `svg`)
   icon.classList.add(`icon_${type}`)
-  let icon_use = document.createElementNS("http://www.w3.org/2000/svg", "use")
+  let icon_use = document.createElementNS(`http://www.w3.org/2000/svg`, `use`)
   icon_use.href.baseVal = `#${name}_icon`
   icon.append(icon_use)
   return icon
@@ -1721,16 +1721,16 @@ App.show_main_menu = (mode) => {
   })
 
   items.push({
-    text: "Settings",
+    text: `Settings`,
     action: () => {
-      App.show_window("settings_basic")
+      App.show_window(`settings_basic`)
     }
   })
 
   items.push({
-    text: "About",
+    text: `About`,
     action: () => {
-      App.show_window("about")
+      App.show_window(`about`)
     }
   })
 
@@ -1758,10 +1758,10 @@ App.get_active_items = (mode, item) => {
 App.insert_item = (mode, info) => {
   let item = App.process_item(mode, info)
 
-  if (mode === "tabs") {
+  if (mode === `tabs`) {
     App.get_items(mode).splice(info.index, 0, item)
     App.el(`#${mode}_container`).append(item.element)
-    App.move_item_element("tabs", item.element, info.index)
+    App.move_item_element(`tabs`, item.element, info.index)
   }
   else {
     let old = App.get_item_by_url(mode, item.url)
@@ -1781,8 +1781,8 @@ App.insert_item = (mode, info) => {
 
 // Get mode name
 App.get_mode_name = (mode) => {
-  if (mode === "bookmarks") {
-    return "BMarks"
+  if (mode === `bookmarks`) {
+    return `BMarks`
   }
   else {
     return App.capitalize(mode)
@@ -1801,7 +1801,7 @@ App.item_action = (item, close = true) => {
       return
     }
 
-    if (item.mode === "stars") {
+    if (item.mode === `stars`) {
       App.open_star(item, close)
     }
     else {

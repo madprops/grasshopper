@@ -1,10 +1,10 @@
 // Setup history
 App.setup_history = () => {
-  App.setup_item_window("history")
+  App.setup_item_window(`history`)
 
   browser.history.onVisited.addListener((info) => {
-    if (App.window_mode === "history") {
-      App.insert_item("history", info)
+    if (App.window_mode === `history`) {
+      App.insert_item(`history`, info)
     }
   })
 }
@@ -15,7 +15,7 @@ App.history_time = () => {
 }
 
 // Get items from history
-App.get_history = async (text = "") => {
+App.get_history = async (text = ``) => {
   let items = await browser.history.search({
     text: text,
     maxResults: App.history_max_results,
@@ -37,12 +37,12 @@ App.history_action_alt = (item) => {
 
 // Search the history
 App.search_history = async () => {
-  let value = App.el("#history_filter").value.trim()
+  let value = App.el(`#history_filter`).value.trim()
   let items = await App.get_history(value)
 
-  if (App.window_mode !== "history") {
+  if (App.window_mode !== `history`) {
     return
   }
 
-  App.process_items("history", items)
+  App.process_items(`history`, items)
 }

@@ -1,37 +1,37 @@
 // Setup tabs
 App.setup_tabs = () => {
   App.tabs_filter_modes = [
-    ["pins", "Pins"],
-    ["playing", "Playing"],
-    ["muted", "Muted"],
-    ["active", "Active"],
-    ["normal", "Normal"],
-    ["http", "Http"],
-    ["https", "Https"],
-    ["suspended", "zzz"],
+    [`pins`, `Pins`],
+    [`playing`, `Playing`],
+    [`muted`, `Muted`],
+    [`active`, `Active`],
+    [`normal`, `Normal`],
+    [`http`, `Http`],
+    [`https`, `Https`],
+    [`suspended`, `zzz`],
   ]
 
   App.tabs_actions = [
-    {text: "--separator--"},
+    {text: `--separator--`},
 
-    {text: "New", action: () => {
+    {text: `New`, action: () => {
       App.new_tab()
     }},
 
-    {text: "Info", action: () => {
+    {text: `Info`, action: () => {
       App.show_tabs_information()
     }},
 
-    {text: "Clean", action: () => {
+    {text: `Clean`, action: () => {
       App.clean_tabs()
     }},
   ]
 
-  App.setup_item_window("tabs")
+  App.setup_item_window(`tabs`)
 
   browser.tabs.onUpdated.addListener(async (id, cinfo, info) => {
     App.log(`Tab Updated: ID: ${id}`)
-    if (App.window_mode === "tabs" && info.windowId === App.window_id) {
+    if (App.window_mode === `tabs` && info.windowId === App.window_id) {
       await App.refresh_tab(id)
       App.tabs_check()
     }
@@ -39,7 +39,7 @@ App.setup_tabs = () => {
 
   browser.tabs.onActivated.addListener(async (info) => {
     App.log(`Tab Activated: ID: ${info.tabId}`)
-    if (App.window_mode === "tabs" && info.windowId === App.window_id) {
+    if (App.window_mode === `tabs` && info.windowId === App.window_id) {
       await App.on_tab_activated(info)
       App.tabs_check()
     }
@@ -47,7 +47,7 @@ App.setup_tabs = () => {
 
   browser.tabs.onRemoved.addListener((id, info) => {
     App.log(`Tab Removed: ID: ${id}`)
-    if (App.window_mode === "tabs" && info.windowId === App.window_id) {
+    if (App.window_mode === `tabs` && info.windowId === App.window_id) {
       App.remove_closed_tab(id)
       App.tabs_check()
     }
@@ -55,15 +55,15 @@ App.setup_tabs = () => {
 
   browser.tabs.onMoved.addListener((id, info) => {
     App.log(`Tab Moved: ID: ${id}`)
-    if (App.window_mode === "tabs" && info.windowId === App.window_id) {
-      App.move_item("tabs", info.fromIndex, info.toIndex)
+    if (App.window_mode === `tabs` && info.windowId === App.window_id) {
+      App.move_item(`tabs`, info.fromIndex, info.toIndex)
       App.tabs_check()
     }
   })
 
   browser.tabs.onDetached.addListener((id, info) => {
     App.log(`Tab Detached: ID: ${id}`)
-    if (App.window_mode === "tabs" && info.oldWindowId === App.window_id) {
+    if (App.window_mode === `tabs` && info.oldWindowId === App.window_id) {
       App.remove_closed_tab(id)
       App.tabs_check()
     }
@@ -73,8 +73,8 @@ App.setup_tabs = () => {
     App.do_empty_previous_tabs()
   }, App.empty_previous_tabs_delay)
 
-  App.ev(App.el("#window_tabs"), "dblclick", (e) => {
-    if (e.target.id === "tabs_container") {
+  App.ev(App.el(`#window_tabs`), `dblclick`, (e) => {
+    if (e.target.id === `tabs_container`) {
       App.new_tab()
     }
   })
@@ -93,7 +93,7 @@ App.get_tabs = async () => {
   try {
     tabs = await browser.tabs.query({currentWindow: true})
   } catch (err) {
-    App.log("Error at get tabs", "error")
+    App.log(`Error at get tabs`, `error`)
     return
   }
 
@@ -113,7 +113,7 @@ App.focus_tab = async (tab, close = true) => {
   try {
     await browser.tabs.update(tab.id, {active: true})
   } catch (err) {
-    App.log("Error at focus tab", "error")
+    App.log(`Error at focus tab`, `error`)
     App.remove_closed_tab(tab.id)
     App.tabs_check()
   }
@@ -128,7 +128,7 @@ App.close_tab = async (id) => {
   try {
     await browser.tabs.remove(id)
   } catch (err) {
-    App.log("Error at close tab", "error")
+    App.log(`Error at close tab`, `error`)
   }
 }
 
@@ -137,7 +137,7 @@ App.new_tab = async (url = undefined, close = true) => {
   try {
     await browser.tabs.create({active: close, url: url})
   } catch (err) {
-    App.log("Error at new tab", "error")
+    App.log(`Error at new tab`, `error`)
   }
 
   if (close) {
@@ -152,17 +152,17 @@ App.refresh_tab = async (id, select = false) => {
   try {
     info = await browser.tabs.get(id)
   } catch (err) {
-    App.log("Error at refresh tab", "error")
+    App.log(`Error at refresh tab`, `error`)
     return
   }
 
-  let tab = App.get_item_by_id("tabs", id)
+  let tab = App.get_item_by_id(`tabs`, id)
 
   if (tab) {
-    App.update_item("tabs", tab.id, info)
+    App.update_item(`tabs`, tab.id, info)
   }
   else {
-    tab = App.insert_item("tabs", info)
+    tab = App.insert_item(`tabs`, info)
   }
 
   if (select) {
@@ -175,7 +175,7 @@ App.pin_tab = async (id) => {
   try {
     await browser.tabs.update(id, {pinned: true})
   } catch (err) {
-    App.log("Error at pin tab", "error")
+    App.log(`Error at pin tab`, `error`)
   }
 }
 
@@ -184,7 +184,7 @@ App.unpin_tab = async (id) => {
   try {
     await browser.tabs.update(id, {pinned: false})
   } catch (err) {
-    App.log("Error at unpin tab", "error")
+    App.log(`Error at unpin tab`, `error`)
   }
 }
 
@@ -193,7 +193,7 @@ App.mute_tab = async (id) => {
   try {
     await browser.tabs.update(id, {muted: true})
   } catch (err) {
-    App.log("Error at mute tab", "error")
+    App.log(`Error at mute tab`, `error`)
   }
 }
 
@@ -202,33 +202,33 @@ App.unmute_tab = async (id) => {
   try {
     await browser.tabs.update(id, {muted: false})
   } catch (err) {
-    App.log("Error at unmute tab", "error")
+    App.log(`Error at unmute tab`, `error`)
   }
 }
 
 // Return pinned tabs
 App.get_pinned_tabs = () => {
-  return App.get_items("tabs").filter(x => x.pinned)
+  return App.get_items(`tabs`).filter(x => x.pinned)
 }
 
 // Return playing tabs
 App.get_playing_tabs = () => {
-  return App.get_items("tabs").filter(x => x.audible)
+  return App.get_items(`tabs`).filter(x => x.audible)
 }
 
 // Return muted tabs
 App.get_muted_tabs = () => {
-  return App.get_items("tabs").filter(x => x.muted)
+  return App.get_items(`tabs`).filter(x => x.muted)
 }
 
 // Return suspended tabs
 App.get_suspended_tabs = () => {
-  return App.get_items("tabs").filter(x => x.discarded)
+  return App.get_items(`tabs`).filter(x => x.discarded)
 }
 
 // Remove a closed tab
 App.remove_closed_tab = (id) => {
-  let tab = App.get_item_by_id("tabs", id)
+  let tab = App.get_item_by_id(`tabs`, id)
 
   if (tab) {
     App.remove_item(tab)
@@ -250,7 +250,7 @@ App.duplicate_tab = async (tab) => {
   try {
     await browser.tabs.create({active: true, url: tab.url})
   } catch (err) {
-    App.log("Error at duplicate tab", "error")
+    App.log(`Error at duplicate tab`, `error`)
   }
 
   App.close_window()
@@ -262,21 +262,21 @@ App.suspend_tab = async (tab) => {
     try {
       await browser.tabs.create({active: true})
     } catch (err) {
-      App.log("Error at suspend tab", "error")
+      App.log(`Error at suspend tab`, `error`)
     }
   }
 
   try {
     await browser.tabs.discard(tab.id)
   } catch (err) {
-    App.log("Error at suspend tab", "error")
+    App.log(`Error at suspend tab`, `error`)
   }
 }
 
 // Pin tabs
 App.pin_tabs = (item) => {
   let ids = []
-  let active = App.get_active_items("tabs", item)
+  let active = App.get_active_items(`tabs`, item)
 
   for (let tab of active) {
     if (tab.pinned) {
@@ -294,13 +294,13 @@ App.pin_tabs = (item) => {
     App.pin_tab(id)
   }
 
-  App.dehighlight("tabs")
+  App.dehighlight(`tabs`)
 }
 
 // Unpin tabs
 App.unpin_tabs = (item) => {
   let ids = []
-  let active = App.get_active_items("tabs", item)
+  let active = App.get_active_items(`tabs`, item)
 
   for (let tab of active) {
     if (!tab.pinned) {
@@ -318,14 +318,14 @@ App.unpin_tabs = (item) => {
     App.unpin_tab(id)
   }
 
-  App.dehighlight("tabs")
+  App.dehighlight(`tabs`)
 }
 
 // Suspend normal tabs
 App.suspend_tabs = (item) => {
   let tabs = []
   let warn = false
-  let active = App.get_active_items("tabs", item)
+  let active = App.get_active_items(`tabs`, item)
 
   for (let tab of active) {
     if (!App.is_http(tab)) {
@@ -349,9 +349,9 @@ App.suspend_tabs = (item) => {
         App.suspend_tab(tab)
       }
 
-      App.dehighlight("tabs")
+      App.dehighlight(`tabs`)
     }, () => {
-      App.dehighlight("tabs")
+      App.dehighlight(`tabs`)
     })
   }
   else {
@@ -359,7 +359,7 @@ App.suspend_tabs = (item) => {
       App.suspend_tab(tab)
     }
 
-    App.dehighlight("tabs")
+    App.dehighlight(`tabs`)
   }
 }
 
@@ -367,7 +367,7 @@ App.suspend_tabs = (item) => {
 App.close_tabs = (item, force = false) => {
   let ids = []
   let warn = false
-  let active = App.get_active_items("tabs", item)
+  let active = App.get_active_items(`tabs`, item)
 
   for (let tab of active) {
     if (tab.pinned || tab.audible) {
@@ -383,9 +383,9 @@ App.close_tabs = (item, force = false) => {
 
   App.show_confirm(`Close tabs? (${ids.length})`, () => {
     App.do_close_tabs(ids)
-    App.dehighlight("tabs")
+    App.dehighlight(`tabs`)
   }, () => {
-    App.dehighlight("tabs")
+    App.dehighlight(`tabs`)
   }, force || !warn)
 }
 
@@ -398,24 +398,24 @@ App.do_close_tabs = (ids) => {
 
 // Mute tabs
 App.mute_tabs = (item) => {
-  let active = App.get_active_items("tabs", item)
+  let active = App.get_active_items(`tabs`, item)
 
   for (let item of active) {
     App.mute_tab(item.id)
   }
 
-  App.dehighlight("tabs")
+  App.dehighlight(`tabs`)
 }
 
 // Unmute tabs
 App.unmute_tabs = (item) => {
-  let active = App.get_active_items("tabs", item)
+  let active = App.get_active_items(`tabs`, item)
 
   for (let item of active) {
     App.unmute_tab(item.id)
   }
 
-  App.dehighlight("tabs")
+  App.dehighlight(`tabs`)
 }
 
 // Check if tab is normal
@@ -426,13 +426,13 @@ App.tab_is_normal = (tab) => {
 
 // Show tabs information
 App.show_tabs_information = () => {
-  let all = App.get_items("tabs").length
+  let all = App.get_items(`tabs`).length
   let pins = App.get_pinned_tabs().length
   let playing = App.get_playing_tabs().length
   let muted = App.get_muted_tabs().length
   let suspended = App.get_suspended_tabs().length
 
-  let s = "Tab Count:\n\n"
+  let s = `Tab Count:\n\n`
 
   s += `All: ${all}\n`
   s += `Pins: ${pins}\n`
@@ -465,7 +465,7 @@ App.open_tab = async (url, close = true, args = {}) => {
   try {
     tab = await browser.tabs.create(opts)
   } catch (err) {
-    App.log("Error at open tab", "error")
+    App.log(`Error at open tab`, `error`)
   }
 
   return tab
@@ -473,8 +473,8 @@ App.open_tab = async (url, close = true, args = {}) => {
 
 // Update tab index
 App.update_tab_index = async () => {
-  for (let el of App.els(".tabs_item")) {
-    let index = App.get_item_element_index("tabs", el)
+  for (let el of App.els(`.tabs_item`)) {
+    let index = App.get_item_element_index(`tabs`, el)
     await App.do_move_tab_index(parseInt(el.dataset.id), index)
   }
 }
@@ -486,7 +486,7 @@ App.do_move_tab_index = async (id, index) => {
   try {
     ans = await browser.tabs.move(id, {index: index})
   } catch (err) {
-    App.log("Error at move tab index", "error")
+    App.log(`Error at move tab index`, `error`)
   }
 
   return ans
@@ -494,7 +494,7 @@ App.do_move_tab_index = async (id, index) => {
 
 // On tab activated
 App.on_tab_activated = async (e) => {
-  for (let tab of App.get_items("tabs")) {
+  for (let tab of App.get_items(`tabs`)) {
     tab.active = false
   }
 
@@ -503,7 +503,7 @@ App.on_tab_activated = async (e) => {
 
 // Move tabs
 App.move_tabs = async (item, window_id) => {
-  let active = App.get_active_items("tabs", item)
+  let active = App.get_active_items(`tabs`, item)
 
   for (let item of active) {
     let index = item.pinned ? 0 : -1
@@ -511,7 +511,7 @@ App.move_tabs = async (item, window_id) => {
     try {
       await browser.tabs.move(item.id, {index: index, windowId: window_id})
     } catch (err) {
-      App.log("Error at move tabs", "error")
+      App.log(`Error at move tabs`, `error`)
     }
   }
 
@@ -528,7 +528,7 @@ App.detach_tab = (tab) => {
 App.clean_tabs = () => {
   let ids = []
 
-  for (let tab of App.get_items("tabs")) {
+  for (let tab of App.get_items(`tabs`)) {
     if (!tab.pinned && !tab.audible) {
       ids.push(tab.id)
     }
@@ -545,12 +545,12 @@ App.clean_tabs = () => {
 
 // Show playing icon
 App.show_playing = () => {
-  App.el("#tabs_playing").classList.remove("hidden")
+  App.el(`#tabs_playing`).classList.remove(`hidden`)
 }
 
 // Hide playing icon
 App.hide_playing = () => {
-  App.el("#tabs_playing").classList.add("hidden")
+  App.el(`#tabs_playing`).classList.add(`hidden`)
 }
 
 // Check if a tab is playing
@@ -567,14 +567,14 @@ App.check_playing = () => {
 
 // Remove the pinline
 App.remove_pinline = () => {
-  for (let el of App.els("#tabs_container .pinline")) {
-    el.classList.remove("pinline")
+  for (let el of App.els(`#tabs_container .pinline`)) {
+    el.classList.remove(`pinline`)
   }
 }
 
 // Show the pinline after the last pin
 App.show_pinline = () => {
-  let tabs = App.get_items("tabs")
+  let tabs = App.get_items(`tabs`)
 
   if (!tabs) {
     return
@@ -584,7 +584,7 @@ App.show_pinline = () => {
 
   App.remove_pinline()
 
-  if (App.get_filter("tabs") || App.tabs_filter_mode !== "all") {
+  if (App.get_filter(`tabs`) || App.tabs_filter_mode !== `all`) {
     return
   }
 
@@ -594,7 +594,7 @@ App.show_pinline = () => {
     }
     else {
       if (last) {
-        last.element.classList.add("pinline")
+        last.element.classList.add(`pinline`)
       }
 
       break
@@ -604,7 +604,7 @@ App.show_pinline = () => {
 
 // Check pinline
 App.check_pinline = () => {
-  if (App.get_filter("tabs") || App.tabs_filter_mode !== "all") {
+  if (App.get_filter(`tabs`) || App.tabs_filter_mode !== `all`) {
     App.remove_pinline()
   } else {
     App.show_pinline()
@@ -613,7 +613,7 @@ App.check_pinline = () => {
 
 // Go the a tab emitting sound
 App.go_to_playing = () => {
-  let tabs = App.get_items("tabs").slice(0)
+  let tabs = App.get_items(`tabs`).slice(0)
   let waypoint = false
   let first
 
@@ -684,7 +684,7 @@ App.get_active_tab = async () => {
   try {
     tabs = await browser.tabs.query({currentWindow: true})
   } catch (err) {
-    App.log("Error at get active tab", "error")
+    App.log(`Error at get active tab`, `error`)
     return
   }
 

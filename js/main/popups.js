@@ -3,18 +3,18 @@ App.create_popup = (args) => {
   let p = {}
   p.setup = false
 
-  let popup = App.create("div", "popup_main", `popup_${args.id}`)
-  let container = App.create("div", "popup_container", `popup_container_${args.id}`)
+  let popup = App.create(`div`, `popup_main`, `popup_${args.id}`)
+  let container = App.create(`div`, `popup_container`, `popup_container_${args.id}`)
   container.innerHTML = App.get_template(args.id)
   popup.append(container)
 
-  App.ev(popup, "click", (e) => {
-    if (e.target.isConnected && !e.target.closest(".popup_container")) {
+  App.ev(popup, `click`, (e) => {
+    if (e.target.isConnected && !e.target.closest(`.popup_container`)) {
       App.popups[args.id].hide()
     }
   })
 
-  App.el("#main").append(popup)
+  App.el(`#main`).append(popup)
   p.element = popup
 
   p.show = () => {
@@ -24,13 +24,13 @@ App.create_popup = (args) => {
       App.log(`${args.id} popup setup`)
     }
 
-    p.element.style.display = "flex"
+    p.element.style.display = `flex`
     App.popup_mode = args.id
     App.popup_open = true
   }
 
   p.hide = () => {
-    p.element.style.display = "none"
+    p.element.style.display = `none`
     App.popup_open = false
   }
 
@@ -50,24 +50,24 @@ App.hide_popup = (id) => {
 // Setup popups
 App.setup_popups = () => {
   App.create_popup({
-    id: "alert"
+    id: `alert`
   })
 
   App.create_popup({
-    id: "dialog"
+    id: `dialog`
   })
 
   App.create_popup({
-    id: "textarea", setup: () => {
-      App.ev(App.el("#textarea_copy"), "click", () => {
+    id: `textarea`, setup: () => {
+      App.ev(App.el(`#textarea_copy`), `click`, () => {
         App.textarea_copy()
       })
     }
   })
 
   App.create_popup({
-    id: "input", setup: () => {
-      App.ev(App.el("#input_submit"), "click", () => {
+    id: `input`, setup: () => {
+      App.ev(App.el(`#input_submit`), `click`, () => {
         App.input_enter()
       })
     }
@@ -77,12 +77,12 @@ App.setup_popups = () => {
 // Show alert
 App.show_alert = (message, autohide_delay = 0) => {
   clearTimeout(App.alert_autohide)
-  App.el("#alert_message").textContent = message
-  App.show_popup("alert")
+  App.el(`#alert_message`).textContent = message
+  App.show_popup(`alert`)
 
   if (autohide_delay > 0) {
     App.alert_autohide = setTimeout(() => {
-      App.hide_popup("alert")
+      App.hide_popup(`alert`)
     }, autohide_delay)
   }
 }
@@ -94,21 +94,21 @@ App.show_feedback = (message) => {
 
 // Show dialog with a list of buttons
 App.show_dialog = (message, buttons) => {
-  App.el("#dialog_message").textContent = message
-  let btns = App.el("#dialog_buttons")
-  btns.innerHTML = ""
+  App.el(`#dialog_message`).textContent = message
+  let btns = App.el(`#dialog_buttons`)
+  btns.innerHTML = ``
 
   for (let button of buttons) {
-    let btn = App.create("div", "button")
+    let btn = App.create(`div`, `button`)
     btn.textContent = button[0]
 
-    App.ev(btn, "click", () => {
-      App.hide_popup("dialog")
+    App.ev(btn, `click`, () => {
+      App.hide_popup(`dialog`)
       button[1]()
     })
 
     if (button[2]) {
-      btn.classList.add("button_2")
+      btn.classList.add(`button_2`)
     }
 
     btns.append(btn)
@@ -117,17 +117,17 @@ App.show_dialog = (message, buttons) => {
 
   App.dialog_buttons = buttons
   App.focus_dialog_button(buttons.length - 1)
-  App.show_popup("dialog")
+  App.show_popup(`dialog`)
 }
 
 // Focus dialog button
 App.focus_dialog_button = (index) => {
   for (let [i, btn] of App.dialog_buttons.entries()) {
     if (i === index) {
-      btn.element.classList.add("hovered")
+      btn.element.classList.add(`hovered`)
     }
     else {
-      btn.element.classList.remove("hovered")
+      btn.element.classList.remove(`hovered`)
     }
   }
 
@@ -150,7 +150,7 @@ App.dialog_right = () => {
 
 // Dialog action
 App.dialog_enter = () => {
-  App.hide_popup("dialog")
+  App.hide_popup(`dialog`)
   App.dialog_buttons[App.dialog_index][1]()
 }
 
@@ -166,8 +166,8 @@ App.show_confirm = (message, confirm_action, cancel_action, force = false) => {
   }
 
   let buttons = [
-    ["Cancel", cancel_action, true],
-    ["Confirm", confirm_action]
+    [`Cancel`, cancel_action, true],
+    [`Confirm`, confirm_action]
   ]
 
   App.show_dialog(message, buttons)
@@ -175,30 +175,30 @@ App.show_confirm = (message, confirm_action, cancel_action, force = false) => {
 
 // Show textarea
 App.show_textarea = (message, text) => {
-  App.el("#textarea_message").textContent = message
-  App.el("#textarea_text").value = text
-  App.show_popup("textarea")
+  App.el(`#textarea_message`).textContent = message
+  App.el(`#textarea_text`).value = text
+  App.show_popup(`textarea`)
 }
 
 // Copy textarea to clipboard
 App.textarea_copy = () => {
-  App.hide_popup("textarea")
-  App.copy_to_clipboard(App.el("#textarea_text").value.trim())
+  App.hide_popup(`textarea`)
+  App.copy_to_clipboard(App.el(`#textarea_text`).value.trim())
 }
 
 // Show input
 App.show_input = (message, button, action) => {
   App.input_action = action
-  App.el("#input_message").textContent = message
-  let  input_text = App.el("#input_text")
-  input_text.value = ""
-  App.el("#input_submit").textContent = button
-  App.show_popup("input")
+  App.el(`#input_message`).textContent = message
+  let  input_text = App.el(`#input_text`)
+  input_text.value = ``
+  App.el(`#input_submit`).textContent = button
+  App.show_popup(`input`)
   input_text.focus()
 }
 
 // On input enter
 App.input_enter = () => {
-  App.hide_popup("input")
-  App.input_action(App.el("#input_text").value.trim())
+  App.hide_popup(`input`)
+  App.input_action(App.el(`#input_text`).value.trim())
 }
