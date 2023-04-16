@@ -30,7 +30,7 @@ App.setup_tabs = function () {
   App.setup_item_window("tabs")
 
   browser.tabs.onUpdated.addListener(async function (id, cinfo, info) {
-    console.info(`Tab Updated: ${id}`)
+    console.info(`Tab Updated: ID: ${id}`)
     if (App.window_mode === "tabs" && info.windowId === App.window_id) {
       await App.refresh_tab(id)
       App.tabs_check()
@@ -38,7 +38,7 @@ App.setup_tabs = function () {
   })
 
   browser.tabs.onActivated.addListener(async function (info) {
-    console.info(`Tab Activated: ${info.tabId}`)
+    console.info(`Tab Activated: ID: ${info.tabId}`)
     if (App.window_mode === "tabs" && info.windowId === App.window_id) {
       await App.on_tab_activated(info)
       App.tabs_check()
@@ -46,7 +46,7 @@ App.setup_tabs = function () {
   })
 
   browser.tabs.onRemoved.addListener(function (id, info) {
-    console.info(`Tab Removed: ${id}`)
+    console.info(`Tab Removed: ID: ${id}`)
     if (App.window_mode === "tabs" && info.windowId === App.window_id) {
       App.remove_closed_tab(id)
       App.tabs_check()
@@ -54,7 +54,7 @@ App.setup_tabs = function () {
   })
 
   browser.tabs.onMoved.addListener(function (id, info) {
-    console.info(`Tab Moved: ${id}`)
+    console.info(`Tab Moved: ID: ${id}`)
     if (App.window_mode === "tabs" && info.windowId === App.window_id) {
       App.move_item("tabs", info.fromIndex, info.toIndex)
       App.tabs_check()
@@ -62,7 +62,7 @@ App.setup_tabs = function () {
   })
 
   browser.tabs.onDetached.addListener(function (id, info) {
-    console.info(`Tab Detached: ${id}`)
+    console.info(`Tab Detached: ID: ${id}`)
     if (App.window_mode === "tabs" && info.oldWindowId === App.window_id) {
       App.remove_closed_tab(id)
       App.tabs_check()
