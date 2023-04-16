@@ -51,17 +51,6 @@ App.stor_save_settings = function () {
   App.save_local_storage(App.stor_settings_name, App.settings)
 }
 
-// Get tab state from storage
-App.stor_get_tab_state = function () {
-  App.tab_state = App.get_local_storage(App.stor_tab_state_name, {})
-  console.info("Stor: Got tab state")
-}
-
-// Save tab state to storage
-App.stor_save_tab_state = function () {
-  App.save_local_storage(App.stor_tab_state_name, App.tab_state)
-}
-
 // Get stars from storage
 App.stor_get_stars = function () {
   App.stars = App.get_local_storage(App.stor_stars_name, [])

@@ -22,19 +22,6 @@ App.setup_tabs = function () {
       App.show_tabs_information()
     }},
 
-    {text: "State", items: [
-      {
-        text: "Save State", items: App.get_save_tab_state_items()
-      },
-      {
-        text: "Load State", items: App.get_load_tab_state_items()
-      }
-    ]},
-
-    {text: "Undo", action: function () {
-      App.undo_close()
-    }},
-
     {text: "Clean", action: function () {
       App.clean_tabs()
     }},
@@ -81,10 +68,6 @@ App.setup_tabs = function () {
       App.tabs_check()
     }
   })
-
-  App.unlock_backup_tabs = App.create_debouncer(function () {
-    App.backup_tabs_locked = false
-  }, App.lock_backup_delay)
 
   App.empty_previous_tabs = App.create_debouncer(function () {
     App.do_empty_previous_tabs()
@@ -225,22 +208,22 @@ App.unmute_tab = async function (id) {
 
 // Return pinned tabs
 App.get_pinned_tabs = function () {
-  return App.tabs_items.filter(x => x.pinned)
+  return App.get_items("tabs").filter(x => x.pinned)
 }
 
 // Return playing tabs
 App.get_playing_tabs = function () {
-  return App.tabs_items.filter(x => x.audible)
+  return App.get_items("tabs").filter(x => x.audible)
 }
 
 // Return muted tabs
 App.get_muted_tabs = function () {
-  return App.tabs_items.filter(x => x.muted)
+  return App.get_items("tabs").filter(x => x.muted)
 }
 
 // Return suspended tabs
 App.get_suspended_tabs = function () {
-  return App.tabs_items.filter(x => x.discarded)
+  return App.get_items("tabs").filter(x => x.discarded)
 }
 
 // Remove a closed tab
@@ -408,8 +391,6 @@ App.close_tabs = function (item, force = false) {
 
 // Do close tabs
 App.do_close_tabs = function (ids) {
-  App.backup_tabs()
-
   for (let id of ids) {
     App.close_tab(id)
   }
@@ -445,7 +426,7 @@ App.tab_is_normal = function (tab) {
 
 // Show tabs information
 App.show_tabs_information = function () {
-  let all = App.tabs_items.length
+  let all = App.get_items("tabs").length
   let pins = App.get_pinned_tabs().length
   let playing = App.get_playing_tabs().length
   let muted = App.get_muted_tabs().length
@@ -472,158 +453,6 @@ App.toggle_pin = function (item) {
   }
 }
 
-// Save tab state
-App.save_tab_state = function (n) {
-  App.show_confirm(`Save tab state on #${n}?`, function () {
-    App.tab_state[n] = App.get_tab_state()
-    App.stor_save_tab_state()
-  })
-}
-
-// Load tab state
-App.load_tab_state = function (n) {
-  let items = App.tab_state[n]
-
-  if (!items) {
-    App.show_feedback(`Nothing saved on #${n}`)
-    return
-  }
-
-  App.do_load_tab_state(items)
-}
-
-// Do load tab state
-App.do_load_tab_state = function (items, confirm = true) {
-  let urls = items.map(x => x.url)
-  let to_open = items.slice(0)
-  let to_close = []
-  let tabs = App.tabs_items
-
-  for (let tab of tabs) {
-    for (let [i, item] of to_open.entries()) {
-      if ((tab.url === item.url) || (item.url === "about" && !App.is_http(tab))) {
-        to_open.splice(i, 1)
-        break
-      }
-    }
-  }
-
-  for (let tab of tabs) {
-    let url = App.is_http(tab) ? tab.url : "about"
-    let i = urls.indexOf(url)
-
-    if (i === -1) {
-      to_close.push(tab)
-    }
-    else {
-      urls.splice(i, 1)
-    }
-  }
-
-  let s1 = App.plural(to_open.length, "tab", "tabs")
-  let s2 = App.plural(to_close.length, "tab", "tabs")
-
-  async function restore () {
-    App.show_alert("Restoring...")
-
-    for (let item of to_close) {
-      App.close_tab(item.id)
-    }
-
-    for (let item of to_open) {
-      try {
-        if (item.url === "about") {
-          await App.new_tab(undefined, false)
-        }
-        else {
-          await App.open_tab(item.url, false)
-        }
-      }
-      catch (e) {
-        console.error(e)
-      }
-    }
-
-    setTimeout(async function () {
-      setTimeout(function () {
-        App.hide_popup("alert")
-        App.show_item_window("tabs")
-      }, App.load_tabs_delay)
-
-      let tabs = App.tabs_items.slice(0)
-
-      for (let tab of tabs) {
-        tab.xset = false
-        tab.xindex = tabs.length
-      }
-
-      for (let [i, item] of items.entries()) {
-        for (let tab of tabs) {
-          if ((!item.empty && (item.url === tab.url)) || (item.url === "about" && !App.is_http(tab))) {
-            if (!tab.xset) {
-              tab.pinned = item.pinned
-              tab.discarded = item.discarded
-              tab.xset = true
-              tab.xindex = i
-              break
-            }
-          }
-        }
-      }
-
-      tabs.sort(function (a, b) {
-        return a.xindex < b.xindex ? -1 : 1
-      })
-
-      for (let [i, tab] of tabs.entries()) {
-        try {
-          if (tab.pinned) {
-            await App.pin_tab(tab.id)
-          }
-          else {
-            await App.unpin_tab(tab.id)
-          }
-
-          if (tab.discarded) {
-            await App.suspend_tab(tab)
-          }
-
-          await App.do_move_tab_index(tab.id, i)
-        }
-        catch (err) {
-          console.error(err)
-        }
-      }
-    }, App.load_tabs_delay)
-  }
-
-  if (confirm) {
-    App.show_confirm(`Open ${s1} and close ${s2}?`, function () {
-      restore()
-    })
-  }
-  else {
-    restore()
-  }
-}
-
-// Get tab state
-App.get_tab_state = function () {
-  let items = []
-
-  for (let tab of App.tabs_items) {
-    let url = App.is_http(tab) ? tab.url : "about"
-
-    items.push({
-      url: url,
-      pinned: tab.pinned,
-      discarded: tab.discarded,
-    })
-  }
-
-  return items
-}
-
 // Open a tab
 App.open_tab = async function (url, close = true, args = {}) {
   let opts = {}
@@ -640,105 +469,6 @@ App.open_tab = async function (url, close = true, args = {}) {
   }
 
   return tab
-}
-
-// Uno tabs close
-App.undo_close = function () {
-  if (!App.tabs_backup) {
-    App.show_feedback("Nothing to undo")
-  }
-  else {
-    App.do_load_tab_state(App.tabs_backup)
-  }
-}
-
-// Backup tab state
-App.backup_tabs = function () {
-  if (App.backup_tabs_locked) {
-    App.unlock_backup_tabs.call()
-    return
-  }
-
-  App.tabs_backup = App.get_tab_state()
-  App.backup_tabs_locked = true
-  App.unlock_backup_tabs.call()
-  App.stor_save_tab_state()
-}
-
-// Get save tab state items
-App.get_save_tab_state_items = function () {
-  let items = [
-    {
-      text: "Save on #1",
-      action: function () {
-        App.save_tab_state(1)
-      }
-    },
-    {
-      text: "Save on #2",
-      action: function () {
-        App.save_tab_state(2)
-      }
-    },
-    {
-      text: "Save on #3",
-      action: function () {
-        App.save_tab_state(3)
-      }
-    },
-    {
-      text: "Save on #4",
-      action: function () {
-        App.save_tab_state(4)
-      }
-    },
-    {
-      text: "Save on #5",
-      action: function () {
-        App.save_tab_state(5)
-      }
-    }
-  ]
-
-  return items
-}
-
-// Get load tab state items
-App.get_load_tab_state_items = function () {
-  let items = [
-    {
-      text: "Load #1",
-      action: function () {
-        App.load_tab_state(1)
-      }
-    },
-    {
-      text: "Load #2",
-      action: function () {
-        App.load_tab_state(2)
-      }
-    },
-    {
-      text: "Load #3",
-      action: function () {
-        App.load_tab_state(3)
-      }
-    },
-    {
-      text: "Load #4",
-      action: function () {
-        App.load_tab_state(4)
-      }
-    },
-    {
-      text: "Load #5",
-      action: function () {
-        App.load_tab_state(5)
-      }
-    }
-  ]
-
-  return items
 }
 
 // Update tab index
@@ -764,7 +494,7 @@ App.do_move_tab_index = async function (id, index) {
 
 // On tab activated
 App.on_tab_activated = async function (e) {
-  for (let tab of App.tabs_items) {
+  for (let tab of App.get_items("tabs")) {
     tab.active = false
   }
 
@@ -798,7 +528,7 @@ App.detach_tab = function (tab) {
 App.clean_tabs = function () {
   let ids = []
 
-  for (let tab of App.tabs_items) {
+  for (let tab of App.get_items("tabs")) {
     if (!tab.pinned && !tab.audible) {
       ids.push(tab.id)
     }
@@ -844,7 +574,9 @@ App.remove_pinline = function () {
 
 // Show the pinline after the last pin
 App.show_pinline = function () {
-  if (!App.tabs_items) {
+  let tabs = App.get_items("tabs")
+
+  if (!tabs) {
     return
   }
 
@@ -856,7 +588,7 @@ App.show_pinline = function () {
     return
   }
 
-  for (let tab of App.tabs_items) {
+  for (let tab of tabs) {
     if (tab.pinned) {
       last = tab
     }
@@ -881,7 +613,7 @@ App.check_pinline = function () {
 
 // Go the a tab emitting sound
 App.go_to_playing = function () {
-  let tabs = App.tabs_items.slice(0)
+  let tabs = App.get_items("tabs").slice(0)
   let waypoint = false
   let first
 

@@ -203,6 +203,10 @@ App.set_selected = function (mode, what) {
 
 // Get items
 App.get_items = function (mode) {
+  if (App[`${mode}_items`]) {
+    App[`${mode}_items`] = App[`${mode}_items`].filter(x => x !== undefined)
+  }
+
   return App[`${mode}_items`] || []
 }
 
@@ -225,10 +229,15 @@ App.select_first_item = function (mode, by_active = false) {
   }
 }
 
+// Filter items by id
+App.filter_item_by_id = function (mode, id) {
+  id = id.toString()
+  App[`${mode}_items`] = App[`${mode}_items`].filter(x => x.id.toString() !== id)
+}
+
 // Remove an item from the list
 App.remove_item = function (item) {
   let mode = item.mode
-  let items = App.get_items(mode)
 
   if (mode !== "tabs") {
     if (App.get_selected(mode) === item) {
@@ -243,15 +252,7 @@ App.remove_item = function (item) {
   }
 
   item.element.remove()
-  let id = item.id.toString()
-
-  for (let [i, it] of items.entries()) {
-    if (it.id.toString() === id) {
-      items.splice(i, 1)
-      break
-    }
-  }
-
+  App.filter_item_by_id(mode, item.id)
   App.update_footer_count(mode)
 
   if (App.get_filter(mode)) {

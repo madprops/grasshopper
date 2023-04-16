@@ -1,5 +1,4 @@
 App.stor_settings_name = "settings_v20"
-App.stor_tab_state_name = "tab_state_v20"
 App.stor_stars_name = "stars_state_v20"
 
 App.item_modes = ["tabs", "stars", "bookmarks", "closed", "history"]
@@ -21,7 +20,6 @@ App.max_text_length = 200
 
 App.filter_delay = 200
 App.alert_autohide_delay = 1500
-App.lock_backup_delay = 2000
 App.load_tabs_delay = 1000
 
 NeedContext.min_width = "4.5rem"
@@ -31,7 +29,6 @@ App.init = async function () {
   App.window_id = win.id
 
   App.stor_get_settings()
-  App.stor_get_tab_state()
   App.stor_get_stars()
 
   App.setup_theme()

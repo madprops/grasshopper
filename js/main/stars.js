@@ -135,7 +135,7 @@ App.remove_star = function () {
 // Do remove action
 App.do_remove_stars = function (ids) {
   for (let id of ids) {
-    if (App.stars_items) {
+    if (App.get_items("stars")) {
       let item = App.get_item_by_id("stars", id)
 
       if (item) {
@@ -181,7 +181,7 @@ App.star_editor_save = function () {
       star.url = url
       App.update_star(star, false)
 
-      if (App.stars_items) {
+      if (App.get_items("stars")) {
         App.update_item("stars", App.star_edited.id, star)
       }
 
