@@ -8,6 +8,7 @@ App.default_settings = {
   stars_index: {value: 4, category: `basic`},
   lock_drag: {value: false, category: `basic`},
   switch_to_tabs: {value: true, category: `basic`},
+  hover_tooltips: {value: true, category: `basic`},
   width: {value: 70, category: `basic`},
   height: {value: 80, category: `basic`},
   font: {value: `gh_sans`, category: `basic`},
