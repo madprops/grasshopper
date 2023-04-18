@@ -19,7 +19,7 @@ App.setup_tabs = () => {
     }},
 
     {text: `Info`, action: () => {
-      App.show_tabs_information()
+      App.show_tabs_info()
     }},
 
     {text: `Clean`, action: () => {
@@ -248,7 +248,7 @@ App.tabs_action_alt = (item, shift_key = false) => {
 // Duplicate a tab
 App.duplicate_tab = async (tab) => {
   try {
-    await browser.tabs.create({active: true, url: tab.url})
+    await browser.tabs.duplicate(tab.id)
   } catch (err) {
     App.log(`Error at duplicate tab`, `error`)
   }
@@ -425,7 +425,7 @@ App.tab_is_normal = (tab) => {
 }
 
 // Show tabs information
-App.show_tabs_information = () => {
+App.show_tabs_info = () => {
   let all = App.get_items(`tabs`).length
   let pins = App.get_pinned_tabs().length
   let playing = App.get_playing_tabs().length
@@ -433,13 +433,11 @@ App.show_tabs_information = () => {
   let suspended = App.get_suspended_tabs().length
 
   let s = `Tab Count:\n\n`
-
   s += `All: ${all}\n`
   s += `Pins: ${pins}\n`
   s += `Playing: ${playing}\n`
   s += `Muted: ${muted}\n`
   s += `Suspended: ${suspended}`
-
   App.show_alert(s)
 }
 
