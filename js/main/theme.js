@@ -10,7 +10,7 @@ App.apply_theme = () => {
     App.set_css_var(`background_color`, App.settings.background_color)
     App.set_css_var(`text_color`, App.settings.text_color)
 
-    let main_background = App.colorlib.rgb_to_rgba(App.settings.background_color, 0.94)
+    let main_background = App.colorlib.rgb_to_rgba(App.settings.background_color, 0.92)
     App.set_css_var(`main_background`, main_background)
 
     let alt_color_1 = App.colorlib.rgb_to_rgba(App.settings.text_color, 0.20)
@@ -31,11 +31,16 @@ App.apply_theme = () => {
     let h = `${(App.settings.height / 100) * 600}px`
     App.set_css_var(`height`, h)
 
-    if (App.settings.background_image === `none`) {
+    if (App.settings.background_image === `none` && App.settings.custom_background === ``) {
       App.set_css_var(`background_image`, `unset`)
     }
     else {
-      App.set_css_var(`background_image`, `url(../img/backgrounds/${App.settings.background_image}.jpg)`)
+      if (App.settings.custom_background) {
+        App.set_css_var(`background_image`, `url(${App.settings.custom_background})`)
+      }
+      else if (App.settings.background_image !== `none`) {
+        App.set_css_var(`background_image`, `url(../img/backgrounds/${App.settings.background_image}.jpg)`)
+      }
     }
   }
   catch (e) {

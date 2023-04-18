@@ -387,7 +387,7 @@ svg {
 
 .settings_text {
   flex-grow: 0;
-  width: 6rem;
+  min-width: 10rem;
   text-align: center;
 }
 

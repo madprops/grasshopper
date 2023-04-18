@@ -17,6 +17,7 @@ App.default_settings = {
   background_color: {value: `rgb(43, 42, 51)`, category: `theme`},
   text_color: {value: `rgb(251, 251, 254)`, category: `theme`},
   background_image: {value: `2`, category: `theme`},
+  custom_background: {value: ``, category: `theme`},
   pin_icon: {value: `+`, category: `icons`},
   normal_icon: {value: ``, category: `icons`},
   playing_icon: {value: `🔊`, category: `icons`},
@@ -98,6 +99,7 @@ App.settings_setup_text = (container) => {
       el.value = el.value.trim()
       App.settings[setting] = el.value
       App.stor_save_settings()
+      console.log(action)
       App.settings_do_action(action)
     })
   }
@@ -211,6 +213,8 @@ App.setup_settings = () => {
   App.create_window({id: `settings_theme`, setup: () => {
     App.start_theme_settings()
     App.add_settings_switchers(`theme`)
+    let container = App.el(`#settings_theme_container`)
+    App.settings_setup_text(container)
   }, persistent: false})
 
   App.create_window({id: `settings_icons`, setup: () => {
