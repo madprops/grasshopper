@@ -732,6 +732,7 @@ App.create_item_element = (item) => {
     item.element.classList.remove(`highlighted`)
   }
 
+  item.element.title = item.url
   item.created = true
   App.log(`Item created in ${item.mode}`)
 }
