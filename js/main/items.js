@@ -804,7 +804,7 @@ App.set_item_text = (item) => {
   }
 
   if (App.settings.hover_tooltips) {
-    item.element.title = item.footer
+    item.element.title = `${content}\n${item.footer}`
   }
 
   content = content.substring(0, App.max_text_length).trim()
