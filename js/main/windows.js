@@ -105,7 +105,7 @@ App.create_window = (args) => {
       args.on_hide()
     }
     else {
-      App.show_first_item_window()
+      App.show_first_window()
 
       if (args.after_hide) {
         args.after_hide()

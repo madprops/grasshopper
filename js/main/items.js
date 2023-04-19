@@ -793,14 +793,15 @@ App.set_item_text = (item) => {
   }
 
   let content
+  let path = decodeURI(item.path)
 
   if (App.settings.text_mode === `title`) {
-    content = item.title || item.path
-    item.footer = decodeURI(item.path) || item.title
+    content = item.title || path
+    item.footer = path || item.title
   }
   else if (App.settings.text_mode === `url`) {
-    content = decodeURI(item.path) || item.title
-    item.footer = item.title || item.path
+    content = path || item.title
+    item.footer = item.title || path
   }
 
   if (App.settings.hover_tooltips) {
@@ -1207,7 +1208,7 @@ App.item_order_down = (el) => {
 }
 
 // Show first item window
-App.show_first_item_window = () => {
+App.show_first_window = () => {
   App.show_item_window(App.item_order[0])
 }
 

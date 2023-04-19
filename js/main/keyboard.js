@@ -199,7 +199,7 @@ App.setup_keyboard = () => {
 
     if (!App.on_item_window()) {
       if (e.key === `Escape`) {
-        App.show_first_item_window()
+        App.show_first_window()
         e.preventDefault()
         return
       }

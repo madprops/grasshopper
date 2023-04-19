@@ -21,10 +21,8 @@ NeedContext.min_width = `4.5rem`
 App.init = async () => {
   let win = await browser.windows.getCurrent({populate: false})
   App.window_id = win.id
-
   App.stor_get_settings()
   App.stor_get_stars()
-
   App.setup_theme()
   App.setup_tabs()
   App.setup_stars()
@@ -38,9 +36,7 @@ App.init = async () => {
   App.setup_media()
   App.setup_window()
   App.setup_items()
-
-  // Show first window
-  App.show_first_item_window()
+  App.show_first_window()
 }
 
 App.init()
