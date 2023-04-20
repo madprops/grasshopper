@@ -168,7 +168,8 @@ App.star_editor_save = () => {
 
   try {
     new URL(url)
-  } catch (err) {
+  }
+  catch (err) {
     App.show_alert(`Invalid URL`)
     return
   }
@@ -338,7 +339,8 @@ App.import_stars = () => {
 
     try {
       json = JSON.parse(text)
-    } catch (err) {
+    }
+    catch (err) {
       App.show_alert(`Invalid JSON`)
       return
     }

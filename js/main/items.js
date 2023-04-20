@@ -27,7 +27,8 @@ App.select_item = async (item, scroll = `nearest`) => {
   if (item.mode === `tabs`) {
     try {
       await browser.tabs.warmup(item.id)
-    } catch (err) {
+    }
+    catch (err) {
       App.log(`Error at tab warmup`, `error`)
     }
   }

@@ -92,7 +92,8 @@ App.get_tabs = async () => {
 
   try {
     tabs = await browser.tabs.query({currentWindow: true})
-  } catch (err) {
+  }
+  catch (err) {
     App.log(`Error at get tabs`, `error`)
     return
   }
@@ -112,7 +113,8 @@ App.focus_tab = async (tab, close = true) => {
 
   try {
     await browser.tabs.update(tab.id, {active: true})
-  } catch (err) {
+  }
+  catch (err) {
     App.log(`Error at focus tab`, `error`)
     App.remove_closed_tab(tab.id)
     App.tabs_check()
@@ -127,7 +129,8 @@ App.focus_tab = async (tab, close = true) => {
 App.close_tab = async (id) => {
   try {
     await browser.tabs.remove(id)
-  } catch (err) {
+  }
+  catch (err) {
     App.log(`Error at close tab`, `error`)
   }
 }
@@ -136,7 +139,8 @@ App.close_tab = async (id) => {
 App.new_tab = async (url = undefined, close = true) => {
   try {
     await browser.tabs.create({active: close, url: url})
-  } catch (err) {
+  }
+  catch (err) {
     App.log(`Error at new tab`, `error`)
   }
 
@@ -151,7 +155,8 @@ App.refresh_tab = async (id, select = false) => {
 
   try {
     info = await browser.tabs.get(id)
-  } catch (err) {
+  }
+  catch (err) {
     App.log(`Error at refresh tab`, `error`)
     return
   }
@@ -174,7 +179,8 @@ App.refresh_tab = async (id, select = false) => {
 App.pin_tab = async (id) => {
   try {
     await browser.tabs.update(id, {pinned: true})
-  } catch (err) {
+  }
+  catch (err) {
     App.log(`Error at pin tab`, `error`)
   }
 }
@@ -183,7 +189,8 @@ App.pin_tab = async (id) => {
 App.unpin_tab = async (id) => {
   try {
     await browser.tabs.update(id, {pinned: false})
-  } catch (err) {
+  }
+  catch (err) {
     App.log(`Error at unpin tab`, `error`)
   }
 }
@@ -192,7 +199,8 @@ App.unpin_tab = async (id) => {
 App.mute_tab = async (id) => {
   try {
     await browser.tabs.update(id, {muted: true})
-  } catch (err) {
+  }
+  catch (err) {
     App.log(`Error at mute tab`, `error`)
   }
 }
@@ -201,7 +209,8 @@ App.mute_tab = async (id) => {
 App.unmute_tab = async (id) => {
   try {
     await browser.tabs.update(id, {muted: false})
-  } catch (err) {
+  }
+  catch (err) {
     App.log(`Error at unmute tab`, `error`)
   }
 }
@@ -249,7 +258,8 @@ App.tabs_action_alt = (item, shift_key = false) => {
 App.duplicate_tab = async (tab) => {
   try {
     await browser.tabs.duplicate(tab.id)
-  } catch (err) {
+  }
+  catch (err) {
     App.log(`Error at duplicate tab`, `error`)
   }
 
@@ -261,14 +271,16 @@ App.suspend_tab = async (tab) => {
   if (tab.active) {
     try {
       await browser.tabs.create({active: true})
-    } catch (err) {
+    }
+    catch (err) {
       App.log(`Error at suspend tab`, `error`)
     }
   }
 
   try {
     await browser.tabs.discard(tab.id)
-  } catch (err) {
+  }
+  catch (err) {
     App.log(`Error at suspend tab`, `error`)
   }
 }
@@ -462,7 +474,8 @@ App.open_tab = async (url, close = true, args = {}) => {
 
   try {
     tab = await browser.tabs.create(opts)
-  } catch (err) {
+  }
+  catch (err) {
     App.log(`Error at open tab`, `error`)
   }
 
@@ -483,7 +496,8 @@ App.do_move_tab_index = async (id, index) => {
 
   try {
     ans = await browser.tabs.move(id, {index: index})
-  } catch (err) {
+  }
+  catch (err) {
     App.log(`Error at move tab index`, `error`)
   }
 
@@ -508,7 +522,8 @@ App.move_tabs = async (item, window_id) => {
 
     try {
       await browser.tabs.move(item.id, {index: index, windowId: window_id})
-    } catch (err) {
+    }
+    catch (err) {
       App.log(`Error at move tabs`, `error`)
     }
   }
@@ -682,7 +697,8 @@ App.get_active_tab = async () => {
 
   try {
     tabs = await browser.tabs.query({currentWindow: true})
-  } catch (err) {
+  }
+  catch (err) {
     App.log(`Error at get active tab`, `error`)
     return
   }
