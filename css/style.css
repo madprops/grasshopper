@@ -189,24 +189,15 @@ body, html {
 }
 
 .button:hover {
-  background-color: var(--alt_color_1);
+  outline: 1px solid var(--alt_color_2);
 }
 
 .button:active {
-  outline: 1px solid var(--alt_color_2);
+  opacity: 0.8;
 }
 
 .button_2 {
   background-color: transparent;
-}
-
-.button_2:hover {
-  background-color: transparent;
-  outline: 1px solid var(--alt_color_2);
-}
-
-.button:active {
-  background-color: var(--alt_color_1);
 }
 
 .icon_button {
