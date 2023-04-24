@@ -99,7 +99,6 @@ App.settings_setup_text = (container) => {
       el.value = el.value.trim()
       App.settings[setting] = el.value
       App.stor_save_settings()
-      console.log(action)
       App.settings_do_action(action)
     })
   }
