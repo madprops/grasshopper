@@ -30,11 +30,14 @@ App.setup_stars = () => {
     App.ev(App.el(`#star_editor_clear`), `click`, () => {
       App.clear_star_editor()
     })
-  }, on_x: () => {
+  },
+  on_x: () => {
     App.show_last_window()
-  }, after_show: () => {
+  },
+  after_show: () => {
     App.update_star_editor_info()
-  }, on_hide: () => {
+  },
+  on_hide: () => {
     App.show_last_window()
   }})
 }
