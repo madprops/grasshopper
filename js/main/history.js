@@ -37,7 +37,7 @@ App.history_action_alt = (item) => {
 
 // Search the history
 App.search_history = async () => {
-  let value = App.el(`#history_filter`).value.trim()
+  let value = DOM.el(`#history_filter`).value.trim()
   let items = await App.get_history(value)
 
   if (App.window_mode !== `history`) {

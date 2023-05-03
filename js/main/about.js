@@ -26,13 +26,13 @@ App.setup_about = () => {
 
     App.about_info_index = 0
 
-    App.ev(App.el(`#about_info`), `click`, () => {
+    DOM.ev(DOM.el(`#about_info`), `click`, () => {
       App.show_full_about_info()
     })
 
-    let image = App.el(`#about_image`)
+    let image = DOM.el(`#about_image`)
 
-    App.ev(image, `click`, () => {
+    DOM.ev(image, `click`, () => {
       if (image.classList.contains(`hue_rotate`)) {
         image.classList.remove(`hue_rotate`)
         image.classList.add(`invert`)
@@ -45,17 +45,17 @@ App.setup_about = () => {
       }
     })
 
-    let info_full = App.el(`#about_info_full`)
+    let info_full = DOM.el(`#about_info_full`)
 
     for (let item of App.about_info_items) {
-      let el = App.create(`div`)
+      let el = DOM.create(`div`)
       el.textContent = item + `.`
       info_full.append(el)
     }
 
     let manifest = browser.runtime.getManifest()
     let s = `Grasshopper v${manifest.version}`
-    App.el(`#about_name`).textContent = s
+    DOM.el(`#about_name`).textContent = s
     App.update_about_info()
   }, after_show: () => {
     App.start_about_info()
@@ -67,7 +67,7 @@ App.setup_about = () => {
 
 // Update about info
 App.update_about_info = () => {
-  App.el(`#about_info`).textContent = App.about_info_items[App.about_info_index]
+  DOM.el(`#about_info`).textContent = App.about_info_items[App.about_info_index]
 }
 
 // Previous about info
@@ -102,9 +102,9 @@ App.next_about_info = (manual = true) => {
 
 // Start about info
 App.start_about_info = () => {
-  App.el(`#about_info`).classList.remove(`hidden`)
-  App.el(`#about_image`).classList.remove(`hidden`)
-  App.el(`#about_info_full`).classList.add(`hidden`)
+  DOM.el(`#about_info`).classList.remove(`hidden`)
+  DOM.el(`#about_image`).classList.remove(`hidden`)
+  DOM.el(`#about_info_full`).classList.add(`hidden`)
 
   App.about_info_interval = setInterval(() => {
     App.next_about_info(false)
@@ -119,7 +119,7 @@ App.stop_about_info = () => {
 // Show full about info
 App.show_full_about_info = () => {
   App.stop_about_info()
-  App.el(`#about_info`).classList.add(`hidden`)
-  App.el(`#about_image`).classList.add(`hidden`)
-  App.el(`#about_info_full`).classList.remove(`hidden`)
+  DOM.el(`#about_info`).classList.add(`hidden`)
+  DOM.el(`#about_image`).classList.add(`hidden`)
+  DOM.el(`#about_info_full`).classList.remove(`hidden`)
 }

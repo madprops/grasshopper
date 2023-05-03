@@ -146,7 +146,7 @@ App.check_window_keyboard = (e) => {
 
 // Setup keybindings
 App.setup_keyboard = () => {
-  App.ev(document, `keydown`, (e) => {
+  DOM.ev(document, `keydown`, (e) => {
     if (NeedContext.open) {
       if (e.shiftKey && e.key === `Enter`) {
         NeedContext.hide()

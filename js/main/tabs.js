@@ -73,7 +73,7 @@ App.setup_tabs = () => {
     App.do_empty_previous_tabs()
   }, App.empty_previous_tabs_delay)
 
-  App.ev(App.el(`#window_tabs`), `dblclick`, (e) => {
+  DOM.ev(DOM.el(`#window_tabs`), `dblclick`, (e) => {
     if (e.target.id === `tabs_container`) {
       App.new_tab()
     }
@@ -484,7 +484,7 @@ App.open_tab = async (url, close = true, args = {}) => {
 
 // Update tab index
 App.update_tab_index = async () => {
-  for (let el of App.els(`.tabs_item`)) {
+  for (let el of DOM.els(`.tabs_item`)) {
     let index = App.get_item_element_index(`tabs`, el)
     await App.do_move_tab_index(parseInt(el.dataset.id), index)
   }
@@ -558,12 +558,12 @@ App.clean_tabs = () => {
 
 // Show playing icon
 App.show_playing = () => {
-  App.el(`#tabs_playing`).classList.remove(`hidden`)
+  DOM.el(`#tabs_playing`).classList.remove(`hidden`)
 }
 
 // Hide playing icon
 App.hide_playing = () => {
-  App.el(`#tabs_playing`).classList.add(`hidden`)
+  DOM.el(`#tabs_playing`).classList.add(`hidden`)
 }
 
 // Check if a tab is playing
@@ -580,7 +580,7 @@ App.check_playing = () => {
 
 // Remove the pinline
 App.remove_pinline = () => {
-  for (let el of App.els(`#tabs_container .pinline`)) {
+  for (let el of DOM.els(`#tabs_container .pinline`)) {
     el.classList.remove(`pinline`)
   }
 }

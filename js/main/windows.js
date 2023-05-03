@@ -21,11 +21,11 @@ App.create_window = (args) => {
   }
 
   let w = {}
-  let el = App.create(`div`, `window_main window_main_${args.cls}`, `window_${args.id}`)
+  let el = DOM.create(`div`, `window_main window_main_${args.cls}`, `window_${args.id}`)
   let top, top_html
 
   if (args.show_top) {
-    top = App.create(`div`, `window_top window_top_${args.align_top} window_top_${args.cls}`, `window_top_${args.id}`)
+    top = DOM.create(`div`, `window_top window_top_${args.align_top} window_top_${args.cls}`, `window_top_${args.id}`)
     top_html = App.get_template(`${args.id}_top`)
 
     if (top_html) {
@@ -33,11 +33,11 @@ App.create_window = (args) => {
     }
 
     if (args.close_button) {
-      let x = App.create(`div`, `window_x action unselectable`)
+      let x = DOM.create(`div`, `window_x action unselectable`)
       x.textContent = `x`
       top.append(x)
 
-      App.ev(x, `click`, () => {
+      DOM.ev(x, `click`, () => {
         if (args.on_x) {
           args.on_x()
         }
@@ -50,7 +50,7 @@ App.create_window = (args) => {
     el.append(top)
   }
 
-  let content = App.create(`div`, `window_content window_content_${args.cls}`, `window_content_${args.id}`)
+  let content = DOM.create(`div`, `window_content window_content_${args.cls}`, `window_content_${args.id}`)
   let content_html = App.get_template(args.id)
 
   if (content_html) {
@@ -59,7 +59,7 @@ App.create_window = (args) => {
 
   el.append(content)
   w.element = el
-  App.el(`#main`).append(el)
+  DOM.el(`#main`).append(el)
   w.setup = false
   w.visible = false
 
@@ -150,7 +150,7 @@ App.raise_window = (mode) => {
 
 // Setup the main window
 App.setup_window = () => {
-  App.ev(window, `blur`, () => {
+  DOM.ev(window, `blur`, () => {
     NeedContext.hide()
   })
 }

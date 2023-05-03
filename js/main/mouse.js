@@ -1,8 +1,8 @@
 // Setup mouse for window
 App.setup_window_mouse = (mode) => {
-  let container = App.el(`#${mode}_container`)
+  let container = DOM.el(`#${mode}_container`)
 
-  App.ev(container, `mousedown`, (e) => {
+  DOM.ev(container, `mousedown`, (e) => {
     if (!e.target.closest(`.${mode}_item`)) {
       return
     }
@@ -17,7 +17,7 @@ App.setup_window_mouse = (mode) => {
     }
   })
 
-  App.ev(container, `mouseup`, (e) => {
+  DOM.ev(container, `mouseup`, (e) => {
     if (!e.target.closest(`.${mode}_item`)) {
       return
     }
@@ -48,21 +48,21 @@ App.setup_window_mouse = (mode) => {
     }
   })
 
-  App.ev(container, `contextmenu`, (e) => {
+  DOM.ev(container, `contextmenu`, (e) => {
     if (e.target.closest(`.${mode}_item`)) {
       App.show_item_menu(App.get_cursor_item(mode, e), e.clientX, e.clientY)
       e.preventDefault()
     }
   })
 
-  App.ev(container, `mousemove`, (e) => {
+  DOM.ev(container, `mousemove`, (e) => {
     if (e.target.closest(`.${mode}_item`)) {
       let item = App.get_cursor_item(mode, e)
       App.update_footer_info(item)
     }
   })
 
-  App.ev(container, `mouseleave`, (e) => {
+  DOM.ev(container, `mouseleave`, (e) => {
     let item = App.get_selected(mode)
     App.update_footer_info(item)
   })

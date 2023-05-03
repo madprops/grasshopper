@@ -27,30 +27,30 @@ App.default_settings = {
 
 // Make item order control
 App.make_item_order = () => {
-  let item_order = App.el(`#settings_item_order`)
+  let item_order = DOM.el(`#settings_item_order`)
   item_order.innerHTML = ``
 
   for (let m of App.item_order) {
-    let row = App.create(`div`, `item_order_row`)
+    let row = DOM.create(`div`, `item_order_row`)
     row.dataset.mode = m
 
-    let up = App.create(`div`, `button item_order_button`)
+    let up = DOM.create(`div`, `button item_order_button`)
     up.textContent = `Up`
     row.append(up)
 
-    App.ev(up, `click`, () => {
+    DOM.ev(up, `click`, () => {
       App.item_order_up(row)
     })
 
-    let text = App.create(`div`, `item_order_item_text`)
+    let text = DOM.create(`div`, `item_order_item_text`)
     text.textContent = App.get_mode_name(m)
     row.append(text)
 
-    let down = App.create(`div`, `button item_order_button`)
+    let down = DOM.create(`div`, `button item_order_button`)
     down.textContent = `Down`
     row.append(down)
 
-    App.ev(down, `click`, () => {
+    DOM.ev(down, `click`, () => {
       App.item_order_down(row)
     })
 
@@ -67,16 +67,16 @@ App.settings_do_action = (what) => {
 
 // Setup checkboxes in a container
 App.settings_setup_checkboxes = (container) => {
-  let items = App.els(`.settings_checkbox`, container)
+  let items = DOM.els(`.settings_checkbox`, container)
 
   for (let item of items) {
     let setting = item.dataset.setting
     let action = item.dataset.action
 
-    let el = App.el(`#settings_${setting}`)
+    let el = DOM.el(`#settings_${setting}`)
     el.checked = App.settings[setting]
 
-    App.ev(el, `change`, () => {
+    DOM.ev(el, `change`, () => {
       App.settings[setting] = el.checked
       App.stor_save_settings()
       App.settings_do_action(action)
@@ -86,16 +86,16 @@ App.settings_setup_checkboxes = (container) => {
 
 // Setup text elements in a container
 App.settings_setup_text = (container) => {
-  let items = App.els(`.settings_text`, container)
+  let items = DOM.els(`.settings_text`, container)
 
   for (let item of items) {
     let setting = item.dataset.setting
     let action = item.dataset.action
-    let el = App.el(`#settings_${setting}`)
+    let el = DOM.el(`#settings_${setting}`)
 
     el.value = App.settings[setting]
 
-    App.ev(el, `blur`, () => {
+    DOM.ev(el, `blur`, () => {
       el.value = el.value.trim()
       App.settings[setting] = el.value
       App.stor_save_settings()
@@ -110,9 +110,9 @@ App.settings_make_menu = (id, opts, action) => {
     action = () => {}
   }
 
-  let el = App.el(`#settings_${id}`)
+  let el = DOM.el(`#settings_${id}`)
 
-  App.ev(el, `click`, () => {
+  DOM.ev(el, `click`, () => {
     let items = []
 
     for (let o of opts) {
@@ -139,10 +139,10 @@ App.settings_make_menu = (id, opts, action) => {
     }
   }
 
-  let buttons = App.create(`div`, `flex_row_center gap_1`)
-  let prev = App.create(`div`, `button`)
+  let buttons = DOM.create(`div`, `flex_row_center gap_1`)
+  let prev = DOM.create(`div`, `button`)
   prev.textContent = `<`
-  let next = App.create(`div`, `button`)
+  let next = DOM.create(`div`, `button`)
   next.textContent = `>`
 
   function prev_fn () {
@@ -155,8 +155,8 @@ App.settings_make_menu = (id, opts, action) => {
     App.apply_theme()
   }
 
-  App.ev(prev, `click`, prev_fn)
-  App.ev(next, `click`, next_fn)
+  DOM.ev(prev, `click`, prev_fn)
+  DOM.ev(next, `click`, next_fn)
 
   buttons.append(prev)
   buttons.append(next)
@@ -169,7 +169,7 @@ App.setup_settings = () => {
   App.settings_order = [`settings_basic`, `settings_theme`, `settings_icons`]
 
   App.create_window({id: `settings_basic`, setup: () => {
-    let container = App.el(`#settings_basic_container`)
+    let container = DOM.el(`#settings_basic_container`)
     App.settings_setup_checkboxes(container)
     App.settings_make_menu(`text_mode`, [[`Title`, `title`], [`URL`, `url`]])
 
@@ -202,7 +202,7 @@ App.setup_settings = () => {
       App.apply_theme()
     })
 
-    App.ev(App.el(`#settings_defaults_basic`), `click`, () => {
+    DOM.ev(DOM.el(`#settings_defaults_basic`), `click`, () => {
       App.restore_default_settings(`basic`)
     })
 
@@ -212,15 +212,15 @@ App.setup_settings = () => {
   App.create_window({id: `settings_theme`, setup: () => {
     App.start_theme_settings()
     App.add_settings_switchers(`theme`)
-    let container = App.el(`#settings_theme_container`)
+    let container = DOM.el(`#settings_theme_container`)
     App.settings_setup_text(container)
   }, persistent: false})
 
   App.create_window({id: `settings_icons`, setup: () => {
-    let container = App.el(`#settings_icons_container`)
+    let container = DOM.el(`#settings_icons_container`)
     App.settings_setup_text(container)
 
-    App.ev(App.el(`#settings_default_icons`), `click`, () => {
+    DOM.ev(DOM.el(`#settings_default_icons`), `click`, () => {
       App.restore_default_settings(`icons`)
     })
 
@@ -230,21 +230,21 @@ App.setup_settings = () => {
 
 // Create settings title switchers
 App.add_settings_switchers = (category) => {
-  let title = App.el(`.settings_title`, App.el(`#settings_${category}_container`))
+  let title = DOM.el(`.settings_title`, DOM.el(`#settings_${category}_container`))
 
-  let prev = App.create(`div`, `button`)
+  let prev = DOM.create(`div`, `button`)
   prev.textContent = `<`
   title.before(prev)
 
-  App.ev(prev, `click`, () => {
+  DOM.ev(prev, `click`, () => {
     App.show_prev_settings()
   })
 
-  let next = App.create(`div`, `button`)
+  let next = DOM.create(`div`, `button`)
   next.textContent = `>`
   title.after(next)
 
-  App.ev(next, `click`, () => {
+  DOM.ev(next, `click`, () => {
     App.show_next_settings()
   })
 }
@@ -252,7 +252,7 @@ App.add_settings_switchers = (category) => {
 // Start theme settings
 App.start_theme_settings = () => {
   function start_color_picker (name) {
-    let el = App.el(`#settings_${name}_color_picker`)
+    let el = DOM.el(`#settings_${name}_color_picker`)
 
     App[`${name}_color_picker`] = AColorPicker.createPicker(el, {
       showAlpha: false,
@@ -270,19 +270,19 @@ App.start_theme_settings = () => {
   start_color_picker(`background`)
   start_color_picker(`text`)
 
-  App.ev(App.el(`#settings_dark_theme`), `click`, () => {
+  DOM.ev(DOM.el(`#settings_dark_theme`), `click`, () => {
     App.random_theme(`dark`)
   })
 
-  App.ev(App.el(`#settings_light_theme`), `click`, () => {
+  DOM.ev(DOM.el(`#settings_light_theme`), `click`, () => {
     App.random_theme(`light`)
   })
 
-  App.ev(App.el(`#settings_detect_theme`), `click`, () => {
+  DOM.ev(DOM.el(`#settings_detect_theme`), `click`, () => {
     App.detect_theme()
   })
 
-  App.ev(App.el(`#settings_default_theme`), `click`, () => {
+  DOM.ev(DOM.el(`#settings_default_theme`), `click`, () => {
     App.restore_default_settings(`theme`)
   })
 

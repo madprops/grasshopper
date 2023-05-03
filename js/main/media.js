@@ -7,76 +7,76 @@ App.setup_media = () => {
 // Create media windows
 App.create_media_windows = (what) => {
   App.create_window({id: what, setup: () => {
-    let media = App.el(`#${what}`)
-    let buttons = App.el(`#${what}_buttons`)
+    let media = DOM.el(`#${what}`)
+    let buttons = DOM.el(`#${what}_buttons`)
 
-    let prev = App.create(`div`, `button`, `${what}_prev`)
+    let prev = DOM.create(`div`, `button`, `${what}_prev`)
     prev.textContent = `<`
     prev.title = `Go To Previous (Left)`
     buttons.append(prev)
 
-    let open = App.create(`div`, `button`, `${what}_open`)
+    let open = DOM.create(`div`, `button`, `${what}_open`)
     open.textContent = `Open`
     open.title = `Open Tab (Enter)`
     buttons.append(open)
 
-    let star = App.create(`div`, `button icon_button`, `${what}_star`)
+    let star = DOM.create(`div`, `button icon_button`, `${what}_star`)
     star.title = `Toggle Star (Space)`
     let star_icon = App.create_icon(`star`)
     star.append(star_icon)
     buttons.append(star)
 
-    let copy = App.create(`div`, `button`, `${what}_copy`)
+    let copy = DOM.create(`div`, `button`, `${what}_copy`)
     copy.textContent = `Copy`
     copy.title = `Copy URL (Up)`
     buttons.append(copy)
 
-    let next = App.create(`div`, `button`, `${what}_next`)
+    let next = DOM.create(`div`, `button`, `${what}_next`)
     next.textContent = `>`
     next.title = `Go To Next (Right)`
     buttons.append(next)
 
     if (what === `image`) {
-      App.ev(media, `load`, () => {
+      DOM.ev(media, `load`, () => {
         App.stop_media_timeout(what)
         media.classList.remove(`hidden`)
-        App.el(`#${what}_loading`).classList.add(`hidden`)
+        DOM.el(`#${what}_loading`).classList.add(`hidden`)
       })
     }
     else if (what === `video`) {
-      App.ev(media, `canplay`, () => {
+      DOM.ev(media, `canplay`, () => {
         App.stop_media_timeout(what)
         media.classList.remove(`hidden`)
-        App.el(`#${what}_loading`).classList.add(`hidden`)
+        DOM.el(`#${what}_loading`).classList.add(`hidden`)
         media.play()
       })
     }
 
-    App.ev(media, `error`, () => {
+    DOM.ev(media, `error`, () => {
       App.media_show_error(what)
     })
 
-    App.ev(media, `click`, () => {
+    DOM.ev(media, `click`, () => {
       App.windows[what].hide()
     })
 
-    App.ev(open, `click`, () => {
+    DOM.ev(open, `click`, () => {
       App.open_media(what)
     })
 
-    App.ev(star, `click`, () => {
+    DOM.ev(star, `click`, () => {
       App.star_media(what)
     })
 
-    App.ev(copy, `click`, () => {
+    DOM.ev(copy, `click`, () => {
       App.media_copy(what)
     })
 
-    App.ev(App.el(`#${what}_prev`), `click`, () => {
+    DOM.ev(DOM.el(`#${what}_prev`), `click`, () => {
       App.media_prev(what)
     })
 
-    App.ev(App.el(`#${what}_next`), `click`, () => {
+    DOM.ev(DOM.el(`#${what}_next`), `click`, () => {
       App.media_next(what)
     })
   }, on_hide: () => {
@@ -95,14 +95,14 @@ App.create_media_windows = (what) => {
 App.show_media = (what, item) => {
   App.hide_media_elements(what)
   App[`current_${what}_item`] = item
-  App.el(`#${what}`).src = item.url
+  DOM.el(`#${what}`).src = item.url
   App.stop_media_timeout(what)
 
   App[`${what}_loading_timeout`] = setTimeout(() => {
-    App.el(`#${what}_loading`).classList.remove(`hidden`)
+    DOM.el(`#${what}_loading`).classList.remove(`hidden`)
   }, 500)
 
-  App.el(`#${what}_url`).textContent = item.url
+  DOM.el(`#${what}_url`).textContent = item.url
   App.show_window(what)
   App.media_show_loading(what)
   App.check_media_star(what, App.get_star_by_url(item.url))
@@ -115,15 +115,15 @@ App.hide_media = (what) => {
 
 // Stop video
 App.stop_video = () => {
-  let video = App.el(`#video`)
+  let video = DOM.el(`#video`)
   video.pause()
   video.src = ``
 }
 
 // Hide media
 App.hide_media_elements = (what) => {
-  App.el(`#${what}`).classList.add(`hidden`)
-  App.el(`#${what}_loading`).classList.add(`hidden`)
+  DOM.el(`#${what}`).classList.add(`hidden`)
+  DOM.el(`#${what}_loading`).classList.add(`hidden`)
 }
 
 // Stop media timeout
@@ -180,12 +180,12 @@ App.cycle_media = (item, what, dir) => {
 
 // Media show loading
 App.media_show_loading = (what) => {
-  App.el(`#${what}_loading`).textContent = `Loading...`
+  DOM.el(`#${what}_loading`).textContent = `Loading...`
 }
 
 // Media show error
 App.media_show_error = (what) => {
-  App.el(`#${what}_loading`).textContent = `Error`
+  DOM.el(`#${what}_loading`).textContent = `Error`
 }
 
 // Check media
@@ -209,7 +209,7 @@ App.check_media = (item) => {
 
 // Check to fill or not the star icon
 App.check_media_star = (what, starred) => {
-  let use = App.el(`#${what}_star use`)
+  let use = DOM.el(`#${what}_star use`)
 
   if (starred) {
     use.href.baseVal = `#star_solid_icon`

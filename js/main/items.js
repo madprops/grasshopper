@@ -12,7 +12,7 @@ App.select_item = async (item, scroll = `nearest`) => {
 
   App.set_selected(item.mode, item)
 
-  for (let el of App.els(`.${item.mode}_item`)) {
+  for (let el of DOM.els(`.${item.mode}_item`)) {
     el.classList.remove(`selected`)
   }
 
@@ -187,8 +187,8 @@ App.empty_footer_info = () => {
 
 // Set footer info
 App.set_footer_info = (mode, text) => {
-  let footer = App.el(`#${mode}_footer`)
-  let info = App.el(`.footer_info`, footer)
+  let footer = DOM.el(`#${mode}_footer`)
+  let info = DOM.el(`.footer_info`, footer)
   info.textContent = text
 }
 
@@ -268,7 +268,7 @@ App.remove_item = (item) => {
 }
 
 App.focus_filter = (mode) => {
-  App.el(`#${mode}_filter`).focus()
+  DOM.el(`#${mode}_filter`).focus()
 }
 
 // Filter items
@@ -577,7 +577,7 @@ App.get_more_menu_items = (item, multiple) => {
 
 // Process items
 App.process_items = (mode, items) => {
-  let container = App.el(`#${mode}_container`)
+  let container = DOM.el(`#${mode}_container`)
   container.innerHTML = ``
   App[`${mode}_items`] = []
   App[`${mode}_idx`] = 0
@@ -683,7 +683,7 @@ App.process_item = (mode, item, exclude = [], o_item) => {
 
 // Create empty item
 App.create_empty_item_element = (item) => {
-  item.element = App.create(`div`, `grasshopper_item item ${item.mode}_item`)
+  item.element = DOM.create(`div`, `grasshopper_item item ${item.mode}_item`)
   item.element.dataset.id = item.id
   App[`${item.mode}_item_observer`].observe(item.element)
 }
@@ -699,30 +699,30 @@ App.create_item_element = (item) => {
   let icon = App.get_img_icon(item.favicon, item.url, item.pinned)
   item.element.append(icon)
 
-  let status = App.create(`div`, `item_status hidden`)
+  let status = DOM.create(`div`, `item_status hidden`)
   item.element.append(status)
 
-  let text = App.create(`div`, `item_text`)
+  let text = DOM.create(`div`, `item_text`)
   item.element.append(text)
   App.set_item_text(item)
 
   if (item.mode === `tabs`) {
     if (item.pinned && App.settings.pin_icon) {
-      let pin_icon = App.create(`div`, `item_info item_info_pin`)
+      let pin_icon = DOM.create(`div`, `item_info item_info_pin`)
       pin_icon.textContent = App.settings.pin_icon
       pin_icon.title = `This tab is pinned`
       item.element.append(pin_icon)
     }
 
     if (!item.pinned && App.settings.normal_icon) {
-      let normal_icon = App.create(`div`, `item_info item_info_normal`)
+      let normal_icon = DOM.create(`div`, `item_info item_info_normal`)
       normal_icon.textContent = App.settings.normal_icon
       normal_icon.title = `This tab is normal`
       item.element.append(normal_icon)
     }
   }
   else {
-    let launched = App.create(`div`, `item_info item_info_launched`)
+    let launched = DOM.create(`div`, `item_info item_info_launched`)
     item.element.append(launched)
   }
 
@@ -739,12 +739,12 @@ App.create_item_element = (item) => {
 
 // Get image favicon
 App.get_img_icon = (favicon, url) => {
-  let icon = App.create(`img`, `item_icon`)
+  let icon = DOM.create(`img`, `item_icon`)
   icon.loading = `lazy`
   icon.width = App.icon_size
   icon.height = App.icon_size
 
-  App.ev(icon, `error`, () => {
+  DOM.ev(icon, `error`, () => {
     let icon_2 = App.get_jdenticon(url)
     icon.replaceWith(icon_2)
   })
@@ -756,7 +756,7 @@ App.get_img_icon = (favicon, url) => {
 // Get jdenticon icon
 App.get_jdenticon = (url) => {
   let hostname = App.get_hostname(url) || `hostname`
-  let icon = App.create(`canvas`, `item_icon`)
+  let icon = DOM.create(`canvas`, `item_icon`)
   icon.width = App.icon_size
   icon.height = App.icon_size
   jdenticon.update(icon, hostname)
@@ -781,10 +781,10 @@ App.set_item_text = (item) => {
     }
 
     if (icons.length > 0) {
-      let status = App.el(`.item_status`, item.element)
+      let status = DOM.el(`.item_status`, item.element)
 
       for (let icon of icons) {
-        let el = App.create(`div`)
+        let el = DOM.create(`div`)
         el.textContent = icon
         status.append(el)
       }
@@ -810,7 +810,7 @@ App.set_item_text = (item) => {
   }
 
   content = content.substring(0, App.max_text_length).trim()
-  let text = App.el(`.item_text`, item.element)
+  let text = DOM.el(`.item_text`, item.element)
   text.textContent = content
 }
 
@@ -840,7 +840,7 @@ App.get_item_by_url = (mode, url) => {
 App.start_item_observers = () => {
   for (let mode of App.item_order) {
     let options = {
-      root: App.el(`#${mode}_container`),
+      root: DOM.el(`#${mode}_container`),
       rootMargin: `0px`,
       threshold: 0.1,
     }
@@ -897,7 +897,7 @@ App.show_item_window = async (mode, cycle = false) => {
   App.windows[mode].show()
   App.empty_footer_info()
   App[`${mode}_item_filter`].cancel()
-  App.el(`#${mode}_container`).innerHTML = ``
+  DOM.el(`#${mode}_container`).innerHTML = ``
   App.set_filter(mode, value, false)
 
   let m = App[`${mode}_filter_modes`][0]
@@ -940,40 +940,40 @@ App.setup_item_window = (mode) => {
       App.do_item_filter(mode)
     }, App.filter_delay)
 
-    let win = App.el(`#window_content_${mode}`)
-    let container = App.create(`div`, `container unselectable`, `${mode}_container`)
-    let footer = App.create(`div`, `footer unselectable`, `${mode}_footer`)
-    let top = App.create(`div`, `item_top_container`, `${mode}_top_container`)
-    App.el(`#window_top_${mode}`).append(top)
+    let win = DOM.el(`#window_content_${mode}`)
+    let container = DOM.create(`div`, `container unselectable`, `${mode}_container`)
+    let footer = DOM.create(`div`, `footer unselectable`, `${mode}_footer`)
+    let top = DOM.create(`div`, `item_top_container`, `${mode}_top_container`)
+    DOM.el(`#window_top_${mode}`).append(top)
 
     win.append(container)
     win.append(footer)
 
-    let footer_count = App.create(`div`, `footer_count action`)
+    let footer_count = DOM.create(`div`, `footer_count action`)
     footer_count.textContent = `(--)`
 
-    App.ev(footer_count, `click`, () => {
+    DOM.ev(footer_count, `click`, () => {
       App.highlight_items(mode)
     })
 
     footer.append(footer_count)
     footer.append(App.create_icon(`cube`))
 
-    let footer_info = App.create(`div`, `footer_info`)
+    let footer_info = DOM.create(`div`, `footer_info`)
     footer.append(footer_info)
 
     App.setup_window_mouse(mode)
 
     //
-    let main_menu = App.create(`div`, `button icon_button`, `${mode}_main_menu`)
+    let main_menu = DOM.create(`div`, `button icon_button`, `${mode}_main_menu`)
     main_menu.textContent = mode_name
     main_menu.title = `Main Menu (Ctrl + Left)`
 
-    App.ev(main_menu, `click`, () => {
+    DOM.ev(main_menu, `click`, () => {
       App.show_main_menu(mode)
     })
 
-    App.ev(main_menu, `wheel`, (e) => {
+    DOM.ev(main_menu, `wheel`, (e) => {
       if (e.deltaY < 0) {
         App.cycle_item_windows(true)
       }
@@ -983,20 +983,20 @@ App.setup_item_window = (mode) => {
     })
 
     //
-    let filter = App.create(`input`, `text filter`, `${mode}_filter`)
+    let filter = DOM.create(`input`, `text filter`, `${mode}_filter`)
     filter.type = `text`
     filter.autocomplete = `off`
     filter.spellcheck = false
     filter.placeholder = `Type to filter`
 
-    App.ev(filter, `input`, () => {
+    DOM.ev(filter, `input`, () => {
       App[`${mode}_item_filter`].call()
     })
 
     //
-    let filter_modes = App.create(`div`, `button icon_button`, `${mode}_filter_modes`)
+    let filter_modes = DOM.create(`div`, `button icon_button`, `${mode}_filter_modes`)
     filter_modes.title = `Filter Modes (Ctrl + Down)`
-    let filter_modes_text = App.create(`div`, ``, `${mode}_filter_modes_text`)
+    let filter_modes_text = DOM.create(`div`, ``, `${mode}_filter_modes_text`)
     filter_modes.append(filter_modes_text)
 
     App[`${mode}_filter_modes`] = App[`${mode}_filter_modes`] || []
@@ -1004,11 +1004,11 @@ App.setup_item_window = (mode) => {
     App[`${mode}_filter_modes`].unshift([`images`, `Images`])
     App[`${mode}_filter_modes`].unshift([`all`, `All`])
 
-    App.ev(filter_modes, `click`, () => {
+    DOM.ev(filter_modes, `click`, () => {
       App.show_filter_modes(mode)
     })
 
-    App.ev(filter_modes, `wheel`, (e) => {
+    DOM.ev(filter_modes, `wheel`, (e) => {
       if (e.deltaY < 0) {
         App.cycle_filter_modes(mode, true)
       }
@@ -1021,21 +1021,21 @@ App.setup_item_window = (mode) => {
     let playing, previous
 
     if (mode === `tabs`) {
-      playing = App.create(`div`, `button icon_button hidden`, `${mode}_playing`)
+      playing = DOM.create(`div`, `button icon_button hidden`, `${mode}_playing`)
       playing.title = `Go To Playing Tab (Ctrl + Up)`
       let playing_icon = App.create_icon(`speaker`)
 
-      App.ev(playing, `click`, () => {
+      DOM.ev(playing, `click`, () => {
         App.go_to_playing()
       })
 
       playing.append(playing_icon)
 
-      previous = App.create(`div`, `button icon_button`, `${mode}_previous`)
+      previous = DOM.create(`div`, `button icon_button`, `${mode}_previous`)
       previous.title = `Go To Previous Tab (Ctrl + Backspace)`
       let previous_icon = App.create_icon(`back`)
 
-      App.ev(previous, `click`, () => {
+      DOM.ev(previous, `click`, () => {
         App.go_to_previous_tab()
       })
 
@@ -1046,11 +1046,11 @@ App.setup_item_window = (mode) => {
     let new_star
 
     if (mode === `stars`) {
-      new_star = App.create(`div`, `button icon_button`)
+      new_star = DOM.create(`div`, `button icon_button`)
       new_star.title = `New Star`
       let new_star_icon = App.create_icon(`plus`)
 
-      App.ev(new_star, `click`, () => {
+      DOM.ev(new_star, `click`, () => {
         App.new_star_from_active()
       })
 
@@ -1074,7 +1074,7 @@ App.setup_item_window = (mode) => {
       App.goto_top(mode)
     }})
 
-    let actions_menu = App.create(`div`, `button icon_button`, `${mode}_actions`)
+    let actions_menu = DOM.create(`div`, `button icon_button`, `${mode}_actions`)
     let actions_icon = App.create_icon(`sun`)
     actions_menu.append(actions_icon)
     actions_menu.title = `Actions (Ctrl + Right)`
@@ -1107,7 +1107,7 @@ App.setup_item_window = (mode) => {
       NeedContext.show_on_element(actions_menu, items, true, actions_menu.clientHeight)
     }
 
-    App.ev(actions_menu, `click`, () => {
+    DOM.ev(actions_menu, `click`, () => {
       App.show_actions(mode)
     })
 
@@ -1117,8 +1117,8 @@ App.setup_item_window = (mode) => {
     }
 
     // Append the top components
-    let left_top = App.create(`div`, `item_top_left`)
-    let right_top = App.create(`div`, `item_top_right`)
+    let left_top = DOM.create(`div`, `item_top_left`)
+    let right_top = DOM.create(`div`, `item_top_right`)
 
     left_top.append(main_menu)
     left_top.append(filter_modes)
@@ -1177,7 +1177,7 @@ App.cycle_item_windows = (reverse = false, cycle = false) => {
 
 // Update window order
 App.update_item_order = () => {
-  let boxes = App.els(`.item_order_row`, App.el(`#settings_item_order`))
+  let boxes = DOM.els(`.item_order_row`, DOM.el(`#settings_item_order`))
   let modes = boxes.map(x => x.dataset.mode)
 
   for (let [i, mode] of modes.entries()) {
@@ -1255,8 +1255,8 @@ App.update_footer_count = (mode) => {
   let n2 = App.get_visible(mode).length
   let s1 = n1.toLocaleString()
   let s2 = n2.toLocaleString()
-  let footer = App.el(`#${mode}_footer`)
-  let count = App.el(`.footer_count`, footer)
+  let footer = DOM.el(`#${mode}_footer`)
+  let count = DOM.el(`.footer_count`, footer)
 
   if (n1 > 0) {
     count.textContent = `${s1}/${s2}`
@@ -1268,7 +1268,7 @@ App.update_footer_count = (mode) => {
 
 // Set item filter
 App.set_filter = (mode, text, action = true) => {
-  App.el(`#${mode}_filter`).value = text
+  DOM.el(`#${mode}_filter`).value = text
 
   if (action) {
     App.do_item_filter(mode)
@@ -1277,7 +1277,7 @@ App.set_filter = (mode, text, action = true) => {
 
 // Get filter value
 App.get_filter = (mode, trim = true) => {
-  let value = App.el(`#${mode}_filter`).value
+  let value = DOM.el(`#${mode}_filter`).value
 
   if (trim) {
     value = value.trim()
@@ -1319,7 +1319,7 @@ App.clear_filter = (mode) => {
 
 // Show launched indicator
 App.show_launched = (item) => {
-  let launched = App.el(`.item_info_launched`, item.element)
+  let launched = DOM.el(`.item_info_launched`, item.element)
   launched.textContent = `(Launched)`
 }
 
@@ -1369,7 +1369,7 @@ App.show_filter_modes = (mode) => {
     })
   }
 
-  let btn = App.el(`#${mode}_filter_modes`)
+  let btn = DOM.el(`#${mode}_filter_modes`)
   NeedContext.show_on_element(btn, items, false, btn.clientHeight)
 }
 
@@ -1415,7 +1415,7 @@ App.cycle_filter_modes = (mode, reverse = true) => {
 // Set filter mode
 App.set_filter_mode = (mode, filter_mode, action = true) => {
   App[`${mode}_filter_mode`] = filter_mode[0]
-  App.el(`#${mode}_filter_modes_text`).textContent = filter_mode[1]
+  DOM.el(`#${mode}_filter_modes_text`).textContent = filter_mode[1]
 
   if (action) {
     if (filter_mode[0] === `all`) {
@@ -1437,7 +1437,7 @@ App.get_mode_index = (mode) => {
 
 // Get item's element index
 App.get_item_element_index = (mode, el) => {
-  let nodes = Array.prototype.slice.call(App.els(`.${mode}_item`))
+  let nodes = Array.prototype.slice.call(DOM.els(`.${mode}_item`))
   return nodes.indexOf(el)
 }
 
@@ -1450,8 +1450,8 @@ App.move_item = (mode, from_index, to_index) => {
 
 // Move item element
 App.move_item_element = (mode, el, to_index) => {
-  let container = App.el(`#${mode}_container`)
-  let items = App.els(`.${mode}_item`)
+  let container = DOM.el(`#${mode}_container`)
+  let items = DOM.els(`.${mode}_item`)
   let from_index = items.indexOf(el)
 
   if (from_index === to_index) {
@@ -1643,23 +1643,23 @@ App.launch_items = (item) => {
 
 // Scroll container to top
 App.goto_top = (mode) => {
-  App.el(`#${mode}_container`).scrollTop = 0
+  DOM.el(`#${mode}_container`).scrollTop = 0
 }
 
 // Scroll container to bottom
 App.goto_bottom = (mode) => {
-  App.el(`#${mode}_container`).scrollTop = App.el(`#${mode}_container`).scrollHeight
+  DOM.el(`#${mode}_container`).scrollTop = DOM.el(`#${mode}_container`).scrollHeight
 }
 
 // Scroll up a bit
 App.scroll_up = (mode) => {
-  let el = App.el(`#${mode}_container`)
+  let el = DOM.el(`#${mode}_container`)
   el.scrollTop = el.scrollTop -= 50
 }
 
 // Scroll down a bit
 App.scroll_down = (mode) => {
-  let el = App.el(`#${mode}_container`)
+  let el = DOM.el(`#${mode}_container`)
   el.scrollTop = el.scrollTop += 50
 }
 
@@ -1711,7 +1711,7 @@ App.create_icon = (name, type = 1) => {
 
 // Show main menu
 App.show_main_menu = (mode) => {
-  let el = App.el(`#${mode}_main_menu`)
+  let el = DOM.el(`#${mode}_main_menu`)
   let items = []
 
   for (let m of App.item_order) {
@@ -1768,7 +1768,7 @@ App.insert_item = (mode, info) => {
 
   if (mode === `tabs`) {
     App.get_items(mode).splice(info.index, 0, item)
-    App.el(`#${mode}_container`).append(item.element)
+    DOM.el(`#${mode}_container`).append(item.element)
     App.move_item_element(`tabs`, item.element, info.index)
   }
   else {
@@ -1779,7 +1779,7 @@ App.insert_item = (mode, info) => {
     }
 
     App.get_items(mode).unshift(item)
-    App.el(`#${mode}_container`).prepend(item.element)
+    DOM.el(`#${mode}_container`).prepend(item.element)
     App.check_filter(mode)
   }
 

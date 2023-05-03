@@ -1,13 +1,3 @@
-// Select a single element
-App.el = (query, root = document) => {
-  return root.querySelector(query)
-}
-
-// Select an array of elements
-App.els = (query, root = document) => {
-  return Array.from(root.querySelectorAll(query))
-}
-
 // Centralized function to create debouncers
 App.create_debouncer = (func, delay) => {
   let timer
@@ -39,30 +29,6 @@ App.create_debouncer = (func, delay) => {
   }
 
   return obj
-}
-
-// Create an html element
-App.create = (type, classes = ``, id = ``) => {
-  let el = document.createElement(type)
-
-  if (classes) {
-    let classlist = classes.split(` `).filter(x => x != ``)
-
-    for (let cls of classlist) {
-      el.classList.add(cls)
-    }
-  }
-
-  if (id) {
-    el.id = id
-  }
-
-  return el
-}
-
-// Add an event listener
-App.ev = (element, action, callback, extra) => {
-  element.addEventListener(action, callback, extra)
 }
 
 // Remove protocol like https://
@@ -209,7 +175,7 @@ App.get_extension = (s) => {
 
 // Get a template
 App.get_template = (id) => {
-  let template = App.el(`#template_${id}`)
+  let template = DOM.el(`#template_${id}`)
 
   if (template) {
     return template.innerHTML.trim()

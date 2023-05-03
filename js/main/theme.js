@@ -95,7 +95,7 @@ App.detect_theme = async () => {
   let theme = await browser.theme.getCurrent()
 
   if (theme.colors.toolbar) {
-    let d1 = App.create(`div`, `hidden`)
+    let d1 = DOM.create(`div`, `hidden`)
     d1.style.color = theme.colors.toolbar
     document.body.append(d1)
     let background_color = window.getComputedStyle(d1).color
@@ -109,7 +109,7 @@ App.detect_theme = async () => {
       text_color = App.colorlib.get_lighter_or_darker(background_color, App.theme_color_diff)
     }
 
-    let d2 = App.create(`div`, `hidden`)
+    let d2 = DOM.create(`div`, `hidden`)
     d2.style.color = text_color
     document.body.append(d2)
 
