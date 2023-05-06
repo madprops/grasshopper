@@ -743,7 +743,7 @@ App.get_active_tab = async () => {
 
 // Show title editor window
 App.show_title_editor = (item) => {
-  let title
+  let title = item.title
   let t = App.get_title(item.url)
   let remove = DOM.el(`#title_editor_remove`)
 
@@ -753,7 +753,6 @@ App.show_title_editor = (item) => {
   }
   else {
     remove.classList.add(`hidden`)
-    title = ``
   }
 
   DOM.el(`#title_editor_url`).value = item.url
