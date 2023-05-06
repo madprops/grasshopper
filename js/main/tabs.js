@@ -777,7 +777,12 @@ App.title_editor_save = () => {
     return
   }
 
-  App.titles.push({url: url, title: title})
+  App.titles.unshift({url: url, title: title})
+
+  if (App.titles.length > App.max_titles) {
+    App.titles = App.titles.slice(0, App.max_titles)
+  }
+
   App.stor_save_titles()
   App.show_item_window(`tabs`)
 }

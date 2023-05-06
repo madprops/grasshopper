@@ -13,6 +13,7 @@ App.theme_color_diff = 0.77
 App.icon_size = 25
 App.star_counter = 1
 App.max_stars = 1000 * 5
+App.max_titles = 1000 * 5
 App.empty_previous_tabs_delay = 2000
 App.max_text_length = 200
 App.filter_delay = 200
