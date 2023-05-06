@@ -15,15 +15,15 @@ App.setup_about = () => {
       `Shift + Enter to show context menus`,
       `Ctrl + A to pick all items`,
       `Shift + Delete key removes items`,
-      `Ctrl + Home goes to the top of a list`
-      `Ctrl + End goes to the bottom of a list`
+      `Ctrl + Home goes to the top of a list`,
+      `Ctrl + End goes to the bottom of a list`,
       `Ctrl + Left togles Main Menu`,
       `Ctrl + Down toggles Filter Modes`,
       `Ctrl + Right toggles Actions`,
       `Ctrl + Up goes to playing tab`,
       `Ctrl + Backspace goes to previous tab`,
       `Arrows, Enter, and Space work in media`,
-      `Double click on empty tabs space opens a new tab`
+      `Double click on empty tabs space opens a new tab`,
     ]
 
     App.about_info_index = 0
