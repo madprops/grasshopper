@@ -95,6 +95,10 @@ App.setup_tabs = () => {
     DOM.ev(DOM.el(`#title_editor_save`), `click`, () => {
       App.title_editor_save()
     })
+
+    DOM.ev(DOM.el(`#title_editor_remove`), `click`, () => {
+      App.remove_title()
+    })
   },
   on_x: () => {
     App.show_last_window()
@@ -739,11 +743,17 @@ App.get_active_tab = async () => {
 
 // Show title editor window
 App.show_title_editor = (item) => {
-  let title = item.title
+  let title
   let t = App.get_title(item.url)
+  let remove = DOM.el(`#title_editor_remove`)
 
   if (t) {
+    remove.classList.remove(`hidden`)
     title = t
+  }
+  else {
+    remove.classList.add(`hidden`)
+    title = ``
   }
 
   DOM.el(`#title_editor_url`).value = item.url
@@ -785,6 +795,12 @@ App.title_editor_save = () => {
 
   App.stor_save_titles()
   App.show_item_window(`tabs`)
+}
+
+// Remove title
+App.remove_title = () => {
+  DOM.el(`#title_editor_title`).value = ``
+  App.title_editor_save()
 }
 
 // Get title item
