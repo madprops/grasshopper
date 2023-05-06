@@ -99,6 +99,10 @@ App.setup_tabs = () => {
     DOM.ev(DOM.el(`#title_editor_remove`), `click`, () => {
       App.remove_title()
     })
+
+    DOM.ev(DOM.el(`#title_editor_remove_all`), `click`, () => {
+      App.remove_all_titles()
+    })
   },
   on_x: () => {
     App.show_last_window()
@@ -809,4 +813,13 @@ App.get_title = (url) => {
       return item.title
     }
   }
+}
+
+// Remove all titles
+App.remove_all_titles = () => {
+  App.show_confirm(`Remove all titles? (${App.titles.length})`, () => {
+    App.titles = []
+    App.stor_save_titles()
+    App.show_item_window(`tabs`)
+  })
 }
