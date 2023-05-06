@@ -154,8 +154,8 @@ App.do_remove_stars = (ids) => {
 // Show stars editor
 App.show_star_editor = (item) => {
   App.star_edited = App.get_star_by_id(item.id)
-  DOM.el(`#star_editor_title`).value = item.title
   DOM.el(`#star_editor_url`).value = item.url
+  DOM.el(`#star_editor_title`).value = item.title
   App.show_window(`star_editor`)
   DOM.el(`#star_editor_title`).focus()
 }

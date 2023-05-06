@@ -55,9 +55,9 @@
     <div id="main"></div>
 
     <template id="template_star_editor">
-      <div class="flex_column_center gap_4" id="star_editor_container">
+      <div class="flex_column_center gap_4" id="star_editor_container" class="editor_container">
 
-        <svg id="star_editor_icon">
+        <svg id="star_editor_icon" class="editor_icon">
           <use href="#star_icon">
         </svg>
 
@@ -68,13 +68,13 @@
         </div>
 
         <div class="flex_column_center gap_1">
-          <div class="unselectable">Title</div>
-          <input type="text" autocomplete="off" spellcheck="false" id="star_editor_title" class="text star_editor_text" placeholder="Title of the star">
+          <div class="unselectable">URL</div>
+          <input type="text" autocomplete="off" spellcheck="false" id="star_editor_url" class="text editor_text" placeholder="URL of the star">
         </div>
 
         <div class="flex_column_center gap_1">
-          <div class="unselectable">URL</div>
-          <input type="text" autocomplete="off" spellcheck="false" id="star_editor_url" class="text star_editor_text" placeholder="URL of the star">
+          <div class="unselectable">Title</div>
+          <input type="text" autocomplete="off" spellcheck="false" id="star_editor_title" class="text editor_text" placeholder="Title of the star">
         </div>
 
         <div id="star_editor_info" class="flex_column_center gap_1">
@@ -98,6 +98,28 @@
           <div id="star_editor_remove" class="button button_2">Remove</div>
           <div id="star_editor_clear" class="button button_2">Clear</div>
           <div id="star_editor_save" class="button">Save</div>
+        </div>
+      </div>
+    </template>
+
+    <template id="template_title_editor">
+      <div class="flex_column_center gap_4" id="title_editor_container" class="editor_container">
+        <div id="title_editor_about" class="flex_column_center gap_2">
+          <div>Set a fixed title for a URL</div>
+        </div>
+
+        <div class="flex_column_center gap_1">
+          <div class="unselectable">URL</div>
+          <input type="text" autocomplete="off" spellcheck="false" id="title_editor_url" class="text editor_text" placeholder="URL">
+        </div>
+
+        <div class="flex_column_center gap_1">
+          <div class="unselectable">Title</div>
+          <input type="text" autocomplete="off" spellcheck="false" id="title_editor_title" class="text editor_text" placeholder="Title">
+        </div>
+
+        <div class="flex_row_center gap_2">
+          <div id="title_editor_save" class="button">Save</div>
         </div>
       </div>
     </template>

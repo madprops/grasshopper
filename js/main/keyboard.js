@@ -213,6 +213,14 @@ App.setup_keyboard = () => {
 
       return
     }
+    else if (App.window_mode === `title_editor`) {
+      if (e.key === `Enter`) {
+        App.title_editor_save()
+        e.preventDefault()
+      }
+
+      return
+    }
 
     if (App.window_mode === `image` || App.window_mode === `video`) {
       if (e.key === `ArrowLeft`) {

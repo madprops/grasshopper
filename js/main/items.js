@@ -567,6 +567,15 @@ App.get_more_menu_items = (item, multiple) => {
     })
   }
 
+  if (!item.discarded) {
+    items.push({
+      text: `Title`,
+      action: () => {
+        App.show_title_editor(item)
+      }
+    })
+  }
+
   items.push({
     text: `Move`,
     get_items: async () => { return await App.get_move_menu_items(item, multiple) }
@@ -631,6 +640,14 @@ App.process_item = (mode, item, exclude = [], o_item) => {
   let title = item.title || path
   let image = App.is_image(url)
   let video = App.is_video(url)
+
+  if (mode === `tabs`) {
+    let t = App.get_title(url)
+
+    if (t) {
+      title = t
+    }
+  }
 
   let obj = {
     title: title,

@@ -615,21 +615,21 @@ input::placeholder {
   width: 14rem;
 }
 
-#star_editor_container {
+.editor_container {
   padding-top: 1.7rem;
   padding-bottom: 1.7rem;
   align-items: stretch;
   justify-content: center;
 }
 
-.star_editor_text {
-  width: 18rem;
-  max-width: 90%;
-  text-align: center;
-}
-
-#star_editor_icon {
+.editor_icon {
   width: 1.7rem;
   height: 1.7rem;
   align-self: center;
+}
+
+.editor_text {
+  width: 18rem;
+  max-width: 90%;
+  text-align: center;
 }

@@ -30,8 +30,18 @@ App.setup_tabs = () => {
   App.setup_item_window(`tabs`)
 
   browser.tabs.onUpdated.addListener(async (id, cinfo, info) => {
-    App.log(`Tab Updated: ID: ${id}`)
     if (App.window_mode === `tabs` && info.windowId === App.window_id) {
+      let keys = Object.keys(cinfo)
+
+      if (keys.length === 1 && keys[0] === `title`) {
+        let tab = App.get_item_by_id(`tabs`, id)
+
+        if (App.get_title(tab.url)) {
+          return
+        }
+      }
+
+      App.log(`Tab Updated: ID: ${id}`)
       await App.refresh_tab(id)
       App.tabs_check()
     }
@@ -78,6 +88,21 @@ App.setup_tabs = () => {
       App.new_tab()
     }
   })
+
+  App.create_window({id: `title_editor`, setup: () => {
+    DOM.ev(DOM.el(`#title_editor_save`), `click`, () => {
+      App.title_editor_save()
+    })
+  },
+  on_x: () => {
+    App.show_last_window()
+  },
+  after_show: () => {
+    //
+  },
+  on_hide: () => {
+    App.show_last_window()
+  }})
 }
 
 // Some checks after tab operations
@@ -706,6 +731,60 @@ App.get_active_tab = async () => {
   for (let tab of tabs) {
     if (tab.active) {
       return tab
+    }
+  }
+}
+
+// Show title editor window
+App.show_title_editor = (item) => {
+  let title = item.title
+  let t = App.get_title(item.url)
+
+  if (t) {
+    title = t
+  }
+
+  DOM.el(`#title_editor_url`).value = item.url
+  DOM.el(`#title_editor_title`).value = title
+  App.show_window(`title_editor`)
+  DOM.el(`#title_editor_title`).focus()
+}
+
+// On title editor save
+App.title_editor_save = () => {
+  let url = DOM.el(`#title_editor_url`).value.trim()
+
+  if (!url) {
+    return
+  }
+
+  let title = DOM.el(`#title_editor_title`).value.trim()
+  App.titles = App.titles.filter(x => x.url !== url)
+
+  if (!title) {
+    App.stor_save_titles()
+    App.show_item_window(`tabs`)
+    return
+  }
+
+  try {
+    new URL(url)
+  }
+  catch (err) {
+    App.show_alert(`Invalid URL`)
+    return
+  }
+
+  App.titles.push({url: url, title: title})
+  App.stor_save_titles()
+  App.show_item_window(`tabs`)
+}
+
+// Get title item
+App.get_title = (url) => {
+  for (let item of App.titles) {
+    if (url.startsWith(item.url)) {
+      return item.title
     }
   }
 }

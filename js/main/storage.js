@@ -84,3 +84,14 @@ App.stor_get_stars = () => {
 App.stor_save_stars = () => {
   App.save_local_storage(App.stor_stars_name, App.stars)
 }
+
+// Get titles from storage
+App.stor_get_titles = () => {
+  App.titles = App.get_local_storage(App.stor_titles_name, [])
+  App.log(`Stor: Got titles`)
+}
+
+// Save titles to storage
+App.stor_save_titles = () => {
+  App.save_local_storage(App.stor_titles_name, App.titles)
+}
