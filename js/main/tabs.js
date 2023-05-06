@@ -33,6 +33,8 @@ App.setup_tabs = () => {
     if (App.window_mode === `tabs` && info.windowId === App.window_id) {
       let keys = Object.keys(cinfo)
 
+      // If it's a title change...
+      // Ignore if the tab has a fixed title
       if (keys.length === 1 && keys[0] === `title`) {
         let tab = App.get_item_by_id(`tabs`, id)
 
