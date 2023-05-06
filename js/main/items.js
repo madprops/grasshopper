@@ -486,7 +486,9 @@ App.show_item_menu = (item, x, y) => {
   if (item.mode === `tabs`) {
     items.push({
       text: `More`,
-      get_items: () => { return App.get_more_menu_items(item, multiple) }
+      get_items: () => {
+        return App.get_more_menu_items(item, multiple)
+       }
     })
 
     items.push({
@@ -578,7 +580,9 @@ App.get_more_menu_items = (item, multiple) => {
 
   items.push({
     text: `Move`,
-    get_items: async () => { return await App.get_move_menu_items(item, multiple) }
+    get_items: async () => {
+      return await App.get_move_menu_items(item, multiple)
+    }
   })
 
   return items

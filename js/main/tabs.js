@@ -22,6 +22,10 @@ App.setup_tabs = () => {
       App.show_tabs_info()
     }},
 
+    {text: `Titles`, get_items: () => {
+      return App.get_title_items()
+    }},
+
     {text: `Clean`, action: () => {
       App.clean_tabs()
     }},
@@ -98,10 +102,6 @@ App.setup_tabs = () => {
 
     DOM.ev(DOM.el(`#title_editor_remove`), `click`, () => {
       App.remove_title()
-    })
-
-    DOM.ev(DOM.el(`#title_editor_remove_all`), `click`, () => {
-      App.remove_all_titles()
     })
   },
   on_x: () => {
@@ -821,5 +821,65 @@ App.remove_all_titles = () => {
     App.titles = []
     App.stor_save_titles()
     App.show_item_window(`tabs`)
+  })
+}
+
+// Get title items
+App.get_title_items = () => {
+  let items = []
+
+  items.push({
+    text: `Remove`,
+    action: () => {
+      App.remove_all_titles()
+    }
+  })
+
+  items.push({
+    text: `Export`,
+    action: () => {
+      App.export_titles()
+    }
+  })
+
+  items.push({
+    text: `Import`,
+    action: () => {
+      App.import_titles()
+    }
+  })
+
+  return items
+}
+
+// Display titles json
+App.export_titles = () => {
+  App.show_textarea(`Copy this to import it later`, JSON.stringify(App.titles, null, 2))
+}
+
+// Use title json to replace titles
+App.import_titles = () => {
+  App.show_input(`Paste the data text here`, `Import`, (text) => {
+    if (!text) {
+      return
+    }
+
+    let json
+
+    try {
+      json = JSON.parse(text)
+    }
+    catch (err) {
+      App.show_alert(`Invalid JSON`)
+      return
+    }
+
+    if (json) {
+      App.show_confirm(`Use this data?`, () => {
+        App.titles = json
+        App.stor_save_titles()
+        App.show_window(`tabs`)
+      })
+    }
   })
 }
