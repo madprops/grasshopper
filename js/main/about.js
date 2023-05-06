@@ -14,7 +14,9 @@ App.setup_about = () => {
       `Right Click to show context menus`,
       `Shift + Enter to show context menus`,
       `Ctrl + A to pick all items`,
-      `Delete key removes items`,
+      `Shift + Delete key removes items`,
+      `Ctrl + Home goes to the top of a list`
+      `Ctrl + End goes to the bottom of a list`
       `Ctrl + Left togles Main Menu`,
       `Ctrl + Down toggles Filter Modes`,
       `Ctrl + Right toggles Actions`,

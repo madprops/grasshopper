@@ -58,24 +58,28 @@ App.check_window_keyboard = (e) => {
   else if (e.key === `Home`) {
     if (e.shiftKey) {
       App.highlight_to_edge(mode, `above`)
-    }
-    else {
-      App.goto_top(mode)
+      e.preventDefault()
+      return
     }
 
-    e.preventDefault()
-    return
+    if (e.ctrlKey) {
+      App.goto_top(mode)
+      e.preventDefault()
+      return
+    }
   }
   else if (e.key === `End`) {
     if (e.shiftKey) {
       App.highlight_to_edge(mode, `below`)
-    }
-    else {
-      App.goto_bottom(mode)
+      e.preventDefault()
+      return
     }
 
-    e.preventDefault()
-    return
+    if (e.ctrlKey) {
+      App.goto_bottom(mode)
+      e.preventDefault()
+      return
+    }
   }
   else if (e.key === `PageUp`) {
     App.scroll_up(mode)
@@ -129,16 +133,18 @@ App.check_window_keyboard = (e) => {
     return
   }
   else if (e.key === `Delete`) {
-    if (mode === `tabs`) {
-      App.close_tabs()
-    }
-    else if (mode === `stars`) {
-      let item = App.get_selected(mode)
-      App.remove_stars(item)
-    }
+    if (e.shiftKey) {
+      if (mode === `tabs`) {
+        App.close_tabs()
+      }
+      else if (mode === `stars`) {
+        let item = App.get_selected(mode)
+        App.remove_stars(item)
+      }
 
-    e.preventDefault()
-    return
+      e.preventDefault()
+      return
+    }
   }
 
   App.focus_filter(mode)
@@ -147,6 +153,9 @@ App.check_window_keyboard = (e) => {
 // Setup keybindings
 App.setup_keyboard = () => {
   DOM.ev(document, `keydown`, (e) => {
+    let mode = App.window_mode
+    let pmode = App.popup_mode
+
     if (NeedContext.open) {
       if (e.shiftKey && e.key === `Enter`) {
         NeedContext.hide()
@@ -166,11 +175,11 @@ App.setup_keyboard = () => {
     }
 
     if (App.popup_open) {
-      if (App.popup_mode === `textarea` || App.popup_mode === `input`) {
+      if (pmode === `textarea` || pmode === `input`) {
         return
       }
 
-      if (App.popup_mode === `confirm`) {
+      if (pmode === `confirm`) {
         if (e.key === `ArrowLeft`) {
           App.focus_confirm_no()
         }
@@ -181,7 +190,8 @@ App.setup_keyboard = () => {
           App.confirm_enter()
         }
       }
-      else if (App.popup_mode === `dialog`) {
+
+      if (pmode === `dialog`) {
         if (e.key === `Enter`) {
           App.dialog_enter()
         }
@@ -205,7 +215,7 @@ App.setup_keyboard = () => {
       }
     }
 
-    if (App.window_mode === `star_editor`) {
+    if (mode === `star_editor`) {
       if (e.key === `Enter`) {
         App.star_editor_save()
         e.preventDefault()
@@ -213,7 +223,7 @@ App.setup_keyboard = () => {
 
       return
     }
-    else if (App.window_mode === `title_editor`) {
+    else if (mode === `title_editor`) {
       if (e.key === `Enter`) {
         App.title_editor_save()
         e.preventDefault()
@@ -221,35 +231,34 @@ App.setup_keyboard = () => {
 
       return
     }
-
-    if (App.window_mode === `image` || App.window_mode === `video`) {
+    else if (mode === `image` || mode === `video`) {
       if (e.key === `ArrowLeft`) {
-        App.media_prev(App.window_mode)
+        App.media_prev(mode)
         e.preventDefault()
         return
       }
       else if (e.key === `ArrowRight`) {
-        App.media_next(App.window_mode)
+        App.media_next(mode)
         e.preventDefault()
         return
       }
       else if (e.key === `ArrowUp`) {
-        App.media_copy(App.window_mode, true)
+        App.media_copy(mode, true)
         e.preventDefault()
         return
       }
       else if (e.key === `Enter`) {
-        App.open_media(App.window_mode)
+        App.open_media(mode)
         e.preventDefault()
         return
       }
       else if (e.key === ` `) {
-        App.star_media(App.window_mode)
+        App.star_media(mode)
         e.preventDefault()
         return
       }
 
-      App.hide_media(App.window_mode)
+      App.hide_media(mode)
       e.preventDefault()
       return
     }
