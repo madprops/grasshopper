@@ -26,10 +26,6 @@ App.setup_stars = () => {
     DOM.ev(DOM.el(`#star_editor_remove`), `click`, () => {
       App.remove_star()
     })
-
-    DOM.ev(DOM.el(`#star_editor_clear`), `click`, () => {
-      App.clear_star_editor()
-    })
   },
   on_x: () => {
     App.show_last_window()
@@ -271,7 +267,6 @@ App.update_star_editor_info = () => {
   let added = DOM.el(`#star_editor_added`)
   let save = DOM.el(`#star_editor_save`)
   let remove = DOM.el(`#star_editor_remove`)
-  let clear = DOM.el(`#star_editor_clear`)
   let icon = DOM.el(`#star_editor_icon`)
 
   if (App.star_edited) {
@@ -282,7 +277,6 @@ App.update_star_editor_info = () => {
     about.classList.add(`hidden`)
     info.classList.remove(`hidden`)
     remove.classList.remove(`hidden`)
-    clear.classList.add(`hidden`)
     DOM.el(`use`, icon).href.baseVal = `#star_solid_icon`
   }
   else {
@@ -290,7 +284,6 @@ App.update_star_editor_info = () => {
     about.classList.remove(`hidden`)
     info.classList.add(`hidden`)
     remove.classList.add(`hidden`)
-    clear.classList.remove(`hidden`)
     DOM.el(`use`, icon).href.baseVal = `#star_icon`
   }
 }
@@ -413,11 +406,4 @@ App.toggle_star = (item, prepend = false) => {
 
     return true
   }
-}
-
-// Clear star editor
-App.clear_star_editor = () => {
-  DOM.el(`#star_editor_title`).value = ``
-  DOM.el(`#star_editor_url`).value = ``
-  DOM.el(`#star_editor_title`).focus()
 }
