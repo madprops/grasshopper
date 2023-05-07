@@ -1083,6 +1083,10 @@ App.setup_item_window = (mode) => {
       App[`${mode}_actions`] = []
     }
 
+    App[`${mode}_actions`].unshift({text: `All`, action: () => {
+      App.highlight_items(mode)
+    }})
+
     App[`${mode}_actions`].unshift({text: `Clear`, action: () => {
       App.clear_filter(mode)
     }})

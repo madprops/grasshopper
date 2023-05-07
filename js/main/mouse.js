@@ -19,6 +19,7 @@ App.setup_window_mouse = (mode) => {
 
   DOM.ev(container, `mouseup`, (e) => {
     if (!e.target.closest(`.${mode}_item`)) {
+      App.dehighlight(mode)
       return
     }
 
