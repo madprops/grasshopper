@@ -3,10 +3,6 @@ App.setup_stars = () => {
   App.stars_actions = [
     {text: `--separator--`},
 
-    {text: `Undo`, action: () => {
-      App.restore_stars()
-    }},
-
     {text: `Export`, action: () => {
       App.export_stars()
     }},
@@ -294,29 +290,11 @@ App.remove_stars = (item, force = false) => {
   let ids = active.map(x => x.id)
 
   App.show_confirm(`Remove stars? (${ids.length})`, () => {
-    App.backup_stars()
     App.do_remove_stars(ids)
     App.dehighlight(`stars`)
   }, () => {
     App.dehighlight(`stars`)
   }, force)
-}
-
-// Backup stars
-App.backup_stars = () => {
-  App.stars_backup = structuredClone(App.stars)
-}
-
-// Undo remove stars
-App.restore_stars = () => {
-  if (App.stars_backup) {
-    App.stars = App.stars_backup
-    App.stor_save_stars()
-    App.show_window(`stars`)
-  }
-  else {
-    App.show_feedback(`Nothing to undo`)
-  }
 }
 
 // Display stars json
