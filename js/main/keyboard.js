@@ -170,6 +170,12 @@ App.setup_keyboard = () => {
     }
 
     if (App.popup_open) {
+      if (e.key === `Escape`) {
+        App.hide_all_popups()
+        e.preventDefault()
+        return
+      }
+
       if (pmode === `textarea` || pmode === `input`) {
         return
       }

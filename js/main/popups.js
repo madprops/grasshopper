@@ -202,3 +202,10 @@ App.input_enter = () => {
   App.hide_popup(`input`)
   App.input_action(DOM.el(`#input_text`).value.trim())
 }
+
+// Hide all popups
+App.hide_all_popups = () => {
+  for (let id in App.popups) {
+    App.hide_popup(id)
+  }
+}
