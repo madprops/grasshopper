@@ -9,12 +9,7 @@ App.check_window_keyboard = (e) => {
   }
 
   if (e.ctrlKey) {
-    if (e.key === `a`) {
-      App.highlight_items(mode)
-      e.preventDefault()
-      return
-    }
-    else if (e.key === `ArrowLeft`) {
+    if (e.key === `ArrowLeft`) {
       App.show_main_menu(mode)
       e.preventDefault()
       return
