@@ -473,7 +473,8 @@ App.tab_is_normal = (tab) => {
 
 // Show tabs information
 App.show_tabs_info = () => {
-  let all = App.get_items(`tabs`).length
+  let tabs = App.get_items(`tabs`)
+  let all = tabs.length
   let pins = App.get_pinned_tabs().length
   let playing = App.get_playing_tabs().length
   let muted = App.get_muted_tabs().length
@@ -484,8 +485,15 @@ App.show_tabs_info = () => {
   s += `Pins: ${pins}\n`
   s += `Playing: ${playing}\n`
   s += `Muted: ${muted}\n`
-  s += `Suspended: ${suspended}`
-  App.show_alert(s)
+  s += `Suspended: ${suspended}\n\n`
+
+  s + `URLs:\n\n`
+
+  for (let tab of tabs) {
+    s += `${tab.url}\n`
+  }
+
+  App.show_alert(s.trim())
 }
 
 // Pin or unpin

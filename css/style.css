@@ -634,3 +634,11 @@ input::placeholder {
   text-align: center;
   padding: 0.35rem;
 }
+
+#alert_message {
+  max-width: 90vw;
+  user-select: text;
+  overflow-x: hidden;
+  overflow-y: auto;
+  max-height: 60vh;
+}
