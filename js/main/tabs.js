@@ -758,13 +758,16 @@ App.show_title_editor = (item) => {
   let title = item.title
   let t = App.get_title(item.url)
   let remove = DOM.el(`#title_editor_remove`)
+  let save = DOM.el(`#title_editor_save`)
 
   if (t) {
     remove.classList.remove(`hidden`)
+    save.textContent = `Update`
     title = t
   }
   else {
     remove.classList.add(`hidden`)
+    save.textContent = `Save`
   }
 
   DOM.el(`#title_editor_url`).value = item.url

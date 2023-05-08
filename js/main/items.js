@@ -437,6 +437,13 @@ App.show_item_menu = (item, x, y) => {
     }
 
     items.push({
+      text: `Title`,
+      action: () => {
+        App.show_title_editor(item)
+      }
+    })
+
+    items.push({
       separator: true
     })
   }
@@ -565,15 +572,6 @@ App.get_more_menu_items = (item, multiple) => {
       text: `Suspend`,
       action: () => {
         App.suspend_tabs(item)
-      }
-    })
-  }
-
-  if (!item.discarded) {
-    items.push({
-      text: `Title`,
-      action: () => {
-        App.show_title_editor(item)
       }
     })
   }
