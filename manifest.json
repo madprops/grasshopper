@@ -1,14 +1,13 @@
 {
     "manifest_version": 2,
     "name": "Grasshopper",
-    "version": "346",
+    "version": "347",
     "description": "Awesome Tab Manager",
     "permissions": [
         "tabs",
         "sessions",
         "history",
-        "bookmarks",
-        "contextMenus"
+        "bookmarks"
     ],
     "icons": {
         "128": "img/icon128.png"
