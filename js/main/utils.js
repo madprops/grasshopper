@@ -207,17 +207,42 @@ App.close_window = () => {
   }
 }
 
+// Centralized log function
 App.log = (message, mode = `normal`) => {
-  let icon
-
-  if (mode === `normal`) {
-    icon = `🟢`
+  if (mode === `error`) {
+    console.error(message)
   }
-  else if (mode === `error`) {
-    icon = `🔴`
+  else {
+    console.info(`🟢 ${message}`)
+  }
+}
+
+// Find objects that share the same property with other objects
+App.find_duplicates = (objects, property) => {
+  let frequency_map = objects.reduce((map, obj) => {
+    let value = obj[property]
+    map[value] = (map[value] || 0) + 1
+    return map
+  }, {})
+
+  return objects.filter(obj => frequency_map[obj[property]] > 1)
+}
+
+// Get a list of the other duplicates, ignoring the first one
+App.get_excess = (objects, property) => {
+  let items = {}
+  let excess = []
+
+  for (let obj of objects) {
+    if (items[obj[property]]) {
+      excess.push(obj)
+    }
+    else {
+      items[obj[property]] = obj
+    }
   }
 
-  console.info(`${icon} Grasshopper: ${message}`)
+  return excess
 }
 
 App.image_extensions = [`jpg`, `jpeg`, `png`, `gif`, `webp`, `bmp`]

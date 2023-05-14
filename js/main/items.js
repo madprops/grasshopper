@@ -299,6 +299,12 @@ App.do_item_filter = async (mode) => {
     filter_words = words.map(x => x.toLowerCase())
   }
 
+  let duplicates
+
+  if (filter_mode === `duplicates`) {
+    duplicates = App.find_duplicates(items, `url`)
+  }
+
   function check (title, path) {
     return filter_words.every(x => title.includes(x) || path.includes(x))
   }
@@ -341,6 +347,9 @@ App.do_item_filter = async (mode) => {
       }
       else if (filter_mode === `https`) {
         match = item.protocol === `https:`
+      }
+      else if (filter_mode === `duplicates`) {
+        match = duplicates.includes(item)
       }
     }
 

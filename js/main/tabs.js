@@ -6,8 +6,9 @@ App.setup_tabs = () => {
     [`muted`, `Muted`],
     [`active`, `Active`],
     [`normal`, `Normal`],
-    [`http`, `Http`],
-    [`https`, `Https`],
+    [`duplicates`, `Dups`],
+    [`http`, `http:`],
+    [`https`, `https:`],
     [`suspended`, `zzz`],
   ]
 
@@ -24,6 +25,10 @@ App.setup_tabs = () => {
 
     {text: `Titles`, get_items: () => {
       return App.get_title_items()
+    }},
+
+    {text: `Dups`, action: () => {
+      App.remove_dups()
     }},
 
     {text: `Clean`, action: () => {
@@ -595,6 +600,22 @@ App.clean_tabs = () => {
   }
 
   App.show_confirm(`Clean tabs? (${ids.length})`, () => {
+    App.do_close_tabs(ids)
+  })
+}
+
+// Remove duplicate tabs
+App.remove_dups = () => {
+  let items = App.get_items(`tabs`)
+  let duplicates = App.find_duplicates(items, `url`)
+  let excess = App.get_excess(duplicates, `url`)
+  let ids = excess.map(x => x.id)
+
+  if (ids.length === 0) {
+    return
+  }
+
+  App.show_confirm(`Close duplicate tabs? (${ids.length})`, () => {
     App.do_close_tabs(ids)
   })
 }
