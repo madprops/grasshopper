@@ -596,6 +596,7 @@ App.clean_tabs = () => {
   }
 
   if (ids.length === 0) {
+    App.show_alert(`Nothing to clean`)
     return
   }
 
@@ -612,6 +613,7 @@ App.remove_dups = () => {
   let ids = excess.map(x => x.id)
 
   if (ids.length === 0) {
+    App.show_alert(`No duplicates found`)
     return
   }
 
