@@ -754,7 +754,7 @@ App.create_item_element = (item) => {
       }
     }
 
-    if (App.shown[`tabs`] && App.fully_started && App.settings.show_hot_icons) {
+    if (App.settings.show_hot_icons && (Date.now() - App.first_shown[`tabs`]) >= App.min_shown) {
       if (Date.now() - App.tabs_created[item.id] <= 3000) {
         let hot_icon = DOM.create(`div`, `item_info item_info_hot`)
         hot_icon.textContent = App.settings.hot_icon
@@ -971,7 +971,10 @@ App.show_item_window = async (mode, cycle = false) => {
   }
 
   App.focus_filter(mode)
-  App.shown[mode] = true
+
+  if (!App.first_shown[mode]) {
+    App.first_shown[mode] = Date.now()
+  }
 }
 
 // Setup an item window
