@@ -397,7 +397,7 @@ svg {
   display: table-cell;
 }
 
-pin + item {
+.pin_item + .normal_item {
   border-top: 2px solid var(--alt_color_1);
 }
 

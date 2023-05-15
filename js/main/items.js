@@ -699,13 +699,7 @@ App.process_item = (mode, item, exclude = [], o_item) => {
 
 // Create empty item
 App.create_empty_item_element = (item) => {
-  let tag = `item`
-
-  if (item.pinned) {
-    tag = `pin`
-  }
-
-  item.element = DOM.create(tag, `grasshopper_item item ${item.mode}_item`)
+  item.element = DOM.create(`div`, `grasshopper_item item ${item.mode}_item`)
   item.element.dataset.id = item.id
   App[`${item.mode}_item_observer`].observe(item.element)
 }
@@ -716,6 +710,13 @@ App.create_item_element = (item) => {
 
   if (item.mode === `tabs`) {
     item.element.draggable = true
+
+    if (item.pinned) {
+      item.element.classList.add(`pin_item`)
+    }
+    else {
+      item.element.classList.add(`normal_item`)
+    }
   }
 
   let icon = App.get_img_icon(item.favicon, item.url, item.pinned)
