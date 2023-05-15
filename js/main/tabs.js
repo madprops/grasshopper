@@ -123,7 +123,6 @@ App.setup_tabs = () => {
 // Some checks after tab operations
 App.tabs_check = () => {
   App.check_playing()
-  App.show_pinline()
 }
 
 // Get open tabs
@@ -641,53 +640,6 @@ App.check_playing = () => {
   }
   else {
     App.hide_playing()
-  }
-}
-
-// Remove the pinline
-App.remove_pinline = () => {
-  for (let el of DOM.els(`#tabs_container .pinline`)) {
-    el.classList.remove(`pinline`)
-  }
-}
-
-// Show the pinline after the last pin
-App.show_pinline = () => {
-  let tabs = App.get_items(`tabs`)
-
-  if (!tabs) {
-    return
-  }
-
-  let last
-
-  App.remove_pinline()
-
-  if (App.get_filter(`tabs`) || App.tabs_filter_mode !== `all`) {
-    return
-  }
-
-  for (let tab of tabs) {
-    if (tab.pinned) {
-      last = tab
-    }
-    else {
-      if (last) {
-        last.element.classList.add(`pinline`)
-      }
-
-      break
-    }
-  }
-}
-
-// Check pinline
-App.check_pinline = () => {
-  if (App.get_filter(`tabs`) || App.tabs_filter_mode !== `all`) {
-    App.remove_pinline()
-  }
-  else {
-    App.show_pinline()
   }
 }
 

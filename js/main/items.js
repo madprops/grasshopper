@@ -386,10 +386,6 @@ App.do_item_filter = async (mode) => {
 
   App.update_footer_info(App.get_selected(mode))
   App.update_footer_count(mode)
-
-  if (mode === `tabs`) {
-    App.check_pinline()
-  }
 }
 
 // Show item
@@ -623,7 +619,6 @@ App.process_items = (mode, items) => {
 
   if (mode === `tabs`) {
     App.check_playing()
-    App.show_pinline()
   }
 }
 
@@ -704,7 +699,13 @@ App.process_item = (mode, item, exclude = [], o_item) => {
 
 // Create empty item
 App.create_empty_item_element = (item) => {
-  item.element = DOM.create(`div`, `grasshopper_item item ${item.mode}_item`)
+  let tag = `item`
+
+  if (item.pinned) {
+    tag = `pin`
+  }
+
+  item.element = DOM.create(tag, `grasshopper_item item ${item.mode}_item`)
   item.element.dataset.id = item.id
   App[`${item.mode}_item_observer`].observe(item.element)
 }

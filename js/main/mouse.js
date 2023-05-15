@@ -123,7 +123,6 @@ App.setup_drag = (mode, container) => {
       App.drag_els.push(tab.element)
     }
 
-    App.remove_pinline()
     App.drag_moved = false
   })
 
@@ -135,7 +134,6 @@ App.setup_drag = (mode, container) => {
     }
 
     App.drag_element = undefined
-    App.show_pinline()
 
     if (!App.drag_moved) {
       e.preventDefault()

@@ -261,10 +261,6 @@ svg {
   background-color: var(--alt_color_1);
 }
 
-.pinline {
-  border-bottom: 2px solid var(--alt_color_1);
-}
-
 .hidden {
   display: none !important;
 }
@@ -399,6 +395,10 @@ svg {
 .item_order_button {
   min-width: 4rem;
   display: table-cell;
+}
+
+pin:nth-last-of-type(1) {
+  border-bottom: 2px solid var(--alt_color_1);
 }
 
 #needcontext-main {
