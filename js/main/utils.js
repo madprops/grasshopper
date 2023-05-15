@@ -220,8 +220,7 @@ App.log = (message, mode = `normal`) => {
 // Find objects that share the same property with other objects
 App.find_duplicates = (objects, property) => {
   let frequency_map = objects.reduce((map, obj) => {
-    let value = obj[property]
-    map[value] = (map[value] || 0) + 1
+    map[obj[property]] = (map[obj[property]] || 0) + 1
     return map
   }, {})
 
