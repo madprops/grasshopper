@@ -720,9 +720,11 @@ App.create_item_element = (item) => {
 
     if (item.pinned) {
       item.element.classList.add(`pin_item`)
+      item.element.classList.remove(`normal_item`)
     }
     else {
       item.element.classList.add(`normal_item`)
+      item.element.classList.remove(`pin_item`)
     }
   }
 
