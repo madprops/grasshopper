@@ -693,6 +693,13 @@ App.process_item = (mode, item, exclude = [], o_item) => {
     obj.highlighted = false
     App.create_empty_item_element(obj)
     App[`${mode}_idx`] += 1
+
+    if (mode === `tabs`) {
+      if (!App.tabs_created[obj.id]) {
+        App.tabs_created[obj.id] = Date.now()
+      }
+    }
+
     return obj
   }
 }
@@ -730,18 +737,34 @@ App.create_item_element = (item) => {
   App.set_item_text(item)
 
   if (item.mode === `tabs`) {
-    if (item.pinned && App.settings.pin_icon) {
-      let pin_icon = DOM.create(`div`, `item_info item_info_pin`)
-      pin_icon.textContent = App.settings.pin_icon
-      pin_icon.title = `This tab is pinned`
-      item.element.append(pin_icon)
+    if (item.pinned) {
+      if (App.settings.pin_icon) {
+        let pin_icon = DOM.create(`div`, `item_info item_info_pin`)
+        pin_icon.textContent = App.settings.pin_icon
+        pin_icon.title = `This tab is pinned`
+        item.element.append(pin_icon)
+      }
+    }
+    else {
+      if (App.settings.normal_icon) {
+        let normal_icon = DOM.create(`div`, `item_info item_info_normal`)
+        normal_icon.textContent = App.settings.normal_icon
+        normal_icon.title = `This tab is normal`
+        item.element.append(normal_icon)
+      }
     }
 
-    if (!item.pinned && App.settings.normal_icon) {
-      let normal_icon = DOM.create(`div`, `item_info item_info_normal`)
-      normal_icon.textContent = App.settings.normal_icon
-      normal_icon.title = `This tab is normal`
-      item.element.append(normal_icon)
+    if (App.shown[`tabs`] && App.fully_started && App.settings.show_hot_icons) {
+      if (Date.now() - App.tabs_created[item.id] <= 3000) {
+        let hot_icon = DOM.create(`div`, `item_info item_info_hot`)
+        hot_icon.textContent = App.settings.hot_icon
+        hot_icon.title = `This tab was recently opened`
+        item.element.append(hot_icon)
+
+        setTimeout(() => {
+          hot_icon.remove()
+        }, App.hot_icon_delay)
+      }
     }
   }
   else {
@@ -948,6 +971,7 @@ App.show_item_window = async (mode, cycle = false) => {
   }
 
   App.focus_filter(mode)
+  App.shown[mode] = true
 }
 
 // Setup an item window

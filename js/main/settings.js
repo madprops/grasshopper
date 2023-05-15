@@ -1,28 +1,37 @@
 // Default settings values
 App.default_settings = {
   text_mode: {value: `title`, category: `basic`},
+
   tabs_index: {value: 0, category: `basic`},
   history_index: {value: 1, category: `basic`},
   bookmarks_index: {value: 2, category: `basic`},
   closed_index: {value: 3, category: `basic`},
   stars_index: {value: 4, category: `basic`},
+
   lock_drag: {value: false, category: `basic`},
   switch_to_tabs: {value: true, category: `basic`},
   hover_tooltips: {value: true, category: `basic`},
+  show_hot_icons: {value: true, category: `basic`},
+
   width: {value: 70, category: `basic`},
   height: {value: 80, category: `basic`},
+
   font: {value: `sans-serif`, category: `basic`},
   font_size: {value: 16, category: `basic`},
+
   media_viewer: {value: true, category: `basic`},
+
   background_color: {value: `rgb(43, 42, 51)`, category: `theme`},
   text_color: {value: `rgb(251, 251, 254)`, category: `theme`},
   background_image: {value: `1`, category: `theme`},
   custom_background: {value: ``, category: `theme`},
+
   pin_icon: {value: `+`, category: `icons`},
   normal_icon: {value: ``, category: `icons`},
   playing_icon: {value: `🔊`, category: `icons`},
   muted_icon: {value: `🔇`, category: `icons`},
   suspended_icon: {value: `(zzz)`, category: `icons`},
+  hot_icon: {value: `🔥`, category: `icons`},
 }
 
 // Make item order control

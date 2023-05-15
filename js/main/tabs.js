@@ -1,5 +1,8 @@
 // Setup tabs
 App.setup_tabs = () => {
+  // Store dates of when a tab is first processed
+  App.tabs_created = {}
+
   App.tabs_filter_modes = [
     [`pins`, `Pins`],
     [`playing`, `Playing`],
@@ -277,6 +280,7 @@ App.get_suspended_tabs = () => {
 // Remove a closed tab
 App.remove_closed_tab = (id) => {
   let tab = App.get_item_by_id(`tabs`, id)
+  delete App.tabs_created[id]
 
   if (tab) {
     App.remove_item(tab)

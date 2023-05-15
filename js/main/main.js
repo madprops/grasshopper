@@ -18,6 +18,10 @@ App.empty_previous_tabs_delay = 2000
 App.max_text_length = 200
 App.filter_delay = 200
 App.alert_autohide_delay = 1500
+App.hot_icon_delay = 3000
+App.fully_started = false
+App.shown = {}
+
 NeedContext.min_width = `4.5rem`
 
 App.init = async () => {
@@ -40,6 +44,10 @@ App.init = async () => {
   App.setup_window()
   App.setup_items()
   App.show_first_window()
+
+  setTimeout(() => {
+    App.fully_started = true
+  }, 1 * 1000)
 }
 
 App.init()
