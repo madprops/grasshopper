@@ -397,8 +397,8 @@ svg {
   display: table-cell;
 }
 
-pin {
-  border-bottom: 1px solid var(--alt_color_1);
+pin + item {
+  border-top: 2px solid var(--alt_color_1);
 }
 
 #needcontext-main {
