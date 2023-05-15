@@ -18,9 +18,6 @@ App.empty_previous_tabs_delay = 2000
 App.max_text_length = 200
 App.filter_delay = 200
 App.alert_autohide_delay = 1500
-App.hot_icon_delay = 3000
-App.first_shown = {}
-App.min_shown = 30 * 1000
 
 NeedContext.min_width = `4.5rem`
 

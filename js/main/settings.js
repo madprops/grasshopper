@@ -11,7 +11,6 @@ App.default_settings = {
   lock_drag: {value: false, category: `basic`},
   switch_to_tabs: {value: true, category: `basic`},
   hover_tooltips: {value: true, category: `basic`},
-  show_hot_icons: {value: true, category: `basic`},
 
   width: {value: 70, category: `basic`},
   height: {value: 80, category: `basic`},
@@ -31,7 +30,6 @@ App.default_settings = {
   playing_icon: {value: `🔊`, category: `icons`},
   muted_icon: {value: `🔇`, category: `icons`},
   suspended_icon: {value: `(zzz)`, category: `icons`},
-  hot_icon: {value: `🔥`, category: `icons`},
 }
 
 // Make item order control

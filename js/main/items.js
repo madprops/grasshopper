@@ -755,21 +755,6 @@ App.create_item_element = (item) => {
         item.element.append(normal_icon)
       }
     }
-
-    if (App.settings.show_hot_icons && (Date.now() - App.first_shown[`tabs`]) >= App.min_shown) {
-      let created_ago = Date.now() - App.tabs_created[item.id]
-
-      if (created_ago <= 3000) {
-        let hot_icon = DOM.create(`div`, `item_info item_info_hot`)
-        hot_icon.textContent = App.settings.hot_icon
-        hot_icon.title = `This tab was recently opened`
-        item.element.append(hot_icon)
-
-        setTimeout(() => {
-          hot_icon.remove()
-        }, Math.max(1, App.hot_icon_delay - created_ago))
-      }
-    }
   }
   else {
     let launched = DOM.create(`div`, `item_info item_info_launched`)
@@ -975,10 +960,6 @@ App.show_item_window = async (mode, cycle = false) => {
   }
 
   App.focus_filter(mode)
-
-  if (!App.first_shown[mode]) {
-    App.first_shown[mode] = Date.now()
-  }
 }
 
 // Setup an item window
