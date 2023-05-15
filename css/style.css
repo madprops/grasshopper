@@ -563,8 +563,8 @@ input::placeholder {
 }
 
 .editor_container {
-  padding-top: 1.5rem;
-  padding-bottom: 1.5rem;
+  padding-top: 1rem;
+  padding-bottom: 2rem;
   align-items: stretch;
   justify-content: center;
 }
