@@ -757,7 +757,9 @@ App.create_item_element = (item) => {
     }
 
     if (App.settings.show_hot_icons && (Date.now() - App.first_shown[`tabs`]) >= App.min_shown) {
-      if (Date.now() - App.tabs_created[item.id] <= 3000) {
+      let created_ago = Date.now() - App.tabs_created[item.id]
+
+      if (created_ago <= 3000) {
         let hot_icon = DOM.create(`div`, `item_info item_info_hot`)
         hot_icon.textContent = App.settings.hot_icon
         hot_icon.title = `This tab was recently opened`
@@ -765,7 +767,7 @@ App.create_item_element = (item) => {
 
         setTimeout(() => {
           hot_icon.remove()
-        }, App.hot_icon_delay)
+        }, Math.max(1, App.hot_icon_delay - created_ago))
       }
     }
   }
