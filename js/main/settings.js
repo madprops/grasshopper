@@ -11,12 +11,12 @@ App.default_settings = {
   hover_tooltips: {value: true, category: `basic`},
   width: {value: 70, category: `basic`},
   height: {value: 80, category: `basic`},
-  font: {value: `gh_sans`, category: `basic`},
+  font: {value: `sans-serif`, category: `basic`},
   font_size: {value: 16, category: `basic`},
   media_viewer: {value: true, category: `basic`},
   background_color: {value: `rgb(74, 82, 94)`, category: `theme`},
   text_color: {value: `rgb(202, 204, 208)`, category: `theme`},
-  background_image: {value: `2`, category: `theme`},
+  background_image: {value: `none`, category: `theme`},
   custom_background: {value: ``, category: `theme`},
   pin_icon: {value: `+`, category: `icons`},
   normal_icon: {value: ``, category: `icons`},
@@ -184,16 +184,9 @@ App.setup_settings = () => {
     App.make_item_order()
 
     App.settings_make_menu(`font`, [
-      [`Sans`, `gh_sans`],
-      [`Serif`, `gh_serif`],
-      [`Mono`, `gh_mono`],
-      [`Comic`, `gh_comic`],
-      [`Cursive`, `gh_cursive`],
-      [`Funone`, `gh_funone`],
-      [`Cyber`, `gh_cyber`],
-      [`Neat`, `gh_neat`],
-      [`Cool`, `gh_cool`],
-      [`Alien`, `gh_alien`],
+      [`Sans`, `sans-serif`],
+      [`Serif`, `serif`],
+      [`Mono`, `mono`],
     ], () => {
       App.apply_theme()
     })

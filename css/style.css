@@ -5,56 +5,6 @@
   --item_margin_2: 0.65rem;
 }
 
-@font-face {
-	font-family: gh_sans;
-	src: url(fonts/Roboto-Regular.ttf);
-}
-
-@font-face {
-	font-family: gh_serif;
-	src: url(fonts/RobotoSerif-Regular.ttf);
-}
-
-@font-face {
-	font-family: gh_mono;
-	src: url(fonts/RobotoMono-Regular.ttf);
-}
-
-@font-face {
-	font-family: gh_comic;
-	src: url(fonts/ComicNeue-Regular.ttf);
-}
-
-@font-face {
-	font-family: gh_cursive;
-	src: url(fonts/Pacifico-Regular.ttf);
-}
-
-@font-face {
-	font-family: gh_funone;
-	src: url(fonts/NerkoOne-Regular.ttf);
-}
-
-@font-face {
-	font-family: gh_cyber;
-	src: url(fonts/ZenDots-Regular.ttf);
-}
-
-@font-face {
-	font-family: gh_neat;
-	src: url(fonts/Montserrat-Regular.ttf);
-}
-
-@font-face {
-	font-family: gh_cool;
-	src: url(fonts/Lobster-Regular.ttf);
-}
-
-@font-face {
-	font-family: gh_alien;
-	src: url(fonts/Guest.ttf);
-}
-
 @keyframes rotate {
   to {
     transform: rotate(360deg);
