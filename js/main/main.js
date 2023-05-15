@@ -47,7 +47,7 @@ App.init = async () => {
 
   setTimeout(() => {
     App.fully_started = true
-  }, 1 * 1000)
+  }, 30 * 1000)
 }
 
 App.init()
