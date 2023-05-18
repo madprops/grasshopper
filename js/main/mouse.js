@@ -67,6 +67,21 @@ App.setup_window_mouse = (mode) => {
     let item = App.get_selected(mode)
     App.update_footer_info(item)
   })
+
+  DOM.ev(container, `wheel`, (e) => {
+    if (e.shiftKey) {
+      let direction = e.deltaY > 0 ? `down` : `up`
+
+      if (direction === `up`) {
+        App.goto_top(mode)
+      }
+      else if (direction === `down`) {
+        App.goto_bottom(mode)
+      }
+
+      e.preventDefault()
+    }
+  })
 }
 
 // Get item under cursor

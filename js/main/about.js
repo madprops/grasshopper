@@ -23,6 +23,7 @@ App.setup_about = () => {
       `Ctrl + Backspace goes to previous tab`,
       `Arrows, Enter, and Space work in media`,
       `Double click on empty tabs space opens a new tab`,
+      `Shift + Scrollwheel goes to Top or Bottom`,
     ]
 
     App.about_info_index = 0
