@@ -1671,7 +1671,7 @@ App.show_glowie = (mode, which) => {
 
   App[`hide_glowie_${which}`] = setTimeout(() => {
     DOM.el(`#${mode}_glowie_${which}`).classList.remove(`glowie_active`)
-  }, 500)
+  }, App.glowie_delay)
 }
 
 // Scroll up a bit
