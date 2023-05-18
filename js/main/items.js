@@ -936,7 +936,7 @@ App.show_item_window = async (mode, cycle = false) => {
   App.set_filter(mode, value, false)
 
   let m = App[`${mode}_filter_modes`][0]
-  App.set_filter_mode(mode, m, false)
+  App.set_filter_mode(mode, m)
   App[`${mode}_filter_mode`] = m[0]
 
   let items = await App[`get_${mode}`]()
@@ -1452,16 +1452,9 @@ App.cycle_filter_modes = (mode, reverse = true) => {
 }
 
 // Set filter mode
-App.set_filter_mode = (mode, filter_mode, action = true) => {
+App.set_filter_mode = (mode, filter_mode) => {
   App[`${mode}_filter_mode`] = filter_mode[0]
   DOM.el(`#${mode}_filter_modes_text`).textContent = filter_mode[1]
-
-  if (action) {
-    if (filter_mode[0] === `all`) {
-      App.clear_filter(mode)
-    }
-  }
-
   App.do_item_filter(mode)
 }
 
