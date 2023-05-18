@@ -455,6 +455,14 @@ App.show_item_menu = (item, x, y) => {
       separator: true
     })
   }
+  else {
+    items.push({
+      text: `Launch`,
+      action: () => {
+        App.launch_items(item)
+      }
+    })
+  }
 
   items.push({
     text: `Star`,
@@ -462,15 +470,6 @@ App.show_item_menu = (item, x, y) => {
       App.star_items(item)
     }
   })
-
-  if (item.mode === `stars`) {
-    items.push({
-      text: `Remove`,
-      action: () => {
-        App.remove_stars(item)
-      }
-    })
-  }
 
   if (!multiple) {
     items.push({
@@ -498,6 +497,15 @@ App.show_item_menu = (item, x, y) => {
     })
   }
 
+  if (item.mode === `stars`) {
+    items.push({
+      text: `Remove`,
+      action: () => {
+        App.remove_stars(item)
+      }
+    })
+  }
+
   if (item.mode === `tabs`) {
     items.push({
       text: `More`,
@@ -514,14 +522,6 @@ App.show_item_menu = (item, x, y) => {
       text: `Close`,
       action: () => {
         App.close_tabs(item)
-      }
-    })
-  }
-  else {
-    items.push({
-      text: `Launch`,
-      action: () => {
-        App.launch_items(item)
       }
     })
   }

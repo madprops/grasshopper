@@ -230,7 +230,16 @@ App.new_star = (title = ``, url = ``) => {
 App.new_star_from_active = async () => {
   let tab = await App.get_active_tab()
 
-  if (tab) {
+  if (!tab) {
+    return
+  }
+
+  let item = App.get_star_by_url(tab.url)
+
+  if (item) {
+    App.add_or_edit_star(item)
+  }
+  else {
     App.new_star(tab.title, tab.url)
   }
 }
