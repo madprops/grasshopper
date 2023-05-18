@@ -633,26 +633,3 @@ input::placeholder {
 .edge:hover {
   background-color: var(--alt_color_1);
 }
-
-.glower {
-  position: absolute;
-  height: 20px;
-  width: 100%;
-  pointer-events: none;
-  background-color: transparent;
-  transition: background-color 200ms linear, box-shadow 200ms linear;
-  border-radius: 25px;
-}
-
-.glower_top {
-  top: 0;
-}
-
-.glower_bottom {
-  bottom: 0;
-}
-
-.glower_active {
-  background-color: var(--alt_color_2);
-  box-shadow: 0 0 2rem var(--alt_color_2);
-}
