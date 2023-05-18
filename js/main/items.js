@@ -986,6 +986,11 @@ App.setup_item_window = (mode) => {
     DOM.el(`#window_top_${mode}`).append(top)
 
     DOM.ev(glowie, `click`, () => {
+      if (App.get_highlights(mode).length > 0) {
+        App.dehighlight(mode)
+        return
+      }
+
       if (mode === `tabs`) {
         App.go_to_previous_tab()
       }
@@ -1003,7 +1008,6 @@ App.setup_item_window = (mode) => {
     })
 
     footer.append(footer_count)
-    footer.append(App.create_icon(`cube`))
 
     let footer_info = DOM.create(`div`, `footer_info`)
     footer.append(footer_info)
@@ -1276,10 +1280,10 @@ App.update_footer_count = (mode) => {
   let count = DOM.el(`.footer_count`, footer)
 
   if (n1 > 0) {
-    count.textContent = `${s1}/${s2}`
+    count.textContent = `(${s1}/${s2})`
   }
   else {
-    count.textContent = s2
+    count.textContent = `(${s2})`
   }
 }
 
