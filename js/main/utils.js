@@ -256,5 +256,14 @@ App.is_at_bottom = (container) => {
   return container.scrollTop + container.clientHeight === container.scrollHeight
 }
 
+// Check if element is visible
+App.element_is_visible = (container, el) => {
+  let containerRect = container.getBoundingClientRect()
+  let rect = el.getBoundingClientRect()
+  let top_visible = rect.top >= containerRect.top && rect.top <= containerRect.bottom
+  let bottom_visible = rect.bottom >= containerRect.top && rect.bottom <= containerRect.bottom
+  return top_visible || bottom_visible
+}
+
 App.image_extensions = [`jpg`, `jpeg`, `png`, `gif`, `webp`, `bmp`]
 App.video_extensions = [`mp4`, `webm`]

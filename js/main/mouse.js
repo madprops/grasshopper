@@ -80,7 +80,7 @@ App.setup_window_mouse = (mode) => {
         }
 
         if (mode === `tabs`) {
-          App.go_to_previous_tab()
+          App.tabs_edge_action()
         }
         else {
           App.show_item_window(`tabs`)
@@ -95,10 +95,6 @@ App.setup_window_mouse = (mode) => {
     })
 
     DOM.ev(edge, `contextmenu`, (e) => {
-      if (mode === `tabs`) {
-        App.focus_current_tab()
-      }
-
       e.preventDefault()
     })
 

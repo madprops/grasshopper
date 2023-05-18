@@ -899,6 +899,32 @@ App.focus_current_tab = async () => {
   let item = App.get_item_by_id(`tabs`, tab.id)
 
   if (item) {
-    App.select_item(item, `center`)
+    let selected = App.get_selected(`tabs`)
+
+    if (!selected) {
+      App.select_item(item, `center`)
+      return true
+    }
+
+    let container = DOM.el(`#tabs_container`)
+    let visible = App.element_is_visible(container, item.element)
+
+    if (!visible) {
+      App.select_item(item, `center`)
+      return true
+    }
+
+    return false
+  }
+
+  return false
+}
+
+// On tabs edge action
+App.tabs_edge_action = async () => {
+  let scrolled = await App.focus_current_tab()
+
+  if (!scrolled) {
+    App.go_to_previous_tab()
   }
 }

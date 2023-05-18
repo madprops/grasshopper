@@ -24,7 +24,6 @@ App.setup_about = () => {
       `Arrows, Enter, and Space work in media`,
       `Double click on empty tabs space opens a new tab`,
       `Clicking the edge goes to the previous tab`,
-      `Right clicking the edge focuses the active tab`,
       `Middle clicking the edge closes normal tabs`,
     ]
 
