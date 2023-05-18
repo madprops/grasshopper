@@ -71,18 +71,31 @@ App.setup_window_mouse = (mode) => {
   })
 
   if (edge) {
-    DOM.ev(edge, `click`, () => {
-      if (App.get_highlights(mode).length > 0) {
-        App.dehighlight(mode)
-        return
-      }
+    DOM.ev(edge, `mouseup`, (e) => {
+      // Main click
+      if (e.button === 0) {
+        if (App.get_highlights(mode).length > 0) {
+          App.dehighlight(mode)
+          return
+        }
 
-      if (mode === `tabs`) {
-        App.go_to_previous_tab()
+        if (mode === `tabs`) {
+          App.go_to_previous_tab()
+        }
+      }
+      // Middle click
+      else if (e.button === 1) {
+        if (mode === `tabs`) {
+          App.clean_tabs()
+        }
       }
     })
 
     DOM.ev(edge, `contextmenu`, (e) => {
+      if (mode === `tabs`) {
+        App.focus_current_tab()
+      }
+
       e.preventDefault()
     })
 

@@ -486,7 +486,6 @@ a:visited, a:link, a:hover {
   background-color: var(--background_color);
   border: 2px solid var(--alt_color_1);
   color: var(--text_color);
-  margin-top: 5.5rem;
 }
 
 .popup_main {
@@ -495,11 +494,12 @@ a:visited, a:link, a:hover {
   background-color: var(--alt_background);
   height: 100vh;
   width: 100vw;
-  align-items: flex-start;
+  align-items: center;
   justify-content: center;
   position: fixed;
-  top: 0;
-  left: 0;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
 }
 
 .pre {
