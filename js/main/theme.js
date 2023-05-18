@@ -43,10 +43,19 @@ App.apply_theme = () => {
       }
     }
 
+    let main = DOM.el(`#main`)
     let scrollbar_class = `scrollbar_${App.settings.scrollbar_side}`
-    DOM.el(`#main`).classList.remove(`scrollbar_left`)
-    DOM.el(`#main`).classList.remove(`scrollbar_right`)
-    DOM.el(`#main`).classList.add(scrollbar_class)
+
+    main.classList.remove(`scrollbar_left`)
+    main.classList.remove(`scrollbar_right`)
+    main.classList.add(scrollbar_class)
+
+    if (App.settings.show_edge) {
+      main.classList.remove(`no_edge`)
+    }
+    else {
+      main.classList.add(`no_edge`)
+    }
   }
   catch (e) {
     App.settings.background_color = App.default_settings.background_color.value

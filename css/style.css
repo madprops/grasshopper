@@ -613,6 +613,10 @@ input::placeholder {
   cursor: pointer;
 }
 
+.no_edge .edge {
+  display: none;
+}
+
 .scrollbar_right .edge {
   left: 0;
 }

@@ -11,6 +11,7 @@ App.default_settings = {
   lock_drag: {value: false, category: `basic`},
   switch_to_tabs: {value: true, category: `basic`},
   hover_tooltips: {value: true, category: `basic`},
+  show_edge: {value: true, category: `basic`},
 
   width: {value: 70, category: `basic`},
   height: {value: 80, category: `basic`},
@@ -113,11 +114,7 @@ App.settings_setup_text = (container) => {
 }
 
 // Prepare a select menu
-App.settings_make_menu = (id, opts, action) => {
-  if (!action) {
-    action = () => {}
-  }
-
+App.settings_make_menu = (id, opts, action = () => {}) => {
   let el = DOM.el(`#settings_${id}`)
 
   DOM.ev(el, `click`, () => {
@@ -155,12 +152,10 @@ App.settings_make_menu = (id, opts, action) => {
 
   function prev_fn () {
     App.settings_menu_cycle(el, id, `prev`, opts)
-    App.apply_theme()
   }
 
   function next_fn () {
     App.settings_menu_cycle(el, id, `next`, opts)
-    App.apply_theme()
   }
 
   DOM.ev(prev, `click`, prev_fn)
@@ -175,6 +170,10 @@ App.settings_make_menu = (id, opts, action) => {
 // Setup settings
 App.setup_settings = () => {
   App.settings_order = [`settings_basic`, `settings_theme`, `settings_icons`]
+
+  function after_hide () {
+    App.apply_theme()
+  }
 
   App.create_window({id: `settings_basic`, setup: () => {
     let container = DOM.el(`#settings_basic_container`)
@@ -192,9 +191,7 @@ App.setup_settings = () => {
     App.settings_make_menu(`scrollbar_side`, [
       [`Left`, `left`],
       [`Right`, `right`],
-    ], () => {
-      App.apply_theme()
-    })
+    ])
 
     App.make_item_order()
 
@@ -215,14 +212,14 @@ App.setup_settings = () => {
     })
 
     App.add_settings_switchers(`basic`)
-  }, persistent: false})
+  }, persistent: false, after_hide: after_hide})
 
   App.create_window({id: `settings_theme`, setup: () => {
     App.start_theme_settings()
     App.add_settings_switchers(`theme`)
     let container = DOM.el(`#settings_theme_container`)
     App.settings_setup_text(container)
-  }, persistent: false})
+  }, persistent: false, after_hide: after_hide})
 
   App.create_window({id: `settings_icons`, setup: () => {
     let container = DOM.el(`#settings_icons_container`)
@@ -233,7 +230,7 @@ App.setup_settings = () => {
     })
 
     App.add_settings_switchers(`icons`)
-  }, persistent: false})
+  }, persistent: false, after_hide: after_hide})
 }
 
 // Create settings title switchers
