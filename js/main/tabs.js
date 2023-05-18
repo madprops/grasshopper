@@ -221,7 +221,7 @@ App.refresh_tab = async (id, select = false) => {
   }
 
   if (select) {
-    App.select_item(tab, `center`)
+    App.select_item(tab)
   }
 }
 
