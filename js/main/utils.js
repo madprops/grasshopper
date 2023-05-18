@@ -201,11 +201,6 @@ App.close_window = () => {
     if (App.window_mode !== `tabs`) {
       App.show_item_window(`tabs`)
     }
-    else {
-      if (App.get_filter(`tabs`)) {
-        App.clear_filter(`tabs`)
-      }
-    }
   }
 }
 

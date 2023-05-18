@@ -262,12 +262,6 @@ App.remove_item = (item) => {
   item.element.remove()
   App.filter_item_by_id(mode, item.id)
   App.update_footer_count(mode)
-
-  if (App.get_filter(mode)) {
-    if (App.get_visible(mode).length === 0) {
-      App.clear_filter(mode)
-    }
-  }
 }
 
 App.focus_filter = (mode) => {
@@ -1112,10 +1106,6 @@ App.setup_item_window = (mode) => {
       App.goto_top(mode)
     }})
 
-    App[`${mode}_actions`].unshift({text: `Clear Filter`, action: () => {
-      App.clear_filter(mode)
-    }})
-
     let actions_menu = DOM.create(`div`, `button icon_button`, `${mode}_actions`)
     let actions_icon = App.create_icon(`sun`)
     actions_menu.append(actions_icon)
@@ -1355,13 +1345,6 @@ App.get_visible = (mode) => {
   }
 
   return items
-}
-
-// Clear the filter
-App.clear_filter = (mode) => {
-  App.set_filter(mode, ``, false)
-  App.do_item_filter(mode)
-  App.focus_filter(mode)
 }
 
 // Show launched indicator
