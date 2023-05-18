@@ -1647,9 +1647,7 @@ App.launch_item = (item, close = true) => {
   App.open_tab(item.url, close)
 
   if (close) {
-    if (App.settings.switch_to_tabs) {
-      App.close_window()
-    }
+    App.close_window()
   }
   else {
     App.show_launched(item)
