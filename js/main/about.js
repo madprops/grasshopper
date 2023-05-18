@@ -7,7 +7,7 @@ App.setup_about = () => {
       `Type anytime to filter items, press Tab to reuse`,
       `Use Middle Click to close or launch items`,
       `Shift + Middle Click on items to bypass confirmations`,
-      `Some buttons respond to mousewheel and keyboard`,
+      `Some buttons respond to scrollwheel and keyboard`,
       `Shift + Up/Down to select multiple items`,
       `Ctrl + Click to select multiple items`,
       `Shift + Click to select item range`,
