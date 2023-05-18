@@ -92,15 +92,6 @@ body, html {
   z-index: 9999;
 }
 
-.center {
-  display: flex;
-  flex-direction: row;
-  flex-grow: 1;
-  flex-shrink: 1;
-  position: relative;
-  overflow: hidden;
-}
-
 .container {
   margin-bottom: var(--item_margin);
   display: flex;
@@ -304,7 +295,7 @@ svg {
   align-items: center;
   overflow: hidden;
   white-space: nowrap;
-  height: 2.5rem;
+  height: 2.2rem;
   border-top: 1px solid var(--alt_color_1);
   margin-left: var(--item_margin);
   margin-right: var(--item_margin);
@@ -614,7 +605,7 @@ input::placeholder {
 .edge {
   position: absolute;
   top: 0;
-  bottom: 0;
+  bottom: 2.2rem;
   width: 12px;
   z-index: 9999;
   background-color: transparent;

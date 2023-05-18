@@ -979,7 +979,6 @@ App.setup_item_window = (mode) => {
     }, App.filter_delay)
 
     let win = DOM.el(`#window_content_${mode}`)
-    let center = DOM.create(`div`, `center unselectable`, `${mode}_center`)
     let edge = DOM.create(`div`, `edge`, `${mode}_edge`)
     let container = DOM.create(`div`, `container`, `${mode}_container`)
     let footer = DOM.create(`div`, `footer unselectable`, `${mode}_footer`)
@@ -987,9 +986,8 @@ App.setup_item_window = (mode) => {
 
     DOM.el(`#window_top_${mode}`).append(top)
 
-    center.append(edge)
-    center.append(container)
-    win.append(center)
+    win.append(edge)
+    win.append(container)
     win.append(footer)
 
     let footer_count = DOM.create(`div`, `footer_count action`)
