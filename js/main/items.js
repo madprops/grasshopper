@@ -1087,11 +1087,19 @@ App.setup_item_window = (mode) => {
       App[`${mode}_actions`] = []
     }
 
-    App[`${mode}_actions`].unshift({text: `Select`, action: () => {
+    App[`${mode}_actions`].unshift({text: `Select All`, action: () => {
       App.highlight_items(mode)
     }})
 
-    App[`${mode}_actions`].unshift({text: `Clear`, action: () => {
+    App[`${mode}_actions`].unshift({text: `Goto Bottom`, action: () => {
+      App.goto_bottom(mode)
+    }})
+
+    App[`${mode}_actions`].unshift({text: `Goto Top`, action: () => {
+      App.goto_top(mode)
+    }})
+
+    App[`${mode}_actions`].unshift({text: `Clear Filter`, action: () => {
       App.clear_filter(mode)
     }})
 

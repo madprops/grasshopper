@@ -18,23 +18,23 @@ App.setup_tabs = () => {
   App.tabs_actions = [
     {text: `--separator--`},
 
-    {text: `New`, action: () => {
+    {text: `New Tab`, action: () => {
       App.new_tab()
     }},
 
-    {text: `Info`, action: () => {
+    {text: `Show Info`, action: () => {
       App.show_tabs_info()
     }},
 
-    {text: `Titles`, get_items: () => {
+    {text: `Title Menu`, get_items: () => {
       return App.get_title_items()
     }},
 
-    {text: `Dups`, action: () => {
+    {text: `Close Dups`, action: () => {
       App.remove_dups()
     }},
 
-    {text: `Clean`, action: () => {
+    {text: `Clean Tabs`, action: () => {
       App.clean_tabs()
     }},
   ]
