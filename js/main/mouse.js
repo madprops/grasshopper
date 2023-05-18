@@ -83,7 +83,6 @@ App.setup_window_mouse = (mode) => {
     })
 
     DOM.ev(edge, `contextmenu`, (e) => {
-      App.highlight_items(mode)
       e.preventDefault()
     })
 
