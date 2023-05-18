@@ -604,12 +604,12 @@ input::placeholder {
 .edge {
   position: absolute;
   top: 0;
-  background-color: transparent;
+  bottom: 2.5rem;
   width: 0.777rem;
-  height: 100%;
   z-index: 9999;
-  cursor: pointer;
+  background-color: transparent;
   transition: background-color 200ms linear;
+  cursor: pointer;
 }
 
 .scrollbar_right .edge {
