@@ -152,10 +152,12 @@ App.settings_make_menu = (id, opts, action = () => {}) => {
 
   function prev_fn () {
     App.settings_menu_cycle(el, id, `prev`, opts)
+    App.apply_theme()
   }
 
   function next_fn () {
     App.settings_menu_cycle(el, id, `next`, opts)
+    App.apply_theme()
   }
 
   DOM.ev(prev, `click`, prev_fn)
