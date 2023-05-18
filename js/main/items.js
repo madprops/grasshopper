@@ -1667,6 +1667,8 @@ App.goto_bottom = (mode) => {
 // Show glowie
 App.show_glowie = (mode, which) => {
   clearInterval(App[`hide_glowie_${which}`])
+  DOM.el(`#${mode}_glowie_top`).classList.remove(`glowie_active`)
+  DOM.el(`#${mode}_glowie_bottom`).classList.remove(`glowie_active`)
   DOM.el(`#${mode}_glowie_${which}`).classList.add(`glowie_active`)
 
   App[`hide_glowie_${which}`] = setTimeout(() => {
