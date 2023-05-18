@@ -18,6 +18,10 @@ App.setup_tabs = () => {
   App.tabs_actions = [
     {text: `--separator--`},
 
+    {text: `Prev Tab`, action: () => {
+      App.go_to_previous_tab()
+    }},
+
     {text: `New Tab`, action: () => {
       App.new_tab()
     }},
