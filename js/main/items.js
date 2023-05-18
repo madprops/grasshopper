@@ -979,21 +979,19 @@ App.setup_item_window = (mode) => {
     }, App.filter_delay)
 
     let win = DOM.el(`#window_content_${mode}`)
+    let glowie = DOM.create(`div`, `glowie`, `${mode}_glowie`)
     let container = DOM.create(`div`, `container unselectable`, `${mode}_container`)
     let footer = DOM.create(`div`, `footer unselectable`, `${mode}_footer`)
     let top = DOM.create(`div`, `item_top_container`, `${mode}_top_container`)
     DOM.el(`#window_top_${mode}`).append(top)
 
-    if (mode === `tabs`) {
-      let glowie = DOM.create(`div`, `glowie`, `${mode}_glowie`)
-
-      DOM.ev(glowie, `click`, () => {
+    DOM.ev(glowie, `click`, () => {
+      if (mode === `tabs`) {
         App.go_to_previous_tab()
-      })
+      }
+    })
 
-      win.append(glowie)
-    }
-
+    win.append(glowie)
     win.append(container)
     win.append(footer)
 
