@@ -1835,12 +1835,7 @@ App.insert_item = (mode, info) => {
 
 // Get mode name
 App.get_mode_name = (mode) => {
-  if (mode === `bookmarks`) {
-    return `BMarks`
-  }
-  else {
-    return App.capitalize(mode)
-  }
+  return App.capitalize(mode)
 }
 
 // Item action
