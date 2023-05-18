@@ -246,7 +246,6 @@ App.get_excess = (objects, property) => {
   return excess
 }
 
-
 // Check if scrolled to the top
 App.is_at_top = (container) => {
   return container.scrollTop === 0

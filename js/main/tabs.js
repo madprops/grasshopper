@@ -22,6 +22,10 @@ App.setup_tabs = () => {
       App.go_to_previous_tab()
     }},
 
+    {text: `Focus Tab`, action: () => {
+      App.focus_current_tab()
+    }},
+
     {text: `New Tab`, action: () => {
       App.new_tab()
     }},
@@ -140,7 +144,7 @@ App.get_tabs = async () => {
     tabs = await browser.tabs.query({currentWindow: true})
   }
   catch (err) {
-    App.log(`Error at get tabs`, `error`)
+    App.log(err, `error`)
     return
   }
 
@@ -161,7 +165,7 @@ App.focus_tab = async (tab, close = true) => {
     await browser.tabs.update(tab.id, {active: true})
   }
   catch (err) {
-    App.log(`Error at focus tab`, `error`)
+    App.log(err, `error`)
     App.remove_closed_tab(tab.id)
     App.tabs_check()
   }
@@ -177,7 +181,7 @@ App.close_tab = async (id) => {
     await browser.tabs.remove(id)
   }
   catch (err) {
-    App.log(`Error at close tab`, `error`)
+    App.log(err, `error`)
   }
 }
 
@@ -187,7 +191,7 @@ App.new_tab = async (url = undefined, close = true) => {
     await browser.tabs.create({active: close, url: url})
   }
   catch (err) {
-    App.log(`Error at new tab`, `error`)
+    App.log(err, `error`)
   }
 
   if (close) {
@@ -203,7 +207,7 @@ App.refresh_tab = async (id, select = false) => {
     info = await browser.tabs.get(id)
   }
   catch (err) {
-    App.log(`Error at refresh tab`, `error`)
+    App.log(err, `error`)
     return
   }
 
@@ -227,7 +231,7 @@ App.pin_tab = async (id) => {
     await browser.tabs.update(id, {pinned: true})
   }
   catch (err) {
-    App.log(`Error at pin tab`, `error`)
+    App.log(err, `error`)
   }
 }
 
@@ -237,7 +241,7 @@ App.unpin_tab = async (id) => {
     await browser.tabs.update(id, {pinned: false})
   }
   catch (err) {
-    App.log(`Error at unpin tab`, `error`)
+    App.log(err, `error`)
   }
 }
 
@@ -247,7 +251,7 @@ App.mute_tab = async (id) => {
     await browser.tabs.update(id, {muted: true})
   }
   catch (err) {
-    App.log(`Error at mute tab`, `error`)
+    App.log(err, `error`)
   }
 }
 
@@ -257,7 +261,7 @@ App.unmute_tab = async (id) => {
     await browser.tabs.update(id, {muted: false})
   }
   catch (err) {
-    App.log(`Error at unmute tab`, `error`)
+    App.log(err, `error`)
   }
 }
 
@@ -307,7 +311,7 @@ App.duplicate_tab = async (tab) => {
     await browser.tabs.duplicate(tab.id)
   }
   catch (err) {
-    App.log(`Error at duplicate tab`, `error`)
+    App.log(err, `error`)
   }
 
   App.close_window()
@@ -320,7 +324,7 @@ App.suspend_tab = async (tab) => {
       await browser.tabs.create({active: true})
     }
     catch (err) {
-      App.log(`Error at suspend tab`, `error`)
+      App.log(err, `error`)
     }
   }
 
@@ -328,7 +332,7 @@ App.suspend_tab = async (tab) => {
     await browser.tabs.discard(tab.id)
   }
   catch (err) {
-    App.log(`Error at suspend tab`, `error`)
+    App.log(err, `error`)
   }
 }
 
@@ -531,7 +535,7 @@ App.open_tab = async (url, close = true, args = {}) => {
     tab = await browser.tabs.create(opts)
   }
   catch (err) {
-    App.log(`Error at open tab`, `error`)
+    App.log(err, `error`)
   }
 
   return tab
@@ -553,7 +557,7 @@ App.do_move_tab_index = async (id, index) => {
     ans = await browser.tabs.move(id, {index: index})
   }
   catch (err) {
-    App.log(`Error at move tab index`, `error`)
+    App.log(err, `error`)
   }
 
   return ans
@@ -579,7 +583,7 @@ App.move_tabs = async (item, window_id) => {
       await browser.tabs.move(item.id, {index: index, windowId: window_id})
     }
     catch (err) {
-      App.log(`Error at move tabs`, `error`)
+      App.log(err, `error`)
     }
   }
 
@@ -725,7 +729,7 @@ App.get_active_tab = async () => {
     tabs = await browser.tabs.query({currentWindow: true})
   }
   catch (err) {
-    App.log(`Error at get active tab`, `error`)
+    App.log(err, `error`)
     return
   }
 
@@ -876,4 +880,25 @@ App.import_titles = () => {
       })
     }
   })
+}
+
+// Get current tab
+App.get_current_tab = async () => {
+  try {
+    let tabs = await browser.tabs.query({active: true, currentWindow: true})
+    return tabs[0]
+  }
+  catch (err) {
+    App.log(err, `error`)
+  }
+}
+
+// Focus current tab
+App.focus_current_tab = async () => {
+  let tab = await App.get_current_tab()
+  let item = App.get_item_by_id(`tabs`, tab.id)
+
+  if (item) {
+    App.select_item(item, `center`)
+  }
 }
