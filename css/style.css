@@ -104,14 +104,6 @@ body, html {
   overflow-y: auto;
 }
 
-.scrollbar_left .container {
-  direction: rtl;
-}
-
-.scrollbar_right .container {
-  direction: ltr;
-}
-
 .text {
   font-size: 1rem;
   background-color: transparent;

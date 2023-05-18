@@ -19,7 +19,6 @@ App.default_settings = {
   font_size: {value: 16, category: `basic`},
 
   media_viewer: {value: true, category: `basic`},
-  scrollbar_side: {value: `right`, category: `basic`},
 
   background_color: {value: `rgb(43, 42, 51)`, category: `theme`},
   text_color: {value: `rgb(251, 251, 254)`, category: `theme`},
@@ -172,10 +171,6 @@ App.settings_make_menu = (id, opts, action = () => {}) => {
 App.setup_settings = () => {
   App.settings_order = [`settings_basic`, `settings_theme`, `settings_icons`]
 
-  function after_hide () {
-    App.apply_theme()
-  }
-
   App.create_window({id: `settings_basic`, setup: () => {
     let container = DOM.el(`#settings_basic_container`)
     App.settings_setup_checkboxes(container)
@@ -188,11 +183,6 @@ App.setup_settings = () => {
     App.settings_make_menu(`height`, App.get_size_options(), () => {
       App.apply_theme()
     })
-
-    App.settings_make_menu(`scrollbar_side`, [
-      [`Left`, `left`],
-      [`Right`, `right`],
-    ])
 
     App.make_item_order()
 
@@ -213,14 +203,14 @@ App.setup_settings = () => {
     })
 
     App.add_settings_switchers(`basic`)
-  }, persistent: false, after_hide: after_hide})
+  }, persistent: false})
 
   App.create_window({id: `settings_theme`, setup: () => {
     App.start_theme_settings()
     App.add_settings_switchers(`theme`)
     let container = DOM.el(`#settings_theme_container`)
     App.settings_setup_text(container)
-  }, persistent: false, after_hide: after_hide})
+  }, persistent: false})
 
   App.create_window({id: `settings_icons`, setup: () => {
     let container = DOM.el(`#settings_icons_container`)
@@ -231,7 +221,7 @@ App.setup_settings = () => {
     })
 
     App.add_settings_switchers(`icons`)
-  }, persistent: false, after_hide: after_hide})
+  }, persistent: false})
 }
 
 // Create settings title switchers

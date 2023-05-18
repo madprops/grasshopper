@@ -42,13 +42,6 @@ App.apply_theme = () => {
         App.set_css_var(`background_image`, `url(../img/backgrounds/${App.settings.background_image}.jpg)`)
       }
     }
-
-    let main = DOM.el(`#main`)
-    let scrollbar_class = `scrollbar_${App.settings.scrollbar_side}`
-
-    main.classList.remove(`scrollbar_left`)
-    main.classList.remove(`scrollbar_right`)
-    main.classList.add(scrollbar_class)
   }
   catch (e) {
     App.settings.background_color = App.default_settings.background_color.value
