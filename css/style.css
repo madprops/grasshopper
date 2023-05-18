@@ -601,7 +601,7 @@ input::placeholder {
   max-height: 60vh;
 }
 
-.glowie {
+.edge {
   position: absolute;
   top: 0;
   background-color: transparent;
@@ -612,14 +612,14 @@ input::placeholder {
   transition: background-color 200ms linear;
 }
 
-.scrollbar_right .glowie {
+.scrollbar_right .edge {
   left: 0;
 }
 
-.scrollbar_left .glowie {
+.scrollbar_left .edge {
   right: 0;
 }
 
-.glowie:hover {
+.edge:hover {
   background-color: var(--alt_color_1);
 }

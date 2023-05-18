@@ -979,13 +979,13 @@ App.setup_item_window = (mode) => {
     }, App.filter_delay)
 
     let win = DOM.el(`#window_content_${mode}`)
-    let glowie = DOM.create(`div`, `glowie`, `${mode}_glowie`)
+    let edge = DOM.create(`div`, `edge`, `${mode}_edge`)
     let container = DOM.create(`div`, `container unselectable`, `${mode}_container`)
     let footer = DOM.create(`div`, `footer unselectable`, `${mode}_footer`)
     let top = DOM.create(`div`, `item_top_container`, `${mode}_top_container`)
     DOM.el(`#window_top_${mode}`).append(top)
 
-    DOM.ev(glowie, `click`, () => {
+    DOM.ev(edge, `click`, () => {
       if (App.get_highlights(mode).length > 0) {
         App.dehighlight(mode)
         return
@@ -996,7 +996,7 @@ App.setup_item_window = (mode) => {
       }
     })
 
-    win.append(glowie)
+    win.append(edge)
     win.append(container)
     win.append(footer)
 

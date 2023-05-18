@@ -1,7 +1,7 @@
 // Setup mouse for window
 App.setup_window_mouse = (mode) => {
   let container = DOM.el(`#${mode}_container`)
-  let glowie = DOM.el(`#${mode}_glowie`)
+  let edge = DOM.el(`#${mode}_edge`)
 
   DOM.ev(container, `mousedown`, (e) => {
     if (!e.target.closest(`.${mode}_item`)) {
@@ -69,8 +69,8 @@ App.setup_window_mouse = (mode) => {
     App.update_footer_info(item)
   })
 
-  if (glowie) {
-    DOM.ev(glowie, `wheel`, (e) => {
+  if (edge) {
+    DOM.ev(edge, `wheel`, (e) => {
       let direction = e.deltaY > 0 ? `down` : `up`
 
       if (direction === `up`) {
