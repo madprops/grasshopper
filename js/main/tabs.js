@@ -22,12 +22,12 @@ App.setup_tabs = () => {
       App.go_to_previous_tab()
     }},
 
-    {text: `Focus Tab`, action: () => {
-      App.focus_current_tab()
-    }},
-
     {text: `New Tab`, action: () => {
       App.new_tab()
+    }},
+
+    {text: `Focus Tab`, action: () => {
+      App.focus_current_tab()
     }},
 
     {text: `Show Info`, action: () => {
