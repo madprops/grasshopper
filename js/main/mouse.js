@@ -79,6 +79,8 @@ App.setup_window_mouse = (mode) => {
       else if (direction === `down`) {
         App.scroll(mode, `down`, true)
       }
+
+      e.preventDefault()
     }
   })
 }
