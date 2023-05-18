@@ -197,12 +197,14 @@ App.close_window = () => {
   window.close()
 
   // Sidebar doesn't close so return to tabs
-  if (App.window_mode !== `tabs`) {
-    App.show_item_window(`tabs`)
-  }
-  else {
-    if (App.get_filter(`tabs`)) {
-      App.clear_filter(`tabs`)
+  if (App.settings.switch_to_tabs) {
+    if (App.window_mode !== `tabs`) {
+      App.show_item_window(`tabs`)
+    }
+    else {
+      if (App.get_filter(`tabs`)) {
+        App.clear_filter(`tabs`)
+      }
     }
   }
 }

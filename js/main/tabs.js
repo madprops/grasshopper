@@ -162,7 +162,7 @@ App.focus_tab = async (tab, close = true) => {
     App.tabs_check()
   }
 
-  if (close && App.settings.switch_to_tabs) {
+  if (close) {
     App.close_window()
   }
 }
