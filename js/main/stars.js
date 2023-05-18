@@ -3,15 +3,15 @@ App.setup_stars = () => {
   App.stars_actions = [
     {text: `--separator--`},
 
-    {text: `Add`, action: () => {
+    {text: `Add Star`, action: () => {
       App.new_star_from_active()
     }},
 
-    {text: `Export`, action: () => {
+    {text: `Export Data`, action: () => {
       App.export_stars()
     }},
 
-    {text: `Import`, action: () => {
+    {text: `Import Data`, action: () => {
       App.import_stars()
     }},
   ]

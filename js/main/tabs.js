@@ -4,15 +4,15 @@ App.setup_tabs = () => {
   App.tabs_created = {}
 
   App.tabs_filter_modes = [
-    [`pins`, `Pins`],
+    [`pins`, `Pinned`],
     [`playing`, `Playing`],
     [`muted`, `Muted`],
     [`active`, `Active`],
     [`normal`, `Normal`],
-    [`duplicates`, `Dups`],
-    [`http`, `http:`],
-    [`https`, `https:`],
-    [`suspended`, `zzz`],
+    [`suspended`, `Suspended`],
+    [`duplicates`, `Duplicates`],
+    [`http`, `^ http:`],
+    [`https`, `^ https:`],
   ]
 
   App.tabs_actions = [
@@ -30,15 +30,15 @@ App.setup_tabs = () => {
       App.show_tabs_info()
     }},
 
-    {text: `Title Menu`, get_items: () => {
+    {text: `Titles Manager`, get_items: () => {
       return App.get_title_items()
     }},
 
-    {text: `Close Dups`, action: () => {
+    {text: `Close Duplicates`, action: () => {
       App.remove_dups()
     }},
 
-    {text: `Clean Tabs`, action: () => {
+    {text: `Clean Normal Tabs`, action: () => {
       App.clean_tabs()
     }},
   ]
@@ -603,11 +603,11 @@ App.clean_tabs = () => {
   }
 
   if (ids.length === 0) {
-    App.show_alert(`Nothing to clean`)
+    App.show_alert(`Nothing to close`)
     return
   }
 
-  App.show_confirm(`Clean tabs? (${ids.length})`, () => {
+  App.show_confirm(`Close normal tabs? (${ids.length})`, () => {
     App.do_close_tabs(ids)
   })
 }
@@ -823,21 +823,21 @@ App.get_title_items = () => {
   let items = []
 
   items.push({
-    text: `Remove`,
+    text: `Remove All`,
     action: () => {
       App.remove_all_titles()
     }
   })
 
   items.push({
-    text: `Export`,
+    text: `Export Data`,
     action: () => {
       App.export_titles()
     }
   })
 
   items.push({
-    text: `Import`,
+    text: `Import Data`,
     action: () => {
       App.import_titles()
     }
