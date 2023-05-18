@@ -1087,7 +1087,7 @@ App.setup_item_window = (mode) => {
       App[`${mode}_actions`] = []
     }
 
-    App[`${mode}_actions`].unshift({text: `All`, action: () => {
+    App[`${mode}_actions`].unshift({text: `Select`, action: () => {
       App.highlight_items(mode)
     }})
 
@@ -1095,20 +1095,12 @@ App.setup_item_window = (mode) => {
       App.clear_filter(mode)
     }})
 
-    App[`${mode}_actions`].unshift({text: `Bottom`, action: () => {
-      App.goto_bottom(mode)
-    }})
-
-    App[`${mode}_actions`].unshift({text: `Top`, action: () => {
-      App.goto_top(mode)
-    }})
-
     let actions_menu = DOM.create(`div`, `button icon_button`, `${mode}_actions`)
     let actions_icon = App.create_icon(`sun`)
     actions_menu.append(actions_icon)
     actions_menu.title = `Actions (Ctrl + Right)`
 
-    App[`show_${mode}_actions`] = () => {
+    App[`show_${mode}_actions`] = (e) => {
       let items = []
 
       for (let item of App[`${mode}_actions`]) {
@@ -1133,11 +1125,16 @@ App.setup_item_window = (mode) => {
         }
       }
 
-      NeedContext.show_on_element(actions_menu, items, true, actions_menu.clientHeight)
+      if (e) {
+        NeedContext.show(e.clientX, e.clientY, items)
+      }
+      else {
+        NeedContext.show_on_element(actions_menu, items, true, actions_menu.clientHeight)
+      }
     }
 
-    DOM.ev(actions_menu, `click`, () => {
-      App.show_actions(mode)
+    DOM.ev(actions_menu, `click`, (e) => {
+      App.show_actions(mode, e)
     })
 
     //
@@ -1370,8 +1367,8 @@ App.filter_domain = (item) => {
 }
 
 // Show the actions menu
-App.show_actions = (mode) => {
-  App[`show_${mode}_actions`]()
+App.show_actions = (mode, e) => {
+  App[`show_${mode}_actions`](e)
 }
 
 // Show filter modes
