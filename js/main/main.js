@@ -18,7 +18,7 @@ App.empty_previous_tabs_delay = 3000
 App.max_text_length = 200
 App.filter_delay = 200
 App.alert_autohide_delay = 1500
-App.fast_scroll = 20
+App.fast_scroll = 16.6
 
 NeedContext.min_width = `4.5rem`
 
