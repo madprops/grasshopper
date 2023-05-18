@@ -449,6 +449,7 @@ svg {
 #about_image {
   padding-top: 2rem;
   width: 51%;
+  cursor: pointer;
 }
 
 #about_info_full {
