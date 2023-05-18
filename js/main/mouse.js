@@ -71,6 +71,22 @@ App.setup_window_mouse = (mode) => {
   })
 
   if (edge) {
+    DOM.ev(edge, `click`, () => {
+      if (App.get_highlights(mode).length > 0) {
+        App.dehighlight(mode)
+        return
+      }
+
+      if (mode === `tabs`) {
+        App.go_to_previous_tab()
+      }
+    })
+
+    DOM.ev(edge, `contextmenu`, (e) => {
+      App.highlight_items(mode)
+      e.preventDefault()
+    })
+
     DOM.ev(edge, `wheel`, (e) => {
       let direction = e.deltaY > 0 ? `down` : `up`
 

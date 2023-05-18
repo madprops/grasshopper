@@ -983,18 +983,8 @@ App.setup_item_window = (mode) => {
     let container = DOM.create(`div`, `container unselectable`, `${mode}_container`)
     let footer = DOM.create(`div`, `footer unselectable`, `${mode}_footer`)
     let top = DOM.create(`div`, `item_top_container`, `${mode}_top_container`)
+
     DOM.el(`#window_top_${mode}`).append(top)
-
-    DOM.ev(edge, `click`, () => {
-      if (App.get_highlights(mode).length > 0) {
-        App.dehighlight(mode)
-        return
-      }
-
-      if (mode === `tabs`) {
-        App.go_to_previous_tab()
-      }
-    })
 
     win.append(edge)
     win.append(container)
