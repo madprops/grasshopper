@@ -634,24 +634,25 @@ input::placeholder {
   background-color: var(--alt_color_1);
 }
 
-.glowie {
+.glower {
   position: absolute;
   height: 20px;
   width: 100%;
   pointer-events: none;
   background-color: transparent;
   transition: background-color 200ms linear, box-shadow 200ms linear;
+  border-radius: 25px;
 }
 
-.glowie_top {
+.glower_top {
   top: 0;
 }
 
-.glowie_bottom {
+.glower_bottom {
   bottom: 0;
 }
 
-.glowie_active {
+.glower_active {
   background-color: var(--alt_color_2);
   box-shadow: 0 0 2rem var(--alt_color_2);
 }

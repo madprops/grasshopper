@@ -100,10 +100,10 @@ App.setup_window_mouse = (mode) => {
 
   DOM.ev(container, `scroll`, (e) => {
     if (App.is_at_top(container)) {
-      App.show_glowie(mode, `top`)
+      App.show_glower(mode, `top`)
     }
     else if (App.is_at_bottom(container)) {
-      App.show_glowie(mode, `bottom`)
+      App.show_glower(mode, `bottom`)
     }
   })
 }

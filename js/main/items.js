@@ -984,15 +984,15 @@ App.setup_item_window = (mode) => {
     let container = DOM.create(`div`, `container`, `${mode}_container`)
     let footer = DOM.create(`div`, `footer unselectable`, `${mode}_footer`)
     let top = DOM.create(`div`, `item_top_container`, `${mode}_top_container`)
-    let top_glowie = DOM.create(`div`, `glowie glowie_top`, `${mode}_glowie_top`)
-    let bottom_glowie = DOM.create(`div`, `glowie glowie_bottom`, `${mode}_glowie_bottom`)
+    let top_glower = DOM.create(`div`, `glower glower_top`, `${mode}_glower_top`)
+    let bottom_glower = DOM.create(`div`, `glower glower_bottom`, `${mode}_glower_bottom`)
 
     DOM.el(`#window_top_${mode}`).append(top)
 
-    center.append(top_glowie)
+    center.append(top_glower)
     center.append(edge)
     center.append(container)
-    center.append(bottom_glowie)
+    center.append(bottom_glower)
     win.append(center)
     win.append(footer)
 
@@ -1664,16 +1664,16 @@ App.goto_bottom = (mode) => {
   DOM.el(`#${mode}_container`).scrollTop = DOM.el(`#${mode}_container`).scrollHeight
 }
 
-// Show glowie
-App.show_glowie = (mode, which) => {
-  clearInterval(App[`hide_glowie_${which}`])
-  DOM.el(`#${mode}_glowie_top`).classList.remove(`glowie_active`)
-  DOM.el(`#${mode}_glowie_bottom`).classList.remove(`glowie_active`)
-  DOM.el(`#${mode}_glowie_${which}`).classList.add(`glowie_active`)
+// Show glower
+App.show_glower = (mode, which) => {
+  clearInterval(App[`hide_glower_${which}`])
+  DOM.el(`#${mode}_glower_top`).classList.remove(`glower_active`)
+  DOM.el(`#${mode}_glower_bottom`).classList.remove(`glower_active`)
+  DOM.el(`#${mode}_glower_${which}`).classList.add(`glower_active`)
 
-  App[`hide_glowie_${which}`] = setTimeout(() => {
-    DOM.el(`#${mode}_glowie_${which}`).classList.remove(`glowie_active`)
-  }, App.glowie_delay)
+  App[`hide_glower_${which}`] = setTimeout(() => {
+    DOM.el(`#${mode}_glower_${which}`).classList.remove(`glower_active`)
+  }, App.glower_delay)
 }
 
 // Scroll up a bit
