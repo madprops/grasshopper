@@ -66,7 +66,6 @@ App.setup_window_mouse = (mode) => {
   DOM.ev(container, `mouseleave`, (e) => {
     let item = App.get_selected(mode)
     App.update_footer_info(item)
-    App.do_empty_previous_tabs()
   })
 
   DOM.ev(container, `wheel`, (e) => {
