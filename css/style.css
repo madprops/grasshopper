@@ -609,6 +609,7 @@ input::placeholder {
   height: 100%;
   z-index: 9999;
   cursor: pointer;
+  transition: background-color 200ms linear;
 }
 
 .scrollbar_right .glowie {
