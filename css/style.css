@@ -615,7 +615,7 @@ input::placeholder {
   position: absolute;
   top: 0;
   bottom: 0;
-  width: 0.777rem;
+  width: 10px;
   z-index: 9999;
   background-color: transparent;
   transition: background-color 200ms linear;
@@ -632,4 +632,26 @@ input::placeholder {
 
 .edge:hover {
   background-color: var(--alt_color_1);
+}
+
+.glowie {
+  position: absolute;
+  height: 10px;
+  width: 100%;
+  pointer-events: none;
+  background-color: transparent;
+  transition: background-color 200ms linear, box-shadow 200ms linear;
+}
+
+.glowie_top {
+  top: 0;
+}
+
+.glowie_bottom {
+  bottom: 0;
+}
+
+.glowie_active {
+  background-color: var(--alt_color_2);
+  box-shadow: 0 0 2rem var(--alt_color_2);
 }

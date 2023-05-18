@@ -984,11 +984,15 @@ App.setup_item_window = (mode) => {
     let container = DOM.create(`div`, `container`, `${mode}_container`)
     let footer = DOM.create(`div`, `footer unselectable`, `${mode}_footer`)
     let top = DOM.create(`div`, `item_top_container`, `${mode}_top_container`)
+    let top_glowie = DOM.create(`div`, `glowie glowie_top`, `${mode}_glowie_top`)
+    let bottom_glowie = DOM.create(`div`, `glowie glowie_bottom`, `${mode}_glowie_bottom`)
 
     DOM.el(`#window_top_${mode}`).append(top)
 
+    center.append(top_glowie)
     center.append(edge)
     center.append(container)
+    center.append(bottom_glowie)
     win.append(center)
     win.append(footer)
 
@@ -1653,11 +1657,23 @@ App.launch_items = (item) => {
 // Scroll container to top
 App.goto_top = (mode) => {
   DOM.el(`#${mode}_container`).scrollTop = 0
+  App.show_glowie(mode, `top`)
 }
 
 // Scroll container to bottom
 App.goto_bottom = (mode) => {
   DOM.el(`#${mode}_container`).scrollTop = DOM.el(`#${mode}_container`).scrollHeight
+  App.show_glowie(mode, `bottom`)
+}
+
+// Show glowie
+App.show_glowie = (mode, which) => {
+  clearInterval(App[`hide_glowie_${which}`])
+  DOM.el(`#${mode}_glowie_${which}`).classList.add(`glowie_active`)
+
+  App[`hide_glowie_${which}`] = setTimeout(() => {
+    DOM.el(`#${mode}_glowie_${which}`).classList.remove(`glowie_active`)
+  }, 500)
 }
 
 // Scroll up a bit
