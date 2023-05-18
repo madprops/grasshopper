@@ -44,7 +44,6 @@ App.apply_theme = () => {
     }
 
     let scrollbar_class = `scrollbar_${App.settings.scrollbar_side}`
-    console.log(scrollbar_class)
     DOM.el(`#main`).classList.remove(`scrollbar_left`)
     DOM.el(`#main`).classList.remove(`scrollbar_right`)
     DOM.el(`#main`).classList.add(scrollbar_class)
