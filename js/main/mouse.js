@@ -1,7 +1,6 @@
 // Setup mouse for window
 App.setup_window_mouse = (mode) => {
   let container = DOM.el(`#${mode}_container`)
-  let edge = DOM.el(`#${mode}_edge`)
 
   DOM.ev(container, `mousedown`, (e) => {
     if (!e.target.closest(`.${mode}_item`)) {
@@ -70,45 +69,18 @@ App.setup_window_mouse = (mode) => {
     App.do_empty_previous_tabs()
   })
 
-  if (edge) {
-    DOM.ev(edge, `mouseup`, (e) => {
-      // Main click
-      if (e.button === 0) {
-        if (App.get_highlights(mode).length > 0) {
-          App.dehighlight(mode)
-          return
-        }
-
-        if (mode === `tabs`) {
-          App.tabs_edge_action()
-        }
-        else {
-          App.show_item_window(`tabs`)
-        }
-      }
-      // Middle click
-      else if (e.button === 1) {
-        if (mode === `tabs`) {
-          App.clean_tabs()
-        }
-      }
-    })
-
-    DOM.ev(edge, `contextmenu`, (e) => {
-      e.preventDefault()
-    })
-
-    DOM.ev(edge, `wheel`, (e) => {
+  DOM.ev(container, `wheel`, (e) => {
+    if (e.shiftKey) {
       let direction = e.deltaY > 0 ? `down` : `up`
 
       if (direction === `up`) {
-        App.scroll(mode, `up`, App.fast_scroll)
+        App.scroll(mode, `up`, true)
       }
       else if (direction === `down`) {
-        App.scroll(mode, `down`, App.fast_scroll)
+        App.scroll(mode, `down`, true)
       }
-    })
-  }
+    }
+  })
 }
 
 // Get item under cursor

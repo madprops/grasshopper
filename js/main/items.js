@@ -979,14 +979,12 @@ App.setup_item_window = (mode) => {
     }, App.filter_delay)
 
     let win = DOM.el(`#window_content_${mode}`)
-    let edge = DOM.create(`div`, `edge`, `${mode}_edge`)
     let container = DOM.create(`div`, `container`, `${mode}_container`)
     let footer = DOM.create(`div`, `footer unselectable`, `${mode}_footer`)
     let top = DOM.create(`div`, `item_top_container`, `${mode}_top_container`)
 
     DOM.el(`#window_top_${mode}`).append(top)
 
-    win.append(edge)
     win.append(container)
     win.append(footer)
 
@@ -1058,7 +1056,7 @@ App.setup_item_window = (mode) => {
     })
 
     //
-    let playing
+    let playing, previous
 
     if (mode === `tabs`) {
       playing = DOM.create(`div`, `button icon_button hidden`, `${mode}_playing`)
@@ -1070,6 +1068,31 @@ App.setup_item_window = (mode) => {
       })
 
       playing.append(playing_icon)
+
+      previous = DOM.create(`div`, `button icon_button`, `${mode}_previous`)
+      previous.title = `Go To Previous Tab (Ctrl + Backspace)`
+      let previous_icon = App.create_icon(`back`)
+
+      DOM.ev(previous, `click`, () => {
+        App.tabs_back_action()
+      })
+
+      previous.append(previous_icon)
+    }
+
+    //
+    let new_star
+
+    if (mode === `stars`) {
+      new_star = DOM.create(`div`, `button icon_button`)
+      new_star.title = `New Star`
+      let new_star_icon = App.create_icon(`plus`)
+
+      DOM.ev(new_star, `click`, () => {
+        App.new_star_from_active()
+      })
+
+      new_star.append(new_star_icon)
     }
 
     //
@@ -1150,6 +1173,14 @@ App.setup_item_window = (mode) => {
 
     if (playing) {
       right_top.append(playing)
+    }
+
+    if (previous) {
+      right_top.append(previous)
+    }
+
+    if (new_star) {
+      right_top.append(new_star)
     }
 
     right_top.append(actions_menu)
@@ -1659,12 +1690,15 @@ App.goto_bottom = (mode) => {
 }
 
 // Scroll up or down
-App.scroll = (mode, direction, percent) => {
+App.scroll = (mode, direction, fast = false) => {
   let el = DOM.el(`#${mode}_container`)
-  let amount = 50
+  let amount
 
-  if (percent) {
-    amount = Math.floor(el.scrollHeight * (percent / 100))
+  if (fast) {
+    amount = Math.floor(el.scrollHeight * (App.fast_scroll_percent / 100))
+  }
+  else {
+    amount = App.normal_scroll_pixels
   }
 
   if (direction === `up`) {

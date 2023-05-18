@@ -18,16 +18,8 @@ App.setup_tabs = () => {
   App.tabs_actions = [
     {text: `--separator--`},
 
-    {text: `Prev Tab`, action: () => {
-      App.go_to_previous_tab()
-    }},
-
     {text: `New Tab`, action: () => {
       App.new_tab()
-    }},
-
-    {text: `Focus Tab`, action: () => {
-      App.focus_current_tab()
     }},
 
     {text: `Show Info`, action: () => {
@@ -668,6 +660,7 @@ App.go_to_playing = () => {
       }
 
       if (waypoint) {
+        App.select_item(tab)
         App.focus_tab(tab)
         return
       }
@@ -681,6 +674,7 @@ App.go_to_playing = () => {
 
   // If none found then pick the first one
   if (first) {
+    App.select_item(first)
     App.focus_tab(first)
   }
 }
@@ -920,8 +914,8 @@ App.focus_current_tab = async () => {
   return false
 }
 
-// On tabs edge action
-App.tabs_edge_action = async () => {
+// Back button action
+App.tabs_back_action = async () => {
   let scrolled = await App.focus_current_tab()
 
   if (!scrolled) {
