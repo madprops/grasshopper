@@ -1676,16 +1676,23 @@ App.show_glower = (mode, which) => {
   }, App.glower_delay)
 }
 
-// Scroll up a bit
-App.scroll_up = (mode) => {
+// Scroll up or down
+App.scroll = (mode, direction, percent) => {
   let el = DOM.el(`#${mode}_container`)
-  el.scrollTop = el.scrollTop -= 50
-}
+  let amount = 50
 
-// Scroll down a bit
-App.scroll_down = (mode) => {
-  let el = DOM.el(`#${mode}_container`)
-  el.scrollTop = el.scrollTop += 50
+  if (percent) {
+    amount = Math.floor(el.scrollHeight * (percent / 100))
+  }
+
+  console.log(amount)
+
+  if (direction === `up`) {
+    el.scrollTop -= amount
+  }
+  else if (direction === `down`) {
+    el.scrollTop += amount
+  }
 }
 
 // Highlight visible items

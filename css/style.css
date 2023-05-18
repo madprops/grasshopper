@@ -615,7 +615,7 @@ input::placeholder {
   position: absolute;
   top: 0;
   bottom: 0;
-  width: 10px;
+  width: 12px;
   z-index: 9999;
   background-color: transparent;
   transition: background-color 200ms linear;

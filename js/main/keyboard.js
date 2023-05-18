@@ -77,12 +77,12 @@ App.check_window_keyboard = (e) => {
     }
   }
   else if (e.key === `PageUp`) {
-    App.scroll_up(mode)
+    App.scroll(mode, `up`)
     e.preventDefault()
     return
   }
   else if (e.key === `PageDown`) {
-    App.scroll_down(mode)
+    App.scroll(mode, `down`)
     e.preventDefault()
     return
   }

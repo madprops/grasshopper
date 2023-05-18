@@ -90,10 +90,10 @@ App.setup_window_mouse = (mode) => {
       let direction = e.deltaY > 0 ? `down` : `up`
 
       if (direction === `up`) {
-        App.goto_top(mode)
+        App.scroll(mode, `up`, 25)
       }
       else if (direction === `down`) {
-        App.goto_bottom(mode)
+        App.scroll(mode, `down`, 25)
       }
     })
   }
