@@ -985,10 +985,6 @@ App.setup_item_window = (mode) => {
     let top = DOM.create(`div`, `item_top_container`, `${mode}_top_container`)
     DOM.el(`#window_top_${mode}`).append(top)
 
-    if (mode === `tabs`) {
-      glowie.title = `Go To Previous Tab`
-    }
-
     DOM.ev(glowie, `click`, () => {
       if (App.get_highlights(mode).length > 0) {
         App.dehighlight(mode)
