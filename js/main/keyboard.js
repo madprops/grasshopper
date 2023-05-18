@@ -34,6 +34,16 @@ App.check_window_keyboard = (e) => {
       e.preventDefault()
       return
     }
+    else if (e.key === `Home`) {
+      App.goto_top(mode)
+      e.preventDefault()
+      return
+    }
+    else if (e.key === `End`) {
+      App.goto_bottom(mode)
+      e.preventDefault()
+      return
+    }
   }
 
   if (e.key === `Enter`) {
@@ -56,12 +66,6 @@ App.check_window_keyboard = (e) => {
       e.preventDefault()
       return
     }
-
-    if (e.ctrlKey) {
-      App.goto_top(mode)
-      e.preventDefault()
-      return
-    }
   }
   else if (e.key === `End`) {
     if (e.shiftKey) {
@@ -69,32 +73,15 @@ App.check_window_keyboard = (e) => {
       e.preventDefault()
       return
     }
-
-    if (e.ctrlKey) {
-      App.goto_bottom(mode)
-      e.preventDefault()
-      return
-    }
   }
   else if (e.key === `PageUp`) {
-    App.scroll(mode, `up`)
+    App.scroll(mode, `up`, e.shiftKey)
     e.preventDefault()
     return
   }
   else if (e.key === `PageDown`) {
-    App.scroll(mode, `down`)
+    App.scroll(mode, `down`, e.shiftKey)
     e.preventDefault()
-    return
-  }
-  else if (e.key === `Home`) {
-    if (e.shiftKey) {
-      App.highlight_to_edge(mode, `above`)
-      e.preventDefault()
-    }
-    else {
-      App.goto_top(mode)
-    }
-
     return
   }
   else if (e.key === `ArrowUp`) {
