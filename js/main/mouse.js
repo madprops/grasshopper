@@ -97,6 +97,15 @@ App.setup_window_mouse = (mode) => {
       }
     })
   }
+
+  DOM.ev(container, `scroll`, (e) => {
+    if (App.is_at_top(container)) {
+      App.show_glowie(mode, `top`)
+    }
+    else if (App.is_at_bottom(container)) {
+      App.show_glowie(mode, `bottom`)
+    }
+  })
 }
 
 // Get item under cursor

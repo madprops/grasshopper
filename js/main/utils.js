@@ -246,5 +246,16 @@ App.get_excess = (objects, property) => {
   return excess
 }
 
+
+// Check if scrolled to the top
+App.is_at_top = (container) => {
+  return container.scrollTop === 0
+}
+
+// Check if scrolled to the bottom
+App.is_at_bottom = (container) => {
+  return container.scrollTop + container.clientHeight === container.scrollHeight
+}
+
 App.image_extensions = [`jpg`, `jpeg`, `png`, `gif`, `webp`, `bmp`]
 App.video_extensions = [`mp4`, `webm`]

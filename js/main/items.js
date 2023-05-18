@@ -1657,13 +1657,11 @@ App.launch_items = (item) => {
 // Scroll container to top
 App.goto_top = (mode) => {
   DOM.el(`#${mode}_container`).scrollTop = 0
-  App.show_glowie(mode, `top`)
 }
 
 // Scroll container to bottom
 App.goto_bottom = (mode) => {
   DOM.el(`#${mode}_container`).scrollTop = DOM.el(`#${mode}_container`).scrollHeight
-  App.show_glowie(mode, `bottom`)
 }
 
 // Show glowie
