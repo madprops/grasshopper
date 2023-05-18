@@ -82,6 +82,9 @@ App.setup_window_mouse = (mode) => {
         if (mode === `tabs`) {
           App.go_to_previous_tab()
         }
+        else {
+          App.show_item_window(`tabs`)
+        }
       }
       // Middle click
       else if (e.button === 1) {
