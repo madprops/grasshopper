@@ -1669,8 +1669,6 @@ App.scroll = (mode, direction, percent) => {
     amount = Math.floor(el.scrollHeight * (percent / 100))
   }
 
-  console.log(amount)
-
   if (direction === `up`) {
     el.scrollTop -= amount
   }
