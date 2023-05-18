@@ -1,6 +1,7 @@
 // Setup mouse for window
 App.setup_window_mouse = (mode) => {
   let container = DOM.el(`#${mode}_container`)
+  let glowie = DOM.el(`#${mode}_glowie`)
 
   DOM.ev(container, `mousedown`, (e) => {
     if (!e.target.closest(`.${mode}_item`)) {
@@ -68,8 +69,8 @@ App.setup_window_mouse = (mode) => {
     App.update_footer_info(item)
   })
 
-  DOM.ev(container, `wheel`, (e) => {
-    if (e.shiftKey) {
+  if (glowie) {
+    DOM.ev(glowie, `wheel`, (e) => {
       let direction = e.deltaY > 0 ? `down` : `up`
 
       if (direction === `up`) {
@@ -78,10 +79,8 @@ App.setup_window_mouse = (mode) => {
       else if (direction === `down`) {
         App.goto_bottom(mode)
       }
-
-      e.preventDefault()
-    }
-  })
+    })
+  }
 }
 
 // Get item under cursor

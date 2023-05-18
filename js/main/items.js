@@ -188,8 +188,11 @@ App.empty_footer_info = () => {
 // Set footer info
 App.set_footer_info = (mode, text) => {
   let footer = DOM.el(`#${mode}_footer`)
-  let info = DOM.el(`.footer_info`, footer)
-  info.textContent = text
+
+  if (footer) {
+    let info = DOM.el(`.footer_info`, footer)
+    info.textContent = text
+  }
 }
 
 // Get selected item by mode
@@ -981,6 +984,16 @@ App.setup_item_window = (mode) => {
     let top = DOM.create(`div`, `item_top_container`, `${mode}_top_container`)
     DOM.el(`#window_top_${mode}`).append(top)
 
+    if (mode === `tabs`) {
+      let glowie = DOM.create(`div`, `glowie`, `${mode}_glowie`)
+
+      DOM.ev(glowie, `click`, () => {
+        App.go_to_previous_tab()
+      })
+
+      win.append(glowie)
+    }
+
     win.append(container)
     win.append(footer)
 
@@ -1053,7 +1066,7 @@ App.setup_item_window = (mode) => {
     })
 
     //
-    let playing, previous
+    let playing
 
     if (mode === `tabs`) {
       playing = DOM.create(`div`, `button icon_button hidden`, `${mode}_playing`)
@@ -1065,31 +1078,6 @@ App.setup_item_window = (mode) => {
       })
 
       playing.append(playing_icon)
-
-      previous = DOM.create(`div`, `button icon_button`, `${mode}_previous`)
-      previous.title = `Go To Previous Tab (Ctrl + Backspace)`
-      let previous_icon = App.create_icon(`back`)
-
-      DOM.ev(previous, `click`, () => {
-        App.go_to_previous_tab()
-      })
-
-      previous.append(previous_icon)
-    }
-
-    //
-    let new_star
-
-    if (mode === `stars`) {
-      new_star = DOM.create(`div`, `button icon_button`)
-      new_star.title = `New Star`
-      let new_star_icon = App.create_icon(`plus`)
-
-      DOM.ev(new_star, `click`, () => {
-        App.new_star_from_active()
-      })
-
-      new_star.append(new_star_icon)
     }
 
     //
@@ -1165,14 +1153,6 @@ App.setup_item_window = (mode) => {
 
     if (playing) {
       right_top.append(playing)
-    }
-
-    if (previous) {
-      right_top.append(previous)
-    }
-
-    if (new_star) {
-      right_top.append(new_star)
     }
 
     right_top.append(actions_menu)

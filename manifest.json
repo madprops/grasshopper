@@ -1,7 +1,7 @@
 {
     "manifest_version": 2,
     "name": "Grasshopper",
-    "version": "353",
+    "version": "354",
     "description": "Awesome Tab Manager",
     "permissions": [
         "tabs",
@@ -17,11 +17,11 @@
             "128": "img/icon128.png"
         },
         "default_title": "Grasshopper",
-        "default_popup": "popup.html"
+        "default_popup": "main.html"
     },
     "sidebar_action": {
         "default_title": "Grasshopper",
-        "default_panel": "popup.html",
+        "default_panel": "main.html",
         "default_icon": "img/icon128.png"
     },
     "commands": {

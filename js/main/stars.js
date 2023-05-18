@@ -3,6 +3,10 @@ App.setup_stars = () => {
   App.stars_actions = [
     {text: `--separator--`},
 
+    {text: `Add`, action: () => {
+      App.new_star_from_active()
+    }},
+
     {text: `Export`, action: () => {
       App.export_stars()
     }},

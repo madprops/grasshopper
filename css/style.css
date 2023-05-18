@@ -57,6 +57,7 @@ body, html {
   overflow-x: hidden;
   scrollbar-color: var(--alt_color_2) var(--alt_color_1);
   padding-top: 1px;
+  position: relative;
 }
 
 .window_top {
@@ -88,6 +89,7 @@ body, html {
   padding-right: 0.88rem;
   font-size: 1.2rem;
   font-family: gh_sans, sans-serif;
+  z-index: 9999;
 }
 
 .container {
@@ -100,6 +102,14 @@ body, html {
   height: 100%;
   overflow-x: hidden;
   overflow-y: auto;
+}
+
+.scrollbar_left .container {
+  direction: rtl;
+}
+
+.scrollbar_right .container {
+  direction: ltr;
 }
 
 .text {
@@ -177,6 +187,7 @@ svg {
   cursor: pointer;
   align-items: center;
   min-height: 2.1rem;
+  direction: ltr;
 }
 
 .item_icon {
@@ -588,4 +599,26 @@ input::placeholder {
   overflow-x: hidden;
   overflow-y: auto;
   max-height: 60vh;
+}
+
+.glowie {
+  position: absolute;
+  top: 0;
+  background-color: transparent;
+  width: 0.777rem;
+  height: 100%;
+  z-index: 9999;
+  cursor: pointer;
+}
+
+.scrollbar_right .glowie {
+  left: 0;
+}
+
+.scrollbar_left .glowie {
+  right: 0;
+}
+
+.glowie:hover {
+  background-color: var(--alt_color_1);
 }
