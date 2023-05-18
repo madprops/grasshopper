@@ -636,7 +636,7 @@ input::placeholder {
 
 .glowie {
   position: absolute;
-  height: 10px;
+  height: 20px;
   width: 100%;
   pointer-events: none;
   background-color: transparent;
