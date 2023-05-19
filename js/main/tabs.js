@@ -34,7 +34,7 @@ App.setup_tabs = () => {
       App.remove_dups()
     }},
 
-    {text: `Clean Normal Tabs`, action: () => {
+    {text: `Clean Normal`, action: () => {
       App.clean_tabs()
     }},
   ]

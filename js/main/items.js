@@ -973,11 +973,12 @@ App.setup_item_window = (mode) => {
     }, App.filter_delay)
 
     let win = DOM.el(`#window_content_${mode}`)
-    let container = DOM.create(`div`, `container`, `${mode}_container`)
-    let footer = DOM.create(`div`, `footer unselectable`, `${mode}_footer`)
-    let top = DOM.create(`div`, `item_top_container`, `${mode}_top_container`)
 
+    let top = DOM.create(`div`, `item_top_container unselectable`, `${mode}_top_container`)
     DOM.el(`#window_top_${mode}`).append(top)
+
+    let container = DOM.create(`div`, `container unselectable`, `${mode}_container`)
+    let footer = DOM.create(`div`, `footer unselectable`, `${mode}_footer`)
 
     win.append(container)
     win.append(footer)
