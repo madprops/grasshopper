@@ -788,6 +788,11 @@ App.get_title = (url) => {
 
 // Remove all titles
 App.remove_all_titles = () => {
+  if (App.titles.length === 0) {
+    App.show_alert(`No titles saved`)
+    return
+  }
+
   App.show_confirm(`Remove all titles? (${App.titles.length})`, () => {
     App.titles = []
     App.stor_save_titles()
