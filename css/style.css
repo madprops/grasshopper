@@ -248,8 +248,8 @@ svg {
   flex-shrink: 0;
 }
 
-.item:hover:not(.selected) {
-  opacity: 0.8;
+.item:hover:not(.selected) .item_text {
+  filter: brightness(1.5);
 }
 
 .highlighted {
