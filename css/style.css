@@ -206,6 +206,10 @@ svg {
   overflow: hidden;
   margin-right: var(--item_margin);
   flex-shrink: 1;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  height: 100%;
 }
 
 .item_info {
@@ -215,7 +219,6 @@ svg {
   padding-left: 0.35rem;
   gap: 0.5rem;
   align-self: stretch;
-  justify-self: stretch;
   align-items: center;
   flex-shrink: 0;
 }
@@ -246,10 +249,6 @@ svg {
   gap: 0.66rem;
   flex-grow: 0;
   flex-shrink: 0;
-}
-
-.item:hover:not(.selected) .item_text {
-  filter: brightness(1.5);
 }
 
 .highlighted {
