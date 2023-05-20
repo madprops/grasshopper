@@ -201,15 +201,16 @@ svg {
 }
 
 .item_text {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: flex-start;
+  height: 100%;
   width: 100%;
   white-space: nowrap;
   overflow: hidden;
   margin-right: var(--item_margin);
   flex-shrink: 1;
-  display: flex;
-  align-items: center;
-  justify-content: flex-start;
-  height: 100%;
 }
 
 .item_info {
