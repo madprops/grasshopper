@@ -1859,3 +1859,8 @@ App.check_filter = (mode) => {
     App.do_item_filter(mode)
   }
 }
+
+// Check if filter is focused
+App.filter_is_focused = () => {
+  return document.activeElement.classList.contains(`filter`)
+}

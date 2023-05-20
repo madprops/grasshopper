@@ -115,7 +115,7 @@ App.check_window_keyboard = (e) => {
     return
   }
   else if (e.key === `Delete`) {
-    if (e.shiftKey) {
+    if (!App.filter_is_focused()) {
       if (mode === `tabs`) {
         App.close_tabs()
       }
