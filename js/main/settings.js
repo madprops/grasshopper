@@ -21,7 +21,7 @@ App.default_settings = {
   media_viewer: {value: true, category: `basic`},
 
   background_color: {value: `rgb(43, 42, 51)`, category: `theme`},
-  text_color: {value: `rgb(251, 251, 254)`, category: `theme`},
+  text_color: {value: `rgb(213, 212, 214)`, category: `theme`},
   background_image: {value: `1`, category: `theme`},
   custom_background: {value: ``, category: `theme`},
 
