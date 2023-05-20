@@ -13,7 +13,7 @@ App.setup_about = () => {
       `Shift + Click to select item range`,
       `Right Click to show context menus`,
       `Shift + Enter to show context menus`,
-      `Shift + Delete removes items`,
+      `Delete removes items if filter is not focused`,
       `Ctrl + Home goes to the top of a list`,
       `Ctrl + End goes to the bottom of a list`,
       `Ctrl + Left togles Main Menu`,
