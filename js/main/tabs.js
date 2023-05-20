@@ -489,13 +489,7 @@ App.show_tabs_info = () => {
   s += `Pins: ${pins}\n`
   s += `Playing: ${playing}\n`
   s += `Muted: ${muted}\n`
-  s += `Suspended: ${suspended}\n\n`
-
-  s + `URLs:\n\n`
-
-  for (let tab of tabs) {
-    s += `${tab.url}\n`
-  }
+  s += `Suspended: ${suspended}\n`
 
   App.show_alert(s.trim())
 }
@@ -599,7 +593,12 @@ App.clean_tabs = () => {
     return
   }
 
-  App.show_confirm(`Clean tabs? (${ids.length})`, () => {
+  let s = `This will close some tabs.\n`
+  s += `Including normal and suspended tabs.\n`
+  s += `Tabs playing audio are not closed.\n`
+  s += `Close the tabs? (${ids.length})`
+
+  App.show_confirm(s, () => {
     App.do_close_tabs(ids)
   })
 }
