@@ -189,7 +189,7 @@ App.setup_settings = () => {
     App.settings_make_menu(`font`, [
       [`Sans`, `sans-serif`],
       [`Serif`, `serif`],
-      [`Mono`, `mono`],
+      [`Mono`, `monospace`],
     ], () => {
       App.apply_theme()
     })
