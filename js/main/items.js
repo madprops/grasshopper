@@ -992,7 +992,12 @@ App.setup_item_window = (mode) => {
 
     footer.append(footer_count)
 
-    let footer_info = DOM.create(`div`, `footer_info`)
+    let footer_info = DOM.create(`div`, `footer_info action`)
+
+    DOM.ev(footer_info, `click`, () => {
+      App.copy_to_clipboard(footer_info.textContent, true)
+    })
+
     footer.append(footer_info)
 
     App.setup_window_mouse(mode)

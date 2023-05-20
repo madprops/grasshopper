@@ -63,7 +63,7 @@ App.setup_window_mouse = (mode) => {
     }
   })
 
-  DOM.ev(container, `mouseleave`, (e) => {
+  DOM.ev(container, `mouseout`, (e) => {
     let item = App.get_selected(mode)
     App.update_footer_info(item)
   })
