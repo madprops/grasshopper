@@ -224,23 +224,6 @@ App.find_duplicates = (objects, property) => {
   return objects.filter(obj => frequency_map[obj[property]] > 1)
 }
 
-// Get a list of the other duplicates, ignoring the first one
-App.get_excess = (objects, property) => {
-  let items = {}
-  let excess = []
-
-  for (let obj of objects) {
-    if (items[obj[property]]) {
-      excess.push(obj)
-    }
-    else {
-      items[obj[property]] = obj
-    }
-  }
-
-  return excess
-}
-
 // Check if scrolled to the top
 App.is_at_top = (container) => {
   return container.scrollTop === 0

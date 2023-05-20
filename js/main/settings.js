@@ -29,7 +29,7 @@ App.default_settings = {
   normal_icon: {value: ``, category: `icons`},
   playing_icon: {value: `🔊`, category: `icons`},
   muted_icon: {value: `🔇`, category: `icons`},
-  suspended_icon: {value: `(zzz)`, category: `icons`},
+  suspended_icon: {value: `💤`, category: `icons`},
 }
 
 // Make item order control
