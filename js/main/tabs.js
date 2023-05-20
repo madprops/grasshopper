@@ -484,14 +484,15 @@ App.show_tabs_info = () => {
   let muted = App.get_muted_tabs().length
   let suspended = App.get_suspended_tabs().length
 
-  let s = `Tab Count:\n\n`
+  let s = ``
+  s += `Tab Count:\n\n`
   s += `All: ${all}\n`
   s += `Pins: ${pins}\n`
   s += `Playing: ${playing}\n`
   s += `Muted: ${muted}\n`
-  s += `Suspended: ${suspended}\n`
+  s += `Suspended: ${suspended}`
 
-  App.show_alert(s.trim())
+  App.show_alert(s)
 }
 
 // Pin or unpin
@@ -593,8 +594,8 @@ App.clean_tabs = () => {
     return
   }
 
-  let s = `This will close some tabs.\n`
-  s += `Including normal and suspended tabs.\n`
+  let s = ``
+  s += `Close normal and suspended tabs.\n`
   s += `Tabs playing audio are not closed.\n`
   s += `Close the tabs? (${ids.length})`
 
