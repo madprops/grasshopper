@@ -190,8 +190,8 @@ App.media_show_error = (what) => {
 
 // Check media
 App.check_media = (item) => {
-  if (!App.settings.media_viewer) {
-    return false
+  if (!App.settings[`media_viewer_on_${item.mode}`]) {
+    return
   }
 
   if (item.image) {

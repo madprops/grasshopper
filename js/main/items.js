@@ -1835,10 +1835,8 @@ App.item_action = (item, close = true) => {
     App.launch_items(item)
   }
   else {
-    if (App.settings[`media_viewer_on_${item.mode}`]) {
-      if (close && App.check_media(item)) {
-        return
-      }
+    if (close && App.check_media(item)) {
+      return
     }
 
     if (item.mode === `stars`) {
