@@ -51,7 +51,7 @@ App.setup_about = () => {
 
     for (let item of App.about_info_items) {
       let el = DOM.create(`div`)
-      el.textContent = item + `.`
+      el.textContent = item
       info_full.append(el)
     }
 
