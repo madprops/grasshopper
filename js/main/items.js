@@ -1006,8 +1006,8 @@ App.setup_item_window = (mode) => {
     main_menu.textContent = mode_name
     main_menu.title = `Main Menu (Ctrl + Left)`
 
-    DOM.ev(main_menu, `click`, (e) => {
-      App.show_main_menu(mode, e)
+    DOM.ev(main_menu, `click`, () => {
+      App.show_main_menu(mode)
     })
 
     DOM.ev(main_menu, `wheel`, (e) => {
@@ -1043,8 +1043,8 @@ App.setup_item_window = (mode) => {
     App[`${mode}_filter_modes`].unshift([`images`, `Images`])
     App[`${mode}_filter_modes`].unshift([`all`, `All`])
 
-    DOM.ev(filter_modes, `click`, (e) => {
-      App.show_filter_modes(mode, e)
+    DOM.ev(filter_modes, `click`, () => {
+      App.show_filter_modes(mode)
     })
 
     DOM.ev(filter_modes, `wheel`, (e) => {
@@ -1125,8 +1125,8 @@ App.setup_item_window = (mode) => {
     actions_menu.append(actions_icon)
     actions_menu.title = `Actions (Ctrl + Right)`
 
-    DOM.ev(actions_menu, `click`, (e) => {
-      App.show_actions(mode, e)
+    DOM.ev(actions_menu, `click`, () => {
+      App.show_actions(mode)
     })
 
     //
@@ -1361,7 +1361,7 @@ App.filter_domain = (item) => {
 }
 
 // Show the actions menu
-App.show_actions = (mode, e) => {
+App.show_actions = (mode) => {
   let items = []
 
   for (let item of App[`${mode}_actions`]) {
@@ -1386,17 +1386,12 @@ App.show_actions = (mode, e) => {
     }
   }
 
-  if (e) {
-    NeedContext.show(e.clientX, e.clientY, items)
-  }
-  else {
-    let btn = DOM.el(`#${mode}_actions`)
-    NeedContext.show_on_element(btn, items, true, btn.clientHeight)
-  }
+  let btn = DOM.el(`#${mode}_actions`)
+  NeedContext.show_on_element(btn, items, true, btn.clientHeight)
 }
 
 // Show filter modes
-App.show_filter_modes = (mode, e) => {
+App.show_filter_modes = (mode) => {
   let items = []
 
   for (let filter_mode of App[`${mode}_filter_modes`]) {
@@ -1411,13 +1406,8 @@ App.show_filter_modes = (mode, e) => {
     })
   }
 
-  if (e) {
-    NeedContext.show(e.clientX, e.clientY, items)
-  }
-  else {
-    let btn = DOM.el(`#${mode}_filter_modes`)
-    NeedContext.show_on_element(btn, items, false, btn.clientHeight)
-  }
+  let btn = DOM.el(`#${mode}_filter_modes`)
+  NeedContext.show_on_element(btn, items, false, btn.clientHeight)
 }
 
 // Cycle filter modes
@@ -1756,7 +1746,7 @@ App.create_icon = (name, type = 1) => {
 }
 
 // Show main menu
-App.show_main_menu = (mode, e) => {
+App.show_main_menu = (mode) => {
   let items = []
 
   for (let m of App.item_order) {
@@ -1787,13 +1777,8 @@ App.show_main_menu = (mode, e) => {
     }
   })
 
-  if (e) {
-    NeedContext.show(e.clientX, e.clientY, items)
-  }
-  else {
-    let btn = DOM.el(`#${mode}_main_menu`)
-    NeedContext.show_on_element(btn, items, true, btn.clientHeight)
-  }
+  let btn = DOM.el(`#${mode}_main_menu`)
+  NeedContext.show_on_element(btn, items, true, btn.clientHeight)
 }
 
 // Get active items
