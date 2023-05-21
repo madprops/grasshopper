@@ -24,7 +24,7 @@ App.setup_about = () => {
       `Arrows, Enter, and Space work in media`,
       `Double click on empty tabs space opens a new tab`,
       `Shift while on scrollwheel makes it scroll faster`,
-      `Escape clears the filter`,
+      `Escape clears the filter and closes windows/popups`,
     ]
 
     App.about_info_index = 0
