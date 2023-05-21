@@ -1892,5 +1892,7 @@ App.get_footer = (mode) => {
 
 // Clear a filter
 App.clear_filter = (mode) => {
-  App.set_filter(mode, ``)
+  if (App.get_filter(mode, false)) {
+    App.set_filter(mode, ``)
+  }
 }
