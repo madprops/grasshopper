@@ -1390,7 +1390,8 @@ App.show_actions = (mode, e) => {
     NeedContext.show(e.clientX, e.clientY, items)
   }
   else {
-    NeedContext.show_on_element(actions_menu, items, true, actions_menu.clientHeight)
+    let btn = DOM.el(`#${mode}_actions`)
+    NeedContext.show_on_element(btn, items, true, btn.clientHeight)
   }
 }
 
@@ -1410,12 +1411,11 @@ App.show_filter_modes = (mode, e) => {
     })
   }
 
-  let btn = DOM.el(`#${mode}_filter_modes`)
-
   if (e) {
     NeedContext.show(e.clientX, e.clientY, items)
   }
   else {
+    let btn = DOM.el(`#${mode}_filter_modes`)
     NeedContext.show_on_element(btn, items, false, btn.clientHeight)
   }
 }
@@ -1757,7 +1757,6 @@ App.create_icon = (name, type = 1) => {
 
 // Show main menu
 App.show_main_menu = (mode, e) => {
-  let el = DOM.el(`#${mode}_main_menu`)
   let items = []
 
   for (let m of App.item_order) {
@@ -1792,7 +1791,8 @@ App.show_main_menu = (mode, e) => {
     NeedContext.show(e.clientX, e.clientY, items)
   }
   else {
-    NeedContext.show_on_element(el, items, true, el.clientHeight)
+    let btn = DOM.el(`#${mode}_main_menu`)
+    NeedContext.show_on_element(btn, items, true, btn.clientHeight)
   }
 }
 
