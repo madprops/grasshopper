@@ -1003,6 +1003,7 @@ App.setup_item_window = (mode) => {
     App.setup_window_mouse(mode)
 
     //
+
     let main_menu = DOM.create(`div`, `button icon_button`, `${mode}_main_menu`)
     main_menu.textContent = mode_name
     main_menu.title = `Main Menu (Ctrl + Left)`
@@ -1021,6 +1022,7 @@ App.setup_item_window = (mode) => {
     })
 
     //
+
     let filter = DOM.create(`input`, `text filter`, `${mode}_filter`)
     filter.type = `text`
     filter.autocomplete = `off`
@@ -1032,6 +1034,7 @@ App.setup_item_window = (mode) => {
     })
 
     //
+
     let filter_modes = DOM.create(`div`, `button icon_button`, `${mode}_filter_modes`)
     filter_modes.title = `Filter Modes (Ctrl + Down)`
     let filter_modes_text = DOM.create(`div`, ``, `${mode}_filter_modes_text`)
@@ -1056,6 +1059,7 @@ App.setup_item_window = (mode) => {
     })
 
     //
+
     let playing, previous
 
     if (mode === `tabs`) {
@@ -1081,6 +1085,7 @@ App.setup_item_window = (mode) => {
     }
 
     //
+
     let new_star
 
     if (mode === `stars`) {
@@ -1096,6 +1101,7 @@ App.setup_item_window = (mode) => {
     }
 
     //
+
     let top_actions = []
 
     top_actions.push({text: `Goto Top`, action: () => {
@@ -1159,6 +1165,7 @@ App.setup_item_window = (mode) => {
     })
 
     //
+
     if (mode === `tabs`) {
       App.setup_drag(mode, container)
     }
