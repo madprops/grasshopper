@@ -1869,8 +1869,6 @@ App.filter_is_focused = () => {
 App.copy_footer = (mode) => {
   let what
 
-  console.log(App.settings.text_mode)
-
   if (App.settings.text_mode === `title`) {
     what = `URL`
   }
