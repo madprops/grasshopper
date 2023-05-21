@@ -589,27 +589,27 @@ App.get_more_menu_items = (item, multiple) => {
 }
 
 // Process items
-App.process_items = (mode, items) => {
+App.process_info_list = (mode, info_list) => {
   let container = DOM.el(`#${mode}_container`)
   container.innerHTML = ``
   App[`${mode}_items`] = []
   App[`${mode}_idx`] = 0
-  App[`${mode}_items_original`] = items
+  let items = App.get_items(mode)
   let exclude = []
 
-  for (let item of items) {
-    let obj = App.process_item(mode, item, exclude)
+  for (let info of info_list) {
+    let item = App.process_info(mode, info, exclude)
 
-    if (!obj) {
+    if (!item) {
       continue
     }
 
     if (mode === `closed` || mode === `history`) {
-      exclude.push(obj.url)
+      exclude.push(item.url)
     }
 
-    App.get_items(mode).push(obj)
-    container.append(obj.element)
+    items.push(item)
+    container.append(item.element)
   }
 
   App.update_footer_count(mode)
@@ -620,27 +620,27 @@ App.process_items = (mode, items) => {
 }
 
 // Process an item
-App.process_item = (mode, item, exclude = [], o_item) => {
-  if (!item || !item.url) {
+App.process_info = (mode, info, exclude = [], o_item) => {
+  if (!info || !info.url) {
     return false
   }
 
   try {
-    url_obj = new URL(item.url)
-    decodeURI(item.url)
+    url_obj = new URL(info.url)
+    decodeURI(info.url)
   }
   catch (err) {
     return false
   }
 
-  let url = App.format_url(item.url)
+  let url = App.format_url(info.url)
 
   if (exclude.includes(url)) {
     return false
   }
 
   let path = App.remove_protocol(url)
-  let title = item.title || path
+  let title = info.title || path
   let image = App.is_image(url)
   let video = App.is_video(url)
 
@@ -652,32 +652,32 @@ App.process_item = (mode, item, exclude = [], o_item) => {
     }
   }
 
-  let obj = {
+  let item = {
     title: title,
     title_lower: title.toLowerCase(),
     url: url,
     path: path,
     path_lower: path.toLowerCase(),
-    favicon: item.favIconUrl,
+    favicon: info.favIconUrl,
     mode: mode,
     protocol: url_obj.protocol,
-    window_id: item.windowId,
-    session_id: item.sessionId,
+    window_id: info.windowId,
+    session_id: info.sessionId,
     image: image,
     video: video,
     created: false,
   }
 
   if (mode === `tabs`) {
-    obj.active = item.active
-    obj.pinned = item.pinned
-    obj.audible = item.audible
-    obj.muted = item.mutedInfo.muted
-    obj.discarded = item.discarded
+    item.active = info.active
+    item.pinned = info.pinned
+    item.audible = info.audible
+    item.muted = info.mutedInfo.muted
+    item.discarded = info.discarded
   }
 
   if (o_item) {
-    o_item = Object.assign(o_item, obj)
+    o_item = Object.assign(o_item, item)
     App.create_item_element(o_item)
 
     if (App.get_selected(mode) === o_item) {
@@ -685,19 +685,19 @@ App.process_item = (mode, item, exclude = [], o_item) => {
     }
   }
   else {
-    obj.id = item.id || App[`${mode}_idx`]
-    obj.visible = true
-    obj.highlighted = false
-    App.create_empty_item_element(obj)
+    item.id = info.id || App[`${mode}_idx`]
+    item.visible = true
+    item.highlighted = false
+    App.create_empty_item_element(item)
     App[`${mode}_idx`] += 1
 
     if (mode === `tabs`) {
-      if (!App.tabs_created[obj.id]) {
-        App.tabs_created[obj.id] = Date.now()
+      if (!App.tabs_created[item.id]) {
+        App.tabs_created[item.id] = Date.now()
       }
     }
 
-    return obj
+    return item
   }
 }
 
@@ -946,7 +946,7 @@ App.show_item_window = async (mode, cycle = false) => {
     // Filter will search
   }
   else {
-    App.process_items(mode, items)
+    App.process_info_list(mode, items)
   }
 
   if (value) {
@@ -1363,7 +1363,7 @@ App.show_launched = (item) => {
 App.update_item = (mode, id, info) => {
   for (let item of App.get_items(mode)) {
     if (item.id === id) {
-      App.process_item(mode, info, [], item)
+      App.process_info(mode, info, [], item)
       break
     }
   }
@@ -1799,7 +1799,7 @@ App.get_active_items = (mode, item) => {
 
 // Insert new item
 App.insert_item = (mode, info) => {
-  let item = App.process_item(mode, info)
+  let item = App.process_info(mode, info)
 
   if (mode === `tabs`) {
     App.get_items(mode).splice(info.index, 0, item)

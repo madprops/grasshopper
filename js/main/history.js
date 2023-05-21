@@ -44,5 +44,5 @@ App.search_history = async () => {
     return
   }
 
-  App.process_items(`history`, items)
+  App.process_info_list(`history`, items)
 }
