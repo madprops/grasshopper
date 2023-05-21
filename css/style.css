@@ -334,8 +334,12 @@ svg {
 
 .settings_text {
   flex-grow: 0;
-  min-width: 10rem;
+  width: 12rem;
   text-align: center;
+}
+
+.text_smaller {
+  width: 5rem;
 }
 
 .settings_title {
