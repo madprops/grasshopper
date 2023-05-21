@@ -599,8 +599,8 @@ App.clean_tabs = () => {
   }
 
   let s = ``
-  s += `Close normal and suspended tabs.\n`
-  s += `Tabs playing audio are not closed.\n`
+  s += `Close normal and suspended tabs\n`
+  s += `Tabs playing audio are not closed\n`
   s += `Close the tabs? (${ids.length})`
 
   App.show_confirm(s, () => {
