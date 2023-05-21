@@ -297,6 +297,10 @@ svg {
   flex-shrink: 0;
 }
 
+.footer_info {
+  flex-grow: 1;
+}
+
 .footer div {
   flex-shrink: 0;
 }
