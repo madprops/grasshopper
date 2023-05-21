@@ -447,7 +447,7 @@ App.show_settings_menu = (btn) => {
   })
 
   items.push({
-    text: `Icon`,
+    text: `Icons`,
     action: () => {
       App.show_window(`settings_icons`)
     }
