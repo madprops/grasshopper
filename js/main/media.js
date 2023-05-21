@@ -69,7 +69,7 @@ App.create_media_windows = (what) => {
     })
 
     DOM.ev(copy, `click`, () => {
-      App.media_copy(what, true)
+      App.media_copy(what)
     })
 
     DOM.ev(DOM.el(`#${what}_prev`), `click`, () => {
@@ -243,6 +243,6 @@ App.open_media = (what) => {
 }
 
 // Copy media url to clipboard
-App.media_copy = (what, feedback = false) => {
-  App.copy_to_clipboard(App[`current_${what}_item`].url, feedback)
+App.media_copy = (what) => {
+  App.copy_to_clipboard(App[`current_${what}_item`].url, `URL`)
 }

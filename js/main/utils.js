@@ -37,11 +37,11 @@ App.remove_protocol = (url) => {
 }
 
 // Copy text to the clipboard
-App.copy_to_clipboard = (text, feedback = false) => {
+App.copy_to_clipboard = (text, what = ``) => {
   navigator.clipboard.writeText(text)
 
-  if (feedback) {
-    App.show_feedback(`Copied to clipboard`)
+  if (what) {
+    App.show_feedback(`${what} copied to clipboard`)
   }
 }
 

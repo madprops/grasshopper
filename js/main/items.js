@@ -187,7 +187,7 @@ App.empty_footer_info = () => {
 
 // Set footer info
 App.set_footer_info = (mode, text) => {
-  let footer = DOM.el(`#${mode}_footer`)
+  let footer = App.get_footer(mode)
 
   if (footer) {
     let info = DOM.el(`.footer_info`, footer)
@@ -995,7 +995,7 @@ App.setup_item_window = (mode) => {
     let footer_info = DOM.create(`div`, `footer_info action`)
 
     DOM.ev(footer_info, `click`, () => {
-      App.copy_to_clipboard(footer_info.textContent, true)
+      App.copy_footer(mode)
     })
 
     footer.append(footer_info)
@@ -1298,7 +1298,7 @@ App.update_footer_count = (mode) => {
   let n2 = App.get_visible(mode).length
   let s1 = n1.toLocaleString()
   let s2 = n2.toLocaleString()
-  let footer = DOM.el(`#${mode}_footer`)
+  let footer = App.get_footer(mode)
   let count = DOM.el(`.footer_count`, footer)
 
   if (n1 > 0) {
@@ -1863,4 +1863,29 @@ App.check_filter = (mode) => {
 // Check if filter is focused
 App.filter_is_focused = () => {
   return document.activeElement.classList.contains(`filter`)
+}
+
+// Copy footer
+App.copy_footer = (mode) => {
+  let what
+
+  console.log(App.settings.text_mode)
+
+  if (App.settings.text_mode === `title`) {
+    what = `URL`
+  }
+  else if (App.settings.text_mode === `url`) {
+    what = `Title`
+  }
+
+  let footer = App.get_footer(mode)
+  let info = DOM.el(`.footer_info`, footer)
+  let text = info.textContent
+
+  App.copy_to_clipboard(text, what)
+}
+
+// Get footer
+App.get_footer = (mode) => {
+  return DOM.el(`#${mode}_footer`)
 }
