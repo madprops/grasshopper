@@ -46,6 +46,7 @@ App.setup_tabs = () => {
 
   browser.tabs.onUpdated.addListener(async (id, cinfo, info) => {
     if (App.window_mode === `tabs` && info.windowId === App.window_id) {
+      App.log(`Tab Updated: ID: ${id}`)
       let keys = Object.keys(cinfo)
 
       // If it's a title change...
@@ -63,7 +64,6 @@ App.setup_tabs = () => {
         return
       }
 
-      App.log(`Tab Updated: ID: ${id}`)
       await App.refresh_tab(id)
       App.tabs_check()
     }
