@@ -991,7 +991,6 @@ App.setup_item_window = (mode) => {
     })
 
     footer.append(footer_count)
-
     let footer_info = DOM.create(`div`, `footer_info action`)
 
     DOM.ev(footer_info, `click`, () => {
@@ -999,7 +998,6 @@ App.setup_item_window = (mode) => {
     })
 
     footer.append(footer_info)
-
     App.setup_window_mouse(mode)
 
     //
@@ -1008,8 +1006,8 @@ App.setup_item_window = (mode) => {
     main_menu.textContent = mode_name
     main_menu.title = `Main Menu (Ctrl + Left)`
 
-    DOM.ev(main_menu, `click`, () => {
-      App.show_main_menu(mode)
+    DOM.ev(main_menu, `click`, (e) => {
+      App.show_main_menu(mode, e)
     })
 
     DOM.ev(main_menu, `wheel`, (e) => {
@@ -1045,8 +1043,8 @@ App.setup_item_window = (mode) => {
     App[`${mode}_filter_modes`].unshift([`images`, `Images`])
     App[`${mode}_filter_modes`].unshift([`all`, `All`])
 
-    DOM.ev(filter_modes, `click`, () => {
-      App.show_filter_modes(mode)
+    DOM.ev(filter_modes, `click`, (e) => {
+      App.show_filter_modes(mode, e)
     })
 
     DOM.ev(filter_modes, `wheel`, (e) => {
@@ -1126,39 +1124,6 @@ App.setup_item_window = (mode) => {
     let actions_icon = App.create_icon(`sun`)
     actions_menu.append(actions_icon)
     actions_menu.title = `Actions (Ctrl + Right)`
-
-    App[`show_${mode}_actions`] = (e) => {
-      let items = []
-
-      for (let item of App[`${mode}_actions`]) {
-        if (item.text === `--separator--`) {
-          items.push({separator: true})
-          continue
-        }
-
-        if (item.conditional) {
-          items.push(item.conditional())
-        }
-        else if (item.action) {
-          items.push({text: item.text, action: () => {
-            item.action()
-          }})
-        }
-        else if (item.items) {
-          items.push({text: item.text, items: item.items})
-        }
-        else if (item.get_items) {
-          items.push({text: item.text, get_items: item.get_items})
-        }
-      }
-
-      if (e) {
-        NeedContext.show(e.clientX, e.clientY, items)
-      }
-      else {
-        NeedContext.show_on_element(actions_menu, items, true, actions_menu.clientHeight)
-      }
-    }
 
     DOM.ev(actions_menu, `click`, (e) => {
       App.show_actions(mode, e)
@@ -1397,11 +1362,40 @@ App.filter_domain = (item) => {
 
 // Show the actions menu
 App.show_actions = (mode, e) => {
-  App[`show_${mode}_actions`](e)
+  let items = []
+
+  for (let item of App[`${mode}_actions`]) {
+    if (item.text === `--separator--`) {
+      items.push({separator: true})
+      continue
+    }
+
+    if (item.conditional) {
+      items.push(item.conditional())
+    }
+    else if (item.action) {
+      items.push({text: item.text, action: () => {
+        item.action()
+      }})
+    }
+    else if (item.items) {
+      items.push({text: item.text, items: item.items})
+    }
+    else if (item.get_items) {
+      items.push({text: item.text, get_items: item.get_items})
+    }
+  }
+
+  if (e) {
+    NeedContext.show(e.clientX, e.clientY, items)
+  }
+  else {
+    NeedContext.show_on_element(actions_menu, items, true, actions_menu.clientHeight)
+  }
 }
 
 // Show filter modes
-App.show_filter_modes = (mode) => {
+App.show_filter_modes = (mode, e) => {
   let items = []
 
   for (let filter_mode of App[`${mode}_filter_modes`]) {
@@ -1417,7 +1411,13 @@ App.show_filter_modes = (mode) => {
   }
 
   let btn = DOM.el(`#${mode}_filter_modes`)
-  NeedContext.show_on_element(btn, items, false, btn.clientHeight)
+
+  if (e) {
+    NeedContext.show(e.clientX, e.clientY, items)
+  }
+  else {
+    NeedContext.show_on_element(btn, items, false, btn.clientHeight)
+  }
 }
 
 // Cycle filter modes
@@ -1756,7 +1756,7 @@ App.create_icon = (name, type = 1) => {
 }
 
 // Show main menu
-App.show_main_menu = (mode) => {
+App.show_main_menu = (mode, e) => {
   let el = DOM.el(`#${mode}_main_menu`)
   let items = []
 
@@ -1788,7 +1788,13 @@ App.show_main_menu = (mode) => {
     }
   })
 
-  NeedContext.show_on_element(el, items, true, el.clientHeight)
+
+  if (e) {
+    NeedContext.show(e.clientX, e.clientY, items)
+  }
+  else {
+    NeedContext.show_on_element(el, items, true, el.clientHeight)
+  }
 }
 
 // Get active items
