@@ -30,6 +30,10 @@ App.setup_tabs = () => {
       return App.get_title_items()
     }},
 
+    {text: `Duplicates`, action: () => {
+      App.close_duplicates()
+    }},
+
     {text: `Clean Tabs`, action: () => {
       App.clean_tabs()
     }},
@@ -905,4 +909,24 @@ App.tabs_back_action = async () => {
   if (!scrolled) {
     App.go_to_previous_tab()
   }
+}
+
+// Close duplicate tabs
+App.close_duplicates = () => {
+  let items = App.get_items(`tabs`)
+  let duplicates = App.find_duplicates(items, `url`)
+
+  let excess = App.get_excess(duplicates, `url`)
+    .filter(x => !x.pinned && !x.playing)
+
+  let ids = excess.map(x => x.id)
+
+  if (ids.length === 0) {
+    App.show_alert(`No duplicates found`)
+    return
+  }
+
+  App.show_confirm(`Close duplicate tabs? (${ids.length})`, () => {
+    App.do_close_tabs(ids)
+  })
 }
