@@ -49,13 +49,18 @@ App.setup_tabs = () => {
       let keys = Object.keys(cinfo)
 
       // If it's a title change...
-      // Ignore if the tab has a fixed title
       if (keys.length === 1 && keys[0] === `title`) {
-        let tab = App.get_item_by_id(`tabs`, id)
+        let item = App.get_item_by_id(`tabs`, id)
 
-        if (App.get_title(tab.url)) {
-          return
+        // Check for fixed title
+        if (!App.get_title(item.url)) {
+          // Update only the title & text
+          item.title = cinfo.title
+          App.set_item_text(item)
         }
+
+        // No need to fully update the item
+        return
       }
 
       App.log(`Tab Updated: ID: ${id}`)
