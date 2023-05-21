@@ -1,4 +1,3 @@
-// Setup bindings for window
 App.check_window_keyboard = (e) => {
   let mode = App.window_mode
 
@@ -135,7 +134,6 @@ App.check_window_keyboard = (e) => {
   App.focus_filter(mode)
 }
 
-// Setup keybindings
 App.setup_keyboard = () => {
   DOM.ev(document, `keydown`, (e) => {
     let mode = App.window_mode

@@ -1,4 +1,3 @@
-// Get local storage object
 App.get_local_storage = (ls_name, fallback) => {
   let obj
 
@@ -22,12 +21,10 @@ App.get_local_storage = (ls_name, fallback) => {
   return obj
 }
 
-// Save local storage object
 App.save_local_storage = (ls_name, obj) => {
   localStorage.setItem(ls_name, JSON.stringify(obj))
 }
 
-// Get settings from storage
 App.stor_get_settings = () => {
   App.settings = App.get_local_storage(App.stor_settings_name, {})
   let changed = false
@@ -46,12 +43,10 @@ App.stor_get_settings = () => {
   App.log(`Stor: Got settings`)
 }
 
-// Save settings to storage
 App.stor_save_settings = () => {
   App.save_local_storage(App.stor_settings_name, App.settings)
 }
 
-// Get stars from storage
 App.stor_get_stars = () => {
   App.stars = App.get_local_storage(App.stor_stars_name, [])
   let changed = false
@@ -80,18 +75,15 @@ App.stor_get_stars = () => {
   App.log(`Stor: Got stars`)
 }
 
-// Save stars to storage
 App.stor_save_stars = () => {
   App.save_local_storage(App.stor_stars_name, App.stars)
 }
 
-// Get titles from storage
 App.stor_get_titles = () => {
   App.titles = App.get_local_storage(App.stor_titles_name, [])
   App.log(`Stor: Got titles`)
 }
 
-// Save titles to storage
 App.stor_save_titles = () => {
   App.save_local_storage(App.stor_titles_name, App.titles)
 }

@@ -1,4 +1,3 @@
-// Setup bookmarks
 App.setup_bookmarks = () => {
   App.setup_item_window(`bookmarks`)
 
@@ -25,7 +24,6 @@ App.setup_bookmarks = () => {
   })
 }
 
-// Get bookmarks
 App.get_bookmarks = async () => {
   let bookmarks = await browser.bookmarks.search({})
 
@@ -36,12 +34,10 @@ App.get_bookmarks = async () => {
   return bookmarks
 }
 
-// Boomarks action
 App.bookmarks_action = (item) => {
   App.item_action(item)
 }
 
-// Boomarks action alt
 App.bookmarks_action_alt = (item) => {
   App.item_action(item, false)
 }

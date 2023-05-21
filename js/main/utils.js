@@ -1,4 +1,3 @@
-// Centralized function to create debouncers
 App.create_debouncer = (func, delay) => {
   let timer
   let obj = {}
@@ -31,12 +30,10 @@ App.create_debouncer = (func, delay) => {
   return obj
 }
 
-// Remove protocol like https://
 App.remove_protocol = (url) => {
   return url.replace(/^https?:\/\//, ``)
 }
 
-// Copy text to the clipboard
 App.copy_to_clipboard = (text, what = ``) => {
   navigator.clipboard.writeText(text)
 
@@ -45,7 +42,6 @@ App.copy_to_clipboard = (text, what = ``) => {
   }
 }
 
-// Get singular or plural
 App.plural = (n, singular, plural) => {
   if (n === 1) {
     return `${n.toLocaleString()} ${singular}`
@@ -55,7 +51,6 @@ App.plural = (n, singular, plural) => {
   }
 }
 
-// Get singular or plural without the number
 App.plural_2 = (n, singular, plural) => {
   if (n === 1) {
     return singular
@@ -65,7 +60,6 @@ App.plural_2 = (n, singular, plural) => {
   }
 }
 
-// Get url hostname
 App.get_hostname = (url) => {
   let url_obj
 
@@ -79,48 +73,39 @@ App.get_hostname = (url) => {
   return url_obj.hostname
 }
 
-// Check if urls match
 App.urls_equal = (u1, u2) => {
   return App.remove_slashes_end(u1) === App.remove_slashes_end(u2)
 }
 
-// Remove slashes from ending
 App.remove_slashes_end = (s) => {
   return s.replace(/\/+$/g, ``)
 }
 
-// Remove hash from url
 App.remove_hash = (url) => {
   return url.split(`#`)[0]
 }
 
-// The way to format urls
 App.format_url = (url) => {
   return App.remove_slashes_end(App.remove_hash(url))
 }
 
-// Capitalize first letter of a string
 App.capitalize = (s) => {
   return s.charAt(0).toUpperCase() + s.slice(1)
 }
 
-// Check if item's protocol is http
 App.is_http = (item) => {
   return item.protocol === `http:` || item.protocol === `https:`
 }
 
-// Get a nice date string
 App.nice_date = (date = Date.now()) => {
   return dateFormat(date, `dd/mmm/yy | h:MM:ss tt`)
 }
 
-// Get item coords
 App.get_coords = (el) => {
   let rect = el.getBoundingClientRect()
   return {x: rect.left, y: rect.top}
 }
 
-// Get a random int from min to max. Optional exclude a number
 App.get_random_int = (min, max, exclude = undefined) => {
   let num = Math.floor(Math.random() * (max - min + 1) + min)
 
@@ -138,19 +123,16 @@ App.get_random_int = (min, max, exclude = undefined) => {
   return num
 }
 
-// Check if file name is from an image source
 App.is_image = (src) => {
   let extension = App.get_extension(src).toLowerCase()
   return extension && App.image_extensions.includes(extension)
 }
 
-// Check if file name is from a video source
 App.is_video = (src) => {
   let extension = App.get_extension(src).toLowerCase()
   return extension && App.video_extensions.includes(extension)
 }
 
-// Extract extension from a string
 App.get_extension = (s) => {
   if (s.startsWith(`http://`) || s.startsWith(`https://`)) {
     let u = new URL(s)
@@ -173,7 +155,6 @@ App.get_extension = (s) => {
   return ``
 }
 
-// Get a template
 App.get_template = (id) => {
   let template = DOM.el(`#template_${id}`)
 
@@ -182,7 +163,6 @@ App.get_template = (id) => {
   }
 }
 
-// Fill from the left with c character to get to n ammount
 App.fillpad = (s, n, c) => {
   let olen = s.length
 
@@ -204,7 +184,6 @@ App.close_window = () => {
   }
 }
 
-// Centralized log function
 App.log = (message, mode = `normal`) => {
   if (mode === `error`) {
     console.error(message)
@@ -214,7 +193,6 @@ App.log = (message, mode = `normal`) => {
   }
 }
 
-// Find objects that share the same property with other objects
 App.find_duplicates = (objects, property) => {
   let frequency_map = objects.reduce((map, obj) => {
     map[obj[property]] = (map[obj[property]] || 0) + 1
@@ -224,7 +202,6 @@ App.find_duplicates = (objects, property) => {
   return objects.filter(obj => frequency_map[obj[property]] > 1)
 }
 
-// Get a list of the other duplicates, ignoring the first one
 App.get_excess = (objects, property) => {
   let items = {}
   let excess = []
@@ -241,17 +218,14 @@ App.get_excess = (objects, property) => {
   return excess
 }
 
-// Check if scrolled to the top
 App.is_at_top = (container) => {
   return container.scrollTop === 0
 }
 
-// Check if scrolled to the bottom
 App.is_at_bottom = (container) => {
   return container.scrollTop + container.clientHeight === container.scrollHeight
 }
 
-// Check if element is visible
 App.element_is_visible = (container, el) => {
   let containerRect = container.getBoundingClientRect()
   let rect = el.getBoundingClientRect()

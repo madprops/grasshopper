@@ -1,8 +1,4 @@
-// Setup tabs
 App.setup_tabs = () => {
-  // Store dates of when a tab is first processed
-  App.tabs_created = {}
-
   App.tabs_filter_modes = [
     [`pins`, `Pinned`],
     [`playing`, `Playing`],
@@ -131,12 +127,10 @@ App.setup_tabs = () => {
   }})
 }
 
-// Some checks after tab operations
 App.tabs_check = () => {
   App.check_playing()
 }
 
-// Get open tabs
 App.get_tabs = async () => {
   let tabs
 
@@ -155,7 +149,6 @@ App.get_tabs = async () => {
   return tabs
 }
 
-// Open a new tab
 App.focus_tab = async (tab, close = true) => {
   if (tab.window_id) {
     await browser.windows.update(tab.window_id, {focused: true})
@@ -175,7 +168,6 @@ App.focus_tab = async (tab, close = true) => {
   }
 }
 
-// Close a tab
 App.close_tab = async (id) => {
   try {
     await browser.tabs.remove(id)
@@ -185,7 +177,6 @@ App.close_tab = async (id) => {
   }
 }
 
-// Open a new tab
 App.new_tab = async (url = undefined, close = true) => {
   try {
     await browser.tabs.create({active: close, url: url})
@@ -199,7 +190,6 @@ App.new_tab = async (url = undefined, close = true) => {
   }
 }
 
-// Refresh tabs
 App.refresh_tab = async (id, select = false) => {
   let info
 
@@ -225,7 +215,6 @@ App.refresh_tab = async (id, select = false) => {
   }
 }
 
-// Pin a tab
 App.pin_tab = async (id) => {
   try {
     await browser.tabs.update(id, {pinned: true})
@@ -235,7 +224,6 @@ App.pin_tab = async (id) => {
   }
 }
 
-// Unpin a tab
 App.unpin_tab = async (id) => {
   try {
     await browser.tabs.update(id, {pinned: false})
@@ -245,7 +233,6 @@ App.unpin_tab = async (id) => {
   }
 }
 
-// Mute a tab
 App.mute_tab = async (id) => {
   try {
     await browser.tabs.update(id, {muted: true})
@@ -255,7 +242,6 @@ App.mute_tab = async (id) => {
   }
 }
 
-// Unmute a tab
 App.unmute_tab = async (id) => {
   try {
     await browser.tabs.update(id, {muted: false})
@@ -265,37 +251,30 @@ App.unmute_tab = async (id) => {
   }
 }
 
-// Return pinned tabs
 App.get_pinned_tabs = () => {
   return App.get_items(`tabs`).filter(x => x.pinned)
 }
 
-// Return playing tabs
 App.get_playing_tabs = () => {
   return App.get_items(`tabs`).filter(x => x.audible)
 }
 
-// Return muted tabs
 App.get_muted_tabs = () => {
   return App.get_items(`tabs`).filter(x => x.muted)
 }
 
-// Return suspended tabs
 App.get_suspended_tabs = () => {
   return App.get_items(`tabs`).filter(x => x.discarded)
 }
 
-// Remove a closed tab
 App.remove_closed_tab = (id) => {
   let tab = App.get_item_by_id(`tabs`, id)
-  delete App.tabs_created[id]
 
   if (tab) {
     App.remove_item(tab)
   }
 }
 
-// Tabs action
 App.tabs_action = (item) => {
   if (App.check_media(item)) {
     return
@@ -304,12 +283,10 @@ App.tabs_action = (item) => {
   App.focus_tab(item)
 }
 
-// Tabs action alt
 App.tabs_action_alt = (item, shift_key = false) => {
   App.close_tabs(item, shift_key)
 }
 
-// Duplicate a tab
 App.duplicate_tab = async (tab) => {
   try {
     await browser.tabs.duplicate(tab.id)
@@ -321,7 +298,6 @@ App.duplicate_tab = async (tab) => {
   App.close_window()
 }
 
-// Suspend a tab
 App.suspend_tab = async (tab) => {
   if (tab.active) {
     try {
@@ -340,7 +316,6 @@ App.suspend_tab = async (tab) => {
   }
 }
 
-// Pin tabs
 App.pin_tabs = (item) => {
   let ids = []
   let active = App.get_active_items(`tabs`, item)
@@ -364,7 +339,6 @@ App.pin_tabs = (item) => {
   App.dehighlight(`tabs`)
 }
 
-// Unpin tabs
 App.unpin_tabs = (item) => {
   let ids = []
   let active = App.get_active_items(`tabs`, item)
@@ -388,7 +362,6 @@ App.unpin_tabs = (item) => {
   App.dehighlight(`tabs`)
 }
 
-// Suspend normal tabs
 App.suspend_tabs = (item) => {
   let tabs = []
   let warn = false
@@ -430,7 +403,6 @@ App.suspend_tabs = (item) => {
   }
 }
 
-// Close tabs
 App.close_tabs = (item, force = false) => {
   let ids = []
   let warn = false
@@ -456,14 +428,12 @@ App.close_tabs = (item, force = false) => {
   }, force || !warn)
 }
 
-// Do close tabs
 App.do_close_tabs = (ids) => {
   for (let id of ids) {
     App.close_tab(id)
   }
 }
 
-// Mute tabs
 App.mute_tabs = (item) => {
   let active = App.get_active_items(`tabs`, item)
 
@@ -474,7 +444,6 @@ App.mute_tabs = (item) => {
   App.dehighlight(`tabs`)
 }
 
-// Unmute tabs
 App.unmute_tabs = (item) => {
   let active = App.get_active_items(`tabs`, item)
 
@@ -485,13 +454,11 @@ App.unmute_tabs = (item) => {
   App.dehighlight(`tabs`)
 }
 
-// Check if tab is normal
 App.tab_is_normal = (tab) => {
   let special = tab.pinned || tab.audible || tab.muted || tab.discarded
   return !special
 }
 
-// Show tabs information
 App.show_tabs_info = () => {
   let tabs = App.get_items(`tabs`)
   let all = tabs.length
@@ -511,7 +478,6 @@ App.show_tabs_info = () => {
   App.show_alert(s)
 }
 
-// Pin or unpin
 App.toggle_pin = (item) => {
   if (item.pinned) {
     App.unpin_tab(item.id)
@@ -521,7 +487,6 @@ App.toggle_pin = (item) => {
   }
 }
 
-// Open a tab
 App.open_tab = async (url, close = true, args = {}) => {
   let opts = {}
   opts.url = url
@@ -540,7 +505,6 @@ App.open_tab = async (url, close = true, args = {}) => {
   return tab
 }
 
-// Update tab index
 App.update_tab_index = async () => {
   for (let el of DOM.els(`.tabs_item`)) {
     let index = App.get_item_element_index(`tabs`, el)
@@ -548,7 +512,6 @@ App.update_tab_index = async () => {
   }
 }
 
-// Do tab index move
 App.do_move_tab_index = async (id, index) => {
   let ans
 
@@ -562,7 +525,6 @@ App.do_move_tab_index = async (id, index) => {
   return ans
 }
 
-// On tab activated
 App.on_tab_activated = async (e) => {
   for (let item of App.get_items(`tabs`)) {
     item.active = item.id === e.tabId
@@ -577,7 +539,6 @@ App.on_tab_activated = async (e) => {
   await App.refresh_tab(e.tabId, true)
 }
 
-// Move tabs
 App.move_tabs = async (item, window_id) => {
   let active = App.get_active_items(`tabs`, item)
 
@@ -595,13 +556,11 @@ App.move_tabs = async (item, window_id) => {
   App.close_window()
 }
 
-// Open tab in new window
 App.detach_tab = (tab) => {
   browser.windows.create({tabId: tab.id, focused: false})
   App.close_window()
 }
 
-// Clean tabs
 App.clean_tabs = () => {
   let ids = []
 
@@ -626,17 +585,14 @@ App.clean_tabs = () => {
   })
 }
 
-// Show playing icon
 App.show_playing = () => {
   DOM.el(`#tabs_playing`).classList.remove(`hidden`)
 }
 
-// Hide playing icon
 App.hide_playing = () => {
   DOM.el(`#tabs_playing`).classList.add(`hidden`)
 }
 
-// Check if a tab is playing
 App.check_playing = () => {
   let playing = App.get_playing_tabs()
 
@@ -648,7 +604,6 @@ App.check_playing = () => {
   }
 }
 
-// Go the a tab emitting sound
 App.go_to_playing = () => {
   let tabs = App.get_items(`tabs`).slice(0)
   let waypoint = false
@@ -680,12 +635,10 @@ App.go_to_playing = () => {
   }
 }
 
-// Empty previous tabs
 App.do_empty_previous_tabs = () => {
   App.previous_tabs = []
 }
 
-// Get previous tabs
 App.get_previous_tabs = async () => {
   App.previous_tabs = await App.get_tabs()
 
@@ -696,7 +649,6 @@ App.get_previous_tabs = async () => {
   App.previous_tabs_index = 1
 }
 
-// Go to previous tab
 App.go_to_previous_tab = async () => {
   if (App.previous_tabs.length === 0) {
     await App.get_previous_tabs()
@@ -716,7 +668,6 @@ App.go_to_previous_tab = async () => {
   }
 }
 
-// Get active tab
 App.get_active_tab = async () => {
   let tabs
 
@@ -735,7 +686,6 @@ App.get_active_tab = async () => {
   }
 }
 
-// Show title editor window
 App.show_title_editor = (item) => {
   let title = item.title
   let t = App.get_title(item.url)
@@ -758,7 +708,6 @@ App.show_title_editor = (item) => {
   DOM.el(`#title_editor_title`).focus()
 }
 
-// On title editor save
 App.title_editor_save = () => {
   let url = DOM.el(`#title_editor_url`).value.trim()
 
@@ -793,13 +742,11 @@ App.title_editor_save = () => {
   App.show_item_window(`tabs`)
 }
 
-// Remove title
 App.remove_title = () => {
   DOM.el(`#title_editor_title`).value = ``
   App.title_editor_save()
 }
 
-// Get title item
 App.get_title = (url) => {
   for (let item of App.titles) {
     if (url.startsWith(item.url)) {
@@ -808,7 +755,6 @@ App.get_title = (url) => {
   }
 }
 
-// Remove all titles
 App.remove_all_titles = () => {
   if (App.titles.length === 0) {
     App.show_alert(`No titles saved`)
@@ -822,7 +768,6 @@ App.remove_all_titles = () => {
   })
 }
 
-// Get title items
 App.get_title_items = () => {
   let items = []
 
@@ -850,12 +795,10 @@ App.get_title_items = () => {
   return items
 }
 
-// Display titles json
 App.export_titles = () => {
   App.show_textarea(`Copy this to import it later`, JSON.stringify(App.titles, null, 2))
 }
 
-// Use title json to replace titles
 App.import_titles = () => {
   App.show_input(`Paste the data text here`, `Import`, (text) => {
     if (!text) {
@@ -882,7 +825,6 @@ App.import_titles = () => {
   })
 }
 
-// Get current tab
 App.get_current_tab = async () => {
   try {
     let tabs = await browser.tabs.query({active: true, currentWindow: true})
@@ -893,14 +835,12 @@ App.get_current_tab = async () => {
   }
 }
 
-// Focus current tab
 App.focus_current_tab = async () => {
   let tab = await App.get_current_tab()
   let item = App.get_item_by_id(`tabs`, tab.id)
   App.select_item(item, `center`)
 }
 
-// Close duplicate tabs
 App.close_duplicates = () => {
   let items = App.get_items(`tabs`)
   let duplicates = App.find_duplicates(items, `url`)

@@ -1,4 +1,3 @@
-// Setup stars
 App.setup_stars = () => {
   App.stars_actions = [
     {text: `--separator--`},
@@ -34,43 +33,36 @@ App.setup_stars = () => {
   }})
 }
 
-// Hide star editor
 App.hide_star_editor = () => {
   App.windows.star_editor.hide()
 }
 
-// Stars action
 App.stars_action = (item) => {
   App.item_action(item)
 }
 
-// Stars action alt
 App.stars_action_alt = (item) => {
   App.item_action(item, false)
 }
 
-// Open star
 App.open_star = (item, close = true) => {
   let star = App.get_star_by_id(item.id)
   App.update_star(star)
   App.focus_or_open_item(item, close)
 }
 
-// Launch star
 App.launch_star = (item) => {
   let star = App.get_star_by_id(item.id)
   App.update_star(star)
   App.launch_item(item, false)
 }
 
-// Get stars
 App.get_stars = () => {
   let stars = structuredClone(App.stars)
   stars.sort((a, b) => (a.date_last_visit < b.date_last_visit) ? 1 : -1)
   return stars
 }
 
-// Update star data
 App.update_star = (item, add_visit = true) => {
   item.date_last_visit = Date.now()
 
@@ -81,7 +73,6 @@ App.update_star = (item, add_visit = true) => {
   App.stor_save_stars()
 }
 
-// Add an item to stars
 App.star_item = (item, save = true) => {
   let old = App.get_star_by_url(item.url)
 
@@ -115,7 +106,6 @@ App.star_item = (item, save = true) => {
   return obj
 }
 
-// Remove an item from stars
 App.remove_star = () => {
   if (!App.star_edited) {
     return
@@ -127,7 +117,6 @@ App.remove_star = () => {
   })
 }
 
-// Do remove action
 App.do_remove_stars = (ids) => {
   for (let id of ids) {
     if (App.get_items(`stars`)) {
@@ -143,7 +132,6 @@ App.do_remove_stars = (ids) => {
   App.stor_save_stars()
 }
 
-// Show stars editor
 App.show_star_editor = (item) => {
   App.star_edited = App.get_star_by_id(item.id)
   DOM.el(`#star_editor_url`).value = item.url
@@ -152,7 +140,6 @@ App.show_star_editor = (item) => {
   DOM.el(`#star_editor_title`).focus()
 }
 
-// Add or update star information
 App.star_editor_save = () => {
   let title = DOM.el(`#star_editor_title`).value.trim()
   let url = DOM.el(`#star_editor_url`).value.trim()
@@ -199,7 +186,6 @@ App.star_editor_save = () => {
   }
 }
 
-// Get star by id
 App.get_star_by_id = (id) => {
   for (let it of App.stars) {
     if (it.id === id) {
@@ -208,7 +194,6 @@ App.get_star_by_id = (id) => {
   }
 }
 
-// Get star by url (first result)
 App.get_star_by_url = (url) => {
   for (let it of App.stars) {
     if (App.urls_equal(it.url, url)) {
@@ -217,7 +202,6 @@ App.get_star_by_url = (url) => {
   }
 }
 
-// Add a new star manually
 App.new_star = (title = ``, url = ``) => {
   App.star_edited = undefined
   DOM.el(`#star_editor_title`).value = title
@@ -226,7 +210,6 @@ App.new_star = (title = ``, url = ``) => {
   DOM.el(`#star_editor_title`).focus()
 }
 
-// New star with pre-filled details
 App.new_star_from_active = async () => {
   let tab = await App.get_active_tab()
 
@@ -244,7 +227,6 @@ App.new_star_from_active = async () => {
   }
 }
 
-// Add a star or edit an existing one
 App.add_or_edit_star = (item) => {
   let star
 
@@ -263,7 +245,6 @@ App.add_or_edit_star = (item) => {
   }
 }
 
-// Update star editor info
 App.update_star_editor_info = () => {
   let about = DOM.el(`#star_editor_about`)
   let info = DOM.el(`#star_editor_info`)
@@ -293,7 +274,6 @@ App.update_star_editor_info = () => {
   }
 }
 
-// Remove multiple stars
 App.remove_stars = (item, force = false) => {
   let active = App.get_active_items(`stars`, item)
   let ids = active.map(x => x.id)
@@ -306,12 +286,10 @@ App.remove_stars = (item, force = false) => {
   }, force)
 }
 
-// Display stars json
 App.export_stars = () => {
   App.show_textarea(`Copy this to import it later`, JSON.stringify(App.stars, null, 2))
 }
 
-// Use star json to replace stars
 App.import_stars = () => {
   App.show_input(`Paste the data text here`, `Import`, (text) => {
     if (!text) {
@@ -338,7 +316,6 @@ App.import_stars = () => {
   })
 }
 
-// Star items
 App.star_items = (item) => {
   let items = []
   let active = App.get_active_items(item.mode, item)
@@ -376,7 +353,6 @@ App.star_items = (item) => {
   })
 }
 
-// Toggle star
 App.toggle_star = (item, prepend = false) => {
   let star = App.get_star_by_url(item.url)
 

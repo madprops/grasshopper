@@ -1,4 +1,3 @@
-// Setup about
 App.setup_about = () => {
   App.create_window({id: `about`, setup: () => {
     App.about_info_items = [
@@ -68,12 +67,10 @@ App.setup_about = () => {
   }, persistent: false})
 }
 
-// Update about info
 App.update_about_info = () => {
   DOM.el(`#about_info`).textContent = App.about_info_items[App.about_info_index]
 }
 
-// Previous about info
 App.prev_about_info = (manual = true) => {
   if (manual) {
     App.stop_about_info()
@@ -88,7 +85,6 @@ App.prev_about_info = (manual = true) => {
   App.update_about_info()
 }
 
-// Next about info
 App.next_about_info = (manual = true) => {
   if (manual) {
     App.stop_about_info()
@@ -103,7 +99,6 @@ App.next_about_info = (manual = true) => {
   App.update_about_info()
 }
 
-// Start about info
 App.start_about_info = () => {
   DOM.el(`#about_info`).classList.remove(`hidden`)
   DOM.el(`#about_image`).classList.remove(`hidden`)
@@ -114,12 +109,10 @@ App.start_about_info = () => {
   }, 3000)
 }
 
-// Stop about info
 App.stop_about_info = () => {
   clearInterval(App.about_info_interval)
 }
 
-// Show full about info
 App.show_full_about_info = () => {
   App.stop_about_info()
   DOM.el(`#about_info`).classList.add(`hidden`)

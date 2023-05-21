@@ -1,4 +1,3 @@
-// Create a window
 App.create_window = (args) => {
   if (args.close_button === undefined) {
     args.close_button = true
@@ -116,19 +115,16 @@ App.create_window = (args) => {
   App.windows[args.id] = w
 }
 
-// Hide window
 App.hide_window = (w) => {
   w.element.style.display = `none`
 }
 
-// Hide all windows
 App.hide_all_windows = () => {
   for (let id in App.windows) {
     App.hide_window(App.windows[id])
   }
 }
 
-// Centralized function to show windows
 App.show_window = (mode) => {
   if (App.on_item_window(mode)) {
     App.show_item_window(mode)
@@ -138,17 +134,14 @@ App.show_window = (mode) => {
   }
 }
 
-// Show the last window
 App.show_last_window = () => {
   App.raise_window(App.last_window_mode)
 }
 
-// Raise window
 App.raise_window = (mode) => {
   App.windows[mode].show(false)
 }
 
-// Setup the main window
 App.setup_window = () => {
   DOM.ev(window, `blur`, () => {
     NeedContext.hide()

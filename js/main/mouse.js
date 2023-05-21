@@ -1,4 +1,3 @@
-// Setup mouse for window
 App.setup_window_mouse = (mode) => {
   let container = DOM.el(`#${mode}_container`)
 
@@ -84,7 +83,6 @@ App.setup_window_mouse = (mode) => {
   })
 }
 
-// Get item under cursor
 App.get_cursor_item = (mode, e) => {
   let el = e.target.closest(`.${mode}_item`)
   let item = App.get_item_by_id(mode, el.dataset.id)
@@ -97,7 +95,6 @@ App.get_cursor_item = (mode, e) => {
   return item
 }
 
-// Setup drag events
 App.setup_drag = (mode, container) => {
   container.addEventListener(`dragstart`, (e) => {
     if (App.settings.lock_drag && !e.ctrlKey) {

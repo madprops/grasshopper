@@ -1,10 +1,8 @@
-// Setup items
 App.setup_items = () => {
   App.get_item_order()
   App.start_item_observers()
 }
 
-// Select an item
 App.select_item = async (item, scroll = `nearest`) => {
   if (!item.created) {
     App.create_item_element(item)
@@ -36,13 +34,11 @@ App.select_item = async (item, scroll = `nearest`) => {
   App.dehighlight(item.mode)
 }
 
-// Check highlight
 App.check_highlight = (item) => {
   let highlighted = item.highlighted
   App.toggle_highlight(item, !highlighted)
 }
 
-// Select item above
 App.select_item_above = (mode) => {
   let item = App.get_prev_visible_item(mode)
 
@@ -51,7 +47,6 @@ App.select_item_above = (mode) => {
   }
 }
 
-// Select item below
 App.select_item_below = (mode) => {
   let item = App.get_next_visible_item(mode)
 
@@ -60,7 +55,6 @@ App.select_item_below = (mode) => {
   }
 }
 
-// Highlight next item above or below
 App.highlight_next = (mode, dir) => {
   let waypoint = false
   let items = App.get_items(mode).slice(0)
@@ -87,7 +81,6 @@ App.highlight_next = (mode, dir) => {
   }
 }
 
-// Highlight towards top or bottom
 App.highlight_to_edge = (mode, dir) => {
   let items = App.get_items(mode).slice(0)
 
@@ -98,7 +91,6 @@ App.highlight_to_edge = (mode, dir) => {
   App.highlight_range(items[0])
 }
 
-// Get next item that is visible
 App.get_next_visible_item = (mode, wrap = true) => {
   let waypoint = false
 
@@ -134,7 +126,6 @@ App.get_next_visible_item = (mode, wrap = true) => {
   }
 }
 
-// Get prev item that is visible
 App.get_prev_visible_item = (mode, wrap = true) => {
   let waypoint = false
 
@@ -170,7 +161,6 @@ App.get_prev_visible_item = (mode, wrap = true) => {
   }
 }
 
-// Updates a footer
 App.update_footer_info = (item) => {
   if (item) {
     App.set_footer_info(item.mode, item.footer)
@@ -180,12 +170,10 @@ App.update_footer_info = (item) => {
   }
 }
 
-// Empty the footer
 App.empty_footer_info = () => {
   App.set_footer_info(App.window_mode, `No Results`)
 }
 
-// Set footer info
 App.set_footer_info = (mode, text) => {
   let footer = App.get_footer(mode)
 
@@ -195,17 +183,14 @@ App.set_footer_info = (mode, text) => {
   }
 }
 
-// Get selected item by mode
 App.get_selected = (mode) => {
   return App[`selected_${mode}_item`]
 }
 
-// Set selected item by mode
 App.set_selected = (mode, what) => {
   App[`selected_${mode}_item`] = what
 }
 
-// Get items
 App.get_items = (mode) => {
   let item_string = `${mode}_items`
 
@@ -216,7 +201,6 @@ App.get_items = (mode) => {
   return App[item_string] || []
 }
 
-// Select first item
 App.select_first_item = (mode, by_active = false) => {
   if (mode === `tabs` && by_active) {
     for (let item of App.get_items(mode)) {
@@ -235,14 +219,12 @@ App.select_first_item = (mode, by_active = false) => {
   }
 }
 
-// Filter items by id
 App.filter_item_by_id = (mode, id) => {
   id = id.toString()
   let item_string = `${mode}_items`
   App[item_string] = App[item_string].filter(x => x.id.toString() !== id)
 }
 
-// Remove an item from the list
 App.remove_item = (item) => {
   let mode = item.mode
 
@@ -268,7 +250,6 @@ App.focus_filter = (mode) => {
   DOM.el(`#${mode}_filter`).focus()
 }
 
-// Filter items
 App.do_item_filter = async (mode) => {
   App.log(`Filter: ${mode}`)
   let value = App.get_filter(mode)
@@ -382,19 +363,16 @@ App.do_item_filter = async (mode) => {
   App.update_footer_count(mode)
 }
 
-// Show item
 App.show_item = (it) => {
   it.element.classList.remove(`hidden`)
   it.visible = true
 }
 
-// Hide item
 App.hide_item = (it) => {
   it.element.classList.add(`hidden`)
   it.visible = false
 }
 
-// Show item menu
 App.show_item_menu = (item, x, y) => {
   let highlights = App.get_highlights(item.mode)
   let multiple = highlights.length > 0
@@ -520,7 +498,6 @@ App.show_item_menu = (item, x, y) => {
   NeedContext.show(x, y, items)
 }
 
-// Show tab move menu
 App.get_move_menu_items = async (item, multiple) => {
   let items = []
   let wins = await browser.windows.getAll({populate: false})
@@ -553,7 +530,6 @@ App.get_move_menu_items = async (item, multiple) => {
   return items
 }
 
-// Show tab more menu
 App.get_more_menu_items = (item, multiple) => {
   let items = []
 
@@ -585,7 +561,6 @@ App.get_more_menu_items = (item, multiple) => {
   return items
 }
 
-// Process items
 App.process_info_list = (mode, info_list) => {
   let container = DOM.el(`#${mode}_container`)
   container.innerHTML = ``
@@ -616,7 +591,6 @@ App.process_info_list = (mode, info_list) => {
   }
 }
 
-// Process an item
 App.process_info = (mode, info, exclude = [], o_item) => {
   if (!info || !info.url) {
     return false
@@ -687,25 +661,16 @@ App.process_info = (mode, info, exclude = [], o_item) => {
     item.highlighted = false
     App.create_empty_item_element(item)
     App[`${mode}_idx`] += 1
-
-    if (mode === `tabs`) {
-      if (!App.tabs_created[item.id]) {
-        App.tabs_created[item.id] = Date.now()
-      }
-    }
-
     return item
   }
 }
 
-// Create empty item
 App.create_empty_item_element = (item) => {
   item.element = DOM.create(`div`, `grasshopper_item item ${item.mode}_item`)
   item.element.dataset.id = item.id
   App[`${item.mode}_item_observer`].observe(item.element)
 }
 
-// Create an item element
 App.create_item_element = (item) => {
   item.element.innerHTML = ``
 
@@ -766,7 +731,6 @@ App.create_item_element = (item) => {
   App.log(`Item created in ${item.mode}`)
 }
 
-// Get image favicon
 App.get_img_icon = (favicon, url) => {
   let icon = DOM.create(`img`, `item_icon`)
   icon.loading = `lazy`
@@ -782,7 +746,6 @@ App.get_img_icon = (favicon, url) => {
   return icon
 }
 
-// Get jdenticon icon
 App.get_jdenticon = (url) => {
   let hostname = App.get_hostname(url) || `hostname`
   let icon = DOM.create(`canvas`, `item_icon`)
@@ -792,7 +755,6 @@ App.get_jdenticon = (url) => {
   return icon
 }
 
-// Set item text content
 App.set_item_text = (item) => {
   if (item.mode === `tabs`) {
     let icons = []
@@ -843,7 +805,6 @@ App.set_item_text = (item) => {
   text.textContent = content
 }
 
-// Get an item by id
 App.get_item_by_id = (mode, id) => {
   id = id.toString()
 
@@ -854,7 +815,6 @@ App.get_item_by_id = (mode, id) => {
   }
 }
 
-// Get an item by url
 App.get_item_by_url = (mode, url) => {
   for (let item of App.get_items(mode)) {
     if (item.url) {
@@ -865,7 +825,6 @@ App.get_item_by_url = (mode, url) => {
   }
 }
 
-// Used for lazy-loading components
 App.start_item_observers = () => {
   for (let mode of App.item_order) {
     let options = {
@@ -878,7 +837,6 @@ App.start_item_observers = () => {
   }
 }
 
-// Start intersection observer
 App.intersection_observer = (mode, options) => {
   App[`${mode}_item_observer`] = new IntersectionObserver((entries) => {
     for (let entry of entries) {
@@ -903,7 +861,6 @@ App.intersection_observer = (mode, options) => {
   }, options)
 }
 
-// Get last window value
 App.get_last_window_value = (cycle) => {
   let last_mode = App.window_mode
 
@@ -920,7 +877,6 @@ App.get_last_window_value = (cycle) => {
   return value
 }
 
-// Show a window by mode
 App.show_item_window = async (mode, cycle = false) => {
   let value = App.get_last_window_value(cycle)
   App.windows[mode].show()
@@ -956,7 +912,6 @@ App.show_item_window = async (mode, cycle = false) => {
   App.focus_filter(mode)
 }
 
-// Setup an item window
 App.setup_item_window = (mode) => {
   let args = {}
   args.id = mode
@@ -1161,7 +1116,6 @@ App.setup_item_window = (mode) => {
   App.create_window(args)
 }
 
-// Cycle between item windows
 App.cycle_item_windows = (reverse = false, cycle = false) => {
   let modes = App.item_order
   let index = modes.indexOf(App.window_mode)
@@ -1191,7 +1145,6 @@ App.cycle_item_windows = (reverse = false, cycle = false) => {
   App.show_item_window(new_mode, cycle)
 }
 
-// Update window order
 App.update_item_order = () => {
   let boxes = DOM.els(`.item_order_row`, DOM.el(`#settings_item_order`))
   let modes = boxes.map(x => x.dataset.mode)
@@ -1204,7 +1157,6 @@ App.update_item_order = () => {
   App.get_item_order()
 }
 
-// Window order up
 App.item_order_up = (el) => {
   let prev = el.previousElementSibling
 
@@ -1214,7 +1166,6 @@ App.item_order_up = (el) => {
   }
 }
 
-// Window order down
 App.item_order_down = (el) => {
   let next = el.nextElementSibling
 
@@ -1224,12 +1175,10 @@ App.item_order_down = (el) => {
   }
 }
 
-// Show first item window
 App.show_first_window = () => {
   App.show_item_window(App.item_order[0])
 }
 
-// Focus an open tab or launch a new one
 App.focus_or_open_item = async (item, close = true) => {
   if (!close) {
     App.launch_item(item, close)
@@ -1253,7 +1202,6 @@ App.focus_or_open_item = async (item, close = true) => {
   App.launch_item(item, close)
 }
 
-// Get window order
 App.get_item_order = () => {
   let items = []
 
@@ -1265,7 +1213,6 @@ App.get_item_order = () => {
   App.item_order = items.map(x => x.mode)
 }
 
-// Update footer count
 App.update_footer_count = (mode) => {
   let n1 = App.get_highlights(mode).length
   let n2 = App.get_visible(mode).length
@@ -1282,7 +1229,6 @@ App.update_footer_count = (mode) => {
   }
 }
 
-// Set item filter
 App.set_filter = (mode, text, action = true) => {
   DOM.el(`#${mode}_filter`).value = text
 
@@ -1291,7 +1237,6 @@ App.set_filter = (mode, text, action = true) => {
   }
 }
 
-// Get filter value
 App.get_filter = (mode, trim = true) => {
   let value = DOM.el(`#${mode}_filter`).value
 
@@ -1302,7 +1247,6 @@ App.get_filter = (mode, trim = true) => {
   return value
 }
 
-// Any item visible
 App.any_item_visible = (mode) => {
   for (let item of App.get_items(mode)) {
     if (item.visible) {
@@ -1313,7 +1257,6 @@ App.any_item_visible = (mode) => {
   return false
 }
 
-// Get number of visible items
 App.get_visible = (mode) => {
   let items = []
 
@@ -1326,13 +1269,11 @@ App.get_visible = (mode) => {
   return items
 }
 
-// Show launched indicator
 App.show_launched = (item) => {
   let launched = DOM.el(`.item_info_launched`, item.element)
   launched.textContent = `(Launched)`
 }
 
-// Update item
 App.update_item = (mode, id, info) => {
   for (let item of App.get_items(mode)) {
     if (item.id === id) {
@@ -1342,7 +1283,6 @@ App.update_item = (mode, id, info) => {
   }
 }
 
-// Show similar tabs
 App.filter_domain = (item) => {
   let hostname = App.get_hostname(item.url)
 
@@ -1357,7 +1297,6 @@ App.filter_domain = (item) => {
   App.set_filter(item.mode, hostname)
 }
 
-// Show the actions menu
 App.show_actions = (mode) => {
   let items = []
 
@@ -1387,7 +1326,6 @@ App.show_actions = (mode) => {
   NeedContext.show_on_element(btn, items, true, btn.clientHeight)
 }
 
-// Show filter modes
 App.show_filter_modes = (mode) => {
   let items = []
 
@@ -1407,7 +1345,6 @@ App.show_filter_modes = (mode) => {
   NeedContext.show_on_element(btn, items, false, btn.clientHeight)
 }
 
-// Cycle filter modes
 App.cycle_filter_modes = (mode, reverse = true) => {
   let modes = App[`${mode}_filter_modes`]
   let waypoint = false
@@ -1446,7 +1383,6 @@ App.cycle_filter_modes = (mode, reverse = true) => {
   }
 }
 
-// Set filter mode
 App.set_filter_mode = (mode, filter_mode) => {
   // If All is clicked again, clear the filter
   if (filter_mode[0] === `all`) {
@@ -1463,7 +1399,6 @@ App.set_filter_mode = (mode, filter_mode) => {
   App.do_item_filter(mode)
 }
 
-// Get mode index
 App.get_mode_index = (mode) => {
   for (let [i, it] of App.item_order.entries()) {
     if (it === mode) {
@@ -1472,20 +1407,17 @@ App.get_mode_index = (mode) => {
   }
 }
 
-// Get item's element index
 App.get_item_element_index = (mode, el) => {
   let nodes = Array.prototype.slice.call(DOM.els(`.${mode}_item`))
   return nodes.indexOf(el)
 }
 
-// Move an item to another place in an item list
 App.move_item = (mode, from_index, to_index) => {
   let it = App.get_items(mode).splice(from_index, 1)[0]
   App.get_items(mode).splice(to_index, 0, it)
   App.move_item_element(mode, it.element, to_index)
 }
 
-// Move item element
 App.move_item_element = (mode, el, to_index) => {
   let container = DOM.el(`#${mode}_container`)
   let items = DOM.els(`.${mode}_item`)
@@ -1508,7 +1440,6 @@ App.move_item_element = (mode, el, to_index) => {
   }
 }
 
-// Highlight a range of items
 App.highlight_range = (item) => {
   if (App.last_highlight === item) {
     App.dehighlight(item.mode)
@@ -1582,7 +1513,6 @@ App.highlight_range = (item) => {
   }
 }
 
-// Dehighlight items
 App.dehighlight = (mode) => {
   let some = false
 
@@ -1596,7 +1526,6 @@ App.dehighlight = (mode) => {
   return some
 }
 
-// Highlight or dehighlight an item
 App.toggle_highlight = (item, what) => {
   let highlight
 
@@ -1627,7 +1556,6 @@ App.toggle_highlight = (item, what) => {
   App.update_footer_count(item.mode)
 }
 
-// Get highlighted items
 App.get_highlights = (mode) => {
   let ans = []
 
@@ -1640,7 +1568,6 @@ App.get_highlights = (mode) => {
   return ans
 }
 
-// Launch an item
 App.launch_item = (item, close = true) => {
   App.open_tab(item.url, close)
 
@@ -1652,7 +1579,6 @@ App.launch_item = (item, close = true) => {
   }
 }
 
-// Launch items
 App.launch_items = (item) => {
   let mode = item.mode
   let items = App.get_active_items(mode, item)
@@ -1676,17 +1602,14 @@ App.launch_items = (item) => {
   })
 }
 
-// Scroll container to top
 App.goto_top = (mode) => {
   DOM.el(`#${mode}_container`).scrollTop = 0
 }
 
-// Scroll container to bottom
 App.goto_bottom = (mode) => {
   DOM.el(`#${mode}_container`).scrollTop = DOM.el(`#${mode}_container`).scrollHeight
 }
 
-// Scroll up or down
 App.scroll = (mode, direction, fast = false) => {
   let el = DOM.el(`#${mode}_container`)
   let amount
@@ -1706,7 +1629,6 @@ App.scroll = (mode, direction, fast = false) => {
   }
 }
 
-// Highlight visible items
 App.highlight_items = (mode) => {
   let what
   let highlights = App.get_highlights(mode)
@@ -1729,7 +1651,6 @@ App.highlight_items = (mode) => {
   }
 }
 
-// Get visible media
 App.get_visible_media = (mode, what) => {
   let items = []
 
@@ -1742,7 +1663,6 @@ App.get_visible_media = (mode, what) => {
   return items
 }
 
-// Create an svg icon
 App.create_icon = (name, type = 1) => {
   let icon = document.createElementNS(`http://www.w3.org/2000/svg`, `svg`)
   icon.classList.add(`icon_${type}`)
@@ -1752,7 +1672,6 @@ App.create_icon = (name, type = 1) => {
   return icon
 }
 
-// Show main menu
 App.show_main_menu = (mode) => {
   let items = []
 
@@ -1788,7 +1707,6 @@ App.show_main_menu = (mode) => {
   NeedContext.show_on_element(btn, items, true, btn.clientHeight)
 }
 
-// Get active items
 App.get_active_items = (mode, item) => {
   let highlights = App.get_highlights(mode)
 
@@ -1805,7 +1723,6 @@ App.get_active_items = (mode, item) => {
   }
 }
 
-// Insert new item
 App.insert_item = (mode, info) => {
   let item = App.process_info(mode, info)
 
@@ -1830,12 +1747,10 @@ App.insert_item = (mode, info) => {
   return item
 }
 
-// Get mode name
 App.get_mode_name = (mode) => {
   return App.capitalize(mode)
 }
 
-// Item action
 App.item_action = (item, close = true) => {
   let highlighted = App.get_highlights(item.mode)
 
@@ -1856,24 +1771,20 @@ App.item_action = (item, close = true) => {
   }
 }
 
-// Check if on item window
 App.on_item_window = (mode = App.window_mode) => {
   return App.item_order.includes(mode)
 }
 
-// Filter if filter has value
 App.check_filter = (mode) => {
   if (App.get_filter(mode)) {
     App.do_item_filter(mode)
   }
 }
 
-// Check if a filter is focused
 App.filter_is_focused = () => {
   return document.activeElement.classList.contains(`filter`)
 }
 
-// Copy footer
 App.copy_footer = (mode) => {
   let what
 
@@ -1891,12 +1802,10 @@ App.copy_footer = (mode) => {
   App.copy_to_clipboard(text, what)
 }
 
-// Get a footer
 App.get_footer = (mode) => {
   return DOM.el(`#${mode}_footer`)
 }
 
-// Clear a filter
 App.clear_filter = (mode) => {
   if (App.get_filter(mode, false)) {
     App.set_filter(mode, ``)

@@ -1,4 +1,3 @@
-// Setup closed tabs
 App.setup_closed = () => {
   App.setup_item_window(`closed`)
 
@@ -9,7 +8,6 @@ App.setup_closed = () => {
   })
 }
 
-// Get closed tabs
 App.get_closed = async () => {
   let ans = await browser.sessions.getRecentlyClosed({
     maxResults: App.max_closed
@@ -19,12 +17,10 @@ App.get_closed = async () => {
   return items
 }
 
-// Closed tabs action
 App.closed_action = (item) => {
   App.item_action(item)
 }
 
-// Closed tabs action alt
 App.closed_action_alt = (item) => {
   App.item_action(item, false)
 }

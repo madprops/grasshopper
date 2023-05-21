@@ -1,4 +1,3 @@
-// Default settings values
 App.default_settings = {
   text_mode: {value: `title`, category: `basic`},
 
@@ -31,11 +30,11 @@ App.default_settings = {
 
   media_viewer_on_tabs: {value: false, category: `media`},
   media_viewer_on_history: {value: true, category: `media`},
+  media_viewer_on_bookmarks: {value: true, category: `media`},
   media_viewer_on_closed: {value: true, category: `media`},
   media_viewer_on_stars: {value: true, category: `media`},
 }
 
-// Make item order control
 App.make_item_order = () => {
   let item_order = DOM.el(`#settings_item_order`)
   item_order.innerHTML = ``
@@ -68,14 +67,12 @@ App.make_item_order = () => {
   }
 }
 
-// Settings action list after mods
 App.settings_do_action = (what) => {
   if (what === `theme`) {
     App.apply_theme()
   }
 }
 
-// Setup checkboxes in a container
 App.settings_setup_checkboxes = (container) => {
   let items = DOM.els(`.settings_checkbox`, container)
 
@@ -94,7 +91,6 @@ App.settings_setup_checkboxes = (container) => {
   }
 }
 
-// Setup text elements in a container
 App.settings_setup_text = (container) => {
   let items = DOM.els(`.settings_text`, container)
 
@@ -114,7 +110,6 @@ App.settings_setup_text = (container) => {
   }
 }
 
-// Prepare a select menu
 App.settings_make_menu = (id, opts, action = () => {}) => {
   let el = DOM.el(`#settings_${id}`)
 
@@ -170,7 +165,6 @@ App.settings_make_menu = (id, opts, action = () => {}) => {
   prev.after(el)
 }
 
-// Setup settings
 App.setup_settings = () => {
   App.settings_order = [`settings_basic`, `settings_theme`, `settings_icons`, `settings_media`]
 
@@ -238,7 +232,6 @@ App.setup_settings = () => {
   }, persistent: false})
 }
 
-// Create settings title switchers
 App.add_settings_switchers = (category) => {
   let title = DOM.el(`.settings_title`, DOM.el(`#settings_${category}_container`))
 
@@ -264,7 +257,6 @@ App.add_settings_switchers = (category) => {
   title.after(next)
 }
 
-// Start theme settings
 App.start_theme_settings = () => {
   function start_color_picker (name) {
     let el = DOM.el(`#settings_${name}_color_picker`)
@@ -308,7 +300,6 @@ App.start_theme_settings = () => {
   })
 }
 
-// Cycle to prev or next item
 App.settings_menu_cycle = (el, setting, dir, items) => {
   let cycle = true
 
@@ -347,7 +338,6 @@ App.settings_menu_cycle = (el, setting, dir, items) => {
   }
 }
 
-// Restore default settings
 App.restore_default_settings = (type) => {
   App.show_confirm(`Restore default settings? (${type})`, () => {
     for (let key in App.default_settings) {
@@ -369,7 +359,6 @@ App.restore_default_settings = (type) => {
   })
 }
 
-// Get background image options
 App.get_background_image_options = () => {
   let opts = [[`None`, `none`]]
 
@@ -382,7 +371,6 @@ App.get_background_image_options = () => {
   return opts
 }
 
-// Get text size options
 App.get_font_size_options = () => {
   let opts = []
 
@@ -393,7 +381,6 @@ App.get_font_size_options = () => {
   return opts
 }
 
-// Get size options
 App.get_size_options = () => {
   let opts = []
 
@@ -404,7 +391,6 @@ App.get_size_options = () => {
   return opts
 }
 
-// Got to prev settings
 App.show_prev_settings = () => {
   let index = App.settings_order.indexOf(App.window_mode)
   index -= 1
@@ -416,7 +402,6 @@ App.show_prev_settings = () => {
   App.show_window(App.settings_order[index])
 }
 
-// Got to next settings
 App.show_next_settings = () => {
   let index = App.settings_order.indexOf(App.window_mode)
   index += 1
@@ -428,7 +413,6 @@ App.show_next_settings = () => {
   App.show_window(App.settings_order[index])
 }
 
-// Show settings menu
 App.show_settings_menu = (btn) => {
   let items = []
 

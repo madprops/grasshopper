@@ -1,10 +1,8 @@
-// Setup media
 App.setup_media = () => {
   App.create_media_windows(`image`)
   App.create_media_windows(`video`)
 }
 
-// Create media windows
 App.create_media_windows = (what) => {
   App.create_window({id: what, setup: () => {
     let media = DOM.el(`#${what}`)
@@ -91,7 +89,6 @@ App.create_media_windows = (what) => {
   }})
 }
 
-// Show media
 App.show_media = (what, item) => {
   App.hide_media_elements(what)
   App[`current_${what}_item`] = item
@@ -108,40 +105,33 @@ App.show_media = (what, item) => {
   App.check_media_star(what, App.get_star_by_url(item.url))
 }
 
-// Hide media
 App.hide_media = (what) => {
   App.windows[what].hide()
 }
 
-// Stop video
 App.stop_video = () => {
   let video = DOM.el(`#video`)
   video.pause()
   video.src = ``
 }
 
-// Hide media
 App.hide_media_elements = (what) => {
   DOM.el(`#${what}`).classList.add(`hidden`)
   DOM.el(`#${what}_loading`).classList.add(`hidden`)
 }
 
-// Stop media timeout
 App.stop_media_timeout = (what) => {
   clearTimeout(App[`${what}_loading_timeout`])
 }
 
-// Media prev
 App.media_prev = (what) => {
   App.cycle_media(App[`current_${what}_item`], what, `prev`)
 }
 
-// Media next
 App.media_next = (what) => {
   App.cycle_media(App[`current_${what}_item`], what, `next`)
 }
 
-// Show prev image
 App.cycle_media = (item, what, dir) => {
   let items = App.get_visible_media(item.mode, what)
 
@@ -178,17 +168,14 @@ App.cycle_media = (item, what, dir) => {
   App.show_media(what, next_item)
 }
 
-// Media show loading
 App.media_show_loading = (what) => {
   DOM.el(`#${what}_loading`).textContent = `Loading...`
 }
 
-// Media show error
 App.media_show_error = (what) => {
   DOM.el(`#${what}_loading`).textContent = `Error`
 }
 
-// Check media
 App.check_media = (item) => {
   if (!App.settings[`media_viewer_on_${item.mode}`]) {
     return
@@ -207,7 +194,6 @@ App.check_media = (item) => {
   return false
 }
 
-// Check to fill or not the star icon
 App.check_media_star = (what, starred) => {
   let use = DOM.el(`#${what}_star use`)
 
@@ -219,7 +205,6 @@ App.check_media_star = (what, starred) => {
   }
 }
 
-// Toggle star media
 App.star_media = (what) => {
   let item = App[`current_${what}_item`]
   let prepend = item.mode === `stars`
@@ -227,7 +212,6 @@ App.star_media = (what) => {
   App.check_media_star(what, starred)
 }
 
-// Open media in tab
 App.open_media = (what) => {
   let item = App[`current_${what}_item`]
 
@@ -242,7 +226,6 @@ App.open_media = (what) => {
   }
 }
 
-// Copy media url to clipboard
 App.media_copy = (what) => {
   App.copy_to_clipboard(App[`current_${what}_item`].url, `URL`)
 }
