@@ -1862,7 +1862,7 @@ App.check_filter = (mode) => {
   }
 }
 
-// Check if filter is focused
+// Check if a filter is focused
 App.filter_is_focused = () => {
   return document.activeElement.classList.contains(`filter`)
 }
@@ -1885,7 +1885,12 @@ App.copy_footer = (mode) => {
   App.copy_to_clipboard(text, what)
 }
 
-// Get footer
+// Get a footer
 App.get_footer = (mode) => {
   return DOM.el(`#${mode}_footer`)
+}
+
+// Clear a filter
+App.clear_filter = (mode) => {
+  App.set_filter(mode, ``)
 }

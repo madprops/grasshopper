@@ -46,7 +46,10 @@ App.check_window_keyboard = (e) => {
     }
   }
 
-  if (e.key === `Enter`) {
+  if (e.key === `Escape`) {
+    App.clear_filter(mode)
+  }
+  else if (e.key === `Enter`) {
     let item = App.get_selected(mode)
 
     if (e.shiftKey) {
