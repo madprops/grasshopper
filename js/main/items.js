@@ -330,9 +330,6 @@ App.do_item_filter = async (mode) => {
       else if (filter_mode === `suspended`) {
         match = item.discarded
       }
-      else if (filter_mode === `active`) {
-        match = item.active
-      }
       else if (filter_mode === `images`) {
         match = item.image
       }
@@ -1076,7 +1073,7 @@ App.setup_item_window = (mode) => {
       let previous_icon = App.create_icon(`back`)
 
       DOM.ev(previous, `click`, () => {
-        App.tabs_back_action()
+        App.go_to_previous_tab()
       })
 
       previous.append(previous_icon)

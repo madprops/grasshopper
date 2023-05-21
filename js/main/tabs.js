@@ -7,7 +7,6 @@ App.setup_tabs = () => {
     [`pins`, `Pinned`],
     [`playing`, `Playing`],
     [`muted`, `Muted`],
-    [`active`, `Active`],
     [`normal`, `Normal`],
     [`suspended`, `Suspended`],
     [`duplicates`, `Duplicates`],
@@ -20,6 +19,10 @@ App.setup_tabs = () => {
 
     {text: `New Tab`, action: () => {
       App.new_tab()
+    }},
+
+    {text: `Focus Tab`, action: () => {
+      App.focus_current_tab()
     }},
 
     {text: `Show Info`, action: () => {
@@ -556,8 +559,8 @@ App.do_move_tab_index = async (id, index) => {
 
 // On tab activated
 App.on_tab_activated = async (e) => {
-  for (let tab of App.get_items(`tabs`)) {
-    tab.active = false
+  for (let item of App.get_items(`tabs`)) {
+    item.active = item.id === e.tabId
   }
 
   let selected = App.get_selected(`tabs`)
@@ -889,36 +892,7 @@ App.get_current_tab = async () => {
 App.focus_current_tab = async () => {
   let tab = await App.get_current_tab()
   let item = App.get_item_by_id(`tabs`, tab.id)
-
-  if (item) {
-    let selected = App.get_selected(`tabs`)
-
-    if (!selected) {
-      App.select_item(item, `center`)
-      return true
-    }
-
-    let container = DOM.el(`#tabs_container`)
-    let visible = App.element_is_visible(container, item.element)
-
-    if (!visible) {
-      App.select_item(item, `center`)
-      return true
-    }
-
-    return false
-  }
-
-  return false
-}
-
-// Back button action
-App.tabs_back_action = async () => {
-  let scrolled = await App.focus_current_tab()
-
-  if (!scrolled) {
-    App.go_to_previous_tab()
-  }
+  App.select_item(item, `center`)
 }
 
 // Close duplicate tabs
