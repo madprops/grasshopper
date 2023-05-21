@@ -560,7 +560,9 @@ App.on_tab_activated = async (e) => {
     tab.active = false
   }
 
-  if (App.get_selected(`tabs`).id === e.tabId) {
+  let selected = App.get_selected(`tabs`)
+
+  if (selected && selected.id === e.tabId) {
     return
   }
 
