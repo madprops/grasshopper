@@ -1448,6 +1448,16 @@ App.cycle_filter_modes = (mode, reverse = true) => {
 
 // Set filter mode
 App.set_filter_mode = (mode, filter_mode) => {
+  // If All is clicked again, clear the filter
+  if (filter_mode[0] === `all`) {
+    if (App[`${mode}_filter_mode`] === `all`) {
+      if (App.get_filter(mode, true)) {
+        App.clear_filter(mode)
+        return
+      }
+    }
+  }
+
   App[`${mode}_filter_mode`] = filter_mode[0]
   DOM.el(`#${mode}_filter_modes_text`).textContent = filter_mode[1]
   App.do_item_filter(mode)
