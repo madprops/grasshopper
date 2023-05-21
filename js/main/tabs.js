@@ -935,7 +935,7 @@ App.close_duplicates = () => {
   let s = ``
   s += `Close excess duplicate tabs\n`
   s += `Excluding pinned and playing\n`
-  s += `Close duplicate tabs? (${ids.length})`
+  s += `Close these tabs? (${ids.length})`
 
   App.show_confirm(s, () => {
     App.do_close_tabs(ids)
