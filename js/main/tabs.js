@@ -560,6 +560,10 @@ App.on_tab_activated = async (e) => {
     tab.active = false
   }
 
+  if (App.get_selected(`tabs`).id === e.tabId) {
+    return
+  }
+
   await App.refresh_tab(e.tabId, true)
 }
 
