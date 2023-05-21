@@ -173,6 +173,10 @@ svg {
   outline: 1px solid var(--alt_color_2);
 }
 
+.hovered:hover {
+  outline: 2px solid var(--alt_color_2);
+}
+
 .item {
   display: flex;
   flex-direction: row;
