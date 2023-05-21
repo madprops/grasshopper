@@ -1788,7 +1788,6 @@ App.show_main_menu = (mode, e) => {
     }
   })
 
-
   if (e) {
     NeedContext.show(e.clientX, e.clientY, items)
   }
