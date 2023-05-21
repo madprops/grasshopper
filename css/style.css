@@ -83,11 +83,10 @@ body, html {
   position: absolute;
   top: 0;
   right: 0;
-  /* padding-top: 0.42rem; */
-  /* padding-bottom: 0.66rem; */
-  /* padding-left: 1rem; */
-  /* padding-right: 0.88rem; */
-  margin: 0.5rem;
+  padding-top: 0.42rem;
+  padding-bottom: 0.66rem;
+  padding-left: 1rem;
+  padding-right: 0.88rem;
   font-size: 1.2rem;
   font-family: gh_sans, sans-serif;
   z-index: 9999;
