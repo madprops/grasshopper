@@ -607,3 +607,11 @@ input::placeholder {
   overflow-y: auto;
   max-height: 60vh;
 }
+
+.linkbutton {
+  cursor: pointer;
+}
+
+.linkbutton:hover {
+  text-decoration: underline;
+}

@@ -242,7 +242,7 @@ App.setup_settings = () => {
 App.add_settings_switchers = (category) => {
   let title = DOM.el(`.settings_title`, DOM.el(`#settings_${category}_container`))
 
-  let prev = DOM.create(`div`, `button`)
+  let prev = DOM.create(`div`, `action`)
   prev.textContent = `<`
   title.before(prev)
 
@@ -250,13 +250,29 @@ App.add_settings_switchers = (category) => {
     App.show_prev_settings()
   })
 
-  let next = DOM.create(`div`, `button`)
+  let next = DOM.create(`div`, `action`)
   next.textContent = `>`
-  title.after(next)
 
   DOM.ev(next, `click`, () => {
     App.show_next_settings()
   })
+
+  DOM.ev(title, `click`, () => {
+    App.show_next_settings()
+  })
+
+  DOM.ev(title, `wheel`, (e) => {
+    let direction = e.deltaY > 0 ? `down` : `up`
+
+    if (direction === `down`) {
+      App.show_next_settings()
+    }
+    else if (direction === `up`) {
+      App.show_prev_settings()
+    }
+  })
+
+  title.after(next)
 }
 
 // Start theme settings
