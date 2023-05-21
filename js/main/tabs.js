@@ -289,6 +289,12 @@ App.remove_closed_tab = (id) => {
 
 // Tabs action
 App.tabs_action = (item) => {
+  if (App.settings.media_viewer_on_tabs) {
+    if (App.check_media(item)) {
+      return
+    }
+  }
+
   App.focus_tab(item)
 }
 

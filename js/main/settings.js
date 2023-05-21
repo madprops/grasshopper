@@ -18,8 +18,6 @@ App.default_settings = {
   font: {value: `sans-serif`, category: `basic`},
   font_size: {value: 16, category: `basic`},
 
-  media_viewer: {value: true, category: `basic`},
-
   background_color: {value: `rgb(43, 42, 51)`, category: `theme`},
   text_color: {value: `rgb(213, 212, 214)`, category: `theme`},
   background_image: {value: `1`, category: `theme`},
@@ -30,6 +28,11 @@ App.default_settings = {
   playing_icon: {value: `🔊`, category: `icons`},
   muted_icon: {value: `🔇`, category: `icons`},
   suspended_icon: {value: `💤`, category: `icons`},
+
+  media_viewer_on_tabs: {value: false, category: `media`},
+  media_viewer_on_history: {value: true, category: `media`},
+  media_viewer_on_closed: {value: true, category: `media`},
+  media_viewer_on_stars: {value: true, category: `media`},
 }
 
 // Make item order control
@@ -169,7 +172,7 @@ App.settings_make_menu = (id, opts, action = () => {}) => {
 
 // Setup settings
 App.setup_settings = () => {
-  App.settings_order = [`settings_basic`, `settings_theme`, `settings_icons`]
+  App.settings_order = [`settings_basic`, `settings_theme`, `settings_icons`, `settings_media`]
 
   App.create_window({id: `settings_basic`, setup: () => {
     let container = DOM.el(`#settings_basic_container`)
@@ -221,6 +224,17 @@ App.setup_settings = () => {
     })
 
     App.add_settings_switchers(`icons`)
+  }, persistent: false})
+
+  App.create_window({id: `settings_media`, setup: () => {
+    let container = DOM.el(`#settings_media_container`)
+    App.settings_setup_checkboxes(container)
+
+    DOM.ev(DOM.el(`#settings_default_media`), `click`, () => {
+      App.restore_default_settings(`media`)
+    })
+
+    App.add_settings_switchers(`media`)
   }, persistent: false})
 }
 

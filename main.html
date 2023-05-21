@@ -132,11 +132,6 @@
           <input type="checkbox" class="settings_checkbox" id="settings_lock_drag" data-setting="lock_drag">
         </div>
 
-        <div class="settings_column" title="If this is enabled, the media viewer opens on media items">
-          <div class="settings_label">Media Viewer</div>
-          <input type="checkbox" class="settings_checkbox" id="settings_media_viewer" data-setting="media_viewer">
-        </div>
-
         <div class="settings_column" title="If this is enabled, tabs will be restored after launching an item anywhere">
           <div class="settings_label">Switch To Tabs</div>
           <input type="checkbox" class="settings_checkbox" id="settings_switch_to_tabs" data-setting="switch_to_tabs">
@@ -146,6 +141,8 @@
           <div class="settings_label">Hover Tooltips</div>
           <input type="checkbox" class="settings_checkbox" id="settings_hover_tooltips" data-setting="hover_tooltips">
         </div>
+
+        <div class="separator"></div>
 
         <div class="settings_column" title="Main text to display on the items. The opposite is displayed in the footer">
           <div class="settings_label">Text Mode</div>
@@ -172,6 +169,8 @@
           <div id="settings_height" class="settings_menu button" data-setting="height"></div>
         </div>
 
+        <div class="separator"></div>
+
         <div class="settings_column" title="The items on top appear first">
           <div class="settings_label">Item Order</div>
           <div id="settings_item_order"></div>
@@ -190,15 +189,12 @@
         </div>
 
         <div class="settings_column">
-          <div class="settings_label">Keep clicking for random themes</div>
           <div id="settings_dark_theme" class="button settings_button" title="Random dark theme">Dark Theme</div>
           <div id="settings_light_theme" class="button settings_button" title="Random light theme">Light Theme</div>
-        </div>
-
-        <div class="settings_column">
-          <div class="settings_label">Try to detect the browser's theme</div>
           <div id="settings_detect_theme" class="button settings_button" title="Detect browser theme">Detect Theme</div>
         </div>
+
+        <div class="separator"></div>
 
         <div class="settings_column" title="Theme background color">
           <div class="settings_label">Background Color</div>
@@ -209,6 +205,8 @@
           <div class="settings_label">Text Color</div>
           <div id="settings_text_color_picker"></div>
         </div>
+
+        <div class="separator"></div>
 
         <div class="settings_column" title="Which background image to use">
           <div class="settings_label">Background Image</div>
@@ -230,11 +228,6 @@
       <div id="settings_icons_container" class="settings_container">
         <div class="flex_row_center gap_2">
           <div class="bigger settings_title">Icon Settings</div>
-        </div>
-
-        <div class="settings_column">
-          <div class="settings_label">Customize status indicators</div>
-          <div class="settings_label">Set these to any text or emoji</div>
         </div>
 
         <div class="settings_column" title="Icon to show on pinned tabs">
@@ -265,6 +258,38 @@
         <div class="separator"></div>
 
         <div id="settings_default_icons" class="button settings_button" title="Restore default icons">Defaults</div>
+      </div>
+    </template>
+
+    <template id="template_settings_media">
+      <div id="settings_media_container" class="settings_container">
+        <div class="flex_row_center gap_2">
+          <div class="bigger settings_title">Media Settings</div>
+        </div>
+
+        <div class="settings_column" title="If this is enabled, the media viewer opens on Tabs">
+          <div class="settings_label">Media Viewer<br>On Tabs</div>
+          <input type="checkbox" class="settings_checkbox" id="settings_media_viewer_on_tabs" data-setting="media_viewer_on_tabs">
+        </div>
+
+        <div class="settings_column" title="If this is enabled, the media viewer opens on History">
+          <div class="settings_label">Media Viewer<br>On History</div>
+          <input type="checkbox" class="settings_checkbox" id="settings_media_viewer_on_history" data-setting="media_viewer_on_history">
+        </div>
+
+        <div class="settings_column" title="If this is enabled, the media viewer opens on Closed">
+          <div class="settings_label">Media Viewer<br>On Closed</div>
+          <input type="checkbox" class="settings_checkbox" id="settings_media_viewer_on_closed" data-setting="media_viewer_on_closed">
+        </div>
+
+        <div class="settings_column" title="If this is enabled, the media viewer opens on Stars">
+          <div class="settings_label">Media Viewer<br>On Stars</div>
+          <input type="checkbox" class="settings_checkbox" id="settings_media_viewer_on_stars" data-setting="media_viewer_on_stars">
+        </div>
+
+        <div class="separator"></div>
+
+        <div id="settings_default_media" class="button settings_button" title="Restore default icons">Defaults</div>
       </div>
     </template>
 
