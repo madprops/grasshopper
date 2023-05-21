@@ -1106,6 +1106,10 @@ App.setup_item_window = (mode) => {
       App.goto_bottom(mode)
     }})
 
+    top_actions.push({text: `Clear Filter`, action: () => {
+      App.clear_filter(mode)
+    }})
+
     top_actions.push({text: `Select All`, action: () => {
       App.highlight_items(mode)
     }})
