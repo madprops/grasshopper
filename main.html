@@ -65,12 +65,12 @@
         </div>
 
         <div class="flex_column_center gap_1">
-          <div class="unselectable">Title</div>
+          <div>Title</div>
           <input type="text" autocomplete="off" spellcheck="false" id="star_editor_title" class="text editor_text" placeholder="Title of the star">
         </div>
 
         <div class="flex_column_center gap_1">
-          <div class="unselectable">URL</div>
+          <div>URL</div>
           <input type="text" autocomplete="off" spellcheck="false" id="star_editor_url" class="text editor_text" placeholder="URL of the star">
         </div>
 
@@ -105,12 +105,12 @@
         </div>
 
         <div class="flex_column_center gap_1">
-          <div class="unselectable">Title</div>
+          <div>Title</div>
           <input type="text" autocomplete="off" spellcheck="false" id="title_editor_title" class="text editor_text" placeholder="Title">
         </div>
 
         <div class="flex_column_center gap_1">
-          <div class="unselectable">URL</div>
+          <div>URL</div>
           <input type="text" autocomplete="off" spellcheck="false" id="title_editor_url" class="text editor_text" placeholder="URL">
         </div>
 
@@ -122,7 +122,7 @@
     </template>
 
     <template id="template_settings_basic">
-      <div id="settings_basic_container" class="settings_container unselectable">
+      <div id="settings_basic_container" class="settings_container">
         <div class="flex_row_center gap_2">
           <div class="bigger settings_title">Basic Settings</div>
         </div>
@@ -184,7 +184,7 @@
     </template>
 
     <template id="template_settings_theme">
-      <div id="settings_theme_container" class="settings_container unselectable">
+      <div id="settings_theme_container" class="settings_container">
         <div class="flex_row_center gap_2">
           <div class="bigger settings_title">Theme Settings</div>
         </div>
@@ -227,7 +227,7 @@
     </template>
 
     <template id="template_settings_icons">
-      <div id="settings_icons_container" class="settings_container unselectable">
+      <div id="settings_icons_container" class="settings_container">
         <div class="flex_row_center gap_2">
           <div class="bigger settings_title">Icon Settings</div>
         </div>
@@ -270,16 +270,16 @@
 
     <template id="template_about">
       <div id="about_container" class="flex_column_center gap_2">
-        <div id="about_name" class="bigger unselectable" title="Made by madprops in 2022"></div>
+        <div id="about_name" class="bigger" title="Made by madprops in 2022"></div>
 
-        <div class="flex_row_center gap_2 unselectable">
+        <div class="flex_row_center gap_2">
           <a href="https://github.com/madprops/grasshopper" class="action">GitHub Repo</a>
           <div>|</div>
           <a href="https://addons.mozilla.org/en-US/firefox/addon/grasshopper-urls" class="action">Firefox Store</a>
         </div>
 
         <div id="about_info" class="button"></div>
-        <img id="about_image" src="img/grasshopper.png" class="unselectable" draggable="false">
+        <img id="about_image" src="img/grasshopper.png" draggable="false">
         <div id="about_info_full"></div>
       </div>
     </template>
@@ -308,8 +308,8 @@
     <template id="template_image">
       <div id="image_buttons" class="flex_row_center gap_2"></div>
 
-      <div id="image_container" class="media_container unselectable">
-        <div id="image_loading" class="media_loading hidden unselectable"></div>
+      <div id="image_container" class="media_container">
+        <div id="image_loading" class="media_loading hidden"></div>
         <img id="image" class="media">
       </div>
     </template>
@@ -321,8 +321,8 @@
     <template id="template_video">
       <div id="video_buttons" class="flex_row_center gap_2"></div>
 
-      <div id="video_container" class="media_container unselectable">
-        <div id="video_loading" class="media_loading hidden unselectable"></div>
+      <div id="video_container" class="media_container">
+        <div id="video_loading" class="media_loading hidden"></div>
         <video id="video" class="media" muted>
       </div>
     </template>

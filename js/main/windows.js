@@ -33,7 +33,7 @@ App.create_window = (args) => {
     }
 
     if (args.close_button) {
-      let x = DOM.create(`div`, `window_x action unselectable`)
+      let x = DOM.create(`div`, `window_x action`)
       x.textContent = `x`
       top.append(x)
 
