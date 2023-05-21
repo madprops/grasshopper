@@ -1096,21 +1096,21 @@ App.setup_item_window = (mode) => {
     }
 
     //
-    if (!App[`${mode}_actions`]) {
-      App[`${mode}_actions`] = []
-    }
+    let top_actions = []
 
-    App[`${mode}_actions`].unshift({text: `Select All`, action: () => {
-      App.highlight_items(mode)
+    top_actions.push({text: `Goto Top`, action: () => {
+      App.goto_top(mode)
     }})
 
-    App[`${mode}_actions`].unshift({text: `Goto Bottom`, action: () => {
+    top_actions.push({text: `Goto Bottom`, action: () => {
       App.goto_bottom(mode)
     }})
 
-    App[`${mode}_actions`].unshift({text: `Goto Top`, action: () => {
-      App.goto_top(mode)
+    top_actions.push({text: `Select All`, action: () => {
+      App.highlight_items(mode)
     }})
+
+    App[`${mode}_actions`] = [...top_actions, ...(App[`${mode}_actions`] || [])]
 
     let actions_menu = DOM.create(`div`, `button icon_button`, `${mode}_actions`)
     let actions_icon = App.create_icon(`sun`)
