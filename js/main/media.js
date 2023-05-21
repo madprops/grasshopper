@@ -69,7 +69,7 @@ App.create_media_windows = (what) => {
     })
 
     DOM.ev(copy, `click`, () => {
-      App.media_copy(what)
+      App.media_copy(what, true)
     })
 
     DOM.ev(DOM.el(`#${what}_prev`), `click`, () => {
