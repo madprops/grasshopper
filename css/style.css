@@ -334,12 +334,14 @@ svg {
 
 .settings_text {
   flex-grow: 0;
-  width: 12rem;
+  width: 14rem;
+  max-width: 14rem;
   text-align: center;
 }
 
 .text_smaller {
   width: 5rem;
+  max-width: 5rem;
 }
 
 .settings_title {
