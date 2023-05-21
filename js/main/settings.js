@@ -242,7 +242,7 @@ App.setup_settings = () => {
 App.add_settings_switchers = (category) => {
   let title = DOM.el(`.settings_title`, DOM.el(`#settings_${category}_container`))
 
-  let prev = DOM.create(`div`, `action`)
+  let prev = DOM.create(`div`, `button`)
   prev.textContent = `<`
   title.before(prev)
 
@@ -250,7 +250,7 @@ App.add_settings_switchers = (category) => {
     App.show_prev_settings()
   })
 
-  let next = DOM.create(`div`, `action`)
+  let next = DOM.create(`div`, `button`)
   next.textContent = `>`
 
   DOM.ev(next, `click`, () => {
@@ -258,18 +258,7 @@ App.add_settings_switchers = (category) => {
   })
 
   DOM.ev(title, `click`, () => {
-    App.show_next_settings()
-  })
-
-  DOM.ev(title, `wheel`, (e) => {
-    let direction = e.deltaY > 0 ? `down` : `up`
-
-    if (direction === `down`) {
-      App.show_next_settings()
-    }
-    else if (direction === `up`) {
-      App.show_prev_settings()
-    }
+    App.show_settings_menu(title)
   })
 
   title.after(next)
@@ -437,4 +426,39 @@ App.show_next_settings = () => {
   }
 
   App.show_window(App.settings_order[index])
+}
+
+// Show settings menu
+App.show_settings_menu = (btn) => {
+  let items = []
+
+  items.push({
+    text: `Basic`,
+    action: () => {
+      App.show_window(`settings_basic`)
+    }
+  })
+
+  items.push({
+    text: `Theme`,
+    action: () => {
+      App.show_window(`settings_theme`)
+    }
+  })
+
+  items.push({
+    text: `Icon`,
+    action: () => {
+      App.show_window(`settings_icons`)
+    }
+  })
+
+  items.push({
+    text: `Media`,
+    action: () => {
+      App.show_window(`settings_media`)
+    }
+  })
+
+  NeedContext.show_on_element(btn, items)
 }
