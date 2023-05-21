@@ -158,6 +158,7 @@ body, html {
   align-items: center;
   justify-content: center;
   gap: 0.35rem;
+  align-self: stretch;
 }
 
 .icon_1 {
