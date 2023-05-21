@@ -607,7 +607,7 @@ App.clean_tabs = () => {
   let s = ``
   s += `Close normal and suspended tabs\n`
   s += `Tabs playing audio are not closed\n`
-  s += `Close tabs? (${ids.length})`
+  s += `Close these tabs? (${ids.length})`
 
   App.show_confirm(s, () => {
     App.do_close_tabs(ids)
@@ -935,7 +935,7 @@ App.close_duplicates = () => {
   let s = ``
   s += `Close excess duplicate tabs\n`
   s += `Excluding pinned and playing\n`
-  s += `Close tabs? (${ids.length})`
+  s += `Close duplicate tabs? (${ids.length})`
 
   App.show_confirm(s, () => {
     App.do_close_tabs(ids)
