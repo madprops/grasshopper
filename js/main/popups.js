@@ -3,8 +3,11 @@ App.create_popup = (args) => {
   p.setup = false
 
   let popup = DOM.create(`div`, `popup_main`, `popup_${args.id}`)
+  let image = DOM.create(`img`, `popup_image`)
+  image.src = `img/grasshopper.png`
   let container = DOM.create(`div`, `popup_container`, `popup_container_${args.id}`)
   container.innerHTML = App.get_template(args.id)
+  container.prepend(image)
   popup.append(container)
 
   DOM.ev(popup, `click`, (e) => {

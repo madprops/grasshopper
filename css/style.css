@@ -625,3 +625,7 @@ input::placeholder {
 .nodisplay {
   display: none;
 }
+
+.popup_image {
+  width: 5rem;
+}
