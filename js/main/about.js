@@ -13,9 +13,9 @@ App.setup_about = () => {
       `Right Click to show context menus`,
       `Shift + Enter to show context menus`,
       `Delete removes items if filter is not focused`,
-      `Ctrl + A selects all if filter is not focused`
+      `Ctrl + A selects all if filter is not focused`,
       `Home goes to top if filter is not focused`,
-      `End goes to bottom if filter is not focused`
+      `End goes to bottom if filter is not focused`,
       `Ctrl + Home goes to the top of a list`,
       `Ctrl + End goes to the bottom of a list`,
       `Ctrl + Left togles Main Menu`,
@@ -27,7 +27,7 @@ App.setup_about = () => {
       `Double click on empty tabs space opens a new tab`,
       `Shift while on scrollwheel makes it scroll faster`,
       `Escape clears the filter and closes windows/popups`,
-      `Hold right click and move up or down to go to top or bottom`
+      `Hold right click and move up or down to go to top or bottom`,
     ]
 
     App.about_info_index = 0
