@@ -8,6 +8,13 @@ App.setup_window_mouse = (mode) => {
   DOM.ev(container, `mousedown`, (e) => {
     App.reset_gestures()
 
+    // Right click
+    if (e.button === 2) {
+      App.right_click_down = true
+      App.right_click_y = e.clientY
+      App.right_click_x = e.clientX
+    }
+
     if (!e.target.closest(`.${mode}_item`)) {
       return
     }
@@ -19,11 +26,6 @@ App.setup_window_mouse = (mode) => {
       if (e.shiftKey) {
         App.highlight_range(item)
       }
-    }
-    // Right click
-    else if (e.button === 2) {
-      App.right_click_down = true
-      App.right_click_pos = e.clientY
     }
   })
 
@@ -61,10 +63,17 @@ App.setup_window_mouse = (mode) => {
 
   DOM.ev(container, `contextmenu`, (e) => {
     if (App.settings.mouse_gestures && App.right_click_down) {
-      let diff = Math.abs(e.clientY - App.right_click_pos)
+      let diff_y = Math.abs(e.clientY - App.right_click_y)
+      let diff_x = Math.abs(e.clientX - App.right_click_x)
 
-      if (diff > App.gesture_threshold) {
-        App.gesture_action(mode, e)
+      if (diff_y > App.gesture_threshold || diff_x > App.gesture_threshold) {
+        if (diff_y >= diff_x) {
+          App.gesture_action(mode, e, `vertical`)
+        }
+        else {
+          App.gesture_action(mode, e, `horizontal`)
+        }
+
         e.preventDefault()
         return
       }
@@ -220,14 +229,25 @@ App.setup_drag = (mode, container) => {
 
 App.reset_gestures = () => {
   App.right_click_down = false
-  App.right_click_pos = 0
+  App.right_click_y = 0
+  App.right_click_x = 0
 }
 
-App.gesture_action = (mode, e) => {
-  if (e.clientY < App.right_click_pos) {
-    App.goto_top(mode)
+App.gesture_action = (mode, e, direction) => {
+  if (direction === `vertical`) {
+    if (e.clientY < App.right_click_y) {
+      App.goto_top(mode)
+    }
+    else {
+      App.goto_bottom(mode)
+    }
   }
-  else {
-    App.goto_bottom(mode)
+  else if (direction === `horizontal`) {
+    if (e.clientX < App.right_click_x) {
+      App.cycle_item_windows(true)
+    }
+    else {
+      App.cycle_item_windows()
+    }
   }
 }
