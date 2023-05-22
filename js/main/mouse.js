@@ -1,7 +1,13 @@
+App.setup_mouse = () => {
+  App.reset_gestures()
+}
+
 App.setup_window_mouse = (mode) => {
   let container = DOM.el(`#${mode}_container`)
 
   DOM.ev(container, `mousedown`, (e) => {
+    App.reset_gestures()
+
     if (!e.target.closest(`.${mode}_item`)) {
       return
     }
@@ -13,6 +19,11 @@ App.setup_window_mouse = (mode) => {
       if (e.shiftKey) {
         App.highlight_range(item)
       }
+    }
+    // Right click
+    else if (e.button === 2) {
+      App.right_click_down = true
+      App.right_click_pos = e.clientY
     }
   })
 
@@ -49,6 +60,22 @@ App.setup_window_mouse = (mode) => {
   })
 
   DOM.ev(container, `contextmenu`, (e) => {
+    if (App.right_click_down) {
+      let diff = Math.abs(e.clientY - App.right_click_pos)
+
+      if (diff >= App.scroll_gesture_distance) {
+        if (e.clientY < App.right_click_pos) {
+          App.goto_top(mode)
+        }
+        else {
+          App.goto_bottom(mode)
+        }
+
+        e.preventDefault()
+        return
+      }
+    }
+
     if (e.target.closest(`.${mode}_item`)) {
       App.show_item_menu(App.get_cursor_item(mode, e), e.clientX, e.clientY)
       e.preventDefault()
@@ -195,4 +222,9 @@ App.setup_drag = (mode, container) => {
     e.preventDefault()
     return false
   })
+}
+
+App.reset_gestures = () => {
+  App.right_click_down = false
+  App.right_click_pos = 0
 }

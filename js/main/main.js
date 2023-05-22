@@ -20,6 +20,7 @@ App.filter_delay = 200
 App.alert_autohide_delay = 1500
 App.normal_scroll_pixels = 50
 App.fast_scroll_percent = 20
+App.scroll_gesture_distance = 15
 
 NeedContext.min_width = `4.5rem`
 
@@ -42,6 +43,7 @@ App.init = async () => {
   App.setup_media()
   App.setup_window()
   App.setup_items()
+  App.setup_mouse()
   App.show_first_window()
 }
 
