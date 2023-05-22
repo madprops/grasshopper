@@ -466,6 +466,23 @@ App.show_item_menu = (item, x, y) => {
     })
   }
 
+  if (App.is_image(item.url)) {
+    items.push({
+      text: `View`,
+      action: () => {
+        App.show_media(`image`, item)
+      }
+    })
+  }
+  else if (App.is_video(item.url)) {
+    items.push({
+      text: `View`,
+      action: () => {
+        App.show_media(`video`, item)
+      }
+    })
+  }
+
   if (item.mode === `stars`) {
     items.push({
       text: `Remove`,
@@ -557,23 +574,6 @@ App.get_more_menu_items = (item, multiple) => {
       return await App.get_move_menu_items(item, multiple)
     }
   })
-
-  if (App.is_image(item.url)) {
-    items.push({
-      text: `View`,
-      action: () => {
-        App.show_media(`image`, item)
-      }
-    })
-  }
-  else if (App.is_video(item.url)) {
-    items.push({
-      text: `View`,
-      action: () => {
-        App.show_media(`video`, item)
-      }
-    })
-  }
 
   return items
 }
