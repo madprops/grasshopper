@@ -64,13 +64,7 @@ App.setup_window_mouse = (mode) => {
       let diff = Math.abs(e.clientY - App.right_click_pos)
 
       if (diff > App.gesture_threshold) {
-        if (e.clientY < App.right_click_pos) {
-          App.goto_top(mode)
-        }
-        else {
-          App.goto_bottom(mode)
-        }
-
+        App.gesture_action(mode, e)
         e.preventDefault()
         return
       }
@@ -227,4 +221,13 @@ App.setup_drag = (mode, container) => {
 App.reset_gestures = () => {
   App.right_click_down = false
   App.right_click_pos = 0
+}
+
+App.gesture_action = (mode, e) => {
+  if (e.clientY < App.right_click_pos) {
+    App.goto_top(mode)
+  }
+  else {
+    App.goto_bottom(mode)
+  }
 }
