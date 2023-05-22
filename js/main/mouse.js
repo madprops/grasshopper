@@ -1,11 +1,7 @@
 App.setup_mouse = () => {
   App.reset_gestures()
-}
 
-App.setup_window_mouse = (mode) => {
-  let container = DOM.el(`#${mode}_container`)
-
-  DOM.ev(container, `mousedown`, (e) => {
+  DOM.ev(document, `mousedown`, (e) => {
     App.reset_gestures()
 
     // Right click
@@ -15,63 +11,67 @@ App.setup_window_mouse = (mode) => {
       App.right_click_x = e.clientX
     }
 
-    if (!e.target.closest(`.${mode}_item`)) {
-      return
-    }
+    if (App.on_item_window()) {
+      if (!e.target.closest(`.${App.window_mode}_item`)) {
+        return
+      }
 
-    let item = App.get_cursor_item(mode, e)
+      let item = App.get_cursor_item(App.window_mode, e)
 
-    // Main click
-    if (e.button === 0) {
-      if (e.shiftKey) {
-        App.highlight_range(item)
+      // Main click
+      if (e.button === 0) {
+        if (e.shiftKey) {
+          App.highlight_range(item)
+        }
       }
     }
   })
 
-  DOM.ev(container, `mouseup`, (e) => {
-    if (!e.target.closest(`.${mode}_item`)) {
-      App.dehighlight(mode)
-      return
-    }
-
-    let item = App.get_cursor_item(mode, e)
-
-    // Main click
-    if (e.button === 0) {
-      if (e.shiftKey) {
+  DOM.ev(document, `mouseup`, (e) => {
+    if (App.on_item_window()) {
+      if (!e.target.closest(`.${App.window_mode}_item`)) {
+        App.dehighlight(App.window_mode)
         return
       }
 
-      if (e.ctrlKey) {
-        App.toggle_highlight(item)
-        return
-      }
+      let item = App.get_cursor_item(App.window_mode, e)
 
-      App.select_item(item)
-      App[`${mode}_action`](item)
-    }
-    // Middle click
-    else if (e.button === 1) {
-      if (e.ctrlKey) {
-        return
-      }
+      // Main click
+      if (e.button === 0) {
+        if (e.shiftKey) {
+          return
+        }
 
-      App[`${mode}_action_alt`](item, e.shiftKey)
+        if (e.ctrlKey) {
+          App.toggle_highlight(item)
+          return
+        }
+
+        App.select_item(item)
+        App[`${App.window_mode}_action`](item)
+      }
+      // Middle click
+      else if (e.button === 1) {
+        if (e.ctrlKey) {
+          return
+        }
+
+        App[`${App.window_mode}_action_alt`](item, e.shiftKey)
+      }
     }
   })
 
-  DOM.ev(container, `contextmenu`, (e) => {
+  DOM.ev(document, `contextmenu`, (e) => {
     if (App.settings.mouse_gestures && App.right_click_down) {
       let diff_y = Math.abs(e.clientY - App.right_click_y)
       let diff_x = Math.abs(e.clientX - App.right_click_x)
 
       if (diff_y > App.gesture_threshold || diff_x > App.gesture_threshold) {
         if (diff_y >= diff_x) {
-          App.gesture_action(mode, e, `vertical`)
+          App.gesture_action(App.window_mode, e, `vertical`)
         }
         else {
-          App.gesture_action(mode, e, `horizontal`)
+          App.gesture_action(App.window_mode, e, `horizontal`)
         }
 
         e.preventDefault()
@@ -79,54 +79,54 @@ App.setup_window_mouse = (mode) => {
       }
     }
 
-    if (e.target.closest(`.${mode}_item`)) {
-      App.show_item_menu(App.get_cursor_item(mode, e), e.clientX, e.clientY)
-      e.preventDefault()
+    if (App.on_item_window()) {
+      if (e.target.closest(`.${App.window_mode}_item`)) {
+        App.show_item_menu(App.get_cursor_item(App.window_mode, e), e.clientX, e.clientY)
+        e.preventDefault()
+      }
     }
   })
 
-  DOM.ev(container, `mouseover`, (e) => {
-    if (e.target.closest(`.${mode}_item`)) {
-      let item = App.get_cursor_item(mode, e)
+  DOM.ev(document, `mouseover`, (e) => {
+    if (App.on_item_window()) {
+      if (e.target.closest(`.${App.window_mode}_item`)) {
+        let item = App.get_cursor_item(App.window_mode, e)
+        App.update_footer_info(item)
+      }
+    }
+  })
+
+  DOM.ev(document, `mouseout`, (e) => {
+    if (App.on_item_window()) {
+      let item = App.get_selected(App.window_mode)
       App.update_footer_info(item)
     }
   })
 
-  DOM.ev(container, `mouseout`, (e) => {
-    let item = App.get_selected(mode)
-    App.update_footer_info(item)
-  })
+  DOM.ev(document, `wheel`, (e) => {
+    if (App.on_item_window()) {
+      if (e.shiftKey) {
+        let direction = e.deltaY > 0 ? `down` : `up`
 
-  DOM.ev(container, `wheel`, (e) => {
-    if (e.shiftKey) {
-      let direction = e.deltaY > 0 ? `down` : `up`
+        if (direction === `up`) {
+          App.scroll(App.window_mode, `up`, true)
+        }
+        else if (direction === `down`) {
+          App.scroll(App.window_mode, `down`, true)
+        }
 
-      if (direction === `up`) {
-        App.scroll(mode, `up`, true)
+        e.preventDefault()
       }
-      else if (direction === `down`) {
-        App.scroll(mode, `down`, true)
-      }
-
-      e.preventDefault()
     }
   })
-}
 
-App.get_cursor_item = (mode, e) => {
-  let el = e.target.closest(`.${mode}_item`)
-  let item = App.get_item_by_id(mode, el.dataset.id)
+  // Drag
 
-  if (!item) {
-    el.remove()
-    return
-  }
+  DOM.ev(document, `dragstart`, (e) => {
+    if (App.window_mode !== `tabs`) {
+      return
+    }
 
-  return item
-}
-
-App.setup_drag = (mode, container) => {
-  container.addEventListener(`dragstart`, (e) => {
     if (App.settings.lock_drag && !e.ctrlKey) {
       e.preventDefault()
       return false
@@ -141,15 +141,15 @@ App.setup_drag = (mode, container) => {
 
     App.drag_y = e.clientY
     let id = App.drag_element.dataset.id
-    App.drag_item = App.get_item_by_id(mode, id)
-    App.drag_start_index = App.get_item_element_index(mode, App.drag_element)
+    App.drag_item = App.get_item_by_id(App.window_mode, id)
+    App.drag_start_index = App.get_item_element_index(App.window_mode, App.drag_element)
     e.dataTransfer.setDragImage(new Image(), 0, 0)
     e.dataTransfer.setData(`text/plain`, App.drag_item.url)
 
     App.drag_items = []
 
     if (App.drag_item.highlighted) {
-      for (let tab of App.get_items(mode)) {
+      for (let tab of App.get_items(App.window_mode)) {
         if (tab.highlighted) {
           App.drag_items.push(tab)
         }
@@ -168,7 +168,11 @@ App.setup_drag = (mode, container) => {
     App.drag_moved = false
   })
 
-  container.addEventListener(`dragend`, (e) => {
+  DOM.ev(document, `dragend`, (e) => {
+    if (App.window_mode !== `tabs`) {
+      return
+    }
+
     if (!App.drag_element) {
       App.drag_element = undefined
       e.preventDefault()
@@ -182,11 +186,15 @@ App.setup_drag = (mode, container) => {
       return false
     }
 
-    App.dehighlight(mode)
+    App.dehighlight(App.window_mode)
     App.update_tab_index()
   })
 
-  container.addEventListener(`dragenter`, (e) => {
+  DOM.ev(document, `dragenter`, (e) => {
+    if (App.window_mode !== `tabs`) {
+      return
+    }
+
     if (!App.drag_element) {
       e.preventDefault()
       return false
@@ -203,7 +211,7 @@ App.setup_drag = (mode, container) => {
         return false
       }
 
-      let target = App.get_item_by_id(mode, el.dataset.id)
+      let target = App.get_item_by_id(App.window_mode, el.dataset.id)
 
       for (let item of App.drag_items) {
         if ((target.pinned && !item.pinned) || (!target.pinned && item.pinned)) {
@@ -225,6 +233,18 @@ App.setup_drag = (mode, container) => {
     e.preventDefault()
     return false
   })
+}
+
+App.get_cursor_item = (mode, e) => {
+  let el = e.target.closest(`.${mode}_item`)
+  let item = App.get_item_by_id(mode, el.dataset.id)
+
+  if (!item) {
+    el.remove()
+    return
+  }
+
+  return item
 }
 
 App.reset_gestures = () => {
