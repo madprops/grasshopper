@@ -38,8 +38,9 @@ App.setup_tabs = () => {
   App.setup_item_window(`tabs`)
 
   browser.tabs.onUpdated.addListener(async (id, cinfo, info) => {
+    App.log(`Tab Updated: ID: ${id}`)
+
     if (App.window_mode === `tabs` && info.windowId === App.window_id) {
-      App.log(`Tab Updated: ID: ${id}`)
       let keys = Object.keys(cinfo)
 
       // If it's a title change...
@@ -63,6 +64,7 @@ App.setup_tabs = () => {
 
   browser.tabs.onActivated.addListener(async (info) => {
     App.log(`Tab Activated: ID: ${info.tabId}`)
+
     if (App.window_mode === `tabs` && info.windowId === App.window_id) {
       await App.on_tab_activated(info)
       App.tabs_check()
@@ -71,6 +73,7 @@ App.setup_tabs = () => {
 
   browser.tabs.onRemoved.addListener((id, info) => {
     App.log(`Tab Removed: ID: ${id}`)
+
     if (App.window_mode === `tabs` && info.windowId === App.window_id) {
       App.remove_closed_tab(id)
       App.tabs_check()
@@ -79,6 +82,7 @@ App.setup_tabs = () => {
 
   browser.tabs.onMoved.addListener((id, info) => {
     App.log(`Tab Moved: ID: ${id}`)
+
     if (App.window_mode === `tabs` && info.windowId === App.window_id) {
       App.move_item(`tabs`, info.fromIndex, info.toIndex)
       App.tabs_check()
@@ -87,6 +91,7 @@ App.setup_tabs = () => {
 
   browser.tabs.onDetached.addListener((id, info) => {
     App.log(`Tab Detached: ID: ${id}`)
+
     if (App.window_mode === `tabs` && info.oldWindowId === App.window_id) {
       App.remove_closed_tab(id)
       App.tabs_check()
