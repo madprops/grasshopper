@@ -17,10 +17,6 @@ App.setup_tabs = () => {
       App.new_tab()
     }},
 
-    {text: `Focus Tab`, action: () => {
-      App.focus_current_tab()
-    }},
-
     {text: `Show Info`, action: () => {
       App.show_tabs_info()
     }},
@@ -669,20 +665,12 @@ App.go_to_previous_tab = async () => {
 }
 
 App.get_active_tab = async () => {
-  let tabs
-
   try {
-    tabs = await browser.tabs.query({currentWindow: true})
+    let tabs = await browser.tabs.query({active: true, currentWindow: true})
+    return tabs[0]
   }
   catch (err) {
     App.log(err, `error`)
-    return
-  }
-
-  for (let tab of tabs) {
-    if (tab.active) {
-      return tab
-    }
   }
 }
 
@@ -825,22 +813,6 @@ App.import_titles = () => {
   })
 }
 
-App.get_current_tab = async () => {
-  try {
-    let tabs = await browser.tabs.query({active: true, currentWindow: true})
-    return tabs[0]
-  }
-  catch (err) {
-    App.log(err, `error`)
-  }
-}
-
-App.focus_current_tab = async () => {
-  let tab = await App.get_current_tab()
-  let item = App.get_item_by_id(`tabs`, tab.id)
-  App.select_item(item, `center`)
-}
-
 App.close_duplicates = () => {
   let items = App.get_items(`tabs`)
   let duplicates = App.find_duplicates(items, `url`)
@@ -863,4 +835,27 @@ App.close_duplicates = () => {
   App.show_confirm(s, () => {
     App.do_close_tabs(ids)
   })
+}
+
+App.focus_current_tab = async () => {
+  let tab = await App.get_active_tab()
+  let item = App.get_item_by_id(`tabs`, tab.id)
+  let container = DOM.el(`#tabs_container`)
+  let visible = App.element_is_visible(container, item.element)
+  let selected = App.get_selected(`tabs`) === item
+
+  if (!selected || !visible) {
+    App.select_item(item, `center`)
+    return true
+  }
+
+  return false
+}
+
+App.tabs_back_action = async () => {
+  let scrolled = await App.focus_current_tab()
+
+  if (!scrolled) {
+    App.go_to_previous_tab()
+  }
 }

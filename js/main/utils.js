@@ -227,10 +227,10 @@ App.is_at_bottom = (container) => {
 }
 
 App.element_is_visible = (container, el) => {
-  let containerRect = container.getBoundingClientRect()
+  let container_rect = container.getBoundingClientRect()
   let rect = el.getBoundingClientRect()
-  let top_visible = rect.top >= containerRect.top && rect.top <= containerRect.bottom
-  let bottom_visible = rect.bottom >= containerRect.top && rect.bottom <= containerRect.bottom
+  let top_visible = rect.top >= container_rect.top - 2
+  let bottom_visible = rect.bottom <= container_rect.bottom + 2
   return top_visible && bottom_visible
 }
 

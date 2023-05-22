@@ -1028,7 +1028,7 @@ App.setup_item_window = (mode) => {
       let previous_icon = App.create_icon(`back`)
 
       DOM.ev(previous, `click`, () => {
-        App.go_to_previous_tab()
+        App.tabs_back_action()
       })
 
       previous.append(previous_icon)

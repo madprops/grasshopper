@@ -29,7 +29,7 @@ App.check_window_keyboard = (e) => {
       return
     }
     else if (e.key === `Backspace`) {
-      App.go_to_previous_tab()
+      App.tabs_back_action()
       e.preventDefault()
       return
     }
