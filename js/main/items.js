@@ -334,8 +334,6 @@ App.do_item_filter = async (mode) => {
     return match
   }
 
-  let selected
-
   for (let it of items) {
     if (!it.element) {
       continue
@@ -343,25 +341,13 @@ App.do_item_filter = async (mode) => {
 
     if (skip || matched(it)) {
       App.show_item(it)
-
-      if (it.active) {
-        selected = it
-      }
     }
     else {
       App.hide_item(it)
     }
   }
 
-  App.set_selected(mode, undefined)
-
-  if (selected) {
-    App.select_item(selected)
-  }
-  else {
-    App.select_first_item(mode)
-  }
-
+  App.select_first_item(mode)
   App.update_footer_info(App.get_selected(mode))
   App.update_footer_count(mode)
 }
