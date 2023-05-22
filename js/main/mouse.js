@@ -68,10 +68,10 @@ App.setup_mouse = () => {
 
       if (diff_y > App.gesture_threshold || diff_x > App.gesture_threshold) {
         if (diff_y >= diff_x) {
-          App.gesture_action(App.window_mode, e, `vertical`)
+          App.gesture_action(e, `vertical`)
         }
         else {
-          App.gesture_action(App.window_mode, e, `horizontal`)
+          App.gesture_action(e, `horizontal`)
         }
 
         e.preventDefault()
@@ -253,13 +253,27 @@ App.reset_gestures = () => {
   App.right_click_x = 0
 }
 
-App.gesture_action = (mode, e, direction) => {
+App.gesture_action = (e, direction) => {
+  let item = App.on_item_window()
+
   if (direction === `vertical`) {
     if (e.clientY < App.right_click_y) {
-      App.goto_top(mode)
+      if (item) {
+        App.goto_top(App.window_mode)
+      }
+      else {
+        if (e.target.closest(`.window_content`)) {
+          App.window_goto_top(App.window_mode)
+        }
+      }
     }
     else {
-      App.goto_bottom(mode)
+      if (item) {
+        App.goto_bottom(App.window_mode)
+      }
+      else {
+        App.window_goto_bottom(App.window_mode)
+      }
     }
   }
   else if (direction === `horizontal`) {

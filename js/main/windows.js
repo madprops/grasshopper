@@ -147,3 +147,12 @@ App.setup_window = () => {
     NeedContext.hide()
   })
 }
+
+App.window_goto_top = (mode) => {
+  DOM.el(`#window_content_${mode}`).scrollTop = 0
+}
+
+App.window_goto_bottom = (mode) => {
+  let el = DOM.el(`#window_content_${mode}`)
+  el.scrollTop = el.scrollHeight
+}

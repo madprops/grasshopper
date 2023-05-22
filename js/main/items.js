@@ -1604,7 +1604,8 @@ App.goto_top = (mode) => {
 }
 
 App.goto_bottom = (mode) => {
-  DOM.el(`#${mode}_container`).scrollTop = DOM.el(`#${mode}_container`).scrollHeight
+  let el = DOM.el(`#${mode}_container`)
+  el.scrollTop = el.scrollHeight
 }
 
 App.scroll = (mode, direction, fast = false) => {
