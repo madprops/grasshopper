@@ -309,7 +309,7 @@ App.do_item_filter = async (mode) => {
         match = item.discarded
       }
       else if (filter_mode === `title`) {
-        match = item.custom_title
+        match = App.get_title(item.url)
       }
       else if (filter_mode === `star`) {
         match = App.get_star_by_url(item.url)
@@ -631,23 +631,24 @@ App.process_info = (mode, info, exclude = [], o_item) => {
   }
 
   let path = App.remove_protocol(url)
-  let title = info.title || path
+  let title = info.title
   let image = App.is_image(url)
   let video = App.is_video(url)
-  let custom_title = false
+  let custom_title = ""
 
   if (mode === `tabs`) {
     let title_match = App.get_title(url)
 
     if (title_match) {
-      title = title_match.title
-      custom_title = true
+      custom_title = title_match.title
     }
   }
 
   let item = {
     title: title,
     title_lower: title.toLowerCase(),
+    custom_title: custom_title,
+    custom_title_lower: custom_title.toLowerCase(),
     url: url,
     path: path,
     path_lower: path.toLowerCase(),
@@ -667,7 +668,6 @@ App.process_info = (mode, info, exclude = [], o_item) => {
     item.audible = info.audible
     item.muted = info.mutedInfo.muted
     item.discarded = info.discarded
-    item.custom_title = custom_title
   }
 
   if (o_item) {
@@ -809,14 +809,15 @@ App.set_item_text = (item) => {
 
   let content
   let path = decodeURI(item.path)
+  let title = item.custom_title || item.title
 
   if (App.settings.text_mode === `title`) {
-    content = item.title || path
-    item.footer = path || item.title
+    content = title || path
+    item.footer = path || title
   }
   else if (App.settings.text_mode === `url`) {
-    content = path || item.title
-    item.footer = item.title || path
+    content = path || title
+    item.footer = title || path
   }
 
   if (App.settings.hover_tooltips) {

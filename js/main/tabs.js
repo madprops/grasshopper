@@ -46,8 +46,9 @@ App.setup_tabs = () => {
       // If it's a title change...
       if (keys.length === 1 && keys[0] === `title`) {
         let item = App.get_item_by_id(`tabs`, id)
+        item.title = cinfo.title
 
-        if (!item.custom_title) {
+        if (!App.get_title(item.url)) {
           // Update only the title & text
           item.title = cinfo.title
           App.set_item_text(item)
@@ -709,18 +710,10 @@ App.show_title_editor = (item) => {
 }
 
 App.title_editor_save = () => {
+  let title = DOM.el(`#title_editor_title`).value.trim()
   let url = DOM.el(`#title_editor_url`).value.trim()
 
-  if (!url) {
-    return
-  }
-
-  let title = DOM.el(`#title_editor_title`).value.trim()
-  App.titles = App.titles.filter(x => x.url !== url)
-
-  if (!title) {
-    App.stor_save_titles()
-    App.show_item_window(`tabs`)
+  if (!title || !url) {
     return
   }
 
@@ -740,14 +733,8 @@ App.title_editor_save = () => {
   }
 
   App.stor_save_titles()
-
-  // Apply title to existing items
-  for (let item of App.get_items(`tabs`)) {
-    if (item.url.startsWith(url)) {
-      App.refresh_tab(item.id)
-    }
-  }
-
+  App.apply_titles(url, title)
+  App.do_item_filter(`tabs`)
   App.show_last_window()
 }
 
@@ -756,8 +743,26 @@ App.title_editor_full_url = () => {
 }
 
 App.remove_title = () => {
-  DOM.el(`#title_editor_title`).value = ``
-  App.title_editor_save()
+  App.show_confirm(`Remove title?`, () => {
+    let url = DOM.el(`#title_editor_url`).value.trim()
+
+    if (url) {
+      App.titles = App.titles.filter(x => !x.url.startsWith(url))
+      App.stor_save_titles()
+      App.apply_titles(url, ``)
+      App.do_item_filter(`tabs`)
+      App.show_last_window()
+    }
+  })
+}
+
+App.apply_titles = (url, title) => {
+  for (let item of App.get_items(`tabs`)) {
+    if (item.url.startsWith(url)) {
+      item.custom_title = title
+      App.set_item_text(item)
+    }
+  }
 }
 
 App.get_title = (item_url) => {
