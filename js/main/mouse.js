@@ -127,7 +127,7 @@ App.setup_mouse = () => {
   // Drag
 
   function is_tabs () {
-    return App.window_mode !== `tabs` || App.popup_open
+    return App.window_mode === `tabs` && !App.popup_open
   }
 
   DOM.ev(document, `dragstart`, (e) => {
