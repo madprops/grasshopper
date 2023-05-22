@@ -1823,3 +1823,17 @@ App.clear_filter = (mode) => {
     App.set_filter(mode, ``)
   }
 }
+
+App.is_filtered = (mode) => {
+  return App.get_filter(mode, true) || App[`${mode}_filter_mode`] !== `all`
+}
+
+App.check_clear_filter = () => {
+  if (App.on_item_window()) {
+    if (App.settings.clear_filter) {
+      if (App.is_filtered(App.window_mode)) {
+        App.show_item_window(App.window_mode)
+      }
+    }
+  }
+}

@@ -247,6 +247,7 @@ App.tabs_action = (item) => {
   }
 
   App.focus_tab(item)
+  App.check_clear_filter()
 }
 
 App.tabs_action_alt = (item, shift_key = false) => {

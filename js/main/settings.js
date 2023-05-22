@@ -11,6 +11,7 @@ App.default_settings = {
   switch_to_tabs: {value: true, category: `basic`},
   hover_tooltips: {value: true, category: `basic`},
   mouse_gestures: {value: true, category: `basic`},
+  clear_filter: {value: true, category: `basic`},
 
   width: {value: 70, category: `basic`},
   height: {value: 80, category: `basic`},
