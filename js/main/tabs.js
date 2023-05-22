@@ -727,7 +727,15 @@ App.title_editor_save = () => {
   }
 
   App.stor_save_titles()
-  App.show_item_window(`tabs`)
+
+  // Apply title to existing items
+  for (let item of App.get_items(`tabs`)) {
+    if (url.startsWith(item.url)) {
+      App.refresh_tab(item.id)
+    }
+  }
+
+  App.show_last_window()
 }
 
 App.remove_title = () => {
