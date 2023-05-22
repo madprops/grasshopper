@@ -41,21 +41,6 @@ App.setup_tabs = () => {
     App.log(`Tab Updated: ID: ${id}`)
 
     if (App.window_mode === `tabs` && info.windowId === App.window_id) {
-      let keys = Object.keys(cinfo)
-
-      // If it's a title change...
-      if (keys.length === 1 && keys[0] === `title`) {
-        let item = App.get_item_by_id(`tabs`, id)
-        item.title = cinfo.title
-
-        if (!App.get_title(item.url)) {
-          App.set_item_text(item)
-        }
-
-        // No need to fully update the item
-        return
-      }
-
       await App.refresh_tab(id)
       App.tabs_check()
     }
@@ -731,13 +716,8 @@ App.title_editor_save = () => {
   }
 
   App.stor_save_titles()
-  App.apply_titles(url, title)
-  App.do_item_filter(`tabs`)
+  App.apply_titles(url)
   App.show_last_window()
-}
-
-App.title_editor_full_url = () => {
-  DOM.el(`#title_editor_url`).value = App.title_editor_item.url
 }
 
 App.remove_title = () => {
@@ -747,20 +727,26 @@ App.remove_title = () => {
     if (url) {
       App.titles = App.titles.filter(x => !x.url.startsWith(url))
       App.stor_save_titles()
-      App.apply_titles(url, ``)
-      App.do_item_filter(`tabs`)
+      App.apply_titles(url, true)
       App.show_last_window()
     }
   })
 }
 
-App.apply_titles = (url, title) => {
+App.title_editor_full_url = () => {
+  DOM.el(`#title_editor_url`).value = App.title_editor_item.url
+}
+
+App.apply_titles = (url) => {
   for (let item of App.get_items(`tabs`)) {
     if (item.url.startsWith(url)) {
-      item.custom_title = title
-      App.set_item_text(item)
+      App.refresh_tab(item.id)
     }
   }
+
+  setTimeout(() => {
+    App.do_item_filter(`tabs`)
+  }, 100)
 }
 
 App.get_title = (item_url) => {
