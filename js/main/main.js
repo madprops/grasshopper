@@ -32,6 +32,7 @@ App.init = async () => {
   App.stor_get_titles()
   App.setup_theme()
   App.setup_tabs()
+  App.setup_title_editor()
   App.setup_stars()
   App.setup_bookmarks()
   App.setup_history()

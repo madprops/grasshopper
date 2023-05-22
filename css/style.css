@@ -621,3 +621,7 @@ input::placeholder {
 .linkbutton:hover {
   text-decoration: underline;
 }
+
+.nodisplay {
+  display: none;
+}
