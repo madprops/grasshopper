@@ -255,33 +255,43 @@ App.reset_gestures = () => {
 
 App.gesture_action = (e, direction) => {
   let item = App.on_item_window()
+  let win = e.target.closest(`.window_content`)
+  let settings = App.window_mode.startsWith(`settings`)
 
   if (direction === `vertical`) {
     if (e.clientY < App.right_click_y) {
       if (item) {
         App.goto_top(App.window_mode)
       }
-      else {
-        if (e.target.closest(`.window_content`)) {
-          App.window_goto_top(App.window_mode)
-        }
+      else if (win) {
+        App.window_goto_top(App.window_mode)
       }
     }
     else {
       if (item) {
         App.goto_bottom(App.window_mode)
       }
-      else {
+      else if (win) {
         App.window_goto_bottom(App.window_mode)
       }
     }
   }
   else if (direction === `horizontal`) {
     if (e.clientX < App.right_click_x) {
-      App.cycle_item_windows(true)
+      if (item) {
+        App.cycle_item_windows(true)
+      }
+      else if (settings) {
+        App.show_prev_settings()
+      }
     }
     else {
-      App.cycle_item_windows()
+      if (item) {
+        App.cycle_item_windows()
+      }
+      else if (settings) {
+        App.show_next_settings()
+      }
     }
   }
 }
