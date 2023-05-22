@@ -602,14 +602,6 @@ input::placeholder {
   padding: 0.35rem;
 }
 
-.editor_textarea {
-  width: 18rem;
-  max-width: 90vw;
-  padding: 0.35rem;
-  text-align: left;
-  resize: none;
-}
-
 .editor_image {
   width: 33%;
 }
