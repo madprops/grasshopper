@@ -360,6 +360,20 @@ App.restore_default_settings = (type) => {
   })
 }
 
+App.restore_all_default_settings = (type) => {
+  App.show_confirm(`Restore all default settings?`, () => {
+    for (let key in App.default_settings) {
+      App.settings[key] = App.default_settings[key].value
+    }
+
+    App.get_item_order()
+    App.make_item_order()
+    App.apply_theme()
+    App.stor_save_settings()
+    App.show_window(`settings_basic`)
+  })
+}
+
 App.get_background_image_options = () => {
   let opts = [[`None`, `none`]]
 
@@ -442,6 +456,17 @@ App.show_settings_menu = (btn) => {
     text: `Media`,
     action: () => {
       App.show_window(`settings_media`)
+    }
+  })
+
+  items.push({
+    separator: true
+  })
+
+  items.push({
+    text: `Defaults`,
+    action: () => {
+      App.restore_all_default_settings()
     }
   })
 
