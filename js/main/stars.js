@@ -1,8 +1,12 @@
 App.setup_stars = () => {
   function on_close () {
     let mode = App.last_window_mode
-    let filter = App[`${mode}_filter_mode`] === `star`
-    App.show_last_window(filter)
+
+    if (App[`${mode}_filter_mode`] === `star`) {
+      App.do_item_filter(App.last_window_mode)
+    }
+
+    App.show_last_window()
   }
 
   App.stars_actions = [

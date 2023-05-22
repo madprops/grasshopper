@@ -134,11 +134,7 @@ App.show_window = (mode) => {
   }
 }
 
-App.show_last_window = (filter = false) => {
-  if (filter) {
-    App.do_item_filter(App.last_window_mode)
-  }
-
+App.show_last_window = () => {
   App.raise_window(App.last_window_mode)
 }
 
