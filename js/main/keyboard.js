@@ -215,7 +215,7 @@ App.setup_keyboard = () => {
 
     if (!App.on_item_window()) {
       if (e.key === `Escape`) {
-        App.show_first_window()
+        App.show_last_window()
         e.preventDefault()
         return
       }
