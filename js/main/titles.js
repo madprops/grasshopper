@@ -196,7 +196,6 @@ App.import_titles = () => {
 App.check_title_editor = () => {
   let url = DOM.el(`#title_editor_url`)
   let full = DOM.el(`#title_editor_refresh_url`)
-  console.log(App.title_editor_item.url)
 
   if (url.value.trim() !== App.title_editor_item.url) {
     full.classList.remove(`nodisplay`)
