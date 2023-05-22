@@ -284,8 +284,9 @@ App.update_star_editor_info = () => {
 App.remove_stars = (item, force = false) => {
   let active = App.get_active_items(`stars`, item)
   let ids = active.map(x => x.id)
+  let s = App.plural(ids.length, `Remove this star?`, `Remove these stars? (${ids.length})`)
 
-  App.show_confirm(`Remove these stars? (${ids.length})`, () => {
+  App.show_confirm(s, () => {
     App.do_remove_stars(ids)
     App.dehighlight(`stars`)
   }, () => {
