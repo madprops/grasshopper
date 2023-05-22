@@ -49,8 +49,6 @@ App.setup_tabs = () => {
         item.title = cinfo.title
 
         if (!App.get_title(item.url)) {
-          // Update only the title & text
-          item.title = cinfo.title
           App.set_item_text(item)
         }
 
