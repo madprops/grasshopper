@@ -2,8 +2,8 @@ App.setup_tabs = () => {
   App.tabs_filter_modes = [
     [`pins`, `Pinned`],
     [`playing`, `Playing`],
-    [`muted`, `Muted`],
     [`normal`, `Normal`],
+    [`title`, `Has Title`],
     [`suspended`, `Suspended`],
     [`duplicates`, `Duplicates`],
     [`http`, `^ http:`],
@@ -45,8 +45,7 @@ App.setup_tabs = () => {
       if (keys.length === 1 && keys[0] === `title`) {
         let item = App.get_item_by_id(`tabs`, id)
 
-        // Check for fixed title
-        if (!App.get_title(item.url)) {
+        if (!item.custom_title) {
           // Update only the title & text
           item.title = cinfo.title
           App.set_item_text(item)

@@ -300,16 +300,16 @@ App.do_item_filter = async (mode) => {
         match = App.tab_is_normal(item)
       }
       else if (filter_mode === `playing`) {
-        match = item.audible
+        match = item.audible || item.muted
       }
       else if (filter_mode === `pins`) {
         match = item.pinned
       }
-      else if (filter_mode === `muted`) {
-        match = item.muted
-      }
       else if (filter_mode === `suspended`) {
         match = item.discarded
+      }
+      else if (filter_mode === `title`) {
+        match = item.custom_title
       }
       else if (filter_mode === `images`) {
         match = item.image
@@ -631,12 +631,14 @@ App.process_info = (mode, info, exclude = [], o_item) => {
   let title = info.title || path
   let image = App.is_image(url)
   let video = App.is_video(url)
+  let custom_title = false
 
   if (mode === `tabs`) {
     let t = App.get_title(url)
 
     if (t) {
       title = t
+      custom_title = true
     }
   }
 
@@ -662,6 +664,7 @@ App.process_info = (mode, info, exclude = [], o_item) => {
     item.audible = info.audible
     item.muted = info.mutedInfo.muted
     item.discarded = info.discarded
+    item.custom_title = custom_title
   }
 
   if (o_item) {
