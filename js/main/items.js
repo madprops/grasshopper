@@ -765,15 +765,15 @@ App.set_item_text = (item) => {
   if (item.mode === `tabs`) {
     let icons = []
 
-    if (item.discarded) {
+    if (item.discarded && App.settings.suspended_icon) {
       icons.push(App.settings.suspended_icon)
     }
 
-    if (item.audible) {
+    if (item.audible && App.settings.playing_icon) {
       icons.push(App.settings.playing_icon)
     }
 
-    if (item.muted) {
+    if (item.muted && App.settings.muted_icon) {
       icons.push(App.settings.muted_icon)
     }
 
