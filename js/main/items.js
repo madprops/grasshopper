@@ -631,7 +631,7 @@ App.process_info = (mode, info, exclude = [], o_item) => {
   }
 
   let path = App.remove_protocol(url)
-  let title = info.title
+  let title = info.title || ""
   let image = App.is_image(url)
   let video = App.is_video(url)
   let custom_title = ""
