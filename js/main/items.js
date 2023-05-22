@@ -311,6 +311,9 @@ App.do_item_filter = async (mode) => {
       else if (filter_mode === `title`) {
         match = item.custom_title
       }
+      else if (filter_mode === `star`) {
+        match = App.get_star_by_url(item.url)
+      }
       else if (filter_mode === `images`) {
         match = item.image
       }

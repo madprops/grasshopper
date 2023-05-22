@@ -3,9 +3,10 @@ App.setup_tabs = () => {
     [`pins`, `Pinned`],
     [`playing`, `Playing`],
     [`normal`, `Normal`],
-    [`title`, `Has Title`],
     [`suspended`, `Suspended`],
     [`duplicates`, `Duplicates`],
+    [`star`, `Has Star`],
+    [`title`, `Has Title`],
     [`http`, `^ http:`],
     [`https`, `^ https:`],
   ]
