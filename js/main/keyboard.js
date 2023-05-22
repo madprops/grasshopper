@@ -75,10 +75,20 @@ App.check_window_keyboard = (e) => {
       e.preventDefault()
       return
     }
+    else if (!App.get_filter(mode)) {
+      App.goto_top(mode)
+      e.preventDefault()
+      return
+    }
   }
   else if (e.key === `End`) {
     if (e.shiftKey) {
       App.highlight_to_edge(mode, `below`)
+      e.preventDefault()
+      return
+    }
+    else if (!App.get_filter(mode)) {
+      App.goto_bottom(mode)
       e.preventDefault()
       return
     }
