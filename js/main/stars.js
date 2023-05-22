@@ -256,7 +256,6 @@ App.add_or_edit_star = (item) => {
 }
 
 App.update_star_editor_info = () => {
-  let about = DOM.el(`#star_editor_about`)
   let info = DOM.el(`#star_editor_info`)
   let visits = DOM.el(`#star_editor_visits`)
   let visited = DOM.el(`#star_editor_visited`)
@@ -270,14 +269,12 @@ App.update_star_editor_info = () => {
     visits.textContent = App.star_edited.visits.toLocaleString()
     visited.textContent = App.nice_date(App.star_edited.date_last_visit)
     added.textContent = App.nice_date(App.star_edited.date_added)
-    about.classList.add(`hidden`)
     info.classList.remove(`hidden`)
     remove.classList.remove(`hidden`)
     DOM.el(`use`, icon).href.baseVal = `#star_solid_icon`
   }
   else {
     save.textContent = `Save`
-    about.classList.remove(`hidden`)
     info.classList.add(`hidden`)
     remove.classList.add(`hidden`)
     DOM.el(`use`, icon).href.baseVal = `#star_icon`

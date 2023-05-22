@@ -53,25 +53,18 @@
 
     <template id="template_star_editor">
       <div class="flex_column_center gap_4 editor_container" id="star_editor_container">
-
         <svg id="star_editor_icon" class="editor_icon">
           <use href="#star_icon">
         </svg>
 
-        <div id="star_editor_about" class="flex_column_center gap_2">
-          <div>Save a location as a star</div>
-          <div>Used to launch or focus</div>
-          <div>These are not bookmarks</div>
-        </div>
-
         <div class="flex_column_center gap_1">
-          <div>Title</div>
+          <div>Title of the star</div>
           <input type="text" autocomplete="off" spellcheck="false" id="star_editor_title" class="text editor_text" placeholder="Title of the star">
         </div>
 
         <div class="flex_column_center gap_1">
-          <div>URL</div>
-          <input type="text" autocomplete="off" spellcheck="false" id="star_editor_url" class="text editor_text" placeholder="URL of the star">
+          <div>URL of the star</div>
+          <textarea autocomplete="off" spellcheck="false" id="star_editor_url" class="text editor_textarea" placeholder="URL of the star" rows="4"></textarea>
         </div>
 
         <div id="star_editor_info" class="flex_column_center gap_1">
@@ -100,18 +93,18 @@
 
     <template id="template_title_editor">
       <div class="flex_column_center gap_4 editor_container" id="title_editor_container">
-        <div id="title_editor_about" class="flex_column_center gap_2">
-          <div>Set a fixed title for a URL</div>
+        <div class="flex_column_center">
+          <img class="editor_image" src="img/grasshopper.png" draggable="false" title="Welcome to the title editor">
         </div>
 
         <div class="flex_column_center gap_1">
-          <div>Title</div>
+          <div>Set a fixed title:</div>
           <input type="text" autocomplete="off" spellcheck="false" id="title_editor_title" class="text editor_text" placeholder="Title">
         </div>
 
         <div class="flex_column_center gap_1">
-          <div>URL</div>
-          <input type="text" autocomplete="off" spellcheck="false" id="title_editor_url" class="text editor_text" placeholder="URL">
+          <div>Match URLs that start with...</div>
+          <textarea autocomplete="off" spellcheck="false" id="title_editor_url" class="text editor_textarea" placeholder="URL" rows="4"></textarea>
         </div>
 
         <div class="flex_row_center gap_2">
