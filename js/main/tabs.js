@@ -387,7 +387,9 @@ App.close_tabs = (item, force = false) => {
     return
   }
 
-  App.show_confirm(`Close tabs? (${ids.length})`, () => {
+  let s = App.plural(ids.length, `Close this tab?`, `Close these tabs? (${ids.length})`)
+
+  App.show_confirm(s, () => {
     App.do_close_tabs(ids)
     App.dehighlight(`tabs`)
   }, () => {

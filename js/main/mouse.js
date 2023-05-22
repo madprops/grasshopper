@@ -11,7 +11,7 @@ App.setup_mouse = () => {
       App.right_click_x = e.clientX
     }
 
-    if (App.on_item_window()) {
+    if (App.on_item_window() && !App.popup_open) {
       if (!e.target.closest(`.${App.window_mode}_item`)) {
         return
       }
@@ -28,7 +28,7 @@ App.setup_mouse = () => {
   })
 
   DOM.ev(document, `mouseup`, (e) => {
-    if (App.on_item_window()) {
+    if (App.on_item_window() && !App.popup_open) {
       if (!e.target.closest(`.${App.window_mode}_item`)) {
         App.dehighlight(App.window_mode)
         return
@@ -79,7 +79,7 @@ App.setup_mouse = () => {
       }
     }
 
-    if (App.on_item_window()) {
+    if (App.on_item_window() && !App.popup_open) {
       if (e.target.closest(`.${App.window_mode}_item`)) {
         App.show_item_menu(App.get_cursor_item(App.window_mode, e), e.clientX, e.clientY)
         e.preventDefault()
@@ -88,7 +88,7 @@ App.setup_mouse = () => {
   })
 
   DOM.ev(document, `mouseover`, (e) => {
-    if (App.on_item_window()) {
+    if (App.on_item_window() && !App.popup_open) {
       if (e.target.closest(`.${App.window_mode}_item`)) {
         let item = App.get_cursor_item(App.window_mode, e)
         App.update_footer_info(item)
@@ -97,14 +97,14 @@ App.setup_mouse = () => {
   })
 
   DOM.ev(document, `mouseout`, (e) => {
-    if (App.on_item_window()) {
+    if (App.on_item_window() && !App.popup_open) {
       let item = App.get_selected(App.window_mode)
       App.update_footer_info(item)
     }
   })
 
   DOM.ev(document, `wheel`, (e) => {
-    if (App.on_item_window()) {
+    if (App.on_item_window() && !App.popup_open) {
       if (e.shiftKey) {
         let direction = e.deltaY > 0 ? `down` : `up`
 
@@ -123,7 +123,7 @@ App.setup_mouse = () => {
   // Drag
 
   DOM.ev(document, `dragstart`, (e) => {
-    if (App.window_mode !== `tabs`) {
+    if (App.window_mode !== `tabs` || App.popup_open) {
       return
     }
 
@@ -169,7 +169,7 @@ App.setup_mouse = () => {
   })
 
   DOM.ev(document, `dragend`, (e) => {
-    if (App.window_mode !== `tabs`) {
+    if (App.window_mode !== `tabs` || App.popup_open) {
       return
     }
 
@@ -191,7 +191,7 @@ App.setup_mouse = () => {
   })
 
   DOM.ev(document, `dragenter`, (e) => {
-    if (App.window_mode !== `tabs`) {
+    if (App.window_mode !== `tabs` || App.popup_open) {
       return
     }
 

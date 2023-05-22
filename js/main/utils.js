@@ -44,10 +44,10 @@ App.copy_to_clipboard = (text, what = ``) => {
 
 App.plural = (n, singular, plural) => {
   if (n === 1) {
-    return `${n.toLocaleString()} ${singular}`
+    return singular
   }
   else {
-    return `${n.toLocaleString()} ${plural}`
+    return plural
   }
 }
 

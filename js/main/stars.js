@@ -285,7 +285,7 @@ App.remove_stars = (item, force = false) => {
   let active = App.get_active_items(`stars`, item)
   let ids = active.map(x => x.id)
 
-  App.show_confirm(`Remove stars? (${ids.length})`, () => {
+  App.show_confirm(`Remove these stars? (${ids.length})`, () => {
     App.do_remove_stars(ids)
     App.dehighlight(`stars`)
   }, () => {
@@ -348,7 +348,7 @@ App.star_items = (item) => {
     return
   }
 
-  App.show_confirm(`Star items? (${items.length})`, () => {
+  App.show_confirm(`Star these items? (${items.length})`, () => {
     for (let item of items) {
       App.star_item(item, false)
     }

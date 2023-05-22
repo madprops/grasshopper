@@ -1587,9 +1587,7 @@ App.launch_items = (item) => {
     return
   }
 
-  let s = App.plural(items.length, `item`, `items`)
-
-  App.show_confirm(`Launch ${s}?`, () => {
+  App.show_confirm(`Launch these items ${items.length}?`, () => {
     for (let item of items) {
       App.launch_item(item, false)
     }

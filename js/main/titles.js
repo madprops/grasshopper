@@ -84,7 +84,7 @@ App.title_editor_save = () => {
 }
 
 App.remove_title = () => {
-  App.show_confirm(`Remove title?`, () => {
+  App.show_confirm(`Remove this title?`, () => {
     let url = DOM.el(`#title_editor_url`).value.trim()
 
     if (url) {
