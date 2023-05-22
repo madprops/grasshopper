@@ -43,6 +43,13 @@ App.check_window_keyboard = (e) => {
       e.preventDefault()
       return
     }
+    else if (e.key === `a`) {
+      if (!App.get_filter(mode)) {
+        App.highlight_items(mode)
+        e.preventDefault()
+        return
+      }
+    }
   }
 
   if (e.key === `Escape`) {
@@ -117,7 +124,7 @@ App.check_window_keyboard = (e) => {
     return
   }
   else if (e.key === `Delete`) {
-    if (!App.filter_is_focused()) {
+    if (!App.get_filter(mode)) {
       if (mode === `tabs`) {
         App.close_tabs()
       }
