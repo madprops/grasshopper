@@ -60,7 +60,7 @@ App.setup_window_mouse = (mode) => {
   })
 
   DOM.ev(container, `contextmenu`, (e) => {
-    if (App.right_click_down) {
+    if (App.settings.mouse_gestures && App.right_click_down) {
       let diff = Math.abs(e.clientY - App.right_click_pos)
 
       if (diff > App.gesture_threshold) {
