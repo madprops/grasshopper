@@ -729,6 +729,12 @@ App.remove_title = () => {
       App.stor_save_titles()
       App.apply_titles(url, true)
       App.show_last_window()
+
+      if (App.tabs_filter_mode === `title`) {
+        setTimeout(() => {
+          App.do_item_filter(`tabs`)
+        }, 100)
+      }
     }
   })
 }
@@ -743,10 +749,6 @@ App.apply_titles = (url) => {
       App.refresh_tab(item.id)
     }
   }
-
-  setTimeout(() => {
-    App.do_item_filter(`tabs`)
-  }, 100)
 }
 
 App.get_title = (item_url) => {
