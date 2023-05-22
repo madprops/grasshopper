@@ -63,7 +63,7 @@ App.setup_window_mouse = (mode) => {
     if (App.right_click_down) {
       let diff = Math.abs(e.clientY - App.right_click_pos)
 
-      if (diff >= App.scroll_gesture_distance) {
+      if (diff > App.scroll_gesture_distance) {
         if (e.clientY < App.right_click_pos) {
           App.goto_top(mode)
         }
