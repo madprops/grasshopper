@@ -116,6 +116,10 @@ App.setup_tabs = () => {
     DOM.ev(DOM.el(`#title_editor_remove`), `click`, () => {
       App.remove_title()
     })
+
+    DOM.ev(DOM.el(`#title_editor_full_url`), `click`, () => {
+      App.title_editor_full_url()
+    })
   },
   on_x: () => {
     App.show_last_window()
@@ -680,22 +684,25 @@ App.get_active_tab = async () => {
 }
 
 App.show_title_editor = (item) => {
+  App.title_editor_item = item
   let title = item.title
-  let t = App.get_title(item.url)
+  let title_match = App.get_title(item.url)
   let remove = DOM.el(`#title_editor_remove`)
   let save = DOM.el(`#title_editor_save`)
+  let url = item.url
 
-  if (t) {
+  if (title_match) {
     remove.classList.remove(`hidden`)
     save.textContent = `Update`
-    title = t
+    title = title_match.title
+    url = title_match.url
   }
   else {
     remove.classList.add(`hidden`)
     save.textContent = `Save`
   }
 
-  DOM.el(`#title_editor_url`).value = item.url
+  DOM.el(`#title_editor_url`).value = url
   DOM.el(`#title_editor_title`).value = title
   App.show_window(`title_editor`)
   DOM.el(`#title_editor_title`).focus()
@@ -725,6 +732,7 @@ App.title_editor_save = () => {
     return
   }
 
+  App.titles = App.titles.filter(x => !x.url.startsWith(url))
   App.titles.unshift({url: url, title: title})
 
   if (App.titles.length > App.max_titles) {
@@ -735,7 +743,7 @@ App.title_editor_save = () => {
 
   // Apply title to existing items
   for (let item of App.get_items(`tabs`)) {
-    if (url.startsWith(item.url)) {
+    if (item.url.startsWith(url)) {
       App.refresh_tab(item.id)
     }
   }
@@ -743,15 +751,19 @@ App.title_editor_save = () => {
   App.show_last_window()
 }
 
+App.title_editor_full_url = () => {
+  DOM.el(`#title_editor_url`).value = App.title_editor_item.url
+}
+
 App.remove_title = () => {
   DOM.el(`#title_editor_title`).value = ``
   App.title_editor_save()
 }
 
-App.get_title = (url) => {
-  for (let item of App.titles) {
-    if (url.startsWith(item.url)) {
-      return item.title
+App.get_title = (item_url) => {
+  for (let title of App.titles) {
+    if (item_url.startsWith(title.url)) {
+      return title
     }
   }
 }

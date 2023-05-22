@@ -637,10 +637,10 @@ App.process_info = (mode, info, exclude = [], o_item) => {
   let custom_title = false
 
   if (mode === `tabs`) {
-    let t = App.get_title(url)
+    let title_match = App.get_title(url)
 
-    if (t) {
-      title = t
+    if (title_match) {
+      title = title_match.title
       custom_title = true
     }
   }
