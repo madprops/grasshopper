@@ -9,12 +9,20 @@ App.setup_closed = () => {
 }
 
 App.get_closed = async () => {
-  let ans = await browser.sessions.getRecentlyClosed({
-    maxResults: App.max_closed
-  })
+  App.log(`Getting closed`)
+  let results
 
-  let items = ans.map(x => x.tab)
-  return items
+  try {
+    results = await browser.sessions.getRecentlyClosed({
+      maxResults: App.max_closed
+    })
+  }
+  catch (err) {
+    App.log(err, `error`)
+    return
+  }
+
+  return results.map(x => x.tab)
 }
 
 App.closed_action = (item) => {

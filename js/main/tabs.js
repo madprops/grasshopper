@@ -98,6 +98,7 @@ App.tabs_check = () => {
 }
 
 App.get_tabs = async () => {
+  App.log(`Getting tabs`)
   let tabs
 
   try {

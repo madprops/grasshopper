@@ -13,13 +13,22 @@ App.history_time = () => {
 }
 
 App.get_history = async (text = ``) => {
-  let items = await browser.history.search({
-    text: text,
-    maxResults: App.history_max_results,
-    startTime: App.history_time()
-  })
+  App.log(`Getting history`)
+  let results
 
-  return items
+  try {
+    results = await browser.history.search({
+      text: text,
+      maxResults: App.history_max_results,
+      startTime: App.history_time()
+    })
+  }
+  catch (err) {
+    App.log(err, `error`)
+    return
+  }
+
+  return results
 }
 
 App.history_action = (item) => {

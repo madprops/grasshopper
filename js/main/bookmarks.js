@@ -25,7 +25,16 @@ App.setup_bookmarks = () => {
 }
 
 App.get_bookmarks = async () => {
-  let bookmarks = await browser.bookmarks.search({})
+  App.log(`Getting bookmarks`)
+  let bookmarks
+
+  try {
+    bookmarks = await browser.bookmarks.search({})
+  }
+  catch (err) {
+    App.log(err, `error`)
+    return
+  }
 
   bookmarks.sort((a, b) => {
     return a.dateAdded > b.dateAdded ? -1 : 1

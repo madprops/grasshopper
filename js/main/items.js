@@ -1751,7 +1751,6 @@ App.insert_item = (mode, info) => {
 
     App.get_items(mode).unshift(item)
     DOM.el(`#${mode}_container`).prepend(item.element)
-    App.check_filter(mode)
   }
 
   App.update_footer_count(mode)
@@ -1793,12 +1792,6 @@ App.item_action = (item, close = true) => {
 
 App.on_item_window = (mode = App.window_mode) => {
   return App.item_order.includes(mode)
-}
-
-App.check_filter = (mode) => {
-  if (App.get_filter(mode)) {
-    App.do_item_filter(mode)
-  }
 }
 
 App.copy_footer = (mode) => {
