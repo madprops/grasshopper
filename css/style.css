@@ -305,6 +305,7 @@ svg {
   flex-direction: column;
   align-items: center;
   justify-content: center;
+  flex-grow: 1;
 }
 
 .flex_row_center {
@@ -312,6 +313,7 @@ svg {
   flex-direction: row;
   align-items: center;
   justify-content: center;
+  flex-grow: 1;
 }
 
 .settings_container {
@@ -364,6 +366,16 @@ svg {
 .settings_checkbox {
   width: 1.07rem;
   height: 1.07rem;
+}
+
+.settings_prev {
+  margin-right: auto;
+  margin-left: 0.5rem;
+}
+
+.settings_next {
+  margin-left: auto;
+  margin-right: 0.5rem;
 }
 
 .gap_1 {

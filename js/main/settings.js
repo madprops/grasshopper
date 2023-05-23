@@ -235,9 +235,11 @@ App.setup_settings = () => {
 }
 
 App.add_settings_switchers = (category) => {
-  let title = DOM.el(`.settings_title`, DOM.el(`#window_settings_${category}`))
+  let win = DOM.el(`#window_settings_${category}`)
+  let title = DOM.el(`.settings_title`, win)
+  let close = DOM.create(`div`, `button settings_close_button`)
 
-  let prev = DOM.create(`div`, `button`)
+  let prev = DOM.create(`div`, `button settings_prev`)
   prev.textContent = `<`
   title.before(prev)
 
@@ -245,7 +247,7 @@ App.add_settings_switchers = (category) => {
     App.show_prev_settings()
   })
 
-  let next = DOM.create(`div`, `button`)
+  let next = DOM.create(`div`, `button settings_next`)
   next.textContent = `>`
 
   DOM.ev(next, `click`, () => {
@@ -254,6 +256,10 @@ App.add_settings_switchers = (category) => {
 
   DOM.ev(title, `click`, () => {
     App.show_settings_menu(title)
+  })
+
+  DOM.ev(close, `click`, () => {
+    App.hide_current_window()
   })
 
   title.after(next)
