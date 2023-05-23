@@ -133,6 +133,7 @@ body, html {
   user-select: none;
   outline: 1px solid var(--alt_color_1);
   min-width: 1.6rem;
+  border-radius: 5px;
 }
 
 .button:hover {
@@ -380,10 +381,6 @@ svg {
 
 .gap_4 {
   gap: 2rem;
-}
-
-.bigger {
-  font-size: 1.1rem;
 }
 
 #settings_item_order {
