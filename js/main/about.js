@@ -50,7 +50,7 @@ App.setup_about = () => {
       }
       else if (image.classList.contains(`invert`)) {
         image.classList.remove(`invert`)
-        App.show_alert("Stop it!", 1000)
+        App.show_alert(`Stop it!`, 1000)
       }
       else {
         image.classList.add(`hue_rotate`)
