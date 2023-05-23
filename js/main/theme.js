@@ -21,7 +21,7 @@ App.apply_theme = () => {
     App.set_css_var(`alt_background`, alt_background)
 
     App.set_css_var(`font_size`, App.settings.font_size + `px`)
-    App.set_css_var(`font`, App.settings.font)
+    App.set_css_var(`font`, `${App.settings.font}, sans-serif`)
 
     let w = `${(App.settings.width / 100) * 800}px`
     App.set_css_var(`width`, w)
