@@ -600,6 +600,7 @@ App.process_info = (mode, info, exclude = [], o_item) => {
   }
 
   try {
+    // Check if valid URL
     decodeURI(info.url)
   }
   catch (err) {
