@@ -81,10 +81,6 @@ App.create_window = (args) => {
   w.show = (scroll = true) => {
     if (!args.persistent) {
       content.innerHTML = content_html
-
-      if (top_html) {
-        top.innerHTML = top_html
-      }
     }
 
     w.check_setup()

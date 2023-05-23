@@ -73,7 +73,7 @@ body, html {
 
 .colored_top {
   background-color: var(--alt_color_1);
-  margin-bottom: 0.8rem;
+  margin-bottom: 1.8rem;
 }
 
 .window_top_center {
@@ -586,7 +586,6 @@ input::placeholder {
 }
 
 .editor_container {
-  padding-top: 1rem;
   padding-bottom: 2rem;
   align-items: stretch;
   justify-content: center;

@@ -202,14 +202,14 @@ App.setup_settings = () => {
     })
 
     App.add_settings_switchers(`basic`)
-  }, persistent: false})
+  }, persistent: false, colored_top: true})
 
   App.create_window({id: `settings_theme`, setup: () => {
     App.start_theme_settings()
     App.add_settings_switchers(`theme`)
     let container = DOM.el(`#settings_theme_container`)
     App.settings_setup_text(container)
-  }, persistent: false})
+  }, persistent: false, colored_top: true})
 
   App.create_window({id: `settings_icons`, setup: () => {
     let container = DOM.el(`#settings_icons_container`)
@@ -220,7 +220,7 @@ App.setup_settings = () => {
     })
 
     App.add_settings_switchers(`icons`)
-  }, persistent: false})
+  }, persistent: false, colored_top: true})
 
   App.create_window({id: `settings_media`, setup: () => {
     let container = DOM.el(`#settings_media_container`)
@@ -231,7 +231,7 @@ App.setup_settings = () => {
     })
 
     App.add_settings_switchers(`media`)
-  }, persistent: false})
+  }, persistent: false, colored_top: true})
 }
 
 App.add_settings_switchers = (category) => {
