@@ -37,9 +37,6 @@ App.setup_stars = () => {
     })
   },
   colored_top: true,
-  on_x: () => {
-    on_close()
-  },
   after_show: () => {
     App.update_star_editor_info()
   },

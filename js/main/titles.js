@@ -23,12 +23,6 @@ App.setup_title_editor = () => {
     })
   },
   colored_top: true,
-  on_x: () => {
-    App.show_last_window()
-  },
-  after_show: () => {
-    //
-  },
   on_hide: () => {
     App.show_last_window()
   }})
