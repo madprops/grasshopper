@@ -8,7 +8,7 @@ App.create_media_windows = (what) => {
     let media = DOM.el(`#${what}`)
     let buttons = DOM.el(`#${what}_buttons`)
 
-    let prev = DOM.create(`div`, `button`, `${what}_prev`)
+    let prev = DOM.create(`div`, `button arrow_prev`, `${what}_prev`)
     prev.textContent = `<`
     prev.title = `Go To Previous (Left)`
     buttons.append(prev)
@@ -29,7 +29,7 @@ App.create_media_windows = (what) => {
     close.title = `Close this window`
     buttons.append(close)
 
-    let next = DOM.create(`div`, `button`, `${what}_next`)
+    let next = DOM.create(`div`, `button arrow_next`, `${what}_next`)
     next.textContent = `>`
     next.title = `Go To Next (Right)`
     buttons.append(next)

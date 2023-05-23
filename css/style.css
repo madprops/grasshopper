@@ -366,16 +366,6 @@ svg {
   height: 1.07rem;
 }
 
-.settings_prev {
-  margin-right: auto;
-  margin-left: 0.5rem;
-}
-
-.settings_next {
-  margin-left: auto;
-  margin-right: 0.5rem;
-}
-
 .gap_1 {
   gap: 0.5rem;
 }
@@ -579,6 +569,16 @@ input::placeholder {
   width: 95%;
   max-height: 100%;
   object-fit: contain;
+}
+
+.arrow_prev {
+  margin-right: auto;
+  margin-left: 0.5rem;
+}
+
+.arrow_next {
+  margin-left: auto;
+  margin-right: 0.5rem;
 }
 
 #window_top_image {

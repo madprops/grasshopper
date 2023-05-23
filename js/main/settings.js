@@ -239,7 +239,7 @@ App.add_settings_switchers = (category) => {
   let title = DOM.el(`.settings_title`, win)
   let close = DOM.create(`div`, `button settings_close_button`)
 
-  let prev = DOM.create(`div`, `button settings_prev`)
+  let prev = DOM.create(`div`, `button arrow_prev`)
   prev.textContent = `<`
   title.before(prev)
 
@@ -247,7 +247,7 @@ App.add_settings_switchers = (category) => {
     App.show_prev_settings()
   })
 
-  let next = DOM.create(`div`, `button settings_next`)
+  let next = DOM.create(`div`, `button arrow_next`)
   next.textContent = `>`
 
   DOM.ev(next, `click`, () => {
