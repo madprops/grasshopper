@@ -505,7 +505,7 @@ App.on_tab_activated = async (info) => {
     return
   }
 
-  await App.refresh_tab(e.tabId, true)
+  await App.refresh_tab(info.tabId, true)
 }
 
 App.move_tabs = async (item, window_id) => {
