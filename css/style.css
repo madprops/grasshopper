@@ -305,7 +305,6 @@ svg {
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  flex-grow: 1;
 }
 
 .flex_row_center {
@@ -313,7 +312,6 @@ svg {
   flex-direction: row;
   align-items: center;
   justify-content: center;
-  flex-grow: 1;
 }
 
 .settings_container {
@@ -644,4 +642,8 @@ select {
 
 .underlined {
   text-decoration: underline;
+}
+
+.grow {
+  flex-grow: 1
 }
