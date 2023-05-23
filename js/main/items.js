@@ -1754,7 +1754,16 @@ App.insert_item = (mode, info) => {
 }
 
 App.get_mode_name = (mode) => {
-  return App.capitalize(mode)
+  let name
+
+  if (mode === `bookmarks`) {
+    name = `BMarks`
+  }
+  else {
+    name = App.capitalize(mode)
+  }
+
+  return name
 }
 
 App.item_action = (item, close = true) => {
