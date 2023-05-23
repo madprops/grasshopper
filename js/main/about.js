@@ -64,12 +64,14 @@ App.setup_about = () => {
     let s = `Grasshopper v${manifest.version}`
     DOM.el(`#about_name`).textContent = s
     App.update_about_info()
-  }, after_show: () => {
+  },
+  after_show: () => {
     App.start_about_info()
-  }, on_hide: () => {
+  },
+  on_hide: () => {
     App.stop_about_info()
     App.show_last_window()
-  }, persistent: false})
+  }, persistent: false, colored_top: true})
 }
 
 App.update_about_info = () => {
