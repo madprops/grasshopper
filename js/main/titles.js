@@ -85,7 +85,7 @@ App.remove_title = () => {
       App.show_last_window()
 
       if (App.tabs_filter_mode === `title`) {
-        App.tabs_item_filter.call()
+        App.call_filter(`tabs`)
       }
     }
   })

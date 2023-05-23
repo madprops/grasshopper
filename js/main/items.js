@@ -895,7 +895,7 @@ App.show_item_window = async (mode, cycle = false) => {
   let value = App.get_last_window_value(cycle)
   App.windows[mode].show()
   App.empty_footer_info()
-  App[`${mode}_item_filter`].cancel()
+  App.cancel_filter(mode)
   DOM.el(`#${mode}_container`).innerHTML = ``
   App.set_filter(mode, value, false)
 
@@ -994,7 +994,7 @@ App.setup_item_window = (mode) => {
     filter.placeholder = `Type to filter`
 
     DOM.ev(filter, `input`, () => {
-      App[`${mode}_item_filter`].call()
+      App.call_filter(mode)
     })
 
     //
@@ -1247,6 +1247,14 @@ App.set_filter = (mode, text, action = true) => {
   if (action) {
     App.do_item_filter(mode)
   }
+}
+
+App.call_filter = (mode) => {
+  App[`${mode}_item_filter`].call()
+}
+
+App.cancel_filter = (mode) => {
+  App[`${mode}_item_filter`].cancel()
 }
 
 App.get_filter = (mode, trim = true) => {

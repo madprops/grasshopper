@@ -3,7 +3,7 @@ App.setup_stars = () => {
     let mode = App.last_window_mode
 
     if (App[`${mode}_filter_mode`] === `star`) {
-      App[`${mode}_item_filter`].call()
+      App.call_filter(mode)
     }
 
     App.show_last_window()
