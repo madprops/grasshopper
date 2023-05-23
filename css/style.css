@@ -640,10 +640,6 @@ select {
 	font-size: 1rem;
 }
 
-.underlined {
-  text-decoration: underline;
-}
-
 .grow {
   flex-grow: 1
 }
