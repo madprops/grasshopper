@@ -3,6 +3,7 @@
   --widget_padding_hor: 0.3rem;
   --item_margin: 0.45rem;
   --item_margin_2: 0.65rem;
+  --border_radius: 5px;
 }
 
 @keyframes rotate {
@@ -133,7 +134,7 @@ body, html {
   user-select: none;
   outline: 1px solid var(--alt_color_1);
   min-width: 1.6rem;
-  border-radius: 5px;
+  border-radius: var(--border_radius);
 }
 
 .button:hover {
