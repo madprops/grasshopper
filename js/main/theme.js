@@ -79,7 +79,7 @@ App.random_theme = (mode) => {
 
 App.get_random_theme = (what) => {
   let background_color = App.colorlib[`get_${what}_color`]()
-  let text_color = App.colorlib.get_lighter_or_darker(background_color, App.theme_color_diff)
+  let text_color = App.colorlib.get_lighter_or_darker(background_color, App.color_diff(what))
 
   if (App.get_random_int(1, 3) === 3) {
     background_color = App.colorlib.get_lighter_or_darker(background_color, 0.22)
@@ -103,7 +103,8 @@ App.detect_theme = async () => {
       text_color = theme.colors.toolbar_text
     }
     else {
-      text_color = App.colorlib.get_lighter_or_darker(background_color, App.theme_color_diff)
+      let what = App.colorlib.is_dark(background_color) ? `dark` : `light`
+      text_color = App.colorlib.get_lighter_or_darker(background_color, App.color_diff(what))
     }
 
     let d2 = DOM.create(`div`, `hidden`)
@@ -120,4 +121,13 @@ App.detect_theme = async () => {
   }
 
   App.show_alert(`Theme couldn't be detected`)
+}
+
+App.color_diff = (what) => {
+  if (what === `dark`) {
+    return 0.8
+  }
+  else if (what === `light`) {
+    return 0.5
+  }
 }
