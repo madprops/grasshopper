@@ -643,3 +643,7 @@ select {
 .grow {
   flex-grow: 1
 }
+
+#window_top_about {
+  margin-bottom: 1rem;
+}
