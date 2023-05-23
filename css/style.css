@@ -35,6 +35,10 @@ body, html {
   background-color: var(--background_color);
 }
 
+#main {
+  user-select: none;
+}
+
 .window_main {
   position: fixed;
   display: none;
