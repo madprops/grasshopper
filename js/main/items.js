@@ -404,13 +404,6 @@ App.show_item_menu = (item, x, y) => {
     }
 
     items.push({
-      text: `Title`,
-      action: () => {
-        App.show_title_editor(item)
-      }
-    })
-
-    items.push({
       separator: true
     })
   }
@@ -429,6 +422,15 @@ App.show_item_menu = (item, x, y) => {
       App.star_items(item)
     }
   })
+
+  if (item.mode === `tabs`) {
+    items.push({
+      text: `Title`,
+      action: () => {
+        App.show_title_editor(item)
+      }
+    })
+  }
 
   if (!multiple) {
     items.push({
