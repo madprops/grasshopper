@@ -85,9 +85,7 @@ App.remove_title = () => {
       App.show_last_window()
 
       if (App.tabs_filter_mode === `title`) {
-        setTimeout(() => {
-          App.do_item_filter(`tabs`)
-        }, 100)
+        App.tabs_item_filter.call()
       }
     }
   })
