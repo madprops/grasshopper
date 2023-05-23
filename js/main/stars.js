@@ -32,6 +32,7 @@ App.setup_stars = () => {
       App.remove_star()
     })
   },
+  colored_top: true,
   on_x: () => {
     on_close()
   },

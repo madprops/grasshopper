@@ -24,7 +24,13 @@ App.create_window = (args) => {
   let top, top_html
 
   if (args.show_top) {
-    top = DOM.create(`div`, `window_top window_top_${args.align_top} window_top_${args.cls}`, `window_top_${args.id}`)
+    let extra_cls = ``
+
+    if (args.colored_top) {
+      extra_cls = ` colored_top`
+    }
+
+    top = DOM.create(`div`, `window_top window_top_${args.align_top} window_top_${args.cls}${extra_cls}`, `window_top_${args.id}`)
     top_html = App.get_template(`${args.id}_top`)
 
     if (top_html) {

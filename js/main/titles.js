@@ -18,6 +18,7 @@ App.setup_title_editor = () => {
       App.check_title_editor()
     })
   },
+  colored_top: true,
   on_x: () => {
     App.show_last_window()
   },

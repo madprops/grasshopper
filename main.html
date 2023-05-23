@@ -55,12 +55,12 @@
     <template id="template_star_editor">
       <div class="flex_column_center gap_4 editor_container" id="star_editor_container">
         <div class="flex_column_center gap_1">
-          <div>Title of the star:</div>
+          <div>Title of the star</div>
           <input type="text" autocomplete="off" spellcheck="false" id="star_editor_title" class="text editor_text" placeholder="Title of the star">
         </div>
 
         <div class="flex_column_center gap_1">
-          <div>URL of the star:</div>
+          <div>URL of the star</div>
           <textarea autocomplete="off" spellcheck="false" id="star_editor_url" class="text editor_text" placeholder="URL of the star" rows="4"></textarea>
         </div>
 
@@ -88,15 +88,19 @@
       </div>
     </template>
 
+    <template id="template_star_editor_top">
+      <div>Star Editor</div>
+    </template>
+
     <template id="template_title_editor">
       <div class="flex_column_center gap_4 editor_container" id="title_editor_container">
         <div class="flex_column_center gap_1">
-          <div>Set a fixed title:</div>
+          <div>Set a fixed title</div>
           <input type="text" autocomplete="off" spellcheck="false" id="title_editor_title" class="text editor_text" placeholder="Title">
         </div>
 
         <div class="flex_column_center gap_1">
-          <div>For URLs that start with:</div>
+          <div>For URLs that start with</div>
           <textarea autocomplete="off" spellcheck="false" id="title_editor_url" class="text editor_text" placeholder="URL" rows="4"></textarea>
         </div>
 
@@ -106,6 +110,10 @@
           <div id="title_editor_save" class="button">Save</div>
         </div>
       </div>
+    </template>
+
+    <template id="template_title_editor_top">
+      <div>Title Editor</div>
     </template>
 
     <template id="template_settings_basic">

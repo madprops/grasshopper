@@ -71,6 +71,11 @@ body, html {
   padding-bottom: 0.707rem;
 }
 
+.colored_top {
+  background-color: var(--alt_color_1);
+  margin-bottom: 0.8rem;
+}
+
 .window_top_center {
   justify-content: center;
 }
@@ -83,7 +88,7 @@ body, html {
   position: absolute;
   top: 0;
   right: 0;
-  padding-top: 0.42rem;
+  padding-top: 0.3rem;
   padding-bottom: 0.66rem;
   padding-left: 1rem;
   padding-right: 0.88rem;
@@ -625,4 +630,8 @@ textarea,
 select {
 	font-family: var(--font);
 	font-size: 1rem;
+}
+
+.underlined {
+  text-decoration: underline;
 }
