@@ -86,7 +86,7 @@ App.create_media_windows = (what) => {
     App.hide_media_elements(what)
     App.stop_media_timeout(what)
     App.raise_window(item.mode)
-  }})
+  }, colored_top: true})
 }
 
 App.show_media = (what, item) => {
