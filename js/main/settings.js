@@ -488,7 +488,7 @@ App.show_settings_menu = (btn) => {
   items.push({
     text: `Close`,
     action: () => {
-      App.show_first_window()
+      App.hide_current_window()
     }
   })
 

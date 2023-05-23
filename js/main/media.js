@@ -67,7 +67,7 @@ App.create_media_windows = (what) => {
     })
 
     DOM.ev(close, `click`, () => {
-      App.show_last_window()
+      App.hide_current_window()
     })
 
     DOM.ev(DOM.el(`#${what}_url`), `click`, () => {

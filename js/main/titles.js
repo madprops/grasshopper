@@ -19,7 +19,7 @@ App.setup_title_editor = () => {
     })
 
     DOM.ev(DOM.el(`#title_editor_close`), `click`, () => {
-      App.show_last_window()
+      App.hide_current_window()
     })
   },
   colored_top: true,

@@ -38,7 +38,7 @@ App.setup_about = () => {
     })
 
     DOM.ev(DOM.el(`#about_close`), `click`, () => {
-      App.show_last_window()
+      App.hide_current_window()
     })
 
     let image = DOM.el(`#about_image`)
@@ -111,8 +111,6 @@ App.next_about_info = (manual = true) => {
 }
 
 App.start_about_info = () => {
-  App.stop_about_info()
-
   DOM.el(`#about_info`).classList.remove(`hidden`)
   DOM.el(`#about_image`).classList.remove(`hidden`)
   DOM.el(`#about_info_full`).classList.add(`hidden`)

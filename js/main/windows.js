@@ -147,3 +147,7 @@ App.window_goto_bottom = (mode) => {
   let el = DOM.el(`#window_content_${mode}`)
   el.scrollTop = el.scrollHeight
 }
+
+App.hide_current_window = () => {
+  App.windows[App.window_mode].hide()
+}
