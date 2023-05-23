@@ -12,11 +12,11 @@ App.setup_stars = () => {
   App.stars_actions = [
     {text: `--separator--`},
 
-    {text: `Export Data`, action: () => {
+    {text: `Export`, action: () => {
       App.export_stars()
     }},
 
-    {text: `Import Data`, action: () => {
+    {text: `Import`, action: () => {
       App.import_stars()
     }},
   ]

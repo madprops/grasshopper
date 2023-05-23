@@ -957,6 +957,7 @@ App.setup_item_window = (mode) => {
     })
 
     footer.append(footer_info)
+    App.setup_window_mouse(mode)
 
     //
 
@@ -1060,15 +1061,15 @@ App.setup_item_window = (mode) => {
 
     let top_actions = []
 
-    top_actions.push({text: `Goto Top`, action: () => {
+    top_actions.push({text: `Top`, action: () => {
       App.goto_top(mode)
     }})
 
-    top_actions.push({text: `Goto Bottom`, action: () => {
+    top_actions.push({text: `Bottom`, action: () => {
       App.goto_bottom(mode)
     }})
 
-    top_actions.push({text: `Select All`, action: () => {
+    top_actions.push({text: `Select`, action: () => {
       App.highlight_items(mode)
     }})
 
@@ -1083,7 +1084,13 @@ App.setup_item_window = (mode) => {
       App.show_actions(mode)
     })
 
+
+
     //
+
+    if (mode === `tabs`) {
+      App.setup_drag(mode, container)
+    }
 
     // Append the top components
     let left_top = DOM.create(`div`, `item_top_left`)

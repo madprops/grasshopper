@@ -367,11 +367,7 @@ App.restore_all_default_settings = (type) => {
       App.settings[key] = App.default_settings[key].value
     }
 
-    App.get_item_order()
-    App.make_item_order()
-    App.apply_theme()
-    App.stor_save_settings()
-    App.show_window(`settings_basic`)
+    App.restart_settings()
   })
 }
 
@@ -471,5 +467,56 @@ App.show_settings_menu = (btn) => {
     }
   })
 
+  items.push({
+    text: `Export`,
+    action: () => {
+      App.export_settings()
+    }
+  })
+
+  items.push({
+    text: `Import`,
+    action: () => {
+      App.import_settings()
+    }
+  })
+
   NeedContext.show_on_element(btn, items)
+}
+
+App.export_settings = () => {
+  App.show_textarea(`Copy this to import it later`, JSON.stringify(App.settings, null, 2))
+}
+
+App.import_settings = () => {
+  App.show_input(`Paste the data text here`, `Import`, (text) => {
+    if (!text) {
+      return
+    }
+
+    let json
+
+    try {
+      json = JSON.parse(text)
+    }
+    catch (err) {
+      App.show_alert(`Invalid JSON`)
+      return
+    }
+
+    if (json) {
+      App.show_confirm(`Use this data?`, () => {
+        App.settings = json
+        App.restart_settings()
+      })
+    }
+  })
+}
+
+App.restart_settings = () => {
+  App.get_item_order()
+  App.make_item_order()
+  App.apply_theme()
+  App.stor_save_settings()
+  App.show_window(`settings_basic`)
 }

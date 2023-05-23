@@ -140,21 +140,21 @@ App.get_title_items = () => {
   let items = []
 
   items.push({
-    text: `Remove All`,
+    text: `Remove`,
     action: () => {
       App.remove_all_titles()
     }
   })
 
   items.push({
-    text: `Export Data`,
+    text: `Export`,
     action: () => {
       App.export_titles()
     }
   })
 
   items.push({
-    text: `Import Data`,
+    text: `Import`,
     action: () => {
       App.import_titles()
     }
