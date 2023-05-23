@@ -602,10 +602,6 @@ input::placeholder {
   padding: 0.35rem;
 }
 
-.editor_image {
-  width: 33%;
-}
-
 #alert_message {
   max-width: 90vw;
   user-select: text;
@@ -624,8 +620,4 @@ input::placeholder {
 
 .nodisplay {
   display: none;
-}
-
-.popup_image {
-  width: 5rem;
 }

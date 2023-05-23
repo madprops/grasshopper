@@ -262,7 +262,6 @@ App.update_star_editor_info = () => {
   let added = DOM.el(`#star_editor_added`)
   let save = DOM.el(`#star_editor_save`)
   let remove = DOM.el(`#star_editor_remove`)
-  let icon = DOM.el(`#star_editor_icon`)
 
   if (App.star_edited) {
     save.textContent = `Update`
@@ -271,13 +270,11 @@ App.update_star_editor_info = () => {
     added.textContent = App.nice_date(App.star_edited.date_added)
     info.classList.remove(`hidden`)
     remove.classList.remove(`hidden`)
-    DOM.el(`use`, icon).href.baseVal = `#star_solid_icon`
   }
   else {
     save.textContent = `Save`
     info.classList.add(`hidden`)
     remove.classList.add(`hidden`)
-    DOM.el(`use`, icon).href.baseVal = `#star_icon`
   }
 }
 
