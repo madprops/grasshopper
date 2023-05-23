@@ -93,10 +93,6 @@ App.capitalize = (s) => {
   return s.charAt(0).toUpperCase() + s.slice(1)
 }
 
-App.is_http = (item) => {
-  return item.protocol === `http:` || item.protocol === `https:`
-}
-
 App.nice_date = (date = Date.now()) => {
   return dateFormat(date, `dd/mmm/yy | h:MM:ss tt`)
 }

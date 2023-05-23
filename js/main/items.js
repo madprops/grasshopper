@@ -296,8 +296,14 @@ App.do_item_filter = async (mode) => {
       if (filter_mode === `all`) {
         match = true
       }
+      else if (filter_mode === `normal`) {
+        match = App.tab_is_normal(item)
+      }
       else if (filter_mode === `playing`) {
         match = item.audible || item.muted
+      }
+      else if (filter_mode === `pins`) {
+        match = item.pinned
       }
       else if (filter_mode === `suspended`) {
         match = item.discarded
@@ -313,12 +319,6 @@ App.do_item_filter = async (mode) => {
       }
       else if (filter_mode === `videos`) {
         match = item.video
-      }
-      else if (filter_mode === `http`) {
-        match = item.protocol === `http:`
-      }
-      else if (filter_mode === `https`) {
-        match = item.protocol === `https:`
       }
       else if (filter_mode === `duplicates`) {
         match = duplicates.includes(item)
@@ -599,14 +599,6 @@ App.process_info = (mode, info, exclude = [], o_item) => {
     return false
   }
 
-  try {
-    url_obj = new URL(info.url)
-    decodeURI(info.url)
-  }
-  catch (err) {
-    return false
-  }
-
   let url = App.format_url(info.url)
 
   if (exclude.includes(url)) {
@@ -634,7 +626,6 @@ App.process_info = (mode, info, exclude = [], o_item) => {
     path_lower: path.toLowerCase(),
     favicon: info.favIconUrl,
     mode: mode,
-    protocol: url_obj.protocol,
     window_id: info.windowId,
     session_id: info.sessionId,
     image: image,

@@ -1,15 +1,15 @@
 App.setup_tabs = () => {
   App.tabs_filter_modes = [
     [`--separator--`],
+    [`pins`, `Pins`],
+    [`normal`, `Normal`],
+    [`--separator--`],
     [`playing`, `Playing`],
     [`suspended`, `Suspended`],
     [`duplicates`, `Duplicates`],
     [`--separator--`],
     [`star`, `Has Star`],
     [`title`, `Has Title`],
-    [`--separator--`],
-    [`http`, `^ http:`],
-    [`https`, `^ https:`],
   ]
 
   App.tabs_actions = [
@@ -337,10 +337,6 @@ App.suspend_tabs = (item) => {
   let active = App.get_active_items(`tabs`, item)
 
   for (let tab of active) {
-    if (!App.is_http(tab)) {
-      continue
-    }
-
     if (tab.pinned || tab.audible) {
       warn = true
     }
