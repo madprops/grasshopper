@@ -64,14 +64,6 @@ App.title_editor_save = () => {
     return
   }
 
-  try {
-    new URL(url)
-  }
-  catch (err) {
-    App.show_alert(`Invalid URL`)
-    return
-  }
-
   App.titles = App.titles.filter(x => !x.url.startsWith(url))
   App.titles.unshift({url: url, title: title})
 
