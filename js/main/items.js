@@ -599,6 +599,13 @@ App.process_info = (mode, info, exclude = [], o_item) => {
     return false
   }
 
+  try {
+    decodeURI(info.url)
+  }
+  catch (err) {
+    return false
+  }
+
   let url = App.format_url(info.url)
 
   if (exclude.includes(url)) {
