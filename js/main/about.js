@@ -37,6 +37,10 @@ App.setup_about = () => {
       App.show_full_about_info()
     })
 
+    DOM.ev(DOM.el(`#about_close`), `click`, () => {
+      App.show_last_window()
+    })
+
     let image = DOM.el(`#about_image`)
 
     DOM.ev(image, `click`, () => {

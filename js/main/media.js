@@ -24,10 +24,10 @@ App.create_media_windows = (what) => {
     star.append(star_icon)
     buttons.append(star)
 
-    let copy = DOM.create(`div`, `button`, `${what}_copy`)
-    copy.textContent = `Copy`
-    copy.title = `Copy URL (Up)`
-    buttons.append(copy)
+    let close = DOM.create(`div`, `button`, `${what}_close`)
+    close.textContent = `Close`
+    close.title = `Close this window`
+    buttons.append(close)
 
     let next = DOM.create(`div`, `button`, `${what}_next`)
     next.textContent = `>`
@@ -66,7 +66,11 @@ App.create_media_windows = (what) => {
       App.star_media(what)
     })
 
-    DOM.ev(copy, `click`, () => {
+    DOM.ev(close, `click`, () => {
+      App.show_last_window()
+    })
+
+    DOM.ev(DOM.el(`#${what}_url`), `click`, () => {
       App.media_copy(what)
     })
 

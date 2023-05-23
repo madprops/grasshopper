@@ -17,6 +17,10 @@ App.setup_title_editor = () => {
     DOM.ev(DOM.el(`#title_editor_url`), `input`, () => {
       App.check_title_editor()
     })
+
+    DOM.ev(DOM.el(`#title_editor_close`), `click`, () => {
+      App.show_last_window()
+    })
   },
   colored_top: true,
   on_x: () => {

@@ -89,7 +89,7 @@
     </template>
 
     <template id="template_star_editor_top">
-      <div>Star Editor</div>
+      <div id="star_editor_close" class="button">Star Editor</div>
     </template>
 
     <template id="template_title_editor">
@@ -113,17 +113,13 @@
     </template>
 
     <template id="template_title_editor_top">
-      <div>Title Editor</div>
+      <div class="flex_row_center gap_2">
+        <div id="title_editor_close" class="button">Title Editor</div>
+      </div>
     </template>
 
     <template id="template_settings_basic">
       <div id="settings_basic_container" class="settings_container">
-        <div class="flex_row_center gap_2">
-          <div class="settings_title button">Basic Settings</div>
-        </div>
-
-        <div class="separator"></div>
-
         <div class="settings_column" title="Dragging requires holding Ctrl to work">
           <div class="settings_label">Lock Drag</div>
           <input type="checkbox" class="settings_checkbox" id="settings_lock_drag" data-setting="lock_drag">
@@ -190,17 +186,13 @@
     </template>
 
     <template id="template_settings_basic_top">
-      <div>Settings</div>
+      <div class="flex_row_center gap_2">
+        <div class="settings_title button">Basic Settings</div>
+      </div>
     </template>
 
     <template id="template_settings_theme">
       <div id="settings_theme_container" class="settings_container">
-        <div class="flex_row_center gap_2">
-          <div class="settings_title button">Theme Settings</div>
-        </div>
-
-        <div class="separator"></div>
-
         <div class="settings_column">
           <div id="settings_dark_theme" class="button settings_button" title="Random dark theme">Dark Theme</div>
           <div id="settings_light_theme" class="button settings_button" title="Random light theme">Light Theme</div>
@@ -238,17 +230,13 @@
     </template>
 
     <template id="template_settings_theme_top">
-      <div>Settings</div>
+      <div class="flex_row_center gap_2">
+        <div class="settings_title button">Theme Settings</div>
+      </div>
     </template>
 
     <template id="template_settings_icons">
       <div id="settings_icons_container" class="settings_container">
-        <div class="flex_row_center gap_2">
-          <div class="settings_title button">Icon Settings</div>
-        </div>
-
-        <div class="separator"></div>
-
         <div class="settings_column" title="Icon to show on pinned tabs">
           <div class="settings_label">Pin Icon</div>
           <input type="text" autocomplete="off" spellcheck="false" id="settings_pin_icon" class="text settings_text text_smaller" data-setting="pin_icon">
@@ -281,17 +269,13 @@
     </template>
 
     <template id="template_settings_icons_top">
-      <div>Settings</div>
+      <div class="flex_row_center gap_2">
+        <div class="settings_title button">Icon Settings</div>
+      </div>
     </template>
 
     <template id="template_settings_media">
       <div id="settings_media_container" class="settings_container">
-        <div class="flex_row_center gap_2">
-          <div class="settings_title button">Media Settings</div>
-        </div>
-
-        <div class="separator"></div>
-
         <div class="settings_column" title="If this is enabled, the media viewer opens on Tabs">
           <div class="settings_label">Media Viewer<br>On Tabs</div>
           <input type="checkbox" class="settings_checkbox" id="settings_media_viewer_on_tabs" data-setting="media_viewer_on_tabs">
@@ -324,7 +308,9 @@
     </template>
 
     <template id="template_settings_media_top">
-      <div>Settings</div>
+      <div class="flex_row_center gap_2">
+        <div class="settings_title button">Media Settings</div>
+      </div>
     </template>
 
     <template id="template_about">
@@ -344,7 +330,7 @@
     </template>
 
     <template id="template_about_top">
-      <div>About</div>
+      <div id="about_close" class="button">About</div>
     </template>
 
     <template id="template_alert">
@@ -370,7 +356,7 @@
 
     <template id="template_image">
       <div class="flex_column_center gap_2">
-        <div id="image_url" class="media_url"></div>
+        <div id="image_url" class="media_url action"></div>
 
         <div id="image_container" class="media_container">
           <div id="image_loading" class="media_loading hidden"></div>
@@ -385,7 +371,7 @@
 
     <template id="template_video">
       <div class="flex_column_center gap_2">
-        <div id="video_url" class="media_url"></div>
+        <div id="video_url" class="media_url action"></div>
 
         <div id="video_container" class="media_container">
           <div id="video_loading" class="media_loading hidden"></div>

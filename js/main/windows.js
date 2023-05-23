@@ -37,21 +37,6 @@ App.create_window = (args) => {
       top.innerHTML = top_html
     }
 
-    if (args.close_button) {
-      let x = DOM.create(`div`, `window_x action`)
-      x.textContent = `x`
-      top.append(x)
-
-      DOM.ev(x, `click`, () => {
-        if (args.on_x) {
-          args.on_x()
-        }
-        else {
-          w.hide()
-        }
-      })
-    }
-
     el.append(top)
   }
 
@@ -81,6 +66,10 @@ App.create_window = (args) => {
   w.show = (scroll = true) => {
     if (!args.persistent) {
       content.innerHTML = content_html
+
+      if (top_html) {
+        top.innerHTML = top_html
+      }
     }
 
     w.check_setup()

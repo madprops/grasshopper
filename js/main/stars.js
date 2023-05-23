@@ -31,6 +31,10 @@ App.setup_stars = () => {
     DOM.ev(DOM.el(`#star_editor_remove`), `click`, () => {
       App.remove_star()
     })
+
+    DOM.ev(DOM.el(`#star_editor_close`), `click`, () => {
+      App.show_last_window()
+    })
   },
   colored_top: true,
   on_x: () => {

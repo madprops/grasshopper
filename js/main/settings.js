@@ -235,7 +235,7 @@ App.setup_settings = () => {
 }
 
 App.add_settings_switchers = (category) => {
-  let title = DOM.el(`.settings_title`, DOM.el(`#settings_${category}_container`))
+  let title = DOM.el(`.settings_title`, DOM.el(`#window_settings_${category}`))
 
   let prev = DOM.create(`div`, `button`)
   prev.textContent = `<`
@@ -478,6 +478,17 @@ App.show_settings_menu = (btn) => {
     text: `Import`,
     action: () => {
       App.import_settings()
+    }
+  })
+
+  items.push({
+    separator: true
+  })
+
+  items.push({
+    text: `Close`,
+    action: () => {
+      App.show_first_window()
     }
   })
 
