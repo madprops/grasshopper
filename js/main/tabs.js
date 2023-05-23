@@ -1,12 +1,13 @@
 App.setup_tabs = () => {
   App.tabs_filter_modes = [
-    [`pins`, `Pinned`],
+    [`--separator--`],
     [`playing`, `Playing`],
-    [`normal`, `Normal`],
     [`suspended`, `Suspended`],
     [`duplicates`, `Duplicates`],
+    [`--separator--`],
     [`star`, `Has Star`],
     [`title`, `Has Title`],
+    [`--separator--`],
     [`http`, `^ http:`],
     [`https`, `^ https:`],
   ]

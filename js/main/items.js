@@ -296,14 +296,8 @@ App.do_item_filter = async (mode) => {
       if (filter_mode === `all`) {
         match = true
       }
-      else if (filter_mode === `normal`) {
-        match = App.tab_is_normal(item)
-      }
       else if (filter_mode === `playing`) {
         match = item.audible || item.muted
-      }
-      else if (filter_mode === `pins`) {
-        match = item.pinned
       }
       else if (filter_mode === `suspended`) {
         match = item.discarded
@@ -1004,10 +998,12 @@ App.setup_item_window = (mode) => {
     let filter_modes_text = DOM.create(`div`, ``, `${mode}_filter_modes_text`)
     filter_modes.append(filter_modes_text)
 
-    App[`${mode}_filter_modes`] = App[`${mode}_filter_modes`] || []
-    App[`${mode}_filter_modes`].unshift([`videos`, `Videos`])
-    App[`${mode}_filter_modes`].unshift([`images`, `Images`])
-    App[`${mode}_filter_modes`].unshift([`all`, `All`])
+    let fmodes = []
+    fmodes.push([`all`, `All`])
+    fmodes.push([`--separator--`])
+    fmodes.push([`images`, `Images`])
+    fmodes.push([`videos`, `Videos`])
+    App[`${mode}_filter_modes`] = [...fmodes, ...(App[`${mode}_filter_modes`] || [])]
 
     DOM.ev(filter_modes, `click`, () => {
       App.show_filter_modes(mode)
@@ -1350,6 +1346,11 @@ App.show_filter_modes = (mode) => {
   let items = []
 
   for (let filter_mode of App[`${mode}_filter_modes`]) {
+    if (filter_mode[0] === `--separator--`) {
+      items.push({separator: true})
+      continue
+    }
+
     let selected = App[`${mode}_filter_mode`] === filter_mode[0]
 
     items.push({
@@ -1371,6 +1372,10 @@ App.cycle_filter_modes = (mode, reverse = true) => {
 
   if (reverse) {
     for (let filter_mode of modes.slice(0).reverse()) {
+      if (filter_mode[0].startsWith(`--`)) {
+        continue
+      }
+
       if (waypoint) {
         App.set_filter_mode(mode, filter_mode)
         return
@@ -1383,6 +1388,10 @@ App.cycle_filter_modes = (mode, reverse = true) => {
   }
   else {
     for (let filter_mode of modes) {
+      if (filter_mode[0].startsWith(`--`)) {
+        continue
+      }
+
       if (waypoint) {
         App.set_filter_mode(mode, filter_mode)
         return
