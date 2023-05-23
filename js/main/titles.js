@@ -90,7 +90,7 @@ App.remove_title = () => {
     if (url) {
       App.titles = App.titles.filter(x => !x.url.startsWith(url))
       App.stor_save_titles()
-      App.apply_titles(url, true)
+      App.apply_titles(url)
       App.show_last_window()
 
       if (App.tabs_filter_mode === `title`) {
