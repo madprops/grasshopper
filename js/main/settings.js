@@ -238,6 +238,7 @@ App.add_settings_switchers = (category) => {
   let win = DOM.el(`#window_settings_${category}`)
   let title = DOM.el(`.settings_title`, win)
   let close = DOM.create(`div`, `button settings_close_button`)
+  close.textContent = `Close`
 
   let prev = DOM.create(`div`, `button arrow_prev`)
   prev.textContent = `<`
@@ -258,11 +259,23 @@ App.add_settings_switchers = (category) => {
     App.show_settings_menu(title)
   })
 
+  DOM.ev(title, `wheel`, (e) => {
+    let direction = e.deltaY > 0 ? `down` : `up`
+
+    if (direction === `down`) {
+      App.show_next_settings()
+    }
+    else if (direction === `up`) {
+      App.show_prev_settings()
+    }
+  })
+
   DOM.ev(close, `click`, () => {
     App.hide_current_window()
   })
 
-  title.after(next)
+  title.after(close)
+  close.after(next)
 }
 
 App.start_theme_settings = () => {
@@ -484,17 +497,6 @@ App.show_settings_menu = (btn) => {
     text: `Import`,
     action: () => {
       App.import_settings()
-    }
-  })
-
-  items.push({
-    separator: true
-  })
-
-  items.push({
-    text: `Close`,
-    action: () => {
-      App.hide_current_window()
     }
   })
 
