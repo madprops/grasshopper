@@ -117,17 +117,17 @@ App.get_tabs = async () => {
   return tabs
 }
 
-App.focus_tab = async (tab, close = true) => {
-  if (tab.window_id) {
-    await browser.windows.update(tab.window_id, {focused: true})
+App.focus_tab = async (item, close = true) => {
+  if (item.window_id) {
+    await browser.windows.update(item.window_id, {focused: true})
   }
 
   try {
-    await browser.tabs.update(tab.id, {active: true})
+    await browser.tabs.update(item.id, {active: true})
   }
   catch (err) {
     App.log(err, `error`)
-    App.remove_closed_tab(tab.id)
+    App.remove_closed_tab(item.id)
     App.tabs_check()
   }
 
@@ -169,17 +169,17 @@ App.refresh_tab = async (id, select = false) => {
     return
   }
 
-  let tab = App.get_item_by_id(`tabs`, id)
+  let item = App.get_item_by_id(`tabs`, id)
 
-  if (tab) {
-    App.update_item(`tabs`, tab.id, info)
+  if (item) {
+    App.update_item(`tabs`, item.id, info)
   }
   else {
-    tab = App.insert_item(`tabs`, info)
+    item = App.insert_item(`tabs`, info)
   }
 
   if (select) {
-    App.select_item(tab)
+    App.select_item(item)
   }
 }
 
@@ -236,10 +236,10 @@ App.get_suspended_tabs = () => {
 }
 
 App.remove_closed_tab = (id) => {
-  let tab = App.get_item_by_id(`tabs`, id)
+  let item = App.get_item_by_id(`tabs`, id)
 
-  if (tab) {
-    App.remove_item(tab)
+  if (item) {
+    App.remove_item(item)
   }
 }
 
@@ -256,9 +256,9 @@ App.tabs_action_alt = (item, shift_key = false) => {
   App.close_tabs(item, shift_key)
 }
 
-App.duplicate_tab = async (tab) => {
+App.duplicate_tab = async (item) => {
   try {
-    await browser.tabs.duplicate(tab.id)
+    await browser.tabs.duplicate(item.id)
   }
   catch (err) {
     App.log(err, `error`)
@@ -267,8 +267,8 @@ App.duplicate_tab = async (tab) => {
   App.close_window()
 }
 
-App.suspend_tab = async (tab) => {
-  if (tab.active) {
+App.suspend_tab = async (item) => {
+  if (item.active) {
     try {
       await browser.tabs.create({active: true})
     }
@@ -278,7 +278,7 @@ App.suspend_tab = async (tab) => {
   }
 
   try {
-    await browser.tabs.discard(tab.id)
+    await browser.tabs.discard(item.id)
   }
   catch (err) {
     App.log(err, `error`)
@@ -287,14 +287,13 @@ App.suspend_tab = async (tab) => {
 
 App.pin_tabs = (item) => {
   let ids = []
-  let active = App.get_active_items(`tabs`, item)
 
-  for (let tab of active) {
-    if (tab.pinned) {
+  for (let it of App.get_active_items(`tabs`, item)) {
+    if (it.pinned) {
       continue
     }
 
-    ids.push(tab.id)
+    ids.push(it.id)
   }
 
   if (ids.length === 0) {
@@ -310,14 +309,13 @@ App.pin_tabs = (item) => {
 
 App.unpin_tabs = (item) => {
   let ids = []
-  let active = App.get_active_items(`tabs`, item)
 
-  for (let tab of active) {
-    if (!tab.pinned) {
+  for (let it of App.get_active_items(`tabs`, item)) {
+    if (!it.pinned) {
       continue
     }
 
-    ids.push(tab.id)
+    ids.push(it.id)
   }
 
   if (ids.length === 0) {
@@ -334,16 +332,15 @@ App.unpin_tabs = (item) => {
 App.suspend_tabs = (item) => {
   let tabs = []
   let warn = false
-  let active = App.get_active_items(`tabs`, item)
 
-  for (let tab of active) {
+  for (let it of App.get_active_items(`tabs`, item)) {
     if (App.settings.warn_on_suspend) {
-      if (tab.pinned || tab.audible) {
+      if (it.pinned || it.audible) {
         warn = true
       }
     }
 
-    tabs.push(tab)
+    tabs.push(it)
   }
 
   if (tabs.length === 0) {
@@ -373,16 +370,15 @@ App.suspend_tabs = (item) => {
 App.close_tabs = (item, force = false) => {
   let ids = []
   let warn = false
-  let active = App.get_active_items(`tabs`, item)
 
-  for (let tab of active) {
+  for (let it of App.get_active_items(`tabs`, item)) {
     if (App.settings.warn_on_close) {
-      if (tab.pinned || tab.audible) {
+      if (it.pinned || it.audible) {
         warn = true
       }
     }
 
-    ids.push(tab.id)
+    ids.push(it.id)
   }
 
   if (ids.length === 0) {
@@ -406,27 +402,23 @@ App.do_close_tabs = (ids) => {
 }
 
 App.mute_tabs = (item) => {
-  let active = App.get_active_items(`tabs`, item)
-
-  for (let item of active) {
-    App.mute_tab(item.id)
+  for (let it of App.get_active_items(`tabs`, item)) {
+    App.mute_tab(it.id)
   }
 
   App.dehighlight(`tabs`)
 }
 
 App.unmute_tabs = (item) => {
-  let active = App.get_active_items(`tabs`, item)
-
-  for (let item of active) {
-    App.unmute_tab(item.id)
+  for (let it of App.get_active_items(`tabs`, item)) {
+    App.unmute_tab(it.id)
   }
 
   App.dehighlight(`tabs`)
 }
 
-App.tab_is_normal = (tab) => {
-  let special = tab.pinned || tab.audible || tab.muted || tab.discarded
+App.tab_is_normal = (item) => {
+  let special = item.pinned || item.audible || item.muted || item.discarded
   return !special
 }
 
@@ -511,13 +503,11 @@ App.on_tab_activated = async (info) => {
 }
 
 App.move_tabs = async (item, window_id) => {
-  let active = App.get_active_items(`tabs`, item)
-
-  for (let item of active) {
-    let index = item.pinned ? 0 : -1
+  for (let it of App.get_active_items(`tabs`, item)) {
+    let index = it.pinned ? 0 : -1
 
     try {
-      await browser.tabs.move(item.id, {index: index, windowId: window_id})
+      await browser.tabs.move(it.id, {index: index, windowId: window_id})
     }
     catch (err) {
       App.log(err, `error`)
@@ -527,21 +517,27 @@ App.move_tabs = async (item, window_id) => {
   App.close_window()
 }
 
-App.detach_tabs = async (tab) => {
-  let info = await browser.windows.create({focused: false})
-
-  setTimeout(() => {
-    App.move_tabs(tab, info.id)
+App.detach_tabs = async (item) => {
+  if (App.get_active_items(`tabs`, item).length === 1) {
+    await browser.windows.create({tabId: item.id, focused: false})
     App.close_window()
-  }, 250)
+  }
+  else {
+    let info = await browser.windows.create({focused: false})
+
+    setTimeout(() => {
+      App.move_tabs(item, info.id)
+      App.close_window()
+    }, 250)
+  }
 }
 
 App.clean_tabs = () => {
   let ids = []
 
-  for (let tab of App.get_items(`tabs`)) {
-    if (!tab.pinned && !tab.audible) {
-      ids.push(tab.id)
+  for (let it of App.get_items(`tabs`)) {
+    if (!it.pinned && !it.audible) {
+      ids.push(it.id)
     }
   }
 
@@ -583,24 +579,24 @@ App.check_playing = () => {
 }
 
 App.go_to_playing = () => {
-  let tabs = App.get_items(`tabs`).slice(0)
+  let items = App.get_items(`tabs`)
   let waypoint = false
   let first
 
-  for (let tab of tabs) {
-    if (tab.audible) {
+  for (let item of items) {
+    if (item.audible) {
       if (!first) {
-        first = tab
+        first = item
       }
 
       if (waypoint) {
-        App.select_item(tab)
-        App.focus_tab(tab)
+        App.select_item(item)
+        App.focus_tab(item)
         return
       }
     }
 
-    if (!waypoint && tab.active) {
+    if (!waypoint && item.active) {
       waypoint = true
       continue
     }
@@ -707,7 +703,6 @@ App.tabs_back_action = async () => {
 }
 
 App.move_tabs_to_top = async (item) => {
-  let items = App.get_active_items(item.mode, item)
   let first
 
   if (item.pinned) {
@@ -717,14 +712,13 @@ App.move_tabs_to_top = async (item) => {
     first = App.get_first_normal_index()
   }
 
-  for (let item of items) {
-    await App.do_move_tab_index(item.id, first)
+  for (let it of App.get_active_items(item.mode, item)) {
+    await App.do_move_tab_index(it.id, first)
     first += 1
   }
 }
 
 App.move_tabs_to_bottom = async (item) => {
-  let items = App.get_active_items(item.mode, item)
   let last
 
   if (item.pinned) {
@@ -734,8 +728,8 @@ App.move_tabs_to_bottom = async (item) => {
     last = App.get_items(`tabs`).length - 1
   }
 
-  for (let item of items) {
-    await App.do_move_tab_index(item.id, last)
+  for (let it of App.get_active_items(item.mode, item)) {
+    await App.do_move_tab_index(it.id, last)
     last -= 1
   }
 }
