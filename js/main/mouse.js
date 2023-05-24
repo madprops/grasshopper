@@ -44,7 +44,7 @@ App.setup_window_mouse = (mode) => {
       }
 
       if (e.ctrlKey) {
-        App.toggle_highlight(item)
+        App.pick_item(item)
         return
       }
 

@@ -417,7 +417,7 @@ App.show_item_menu = (item, x, y) => {
     }
   })
 
-  if (item.mode === `tabs`) {
+  if (item.mode === `tabs` && !multiple) {
     items.push({
       text: `Title`,
       action: () => {
@@ -1849,4 +1849,14 @@ App.check_clear_filter = () => {
       }
     }
   }
+}
+
+App.pick_item = (item) => {
+  let selected = App.get_selected(item.mode)
+
+  if (selected !== item && App.get_highlights(item.mode).length === 0) {
+    App.toggle_highlight(App.get_selected(item.mode))
+  }
+
+  App.toggle_highlight(item)
 }

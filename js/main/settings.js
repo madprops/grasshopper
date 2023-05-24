@@ -12,6 +12,8 @@ App.default_settings = {
   hover_tooltips: {value: true, category: `basic`},
   mouse_gestures: {value: true, category: `basic`},
   clear_filter: {value: true, category: `basic`},
+  warn_on_close: {value: true, category: `basic`},
+  warn_on_suspend: {value: true, category: `basic`},
 
   width: {value: 70, category: `basic`},
   height: {value: 80, category: `basic`},

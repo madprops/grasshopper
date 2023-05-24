@@ -337,8 +337,10 @@ App.suspend_tabs = (item) => {
   let active = App.get_active_items(`tabs`, item)
 
   for (let tab of active) {
-    if (tab.pinned || tab.audible) {
-      warn = true
+    if (App.settings.warn_on_suspend) {
+      if (tab.pinned || tab.audible) {
+        warn = true
+      }
     }
 
     tabs.push(tab)
@@ -374,8 +376,10 @@ App.close_tabs = (item, force = false) => {
   let active = App.get_active_items(`tabs`, item)
 
   for (let tab of active) {
-    if (tab.pinned || tab.audible) {
-      warn = true
+    if (App.settings.warn_on_close) {
+      if (tab.pinned || tab.audible) {
+        warn = true
+      }
     }
 
     ids.push(tab.id)
