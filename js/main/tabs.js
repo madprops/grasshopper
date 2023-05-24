@@ -706,21 +706,37 @@ App.tabs_back_action = async () => {
   }
 }
 
-App.move_tab_to_top = (item) => {
+App.move_tabs_to_top = async (item) => {
+  let items = App.get_active_items(item.mode, item)
+  let first
+
   if (item.pinned) {
-    App.do_move_tab_index(item.id, 0)
+    first = 0
   }
   else {
-    App.do_move_tab_index(item.id, App.get_first_normal_index())
+    first = App.get_first_normal_index()
+  }
+
+  for (let item of items) {
+    await App.do_move_tab_index(item.id, first)
+    first += 1
   }
 }
 
-App.move_tab_to_bottom = (item) => {
+App.move_tabs_to_bottom = async (item) => {
+  let items = App.get_active_items(item.mode, item)
+  let last
+
   if (item.pinned) {
-    App.do_move_tab_index(item.id, App.get_last_pin_index())
+    last = App.get_last_pin_index()
   }
   else {
-    App.do_move_tab_index(item.id, App.get_items(`tabs`).length - 1)
+    last = App.get_items(`tabs`).length - 1
+  }
+
+  for (let item of items) {
+    await App.do_move_tab_index(item.id, last)
+    last -= 1
   }
 }
 
@@ -728,15 +744,10 @@ App.get_first_normal_index = () => {
   let i = -1
 
   for (let item of App.get_items(`tabs`)) {
+    i += 1
+
     if (!item.pinned) {
       return i
-    }
-    else {
-      if (i === -1) {
-        i = 0
-      }
-
-      i += 1
     }
   }
 
@@ -747,11 +758,8 @@ App.get_last_pin_index = () => {
   let i = -1
 
   for (let item of App.get_items(`tabs`)) {
-    if (item.pinned) {
-      if (i === -1) {
-        i = 0
-      }
 
+    if (item.pinned) {
       i += 1
     }
     else {

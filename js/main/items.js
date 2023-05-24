@@ -562,14 +562,14 @@ App.get_more_menu_items = (item, multiple) => {
   items.push({
     text: `To Top`,
     action: () => {
-      App.move_tab_to_top(item)
+      App.move_tabs_to_top(item)
     }
   })
 
   items.push({
     text: `Bottom`,
     action: () => {
-      App.move_tab_to_bottom(item)
+      App.move_tabs_to_bottom(item)
     }
   })
 
