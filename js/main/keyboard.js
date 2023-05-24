@@ -44,11 +44,9 @@ App.check_window_keyboard = (e) => {
       return
     }
     else if (e.key === `a`) {
-      if (!App.get_filter(mode)) {
-        App.highlight_items(mode)
-        e.preventDefault()
-        return
-      }
+      App.highlight_items(mode)
+      e.preventDefault()
+      return
     }
   }
 
@@ -75,7 +73,7 @@ App.check_window_keyboard = (e) => {
       e.preventDefault()
       return
     }
-    else if (!App.get_filter(mode)) {
+    else {
       App.goto_top(mode)
       e.preventDefault()
       return
@@ -87,7 +85,7 @@ App.check_window_keyboard = (e) => {
       e.preventDefault()
       return
     }
-    else if (!App.get_filter(mode)) {
+    else {
       App.goto_bottom(mode)
       e.preventDefault()
       return
@@ -134,18 +132,16 @@ App.check_window_keyboard = (e) => {
     return
   }
   else if (e.key === `Delete`) {
-    if (!App.get_filter(mode)) {
-      if (mode === `tabs`) {
-        App.close_tabs()
-      }
-      else if (mode === `stars`) {
-        let item = App.get_selected(mode)
-        App.remove_stars(item)
-      }
-
-      e.preventDefault()
-      return
+    if (mode === `tabs`) {
+      App.close_tabs()
     }
+    else if (mode === `stars`) {
+      let item = App.get_selected(mode)
+      App.remove_stars(item)
+    }
+
+    e.preventDefault()
+    return
   }
 
   App.focus_filter(mode)
