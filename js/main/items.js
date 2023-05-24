@@ -1091,8 +1091,6 @@ App.setup_item_window = (mode) => {
       App.show_actions(mode)
     })
 
-
-
     //
 
     if (mode === `tabs`) {
