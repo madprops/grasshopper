@@ -202,8 +202,8 @@ App.setup_settings = () => {
       App.apply_theme()
     })
 
-    DOM.ev(DOM.el(`#settings_defaults_basic`), `click`, () => {
-      App.restore_default_settings(`basic`)
+    DOM.ev(DOM.el(`#settings_reset_basic`), `click`, () => {
+      App.reset_settings(`basic`)
     })
 
     App.add_settings_switchers(`basic`)
@@ -220,8 +220,8 @@ App.setup_settings = () => {
     let container = DOM.el(`#settings_icons_container`)
     App.settings_setup_text(container)
 
-    DOM.ev(DOM.el(`#settings_default_icons`), `click`, () => {
-      App.restore_default_settings(`icons`)
+    DOM.ev(DOM.el(`#settings_reset_icons`), `click`, () => {
+      App.reset_settings(`icons`)
     })
 
     App.add_settings_switchers(`icons`)
@@ -231,8 +231,8 @@ App.setup_settings = () => {
     let container = DOM.el(`#settings_media_container`)
     App.settings_setup_checkboxes(container)
 
-    DOM.ev(DOM.el(`#settings_default_media`), `click`, () => {
-      App.restore_default_settings(`media`)
+    DOM.ev(DOM.el(`#settings_reset_media`), `click`, () => {
+      App.reset_settings(`media`)
     })
 
     App.add_settings_switchers(`media`)
@@ -242,8 +242,8 @@ App.setup_settings = () => {
     let container = DOM.el(`#settings_warns_container`)
     App.settings_setup_checkboxes(container)
 
-    DOM.ev(DOM.el(`#settings_default_warns`), `click`, () => {
-      App.restore_default_settings(`warns`)
+    DOM.ev(DOM.el(`#settings_reset_warns`), `click`, () => {
+      App.reset_settings(`warns`)
     })
 
     App.add_settings_switchers(`warns`)
@@ -315,8 +315,8 @@ App.start_theme_settings = () => {
     App.detect_theme()
   })
 
-  DOM.ev(DOM.el(`#settings_default_theme`), `click`, () => {
-    App.restore_default_settings(`theme`)
+  DOM.ev(DOM.el(`#settings_reset_theme`), `click`, () => {
+    App.reset_settings(`theme`)
   })
 
   let imgs = App.get_background_image_options()
@@ -364,8 +364,8 @@ App.settings_menu_cycle = (el, setting, dir, items) => {
   }
 }
 
-App.restore_default_settings = (type) => {
-  App.show_confirm(`Restore default settings? (${type})`, () => {
+App.reset_settings = (type) => {
+  App.show_confirm(`Reset settings? (${type})`, () => {
     for (let key in App.default_settings) {
       let item = App.default_settings[key]
 
@@ -385,8 +385,8 @@ App.restore_default_settings = (type) => {
   })
 }
 
-App.restore_all_default_settings = (type) => {
-  App.show_confirm(`Restore all default settings?`, () => {
+App.reset_all_settings = (type) => {
+  App.show_confirm(`Reset all settings?`, () => {
     for (let key in App.default_settings) {
       App.settings[key] = App.default_settings[key].value
     }
@@ -492,9 +492,9 @@ App.show_settings_menu = (btn) => {
   })
 
   items.push({
-    text: `Defaults`,
+    text: `Reset`,
     action: () => {
-      App.restore_all_default_settings()
+      App.reset_all_settings()
     }
   })
 
