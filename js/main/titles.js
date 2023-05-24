@@ -187,9 +187,9 @@ App.check_title_editor = () => {
   let full = DOM.el(`#title_editor_refresh_url`)
 
   if (url.value.trim() !== App.title_editor_item.url) {
-    full.classList.remove(`nodisplay`)
+    full.classList.remove(`hidden`)
   }
   else {
-    full.classList.add(`nodisplay`)
+    full.classList.add(`hidden`)
   }
 }

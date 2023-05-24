@@ -627,10 +627,6 @@ input::placeholder {
   text-decoration: underline;
 }
 
-.nodisplay {
-  display: none;
-}
-
 input[type=text],
 textarea,
 select {
