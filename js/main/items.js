@@ -510,14 +510,17 @@ App.get_move_menu_items = async (item, multiple) => {
   let items = []
   let wins = await browser.windows.getAll({populate: false})
 
-  if (!multiple) {
-    items.push({
-      text: `Detach`,
-      action: () => {
+  items.push({
+    text: `Detach`,
+    action: () => {
+      if (multiple) {
+        App.show_alert(`Can't detach multiple tabs for now.\nDetach one then move the others there.`)
+      }
+      else {
         App.detach_tab(item)
       }
-    })
-  }
+    }
+  })
 
   for (let win of wins) {
     if (item.window_id === win.id) {
