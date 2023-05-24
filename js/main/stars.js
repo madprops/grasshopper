@@ -126,7 +126,7 @@ App.remove_star = () => {
   App.show_confirm(`Remove this star?`, () => {
     App.do_remove_stars([App.star_edited.id])
     App.hide_star_editor()
-  })
+  }, undefined, !App.settings.warn_on_unstar)
 }
 
 App.do_remove_stars = (ids) => {
@@ -290,7 +290,7 @@ App.remove_stars = (item, force = false) => {
     App.dehighlight(`stars`)
   }, () => {
     App.dehighlight(`stars`)
-  }, force)
+  }, force || !App.settings.warn_on_unstar)
 }
 
 App.export_stars = () => {
@@ -357,7 +357,7 @@ App.star_items = (item) => {
     App.dehighlight(item.mode)
   }, () => {
     App.dehighlight(item.mode)
-  })
+  }, !App.settings.warn_on_star)
 }
 
 App.toggle_star = (item, prepend = false) => {

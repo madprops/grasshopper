@@ -40,6 +40,8 @@ App.default_settings = {
   warn_on_suspend: {value: true, category: `warns`},
   warn_on_duplicates: {value: true, category: `warns`},
   warn_on_clean: {value: true, category: `warns`},
+  warn_on_star: {value: true, category: `warns`},
+  warn_on_unstar: {value: true, category: `warns`},
 }
 
 App.make_item_order = () => {
