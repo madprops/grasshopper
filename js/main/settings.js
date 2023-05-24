@@ -12,8 +12,6 @@ App.default_settings = {
   hover_tooltips: {value: true, category: `basic`},
   mouse_gestures: {value: true, category: `basic`},
   clear_filter: {value: true, category: `basic`},
-  warn_on_close: {value: true, category: `basic`},
-  warn_on_suspend: {value: true, category: `basic`},
 
   width: {value: 70, category: `basic`},
   height: {value: 80, category: `basic`},
@@ -37,6 +35,11 @@ App.default_settings = {
   media_viewer_on_bookmarks: {value: true, category: `media`},
   media_viewer_on_closed: {value: true, category: `media`},
   media_viewer_on_stars: {value: true, category: `media`},
+
+  warn_on_close: {value: true, category: `warns`},
+  warn_on_suspend: {value: true, category: `warns`},
+  warn_on_duplicates: {value: true, category: `warns`},
+  warn_on_clean: {value: true, category: `warns`},
 }
 
 App.make_item_order = () => {
@@ -170,7 +173,7 @@ App.settings_make_menu = (id, opts, action = () => {}) => {
 }
 
 App.setup_settings = () => {
-  App.settings_order = [`settings_basic`, `settings_theme`, `settings_icons`, `settings_media`]
+  App.settings_order = [`settings_basic`, `settings_theme`, `settings_icons`, `settings_media`, `settings_warns`]
 
   App.create_window({id: `settings_basic`, setup: () => {
     let container = DOM.el(`#settings_basic_container`)
@@ -233,6 +236,17 @@ App.setup_settings = () => {
     })
 
     App.add_settings_switchers(`media`)
+  }, persistent: false, colored_top: true})
+
+  App.create_window({id: `settings_warns`, setup: () => {
+    let container = DOM.el(`#settings_warns_container`)
+    App.settings_setup_checkboxes(container)
+
+    DOM.ev(DOM.el(`#settings_default_warns`), `click`, () => {
+      App.restore_default_settings(`warns`)
+    })
+
+    App.add_settings_switchers(`warns`)
   }, persistent: false, colored_top: true})
 }
 
@@ -463,6 +477,13 @@ App.show_settings_menu = (btn) => {
     text: `Media`,
     action: () => {
       App.show_window(`settings_media`)
+    }
+  })
+
+  items.push({
+    text: `Warns`,
+    action: () => {
+      App.show_window(`settings_warns`)
     }
   })
 

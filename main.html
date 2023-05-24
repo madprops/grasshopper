@@ -129,16 +129,6 @@
           <input type="checkbox" class="settings_checkbox" id="settings_lock_drag" data-setting="lock_drag">
         </div>
 
-        <div class="settings_column" title="Warn when closing tabs">
-          <div class="settings_label">Warn On Close</div>
-          <input type="checkbox" class="settings_checkbox" id="settings_warn_on_close" data-setting="warn_on_close">
-        </div>
-
-        <div class="settings_column" title="Warn when suspending tabs">
-          <div class="settings_label">Warn On Suspend</div>
-          <input type="checkbox" class="settings_checkbox" id="settings_warn_on_suspend" data-setting="warn_on_suspend">
-        </div>
-
         <div class="settings_column" title="Tabs will be restored after launching an item anywhere">
           <div class="settings_label">Switch To Tabs</div>
           <input type="checkbox" class="settings_checkbox" id="settings_switch_to_tabs" data-setting="switch_to_tabs">
@@ -324,6 +314,40 @@
     <template id="template_settings_media_top">
       <div class="flex_row_center gap_2 grow">
         <div class="settings_title button">Media</div>
+      </div>
+    </template>
+
+    <template id="template_settings_warns">
+      <div id="settings_warns_container" class="settings_container">
+        <div class="settings_column" title="Warn when closing tabs">
+          <div class="settings_label">Warn On Close</div>
+          <input type="checkbox" class="settings_checkbox" id="settings_warn_on_close" data-setting="warn_on_close">
+        </div>
+
+        <div class="settings_column" title="Warn when suspending tabs">
+          <div class="settings_label">Warn On Suspend</div>
+          <input type="checkbox" class="settings_checkbox" id="settings_warn_on_suspend" data-setting="warn_on_suspend">
+        </div>
+
+        <div class="settings_column" title="Warn when suspending tabs">
+          <div class="settings_label">Warn On Duplicates</div>
+          <input type="checkbox" class="settings_checkbox" id="settings_warn_on_duplicates" data-setting="warn_on_duplicates">
+        </div>
+
+        <div class="settings_column" title="Warn when suspending tabs">
+          <div class="settings_label">Warn On Clean</div>
+          <input type="checkbox" class="settings_checkbox" id="settings_warn_on_clean" data-setting="warn_on_clean">
+        </div>
+
+        <div class="separator"></div>
+
+        <div id="settings_default_warns" class="button settings_button" title="Restore default icons">Defaults</div>
+      </div>
+    </template>
+
+    <template id="template_settings_warns_top">
+      <div class="flex_row_center gap_2 grow">
+        <div class="settings_title button">Warns</div>
       </div>
     </template>
 

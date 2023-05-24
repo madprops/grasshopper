@@ -553,7 +553,7 @@ App.clean_tabs = () => {
 
   App.show_confirm(s, () => {
     App.do_close_tabs(ids)
-  })
+  }, undefined, !App.settings.warn_on_clean)
 }
 
 App.show_playing = () => {
@@ -670,7 +670,7 @@ App.close_duplicates = () => {
 
   App.show_confirm(s, () => {
     App.do_close_tabs(ids)
-  })
+  }, undefined, !App.settings.warn_on_duplicates)
 }
 
 App.focus_current_tab = async () => {
