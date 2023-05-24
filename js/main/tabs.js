@@ -542,7 +542,10 @@ App.clean_tabs = () => {
   }
 
   if (ids.length === 0) {
-    App.show_alert(`Nothing to close`)
+    if (App.settings.warn_on_clean) {
+      App.show_alert(`Nothing to close`)
+    }
+
     return
   }
 
@@ -659,7 +662,10 @@ App.close_duplicates = () => {
   let ids = excess.map(x => x.id)
 
   if (ids.length === 0) {
-    App.show_alert(`No duplicates found`)
+    if (App.settings.warn_on_duplicates) {
+      App.show_alert(`No duplicates found`)
+    }
+
     return
   }
 
