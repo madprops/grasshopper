@@ -1630,7 +1630,7 @@ App.launch_items = (item) => {
     App.dehighlight(mode)
   }, () => {
     App.dehighlight(mode)
-  })
+  }, !App.settings.warn_on_launch)
 }
 
 App.goto_top = (mode) => {
