@@ -560,6 +560,20 @@ App.get_more_menu_items = (item, multiple) => {
   }
 
   items.push({
+    text: `To Top`,
+    action: () => {
+      App.move_tab_to_top(item)
+    }
+  })
+
+  items.push({
+    text: `Bottom`,
+    action: () => {
+      App.move_tab_to_bottom(item)
+    }
+  })
+
+  items.push({
     text: `Move`,
     get_items: async () => {
       return await App.get_move_menu_items(item, multiple)

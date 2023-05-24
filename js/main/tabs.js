@@ -701,3 +701,34 @@ App.tabs_back_action = async () => {
     App.go_to_previous_tab()
   }
 }
+
+App.move_tab_to_top = (item) => {
+  if (item.pinned) {
+    App.do_move_tab_index(item.id, 0)
+  }
+  else {
+    App.do_move_tab_index(item.id, App.get_first_normal_index())
+  }
+}
+
+App.move_tab_to_bottom = (item) => {
+  if (item.pinned) {
+    App.do_move_tab_index(item.id, App.get_first_normal_index() - 1)
+  }
+  else {
+    App.do_move_tab_index(item.id, App.get_items(`tabs`).length - 1)
+  }
+}
+
+App.get_first_normal_index = () => {
+  let i = 0
+
+  for (let item of App.get_items(`tabs`)) {
+    if (!item.pinned) {
+      return i
+    }
+    else {
+      i += 1
+    }
+  }
+}
