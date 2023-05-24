@@ -410,12 +410,17 @@ App.show_item_menu = (item, x, y) => {
     })
   }
 
-  items.push({
-    text: `Star`,
-    action: () => {
-      App.star_items(item)
-    }
-  })
+  if (multiple && item.mode === `stars`) {
+    // Ignore
+  }
+  else {
+    items.push({
+      text: `Star`,
+      action: () => {
+        App.star_items(item)
+      }
+    })
+  }
 
   if (item.mode === `tabs` && !multiple) {
     items.push({
