@@ -54,10 +54,6 @@ App.create_media_windows = (what) => {
       App.media_show_error(what)
     })
 
-    DOM.ev(media, `click`, () => {
-      App.windows[what].hide()
-    })
-
     DOM.ev(open, `click`, () => {
       App.open_media(what)
     })
@@ -107,10 +103,6 @@ App.show_media = (what, item) => {
   App.show_window(what)
   App.media_show_loading(what)
   App.check_media_star(what, App.get_star_by_url(item.url))
-}
-
-App.hide_media = (what) => {
-  App.windows[what].hide()
 }
 
 App.stop_video = () => {

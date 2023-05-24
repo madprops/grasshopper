@@ -263,10 +263,6 @@ App.setup_keyboard = () => {
         e.preventDefault()
         return
       }
-
-      App.hide_media(mode)
-      e.preventDefault()
-      return
     }
 
     if (App.on_item_window()) {
