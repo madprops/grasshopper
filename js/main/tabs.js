@@ -527,9 +527,13 @@ App.move_tabs = async (item, window_id) => {
   App.close_window()
 }
 
-App.detach_tab = (tab) => {
-  browser.windows.create({tabId: tab.id, focused: false})
-  App.close_window()
+App.detach_tabs = async (tab) => {
+  let info = await browser.windows.create({focused: false})
+
+  setTimeout(() => {
+    App.move_tabs(tab, info.id)
+    App.close_window()
+  }, 250)
 }
 
 App.clean_tabs = () => {

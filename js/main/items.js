@@ -3,7 +3,7 @@ App.setup_items = () => {
   App.start_item_observers()
 }
 
-App.select_item = async (item, scroll = `nearest`) => {
+App.select_item = async (item, scroll = `nearest`, dehighlight = true) => {
   if (!item.created) {
     App.create_item_element(item)
   }
@@ -31,7 +31,9 @@ App.select_item = async (item, scroll = `nearest`) => {
     }
   }
 
-  App.dehighlight(item.mode)
+  if (dehighlight) {
+    App.dehighlight(item.mode)
+  }
 }
 
 App.check_highlight = (item) => {
@@ -513,12 +515,7 @@ App.get_move_menu_items = async (item, multiple) => {
   items.push({
     text: `Detach`,
     action: () => {
-      if (multiple) {
-        App.show_alert(`Can't detach multiple tabs for now.\nDetach one then move the others there.`)
-      }
-      else {
-        App.detach_tab(item)
-      }
+      App.detach_tabs(item)
     }
   })
 
@@ -1872,11 +1869,6 @@ App.check_clear_filter = () => {
 }
 
 App.pick_item = (item) => {
-  let selected = App.get_selected(item.mode)
-
-  if (selected !== item && App.get_highlights(item.mode).length === 0) {
-    App.toggle_highlight(App.get_selected(item.mode))
-  }
-
+  App.select_item(item, false)
   App.toggle_highlight(item)
 }
