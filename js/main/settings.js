@@ -12,6 +12,7 @@ App.default_settings = {
   mouse_gestures: {value: true, category: `basic`},
   clear_filter: {value: true, category: `basic`},
   show_pinline: {value: true, category: `basic`},
+  highlight_effect: {value: `rotate`, category: `basic`},
 
   width: {value: 70, category: `basic`},
   height: {value: 80, category: `basic`},
@@ -201,6 +202,17 @@ App.setup_settings = () => {
     })
 
     App.settings_make_menu(`font_size`, App.get_font_size_options(), () => {
+      App.apply_theme()
+    })
+
+    App.settings_make_menu(`highlight_effect`, [
+      [`Rotate`, `rotate`],
+      [`Invert`, `invert`],
+      [`Bright`, `bright`],
+      [`Hue`, `hue`],
+      [`Blink`, `blink`],
+      [`None`, `none`],
+    ], () => {
       App.apply_theme()
     })
 

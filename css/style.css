@@ -12,6 +12,12 @@
   }
 }
 
+@keyframes blink {
+  from { opacity: 1.0; }
+  50% { opacity: 0.25; }
+  to { opacity: 1.0; }
+}
+
 body, html {
   font-family: var(--font);
   font-size: var(--font_size);
@@ -259,8 +265,24 @@ svg {
   background-color: var(--alt_color_1);
 }
 
-.highlighted .item_icon {
+.highlight_rotate .highlighted .item_icon {
   animation: rotate 1s linear infinite;
+}
+
+.highlight_invert .highlighted .item_icon {
+  filter: invert(100%);
+}
+
+.highlight_bright .highlighted .item_icon {
+  filter: brightness(1.8);
+}
+
+.highlight_hue .highlighted .item_icon {
+  filter: hue-rotate(90deg);
+}
+
+.highlight_blink .highlighted .item_icon {
+  animation: blink 600ms infinite;
 }
 
 .selected {

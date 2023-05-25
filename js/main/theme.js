@@ -43,6 +43,17 @@ App.apply_theme = () => {
         App.set_css_var(`background`, `url(../img/backgrounds/${App.settings.background}.jpg)`)
       }
     }
+
+    let main = DOM.el(`#main`)
+    let classes = main.classList.value.split(` `)
+
+    for (let cls of classes) {
+      if (cls.startsWith(`highlight_`)) {
+        main.classList.remove(cls)
+      }
+    }
+
+    main.classList.add(`highlight_${App.settings.highlight_effect}`)
   }
   catch (err) {
     App.log(err, `error`)
