@@ -783,12 +783,12 @@ App.remove_pinline = () => {
 }
 
 App.do_check_pinline = () => {
-  App.log(`Checking pinline`)
 
   if (App.window_mode !== `tabs`) {
     return
   }
 
+  App.log(`Checking pinline`)
   let last_pinned
 
   for (let item of App.get_items(`tabs`)) {
