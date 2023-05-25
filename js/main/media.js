@@ -225,3 +225,15 @@ App.open_media = (what) => {
 App.media_copy = (what) => {
   App.copy_to_clipboard(App[`current_${what}_item`].url, `URL`)
 }
+
+App.get_visible_media = (mode, what) => {
+  let items = []
+
+  for (let item of App.get_items(mode)) {
+    if (item[what]) {
+      items.push(item)
+    }
+  }
+
+  return items
+}

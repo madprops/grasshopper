@@ -1701,18 +1701,6 @@ App.highlight_items = (mode) => {
   }
 }
 
-App.get_visible_media = (mode, what) => {
-  let items = []
-
-  for (let item of App.get_items(mode)) {
-    if (item[what]) {
-      items.push(item)
-    }
-  }
-
-  return items
-}
-
 App.create_icon = (name, type = 1) => {
   let icon = document.createElementNS(`http://www.w3.org/2000/svg`, `svg`)
   icon.classList.add(`icon_${type}`)
