@@ -182,6 +182,7 @@ svg {
   align-items: center;
   min-height: 2.1rem;
   direction: ltr;
+  flex-shrink: 0;
 }
 
 .item_icon {
@@ -406,8 +407,10 @@ svg {
   display: table-cell;
 }
 
-.pin_item + .normal_item {
-  border-top: 2px solid var(--alt_color_1);
+.pinline {
+  border-bottom: 0.25rem solid var(--alt_color_1);
+  margin-top: 1rem;
+  margin-bottom: 1rem;
 }
 
 #needcontext-main {

@@ -178,6 +178,8 @@ App.refresh_tab = async (id, select = false) => {
     item = App.insert_item(`tabs`, info)
   }
 
+  App.check_pinline()
+
   if (select) {
     App.select_item(item)
   }
@@ -240,6 +242,7 @@ App.remove_closed_tab = (id) => {
 
   if (item) {
     App.remove_item(item)
+    App.check_pinline()
   }
 }
 
@@ -761,4 +764,38 @@ App.get_last_pin_index = () => {
   }
 
   return i
+}
+
+App.check_pinline = () => {
+  App.log(`Checking pinline`)
+
+  if (App.window_mode !== `tabs`) {
+    return
+  }
+
+  for (let el of DOM.els(`.pinline`, DOM.el(`#tabs_container`))) {
+    el.classList.remove(`pinline`)
+  }
+
+  let last_pinned
+
+  for (let item of App.get_items(`tabs`)) {
+    if (!item.visible) {
+      continue
+    }
+
+    if (item.pinned) {
+      last_pinned = item
+    }
+    else {
+      if (!last_pinned) {
+        return
+      }
+      else {
+        let pinline = DOM.create(`div`, `pinline`)
+        last_pinned.element.after(pinline)
+        return
+      }
+    }
+  }
 }
