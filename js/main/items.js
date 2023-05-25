@@ -1760,7 +1760,7 @@ App.show_main_menu = (mode) => {
 App.get_active_items = (mode, item) => {
   let highlights = App.get_highlights(mode)
 
-  if (highlights.length === 0) {
+  if (highlights.length === 0 || !highlights.includes(item)) {
     if (item) {
       return [item]
     }

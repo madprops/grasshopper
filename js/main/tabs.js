@@ -98,7 +98,6 @@ App.setup_tabs = () => {
   }, 20)
 
   App.check_pinline = () => {
-    App.remove_pinline()
     App.pinline_debouncer.call()
   }
 }
@@ -783,12 +782,12 @@ App.remove_pinline = () => {
 }
 
 App.do_check_pinline = () => {
-
   if (App.window_mode !== `tabs`) {
     return
   }
 
   App.log(`Checking pinline`)
+  App.remove_pinline()
   let last_pinned
 
   for (let item of App.get_items(`tabs`)) {
