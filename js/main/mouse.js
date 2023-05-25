@@ -172,7 +172,6 @@ App.setup_drag = (mode) => {
       return false
     }
 
-    App.dehighlight(mode)
     App.update_tab_index()
   })
 
