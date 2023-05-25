@@ -508,7 +508,7 @@ App.show_item_menu = (item, x, y) => {
   NeedContext.show(x, y, items)
 }
 
-App.get_move_menu_items = async (item, multiple) => {
+App.get_window_menu_items = async (item) => {
   let items = []
   let wins = await browser.windows.getAll({populate: false})
 
@@ -574,9 +574,9 @@ App.get_more_menu_items = (item, multiple) => {
   })
 
   items.push({
-    text: `Move`,
+    text: `Window`,
     get_items: async () => {
-      return await App.get_move_menu_items(item, multiple)
+      return await App.get_window_menu_items(item)
     }
   })
 

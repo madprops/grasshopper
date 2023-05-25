@@ -423,8 +423,7 @@ App.tab_is_normal = (item) => {
 }
 
 App.show_tabs_info = () => {
-  let tabs = App.get_items(`tabs`)
-  let all = tabs.length
+  let all = App.get_items(`tabs`).length
   let pins = App.get_pinned_tabs().length
   let playing = App.get_playing_tabs().length
   let muted = App.get_muted_tabs().length
