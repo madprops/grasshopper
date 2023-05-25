@@ -210,8 +210,8 @@ App.setup_settings = () => {
       [`Rotate`, `rotate`],
       [`Invert`, `invert`],
       [`Bright`, `bright`],
-      [`Hue`, `hue`],
       [`Blink`, `blink`],
+      [`Hue`, `hue`],
     ], () => {
       App.apply_theme()
     })
