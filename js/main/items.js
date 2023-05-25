@@ -939,9 +939,7 @@ App.show_item_window = async (mode, cycle = false) => {
   }
 
   if (value) {
-    setTimeout(() => {
-      App.do_item_filter(mode)
-    }, 100)
+    App.do_item_filter(mode)
   }
   else {
     setTimeout(() => {
@@ -1444,7 +1442,7 @@ App.cycle_filter_modes = (mode, reverse = true) => {
 
 App.set_filter_mode = (mode, filter_mode, filter = true) => {
   // If All is clicked again, clear the filter
-  if (filter_mode[0] === `all`) {
+  if (filter && filter_mode[0] === `all`) {
     if (App[`${mode}_filter_mode`] === `all`) {
       if (App.get_filter(mode, true)) {
         App.clear_filter(mode)
