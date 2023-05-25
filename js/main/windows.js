@@ -136,10 +136,6 @@ App.raise_window = (mode) => {
 App.setup_window = () => {
   DOM.ev(window, `blur`, () => {
     NeedContext.hide()
-
-    if (App.on_item_window()) {
-      App.dehighlight(App.window_mode)
-    }
   })
 }
 
