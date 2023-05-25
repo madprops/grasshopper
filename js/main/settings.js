@@ -20,7 +20,7 @@ App.default_settings = {
   font_size: {value: 16, category: `basic`},
 
   background_color: {value: `rgb(70, 76, 94)`, category: `theme`},
-  text_color: {value: `rgb(208, 209, 214)`, category: `theme`},
+  text_color: {value: `rgb(218, 219, 223)`, category: `theme`},
 
   background: {value: 1, category: `theme`},
   custom_background: {value: ``, category: `theme`},

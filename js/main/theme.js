@@ -86,11 +86,6 @@ App.random_theme = () => {
 App.get_random_theme = (what) => {
   let background_color = App.colorlib[`get_${what}_color`]()
   let text_color = App.colorlib.get_lighter_or_darker(background_color, App.color_diff(what))
-
-  if (App.get_random_int(1, 3) === 3) {
-    background_color = App.colorlib.get_lighter_or_darker(background_color, 0.22)
-  }
-
   return {background_color: background_color, text_color: text_color}
 }
 
