@@ -487,6 +487,7 @@ App.do_move_tab_index = async (id, index) => {
     App.log(err, `error`)
   }
 
+  App.check_pinline()
   return ans
 }
 
