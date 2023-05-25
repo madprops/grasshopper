@@ -1,12 +1,11 @@
 App.default_settings = {
+  tabs_index: {value: 0, category: `order`},
+  history_index: {value: 1, category: `order`},
+  bookmarks_index: {value: 2, category: `order`},
+  closed_index: {value: 3, category: `order`},
+  stars_index: {value: 4, category: `order`},
+
   text_mode: {value: `title`, category: `basic`},
-
-  tabs_index: {value: 0, category: `basic`},
-  history_index: {value: 1, category: `basic`},
-  bookmarks_index: {value: 2, category: `basic`},
-  closed_index: {value: 3, category: `basic`},
-  stars_index: {value: 4, category: `basic`},
-
   lock_drag: {value: false, category: `basic`},
   switch_to_tabs: {value: true, category: `basic`},
   hover_tooltips: {value: true, category: `basic`},
@@ -176,7 +175,7 @@ App.settings_make_menu = (id, opts, action = () => {}) => {
 }
 
 App.setup_settings = () => {
-  App.settings_order = [`settings_basic`, `settings_theme`, `settings_icons`, `settings_media`, `settings_warns`]
+  App.settings_categories = [`basic`, `theme`, `icons`, `media`, `warns`, `order`]
 
   App.create_window({id: `settings_basic`, setup: () => {
     let container = DOM.el(`#settings_basic_container`)
@@ -191,8 +190,6 @@ App.setup_settings = () => {
       App.apply_theme()
     })
 
-    App.make_item_order()
-
     App.settings_make_menu(`font`, [
       [`Sans`, `sans-serif`],
       [`Serif`, `serif`],
@@ -203,10 +200,6 @@ App.setup_settings = () => {
 
     App.settings_make_menu(`font_size`, App.get_font_size_options(), () => {
       App.apply_theme()
-    })
-
-    DOM.ev(DOM.el(`#settings_reset_basic`), `click`, () => {
-      App.reset_settings(`basic`)
     })
 
     App.add_settings_switchers(`basic`)
@@ -222,34 +215,24 @@ App.setup_settings = () => {
   App.create_window({id: `settings_icons`, setup: () => {
     let container = DOM.el(`#settings_icons_container`)
     App.settings_setup_text(container)
-
-    DOM.ev(DOM.el(`#settings_reset_icons`), `click`, () => {
-      App.reset_settings(`icons`)
-    })
-
     App.add_settings_switchers(`icons`)
   }, persistent: false, colored_top: true})
 
   App.create_window({id: `settings_media`, setup: () => {
     let container = DOM.el(`#settings_media_container`)
     App.settings_setup_checkboxes(container)
-
-    DOM.ev(DOM.el(`#settings_reset_media`), `click`, () => {
-      App.reset_settings(`media`)
-    })
-
     App.add_settings_switchers(`media`)
   }, persistent: false, colored_top: true})
 
   App.create_window({id: `settings_warns`, setup: () => {
     let container = DOM.el(`#settings_warns_container`)
     App.settings_setup_checkboxes(container)
-
-    DOM.ev(DOM.el(`#settings_reset_warns`), `click`, () => {
-      App.reset_settings(`warns`)
-    })
-
     App.add_settings_switchers(`warns`)
+  }, persistent: false, colored_top: true})
+
+  App.create_window({id: `settings_order`, setup: () => {
+    App.make_item_order()
+    App.add_settings_switchers(`order`)
   }, persistent: false, colored_top: true})
 }
 
@@ -258,6 +241,9 @@ App.add_settings_switchers = (category) => {
   let title = DOM.el(`.settings_title`, buttons)
   let close = DOM.create(`div`, `button settings_close_button`)
   close.textContent = `Close`
+
+  let reset = DOM.create(`div`, `button settings_reset_button`)
+  reset.textContent = `Reset`
 
   let prev = DOM.create(`div`, `button arrow_prev`)
   prev.textContent = `<`
@@ -282,7 +268,12 @@ App.add_settings_switchers = (category) => {
     App.hide_current_window()
   })
 
-  title.after(close)
+  DOM.ev(reset, `click`, () => {
+    App.reset_settings(category)
+  })
+
+  title.after(reset)
+  reset.after(close)
   close.after(next)
 }
 
@@ -312,10 +303,6 @@ App.start_theme_settings = () => {
 
   DOM.ev(DOM.el(`#settings_detect_theme`), `click`, () => {
     App.detect_theme()
-  })
-
-  DOM.ev(DOM.el(`#settings_reset_theme`), `click`, () => {
-    App.reset_settings(`theme`)
   })
 
   let imgs = App.get_background_options()
@@ -363,24 +350,24 @@ App.settings_menu_cycle = (el, setting, dir, items) => {
   }
 }
 
-App.reset_settings = (type) => {
-  App.show_confirm(`Reset settings? (${type})`, () => {
+App.reset_settings = (category) => {
+  App.show_confirm(`Reset settings? (${App.capitalize(category)})`, () => {
     for (let key in App.default_settings) {
       let item = App.default_settings[key]
 
-      if (item.category === type) {
+      if (item.category === category) {
         App.settings[key] = item.value
       }
     }
 
-    if (type === `basic`) {
+    if (category === `basic`) {
       App.get_item_order()
       App.make_item_order()
     }
 
     App.stor_save_settings()
     App.apply_theme()
-    App.show_window(`settings_${type}`)
+    App.show_window(`settings_${category}`)
   })
 }
 
@@ -429,65 +416,47 @@ App.get_size_options = () => {
   return opts
 }
 
+App.show_settings_window = (category) => {
+  App.show_window(`settings_${category}`)
+}
+
 App.show_prev_settings = () => {
-  let index = App.settings_order.indexOf(App.window_mode)
+  let index = App.settings_index()
   index -= 1
 
   if (index < 0) {
-    index = App.settings_order.length - 1
+    index = App.settings_categories.length - 1
   }
 
-  App.show_window(App.settings_order[index])
+  App.show_settings_window(App.settings_categories[index])
 }
 
 App.show_next_settings = () => {
-  let index = App.settings_order.indexOf(App.window_mode)
+  let index = App.settings_index()
   index += 1
 
-  if (index >= App.settings_order.length) {
+  if (index >= App.settings_categories.length) {
     index = 0
   }
 
-  App.show_window(App.settings_order[index])
+  App.show_settings_window(App.settings_categories[index])
+}
+
+App.settings_index = () => {
+  return App.settings_categories.indexOf(App.window_mode.replace(`settings_`, ``))
 }
 
 App.show_settings_menu = (btn) => {
   let items = []
 
-  items.push({
-    text: `Basic`,
-    action: () => {
-      App.show_window(`settings_basic`)
-    }
-  })
-
-  items.push({
-    text: `Theme`,
-    action: () => {
-      App.show_window(`settings_theme`)
-    }
-  })
-
-  items.push({
-    text: `Icons`,
-    action: () => {
-      App.show_window(`settings_icons`)
-    }
-  })
-
-  items.push({
-    text: `Media`,
-    action: () => {
-      App.show_window(`settings_media`)
-    }
-  })
-
-  items.push({
-    text: `Warns`,
-    action: () => {
-      App.show_window(`settings_warns`)
-    }
-  })
+  for (let category of App.settings_categories) {
+    items.push({
+      text: App.capitalize(category),
+      action: () => {
+        App.show_settings_window(category)
+      }
+    })
+  }
 
   items.push({
     separator: true

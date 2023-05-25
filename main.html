@@ -149,8 +149,6 @@
           <input type="checkbox" class="settings_checkbox" id="settings_clear_filter" data-setting="clear_filter">
         </div>
 
-        <div class="separator"></div>
-
         <div class="settings_column" title="Main text to display on the items. The opposite is displayed in the footer">
           <div class="settings_label">Text Mode</div>
           <div id="settings_text_mode" class="settings_menu button" data-setting="text_mode"></div>
@@ -175,17 +173,6 @@
           <div class="settings_label">Height</div>
           <div id="settings_height" class="settings_menu button" data-setting="height"></div>
         </div>
-
-        <div class="separator"></div>
-
-        <div class="settings_column" title="The items on top appear first">
-          <div class="settings_label">Item Order</div>
-          <div id="settings_item_order"></div>
-        </div>
-
-        <div class="separator"></div>
-
-        <div id="settings_reset_basic" class="button settings_button" title="Restore these settings">Reset</div>
       </div>
     </template>
 
@@ -225,10 +212,6 @@
           <div class="settings_label">Custom Background</div>
           <input type="text" placeholder="Paste an image URL" id="settings_custom_background" class="text settings_text" data-setting="custom_background" data-action="theme">
         </div>
-
-        <div class="separator"></div>
-
-        <div id="settings_reset_theme" class="button settings_button" title="Restore these settings">Reset</div>
       </div>
     </template>
 
@@ -264,10 +247,6 @@
           <div class="settings_label">Suspended Icon</div>
           <input type="text" autocomplete="off" spellcheck="false" id="settings_suspended_icon" class="text settings_text text_smaller" data-setting="suspended_icon">
         </div>
-
-        <div class="separator"></div>
-
-        <div id="settings_reset_icons" class="button settings_button" title="Restore these settings">Reset</div>
       </div>
     </template>
 
@@ -303,10 +282,6 @@
           <div class="settings_label">Media Viewer<br>On Stars</div>
           <input type="checkbox" class="settings_checkbox" id="settings_media_viewer_on_stars" data-setting="media_viewer_on_stars">
         </div>
-
-        <div class="separator"></div>
-
-        <div id="settings_reset_media" class="button settings_button" title="Restore these settings">Reset</div>
       </div>
     </template>
 
@@ -352,16 +327,27 @@
           <div class="settings_label">Warn On Launch</div>
           <input type="checkbox" class="settings_checkbox" id="settings_warn_on_launch" data-setting="warn_on_launch">
         </div>
-
-        <div class="separator"></div>
-
-        <div id="settings_reset_warns" class="button settings_button" title="Restore these settings">Reset</div>
       </div>
     </template>
 
     <template id="template_settings_warns_top">
       <div class="flex_row_center gap_2 grow">
         <div class="settings_title button">Warns</div>
+      </div>
+    </template>
+
+    <template id="template_settings_order">
+      <div id="settings_order_container" class="settings_container">
+        <div class="settings_column" title="The items on top appear first">
+          <div class="settings_label">Item Order</div>
+          <div id="settings_item_order"></div>
+        </div>
+      </div>
+    </template>
+
+    <template id="template_settings_order_top">
+      <div class="flex_row_center gap_2 grow">
+        <div class="settings_title button">Order</div>
       </div>
     </template>
 
