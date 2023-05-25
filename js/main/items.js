@@ -568,7 +568,7 @@ App.get_more_menu_items = (item, multiple) => {
   })
 
   items.push({
-    text: `Bottom`,
+    text: `To Bottom`,
     action: () => {
       App.move_tabs_to_bottom(item)
     }
