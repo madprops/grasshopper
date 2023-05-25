@@ -32,7 +32,7 @@ body, html {
   height: 100%;
   object-fit: cover;
   filter: grayscale(100%);
-  background: var(--background_image);
+  background: var(--background);
   background-color: var(--background_color);
 }
 

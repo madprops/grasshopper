@@ -21,7 +21,7 @@ App.default_settings = {
 
   background_color: {value: `rgb(43, 42, 51)`, category: `theme`},
   text_color: {value: `rgb(213, 212, 214)`, category: `theme`},
-  background_image: {value: 1, category: `theme`},
+  background: {value: 1, category: `theme`},
   custom_background: {value: ``, category: `theme`},
 
   pin_icon: {value: `+`, category: `icons`},
@@ -318,9 +318,9 @@ App.start_theme_settings = () => {
     App.reset_settings(`theme`)
   })
 
-  let imgs = App.get_background_image_options()
+  let imgs = App.get_background_options()
 
-  App.settings_make_menu(`background_image`, imgs, () => {
+  App.settings_make_menu(`background`, imgs, () => {
     App.apply_theme()
   })
 }
@@ -394,7 +394,7 @@ App.reset_all_settings = (type) => {
   })
 }
 
-App.get_background_image_options = () => {
+App.get_background_options = () => {
   let opts = []
 
   for (let i=0; i<=App.num_background_images; i++) {
