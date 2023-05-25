@@ -12,6 +12,7 @@ App.default_settings = {
   mouse_gestures: {value: true, category: `basic`},
   clear_filter: {value: true, category: `basic`},
   show_pinline: {value: true, category: `basic`},
+  item_height: {value: `normal`, category: `basic`},
   highlight_effect: {value: `rotate`, category: `basic`},
 
   width: {value: 70, category: `basic`},
@@ -212,6 +213,14 @@ App.setup_settings = () => {
       [`Bright`, `bright`],
       [`Blink`, `blink`],
       [`Hue`, `hue`],
+    ], () => {
+      App.apply_theme()
+    })
+
+    App.settings_make_menu(`item_height`, [
+      [`Normal`, `normal`],
+      [`Compact`, `compact`],
+      [`Bigger`, `bigger`],
     ], () => {
       App.apply_theme()
     })

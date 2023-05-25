@@ -186,7 +186,7 @@ svg {
   flex-direction: row;
   cursor: pointer;
   align-items: center;
-  min-height: 2.2rem;
+  min-height: var(--item_height);
   direction: ltr;
   flex-shrink: 0;
 }

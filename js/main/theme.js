@@ -32,6 +32,17 @@ App.apply_theme = () => {
     let h = `${(App.settings.height / 100) * 600}px`
     App.set_css_var(`height`, h)
 
+    let item_height = "2.2rem"
+
+    if (App.settings.item_height === `compact`) {
+      item_height = "1.7rem"
+    }
+    else if (App.settings.item_height === `bigger`) {
+      item_height = "2.7rem"
+    }
+
+    App.set_css_var(`item_height`, item_height)
+
     if (App.settings.background === 0 && App.settings.custom_background === ``) {
       App.set_css_var(`background`, `unset`)
     }
