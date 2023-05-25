@@ -92,6 +92,15 @@ App.setup_tabs = () => {
       App.new_tab()
     }
   })
+
+  App.pinline_debouncer = App.create_debouncer(() => {
+    App.do_check_pinline()
+  }, 20)
+
+  App.check_pinline = () => {
+    App.remove_pinline()
+    App.pinline_debouncer.call()
+  }
 }
 
 App.tabs_check = () => {
@@ -767,15 +776,17 @@ App.get_last_pin_index = () => {
   return i
 }
 
-App.check_pinline = () => {
+App.remove_pinline = () => {
+  for (let el of DOM.els(`.pinline`, DOM.el(`#tabs_container`))) {
+    el.classList.remove(`pinline`)
+  }
+}
+
+App.do_check_pinline = () => {
   App.log(`Checking pinline`)
 
   if (App.window_mode !== `tabs`) {
     return
-  }
-
-  for (let el of DOM.els(`.pinline`, DOM.el(`#tabs_container`))) {
-    el.classList.remove(`pinline`)
   }
 
   let last_pinned
