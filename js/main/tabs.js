@@ -600,7 +600,7 @@ App.go_to_playing = () => {
       }
 
       if (waypoint) {
-        App.select_item(item)
+        App.select_item(item, `center`)
         App.focus_tab(item)
         return
       }
@@ -614,7 +614,7 @@ App.go_to_playing = () => {
 
   // If none found then pick the first one
   if (first) {
-    App.select_item(first)
+    App.select_item(first, `center`)
     App.focus_tab(first)
   }
 }
