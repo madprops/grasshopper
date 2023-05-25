@@ -3,16 +3,19 @@ App.setup_items = () => {
   App.start_item_observers()
 }
 
+App.remove_selected_class = (mode) => {
+  for (let el of DOM.els(`.selected`, DOM.el(`#${mode}_container`))) {
+    el.classList.remove(`selected`)
+  }
+}
+
 App.select_item = async (item, scroll = `nearest`, dehighlight = true) => {
   if (!item.created) {
     App.create_item_element(item)
   }
 
   App.set_selected(item.mode, item)
-
-  for (let el of DOM.els(`.${item.mode}_item`)) {
-    el.classList.remove(`selected`)
-  }
+  App.remove_selected_class(item.mode)
 
   App.get_selected(item.mode).element.classList.add(`selected`)
 
@@ -191,6 +194,10 @@ App.get_selected = (mode) => {
 
 App.set_selected = (mode, what) => {
   App[`selected_${mode}_item`] = what
+
+  if (!what) {
+    App.remove_selected_class(mode)
+  }
 }
 
 App.get_items = (mode) => {
