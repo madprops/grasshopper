@@ -206,12 +206,12 @@ App.setup_settings = () => {
     })
 
     App.settings_make_menu(`highlight_effect`, [
+      [`None`, `none`],
       [`Rotate`, `rotate`],
       [`Invert`, `invert`],
       [`Bright`, `bright`],
       [`Hue`, `hue`],
       [`Blink`, `blink`],
-      [`None`, `none`],
     ], () => {
       App.apply_theme()
     })
