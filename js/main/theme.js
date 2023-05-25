@@ -86,7 +86,7 @@ App.random_theme = () => {
   }
 
   let bgi = App.get_random_int(0, App.num_background_images)
-  DOM.el("#settings_background").textContent = App.get_background_label(bgi)
+  DOM.el(`#settings_background`).textContent = App.get_background_label(bgi)
   App.settings.background = bgi
 
   App.background_color_picker.setColor(colors.background_color)
