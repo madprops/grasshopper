@@ -18,8 +18,9 @@ App.default_settings = {
   font: {value: `sans-serif`, category: `basic`},
   font_size: {value: 16, category: `basic`},
 
-  background_color: {value: `rgb(43, 42, 51)`, category: `theme`},
-  text_color: {value: `rgb(213, 212, 214)`, category: `theme`},
+  background_color: {value: `rgb(70, 76, 94)`, category: `theme`},
+  text_color: {value: `rgb(208, 209, 214)`, category: `theme`},
+
   background: {value: 1, category: `theme`},
   custom_background: {value: ``, category: `theme`},
 
