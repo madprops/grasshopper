@@ -63,15 +63,21 @@ App.change_color = (name, color) => {
   App.stor_save_settings()
 }
 
-App.random_theme = (mode) => {
+App.random_theme = () => {
+  let max = 8
+  let n = App.get_random_int(0, max)
   let colors
 
-  if (mode === `dark`) {
-    colors = App.get_random_theme(`dark`)
-  }
-  else if (mode === `light`) {
+  if (n === max) {
     colors = App.get_random_theme(`light`)
   }
+  else {
+    colors = App.get_random_theme(`dark`)
+  }
+
+  let img = App.get_random_int(1, App.num_background_images).toString()
+  App.settings.background_image = img
+  DOM.el("#settings_background_image").textContent = img
 
   App.background_color_picker.setColor(colors.background_color)
   App.text_color_picker.setColor(colors.text_color)
