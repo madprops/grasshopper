@@ -274,7 +274,7 @@ svg {
 }
 
 .highlight_bright .highlighted .item_icon {
-  filter: brightness(1.8);
+  filter: brightness(1.88);
 }
 
 .highlight_hue .highlighted .item_icon {
