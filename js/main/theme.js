@@ -65,10 +65,9 @@ App.change_color = (name, color) => {
 
 App.random_theme = () => {
   let max = 5
-  let n = App.get_random_int(0, max)
   let colors
 
-  if (n === max) {
+  if (App.get_random_int(1, max) === max) {
     colors = App.get_random_theme(`light`)
   }
   else {
