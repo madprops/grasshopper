@@ -29,9 +29,18 @@ App.stor_get_settings = () => {
   App.settings = App.get_local_storage(App.stor_settings_name, {})
   let changed = false
 
+  // Fill defaults
   for (let key in App.default_settings) {
     if (App.settings[key] === undefined) {
       App.settings[key] = App.default_settings[key].value
+      changed = true
+    }
+  }
+
+  // Remove unused keys
+  for (let key in App.settings) {
+    if (App.default_settings[key] === undefined) {
+      delete App.settings[key]
       changed = true
     }
   }
