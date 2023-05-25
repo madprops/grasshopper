@@ -122,11 +122,6 @@ App.setup_drag = (mode) => {
       return false
     }
 
-    if (App.is_filtered(mode)) {
-      e.preventDefault()
-      return false
-    }
-
     App.drag_element = e.target.closest(`.grasshopper_item`)
 
     if (!App.drag_element) {
