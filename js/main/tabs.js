@@ -644,11 +644,18 @@ App.go_to_previous_tab = async () => {
     return
   }
 
-  App.focus_tab(App.previous_tabs[App.previous_tabs_index])
-  App.previous_tabs_index += 1
+  let prev_tab = App.previous_tabs[App.previous_tabs_index]
+  let item = App.get_item_by_id(`tabs`, prev_tab.id)
 
-  if (App.previous_tabs_index >= App.previous_tabs.length) {
-    App.previous_tabs_index = 0
+  if (item) {
+    App.select_item(item, `center`)
+    App.focus_tab(item)
+
+    App.previous_tabs_index += 1
+
+    if (App.previous_tabs_index >= App.previous_tabs.length) {
+      App.previous_tabs_index = 0
+    }
   }
 }
 
