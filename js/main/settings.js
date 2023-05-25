@@ -360,7 +360,7 @@ App.reset_settings = (category) => {
       }
     }
 
-    if (category === `basic`) {
+    if (category === `order`) {
       App.get_item_order()
       App.make_item_order()
     }
