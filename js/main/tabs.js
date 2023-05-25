@@ -728,6 +728,7 @@ App.move_tabs_to_top = async (item) => {
   }
 
   App.check_pinline()
+  App.select_item(App.get_selected(item.mode), `center`, false)
 }
 
 App.move_tabs_to_bottom = async (item) => {
@@ -746,6 +747,7 @@ App.move_tabs_to_bottom = async (item) => {
   }
 
   App.check_pinline()
+  App.select_item(App.get_selected(item.mode), `center`, false)
 }
 
 App.get_first_normal_index = () => {
