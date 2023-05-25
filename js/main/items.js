@@ -560,6 +560,12 @@ App.get_more_menu_items = (item, multiple) => {
     })
   }
 
+  if (items.length > 0) {
+    items.push({
+      separator: true
+    })
+  }
+
   items.push({
     text: `To Top`,
     action: () => {
@@ -575,7 +581,7 @@ App.get_more_menu_items = (item, multiple) => {
   })
 
   items.push({
-    text: `Window`,
+    text: `To Window`,
     get_items: async () => {
       return await App.get_window_menu_items(item)
     }
