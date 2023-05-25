@@ -939,10 +939,14 @@ App.show_item_window = async (mode, cycle = false) => {
   }
 
   if (value) {
-    App.do_item_filter(mode)
+    setTimeout(() => {
+      App.do_item_filter(mode)
+    }, 100)
   }
   else {
-    App.select_first_item(mode, true)
+    setTimeout(() => {
+      App.select_first_item(mode, true)
+    }, 100)
   }
 
   App.focus_filter(mode)
