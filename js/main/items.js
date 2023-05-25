@@ -912,7 +912,7 @@ App.show_item_window = async (mode, cycle = false) => {
   App.set_filter(mode, value, false)
 
   let m = App[`${mode}_filter_modes`][0]
-  App.set_filter_mode(mode, m)
+  App.set_filter_mode(mode, m, false)
   App[`${mode}_filter_mode`] = m[0]
 
   let items = await App[`get_${mode}`]()
@@ -1253,10 +1253,10 @@ App.update_footer_count = (mode) => {
   }
 }
 
-App.set_filter = (mode, text, action = true) => {
+App.set_filter = (mode, text, filter = true) => {
   DOM.el(`#${mode}_filter`).value = text
 
-  if (action) {
+  if (filter) {
     App.do_item_filter(mode)
   }
 }
@@ -1428,7 +1428,7 @@ App.cycle_filter_modes = (mode, reverse = true) => {
   }
 }
 
-App.set_filter_mode = (mode, filter_mode) => {
+App.set_filter_mode = (mode, filter_mode, filter = true) => {
   // If All is clicked again, clear the filter
   if (filter_mode[0] === `all`) {
     if (App[`${mode}_filter_mode`] === `all`) {
@@ -1441,7 +1441,10 @@ App.set_filter_mode = (mode, filter_mode) => {
 
   App[`${mode}_filter_mode`] = filter_mode[0]
   DOM.el(`#${mode}_filter_modes_text`).textContent = filter_mode[1]
-  App.do_item_filter(mode)
+
+  if (filter) {
+    App.do_item_filter(mode)
+  }
 }
 
 App.get_mode_index = (mode) => {
