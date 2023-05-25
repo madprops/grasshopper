@@ -186,7 +186,7 @@ svg {
   flex-direction: row;
   cursor: pointer;
   align-items: center;
-  min-height: 2.1rem;
+  min-height: 2.2rem;
   direction: ltr;
   flex-shrink: 0;
 }
@@ -259,6 +259,10 @@ svg {
   gap: 0.66rem;
   flex-grow: 0;
   flex-shrink: 0;
+}
+
+.empty_item {
+  height: 5rem;
 }
 
 .highlighted {
