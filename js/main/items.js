@@ -207,7 +207,11 @@ App.select_first_item = (mode, by_active = false) => {
   if (mode === `tabs` && by_active) {
     for (let item of App.get_items(mode)) {
       if (item.visible && item.active) {
-        App.select_item(item, `center`)
+        // Ensure proper scroll position
+        setTimeout(() => {
+          App.select_item(item, `center`)
+        }, 123)
+
         return
       }
     }
@@ -942,9 +946,7 @@ App.show_item_window = async (mode, cycle = false) => {
     App.do_item_filter(mode)
   }
   else {
-    setTimeout(() => {
-      App.select_first_item(mode, true)
-    }, 150)
+    App.select_first_item(mode, true)
   }
 
   App.focus_filter(mode)
