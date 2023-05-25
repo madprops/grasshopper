@@ -696,7 +696,7 @@ App.process_info = (mode, info, exclude = [], o_item) => {
 }
 
 App.create_empty_item_element = (item) => {
-  item.element = DOM.create(`div`, `grasshopper_item item ${item.mode}_item`)
+  item.element = DOM.create(`div`, `grasshopper_item item ${item.mode}_item empty_item`)
   item.element.dataset.id = item.id
   App[`${item.mode}_item_observer`].observe(item.element)
 }
@@ -758,6 +758,7 @@ App.create_item_element = (item) => {
   }
 
   item.created = true
+  item.element.classList.remove(`empty_item`)
   App.log(`Item created in ${item.mode}`)
 }
 
