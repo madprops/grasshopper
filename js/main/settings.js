@@ -244,9 +244,6 @@ App.add_settings_switchers = (category) => {
   let close = DOM.create(`div`, `button settings_close_button`)
   close.textContent = `Close`
 
-  let reset = DOM.create(`div`, `button settings_reset_button`)
-  reset.textContent = `Reset`
-
   let prev = DOM.create(`div`, `button arrow_prev`)
   prev.textContent = `<`
   title.before(prev)
@@ -263,19 +260,14 @@ App.add_settings_switchers = (category) => {
   })
 
   DOM.ev(title, `click`, () => {
-    App.show_settings_menu(title)
+    App.show_settings_menu(category, title)
   })
 
   DOM.ev(close, `click`, () => {
     App.hide_current_window()
   })
 
-  DOM.ev(reset, `click`, () => {
-    App.reset_settings(category)
-  })
-
-  title.after(reset)
-  reset.after(close)
+  title.after(close)
   close.after(next)
 }
 
@@ -448,14 +440,14 @@ App.settings_index = () => {
   return App.settings_categories.indexOf(App.window_mode.replace(`settings_`, ``))
 }
 
-App.show_settings_menu = (btn) => {
+App.show_settings_menu = (category, btn) => {
   let items = []
 
-  for (let category of App.settings_categories) {
+  for (let c of App.settings_categories) {
     items.push({
-      text: App.capitalize(category),
+      text: App.capitalize(c),
       action: () => {
-        App.show_settings_window(category)
+        App.show_settings_window(c)
       }
     })
   }
@@ -466,8 +458,8 @@ App.show_settings_menu = (btn) => {
 
   items.push({
     text: `Reset`,
-    action: () => {
-      App.reset_all_settings()
+    get_items: () => {
+      return App.settings_reset_items(category)
     }
   })
 
@@ -523,4 +515,24 @@ App.restart_settings = () => {
   App.apply_theme()
   App.stor_save_settings()
   App.show_window(`settings_basic`)
+}
+
+App.settings_reset_items = (category) => {
+  let items = []
+
+  items.push({
+    text: `Reset ${App.capitalize(category)}`,
+    action: () => {
+      App.reset_settings(category)
+    }
+  })
+
+  items.push({
+    text: `Reset All`,
+    action: () => {
+      App.reset_all_settings()
+    }
+  })
+
+  return items
 }
