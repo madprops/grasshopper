@@ -1875,6 +1875,6 @@ App.check_clear_filter = () => {
 }
 
 App.pick_item = (item) => {
-  App.select_item(item, false)
+  App.select_item(item, `nearest`, false)
   App.toggle_highlight(item)
 }
