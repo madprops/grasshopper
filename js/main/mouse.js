@@ -139,9 +139,9 @@ App.setup_drag = (mode) => {
     App.drag_items = []
 
     if (App.drag_item.highlighted) {
-      for (let tab of App.get_items(mode)) {
-        if (tab.highlighted) {
-          App.drag_items.push(tab)
+      for (let item of App.get_items(mode)) {
+        if (item.highlighted) {
+          App.drag_items.push(item)
         }
       }
     }
@@ -151,8 +151,8 @@ App.setup_drag = (mode) => {
 
     App.drag_els = []
 
-    for (let tab of App.drag_items) {
-      App.drag_els.push(tab.element)
+    for (let item of App.drag_items) {
+      App.drag_els.push(item.element)
     }
 
     App.drag_moved = false
