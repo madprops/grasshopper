@@ -495,7 +495,6 @@ App.do_move_tab_index = async (id, index) => {
     App.log(err, `error`)
   }
 
-  App.check_pinline()
   return ans
 }
 
@@ -727,6 +726,8 @@ App.move_tabs_to_top = async (item) => {
     await App.do_move_tab_index(it.id, first)
     first += 1
   }
+
+  App.check_pinline()
 }
 
 App.move_tabs_to_bottom = async (item) => {
@@ -739,10 +740,12 @@ App.move_tabs_to_bottom = async (item) => {
     last = App.get_items(`tabs`).length - 1
   }
 
-  for (let it of App.get_active_items(item.mode, item)) {
+  for (let it of App.get_active_items(item.mode, item).slice(0).reverse()) {
     await App.do_move_tab_index(it.id, last)
     last -= 1
   }
+
+  App.check_pinline()
 }
 
 App.get_first_normal_index = () => {
