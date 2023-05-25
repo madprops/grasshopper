@@ -64,7 +64,7 @@ App.change_color = (name, color) => {
 }
 
 App.random_theme = () => {
-  let max = 8
+  let max = 5
   let n = App.get_random_int(0, max)
   let colors
 
