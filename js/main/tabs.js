@@ -786,6 +786,10 @@ App.do_check_pinline = () => {
     return
   }
 
+  if (!App.settings.show_pinline) {
+    return
+  }
+
   App.log(`Checking pinline`)
   App.remove_pinline()
   let last_pinned
