@@ -21,7 +21,7 @@ App.default_settings = {
 
   background_color: {value: `rgb(43, 42, 51)`, category: `theme`},
   text_color: {value: `rgb(213, 212, 214)`, category: `theme`},
-  background_image: {value: `1`, category: `theme`},
+  background_image: {value: 1, category: `theme`},
   custom_background: {value: ``, category: `theme`},
 
   pin_icon: {value: `+`, category: `icons`},
@@ -395,15 +395,18 @@ App.reset_all_settings = (type) => {
 }
 
 App.get_background_image_options = () => {
-  let opts = [[`None`, `none`]]
+  let opts = []
 
-  for (let i=1; i<=App.num_background_images; i++) {
-    let ii = i.toString()
-    let ns = App.fillpad(ii, 2, 0)
-    opts.push([`BG ${ns}`, ii])
+  for (let i=0; i<=App.num_background_images; i++) {
+    opts.push([App.get_background_label(i), i])
   }
 
   return opts
+}
+
+App.get_background_label = (n) => {
+  let ns = App.fillpad(n.toString(), 2, 0)
+  return `BG ${ns}`
 }
 
 App.get_font_size_options = () => {

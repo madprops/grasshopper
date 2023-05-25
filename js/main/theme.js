@@ -32,14 +32,14 @@ App.apply_theme = () => {
     let h = `${(App.settings.height / 100) * 600}px`
     App.set_css_var(`height`, h)
 
-    if (App.settings.background_image === `none` && App.settings.custom_background === ``) {
+    if (App.settings.background_image === 0 && App.settings.custom_background === ``) {
       App.set_css_var(`background_image`, `unset`)
     }
     else {
       if (App.settings.custom_background) {
         App.set_css_var(`background_image`, `url(${App.settings.custom_background})`)
       }
-      else if (App.settings.background_image !== `none`) {
+      else if (App.settings.background_image !== 0) {
         App.set_css_var(`background_image`, `url(../img/backgrounds/${App.settings.background_image}.jpg)`)
       }
     }
@@ -75,9 +75,9 @@ App.random_theme = () => {
     colors = App.get_random_theme(`dark`)
   }
 
-  let img = App.get_random_int(1, App.num_background_images).toString()
-  App.settings.background_image = img
-  DOM.el("#settings_background_image").textContent = img
+  let bgi = App.get_random_int(0, App.num_background_images)
+  DOM.el("#settings_background_image").textContent = App.get_background_label(bgi)
+  App.settings.background_image = bgi
 
   App.background_color_picker.setColor(colors.background_color)
   App.text_color_picker.setColor(colors.text_color)
