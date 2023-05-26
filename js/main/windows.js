@@ -151,3 +151,7 @@ App.window_goto_bottom = (mode) => {
 App.hide_current_window = () => {
   App.windows[App.window_mode].hide()
 }
+
+App.make_window_visible = () => {
+  DOM.el(`#all`).classList.remove(`transparent`)
+}
