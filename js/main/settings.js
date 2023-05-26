@@ -540,16 +540,9 @@ App.show_settings_menu = (category, btn) => {
   })
 
   items.push({
-    text: `Export`,
-    action: () => {
-      App.export_settings()
-    }
-  })
-
-  items.push({
-    text: `Import`,
-    action: () => {
-      App.import_settings()
+    text: `Data`,
+    get_items: () => {
+      return App.settings_data_items()
     }
   })
 
@@ -618,6 +611,26 @@ App.settings_reset_items = (category) => {
     text: `Reset All`,
     action: () => {
       App.reset_all_settings()
+    }
+  })
+
+  return items
+}
+
+App.settings_data_items = () => {
+  let items = []
+
+  items.push({
+    text: `Export`,
+    action: () => {
+      App.export_settings()
+    }
+  })
+
+  items.push({
+    text: `Import`,
+    action: () => {
+      App.import_settings()
     }
   })
 
