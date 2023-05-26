@@ -74,9 +74,23 @@ App.check_window_keyboard = (e) => {
     }
     else if (e.key === `ArrowUp`) {
       App.highlight_next(mode, `above`)
+      e.preventDefault()
+      return
     }
     else if (e.key === `ArrowDown`) {
       App.highlight_next(mode, `below`)
+      e.preventDefault()
+      return
+    }
+    else if (e.key === `PageUp`) {
+      App.scroll(mode, `up`, true)
+      e.preventDefault()
+      return
+    }
+    else if (e.key === `PageDown`) {
+      App.scroll(mode, `down`, true)
+      e.preventDefault()
+      return
     }
   }
 
@@ -95,12 +109,12 @@ App.check_window_keyboard = (e) => {
       return
     }
     else if (e.key === `PageUp`) {
-      App.scroll(mode, `up`, e.shiftKey)
+      App.scroll(mode, `up`, false)
       e.preventDefault()
       return
     }
     else if (e.key === `PageDown`) {``
-      App.scroll(mode, `down`, e.shiftKey)
+      App.scroll(mode, `down`, false)
       e.preventDefault()
       return
     }
