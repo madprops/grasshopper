@@ -38,7 +38,7 @@ App.apply_theme = () => {
       item_height = `1.7rem`
     }
     else if (App.settings.item_height === `bigger`) {
-      item_height = `2.6rem`
+      item_height = `2.7rem`
     }
 
     App.set_css_var(`item_height`, item_height)
