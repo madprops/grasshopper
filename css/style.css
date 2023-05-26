@@ -1,7 +1,7 @@
 :root {
   --widget_padding_vert: 0.2rem;
   --widget_padding_hor: 0.3rem;
-  --item_margin: 0.45rem;
+  --item_margin_1: 0.45rem;
   --item_margin_2: 0.65rem;
   --border_radius: 5px;
   --border_1: 2px solid var(--alt_color_1);
@@ -97,7 +97,7 @@ body, html {
 }
 
 .container {
-  margin-bottom: var(--item_margin);
+  margin-bottom: var(--item_margin_1);
   display: flex;
   flex-direction: column;
   flex-grow: 1;
@@ -198,7 +198,7 @@ svg {
   width: 1.11rem;
   height: 1.11rem;
   object-fit: contain;
-  margin-left: var(--item_margin);
+  margin-left: var(--item_margin_1);
   margin-right: var(--item_margin_2);
   flex-grow: 0;
   flex-shrink: 0;
@@ -207,8 +207,8 @@ svg {
 .item_status {
   display: flex;
   flex-direction: row;
-  gap: var(--item_margin);
-  margin-right: var(--item_margin);
+  gap: var(--item_margin_1);
+  margin-right: var(--item_margin_1);
   flex-shrink: 0;
 }
 
@@ -221,14 +221,14 @@ svg {
   width: 100%;
   white-space: nowrap;
   overflow: hidden;
-  margin-right: var(--item_margin);
+  margin-right: var(--item_margin_1);
   flex-shrink: 1;
 }
 
 .item_info {
   display: flex;
   flex-direction: row;
-  padding-right: var(--item_margin);
+  padding-right: var(--item_margin_1);
   padding-left: 0.35rem;
   gap: 0.5rem;
   align-self: stretch;
@@ -237,8 +237,8 @@ svg {
 }
 
 .item_top_container {
-  margin-left: var(--item_margin);
-  margin-right: var(--item_margin);
+  margin-left: var(--item_margin_1);
+  margin-right: var(--item_margin_1);
   display: flex;
   flex-direction: row;
   width: 100%;
@@ -313,8 +313,8 @@ svg {
   white-space: nowrap;
   min-height: 2.2rem;
   border-top: var(--border_1);
-  margin-left: var(--item_margin);
-  margin-right: var(--item_margin);
+  margin-left: var(--item_margin_1);
+  margin-right: var(--item_margin_1);
   gap: 0.5rem;
   flex-grow: 0;
   flex-shrink: 0;
