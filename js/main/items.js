@@ -214,11 +214,7 @@ App.select_first_item = (mode, by_active = false) => {
   if (mode === `tabs` && by_active) {
     for (let item of App.get_items(mode)) {
       if (item.visible && item.active) {
-        // Ensure proper scroll position
-        setTimeout(() => {
-          App.select_item(item, `center`)
-        }, 123)
-
+        App.select_item(item, `center`)
         return
       }
     }
@@ -1775,6 +1771,10 @@ App.get_active_items = (mode, item) => {
     }
   }
   else {
+    if (!highlights.includes(item)) {
+      highlights.push(item)
+    }
+
     return highlights
   }
 }
@@ -1882,6 +1882,11 @@ App.check_clear_filter = () => {
 
 App.pick_item = (item) => {
   let highlighted = item.highlighted
+  let selected = App.get_selected(item.mode)
+
+  if (!selected.highlighted) {
+    App.toggle_highlight(selected)
+  }
 
   if (!highlighted) {
     App.select_item(item, `nearest`, false)
@@ -1890,10 +1895,10 @@ App.pick_item = (item) => {
   App.toggle_highlight(item)
 
   if (highlighted) {
-    let highlighted_item = App.get_highlights(item.mode)[0]
+    let highlights = App.get_highlights(item.mode)
 
-    if (highlighted_item) {
-      App.select_item(App.get_highlights(item.mode)[0], `nearest`, false)
+    if (highlights.length > 0) {
+      App.select_item(highlights[0], `nearest`, false)
     }
   }
 }
