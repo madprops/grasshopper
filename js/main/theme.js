@@ -32,7 +32,7 @@ App.apply_theme = () => {
     let h = `${(App.settings.height / 100) * 600}px`
     App.set_css_var(`height`, h)
 
-    let item_height = `2.1rem`
+    let item_height = `2.2rem`
 
     if (App.settings.item_height === `compact`) {
       item_height = `1.7rem`
