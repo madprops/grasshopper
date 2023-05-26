@@ -175,7 +175,7 @@ App.textarea_copy = () => {
 App.show_input = (message, button, action) => {
   App.input_action = action
   DOM.el(`#input_message`).textContent = message
-  let  input_text = DOM.el(`#input_text`)
+  let input_text = DOM.el(`#input_text`)
   input_text.value = ``
   DOM.el(`#input_submit`).textContent = button
   App.show_popup(`input`)
