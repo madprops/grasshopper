@@ -1881,6 +1881,15 @@ App.check_clear_filter = () => {
 }
 
 App.pick_item = (item) => {
-  App.select_item(item, `nearest`, false)
+  let highlighted = item.highlighted
+
+  if (!highlighted) {
+    App.select_item(item, `nearest`, false)
+  }
+
   App.toggle_highlight(item)
+
+  if (highlighted) {
+    App.select_item(App.get_highlights(item.mode)[0], `nearest`, false)
+  }
 }
