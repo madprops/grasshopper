@@ -95,7 +95,7 @@ App.setup_tabs = () => {
 
   App.pinline_debouncer = App.create_debouncer(() => {
     App.do_check_pinline()
-  }, 20)
+  }, 25)
 
   App.check_pinline = () => {
     App.pinline_debouncer.call()
