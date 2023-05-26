@@ -630,19 +630,21 @@ App.process_info_list = (mode, info_list) => {
 }
 
 App.process_info = (mode, info, exclude = [], o_item) => {
-  if (!info || !info.url) {
+  if (!info) {
     return false
   }
 
-  try {
-    // Check if valid URL
-    decodeURI(info.url)
-  }
-  catch (err) {
-    return false
+  if (info.url) {
+    try {
+      // Check if valid URL
+      decodeURI(info.url)
+    }
+    catch (err) {
+      return false
+    }
   }
 
-  let url = App.format_url(info.url)
+  let url = App.format_url(info.url || "")
 
   if (exclude.includes(url)) {
     return false

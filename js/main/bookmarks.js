@@ -19,7 +19,11 @@ App.setup_bookmarks = () => {
 
   browser.bookmarks.onChanged.addListener((id, info) => {
     if (App.window_mode === `bookmarks`) {
-      App.insert_item(`bookmarks`, info)
+      let item = App.get_item_by_id(`bookmarks`, id)
+
+      if (item) {
+        App.update_item(`bookmarks`, item.id, info)
+      }
     }
   })
 }
