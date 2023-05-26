@@ -259,8 +259,19 @@ App.tabs_action = (item) => {
     return
   }
 
+  if (App.active_tab_is(item)) {
+    return
+  }
+
+  let star = App.get_star_by_url(item.url)
+
+  if (star) {
+    App.update_star(star)
+  }
+
   App.focus_tab(item)
   App.check_clear_filter()
+
 }
 
 App.tabs_action_alt = (item, shift_key = false) => {
@@ -503,12 +514,6 @@ App.on_tab_activated = async (info) => {
     item.active = item.id === info.tabId
   }
 
-  let selected = App.get_selected(`tabs`)
-
-  if (selected && selected.id === info.tabId) {
-    return
-  }
-
   await App.refresh_tab(info.tabId, true)
 }
 
@@ -600,7 +605,6 @@ App.go_to_playing = () => {
       }
 
       if (waypoint) {
-        App.select_item(item, `center`)
         App.focus_tab(item)
         return
       }
@@ -614,7 +618,6 @@ App.go_to_playing = () => {
 
   // If none found then pick the first one
   if (first) {
-    App.select_item(first, `center`)
     App.focus_tab(first)
   }
 }
@@ -648,9 +651,7 @@ App.go_to_previous_tab = async () => {
   let item = App.get_item_by_id(`tabs`, prev_tab.id)
 
   if (item) {
-    App.select_item(item, `center`)
     App.focus_tab(item)
-
     App.previous_tabs_index += 1
 
     if (App.previous_tabs_index >= App.previous_tabs.length) {
@@ -667,6 +668,24 @@ App.get_active_tab = async () => {
   catch (err) {
     App.log(err, `error`)
   }
+}
+
+App.get_active_tab_item = () => {
+  for (let item of App.get_items(`tabs`)) {
+    if (item.active) {
+      return item
+    }
+  }
+}
+
+App.active_tab_is = (item) => {
+  let active = App.get_active_tab_item()
+
+  if (active) {
+    return active === item
+  }
+
+  return false
 }
 
 App.close_duplicates = () => {

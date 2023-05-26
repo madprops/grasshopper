@@ -38,15 +38,16 @@ App.default_settings = {
   warn_on_launch: {value: true, category: `warns`},
   warn_on_untitle: {value: true, category: `warns`},
 
-  switch_to_tabs: {value: true, category: `More`},
-  hover_tooltips: {value: true, category: `More`},
-  mouse_gestures: {value: true, category: `More`},
-  clear_filter: {value: true, category: `More`},
-  show_icons: {value: true, category: `More`},
-  show_footer: {value: true, category: `More`},
-  show_pinline: {value: true, category: `More`},
-  highlight_effect: {value: `rotate`, category: `More`},
-  lock_drag: {value: false, category: `More`},
+  lock_drag: {value: false, category: `more`},
+  switch_to_tabs: {value: true, category: `more`},
+  hover_tooltips: {value: true, category: `more`},
+  mouse_gestures: {value: true, category: `more`},
+  clear_filter: {value: true, category: `more`},
+  show_icons: {value: true, category: `more`},
+  show_footer: {value: true, category: `more`},
+  show_pinline: {value: true, category: `more`},
+  highlight_effect: {value: `rotate`, category: `more`},
+  quick_star: {value: true, category: `more`},
 }
 
 App.make_item_order = () => {
@@ -520,11 +521,17 @@ App.settings_index = () => {
 App.show_settings_menu = (category, btn) => {
   let items = []
 
+  for (let c of App.settings_categories) {
+    items.push({
+      text: App.capitalize(c),
+      action: () => {
+        App.show_settings_window(c)
+      }
+    })
+  }
+
   items.push({
-    text: `Jump`,
-    get_items: () => {
-      return App.settings_jump_items()
-    }
+    separator: true
   })
 
   items.push({
@@ -608,21 +615,6 @@ App.settings_reset_items = (category) => {
       App.reset_all_settings()
     }
   })
-
-  return items
-}
-
-App.settings_jump_items = () => {
-  let items = []
-
-  for (let c of App.settings_categories) {
-    items.push({
-      text: App.capitalize(c),
-      action: () => {
-        App.show_settings_window(c)
-      }
-    })
-  }
 
   return items
 }

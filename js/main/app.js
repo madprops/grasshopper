@@ -23,5 +23,6 @@ App.normal_scroll_pixels = 50
 App.fast_scroll_percent = 20
 App.gesture_threshold = 10
 App.wheel_delay = 100
+App.max_star_visits = 1000000 * 100
 
 NeedContext.min_width = `4.5rem`

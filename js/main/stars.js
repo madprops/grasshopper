@@ -79,7 +79,9 @@ App.update_star = (item, add_visit = true) => {
   item.date_last_visit = Date.now()
 
   if (add_visit) {
-    item.visits += 1
+    if (item.visits < App.max_star_visits) {
+      item.visits += 1
+    }
   }
 
   App.stor_save_stars()
@@ -328,8 +330,26 @@ App.star_items = (item) => {
   let active = App.get_active_items(item.mode, item)
 
   if (active.length === 1) {
-    App.add_or_edit_star(active[0])
-    App.dehighlight(item.mode)
+    if (App.settings.quick_star) {
+      let exists = App.get_star_by_url(item.url)
+
+      if (exists) {
+        App.show_star_editor(exists)
+      }
+      else {
+        App.star_item({
+          title: item.title,
+          url: item.url
+        })
+
+        App.show_alert(`Star saved`, 1000)
+      }
+    }
+    else {
+      App.add_or_edit_star(active[0])
+      App.dehighlight(item.mode)
+    }
+
     return
   }
 
