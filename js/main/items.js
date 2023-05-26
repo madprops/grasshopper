@@ -1600,6 +1600,7 @@ App.dehighlight = (mode) => {
     }
   }
 
+  App.last_highlight = undefined
   return some
 }
 
