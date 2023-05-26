@@ -519,17 +519,11 @@ App.settings_index = () => {
 App.show_settings_menu = (category, btn) => {
   let items = []
 
-  for (let c of App.settings_categories) {
-    items.push({
-      text: App.capitalize(c),
-      action: () => {
-        App.show_settings_window(c)
-      }
-    })
-  }
-
   items.push({
-    separator: true
+    text: `Go`,
+    get_items: () => {
+      return App.settings_go_items()
+    }
   })
 
   items.push({
@@ -613,6 +607,21 @@ App.settings_reset_items = (category) => {
       App.reset_all_settings()
     }
   })
+
+  return items
+}
+
+App.settings_go_items = () => {
+  let items = []
+
+  for (let c of App.settings_categories) {
+    items.push({
+      text: App.capitalize(c),
+      action: () => {
+        App.show_settings_window(c)
+      }
+    })
+  }
 
   return items
 }
