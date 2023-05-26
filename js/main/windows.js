@@ -153,5 +153,5 @@ App.hide_current_window = () => {
 }
 
 App.make_window_visible = () => {
-  DOM.el(`#all`).classList.remove(`transparent`)
+  DOM.el(`#all`).classList.remove(`hidden`)
 }

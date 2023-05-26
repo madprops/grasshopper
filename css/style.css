@@ -30,10 +30,6 @@ body, html {
   background-color: var(--background_color);
 }
 
-#all {
-  transition: opacity 500ms;
-}
-
 #background {
   position: fixed;
   top: 0;
