@@ -190,6 +190,7 @@ svg {
   min-height: var(--item_height);
   direction: ltr;
   flex-shrink: 0;
+  scroll-margin: 2.2rem;
 }
 
 .item_icon {
