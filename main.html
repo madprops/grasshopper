@@ -124,51 +124,6 @@
 
     <template id="template_settings_basic">
       <div id="settings_basic_container" class="settings_container">
-        <div class="settings_column" title="Dragging requires holding Ctrl to work">
-          <div class="settings_label">Lock Drag</div>
-          <input type="checkbox" class="settings_checkbox" id="settings_lock_drag" data-setting="lock_drag">
-        </div>
-
-        <div class="settings_column" title="Tabs will be restored after launching an item anywhere">
-          <div class="settings_label">Switch To Tabs</div>
-          <input type="checkbox" class="settings_checkbox" id="settings_switch_to_tabs" data-setting="switch_to_tabs">
-        </div>
-
-        <div class="settings_column" title="A tooltip appears on item hover with some information">
-          <div class="settings_label">Hover Tooltips</div>
-          <input type="checkbox" class="settings_checkbox" id="settings_hover_tooltips" data-setting="hover_tooltips">
-        </div>
-
-        <div class="settings_column" title="Mouse gestures are active">
-          <div class="settings_label">Mouse Gestures</div>
-          <input type="checkbox" class="settings_checkbox" id="settings_mouse_gestures" data-setting="mouse_gestures">
-        </div>
-
-        <div class="settings_column" title="The filter is cleared on tab focus">
-          <div class="settings_label">Clear Filter</div>
-          <input type="checkbox" class="settings_checkbox" id="settings_clear_filter" data-setting="clear_filter">
-        </div>
-
-        <div class="settings_column" title="Show a line between pins and normal tabs">
-          <div class="settings_label">Show Icons</div>
-          <input type="checkbox" class="settings_checkbox" id="settings_show_icons" data-setting="show_icons">
-        </div>
-
-        <div class="settings_column" title="Show the footer at the bottom">
-          <div class="settings_label">Show Footer</div>
-          <input type="checkbox" class="settings_checkbox" id="settings_show_footer" data-setting="show_footer">
-        </div>
-
-        <div class="settings_column" title="Show a line between pins and normal tabs">
-          <div class="settings_label">Show Pinline</div>
-          <input type="checkbox" class="settings_checkbox" id="settings_show_pinline" data-setting="show_pinline">
-        </div>
-
-        <div class="settings_column" title="Main text to display on the items. The opposite is displayed in the footer">
-          <div class="settings_label">Text Mode</div>
-          <div id="settings_text_mode" class="settings_menu button" data-setting="text_mode"></div>
-        </div>
-
         <div class="settings_column" title="What font to use">
           <div class="settings_label">Font</div>
           <div id="settings_font" class="settings_menu button" data-setting="font"></div>
@@ -189,14 +144,14 @@
           <div id="settings_height" class="settings_menu button" data-setting="height"></div>
         </div>
 
+        <div class="settings_column" title="Main text to display on the items. The opposite is displayed in the footer">
+          <div class="settings_label">Text Mode</div>
+          <div id="settings_text_mode" class="settings_menu button" data-setting="text_mode"></div>
+        </div>
+
         <div class="settings_column" title="Height of list items">
           <div class="settings_label">Item Height</div>
           <div id="settings_item_height" class="settings_menu button" data-setting="item_height"></div>
-        </div>
-
-        <div class="settings_column" title="How to show that an item is highlighted">
-          <div class="settings_label">Highlight Effect</div>
-          <div id="settings_highlight_effect" class="settings_menu button" data-setting="highlight_effect"></div>
         </div>
       </div>
     </template>
@@ -358,6 +313,62 @@
     <template id="template_settings_warns_top">
       <div class="flex_row_center gap_2 grow">
         <div class="settings_title button">Warns</div>
+      </div>
+    </template>
+
+    <template id="template_settings_more">
+      <div id="settings_more_container" class="settings_container">
+        <div class="settings_column" title="Dragging requires holding Ctrl to work">
+          <div class="settings_label">Lock Drag</div>
+          <input type="checkbox" class="settings_checkbox" id="settings_lock_drag" data-setting="lock_drag">
+        </div>
+
+
+        <div class="settings_column" title="Tabs will be restored after launching an item anywhere">
+          <div class="settings_label">Switch To Tabs</div>
+          <input type="checkbox" class="settings_checkbox" id="settings_switch_to_tabs" data-setting="switch_to_tabs">
+        </div>
+
+        <div class="settings_column" title="A tooltip appears on item hover with some information">
+          <div class="settings_label">Hover Tooltips</div>
+          <input type="checkbox" class="settings_checkbox" id="settings_hover_tooltips" data-setting="hover_tooltips">
+        </div>
+
+        <div class="settings_column" title="Mouse gestures are active">
+          <div class="settings_label">Mouse Gestures</div>
+          <input type="checkbox" class="settings_checkbox" id="settings_mouse_gestures" data-setting="mouse_gestures">
+        </div>
+
+        <div class="settings_column" title="The filter is cleared on tab focus">
+          <div class="settings_label">Clear Filter</div>
+          <input type="checkbox" class="settings_checkbox" id="settings_clear_filter" data-setting="clear_filter">
+        </div>
+
+        <div class="settings_column" title="Show a line between pins and normal tabs">
+          <div class="settings_label">Show Icons</div>
+          <input type="checkbox" class="settings_checkbox" id="settings_show_icons" data-setting="show_icons">
+        </div>
+
+        <div class="settings_column" title="Show a line between pins and normal tabs">
+          <div class="settings_label">Show Pinline</div>
+          <input type="checkbox" class="settings_checkbox" id="settings_show_pinline" data-setting="show_pinline">
+        </div>
+
+        <div class="settings_column" title="Show the footer at the bottom">
+          <div class="settings_label">Show Footer</div>
+          <input type="checkbox" class="settings_checkbox" id="settings_show_footer" data-setting="show_footer">
+        </div>
+
+        <div class="settings_column" title="How to show that an item is highlighted">
+          <div class="settings_label">Highlight Effect</div>
+          <div id="settings_highlight_effect" class="settings_menu button" data-setting="highlight_effect"></div>
+        </div>
+      </div>
+    </template>
+
+    <template id="template_settings_more_top">
+      <div class="flex_row_center gap_2 grow">
+        <div class="settings_title button">More</div>
       </div>
     </template>
 
