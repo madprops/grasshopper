@@ -354,7 +354,7 @@ App.do_item_filter = async (mode) => {
   App.select_first_item(mode, !App.is_filtered(mode))
   App.update_footer_info(App.get_selected(mode))
   App.update_footer_count(mode)
-  App.check_pinline()
+  App.do_check_pinline()
 }
 
 App.show_item = (it) => {
@@ -626,7 +626,7 @@ App.process_info_list = (mode, info_list) => {
     App.check_playing()
   }
 
-  App.check_pinline()
+  App.do_check_pinline()
 }
 
 App.process_info = (mode, info, exclude = [], o_item) => {
