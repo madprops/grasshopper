@@ -189,7 +189,7 @@ App.refresh_tab = async (id, select = false) => {
   App.check_pinline()
 
   if (select) {
-    App.select_item(item, `center`)
+    App.select_item(item)
   }
 }
 
