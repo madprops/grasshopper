@@ -217,8 +217,8 @@ App.setup_settings = () => {
     })
 
     App.settings_make_menu(`item_height`, [
-      [`Normal`, `normal`],
       [`Compact`, `compact`],
+      [`Normal`, `normal`],
       [`Bigger`, `bigger`],
     ], () => {
       App.apply_theme()
