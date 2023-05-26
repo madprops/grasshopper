@@ -11,6 +11,7 @@ App.default_settings = {
   hover_tooltips: {value: true, category: `basic`},
   mouse_gestures: {value: true, category: `basic`},
   clear_filter: {value: true, category: `basic`},
+  show_footer: {value: true, category: `basic`},
   show_pinline: {value: true, category: `basic`},
   item_height: {value: `normal`, category: `basic`},
   highlight_effect: {value: `rotate`, category: `basic`},
@@ -181,7 +182,15 @@ App.settings_make_menu = (id, opts, action = () => {}) => {
 App.setup_settings = () => {
   App.settings_categories = [`basic`, `theme`, `icons`, `media`, `warns`, `order`]
 
-  App.create_window({id: `settings_basic`, setup: () => {
+  let common = {
+    persistent: false,
+    colored_top: true,
+    after_hide: () => {
+      App.apply_theme()
+    },
+  }
+
+  App.create_window(Object.assign({}, common, {id: `settings_basic`, setup: () => {
     let container = DOM.el(`#settings_basic_container`)
     App.settings_setup_checkboxes(container)
     App.settings_make_menu(`text_mode`, [[`Title`, `title`], [`URL`, `url`]])
@@ -212,50 +221,46 @@ App.setup_settings = () => {
       [`Bright`, `bright`],
       [`Blink`, `blink`],
       [`Hue`, `hue`],
-    ], () => {
-      App.apply_theme()
-    })
+    ])
 
     App.settings_make_menu(`item_height`, [
       [`Compact`, `compact`],
       [`Normal`, `normal`],
       [`Bigger`, `bigger`],
-    ], () => {
-      App.apply_theme()
-    })
+    ])
 
     App.add_settings_switchers(`basic`)
-  }, persistent: false, colored_top: true})
+  }}))
 
-  App.create_window({id: `settings_theme`, setup: () => {
+  App.create_window(Object.assign({}, common, {id: `settings_theme`, setup: () => {
     App.start_theme_settings()
     App.add_settings_switchers(`theme`)
     let container = DOM.el(`#settings_theme_container`)
     App.settings_setup_text(container)
-  }, persistent: false, colored_top: true})
+  }}))
 
-  App.create_window({id: `settings_icons`, setup: () => {
+  App.create_window(Object.assign({}, common, {id: `settings_icons`, setup: () => {
     let container = DOM.el(`#settings_icons_container`)
     App.settings_setup_text(container)
     App.add_settings_switchers(`icons`)
-  }, persistent: false, colored_top: true})
+  }}))
 
-  App.create_window({id: `settings_media`, setup: () => {
+  App.create_window(Object.assign({}, common, {id: `settings_media`, setup: () => {
     let container = DOM.el(`#settings_media_container`)
     App.settings_setup_checkboxes(container)
     App.add_settings_switchers(`media`)
-  }, persistent: false, colored_top: true})
+  }}))
 
-  App.create_window({id: `settings_warns`, setup: () => {
+  App.create_window(Object.assign({}, common, {id: `settings_warns`, setup: () => {
     let container = DOM.el(`#settings_warns_container`)
     App.settings_setup_checkboxes(container)
     App.add_settings_switchers(`warns`)
-  }, persistent: false, colored_top: true})
+  }}))
 
-  App.create_window({id: `settings_order`, setup: () => {
+  App.create_window(Object.assign({}, common, {id: `settings_order`, setup: () => {
     App.make_item_order()
     App.add_settings_switchers(`order`)
-  }, persistent: false, colored_top: true})
+  }}))
 }
 
 App.add_settings_switchers = (category) => {

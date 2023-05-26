@@ -320,6 +320,10 @@ svg {
   flex-shrink: 0;
 }
 
+.hide_footer .footer {
+  display: none;
+}
+
 .footer_info {
   flex-grow: 1;
 }

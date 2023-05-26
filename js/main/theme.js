@@ -65,6 +65,13 @@ App.apply_theme = () => {
     }
 
     main.classList.add(`highlight_${App.settings.highlight_effect}`)
+
+    if (App.settings.show_footer) {
+      main.classList.remove(`hide_footer`)
+    }
+    else {
+      main.classList.add(`hide_footer`)
+    }
   }
   catch (err) {
     App.log(err, `error`)
