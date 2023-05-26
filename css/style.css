@@ -4,6 +4,7 @@
   --item_margin: 0.45rem;
   --item_margin_2: 0.65rem;
   --border_radius: 5px;
+  --border_1: 2px solid var(--alt_color_1);
 }
 
 @keyframes rotate {
@@ -311,7 +312,7 @@ svg {
   overflow: hidden;
   white-space: nowrap;
   min-height: 2.2rem;
-  border-top: 1px solid var(--alt_color_1);
+  border-top: var(--border_1);
   margin-left: var(--item_margin);
   margin-right: var(--item_margin);
   gap: 0.5rem;
@@ -432,9 +433,9 @@ svg {
 }
 
 .pinline {
-  border-bottom: 0.25rem solid var(--alt_color_1);
-  margin-top: 0.8rem;
-  margin-bottom: 0.8rem;
+  border-bottom: var(--border_1);
+  margin-top: 0.77rem;
+  margin-bottom: 0.77rem;
 }
 
 #needcontext-main {
