@@ -267,4 +267,6 @@ App.gesture_action = (e, direction) => {
       App.cycle_item_windows()
     }
   }
+
+  App.reset_gestures()
 }
