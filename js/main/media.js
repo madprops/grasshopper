@@ -77,6 +77,10 @@ App.create_media_windows = (what) => {
     DOM.ev(DOM.el(`#${what}_next`), `click`, () => {
       App.media_next(what)
     })
+
+    DOM.ev(DOM.el(`#window_${what}`), `wheel`, (e) => {
+      App.media_wheel.call(e, what)
+    })
   }, on_hide: () => {
     if (what === `video`) {
       App.stop_video()
@@ -237,3 +241,14 @@ App.get_visible_media = (mode, what) => {
 
   return items
 }
+
+App.media_wheel = App.create_debouncer((e, what) => {
+  let direction = e.deltaY > 0 ? `down` : `up`
+
+  if (direction === `down`) {
+    App.media_next(what)
+  }
+  else if (direction === `up`) {
+    App.media_prev(what)
+  }
+}, 100)

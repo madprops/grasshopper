@@ -83,23 +83,23 @@ App.setup_tabs = () => {
     }
   })
 
-  App.empty_previous_tabs = App.create_debouncer(() => {
-    App.do_empty_previous_tabs()
-  }, App.empty_previous_tabs_delay)
-
   DOM.ev(DOM.el(`#window_tabs`), `dblclick`, (e) => {
     if (e.target.id === `tabs_container`) {
       App.new_tab()
     }
   })
+}
 
-  App.pinline_debouncer = App.create_debouncer(() => {
-    App.do_check_pinline()
-  }, 25)
+App.empty_previous_tabs = App.create_debouncer(() => {
+  App.do_empty_previous_tabs()
+}, App.empty_previous_tabs_delay)
 
-  App.check_pinline = () => {
-    App.pinline_debouncer.call()
-  }
+App.pinline_debouncer = App.create_debouncer(() => {
+  App.do_check_pinline()
+}, 25)
+
+App.check_pinline = () => {
+  App.pinline_debouncer.call()
 }
 
 App.tabs_check = () => {
