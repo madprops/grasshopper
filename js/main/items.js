@@ -167,6 +167,10 @@ App.get_prev_visible_item = (mode, wrap = true) => {
 }
 
 App.update_footer_info = (item) => {
+  if (!App.settings.show_footer) {
+    return
+  }
+
   if (item) {
     App.set_footer_info(item.mode, item.footer)
   }
@@ -1257,6 +1261,10 @@ App.get_item_order = () => {
 }
 
 App.update_footer_count = (mode) => {
+  if (!App.settings.show_footer) {
+    return
+  }
+
   let n1 = App.get_highlights(mode).length
   let n2 = App.get_visible(mode).length
   let s1 = n1.toLocaleString()
