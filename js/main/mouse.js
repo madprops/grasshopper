@@ -80,7 +80,15 @@ App.setup_window_mouse = (mode) => {
     }
 
     if (e.target.closest(`.${mode}_item`)) {
-      App.show_item_menu(App.get_cursor_item(mode, e), e.clientX, e.clientY)
+      let item = App.get_cursor_item(mode, e)
+
+      if (!item.highlighted) {
+        if (App.get_highlights(mode).length > 0) {
+          App.pick_item(item)
+        }
+      }
+
+      App.show_item_menu(item, e.clientX, e.clientY)
       e.preventDefault()
     }
   })
