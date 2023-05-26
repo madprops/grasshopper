@@ -222,8 +222,8 @@ App.is_at_bottom = (container) => {
   return container.scrollTop + container.clientHeight === container.scrollHeight
 }
 
-App.element_is_visible = (container, el) => {
-  let container_rect = container.getBoundingClientRect()
+App.element_is_visible = (el) => {
+  let container_rect = el.parentElement.getBoundingClientRect()
   let rect = el.getBoundingClientRect()
   let top_visible = rect.top >= container_rect.top - 2
   let bottom_visible = rect.bottom <= container_rect.bottom + 2
