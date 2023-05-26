@@ -230,5 +230,9 @@ App.element_is_visible = (container, el) => {
   return top_visible && bottom_visible
 }
 
+App.focused_with_class = (cls) => {
+  return document.activeElement.classList.contains(cls)
+}
+
 App.image_extensions = [`jpg`, `jpeg`, `png`, `gif`, `webp`, `bmp`]
 App.video_extensions = [`mp4`, `webm`]

@@ -276,6 +276,23 @@ App.setup_keyboard = () => {
       }
     }
 
+    if (App.window_mode.startsWith(`settings`)) {
+      if (e.key === `ArrowLeft`) {
+        if (!App.focused_with_class(`text`)) {
+          App.show_prev_settings(true)
+          e.preventDefault()
+          return
+        }
+      }
+      else if (e.key === `ArrowRight`) {
+        if (!App.focused_with_class(`text`)) {
+          App.show_next_settings(true)
+          e.preventDefault()
+          return
+        }
+      }
+    }
+
     if (App.on_item_window()) {
       App.check_window_keyboard(e)
     }
