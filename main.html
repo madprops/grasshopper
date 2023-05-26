@@ -190,7 +190,7 @@
           <div id="settings_background" class="settings_menu button" data-setting="background"></div>
         </div>
 
-        <div class="settings_column" title="Image URL that overrides the selected background image. Leave empty to not use it">
+        <div class="settings_column" title="Image URL that overrides the selected background">
           <div class="settings_label">Custom Background</div>
           <input type="text" placeholder="Paste an image URL" id="settings_custom_background" class="text settings_text" data-setting="custom_background" data-action="theme">
         </div>
@@ -210,7 +210,7 @@
           <input type="text" autocomplete="off" spellcheck="false" id="settings_pin_icon" class="text settings_text text_smaller" data-setting="pin_icon">
         </div>
 
-        <div class="settings_column" title="Icon to show on normal/unpinned tabs">
+        <div class="settings_column" title="Icon to show on normal tabs">
           <div class="settings_label">Normal Icon</div>
           <input type="text" autocomplete="off" spellcheck="false" id="settings_normal_icon" class="text settings_text text_smaller" data-setting="normal_icon">
         </div>
@@ -240,27 +240,27 @@
 
     <template id="template_settings_media">
       <div id="settings_media_container" class="settings_container">
-        <div class="settings_column" title="The media viewer opens on Tabs">
+        <div class="settings_column" title="The media viewer opens when in Tabs">
           <div class="settings_label">Media Viewer<br>On Tabs</div>
           <input type="checkbox" class="settings_checkbox" id="settings_media_viewer_on_tabs" data-setting="media_viewer_on_tabs">
         </div>
 
-        <div class="settings_column" title="The media viewer opens on History">
+        <div class="settings_column" title="The media viewer opens when in History">
           <div class="settings_label">Media Viewer<br>On History</div>
           <input type="checkbox" class="settings_checkbox" id="settings_media_viewer_on_history" data-setting="media_viewer_on_history">
         </div>
 
-        <div class="settings_column" title="The media viewer opens on Bookmarks">
+        <div class="settings_column" title="The media viewer opens when in Bookmarks">
           <div class="settings_label">Media Viewer<br>On Bookmarks</div>
           <input type="checkbox" class="settings_checkbox" id="settings_media_viewer_on_bookmarks" data-setting="media_viewer_on_bookmarks">
         </div>
 
-        <div class="settings_column" title="The media viewer opens on Closed">
+        <div class="settings_column" title="The media viewer opens when in Closed">
           <div class="settings_label">Media Viewer<br>On Closed</div>
           <input type="checkbox" class="settings_checkbox" id="settings_media_viewer_on_closed" data-setting="media_viewer_on_closed">
         </div>
 
-        <div class="settings_column" title="The media viewer opens on Stars">
+        <div class="settings_column" title="The media viewer opens when in Stars">
           <div class="settings_label">Media Viewer<br>On Stars</div>
           <input type="checkbox" class="settings_checkbox" id="settings_media_viewer_on_stars" data-setting="media_viewer_on_stars">
         </div>
@@ -275,7 +275,7 @@
 
     <template id="template_settings_warns">
       <div id="settings_warns_container" class="settings_container">
-        <div class="settings_column" title="Warn when closing pinned or playing tabs">
+        <div class="settings_column" title="Warn when closing certain tabs">
           <div class="settings_label">Warn On Close</div>
           <input type="checkbox" class="settings_checkbox" id="settings_warn_on_close" data-setting="warn_on_close">
         </div>
@@ -285,7 +285,7 @@
           <input type="checkbox" class="settings_checkbox" id="settings_warn_on_suspend" data-setting="warn_on_suspend">
         </div>
 
-        <div class="settings_column" title="Warn when closing duplicates">
+        <div class="settings_column" title="Warn when closing duplicate tabs">
           <div class="settings_label">Warn On Duplicates</div>
           <input type="checkbox" class="settings_checkbox" id="settings_warn_on_duplicates" data-setting="warn_on_duplicates">
         </div>
@@ -346,7 +346,7 @@
           <input type="checkbox" class="settings_checkbox" id="settings_clear_filter" data-setting="clear_filter">
         </div>
 
-        <div class="settings_column" title="Show a line between pins and normal tabs">
+        <div class="settings_column" title="Show item icons">
           <div class="settings_label">Show Icons</div>
           <input type="checkbox" class="settings_checkbox" id="settings_show_icons" data-setting="show_icons">
         </div>
