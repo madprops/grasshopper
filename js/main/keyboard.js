@@ -123,12 +123,14 @@ App.check_window_keyboard = (e) => {
       return
     }
     else if (e.key === `Delete`) {
+      let item = App.get_selected(mode)
+
       if (mode === `tabs`) {
-        App.close_tabs()
+        if (item) {
+          App.close_tabs(item)
+        }
       }
       else if (mode === `stars`) {
-        let item = App.get_selected(mode)
-
         if (item) {
           App.remove_stars(item)
         }
