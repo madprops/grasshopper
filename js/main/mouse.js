@@ -62,8 +62,6 @@ App.setup_window_mouse = (mode) => {
   })
 
   DOM.ev(container, `contextmenu`, (e) => {
-    App.reset_gestures()
-
     if (App.settings.mouse_gestures && App.right_click_down) {
       let diff_y = Math.abs(e.clientY - App.right_click_y)
       let diff_x = Math.abs(e.clientX - App.right_click_x)
@@ -90,6 +88,7 @@ App.setup_window_mouse = (mode) => {
         }
       }
 
+      App.reset_gestures()
       App.show_item_menu(item, e.clientX, e.clientY)
       e.preventDefault()
     }
