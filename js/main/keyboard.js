@@ -53,8 +53,12 @@ App.check_window_keyboard = (e) => {
   if (e.shiftKey && !e.ctrlKey) {
     if (e.key === `Enter`) {
       let item = App.get_selected(mode)
-      let rect = item.element.getBoundingClientRect()
-      App.show_item_menu(item, rect.left, rect.top)
+
+      if (item) {
+        let rect = item.element.getBoundingClientRect()
+        App.show_item_menu(item, rect.left, rect.top)
+      }
+
       e.preventDefault()
       return
     }
@@ -82,7 +86,11 @@ App.check_window_keyboard = (e) => {
     }
     else if (e.key === `Enter`) {
       let item = App.get_selected(mode)
-      App[`${mode}_action`](item)
+
+      if (item) {
+        App[`${mode}_action`](item)
+      }
+
       e.preventDefault()
       return
     }
@@ -91,7 +99,7 @@ App.check_window_keyboard = (e) => {
       e.preventDefault()
       return
     }
-    else if (e.key === `PageDown`) {
+    else if (e.key === `PageDown`) {``
       App.scroll(mode, `down`, e.shiftKey)
       e.preventDefault()
       return
@@ -120,7 +128,10 @@ App.check_window_keyboard = (e) => {
       }
       else if (mode === `stars`) {
         let item = App.get_selected(mode)
-        App.remove_stars(item)
+
+        if (item) {
+          App.remove_stars(item)
+        }
       }
 
       e.preventDefault()
