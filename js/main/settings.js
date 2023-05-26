@@ -36,6 +36,7 @@ App.default_settings = {
   warn_on_star: {value: true, category: `warns`},
   warn_on_unstar: {value: true, category: `warns`},
   warn_on_launch: {value: true, category: `warns`},
+  warn_on_untitle: {value: true, category: `warns`},
 
   switch_to_tabs: {value: true, category: `More`},
   hover_tooltips: {value: true, category: `More`},

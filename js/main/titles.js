@@ -88,7 +88,7 @@ App.remove_title = () => {
         App.call_filter(`tabs`)
       }
     }
-  })
+  }, undefined, !App.settings.warn_on_untitle)
 }
 
 App.title_editor_refresh_url = () => {
