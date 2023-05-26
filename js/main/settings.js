@@ -101,6 +101,16 @@ App.settings_setup_checkboxes = (container) => {
       App.stor_save_settings()
       App.settings_do_action(action)
     })
+
+    DOM.ev(el, `contextmenu`, (e) => {
+      App.reset_single_setting(e, () => {
+        let value = App.default_settings[setting].value
+        App.settings[setting] = value
+        el.checked = value
+        App.stor_save_settings()
+        App.settings_do_action(action)
+      })
+    })
   }
 }
 
@@ -120,23 +130,33 @@ App.settings_setup_text = (container) => {
       App.stor_save_settings()
       App.settings_do_action(action)
     })
+
+    DOM.ev(el, `contextmenu`, (e) => {
+      App.reset_single_setting(e, () => {
+        let value = App.default_settings[setting].value
+        App.settings[setting] = value
+        el.value = value
+        App.stor_save_settings()
+        App.settings_do_action(action)
+      })
+    })
   }
 }
 
-App.settings_make_menu = (id, opts, action = () => {}) => {
-  let el = DOM.el(`#settings_${id}`)
+App.settings_make_menu = (setting, opts, action = () => {}) => {
+  let el = DOM.el(`#settings_${setting}`)
 
   DOM.ev(el, `click`, () => {
     let items = []
 
     for (let o of opts) {
-      let selected = App.settings[id] === o[1]
+      let selected = App.settings[setting] === o[1]
 
       items.push({
         text: o[0],
         action: () => {
           el.textContent = o[0]
-          App.settings[id] = o[1]
+          App.settings[setting] = o[1]
           App.stor_save_settings()
           action()
         },
@@ -147,8 +167,25 @@ App.settings_make_menu = (id, opts, action = () => {}) => {
     NeedContext.show_on_element(el, items, true, el.clientHeight)
   })
 
+  DOM.ev(el, `contextmenu`, (e) => {
+    App.reset_single_setting(e, () => {
+      let value = App.default_settings[setting].value
+      App.settings[setting] = value
+
+      for (let o of opts) {
+        if (o[1] === value) {
+          el.textContent = o[0]
+          break
+        }
+      }
+
+      App.stor_save_settings()
+      action()
+    })
+  })
+
   for (let o of opts) {
-    if (App.settings[id] === o[1]) {
+    if (App.settings[setting] === o[1]) {
       el.textContent = o[0]
     }
   }
@@ -160,12 +197,12 @@ App.settings_make_menu = (id, opts, action = () => {}) => {
   next.textContent = `>`
 
   function prev_fn () {
-    App.settings_menu_cycle(el, id, `prev`, opts)
+    App.settings_menu_cycle(el, setting, `prev`, opts)
     App.apply_theme()
   }
 
   function next_fn () {
-    App.settings_menu_cycle(el, id, `next`, opts)
+    App.settings_menu_cycle(el, setting, `next`, opts)
     App.apply_theme()
   }
 
@@ -560,4 +597,16 @@ App.settings_reset_items = (category) => {
   })
 
   return items
+}
+
+App.reset_single_setting = (e, action) => {
+  let items = []
+
+  items.push({
+    text: `Reset`,
+    action: action,
+  })
+
+  NeedContext.show(e.clientX, e.clientY, items)
+  e.preventDefault()
 }
