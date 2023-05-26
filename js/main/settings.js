@@ -340,6 +340,10 @@ App.add_settings_switchers = (category) => {
     App.show_settings_menu(category, title)
   })
 
+  DOM.ev(title.closest(`.window_top`), `wheel`, (e) => {
+    App.settings_wheel.call(e)
+  })
+
   title.after(next)
 }
 
@@ -631,3 +635,14 @@ App.reset_single_setting = (e, action) => {
   NeedContext.show(e.clientX, e.clientY, items)
   e.preventDefault()
 }
+
+App.settings_wheel = App.create_debouncer((e) => {
+  let direction = e.deltaY > 0 ? `down` : `up`
+
+  if (direction === `down`) {
+    App.show_next_settings()
+  }
+  else if (direction === `up`) {
+    App.show_prev_settings()
+  }
+}, 100)
