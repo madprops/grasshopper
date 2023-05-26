@@ -7,7 +7,7 @@ App.check_window_keyboard = (e) => {
     return
   }
 
-  if (e.ctrlKey) {
+  if (e.ctrlKey && !e.shiftKey) {
     if (e.key === `ArrowLeft`) {
       App.show_main_menu(mode)
       e.preventDefault()
@@ -50,98 +50,82 @@ App.check_window_keyboard = (e) => {
     }
   }
 
-  if (e.key === `Escape`) {
-    App.clear_filter(mode)
-  }
-  else if (e.key === `Enter`) {
-    let item = App.get_selected(mode)
-
-    if (e.shiftKey) {
+  if (e.shiftKey && !e.ctrlKey) {
+    if (e.key === `Enter`) {
+      let item = App.get_selected(mode)
       let rect = item.element.getBoundingClientRect()
       App.show_item_menu(item, rect.left, rect.top)
+      e.preventDefault()
+      return
     }
-    else {
-      App[`${mode}_action`](item)
-    }
-
-    e.preventDefault()
-    return
-  }
-  else if (e.key === `Home`) {
-    if (e.shiftKey) {
+    else if (e.key === `Home`) {
       App.highlight_to_edge(mode, `above`)
       e.preventDefault()
       return
     }
-    else {
-      App.goto_top(mode)
-      e.preventDefault()
-      return
-    }
-  }
-  else if (e.key === `End`) {
-    if (e.shiftKey) {
+    else if (e.key === `End`) {
       App.highlight_to_edge(mode, `below`)
       e.preventDefault()
       return
     }
-    else {
-      App.goto_bottom(mode)
+    else if (e.key === `ArrowUp`) {
+      App.highlight_next(mode, `above`)
+    }
+    else if (e.key === `ArrowDown`) {
+      App.highlight_next(mode, `below`)
+    }
+  }
+
+  if (!e.ctrlKey && !e.shiftKey) {
+    if (e.key === `Escape`) {
+      App.clear_filter(mode)
+    }
+    else if (e.key === `Enter`) {
+      let item = App.get_selected(mode)
+      App[`${mode}_action`](item)
       e.preventDefault()
       return
     }
-  }
-  else if (e.key === `PageUp`) {
-    App.scroll(mode, `up`, e.shiftKey)
-    e.preventDefault()
-    return
-  }
-  else if (e.key === `PageDown`) {
-    App.scroll(mode, `down`, e.shiftKey)
-    e.preventDefault()
-    return
-  }
-  else if (e.key === `ArrowUp`) {
-    if (e.shiftKey) {
-      App.highlight_next(mode, `above`)
+    else if (e.key === `PageUp`) {
+      App.scroll(mode, `up`, e.shiftKey)
+      e.preventDefault()
+      return
     }
-    else {
+    else if (e.key === `PageDown`) {
+      App.scroll(mode, `down`, e.shiftKey)
+      e.preventDefault()
+      return
+    }
+    else if (e.key === `ArrowUp`) {
       if (App.dehighlight(mode)) {
         return
       }
 
       App.select_item_above(mode)
+      e.preventDefault()
+      return
     }
-
-    e.preventDefault()
-    return
-  }
-  else if (e.key === `ArrowDown`) {
-    if (e.shiftKey) {
-      App.highlight_next(mode, `below`)
-    }
-    else {
+    else if (e.key === `ArrowDown`) {
       if (App.dehighlight(mode)) {
         return
       }
 
       App.select_item_below(mode)
+      e.preventDefault()
+      return
     }
+    else if (e.key === `Delete`) {
+      if (mode === `tabs`) {
+        App.close_tabs()
+      }
+      else if (mode === `stars`) {
+        let item = App.get_selected(mode)
+        App.remove_stars(item)
+      }
 
-    e.preventDefault()
-    return
-  }
-  else if (e.key === `Delete`) {
-    if (mode === `tabs`) {
-      App.close_tabs()
+      e.preventDefault()
+      return
     }
-    else if (mode === `stars`) {
-      let item = App.get_selected(mode)
-      App.remove_stars(item)
-    }
-
-    e.preventDefault()
-    return
   }
 
   App.focus_filter(mode)
