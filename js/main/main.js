@@ -20,6 +20,7 @@ App.alert_autohide_delay = 1500
 App.normal_scroll_pixels = 50
 App.fast_scroll_percent = 20
 App.gesture_threshold = 10
+App.wheel_delay = 100
 
 NeedContext.min_width = `4.5rem`
 

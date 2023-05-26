@@ -667,4 +667,4 @@ App.settings_wheel = App.create_debouncer((e) => {
   else if (direction === `up`) {
     App.show_prev_settings()
   }
-}, 100)
+}, App.wheel_delay)

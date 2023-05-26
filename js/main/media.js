@@ -251,4 +251,4 @@ App.media_wheel = App.create_debouncer((e, what) => {
   else if (direction === `up`) {
     App.media_prev(what)
   }
-}, 100)
+}, App.wheel_delay)
