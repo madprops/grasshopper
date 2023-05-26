@@ -126,6 +126,8 @@ App.get_tabs = async () => {
 }
 
 App.focus_tab = async (item, close = true) => {
+  App.select_item(item)
+
   if (item.window_id) {
     await browser.windows.update(item.window_id, {focused: true})
   }
@@ -259,14 +261,12 @@ App.tabs_action = (item) => {
     return
   }
 
-  if (App.active_tab_is(item)) {
-    return
-  }
+  if (!App.active_tab_is(item)) {
+    let star = App.get_star_by_url(item.url)
 
-  let star = App.get_star_by_url(item.url)
-
-  if (star) {
-    App.update_star(star)
+    if (star) {
+      App.update_star(star)
+    }
   }
 
   App.focus_tab(item)
