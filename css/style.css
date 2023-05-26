@@ -191,13 +191,13 @@ svg {
   direction: ltr;
   flex-shrink: 0;
   scroll-margin: 2.2rem;
+  padding-left: var(--item_margin_1);
 }
 
 .item_icon {
   width: 1.11rem;
   height: 1.11rem;
   object-fit: contain;
-  margin-left: var(--item_margin_1);
   margin-right: var(--item_margin_2);
   flex-grow: 0;
   flex-shrink: 0;

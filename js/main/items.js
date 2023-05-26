@@ -730,8 +730,10 @@ App.create_item_element = (item) => {
     }
   }
 
-  let icon = App.get_img_icon(item.favicon, item.url, item.pinned)
-  item.element.append(icon)
+  if (App.settings.show_icons) {
+    let icon = App.get_img_icon(item.favicon, item.url, item.pinned)
+    item.element.append(icon)
+  }
 
   let status = DOM.create(`div`, `item_status hidden`)
   item.element.append(status)

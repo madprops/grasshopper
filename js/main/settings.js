@@ -11,6 +11,7 @@ App.default_settings = {
   hover_tooltips: {value: true, category: `basic`},
   mouse_gestures: {value: true, category: `basic`},
   clear_filter: {value: true, category: `basic`},
+  show_icons: {value: true, category: `basic`},
   show_footer: {value: true, category: `basic`},
   show_pinline: {value: true, category: `basic`},
   item_height: {value: `normal`, category: `basic`},
