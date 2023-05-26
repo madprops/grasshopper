@@ -648,7 +648,7 @@ App.process_info = (mode, info, exclude = [], o_item) => {
     }
   }
 
-  let url = App.format_url(info.url || "")
+  let url = App.format_url(info.url || ``)
 
   if (exclude.includes(url)) {
     return false
