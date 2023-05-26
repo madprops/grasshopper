@@ -1890,6 +1890,10 @@ App.pick_item = (item) => {
   App.toggle_highlight(item)
 
   if (highlighted) {
-    App.select_item(App.get_highlights(item.mode)[0], `nearest`, false)
+    let highlighted_item = App.get_highlights(item.mode)[0]
+
+    if (highlighted_item) {
+      App.select_item(App.get_highlights(item.mode)[0], `nearest`, false)
+    }
   }
 }
