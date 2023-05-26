@@ -15,7 +15,7 @@ App.setup_window_mouse = (mode) => {
       App.right_click_x = e.clientX
     }
 
-    if (!e.target.closest(`.${mode}_item`)) {
+    if (!App.cursor_on_item(e, mode)) {
       return
     }
 
@@ -30,7 +30,7 @@ App.setup_window_mouse = (mode) => {
   })
 
   DOM.ev(container, `mouseup`, (e) => {
-    if (!e.target.closest(`.${mode}_item`)) {
+    if (!App.cursor_on_item(e, mode)) {
       App.dehighlight(mode)
       return
     }
@@ -79,7 +79,7 @@ App.setup_window_mouse = (mode) => {
       }
     }
 
-    if (e.target.closest(`.${mode}_item`)) {
+    if (App.cursor_on_item(e, mode)) {
       let item = App.get_cursor_item(mode, e)
 
       if (!item.highlighted) {
@@ -94,7 +94,7 @@ App.setup_window_mouse = (mode) => {
   })
 
   DOM.ev(container, `mouseover`, (e) => {
-    if (e.target.closest(`.${mode}_item`)) {
+    if (App.cursor_on_item(e, mode)) {
       let item = App.get_cursor_item(mode, e)
       App.update_footer_info(item)
     }
@@ -102,7 +102,10 @@ App.setup_window_mouse = (mode) => {
 
   DOM.ev(container, `mouseout`, (e) => {
     let item = App.get_selected(mode)
-    App.update_footer_info(item)
+
+    if (item) {
+      App.update_footer_info(item)
+    }
   })
 
   DOM.ev(container, `wheel`, (e) => {
@@ -192,7 +195,7 @@ App.setup_drag = (mode) => {
     let direction = e.clientY > App.drag_y ? `down` : `up`
     App.drag_y = e.clientY
 
-    if (e.target.closest(`.item`)) {
+    if (App.cursor_on_item(e, mode)) {
       let el = e.target.closest(`.item`)
 
       if (App.drag_els.includes(el)) {
@@ -234,6 +237,10 @@ App.get_cursor_item = (mode, e) => {
   }
 
   return item
+}
+
+App.cursor_on_item = (e, mode) => {
+  return e.target.closest(`.${mode}_item`)
 }
 
 App.reset_gestures = () => {
