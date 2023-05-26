@@ -510,8 +510,22 @@ App.do_move_tab_index = async (id, index) => {
 }
 
 App.on_tab_activated = async (info) => {
+  let exit = false
+
   for (let item of App.get_items(`tabs`)) {
     item.active = item.id === info.tabId
+
+    if (item.active) {
+      if (item === App.get_selected(`tabs`)) {
+        exit = true
+      }
+    }
+  }
+
+  // Avoid refreshes
+  // Already selected
+  if (exit) {
+    return
   }
 
   await App.refresh_tab(info.tabId, true)
