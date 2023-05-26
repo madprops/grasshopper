@@ -521,9 +521,9 @@ App.show_settings_menu = (category, btn) => {
   let items = []
 
   items.push({
-    text: `Go`,
+    text: `Jump`,
     get_items: () => {
-      return App.settings_go_items()
+      return App.settings_jump_items()
     }
   })
 
@@ -612,7 +612,7 @@ App.settings_reset_items = (category) => {
   return items
 }
 
-App.settings_go_items = () => {
+App.settings_jump_items = () => {
   let items = []
 
   for (let c of App.settings_categories) {
