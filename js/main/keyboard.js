@@ -1,12 +1,6 @@
 App.check_window_keyboard = (e) => {
   let mode = App.window_mode
 
-  if (e.key === `Tab` && !e.ctrlKey) {
-    App.cycle_item_windows(e.shiftKey, true)
-    e.preventDefault()
-    return
-  }
-
   if (e.ctrlKey && !e.shiftKey) {
     if (e.key === `ArrowLeft`) {
       App.show_main_menu(mode)
@@ -92,6 +86,11 @@ App.check_window_keyboard = (e) => {
       e.preventDefault()
       return
     }
+    else if (e.key === `Tab`) {
+      App.cycle_item_windows(true, true)
+      e.preventDefault()
+      return
+    }
   }
 
   if (!e.ctrlKey && !e.shiftKey) {
@@ -150,6 +149,11 @@ App.check_window_keyboard = (e) => {
         }
       }
 
+      e.preventDefault()
+      return
+    }
+    else if (e.key === `Tab`) {
+      App.cycle_item_windows(false, true)
       e.preventDefault()
       return
     }
