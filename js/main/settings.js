@@ -39,6 +39,7 @@ App.default_settings = {
   warn_on_untitle: {value: true, category: `warns`},
 
   lock_drag: {value: false, category: `more`},
+  quick_star: {value: false, category: `more`},
   switch_to_tabs: {value: true, category: `more`},
   hover_tooltips: {value: true, category: `more`},
   mouse_gestures: {value: true, category: `more`},
@@ -47,7 +48,6 @@ App.default_settings = {
   show_footer: {value: true, category: `more`},
   show_pinline: {value: true, category: `more`},
   highlight_effect: {value: `rotate`, category: `more`},
-  quick_star: {value: false, category: `more`},
 }
 
 App.make_item_order = () => {
