@@ -318,6 +318,7 @@ App.import_stars = () => {
     if (json) {
       App.show_confirm(`Use this data?`, () => {
         App.stars = json
+        App.check_stars()
         App.stor_save_stars()
         App.show_window(`stars`)
       })
@@ -395,5 +396,30 @@ App.toggle_star = (item, prepend = false) => {
     }
 
     return true
+  }
+}
+
+App.check_stars = () => {
+  let changed = false
+
+  for (let star of App.stars) {
+    if (star.date_added === undefined) {
+      star.date_added = Date.now()
+      changed = true
+    }
+
+    if (star.date_last_visit === undefined) {
+      star.date_last_visit = Date.now()
+      changed = true
+    }
+
+    if (star.visits === undefined) {
+      star.visits = 0
+      changed = true
+    }
+  }
+
+  if (changed) {
+    App.stor_save_stars()
   }
 }

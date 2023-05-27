@@ -581,6 +581,8 @@ App.import_settings = () => {
     if (json) {
       App.show_confirm(`Use this data?`, () => {
         App.settings = json
+        App.check_settings()
+        App.stor_save_settings()
         App.restart_settings()
       })
     }
@@ -673,3 +675,37 @@ App.default_setting = (setting) => {
 App.save_settings_debouncer = App.create_debouncer(() => {
   App.stor_save_settings()
 }, App.settings_save_delay)
+
+App.check_settings = () => {
+  let changed = false
+
+  // Fill defaults
+  for (let setting in App.default_settings) {
+    if (App.settings[setting] === undefined) {
+      App.log(`Stor: Adding setting: ${setting}`)
+      App.settings[setting] = {}
+      App.settings[setting].value = App.default_settings[setting].value
+      App.settings[setting].version = App.default_settings[setting].version
+      changed = true
+    }
+  }
+
+  // Remove unused settings
+  for (let setting in App.settings) {
+    if (App.default_settings[setting] === undefined) {
+      App.log(`Stor: Deleting setting: ${setting}`)
+      delete App.settings[setting]
+      changed = true
+    }
+    else if (App.settings[setting].version < App.default_settings[setting].version) {
+      App.log(`Stor: Upgrading setting: ${setting}`)
+      App.settings[setting].value = App.default_settings[setting].value
+      App.settings[setting].version = App.default_settings[setting].version
+      changed = true
+    }
+  }
+
+  if (changed) {
+    App.stor_save_settings()
+  }
+}

@@ -175,6 +175,7 @@ App.import_titles = () => {
     if (json) {
       App.show_confirm(`Use this data?`, () => {
         App.titles = json
+        App.check_titles()
         App.stor_save_titles()
         App.show_window(`tabs`)
       })
@@ -191,5 +192,25 @@ App.check_title_editor = () => {
   }
   else {
     full.classList.add(`hidden`)
+  }
+}
+
+App.check_titles = () => {
+  let changed = false
+
+  for (let title of App.titles) {
+    if (title.url === undefined) {
+      title.url = `https://empty.title`
+      changed = true
+    }
+
+    if (title.title === undefined) {
+      title.title = `Empty`
+      changed = true
+    }
+  }
+
+  if (changed) {
+    App.stor_save_titles()
   }
 }
