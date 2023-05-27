@@ -30,7 +30,6 @@ App.stor_get_settings = () => {
   let changed = false
 
   // Fill defaults
-
   for (let setting in App.default_settings) {
     if (App.settings[setting] === undefined) {
       App.settings[setting] = {}
@@ -40,7 +39,7 @@ App.stor_get_settings = () => {
     }
   }
 
-  // Remove unused keys
+  // Remove unused settings
   for (let setting in App.settings) {
     if (App.default_settings[setting] === undefined) {
       App.log(`Stor: Deleting unused setting: "${setting}"`)
