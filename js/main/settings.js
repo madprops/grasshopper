@@ -105,7 +105,7 @@ App.settings_setup_checkboxes = (container) => {
 
     DOM.ev(el, `contextmenu`, (e) => {
       App.reset_single_setting(e, () => {
-        let value = App.default_settings[setting].value
+        let value = App.default_setting(setting)
         App.set_setting(setting, value)
         el.checked = value
       })
@@ -131,7 +131,7 @@ App.settings_setup_text = (container) => {
 
     DOM.ev(el, `contextmenu`, (e) => {
       App.reset_single_setting(e, () => {
-        let value = App.default_settings[setting].value
+        let value = App.default_setting(setting)
         App.set_setting(setting, value)
         el.value = value
         App.settings_do_action(action)
@@ -165,7 +165,7 @@ App.settings_make_menu = (setting, opts, action = () => {}) => {
 
   DOM.ev(el, `contextmenu`, (e) => {
     App.reset_single_setting(e, () => {
-      let value = App.default_settings[setting].value
+      let value = App.default_setting(setting)
       App.set_setting(setting, value)
 
       for (let o of opts) {
@@ -416,11 +416,11 @@ App.settings_menu_cycle = (el, setting, dir, items) => {
 
 App.reset_settings = (category) => {
   App.show_confirm(`Reset settings? (${App.capitalize(category)})`, () => {
-    for (let key in App.default_settings) {
-      let item = App.default_settings[key]
+    for (let setting in App.default_settings) {
+      let item = App.default_setting(setting)
 
       if (item.category === category) {
-        App.set_setting(key, item.value)
+        App.set_setting(setting, item.value)
       }
     }
 
@@ -436,8 +436,8 @@ App.reset_settings = (category) => {
 
 App.reset_all_settings = (type) => {
   App.show_confirm(`Reset all settings?`, () => {
-    for (let key in App.default_settings) {
-      App.set_setting(key, App.default_settings[key].value)
+    for (let setting in App.default_settings) {
+      App.set_setting(setting, App.default_setting(setting))
     }
 
     App.restart_settings()
@@ -656,11 +656,15 @@ App.get_setting = (key) => {
   return App.settings[key].value
 }
 
-App.set_setting = (key, value) => {
-  App.settings[key].value = value
+App.set_setting = (setting, value) => {
+  App.settings[setting].value = value
   App.save_settings_debouncer.call()
 }
 
 App.save_settings_debouncer = App.create_debouncer(() => {
   App.stor_save_settings()
 }, App.settings_save_delay)
+
+App.default_setting = (setting) => {
+  return App.default_settings[setting].value
+}

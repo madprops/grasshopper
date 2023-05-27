@@ -75,8 +75,8 @@ App.apply_theme = () => {
   }
   catch (err) {
     App.log(err, `error`)
-    App.set_setting(`background_color`, App.default_settings.background_color.value)
-    App.set_setting(`text_color`, App.default_settings.text_color.value)
+    App.set_setting(`background_color`, App.default_setting(`background_color`))
+    App.set_setting(`text_color`, App.default_setting(`text_color`))
     App.close_window()
   }
 }
