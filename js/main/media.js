@@ -177,7 +177,7 @@ App.media_show_error = (what) => {
 }
 
 App.check_media = (item) => {
-  if (!App.settings[`media_viewer_on_${item.mode}`]) {
+  if (!App.get_setting(`media_viewer_on_${item.mode}`)) {
     return
   }
 

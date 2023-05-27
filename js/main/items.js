@@ -167,7 +167,7 @@ App.get_prev_visible_item = (mode, wrap = true) => {
 }
 
 App.update_footer_info = (item) => {
-  if (!App.settings.show_footer) {
+  if (!App.get_setting(`show_footer`)) {
     return
   }
 
@@ -730,7 +730,7 @@ App.create_item_element = (item) => {
     }
   }
 
-  if (App.settings.show_icons) {
+  if (App.get_setting(`show_icons`)) {
     let icon = App.get_img_icon(item.favicon, item.url, item.pinned)
     item.element.append(icon)
   }
@@ -744,17 +744,17 @@ App.create_item_element = (item) => {
 
   if (item.mode === `tabs`) {
     if (item.pinned) {
-      if (App.settings.pin_icon) {
+      if (App.get_setting(`pin_icon`)) {
         let pin_icon = DOM.create(`div`, `item_info item_info_pin`)
-        pin_icon.textContent = App.settings.pin_icon
+        pin_icon.textContent = App.get_setting(`pin_icon`)
         pin_icon.title = `This tab is pinned`
         item.element.append(pin_icon)
       }
     }
     else {
-      if (App.settings.normal_icon) {
+      if (App.get_setting(`normal_icon`)) {
         let normal_icon = DOM.create(`div`, `item_info item_info_normal`)
-        normal_icon.textContent = App.settings.normal_icon
+        normal_icon.textContent = App.get_setting(`normal_icon`)
         normal_icon.title = `This tab is normal`
         item.element.append(normal_icon)
       }
@@ -805,16 +805,16 @@ App.set_item_text = (item) => {
   if (item.mode === `tabs`) {
     let icons = []
 
-    if (item.discarded && App.settings.suspended_icon) {
-      icons.push(App.settings.suspended_icon)
+    if (item.discarded && App.get_setting(`suspended_icon`)) {
+      icons.push(App.get_setting(`suspended_icon`))
     }
 
-    if (item.audible && App.settings.playing_icon) {
-      icons.push(App.settings.playing_icon)
+    if (item.audible && App.get_setting(`playing_icon`)) {
+      icons.push(App.get_setting(`playing_icon`))
     }
 
-    if (item.muted && App.settings.muted_icon) {
-      icons.push(App.settings.muted_icon)
+    if (item.muted && App.get_setting(`muted_icon`)) {
+      icons.push(App.get_setting(`muted_icon`))
     }
 
     if (icons.length > 0) {
@@ -833,16 +833,16 @@ App.set_item_text = (item) => {
   let content
   let path = decodeURI(item.path)
 
-  if (App.settings.text_mode === `title`) {
+  if (App.get_setting(`text_mode`) === `title`) {
     content = item.title || path
     item.footer = path || item.title
   }
-  else if (App.settings.text_mode === `url`) {
+  else if (App.get_setting(`text_mode`) === `url`) {
     content = path || item.title
     item.footer = item.title || path
   }
 
-  if (App.settings.hover_tooltips) {
+  if (App.get_setting(`hover_tooltips`)) {
     if (content === item.footer) {
       item.element.title = content
     }
@@ -1199,7 +1199,7 @@ App.update_item_order = () => {
   let modes = boxes.map(x => x.dataset.mode)
 
   for (let [i, mode] of modes.entries()) {
-    App.settings[`${mode}_index`] = i
+    App.set_setting(`${mode}_index`, i)
   }
 
   App.stor_save_settings()
@@ -1255,7 +1255,7 @@ App.get_item_order = () => {
   let items = []
 
   for (let mode of App.item_modes) {
-    items.push({mode: mode, index: App.settings[`${mode}_index`]})
+    items.push({mode: mode, index: App.get_setting(`${mode}_index`)})
   }
 
   items.sort((a, b) => (a.index > b.index) ? 1 : -1)
@@ -1263,7 +1263,7 @@ App.get_item_order = () => {
 }
 
 App.update_footer_count = (mode) => {
-  if (!App.settings.show_footer) {
+  if (!App.get_setting(`show_footer`)) {
     return
   }
 
@@ -1675,7 +1675,7 @@ App.launch_items = (item) => {
     App.dehighlight(mode)
   }, () => {
     App.dehighlight(mode)
-  }, !App.settings.warn_on_launch)
+  }, !App.get_setting(`warn_on_launch`))
 }
 
 App.goto_top = (mode) => {
@@ -1855,10 +1855,10 @@ App.on_item_window = (mode = App.window_mode) => {
 App.copy_footer = (mode) => {
   let what
 
-  if (App.settings.text_mode === `title`) {
+  if (App.get_setting(`text_mode`) === `title`) {
     what = `URL`
   }
-  else if (App.settings.text_mode === `url`) {
+  else if (App.get_setting(`text_mode`) === `url`) {
     what = `Title`
   }
 
@@ -1885,7 +1885,7 @@ App.is_filtered = (mode) => {
 
 App.check_clear_filter = () => {
   if (App.on_item_window()) {
-    if (App.settings.clear_filter) {
+    if (App.get_setting(`clear_filter`)) {
       if (App.is_filtered(App.window_mode)) {
         App.show_item_window(App.window_mode)
       }

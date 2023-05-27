@@ -62,7 +62,7 @@ App.setup_window_mouse = (mode) => {
   })
 
   DOM.ev(container, `contextmenu`, (e) => {
-    if (App.settings.mouse_gestures && App.right_click_down) {
+    if (App.get_setting(`mouse_gestures`) && App.right_click_down) {
       let diff_y = Math.abs(e.clientY - App.right_click_y)
       let diff_x = Math.abs(e.clientX - App.right_click_x)
 
@@ -129,7 +129,7 @@ App.setup_drag = (mode) => {
   let container = DOM.el(`#${mode}_container`)
 
   DOM.ev(container, `dragstart`, (e) => {
-    if (App.settings.lock_drag && !e.ctrlKey) {
+    if (App.get_setting(`lock_drag`) && !e.ctrlKey) {
       e.preventDefault()
       return false
     }

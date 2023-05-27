@@ -356,7 +356,7 @@ App.suspend_tabs = (item) => {
   let warn = false
 
   for (let it of App.get_active_items(`tabs`, item)) {
-    if (App.settings.warn_on_suspend) {
+    if (App.get_setting(`warn_on_suspend`)) {
       if (it.pinned || it.audible) {
         warn = true
       }
@@ -394,7 +394,7 @@ App.close_tabs = (item, force = false) => {
   let warn = false
 
   for (let it of App.get_active_items(`tabs`, item)) {
-    if (App.settings.warn_on_close) {
+    if (App.get_setting(`warn_on_close`)) {
       if (it.pinned || it.audible) {
         warn = true
       }
@@ -571,7 +571,7 @@ App.clean_tabs = () => {
   }
 
   if (ids.length === 0) {
-    if (App.settings.warn_on_clean) {
+    if (App.get_setting(`warn_on_clean`)) {
       App.show_alert(`Nothing to close`)
     }
 
@@ -585,7 +585,7 @@ App.clean_tabs = () => {
 
   App.show_confirm(s, () => {
     App.do_close_tabs(ids)
-  }, undefined, !App.settings.warn_on_clean)
+  }, undefined, !App.get_setting(`warn_on_clean`))
 }
 
 App.show_playing = () => {
@@ -712,7 +712,7 @@ App.close_duplicates = () => {
   let ids = excess.map(x => x.id)
 
   if (ids.length === 0) {
-    if (App.settings.warn_on_duplicates) {
+    if (App.get_setting(`warn_on_duplicates`)) {
       App.show_alert(`No duplicates found`)
     }
 
@@ -726,7 +726,7 @@ App.close_duplicates = () => {
 
   App.show_confirm(s, () => {
     App.do_close_tabs(ids)
-  }, undefined, !App.settings.warn_on_duplicates)
+  }, undefined, !App.get_setting(`warn_on_duplicates`))
 }
 
 App.focus_current_tab = async () => {
@@ -830,7 +830,7 @@ App.do_check_pinline = () => {
     return
   }
 
-  if (!App.settings.show_pinline) {
+  if (!App.get_setting(`show_pinline`)) {
     return
   }
 

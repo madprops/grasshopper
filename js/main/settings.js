@@ -1,53 +1,53 @@
 App.default_settings = {
-  tabs_index: {value: 0, category: `order`},
-  history_index: {value: 1, category: `order`},
-  bookmarks_index: {value: 2, category: `order`},
-  closed_index: {value: 3, category: `order`},
-  stars_index: {value: 4, category: `order`},
+  tabs_index: {value: 0, category: `order`, version: 1},
+  history_index: {value: 1, category: `order`, version: 1},
+  bookmarks_index: {value: 2, category: `order`, version: 1},
+  closed_index: {value: 3, category: `order`, version: 1},
+  stars_index: {value: 4, category: `order`, version: 1},
 
-  text_mode: {value: `title`, category: `basic`},
-  item_height: {value: `normal`, category: `basic`},
-  width: {value: 70, category: `basic`},
-  height: {value: 80, category: `basic`},
-  font: {value: `sans-serif`, category: `basic`},
-  font_size: {value: 16, category: `basic`},
+  text_mode: {value: `title`, category: `basic`, version: 1},
+  item_height: {value: `normal`, category: `basic`, version: 1},
+  width: {value: 70, category: `basic`, version: 1},
+  height: {value: 80, category: `basic`, version: 1},
+  font: {value: `sans-serif`, category: `basic`, version: 1},
+  font_size: {value: 16, category: `basic`, version: 1},
 
-  background_color: {value: `rgb(70, 76, 94)`, category: `theme`},
-  text_color: {value: `rgb(218, 219, 223)`, category: `theme`},
-  background: {value: 1, category: `theme`},
-  custom_background: {value: ``, category: `theme`},
+  background_color: {value: `rgb(70, 76, 94)`, category: `theme`, version: 1},
+  text_color: {value: `rgb(218, 219, 223)`, category: `theme`, version: 1},
+  background: {value: 1, category: `theme`, version: 1},
+  custom_background: {value: ``, category: `theme`, version: 1},
 
-  pin_icon: {value: `+`, category: `icons`},
-  normal_icon: {value: ``, category: `icons`},
-  playing_icon: {value: `🔊`, category: `icons`},
-  muted_icon: {value: `🔇`, category: `icons`},
-  suspended_icon: {value: `💤`, category: `icons`},
+  pin_icon: {value: `+`, category: `icons`, version: 1},
+  normal_icon: {value: ``, category: `icons`, version: 1},
+  playing_icon: {value: `🔊`, category: `icons`, version: 1},
+  muted_icon: {value: `🔇`, category: `icons`, version: 1},
+  suspended_icon: {value: `💤`, category: `icons`, version: 1},
 
-  media_viewer_on_tabs: {value: false, category: `media`},
-  media_viewer_on_history: {value: true, category: `media`},
-  media_viewer_on_bookmarks: {value: true, category: `media`},
-  media_viewer_on_closed: {value: true, category: `media`},
-  media_viewer_on_stars: {value: true, category: `media`},
+  media_viewer_on_tabs: {value: false, category: `media`, version: 1},
+  media_viewer_on_history: {value: true, category: `media`, version: 1},
+  media_viewer_on_bookmarks: {value: true, category: `media`, version: 1},
+  media_viewer_on_closed: {value: true, category: `media`, version: 1},
+  media_viewer_on_stars: {value: true, category: `media`, version: 1},
 
-  warn_on_close: {value: true, category: `warns`},
-  warn_on_suspend: {value: true, category: `warns`},
-  warn_on_duplicates: {value: true, category: `warns`},
-  warn_on_clean: {value: true, category: `warns`},
-  warn_on_star: {value: true, category: `warns`},
-  warn_on_unstar: {value: true, category: `warns`},
-  warn_on_launch: {value: true, category: `warns`},
-  warn_on_untitle: {value: true, category: `warns`},
+  warn_on_close: {value: true, category: `warns`, version: 1},
+  warn_on_suspend: {value: true, category: `warns`, version: 1},
+  warn_on_duplicates: {value: true, category: `warns`, version: 1},
+  warn_on_clean: {value: true, category: `warns`, version: 1},
+  warn_on_star: {value: true, category: `warns`, version: 1},
+  warn_on_unstar: {value: true, category: `warns`, version: 1},
+  warn_on_launch: {value: true, category: `warns`, version: 1},
+  warn_on_untitle: {value: true, category: `warns`, version: 1},
 
-  lock_drag: {value: false, category: `more`},
-  quick_star: {value: false, category: `more`},
-  switch_to_tabs: {value: true, category: `more`},
-  hover_tooltips: {value: true, category: `more`},
-  mouse_gestures: {value: true, category: `more`},
-  clear_filter: {value: true, category: `more`},
-  show_icons: {value: true, category: `more`},
-  show_footer: {value: true, category: `more`},
-  show_pinline: {value: true, category: `more`},
-  highlight_effect: {value: `rotate`, category: `more`},
+  lock_drag: {value: false, category: `more`, version: 1},
+  quick_star: {value: false, category: `more`, version: 1},
+  switch_to_tabs: {value: true, category: `more`, version: 1},
+  hover_tooltips: {value: true, category: `more`, version: 1},
+  mouse_gestures: {value: true, category: `more`, version: 1},
+  clear_filter: {value: true, category: `more`, version: 1},
+  show_icons: {value: true, category: `more`, version: 1},
+  show_footer: {value: true, category: `more`, version: 1},
+  show_pinline: {value: true, category: `more`, version: 1},
+  highlight_effect: {value: `rotate`, category: `more`, version: 1},
 }
 
 App.make_item_order = () => {
@@ -96,10 +96,10 @@ App.settings_setup_checkboxes = (container) => {
     let action = item.dataset.action
 
     let el = DOM.el(`#settings_${setting}`)
-    el.checked = App.settings[setting]
+    el.checked = App.get_setting(setting)
 
     DOM.ev(el, `change`, () => {
-      App.settings[setting] = el.checked
+      App.set_setting(setting, el.checked)
       App.stor_save_settings()
       App.settings_do_action(action)
     })
@@ -107,7 +107,7 @@ App.settings_setup_checkboxes = (container) => {
     DOM.ev(el, `contextmenu`, (e) => {
       App.reset_single_setting(e, () => {
         let value = App.default_settings[setting].value
-        App.settings[setting] = value
+        App.set_setting(setting, value)
         el.checked = value
         App.stor_save_settings()
         App.settings_do_action(action)
@@ -124,11 +124,11 @@ App.settings_setup_text = (container) => {
     let action = item.dataset.action
     let el = DOM.el(`#settings_${setting}`)
 
-    el.value = App.settings[setting]
+    el.value = App.get_setting(setting)
 
     DOM.ev(el, `blur`, () => {
       el.value = el.value.trim()
-      App.settings[setting] = el.value
+      App.set_setting(setting, el.value)
       App.stor_save_settings()
       App.settings_do_action(action)
     })
@@ -136,7 +136,7 @@ App.settings_setup_text = (container) => {
     DOM.ev(el, `contextmenu`, (e) => {
       App.reset_single_setting(e, () => {
         let value = App.default_settings[setting].value
-        App.settings[setting] = value
+        App.set_setting(setting, value)
         el.value = value
         App.stor_save_settings()
         App.settings_do_action(action)
@@ -152,13 +152,13 @@ App.settings_make_menu = (setting, opts, action = () => {}) => {
     let items = []
 
     for (let o of opts) {
-      let selected = App.settings[setting] === o[1]
+      let selected = App.get_setting(setting) === o[1]
 
       items.push({
         text: o[0],
         action: () => {
           el.textContent = o[0]
-          App.settings[setting] = o[1]
+          App.set_setting(setting, o[1])
           App.stor_save_settings()
           action()
         },
@@ -172,7 +172,7 @@ App.settings_make_menu = (setting, opts, action = () => {}) => {
   DOM.ev(el, `contextmenu`, (e) => {
     App.reset_single_setting(e, () => {
       let value = App.default_settings[setting].value
-      App.settings[setting] = value
+      App.set_setting(setting, value)
 
       for (let o of opts) {
         if (o[1] === value) {
@@ -187,7 +187,7 @@ App.settings_make_menu = (setting, opts, action = () => {}) => {
   })
 
   for (let o of opts) {
-    if (App.settings[setting] === o[1]) {
+    if (App.get_setting(setting) === o[1]) {
       el.textContent = o[0]
     }
   }
@@ -358,7 +358,7 @@ App.start_theme_settings = () => {
       showHSL: false,
       showHEX: false,
       showRGB: true,
-      color: App.settings[`${name}_color`]
+      color: App.get_setting(`${name}_color`)
     })
 
     App[`${name}_color_picker`].on(`change`, (picker, color) => {
@@ -410,14 +410,14 @@ App.settings_menu_cycle = (el, setting, dir, items) => {
       break
     }
 
-    if (item[1] === App.settings[setting]) {
+    if (item[1] === App.get_setting(setting)) {
       waypoint = true
     }
   }
 
   if (s_item) {
     el.textContent = s_item[0]
-    App.settings[setting] = s_item[1]
+    App.set_setting(setting, s_item[1])
     App.stor_save_settings()
   }
 }
@@ -428,7 +428,7 @@ App.reset_settings = (category) => {
       let item = App.default_settings[key]
 
       if (item.category === category) {
-        App.settings[key] = item.value
+        App.set_setting(key, item.value)
       }
     }
 
@@ -446,7 +446,7 @@ App.reset_settings = (category) => {
 App.reset_all_settings = (type) => {
   App.show_confirm(`Reset all settings?`, () => {
     for (let key in App.default_settings) {
-      App.settings[key] = App.default_settings[key].value
+      App.set_setting(key, App.default_settings[key].value)
     }
 
     App.restart_settings()
@@ -661,3 +661,11 @@ App.settings_wheel = App.create_debouncer((e) => {
     App.show_prev_settings()
   }
 }, App.wheel_delay)
+
+App.get_setting = (key) => {
+  return App.settings[key].value
+}
+
+App.set_setting = (key, value) => {
+  App.settings[key].value = value
+}

@@ -5,53 +5,53 @@ App.setup_theme = () => {
 
 App.apply_theme = () => {
   try {
-    App.set_css_var(`background_color`, App.settings.background_color)
-    App.set_css_var(`text_color`, App.settings.text_color)
+    App.set_css_var(`background_color`, App.get_setting(`background_color`))
+    App.set_css_var(`text_color`, App.get_setting(`text_color`))
 
-    let main_background = App.colorlib.rgb_to_rgba(App.settings.background_color, 0.93)
+    let main_background = App.colorlib.rgb_to_rgba(App.get_setting(`background_color`), 0.93)
     App.set_css_var(`main_background`, main_background)
 
-    let alt_color_0 = App.colorlib.rgb_to_rgba(App.settings.text_color, 0.15)
+    let alt_color_0 = App.colorlib.rgb_to_rgba(App.get_setting(`text_color`), 0.15)
     App.set_css_var(`alt_color_0`, alt_color_0)
 
-    let alt_color_1 = App.colorlib.rgb_to_rgba(App.settings.text_color, 0.20)
+    let alt_color_1 = App.colorlib.rgb_to_rgba(App.get_setting(`text_color`), 0.20)
     App.set_css_var(`alt_color_1`, alt_color_1)
 
-    let alt_color_2 = App.colorlib.rgb_to_rgba(App.settings.text_color, 0.50)
+    let alt_color_2 = App.colorlib.rgb_to_rgba(App.get_setting(`text_color`), 0.50)
     App.set_css_var(`alt_color_2`, alt_color_2)
 
-    let alt_background = App.colorlib.rgb_to_rgba(App.settings.background_color, 0.55)
+    let alt_background = App.colorlib.rgb_to_rgba(App.get_setting(`background_color`), 0.55)
     App.set_css_var(`alt_background`, alt_background)
 
-    App.set_css_var(`font_size`, App.settings.font_size + `px`)
-    App.set_css_var(`font`, `${App.settings.font}, sans-serif`)
+    App.set_css_var(`font_size`, App.get_setting(`font_size`) + `px`)
+    App.set_css_var(`font`, `${App.get_setting(`font`)}, sans-serif`)
 
-    let w = `${(App.settings.width / 100) * 800}px`
+    let w = `${(App.get_setting(`width`) / 100) * 800}px`
     App.set_css_var(`width`, w)
 
-    let h = `${(App.settings.height / 100) * 600}px`
+    let h = `${(App.get_setting(`height`) / 100) * 600}px`
     App.set_css_var(`height`, h)
 
     let item_height = `2.15rem`
 
-    if (App.settings.item_height === `compact`) {
+    if (App.get_setting(`item_height`) === `compact`) {
       item_height = `1.7rem`
     }
-    else if (App.settings.item_height === `bigger`) {
+    else if (App.get_setting(`item_height`) === `bigger`) {
       item_height = `2.6rem`
     }
 
     App.set_css_var(`item_height`, item_height)
 
-    if (App.settings.background === 0 && App.settings.custom_background === ``) {
+    if (App.get_setting(`background`) === 0 && App.get_setting(`custom_background`) === ``) {
       App.set_css_var(`background`, `unset`)
     }
     else {
-      if (App.settings.custom_background) {
-        App.set_css_var(`background`, `url(${App.settings.custom_background})`)
+      if (App.get_setting(`custom_background`)) {
+        App.set_css_var(`background`, `url(${App.get_setting(`custom_background`)})`)
       }
-      else if (App.settings.background !== 0) {
-        App.set_css_var(`background`, `url(../img/backgrounds/${App.settings.background}.jpg)`)
+      else if (App.get_setting(`background`) !== 0) {
+        App.set_css_var(`background`, `url(../img/backgrounds/${App.get_setting(`background`)}.jpg)`)
       }
     }
 
@@ -64,9 +64,9 @@ App.apply_theme = () => {
       }
     }
 
-    main.classList.add(`highlight_${App.settings.highlight_effect}`)
+    main.classList.add(`highlight_${App.get_setting(`highlight_effect`)}`)
 
-    if (App.settings.show_footer) {
+    if (App.get_setting(`show_footer`)) {
       main.classList.remove(`hide_footer`)
     }
     else {
@@ -75,8 +75,8 @@ App.apply_theme = () => {
   }
   catch (err) {
     App.log(err, `error`)
-    App.settings.background_color = App.default_settings.background_color.value
-    App.settings.text_color = App.default_settings.text_color.value
+    App.set_setting(`background_color`, App.default_settings.background_color.value)
+    App.set_setting(`text_color`, App.default_settings.text_color.value)
     App.stor_save_settings()
     App.close_window()
   }
@@ -87,7 +87,7 @@ App.set_css_var = (name, value) => {
 }
 
 App.change_color = (name, color) => {
-  App.settings[`${name}_color`] = color
+  App.set_setting(`${name}_color`, color)
   App.apply_theme()
   App.stor_save_settings()
 }
@@ -105,7 +105,7 @@ App.random_theme = () => {
 
   let bgi = App.get_random_int(0, App.num_background_images)
   DOM.el(`#settings_background`).textContent = App.get_background_label(bgi)
-  App.settings.background = bgi
+  App.set_setting(`background`, bgi)
 
   App.background_color_picker.setColor(colors.background_color)
   App.text_color_picker.setColor(colors.text_color)

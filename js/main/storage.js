@@ -30,9 +30,12 @@ App.stor_get_settings = () => {
   let changed = false
 
   // Fill defaults
+
   for (let key in App.default_settings) {
     if (App.settings[key] === undefined) {
-      App.settings[key] = App.default_settings[key].value
+      App.settings[key] = {}
+      App.settings[key].value = App.default_settings[key].value
+      App.settings[key].version = App.default_settings[key].version
       changed = true
     }
   }
@@ -41,6 +44,12 @@ App.stor_get_settings = () => {
   for (let key in App.settings) {
     if (App.default_settings[key] === undefined) {
       delete App.settings[key]
+      changed = true
+    }
+
+    if (App.settings[key].version < App.default_settings[key].version) {
+      App.settings[key].value = App.default_settings[key].value
+      App.settings[key].version = App.default_settings[key].version
       changed = true
     }
   }
