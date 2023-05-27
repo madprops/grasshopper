@@ -1,7 +1,7 @@
 const App = {}
 
 App.item_modes = [`tabs`, `stars`, `bookmarks`, `closed`, `history`]
-App.stor_settings_name = `settings_v21`
+App.stor_settings_name = `settings_v23`
 App.stor_stars_name = `stars_state_v20`
 App.stor_titles_name = `titles_v3`
 App.windows = {}

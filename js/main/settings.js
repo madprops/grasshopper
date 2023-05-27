@@ -1,10 +1,4 @@
 App.default_settings = {
-  tabs_index: {value: 0, category: `order`, version: 1},
-  history_index: {value: 1, category: `order`, version: 1},
-  bookmarks_index: {value: 2, category: `order`, version: 1},
-  closed_index: {value: 3, category: `order`, version: 1},
-  stars_index: {value: 4, category: `order`, version: 1},
-
   text_mode: {value: `title`, category: `basic`, version: 1},
   item_height: {value: `normal`, category: `basic`, version: 1},
   width: {value: 70, category: `basic`, version: 1},
@@ -22,6 +16,12 @@ App.default_settings = {
   playing_icon: {value: `🔊`, category: `icons`, version: 1},
   muted_icon: {value: `🔇`, category: `icons`, version: 1},
   suspended_icon: {value: `💤`, category: `icons`, version: 1},
+
+  tabs_index: {value: 0, category: `order`, version: 1},
+  history_index: {value: 1, category: `order`, version: 1},
+  bookmarks_index: {value: 2, category: `order`, version: 1},
+  closed_index: {value: 3, category: `order`, version: 1},
+  stars_index: {value: 4, category: `order`, version: 1},
 
   media_viewer_on_tabs: {value: false, category: `media`, version: 1},
   media_viewer_on_history: {value: true, category: `media`, version: 1},
