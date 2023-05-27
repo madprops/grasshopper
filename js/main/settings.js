@@ -47,7 +47,7 @@ App.default_settings = {
   show_footer: {value: true, category: `more`},
   show_pinline: {value: true, category: `more`},
   highlight_effect: {value: `rotate`, category: `more`},
-  quick_star_save: {value: false, category: `more`},
+  quick_star: {value: false, category: `more`},
 }
 
 App.make_item_order = () => {
