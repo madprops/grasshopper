@@ -224,29 +224,38 @@ App.setup_keyboard = () => {
       return
     }
 
-    if (!App.on_item_window()) {
-      if (e.key === `Escape`) {
-        App.show_last_window()
+    if (mode.startsWith(`settings`)) {
+      if (e.key === `ArrowLeft`) {
+        if (!App.focused_with_class(`text`)) {
+          App.show_prev_settings(true)
+          e.preventDefault()
+          return
+        }
+      }
+      else if (e.key === `ArrowRight`) {
+        if (!App.focused_with_class(`text`)) {
+          App.show_next_settings(true)
+          e.preventDefault()
+          return
+        }
+      }
+      else if (e.key === `Escape`) {
+        App.hide_current_window()
         e.preventDefault()
         return
       }
     }
-
-    if (mode === `star_editor`) {
+    else if (mode === `star_editor`) {
       if (e.key === `Enter`) {
         App.star_editor_save()
         e.preventDefault()
       }
-
-      return
     }
     else if (mode === `title_editor`) {
       if (e.key === `Enter`) {
         App.title_editor_save()
         e.preventDefault()
       }
-
-      return
     }
     else if (mode === `image` || mode === `video`) {
       if (e.key === `ArrowLeft`) {
@@ -276,20 +285,11 @@ App.setup_keyboard = () => {
       }
     }
 
-    if (App.window_mode.startsWith(`settings`)) {
-      if (e.key === `ArrowLeft`) {
-        if (!App.focused_with_class(`text`)) {
-          App.show_prev_settings(true)
-          e.preventDefault()
-          return
-        }
-      }
-      else if (e.key === `ArrowRight`) {
-        if (!App.focused_with_class(`text`)) {
-          App.show_next_settings(true)
-          e.preventDefault()
-          return
-        }
+    if (!App.on_item_window()) {
+      if (e.key === `Escape`) {
+        App.show_last_window()
+        e.preventDefault()
+        return
       }
     }
 
