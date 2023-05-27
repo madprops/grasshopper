@@ -681,7 +681,10 @@ App.check_settings = () => {
 
   // Fill defaults
   for (let setting in App.default_settings) {
-    if (App.settings[setting] === undefined) {
+    if (App.settings[setting] === undefined ||
+      App.settings[setting].value === undefined ||
+      App.settings[setting].version === undefined)
+    {
       App.log(`Stor: Adding setting: ${setting}`)
       App.settings[setting] = {}
       App.settings[setting].value = App.default_settings[setting].value
