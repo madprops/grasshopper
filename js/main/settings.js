@@ -291,6 +291,7 @@ App.setup_settings = () => {
       [`Bright`, `bright`],
       [`Blink`, `blink`],
       [`Hue`, `hue`],
+      [`None`, `none`],
     ])
   }}))
 }
