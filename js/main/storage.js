@@ -62,6 +62,7 @@ App.stor_get_settings = () => {
 }
 
 App.stor_save_settings = () => {
+  App.log(`Stor: Saving settings`)
   App.save_local_storage(App.stor_settings_name, App.settings)
 }
 
@@ -94,6 +95,7 @@ App.stor_get_stars = () => {
 }
 
 App.stor_save_stars = () => {
+  App.log(`Stor: Saving stars`)
   App.save_local_storage(App.stor_stars_name, App.stars)
 }
 
@@ -103,5 +105,6 @@ App.stor_get_titles = () => {
 }
 
 App.stor_save_titles = () => {
+  App.log(`Stor: Saving titles`)
   App.save_local_storage(App.stor_titles_name, App.titles)
 }

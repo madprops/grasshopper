@@ -77,7 +77,6 @@ App.apply_theme = () => {
     App.log(err, `error`)
     App.set_setting(`background_color`, App.default_settings.background_color.value)
     App.set_setting(`text_color`, App.default_settings.text_color.value)
-    App.stor_save_settings()
     App.close_window()
   }
 }
@@ -89,7 +88,6 @@ App.set_css_var = (name, value) => {
 App.change_color = (name, color) => {
   App.set_setting(`${name}_color`, color)
   App.apply_theme()
-  App.stor_save_settings()
 }
 
 App.random_theme = () => {

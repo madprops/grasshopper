@@ -100,7 +100,6 @@ App.settings_setup_checkboxes = (container) => {
 
     DOM.ev(el, `change`, () => {
       App.set_setting(setting, el.checked)
-      App.stor_save_settings()
       App.settings_do_action(action)
     })
 
@@ -109,8 +108,6 @@ App.settings_setup_checkboxes = (container) => {
         let value = App.default_settings[setting].value
         App.set_setting(setting, value)
         el.checked = value
-        App.stor_save_settings()
-        App.settings_do_action(action)
       })
     })
   }
@@ -129,7 +126,6 @@ App.settings_setup_text = (container) => {
     DOM.ev(el, `blur`, () => {
       el.value = el.value.trim()
       App.set_setting(setting, el.value)
-      App.stor_save_settings()
       App.settings_do_action(action)
     })
 
@@ -138,7 +134,6 @@ App.settings_setup_text = (container) => {
         let value = App.default_settings[setting].value
         App.set_setting(setting, value)
         el.value = value
-        App.stor_save_settings()
         App.settings_do_action(action)
       })
     })
@@ -159,7 +154,6 @@ App.settings_make_menu = (setting, opts, action = () => {}) => {
         action: () => {
           el.textContent = o[0]
           App.set_setting(setting, o[1])
-          App.stor_save_settings()
           action()
         },
         selected: selected
@@ -181,7 +175,6 @@ App.settings_make_menu = (setting, opts, action = () => {}) => {
         }
       }
 
-      App.stor_save_settings()
       action()
     })
   })
@@ -418,7 +411,6 @@ App.settings_menu_cycle = (el, setting, dir, items) => {
   if (s_item) {
     el.textContent = s_item[0]
     App.set_setting(setting, s_item[1])
-    App.stor_save_settings()
   }
 }
 
@@ -437,7 +429,6 @@ App.reset_settings = (category) => {
       App.make_item_order()
     }
 
-    App.stor_save_settings()
     App.apply_theme()
     App.show_window(`settings_${category}`)
   })
@@ -595,7 +586,6 @@ App.restart_settings = () => {
   App.get_item_order()
   App.make_item_order()
   App.apply_theme()
-  App.stor_save_settings()
   App.show_window(`settings_basic`)
 }
 
@@ -668,4 +658,9 @@ App.get_setting = (key) => {
 
 App.set_setting = (key, value) => {
   App.settings[key].value = value
+  App.save_settings_debouncer.call()
 }
+
+App.save_settings_debouncer = App.create_debouncer(() => {
+  App.stor_save_settings()
+}, App.settings_save_delay)

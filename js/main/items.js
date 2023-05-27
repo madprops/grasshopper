@@ -1202,7 +1202,6 @@ App.update_item_order = () => {
     App.set_setting(`${mode}_index`, i)
   }
 
-  App.stor_save_settings()
   App.get_item_order()
 }
 
