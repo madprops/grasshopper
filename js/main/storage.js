@@ -31,25 +31,25 @@ App.stor_get_settings = () => {
 
   // Fill defaults
 
-  for (let key in App.default_settings) {
-    if (App.settings[key] === undefined) {
-      App.settings[key] = {}
-      App.settings[key].value = App.default_settings[key].value
-      App.settings[key].version = App.default_settings[key].version
+  for (let setting in App.default_settings) {
+    if (App.settings[setting] === undefined) {
+      App.settings[setting] = {}
+      App.settings[setting].value = App.default_settings[setting].value
+      App.settings[setting].version = App.default_settings[setting].version
       changed = true
     }
   }
 
   // Remove unused keys
-  for (let key in App.settings) {
-    if (App.default_settings[key] === undefined) {
-      delete App.settings[key]
+  for (let setting in App.settings) {
+    if (App.default_settings[setting] === undefined) {
+      App.log(`Stor: Deleting unused setting: "${setting}"`)
+      delete App.settings[setting]
       changed = true
     }
-
-    if (App.settings[key].version < App.default_settings[key].version) {
-      App.settings[key].value = App.default_settings[key].value
-      App.settings[key].version = App.default_settings[key].version
+    else if (App.settings[setting].version < App.default_settings[setting].version) {
+      App.settings[setting].value = App.default_settings[setting].value
+      App.settings[setting].version = App.default_settings[setting].version
       changed = true
     }
   }
