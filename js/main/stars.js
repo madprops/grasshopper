@@ -330,7 +330,7 @@ App.star_items = (item) => {
   let active = App.get_active_items(item.mode, item)
 
   if (active.length === 1) {
-    if (App.settings.quick_star) {
+    if (App.settings.quick_star_save) {
       let exists = App.get_star_by_url(item.url)
 
       if (exists) {
