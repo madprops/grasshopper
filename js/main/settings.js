@@ -414,15 +414,19 @@ App.settings_menu_cycle = (el, setting, dir, items) => {
   }
 }
 
+App.settings_defaults = (category) => {
+  for (let setting in App.default_settings) {
+    let item = App.default_settings[setting]
+
+    if (item.category === category) {
+      App.set_setting(setting, item.value)
+    }
+  }
+}
+
 App.reset_settings = (category) => {
   App.show_confirm(`Reset settings? (${App.capitalize(category)})`, () => {
-    for (let setting in App.default_settings) {
-      let item = App.default_setting(setting)
-
-      if (item.category === category) {
-        App.set_setting(setting, item.value)
-      }
-    }
+    App.settings_defaults(category)
 
     if (category === `order`) {
       App.get_item_order()
@@ -661,10 +665,10 @@ App.set_setting = (setting, value) => {
   App.save_settings_debouncer.call()
 }
 
-App.save_settings_debouncer = App.create_debouncer(() => {
-  App.stor_save_settings()
-}, App.settings_save_delay)
-
 App.default_setting = (setting) => {
   return App.default_settings[setting].value
 }
+
+App.save_settings_debouncer = App.create_debouncer(() => {
+  App.stor_save_settings()
+}, App.settings_save_delay)

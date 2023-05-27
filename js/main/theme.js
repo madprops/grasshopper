@@ -75,9 +75,8 @@ App.apply_theme = () => {
   }
   catch (err) {
     App.log(err, `error`)
-    App.set_setting(`background_color`, App.default_setting(`background_color`))
-    App.set_setting(`text_color`, App.default_setting(`text_color`))
-    App.close_window()
+    App.settings_defaults(`theme`)
+    App.stor_save_settings()
   }
 }
 
@@ -143,7 +142,6 @@ App.detect_theme = async () => {
 
     d1.remove()
     d2.remove()
-
     return
   }
 
