@@ -153,11 +153,11 @@ App.get_title_items = () => {
 }
 
 App.export_titles = () => {
-  App.show_textarea(`Copy this to import it later`, JSON.stringify(App.titles, null, 2))
+  App.show_textarea(App.export_string, JSON.stringify(App.titles, null, 2))
 }
 
 App.import_titles = () => {
-  App.show_input(`Paste the data text here`, `Import`, (text) => {
+  App.show_input(App.import_string, `Import`, (text) => {
     if (!text) {
       return
     }
