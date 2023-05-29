@@ -608,6 +608,7 @@ App.check_playing = () => {
 }
 
 App.go_to_playing = () => {
+  App.clear_filter(`tabs`)
   let items = App.get_items(`tabs`)
   let waypoint = false
   let first
