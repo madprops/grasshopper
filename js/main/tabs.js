@@ -597,6 +597,10 @@ App.hide_playing = () => {
 }
 
 App.check_playing = () => {
+  if (App.window_mode !== `tabs`) {
+    return
+  }
+
   let playing = App.get_playing_tabs()
 
   if (playing.length > 0) {

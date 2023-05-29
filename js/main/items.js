@@ -634,11 +634,7 @@ App.process_info_list = (mode, info_list) => {
   }
 
   App.update_footer_count(mode)
-
-  if (mode === `tabs`) {
-    App.check_playing()
-  }
-
+  App.check_playing()
   App.do_check_pinline()
 }
 
