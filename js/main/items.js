@@ -1155,12 +1155,11 @@ App.setup_item_window = (mode) => {
       right_top.append(playing)
     }
 
-    right_top.append(back)
-
     if (new_star) {
       right_top.append(new_star)
     }
 
+    right_top.append(back)
     right_top.append(actions_menu)
 
     top.append(left_top)
