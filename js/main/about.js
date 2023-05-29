@@ -21,7 +21,7 @@ App.setup_about = () => {
       `Ctrl + Right toggles Actions`,
       `Ctrl + Up moves tabs to the top`,
       `Ctrl + Down moves tabs to the bottom`,
-      `Ctrl + Backspace goes to previous tab`,
+      `Ctrl + Backspace goes back`,
       `Ctrl + F shows the filter modes`,
       `Ctrl + Dot goes to the playing tab`,
       `Double click on empty tabs space opens a new tab`,

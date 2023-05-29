@@ -1065,7 +1065,7 @@ App.setup_item_window = (mode) => {
 
     //
 
-    let playing, previous
+    let playing
 
     if (mode === `tabs`) {
       playing = DOM.create(`div`, `button icon_button hidden`, `${mode}_playing`)
@@ -1077,17 +1077,22 @@ App.setup_item_window = (mode) => {
       })
 
       playing.append(playing_icon)
-
-      previous = DOM.create(`div`, `button icon_button`, `${mode}_previous`)
-      previous.title = `Go To Previous Tab (Ctrl + Backspace)`
-      let previous_icon = App.create_icon(`back`)
-
-      DOM.ev(previous, `click`, () => {
-        App.tabs_back_action()
-      })
-
-      previous.append(previous_icon)
     }
+
+    let back = DOM.create(`div`, `button icon_button`, `${mode}_back`)
+    back.title = `Go Back (Ctrl + Backspace)`
+    let back_icon = App.create_icon(`back`)
+
+    DOM.ev(back, `click`, () => {
+      if (App[`${mode}_back_action`]) {
+        App[`${mode}_back_action`]()
+      }
+      else {
+        App.show_all(mode)
+      }
+    })
+
+    back.append(back_icon)
 
     //
 
@@ -1150,9 +1155,7 @@ App.setup_item_window = (mode) => {
       right_top.append(playing)
     }
 
-    if (previous) {
-      right_top.append(previous)
-    }
+    right_top.append(back)
 
     if (new_star) {
       right_top.append(new_star)
