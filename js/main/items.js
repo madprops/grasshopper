@@ -189,6 +189,7 @@ App.set_footer_info = (mode, text) => {
   if (footer) {
     let info = DOM.el(`.footer_info`, footer)
     info.textContent = text
+    info.title = text
   }
 }
 
@@ -988,6 +989,7 @@ App.setup_item_window = (mode) => {
 
     let footer_count = DOM.create(`div`, `footer_count action`)
     footer_count.textContent = `(--)`
+    footer_count.title = `Number of visible items. Click to select all`
 
     DOM.ev(footer_count, `click`, () => {
       App.highlight_items(mode)
@@ -1329,11 +1331,6 @@ App.get_visible = (mode) => {
   return items
 }
 
-App.show_launched = (item) => {
-  let launched = DOM.el(`.item_info_launched`, item.element)
-  launched.textContent = `(Launched)`
-}
-
 App.update_item = (mode, id, info) => {
   for (let item of App.get_items(mode)) {
     if (item.id === id) {
@@ -1645,13 +1642,14 @@ App.get_highlights = (mode) => {
   return ans
 }
 
-App.launch_item = (item, close = true) => {
+App.launch_item = (item, close = true, feedback = true) => {
   App.open_tab(item.url, close)
 
   if (close) {
     App.close_window()
   }
-  else {
+
+  if (feedback){
     App.show_launched(item)
   }
 }
@@ -1668,13 +1666,23 @@ App.launch_items = (item) => {
 
   App.show_confirm(`Launch these items ${items.length}?`, () => {
     for (let item of items) {
-      App.launch_item(item, false)
+      App.launch_item(item, false, false)
     }
 
     App.dehighlight(mode)
+    App.show_feedback(`${items.length} items launched.`, 1000)
   }, () => {
     App.dehighlight(mode)
   }, !App.get_setting(`warn_on_launch`))
+}
+
+App.show_launched = (item) => {
+  let launched = DOM.el(`.item_info_launched`, item.element)
+  launched.textContent = `(Launched)`
+
+  setTimeout(() => {
+    launched.textContent = ``
+  }, 1000)
 }
 
 App.goto_top = (mode) => {
