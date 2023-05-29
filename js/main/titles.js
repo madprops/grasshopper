@@ -83,10 +83,7 @@ App.remove_title = () => {
       App.stor_save_titles()
       App.apply_titles(url)
       App.show_last_window()
-
-      if (App.tabs_filter_mode === `title`) {
-        App.call_filter(`tabs`)
-      }
+      App.refresh_filter(App.last_window_mode, `title`)
     }
   }, undefined, !App.get_setting(`warn_on_untitle`))
 }

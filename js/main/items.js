@@ -1921,3 +1921,9 @@ App.pick_item = (item) => {
     }
   }
 }
+
+App.refresh_filter = (mode, what) => {
+  if (App[`${mode}_filter_mode`] === what) {
+    App.call_filter(mode)
+  }
+}

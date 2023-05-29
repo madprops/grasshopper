@@ -1,14 +1,4 @@
 App.setup_stars = () => {
-  function on_close () {
-    let mode = App.last_window_mode
-
-    if (App[`${mode}_filter_mode`] === `star`) {
-      App.call_filter(mode)
-    }
-
-    App.show_last_window()
-  }
-
   App.stars_actions = [
     {text: `--separator--`},
 
@@ -41,7 +31,8 @@ App.setup_stars = () => {
     App.update_star_editor_info()
   },
   on_hide: () => {
-    on_close()
+    App.refresh_filter(App.last_window_mode, `star`)
+    App.show_last_window()
   }})
 }
 
