@@ -745,6 +745,7 @@ App.focus_current_tab = async () => {
 }
 
 App.tabs_back_action = async () => {
+  App.clear_filter(`tabs`)
   let scrolled = await App.focus_current_tab()
 
   if (!scrolled) {
