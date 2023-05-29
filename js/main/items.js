@@ -1039,7 +1039,7 @@ App.setup_item_window = (mode) => {
     //
 
     let filter_modes = DOM.create(`div`, `button icon_button`, `${mode}_filter_modes`)
-    filter_modes.title = `Filter Modes (Ctrl + Down)`
+    filter_modes.title = `Filter Modes (Ctrl + F)`
     let filter_modes_text = DOM.create(`div`, ``, `${mode}_filter_modes_text`)
     filter_modes.append(filter_modes_text)
 
@@ -1069,7 +1069,7 @@ App.setup_item_window = (mode) => {
 
     if (mode === `tabs`) {
       playing = DOM.create(`div`, `button icon_button hidden`, `${mode}_playing`)
-      playing.title = `Go To Playing Tab (Ctrl + Up)`
+      playing.title = `Go To Playing Tab (Ctrl + Dot)`
       let playing_icon = App.create_icon(`speaker`)
 
       DOM.ev(playing, `click`, () => {
