@@ -608,7 +608,7 @@ App.check_playing = () => {
 }
 
 App.go_to_playing = () => {
-  App.clear_filter(`tabs`)
+  App.show_all(`tabs`)
   let items = App.get_items(`tabs`)
   let waypoint = false
   let first
@@ -745,7 +745,7 @@ App.focus_current_tab = async () => {
 }
 
 App.tabs_back_action = async () => {
-  App.clear_filter(`tabs`)
+  App.show_all(`tabs`)
   let scrolled = await App.focus_current_tab()
 
   if (!scrolled) {

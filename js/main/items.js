@@ -937,7 +937,7 @@ App.show_item_window = async (mode, cycle = false) => {
   DOM.el(`#${mode}_container`).innerHTML = ``
   App.set_filter(mode, value, false)
 
-  let m = App[`${mode}_filter_modes`][0]
+  let m = App.filter_modes(mode)[0]
   App.set_filter_mode(mode, m, false)
   App[`${mode}_filter_mode`] = m[0]
 
@@ -1048,7 +1048,7 @@ App.setup_item_window = (mode) => {
     fmodes.push([`--separator--`])
     fmodes.push([`images`, `Images`])
     fmodes.push([`videos`, `Videos`])
-    App[`${mode}_filter_modes`] = [...fmodes, ...(App[`${mode}_filter_modes`] || [])]
+    App[`${mode}_filter_modes`] = [...fmodes, ...(App.filter_modes(mode) || [])]
 
     DOM.ev(filter_modes, `click`, () => {
       App.show_filter_modes(mode)
@@ -1386,7 +1386,7 @@ App.show_actions = (mode) => {
 App.show_filter_modes = (mode) => {
   let items = []
 
-  for (let filter_mode of App[`${mode}_filter_modes`]) {
+  for (let filter_mode of App.filter_modes(mode)) {
     if (filter_mode[0] === `--separator--`) {
       items.push({separator: true})
       continue
@@ -1408,7 +1408,7 @@ App.show_filter_modes = (mode) => {
 }
 
 App.cycle_filter_modes = (mode, reverse = true) => {
-  let modes = App[`${mode}_filter_modes`]
+  let modes = App.filter_modes(mode)
   let waypoint = false
 
   if (reverse) {
@@ -1451,6 +1451,10 @@ App.cycle_filter_modes = (mode, reverse = true) => {
   else {
     App.set_filter_mode(mode, modes[0])
   }
+}
+
+App.filter_modes = (mode) => {
+  return App[`${mode}_filter_modes`]
 }
 
 App.set_filter_mode = (mode, filter_mode, filter = true) => {
@@ -1883,6 +1887,11 @@ App.clear_filter = (mode) => {
   if (App.get_filter(mode, false)) {
     App.set_filter(mode, ``)
   }
+}
+
+App.show_all = (mode) => {
+  App.clear_filter(mode)
+  App.set_filter_mode(mode, App.filter_modes(mode)[0])
 }
 
 App.is_filtered = (mode) => {
