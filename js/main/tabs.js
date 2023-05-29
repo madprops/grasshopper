@@ -96,7 +96,7 @@ App.empty_previous_tabs = App.create_debouncer(() => {
 
 App.pinline_debouncer = App.create_debouncer(() => {
   App.do_check_pinline()
-}, 25)
+}, App.pinline_debouncer_delay)
 
 App.check_pinline = () => {
   App.pinline_debouncer.call()

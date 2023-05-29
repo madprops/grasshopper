@@ -27,5 +27,7 @@ App.max_star_visits = 1000000 * 100
 App.settings_save_delay = 1000
 App.export_string = `Copy this to import later`
 App.import_string = `Paste data text here`
+App.pinline_debouncer_delay = 100
+App.footer_debouncer_delay = 100
 
 NeedContext.min_width = `4.5rem`
