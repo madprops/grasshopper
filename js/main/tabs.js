@@ -745,7 +745,13 @@ App.focus_current_tab = async () => {
 }
 
 App.tabs_back_action = async () => {
+  let was_filtered = App.is_filtered(`tabs`)
   App.show_all(`tabs`)
+
+  if (was_filtered) {
+    return
+  }
+
   let scrolled = await App.focus_current_tab()
 
   if (!scrolled) {

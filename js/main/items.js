@@ -282,7 +282,7 @@ App.do_item_filter = async (mode) => {
     return
   }
 
-  let filter_mode = App[`${mode}_filter_mode`]
+  let filter_mode = App.filter_mode(mode)
   let skip = !value && filter_mode === `all`
   let words, filter_words
 
@@ -1392,7 +1392,7 @@ App.show_filter_modes = (mode) => {
       continue
     }
 
-    let selected = App[`${mode}_filter_mode`] === filter_mode[0]
+    let selected = App.filter_mode(mode) === filter_mode[0]
 
     items.push({
       text: filter_mode[1],
@@ -1422,7 +1422,7 @@ App.cycle_filter_modes = (mode, reverse = true) => {
         return
       }
 
-      if (filter_mode[0] === App[`${mode}_filter_mode`]) {
+      if (filter_mode[0] === App.filter_mode(mode)) {
         waypoint = true
       }
     }
@@ -1438,7 +1438,7 @@ App.cycle_filter_modes = (mode, reverse = true) => {
         return
       }
 
-      if (filter_mode[0] === App[`${mode}_filter_mode`]) {
+      if (filter_mode[0] === App.filter_mode(mode)) {
         waypoint = true
       }
     }
@@ -1457,10 +1457,14 @@ App.filter_modes = (mode) => {
   return App[`${mode}_filter_modes`]
 }
 
+App.filter_mode = (mode) => {
+  return App[`${mode}_filter_mode`]
+}
+
 App.set_filter_mode = (mode, filter_mode, filter = true) => {
   // If All is clicked again, clear the filter
   if (filter && filter_mode[0] === `all`) {
-    if (App[`${mode}_filter_mode`] === `all`) {
+    if (App.filter_mode(mode) === `all`) {
       if (App.get_filter(mode, true)) {
         App.clear_filter(mode)
         return
@@ -1895,7 +1899,7 @@ App.show_all = (mode) => {
 }
 
 App.is_filtered = (mode) => {
-  return App.get_filter(mode, true) || App[`${mode}_filter_mode`] !== `all`
+  return App.get_filter(mode, true) || App.filter_mode(mode) !== `all`
 }
 
 App.check_clear_filter = () => {
@@ -1932,7 +1936,7 @@ App.pick_item = (item) => {
 }
 
 App.refresh_filter = (mode, what) => {
-  if (App[`${mode}_filter_mode`] === what) {
+  if (App.filter_mode(mode) === what) {
     App.call_filter(mode)
   }
 }
