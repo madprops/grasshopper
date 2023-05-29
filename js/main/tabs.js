@@ -727,7 +727,6 @@ App.close_duplicates = () => {
 
   App.show_confirm(s, async () => {
     await App.do_close_tabs(ids)
-    App.refresh_filter(`tabs`, `duplicates`)
   }, undefined, !App.get_setting(`warn_on_duplicates`))
 }
 
