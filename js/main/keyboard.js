@@ -2,13 +2,18 @@ App.check_window_keyboard = (e) => {
   let mode = App.window_mode
 
   if (e.ctrlKey && !e.shiftKey) {
-    if (e.key === `ArrowLeft`) {
-      App.show_main_menu(mode)
+    if (e.key === `ArrowUp`) {
+      App.move_tabs_to_top()
       e.preventDefault()
       return
     }
     else if (e.key === `ArrowDown`) {
-      App.show_filter_modes(mode)
+      App.move_tabs_to_bottom()
+      e.preventDefault()
+      return
+    }
+    else if (e.key === `ArrowLeft`) {
+      App.show_main_menu(mode)
       e.preventDefault()
       return
     }
@@ -17,8 +22,8 @@ App.check_window_keyboard = (e) => {
       e.preventDefault()
       return
     }
-    else if (e.key === `ArrowUp`) {
-      App.go_to_playing()
+    else if (e.key === `f`) {
+      App.show_filter_modes(mode)
       e.preventDefault()
       return
     }

@@ -752,6 +752,14 @@ App.tabs_back_action = async () => {
 }
 
 App.move_tabs_to_top = async (item) => {
+  if (!item) {
+    item = App.get_selected(`tabs`)
+  }
+
+  if (!item) {
+    return
+  }
+
   let first
 
   if (item.pinned) {
@@ -771,6 +779,14 @@ App.move_tabs_to_top = async (item) => {
 }
 
 App.move_tabs_to_bottom = async (item) => {
+  if (!item) {
+    item = App.get_selected(`tabs`)
+  }
+
+  if (!item) {
+    return
+  }
+
   let last
 
   if (item.pinned) {
