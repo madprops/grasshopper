@@ -82,8 +82,8 @@ App.remove_title = () => {
       App.titles = App.titles.filter(x => !x.url.startsWith(url))
       App.stor_save_titles()
       App.apply_titles(url)
-      App.show_last_window()
       App.refresh_filter(App.last_window_mode, `title`)
+      App.show_last_window()
     }
   }, undefined, !App.get_setting(`warn_on_untitle`))
 }
