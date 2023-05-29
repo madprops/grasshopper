@@ -17,7 +17,7 @@ App.setup_about = () => {
       `Ctrl + End goes to the bottom`,
       `Ctrl + Home goes to the top of a list`,
       `Ctrl + End goes to the bottom of a list`,
-      `Ctrl + Left togles Main Menu`,
+      `Ctrl + Left toggles the Main Menu`,
       `Ctrl + Right toggles Actions`,
       `Ctrl + Up moves tabs to the top`,
       `Ctrl + Down moves tabs to the bottom`,
