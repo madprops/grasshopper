@@ -409,9 +409,9 @@ App.close_tabs = (item, force = false) => {
 
   let s = App.plural(ids.length, `Close this tab?`, `Close these tabs? (${ids.length})`)
 
-  App.show_confirm(s, async () => {
-    await App.do_close_tabs(ids)
+  App.show_confirm(s, () => {
     App.dehighlight(`tabs`)
+    App.do_close_tabs(ids)
   }, () => {
     App.dehighlight(`tabs`)
   }, force || !warn)
@@ -419,7 +419,7 @@ App.close_tabs = (item, force = false) => {
 
 App.do_close_tabs = async (ids) => {
   for (let id of ids) {
-    await App.close_tab(id)
+    App.close_tab(id)
   }
 }
 
@@ -583,8 +583,8 @@ App.clean_tabs = () => {
   s += `Tabs playing audio are not closed\n`
   s += `Close these tabs? (${ids.length})`
 
-  App.show_confirm(s, async () => {
-    await App.do_close_tabs(ids)
+  App.show_confirm(s, () => {
+    App.do_close_tabs(ids)
   }, undefined, !App.get_setting(`warn_on_clean`))
 }
 
@@ -725,8 +725,8 @@ App.close_duplicates = () => {
   s += `Excluding pinned and playing\n`
   s += `Close these tabs? (${ids.length})`
 
-  App.show_confirm(s, async () => {
-    await App.do_close_tabs(ids)
+  App.show_confirm(s, () => {
+    App.do_close_tabs(ids)
   }, undefined, !App.get_setting(`warn_on_duplicates`))
 }
 
