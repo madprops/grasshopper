@@ -581,14 +581,14 @@ App.get_more_menu_items = (item, multiple) => {
   items.push({
     text: `To Top`,
     action: () => {
-      App.move_tabs_to_top(item)
+      App.move_tabs_vertically(`top`, item)
     }
   })
 
   items.push({
     text: `To Bottom`,
     action: () => {
-      App.move_tabs_to_bottom(item)
+      App.move_tabs_vertically(`bottom`, item)
     }
   })
 
@@ -1481,8 +1481,7 @@ App.get_mode_index = (mode) => {
 }
 
 App.get_item_element_index = (mode, el) => {
-  let nodes = DOM.els(`.${mode}_item`)
-  return nodes.indexOf(el)
+  return DOM.els(`.${mode}_item`).indexOf(el)
 }
 
 App.move_item = (mode, from_index, to_index) => {

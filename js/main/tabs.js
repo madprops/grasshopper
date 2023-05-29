@@ -751,7 +751,7 @@ App.tabs_back_action = async () => {
   }
 }
 
-App.move_tabs_to_top = async (item) => {
+App.move_tabs_vertically = async (direction, item) => {
   if (!item) {
     item = App.get_selected(`tabs`)
   }
@@ -760,49 +760,49 @@ App.move_tabs_to_top = async (item) => {
     return
   }
 
-  let first
+  let items = App.get_active_items(item.mode, item)
 
-  if (item.pinned) {
-    first = 0
+  if (items[0].pinned) {
+    for (let item of items) {
+      if (!item.pinned) {
+        return
+      }
+    }
   }
   else {
-    first = App.get_first_normal_index()
+    for (let item of items) {
+      if (item.pinned) {
+        return
+      }
+    }
   }
 
-  for (let it of App.get_active_items(item.mode, item)) {
-    await App.do_move_tab_index(it.id, first)
-    first += 1
+  let first, last
+  let els = items.map(x => x.element)
+
+  if (direction === `top`) {
+    if (item.pinned) {
+      first = 0
+    }
+    else {
+      first = App.get_first_normal_index()
+    }
+
+    App.get_items(`tabs`)[first].element.before(...els)
+  }
+  else if (direction === `bottom`) {
+    if (item.pinned) {
+      last = App.get_last_pin_index()
+    }
+    else {
+      last = App.get_items(`tabs`).length - 1
+    }
+
+    App.get_items(`tabs`)[last].element.after(...els)
   }
 
-  App.check_pinline()
-  App.select_item(App.get_selected(item.mode), `center`, false)
-}
-
-App.move_tabs_to_bottom = async (item) => {
-  if (!item) {
-    item = App.get_selected(`tabs`)
-  }
-
-  if (!item) {
-    return
-  }
-
-  let last
-
-  if (item.pinned) {
-    last = App.get_last_pin_index()
-  }
-  else {
-    last = App.get_items(`tabs`).length - 1
-  }
-
-  for (let it of App.get_active_items(item.mode, item).slice(0).reverse()) {
-    await App.do_move_tab_index(it.id, last)
-    last -= 1
-  }
-
-  App.check_pinline()
-  App.select_item(App.get_selected(item.mode), `center`, false)
+  App.update_tab_index()
+  App.select_item(App.get_selected(`tabs`), `center`, false)
 }
 
 App.get_first_normal_index = () => {

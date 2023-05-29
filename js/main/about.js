@@ -23,6 +23,7 @@ App.setup_about = () => {
       `Ctrl + Down moves tabs to the bottom`,
       `Ctrl + Backspace goes to previous tab`,
       `Ctrl + F shows the filter modes`,
+      `Ctrl + Dot goes to the playing tab`,
       `Double click on empty tabs space opens a new tab`,
       `Shift while on scrollwheel makes it scroll faster`,
       `Escape clears the filter and closes windows/popups`,

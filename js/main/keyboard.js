@@ -3,12 +3,12 @@ App.check_window_keyboard = (e) => {
 
   if (e.ctrlKey && !e.shiftKey) {
     if (e.key === `ArrowUp`) {
-      App.move_tabs_to_top()
+      App.move_tabs_vertically(`top`)
       e.preventDefault()
       return
     }
     else if (e.key === `ArrowDown`) {
-      App.move_tabs_to_bottom()
+      App.move_tabs_vertically(`bottom`)
       e.preventDefault()
       return
     }
@@ -24,6 +24,11 @@ App.check_window_keyboard = (e) => {
     }
     else if (e.key === `f`) {
       App.show_filter_modes(mode)
+      e.preventDefault()
+      return
+    }
+    else if (e.key === `.`) {
+      App.go_to_playing()
       e.preventDefault()
       return
     }
