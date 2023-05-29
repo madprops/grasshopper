@@ -25,7 +25,7 @@ App.get_history = async (text = ``) => {
   }
   catch (err) {
     App.log(err, `error`)
-    return
+    return []
   }
 
   return results

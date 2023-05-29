@@ -37,7 +37,7 @@ App.get_bookmarks = async () => {
   }
   catch (err) {
     App.log(err, `error`)
-    return
+    return []
   }
 
   bookmarks.sort((a, b) => {
