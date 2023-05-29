@@ -1084,12 +1084,7 @@ App.setup_item_window = (mode) => {
     let back_icon = App.create_icon(`back`)
 
     DOM.ev(back, `click`, () => {
-      if (App[`${mode}_back_action`]) {
-        App[`${mode}_back_action`]()
-      }
-      else {
-        App.show_all(mode)
-      }
+      App.back_action(mode)
     })
 
     back.append(back_icon)
@@ -1940,5 +1935,14 @@ App.pick_item = (item) => {
 App.refresh_filter = (mode, what) => {
   if (App.filter_mode(mode) === what) {
     App.call_filter(mode)
+  }
+}
+
+App.back_action = (mode) => {
+  if (App[`${mode}_back_action`]) {
+    App[`${mode}_back_action`]()
+  }
+  else {
+    App.show_all(mode)
   }
 }
