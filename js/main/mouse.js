@@ -19,24 +19,12 @@ App.setup_gestures = () => {
         if (App.on_item_window()) {
           App.cycle_item_windows(true)
         }
-        else if (App.on_media()) {
-          App.media_prev()
-        }
-        else if (App.on_settings()) {
-          App.show_prev_settings()
-        }
       }
     },
     right: (e) => {
       if (App.get_setting(`mouse_gestures`)) {
         if (App.on_item_window()) {
           App.cycle_item_windows()
-        }
-        else if (App.on_media()) {
-          App.media_next()
-        }
-        else if (App.on_settings()) {
-          App.show_next_settings()
         }
       }
     },
