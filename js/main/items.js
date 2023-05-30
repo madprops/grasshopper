@@ -180,6 +180,7 @@ App.do_update_footer_info = (item) => {
   }
 
   if (item) {
+    App.footer_item = item
     App.set_footer_info(item.mode, item.footer)
   }
   else {
@@ -188,6 +189,7 @@ App.do_update_footer_info = (item) => {
 }
 
 App.empty_footer_info = () => {
+  App.footer_item = undefined
   App.set_footer_info(App.window_mode, `No Results`)
 }
 
@@ -1003,7 +1005,7 @@ App.setup_item_window = (mode) => {
     let footer_info = DOM.create(`div`, `footer_info action`)
 
     DOM.ev(footer_info, `click`, () => {
-      App.copy_footer(mode)
+      App.copy_footer_info(mode)
     })
 
     footer.append(footer_info)
@@ -1875,21 +1877,23 @@ App.on_item_window = (mode = App.window_mode) => {
   return App.item_order.includes(mode)
 }
 
-App.copy_footer = (mode) => {
-  let what
+App.copy_footer_info = () => {
+  if (!App.footer_item) {
+    return
+  }
+
+  let value, what
 
   if (App.get_setting(`text_mode`) === `title`) {
     what = `URL`
+    value = App.footer_item.url
   }
   else if (App.get_setting(`text_mode`) === `url`) {
     what = `Title`
+    value = App.footer_item.title
   }
 
-  let footer = App.get_footer(mode)
-  let info = DOM.el(`.footer_info`, footer)
-  let text = info.textContent
-
-  App.copy_to_clipboard(text, what)
+  App.copy_to_clipboard(value, what)
 }
 
 App.get_footer = (mode) => {
