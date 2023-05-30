@@ -78,42 +78,52 @@ App.setup_window_mouse = (mode) => {
     }
   })
 
-  if (App.settings.mouse_gestures) {
-    NiceGesture.start(container, {
-      up: (e) => {
+  NiceGesture.start(container, {
+    up: (e) => {
+      if (App.settings.mouse_getures) {
         App.goto_top(App.window_mode)
-      },
-      down: (e) => {
-        App.goto_bottom(App.window_mode)
-      },
-      left: (e) => {
-        App.cycle_item_windows(true)
-      },
-      right: (e) => {
-        App.cycle_item_windows()
-      },
-      up_and_down_1: (e) => {
-        App.show_all(App.window_mode)
-      },
-      up_and_down_2: (e) => {
-        App.show_all(App.window_mode)
-      },
-      default: (e) => {
-        if (App.cursor_on_item(e, App.window_mode)) {
-          let item = App.get_cursor_item(App.window_mode, e)
-
-          if (!item.highlighted) {
-            if (App.get_highlights(App.window_mode).length > 0) {
-              App.pick_item(item)
-            }
-          }
-
-          App.show_item_menu(item, e.clientX, e.clientY)
-          e.preventDefault()
-        }
       }
-    })
-  }
+    },
+    down: (e) => {
+      if (App.settings.mouse_getures) {
+        App.goto_bottom(App.window_mode)
+      }
+    },
+    left: (e) => {
+      if (App.settings.mouse_getures) {
+        App.cycle_item_windows(true)
+      }
+    },
+    right: (e) => {
+      if (App.settings.mouse_getures) {
+        App.cycle_item_windows()
+      }
+    },
+    up_and_down_1: (e) => {
+      if (App.settings.mouse_getures) {
+        App.show_all(App.window_mode)
+      }
+    },
+    up_and_down_2: (e) => {
+      if (App.settings.mouse_getures) {
+        App.show_all(App.window_mode)
+      }
+    },
+    default: (e) => {
+      if (App.cursor_on_item(e, App.window_mode)) {
+        let item = App.get_cursor_item(App.window_mode, e)
+
+        if (!item.highlighted) {
+          if (App.get_highlights(App.window_mode).length > 0) {
+            App.pick_item(item)
+          }
+        }
+
+        App.show_item_menu(item, e.clientX, e.clientY)
+        e.preventDefault()
+      }
+    }
+  })
 }
 
 App.setup_drag = (mode) => {
