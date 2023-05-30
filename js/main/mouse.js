@@ -1,20 +1,7 @@
-App.setup_mouse = () => {
-  App.reset_gestures()
-}
-
 App.setup_window_mouse = (mode) => {
   let container = DOM.el(`#${mode}_container`)
 
   DOM.ev(container, `mousedown`, (e) => {
-    App.reset_gestures()
-
-    // Right click
-    if (e.button === 2) {
-      App.mouse_gestore_active = true
-      App.mouse_gesture_y = e.clientY
-      App.mouse_gesture_x = e.clientX
-    }
-
     if (!App.cursor_on_item(e, mode)) {
       return
     }
@@ -61,42 +48,6 @@ App.setup_window_mouse = (mode) => {
     }
   })
 
-  DOM.ev(container, `contextmenu`, (e) => {
-    if (App.get_setting(`mouse_gestures`) && App.mouse_gestore_active) {
-      let diff_y = Math.abs(e.clientY - App.mouse_gesture_y)
-      let diff_x = Math.abs(e.clientX - App.mouse_gesture_x)
-
-      if (diff_y > App.mouse_gesture_threshold || diff_x > App.mouse_gesture_threshold) {
-        App.mouse_gesture_last_y = e.clientY
-        App.mouse_gesture_last_x = e.clientX
-
-        if (diff_y >= diff_x) {
-          App.mouse_gesture_action(e, `vertical`)
-        }
-        else {
-          App.mouse_gesture_action(e, `horizontal`)
-        }
-
-        e.preventDefault()
-        return
-      }
-    }
-
-    if (App.cursor_on_item(e, mode)) {
-      let item = App.get_cursor_item(mode, e)
-
-      if (!item.highlighted) {
-        if (App.get_highlights(mode).length > 0) {
-          App.pick_item(item)
-        }
-      }
-
-      App.reset_gestures()
-      App.show_item_menu(item, e.clientX, e.clientY)
-      e.preventDefault()
-    }
-  })
-
   DOM.ev(container, `mouseover`, (e) => {
     if (App.cursor_on_item(e, mode)) {
       let item = App.get_cursor_item(mode, e)
@@ -110,15 +61,6 @@ App.setup_window_mouse = (mode) => {
     if (item) {
       App.update_footer_info(item)
     }
-  })
-
-  DOM.ev(container, `mousemove`, (e) => {
-    let coord = {
-      x: e.clientX,
-      y: e.clientY,
-    }
-
-    App.mouse_gesture_coords.push(coord)
   })
 
   DOM.ev(container, `wheel`, (e) => {
@@ -135,6 +77,43 @@ App.setup_window_mouse = (mode) => {
       e.preventDefault()
     }
   })
+
+  if (App.settings.mouse_gestures) {
+    NiceGesture.start(container, {
+      up: (e) => {
+        App.goto_top(App.window_mode)
+      },
+      down: (e) => {
+        App.goto_bottom(App.window_mode)
+      },
+      left: (e) => {
+        App.cycle_item_windows(true)
+      },
+      right: (e) => {
+        App.cycle_item_windows()
+      },
+      up_and_down_1: (e) => {
+        App.show_all(App.window_mode)
+      },
+      up_and_down_2: (e) => {
+        App.show_all(App.window_mode)
+      },
+      default: (e) => {
+        if (App.cursor_on_item(e, App.window_mode)) {
+          let item = App.get_cursor_item(App.window_mode, e)
+
+          if (!item.highlighted) {
+            if (App.get_highlights(App.window_mode).length > 0) {
+              App.pick_item(item)
+            }
+          }
+
+          App.show_item_menu(item, e.clientX, e.clientY)
+          e.preventDefault()
+        }
+      }
+    })
+  }
 }
 
 App.setup_drag = (mode) => {
@@ -254,101 +233,4 @@ App.get_cursor_item = (mode, e) => {
 
 App.cursor_on_item = (e, mode) => {
   return e.target.closest(`.${mode}_item`)
-}
-
-App.reset_gestures = () => {
-  App.mouse_gestore_active = false
-  App.mouse_gesture_y = 0
-  App.mouse_gesture_x = 0
-  App.mouse_gesture_coords = []
-  App.mouse_gesture_last_y = 0
-  App.mouse_gesture_last_x = 0
-}
-
-App.mouse_gesture_action = (e, direction) => {
-  let ys = App.mouse_gesture_coords.map(c => c.y)
-  let max_y = Math.max(...ys)
-  let min_y = Math.min(...ys)
-
-  let xs = App.mouse_gesture_coords.map(c => c.x)
-  let max_x = Math.max(...xs)
-  let min_x = Math.min(...xs)
-
-  let gt = App.mouse_gesture_threshold
-  let path_y, path_x
-
-  if (min_y < App.mouse_gesture_y - gt) {
-    path_y = `up`
-  }
-  else if (max_y > App.mouse_gesture_y + gt) {
-    path_y = `down`
-  }
-
-  if (path_y === `up`) {
-    if (App.mouse_gesture_last_y > min_y) {
-      if (Math.abs(App.mouse_gesture_last_y - min_y) > gt) {
-        path_y = `up_and_down_1`
-      }
-    }
-  }
-
-  if (path_y === `down`) {
-    if (App.mouse_gesture_last_y < max_y) {
-      if (Math.abs(App.mouse_gesture_last_y - max_y) > gt) {
-        path_y = `up_and_down_2`
-      }
-    }
-  }
-
-  if (max_x > App.mouse_gesture_x + gt) {
-    path_x = `right`
-  }
-  else if (min_x < App.mouse_gesture_x - gt) {
-    path_x = `left`
-  }
-
-  if (path_x === `left`) {
-    if (App.mouse_gesture_last_x > min_x) {
-      if (Math.abs(App.mouse_gesture_last_x - min_x) > gt) {
-        path_x = `left_and_right_1`
-      }
-    }
-  }
-
-  if (path_x === `right`) {
-    if (App.mouse_gesture_last_x < max_x) {
-      if (Math.abs(App.mouse_gesture_last_x - max_x) > gt) {
-        path_x = `left_and_right_2`
-      }
-    }
-  }
-
-  let path
-
-  if (max_y - min_y > max_x - min_x) {
-    path = path_y
-  }
-  else {
-    path = path_x
-  }
-
-  let mode = App.window_mode
-
-  if (path === `up`) {
-    App.goto_top(mode)
-  }
-  else if (path === `down`) {
-    App.goto_bottom(mode)
-  }
-  else if (path === `up_and_down_1` || path === `up_and_down_2`) {
-    App.show_all(mode)
-  }
-  else if (path === `left`) {
-    App.cycle_item_windows(true)
-  }
-  else if (path === `right`) {
-    App.cycle_item_windows()
-  }
-
-  App.reset_gestures()
 }

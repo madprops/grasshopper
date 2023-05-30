@@ -18,7 +18,6 @@ App.init = async () => {
   App.setup_media()
   App.setup_window()
   App.setup_items()
-  App.setup_mouse()
   App.show_first_window()
   App.make_window_visible()
 }
