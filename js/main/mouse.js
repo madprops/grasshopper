@@ -10,9 +10,9 @@ App.setup_window_mouse = (mode) => {
 
     // Right click
     if (e.button === 2) {
-      App.right_click_down = true
-      App.right_click_y = e.clientY
-      App.right_click_x = e.clientX
+      App.mouse_gestore_active = true
+      App.mouse_gesture_y = e.clientY
+      App.mouse_gesture_x = e.clientX
     }
 
     if (!App.cursor_on_item(e, mode)) {
@@ -62,16 +62,19 @@ App.setup_window_mouse = (mode) => {
   })
 
   DOM.ev(container, `contextmenu`, (e) => {
-    if (App.get_setting(`mouse_gestures`) && App.right_click_down) {
-      let diff_y = Math.abs(e.clientY - App.right_click_y)
-      let diff_x = Math.abs(e.clientX - App.right_click_x)
+    if (App.get_setting(`mouse_gestures`) && App.mouse_gestore_active) {
+      let diff_y = Math.abs(e.clientY - App.mouse_gesture_y)
+      let diff_x = Math.abs(e.clientX - App.mouse_gesture_x)
 
-      if (diff_y > App.gesture_threshold || diff_x > App.gesture_threshold) {
+      if (diff_y > App.mouse_gesture_threshold || diff_x > App.mouse_gesture_threshold) {
+        App.mouse_gesture_last_y = e.clientY
+        App.mouse_gesture_last_x = e.clientX
+
         if (diff_y >= diff_x) {
-          App.gesture_action(e, `vertical`)
+          App.mouse_gesture_action(e, `vertical`)
         }
         else {
-          App.gesture_action(e, `horizontal`)
+          App.mouse_gesture_action(e, `horizontal`)
         }
 
         e.preventDefault()
@@ -107,6 +110,15 @@ App.setup_window_mouse = (mode) => {
     if (item) {
       App.update_footer_info(item)
     }
+  })
+
+  DOM.ev(container, `mousemove`, (e) => {
+    let coord = {
+      x: e.clientX,
+      y: e.clientY,
+    }
+
+    App.mouse_gesture_coords.push(coord)
   })
 
   DOM.ev(container, `wheel`, (e) => {
@@ -245,27 +257,97 @@ App.cursor_on_item = (e, mode) => {
 }
 
 App.reset_gestures = () => {
-  App.right_click_down = false
-  App.right_click_y = 0
-  App.right_click_x = 0
+  App.mouse_gestore_active = false
+  App.mouse_gesture_y = 0
+  App.mouse_gesture_x = 0
+  App.mouse_gesture_coords = []
+  App.mouse_gesture_last_y = 0
+  App.mouse_gesture_last_x = 0
 }
 
-App.gesture_action = (e, direction) => {
-  if (direction === `vertical`) {
-    if (e.clientY < App.right_click_y) {
-      App.goto_top(App.window_mode)
-    }
-    else {
-      App.goto_bottom(App.window_mode)
+App.mouse_gesture_action = (e, direction) => {
+  let ys = App.mouse_gesture_coords.map(c => c.y)
+  let max_y = Math.max(...ys)
+  let min_y = Math.min(...ys)
+
+  let xs = App.mouse_gesture_coords.map(c => c.x)
+  let max_x = Math.max(...xs)
+  let min_x = Math.min(...xs)
+
+  let gt = App.mouse_gesture_threshold
+  let path_y, path_x
+
+  if (min_y < App.mouse_gesture_y - gt) {
+    path_y = `up`
+  }
+  else if (max_y > App.mouse_gesture_y + gt) {
+    path_y = `down`
+  }
+
+  if (path_y === `up`) {
+    if (App.mouse_gesture_last_y > min_y) {
+      if (Math.abs(App.mouse_gesture_last_y - min_y) > gt) {
+        path_y = `up_and_down_1`
+      }
     }
   }
-  else if (direction === `horizontal`) {
-    if (e.clientX < App.right_click_x) {
-      App.cycle_item_windows(true)
+
+  if (path_y === `down`) {
+    if (App.mouse_gesture_last_y < max_y) {
+      if (Math.abs(App.mouse_gesture_last_y - max_y) > gt) {
+        path_y = `up_and_down_2`
+      }
     }
-    else {
-      App.cycle_item_windows()
+  }
+
+  if (max_x > App.mouse_gesture_x + gt) {
+    path_x = `right`
+  }
+  else if (min_x < App.mouse_gesture_x - gt) {
+    path_x = `left`
+  }
+
+  if (path_x === `left`) {
+    if (App.mouse_gesture_last_x > min_x) {
+      if (Math.abs(App.mouse_gesture_last_x - min_x) > gt) {
+        path_x = `left_and_right_1`
+      }
     }
+  }
+
+  if (path_x === `right`) {
+    if (App.mouse_gesture_last_x < max_x) {
+      if (Math.abs(App.mouse_gesture_last_x - max_x) > gt) {
+        path_x = `left_and_right_2`
+      }
+    }
+  }
+
+  let path
+
+  if (max_y - min_y > max_x - min_x) {
+    path = path_y
+  }
+  else {
+    path = path_x
+  }
+
+  let mode = App.window_mode
+
+  if (path === `up`) {
+    App.goto_top(mode)
+  }
+  else if (path === `down`) {
+    App.goto_bottom(mode)
+  }
+  else if (path === `up_and_down_1` || path === `up_and_down_2`) {
+    App.show_all(mode)
+  }
+  else if (path === `left`) {
+    App.cycle_item_windows(true)
+  }
+  else if (path === `right`) {
+    App.cycle_item_windows()
   }
 
   App.reset_gestures()
