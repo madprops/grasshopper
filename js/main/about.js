@@ -27,8 +27,9 @@ App.setup_about = () => {
       `Double click on empty tabs space opens a new tab`,
       `Shift while on scrollwheel makes it scroll faster`,
       `Escape clears the filter and closes windows/popups`,
-      `Hold right click and move up or down to go to top or bottom`,
-      `Hold right click and move left or right to cycle windows`,
+      `Hold right click and move up OR down to go to top or bottom`,
+      `Hold right click and move up AND down to reset filters`,
+      `Hold right click and move left OR right to cycle windows`,
     ]
 
     App.about_info_index = 0
