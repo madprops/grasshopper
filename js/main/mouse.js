@@ -1,3 +1,66 @@
+App.setup_gestures = () => {
+  NiceGesture.start(DOM.el(`#main`), {
+    up: (e) => {
+      if (App.get_setting(`mouse_gestures`)) {
+        if (App.on_item_window()) {
+          App.goto_top(App.window_mode)
+        }
+      }
+    },
+    down: (e) => {
+      if (App.get_setting(`mouse_gestures`)) {
+        if (App.on_item_window()) {
+          App.goto_bottom(App.window_mode)
+        }
+      }
+    },
+    left: (e) => {
+      if (App.get_setting(`mouse_gestures`)) {
+        if (App.on_item_window()) {
+          App.cycle_item_windows(true)
+        }
+      }
+    },
+    right: (e) => {
+      if (App.get_setting(`mouse_gestures`)) {
+        if (App.on_item_window()) {
+          App.cycle_item_windows()
+        }
+      }
+    },
+    up_and_down_1: (e) => {
+      if (App.get_setting(`mouse_gestures`)) {
+        if (App.on_item_window()) {
+          App.show_all(App.window_mode)
+        }
+      }
+    },
+    up_and_down_2: (e) => {
+      if (App.get_setting(`mouse_gestures`)) {
+        if (App.on_item_window()) {
+          App.show_all(App.window_mode)
+        }
+      }
+    },
+    default: (e) => {
+      if (App.on_item_window()) {
+        if (App.cursor_on_item(e, App.window_mode)) {
+          let item = App.get_cursor_item(App.window_mode, e)
+
+          if (!item.highlighted) {
+            if (App.get_highlights(App.window_mode).length > 0) {
+              App.pick_item(item)
+            }
+          }
+
+          App.show_item_menu(item, e.clientX, e.clientY)
+          e.preventDefault()
+        }
+      }
+    }
+  })
+}
+
 App.setup_window_mouse = (mode) => {
   let container = DOM.el(`#${mode}_container`)
 
@@ -75,53 +138,6 @@ App.setup_window_mouse = (mode) => {
       }
 
       e.preventDefault()
-    }
-  })
-
-  NiceGesture.start(container, {
-    up: (e) => {
-      if (App.get_setting(`mouse_gestures`)) {
-        App.goto_top(App.window_mode)
-      }
-    },
-    down: (e) => {
-      if (App.get_setting(`mouse_gestures`)) {
-        App.goto_bottom(App.window_mode)
-      }
-    },
-    left: (e) => {
-      if (App.get_setting(`mouse_gestures`)) {
-        App.cycle_item_windows(true)
-      }
-    },
-    right: (e) => {
-      if (App.get_setting(`mouse_gestures`)) {
-        App.cycle_item_windows()
-      }
-    },
-    up_and_down_1: (e) => {
-      if (App.get_setting(`mouse_gestures`)) {
-        App.show_all(App.window_mode)
-      }
-    },
-    up_and_down_2: (e) => {
-      if (App.get_setting(`mouse_gestures`)) {
-        App.show_all(App.window_mode)
-      }
-    },
-    default: (e) => {
-      if (App.cursor_on_item(e, App.window_mode)) {
-        let item = App.get_cursor_item(App.window_mode, e)
-
-        if (!item.highlighted) {
-          if (App.get_highlights(App.window_mode).length > 0) {
-            App.pick_item(item)
-          }
-        }
-
-        App.show_item_menu(item, e.clientX, e.clientY)
-        e.preventDefault()
-      }
     }
   })
 }

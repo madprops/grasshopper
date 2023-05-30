@@ -51,7 +51,6 @@ NiceGesture.reset = () => {
 }
 
 NiceGesture.check = (e, actions) => {
-  e.preventDefault()
 
   let diff_y = Math.abs(e.clientY - NiceGesture.first_y)
   let diff_x = Math.abs(e.clientX - NiceGesture.first_x)
@@ -60,6 +59,7 @@ NiceGesture.check = (e, actions) => {
     NiceGesture.last_x = e.clientX
     NiceGesture.last_y = e.clientY
     NiceGesture.action(e, actions)
+    e.preventDefault()
   }
   else if (actions.default) {
     actions.default(e)
