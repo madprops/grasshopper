@@ -1907,8 +1907,10 @@ App.clear_filter = (mode) => {
 }
 
 App.show_all = (mode) => {
-  App.clear_filter(mode)
-  App.set_filter_mode(mode, App.filter_modes(mode)[0])
+  if (App.is_filtered(mode)) {
+    App.clear_filter(mode)
+    App.set_filter_mode(mode, App.filter_modes(mode)[0])
+  }
 }
 
 App.is_filtered = (mode) => {
