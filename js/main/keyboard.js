@@ -267,14 +267,14 @@ App.setup_keyboard = () => {
         e.preventDefault()
       }
     }
-    else if (mode === `image` || mode === `video`) {
+    else if (App.on_media()) {
       if (e.key === `ArrowLeft`) {
-        App.media_prev(mode)
+        App.media_prev()
         e.preventDefault()
         return
       }
       else if (e.key === `ArrowRight`) {
-        App.media_next(mode)
+        App.media_next()
         e.preventDefault()
         return
       }
@@ -284,7 +284,7 @@ App.setup_keyboard = () => {
         return
       }
       else if (e.key === `Enter`) {
-        App.open_media(mode)
+        App.open_media()
         e.preventDefault()
         return
       }

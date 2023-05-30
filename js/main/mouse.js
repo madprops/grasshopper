@@ -5,12 +5,18 @@ App.setup_gestures = () => {
         if (App.on_item_window()) {
           App.goto_top(App.window_mode)
         }
+        else if (App.on_media()) {
+          App.open_media()
+        }
       }
     },
     down: (e) => {
       if (App.get_setting(`mouse_gestures`)) {
         if (App.on_item_window()) {
           App.goto_bottom(App.window_mode)
+        }
+        else {
+          App.show_last_window()
         }
       }
     },
@@ -19,12 +25,18 @@ App.setup_gestures = () => {
         if (App.on_item_window()) {
           App.cycle_item_windows(true)
         }
+        else if (App.on_media()) {
+          App.media_prev()
+        }
       }
     },
     right: (e) => {
       if (App.get_setting(`mouse_gestures`)) {
         if (App.on_item_window()) {
           App.cycle_item_windows()
+        }
+        else if (App.on_media()) {
+          App.media_next()
         }
       }
     },

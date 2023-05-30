@@ -124,11 +124,11 @@ App.stop_media_timeout = (what) => {
   clearTimeout(App[`${what}_loading_timeout`])
 }
 
-App.media_prev = (what) => {
+App.media_prev = (what = App.window_mode) => {
   App.cycle_media(App[`current_${what}_item`], what, `prev`)
 }
 
-App.media_next = (what) => {
+App.media_next = (what = App.window_mode) => {
   App.cycle_media(App[`current_${what}_item`], what, `next`)
 }
 
@@ -212,7 +212,7 @@ App.star_media = (what) => {
   App.check_media_star(what, starred)
 }
 
-App.open_media = (what) => {
+App.open_media = (what = App.window_mode) => {
   let item = App[`current_${what}_item`]
 
   if (item.mode === `tabs`) {
@@ -252,3 +252,7 @@ App.media_wheel = App.create_debouncer((e, what) => {
     App.media_prev(what)
   }
 }, App.wheel_delay)
+
+App.on_media = () => {
+  return App.window_mode === `image` || App.window_mode === `video`
+}
