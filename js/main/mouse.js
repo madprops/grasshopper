@@ -80,32 +80,32 @@ App.setup_window_mouse = (mode) => {
 
   NiceGesture.start(container, {
     up: (e) => {
-      if (App.settings.mouse_getures) {
+      if (App.get_setting(`mouse_gestures`)) {
         App.goto_top(App.window_mode)
       }
     },
     down: (e) => {
-      if (App.settings.mouse_getures) {
+      if (App.get_setting(`mouse_gestures`)) {
         App.goto_bottom(App.window_mode)
       }
     },
     left: (e) => {
-      if (App.settings.mouse_getures) {
+      if (App.get_setting(`mouse_gestures`)) {
         App.cycle_item_windows(true)
       }
     },
     right: (e) => {
-      if (App.settings.mouse_getures) {
+      if (App.get_setting(`mouse_gestures`)) {
         App.cycle_item_windows()
       }
     },
     up_and_down_1: (e) => {
-      if (App.settings.mouse_getures) {
+      if (App.get_setting(`mouse_gestures`)) {
         App.show_all(App.window_mode)
       }
     },
     up_and_down_2: (e) => {
-      if (App.settings.mouse_getures) {
+      if (App.get_setting(`mouse_gestures`)) {
         App.show_all(App.window_mode)
       }
     },
