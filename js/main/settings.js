@@ -712,3 +712,7 @@ App.check_settings = () => {
     App.stor_save_settings()
   }
 }
+
+App.on_settings = () => {
+  return App.window_mode.startsWith(`settings_`)
+}

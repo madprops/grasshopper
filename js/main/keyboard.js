@@ -234,17 +234,17 @@ App.setup_keyboard = () => {
       return
     }
 
-    if (mode.startsWith(`settings`)) {
+    if (App.on_settings()) {
       if (e.key === `ArrowLeft`) {
         if (!App.focused_with_class(`text`)) {
-          App.show_prev_settings(true)
+          App.show_prev_settings()
           e.preventDefault()
           return
         }
       }
       else if (e.key === `ArrowRight`) {
         if (!App.focused_with_class(`text`)) {
-          App.show_next_settings(true)
+          App.show_next_settings()
           e.preventDefault()
           return
         }
