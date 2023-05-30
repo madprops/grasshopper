@@ -126,7 +126,9 @@ App.get_tabs = async () => {
 }
 
 App.focus_tab = async (item, close = true) => {
-  App.select_item(item)
+  if (item.created) {
+    App.select_item(item)
+  }
 
   if (item.window_id) {
     await browser.windows.update(item.window_id, {focused: true})
