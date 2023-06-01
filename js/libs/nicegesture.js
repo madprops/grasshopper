@@ -1,9 +1,14 @@
 const NiceGesture = {}
+NiceGesture.enabled = true
 NiceGesture.button = `right`
 NiceGesture.threshold = 10
 
 NiceGesture.start = (container, actions) => {
   container.addEventListener(`mousedown`, (e) => {
+    if (!NiceGesture.enabled) {
+      return
+    }
+
     NiceGesture.reset()
     let btn
 
@@ -23,6 +28,10 @@ NiceGesture.start = (container, actions) => {
   })
 
   container.addEventListener(`mousemove`, (e) => {
+    if (!NiceGesture.enabled) {
+      return
+    }
+
     if (!NiceGesture.active) {
       return
     }
@@ -40,6 +49,10 @@ NiceGesture.start = (container, actions) => {
   })
 
   function release (e) {
+    if (!NiceGesture.enabled) {
+      return
+    }
+
     if (!NiceGesture.active) {
       return
     }

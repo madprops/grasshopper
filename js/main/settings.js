@@ -48,7 +48,7 @@ App.default_settings = {
   show_pinline: {value: true, category: `more`, version: 1},
   highlight_effect: {value: `rotate`, category: `more`, version: 1},
 
-  gestures: {value: true, category: `gestures`, version: 1},
+  gestures_enabled: {value: true, category: `gestures`, version: 1},
   gestures_button: {value: `right`, category: `gestures`, version: 1},
   gestures_threshold: {value: 10, category: `gestures`, version: 1},
   gesture_up: {value: `go_to_top`, category: `gestures`, version: 1},
@@ -311,6 +311,10 @@ App.setup_settings = () => {
 
   App.create_window(Object.assign({}, common, {id: `settings_gestures`, setup: () => {
     prepare(`gestures`)
+
+    DOM.ev(DOM.el(`#settings_gestures_enabled`), `change`, () => {
+      App.refresh_gestures()
+    })
 
     App.settings_make_menu(`gestures_button`, [
       [`Right`, `right`],

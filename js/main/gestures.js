@@ -45,10 +45,6 @@ App.setup_gestures = () => {
 }
 
 App.gesture_action = (gesture) => {
-  if (!App.get_setting(`gestures`)) {
-    return
-  }
-
   let action = App.get_setting(`gesture_${gesture}`)
 
   if (!action) {
@@ -114,6 +110,7 @@ App.gesture_action = (gesture) => {
 }
 
 App.refresh_gestures = () => {
+  NiceGesture.enabled = App.get_setting(`gestures_enabled`)
   NiceGesture.button = App.get_setting(`gestures_button`)
   NiceGesture.threshold = App.get_setting(`gestures_threshold`)
 }
