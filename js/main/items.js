@@ -16,13 +16,22 @@ App.select_item = async (item, scroll = `nearest`, dehighlight = true) => {
 
   App.set_selected(item.mode, item)
   App.remove_selected_class(item.mode)
-
   App.get_selected(item.mode).element.classList.add(`selected`)
 
   if (scroll !== `none`) {
+    let behavior
+
+    if (scroll === `center_instant`) {
+      scroll = `center`
+      behavior = `instant`
+    }
+    else {
+      behavior = App.get_scroll_behavior()
+    }
+
     App.get_selected(item.mode).element.scrollIntoView({
       block: scroll,
-      behavior: App.get_scroll_behavior(),
+      behavior: behavior,
     })
   }
 
@@ -232,7 +241,7 @@ App.select_first_item = (mode, by_active = false) => {
   if (mode === `tabs` && by_active) {
     for (let item of App.get_items(mode)) {
       if (item.visible && item.active) {
-        App.select_item(item, `center`)
+        App.select_item(item, `center_instant`)
         return
       }
     }
