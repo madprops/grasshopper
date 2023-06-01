@@ -373,12 +373,12 @@ App.do_item_filter = async (mode) => {
 }
 
 App.show_item = (it) => {
-  it.element.classList.remove(`item_hidden`)
+  it.element.classList.remove(`hidden`)
   it.visible = true
 }
 
 App.hide_item = (it) => {
-  it.element.classList.add(`item_hidden`)
+  it.element.classList.add(`hidden`)
   it.visible = false
 }
 
