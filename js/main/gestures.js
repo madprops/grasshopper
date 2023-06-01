@@ -70,6 +70,26 @@ App.gesture_action = (gesture) => {
       App.highlight_items(App.window_mode)
     }
   }
+  else if (action === `clear_filter`) {
+    if (App.on_item_window()) {
+      App.clear_filter(App.window_mode)
+    }
+  }
+  else if (action === `show_all`) {
+    if (App.on_item_window()) {
+      App.show_all(App.window_mode)
+    }
+  }
+  else if (action === `show_images`) {
+    if (App.on_item_window()) {
+      App.show_images(App.window_mode)
+    }
+  }
+  else if (action === `show_videos`) {
+    if (App.on_item_window()) {
+      App.show_videos(App.window_mode)
+    }
+  }
   else if (action === `show_tabs`) {
     App.show_item_window(`tabs`)
   }
@@ -90,11 +110,6 @@ App.gesture_action = (gesture) => {
   }
   else if (action === `close_window`) {
     App.hide_current_window()
-  }
-  else if (action === `clear_filter`) {
-    if (App.on_item_window()) {
-      App.clear_filter(App.window_mode)
-    }
   }
   else if (action === `go_to_playing`) {
     if (App.window_mode !== `tabs`) {
@@ -150,12 +165,6 @@ App.gesture_action = (gesture) => {
   }
   else if (action === `random_theme`) {
     App.random_theme()
-  }
-  else if (action === `show_images`) {
-    App.show_images()
-  }
-  else if (action === `show_videos`) {
-    App.show_videos()
   }
   else if (action === `reload_tab`) {
     App.reload_current_tab()

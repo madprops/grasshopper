@@ -783,6 +783,7 @@ App.get_gesture_options = () => {
     [`Duplicate`, `duplicate_tab`],
     [`Close`, `close_tab`],
     [`--separator--`],
+    [`Show All`, `show_all`],
     [`Show Images`, `show_images`],
     [`Show Videos`, `show_videos`],
     [`--separator--`],

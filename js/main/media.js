@@ -257,12 +257,10 @@ App.on_media = () => {
   return App.window_mode === `image` || App.window_mode === `video`
 }
 
-App.show_images = () => {
-  if (App.on_item_window()) {
-    App.set_filter_mode(App.window_mode, [`images`, `Images`])
-  }
+App.show_images = (mode) => {
+  App.set_filter_mode(mode, [`images`, `Images`])
 }
 
-App.show_videos = () => {
-  App.set_filter_mode(App.window_mode, [`videos`, `Videos`])
+App.show_videos = (mode) => {
+  App.set_filter_mode(mode, [`videos`, `Videos`])
 }
