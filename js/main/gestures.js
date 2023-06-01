@@ -14,16 +14,10 @@ App.setup_gestures = () => {
     right: (e) => {
       App.gesture_action(`right`)
     },
-    up_and_down_1: (e) => {
+    up_and_down: (e) => {
       App.gesture_action(`up_and_down`)
     },
-    up_and_down_2: (e) => {
-      App.gesture_action(`up_and_down`)
-    },
-    left_and_right_1: (e) => {
-      App.gesture_action(`left_and_right`)
-    },
-    left_and_right_2: (e) => {
+    left_and_right: (e) => {
       App.gesture_action(`left_and_right`)
     },
     default: (e) => {
