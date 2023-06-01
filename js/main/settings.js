@@ -1,11 +1,11 @@
 App.default_settings = {
+  smooth_scrolling: {value: true, category: `basic`, version: 1},
   text_mode: {value: `title`, category: `basic`, version: 1},
   item_height: {value: `normal`, category: `basic`, version: 1},
   width: {value: 70, category: `basic`, version: 1},
   height: {value: 80, category: `basic`, version: 1},
   font: {value: `sans-serif`, category: `basic`, version: 1},
   font_size: {value: 16, category: `basic`, version: 1},
-  smooth_scrolling: {value: true, category: `basic`, version: 1},
 
   background_color: {value: `rgb(70, 76, 94)`, category: `theme`, version: 1},
   text_color: {value: `rgb(218, 219, 223)`, category: `theme`, version: 1},
@@ -38,6 +38,15 @@ App.default_settings = {
   warn_on_launch: {value: true, category: `warns`, version: 1},
   warn_on_untitle: {value: true, category: `warns`, version: 1},
 
+  gestures_enabled: {value: true, category: `gestures`, version: 1},
+  gestures_threshold: {value: 10, category: `gestures`, version: 1},
+  gesture_up: {value: `go_to_top`, category: `gestures`, version: 1},
+  gesture_down: {value: `go_to_bottom`, category: `gestures`, version: 1},
+  gesture_left: {value: `prev_window`, category: `gestures`, version: 1},
+  gesture_right: {value: `next_window`, category: `gestures`, version: 1},
+  gesture_up_and_down: {value: `none`, category: `gestures`, version: 1},
+  gesture_left_and_right: {value: `none`, category: `gestures`, version: 1},
+
   lock_drag: {value: false, category: `more`, version: 1},
   quick_star: {value: false, category: `more`, version: 1},
   switch_to_tabs: {value: true, category: `more`, version: 1},
@@ -47,15 +56,6 @@ App.default_settings = {
   show_footer: {value: true, category: `more`, version: 1},
   show_pinline: {value: true, category: `more`, version: 1},
   highlight_effect: {value: `rotate`, category: `more`, version: 1},
-
-  gestures_enabled: {value: true, category: `gestures`, version: 1},
-  gestures_threshold: {value: 10, category: `gestures`, version: 1},
-  gesture_up: {value: `go_to_top`, category: `gestures`, version: 1},
-  gesture_down: {value: `go_to_bottom`, category: `gestures`, version: 1},
-  gesture_left: {value: `prev_window`, category: `gestures`, version: 1},
-  gesture_right: {value: `next_window`, category: `gestures`, version: 1},
-  gesture_up_and_down: {value: `none`, category: `gestures`, version: 1},
-  gesture_left_and_right: {value: `none`, category: `gestures`, version: 1},
 }
 
 App.make_item_order = () => {
