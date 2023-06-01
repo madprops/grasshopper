@@ -1872,7 +1872,7 @@ App.get_mode_name = (mode) => {
   return name
 }
 
-App.item_action = (item) => {
+App.item_action = async (item) => {
   let highlighted = App.get_highlights(item.mode)
 
   if (highlighted.length > 0) {
@@ -1887,7 +1887,7 @@ App.item_action = (item) => {
       App.open_star(item)
     }
     else {
-      App.focus_or_open_item(item)
+      await App.focus_or_open_item(item)
     }
   }
 
