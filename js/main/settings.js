@@ -751,9 +751,9 @@ App.get_gesture_options = () => {
   return [
     [`Do Nothing`, `none`],
     [`--separator--`],
-    [`Go Back`, `go_back`],
     [`Go To Top`, `go_to_top`],
     [`Go To Bottom`, `go_to_bottom`],
+    [`Go Back`, `go_back`],
     [`--separator--`],
     [`Next Window`, `next_window`],
     [`Prev Window`, `prev_window`],
