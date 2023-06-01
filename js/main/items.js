@@ -1735,12 +1735,19 @@ App.scroll = (mode, direction, fast = false) => {
     amount = App.normal_scroll_pixels
   }
 
+  let top
+
   if (direction === `up`) {
-    el.scrollTop -= amount
+    top = el.scrollTop - amount
   }
   else if (direction === `down`) {
-    el.scrollTop += amount
+    top = el.scrollTop + amount
   }
+
+  el.scrollTo({
+    top: top,
+    behavior: App.get_scroll_behavior(),
+  })
 }
 
 App.highlight_items = (mode) => {

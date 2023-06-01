@@ -5,7 +5,7 @@ App.default_settings = {
   height: {value: 80, category: `basic`, version: 1},
   font: {value: `sans-serif`, category: `basic`, version: 1},
   font_size: {value: 16, category: `basic`, version: 1},
-  smooth_scrolling: {value: false, category: `basic`, version: 1},
+  smooth_scrolling: {value: true, category: `basic`, version: 1},
 
   background_color: {value: `rgb(70, 76, 94)`, category: `theme`, version: 1},
   text_color: {value: `rgb(218, 219, 223)`, category: `theme`, version: 1},
