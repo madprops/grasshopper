@@ -88,14 +88,10 @@ NiceGesture.reset = () => {
 }
 
 NiceGesture.check = (e, actions) => {
+  NiceGesture.last_x = e.clientX
+  NiceGesture.last_y = e.clientY
 
-  let diff_y = Math.abs(e.clientY - NiceGesture.first_y)
-  let diff_x = Math.abs(e.clientX - NiceGesture.first_x)
-
-  if (diff_y > NiceGesture.threshold || diff_x > NiceGesture.threshold) {
-    NiceGesture.last_x = e.clientX
-    NiceGesture.last_y = e.clientY
-    NiceGesture.action(e, actions)
+  if (NiceGesture.action(e, actions)) {
     e.preventDefault()
   }
   else if (actions.default) {
@@ -106,6 +102,10 @@ NiceGesture.check = (e, actions) => {
 }
 
 NiceGesture.action = (e, actions) => {
+  if (NiceGesture.coords.length === 0) {
+    return false
+  }
+
   let ys = NiceGesture.coords.map(c => c.y)
   let max_y = Math.max(...ys)
   let min_y = Math.min(...ys)
@@ -113,6 +113,14 @@ NiceGesture.action = (e, actions) => {
   let xs = NiceGesture.coords.map(c => c.x)
   let max_x = Math.max(...xs)
   let min_x = Math.min(...xs)
+
+  if (Math.abs(max_y - min_y) < NiceGesture.threshold) {
+    return false
+  }
+
+  if (Math.abs(max_x - min_x) < NiceGesture.threshold) {
+    return false
+  }
 
   let gt = NiceGesture.threshold
   let path_y, path_x
@@ -167,4 +175,6 @@ NiceGesture.action = (e, actions) => {
   if (actions[path]) {
     actions[path](e)
   }
+
+  return true
 }
