@@ -777,6 +777,7 @@ App.get_gesture_options = () => {
     [`Go Back`, `go_back`],
     [`Clear Filter`, `clear_filter`],
     [`Select All`, `select_all`],
+    [`New Star`, `new_star`],
     [`--separator--`],
     [`Next Window`, `next_window`],
     [`Prev Window`, `prev_window`],
@@ -794,6 +795,5 @@ App.get_gesture_options = () => {
     [`Go To Playing`, `go_to_playing`],
     [`--separator--`],
     [`Random Theme`, `random_theme`],
-    [`New Star`, `new_star`],
   ]
 }
