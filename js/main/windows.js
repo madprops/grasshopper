@@ -149,6 +149,10 @@ App.window_goto_bottom = (mode) => {
 }
 
 App.hide_current_window = () => {
+  if (App.on_item_window()) {
+    return
+  }
+
   App.windows[App.window_mode].hide()
 }
 
