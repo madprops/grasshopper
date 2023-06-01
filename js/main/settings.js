@@ -800,6 +800,9 @@ App.get_gesture_options = () => {
     [`Duplicates`, `duplicates`],
     [`Go To Playing`, `go_to_playing`],
     [`--separator--`],
+    [`Show Images`, `show_images`],
+    [`Show Videos`, `show_videos`],
+    [`--separator--`],
     [`Random Theme`, `random_theme`],
   ]
 }

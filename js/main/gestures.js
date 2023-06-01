@@ -97,9 +97,6 @@ App.gesture_action = (gesture) => {
   else if (action === `close_window`) {
     App.hide_current_window()
   }
-  else if (action === `random_theme`) {
-    App.random_theme()
-  }
   else if (action === `clear_filter`) {
     if (App.on_item_window()) {
       App.clear_filter(App.window_mode)
@@ -156,6 +153,15 @@ App.gesture_action = (gesture) => {
   }
   else if (action === `star_tab`) {
     App.star_from_active()
+  }
+  else if (action === `random_theme`) {
+    App.random_theme()
+  }
+  else if (action === `show_images`) {
+    App.show_images()
+  }
+  else if (action === `show_videos`) {
+    App.show_videos()
   }
 }
 
