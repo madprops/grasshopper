@@ -3,7 +3,7 @@
   --widget_padding_hor: 0.3rem;
   --item_margin_1: 0.45rem;
   --item_margin_2: 0.65rem;
-  --border_radius: 5px;
+  --border_radius: 3px;
 }
 
 @keyframes rotate {
