@@ -111,7 +111,7 @@ App.gesture_action = (gesture) => {
   else if (action === `close_window`) {
     App.hide_current_window()
   }
-  else if (action === `go_to_playing`) {
+  else if (action === `playing`) {
     if (App.window_mode !== `tabs`) {
       App.show_item_window(`tabs`)
     }
