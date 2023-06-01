@@ -319,7 +319,7 @@ App.setup_settings = () => {
     DOM.ev(DOM.el(`#settings_gestures_info`), `click`, () => {
       let s = ``
       s += `Hold the 'right' mouse button and move in a direction, then release the button to perform an action.`
-      s += ` The 'right' mouse button is the opposite of the main button.`
+      s += ` The 'right' mouse button is the opposite of the primary button.`
       App.show_alert(s)
     })
 
