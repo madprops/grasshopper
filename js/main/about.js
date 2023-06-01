@@ -27,7 +27,7 @@ App.setup_about = () => {
       `Double click on empty tabs space opens a new tab`,
       `Shift while on scrollwheel makes it scroll faster`,
       `Escape clears the filter and closes windows/popups`,
-      `Check the Gestures settings for gestures information`,
+      `Check the Gestures settings for more information`,
     ]
 
     App.about_info_index = 0
