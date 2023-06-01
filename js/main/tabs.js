@@ -264,7 +264,7 @@ App.remove_closed_tab = (id) => {
   }
 }
 
-App.tabs_action = (item) => {
+App.tabs_action = async (item) => {
   if (App.check_media(item)) {
     return
   }
@@ -277,7 +277,7 @@ App.tabs_action = (item) => {
     }
   }
 
-  App.focus_tab(item)
+  await App.focus_tab(item)
   App.check_clear_filter()
   App.close_window()
 }
