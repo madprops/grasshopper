@@ -53,7 +53,7 @@ App.default_settings = {
   gesture_down: {value: `go_to_bottom`, category: `gestures`, version: 1},
   gesture_left: {value: `prev_window`, category: `gestures`, version: 1},
   gesture_right: {value: `next_window`, category: `gestures`, version: 1},
-  gesture_up_and_down: {value: `clear_filter`, category: `gestures`, version: 1},
+  gesture_up_and_down: {value: `none`, category: `gestures`, version: 1},
   gesture_left_and_right: {value: `none`, category: `gestures`, version: 1},
 }
 
