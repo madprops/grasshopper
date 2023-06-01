@@ -746,7 +746,6 @@ App.get_gesture_options = () => {
     [`Next Window`, `next_window`],
     [`Prev Window`, `prev_window`],
     [`Clear Filter`, `clear_filter`],
-    [`Random Theme`, `random_theme`],
     [`Show Tabs`, `show_tabs`],
     [`Show History`, `show_history`],
     [`Show BMarks`, `show_bookmarks`],
@@ -754,5 +753,6 @@ App.get_gesture_options = () => {
     [`Show Stars`, `show_stars`],
     [`Show Settings`, `show_settings`],
     [`Close Window`, `close_window`],
+    [`Random Theme`, `random_theme`],
   ]
 }
