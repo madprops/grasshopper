@@ -207,12 +207,12 @@ App.settings_make_menu = (setting, opts, action = () => {}) => {
 
   function prev_fn () {
     App.settings_menu_cycle(el, setting, `prev`, opts)
-    App.apply_theme()
+    action()
   }
 
   function next_fn () {
     App.settings_menu_cycle(el, setting, `next`, opts)
-    App.apply_theme()
+    action()
   }
 
   DOM.ev(prev, `click`, prev_fn)
@@ -316,14 +316,14 @@ App.setup_settings = () => {
       [`Right`, `right`],
       [`Middle`, `middle`],
     ], () => {
-      NiceGesture.button = App.get_setting(`gestures_button`)
+      App.refresh_gestures()
     })
 
     App.settings_make_menu(`gestures_threshold`, [
       [`Normal`, 10],
       [`Less Sensitive`, 100],
     ], () => {
-      NiceGesture.threshold = App.get_setting(`gestures_threshold`)
+      App.refresh_gestures()
     })
 
     App.settings_make_menu(`gesture_up`, App.get_gesture_options())
@@ -485,7 +485,7 @@ App.reset_settings = (category) => {
   })
 }
 
-App.reset_all_settings = (type) => {
+App.reset_all_settings = () => {
   App.show_confirm(`Reset all settings?`, () => {
     for (let setting in App.default_settings) {
       App.set_setting(setting, App.default_setting(setting))
@@ -639,6 +639,7 @@ App.restart_settings = () => {
   App.get_item_order()
   App.make_item_order()
   App.apply_theme()
+  App.refresh_gestures()
   App.show_window(`settings_basic`)
 }
 

@@ -112,3 +112,8 @@ App.gesture_action = (gesture) => {
     App.go_to_playing()
   }
 }
+
+App.refresh_gestures = () => {
+  NiceGesture.button = App.get_setting(`gestures_button`)
+  NiceGesture.threshold = App.get_setting(`gestures_threshold`)
+}
