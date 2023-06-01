@@ -45,12 +45,12 @@ App.gesture_action = (gesture) => {
       App.back_action(App.window_mode)
     }
   }
-  else if (action === `to_top`) {
+  else if (action === `go_to_top`) {
     if (App.on_item_window()) {
       App.goto_top(App.window_mode)
     }
   }
-  else if (action === `to_bottom`) {
+  else if (action === `go_to_bottom`) {
     if (App.on_item_window()) {
       App.goto_bottom(App.window_mode)
     }
@@ -111,7 +111,7 @@ App.gesture_action = (gesture) => {
   else if (action === `close_window`) {
     App.hide_current_window()
   }
-  else if (action === `playing`) {
+  else if (action === `go_to_playing`) {
     if (App.window_mode !== `tabs`) {
       App.show_item_window(`tabs`)
     }
@@ -132,7 +132,7 @@ App.gesture_action = (gesture) => {
 
     App.show_tabs_info()
   }
-  else if (action === `duplicates`) {
+  else if (action === `close_duplicates`) {
     if (App.window_mode !== `tabs`) {
       App.show_item_window(`tabs`)
     }
