@@ -794,6 +794,7 @@ App.get_gesture_options = () => {
     [`New Tab`, `new_tab`],
     [`Star Tab`, `star_tab`],
     [`Title Tab`, `title_tab`],
+    [`Close Tab`, `close_tab`],
     [`Tabs Info`, `tabs_info`],
     [`Clean Tabs`, `clean_tabs`],
     [`Duplicates`, `duplicates`],
