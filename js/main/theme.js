@@ -46,6 +46,9 @@ App.apply_theme = () => {
     if (App.get_setting(`background_image`)) {
       App.set_css_var(`background_image`, `url(${App.get_setting(`background_image`)})`)
     }
+    else {
+      App.set_css_var(`background_image`, `unset`)
+    }
 
     let main = DOM.el(`#main`)
     let classes = main.classList.value.split(` `)
