@@ -47,10 +47,6 @@ App.setup_gestures = () => {
 App.gesture_action = (gesture) => {
   let action = App.get_setting(`gesture_${gesture}`)
 
-  if (!action) {
-    return
-  }
-
   if (action === `go_back`) {
     if (App.on_item_window()) {
       App.back_action(App.window_mode)
