@@ -128,6 +128,11 @@
 
     <template id="template_settings_basic">
       <div id="settings_basic_container" class="settings_container">
+        <div class="settings_column" title="Scroll with a smooth animation">
+          <div class="settings_label">Smooth Scrolling</div>
+          <input type="checkbox" class="settings_checkbox" id="settings_smooth_scrolling" data-setting="smooth_scrolling">
+        </div>
+
         <div class="settings_column" title="What font to use">
           <div class="settings_label">Font</div>
           <div id="settings_font" class="settings_menu button" data-setting="font"></div>
@@ -335,11 +340,6 @@
         <div class="settings_column" title="Bypass the star editor when saving stars">
           <div class="settings_label">Quick Star</div>
           <input type="checkbox" class="settings_checkbox" id="settings_quick_star" data-setting="quick_star">
-        </div>
-
-        <div class="settings_column" title="Scroll with a smooth animation">
-          <div class="settings_label">Smooth Scrolling</div>
-          <input type="checkbox" class="settings_checkbox" id="settings_smooth_scrolling" data-setting="smooth_scrolling">
         </div>
 
         <div class="settings_column" title="Tabs will be restored after launching an item anywhere">
