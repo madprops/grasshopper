@@ -162,11 +162,4 @@ App.make_window_visible = () => {
 
 App.close_window = () => {
   window.close()
-
-  // Sidebar doesn't close so return to tabs
-  if (App.get_setting(`switch_to_tabs`)) {
-    if (App.window_mode !== `tabs`) {
-      App.show_item_window(`tabs`)
-    }
-  }
 }

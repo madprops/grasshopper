@@ -1890,6 +1890,8 @@ App.item_action = (item) => {
       App.focus_or_open_item(item)
     }
   }
+
+  App.switch_to_tabs()
 }
 
 App.on_item_window = (mode = App.window_mode) => {

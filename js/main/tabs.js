@@ -935,3 +935,11 @@ App.duplicate_current_tab = async () => {
 
   App.duplicate_tab(tab)
 }
+
+App.switch_to_tabs = () => {
+  if (App.get_setting(`switch_to_tabs`)) {
+    if (App.window_mode !== `tabs`) {
+      App.show_item_window(`tabs`)
+    }
+  }
+}
