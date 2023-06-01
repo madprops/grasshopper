@@ -19,15 +19,15 @@ App.setup_tabs = () => {
       App.new_tab()
     }},
 
-    {text: `Star This`, action: () => {
+    {text: `Star Tab`, action: () => {
       App.star_from_active()
     }},
 
-    {text: `Title This`, action: () => {
+    {text: `Title Tab`, action: () => {
       App.title_from_active()
     }},
 
-    {text: `Close This`, action: () => {
+    {text: `Close Tab`, action: () => {
       App.close_current_tab()
     }},
 
@@ -403,18 +403,23 @@ App.suspend_tabs = (item) => {
   }
 }
 
-App.close_tabs = (item, force = false) => {
+App.close_tabs = (item, force = false, multiple = true) => {
   let ids = []
   let warn = false
 
-  for (let it of App.get_active_items(`tabs`, item)) {
-    if (App.get_setting(`warn_on_close`)) {
-      if (it.pinned || it.audible) {
-        warn = true
+  if (multiple) {
+    for (let it of App.get_active_items(`tabs`, item)) {
+      if (App.get_setting(`warn_on_close`)) {
+        if (it.pinned || it.audible) {
+          warn = true
+        }
       }
-    }
 
-    ids.push(it.id)
+      ids.push(it.id)
+    }
+  }
+  else {
+    ids.push(item.id)
   }
 
   if (ids.length === 0) {
@@ -914,5 +919,5 @@ App.close_current_tab = async () => {
     return
   }
 
-  App.close_tabs(item)
+  App.close_tabs(item, undefined, false)
 }
