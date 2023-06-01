@@ -1,4 +1,7 @@
 App.setup_gestures = () => {
+  NiceGesture.button = App.get_setting(`gestures_button`)
+  NiceGesture.threshold = App.get_setting(`gestures_threshold`)
+
   NiceGesture.start(DOM.el(`#main`), {
     up: (e) => {
       App.gesture_action(`up`)
@@ -25,19 +28,19 @@ App.setup_gestures = () => {
       App.gesture_action(`left_and_right`)
     },
     default: (e) => {
-        if (App.cursor_on_item(e, App.window_mode)) {
-          let item = App.get_cursor_item(App.window_mode, e)
+      if (App.cursor_on_item(e, App.window_mode)) {
+        let item = App.get_cursor_item(App.window_mode, e)
 
-          if (!item.highlighted) {
-            if (App.get_highlights(App.window_mode).length > 0) {
-              App.pick_item(item)
-            }
+        if (!item.highlighted) {
+          if (App.get_highlights(App.window_mode).length > 0) {
+            App.pick_item(item)
           }
-
-          App.show_item_menu(item, e.clientX, e.clientY)
-          e.preventDefault()
         }
+
+        App.show_item_menu(item, e.clientX, e.clientY)
+        e.preventDefault()
       }
+    }
   })
 }
 

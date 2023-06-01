@@ -1,12 +1,21 @@
 const NiceGesture = {}
+NiceGesture.button = `right`
 NiceGesture.threshold = 10
 
 NiceGesture.start = (container, actions) => {
   container.addEventListener(`mousedown`, (e) => {
     NiceGesture.reset()
+    let btn
+
+    if (NiceGesture.button === `right`) {
+      btn = 2
+    }
+    else if (NiceGesture.button === `middle`) {
+      btn = 1
+    }
 
     // Right Click
-    if (e.button === 2) {
+    if (e.button === btn) {
       NiceGesture.active = true
       NiceGesture.first_y = e.clientY
       NiceGesture.first_x = e.clientX
@@ -30,12 +39,24 @@ NiceGesture.start = (container, actions) => {
     NiceGesture.coords.push(coord)
   })
 
-  container.addEventListener(`contextmenu`, (e) => {
+  function release (e) {
     if (!NiceGesture.active) {
       return
     }
 
     NiceGesture.check(e, actions)
+  }
+
+  container.addEventListener(`contextmenu`, (e) => {
+    if (NiceGesture.button === `right`) {
+      release(e)
+    }
+  })
+
+  container.addEventListener(`mouseup`, (e) => {
+    if (NiceGesture.button === `middle`) {
+      release(e)
+    }
   })
 
   NiceGesture.reset()

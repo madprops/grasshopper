@@ -49,6 +49,8 @@ App.default_settings = {
   highlight_effect: {value: `rotate`, category: `more`, version: 1},
 
   gestures: {value: true, category: `gestures`, version: 1},
+  gestures_button: {value: `right`, category: `gestures`, version: 1},
+  gestures_threshold: {value: 10, category: `gestures`, version: 1},
   gesture_up: {value: `go_to_top`, category: `gestures`, version: 1},
   gesture_down: {value: `go_to_bottom`, category: `gestures`, version: 1},
   gesture_left: {value: `prev_window`, category: `gestures`, version: 1},
@@ -309,6 +311,20 @@ App.setup_settings = () => {
 
   App.create_window(Object.assign({}, common, {id: `settings_gestures`, setup: () => {
     prepare(`gestures`)
+
+    App.settings_make_menu(`gestures_button`, [
+      [`Right`, `right`],
+      [`Middle`, `middle`],
+    ], () => {
+      NiceGesture.button = App.get_setting(`gestures_button`)
+    })
+
+    App.settings_make_menu(`gestures_threshold`, [
+      [`Normal`, 10],
+      [`Less Sensitive`, 100],
+    ], () => {
+      NiceGesture.threshold = App.get_setting(`gestures_threshold`)
+    })
 
     App.settings_make_menu(`gesture_up`, App.get_gesture_options())
     App.settings_make_menu(`gesture_down`, App.get_gesture_options())
