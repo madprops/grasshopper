@@ -9,8 +9,7 @@ App.default_settings = {
 
   background_color: {value: `rgb(70, 76, 94)`, category: `theme`, version: 1},
   text_color: {value: `rgb(218, 219, 223)`, category: `theme`, version: 1},
-  background: {value: 1, category: `theme`, version: 1},
-  custom_background: {value: ``, category: `theme`, version: 1},
+  background_image: {value: ``, category: `theme`, version: 1},
 
   pin_icon: {value: `+`, category: `icons`, version: 1},
   normal_icon: {value: ``, category: `icons`, version: 1},
@@ -416,12 +415,6 @@ App.start_theme_settings = () => {
   DOM.ev(DOM.el(`#settings_detect_theme`), `click`, () => {
     App.detect_theme()
   })
-
-  let imgs = App.get_background_options()
-
-  App.settings_make_menu(`background`, imgs, () => {
-    App.apply_theme()
-  })
 }
 
 App.settings_menu_cycle = (el, setting, dir, items) => {
@@ -500,21 +493,6 @@ App.reset_all_settings = () => {
 
     App.restart_settings()
   })
-}
-
-App.get_background_options = () => {
-  let opts = []
-
-  for (let i=0; i<=App.num_background_images; i++) {
-    opts.push([App.get_background_label(i), i])
-  }
-
-  return opts
-}
-
-App.get_background_label = (n) => {
-  let ns = App.fillpad(n.toString(), 2, 0)
-  return `BG ${ns}`
 }
 
 App.get_font_size_options = () => {

@@ -43,16 +43,8 @@ App.apply_theme = () => {
 
     App.set_css_var(`item_height`, item_height)
 
-    if (App.get_setting(`background`) === 0 && App.get_setting(`custom_background`) === ``) {
-      App.set_css_var(`background`, `unset`)
-    }
-    else {
-      if (App.get_setting(`custom_background`)) {
-        App.set_css_var(`background`, `url(${App.get_setting(`custom_background`)})`)
-      }
-      else if (App.get_setting(`background`) !== 0) {
-        App.set_css_var(`background`, `url(../img/backgrounds/${App.get_setting(`background`)}.jpg)`)
-      }
+    if (App.get_setting(`background_image`)) {
+      App.set_css_var(`background_image`, `url(${App.get_setting(`background_image`)})`)
     }
 
     let main = DOM.el(`#main`)
@@ -100,16 +92,12 @@ App.random_theme = () => {
     colors = App.get_random_theme(`dark`)
   }
 
-  let bgi = App.get_random_int(0, App.num_background_images)
-
   App.set_setting(`background_color`, colors.background_color)
   App.set_setting(`text_color`, colors.text_color)
-  App.set_setting(`background`, bgi)
 
   if (App.window_mode === `settings_theme`) {
     App.background_color_picker.setColor(colors.background_color)
     App.text_color_picker.setColor(colors.text_color)
-    DOM.el(`#settings_background`).textContent = App.get_background_label(bgi)
   }
   else {
     App.apply_theme()
