@@ -793,6 +793,7 @@ App.get_gesture_options = () => {
     [`Show Settings`, `show_settings`],
     [`Close Window`, `close_window`],
     [`--separator--`],
+    [`New Tab`, `new_tab`],
     [`Tabs Info`, `tabs_info`],
     [`Clean Tabs`, `clean_tabs`],
     [`Duplicates`, `duplicates`],

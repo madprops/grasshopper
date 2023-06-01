@@ -141,6 +141,13 @@ App.gesture_action = (gesture) => {
   else if (action === `new_star`) {
     App.new_star_from_active()
   }
+  else if (action === `new_tab`) {
+    if (App.window_mode !== `tabs`) {
+      App.show_item_window(`tabs`)
+    }
+
+    App.new_tab()
+  }
 }
 
 App.refresh_gestures = () => {
