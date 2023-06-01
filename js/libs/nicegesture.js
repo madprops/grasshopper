@@ -148,18 +148,14 @@ NiceGesture.action = (e, actions) => {
   }
 
   if (path_x === `left`) {
-    if (NiceGesture.last_x > min_x) {
-      if (Math.abs(NiceGesture.last_x - min_x) > gt) {
-        path_x = `left_and_right_1`
-      }
+    if ((Math.abs(NiceGesture.last_x - min_x) > gt) || (max_x > NiceGesture.first_x + gt)) {
+      path_x = `left_and_right_1`
     }
   }
 
   if (path_x === `right`) {
-    if (NiceGesture.last_x < max_x) {
-      if (Math.abs(NiceGesture.last_x - max_x) > gt) {
-        path_x = `left_and_right_2`
-      }
+    if ((Math.abs(NiceGesture.last_x - max_x) > gt) || (min_x < NiceGesture.first_x - gt)) {
+      path_x = `left_and_right_2`
     }
   }
 
