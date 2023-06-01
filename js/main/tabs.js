@@ -31,6 +31,8 @@ App.setup_tabs = () => {
       App.close_current_tab()
     }},
 
+    {text: `--separator--`},
+
     {text: `Show Info`, action: () => {
       App.show_tabs_info()
     }},
