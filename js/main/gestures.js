@@ -97,9 +97,6 @@ App.gesture_action = (gesture) => {
   else if (action === `close_window`) {
     App.hide_current_window()
   }
-  else if (action === `new_star`) {
-    App.new_star_from_active()
-  }
   else if (action === `random_theme`) {
     App.random_theme()
   }
@@ -142,6 +139,23 @@ App.gesture_action = (gesture) => {
     }
 
     App.new_tab()
+  }
+  else if (action === `title_tab`) {
+    if (App.window_mode !== `tabs`) {
+      App.show_item_window(`tabs`)
+    }
+
+    App.title_from_active()
+  }
+  else if (action === `close_tab`) {
+    if (App.window_mode !== `tabs`) {
+      App.show_item_window(`tabs`)
+    }
+
+    App.close_current_tab()
+  }
+  else if (action === `star_tab`) {
+    App.star_from_active()
   }
 }
 

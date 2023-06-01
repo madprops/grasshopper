@@ -19,6 +19,18 @@ App.setup_tabs = () => {
       App.new_tab()
     }},
 
+    {text: `Star This`, action: () => {
+      App.star_from_active()
+    }},
+
+    {text: `Title This`, action: () => {
+      App.title_from_active()
+    }},
+
+    {text: `Close This`, action: () => {
+      App.close_current_tab()
+    }},
+
     {text: `Show Info`, action: () => {
       App.show_tabs_info()
     }},
@@ -887,4 +899,20 @@ App.do_check_pinline = () => {
       }
     }
   }
+}
+
+App.close_current_tab = async () => {
+  let tab = await App.get_active_tab()
+
+  if (!tab) {
+    return
+  }
+
+  let item = App.get_item_by_id(`tabs`, tab.id)
+
+  if (!item) {
+    return
+  }
+
+  App.close_tabs(item)
 }

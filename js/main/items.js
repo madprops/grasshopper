@@ -1117,7 +1117,7 @@ App.setup_item_window = (mode) => {
       let new_star_icon = App.create_icon(`plus`)
 
       DOM.ev(new_star, `click`, () => {
-        App.new_star_from_active()
+        App.star_from_active()
       })
 
       new_star.append(new_star_icon)

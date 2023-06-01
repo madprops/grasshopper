@@ -215,7 +215,7 @@ App.new_star = (title = ``, url = ``) => {
   DOM.el(`#star_editor_title`).focus()
 }
 
-App.new_star_from_active = async () => {
+App.star_from_active = async () => {
   let tab = await App.get_active_tab()
 
   if (!tab) {
