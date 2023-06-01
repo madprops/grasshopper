@@ -928,3 +928,25 @@ App.close_current_tab = async () => {
 
   App.close_tabs(item, undefined, false)
 }
+
+App.reload_current_tab = () => {
+  browser.tabs.reload()
+}
+
+App.tab_back = () => {
+  browser.tabs.goBack()
+}
+
+App.tab_forward = () => {
+  browser.tabs.goForward()
+}
+
+App.duplicate_current_tab = async () => {
+  let tab = await App.get_active_tab()
+
+  if (!tab) {
+    return
+  }
+
+  App.duplicate_tab(tab)
+}

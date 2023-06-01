@@ -157,6 +157,18 @@ App.gesture_action = (gesture) => {
   else if (action === `show_videos`) {
     App.show_videos()
   }
+  else if (action === `reload_tab`) {
+    App.reload_current_tab()
+  }
+  else if (action === `tab_back`) {
+    App.tab_back()
+  }
+  else if (action === `tab_forward`) {
+    App.tab_forward()
+  }
+  else if (action === `duplicate_tab`) {
+    App.duplicate_current_tab()
+  }
 }
 
 App.refresh_gestures = () => {
