@@ -154,6 +154,11 @@ App.settings_make_menu = (setting, opts, action = () => {}) => {
     let items = []
 
     for (let o of opts) {
+      if (o[0] === `--separator--`) {
+        items.push({separator: true})
+        continue
+      }
+
       let selected = App.get_setting(setting) === o[1]
 
       items.push({
@@ -420,6 +425,10 @@ App.settings_menu_cycle = (el, setting, dir, items) => {
   }
 
   for (let item of items) {
+    if (item[0] === `--separator--`) {
+      continue
+    }
+
     if (waypoint) {
       s_item = item
       break
@@ -741,9 +750,11 @@ App.on_settings = () => {
 App.get_gesture_options = () => {
   return [
     [`Do Nothing`, `none`],
+    [`--separator--`],
     [`Go Back`, `go_back`],
     [`Go To Top`, `go_to_top`],
     [`Go To Bottom`, `go_to_bottom`],
+    [`--separator--`],
     [`Next Window`, `next_window`],
     [`Prev Window`, `prev_window`],
     [`Show Tabs`, `show_tabs`],
@@ -753,6 +764,7 @@ App.get_gesture_options = () => {
     [`Show Stars`, `show_stars`],
     [`Show Settings`, `show_settings`],
     [`Close Window`, `close_window`],
+    [`--separator--`],
     [`Random Theme`, `random_theme`],
     [`Go To Playing`, `go_to_playing`],
   ]
