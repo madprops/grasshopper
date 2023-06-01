@@ -72,6 +72,11 @@ App.gesture_action = (gesture) => {
       App.cycle_item_windows(true)
     }
   }
+  else if (action === `select_all`) {
+    if (App.on_item_window()) {
+      App.highlight_items(App.window_mode)
+    }
+  }
   else if (action === `show_tabs`) {
     App.show_item_window(`tabs`)
   }
@@ -93,8 +98,16 @@ App.gesture_action = (gesture) => {
   else if (action === `close_window`) {
     App.hide_current_window()
   }
+  else if (action === `new_star`) {
+    App.new_star_from_active()
+  }
   else if (action === `random_theme`) {
     App.random_theme()
+  }
+  else if (action === `clear_filter`) {
+    if (App.on_item_window()) {
+      App.clear_filter(App.window_mode)
+    }
   }
   else if (action === `go_to_playing`) {
     if (App.window_mode !== `tabs`) {
@@ -103,24 +116,12 @@ App.gesture_action = (gesture) => {
 
     App.go_to_playing()
   }
-  else if (action === `clear_filter`) {
-    if (App.on_item_window()) {
-      App.clear_filter(App.window_mode)
-    }
-  }
   else if (action === `clean_tabs`) {
     if (App.window_mode !== `tabs`) {
       App.show_item_window(`tabs`)
     }
 
     App.clean_tabs()
-  }
-  else if (action === `duplicates`) {
-    if (App.window_mode !== `tabs`) {
-      App.show_item_window(`tabs`)
-    }
-
-    App.close_duplicates()
   }
   else if (action === `tabs_info`) {
     if (App.window_mode !== `tabs`) {
@@ -129,13 +130,12 @@ App.gesture_action = (gesture) => {
 
     App.show_tabs_info()
   }
-  else if (action === `select_all`) {
-    if (App.on_item_window()) {
-      App.highlight_items(App.window_mode)
+  else if (action === `duplicates`) {
+    if (App.window_mode !== `tabs`) {
+      App.show_item_window(`tabs`)
     }
-  }
-  else if (action === `new_star`) {
-    App.new_star_from_active()
+
+    App.close_duplicates()
   }
   else if (action === `new_tab`) {
     if (App.window_mode !== `tabs`) {
