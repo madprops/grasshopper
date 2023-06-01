@@ -319,7 +319,6 @@ App.setup_settings = () => {
     App.settings_make_menu(`gestures_button`, [
       [`Right`, `right`],
       [`Middle`, `middle`],
-      [`Left`, `left`],
     ], () => {
       App.refresh_gestures()
     })
