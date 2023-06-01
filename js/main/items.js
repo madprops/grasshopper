@@ -22,7 +22,7 @@ App.select_item = async (item, scroll = `nearest`, dehighlight = true) => {
   if (scroll !== `none`) {
     App.get_selected(item.mode).element.scrollIntoView({
       block: scroll,
-      behavior: App.get_scroll_behavior()
+      behavior: App.get_scroll_behavior(),
     })
   }
 
