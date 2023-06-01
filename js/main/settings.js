@@ -41,13 +41,20 @@ App.default_settings = {
   lock_drag: {value: false, category: `more`, version: 1},
   quick_star: {value: false, category: `more`, version: 1},
   switch_to_tabs: {value: true, category: `more`, version: 1},
-  hover_tooltips: {value: true, category: `more`, version: 1},
-  mouse_gestures: {value: true, category: `more`, version: 1},
+  gestures: {value: true, category: `more`, version: 1},
   clear_filter: {value: true, category: `more`, version: 1},
+  show_tooltips: {value: true, category: `more`, version: 1},
   show_icons: {value: true, category: `more`, version: 1},
   show_footer: {value: true, category: `more`, version: 1},
   show_pinline: {value: true, category: `more`, version: 1},
   highlight_effect: {value: `rotate`, category: `more`, version: 1},
+
+  gesture_up: {value: `go_to_top`, category: `gestures`, version: 1},
+  gesture_down: {value: `go_to_bottom`, category: `gestures`, version: 1},
+  gesture_left: {value: `prev_window`, category: `gestures`, version: 1},
+  gesture_right: {value: `next_window`, category: `gestures`, version: 1},
+  gesture_up_and_down: {value: `clear_filter`, category: `gestures`, version: 1},
+  gesture_left_and_right: {value: `none`, category: `gestures`, version: 1},
 }
 
 App.make_item_order = () => {
@@ -211,7 +218,7 @@ App.settings_make_menu = (setting, opts, action = () => {}) => {
 }
 
 App.setup_settings = () => {
-  App.settings_categories = [`basic`, `theme`, `icons`, `media`, `warns`, `order`, `more`]
+  App.settings_categories = [`basic`, `theme`, `icons`, `media`, `warns`, `order`, `gestures`, `more`]
 
   let common = {
     persistent: false,
@@ -294,6 +301,17 @@ App.setup_settings = () => {
       [`None`, `none`],
     ])
   }}))
+
+  App.create_window(Object.assign({}, common, {id: `settings_gestures`, setup: () => {
+    prepare(`gestures`)
+
+    App.settings_make_menu(`gesture_up`, App.get_gesture_options())
+    App.settings_make_menu(`gesture_down`, App.get_gesture_options())
+    App.settings_make_menu(`gesture_left`, App.get_gesture_options())
+    App.settings_make_menu(`gesture_right`, App.get_gesture_options())
+    App.settings_make_menu(`gesture_up_and_down`, App.get_gesture_options())
+    App.settings_make_menu(`gesture_left_and_right`, App.get_gesture_options())
+  }}))
 }
 
 App.get_setting_title = (category) => {
@@ -304,6 +322,9 @@ App.get_setting_title = (category) => {
   }
   else if (category === `icons`) {
     name = `Icon`
+  }
+  else if (category === `gestures`) {
+    name = `Gesture`
   }
   else {
     name = App.capitalize(category)
@@ -715,4 +736,23 @@ App.check_settings = () => {
 
 App.on_settings = () => {
   return App.window_mode.startsWith(`settings_`)
+}
+
+App.get_gesture_options = () => {
+  return [
+    [`Do Nothing`, `none`],
+    [`Go To Top`, `go_to_top`],
+    [`Go To Bottom`, `go_to_bottom`],
+    [`Next Window`, `next_window`],
+    [`Prev Window`, `prev_window`],
+    [`Clear Filter`, `clear_filter`],
+    [`Random Theme`, `random_theme`],
+    [`Show Tabs`, `show_tabs`],
+    [`Show History`, `show_history`],
+    [`Show BMarks`, `show_bookmarks`],
+    [`Show Closed`, `show_closed`],
+    [`Show Stars`, `show_stars`],
+    [`Show Settings`, `show_settings`],
+    [`Close Window`, `close_window`],
+  ]
 }

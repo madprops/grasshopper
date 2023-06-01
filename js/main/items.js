@@ -849,7 +849,7 @@ App.set_item_text = (item) => {
     item.footer = item.title || path
   }
 
-  if (App.get_setting(`hover_tooltips`)) {
+  if (App.get_setting(`show_tooltips`)) {
     if (content === item.footer) {
       item.element.title = content
     }

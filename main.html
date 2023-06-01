@@ -16,6 +16,7 @@
     <script src="js/main/utils.js"></script>
     <script src="js/main/theme.js"></script>
     <script src="js/main/mouse.js"></script>
+    <script src="js/main/gestures.js"></script>
     <script src="js/main/keyboard.js"></script>
     <script src="js/main/items.js"></script>
     <script src="js/main/tabs.js"></script>
@@ -341,14 +342,9 @@
           <input type="checkbox" class="settings_checkbox" id="settings_switch_to_tabs" data-setting="switch_to_tabs">
         </div>
 
-        <div class="settings_column" title="A tooltip appears on item hover with some information">
-          <div class="settings_label">Hover Tooltips</div>
-          <input type="checkbox" class="settings_checkbox" id="settings_hover_tooltips" data-setting="hover_tooltips">
-        </div>
-
         <div class="settings_column" title="Mouse gestures are active">
-          <div class="settings_label">Mouse Gestures</div>
-          <input type="checkbox" class="settings_checkbox" id="settings_mouse_gestures" data-setting="mouse_gestures">
+          <div class="settings_label">Gestures</div>
+          <input type="checkbox" class="settings_checkbox" id="settings_gestures" data-setting="gestures">
         </div>
 
         <div class="settings_column" title="The filter is cleared on tab focus">
@@ -364,6 +360,11 @@
         <div class="settings_column" title="Show a line between pins and normal tabs">
           <div class="settings_label">Show Pinline</div>
           <input type="checkbox" class="settings_checkbox" id="settings_show_pinline" data-setting="show_pinline">
+        </div>
+
+        <div class="settings_column" title="A tooltip appears on item hover with some information">
+          <div class="settings_label">Show Tooltips</div>
+          <input type="checkbox" class="settings_checkbox" id="settings_show_tooltips" data-setting="show_tooltips">
         </div>
 
         <div class="settings_column" title="Show the footer at the bottom">
@@ -384,9 +385,49 @@
       </div>
     </template>
 
+    <template id="template_settings_gestures">
+      <div id="settings_gestures_container" class="settings_container">
+        <div class="settings_column" title="Action to perform on mouse gesture (Up)">
+          <div class="settings_label">Up Action</div>
+          <div id="settings_gesture_up" class="settings_menu button" data-setting="gesture_up"></div>
+        </div>
+
+        <div class="settings_column" title="Action to perform on mouse gesture (Down)">
+          <div class="settings_label">Down Action</div>
+          <div id="settings_gesture_down" class="settings_menu button" data-setting="gesture_down"></div>
+        </div>
+
+        <div class="settings_column" title="Action to perform on mouse gesture (Left)">
+          <div class="settings_label">Left Action</div>
+          <div id="settings_gesture_left" class="settings_menu button" data-setting="gesture_left"></div>
+        </div>
+
+        <div class="settings_column" title="Action to perform on mouse gesture (Right)">
+          <div class="settings_label">Right Action</div>
+          <div id="settings_gesture_right" class="settings_menu button" data-setting="gesture_right"></div>
+        </div>
+
+        <div class="settings_column" title="Action to perform on mouse gesture (Right)">
+          <div class="settings_label">Up And Down Action</div>
+          <div id="settings_gesture_up_and_down" class="settings_menu button" data-setting="gesture_up_and_down"></div>
+        </div>
+
+        <div class="settings_column" title="Action to perform on mouse gesture (Right)">
+          <div class="settings_label">Left And Right Action</div>
+          <div id="settings_gesture_left_and_right" class="settings_menu button" data-setting="gesture_left_and_right"></div>
+        </div>
+      </div>
+    </template>
+
+    <template id="template_settings_gestures_top">
+      <div class="flex_row_center gap_2 grow">
+        <div class="settings_title button"></div>
+      </div>
+    </template>
+
     <template id="template_settings_order">
       <div id="settings_order_container" class="settings_container">
-        <div id="settings_item_order" title="The item-lists at the top appear first in the menu and cycle-order"></div>
+        <div id="settings_item_order" title="The windows at the top appear first in the menu and cycle-order"></div>
       </div>
     </template>
 

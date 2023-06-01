@@ -89,7 +89,7 @@ App.change_color = (name, color) => {
   App.apply_theme()
 }
 
-App.random_theme = () => {
+App.random_theme = (change_pickers = true) => {
   let max = 5
   let colors
 
@@ -101,17 +101,29 @@ App.random_theme = () => {
   }
 
   let bgi = App.get_random_int(0, App.num_background_images)
-  DOM.el(`#settings_background`).textContent = App.get_background_label(bgi)
+
+  App.set_setting(`background_color`, colors.background_color)
+  App.set_setting(`text_color`, colors.text_color)
   App.set_setting(`background`, bgi)
 
-  App.background_color_picker.setColor(colors.background_color)
-  App.text_color_picker.setColor(colors.text_color)
+  if (change_pickers) {
+    App.background_color_picker.setColor(colors.background_color)
+    App.text_color_picker.setColor(colors.text_color)
+    DOM.el(`#settings_background`).textContent = App.get_background_label(bgi)
+  }
+  else {
+    App.apply_theme()
+  }
 }
 
 App.get_random_theme = (what) => {
   let background_color = App.colorlib[`get_${what}_color`]()
   let text_color = App.colorlib.get_lighter_or_darker(background_color, App.color_diff(what))
-  return {background_color: background_color, text_color: text_color}
+
+  return {
+    background_color: App.colorlib.hex_to_rgb(background_color),
+    text_color: App.colorlib.hex_to_rgb(text_color),
+  }
 }
 
 App.detect_theme = async () => {
