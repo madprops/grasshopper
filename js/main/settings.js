@@ -789,5 +789,10 @@ App.get_gesture_options = () => {
     [`Clear Filter`, `clear_filter`],
     [`Random Theme`, `random_theme`],
     [`Go To Playing`, `go_to_playing`],
+    [`Clean Tabs`, `clean_tabs`],
+    [`Duplicates`, `duplicates`],
+    [`Tabs Info`, `tabs_info`],
+    [`Select All`, `select_all`],
+    [`New Star`, `new_star`],
   ]
 }

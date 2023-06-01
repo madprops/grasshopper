@@ -112,6 +112,35 @@ App.gesture_action = (gesture) => {
       App.clear_filter(App.window_mode)
     }
   }
+  else if (action === `clean_tabs`) {
+    if (App.window_mode !== `tabs`) {
+      App.show_item_window(`tabs`)
+    }
+
+    App.clean_tabs()
+  }
+  else if (action === `duplicates`) {
+    if (App.window_mode !== `tabs`) {
+      App.show_item_window(`tabs`)
+    }
+
+    App.close_duplicates()
+  }
+  else if (action === `tabs_info`) {
+    if (App.window_mode !== `tabs`) {
+      App.show_item_window(`tabs`)
+    }
+
+    App.show_tabs_info()
+  }
+  else if (action === `select_all`) {
+    if (App.on_item_window()) {
+      App.highlight_items(App.window_mode)
+    }
+  }
+  else if (action === `new_star`) {
+    App.new_star_from_active()
+  }
 }
 
 App.refresh_gestures = () => {
