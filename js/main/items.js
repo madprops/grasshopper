@@ -1254,7 +1254,7 @@ App.focus_or_open_item = async (item) => {
         window_id: tab.windowId
       }
 
-      App.focus_tab(o)
+      await App.focus_tab(o)
       return
     }
   }
@@ -1891,6 +1891,7 @@ App.item_action = async (item) => {
     }
   }
 
+  App.close_window()
   App.switch_to_tabs()
 }
 

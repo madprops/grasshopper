@@ -937,9 +937,6 @@ App.duplicate_current_tab = async () => {
 }
 
 App.switch_to_tabs = () => {
-  App.close_window()
-
-  // If sidebar then switch to tabs
   if (App.get_setting(`switch_to_tabs`)) {
     if (App.window_mode !== `tabs`) {
       App.show_item_window(`tabs`)
