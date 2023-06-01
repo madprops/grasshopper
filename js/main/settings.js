@@ -40,6 +40,7 @@ App.default_settings = {
 
   lock_drag: {value: false, category: `more`, version: 1},
   quick_star: {value: false, category: `more`, version: 1},
+  smooth_scrolling: {value: false, category: `more`, version: 1},
   switch_to_tabs: {value: true, category: `more`, version: 1},
   clear_filter: {value: true, category: `more`, version: 1},
   show_tooltips: {value: true, category: `more`, version: 1},

@@ -20,7 +20,10 @@ App.select_item = async (item, scroll = `nearest`, dehighlight = true) => {
   App.get_selected(item.mode).element.classList.add(`selected`)
 
   if (scroll !== `none`) {
-    App.get_selected(item.mode).element.scrollIntoView({block: scroll})
+    App.get_selected(item.mode).element.scrollIntoView({
+      block: scroll,
+      behavior: App.get_scroll_behavior()
+    })
   }
 
   App.update_footer_info(item)
@@ -1704,12 +1707,21 @@ App.show_launched = (item) => {
 }
 
 App.goto_top = (mode) => {
-  DOM.el(`#${mode}_container`).scrollTop = 0
+  let el = DOM.el(`#${mode}_container`)
+
+  el.scrollTo({
+    top: 0,
+    behavior: App.get_scroll_behavior(),
+  })
 }
 
 App.goto_bottom = (mode) => {
   let el = DOM.el(`#${mode}_container`)
-  el.scrollTop = el.scrollHeight
+
+  el.scrollTo({
+    top: el.scrollHeight,
+    behavior: App.get_scroll_behavior(),
+  })
 }
 
 App.scroll = (mode, direction, fast = false) => {
@@ -1962,5 +1974,14 @@ App.back_action = (mode) => {
   }
   else {
     App.show_all(mode)
+  }
+}
+
+App.get_scroll_behavior = () => {
+  if (App.get_setting(`smooth_scrolling`)) {
+    return `smooth`
+  }
+  else {
+    return `instant`
   }
 }
