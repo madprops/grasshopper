@@ -159,3 +159,14 @@ App.hide_current_window = () => {
 App.make_window_visible = () => {
   DOM.el(`#all`).classList.remove(`hidden`)
 }
+
+App.close_window = () => {
+  window.close()
+
+  // Sidebar doesn't close so return to tabs
+  if (App.get_setting(`switch_to_tabs`)) {
+    if (App.window_mode !== `tabs`) {
+      App.show_item_window(`tabs`)
+    }
+  }
+}
