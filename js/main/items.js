@@ -373,12 +373,12 @@ App.do_item_filter = async (mode) => {
 }
 
 App.show_item = (it) => {
-  it.element.classList.remove(`hidden`)
+  it.element.classList.remove(`item_hidden`)
   it.visible = true
 }
 
 App.hide_item = (it) => {
-  it.element.classList.add(`hidden`)
+  it.element.classList.add(`item_hidden`)
   it.visible = false
 }
 
@@ -1819,6 +1819,7 @@ App.get_active_items = (mode, item) => {
 
 App.insert_item = (mode, info) => {
   let item = App.process_info(mode, info)
+  item.element.classList.add(`blinky`)
 
   if (mode === `tabs`) {
     App.get_items(mode).splice(info.index, 0, item)

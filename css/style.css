@@ -194,6 +194,12 @@ svg {
   padding-left: var(--item_margin_1);
 }
 
+.item_hidden {
+  visibility: hidden;
+  height: 0;
+  min-height: 0;
+}
+
 .item_icon {
   width: 1.11rem;
   height: 1.11rem;
@@ -672,4 +678,8 @@ select {
 
 #window_top_about {
   margin-bottom: 1rem;
+}
+
+.blinky {
+  animation: blink 600ms 3 forwards;
 }
