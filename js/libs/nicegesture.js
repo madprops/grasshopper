@@ -114,11 +114,8 @@ NiceGesture.action = (e, actions) => {
   let max_x = Math.max(...xs)
   let min_x = Math.min(...xs)
 
-  if (Math.abs(max_y - min_y) < NiceGesture.threshold) {
-    return false
-  }
-
-  if (Math.abs(max_x - min_x) < NiceGesture.threshold) {
+  if (Math.abs(max_y - min_y) < NiceGesture.threshold &&
+    Math.abs(max_x - min_x) < NiceGesture.threshold) {
     return false
   }
 
