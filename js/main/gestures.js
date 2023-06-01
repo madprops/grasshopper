@@ -45,12 +45,12 @@ App.gesture_action = (gesture) => {
       App.back_action(App.window_mode)
     }
   }
-  else if (action === `go_to_top`) {
+  else if (action === `to_top`) {
     if (App.on_item_window()) {
       App.goto_top(App.window_mode)
     }
   }
-  else if (action === `go_to_bottom`) {
+  else if (action === `to_bottom`) {
     if (App.on_item_window()) {
       App.goto_bottom(App.window_mode)
     }
