@@ -562,16 +562,16 @@ App.show_settings_menu = (category, btn) => {
   })
 
   items.push({
-    text: `Reset`,
+    text: `Data`,
     get_items: () => {
-      return App.settings_reset_items(category)
+      return App.settings_data_items()
     }
   })
 
   items.push({
-    text: `Data`,
+    text: `Reset`,
     get_items: () => {
-      return App.settings_data_items()
+      return App.settings_reset_items(category)
     }
   })
 
