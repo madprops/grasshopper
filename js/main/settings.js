@@ -741,11 +741,11 @@ App.on_settings = () => {
 App.get_gesture_options = () => {
   return [
     [`Do Nothing`, `none`],
+    [`Go Back`, `go_back`],
     [`Go To Top`, `go_to_top`],
     [`Go To Bottom`, `go_to_bottom`],
     [`Next Window`, `next_window`],
     [`Prev Window`, `prev_window`],
-    [`Clear Filter`, `clear_filter`],
     [`Show Tabs`, `show_tabs`],
     [`Show History`, `show_history`],
     [`Show BMarks`, `show_bookmarks`],
@@ -754,5 +754,6 @@ App.get_gesture_options = () => {
     [`Show Settings`, `show_settings`],
     [`Close Window`, `close_window`],
     [`Random Theme`, `random_theme`],
+    [`Go To Playing`, `go_to_playing`],
   ]
 }

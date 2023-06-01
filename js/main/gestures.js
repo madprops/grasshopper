@@ -52,7 +52,12 @@ App.gesture_action = (gesture) => {
     return
   }
 
-  if (action === `go_to_top`) {
+  if (action === `go_back`) {
+    if (App.on_item_window()) {
+      App.back_action(App.window_mode)
+    }
+  }
+  else if (action === `go_to_top`) {
     if (App.on_item_window()) {
       App.goto_top(App.window_mode)
     }
@@ -70,11 +75,6 @@ App.gesture_action = (gesture) => {
   else if (action === `prev_window`) {
     if (App.on_item_window()) {
       App.cycle_item_windows(true)
-    }
-  }
-  else if (action === `clear_filter`) {
-    if (App.on_item_window()) {
-      App.show_all(App.window_mode)
     }
   }
   else if (action === `show_tabs`) {
@@ -100,5 +100,12 @@ App.gesture_action = (gesture) => {
   }
   else if (action === `random_theme`) {
     App.random_theme(false)
+  }
+  else if (action === `go_to_playing`) {
+    if (App.window_mode !== `tabs`) {
+      App.show_item_window(`tabs`)
+    }
+
+    App.go_to_playing()
   }
 }
