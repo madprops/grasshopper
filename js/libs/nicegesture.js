@@ -12,11 +12,14 @@ NiceGesture.start = (container, actions) => {
     NiceGesture.reset()
     let btn
 
-    if (NiceGesture.button === `right`) {
-      btn = 2
+    if (NiceGesture.button === `left`) {
+      btn = 0
     }
     else if (NiceGesture.button === `middle`) {
       btn = 1
+    }
+    else if (NiceGesture.button === `right`) {
+      btn = 2
     }
 
     // Right Click
@@ -67,7 +70,7 @@ NiceGesture.start = (container, actions) => {
   })
 
   container.addEventListener(`mouseup`, (e) => {
-    if (NiceGesture.button === `middle`) {
+    if (NiceGesture.button === `left` || NiceGesture.button === `middle`) {
       release(e)
     }
   })

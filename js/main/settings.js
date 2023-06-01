@@ -319,6 +319,7 @@ App.setup_settings = () => {
     App.settings_make_menu(`gestures_button`, [
       [`Right`, `right`],
       [`Middle`, `middle`],
+      [`Left`, `left`],
     ], () => {
       App.refresh_gestures()
     })
@@ -482,6 +483,9 @@ App.reset_settings = (category) => {
     if (category === `order`) {
       App.get_item_order()
       App.make_item_order()
+    }
+    else if (category === `gestures`) {
+      App.refresh_gestures()
     }
 
     App.apply_theme()
