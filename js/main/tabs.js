@@ -406,21 +406,26 @@ App.suspend_tabs = (item) => {
 }
 
 App.close_tabs = (item, force = false, multiple = true) => {
-  let ids = []
   let warn = false
+
+  function check (it) {
+    if (App.get_setting(`warn_on_close`)) {
+      if (it.pinned || it.audible) {
+        warn = true
+      }
+    }
+  }
+
+  let ids = []
 
   if (multiple) {
     for (let it of App.get_active_items(`tabs`, item)) {
-      if (App.get_setting(`warn_on_close`)) {
-        if (it.pinned || it.audible) {
-          warn = true
-        }
-      }
-
+      check(it)
       ids.push(it.id)
     }
   }
   else {
+    check(item)
     ids.push(item.id)
   }
 
