@@ -1244,12 +1244,7 @@ App.show_first_window = () => {
   App.show_item_window(App.item_order[0])
 }
 
-App.focus_or_open_item = async (item, close = true) => {
-  if (!close) {
-    App.launch_item(item, close)
-    return
-  }
-
+App.focus_or_open_item = async (item) => {
   let tabs = await App.get_tabs()
 
   for (let tab of tabs) {
@@ -1264,7 +1259,7 @@ App.focus_or_open_item = async (item, close = true) => {
     }
   }
 
-  App.launch_item(item, close)
+  App.launch_item(item)
 }
 
 App.get_item_order = () => {
@@ -1672,12 +1667,8 @@ App.get_highlights = (mode) => {
   return ans
 }
 
-App.launch_item = (item, close = true, feedback = true) => {
-  App.open_tab(item.url, close)
-
-  if (close) {
-    App.close_window()
-  }
+App.launch_item = (item, feedback = true) => {
+  App.open_tab(item.url)
 
   if (feedback){
     App.show_launched(item)
@@ -1689,14 +1680,14 @@ App.launch_items = (item) => {
   let items = App.get_active_items(mode, item)
 
   if (items.length === 1) {
-    App.open_tab(items[0].url, false)
+    App.open_tab(items[0].url)
     App.show_launched(items[0])
     return
   }
 
   App.show_confirm(`Launch these items ${items.length}?`, () => {
     for (let item of items) {
-      App.launch_item(item, false, false)
+      App.launch_item(item, false)
     }
 
     App.dehighlight(mode)
@@ -1881,22 +1872,22 @@ App.get_mode_name = (mode) => {
   return name
 }
 
-App.item_action = (item, close = true) => {
+App.item_action = (item) => {
   let highlighted = App.get_highlights(item.mode)
 
   if (highlighted.length > 0) {
     App.launch_items(item)
   }
   else {
-    if (close && App.check_media(item)) {
+    if (App.check_media(item)) {
       return
     }
 
     if (item.mode === `stars`) {
-      App.open_star(item, close)
+      App.open_star(item)
     }
     else {
-      App.focus_or_open_item(item, close)
+      App.focus_or_open_item(item)
     }
   }
 }

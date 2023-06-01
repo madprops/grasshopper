@@ -45,13 +45,13 @@ App.stars_action = (item) => {
 }
 
 App.stars_action_alt = (item) => {
-  App.item_action(item, false)
+  App.launch_items(item)
 }
 
-App.open_star = (item, close = true) => {
+App.open_star = (item) => {
   let star = App.get_star_by_id(item.id)
   App.update_star(star)
-  App.focus_or_open_item(item, close)
+  App.focus_or_open_item(item)
 }
 
 App.launch_star = (item) => {

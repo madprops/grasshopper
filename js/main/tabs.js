@@ -139,7 +139,7 @@ App.get_tabs = async () => {
   return tabs
 }
 
-App.focus_tab = async (item, close = true) => {
+App.focus_tab = async (item) => {
   if (item.created) {
     App.select_item(item)
   }
@@ -156,10 +156,6 @@ App.focus_tab = async (item, close = true) => {
     App.remove_closed_tab(item.id)
     App.tabs_check()
   }
-
-  if (close) {
-    App.close_window()
-  }
 }
 
 App.close_tab = async (id) => {
@@ -171,16 +167,12 @@ App.close_tab = async (id) => {
   }
 }
 
-App.new_tab = async (url = undefined, close = true) => {
+App.new_tab = async (url = undefined) => {
   try {
-    await browser.tabs.create({active: close, url: url})
+    await browser.tabs.create({url: url})
   }
   catch (err) {
     App.log(err, `error`)
-  }
-
-  if (close) {
-    App.close_window()
   }
 }
 
@@ -287,7 +279,6 @@ App.tabs_action = (item) => {
 
   App.focus_tab(item)
   App.check_clear_filter()
-
 }
 
 App.tabs_action_alt = (item, shift_key = false) => {
@@ -301,8 +292,6 @@ App.duplicate_tab = async (item) => {
   catch (err) {
     App.log(err, `error`)
   }
-
-  App.close_window()
 }
 
 App.suspend_tab = async (item) => {
@@ -497,10 +486,9 @@ App.toggle_pin = (item) => {
   }
 }
 
-App.open_tab = async (url, close = true, args = {}) => {
+App.open_tab = async (url, args = {}) => {
   let opts = {}
   opts.url = url
-  opts.active = close
   opts = Object.assign(opts, args)
 
   let tab
@@ -568,21 +556,17 @@ App.move_tabs = async (item, window_id) => {
       App.log(err, `error`)
     }
   }
-
-  App.close_window()
 }
 
 App.detach_tabs = async (item) => {
   if (App.get_active_items(`tabs`, item).length === 1) {
     await browser.windows.create({tabId: item.id, focused: false})
-    App.close_window()
   }
   else {
     let info = await browser.windows.create({focused: false})
 
     setTimeout(() => {
       App.move_tabs(item, info.id)
-      App.close_window()
     }, 250)
   }
 }

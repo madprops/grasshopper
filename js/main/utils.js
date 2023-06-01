@@ -169,17 +169,6 @@ App.fillpad = (s, n, c) => {
   return s
 }
 
-App.close_window = () => {
-  window.close()
-
-  // Sidebar doesn't close so return to tabs
-  if (App.get_setting(`switch_to_tabs`)) {
-    if (App.window_mode !== `tabs`) {
-      App.show_item_window(`tabs`)
-    }
-  }
-}
-
 App.log = (message, mode = `normal`) => {
   if (mode === `error`) {
     console.error(message)
