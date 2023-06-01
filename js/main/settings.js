@@ -41,7 +41,6 @@ App.default_settings = {
   lock_drag: {value: false, category: `more`, version: 1},
   quick_star: {value: false, category: `more`, version: 1},
   switch_to_tabs: {value: true, category: `more`, version: 1},
-  gestures: {value: true, category: `more`, version: 1},
   clear_filter: {value: true, category: `more`, version: 1},
   show_tooltips: {value: true, category: `more`, version: 1},
   show_icons: {value: true, category: `more`, version: 1},
@@ -49,6 +48,7 @@ App.default_settings = {
   show_pinline: {value: true, category: `more`, version: 1},
   highlight_effect: {value: `rotate`, category: `more`, version: 1},
 
+  gestures: {value: true, category: `gestures`, version: 1},
   gesture_up: {value: `go_to_top`, category: `gestures`, version: 1},
   gesture_down: {value: `go_to_bottom`, category: `gestures`, version: 1},
   gesture_left: {value: `prev_window`, category: `gestures`, version: 1},

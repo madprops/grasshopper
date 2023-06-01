@@ -342,11 +342,6 @@
           <input type="checkbox" class="settings_checkbox" id="settings_switch_to_tabs" data-setting="switch_to_tabs">
         </div>
 
-        <div class="settings_column" title="Mouse gestures are active">
-          <div class="settings_label">Gestures</div>
-          <input type="checkbox" class="settings_checkbox" id="settings_gestures" data-setting="gestures">
-        </div>
-
         <div class="settings_column" title="The filter is cleared on tab focus">
           <div class="settings_label">Clear Filter</div>
           <input type="checkbox" class="settings_checkbox" id="settings_clear_filter" data-setting="clear_filter">
@@ -387,6 +382,11 @@
 
     <template id="template_settings_gestures">
       <div id="settings_gestures_container" class="settings_container">
+        <div class="settings_column" title="Mouse gestures are active">
+          <div class="settings_label">Gestures</div>
+          <input type="checkbox" class="settings_checkbox" id="settings_gestures" data-setting="gestures">
+        </div>
+
         <div class="settings_column" title="Action to perform on mouse gesture (Up)">
           <div class="settings_label">Up Action</div>
           <div id="settings_gesture_up" class="settings_menu button" data-setting="gesture_up"></div>

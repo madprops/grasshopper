@@ -95,6 +95,9 @@ App.gesture_action = (gesture) => {
   else if (action === `show_settings`) {
     App.show_window(`settings_basic`)
   }
+  else if (action === `close_window`) {
+    App.hide_current_window()
+  }
   else if (action === `random_theme`) {
     App.random_theme(false)
   }
