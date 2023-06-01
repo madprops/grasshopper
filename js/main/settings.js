@@ -40,8 +40,8 @@ App.default_settings = {
 
   gestures_enabled: {value: true, category: `gestures`, version: 1},
   gestures_threshold: {value: 10, category: `gestures`, version: 1},
-  gesture_up: {value: `go_to_top`, category: `gestures`, version: 1},
-  gesture_down: {value: `go_to_bottom`, category: `gestures`, version: 1},
+  gesture_up: {value: `to_top`, category: `gestures`, version: 2},
+  gesture_down: {value: `to_bottom`, category: `gestures`, version: 2},
   gesture_left: {value: `prev_window`, category: `gestures`, version: 1},
   gesture_right: {value: `next_window`, category: `gestures`, version: 1},
   gesture_up_and_down: {value: `none`, category: `gestures`, version: 1},
@@ -753,8 +753,8 @@ App.get_gesture_options = () => {
   return [
     [`Do Nothing`, `none`],
     [`--separator--`],
-    [`Go To Top`, `go_to_top`],
-    [`Go To Bottom`, `go_to_bottom`],
+    [`To Top`, `to_top`],
+    [`To Bottom`, `to_bottom`],
     [`Go Back`, `go_back`],
     [`Clear Filter`, `clear_filter`],
     [`Select All`, `select_all`],
