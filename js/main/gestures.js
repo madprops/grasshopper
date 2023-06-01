@@ -107,6 +107,11 @@ App.gesture_action = (gesture) => {
 
     App.go_to_playing()
   }
+  else if (action === `clear_filter`) {
+    if (App.on_item_window()) {
+      App.clear_filter(App.window_mode)
+    }
+  }
 }
 
 App.refresh_gestures = () => {

@@ -786,6 +786,7 @@ App.get_gesture_options = () => {
     [`Show Settings`, `show_settings`],
     [`Close Window`, `close_window`],
     [`--separator--`],
+    [`Clear Filter`, `clear_filter`],
     [`Random Theme`, `random_theme`],
     [`Go To Playing`, `go_to_playing`],
   ]
