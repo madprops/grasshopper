@@ -228,7 +228,15 @@ App.star_from_active = async () => {
     App.add_or_edit_star(item)
   }
   else {
-    App.new_star(tab.title, tab.url)
+    if (App.get_setting(`quick_star`)) {
+      App.quick_star({
+        title: tab.title,
+        url: tab.url,
+      })
+    }
+    else {
+      App.new_star(tab.title, tab.url)
+    }
   }
 }
 
@@ -317,6 +325,15 @@ App.import_stars = () => {
   })
 }
 
+App.quick_star = (item) => {
+  App.star_item({
+    title: item.title,
+    url: item.url
+  })
+
+  App.show_alert(`Star saved`, 1000)
+}
+
 App.star_items = (item) => {
   let items = []
   let active = App.get_active_items(item.mode, item)
@@ -329,12 +346,7 @@ App.star_items = (item) => {
         App.show_star_editor(exists)
       }
       else {
-        App.star_item({
-          title: item.title,
-          url: item.url
-        })
-
-        App.show_alert(`Star saved`, 1000)
+        App.quick_star(item)
       }
     }
     else {

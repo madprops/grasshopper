@@ -15,16 +15,16 @@ App.setup_tabs = () => {
   App.tabs_actions = [
     {text: `--separator--`},
 
-    {text: `New Tab`, action: () => {
-      App.new_tab()
-    }},
-
     {text: `Star Tab`, action: () => {
       App.star_from_active()
     }},
 
     {text: `Title Tab`, action: () => {
       App.title_from_active()
+    }},
+
+    {text: `New Tab`, action: () => {
+      App.new_tab()
     }},
 
     {text: `Close Tab`, action: () => {
