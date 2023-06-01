@@ -1,6 +1,5 @@
 App.setup_gestures = () => {
-  NiceGesture.button = App.get_setting(`gestures_button`)
-  NiceGesture.threshold = App.get_setting(`gestures_threshold`)
+  App.refresh_gestures()
 
   NiceGesture.start(DOM.el(`#main`), {
     up: (e) => {
@@ -148,6 +147,6 @@ App.gesture_action = (gesture) => {
 
 App.refresh_gestures = () => {
   NiceGesture.enabled = App.get_setting(`gestures_enabled`)
-  NiceGesture.button = App.get_setting(`gestures_button`)
   NiceGesture.threshold = App.get_setting(`gestures_threshold`)
+  NiceGesture.button = `right`
 }

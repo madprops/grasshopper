@@ -78,9 +78,18 @@ App.setup_popups = () => {
   })
 }
 
-App.show_alert = (message, autohide_delay = 0) => {
+App.show_alert = (message, autohide_delay = 0, pre = false) => {
   clearTimeout(App.alert_autohide)
-  DOM.el(`#alert_message`).textContent = message
+  let msg = DOM.el(`#alert_message`)
+
+  if (pre) {
+    msg.classList.add(`pre`)
+  }
+  else {
+    msg.classList.remove(`pre`)
+  }
+
+  msg.textContent = message
   App.show_popup(`alert`)
 
   if (autohide_delay > 0) {

@@ -387,14 +387,11 @@
 
     <template id="template_settings_gestures">
       <div id="settings_gestures_container" class="settings_container">
+        <div id="settings_gestures_info" class="button">Information</div>
+
         <div class="settings_column" title="Gestures are enabled">
           <div class="settings_label">Gestures Enabled</div>
           <input type="checkbox" class="settings_checkbox" id="settings_gestures_enabled" data-setting="gestures_enabled">
-        </div>
-
-        <div class="settings_column" title="Which button to use in gestures">
-          <div class="settings_label">Gestures Button</div>
-          <div id="settings_gestures_button" class="settings_menu button" data-setting="gestures_button"></div>
         </div>
 
         <div class="settings_column" title="The bigger the threshold the less sensitive it is">
@@ -476,7 +473,7 @@
     </template>
 
     <template id="template_alert">
-        <div id="alert_message" class="pre"></div>
+        <div id="alert_message"></div>
     </template>
 
     <template id="template_textarea">

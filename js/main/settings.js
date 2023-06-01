@@ -50,7 +50,6 @@ App.default_settings = {
   highlight_effect: {value: `rotate`, category: `more`, version: 1},
 
   gestures_enabled: {value: true, category: `gestures`, version: 1},
-  gestures_button: {value: `right`, category: `gestures`, version: 1},
   gestures_threshold: {value: 10, category: `gestures`, version: 1},
   gesture_up: {value: `go_to_top`, category: `gestures`, version: 1},
   gesture_down: {value: `go_to_bottom`, category: `gestures`, version: 1},
@@ -317,11 +316,11 @@ App.setup_settings = () => {
       App.refresh_gestures()
     })
 
-    App.settings_make_menu(`gestures_button`, [
-      [`Right`, `right`],
-      [`Middle`, `middle`],
-    ], () => {
-      App.refresh_gestures()
+    DOM.ev(DOM.el(`#settings_gestures_info`), `click`, () => {
+      let s = ``
+      s += `Hold the right mouse button and move in a direction, then release the button to perform a gesture action.`
+      s += ` The 'right' mouse button is the opposite of the main button.`
+      App.show_alert(s)
     })
 
     App.settings_make_menu(`gestures_threshold`, [

@@ -461,7 +461,7 @@ App.show_tabs_info = () => {
   s += `Muted: ${muted}\n`
   s += `Suspended: ${suspended}`
 
-  App.show_alert(s)
+  App.show_alert(s, undefined, true)
 }
 
 App.toggle_pin = (item) => {
