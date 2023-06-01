@@ -10,7 +10,7 @@ App.default_settings = {
   background_color: {value: `rgb(70, 76, 94)`, category: `theme`, version: 1},
   text_color: {value: `rgb(218, 219, 223)`, category: `theme`, version: 1},
   background_image: {value: ``, category: `theme`, version: 1},
-  background_filter: {value: `none`, category: `theme`, version: 1},
+  background_filter: {value: `grey`, category: `theme`, version: 1},
 
   pin_icon: {value: `+`, category: `icons`, version: 1},
   normal_icon: {value: ``, category: `icons`, version: 1},
