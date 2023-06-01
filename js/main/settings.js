@@ -17,12 +17,6 @@ App.default_settings = {
   muted_icon: {value: `🔇`, category: `icons`, version: 1},
   suspended_icon: {value: `💤`, category: `icons`, version: 1},
 
-  tabs_index: {value: 0, category: `order`, version: 1},
-  history_index: {value: 1, category: `order`, version: 1},
-  bookmarks_index: {value: 2, category: `order`, version: 1},
-  closed_index: {value: 3, category: `order`, version: 1},
-  stars_index: {value: 4, category: `order`, version: 1},
-
   media_viewer_on_tabs: {value: false, category: `media`, version: 1},
   media_viewer_on_history: {value: true, category: `media`, version: 1},
   media_viewer_on_bookmarks: {value: true, category: `media`, version: 1},
@@ -37,6 +31,12 @@ App.default_settings = {
   warn_on_unstar: {value: true, category: `warns`, version: 1},
   warn_on_launch: {value: true, category: `warns`, version: 1},
   warn_on_untitle: {value: true, category: `warns`, version: 1},
+
+  tabs_index: {value: 0, category: `order`, version: 1},
+  history_index: {value: 1, category: `order`, version: 1},
+  bookmarks_index: {value: 2, category: `order`, version: 1},
+  closed_index: {value: 3, category: `order`, version: 1},
+  stars_index: {value: 4, category: `order`, version: 1},
 
   gestures_enabled: {value: true, category: `gestures`, version: 1},
   gestures_threshold: {value: 10, category: `gestures`, version: 1},
