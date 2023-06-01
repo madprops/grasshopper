@@ -67,6 +67,17 @@ App.apply_theme = () => {
     else {
       main.classList.add(`hide_footer`)
     }
+
+    let bg = DOM.el(`#background`)
+    classes = bg.classList.value.split(` `)
+
+    for (let cls of classes) {
+      if (cls.startsWith(`filter_`)) {
+        bg.classList.remove(cls)
+      }
+    }
+
+    bg.classList.add(`filter_${App.get_setting(`background_filter`)}`)
   }
   catch (err) {
     App.log(err, `error`)

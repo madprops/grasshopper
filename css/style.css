@@ -36,12 +36,15 @@ body, html {
   left: 0;
   width: 100%;
   height: 100%;
-  filter: grayscale(100%);
   background: var(--background_image);
   background-color: var(--background_color);
   background-repeat: no-repeat;
 	background-position: center;
   background-size: cover;
+}
+
+.filter_greyscale {
+  filter: grayscale(100%);
 }
 
 #main {
