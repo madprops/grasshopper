@@ -99,7 +99,7 @@ App.gesture_action = (gesture) => {
     App.hide_current_window()
   }
   else if (action === `random_theme`) {
-    App.random_theme(false)
+    App.random_theme()
   }
   else if (action === `go_to_playing`) {
     if (App.window_mode !== `tabs`) {

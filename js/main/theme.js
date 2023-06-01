@@ -89,7 +89,7 @@ App.change_color = (name, color) => {
   App.apply_theme()
 }
 
-App.random_theme = (change_pickers = true) => {
+App.random_theme = () => {
   let max = 5
   let colors
 
@@ -106,7 +106,7 @@ App.random_theme = (change_pickers = true) => {
   App.set_setting(`text_color`, colors.text_color)
   App.set_setting(`background`, bgi)
 
-  if (change_pickers) {
+  if (App.window_mode === `settings_theme`) {
     App.background_color_picker.setColor(colors.background_color)
     App.text_color_picker.setColor(colors.text_color)
     DOM.el(`#settings_background`).textContent = App.get_background_label(bgi)
