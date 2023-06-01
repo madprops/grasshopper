@@ -1819,7 +1819,6 @@ App.get_active_items = (mode, item) => {
 
 App.insert_item = (mode, info) => {
   let item = App.process_info(mode, info)
-  item.element.classList.add(`blinky`)
 
   if (mode === `tabs`) {
     App.get_items(mode).splice(info.index, 0, item)
