@@ -278,10 +278,10 @@ App.setup_settings = () => {
     App.start_theme_settings()
 
     App.settings_make_menu(`background_filter`, [
-      [`None`, `none`],
       [`Grey`, `grey`],
       [`Invert`, `invert`],
       [`Hue`, `hue`],
+      [`None`, `none`],
     ], () => {
       App.apply_theme()
     })
