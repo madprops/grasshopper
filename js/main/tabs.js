@@ -278,11 +278,7 @@ App.tabs_action = async (item) => {
   }
 
   await App.focus_tab(item)
-
-  if (App.get_setting(`close_on_focus`)) {
-    App.close_window()
-  }
-
+  App.check_close_on_focus()
   App.check_clear_filter()
 }
 

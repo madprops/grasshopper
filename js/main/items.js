@@ -1878,9 +1878,11 @@ App.get_mode_name = (mode) => {
 
 App.item_action = async (item) => {
   let highlighted = App.get_highlights(item.mode)
+  let ans = ``
 
   if (highlighted.length > 0) {
     App.launch_items(item)
+    App.check_close_on_launch()
   }
   else {
     if (App.check_media(item)) {
@@ -1888,22 +1890,18 @@ App.item_action = async (item) => {
     }
 
     if (item.mode === `stars`) {
-      App.open_star(item)
+      ans = await App.open_star(item)
     }
     else {
-      let ans = await App.focus_or_open_item(item)
-
-      if (ans === `focused`) {
-        if (App.get_setting(`close_on_focus`)) {
-          App.close_window()
-        }
-      }
-      else if (ans === `launched`) {
-        if (App.get_setting(`close_on_launch`)) {
-          App.close_window()
-        }
-      }
+      ans = await App.focus_or_open_item(item)
     }
+  }
+
+  if (ans === `focused`) {
+    App.check_close_on_focus()
+  }
+  else if (ans === `launched`) {
+    App.check_close_on_launch()
   }
 
   App.switch_to_tabs()

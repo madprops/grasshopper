@@ -163,3 +163,15 @@ App.make_window_visible = () => {
 App.close_window = () => {
   window.close()
 }
+
+App.check_close_on_focus = () => {
+  if (App.get_setting(`close_on_focus`)) {
+    App.close_window()
+  }
+}
+
+App.check_close_on_launch = () => {
+  if (App.get_setting(`close_on_launch`)) {
+    App.close_window()
+  }
+}

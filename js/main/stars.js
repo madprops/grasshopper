@@ -48,10 +48,10 @@ App.stars_action_alt = (item) => {
   App.launch_items(item)
 }
 
-App.open_star = (item) => {
+App.open_star = async (item) => {
   let star = App.get_star_by_id(item.id)
   App.update_star(star)
-  App.focus_or_open_item(item)
+  return await App.focus_or_open_item(item)
 }
 
 App.launch_star = (item) => {
