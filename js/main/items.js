@@ -498,21 +498,23 @@ App.show_item_menu = (item, x, y) => {
     })
   }
 
-  if (App.is_image(item.url)) {
-    items.push({
-      text: `View`,
-      action: () => {
-        App.show_media(`image`, item)
-      }
-    })
-  }
-  else if (App.is_video(item.url)) {
-    items.push({
-      text: `View`,
-      action: () => {
-        App.show_media(`video`, item)
-      }
-    })
+  if (!App.get_setting(`media_viewer_on_${item.mode}`)) {
+    if (App.is_image(item.url)) {
+      items.push({
+        text: `View`,
+        action: () => {
+          App.show_media(`image`, item)
+        }
+      })
+    }
+    else if (App.is_video(item.url)) {
+      items.push({
+        text: `View`,
+        action: () => {
+          App.show_media(`video`, item)
+        }
+      })
+    }
   }
 
   if (item.mode === `stars`) {
