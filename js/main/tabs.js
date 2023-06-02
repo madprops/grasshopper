@@ -156,8 +156,6 @@ App.focus_tab = async (item) => {
     App.remove_closed_tab(item.id)
     App.tabs_check()
   }
-
-  App.close_window()
 }
 
 App.close_tab = async (id) => {
@@ -176,8 +174,6 @@ App.new_tab = async (url = undefined) => {
   catch (err) {
     App.log(err, `error`)
   }
-
-  App.close_window()
 }
 
 App.refresh_tab = async (id, select = false) => {
@@ -268,7 +264,7 @@ App.remove_closed_tab = (id) => {
   }
 }
 
-App.tabs_action = (item) => {
+App.tabs_action = async (item) => {
   if (App.check_media(item)) {
     return
   }
@@ -281,8 +277,13 @@ App.tabs_action = (item) => {
     }
   }
 
+  await App.focus_tab(item)
+
+  if (App.get_setting(`close_on_focus`)) {
+    App.close_window()
+  }
+
   App.check_clear_filter()
-  App.focus_tab(item)
 }
 
 App.tabs_action_alt = (item, shift_key = false) => {

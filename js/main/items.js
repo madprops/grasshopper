@@ -1677,8 +1677,6 @@ App.launch_item = (item, feedback = true) => {
   if (feedback){
     App.show_launched(item)
   }
-
-  App.close_window()
 }
 
 App.launch_items = (item) => {
@@ -1688,19 +1686,19 @@ App.launch_items = (item) => {
   if (items.length === 1) {
     App.open_tab(items[0].url)
     App.show_launched(items[0])
-    return
   }
+  else {
+    App.show_confirm(`Launch these items ${items.length}?`, () => {
+      for (let item of items) {
+        App.launch_item(item, false)
+      }
 
-  App.show_confirm(`Launch these items ${items.length}?`, () => {
-    for (let item of items) {
-      App.launch_item(item, false)
-    }
-
-    App.dehighlight(mode)
-    App.show_feedback(`${items.length} items launched.`, 1000)
-  }, () => {
-    App.dehighlight(mode)
-  }, !App.get_setting(`warn_on_launch`))
+      App.dehighlight(mode)
+      App.show_feedback(`${items.length} items launched.`, 1000)
+    }, () => {
+      App.dehighlight(mode)
+    }, !App.get_setting(`warn_on_launch`))
+  }
 }
 
 App.show_launched = (item) => {
@@ -1882,7 +1880,7 @@ App.item_action = async (item) => {
   let highlighted = App.get_highlights(item.mode)
 
   if (highlighted.length > 0) {
-    App.launch_items(item)
+    App.launch_items(item, App.get_setting(`close_on_focus`))
   }
   else {
     if (App.check_media(item)) {

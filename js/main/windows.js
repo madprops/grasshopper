@@ -160,12 +160,6 @@ App.make_window_visible = () => {
   DOM.el(`#all`).classList.remove(`hidden`)
 }
 
-App.close_window = (check_focus = true) => {
-  if (check_focus) {
-    if (!App.get_setting(`close_on_focus`)) {
-      return
-    }
-  }
-
+App.close_window = () => {
   window.close()
 }
