@@ -1891,7 +1891,10 @@ App.item_action = async (item) => {
     }
   }
 
-  App.close_window()
+  if (App.get_setting(`close_on_focus`)) {
+    App.close_window()
+  }
+
   App.switch_to_tabs()
 }
 

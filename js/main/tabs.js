@@ -279,7 +279,10 @@ App.tabs_action = async (item) => {
 
   await App.focus_tab(item)
   App.check_clear_filter()
-  App.close_window()
+
+  if (App.get_setting(`close_on_focus`)) {
+    App.close_window()
+  }
 }
 
 App.tabs_action_alt = (item, shift_key = false) => {
