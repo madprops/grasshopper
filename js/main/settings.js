@@ -17,7 +17,7 @@ App.default_settings = {
   muted_icon: {value: `🔇`, category: `icons`, version: 1},
   suspended_icon: {value: `💤`, category: `icons`, version: 1},
 
-  media_viewer_on_tabs: {value: false, category: `media`, version: 1},
+  media_viewer_on_tabs: {value: true, category: `media`, version: 2},
   media_viewer_on_history: {value: true, category: `media`, version: 1},
   media_viewer_on_bookmarks: {value: true, category: `media`, version: 1},
   media_viewer_on_closed: {value: true, category: `media`, version: 1},
