@@ -1677,6 +1677,8 @@ App.launch_item = (item, feedback = true) => {
   if (feedback){
     App.show_launched(item)
   }
+
+  App.close_window()
 }
 
 App.launch_items = (item) => {
@@ -1893,10 +1895,6 @@ App.item_action = async (item) => {
     else {
       await App.focus_or_open_item(item)
     }
-  }
-
-  if (App.get_setting(`close_on_focus`)) {
-    App.close_window()
   }
 
   App.switch_to_tabs()
