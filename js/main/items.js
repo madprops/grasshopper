@@ -1115,22 +1115,6 @@ App.setup_item_window = (mode) => {
 
     //
 
-    let new_star
-
-    if (mode === `stars`) {
-      new_star = DOM.create(`div`, `button icon_button`)
-      new_star.title = `New Star`
-      let new_star_icon = App.create_icon(`plus`)
-
-      DOM.ev(new_star, `click`, () => {
-        App.star_from_active()
-      })
-
-      new_star.append(new_star_icon)
-    }
-
-    //
-
     let top_actions = []
 
     top_actions.push({text: `Top`, action: () => {
@@ -1172,10 +1156,6 @@ App.setup_item_window = (mode) => {
 
     if (playing) {
       right_top.append(playing)
-    }
-
-    if (new_star) {
-      right_top.append(new_star)
     }
 
     right_top.append(back)

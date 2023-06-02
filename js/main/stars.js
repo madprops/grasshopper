@@ -2,6 +2,12 @@ App.setup_stars = () => {
   App.stars_actions = [
     {text: `--separator--`},
 
+    {text: `Star Tab`, action: () => {
+      App.star_from_active()
+    }},
+
+    {text: `--separator--`},
+
     {text: `Export`, action: () => {
       App.export_stars()
     }},
