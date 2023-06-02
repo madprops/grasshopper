@@ -34,10 +34,13 @@ App.create_media_windows = (what) => {
     next.title = `Go To Next (Right)`
     buttons.append(next)
 
+    let background = DOM.el(`#${what}_background`)
+
     if (what === `image`) {
       DOM.ev(media, `load`, () => {
         App.stop_media_timeout(what)
         media.classList.remove(`hidden`)
+        background.classList.remove(`hidden`)
         DOM.el(`#${what}_loading`).classList.add(`hidden`)
       })
     }
@@ -69,6 +72,12 @@ App.create_media_windows = (what) => {
     DOM.ev(DOM.el(`#${what}_url`), `click`, () => {
       App.media_copy(what)
     })
+
+    if (background) {
+      DOM.ev(background, `click`, () => {
+        App.media_background(what)
+      })
+    }
 
     DOM.ev(DOM.el(`#${what}_prev`), `click`, () => {
       App.media_prev(what)
@@ -118,6 +127,10 @@ App.stop_video = () => {
 App.hide_media_elements = (what) => {
   DOM.el(`#${what}`).classList.add(`hidden`)
   DOM.el(`#${what}_loading`).classList.add(`hidden`)
+
+  if (what === `image`) {
+    DOM.el(`#${what}_background`).classList.add(`hidden`)
+  }
 }
 
 App.stop_media_timeout = (what) => {
@@ -228,6 +241,10 @@ App.open_media = (what = App.window_mode) => {
 
 App.media_copy = (what) => {
   App.copy_to_clipboard(App[`current_${what}_item`].url, `URL`)
+}
+
+App.media_background = (what) => {
+  App.set_background_image(App[`current_${what}_item`].url)
 }
 
 App.get_visible_media = (mode, what) => {

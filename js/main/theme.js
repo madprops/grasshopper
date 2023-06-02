@@ -170,3 +170,8 @@ App.color_diff = (what) => {
     return 0.5
   }
 }
+
+App.set_background_image = (url) => {
+  App.set_setting(`background_image`, url)
+  App.apply_theme()
+}
