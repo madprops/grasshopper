@@ -10,7 +10,6 @@ App.default_settings = {
   background_color: {value: `rgb(70, 76, 94)`, category: `theme`, version: 1},
   text_color: {value: `rgb(218, 219, 223)`, category: `theme`, version: 1},
   background_image: {value: ``, category: `theme`, version: 1},
-  background_filter: {value: `none`, category: `theme`, version: 2},
 
   pin_icon: {value: `+`, category: `icons`, version: 1},
   normal_icon: {value: ``, category: `icons`, version: 1},
@@ -278,16 +277,6 @@ App.setup_settings = () => {
 
   App.create_window(Object.assign({}, common, {id: `settings_theme`, setup: () => {
     App.start_theme_settings()
-
-    App.settings_make_menu(`background_filter`, [
-      [`Grey`, `grey`],
-      [`Invert`, `invert`],
-      [`Hue`, `hue`],
-      [`None`, `none`],
-    ], () => {
-      App.apply_theme()
-    })
-
     prepare(`theme`)
   }}))
 

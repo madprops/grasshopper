@@ -43,18 +43,6 @@ body, html {
   background-size: cover;
 }
 
-.filter_grey {
-  filter: grayscale(100%);
-}
-
-.filter_invert {
-  filter: invert(100%);
-}
-
-.filter_hue {
-  filter: hue-rotate(90deg);
-}
-
 #main {
   user-select: none;
   scrollbar-color: var(--alt_color_2) var(--alt_color_1);
