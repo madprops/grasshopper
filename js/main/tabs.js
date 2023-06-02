@@ -170,6 +170,10 @@ App.close_tab = async (id) => {
 App.new_tab = async (url = undefined) => {
   try {
     await browser.tabs.create({url: url})
+
+    if (App.get_setting(`close_on_focus`)) {
+      App.close_window()
+    }
   }
   catch (err) {
     App.log(err, `error`)
