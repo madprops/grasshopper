@@ -504,6 +504,11 @@ svg {
   gap: 0.5rem;
 }
 
+#about_links {
+  padding-top: 0.35rem;
+  padding-bottom: 0.5rem;
+}
+
 a:visited, a:link, a:hover {
 	color: var(--text_color);
 }
@@ -693,9 +698,4 @@ select {
 
 .underline {
   text-decoration: underline;
-}
-
-.vspace {
-  padding-top: 0.5rem;
-  padding-bottom: 0.5rem;
 }
