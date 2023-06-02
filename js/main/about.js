@@ -30,8 +30,6 @@ App.setup_about = () => {
       `Check the Gestures settings for more information`,
     ]
 
-    App.about_info_index = 0
-
     DOM.ev(DOM.el(`#about_info`), `click`, () => {
       App.show_full_about_info()
     })
@@ -67,65 +65,23 @@ App.setup_about = () => {
     let manifest = browser.runtime.getManifest()
     let s = `Grasshopper v${manifest.version}`
     DOM.el(`#about_name`).textContent = s
-    App.update_about_info()
   },
   after_show: () => {
     App.start_about_info()
   },
   on_hide: () => {
-    App.stop_about_info()
     App.show_last_window()
   }, persistent: false, colored_top: true})
-}
-
-App.update_about_info = () => {
-  DOM.el(`#about_info`).textContent = App.about_info_items[App.about_info_index]
-}
-
-App.prev_about_info = (manual = true) => {
-  if (manual) {
-    App.stop_about_info()
-  }
-
-  App.about_info_index -= 1
-
-  if (App.about_info_index < 0) {
-    App.about_info_index = App.about_info_items.length - 1
-  }
-
-  App.update_about_info()
-}
-
-App.next_about_info = (manual = true) => {
-  if (manual) {
-    App.stop_about_info()
-  }
-
-  App.about_info_index += 1
-
-  if (App.about_info_index >= App.about_info_items.length) {
-    App.about_info_index = 0
-  }
-
-  App.update_about_info()
 }
 
 App.start_about_info = () => {
   DOM.el(`#about_info`).classList.remove(`hidden`)
   DOM.el(`#about_image`).classList.remove(`hidden`)
   DOM.el(`#about_info_full`).classList.add(`hidden`)
-
-  App.about_info_interval = setInterval(() => {
-    App.next_about_info(false)
-  }, 3000)
-}
-
-App.stop_about_info = () => {
-  clearInterval(App.about_info_interval)
+  DOM.el(`#about_info`).textContent = App.about_info_items[0]
 }
 
 App.show_full_about_info = () => {
-  App.stop_about_info()
   DOM.el(`#about_info`).classList.add(`hidden`)
   DOM.el(`#about_image`).classList.add(`hidden`)
   DOM.el(`#about_info_full`).classList.remove(`hidden`)
