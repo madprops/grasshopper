@@ -1878,11 +1878,11 @@ App.get_mode_name = (mode) => {
 
 App.item_action = async (item) => {
   let highlighted = App.get_highlights(item.mode)
-  let ans = ``
+  let method = ``
 
   if (highlighted.length > 0) {
     App.launch_items(item)
-    App.check_close_on_launch()
+    method = `launched`
   }
   else {
     if (App.check_media(item)) {
@@ -1890,17 +1890,17 @@ App.item_action = async (item) => {
     }
 
     if (item.mode === `stars`) {
-      ans = await App.open_star(item)
+      method = await App.open_star(item)
     }
     else {
-      ans = await App.focus_or_open_item(item)
+      method = await App.focus_or_open_item(item)
     }
   }
 
-  if (ans === `focused`) {
+  if (method === `focused`) {
     App.check_close_on_focus()
   }
-  else if (ans === `launched`) {
+  else if (method === `launched`) {
     App.check_close_on_launch()
   }
 
