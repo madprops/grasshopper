@@ -203,7 +203,7 @@ svg {
   min-height: var(--item_height);
   direction: ltr;
   flex-shrink: 0;
-  scroll-margin: 2.2rem;
+  scroll-margin: 3.3rem;
   padding-left: var(--item_margin_1);
 }
 
