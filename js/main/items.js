@@ -1983,7 +1983,15 @@ App.back_action = (mode) => {
     App[`${mode}_back_action`]()
   }
   else {
-    App.show_all(mode)
+    let item = App.get_selected(mode)
+    let visible = App.element_is_visible(item.element)
+
+    if (visible) {
+      App.show_all(mode)
+    }
+    else {
+      App.select_item(item, `center`)
+    }
   }
 }
 
