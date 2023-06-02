@@ -384,24 +384,6 @@ App.star_items = (item) => {
   }, !App.get_setting(`warn_on_star`))
 }
 
-App.toggle_star = (item, prepend = false) => {
-  let star = App.get_star_by_url(item.url)
-
-  if (star) {
-    App.do_remove_stars([star.id])
-    return false
-  }
-  else {
-    let obj = App.star_item(item)
-
-    if (prepend) {
-      App.insert_item(`stars`, obj)
-    }
-
-    return true
-  }
-}
-
 App.check_stars = () => {
   let changed = false
 
