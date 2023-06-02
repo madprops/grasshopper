@@ -1880,7 +1880,7 @@ App.item_action = async (item) => {
   let highlighted = App.get_highlights(item.mode)
 
   if (highlighted.length > 0) {
-    App.launch_items(item, App.get_setting(`close_on_focus`))
+    App.launch_items(item)
   }
   else {
     if (App.check_media(item)) {
