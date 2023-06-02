@@ -1,3 +1,6 @@
+App.image_extensions = [`jpg`, `jpeg`, `png`, `gif`, `webp`, `bmp`]
+App.video_extensions = [`mp4`, `webm`]
+
 App.create_debouncer = (func, delay) => {
   let timer
   let obj = {}
@@ -223,5 +226,6 @@ App.focused_with_class = (cls) => {
   return document.activeElement.classList.contains(cls)
 }
 
-App.image_extensions = [`jpg`, `jpeg`, `png`, `gif`, `webp`, `bmp`]
-App.video_extensions = [`mp4`, `webm`]
+App.reload_extension = () => {
+  browser.runtime.reload()
+}

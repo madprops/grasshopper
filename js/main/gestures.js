@@ -189,6 +189,9 @@ App.gesture_action = (gesture) => {
   else if (action === `duplicate_tab`) {
     App.duplicate_current_tab()
   }
+  else if (action === `reload_extension`) {
+    App.reload_extension()
+  }
 }
 
 App.refresh_gestures = () => {

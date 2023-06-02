@@ -803,5 +803,6 @@ App.get_gesture_options = () => {
     [`Show Videos`, `show_videos`],
     [`--separator--`],
     [`Random Theme`, `random_theme`],
+    [`Reload Extension`, `reload_extension`],
   ]
 }
