@@ -78,7 +78,7 @@ App.create_media_windows = (what) => {
       App.media_next(what)
     })
 
-    DOM.ev(DOM.el(`#window_${what}`), `wheel`, (e) => {
+    DOM.ev(buttons, `wheel`, (e) => {
       App.media_wheel.call(e, what)
     })
   }, on_hide: () => {
