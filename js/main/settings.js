@@ -10,7 +10,7 @@ App.default_settings = {
   background_color: {value: `rgb(70, 76, 94)`, category: `theme`, version: 1},
   text_color: {value: `rgb(218, 219, 223)`, category: `theme`, version: 1},
   background_image: {value: ``, category: `theme`, version: 1},
-  background_filter: {value: `none`, category: `theme`, version: 1},
+  background_filter: {value: `none`, category: `theme`, version: 2},
 
   pin_icon: {value: `+`, category: `icons`, version: 1},
   normal_icon: {value: ``, category: `icons`, version: 1},
@@ -745,7 +745,7 @@ App.check_settings = () => {
       delete App.settings[setting]
       changed = true
     }
-    else if (App.settings[setting].version < App.default_settings[setting].version) {
+    else if (App.settings[setting].version !== App.default_settings[setting].version) {
       App.log(`Stor: Upgrading setting: ${setting}`)
       App.settings[setting].value = App.default_settings[setting].value
       App.settings[setting].version = App.default_settings[setting].version
