@@ -57,6 +57,7 @@ body, html {
 
 #main {
   user-select: none;
+  scrollbar-color: var(--alt_color_2) var(--alt_color_1);
 }
 
 .window_main {
@@ -79,7 +80,6 @@ body, html {
   box-sizing: border-box;
   overflow-y: auto;
   overflow-x: hidden;
-  scrollbar-color: var(--alt_color_2) var(--alt_color_1);
   padding-top: 1px;
   position: relative;
 }
@@ -457,6 +457,7 @@ svg {
 
 #needcontext-main {
   background-color: var(--alt_background) !important;
+  scrollbar-color: var(--alt_color_2) var(--alt_color_1) !important;
 }
 
 #needcontext-container {
