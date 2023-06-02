@@ -150,8 +150,10 @@ App.cycle_media = (item, what, dir) => {
     }
 
     if (waypoint) {
-      next_item = it
-      break
+      if (it.url !== item.url) {
+        next_item = it
+        break
+      }
     }
 
     if (it === item) {
