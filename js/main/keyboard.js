@@ -289,7 +289,7 @@ App.setup_keyboard = () => {
         return
       }
       else if (e.key === ` `) {
-        App.star_media(mode)
+        App.show_media_menu(mode)
         e.preventDefault()
         return
       }

@@ -18,11 +18,10 @@ App.create_media_windows = (what) => {
     open.title = `Open Tab (Enter)`
     buttons.append(open)
 
-    let star = DOM.create(`div`, `button icon_button`, `${what}_star`)
-    star.title = `Toggle Star (Space)`
-    let star_icon = App.create_icon(`star`)
-    star.append(star_icon)
-    buttons.append(star)
+    let menu = DOM.create(`div`, `button icon_button`, `${what}_menu`)
+    menu.title = `Menu (Space)`
+    menu.append(App.create_icon(`sun`))
+    buttons.append(menu)
 
     let close = DOM.create(`div`, `button`, `${what}_close`)
     close.textContent = `Close`
@@ -34,13 +33,10 @@ App.create_media_windows = (what) => {
     next.title = `Go To Next (Right)`
     buttons.append(next)
 
-    let background = DOM.el(`#${what}_background`)
-
     if (what === `image`) {
       DOM.ev(media, `load`, () => {
         App.stop_media_timeout(what)
         media.classList.remove(`hidden`)
-        background.classList.remove(`hidden`)
         DOM.el(`#${what}_loading`).classList.add(`hidden`)
       })
     }
@@ -61,8 +57,8 @@ App.create_media_windows = (what) => {
       App.open_media(what)
     })
 
-    DOM.ev(star, `click`, () => {
-      App.star_media(what)
+    DOM.ev(menu, `click`, () => {
+      App.show_media_menu(what)
     })
 
     DOM.ev(close, `click`, () => {
@@ -72,12 +68,6 @@ App.create_media_windows = (what) => {
     DOM.ev(DOM.el(`#${what}_url`), `click`, () => {
       App.media_copy(what)
     })
-
-    if (background) {
-      DOM.ev(background, `click`, () => {
-        App.media_background(what)
-      })
-    }
 
     DOM.ev(DOM.el(`#${what}_prev`), `click`, () => {
       App.media_prev(what)
@@ -115,7 +105,6 @@ App.show_media = (what, item) => {
   DOM.el(`#${what}_url`).textContent = item.url
   App.show_window(what)
   App.media_show_loading(what)
-  App.check_media_star(what, App.get_star_by_url(item.url))
 }
 
 App.stop_video = () => {
@@ -127,10 +116,6 @@ App.stop_video = () => {
 App.hide_media_elements = (what) => {
   DOM.el(`#${what}`).classList.add(`hidden`)
   DOM.el(`#${what}_loading`).classList.add(`hidden`)
-
-  if (what === `image`) {
-    DOM.el(`#${what}_background`).classList.add(`hidden`)
-  }
 }
 
 App.stop_media_timeout = (what) => {
@@ -207,22 +192,8 @@ App.check_media = (item) => {
   return false
 }
 
-App.check_media_star = (what, starred) => {
-  let use = DOM.el(`#${what}_star use`)
-
-  if (starred) {
-    use.href.baseVal = `#star_solid_icon`
-  }
-  else {
-    use.href.baseVal = `#star_icon`
-  }
-}
-
-App.star_media = (what) => {
-  let item = App[`current_${what}_item`]
-  let prepend = item.mode === `stars`
-  let starred = App.toggle_star(item, prepend)
-  App.check_media_star(what, starred)
+App.media_star = (what) => {
+  App.star_items(App[`current_${what}_item`])
 }
 
 App.open_media = (what = App.window_mode) => {
@@ -280,4 +251,27 @@ App.show_images = (mode) => {
 
 App.show_videos = (mode) => {
   App.set_filter_mode(mode, [`videos`, `Videos`])
+}
+
+App.show_media_menu = (what) => {
+  let items = []
+
+  items.push({
+    text: `Star This`,
+    action: () => {
+      App.media_star(what)
+    }
+  })
+
+  if (what === `image`) {
+    items.push({
+      text: `Background`,
+      action: () => {
+        App.media_background(what)
+      }
+    })
+  }
+
+  let btn = DOM.el(`#${what}_menu`)
+  NeedContext.show_on_element(btn, items)
 }

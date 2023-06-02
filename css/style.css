@@ -594,6 +594,7 @@ input::placeholder {
   width: 100%;
   height: 100%;
   overflow: hidden;
+  margin-bottom: 1.6rem;
 }
 
 .media_loading {
@@ -605,10 +606,6 @@ input::placeholder {
   width: 95%;
   max-height: 100%;
   object-fit: contain;
-}
-
-.media_background {
-  margin-bottom: 1.6rem;
 }
 
 .arrow_prev {
