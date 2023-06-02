@@ -21,7 +21,11 @@ App.select_item = async (item, scroll = `nearest`, dehighlight = true) => {
   if (scroll !== `none`) {
     let behavior
 
-    if (scroll === `center_instant`) {
+    if (scroll === `nearest_instant`) {
+      scroll = `nearest`
+      behavior = `instant`
+    }
+    else if (scroll === `center_instant`) {
       scroll = `center`
       behavior = `instant`
     }
@@ -60,7 +64,7 @@ App.select_item_above = (mode) => {
   let item = App.get_prev_visible_item(mode)
 
   if (item) {
-    App.select_item(item)
+    App.select_item(item, `nearest_instant`)
   }
 }
 
@@ -68,7 +72,7 @@ App.select_item_below = (mode) => {
   let item = App.get_next_visible_item(mode)
 
   if (item) {
-    App.select_item(item)
+    App.select_item(item, `nearest_instant`)
   }
 }
 
