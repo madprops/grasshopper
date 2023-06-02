@@ -1293,16 +1293,14 @@ App.do_update_footer_count = (mode) => {
 
   let n1 = App.get_highlights(mode).length
   let n2 = App.get_visible(mode).length
-  let s1 = n1.toLocaleString()
-  let s2 = n2.toLocaleString()
   let footer = App.get_footer(mode)
   let count = DOM.el(`.footer_count`, footer)
 
   if (n1 > 0) {
-    count.textContent = `(${s1}/${s2})`
+    count.textContent = `(${n1} / ${n2})`
   }
   else {
-    count.textContent = `(${s2})`
+    count.textContent = `(${n2})`
   }
 }
 
