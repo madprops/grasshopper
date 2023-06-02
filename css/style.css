@@ -691,3 +691,8 @@ select {
 .underline {
   text-decoration: underline;
 }
+
+.vspace {
+  padding-top: 0.5rem;
+  padding-bottom: 0.5rem;
+}
