@@ -1259,11 +1259,12 @@ App.focus_or_open_item = async (item) => {
       }
 
       await App.focus_tab(o)
-      return
+      return `focused`
     }
   }
 
   App.launch_item(item)
+  return `launched`
 }
 
 App.get_item_order = () => {
@@ -1684,8 +1685,7 @@ App.launch_items = (item) => {
   let items = App.get_active_items(mode, item)
 
   if (items.length === 1) {
-    App.open_tab(items[0].url)
-    App.show_launched(items[0])
+    App.launch_item(items[0])
   }
   else {
     App.show_confirm(`Launch these items ${items.length}?`, () => {
@@ -1891,7 +1891,18 @@ App.item_action = async (item) => {
       App.open_star(item)
     }
     else {
-      await App.focus_or_open_item(item)
+      let ans = await App.focus_or_open_item(item)
+
+      if (ans === `focused`) {
+        if (App.get_setting(`close_on_focus`)) {
+          App.close_window()
+        }
+      }
+      else if (ans === `launched`) {
+        if (App.get_setting(`close_on_launch`)) {
+          App.close_window()
+        }
+      }
     }
   }
 
