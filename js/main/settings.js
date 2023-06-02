@@ -769,6 +769,8 @@ App.get_gesture_options = () => {
     [`Go Back`, `go_back`],
     [`Clear Filter`, `clear_filter`],
     [`Select All`, `select_all`],
+    [`Scroll Up`, `scroll_up`],
+    [`Scroll Down`, `scroll_down`],
     [`--separator--`],
     [`Prev Window`, `prev_window`],
     [`Next Window`, `next_window`],

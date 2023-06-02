@@ -39,20 +39,21 @@ App.setup_gestures = () => {
 
 App.gesture_action = (gesture) => {
   let action = App.get_setting(`gesture_${gesture}`)
+  let mode = App.window_mode
 
   if (action === `go_back`) {
     if (App.on_item_window()) {
-      App.back_action(App.window_mode)
+      App.back_action(mode)
     }
   }
   else if (action === `go_to_top`) {
     if (App.on_item_window()) {
-      App.goto_top(App.window_mode)
+      App.goto_top(mode)
     }
   }
   else if (action === `go_to_bottom`) {
     if (App.on_item_window()) {
-      App.goto_bottom(App.window_mode)
+      App.goto_bottom(mode)
     }
   }
   else if (action === `next_window`) {
@@ -67,27 +68,37 @@ App.gesture_action = (gesture) => {
   }
   else if (action === `select_all`) {
     if (App.on_item_window()) {
-      App.highlight_items(App.window_mode)
+      App.highlight_items(mode)
     }
   }
   else if (action === `clear_filter`) {
     if (App.on_item_window()) {
-      App.clear_filter(App.window_mode)
+      App.clear_filter(mode)
     }
   }
   else if (action === `show_all`) {
     if (App.on_item_window()) {
-      App.show_all(App.window_mode)
+      App.show_all(mode)
     }
   }
   else if (action === `show_images`) {
     if (App.on_item_window()) {
-      App.show_images(App.window_mode)
+      App.show_images(mode)
     }
   }
   else if (action === `show_videos`) {
     if (App.on_item_window()) {
-      App.show_videos(App.window_mode)
+      App.show_videos(mode)
+    }
+  }
+  else if (action === `scroll_up`) {
+    if (App.on_item_window()) {
+      App.scroll(mode, `up`, true)
+    }
+  }
+  else if (action === `scroll_down`) {
+    if (App.on_item_window()) {
+      App.scroll(mode, `down`, true)
     }
   }
   else if (action === `show_tabs`) {
@@ -112,49 +123,49 @@ App.gesture_action = (gesture) => {
     App.hide_current_window()
   }
   else if (action === `go_to_playing`) {
-    if (App.window_mode !== `tabs`) {
+    if (mode !== `tabs`) {
       App.show_item_window(`tabs`)
     }
 
     App.go_to_playing()
   }
   else if (action === `clean_tabs`) {
-    if (App.window_mode !== `tabs`) {
+    if (mode !== `tabs`) {
       App.show_item_window(`tabs`)
     }
 
     App.clean_tabs()
   }
   else if (action === `tabs_info`) {
-    if (App.window_mode !== `tabs`) {
+    if (mode !== `tabs`) {
       App.show_item_window(`tabs`)
     }
 
     App.show_tabs_info()
   }
   else if (action === `close_duplicates`) {
-    if (App.window_mode !== `tabs`) {
+    if (mode !== `tabs`) {
       App.show_item_window(`tabs`)
     }
 
     App.close_duplicates()
   }
   else if (action === `new_tab`) {
-    if (App.window_mode !== `tabs`) {
+    if (mode !== `tabs`) {
       App.show_item_window(`tabs`)
     }
 
     App.new_tab()
   }
   else if (action === `title_tab`) {
-    if (App.window_mode !== `tabs`) {
+    if (mode !== `tabs`) {
       App.show_item_window(`tabs`)
     }
 
     App.title_from_active()
   }
   else if (action === `close_tab`) {
-    if (App.window_mode !== `tabs`) {
+    if (mode !== `tabs`) {
       App.show_item_window(`tabs`)
     }
 
