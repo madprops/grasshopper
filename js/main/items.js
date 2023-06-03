@@ -1675,8 +1675,18 @@ App.launch_items = (item) => {
   }
   else {
     App.show_confirm(`Launch these items ${items.length}?`, () => {
-      for (let item of items) {
-        App.launch_item(item)
+      if (items.length <= 25) {
+        for (let item of items) {
+          App.launch_item(item)
+        }
+      }
+      else {
+        // Avoid freezing the browser
+        for (let item of items) {
+          App.launch_item(item, false)
+        }
+
+        App.show_feedback(`${items.length} items launched.`, 1000)
       }
 
       App.dehighlight(mode)
