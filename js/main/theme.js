@@ -84,10 +84,13 @@ App.change_color = (name, color) => {
   App.apply_theme()
 }
 
-App.random_theme = () => {
+App.random_theme = (what) => {
   let colors
 
-  if (App.colorlib.is_dark(App.get_setting(`background_color`))) {
+  if (what) {
+    colors = App.get_random_theme(what)
+  }
+  else if (App.colorlib.is_dark(App.get_setting(`background_color`))) {
     colors = App.get_random_theme(`light`)
   }
   else {

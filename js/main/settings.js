@@ -410,8 +410,12 @@ App.start_theme_settings = () => {
   start_color_picker(`background`)
   start_color_picker(`text`)
 
-  DOM.ev(DOM.el(`#settings_random_theme`), `click`, () => {
-    App.random_theme()
+  DOM.ev(DOM.el(`#settings_random_dark_theme`), `click`, () => {
+    App.random_theme(`dark`)
+  })
+
+  DOM.ev(DOM.el(`#settings_random_light_theme`), `click`, () => {
+    App.random_theme(`light`)
   })
 
   DOM.ev(DOM.el(`#settings_detect_theme`), `click`, () => {
@@ -792,6 +796,9 @@ App.get_gesture_options = () => {
     [`Show Videos`, `show_videos`],
     [`--separator--`],
     [`Random Theme`, `random_theme`],
+    [`Dark Theme`, `random_dark_theme`],
+    [`Light Theme`, `random_light_theme`],
+    [`--separator--`],
     [`Reload Extension`, `reload_extension`],
   ]
 }

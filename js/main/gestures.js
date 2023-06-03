@@ -177,6 +177,12 @@ App.gesture_action = (gesture) => {
   else if (action === `random_theme`) {
     App.random_theme()
   }
+  else if (action === `random_dark_theme`) {
+    App.random_theme(`dark`)
+  }
+  else if (action === `random_light_theme`) {
+    App.random_theme(`light`)
+  }
   else if (action === `reload_tab`) {
     App.reload_current_tab()
   }
