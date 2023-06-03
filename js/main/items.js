@@ -403,6 +403,17 @@ App.show_item_menu = (item, x, y) => {
   let multiple = highlights.length > 0
   let items = []
 
+  items.push({
+    text: `Pick`,
+    action: () => {
+      App.select_item(item)
+    }
+  })
+
+  items.push({
+    separator: true
+  })
+
   if (item.mode === `tabs`) {
     if (item.pinned) {
       items.push({
