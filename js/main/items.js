@@ -268,28 +268,29 @@ App.filter_item_by_id = (mode, id) => {
 App.remove_item = (item) => {
   let mode = item.mode
 
-  if (mode !== `tabs`) {
-    if (App.get_selected(mode) === item) {
-      let next_item = App.get_next_visible_item(mode, false) || App.get_prev_visible_item(mode, false)
+  if (!App.is_filtered(mode)) {
+    if (mode !== `tabs`) {
+      if (App.get_selected(mode) === item) {
+        let next_item = App.get_next_visible_item(mode, false) || App.get_prev_visible_item(mode, false)
 
-      if (next_item) {
-        App.select_item(next_item)
-      }
-      else {
-        App.select_first_item(mode)
+        if (next_item) {
+          App.select_item(next_item)
+        }
+        else {
+          App.select_first_item(mode)
+        }
       }
     }
   }
 
   item.element.remove()
   App.filter_item_by_id(mode, item.id)
-  App.update_footer_count(mode)
 
-  if (mode === `tabs`) {
-    if (App.is_filtered(mode)) {
-      App.select_first_item(mode)
-    }
+  if (App.is_filtered(mode)) {
+    App.select_first_item(mode)
   }
+
+  App.update_footer_count(mode)
 }
 
 App.focus_filter = (mode) => {

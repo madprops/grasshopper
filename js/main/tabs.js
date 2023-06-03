@@ -543,7 +543,13 @@ App.on_tab_activated = async (info) => {
     return
   }
 
-  await App.refresh_tab(info.tabId, true)
+  let select = true
+
+  if (App.is_filtered(`tabs`)) {
+    select = false
+  }
+
+  await App.refresh_tab(info.tabId, select)
 }
 
 App.move_tabs = async (item, window_id) => {
