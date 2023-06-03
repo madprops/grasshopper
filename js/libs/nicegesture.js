@@ -31,15 +31,7 @@ NiceGesture.start = (container, actions) => {
   })
 
   container.addEventListener(`mousemove`, (e) => {
-    if (!NiceGesture.enabled) {
-      return
-    }
-
-    if (!NiceGesture.active) {
-      return
-    }
-
-    if (NiceGesture.coords.length > 1000) {
+    if (!NiceGesture.enabled || !NiceGesture.active || NiceGesture.coords.length > 1000) {
       return
     }
 
@@ -52,11 +44,7 @@ NiceGesture.start = (container, actions) => {
   })
 
   function release (e) {
-    if (!NiceGesture.enabled) {
-      return
-    }
-
-    if (!NiceGesture.active) {
+    if (!NiceGesture.enabled || !NiceGesture.active) {
       actions.default(e)
       return
     }
