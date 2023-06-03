@@ -403,17 +403,6 @@ App.show_item_menu = (item, x, y) => {
   let multiple = highlights.length > 0
   let items = []
 
-  items.push({
-    text: `Pick`,
-    action: () => {
-      App.select_item(item)
-    }
-  })
-
-  items.push({
-    separator: true
-  })
-
   if (item.mode === `tabs`) {
     if (item.pinned) {
       items.push({
@@ -508,6 +497,13 @@ App.show_item_menu = (item, x, y) => {
       }]
     })
   }
+
+  items.push({
+    text: `Pick`,
+    action: () => {
+      App.select_item(item)
+    }
+  })
 
   if (!App.get_setting(`media_viewer_on_${item.mode}`)) {
     if (App.is_image(item.url)) {
