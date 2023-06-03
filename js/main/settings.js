@@ -795,9 +795,9 @@ App.get_gesture_options = () => {
     [`Show Images`, `show_images`],
     [`Show Videos`, `show_videos`],
     [`--separator--`],
-    [`Random Theme`, `random_theme`],
     [`Dark Theme`, `random_dark_theme`],
     [`Light Theme`, `random_light_theme`],
+    [`Dark / Light`, `random_theme`],
     [`--separator--`],
     [`Reload Extension`, `reload_extension`],
   ]
