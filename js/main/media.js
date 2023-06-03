@@ -105,6 +105,7 @@ App.show_media = (what, item) => {
   DOM.el(`#${what}_url`).textContent = item.url
   App.show_window(what)
   App.media_show_loading(what)
+  App.select_item(item)
 }
 
 App.stop_video = () => {
@@ -273,15 +274,6 @@ App.show_media_menu = (what) => {
       }
     })
   }
-
-  items.push({
-    text: `Focus Item`,
-    action: () => {
-      let item = App[`current_${what}_item`]
-      App.select_item(item)
-      App.hide_current_window()
-    }
-  })
 
   let btn = DOM.el(`#${what}_menu`)
   NeedContext.show_on_element(btn, items)
