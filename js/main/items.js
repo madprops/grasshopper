@@ -284,6 +284,12 @@ App.remove_item = (item) => {
   item.element.remove()
   App.filter_item_by_id(mode, item.id)
   App.update_footer_count(mode)
+
+  if (mode === `tabs`) {
+    if (App.is_filtered(mode)) {
+      App.select_first_item(mode)
+    }
+  }
 }
 
 App.focus_filter = (mode) => {
@@ -1670,11 +1676,10 @@ App.launch_items = (item) => {
   else {
     App.show_confirm(`Launch these items ${items.length}?`, () => {
       for (let item of items) {
-        App.launch_item(item, false)
+        App.launch_item(item)
       }
 
       App.dehighlight(mode)
-      App.show_feedback(`${items.length} items launched.`, 1000)
     }, () => {
       App.dehighlight(mode)
     }, !App.get_setting(`warn_on_launch`))
