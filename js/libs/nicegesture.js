@@ -57,6 +57,7 @@ NiceGesture.start = (container, actions) => {
     }
 
     if (!NiceGesture.active) {
+      actions.default(e)
       return
     }
 
