@@ -105,23 +105,6 @@ App.get_coords = (el) => {
   return {x: rect.left, y: rect.top}
 }
 
-App.get_random_int = (min, max, exclude = undefined) => {
-  let num = Math.floor(Math.random() * (max - min + 1) + min)
-
-  if (exclude !== undefined) {
-    if (num === exclude) {
-      if (num + 1 <= max) {
-        num = num + 1
-      }
-      else if (num - 1 >= min) {
-        num = num - 1
-      }
-    }
-  }
-
-  return num
-}
-
 App.is_image = (src) => {
   let extension = App.get_extension(src).toLowerCase()
   return extension && App.image_extensions.includes(extension)

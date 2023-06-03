@@ -85,10 +85,9 @@ App.change_color = (name, color) => {
 }
 
 App.random_theme = () => {
-  let max = 5
   let colors
 
-  if (App.get_random_int(1, max) === max) {
+  if (App.colorlib.is_dark(App.get_setting(`background_color`))) {
     colors = App.get_random_theme(`light`)
   }
   else {
