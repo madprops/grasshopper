@@ -260,7 +260,7 @@ App.show_media_menu = (what) => {
   let items = []
 
   items.push({
-    text: `Star / Unstar`,
+    text: `Star`,
     action: () => {
       App.media_star(what)
     }
