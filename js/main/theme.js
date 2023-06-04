@@ -194,8 +194,3 @@ App.change_theme = (what) => {
   App.set_setting(`text_color`, App[`${what}_theme`].text_color)
   App.apply_theme()
 }
-
-App.remove_background_image = () => {
-  App.set_setting(`background_image`, ``)
-  App.apply_theme()
-}

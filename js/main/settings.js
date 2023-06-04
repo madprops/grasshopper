@@ -789,7 +789,7 @@ App.get_gesture_options = () => {
     else if (cmd[1] === `show_videos`) {
       add_separator()
     }
-    else if (cmd[1] === `remove_background`) {
+    else if (cmd[1] === `random_theme`) {
       add_separator()
     }
   }

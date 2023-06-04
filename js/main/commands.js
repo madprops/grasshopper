@@ -35,7 +35,6 @@ App.commands = [
   [`Light Theme`, `light_theme`],
   [`Detect Theme`, `detect_theme`],
   [`Random Theme`, `random_theme`],
-  [`Remove Background`, `remove_background`],
   [`Reload Extension`, `reload_extension`],
 ]
 
@@ -189,9 +188,6 @@ App.run_command = (cmd) => {
   }
   else if (cmd === `random_theme`) {
     App.random_theme()
-  }
-  else if (cmd === `remove_background`) {
-    App.remove_background_image()
   }
   else if (cmd === `reload_tab`) {
     App.reload_current_tab()
