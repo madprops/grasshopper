@@ -38,14 +38,6 @@ App.setup_window_mouse = (mode) => {
       App.select_item(item)
       App[`${mode}_action`](item)
     }
-    // Middle click
-    else if (e.button === 1) {
-      if (e.ctrlKey) {
-        return
-      }
-
-      App[`${mode}_action_alt`](item, e.shiftKey)
-    }
   })
 
   DOM.ev(container, `mouseover`, (e) => {
@@ -75,6 +67,23 @@ App.setup_window_mouse = (mode) => {
       }
 
       e.preventDefault()
+    }
+  })
+
+  DOM.ev(container, `contextmenu`, (e) => {
+    if (App.cursor_on_item(e, mode)) {
+      let item = App.get_cursor_item(mode, e)
+
+      if (item) {
+        if (!item.highlighted) {
+          if (App.get_highlights(mode).length > 0) {
+            App.pick_item(item)
+          }
+        }
+
+        App.show_item_menu(item, e.clientX, e.clientY)
+        e.preventDefault()
+      }
     }
   })
 }
