@@ -134,7 +134,7 @@ App.palette_action = (el) => {
   let cmd = el.dataset.command
 
   if (cmd) {
-    App.run_command(cmd)
     App.hide_popup(`palette`)
+    App.run_command(cmd)
   }
 }

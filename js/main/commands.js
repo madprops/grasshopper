@@ -42,74 +42,75 @@ App.commands = [
 
 App.run_command = (cmd) => {
   let mode = App.window_mode
+  let on_items = App.on_item_window(mode) && !App.popup_open
 
   if (cmd === `go_back`) {
-    if (App.on_item_window()) {
+    if (on_items) {
       App.back_action(mode)
     }
   }
   else if (cmd === `go_to_top`) {
-    if (App.on_item_window()) {
+    if (on_items) {
       App.goto_top(mode)
     }
   }
   else if (cmd === `go_to_bottom`) {
-    if (App.on_item_window()) {
+    if (on_items) {
       App.goto_bottom(mode)
     }
   }
   else if (cmd === `next_window`) {
-    if (App.on_item_window()) {
+    if (on_items) {
       App.cycle_item_windows()
     }
   }
   else if (cmd === `prev_window`) {
-    if (App.on_item_window()) {
+    if (on_items) {
       App.cycle_item_windows(true)
     }
   }
   else if (cmd === `select_all`) {
-    if (App.on_item_window()) {
+    if (on_items) {
       App.highlight_items(mode)
     }
   }
   else if (cmd === `clear_filter`) {
-    if (App.on_item_window()) {
+    if (on_items) {
       App.clear_filter(mode)
     }
   }
   else if (cmd === `show_all`) {
-    if (App.on_item_window()) {
+    if (on_items) {
       App.show_all(mode)
     }
   }
   else if (cmd === `show_images`) {
-    if (App.on_item_window()) {
+    if (on_items) {
       App.show_images(mode)
     }
   }
   else if (cmd === `show_videos`) {
-    if (App.on_item_window()) {
+    if (on_items) {
       App.show_videos(mode)
     }
   }
   else if (cmd === `scroll_up`) {
-    if (App.on_item_window()) {
+    if (on_items) {
       App.scroll(mode, `up`, true)
     }
   }
   else if (cmd === `scroll_down`) {
-    if (App.on_item_window()) {
+    if (on_items) {
       App.scroll(mode, `down`, true)
     }
   }
   else if (cmd === `to_top`) {
-    if (App.on_item_window()) {
+    if (on_items) {
       App.move_tabs_vertically(`top`)
     }
   }
   else if (cmd === `to_bottom`) {
-    if (App.on_item_window()) {
+    if (on_items) {
       App.move_tabs_vertically(`bottom`)
     }
   }
