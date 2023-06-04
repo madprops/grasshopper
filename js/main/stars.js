@@ -2,7 +2,7 @@ App.setup_stars = () => {
   App.stars_actions = [
     {text: `--separator--`},
 
-    {text: `Star Tab`, action: () => {
+    {text: `Star`, action: () => {
       App.star_from_active()
     }},
 

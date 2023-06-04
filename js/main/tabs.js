@@ -15,19 +15,27 @@ App.setup_tabs = () => {
   App.tabs_actions = [
     {text: `--separator--`},
 
-    {text: `Star Tab`, action: () => {
-      App.star_from_active()
-    }},
-
-    {text: `Title Tab`, action: () => {
-      App.title_from_active()
-    }},
-
-    {text: `New Tab`, action: () => {
+    {text: `New`, action: () => {
       App.new_tab()
     }},
 
-    {text: `Close Tab`, action: () => {
+    {text: `Star`, action: () => {
+      App.star_from_active()
+    }},
+
+    {text: `Title`, action: () => {
+      App.title_from_active()
+    }},
+
+    {text: `Detach`, action: () => {
+      App.detach_current_tab()
+    }},
+
+    {text: `Duplicate`, action: () => {
+      App.duplicate_current_tab()
+    }},
+
+    {text: `Close`, action: () => {
       App.close_current_tab()
     }},
 
