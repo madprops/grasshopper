@@ -177,6 +177,16 @@ App.setup_keyboard = () => {
     let mode = App.window_mode
     let pmode = App.popup_mode
 
+    if (e.key === `Control`) {
+      if (Date.now() - App.double_tap_date < App.double_tap_delay) {
+        App.show_palette()
+        e.preventDefault()
+        return
+      }
+
+      App.double_tap_date = Date.now()
+    }
+
     if (NeedContext.open) {
       if (e.shiftKey && e.key === `Enter`) {
         NeedContext.hide()
@@ -228,6 +238,24 @@ App.setup_keyboard = () => {
         else if (e.key === `ArrowRight`) {
           App.dialog_right()
         }
+      }
+
+      if (pmode === `palette`) {
+        if (e.key === `Enter`) {
+          App.palette_enter()
+          e.preventDefault()
+        }
+        else if (e.key === `ArrowUp`) {
+          App.palette_select(true)
+        }
+        else if (e.key === `ArrowDown`) {
+          App.palette_select()
+        }
+        else {
+          App.filter_palette()
+        }
+
+        return
       }
 
       e.preventDefault()

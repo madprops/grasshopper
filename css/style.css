@@ -684,3 +684,28 @@ select {
 .underline {
   text-decoration: underline;
 }
+
+#palette_filter {
+  width: 12rem;
+  padding: 0.45rem;
+  text-align: center;
+}
+
+#palette_commands {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 0.2rem;
+  max-height: 20rem;
+  overflow-y: auto;
+  width: 100%;
+}
+
+.palette_item {
+  width: 100%;
+  padding: 0.25rem;
+}
+
+.palette_selected {
+  background-color: var(--alt_color_1);
+}

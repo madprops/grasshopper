@@ -331,12 +331,14 @@ App.setup_settings = () => {
       App.refresh_gestures()
     })
 
-    App.settings_make_menu(`gesture_up`, App.get_gesture_options())
-    App.settings_make_menu(`gesture_down`, App.get_gesture_options())
-    App.settings_make_menu(`gesture_left`, App.get_gesture_options())
-    App.settings_make_menu(`gesture_right`, App.get_gesture_options())
-    App.settings_make_menu(`gesture_up_and_down`, App.get_gesture_options())
-    App.settings_make_menu(`gesture_left_and_right`, App.get_gesture_options())
+    let opts = App.get_gesture_options()
+
+    App.settings_make_menu(`gesture_up`, opts.slice(0))
+    App.settings_make_menu(`gesture_down`, opts.slice(0))
+    App.settings_make_menu(`gesture_left`, opts.slice(0))
+    App.settings_make_menu(`gesture_right`, opts.slice(0))
+    App.settings_make_menu(`gesture_up_and_down`, opts.slice(0))
+    App.settings_make_menu(`gesture_left_and_right`, opts.slice(0))
   }}))
 }
 
@@ -756,49 +758,37 @@ App.on_settings = () => {
 }
 
 App.get_gesture_options = () => {
-  return [
+  let items = [
     [`Do Nothing`, `none`],
     [`--separator--`],
-    [`To Top`, `go_to_top`],
-    [`To Bottom`, `go_to_bottom`],
-    [`Go Back`, `go_back`],
-    [`Clear Filter`, `clear_filter`],
-    [`Select All`, `select_all`],
-    [`Scroll Up`, `scroll_up`],
-    [`Scroll Down`, `scroll_down`],
-    [`--separator--`],
-    [`Prev Window`, `prev_window`],
-    [`Next Window`, `next_window`],
-    [`Show Tabs`, `show_tabs`],
-    [`Show History`, `show_history`],
-    [`Show BMarks`, `show_bookmarks`],
-    [`Show Closed`, `show_closed`],
-    [`Show Stars`, `show_stars`],
-    [`Show Settings`, `show_settings`],
-    [`Close Window`, `close_window`],
-    [`--separator--`],
-    [`New Tab`, `new_tab`],
-    [`Star Tab`, `star_tab`],
-    [`Title Tab`, `title_tab`],
-    [`Tabs Info`, `tabs_info`],
-    [`Clean Tabs`, `clean_tabs`],
-    [`Duplicates`, `close_duplicates`],
-    [`To Playing`, `go_to_playing`],
-    [`--separator--`],
-    [`Back`, `tab_back`],
-    [`Forward`, `tab_forward`],
-    [`Reload`, `reload_tab`],
-    [`Duplicate`, `duplicate_tab`],
-    [`Close`, `close_tab`],
-    [`--separator--`],
-    [`Show All`, `show_all`],
-    [`Show Images`, `show_images`],
-    [`Show Videos`, `show_videos`],
-    [`--separator--`],
-    [`Dark Theme`, `random_dark_theme`],
-    [`Light Theme`, `random_light_theme`],
-    [`Dark / Light`, `random_theme`],
-    [`--separator--`],
-    [`Reload Extension`, `reload_extension`],
   ]
+
+  function add_separator() {
+    items.push([`--separator--`])
+  }
+
+  for (let cmd of App.commands) {
+    items.push(cmd)
+
+    if (cmd[1] === `scroll_down`) {
+      add_separator()
+    }
+    else if (cmd[1] === `close_window`) {
+      add_separator()
+    }
+    else if (cmd[1] === `go_to_playing`) {
+      add_separator()
+    }
+    else if (cmd[1] === `close_tab`) {
+      add_separator()
+    }
+    else if (cmd[1] === `show_videos`) {
+      add_separator()
+    }
+    else if (cmd[1] === `random_theme`) {
+      add_separator()
+    }
+  }
+
+  return items
 }

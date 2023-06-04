@@ -17,6 +17,8 @@
     <script src="js/main/theme.js"></script>
     <script src="js/main/mouse.js"></script>
     <script src="js/main/gestures.js"></script>
+    <script src="js/main/commands.js"></script>
+    <script src="js/main/palette.js"></script>
     <script src="js/main/keyboard.js"></script>
     <script src="js/main/items.js"></script>
     <script src="js/main/tabs.js"></script>
@@ -479,6 +481,11 @@
       <div id="textarea_message"></div>
       <textarea id="textarea_text" class="textarea"></textarea>
       <div id="textarea_copy" class="button">Copy</div>
+    </template>
+
+    <template id="template_palette">
+      <input type="text" id="palette_filter" class="text" placeholder="Filter command">
+      <div id="palette_commands"></div>
     </template>
 
     <template id="template_input">
