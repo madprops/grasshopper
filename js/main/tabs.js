@@ -565,13 +565,18 @@ App.move_tabs = async (item, window_id) => {
   }
 }
 
-App.detach_tabs = async (item) => {
-  if (!item) {
-    item = App.get_selected(`tabs`)
-  }
-
-  if (App.get_active_items(`tabs`, item).length === 1) {
+App.detach_tab = async (item) => {
+  try {
     await browser.windows.create({tabId: item.id, focused: false})
+  }
+  catch (err) {
+    App.log(err, `error`)
+  }
+}
+
+App.detach_tabs = async (item) => {
+  if (App.get_active_items(`tabs`, item).length === 1) {
+    await App.detach_tab(item)
   }
   else {
     let info = await browser.windows.create({focused: false})
@@ -944,6 +949,16 @@ App.duplicate_current_tab = async () => {
   }
 
   App.duplicate_tab(tab)
+}
+
+App.detach_current_tab = async () => {
+  let tab = await App.get_active_tab()
+
+  if (!tab) {
+    return
+  }
+
+  App.detach_tab(tab)
 }
 
 App.switch_to_tabs = () => {
