@@ -1944,12 +1944,20 @@ App.get_scroll_behavior = () => {
   }
 }
 
+App.check_scrollers_debouncer = App.create_debouncer((mode) => {
+  App.do_check_scrollers(mode)
+}, App.check_scrollers_debouncer_delay)
+
 App.check_scrollers = (mode) => {
+  App.check_scrollers_debouncer.call(mode)
+}
+
+App.do_check_scrollers = (mode) => {
   let container = DOM.el(`#${mode}_container`)
   let top_scroller = DOM.el(`#${mode}_top_scroller`)
   let bottom_scroller = DOM.el(`#${mode}_bottom_scroller`)
 
-  if (container.scrollTop > 100) {
+  if (container.scrollTop > 1) {
     top_scroller.classList.remove(`hidden`)
   }
   else {

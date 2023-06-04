@@ -28,5 +28,6 @@ App.import_string = `Paste data text here`
 App.pinline_debouncer_delay = 100
 App.double_tap_date = 0
 App.double_tap_delay = 300
+App.check_scrollers_debouncer_delay = 100
 
 NeedContext.min_width = `4.5rem`
