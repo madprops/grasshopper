@@ -359,21 +359,16 @@ App.unpin_tabs = (item) => {
 
 App.suspend_tabs = (item) => {
   let tabs = []
-  let warn = false
 
   for (let it of App.get_active_items(`tabs`, item)) {
-    if (App.get_setting(`warn_on_suspend`)) {
-      if (it.pinned || it.audible) {
-        warn = true
-      }
-    }
-
     tabs.push(it)
   }
 
   if (tabs.length === 0) {
     return
   }
+
+  let warn = App.check_tab_warn(tabs, `warn_on_suspend`)
 
   if (warn) {
     App.show_confirm(`Suspend tabs? (${tabs.length})`, () => {
@@ -395,27 +390,38 @@ App.suspend_tabs = (item) => {
   }
 }
 
-App.close_tabs = (item, force = false, multiple = true) => {
-  let warn = false
+App.check_tab_warn = (items, setting) => {
+  let warn_on_close = App.get_setting(setting)
 
-  function check (it) {
-    if (App.get_setting(`warn_on_close`)) {
-      if (it.pinned || it.audible) {
-        warn = true
+  if (warn_on_close === `all`) {
+    return true
+  }
+  else if (warn_on_close === `none`) {
+    return false
+  }
+
+  for (let item of items) {
+    if (item.pinned || item.audible) {
+      if (warn_on_close === `special`) {
+        return true
       }
     }
   }
 
+  return false
+}
+
+App.close_tabs = (item, force = false, multiple = true) => {
   let ids = []
+  let warn = false
 
   if (multiple) {
-    for (let it of App.get_active_items(`tabs`, item)) {
-      check(it)
-      ids.push(it.id)
-    }
+    let items = App.get_active_items(`tabs`, item)
+    warn = App.check_tab_warn(items, `warn_on_close`)
+    ids = items.map(x => x.id)
   }
   else {
-    check(item)
+    warn = App.check_tab_warn([item], `warn_on_close`)
     ids.push(item.id)
   }
 

@@ -25,8 +25,8 @@ App.default_settings = {
   media_viewer_on_closed: {value: true, category: `media`, version: 1},
   media_viewer_on_stars: {value: true, category: `media`, version: 1},
 
-  warn_on_close: {value: true, category: `warns`, version: 1},
-  warn_on_suspend: {value: true, category: `warns`, version: 1},
+  warn_on_close: {value: `special`, category: `warns`, version: 2},
+  warn_on_suspend: {value: `special`, category: `warns`, version: 2},
   warn_on_duplicates: {value: true, category: `warns`, version: 1},
   warn_on_clean: {value: true, category: `warns`, version: 1},
   warn_on_star: {value: true, category: `warns`, version: 1},
@@ -290,6 +290,18 @@ App.setup_settings = () => {
 
   App.create_window(Object.assign({}, common, {id: `settings_warns`, setup: () => {
     prepare(`warns`)
+
+    App.settings_make_menu(`warn_on_close`, [
+      [`All`, `all`],
+      [`Special`, `special`],
+      [`None`, `none`],
+    ])
+
+    App.settings_make_menu(`warn_on_suspend`, [
+      [`All`, `all`],
+      [`Special`, `special`],
+      [`None`, `none`],
+    ])
   }}))
 
   App.create_window(Object.assign({}, common, {id: `settings_order`, setup: () => {
