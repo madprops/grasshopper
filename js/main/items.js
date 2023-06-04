@@ -1799,13 +1799,6 @@ App.show_main_menu = (mode) => {
   })
 
   items.push({
-    text: `Cmd...`,
-    action: () => {
-      App.show_palette()
-    }
-  })
-
-  items.push({
     text: `Settings`,
     action: () => {
       App.show_window(`settings_basic`)
@@ -1816,6 +1809,17 @@ App.show_main_menu = (mode) => {
     text: `About`,
     action: () => {
       App.show_window(`about`)
+    }
+  })
+
+  items.push({
+    separator: true
+  })
+
+  items.push({
+    text: `Cmd...`,
+    action: () => {
+      App.show_palette()
     }
   })
 
