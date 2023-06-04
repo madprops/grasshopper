@@ -1082,30 +1082,20 @@ App.setup_item_window = (mode) => {
 
     //
 
-    let top_actions = []
+    App[`${mode}_actions`] = App[`${mode}_actions`] || []
 
-    top_actions.push({text: `Top`, action: () => {
-      App.goto_top(mode)
-    }})
+    let actions_menu
 
-    top_actions.push({text: `Bottom`, action: () => {
-      App.goto_bottom(mode)
-    }})
+    if (App[`${mode}_actions`].length > 0) {
+      actions_menu = DOM.create(`div`, `button icon_button`, `${mode}_actions`)
+      let actions_icon = App.create_icon(`sun`)
+      actions_menu.append(actions_icon)
+      actions_menu.title = `Actions (Ctrl + Right)`
 
-    top_actions.push({text: `Select`, action: () => {
-      App.highlight_items(mode)
-    }})
-
-    App[`${mode}_actions`] = [...top_actions, ...(App[`${mode}_actions`] || [])]
-
-    let actions_menu = DOM.create(`div`, `button icon_button`, `${mode}_actions`)
-    let actions_icon = App.create_icon(`sun`)
-    actions_menu.append(actions_icon)
-    actions_menu.title = `Actions (Ctrl + Right)`
-
-    DOM.ev(actions_menu, `click`, () => {
-      App.show_actions(mode)
-    })
+      DOM.ev(actions_menu, `click`, () => {
+        App.show_actions(mode)
+      })
+    }
 
     //
 
@@ -1126,7 +1116,10 @@ App.setup_item_window = (mode) => {
     }
 
     right_top.append(back)
-    right_top.append(actions_menu)
+
+    if (actions_menu) {
+      right_top.append(actions_menu)
+    }
 
     top.append(left_top)
     top.append(right_top)
@@ -1920,10 +1913,14 @@ App.back_action = (mode) => {
   }
   else {
     let item = App.get_selected(mode)
-    let visible = App.element_is_visible(item.element)
+    let visible
 
-    if (visible) {
-      App.show_all(mode)
+    if (item) {
+      visible = App.element_is_visible(item.element)
+    }
+
+    if (visible || !item) {
+      App.clear_or_all(mode)
     }
     else {
       App.select_item(item, `center`)
@@ -1972,4 +1969,15 @@ App.do_check_scrollers = (mode) => {
 App.container_is_scrolled = (mode) => {
   let container = DOM.el(`#${mode}_container`)
   return container.scrollHeight > container.clientHeight
+}
+
+App.clear_or_all = (mode) => {
+  if (App.is_filtered(mode)) {
+    if (App.get_filter(mode, true)) {
+      App.clear_filter(mode)
+    }
+    else {
+      App.show_all(mode)
+    }
+  }
 }

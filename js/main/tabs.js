@@ -13,8 +13,6 @@ App.setup_tabs = () => {
   ]
 
   App.tabs_actions = [
-    {text: `--separator--`},
-
     {text: `New Tab`, action: () => {
       App.new_tab()
     }},
