@@ -1,21 +1,11 @@
 App.setup_palette = () => {
   App.create_popup({
     id: `palette`, setup: () => {
-      let container = DOM.el(`#palette_commands`)
-      let filter = DOM.el(`#palette_filter`)
-
-      for (let cmd of App.commands) {
-        let el = DOM.create(`div`, `palette_item action`)
-        el.textContent = cmd[0]
-        el.dataset.command = cmd[1]
-        container.append(el)
-      }
-
-      DOM.ev(container, `click`, (e) => {
+      DOM.ev(DOM.el(`#palette_commands`), `click`, (e) => {
         App.palette_action(e.target)
       })
 
-      DOM.ev(filter, `input`, (e) => {
+      DOM.ev(DOM.el(`#palette_filter`), `input`, (e) => {
         App.filter_palette()
       })
     }
@@ -137,5 +127,17 @@ App.palette_action = (el) => {
   if (cmd) {
     App.hide_popup(`palette`)
     App.run_command(cmd)
+  }
+}
+
+App.fill_palette_container = () => {
+  let container = DOM.el(`#palette_commands`)
+  container.innerHTML = ``
+
+  for (let cmd of App.commands) {
+    let el = DOM.create(`div`, `palette_item action`)
+    el.textContent = cmd[0]
+    el.dataset.command = cmd[1]
+    container.append(el)
   }
 }

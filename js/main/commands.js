@@ -1,3 +1,7 @@
+App.setup_commands = () => {
+  App.sort_commands()
+}
+
 App.commands = [
   [`Go To Top`, `go_to_top`],
   [`Go To Bottom`, `go_to_bottom`],
@@ -46,6 +50,7 @@ App.commands = [
 App.run_command = (cmd) => {
   let mode = App.window_mode
   let on_items = App.on_item_window(mode) && !App.popup_open
+  App.update_command_history(cmd)
 
   if (cmd === `go_back`) {
     if (on_items) {
@@ -239,4 +244,32 @@ App.run_command = (cmd) => {
   else if (cmd === `reload_extension`) {
     App.reload_extension()
   }
+}
+
+App.update_command_history = (cmd) => {
+  App.command_history = App.command_history.filter(x => x !== cmd)
+  App.command_history.unshift(cmd)
+  App.stor_save_command_history()
+  App.sort_commands()
+}
+
+App.sort_commands = () => {
+  App.commands.sort((a, b) => {
+    let ia = App.command_history.indexOf(a[1])
+    let ib = App.command_history.indexOf(b[1])
+
+    if (ia !== -1 && ib !== -1) {
+      return ia - ib
+    }
+
+    if (ia !== -1) {
+      return -1
+    }
+
+    if (ib !== -1) {
+      return 1
+    }
+  })
+
+  App.fill_palette_container()
 }

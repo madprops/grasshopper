@@ -4,6 +4,7 @@ App.init = async () => {
   App.stor_get_settings()
   App.stor_get_stars()
   App.stor_get_titles()
+  App.stor_get_command_history()
   App.setup_theme()
   App.setup_tabs()
   App.setup_title_editor()
@@ -20,6 +21,7 @@ App.init = async () => {
   App.setup_items()
   App.setup_gestures()
   App.setup_palette()
+  App.setup_commands()
   App.show_first_window()
   App.make_window_visible()
 }
