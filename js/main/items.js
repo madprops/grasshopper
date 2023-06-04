@@ -1652,6 +1652,11 @@ App.show_launched = (item) => {
 
 App.goto_top = (mode, behavior) => {
   let el = DOM.el(`#${mode}_container`)
+
+  if (App.container_is_scrolled(mode)) {
+    App.show_scroller(mode, `bottom`)
+  }
+
   App.hide_scroller(mode, `top`)
 
   el.scrollTo({
@@ -1662,6 +1667,11 @@ App.goto_top = (mode, behavior) => {
 
 App.goto_bottom = (mode, behavior) => {
   let el = DOM.el(`#${mode}_container`)
+
+  if (App.container_is_scrolled(mode)) {
+    App.show_scroller(mode, `top`)
+  }
+
   App.hide_scroller(mode, `bottom`)
 
   el.scrollTo({
@@ -1980,4 +1990,9 @@ App.do_check_scrollers = (mode) => {
   else {
     App.hide_scroller(mode, `bottom`)
   }
+}
+
+App.container_is_scrolled = (mode) => {
+  let container = DOM.el(`#${mode}_container`)
+  return container.scrollHeight > container.clientHeight
 }
