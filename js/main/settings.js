@@ -6,8 +6,6 @@ App.default_settings = {
   height: {value: 80, category: `basic`, version: 1},
   font: {value: `sans-serif`, category: `basic`, version: 1},
   font_size: {value: 16, category: `basic`, version: 1},
-  close_on_focus: {value: true, category: `basic`, version: 1},
-  close_on_launch: {value: true, category: `basic`, version: 1},
   lock_drag: {value: false, category: `basic`, version: 1},
   quick_star: {value: false, category: `basic`, version: 1},
 
@@ -58,6 +56,8 @@ App.default_settings = {
   show_footer: {value: true, category: `more`, version: 1},
   show_pinline: {value: true, category: `more`, version: 1},
   highlight_effect: {value: `rotate`, category: `more`, version: 1},
+  close_on_focus: {value: true, category: `more`, version: 1},
+  close_on_launch: {value: true, category: `more`, version: 1},
 }
 
 App.make_item_order = () => {
