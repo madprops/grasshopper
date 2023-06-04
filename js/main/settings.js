@@ -771,7 +771,7 @@ App.get_gesture_options = () => {
     items.push([`--separator--`])
   }
 
-  for (let cmd of App.commands) {
+  for (let cmd of App.ordered_commands) {
     items.push(cmd)
 
     if (cmd[1] === `scroll_down`) {

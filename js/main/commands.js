@@ -1,4 +1,5 @@
 App.setup_commands = () => {
+  App.ordered_commands = App.commands.slice(0)
   App.sort_commands()
 }
 
