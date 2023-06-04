@@ -15,31 +15,9 @@ App.setup_tabs = () => {
   App.tabs_actions = [
     {text: `--separator--`},
 
-    {text: `New`, action: () => {
+    {text: `New Tab`, action: () => {
       App.new_tab()
     }},
-
-    {text: `Star`, action: () => {
-      App.star_from_active()
-    }},
-
-    {text: `Title`, action: () => {
-      App.title_from_active()
-    }},
-
-    {text: `Detach`, action: () => {
-      App.detach_current_tab()
-    }},
-
-    {text: `Duplicate`, action: () => {
-      App.duplicate_current_tab()
-    }},
-
-    {text: `Close`, action: () => {
-      App.close_current_tab()
-    }},
-
-    {text: `--separator--`},
 
     {text: `Show Info`, action: () => {
       App.show_tabs_info()
@@ -147,9 +125,9 @@ App.get_tabs = async () => {
   return tabs
 }
 
-App.focus_tab = async (item) => {
+App.focus_tab = async (item, scroll) => {
   if (item.created) {
-    App.select_item(item)
+    App.select_item(item, scroll)
   }
 
   if (item.window_id) {
@@ -710,7 +688,7 @@ App.go_to_previous_tab = async () => {
   let item = App.get_item_by_id(`tabs`, prev_tab.id)
 
   if (item) {
-    App.focus_tab(item)
+    App.focus_tab(item, `center`)
     App.previous_tabs_index += 1
 
     if (App.previous_tabs_index >= App.previous_tabs.length) {
@@ -973,6 +951,26 @@ App.detach_current_tab = async () => {
   }
 
   App.detach_tab(tab)
+}
+
+App.copy_current_tab_url = async () => {
+  let tab = await App.get_active_tab()
+
+  if (!tab) {
+    return
+  }
+
+  App.copy_to_clipboard(tab.url)
+}
+
+App.copy_current_tab_title = async () => {
+  let tab = await App.get_active_tab()
+
+  if (!tab) {
+    return
+  }
+
+  App.copy_to_clipboard(tab.title)
 }
 
 App.switch_to_tabs = () => {

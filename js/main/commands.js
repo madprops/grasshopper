@@ -19,6 +19,8 @@ App.commands = [
   [`New Tab`, `new_tab`],
   [`Star Tab`, `star_tab`],
   [`Title Tab`, `title_tab`],
+  [`Copy URL`, `copy_tab_url`],
+  [`Copy Title`, `copy_tab_title`],
   [`Tabs Info`, `tabs_info`],
   [`Clean Tabs`, `clean_tabs`],
   [`Close Duplicates`, `close_duplicates`],
@@ -185,6 +187,20 @@ App.run_command = (cmd) => {
     }
 
     App.title_from_active()
+  }
+  else if (cmd === `copy_tab_url`) {
+    if (mode !== `tabs`) {
+      App.show_item_window(`tabs`)
+    }
+
+    App.copy_current_tab_url()
+  }
+  else if (cmd === `copy_tab_title`) {
+    if (mode !== `tabs`) {
+      App.show_item_window(`tabs`)
+    }
+
+    App.copy_current_tab_title()
   }
   else if (cmd === `close_tab`) {
     if (mode !== `tabs`) {
