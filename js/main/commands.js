@@ -50,7 +50,6 @@ App.commands = [
 App.run_command = (cmd) => {
   let mode = App.window_mode
   let on_items = App.on_item_window(mode) && !App.popup_open
-  App.update_command_history(cmd)
 
   if (cmd === `go_back`) {
     if (on_items) {
