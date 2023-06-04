@@ -156,8 +156,16 @@ App.detect_theme = async () => {
     d2.style.color = text_color
     document.body.append(d2)
 
-    App.background_color_picker.setColor(background_color)
-    App.text_color_picker.setColor(text_color)
+    App.set_setting(`background_color`, background_color)
+    App.set_setting(`text_color`, text_color)
+
+    if (App.window_mode === `settings_theme`) {
+      App.background_color_picker.setColor(background_color)
+      App.text_color_picker.setColor(text_color)
+    }
+    else {
+      App.apply_theme()
+    }
 
     d1.remove()
     d2.remove()
@@ -184,5 +192,10 @@ App.set_background_image = (url) => {
 App.change_theme = (what) => {
   App.set_setting(`background_color`, App[`${what}_theme`].background_color)
   App.set_setting(`text_color`, App[`${what}_theme`].text_color)
+  App.apply_theme()
+}
+
+App.remove_background_image = () => {
+  App.set_setting(`background_image`, ``)
   App.apply_theme()
 }

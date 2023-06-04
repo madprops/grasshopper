@@ -33,7 +33,9 @@ App.commands = [
   [`Show Videos`, `show_videos`],
   [`Dark Theme`, `dark_theme`],
   [`Light Theme`, `light_theme`],
+  [`Detect Theme`, `detect_theme`],
   [`Random Theme`, `random_theme`],
+  [`Remove Background`, `remove_background`],
   [`Reload Extension`, `reload_extension`],
 ]
 
@@ -182,8 +184,14 @@ App.run_command = (cmd) => {
   else if (cmd === `light_theme`) {
     App.change_theme(`light`)
   }
+  else if (cmd === `detect_theme`) {
+    App.detect_theme()
+  }
   else if (cmd === `random_theme`) {
     App.random_theme()
+  }
+  else if (cmd === `remove_background`) {
+    App.remove_background_image()
   }
   else if (cmd === `reload_tab`) {
     App.reload_current_tab()
