@@ -86,7 +86,7 @@ App.palette_next = (reverse = false) => {
   }
 
   for (let el of els) {
-    if (waypoint) {
+    if (waypoint && !el.classList.contains(`hidden`)) {
       App.palette_select(el)
       break
     }
