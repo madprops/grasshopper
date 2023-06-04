@@ -957,7 +957,7 @@ App.show_item_window = async (mode, cycle = false) => {
   }
 
   App.focus_filter(mode)
-  App.check_scrollers(mode)
+  App.do_check_scrollers(mode)
 }
 
 App.setup_item_window = (mode) => {
