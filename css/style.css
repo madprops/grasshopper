@@ -290,7 +290,6 @@ svg {
 
 .selected {
   background-color: var(--highlight_color);
-  text-shadow: 0 0 1rem currentColor;
 }
 
 .hidden {
