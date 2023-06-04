@@ -42,6 +42,9 @@ App.apply_theme = () => {
     let highlight_color = App.colorlib.get_lighter_or_darker(background, 0.17)
     App.set_css_var(`highlight_color`, highlight_color)
 
+    let button_color = App.colorlib.get_lighter_or_darker(background, 0.14)
+    App.set_css_var(`button_color`, button_color)
+
     App.set_css_var(`font_size`, App.get_setting(`font_size`) + `px`)
     App.set_css_var(`font`, `${App.get_setting(`font`)}, sans-serif`)
 
