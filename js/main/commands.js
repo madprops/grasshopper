@@ -31,8 +31,8 @@ App.commands = [
   [`Show All`, `show_all`],
   [`Show Images`, `show_images`],
   [`Show Videos`, `show_videos`],
-  [`Dark Theme`, `random_dark_theme`],
-  [`Light Theme`, `random_light_theme`],
+  [`Dark Theme`, `dark_theme`],
+  [`Light Theme`, `light_theme`],
   [`Random Theme`, `random_theme`],
   [`Reload Extension`, `reload_extension`],
 ]
@@ -176,14 +176,14 @@ App.run_command = (cmd) => {
   else if (cmd === `star_tab`) {
     App.star_from_active()
   }
+  else if (cmd === `dark_theme`) {
+    App.change_theme(`dark`)
+  }
+  else if (cmd === `light_theme`) {
+    App.change_theme(`light`)
+  }
   else if (cmd === `random_theme`) {
     App.random_theme()
-  }
-  else if (cmd === `random_dark_theme`) {
-    App.random_theme(`dark`)
-  }
-  else if (cmd === `random_light_theme`) {
-    App.random_theme(`light`)
   }
   else if (cmd === `reload_tab`) {
     App.reload_current_tab()

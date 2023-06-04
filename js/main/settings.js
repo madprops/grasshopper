@@ -412,12 +412,16 @@ App.start_theme_settings = () => {
   start_color_picker(`background`)
   start_color_picker(`text`)
 
-  DOM.ev(DOM.el(`#settings_random_dark_theme`), `click`, () => {
-    App.random_theme(`dark`)
+  DOM.ev(DOM.el(`#settings_dark_theme`), `click`, () => {
+    App.change_theme(`dark`)
   })
 
-  DOM.ev(DOM.el(`#settings_random_light_theme`), `click`, () => {
-    App.random_theme(`light`)
+  DOM.ev(DOM.el(`#settings_light_theme`), `click`, () => {
+    App.change_theme(`light`)
+  })
+
+  DOM.ev(DOM.el(`#settings_random_theme`), `click`, () => {
+    App.random_theme()
   })
 
   DOM.ev(DOM.el(`#settings_detect_theme`), `click`, () => {

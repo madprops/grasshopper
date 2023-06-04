@@ -3,6 +3,16 @@ App.setup_theme = () => {
   App.apply_theme()
 }
 
+App.dark_theme = {
+  background_color: `rgb(70, 76, 94)`,
+  text_color: `rgb(218, 219, 223)`,
+}
+
+App.light_theme = {
+  background_color: `rgb(207, 218, 242)`,
+  text_color: `rgb(104, 109, 121)`,
+}
+
 App.apply_theme = () => {
   try {
     App.set_css_var(`background_color`, App.get_setting(`background_color`))
@@ -90,11 +100,15 @@ App.random_theme = (what) => {
   if (what) {
     colors = App.get_random_theme(what)
   }
-  else if (App.colorlib.is_dark(App.get_setting(`background_color`))) {
-    colors = App.get_random_theme(`light`)
-  }
   else {
-    colors = App.get_random_theme(`dark`)
+    let n = App.get_random_int(1, 3)
+
+    if (n === 1) {
+      colors = App.get_random_theme(`light`)
+    }
+    else {
+      colors = App.get_random_theme(`dark`)
+    }
   }
 
   App.set_setting(`background_color`, colors.background_color)
@@ -164,5 +178,11 @@ App.color_diff = (what) => {
 
 App.set_background_image = (url) => {
   App.set_setting(`background_image`, url)
+  App.apply_theme()
+}
+
+App.change_theme = (what) => {
+  App.set_setting(`background_color`, App[`${what}_theme`].background_color)
+  App.set_setting(`text_color`, App[`${what}_theme`].text_color)
   App.apply_theme()
 }

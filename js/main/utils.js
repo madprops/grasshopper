@@ -212,3 +212,20 @@ App.focused_with_class = (cls) => {
 App.reload_extension = () => {
   browser.runtime.reload()
 }
+
+App.get_random_int = (min, max, exclude = undefined) => {
+  let num = Math.floor(Math.random() * (max - min + 1) + min)
+
+  if (exclude !== undefined) {
+    if (num === exclude) {
+      if (num + 1 <= max) {
+        num = num + 1
+      }
+      else if (num - 1 >= min) {
+        num = num - 1
+      }
+    }
+  }
+
+  return num
+}
