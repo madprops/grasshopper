@@ -368,43 +368,45 @@ App.show_item_menu = (item, x, y) => {
   let items = []
 
   if (item.mode === `tabs`) {
-    if (item.pinned) {
-      items.push({
-        text: `Unpin`,
-        action: () => {
-          App.unpin_tabs(item)
-        }
-      })
-    }
-    else {
-      items.push({
-        text: `Pin`,
-        action: () => {
-          App.pin_tabs(item)
-        }
-      })
-    }
+    if (!item.discarded) {
+      if (item.pinned) {
+        items.push({
+          text: `Unpin`,
+          action: () => {
+            App.unpin_tabs(item)
+          }
+        })
+      }
+      else {
+        items.push({
+          text: `Pin`,
+          action: () => {
+            App.pin_tabs(item)
+          }
+        })
+      }
 
-    if (item.muted) {
-      items.push({
-        text: `Unmute`,
-        action: () => {
-          App.unmute_tabs(item)
-        }
-      })
-    }
-    else {
-      items.push({
-        text: `Mute`,
-        action: () => {
-          App.mute_tabs(item)
-        }
-      })
-    }
+      if (item.muted) {
+        items.push({
+          text: `Unmute`,
+          action: () => {
+            App.unmute_tabs(item)
+          }
+        })
+      }
+      else {
+        items.push({
+          text: `Mute`,
+          action: () => {
+            App.mute_tabs(item)
+          }
+        })
+      }
 
-    items.push({
-      separator: true
-    })
+      items.push({
+        separator: true
+      })
+    }
   }
   else {
     items.push({
