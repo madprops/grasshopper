@@ -1,6 +1,8 @@
 App.setup_palette = () => {
   App.create_popup({
     id: `palette`, setup: () => {
+      App.fill_palette_container()
+
       DOM.ev(DOM.el(`#palette_commands`), `click`, (e) => {
         App.palette_action(e.target)
       })
@@ -128,6 +130,7 @@ App.palette_action = (el) => {
     App.hide_popup(`palette`)
     App.run_command(cmd)
     App.update_command_history(cmd)
+    App.fill_palette_container()
   }
 }
 

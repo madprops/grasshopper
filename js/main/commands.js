@@ -276,6 +276,4 @@ App.sort_commands = () => {
       return 1
     }
   })
-
-  App.fill_palette_container()
 }
