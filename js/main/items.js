@@ -993,6 +993,7 @@ App.show_item_window = async (mode, cycle = false) => {
   }
 
   App.focus_filter(mode)
+  App.check_scrollers(mode)
 }
 
 App.setup_item_window = (mode) => {
@@ -1020,11 +1021,11 @@ App.setup_item_window = (mode) => {
     bottom_scroller.textContent = `Scroll To Bottom`
 
     DOM.ev(top_scroller, `click`, () => {
-      App.goto_top(mode)
+      App.goto_top(mode, `instant`)
     })
 
     DOM.ev(bottom_scroller, `click`, () => {
-      App.goto_bottom(mode)
+      App.goto_bottom(mode, `instant`)
     })
 
     DOM.ev(container, `scroll`, () => {
@@ -1188,7 +1189,6 @@ App.setup_item_window = (mode) => {
 
     top.append(left_top)
     top.append(right_top)
-    App.check_scrollers(mode)
   }
 
   App.create_window(args)
@@ -1725,21 +1725,21 @@ App.show_launched = (item) => {
   }, 1000)
 }
 
-App.goto_top = (mode) => {
+App.goto_top = (mode, behavior) => {
   let el = DOM.el(`#${mode}_container`)
 
   el.scrollTo({
     top: 0,
-    behavior: App.get_scroll_behavior(),
+    behavior: behavior || App.get_scroll_behavior(),
   })
 }
 
-App.goto_bottom = (mode) => {
+App.goto_bottom = (mode, behavior) => {
   let el = DOM.el(`#${mode}_container`)
 
   el.scrollTo({
     top: el.scrollHeight,
-    behavior: App.get_scroll_behavior(),
+    behavior: behavior || App.get_scroll_behavior(),
   })
 }
 
