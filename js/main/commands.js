@@ -14,6 +14,7 @@ App.commands = [
   [`Show Closed`, `show_closed`],
   [`Show Stars`, `show_stars`],
   [`Show Settings`, `show_settings`],
+  [`Show About`, `show_about`],
   [`Close Window`, `close_window`],
   [`New Tab`, `new_tab`],
   [`Star Tab`, `star_tab`],
@@ -32,7 +33,7 @@ App.commands = [
   [`Show Videos`, `show_videos`],
   [`Dark Theme`, `random_dark_theme`],
   [`Light Theme`, `random_light_theme`],
-  [`Dark / Light`, `random_theme`],
+  [`Random Theme`, `random_theme`],
   [`Reload Extension`, `reload_extension`],
 ]
 
@@ -116,6 +117,9 @@ App.run_command = (cmd) => {
   }
   else if (cmd === `show_settings`) {
     App.show_window(`settings_basic`)
+  }
+  else if (cmd === `show_about`) {
+    App.show_window(`about`)
   }
   else if (cmd === `close_window`) {
     App.hide_current_window()

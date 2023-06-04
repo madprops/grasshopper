@@ -28,6 +28,7 @@ App.setup_about = () => {
       `Shift while on scrollwheel makes it scroll faster`,
       `Escape clears the filter and closes windows/popups`,
       `Check the Gestures settings for more information`,
+      `Double tap Ctrl to show the command palette`,
     ]
 
     DOM.ev(DOM.el(`#about_info`), `click`, () => {

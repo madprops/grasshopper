@@ -1799,6 +1799,13 @@ App.show_main_menu = (mode) => {
   })
 
   items.push({
+    text: `Cmd...`,
+    action: () => {
+      App.show_palette()
+    }
+  })
+
+  items.push({
     text: `Settings`,
     action: () => {
       App.show_window(`settings_basic`)
