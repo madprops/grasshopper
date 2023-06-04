@@ -4,7 +4,6 @@
   --item_margin_1: 0.45rem;
   --item_margin_2: 0.65rem;
   --border_radius: 3px;
-  --footer_height: 2.2rem;
 }
 
 @keyframes rotate {
@@ -305,33 +304,6 @@ svg {
 
 .action:hover {
   text-shadow: 0 0 1rem currentColor;
-}
-
-.footer {
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  overflow: hidden;
-  white-space: nowrap;
-  min-height: var(--footer_height);
-  border-top: 2px solid var(--alt_color_1);
-  margin-left: var(--item_margin_1);
-  margin-right: var(--item_margin_1);
-  gap: 0.5rem;
-  flex-grow: 0;
-  flex-shrink: 0;
-}
-
-.hide_footer .footer {
-  display: none;
-}
-
-.footer_info {
-  flex-grow: 1;
-}
-
-.footer div {
-  flex-shrink: 0;
 }
 
 .flex_column_center {
@@ -726,11 +698,11 @@ select {
   left: 0;
   z-index: 999;
   cursor: pointer;
-  border: 0px solid var(--text_color);
+  border: 1px solid var(--alt_color_1);
 }
 
 .scroller:hover {
-  border-width: 1px;
+  border-color: var(--alt_color_2);
 }
 
 .top_scroller {
@@ -738,5 +710,5 @@ select {
 }
 
 .bottom_scroller {
-  bottom: var(--footer_height);
+  bottom: 0;
 }

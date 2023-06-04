@@ -53,7 +53,6 @@ App.default_settings = {
   clear_filter: {value: true, category: `more`, version: 1},
   show_tooltips: {value: true, category: `more`, version: 1},
   show_icons: {value: true, category: `more`, version: 1},
-  show_footer: {value: true, category: `more`, version: 1},
   show_pinline: {value: true, category: `more`, version: 1},
   highlight_effect: {value: `rotate`, category: `more`, version: 1},
   close_on_focus: {value: true, category: `more`, version: 1},
