@@ -975,11 +975,11 @@ App.setup_item_window = (mode) => {
     bottom_scroller.textContent = `Scroll To Bottom`
 
     DOM.ev(top_scroller, `click`, () => {
-      App.goto_top(mode, `instant`)
+      App.goto_top(mode)
     })
 
     DOM.ev(bottom_scroller, `click`, () => {
-      App.goto_bottom(mode, `instant`)
+      App.goto_bottom(mode)
     })
 
     DOM.ev(container, `scroll`, () => {
