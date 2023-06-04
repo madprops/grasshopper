@@ -40,6 +40,21 @@ App.setup_window_mouse = (mode) => {
     }
   })
 
+  DOM.ev(container, `mouseover`, (e) => {
+    if (App.cursor_on_item(e, mode)) {
+      let item = App.get_cursor_item(mode, e)
+      App.update_footer_info(item)
+    }
+  })
+
+  DOM.ev(container, `mouseout`, (e) => {
+    let item = App.get_selected(mode)
+
+    if (item) {
+      App.update_footer_info(item)
+    }
+  })
+
   DOM.ev(container, `wheel`, (e) => {
     if (e.shiftKey) {
       let direction = e.deltaY > 0 ? `down` : `up`

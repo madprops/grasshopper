@@ -698,6 +698,7 @@ select {
   z-index: 999;
   cursor: pointer;
   border: 1px solid var(--alt_color_1);
+  padding: 0.35rem;
 }
 
 .scroller:hover {
@@ -710,4 +711,25 @@ select {
 
 .bottom_scroller {
   bottom: 0;
+}
+
+.footer {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  overflow: hidden;
+  white-space: nowrap;
+  cursor: pointer;
+  padding-top: 0.35rem;
+  padding-bottom: 0.35rem;
+  padding-left: 0.1rem;
+  padding-right: 0.1rem;
+  background-color: var(--scroller_color);
+  border: 1px solid var(--alt_color_1);
+  gap: 0.5rem;
+  width: 100%;
+}
+
+.footer:hover {
+  border-color: var(--alt_color_2);
 }

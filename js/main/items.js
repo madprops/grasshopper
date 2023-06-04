@@ -39,6 +39,8 @@ App.select_item = async (item, scroll = `nearest`, dehighlight = true) => {
     })
   }
 
+  App.update_footer_info(item)
+
   if (item.mode === `tabs`) {
     try {
       await browser.tabs.warmup(item.id)
@@ -180,6 +182,43 @@ App.get_prev_visible_item = (mode, wrap = true) => {
   }
 }
 
+App.update_footer_info_debouncer = App.create_debouncer((item) => {
+  App.do_update_footer_info(item)
+}, App.footer_debouncer_delay)
+
+App.update_footer_info = (item) => {
+  App.update_footer_info_debouncer.call(item)
+}
+
+App.do_update_footer_info = (item) => {
+  if (item) {
+    App.footer_item = item
+    App.set_footer_info(item.mode, item.footer)
+  }
+  else {
+    App.empty_footer_info()
+  }
+}
+
+App.empty_footer_info = () => {
+  App.footer_item = undefined
+  App.set_footer_info(App.window_mode, `No Results`)
+}
+
+App.set_footer_info = (mode, text) => {
+  let footer = App.get_footer(mode)
+
+  if (footer) {
+    let info = DOM.el(`.footer_info`, footer)
+    info.textContent = text
+    info.title = text
+  }
+}
+
+App.get_footer = (mode) => {
+  return DOM.el(`#${mode}_footer`)
+}
+
 App.get_selected = (mode) => {
   return App[`selected_${mode}_item`]
 }
@@ -244,7 +283,7 @@ App.remove_item = (item) => {
 
   item.element.remove()
   App.filter_item_by_id(mode, item.id)
-  App.update_count(mode)
+  App.update_footer_count(mode)
 }
 
 App.focus_filter = (mode) => {
@@ -344,7 +383,7 @@ App.do_item_filter = async (mode) => {
 
   App.set_selected(mode, undefined)
   App.select_first_item(mode, !App.is_filtered(mode))
-  App.update_count(mode)
+  App.update_footer_count(mode)
   App.do_check_pinline()
 }
 
@@ -620,7 +659,7 @@ App.process_info_list = (mode, info_list) => {
     container.append(item.element)
   }
 
-  App.update_count(mode)
+  App.update_footer_count(mode)
   App.check_playing()
   App.do_check_pinline()
 }
@@ -685,6 +724,10 @@ App.process_info = (mode, info, exclude = [], o_item) => {
   if (o_item) {
     o_item = Object.assign(o_item, item)
     App.create_item_element(o_item)
+
+    if (App.get_selected(mode) === o_item) {
+      App.update_footer_info(o_item)
+    }
   }
   else {
     item.id = info.id || App[`${mode}_idx`]
@@ -818,24 +861,24 @@ App.set_item_text = (item) => {
     }
   }
 
-  let content, content_2
+  let content
   let path = decodeURI(item.path)
 
   if (App.get_setting(`text_mode`) === `title`) {
     content = item.title || path
-    content_2 = path || item.title
+    item.footer = path || item.title
   }
   else if (App.get_setting(`text_mode`) === `url`) {
     content = path || item.title
-    content_2 = item.title || path
+    item.footer = item.title || path
   }
 
   if (App.get_setting(`show_tooltips`)) {
-    if (content === content_2) {
+    if (content === item.footer) {
       item.element.title = content
     }
     else {
-      item.element.title = `${content}\n${content_2}`
+      item.element.title = `${content}\n${item.footer}`
     }
   }
 
@@ -919,6 +962,7 @@ App.get_last_window_value = (cycle) => {
 App.show_item_window = async (mode, cycle = false) => {
   let value = App.get_last_window_value(cycle)
   App.windows[mode].show()
+  App.empty_footer_info()
   App.cancel_filter(mode)
   DOM.el(`#${mode}_container`).innerHTML = ``
   App.set_filter(mode, value, false)
@@ -965,21 +1009,29 @@ App.setup_item_window = (mode) => {
 
     let win = DOM.el(`#window_content_${mode}`)
 
+    let footer = DOM.create(`div`, `footer`, `${mode}_footer`)
+
+    let footer_count = DOM.create(`div`, `footer_count`, `${mode}_footer_count`)
+    footer.append(footer_count)
+
+    let footer_info = DOM.create(`div`, `footer_info`, `${mode}_footer_info`)
+    footer.append(footer_info)
+
+    DOM.ev(footer, `click`, (e) => {
+      App.goto_bottom(mode)
+    })
+
+    DOM.el(`#window_${mode}`).append(footer)
+
     let top = DOM.create(`div`, `item_top_container`, `${mode}_top_container`)
     DOM.el(`#window_top_${mode}`).append(top)
 
     let container = DOM.create(`div`, `container`, `${mode}_container`)
     let top_scroller = DOM.create(`div`, `scroller top_scroller`, `${mode}_top_scroller`)
-    let bottom_scroller = DOM.create(`div`, `scroller bottom_scroller`, `${mode}_bottom_scroller`)
     top_scroller.textContent = `Scroll To Top`
-    bottom_scroller.textContent = `Scroll To Bottom`
 
     DOM.ev(top_scroller, `click`, () => {
       App.goto_top(mode)
-    })
-
-    DOM.ev(bottom_scroller, `click`, () => {
-      App.goto_bottom(mode)
     })
 
     DOM.ev(container, `scroll`, () => {
@@ -987,7 +1039,6 @@ App.setup_item_window = (mode) => {
     })
 
     win.append(top_scroller)
-    win.append(bottom_scroller)
     win.append(container)
     App.setup_window_mouse(mode)
 
@@ -1222,19 +1273,19 @@ App.get_item_order = () => {
   App.item_order = items.map(x => x.mode)
 }
 
-App.update_count = (mode) => {
+App.update_footer_count = (mode) => {
   let n1 = App.get_highlights(mode).length
   let n2 = App.get_visible(mode).length
   let count
 
   if (n1 > 0) {
-    count= `${n1} selected`
+    count= `(${n1}/${n2})`
   }
   else {
-    count = `Items: ${n2}`
+    count = `(${n2})`
   }
 
-  DOM.el(`#${mode}_filter`).placeholder = count
+  DOM.el(`#${mode}_footer_count`).textContent = count
 }
 
 App.set_filter = (mode, text, filter = true) => {
@@ -1588,7 +1639,7 @@ App.toggle_highlight = (item, what) => {
   }
 
   item.highlighted = highlight
-  App.update_count(item.mode)
+  App.update_footer_count(item.mode)
 }
 
 App.get_highlights = (mode) => {
@@ -1653,10 +1704,6 @@ App.show_launched = (item) => {
 App.goto_top = (mode, behavior) => {
   let el = DOM.el(`#${mode}_container`)
 
-  if (App.container_is_scrolled(mode)) {
-    App.show_scroller(mode, `bottom`)
-  }
-
   App.hide_scroller(mode, `top`)
 
   el.scrollTo({
@@ -1671,8 +1718,6 @@ App.goto_bottom = (mode, behavior) => {
   if (App.container_is_scrolled(mode)) {
     App.show_scroller(mode, `top`)
   }
-
-  App.hide_scroller(mode, `bottom`)
 
   el.scrollTo({
     top: el.scrollHeight,
@@ -1822,7 +1867,7 @@ App.insert_item = (mode, info) => {
     DOM.el(`#${mode}_container`).prepend(item.element)
   }
 
-  App.update_count(mode)
+  App.update_footer_count(mode)
   return item
 }
 
@@ -1982,13 +2027,6 @@ App.do_check_scrollers = (mode) => {
   }
   else {
     App.hide_scroller(mode, `top`)
-  }
-
-  if ((container.scrollTop + 100) < (container.scrollHeight - container.clientHeight)) {
-    App.show_scroller(mode, `bottom`)
-  }
-  else {
-    App.hide_scroller(mode, `bottom`)
   }
 }
 
