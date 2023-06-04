@@ -566,6 +566,10 @@ App.move_tabs = async (item, window_id) => {
 }
 
 App.detach_tabs = async (item) => {
+  if (!item) {
+    item = App.get_selected(`tabs`)
+  }
+
   if (App.get_active_items(`tabs`, item).length === 1) {
     await browser.windows.create({tabId: item.id, focused: false})
   }

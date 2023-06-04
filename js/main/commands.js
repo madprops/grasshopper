@@ -27,6 +27,7 @@ App.commands = [
   [`Forward`, `tab_forward`],
   [`Reload`, `reload_tab`],
   [`Duplicate`, `duplicate_tab`],
+  [`Detach`, `detach_tabs`],
   [`To Top`, `to_top`],
   [`To Bottom`, `to_bottom`],
   [`Close`, `close_tab`],
@@ -112,6 +113,11 @@ App.run_command = (cmd) => {
   else if (cmd === `to_bottom`) {
     if (on_items) {
       App.move_tabs_vertically(`bottom`)
+    }
+  }
+  else if (cmd === `detach_tabs`) {
+    if (on_items) {
+      App.detach_tabs()
     }
   }
   else if (cmd === `show_tabs`) {
