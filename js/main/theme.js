@@ -15,23 +15,35 @@ App.light_theme = {
 
 App.apply_theme = () => {
   try {
-    App.set_css_var(`background_color`, App.get_setting(`background_color`))
-    App.set_css_var(`text_color`, App.get_setting(`text_color`))
+    let background = App.get_setting(`background_color`)
+    let text = App.get_setting(`text_color`)
 
-    let main_background = App.colorlib.rgb_to_rgba(App.get_setting(`background_color`), 0.93)
+    App.set_css_var(`background_color`, background)
+    App.set_css_var(`text_color`, text)
+
+    let main_background = App.colorlib.rgb_to_rgba(background, 0.93)
     App.set_css_var(`main_background`, main_background)
 
-    let alt_color_0 = App.colorlib.rgb_to_rgba(App.get_setting(`text_color`), 0.15)
+    let alt_color_0 = App.colorlib.rgb_to_rgba(text, 0.15)
     App.set_css_var(`alt_color_0`, alt_color_0)
 
-    let alt_color_1 = App.colorlib.rgb_to_rgba(App.get_setting(`text_color`), 0.20)
+    let alt_color_1 = App.colorlib.rgb_to_rgba(text, 0.20)
     App.set_css_var(`alt_color_1`, alt_color_1)
 
-    let alt_color_2 = App.colorlib.rgb_to_rgba(App.get_setting(`text_color`), 0.50)
+    let alt_color_2 = App.colorlib.rgb_to_rgba(text, 0.50)
     App.set_css_var(`alt_color_2`, alt_color_2)
 
-    let alt_background = App.colorlib.rgb_to_rgba(App.get_setting(`background_color`), 0.55)
+    let alt_background = App.colorlib.rgb_to_rgba(background, 0.55)
     App.set_css_var(`alt_background`, alt_background)
+
+    let scroller_color = App.colorlib.get_lighter_or_darker(background, 0.11)
+    App.set_css_var(`scroller_color`, scroller_color)
+
+    let highlight_background = App.colorlib.get_lighter_or_darker(background, 0.28)
+    App.set_css_var(`highlight_background`, highlight_background)
+
+    let highlight_text = App.colorlib.get_lighter_or_darker(highlight_background, 0.72)
+    App.set_css_var(`highlight_text`, highlight_text)
 
     App.set_css_var(`font_size`, App.get_setting(`font_size`) + `px`)
     App.set_css_var(`font`, `${App.get_setting(`font`)}, sans-serif`)

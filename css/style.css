@@ -4,6 +4,7 @@
   --item_margin_1: 0.45rem;
   --item_margin_2: 0.65rem;
   --border_radius: 3px;
+  --footer_height: 2.2rem;
 }
 
 @keyframes rotate {
@@ -289,7 +290,8 @@ svg {
 }
 
 .selected {
-  background-color: var(--alt_color_1);
+  background-color: var(--highlight_background);
+  color: var(--highlight_text)
 }
 
 .hidden {
@@ -311,7 +313,7 @@ svg {
   align-items: center;
   overflow: hidden;
   white-space: nowrap;
-  min-height: 2.2rem;
+  min-height: var(--footer_height);
   border-top: 2px solid var(--alt_color_1);
   margin-left: var(--item_margin_1);
   margin-right: var(--item_margin_1);
@@ -711,4 +713,30 @@ select {
 
 .palette_selected {
   background-color: var(--alt_color_1);
+}
+
+.scroller {
+  position: absolute;
+  width: 100%;
+  height: 2rem;
+  background-color: var(--scroller_color);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  left: 0;
+  z-index: 999;
+  cursor: pointer;
+  border: 0px solid var(--text_color);
+}
+
+.scroller:hover {
+  border-width: 1px;
+}
+
+.top_scroller {
+  top: 0;
+}
+
+.bottom_scroller {
+  bottom: var(--footer_height);
 }

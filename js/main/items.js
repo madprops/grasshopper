@@ -1014,7 +1014,25 @@ App.setup_item_window = (mode) => {
 
     let container = DOM.create(`div`, `container`, `${mode}_container`)
     let footer = DOM.create(`div`, `footer`, `${mode}_footer`)
+    let top_scroller = DOM.create(`div`, `scroller top_scroller`, `${mode}_top_scroller`)
+    let bottom_scroller = DOM.create(`div`, `scroller bottom_scroller`, `${mode}_bottom_scroller`)
+    top_scroller.textContent = `Scroll To Top`
+    bottom_scroller.textContent = `Scroll To Bottom`
 
+    DOM.ev(top_scroller, `click`, () => {
+      App.goto_top(mode)
+    })
+
+    DOM.ev(bottom_scroller, `click`, () => {
+      App.goto_bottom(mode)
+    })
+
+    DOM.ev(container, `scroll`, () => {
+      App.check_scrollers(mode)
+    })
+
+    win.append(top_scroller)
+    win.append(bottom_scroller)
     win.append(container)
     win.append(footer)
 
@@ -1170,6 +1188,7 @@ App.setup_item_window = (mode) => {
 
     top.append(left_top)
     top.append(right_top)
+    App.check_scrollers(mode)
   }
 
   App.create_window(args)
@@ -2020,5 +2039,25 @@ App.get_scroll_behavior = () => {
   }
   else {
     return `instant`
+  }
+}
+
+App.check_scrollers = (mode) => {
+  let container = DOM.el(`#${mode}_container`)
+  let top_scroller = DOM.el(`#${mode}_top_scroller`)
+  let bottom_scroller = DOM.el(`#${mode}_bottom_scroller`)
+
+  if (container.scrollTop > 0) {
+    top_scroller.classList.remove(`hidden`)
+  }
+  else {
+    top_scroller.classList.add(`hidden`)
+  }
+
+  if (container.scrollTop < container.scrollHeight - container.clientHeight) {
+    bottom_scroller.classList.remove(`hidden`)
+  }
+  else {
+    bottom_scroller.classList.add(`hidden`)
   }
 }
