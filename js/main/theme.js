@@ -101,7 +101,7 @@ App.random_theme = (what) => {
     colors = App.get_random_theme(what)
   }
   else {
-    let n = App.get_random_int(1, 3)
+    let n = App.get_random_int(1, 2)
 
     if (n === 1) {
       colors = App.get_random_theme(`light`)
