@@ -2047,14 +2047,14 @@ App.check_scrollers = (mode) => {
   let top_scroller = DOM.el(`#${mode}_top_scroller`)
   let bottom_scroller = DOM.el(`#${mode}_bottom_scroller`)
 
-  if (container.scrollTop > 0) {
+  if (container.scrollTop > 100) {
     top_scroller.classList.remove(`hidden`)
   }
   else {
     top_scroller.classList.add(`hidden`)
   }
 
-  if (container.scrollTop < container.scrollHeight - container.clientHeight) {
+  if ((container.scrollTop + 100) < (container.scrollHeight - container.clientHeight)) {
     bottom_scroller.classList.remove(`hidden`)
   }
   else {
