@@ -51,7 +51,15 @@ App.create_footer = (mode) => {
   return footer
 }
 
+App.update_footer_count_debouncer = App.create_debouncer((mode) => {
+  App.do_update_footer_count(mode)
+}, App.footer_debouncer_delay)
+
 App.update_footer_count = (mode) => {
+  App.update_footer_count_debouncer.call(mode)
+}
+
+App.do_update_footer_count = (mode) => {
   let n1 = App.get_highlights(mode).length
   let n2 = App.get_visible(mode).length
   let count

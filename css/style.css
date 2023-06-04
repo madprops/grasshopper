@@ -721,8 +721,7 @@ select {
   cursor: pointer;
   padding-top: 0.35rem;
   padding-bottom: 0.35rem;
-  padding-left: 0.1rem;
-  padding-right: 0.1rem;
+  padding-left: 0.25rem;
   background-color: var(--scroller_color);
   border: 1px solid var(--alt_color_1);
   gap: 0.5rem;
