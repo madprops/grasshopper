@@ -1,28 +1,3 @@
-App.setup_commands = () => {
-  App.create_popup({
-    id: `palette`, setup: () => {
-      let container = DOM.el(`#palette_commands`)
-
-      for (let cmd of App.commands) {
-        console.log(cmd)
-        let el = DOM.create(`div`, `palette_item action`)
-        el.textContent = cmd[0]
-        el.dataset.command = cmd[1]
-        container.append(el)
-      }
-
-      DOM.ev(container, `click`, (e) => {
-        let cmd = e.target.dataset.command
-
-        if (cmd) {
-          App.run_command(cmd)
-          App.hide_popup(`palette`)
-        }
-      })
-    }
-  })
-}
-
 App.commands = [
   [`To Top`, `go_to_top`],
   [`To Bottom`, `go_to_bottom`],

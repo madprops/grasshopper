@@ -246,10 +246,10 @@ App.setup_keyboard = () => {
           e.preventDefault()
         }
         else if (e.key === `ArrowUp`) {
-          App.palette_select(true)
+          App.palette_next(true)
         }
         else if (e.key === `ArrowDown`) {
-          App.palette_select()
+          App.palette_next()
         }
         else {
           App.filter_palette()
