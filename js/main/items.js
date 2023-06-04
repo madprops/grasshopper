@@ -1231,11 +1231,10 @@ App.update_count = (mode) => {
     count= `${n1} selected`
   }
   else {
-    let label = App.plural(count, `item`, `items`)
-    count = `${n2} ${label}`
+    count = `Items: ${n2}`
   }
 
-  DOM.el(`#${mode}_filter`).placeholder = `Filter: ${count}`
+  DOM.el(`#${mode}_filter`).placeholder = count
 }
 
 App.set_filter = (mode, text, filter = true) => {
