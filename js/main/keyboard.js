@@ -253,9 +253,6 @@ App.setup_keyboard = () => {
           App.palette_next()
           e.preventDefault()
         }
-        else {
-          App.filter_palette()
-        }
 
         return
       }

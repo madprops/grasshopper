@@ -229,3 +229,7 @@ App.get_random_int = (min, max, exclude = undefined) => {
 
   return num
 }
+
+App.remove_spaces = (text) => {
+  return text.replace(/\s/g, ``)
+}

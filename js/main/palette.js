@@ -2,6 +2,7 @@ App.setup_palette = () => {
   App.create_popup({
     id: `palette`, setup: () => {
       let container = DOM.el(`#palette_commands`)
+      let filter = DOM.el(`#palette_filter`)
 
       for (let cmd of App.commands) {
         let el = DOM.create(`div`, `palette_item action`)
@@ -12,6 +13,10 @@ App.setup_palette = () => {
 
       DOM.ev(container, `click`, (e) => {
         App.palette_action(e.target)
+      })
+
+      DOM.ev(filter, `input`, (e) => {
+        App.filter_palette()
       })
     }
   })
@@ -38,13 +43,17 @@ App.filter_palette = () => {
   let container = DOM.el(`#palette_commands`)
   let filter = DOM.el(`#palette_filter`)
   let value = filter.value.trim().toLowerCase()
+  value = App.remove_spaces(value)
 
   for (let el of DOM.els(`.palette_item`, container)) {
-    if (el.textContent.toLowerCase().indexOf(value) === -1) {
-      el.classList.add(`hidden`)
+    let text = el.textContent.toLowerCase()
+    text = App.remove_spaces(text)
+
+    if (text.includes(value)) {
+      el.classList.remove(`hidden`)
     }
     else {
-      el.classList.remove(`hidden`)
+      el.classList.add(`hidden`)
     }
   }
 
