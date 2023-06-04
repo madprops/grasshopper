@@ -383,6 +383,7 @@ App.do_item_filter = async (mode) => {
 
   App.set_selected(mode, undefined)
   App.select_first_item(mode, !App.is_filtered(mode))
+  App.update_footer_info(App.get_selected(mode))
   App.update_footer_count(mode)
   App.do_check_pinline()
   App.do_check_scrollers(mode)
