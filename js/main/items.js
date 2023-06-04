@@ -381,10 +381,12 @@ App.do_item_filter = async (mode) => {
     }
   }
 
+  App.hide_scroller(mode, `top`)
   App.set_selected(mode, undefined)
   App.select_first_item(mode, !App.is_filtered(mode))
   App.update_footer_count(mode)
   App.do_check_pinline()
+  App.do_check_scrollers(mode)
 }
 
 App.show_item = (it) => {
