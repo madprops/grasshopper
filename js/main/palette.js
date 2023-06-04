@@ -79,22 +79,38 @@ App.palette_select_first = () => {
 App.palette_next = (reverse = false) => {
   let container = DOM.el(`#palette_commands`)
   let els = DOM.els(`.palette_item`, container)
+
+  if (els.length < 2) {
+    return
+  }
+
   let waypoint = false
 
   if (reverse) {
     els.reverse()
   }
 
+  let first
+
   for (let el of els) {
-    if (waypoint && !el.classList.contains(`hidden`)) {
-      App.palette_select(el)
-      break
+    if (!el.classList.contains(`hidden`)) {
+      if (waypoint) {
+        App.palette_select(el)
+        return
+      }
+      else {
+        if (!first) {
+          first = el
+        }
+      }
     }
 
     if (el === App.palette_selected) {
       waypoint = true
     }
   }
+
+  App.palette_select(first)
 }
 
 App.palette_enter = () => {
