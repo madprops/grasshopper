@@ -289,8 +289,8 @@ svg {
 }
 
 .selected {
-  background-color: var(--highlight_background);
-  color: var(--highlight_text)
+  background-color: var(--highlight_color);
+  text-shadow: 0 0 1rem currentColor;
 }
 
 .hidden {
