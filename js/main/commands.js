@@ -248,6 +248,12 @@ App.run_command = (cmd) => {
 
 App.update_command_history = (cmd) => {
   App.command_history = App.command_history.filter(x => x !== cmd)
+
+  // Remove non-existent commands
+  App.command_history = App.command_history.filter(x => {
+    return App.commands.some(y => y[1] === x)
+  })
+
   App.command_history.unshift(cmd)
   App.stor_save_command_history()
   App.sort_commands()
