@@ -290,18 +290,8 @@ App.setup_settings = () => {
 
   App.create_window(Object.assign({}, common, {id: `settings_warns`, setup: () => {
     prepare(`warns`)
-
-    App.settings_make_menu(`warn_on_close`, [
-      [`All`, `all`],
-      [`Special`, `special`],
-      [`None`, `none`],
-    ])
-
-    App.settings_make_menu(`warn_on_suspend`, [
-      [`All`, `all`],
-      [`Special`, `special`],
-      [`None`, `none`],
-    ])
+    App.settings_make_menu(`warn_on_close`, App.tab_warn_opts)
+    App.settings_make_menu(`warn_on_suspend`, App.tab_warn_opts)
   }}))
 
   App.create_window(Object.assign({}, common, {id: `settings_order`, setup: () => {
@@ -807,3 +797,9 @@ App.get_gesture_options = () => {
 
   return items
 }
+
+App.tab_warn_opts = [
+  [`All`, `all`],
+  [`Special`, `special`],
+  [`None`, `none`],
+]
