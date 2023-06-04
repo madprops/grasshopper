@@ -1028,7 +1028,7 @@ App.setup_item_window = (mode) => {
 
     let container = DOM.create(`div`, `container`, `${mode}_container`)
     let top_scroller = DOM.create(`div`, `scroller top_scroller`, `${mode}_top_scroller`)
-    top_scroller.textContent = `Scroll To Top`
+    top_scroller.textContent = `Go To Top`
 
     DOM.ev(top_scroller, `click`, () => {
       App.goto_top(mode)
