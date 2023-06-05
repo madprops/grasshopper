@@ -37,7 +37,7 @@ App.commands = [
   [`Detach`, `detach_tab`],
   [`Tabs To Top`, `tabs_to_top`],
   [`Tabs To Bottom`, `tabs_to_bottom`],
-  [`Close`, `close_tab`],
+  [`Close Tab`, `close_tab`],
   [`Show All`, `show_all`],
   [`Show Images`, `show_images`],
   [`Show Videos`, `show_videos`],
@@ -122,11 +122,6 @@ App.run_command = (cmd) => {
       App.move_tabs_vertically(`bottom`)
     }
   }
-  else if (cmd === `detach_tab`) {
-    if (on_items) {
-      App.detach_current_tab()
-    }
-  }
   else if (cmd === `show_tabs`) {
     App.show_item_window(`tabs`)
   }
@@ -193,27 +188,6 @@ App.run_command = (cmd) => {
 
     App.title_from_active()
   }
-  else if (cmd === `copy_tab_url`) {
-    if (mode !== `tabs`) {
-      App.show_item_window(`tabs`)
-    }
-
-    App.copy_current_tab_url()
-  }
-  else if (cmd === `copy_tab_title`) {
-    if (mode !== `tabs`) {
-      App.show_item_window(`tabs`)
-    }
-
-    App.copy_current_tab_title()
-  }
-  else if (cmd === `close_tab`) {
-    if (mode !== `tabs`) {
-      App.show_item_window(`tabs`)
-    }
-
-    App.close_current_tab()
-  }
   else if (cmd === `star_tab`) {
     App.star_from_active()
   }
@@ -229,20 +203,32 @@ App.run_command = (cmd) => {
   else if (cmd === `random_theme`) {
     App.random_theme()
   }
-  else if (cmd === `reload_tab`) {
-    App.reload_current_tab()
-  }
   else if (cmd === `tab_back`) {
     App.tab_back()
   }
   else if (cmd === `tab_forward`) {
     App.tab_forward()
   }
+  else if (cmd === `reload_extension`) {
+    App.reload_extension()
+  }
   else if (cmd === `duplicate_tab`) {
     App.duplicate_current_tab()
   }
-  else if (cmd === `reload_extension`) {
-    App.reload_extension()
+  else if (cmd === `detach_tab`) {
+    App.detach_current_tab()
+  }
+  else if (cmd === `copy_tab_url`) {
+    App.copy_current_tab_url()
+  }
+  else if (cmd === `copy_tab_title`) {
+    App.copy_current_tab_title()
+  }
+  else if (cmd === `close_tab`) {
+    App.close_current_tab()
+  }
+  else if (cmd === `reload_tab`) {
+    App.reload_current_tab()
   }
 }
 

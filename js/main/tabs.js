@@ -377,18 +377,18 @@ App.suspend_tabs = (item) => {
 }
 
 App.check_tab_warn = (items, setting) => {
-  let warn_on_close = App.get_setting(setting)
+  let warn_on_action = App.get_setting(setting)
 
-  if (warn_on_close === `all`) {
+  if (warn_on_action === `all`) {
     return true
   }
-  else if (warn_on_close === `none`) {
+  else if (warn_on_action === `none`) {
     return false
   }
 
   for (let item of items) {
     if (item.pinned || item.audible) {
-      if (warn_on_close === `special`) {
+      if (warn_on_action === `special`) {
         return true
       }
     }
@@ -912,13 +912,7 @@ App.close_current_tab = async () => {
     return
   }
 
-  let item = App.get_item_by_id(`tabs`, tab.id)
-
-  if (!item) {
-    return
-  }
-
-  App.close_tabs(item, undefined, false)
+  App.close_tab(tab.id)
 }
 
 App.reload_current_tab = () => {
