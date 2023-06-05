@@ -135,6 +135,11 @@ App.setup_drag = (mode) => {
       App.drag_els.push(item.element)
     }
 
+    let leader_top_id = App.drag_els[0].dataset.id
+    let leader_bottom_id = App.drag_els[App.drag_els.length - 1].dataset.id
+    App.drag_leader_top = App.get_item_by_id(mode, leader_top_id)
+    App.drag_leader_bottom = App.get_item_by_id(mode, leader_bottom_id)
+
     App.drag_moved = false
   })
 
@@ -164,19 +169,18 @@ App.setup_drag = (mode) => {
         }
       }
 
-      let leader_id
+      let leader
 
       if (direction === `down`) {
-        leader_id = App.drag_els[App.drag_els.length - 1].dataset.id
+        leader = `bottom`
         el.after(...App.drag_els)
       }
       else {
-        leader_id = App.drag_els[0].dataset.id
+        leader = `top`
         el.before(...App.drag_els)
       }
 
-      let leader = App.get_item_by_id(mode, leader_id)
-      App.scroll_to_item(leader, `nearest_instant`)
+      App.scroll_to_item(App[`drag_leader_${leader}`], `nearest_instant`)
       App.drag_moved = true
     }
 
