@@ -154,6 +154,10 @@ App.hide_current_window = () => {
   }
 
   App.windows[App.window_mode].hide()
+
+  if (App.on_item_window()) {
+    App.focus_selected(App.window_mode, `center`)
+  }
 }
 
 App.make_window_visible = () => {

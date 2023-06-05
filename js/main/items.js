@@ -19,24 +19,7 @@ App.select_item = async (item, scroll = `nearest`, dehighlight = true) => {
   App.get_selected(item.mode).element.classList.add(`selected`)
 
   if (scroll !== `none`) {
-    let behavior
-
-    if (scroll === `nearest_instant`) {
-      scroll = `nearest`
-      behavior = `instant`
-    }
-    else if (scroll === `center_instant`) {
-      scroll = `center`
-      behavior = `instant`
-    }
-    else {
-      behavior = App.get_scroll_behavior()
-    }
-
-    App.get_selected(item.mode).element.scrollIntoView({
-      block: scroll,
-      behavior: behavior,
-    })
+    App.focus_selected(item.mode, scroll)
   }
 
   App.update_footer_info(item)
@@ -1987,4 +1970,25 @@ App.clear_or_all = (mode) => {
       App.show_all(mode)
     }
   }
+}
+
+App.focus_selected = (mode, scroll = `nearest`) => {
+  let behavior
+
+  if (scroll === `nearest_instant`) {
+    scroll = `nearest`
+    behavior = `instant`
+  }
+  else if (scroll === `center_instant`) {
+    scroll = `center`
+    behavior = `instant`
+  }
+  else {
+    behavior = App.get_scroll_behavior()
+  }
+
+  App.get_selected(mode).element.scrollIntoView({
+    block: scroll,
+    behavior: behavior,
+  })
 }
