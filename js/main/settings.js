@@ -530,6 +530,15 @@ App.get_size_options = () => {
   return opts
 }
 
+App.show_settings = () => {
+  if (App.last_settings_window) {
+    App.show_window(App.last_settings_window)
+  }
+  else {
+    App.show_window(`settings_basic`)
+  }
+}
+
 App.show_settings_window = (category) => {
   App.show_window(`settings_${category}`)
 }

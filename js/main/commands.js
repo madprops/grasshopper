@@ -138,7 +138,7 @@ App.run_command = (cmd) => {
     App.show_item_window(`stars`)
   }
   else if (cmd === `show_settings`) {
-    App.show_window(`settings_basic`)
+    App.show_settings()
   }
   else if (cmd === `show_about`) {
     App.show_window(`about`)

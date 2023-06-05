@@ -1721,7 +1721,7 @@ App.show_main_menu = (mode) => {
   items.push({
     text: `Settings`,
     action: () => {
-      App.show_window(`settings_basic`)
+      App.show_settings()
     }
   })
 
