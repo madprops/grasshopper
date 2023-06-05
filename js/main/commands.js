@@ -46,6 +46,7 @@ App.commands = [
   [`Detect Theme`, `detect_theme`],
   [`Random Theme`, `random_theme`],
   [`Reload Extension`, `reload_extension`],
+  [`Clear All Data`, `clear_all_data`],
 ]
 
 App.run_command = (cmd) => {
@@ -211,6 +212,9 @@ App.run_command = (cmd) => {
   }
   else if (cmd === `reload_extension`) {
     App.reload_extension()
+  }
+  else if (cmd === `clear_all_data`) {
+    App.stor_clear_all_data()
   }
   else if (cmd === `duplicate_tab`) {
     App.duplicate_current_tab()
