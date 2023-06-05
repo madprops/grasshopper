@@ -990,5 +990,6 @@ App.autoselect_tab = () => {
     return
   }
 
+  App.dehighlight(`tabs`)
   App.focus_current_tab()
 }
