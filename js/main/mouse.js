@@ -138,26 +138,6 @@ App.setup_drag = (mode) => {
     App.drag_moved = false
   })
 
-  DOM.ev(container, `dragend`, (e) => {
-    App.dragging = false
-    App.do_check_scroller(mode)
-
-    if (!App.drag_element) {
-      App.drag_element = undefined
-      e.preventDefault()
-      return false
-    }
-
-    App.drag_element = undefined
-
-    if (!App.drag_moved) {
-      e.preventDefault()
-      return false
-    }
-
-    App.update_tab_index()
-  })
-
   DOM.ev(container, `dragenter`, (e) => {
     if (!App.drag_element) {
       e.preventDefault()
@@ -184,18 +164,44 @@ App.setup_drag = (mode) => {
         }
       }
 
+      let leader_id
+
       if (direction === `down`) {
+        leader_id = App.drag_els[App.drag_els.length - 1].dataset.id
         el.after(...App.drag_els)
       }
       else {
+        leader_id = App.drag_els[0].dataset.id
         el.before(...App.drag_els)
       }
 
+      let leader = App.get_item_by_id(mode, leader_id)
+      App.scroll_to_item(leader, `nearest_instant`)
       App.drag_moved = true
     }
 
     e.preventDefault()
     return false
+  })
+
+  DOM.ev(container, `dragend`, (e) => {
+    App.dragging = false
+    App.do_check_scroller(mode)
+
+    if (!App.drag_element) {
+      App.drag_element = undefined
+      e.preventDefault()
+      return false
+    }
+
+    App.drag_element = undefined
+
+    if (!App.drag_moved) {
+      e.preventDefault()
+      return false
+    }
+
+    App.update_tab_index()
   })
 }
 
