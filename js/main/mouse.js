@@ -94,6 +94,8 @@ App.setup_drag = (mode) => {
   let container = DOM.el(`#${mode}_container`)
 
   DOM.ev(container, `dragstart`, (e) => {
+    App.dragging = true
+
     if (App.get_setting(`lock_drag`) && !e.ctrlKey) {
       e.preventDefault()
       return false
@@ -136,6 +138,8 @@ App.setup_drag = (mode) => {
   })
 
   DOM.ev(container, `dragend`, (e) => {
+    App.dragging = false
+
     if (!App.drag_element) {
       App.drag_element = undefined
       e.preventDefault()

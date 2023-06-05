@@ -986,5 +986,9 @@ App.autoselect_tab = () => {
     return
   }
 
+  if (App.dragging) {
+    return
+  }
+
   App.focus_current_tab()
 }
