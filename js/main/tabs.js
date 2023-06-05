@@ -986,9 +986,5 @@ App.autoselect_tab = () => {
     return
   }
 
-  clearTimeout(App.autoselect_tab_timeout)
-
-  App.autoselect_tab_timeout = setTimeout(() => {
-    App.focus_current_tab()
-  }, App.autoselect_tab_delay)
+  App.focus_current_tab()
 }
