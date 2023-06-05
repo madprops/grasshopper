@@ -35,8 +35,8 @@ App.commands = [
   [`Reload`, `reload_tab`],
   [`Duplicate`, `duplicate_tab`],
   [`Detach`, `detach_tab`],
-  [`To Top`, `to_top`],
-  [`To Bottom`, `to_bottom`],
+  [`Tabs To Top`, `tabs_to_top`],
+  [`Tabs To Bottom`, `tabs_to_bottom`],
   [`Close`, `close_tab`],
   [`Show All`, `show_all`],
   [`Show Images`, `show_images`],
@@ -112,12 +112,12 @@ App.run_command = (cmd) => {
       App.scroll(mode, `down`, true)
     }
   }
-  else if (cmd === `to_top`) {
+  else if (cmd === `tabs_to_top`) {
     if (on_items) {
       App.move_tabs_vertically(`top`)
     }
   }
-  else if (cmd === `to_bottom`) {
+  else if (cmd === `tabs_to_bottom`) {
     if (on_items) {
       App.move_tabs_vertically(`bottom`)
     }
