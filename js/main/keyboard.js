@@ -47,11 +47,6 @@ App.check_window_keyboard = (e) => {
       e.preventDefault()
       return
     }
-    else if (e.key === `a`) {
-      App.highlight_items(mode)
-      e.preventDefault()
-      return
-    }
   }
 
   if (e.shiftKey && !e.ctrlKey) {
