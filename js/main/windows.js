@@ -156,7 +156,8 @@ App.hide_current_window = () => {
   App.windows[App.window_mode].hide()
 
   if (App.on_item_window()) {
-    App.focus_selected(App.window_mode, `center`)
+    let selected = App.get_selected(App.window_mode)
+    App.scroll_to_item(selected, `center`)
   }
 }
 
