@@ -75,7 +75,7 @@ App.setup_window_mouse = (mode) => {
       let item = App.get_cursor_item(mode, e)
 
       if (item) {
-        App.select_item(item, `none`, false)
+        App.select_item(item, undefined, false)
 
         if (!item.highlighted) {
           if (App.get_highlights(mode).length > 0) {
