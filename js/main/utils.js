@@ -234,6 +234,60 @@ App.remove_spaces = (text) => {
   return text.replace(/\s/g, ``)
 }
 
+App.string_similarity = (s1, s2) => {
+  let longer = s1
+  let shorter = s2
+
+  if (s1.length < s2.length) {
+    longer = s2
+    shorter = s1
+  }
+
+  let longer_length = longer.length
+
+  if (longer_length == 0) {
+    return 1.0
+  }
+
+  return (longer_length - App.string_similarity_distance(longer, shorter)) / parseFloat(longer_length)
+}
+
+App.string_similarity_distance = (s1, s2) => {
+  s1 = s1.toLowerCase()
+  s2 = s2.toLowerCase()
+
+  let costs = new Array()
+
+  for (let i=0; i<=s1.length; i++) {
+    let last_value = i
+
+    for (let j = 0; j <= s2.length; j++) {
+      if (i == 0) {
+        costs[j] = j
+      }
+      else {
+        if (j > 0) {
+          let new_value = costs[j - 1]
+
+          if (s1.charAt(i - 1) != s2.charAt(j - 1)) {
+            new_value = Math.min(Math.min(new_value, last_value),
+              costs[j]) + 1
+          }
+
+          costs[j - 1] = last_value
+          last_value = new_value
+        }
+      }
+    }
+
+    if (i > 0) {
+      costs[s2.length] = last_value
+    }
+  }
+
+  return costs[s2.length]
+}
+
 App.single_space = (s) => {
   return s.replace(/\s+/g, ` `).trim()
 }

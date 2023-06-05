@@ -34,16 +34,23 @@ App.show_palette = () => {
 App.filter_palette = () => {
   App.palette_selected = undefined
   let container = DOM.el(`#palette_commands`)
-  let filter = DOM.el(`#palette_filter`)
-  let value = App.single_space(filter.value.trim().toLowerCase())
-  let filter_words = value.split(` `)
-  let value_clean = App.remove_spaces(value)
+  let filter_el = DOM.el(`#palette_filter`)
+  let filter = App.single_space(filter_el.value.trim().toLowerCase())
+  let filter_words = filter.split(` `)
+  let filter_clean = App.remove_spaces(filter)
 
   for (let el of DOM.els(`.palette_item`, container)) {
     let text = el.textContent.toLowerCase()
     let text_clean = App.remove_spaces(text)
+    let match = filter_words.every(x => text.includes(x)) || text_clean.includes(filter_clean)
 
-    if (filter_words.every(x => text.includes(x)) || text_clean.includes(value_clean)) {
+    if (!match) {
+      if (App.string_similarity(filter, text) >= 0.7) {
+        match = true
+      }
+    }
+
+    if (match) {
       el.classList.remove(`hidden`)
     }
     else {
