@@ -19,6 +19,10 @@ App.hide_scroller = (mode) => {
 }
 
 App.do_check_scroller = (mode) => {
+  if (App.dragging) {
+    return
+  }
+
   let container = DOM.el(`#${mode}_container`)
 
   if (container.scrollTop > App.scroller_max_top) {

@@ -95,6 +95,7 @@ App.setup_drag = (mode) => {
 
   DOM.ev(container, `dragstart`, (e) => {
     App.dragging = true
+    App.hide_scroller(mode)
 
     if (App.get_setting(`lock_drag`) && !e.ctrlKey) {
       e.preventDefault()
@@ -139,6 +140,7 @@ App.setup_drag = (mode) => {
 
   DOM.ev(container, `dragend`, (e) => {
     App.dragging = false
+    App.do_check_scroller(mode)
 
     if (!App.drag_element) {
       App.drag_element = undefined
