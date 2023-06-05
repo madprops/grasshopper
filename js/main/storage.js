@@ -26,7 +26,7 @@ App.save_local_storage = (ls_name, obj) => {
 }
 
 App.stor_clear_all_data = () => {
-  App.show_confirm(`Clear all local data?`, () => {
+  App.show_confirm(`Clear all local data?\nData like stars, settings, titles, etc`, () => {
     localStorage.clear()
     App.reload_extension()
   })
