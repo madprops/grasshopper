@@ -46,7 +46,7 @@ App.create_footer = (mode) => {
   let footer_info = DOM.create(`div`, `footer_info`, `${mode}_footer_info`)
   footer.append(footer_info)
 
-  DOM.ev(footer, `click`, (e) => {
+  DOM.ev(footer, `click`, () => {
     App.goto_bottom(mode)
   })
 
