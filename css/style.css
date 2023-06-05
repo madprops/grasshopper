@@ -289,7 +289,7 @@ svg {
 }
 
 .selected {
-  background-color: var(--highlight_color);
+  background-color: var(--alt_color_1);
 }
 
 .hidden {
@@ -689,7 +689,7 @@ select {
 .scroller {
   position: absolute;
   width: 100%;
-  background-color: var(--scroller_color);
+  background-color: var(--alt_background_2);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -722,7 +722,7 @@ select {
   padding-top: 0.35rem;
   padding-bottom: 0.35rem;
   padding-left: 0.25rem;
-  background-color: var(--scroller_color);
+  background-color: var(--alt_background_2);
   border: 1px solid var(--alt_color_1);
   gap: 0.5rem;
   width: 100%;

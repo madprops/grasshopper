@@ -36,11 +36,8 @@ App.apply_theme = () => {
     let alt_background = App.colorlib.rgb_to_rgba(background, 0.55)
     App.set_css_var(`alt_background`, alt_background)
 
-    let scroller_color = App.colorlib.get_lighter_or_darker(background, 0.06)
-    App.set_css_var(`scroller_color`, scroller_color)
-
-    let highlight_color = App.colorlib.get_lighter_or_darker(background, 0.17)
-    App.set_css_var(`highlight_color`, highlight_color)
+    let alt_background_2 = App.colorlib.get_lighter_or_darker(background, 0.06)
+    App.set_css_var(`alt_background_2`, alt_background_2)
 
     App.set_css_var(`font_size`, App.get_setting(`font_size`) + `px`)
     App.set_css_var(`font`, `${App.get_setting(`font`)}, sans-serif`)
