@@ -649,7 +649,7 @@ App.restart_settings = () => {
   App.make_item_order()
   App.apply_theme()
   App.refresh_gestures()
-  App.show_window(`settings_basic`)
+  App.show_settings()
 }
 
 App.settings_reset_items = (category) => {
