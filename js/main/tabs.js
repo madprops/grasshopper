@@ -737,7 +737,7 @@ App.close_duplicates = () => {
   let ids = excess.map(x => x.id)
 
   if (ids.length === 0) {
-    if (App.get_setting(`warn_on_duplicates`)) {
+    if (App.get_setting(`warn_on_close_duplicates`)) {
       App.show_alert(`No duplicates found`)
     }
 
@@ -751,7 +751,7 @@ App.close_duplicates = () => {
 
   App.show_confirm(s, () => {
     App.do_close_tabs(ids)
-  }, undefined, !App.get_setting(`warn_on_duplicates`))
+  }, undefined, !App.get_setting(`warn_on_close_duplicates`))
 }
 
 App.focus_current_tab = async () => {

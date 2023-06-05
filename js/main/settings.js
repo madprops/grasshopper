@@ -27,7 +27,7 @@ App.default_settings = {
 
   warn_on_close: {value: `special`, category: `warns`, version: 3},
   warn_on_suspend: {value: `special`, category: `warns`, version: 3},
-  warn_on_duplicates: {value: true, category: `warns`, version: 1},
+  warn_on_close_duplicates: {value: true, category: `warns`, version: 1},
   warn_on_clean: {value: true, category: `warns`, version: 1},
   warn_on_star: {value: true, category: `warns`, version: 1},
   warn_on_unstar: {value: true, category: `warns`, version: 1},
