@@ -57,6 +57,8 @@ App.default_settings = {
   highlight_effect: {value: `rotate`, category: `more`, version: 1},
   close_on_focus: {value: true, category: `more`, version: 1},
   close_on_launch: {value: true, category: `more`, version: 1},
+  show_scroller: {value: true, category: `more`, version: 1},
+  show_footer: {value: true, category: `more`, version: 1},
 }
 
 App.make_item_order = () => {

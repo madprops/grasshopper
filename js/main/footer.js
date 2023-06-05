@@ -3,7 +3,9 @@ App.update_footer_info_debouncer = App.create_debouncer((item) => {
 }, App.footer_debouncer_delay)
 
 App.update_footer_info = (item) => {
-  App.update_footer_info_debouncer.call(item)
+  if (App.get_setting(`show_footer`)) {
+    App.update_footer_info_debouncer.call(item)
+  }
 }
 
 App.do_update_footer_info = (item) => {
@@ -56,7 +58,9 @@ App.update_footer_count_debouncer = App.create_debouncer((mode) => {
 }, App.footer_debouncer_delay)
 
 App.update_footer_count = (mode) => {
-  App.update_footer_count_debouncer.call(mode)
+  if (App.get_setting(`show_footer`)) {
+    App.update_footer_count_debouncer.call(mode)
+  }
 }
 
 App.do_update_footer_count = (mode) => {

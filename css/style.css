@@ -688,6 +688,7 @@ select {
 
 .scroller {
   position: absolute;
+  top: 0;
   width: 100%;
   background-color: var(--alt_background_2);
   display: flex;
@@ -704,12 +705,8 @@ select {
   border-color: var(--alt_color_2);
 }
 
-.top_scroller {
-  top: 0;
-}
-
-.bottom_scroller {
-  bottom: 0;
+.hide_scroller .scroller {
+  display: none;
 }
 
 .footer {
@@ -730,4 +727,8 @@ select {
 
 .footer:hover {
   border-color: var(--alt_color_2);
+}
+
+.hide_footer .footer {
+  display: none;
 }
