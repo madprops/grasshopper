@@ -1623,7 +1623,6 @@ App.show_launched = (item) => {
 
 App.goto_top = (mode, behavior) => {
   let el = DOM.el(`#${mode}_container`)
-
   App.hide_scroller(mode)
 
   el.scrollTo({
