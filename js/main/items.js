@@ -1419,9 +1419,13 @@ App.get_item_element_index = (mode, el) => {
 }
 
 App.move_item = (mode, from_index, to_index) => {
-  let it = App.get_items(mode).splice(from_index, 1)[0]
-  App.get_items(mode).splice(to_index, 0, it)
-  App.move_item_element(mode, it.element, to_index)
+  let item = App.get_items(mode).splice(from_index, 1)[0]
+  App.get_items(mode).splice(to_index, 0, item)
+  App.move_item_element(mode, item.element, to_index)
+
+  if (App.get_selected(mode) === item) {
+    App.scroll_to_item(App.get_selected(mode), `center`)
+  }
 }
 
 App.move_item_element = (mode, el, to_index) => {

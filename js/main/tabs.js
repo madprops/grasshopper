@@ -501,6 +501,8 @@ App.update_tab_index = async () => {
     let index = App.get_item_element_index(`tabs`, el)
     await App.do_move_tab_index(parseInt(el.dataset.id), index)
   }
+
+  App.scroll_to_item(App.get_selected(`tabs`), `center`)
 }
 
 App.do_move_tab_index = async (id, index) => {
