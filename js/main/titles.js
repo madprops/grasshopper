@@ -85,7 +85,7 @@ App.remove_title = () => {
       App.refresh_filter(App.last_window_mode, `title`)
       App.show_last_window()
     }
-  }, undefined, !App.get_setting(`warn_on_untitle`))
+  }, undefined, !App.get_setting(`warn_on_untitle_tabs`))
 }
 
 App.title_editor_refresh_url = () => {

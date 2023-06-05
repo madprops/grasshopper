@@ -28,7 +28,7 @@ App.setup_tabs = () => {
     }},
 
     {text: `Close Duplicates`, action: () => {
-      App.close_duplicates()
+      App.close_duplicate_tabs()
     }},
 
     {text: `Clean Tabs`, action: () => {
@@ -354,7 +354,7 @@ App.suspend_tabs = (item) => {
     return
   }
 
-  let warn = App.check_tab_warn(tabs, `warn_on_suspend`)
+  let warn = App.check_tab_warn(tabs, `warn_on_suspend_tabs`)
 
   if (warn) {
     App.show_confirm(`Suspend tabs? (${tabs.length})`, () => {
@@ -403,11 +403,11 @@ App.close_tabs = (item, force = false, multiple = true) => {
 
   if (multiple) {
     let items = App.get_active_items(`tabs`, item)
-    warn = App.check_tab_warn(items, `warn_on_close`)
+    warn = App.check_tab_warn(items, `warn_on_close_tabs`)
     ids = items.map(x => x.id)
   }
   else {
-    warn = App.check_tab_warn([item], `warn_on_close`)
+    warn = App.check_tab_warn([item], `warn_on_close_tabs`)
     ids.push(item.id)
   }
 
@@ -591,7 +591,7 @@ App.clean_tabs = () => {
   }
 
   if (ids.length === 0) {
-    if (App.get_setting(`warn_on_clean`)) {
+    if (App.get_setting(`warn_on_clean_tabs`)) {
       App.show_alert(`Nothing to close`)
     }
 
@@ -605,7 +605,7 @@ App.clean_tabs = () => {
 
   App.show_confirm(s, () => {
     App.do_close_tabs(ids)
-  }, undefined, !App.get_setting(`warn_on_clean`))
+  }, undefined, !App.get_setting(`warn_on_clean_tabs`))
 }
 
 App.show_playing = () => {
@@ -727,7 +727,7 @@ App.active_tab_is = (item) => {
   return false
 }
 
-App.close_duplicates = () => {
+App.close_duplicate_tabs = () => {
   let items = App.get_items(`tabs`)
   let duplicates = App.find_duplicates(items, `url`)
 
@@ -737,7 +737,7 @@ App.close_duplicates = () => {
   let ids = excess.map(x => x.id)
 
   if (ids.length === 0) {
-    if (App.get_setting(`warn_on_close_duplicates`)) {
+    if (App.get_setting(`warn_on_close_duplicate_tabs`)) {
       App.show_alert(`No duplicates found`)
     }
 
@@ -751,7 +751,7 @@ App.close_duplicates = () => {
 
   App.show_confirm(s, () => {
     App.do_close_tabs(ids)
-  }, undefined, !App.get_setting(`warn_on_close_duplicates`))
+  }, undefined, !App.get_setting(`warn_on_close_duplicate_tabs`))
 }
 
 App.focus_current_tab = async () => {
