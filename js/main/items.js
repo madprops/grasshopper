@@ -332,7 +332,7 @@ App.do_item_filter = async (mode) => {
   App.update_footer_info(App.get_selected(mode))
   App.update_footer_count(mode)
   App.do_check_pinline()
-  App.do_check_scrollers(mode)
+  App.do_check_scroller(mode)
 }
 
 App.show_item = (it) => {
@@ -942,7 +942,7 @@ App.show_item_window = async (mode, cycle = false) => {
   }
 
   App.focus_filter(mode)
-  App.do_check_scrollers(mode)
+  App.do_check_scroller(mode)
 }
 
 App.setup_item_window = (mode) => {
@@ -966,15 +966,10 @@ App.setup_item_window = (mode) => {
     DOM.el(`#window_top_${mode}`).append(top)
 
     let container = DOM.create(`div`, `container`, `${mode}_container`)
-    let scroller = DOM.create(`div`, `scroller`, `${mode}_scroller`)
-    scroller.textContent = `Go To Top`
-
-    DOM.ev(scroller, `click`, () => {
-      App.goto_top(mode)
-    })
+    let scroller = App.create_scroller(mode)
 
     DOM.ev(container, `scroll`, () => {
-      App.check_scrollers(mode)
+      App.check_scroller(mode)
     })
 
     win.append(scroller)
@@ -1928,35 +1923,6 @@ App.get_scroll_behavior = () => {
   }
   else {
     return `instant`
-  }
-}
-
-App.check_scrollers_debouncer = App.create_debouncer((mode) => {
-  App.do_check_scrollers(mode)
-}, App.check_scrollers_debouncer_delay)
-
-App.check_scrollers = (mode) => {
-  App.check_scrollers_debouncer.call(mode)
-}
-
-App.show_scroller = (mode) => {
-  let scroller = DOM.el(`#${mode}_scroller`)
-  scroller.classList.remove(`hidden`)
-}
-
-App.hide_scroller = (mode) => {
-  let scroller = DOM.el(`#${mode}_scroller`)
-  scroller.classList.add(`hidden`)
-}
-
-App.do_check_scrollers = (mode) => {
-  let container = DOM.el(`#${mode}_container`)
-
-  if (container.scrollTop > 1) {
-    App.show_scroller(mode)
-  }
-  else {
-    App.hide_scroller(mode)
   }
 }
 
