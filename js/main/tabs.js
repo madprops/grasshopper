@@ -976,3 +976,19 @@ App.switch_to_tabs = () => {
     }
   }
 }
+
+App.autoselect_tab = () => {
+  if (!App.get_setting(`autoselect_tab`)) {
+    return
+  }
+
+  if (App.window_mode !== `tabs`) {
+    return
+  }
+
+  clearTimeout(App.autoselect_tab_timeout)
+
+  App.autoselect_tab_timeout = setTimeout(() => {
+    App.focus_current_tab()
+  }, App.autoselect_tab_delay)
+}

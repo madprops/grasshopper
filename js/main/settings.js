@@ -59,6 +59,7 @@ App.default_settings = {
   close_on_launch: {value: true, category: `more`, version: 1},
   show_scroller: {value: true, category: `more`, version: 1},
   show_footer: {value: true, category: `more`, version: 1},
+  autoselect_tab: {value: true, category: `more`, version: 1},
 }
 
 App.make_item_order = () => {
