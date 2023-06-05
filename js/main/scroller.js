@@ -21,7 +21,7 @@ App.hide_scroller = (mode) => {
 App.do_check_scroller = (mode) => {
   let container = DOM.el(`#${mode}_container`)
 
-  if (container.scrollTop > 5) {
+  if (container.scrollTop > App.scroller_max_top) {
     App.show_scroller(mode)
   }
   else {
