@@ -1294,6 +1294,10 @@ App.filter_domain = (item) => {
 }
 
 App.show_actions = (mode) => {
+  if (App[`${mode}_actions`].length === 0) {
+    return
+  }
+
   let items = []
 
   for (let item of App[`${mode}_actions`]) {
