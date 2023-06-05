@@ -113,7 +113,6 @@ App.setup_drag = (mode) => {
     App.drag_start_index = App.get_item_element_index(mode, App.drag_element)
     e.dataTransfer.setDragImage(new Image(), 0, 0)
     e.dataTransfer.setData(`text/plain`, App.drag_item.url)
-
     App.drag_items = []
 
     if (App.drag_item.highlighted) {
