@@ -29,7 +29,7 @@ App.commands = [
   [`Tabs Info`, `tabs_info`],
   [`Clean Tabs`, `clean_tabs`],
   [`Close Duplicate Tabs`, `close_duplicate_tabs`],
-  [`Go To Playing`, `go_to_playing`],
+  [`Go To Playing Tab`, `go_to_playing_tab`],
   [`Back (Tab)`, `tab_back`],
   [`Forward (Tab)`, `tab_forward`],
   [`Reload Tab`, `reload_tab`],
@@ -146,12 +146,12 @@ App.run_command = (cmd) => {
   else if (cmd === `close_window`) {
     App.hide_current_window()
   }
-  else if (cmd === `go_to_playing`) {
+  else if (cmd === `go_to_playing_tab`) {
     if (mode !== `tabs`) {
       App.show_item_window(`tabs`)
     }
 
-    App.go_to_playing()
+    App.go_to_playing_tab()
   }
   else if (cmd === `clean_tabs`) {
     if (mode !== `tabs`) {
