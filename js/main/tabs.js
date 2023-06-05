@@ -379,10 +379,10 @@ App.suspend_tabs = (item) => {
 App.check_tab_warn = (items, setting) => {
   let warn_on_action = App.get_setting(setting)
 
-  if (warn_on_action === `all`) {
+  if (warn_on_action === `always`) {
     return true
   }
-  else if (warn_on_action === `none`) {
+  else if (warn_on_action === `never`) {
     return false
   }
 

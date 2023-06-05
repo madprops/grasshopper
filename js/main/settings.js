@@ -25,8 +25,8 @@ App.default_settings = {
   media_viewer_on_closed: {value: true, category: `media`, version: 1},
   media_viewer_on_stars: {value: true, category: `media`, version: 1},
 
-  warn_on_close: {value: `special`, category: `warns`, version: 2},
-  warn_on_suspend: {value: `special`, category: `warns`, version: 2},
+  warn_on_close: {value: `special`, category: `warns`, version: 3},
+  warn_on_suspend: {value: `special`, category: `warns`, version: 3},
   warn_on_duplicates: {value: true, category: `warns`, version: 1},
   warn_on_clean: {value: true, category: `warns`, version: 1},
   warn_on_star: {value: true, category: `warns`, version: 1},
@@ -800,7 +800,7 @@ App.get_gesture_options = () => {
 }
 
 App.tab_warn_opts = [
-  [`All`, `all`],
+  [`Always`, `always`],
   [`Special`, `special`],
-  [`None`, `none`],
+  [`Never`, `never`],
 ]
