@@ -3,7 +3,9 @@ App.check_scroller_debouncer = App.create_debouncer((mode) => {
 }, App.check_scroller_debouncer_delay)
 
 App.check_scroller = (mode) => {
-  App.check_scroller_debouncer.call(mode)
+  if (App.get_setting(`show_scroller`)) {
+    App.check_scroller_debouncer.call(mode)
+  }
 }
 
 App.show_scroller = (mode) => {
