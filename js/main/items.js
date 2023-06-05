@@ -1044,7 +1044,7 @@ App.setup_item_window = (mode) => {
       let playing_icon = App.create_icon(`speaker`)
 
       DOM.ev(playing, `click`, () => {
-        App.go_to_playing()
+        App.go_to_playing_tab()
       })
 
       playing.append(playing_icon)

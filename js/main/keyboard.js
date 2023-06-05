@@ -28,7 +28,7 @@ App.check_window_keyboard = (e) => {
       return
     }
     else if (e.key === `.`) {
-      App.go_to_playing()
+      App.go_to_playing_tab()
       e.preventDefault()
       return
     }
