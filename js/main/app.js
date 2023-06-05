@@ -32,6 +32,5 @@ App.double_tap_delay = 300
 App.footer_debouncer_delay = 100
 App.check_scroller_debouncer_delay = 100
 App.scroller_max_top = 5
-App.autoselect_tab_delay = 1200
 
 NeedContext.min_width = `4.5rem`
