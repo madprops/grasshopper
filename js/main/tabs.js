@@ -757,6 +757,11 @@ App.close_duplicate_tabs = () => {
 App.focus_current_tab = async () => {
   let tab = await App.get_active_tab()
   let item = App.get_item_by_id(`tabs`, tab.id)
+
+  if (!item) {
+    return false
+  }
+
   let visible = App.element_is_visible(item.element)
   let selected = App.get_selected(`tabs`) === item
 
