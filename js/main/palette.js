@@ -35,14 +35,15 @@ App.filter_palette = () => {
   App.palette_selected = undefined
   let container = DOM.el(`#palette_commands`)
   let filter = DOM.el(`#palette_filter`)
-  let value = filter.value.trim().toLowerCase()
-  value = App.remove_spaces(value)
+  let value = App.single_space(filter.value.trim().toLowerCase())
+  let filter_words = value.split(` `)
+  let value_clean = App.remove_spaces(value)
 
   for (let el of DOM.els(`.palette_item`, container)) {
     let text = el.textContent.toLowerCase()
-    text = App.remove_spaces(text)
+    let text_clean = App.remove_spaces(text)
 
-    if (text.includes(value)) {
+    if (filter_words.every(x => text.includes(x)) || text_clean.includes(value_clean)) {
       el.classList.remove(`hidden`)
     }
     else {

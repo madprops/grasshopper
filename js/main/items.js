@@ -1792,16 +1792,7 @@ App.insert_item = (mode, info) => {
 }
 
 App.get_mode_name = (mode) => {
-  let name
-
-  if (mode === `bookmarks`) {
-    name = `BMarks`
-  }
-  else {
-    name = App.capitalize(mode)
-  }
-
-  return name
+  return App.capitalize(mode)
 }
 
 App.item_action = async (item) => {

@@ -15,7 +15,7 @@ App.commands = [
   [`Next Window`, `next_window`],
   [`Show Tabs`, `show_tabs`],
   [`Show History`, `show_history`],
-  [`Show BMarks`, `show_bookmarks`],
+  [`Show Bookmarks`, `show_bookmarks`],
   [`Show Closed`, `show_closed`],
   [`Show Stars`, `show_stars`],
   [`Show Settings`, `show_settings`],

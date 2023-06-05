@@ -27,7 +27,7 @@ App.setup_tabs = () => {
       return App.get_title_items()
     }},
 
-    {text: `Duplicates`, action: () => {
+    {text: `Close Duplicates`, action: () => {
       App.close_duplicates()
     }},
 
