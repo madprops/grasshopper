@@ -974,11 +974,13 @@ App.setup_item_window = (mode) => {
     })
 
     DOM.ev(main_menu, `wheel`, (e) => {
-      if (e.deltaY < 0) {
-        App.cycle_item_windows(true)
-      }
-      else {
+      let direction = App.wheel_direction(e)
+
+      if (direction === `down`) {
         App.cycle_item_windows(false)
+      }
+      else if (direction === `up`) {
+        App.cycle_item_windows(true)
       }
     })
 
@@ -1013,11 +1015,13 @@ App.setup_item_window = (mode) => {
     })
 
     DOM.ev(filter_modes, `wheel`, (e) => {
-      if (e.deltaY < 0) {
-        App.cycle_filter_modes(mode, true)
-      }
-      else {
+      let direction = App.wheel_direction(e)
+
+      if (direction === `down`) {
         App.cycle_filter_modes(mode, false)
+      }
+      else if (direction === `up`) {
+        App.cycle_filter_modes(mode, true)
       }
     })
 

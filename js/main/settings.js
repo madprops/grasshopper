@@ -700,7 +700,7 @@ App.reset_single_setting = (e, action) => {
 }
 
 App.settings_wheel = App.create_debouncer((e) => {
-  let direction = e.deltaY > 0 ? `down` : `up`
+  let direction = App.wheel_direction(e)
 
   if (direction === `down`) {
     App.show_next_settings()

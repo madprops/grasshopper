@@ -62,7 +62,7 @@ App.setup_window_mouse = (mode) => {
 
   DOM.ev(container, `wheel`, (e) => {
     if (e.shiftKey) {
-      let direction = e.deltaY > 0 ? `down` : `up`
+      let direction = App.wheel_direction(e)
 
       if (direction === `up`) {
         App.scroll(mode, `up`, true)

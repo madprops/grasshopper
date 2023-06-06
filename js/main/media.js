@@ -225,7 +225,7 @@ App.get_visible_media = (mode, what) => {
 }
 
 App.media_wheel = App.create_debouncer((e, what) => {
-  let direction = e.deltaY > 0 ? `down` : `up`
+  let direction = App.wheel_direction(e)
 
   if (direction === `down`) {
     App.media_next(what)

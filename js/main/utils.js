@@ -291,3 +291,12 @@ App.string_similarity_distance = (s1, s2) => {
 App.single_space = (s) => {
   return s.replace(/\s+/g, ` `).trim()
 }
+
+App.wheel_direction = (e) => {
+  if (e.deltaY > 0) {
+    return `down`
+  }
+  else {
+    return `up`
+  }
+}
