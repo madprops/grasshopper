@@ -586,6 +586,12 @@ App.close_normal_tabs = () => {
   let ids = []
 
   for (let it of App.get_items(`tabs`)) {
+    if (!App.get_setting(`close_suspended_tabs`)) {
+      if (it.discarded) {
+        continue
+      }
+    }
+
     if (!it.pinned && !it.audible) {
       ids.push(it.id)
     }
@@ -600,8 +606,16 @@ App.close_normal_tabs = () => {
   }
 
   let s = ``
-  s += `Close normal and suspended tabs\n`
-  s += `Tabs playing audio are not closed\n`
+  s += `Close normal tabs\n`
+
+  if (App.get_setting(`close_suspended_tabs`)) {
+    s += `Including suspended tabs\n`
+  }
+  else {
+    s += `Excluding suspended tabs\n`
+  }
+
+  s += `Excluding audible tabs\n`
   s += `Close these tabs? (${ids.length})`
 
   App.show_confirm(s, () => {
@@ -760,7 +774,7 @@ App.close_duplicate_tabs = () => {
     s += `Excluding pinned tabs\n`
   }
 
-  s += `Excluding playing tabs\n`
+  s += `Excluding audible tabs\n`
   s += `Close these tabs? (${ids.length})`
 
   App.show_confirm(s, () => {
