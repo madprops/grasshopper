@@ -721,6 +721,7 @@ select {
   padding-left: 0.25rem;
   background-color: var(--alt_background_2);
   border: 1px solid var(--alt_color_1);
+  border-bottom-width: 0;
   gap: 0.5rem;
   width: 100%;
 }

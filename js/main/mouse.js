@@ -195,7 +195,7 @@ App.setup_drag = (mode) => {
 
   DOM.ev(container, `dragend`, (e) => {
     App.dragging = false
-    App.do_check_scroller(mode)
+    App.check_scroller(mode)
 
     if (!App.drag_element) {
       App.drag_element = undefined

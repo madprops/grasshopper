@@ -332,7 +332,7 @@ App.do_item_filter = async (mode) => {
   App.update_footer_info(App.get_selected(mode))
   App.update_footer_count(mode)
   App.do_check_pinline()
-  App.do_check_scroller(mode)
+  App.check_scroller(mode)
 }
 
 App.show_item = (it) => {
@@ -929,7 +929,7 @@ App.show_item_window = async (mode, cycle = false) => {
   }
 
   App.focus_filter(mode)
-  App.do_check_scroller(mode)
+  App.check_scroller(mode)
 }
 
 App.setup_item_window = (mode) => {

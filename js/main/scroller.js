@@ -1,13 +1,3 @@
-App.check_scroller_debouncer = App.create_debouncer((mode) => {
-  App.do_check_scroller(mode)
-}, App.check_scroller_debouncer_delay)
-
-App.check_scroller = (mode) => {
-  if (App.get_setting(`show_scroller`)) {
-    App.check_scroller_debouncer.call(mode)
-  }
-}
-
 App.show_scroller = (mode) => {
   let scroller = DOM.el(`#${mode}_scroller`)
   scroller.classList.remove(`hidden`)
@@ -18,12 +8,16 @@ App.hide_scroller = (mode) => {
   scroller.classList.add(`hidden`)
 }
 
-App.do_check_scroller = (mode) => {
+App.check_scroller = (mode) => {
   if (App.dragging) {
     return
   }
 
   let container = DOM.el(`#${mode}_container`)
+  let a = container.scrollTop
+  let b = container.scrollHeight - container.clientHeight
+  let percentage = parseInt((a / b) * 100)
+  DOM.el(`#${mode}_scroller`).textContent = `Scroll: ${percentage}%`
 
   if (container.scrollTop > App.scroller_max_top) {
     App.show_scroller(mode)
@@ -35,7 +29,7 @@ App.do_check_scroller = (mode) => {
 
 App.create_scroller = (mode) => {
   let scroller = DOM.create(`div`, `scroller`, `${mode}_scroller`)
-  scroller.textContent = `Go To Top`
+  scroller.title = `Click to go to top`
 
   DOM.ev(scroller, `click`, () => {
     App.goto_top(mode)
