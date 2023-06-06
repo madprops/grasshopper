@@ -1930,6 +1930,10 @@ App.scroll_to_item = (item, scroll = `nearest`) => {
     behavior = App.get_scroll_behavior()
   }
 
+  if (item.element.offsetTop <= App.scroller_max_top) {
+    App.hide_scroller(item.mode)
+  }
+
   item.element.scrollIntoView({
     block: scroll,
     behavior: behavior,
