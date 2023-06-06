@@ -252,10 +252,6 @@ App.remove_closed_tab = (id) => {
 }
 
 App.tabs_action = async (item) => {
-  if (App.check_media(item)) {
-    return
-  }
-
   if (!App.active_tab_is(item)) {
     let star = App.get_star_by_url(item.url)
 

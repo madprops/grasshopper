@@ -17,12 +17,6 @@ App.default_settings = {
   muted_icon: {value: `🔇`, category: `icons`, version: 1},
   suspended_icon: {value: `💤`, category: `icons`, version: 1},
 
-  media_viewer_on_tabs: {value: true, category: `media`, version: 2},
-  media_viewer_on_history: {value: true, category: `media`, version: 1},
-  media_viewer_on_bookmarks: {value: true, category: `media`, version: 1},
-  media_viewer_on_closed: {value: true, category: `media`, version: 1},
-  media_viewer_on_stars: {value: true, category: `media`, version: 1},
-
   warn_on_close_tabs: {value: `special`, category: `warns`, version: 3},
   warn_on_suspend_tabs: {value: `special`, category: `warns`, version: 3},
   warn_on_close_duplicate_tabs: {value: true, category: `warns`, version: 1},
@@ -231,7 +225,7 @@ App.settings_make_menu = (setting, opts, action = () => {}) => {
 }
 
 App.setup_settings = () => {
-  App.settings_categories = [`basic`, `theme`, `icons`, `media`, `warns`, `popup`, `order`, `gestures`, `more`]
+  App.settings_categories = [`basic`, `theme`, `icons`, `warns`, `popup`, `order`, `gestures`, `more`]
 
   let common = {
     persistent: false,
@@ -278,10 +272,6 @@ App.setup_settings = () => {
 
   App.create_window(Object.assign({}, common, {id: `settings_icons`, setup: () => {
     prepare(`icons`)
-  }}))
-
-  App.create_window(Object.assign({}, common, {id: `settings_media`, setup: () => {
-    prepare(`media`)
   }}))
 
   App.create_window(Object.assign({}, common, {id: `settings_warns`, setup: () => {

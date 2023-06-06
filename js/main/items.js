@@ -454,25 +454,6 @@ App.show_item_menu = (item, x, y) => {
     }
   })
 
-  if (!App.get_setting(`media_viewer_on_${item.mode}`)) {
-    if (App.is_image(item.url)) {
-      items.push({
-        text: `View`,
-        action: () => {
-          App.show_media(`image`, item)
-        }
-      })
-    }
-    else if (App.is_video(item.url)) {
-      items.push({
-        text: `View`,
-        action: () => {
-          App.show_media(`video`, item)
-        }
-      })
-    }
-  }
-
   if (item.mode === `stars`) {
     items.push({
       text: `Remove`,
@@ -718,6 +699,12 @@ App.create_item_element = (item) => {
 
   let status = DOM.create(`div`, `item_status hidden`)
   item.element.append(status)
+
+  if (item.image || item.video) {
+    let open_media = DOM.create(`div`, `view_media_button underline action`)
+    open_media.textContent = `View`
+    item.element.append(open_media)
+  }
 
   let text = DOM.create(`div`, `item_text action`)
   item.element.append(text)
@@ -1804,10 +1791,6 @@ App.item_action = async (item) => {
     method = `launched`
   }
   else {
-    if (App.check_media(item)) {
-      return
-    }
-
     if (item.mode === `stars`) {
       method = await App.open_star(item)
     }

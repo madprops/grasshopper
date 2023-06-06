@@ -732,3 +732,7 @@ select {
 .hide_footer .footer {
   display: none;
 }
+
+.view_media_button {
+  margin-right: 0.5rem;
+}

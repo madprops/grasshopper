@@ -89,7 +89,19 @@ App.create_media_windows = (what) => {
   }, colored_top: true})
 }
 
-App.show_media = (what, item) => {
+App.view_media = (item) => {
+  let what
+
+  if (item.image) {
+    what = `image`
+  }
+  else if (item.video) {
+    what = `video`
+  }
+  else {
+    return
+  }
+
   App.hide_media_elements(what)
   App[`current_${what}_item`] = item
   DOM.el(`#${what}`).src = item.url
@@ -163,7 +175,7 @@ App.cycle_media = (item, what, dir) => {
     next_item = items[0]
   }
 
-  App.show_media(what, next_item)
+  App.view_media(next_item)
 }
 
 App.media_show_loading = (what) => {
@@ -172,24 +184,6 @@ App.media_show_loading = (what) => {
 
 App.media_show_error = (what) => {
   DOM.el(`#${what}_loading`).textContent = `Error`
-}
-
-App.check_media = (item) => {
-  if (!App.get_setting(`media_viewer_on_${item.mode}`)) {
-    return
-  }
-
-  if (item.image) {
-    App.show_media(`image`, item)
-    return true
-  }
-
-  if (item.video) {
-    App.show_media(`video`, item)
-    return true
-  }
-
-  return false
 }
 
 App.media_star = (what) => {

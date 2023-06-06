@@ -26,6 +26,11 @@ App.setup_window_mouse = (mode) => {
 
     // Main click
     if (e.button === 0) {
+      if (e.target.classList.contains(`view_media_button`)) {
+        App.view_media(item)
+        return
+      }
+
       if (e.shiftKey) {
         return
       }
