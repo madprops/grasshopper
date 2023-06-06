@@ -1017,16 +1017,16 @@ App.get_close_tabs_items = () => {
   let items = []
 
   items.push({
-    text: `Duplicate Tabs`,
+    text: `Normal`,
     action: () => {
-      App.close_duplicate_tabs()
+      App.close_normal_tabs()
     }
   })
 
   items.push({
-    text: `Normal Tabs`,
+    text: `Duplicates`,
     action: () => {
-      App.close_normal_tabs()
+      App.close_duplicate_tabs()
     }
   })
 
