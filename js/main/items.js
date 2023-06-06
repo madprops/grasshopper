@@ -1621,17 +1621,17 @@ App.show_launched = (item) => {
   }, 1000)
 }
 
-App.goto_top = (mode, behavior) => {
+App.goto_top = (mode, behavior = `instant`) => {
   let el = DOM.el(`#${mode}_container`)
   App.hide_scroller(mode)
 
   el.scrollTo({
     top: 0,
-    behavior: behavior || App.get_scroll_behavior(),
+    behavior: behavior
   })
 }
 
-App.goto_bottom = (mode, behavior) => {
+App.goto_bottom = (mode, behavior = `instant`) => {
   let el = DOM.el(`#${mode}_container`)
 
   if (App.container_is_scrolled(mode)) {
@@ -1640,7 +1640,7 @@ App.goto_bottom = (mode, behavior) => {
 
   el.scrollTo({
     top: el.scrollHeight,
-    behavior: behavior || App.get_scroll_behavior(),
+    behavior: behavior
   })
 }
 
