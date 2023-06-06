@@ -733,7 +733,13 @@ App.close_duplicate_tabs = () => {
   let duplicates = App.find_duplicates(items, `url`)
 
   let excess = App.get_excess(duplicates, `url`)
-    .filter(x => !x.pinned && !x.playing)
+
+  if (App.get_setting(`close_duplicate_pins`)) {
+    excess = excess.filter(x => !x.playing)
+  }
+  else {
+    excess = excess.filter(x => !x.pinned && !x.playing)
+  }
 
   let ids = excess.map(x => x.id)
 
@@ -745,9 +751,16 @@ App.close_duplicate_tabs = () => {
     return
   }
 
-  let s = ``
-  s += `Close excess duplicate tabs\n`
-  s += `Excluding pinned and playing\n`
+  let s = `Close duplicates\n`
+
+  if (App.get_setting(`close_duplicate_pins`)) {
+    s += `Including pinned tabs\n`
+  }
+  else {
+    s += `Excluding pinned tabs\n`
+  }
+
+  s += `Excluding playing tabs\n`
   s += `Close these tabs? (${ids.length})`
 
   App.show_confirm(s, () => {

@@ -61,6 +61,7 @@ App.default_settings = {
   show_scroller: {value: true, category: `more`, version: 1},
   show_footer: {value: true, category: `more`, version: 1},
   autoselect_tab: {value: true, category: `more`, version: 1},
+  close_duplicate_pins: {value: true, category: `more`, version: 1},
 }
 
 App.make_item_order = () => {
