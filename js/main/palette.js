@@ -15,6 +15,7 @@ App.setup_palette = () => {
 }
 
 App.show_palette = () => {
+  NeedContext.hide()
   App.show_popup(`palette`)
   let container = DOM.el(`#palette_commands`)
   let filter = DOM.el(`#palette_filter`)
