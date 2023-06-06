@@ -734,5 +734,8 @@ select {
 }
 
 .view_media_button {
+  display: flex;
+  align-items: center;
   margin-right: 0.5rem;
+  height: 100%;
 }
