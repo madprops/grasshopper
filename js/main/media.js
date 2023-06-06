@@ -65,10 +65,6 @@ App.create_media_windows = (what) => {
       App.hide_current_window()
     })
 
-    DOM.ev(DOM.el(`#${what}_url`), `click`, () => {
-      App.media_copy(what)
-    })
-
     DOM.ev(DOM.el(`#${what}_prev`), `click`, () => {
       App.media_prev(what)
     })
@@ -215,7 +211,7 @@ App.open_media = (what = App.window_mode) => {
 }
 
 App.media_copy = (what) => {
-  App.copy_to_clipboard(App[`current_${what}_item`].url, `URL`)
+  App.copy_to_clipboard(App[`current_${what}_item`].url)
 }
 
 App.media_background = (what) => {
@@ -264,6 +260,13 @@ App.show_media_menu = (what) => {
     text: `Star`,
     action: () => {
       App.media_star(what)
+    }
+  })
+
+  items.push({
+    text: `Copy URL`,
+    action: () => {
+      App.media_copy(what)
     }
   })
 

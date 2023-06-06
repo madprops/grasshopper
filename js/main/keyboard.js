@@ -302,11 +302,6 @@ App.setup_keyboard = () => {
         e.preventDefault()
         return
       }
-      else if (e.key === `ArrowUp`) {
-        App.media_copy(mode, true)
-        e.preventDefault()
-        return
-      }
       else if (e.key === `Enter`) {
         App.open_media()
         e.preventDefault()
