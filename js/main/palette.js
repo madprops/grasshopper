@@ -26,7 +26,6 @@ App.show_palette = () => {
   }
 
   App.palette_select_first()
-
   container.scrollTop = 0
   filter.value = ``
   filter.focus()
