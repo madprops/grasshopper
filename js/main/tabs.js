@@ -615,7 +615,7 @@ App.close_normal_tabs = () => {
     s += `Excluding suspended tabs\n`
   }
 
-  s += `Excluding audible tabs\n`
+  s += `Excluding playing tabs\n`
   s += `Close these tabs? (${ids.length})`
 
   App.show_confirm(s, () => {
@@ -774,7 +774,7 @@ App.close_duplicate_tabs = () => {
     s += `Excluding pinned tabs\n`
   }
 
-  s += `Excluding audible tabs\n`
+  s += `Excluding playing tabs\n`
   s += `Close these tabs? (${ids.length})`
 
   App.show_confirm(s, () => {
