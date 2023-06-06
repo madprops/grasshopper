@@ -27,7 +27,7 @@ App.commands = [
   [`Copy URL`, `copy_tab_url`],
   [`Copy Title`, `copy_tab_title`],
   [`Tabs Info`, `tabs_info`],
-  [`Clean Tabs`, `clean_tabs`],
+  [`Close Normal Tabs`, `close_normal_tabs`],
   [`Close Duplicate Tabs`, `close_duplicate_tabs`],
   [`Go To Playing Tab`, `go_to_playing_tab`],
   [`Back (Tab)`, `tab_back`],
@@ -154,12 +154,12 @@ App.run_command = (cmd) => {
 
     App.go_to_playing_tab()
   }
-  else if (cmd === `clean_tabs`) {
+  else if (cmd === `close_normal_tabs`) {
     if (mode !== `tabs`) {
       App.show_item_window(`tabs`)
     }
 
-    App.clean_tabs()
+    App.close_normal_tabs()
   }
   else if (cmd === `tabs_info`) {
     if (mode !== `tabs`) {

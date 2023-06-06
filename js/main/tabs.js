@@ -27,12 +27,8 @@ App.setup_tabs = () => {
       return App.get_title_items()
     }},
 
-    {text: `Close Duplicates`, action: () => {
-      App.close_duplicate_tabs()
-    }},
-
-    {text: `Clean Tabs`, action: () => {
-      App.clean_tabs()
+    {text: `Close Tabs`, get_items: () => {
+      return App.get_close_tabs_items()
     }},
   ]
 
@@ -153,13 +149,18 @@ App.close_tab = async (id) => {
   }
 }
 
-App.new_tab = async (url = undefined) => {
+App.open_new_tab = async (url) => {
   try {
-    await browser.tabs.create({url: url})
+    await browser.tabs.create({url: url, active: true})
   }
   catch (err) {
     App.log(err, `error`)
   }
+}
+
+App.new_tab = async (url) => {
+  await App.open_new_tab(url)
+  App.check_close_on_focus()
 }
 
 App.refresh_tab = async (id, select = false) => {
@@ -581,7 +582,7 @@ App.detach_tabs = async (item) => {
   }
 }
 
-App.clean_tabs = () => {
+App.close_normal_tabs = () => {
   let ids = []
 
   for (let it of App.get_items(`tabs`)) {
@@ -591,7 +592,7 @@ App.clean_tabs = () => {
   }
 
   if (ids.length === 0) {
-    if (App.get_setting(`warn_on_clean_tabs`)) {
+    if (App.get_setting(`warn_on_close_normal_tabs`)) {
       App.show_alert(`Nothing to close`)
     }
 
@@ -605,7 +606,7 @@ App.clean_tabs = () => {
 
   App.show_confirm(s, () => {
     App.do_close_tabs(ids)
-  }, undefined, !App.get_setting(`warn_on_clean_tabs`))
+  }, undefined, !App.get_setting(`warn_on_close_normal_tabs`))
 }
 
 App.show_playing = () => {
@@ -997,4 +998,24 @@ App.autoselect_tab = () => {
 
   App.dehighlight(`tabs`)
   App.focus_current_tab()
+}
+
+App.get_close_tabs_items = () => {
+  let items = []
+
+  items.push({
+    text: `Duplicate Tabs`,
+    action: () => {
+      App.close_duplicate_tabs()
+    }
+  })
+
+  items.push({
+    text: `Normal Tabs`,
+    action: () => {
+      App.close_normal_tabs()
+    }
+  })
+
+  return items
 }

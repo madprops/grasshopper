@@ -148,16 +148,6 @@
           <div id="settings_font_size" class="settings_menu button" data-setting="font_size"></div>
         </div>
 
-        <div class="settings_column" title="Width of the popup">
-          <div class="settings_label">Width</div>
-          <div id="settings_width" class="settings_menu button" data-setting="width"></div>
-        </div>
-
-        <div class="settings_column" title="Height of the popup">
-          <div class="settings_label">Height</div>
-          <div id="settings_height" class="settings_menu button" data-setting="height"></div>
-        </div>
-
         <div class="settings_column" title="Main text to display on the items">
           <div class="settings_label">Text Mode</div>
           <div id="settings_text_mode" class="settings_menu button" data-setting="text_mode"></div>
@@ -285,42 +275,42 @@
     <template id="template_settings_warns">
       <div id="settings_warns_container" class="settings_container">
         <div class="settings_column" title="Warn when closing certain tabs">
-          <div class="settings_label">Close Tabs</div>
+          <div class="settings_label">Warn On<br>Close Tabs</div>
           <div id="settings_warn_on_close_tabs" class="settings_menu button" data-setting="warn_on_close_tabs"></div>
         </div>
 
         <div class="settings_column" title="Warn when suspending tabs">
-          <div class="settings_label">Suspend Tabs</div>
+          <div class="settings_label">Warn On<br>Suspend Tabs</div>
           <div id="settings_warn_on_suspend_tabs" class="settings_menu button" data-setting="warn_on_suspend_tabs"></div>
         </div>
 
         <div class="settings_column" title="Warn when removing a title">
-          <div class="settings_label">Un-Title Tabs</div>
+          <div class="settings_label">Warn On<br>Un-Title Tabs</div>
           <input type="checkbox" class="settings_checkbox" id="settings_warn_on_untitle_tabs" data-setting="warn_on_untitle_tabs">
         </div>
 
         <div class="settings_column" title="Warn when closing duplicate tabs">
-          <div class="settings_label">Close Duplicate Tabs</div>
+          <div class="settings_label">Warn On<br>Close Duplicate Tabs</div>
           <input type="checkbox" class="settings_checkbox" id="settings_warn_on_close_duplicate_tabs" data-setting="warn_on_close_duplicate_tabs">
         </div>
 
         <div class="settings_column" title="Warn when cleaning tabs">
-          <div class="settings_label">Clean Tabs</div>
-          <input type="checkbox" class="settings_checkbox" id="settings_warn_on_clean_tabs" data-setting="warn_on_clean_tabs">
+          <div class="settings_label">Warn On<br>Clean Tabs</div>
+          <input type="checkbox" class="settings_checkbox" id="settings_warn_on_close_normal_tabs" data-setting="warn_on_close_normal_tabs">
         </div>
 
         <div class="settings_column" title="Warn when starring multiple items">
-          <div class="settings_label">Star Items</div>
+          <div class="settings_label">Warn On<br>Star Items</div>
           <input type="checkbox" class="settings_checkbox" id="settings_warn_on_star" data-setting="warn_on_star">
         </div>
 
         <div class="settings_column" title="Warn when un-starring items">
-          <div class="settings_label">Un-Star Items</div>
+          <div class="settings_label">Warn On<br>Un-Star Items</div>
           <input type="checkbox" class="settings_checkbox" id="settings_warn_on_unstar" data-setting="warn_on_unstar">
         </div>
 
         <div class="settings_column" title="Warn when launching multiple items">
-          <div class="settings_label">Launch Items</div>
+          <div class="settings_label">Warn On<br>Launch Items</div>
           <input type="checkbox" class="settings_checkbox" id="settings_warn_on_launch" data-setting="warn_on_launch">
         </div>
       </div>
@@ -332,8 +322,18 @@
       </div>
     </template>
 
-    <template id="template_settings_more">
-      <div id="settings_more_container" class="settings_container">
+    <template id="template_settings_popup">
+      <div id="settings_popup_container" class="settings_container">
+        <div class="settings_column" title="Width of the popup">
+          <div class="settings_label">Width</div>
+          <div id="settings_width" class="settings_menu button" data-setting="width"></div>
+        </div>
+
+        <div class="settings_column" title="Height of the popup">
+          <div class="settings_label">Height</div>
+          <div id="settings_height" class="settings_menu button" data-setting="height"></div>
+        </div>
+
         <div class="settings_column" title="Close the popup when focusing tabs">
           <div class="settings_label">Close On Focus</div>
           <input type="checkbox" class="settings_checkbox" id="settings_close_on_focus" data-setting="close_on_focus">
@@ -343,7 +343,17 @@
           <div class="settings_label">Close On Launch</div>
           <input type="checkbox" class="settings_checkbox" id="settings_close_on_launch" data-setting="close_on_launch">
         </div>
+      </div>
+    </template>
 
+    <template id="template_settings_popup_top">
+      <div class="flex_row_center gap_2 grow">
+        <div class="settings_title button"></div>
+      </div>
+    </template>
+
+    <template id="template_settings_more">
+      <div id="settings_more_container" class="settings_container">
         <div class="settings_column" title="Tabs will be restored after launching an item anywhere">
           <div class="settings_label">Switch To Tabs</div>
           <input type="checkbox" class="settings_checkbox" id="settings_switch_to_tabs" data-setting="switch_to_tabs">

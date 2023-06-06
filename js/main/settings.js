@@ -2,8 +2,6 @@ App.default_settings = {
   smooth_scrolling: {value: true, category: `basic`, version: 1},
   text_mode: {value: `title`, category: `basic`, version: 1},
   item_height: {value: `normal`, category: `basic`, version: 1},
-  width: {value: 70, category: `basic`, version: 1},
-  height: {value: 80, category: `basic`, version: 1},
   font: {value: `sans-serif`, category: `basic`, version: 1},
   font_size: {value: 16, category: `basic`, version: 1},
   lock_drag: {value: false, category: `basic`, version: 1},
@@ -28,11 +26,16 @@ App.default_settings = {
   warn_on_close_tabs: {value: `special`, category: `warns`, version: 3},
   warn_on_suspend_tabs: {value: `special`, category: `warns`, version: 3},
   warn_on_close_duplicate_tabs: {value: true, category: `warns`, version: 1},
-  warn_on_clean_tabs: {value: true, category: `warns`, version: 1},
+  warn_on_close_normal_tabs: {value: true, category: `warns`, version: 1},
   warn_on_star: {value: true, category: `warns`, version: 1},
   warn_on_unstar: {value: true, category: `warns`, version: 1},
   warn_on_launch: {value: true, category: `warns`, version: 1},
   warn_on_untitle_tabs: {value: true, category: `warns`, version: 1},
+
+  width: {value: 70, category: `popup`, version: 1},
+  height: {value: 80, category: `popup`, version: 1},
+  close_on_focus: {value: true, category: `popup`, version: 1},
+  close_on_launch: {value: true, category: `popup`, version: 1},
 
   tabs_index: {value: 0, category: `order`, version: 1},
   history_index: {value: 1, category: `order`, version: 1},
@@ -55,8 +58,6 @@ App.default_settings = {
   show_icons: {value: true, category: `more`, version: 1},
   show_pinline: {value: true, category: `more`, version: 1},
   highlight_effect: {value: `rotate`, category: `more`, version: 1},
-  close_on_focus: {value: true, category: `more`, version: 1},
-  close_on_launch: {value: true, category: `more`, version: 1},
   show_scroller: {value: true, category: `more`, version: 1},
   show_footer: {value: true, category: `more`, version: 1},
   autoselect_tab: {value: true, category: `more`, version: 1},
@@ -228,7 +229,7 @@ App.settings_make_menu = (setting, opts, action = () => {}) => {
 }
 
 App.setup_settings = () => {
-  App.settings_categories = [`basic`, `theme`, `icons`, `media`, `warns`, `order`, `gestures`, `more`]
+  App.settings_categories = [`basic`, `theme`, `icons`, `media`, `warns`, `popup`, `order`, `gestures`, `more`]
 
   let common = {
     persistent: false,
@@ -247,16 +248,7 @@ App.setup_settings = () => {
 
   App.create_window(Object.assign({}, common, {id: `settings_basic`, setup: () => {
     prepare(`basic`)
-
     App.settings_make_menu(`text_mode`, [[`Title`, `title`], [`URL`, `url`]])
-
-    App.settings_make_menu(`width`, App.get_size_options(), () => {
-      App.apply_theme()
-    })
-
-    App.settings_make_menu(`height`, App.get_size_options(), () => {
-      App.apply_theme()
-    })
 
     App.settings_make_menu(`font`, [
       [`Sans`, `sans-serif`],
@@ -299,6 +291,18 @@ App.setup_settings = () => {
   App.create_window(Object.assign({}, common, {id: `settings_order`, setup: () => {
     prepare(`order`)
     App.make_item_order()
+  }}))
+
+  App.create_window(Object.assign({}, common, {id: `settings_popup`, setup: () => {
+    prepare(`popup`)
+
+    App.settings_make_menu(`width`, App.get_size_options(), () => {
+      App.apply_theme()
+    })
+
+    App.settings_make_menu(`height`, App.get_size_options(), () => {
+      App.apply_theme()
+    })
   }}))
 
   App.create_window(Object.assign({}, common, {id: `settings_more`, setup: () => {
