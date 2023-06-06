@@ -185,7 +185,7 @@ App.setup_drag = (mode) => {
         el.before(...App.drag_els)
       }
 
-      App.scroll_to_item(App[`drag_leader_${leader}`], `nearest_instant`)
+      App.scroll_to_item(App[`drag_leader_${leader}`], `nearest`)
       App.drag_moved = true
     }
 

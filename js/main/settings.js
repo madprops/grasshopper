@@ -1,5 +1,4 @@
 App.default_settings = {
-  smooth_scrolling: {value: true, category: `basic`, version: 1},
   text_mode: {value: `title`, category: `basic`, version: 1},
   item_height: {value: `normal`, category: `basic`, version: 1},
   font: {value: `sans-serif`, category: `basic`, version: 1},

@@ -33,5 +33,6 @@ App.footer_debouncer_delay = 100
 App.check_scroller_debouncer_delay = 100
 App.scroller_max_top = 3
 App.dragging = false
+App.scroll_behavior = `instant`
 
 NeedContext.min_width = `4.5rem`

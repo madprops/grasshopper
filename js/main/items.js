@@ -47,7 +47,7 @@ App.select_item_above = (mode) => {
   let item = App.get_prev_visible_item(mode)
 
   if (item) {
-    App.select_item(item, `nearest_instant`)
+    App.select_item(item, `nearest`)
   }
 }
 
@@ -55,7 +55,7 @@ App.select_item_below = (mode) => {
   let item = App.get_next_visible_item(mode)
 
   if (item) {
-    App.select_item(item, `nearest_instant`)
+    App.select_item(item, `nearest`)
   }
 }
 
@@ -191,7 +191,7 @@ App.select_first_item = (mode, by_active = false) => {
   if (mode === `tabs` && by_active) {
     for (let item of App.get_items(mode)) {
       if (item.visible && item.active) {
-        App.select_item(item, `center_instant`)
+        App.select_item(item, `center`)
         return
       }
     }
@@ -1608,17 +1608,17 @@ App.show_launched = (item) => {
   }, 1000)
 }
 
-App.goto_top = (mode, behavior = `instant`) => {
+App.goto_top = (mode) => {
   let el = DOM.el(`#${mode}_container`)
   App.hide_scroller(mode)
 
   el.scrollTo({
     top: 0,
-    behavior: behavior
+    behavior: App.scroll_behavior,
   })
 }
 
-App.goto_bottom = (mode, behavior = `instant`) => {
+App.goto_bottom = (mode) => {
   let el = DOM.el(`#${mode}_container`)
 
   if (App.container_is_scrolled(mode)) {
@@ -1627,7 +1627,7 @@ App.goto_bottom = (mode, behavior = `instant`) => {
 
   el.scrollTo({
     top: el.scrollHeight,
-    behavior: behavior
+    behavior: App.scroll_behavior,
   })
 }
 
@@ -1653,7 +1653,7 @@ App.scroll = (mode, direction, fast = false) => {
 
   el.scrollTo({
     top: top,
-    behavior: App.get_scroll_behavior(),
+    behavior: App.scroll_behavior,
   })
 }
 
@@ -1890,15 +1890,6 @@ App.back_action = (mode) => {
   }
 }
 
-App.get_scroll_behavior = () => {
-  if (App.get_setting(`smooth_scrolling`)) {
-    return `smooth`
-  }
-  else {
-    return `instant`
-  }
-}
-
 App.container_is_scrolled = (mode) => {
   let container = DOM.el(`#${mode}_container`)
   return container.scrollHeight > container.clientHeight
@@ -1916,26 +1907,12 @@ App.clear_or_all = (mode) => {
 }
 
 App.scroll_to_item = (item, scroll = `nearest`) => {
-  let behavior
-
-  if (scroll === `nearest_instant`) {
-    scroll = `nearest`
-    behavior = `instant`
-  }
-  else if (scroll === `center_instant`) {
-    scroll = `center`
-    behavior = `instant`
-  }
-  else {
-    behavior = App.get_scroll_behavior()
-  }
-
   if (item.element.offsetTop <= App.scroller_max_top) {
     App.hide_scroller(item.mode)
   }
 
   item.element.scrollIntoView({
     block: scroll,
-    behavior: behavior,
+    behavior: App.scroll_behavior,
   })
 }
