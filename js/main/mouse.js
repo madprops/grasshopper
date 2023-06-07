@@ -52,7 +52,7 @@ App.setup_window_mouse = (mode) => {
 
       setTimeout(() => {
         App.double_click_tab(item)
-      }, 50)
+      }, 80)
     }
   })
 
