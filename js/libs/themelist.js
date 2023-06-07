@@ -236,36 +236,12 @@ ThemeList.list = [
     "color_5": "#78D1E1"
   },
   {
-    "background": "#002B36",
-    "color_1": "#09CBDD",
-    "color_2": "#A1D7DA",
-    "color_3": "#F48FB1",
-    "color_4": "#E6E6E6",
-    "color_5": "#FF5622DE"
-  },
-  {
-    "background": "#212121",
-    "color_1": "#F0F4C3FF",
-    "color_2": "#81D4FAFF",
-    "color_3": "#CE93D8FF",
-    "color_4": "#FFAB91FF",
-    "color_5": "#A5D6A7FF"
-  },
-  {
     "background": "#1D2021",
     "color_1": "#FABD2F",
     "color_2": "#83A598",
     "color_3": "#FB4934",
     "color_4": "#B8BB26",
     "color_5": "#D3869B"
-  },
-  {
-    "background": "#FFFFFF",
-    "color_1": "#6F42C1",
-    "color_2": "#24292EFF",
-    "color_3": "#D73A49",
-    "color_4": "#22863A",
-    "color_5": "#005CC5"
   },
   {
     "background": "#263238",
@@ -516,22 +492,6 @@ ThemeList.list = [
     "color_5": "#5AF78E"
   },
   {
-    "background": "#232222",
-    "color_1": "#4DB1CB",
-    "color_2": "#FFFFFFD9",
-    "color_3": "#FE7AB2",
-    "color_4": "#FE8170",
-    "color_5": "#D8C87C"
-  },
-  {
-    "background": "#2B2B2B",
-    "color_1": "#D4D4D4FF",
-    "color_2": "#A9B7C6",
-    "color_3": "#CC7832",
-    "color_4": "#00795E",
-    "color_5": "#6897BB"
-  },
-  {
     "background": "#110E1A",
     "color_1": "#008ED2",
     "color_2": "#A5D851",
@@ -732,14 +692,6 @@ ThemeList.list = [
     "color_5": "#A79DF8"
   },
   {
-    "background": "#20213B",
-    "color_1": "#FC4D",
-    "color_2": "#ADEC",
-    "color_3": "#E36D",
-    "color_4": "#CE5C",
-    "color_5": "#E67D"
-  },
-  {
     "background": "#F8F8FF",
     "color_1": "#00B253",
     "color_2": "#FFAA00",
@@ -884,14 +836,6 @@ ThemeList.list = [
     "color_5": "#1B8486"
   },
   {
-    "background": "#27212E",
-    "color_1": "#EB64B9",
-    "color_2": "#FFF",
-    "color_3": "#40B4C4",
-    "color_4": "#B4DCE7",
-    "color_5": "#B381C5"
-  },
-  {
     "background": "#060606",
     "color_1": "#A6E22E",
     "color_2": "#D3C970",
@@ -948,14 +892,6 @@ ThemeList.list = [
     "color_5": "#AE81FF"
   },
   {
-    "background": "#FFFBE8",
-    "color_1": "#61AFEF",
-    "color_2": "#499504",
-    "color_3": "#577909",
-    "color_4": "#2AA198",
-    "color_5": "#9B1CEBFF"
-  },
-  {
     "background": "#212121",
     "color_1": "#82AAFF",
     "color_2": "#EEFFFF",
@@ -996,14 +932,6 @@ ThemeList.list = [
     "color_5": "#FFB482"
   },
   {
-    "background": "#1C1E26",
-    "color_1": "#25B0BCE6",
-    "color_2": "#E95678E6",
-    "color_3": "#B877DBE6",
-    "color_4": "#FAB795E6",
-    "color_5": "#F09483E6"
-  },
-  {
     "background": "#0A1018",
     "color_1": "#28735E",
     "color_2": "#5CB4DE",
@@ -1018,22 +946,6 @@ ThemeList.list = [
     "color_3": "#399EF4",
     "color_4": "#DA6771",
     "color_5": "#E5949B"
-  },
-  {
-    "background": "#0B0C0F",
-    "color_1": "#25B0BCE6",
-    "color_2": "#E95678E6",
-    "color_3": "#B877DBE6",
-    "color_4": "#FAB795E6",
-    "color_5": "#F09483E6"
-  },
-  {
-    "background": "#1B2738",
-    "color_1": "#7FB5FF",
-    "color_2": "#D9E9FFAA",
-    "color_3": "#DDB3FF",
-    "color_4": "#85CC95",
-    "color_5": "#FFB38C"
   },
   {
     "background": "#242938",
@@ -1284,14 +1196,6 @@ ThemeList.list = [
     "color_5": "#88FF88"
   },
   {
-    "background": "#262A33",
-    "color_1": "#FFE66DFF",
-    "color_2": "#00E8C6FF",
-    "color_3": "#C74DEDFF",
-    "color_4": "#96E072FF",
-    "color_5": "#F39C12FF"
-  },
-  {
     "background": "#F8F8F8",
     "color_1": "#0000FF",
     "color_2": "#0C4B33",
@@ -1314,14 +1218,6 @@ ThemeList.list = [
     "color_3": "#E74C3C",
     "color_4": "#53DF83",
     "color_5": "#56B6C2"
-  },
-  {
-    "background": "#0E0E0E",
-    "color_1": "#FDB849",
-    "color_2": "#E95678E6",
-    "color_3": "#46ACAD",
-    "color_4": "#EAAC8B",
-    "color_5": "#EAAC8B"
   },
   {
     "background": "#1A1D27",
@@ -1420,14 +1316,6 @@ ThemeList.list = [
     "color_5": "#0AFAFA"
   },
   {
-    "background": "#FFFFFF",
-    "color_1": "#795DA3",
-    "color_2": "#000",
-    "color_3": "#A71D5D",
-    "color_4": "#183691",
-    "color_5": "#0086B3"
-  },
-  {
     "background": "#2D2D2D",
     "color_1": "#6699CC",
     "color_2": "#F2777A",
@@ -1450,14 +1338,6 @@ ThemeList.list = [
     "color_3": "#F977AE",
     "color_4": "#FF8170",
     "color_5": "#F977AE"
-  },
-  {
-    "background": "#F9F9F9",
-    "color_1": "#6F42C1",
-    "color_2": "#24292EFF",
-    "color_3": "#D73A49",
-    "color_4": "#22863A",
-    "color_5": "#005CC5"
   },
   {
     "background": "#151515",
@@ -1652,14 +1532,6 @@ ThemeList.list = [
     "color_5": "#2EE2FA"
   },
   {
-    "background": "#0C0020",
-    "color_1": "#57DAE4",
-    "color_2": "#C368FF",
-    "color_3": "#FF57F7",
-    "color_4": "#FFECE3D0",
-    "color_5": "#FF607B"
-  },
-  {
     "background": "#193549",
     "color_1": "#E1EFFF",
     "color_2": "#E1EFFF",
@@ -1684,28 +1556,12 @@ ThemeList.list = [
     "color_5": "#EBCB8B"
   },
   {
-    "background": "#282C34",
-    "color_1": "#79B6F2",
-    "color_2": "#FFF",
-    "color_3": "#C5A5C5",
-    "color_4": "#8DC891",
-    "color_5": "#FC929E"
-  },
-  {
     "background": "#000000",
     "color_1": "#80A665",
     "color_2": "#BD976A",
     "color_3": "#4D9375",
     "color_4": "#C98A7D",
     "color_5": "#4C9A91"
-  },
-  {
-    "background": "#131010",
-    "color_1": "#79B6F2",
-    "color_2": "#FFF",
-    "color_3": "#89DDFF",
-    "color_4": "#C3E88D",
-    "color_5": "#FC929E"
   },
   {
     "background": "#0A0B0A",
@@ -1780,28 +1636,12 @@ ThemeList.list = [
     "color_5": "#BD93F9"
   },
   {
-    "background": "#FFFFFF",
-    "color_1": "#795DA3",
-    "color_2": "#333",
-    "color_3": "#A71D5D",
-    "color_4": "#4180C6",
-    "color_5": "#0086B3"
-  },
-  {
     "background": "#272822",
     "color_1": "#66D9EF",
     "color_2": "#F8F8F2",
     "color_3": "#AE81FF",
     "color_4": "#A6E22E",
     "color_5": "#FD971F"
-  },
-  {
-    "background": "#252526",
-    "color_1": "#89DDFF",
-    "color_2": "#FF5370FF",
-    "color_3": "#C792EAFF",
-    "color_4": "#C3E88D",
-    "color_5": "#F77669"
   },
   {
     "background": "#172030",
@@ -1828,14 +1668,6 @@ ThemeList.list = [
     "color_5": "#BF616A"
   },
   {
-    "background": "#111111",
-    "color_1": "#B973FFFA",
-    "color_2": "#97F8FF",
-    "color_3": "#999999",
-    "color_4": "#02DBF8",
-    "color_5": "#FFFFFF"
-  },
-  {
     "background": "#0A0F0B",
     "color_1": "#C2DF6B",
     "color_2": "#D1FFF0",
@@ -1858,14 +1690,6 @@ ThemeList.list = [
     "color_3": "#F32973",
     "color_4": "#E44038",
     "color_5": "#D85FA7"
-  },
-  {
-    "background": "#141414",
-    "color_1": "#9EF",
-    "color_2": "#7BE",
-    "color_3": "#EAF",
-    "color_4": "#7F8",
-    "color_5": "#37C"
   },
   {
     "background": "#310000",
@@ -2066,14 +1890,6 @@ ThemeList.list = [
     "color_3": "#6A8799",
     "color_4": "#909D63",
     "color_5": "#ECD3A8"
-  },
-  {
-    "background": "#F9F5F5",
-    "color_1": "#87B6B6",
-    "color_2": "#B4ADDF",
-    "color_3": "#4A4543D2",
-    "color_4": "#91B8DD",
-    "color_5": "#82B4E3"
   },
   {
     "background": "#B0D0B8",
@@ -2308,14 +2124,6 @@ ThemeList.list = [
     "color_5": "#FFCC66"
   },
   {
-    "background": "#FFFFFF",
-    "color_1": "#795E26",
-    "color_2": "#001080",
-    "color_3": "#AF00DB",
-    "color_4": "#A31515",
-    "color_5": "#000"
-  },
-  {
     "background": "#000000",
     "color_1": "#FDF39A",
     "color_2": "#9CDCFE",
@@ -2362,14 +2170,6 @@ ThemeList.list = [
     "color_3": "#01F7F7",
     "color_4": "#94BFFF",
     "color_5": "#F1B3F1"
-  },
-  {
-    "background": "#0000AA",
-    "color_1": "#FFFF55",
-    "color_2": "#FF5555",
-    "color_3": "#FF55FF",
-    "color_4": "#FFFFFFFF",
-    "color_5": "#55FFFF"
   },
   {
     "background": "#011627",
@@ -2434,22 +2234,6 @@ ThemeList.list = [
     "color_3": "#C586C0",
     "color_4": "#CE9178",
     "color_5": "#B5CEA8"
-  },
-  {
-    "background": "#000000",
-    "color_1": "#FF0",
-    "color_2": "#FFF",
-    "color_3": "#0FF",
-    "color_4": "#0F0",
-    "color_5": "#F00"
-  },
-  {
-    "background": "#111111",
-    "color_1": "#00AEFF",
-    "color_2": "#FFF",
-    "color_3": "#FFD14A",
-    "color_4": "#91DD64",
-    "color_5": "#A8F"
   },
   {
     "background": "#2D353B",
@@ -2780,14 +2564,6 @@ ThemeList.list = [
     "color_5": "#C64640"
   },
   {
-    "background": "#1E1E1E",
-    "color_1": "#3193C6",
-    "color_2": "#05AD97",
-    "color_3": "#E06C75FF",
-    "color_4": "#05AD97",
-    "color_5": "#D19A66"
-  },
-  {
     "background": "#292D3E",
     "color_1": "#82AAFF",
     "color_2": "#A6ACCD",
@@ -2842,14 +2618,6 @@ ThemeList.list = [
     "color_3": "#735C0F",
     "color_4": "#032F62",
     "color_5": "#005CC5"
-  },
-  {
-    "background": "#142531",
-    "color_1": "#82AAFF",
-    "color_2": "#D7DBE0",
-    "color_3": "#C792EA",
-    "color_4": "#BBF897DC",
-    "color_5": "#F78C6C"
   },
   {
     "background": "#000000",
@@ -2916,14 +2684,6 @@ ThemeList.list = [
     "color_5": "#FF9473"
   },
   {
-    "background": "#131517",
-    "color_1": "#98BDC8FF",
-    "color_2": "#DBDBDBFF",
-    "color_3": "#8BA0B6FF",
-    "color_4": "#A8BC96FF",
-    "color_5": "#AC92A7FF"
-  },
-  {
     "background": "#172237",
     "color_1": "#C792EA",
     "color_2": "#C9D1D9",
@@ -2970,14 +2730,6 @@ ThemeList.list = [
     "color_3": "#C792EA",
     "color_4": "#C3E88D",
     "color_5": "#F78C6C"
-  },
-  {
-    "background": "#C7EDCC",
-    "color_1": "#61AFEF",
-    "color_2": "#499504",
-    "color_3": "#577909",
-    "color_4": "#2AA198",
-    "color_5": "#9B1CEBFF"
   },
   {
     "background": "#FFFFFF",
@@ -3052,14 +2804,6 @@ ThemeList.list = [
     "color_5": "#009F7F"
   },
   {
-    "background": "#131A1F",
-    "color_1": "#DBD96CEE",
-    "color_2": "#9D8D7EEE",
-    "color_3": "#DAB591EE",
-    "color_4": "#B56B6BEE",
-    "color_5": "#6CB5B4EE"
-  },
-  {
     "background": "#1E1E1E",
     "color_1": "#FF8000",
     "color_2": "#BDB76B",
@@ -3100,22 +2844,6 @@ ThemeList.list = [
     "color_5": "#F78C6C"
   },
   {
-    "background": "#0A0A0A",
-    "color_1": "#7FACD8FF",
-    "color_2": "#CE787CFF",
-    "color_3": "#BC80CDFF",
-    "color_4": "#A3BF8DFF",
-    "color_5": "#C59E7CFF"
-  },
-  {
-    "background": "#FFBDC8",
-    "color_1": "#575757A6",
-    "color_2": "#FF477E",
-    "color_3": "#FFE8AD",
-    "color_4": "#FFE8AD",
-    "color_5": "#FFE8AD"
-  },
-  {
     "background": "#1D1D1D",
     "color_1": "#798283",
     "color_2": "#CC7F66",
@@ -3130,14 +2858,6 @@ ThemeList.list = [
     "color_3": "#C56C72",
     "color_4": "#DABD80",
     "color_5": "#C678DD"
-  },
-  {
-    "background": "#292A30",
-    "color_1": "#78C2B3",
-    "color_2": "#FFFFFFD8",
-    "color_3": "#FF7AB2",
-    "color_4": "#FF8170",
-    "color_5": "#D9C97C"
   },
   {
     "background": "#1E1E1E",
@@ -3284,14 +3004,6 @@ ThemeList.list = [
     "color_5": "#FFAB40"
   },
   {
-    "background": "#1C1E26",
-    "color_1": "#25B0BCE6",
-    "color_2": "#FE5E78",
-    "color_3": "#B877DBE6",
-    "color_4": "#9AD479E6",
-    "color_5": "#F09483E6"
-  },
-  {
     "background": "#13062B",
     "color_1": "#228CDB",
     "color_2": "#FF0095",
@@ -3314,14 +3026,6 @@ ThemeList.list = [
     "color_3": "#C678DD",
     "color_4": "#F7F7F7",
     "color_5": "#EEA55C"
-  },
-  {
-    "background": "#070707",
-    "color_1": "#8EBEE8FF",
-    "color_2": "#E6E6E6FF",
-    "color_3": "#ED83B1FF",
-    "color_4": "#6FF3D9FF",
-    "color_5": "#F4BC83FF"
   },
   {
     "background": "#FFFFFF",
@@ -3394,22 +3098,6 @@ ThemeList.list = [
     "color_3": "#D7005F",
     "color_4": "#5F8700",
     "color_5": "#6897BB"
-  },
-  {
-    "background": "#261D45",
-    "color_1": "#00FFC8",
-    "color_2": "#9CDCFEFF",
-    "color_3": "#C592FF",
-    "color_4": "#FFFFA7",
-    "color_5": "#FFB36C"
-  },
-  {
-    "background": "#1A1B26",
-    "color_1": "#4D92FF",
-    "color_2": "#FF42AC",
-    "color_3": "#A449FF",
-    "color_4": "#59F7FFE5",
-    "color_5": "#FFA352"
   },
   {
     "background": "#29203B",
@@ -3540,14 +3228,6 @@ ThemeList.list = [
     "color_5": "#AEEA00"
   },
   {
-    "background": "#212733",
-    "color_1": "#FFD580BF",
-    "color_2": "#FFFFFFA8",
-    "color_3": "#FFAE5794",
-    "color_4": "#6C90B9CC",
-    "color_5": "#FFAE5794"
-  },
-  {
     "background": "#2C2E34",
     "color_1": "#6CB6EB",
     "color_2": "#C5CDD9",
@@ -3628,14 +3308,6 @@ ThemeList.list = [
     "color_5": "#64AEB3"
   },
   {
-    "background": "#242E33",
-    "color_1": "#81A2BE",
-    "color_2": "#C5C8C6BB",
-    "color_3": "#B294BB",
-    "color_4": "#B5BD68",
-    "color_5": "#DE935F"
-  },
-  {
     "background": "#222222",
     "color_1": "#00FFFF",
     "color_2": "#EE5CFD",
@@ -3668,36 +3340,12 @@ ThemeList.list = [
     "color_5": "#AE81FF"
   },
   {
-    "background": "#172030",
-    "color_1": "#EE4381",
-    "color_2": "#FFF",
-    "color_3": "#99EEFF",
-    "color_4": "#4D9375",
-    "color_5": "#D1675A"
-  },
-  {
-    "background": "#0D0D0D",
-    "color_1": "#91AAE7FF",
-    "color_2": "#ABADB5FF",
-    "color_3": "#BF98D8FF",
-    "color_4": "#CBE5A4FF",
-    "color_5": "#E7957BFF"
-  },
-  {
     "background": "#232629",
     "color_1": "#3498DB",
     "color_2": "#F47750",
     "color_3": "#3DAEE9",
     "color_4": "#23CC71",
     "color_5": "#F67400"
-  },
-  {
-    "background": "#FFFFFF",
-    "color_1": "#222",
-    "color_2": "#3134B1",
-    "color_3": "#AC1391",
-    "color_4": "#C61816",
-    "color_5": "#1B00D4"
   },
   {
     "background": "#191919",
@@ -3746,14 +3394,6 @@ ThemeList.list = [
     "color_3": "#B1EBE1",
     "color_4": "#FAD591",
     "color_5": "#FFBF33"
-  },
-  {
-    "background": "#000C1D",
-    "color_1": "#05AA91",
-    "color_2": "#A928FF",
-    "color_3": "#FF6565",
-    "color_4": "#EBFAD6CB",
-    "color_5": "#FFA733"
   },
   {
     "background": "#001020",
@@ -3956,14 +3596,6 @@ ThemeList.list = [
     "color_5": "#EBA0AC"
   },
   {
-    "background": "#1D1A1E",
-    "color_1": "#AD765DD7",
-    "color_2": "#B1CFCF",
-    "color_3": "#A52B6E",
-    "color_4": "#EB336AC4",
-    "color_5": "#9A79E6AB"
-  },
-  {
     "background": "#0D1016",
     "color_1": "#FFB454",
     "color_2": "#B3B1AD",
@@ -3986,14 +3618,6 @@ ThemeList.list = [
     "color_3": "#D55FDE",
     "color_4": "#89CA78",
     "color_5": "#D19A66"
-  },
-  {
-    "background": "#232023",
-    "color_1": "#E0B60DFF",
-    "color_2": "#339966FF",
-    "color_3": "#5EAB30",
-    "color_4": "#9FB760",
-    "color_5": "#90B4CB"
   },
   {
     "background": "#202020",
@@ -4420,14 +4044,6 @@ ThemeList.list = [
     "color_5": "#ED3B60"
   },
   {
-    "background": "#0A0D12",
-    "color_1": "#FFF5B1",
-    "color_2": "#C8E1FF",
-    "color_3": "#D2A8FF",
-    "color_4": "#FFAC70D3",
-    "color_5": "#85E89D"
-  },
-  {
     "background": "#261C29",
     "color_1": "#86C166",
     "color_2": "#8B81C3",
@@ -4492,22 +4108,6 @@ ThemeList.list = [
     "color_5": "#6DC2B8"
   },
   {
-    "background": "#222234",
-    "color_1": "#2188A7",
-    "color_2": "#D5D8DA",
-    "color_3": "#3E98A3",
-    "color_4": "#FAB795E6",
-    "color_5": "#F09483E6"
-  },
-  {
-    "background": "#00001F",
-    "color_1": "#11FFFA",
-    "color_2": "#FFF",
-    "color_3": "#FA6BC3",
-    "color_4": "#77FB00",
-    "color_5": "#FF2E33"
-  },
-  {
     "background": "#224E44",
     "color_1": "#9B7AF4",
     "color_2": "#EF596F",
@@ -4554,14 +4154,6 @@ ThemeList.list = [
     "color_3": "#FFD14A",
     "color_4": "#98C379",
     "color_5": "#C678DD"
-  },
-  {
-    "background": "#1A1A1A",
-    "color_1": "#76B6EDFF",
-    "color_2": "#76B6EDFF",
-    "color_3": "#E6E6E6FF",
-    "color_4": "#DDDDDD",
-    "color_5": "#B58CFF"
   },
   {
     "background": "#252B39",
@@ -4620,14 +4212,6 @@ ThemeList.list = [
     "color_5": "#9755B3"
   },
   {
-    "background": "#121412",
-    "color_1": "#36AF50E6",
-    "color_2": "#FFFFFFCC",
-    "color_3": "#8FE701",
-    "color_4": "#89CEA4DD",
-    "color_5": "#A8DF66DD"
-  },
-  {
     "background": "#FFFFFE",
     "color_1": "#333333",
     "color_2": "#333333",
@@ -4642,14 +4226,6 @@ ThemeList.list = [
     "color_3": "#FF9D35",
     "color_4": "#AECC00",
     "color_5": "#F14360"
-  },
-  {
-    "background": "#FFFFFF",
-    "color_1": "#000",
-    "color_2": "#000",
-    "color_3": "#07A",
-    "color_4": "#2B915B",
-    "color_5": "#D86149"
   },
   {
     "background": "#0F111A",
@@ -4706,14 +4282,6 @@ ThemeList.list = [
     "color_3": "#A68AE1",
     "color_4": "#74FEE1",
     "color_5": "#DA65BA"
-  },
-  {
-    "background": "#1E1E1E",
-    "color_1": "#00AEFF",
-    "color_2": "#FFF",
-    "color_3": "#FFD14A",
-    "color_4": "#91DD64",
-    "color_5": "#A8F"
   },
   {
     "background": "#21252B",
@@ -4932,22 +4500,6 @@ ThemeList.list = [
     "color_5": "#37D6CB"
   },
   {
-    "background": "#242527",
-    "color_1": "#FF8B19",
-    "color_2": "#FFF",
-    "color_3": "#FF681E",
-    "color_4": "#F0BD16",
-    "color_5": "#FB5B1D"
-  },
-  {
-    "background": "#1A1B26",
-    "color_1": "#60C5FF",
-    "color_2": "#E95678E6",
-    "color_3": "#B877DBE6",
-    "color_4": "#FAB795E6",
-    "color_5": "#F09483E6"
-  },
-  {
     "background": "#232222",
     "color_1": "#82AAFF",
     "color_2": "#EEFFFF",
@@ -5028,14 +4580,6 @@ ThemeList.list = [
     "color_5": "#C678DD"
   },
   {
-    "background": "#000084",
-    "color_1": "#00FF00",
-    "color_2": "#FFF",
-    "color_3": "#5ED8F0",
-    "color_4": "#FFFF00",
-    "color_5": "#FF00FF"
-  },
-  {
     "background": "#101010",
     "color_1": "#82AAFF",
     "color_2": "#DBDBDB",
@@ -5084,28 +4628,12 @@ ThemeList.list = [
     "color_5": "#AE81FF"
   },
   {
-    "background": "#282C34",
-    "color_1": "#DCDCAA",
-    "color_2": "#BBBBBBFF",
-    "color_3": "#C586C0",
-    "color_4": "#CE9178",
-    "color_5": "#B5CEA8"
-  },
-  {
     "background": "#26394D",
     "color_1": "#00B3B3",
     "color_2": "#00E673",
     "color_3": "#E6E600",
     "color_4": "#00E673",
     "color_5": "#E60073"
-  },
-  {
-    "background": "#1A1818",
-    "color_1": "#FFC800EC",
-    "color_2": "#E1EFFFF1",
-    "color_3": "#FF9D00E1",
-    "color_4": "#92E7D5E8",
-    "color_5": "#FF628C"
   },
   {
     "background": "#12202F",
@@ -5146,14 +4674,6 @@ ThemeList.list = [
     "color_3": "#EB94B2",
     "color_4": "#13BE76",
     "color_5": "#9B90F4"
-  },
-  {
-    "background": "#171717",
-    "color_1": "#FEF9C3FF",
-    "color_2": "#7DD3FCFF",
-    "color_3": "#F472B6FF",
-    "color_4": "#FCA5A5FF",
-    "color_5": "#BBF7D0FF"
   },
   {
     "background": "#09131B",
@@ -5220,36 +4740,12 @@ ThemeList.list = [
     "color_5": "#EF7C2A"
   },
   {
-    "background": "#000000",
-    "color_1": "#00D900",
-    "color_2": "#00D900",
-    "color_3": "#990",
-    "color_4": "#900",
-    "color_5": "#00A6B2"
-  },
-  {
     "background": "#0F1519",
     "color_1": "#CCBB88",
     "color_2": "#DCDCDC",
     "color_3": "#608060",
     "color_4": "#8FBF8F",
     "color_5": "#CC8F52"
-  },
-  {
-    "background": "#1A1A1A",
-    "color_1": "#EBF3F7",
-    "color_2": "#FE53BB",
-    "color_3": "#08F7FE",
-    "color_4": "#CCC",
-    "color_5": "#DDD"
-  },
-  {
-    "background": "#1C1C1C",
-    "color_1": "#4DB1CB",
-    "color_2": "#FFFFFFD9",
-    "color_3": "#FE7AB2",
-    "color_4": "#FE8170",
-    "color_5": "#D8C87C"
   },
   {
     "background": "#C8E6C9",
@@ -5348,14 +4844,6 @@ ThemeList.list = [
     "color_5": "#9462F1"
   },
   {
-    "background": "#F5F2F0",
-    "color_1": "#D93556",
-    "color_2": "#494949",
-    "color_3": "#07A",
-    "color_4": "#690",
-    "color_5": "#990055"
-  },
-  {
     "background": "#11151A",
     "color_1": "#548EC5",
     "color_2": "#D9DAE2",
@@ -5412,28 +4900,12 @@ ThemeList.list = [
     "color_5": "#6987BB"
   },
   {
-    "background": "#1F241F",
-    "color_1": "#BD575C",
-    "color_2": "#FFF",
-    "color_3": "#56A7F9",
-    "color_4": "#FFEE99",
-    "color_5": "#85C871"
-  },
-  {
     "background": "#151515",
     "color_1": "#6E6E6E",
     "color_2": "#01A870",
     "color_3": "#6E6E6E",
     "color_4": "#D5D5D5",
     "color_5": "#6E6E6E"
-  },
-  {
-    "background": "#2D2D2D",
-    "color_1": "#E5CD52",
-    "color_2": "#BBB",
-    "color_3": "#E06C75",
-    "color_4": "#78BD65",
-    "color_5": "#6CB6FF"
   },
   {
     "background": "#363636",
@@ -5548,14 +5020,6 @@ ThemeList.list = [
     "color_5": "#6987BB"
   },
   {
-    "background": "#1F1F1F",
-    "color_1": "#EBF3F7",
-    "color_2": "#FF8964",
-    "color_3": "#B5D1E2",
-    "color_4": "#FFCB6B",
-    "color_5": "#DDD"
-  },
-  {
     "background": "#212122",
     "color_1": "#FFCB6B",
     "color_2": "#9876AA",
@@ -5642,14 +5106,6 @@ ThemeList.list = [
     "color_3": "#66D9EF",
     "color_4": "#E6DB74",
     "color_5": "#8BE0FD"
-  },
-  {
-    "background": "#FFFFFF",
-    "color_1": "#8C5D7BE6",
-    "color_2": "#343A40",
-    "color_3": "#73809F",
-    "color_4": "#81895D",
-    "color_5": "#5F8C7D"
   },
   {
     "background": "#111111",
@@ -5794,14 +5250,6 @@ ThemeList.list = [
     "color_3": "#E95384",
     "color_4": "#B186B7",
     "color_5": "#BA6BC6"
-  },
-  {
-    "background": "#0B1015",
-    "color_1": "#57C7FF",
-    "color_2": "#EFF0EB",
-    "color_3": "#D96585",
-    "color_4": "#B8BB26FF",
-    "color_5": "#5AF78E"
   },
   {
     "background": "#181D26",
