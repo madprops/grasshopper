@@ -16,7 +16,7 @@ App.setup_window_mouse = (mode) => {
     }
   })
 
-  DOM.ev(container, `mouseup`, (e) => {
+  DOM.ev(container, `click`, (e) => {
     if (!App.cursor_on_item(e, mode)) {
       App.dehighlight(mode)
       return
@@ -24,24 +24,35 @@ App.setup_window_mouse = (mode) => {
 
     let item = App.get_cursor_item(mode, e)
 
-    // Main click
-    if (e.button === 0) {
-      if (e.target.classList.contains(`view_media_button`)) {
-        App.view_media(item)
-        return
-      }
+    if (e.target.classList.contains(`view_media_button`)) {
+      App.view_media(item)
+      return
+    }
 
-      if (e.shiftKey) {
-        return
-      }
+    if (e.shiftKey) {
+      return
+    }
 
-      if (e.ctrlKey) {
-        App.pick_item(item)
-        return
-      }
+    if (e.ctrlKey) {
+      App.pick_item(item)
+      return
+    }
 
-      App.select_item(item)
-      App[`${mode}_action`](item)
+    App.select_item(item)
+    App[`${mode}_action`](item)
+  })
+
+  DOM.ev(container, `dblclick`, (e) => {
+    if (!App.cursor_on_item(e, mode)) {
+      return
+    }
+
+    if (mode === `tabs`) {
+      let item = App.get_cursor_item(mode, e)
+
+      setTimeout(() => {
+        App.double_click_tab(item)
+      }, 50)
     }
   })
 
@@ -91,17 +102,6 @@ App.setup_window_mouse = (mode) => {
         App.show_item_menu(item, e.clientX, e.clientY)
         e.preventDefault()
       }
-    }
-  })
-
-  DOM.ev(container, `dblclick`, (e) => {
-    if (!App.cursor_on_item(e, mode)) {
-      return
-    }
-
-    if (mode === `tabs`) {
-      let item = App.get_cursor_item(mode, e)
-      App.double_click_tab(item)
     }
   })
 }

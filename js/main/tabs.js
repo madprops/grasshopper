@@ -278,22 +278,26 @@ App.duplicate_tab = async (item) => {
   }
 }
 
-App.suspend_tab = async (item) => {
-  if (item.active) {
-    try {
-      await browser.tabs.create({active: true})
-    }
-    catch (err) {
-      App.log(err, `error`)
-    }
-  }
-
+App.do_suspend_tab = async (item) => {
   try {
     await browser.tabs.discard(item.id)
   }
   catch (err) {
     App.log(err, `error`)
   }
+}
+
+App.suspend_tab = async (item) => {
+  if (item.active) {
+    try {
+      await App.open_new_tab()
+    }
+    catch (err) {
+      App.log(err, `error`)
+    }
+  }
+
+  App.do_suspend_tab(item)
 }
 
 App.pin_tabs = (item) => {
@@ -968,6 +972,17 @@ App.duplicate_current_tab = async () => {
   App.duplicate_tab(tab)
 }
 
+App.suspend_current_tab = async () => {
+  let tab = await App.get_active_tab()
+
+  if (!tab) {
+    return
+  }
+
+  await App.open_new_tab()
+  App.do_suspend_tab(tab)
+}
+
 App.detach_current_tab = async () => {
   let tab = await App.get_active_tab()
 
@@ -986,6 +1001,16 @@ App.copy_current_tab_url = async () => {
   }
 
   App.copy_to_clipboard(tab.url)
+}
+
+App.copy_current_tab_title = async () => {
+  let tab = await App.get_active_tab()
+
+  if (!tab) {
+    return
+  }
+
+  App.copy_to_clipboard(tab.title)
 }
 
 App.copy_current_tab_title = async () => {

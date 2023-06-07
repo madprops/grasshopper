@@ -34,6 +34,7 @@ App.commands = [
   [`Forward (Tab)`, `tab_forward`],
   [`Reload Tab`, `reload_tab`],
   [`Duplicate Tab`, `duplicate_tab`],
+  [`Suspend Tab`, `suspend_tab`],
   [`Detach Tab`, `detach_tab`],
   [`Tabs To Top`, `tabs_to_top`],
   [`Tabs To Bottom`, `tabs_to_bottom`],
@@ -227,7 +228,20 @@ App.run_command = (cmd, item) => {
     App.stor_clear_all_data()
   }
   else if (cmd === `duplicate_tab`) {
-    App.duplicate_current_tab()
+    if (item) {
+      App.duplicate_tab(item)
+    }
+    else {
+      App.duplicate_current_tab()
+    }
+  }
+  else if (cmd === `suspend_tab`) {
+    if (item) {
+      App.suspend_tabs(item)
+    }
+    else {
+      App.suspend_current_tab()
+    }
   }
   else if (cmd === `detach_tab`) {
     App.detach_current_tab()
