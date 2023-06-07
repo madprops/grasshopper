@@ -5819,6 +5819,6 @@ ThemeList.random_theme = () => {
 }
 
 try {
-  module.exports = ThemeList;
+  module.exports = ThemeList
 }
 catch (err) {}
