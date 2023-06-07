@@ -42,18 +42,22 @@ App.setup_window_mouse = (mode) => {
     }
   })
 
-  DOM.ev(container, `mouseover`, (e) => {
+  DOM.ev(container, `contextmenu`, (e) => {
     if (App.cursor_on_item(e, mode)) {
       let item = App.get_cursor_item(mode, e)
-      App.update_footer_info(item)
-    }
-  })
 
-  DOM.ev(container, `mouseout`, (e) => {
-    let item = App.get_selected(mode)
+      if (item) {
+        App.select_item(item, undefined, false)
 
-    if (item) {
-      App.update_footer_info(item)
+        if (!item.highlighted) {
+          if (App.get_highlights(mode).length > 0) {
+            App.pick_item(item)
+          }
+        }
+
+        App.show_item_menu(item, e.clientX, e.clientY)
+        e.preventDefault()
+      }
     }
   })
 
@@ -72,22 +76,18 @@ App.setup_window_mouse = (mode) => {
     }
   })
 
-  DOM.ev(container, `contextmenu`, (e) => {
+  DOM.ev(container, `mouseover`, (e) => {
     if (App.cursor_on_item(e, mode)) {
       let item = App.get_cursor_item(mode, e)
+      App.update_footer_info(item)
+    }
+  })
 
-      if (item) {
-        App.select_item(item, undefined, false)
+  DOM.ev(container, `mouseout`, (e) => {
+    let item = App.get_selected(mode)
 
-        if (!item.highlighted) {
-          if (App.get_highlights(mode).length > 0) {
-            App.pick_item(item)
-          }
-        }
-
-        App.show_item_menu(item, e.clientX, e.clientY)
-        e.preventDefault()
-      }
+    if (item) {
+      App.update_footer_info(item)
     }
   })
 }
