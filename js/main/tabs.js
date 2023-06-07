@@ -252,14 +252,6 @@ App.remove_closed_tab = (id) => {
 }
 
 App.tabs_action = async (item) => {
-  if (!App.active_tab_is(item)) {
-    let star = App.get_star_by_url(item.url)
-
-    if (star) {
-      App.update_star(star)
-    }
-  }
-
   await App.focus_tab(item, `nearest_smooth`)
   App.check_close_on_focus()
   App.check_clear_filter()
