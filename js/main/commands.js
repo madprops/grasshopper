@@ -233,13 +233,28 @@ App.run_command = (cmd, item) => {
     App.detach_current_tab()
   }
   else if (cmd === `copy_tab_url`) {
-    App.copy_current_tab_url()
+    if (item) {
+      App.copy_to_clipboard(item.url, `URL`)
+    }
+    else {
+      App.copy_current_tab_url()
+    }
   }
   else if (cmd === `copy_tab_title`) {
-    App.copy_current_tab_title()
+    if (item) {
+      App.copy_to_clipboard(item.title, `Title`)
+    }
+    else {
+      App.copy_current_tab_title()
+    }
   }
   else if (cmd === `close_tab`) {
-    App.close_current_tab()
+    if (item) {
+      App.close_tabs(item)
+    }
+    else {
+      App.close_current_tab()
+    }
   }
   else if (cmd === `reload_tab`) {
     App.reload_current_tab()
