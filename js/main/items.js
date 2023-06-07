@@ -1933,10 +1933,6 @@ App.scroll_to_item = (item, scroll = `nearest`) => {
     behavior = `instant`
   }
 
-  console.log("------")
-  console.log(scroll)
-  console.log(behavior)
-
   if (item.element.offsetTop <= App.scroller_max_top) {
     App.hide_scroller(item.mode)
   }
