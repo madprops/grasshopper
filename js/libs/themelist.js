@@ -5807,6 +5807,10 @@ ThemeList.random_int = (min, max) => {
   return Math.floor(Math.random() * (max - min + 1) + min)
 }
 
+ThemeList.random_item = () => {
+  return ThemeList.list[ThemeList.random_int(0, ThemeList.list.length - 1)]
+}
+
 ThemeList.random_theme = () => {
   let n1 = ThemeList.random_int(0, ThemeList.list.length - 1)
   let n2 = ThemeList.random_int(1, 5)
