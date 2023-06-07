@@ -1,21 +1,6 @@
 App.setup_window_mouse = (mode) => {
   let container = DOM.el(`#${mode}_container`)
 
-  DOM.ev(container, `mousedown`, (e) => {
-    if (!App.cursor_on_item(e, mode)) {
-      return
-    }
-
-    let item = App.get_cursor_item(mode, e)
-
-    // Main click
-    if (e.button === 0) {
-      if (e.shiftKey) {
-        App.highlight_range(item)
-      }
-    }
-  })
-
   DOM.ev(container, `click`, (e) => {
     if (!App.cursor_on_item(e, mode)) {
       App.dehighlight(mode)
@@ -30,6 +15,7 @@ App.setup_window_mouse = (mode) => {
     }
 
     if (e.shiftKey) {
+      App.highlight_range(item)
       return
     }
 
