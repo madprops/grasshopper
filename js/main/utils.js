@@ -54,15 +54,6 @@ App.plural = (n, singular, plural) => {
   }
 }
 
-App.plural_2 = (n, singular, plural) => {
-  if (n === 1) {
-    return singular
-  }
-  else {
-    return plural
-  }
-}
-
 App.get_hostname = (url) => {
   let url_obj
 
@@ -98,11 +89,6 @@ App.capitalize = (s) => {
 
 App.nice_date = (date = Date.now()) => {
   return dateFormat(date, `dd/mmm/yy | h:MM:ss tt`)
-}
-
-App.get_coords = (el) => {
-  let rect = el.getBoundingClientRect()
-  return {x: rect.left, y: rect.top}
 }
 
 App.is_image = (src) => {
@@ -145,16 +131,6 @@ App.get_template = (id) => {
   }
 }
 
-App.fillpad = (s, n, c) => {
-  let olen = s.length
-
-  for (let i=0; i<(n - olen); i++) {
-    s = c + s
-  }
-
-  return s
-}
-
 App.log = (message, mode = `normal`) => {
   if (mode === `error`) {
     console.error(message)
@@ -187,14 +163,6 @@ App.get_excess = (objects, property) => {
   }
 
   return excess
-}
-
-App.is_at_top = (container) => {
-  return container.scrollTop === 0
-}
-
-App.is_at_bottom = (container) => {
-  return container.scrollTop + container.clientHeight === container.scrollHeight
 }
 
 App.element_is_visible = (el) => {
