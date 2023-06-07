@@ -339,6 +339,10 @@ svg {
   text-align: center;
 }
 
+.settings_info {
+  text-align: center;
+}
+
 .text_smaller {
   width: 5rem;
   max-width: 5rem;
@@ -699,7 +703,6 @@ select {
   cursor: pointer;
   border: 1px solid var(--alt_color_1);
   padding: 0.35rem;
-  box-shadow: 0 0 1.6rem var(--alt_color_2);
 }
 
 .scroller:hover {
