@@ -17,7 +17,7 @@ App.check_scroller = (mode) => {
   let a = container.scrollTop
   let b = container.scrollHeight - container.clientHeight
   let percentage = parseInt((a / b) * 100)
-  DOM.el(`#${mode}_scroller`).textContent = `Scroll: ${percentage}%`
+  DOM.el(`#${mode}_scroller`).textContent = `Scrolled: ${percentage}%`
 
   if (container.scrollTop > App.scroller_max_top) {
     App.show_scroller(mode)
