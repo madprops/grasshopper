@@ -407,7 +407,7 @@ App.show_item_menu = (item, x, y) => {
     items.push({
       text: `Star`,
       action: () => {
-        App.star_items(item)
+        App.star_items(item, false)
       }
     })
   }
