@@ -4,7 +4,7 @@ App.default_settings = {
   font: {value: `sans-serif`, category: `basic`, version: 1},
   font_size: {value: 16, category: `basic`, version: 1},
   lock_drag: {value: false, category: `basic`, version: 1},
-  quick_star: {value: false, category: `basic`, version: 1},
+  quick_star: {value: true, category: `basic`, version: 2},
 
   background_color: {value: `rgb(70, 76, 94)`, category: `theme`, version: 1},
   text_color: {value: `rgb(218, 219, 223)`, category: `theme`, version: 1},
