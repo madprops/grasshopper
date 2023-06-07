@@ -268,30 +268,3 @@ App.wheel_direction = (e) => {
     return `up`
   }
 }
-
-function hasIdenticalObjects(array) {
-  for (let i = 0; i < array.length - 1; i++) {
-    for (let j = i + 1; j < array.length; j++) {
-      if (isIdentical(array[i], array[j])) {
-        return true; // Found identical objects
-      }
-    }
-  }
-  return false; // No identical objects found
-
-  // Helper function to check if two objects are identical
-  function isIdentical(obj1, obj2) {
-    // Compare properties of obj1 and obj2
-    for (let key in obj1) {
-      if (obj1.hasOwnProperty(key) && obj2.hasOwnProperty(key)) {
-        if (obj1[key] !== obj2[key]) {
-          return false; // Properties don't match
-        }
-      } else {
-        return false; // Property missing in one of the objects
-      }
-    }
-    console.log(obj1)
-    return true; // All properties match
-  }
-}
