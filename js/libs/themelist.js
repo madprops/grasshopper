@@ -1,5 +1,23 @@
 const ThemeList = {}
 
+ThemeList.random_int = (min, max) => {
+  return Math.floor(Math.random() * (max - min + 1) + min)
+}
+
+ThemeList.random_item = () => {
+  return ThemeList.list[ThemeList.random_int(0, ThemeList.list.length - 1)]
+}
+
+ThemeList.random_theme = () => {
+  let theme = ThemeList.random_item()
+  let color_n = ThemeList.random_int(1, 5)
+
+  return {
+    background: theme.background,
+    color: theme[`color_${color_n}`]
+  }
+}
+
 ThemeList.list = [
   {
     "background": "#1E1E1E",
@@ -5802,24 +5820,6 @@ ThemeList.list = [
     "color_5": "#FC60A1"
   }
 ]
-
-ThemeList.random_int = (min, max) => {
-  return Math.floor(Math.random() * (max - min + 1) + min)
-}
-
-ThemeList.random_item = () => {
-  return ThemeList.list[ThemeList.random_int(0, ThemeList.list.length - 1)]
-}
-
-ThemeList.random_theme = () => {
-  let theme = ThemeList.random_item()
-  let color_n = ThemeList.random_int(1, 5)
-
-  return {
-    background: theme.background,
-    color: theme[`color_${color_n}`]
-  }
-}
 
 try {
   module.exports = ThemeList
