@@ -1922,21 +1922,11 @@ App.scroll_to_item = (item, scroll = `nearest`) => {
 }
 
 App.copy_url = (item, feedback = false) => {
-  let s = ``
-
-  if (feedback) {
-    s = `URL`
-  }
-
+  let s = feedback ? `URL` : ``
   App.copy_to_clipboard(item.url, s)
 }
 
 App.copy_title = (item, feedback = false) => {
-  let s = ``
-
-  if (feedback) {
-    s = `Title`
-  }
-
+  let s = feedback ? `Title` : ``
   App.copy_to_clipboard(item.title, s)
 }
