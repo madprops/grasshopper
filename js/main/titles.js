@@ -219,11 +219,5 @@ App.title_from_active = async () => {
     return
   }
 
-  let item = App.get_item_by_id(`tabs`, tab.id)
-
-  if (!item) {
-    return
-  }
-
-  App.show_title_editor(item)
+  App.show_title_editor(tab)
 }

@@ -184,10 +184,6 @@ App.run_command = (cmd, item) => {
     App.new_tab()
   }
   else if (cmd === `title_tab`) {
-    if (mode !== `tabs`) {
-      App.show_item_window(`tabs`)
-    }
-
     if (item) {
       App.show_title_editor(item)
     }
