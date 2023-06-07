@@ -1410,7 +1410,7 @@ App.move_item = (mode, from_index, to_index) => {
   App.move_item_element(mode, item.element, to_index)
 
   if (App.get_selected(mode) === item) {
-    App.scroll_to_item(App.get_selected(mode), `center`)
+    App.scroll_to_item(App.get_selected(mode), `center_smooth`)
   }
 }
 
