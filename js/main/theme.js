@@ -107,23 +107,8 @@ App.change_color = (name, color) => {
   App.apply_theme()
 }
 
-App.random_theme = (what) => {
-  let colors
-
-  if (what) {
-    colors = App.get_random_theme(what)
-  }
-  else {
-    let n = App.get_random_int(1, 3)
-
-    if (n === 1) {
-      colors = App.get_random_theme(`light`)
-    }
-    else {
-      colors = App.get_random_theme(`dark`)
-    }
-  }
-
+App.random_theme = () => {
+  let colors = App.get_random_theme()
   App.set_setting(`background_color`, colors.background_color)
   App.set_setting(`text_color`, colors.text_color)
 
@@ -136,9 +121,12 @@ App.random_theme = (what) => {
   }
 }
 
-App.get_random_theme = (what) => {
-  let background_color = App.colorlib[`get_${what}_color`]()
-  let text_color = App.colorlib.get_lighter_or_darker(background_color, App.color_diff(what))
+App.get_random_theme = () => {
+  let n = App.get_random_int(0, ThemeList.length - 1)
+  let theme = ThemeList[n]
+  let background_color = theme.background
+  let n2 = App.get_random_int(1, 5)
+  text_color = theme[`color_${n2}`]
 
   return {
     background_color: App.colorlib.hex_to_rgb(background_color),
