@@ -2,9 +2,16 @@ App.setup_palette = () => {
   App.create_popup({
     id: `palette`, setup: () => {
       App.fill_palette_container()
+      let container = DOM.el(`#palette_commands`)
 
-      DOM.ev(DOM.el(`#palette_commands`), `click`, (e) => {
+      DOM.ev(container, `click`, (e) => {
         App.palette_action(e.target)
+      })
+
+      DOM.ev(container, `mousemove`, (e) => {
+        if (e.target.classList.contains(`palette_item`)) {
+          App.palette_select(e.target)
+        }
       })
 
       DOM.ev(DOM.el(`#palette_filter`), `input`, (e) => {
@@ -147,7 +154,7 @@ App.fill_palette_container = () => {
   container.innerHTML = ``
 
   for (let cmd of App.commands) {
-    let el = DOM.create(`div`, `palette_item action`)
+    let el = DOM.create(`div`, `palette_item`)
     el.textContent = cmd[0]
     el.dataset.command = cmd[1]
     container.append(el)

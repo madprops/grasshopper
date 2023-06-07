@@ -684,6 +684,7 @@ select {
 .palette_item {
   width: 100%;
   padding: 0.25rem;
+  cursor: pointer;
 }
 
 .palette_selected {
