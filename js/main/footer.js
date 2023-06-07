@@ -53,13 +53,13 @@ App.create_footer = (mode) => {
   return footer
 }
 
-App.update_footer_count_debouncer = App.create_debouncer((mode) => {
+App.footer_count_debouncer = App.create_debouncer((mode) => {
   App.do_update_footer_count(mode)
 }, App.footer_debouncer_delay)
 
 App.update_footer_count = (mode) => {
   if (App.get_setting(`show_footer`)) {
-    App.update_footer_count_debouncer.call(mode)
+    App.footer_count_debouncer.call(mode)
   }
 }
 
