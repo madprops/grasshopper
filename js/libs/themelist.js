@@ -5812,13 +5812,12 @@ ThemeList.random_item = () => {
 }
 
 ThemeList.random_theme = () => {
-  let n1 = ThemeList.random_int(0, ThemeList.list.length - 1)
-  let n2 = ThemeList.random_int(1, 5)
-  let theme = ThemeList.list[n1]
+  let theme = ThemeList.random_item()
+  let color_n = ThemeList.random_int(1, 5)
 
   return {
     background: theme.background,
-    color: theme[`color_${n2}`]
+    color: theme[`color_${color_n}`]
   }
 }
 
