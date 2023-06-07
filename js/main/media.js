@@ -205,7 +205,7 @@ App.open_media = (what = App.window_mode) => {
 }
 
 App.media_copy = (what) => {
-  App.copy_to_clipboard(App[`current_${what}_item`].url)
+  App.copy_url(App[`current_${what}_item`])
 }
 
 App.media_background = (what) => {

@@ -244,7 +244,7 @@ App.run_command = (cmd, item) => {
   }
   else if (cmd === `copy_tab_url`) {
     if (item) {
-      App.copy_to_clipboard(item.url, `URL`)
+      App.copy_url(item, true)
     }
     else {
       App.copy_current_tab_url()
@@ -252,7 +252,7 @@ App.run_command = (cmd, item) => {
   }
   else if (cmd === `copy_tab_title`) {
     if (item) {
-      App.copy_to_clipboard(item.title, `Title`)
+      App.copy_title(item, true)
     }
     else {
       App.copy_current_tab_title()

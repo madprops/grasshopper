@@ -435,13 +435,13 @@ App.show_item_menu = (item, x, y) => {
       {
         text: `Copy URL`,
         action: () => {
-          App.copy_to_clipboard(item.url)
+          App.copy_url(item)
         }
       },
       {
         text: `Copy Title`,
         action: () => {
-          App.copy_to_clipboard(item.title)
+          App.copy_title(item)
         }
       }]
     })
@@ -1919,4 +1919,24 @@ App.scroll_to_item = (item, scroll = `nearest`) => {
     block: scroll,
     behavior: App.scroll_behavior,
   })
+}
+
+App.copy_url = (item, feedback = false) => {
+  let s = ``
+
+  if (feedback) {
+    s = `URL`
+  }
+
+  App.copy_to_clipboard(item.url, s)
+}
+
+App.copy_title = (item, feedback = false) => {
+  let s = ``
+
+  if (feedback) {
+    s = `Title`
+  }
+
+  App.copy_to_clipboard(item.title, s)
 }

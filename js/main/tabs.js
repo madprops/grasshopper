@@ -1000,7 +1000,7 @@ App.copy_current_tab_url = async () => {
     return
   }
 
-  App.copy_to_clipboard(tab.url)
+  App.copy_url(tab)
 }
 
 App.copy_current_tab_title = async () => {
@@ -1010,17 +1010,7 @@ App.copy_current_tab_title = async () => {
     return
   }
 
-  App.copy_to_clipboard(tab.title)
-}
-
-App.copy_current_tab_title = async () => {
-  let tab = await App.get_active_tab()
-
-  if (!tab) {
-    return
-  }
-
-  App.copy_to_clipboard(tab.title)
+  App.copy_title(tab)
 }
 
 App.switch_to_tabs = () => {
