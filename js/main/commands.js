@@ -36,8 +36,8 @@ App.commands = [
   [`Duplicate Tab`, `duplicate_tab`],
   [`Suspend Tab`, `suspend_tab`],
   [`Detach Tab`, `detach_tab`],
-  [`Tabs To Top`, `tabs_to_top`],
-  [`Tabs To Bottom`, `tabs_to_bottom`],
+  [`Tab To Top`, `tab_to_top`],
+  [`Tab To Bottom`, `tab_to_bottom`],
   [`Close Tab`, `close_tab`],
   [`Show All`, `show_all`],
   [`Show Images`, `show_images`],
@@ -114,12 +114,12 @@ App.run_command = (cmd, item) => {
       App.scroll(mode, `down`, true)
     }
   }
-  else if (cmd === `tabs_to_top`) {
+  else if (cmd === `tab_to_top`) {
     if (on_items) {
       App.move_tabs_vertically(`top`)
     }
   }
-  else if (cmd === `tabs_to_bottom`) {
+  else if (cmd === `tab_to_bottom`) {
     if (on_items) {
       App.move_tabs_vertically(`bottom`)
     }
@@ -240,7 +240,12 @@ App.run_command = (cmd, item) => {
     }
   }
   else if (cmd === `detach_tab`) {
-    App.detach_current_tab()
+    if (item) {
+      App.detach_tabs(item)
+    }
+    else {
+      App.detach_current_tab()
+    }
   }
   else if (cmd === `copy_tab_url`) {
     if (item) {
