@@ -126,7 +126,7 @@ App.get_random_theme = () => {
   let theme = ThemeList[n]
   let background_color = theme.background
   let n2 = App.get_random_int(1, 5)
-  text_color = theme[`color_${n2}`]
+  let text_color = theme[`color_${n2}`]
 
   return {
     background_color: App.colorlib.hex_to_rgb(background_color),
