@@ -344,14 +344,7 @@ App.star_items = (item) => {
 
   if (active.length === 1) {
     if (App.get_setting(`quick_star`)) {
-      let exists = App.get_star_by_url(item.url)
-
-      if (exists) {
-        App.show_star_editor(exists)
-      }
-      else {
-        App.quick_star(item)
-      }
+      App.quick_star(item)
     }
     else {
       App.add_or_edit_star(active[0])
