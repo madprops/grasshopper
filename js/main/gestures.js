@@ -38,7 +38,10 @@ App.setup_gestures = () => {
 
 App.gesture_action = (gesture) => {
   let action = App.get_setting(`gesture_${gesture}`)
-  App.run_command(action)
+
+  if (action !== `none`) {
+    App.run_command(action)
+  }
 }
 
 App.refresh_gestures = () => {

@@ -49,7 +49,7 @@ App.commands = [
   [`Clear All Data`, `clear_all_data`],
 ]
 
-App.run_command = (cmd) => {
+App.run_command = (cmd, item) => {
   let mode = App.window_mode
   let on_items = App.on_item_window(mode) && !App.popup_open
 
@@ -187,10 +187,20 @@ App.run_command = (cmd) => {
       App.show_item_window(`tabs`)
     }
 
-    App.title_from_active()
+    if (item) {
+      App.show_title_editor(item)
+    }
+    else {
+      App.title_from_active()
+    }
   }
   else if (cmd === `star_tab`) {
-    App.star_from_active()
+    if (item) {
+      App.star_items(item)
+    }
+    else {
+      App.star_from_active()
+    }
   }
   else if (cmd === `dark_theme`) {
     App.change_theme(`dark`)

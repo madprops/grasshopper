@@ -93,6 +93,17 @@ App.setup_window_mouse = (mode) => {
       }
     }
   })
+
+  DOM.ev(container, `dblclick`, (e) => {
+    if (!App.cursor_on_item(e, mode)) {
+      return
+    }
+
+    if (mode === `tabs`) {
+      let item = App.get_cursor_item(mode, e)
+      App.double_click_tab(item)
+    }
+  })
 }
 
 App.setup_drag = (mode) => {

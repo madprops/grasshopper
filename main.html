@@ -377,57 +377,64 @@
       </div>
     </template>
 
-    <template id="template_settings_gestures">
-      <div id="settings_gestures_container" class="settings_container">
+    <template id="template_settings_mouse">
+      <div id="settings_mouse_container" class="settings_container">
         <div class="settings_column" title="Gestures are enabled">
-          <div class="settings_label">Enabled</div>
+          <div class="settings_label">Gestures Enabled</div>
           <input type="checkbox" class="settings_checkbox" id="settings_gestures_enabled" data-setting="gestures_enabled">
         </div>
 
         <div class="settings_column" title="The bigger the threshold the less sensitive it is">
-          <div class="settings_label">Sensitivity</div>
+          <div class="settings_label">Gestures Sensitivity</div>
           <div id="settings_gestures_threshold" class="settings_menu button" data-setting="gestures_threshold"></div>
         </div>
 
         <div class="separator"></div>
 
+        <div id="settings_gestures_info" class="underline action">Information</div>
+
+        <div class="separator"></div>
+
         <div class="settings_column" title="Action to perform on gesture (Up)">
-          <div class="settings_label">Up Action</div>
+          <div class="settings_label">Gestues<br>Up Action</div>
           <div id="settings_gesture_up" class="settings_menu button" data-setting="gesture_up"></div>
         </div>
 
         <div class="settings_column" title="Action to perform on gesture (Down)">
-          <div class="settings_label">Down Action</div>
+          <div class="settings_label">Gestues<br>Down Action</div>
           <div id="settings_gesture_down" class="settings_menu button" data-setting="gesture_down"></div>
         </div>
 
         <div class="settings_column" title="Action to perform on gesture (Left)">
-          <div class="settings_label">Left Action</div>
+          <div class="settings_label">Gestues<br>Left Action</div>
           <div id="settings_gesture_left" class="settings_menu button" data-setting="gesture_left"></div>
         </div>
 
         <div class="settings_column" title="Action to perform on gesture (Right)">
-          <div class="settings_label">Right Action</div>
+          <div class="settings_label">Gestues<br>Right Action</div>
           <div id="settings_gesture_right" class="settings_menu button" data-setting="gesture_right"></div>
         </div>
 
         <div class="settings_column" title="Action to perform on gesture (Up And Down)">
-          <div class="settings_label">Up And Down Action</div>
+          <div class="settings_label">Gestues<br>Up And Down Action</div>
           <div id="settings_gesture_up_and_down" class="settings_menu button" data-setting="gesture_up_and_down"></div>
         </div>
 
         <div class="settings_column" title="Action to perform on gesture (Left And Right)">
-          <div class="settings_label">Left And Right Action</div>
+          <div class="settings_label">Gestues<br>Left And Right Action</div>
           <div id="settings_gesture_left_and_right" class="settings_menu button" data-setting="gesture_left_and_right"></div>
         </div>
 
         <div class="separator"></div>
 
-        <div id="settings_gestures_info" class="underline action">Information</div>
+        <div class="settings_column" title="Action to perform on gesture (Left And Right)">
+          <div class="settings_label">On Double Click Tab</div>
+          <div id="settings_double_click_tab_action" class="settings_menu button" data-setting="double_click_tab_action"></div>
+        </div>
       </div>
     </template>
 
-    <template id="template_settings_gestures_top">
+    <template id="template_settings_mouse_top">
       <div class="flex_row_center gap_2 grow">
         <div class="settings_title button"></div>
       </div>

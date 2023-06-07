@@ -36,14 +36,15 @@ App.default_settings = {
   closed_index: {value: 3, category: `order`, version: 1},
   stars_index: {value: 4, category: `order`, version: 1},
 
-  gestures_enabled: {value: true, category: `gestures`, version: 1},
-  gestures_threshold: {value: 10, category: `gestures`, version: 1},
-  gesture_up: {value: `go_to_top`, category: `gestures`, version: 1},
-  gesture_down: {value: `go_to_bottom`, category: `gestures`, version: 1},
-  gesture_left: {value: `prev_window`, category: `gestures`, version: 1},
-  gesture_right: {value: `next_window`, category: `gestures`, version: 1},
-  gesture_up_and_down: {value: `none`, category: `gestures`, version: 1},
-  gesture_left_and_right: {value: `none`, category: `gestures`, version: 1},
+  gestures_enabled: {value: true, category: `mouse`, version: 1},
+  gestures_threshold: {value: 10, category: `mouse`, version: 1},
+  gesture_up: {value: `go_to_top`, category: `mouse`, version: 1},
+  gesture_down: {value: `go_to_bottom`, category: `mouse`, version: 1},
+  gesture_left: {value: `prev_window`, category: `mouse`, version: 1},
+  gesture_right: {value: `next_window`, category: `mouse`, version: 1},
+  gesture_up_and_down: {value: `none`, category: `mouse`, version: 1},
+  gesture_left_and_right: {value: `none`, category: `mouse`, version: 1},
+  double_click_tab_action: {value: `star_tab`, category: `mouse`, version: 1},
 
   switch_to_tabs: {value: true, category: `more`, version: 1},
   clear_filter: {value: true, category: `more`, version: 1},
@@ -224,7 +225,7 @@ App.settings_make_menu = (setting, opts, action = () => {}) => {
 }
 
 App.setup_settings = () => {
-  App.settings_categories = [`basic`, `theme`, `icons`, `warns`, `popup`, `order`, `gestures`, `more`]
+  App.settings_categories = [`basic`, `theme`, `icons`, `warns`, `popup`, `order`, `mouse`, `more`]
 
   let common = {
     persistent: false,
@@ -309,8 +310,8 @@ App.setup_settings = () => {
     ])
   }}))
 
-  App.create_window(Object.assign({}, common, {id: `settings_gestures`, setup: () => {
-    prepare(`gestures`)
+  App.create_window(Object.assign({}, common, {id: `settings_mouse`, setup: () => {
+    prepare(`mouse`)
 
     DOM.ev(DOM.el(`#settings_gestures_enabled`), `change`, () => {
       App.refresh_gestures()
@@ -337,6 +338,7 @@ App.setup_settings = () => {
     App.settings_make_menu(`gesture_right`, opts.slice(0))
     App.settings_make_menu(`gesture_up_and_down`, opts.slice(0))
     App.settings_make_menu(`gesture_left_and_right`, opts.slice(0))
+    App.settings_make_menu(`double_click_tab_action`, opts.slice(0))
   }}))
 }
 
@@ -348,9 +350,6 @@ App.get_setting_title = (category) => {
   }
   else if (category === `icons`) {
     name = `Icon`
-  }
-  else if (category === `gestures`) {
-    name = `Gesture`
   }
   else {
     name = App.capitalize(category)
@@ -486,7 +485,7 @@ App.reset_settings = (category) => {
       App.get_item_order()
       App.make_item_order()
     }
-    else if (category === `gestures`) {
+    else if (category === `mouse`) {
       App.refresh_gestures()
     }
 

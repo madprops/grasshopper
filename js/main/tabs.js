@@ -1042,3 +1042,11 @@ App.get_close_tabs_items = () => {
 
   return items
 }
+
+App.double_click_tab = (item) => {
+  let action = App.get_setting(`double_click_tab_action`)
+
+  if (action !== `none`) {
+    App.run_command(action, item)
+  }
+}
