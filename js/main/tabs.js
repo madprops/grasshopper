@@ -186,7 +186,7 @@ App.refresh_tab = async (id, select = false) => {
   App.check_pinline()
 
   if (select) {
-    App.select_item(item)
+    App.select_item(item, `nearest_smooth`)
   }
 }
 
@@ -260,7 +260,7 @@ App.tabs_action = async (item) => {
     }
   }
 
-  await App.focus_tab(item)
+  await App.focus_tab(item, `nearest_smooth`)
   App.check_close_on_focus()
   App.check_clear_filter()
 }
@@ -659,7 +659,7 @@ App.go_to_playing_tab = () => {
       }
 
       if (waypoint) {
-        App.focus_tab(item, `center`)
+        App.focus_tab(item, `center_smooth`)
         return
       }
     }
@@ -672,7 +672,7 @@ App.go_to_playing_tab = () => {
 
   // If none found then pick the first one
   if (first) {
-    App.focus_tab(first, `center`)
+    App.focus_tab(first, `center_smooth`)
   }
 }
 
@@ -705,7 +705,7 @@ App.go_to_previous_tab = async () => {
   let item = App.get_item_by_id(`tabs`, prev_tab.id)
 
   if (item) {
-    App.focus_tab(item, `center`)
+    App.focus_tab(item, `center_smooth`)
     App.previous_tabs_index += 1
 
     if (App.previous_tabs_index >= App.previous_tabs.length) {
@@ -794,7 +794,7 @@ App.focus_current_tab = async () => {
   let selected = App.get_selected(`tabs`) === item
 
   if (!selected || !visible) {
-    App.select_item(item, `center`)
+    App.select_item(item, `center_smooth`)
     return true
   }
 
@@ -1019,23 +1019,6 @@ App.switch_to_tabs = () => {
       App.show_item_window(`tabs`)
     }
   }
-}
-
-App.autoselect_tab = () => {
-  if (!App.get_setting(`autoselect_tab`)) {
-    return
-  }
-
-  if (App.window_mode !== `tabs`) {
-    return
-  }
-
-  if (App.dragging) {
-    return
-  }
-
-  App.dehighlight(`tabs`)
-  App.focus_current_tab()
 }
 
 App.get_close_tabs_items = () => {

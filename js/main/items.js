@@ -1618,7 +1618,7 @@ App.goto_top = (mode) => {
 
   el.scrollTo({
     top: 0,
-    behavior: App.scroll_behavior,
+    behavior: `instant`,
   })
 }
 
@@ -1631,7 +1631,7 @@ App.goto_bottom = (mode) => {
 
   el.scrollTo({
     top: el.scrollHeight,
-    behavior: App.scroll_behavior,
+    behavior: `instant`,
   })
 }
 
@@ -1657,7 +1657,7 @@ App.scroll = (mode, direction, fast = false) => {
 
   el.scrollTo({
     top: top,
-    behavior: App.scroll_behavior,
+    behavior: `instant`,
   })
 }
 
@@ -1911,13 +1911,39 @@ App.clear_or_all = (mode) => {
 }
 
 App.scroll_to_item = (item, scroll = `nearest`) => {
+  let behavior
+
+  if (scroll === `nearest_instant`) {
+    scroll = `nearest`
+    behavior = `instant`
+  }
+  else if (scroll === `center_instant`) {
+    scroll = `center`
+    behavior = `instant`
+  }
+  else if (scroll === `nearest_smooth`) {
+    scroll = `nearest`
+    behavior = `smooth`
+  }
+  else if (scroll === `center_smooth`) {
+    scroll = `center`
+    behavior = `smooth`
+  }
+  else {
+    behavior = `instant`
+  }
+
+  console.log("------")
+  console.log(scroll)
+  console.log(behavior)
+
   if (item.element.offsetTop <= App.scroller_max_top) {
     App.hide_scroller(item.mode)
   }
 
   item.element.scrollIntoView({
     block: scroll,
-    behavior: App.scroll_behavior,
+    behavior: behavior,
   })
 }
 

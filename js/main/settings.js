@@ -54,7 +54,6 @@ App.default_settings = {
   highlight_effect: {value: `rotate`, category: `more`, version: 1},
   show_scroller: {value: true, category: `more`, version: 1},
   show_footer: {value: true, category: `more`, version: 1},
-  autoselect_tab: {value: true, category: `more`, version: 1},
   close_duplicate_pins: {value: true, category: `more`, version: 1},
   close_suspended_tabs: {value: true, category: `more`, version: 1},
 }
