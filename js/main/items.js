@@ -797,7 +797,7 @@ App.show_item_window = async (mode, cycle = false) => {
   let value = App.get_last_window_value(cycle)
   App.windows[mode].show()
   App.empty_footer_info()
-  App.cancel_filter(mode)
+  App.cancel_filter()
   DOM.el(`#${mode}_container`).innerHTML = ``
   App.set_filter(mode, value, false)
 
@@ -837,9 +837,7 @@ App.setup_item_window = (mode) => {
 
   let mode_name = App.get_mode_name(mode)
   args.setup = () => {
-    App.create_filter_debouncer(mode)
     let win = DOM.el(`#window_content_${mode}`)
-
     let footer = App.create_footer(mode)
     DOM.el(`#window_${mode}`).append(footer)
 

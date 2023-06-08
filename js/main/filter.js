@@ -1,20 +1,19 @@
-App.create_filter_debouncer = (mode) => {
-  App[`${mode}_filter_debouncer`] = App.create_debouncer(() => {
+App.setup_filter = () => {
+  App.filter_debouncer = App.create_debouncer((mode) => {
     App.do_filter(mode)
   }, App.filter_debouncer_delay)
 }
 
 App.filter = (mode) => {
-  App[`${mode}_filter_debouncer`].call(mode)
+  App.filter_debouncer.call(mode)
 }
 
-App.cancel_filter = (mode) => {
-  App[`${mode}_filter_debouncer`].cancel()
+App.cancel_filter = () => {
+  App.filter_debouncer.cancel()
 }
 
 App.do_filter = async (mode) => {
-  console.log(mode)
-  App.cancel_filter(mode)
+  App.cancel_filter()
   App.log(`Filter: ${mode}`)
   let value = App.get_filter(mode)
 

@@ -5,6 +5,7 @@ App.init = async () => {
   App.stor_get_stars()
   App.stor_get_titles()
   App.stor_get_command_history()
+  App.setup_filter()
   App.setup_theme()
   App.setup_tabs()
   App.setup_title_editor()
