@@ -128,6 +128,10 @@
 
     <template id="template_settings_basic">
       <div id="settings_basic_container" class="settings_container">
+        <div id="settings_basic_info" class="underline action settings_info">Information</div>
+
+        <div class="separator"></div>
+
         <div class="settings_column" title="Dragging requires holding Ctrl to work">
           <div class="settings_label">Lock Drag</div>
           <input type="checkbox" class="settings_checkbox" id="settings_lock_drag" data-setting="lock_drag">
@@ -168,6 +172,10 @@
 
     <template id="template_settings_theme">
       <div id="settings_theme_container" class="settings_container">
+        <div id="settings_theme_info" class="underline action settings_info">Information</div>
+
+        <div class="separator"></div>
+
         <div class="settings_column">
           <div id="settings_dark_theme" class="button settings_button" title="Apply the dark theme">Dark Theme</div>
           <div id="settings_light_theme" class="button settings_button" title="Apply the light theme">Light Theme</div>
@@ -204,6 +212,10 @@
 
     <template id="template_settings_icons">
       <div id="settings_icons_container" class="settings_container">
+        <div id="settings_icons_info" class="underline action settings_info">Information</div>
+
+        <div class="separator"></div>
+
         <div class="settings_column" title="Icon to show on pinned tabs">
           <div class="settings_label">Pin Icon</div>
           <input type="text" autocomplete="off" spellcheck="false" id="settings_pin_icon" class="text settings_text text_smaller" data-setting="pin_icon">
@@ -239,6 +251,10 @@
 
     <template id="template_settings_warns">
       <div id="settings_warns_container" class="settings_container">
+        <div id="settings_warns_info" class="underline action settings_info">Information</div>
+
+        <div class="separator"></div>
+
         <div class="settings_column" title="Warn when closing certain tabs">
           <div class="settings_label">Warn On<br>Close Tabs</div>
           <div id="settings_warn_on_close_tabs" class="settings_menu button" data-setting="warn_on_close_tabs"></div>
@@ -289,6 +305,10 @@
 
     <template id="template_settings_popup">
       <div id="settings_popup_container" class="settings_container">
+        <div id="settings_popup_info" class="underline action settings_info">Information</div>
+
+        <div class="separator"></div>
+
         <div class="settings_column" title="Width of the popup">
           <div class="settings_label">Width</div>
           <div id="settings_width" class="settings_menu button" data-setting="width"></div>
@@ -319,6 +339,10 @@
 
     <template id="template_settings_more">
       <div id="settings_more_container" class="settings_container">
+        <div id="settings_more_info" class="underline action settings_info">Information</div>
+
+        <div class="separator"></div>
+
         <div class="settings_column" title="Tabs will be restored after launching an item anywhere">
           <div class="settings_label">Switch To Tabs</div>
           <input type="checkbox" class="settings_checkbox" id="settings_switch_to_tabs" data-setting="switch_to_tabs">
@@ -380,7 +404,7 @@
     <template id="template_settings_mouse">
       <div id="settings_mouse_container" class="settings_container">
 
-        <div id="settings_gestures_info" class="underline action settings_info">Gestures<br>Information</div>
+        <div id="settings_gestures_info" class="underline action settings_info">Information</div>
 
         <div class="separator"></div>
 
@@ -428,7 +452,7 @@
 
         <div class="separator"></div>
 
-        <div id="settings_double_click_info" class="underline action settings_info">Double Click<br>Information</div>
+        <div id="settings_double_click_info" class="underline action settings_info">Information</div>
 
         <div class="separator"></div>
 
@@ -447,7 +471,13 @@
 
     <template id="template_settings_order">
       <div id="settings_order_container" class="settings_container">
-        <div id="settings_item_order" title="The windows at the top appear first in the menu and cycle-order"></div>
+        <div id="settings_order_info" class="underline action settings_info">Information</div>
+
+        <div class="separator"></div>
+
+        <div id="settings_order_container" class="settings_container">
+          <div id="settings_item_order" title="Set the window order"></div>
+        </div>
       </div>
     </template>
 

@@ -262,26 +262,51 @@ App.setup_settings = () => {
       [`Normal`, `normal`],
       [`Bigger`, `bigger`],
     ])
+
+    DOM.ev(DOM.el(`#settings_basic_info`), `click`, () => {
+      let s = `These are the basic settings. There are more setting windows.`
+      App.show_alert(s, undefined, false)
+    })
   }}))
 
   App.create_window(Object.assign({}, common, {id: `settings_theme`, setup: () => {
     App.start_theme_settings()
     prepare(`theme`)
+
+    DOM.ev(DOM.el(`#settings_theme_info`), `click`, () => {
+      let s = `Adjust the theme to your liking. This includes colors and background image.`
+      App.show_alert(s, undefined, false)
+    })
   }}))
 
   App.create_window(Object.assign({}, common, {id: `settings_icons`, setup: () => {
     prepare(`icons`)
+
+    DOM.ev(DOM.el(`#settings_icons_info`), `click`, () => {
+      let s = `These are the icons or text used in the tab items.`
+      App.show_alert(s, undefined, false)
+    })
   }}))
 
   App.create_window(Object.assign({}, common, {id: `settings_warns`, setup: () => {
     prepare(`warns`)
     App.settings_make_menu(`warn_on_close_tabs`, App.tab_warn_opts)
     App.settings_make_menu(`warn_on_suspend_tabs`, App.tab_warn_opts)
+
+    DOM.ev(DOM.el(`#settings_warns_info`), `click`, () => {
+      let s = `Control when actions should show a confirmation dialog before proceeding.`
+      App.show_alert(s, undefined, false)
+    })
   }}))
 
   App.create_window(Object.assign({}, common, {id: `settings_order`, setup: () => {
     prepare(`order`)
     App.make_item_order()
+
+    DOM.ev(DOM.el(`#settings_order_info`), `click`, () => {
+      let s = `This controls the window order. The windows at the top appear first in the menu and cycle-order.`
+      App.show_alert(s, undefined, false)
+    })
   }}))
 
   App.create_window(Object.assign({}, common, {id: `settings_popup`, setup: () => {
@@ -293,6 +318,11 @@ App.setup_settings = () => {
 
     App.settings_make_menu(`height`, App.get_size_options(), () => {
       App.apply_theme()
+    })
+
+    DOM.ev(DOM.el(`#settings_popup_info`), `click`, () => {
+      let s = `These settings only affect the popup, not the sidebar.`
+      App.show_alert(s, undefined, false)
     })
   }}))
 
@@ -307,6 +337,11 @@ App.setup_settings = () => {
       [`Hue`, `hue`],
       [`None`, `none`],
     ])
+
+    DOM.ev(DOM.el(`#settings_more_info`), `click`, () => {
+      let s = `These are advanced settings.`
+      App.show_alert(s, undefined, false)
+    })
   }}))
 
   App.create_window(Object.assign({}, common, {id: `settings_mouse`, setup: () => {
