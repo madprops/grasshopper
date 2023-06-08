@@ -46,6 +46,7 @@ App.commands = [
   [`Light Theme`, `light_theme`],
   [`Detect Theme`, `detect_theme`],
   [`Colorscreen`, `show_colorscreen`],
+  [`Minesweeper`, `show_minesweeper`],
   [`Random Theme`, `random_theme`],
   [`Reload Extension`, `reload_extension`],
   [`Clear All Data`, `clear_all_data`],
@@ -277,6 +278,9 @@ App.run_command = (cmd, item) => {
   }
   else if (cmd === `show_colorscreen`) {
     App.show_colorscreen()
+  }
+  else if (cmd === `show_minesweeper`) {
+    App.show_minesweeper()
   }
 }
 

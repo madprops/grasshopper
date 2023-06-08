@@ -1,0 +1,164 @@
+:root {
+  --size: 720px;
+  --padding1: 5px;
+  --padding2: 10px;
+  --bgcolor1: rgb(69, 73, 103);
+  --bgcolor2: lightblue;
+  --bgcolor3: #a8c8d2;
+  --bgcolor4: #87c2f6;
+  --bgcolor5: rgb(209, 227, 233);
+  --bgcolor6: #456784;
+}
+
+body, html {
+  margin: 0;
+  padding: 0;
+  font-size: 16px;
+  height: 100%;
+  font-family: monospace;
+}
+
+#main {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  background-color: var(--bgcolor1);
+  overflow: hidden;
+}
+
+#top {
+  background-color: var(--bgcolor2);
+  width: var(--size);
+  font-size: 18px;
+  color: white;
+}
+
+#top > div {
+  padding: var(--padding1);
+}
+
+#levels {
+  display: flex;
+  flex-direction: row;
+  margin-bottom: 6px;
+  background-color: var(--bgcolor6);
+  user-select: none;
+  align-items: center;
+  justify-content: center;
+}
+
+#levels > div {
+  cursor: pointer;
+  padding: var(--padding1);
+  padding-left: var(--padding2);
+  padding-right: var(--padding2);
+}
+
+.level_selected {
+  text-decoration: underline;
+}
+
+#info {
+  display: flex;
+  flex-direction: row;
+  margin-bottom: 8px;
+  user-select: none;
+  background-color: var(--bgcolor6);
+}
+
+#time {
+  margin-left: auto;
+  cursor: pointer;
+  padding: var(--padding1);
+}
+
+#grid {
+  background-color: var(--bgcolor2);
+  width: var(--size);
+  height: var(--size);
+  position: relative;
+  user-select: none;
+  border-bottom-left-radius: 1%;
+  border-bottom-right-radius: 1%;
+  cursor: pointer;
+}
+
+.block {
+  box-shadow: 0 0 0.29rem rgb(95, 120, 189);
+  position: absolute;
+  background-color: var(--bgcolor5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 33.3%;
+}
+
+.revealed {
+  background-color: var(--bgcolor3);
+}
+
+.block .number {
+  display: none;
+  color: white;
+}
+
+.revealed .number {
+  display: block;
+}
+
+.flag .number {
+  display: block;
+}
+
+.mine.revealed {
+  background-color: #cd8787
+}
+
+.minehit {
+  background-color: pink;
+}
+
+.flag {
+  background-color: var(--bgcolor4);
+}
+
+.mine.flag {
+  background-color: var(--bgcolor4);;
+}
+
+#mines {
+  padding: var(--padding1);
+}
+
+.minehit {
+  border: 5px #b34de2 solid;
+  box-sizing: border-box;
+}
+
+@keyframes bgchange {
+  0% {
+    background-color: var(--bgcolor1);
+  }
+
+  50% {
+    background-color: red;
+  }
+
+  100% {
+    background-color: var(--bgcolor1);
+  }
+}
+
+.boom {
+  animation: bgchange 500ms forwards;
+}
+
+.face {
+  width: 30px;
+  height: 30px;
+  cursor: pointer;
+  margin-right: 8px;
+}
