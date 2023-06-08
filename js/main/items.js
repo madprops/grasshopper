@@ -756,10 +756,6 @@ App.get_img_icon = (favicon, url) => {
     icon.replaceWith(icon_2)
   })
 
-  if (url.startsWith(`about:`)) {
-    favicon = `img/firefox.png`
-  }
-
   icon.src = favicon
   return icon
 }
