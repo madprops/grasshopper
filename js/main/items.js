@@ -1625,16 +1625,12 @@ App.goto_top = (mode) => {
 App.goto_bottom = (mode) => {
   let el = DOM.el(`#${mode}_container`)
 
-  if (App.container_is_scrolled(mode)) {
-    App.show_scroller(mode)
-  }
-
   el.scrollTo({
     top: el.scrollHeight,
     behavior: `instant`,
   })
 
-  App.do_check_scroller()
+  App.do_check_scroller(mode)
 }
 
 App.scroll = (mode, direction, fast = false) => {
