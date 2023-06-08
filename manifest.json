@@ -2,7 +2,7 @@
     "manifest_version": 2,
     "name": "Grasshopper",
     "version": "425",
-    "description": "Awesome Tab Manager",
+    "description": "Godspeed You Tab Emperor",
     "permissions": [
         "tabs",
         "sessions",
