@@ -1005,3 +1005,16 @@ App.create_playing_icon = () => {
   playing.append(playing_icon)
   return playing
 }
+
+App.check_tab_item = (item) => {
+  if (item.mode === `tabs`) {
+    if (item.pinned) {
+      item.element.classList.add(`pin_item`)
+      item.element.classList.remove(`normal_item`)
+    }
+    else {
+      item.element.classList.add(`normal_item`)
+      item.element.classList.remove(`pin_item`)
+    }
+  }
+}

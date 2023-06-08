@@ -226,7 +226,7 @@ svg {
 }
 
 .item_info {
-  display: flex;
+  display: none;
   flex-direction: row;
   padding-right: var(--item_margin_1);
   padding-left: 0.35rem;
@@ -234,6 +234,14 @@ svg {
   align-self: stretch;
   align-items: center;
   flex-shrink: 0;
+}
+
+.pin_item .item_info_pin {
+  display: flex;
+}
+
+.normal_item .item_info_normal {
+  display: flex;
 }
 
 .item_top_container {

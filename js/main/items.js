@@ -328,8 +328,15 @@ App.process_info = (mode, info, exclude = [], o_item) => {
   }
 
   if (o_item) {
+    if (o_item.created) {
+      item.created = true
+    }
+
     o_item = Object.assign(o_item, item)
-    App.create_item_element(o_item)
+
+    if (o_item.created) {
+      App.refresh_item_element(o_item)
+    }
 
     if (App.get_selected(mode) === o_item) {
       App.update_footer_info(o_item)
@@ -351,21 +358,13 @@ App.create_empty_item_element = (item) => {
   App[`${item.mode}_item_observer`].observe(item.element)
 }
 
+App.refresh_item_element = (item) => {
+  App.check_tab_item(item)
+  App.set_item_text(item)
+}
+
 App.create_item_element = (item) => {
   item.element.innerHTML = ``
-
-  if (item.mode === `tabs`) {
-    item.element.draggable = true
-
-    if (item.pinned) {
-      item.element.classList.add(`pin_item`)
-      item.element.classList.remove(`normal_item`)
-    }
-    else {
-      item.element.classList.add(`normal_item`)
-      item.element.classList.remove(`pin_item`)
-    }
-  }
 
   if (App.get_setting(`show_icons`)) {
     let icon = App.get_img_icon(item.favicon, item.url, item.pinned)
@@ -386,22 +385,18 @@ App.create_item_element = (item) => {
   App.set_item_text(item)
 
   if (item.mode === `tabs`) {
-    if (item.pinned) {
-      if (App.get_setting(`pin_icon`)) {
-        let pin_icon = DOM.create(`div`, `item_info item_info_pin`)
-        pin_icon.textContent = App.get_setting(`pin_icon`)
-        pin_icon.title = `This tab is pinned`
-        item.element.append(pin_icon)
-      }
-    }
-    else {
-      if (App.get_setting(`normal_icon`)) {
-        let normal_icon = DOM.create(`div`, `item_info item_info_normal`)
-        normal_icon.textContent = App.get_setting(`normal_icon`)
-        normal_icon.title = `This tab is normal`
-        item.element.append(normal_icon)
-      }
-    }
+    let pin_icon = DOM.create(`div`, `item_info item_info_pin`)
+    pin_icon.textContent = App.get_setting(`pin_icon`)
+    pin_icon.title = `This tab is pinned`
+    item.element.append(pin_icon)
+
+    let normal_icon = DOM.create(`div`, `item_info item_info_normal`)
+    normal_icon.textContent = App.get_setting(`normal_icon`)
+    normal_icon.title = `This tab is normal`
+    item.element.append(normal_icon)
+
+    item.element.draggable = true
+    App.check_tab_item(item)
   }
   else {
     let launched = DOM.create(`div`, `item_info item_info_launched`)
@@ -460,9 +455,10 @@ App.set_item_text = (item) => {
       icons.push(App.get_setting(`muted_icon`))
     }
 
-    if (icons.length > 0) {
-      let status = DOM.el(`.item_status`, item.element)
+    let status = DOM.el(`.item_status`, item.element)
+    status.innerHTML = ``
 
+    if (icons.length > 0) {
       for (let icon of icons) {
         let el = DOM.create(`div`)
         el.textContent = icon
@@ -470,6 +466,9 @@ App.set_item_text = (item) => {
       }
 
       status.classList.remove(`hidden`)
+    }
+    else {
+      status.classList.add(`hidden`)
     }
   }
 
