@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Hoff Notes</title>
+    <link rel="shortcut icon" href="img/favicon.png" type="image/x-icon">
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="css/style.css">
+    <script src="js/libs/dateformat.js"></script>
+    <script src="js/libs/dom.js"></script>
+    <script src="js/main/app.js"></script>
+    <script src="js/main/utils.js"></script>
+    <script src="js/main/popups.js"></script>
+    <script src="js/main/input.js"></script>
+  </head>
+
+  <body>
+    <div id="main">
+      <div id="top" class="flex_column_center">
+        <div id="buttons" class="flex_row_center">
+          <div id="add_button" class="button top_button" title="Add new task">
+            <div>Add</div>
+          </div>
+          <div id="remove_button" class="button top_button" title="Remove tasks">
+            <div>Remove</div>
+          </div>
+          <div id="info_button" class="button top_button" title="Information">Info</div>
+
+          <input id="filter" type="text" placeholder="Filter" autocomplete="off" spellcheck="false">
+        </div>
+      </div>
+
+      <div id="tasks"></div>
+    </div>
+
+    <template id="template_alert">
+      <div id="alert_message" class="pre"></div>
+    </template>
+
+    <template id="template_dialog">
+      <div id="dialog_message" class="pre"></div>
+      <div id="dialog_buttons" class="flex_row_center gap_2"></div>
+    </template>
+    
+	<script src="js/main/tasks.js"></script>
+  </body>
+</html>
