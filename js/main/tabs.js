@@ -1030,5 +1030,6 @@ App.show_colorscreen = async () =>{
     url: url,
   }
 
-  App.focus_or_open_item(item)
+  await App.focus_or_open_item(item)
+  App.check_close_on_focus()
 }
