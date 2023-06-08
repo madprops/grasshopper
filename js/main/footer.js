@@ -9,6 +9,8 @@ App.update_footer_info = (item) => {
 }
 
 App.do_update_footer_info = (item) => {
+  App.update_footer_info_debouncer.cancel()
+
   if (item) {
     App.footer_item = item
     App.set_footer_info(item.mode, item.footer)
@@ -64,6 +66,7 @@ App.update_footer_count = (mode) => {
 }
 
 App.do_update_footer_count = (mode) => {
+  App.footer_count_debouncer.cancel()
   let n1 = App.get_highlights(mode).length
   let n2 = App.get_visible(mode).length
   let count

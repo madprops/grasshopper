@@ -1614,12 +1614,13 @@ App.show_launched = (item) => {
 
 App.goto_top = (mode) => {
   let el = DOM.el(`#${mode}_container`)
-  App.hide_scroller(mode)
 
   el.scrollTo({
     top: 0,
     behavior: `instant`,
   })
+
+  App.do_check_scroller(mode)
 }
 
 App.goto_bottom = (mode) => {

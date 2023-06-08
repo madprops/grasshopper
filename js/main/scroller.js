@@ -21,6 +21,8 @@ App.set_scroller_percentage = (mode, percentage) => {
 }
 
 App.do_check_scroller = (mode) => {
+  App.scroller_debouncer.cancel()
+
   if (App.dragging) {
     return
   }
