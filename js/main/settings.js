@@ -322,7 +322,7 @@ App.setup_settings = () => {
     })
 
     DOM.ev(DOM.el(`#settings_double_click_info`), `click`, () => {
-      let s = `Double click on a tab to perform an action.`
+      let s = `Double click a tab to perform the selected action.`
       App.show_alert(s, undefined, false)
     })
 
