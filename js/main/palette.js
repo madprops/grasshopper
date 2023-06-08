@@ -121,7 +121,9 @@ App.palette_next = (reverse = false) => {
     }
   }
 
-  App.palette_select(first)
+  if (first) {
+    App.palette_select(first)
+  }
 }
 
 App.palette_enter = () => {

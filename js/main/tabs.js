@@ -17,6 +17,10 @@ App.setup_tabs = () => {
       App.new_tab()
     }},
 
+    {text: `Colorscreen`, action: () => {
+      App.show_colorscreen()
+    }},
+
     {text: `--separator--`},
 
     {text: `Show Info`, action: () => {
@@ -1017,4 +1021,10 @@ App.check_tab_item = (item) => {
       item.element.classList.remove(`pin_item`)
     }
   }
+}
+
+App.show_colorscreen = () =>{
+  browser.tabs.create({
+    url: browser.extension.getURL(`plugins/colorscreen/index.html`)
+  })
 }
