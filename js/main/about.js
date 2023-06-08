@@ -48,7 +48,22 @@ App.setup_about = () => {
       }
       else if (image.classList.contains(`invert`)) {
         image.classList.remove(`invert`)
-        App.show_alert(`Stop it!`, 1000)
+
+        App.about_stops += 1
+
+        if (App.about_stops === 2) {
+          if (image.classList.contains(`flipped`)) {
+            image.classList.remove(`flipped`)
+          }
+          else {
+            image.classList.add(`flipped`)
+          }
+
+          App.about_stops = 0
+        }
+        else {
+          App.show_alert(`Stop it!`, 1000)
+        }
       }
       else {
         image.classList.add(`hue_rotate`)
@@ -66,6 +81,7 @@ App.setup_about = () => {
     let manifest = browser.runtime.getManifest()
     let s = `Grasshopper v${manifest.version}`
     DOM.el(`#about_name`).textContent = s
+    App.about_stops = 0
   },
   after_show: () => {
     App.start_about_info()

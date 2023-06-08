@@ -745,3 +745,7 @@ select {
   margin-right: 0.5rem;
   height: 100%;
 }
+
+.flipped {
+	transform: rotateY(180deg) !important;
+}
