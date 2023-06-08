@@ -992,3 +992,16 @@ App.double_click_tab = (item) => {
     App.run_command(action, item)
   }
 }
+
+App.create_playing_icon = () => {
+  playing = DOM.create(`div`, `button icon_button hidden`, `tabs_playing`)
+  playing.title = `Go To Playing Tab (Ctrl + Dot)`
+  let playing_icon = App.create_icon(`speaker`)
+
+  DOM.ev(playing, `click`, () => {
+    App.go_to_playing_tab()
+  })
+
+  playing.append(playing_icon)
+  return playing
+}
