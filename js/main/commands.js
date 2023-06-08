@@ -45,6 +45,7 @@ App.commands = [
   [`Dark Theme`, `dark_theme`],
   [`Light Theme`, `light_theme`],
   [`Detect Theme`, `detect_theme`],
+  [`Colorscreen`, `show_colorscreen`],
   [`Random Theme`, `random_theme`],
   [`Reload Extension`, `reload_extension`],
   [`Clear All Data`, `clear_all_data`],
@@ -273,6 +274,9 @@ App.run_command = (cmd, item) => {
   }
   else if (cmd === `reload_tab`) {
     App.reload_current_tab()
+  }
+  else if (cmd === `show_colorscreen`) {
+    App.show_colorscreen()
   }
 }
 
