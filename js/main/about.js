@@ -48,7 +48,6 @@ App.setup_about = () => {
       }
       else if (image.classList.contains(`invert`)) {
         image.classList.remove(`invert`)
-
         App.about_stops += 1
 
         if (App.about_stops === 2) {
