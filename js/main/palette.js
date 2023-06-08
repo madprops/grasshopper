@@ -8,12 +8,6 @@ App.setup_palette = () => {
         App.palette_action(e.target)
       })
 
-      DOM.ev(container, `mousemove`, (e) => {
-        if (e.target.classList.contains(`palette_item`)) {
-          App.palette_select(e.target)
-        }
-      })
-
       DOM.ev(DOM.el(`#palette_filter`), `input`, (e) => {
         App.filter_palette()
       })
