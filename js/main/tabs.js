@@ -113,6 +113,11 @@ App.get_tabs = async () => {
   return tabs
 }
 
+App.after_focus_tab = () => {
+  App.check_close_on_focus()
+  App.switch_to_tabs()
+}
+
 App.focus_tab = async (item, scroll) => {
   if (item.created) {
     App.select_item(item, scroll)
@@ -130,6 +135,8 @@ App.focus_tab = async (item, scroll) => {
     App.remove_closed_tab(item.id)
     App.tabs_check()
   }
+
+  App.after_focus_tab()
 }
 
 App.close_tab = async (id) => {

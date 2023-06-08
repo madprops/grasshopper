@@ -53,16 +53,23 @@ App.show_item_menu = (item, x, y) => {
     })
   }
 
-  if (multiple && item.mode === `stars`) {
-    // Ignore
-  }
-  else {
+  if (item.mode !== `stars`) {
     items.push({
       text: `Star`,
       action: () => {
         App.star_items(item, false)
       }
     })
+  }
+  else {
+    if (!multiple) {
+      items.push({
+        text: `Edit`,
+        action: () => {
+          App.add_or_edit_star(item)
+        }
+      })
+    }
   }
 
   if (item.mode === `tabs` && !multiple) {

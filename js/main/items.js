@@ -794,6 +794,7 @@ App.focus_or_open_item = async (item) => {
   }
 
   App.launch_item(item)
+  App.after_launch()
   return `launched`
 }
 
@@ -1053,12 +1054,18 @@ App.launch_item = (item, feedback = true) => {
   }
 }
 
+App.after_launch = () => {
+  App.check_close_on_launch()
+  App.switch_to_tabs()
+}
+
 App.launch_items = (item) => {
   let mode = item.mode
   let items = App.get_active_items(mode, item)
 
   if (items.length === 1) {
     App.launch_item(items[0])
+    App.after_launch()
   }
   else {
     App.show_confirm(`Launch these items ${items.length}?`, () => {
@@ -1077,6 +1084,7 @@ App.launch_items = (item) => {
       }
 
       App.dehighlight(mode)
+      App.after_launch()
     }, () => {
       App.dehighlight(mode)
     }, !App.get_setting(`warn_on_launch`))
@@ -1220,29 +1228,18 @@ App.get_mode_name = (mode) => {
 
 App.item_action = async (item) => {
   let highlighted = App.get_highlights(item.mode)
-  let method = ``
 
   if (highlighted.length > 0) {
     App.launch_items(item)
-    method = `launched`
   }
   else {
     if (item.mode === `stars`) {
-      method = await App.open_star(item)
+      await App.open_star(item)
     }
     else {
-      method = await App.focus_or_open_item(item)
+      await App.focus_or_open_item(item)
     }
   }
-
-  if (method === `focused`) {
-    App.check_close_on_focus()
-  }
-  else if (method === `launched`) {
-    App.check_close_on_launch()
-  }
-
-  App.switch_to_tabs()
 }
 
 App.on_item_window = (mode = App.window_mode) => {
