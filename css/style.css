@@ -250,6 +250,10 @@ svg {
   display: flex;
 }
 
+.item_info_launched_active {
+  display: flex;
+}
+
 .item_top_container {
   margin-left: var(--item_margin_1);
   margin-right: var(--item_margin_1);

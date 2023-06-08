@@ -409,6 +409,7 @@ App.create_item_element = (item) => {
   }
   else {
     let launched = DOM.create(`div`, `item_info item_info_launched`)
+    launched.textContent = `(Launched)`
     item.element.append(launched)
   }
 
@@ -1084,10 +1085,10 @@ App.launch_items = (item) => {
 
 App.show_launched = (item) => {
   let launched = DOM.el(`.item_info_launched`, item.element)
-  launched.textContent = `(Launched)`
+  launched.classList.add(`item_info_launched_active`)
 
   setTimeout(() => {
-    launched.textContent = ``
+    launched.classList.remove(`item_info_launched_active`)
   }, 1000)
 }
 
