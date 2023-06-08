@@ -195,6 +195,12 @@ svg {
   padding-left: var(--item_margin_1);
 }
 
+.item_icon_container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
 .item_icon {
   width: 1.11rem;
   height: 1.11rem;

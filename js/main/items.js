@@ -358,18 +358,27 @@ App.create_empty_item_element = (item) => {
   App[`${item.mode}_item_observer`].observe(item.element)
 }
 
+App.check_item_icon = (item) => {
+  if (App.get_setting(`show_icons`)) {
+    let container = DOM.el(`.item_icon_container`, item.element)
+    container.innerHTML = ``
+    let icon = App.get_img_icon(item.favicon, item.url, item.pinned)
+    container.append(icon)
+  }
+}
+
 App.refresh_item_element = (item) => {
   App.check_tab_item(item)
+  App.check_item_icon(item)
   App.set_item_text(item)
 }
 
 App.create_item_element = (item) => {
   item.element.innerHTML = ``
 
-  if (App.get_setting(`show_icons`)) {
-    let icon = App.get_img_icon(item.favicon, item.url, item.pinned)
-    item.element.append(icon)
-  }
+  let icon_container = DOM.create(`div`, `item_icon_container`)
+  item.element.append(icon_container)
+  App.check_item_icon(item)
 
   let status = DOM.create(`div`, `item_status hidden`)
   item.element.append(status)
