@@ -1023,8 +1023,12 @@ App.check_tab_item = (item) => {
   }
 }
 
-App.show_colorscreen = () =>{
-  browser.tabs.create({
-    url: browser.extension.getURL(`plugins/colorscreen/index.html`)
-  })
+App.show_colorscreen = async () =>{
+  let url = await browser.extension.getURL(`plugins/colorscreen/index.html`)
+
+  let item = {
+    url: url,
+  }
+
+  App.focus_or_open_item(item)
 }
