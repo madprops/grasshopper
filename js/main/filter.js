@@ -5,7 +5,7 @@ App.create_filter_debouncer = (mode) => {
 }
 
 App.filter = (mode) => {
-  App[`${mode}_filter_debouncer`].call()
+  App[`${mode}_filter_debouncer`].call(mode)
 }
 
 App.cancel_filter = (mode) => {
@@ -13,6 +13,7 @@ App.cancel_filter = (mode) => {
 }
 
 App.do_filter = async (mode) => {
+  console.log(mode)
   App.cancel_filter(mode)
   App.log(`Filter: ${mode}`)
   let value = App.get_filter(mode)
