@@ -1,7 +1,7 @@
 App.plugins = [
-  {name: `Colorscreen`, id: `colorscreen`},
-  {name: `Minesweeper`, id: `minesweeper`},
-  {name: `Hoff Notes`, id: `hoff`},
+  {name: `Colorscreen`, id: `colorscreen`, cmd: `show_colorscreen`},
+  {name: `Minesweeper`, id: `minesweeper`, cmd: `show_minesweeper`},
+  {name: `Hoff Notes`, id: `hoff`, cmd: `show_hoff`},
 ]
 
 App.show_plugin = async (name) => {

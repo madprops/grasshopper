@@ -47,7 +47,7 @@ App.setup_commands = () => {
   ]
 
   for (let plugin of App.plugins) {
-    App.commands.push({name: plugin.name, cmd: `show_${plugin.id}`})
+    App.commands.push({name: plugin.name, cmd: plugin.cmd})
   }
 
   App.ordered_commands = App.commands.slice(0)
@@ -279,14 +279,13 @@ App.run_command = (cmd, item) => {
   else if (cmd === `reload_tab`) {
     App.reload_current_tab()
   }
-  else if (cmd === `show_colorscreen`) {
-    App.show_plugin(`colorscreen`)
-  }
-  else if (cmd === `show_minesweeper`) {
-    App.show_plugin(`minesweeper`)
-  }
-  else if (cmd === `show_hoff`) {
-    App.show_plugin(`hoff`)
+  else {
+    for (let plugin of App.plugins) {
+      if (cmd === plugin.cmd) {
+        App.show_plugin(plugin.id)
+        break
+      }
+    }
   }
 }
 
