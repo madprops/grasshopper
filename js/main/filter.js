@@ -298,10 +298,10 @@ App.create_filter_modes = (mode) => {
 
   let fmodes = []
   fmodes.push([`all`, `All`])
-  fmodes.push([`custom`, `Custom`])
   fmodes.push([`--separator--`])
   fmodes.push([`images`, `Images`])
   fmodes.push([`videos`, `Videos`])
+  fmodes.push([`custom`, `Custom`])
   App[`${mode}_filter_modes`] = [...fmodes, ...(App.filter_modes(mode) || [])]
 
   DOM.ev(filter_modes, `click`, () => {
