@@ -242,21 +242,11 @@ App.hide_item = (it) => {
   it.visible = false
 }
 
-App.show_result = (mode, text) => {
-  let item = DOM.el(`#${mode}_result`)
-  item.textContent = text
-  item.classList.add(`result_active`)
-}
-
-App.hide_result = (mode) => {
-  DOM.el(`#${mode}_result`).classList.remove(`result_active`)
-}
-
 App.process_info_list = (mode, info_list) => {
   let container = DOM.el(`#${mode}_container`)
   container.innerHTML = ``
 
-  let result = DOM.create(`div`, `result action`, `${mode}_result`)
+  let result = App.create_result(mode)
   container.append(result)
 
   App[`${mode}_items`] = []
@@ -1372,9 +1362,4 @@ App.copy_title = (item, feedback = false) => {
 
 App.on_items = (mode = App.window_mode) => {
   return App.on_item_window(mode) && !App.popup_open
-}
-
-App.result_copy = (mode) => {
-  let value = DOM.el(`#${mode}_result`).textContent.trim()
-  App.copy_to_clipboard(value, `Result`)
 }

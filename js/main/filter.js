@@ -32,7 +32,9 @@ App.do_filter = async (mode) => {
     let ans = App.calc(value)
 
     if (ans) {
-      App.show_result(mode, ans)
+      if (ans.toString() !== value) {
+        App.show_result(mode, ans)
+      }
     }
   }
 
