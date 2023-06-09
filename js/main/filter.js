@@ -130,7 +130,7 @@ App.check_clear_filter = () => {
   }
 }
 
-App.clear_filter = (mode) => {
+App.clear_filter = (mode = App.window_mode) => {
   if (App.get_filter(mode, false)) {
     App.set_filter(mode, ``)
   }

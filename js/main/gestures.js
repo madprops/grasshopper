@@ -37,10 +37,10 @@ App.setup_gestures = () => {
 }
 
 App.gesture_action = (gesture) => {
-  let action = App.get_setting(`gesture_${gesture}`)
+  let cmd = App.get_setting(`gesture_${gesture}`)
 
-  if (action !== `none`) {
-    App.run_command(action)
+  if (cmd !== `none`) {
+    App.run_command(cmd)
   }
 }
 

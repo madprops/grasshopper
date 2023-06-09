@@ -1100,7 +1100,7 @@ App.show_launched = (item) => {
   }, 1000)
 }
 
-App.goto_top = (mode) => {
+App.goto_top = (mode = App.window_mode) => {
   let el = DOM.el(`#${mode}_container`)
 
   el.scrollTo({
@@ -1111,7 +1111,7 @@ App.goto_top = (mode) => {
   App.do_check_scroller(mode)
 }
 
-App.goto_bottom = (mode) => {
+App.goto_bottom = (mode = App.window_mode) => {
   let el = DOM.el(`#${mode}_container`)
 
   el.scrollTo({
@@ -1148,7 +1148,7 @@ App.scroll = (mode, direction, fast = false) => {
   })
 }
 
-App.highlight_items = (mode) => {
+App.highlight_items = (mode = App.window_mode) => {
   let what
   let highlights = App.get_highlights(mode)
 
@@ -1246,7 +1246,7 @@ App.on_item_window = (mode = App.window_mode) => {
   return App.item_order.includes(mode)
 }
 
-App.show_all = (mode) => {
+App.show_all = (mode = App.window_mode) => {
   if (App.is_filtered(mode)) {
     App.clear_filter(mode)
     App.set_filter_mode(mode, App.filter_modes(mode)[0])
@@ -1276,7 +1276,7 @@ App.pick_item = (item) => {
   }
 }
 
-App.back_action = (mode) => {
+App.back_action = (mode = App.window_mode) => {
   if (App[`${mode}_back_action`]) {
     App[`${mode}_back_action`]()
   }
@@ -1354,4 +1354,8 @@ App.copy_url = (item, feedback = false) => {
 App.copy_title = (item, feedback = false) => {
   let s = feedback ? `Title` : ``
   App.copy_to_clipboard(item.title, s)
+}
+
+App.on_items = (mode = App.window_mode) => {
+  return App.on_item_window(mode) && !App.popup_open
 }
