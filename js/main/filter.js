@@ -25,14 +25,14 @@ App.do_filter = async (mode) => {
     }
   }
 
-  App.hide_info_item(mode)
+  App.hide_result(mode)
 
   // Try to solve math expression
   if (App.contains_number(value)) {
     let ans = App.calc(value)
 
     if (ans) {
-      App.show_info_item(mode, ans)
+      App.show_result(mode, ans)
     }
   }
 

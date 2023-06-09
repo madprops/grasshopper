@@ -2,8 +2,8 @@ App.setup_window_mouse = (mode) => {
   let container = DOM.el(`#${mode}_container`)
 
   DOM.ev(container, `click`, (e) => {
-    if (e.target.classList.contains(`info_item`)) {
-      App.info_item_copy(mode)
+    if (e.target.classList.contains(`result`)) {
+      App.result_copy(mode)
       return
     }
 

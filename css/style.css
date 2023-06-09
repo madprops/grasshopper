@@ -776,7 +776,7 @@ select {
 	transform: rotateY(180deg) !important;
 }
 
-.info_item {
+.result {
   width: 100%;
   display: none;
   align-items: center;
@@ -788,6 +788,6 @@ select {
   flex-shrink: 0;
 }
 
-.info_item_active {
+.result_active {
   display: flex;
 }
