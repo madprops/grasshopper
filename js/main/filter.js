@@ -164,11 +164,21 @@ App.show_filter_modes = (mode) => {
     }
 
     if (filter_mode[0] === `custom`) {
-      if (App.get_setting(`custom_filters`).length === 0) {
+      let filters = App.get_setting(`custom_filters`)
+
+      if (filters.length === 0) {
         items.push({
-          text: "Custom",
+          text: `Custom`,
           action: () => {
             App.show_alert(`You have no custom filters. Add some in the settings.`, undefined, false)
+          }
+        })
+      }
+      else if (filters.length === 1) {
+        items.push({
+          text: `Custom`,
+          action: () => {
+            App.set_filter(mode, filters[0])
           }
         })
       }
