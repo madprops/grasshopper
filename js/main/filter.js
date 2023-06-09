@@ -27,7 +27,7 @@ App.do_filter = async (mode) => {
 
   App.hide_result(mode)
 
-  // Try to solve math expression
+  // Try to solve a math expression
   if (App.contains_number(value)) {
     let ans = App.calc(value)
 
