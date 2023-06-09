@@ -164,12 +164,22 @@ App.show_filter_modes = (mode) => {
     }
 
     if (filter_mode[0] === `custom`) {
-      items.push({
-        text: `Custom`,
-        get_items: () => {
-          return App.get_custom_filters(mode)
-        },
-      })
+      if (App.get_setting(`custom_filters`).length === 0) {
+        items.push({
+          text: "Custom",
+          action: () => {
+            App.show_alert(`You have no custom filters. Add some in the settings.`, undefined, false)
+          }
+        })
+      }
+      else {
+        items.push({
+          text: `Custom`,
+          get_items: () => {
+            return App.get_custom_filters(mode)
+          },
+        })
+      }
 
       continue
     }
