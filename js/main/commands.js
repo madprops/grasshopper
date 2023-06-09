@@ -14,6 +14,16 @@ App.commands = [
       App.back_action()
     }
   }},
+  {name: `Filter Domain`, cmd: `filter_domain`, action: (item) => {
+    if (App.on_items()) {
+      if (item) {
+        App.filter_domain(item)
+      }
+      else {
+        App.filter_domain()
+      }
+    }
+  }},
   {name: `Clear Filter`, cmd: `clear_filter`, action: (item) => {
     if (App.on_items()) {
       App.clear_filter()

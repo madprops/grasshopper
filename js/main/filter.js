@@ -252,6 +252,14 @@ App.set_filter_mode = (mode, filter_mode, filter = true) => {
 }
 
 App.filter_domain = (item) => {
+  if (!item) {
+    item = App.get_selected(mode)
+  }
+
+  if (!item) {
+    return
+  }
+
   let hostname = App.get_hostname(item.url)
 
   if (!hostname && item.url.includes(`:`)) {
