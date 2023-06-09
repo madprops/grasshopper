@@ -202,6 +202,28 @@ App.commands = [
       App.unpin_tabs()
     }
   }},
+  {name: `Toggle Pin Tab`, cmd: `toggle_pin_tab`, action: (item) => {
+    if (App.window_mode !== `tabs`) {
+      App.show_item_window(`tabs`)
+    }
+
+    if (item.pinned) {
+      if (item) {
+        App.unpin_tabs(item)
+      }
+      else {
+        App.unpin_tabs()
+      }
+    }
+    else {
+      if (item) {
+        App.pin_tabs(item)
+      }
+      else {
+        App.pin_tabs()
+      }
+    }
+  }},
   {name: `Mute Tab`, cmd: `mute_tab`, action: (item) => {
     if (App.window_mode !== `tabs`) {
       App.show_item_window(`tabs`)
@@ -224,6 +246,28 @@ App.commands = [
     }
     else {
       App.unmute_tabs()
+    }
+  }},
+  {name: `Toggle Mute Tab`, cmd: `toggle_mute_tab`, action: (item) => {
+    if (App.window_mode !== `tabs`) {
+      App.show_item_window(`tabs`)
+    }
+
+    if (item.muted) {
+      if (item) {
+        App.unmute_tabs(item)
+      }
+      else {
+        App.unmute_tabs()
+      }
+    }
+    else {
+      if (item) {
+        App.mute_tabs(item)
+      }
+      else {
+        App.mute_tabs()
+      }
     }
   }},
   {name: `Close Tab`, cmd: `close_tab`, action: (item) => {
