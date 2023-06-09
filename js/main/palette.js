@@ -151,8 +151,8 @@ App.fill_palette_container = () => {
 
   for (let cmd of App.commands) {
     let el = DOM.create(`div`, `palette_item`)
-    el.textContent = cmd[0]
-    el.dataset.command = cmd[1]
+    el.textContent = cmd.name
+    el.dataset.command = cmd.cmd
     container.append(el)
   }
 }

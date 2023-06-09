@@ -1,3 +1,9 @@
+App.plugins = [
+  {name: `Colorscreen`, id: `colorscreen`},
+  {name: `Minesweeper`, id: `minesweeper`},
+  {name: `Hoff Notes`, id: `hoff`},
+]
+
 App.show_plugin = async (name) => {
   let url = await browser.extension.getURL(`plugins/${name}/index.html`)
   let tabs = await App.get_tabs()

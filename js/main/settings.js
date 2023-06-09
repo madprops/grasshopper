@@ -836,6 +836,9 @@ App.get_gesture_options = () => {
     else if (cmd[1] === `random_theme`) {
       add_separator()
     }
+    else if (cmd[1] === `clear_all_data`) {
+      add_separator()
+    }
   }
 
   return items
