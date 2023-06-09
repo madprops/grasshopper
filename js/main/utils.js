@@ -251,3 +251,7 @@ App.wheel_direction = (e) => {
     return `up`
   }
 }
+
+App.single_linebreak = (s) => {
+  return s.replace(/[\n\r]+/g, `\n`).replace(/ +/g, ` `).trim()
+}

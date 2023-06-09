@@ -163,6 +163,17 @@ App.show_filter_modes = (mode) => {
       continue
     }
 
+    if (filter_mode[0] === `custom`) {
+      items.push({
+        text: `Custom`,
+        get_items: () => {
+          return App.get_custom_filters(mode)
+        },
+      })
+
+      continue
+    }
+
     let selected = App.filter_mode(mode) === filter_mode[0]
 
     items.push({
@@ -287,6 +298,7 @@ App.create_filter_modes = (mode) => {
 
   let fmodes = []
   fmodes.push([`all`, `All`])
+  fmodes.push([`custom`, `Custom`])
   fmodes.push([`--separator--`])
   fmodes.push([`images`, `Images`])
   fmodes.push([`videos`, `Videos`])
@@ -322,4 +334,19 @@ App.create_filter = (mode) => {
   })
 
   return filter
+}
+
+App.get_custom_filters = (mode) => {
+  let items = []
+
+  for (let filter of App.get_setting(`custom_filters`)) {
+    items.push({
+      text: filter,
+      action: () => {
+        App.set_filter(mode, filter)
+      }
+    })
+  }
+
+  return items
 }

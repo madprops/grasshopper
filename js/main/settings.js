@@ -56,6 +56,7 @@ App.default_settings = {
   show_footer: {value: true, category: `more`, version: 1},
   close_duplicate_pins: {value: true, category: `more`, version: 1},
   close_suspended_tabs: {value: true, category: `more`, version: 1},
+  custom_filters: {value: [], category: `more`, version: 1},
 }
 
 App.make_item_order = () => {
@@ -123,25 +124,49 @@ App.settings_setup_checkboxes = (container) => {
 
 App.settings_setup_text = (container) => {
   let items = DOM.els(`.settings_text`, container)
+  items.push(...DOM.els(`.settings_textarea`, container))
 
   for (let item of items) {
     let setting = item.dataset.setting
     let action = item.dataset.action
     let el = DOM.el(`#settings_${setting}`)
+    let is_textarea = item.classList.contains(`settings_textarea`)
+    let value = App.get_setting(setting)
 
-    el.value = App.get_setting(setting)
+    if (is_textarea) {
+      value = App.get_setting(setting).join(`\n`)
+    }
+
+    el.value = value
 
     DOM.ev(el, `blur`, () => {
-      el.value = el.value.trim()
-      App.set_setting(setting, el.value)
+      let value = el.value.trim()
+
+      if (is_textarea) {
+        let cleaned = App.single_linebreak(value)
+        el.value = cleaned
+        value = cleaned.split(`\n`).filter(x => x !== ``).map(x => x.trim())
+      }
+      else {
+        el.value = value
+      }
+
+      App.set_setting(setting, value)
       App.settings_do_action(action)
     })
 
     DOM.ev(el, `contextmenu`, (e) => {
       App.reset_single_setting(e, () => {
         let value = App.default_setting(setting)
+
+        if (is_textarea) {
+          el.value = value.join(`\n`)
+        }
+        else {
+          el.value = value
+        }
+
         App.set_setting(setting, value)
-        el.value = value
         App.settings_do_action(action)
       })
     })
