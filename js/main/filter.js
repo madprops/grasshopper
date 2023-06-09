@@ -46,8 +46,21 @@ App.do_filter = async (mode) => {
     duplicates = App.find_duplicates(items, `url`)
   }
 
+  let use_regex = false
+  let regex_filter
+
+  if (value.startsWith(`/`) && value.endsWith(`/`)) {
+    use_regex = true
+    regex_filter = new RegExp(value.slice(1, -1))
+  }
+
   function check (title, path) {
-    return filter_words.every(x => title.includes(x) || path.includes(x))
+    if (use_regex) {
+      return regex_filter.test(title) || regex_filter.test(path)
+    }
+    else {
+      return filter_words.every(x => title.includes(x) || path.includes(x))
+    }
   }
 
   function matched (item) {
