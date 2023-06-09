@@ -242,9 +242,23 @@ App.hide_item = (it) => {
   it.visible = false
 }
 
+App.show_info_item = (mode, text) => {
+  let item = DOM.el(`#${mode}_info_item`)
+  item.textContent = text
+  item.classList.add(`info_item_active`)
+}
+
+App.hide_info_item = (mode) => {
+  DOM.el(`#${mode}_info_item`).classList.remove(`info_item_active`)
+}
+
 App.process_info_list = (mode, info_list) => {
   let container = DOM.el(`#${mode}_container`)
   container.innerHTML = ``
+
+  let info_item = DOM.create(`div`, `info_item action`, `${mode}_info_item`)
+  container.append(info_item)
+
   App[`${mode}_items`] = []
   App[`${mode}_idx`] = 0
   let items = App.get_items(mode)
@@ -1358,4 +1372,9 @@ App.copy_title = (item, feedback = false) => {
 
 App.on_items = (mode = App.window_mode) => {
   return App.on_item_window(mode) && !App.popup_open
+}
+
+App.info_item_copy = (mode) => {
+  let value = DOM.el(`#${mode}_info_item`).textContent.trim()
+  App.copy_to_clipboard(value, `Result`)
 }

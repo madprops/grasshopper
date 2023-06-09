@@ -255,3 +255,7 @@ App.wheel_direction = (e) => {
 App.single_linebreak = (s) => {
   return s.replace(/[\n\r]+/g, `\n`).replace(/ +/g, ` `).trim()
 }
+
+App.contains_number = (str) => {
+  return /\d/.test(str)
+}

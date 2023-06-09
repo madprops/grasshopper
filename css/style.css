@@ -775,3 +775,19 @@ select {
 .flipped {
 	transform: rotateY(180deg) !important;
 }
+
+.info_item {
+  width: 100%;
+  display: none;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.1rem;
+  padding-top: 0.5rem;
+  padding-bottom: 1rem;
+  flex-grow: 0;
+  flex-shrink: 0;
+}
+
+.info_item_active {
+  display: flex;
+}

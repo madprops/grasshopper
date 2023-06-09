@@ -25,6 +25,17 @@ App.do_filter = async (mode) => {
     }
   }
 
+  App.hide_info_item(mode)
+
+  // Try to solve math expression
+  if (App.contains_number(value)) {
+    let ans = App.calc(value)
+
+    if (ans) {
+      App.show_info_item(mode, ans)
+    }
+  }
+
   let items = App.get_items(mode)
 
   if (!items) {
