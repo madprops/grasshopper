@@ -816,27 +816,27 @@ App.get_gesture_options = () => {
   }
 
   for (let cmd of App.ordered_commands) {
-    items.push(cmd)
+    items.push([cmd.name, cmd.cmd])
 
-    if (cmd[1] === `scroll_down`) {
+    if (cmd.cmd === `scroll_down`) {
       add_separator()
     }
-    else if (cmd[1] === `close_window`) {
+    else if (cmd.cmd === `close_window`) {
       add_separator()
     }
-    else if (cmd[1] === `go_to_playing`) {
+    else if (cmd.cmd === `go_to_playing`) {
       add_separator()
     }
-    else if (cmd[1] === `close_tab`) {
+    else if (cmd.cmd === `close_tab`) {
       add_separator()
     }
-    else if (cmd[1] === `show_videos`) {
+    else if (cmd.cmd === `show_videos`) {
       add_separator()
     }
-    else if (cmd[1] === `random_theme`) {
+    else if (cmd.cmd === `random_theme`) {
       add_separator()
     }
-    else if (cmd[1] === `clear_all_data`) {
+    else if (cmd.cmd === `clear_all_data`) {
       add_separator()
     }
   }
