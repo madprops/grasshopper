@@ -19,14 +19,29 @@ App.show_plugin = async (name) => {
   App.check_close_on_focus()
 }
 
-App.show_colorscreen = () => {
-  App.show_plugin(`colorscreen`)
-}
+App.get_plugin_menu_items = () => {
+  let items = []
 
-App.show_minesweeper = () => {
-  App.show_plugin(`minesweeper`)
-}
+  items.push({
+    text: `Colorscreen`,
+    action: () => {
+      App.show_plugin(`colorscreen`)
+    }
+  })
 
-App.show_hoff = () => {
-  App.show_plugin(`hoff`)
+  items.push({
+    text: `Minesweeper`,
+    action: () => {
+      App.show_plugin(`minesweeper`)
+    }
+  })
+
+  items.push({
+    text: `Hoff Notes`,
+    action: () => {
+      App.show_plugin(`hoff`)
+    }
+  })
+
+  return items
 }

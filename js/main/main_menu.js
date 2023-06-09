@@ -74,30 +74,3 @@ App.show_main_menu = (mode) => {
   let btn = DOM.el(`#${mode}_main_menu`)
   NeedContext.show_on_element(btn, items, true, btn.clientHeight)
 }
-
-App.get_plugin_menu_items = () => {
-  let items = []
-
-  items.push({
-    text: `Colorscreen`,
-    action: () => {
-      App.show_colorscreen()
-    }
-  })
-
-  items.push({
-    text: `Minesweeper`,
-    action: () => {
-      App.show_minesweeper()
-    }
-  })
-
-  items.push({
-    text: `Hoff Notes`,
-    action: () => {
-      App.show_hoff()
-    }
-  })
-
-  return items
-}

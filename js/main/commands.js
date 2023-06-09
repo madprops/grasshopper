@@ -278,13 +278,13 @@ App.run_command = (cmd, item) => {
     App.reload_current_tab()
   }
   else if (cmd === `show_colorscreen`) {
-    App.show_colorscreen()
+    App.show_plugin(`colorscreen`)
   }
   else if (cmd === `show_minesweeper`) {
-    App.show_minesweeper()
+    App.show_plugin(`minesweeper`)
   }
   else if (cmd === `show_hoff`) {
-    App.show_hoff()
+    App.show_plugin(`hoff`)
   }
 }
 
