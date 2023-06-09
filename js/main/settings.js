@@ -5,6 +5,7 @@ App.default_settings = {
   font_size: {value: 16, category: `basic`, version: 1},
   lock_drag: {value: false, category: `basic`, version: 1},
   quick_star: {value: true, category: `basic`, version: 2},
+  custom_filters: {value: [], category: `more`, version: 1},
 
   background_color: {value: `rgb(70, 76, 94)`, category: `theme`, version: 1},
   text_color: {value: `rgb(218, 219, 223)`, category: `theme`, version: 1},
@@ -56,7 +57,6 @@ App.default_settings = {
   show_footer: {value: true, category: `more`, version: 1},
   close_duplicate_pins: {value: true, category: `more`, version: 1},
   close_suspended_tabs: {value: true, category: `more`, version: 1},
-  custom_filters: {value: [], category: `more`, version: 1},
 }
 
 App.make_item_order = () => {
