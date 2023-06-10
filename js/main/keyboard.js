@@ -47,6 +47,23 @@ App.check_window_keyboard = (e) => {
       e.preventDefault()
       return
     }
+    else if (e.key === `Delete`) {
+      let item = App.get_selected(mode)
+
+      if (mode === `tabs`) {
+        if (item) {
+          App.close_tabs(item)
+        }
+      }
+      else if (mode === `stars`) {
+        if (item) {
+          App.remove_stars(item)
+        }
+      }
+
+      e.preventDefault()
+      return
+    }
   }
 
   if (e.shiftKey && !e.ctrlKey) {
@@ -137,23 +154,6 @@ App.check_window_keyboard = (e) => {
       }
 
       App.select_item_below(mode)
-      e.preventDefault()
-      return
-    }
-    else if (e.key === `Delete`) {
-      let item = App.get_selected(mode)
-
-      if (mode === `tabs`) {
-        if (item) {
-          App.close_tabs(item)
-        }
-      }
-      else if (mode === `stars`) {
-        if (item) {
-          App.remove_stars(item)
-        }
-      }
-
       e.preventDefault()
       return
     }

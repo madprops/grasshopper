@@ -11,7 +11,6 @@ App.setup_about = () => {
       `Shift + Click selects an item range`,
       `Right Click on items shows the context menu`,
       `Shift + Enter on items shows the context menu`,
-      `Delete removes items`,
       `Ctrl + A selects all items`,
       `Ctrl + Home goes to the top`,
       `Ctrl + End goes to the bottom`,
@@ -24,12 +23,17 @@ App.setup_about = () => {
       `Ctrl + Backspace goes back`,
       `Ctrl + F shows the filter modes`,
       `Ctrl + Dot goes to the playing tab`,
+      `Ctrl + Delete removes items`,
       `Double click on empty tabs space opens a new tab`,
       `Shift while on scrollwheel makes it scroll faster`,
       `Escape clears the filter and closes windows/popups`,
       `Check the Gestures settings for more information`,
       `Double tap Ctrl to show the command palette`,
-      `To filter with regex start filter with 're:'`,
+      `To filter title start with title:`,
+      `To filter url start with url:`,
+      `To filter with regex start with 're:'`,
+      `To filter title with regex start with re_title:`,
+      `To filter url with regex start with re_url:`,
     ]
 
     DOM.ev(DOM.el(`#about_info`), `click`, () => {
