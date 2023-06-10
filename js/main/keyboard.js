@@ -134,7 +134,7 @@ App.check_window_keyboard = (e) => {
       e.preventDefault()
       return
     }
-    else if (e.key === `PageDown`) {``
+    else if (e.key === `PageDown`) {
       App.scroll(mode, `down`, false)
       e.preventDefault()
       return
