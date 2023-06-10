@@ -53,9 +53,12 @@ App.setup_about = () => {
       }
       else if (image.classList.contains(`invert`)) {
         image.classList.remove(`invert`)
-        App.about_stops += 1
 
-        if (App.about_stops === 2) {
+        if (App.about_flips >= 4) {
+          App.about_flips = 0
+          App.show_alert(`Stop it!`, 1000)
+        }
+        else {
           if (image.classList.contains(`flipped`)) {
             image.classList.remove(`flipped`)
           }
@@ -63,10 +66,7 @@ App.setup_about = () => {
             image.classList.add(`flipped`)
           }
 
-          App.about_stops = 0
-        }
-        else {
-          App.show_alert(`Stop it!`, 1000)
+          App.about_flips += 1
         }
       }
       else {
@@ -85,7 +85,7 @@ App.setup_about = () => {
     let manifest = browser.runtime.getManifest()
     let s = `${App.name} v${manifest.version}`
     DOM.el(`#about_name`).textContent = s
-    App.about_stops = 0
+    App.about_flips = 0
   },
   after_show: () => {
     App.start_about_info()
