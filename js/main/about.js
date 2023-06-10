@@ -7,6 +7,7 @@ App.setup_about = () => {
       `Middle Click closes or launches items`,
       `Shift + Middle Click bypasses some confirmations`,
       `Shift + Up/Down selects multiple items`,
+      `Shift + Home/End selects towards edges`,
       `Ctrl + Click selects multiple items`,
       `Shift + Click selects an item range`,
       `Right Click on items shows the context menu`,
