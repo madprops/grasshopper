@@ -247,7 +247,6 @@ App.setup_keyboard = () => {
         }
       }
 
-      e.preventDefault()
       return
     }
 

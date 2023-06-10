@@ -1,53 +1,33 @@
 App.commands = [
-  {name: `Go To Top`, cmd: `go_to_top`, action: (args) => {
-    if (args.on_items) {
-      App.goto_top()
-    }
+  {name: `Go To Top`, cmd: `go_to_top`, mode: `items`, action: (args) => {
+    App.goto_top()
   }},
-  {name: `Go To Bottom`, cmd: `go_to_bottom`, action: (args) => {
-    if (args.on_items) {
-      App.goto_bottom()
-    }
+  {name: `Go To Bottom`, cmd: `go_to_bottom`, mode: `items`, action: (args) => {
+    App.goto_bottom()
   }},
-  {name: `Go Back`, cmd: `go_back`, action: (args) => {
-    if (args.on_items) {
-      App.back_action()
-    }
+  {name: `Go Back`, cmd: `go_back`, mode: `items`, action: (args) => {
+    App.back_action()
   }},
-  {name: `Filter Domain`, cmd: `filter_domain`, action: (args) => {
-    if (args.on_items) {
-      App.filter_domain(args.item)
-    }
+  {name: `Filter Domain`, cmd: `filter_domain`, mode: `items`, action: (args) => {
+    App.filter_domain(args.item)
   }},
-  {name: `Clear Filter`, cmd: `clear_filter`, action: (args) => {
-    if (args.on_items) {
-      App.clear_filter()
-    }
+  {name: `Clear Filter`, cmd: `clear_filter`, mode: `items`, action: (args) => {
+    App.clear_filter()
   }},
-  {name: `Select All`, cmd: `select_all`, action: (args) => {
-    if (args.on_items) {
-      App.highlight_items()
-    }
+  {name: `Select All`, cmd: `select_all`, mode: `items`, action: (args) => {
+    App.highlight_items()
   }},
-  {name: `Scroll Up`, cmd: `scroll_up`, action: (args) => {
-    if (args.on_items) {
-      App.scroll(args.mode, `up`, true)
-    }
+  {name: `Scroll Up`, cmd: `scroll_up`, mode: `items`, action: (args) => {
+    App.scroll(args.mode, `up`, true)
   }},
-  {name: `Scroll Down`, cmd: `scroll_down`, action: (args) => {
-    if (args.on_items) {
-      App.scroll(args.mode, `down`, true)
-    }
+  {name: `Scroll Down`, cmd: `scroll_down`, mode: `items`, action: (args) => {
+    App.scroll(args.mode, `down`, true)
   }},
-  {name: `Prev Window`, cmd: `prev_window`, action: (args) => {
-    if (args.on_items) {
-      App.cycle_item_windows(true)
-    }
+  {name: `Prev Window`, cmd: `prev_window`, mode: `items`, action: (args) => {
+    App.cycle_item_windows(true)
   }},
-  {name: `Next Window`, cmd: `next_window`, action: (args) => {
-    if (args.on_items) {
-      App.cycle_item_windows()
-    }
+  {name: `Next Window`, cmd: `next_window`, mode: `items`, action: (args) => {
+    App.cycle_item_windows()
   }},
   {name: `Show Tabs`, cmd: `show_tabs`, action: (args) => {
     App.show_item_window(`tabs`)
@@ -73,167 +53,67 @@ App.commands = [
   {name: `Close Window`, cmd: `close_window`, action: (args) => {
     App.hide_current_window()
   }},
-  {name: `New Tab`, cmd: `new_tab`, action: (args) => {
-    if (args.mode !== `tabs`) {
-      App.show_item_window(`tabs`)
-    }
-
+  {name: `New Tab`, cmd: `new_tab`, mode: `tabs`, action: (args) => {
     App.new_tab()
   }},
-  {name: `Star Tab`, cmd: `star_tab`, action: (args) => {
-    if (args.item) {
-      App.star_items(args.item)
-    }
-    else {
-      App.star_from_active()
-    }
+  {name: `Star Item`, cmd: `star_tab`, mode: `items`, action: (args) => {
+    App.star_items(args.item)
   }},
-  {name: `Title Tab`, cmd: `title_tab`, action: (args) => {
-    if (args.item) {
-      App.show_title_editor(args.item)
-    }
-    else {
-      App.title_from_active()
-    }
+  {name: `Title Tab`, cmd: `title_tab`, mode: `tabs`, action: (args) => {
+    App.show_title_editor(args.item)
   }},
-  {name: `Copy URL`, cmd: `copy_tab_url`, action: (args) => {
-    if (args.item) {
-      App.copy_url(args.item, true)
-    }
-    else {
-      App.copy_current_tab_url()
-    }
+  {name: `Copy URL`, cmd: `copy_tab_url`, mode: `items`, action: (args) => {
+    App.copy_url(args.item, true)
   }},
-  {name: `Copy Title`, cmd: `copy_tab_title`, action: (args) => {
-    if (args.item) {
-      App.copy_title(args.item, true)
-    }
-    else {
-      App.copy_current_tab_title()
-    }
+  {name: `Copy Title`, cmd: `copy_tab_title`, mode: `items`, action: (args) => {
+    App.copy_title(args.item, true)
   }},
-  {name: `Tabs Info`, cmd: `tabs_info`, action: (args) => {
-    if (args.mode !== `tabs`) {
-      App.show_item_window(`tabs`)
-    }
-
+  {name: `Tabs Info`, cmd: `tabs_info`, mode: `tabs`, action: (args) => {
     App.show_tabs_info()
   }},
-  {name: `Close Normal Tabs`, cmd: `close_normal_tabs`, action: (args) => {
-    if (args.mode !== `tabs`) {
-      App.show_item_window(`tabs`)
-    }
-
+  {name: `Close Normal Tabs`, cmd: `close_normal_tabs`, mode: `tabs`, action: (args) => {
     App.close_normal_tabs()
   }},
-  {name: `Close Duplicate Tabs`, cmd: `close_duplicate_tabs`, action: (args) => {
-    if (args.mode !== `tabs`) {
-      App.show_item_window(`tabs`)
-    }
-
+  {name: `Close Duplicate Tabs`, cmd: `close_duplicate_tabs`, mode: `tabs`, action: (args) => {
     App.close_duplicate_tabs()
   }},
-  {name: `Go To Playing Tab`, cmd: `go_to_playing_tab`, action: (args) => {
-    if (args.mode !== `tabs`) {
-      App.show_item_window(`tabs`)
-    }
-
+  {name: `Go To Playing Tab`, cmd: `go_to_playing_tab`, mode: `tabs`, action: (args) => {
     App.go_to_playing_tab()
   }},
-  {name: `Back (Tab)`, cmd: `tab_back`, action: (args) => {
-    App.tab_back()
+  {name: `Back (Browser)`, cmd: `browser_back`, action: (args) => {
+    App.browser_back()
   }},
-  {name: `Forward (Tab)`, cmd: `tab_forward`, action: (args) => {
-    App.tab_forward()
+  {name: `Forward (Browser)`, cmd: `browser_forward`, action: (args) => {
+    App.browser_forward()
   }},
-  {name: `Reload Tab`, cmd: `reload_tab`, action: (args) => {
-    App.reload_current_tab()
+  {name: `Reload Tab (Browser)`, cmd: `browser_reload`, action: (args) => {
+    App.browser_reload()
   }},
-  {name: `Duplicate Tab`, cmd: `duplicate_tab`, action: (args) => {
-    if (args.item) {
-      App.duplicate_tab(args.item)
-    }
-    else {
-      App.duplicate_current_tab()
-    }
+  {name: `Duplicate Tab`, cmd: `duplicate_tab`, mode: `tabs`, action: (args) => {
+    App.duplicate_tab(args.item)
   }},
-  {name: `Suspend Tab`, cmd: `suspend_tab`, action: (args) => {
-    if (args.item) {
-      App.suspend_tabs(args.item)
-    }
-    else {
-      App.suspend_current_tab()
-    }
+  {name: `Suspend Tab`, cmd: `suspend_tab`, mode: `tabs`, action: (args) => {
+    App.suspend_tabs(args.item)
   }},
-  {name: `Detach Tab`, cmd: `detach_tab`, action: (args) => {
-    if (args.item) {
-      App.detach_tabs(args.item)
-    }
-    else {
-      App.detach_current_tab()
-    }
+  {name: `Detach Tab`, cmd: `detach_tab`, mode: `tabs`, action: (args) => {
+    App.detach_tabs(args.item)
   }},
-  {name: `Tab To Top`, cmd: `tab_to_top`, action: (args) => {
-    if (args.on_items) {
-      App.move_tabs_vertically(`top`)
-    }
+  {name: `Tab To Top`, cmd: `tab_to_top`, mode: `tabs`, action: (args) => {
+    App.move_tabs_vertically(`top`)
   }},
-  {name: `Tab To Bottom`, cmd: `tab_to_bottom`, action: (args) => {
-    if (args.on_items) {
-      App.move_tabs_vertically(`bottom`)
-    }
+  {name: `Tab To Bottom`, cmd: `tab_to_bottom`, mode: `tabs`, action: (args) => {
+    App.move_tabs_vertically(`bottom`)
   }},
-  {name: `Pin Tab`, cmd: `pin_tab`, action: (args) => {
-    if (args.mode !== `tabs`) {
-      App.show_item_window(`tabs`)
-    }
-
-    if (args.item) {
-      App.pin_tabs(args.item)
-    }
-    else {
-      App.pin_tabs()
-    }
+  {name: `Pin Tab`, cmd: `pin_tab`, mode: `tabs`, action: (args) => {
+    App.pin_tabs(args.item)
   }},
-  {name: `Unpin Tab`, cmd: `unpin_tab`, action: (args) => {
-    if (args.mode !== `tabs`) {
-      App.show_item_window(`tabs`)
-    }
-
-    if (args.item) {
-      App.unpin_tabs(args.item)
-    }
-    else {
-      App.unpin_tabs()
-    }
+  {name: `Unpin Tab`, cmd: `unpin_tab`, mode: `tabs`, action: (args) => {
+    App.unpin_tabs(args.item)
   }},
-  {name: `Toggle Pin Tab`, cmd: `toggle_pin_tab`, action: (args) => {
-    if (args.mode !== `tabs`) {
-      App.show_item_window(`tabs`)
-    }
-
-    if (item.pinned) {
-      if (args.item) {
-        App.unpin_tabs(args.item)
-      }
-      else {
-        App.unpin_tabs()
-      }
-    }
-    else {
-      if (args.item) {
-        App.pin_tabs(args.item)
-      }
-      else {
-        App.pin_tabs()
-      }
-    }
+  {name: `Toggle Pin Tab`, cmd: `toggle_pin_tab`, mode: `tabs`, action: (args) => {
+    App.toggle_pin_tabs(args.item)
   }},
-  {name: `Mute Tab`, cmd: `mute_tab`, action: (args) => {
-    if (args.mode !== `tabs`) {
-      App.show_item_window(`tabs`)
-    }
-
+  {name: `Mute Tab`, cmd: `mute_tab`, mode: `tabs`, action: (args) => {
     if (args.item) {
       App.mute_tabs(args.item)
     }
@@ -241,11 +121,7 @@ App.commands = [
       App.mute_tabs()
     }
   }},
-  {name: `Unmute Tab`, cmd: `unmute_tab`, action: (args) => {
-    if (args.mode !== `tabs`) {
-      App.show_item_window(`tabs`)
-    }
-
+  {name: `Unmute Tab`, cmd: `unmute_tab`, mode: `tabs`, action: (args) => {
     if (args.item) {
       App.unmute_tabs(args.item)
     }
@@ -253,11 +129,7 @@ App.commands = [
       App.unmute_tabs()
     }
   }},
-  {name: `Toggle Mute Tab`, cmd: `toggle_mute_tab`, action: (args) => {
-    if (args.mode !== `tabs`) {
-      App.show_item_window(`tabs`)
-    }
-
+  {name: `Toggle Mute Tab`, cmd: `toggle_mute_tab`, mode: `tabs`, action: (args) => {
     if (item.muted) {
       if (args.item) {
         App.unmute_tabs(args.item)
@@ -374,10 +246,29 @@ App.run_command = (cmd, item) => {
     mode: App.window_mode,
   }
 
+  let command
+
   for (let c of App.commands) {
     if (c.cmd === cmd) {
-      c.action(args)
+      command = c
       break
     }
+  }
+
+  if (command) {
+    if (command.mode) {
+      if (command.mode === `items`) {
+        if (!args.on_items) {
+          return
+        }
+      }
+      else {
+        if (command.mode !== args.mode) {
+          return
+        }
+      }
+    }
+
+    command.action(args)
   }
 }

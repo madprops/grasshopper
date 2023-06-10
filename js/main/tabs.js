@@ -471,6 +471,50 @@ App.toggle_pin = (item) => {
   }
 }
 
+App.toggle_pin_tabs = (item) => {
+  let ids = []
+  let action
+
+  for (let it of App.get_active_items(`tabs`, item)) {
+    if (!action) {
+      if (it.pinned) {
+        action = `unpin`
+      }
+      else {
+        action = `pin`
+      }
+    }
+
+    if (action === `pin`) {
+      if (it.pinned) {
+        continue
+      }
+    }
+    else if (action === `unpin`) {
+      if (!it.pinned) {
+        continue
+      }
+    }
+
+    ids.push(it.id)
+  }
+
+  if (ids.length === 0) {
+    return
+  }
+
+  for (let id of ids) {
+    if (action === `pin`) {
+      App.pin_tab(id)
+    }
+    else {
+      App.unpin_tab(id)
+    }
+  }
+
+  App.dehighlight(`tabs`)
+}
+
 App.open_tab = async (url, args = {}) => {
   let opts = {}
   opts.url = url
@@ -905,67 +949,16 @@ App.close_current_tab = async () => {
   App.close_tab(tab.id)
 }
 
-App.reload_current_tab = () => {
+App.browser_reload = () => {
   browser.tabs.reload()
 }
 
-App.tab_back = () => {
+App.browser_back = () => {
   browser.tabs.goBack()
 }
 
-App.tab_forward = () => {
+App.browser_forward = () => {
   browser.tabs.goForward()
-}
-
-App.duplicate_current_tab = async () => {
-  let tab = await App.get_active_tab()
-
-  if (!tab) {
-    return
-  }
-
-  App.duplicate_tab(tab)
-}
-
-App.suspend_current_tab = async () => {
-  let tab = await App.get_active_tab()
-
-  if (!tab) {
-    return
-  }
-
-  await App.open_new_tab()
-  App.do_suspend_tab(tab)
-}
-
-App.detach_current_tab = async () => {
-  let tab = await App.get_active_tab()
-
-  if (!tab) {
-    return
-  }
-
-  App.detach_tab(tab)
-}
-
-App.copy_current_tab_url = async () => {
-  let tab = await App.get_active_tab()
-
-  if (!tab) {
-    return
-  }
-
-  App.copy_url(tab)
-}
-
-App.copy_current_tab_title = async () => {
-  let tab = await App.get_active_tab()
-
-  if (!tab) {
-    return
-  }
-
-  App.copy_title(tab)
 }
 
 App.switch_to_tabs = () => {

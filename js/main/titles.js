@@ -211,13 +211,3 @@ App.check_titles = () => {
     App.stor_save_titles()
   }
 }
-
-App.title_from_active = async () => {
-  let tab = await App.get_active_tab()
-
-  if (!tab) {
-    return
-  }
-
-  App.show_title_editor(tab)
-}
