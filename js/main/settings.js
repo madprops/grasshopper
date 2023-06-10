@@ -785,7 +785,7 @@ App.get_setting = (key) => {
 
 App.set_setting = (setting, value) => {
   if (App.default_settings[setting].value === value) {
-    value = `__default__`
+    value = App.default_setting_string
   }
 
   App.settings[setting].value = value
@@ -804,7 +804,7 @@ App.check_settings = () => {
   let changed = false
 
   function set_default (setting) {
-    App.settings[setting].value = `__default__`
+    App.settings[setting].value = App.default_setting_string
     App.settings[setting].version = App.default_settings[setting].version
   }
 
