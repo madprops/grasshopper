@@ -42,7 +42,7 @@ App.do_check_scroller = (mode) => {
 }
 
 App.create_scroller = (mode) => {
-  let scroller = DOM.create(`div`, `scroller action`, `${mode}_scroller`)
+  let scroller = DOM.create(`div`, `scroller`, `${mode}_scroller`)
   scroller.title = `Click to go to top`
 
   DOM.ev(scroller, `click`, () => {
