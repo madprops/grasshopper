@@ -205,7 +205,15 @@ App.set_filter = (mode, text, filter = true) => {
 }
 
 App.filter_cmd = (mode, cmd) => {
-  let new_text = `${cmd}: `
+  let new_text
+
+  if (cmd === `all`) {
+    new_text = ``
+  }
+  else {
+    new_text = `${cmd}: `
+  }
+
   let current = App.get_filter(mode, true)
 
   if (current) {
@@ -266,24 +274,23 @@ App.show_filter_modes = (mode) => {
 
       continue
     }
+    else if (filter_mode[0] === `what`) {
+      items.push({
+        text: `By What`,
+        get_items: () => {
+          return App.get_filter_what(mode)
+        },
+      })
+
+      continue
+    }
 
     let selected = App.filter_mode(mode) === filter_mode[0]
 
     items.push({
       text: filter_mode[1],
       action: () => {
-        if (filter_mode[0] === `title`) {
-          App.filter_cmd(mode, `title`)
-        }
-        else if (filter_mode[0] === `url`) {
-          App.filter_cmd(mode, `url`)
-        }
-        else if (filter_mode[0] === `regex`) {
-          App.filter_cmd(mode, `re`)
-        }
-        else {
-          App.set_filter_mode(mode, filter_mode)
-        }
+        App.set_filter_mode(mode, filter_mode)
       },
       selected: selected
     })
@@ -298,45 +305,34 @@ App.cycle_filter_modes = (mode, reverse = true) => {
   let waypoint = false
 
   if (reverse) {
-    for (let filter_mode of modes.slice(0).reverse()) {
-      if (filter_mode[0].startsWith(`--`)) {
-        continue
-      }
-
-      if (waypoint) {
-        App.set_filter_mode(mode, filter_mode)
-        return
-      }
-
-      if (filter_mode[0] === App.filter_mode(mode)) {
-        waypoint = true
-      }
-    }
+    modes = modes.slice(0).reverse()
   }
-  else {
-    for (let filter_mode of modes) {
-      if (filter_mode[0].startsWith(`--`)) {
-        continue
-      }
 
-      if (waypoint) {
-        App.set_filter_mode(mode, filter_mode)
-        return
-      }
+  for (let filter_mode of modes.slice(0).reverse()) {
+    if (filter_mode[0].startsWith(`--`)) {
+      continue
+    }
 
-      if (filter_mode[0] === App.filter_mode(mode)) {
-        waypoint = true
-      }
+    if (filter_mode[0] === `custom`) {
+      continue
+    }
+
+    if (filter_mode[0] === `mode`) {
+      continue
+    }
+
+    if (waypoint) {
+      App.set_filter_mode(mode, filter_mode)
+      return
+    }
+
+    if (filter_mode[0] === App.filter_mode(mode)) {
+      waypoint = true
     }
   }
 
   // If no result
-  if (reverse) {
-    App.set_filter_mode(mode, modes.at(-1))
-  }
-  else {
-    App.set_filter_mode(mode, modes[0])
-  }
+  App.set_filter_mode(mode, modes.at(-1))
 }
 
 App.filter_modes = (mode) => {
@@ -403,13 +399,11 @@ App.create_filter_modes = (mode) => {
   let fmodes = []
   fmodes.push([`all`, `All`])
   fmodes.push([`--separator--`])
-  fmodes.push([`title`, `By Title`])
-  fmodes.push([`url`, `By URL`])
-  fmodes.push([`regex`, `Regex`])
-  fmodes.push([`--separator--`])
   fmodes.push([`images`, `Images`])
   fmodes.push([`videos`, `Videos`])
+  fmodes.push([`--separator--`])
   fmodes.push([`custom`, `Custom`])
+  fmodes.push([`what`, `By What`])
   App[`${mode}_filter_modes`] = [...fmodes, ...(App.filter_modes(mode) || [])]
 
   DOM.ev(filter_modes, `click`, () => {
@@ -420,10 +414,10 @@ App.create_filter_modes = (mode) => {
     let direction = App.wheel_direction(e)
 
     if (direction === `down`) {
-      App.cycle_filter_modes(mode, false)
+      App.cycle_filter_modes(mode, true)
     }
     else if (direction === `up`) {
-      App.cycle_filter_modes(mode, true)
+      App.cycle_filter_modes(mode, false)
     }
   })
 
@@ -455,6 +449,54 @@ App.get_custom_filters = (mode) => {
       }
     })
   }
+
+  return items
+}
+
+App.get_filter_what = (mode) => {
+  let items = []
+
+  items.push({
+    text: `By Title`,
+    action: () => {
+      App.filter_cmd(mode, `title`)
+    },
+  })
+
+  items.push({
+    text: `By URL`,
+    action: () => {
+      App.filter_cmd(mode, `url`)
+    },
+  })
+
+  items.push({
+    text: `Title & URL`,
+    action: () => {
+      App.filter_cmd(mode, `all`)
+    },
+  })
+
+  items.push({
+    text: `With Regex`,
+    action: () => {
+      App.filter_cmd(mode, `re`)
+    },
+  })
+
+  items.push({
+    text: `Regex Title`,
+    action: () => {
+      App.filter_cmd(mode, `re_title`)
+    },
+  })
+
+  items.push({
+    text: `Regex URL`,
+    action: () => {
+      App.filter_cmd(mode, `re_url`)
+    },
+  })
 
   return items
 }
