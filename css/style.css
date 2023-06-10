@@ -751,14 +751,15 @@ select {
   padding-bottom: 0.35rem;
   padding-left: 0.25rem;
   background-color: var(--alt_background_2);
-  border: 1px solid var(--alt_color_1);
-  border-bottom-width: 0;
+  border: 0px solid var(--alt_color_1);
+  border-top-width: 1px;
   gap: 0.5rem;
   width: 100%;
 }
 
 .footer:hover {
-  border-color: var(--alt_color_2);
+  border-top-width: 0;
+  box-shadow: 0 0 0.1rem currentColor, inset 0 0 0.1rem currentColor;
 }
 
 .hide_footer .footer {
