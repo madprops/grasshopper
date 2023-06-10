@@ -93,7 +93,7 @@ App.apply_theme = () => {
   }
   catch (err) {
     App.log(err, `error`)
-    App.settings_defaults(`theme`)
+    App.settings_default_category(`theme`)
     App.stor_save_settings()
   }
 }

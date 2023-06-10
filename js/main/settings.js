@@ -114,9 +114,8 @@ App.settings_setup_checkboxes = (container) => {
 
     DOM.ev(el, `contextmenu`, (e) => {
       App.reset_single_setting(e, () => {
-        let value = App.default_setting(setting)
-        App.set_setting(setting, value)
-        el.checked = value
+        App.set_default_setting(setting)
+        el.checked = App.get_setting(setting)
       })
     })
   }
@@ -157,7 +156,8 @@ App.settings_setup_text = (container) => {
 
     DOM.ev(el, `contextmenu`, (e) => {
       App.reset_single_setting(e, () => {
-        let value = App.default_setting(setting)
+        App.set_default_setting(setting)
+        let value = App.get_setting(setting)
 
         if (is_textarea) {
           el.value = value.join(`\n`)
@@ -166,7 +166,6 @@ App.settings_setup_text = (container) => {
           el.value = value
         }
 
-        App.set_setting(setting, value)
         App.settings_do_action(action)
       })
     })
@@ -203,8 +202,8 @@ App.settings_make_menu = (setting, opts, action = () => {}) => {
 
   DOM.ev(el, `contextmenu`, (e) => {
     App.reset_single_setting(e, () => {
-      let value = App.default_setting(setting)
-      App.set_setting(setting, value)
+      App.set_default_setting(setting)
+      let value = App.get_setting(setting)
 
       for (let o of opts) {
         if (o[1] === value) {
@@ -530,19 +529,23 @@ App.settings_menu_cycle = (el, setting, dir, items) => {
   }
 }
 
-App.settings_defaults = (category) => {
+App.settings_default_category = (category) => {
   for (let setting in App.default_settings) {
     let item = App.default_settings[setting]
 
     if (item.category === category) {
-      App.set_setting(setting, item.value)
+      App.set_default_setting(setting)
     }
   }
 }
 
+App.set_default_setting = (setting) => {
+  App.set_setting(setting, App.default_setting_string)
+}
+
 App.reset_settings = (category) => {
   App.show_confirm(`Reset settings? (${App.capitalize(category)})`, () => {
-    App.settings_defaults(category)
+    App.settings_default_category(category)
 
     if (category === `order`) {
       App.get_item_order()
@@ -560,7 +563,7 @@ App.reset_settings = (category) => {
 App.reset_all_settings = () => {
   App.show_confirm(`Reset all settings?`, () => {
     for (let setting in App.default_settings) {
-      App.set_setting(setting, App.default_setting(setting))
+      App.set_default_setting(setting)
     }
 
     App.restart_settings()
@@ -758,7 +761,7 @@ App.get_setting = (key) => {
   let value = App.settings[key].value
 
   if (value === App.default_setting_string) {
-    return App.default_settings[key].value
+    return App.get_default_setting(key)
   }
   else {
     return value
@@ -774,7 +777,7 @@ App.set_setting = (setting, value) => {
   App.save_settings_debouncer.call()
 }
 
-App.default_setting = (setting) => {
+App.get_default_setting = (setting) => {
   return App.default_settings[setting].value
 }
 
