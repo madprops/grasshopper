@@ -118,7 +118,7 @@ App.after_focus_tab = () => {
   App.switch_to_tabs()
 }
 
-App.focus_tab = async (item, scroll) => {
+App.focus_tab = async (item, scroll, after_focus = true) => {
   if (item.created) {
     App.select_item(item, scroll)
   }
@@ -136,7 +136,9 @@ App.focus_tab = async (item, scroll) => {
     App.tabs_check()
   }
 
-  App.after_focus_tab()
+  if (after_focus) {
+    App.after_focus_tab()
+  }
 }
 
 App.close_tab = async (id) => {
@@ -730,7 +732,7 @@ App.go_to_playing_tab = () => {
 
   // If none found then pick the first one
   if (first) {
-    App.focus_tab(first, `center_smooth`)
+    App.focus_tab(first, `center_smooth`, false)
   }
 }
 
@@ -763,7 +765,7 @@ App.go_to_previous_tab = async () => {
   let item = App.get_item_by_id(`tabs`, prev_tab.id)
 
   if (item) {
-    App.focus_tab(item, `center_smooth`)
+    App.focus_tab(item, `center_smooth`, false)
     App.previous_tabs_index += 1
 
     if (App.previous_tabs_index >= App.previous_tabs.length) {
