@@ -200,7 +200,7 @@ App.setup_keyboard = () => {
       return
     }
 
-    if (App.popup_open) {
+    if (App.popup_open()) {
       if (e.key === `Escape`) {
         App.hide_all_popups()
         e.preventDefault()

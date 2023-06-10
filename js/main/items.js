@@ -1359,5 +1359,5 @@ App.copy_title = (item, feedback = false) => {
 }
 
 App.on_items = (mode = App.window_mode) => {
-  return App.on_item_window(mode) && !App.popup_open
+  return App.on_item_window(mode) && !App.popup_open()
 }

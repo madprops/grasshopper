@@ -33,12 +33,12 @@ App.create_popup = (args) => {
 
     p.element.style.display = `flex`
     App.popup_mode = args.id
-    App.popup_open = true
+    p.open = true
   }
 
   p.hide = () => {
     p.element.style.display = `none`
-    App.popup_open = false
+    p.open = false
   }
 
   App.popups[args.id] = p
@@ -208,4 +208,14 @@ App.hide_all_popups = () => {
   for (let id in App.popups) {
     App.hide_popup(id)
   }
+}
+
+App.popup_open = () => {
+  for (let key in App.popups) {
+    if (App.popups[key].open) {
+      return true
+    }
+  }
+
+  return false
 }
