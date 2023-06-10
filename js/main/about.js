@@ -82,7 +82,7 @@ App.setup_about = () => {
     }
 
     let manifest = browser.runtime.getManifest()
-    let s = `Grasshopper v${manifest.version}`
+    let s = `${App.name} v${manifest.version}`
     DOM.el(`#about_name`).textContent = s
     App.about_stops = 0
   },
