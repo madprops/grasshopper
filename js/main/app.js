@@ -35,5 +35,6 @@ App.dragging = false
 App.calc_decimals = 3
 App.similarity_threshold = 0.8
 App.default_setting_string = `__default__`
+App.max_scroll_diff = 1000 * 2
 
 NeedContext.min_width = `4.5rem`
