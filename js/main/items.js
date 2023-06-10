@@ -992,7 +992,7 @@ App.highlight_range = (item) => {
   }
 }
 
-App.dehighlight = (mode) => {
+App.dehighlight = (mode = App.window_mode) => {
   let some = false
 
   for (let item of App.get_items(mode)) {

@@ -72,6 +72,10 @@ App.create_window = (args) => {
       }
     }
 
+    if (App.on_item_window()) {
+      App.dehighlight()
+    }
+
     w.check_setup()
     App.hide_all_windows()
     w.element.style.display = `flex`
