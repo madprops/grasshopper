@@ -274,7 +274,7 @@ App.show_filter_modes = (mode) => {
 
       continue
     }
-    else if (filter_mode[0] === `what`) {
+    else if (filter_mode[0] === `by_what`) {
       items.push({
         text: `By What`,
         get_items: () => {
@@ -317,7 +317,7 @@ App.cycle_filter_modes = (mode, reverse = true) => {
       continue
     }
 
-    if (filter_mode[0] === `mode`) {
+    if (filter_mode[0] === `by_what`) {
       continue
     }
 
@@ -403,7 +403,7 @@ App.create_filter_modes = (mode) => {
   fmodes.push([`videos`, `Videos`])
   fmodes.push([`--separator--`])
   fmodes.push([`custom`, `Custom`])
-  fmodes.push([`what`, `By What`])
+  fmodes.push([`by_what`, `By What`])
   App[`${mode}_filter_modes`] = [...fmodes, ...(App.filter_modes(mode) || [])]
 
   DOM.ev(filter_modes, `click`, () => {
