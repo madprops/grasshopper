@@ -210,8 +210,7 @@ App.setup_keyboard = () => {
       if (pmode === `textarea` || pmode === `input`) {
         return
       }
-
-      if (pmode === `confirm`) {
+      else if (pmode === `confirm`) {
         if (e.key === `ArrowLeft`) {
           App.focus_confirm_no()
         }
@@ -222,8 +221,7 @@ App.setup_keyboard = () => {
           App.confirm_enter()
         }
       }
-
-      if (pmode === `dialog`) {
+      else if (pmode === `dialog`) {
         if (e.key === `Enter`) {
           App.dialog_enter()
         }
@@ -234,8 +232,7 @@ App.setup_keyboard = () => {
           App.dialog_right()
         }
       }
-
-      if (pmode === `palette`) {
+      else if (pmode === `palette`) {
         if (e.key === `Enter`) {
           App.palette_enter()
           e.preventDefault()
@@ -248,8 +245,6 @@ App.setup_keyboard = () => {
           App.palette_next()
           e.preventDefault()
         }
-
-        return
       }
 
       e.preventDefault()
