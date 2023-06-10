@@ -515,6 +515,50 @@ App.toggle_pin_tabs = (item) => {
   App.dehighlight(`tabs`)
 }
 
+App.toggle_mute_tabs = (item) => {
+  let ids = []
+  let action
+
+  for (let it of App.get_active_items(`tabs`, item)) {
+    if (!action) {
+      if (it.muted) {
+        action = `unmute`
+      }
+      else {
+        action = `mute`
+      }
+    }
+
+    if (action === `mute`) {
+      if (it.muted) {
+        continue
+      }
+    }
+    else if (action === `unmute`) {
+      if (!it.muted) {
+        continue
+      }
+    }
+
+    ids.push(it.id)
+  }
+
+  if (ids.length === 0) {
+    return
+  }
+
+  for (let id of ids) {
+    if (action === `mute`) {
+      App.mute_tab(id)
+    }
+    else {
+      App.unmute_tab(id)
+    }
+  }
+
+  App.dehighlight(`tabs`)
+}
+
 App.open_tab = async (url, args = {}) => {
   let opts = {}
   opts.url = url
@@ -937,16 +981,6 @@ App.get_last_pin_index = () => {
   }
 
   return i
-}
-
-App.close_current_tab = async () => {
-  let tab = await App.get_active_tab()
-
-  if (!tab) {
-    return
-  }
-
-  App.close_tab(tab.id)
 }
 
 App.browser_reload = () => {

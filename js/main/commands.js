@@ -114,61 +114,25 @@ App.commands = [
     App.toggle_pin_tabs(args.item)
   }},
   {name: `Mute Tab`, cmd: `mute_tab`, mode: `tabs`, action: (args) => {
-    if (args.item) {
-      App.mute_tabs(args.item)
-    }
-    else {
-      App.mute_tabs()
-    }
+    App.mute_tabs(args.item)
   }},
   {name: `Unmute Tab`, cmd: `unmute_tab`, mode: `tabs`, action: (args) => {
-    if (args.item) {
-      App.unmute_tabs(args.item)
-    }
-    else {
-      App.unmute_tabs()
-    }
+    App.unmute_tabs(args.item)
   }},
   {name: `Toggle Mute Tab`, cmd: `toggle_mute_tab`, mode: `tabs`, action: (args) => {
-    if (item.muted) {
-      if (args.item) {
-        App.unmute_tabs(args.item)
-      }
-      else {
-        App.unmute_tabs()
-      }
-    }
-    else {
-      if (args.item) {
-        App.mute_tabs(args.item)
-      }
-      else {
-        App.mute_tabs()
-      }
-    }
+    App.toggle_mute_tabs(args.item)
   }},
   {name: `Close Tab`, cmd: `close_tab`, action: (args) => {
-    if (args.item) {
-      App.close_tabs(args.item)
-    }
-    else {
-      App.close_current_tab()
-    }
+    App.close_tabs(args.item)
   }},
-  {name: `Show All`, cmd: `show_all`, action: (args) => {
-    if (args.on_items) {
-      App.show_all()
-    }
+  {name: `Show All`, cmd: `show_all`, mode: `items`, action: (args) => {
+    App.show_all()
   }},
-  {name: `Show Images`, cmd: `show_images`, action: (args) => {
-    if (args.on_items) {
-      App.show_images()
-    }
+  {name: `Show Images`, cmd: `show_images`, mode: `items`, action: (args) => {
+    App.show_images()
   }},
-  {name: `Show Videos`, cmd: `show_videos`, action: (args) => {
-    if (args.on_items) {
-      App.show_videos()
-    }
+  {name: `Show Videos`, cmd: `show_videos`, mode: `items`, action: (args) => {
+    App.show_videos()
   }},
   {name: `Dark Theme`, cmd: `dark_theme`, action: (args) => {
     App.change_theme(`dark`)
