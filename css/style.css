@@ -4,6 +4,7 @@
   --item_margin_1: 0.45rem;
   --item_margin_2: 0.65rem;
   --border_radius: 3px;
+  --scroller_shadow: inset 0 0 0.1rem currentColor;
 }
 
 @keyframes rotate {
@@ -733,7 +734,7 @@ select {
 }
 
 .scroller:hover {
-  border-color: var(--alt_color_2);
+  box-shadow: var(--scroller_shadow);
 }
 
 .hide_scroller .scroller {
@@ -758,8 +759,7 @@ select {
 }
 
 .footer:hover {
-  border-top-width: 0;
-  box-shadow: 0 0 0.1rem currentColor, inset 0 0 0.1rem currentColor;
+  box-shadow: var(--scroller_shadow);
 }
 
 .hide_footer .footer {
