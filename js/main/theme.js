@@ -108,25 +108,19 @@ App.change_color = (name, color) => {
 }
 
 App.random_theme = () => {
-  let colors = App.get_random_theme()
-  App.set_setting(`background_color`, colors.background_color)
-  App.set_setting(`text_color`, colors.text_color)
+  let theme = ThemeList.random_theme()
+  let background_color = App.colorlib.hex_to_rgb(theme.background)
+  let text_color = App.colorlib.hex_to_rgb(theme.color)
+
+  App.set_setting(`background_color`, background_color)
+  App.set_setting(`text_color`, text_color)
 
   if (App.window_mode === `settings_theme`) {
-    App.background_color_picker.setColor(colors.background_color)
-    App.text_color_picker.setColor(colors.text_color)
+    App.background_color_picker.setColor(background_color)
+    App.text_color_picker.setColor(text_color)
   }
   else {
     App.apply_theme()
-  }
-}
-
-App.get_random_theme = () => {
-  let theme = ThemeList.random_theme()
-
-  return {
-    background_color: App.colorlib.hex_to_rgb(theme.background),
-    text_color: App.colorlib.hex_to_rgb(theme.color),
   }
 }
 
