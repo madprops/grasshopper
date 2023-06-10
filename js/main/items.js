@@ -1372,7 +1372,7 @@ App.scroll_to_item = (item, scroll = `nearest`) => {
     }
 
     // If distance is too big then make it instant
-    if (diff > App.max_scroll_diff) {
+    if (diff > App.max_smooth_scroll) {
       behavior = `instant`
     }
   }
