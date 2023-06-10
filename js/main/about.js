@@ -29,6 +29,7 @@ App.setup_about = () => {
       `Escape clears the filter and closes windows/popups`,
       `Check the Gestures settings for more information`,
       `Double tap Ctrl to show the command palette`,
+      `To filter with regex start filter with 're:'`,
     ]
 
     DOM.ev(DOM.el(`#about_info`), `click`, () => {
