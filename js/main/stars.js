@@ -292,10 +292,7 @@ App.remove_stars = (item, force = false) => {
 
   App.show_confirm(s, () => {
     App.do_remove_stars(ids)
-    App.dehighlight(`stars`)
-  }, () => {
-    App.dehighlight(`stars`)
-  }, force || !App.get_setting(`warn_on_unstar`))
+  }, undefined, force || !App.get_setting(`warn_on_unstar`))
 }
 
 App.export_stars = () => {
@@ -354,7 +351,6 @@ App.star_items = (item, feedback = true) => {
     }
     else {
       App.add_or_edit_star(active[0])
-      App.dehighlight(item.mode)
     }
 
     return
@@ -371,7 +367,6 @@ App.star_items = (item, feedback = true) => {
   }
 
   if (items.length === 0) {
-    App.dehighlight(item.mode)
     return
   }
 
@@ -381,10 +376,7 @@ App.star_items = (item, feedback = true) => {
     }
 
     App.stor_save_stars()
-    App.dehighlight(item.mode)
-  }, () => {
-    App.dehighlight(item.mode)
-  }, !App.get_setting(`warn_on_star`))
+  }, undefined, !App.get_setting(`warn_on_star`))
 }
 
 App.check_stars = () => {

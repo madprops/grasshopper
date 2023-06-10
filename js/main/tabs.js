@@ -309,8 +309,6 @@ App.pin_tabs = (item) => {
   for (let id of ids) {
     App.pin_tab(id)
   }
-
-  App.dehighlight(`tabs`)
 }
 
 App.unpin_tabs = (item) => {
@@ -331,8 +329,6 @@ App.unpin_tabs = (item) => {
   for (let id of ids) {
     App.unpin_tab(id)
   }
-
-  App.dehighlight(`tabs`)
 }
 
 App.suspend_tabs = (item) => {
@@ -353,18 +349,12 @@ App.suspend_tabs = (item) => {
       for (let tab of tabs) {
         App.suspend_tab(tab)
       }
-
-      App.dehighlight(`tabs`)
-    }, () => {
-      App.dehighlight(`tabs`)
     })
   }
   else {
     for (let tab of tabs) {
       App.suspend_tab(tab)
     }
-
-    App.dehighlight(`tabs`)
   }
 }
 
@@ -410,11 +400,8 @@ App.close_tabs = (item, force = false, multiple = true) => {
   let s = App.plural(ids.length, `Close this tab?`, `Close these tabs? (${ids.length})`)
 
   App.show_confirm(s, () => {
-    App.dehighlight(`tabs`)
     App.do_close_tabs(ids)
-  }, () => {
-    App.dehighlight(`tabs`)
-  }, force || !warn)
+  }, undefined, force || !warn)
 }
 
 App.do_close_tabs = async (ids) => {
@@ -427,16 +414,12 @@ App.mute_tabs = (item) => {
   for (let it of App.get_active_items(`tabs`, item)) {
     App.mute_tab(it.id)
   }
-
-  App.dehighlight(`tabs`)
 }
 
 App.unmute_tabs = (item) => {
   for (let it of App.get_active_items(`tabs`, item)) {
     App.unmute_tab(it.id)
   }
-
-  App.dehighlight(`tabs`)
 }
 
 App.tab_is_normal = (item) => {
@@ -511,8 +494,6 @@ App.toggle_pin_tabs = (item) => {
       App.unpin_tab(id)
     }
   }
-
-  App.dehighlight(`tabs`)
 }
 
 App.toggle_mute_tabs = (item) => {
@@ -555,8 +536,6 @@ App.toggle_mute_tabs = (item) => {
       App.unmute_tab(id)
     }
   }
-
-  App.dehighlight(`tabs`)
 }
 
 App.open_tab = async (url, args = {}) => {
