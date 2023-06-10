@@ -671,33 +671,15 @@ App.show_settings_menu = (category, btn) => {
 }
 
 App.export_settings = () => {
-  App.show_textarea(App.export_string, JSON.stringify(App.settings, null, 2))
+  App.export_data(App.settings)
 }
 
 App.import_settings = () => {
-  App.show_input(App.import_string, `Import`, (text) => {
-    if (!text) {
-      return
-    }
-
-    let json
-
-    try {
-      json = JSON.parse(text)
-    }
-    catch (err) {
-      App.show_alert(`Invalid JSON`)
-      return
-    }
-
-    if (json) {
-      App.show_confirm(`Use this data?`, () => {
-        App.settings = json
-        App.check_settings()
-        App.stor_save_settings()
-        App.restart_settings()
-      })
-    }
+  App.import_data((json) => {
+    App.settings = json
+    App.check_settings()
+    App.stor_save_settings()
+    App.restart_settings()
   })
 }
 

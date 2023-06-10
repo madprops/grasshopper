@@ -296,33 +296,15 @@ App.remove_stars = (item, force = false) => {
 }
 
 App.export_stars = () => {
-  App.show_textarea(App.export_string, JSON.stringify(App.stars, null, 2))
+  App.export_data(App.stars)
 }
 
 App.import_stars = () => {
-  App.show_input(App.import_string, `Import`, (text) => {
-    if (!text) {
-      return
-    }
-
-    let json
-
-    try {
-      json = JSON.parse(text)
-    }
-    catch (err) {
-      App.show_alert(`Invalid JSON`)
-      return
-    }
-
-    if (json) {
-      App.show_confirm(`Use this data?`, () => {
-        App.stars = json
-        App.check_stars()
-        App.stor_save_stars()
-        App.show_window(`stars`)
-      })
-    }
+  App.import_data((json) => {
+    App.stars = json
+    App.check_stars()
+    App.stor_save_stars()
+    App.show_window(`stars`)
   })
 }
 

@@ -150,33 +150,15 @@ App.get_title_items = () => {
 }
 
 App.export_titles = () => {
-  App.show_textarea(App.export_string, JSON.stringify(App.titles, null, 2))
+  App.export_data(App.titles)
 }
 
 App.import_titles = () => {
-  App.show_input(App.import_string, `Import`, (text) => {
-    if (!text) {
-      return
-    }
-
-    let json
-
-    try {
-      json = JSON.parse(text)
-    }
-    catch (err) {
-      App.show_alert(`Invalid JSON`)
-      return
-    }
-
-    if (json) {
-      App.show_confirm(`Use this data?`, () => {
-        App.titles = json
-        App.check_titles()
-        App.stor_save_titles()
-        App.show_window(`tabs`)
-      })
-    }
+  App.import_data((json) => {
+    App.titles = json
+    App.check_titles()
+    App.stor_save_titles()
+    App.show_window(`tabs`)
   })
 }
 
