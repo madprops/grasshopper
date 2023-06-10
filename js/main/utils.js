@@ -259,3 +259,7 @@ App.single_linebreak = (s) => {
 App.contains_number = (str) => {
   return /\d/.test(str)
 }
+
+App.escape_regex = (s) => {
+  return s.replace(/[^A-Za-z0-9]/g, `\\$&`)
+}

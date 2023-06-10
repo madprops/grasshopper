@@ -310,10 +310,8 @@ App.process_info = (mode, info, exclude = [], o_item) => {
 
   let item = {
     title: title,
-    title_lower: title.toLowerCase(),
     url: url,
     path: path,
-    path_lower: path.toLowerCase(),
     favicon: info.favIconUrl,
     mode: mode,
     window_id: info.windowId,

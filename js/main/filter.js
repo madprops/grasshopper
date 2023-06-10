@@ -46,40 +46,29 @@ App.do_filter = async (mode) => {
 
   let filter_mode = App.filter_mode(mode)
   let skip = !value && filter_mode === `all`
-  let words, filter_words
-
-  if (!skip) {
-    words = value.split(` `).filter(x => x !== ``)
-    filter_words = words.map(x => x.toLowerCase())
-  }
-
   let duplicates
 
   if (filter_mode === `duplicates`) {
     duplicates = App.find_duplicates(items, `url`)
   }
 
-  let use_regex = false
-  let regex_filter
+  let regex
 
-  if (value.startsWith(`/`) && value.endsWith(`/`)) {
-    use_regex = true
-    regex_filter = new RegExp(value.slice(1, -1))
+  if (value.startsWith(`re:`)) {
+    regex = new RegExp(value.replace(`re:`, ``).trim(), `i`)
+  }
+  else {
+    regex = new RegExp(App.escape_regex(value), `i`)
   }
 
   function check (title, path) {
-    if (use_regex) {
-      return regex_filter.test(title) || regex_filter.test(path)
-    }
-    else {
-      return filter_words.every(x => title.includes(x) || path.includes(x))
-    }
+    return regex.test(title) || regex.test(path)
   }
 
   function matched (item) {
     let match = false
-    let title = item.title_lower
-    let path = item.path_lower
+    let title = item.title
+    let path = item.path
 
     if (check(title, path)) {
       if (filter_mode === `all`) {
