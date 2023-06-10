@@ -521,11 +521,13 @@ App.check_important = (task) => {
   let important = false
   let text = DOM.el(`.task_text`, DOM.el(`#task_id_${task.id}`))
 
-  if (text.value.trim().endsWith(`!`)) {
-    let check = DOM.el(`.task_check`, DOM.el(`#task_id_${task.id}`))
+  if (!task.done) {
+    if (text.value.trim().endsWith(`!`)) {
+      let check = DOM.el(`.task_check`, DOM.el(`#task_id_${task.id}`))
 
-    if (!check.checked) {
-      important = true
+      if (!check.checked) {
+        important = true
+      }
     }
   }
 
