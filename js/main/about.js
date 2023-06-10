@@ -31,7 +31,7 @@ App.setup_about = () => {
       `Double tap Ctrl to show the command palette`,
       `To filter title start with title:`,
       `To filter url start with url:`,
-      `To filter with regex start with 're:'`,
+      `To filter with regex start with re:`,
       `To filter title with regex start with re_title:`,
       `To filter url with regex start with re_url:`,
     ]

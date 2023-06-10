@@ -68,6 +68,8 @@ App.do_filter = async (mode) => {
       regex_val = value.replace(`re_url:`, ``)
       check_what = `url`
     }
+
+    regex_val = regex_val.trim()
   }
   else {
     if (value.startsWith(`title:`)) {
@@ -83,10 +85,10 @@ App.do_filter = async (mode) => {
       check_what = `all`
     }
 
-    regex_val = App.escape_regex(regex_val)
+    regex_val = App.escape_regex(regex_val.trim())
   }
 
-  let regex = new RegExp(regex_val.trim(), `i`)
+  let regex = new RegExp(regex_val, `i`)
 
   function check (title, url) {
     if (check_what === `all`) {
