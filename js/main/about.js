@@ -29,11 +29,11 @@ App.setup_about = () => {
       `Escape clears the filter and closes windows/popups`,
       `Check the Gestures settings for more information`,
       `Double tap Ctrl to show the command palette`,
-      `To filter title start with title:`,
-      `To filter url start with url:`,
+      `To filter by title start with title:`,
+      `To filter by url start with url:`,
       `To filter with regex start with re:`,
-      `To filter title with regex start with re_title:`,
-      `To filter url with regex start with re_url:`,
+      `To filter by title with regex start with re_title:`,
+      `To filter by url with regex start with re_url:`,
     ]
 
     DOM.ev(DOM.el(`#about_info`), `click`, () => {
