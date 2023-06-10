@@ -4,7 +4,7 @@ App.default_settings = {
   font: {value: `sans-serif`, category: `basic`, version: 1},
   font_size: {value: 16, category: `basic`, version: 1},
   lock_drag: {value: false, category: `basic`, version: 1},
-  quick_star: {value: true, category: `basic`, version: 2},
+  quick_star: {value: true, category: `basic`, version: 1},
   custom_filters: {value: [], category: `more`, version: 1},
 
   background_color: {value: `rgb(70, 76, 94)`, category: `theme`, version: 1},
@@ -17,8 +17,8 @@ App.default_settings = {
   muted_icon: {value: `🔇`, category: `icons`, version: 1},
   suspended_icon: {value: `💤`, category: `icons`, version: 1},
 
-  warn_on_close_tabs: {value: `special`, category: `warns`, version: 3},
-  warn_on_suspend_tabs: {value: `special`, category: `warns`, version: 3},
+  warn_on_close_tabs: {value: `special`, category: `warns`, version: 1},
+  warn_on_suspend_tabs: {value: `special`, category: `warns`, version: 1},
   warn_on_close_duplicate_tabs: {value: true, category: `warns`, version: 1},
   warn_on_close_normal_tabs: {value: true, category: `warns`, version: 1},
   warn_on_star: {value: true, category: `warns`, version: 1},
@@ -43,8 +43,8 @@ App.default_settings = {
   gesture_down: {value: `go_to_bottom`, category: `mouse`, version: 1},
   gesture_left: {value: `prev_window`, category: `mouse`, version: 1},
   gesture_right: {value: `next_window`, category: `mouse`, version: 1},
-  gesture_up_and_down: {value: `show_all`, category: `mouse`, version: 2},
-  gesture_left_and_right: {value: `filter_domain`, category: `mouse`, version: 2},
+  gesture_up_and_down: {value: `show_all`, category: `mouse`, version: 1},
+  gesture_left_and_right: {value: `filter_domain`, category: `mouse`, version: 1},
   double_click_tab_action: {value: `star_tab`, category: `mouse`, version: 1},
 
   switch_to_tabs: {value: true, category: `more`, version: 1},
@@ -773,10 +773,21 @@ App.settings_wheel = App.create_debouncer((e) => {
 }, App.wheel_delay)
 
 App.get_setting = (key) => {
-  return App.settings[key].value
+  let value = App.settings[key].value
+
+  if (value === `__default__`) {
+    return App.default_settings[key].value
+  }
+  else {
+    return value
+  }
 }
 
 App.set_setting = (setting, value) => {
+  if (App.default_settings[setting].value === value) {
+    value = `__default__`
+  }
+
   App.settings[setting].value = value
   App.save_settings_debouncer.call()
 }
@@ -792,31 +803,35 @@ App.save_settings_debouncer = App.create_debouncer(() => {
 App.check_settings = () => {
   let changed = false
 
-  // Fill defaults
+  function set_default (setting) {
+    App.settings[setting].value = `__default__`
+    App.settings[setting].version = App.default_settings[setting].version
+  }
+
   for (let setting in App.default_settings) {
+    // Fill defaults
     if (App.settings[setting] === undefined ||
       App.settings[setting].value === undefined ||
       App.settings[setting].version === undefined)
     {
       App.log(`Stor: Adding setting: ${setting}`)
       App.settings[setting] = {}
-      App.settings[setting].value = App.default_settings[setting].value
-      App.settings[setting].version = App.default_settings[setting].version
+      set_default(setting)
       changed = true
     }
   }
 
-  // Remove unused settings
   for (let setting in App.settings) {
+    // Remove unused settings
     if (App.default_settings[setting] === undefined) {
       App.log(`Stor: Deleting setting: ${setting}`)
       delete App.settings[setting]
       changed = true
     }
+    // Check new version
     else if (App.settings[setting].version !== App.default_settings[setting].version) {
       App.log(`Stor: Upgrading setting: ${setting}`)
-      App.settings[setting].value = App.default_settings[setting].value
-      App.settings[setting].version = App.default_settings[setting].version
+      set_default(setting)
       changed = true
     }
   }

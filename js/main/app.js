@@ -1,9 +1,9 @@
 const App = {}
 
-App.item_modes = [`tabs`, `stars`, `bookmarks`, `closed`, `history`]
-App.stor_settings_name = `settings_v30`
+App.stor_settings_name = `settings_v100`
 App.stor_stars_name = `stars_state_v20`
 App.stor_titles_name = `titles_v3`
+App.item_modes = [`tabs`, `stars`, `bookmarks`, `closed`, `history`]
 App.stor_command_history_name = `command_history_v1`
 App.windows = {}
 App.popups = {}
