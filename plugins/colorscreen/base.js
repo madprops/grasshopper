@@ -1,4 +1,5 @@
 const App = {}
+App.ls_state = `colorscreen_state_v1`
 App.colorlib = ColorLib()
 App.default_color = `#252933`
 App.visible = false
@@ -70,7 +71,8 @@ App.init = () => {
     App.visible = false
   })
 
-  App.set_color(App.default_color)
+  App.state = App.get_local_storage(App.ls_state) || {}
+  App.set_color(App.state.color || App.default_color)
 }
 
 App.el = (query, root = document) => {
@@ -83,6 +85,7 @@ App.set_color = (color) => {
   let color_2 = App.colorlib.get_lighter_or_darker(color_1, 0.5)
   document.documentElement.style.setProperty(`--color_1`, color_1)
   document.documentElement.style.setProperty(`--color_2`, color_2)
+  App.save_local_storage(App.ls_state, {color: color_1})
   App.el(`#color_info`).textContent = color_1
 }
 

@@ -1,4 +1,4 @@
-App.ls_tasks = `tasks_v2`
+App.ls_tasks = `hoff_tasks_v1`
 
 // Program starts here
 App.init = () => {
