@@ -664,8 +664,8 @@ App.setup_item_window = (mode) => {
     back.title = `Go Back (Ctrl + Backspace)`
     let back_icon = App.create_icon(`back`)
 
-    DOM.ev(back, `click`, () => {
-      App.back_action(mode)
+    DOM.ev(back, `click`, (e) => {
+      App.back_action(mode, e)
     })
 
     back.append(back_icon)
@@ -1278,9 +1278,9 @@ App.pick_item = (item) => {
   }
 }
 
-App.back_action = (mode = App.window_mode) => {
+App.back_action = (mode = App.window_mode, e) => {
   if (App[`${mode}_back_action`]) {
-    App[`${mode}_back_action`]()
+    App[`${mode}_back_action`](e)
   }
   else {
     let item = App.get_selected(mode)

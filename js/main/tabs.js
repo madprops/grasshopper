@@ -792,7 +792,7 @@ App.focus_current_tab = async () => {
   return false
 }
 
-App.tabs_back_action = async () => {
+App.tabs_back_action = async (e) => {
   let was_filtered = App.is_filtered(`tabs`)
   App.clear_or_all(`tabs`)
 
@@ -803,6 +803,10 @@ App.tabs_back_action = async () => {
   let scrolled = await App.focus_current_tab()
 
   if (!scrolled) {
+    if (e.shiftKey) {
+      App.do_empty_previous_tabs()
+    }
+
     App.go_to_previous_tab()
   }
 }
