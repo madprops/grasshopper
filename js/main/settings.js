@@ -43,8 +43,8 @@ App.default_settings = {
   gesture_down: {value: `go_to_bottom`, category: `mouse`, version: 1},
   gesture_left: {value: `prev_window`, category: `mouse`, version: 1},
   gesture_right: {value: `next_window`, category: `mouse`, version: 1},
-  gesture_up_and_down: {value: `none`, category: `mouse`, version: 1},
-  gesture_left_and_right: {value: `none`, category: `mouse`, version: 1},
+  gesture_up_and_down: {value: `show_all`, category: `mouse`, version: 2},
+  gesture_left_and_right: {value: `filter_domain`, category: `mouse`, version: 2},
   double_click_tab_action: {value: `star_tab`, category: `mouse`, version: 1},
 
   switch_to_tabs: {value: true, category: `more`, version: 1},

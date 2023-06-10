@@ -86,7 +86,7 @@ App.commands = [
   {name: `Forward (Browser)`, cmd: `browser_forward`, action: (args) => {
     App.browser_forward()
   }},
-  {name: `Reload Tab (Browser)`, cmd: `browser_reload`, action: (args) => {
+  {name: `Reload (Browser)`, cmd: `browser_reload`, action: (args) => {
     App.browser_reload()
   }},
   {name: `Duplicate Tab`, cmd: `duplicate_tab`, mode: `tabs`, action: (args) => {
