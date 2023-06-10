@@ -769,7 +769,7 @@ App.get_setting = (key) => {
 }
 
 App.set_setting = (setting, value) => {
-  if (App.default_settings[setting].value === value) {
+  if (App.get_default_setting(setting) === value) {
     value = App.default_setting_string
   }
 
