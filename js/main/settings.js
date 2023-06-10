@@ -757,7 +757,7 @@ App.settings_wheel = App.create_debouncer((e) => {
 App.get_setting = (key) => {
   let value = App.settings[key].value
 
-  if (value === `__default__`) {
+  if (value === App.default_setting_string) {
     return App.default_settings[key].value
   }
   else {
