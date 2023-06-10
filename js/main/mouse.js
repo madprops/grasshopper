@@ -147,7 +147,7 @@ App.setup_drag = (mode) => {
     }
 
     let leader_top_id = App.drag_els[0].dataset.id
-    let leader_bottom_id = App.drag_els[App.drag_els.length - 1].dataset.id
+    let leader_bottom_id = App.drag_els.at(-1).dataset.id
     App.drag_leader_top = App.get_item_by_id(mode, leader_top_id)
     App.drag_leader_bottom = App.get_item_by_id(mode, leader_bottom_id)
 

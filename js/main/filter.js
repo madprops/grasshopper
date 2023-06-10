@@ -274,7 +274,7 @@ App.cycle_filter_modes = (mode, reverse = true) => {
 
   // If no result
   if (reverse) {
-    App.set_filter_mode(mode, modes[modes.length - 1])
+    App.set_filter_mode(mode, modes.at(-1))
   }
   else {
     App.set_filter_mode(mode, modes[0])
