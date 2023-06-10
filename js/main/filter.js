@@ -88,7 +88,14 @@ App.do_filter = async (mode) => {
     regex_val = App.escape_regex(regex_val.trim())
   }
 
-  let regex = new RegExp(regex_val, `i`)
+  let regex
+
+  try {
+    regex = new RegExp(regex_val, `i`)
+  }
+  catch (err) {
+    return
+  }
 
   function check (title, url) {
     if (check_what === `all`) {
@@ -190,10 +197,24 @@ App.clear_filter = (mode = App.window_mode) => {
 
 App.set_filter = (mode, text, filter = true) => {
   DOM.el(`#${mode}_filter`).value = text
+  App.focus_filter(mode)
 
   if (filter) {
     App.do_filter(mode)
   }
+}
+
+App.filter_cmd = (mode, cmd) => {
+  let new_text = `${cmd}: `
+  let current = App.get_filter(mode, true)
+
+  if (current) {
+    let regex = new RegExp(/^(\w+\:)/)
+    let cleaned = current.replace(regex, ``).trim()
+    new_text += cleaned
+  }
+
+  App.set_filter(mode, new_text)
 }
 
 App.get_filter = (mode, trim = true) => {
@@ -251,7 +272,18 @@ App.show_filter_modes = (mode) => {
     items.push({
       text: filter_mode[1],
       action: () => {
-        App.set_filter_mode(mode, filter_mode)
+        if (filter_mode[0] === `title`) {
+          App.filter_cmd(mode, `title`)
+        }
+        else if (filter_mode[0] === `url`) {
+          App.filter_cmd(mode, `url`)
+        }
+        else if (filter_mode[0] === `regex`) {
+          App.filter_cmd(mode, `re`)
+        }
+        else {
+          App.set_filter_mode(mode, filter_mode)
+        }
       },
       selected: selected
     })
@@ -370,6 +402,10 @@ App.create_filter_modes = (mode) => {
 
   let fmodes = []
   fmodes.push([`all`, `All`])
+  fmodes.push([`--separator--`])
+  fmodes.push([`title`, `By Title`])
+  fmodes.push([`url`, `By URL`])
+  fmodes.push([`regex`, `Regex`])
   fmodes.push([`--separator--`])
   fmodes.push([`images`, `Images`])
   fmodes.push([`videos`, `Videos`])
