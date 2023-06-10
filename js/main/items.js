@@ -62,6 +62,11 @@ App.select_item_below = (mode) => {
 App.highlight_next = (mode, dir) => {
   let waypoint = false
   let items = App.get_items(mode).slice(0)
+
+  if (items.length === 0) {
+    return
+  }
+
   let current = App.last_highlight || App.get_selected(mode)
 
   if (dir === `above`) {
@@ -87,6 +92,10 @@ App.highlight_next = (mode, dir) => {
 
 App.highlight_to_edge = (mode, dir) => {
   let items = App.get_items(mode).slice(0)
+
+  if (items.length === 0) {
+    return
+  }
 
   if (dir === `below`) {
     items.reverse()
