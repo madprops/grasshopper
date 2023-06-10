@@ -33,5 +33,6 @@ App.double_tap_date = 0
 App.double_tap_delay = 300
 App.scroller_max_top = 3
 App.dragging = false
+App.calc_decimals = 3
 
 NeedContext.min_width = `4.5rem`

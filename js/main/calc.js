@@ -4,7 +4,7 @@ App.setup_calc = () => {
 
 App.calc = (expression) => {
   try {
-    return App.calculator.evaluate(`roundTo (${expression}, 2)`)
+    return App.calculator.evaluate(`roundTo (${expression}, ${App.calc_decimals})`)
   }
   catch (err) {
     return undefined
