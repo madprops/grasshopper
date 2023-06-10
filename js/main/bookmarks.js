@@ -1,4 +1,9 @@
 App.setup_bookmarks = () => {
+  App.bookmarks_filter_modes = [
+    [`--separator--`],
+    [`star`, `Has Star`],
+  ]
+
   App.setup_item_window(`bookmarks`)
 
   browser.bookmarks.onCreated.addListener((id, info) => {

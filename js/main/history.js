@@ -1,4 +1,9 @@
 App.setup_history = () => {
+  App.history_filter_modes = [
+    [`--separator--`],
+    [`star`, `Has Star`],
+  ]
+
   App.setup_item_window(`history`)
 
   browser.history.onVisited.addListener((info) => {

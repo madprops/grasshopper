@@ -1,4 +1,9 @@
 App.setup_closed = () => {
+  App.closed_filter_modes = [
+    [`--separator--`],
+    [`star`, `Has Star`],
+  ]
+
   App.setup_item_window(`closed`)
 
   browser.sessions.onChanged.addListener(() => {
