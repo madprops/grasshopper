@@ -165,7 +165,7 @@ App.get_prev_visible_item = (mode, wrap = true) => {
   }
 }
 
-App.get_selected = (mode) => {
+App.get_selected = (mode = App.window_mode) => {
   return App[`selected_${mode}_item`]
 }
 
