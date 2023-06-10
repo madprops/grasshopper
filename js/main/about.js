@@ -11,7 +11,6 @@ App.setup_about = () => {
       `Shift + Click selects an item range`,
       `Right Click on items shows the context menu`,
       `Shift + Enter on items shows the context menu`,
-      `Ctrl + A selects all items`,
       `Ctrl + Home goes to the top`,
       `Ctrl + End goes to the bottom`,
       `Ctrl + Home goes to the top of a list`,
