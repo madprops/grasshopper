@@ -52,21 +52,21 @@ App.do_filter = async (mode) => {
     duplicates = App.find_duplicates(items, `url`)
   }
 
-  let regex_val, check_what
+  let regex_val, by_what
   let regex_modes = [`re:`, `re_title:`, `re_url:`]
 
   if (regex_modes.some(x => value.startsWith(x))) {
     if (value.startsWith(`re:`)) {
       regex_val = value.replace(`re:`, ``)
-      check_what = `all`
+      by_what = `all`
     }
     else if (value.startsWith(`re_title:`)) {
       regex_val = value.replace(`re_title:`, ``)
-      check_what = `title`
+      by_what = `title`
     }
     else if (value.startsWith(`re_url:`)) {
       regex_val = value.replace(`re_url:`, ``)
-      check_what = `url`
+      by_what = `url`
     }
 
     regex_val = regex_val.trim()
@@ -74,15 +74,15 @@ App.do_filter = async (mode) => {
   else {
     if (value.startsWith(`title:`)) {
       regex_val = value.replace(`title:`, ``)
-      check_what = `title`
+      by_what = `title`
     }
     else if (value.startsWith(`url:`)) {
       regex_val = value.replace(`url:`, ``)
-      check_what = `url`
+      by_what = `url`
     }
     else {
       regex_val = value
-      check_what = `all`
+      by_what = `all`
     }
 
     regex_val = App.escape_regex(regex_val.trim())
@@ -98,13 +98,13 @@ App.do_filter = async (mode) => {
   }
 
   function check (title, url) {
-    if (check_what === `all`) {
+    if (by_what === `all`) {
       return regex.test(title) || regex.test(url)
     }
-    else if (check_what === `title`) {
+    else if (by_what === `title`) {
       return regex.test(title)
     }
-    else if (check_what === `url`) {
+    else if (by_what === `url`) {
       return regex.test(url)
     }
   }
