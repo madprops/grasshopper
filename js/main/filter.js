@@ -15,10 +15,73 @@ App.cancel_filter = () => {
 App.do_filter = async (mode) => {
   App.cancel_filter()
   App.log(`Filter: ${mode}`)
+
+  let regex_val, by_what, use_regex
   let value = App.get_filter(mode)
+  let regex_modes = [`re:`, `re_title:`, `re_url:`]
+
+  if (regex_modes.some(x => value.startsWith(x))) {
+    if (value.startsWith(`re:`)) {
+      regex_val = value.replace(`re:`, ``)
+      by_what = `all`
+    }
+    else if (value.startsWith(`re_title:`)) {
+      regex_val = value.replace(`re_title:`, ``)
+      by_what = `title`
+    }
+    else if (value.startsWith(`re_url:`)) {
+      regex_val = value.replace(`re_url:`, ``)
+      by_what = `url`
+    }
+
+    use_regex = true
+  }
+  else {
+    if (value.startsWith(`title:`)) {
+      regex_val = value.replace(`title:`, ``)
+      by_what = `title`
+    }
+    else if (value.startsWith(`url:`)) {
+      regex_val = value.replace(`url:`, ``)
+      by_what = `url`
+    }
+    else {
+      regex_val = value
+      by_what = `all`
+    }
+
+    use_regex = false
+  }
+
+  let clean_val = regex_val.trim()
+
+  if (use_regex) {
+    regex_val = clean_val
+  }
+  else {
+    regex_val = App.escape_regex(clean_val)
+  }
+
+  let regex
+
+  try {
+    regex = new RegExp(regex_val, `i`)
+  }
+  catch (err) {
+    return
+  }
 
   if (mode === `history`) {
-    await App.search_history()
+    let query
+
+    if (use_regex) {
+      query = ``
+    }
+    else {
+      query = clean_val
+    }
+
+    await App.search_history(query)
 
     if (App.window_mode !== `history`) {
       return
@@ -50,51 +113,6 @@ App.do_filter = async (mode) => {
 
   if (filter_mode === `duplicates`) {
     duplicates = App.find_duplicates(items, `url`)
-  }
-
-  let regex_val, by_what
-  let regex_modes = [`re:`, `re_title:`, `re_url:`]
-
-  if (regex_modes.some(x => value.startsWith(x))) {
-    if (value.startsWith(`re:`)) {
-      regex_val = value.replace(`re:`, ``)
-      by_what = `all`
-    }
-    else if (value.startsWith(`re_title:`)) {
-      regex_val = value.replace(`re_title:`, ``)
-      by_what = `title`
-    }
-    else if (value.startsWith(`re_url:`)) {
-      regex_val = value.replace(`re_url:`, ``)
-      by_what = `url`
-    }
-
-    regex_val = regex_val.trim()
-  }
-  else {
-    if (value.startsWith(`title:`)) {
-      regex_val = value.replace(`title:`, ``)
-      by_what = `title`
-    }
-    else if (value.startsWith(`url:`)) {
-      regex_val = value.replace(`url:`, ``)
-      by_what = `url`
-    }
-    else {
-      regex_val = value
-      by_what = `all`
-    }
-
-    regex_val = App.escape_regex(regex_val.trim())
-  }
-
-  let regex
-
-  try {
-    regex = new RegExp(regex_val, `i`)
-  }
-  catch (err) {
-    return
   }
 
   function check (title, url) {

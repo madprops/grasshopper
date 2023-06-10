@@ -44,8 +44,7 @@ App.history_action_alt = (item) => {
   App.launch_items(item)
 }
 
-App.search_history = async () => {
-  let value = DOM.el(`#history_filter`).value.trim()
+App.search_history = async (value) => {
   let items = await App.get_history(value)
 
   if (App.window_mode !== `history`) {
