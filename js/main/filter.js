@@ -31,7 +31,7 @@ App.do_filter = async (mode) => {
   if (App.contains_number(value)) {
     let ans = App.calc(value)
 
-    if (ans) {
+    if (ans !== undefined) {
       if (ans.toString() !== value) {
         App.show_result(mode, ans)
       }
