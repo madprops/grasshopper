@@ -46,7 +46,7 @@ App.filter_palette = () => {
     let match = filter_words.every(x => text.includes(x)) || text_clean.includes(filter_clean)
 
     if (!match) {
-      if (App.string_similarity(filter, text) >= 0.7) {
+      if (App.string_similarity(filter, text) >= App.similarity_threshold) {
         match = true
       }
     }
