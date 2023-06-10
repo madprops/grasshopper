@@ -1303,7 +1303,7 @@ App.back_action = (mode = App.window_mode, e) => {
       App.clear_or_all(mode)
     }
     else {
-      App.select_item(item, `center`)
+      App.select_item(item, `center_smooth`)
     }
   }
 }
