@@ -630,11 +630,6 @@ input::placeholder {
   margin-bottom: 0.8rem;
 }
 
-.separator {
-  border: 1px solid var(--alt_color_1);
-  width: 14rem;
-}
-
 .editor_container {
   padding-bottom: 2rem;
   align-items: stretch;
