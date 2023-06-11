@@ -41,11 +41,13 @@ App.setup_calc = () => {
 
 App.calc = (expression) => {
   try {
-    return App.calculator.evaluate(`roundTo (${expression}, ${App.calc_decimals})`)
+    let ans = App.calculator.evaluate(`roundTo (${expression}, ${App.calc_decimals})`)
+
+    if (!isNaN(ans)) {
+      return ans.toLocaleString()
+    }
   }
-  catch (err) {
-    return undefined
-  }
+  catch (err) {}
 }
 
 App.today = () => {
