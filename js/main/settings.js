@@ -818,38 +818,19 @@ App.on_settings = () => {
 }
 
 App.get_gesture_options = () => {
+  let separator = `--separator--`
+
   let items = [
     [`Do Nothing`, `none`],
-    [`--separator--`],
+    [separator],
   ]
 
-  function add_separator() {
-    items.push([`--separator--`])
-  }
-
   for (let cmd of App.ordered_commands) {
-    items.push([cmd.name, cmd.cmd])
-
-    if (cmd.cmd === `scroll_down`) {
-      add_separator()
+    if (cmd.name === separator) {
+      items.push([separator])
     }
-    else if (cmd.cmd === `close_window`) {
-      add_separator()
-    }
-    else if (cmd.cmd === `go_to_playing`) {
-      add_separator()
-    }
-    else if (cmd.cmd === `close_tab`) {
-      add_separator()
-    }
-    else if (cmd.cmd === `show_videos`) {
-      add_separator()
-    }
-    else if (cmd.cmd === `detect_theme`) {
-      add_separator()
-    }
-    else if (cmd.cmd === `clear_all_data`) {
-      add_separator()
+    else {
+      items.push([cmd.name, cmd.cmd])
     }
   }
 

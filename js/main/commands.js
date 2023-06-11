@@ -23,6 +23,9 @@ App.commands = [
   {name: `Scroll Down`, cmd: `scroll_down`, mode: `items`, action: (args) => {
     App.scroll(args.mode, `down`, true)
   }},
+
+  {name: `--separator--`},
+
   {name: `Prev Window`, cmd: `prev_window`, mode: `items`, action: (args) => {
     App.cycle_item_windows(true)
   }},
@@ -53,6 +56,9 @@ App.commands = [
   {name: `Close Window`, cmd: `close_window`, action: (args) => {
     App.hide_current_window()
   }},
+
+  {name: `--separator--`},
+
   {name: `New Tab`, cmd: `new_tab`, mode: `tabs`, action: (args) => {
     App.new_tab()
   }},
@@ -80,6 +86,9 @@ App.commands = [
   {name: `Go To Playing Tab`, cmd: `go_to_playing_tab`, mode: `tabs`, action: (args) => {
     App.go_to_playing_tab()
   }},
+
+  {name: `--separator--`},
+
   {name: `Back (Browser)`, cmd: `browser_back`, action: (args) => {
     App.browser_back()
   }},
@@ -125,6 +134,9 @@ App.commands = [
   {name: `Close Tab`, cmd: `close_tab`, action: (args) => {
     App.close_tabs(args.item)
   }},
+
+  {name: `--separator--`},
+
   {name: `Show All`, cmd: `show_all`, mode: `items`, action: (args) => {
     App.show_all()
   }},
@@ -134,6 +146,9 @@ App.commands = [
   {name: `Show Videos`, cmd: `show_videos`, mode: `items`, action: (args) => {
     App.show_videos()
   }},
+
+  {name: `--separator--`},
+
   {name: `Dark Theme`, cmd: `dark_theme`, action: (args) => {
     App.change_theme(`dark`)
   }},
@@ -143,12 +158,17 @@ App.commands = [
   {name: `Detect Theme`, cmd: `detect_theme`, action: (args) => {
     App.detect_theme()
   }},
+
+  {name: `--separator--`},
+
   {name: `Reload Extension`, cmd: `reload_extension`, action: (args) => {
     App.reload_extension()
   }},
   {name: `Clear All Data`, cmd: `clear_all_data`, action: (args) => {
     App.stor_clear_all_data()
   }},
+
+  {name: `--separator--`},
 ]
 
 App.setup_commands = () => {

@@ -150,6 +150,10 @@ App.fill_palette_container = () => {
   container.innerHTML = ``
 
   for (let cmd of App.commands) {
+    if (cmd.name.startsWith(`--`)) {
+      continue
+    }
+
     let el = DOM.create(`div`, `palette_item`)
     el.textContent = cmd.name
     el.dataset.command = cmd.cmd
