@@ -1,6 +1,6 @@
 App.setup_history = () => {
   App.history_filter_modes = [
-    [`--separator--`],
+    [App.separator_string],
     [`star`, `Has Star`],
   ]
 

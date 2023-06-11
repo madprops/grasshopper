@@ -1,6 +1,6 @@
 App.setup_bookmarks = () => {
   App.bookmarks_filter_modes = [
-    [`--separator--`],
+    [App.separator_string],
     [`star`, `Has Star`],
   ]
 

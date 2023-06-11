@@ -859,7 +859,7 @@ App.show_actions = (mode) => {
   let items = []
 
   for (let item of App[`${mode}_actions`]) {
-    if (item.text === `--separator--`) {
+    if (item.text === App.separator_string) {
       items.push({separator: true})
       continue
     }

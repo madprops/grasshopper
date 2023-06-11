@@ -24,7 +24,7 @@ App.commands = [
     App.scroll(args.mode, `down`, true)
   }},
 
-  {name: `--separator--`},
+  {name: App.separator_string},
 
   {name: `Prev Window`, cmd: `prev_window`, mode: `items`, action: (args) => {
     App.cycle_item_windows(true)
@@ -57,7 +57,7 @@ App.commands = [
     App.hide_current_window()
   }},
 
-  {name: `--separator--`},
+  {name: App.separator_string},
 
   {name: `New Tab`, cmd: `new_tab`, mode: `tabs`, action: (args) => {
     App.new_tab()
@@ -87,7 +87,7 @@ App.commands = [
     App.go_to_playing_tab()
   }},
 
-  {name: `--separator--`},
+  {name: App.separator_string},
 
   {name: `Back (Browser)`, cmd: `browser_back`, action: (args) => {
     App.browser_back()
@@ -135,7 +135,7 @@ App.commands = [
     App.close_tabs(args.item)
   }},
 
-  {name: `--separator--`},
+  {name: App.separator_string},
 
   {name: `Show All`, cmd: `show_all`, mode: `items`, action: (args) => {
     App.show_all()
@@ -147,7 +147,7 @@ App.commands = [
     App.show_videos()
   }},
 
-  {name: `--separator--`},
+  {name: App.separator_string},
 
   {name: `Dark Theme`, cmd: `dark_theme`, action: (args) => {
     App.change_theme(`dark`)
@@ -159,7 +159,7 @@ App.commands = [
     App.detect_theme()
   }},
 
-  {name: `--separator--`},
+  {name: App.separator_string},
 
   {name: `Reload Extension`, cmd: `reload_extension`, action: (args) => {
     App.reload_extension()
@@ -168,7 +168,7 @@ App.commands = [
     App.stor_clear_all_data()
   }},
 
-  {name: `--separator--`},
+  {name: App.separator_string},
 ]
 
 App.setup_commands = () => {

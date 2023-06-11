@@ -1,13 +1,13 @@
 App.setup_tabs = () => {
   App.tabs_filter_modes = [
-    [`--separator--`],
+    [App.separator_string],
     [`pins`, `Pins`],
     [`normal`, `Normal`],
-    [`--separator--`],
+    [App.separator_string],
     [`playing`, `Playing`],
     [`suspended`, `Suspended`],
     [`duplicates`, `Duplicates`],
-    [`--separator--`],
+    [App.separator_string],
     [`star`, `Has Star`],
     [`title`, `Has Title`],
   ]
@@ -17,7 +17,7 @@ App.setup_tabs = () => {
       App.new_tab()
     }},
 
-    {text: `--separator--`},
+    {text: App.separator_string},
 
     {text: `Show Info`, action: () => {
       App.show_tabs_info()

@@ -4,7 +4,7 @@ App.setup_stars = () => {
       App.star_from_active()
     }},
 
-    {text: `--separator--`},
+    {text: App.separator_string},
 
     {text: `Export`, action: () => {
       App.export_stars()

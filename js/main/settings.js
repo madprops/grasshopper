@@ -179,7 +179,7 @@ App.settings_make_menu = (setting, opts, action = () => {}) => {
     let items = []
 
     for (let o of opts) {
-      if (o[0] === `--separator--`) {
+      if (o[0] === App.separator_string) {
         items.push({separator: true})
         continue
       }
@@ -501,7 +501,7 @@ App.settings_menu_cycle = (el, setting, dir, items) => {
   }
 
   for (let item of items) {
-    if (item[0] === `--separator--`) {
+    if (item[0] === App.separator_string) {
       continue
     }
 
@@ -818,16 +818,14 @@ App.on_settings = () => {
 }
 
 App.get_gesture_options = () => {
-  let separator = `--separator--`
-
   let items = [
     [`Do Nothing`, `none`],
-    [separator],
+    [App.separator_string],
   ]
 
   for (let cmd of App.commands) {
-    if (cmd.name === separator) {
-      items.push([separator])
+    if (cmd.name === App.separator_string) {
+      items.push([App.separator_string])
     }
     else {
       items.push([cmd.name, cmd.cmd])

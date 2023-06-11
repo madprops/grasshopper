@@ -1,6 +1,6 @@
 App.setup_closed = () => {
   App.closed_filter_modes = [
-    [`--separator--`],
+    [App.separator_string],
     [`star`, `Has Star`],
   ]
 

@@ -245,7 +245,7 @@ App.show_filter_modes = (mode) => {
   let items = []
 
   for (let filter_mode of App.filter_modes(mode)) {
-    if (filter_mode[0] === `--separator--`) {
+    if (filter_mode[0] === App.separator_string) {
       items.push({separator: true})
       continue
     }
@@ -404,10 +404,10 @@ App.create_filter_modes = (mode) => {
 
   let fmodes = []
   fmodes.push([`all`, `All`])
-  fmodes.push([`--separator--`])
+  fmodes.push([App.separator_string])
   fmodes.push([`images`, `Images`])
   fmodes.push([`videos`, `Videos`])
-  fmodes.push([`--separator--`])
+  fmodes.push([App.separator_string])
   fmodes.push([`custom`, `Custom`])
   fmodes.push([`by_what`, `By What`])
   App[`${mode}_filter_modes`] = [...fmodes, ...(App.filter_modes(mode) || [])]
