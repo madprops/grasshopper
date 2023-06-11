@@ -376,12 +376,8 @@ App.setup_settings = () => {
     })
 
     DOM.ev(DOM.el(`#settings_gestures_info`), `click`, () => {
-      let s = `Hold the middle mouse button and move the mouse in a direction, then release the button to perform an action.`
-      App.show_alert(s, undefined, false)
-    })
-
-    DOM.ev(DOM.el(`#settings_double_click_info`), `click`, () => {
-      let s = `Double click a tab to perform the selected action.`
+      let s = `Gestures: Hold the middle mouse button and move the mouse in a direction, then release the button to perform an action.`
+      s += ` You can also double click a tab to perform a specific action.`
       App.show_alert(s, undefined, false)
     })
 
