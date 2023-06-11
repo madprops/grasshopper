@@ -769,10 +769,6 @@ App.get_setting = (key) => {
 }
 
 App.set_setting = (setting, value) => {
-  if (App.get_default_setting(setting) === value) {
-    value = App.default_setting_string
-  }
-
   App.settings[setting].value = value
   App.save_settings_debouncer.call()
 }
