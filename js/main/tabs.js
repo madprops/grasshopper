@@ -1035,5 +1035,19 @@ App.check_tab_item = (item) => {
       item.element.classList.add(`normal_item`)
       item.element.classList.remove(`pin_item`)
     }
+
+    if (App.get_setting(`pin_icon`)) {
+      item.element.classList.add(`has_pin_icon`)
+    }
+    else {
+      item.element.classList.remove(`has_pin_icon`)
+    }
+
+    if (App.get_setting(`normal_icon`)) {
+      item.element.classList.add(`has_normal_icon`)
+    }
+    else {
+      item.element.classList.remove(`has_normal_icon`)
+    }
   }
 }
