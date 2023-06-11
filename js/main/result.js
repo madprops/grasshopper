@@ -11,7 +11,7 @@ App.check_result = (mode, value) => {
       }
     }
   }
-  else if ([`date`, `now`, `time`, `today`].includes(value)) {
+  else if ([`date`, `now`, `time`, `today`, `clock`].includes(value)) {
     App.show_result(mode, App.today())
   }
 }
