@@ -13,7 +13,9 @@ App.scroller_debouncer = App.create_debouncer((mode) => {
 }, App.scroller_debouncer_delay)
 
 App.check_scroller = (mode) => {
-  App.scroller_debouncer.call(mode)
+  if (App.get_setting(`show_scroller`)) {
+    App.scroller_debouncer.call(mode)
+  }
 }
 
 App.set_scroller_percentage = (mode, percentage) => {
