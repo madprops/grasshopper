@@ -8,13 +8,23 @@ ThemeList.random_item = () => {
   return ThemeList.list[ThemeList.random_int(0, ThemeList.list.length - 1)]
 }
 
-ThemeList.random_theme = () => {
+ThemeList.random_theme = (allow_swap = true) => {
+  let n = ThemeList.random_int(1, 5)
   let theme = ThemeList.random_item()
-  let color_n = ThemeList.random_int(1, 5)
+  let color_1 = theme.background
+  let color_2 = theme[`color_${n}`]
+
+  if (allow_swap) {
+    if (ThemeList.random_int(0, 3) === 0) {
+      let color_temp = color_1
+      color_1 = color_2
+      color_2 = color_temp
+    }
+  }
 
   return {
-    background: theme.background,
-    color: theme[`color_${color_n}`]
+    background: color_1,
+    color: color_2
   }
 }
 
