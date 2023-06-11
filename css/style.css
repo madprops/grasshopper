@@ -243,11 +243,11 @@ svg {
   flex-shrink: 0;
 }
 
-.pin_item.has_pin_icon .item_info_pin {
+.has_pin_icon .pin_item .item_info_pin {
   display: flex;
 }
 
-.normal_item.has_normal_icon .item_info_normal {
+.has_normal_icon .normal_item .item_info_normal {
   display: flex;
 }
 

@@ -596,7 +596,8 @@ App.show_item_window = async (mode, cycle = false) => {
   App.windows[mode].show()
   App.empty_footer_info()
   App.cancel_filter()
-  DOM.el(`#${mode}_container`).innerHTML = ``
+  let container = DOM.el(`#${mode}_container`)
+  container.innerHTML = ``
   App.set_filter(mode, value, false)
 
   let m = App.filter_modes(mode)[0]
@@ -607,6 +608,22 @@ App.show_item_window = async (mode, cycle = false) => {
 
   if (mode !== App.window_mode) {
     return
+  }
+
+  if (mode === `tabs`) {
+    if (App.get_setting(`pin_icon`)) {
+      container.classList.add(`has_pin_icon`)
+    }
+    else {
+      container.classList.remove(`has_pin_icon`)
+    }
+
+    if (App.get_setting(`normal_icon`)) {
+      container.classList.add(`has_normal_icon`)
+    }
+    else {
+      container.classList.remove(`has_normal_icon`)
+    }
   }
 
   if (mode === `history` && value) {
