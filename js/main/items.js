@@ -599,11 +599,9 @@ App.show_item_window = async (mode, cycle = false) => {
   let container = DOM.el(`#${mode}_container`)
   container.innerHTML = ``
   App.set_filter(mode, value, false)
-
   let m = App.filter_modes(mode)[0]
   App.set_filter_mode(mode, m, false)
   App[`${mode}_filter_mode`] = m[0]
-
   let items = await App[`get_${mode}`]()
 
   if (mode !== App.window_mode) {
