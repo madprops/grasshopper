@@ -88,19 +88,7 @@ App.do_filter = async (mode) => {
     }
   }
 
-  App.hide_result(mode)
-
-  // Try to solve a math expression
-  if (App.contains_number(value)) {
-    let ans = App.calc(value)
-
-    if (ans !== undefined) {
-      if (ans.toString() !== value) {
-        App.show_result(mode, ans)
-      }
-    }
-  }
-
+  App.check_result(mode, value)
   let items = App.get_items(mode)
 
   if (!items) {
