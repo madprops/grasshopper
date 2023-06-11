@@ -761,11 +761,10 @@ App.get_setting = (key) => {
   let value = App.settings[key].value
 
   if (value === App.default_setting_string) {
-    return App.get_default_setting(key)
+    value = App.get_default_setting(key)
   }
-  else {
-    return value
-  }
+
+  return value
 }
 
 App.set_setting = (setting, value) => {
