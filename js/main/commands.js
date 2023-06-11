@@ -178,7 +178,6 @@ App.setup_commands = () => {
     }})
   }
 
-  App.ordered_commands = App.commands.slice(0)
   App.sort_commands()
 }
 
@@ -196,7 +195,9 @@ App.update_command_history = (cmd) => {
 }
 
 App.sort_commands = () => {
-  App.commands.sort((a, b) => {
+  App.sorted_commands = App.commands.filter(x => !x.name.startsWith(`--`)).slice(0)
+
+  App.sorted_commands.sort((a, b) => {
     let ia = App.command_history.indexOf(a.cmd)
     let ib = App.command_history.indexOf(b.cmd)
 

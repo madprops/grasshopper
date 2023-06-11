@@ -825,7 +825,7 @@ App.get_gesture_options = () => {
     [separator],
   ]
 
-  for (let cmd of App.ordered_commands) {
+  for (let cmd of App.commands) {
     if (cmd.name === separator) {
       items.push([separator])
     }
