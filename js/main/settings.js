@@ -479,10 +479,6 @@ App.start_theme_settings = () => {
     App.change_theme(`light`)
   })
 
-  DOM.ev(DOM.el(`#settings_random_theme`), `click`, () => {
-    App.random_theme()
-  })
-
   DOM.ev(DOM.el(`#settings_detect_theme`), `click`, () => {
     App.detect_theme()
   })
@@ -853,7 +849,7 @@ App.get_gesture_options = () => {
     else if (cmd.cmd === `show_videos`) {
       add_separator()
     }
-    else if (cmd.cmd === `random_theme`) {
+    else if (cmd.cmd === `detect_theme`) {
       add_separator()
     }
     else if (cmd.cmd === `clear_all_data`) {

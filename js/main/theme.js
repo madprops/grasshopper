@@ -107,23 +107,6 @@ App.change_color = (name, color) => {
   App.apply_theme()
 }
 
-App.random_theme = () => {
-  let theme = ThemeList.random_theme()
-  let background_color = App.colorlib.hex_to_rgb(theme.background)
-  let text_color = App.colorlib.hex_to_rgb(theme.color)
-
-  App.set_setting(`background_color`, background_color)
-  App.set_setting(`text_color`, text_color)
-
-  if (App.window_mode === `settings_theme`) {
-    App.background_color_picker.setColor(background_color)
-    App.text_color_picker.setColor(text_color)
-  }
-  else {
-    App.apply_theme()
-  }
-}
-
 App.detect_theme = async () => {
   let theme = await browser.theme.getCurrent()
 

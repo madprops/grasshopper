@@ -143,9 +143,6 @@ App.commands = [
   {name: `Detect Theme`, cmd: `detect_theme`, action: (args) => {
     App.detect_theme()
   }},
-  {name: `Random Theme`, cmd: `random_theme`, action: (args) => {
-    App.random_theme()
-  }},
   {name: `Reload Extension`, cmd: `reload_extension`, action: (args) => {
     App.reload_extension()
   }},
