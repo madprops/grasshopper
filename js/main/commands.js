@@ -173,8 +173,6 @@ App.commands = [
   {name: `Clear All Data`, cmd: `clear_all_data`, action: (args) => {
     App.stor_clear_all_data()
   }},
-
-  {name: App.separator_string},
 ]
 
 App.setup_commands = () => {
