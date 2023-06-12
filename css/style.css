@@ -56,7 +56,7 @@ body, html {
   top: 0;
   left: 0;
   background-color: var(--main_background);
-  z-index: 999;
+  z-index: 99;
   width: 100vw;
   height: 100vh;
 }
@@ -726,7 +726,7 @@ select {
   align-items: center;
   justify-content: center;
   left: 0;
-  z-index: 999;
+  z-index: 9;
   cursor: pointer;
   border: 1px solid var(--alt_color_1);
   padding: 0.35rem;
