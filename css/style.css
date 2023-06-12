@@ -215,7 +215,7 @@ svg {
   display: flex;
   flex-direction: row;
   gap: var(--item_margin_1);
-  margin-right: var(--item_margin_1);
+  margin-right: var(--item_margin_2);
   flex-shrink: 0;
 }
 
