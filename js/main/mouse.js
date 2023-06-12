@@ -1,3 +1,9 @@
+App.setup_mouse = () => {
+  if (!App.cmds.includes(App.get_setting(`double_click_tab_action`))) {
+    App.set_setting(`double_click_tab_action`, `none`)
+  }
+}
+
 App.setup_window_mouse = (mode) => {
   let container = DOM.el(`#${mode}_container`)
 

@@ -184,6 +184,7 @@ App.setup_commands = () => {
     }})
   }
 
+  App.cmds = App.commands.filter(x => !x.name.startsWith(`--`)).map(x => x.cmd)
   App.sort_commands()
 }
 
