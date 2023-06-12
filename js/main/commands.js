@@ -178,12 +178,6 @@ App.commands = [
 ]
 
 App.setup_commands = () => {
-  for (let plugin of App.plugins) {
-    App.commands.push({name: plugin.name, cmd: plugin.cmd, action: () => {
-      App.show_plugin(plugin.id)
-    }})
-  }
-
   App.cmds = App.commands.filter(x => !x.name.startsWith(`--`)).map(x => x.cmd)
   App.sort_commands()
 }

@@ -46,13 +46,6 @@ App.show_main_menu = (mode) => {
   })
 
   items.push({
-    text: `Plugins`,
-    get_items: () => {
-      return App.get_plugin_menu_items()
-    }
-  })
-
-  items.push({
     text: `About`,
     action: () => {
       App.show_window(`about`)
