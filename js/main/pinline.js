@@ -3,7 +3,9 @@ App.pinline_debouncer = App.create_debouncer(() => {
 }, App.pinline_debouncer_delay)
 
 App.check_pinline = () => {
-  App.pinline_debouncer.call()
+  if (App.get_setting(`show_pinline`)) {
+    App.pinline_debouncer.call()
+  }
 }
 
 App.do_check_pinline = () => {
