@@ -2,7 +2,6 @@
   --widget_padding_vert: 0.2rem;
   --widget_padding_hor: 0.3rem;
   --item_margin: 0.45rem;
-  --border_radius: 3px;
   --scroller_shadow: inset 0 0 0.1rem currentColor;
 }
 
@@ -142,7 +141,7 @@ body, html {
   user-select: none;
   outline: 1px solid var(--alt_color_1);
   min-width: 1.6rem;
-  border-radius: var(--border_radius);
+  border-radius: 3px;
 }
 
 .button:hover {
