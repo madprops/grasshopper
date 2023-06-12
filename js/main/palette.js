@@ -11,6 +11,13 @@ App.setup_palette = () => {
       DOM.ev(DOM.el(`#palette_filter`), `input`, (e) => {
         App.filter_palette()
       })
+
+      DOM.ev(DOM.el(`#palette_info`), `click`, () => {
+        let s = `This is the command palette. You can use it to quickly run commands.`
+        s += ` Just type something and hit Enter or Up/Down arrows.`
+        s += ` You can also open the palette by tapping Ctrl twice in a row.`
+        App.show_alert(s, undefined, false)
+      })
     }
   })
 }

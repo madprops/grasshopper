@@ -539,10 +539,14 @@ a:visited, a:link, a:hover {
   position: fixed;
   top: 0;
   left: 0;
-  z-index: 9999;
+  z-index: 999;
   height: 100vh;
   width: 100vw;
   background-color: var(--alt_background);
+}
+
+#popup_alert {
+  z-index: 9999;
 }
 
 .pre {
