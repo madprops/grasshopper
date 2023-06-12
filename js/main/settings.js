@@ -391,12 +391,10 @@ App.setup_settings = () => {
 
     let opts = App.get_gesture_options()
 
-    App.settings_make_menu(`gesture_up`, opts.slice(0))
-    App.settings_make_menu(`gesture_down`, opts.slice(0))
-    App.settings_make_menu(`gesture_left`, opts.slice(0))
-    App.settings_make_menu(`gesture_right`, opts.slice(0))
-    App.settings_make_menu(`gesture_up_and_down`, opts.slice(0))
-    App.settings_make_menu(`gesture_left_and_right`, opts.slice(0))
+    for (let gesture of App.gestures) {
+      App.settings_make_menu(`gesture_${gesture}`, opts.slice(0))
+    }
+
     App.settings_make_menu(`double_click_tab_action`, opts.slice(0))
   }}))
 }

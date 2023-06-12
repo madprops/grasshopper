@@ -1,39 +1,26 @@
 App.setup_gestures = () => {
-  App.gestures = [`up`, `down`, `left`, `right`, `up_and_down`, `left_and_right`]
   App.refresh_gestures()
+  let obj = {}
 
-  NiceGesture.start(DOM.el(`#main`), {
-    up: (e) => {
-      App.gesture_action(`up`)
-    },
-    down: (e) => {
-      App.gesture_action(`down`)
-    },
-    left: (e) => {
-      App.gesture_action(`left`)
-    },
-    right: (e) => {
-      App.gesture_action(`right`)
-    },
-    up_and_down: (e) => {
-      App.gesture_action(`up_and_down`)
-    },
-    left_and_right: (e) => {
-      App.gesture_action(`left_and_right`)
-    },
-    default: (e) => {
-      if (App.on_items()) {
-        if (App.cursor_on_item(e, App.window_mode)) {
-          let item = App.get_cursor_item(App.window_mode, e)
+  for (let gesture of App.gestures) {
+    obj[gesture] = () => {
+      App.gesture_action(gesture)
+    }
+  }
 
-          if (item) {
-            App[`${App.window_mode}_action_alt`](item, e.shiftKey)
-          }
+  obj.default = (e) => {
+    if (App.on_items()) {
+      if (App.cursor_on_item(e, App.window_mode)) {
+        let item = App.get_cursor_item(App.window_mode, e)
+
+        if (item) {
+          App[`${App.window_mode}_action_alt`](item, e.shiftKey)
         }
       }
     }
-  })
+  }
 
+  NiceGesture.start(DOM.el(`#main`), obj)
   App.check_gestures()
 }
 

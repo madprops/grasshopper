@@ -37,5 +37,6 @@ App.similarity_threshold = 0.8
 App.default_setting_string = `__default__`
 App.separator_string = `--separator--`
 App.max_smooth_scroll = 1000 * 2
+App.gestures = [`up`, `down`, `left`, `right`, `up_and_down`, `left_and_right`]
 
 NeedContext.min_width = `4.5rem`
