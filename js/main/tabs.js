@@ -271,6 +271,28 @@ App.duplicate_tab = async (item) => {
   }
 }
 
+App.duplicate_tabs = async (item) => {
+  let items = App.get_active_items(`tabs`, item)
+  let warn = App.get_setting(`warn_on_duplicate_tabs`)
+
+  if (items.length === 1) {
+    warn = false
+  }
+
+  if (warn) {
+    App.show_confirm(`Duplicate tabs? (${items.length})`, () => {
+      for (let it of items) {
+        App.duplicate_tab(it)
+      }
+    })
+  }
+  else {
+    for (let it of items) {
+      App.duplicate_tab(it)
+    }
+  }
+}
+
 App.do_suspend_tab = async (item) => {
   try {
     await browser.tabs.discard(item.id)

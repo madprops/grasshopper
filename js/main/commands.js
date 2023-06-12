@@ -98,41 +98,47 @@ App.commands = [
   {name: `Reload (Browser)`, cmd: `browser_reload`, action: (args) => {
     App.browser_reload()
   }},
-  {name: `Duplicate Tab`, cmd: `duplicate_tab`, mode: `tabs`, action: (args) => {
-    App.duplicate_tab(args.item)
+
+  {name: App.separator_string},
+
+  {name: `Duplicate Tabs`, cmd: `duplicate_tab`, mode: `tabs`, action: (args) => {
+    App.duplicate_tabs(args.item)
   }},
-  {name: `Suspend Tab`, cmd: `suspend_tab`, mode: `tabs`, action: (args) => {
+  {name: `Suspend Tabs`, cmd: `suspend_tabs`, mode: `tabs`, action: (args) => {
     App.suspend_tabs(args.item)
   }},
-  {name: `Detach Tab`, cmd: `detach_tab`, mode: `tabs`, action: (args) => {
+  {name: `Detach Tabs`, cmd: `detach_tabs`, mode: `tabs`, action: (args) => {
     App.detach_tabs(args.item)
   }},
-  {name: `Tab To Top`, cmd: `tab_to_top`, mode: `tabs`, action: (args) => {
+  {name: `Tabs To Top`, cmd: `tabs_to_top`, mode: `tabs`, action: (args) => {
     App.move_tabs_vertically(`top`)
   }},
-  {name: `Tab To Bottom`, cmd: `tab_to_bottom`, mode: `tabs`, action: (args) => {
+  {name: `Tabs To Bottom`, cmd: `tabs_to_bottom`, mode: `tabs`, action: (args) => {
     App.move_tabs_vertically(`bottom`)
   }},
-  {name: `Pin Tab`, cmd: `pin_tab`, mode: `tabs`, action: (args) => {
+  {name: `Pin Tabs`, cmd: `pin_tabs`, mode: `tabs`, action: (args) => {
     App.pin_tabs(args.item)
   }},
-  {name: `Unpin Tab`, cmd: `unpin_tab`, mode: `tabs`, action: (args) => {
+  {name: `Unpin Tabs`, cmd: `unpin_tabs`, mode: `tabs`, action: (args) => {
     App.unpin_tabs(args.item)
   }},
-  {name: `Toggle Pin Tab`, cmd: `toggle_pin_tab`, mode: `tabs`, action: (args) => {
+  {name: `Toggle Pin Tabs`, cmd: `toggle_pin_tabs`, mode: `tabs`, action: (args) => {
     App.toggle_pin_tabs(args.item)
   }},
-  {name: `Mute Tab`, cmd: `mute_tab`, mode: `tabs`, action: (args) => {
+  {name: `Mute Tabs`, cmd: `mute_tabs`, mode: `tabs`, action: (args) => {
     App.mute_tabs(args.item)
   }},
-  {name: `Unmute Tab`, cmd: `unmute_tab`, mode: `tabs`, action: (args) => {
+  {name: `Unmute Tabs`, cmd: `unmute_tabs`, mode: `tabs`, action: (args) => {
     App.unmute_tabs(args.item)
   }},
-  {name: `Toggle Mute Tab`, cmd: `toggle_mute_tab`, mode: `tabs`, action: (args) => {
+  {name: `Toggle Mute Tabs`, cmd: `toggle_mute_tabs`, mode: `tabs`, action: (args) => {
     App.toggle_mute_tabs(args.item)
   }},
-  {name: `Close Tab`, cmd: `close_tab`, action: (args) => {
+  {name: `Close Tabs`, cmd: `close_tabs`, mode: `tabs`, action: (args) => {
     App.close_tabs(args.item)
+  }},
+  {name: `Launch Items`, cmd: `launch_items`, mode: `items`, action: (args) => {
+    App.launch_items(args.item, true)
   }},
 
   {name: App.separator_string},

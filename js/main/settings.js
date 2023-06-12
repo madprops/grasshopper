@@ -19,6 +19,7 @@ App.default_settings = {
 
   warn_on_close_tabs: {value: `special`, category: `warns`, version: 1},
   warn_on_suspend_tabs: {value: `special`, category: `warns`, version: 1},
+  warn_on_duplicate_tabs: {value: true, category: `warns`, version: 1},
   warn_on_close_duplicate_tabs: {value: true, category: `warns`, version: 1},
   warn_on_close_normal_tabs: {value: true, category: `warns`, version: 1},
   warn_on_star: {value: true, category: `warns`, version: 1},

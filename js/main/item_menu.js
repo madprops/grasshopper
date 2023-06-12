@@ -179,14 +179,12 @@ App.get_window_menu_items = async (item) => {
 App.get_more_menu_items = (item, multiple) => {
   let items = []
 
-  if (!multiple) {
-    items.push({
-      text: `Duplicate`,
-      action: () => {
-        App.duplicate_tab(item)
-      }
-    })
-  }
+  items.push({
+    text: `Duplicate`,
+    action: () => {
+      App.duplicate_tabs(item)
+    }
+  })
 
   if (!item.discarded) {
     items.push({
