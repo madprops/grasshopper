@@ -41,7 +41,7 @@ App.history_action = (item) => {
 }
 
 App.history_action_alt = (item) => {
-  App.launch_items(item)
+  App.launch_items(item, true)
 }
 
 App.search_history = async (value) => {

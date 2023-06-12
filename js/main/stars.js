@@ -49,7 +49,7 @@ App.stars_action = (item) => {
 }
 
 App.stars_action_alt = (item) => {
-  App.launch_items(item)
+  App.launch_items(item, true)
 }
 
 App.open_star = async (item) => {

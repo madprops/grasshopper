@@ -48,7 +48,7 @@ App.show_item_menu = (item, x, y) => {
     items.push({
       text: `Launch`,
       action: () => {
-        App.launch_items(item)
+        App.launch_items(item, true)
       }
     })
   }

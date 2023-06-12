@@ -57,5 +57,5 @@ App.bookmarks_action = (item) => {
 }
 
 App.bookmarks_action_alt = (item) => {
-  App.launch_items(item)
+  App.launch_items(item, true)
 }

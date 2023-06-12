@@ -1080,18 +1080,22 @@ App.launch_item = (item, feedback = true) => {
   }
 }
 
-App.after_launch = () => {
+App.after_launch = (shift = false) => {
+  if (shift) {
+    return
+  }
+
   App.check_close_on_launch()
   App.switch_to_tabs()
 }
 
-App.launch_items = (item) => {
+App.launch_items = (item, shift) => {
   let mode = item.mode
   let items = App.get_active_items(mode, item)
 
   if (items.length === 1) {
     App.launch_item(items[0])
-    App.after_launch()
+    App.after_launch(shift)
   }
   else {
     App.show_confirm(`Launch these items ${items.length}?`, () => {
@@ -1110,7 +1114,7 @@ App.launch_items = (item) => {
       }
 
       App.dehighlight(mode)
-      App.after_launch()
+      App.after_launch(shift)
     }, () => {
       App.dehighlight(mode)
     }, !App.get_setting(`warn_on_launch`))
@@ -1120,10 +1124,17 @@ App.launch_items = (item) => {
 App.show_launched = (item) => {
   let launched = DOM.el(`.item_info_launched`, item.element)
   launched.classList.add(`item_info_launched_active`)
+  let timeout_old = DOM.dataset(launched, `timeout`)
 
-  setTimeout(() => {
+  if (timeout_old) {
+    clearTimeout(timeout_old)
+  }
+
+  let timeout = setTimeout(() => {
     launched.classList.remove(`item_info_launched_active`)
   }, 1000)
+
+  DOM.dataset(launched, `timeout`, timeout)
 }
 
 App.goto_top = (mode = App.window_mode) => {
