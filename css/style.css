@@ -1,8 +1,7 @@
 :root {
   --widget_padding_vert: 0.2rem;
   --widget_padding_hor: 0.3rem;
-  --item_margin_1: 0.45rem;
-  --item_margin_2: 0.62rem;
+  --item_margin: 0.45rem;
   --border_radius: 3px;
   --scroller_shadow: inset 0 0 0.1rem currentColor;
 }
@@ -98,7 +97,7 @@ body, html {
 }
 
 .container {
-  margin-bottom: var(--item_margin_1);
+  margin-bottom: var(--item_margin);
   display: flex;
   flex-direction: column;
   flex-grow: 1;
@@ -193,7 +192,9 @@ svg {
   direction: ltr;
   flex-shrink: 0;
   scroll-margin: 3.6rem;
-  padding-left: var(--item_margin_1);
+  padding-left: var(--item_margin);
+  padding-right: var(--item_margin);
+  gap: 0.62rem;
 }
 
 .item_icon_container {
@@ -206,7 +207,6 @@ svg {
   width: 1.11rem;
   height: 1.11rem;
   object-fit: contain;
-  margin-right: var(--item_margin_2);
   flex-grow: 0;
   flex-shrink: 0;
 }
@@ -214,8 +214,7 @@ svg {
 .item_status {
   display: flex;
   flex-direction: row;
-  gap: var(--item_margin_1);
-  margin-right: var(--item_margin_2);
+  gap: var(--item_margin);
   flex-shrink: 0;
 }
 
@@ -228,15 +227,12 @@ svg {
   width: 100%;
   white-space: nowrap;
   overflow: hidden;
-  margin-right: var(--item_margin_1);
   flex-shrink: 1;
 }
 
 .item_info {
   display: none;
   flex-direction: row;
-  padding-right: var(--item_margin_1);
-  padding-left: 0.35rem;
   gap: 0.5rem;
   align-self: stretch;
   align-items: center;
@@ -256,8 +252,8 @@ svg {
 }
 
 .item_top_container {
-  margin-left: var(--item_margin_1);
-  margin-right: var(--item_margin_1);
+  margin-left: var(--item_margin);
+  margin-right: var(--item_margin);
   display: flex;
   flex-direction: row;
   width: 100%;
