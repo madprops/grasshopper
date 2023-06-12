@@ -157,7 +157,7 @@ App.fill_palette_container = () => {
   container.innerHTML = ``
 
   for (let cmd of App.sorted_commands) {
-    let el = DOM.create(`div`, `palette_item`)
+    let el = DOM.create(`div`, `palette_item action`)
     el.textContent = cmd.name
     el.dataset.command = cmd.cmd
     container.append(el)
