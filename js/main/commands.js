@@ -62,7 +62,10 @@ App.commands = [
   {name: `New Tab`, cmd: `new_tab`, mode: `tabs`, action: (args) => {
     App.new_tab()
   }},
-  {name: `Star Item`, cmd: `star_tab`, mode: `items`, action: (args) => {
+  {name: `Launch Items`, cmd: `launch_items`, mode: `items`, action: (args) => {
+    App.launch_items(args.item, true)
+  }},
+  {name: `Star Items`, cmd: `star_items`, mode: `items`, action: (args) => {
     App.star_items(args.item)
   }},
   {name: `Title Tab`, cmd: `title_tab`, mode: `tabs`, action: (args) => {
@@ -136,9 +139,6 @@ App.commands = [
   }},
   {name: `Close Tabs`, cmd: `close_tabs`, mode: `tabs`, action: (args) => {
     App.close_tabs(args.item)
-  }},
-  {name: `Launch Items`, cmd: `launch_items`, mode: `items`, action: (args) => {
-    App.launch_items(args.item, true)
   }},
 
   {name: App.separator_string},
