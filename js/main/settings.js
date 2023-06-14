@@ -748,11 +748,11 @@ App.settings_wheel = App.create_debouncer((e) => {
   }
 }, App.wheel_delay)
 
-App.get_setting = (key) => {
-  let value = App.settings[key].value
+App.get_setting = (setting) => {
+  let value = App.settings[setting].value
 
   if (value === App.default_setting_string) {
-    value = App.get_default_setting(key)
+    value = App.get_default_setting(setting)
   }
 
   return value
