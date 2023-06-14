@@ -18,10 +18,6 @@ App.check_scroller = (mode) => {
   }
 }
 
-App.set_scroller_percentage = (mode, percentage) => {
-  DOM.el(`#${mode}_scroller`).textContent = `Scrolled: ${percentage}%`
-}
-
 App.do_check_scroller = (mode) => {
   App.scroller_debouncer.cancel()
 
@@ -30,10 +26,6 @@ App.do_check_scroller = (mode) => {
   }
 
   let container = DOM.el(`#${mode}_container`)
-  let a = container.scrollTop
-  let b = container.scrollHeight - container.clientHeight
-  let percentage = parseInt((a / b) * 100)
-  App.set_scroller_percentage(mode, percentage)
 
   if (container.scrollTop > App.scroller_max_top) {
     App.show_scroller(mode)
@@ -45,7 +37,7 @@ App.do_check_scroller = (mode) => {
 
 App.create_scroller = (mode) => {
   let scroller = DOM.create(`div`, `scroller`, `${mode}_scroller`)
-  scroller.title = `Click to go to top`
+  scroller.textContent = `Go To Top`
 
   DOM.ev(scroller, `click`, () => {
     App.goto_top(mode)
