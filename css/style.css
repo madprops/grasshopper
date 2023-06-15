@@ -769,19 +769,3 @@ select {
 .flipped {
 	transform: rotateY(180deg) !important;
 }
-
-.result {
-  width: 100%;
-  display: none;
-  align-items: center;
-  justify-content: center;
-  font-size: 1.1rem;
-  padding-top: 0.25rem;
-  padding-bottom: 1rem;
-  flex-grow: 0;
-  flex-shrink: 0;
-}
-
-.result_active {
-  display: flex;
-}

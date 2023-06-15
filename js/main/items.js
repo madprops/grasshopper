@@ -254,10 +254,6 @@ App.hide_item = (it) => {
 App.process_info_list = (mode, info_list) => {
   let container = DOM.el(`#${mode}_container`)
   container.innerHTML = ``
-
-  let result = App.create_result(mode)
-  container.append(result)
-
   App[`${mode}_items`] = []
   App[`${mode}_idx`] = 0
   let items = App.get_items(mode)

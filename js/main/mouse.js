@@ -8,11 +8,6 @@ App.setup_window_mouse = (mode) => {
   let container = DOM.el(`#${mode}_container`)
 
   DOM.ev(container, `click`, (e) => {
-    if (e.target.classList.contains(`result`)) {
-      App.result_copy(mode)
-      return
-    }
-
     if (!App.cursor_on_item(e, mode)) {
       App.dehighlight(mode)
       return

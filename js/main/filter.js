@@ -88,7 +88,6 @@ App.do_filter = async (mode) => {
     }
   }
 
-  App.check_result(mode, value)
   let items = App.get_items(mode)
 
   if (!items) {
