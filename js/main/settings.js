@@ -33,10 +33,10 @@ App.default_settings = {
   close_on_launch: {value: true, category: `popup`, version: 1},
 
   tabs_index: {value: 0, category: `order`, version: 1},
-  history_index: {value: 1, category: `order`, version: 1},
-  bookmarks_index: {value: 2, category: `order`, version: 1},
-  closed_index: {value: 3, category: `order`, version: 1},
-  stars_index: {value: 4, category: `order`, version: 1},
+  stars_index: {value: 1, category: `order`, version: 1},
+  history_index: {value: 2, category: `order`, version: 1},
+  bookmarks_index: {value: 3, category: `order`, version: 1},
+  closed_index: {value: 4, category: `order`, version: 1},
 
   gestures_enabled: {value: true, category: `mouse`, version: 1},
   gestures_threshold: {value: 10, category: `mouse`, version: 1},
