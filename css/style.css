@@ -3,6 +3,7 @@
   --widget_padding_hor: 0.3rem;
   --item_margin: 0.45rem;
   --scroller_shadow: inset 0 0 0.1rem currentColor;
+  --scroller_padding: 0.28rem;
 }
 
 @keyframes rotate {
@@ -723,7 +724,7 @@ select {
   z-index: 9;
   cursor: pointer;
   border: 1px solid var(--alt_color_1);
-  padding: 0.35rem;
+  padding: var(--scroller_padding);
 }
 
 .scroller:hover {
@@ -741,8 +742,8 @@ select {
   overflow: hidden;
   white-space: nowrap;
   cursor: pointer;
-  padding-top: 0.35rem;
-  padding-bottom: 0.35rem;
+  padding-top: var(--scroller_padding);
+  padding-bottom: var(--scroller_padding);
   padding-left: 0.25rem;
   background-color: var(--alt_background_2);
   border: 0px solid var(--alt_color_1);
