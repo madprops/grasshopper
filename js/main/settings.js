@@ -752,7 +752,17 @@ App.get_setting = (setting) => {
   let value = App.settings[setting].value
 
   if (value === App.default_setting_string) {
-    value = App.get_default_setting(setting)
+    if (value === App.default_setting_string) {
+      if (setting === `background_color`) {
+        value = App.dark_theme.background_color
+      }
+      else if (setting === `text_color`) {
+        value = App.dark_theme.text_color
+      }
+      else {
+        value = App.get_default_setting(setting)
+      }
+    }
   }
 
   return value

@@ -4,8 +4,8 @@ App.setup_theme = () => {
 }
 
 App.dark_theme = {
-  background_color: `rgb(70, 76, 94)`,
-  text_color: `rgb(218, 219, 223)`,
+  background_color: `rgb(63, 63, 72)`,
+  text_color: `rgb(218, 218, 218)`,
 }
 
 App.light_theme = {

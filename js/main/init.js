@@ -26,7 +26,6 @@ App.init = async () => {
   App.setup_palette()
   App.show_first_window()
   App.make_window_visible()
-  App.setup_calc()
 }
 
 App.init()
