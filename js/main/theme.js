@@ -164,7 +164,17 @@ App.set_background_image = (url) => {
 }
 
 App.change_theme = (what) => {
-  App.set_setting(`background_color`, App[`${what}_theme`].background_color)
-  App.set_setting(`text_color`, App[`${what}_theme`].text_color)
-  App.apply_theme()
+  let background_color = App[`${what}_theme`].background_color
+  let text_color = App[`${what}_theme`].text_color
+
+  App.set_setting(`background_color`, background_color)
+  App.set_setting(`text_color`, text_color)
+
+  if (App.window_mode === `settings_theme`) {
+    App.background_color_picker.setColor(background_color)
+    App.text_color_picker.setColor(text_color)
+  }
+  else {
+    App.apply_theme()
+  }
 }
