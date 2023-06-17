@@ -1,17 +1,8 @@
 #!/usr/bin/env ruby
 require "json"
-
-# Main function
-def main()
-  file = File.read("manifest.json")
-  manifest = JSON.parse(file)
-  version = manifest["version"]
-  zip_name = "grasshopper_v#{version}.zip"
-  `zip #{zip_name} -x \*.zip -r \*`
-  puts "Created #{zip_name}"
-end
-
-# Start here
-if __FILE__ == $0
-  main()
-end
+file = File.read("manifest.json")
+manifest = JSON.parse(file)
+version = manifest["version"]
+zip_name = "grasshopper_v#{version}.zip"
+`zip #{zip_name} -x \*.zip -r \*`
+puts "Created #{zip_name}"
