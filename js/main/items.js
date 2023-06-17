@@ -441,7 +441,7 @@ App.get_img_icon = (favicon, url) => {
   if (!favicon) {
     if (App.get_setting(`fetch_favicons`)) {
       if (App.is_url(url)) {
-        favicon = `https://www.google.com/s2/favicons?sz=128&domain=${url}`
+        favicon = `https://www.google.com/s2/favicons?sz=${App.favicon_size}&domain=${url}`
       }
     }
   }
