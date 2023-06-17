@@ -693,17 +693,19 @@ App.setup_item_window = (mode) => {
     //
 
     App[`${mode}_actions`] = App[`${mode}_actions`] || []
-
-    let actions_menu
-
-    actions_menu = DOM.create(`div`, `button icon_button`, `${mode}_actions`)
+    let actions_menu = DOM.create(`div`, `button icon_button`, `${mode}_actions`)
     let actions_icon = App.create_icon(`sun`)
     actions_menu.append(actions_icon)
     actions_menu.title = `Actions (Ctrl + Right)`
 
-    DOM.ev(actions_menu, `click`, () => {
-      App.show_actions(mode)
-    })
+    if (App[`${mode}_actions`].length === 0) {
+      actions_menu.classList.add(`disabled`)
+    }
+    else {
+      DOM.ev(actions_menu, `click`, () => {
+        App.show_actions(mode)
+      })
+    }
 
     //
 
