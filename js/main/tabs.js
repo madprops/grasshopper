@@ -1030,7 +1030,7 @@ App.double_click_tab = (item) => {
   let action = App.get_setting(`double_click_tab_action`)
 
   if (action !== `none`) {
-    App.run_command(action, item)
+    App.run_command({cmd: action, item: item, from:`double_click`})
   }
 }
 

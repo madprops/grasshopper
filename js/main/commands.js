@@ -72,10 +72,10 @@ App.commands = [
     App.show_title_editor(args.item)
   }},
   {name: `Copy URL`, cmd: `copy_tab_url`, mode: `items`, action: (args) => {
-    App.copy_url(args.item, true)
+    App.copy_url(args.item, args.from !== `palette`)
   }},
   {name: `Copy Title`, cmd: `copy_tab_title`, mode: `items`, action: (args) => {
-    App.copy_title(args.item, true)
+    App.copy_title(args.item, args.from !== `palette`)
   }},
   {name: `Tabs Info`, cmd: `tabs_info`, mode: `tabs`, action: (args) => {
     App.show_tabs_info()
@@ -214,23 +214,18 @@ App.sort_commands = () => {
   })
 }
 
-App.run_command = (cmd, item) => {
-  let on_items = App.on_items()
+App.run_command = (args) => {
+  args.mode = App.window_mode
+  args.on_items = App.on_items()
 
-  if (on_items && !item) {
-    item = App.get_selected()
-  }
-
-  let args = {
-    item: item,
-    on_items: on_items,
-    mode: App.window_mode,
+  if (args.on_items && !args.item) {
+    args.item = App.get_selected()
   }
 
   let command
 
   for (let c of App.commands) {
-    if (c.cmd === cmd) {
+    if (c.cmd === args.cmd) {
       command = c
       break
     }

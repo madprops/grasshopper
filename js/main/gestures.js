@@ -28,7 +28,7 @@ App.gesture_action = (gesture) => {
   let cmd = App.get_setting(`gesture_${gesture}`)
 
   if (cmd !== `none`) {
-    App.run_command(cmd)
+    App.run_command({cmd: cmd, from: `gesture`})
   }
 }
 
