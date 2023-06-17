@@ -101,8 +101,12 @@ App.is_video = (src) => {
   return extension && App.video_extensions.includes(extension)
 }
 
+App.is_url = (s) => {
+  return s.startsWith(`http://`) || s.startsWith(`https://`)
+}
+
 App.get_extension = (s) => {
-  if (s.startsWith(`http://`) || s.startsWith(`https://`)) {
+  if (App.is_url(s)) {
     let u = new URL(s)
     let url = u.origin + u.pathname
     let url_2 = url.split(`//`).slice(1).join(`//`)

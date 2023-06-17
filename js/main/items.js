@@ -438,6 +438,14 @@ App.get_img_icon = (favicon, url) => {
   icon.width = App.icon_size
   icon.height = App.icon_size
 
+  if (!favicon) {
+    if (App.get_setting(`fetch_favicons`)) {
+      if (App.is_url(url)) {
+        favicon = `https://www.google.com/s2/favicons?sz=128&domain=${url}`
+      }
+    }
+  }
+
   DOM.ev(icon, `error`, () => {
     let icon_2 = App.get_jdenticon(url)
     icon.replaceWith(icon_2)
