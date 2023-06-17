@@ -313,17 +313,21 @@ App.cycle_filter_modes = (mode, reverse = true) => {
     modes = modes.slice(0).reverse()
   }
 
+  let first
+
   for (let filter_mode of modes.slice(0).reverse()) {
     if (filter_mode[0].startsWith(`--`)) {
       continue
     }
-
-    if (filter_mode[0] === `custom`) {
+    else if (filter_mode[0] === `custom`) {
+      continue
+    }
+    else if (filter_mode[0] === `by_what`) {
       continue
     }
 
-    if (filter_mode[0] === `by_what`) {
-      continue
+    if (!first) {
+      first = filter_mode
     }
 
     if (waypoint) {
@@ -336,8 +340,7 @@ App.cycle_filter_modes = (mode, reverse = true) => {
     }
   }
 
-  // If no result
-  App.set_filter_mode(mode, modes.at(-1))
+  App.set_filter_mode(mode, first)
 }
 
 App.filter_modes = (mode) => {

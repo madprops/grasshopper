@@ -696,16 +696,14 @@ App.setup_item_window = (mode) => {
 
     let actions_menu
 
-    if (App[`${mode}_actions`].length > 0) {
-      actions_menu = DOM.create(`div`, `button icon_button`, `${mode}_actions`)
-      let actions_icon = App.create_icon(`sun`)
-      actions_menu.append(actions_icon)
-      actions_menu.title = `Actions (Ctrl + Right)`
+    actions_menu = DOM.create(`div`, `button icon_button`, `${mode}_actions`)
+    let actions_icon = App.create_icon(`sun`)
+    actions_menu.append(actions_icon)
+    actions_menu.title = `Actions (Ctrl + Right)`
 
-      DOM.ev(actions_menu, `click`, () => {
-        App.show_actions(mode)
-      })
-    }
+    DOM.ev(actions_menu, `click`, () => {
+      App.show_actions(mode)
+    })
 
     //
 
