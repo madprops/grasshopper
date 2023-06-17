@@ -66,7 +66,7 @@ App.commands = [
     App.launch_items(args.item, true)
   }},
   {name: `Star Items`, cmd: `star_items`, mode: `items`, action: (args) => {
-    App.star_items(args.item)
+    App.star_items(args.item, args.from !== `palette`)
   }},
   {name: `Title Tab`, cmd: `title_tab`, mode: `tabs`, action: (args) => {
     App.show_title_editor(args.item)
