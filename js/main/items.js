@@ -277,6 +277,7 @@ App.process_info_list = (mode, info_list) => {
   App.update_footer_count(mode)
   App.check_playing()
   App.do_check_pinline()
+  App.check_new_tabs()
 }
 
 App.process_info = (mode, info, exclude = [], o_item) => {
@@ -439,7 +440,7 @@ App.get_img_icon = (item) => {
   icon.height = App.icon_size
 
   if (!item.favicon) {
-    if (!App.has_favicons.includes(item.mode)) {
+    if (App.no_favicons.includes(item.mode)) {
       if (App.get_setting(`fetch_favicons`)) {
         if (App.is_url(item.url)) {
           item.favicon = App.get_favicon_url(item.url)

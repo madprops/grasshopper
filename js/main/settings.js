@@ -59,6 +59,7 @@ App.default_settings = {
   show_footer: {value: true, category: `more`, version: 1},
   close_duplicate_pins: {value: true, category: `more`, version: 1},
   close_suspended_tabs: {value: true, category: `more`, version: 1},
+  single_new_tab: {value: true, category: `more`, version: 1},
 }
 
 App.make_item_order = () => {
