@@ -38,7 +38,7 @@ App.dragging = false
 App.similarity_threshold = 0.8
 App.max_smooth_scroll = 1000 * 2
 App.favicon_size = 64
-App.no_favicons = [`history`, `bookmarks`]
+App.no_favicons = [`stars`, `history`, `bookmarks`]
 App.new_tab_url = `about:newtab`
 
 NeedContext.min_width = `4.5rem`
