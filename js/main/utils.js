@@ -268,6 +268,6 @@ App.escape_regex = (s) => {
   return s.replace(/[^A-Za-z0-9]/g, `\\$&`)
 }
 
-App.fetch_favicon = (url) => {
+App.get_favicon_url = (url) => {
   return `https://www.google.com/s2/favicons?sz=${App.favicon_size}&domain=${url}`
 }
