@@ -439,7 +439,7 @@ App.get_img_icon = (item) => {
   icon.height = App.icon_size
 
   if (!item.favicon) {
-    if (item.mode !== `tabs` && item.mode !== `closed`) {
+    if (!App.has_favicons.includes(item.mode)) {
       if (App.get_setting(`fetch_favicons`)) {
         if (App.is_url(item.url)) {
           item.favicon = App.fetch_favicon(item.url)
