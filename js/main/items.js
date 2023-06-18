@@ -369,7 +369,7 @@ App.check_item_icon = (item) => {
   if (App.get_setting(`show_icons`)) {
     let container = DOM.el(`.item_icon_container`, item.element)
     container.innerHTML = ``
-    let icon = App.get_img_icon(item.favicon, item.url, item.pinned)
+    let icon = App.get_img_icon(item)
     container.append(icon)
   }
 }
@@ -432,26 +432,28 @@ App.create_item_element = (item) => {
   App.log(`Item created in ${item.mode}`)
 }
 
-App.get_img_icon = (favicon, url) => {
+App.get_img_icon = (item) => {
   let icon = DOM.create(`img`, `item_icon`)
   icon.loading = `lazy`
   icon.width = App.icon_size
   icon.height = App.icon_size
 
-  if (!favicon) {
-    if (App.get_setting(`fetch_favicons`)) {
-      if (App.is_url(url)) {
-        favicon = App.fetch_favicon(url)
+  if (!item.favicon) {
+    if (item.mode !== `tabs` && item.mode !== `closed`) {
+      if (App.get_setting(`fetch_favicons`)) {
+        if (App.is_url(item.url)) {
+          item.favicon = App.fetch_favicon(item.url)
+        }
       }
     }
   }
 
   DOM.ev(icon, `error`, () => {
-    let icon_2 = App.get_jdenticon(url)
+    let icon_2 = App.get_jdenticon(item.url)
     icon.replaceWith(icon_2)
   })
 
-  icon.src = favicon
+  icon.src = item.favicon
   return icon
 }
 
