@@ -245,11 +245,7 @@ svg {
   display: flex;
 }
 
-.item_info_loading_active {
-  display: flex;
-}
-
-.item_info_launched_active {
+.item_info_active {
   display: flex;
 }
 

@@ -404,16 +404,16 @@ App.create_item_element = (item) => {
 
   if (item.mode === `tabs`) {
     if (App.get_setting(`loading_icon`)) {
-      let loading = DOM.create(`div`, `item_info item_info_loading`)
+      let loading = DOM.create(`div`, `item_info item_info`)
       loading.textContent = App.get_setting(`loading_icon`)
 
       if (item.activated_date) {
         if (Date.now() - item.activated_date < App.activated_delay) {
           if (Date.now() - App[`item_window_${item.mode}_date`] > App.activated_delay) {
-            loading.classList.add(`item_info_loading_active`)
+            loading.classList.add(`item_info_active`)
 
             setTimeout(() => {
-              loading.classList.remove(`item_info_loading_active`)
+              loading.classList.remove(`item_info_active`)
             }, App.activated_delay)
           }
         }
@@ -1149,7 +1149,7 @@ App.launch_items = (item, shift) => {
 
 App.show_launched = (item) => {
   let launched = DOM.el(`.item_info_launched`, item.element)
-  launched.classList.add(`item_info_launched_active`)
+  launched.classList.add(`item_info_active`)
   let timeout_old = DOM.dataset(launched, `timeout`)
 
   if (timeout_old) {
@@ -1157,8 +1157,8 @@ App.show_launched = (item) => {
   }
 
   let timeout = setTimeout(() => {
-    launched.classList.remove(`item_info_launched_active`)
-  }, 1000)
+    launched.classList.remove(`item_info_active`)
+  }, App.launched_delay)
 
   DOM.dataset(launched, `timeout`, timeout)
 }
