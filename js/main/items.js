@@ -436,9 +436,11 @@ App.create_item_element = (item) => {
     App.check_tab_item(item)
   }
   else {
-    let launched = DOM.create(`div`, `item_info item_info_launched`)
-    launched.textContent = `(Launched)`
-    item.element.append(launched)
+    if (App.get_setting(`launched_icon`)) {
+      let launched = DOM.create(`div`, `item_info item_info_launched`)
+      launched.textContent = App.get_setting(`launched_icon`)
+      item.element.append(launched)
+    }
   }
 
   if (item.highlighted) {
@@ -1148,6 +1150,10 @@ App.launch_items = (item, shift) => {
 }
 
 App.show_launched = (item) => {
+  if (!App.get_setting(`launched_icon`)) {
+    return
+  }
+
   let launched = DOM.el(`.item_info_launched`, item.element)
   launched.classList.add(`item_info_active`)
   let timeout_old = DOM.dataset(launched, `timeout`)
