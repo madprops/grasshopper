@@ -17,6 +17,7 @@ App.default_settings = {
   playing_icon: {value: `🔊`, category: `icons`, version: 1},
   muted_icon: {value: `🔇`, category: `icons`, version: 1},
   suspended_icon: {value: `💤`, category: `icons`, version: 1},
+  loading_icon: {value: `⏳`, category: `icons`, version: 1},
 
   warn_on_close_tabs: {value: `special`, category: `warns`, version: 1},
   warn_on_suspend_tabs: {value: `special`, category: `warns`, version: 1},
