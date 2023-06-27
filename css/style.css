@@ -237,6 +237,20 @@ svg {
   flex-shrink: 0;
 }
 
+.item_pick {
+  background-color: var(--background_color);
+  position: absolute;
+  right: 0;
+  padding-left: 0.5rem;
+  padding-right: 0.5rem;
+  opacity: 0;
+  border: 1px solid currentColor;
+}
+
+.item_pick:hover {
+  opacity: 1;
+}
+
 .has_pin_icon .pin_item .item_info_pin {
   display: flex;
 }
