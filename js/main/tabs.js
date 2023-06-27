@@ -5,7 +5,7 @@ App.setup_tabs = () => {
     [`normal`, `Normal`],
     [App.separator_string],
     [`playing`, `Playing`],
-    [`suspended`, `Suspended`],
+    [`unloaded`, `Unloaded`],
     [`duplicates`, `Duplicates`],
     [App.separator_string],
     [`star`, `Has Star`],
@@ -246,7 +246,7 @@ App.get_muted_tabs = () => {
   return App.get_items(`tabs`).filter(x => x.muted)
 }
 
-App.get_suspended_tabs = () => {
+App.get_unloaded_tabs = () => {
   return App.get_items(`tabs`).filter(x => x.discarded)
 }
 
@@ -300,7 +300,7 @@ App.duplicate_tabs = async (item) => {
   }
 }
 
-App.do_suspend_tab = async (item) => {
+App.do_unload_tab = async (item) => {
   try {
     await browser.tabs.discard(item.id)
   }
@@ -309,7 +309,7 @@ App.do_suspend_tab = async (item) => {
   }
 }
 
-App.suspend_tab = async (item) => {
+App.unload_tab = async (item) => {
   if (item.active) {
     try {
       await App.open_new_tab()
@@ -319,7 +319,7 @@ App.suspend_tab = async (item) => {
     }
   }
 
-  App.do_suspend_tab(item)
+  App.do_unload_tab(item)
 }
 
 App.pin_tabs = (item) => {
@@ -362,7 +362,7 @@ App.unpin_tabs = (item) => {
   }
 }
 
-App.suspend_tabs = (item) => {
+App.unload_tabs = (item) => {
   let tabs = []
 
   for (let it of App.get_active_items(`tabs`, item)) {
@@ -373,18 +373,18 @@ App.suspend_tabs = (item) => {
     return
   }
 
-  let warn = App.check_tab_warn(tabs, `warn_on_suspend_tabs`)
+  let warn = App.check_tab_warn(tabs, `warn_on_unload_tabs`)
 
   if (warn) {
-    App.show_confirm(`Suspend tabs? (${tabs.length})`, () => {
+    App.show_confirm(`Unload tabs? (${tabs.length})`, () => {
       for (let tab of tabs) {
-        App.suspend_tab(tab)
+        App.unload_tab(tab)
       }
     })
   }
   else {
     for (let tab of tabs) {
-      App.suspend_tab(tab)
+      App.unload_tab(tab)
     }
   }
 }
@@ -463,7 +463,7 @@ App.show_tabs_info = () => {
   let pins = App.get_pinned_tabs().length
   let playing = App.get_playing_tabs().length
   let muted = App.get_muted_tabs().length
-  let suspended = App.get_suspended_tabs().length
+  let unloaded = App.get_unloaded_tabs().length
 
   let s = ``
   s += `Tab Count:\n\n`
@@ -471,7 +471,7 @@ App.show_tabs_info = () => {
   s += `Pins: ${pins}\n`
   s += `Playing: ${playing}\n`
   s += `Muted: ${muted}\n`
-  s += `Suspended: ${suspended}`
+  s += `Unloaded: ${unloaded}`
 
   App.show_alert(s, undefined)
 }
@@ -675,7 +675,7 @@ App.close_normal_tabs = () => {
   let ids = []
 
   for (let it of App.get_items(`tabs`)) {
-    if (!App.get_setting(`close_suspended_tabs`)) {
+    if (!App.get_setting(`close_unloaded_tabs`)) {
       if (it.discarded) {
         continue
       }
@@ -697,11 +697,11 @@ App.close_normal_tabs = () => {
   let s = ``
   s += `Close normal tabs\n`
 
-  if (App.get_setting(`close_suspended_tabs`)) {
-    s += `Including suspended tabs\n`
+  if (App.get_setting(`close_unloaded_tabs`)) {
+    s += `Including unloaded tabs\n`
   }
   else {
-    s += `Excluding suspended tabs\n`
+    s += `Excluding unloaded tabs\n`
   }
 
   s += `Excluding playing tabs\n`

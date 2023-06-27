@@ -104,11 +104,11 @@ App.commands = [
 
   {name: App.separator_string},
 
+  {name: `Unload Tabs`, cmd: `unload_tabs`, mode: `tabs`, action: (args) => {
+    App.unload_tabs(args.item)
+  }},
   {name: `Duplicate Tabs`, cmd: `duplicate_tab`, mode: `tabs`, action: (args) => {
     App.duplicate_tabs(args.item)
-  }},
-  {name: `Suspend Tabs`, cmd: `suspend_tabs`, mode: `tabs`, action: (args) => {
-    App.suspend_tabs(args.item)
   }},
   {name: `Detach Tabs`, cmd: `detach_tabs`, mode: `tabs`, action: (args) => {
     App.detach_tabs(args.item)

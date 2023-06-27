@@ -16,12 +16,12 @@ App.default_settings = {
   normal_icon: {value: ``, category: `icons`, version: 1},
   playing_icon: {value: `🔊`, category: `icons`, version: 1},
   muted_icon: {value: `🔇`, category: `icons`, version: 1},
-  suspended_icon: {value: `💤`, category: `icons`, version: 1},
+  unloaded_icon: {value: `💤`, category: `icons`, version: 1},
   loading_icon: {value: `⏳`, category: `icons`, version: 1},
   launched_icon: {value: `🚀`, category: `icons`, version: 1},
 
   warn_on_close_tabs: {value: `special`, category: `warns`, version: 1},
-  warn_on_suspend_tabs: {value: `special`, category: `warns`, version: 1},
+  warn_on_unload_tabs: {value: `special`, category: `warns`, version: 1},
   warn_on_duplicate_tabs: {value: true, category: `warns`, version: 1},
   warn_on_close_duplicate_tabs: {value: true, category: `warns`, version: 1},
   warn_on_close_normal_tabs: {value: true, category: `warns`, version: 1},
@@ -60,7 +60,7 @@ App.default_settings = {
   show_scroller: {value: true, category: `more`, version: 1},
   show_footer: {value: true, category: `more`, version: 1},
   close_duplicate_pins: {value: true, category: `more`, version: 1},
-  close_suspended_tabs: {value: true, category: `more`, version: 1},
+  close_unloaded_tabs: {value: true, category: `more`, version: 1},
   single_new_tab: {value: true, category: `more`, version: 1},
 }
 
@@ -320,7 +320,7 @@ App.setup_settings = () => {
   App.create_window(Object.assign({}, common, {id: `settings_warns`, setup: () => {
     prepare(`warns`)
     App.settings_make_menu(`warn_on_close_tabs`, App.tab_warn_opts)
-    App.settings_make_menu(`warn_on_suspend_tabs`, App.tab_warn_opts)
+    App.settings_make_menu(`warn_on_unload_tabs`, App.tab_warn_opts)
 
     DOM.ev(DOM.el(`#settings_warns_info`), `click`, () => {
       let s = `Control when actions should show a confirmation dialog before proceeding.`

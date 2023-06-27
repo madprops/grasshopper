@@ -132,7 +132,7 @@ App.do_filter = async (mode) => {
       else if (filter_mode === `pins`) {
         match = item.pinned
       }
-      else if (filter_mode === `suspended`) {
+      else if (filter_mode === `unloaded`) {
         match = item.discarded
       }
       else if (filter_mode === `title`) {

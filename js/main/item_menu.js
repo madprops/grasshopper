@@ -107,13 +107,6 @@ App.show_item_menu = (item, x, y) => {
     })
   }
 
-  items.push({
-    text: `Pick`,
-    action: () => {
-      App.select_item(item)
-    }
-  })
-
   if (item.mode === `stars`) {
     items.push({
       text: `Remove`,
@@ -179,6 +172,15 @@ App.get_window_menu_items = async (item) => {
 App.get_more_menu_items = (item, multiple) => {
   let items = []
 
+  if (!item.discarded) {
+    items.push({
+      text: `Unload`,
+      action: () => {
+        App.unload_tabs(item)
+      }
+    })
+  }
+
   items.push({
     text: `Duplicate`,
     action: () => {
@@ -186,14 +188,6 @@ App.get_more_menu_items = (item, multiple) => {
     }
   })
 
-  if (!item.discarded) {
-    items.push({
-      text: `Suspend`,
-      action: () => {
-        App.suspend_tabs(item)
-      }
-    })
-  }
 
   if (items.length > 0) {
     items.push({

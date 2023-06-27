@@ -491,8 +491,8 @@ App.set_item_text = (item) => {
   if (item.mode === `tabs`) {
     let icons = []
 
-    if (item.discarded && App.get_setting(`suspended_icon`)) {
-      icons.push(App.get_setting(`suspended_icon`))
+    if (item.discarded && App.get_setting(`unloaded_icon`)) {
+      icons.push(App.get_setting(`unloaded_icon`))
     }
 
     if (item.audible && App.get_setting(`playing_icon`)) {
