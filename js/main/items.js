@@ -450,9 +450,11 @@ App.create_item_element = (item) => {
     item.element.classList.remove(`highlighted`)
   }
 
-  let pick = DOM.create(`div`, `item_pick`)
-  pick.textContent = `Pick`
-  item.element.append(pick)
+  if (App.get_setting(`show_pick_button`)) {
+    let pick = DOM.create(`div`, `item_pick`)
+    pick.textContent = `Pick`
+    item.element.append(pick)
+  }
 
   item.created = true
   item.element.classList.remove(`empty_item`)

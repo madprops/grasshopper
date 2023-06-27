@@ -241,8 +241,8 @@ svg {
   background-color: var(--background_color);
   position: absolute;
   right: 0;
-  padding-left: 0.5rem;
-  padding-right: 0.5rem;
+  padding-left: 0.35rem;
+  padding-right: 0.35rem;
   opacity: 0;
   border: 1px solid currentColor;
 }
