@@ -31,6 +31,7 @@ App.setup_about = () => {
       `To filter with regex start with re:`,
       `To filter by title with regex start with re_title:`,
       `To filter by url with regex start with re_url:`,
+      `Hover the right side of items to pick and select`,
     ]
 
     DOM.ev(DOM.el(`#about_info`), `click`, () => {
