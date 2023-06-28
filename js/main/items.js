@@ -225,7 +225,7 @@ App.remove_item = (item) => {
 
   if (mode !== `tabs` || App.is_filtered(mode)) {
     if (App.get_selected(mode) === item) {
-      let next_item = App.get_next_visible_item(mode, false) || App.get_prev_visible_item(mode, false)
+      let next_item = App.get_next_item(mode)
 
       if (next_item) {
         App.select_item(next_item)
@@ -1481,4 +1481,8 @@ App.copy_title = (item, feedback = false) => {
 
 App.on_items = (mode = App.window_mode) => {
   return App.on_item_window(mode) && !App.popup_open()
+}
+
+App.get_next_item = (mode) => {
+  return App.get_next_visible_item(mode, false) || App.get_prev_visible_item(mode, false)
 }

@@ -312,7 +312,14 @@ App.do_unload_tab = async (item) => {
 App.unload_tab = async (item) => {
   if (item.active) {
     try {
-      await App.open_new_tab()
+      let next_item = App.get_next_item(`tabs`)
+
+      if (next_item) {
+        await App.focus_tab(next_item, `nearest_instant`)
+      }
+      else {
+        await App.open_new_tab()
+      }
     }
     catch (err) {
       App.log(err, `error`)
@@ -821,6 +828,14 @@ App.get_active_tab_item = () => {
   }
 }
 
+App.get_active_tab_item = () => {
+  for (let item of App.get_items(`tabs`)) {
+    if (item.active) {
+      return item
+    }
+  }
+}
+
 App.active_tab_is = (item) => {
   let active = App.get_active_tab_item()
 
@@ -872,8 +887,7 @@ App.close_duplicate_tabs = () => {
 }
 
 App.focus_current_tab = async () => {
-  let tab = await App.get_active_tab()
-  let item = App.get_item_by_id(`tabs`, tab.id)
+  let item = await App.get_active_tab_item()
 
   if (!item) {
     return false
