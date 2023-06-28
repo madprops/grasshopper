@@ -230,9 +230,6 @@ App.remove_item = (item) => {
       if (next_item) {
         App.select_item(next_item)
       }
-      else {
-        App.select_first_item(mode)
-      }
     }
   }
 
