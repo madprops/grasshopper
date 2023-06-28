@@ -244,11 +244,12 @@ svg {
   background-color: var(--background_color);
   position: absolute;
   right: 0;
+  height: var(--item_height);
   padding-left: 0.38rem;
   padding-right: 0.38rem;
-  height: calc(var(--item_height) - 2px);
-  opacity: 0;
+  box-sizing: border-box;
   border: 1px solid currentColor;
+  opacity: 0;
 }
 
 .item_pick:hover {
