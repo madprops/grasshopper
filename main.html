@@ -240,7 +240,7 @@
           <input type="text" autocomplete="off" spellcheck="false" id="settings_loading_icon" class="text settings_text text_smaller" data-setting="loading_icon">
         </div>
 
-        <div class="settings_column" title="Icon to show when tabs are launched">
+        <div class="settings_column" title="Icon to show when items are launched">
           <div class="settings_label">Launched Icon</div>
           <input type="text" autocomplete="off" spellcheck="false" id="settings_launched_icon" class="text settings_text text_smaller" data-setting="launched_icon">
         </div>
@@ -255,7 +255,7 @@
 
     <template id="template_settings_warns">
       <div id="settings_warns_container" class="settings_container">
-        <div class="settings_column" title="Warn when closing certain tabs">
+        <div class="settings_column" title="Warn when closing tabs">
           <div class="settings_label">Warn On<br>Close Tabs</div>
           <div id="settings_warn_on_close_tabs" class="settings_menu button" data-setting="warn_on_close_tabs"></div>
         </div>
@@ -275,14 +275,14 @@
           <input type="checkbox" class="settings_checkbox" id="settings_warn_on_untitle_tabs" data-setting="warn_on_untitle_tabs">
         </div>
 
+        <div class="settings_column" title="Warn when closing normal tabs">
+          <div class="settings_label">Warn On<br>Close Normal Tabs</div>
+          <input type="checkbox" class="settings_checkbox" id="settings_warn_on_close_normal_tabs" data-setting="warn_on_close_normal_tabs">
+        </div>
+
         <div class="settings_column" title="Warn when closing duplicate tabs">
           <div class="settings_label">Warn On<br>Close Duplicate Tabs</div>
           <input type="checkbox" class="settings_checkbox" id="settings_warn_on_close_duplicate_tabs" data-setting="warn_on_close_duplicate_tabs">
-        </div>
-
-        <div class="settings_column" title="Warn when cleaning tabs">
-          <div class="settings_label">Warn On<br>Clean Tabs</div>
-          <input type="checkbox" class="settings_checkbox" id="settings_warn_on_close_normal_tabs" data-setting="warn_on_close_normal_tabs">
         </div>
 
         <div class="settings_column" title="Warn when starring multiple items">
@@ -320,12 +320,12 @@
           <div id="settings_height" class="settings_menu button" data-setting="height"></div>
         </div>
 
-        <div class="settings_column" title="Close the popup when focusing tabs">
+        <div class="settings_column" title="Close the popup when a tab is focused">
           <div class="settings_label">Close On Focus</div>
           <input type="checkbox" class="settings_checkbox" id="settings_close_on_focus" data-setting="close_on_focus">
         </div>
 
-        <div class="settings_column" title="Close the popup when focusing tabs">
+        <div class="settings_column" title="Close the popup when an item is launched">
           <div class="settings_label">Close On Launch</div>
           <input type="checkbox" class="settings_checkbox" id="settings_close_on_launch" data-setting="close_on_launch">
         </div>
@@ -340,7 +340,7 @@
 
     <template id="template_settings_more">
       <div id="settings_more_container" class="settings_container">
-        <div class="settings_column" title="Tabs will be restored after launching an item anywhere">
+        <div class="settings_column" title="Tabs will be restored after launching an item">
           <div class="settings_label">Switch To Tabs</div>
           <input type="checkbox" class="settings_checkbox" id="settings_switch_to_tabs" data-setting="switch_to_tabs">
         </div>
@@ -355,7 +355,7 @@
           <input type="checkbox" class="settings_checkbox" id="settings_show_icons" data-setting="show_icons">
         </div>
 
-        <div class="settings_column" title="Show a line between pins and normal tabs">
+        <div class="settings_column" title="Show a line between pinned and normal tabs">
           <div class="settings_label">Show Pinline</div>
           <input type="checkbox" class="settings_checkbox" id="settings_show_pinline" data-setting="show_pinline">
         </div>
@@ -385,14 +385,14 @@
           <input type="checkbox" class="settings_checkbox" id="settings_show_view" data-setting="show_view">
         </div>
 
-        <div class="settings_column" title="Close pins when closing duplicate tabs">
-          <div class="settings_label">Close Duplicate Pins</div>
-          <input type="checkbox" class="settings_checkbox" id="settings_close_duplicate_pins" data-setting="close_duplicate_pins">
-        </div>
-
         <div class="settings_column" title="Close unloaded tabs when closing normal tabs">
           <div class="settings_label">Close Unloaded Tabs</div>
           <input type="checkbox" class="settings_checkbox" id="settings_close_unloaded_tabs" data-setting="close_unloaded_tabs">
+        </div>
+
+        <div class="settings_column" title="Close pins when closing duplicate tabs">
+          <div class="settings_label">Close Duplicate Pins</div>
+          <input type="checkbox" class="settings_checkbox" id="settings_close_duplicate_pins" data-setting="close_duplicate_pins">
         </div>
 
         <div class="settings_column" title="Don't allow more than a single new tab to be open">
@@ -400,7 +400,7 @@
           <input type="checkbox" class="settings_checkbox" id="settings_single_new_tab" data-setting="single_new_tab">
         </div>
 
-        <div class="settings_column" title="How to show that an item is highlighted">
+        <div class="settings_column" title="How to show that an item is included in a selection">
           <div class="settings_label">Highlight Effect</div>
           <div id="settings_highlight_effect" class="settings_menu button" data-setting="highlight_effect"></div>
         </div>
@@ -420,7 +420,7 @@
           <input type="checkbox" class="settings_checkbox" id="settings_gestures_enabled" data-setting="gestures_enabled">
         </div>
 
-        <div class="settings_column" title="The bigger the threshold the less sensitive it is">
+        <div class="settings_column" title="Less sensitive means gestures require more movement">
           <div class="settings_label">Gestures Sensitivity</div>
           <div id="settings_gestures_threshold" class="settings_menu button" data-setting="gestures_threshold"></div>
         </div>
