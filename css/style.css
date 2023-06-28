@@ -246,7 +246,7 @@ svg {
   right: 0;
   padding-left: 0.38rem;
   padding-right: 0.38rem;
-  height: var(--item_height);
+  height: calc(var(--item_height) - 2px);
   opacity: 0;
   border: 1px solid currentColor;
 }
