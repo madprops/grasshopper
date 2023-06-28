@@ -377,6 +377,10 @@ App.check_item_icon = (item) => {
 }
 
 App.check_view_media = (item) => {
+  if (!App.get_setting(`show_view`)) {
+    return
+  }
+
   let view_media = DOM.el(`.view_media_button`, item.element)
 
   if (item.image || item.video) {
@@ -390,8 +394,8 @@ App.check_view_media = (item) => {
 App.refresh_item_element = (item) => {
   App.check_tab_item(item)
   App.check_item_icon(item)
-  App.set_item_text(item)
   App.check_view_media(item)
+  App.set_item_text(item)
 }
 
 App.create_item_element = (item) => {
@@ -404,10 +408,12 @@ App.create_item_element = (item) => {
   let status = DOM.create(`div`, `item_status hidden`)
   item.element.append(status)
 
-  let view_media = DOM.create(`div`, `view_media_button underline action`)
-  view_media.textContent = `View`
-  item.element.append(view_media)
-  App.check_view_media(item)
+  if (App.get_setting(`show_view`)) {
+    let view_media = DOM.create(`div`, `view_media_button underline action`)
+    view_media.textContent = `View`
+    item.element.append(view_media)
+    App.check_view_media(item)
+  }
 
   let text = DOM.create(`div`, `item_text action`)
   item.element.append(text)
