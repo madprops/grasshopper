@@ -4,6 +4,9 @@
   --item_margin: 0.45rem;
   --scroller_shadow: inset 0 0 0.1rem currentColor;
   --scroller_padding: 0.3rem;
+  --item_height_compact: 1.7rem;
+  --item_height_normal: 2.15rem;
+  --item_height_bigger: 2.6rem;
 }
 
 @keyframes rotate {
@@ -195,6 +198,18 @@ svg {
   gap: 0.611rem;
 }
 
+.item_height_compact .item {
+  height: var(--item_height_compact);
+}
+
+.item_height_normal .item {
+  height: var(--item_height_normal);
+}
+
+.item_height_bigger .item {
+  height: var(--item_height_bigger);
+}
+
 .item_icon_container {
   display: flex;
   align-items: center;
@@ -243,10 +258,23 @@ svg {
   right: 0;
   padding-left: 0.38rem;
   padding-right: 0.38rem;
-  padding-top: 0.25rem;
-  padding-bottom: 0.25rem;
   opacity: 0;
   border: 1px solid currentColor;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.item_height_compact .item_pick {
+  height: var(--item_height_compact);
+}
+
+.item_height_normal .item_pick {
+  height: var(--item_height_normal);
+}
+
+.item_height_bigger .item_pick {
+  height: var(--item_height_bigger);
 }
 
 .item_pick:hover {

@@ -48,17 +48,6 @@ App.apply_theme = () => {
     let h = `${(App.get_setting(`height`) / 100) * 600}px`
     App.set_css_var(`height`, h)
 
-    let item_height = `2.15rem`
-
-    if (App.get_setting(`item_height`) === `compact`) {
-      item_height = `1.7rem`
-    }
-    else if (App.get_setting(`item_height`) === `bigger`) {
-      item_height = `2.6rem`
-    }
-
-    App.set_css_var(`item_height`, item_height)
-
     if (App.get_setting(`background_image`)) {
       App.set_css_var(`background_image`, `url(${App.get_setting(`background_image`)})`)
     }
@@ -90,6 +79,14 @@ App.apply_theme = () => {
     else {
       main.classList.add(`hide_scroller`)
     }
+
+    for (let cls of classes) {
+      if (cls.startsWith(`item_height_`)) {
+        main.classList.remove(cls)
+      }
+    }
+
+    main.classList.add(`item_height_${App.get_setting(`item_height`)}`)
   }
   catch (err) {
     App.log(err, `error`)
