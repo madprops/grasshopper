@@ -1327,8 +1327,16 @@ App.show_all = (mode = App.window_mode) => {
   }
 }
 
-App.pick_item = (item) => {
+App.pick_item = (item, pick_selected = true) => {
   let highlighted = item.highlighted
+
+  if (pick_selected) {
+    let selected = App.get_selected(item.mode)
+
+    if (!selected.highlighted) {
+      App.toggle_highlight(selected)
+    }
+  }
 
   if (!highlighted) {
     App.select_item(item, `nearest`, false)

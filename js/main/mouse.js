@@ -21,7 +21,7 @@ App.setup_window_mouse = (mode) => {
     }
 
     if (e.target.classList.contains(`item_pick`)) {
-      App.pick_item(item)
+      App.pick_item(item, false)
       return
     }
 
