@@ -252,29 +252,23 @@ App.show_filter_modes = (mode) => {
     if (filter_mode[0] === `custom`) {
       let filters = App.get_setting(`custom_filters`)
 
-      if (filters.length === 0) {
-        items.push({
-          text: `Custom`,
-          action: () => {
-            App.show_alert(`You have no custom filters. Add some in the settings.`, undefined, false)
-          }
-        })
-      }
-      else if (filters.length === 1) {
-        items.push({
-          text: `Custom`,
-          action: () => {
-            App.set_filter(mode, filters[0])
-          }
-        })
-      }
-      else {
-        items.push({
-          text: `Custom`,
-          get_items: () => {
-            return App.get_custom_filters(mode)
-          },
-        })
+      if (filters.length > 0) {
+        if (filters.length === 1) {
+          items.push({
+            text: `Custom`,
+            action: () => {
+              App.set_filter(mode, filters[0])
+            }
+          })
+        }
+        else {
+          items.push({
+            text: `Custom`,
+            get_items: () => {
+              return App.get_custom_filters(mode)
+            },
+          })
+        }
       }
 
       continue

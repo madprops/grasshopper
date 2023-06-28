@@ -170,9 +170,6 @@ App.commands = [
   {name: `Reload Extension`, cmd: `reload_extension`, action: (args) => {
     App.reload_extension()
   }},
-  {name: `Clear All Data`, cmd: `clear_all_data`, action: (args) => {
-    App.stor_clear_all_data()
-  }},
 ]
 
 App.setup_commands = () => {
