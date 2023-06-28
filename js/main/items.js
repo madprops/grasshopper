@@ -376,10 +376,22 @@ App.check_item_icon = (item) => {
   }
 }
 
+App.check_view_media = (item) => {
+  let view_media = DOM.el(`.view_media_button`, item.element)
+
+  if (item.image || item.video) {
+    view_media.classList.remove(`hidden`)
+  }
+  else {
+    view_media.classList.add(`hidden`)
+  }
+}
+
 App.refresh_item_element = (item) => {
   App.check_tab_item(item)
   App.check_item_icon(item)
   App.set_item_text(item)
+  App.check_view_media(item)
 }
 
 App.create_item_element = (item) => {
@@ -392,11 +404,10 @@ App.create_item_element = (item) => {
   let status = DOM.create(`div`, `item_status hidden`)
   item.element.append(status)
 
-  if (item.image || item.video) {
-    let open_media = DOM.create(`div`, `view_media_button underline action`)
-    open_media.textContent = `View`
-    item.element.append(open_media)
-  }
+  let view_media = DOM.create(`div`, `view_media_button underline action`)
+  view_media.textContent = `View`
+  item.element.append(view_media)
+  App.check_view_media(item)
 
   let text = DOM.create(`div`, `item_text action`)
   item.element.append(text)
