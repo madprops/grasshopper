@@ -44,7 +44,7 @@ App.check_highlight = (item) => {
 }
 
 App.select_item_above = (mode) => {
-  let item = App.get_prev_visible_item(mode)
+  let item = App.get_next_visible_item(mode, true)
 
   if (item) {
     App.select_item(item, `nearest`)
@@ -104,19 +104,21 @@ App.highlight_to_edge = (mode, dir) => {
   App.highlight_range(items[0])
 }
 
-App.get_next_visible_item = (mode, wrap = true) => {
+App.get_next_visible_item = (mode, reverse = false, wrap = true) => {
   let waypoint = false
 
   if (!App.get_selected(mode)) {
     waypoint = true
   }
 
-  let items = App.get_items(mode)
+  let items = App.get_items(mode).slice(0)
   let o_item = App.get_selected(mode)
 
-  for (let i=0; i<items.length; i++) {
-    let item = items[i]
+  if (reverse) {
+    items.reverse()
+  }
 
+  for (let item of items) {
     if (waypoint) {
       if (item.visible) {
         return item
@@ -129,44 +131,7 @@ App.get_next_visible_item = (mode, wrap = true) => {
   }
 
   if (wrap) {
-    for (let i=0; i<items.length; i++) {
-      let item = items[i]
-
-      if (item.visible) {
-        return item
-      }
-    }
-  }
-}
-
-App.get_prev_visible_item = (mode, wrap = true) => {
-  let waypoint = false
-
-  if (!App.get_selected(mode)) {
-    waypoint = true
-  }
-
-  let items = App.get_items(mode)
-  let o_item = App.get_selected(mode)
-
-  for (let i=items.length-1; i>=0; i--) {
-    let item = items[i]
-
-    if (waypoint) {
-      if (item.visible) {
-        return item
-      }
-    }
-
-    if (item === o_item) {
-      waypoint = true
-    }
-  }
-
-  if (wrap) {
-    for (let i=items.length-1; i>=0; i--) {
-      let item = items[i]
-
+    for (let item of items) {
       if (item.visible) {
         return item
       }
@@ -1481,5 +1446,5 @@ App.on_items = (mode = App.window_mode) => {
 }
 
 App.get_next_item = (mode) => {
-  return App.get_next_visible_item(mode, false) || App.get_prev_visible_item(mode, false)
+  return App.get_next_visible_item(mode, false, false) || App.get_next_visible_item(mode, true, false)
 }
