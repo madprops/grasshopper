@@ -65,10 +65,10 @@ App.commands = [
   {name: `Star Items`, cmd: `star_items`, mode: `items`, action: (args) => {
     App.star_items(args.item, args.from !== `palette`)
   }},
-  {name: `Copy URL`, cmd: `copy_tab_url`, mode: `items`, action: (args) => {
+  {name: `Copy URL`, cmd: `copy_item_url`, mode: `items`, action: (args) => {
     App.copy_url(args.item, args.from !== `palette`)
   }},
-  {name: `Copy Title`, cmd: `copy_tab_title`, mode: `items`, action: (args) => {
+  {name: `Copy Title`, cmd: `copy_item_title`, mode: `items`, action: (args) => {
     App.copy_title(args.item, args.from !== `palette`)
   }},
 
