@@ -59,9 +59,6 @@ App.commands = [
 
   {name: App.separator_string},
 
-  {name: `New Tab`, cmd: `new_tab`, mode: `tabs`, action: (args) => {
-    App.new_tab()
-  }},
   {name: `Launch Items`, cmd: `launch_items`, mode: `items`, action: (args) => {
     App.launch_items(args.item, true)
   }},
@@ -76,12 +73,6 @@ App.commands = [
   }},
   {name: `Copy Title`, cmd: `copy_tab_title`, mode: `items`, action: (args) => {
     App.copy_title(args.item, args.from !== `palette`)
-  }},
-  {name: `Tabs Info`, cmd: `tabs_info`, mode: `tabs`, action: (args) => {
-    App.show_tabs_info()
-  }},
-  {name: `Go To Playing Tab`, cmd: `go_to_playing_tab`, mode: `tabs`, action: (args) => {
-    App.go_to_playing_tab()
   }},
 
   {name: App.separator_string},
@@ -98,6 +89,9 @@ App.commands = [
 
   {name: App.separator_string},
 
+  {name: `New Tab`, cmd: `new_tab`, mode: `tabs`, action: (args) => {
+    App.new_tab()
+  }},
   {name: `Unload Tabs`, cmd: `unload_tabs`, mode: `tabs`, action: (args) => {
     App.unload_tabs(args.item)
   }},
@@ -139,6 +133,12 @@ App.commands = [
   }},
   {name: `Close Duplicate Tabs`, cmd: `close_duplicate_tabs`, mode: `tabs`, action: (args) => {
     App.close_duplicate_tabs()
+  }},
+  {name: `Tabs Info`, cmd: `tabs_info`, mode: `tabs`, action: (args) => {
+    App.show_tabs_info()
+  }},
+  {name: `Go To Playing Tab`, cmd: `go_to_playing_tab`, mode: `tabs`, action: (args) => {
+    App.go_to_playing_tab()
   }},
 
   {name: App.separator_string},
