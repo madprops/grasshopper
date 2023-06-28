@@ -32,6 +32,8 @@ App.setup_about = () => {
       `To filter by title with regex start with re_title:`,
       `To filter by url with regex start with re_url:`,
       `Hover the right side of items to pick and select`,
+      `To perform gestures, hold the middle mouse button and move in a direction, then release`,
+      `Command palette commands take into account selected items`,
     ]
 
     DOM.ev(DOM.el(`#about_info`), `click`, () => {

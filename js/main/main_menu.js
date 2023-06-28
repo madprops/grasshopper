@@ -57,7 +57,7 @@ App.show_main_menu = (mode) => {
   })
 
   items.push({
-    text: `Cmd...`,
+    text: `Command`,
     action: () => {
       App.show_palette()
     },

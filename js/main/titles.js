@@ -126,6 +126,13 @@ App.get_title_items = () => {
   let items = []
 
   items.push({
+    text: `New`,
+    action: () => {
+      App.show_title_editor({title: ``, url: ``})
+    }
+  })
+
+  items.push({
     text: `Remove`,
     action: () => {
       App.remove_all_titles()
