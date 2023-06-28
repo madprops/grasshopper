@@ -80,12 +80,6 @@ App.commands = [
   {name: `Tabs Info`, cmd: `tabs_info`, mode: `tabs`, action: (args) => {
     App.show_tabs_info()
   }},
-  {name: `Close Normal Tabs`, cmd: `close_normal_tabs`, mode: `tabs`, action: (args) => {
-    App.close_normal_tabs()
-  }},
-  {name: `Close Duplicate Tabs`, cmd: `close_duplicate_tabs`, mode: `tabs`, action: (args) => {
-    App.close_duplicate_tabs()
-  }},
   {name: `Go To Playing Tab`, cmd: `go_to_playing_tab`, mode: `tabs`, action: (args) => {
     App.go_to_playing_tab()
   }},
@@ -139,6 +133,12 @@ App.commands = [
   }},
   {name: `Close Tabs`, cmd: `close_tabs`, mode: `tabs`, action: (args) => {
     App.close_tabs(args.item)
+  }},
+  {name: `Close Normal Tabs`, cmd: `close_normal_tabs`, mode: `tabs`, action: (args) => {
+    App.close_normal_tabs()
+  }},
+  {name: `Close Duplicate Tabs`, cmd: `close_duplicate_tabs`, mode: `tabs`, action: (args) => {
+    App.close_duplicate_tabs()
   }},
 
   {name: App.separator_string},
