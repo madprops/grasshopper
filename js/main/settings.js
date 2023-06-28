@@ -335,6 +335,7 @@ App.setup_settings = () => {
       [`Invert`, `invert`],
       [`Bright`, `bright`],
       [`Blink`, `blink`],
+      [`Border`, `border`],
       [`Hue`, `hue`],
       [`None`, `none`],
     ])

@@ -315,6 +315,10 @@ svg {
   animation: blink 600ms infinite;
 }
 
+.highlight_border .highlighted .item_icon {
+  border: 1px solid currentColor;
+}
+
 .selected {
   background-color: var(--alt_color_1);
 }
