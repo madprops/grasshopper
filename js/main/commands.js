@@ -65,9 +65,6 @@ App.commands = [
   {name: `Star Items`, cmd: `star_items`, mode: `items`, action: (args) => {
     App.star_items(args.item, args.from !== `palette`)
   }},
-  {name: `Title Tab`, cmd: `title_tab`, mode: `tabs`, action: (args) => {
-    App.show_title_editor(args.item)
-  }},
   {name: `Copy URL`, cmd: `copy_tab_url`, mode: `items`, action: (args) => {
     App.copy_url(args.item, args.from !== `palette`)
   }},
@@ -125,6 +122,9 @@ App.commands = [
   {name: `Toggle Mute Tabs`, cmd: `toggle_mute_tabs`, mode: `tabs`, action: (args) => {
     App.toggle_mute_tabs(args.item)
   }},
+  {name: `Title Tab`, cmd: `title_tab`, mode: `tabs`, action: (args) => {
+    App.show_title_editor(args.item)
+  }},
   {name: `Close Tabs`, cmd: `close_tabs`, mode: `tabs`, action: (args) => {
     App.close_tabs(args.item)
   }},
@@ -134,11 +134,11 @@ App.commands = [
   {name: `Close Duplicate Tabs`, cmd: `close_duplicate_tabs`, mode: `tabs`, action: (args) => {
     App.close_duplicate_tabs()
   }},
-  {name: `Tabs Info`, cmd: `tabs_info`, mode: `tabs`, action: (args) => {
-    App.show_tabs_info()
-  }},
   {name: `Go To Playing Tab`, cmd: `go_to_playing_tab`, mode: `tabs`, action: (args) => {
     App.go_to_playing_tab()
+  }},
+  {name: `Tabs Info`, cmd: `tabs_info`, mode: `tabs`, action: (args) => {
+    App.show_tabs_info()
   }},
 
   {name: App.separator_string},
