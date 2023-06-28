@@ -44,7 +44,7 @@ App.check_highlight = (item) => {
 }
 
 App.select_item_above = (mode) => {
-  let item = App.get_next_visible_item(mode, true)
+  let item = App.get_next_visible_item({mode: mode, reverse: true})
 
   if (item) {
     App.select_item(item, `nearest`)
@@ -52,7 +52,7 @@ App.select_item_above = (mode) => {
 }
 
 App.select_item_below = (mode) => {
-  let item = App.get_next_visible_item(mode)
+  let item = App.get_next_visible_item({mode: mode})
 
   if (item) {
     App.select_item(item, `nearest`)
@@ -104,21 +104,32 @@ App.highlight_to_edge = (mode, dir) => {
   App.highlight_range(items[0])
 }
 
-App.get_next_visible_item = (mode, reverse = false, wrap = true) => {
+App.get_next_visible_item = (args) => {
+  let def_args = {
+    reverse: false,
+    wrap: true,
+    discarded:  true,
+  }
+
+  args = Object.assign(def_args, args)
   let waypoint = false
 
-  if (!App.get_selected(mode)) {
+  if (!App.get_selected(args.mode)) {
     waypoint = true
   }
 
-  let items = App.get_items(mode).slice(0)
-  let o_item = App.get_selected(mode)
+  let items = App.get_items(args.mode).slice(0)
+  let o_item = App.get_selected(args.mode)
 
-  if (reverse) {
+  if (args.reverse) {
     items.reverse()
   }
 
   for (let item of items) {
+    if (!args.discarded && item.discarded) {
+      continue
+    }
+
     if (waypoint) {
       if (item.visible) {
         return item
@@ -130,8 +141,12 @@ App.get_next_visible_item = (mode, reverse = false, wrap = true) => {
     }
   }
 
-  if (wrap) {
+  if (args.wrap) {
     for (let item of items) {
+      if (!args.discarded && item.discarded) {
+        continue
+      }
+
       if (item.visible) {
         return item
       }
@@ -1446,5 +1461,6 @@ App.on_items = (mode = App.window_mode) => {
 }
 
 App.get_next_item = (mode) => {
-  return App.get_next_visible_item(mode, false, false) || App.get_next_visible_item(mode, true, false)
+  return App.get_next_visible_item({mode: mode, wrap: false, discarded: false}) ||
+  App.get_next_visible_item({mode: mode, reverse: true, wrap: false, discarded: false})
 }
