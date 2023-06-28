@@ -243,8 +243,8 @@ svg {
   right: 0;
   padding-left: 0.38rem;
   padding-right: 0.38rem;
-  padding-top: 0.22rem;
-  padding-bottom: 0.22rem;
+  padding-top: 0.25rem;
+  padding-bottom: 0.25rem;
   opacity: 0;
   border: 1px solid currentColor;
 }
