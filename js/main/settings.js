@@ -255,7 +255,7 @@ App.settings_make_menu = (setting, opts, action = () => {}) => {
 }
 
 App.setup_settings = () => {
-  App.settings_categories = [`basic`, `theme`, `icons`, `warns`, `popup`, `order`, `mouse`, `more`]
+  App.settings_categories = [`basic`, `theme`, `icons`, `popup`, `mouse`, `warns`, `order`, `more`]
 
   let common = {
     persistent: false,
