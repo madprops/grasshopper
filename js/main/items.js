@@ -322,6 +322,7 @@ App.process_info = (mode, info, exclude = [], o_item) => {
     mode: mode,
     window_id: info.windowId,
     session_id: info.sessionId,
+    last_visit: info.lastVisitTime,
     image: image,
     video: video,
     created: false,
@@ -561,6 +562,10 @@ App.set_item_text = (item) => {
     }
     else {
       item.element.title = `${content}\n${item.footer}`
+    }
+
+    if (item.last_visit) {
+      item.element.title += `\nLast Visit: ${App.nice_date(item.last_visit)}`
     }
   }
 

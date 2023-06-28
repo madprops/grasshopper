@@ -88,7 +88,7 @@ App.capitalize = (s) => {
 }
 
 App.nice_date = (date = Date.now()) => {
-  return dateFormat(date, `dd/mmm/yy | h:MM:ss tt`)
+  return dateFormat(date, `dd/mmm/yy | h:MM tt`)
 }
 
 App.is_image = (src) => {
