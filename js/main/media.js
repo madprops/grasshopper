@@ -79,7 +79,6 @@ App.create_media_windows = (what) => {
   }, on_hide: () => {
     if (what === `video`) {
       App.stop_video()
-      App.rese
     }
 
     let item = App[`current_${what}_item`]
