@@ -1413,13 +1413,8 @@ App.scroll_to_item = (item, scroll = `nearest`) => {
     behavior = `instant`
   }
 
-  if (item.mode === App.window_mode) {
-    if (item.element.offsetTop <= App.scroller_max_top) {
-      App.hide_scroller(item.mode)
-    }
-  }
-  else {
-    behavior = `instant`
+  if (item.element.offsetTop <= App.scroller_max_top) {
+    App.hide_scroller(item.mode)
   }
 
   if (behavior === `smooth`) {

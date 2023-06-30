@@ -101,6 +101,7 @@ App.view_media = (item) => {
     return
   }
 
+  App.select_item(item)
   App.hide_media_elements(what)
   App[`current_${what}_item`] = item
   DOM.el(`#${what}`).src = item.url
@@ -113,7 +114,6 @@ App.view_media = (item) => {
   DOM.el(`#${what}_url`).textContent = item.url
   App.show_window(what)
   App.media_show_loading(what)
-  App.select_item(item)
 }
 
 App.stop_video = () => {
