@@ -1413,7 +1413,9 @@ App.scroll_to_item = (item, scroll = `nearest`) => {
     behavior = `instant`
   }
 
-  if (item.element.offsetTop <= App.scroller_max_top) {
+  let index = App.get_item_element_index(item.mode, item.element)
+
+  if (index === 0) {
     App.hide_scroller(item.mode)
   }
 
