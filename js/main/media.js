@@ -114,9 +114,7 @@ App.view_media = (item) => {
   App.show_window(what)
   App.media_show_loading(what)
 
-  let visible = App.get_visible_media(item.mode, what)
-
-  if (visible.length <= 1) {
+  if (App.get_visible_media(item.mode, what).length <= 1) {
     DOM.el(`#${what}_prev`).classList.add(`disabled`)
     DOM.el(`#${what}_next`).classList.add(`disabled`)
   }
