@@ -113,6 +113,17 @@ App.view_media = (item) => {
   DOM.el(`#${what}_url`).textContent = item.url
   App.show_window(what)
   App.media_show_loading(what)
+
+  let visible = App.get_visible_media(item.mode, what)
+
+  if (visible.length <= 1) {
+    DOM.el(`#${what}_prev`).classList.add(`disabled`)
+    DOM.el(`#${what}_next`).classList.add(`disabled`)
+  }
+  else {
+    DOM.el(`#${what}_prev`).classList.remove(`disabled`)
+    DOM.el(`#${what}_next`).classList.remove(`disabled`)
+  }
 }
 
 App.stop_video = () => {
