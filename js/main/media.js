@@ -101,7 +101,6 @@ App.view_media = (item) => {
     return
   }
 
-  App.select_item(item, `nearest_instant`)
   App.hide_media_elements(what)
   App[`current_${what}_item`] = item
   DOM.el(`#${what}`).src = item.url

@@ -62,8 +62,6 @@ App.setup_window_mouse = (mode) => {
       let item = App.get_cursor_item(mode, e)
 
       if (item) {
-        App.select_item(item, `nearest_smooth`, false)
-
         if (!item.highlighted) {
           if (App.get_highlights(mode).length > 0) {
             App.pick_item(item)
