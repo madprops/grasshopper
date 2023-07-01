@@ -905,6 +905,12 @@ App.focus_current_tab = async () => {
 }
 
 App.tabs_back_action = async (e) => {
+  if (App.get_highlights(`tabs`).length > 0) {
+    App.dehighlight(`tabs`)
+    App.focus_current_tab()
+    return
+  }
+
   let was_filtered = App.is_filtered(`tabs`)
   App.clear_or_all(`tabs`)
 
