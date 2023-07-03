@@ -379,9 +379,11 @@ App.refresh_item_element = (item) => {
 App.create_item_element = (item) => {
   item.element.innerHTML = ``
 
-  let icon_container = DOM.create(`div`, `item_icon_container`)
-  item.element.append(icon_container)
-  App.check_item_icon(item)
+  if (App.get_setting(`show_icons`)) {
+    let icon_container = DOM.create(`div`, `item_icon_container`)
+    item.element.append(icon_container)
+    App.check_item_icon(item)
+  }
 
   let status = DOM.create(`div`, `item_status hidden`)
   item.element.append(status)
