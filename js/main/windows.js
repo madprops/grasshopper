@@ -162,11 +162,6 @@ App.hide_current_window = () => {
   }
 
   App.windows[App.window_mode].hide()
-
-  if (App.on_item_window()) {
-    let selected = App.get_selected(App.window_mode)
-    App.scroll_to_item(selected)
-  }
 }
 
 App.make_window_visible = () => {
