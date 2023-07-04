@@ -34,11 +34,6 @@ App.setup_window_mouse = (mode) => {
       return
     }
 
-    if (App.get_highlights(mode).length > 0) {
-      App.select_item(item, `nearest_smooth`)
-      return
-    }
-
     App[`${mode}_action`](item)
   })
 
