@@ -589,6 +589,17 @@ App.settings_index = () => {
 App.show_settings_menu = (category, btn) => {
   let items = []
 
+  items.push({
+    text: `Close`,
+    action: () => {
+      App.hide_current_window()
+    }
+  })
+
+  items.push({
+    separator: true
+  })
+
   for (let c of App.settings_categories) {
     items.push({
       text: App.capitalize(c),
@@ -613,17 +624,6 @@ App.show_settings_menu = (category, btn) => {
     text: `Data`,
     get_items: () => {
       return App.settings_data_items()
-    }
-  })
-
-  items.push({
-    separator: true
-  })
-
-  items.push({
-    text: `Close`,
-    action: () => {
-      App.hide_current_window()
     }
   })
 
