@@ -251,6 +251,7 @@ svg {
   box-sizing: border-box;
   border: 1px solid currentColor;
   opacity: 0;
+  z-index: 99;
 }
 
 .item_pick:hover {

@@ -9,7 +9,6 @@ App.setup_window_mouse = (mode) => {
 
   DOM.ev(container, `click`, (e) => {
     if (!App.cursor_on_item(e, mode)) {
-      App.dehighlight(mode)
       return
     }
 
@@ -109,10 +108,12 @@ App.setup_drag = (mode) => {
   let container = DOM.el(`#${mode}_container`)
 
   DOM.ev(container, `dragstart`, (e) => {
-    App.dragging = true
-    App.hide_scroller(mode)
-
     if (App.get_setting(`lock_drag`) && !e.ctrlKey) {
+      e.preventDefault()
+      return false
+    }
+
+    if (e.target.closest(`.item_pick`)) {
       e.preventDefault()
       return false
     }
@@ -124,6 +125,8 @@ App.setup_drag = (mode) => {
       return false
     }
 
+    App.dragging = true
+    App.hide_scroller(mode)
     App.drag_y = e.clientY
     let id = App.drag_element.dataset.id
     App.drag_item = App.get_item_by_id(mode, id)
@@ -204,6 +207,7 @@ App.setup_drag = (mode) => {
   })
 
   DOM.ev(container, `dragend`, (e) => {
+    console.log(e.target)
     App.dragging = false
     App.do_check_scroller(mode)
 
