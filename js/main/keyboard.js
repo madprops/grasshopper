@@ -1,4 +1,4 @@
-App.check_window_keyboard = (e) => {
+App.check_items_keyboard = (e) => {
   let mode = App.window_mode
 
   if (e.ctrlKey && !e.shiftKey) {
@@ -117,7 +117,12 @@ App.check_window_keyboard = (e) => {
 
   if (!e.ctrlKey && !e.shiftKey) {
     if (e.key === `Escape`) {
-      App.clear_filter(mode)
+      if (App.get_highlights(mode).length > 0) {
+        App.dehighlight(mode)
+      }
+      else {
+        App.clear_filter(mode)
+      }
     }
     else if (e.key === `Enter`) {
       let item = App.get_selected(mode)
@@ -317,7 +322,7 @@ App.setup_keyboard = () => {
     }
 
     if (App.on_item_window()) {
-      App.check_window_keyboard(e)
+      App.check_items_keyboard(e)
     }
   })
 }
