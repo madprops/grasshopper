@@ -72,15 +72,6 @@ App.show_item_menu = (item, x, y) => {
     }
   }
 
-  if (item.mode === `tabs` && !multiple) {
-    items.push({
-      text: `Title`,
-      action: () => {
-        App.show_title_editor(item)
-      }
-    })
-  }
-
   if (!multiple) {
     items.push({
       text: `Filter`,
@@ -120,7 +111,7 @@ App.show_item_menu = (item, x, y) => {
     items.push({
       text: `More`,
       get_items: () => {
-        return App.get_more_menu_items(item)
+        return App.more_tab_menu_items(item, multiple)
        }
     })
 
@@ -169,7 +160,7 @@ App.get_window_menu_items = async (item) => {
   return items
 }
 
-App.get_more_menu_items = (item) => {
+App.more_tab_menu_items = (item, multiple) => {
   let items = []
 
   if (!item.discarded) {
@@ -187,6 +178,15 @@ App.get_more_menu_items = (item) => {
       App.duplicate_tabs(item)
     }
   })
+
+  if (!multiple) {
+    items.push({
+      text: `Title`,
+      action: () => {
+        App.show_title_editor(item)
+      }
+    })
+  }
 
   if (items.length > 0) {
     items.push({
