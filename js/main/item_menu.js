@@ -163,6 +163,15 @@ App.get_window_menu_items = async (item) => {
 App.more_tab_menu_items = (item, multiple) => {
   let items = []
 
+  if (!multiple) {
+    items.push({
+      text: `Title`,
+      action: () => {
+        App.show_title_editor(item)
+      }
+    })
+  }
+
   if (!item.discarded) {
     items.push({
       text: `Unload`,
@@ -178,15 +187,6 @@ App.more_tab_menu_items = (item, multiple) => {
       App.duplicate_tabs(item)
     }
   })
-
-  if (!multiple) {
-    items.push({
-      text: `Title`,
-      action: () => {
-        App.show_title_editor(item)
-      }
-    })
-  }
 
   if (items.length > 0) {
     items.push({
