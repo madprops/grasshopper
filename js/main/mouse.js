@@ -34,6 +34,10 @@ App.setup_window_mouse = (mode) => {
       return
     }
 
+    if (App.get_highlights(mode).length > 0) {
+      App.dehighlight(mode)
+    }
+
     App[`${mode}_action`](item)
   })
 
