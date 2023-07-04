@@ -207,7 +207,6 @@ App.setup_drag = (mode) => {
   })
 
   DOM.ev(container, `dragend`, (e) => {
-    console.log(e.target)
     App.dragging = false
     App.do_check_scroller(mode)
 
