@@ -812,15 +812,14 @@ App.settings_menu_items = () => {
   let current = App.window_mode.replace(`settings_`, ``)
 
   for (let c of App.settings_categories) {
-    if (c === current) {
-      continue
-    }
+    let selected = c === current
 
     items.push({
       text: App.capitalize(c),
       action: () => {
         App.show_settings_window(c)
-      }
+      },
+      selected: selected,
     })
   }
 
