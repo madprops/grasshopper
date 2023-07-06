@@ -593,13 +593,13 @@ App.open_tab = async (url, args = {}) => {
   return tab
 }
 
-App.update_tab_index = async () => {
+App.update_tab_index = async (item) => {
   for (let el of DOM.els(`.tabs_item`)) {
     let index = App.get_item_element_index(`tabs`, el)
     await App.do_move_tab_index(parseInt(el.dataset.id), index)
   }
 
-  App.scroll_to_item(App.get_selected(`tabs`), `center_smooth`)
+  App.scroll_to_item(item, `center_smooth`)
 }
 
 App.do_move_tab_index = async (id, index) => {
@@ -955,7 +955,7 @@ App.move_tabs_vertically = async (direction, item) => {
     }
   }
 
-  let first, last
+  let first, last, leader
   let els = items.map(x => x.element)
 
   if (direction === `top`) {
@@ -966,7 +966,8 @@ App.move_tabs_vertically = async (direction, item) => {
       first = App.get_first_normal_index()
     }
 
-    App.get_items(`tabs`)[first].element.before(...els)
+    leader = App.get_items(`tabs`)[first]
+    leader.element.before(...els)
   }
   else if (direction === `bottom`) {
     if (item.pinned) {
@@ -976,11 +977,11 @@ App.move_tabs_vertically = async (direction, item) => {
       last = App.get_items(`tabs`).length - 1
     }
 
-    App.get_items(`tabs`)[last].element.after(...els)
+    leader = App.get_items(`tabs`)[last]
+    leader.element.after(...els)
   }
 
-  App.update_tab_index()
-  App.select_item(App.get_selected(`tabs`), `center`, false)
+  App.update_tab_index(leader)
 }
 
 App.get_first_normal_index = () => {

@@ -226,7 +226,7 @@ App.setup_drag = (mode) => {
       return false
     }
 
-    App.update_tab_index()
+    App.update_tab_index(App.drag_leader_top)
   })
 }
 
