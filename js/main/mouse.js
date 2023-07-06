@@ -129,7 +129,6 @@ App.setup_drag = (mode) => {
     App.drag_y = e.clientY
     let id = App.drag_element.dataset.id
     App.drag_item = App.get_item_by_id(mode, id)
-    App.select_item(App.drag_item, `none`, false)
     App.drag_start_index = App.get_item_element_index(mode, App.drag_element)
     e.dataTransfer.setDragImage(new Image(), 0, 0)
     e.dataTransfer.setData(`text/plain`, App.drag_item.url)
@@ -166,12 +165,17 @@ App.setup_drag = (mode) => {
       return false
     }
 
+    let el = e.target.closest(`.grasshopper_item`)
+
+    if (el === App.drag_element) {
+      e.preventDefault()
+      return false
+    }
+
     let direction = e.clientY > App.drag_y ? `down` : `up`
     App.drag_y = e.clientY
 
     if (App.cursor_on_item(e, mode)) {
-      let el = e.target.closest(`.item`)
-
       if (App.drag_els.includes(el)) {
         e.preventDefault()
         return false
