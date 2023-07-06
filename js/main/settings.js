@@ -590,27 +590,10 @@ App.show_settings_menu = (category, btn) => {
   let items = []
 
   items.push({
-    text: `Close`,
-    action: () => {
-      App.hide_current_window()
+    text: `Jump`,
+    get_items: () => {
+      return App.settings_menu_items()
     }
-  })
-
-  items.push({
-    separator: true
-  })
-
-  for (let c of App.settings_categories) {
-    items.push({
-      text: App.capitalize(c),
-      action: () => {
-        App.show_settings_window(c)
-      }
-    })
-  }
-
-  items.push({
-    separator: true
   })
 
   items.push({
@@ -624,6 +607,13 @@ App.show_settings_menu = (category, btn) => {
     text: `Data`,
     get_items: () => {
       return App.settings_data_items()
+    }
+  })
+
+  items.push({
+    text: `Close`,
+    action: () => {
+      App.hide_current_window()
     }
   })
 
@@ -815,3 +805,18 @@ App.tab_warn_opts = [
   [`Special`, `special`],
   [`Never`, `never`],
 ]
+
+App.settings_menu_items = () => {
+  let items = []
+
+  for (let c of App.settings_categories) {
+    items.push({
+      text: App.capitalize(c),
+      action: () => {
+        App.show_settings_window(c)
+      }
+    })
+  }
+
+  return items
+}
