@@ -145,6 +145,27 @@ App.setup_window = () => {
   DOM.ev(window, `blur`, () => {
     NeedContext.hide()
   })
+
+  DOM.ev(document.documentElement, `mouseleave`, () => {
+    if (App.dragging) {
+      return
+    }
+
+    if (App.get_setting(`autoselect`)) {
+      App.refocus_timeout = setTimeout(() => {
+        if (App.window_mode === `tabs`) {
+          App.dehighlight(`tabs`)
+          App.focus_current_tab()
+        }
+      }, App.refocus_delay)
+    }
+  })
+
+  DOM.ev(document.documentElement, `mouseenter`, () => {
+    if (App.get_setting(`autoselect`)) {
+      clearInterval(App.refocus_timeout)
+    }
+  })
 }
 
 App.window_goto_top = (mode) => {

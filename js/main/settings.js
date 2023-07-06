@@ -64,6 +64,7 @@ App.default_settings = {
   single_new_tab: {value: true, category: `more`, version: 1},
   show_pick: {value: true, category: `more`, version: 1},
   show_view: {value: true, category: `more`, version: 1},
+  autoselect: {value: true, category: `more`, version: 1},
 }
 
 App.make_item_order = () => {
@@ -808,8 +809,13 @@ App.tab_warn_opts = [
 
 App.settings_menu_items = () => {
   let items = []
+  let current = App.window_mode.replace(`settings_`, ``)
 
   for (let c of App.settings_categories) {
+    if (c === current) {
+      continue
+    }
+
     items.push({
       text: App.capitalize(c),
       action: () => {
