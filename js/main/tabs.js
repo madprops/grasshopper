@@ -966,8 +966,8 @@ App.move_tabs_vertically = async (direction, item) => {
       first = App.get_first_normal_index()
     }
 
-    leader = App.get_items(`tabs`)[first]
-    leader.element.before(...els)
+    App.get_items(`tabs`)[first].element.before(...els)
+    leader = items[0]
   }
   else if (direction === `bottom`) {
     if (item.pinned) {
@@ -977,8 +977,8 @@ App.move_tabs_vertically = async (direction, item) => {
       last = App.get_items(`tabs`).length - 1
     }
 
-    leader = App.get_items(`tabs`)[last]
-    leader.element.after(...els)
+    App.get_items(`tabs`)[last].element.after(...els)
+    leader = items.at(-1)
   }
 
   App.update_tab_index(leader)
