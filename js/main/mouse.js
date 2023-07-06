@@ -19,13 +19,13 @@ App.setup_window_mouse = (mode) => {
       return
     }
 
-    if (e.target.classList.contains(`item_pick`)) {
-      App.pick_item(item, false)
+    if (e.shiftKey) {
+      App.highlight_range(item)
       return
     }
 
-    if (e.shiftKey) {
-      App.highlight_range(item)
+    if (e.target.classList.contains(`item_pick`)) {
+      App.pick_item(item, false)
       return
     }
 
