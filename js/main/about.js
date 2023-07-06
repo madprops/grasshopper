@@ -54,9 +54,17 @@ App.setup_about = () => {
       else if (image.classList.contains(`invert`)) {
         image.classList.remove(`invert`)
 
-        if (App.about_flips >= 4) {
+        if (App.about_flips >= 2) {
           App.about_flips = 0
-          App.show_alert(`Stop it!`, 1000)
+          let img = DOM.el(`#about_image`)
+          console.log(img.src)
+
+          if (img.src.includes(`grasshopper.png`)) {
+            img.src = `img/grasshopper_2.png`
+          }
+          else {
+            img.src = `img/grasshopper.png`
+          }
         }
         else {
           if (image.classList.contains(`flipped`)) {
