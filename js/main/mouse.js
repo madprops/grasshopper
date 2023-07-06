@@ -47,6 +47,10 @@ App.setup_window_mouse = (mode) => {
     }
 
     if (mode === `tabs`) {
+      if (e.target.classList.contains(`item_pick`)) {
+        return
+      }
+
       let item = App.get_cursor_item(mode, e)
 
       setTimeout(() => {
