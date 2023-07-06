@@ -1353,6 +1353,9 @@ App.pick_item = (item, pick_selected = true) => {
     if (highlights.length > 0) {
       App.select_item(highlights[0], `nearest`, false)
     }
+    else {
+      App.focus_current_tab()
+    }
   }
 }
 
