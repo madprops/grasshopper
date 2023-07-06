@@ -63,7 +63,6 @@ App.setup_tabs = () => {
 
   browser.tabs.onMoved.addListener((id, info) => {
     App.log(`Tab Moved: ID: ${id}`)
-    console.log(info)
 
     if (App.window_mode === `tabs` && info.windowId === App.window_id) {
       App.move_item(`tabs`, info.fromIndex, info.toIndex)
@@ -165,14 +164,21 @@ App.new_tab = async (url) => {
   App.check_close_on_focus()
 }
 
-App.refresh_tab = async (id, select = false) => {
-  let info
-
+App.get_tab_info = async (id) => {
   try {
-    info = await browser.tabs.get(id)
+    let info = await browser.tabs.get(id)
+    return info
   }
   catch (err) {
     App.log(err, `error`)
+    return
+  }
+}
+
+App.refresh_tab = async (id, select = false) => {
+  let info = await App.get_tab_info(id)
+
+  if (!info) {
     return
   }
 
@@ -595,13 +601,19 @@ App.open_tab = async (url, args = {}) => {
 }
 
 App.update_tabs_index = async (items) => {
-  let index = App.get_item_element_index(`tabs`, items[0].element)
+  let info = await App.get_tab_info(items[0].id)
+
+  if (!info) {
+    return
+  }
+
+  let first_index = App.get_item_element_index(`tabs`, items[0].element)
   let direction
 
-  if (items[0].index > index) {
+  if (first_index < info.index) {
     direction = `up`
   }
-  else if (items[0].index < index) {
+  else if (first_index > info.index) {
     direction = `down`
   }
   else {
@@ -614,7 +626,6 @@ App.update_tabs_index = async (items) => {
 
   for (let item of items) {
     let index = App.get_item_element_index(`tabs`, item.element)
-    console.log(index)
     await App.do_move_tab_index(item.id, index)
   }
 }
