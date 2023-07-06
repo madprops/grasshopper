@@ -303,7 +303,6 @@ App.process_info = (mode, info, exclude = [], o_item) => {
     image: image,
     video: video,
     created: false,
-    index: info.index,
   }
 
   if (mode === `tabs`) {
@@ -862,14 +861,14 @@ App.focus_or_open_item = async (item) => {
 }
 
 App.get_item_order = () => {
-  let items = []
+  let imodes = []
 
   for (let mode of App.item_modes) {
-    items.push({mode: mode, index: App.get_setting(`${mode}_index`)})
+    imodes.push({mode: mode, index: App.get_setting(`${mode}_index`)})
   }
 
-  items.sort((a, b) => (a.index > b.index) ? 1 : -1)
-  App.item_order = items.map(x => x.mode)
+  imodes.sort((a, b) => (a.index > b.index) ? 1 : -1)
+  App.item_order = imodes.map(x => x.mode)
 }
 
 App.any_item_visible = (mode) => {
@@ -952,7 +951,6 @@ App.move_item = (mode, from_index, to_index) => {
   let item = App.get_items(mode).splice(from_index, 1)[0]
   App.get_items(mode).splice(to_index, 0, item)
   App.move_item_element(mode, item.element, to_index)
-  item.index = to_index
 
   if (App.get_selected(mode) === item) {
     App.scroll_to_item(App.get_selected(mode), `center_smooth`)
@@ -1423,7 +1421,9 @@ App.scroll_to_item = (item, scroll = `nearest`) => {
     behavior = `instant`
   }
 
-  if (item.index === 0) {
+  let index = App.get_item_element_index(item.mode, item.element)
+
+  if (index === 0) {
     App.hide_scroller(item.mode)
   }
 

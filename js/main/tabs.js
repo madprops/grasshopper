@@ -63,6 +63,7 @@ App.setup_tabs = () => {
 
   browser.tabs.onMoved.addListener((id, info) => {
     App.log(`Tab Moved: ID: ${id}`)
+    console.log(info)
 
     if (App.window_mode === `tabs` && info.windowId === App.window_id) {
       App.move_item(`tabs`, info.fromIndex, info.toIndex)
@@ -593,13 +594,28 @@ App.open_tab = async (url, args = {}) => {
   return tab
 }
 
-App.update_tabs_index = (items) => {
+App.update_tabs_index = async (items) => {
+  let index = App.get_item_element_index(`tabs`, items[0].element)
+  let direction
+
+  if (items[0].index > index) {
+    direction = `up`
+  }
+  else if (items[0].index < index) {
+    direction = `down`
+  }
+  else {
+    return
+  }
+
+  if (direction === `down`) {
+    items = items.slice(0).reverse()
+  }
+
   for (let item of items) {
     let index = App.get_item_element_index(`tabs`, item.element)
-
-    if (item.index !== index) {
-      App.do_move_tab_index(item.id, index)
-    }
+    console.log(index)
+    await App.do_move_tab_index(item.id, index)
   }
 }
 
