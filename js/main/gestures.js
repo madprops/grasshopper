@@ -11,6 +11,10 @@ App.setup_gestures = () => {
   obj.default = (e) => {
     if (App.on_items()) {
       if (App.cursor_on_item(e, App.window_mode)) {
+        if (e.target.classList.contains(`item_pick`)) {
+          return
+        }
+
         let item = App.get_cursor_item(App.window_mode, e)
 
         if (item) {
