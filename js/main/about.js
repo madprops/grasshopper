@@ -57,7 +57,6 @@ App.setup_about = () => {
         if (App.about_flips >= 2) {
           App.about_flips = 0
           let img = DOM.el(`#about_image`)
-          console.log(img.src)
 
           if (img.src.includes(`grasshopper.png`)) {
             img.src = `img/grasshopper_2.png`

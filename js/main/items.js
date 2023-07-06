@@ -303,6 +303,7 @@ App.process_info = (mode, info, exclude = [], o_item) => {
     image: image,
     video: video,
     created: false,
+    index: info.index,
   }
 
   if (mode === `tabs`) {
@@ -951,6 +952,7 @@ App.move_item = (mode, from_index, to_index) => {
   let item = App.get_items(mode).splice(from_index, 1)[0]
   App.get_items(mode).splice(to_index, 0, item)
   App.move_item_element(mode, item.element, to_index)
+  item.index = to_index
 
   if (App.get_selected(mode) === item) {
     App.scroll_to_item(App.get_selected(mode), `center_smooth`)
@@ -1421,9 +1423,7 @@ App.scroll_to_item = (item, scroll = `nearest`) => {
     behavior = `instant`
   }
 
-  let index = App.get_item_element_index(item.mode, item.element)
-
-  if (index === 0) {
+  if (item.index === 0) {
     App.hide_scroller(item.mode)
   }
 
