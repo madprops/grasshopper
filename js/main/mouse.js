@@ -12,6 +12,10 @@ App.setup_window_mouse = (mode) => {
   let container = DOM.el(`#${mode}_container`)
 
   DOM.ev(container, `mousedown`, (e) => {
+    if (!App.cursor_on_item(e, mode)) {
+      return
+    }
+
     let item = App.get_cursor_item(mode, e)
 
     if (item) {
@@ -201,7 +205,6 @@ App.setup_drag = (mode) => {
     let leader_bottom_id = App.drag_els.at(-1).dataset.id
     App.drag_leader_top = App.get_item_by_id(mode, leader_top_id)
     App.drag_leader_bottom = App.get_item_by_id(mode, leader_bottom_id)
-
     App.drag_moved = false
   })
 

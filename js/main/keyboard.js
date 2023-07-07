@@ -162,6 +162,22 @@ App.check_items_keyboard = (e) => {
       e.preventDefault()
       return
     }
+    else if (e.key === `ArrowLeft`) {
+      if (!App.get_filter(mode, true)) {
+        App.cycle_item_windows(true, true)
+        e.preventDefault()
+      }
+
+      return
+    }
+    else if (e.key === `ArrowRight`) {
+      if (!App.get_filter(mode, true)) {
+        App.cycle_item_windows(false, true)
+        e.preventDefault()
+      }
+
+      return
+    }
     else if (e.key === `Tab`) {
       App.cycle_item_windows(false, true)
       e.preventDefault()

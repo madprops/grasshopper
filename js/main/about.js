@@ -4,6 +4,7 @@ App.setup_about = () => {
       `Up, Down, and Enter keys navigate and pick items`,
       `Type to filter items, press Tab to cycle-reuse`,
       `Cycle items with the top-left menu or (Shift) Tab`,
+      `Cycle with Left and Right if filter is empty`
       `Middle Click closes or opens items`,
       `Shift + Middle Click bypasses some confirmations`,
       `Shift + Up/Down selects multiple items`,
