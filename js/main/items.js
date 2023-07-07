@@ -765,9 +765,7 @@ App.setup_item_window = (mode) => {
 
     //
 
-    if (mode === `tabs`) {
-      App.setup_drag(mode, container)
-    }
+    App.setup_drag(mode, container)
 
     // Append the top components
     let left_top = DOM.create(`div`, `item_top_left`)

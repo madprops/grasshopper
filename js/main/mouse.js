@@ -144,6 +144,11 @@ App.setup_drag = (mode) => {
   let container = DOM.el(`#${mode}_container`)
 
   DOM.ev(container, `dragstart`, (e) => {
+    if (mode !== `tabs`) {
+      e.preventDefault()
+      return false
+    }
+
     if (App.get_setting(`lock_drag`) && !e.ctrlKey) {
       e.preventDefault()
       return false
