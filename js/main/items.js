@@ -727,7 +727,7 @@ App.setup_item_window = (mode) => {
     //
 
     let filter = App.create_filter(mode)
-    let filter_modes = App.create_filter_modes(mode)
+    let filter_modes = App.create_filter_menu(mode)
 
     //
 

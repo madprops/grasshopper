@@ -23,7 +23,7 @@ App.check_items_keyboard = (e) => {
       return
     }
     else if (e.key === `f`) {
-      App.show_filter_modes(mode)
+      App.show_filter_menu(mode)
       e.preventDefault()
       return
     }

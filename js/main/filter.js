@@ -240,7 +240,7 @@ App.get_filter = (mode, trim = true) => {
   return value
 }
 
-App.show_filter_modes = (mode) => {
+App.show_filter_menu = (mode) => {
   let items = []
 
   for (let filter_mode of App.filter_modes(mode)) {
@@ -392,11 +392,10 @@ App.refresh_filter = (mode, what) => {
   }
 }
 
-App.create_filter_modes = (mode) => {
-  let filter_modes = DOM.create(`div`, `button icon_button`, `${mode}_filter_modes`)
-  filter_modes.title = `Filter Modes (Ctrl + F)`
-  let filter_modes_text = DOM.create(`div`, ``, `${mode}_filter_modes_text`)
-  filter_modes.append(filter_modes_text)
+App.create_filter_menu = (mode) => {
+  let filter_menu = DOM.create(`div`, `button icon_button`, `${mode}_filter_modes`)
+  filter_menu.title = `Filter Modes (Ctrl + F)`
+  filter_menu.append(DOM.create(`div`, ``, `${mode}_filter_modes_text`))
 
   let fmodes = []
   fmodes.push([`all`, `All`])
@@ -408,17 +407,21 @@ App.create_filter_modes = (mode) => {
   fmodes.push([`by_what`, `By What`])
   App[`${mode}_filter_modes`] = [...fmodes, ...(App.filter_modes(mode) || [])]
 
-  DOM.ev(filter_modes, `click`, () => {
-    App.show_filter_modes(mode)
+  DOM.ev(filter_menu, `click`, () => {
+    App.show_filter_menu(mode)
   })
 
-  DOM.ev(filter_modes, `auxclick`, (e) => {
+  DOM.ev(filter_menu, `auxclick`, (e) => {
     if (e.button === 1) {
-      App.first_filter_mode(mode)
+      let cmd = App.get_setting(`on_middle_click_filter_menu`)
+
+      if (cmd !== `none`) {
+        App.run_command({cmd: cmd, from: `filter_menu`})
+      }
     }
   })
 
-  DOM.ev(filter_modes, `wheel`, (e) => {
+  DOM.ev(filter_menu, `wheel`, (e) => {
     let direction = App.wheel_direction(e)
 
     if (direction === `down`) {
@@ -429,7 +432,7 @@ App.create_filter_modes = (mode) => {
     }
   })
 
-  return filter_modes
+  return filter_menu
 }
 
 App.create_filter = (mode) => {
