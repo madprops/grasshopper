@@ -4,6 +4,10 @@ App.setup_mouse = () => {
   }
 }
 
+DOM.ev(window, `mouseup`, (e) => {
+  App.item_range_on = false
+})
+
 App.setup_window_mouse = (mode) => {
   let container = DOM.el(`#${mode}_container`)
 
@@ -24,10 +28,6 @@ App.setup_window_mouse = (mode) => {
         App.item_range_on = true
       }
     }
-  })
-
-  DOM.ev(container, `mouseup`, (e) => {
-    App.item_range_on = false
   })
 
   DOM.ev(container, `click`, (e) => {
