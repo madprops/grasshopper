@@ -124,7 +124,9 @@ App.setup_window_mouse = (mode) => {
       App.update_footer_info(item)
 
       if (App.item_range_on) {
-        App.toggle_highlight(item, App.item_range_highlight)
+        if (item.highlighted !== App.item_range_highlight) {
+          App.toggle_highlight(item, App.item_range_highlight)
+        }
       }
     }
   })
