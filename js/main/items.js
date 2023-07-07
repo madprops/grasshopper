@@ -996,6 +996,7 @@ App.move_item_element = (mode, el, to_index) => {
 App.highlight_range = (item) => {
   if (App.last_highlight === item) {
     App.dehighlight(item.mode)
+    App.select_item(item, `nearest_instant`, false)
     return
   }
 
@@ -1057,7 +1058,6 @@ App.highlight_range = (item) => {
 
   // Make sure the item is the last highlight
   App.toggle_highlight(item, true)
-
   let highlights = App.get_highlights(item.mode)
 
   if (highlights.length <= 1) {
