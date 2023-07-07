@@ -55,7 +55,7 @@ App.default_settings = {
   gesture_left_and_right: {value: `filter_domain`, category: `mouse`, version: 1},
   double_click_tab_action: {value: `star_items`, category: `mouse`, version: 1},
   on_middle_click_main_menu: {value: `show_tabs`, category: `mouse`, version: 1},
-  on_middle_click_actions_menu: {value: `copy_item_url`, category: `mouse`, version: 1},
+  on_middle_click_actions_menu: {value: `undo_close_tab`, category: `mouse`, version: 1},
 
   switch_to_tabs: {value: true, category: `more`, version: 1},
   clear_filter: {value: true, category: `more`, version: 1},
