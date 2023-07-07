@@ -7,6 +7,12 @@ App.create_main_menu = (mode) => {
     App.show_main_menu(mode)
   })
 
+  DOM.ev(main_menu, `auxclick`, (e) => {
+    if (e.button === 1) {
+      App.show_first_item_window()
+    }
+  })
+
   DOM.ev(main_menu, `wheel`, (e) => {
     let direction = App.wheel_direction(e)
 
@@ -66,4 +72,8 @@ App.show_main_menu = (mode) => {
 
   let btn = DOM.el(`#${mode}_main_menu`)
   NeedContext.show_on_element(btn, items, true, btn.clientHeight)
+}
+
+App.show_first_item_window = () => {
+  App.show_item_window(App.item_order[0])
 }
