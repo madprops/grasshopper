@@ -56,7 +56,7 @@ App.default_settings = {
   double_click_tab_action: {value: `star_items`, category: `mouse`, version: 1},
   on_middle_click_main_menu: {value: `show_tabs`, category: `mouse`, version: 1},
   on_middle_click_actions_menu: {value: `undo_close_tab`, category: `mouse`, version: 1},
-  on_middle_click_back_button: {value: `light_theme`, category: `mouse`, version: 1},
+  on_middle_click_back_button: {value: `browser_back`, category: `mouse`, version: 1},
 
   switch_to_tabs: {value: true, category: `more`, version: 1},
   clear_filter: {value: true, category: `more`, version: 1},
@@ -372,6 +372,7 @@ App.setup_settings = () => {
     App.settings_make_menu(`double_click_tab_action`, opts.slice(0))
     App.settings_make_menu(`on_middle_click_main_menu`, opts.slice(0))
     App.settings_make_menu(`on_middle_click_actions_menu`, opts.slice(0))
+    App.settings_make_menu(`on_middle_click_back_button`, opts.slice(0))
   }}))
 }
 
