@@ -100,7 +100,7 @@ App.apply_theme = () => {
 
     let bg = DOM.el(`#background`)
 
-    if (App.get_setting(`grayscale_background`)) {
+    if (App.get_setting(`grayscale_background_image`)) {
       bg.classList.add(`grayscale`)
     }
     else {
