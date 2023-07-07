@@ -90,6 +90,13 @@ App.apply_theme = () => {
     else {
       main.classList.add(`hide_scroller`)
     }
+
+    if (App.get_setting(`scrollbars`)) {
+      main.classList.remove(`no_scrollbars`)
+    }
+    else {
+      main.classList.add(`no_scrollbars`)
+    }
   }
   catch (err) {
     App.log(err, `error`)

@@ -8,6 +8,7 @@ App.default_settings = {
   custom_filters: {value: [], category: `basic`, version: 1},
   fetch_favicons: {value: true, category: `basic`, version: 1},
   show_pick_button: {value: false, category: `basic`, version: 1},
+  scrollbars: {value: false, category: `basic`, version: 1},
 
   background_color: {value: `rgb(70, 76, 94)`, category: `theme`, version: 1},
   text_color: {value: `rgb(218, 219, 223)`, category: `theme`, version: 1},

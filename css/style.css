@@ -29,6 +29,14 @@ body, html {
   background-color: var(--background_color);
 }
 
+.no_scrollbars *:not(textarea):not(input) {
+	scrollbar-width: none !important;
+}
+
+.no_scrollbars *:not(textarea):not(input)::-webkit-scrollbar {
+	width: 0 !important;
+}
+
 #background {
   position: fixed;
   top: 0;
