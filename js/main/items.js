@@ -737,15 +737,7 @@ App.setup_item_window = (mode) => {
       playing = App.create_playing_icon()
     }
 
-    let back = DOM.create(`div`, `button icon_button`, `${mode}_back`)
-    back.title = `Go Back (Ctrl + Backspace)`
-    let back_icon = App.create_icon(`back`)
-
-    DOM.ev(back, `click`, (e) => {
-      App.back_action(mode, e)
-    })
-
-    back.append(back_icon)
+    let back = App.create_back_button(mode)
 
     //
 
@@ -1377,32 +1369,6 @@ App.pick_item = (item) => {
 
     if (highlights.length > 0) {
       App.select_item(highlights[0], `nearest`, false)
-    }
-  }
-}
-
-App.back_action = (mode = App.window_mode, e) => {
-  if (App[`${mode}_back_action`]) {
-    App[`${mode}_back_action`](e)
-  }
-  else {
-    if (App.get_highlights(mode).length > 0) {
-      App.dehighlight(mode)
-      return
-    }
-
-    let item = App.get_selected(mode)
-    let visible
-
-    if (item) {
-      visible = App.element_is_visible(item.element)
-    }
-
-    if (visible || !item) {
-      App.clear_or_all(mode)
-    }
-    else {
-      App.select_item(item, `center_smooth`)
     }
   }
 }
