@@ -7,6 +7,7 @@ App.default_settings = {
   quick_star: {value: true, category: `basic`, version: 1},
   custom_filters: {value: [], category: `basic`, version: 1},
   fetch_favicons: {value: true, category: `basic`, version: 1},
+  show_pick_button: {value: false, category: `basic`, version: 1},
 
   background_color: {value: `rgb(70, 76, 94)`, category: `theme`, version: 1},
   text_color: {value: `rgb(218, 219, 223)`, category: `theme`, version: 1},
@@ -64,7 +65,6 @@ App.default_settings = {
   close_duplicate_pins: {value: true, category: `more`, version: 1},
   close_unloaded_tabs: {value: true, category: `more`, version: 1},
   single_new_tab: {value: true, category: `more`, version: 1},
-  show_pick_button: {value: true, category: `more`, version: 1},
   show_alt_button: {value: true, category: `more`, version: 1},
   show_view: {value: true, category: `more`, version: 1},
   autoselect: {value: true, category: `more`, version: 1},
