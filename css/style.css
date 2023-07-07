@@ -815,3 +815,7 @@ select {
 .flipped {
 	transform: rotateY(180deg) !important;
 }
+
+.grayscale {
+  filter: grayscale(100%);
+}
