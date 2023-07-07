@@ -56,6 +56,9 @@ App.commands = [
   {name: `Close Window`, cmd: `close_window`, action: (args) => {
     App.hide_current_window()
   }},
+  {name: `Show Palette`, cmd: `show_palette`, action: (args) => {
+    App.show_palette()
+  }},
 
   {name: App.separator_string},
 
@@ -139,6 +142,9 @@ App.commands = [
   }},
   {name: `Tabs Info`, cmd: `tabs_info`, mode: `tabs`, action: (args) => {
     App.show_tabs_info()
+  }},
+  {name: `Undo Close Tab`, cmd: `undo_close_tab`, action: (args) => {
+    App.undo_close_tab()
   }},
 
   {name: App.separator_string},

@@ -145,9 +145,9 @@ App.palette_action = (el) => {
 
   if (cmd) {
     App.hide_popup(`palette`)
-    App.run_command({cmd: cmd, from: `palette`})
     App.update_command_history(cmd)
     App.fill_palette_container()
+    App.run_command({cmd: cmd, from: `palette`})
   }
 }
 
