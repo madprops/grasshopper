@@ -58,12 +58,6 @@ App.open_star = async (item) => {
   return await App.focus_or_open_item(item)
 }
 
-App.open_star = (item) => {
-  let star = App.get_star_by_id(item.id)
-  App.update_star(star)
-  App.open_item(item, false)
-}
-
 App.get_stars = () => {
   let stars = structuredClone(App.stars)
   stars.sort((a, b) => (a.date_last_visit < b.date_last_visit) ? 1 : -1)
