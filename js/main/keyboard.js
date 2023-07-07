@@ -146,6 +146,7 @@ App.check_items_keyboard = (e) => {
     }
     else if (e.key === `ArrowUp`) {
       if (App.dehighlight(mode)) {
+        e.preventDefault()
         return
       }
 
@@ -155,6 +156,7 @@ App.check_items_keyboard = (e) => {
     }
     else if (e.key === `ArrowDown`) {
       if (App.dehighlight(mode)) {
+        e.preventDefault()
         return
       }
 
