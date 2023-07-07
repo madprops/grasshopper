@@ -55,7 +55,7 @@ App.default_settings = {
   gesture_up_and_down: {value: `show_all`, category: `mouse`, version: 1},
   gesture_left_and_right: {value: `filter_domain`, category: `mouse`, version: 1},
   double_click_tab_action: {value: `star_items`, category: `mouse`, version: 1},
-  on_middle_click_main_menu: {value: `show_tabs`, category: `mouse`, version: 1},
+  on_middle_click_main_menu: {value: `show_main`, category: `mouse`, version: 1},
   on_middle_click_filter_menu: {value: `show_all`, category: `mouse`, version: 1},
   on_middle_click_back_button: {value: `browser_back`, category: `mouse`, version: 1},
   on_middle_click_actions_menu: {value: `undo_close_tab`, category: `mouse`, version: 1},

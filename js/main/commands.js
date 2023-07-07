@@ -47,6 +47,9 @@ App.commands = [
   {name: `Show Stars`, cmd: `show_stars`, action: (args) => {
     App.show_item_window(`stars`)
   }},
+  {name: `Show Main`, cmd: `show_main`, action: (args) => {
+    App.show_main_item_window()
+  }},
   {name: `Show Settings`, cmd: `show_settings`, action: (args) => {
     App.show_settings()
   }},

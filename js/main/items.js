@@ -695,6 +695,10 @@ App.show_item_window = async (mode, cycle = false) => {
   App[`item_window_${mode}_date`] = Date.now()
 }
 
+App.show_main_item_window = () => {
+  App.show_item_window(App.item_order[0])
+}
+
 App.setup_item_window = (mode) => {
   let args = {}
   args.id = mode
