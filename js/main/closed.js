@@ -40,7 +40,6 @@ App.closed_action_alt = (item) => {
 
 App.undo_close_tab = async () => {
   let closed = await App.get_closed()
-  console.log(closed)
 
   if (closed && closed.length > 0) {
     browser.sessions.restore(closed[0].sessionId)
