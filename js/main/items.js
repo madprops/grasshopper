@@ -1114,7 +1114,7 @@ App.toggle_highlight = (item, what) => {
       let highlights = App.get_highlights(item.mode)
 
       if (highlights.length > 0) {
-        App.select_item(highlights.at(-1), `nearest`, false)
+        App.select_item(highlights.at(-1), `none`, false)
       }
     }
   }
