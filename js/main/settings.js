@@ -59,6 +59,7 @@ App.default_settings = {
   on_middle_click_filter_menu: {value: `show_all`, category: `mouse`, version: 1},
   on_middle_click_back_button: {value: `browser_back`, category: `mouse`, version: 1},
   on_middle_click_actions_menu: {value: `undo_close_tab`, category: `mouse`, version: 1},
+  on_middle_click_footer: {value: `copy_item_url`, category: `mouse`, version: 1},
 
   switch_to_tabs: {value: true, category: `more`, version: 1},
   clear_filter: {value: true, category: `more`, version: 1},
@@ -376,6 +377,7 @@ App.setup_settings = () => {
     App.settings_make_menu(`on_middle_click_filter_menu`, opts.slice(0))
     App.settings_make_menu(`on_middle_click_back_button`, opts.slice(0))
     App.settings_make_menu(`on_middle_click_actions_menu`, opts.slice(0))
+    App.settings_make_menu(`on_middle_click_footer`, opts.slice(0))
   }}))
 }
 

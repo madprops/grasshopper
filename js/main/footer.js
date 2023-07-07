@@ -52,6 +52,16 @@ App.create_footer = (mode) => {
     App.goto_bottom(mode)
   })
 
+  DOM.ev(footer, `auxclick`, (e) => {
+    if (e.button === 1) {
+      let cmd = App.get_setting(`on_middle_click_footer`)
+
+      if (cmd !== `none`) {
+        App.run_command({cmd: cmd, from: `footer`})
+      }
+    }
+  })
+
   return footer
 }
 
