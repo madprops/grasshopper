@@ -18,7 +18,8 @@ App.default_settings = {
   muted_icon: {value: `🔇`, category: `icons`, version: 1},
   unloaded_icon: {value: `💤`, category: `icons`, version: 1},
   loading_icon: {value: `⏳`, category: `icons`, version: 1},
-  opened_icon: {value: `🚀`, category: `icons`, version: 1},
+  close_icon: {value: `x`, category: `icons`, version: 1},
+  open_icon: {value: `🚀`, category: `icons`, version: 1},
   pick_icon: {value: `🎯`, category: `icons`, version: 1},
 
   warn_on_close_tabs: {value: `special`, category: `warns`, version: 1},

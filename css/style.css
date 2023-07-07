@@ -250,6 +250,7 @@ svg {
   border: 1px solid currentColor;
   opacity: 0;
   z-index: 99;
+  min-width: 2rem;
 }
 
 .item_button_left {
