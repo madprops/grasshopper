@@ -449,7 +449,7 @@ App.create_item_element = (item) => {
 
   if (App.get_setting(`show_pick_button`)) {
     let pick = DOM.create(`div`, `item_pick item_button item_button_left`)
-    pick.textContent = `Pick`
+    pick.textContent = App.get_setting(`pick_icon`)
     pick.draggable = true
     item.element.append(pick)
   }
