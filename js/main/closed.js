@@ -35,5 +35,5 @@ App.closed_action = (item) => {
 }
 
 App.closed_action_alt = (item) => {
-  App.launch_items(item, true)
+  App.open_items(item, true)
 }

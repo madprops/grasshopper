@@ -59,8 +59,8 @@ App.commands = [
 
   {name: App.separator_string},
 
-  {name: `Launch Items`, cmd: `launch_items`, mode: `items`, action: (args) => {
-    App.launch_items(args.item, true)
+  {name: `Open Items`, cmd: `open_items`, mode: `items`, action: (args) => {
+    App.open_items(args.item, true)
   }},
   {name: `Star Items`, cmd: `star_items`, mode: `items`, action: (args) => {
     App.star_items(args.item, args.from !== `palette`)

@@ -433,10 +433,10 @@ App.create_item_element = (item) => {
     App.check_tab_item(item)
   }
   else {
-    if (App.get_setting(`launched_icon`)) {
-      let launched = DOM.create(`div`, `item_info item_info_launched`)
-      launched.textContent = App.get_setting(`launched_icon`)
-      item.element.append(launched)
+    if (App.get_setting(`opened_icon`)) {
+      let opened = DOM.create(`div`, `item_info item_info_opened`)
+      opened.textContent = App.get_setting(`opened_icon`)
+      item.element.append(opened)
     }
   }
 
@@ -447,12 +447,26 @@ App.create_item_element = (item) => {
     item.element.classList.remove(`highlighted`)
   }
 
-  if (App.get_setting(`show_pick`)) {
-    let pick = DOM.create(`div`, `item_pick`)
-    pick.textContent = `Pick`
-    pick.draggable = true
-    item.element.append(pick)
+  let alt = DOM.create(`div`, `item_alt item_button item_button_right`)
+
+  if (item.mode === `tabs`) {
+    alt.textContent = `Close`
   }
+  else if (item.mode === `stars`) {
+    alt.textContent = `Open`
+  }
+  else if (item.mode === `history`) {
+    alt.textContent = `Open`
+  }
+  else if (item.mode === `bookmarks`) {
+    alt.textContent = `Open`
+  }
+  else if (item.mode === `closed`) {
+    alt.textContent = `Open`
+  }
+
+  alt.draggable = true
+  item.element.append(alt)
 
   item.created = true
   item.element.classList.remove(`empty_item`)
@@ -855,9 +869,9 @@ App.focus_or_open_item = async (item) => {
     }
   }
 
-  App.launch_item(item)
-  App.after_launch()
-  return `launched`
+  App.open_item(item)
+  App.after_open()
+  return `opened`
 }
 
 App.get_item_order = () => {
@@ -1108,73 +1122,73 @@ App.get_highlights = (mode) => {
   return ans
 }
 
-App.launch_item = (item, feedback = true) => {
+App.open_item = (item, feedback = true) => {
   App.open_tab(item.url)
 
   if (feedback){
-    App.show_launched(item)
+    App.show_opened(item)
   }
 }
 
-App.after_launch = (shift = false) => {
+App.after_open = (shift = false) => {
   if (shift) {
     return
   }
 
-  App.check_close_on_launch()
+  App.check_close_on_open()
   App.switch_to_tabs()
 }
 
-App.launch_items = (item, shift) => {
+App.open_items = (item, shift) => {
   let mode = item.mode
   let items = App.get_active_items(mode, item)
 
   if (items.length === 1) {
-    App.launch_item(items[0])
-    App.after_launch(shift)
+    App.open_item(items[0])
+    App.after_open(shift)
   }
   else {
-    App.show_confirm(`Launch these items ${items.length}?`, () => {
+    App.show_confirm(`Open these items ${items.length}?`, () => {
       if (items.length <= 25) {
         for (let item of items) {
-          App.launch_item(item)
+          App.open_item(item)
         }
       }
       else {
         // Avoid freezing the browser
         for (let item of items) {
-          App.launch_item(item, false)
+          App.open_item(item, false)
         }
 
-        App.show_feedback(`${items.length} items launched.`, 1000)
+        App.show_feedback(`${items.length} items opened.`, 1000)
       }
 
       App.dehighlight(mode)
-      App.after_launch(shift)
+      App.after_open(shift)
     }, () => {
       App.dehighlight(mode)
-    }, !App.get_setting(`warn_on_launch`))
+    }, !App.get_setting(`warn_on_open`))
   }
 }
 
-App.show_launched = (item) => {
-  if (!App.get_setting(`launched_icon`)) {
+App.show_opened = (item) => {
+  if (!App.get_setting(`opened_icon`)) {
     return
   }
 
-  let launched = DOM.el(`.item_info_launched`, item.element)
-  launched.classList.add(`item_info_active`)
-  let timeout_old = DOM.dataset(launched, `timeout`)
+  let opened = DOM.el(`.item_info_opened`, item.element)
+  opened.classList.add(`item_info_active`)
+  let timeout_old = DOM.dataset(opened, `timeout`)
 
   if (timeout_old) {
     clearTimeout(timeout_old)
   }
 
   let timeout = setTimeout(() => {
-    launched.classList.remove(`item_info_active`)
-  }, App.launched_delay)
+    opened.classList.remove(`item_info_active`)
+  }, App.opened_delay)
 
-  DOM.dataset(launched, `timeout`, timeout)
+  DOM.dataset(opened, `timeout`, timeout)
 }
 
 App.goto_top = (mode = App.window_mode) => {
@@ -1307,7 +1321,7 @@ App.item_action = async (item) => {
   let highlighted = App.get_highlights(item.mode)
 
   if (highlighted.length > 0) {
-    App.launch_items(item)
+    App.open_items(item)
   }
   else {
     if (item.mode === `stars`) {

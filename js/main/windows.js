@@ -199,8 +199,8 @@ App.check_close_on_focus = () => {
   }
 }
 
-App.check_close_on_launch = () => {
-  if (App.get_setting(`close_on_launch`)) {
+App.check_close_on_open = () => {
+  if (App.get_setting(`close_on_open`)) {
     App.close_window()
   }
 }

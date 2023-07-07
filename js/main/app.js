@@ -41,7 +41,7 @@ App.favicon_size = 64
 App.no_favicons = [`stars`, `history`, `bookmarks`]
 App.new_tab_url = `about:newtab`
 App.activated_delay = 2600
-App.launched_delay = 2600
+App.open_delay = 2600
 App.refocus_delay = 2000
 
 NeedContext.min_width = `4.5rem`

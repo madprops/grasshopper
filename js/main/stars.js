@@ -49,7 +49,7 @@ App.stars_action = (item) => {
 }
 
 App.stars_action_alt = (item) => {
-  App.launch_items(item, true)
+  App.open_items(item, true)
 }
 
 App.open_star = async (item) => {
@@ -58,10 +58,10 @@ App.open_star = async (item) => {
   return await App.focus_or_open_item(item)
 }
 
-App.launch_star = (item) => {
+App.open_star = (item) => {
   let star = App.get_star_by_id(item.id)
   App.update_star(star)
-  App.launch_item(item, false)
+  App.open_item(item, false)
 }
 
 App.get_stars = () => {

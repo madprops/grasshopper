@@ -237,13 +237,12 @@ svg {
   flex-shrink: 0;
 }
 
-.item_pick {
+.item_button {
   display: flex;
   align-items: center;
   justify-content: center;
   background-color: var(--background_color);
   position: absolute;
-  right: 0;
   height: var(--item_height);
   padding-left: 0.38rem;
   padding-right: 0.38rem;
@@ -254,7 +253,15 @@ svg {
   z-index: 99;
 }
 
-.item_pick:hover {
+.item_button_left {
+  left: 0;
+}
+
+.item_button_right {
+  right: 0;
+}
+
+.item_button:hover {
   opacity: 1;
 }
 

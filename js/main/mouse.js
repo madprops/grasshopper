@@ -24,8 +24,8 @@ App.setup_window_mouse = (mode) => {
       return
     }
 
-    if (e.target.classList.contains(`item_pick`)) {
-      App.pick_item(item, false)
+    if (e.target.classList.contains(`item_alt`)) {
+      App.alt_button_action(item, e.shiftKey)
       return
     }
 
@@ -47,7 +47,7 @@ App.setup_window_mouse = (mode) => {
     }
 
     if (mode === `tabs`) {
-      if (e.target.classList.contains(`item_pick`)) {
+      if (e.target.classList.contains(`item_button`)) {
         return
       }
 
@@ -64,12 +64,6 @@ App.setup_window_mouse = (mode) => {
       let item = App.get_cursor_item(mode, e)
 
       if (item) {
-        if (e.target.classList.contains(`item_pick`)) {
-          App.dehighlight(mode)
-          e.preventDefault()
-          return
-        }
-
         if (!item.highlighted) {
           if (App.get_highlights(mode).length > 0) {
             App.pick_item(item)
@@ -122,7 +116,7 @@ App.setup_drag = (mode) => {
       return false
     }
 
-    if (e.target.closest(`.item_pick`)) {
+    if (e.target.closest(`.item_button`)) {
       e.preventDefault()
       return false
     }
@@ -254,4 +248,13 @@ App.get_cursor_item = (mode, e) => {
 
 App.cursor_on_item = (e, mode) => {
   return e.target.closest(`.${mode}_item`)
+}
+
+App.alt_button_action = (item, shift) => {
+  if (item.mode === `tabs`) {
+    App.close_tabs(item)
+  }
+  else {
+    App.open_items(item, true)
+  }
 }

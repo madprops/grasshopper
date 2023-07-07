@@ -18,7 +18,7 @@ App.default_settings = {
   muted_icon: {value: `🔇`, category: `icons`, version: 1},
   unloaded_icon: {value: `💤`, category: `icons`, version: 1},
   loading_icon: {value: `⏳`, category: `icons`, version: 1},
-  launched_icon: {value: `🚀`, category: `icons`, version: 1},
+  opened_icon: {value: `🚀`, category: `icons`, version: 1},
 
   warn_on_close_tabs: {value: `special`, category: `warns`, version: 1},
   warn_on_unload_tabs: {value: `special`, category: `warns`, version: 1},
@@ -27,13 +27,13 @@ App.default_settings = {
   warn_on_close_normal_tabs: {value: true, category: `warns`, version: 1},
   warn_on_star: {value: true, category: `warns`, version: 1},
   warn_on_unstar: {value: true, category: `warns`, version: 1},
-  warn_on_launch: {value: true, category: `warns`, version: 1},
+  warn_on_open: {value: true, category: `warns`, version: 1},
   warn_on_untitle_tabs: {value: true, category: `warns`, version: 1},
 
   width: {value: 70, category: `popup`, version: 1},
   height: {value: 80, category: `popup`, version: 1},
   close_on_focus: {value: true, category: `popup`, version: 1},
-  close_on_launch: {value: true, category: `popup`, version: 1},
+  close_on_open: {value: true, category: `popup`, version: 1},
 
   tabs_index: {value: 0, category: `order`, version: 1},
   stars_index: {value: 1, category: `order`, version: 1},
