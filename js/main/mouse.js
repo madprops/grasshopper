@@ -16,7 +16,7 @@ App.setup_window_mouse = (mode) => {
           App.item_range_highlight = false
         }
         else {
-          App.select_item(item, `nearest`, false)
+          App.select_item(item, `none`, false)
           App.item_range_highlight = true
         }
 
