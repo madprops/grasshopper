@@ -43,5 +43,7 @@ App.new_tab_url = `about:newtab`
 App.activated_delay = 2600
 App.opened_delay = 2600
 App.refocus_delay = 2000
+App.item_range_on = false
+App.item_range_highlight = false
 
 NeedContext.min_width = `4.5rem`

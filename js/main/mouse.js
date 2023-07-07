@@ -12,8 +12,12 @@ App.setup_window_mouse = (mode) => {
 
     if (item) {
       if (e.target.classList.contains(`item_pick`)) {
-        if (!item.highlighted) {
+        if (item.highlighted) {
+          App.item_range_highlight = false
+        }
+        else {
           App.select_item(item, `nearest`, false)
+          App.item_range_highlight = true
         }
 
         App.toggle_highlight(item)
@@ -120,7 +124,7 @@ App.setup_window_mouse = (mode) => {
       App.update_footer_info(item)
 
       if (App.item_range_on) {
-        App.toggle_highlight(item)
+        App.toggle_highlight(item, App.item_range_highlight)
       }
     }
   })
