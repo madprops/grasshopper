@@ -412,6 +412,12 @@ App.create_filter_modes = (mode) => {
     App.show_filter_modes(mode)
   })
 
+  DOM.ev(filter_modes, `auxclick`, (e) => {
+    if (e.button === 1) {
+      App.first_filter_mode(mode)
+    }
+  })
+
   DOM.ev(filter_modes, `wheel`, (e) => {
     let direction = App.wheel_direction(e)
 
@@ -501,4 +507,8 @@ App.get_filter_what = (mode) => {
   })
 
   return items
+}
+
+App.first_filter_mode = (mode) => {
+  App.set_filter_mode(mode, App.filter_modes(mode)[0])
 }

@@ -450,6 +450,7 @@ App.create_item_element = (item) => {
   if (App.get_setting(`show_pick_button`)) {
     let pick = DOM.create(`div`, `item_pick item_button item_button_left`)
     pick.textContent = App.get_setting(`pick_icon`)
+    pick.title = `Pick`
     pick.draggable = true
     item.element.append(pick)
   }
@@ -1371,7 +1372,7 @@ App.on_item_window = (mode = App.window_mode) => {
 App.show_all = (mode = App.window_mode) => {
   if (App.is_filtered(mode)) {
     App.clear_filter(mode)
-    App.set_filter_mode(mode, App.filter_modes(mode)[0])
+    App.first_filter_mode(mode)
   }
 }
 

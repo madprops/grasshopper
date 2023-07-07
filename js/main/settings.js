@@ -54,6 +54,7 @@ App.default_settings = {
   gesture_up_and_down: {value: `show_all`, category: `mouse`, version: 1},
   gesture_left_and_right: {value: `filter_domain`, category: `mouse`, version: 1},
   double_click_tab_action: {value: `star_items`, category: `mouse`, version: 1},
+  on_middle_click_main_menu: {value: `show_tabs`, category: `mouse`, version: 1},
 
   switch_to_tabs: {value: true, category: `more`, version: 1},
   clear_filter: {value: true, category: `more`, version: 1},
@@ -360,13 +361,14 @@ App.setup_settings = () => {
       App.refresh_gestures()
     })
 
-    let opts = App.get_gesture_options()
+    let opts = App.settings_commands()
 
     for (let gesture of App.gestures) {
       App.settings_make_menu(`gesture_${gesture}`, opts.slice(0))
     }
 
     App.settings_make_menu(`double_click_tab_action`, opts.slice(0))
+    App.settings_make_menu(`on_middle_click_main_menu`, opts.slice(0))
   }}))
 }
 
@@ -787,7 +789,7 @@ App.on_settings = () => {
   return App.window_mode.startsWith(`settings_`)
 }
 
-App.get_gesture_options = () => {
+App.settings_commands = () => {
   let items = [
     [`Do Nothing`, `none`],
     [App.separator_string],
