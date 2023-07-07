@@ -459,9 +459,11 @@ App.create_item_element = (item) => {
 
     if (item.mode === `tabs`) {
       alt.textContent = App.get_setting(`close_icon`)
+      alt.title = `Close`
     }
     else {
       alt.textContent = App.get_setting(`open_icon`)
+      alt.title = `Open`
     }
 
     alt.draggable = true
