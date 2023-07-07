@@ -7,8 +7,28 @@ App.setup_mouse = () => {
 App.setup_window_mouse = (mode) => {
   let container = DOM.el(`#${mode}_container`)
 
+  DOM.ev(container, `mousedown`, (e) => {
+    let item = App.get_cursor_item(mode, e)
+
+    if (item) {
+      if (e.target.classList.contains(`item_pick`)) {
+        App.select_item(item, `nearest`, false)
+        App.toggle_highlight(item)
+        App.item_range_on = true
+      }
+    }
+  })
+
+  DOM.ev(container, `mouseup`, (e) => {
+    App.item_range_on = false
+  })
+
   DOM.ev(container, `click`, (e) => {
     if (!App.cursor_on_item(e, mode)) {
+      return
+    }
+
+    if (e.target.classList.contains(`item_pick`)) {
       return
     }
 
@@ -26,11 +46,6 @@ App.setup_window_mouse = (mode) => {
 
     if (e.target.classList.contains(`item_alt`)) {
       App.alt_button_action(item, e.shiftKey)
-      return
-    }
-
-    if (e.target.classList.contains(`item_pick`)) {
-      App.pick_item(item, false)
       return
     }
 
@@ -100,6 +115,10 @@ App.setup_window_mouse = (mode) => {
     if (App.cursor_on_item(e, mode)) {
       let item = App.get_cursor_item(mode, e)
       App.update_footer_info(item)
+
+      if (App.item_range_on) {
+        App.toggle_highlight(item)
+      }
     }
   })
 
