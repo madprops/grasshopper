@@ -1066,17 +1066,36 @@ App.highlight_range = (item) => {
   }
 }
 
-App.dehighlight = (mode = App.window_mode) => {
+App.dehighlight = (mode = App.window_mode, direction = `none`) => {
   let some = false
+  let first, last
 
   for (let item of App.get_items(mode)) {
     if (item.highlighted) {
       App.toggle_highlight(item)
       some = true
+
+      if (!first) {
+        first = item
+      }
+
+      last = item
     }
   }
 
   App.last_highlight = undefined
+
+  if (direction === `up`) {
+    if (first) {
+      App.select_item(first, `nearest_instant`, false)
+    }
+  }
+  else if (direction === `down`) {
+    if (last) {
+      App.select_item(last, `nearest_instant`, false)
+    }
+  }
+
   return some
 }
 
