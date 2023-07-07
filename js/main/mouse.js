@@ -12,7 +12,10 @@ App.setup_window_mouse = (mode) => {
 
     if (item) {
       if (e.target.classList.contains(`item_pick`)) {
-        App.select_item(item, `nearest`, false)
+        if (!item.highlighted) {
+          App.select_item(item, `nearest`, false)
+        }
+
         App.toggle_highlight(item)
         App.item_range_on = true
       }
