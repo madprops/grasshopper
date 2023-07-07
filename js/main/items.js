@@ -447,22 +447,26 @@ App.create_item_element = (item) => {
     item.element.classList.remove(`highlighted`)
   }
 
-  let alt = DOM.create(`div`, `item_alt item_button item_button_right`)
-
-  if (item.mode === `tabs`) {
-    alt.textContent = `Close`
-  }
-  else {
-    alt.textContent = `Open`
+  if (App.get_setting(`show_pick_button`)) {
+    let pick = DOM.create(`div`, `item_pick item_button item_button_left`)
+    pick.textContent = `Pick`
+    pick.draggable = true
+    item.element.append(pick)
   }
 
-  alt.draggable = true
-  item.element.append(alt)
+  if (App.get_setting(`show_alt_button`)) {
+    let alt = DOM.create(`div`, `item_alt item_button item_button_right`)
 
-  let pick = DOM.create(`div`, `item_pick item_button item_button_left`)
-  pick.textContent = `Pick`
-  pick.draggable = true
-  item.element.append(pick)
+    if (item.mode === `tabs`) {
+      alt.textContent = `Close`
+    }
+    else {
+      alt.textContent = `Open`
+    }
+
+    alt.draggable = true
+    item.element.append(alt)
+  }
 
   item.created = true
   item.element.classList.remove(`empty_item`)

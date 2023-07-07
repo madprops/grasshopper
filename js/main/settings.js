@@ -62,7 +62,8 @@ App.default_settings = {
   close_duplicate_pins: {value: true, category: `more`, version: 1},
   close_unloaded_tabs: {value: true, category: `more`, version: 1},
   single_new_tab: {value: true, category: `more`, version: 1},
-  show_pick: {value: true, category: `more`, version: 1},
+  show_pick_button: {value: true, category: `more`, version: 1},
+  show_alt_button: {value: true, category: `more`, version: 1},
   show_view: {value: true, category: `more`, version: 1},
   autoselect: {value: true, category: `more`, version: 1},
 }
