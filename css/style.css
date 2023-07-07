@@ -252,7 +252,6 @@ svg {
   opacity: 0;
   z-index: 99;
   min-width: 2rem;
-  border-radius: var(--border_radius);
 }
 
 .item_button_left {
