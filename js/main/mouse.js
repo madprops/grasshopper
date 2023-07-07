@@ -69,6 +69,10 @@ App.setup_window_mouse = (mode) => {
   })
 
   DOM.ev(container, `dblclick`, (e) => {
+    if (e.shiftKey || e.ctrlKey) {
+      return
+    }
+
     if (!App.cursor_on_item(e, mode)) {
       return
     }
