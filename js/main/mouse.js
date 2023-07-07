@@ -29,6 +29,11 @@ App.setup_window_mouse = (mode) => {
       return
     }
 
+    if (e.target.classList.contains(`item_pick`)) {
+      App.pick_item(item, false)
+      return
+    }
+
     if (e.ctrlKey) {
       App.pick_item(item)
       return
@@ -46,11 +51,11 @@ App.setup_window_mouse = (mode) => {
       return
     }
 
-    if (mode === `tabs`) {
-      if (e.target.classList.contains(`item_button`)) {
-        return
-      }
+    if (e.target.classList.contains(`item_button`)) {
+      return
+    }
 
+    if (mode === `tabs`) {
       let item = App.get_cursor_item(mode, e)
 
       setTimeout(() => {

@@ -452,21 +452,17 @@ App.create_item_element = (item) => {
   if (item.mode === `tabs`) {
     alt.textContent = `Close`
   }
-  else if (item.mode === `stars`) {
-    alt.textContent = `Open`
-  }
-  else if (item.mode === `history`) {
-    alt.textContent = `Open`
-  }
-  else if (item.mode === `bookmarks`) {
-    alt.textContent = `Open`
-  }
-  else if (item.mode === `closed`) {
+  else {
     alt.textContent = `Open`
   }
 
   alt.draggable = true
   item.element.append(alt)
+
+  let pick = DOM.create(`div`, `item_pick item_button item_button_left`)
+  pick.textContent = `Pick`
+  pick.draggable = true
+  item.element.append(pick)
 
   item.created = true
   item.element.classList.remove(`empty_item`)

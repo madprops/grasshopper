@@ -13,6 +13,10 @@ App.setup_gestures = () => {
       if (App.cursor_on_item(e, App.window_mode)) {
         let item = App.get_cursor_item(App.window_mode, e)
 
+        if (e.target.classList.contains(`item_pick`)) {
+          return
+        }
+
         if (e.target.classList.contains(`item_alt`)) {
           App.alt_button_action(item, e.shiftKey)
           return
