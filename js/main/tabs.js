@@ -1080,14 +1080,6 @@ App.get_close_tabs_items = () => {
   return items
 }
 
-App.double_click_tab = (item) => {
-  let action = App.get_setting(`double_click_tab`)
-
-  if (action !== `none`) {
-    App.run_command({cmd: action, item: item, from: `double_click`})
-  }
-}
-
 App.create_playing_icon = () => {
   playing = DOM.create(`div`, `button icon_button hidden`, `tabs_playing`)
   playing.title = `Go To Playing Tab (Ctrl + Dot)`
