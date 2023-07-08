@@ -413,7 +413,7 @@ App.create_filter_menu = (mode) => {
 
   DOM.ev(filter_menu, `auxclick`, (e) => {
     if (e.button === 1) {
-      let cmd = App.get_setting(`on_middle_click_filter_menu`)
+      let cmd = App.get_setting(`middle_click_filter_menu`)
 
       if (cmd !== `none`) {
         App.run_command({cmd: cmd, from: `filter_menu`})

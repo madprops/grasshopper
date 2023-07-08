@@ -14,11 +14,32 @@ App.setup_gestures = () => {
         let item = App.get_cursor_item(App.window_mode, e)
 
         if (e.target.classList.contains(`item_pick`)) {
+          let cmd = App.get_setting(`middle_click_pick_button`)
+
+          if (cmd !== `none`) {
+            App.run_command({cmd: cmd, from: `pick_button`, item: item})
+          }
+
           return
         }
 
-        if (e.target.classList.contains(`item_alt`)) {
-          App.alt_button_action(item, e.shiftKey)
+        if (e.target.classList.contains(`item_alt_close`)) {
+          let cmd = App.get_setting(`middle_click_close_button`)
+
+          if (cmd !== `none`) {
+            App.run_command({cmd: cmd, from: `close_button`, item: item})
+          }
+
+          return
+        }
+
+        if (e.target.classList.contains(`item_alt_open`)) {
+          let cmd = App.get_setting(`middle_click_open_button`)
+
+          if (cmd !== `none`) {
+            App.run_command({cmd: cmd, from: `open_button`, item: item})
+          }
+
           return
         }
 

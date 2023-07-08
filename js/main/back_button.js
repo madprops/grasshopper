@@ -9,7 +9,7 @@ App.create_back_button = (mode) => {
 
   DOM.ev(back, `auxclick`, (e) => {
     if (e.button === 1) {
-      let cmd = App.get_setting(`on_middle_click_back_button`)
+      let cmd = App.get_setting(`middle_click_back_button`)
 
       if (cmd !== `none`) {
         App.run_command({cmd: cmd, from: `back_button`})

@@ -17,7 +17,6 @@ App.init = async () => {
   App.setup_settings()
   App.setup_about()
   App.setup_keyboard()
-  App.setup_mouse()
   App.setup_popups()
   App.setup_media()
   App.setup_window()
