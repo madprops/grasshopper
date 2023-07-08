@@ -272,15 +272,11 @@ App.add_settings_filter = (category) => {
   filter.autocomplete = `off`
   filter.spellcheck = false
   filter.placeholder = `Filter`
-
-  DOM.ev(filter, `input`, (e) => {
-    App.do_settings_filter(category)
-  })
-
   container.prepend(filter)
 }
 
-App.do_settings_filter = (category) => {
+App.do_settings_filter = () => {
+  let category = App.get_setting_category()
   let value = DOM.el(`#settings_${category}_filter`).value.toLowerCase().trim()
   let container = DOM.el(`#settings_${category}_container`)
   let items = DOM.els(`.settings_column`, container)
@@ -298,12 +294,22 @@ App.do_settings_filter = (category) => {
   }
 }
 
+App.clear_settings_filter = () => {
+  let category = App.get_setting_category()
+  DOM.el(`#settings_${category}_filter`).value = ``
+  App.do_settings_filter()
+}
+
 App.setup_settings = () => {
   App.settings_categories = [`basic`, `theme`, `icons`, `mouse`, `warns`, `more`]
 
   let common = {
     persistent: false,
     colored_top: true,
+    after_show: () => {
+      let category = App.get_setting_category()
+      DOM.el(`#settings_${category}_filter`).focus()
+    },
     after_hide: () => {
       App.apply_theme()
     },
@@ -601,7 +607,7 @@ App.show_next_settings = () => {
 }
 
 App.settings_index = () => {
-  return App.settings_categories.indexOf(App.window_mode.replace(`settings_`, ``))
+  return App.settings_categories.indexOf(App.get_setting_category())
 }
 
 App.show_settings_menu = (category, btn) => {
@@ -816,9 +822,13 @@ App.tab_warn_opts = [
   [`Never`, `never`],
 ]
 
+App.get_setting_category = () => {
+  return App.window_mode.replace(`settings_`, ``)
+}
+
 App.settings_menu_items = () => {
   let items = []
-  let current = App.window_mode.replace(`settings_`, ``)
+  let current = App.get_setting_category()
 
   for (let c of App.settings_categories) {
     let selected = c === current

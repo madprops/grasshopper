@@ -177,8 +177,16 @@ App.element_is_visible = (el) => {
   return top_visible && bottom_visible
 }
 
-App.focused_with_class = (cls) => {
-  return document.activeElement.classList.contains(cls)
+App.text_with_value_focused = () => {
+  let el = document.activeElement
+
+  if (el.classList.contains(`text`)) {
+    if (el.value.trim()) {
+      return true
+    }
+  }
+
+  return false
 }
 
 App.reload_extension = () => {

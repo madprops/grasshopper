@@ -274,15 +274,26 @@ App.setup_keyboard = () => {
     }
 
     if (App.on_settings()) {
+      if (document.activeElement.classList.contains(`settings_filter`)) {
+        if (e.key === `Escape`) {
+          App.clear_settings_filter()
+          e.preventDefault()
+          return
+        }
+        else {
+          App.do_settings_filter()
+        }
+      }
+
       if (e.key === `ArrowLeft`) {
-        if (!App.focused_with_class(`text`)) {
+        if (!App.text_with_value_focused()) {
           App.show_prev_settings()
           e.preventDefault()
           return
         }
       }
       else if (e.key === `ArrowRight`) {
-        if (!App.focused_with_class(`text`)) {
+        if (!App.text_with_value_focused()) {
           App.show_next_settings()
           e.preventDefault()
           return
