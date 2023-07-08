@@ -306,7 +306,7 @@ App.do_filter_settings = () => {
 App.clear_settings_filter = () => {
   let category = App.get_setting_category()
   DOM.el(`#settings_${category}_filter`).value = ``
-  App.do_filter_settings()
+  App.filter_settings()
 }
 
 App.settings_filter_focused = () => {
