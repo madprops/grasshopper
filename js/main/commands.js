@@ -170,9 +170,6 @@ App.commands = [
   {name: `Light Theme`, cmd: `light_theme`, action: (args) => {
     App.change_theme(`light`)
   }},
-  {name: `Random Theme`, cmd: `random_theme`, action: (args) => {
-    App.change_theme(`random`)
-  }},
   {name: `Detect Theme`, cmd: `detect_theme`, action: (args) => {
     App.detect_theme()
   }},
