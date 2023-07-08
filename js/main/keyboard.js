@@ -135,7 +135,12 @@ App.check_items_keyboard = (e) => {
         App.show_all()
       }
       else {
-        App.show_main_item_window()
+        if ((App.item_order[0] === `tabs`) && (App.window_mode === `tabs`)) {
+          App.focus_current_tab()
+        }
+        else {
+          App.show_main_item_window()
+        }
       }
     }
     else if (e.key === `Enter`) {
