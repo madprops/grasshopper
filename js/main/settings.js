@@ -52,7 +52,7 @@ App.default_settings = {
   middle_click_actions_menu: {value: `undo_close_tab`, category: `mouse`, version: 1},
   middle_click_footer: {value: `copy_item_url`, category: `mouse`, version: 1},
   middle_click_pick_button: {value: `filter_domain`, category: `mouse`, version: 1},
-  middle_click_close_button: {value: `none`, category: `mouse`, version: 1},
+  middle_click_close_button: {value: `unload_tabs`, category: `mouse`, version: 1},
   middle_click_open_button: {value: `open_items`, category: `mouse`, version: 1},
 
   switch_to_tabs: {value: true, category: `more`, version: 1},
