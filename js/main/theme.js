@@ -113,15 +113,6 @@ App.change_color = (name, color) => {
   App.apply_theme()
 }
 
-App.color_diff = (what) => {
-  if (what === `dark`) {
-    return 0.8
-  }
-  else if (what === `light`) {
-    return 0.5
-  }
-}
-
 App.set_background_image = (url) => {
   App.set_setting(`background_image`, url)
   App.apply_theme()
