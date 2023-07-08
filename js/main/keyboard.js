@@ -208,18 +208,21 @@ App.setup_keyboard = () => {
     if (NeedContext.open) {
       if (e.shiftKey && e.key === `Enter`) {
         NeedContext.hide()
+        e.preventDefault()
       }
       else if (e.ctrlKey && e.key === `ArrowLeft`) {
         NeedContext.hide()
+        e.preventDefault()
       }
       else if (e.ctrlKey && e.key === `ArrowDown`) {
         NeedContext.hide()
+        e.preventDefault()
       }
       else if (e.ctrlKey && e.key === `ArrowRight`) {
         NeedContext.hide()
+        e.preventDefault()
       }
 
-      e.preventDefault()
       return
     }
 

@@ -29,25 +29,23 @@ NeedContext.do_filter = () => {
   let value = NeedContext.filter.value.toLowerCase().trim()
   let selected = false
 
-  if (value) {
-    for (let [i, item] of NeedContext.items.entries()) {
-      if (item.separator) {
-        item.element.classList.add(`needcontext-hidden`)
-        continue
+  for (let [i, item] of NeedContext.items.entries()) {
+    if (item.separator) {
+      item.element.classList.add(`needcontext-hidden`)
+      continue
+    }
+
+    if (item.text.toLowerCase().includes(value)) {
+      item.element.classList.remove(`needcontext-hidden`)
+
+      if (!selected) {
+        NeedContext.select_item(i)
       }
 
-      if (item.text.toLowerCase().includes(value)) {
-        item.element.classList.remove(`needcontext-hidden`)
-
-        if (!selected) {
-          NeedContext.select_item(i)
-        }
-
-        selected = true
-      }
-      else {
-        item.element.classList.add(`needcontext-hidden`)
-      }
+      selected = true
+    }
+    else {
+      item.element.classList.add(`needcontext-hidden`)
     }
   }
 
@@ -148,6 +146,7 @@ NeedContext.show = (x, y, items) => {
   c.style.top = `${y}px`
 
   NeedContext.filter.value = ``
+  NeedContext.filter.focus()
   let container = document.querySelector(`#needcontext-container`)
   container.style.minWidth = NeedContext.min_width
   container.style.minHeight = NeedContext.min_height
@@ -404,12 +403,17 @@ NeedContext.init = () => {
 
     if (e.key === `Escape`) {
       NeedContext.hide()
+      e.preventDefault()
     }
     else if (e.key === `Enter`) {
       NeedContext.select_action(e)
+      e.preventDefault()
     }
-
-    e.preventDefault()
+    else if (e.key === `Backspace`) {
+      NeedContext.filter.value = ``
+      NeedContext.do_filter()
+      e.preventDefault()
+    }
   })
 
   NeedContext.set_defaults()
