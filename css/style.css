@@ -389,11 +389,6 @@ svg {
   text-align: center;
 }
 
-.text_smaller {
-  width: 5rem;
-  max-width: 5rem;
-}
-
 .settings_title {
   text-align: center;
   padding-left: 0.25rem;
@@ -419,6 +414,16 @@ svg {
 .settings_checkbox {
   width: 1.07rem;
   height: 1.07rem;
+}
+
+.settings_filter {
+  text-align: center;
+  width: 11rem;
+}
+
+.text_smaller {
+  width: 5rem;
+  max-width: 5rem;
 }
 
 .gap_1 {

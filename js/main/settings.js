@@ -265,6 +265,39 @@ App.settings_make_menu = (setting, opts, action = () => {}) => {
   prev.after(el)
 }
 
+App.add_settings_filter = (category) => {
+  let container = DOM.el(`#settings_${category}_container`)
+  let filter = DOM.create(`input`, `settings_filter text`, `settings_${category}_filter`)
+  filter.type = `text`
+  filter.autocomplete = `off`
+  filter.spellcheck = false
+  filter.placeholder = `Filter`
+
+  DOM.ev(filter, `input`, (e) => {
+    App.do_settings_filter(category)
+  })
+
+  container.prepend(filter)
+}
+
+App.do_settings_filter = (category) => {
+  let value = DOM.el(`#settings_${category}_filter`).value.toLowerCase().trim()
+  let container = DOM.el(`#settings_${category}_container`)
+  let items = DOM.els(`.settings_column`, container)
+
+  for (let item of items) {
+    let label = DOM.el(`.settings_label`, item)
+    let text = label.textContent.toLowerCase().trim()
+
+    if (text.includes(value)) {
+      item.classList.remove(`hidden`)
+    }
+    else {
+      item.classList.add(`hidden`)
+    }
+  }
+}
+
 App.setup_settings = () => {
   App.settings_categories = [`basic`, `theme`, `icons`, `mouse`, `warns`, `more`]
 
@@ -281,6 +314,7 @@ App.setup_settings = () => {
     App.settings_setup_checkboxes(container)
     App.settings_setup_text(container)
     App.add_settings_switchers(category)
+    App.add_settings_filter(category)
   }
 
   App.create_window(Object.assign({}, common, {id: `settings_basic`, setup: () => {
