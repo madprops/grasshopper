@@ -16,7 +16,6 @@ App.default_settings = {
   background_color: {value: `rgb(36, 36, 42)`, category: `theme`, version: 1},
   text_color: {value: `rgb(222, 222, 222)`, category: `theme`, version: 1},
   background_image: {value: ``, category: `theme`, version: 1},
-  grayscale_background_image: {value: false, category: `theme`, version: 1},
 
   pin_icon: {value: `+`, category: `icons`, version: 1},
   normal_icon: {value: ``, category: `icons`, version: 1},
