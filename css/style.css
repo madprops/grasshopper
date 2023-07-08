@@ -272,10 +272,6 @@ svg {
   display: flex;
 }
 
-.item_info_active {
-  display: flex;
-}
-
 .item_top_container {
   margin-left: var(--item_margin);
   margin-right: var(--item_margin);
