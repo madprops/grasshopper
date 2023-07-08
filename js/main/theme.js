@@ -180,17 +180,8 @@ App.set_background_image = (url) => {
 }
 
 App.change_theme = (what) => {
-  let background_color, text_color
-
-  if (what === `random`) {
-    let theme = ThemeList.random_theme()
-    background_color = App.colorlib.hex_to_rgb(theme.background)
-    text_color = App.colorlib.hex_to_rgb(theme.color)
-  }
-  else {
-    background_color = App[`${what}_theme`].background_color
-    text_color = App[`${what}_theme`].text_color
-  }
+  let background_color = App[`${what}_theme`].background_color
+  let text_color = App[`${what}_theme`].text_color
 
   App.set_setting(`background_color`, background_color)
   App.set_setting(`text_color`, text_color)

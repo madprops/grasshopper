@@ -462,10 +462,6 @@ App.start_theme_settings = () => {
     App.change_theme(`light`)
   })
 
-  DOM.ev(DOM.el(`#settings_random_theme`), `click`, () => {
-    App.change_theme(`random`)
-  })
-
   DOM.ev(DOM.el(`#settings_detect_theme`), `click`, () => {
     App.detect_theme()
   })
