@@ -403,21 +403,12 @@ App.create_item_element = (item) => {
     pin_icon.textContent = App.get_setting(`pin_icon`)
     pin_icon.title = `This tab is pinned`
     item.element.append(pin_icon)
-
     let normal_icon = DOM.create(`div`, `item_info item_info_normal`)
     normal_icon.textContent = App.get_setting(`normal_icon`)
     normal_icon.title = `This tab is normal`
     item.element.append(normal_icon)
-
     item.element.draggable = true
     App.check_tab_item(item)
-  }
-  else {
-    if (App.get_setting(`open_icon`)) {
-      let opened = DOM.create(`div`, `item_info item_info_opened`)
-      opened.textContent = App.get_setting(`open_icon`)
-      item.element.append(opened)
-    }
   }
 
   if (item.highlighted) {
@@ -1100,12 +1091,8 @@ App.get_highlights = (mode) => {
   return ans
 }
 
-App.open_item = (item, feedback = true) => {
+App.open_item = (item) => {
   App.open_tab(item.url)
-
-  if (feedback){
-    App.show_opened(item)
-  }
 }
 
 App.after_open = (shift = false) => {
@@ -1135,7 +1122,7 @@ App.open_items = (item, shift) => {
       else {
         // Avoid freezing the browser
         for (let item of items) {
-          App.open_item(item, false)
+          App.open_item(item)
         }
 
         App.show_feedback(`${items.length} items opened.`, 1000)
@@ -1147,26 +1134,6 @@ App.open_items = (item, shift) => {
       App.dehighlight(mode)
     }, !App.get_setting(`warn_on_open`))
   }
-}
-
-App.show_opened = (item) => {
-  if (!App.get_setting(`open_icon`)) {
-    return
-  }
-
-  let opened = DOM.el(`.item_info_opened`, item.element)
-  opened.classList.add(`item_info_active`)
-  let timeout_old = DOM.dataset(opened, `timeout`)
-
-  if (timeout_old) {
-    clearTimeout(timeout_old)
-  }
-
-  let timeout = setTimeout(() => {
-    opened.classList.remove(`item_info_active`)
-  }, App.opened_delay)
-
-  DOM.dataset(opened, `timeout`, timeout)
 }
 
 App.goto_top = (mode = App.window_mode) => {
