@@ -126,10 +126,6 @@ App.show_window = (mode) => {
   }
   else {
     App.windows[mode].show()
-
-    if (mode.startsWith(`settings_`)) {
-      App.last_settings_window = mode
-    }
   }
 }
 
