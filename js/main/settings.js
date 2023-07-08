@@ -5,14 +5,10 @@ App.default_settings = {
   font_size: {value: 16, category: `basic`, version: 1},
   lock_drag: {value: false, category: `basic`, version: 1},
   quick_star: {value: true, category: `basic`, version: 1},
-  custom_filters: {value: [], category: `basic`, version: 1},
   fetch_favicons: {value: true, category: `basic`, version: 1},
   show_pick_button: {value: false, category: `basic`, version: 1},
   scrollbars: {value: false, category: `basic`, version: 1},
-  tabs_index: {value: 0, category: `basic`, version: 1},
-  stars_index: {value: 1, category: `basic`, version: 1},
-  history_index: {value: 2, category: `basic`, version: 1},
-  bookmarks_index: {value: 3, category: `basic`, version: 1},
+
   closed_index: {value: 4, category: `basic`, version: 1},
   width: {value: 70, category: `basic`, version: 1},
   height: {value: 80, category: `basic`, version: 1},
@@ -64,7 +60,6 @@ App.default_settings = {
   show_tooltips: {value: true, category: `more`, version: 1},
   show_icons: {value: true, category: `more`, version: 1},
   show_pinline: {value: true, category: `more`, version: 1},
-  highlight_effect: {value: `rotate`, category: `more`, version: 1},
   show_scroller: {value: true, category: `more`, version: 1},
   show_footer: {value: true, category: `more`, version: 1},
   close_duplicate_pins: {value: true, category: `more`, version: 1},
@@ -75,6 +70,11 @@ App.default_settings = {
   autoselect: {value: true, category: `more`, version: 1},
   close_on_focus: {value: true, category: `more`, version: 1},
   close_on_open: {value: true, category: `more`, version: 1},
+  tabs_index: {value: 0, category: `more`, version: 1},
+  stars_index: {value: 1, category: `more`, version: 1},
+  history_index: {value: 2, category: `more`, version: 1},
+  bookmarks_index: {value: 3, category: `more`, version: 1},
+  custom_filters: {value: [], category: `more`, version: 1},
 }
 
 App.make_item_order = () => {
@@ -305,8 +305,6 @@ App.setup_settings = () => {
       [`Bigger`, `bigger`],
     ])
 
-    App.make_item_order()
-
     App.settings_make_menu(`width`, App.get_size_options(), () => {
       App.apply_theme()
     })
@@ -333,16 +331,7 @@ App.setup_settings = () => {
 
   App.create_window(Object.assign({}, common, {id: `settings_more`, setup: () => {
     prepare(`more`)
-
-    App.settings_make_menu(`highlight_effect`, [
-      [`Rotate`, `rotate`],
-      [`Invert`, `invert`],
-      [`Bright`, `bright`],
-      [`Blink`, `blink`],
-      [`Border`, `border`],
-      [`Hue`, `hue`],
-      [`None`, `none`],
-    ])
+    App.make_item_order()
   }}))
 
   App.create_window(Object.assign({}, common, {id: `settings_mouse`, setup: () => {

@@ -322,28 +322,8 @@ svg {
   background-color: var(--alt_color_1);
 }
 
-.highlight_rotate .highlighted .item_icon {
-  animation: rotate 1s linear infinite;
-}
-
-.highlight_invert .highlighted .item_icon {
+.highlighted .item_icon {
   filter: invert(100%);
-}
-
-.highlight_bright .highlighted .item_icon {
-  filter: brightness(1.88);
-}
-
-.highlight_hue .highlighted .item_icon {
-  filter: hue-rotate(90deg);
-}
-
-.highlight_blink .highlighted .item_icon {
-  animation: blink 600ms infinite;
-}
-
-.highlight_border .highlighted .item_icon {
-  border: 1px solid currentColor;
 }
 
 .selected {

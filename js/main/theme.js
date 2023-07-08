@@ -57,15 +57,6 @@ App.apply_theme = () => {
     }
 
     let main = DOM.el(`#main`)
-    let classes = main.classList.value.split(` `)
-
-    for (let cls of classes) {
-      if (cls.startsWith(`highlight_`)) {
-        main.classList.remove(cls)
-      }
-    }
-
-    main.classList.add(`highlight_${App.get_setting(`highlight_effect`)}`)
 
     if (App.get_setting(`show_footer`)) {
       main.classList.remove(`hide_footer`)
