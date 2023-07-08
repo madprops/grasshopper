@@ -274,10 +274,6 @@ svg {
   opacity: 1;
 }
 
-.highlighted .item_button {
-  filter: hue-rotate(90deg);
-}
-
 .has_pin_icon .pin_item .item_info_pin {
   display: flex;
 }
@@ -324,6 +320,10 @@ svg {
 
 .highlighted .item_icon {
   filter: invert(100%);
+}
+
+.highlighted .item_button {
+  filter: hue-rotate(90deg);
 }
 
 .selected {
