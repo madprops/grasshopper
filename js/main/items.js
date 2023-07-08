@@ -704,18 +704,9 @@ App.setup_item_window = (mode) => {
     win.append(scroller)
     win.append(container)
     App.setup_window_mouse(mode)
-
-    //
-
     let main_menu = App.create_main_menu(mode)
-
-    //
-
     let filter = App.create_filter(mode)
     let filter_modes = App.create_filter_menu(mode)
-
-    //
-
     let playing
 
     if (mode === `tabs`) {
@@ -723,19 +714,10 @@ App.setup_item_window = (mode) => {
     }
 
     let back = App.create_back_button(mode)
-
-    //
-
     let actions_menu = App.create_actions_menu(mode)
-
-    //
-
     App.setup_drag(mode, container)
-
-    // Append the top components
     let left_top = DOM.create(`div`, `item_top_left`)
     let right_top = DOM.create(`div`, `item_top_right`)
-
     left_top.append(main_menu)
     left_top.append(filter_modes)
     left_top.append(filter)
