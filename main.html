@@ -176,9 +176,24 @@
           <div id="settings_item_height" class="settings_menu button" data-setting="item_height"></div>
         </div>
 
-        <div class="settings_column" title="These appear in the filters menu. One per line">
+        <div class="settings_column" title="Width of the popup">
+          <div class="settings_label">Popup Width</div>
+          <div id="settings_width" class="settings_menu button" data-setting="width"></div>
+        </div>
+
+        <div class="settings_column" title="Height of the popup">
+          <div class="settings_label">Popup Height</div>
+          <div id="settings_height" class="settings_menu button" data-setting="height"></div>
+        </div>
+
+        <div class="settings_column" title="These appear in the filters menu. One per line. Use 're:' for regex">
           <div class="settings_label">Custom Filters</div>
           <textarea class="text settings_textarea" id="settings_custom_filters" data-setting="custom_filters" rows="3" placeholder="Add some lines"></textarea>
+        </div>
+
+        <div class="settings_column" title="The windows at the top appear first in the menu and cycle-order">
+          <div class="settings_label">Window Order</div>
+          <div id="settings_item_order"></div>
         </div>
       </div>
     </template>
@@ -324,18 +339,8 @@
       </div>
     </template>
 
-    <template id="template_settings_popup">
-      <div id="settings_popup_container" class="settings_container">
-        <div class="settings_column" title="Width of the popup">
-          <div class="settings_label">Width</div>
-          <div id="settings_width" class="settings_menu button" data-setting="width"></div>
-        </div>
-
-        <div class="settings_column" title="Height of the popup">
-          <div class="settings_label">Height</div>
-          <div id="settings_height" class="settings_menu button" data-setting="height"></div>
-        </div>
-
+    <template id="template_settings_more">
+      <div id="settings_more_container" class="settings_container">
         <div class="settings_column" title="Close the popup when a tab is focused">
           <div class="settings_label">Close On Focus</div>
           <input type="checkbox" class="settings_checkbox" id="settings_close_on_focus" data-setting="close_on_focus">
@@ -345,17 +350,7 @@
           <div class="settings_label">Close On Open</div>
           <input type="checkbox" class="settings_checkbox" id="settings_close_on_open" data-setting="close_on_open">
         </div>
-      </div>
-    </template>
 
-    <template id="template_settings_popup_top">
-      <div class="flex_row_center gap_2 grow">
-        <div class="settings_title button"></div>
-      </div>
-    </template>
-
-    <template id="template_settings_more">
-      <div id="settings_more_container" class="settings_container">
         <div class="settings_column" title="Tabs will be restored after opening an item">
           <div class="settings_label">Switch To Tabs</div>
           <input type="checkbox" class="settings_checkbox" id="settings_switch_to_tabs" data-setting="switch_to_tabs">
@@ -524,20 +519,6 @@
     </template>
 
     <template id="template_settings_mouse_top">
-      <div class="flex_row_center gap_2 grow">
-        <div class="settings_title button"></div>
-      </div>
-    </template>
-
-    <template id="template_settings_order">
-      <div id="settings_order_container" class="settings_container">
-        <div id="settings_order_container" class="settings_container">
-          <div id="settings_item_order" title="The windows at the top appear first in the menu and cycle-order"></div>
-        </div>
-      </div>
-    </template>
-
-    <template id="template_settings_order_top">
       <div class="flex_row_center gap_2 grow">
         <div class="settings_title button"></div>
       </div>
