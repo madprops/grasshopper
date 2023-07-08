@@ -807,7 +807,7 @@ App.focus_or_open_item = async (item) => {
     }
   }
 
-  App.open_item(item)
+  App.open_tab(item.url)
   App.after_open()
   return `opened`
 }
@@ -1091,10 +1091,6 @@ App.get_highlights = (mode) => {
   return ans
 }
 
-App.open_item = (item) => {
-  App.open_tab(item.url)
-}
-
 App.after_open = (shift = false) => {
   if (shift) {
     return
@@ -1109,20 +1105,20 @@ App.open_items = (item, shift) => {
   let items = App.get_active_items(mode, item)
 
   if (items.length === 1) {
-    App.open_item(items[0])
+    App.open_tab(items[0].url)
     App.after_open(shift)
   }
   else {
     App.show_confirm(`Open these items ${items.length}?`, () => {
       if (items.length <= 25) {
         for (let item of items) {
-          App.open_item(item)
+          App.open_tab(item.url)
         }
       }
       else {
         // Avoid freezing the browser
         for (let item of items) {
-          App.open_item(item)
+          App.open_tab(item.url)
         }
 
         App.show_feedback(`${items.length} items opened.`, 1000)
