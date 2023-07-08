@@ -332,7 +332,6 @@ App.process_info = (mode, info, exclude = [], o_item) => {
     item.id = info.id || App[`${mode}_idx`]
     item.visible = true
     item.highlighted = false
-    item.activated_date = info.activated_date
     App.create_empty_item_element(item)
     App[`${mode}_idx`] += 1
     return item
@@ -400,25 +399,6 @@ App.create_item_element = (item) => {
   App.set_item_text(item)
 
   if (item.mode === `tabs`) {
-    if (App.get_setting(`loading_icon`)) {
-      let loading = DOM.create(`div`, `item_info item_info`)
-      loading.textContent = App.get_setting(`loading_icon`)
-
-      if (item.activated_date) {
-        if (Date.now() - item.activated_date < App.activated_delay) {
-          if (Date.now() - App[`item_window_${item.mode}_date`] > App.activated_delay) {
-            loading.classList.add(`item_info_active`)
-
-            setTimeout(() => {
-              loading.classList.remove(`item_info_active`)
-            }, App.activated_delay)
-          }
-        }
-      }
-
-      item.element.append(loading)
-    }
-
     let pin_icon = DOM.create(`div`, `item_info item_info_pin`)
     pin_icon.textContent = App.get_setting(`pin_icon`)
     pin_icon.title = `This tab is pinned`
@@ -694,7 +674,6 @@ App.show_item_window = async (mode, cycle = false) => {
 
   App.focus_filter(mode)
   App.do_check_scroller(mode)
-  App[`item_window_${mode}_date`] = Date.now()
 }
 
 App.show_main_item_window = () => {

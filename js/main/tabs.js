@@ -194,7 +194,6 @@ App.refresh_tab = async (id, select = false) => {
     App.update_item(`tabs`, item.id, info)
   }
   else {
-    info.activated_date = Date.now()
     item = App.insert_item(`tabs`, info)
   }
 
