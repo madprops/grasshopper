@@ -1108,9 +1108,6 @@ App.open_items = (item, shift) => {
     App.open_tab(items[0].url)
     App.after_open(shift)
   }
-  else if (items.length > App.max_open_length) {
-    App.show_feedback(`That's too many items.`)
-  }
   else {
     App.show_confirm(`Open these items ${items.length}?`, () => {
       for (let item of items) {
