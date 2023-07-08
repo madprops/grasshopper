@@ -129,7 +129,17 @@ App.check_items_keyboard = (e) => {
         App.dehighlight(mode)
       }
       else {
-        App.clear_filter(mode)
+        if (App.get_filter(mode)) {
+          App.clear_filter(mode)
+        }
+        else {
+          if (App[`${mode}_filter_mode`] !== `all`) {
+            App.show_all()
+          }
+          else {
+            App.show_main_item_window()
+          }
+        }
       }
     }
     else if (e.key === `Enter`) {
