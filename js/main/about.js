@@ -57,14 +57,7 @@ App.setup_about = () => {
 
         if (App.about_flips >= 2) {
           App.about_flips = 0
-          let img = DOM.el(`#about_image`)
-
-          if (img.src.includes(`grasshopper.png`)) {
-            img.src = `img/grasshopper_2.png`
-          }
-          else {
-            img.src = `img/grasshopper.png`
-          }
+          App.show_alert(`Stop it!`, 1000)
         }
         else {
           if (image.classList.contains(`flipped`)) {
