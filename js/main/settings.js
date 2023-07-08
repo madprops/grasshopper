@@ -10,8 +10,8 @@ App.default_settings = {
   show_pick_button: {value: false, category: `basic`, version: 1},
   scrollbars: {value: false, category: `basic`, version: 1},
 
-  background_color: {value: `rgb(70, 76, 94)`, category: `theme`, version: 1},
-  text_color: {value: `rgb(218, 219, 223)`, category: `theme`, version: 1},
+  background_color: {value: `rgb(36, 36, 42)`, category: `theme`, version: 1},
+  text_color: {value: `rgb(222, 222, 222)`, category: `theme`, version: 1},
   background_image: {value: ``, category: `theme`, version: 1},
   grayscale_background_image: {value: false, category: `theme`, version: 1},
 
@@ -453,18 +453,6 @@ App.start_theme_settings = () => {
 
   start_color_picker(`background`)
   start_color_picker(`text`)
-
-  DOM.ev(DOM.el(`#settings_dark_theme`), `click`, () => {
-    App.change_theme(`dark`)
-  })
-
-  DOM.ev(DOM.el(`#settings_light_theme`), `click`, () => {
-    App.change_theme(`light`)
-  })
-
-  DOM.ev(DOM.el(`#settings_detect_theme`), `click`, () => {
-    App.detect_theme()
-  })
 }
 
 App.settings_menu_cycle = (el, setting, dir, items) => {
@@ -731,15 +719,7 @@ App.get_setting = (setting) => {
 
   if (value === App.default_setting_string) {
     if (value === App.default_setting_string) {
-      if (setting === `background_color`) {
-        value = App.dark_theme.background_color
-      }
-      else if (setting === `text_color`) {
-        value = App.dark_theme.text_color
-      }
-      else {
-        value = App.get_default_setting(setting)
-      }
+      value = App.get_default_setting(setting)
     }
   }
 

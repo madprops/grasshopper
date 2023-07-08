@@ -3,16 +3,6 @@ App.setup_theme = () => {
   App.apply_theme()
 }
 
-App.dark_theme = {
-  background_color: `rgb(63, 63, 72)`,
-  text_color: `rgb(218, 218, 218)`,
-}
-
-App.light_theme = {
-  background_color: `rgb(207, 218, 242)`,
-  text_color: `rgb(104, 109, 121)`,
-}
-
 App.apply_theme = () => {
   try {
     let background = App.get_setting(`background_color`)
@@ -123,48 +113,6 @@ App.change_color = (name, color) => {
   App.apply_theme()
 }
 
-App.detect_theme = async () => {
-  let theme = await browser.theme.getCurrent()
-
-  if (theme.colors.toolbar) {
-    let d1 = DOM.create(`div`, `hidden`)
-    d1.style.color = theme.colors.toolbar
-    document.body.append(d1)
-    let background_color = window.getComputedStyle(d1).color
-
-    let text_color
-
-    if (theme.colors.toolbar_text && (theme.colors.toolbar !== theme.colors.toolbar_text)) {
-      text_color = theme.colors.toolbar_text
-    }
-    else {
-      let what = App.colorlib.is_dark(background_color) ? `dark` : `light`
-      text_color = App.colorlib.get_lighter_or_darker(background_color, App.color_diff(what))
-    }
-
-    let d2 = DOM.create(`div`, `hidden`)
-    d2.style.color = text_color
-    document.body.append(d2)
-
-    App.set_setting(`background_color`, background_color)
-    App.set_setting(`text_color`, text_color)
-
-    if (App.window_mode === `settings_theme`) {
-      App.background_color_picker.setColor(background_color)
-      App.text_color_picker.setColor(text_color)
-    }
-    else {
-      App.apply_theme()
-    }
-
-    d1.remove()
-    d2.remove()
-    return
-  }
-
-  App.show_alert(`Theme couldn't be detected`)
-}
-
 App.color_diff = (what) => {
   if (what === `dark`) {
     return 0.8
@@ -177,20 +125,4 @@ App.color_diff = (what) => {
 App.set_background_image = (url) => {
   App.set_setting(`background_image`, url)
   App.apply_theme()
-}
-
-App.change_theme = (what) => {
-  let background_color = App[`${what}_theme`].background_color
-  let text_color = App[`${what}_theme`].text_color
-
-  App.set_setting(`background_color`, background_color)
-  App.set_setting(`text_color`, text_color)
-
-  if (App.window_mode === `settings_theme`) {
-    App.background_color_picker.setColor(background_color)
-    App.text_color_picker.setColor(text_color)
-  }
-  else {
-    App.apply_theme()
-  }
 }
