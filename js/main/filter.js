@@ -440,7 +440,7 @@ App.create_filter = (mode) => {
   filter.type = `text`
   filter.autocomplete = `off`
   filter.spellcheck = false
-  filter.placeholder = `Filter...`
+  filter.placeholder = `Filter`
 
   DOM.ev(filter, `input`, () => {
     App.filter(mode)
