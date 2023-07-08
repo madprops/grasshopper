@@ -274,14 +274,14 @@ App.setup_keyboard = () => {
     }
 
     if (App.on_settings()) {
-      if (document.activeElement.classList.contains(`settings_filter`)) {
+      if (App.settings_filter_focused()) {
         if (e.key === `Escape`) {
           App.clear_settings_filter()
           e.preventDefault()
           return
         }
         else {
-          App.do_settings_filter()
+          App.filter_settings()
         }
       }
 

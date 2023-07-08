@@ -275,7 +275,16 @@ App.add_settings_filter = (category) => {
   container.prepend(filter)
 }
 
-App.do_settings_filter = () => {
+App.filter_settings_debouncer = App.create_debouncer(() => {
+  App.do_filter_settings()
+}, App.filter_settings_debouncer_delay)
+
+App.filter_settings = () => {
+  App.filter_settings_debouncer.call()
+}
+
+App.do_filter_settings = () => {
+  App.filter_settings_debouncer.cancel()
   let category = App.get_setting_category()
   let value = DOM.el(`#settings_${category}_filter`).value.toLowerCase().trim()
   let container = DOM.el(`#settings_${category}_container`)
@@ -298,6 +307,10 @@ App.clear_settings_filter = () => {
   let category = App.get_setting_category()
   DOM.el(`#settings_${category}_filter`).value = ``
   App.do_settings_filter()
+}
+
+App.settings_filter_focused = () => {
+  return document.activeElement.classList.contains(`settings_filter`)
 }
 
 App.setup_settings = () => {
