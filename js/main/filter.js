@@ -181,7 +181,7 @@ App.focus_filter = (mode) => {
 }
 
 App.is_filtered = (mode) => {
-  return App.get_filter(mode, true) || App.filter_mode(mode) !== `all`
+  return App.get_filter(mode) || App.filter_mode(mode) !== `all`
 }
 
 App.check_clear_filter = () => {
@@ -219,7 +219,7 @@ App.filter_cmd = (mode, cmd) => {
     new_text = `${cmd}: `
   }
 
-  let current = App.get_filter(mode, true)
+  let current = App.get_filter(mode)
 
   if (current) {
     let regex = new RegExp(/^(\w+\:)/)
@@ -349,7 +349,7 @@ App.set_filter_mode = (mode, filter_mode, filter = true) => {
   // If All is clicked again, clear the filter
   if (filter && filter_mode[0] === `all`) {
     if (App.filter_mode(mode) === `all`) {
-      if (App.get_filter(mode, true)) {
+      if (App.get_filter(mode)) {
         App.clear_filter(mode)
         return
       }

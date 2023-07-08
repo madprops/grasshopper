@@ -1300,7 +1300,7 @@ App.container_is_scrolled = (mode) => {
 
 App.clear_or_all = (mode) => {
   if (App.is_filtered(mode)) {
-    if (App.get_filter(mode, true)) {
+    if (App.get_filter(mode)) {
       App.clear_filter(mode)
     }
     else {

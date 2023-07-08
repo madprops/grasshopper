@@ -22,6 +22,14 @@ App.check_items_keyboard = (e) => {
       e.preventDefault()
       return
     }
+    else if (e.key === `a`) {
+      if (!App.get_filter(mode, false)) {
+        App.highlight_items()
+        e.preventDefault()
+      }
+
+      return
+    }
     else if (e.key === `f`) {
       App.show_filter_menu(mode)
       e.preventDefault()
@@ -165,7 +173,7 @@ App.check_items_keyboard = (e) => {
       return
     }
     else if (e.key === `ArrowLeft`) {
-      if (!App.get_filter(mode, true)) {
+      if (!App.get_filter(mode)) {
         App.cycle_item_windows(true, true)
         e.preventDefault()
       }
@@ -173,7 +181,7 @@ App.check_items_keyboard = (e) => {
       return
     }
     else if (e.key === `ArrowRight`) {
-      if (!App.get_filter(mode, true)) {
+      if (!App.get_filter(mode)) {
         App.cycle_item_windows(false, true)
         e.preventDefault()
       }
