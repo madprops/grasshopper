@@ -17,7 +17,7 @@ App.setup_gestures = () => {
           let cmd = App.get_setting(`middle_click_pick_button`)
 
           if (cmd !== `none`) {
-            App.run_command({cmd: cmd, from: `pick_button`, item: item})
+            App.run_command({cmd: cmd, item: item, from: `pick_button`})
           }
 
           return
@@ -27,7 +27,7 @@ App.setup_gestures = () => {
           let cmd = App.get_setting(`middle_click_close_button`)
 
           if (cmd !== `none`) {
-            App.run_command({cmd: cmd, from: `close_button`, item: item})
+            App.run_command({cmd: cmd, item: item, from: `close_button`})
           }
 
           return
@@ -37,7 +37,7 @@ App.setup_gestures = () => {
           let cmd = App.get_setting(`middle_click_open_button`)
 
           if (cmd !== `none`) {
-            App.run_command({cmd: cmd, from: `open_button`, item: item})
+            App.run_command({cmd: cmd, item: item, from: `open_button`})
           }
 
           return
