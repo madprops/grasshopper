@@ -46,5 +46,6 @@ App.opened_delay = 2600
 App.refocus_delay = 2000
 App.item_range_on = false
 App.item_range_highlight = false
+App.max_open_length = 100
 
 NeedContext.min_width = `4.5rem`

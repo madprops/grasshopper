@@ -1108,20 +1108,13 @@ App.open_items = (item, shift) => {
     App.open_tab(items[0].url)
     App.after_open(shift)
   }
+  else if (items.length > App.max_open_length) {
+    App.show_feedback(`That's too many items.`)
+  }
   else {
     App.show_confirm(`Open these items ${items.length}?`, () => {
-      if (items.length <= 25) {
-        for (let item of items) {
-          App.open_tab(item.url)
-        }
-      }
-      else {
-        // Avoid freezing the browser
-        for (let item of items) {
-          App.open_tab(item.url)
-        }
-
-        App.show_feedback(`${items.length} items opened.`, 1000)
+      for (let item of items) {
+        App.open_tab(item.url)
       }
 
       App.dehighlight(mode)
