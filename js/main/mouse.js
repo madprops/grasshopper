@@ -83,10 +83,10 @@ App.setup_window_mouse = (mode) => {
       let item = App.get_cursor_item(mode, e)
 
       setTimeout(() => {
-        let action = App.get_setting(`double_click_tab`)
+        let cmd = App.get_setting(`double_click_tab`)
 
-        if (action !== `none`) {
-          App.run_command({cmd: action, item: item, from: `double_click`})
+        if (cmd !== `none`) {
+          App.run_command({cmd: cmd, item: item, from: `double_click`})
         }
       }, 80)
     }
