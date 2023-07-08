@@ -8,8 +8,6 @@ App.default_settings = {
   fetch_favicons: {value: true, category: `basic`, version: 1},
   show_pick_button: {value: false, category: `basic`, version: 1},
   scrollbars: {value: false, category: `basic`, version: 1},
-
-  closed_index: {value: 4, category: `basic`, version: 1},
   width: {value: 70, category: `basic`, version: 1},
   height: {value: 80, category: `basic`, version: 1},
 
@@ -73,6 +71,7 @@ App.default_settings = {
   stars_index: {value: 1, category: `more`, version: 1},
   history_index: {value: 2, category: `more`, version: 1},
   bookmarks_index: {value: 3, category: `more`, version: 1},
+  closed_index: {value: 4, category: `more`, version: 1},
   custom_filters: {value: [], category: `more`, version: 1},
 }
 
@@ -391,6 +390,18 @@ App.setup_settings = () => {
   App.create_window(Object.assign({}, common, {id: `settings_more`, setup: () => {
     prepare(`more`)
     App.make_item_order()
+
+    DOM.ev(DOM.el(`#settings_item_order`), `contextmenu`, (e) => {
+      App.reset_single_setting(e, () => {
+        App.set_default_setting(`tabs_index`)
+        App.set_default_setting(`stars_index`)
+        App.set_default_setting(`history_index`)
+        App.set_default_setting(`bookmarks_index`)
+        App.set_default_setting(`closed_index`)
+        App.get_item_order()
+        App.make_item_order()
+      })
+    })
   }}))
 
   App.create_window(Object.assign({}, common, {id: `settings_mouse`, setup: () => {
