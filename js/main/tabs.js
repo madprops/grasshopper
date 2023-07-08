@@ -582,21 +582,14 @@ App.toggle_mute_tabs = (item) => {
   }
 }
 
-App.open_tab = async (url, args = {}) => {
-  let opts = {}
-  opts.url = url
-  opts = Object.assign(opts, args)
-
-  let tab
-
+App.open_tab = async (item) => {
   try {
-    tab = await browser.tabs.create(opts)
+    let tab = await browser.tabs.create({url: item.url})
+    return tab
   }
   catch (err) {
     App.log(err, `error`)
   }
-
-  return tab
 }
 
 App.update_tabs_index = async (items) => {

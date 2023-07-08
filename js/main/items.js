@@ -807,7 +807,7 @@ App.focus_or_open_item = async (item) => {
     }
   }
 
-  App.open_tab(item.url)
+  App.open_tab(item)
   App.after_open()
   return `opened`
 }
@@ -1105,13 +1105,13 @@ App.open_items = (item, shift) => {
   let items = App.get_active_items(mode, item)
 
   if (items.length === 1) {
-    App.open_tab(items[0].url)
+    App.open_tab(items[0])
     App.after_open(shift)
   }
   else {
     App.show_confirm(`Open these items ${items.length}?`, () => {
       for (let item of items) {
-        App.open_tab(item.url)
+        App.open_tab(item)
       }
 
       App.dehighlight(mode)
