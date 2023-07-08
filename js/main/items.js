@@ -668,7 +668,9 @@ App.show_item_window = async (mode, cycle = false) => {
 }
 
 App.show_main_item_window = () => {
-  App.show_item_window(App.item_order[0])
+  if (App.window_mode !== App.item_order[0]) {
+    App.show_item_window(App.item_order[0])
+  }
 }
 
 App.setup_item_window = (mode) => {
