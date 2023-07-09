@@ -29,28 +29,25 @@ NeedContext.do_filter = () => {
   let value = NeedContext.filter.value.toLowerCase().trim()
   let selected = false
 
-  for (let [i, item] of NeedContext.items.entries()) {
-    if (item.separator) {
-      item.element.classList.add(`needcontext-hidden`)
-      continue
-    }
-
-    if (item.text.toLowerCase().includes(value)) {
-      item.element.classList.remove(`needcontext-hidden`)
-
-      if (!selected) {
-        NeedContext.select_item(i)
-      }
-
-      selected = true
+  for (let el of document.querySelectorAll(`.needcontext-separator`)) {
+    if (value) {
+      el.classList.add(`needcontext-hidden`)
     }
     else {
-      item.element.classList.add(`needcontext-hidden`)
+      el.classList.remove(`needcontext-hidden`)
     }
   }
 
-  if (selected) {
-    for (let el of document.querySelectorAll(`.needcontext-separator`)) {
+  for (let el of document.querySelectorAll(`.needcontext-item`)) {
+    if (el.textContent.toLowerCase().includes(value)) {
+      el.classList.remove(`needcontext-hidden`)
+
+      if (!selected) {
+        NeedContext.select_item(parseInt(el.dataset.index))
+        selected = true
+      }
+    }
+    else {
       el.classList.add(`needcontext-hidden`)
     }
   }
