@@ -1,4 +1,8 @@
 DOM.ev(window, `mouseup`, (e) => {
+  if (e.button !== 0) {
+    return
+  }
+
   App.item_range_on = false
 })
 
@@ -6,6 +10,10 @@ App.setup_window_mouse = (mode) => {
   let container = DOM.el(`#${mode}_container`)
 
   DOM.ev(container, `mousedown`, (e) => {
+    if (e.button !== 0) {
+      return
+    }
+
     if (!App.cursor_on_item(e, mode)) {
       return
     }
