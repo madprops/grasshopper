@@ -81,10 +81,12 @@ App.do_filter = async (mode) => {
       query = clean_val
     }
 
-    await App.search_items(mode, query)
+    if (query !== App[`last_${mode}_query`]) {
+      await App.search_items(mode, query)
 
-    if (App.window_mode !== mode) {
-      return
+      if (App.window_mode !== mode) {
+        return
+      }
     }
   }
 

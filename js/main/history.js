@@ -33,6 +33,7 @@ App.get_history = async (query = ``) => {
     return []
   }
 
+  App[`last_history_query`] = query
   return results
 }
 

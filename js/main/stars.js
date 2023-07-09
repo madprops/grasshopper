@@ -67,6 +67,7 @@ App.get_stars = (query = ``) => {
   ))
 
   stars.sort((a, b) => (a.date_last_visit < b.date_last_visit) ? 1 : -1)
+  App[`last_stars_query`] = query
   return stars.slice(0, App.max_items)
 }
 

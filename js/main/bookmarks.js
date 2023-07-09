@@ -49,6 +49,7 @@ App.get_bookmarks = async (query = ``) => {
     return a.dateAdded > b.dateAdded ? -1 : 1
   })
 
+  App[`last_bookmarks_query`] = query
   return bookmarks.slice(0, App.max_items)
 }
 
