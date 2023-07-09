@@ -17,14 +17,14 @@ App.history_time = () => {
   return Date.now() - (1000 * 60 * 60 * 24 * 30 * App.history_max_months)
 }
 
-App.get_history = async (text = ``) => {
+App.get_history = async (query = ``) => {
   App.log(`Getting history`)
   let results
 
   try {
     results = await browser.history.search({
-      text: text,
-      maxResults: App.history_max_results,
+      text: query,
+      maxResults: App.max_items,
       startTime: App.history_time()
     })
   }
@@ -42,14 +42,4 @@ App.history_action = (item) => {
 
 App.history_action_alt = (item) => {
   App.open_items(item, true)
-}
-
-App.search_history = async (value) => {
-  let items = await App.get_history(value)
-
-  if (App.window_mode !== `history`) {
-    return
-  }
-
-  App.process_info_list(`history`, items)
 }

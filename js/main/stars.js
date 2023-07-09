@@ -58,10 +58,16 @@ App.open_star = async (item) => {
   return await App.focus_or_open_item(item)
 }
 
-App.get_stars = () => {
-  let stars = structuredClone(App.stars)
+App.get_stars = (query = ``) => {
+  query = query.toLowerCase()
+
+  let stars = structuredClone(App.stars.filter(x =>
+    x.title.toLowerCase().includes(query) ||
+    x.url.toLowerCase().includes(query)
+  ))
+
   stars.sort((a, b) => (a.date_last_visit < b.date_last_visit) ? 1 : -1)
-  return stars
+  return stars.slice(0, App.max_items)
 }
 
 App.update_star = (item, add_visit = true) => {

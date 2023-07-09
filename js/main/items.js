@@ -627,7 +627,15 @@ App.show_item_window = async (mode, cycle = false) => {
   let m = App.filter_modes(mode)[0]
   App.set_filter_mode(mode, m, false)
   App[`${mode}_filter_mode`] = m[0]
-  let items = await App[`get_${mode}`]()
+  let maxed = App.maxed_items.includes(mode)
+  let items
+
+  if (maxed && value) {
+    items = []
+  }
+  else {
+    items = await App[`get_${mode}`]()
+  }
 
   if (mode !== App.window_mode) {
     return
@@ -649,7 +657,7 @@ App.show_item_window = async (mode, cycle = false) => {
     }
   }
 
-  if (mode === `history` && value) {
+  if (maxed && value) {
     // Filter will search
   }
   else {
@@ -1387,4 +1395,15 @@ App.on_items = (mode = App.window_mode) => {
 App.get_next_item = (mode) => {
   return App.get_next_visible_item({mode: mode, wrap: false, discarded: false}) ||
   App.get_next_visible_item({mode: mode, reverse: true, wrap: false, discarded: false})
+}
+
+App.search_items = async (mode, query) => {
+  App.log(`Searching ${mode}`)
+  let items = await App[`get_${mode}`](query)
+
+  if (App.window_mode !== mode) {
+    return
+  }
+
+  App.process_info_list(mode, items)
 }

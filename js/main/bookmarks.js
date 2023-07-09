@@ -33,12 +33,12 @@ App.setup_bookmarks = () => {
   })
 }
 
-App.get_bookmarks = async () => {
+App.get_bookmarks = async (query = ``) => {
   App.log(`Getting bookmarks`)
   let bookmarks
 
   try {
-    bookmarks = await browser.bookmarks.search({})
+    bookmarks = await browser.bookmarks.search({query: query})
   }
   catch (err) {
     App.log(err, `error`)
@@ -49,7 +49,7 @@ App.get_bookmarks = async () => {
     return a.dateAdded > b.dateAdded ? -1 : 1
   })
 
-  return bookmarks
+  return bookmarks.slice(0, App.max_items)
 }
 
 App.bookmarks_action = (item) => {

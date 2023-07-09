@@ -71,7 +71,7 @@ App.do_filter = async (mode) => {
     return
   }
 
-  if (mode === `history`) {
+  if (App.maxed_items.includes(mode)) {
     let query
 
     if (use_regex) {
@@ -81,9 +81,9 @@ App.do_filter = async (mode) => {
       query = clean_val
     }
 
-    await App.search_history(query)
+    await App.search_items(mode, query)
 
-    if (App.window_mode !== `history`) {
+    if (App.window_mode !== mode) {
       return
     }
   }

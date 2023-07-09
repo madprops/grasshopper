@@ -13,7 +13,6 @@ App.windows = {}
 App.popups = {}
 App.previous_tabs = []
 App.max_closed = 25
-App.history_max_results = 640
 App.history_max_months = 18
 App.icon_size = 25
 App.star_counter = 1
@@ -46,5 +45,8 @@ App.opened_delay = 2600
 App.refocus_delay = 2000
 App.item_range_on = false
 App.item_range_highlight = false
+App.max_items = 5
+App.maxed_items = [`stars`, `history`, `bookmarks`]
+App.max_items = 500
 
 NeedContext.min_width = `4.5rem`
