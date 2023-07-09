@@ -20,7 +20,7 @@ App.setup_about = () => {
       `Ctrl + Up moves tabs to the top`,
       `Ctrl + Down moves tabs to the bottom`,
       `Ctrl + Backspace goes back`,
-      `Ctrl + F shows the filter modes`,
+      `Ctrl + F shows the filters`,
       `Ctrl + Dot goes to the playing tab`,
       `Ctrl + Delete removes items`,
       `Double click on empty tabs space opens a new tab`,
