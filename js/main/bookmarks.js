@@ -39,6 +39,7 @@ App.get_bookmarks = async (query = ``) => {
 
   try {
     bookmarks = await browser.bookmarks.search({query: query})
+    bookmarks = bookmarks.slice(0, App.max_items)
   }
   catch (err) {
     App.log(err, `error`)
@@ -50,7 +51,7 @@ App.get_bookmarks = async (query = ``) => {
   })
 
   App[`last_bookmarks_query`] = query
-  return bookmarks.slice(0, App.max_items)
+  return bookmarks
 }
 
 App.bookmarks_action = (item) => {
