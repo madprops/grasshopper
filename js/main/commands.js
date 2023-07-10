@@ -17,6 +17,12 @@ App.commands = [
   {name: `Select All`, cmd: `select_all`, mode: `items`, action: (args) => {
     App.highlight_items()
   }},
+  {name: `Select Normal`, cmd: `select_normal_tabs`, mode: `tabs`, action: (args) => {
+    App.select_normal_tabs()
+  }},
+  {name: `Select Pins`, cmd: `select_pinned_tabs`, mode: `tabs`, action: (args) => {
+    App.select_pinned_tabs()
+  }},
   {name: `Scroll Up`, cmd: `scroll_up`, mode: `items`, action: (args) => {
     App.scroll(args.mode, `up`, true)
   }},

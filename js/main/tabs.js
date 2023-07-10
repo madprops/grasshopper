@@ -1133,3 +1133,47 @@ App.check_new_tabs = () => {
     }
   }
 }
+
+App.get_pinned_tabs = () => {
+  let items = App.get_items(`tabs`)
+  let pinned = []
+
+  for (let item of items) {
+    if (item.pinned) {
+      pinned.push(item)
+    }
+  }
+
+  return pinned
+}
+
+App.get_normal_tabs = () => {
+  let items = App.get_items(`tabs`)
+  let normal = []
+
+  for (let item of items) {
+    if (!item.pinned) {
+      normal.push(item)
+    }
+  }
+
+  return normal
+}
+
+App.select_normal_tabs = () => {
+  let items = App.get_normal_tabs()
+  App.dehighlight(`tabs`)
+
+  for (let item of items) {
+    App.toggle_highlight(item, true)
+  }
+}
+
+App.select_pinned_tabs = () => {
+  let items = App.get_pinned_tabs()
+  App.dehighlight(`tabs`)
+
+  for (let item of items) {
+    App.toggle_highlight(item, true)
+  }
+}
