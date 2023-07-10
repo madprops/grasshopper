@@ -160,6 +160,11 @@ App.setup_drag = (mode) => {
   let container = DOM.el(`#${mode}_container`)
 
   DOM.ev(container, `dragstart`, (e) => {
+    if (e.shiftKey || e.ctrlKey) {
+      e.preventDefault()
+      return false
+    }
+
     if (mode !== `tabs`) {
       e.preventDefault()
       return false
