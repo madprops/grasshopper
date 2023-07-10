@@ -39,12 +39,6 @@ App.show_item_menu = (item, x, y) => {
       })
     }
 
-    if (items.length > 0) {
-      items.push({
-        separator: true
-      })
-    }
-
     let common = App.common_menu_items(item, multiple)
 
     if (common.length > 0) {
