@@ -49,6 +49,10 @@ App.create_footer = (mode) => {
   footer.append(footer_info)
 
   DOM.ev(footer, `click`, (e) => {
+    if (e.ctrlKey) {
+      return
+    }
+
     if (e.shiftKey) {
       App.highlight_to_edge(mode, `down`)
     }
