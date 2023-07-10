@@ -87,12 +87,12 @@ App.check_items_keyboard = (e) => {
       return
     }
     else if (e.key === `Home`) {
-      App.highlight_to_edge(mode, `above`)
+      App.highlight_to_edge(mode, `up`)
       e.preventDefault()
       return
     }
     else if (e.key === `End`) {
-      App.highlight_to_edge(mode, `below`)
+      App.highlight_to_edge(mode, `down`)
       e.preventDefault()
       return
     }

@@ -97,7 +97,7 @@ App.highlight_to_edge = (mode, dir) => {
     return
   }
 
-  if (dir === `below`) {
+  if (dir === `down`) {
     items.reverse()
   }
 

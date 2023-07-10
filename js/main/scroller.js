@@ -39,7 +39,11 @@ App.create_scroller = (mode) => {
   let scroller = DOM.create(`div`, `scroller`, `${mode}_scroller`)
   scroller.textContent = `Go To Top`
 
-  DOM.ev(scroller, `click`, () => {
+  DOM.ev(scroller, `click`, (e) => {
+    if (e.shiftKey) {
+      App.highlight_to_edge(mode, `up`)
+    }
+
     App.goto_top(mode)
   })
 
