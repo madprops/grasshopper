@@ -204,24 +204,6 @@ App.refresh_tab = async (id, select = false) => {
   }
 }
 
-App.pin_tab = async (id) => {
-  try {
-    await browser.tabs.update(id, {pinned: true})
-  }
-  catch (err) {
-    App.log(err, `error`)
-  }
-}
-
-App.unpin_tab = async (id) => {
-  try {
-    await browser.tabs.update(id, {pinned: false})
-  }
-  catch (err) {
-    App.log(err, `error`)
-  }
-}
-
 App.mute_tab = async (id) => {
   try {
     await browser.tabs.update(id, {muted: true})
@@ -335,11 +317,29 @@ App.unload_tab = async (item) => {
   App.do_unload_tab(item)
 }
 
+App.pin_tab = async (id) => {
+  try {
+    await browser.tabs.update(id, {pinned: true})
+  }
+  catch (err) {
+    App.log(err, `error`)
+  }
+}
+
+App.unpin_tab = async (id) => {
+  try {
+    await browser.tabs.update(id, {pinned: false})
+  }
+  catch (err) {
+    App.log(err, `error`)
+  }
+}
+
 App.pin_tabs = (item) => {
   let ids = []
 
   for (let it of App.get_active_items(`tabs`, item)) {
-    if (it.pinned) {
+    if (it.pinned || it.discarded) {
       continue
     }
 
@@ -359,7 +359,7 @@ App.unpin_tabs = (item) => {
   let ids = []
 
   for (let it of App.get_active_items(`tabs`, item)) {
-    if (!it.pinned) {
+    if (!it.pinned || it.discarded) {
       continue
     }
 
@@ -379,6 +379,10 @@ App.unload_tabs = (item) => {
   let tabs = []
 
   for (let it of App.get_active_items(`tabs`, item)) {
+    if (it.discarded) {
+      continue
+    }
+
     tabs.push(it)
   }
 

@@ -1,9 +1,19 @@
 App.show_item_menu = (item, x, y) => {
-  let multiple = App.highlights(item.mode)
+  let highlights = App.get_highlights(item.mode)
+  let multiple = highlights.length > 1
   let items = []
 
   if (item.mode === `tabs`) {
-    if (item.pinned && !item.discarded) {
+    let some_loaded = false
+
+    for (let h of highlights) {
+      if (!h.discarded) {
+        some_loaded = true
+        break
+      }
+    }
+
+    if (item.pinned) {
       items.push({
         text: `Unpin`,
         action: () => {
@@ -12,7 +22,7 @@ App.show_item_menu = (item, x, y) => {
       })
     }
 
-    if (!item.pinned && !item.discarded) {
+    if (!item.pinned) {
       items.push({
         text: `Pin`,
         action: () => {
@@ -21,7 +31,7 @@ App.show_item_menu = (item, x, y) => {
       })
     }
 
-    if (item.muted && !item.discarded) {
+    if (item.muted) {
       items.push({
         text: `Unmute`,
         action: () => {
@@ -30,7 +40,7 @@ App.show_item_menu = (item, x, y) => {
       })
     }
 
-    if (!item.muted && !item.discarded) {
+    if (!item.muted) {
       items.push({
         text: `Mute`,
         action: () => {
@@ -47,7 +57,7 @@ App.show_item_menu = (item, x, y) => {
       }
     }
 
-    let more = App.more_menu_items(item, multiple)
+    let more = App.more_menu_items(item, multiple, some_loaded)
 
     if (more.length > 0) {
       items.push({
@@ -204,7 +214,7 @@ App.common_menu_items = (item, multiple) => {
   return items
 }
 
-App.more_menu_items = (item, multiple) => {
+App.more_menu_items = (item, multiple, some_loaded) => {
   let items = []
 
   if (item.mode === `tabs`) {
@@ -217,7 +227,7 @@ App.more_menu_items = (item, multiple) => {
       })
     }
 
-    if (!item.discarded) {
+    if (some_loaded) {
       items.push({
         text: `Unload`,
         action: () => {

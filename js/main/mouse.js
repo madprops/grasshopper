@@ -48,8 +48,10 @@ App.setup_window_mouse = (mode) => {
     let item = App.get_cursor_item(mode, e)
 
     if (e.target.classList.contains(`view_media_button`)) {
-      App.view_media(item)
-      return
+      if (!e.shiftKey && !e.ctrlKey) {
+        App.view_media(item)
+        return
+      }
     }
 
     if (e.shiftKey) {
