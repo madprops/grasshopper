@@ -97,23 +97,18 @@ App.show_item_menu = (item, x, y) => {
     })
   }
 
-  if (item.mode === `stars`) {
+  let more = App.more_menu_items(item, multiple)
+
+  if (more.length > 0) {
     items.push({
-      text: `Remove`,
-      action: () => {
-        App.remove_stars(item)
-      }
+      text: `More`,
+      get_items: () => {
+        return more
+       }
     })
   }
 
   if (item.mode === `tabs`) {
-    items.push({
-      text: `More`,
-      get_items: () => {
-        return App.more_tab_menu_items(item, multiple)
-       }
-    })
-
     items.push({
       separator: true
     })
@@ -122,6 +117,18 @@ App.show_item_menu = (item, x, y) => {
       text: `Close`,
       action: () => {
         App.close_tabs(item)
+      }
+    })
+  }
+  else if (item.mode === `stars`) {
+    items.push({
+      separator: true
+    })
+
+    items.push({
+      text: `Remove`,
+      action: () => {
+        App.remove_stars(item)
       }
     })
   }
@@ -159,35 +166,37 @@ App.get_window_menu_items = async (item) => {
   return items
 }
 
-App.more_tab_menu_items = (item, multiple) => {
+App.more_menu_items = (item, multiple) => {
   let items = []
 
-  if (!multiple) {
-    items.push({
-      text: `Title`,
-      action: () => {
-        App.show_title_editor(item)
-      }
-    })
-  }
-
-  if (!item.discarded) {
-    items.push({
-      text: `Unload`,
-      action: () => {
-        App.unload_tabs(item)
-      }
-    })
-  }
-
-  items.push({
-    text: `Duplicate`,
-    action: () => {
-      App.duplicate_tabs(item)
+  if (item.mode === `tabs`) {
+    if (!multiple) {
+      items.push({
+        text: `Title`,
+        action: () => {
+          App.show_title_editor(item)
+        }
+      })
     }
-  })
 
-  if (item.image) {
+    if (!item.discarded) {
+      items.push({
+        text: `Unload`,
+        action: () => {
+          App.unload_tabs(item)
+        }
+      })
+    }
+
+    items.push({
+      text: `Duplicate`,
+      action: () => {
+        App.duplicate_tabs(item)
+      }
+    })
+  }
+
+  if (item.image && !multiple) {
     items.push({
       text: `Background `,
       action: () => {
@@ -196,32 +205,34 @@ App.more_tab_menu_items = (item, multiple) => {
     })
   }
 
-  if (items.length > 0) {
+  if (item.mode === `tabs`) {
+    if (items.length > 0) {
+      items.push({
+        separator: true
+      })
+    }
+
     items.push({
-      separator: true
+      text: `To Top`,
+      action: () => {
+        App.move_tabs_vertically(`top`, item)
+      }
+    })
+
+    items.push({
+      text: `To Bottom`,
+      action: () => {
+        App.move_tabs_vertically(`bottom`, item)
+      }
+    })
+
+    items.push({
+      text: `To Window`,
+      get_items: async () => {
+        return await App.get_window_menu_items(item)
+      }
     })
   }
-
-  items.push({
-    text: `To Top`,
-    action: () => {
-      App.move_tabs_vertically(`top`, item)
-    }
-  })
-
-  items.push({
-    text: `To Bottom`,
-    action: () => {
-      App.move_tabs_vertically(`bottom`, item)
-    }
-  })
-
-  items.push({
-    text: `To Window`,
-    get_items: async () => {
-      return await App.get_window_menu_items(item)
-    }
-  })
 
   return items
 }
