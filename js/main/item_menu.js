@@ -1,6 +1,7 @@
 App.show_item_menu = (item, x, y) => {
   let highlights = App.get_highlights(item.mode)
   let multiple = highlights.length > 1
+  let min_close_sep = 3
   let items = []
 
   if (item.mode === `tabs`) {
@@ -68,7 +69,7 @@ App.show_item_menu = (item, x, y) => {
       })
     }
 
-    if (items.length > 1) {
+    if (items.length >= min_close_sep) {
       items.push({
         separator: true
       })
@@ -107,7 +108,7 @@ App.show_item_menu = (item, x, y) => {
       }
     }
 
-    if (items.length > 1) {
+    if (items.length >= min_close_sep) {
       items.push({
         separator: true
       })
