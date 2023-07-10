@@ -1167,6 +1167,8 @@ App.select_normal_tabs = () => {
   for (let item of items) {
     App.toggle_highlight(item, true)
   }
+
+  App.select_item(items[0], `nearest_instant`, false)
 }
 
 App.select_pinned_tabs = () => {
@@ -1176,4 +1178,6 @@ App.select_pinned_tabs = () => {
   for (let item of items) {
     App.toggle_highlight(item, true)
   }
+
+  App.select_item(items[0], `nearest_instant`, false)
 }
