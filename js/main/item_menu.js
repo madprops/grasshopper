@@ -188,6 +188,15 @@ App.more_tab_menu_items = (item, multiple) => {
     }
   })
 
+  if (item.image) {
+    items.push({
+      text: `Background `,
+      action: () => {
+        App.set_background_image(item.url)
+      }
+    })
+  }
+
   if (items.length > 0) {
     items.push({
       separator: true
