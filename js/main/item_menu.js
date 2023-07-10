@@ -13,7 +13,7 @@ App.show_item_menu = (item, x, y) => {
       }
     }
 
-    if (item.pinned) {
+    if (item.pinned && some_loaded) {
       items.push({
         text: `Unpin`,
         action: () => {
@@ -22,7 +22,7 @@ App.show_item_menu = (item, x, y) => {
       })
     }
 
-    if (!item.pinned) {
+    if (!item.pinned && some_loaded) {
       items.push({
         text: `Pin`,
         action: () => {
