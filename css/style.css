@@ -305,8 +305,7 @@ svg {
 }
 
 .highlighted .item_icon {
-  filter: invert(100%);
-  border: 1px solid var(--alt_background_2);
+  border: 1px solid var(--text_color);
 }
 
 .highlighted .item_button {
