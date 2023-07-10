@@ -11,8 +11,8 @@ App.default_settings = {
   width: {value: 70, category: `basic`, version: 1},
   height: {value: 80, category: `basic`, version: 1},
 
-  background_color: {value: `rgb(36, 36, 42)`, category: `theme`, version: 1},
-  text_color: {value: `rgb(222, 222, 222)`, category: `theme`, version: 1},
+  background_color: {value: `rgb(42, 42, 52)`, category: `theme`, version: 1},
+  text_color: {value: `rgb(233, 233, 233)`, category: `theme`, version: 1},
   background_image: {value: ``, category: `theme`, version: 1},
 
   pin_icon: {value: `+`, category: `icons`, version: 1},
