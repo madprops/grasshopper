@@ -150,9 +150,8 @@ App.setup_window = () => {
     if (App.get_setting(`autoselect`)) {
       App.refocus_timeout = setTimeout(() => {
         if (App.window_mode === `tabs`) {
-          if (!App.highlights(`tabs`)) {
-            App.focus_current_tab()
-          }
+          App.dehighlight(`tabs`)
+          App.focus_current_tab()
         }
       }, App.refocus_delay)
     }
