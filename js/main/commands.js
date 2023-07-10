@@ -77,6 +77,9 @@ App.commands = [
   {name: `Copy Title`, cmd: `copy_item_title`, mode: `items`, action: (args) => {
     App.copy_title(args.item, args.from !== `palette`)
   }},
+  {name: `Background`, cmd: `set_background`, mode: `items`, action: (args) => {
+    App.set_background_image(args.item.url)
+  }},
 
   {name: App.separator_string},
 
