@@ -125,7 +125,7 @@ App.check_items_keyboard = (e) => {
 
   if (!e.ctrlKey && !e.shiftKey) {
     if (e.key === `Escape`) {
-      if (App.get_highlights(mode).length > 0) {
+      if (App.highlights(mode)) {
         App.dehighlight(mode)
       }
       else if (App.get_filter(mode)) {

@@ -1,6 +1,5 @@
 App.show_item_menu = (item, x, y) => {
-  let highlights = App.get_highlights(item.mode)
-  let multiple = highlights.length > 0
+  let multiple = App.highlights(item.mode)
   let items = []
 
   if (item.mode === `tabs`) {

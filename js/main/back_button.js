@@ -25,7 +25,7 @@ App.back_action = (mode = App.window_mode, e) => {
     App[`${mode}_back_action`](e)
   }
   else {
-    if (App.get_highlights(mode).length > 0) {
+    if (App.highlights(mode)) {
       App.dehighlight(mode)
       return
     }

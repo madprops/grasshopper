@@ -925,7 +925,7 @@ App.focus_current_tab = async () => {
 }
 
 App.tabs_back_action = async (e) => {
-  if (App.get_highlights(`tabs`).length > 0) {
+  if (App.highlights(`tabs`)) {
     App.dehighlight(`tabs`)
     App.focus_current_tab()
     return

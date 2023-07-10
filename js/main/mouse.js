@@ -67,7 +67,7 @@ App.setup_window_mouse = (mode) => {
       return
     }
 
-    if (App.get_highlights(mode).length > 0) {
+    if (App.highlights(mode)) {
       App.dehighlight(mode)
     }
 
@@ -106,7 +106,7 @@ App.setup_window_mouse = (mode) => {
 
       if (item) {
         if (!item.highlighted) {
-          if (App.get_highlights(mode).length > 0) {
+          if (App.highlights(mode)) {
             App.pick_item(item)
           }
         }

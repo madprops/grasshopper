@@ -1180,9 +1180,8 @@ App.scroll = (mode, direction, fast = false) => {
 
 App.highlight_items = (mode = App.window_mode) => {
   let what
-  let highlights = App.get_highlights(mode)
 
-  if (highlights.length > 0) {
+  if (App.highlights(mode)) {
     what = false
   }
 
@@ -1257,9 +1256,7 @@ App.get_mode_name = (mode) => {
 }
 
 App.item_action = async (item) => {
-  let highlighted = App.get_highlights(item.mode)
-
-  if (highlighted.length > 0) {
+  if (App.highlights(item.mode)) {
     App.open_items(item)
   }
   else {
@@ -1407,4 +1404,14 @@ App.search_items = async (mode, query) => {
   }
 
   App.process_info_list(mode, items)
+}
+
+App.highlights = (mode) => {
+  for (let item of App.get_items(mode)) {
+    if (item.highlighted) {
+      return true
+    }
+  }
+
+  return false
 }
