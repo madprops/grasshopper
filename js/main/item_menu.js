@@ -3,115 +3,72 @@ App.show_item_menu = (item, x, y) => {
   let items = []
 
   if (item.mode === `tabs`) {
-    if (!item.discarded) {
-      if (item.pinned) {
-        items.push({
-          text: `Unpin`,
-          action: () => {
-            App.unpin_tabs(item)
-          }
-        })
-      }
-      else {
-        items.push({
-          text: `Pin`,
-          action: () => {
-            App.pin_tabs(item)
-          }
-        })
-      }
+    if (item.pinned && !item.discarded) {
+      items.push({
+        text: `Unpin`,
+        action: () => {
+          App.unpin_tabs(item)
+        }
+      })
+    }
 
-      if (item.muted) {
-        items.push({
-          text: `Unmute`,
-          action: () => {
-            App.unmute_tabs(item)
-          }
-        })
-      }
-      else {
-        items.push({
-          text: `Mute`,
-          action: () => {
-            App.mute_tabs(item)
-          }
-        })
-      }
+    if (!item.pinned && !item.discarded) {
+      items.push({
+        text: `Pin`,
+        action: () => {
+          App.pin_tabs(item)
+        }
+      })
+    }
 
+    if (item.muted && !item.discarded) {
+      items.push({
+        text: `Unmute`,
+        action: () => {
+          App.unmute_tabs(item)
+        }
+      })
+    }
+
+    if (!item.muted && !item.discarded) {
+      items.push({
+        text: `Mute`,
+        action: () => {
+          App.mute_tabs(item)
+        }
+      })
+    }
+
+    if (items.length > 0) {
       items.push({
         separator: true
       })
     }
-  }
-  else {
-    items.push({
-      text: `Open`,
-      action: () => {
-        App.open_items(item, true)
-      }
-    })
-  }
 
-  if (item.mode !== `stars`) {
-    items.push({
-      text: `Star`,
-      action: () => {
-        App.star_items(item, false)
+    let common = App.common_menu_items(item, multiple)
+
+    if (common.length > 0) {
+      for (let c of common) {
+        items.push(c)
       }
-    })
-  }
-  else {
-    if (!multiple) {
+    }
+
+    let more = App.more_menu_items(item, multiple)
+
+    if (more.length > 0) {
       items.push({
-        text: `Edit`,
-        action: () => {
-          App.add_or_edit_star(item)
+        text: `More`,
+        get_items: () => {
+          return more
         }
       })
     }
-  }
 
-  if (!multiple) {
-    items.push({
-      text: `Filter`,
-      action: () => {
-        App.filter_domain(item)
-      }
-    })
-
-    items.push({
-      text: `Copy`,
-      items: [
-      {
-        text: `Copy URL`,
-        action: () => {
-          App.copy_url(item)
-        }
-      },
-      {
-        text: `Copy Title`,
-        action: () => {
-          App.copy_title(item)
-        }
-      }]
-    })
-  }
-
-  let more = App.more_menu_items(item, multiple)
-
-  if (more.length > 0) {
-    items.push({
-      text: `More`,
-      get_items: () => {
-        return more
-       }
-    })
-  }
-
-  if (item.mode === `tabs`) {
-    items.push({
-      separator: true
-    })
+    if (items.length > 0) {
+      items.push({
+        separator: true
+      })
+    }
 
     items.push({
       text: `Close`,
@@ -120,10 +77,37 @@ App.show_item_menu = (item, x, y) => {
       }
     })
   }
+
   else if (item.mode === `stars`) {
     items.push({
-      separator: true
+      text: `Open`,
+      action: () => {
+        App.open_items(item, true)
+      }
     })
+
+    if (!multiple) {
+      items.push({
+        text: `Edit`,
+        action: () => {
+          App.add_or_edit_star(item)
+        }
+      })
+    }
+
+    let common = App.common_menu_items(item, multiple)
+
+    if (common.length > 0) {
+      for (let c of common) {
+        items.push(c)
+      }
+    }
+
+    if (items.length > 0) {
+      items.push({
+        separator: true
+      })
+    }
 
     items.push({
       text: `Remove`,
@@ -131,6 +115,23 @@ App.show_item_menu = (item, x, y) => {
         App.remove_stars(item)
       }
     })
+  }
+
+  else {
+    items.push({
+      text: `Open`,
+      action: () => {
+        App.open_items(item, true)
+      }
+    })
+
+    let common = App.common_menu_items(item, multiple)
+
+    if (common.length > 0) {
+      for (let c of common) {
+        items.push(c)
+      }
+    }
   }
 
   NeedContext.show(x, y, items)
@@ -160,6 +161,49 @@ App.get_window_menu_items = async (item) => {
       action: () => {
         App.move_tabs(item, win.id)
       }
+    })
+  }
+
+  return items
+}
+
+App.common_menu_items = (item, multiple) => {
+  let items = []
+
+  if (item.mode !== `stars`) {
+    items.push({
+      text: `Star`,
+      action: () => {
+        App.star_items(item, false)
+      }
+    })
+  }
+
+  if (!multiple) {
+    items.push({
+      text: `Filter`,
+      action: () => {
+        App.filter_domain(item)
+      }
+    })
+  }
+
+  if (!multiple) {
+    items.push({
+      text: `Copy`,
+      items: [
+      {
+        text: `Copy URL`,
+        action: () => {
+          App.copy_url(item)
+        }
+      },
+      {
+        text: `Copy Title`,
+        action: () => {
+          App.copy_title(item)
+        }
+      }]
     })
   }
 
