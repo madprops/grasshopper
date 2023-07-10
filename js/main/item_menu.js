@@ -58,7 +58,7 @@ App.show_item_menu = (item, x, y) => {
       })
     }
 
-    if (items.length > 2) {
+    if (items.length > 1) {
       items.push({
         separator: true
       })
@@ -97,7 +97,7 @@ App.show_item_menu = (item, x, y) => {
       }
     }
 
-    if (items.length > 2) {
+    if (items.length > 1) {
       items.push({
         separator: true
       })
