@@ -121,6 +121,8 @@ App.hide_all_windows = () => {
 }
 
 App.show_window = (mode) => {
+  App.log(`Show Window: ${mode}`)
+
   if (App.on_item_window(mode)) {
     App.show_item_window(mode)
   }

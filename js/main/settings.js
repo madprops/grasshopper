@@ -42,7 +42,6 @@ App.default_settings = {
   gesture_right: {value: `next_window`, category: `mouse`, version: 1},
   gesture_up_and_down: {value: `show_all`, category: `mouse`, version: 1},
   gesture_left_and_right: {value: `filter_domain`, category: `mouse`, version: 1},
-  double_click_tab: {value: `star_items`, category: `mouse`, version: 1},
   middle_click_main_menu: {value: `show_main`, category: `mouse`, version: 1},
   middle_click_filter_menu: {value: `show_all`, category: `mouse`, version: 1},
   middle_click_back_button: {value: `browser_back`, category: `mouse`, version: 1},
@@ -424,7 +423,6 @@ App.setup_settings = () => {
       App.settings_make_menu(`gesture_${gesture}`, opts.slice(0))
     }
 
-    App.settings_make_menu(`double_click_tab`, opts.slice(0))
     App.settings_make_menu(`middle_click_main_menu`, opts.slice(0))
     App.settings_make_menu(`middle_click_filter_menu`, opts.slice(0))
     App.settings_make_menu(`middle_click_back_button`, opts.slice(0))

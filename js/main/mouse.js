@@ -76,32 +76,6 @@ App.setup_window_mouse = (mode) => {
     App[`${mode}_action`](item)
   })
 
-  DOM.ev(container, `dblclick`, (e) => {
-    if (e.shiftKey || e.ctrlKey) {
-      return
-    }
-
-    if (!App.cursor_on_item(e, mode)) {
-      return
-    }
-
-    if (e.target.classList.contains(`item_button`)) {
-      return
-    }
-
-    if (mode === `tabs`) {
-      let item = App.get_cursor_item(mode, e)
-
-      setTimeout(() => {
-        let cmd = App.get_setting(`double_click_tab`)
-
-        if (cmd !== `none`) {
-          App.run_command({cmd: cmd, item: item, from: `double_click`})
-        }
-      }, 80)
-    }
-  })
-
   DOM.ev(container, `contextmenu`, (e) => {
     if (App.cursor_on_item(e, mode)) {
       let item = App.get_cursor_item(mode, e)
