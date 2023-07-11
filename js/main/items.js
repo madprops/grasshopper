@@ -14,6 +14,10 @@ App.select_item = async (item, scroll = `nearest`, dehighlight = true) => {
     App.create_item_element(item)
   }
 
+  if (dehighlight) {
+    App.dehighlight(item.mode)
+  }
+
   App.set_selected(item.mode, item)
   App.remove_selected_class(item.mode)
   App.get_selected(item.mode).element.classList.add(`selected`)
@@ -31,10 +35,6 @@ App.select_item = async (item, scroll = `nearest`, dehighlight = true) => {
     catch (err) {
       App.log(err, `error`)
     }
-  }
-
-  if (dehighlight) {
-    App.dehighlight(item.mode)
   }
 }
 
@@ -1020,11 +1020,6 @@ App.dehighlight = (mode = App.window_mode, direction = `none`) => {
     if (item.highlighted) {
       App.toggle_highlight(item)
       some = true
-
-      if (!first) {
-        first = item
-      }
-
       last = item
     }
   }
@@ -1087,7 +1082,7 @@ App.toggle_highlight = (item, what) => {
   App.update_footer_count(item.mode)
 }
 
-App.get_highlights = (mode) => {
+App.get_highlights = (mode = App.window_mode) => {
   let ans = []
 
   for (let item of App.get_items(mode)) {
