@@ -7,8 +7,8 @@ App.show_item_menu = (item, x, y) => {
   if (item.mode === `tabs`) {
     let some_loaded = false
 
-    for (let h of active) {
-      if (!h.discarded) {
+    for (let it of active) {
+      if (!it.discarded) {
         some_loaded = true
         break
       }
