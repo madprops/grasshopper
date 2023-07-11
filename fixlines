@@ -1,0 +1,10 @@
+#!/usr/bin/env ruby
+files = Dir.glob(File.join("js/main", '*'))
+files.each do |file|
+  content = File.read(file)
+  fixed_content = content.gsub(/\n\s*\n\s*\n/, "\n\n")
+  if content != fixed_content
+    File.write(file, fixed_content)
+    puts "Fixed: #{file}"
+  end
+end
