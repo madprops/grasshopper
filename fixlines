@@ -2,9 +2,9 @@
 files = Dir.glob(File.join("js/main", '*'))
 files.each do |file|
   content = File.read(file)
-  fixed_content = content.gsub(/\n\s*\n\s*\n/, "\n\n")
-  if content != fixed_content
-    File.write(file, fixed_content)
+  fixed = content.gsub(/\n\s*\n\s*\n/, "\n\n")
+  if content != fixed
+    File.write(file, fixed)
     puts "Fixed: #{file}"
   end
 end
