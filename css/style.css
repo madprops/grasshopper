@@ -305,7 +305,7 @@ svg {
 }
 
 .highlighted .item_icon {
-  border: 1px solid var(--text_color);
+  outline: 1px solid var(--text_color);
 }
 
 .highlighted .item_button {
