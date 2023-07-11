@@ -50,24 +50,8 @@ App.show_item_menu = (item, x, y) => {
       })
     }
 
-    let common = App.common_menu_items(item, multiple)
-
-    if (common.length > 0) {
-      for (let c of common) {
-        items.push(c)
-      }
-    }
-
-    let more = App.more_menu_items(item, multiple, some_loaded)
-
-    if (more.length > 0) {
-      items.push({
-        text: `More`,
-        get_items: () => {
-          return more
-        }
-      })
-    }
+    App.common_menu_items(items, item, multiple)
+    App.more_menu_items(items, item, multiple, some_loaded)
 
     if (items.length >= min_close_sep) {
       items.push({
@@ -100,13 +84,8 @@ App.show_item_menu = (item, x, y) => {
       })
     }
 
-    let common = App.common_menu_items(item, multiple)
-
-    if (common.length > 0) {
-      for (let c of common) {
-        items.push(c)
-      }
-    }
+    App.common_menu_items(items, item, multiple)
+    App.more_menu_items(items, item, multiple)
 
     if (items.length >= min_close_sep) {
       items.push({
@@ -130,13 +109,8 @@ App.show_item_menu = (item, x, y) => {
       }
     })
 
-    let common = App.common_menu_items(item, multiple)
-
-    if (common.length > 0) {
-      for (let c of common) {
-        items.push(c)
-      }
-    }
+    App.common_menu_items(items, item, multiple)
+    App.more_menu_items(items, item, multiple)
   }
 
   NeedContext.show(x, y, items)
@@ -172,7 +146,7 @@ App.get_window_menu_items = async (item) => {
   return items
 }
 
-App.common_menu_items = (item, multiple) => {
+App.common_menu_items = (o_items, item, multiple) => {
   let items = []
 
   if (item.mode !== `stars`) {
@@ -212,10 +186,14 @@ App.common_menu_items = (item, multiple) => {
     })
   }
 
-  return items
+  if (items.length > 0) {
+    for (let c of items) {
+      o_items.push(c)
+    }
+  }
 }
 
-App.more_menu_items = (item, multiple, some_loaded) => {
+App.more_menu_items = (o_items, item, multiple, some_loaded) => {
   let items = []
 
   if (item.mode === `tabs`) {
@@ -283,5 +261,12 @@ App.more_menu_items = (item, multiple, some_loaded) => {
     })
   }
 
-  return items
+  if (items.length > 0) {
+    o_items.push({
+      text: `More`,
+      get_items: () => {
+        return items
+      }
+    })
+  }
 }
