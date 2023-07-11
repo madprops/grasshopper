@@ -1,5 +1,7 @@
 #!/usr/bin/env ruby
 files = Dir.glob(File.join("js/main", '*'))
+files.append("main.html")
+files.append("css/style.css")
 files.each do |file|
   content = File.read(file)
   fixed = content.gsub(/\n\s*\n\s*\n/, "\n\n")
