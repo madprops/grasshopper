@@ -405,8 +405,6 @@ svg {
 .settings_filter {
   text-align: center;
   width: 11rem;
-  position: sticky;
-  top: 0;
   background-color: var(--alt_background_2);
 }
 
