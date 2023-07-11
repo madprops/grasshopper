@@ -108,7 +108,7 @@ App.get_next_visible_item = (args) => {
   let def_args = {
     reverse: false,
     wrap: true,
-    discarded:  true,
+    discarded: true,
   }
 
   args = Object.assign(def_args, args)
