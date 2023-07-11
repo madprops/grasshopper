@@ -1020,6 +1020,11 @@ App.dehighlight = (mode = App.window_mode, direction = `none`) => {
     if (item.highlighted) {
       App.toggle_highlight(item)
       some = true
+
+      if (!first) {
+        first = item
+      }
+
       last = item
     }
   }
