@@ -21,6 +21,8 @@ App.create_back_button = (mode) => {
 }
 
 App.back_action = (mode = App.window_mode, e) => {
+  let item = App.get_selected(mode)
+
   if (App.highlights(mode)) {
     App.dehighlight(mode)
   }
@@ -29,6 +31,9 @@ App.back_action = (mode = App.window_mode, e) => {
   }
   else if (App[`${mode}_filter_mode`] !== `all`) {
     App.show_all()
+  }
+  else if (item && !App.element_is_visible(item.element)) {
+    App.select_item(item, `nearest_smooth`)
   }
   else if (mode === `tabs`) {
     if (e.shiftKey) {
