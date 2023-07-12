@@ -1024,7 +1024,8 @@ App.highlight_range = (item) => {
 }
 
 App.dehighlight = (mode = App.window_mode, direction = `none`) => {
-  let some, first, last
+  let some = false
+  let first, last
 
   for (let item of App.get_highlights(mode)) {
     App.toggle_highlight(item, false, false)
