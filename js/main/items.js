@@ -10,6 +10,10 @@ App.remove_selected_class = (mode) => {
 }
 
 App.select_item = async (item, scroll = `nearest`, dehighlight = true) => {
+  if (!item) {
+    return
+  }
+
   if (!item.created) {
     App.create_item_element(item)
   }
@@ -18,9 +22,16 @@ App.select_item = async (item, scroll = `nearest`, dehighlight = true) => {
     App.dehighlight(item.mode)
   }
 
+  let selected = App.get_selected(item.mode)
+
+  if (selected === item) {
+    App.scroll_to_item(item, scroll)
+    return
+  }
+
   App.set_selected(item.mode, item)
   App.remove_selected_class(item.mode)
-  App.get_selected(item.mode).element.classList.add(`selected`)
+  item.element.classList.add(`selected`)
 
   if (scroll !== `none`) {
     App.scroll_to_item(item, scroll)
@@ -158,10 +169,10 @@ App.get_selected = (mode = App.window_mode) => {
   return App[`selected_${mode}_item`]
 }
 
-App.set_selected = (mode, what) => {
-  App[`selected_${mode}_item`] = what
+App.set_selected = (mode, item) => {
+  App[`selected_${mode}_item`] = item
 
-  if (!what) {
+  if (!item) {
     App.remove_selected_class(mode)
   }
 }

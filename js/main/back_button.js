@@ -4,7 +4,7 @@ App.create_back_button = (mode) => {
   back.append(App.create_icon(`back`))
 
   DOM.ev(back, `click`, (e) => {
-    App.back_action(mode)
+    App.back_action(mode, e)
   })
 
   DOM.ev(back, `auxclick`, (e) => {
@@ -30,10 +30,14 @@ App.back_action = (mode = App.window_mode, e) => {
   else if (App[`${mode}_filter_mode`] !== `all`) {
     App.show_all()
   }
-  else if ((App.item_order[0] === `tabs`) && (App.window_mode === `tabs`)) {
-    App.focus_current_tab()
+  else if (mode === `tabs`) {
+    if (e.shiftKey) {
+      App.do_empty_previous_tabs()
+    }
+
+    App.go_to_previous_tab()
   }
-  else if (App.window_mode !== App.item_order[0]) {
+  else if (mode !== App.item_order[0]) {
     App.show_main_item_window()
   }
 }

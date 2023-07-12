@@ -41,7 +41,7 @@ App.check_items_keyboard = (e) => {
       return
     }
     else if (e.key === `Backspace`) {
-      App.back_action(mode)
+      App.back_action(mode, e)
       e.preventDefault()
       return
     }
@@ -125,7 +125,7 @@ App.check_items_keyboard = (e) => {
 
   if (!e.ctrlKey && !e.shiftKey) {
     if (e.key === `Escape`) {
-      App.back_action(mode)
+      App.back_action(mode, e)
     }
     else if (e.key === `Enter`) {
       let item = App.get_selected(mode)

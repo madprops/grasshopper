@@ -779,7 +779,7 @@ App.go_to_playing_tab = () => {
       }
 
       if (waypoint) {
-        App.focus_tab(item, `center_smooth`, `playing`)
+        App.focus_tab(item, `nearest_smooth`, `playing`)
         return
       }
     }
@@ -792,7 +792,7 @@ App.go_to_playing_tab = () => {
 
   // If none found then pick the first one
   if (first) {
-    App.focus_tab(first, `center_smooth`, `playing`)
+    App.focus_tab(first, `nearest_smooth`, `playing`)
   }
 }
 
@@ -825,7 +825,7 @@ App.go_to_previous_tab = async () => {
   let item = App.get_item_by_id(`tabs`, prev_tab.id)
 
   if (item) {
-    App.focus_tab(item, `center_smooth`, `previous`)
+    App.focus_tab(item, `nearest_smooth`, `previous`)
     App.previous_tabs_index += 1
 
     if (App.previous_tabs_index >= App.previous_tabs.length) {
@@ -921,7 +921,7 @@ App.focus_current_tab = async () => {
   let selected = App.get_selected(`tabs`) === item
 
   if (!selected || !visible) {
-    App.select_item(item, `center_smooth`)
+    App.select_item(item, `nearest_smooth`)
     return true
   }
 

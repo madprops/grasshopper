@@ -188,7 +188,7 @@ svg {
   min-height: var(--item_height);
   direction: ltr;
   flex-shrink: 0;
-  scroll-margin: 3.6rem;
+  scroll-margin: 4.2rem;
   padding-left: var(--item_margin);
   padding-right: var(--item_margin);
   gap: 0.611rem;
