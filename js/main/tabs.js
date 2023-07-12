@@ -913,19 +913,9 @@ App.close_duplicate_tabs = () => {
 App.focus_current_tab = async () => {
   let item = await App.get_active_tab_item()
 
-  if (!item) {
-    return false
-  }
-
-  let visible = App.element_is_visible(item.element)
-  let selected = App.get_selected(`tabs`) === item
-
-  if (!selected || !visible) {
+  if (item) {
     App.select_item(item, `nearest_smooth`)
-    return true
   }
-
-  return false
 }
 
 App.move_tabs_vertically = async (direction, item) => {
