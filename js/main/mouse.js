@@ -61,6 +61,7 @@ App.setup_window_mouse = (mode) => {
 
     if (e.shiftKey) {
       App.highlight_range(item)
+      select(item)
       return
     }
 
