@@ -81,7 +81,7 @@ App.setup_window_mouse = (mode) => {
   DOM.ev(container, `contextmenu`, (e) => {
     if (App.cursor_on_item(e, mode)) {
       let item = App.get_cursor_item(mode, e)
-      App.select_item(item, `nearest_smooth`, false)
+      select(item)
 
       if (item) {
         if (!item.highlighted) {
