@@ -1082,15 +1082,12 @@ App.toggle_highlight = (item, what, select = true) => {
 
   item.highlighted = highlight
 
-  if (select) {
-    if (!item.highlighted) {
-      // Make the selected item a highlighted one
-      if (App.get_selected(item.mode) === item) {
-        let highlights = App.get_highlights(item.mode)
+  if (select && !highlight) {
+    if (App.get_selected(item.mode) === item) {
+      let highlights = App.get_highlights(item.mode)
 
-        if (highlights.length > 0) {
-          App.select_item(highlights.at(-1), `none`, false)
-        }
+      if (highlights.length > 0) {
+        App.select_item(highlights.at(-1), `none`, false)
       }
     }
   }
