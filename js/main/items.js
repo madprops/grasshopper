@@ -1072,18 +1072,6 @@ App.toggle_highlight = (item, what) => {
   }
 
   item.highlighted = highlight
-
-  if (!item.highlighted) {
-    // Make the selected item a highlighted one
-    if (App.get_selected(item.mode) === item) {
-      let highlights = App.get_highlights(item.mode)
-
-      if (highlights.length > 0) {
-        App.select_item(highlights.at(-1), `none`, false)
-      }
-    }
-  }
-
   App.update_footer_count(item.mode)
 }
 
@@ -1301,17 +1289,6 @@ App.pick_item = (item) => {
 App.container_is_scrolled = (mode) => {
   let container = DOM.el(`#${mode}_container`)
   return container.scrollHeight > container.clientHeight
-}
-
-App.clear_or_all = (mode) => {
-  if (App.is_filtered(mode)) {
-    if (App.get_filter(mode)) {
-      App.clear_filter(mode)
-    }
-    else {
-      App.show_all(mode)
-    }
-  }
 }
 
 App.scroll_to_item = (item, scroll = `nearest`) => {

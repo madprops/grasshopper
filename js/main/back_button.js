@@ -4,7 +4,7 @@ App.create_back_button = (mode) => {
   back.append(App.create_icon(`back`))
 
   DOM.ev(back, `click`, (e) => {
-    App.back_action(mode, e)
+    App.back_action(mode)
   })
 
   DOM.ev(back, `auxclick`, (e) => {
@@ -21,27 +21,19 @@ App.create_back_button = (mode) => {
 }
 
 App.back_action = (mode = App.window_mode, e) => {
-  if (App[`${mode}_back_action`]) {
-    App[`${mode}_back_action`](e)
+  if (App.highlights(mode)) {
+    App.dehighlight(mode)
   }
-  else {
-    if (App.highlights(mode)) {
-      App.dehighlight(mode)
-      return
-    }
-
-    let item = App.get_selected(mode)
-    let visible
-
-    if (item) {
-      visible = App.element_is_visible(item.element)
-    }
-
-    if (visible || !item) {
-      App.clear_or_all(mode)
-    }
-    else {
-      App.select_item(item, `center_smooth`)
-    }
+  else if (App.get_filter(mode)) {
+    App.clear_filter(mode)
+  }
+  else if (App[`${mode}_filter_mode`] !== `all`) {
+    App.show_all()
+  }
+  else if ((App.item_order[0] === `tabs`) && (App.window_mode === `tabs`)) {
+    App.focus_current_tab()
+  }
+  else if (App.window_mode !== App.item_order[0]) {
+    App.show_main_item_window()
   }
 }

@@ -7,6 +7,10 @@ DOM.ev(window, `mouseup`, (e) => {
 })
 
 App.setup_window_mouse = (mode) => {
+  function select (item) {
+    App.select_item(item, `nearest_smooth`, false)
+  }
+
   let container = DOM.el(`#${mode}_container`)
 
   DOM.ev(container, `mousedown`, (e) => {
@@ -49,6 +53,7 @@ App.setup_window_mouse = (mode) => {
 
     if (e.target.classList.contains(`view_media_button`)) {
       if (!e.shiftKey && !e.ctrlKey) {
+        select(item)
         App.view_media(item)
         return
       }
@@ -69,16 +74,14 @@ App.setup_window_mouse = (mode) => {
       return
     }
 
-    if (App.highlights(mode)) {
-      App.dehighlight(mode)
-    }
-
+    select(item)
     App[`${mode}_action`](item)
   })
 
   DOM.ev(container, `contextmenu`, (e) => {
     if (App.cursor_on_item(e, mode)) {
       let item = App.get_cursor_item(mode, e)
+      App.select_item(item, `nearest_smooth`, false)
 
       if (item) {
         if (!item.highlighted) {
@@ -166,6 +169,7 @@ App.setup_drag = (mode) => {
     App.drag_y = e.clientY
     let id = App.drag_element.dataset.id
     App.drag_item = App.get_item_by_id(mode, id)
+    App.select_item(App.drag_item, `nearest_smooth`, false)
     App.drag_start_index = App.get_item_element_index(mode, App.drag_element)
     e.dataTransfer.setDragImage(new Image(), 0, 0)
     e.dataTransfer.setData(`text/plain`, App.drag_item.url)

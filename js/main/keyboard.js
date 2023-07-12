@@ -125,21 +125,7 @@ App.check_items_keyboard = (e) => {
 
   if (!e.ctrlKey && !e.shiftKey) {
     if (e.key === `Escape`) {
-      if (App.highlights(mode)) {
-        App.dehighlight(mode)
-      }
-      else if (App.get_filter(mode)) {
-        App.clear_filter(mode)
-      }
-      else if (App[`${mode}_filter_mode`] !== `all`) {
-        App.show_all()
-      }
-      else if ((App.item_order[0] === `tabs`) && (App.window_mode === `tabs`)) {
-        App.focus_current_tab()
-      }
-      else if (App.window_mode !== App.item_order[0]) {
-        App.show_main_item_window()
-      }
+      App.back_action(mode)
     }
     else if (e.key === `Enter`) {
       let item = App.get_selected(mode)

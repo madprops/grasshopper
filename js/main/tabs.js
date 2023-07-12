@@ -928,31 +928,6 @@ App.focus_current_tab = async () => {
   return false
 }
 
-App.tabs_back_action = async (e) => {
-  if (App.highlights(`tabs`)) {
-    App.dehighlight(`tabs`)
-    App.focus_current_tab()
-    return
-  }
-
-  let was_filtered = App.is_filtered(`tabs`)
-  App.clear_or_all(`tabs`)
-
-  if (was_filtered) {
-    return
-  }
-
-  let scrolled = await App.focus_current_tab()
-
-  if (!scrolled) {
-    if (e.shiftKey) {
-      App.do_empty_previous_tabs()
-    }
-
-    App.go_to_previous_tab()
-  }
-}
-
 App.move_tabs_vertically = async (direction, item) => {
   if (!item) {
     item = App.get_selected(`tabs`)
