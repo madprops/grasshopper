@@ -1,6 +1,5 @@
 App.setup_about = () => {
   App.create_window({id: `about`, setup: () => {
-    console.log(1)
     App.about_info_items = [
       `Up, Down, and Enter keys navigate and pick items`,
       `Type to filter items, press Tab to cycle-reuse`,
