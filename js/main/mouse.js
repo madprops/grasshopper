@@ -69,12 +69,13 @@ App.setup_window_mouse = (mode) => {
       return
     }
 
+    select(item)
+
     if (e.ctrlKey) {
       App.toggle_highlight(item)
       return
     }
 
-    select(item)
     App[`${mode}_action`](item)
   })
 
