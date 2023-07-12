@@ -30,7 +30,7 @@ App.setup_window_mouse = (mode) => {
           App.item_range_highlight = false
         }
         else {
-          App.select_item(item, `none`, false)
+          select(item)
           App.item_range_highlight = true
         }
 
