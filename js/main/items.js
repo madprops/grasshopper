@@ -1279,24 +1279,6 @@ App.show_all = (mode = App.window_mode) => {
   }
 }
 
-App.pick_item = (item) => {
-  let highlighted = item.highlighted
-
-  if (!highlighted) {
-    App.select_item(item, `nearest`, false)
-  }
-
-  App.toggle_highlight(item)
-
-  if (highlighted) {
-    let highlights = App.get_highlights(item.mode)
-
-    if (highlights.length > 0) {
-      App.select_item(highlights[0], `nearest`, false)
-    }
-  }
-}
-
 App.container_is_scrolled = (mode) => {
   let container = DOM.el(`#${mode}_container`)
   return container.scrollHeight > container.clientHeight

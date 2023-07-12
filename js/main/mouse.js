@@ -70,7 +70,7 @@ App.setup_window_mouse = (mode) => {
     }
 
     if (e.ctrlKey) {
-      App.pick_item(item)
+      App.toggle_highlight(item)
       return
     }
 
@@ -86,7 +86,7 @@ App.setup_window_mouse = (mode) => {
       if (item) {
         if (!item.highlighted) {
           if (App.highlights(mode)) {
-            App.pick_item(item)
+            App.toggle_highlight(item)
           }
         }
 
