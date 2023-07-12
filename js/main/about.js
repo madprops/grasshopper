@@ -1,5 +1,6 @@
 App.setup_about = () => {
   App.create_window({id: `about`, setup: () => {
+    console.log(1)
     App.about_info_items = [
       `Up, Down, and Enter keys navigate and pick items`,
       `Type to filter items, press Tab to cycle-reuse`,
@@ -37,74 +38,23 @@ App.setup_about = () => {
       `Command palette commands take into account selected items`,
     ]
 
-    DOM.ev(DOM.el(`#about_info`), `click`, () => {
-      App.show_full_about_info()
-    })
-
     DOM.ev(DOM.el(`#about_close`), `click`, () => {
       App.hide_current_window()
     })
 
-    let image = DOM.el(`#about_image`)
-
-    DOM.ev(image, `click`, () => {
-      if (image.classList.contains(`hue_rotate`)) {
-        image.classList.remove(`hue_rotate`)
-        image.classList.add(`invert`)
-      }
-      else if (image.classList.contains(`invert`)) {
-        image.classList.remove(`invert`)
-
-        if (App.about_flips >= 2) {
-          App.about_flips = 0
-          App.show_alert(`Stop it!`, 1000)
-        }
-        else {
-          if (image.classList.contains(`flipped`)) {
-            image.classList.remove(`flipped`)
-          }
-          else {
-            image.classList.add(`flipped`)
-          }
-
-          App.about_flips += 1
-        }
-      }
-      else {
-        image.classList.add(`hue_rotate`)
-      }
-    })
-
-    let info_full = DOM.el(`#about_info_full`)
+    let info = DOM.el(`#about_info`)
 
     for (let item of App.about_info_items) {
       let el = DOM.create(`div`)
       el.textContent = item
-      info_full.append(el)
+      info.append(el)
     }
 
     let manifest = browser.runtime.getManifest()
     let s = `${App.name} v${manifest.version}`
     DOM.el(`#about_name`).textContent = s
-    App.about_flips = 0
-  },
-  after_show: () => {
-    App.start_about_info()
   },
   on_hide: () => {
     App.show_last_window()
-  }, persistent: false, colored_top: true})
-}
-
-App.start_about_info = () => {
-  DOM.el(`#about_info`).classList.remove(`hidden`)
-  DOM.el(`#about_image`).classList.remove(`hidden`)
-  DOM.el(`#about_info_full`).classList.add(`hidden`)
-  DOM.el(`#about_info`).textContent = App.about_info_items[0]
-}
-
-App.show_full_about_info = () => {
-  DOM.el(`#about_info`).classList.add(`hidden`)
-  DOM.el(`#about_image`).classList.add(`hidden`)
-  DOM.el(`#about_info_full`).classList.remove(`hidden`)
+  }, colored_top: true})
 }

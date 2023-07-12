@@ -484,21 +484,6 @@ svg {
 }
 
 #about_info {
-  text-align: center;
-  padding: 0.5rem;
-  width: 80%;
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
-}
-
-#about_image {
-  padding-top: 1.5rem;
-  width: 51%;
-  cursor: pointer;
-}
-
-#about_info_full {
   display: flex;
   flex-direction: column;
   align-items: flex-start;
@@ -514,18 +499,6 @@ svg {
 
 a:visited, a:link, a:hover {
 	color: var(--text_color);
-}
-
-.invert {
-  filter: invert(100%);
-}
-
-.hue_rotate {
-  filter: hue-rotate(90deg);
-}
-
-.transparent {
-  opacity: 0;
 }
 
 .popup_container {
