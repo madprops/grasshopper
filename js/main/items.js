@@ -1024,39 +1024,36 @@ App.highlight_range = (item) => {
 }
 
 App.dehighlight = (mode = App.window_mode, direction = `none`) => {
-  let some = false
-  let first, last
+  let some, first, last
 
-  for (let item of App.get_items(mode)) {
-    if (item.highlighted) {
-      App.toggle_highlight(item)
-      some = true
+  for (let item of App.get_highlights(mode)) {
+    App.toggle_highlight(item, false, false)
 
-      if (!first) {
-        first = item
-      }
-
-      last = item
+    if (!first) {
+      first = item
     }
+
+    last = item
+    some = true
   }
 
   App.last_highlight = undefined
 
   if (direction === `up`) {
     if (first) {
-      App.select_item(first, `nearest_instant`, false)
+      App.select_item(first, `nearest_smooth`, false)
     }
   }
   else if (direction === `down`) {
     if (last) {
-      App.select_item(last, `nearest_instant`, false)
+      App.select_item(last, `nearest_smooth`, false)
     }
   }
 
   return some
 }
 
-App.toggle_highlight = (item, what) => {
+App.toggle_highlight = (item, what, select = true) => {
   let highlight
 
   if (what !== undefined) {
@@ -1084,13 +1081,15 @@ App.toggle_highlight = (item, what) => {
 
   item.highlighted = highlight
 
-  if (!item.highlighted) {
-    // Make the selected item a highlighted one
-    if (App.get_selected(item.mode) === item) {
-      let highlights = App.get_highlights(item.mode)
+  if (select) {
+    if (!item.highlighted) {
+      // Make the selected item a highlighted one
+      if (App.get_selected(item.mode) === item) {
+        let highlights = App.get_highlights(item.mode)
 
-      if (highlights.length > 0) {
-        App.select_item(highlights.at(-1), `none`, false)
+        if (highlights.length > 0) {
+          App.select_item(highlights.at(-1), `none`, false)
+        }
       }
     }
   }
