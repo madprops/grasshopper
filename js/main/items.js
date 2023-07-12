@@ -665,7 +665,7 @@ App.show_item_window = async (mode, cycle = false) => {
   }
 
   if (value) {
-    App.do_filter(mode)
+    App.do_filter(mode, true)
   }
   else {
     App.select_first_item(mode, true)

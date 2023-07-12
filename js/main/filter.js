@@ -12,7 +12,7 @@ App.cancel_filter = () => {
   App.filter_debouncer.cancel()
 }
 
-App.do_filter = async (mode) => {
+App.do_filter = async (mode, force = false) => {
   App.cancel_filter()
   App.log(`Filter: ${mode}`)
 
@@ -81,7 +81,7 @@ App.do_filter = async (mode) => {
       query = clean_val
     }
 
-    if (query !== App[`last_${mode}_query`]) {
+    if (force || (query !== App[`last_${mode}_query`])) {
       await App.search_items(mode, query)
 
       if (App.window_mode !== mode) {
