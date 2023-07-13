@@ -72,6 +72,7 @@ App.default_settings = {
   bookmarks_index: {value: 3, category: `more`, version: 1},
   closed_index: {value: 4, category: `more`, version: 1},
   custom_filters: {value: [], category: `more`, version: 1},
+  mute_click: {value: true, category: `more`, version: 1},
 }
 
 App.make_item_order = () => {

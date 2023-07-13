@@ -213,6 +213,14 @@ svg {
   flex-direction: row;
   gap: var(--item_margin);
   flex-shrink: 0;
+  height: 100%;
+}
+
+.item_status_icon {
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .item_text {

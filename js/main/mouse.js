@@ -73,10 +73,12 @@ App.setup_window_mouse = (mode) => {
     select(item)
 
     if (mode === `tabs`) {
-      if (e.target.classList.contains(`item_status_playing`) ||
-        e.target.classList.contains(`item_status_muted`)) {
-        App.toggle_mute_tabs(item)
-        return
+      if (App.get_setting(`mute_click`)) {
+        if (e.target.classList.contains(`item_status_playing`) ||
+          e.target.classList.contains(`item_status_muted`)) {
+          App.toggle_mute_tabs(item)
+          return
+        }
       }
     }
 
