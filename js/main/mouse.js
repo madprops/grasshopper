@@ -65,6 +65,12 @@ App.setup_window_mouse = (mode) => {
       return
     }
 
+    if (e.ctrlKey) {
+      select(item, false)
+      App.toggle_highlight(item)
+      return
+    }
+
     if (e.target.classList.contains(`item_alt`)) {
       App.alt_button_action(item, e.shiftKey)
       return
@@ -80,11 +86,6 @@ App.setup_window_mouse = (mode) => {
           return
         }
       }
-    }
-
-    if (e.ctrlKey) {
-      App.toggle_highlight(item)
-      return
     }
 
     App[`${mode}_action`](item)
