@@ -2,7 +2,7 @@ App.check_items_keyboard = (e) => {
   let mode = App.window_mode
   let item = App.get_selected(mode)
 
-  function arrow (direction) {
+  function arrow (direction, e) {
     if (!App.element_is_visible(item.element)) {
       App.select_item(item, `nearest_smooth`)
     }
@@ -12,8 +12,15 @@ App.check_items_keyboard = (e) => {
         return
       }
 
-      App.select_item_above(mode)
+      if (direction === `up`) {
+        App.select_item_above(mode)
+      }
+      else if (direction === `down`) {
+        App.select_item_below(mode)
+      }
     }
+
+    e.preventDefault()
   }
 
   if (e.ctrlKey && !e.shiftKey) {
@@ -157,13 +164,11 @@ App.check_items_keyboard = (e) => {
       return
     }
     else if (e.key === `ArrowUp`) {
-      arrow(`up`)
-      e.preventDefault()
+      arrow(`up`, e)
       return
     }
     else if (e.key === `ArrowDown`) {
-      arrow(`down`)
-      e.preventDefault()
+      arrow(`down`, e)
       return
     }
     else if (e.key === `ArrowLeft`) {
