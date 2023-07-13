@@ -497,15 +497,15 @@ App.set_item_text = (item) => {
     let icons = []
 
     if (item.discarded && App.get_setting(`unloaded_icon`)) {
-      icons.push(App.get_setting(`unloaded_icon`))
+      icons.push(`unloaded`)
     }
 
-    if (item.audible && App.get_setting(`playing_icon`)) {
-      icons.push(App.get_setting(`playing_icon`))
+    if (!item.muted && item.audible && App.get_setting(`playing_icon`)) {
+      icons.push(`playing`)
     }
 
     if (item.muted && App.get_setting(`muted_icon`)) {
-      icons.push(App.get_setting(`muted_icon`))
+      icons.push(`muted`)
     }
 
     let status = DOM.el(`.item_status`, item.element)
@@ -513,8 +513,8 @@ App.set_item_text = (item) => {
 
     if (icons.length > 0) {
       for (let icon of icons) {
-        let el = DOM.create(`div`)
-        el.textContent = icon
+        let el = DOM.create(`div`, `item_status_${icon}`)
+        el.textContent = App.get_setting(`${icon}_icon`)
         status.append(el)
       }
 
