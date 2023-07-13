@@ -1,5 +1,20 @@
 App.check_items_keyboard = (e) => {
   let mode = App.window_mode
+  let item = App.get_selected(mode)
+
+  function arrow (direction) {
+    if (!App.element_is_visible(item.element)) {
+      App.select_item(item, `nearest_smooth`)
+    }
+    else {
+      if (App.dehighlight(mode, direction)) {
+        e.preventDefault()
+        return
+      }
+
+      App.select_item_above(mode)
+    }
+  }
 
   if (e.ctrlKey && !e.shiftKey) {
     if (e.key === `ArrowUp`) {
@@ -56,8 +71,6 @@ App.check_items_keyboard = (e) => {
       return
     }
     else if (e.key === `Delete`) {
-      let item = App.get_selected(mode)
-
       if (mode === `tabs`) {
         if (item) {
           App.close_tabs(item)
@@ -76,8 +89,6 @@ App.check_items_keyboard = (e) => {
 
   if (e.shiftKey && !e.ctrlKey) {
     if (e.key === `Enter`) {
-      let item = App.get_selected(mode)
-
       if (item) {
         let rect = item.element.getBoundingClientRect()
         App.show_item_menu(item, rect.left, rect.top)
@@ -128,8 +139,6 @@ App.check_items_keyboard = (e) => {
       App.back_action(mode, e)
     }
     else if (e.key === `Enter`) {
-      let item = App.get_selected(mode)
-
       if (item) {
         App[`${mode}_action`](item)
       }
@@ -148,22 +157,12 @@ App.check_items_keyboard = (e) => {
       return
     }
     else if (e.key === `ArrowUp`) {
-      if (App.dehighlight(mode, `up`)) {
-        e.preventDefault()
-        return
-      }
-
-      App.select_item_above(mode)
+      arrow(`up`)
       e.preventDefault()
       return
     }
     else if (e.key === `ArrowDown`) {
-      if (App.dehighlight(mode, `down`)) {
-        e.preventDefault()
-        return
-      }
-
-      App.select_item_below(mode)
+      arrow(`down`)
       e.preventDefault()
       return
     }
