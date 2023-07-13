@@ -35,17 +35,15 @@ App.back_action = (mode = App.window_mode, e) => {
   else if (item && !App.element_is_visible(item.element)) {
     App.select_item(item, `nearest_smooth`)
   }
-  else if (mode === `tabs`) {
-    if (!item.active) {
-      App.focus_current_tab()
+  else if (mode === `tabs` && !item.active) {
+    App.focus_current_tab()
+  }
+  else if (mode === `tabs` && e.key !== `Escape`) {
+    if (e.shiftKey) {
+      App.do_empty_previous_tabs()
     }
-    else {
-      if (e.shiftKey) {
-        App.do_empty_previous_tabs()
-      }
 
-      App.go_to_previous_tab()
-    }
+    App.go_to_previous_tab()
   }
   else if (mode !== App.item_order[0]) {
     App.show_main_item_window()
