@@ -24,7 +24,7 @@ App.back_action = (mode = App.window_mode, e) => {
   let item = App.get_selected(mode)
 
   if (App.highlights(mode)) {
-    App.dehighlight(mode)
+    App.dehighlight(mode, `selected`)
   }
   else if (App.get_filter(mode)) {
     App.clear_filter(mode)

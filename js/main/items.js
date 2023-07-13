@@ -1023,7 +1023,7 @@ App.highlight_range = (item) => {
   }
 }
 
-App.dehighlight = (mode = App.window_mode, direction = `none`) => {
+App.dehighlight = (mode = App.window_mode, select = `none`) => {
   let some = false
   let first, last
 
@@ -1040,15 +1040,19 @@ App.dehighlight = (mode = App.window_mode, direction = `none`) => {
 
   App.last_highlight = undefined
 
-  if (direction === `up`) {
+  if (select === `up`) {
     if (first) {
       App.select_item(first, `nearest_smooth`, false)
     }
   }
-  else if (direction === `down`) {
+  else if (select === `down`) {
     if (last) {
       App.select_item(last, `nearest_smooth`, false)
     }
+  }
+  else if (select === `selected`) {
+    let selected = App.get_selected(mode)
+    App.select_item(selected, `nearest_smooth`, false)
   }
 
   return some
