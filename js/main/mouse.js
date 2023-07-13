@@ -7,8 +7,8 @@ DOM.ev(window, `mouseup`, (e) => {
 })
 
 App.setup_window_mouse = (mode) => {
-  function select (item) {
-    App.select_item(item, `nearest_smooth`, false)
+  function select (item, dehighlight = true) {
+    App.select_item(item, `nearest_smooth`, dehighlight)
   }
 
   let container = DOM.el(`#${mode}_container`)
@@ -61,7 +61,7 @@ App.setup_window_mouse = (mode) => {
 
     if (e.shiftKey) {
       App.highlight_range(item)
-      select(item)
+      select(item, false)
       return
     }
 
@@ -93,7 +93,7 @@ App.setup_window_mouse = (mode) => {
   DOM.ev(container, `contextmenu`, (e) => {
     if (App.cursor_on_item(e, mode)) {
       let item = App.get_cursor_item(mode, e)
-      select(item)
+      select(item, false)
 
       if (item) {
         if (!item.highlighted) {
