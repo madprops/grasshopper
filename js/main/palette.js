@@ -15,7 +15,7 @@ App.setup_palette = () => {
       DOM.ev(DOM.el(`#palette_info`), `click`, () => {
         let s = `You can use this palette to run commands.`
         s += ` You can also open this by tapping Ctrl twice in a row.`
-        App.show_alert_2(s, undefined, false)
+        App.show_alert_2(s)
       })
     }
   })
