@@ -1358,14 +1358,12 @@ App.scroll_to_item = (item, scroll = `nearest`) => {
   })
 }
 
-App.copy_url = (item, feedback = false) => {
-  let s = feedback ? `URL` : ``
-  App.copy_to_clipboard(item.url, s)
+App.copy_url = (item) => {
+  App.copy_to_clipboard(item.url, `URL`)
 }
 
-App.copy_title = (item, feedback = false) => {
-  let s = feedback ? `Title` : ``
-  App.copy_to_clipboard(item.title, s)
+App.copy_title = (item) => {
+  App.copy_to_clipboard(item.title, `Title`)
 }
 
 App.on_items = (mode = App.window_mode) => {

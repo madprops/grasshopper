@@ -78,10 +78,10 @@ App.commands = [
     App.star_items(args.item)
   }},
   {name: `Copy URL`, cmd: `copy_item_url`, mode: `items`, action: (args) => {
-    App.copy_url(args.item, args.from !== `palette`)
+    App.copy_url(args.item)
   }},
   {name: `Copy Title`, cmd: `copy_item_title`, mode: `items`, action: (args) => {
-    App.copy_title(args.item, args.from !== `palette`)
+    App.copy_title(args.item)
   }},
   {name: `Background`, cmd: `set_background`, mode: `items`, action: (args) => {
     App.set_background_image(args.item.url)
