@@ -151,7 +151,12 @@ App.setup_window = () => {
 
     if (App.get_setting(`autoselect`)) {
       clearInterval(App.refocus_timeout)
+
       App.refocus_timeout = setTimeout(() => {
+        if (NeedContext.open) {
+          return
+        }
+
         if (App.on_item_window()) {
           App.dehighlight(App.window_mode, `up`)
 
