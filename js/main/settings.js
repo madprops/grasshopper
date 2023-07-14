@@ -10,6 +10,7 @@ App.default_settings = {
   scrollbars: {value: false, category: `basic`, version: 1},
   width: {value: 70, category: `basic`, version: 1},
   height: {value: 80, category: `basic`, version: 1},
+  beep: {value: 80, category: `basic`, version: 1},
 
   background_color: {value: `rgb(42, 42, 52)`, category: `theme`, version: 1},
   text_color: {value: `rgb(233, 233, 233)`, category: `theme`, version: 1},

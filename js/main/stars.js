@@ -322,6 +322,9 @@ App.quick_star = (item, feedback) => {
   if (feedback) {
     App.show_alert(`Star saved`, 1000)
   }
+  else {
+    App.beep()
+  }
 }
 
 App.star_items = (item, feedback = true) => {

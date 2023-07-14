@@ -43,6 +43,9 @@ App.copy_to_clipboard = (text, what = ``) => {
   if (what) {
     App.show_feedback(`${what} copied to clipboard`)
   }
+  else {
+    App.beep()
+  }
 }
 
 App.plural = (n, singular, plural) => {
