@@ -313,14 +313,14 @@ App.use_quickstar = () => {
   return App.get_setting(`quick_star`) && App.window_mode !== `stars`
 }
 
-App.quick_star = (item, feedback) => {
+App.quick_star = (item) => {
   App.star_item({
     title: item.title,
     url: item.url
   })
 
   if (!App.beep()) {
-    App.show_alert(`Star saved`, 1000)
+    App.show_feedback(`Star saved`)
   }
 }
 
@@ -361,7 +361,7 @@ App.star_items = (item) => {
     App.stor_save_stars()
 
     if (!App.beep()) {
-      App.show_alert(`Stars saved`, 1000)
+      App.show_feedback(`Stars saved`)
     }
   }, undefined, !App.get_setting(`warn_on_star`))
 }
