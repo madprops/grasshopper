@@ -60,6 +60,27 @@ App.create_footer = (mode) => {
     App.goto_bottom(mode)
   })
 
+  DOM.ev(footer, `contextmenu`, (e) => {
+    let items = []
+
+    items.push({
+      text: `Copy URL`,
+      action: () => {
+        App.copy_url(App.get_selected())
+      }
+    })
+
+    items.push({
+      text: `Copy Title`,
+      action: () => {
+        App.copy_title(App.get_selected())
+      }
+    })
+
+    e.preventDefault()
+    NeedContext.show(e.clientX, e.clientY, items)
+  })
+
   DOM.ev(footer, `auxclick`, (e) => {
     if (e.button === 1) {
       let cmd = App.get_setting(`middle_click_footer`)
