@@ -1150,10 +1150,12 @@ App.select_pinned_tabs = () => {
 }
 
 App.check_tab_active = (item) => {
-  if (item.active) {
-    item.element.classList.add(`active`)
-  }
-  else {
-    item.element.classList.remove(`active`)
+  if (item.mode === `tabs`) {
+    if (item.active) {
+      item.element.classList.add(`active`)
+    }
+    else {
+      item.element.classList.remove(`active`)
+    }
   }
 }
