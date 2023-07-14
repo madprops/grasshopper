@@ -490,7 +490,7 @@ App.show_tabs_info = () => {
   s += `Muted: ${muted}\n`
   s += `Unloaded: ${unloaded}`
 
-  App.show_alert(s, undefined)
+  App.show_alert(s)
 }
 
 App.toggle_pin = (item) => {
