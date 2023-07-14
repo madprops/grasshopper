@@ -74,7 +74,8 @@ App.create_footer = (mode) => {
       text: `Copy Title`,
       action: () => {
         App.copy_title(App.get_selected())
-      }
+      },
+      selected: true,
     })
 
     e.preventDefault()
