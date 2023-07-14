@@ -214,13 +214,11 @@ App.filter_item_by_id = (mode, id) => {
 App.remove_item = (item) => {
   let mode = item.mode
 
-  if (mode !== `tabs` || App.is_filtered(mode)) {
-    if (App.get_selected(mode) === item) {
-      let next_item = App.get_next_item(mode)
+  if (App.get_selected(mode) === item) {
+    let next_item = App.get_next_item(mode)
 
-      if (next_item) {
-        App.select_item(next_item)
-      }
+    if (next_item) {
+      App.select_item(next_item)
     }
   }
 
