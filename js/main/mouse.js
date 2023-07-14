@@ -97,10 +97,8 @@ App.setup_window_mouse = (mode) => {
         if (!item.highlighted && App.highlights(mode)) {
           App.dehighlight(mode)
         }
-        else {
-          App.show_item_menu(item, e.clientX, e.clientY)
-        }
 
+        App.show_item_menu(item, e.clientX, e.clientY)
         e.preventDefault()
       }
     }
@@ -342,14 +340,13 @@ App.on_middle_click = (e) => {
         return
       }
 
-      App.select(item, false)
-
-      if (App.highlights(mode)) {
-        App.dehighlight(mode)
-        return
-      }
-
       if (item) {
+        App.select(item, false)
+
+        if (App.highlights(mode)) {
+          App.dehighlight(mode)
+        }
+
         App[`${mode}_action_alt`](item, e.shiftKey)
       }
     }
