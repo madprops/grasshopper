@@ -90,16 +90,17 @@ App.setup_window_mouse = (mode) => {
   DOM.ev(container, `contextmenu`, (e) => {
     if (App.cursor_on_item(e, mode)) {
       let item = App.get_cursor_item(mode, e)
-      App.select(item, false)
 
       if (item) {
-        if (!item.highlighted) {
-          if (App.highlights(mode)) {
-            App.toggle_highlight(item)
-          }
+        App.select(item, false)
+
+        if (!item.highlighted && App.highlights(mode)) {
+          App.dehighlight(mode)
+        }
+        else {
+          App.show_item_menu(item, e.clientX, e.clientY)
         }
 
-        App.show_item_menu(item, e.clientX, e.clientY)
         e.preventDefault()
       }
     }
@@ -305,9 +306,11 @@ App.alt_button_action = (item, shift) => {
 }
 
 App.on_middle_click = (e) => {
+  let mode = App.window_mode
+
   if (App.on_items()) {
-    if (App.cursor_on_item(e, App.window_mode)) {
-      let item = App.get_cursor_item(App.window_mode, e)
+    if (App.cursor_on_item(e, mode)) {
+      let item = App.get_cursor_item(mode, e)
 
       if (e.target.classList.contains(`item_pick`)) {
         let cmd = App.get_setting(`middle_click_pick_button`)
@@ -339,10 +342,15 @@ App.on_middle_click = (e) => {
         return
       }
 
+      if (App.highlights(mode)) {
+        App.dehighlight(mode)
+        return
+      }
+
       App.select(item)
 
       if (item) {
-        App[`${App.window_mode}_action_alt`](item, e.shiftKey)
+        App[`${mode}_action_alt`](item, e.shiftKey)
       }
     }
   }
