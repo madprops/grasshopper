@@ -319,21 +319,18 @@ App.quick_star = (item, feedback) => {
     url: item.url
   })
 
-  if (feedback) {
+  if (!App.beep()) {
     App.show_alert(`Star saved`, 1000)
-  }
-  else {
-    App.beep()
   }
 }
 
-App.star_items = (item, feedback = true) => {
+App.star_items = (item) => {
   let items = []
   let active = App.get_active_items(item.mode, item)
 
   if (active.length === 1) {
     if (App.use_quickstar()) {
-      App.quick_star(item, feedback)
+      App.quick_star(item)
     }
     else {
       App.add_or_edit_star(active[0])

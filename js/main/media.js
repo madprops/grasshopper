@@ -194,7 +194,7 @@ App.media_show_error = (what) => {
 }
 
 App.media_star = (what) => {
-  App.star_items(App[`current_${what}_item`], false)
+  App.star_items(App[`current_${what}_item`])
 }
 
 App.open_media = (what = App.window_mode) => {

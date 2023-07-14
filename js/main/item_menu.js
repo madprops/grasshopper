@@ -153,7 +153,7 @@ App.common_menu_items = (o_items, item, multiple) => {
     items.push({
       text: `Star`,
       action: () => {
-        App.star_items(item, false)
+        App.star_items(item)
       }
     })
   }

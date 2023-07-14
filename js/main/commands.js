@@ -75,7 +75,7 @@ App.commands = [
     App.open_items(args.item, true)
   }},
   {name: `Star Items`, cmd: `star_items`, mode: `items`, action: (args) => {
-    App.star_items(args.item, args.from !== `palette`)
+    App.star_items(args.item)
   }},
   {name: `Copy URL`, cmd: `copy_item_url`, mode: `items`, action: (args) => {
     App.copy_url(args.item, args.from !== `palette`)

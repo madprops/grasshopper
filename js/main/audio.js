@@ -12,5 +12,8 @@ App.play = (what) => {
 App.beep = () => {
   if (App.get_setting(`beep`)) {
     App.play(`beep`)
+    return true
   }
+
+  return false
 }
