@@ -1398,3 +1398,7 @@ App.highlights = (mode) => {
 
   return false
 }
+
+App.select = (item, dehighlight = true) => {
+  App.select_item(item, `nearest_smooth`, dehighlight)
+}

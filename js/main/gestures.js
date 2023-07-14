@@ -9,45 +9,7 @@ App.setup_gestures = () => {
   }
 
   obj.default = (e) => {
-    if (App.on_items()) {
-      if (App.cursor_on_item(e, App.window_mode)) {
-        let item = App.get_cursor_item(App.window_mode, e)
-
-        if (e.target.classList.contains(`item_pick`)) {
-          let cmd = App.get_setting(`middle_click_pick_button`)
-
-          if (cmd !== `none`) {
-            App.run_command({cmd: cmd, item: item, from: `pick_button`})
-          }
-
-          return
-        }
-
-        if (e.target.classList.contains(`item_alt_close`)) {
-          let cmd = App.get_setting(`middle_click_close_button`)
-
-          if (cmd !== `none`) {
-            App.run_command({cmd: cmd, item: item, from: `close_button`})
-          }
-
-          return
-        }
-
-        if (e.target.classList.contains(`item_alt_open`)) {
-          let cmd = App.get_setting(`middle_click_open_button`)
-
-          if (cmd !== `none`) {
-            App.run_command({cmd: cmd, item: item, from: `open_button`})
-          }
-
-          return
-        }
-
-        if (item) {
-          App[`${App.window_mode}_action_alt`](item, e.shiftKey)
-        }
-      }
-    }
+    App.on_middle_click(e)
   }
 
   NiceGesture.start(DOM.el(`#main`), obj)

@@ -7,10 +7,6 @@ DOM.ev(window, `mouseup`, (e) => {
 })
 
 App.setup_window_mouse = (mode) => {
-  function select (item, dehighlight = true) {
-    App.select_item(item, `nearest_smooth`, dehighlight)
-  }
-
   let container = DOM.el(`#${mode}_container`)
 
   DOM.ev(container, `mousedown`, (e) => {
@@ -53,7 +49,7 @@ App.setup_window_mouse = (mode) => {
 
     if (e.target.classList.contains(`view_media_button`)) {
       if (!e.shiftKey && !e.ctrlKey) {
-        select(item)
+        App.select(item)
         App.view_media(item)
         return
       }
@@ -61,12 +57,12 @@ App.setup_window_mouse = (mode) => {
 
     if (e.shiftKey) {
       App.highlight_range(item)
-      select(item, false)
+      App.select(item, false)
       return
     }
 
     if (e.ctrlKey) {
-      select(item, false)
+      App.select(item, false)
       App.toggle_highlight(item)
       return
     }
@@ -76,7 +72,7 @@ App.setup_window_mouse = (mode) => {
       return
     }
 
-    select(item)
+    App.select(item)
 
     if (mode === `tabs`) {
       if (App.get_setting(`mute_click`)) {
@@ -94,7 +90,7 @@ App.setup_window_mouse = (mode) => {
   DOM.ev(container, `contextmenu`, (e) => {
     if (App.cursor_on_item(e, mode)) {
       let item = App.get_cursor_item(mode, e)
-      select(item, false)
+      App.select(item, false)
 
       if (item) {
         if (!item.highlighted) {
@@ -305,5 +301,49 @@ App.alt_button_action = (item, shift) => {
   }
   else {
     App.open_items(item, true)
+  }
+}
+
+App.on_middle_click = (e) => {
+  if (App.on_items()) {
+    if (App.cursor_on_item(e, App.window_mode)) {
+      let item = App.get_cursor_item(App.window_mode, e)
+
+      if (e.target.classList.contains(`item_pick`)) {
+        let cmd = App.get_setting(`middle_click_pick_button`)
+
+        if (cmd !== `none`) {
+          App.run_command({cmd: cmd, item: item, from: `pick_button`})
+        }
+
+        return
+      }
+
+      if (e.target.classList.contains(`item_alt_close`)) {
+        let cmd = App.get_setting(`middle_click_close_button`)
+
+        if (cmd !== `none`) {
+          App.run_command({cmd: cmd, item: item, from: `close_button`})
+        }
+
+        return
+      }
+
+      if (e.target.classList.contains(`item_alt_open`)) {
+        let cmd = App.get_setting(`middle_click_open_button`)
+
+        if (cmd !== `none`) {
+          App.run_command({cmd: cmd, item: item, from: `open_button`})
+        }
+
+        return
+      }
+
+      App.select(item)
+
+      if (item) {
+        App[`${App.window_mode}_action_alt`](item, e.shiftKey)
+      }
+    }
   }
 }
