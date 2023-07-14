@@ -359,6 +359,10 @@ App.star_items = (item) => {
     }
 
     App.stor_save_stars()
+
+    if (!App.beep()) {
+      App.show_alert(`Stars saved`, 1000)
+    }
   }, undefined, !App.get_setting(`warn_on_star`))
 }
 
