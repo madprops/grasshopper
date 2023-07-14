@@ -119,7 +119,6 @@ App.get_next_visible_item = (args) => {
   let def_args = {
     reverse: false,
     wrap: true,
-    discarded: true,
   }
 
   args = Object.assign(def_args, args)
@@ -137,10 +136,6 @@ App.get_next_visible_item = (args) => {
   }
 
   for (let item of items) {
-    if (!args.discarded && item.discarded) {
-      continue
-    }
-
     if (waypoint) {
       if (item.visible) {
         return item
@@ -154,10 +149,6 @@ App.get_next_visible_item = (args) => {
 
   if (args.wrap) {
     for (let item of items) {
-      if (!args.discarded && item.discarded) {
-        continue
-      }
-
       if (item.visible) {
         return item
       }
@@ -1369,8 +1360,8 @@ App.on_items = (mode = App.window_mode) => {
 }
 
 App.get_next_item = (mode) => {
-  return App.get_next_visible_item({mode: mode, wrap: false, discarded: false}) ||
-  App.get_next_visible_item({mode: mode, reverse: true, wrap: false, discarded: false})
+  return App.get_next_visible_item({mode: mode, wrap: false}) ||
+  App.get_next_visible_item({mode: mode, reverse: true, wrap: false})
 }
 
 App.search_items = async (mode, query) => {
