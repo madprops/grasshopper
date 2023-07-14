@@ -370,7 +370,6 @@ App.check_view_media = (item) => {
 
 App.refresh_item_element = (item) => {
   App.check_tab_item(item)
-  App.check_tab_active(item)
   App.check_item_icon(item)
   App.check_view_media(item)
   App.set_item_text(item)
@@ -400,17 +399,30 @@ App.create_item_element = (item) => {
   App.set_item_text(item)
 
   if (item.mode === `tabs`) {
-    let pin_icon = DOM.create(`div`, `item_info item_info_pin`)
-    pin_icon.textContent = App.get_setting(`pin_icon`)
-    pin_icon.title = `This tab is pinned`
-    item.element.append(pin_icon)
-    let normal_icon = DOM.create(`div`, `item_info item_info_normal`)
-    normal_icon.textContent = App.get_setting(`normal_icon`)
-    normal_icon.title = `This tab is normal`
-    item.element.append(normal_icon)
     item.element.draggable = true
+
+    if (App.get_setting(`active_icon`)) {
+      let active_icon = DOM.create(`div`, `item_info item_info_active`)
+      active_icon.textContent = App.get_setting(`active_icon`)
+      active_icon.title = `This tab is active`
+      item.element.append(active_icon)
+    }
+
+    if (App.get_setting(`pin_icon`)) {
+      let pin_icon = DOM.create(`div`, `item_info item_info_pin`)
+      pin_icon.textContent = App.get_setting(`pin_icon`)
+      pin_icon.title = `This tab is pinned`
+      item.element.append(pin_icon)
+    }
+
+    if (App.get_setting(`normal_icon`)) {
+      let normal_icon = DOM.create(`div`, `item_info item_info_normal`)
+      normal_icon.textContent = App.get_setting(`normal_icon`)
+      normal_icon.title = `This tab is normal`
+      item.element.append(normal_icon)
+    }
+
     App.check_tab_item(item)
-    App.check_tab_active(item)
   }
 
   if (item.highlighted) {

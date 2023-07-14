@@ -24,6 +24,7 @@ App.default_settings = {
   close_icon: {value: `x`, category: `icons`, version: 1},
   open_icon: {value: `🚀`, category: `icons`, version: 1},
   pick_icon: {value: `🎯`, category: `icons`, version: 1},
+  active_icon: {value: `🟢`, category: `icons`, version: 1},
 
   warn_on_close_tabs: {value: `special`, category: `warns`, version: 1},
   warn_on_unload_tabs: {value: `special`, category: `warns`, version: 1},

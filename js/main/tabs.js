@@ -1072,6 +1072,8 @@ App.check_tab_item = (item) => {
       item.element.classList.add(`normal_item`)
       item.element.classList.remove(`pin_item`)
     }
+
+    App.check_tab_active(item)
   }
 }
 
