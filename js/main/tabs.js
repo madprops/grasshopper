@@ -17,6 +17,10 @@ App.setup_tabs = () => {
       App.new_tab()
     }},
 
+    {text: `Undo Close`, action: () => {
+      App.undo_close_tab()
+    }},
+
     {text: App.separator_string},
 
     {text: `Show Info`, action: () => {

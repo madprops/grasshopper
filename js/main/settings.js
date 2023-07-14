@@ -46,7 +46,7 @@ App.default_settings = {
   middle_click_main_menu: {value: `show_main`, category: `mouse`, version: 1},
   middle_click_filter_menu: {value: `show_all`, category: `mouse`, version: 1},
   middle_click_back_button: {value: `browser_back`, category: `mouse`, version: 1},
-  middle_click_actions_menu: {value: `undo_close_tab`, category: `mouse`, version: 1},
+  middle_click_actions_menu: {value: `browser_reload`, category: `mouse`, version: 1},
   middle_click_footer: {value: `copy_item_url`, category: `mouse`, version: 1},
   middle_click_pick_button: {value: `filter_domain`, category: `mouse`, version: 1},
   middle_click_close_button: {value: `unload_tabs`, category: `mouse`, version: 1},
