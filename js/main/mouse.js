@@ -342,12 +342,12 @@ App.on_middle_click = (e) => {
         return
       }
 
+      App.select(item, false)
+
       if (App.highlights(mode)) {
         App.dehighlight(mode)
         return
       }
-
-      App.select(item)
 
       if (item) {
         App[`${mode}_action_alt`](item, e.shiftKey)
