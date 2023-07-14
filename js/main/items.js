@@ -373,6 +373,7 @@ App.refresh_item_element = (item) => {
   App.check_item_icon(item)
   App.check_view_media(item)
   App.set_item_text(item)
+  App.check_tab_active(item)
 }
 
 App.create_item_element = (item) => {
@@ -409,6 +410,7 @@ App.create_item_element = (item) => {
     item.element.append(normal_icon)
     item.element.draggable = true
     App.check_tab_item(item)
+    App.check_tab_active(item)
   }
 
   if (item.highlighted) {

@@ -650,6 +650,8 @@ App.on_tab_activated = async (info) => {
         exit = true
       }
     }
+
+    App.check_tab_active(item)
   }
 
   // Avoid refreshes
@@ -1145,4 +1147,13 @@ App.select_pinned_tabs = () => {
   }
 
   App.select_item(items[0], `nearest_instant`, false)
+}
+
+App.check_tab_active = (item) => {
+  if (item.active) {
+    item.element.classList.add(`active`)
+  }
+  else {
+    item.element.classList.remove(`active`)
+  }
 }

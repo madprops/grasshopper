@@ -768,3 +768,7 @@ select {
 .flipped {
 	transform: rotateY(180deg) !important;
 }
+
+:not(.highlighted):not(.selected).active .item_text {
+  text-decoration: underline;
+}
