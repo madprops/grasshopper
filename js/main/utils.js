@@ -37,14 +37,11 @@ App.remove_protocol = (url) => {
   return url.replace(/^https?:\/\//, ``)
 }
 
-App.copy_to_clipboard = (text, what = ``) => {
+App.copy_to_clipboard = (text, what = `Text`) => {
   navigator.clipboard.writeText(text)
 
-  if (what) {
+  if (!App.beep()) {
     App.show_feedback(`${what} copied to clipboard`)
-  }
-  else {
-    App.beep()
   }
 }
 
