@@ -1064,13 +1064,15 @@ App.create_playing_icon = () => {
 
 App.check_tab_item = (item) => {
   if (item.mode === `tabs`) {
-    if (item.pinned) {
-      item.element.classList.add(`pin_item`)
-      item.element.classList.remove(`normal_item`)
-    }
-    else {
-      item.element.classList.add(`normal_item`)
-      item.element.classList.remove(`pin_item`)
+    if (App.get_setting(`pin_icon`) || App.get_setting(`normal_icon`)) {
+      if (item.pinned) {
+        item.element.classList.add(`pin_item`)
+        item.element.classList.remove(`normal_item`)
+      }
+      else {
+        item.element.classList.add(`normal_item`)
+        item.element.classList.remove(`pin_item`)
+      }
     }
 
     App.check_tab_active(item)
@@ -1158,7 +1160,7 @@ App.select_pinned_tabs = () => {
 }
 
 App.check_tab_active = (item) => {
-  if (item.mode === `tabs` && App.get_setting(`active_tab_effect`)) {
+  if (item.mode === `tabs` && App.get_setting(`active_icon`)) {
     if (item.active) {
       item.element.classList.add(`active`)
     }
