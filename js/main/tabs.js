@@ -31,6 +31,8 @@ App.setup_tabs = () => {
       return App.get_title_items()
     }},
 
+    {text: App.separator_string},
+
     {text: `Close Tabs`, get_items: () => {
       return App.get_close_tabs_items()
     }},
