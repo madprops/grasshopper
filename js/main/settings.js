@@ -11,6 +11,12 @@ App.default_settings = {
   width: {value: 70, category: `basic`, version: 1},
   height: {value: 80, category: `basic`, version: 1},
   beep: {value: 80, category: `basic`, version: 1},
+  tabs_index: {value: 0, category: `basic`, version: 1},
+  stars_index: {value: 1, category: `basic`, version: 1},
+  history_index: {value: 2, category: `basic`, version: 1},
+  bookmarks_index: {value: 3, category: `basic`, version: 1},
+  closed_index: {value: 4, category: `basic`, version: 1},
+  custom_filters: {value: [], category: `basic`, version: 1},
 
   background_color: {value: `rgb(42, 42, 52)`, category: `theme`, version: 1},
   text_color: {value: `rgb(233, 233, 233)`, category: `theme`, version: 1},
@@ -68,12 +74,6 @@ App.default_settings = {
   autoselect: {value: true, category: `more`, version: 1},
   close_on_focus: {value: true, category: `more`, version: 1},
   close_on_open: {value: true, category: `more`, version: 1},
-  tabs_index: {value: 0, category: `more`, version: 1},
-  stars_index: {value: 1, category: `more`, version: 1},
-  history_index: {value: 2, category: `more`, version: 1},
-  bookmarks_index: {value: 3, category: `more`, version: 1},
-  closed_index: {value: 4, category: `more`, version: 1},
-  custom_filters: {value: [], category: `more`, version: 1},
   mute_click: {value: true, category: `more`, version: 1},
 }
 
@@ -372,6 +372,20 @@ App.setup_settings = () => {
     App.settings_make_menu(`height`, App.get_size_options(), () => {
       App.apply_theme()
     })
+
+    App.make_item_order()
+
+    DOM.ev(DOM.el(`#settings_item_order`), `contextmenu`, (e) => {
+      App.reset_single_setting(e, () => {
+        App.set_default_setting(`tabs_index`)
+        App.set_default_setting(`stars_index`)
+        App.set_default_setting(`history_index`)
+        App.set_default_setting(`bookmarks_index`)
+        App.set_default_setting(`closed_index`)
+        App.get_item_order()
+        App.make_item_order()
+      })
+    })
   }}))
 
   App.create_window(Object.assign({}, common, {id: `settings_theme`, setup: () => {
@@ -391,19 +405,6 @@ App.setup_settings = () => {
 
   App.create_window(Object.assign({}, common, {id: `settings_more`, setup: () => {
     prepare(`more`)
-    App.make_item_order()
-
-    DOM.ev(DOM.el(`#settings_item_order`), `contextmenu`, (e) => {
-      App.reset_single_setting(e, () => {
-        App.set_default_setting(`tabs_index`)
-        App.set_default_setting(`stars_index`)
-        App.set_default_setting(`history_index`)
-        App.set_default_setting(`bookmarks_index`)
-        App.set_default_setting(`closed_index`)
-        App.get_item_order()
-        App.make_item_order()
-      })
-    })
   }}))
 
   App.create_window(Object.assign({}, common, {id: `settings_mouse`, setup: () => {

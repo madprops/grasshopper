@@ -191,6 +191,16 @@
           <div class="settings_label">Popup Height</div>
           <div id="settings_height" class="settings_menu button" data-setting="height"></div>
         </div>
+
+        <div class="settings_column" title="These appear in the filters menu. One per line. Use 're:' for regex">
+          <div class="settings_label">Custom Filters</div>
+          <textarea class="text settings_textarea" id="settings_custom_filters" data-setting="custom_filters" rows="3" placeholder="Add some lines"></textarea>
+        </div>
+
+        <div class="settings_column" title="The windows at the top appear first in the menu and cycle-order">
+          <div class="settings_label">Window Order</div>
+          <div id="settings_item_order"></div>
+        </div>
       </div>
     </template>
 
@@ -415,16 +425,6 @@
         <div class="settings_column" title="Allow muting and unmuting by clicking the icons">
           <div class="settings_label">Mute Click</div>
           <input type="checkbox" class="settings_checkbox" id="settings_mute_click" data-setting="mute_click">
-        </div>
-
-        <div class="settings_column" title="These appear in the filters menu. One per line. Use 're:' for regex">
-          <div class="settings_label">Custom Filters</div>
-          <textarea class="text settings_textarea" id="settings_custom_filters" data-setting="custom_filters" rows="3" placeholder="Add some lines"></textarea>
-        </div>
-
-        <div class="settings_column" title="The windows at the top appear first in the menu and cycle-order">
-          <div class="settings_label">Window Order</div>
-          <div id="settings_item_order"></div>
         </div>
       </div>
     </template>
