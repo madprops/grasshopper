@@ -506,9 +506,10 @@ svg {
 }
 
 #about_filter {
-  width: 12rem;
+  width: 11rem;
   text-align: center;
   margin-bottom: 0.5rem;
+  background-color: var(--alt_color_0);
 }
 
 a:visited, a:link, a:hover {
