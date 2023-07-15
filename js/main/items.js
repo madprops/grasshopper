@@ -837,7 +837,7 @@ App.focus_or_open_item = async (item) => {
 App.get_mode_order = () => {
   let imodes = []
 
-  for (let mode of App.item_modes) {
+  for (let mode of App.modes) {
     imodes.push({mode: mode, index: App.get_setting(`${mode}_index`)})
   }
 
