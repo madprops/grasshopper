@@ -32,29 +32,29 @@ App.commands = [
 
   {name: App.separator_string},
 
-  {name: `Prev Window`, cmd: `prev_window`, mode: `items`, action: (args) => {
-    App.cycle_item_windows(true)
+  {name: `Prev Mode`, cmd: `prev_mode`, mode: `items`, action: (args) => {
+    App.cycle_modes(true)
   }},
-  {name: `Next Window`, cmd: `next_window`, mode: `items`, action: (args) => {
-    App.cycle_item_windows()
+  {name: `Next Mode`, cmd: `next_mode`, mode: `items`, action: (args) => {
+    App.cycle_modes()
   }},
   {name: `Show Tabs`, cmd: `show_tabs`, action: (args) => {
-    App.show_item_window(`tabs`)
+    App.show_mode(`tabs`)
   }},
   {name: `Show History`, cmd: `show_history`, action: (args) => {
-    App.show_item_window(`history`)
+    App.show_mode(`history`)
   }},
   {name: `Show Bookmarks`, cmd: `show_bookmarks`, action: (args) => {
-    App.show_item_window(`bookmarks`)
+    App.show_mode(`bookmarks`)
   }},
   {name: `Show Closed`, cmd: `show_closed`, action: (args) => {
-    App.show_item_window(`closed`)
+    App.show_mode(`closed`)
   }},
   {name: `Show Stars`, cmd: `show_stars`, action: (args) => {
-    App.show_item_window(`stars`)
+    App.show_mode(`stars`)
   }},
   {name: `Show Main`, cmd: `show_main`, action: (args) => {
-    App.show_main_item_window()
+    App.show_main_mode()
   }},
   {name: `Show Settings`, cmd: `show_settings`, action: (args) => {
     App.show_settings()

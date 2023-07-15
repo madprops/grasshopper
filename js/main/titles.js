@@ -118,7 +118,7 @@ App.remove_all_titles = () => {
   App.show_confirm(`Remove all titles? (${App.titles.length})`, () => {
     App.titles = []
     App.stor_save_titles()
-    App.show_item_window(`tabs`)
+    App.show_mode(`tabs`)
   })
 }
 

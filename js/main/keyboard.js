@@ -128,7 +128,7 @@ App.check_items_keyboard = (e) => {
       return
     }
     else if (e.key === `Tab`) {
-      App.cycle_item_windows(true, true)
+      App.cycle_modes(true, true)
       e.preventDefault()
       return
     }
@@ -163,7 +163,7 @@ App.check_items_keyboard = (e) => {
     }
     else if (e.key === `ArrowLeft`) {
       if (!App.get_filter(mode)) {
-        App.cycle_item_windows(true, true)
+        App.cycle_modes(true, true)
         e.preventDefault()
       }
 
@@ -171,14 +171,14 @@ App.check_items_keyboard = (e) => {
     }
     else if (e.key === `ArrowRight`) {
       if (!App.get_filter(mode)) {
-        App.cycle_item_windows(false, true)
+        App.cycle_modes(false, true)
         e.preventDefault()
       }
 
       return
     }
     else if (e.key === `Tab`) {
-      App.cycle_item_windows(false, true)
+      App.cycle_modes(false, true)
       e.preventDefault()
       return
     }

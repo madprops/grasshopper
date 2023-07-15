@@ -21,10 +21,10 @@ App.create_main_menu = (mode) => {
     let direction = App.wheel_direction(e)
 
     if (direction === `down`) {
-      App.cycle_item_windows(false)
+      App.cycle_modes(false)
     }
     else if (direction === `up`) {
-      App.cycle_item_windows(true)
+      App.cycle_modes(true)
     }
   })
 
@@ -38,7 +38,7 @@ App.show_main_menu = (mode) => {
     items.push({
       text: App.get_mode_name(m),
       action: () => {
-        App.show_item_window(m)
+        App.show_mode(m)
       },
       selected: m === mode
     })
@@ -79,5 +79,5 @@ App.show_main_menu = (mode) => {
 }
 
 App.show_first_item_window = () => {
-  App.show_item_window(App.mode_order[0])
+  App.show_mode(App.mode_order[0])
 }

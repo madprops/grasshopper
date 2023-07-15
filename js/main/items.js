@@ -630,7 +630,7 @@ App.get_last_window_value = (cycle) => {
   return value
 }
 
-App.show_item_window = async (mode, cycle = false) => {
+App.show_mode = async (mode, cycle = false) => {
   let value = App.get_last_window_value(cycle)
   App.windows[mode].show()
   App.empty_footer_info()
@@ -689,8 +689,8 @@ App.show_item_window = async (mode, cycle = false) => {
   App.do_check_scroller(mode)
 }
 
-App.show_main_item_window = () => {
-  App.show_item_window(App.mode_order[0])
+App.show_main_mode = () => {
+  App.show_mode(App.mode_order[0])
 }
 
 App.setup_item_window = (mode) => {
@@ -752,7 +752,7 @@ App.setup_item_window = (mode) => {
   App.create_window(args)
 }
 
-App.cycle_item_windows = (reverse = false, cycle = false) => {
+App.cycle_modes = (reverse = false, cycle = false) => {
   let modes = App.mode_order
   let index = modes.indexOf(App.window_mode)
   let new_mode
@@ -778,7 +778,7 @@ App.cycle_item_windows = (reverse = false, cycle = false) => {
     }
   }
 
-  App.show_item_window(new_mode, cycle)
+  App.show_mode(new_mode, cycle)
 }
 
 App.update_mode_order = () => {
@@ -811,7 +811,7 @@ App.mode_order_down = (el) => {
 }
 
 App.show_first_window = () => {
-  App.show_item_window(App.mode_order[0])
+  App.show_mode(App.mode_order[0])
 }
 
 App.focus_or_open_item = async (item) => {

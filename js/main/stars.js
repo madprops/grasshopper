@@ -189,7 +189,7 @@ App.star_editor_save = () => {
   })
 
   if (App.last_window_mode === `stars`) {
-    App.show_item_window(`stars`)
+    App.show_mode(`stars`)
   }
   else {
     App.hide_star_editor()

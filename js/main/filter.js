@@ -190,7 +190,7 @@ App.check_clear_filter = () => {
   if (App.on_item_window()) {
     if (App.get_setting(`clear_filter`)) {
       if (App.is_filtered(App.window_mode)) {
-        App.show_item_window(App.window_mode)
+        App.show_mode(App.window_mode)
       }
     }
   }

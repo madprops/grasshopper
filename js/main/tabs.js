@@ -1024,7 +1024,7 @@ App.browser_forward = () => {
 App.switch_to_tabs = () => {
   if (App.get_setting(`switch_to_tabs`)) {
     if (App.window_mode !== `tabs`) {
-      App.show_item_window(`tabs`)
+      App.show_mode(`tabs`)
     }
   }
 }

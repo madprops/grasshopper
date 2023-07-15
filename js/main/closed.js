@@ -8,7 +8,7 @@ App.setup_closed = () => {
 
   browser.sessions.onChanged.addListener(() => {
     if (App.window_mode === `closed`) {
-      App.show_item_window(`closed`)
+      App.show_mode(`closed`)
     }
   })
 }
