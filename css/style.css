@@ -244,6 +244,18 @@ svg {
   flex-shrink: 0;
 }
 
+.has_pin_icon .pin_item .item_info_pin {
+  display: flex;
+}
+
+.has_normal_icon .normal_item .item_info_normal {
+  display: flex;
+}
+
+.active .item_info_active {
+  display: flex;
+}
+
 .item_button {
   display: flex;
   align-items: center;
@@ -254,7 +266,7 @@ svg {
   padding-left: 0.38rem;
   padding-right: 0.38rem;
   box-sizing: border-box;
-  border: 2px solid var(--alt_color_2);
+  border: 1px solid var(--alt_color_2);
   opacity: 0;
   z-index: 99;
   min-width: 2rem;
@@ -270,14 +282,6 @@ svg {
 
 .item_button:hover {
   opacity: 1;
-}
-
-.has_pin_icon .pin_item .item_info_pin {
-  display: flex;
-}
-
-.has_normal_icon .normal_item .item_info_normal {
-  display: flex;
 }
 
 .item_top_container {
@@ -767,8 +771,4 @@ select {
 
 .flipped {
 	transform: rotateY(180deg) !important;
-}
-
-.active .item_info_active {
-  display: flex;
 }
