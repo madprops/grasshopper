@@ -23,7 +23,7 @@ App.setup_about = () => {
       `Ctrl + F shows the filters`,
       `Ctrl + Dot goes to the playing tab`,
       `Ctrl + Delete removes items`,
-      `Delete removes items when multiple highlights`,
+      `Delete removes items when highlighted`,
       `Double click on empty tabs space opens a new tab`,
       `Shift while on scrollwheel makes it scroll faster`,
       `Escape clears the filter and closes windows/popups`,
