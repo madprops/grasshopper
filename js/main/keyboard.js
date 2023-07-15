@@ -182,6 +182,20 @@ App.check_items_keyboard = (e) => {
       e.preventDefault()
       return
     }
+    else if (e.key === `Delete`) {
+      if (App.highlights(mode)) {
+        if (mode === `tabs`) {
+          App.close_tabs(item)
+        }
+        else if (mode === `stars`) {
+          App.remove_stars(item)
+        }
+
+        e.preventDefault()
+      }
+
+      return
+    }
   }
 
   App.focus_filter(mode)
