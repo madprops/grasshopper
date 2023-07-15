@@ -173,12 +173,7 @@ svg {
 }
 
 .hovered {
-  outline: 1px solid var(--text_color);
-}
-
-.hovered:hover {
-  outline: 1px solid var(--text_color);
-  background-color: var(--alt_background_2);
+  text-decoration: underline;
 }
 
 .item {
