@@ -356,6 +356,19 @@ App.setup_keyboard = () => {
       }
     }
 
+    if (App.window_mode === `about`) {
+      if (App.about_filter_focused()) {
+        if (e.key === `Escape`) {
+          App.clear_about_filter()
+          e.preventDefault()
+          return
+        }
+        else {
+          App.filter_about()
+        }
+      }
+    }
+
     if (!App.on_item_window()) {
       if (e.key === `Escape`) {
         App.show_last_window()

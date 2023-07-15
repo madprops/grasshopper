@@ -26,6 +26,7 @@ App.footer_debouncer_delay = 100
 App.scroller_debouncer_delay = 100
 App.pinline_debouncer_delay = 100
 App.filter_settings_debouncer_delay = 100
+App.filter_about_debouncer_delay = 100
 App.normal_scroll_pixels = 150
 App.fast_scroll_percent = 16.66
 App.wheel_delay = 100

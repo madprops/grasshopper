@@ -505,6 +505,12 @@ svg {
   padding-bottom: 0.5rem;
 }
 
+#about_filter {
+  width: 12rem;
+  text-align: center;
+  margin-bottom: 0.5rem;
+}
+
 a:visited, a:link, a:hover {
 	color: var(--text_color);
 }
