@@ -124,6 +124,12 @@ body, html {
   width: 0;
 }
 
+.small_filter {
+  width: 11rem;
+  text-align: center;
+  background-color: var(--alt_color_0);
+}
+
 .button {
   font-size: 1rem;
   cursor: pointer;
@@ -410,12 +416,6 @@ svg {
   height: 1.07rem;
 }
 
-.settings_filter {
-  text-align: center;
-  width: 11rem;
-  background-color: var(--alt_color_0);
-}
-
 .text_smaller {
   width: 5rem;
   max-width: 5rem;
@@ -506,10 +506,7 @@ svg {
 }
 
 #about_filter {
-  width: 11rem;
-  text-align: center;
   margin-bottom: 0.5rem;
-  background-color: var(--alt_color_0);
 }
 
 a:visited, a:link, a:hover {

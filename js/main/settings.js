@@ -267,7 +267,7 @@ App.settings_make_menu = (setting, opts, action = () => {}) => {
 
 App.add_settings_filter = (category) => {
   let container = DOM.el(`#settings_${category}_container`)
-  let filter = DOM.create(`input`, `settings_filter text`, `settings_${category}_filter`)
+  let filter = DOM.create(`input`, `settings_filter text small_filter`, `settings_${category}_filter`)
   filter.type = `text`
   filter.autocomplete = `off`
   filter.spellcheck = false
