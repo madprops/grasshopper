@@ -173,11 +173,12 @@ svg {
 }
 
 .hovered {
-  outline: 1px solid var(--alt_color_2);
+  outline: 1px solid var(--text_color);
 }
 
 .hovered:hover {
-  outline: 2px solid var(--alt_color_2);
+  outline: 1px solid var(--text_color);
+  background-color: var(--alt_background_2);
 }
 
 .item {
@@ -464,7 +465,7 @@ svg {
 }
 
 .pinline {
-  min-height: 2px;
+  min-height: 1px;
   margin-top: 0.77rem;
   margin-bottom: 0.77rem;
   background-color: var(--alt_color_1);
