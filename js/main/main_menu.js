@@ -34,7 +34,7 @@ App.create_main_menu = (mode) => {
 App.show_main_menu = (mode) => {
   let items = []
 
-  for (let m of App.window_order) {
+  for (let m of App.mode_order) {
     items.push({
       text: App.get_mode_name(m),
       action: () => {
@@ -79,5 +79,5 @@ App.show_main_menu = (mode) => {
 }
 
 App.show_first_item_window = () => {
-  App.show_item_window(App.window_order[0])
+  App.show_item_window(App.mode_order[0])
 }

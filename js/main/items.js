@@ -1,5 +1,5 @@
 App.setup_items = () => {
-  App.get_window_order()
+  App.get_mode_order()
   App.start_item_observers()
 }
 
@@ -579,7 +579,7 @@ App.get_item_by_url = (mode, url) => {
 }
 
 App.start_item_observers = () => {
-  for (let mode of App.window_order) {
+  for (let mode of App.mode_order) {
     let options = {
       root: DOM.el(`#${mode}_container`),
       rootMargin: `0px`,
@@ -690,7 +690,7 @@ App.show_item_window = async (mode, cycle = false) => {
 }
 
 App.show_main_item_window = () => {
-  App.show_item_window(App.window_order[0])
+  App.show_item_window(App.mode_order[0])
 }
 
 App.setup_item_window = (mode) => {
@@ -753,7 +753,7 @@ App.setup_item_window = (mode) => {
 }
 
 App.cycle_item_windows = (reverse = false, cycle = false) => {
-  let modes = App.window_order
+  let modes = App.mode_order
   let index = modes.indexOf(App.window_mode)
   let new_mode
 
@@ -781,37 +781,37 @@ App.cycle_item_windows = (reverse = false, cycle = false) => {
   App.show_item_window(new_mode, cycle)
 }
 
-App.update_window_order = () => {
-  let boxes = DOM.els(`.window_order_row`, DOM.el(`#settings_window_order`))
+App.update_mode_order = () => {
+  let boxes = DOM.els(`.mode_order_row`, DOM.el(`#settings_mode_order`))
   let modes = boxes.map(x => x.dataset.mode)
 
   for (let [i, mode] of modes.entries()) {
     App.set_setting(`${mode}_index`, i)
   }
 
-  App.get_window_order()
+  App.get_mode_order()
 }
 
-App.window_order_up = (el) => {
+App.mode_order_up = (el) => {
   let prev = el.previousElementSibling
 
   if (prev) {
     el.parentNode.insertBefore(el, prev)
-    App.update_window_order()
+    App.update_mode_order()
   }
 }
 
-App.window_order_down = (el) => {
+App.mode_order_down = (el) => {
   let next = el.nextElementSibling
 
   if (next) {
     el.parentNode.insertBefore(next, el)
-    App.update_window_order()
+    App.update_mode_order()
   }
 }
 
 App.show_first_window = () => {
-  App.show_item_window(App.window_order[0])
+  App.show_item_window(App.mode_order[0])
 }
 
 App.focus_or_open_item = async (item) => {
@@ -834,7 +834,7 @@ App.focus_or_open_item = async (item) => {
   return `opened`
 }
 
-App.get_window_order = () => {
+App.get_mode_order = () => {
   let imodes = []
 
   for (let mode of App.item_modes) {
@@ -842,7 +842,7 @@ App.get_window_order = () => {
   }
 
   imodes.sort((a, b) => (a.index > b.index) ? 1 : -1)
-  App.window_order = imodes.map(x => x.mode)
+  App.mode_order = imodes.map(x => x.mode)
 }
 
 App.any_item_visible = (mode) => {
@@ -910,7 +910,7 @@ App.show_actions = (mode) => {
 }
 
 App.get_mode_index = (mode) => {
-  for (let [i, it] of App.window_order.entries()) {
+  for (let [i, it] of App.mode_order.entries()) {
     if (it === mode) {
       return i
     }
@@ -1285,7 +1285,7 @@ App.item_action = async (item) => {
 }
 
 App.on_item_window = (mode = App.window_mode) => {
-  return App.window_order.includes(mode)
+  return App.mode_order.includes(mode)
 }
 
 App.show_all = (mode = App.window_mode) => {

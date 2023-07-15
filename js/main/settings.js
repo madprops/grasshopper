@@ -77,35 +77,35 @@ App.default_settings = {
   mute_click: {value: true, category: `more`, version: 1},
 }
 
-App.make_window_order = () => {
-  let window_order = DOM.el(`#settings_window_order`)
-  window_order.innerHTML = ``
+App.make_mode_order = () => {
+  let mode_order = DOM.el(`#settings_mode_order`)
+  mode_order.innerHTML = ``
 
-  for (let m of App.window_order) {
-    let row = DOM.create(`div`, `window_order_row`)
+  for (let m of App.mode_order) {
+    let row = DOM.create(`div`, `mode_order_row`)
     row.dataset.mode = m
 
-    let up = DOM.create(`div`, `button window_order_button`)
+    let up = DOM.create(`div`, `button mode_order_button`)
     up.textContent = `Up`
     row.append(up)
 
     DOM.ev(up, `click`, () => {
-      App.window_order_up(row)
+      App.mode_order_up(row)
     })
 
-    let text = DOM.create(`div`, `window_order_item_text`)
+    let text = DOM.create(`div`, `mode_order_item_text`)
     text.textContent = App.get_mode_name(m)
     row.append(text)
 
-    let down = DOM.create(`div`, `button window_order_button`)
+    let down = DOM.create(`div`, `button mode_order_button`)
     down.textContent = `Down`
     row.append(down)
 
     DOM.ev(down, `click`, () => {
-      App.window_order_down(row)
+      App.mode_order_down(row)
     })
 
-    window_order.append(row)
+    mode_order.append(row)
   }
 }
 
@@ -373,17 +373,17 @@ App.setup_settings = () => {
       App.apply_theme()
     })
 
-    App.make_window_order()
+    App.make_mode_order()
 
-    DOM.ev(DOM.el(`#settings_window_order`), `contextmenu`, (e) => {
+    DOM.ev(DOM.el(`#settings_mode_order`), `contextmenu`, (e) => {
       App.reset_single_setting(e, () => {
         App.set_default_setting(`tabs_index`)
         App.set_default_setting(`stars_index`)
         App.set_default_setting(`history_index`)
         App.set_default_setting(`bookmarks_index`)
         App.set_default_setting(`closed_index`)
-        App.get_window_order()
-        App.make_window_order()
+        App.get_mode_order()
+        App.make_mode_order()
       })
     })
   }}))
@@ -566,8 +566,8 @@ App.reset_settings = (category) => {
     App.settings_default_category(category)
 
     if (category === `basic`) {
-      App.get_window_order()
-      App.make_window_order()
+      App.get_mode_order()
+      App.make_mode_order()
     }
     else if (category === `mouse`) {
       App.refresh_gestures()
@@ -690,8 +690,8 @@ App.import_settings = () => {
 }
 
 App.restart_settings = () => {
-  App.get_window_order()
-  App.make_window_order()
+  App.get_mode_order()
+  App.make_mode_order()
   App.apply_theme()
   App.refresh_gestures()
   App.show_settings()
