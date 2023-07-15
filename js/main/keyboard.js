@@ -79,14 +79,10 @@ App.check_items_keyboard = (e) => {
     }
     else if (e.key === `Delete`) {
       if (mode === `tabs`) {
-        if (item) {
-          App.close_tabs(item)
-        }
+        App.close_tabs(item)
       }
       else if (mode === `stars`) {
-        if (item) {
-          App.remove_stars(item)
-        }
+        App.remove_stars(item)
       }
 
       e.preventDefault()
@@ -96,11 +92,8 @@ App.check_items_keyboard = (e) => {
 
   if (e.shiftKey && !e.ctrlKey) {
     if (e.key === `Enter`) {
-      if (item) {
-        let rect = item.element.getBoundingClientRect()
-        App.show_item_menu(item, rect.left, rect.top)
-      }
-
+      let rect = item.element.getBoundingClientRect()
+      App.show_item_menu(item, rect.left, rect.top)
       e.preventDefault()
       return
     }
@@ -146,10 +139,7 @@ App.check_items_keyboard = (e) => {
       App.back_action(mode, e)
     }
     else if (e.key === `Enter`) {
-      if (item) {
-        App[`${mode}_action`](item)
-      }
-
+      App[`${mode}_action`](item)
       e.preventDefault()
       return
     }
