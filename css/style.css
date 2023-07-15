@@ -437,24 +437,24 @@ svg {
   gap: 2rem;
 }
 
-#settings_item_order {
+#settings_window_order {
   border: 1px solid var(--alt_color_1);
   display: table;
   border-spacing: 0.8rem;
 }
 
-.item_order_row {
+.window_order_row {
   display: table-row;
 }
 
-.item_order_item_text {
+.window_order_item_text {
   display: table-cell;
   text-align: center;
   padding-left: 0.8rem;
   padding-right: 0.8rem;
 }
 
-.item_order_button {
+.window_order_button {
   min-width: 4rem;
   display: table-cell;
 }

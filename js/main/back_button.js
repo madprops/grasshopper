@@ -45,7 +45,7 @@ App.back_action = (mode = App.window_mode, e) => {
 
     App.go_to_previous_tab()
   }
-  else if (mode !== App.item_order[0]) {
+  else if (mode !== App.window_order[0]) {
     App.show_main_item_window()
   }
 }
