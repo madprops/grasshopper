@@ -196,6 +196,22 @@ App.check_items_keyboard = (e) => {
 
       return
     }
+    else if (e.key === `Home`) {
+      if (!App.get_filter(mode, false)) {
+        App.goto_top(mode)
+        e.preventDefault()
+      }
+
+      return
+    }
+    else if (e.key === `End`) {
+      if (!App.get_filter(mode, false)) {
+        App.goto_bottom(mode)
+        e.preventDefault()
+      }
+
+      return
+    }
   }
 
   App.focus_filter(mode)

@@ -23,7 +23,7 @@ App.setup_about = () => {
       `Ctrl + F shows the filters`,
       `Ctrl + Dot goes to the playing tab`,
       `Ctrl + Delete removes items`,
-      `Delete removes items when highlighted`,
+      `Some keys can be used without ctrl if filter is empty`,
       `Double click on empty tabs space opens a new tab`,
       `Shift while on scrollwheel makes it scroll faster`,
       `Escape clears the filter and closes windows/popups`,
@@ -36,7 +36,7 @@ App.setup_about = () => {
       `To filter by url with regex start with re_url:`,
       `To perform gestures, hold the middle mouse button and move in a direction, then release`,
       `Some interface elements can be mapped to commands on middle click`,
-      `Hold on a pick and move the mouse to select multiple items`
+      `Hold on a pick and move the mouse to select multiple items`,
     ]
 
     DOM.ev(DOM.el(`#about_close`), `click`, () => {
