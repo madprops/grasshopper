@@ -48,6 +48,14 @@ body, html {
   filter: blur(10px);
 }
 
+#background.invert {
+  filter: invert(1);
+}
+
+#background.rotate {
+  filter: hue-rotate(90deg);
+}
+
 #main {
   user-select: none;
   scrollbar-color: var(--alt_color_2) var(--alt_color_1);
