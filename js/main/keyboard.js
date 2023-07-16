@@ -288,18 +288,19 @@ App.setup_keyboard = () => {
     }
 
     if (App.on_settings()) {
-      if (App.settings_filter_focused()) {
-        if (e.key === `Escape`) {
+      if (e.key === `Escape`) {
+        if (App.settings_filter_focused()) {
           App.clear_settings_filter()
           e.preventDefault()
-          return
         }
         else {
-          App.filter_settings()
+          App.hide_current_window()
+          e.preventDefault()
         }
-      }
 
-      if (e.key === `ArrowLeft`) {
+        return
+      }
+      else if (e.key === `ArrowLeft`) {
         if (!App.text_with_value_focused()) {
           App.show_prev_settings()
           e.preventDefault()
@@ -313,9 +314,8 @@ App.setup_keyboard = () => {
           return
         }
       }
-      else if (e.key === `Escape`) {
-        App.hide_current_window()
-        e.preventDefault()
+      else if (App.settings_filter_focused()) {
+        App.filter_settings()
         return
       }
     }
@@ -355,30 +355,34 @@ App.setup_keyboard = () => {
         return
       }
     }
-
-    if (App.window_mode === `about`) {
-      if (App.about_filter_focused()) {
-        if (e.key === `Escape`) {
+    else if (mode === `about`) {
+      if (e.key === `Escape`) {
+        if (App.about_filter_focused()) {
           App.clear_about_filter()
           e.preventDefault()
-          return
         }
         else {
-          App.filter_about()
+          App.hide_current_window()
+          e.preventDefault()
         }
-      }
-    }
 
-    if (!App.on_item_window()) {
-      if (e.key === `Escape`) {
-        App.show_last_window()
-        e.preventDefault()
+        return
+      }
+      else if (App.about_filter_focused()) {
+        App.filter_about()
         return
       }
     }
 
     if (App.on_item_window()) {
       App.check_items_keyboard(e)
+    }
+    else {
+      if (e.key === `Escape`) {
+        App.show_last_window()
+        e.preventDefault()
+        return
+      }
     }
   })
 }

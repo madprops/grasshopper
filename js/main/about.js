@@ -63,7 +63,7 @@ App.setup_about = () => {
 }
 
 App.about_filter_focused = () => {
-  return document.activeElement.id = `about_filter`
+  return document.activeElement.id === `about_filter`
 }
 
 App.clear_about_filter = () => {
