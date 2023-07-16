@@ -28,15 +28,15 @@ App.setup_about = () => {
       `Shift while on scrollwheel makes it scroll faster`,
       `Escape clears the filter and closes windows/popups`,
       `Double tap Ctrl to show the command palette`,
+      `Command palette commands take into account selected items`,
       `To filter by title start with title:`,
       `To filter by url start with url:`,
       `To filter with regex start with re:`,
       `To filter by title with regex start with re_title:`,
       `To filter by url with regex start with re_url:`,
-      `Hover the right side of items to pick and select`,
       `To perform gestures, hold the middle mouse button and move in a direction, then release`,
-      `Command palette commands take into account selected items`,
       `Some interface elements can be mapped to commands on middle click`,
+      `Hold on a pick and move the mouse to select multiple items`
     ]
 
     DOM.ev(DOM.el(`#about_close`), `click`, () => {
