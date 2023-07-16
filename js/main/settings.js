@@ -859,6 +859,10 @@ App.get_setting_category = () => {
   return App.window_mode.replace(`settings_`, ``)
 }
 
+App.on_settings_window = (mode) => {
+  return mode.startsWith(`settings_`)
+}
+
 App.settings_menu_items = () => {
   let items = []
   let current = App.get_setting_category()

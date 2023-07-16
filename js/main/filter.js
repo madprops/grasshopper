@@ -215,6 +215,9 @@ App.set_filter = (mode, text, filter = true) => {
     if (App.on_item_window(mode)) {
       App.do_filter(mode)
     }
+    else if (App.on_settings_window(mode)) {
+      App.do_filter_settings()
+    }
     else {
       App[`do_filter_${mode}`]()
     }
