@@ -1146,33 +1146,35 @@ App.open_items = (item, shift) => {
 }
 
 App.goto_top = (mode = App.window_mode, select = false) => {
-  let el = DOM.el(`#${mode}_container`)
+  if (select) {
+    App.select_item(App.get_items(mode).at(0), `nearest_instant`)
+  }
+  else {
+    let el = DOM.el(`#${mode}_container`)
 
-  el.scrollTo({
-    top: 0,
-    behavior: `instant`,
-  })
+    el.scrollTo({
+      top: 0,
+      behavior: `instant`,
+    })
+  }
 
   App.do_check_scroller(mode)
-
-  if (select) {
-    App.select_item(App.get_items(mode).at(0))
-  }
 }
 
 App.goto_bottom = (mode = App.window_mode, select = false) => {
-  let el = DOM.el(`#${mode}_container`)
+  if (select) {
+    App.select_item(App.get_items(mode).at(-1), `nearest_instant`)
+  }
+  else {
+    let el = DOM.el(`#${mode}_container`)
 
-  el.scrollTo({
-    top: el.scrollHeight,
-    behavior: `instant`,
-  })
+    el.scrollTo({
+      top: el.scrollHeight,
+      behavior: `instant`,
+    })
+  }
 
   App.do_check_scroller(mode)
-
-  if (select) {
-    App.select_item(App.get_items(mode).at(-1))
-  }
 }
 
 App.scroll = (mode, direction, fast = false) => {
