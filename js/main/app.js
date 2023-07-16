@@ -22,6 +22,7 @@ App.empty_previous_tabs_delay = 2500
 App.max_text_length = 200
 App.alert_autohide_delay = 1500
 App.filter_debouncer_delay = 200
+App.filter_debouncer_delay_2 = 100
 App.footer_debouncer_delay = 100
 App.scroller_debouncer_delay = 100
 App.pinline_debouncer_delay = 100

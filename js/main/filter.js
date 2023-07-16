@@ -211,8 +211,13 @@ App.set_filter = (mode, text, filter = true) => {
   DOM.el(`#${mode}_filter`).value = text
   App.focus_filter(mode)
 
-  if (filter && App.on_item_window(mode)) {
-    App.do_filter(mode)
+  if (filter) {
+    if (App.on_item_window(mode)) {
+      App.do_filter(mode)
+    }
+    else {
+      App[`do_filter_${mode}`]()
+    }
   }
 }
 

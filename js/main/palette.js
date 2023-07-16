@@ -8,10 +8,6 @@ App.setup_palette = () => {
         App.palette_action(e.target)
       })
 
-      DOM.ev(DOM.el(`#palette_filter`), `input`, (e) => {
-        App.filter_palette()
-      })
-
       DOM.ev(DOM.el(`#palette_info`), `click`, () => {
         let s = `You can use this palette to run commands.`
         s += ` You can also open this by tapping Ctrl twice in a row.`
@@ -36,35 +32,6 @@ App.show_palette = () => {
   container.scrollTop = 0
   filter.value = ``
   filter.focus()
-}
-
-App.filter_palette = () => {
-  App.palette_selected = undefined
-  let container = DOM.el(`#palette_commands`)
-  let value = App.get_clean_filter(`palette`)
-  let words = value.split(` `)
-  let value_clean = App.remove_spaces(value)
-
-  for (let el of DOM.els(`.palette_item`, container)) {
-    let text = el.textContent.toLowerCase()
-    let text_clean = App.remove_spaces(text)
-    let match = words.every(x => text.includes(x)) || text_clean.includes(value_clean)
-
-    if (!match) {
-      if (App.string_similarity(value, text) >= App.similarity_threshold) {
-        match = true
-      }
-    }
-
-    if (match) {
-      el.classList.remove(`hidden`)
-    }
-    else {
-      el.classList.add(`hidden`)
-    }
-  }
-
-  App.palette_select_first()
 }
 
 App.palette_select = (el) => {
@@ -160,4 +127,55 @@ App.fill_palette_container = () => {
     el.dataset.command = cmd.cmd
     container.append(el)
   }
+}
+
+App.palette_filter_focused = () => {
+  return document.activeElement.id === `palette_filter`
+}
+
+App.clear_palette_filter = () => {
+  if (App.filter_has_value(`palette`)) {
+    App.set_filter(`palette`, ``)
+  }
+  else {
+    App.hide_current_window()
+  }
+}
+
+App.filter_palette_debouncer = App.create_debouncer(() => {
+  App.do_filter_palette()
+}, App.filter_debouncer_delay_2)
+
+App.filter_palette = () => {
+  App.filter_palette_debouncer.call()
+}
+
+App.do_filter_palette = () => {
+  App.filter_palette_debouncer.cancel()
+  App.palette_selected = undefined
+  let container = DOM.el(`#palette_commands`)
+  let value = App.get_clean_filter(`palette`)
+  let words = value.split(` `)
+  let value_clean = App.remove_spaces(value)
+
+  for (let el of DOM.els(`.palette_item`, container)) {
+    let text = el.textContent.toLowerCase()
+    let text_clean = App.remove_spaces(text)
+    let match = words.every(x => text.includes(x)) || text_clean.includes(value_clean)
+
+    if (!match) {
+      if (App.string_similarity(value, text) >= App.similarity_threshold) {
+        match = true
+      }
+    }
+
+    if (match) {
+      el.classList.remove(`hidden`)
+    }
+    else {
+      el.classList.add(`hidden`)
+    }
+  }
+
+  App.palette_select_first()
 }

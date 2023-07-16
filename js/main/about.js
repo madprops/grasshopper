@@ -74,11 +74,8 @@ App.about_filter_focused = () => {
 }
 
 App.clear_about_filter = () => {
-  let filter = DOM.el(`#about_filter`)
-
-  if (filter.value) {
-    filter.value = ``
-    App.do_filter_about()
+  if (App.filter_has_value(`about`)) {
+    App.set_filter(`about`, ``)
   }
   else {
     App.hide_current_window()
@@ -87,7 +84,7 @@ App.clear_about_filter = () => {
 
 App.filter_about_debouncer = App.create_debouncer(() => {
   App.do_filter_about()
-}, App.filter_about_debouncer_delay)
+}, App.filter_debouncer_delay_2)
 
 App.filter_about = () => {
   App.filter_about_debouncer.call()

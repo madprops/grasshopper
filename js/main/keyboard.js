@@ -287,7 +287,19 @@ App.setup_keyboard = () => {
         }
       }
       else if (pmode === `palette`) {
-        if (e.key === `Enter`) {
+        if (e.key === `Escape`) {
+          if (App.palette_filter_focused()) {
+            App.clear_palette_filter()
+            e.preventDefault()
+          }
+          else {
+            App.hide_current_window()
+            e.preventDefault()
+          }
+
+          return
+        }
+        else if (e.key === `Enter`) {
           App.palette_enter()
           e.preventDefault()
         }
@@ -298,6 +310,10 @@ App.setup_keyboard = () => {
         else if (e.key === `ArrowDown`) {
           App.palette_next()
           e.preventDefault()
+        }
+        else if (App.palette_filter_focused()) {
+          App.filter_palette()
+          return
         }
       }
 

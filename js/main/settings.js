@@ -278,7 +278,7 @@ App.add_settings_filter = (category) => {
 
 App.filter_settings_debouncer = App.create_debouncer(() => {
   App.do_filter_settings()
-}, App.filter_settings_debouncer_delay)
+}, App.filter_debouncer_delay_2)
 
 App.filter_settings = () => {
   App.filter_settings_debouncer.call()
@@ -307,11 +307,10 @@ App.do_filter_settings = () => {
 
 App.clear_settings_filter = () => {
   let category = App.get_setting_category()
-  let filter = DOM.el(`#settings_${category}_filter`)
+  let mode = `settings_${category}`
 
-  if (filter.value) {
-    filter.value = ``
-    App.do_filter_settings()
+  if (App.filter_has_value(mode)) {
+    App.set_filter(mode, ``)
   }
   else {
     App.hide_current_window()
