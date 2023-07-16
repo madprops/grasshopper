@@ -68,12 +68,12 @@ App.check_items_keyboard = (e) => {
       return
     }
     else if (e.key === `Home`) {
-      App.goto_top(mode)
+      App.goto_top(mode, true)
       e.preventDefault()
       return
     }
     else if (e.key === `End`) {
-      App.goto_bottom(mode)
+      App.goto_bottom(mode, true)
       e.preventDefault()
       return
     }
@@ -198,7 +198,7 @@ App.check_items_keyboard = (e) => {
     }
     else if (e.key === `Home`) {
       if (!App.get_filter(mode, false)) {
-        App.goto_top(mode)
+        App.goto_top(mode, true)
         e.preventDefault()
       }
 
@@ -206,7 +206,7 @@ App.check_items_keyboard = (e) => {
     }
     else if (e.key === `End`) {
       if (!App.get_filter(mode, false)) {
-        App.goto_bottom(mode)
+        App.goto_bottom(mode, true)
         e.preventDefault()
       }
 

@@ -1145,7 +1145,7 @@ App.open_items = (item, shift) => {
   }
 }
 
-App.goto_top = (mode = App.window_mode) => {
+App.goto_top = (mode = App.window_mode, select = false) => {
   let el = DOM.el(`#${mode}_container`)
 
   el.scrollTo({
@@ -1154,9 +1154,13 @@ App.goto_top = (mode = App.window_mode) => {
   })
 
   App.do_check_scroller(mode)
+
+  if (select) {
+    App.select_item(App.get_items(mode).at(0))
+  }
 }
 
-App.goto_bottom = (mode = App.window_mode) => {
+App.goto_bottom = (mode = App.window_mode, select = false) => {
   let el = DOM.el(`#${mode}_container`)
 
   el.scrollTo({
@@ -1165,6 +1169,10 @@ App.goto_bottom = (mode = App.window_mode) => {
   })
 
   App.do_check_scroller(mode)
+
+  if (select) {
+    App.select_item(App.get_items(mode).at(-1))
+  }
 }
 
 App.scroll = (mode, direction, fast = false) => {
