@@ -41,7 +41,7 @@ App.show_palette = () => {
 App.filter_palette = () => {
   App.palette_selected = undefined
   let container = DOM.el(`#palette_commands`)
-  let value = App.get_filter(`palette`)
+  let value = App.get_clean_filter(`palette`)
   let words = value.split(` `)
   let value_clean = App.remove_spaces(value)
 

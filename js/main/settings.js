@@ -288,7 +288,7 @@ App.do_filter_settings = () => {
   App.filter_settings_debouncer.cancel()
   let category = App.get_setting_category()
   let mode = `settings_${category}`
-  let value = App.get_filter(mode)
+  let value = App.get_clean_filter(mode)
   let container = DOM.el(`#settings_${category}_container`)
   let items = DOM.els(`.settings_column`, container)
 
