@@ -80,11 +80,15 @@ App.apply_theme = () => {
     }
 
     let bg = DOM.el(`#background`)
+    let bg_effect = App.get_setting(`background_effect`)
     bg.classList.remove(`blur`)
     bg.classList.remove(`grayscale`)
     bg.classList.remove(`invert`)
     bg.classList.remove(`rotate`)
-    bg.classList.add(App.get_setting(`background_effect`))
+
+    if (bg_effect !== `none`) {
+      bg.classList.add(bg_effect)
+    }
   }
   catch (err) {
     App.log(err, `error`)
