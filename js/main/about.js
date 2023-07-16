@@ -95,7 +95,7 @@ App.filter_about = () => {
 
 App.do_filter_about = () => {
   App.filter_about_debouncer.cancel()
-  let value = DOM.el(`#about_filter`).value.toLowerCase().trim()
+  let value = App.get_filter_value(`#about_filter`)
   let container = DOM.el(`#about_info`)
   let items = DOM.els(`.about_info_item`, container)
 
