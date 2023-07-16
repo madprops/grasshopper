@@ -40,6 +40,14 @@ body, html {
   background-size: cover;
 }
 
+#background.grayscale {
+  filter: grayscale(100%);
+}
+
+#background.blur {
+  filter: blur(10px);
+}
+
 #main {
   user-select: none;
   scrollbar-color: var(--alt_color_2) var(--alt_color_1);

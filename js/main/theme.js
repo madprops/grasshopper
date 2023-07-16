@@ -78,6 +78,11 @@ App.apply_theme = () => {
     else {
       main.classList.add(`no_scrollbars`)
     }
+
+    let bg = DOM.el(`#background`)
+    bg.classList.remove(`blur`)
+    bg.classList.remove(`grayscale`)
+    bg.classList.add(App.get_setting(`background_effect`))
   }
   catch (err) {
     App.log(err, `error`)

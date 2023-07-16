@@ -21,6 +21,7 @@ App.default_settings = {
   background_color: {value: `rgb(42, 42, 52)`, category: `theme`, version: 1},
   text_color: {value: `rgb(233, 233, 233)`, category: `theme`, version: 1},
   background_image: {value: ``, category: `theme`, version: 1},
+  background_effect: {value: `none`, category: `theme`, version: 1},
 
   pin_icon: {value: `+`, category: `icons`, version: 1},
   normal_icon: {value: ``, category: `icons`, version: 1},
@@ -505,6 +506,14 @@ App.start_theme_settings = () => {
 
   start_color_picker(`background`)
   start_color_picker(`text`)
+
+  App.settings_make_menu(`background_effect`, [
+    [`None`, `none`],
+    [`Blur`, `blur`],
+    [`Gray`, `grayscale`],
+  ], () => {
+    App.apply_theme()
+  })
 }
 
 App.settings_menu_cycle = (el, setting, dir, items) => {
