@@ -495,10 +495,13 @@ svg {
   display: flex;
   flex-direction: column;
   align-items: flex-start;
-  padding-left: 1rem;
-  padding-right: 1rem;
   gap: 0.5rem;
   width: 100%;
+}
+
+.about_info_item {
+  padding-left: 1rem;
+  padding-right: 1rem;
 }
 
 #about_links {
