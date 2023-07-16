@@ -3,7 +3,7 @@ App.setup_about = () => {
     App.about_info_items = [
       `Up, Down, and Enter keys navigate and pick items`,
       `Type to filter items, press Tab to cycle-reuse`,
-      `Cycle items with the top-left menu or (Shift) Tab`,
+      `Cycle modes with the top-left menu or (Shift) Tab`,
       `Cycle with Left and Right if filter is empty`,
       `Middle Click closes or opens items`,
       `Shift + Middle Click bypasses some confirmations`,
@@ -36,6 +36,7 @@ App.setup_about = () => {
       `Hover the right side of items to pick and select`,
       `To perform gestures, hold the middle mouse button and move in a direction, then release`,
       `Command palette commands take into account selected items`,
+      `Some interface elements can be mapped to commands on middle click`,
     ]
 
     DOM.ev(DOM.el(`#about_close`), `click`, () => {
