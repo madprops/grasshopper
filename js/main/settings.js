@@ -75,6 +75,7 @@ App.default_settings = {
   close_on_focus: {value: true, category: `more`, version: 1},
   close_on_open: {value: true, category: `more`, version: 1},
   mute_click: {value: true, category: `more`, version: 1},
+  case_insensitive_filter: {value: true, category: `more`, version: 1},
 }
 
 App.make_mode_order = () => {

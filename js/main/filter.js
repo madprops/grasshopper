@@ -17,7 +17,7 @@ App.do_filter = async (mode, force = false) => {
   App.log(`Filter: ${mode}`)
 
   let regex_val, by_what, use_regex
-  let value = App.get_filter(mode)
+  let value = App.get_filter(mode, true, false)
 
   if (value === ``) {
     App.set_filter(mode, ``, false)
@@ -70,7 +70,12 @@ App.do_filter = async (mode, force = false) => {
   let regex
 
   try {
-    regex = new RegExp(regex_val, `i`)
+    if (App.get_setting(`case_insensitive_filter`)) {
+      regex = new RegExp(regex_val, `i`)
+    }
+    else {
+      regex = new RegExp(regex_val)
+    }
   }
   catch (err) {
     return
