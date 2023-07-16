@@ -57,11 +57,12 @@ App.setup_about = () => {
   },
   after_show: () => {
     let filter = DOM.el(`#about_filter`)
-    filter.focus()
 
     if (filter.value) {
       App.clear_about_filter()
     }
+
+    filter.focus()
   },
   on_hide: () => {
     App.show_last_window()
