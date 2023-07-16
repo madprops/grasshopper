@@ -252,7 +252,7 @@ App.string_similarity_distance = (s1, s2) => {
 }
 
 App.single_space = (s) => {
-  return s.replace(/\s+/g, ` `).trim()
+  return s.replace(/\s+/g, ` `)
 }
 
 App.wheel_direction = (e) => {

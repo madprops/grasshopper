@@ -624,7 +624,7 @@ App.get_last_window_value = (cycle) => {
   let value = ``
 
   if (cycle) {
-    value = App.get_filter(last_mode, false)
+    value = App.get_filter(last_mode)
   }
 
   return value

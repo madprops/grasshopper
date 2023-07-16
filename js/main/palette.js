@@ -41,18 +41,17 @@ App.show_palette = () => {
 App.filter_palette = () => {
   App.palette_selected = undefined
   let container = DOM.el(`#palette_commands`)
-  let filter_el = DOM.el(`#palette_filter`)
-  let filter = App.single_space(filter_el.value.trim().toLowerCase())
-  let filter_words = filter.split(` `)
-  let filter_clean = App.remove_spaces(filter)
+  let value = App.get_filter(`palette`)
+  let words = value.split(` `)
+  let value_clean = App.remove_spaces(value)
 
   for (let el of DOM.els(`.palette_item`, container)) {
     let text = el.textContent.toLowerCase()
     let text_clean = App.remove_spaces(text)
-    let match = filter_words.every(x => text.includes(x)) || text_clean.includes(filter_clean)
+    let match = words.every(x => text.includes(x)) || text_clean.includes(value_clean)
 
     if (!match) {
-      if (App.string_similarity(filter, text) >= App.similarity_threshold) {
+      if (App.string_similarity(value, text) >= App.similarity_threshold) {
         match = true
       }
     }

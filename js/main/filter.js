@@ -17,12 +17,7 @@ App.do_filter = async (mode, force = false) => {
   App.log(`Filter: ${mode}`)
 
   let regex_val, by_what, use_regex
-  let value = App.get_filter(mode, true, false)
-
-  if (value === ``) {
-    App.set_filter(mode, ``, false)
-  }
-
+  let value = App.get_filter(mode, false)
   let regex_modes = [`re:`, `re_title:`, `re_url:`]
 
   if (regex_modes.some(x => value.startsWith(x))) {
@@ -246,12 +241,8 @@ App.filter_has_value = (mode) => {
   return DOM.el(`#${mode}_filter`).value !== ``
 }
 
-App.get_filter = (mode, trim = true, lowercase = true) => {
-  let value = App.single_space(DOM.el(`#${mode}_filter`).value)
-
-  if (trim) {
-    value = value.trim()
-  }
+App.get_filter = (mode, lowercase = true) => {
+  let value = App.single_space(DOM.el(`#${mode}_filter`).value).trim()
 
   if (lowercase) {
     value = value.toLowerCase()
