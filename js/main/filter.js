@@ -21,7 +21,6 @@ App.do_filter = async (mode, force = false) => {
 
   if (value === ``) {
     App.set_filter(mode, ``, false)
-    return
   }
 
   let regex_modes = [`re:`, `re_title:`, `re_url:`]
@@ -212,7 +211,7 @@ App.set_filter = (mode, text, filter = true) => {
   DOM.el(`#${mode}_filter`).value = text
   App.focus_filter(mode)
 
-  if (filter) {
+  if (filter && App.on_item_window(mode)) {
     App.do_filter(mode)
   }
 }

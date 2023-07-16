@@ -286,7 +286,13 @@ App.filter_settings = () => {
 App.do_filter_settings = () => {
   App.filter_settings_debouncer.cancel()
   let category = App.get_setting_category()
-  let value = App.get_filter(`settings_${category}`)
+  let mode = `settings_${category}`
+  let value = App.get_filter(mode)
+
+  if (value === ``) {
+    App.set_filter(mode, ``, false)
+  }
+
   let container = DOM.el(`#settings_${category}_container`)
   let items = DOM.els(`.settings_column`, container)
 
