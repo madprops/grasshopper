@@ -87,7 +87,7 @@ App.apply_theme = () => {
       bg.classList.remove(eff)
     }
 
-    if (bg_effect !== `none`) {
+    if (bg_effects.includes(bg_effect)) {
       bg.classList.add(bg_effect)
     }
   }
