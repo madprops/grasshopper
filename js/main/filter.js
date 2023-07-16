@@ -18,6 +18,12 @@ App.do_filter = async (mode, force = false) => {
 
   let regex_val, by_what, use_regex
   let value = App.get_filter(mode)
+
+  if (value === ``) {
+    App.set_filter(mode, ``, false)
+    return
+  }
+
   let regex_modes = [`re:`, `re_title:`, `re_url:`]
 
   if (regex_modes.some(x => value.startsWith(x))) {
