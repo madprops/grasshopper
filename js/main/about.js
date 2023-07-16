@@ -56,7 +56,12 @@ App.setup_about = () => {
     DOM.el(`#about_name`).textContent = s
   },
   after_show: () => {
-    DOM.el(`#about_filter`).focus()
+    let filter = DOM.el(`#about_filter`)
+    filter.focus()
+
+    if (filter.value) {
+      App.clear_about_filter()
+    }
   },
   on_hide: () => {
     App.show_last_window()
