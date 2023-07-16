@@ -26,7 +26,7 @@ App.back_action = (mode = App.window_mode, e) => {
   if (App.highlights(mode)) {
     App.dehighlight(mode, `selected`)
   }
-  else if (App.get_filter(mode)) {
+  else if (App.filter_has_value(mode)) {
     App.clear_filter(mode)
   }
   else if (App[`${mode}_filter_mode`] !== `all`) {

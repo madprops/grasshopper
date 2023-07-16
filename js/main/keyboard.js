@@ -1,6 +1,7 @@
 App.check_items_keyboard = (e) => {
   let mode = App.window_mode
   let item = App.get_selected(mode)
+  let filtered = App.filter_has_value(mode)
 
   function arrow (direction, e) {
     if (!App.element_is_visible(item.element)) {
@@ -45,7 +46,7 @@ App.check_items_keyboard = (e) => {
       return
     }
     else if (e.key === `a`) {
-      if (!App.get_filter(mode, false)) {
+      if (!filtered) {
         App.highlight_items()
         e.preventDefault()
       }
@@ -162,7 +163,7 @@ App.check_items_keyboard = (e) => {
       return
     }
     else if (e.key === `ArrowLeft`) {
-      if (!App.get_filter(mode)) {
+      if (!filtered) {
         App.cycle_modes(true, true)
         e.preventDefault()
       }
@@ -170,7 +171,7 @@ App.check_items_keyboard = (e) => {
       return
     }
     else if (e.key === `ArrowRight`) {
-      if (!App.get_filter(mode)) {
+      if (!filtered) {
         App.cycle_modes(false, true)
         e.preventDefault()
       }
@@ -197,7 +198,7 @@ App.check_items_keyboard = (e) => {
       return
     }
     else if (e.key === `Home`) {
-      if (!App.get_filter(mode, false)) {
+      if (!filtered) {
         App.goto_top(mode, true)
         e.preventDefault()
       }
@@ -205,7 +206,7 @@ App.check_items_keyboard = (e) => {
       return
     }
     else if (e.key === `End`) {
-      if (!App.get_filter(mode, false)) {
+      if (!filtered) {
         App.goto_bottom(mode, true)
         e.preventDefault()
       }

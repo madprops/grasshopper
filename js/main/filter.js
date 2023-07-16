@@ -183,7 +183,7 @@ App.focus_filter = (mode) => {
 }
 
 App.is_filtered = (mode) => {
-  return App.get_filter(mode) || App.filter_mode(mode) !== `all`
+  return App.filter_has_value(mode) || App.filter_mode(mode) !== `all`
 }
 
 App.check_clear_filter = () => {
@@ -197,7 +197,7 @@ App.check_clear_filter = () => {
 }
 
 App.clear_filter = (mode = App.window_mode) => {
-  if (App.get_filter(mode, false)) {
+  if (App.filter_has_value(mode)) {
     App.set_filter(mode, ``)
   }
 }
@@ -230,6 +230,10 @@ App.filter_cmd = (mode, cmd) => {
   }
 
   App.set_filter(mode, new_text)
+}
+
+App.filter_has_value = (mode) => {
+  return DOM.el(`#${mode}_filter`).value !== ``
 }
 
 App.get_filter = (mode, trim = true, lowercase = true) => {
@@ -355,7 +359,7 @@ App.set_filter_mode = (mode, filter_mode, filter = true) => {
   // If All is clicked again, clear the filter
   if (filter && filter_mode[0] === `all`) {
     if (App.filter_mode(mode) === `all`) {
-      if (App.get_filter(mode)) {
+      if (App.filter_has_value(mode)) {
         App.clear_filter(mode)
         return
       }
