@@ -80,11 +80,12 @@ App.apply_theme = () => {
     }
 
     let bg = DOM.el(`#background`)
+    let bg_effects = [`blur`, `grayscale`, `invert`, `rotate`]
     let bg_effect = App.get_setting(`background_effect`)
-    bg.classList.remove(`blur`)
-    bg.classList.remove(`grayscale`)
-    bg.classList.remove(`invert`)
-    bg.classList.remove(`rotate`)
+
+    for (let eff of bg_effects) {
+      bg.classList.remove(eff)
+    }
 
     if (bg_effect !== `none`) {
       bg.classList.add(bg_effect)
