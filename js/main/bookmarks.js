@@ -6,7 +6,7 @@ App.setup_bookmarks = () => {
 
   App.bookmarks_actions = [
     {text: `Bookmark`, action: () => {
-      App.bookmark_current()
+      App.bookmark_active()
     }},
 
     {text: `File Type`, get_items: () => {
@@ -109,7 +109,7 @@ App.bookmark_items = async (item, active) => {
   }, undefined, items.length === 1)
 }
 
-App.bookmark_current = async () => {
+App.bookmark_active = async () => {
   let tab = await App.get_active_tab()
 
   let item = {

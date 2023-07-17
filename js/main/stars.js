@@ -1,7 +1,7 @@
 App.setup_stars = () => {
   App.stars_actions = [
     {text: `Star`, action: () => {
-      App.star_from_active()
+      App.star_active()
     }},
 
     {text: `File Type`, get_items: () => {
@@ -224,7 +224,7 @@ App.new_star = (title = ``, url = ``) => {
   DOM.el(`#star_editor_title`).focus()
 }
 
-App.star_from_active = async () => {
+App.star_active = async () => {
   let tab = await App.get_active_tab()
 
   if (!tab) {
