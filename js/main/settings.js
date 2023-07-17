@@ -23,7 +23,7 @@ App.default_settings = {
   text_color: {value: `rgb(233, 233, 233)`, category: `theme`, version: 1},
   background_image: {value: ``, category: `theme`, version: 1},
   background_effect: {value: `none`, category: `theme`, version: 1},
-  background_tiles: {value: false, category: `theme`, version: 1},
+  background_tiles: {value: `none`, category: `theme`, version: 1},
 
   pin_icon: {value: `+`, category: `icons`, version: 1},
   normal_icon: {value: ``, category: `icons`, version: 1},
@@ -131,10 +131,6 @@ App.settings_setup_checkboxes = (container, category) => {
     DOM.ev(el, `change`, () => {
       App.set_setting(setting, el.checked)
       App.settings_do_action(action)
-
-      if (category === `theme`) {
-        App.apply_theme()
-      }
     })
 
     DOM.ev(el, `contextmenu`, (e) => {
@@ -513,6 +509,19 @@ App.start_theme_settings = () => {
     [`Gray`, `grayscale`],
     [`Invert`, `invert`],
     [`Rotate`, `rotate`],
+  ], () => {
+    App.apply_theme()
+  })
+
+  App.settings_make_menu(`background_tiles`, [
+    [`None`, `none`],
+    [`50px`, `50px`],
+    [`100px`, `100px`],
+    [`150px`, `150px`],
+    [`200px`, `200px`],
+    [`250px`, `250px`],
+    [`300px`, `300px`],
+    [`350px`, `350px`],
   ], () => {
     App.apply_theme()
   })

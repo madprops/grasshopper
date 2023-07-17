@@ -91,7 +91,10 @@ App.apply_theme = () => {
       bg.classList.add(bg_effect)
     }
 
-    if (App.get_setting(`background_tiles`)) {
+    let bg_tiles = App.get_setting(`background_tiles`)
+
+    if (bg_tiles !== `none`) {
+      App.set_css_var(`background_tile_width`, bg_tiles)
       bg.classList.add(`tiles`)
     }
     else {

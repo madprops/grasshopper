@@ -57,7 +57,7 @@ body, html {
 }
 
 #background.tiles {
-  background-size: 10rem auto;
+  background-size: var(--background_tile_width) auto;
   background-repeat: repeat;
 }
 
