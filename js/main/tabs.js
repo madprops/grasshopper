@@ -1,12 +1,12 @@
 App.setup_tabs = () => {
   App.tabs_filter_modes = [
     [App.separator_string],
-    [`pins`, `Pins`],
+    [`pinned`, `Pinned`],
     [`normal`, `Normal`],
     [App.separator_string],
     [`playing`, `Playing`],
     [`unloaded`, `Unloaded`],
-    [`duplicates`, `Duplicates`],
+    [`duplicate`, `Duplicate`],
     [App.separator_string],
     [`star`, `Has Star`],
     [`title`, `Has Title`],
@@ -1156,26 +1156,4 @@ App.get_normal_tabs = () => {
   }
 
   return normal
-}
-
-App.select_normal_tabs = () => {
-  let items = App.get_normal_tabs()
-  App.dehighlight(`tabs`)
-
-  for (let item of items) {
-    App.toggle_highlight(item, true)
-  }
-
-  App.select_item(items[0], `nearest_instant`, false)
-}
-
-App.select_pinned_tabs = () => {
-  let items = App.get_pinned_tabs()
-  App.dehighlight(`tabs`)
-
-  for (let item of items) {
-    App.toggle_highlight(item, true)
-  }
-
-  App.select_item(items[0], `nearest_instant`, false)
 }

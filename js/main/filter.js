@@ -105,7 +105,7 @@ App.do_filter = async (mode, force = false) => {
   let skip = !value && filter_mode === `all`
   let duplicates
 
-  if (filter_mode === `duplicates`) {
+  if (filter_mode === `duplicate`) {
     duplicates = App.find_duplicates(items, `url`)
   }
 
@@ -136,7 +136,7 @@ App.do_filter = async (mode, force = false) => {
       else if (filter_mode === `playing`) {
         match = item.audible || item.muted
       }
-      else if (filter_mode === `pins`) {
+      else if (filter_mode === `pinned`) {
         match = item.pinned
       }
       else if (filter_mode === `unloaded`) {
@@ -160,7 +160,7 @@ App.do_filter = async (mode, force = false) => {
       else if (filter_mode === `text`) {
         match = item.text
       }
-      else if (filter_mode === `duplicates`) {
+      else if (filter_mode === `duplicate`) {
         match = duplicates.includes(item)
       }
     }
