@@ -194,7 +194,7 @@ App.reload_extension = () => {
 }
 
 App.remove_spaces = (text) => {
-  return text.replace(/\s/g, ``)
+  return text.replace(/[\s-]+/g, ``)
 }
 
 App.single_space = (s) => {
