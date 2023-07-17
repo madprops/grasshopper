@@ -4,6 +4,12 @@ App.setup_bookmarks = () => {
     [`star`, `Has Star`],
   ]
 
+  App.bookmarks_actions = [
+    {text: `File Type`, get_items: () => {
+      return App.get_file_types(`bookmarks`)
+    }}
+  ]
+
   App.setup_item_window(`bookmarks`)
 
   browser.bookmarks.onCreated.addListener((id, info) => {

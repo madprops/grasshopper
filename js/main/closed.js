@@ -4,6 +4,12 @@ App.setup_closed = () => {
     [`star`, `Has Star`],
   ]
 
+  App.closed_actions = [
+    {text: `Forget All`, get_items: () => {
+      App.forget_closed_tabs()
+    }}
+  ]
+
   App.setup_item_window(`closed`)
 
   browser.sessions.onChanged.addListener(() => {
@@ -44,4 +50,12 @@ App.undo_close_tab = async () => {
   if (closed && closed.length > 0) {
     browser.sessions.restore(closed[0].sessionId)
   }
+}
+
+App.forget_closed_tabs = async () => {
+  App.show_confirm(`Forget closed tabs?`, () => {
+    for (let item of App.get_items(`closed`)) {
+      browser.sessions.forgetClosedTab(item.window_id, item.session_id)
+    }
+  })
 }

@@ -154,6 +154,9 @@ App.do_filter = async (mode, force = false) => {
       else if (filter_mode === `videos`) {
         match = item.video
       }
+      else if (filter_mode === `audio`) {
+        match = item.audio
+      }
       else if (filter_mode === `duplicates`) {
         match = duplicates.includes(item)
       }
@@ -429,6 +432,7 @@ App.create_filter_menu = (mode) => {
   fmodes.push([App.separator_string])
   fmodes.push([`images`, `Images`])
   fmodes.push([`videos`, `Videos`])
+  fmodes.push([`audio`, `Audio`])
   fmodes.push([App.separator_string])
   fmodes.push([`custom`, `Custom`])
   fmodes.push([`by_what`, `By What`])

@@ -282,6 +282,7 @@ App.process_info = (mode, info, exclude = [], o_item) => {
   let title = info.title || ``
   let image = App.is_image(url)
   let video = App.is_video(url)
+  let audio = App.is_audio(url)
 
   if (mode === `tabs`) {
     let title_match = App.get_title(url)
@@ -302,6 +303,7 @@ App.process_info = (mode, info, exclude = [], o_item) => {
     last_visit: info.lastVisitTime,
     image: image,
     video: video,
+    audio: audio,
     created: false,
   }
 
@@ -1412,4 +1414,32 @@ App.highlights = (mode) => {
 
 App.select = (item, dehighlight = true) => {
   App.select_item(item, `nearest_smooth`, dehighlight)
+}
+
+App.get_file_types = (mode) => {
+  let items = []
+
+  for (let ext of App.image_extensions) {
+    items.push({text: ext.toUpperCase(), action: () => {
+      App.set_filter(mode, `.${ext}`)
+    }})
+  }
+
+  items.push({separator: true})
+
+  for (let ext of App.video_extensions) {
+    items.push({text: ext.toUpperCase(), action: () => {
+      App.set_filter(mode, `.${ext}`)
+    }})
+  }
+
+  items.push({separator: true})
+
+  for (let ext of App.audio_extensions) {
+    items.push({text: ext.toUpperCase(), action: () => {
+      App.set_filter(mode, `.${ext}`)
+    }})
+  }
+
+  return items
 }
