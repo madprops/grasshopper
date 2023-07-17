@@ -158,6 +158,9 @@ App.commands = [
   {name: `Undo Close Tab`, cmd: `undo_close_tab`, action: (args) => {
     App.undo_close_tab()
   }},
+  {name: `Bookmark Tab`, cmd: `add_bookmark`, action: (args) => {
+    App.add_bookmark()
+  }},
 
   {name: App.separator_string},
 
