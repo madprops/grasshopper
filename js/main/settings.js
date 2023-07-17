@@ -522,6 +522,9 @@ App.start_theme_settings = () => {
     [`250px`, `250px`],
     [`300px`, `300px`],
     [`350px`, `350px`],
+    [`400px`, `400px`],
+    [`450px`, `450px`],
+    [`500px`, `500px`],
   ], () => {
     App.apply_theme()
   })
