@@ -773,7 +773,6 @@ select {
   padding-top: var(--scroller_padding);
   padding-bottom: var(--scroller_padding);
   padding-left: 0.25rem;
-  background-color: var(--alt_background_2);
   border: 0px solid var(--alt_color_1);
   border-top-width: 1px;
   gap: 0.5rem;
