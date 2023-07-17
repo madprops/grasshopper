@@ -5,8 +5,8 @@ App.setup_bookmarks = () => {
   ]
 
   App.bookmarks_actions = [
-    {text: `File Type`, get_items: () => {
-      return App.get_file_types(`bookmarks`)
+    {text: `Bookmark`, action: () => {
+      App.add_bookmark()
     }}
   ]
 
@@ -66,4 +66,20 @@ App.bookmarks_action = (item) => {
 
 App.bookmarks_action_alt = (item) => {
   App.open_items(item, true)
+}
+
+App.add_bookmark = async () => {
+  let tab = await App.get_active_tab()
+
+  if (tab) {
+    for (let item of App.get_items(`bookmarks`)) {
+      if (item.url === tab.url) {
+        return
+      }
+    }
+
+    await browser.bookmarks.create({title: tab.title, url: tab.url})
+  }
+
+  App.beep()
 }

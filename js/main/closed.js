@@ -5,7 +5,7 @@ App.setup_closed = () => {
   ]
 
   App.closed_actions = [
-    {text: `Forget All`, get_items: () => {
+    {text: `Forget All`, action: () => {
       App.forget_closed_tabs()
     }}
   ]
