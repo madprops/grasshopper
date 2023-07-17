@@ -308,9 +308,9 @@ App.show_filter_menu = (mode) => {
     }
     else if (filter_mode[0] === `by_what`) {
       items.push({
-        text: `By What`,
+        text: `Refine`,
         get_items: () => {
-          return App.get_filter_what(mode)
+          return App.get_filter_refine(mode)
         },
       })
 
@@ -499,7 +499,7 @@ App.get_custom_filters = (mode) => {
   return items
 }
 
-App.get_filter_what = (mode) => {
+App.get_filter_refine = (mode) => {
   let items = []
 
   items.push({
