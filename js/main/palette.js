@@ -122,7 +122,7 @@ App.fill_palette_container = () => {
   container.innerHTML = ``
 
   for (let cmd of App.sorted_commands) {
-    let el = DOM.create(`div`, `palette_item action`)
+    let el = DOM.create(`div`, `palette_item action filter_item filter_text`)
     el.textContent = cmd.name
     el.dataset.command = cmd.cmd
     container.append(el)
@@ -152,30 +152,6 @@ App.filter_palette = () => {
 
 App.do_filter_palette = () => {
   App.filter_palette_debouncer.cancel()
-  App.palette_selected = undefined
-  let container = DOM.el(`#palette_commands`)
-  let value = App.get_clean_filter(`palette`)
-  let words = value.split(` `)
-  let value_clean = App.remove_spaces(value)
-
-  for (let el of DOM.els(`.palette_item`, container)) {
-    let text = el.textContent.toLowerCase()
-    let text_clean = App.remove_spaces(text)
-    let match = words.every(x => text.includes(x)) || text_clean.includes(value_clean)
-
-    if (!match) {
-      if (App.string_similarity(value, text) >= App.similarity_threshold) {
-        match = true
-      }
-    }
-
-    if (match) {
-      el.classList.remove(`hidden`)
-    }
-    else {
-      el.classList.add(`hidden`)
-    }
-  }
-
+  App.do_filter_2(`palette`)
   App.palette_select_first()
 }

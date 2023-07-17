@@ -132,77 +132,77 @@
 
     <template id="template_settings_basic">
       <div id="settings_basic_container" class="settings_container">
-        <div class="settings_column" title="Enable scrollbars instead of hiding them">
+        <div class="settings_item" title="Enable scrollbars instead of hiding them">
           <div class="settings_label">Scrollbars</div>
           <input type="checkbox" class="settings_checkbox" id="settings_scrollbars" data-setting="scrollbars">
         </div>
 
-        <div class="settings_column" title="Show the pick button on hover on the left">
+        <div class="settings_item" title="Show the pick button on hover on the left">
           <div class="settings_label">Show Pick</div>
           <input type="checkbox" class="settings_checkbox" id="settings_show_pick_button" data-setting="show_pick_button">
         </div>
 
-        <div class="settings_column" title="Dragging requires holding Ctrl to work">
+        <div class="settings_item" title="Dragging requires holding Ctrl to work">
           <div class="settings_label">Lock Drag</div>
           <input type="checkbox" class="settings_checkbox" id="settings_lock_drag" data-setting="lock_drag">
         </div>
 
-        <div class="settings_column" title="Bypass the star editor when saving stars">
+        <div class="settings_item" title="Bypass the star editor when saving stars">
           <div class="settings_label">Quick Star</div>
           <input type="checkbox" class="settings_checkbox" id="settings_quick_star" data-setting="quick_star">
         </div>
 
-        <div class="settings_column" title="Make network requests to fetch favicons when neceessary">
+        <div class="settings_item" title="Make network requests to fetch favicons when neceessary">
           <div class="settings_label">Fetch Favicons</div>
           <input type="checkbox" class="settings_checkbox" id="settings_fetch_favicons" data-setting="fetch_favicons">
         </div>
 
-        <div class="settings_column" title="Beep as feedback on certain events">
+        <div class="settings_item" title="Beep as feedback on certain events">
           <div class="settings_label">Beep Sound</div>
           <input type="checkbox" class="settings_checkbox" id="settings_beep" data-setting="beep">
         </div>
 
-        <div class="settings_column" title="Allow muting and unmuting by clicking the icons">
+        <div class="settings_item" title="Allow muting and unmuting by clicking the icons">
           <div class="settings_label">Mute Click</div>
           <input type="checkbox" class="settings_checkbox" id="settings_mute_click" data-setting="mute_click">
         </div>
 
-        <div class="settings_column" title="What font to use">
+        <div class="settings_item" title="What font to use">
           <div class="settings_label">Font</div>
           <div id="settings_font" class="settings_menu button" data-setting="font"></div>
         </div>
 
-        <div class="settings_column" title="Base font size. Affects the size of the whole interface">
+        <div class="settings_item" title="Base font size. Affects the size of the whole interface">
           <div class="settings_label">Font Size</div>
           <div id="settings_font_size" class="settings_menu button" data-setting="font_size"></div>
         </div>
 
-        <div class="settings_column" title="Main text to display on the items">
+        <div class="settings_item" title="Main text to display on the items">
           <div class="settings_label">Text Mode</div>
           <div id="settings_text_mode" class="settings_menu button" data-setting="text_mode"></div>
         </div>
 
-        <div class="settings_column" title="Height of list items">
+        <div class="settings_item" title="Height of list items">
           <div class="settings_label">Item Height</div>
           <div id="settings_item_height" class="settings_menu button" data-setting="item_height"></div>
         </div>
 
-        <div class="settings_column" title="Width of the popup">
+        <div class="settings_item" title="Width of the popup">
           <div class="settings_label">Popup Width</div>
           <div id="settings_width" class="settings_menu button" data-setting="width"></div>
         </div>
 
-        <div class="settings_column" title="Height of the popup">
+        <div class="settings_item" title="Height of the popup">
           <div class="settings_label">Popup Height</div>
           <div id="settings_height" class="settings_menu button" data-setting="height"></div>
         </div>
 
-        <div class="settings_column" title="These appear in the filters menu. One per line. Use 're:' for regex">
+        <div class="settings_item" title="These appear in the filters menu. One per line. Use 're:' for regex">
           <div class="settings_label">Custom Filters</div>
           <textarea class="text settings_textarea" id="settings_custom_filters" data-setting="custom_filters" rows="3" placeholder="Add some lines"></textarea>
         </div>
 
-        <div class="settings_column" title="The modes at the top appear first in the menu and cycle-order">
+        <div class="settings_item" title="The modes at the top appear first in the menu and cycle-order">
           <div class="settings_label">Mode Order</div>
           <div id="settings_mode_order"></div>
         </div>
@@ -217,22 +217,22 @@
 
     <template id="template_settings_theme">
       <div id="settings_theme_container" class="settings_container">
-        <div class="settings_column" title="Theme background color">
+        <div class="settings_item" title="Theme background color">
           <div class="settings_label">Background Color</div>
           <div id="settings_background_color_picker"></div>
         </div>
 
-        <div class="settings_column" title="Theme text color">
+        <div class="settings_item" title="Theme text color">
           <div class="settings_label">Text Color</div>
           <div id="settings_text_color_picker"></div>
         </div>
 
-        <div class="settings_column" title="Background image URL">
+        <div class="settings_item" title="Background image URL">
           <div class="settings_label">Background Image</div>
           <input type="text" placeholder="Paste an image URL" id="settings_background_image" class="text settings_text" data-setting="background_image" data-action="theme">
         </div>
 
-        <div class="settings_column" title="Effect to apply to the background image">
+        <div class="settings_item" title="Effect to apply to the background image">
           <div class="settings_label">Background Effect</div>
           <div id="settings_background_effect" class="settings_menu button" data-setting="background_effect"></div>
         </div>
@@ -247,47 +247,47 @@
 
     <template id="template_settings_icons">
       <div id="settings_icons_container" class="settings_container">
-        <div class="settings_column" title="Icon to show on pinned tabs">
+        <div class="settings_item" title="Icon to show on pinned tabs">
           <div class="settings_label">Pin Icon</div>
           <input type="text" autocomplete="off" spellcheck="false" id="settings_pin_icon" class="text settings_text text_smaller" data-setting="pin_icon">
         </div>
 
-        <div class="settings_column" title="Icon to show on normal tabs">
+        <div class="settings_item" title="Icon to show on normal tabs">
           <div class="settings_label">Normal Icon</div>
           <input type="text" autocomplete="off" spellcheck="false" id="settings_normal_icon" class="text settings_text text_smaller" data-setting="normal_icon">
         </div>
 
-        <div class="settings_column" title="Icon to show on active tabs">
+        <div class="settings_item" title="Icon to show on active tabs">
           <div class="settings_label">Active Icon</div>
           <input type="text" autocomplete="off" spellcheck="false" id="settings_active_icon" class="text settings_text text_smaller" data-setting="active_icon">
         </div>
 
-        <div class="settings_column" title="Icon to show on playing tabs">
+        <div class="settings_item" title="Icon to show on playing tabs">
           <div class="settings_label">Playing Icon</div>
           <input type="text" autocomplete="off" spellcheck="false" id="settings_playing_icon" class="text settings_text text_smaller" data-setting="playing_icon">
         </div>
 
-        <div class="settings_column" title="Icon to show on muted tabs">
+        <div class="settings_item" title="Icon to show on muted tabs">
           <div class="settings_label">Muted Icon</div>
           <input type="text" autocomplete="off" spellcheck="false" id="settings_muted_icon" class="text settings_text text_smaller" data-setting="muted_icon">
         </div>
 
-        <div class="settings_column" title="Icon to show on unloaded tabs">
+        <div class="settings_item" title="Icon to show on unloaded tabs">
           <div class="settings_label">Unloaded Icon</div>
           <input type="text" autocomplete="off" spellcheck="false" id="settings_unloaded_icon" class="text settings_text text_smaller" data-setting="unloaded_icon">
         </div>
 
-        <div class="settings_column" title="Icon to show on close operations">
+        <div class="settings_item" title="Icon to show on close operations">
           <div class="settings_label">Close Icon</div>
           <input type="text" autocomplete="off" spellcheck="false" id="settings_close_icon" class="text settings_text text_smaller" data-setting="close_icon">
         </div>
 
-        <div class="settings_column" title="Icon to show on open operations">
+        <div class="settings_item" title="Icon to show on open operations">
           <div class="settings_label">Open Icon</div>
           <input type="text" autocomplete="off" spellcheck="false" id="settings_open_icon" class="text settings_text text_smaller" data-setting="open_icon">
         </div>
 
-        <div class="settings_column" title="Icon to show on the pick button">
+        <div class="settings_item" title="Icon to show on the pick button">
           <div class="settings_label">Pick Icon</div>
           <input type="text" autocomplete="off" spellcheck="false" id="settings_pick_icon" class="text settings_text text_smaller" data-setting="pick_icon">
         </div>
@@ -302,47 +302,47 @@
 
     <template id="template_settings_warns">
       <div id="settings_warns_container" class="settings_container">
-        <div class="settings_column" title="Warn when closing tabs">
+        <div class="settings_item" title="Warn when closing tabs">
           <div class="settings_label">Warn On<br>Close Tabs</div>
           <div id="settings_warn_on_close_tabs" class="settings_menu button" data-setting="warn_on_close_tabs"></div>
         </div>
 
-        <div class="settings_column" title="Warn when unloading tabs">
+        <div class="settings_item" title="Warn when unloading tabs">
           <div class="settings_label">Warn On<br>Unload Tabs</div>
           <div id="settings_warn_on_unload_tabs" class="settings_menu button" data-setting="warn_on_unload_tabs"></div>
         </div>
 
-        <div class="settings_column" title="Warn when duplicating tabs">
+        <div class="settings_item" title="Warn when duplicating tabs">
           <div class="settings_label">Warn On<br>Duplicate Tabs</div>
           <input type="checkbox" class="settings_checkbox" id="settings_warn_on_duplicate_tabs" data-setting="warn_on_duplicate_tabs">
         </div>
 
-        <div class="settings_column" title="Warn when removing a title">
+        <div class="settings_item" title="Warn when removing a title">
           <div class="settings_label">Warn On<br>Un-Title Tabs</div>
           <input type="checkbox" class="settings_checkbox" id="settings_warn_on_untitle_tabs" data-setting="warn_on_untitle_tabs">
         </div>
 
-        <div class="settings_column" title="Warn when closing normal tabs">
+        <div class="settings_item" title="Warn when closing normal tabs">
           <div class="settings_label">Warn On<br>Close Normal Tabs</div>
           <input type="checkbox" class="settings_checkbox" id="settings_warn_on_close_normal_tabs" data-setting="warn_on_close_normal_tabs">
         </div>
 
-        <div class="settings_column" title="Warn when closing duplicate tabs">
+        <div class="settings_item" title="Warn when closing duplicate tabs">
           <div class="settings_label">Warn On<br>Close Duplicate Tabs</div>
           <input type="checkbox" class="settings_checkbox" id="settings_warn_on_close_duplicate_tabs" data-setting="warn_on_close_duplicate_tabs">
         </div>
 
-        <div class="settings_column" title="Warn when starring multiple items">
+        <div class="settings_item" title="Warn when starring multiple items">
           <div class="settings_label">Warn On<br>Star Items</div>
           <input type="checkbox" class="settings_checkbox" id="settings_warn_on_star" data-setting="warn_on_star">
         </div>
 
-        <div class="settings_column" title="Warn when un-starring items">
+        <div class="settings_item" title="Warn when un-starring items">
           <div class="settings_label">Warn On<br>Un-Star Items</div>
           <input type="checkbox" class="settings_checkbox" id="settings_warn_on_unstar" data-setting="warn_on_unstar">
         </div>
 
-        <div class="settings_column" title="Warn when opening multiple items">
+        <div class="settings_item" title="Warn when opening multiple items">
           <div class="settings_label">Warn On<br>Open Items</div>
           <input type="checkbox" class="settings_checkbox" id="settings_warn_on_open" data-setting="warn_on_open">
         </div>
@@ -357,82 +357,82 @@
 
     <template id="template_settings_more">
       <div id="settings_more_container" class="settings_container">
-        <div class="settings_column" title="Close the popup when a tab is focused">
+        <div class="settings_item" title="Close the popup when a tab is focused">
           <div class="settings_label">Close On Focus</div>
           <input type="checkbox" class="settings_checkbox" id="settings_close_on_focus" data-setting="close_on_focus">
         </div>
 
-        <div class="settings_column" title="Close the popup when an item is opened">
+        <div class="settings_item" title="Close the popup when an item is opened">
           <div class="settings_label">Close On Open</div>
           <input type="checkbox" class="settings_checkbox" id="settings_close_on_open" data-setting="close_on_open">
         </div>
 
-        <div class="settings_column" title="Tabs will be restored after opening an item">
+        <div class="settings_item" title="Tabs will be restored after opening an item">
           <div class="settings_label">Switch To Tabs</div>
           <input type="checkbox" class="settings_checkbox" id="settings_switch_to_tabs" data-setting="switch_to_tabs">
         </div>
 
-        <div class="settings_column" title="The filter is cleared on tab focus">
+        <div class="settings_item" title="The filter is cleared on tab focus">
           <div class="settings_label">Clear Filter</div>
           <input type="checkbox" class="settings_checkbox" id="settings_clear_filter" data-setting="clear_filter">
         </div>
 
-        <div class="settings_column" title="Autoselect an item when mouse leaves">
+        <div class="settings_item" title="Autoselect an item when mouse leaves">
           <div class="settings_label">Autoselect</div>
           <input type="checkbox" class="settings_checkbox" id="settings_autoselect" data-setting="autoselect">
         </div>
 
-        <div class="settings_column" title="Show item icons">
+        <div class="settings_item" title="Show item icons">
           <div class="settings_label">Show Icons</div>
           <input type="checkbox" class="settings_checkbox" id="settings_show_icons" data-setting="show_icons">
         </div>
 
-        <div class="settings_column" title="Show a line between pinned and normal tabs">
+        <div class="settings_item" title="Show a line between pinned and normal tabs">
           <div class="settings_label">Show Pinline</div>
           <input type="checkbox" class="settings_checkbox" id="settings_show_pinline" data-setting="show_pinline">
         </div>
 
-        <div class="settings_column" title="A tooltip appears on item hover with some information">
+        <div class="settings_item" title="A tooltip appears on item hover with some information">
           <div class="settings_label">Show Tooltips</div>
           <input type="checkbox" class="settings_checkbox" id="settings_show_tooltips" data-setting="show_tooltips">
         </div>
 
-        <div class="settings_column" title="Show the button to scroll to the top when clicked">
+        <div class="settings_item" title="Show the button to scroll to the top when clicked">
           <div class="settings_label">Show Scroller</div>
           <input type="checkbox" class="settings_checkbox" id="settings_show_scroller" data-setting="show_scroller">
         </div>
 
-        <div class="settings_column" title="Show the footer at the bottom">
+        <div class="settings_item" title="Show the footer at the bottom">
           <div class="settings_label">Show Footer</div>
           <input type="checkbox" class="settings_checkbox" id="settings_show_footer" data-setting="show_footer">
         </div>
 
-        <div class="settings_column" title="Show the alt button on hover on the right">
+        <div class="settings_item" title="Show the alt button on hover on the right">
           <div class="settings_label">Show Close/Open</div>
           <input type="checkbox" class="settings_checkbox" id="settings_show_alt_button" data-setting="show_alt_button">
         </div>
 
-        <div class="settings_column" title="Show the view button on media">
+        <div class="settings_item" title="Show the view button on media">
           <div class="settings_label">Show View</div>
           <input type="checkbox" class="settings_checkbox" id="settings_show_view" data-setting="show_view">
         </div>
 
-        <div class="settings_column" title="Close unloaded tabs when closing normal tabs">
+        <div class="settings_item" title="Close unloaded tabs when closing normal tabs">
           <div class="settings_label">Close Unloaded Tabs</div>
           <input type="checkbox" class="settings_checkbox" id="settings_close_unloaded_tabs" data-setting="close_unloaded_tabs">
         </div>
 
-        <div class="settings_column" title="Close pins when closing duplicate tabs">
+        <div class="settings_item" title="Close pins when closing duplicate tabs">
           <div class="settings_label">Close Duplicate Pins</div>
           <input type="checkbox" class="settings_checkbox" id="settings_close_duplicate_pins" data-setting="close_duplicate_pins">
         </div>
 
-        <div class="settings_column" title="Don't allow more than a single new tab to be open">
+        <div class="settings_item" title="Don't allow more than a single new tab to be open">
           <div class="settings_label">Single New Tab</div>
           <input type="checkbox" class="settings_checkbox" id="settings_single_new_tab" data-setting="single_new_tab">
         </div>
 
-        <div class="settings_column" title="Make the filter case sensitive">
+        <div class="settings_item" title="Make the filter case sensitive">
           <div class="settings_label">Case Insensitive Filter</div>
           <input type="checkbox" class="settings_checkbox" id="settings_case_insensitive_filter" data-setting="case_insensitive_filter">
         </div>
@@ -447,82 +447,82 @@
 
     <template id="template_settings_mouse">
       <div id="settings_mouse_container" class="settings_container">
-        <div class="settings_column" title="Gestures are enabled. You perform gestures with the middle mouse button">
+        <div class="settings_item" title="Gestures are enabled. You perform gestures with the middle mouse button">
           <div class="settings_label">Gestures Enabled</div>
           <input type="checkbox" class="settings_checkbox" id="settings_gestures_enabled" data-setting="gestures_enabled">
         </div>
 
-        <div class="settings_column" title="Less sensitive means gestures require more movement">
+        <div class="settings_item" title="Less sensitive means gestures require more movement">
           <div class="settings_label">Gestures Sensitivity</div>
           <div id="settings_gestures_threshold" class="settings_menu button" data-setting="gestures_threshold"></div>
         </div>
 
-        <div class="settings_column" title="Action to perform on gesture (Up)">
+        <div class="settings_item" title="Action to perform on gesture (Up)">
           <div class="settings_label">Up Gesture</div>
           <div id="settings_gesture_up" class="settings_menu button" data-setting="gesture_up"></div>
         </div>
 
-        <div class="settings_column" title="Action to perform on gesture (Down)">
+        <div class="settings_item" title="Action to perform on gesture (Down)">
           <div class="settings_label">Down Gesture</div>
           <div id="settings_gesture_down" class="settings_menu button" data-setting="gesture_down"></div>
         </div>
 
-        <div class="settings_column" title="Action to perform on gesture (Left)">
+        <div class="settings_item" title="Action to perform on gesture (Left)">
           <div class="settings_label">Left Gesture</div>
           <div id="settings_gesture_left" class="settings_menu button" data-setting="gesture_left"></div>
         </div>
 
-        <div class="settings_column" title="Action to perform on gesture (Right)">
+        <div class="settings_item" title="Action to perform on gesture (Right)">
           <div class="settings_label">Right Gesture</div>
           <div id="settings_gesture_right" class="settings_menu button" data-setting="gesture_right"></div>
         </div>
 
-        <div class="settings_column" title="Action to perform on gesture (Up And Down)">
+        <div class="settings_item" title="Action to perform on gesture (Up And Down)">
           <div class="settings_label">Up-Down Gesture</div>
           <div id="settings_gesture_up_and_down" class="settings_menu button" data-setting="gesture_up_and_down"></div>
         </div>
 
-        <div class="settings_column" title="Action to perform on gesture (Left And Right)">
+        <div class="settings_item" title="Action to perform on gesture (Left And Right)">
           <div class="settings_label">Left-Right Gesture</div>
           <div id="settings_gesture_left_and_right" class="settings_menu button" data-setting="gesture_left_and_right"></div>
         </div>
 
-        <div class="settings_column" title="What to do when middle clicking the main menu">
+        <div class="settings_item" title="What to do when middle clicking the main menu">
           <div class="settings_label">Middle Click Main</div>
           <div id="settings_middle_click_main_menu" class="settings_menu button" data-setting="middle_click_main_menu"></div>
         </div>
 
-        <div class="settings_column" title="What to do when middle clicking the filter menu">
+        <div class="settings_item" title="What to do when middle clicking the filter menu">
           <div class="settings_label">Middle Click Filters</div>
           <div id="settings_middle_click_filter_menu" class="settings_menu button" data-setting="middle_click_filter_menu"></div>
         </div>
 
-        <div class="settings_column" title="What to do when middle clicking the back button">
+        <div class="settings_item" title="What to do when middle clicking the back button">
           <div class="settings_label">Middle Click Back</div>
           <div id="settings_middle_click_back_button" class="settings_menu button" data-setting="middle_click_back_button"></div>
         </div>
 
-        <div class="settings_column" title="What to do when middle clicking the actions menu">
+        <div class="settings_item" title="What to do when middle clicking the actions menu">
           <div class="settings_label">Middle Click Actions</div>
           <div id="settings_middle_click_actions_menu" class="settings_menu button" data-setting="middle_click_actions_menu"></div>
         </div>
 
-        <div class="settings_column" title="What to do when middle clicking the footer">
+        <div class="settings_item" title="What to do when middle clicking the footer">
           <div class="settings_label">Middle Click Footer</div>
           <div id="settings_middle_click_footer" class="settings_menu button" data-setting="middle_click_footer"></div>
         </div>
 
-        <div class="settings_column" title="What to do when middle clicking a pick">
+        <div class="settings_item" title="What to do when middle clicking a pick">
           <div class="settings_label">Middle Click Pick</div>
           <div id="settings_middle_click_pick_button" class="settings_menu button" data-setting="middle_click_pick_button"></div>
         </div>
 
-        <div class="settings_column" title="What to do when middle clicking the close button">
+        <div class="settings_item" title="What to do when middle clicking the close button">
           <div class="settings_label">Middle Click Close</div>
           <div id="settings_middle_click_close_button" class="settings_menu button" data-setting="middle_click_close_button"></div>
         </div>
 
-        <div class="settings_column" title="What to do when middle clicking the open button">
+        <div class="settings_item" title="What to do when middle clicking the open button">
           <div class="settings_label">Middle Click Open</div>
           <div id="settings_middle_click_open_button" class="settings_menu button" data-setting="middle_click_open_button"></div>
         </div>
@@ -544,7 +544,7 @@
         </div>
 
         <input type="text" class="text small_filter" id="about_filter" placeholder="Filter">
-        <div id="about_info"></div>
+        <div id="about_info" class="filter_container"></div>
       </div>
     </template>
 
@@ -570,7 +570,7 @@
         <input type="text" id="palette_filter" class="text" placeholder="Command">
         <div id="palette_info" class="button">?</div>
       </div>
-      <div id="palette_commands"></div>
+      <div id="palette_commands" class="filter_container"></div>
     </template>
 
     <template id="template_input">

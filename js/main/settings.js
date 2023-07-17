@@ -288,22 +288,7 @@ App.filter_settings = () => {
 App.do_filter_settings = () => {
   App.filter_settings_debouncer.cancel()
   let category = App.get_setting_category()
-  let mode = `settings_${category}`
-  let value = App.get_clean_filter(mode)
-  let container = DOM.el(`#settings_${category}_container`)
-  let items = DOM.els(`.settings_column`, container)
-
-  for (let item of items) {
-    let label = DOM.el(`.settings_label`, item)
-    let text = label.textContent.toLowerCase().trim()
-
-    if (text.includes(value)) {
-      item.classList.remove(`hidden`)
-    }
-    else {
-      item.classList.add(`hidden`)
-    }
-  }
+  App.do_filter_2(`settings_${category}`)
 }
 
 App.clear_settings_filter = () => {
@@ -343,6 +328,16 @@ App.setup_settings = () => {
     App.settings_setup_text(container)
     App.add_settings_switchers(category)
     App.add_settings_filter(category)
+
+    container.classList.add(`filter_container`)
+
+    for (let el of DOM.els(`.settings_item`, container)) {
+      el.classList.add(`filter_item`)
+    }
+
+    for (let el of DOM.els(`.settings_label`, container)) {
+      el.classList.add(`filter_text`)
+    }
   }
 
   App.create_window(Object.assign({}, common, {id: `settings_basic`, setup: () => {

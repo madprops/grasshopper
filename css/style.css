@@ -411,7 +411,7 @@ svg {
   padding-right: 0.25rem;
 }
 
-.settings_column {
+.settings_item {
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -710,7 +710,7 @@ select {
   padding: 0.25rem;
 }
 
-#popup_container_palette {
+#palette_container {
   max-height: 50%;
 }
 

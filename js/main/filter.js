@@ -538,3 +538,24 @@ App.get_filter_what = (mode) => {
 App.first_filter_mode = (mode) => {
   App.set_filter_mode(mode, App.filter_modes(mode)[0])
 }
+
+App.do_filter_2 = (mode) => {
+  let value = App.get_clean_filter(mode)
+  let value_2 = App.remove_spaces(value)
+  let win = DOM.el(`#${mode}_container`)
+  let container = DOM.el_or_self(`.filter_container`, win)
+  let items = DOM.els(`.filter_item`, container)
+
+  for (let item of items) {
+    let text = DOM.el_or_self(`.filter_text`, item).textContent
+    text = text.toLowerCase().trim()
+    text = App.remove_spaces(text)
+
+    if (text.includes(value_2)) {
+      item.classList.remove(`hidden`)
+    }
+    else {
+      item.classList.add(`hidden`)
+    }
+  }
+}

@@ -3,7 +3,7 @@ App.create_popup = (args) => {
   p.setup = false
 
   let popup = DOM.create(`div`, `popup_main`, `popup_${args.id}`)
-  let container = DOM.create(`div`, `popup_container`, `popup_container_${args.id}`)
+  let container = DOM.create(`div`, `popup_container`, `${args.id}_container`)
   container.innerHTML = App.get_template(args.id)
   popup.append(container)
 

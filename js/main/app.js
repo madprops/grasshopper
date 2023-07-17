@@ -37,7 +37,6 @@ App.double_tap_date = 0
 App.double_tap_delay = 300
 App.scroller_max_top = 10
 App.dragging = false
-App.similarity_threshold = 0.8
 App.max_smooth_scroll = 1000 * 2
 App.favicon_size = 64
 App.no_favicons = [`stars`, `history`, `bookmarks`]

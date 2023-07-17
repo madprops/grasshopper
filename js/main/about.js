@@ -46,7 +46,7 @@ App.setup_about = () => {
     let info = DOM.el(`#about_info`)
 
     for (let item of App.about_info_items) {
-      let el = DOM.create(`div`, `about_info_item`)
+      let el = DOM.create(`div`, `about_info_item filter_item filter_text`)
       el.textContent = item
       info.append(el)
     }
@@ -92,18 +92,5 @@ App.filter_about = () => {
 
 App.do_filter_about = () => {
   App.filter_about_debouncer.cancel()
-  let value = App.get_clean_filter(`about`)
-  let container = DOM.el(`#about_info`)
-  let items = DOM.els(`.about_info_item`, container)
-
-  for (let item of items) {
-    let text = item.textContent.toLowerCase().trim()
-
-    if (text.includes(value)) {
-      item.classList.remove(`hidden`)
-    }
-    else {
-      item.classList.add(`hidden`)
-    }
-  }
+  App.do_filter_2(`about`)
 }
