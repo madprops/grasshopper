@@ -56,6 +56,13 @@ App.apply_theme = () => {
       App.set_css_var(`background_image`, `unset`)
     }
 
+    if (App.get_setting(`scrollbars`)) {
+      document.body.classList.remove(`no_scrollbars`)
+    }
+    else {
+      document.body.classList.add(`no_scrollbars`)
+    }
+
     let main = DOM.el(`#main`)
 
     if (App.get_setting(`show_footer`)) {
@@ -70,13 +77,6 @@ App.apply_theme = () => {
     }
     else {
       main.classList.add(`hide_scroller`)
-    }
-
-    if (App.get_setting(`scrollbars`)) {
-      main.classList.remove(`no_scrollbars`)
-    }
-    else {
-      main.classList.add(`no_scrollbars`)
     }
 
     let bg = DOM.el(`#background`)
