@@ -246,19 +246,19 @@ App.on_media = () => {
   return App.window_mode === `image` || App.window_mode === `video`
 }
 
-App.show_image = (mode = App.window_mode) => {
+App.filter_image = (mode = App.window_mode) => {
   App.set_filter_mode(mode, [`image`, `Image`])
 }
 
-App.show_video = (mode = App.window_mode) => {
+App.filter_video = (mode = App.window_mode) => {
   App.set_filter_mode(mode, [`video`, `Video`])
 }
 
-App.show_audio = (mode = App.window_mode) => {
+App.filter_audio = (mode = App.window_mode) => {
   App.set_filter_mode(mode, [`audio`, `Audio`])
 }
 
-App.show_text = (mode = App.window_mode) => {
+App.filter_text = (mode = App.window_mode) => {
   App.set_filter_mode(mode, [`text`, `Text`])
 }
 
