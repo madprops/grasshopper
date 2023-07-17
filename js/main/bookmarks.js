@@ -68,18 +68,36 @@ App.bookmarks_action_alt = (item) => {
   App.open_items(item, true)
 }
 
-App.add_bookmark = async () => {
-  let tab = await App.get_active_tab()
+App.bookmark_items = async (item) => {
+  let active = App.get_active_items(item.mode, item)
+  let bookmarks = await App.get_bookmarks()
+  let urls = bookmarks.map(x => App.format_url(x.url || ``))
+  let items = []
 
-  if (tab) {
-    for (let item of App.get_items(`bookmarks`)) {
-      if (item.url === tab.url) {
-        return
+  for (let item of active) {
+    let ok = true
+
+    for (let url of urls) {
+      if (item.url === url) {
+        ok = false
+        break
       }
     }
 
-    await browser.bookmarks.create({title: tab.title, url: tab.url})
+    if (ok) {
+      items.push(item)
+    }
   }
 
-  App.beep()
+  if (items.length === 0) {
+    return
+  }
+
+  App.show_confirm(`Bookmark these items? (${items.length})`, async () => {
+    for (let item of items) {
+      await browser.bookmarks.create({title: item.title, url: item.url})
+    }
+
+    App.beep()
+  }, undefined, items.length === 1)
 }

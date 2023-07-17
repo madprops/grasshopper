@@ -69,5 +69,5 @@ App.forget_closed_tabs = async (item) => {
     for (let item of active) {
       browser.sessions.forgetClosedTab(item.window_id, item.session_id)
     }
-  })
+  }, undefined, active.length <= 1)
 }

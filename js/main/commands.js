@@ -77,8 +77,8 @@ App.commands = [
   {name: `Star Items`, cmd: `star_items`, mode: `items`, action: (args) => {
     App.star_items(args.item)
   }},
-  {name: `Add Bookmark`, cmd: `add_bookmark`, action: (args) => {
-    App.add_bookmark()
+  {name: `Bookmark Items`, cmd: `bookmark_items`, mode: `items`, action: (args) => {
+    App.bookmark_items(args.item)
   }},
   {name: `Copy URL`, cmd: `copy_item_url`, mode: `items`, action: (args) => {
     App.copy_url(args.item)

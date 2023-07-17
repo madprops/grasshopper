@@ -232,6 +232,15 @@ App.more_menu_items = (o_items, item, multiple, some_loaded) => {
     })
   }
 
+  if (item.mode !== `bookmarks`) {
+    items.push({
+      text: `Bookmark `,
+      action: () => {
+        App.bookmark_items(item)
+      }
+    })
+  }
+
   if (item.mode === `tabs`) {
     if (items.length > 0) {
       items.push({
