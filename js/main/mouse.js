@@ -20,32 +20,19 @@ App.setup_window_mouse = (mode) => {
 
     let item = App.get_cursor_item(mode, e)
 
-    if (item) {
-      if (e.target.classList.contains(`item_pick`)) {
-        if (item.highlighted) {
-          App.item_range_highlight = false
-        }
-        else {
-          App.select_item(item, `none`, false)
-          App.item_range_highlight = true
-        }
-
-        App.toggle_highlight(item)
-        App.item_range_on = true
-      }
-    }
-  })
-
-  DOM.ev(container, `click`, (e) => {
-    if (!App.cursor_on_item(e, mode)) {
-      return
-    }
-
     if (e.target.classList.contains(`item_pick`)) {
+      if (item.highlighted) {
+        App.item_range_highlight = false
+      }
+      else {
+        App.select_item(item, `none`, false)
+        App.item_range_highlight = true
+      }
+
+      App.toggle_highlight(item)
+      App.item_range_on = true
       return
     }
-
-    let item = App.get_cursor_item(mode, e)
 
     if (e.target.classList.contains(`view_media_button`)) {
       if (!e.shiftKey && !e.ctrlKey) {
