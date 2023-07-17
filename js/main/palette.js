@@ -152,6 +152,7 @@ App.filter_palette = () => {
 
 App.do_filter_palette = () => {
   App.filter_palette_debouncer.cancel()
+  App.palette_selected = undefined
   App.do_filter_2(`palette`)
   App.palette_select_first()
 }
