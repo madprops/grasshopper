@@ -247,11 +247,11 @@ App.on_media = () => {
 }
 
 App.show_image = (mode = App.window_mode) => {
-  App.set_filter_mode(mode, [`image`, `Images`])
+  App.set_filter_mode(mode, [`image`, `Image`])
 }
 
 App.show_video = (mode = App.window_mode) => {
-  App.set_filter_mode(mode, [`video`, `Videos`])
+  App.set_filter_mode(mode, [`video`, `Video`])
 }
 
 App.show_audio = (mode = App.window_mode) => {
