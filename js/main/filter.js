@@ -433,8 +433,8 @@ App.create_filter_menu = (mode) => {
   let fmodes = []
   fmodes.push([`all`, `All`])
   fmodes.push([App.separator_string])
-  fmodes.push([`images`, `Images`])
-  fmodes.push([`videos`, `Videos`])
+  fmodes.push([`images`, `Image`])
+  fmodes.push([`videos`, `Video`])
   fmodes.push([`audio`, `Audio`])
   fmodes.push([`text`, `Text`])
   fmodes.push([App.separator_string])
