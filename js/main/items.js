@@ -1420,36 +1420,41 @@ App.select = (item, dehighlight = true) => {
 
 App.get_file_types = (mode) => {
   let items = []
+  let image = []
+  let video = []
+  let audio = []
+  let text = []
 
   for (let ext of App.image_extensions) {
-    items.push({text: ext.toUpperCase(), action: () => {
+    image.push({text: ext.toUpperCase(), action: () => {
       App.set_filter(mode, `.${ext}`)
     }})
   }
 
-  items.push({separator: true})
+  items.push({text: `Image`, items: image})
 
   for (let ext of App.video_extensions) {
-    items.push({text: ext.toUpperCase(), action: () => {
+    video.push({text: ext.toUpperCase(), action: () => {
       App.set_filter(mode, `.${ext}`)
     }})
   }
 
-  items.push({separator: true})
+  items.push({text: `Video`, items: video})
 
   for (let ext of App.audio_extensions) {
-    items.push({text: ext.toUpperCase(), action: () => {
+    audio.push({text: ext.toUpperCase(), action: () => {
       App.set_filter(mode, `.${ext}`)
     }})
   }
 
-  items.push({separator: true})
+  items.push({text: `Audio`, items: audio})
 
   for (let ext of App.text_extensions) {
-    items.push({text: ext.toUpperCase(), action: () => {
+    text.push({text: ext.toUpperCase(), action: () => {
       App.set_filter(mode, `.${ext}`)
     }})
   }
 
+  items.push({text: `Text`, items: text})
   return items
 }
