@@ -6,7 +6,7 @@ App.setup_tabs = () => {
     [App.separator_string],
     [`playing`, `Playing`],
     [`unloaded`, `Unloaded`],
-    [`duplicates`, `Duplicate`],
+    [`duplicates`, `Duplicates`],
     [App.separator_string],
     [`star`, `Has Star`],
     [`title`, `Has Title`],
