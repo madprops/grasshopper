@@ -77,6 +77,9 @@ App.commands = [
   {name: `Star Items`, cmd: `star_items`, mode: `items`, action: (args) => {
     App.star_items(args.item)
   }},
+  {name: `Add Bookmark`, cmd: `add_bookmark`, action: (args) => {
+    App.add_bookmark()
+  }},
   {name: `Copy URL`, cmd: `copy_item_url`, mode: `items`, action: (args) => {
     App.copy_url(args.item)
   }},
@@ -157,9 +160,6 @@ App.commands = [
   }},
   {name: `Undo Close Tab`, cmd: `undo_close_tab`, action: (args) => {
     App.undo_close_tab()
-  }},
-  {name: `Bookmark Tab`, cmd: `add_bookmark`, action: (args) => {
-    App.add_bookmark()
   }},
 
   {name: App.separator_string},
