@@ -6,7 +6,7 @@ App.setup_closed = () => {
 
   App.closed_actions = [
     {text: `Forget All`, action: () => {
-      App.forget_closed_tabs()
+      App.forget_all_closed_tabs()
     }}
   ]
 
@@ -52,9 +52,21 @@ App.undo_close_tab = async () => {
   }
 }
 
-App.forget_closed_tabs = async () => {
-  App.show_confirm(`Forget closed tabs?`, () => {
-    for (let item of App.get_items(`closed`)) {
+App.forget_all_closed_tabs = async () => {
+  let items = App.get_items(`closed`)
+
+  App.show_confirm(`Forget all closed tabs? (${items.length})`, () => {
+    for (let item of items) {
+      browser.sessions.forgetClosedTab(item.window_id, item.session_id)
+    }
+  })
+}
+
+App.forget_closed_tabs = async (item) => {
+  let active = App.get_active_items(`closed`, item)
+
+  App.show_confirm(`Forget closed tabs? (${active.length})`, () => {
+    for (let item of active) {
       browser.sessions.forgetClosedTab(item.window_id, item.session_id)
     }
   })

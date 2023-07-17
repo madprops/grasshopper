@@ -261,6 +261,15 @@ App.more_menu_items = (o_items, item, multiple, some_loaded) => {
     })
   }
 
+  if (item.mode === `closed`) {
+    items.push({
+      text: `Forget`,
+      action: () => {
+        App.forget_closed_tabs(item)
+      }
+    })
+  }
+
   if (items.length > 0) {
     o_items.push({
       text: `More`,
