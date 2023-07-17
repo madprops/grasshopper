@@ -62,11 +62,11 @@ App.commands = [
   {name: `Show About`, cmd: `show_about`, action: (args) => {
     App.show_window(`about`)
   }},
-  {name: `Close Window`, cmd: `close_window`, action: (args) => {
-    App.hide_current_window()
-  }},
   {name: `Show Palette`, cmd: `show_palette`, action: (args) => {
     App.show_palette()
+  }},
+  {name: `Show All`, cmd: `show_all`, mode: `items`, action: (args) => {
+    App.show_all()
   }},
 
   {name: App.separator_string},
@@ -166,12 +166,6 @@ App.commands = [
   }},
   {name: `Undo Close Tab`, cmd: `undo_close_tab`, action: (args) => {
     App.undo_close_tab()
-  }},
-
-  {name: App.separator_string},
-
-  {name: `Show All`, cmd: `show_all`, mode: `items`, action: (args) => {
-    App.show_all()
   }},
 
   {name: App.separator_string},
