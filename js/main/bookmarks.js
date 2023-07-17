@@ -6,8 +6,12 @@ App.setup_bookmarks = () => {
 
   App.bookmarks_actions = [
     {text: `Bookmark`, action: () => {
-      App.add_bookmark()
-    }}
+      App.bookmark_current()
+    }},
+
+    {text: `File Type`, get_items: () => {
+      return App.get_file_types(`bookmarks`)
+    }},
   ]
 
   App.setup_item_window(`bookmarks`)
@@ -68,8 +72,11 @@ App.bookmarks_action_alt = (item) => {
   App.open_items(item, true)
 }
 
-App.bookmark_items = async (item) => {
-  let active = App.get_active_items(item.mode, item)
+App.bookmark_items = async (item, active) => {
+  if (!active) {
+    active = App.get_active_items(item.mode, item)
+  }
+
   let bookmarks = await App.get_bookmarks()
   let urls = bookmarks.map(x => App.format_url(x.url || ``))
   let items = []
@@ -100,4 +107,15 @@ App.bookmark_items = async (item) => {
 
     App.beep()
   }, undefined, items.length === 1)
+}
+
+App.bookmark_current = async () => {
+  let tab = await App.get_active_tab()
+
+  let item = {
+    title: tab.title,
+    url: App.format_url(tab.url || ``),
+  }
+
+  App.bookmark_items(undefined, [item])
 }

@@ -4,6 +4,10 @@ App.setup_stars = () => {
       App.star_from_active()
     }},
 
+    {text: `File Type`, get_items: () => {
+      return App.get_file_types(`stars`)
+    }},
+
     {text: App.separator_string},
 
     {text: `Export`, action: () => {

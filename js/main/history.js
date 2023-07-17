@@ -7,7 +7,7 @@ App.setup_history = () => {
   App.history_actions = [
     {text: `File Type`, get_items: () => {
       return App.get_file_types(`history`)
-    }}
+    }},
   ]
 
   App.setup_item_window(`history`)
