@@ -170,20 +170,8 @@ App.commands = [
 
   {name: App.separator_string},
 
-  {name: `Filter All`, cmd: `filter_all`, mode: `items`, action: (args) => {
-    App.filter_all()
-  }},
-  {name: `Filter Image`, cmd: `filter_image`, mode: `items`, action: (args) => {
-    App.filter_image()
-  }},
-  {name: `Filter Video`, cmd: `filter_video`, mode: `items`, action: (args) => {
-    App.filter_video()
-  }},
-  {name: `Filter Audio`, cmd: `filter_audio`, mode: `items`, action: (args) => {
-    App.filter_audio()
-  }},
-  {name: `Filter Text`, cmd: `filter_text`, mode: `items`, action: (args) => {
-    App.filter_text()
+  {name: `Show All`, cmd: `show_all`, mode: `items`, action: (args) => {
+    App.show_all()
   }},
 
   {name: App.separator_string},

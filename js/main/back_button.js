@@ -30,7 +30,7 @@ App.back_action = (mode = App.window_mode, e) => {
     App.clear_filter(mode)
   }
   else if (App[`${mode}_filter_mode`] !== `all`) {
-    App.filter_all()
+    App.show_all()
   }
   else if (item && !App.element_is_visible(item.element)) {
     App.select_item(item, `nearest_smooth`)

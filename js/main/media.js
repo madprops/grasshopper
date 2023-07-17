@@ -246,22 +246,6 @@ App.on_media = () => {
   return App.window_mode === `image` || App.window_mode === `video`
 }
 
-App.filter_image = (mode = App.window_mode) => {
-  App.set_filter_mode(mode, [`image`, `Image`])
-}
-
-App.filter_video = (mode = App.window_mode) => {
-  App.set_filter_mode(mode, [`video`, `Video`])
-}
-
-App.filter_audio = (mode = App.window_mode) => {
-  App.set_filter_mode(mode, [`audio`, `Audio`])
-}
-
-App.filter_text = (mode = App.window_mode) => {
-  App.set_filter_mode(mode, [`text`, `Text`])
-}
-
 App.show_media_menu = (what) => {
   let items = []
 

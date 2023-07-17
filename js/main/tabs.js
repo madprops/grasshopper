@@ -775,7 +775,7 @@ App.check_playing = () => {
 }
 
 App.go_to_playing_tab = () => {
-  App.filter_all(`tabs`)
+  App.show_all(`tabs`)
   let items = App.get_items(`tabs`)
   let waypoint = false
   let first
