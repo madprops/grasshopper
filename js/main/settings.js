@@ -505,10 +505,10 @@ App.start_theme_settings = () => {
 
   App.settings_make_menu(`background_effect`, [
     [`None`, `none`],
-    [`Blur`, `blur`],
     [`Gray`, `grayscale`],
     [`Invert`, `invert`],
     [`Rotate`, `rotate`],
+    [`Blur`, `blur`],
   ], () => {
     App.apply_theme()
   })
