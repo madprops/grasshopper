@@ -173,11 +173,17 @@ App.commands = [
   {name: `Show All`, cmd: `show_all`, mode: `items`, action: (args) => {
     App.show_all()
   }},
-  {name: `Show Images`, cmd: `show_images`, mode: `items`, action: (args) => {
-    App.show_images()
+  {name: `Show Image`, cmd: `show_image`, mode: `items`, action: (args) => {
+    App.show_image()
   }},
-  {name: `Show Videos`, cmd: `show_videos`, mode: `items`, action: (args) => {
-    App.show_videos()
+  {name: `Show Video`, cmd: `show_video`, mode: `items`, action: (args) => {
+    App.show_video()
+  }},
+  {name: `Show Audio`, cmd: `show_audio`, mode: `items`, action: (args) => {
+    App.show_audio()
+  }},
+  {name: `Show Text`, cmd: `show_text`, mode: `items`, action: (args) => {
+    App.show_text()
   }},
 
   {name: App.separator_string},

@@ -148,10 +148,10 @@ App.do_filter = async (mode, force = false) => {
       else if (filter_mode === `star`) {
         match = App.get_star_by_url(item.url)
       }
-      else if (filter_mode === `images`) {
+      else if (filter_mode === `image`) {
         match = item.image
       }
-      else if (filter_mode === `videos`) {
+      else if (filter_mode === `video`) {
         match = item.video
       }
       else if (filter_mode === `audio`) {
@@ -433,8 +433,8 @@ App.create_filter_menu = (mode) => {
   let fmodes = []
   fmodes.push([`all`, `All`])
   fmodes.push([App.separator_string])
-  fmodes.push([`images`, `Image`])
-  fmodes.push([`videos`, `Video`])
+  fmodes.push([`image`, `Image`])
+  fmodes.push([`video`, `Video`])
   fmodes.push([`audio`, `Audio`])
   fmodes.push([`text`, `Text`])
   fmodes.push([App.separator_string])

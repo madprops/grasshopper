@@ -246,12 +246,20 @@ App.on_media = () => {
   return App.window_mode === `image` || App.window_mode === `video`
 }
 
-App.show_images = (mode = App.window_mode) => {
-  App.set_filter_mode(mode, [`images`, `Images`])
+App.show_image = (mode = App.window_mode) => {
+  App.set_filter_mode(mode, [`image`, `Images`])
 }
 
-App.show_videos = (mode = App.window_mode) => {
-  App.set_filter_mode(mode, [`videos`, `Videos`])
+App.show_video = (mode = App.window_mode) => {
+  App.set_filter_mode(mode, [`video`, `Videos`])
+}
+
+App.show_audio = (mode = App.window_mode) => {
+  App.set_filter_mode(mode, [`audio`, `Audio`])
+}
+
+App.show_text = (mode = App.window_mode) => {
+  App.set_filter_mode(mode, [`text`, `Text`])
 }
 
 App.show_media_menu = (what) => {
@@ -282,4 +290,45 @@ App.show_media_menu = (what) => {
 
   let btn = DOM.el(`#${what}_menu`)
   NeedContext.show_on_element(btn, items)
+}
+
+App.get_file_types = (mode) => {
+  let items = []
+  let image = []
+  let video = []
+  let audio = []
+  let text = []
+
+  for (let ext of App.image_extensions) {
+    image.push({text: ext.toUpperCase(), action: () => {
+      App.set_filter(mode, `.${ext}`)
+    }})
+  }
+
+  items.push({text: `Image`, items: image})
+
+  for (let ext of App.video_extensions) {
+    video.push({text: ext.toUpperCase(), action: () => {
+      App.set_filter(mode, `.${ext}`)
+    }})
+  }
+
+  items.push({text: `Video`, items: video})
+
+  for (let ext of App.audio_extensions) {
+    audio.push({text: ext.toUpperCase(), action: () => {
+      App.set_filter(mode, `.${ext}`)
+    }})
+  }
+
+  items.push({text: `Audio`, items: audio})
+
+  for (let ext of App.text_extensions) {
+    text.push({text: ext.toUpperCase(), action: () => {
+      App.set_filter(mode, `.${ext}`)
+    }})
+  }
+
+  items.push({text: `Text`, items: text})
+  return items
 }
