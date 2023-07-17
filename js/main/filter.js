@@ -122,9 +122,9 @@ App.do_filter = async (mode, force = false) => {
   }
 
   function matched (item) {
+    let title = App.remove_spaces(item.title)
+    let path = App.remove_spaces(item.path)
     let match = false
-    let title = item.title
-    let path = item.path
 
     if (check(title, path)) {
       if (filter_mode === `all`) {
@@ -253,11 +253,15 @@ App.get_filter = (mode) => {
   return DOM.el(`#${mode}_filter`).value
 }
 
-App.get_clean_filter = (mode, lowercase = true) => {
+App.get_clean_filter = (mode, lowercase = true, remove_spaces = true) => {
   let value = App.single_space(App.get_filter(mode)).trim()
 
   if (lowercase) {
     value = value.toLowerCase()
+  }
+
+  if (remove_spaces) {
+    value = App.remove_spaces(value)
   }
 
   return value
@@ -541,7 +545,6 @@ App.first_filter_mode = (mode) => {
 
 App.do_filter_2 = (mode) => {
   let value = App.get_clean_filter(mode)
-  let value_2 = App.remove_spaces(value)
   let win = DOM.el(`#${mode}_container`)
   let container = DOM.el_or_self(`.filter_container`, win)
   let items = DOM.els(`.filter_item`, container)
@@ -551,7 +554,7 @@ App.do_filter_2 = (mode) => {
     text = text.toLowerCase().trim()
     text = App.remove_spaces(text)
 
-    if (text.includes(value_2)) {
+    if (text.includes(value)) {
       item.classList.remove(`hidden`)
     }
     else {
