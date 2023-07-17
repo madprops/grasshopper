@@ -44,6 +44,7 @@ App.default_settings = {
   warn_on_unstar: {value: true, category: `warns`, version: 1},
   warn_on_open: {value: true, category: `warns`, version: 1},
   warn_on_untitle_tabs: {value: true, category: `warns`, version: 1},
+  warn_on_bookmark: {value: true, category: `warns`, version: 1},
 
   gestures_enabled: {value: true, category: `mouse`, version: 1},
   gestures_threshold: {value: 10, category: `mouse`, version: 1},

@@ -100,13 +100,15 @@ App.bookmark_items = async (item, active) => {
     return
   }
 
+  let force = (items.length === 1) || !App.get_setting(`warn_on_bookmark`)
+
   App.show_confirm(`Bookmark these items? (${items.length})`, async () => {
     for (let item of items) {
       await browser.bookmarks.create({title: item.title, url: item.url})
     }
 
     App.beep()
-  }, undefined, items.length === 1)
+  }, undefined, force)
 }
 
 App.bookmark_active = async () => {
