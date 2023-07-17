@@ -26,7 +26,8 @@ NeedContext.set_defaults = () => {
 
 // Filter from keyboard input
 NeedContext.do_filter = () => {
-  let value = NeedContext.filter.value.toLowerCase().trim()
+  let value = NeedContext.filter.value.toLowerCase()
+  value = NeedContext.remove_spaces(value)
   let selected = false
 
   for (let el of document.querySelectorAll(`.needcontext-separator`)) {
@@ -39,7 +40,10 @@ NeedContext.do_filter = () => {
   }
 
   for (let el of document.querySelectorAll(`.needcontext-item`)) {
-    if (el.textContent.toLowerCase().includes(value)) {
+    let text = el.textContent.toLowerCase()
+    text = NeedContext.remove_spaces(text)
+
+    if (text.includes(value)) {
       el.classList.remove(`needcontext-hidden`)
 
       if (!selected) {
@@ -266,6 +270,11 @@ NeedContext.select_action = async (e, index = NeedContext.index) => {
 // Check if item is hidden
 NeedContext.is_visible = (el) => {
   return !el.classList.contains(`needcontext-hidden`)
+}
+
+// Remove all spaces from text
+NeedContext.remove_spaces = (text) => {
+  return text.replace(/[\s-]+/g, ``)
 }
 
 // Prepare css and events
