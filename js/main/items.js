@@ -283,6 +283,7 @@ App.process_info = (mode, info, exclude = [], o_item) => {
   let image = App.is_image(url)
   let video = App.is_video(url)
   let audio = App.is_audio(url)
+  let text = App.is_text(url)
 
   if (mode === `tabs`) {
     let title_match = App.get_title(url)
@@ -304,6 +305,7 @@ App.process_info = (mode, info, exclude = [], o_item) => {
     image: image,
     video: video,
     audio: audio,
+    text: text,
     created: false,
   }
 
@@ -1436,6 +1438,14 @@ App.get_file_types = (mode) => {
   items.push({separator: true})
 
   for (let ext of App.audio_extensions) {
+    items.push({text: ext.toUpperCase(), action: () => {
+      App.set_filter(mode, `.${ext}`)
+    }})
+  }
+
+  items.push({separator: true})
+
+  for (let ext of App.text_extensions) {
     items.push({text: ext.toUpperCase(), action: () => {
       App.set_filter(mode, `.${ext}`)
     }})

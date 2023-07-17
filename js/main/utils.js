@@ -1,6 +1,7 @@
 App.image_extensions = [`jpg`, `png`, `gif`, `webp`, `bmp`]
 App.video_extensions = [`mp4`, `webm`]
 App.audio_extensions = [`mp3`, `ogg`, `flac`]
+App.text_extensions = [`pdf`, `epub`, `txt`]
 
 App.create_debouncer = (func, delay) => {
   let timer
@@ -105,6 +106,11 @@ App.is_video = (src) => {
 App.is_audio = (src) => {
   let extension = App.get_extension(src).toLowerCase()
   return extension && App.audio_extensions.includes(extension)
+}
+
+App.is_text = (src) => {
+  let extension = App.get_extension(src).toLowerCase()
+  return extension && App.text_extensions.includes(extension)
 }
 
 App.is_url = (s) => {
