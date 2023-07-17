@@ -56,6 +56,11 @@ body, html {
   filter: hue-rotate(90deg);
 }
 
+#background.tiles {
+  background-size: 10rem auto;
+  background-repeat: repeat;
+}
+
 #main {
   user-select: none;
   scrollbar-color: var(--alt_color_2) var(--alt_color_1);

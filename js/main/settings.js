@@ -23,6 +23,7 @@ App.default_settings = {
   text_color: {value: `rgb(233, 233, 233)`, category: `theme`, version: 1},
   background_image: {value: ``, category: `theme`, version: 1},
   background_effect: {value: `none`, category: `theme`, version: 1},
+  background_tiles: {value: false, category: `theme`, version: 1},
 
   pin_icon: {value: `+`, category: `icons`, version: 1},
   normal_icon: {value: ``, category: `icons`, version: 1},

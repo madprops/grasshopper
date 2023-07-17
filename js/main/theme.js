@@ -90,6 +90,13 @@ App.apply_theme = () => {
     if (bg_effects.includes(bg_effect)) {
       bg.classList.add(bg_effect)
     }
+
+    if (App.get_setting(`background_tiles`)) {
+      bg.classList.add(`tiles`)
+    }
+    else {
+      bg.classList.remove(`tiles`)
+    }
   }
   catch (err) {
     App.log(err, `error`)
