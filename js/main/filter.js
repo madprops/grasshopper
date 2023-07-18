@@ -254,6 +254,8 @@ App.show_filter_menu = (mode) => {
 
       if (filters.length > 0) {
         if (filters.length === 1) {
+          items.push({separator: true})
+
           items.push({
             text: `Custom`,
             action: () => {
@@ -262,6 +264,8 @@ App.show_filter_menu = (mode) => {
           })
         }
         else {
+          items.push({separator: true})
+
           items.push({
             text: `Custom`,
             get_items: () => {
@@ -275,9 +279,16 @@ App.show_filter_menu = (mode) => {
     }
     else if (filter_mode[0] === `by_what`) {
       items.push({
-        text: `Refine`,
-        get_items: () => {
-          return App.get_filter_refine(mode)
+        text: `By Title`,
+        action: () => {
+          App.filter_cmd(mode, `title`)
+        },
+      })
+
+      items.push({
+        text: `By URL`,
+        action: () => {
+          App.filter_cmd(mode, `url`)
         },
       })
 
@@ -412,8 +423,8 @@ App.create_filter_menu = (mode) => {
   fmodes.push([`video`, `Video`])
   fmodes.push([`audio`, `Audio`])
   fmodes.push([`text`, `Text`])
-  fmodes.push([App.separator_string])
   fmodes.push([`custom`, `Custom`])
+  fmodes.push([App.separator_string])
   fmodes.push([`by_what`, `By What`])
   App[`${mode}_filter_modes`] = [...fmodes, ...(App.filter_modes(mode) || [])]
 
@@ -470,54 +481,6 @@ App.get_custom_filters = (mode) => {
       }
     })
   }
-
-  return items
-}
-
-App.get_filter_refine = (mode) => {
-  let items = []
-
-  items.push({
-    text: `By Title`,
-    action: () => {
-      App.filter_cmd(mode, `title`)
-    },
-  })
-
-  items.push({
-    text: `By URL`,
-    action: () => {
-      App.filter_cmd(mode, `url`)
-    },
-  })
-
-  items.push({
-    text: `Title & URL`,
-    action: () => {
-      App.filter_cmd(mode, `all`)
-    },
-  })
-
-  items.push({
-    text: `With Regex`,
-    action: () => {
-      App.filter_cmd(mode, `re`)
-    },
-  })
-
-  items.push({
-    text: `Regex Title`,
-    action: () => {
-      App.filter_cmd(mode, `re_title`)
-    },
-  })
-
-  items.push({
-    text: `Regex URL`,
-    action: () => {
-      App.filter_cmd(mode, `re_url`)
-    },
-  })
 
   return items
 }
