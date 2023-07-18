@@ -141,6 +141,8 @@ App.do_filter = async (mode, force = false) => {
 }
 
 App.get_filter_regex = (value) => {
+  value = value.replace(/\s*\|\s*/g, '|')
+
   if (App.get_setting(`case_insensitive_filter`)) {
     return new RegExp(value, `i`)
   }
