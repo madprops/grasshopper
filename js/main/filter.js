@@ -317,7 +317,7 @@ App.show_filter_menu = (mode) => {
     items.push({
       text: filter_mode[1],
       action: () => {
-        App.set_filter_mode(mode, filter_mode)
+        App.set_filter_mode(mode, filter_mode[0])
       },
       selected: selected
     })
@@ -353,7 +353,7 @@ App.cycle_filter_modes = (mode, reverse = true) => {
     }
 
     if (waypoint) {
-      App.set_filter_mode(mode, filter_mode)
+      App.set_filter_mode(mode, filter_mode[0])
       return
     }
 
@@ -362,7 +362,7 @@ App.cycle_filter_modes = (mode, reverse = true) => {
     }
   }
 
-  App.set_filter_mode(mode, first)
+  App.set_filter_mode(mode, first[0])
 }
 
 App.filter_modes = (mode) => {
@@ -373,7 +373,9 @@ App.filter_mode = (mode) => {
   return App[`${mode}_filter_mode`]
 }
 
-App.set_filter_mode = (mode, filter_mode, filter = true) => {
+App.set_filter_mode = (mode, name, filter = true) => {
+  let filter_mode = App.get_filter_mode(mode, name)
+
   // If All is clicked again, clear the filter
   if (filter && filter_mode[0] === `all`) {
     if (App.filter_mode(mode) === `all`) {
@@ -500,10 +502,6 @@ App.get_custom_filters = (mode) => {
   }
 
   return items
-}
-
-App.first_filter_mode = (mode) => {
-  App.set_filter_mode(mode, App.filter_modes(mode)[0])
 }
 
 App.do_filter_2 = (mode) => {

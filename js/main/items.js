@@ -643,7 +643,7 @@ App.show_mode = async (mode, cycle = false) => {
   container.innerHTML = ``
   App.set_filter(mode, value, false)
   let m = App.filter_modes(mode)[0]
-  App.set_filter_mode(mode, m, false)
+  App.set_filter_mode(mode, m[0], false)
   App[`${mode}_filter_mode`] = m[0]
   App[`last_${mode}_query`] = undefined
   let maxed = App.maxed_items.includes(mode)
@@ -1306,7 +1306,7 @@ App.on_item_window = (mode = App.window_mode) => {
 App.show_all = (mode = App.window_mode) => {
   if (App.is_filtered(mode)) {
     App.clear_filter(mode)
-    App.first_filter_mode(mode)
+    App.set_filter_mode(mode, `all`)
   }
 }
 
