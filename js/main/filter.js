@@ -62,7 +62,6 @@ App.do_filter = async (mode, force = false) => {
     }
   }
 
-  App[`last_${mode}_query`] = value
   let items = App.get_items(mode)
 
   if (!items) {

@@ -43,6 +43,7 @@ App.get_history = async (query = ``) => {
     return a.lastVisitTime > b.lastVisitTime ? -1 : 1
   })
 
+  App.last_history_query = query
   return results
 }
 
