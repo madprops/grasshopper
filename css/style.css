@@ -766,6 +766,7 @@ select {
   overflow: hidden;
   white-space: nowrap;
   cursor: pointer;
+  background-color: var(--alt_background_2);
   padding-top: var(--scroller_padding);
   padding-bottom: var(--scroller_padding);
   padding-left: 0.25rem;
