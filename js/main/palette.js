@@ -110,7 +110,7 @@ App.palette_action = (el) => {
   let cmd = el.dataset.command
 
   if (cmd) {
-    App.hide_popup(`palette`)
+    App.hide_popup()
     App.update_command_history(cmd)
     App.fill_palette_container()
     App.run_command({cmd: cmd, from: `palette`})
