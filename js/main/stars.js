@@ -59,18 +59,11 @@ App.open_star = async (item) => {
 }
 
 App.get_stars = (query = ``, by_what = `all`) => {
-  let set = new Set()
-  let parts = App.regex_parts(query)
+  let results = structuredClone(App.stars.filter(x =>
+    x.title.toLowerCase().includes(query) ||
+    x.url.toLowerCase().includes(query)
+  ))
 
-  for (let part of parts) {
-    let ans = App.filter_check_items(App.stars, part, by_what)
-
-    for (let a of ans) {
-      set.add(a)
-    }
-  }
-
-  let results = structuredClone(Array.from(set))
   results.sort((a, b) => (a.date_last_visit < b.date_last_visit) ? 1 : -1)
   return results.slice(0, App.max_items)
 }

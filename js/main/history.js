@@ -17,38 +17,27 @@ App.history_time = () => {
   return Date.now() - (1000 * 60 * 60 * 24 * 30 * App.history_max_months)
 }
 
-App.get_history = async (query = ``, by_what = `all`) => {
+App.get_history = async (query = ``) => {
   App.log(`Getting history`)
-  let set = new Set()
-  let parts = App.regex_parts(query)
+  let results
 
-  for (let part of parts) {
-    try {
-      let ans = await browser.history.search({
-        text: part,
-        maxResults: App.max_items,
-        startTime: App.history_time()
-      })
-
-      ans = App.filter_check_items(ans, part, by_what)
-
-      for (let a of ans) {
-        set.add(a)
-      }
-    }
-    catch (err) {
-      App.log(err, `error`)
-      return []
-    }
+  try {
+    results = await browser.history.search({
+      text: query,
+      maxResults: App.max_items,
+      startTime: App.history_time()
+    })
   }
-
-  let results = Array.from(set)
+  catch (err) {
+    App.log(err, `error`)
+    return []
+  }
 
   results.sort((a, b) => {
     return a.lastVisitTime > b.lastVisitTime ? -1 : 1
   })
 
-  return results.slice(0, App.max_items)
+  return results
 }
 
 App.history_action = (item) => {

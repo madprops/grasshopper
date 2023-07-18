@@ -45,8 +45,6 @@ App.do_filter = async (mode, force = false) => {
     return
   }
 
-  let checked = false
-
   // This check is to avoid re-fetching items
   // For instance when moving from All to Image
   if (App.maxed_items.includes(mode)) {
@@ -57,8 +55,6 @@ App.do_filter = async (mode, force = false) => {
         return
       }
     }
-
-    checked = true
   }
 
   App[`last_${mode}_query`] = value
@@ -79,7 +75,7 @@ App.do_filter = async (mode, force = false) => {
   function matched (item) {
     let match = false
 
-    if (checked || App.filter_check(item, regex, by_what)) {
+    if (App.filter_check(item, regex, by_what)) {
       if (filter_mode === `all`) {
         match = true
       }
@@ -143,9 +139,6 @@ App.do_filter = async (mode, force = false) => {
 }
 
 App.get_filter_regex = (value) => {
-  // Remove spacing for proper OR
-  value = value.replace(/\s*\|\s*/g, '|')
-
   if (App.get_setting(`case_insensitive_filter`)) {
     return new RegExp(value, `i`)
   }
@@ -521,16 +514,4 @@ App.do_filter_2 = (mode) => {
       item.classList.add(`hidden`)
     }
   }
-}
-
-App.filter_check_items = (items, part, by_what) => {
-  let regex = App.get_filter_regex(part)
-
-  return items.filter(item => {
-    return App.filter_check(item, regex, by_what)
-  })
-}
-
-App.regex_parts = (query) => {
-  return query.split(`|`).map(x => x.trim())
 }

@@ -31,7 +31,6 @@ App.setup_about = () => {
       `Command palette commands take into account selected items`,
       `To filter by title start with title:`,
       `To filter by url start with url:`,
-      `To filter multiple items (OR) use | between them`,
       `To perform gestures, hold the middle mouse button and move in a direction, then release`,
       `Some interface elements can be mapped to commands on middle click`,
       `Hold on a pick and move the mouse to select multiple items`,

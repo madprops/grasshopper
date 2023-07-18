@@ -41,25 +41,15 @@ App.setup_bookmarks = () => {
 
 App.get_bookmarks = async (query = ``, by_what = `all`) => {
   App.log(`Getting bookmarks`)
-  let set = new Set()
-  let parts = App.regex_parts(query)
+  let results = []
 
-  for (let part of parts) {
-    try {
-      let ans = await browser.bookmarks.search({query: part})
-      ans = App.filter_check_items(ans, part, by_what)
-
-      for (let a of ans) {
-        set.add(a)
-      }
-    }
-    catch (err) {
-      App.log(err, `error`)
-      return []
-    }
+  try {
+    results = await browser.bookmarks.search({query: query})
   }
-
-  let results = Array.from(set)
+  catch (err) {
+    App.log(err, `error`)
+    return []
+  }
 
   results.sort((a, b) => {
     return a.dateAdded > b.dateAdded ? -1 : 1
