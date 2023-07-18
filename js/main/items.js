@@ -91,6 +91,7 @@ App.highlight_next = (mode, dir) => {
 
     if (waypoint) {
       App.highlight_range(item)
+      App.select(item, false)
       break
     }
     else {
