@@ -48,10 +48,6 @@ App.show_popup = (id) => {
   App.popups[id].show()
 }
 
-App.hide_popup = (id) => {
-  App.popups[id].hide()
-}
-
 App.setup_popups = () => {
   App.create_popup({
     id: `alert`
@@ -94,7 +90,7 @@ App.show_alert = (message, autohide_delay = 0, pre = true) => {
 
   if (autohide_delay > 0) {
     App.alert_autohide = setTimeout(() => {
-      App.hide_popup(`alert`)
+      App.hide_popup()
     }, autohide_delay)
   }
 }
@@ -117,7 +113,7 @@ App.show_dialog = (message, buttons) => {
     btn.textContent = button[0]
 
     DOM.ev(btn, `click`, () => {
-      App.hide_popup(`dialog`)
+      App.hide_popup()
       button[1]()
     })
 
@@ -160,7 +156,7 @@ App.dialog_right = () => {
 }
 
 App.dialog_enter = () => {
-  App.hide_popup(`dialog`)
+  App.hide_popup()
   App.dialog_buttons[App.dialog_index][1]()
 }
 
@@ -189,7 +185,7 @@ App.show_textarea = (message, text) => {
 }
 
 App.textarea_copy = () => {
-  App.hide_popup(`textarea`)
+  App.hide_popup()
   App.copy_to_clipboard(DOM.el(`#textarea_text`).value.trim())
 }
 
@@ -204,13 +200,13 @@ App.show_input = (message, button, action) => {
 }
 
 App.input_enter = () => {
-  App.hide_popup(`input`)
+  App.hide_popup()
   App.input_action(DOM.el(`#input_text`).value.trim())
 }
 
-App.hide_all_popups = () => {
+App.hide_popup = () => {
   for (let id in App.popups) {
-    App.hide_popup(id)
+    App.popups[id].hide()
   }
 }
 

@@ -139,7 +139,7 @@ App.clear_palette_filter = () => {
       App.set_filter(`palette`, ``)
     }
     else {
-      App.hide_all_popups()
+      App.hide_popup()
     }
   }
 }

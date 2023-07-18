@@ -292,7 +292,7 @@ App.setup_keyboard = () => {
             e.preventDefault()
           }
           else {
-            App.hide_all_popups()
+            App.hide_popup()
             e.preventDefault()
           }
 
@@ -317,7 +317,7 @@ App.setup_keyboard = () => {
       }
 
       if (e.key === `Escape`) {
-        App.hide_all_popups()
+        App.hide_popup()
         e.preventDefault()
         return
       }
