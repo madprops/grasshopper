@@ -749,6 +749,7 @@ select {
   cursor: pointer;
   border: 1px solid var(--alt_color_1);
   padding: var(--scroller_padding);
+  font-weight: bold;
 }
 
 .scroller:hover {
