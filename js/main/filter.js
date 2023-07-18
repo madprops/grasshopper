@@ -373,6 +373,14 @@ App.filter_mode = (mode) => {
   return App[`${mode}_filter_mode`]
 }
 
+App.get_filter_mode = (mode, name) => {
+  for (let fm of App.filter_modes(mode)) {
+    if (fm[0] === name) {
+      return fm
+    }
+  }
+}
+
 App.set_filter_mode = (mode, name, filter = true) => {
   let filter_mode = App.get_filter_mode(mode, name)
 
@@ -391,14 +399,6 @@ App.set_filter_mode = (mode, name, filter = true) => {
 
   if (filter) {
     App.do_filter(mode)
-  }
-}
-
-App.get_filter_mode = (mode, name) => {
-  for (let fm of App.filter_modes(mode)) {
-    if (fm[0] === name) {
-      return fm
-    }
   }
 }
 
