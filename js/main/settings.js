@@ -294,14 +294,16 @@ App.do_filter_settings = () => {
 }
 
 App.clear_settings_filter = () => {
-  let category = App.get_setting_category()
-  let mode = `settings_${category}`
+  if (App.settings_filter_focused()) {
+    let category = App.get_setting_category()
+    let mode = `settings_${category}`
 
-  if (App.filter_has_value(mode)) {
-    App.set_filter(mode, ``)
-  }
-  else {
-    App.hide_current_window()
+    if (App.filter_has_value(mode)) {
+      App.set_filter(mode, ``)
+    }
+    else {
+      App.hide_current_window()
+    }
   }
 }
 

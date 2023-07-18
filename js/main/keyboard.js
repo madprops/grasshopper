@@ -292,7 +292,7 @@ App.setup_keyboard = () => {
             e.preventDefault()
           }
           else {
-            App.hide_current_window()
+            App.hide_all_popups()
             e.preventDefault()
           }
 
@@ -388,11 +388,6 @@ App.setup_keyboard = () => {
         return
       }
       else if (e.key === ` `) {
-        App.media_background()
-        e.preventDefault()
-        return
-      }
-      else if (e.key === ` `) {
         App.show_media_menu(mode)
         e.preventDefault()
         return
@@ -422,7 +417,7 @@ App.setup_keyboard = () => {
     }
     else {
       if (e.key === `Escape`) {
-        App.show_last_window()
+        App.hide_current_window()
         e.preventDefault()
         return
       }
