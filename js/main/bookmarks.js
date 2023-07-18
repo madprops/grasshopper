@@ -9,7 +9,7 @@ App.setup_bookmarks = () => {
       App.bookmark_active()
     }},
 
-    {text: `File Type`, get_items: () => {
+    {text: `Search`, get_items: () => {
       return App.get_file_types(`bookmarks`)
     }},
   ]

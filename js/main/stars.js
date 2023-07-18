@@ -4,7 +4,7 @@ App.setup_stars = () => {
       App.star_active()
     }},
 
-    {text: `File Type`, get_items: () => {
+    {text: `Search`, get_items: () => {
       return App.get_file_types(`stars`)
     }},
 
