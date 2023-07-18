@@ -1392,10 +1392,9 @@ App.get_next_item = (mode) => {
   App.get_next_visible_item({mode: mode, reverse: true, wrap: false})
 }
 
-App.search_items = async (mode, query) => {
-  let q = query || `Empty`
-  App.log(`Searching ${mode}: ${q}`)
-  let items = await App[`get_${mode}`](query)
+App.search_items = async (mode, regex) => {
+  App.log(`Searching ${mode}`)
+  let items = await App[`get_${mode}`](regex)
 
   if (App.window_mode !== mode) {
     return

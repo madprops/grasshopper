@@ -15,7 +15,6 @@ App.cancel_filter = () => {
 App.do_filter = async (mode, force = false) => {
   App.cancel_filter()
   App.log(`Filter: ${mode}`)
-
   let value = App.get_clean_filter(mode, false)
 
   if (value.endsWith(`|`)) {
@@ -37,31 +36,31 @@ App.do_filter = async (mode, force = false) => {
     by_what = `all`
   }
 
-  let regex_val = App.escape_regex(value)
   let regex
 
   try {
-    if (App.get_setting(`case_insensitive_filter`)) {
-      regex = new RegExp(regex_val, `i`)
-    }
-    else {
-      regex = new RegExp(regex_val)
-    }
+    regex = App.get_filter_regex(value)
   }
   catch (err) {
     return
   }
 
+  let checked = false
+
   if (App.maxed_items.includes(mode)) {
-    if (force || (regex_val !== App[`last_${mode}_query`])) {
-      await App.search_items(mode, regex_val)
+    if (force || (value !== App[`last_${mode}_query`])) {
+      let query = App.get_clean_filter(mode, false, false)
+      await App.search_items(mode, query)
 
       if (App.window_mode !== mode) {
         return
       }
+
+      checked = true
     }
   }
 
+  App[`last_${mode}_query`] = value
   let items = App.get_items(mode)
 
   if (!items) {
@@ -76,24 +75,10 @@ App.do_filter = async (mode, force = false) => {
     duplicates = App.find_duplicates(items, `url`)
   }
 
-  function check (title, url) {
-    if (by_what === `all`) {
-      return regex.test(title) || regex.test(url)
-    }
-    else if (by_what === `title`) {
-      return regex.test(title)
-    }
-    else if (by_what === `url`) {
-      return regex.test(url)
-    }
-  }
-
   function matched (item) {
-    let title = App.remove_spaces(item.title)
-    let path = App.remove_spaces(item.path)
     let match = false
 
-    if (check(title, path)) {
+    if (checked || App.filter_check(item, regex, by_what)) {
       if (filter_mode === `all`) {
         match = true
       }
@@ -154,6 +139,34 @@ App.do_filter = async (mode, force = false) => {
   App.update_footer_count(mode)
   App.do_check_pinline()
   App.do_check_scroller(mode)
+}
+
+App.get_filter_regex = (value) => {
+  if (App.get_setting(`case_insensitive_filter`)) {
+    return new RegExp(value, `i`)
+  }
+  else {
+    return new RegExp(value)
+  }
+}
+
+App.filter_check = (item, regex, by_what) => {
+  if (!item.title || !item.url) {
+    return false
+  }
+
+  let title = App.remove_spaces(item.title)
+  let url = App.remove_spaces(item.url)
+
+  if (by_what === `all`) {
+    return regex.test(title) || regex.test(url)
+  }
+  else if (by_what === `title`) {
+    return regex.test(title)
+  }
+  else if (by_what === `url`) {
+    return regex.test(url)
+  }
 }
 
 App.focus_filter = (mode) => {
@@ -516,20 +529,14 @@ App.do_filter_2 = (mode) => {
   }
 }
 
-App.filter_get_items = (items, query, by_what) => {
-  return items.filter(x => {
-    if (!x.title || !x.url) {
-      return false
-    }
+App.filter_check_items = (items, part, by_what) => {
+  let regex = App.get_filter_regex(App.remove_spaces(part))
 
-    if (by_what === `all`) {
-      return x.title.toLowerCase().includes(query) || x.url.toLowerCase().includes(query)
-    }
-    else if (by_what === `title`) {
-      return x.title.toLowerCase().includes(query)
-    }
-    else if (by_what === `url`) {
-      return x.url.toLowerCase().includes(query)
-    }
+  return items.filter(item => {
+    return App.filter_check(item, regex, by_what)
   })
+}
+
+App.regex_parts = (query) => {
+  return query.split(`|`).map(x => x.trim())
 }

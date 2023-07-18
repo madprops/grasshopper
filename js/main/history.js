@@ -20,7 +20,7 @@ App.history_time = () => {
 App.get_history = async (query = ``, by_what = `all`) => {
   App.log(`Getting history`)
   let set = new Set()
-  let parts = query.split(`|`).map(x => x.trim().toLowerCase())
+  let parts = App.regex_parts(query)
 
   for (let part of parts) {
     try {
@@ -30,7 +30,7 @@ App.get_history = async (query = ``, by_what = `all`) => {
         startTime: App.history_time()
       })
 
-      ans = App.filter_get_items(ans, part, by_what)
+      ans = App.filter_check_items(ans, part, by_what)
 
       for (let a of ans) {
         set.add(a)
@@ -48,7 +48,6 @@ App.get_history = async (query = ``, by_what = `all`) => {
     return a.lastVisitTime > b.lastVisitTime ? -1 : 1
   })
 
-  App[`last_history_query`] = query
   return results.slice(0, App.max_items)
 }
 
