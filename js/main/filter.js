@@ -283,23 +283,9 @@ App.show_filter_menu = (mode) => {
     }
     else if (filter_mode[0] === `by_what`) {
       items.push({
-        text: `By Title`,
-        action: () => {
-          App.filter_cmd(mode, `title`)
-        },
-      })
-
-      items.push({
-        text: `By URL`,
-        action: () => {
-          App.filter_cmd(mode, `url`)
-        },
-      })
-
-      items.push({
-        text: `By Both`,
-        action: () => {
-          App.filter_cmd(mode, `all`)
+        text: `Refine`,
+        get_items: () => {
+          return App.get_filter_refine(mode)
         },
       })
 
@@ -437,9 +423,10 @@ App.create_filter_menu = (mode) => {
   fmodes.push([`audio`, `Audio`])
   fmodes.push([`text`, `Text`])
   fmodes.push([`custom`, `Custom`])
+  fmodes.push(...(App.filter_modes(mode) || []))
   fmodes.push([App.separator_string])
   fmodes.push([`by_what`, `By What`])
-  App[`${mode}_filter_modes`] = [...fmodes, ...(App.filter_modes(mode) || [])]
+  App[`${mode}_filter_modes`] = fmodes
 
   DOM.ev(filter_menu, `click`, () => {
     App.show_filter_menu(mode)
@@ -515,4 +502,31 @@ App.do_filter_2 = (mode) => {
       item.classList.add(`hidden`)
     }
   }
+}
+
+App.get_filter_refine = (mode) => {
+  let items = []
+
+  items.push({
+    text: `By Title`,
+    action: () => {
+      App.filter_cmd(mode, `title`)
+    },
+  })
+
+  items.push({
+    text: `By URL`,
+    action: () => {
+      App.filter_cmd(mode, `url`)
+    },
+  })
+
+  items.push({
+    text: `By Both`,
+    action: () => {
+      App.filter_cmd(mode, `all`)
+    },
+  })
+
+  return items
 }
