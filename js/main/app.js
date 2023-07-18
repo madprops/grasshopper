@@ -1,5 +1,6 @@
-const App = {}
+NeedContext.min_width = `4.5rem`
 
+const App = {}
 App.stor_settings_name = `settings_v100`
 App.stor_stars_name = `stars_state_v20`
 App.stor_titles_name = `titles_v3`
@@ -46,5 +47,3 @@ App.item_range_highlight = false
 App.max_items = 5
 App.maxed_items = [`stars`, `history`, `bookmarks`]
 App.max_items = 500
-
-NeedContext.min_width = `4.5rem`
