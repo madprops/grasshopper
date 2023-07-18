@@ -4,10 +4,6 @@ App.setup_stars = () => {
       App.star_active()
     }},
 
-    {text: `Search`, get_items: () => {
-      return App.get_file_types(`stars`)
-    }},
-
     {text: App.separator_string},
 
     {text: `Export`, action: () => {

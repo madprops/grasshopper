@@ -4,12 +4,6 @@ App.setup_history = () => {
     [`star`, `Has Star`],
   ]
 
-  App.history_actions = [
-    {text: `Search`, get_items: () => {
-      return App.get_file_types(`history`)
-    }},
-  ]
-
   App.setup_item_window(`history`)
 
   browser.history.onVisited.addListener((info) => {

@@ -8,10 +8,6 @@ App.setup_bookmarks = () => {
     {text: `Bookmark`, action: () => {
       App.bookmark_active()
     }},
-
-    {text: `Search`, get_items: () => {
-      return App.get_file_types(`bookmarks`)
-    }},
   ]
 
   App.setup_item_window(`bookmarks`)
