@@ -113,13 +113,13 @@ App.filter_check = (args) => {
   let match = false
 
   if (args.by_what === `all`) {
-    match = args.regex.test(args.item.title) || args.regex.test(args.item.url)
+    match = args.regex.test(args.item.title) || args.regex.test(args.item.path)
   }
   else if (args.by_what === `title`) {
     match = args.regex.test(args.item.title)
   }
   else if (args.by_what === `url`) {
-    match = args.regex.test(args.item.url)
+    match = args.regex.test(args.item.path)
   }
 
   if (match) {
