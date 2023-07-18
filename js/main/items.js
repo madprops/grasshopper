@@ -243,7 +243,7 @@ App.process_info_list = (mode, info_list) => {
       continue
     }
 
-    if (mode === `closed` || mode === `history`) {
+    if (mode !== `tabs`) {
       exclude.push(item.url)
     }
 

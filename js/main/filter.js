@@ -16,52 +16,28 @@ App.do_filter = async (mode, force = false) => {
   App.cancel_filter()
   App.log(`Filter: ${mode}`)
 
-  let regex_val, by_what, use_regex
   let value = App.get_clean_filter(mode, false)
-  let regex_modes = [`re:`, `re_title:`, `re_url:`]
 
-  if (regex_modes.some(x => value.startsWith(x))) {
-    if (value.startsWith(`re:`)) {
-      regex_val = value.replace(`re:`, ``)
-      by_what = `all`
-    }
-    else if (value.startsWith(`re_title:`)) {
-      regex_val = value.replace(`re_title:`, ``)
-      by_what = `title`
-    }
-    else if (value.startsWith(`re_url:`)) {
-      regex_val = value.replace(`re_url:`, ``)
-      by_what = `url`
-    }
+  if (value.endsWith(`|`)) {
+    return
+  }
 
-    use_regex = true
+  let by_what
+
+  if (value.startsWith(`title:`)) {
+    value = value.replace(`title:`, ``)
+    by_what = `title`
+  }
+  else if (value.startsWith(`url:`)) {
+    value = value.replace(`url:`, ``)
+    by_what = `url`
   }
   else {
-    if (value.startsWith(`title:`)) {
-      regex_val = value.replace(`title:`, ``)
-      by_what = `title`
-    }
-    else if (value.startsWith(`url:`)) {
-      regex_val = value.replace(`url:`, ``)
-      by_what = `url`
-    }
-    else {
-      regex_val = value
-      by_what = `all`
-    }
-
-    use_regex = false
+    value = value
+    by_what = `all`
   }
 
-  let clean_val = regex_val.trim()
-
-  if (use_regex) {
-    regex_val = clean_val
-  }
-  else {
-    regex_val = App.escape_regex(clean_val)
-  }
-
+  let regex_val = App.escape_regex(value)
   let regex
 
   try {
@@ -77,17 +53,8 @@ App.do_filter = async (mode, force = false) => {
   }
 
   if (App.maxed_items.includes(mode)) {
-    let query
-
-    if (use_regex) {
-      query = ``
-    }
-    else {
-      query = clean_val
-    }
-
-    if (force || (query !== App[`last_${mode}_query`])) {
-      await App.search_items(mode, query)
+    if (force || (regex_val !== App[`last_${mode}_query`])) {
+      await App.search_items(mode, regex_val)
 
       if (App.window_mode !== mode) {
         return

@@ -43,6 +43,5 @@ App.no_favicons = [`stars`, `history`, `bookmarks`]
 App.new_tab_url = `about:newtab`
 App.item_range_on = false
 App.item_range_highlight = false
-App.max_items = 5
 App.maxed_items = [`stars`, `history`, `bookmarks`]
 App.max_items = 500

@@ -25,22 +25,35 @@ App.history_time = () => {
 
 App.get_history = async (query = ``) => {
   App.log(`Getting history`)
-  let results
+  let set = new Set()
+  let parts = query.split(`|`).map(x => x.trim().toLowerCase())
 
-  try {
-    results = await browser.history.search({
-      text: query,
-      maxResults: App.max_items,
-      startTime: App.history_time()
-    })
+  for (let part of parts) {
+    try {
+      let ans = await browser.history.search({
+        text: part,
+        maxResults: App.max_items,
+        startTime: App.history_time()
+      })
+
+      for (let a of ans) {
+        set.add(a)
+      }
+    }
+    catch (err) {
+      App.log(err, `error`)
+      return []
+    }
   }
-  catch (err) {
-    App.log(err, `error`)
-    return []
-  }
+
+  let results = Array.from(set)
+
+  results.sort((a, b) => {
+    return a.lastVisitTime > b.lastVisitTime ? -1 : 1
+  })
 
   App[`last_history_query`] = query
-  return results
+  return results.slice(0, App.max_items)
 }
 
 App.history_action = (item) => {
