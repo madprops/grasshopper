@@ -37,7 +37,7 @@ App.setup_about = () => {
     ]
 
     DOM.ev(DOM.el(`#about_close`), `click`, () => {
-      App.hide_current_window()
+      App.hide_window()
     })
 
     let info = DOM.el(`#about_info`)
@@ -72,7 +72,7 @@ App.clear_about_filter = () => {
     App.set_filter(`about`, ``)
   }
   else {
-    App.hide_current_window()
+    App.hide_window()
   }
 }
 

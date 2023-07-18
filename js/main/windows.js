@@ -110,13 +110,9 @@ App.create_window = (args) => {
   App.windows[args.id] = w
 }
 
-App.hide_window = (w) => {
-  w.element.style.display = `none`
-}
-
 App.hide_all_windows = () => {
   for (let id in App.windows) {
-    App.hide_window(App.windows[id])
+    App.windows[id].element.style.display = `none`
   }
 }
 
@@ -186,7 +182,7 @@ App.window_goto_bottom = (mode) => {
   el.scrollTop = el.scrollHeight
 }
 
-App.hide_current_window = () => {
+App.hide_window = () => {
   if (App.on_item_window()) {
     return
   }

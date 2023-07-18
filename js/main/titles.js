@@ -19,7 +19,7 @@ App.setup_title_editor = () => {
     })
 
     DOM.ev(DOM.el(`#title_editor_close`), `click`, () => {
-      App.hide_current_window()
+      App.hide_window()
     })
   },
   colored_top: true})
@@ -68,7 +68,7 @@ App.title_editor_save = () => {
 
   App.stor_save_titles()
   App.apply_titles(url)
-  App.hide_current_window()
+  App.hide_window()
 }
 
 App.remove_title = () => {
@@ -80,7 +80,7 @@ App.remove_title = () => {
       App.stor_save_titles()
       App.apply_titles(url)
       App.refresh_filter(App.last_window_mode, `title`)
-      App.hide_current_window()
+      App.hide_window()
     }
   }, undefined, !App.get_setting(`warn_on_untitle_tabs`))
 }

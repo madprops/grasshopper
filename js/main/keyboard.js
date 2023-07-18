@@ -332,7 +332,7 @@ App.setup_keyboard = () => {
           e.preventDefault()
         }
         else {
-          App.hide_current_window()
+          App.hide_window()
           e.preventDefault()
         }
 
@@ -400,7 +400,7 @@ App.setup_keyboard = () => {
           e.preventDefault()
         }
         else {
-          App.hide_current_window()
+          App.hide_window()
           e.preventDefault()
         }
 
@@ -417,7 +417,7 @@ App.setup_keyboard = () => {
     }
     else {
       if (e.key === `Escape`) {
-        App.hide_current_window()
+        App.hide_window()
         e.preventDefault()
         return
       }

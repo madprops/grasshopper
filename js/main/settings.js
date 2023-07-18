@@ -302,7 +302,7 @@ App.clear_settings_filter = () => {
       App.set_filter(mode, ``)
     }
     else {
-      App.hide_current_window()
+      App.hide_window()
     }
   }
 }
@@ -698,7 +698,7 @@ App.show_settings_menu = (category, btn) => {
   items.push({
     text: `Close`,
     action: () => {
-      App.hide_current_window()
+      App.hide_window()
     }
   })
 

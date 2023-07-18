@@ -31,7 +31,7 @@ App.setup_stars = () => {
     })
 
     DOM.ev(DOM.el(`#star_editor_close`), `click`, () => {
-      App.hide_current_window()
+      App.hide_window()
     })
   },
   colored_top: true,
