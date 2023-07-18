@@ -33,7 +33,7 @@ App.back_action = (mode = App.window_mode, e) => {
     App.show_all()
   }
   else if (item && !App.element_is_visible(item.element)) {
-    App.select_item(item, `nearest_smooth`)
+    App.select_item(item, `center_smooth`)
   }
   else if (mode === `tabs` && !item.active) {
     App.focus_current_tab()
