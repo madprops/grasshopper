@@ -1,6 +1,5 @@
 const App = {}
 
-App.name = `Grasshopper`
 App.stor_settings_name = `settings_v100`
 App.stor_stars_name = `stars_state_v20`
 App.stor_titles_name = `titles_v3`
