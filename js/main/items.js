@@ -654,6 +654,7 @@ App.show_mode = async (mode, cycle = false) => {
   }
   else {
     items = await App[`get_${mode}`]()
+    App[`last_${mode}_query`] = ``
   }
 
   if (mode !== App.window_mode) {
