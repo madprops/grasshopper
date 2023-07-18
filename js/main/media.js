@@ -216,7 +216,9 @@ App.media_copy = (what) => {
 }
 
 App.media_background = (what = App.window_mode) => {
-  App.set_background_image(App[`current_${what}_item`].url)
+  if (what === `image`) {
+    App.set_background_image(App[`current_${what}_item`].url)
+  }
 }
 
 App.get_visible_media = (mode, what) => {
