@@ -388,6 +388,11 @@ App.setup_keyboard = () => {
         return
       }
       else if (e.key === ` `) {
+        App.media_background()
+        e.preventDefault()
+        return
+      }
+      else if (e.key === ` `) {
         App.show_media_menu(mode)
         e.preventDefault()
         return

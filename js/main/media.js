@@ -215,7 +215,7 @@ App.media_copy = (what) => {
   App.copy_url(App[`current_${what}_item`])
 }
 
-App.media_background = (what) => {
+App.media_background = (what = App.window_mode) => {
   App.set_background_image(App[`current_${what}_item`].url)
 }
 
