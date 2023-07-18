@@ -4,6 +4,11 @@ App.check_items_keyboard = (e) => {
   let filtered = App.filter_has_value(mode)
 
   function arrow (direction, e) {
+    if (!item) {
+      e.preventDefault()
+      return
+    }
+
     if (!App.element_is_visible(item.element)) {
       App.select_item(item, `nearest_smooth`)
     }

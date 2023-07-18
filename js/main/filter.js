@@ -397,6 +397,14 @@ App.set_filter_mode = (mode, filter_mode, filter = true) => {
   }
 }
 
+App.get_filter_mode = (mode, name) => {
+  for (let fm of App.filter_modes(mode)) {
+    if (fm[0] === name) {
+      return fm
+    }
+  }
+}
+
 App.filter_domain = (item) => {
   if (!item) {
     item = App.get_selected(mode)
