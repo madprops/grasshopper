@@ -84,7 +84,7 @@ App.clear_about_filter = () => {
 
 App.filter_about_debouncer = App.create_debouncer(() => {
   App.do_filter_about()
-}, App.filter_debouncer_delay_2)
+}, App.filter_delay_2)
 
 App.filter_about = () => {
   App.filter_about_debouncer.call()

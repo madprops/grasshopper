@@ -281,7 +281,7 @@ App.add_settings_filter = (category) => {
 
 App.filter_settings_debouncer = App.create_debouncer(() => {
   App.do_filter_settings()
-}, App.filter_debouncer_delay_2)
+}, App.filter_delay_2)
 
 App.filter_settings = () => {
   App.filter_settings_debouncer.call()

@@ -144,7 +144,7 @@ App.clear_palette_filter = () => {
 
 App.filter_palette_debouncer = App.create_debouncer(() => {
   App.do_filter_palette()
-}, App.filter_debouncer_delay_2)
+}, App.filter_delay_2)
 
 App.filter_palette = () => {
   App.filter_palette_debouncer.call()

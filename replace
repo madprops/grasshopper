@@ -1,0 +1,20 @@
+#!/usr/bin/env ruby
+
+def replace (path, search_string, replace_string)
+  content = File.read(path)
+  new_content = content.gsub(search_string, replace_string)
+  if content != new_content
+    File.open(path, "w") do |file| file.write(new_content) end
+    puts "Replaced in: #{path}"
+  end
+end
+
+def process (directory, search_string, replace_string)
+  Dir.glob(File.join(directory, "*")).each do |path|
+    next unless File.file?(path)
+    replace(path, search_string, replace_string)
+  end
+end
+
+search_string, replace_string = ARGV
+process("js/main", search_string, replace_string)

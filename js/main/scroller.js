@@ -10,7 +10,7 @@ App.hide_scroller = (mode) => {
 
 App.scroller_debouncer = App.create_debouncer((mode) => {
   App.do_check_scroller(mode)
-}, App.scroller_debouncer_delay)
+}, App.scroller_delay)
 
 App.check_scroller = (mode) => {
   if (App.get_setting(`show_scroller`)) {

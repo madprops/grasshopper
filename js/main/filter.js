@@ -1,7 +1,7 @@
 App.setup_filter = () => {
   App.filter_debouncer = App.create_debouncer((mode) => {
     App.do_filter(mode)
-  }, App.filter_debouncer_delay)
+  }, App.filter_delay)
 }
 
 App.filter = (mode) => {
