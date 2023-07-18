@@ -77,77 +77,28 @@ App.do_filter = async (mode, force = false) => {
     duplicates = App.find_duplicates(items, `url`)
   }
 
-  App.filter_check = (item, regex, by_what) => {
-    if (!item.title || !item.url) {
-      return false
-    }
-
-    if (by_what === `all`) {
-      return regex.test(item.title) || regex.test(item.url)
-    }
-    else if (by_what === `title`) {
-      return regex.test(item.title)
-    }
-    else if (by_what === `url`) {
-      return regex.test(item.url)
-    }
-  }
-
   function matched (item) {
-    let match = false
-
-    if (App.filter_check(item, regex, by_what)) {
-      if (filter_mode === `all`) {
-        match = true
-      }
-      else if (filter_mode === `normal`) {
-        match = App.tab_is_normal(item)
-      }
-      else if (filter_mode === `playing`) {
-        match = item.audible || item.muted
-      }
-      else if (filter_mode === `pinned`) {
-        match = item.pinned
-      }
-      else if (filter_mode === `unloaded`) {
-        match = item.discarded
-      }
-      else if (filter_mode === `title`) {
-        match = App.get_title(item.url)
-      }
-      else if (filter_mode === `star`) {
-        match = App.get_star_by_url(item.url)
-      }
-      else if (filter_mode === `image`) {
-        match = item.image
-      }
-      else if (filter_mode === `video`) {
-        match = item.video
-      }
-      else if (filter_mode === `audio`) {
-        match = item.audio
-      }
-      else if (filter_mode === `text`) {
-        match = item.text
-      }
-      else if (filter_mode === `duplicate`) {
-        match = duplicates.includes(item)
-      }
+    let args = {
+      item: item,
+      regex: regex,
+      by_what: by_what,
+      filter_mode: filter_mode,
+      duplicates: duplicates,
     }
 
-    return match
+    return App.filter_check(args)
   }
 
-  for (let it of items) {
-    if (!it.element) {
+  for (let item of items) {
+    if (!item.element) {
       continue
     }
 
-    if (skip || matched(it)) {
-      App.show_item(it)
+    if (skip || matched(item)) {
+      App.show_item(item)
     }
     else {
-      App.hide_item(it)
+      App.hide_item(item)
     }
   }
 
@@ -157,6 +108,61 @@ App.do_filter = async (mode, force = false) => {
   App.update_footer_count(mode)
   App.do_check_pinline()
   App.do_check_scroller(mode)
+}
+
+App.filter_check = (args) => {
+  let match = false
+
+  if (args.by_what === `all`) {
+    match = args.regex.test(args.item.title) || args.regex.test(args.item.url)
+  }
+  else if (args.by_what === `title`) {
+    match = args.regex.test(args.item.title)
+  }
+  else if (args.by_what === `url`) {
+    match = args.regex.test(args.item.url)
+  }
+
+  if (match) {
+    if (args.filter_mode === `all`) {
+      match = true
+    }
+    else if (args.filter_mode === `normal`) {
+      match = App.tab_is_normal(args.item)
+    }
+    else if (args.filter_mode === `playing`) {
+      match = args.item.audible || args.item.muted
+    }
+    else if (args.filter_mode === `pinned`) {
+      match = args.item.pinned
+    }
+    else if (args.filter_mode === `unloaded`) {
+      match = args.item.discarded
+    }
+    else if (args.filter_mode === `title`) {
+      match = App.get_title(args.item.url)
+    }
+    else if (args.filter_mode === `star`) {
+      match = App.get_star_by_url(args.item.url)
+    }
+    else if (args.filter_mode === `image`) {
+      match = args.item.image
+    }
+    else if (args.filter_mode === `video`) {
+      match = args.item.video
+    }
+    else if (args.filter_mode === `audio`) {
+      match = args.item.audio
+    }
+    else if (args.filter_mode === `text`) {
+      match = args.item.text
+    }
+    else if (args.filter_mode === `duplicate`) {
+      match = args.duplicates.includes(args.item)
+    }
+  }
+
+  return match
 }
 
 App.focus_filter = (mode) => {

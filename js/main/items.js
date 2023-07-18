@@ -1394,7 +1394,8 @@ App.get_next_item = (mode) => {
 }
 
 App.search_items = async (mode, query) => {
-  App.log(`Searching ${mode}: ${query}}`)
+  let q = query || `Empty`
+  App.log(`Searching ${mode}: ${q}`)
   let items = await App[`get_${mode}`](query)
 
   if (App.window_mode !== mode) {
