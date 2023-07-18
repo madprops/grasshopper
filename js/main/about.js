@@ -60,9 +60,6 @@ App.setup_about = () => {
     }
 
     filter.focus()
-  },
-  on_hide: () => {
-    App.show_last_window()
   }, colored_top: true})
 }
 

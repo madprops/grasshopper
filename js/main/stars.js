@@ -38,9 +38,8 @@ App.setup_stars = () => {
   after_show: () => {
     App.update_star_editor_info()
   },
-  on_hide: () => {
-    App.refresh_filter(App.last_window_mode, `star`)
-    App.show_last_window()
+  after_hide: () => {
+    App.refresh_filter(App.window_mode, `star`)
   }})
 }
 

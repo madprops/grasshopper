@@ -22,10 +22,7 @@ App.setup_title_editor = () => {
       App.hide_current_window()
     })
   },
-  colored_top: true,
-  on_hide: () => {
-    App.show_last_window()
-  }})
+  colored_top: true})
 }
 
 App.show_title_editor = (item) => {
@@ -71,7 +68,7 @@ App.title_editor_save = () => {
 
   App.stor_save_titles()
   App.apply_titles(url)
-  App.show_last_window()
+  App.hide_current_window()
 }
 
 App.remove_title = () => {
@@ -83,7 +80,7 @@ App.remove_title = () => {
       App.stor_save_titles()
       App.apply_titles(url)
       App.refresh_filter(App.last_window_mode, `title`)
-      App.show_last_window()
+      App.hide_current_window()
     }
   }, undefined, !App.get_setting(`warn_on_untitle_tabs`))
 }

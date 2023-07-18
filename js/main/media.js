@@ -76,15 +76,13 @@ App.create_media_windows = (what) => {
     DOM.ev(buttons, `wheel`, (e) => {
       App.media_wheel.call(e, what)
     })
-  }, on_hide: () => {
+  }, after_hide: () => {
     if (what === `video`) {
       App.stop_video()
     }
 
-    let item = App[`current_${what}_item`]
     App.hide_media_elements(what)
     App.stop_media_timeout(what)
-    App.raise_window(item.mode)
   }, colored_top: true})
 }
 

@@ -321,8 +321,9 @@ App.setup_settings = () => {
       let category = App.get_setting_category()
       DOM.el(`#settings_${category}_filter`).focus()
     },
-    after_hide: () => {
+    on_hide: () => {
       App.apply_theme()
+      App.show_first_window()
     },
   }
 

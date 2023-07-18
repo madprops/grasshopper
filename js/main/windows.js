@@ -99,7 +99,7 @@ App.create_window = (args) => {
       args.on_hide()
     }
     else {
-      App.show_first_window()
+      App.show_last_window()
 
       if (args.after_hide) {
         args.after_hide()
