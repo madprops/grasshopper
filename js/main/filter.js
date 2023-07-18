@@ -49,7 +49,7 @@ App.do_filter = async (mode, force = false) => {
 
   if (App.maxed_items.includes(mode)) {
     if (force || (value !== App[`last_${mode}_query`])) {
-      let query = App.get_clean_filter(mode, false, false)
+      let query = App.get_clean_filter(mode, false)
       await App.search_items(mode, query)
 
       if (App.window_mode !== mode) {
@@ -155,17 +155,14 @@ App.filter_check = (item, regex, by_what) => {
     return false
   }
 
-  let title = App.remove_spaces(item.title)
-  let url = App.remove_spaces(item.url)
-
   if (by_what === `all`) {
-    return regex.test(title) || regex.test(url)
+    return regex.test(item.title) || regex.test(item.url)
   }
   else if (by_what === `title`) {
-    return regex.test(title)
+    return regex.test(item.title)
   }
   else if (by_what === `url`) {
-    return regex.test(url)
+    return regex.test(item.url)
   }
 }
 
@@ -239,15 +236,11 @@ App.get_filter = (mode) => {
   return DOM.el(`#${mode}_filter`).value
 }
 
-App.get_clean_filter = (mode, lowercase = true, remove_spaces = true) => {
+App.get_clean_filter = (mode, lowercase = true) => {
   let value = App.single_space(App.get_filter(mode)).trim()
 
   if (lowercase) {
     value = value.toLowerCase()
-  }
-
-  if (remove_spaces) {
-    value = App.remove_spaces(value)
   }
 
   return value
@@ -518,7 +511,6 @@ App.do_filter_2 = (mode) => {
   for (let item of items) {
     let text = DOM.el_or_self(`.filter_text`, item).textContent
     text = text.toLowerCase().trim()
-    text = App.remove_spaces(text)
 
     if (text.includes(value)) {
       item.classList.remove(`hidden`)
@@ -530,7 +522,7 @@ App.do_filter_2 = (mode) => {
 }
 
 App.filter_check_items = (items, part, by_what) => {
-  let regex = App.get_filter_regex(App.remove_spaces(part))
+  let regex = App.get_filter_regex(part)
 
   return items.filter(item => {
     return App.filter_check(item, regex, by_what)

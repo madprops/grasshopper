@@ -205,10 +205,6 @@ App.reload_extension = () => {
   browser.runtime.reload()
 }
 
-App.remove_spaces = (text) => {
-  return text.replace(/[\s-]+/g, ``)
-}
-
 App.single_space = (s) => {
   return s.replace(/\s+/g, ` `)
 }
