@@ -47,6 +47,8 @@ App.do_filter = async (mode, force = false) => {
 
   let checked = false
 
+  // This check is to avoid re-fetching items
+  // For instance when moving from All to Image
   if (App.maxed_items.includes(mode)) {
     if (force || (value !== App[`last_${mode}_query`])) {
       await App.search_items(mode, value)
@@ -141,6 +143,7 @@ App.do_filter = async (mode, force = false) => {
 }
 
 App.get_filter_regex = (value) => {
+  // Remove spacing for proper OR
   value = value.replace(/\s*\|\s*/g, '|')
 
   if (App.get_setting(`case_insensitive_filter`)) {
