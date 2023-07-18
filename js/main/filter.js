@@ -39,7 +39,12 @@ App.do_filter = async (mode, force = false) => {
   let regex
 
   try {
-    regex = App.get_filter_regex(value)
+    if (App.get_setting(`case_insensitive_filter`)) {
+      regex = new RegExp(value, `i`)
+    }
+    else {
+      regex = new RegExp(value)
+    }
   }
   catch (err) {
     return
@@ -70,6 +75,22 @@ App.do_filter = async (mode, force = false) => {
 
   if (filter_mode === `duplicate`) {
     duplicates = App.find_duplicates(items, `url`)
+  }
+
+  App.filter_check = (item, regex, by_what) => {
+    if (!item.title || !item.url) {
+      return false
+    }
+
+    if (by_what === `all`) {
+      return regex.test(item.title) || regex.test(item.url)
+    }
+    else if (by_what === `title`) {
+      return regex.test(item.title)
+    }
+    else if (by_what === `url`) {
+      return regex.test(item.url)
+    }
   }
 
   function matched (item) {
@@ -136,31 +157,6 @@ App.do_filter = async (mode, force = false) => {
   App.update_footer_count(mode)
   App.do_check_pinline()
   App.do_check_scroller(mode)
-}
-
-App.get_filter_regex = (value) => {
-  if (App.get_setting(`case_insensitive_filter`)) {
-    return new RegExp(value, `i`)
-  }
-  else {
-    return new RegExp(value)
-  }
-}
-
-App.filter_check = (item, regex, by_what) => {
-  if (!item.title || !item.url) {
-    return false
-  }
-
-  if (by_what === `all`) {
-    return regex.test(item.title) || regex.test(item.url)
-  }
-  else if (by_what === `title`) {
-    return regex.test(item.title)
-  }
-  else if (by_what === `url`) {
-    return regex.test(item.url)
-  }
 }
 
 App.focus_filter = (mode) => {

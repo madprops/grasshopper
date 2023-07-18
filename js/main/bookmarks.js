@@ -8,6 +8,9 @@ App.setup_bookmarks = () => {
     {text: `Bookmark`, action: () => {
       App.bookmark_active()
     }},
+    {text: `Media`, get_items: () => {
+      return App.search_media(`bookmarks`)
+    }},
   ]
 
   App.setup_item_window(`bookmarks`)

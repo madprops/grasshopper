@@ -275,3 +275,23 @@ App.show_media_menu = (what) => {
   let btn = DOM.el(`#${what}_menu`)
   NeedContext.show_on_element(btn, items)
 }
+
+App.search_media = (mode) => {
+  let items = []
+  let types = [`image`, `video`, `audio`, `text`]
+
+  for (let type of types) {
+    let subitems = []
+
+    for (let ext of App[`${type}_extensions`]) {
+      subitems.push({text: ext, action: () => {
+        App.set_filter_mode(mode, type, false)
+        App.set_filter(mode, `.${ext}`)
+      }})
+    }
+
+    items.push({text: App.capitalize(type), items: subitems})
+  }
+
+  return items
+}

@@ -4,6 +4,10 @@ App.setup_stars = () => {
       App.star_active()
     }},
 
+    {text: `Media`, get_items: () => {
+      return App.search_media(`stars`)
+    }},
+
     {text: App.separator_string},
 
     {text: `Export`, action: () => {
