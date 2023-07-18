@@ -58,14 +58,12 @@ App.open_star = async (item) => {
   return await App.focus_or_open_item(item)
 }
 
-App.get_stars = (query = ``) => {
+App.get_stars = (query = ``, by_what = `all`) => {
   let set = new Set()
   let parts = query.split(`|`).map(x => x.trim().toLowerCase())
 
   for (let part of parts) {
-    let ans = App.stars.filter(x => {
-      return x.title.toLowerCase().includes(part) || x.url.toLowerCase().includes(part)
-    })
+    let ans = App.filter_get_items(App.stars, part, by_what)
 
     for (let a of ans) {
       set.add(a)

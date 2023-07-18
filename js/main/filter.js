@@ -292,6 +292,13 @@ App.show_filter_menu = (mode) => {
         },
       })
 
+      items.push({
+        text: `By Both`,
+        action: () => {
+          App.filter_cmd(mode, `all`)
+        },
+      })
+
       continue
     }
 
@@ -507,4 +514,22 @@ App.do_filter_2 = (mode) => {
       item.classList.add(`hidden`)
     }
   }
+}
+
+App.filter_get_items = (items, query, by_what) => {
+  return items.filter(x => {
+    if (!x.title || !x.url) {
+      return false
+    }
+
+    if (by_what === `all`) {
+      return x.title.toLowerCase().includes(query) || x.url.toLowerCase().includes(query)
+    }
+    else if (by_what === `title`) {
+      return x.title.toLowerCase().includes(query)
+    }
+    else if (by_what === `url`) {
+      return x.url.toLowerCase().includes(query)
+    }
+  })
 }

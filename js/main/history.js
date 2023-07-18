@@ -17,7 +17,7 @@ App.history_time = () => {
   return Date.now() - (1000 * 60 * 60 * 24 * 30 * App.history_max_months)
 }
 
-App.get_history = async (query = ``) => {
+App.get_history = async (query = ``, by_what = `all`) => {
   App.log(`Getting history`)
   let set = new Set()
   let parts = query.split(`|`).map(x => x.trim().toLowerCase())
@@ -29,6 +29,8 @@ App.get_history = async (query = ``) => {
         maxResults: App.max_items,
         startTime: App.history_time()
       })
+
+      ans = App.filter_get_items(ans, part, by_what)
 
       for (let a of ans) {
         set.add(a)
