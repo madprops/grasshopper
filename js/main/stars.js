@@ -62,7 +62,7 @@ App.open_star = async (item) => {
   return await App.focus_or_open_item(item)
 }
 
-App.get_stars = (query = ``, by_what = `all`) => {
+App.get_stars = (query = ``) => {
   let results = structuredClone(App.stars.filter(x =>
     x.title.toLowerCase().includes(query) ||
     x.url.toLowerCase().includes(query)

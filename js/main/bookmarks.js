@@ -42,7 +42,7 @@ App.setup_bookmarks = () => {
   })
 }
 
-App.get_bookmarks = async (query = ``, by_what = `all`) => {
+App.get_bookmarks = async (query = ``) => {
   App.log(`Getting bookmarks`)
   let results = []
 
