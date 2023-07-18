@@ -645,6 +645,7 @@ App.show_mode = async (mode, cycle = false) => {
   let m = App.filter_modes(mode)[0]
   App.set_filter_mode(mode, m, false)
   App[`${mode}_filter_mode`] = m[0]
+  App[`last_${mode}_query`] = undefined
   let maxed = App.maxed_items.includes(mode)
   let items
 

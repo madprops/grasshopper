@@ -49,15 +49,14 @@ App.do_filter = async (mode, force = false) => {
 
   if (App.maxed_items.includes(mode)) {
     if (force || (value !== App[`last_${mode}_query`])) {
-      let query = App.get_clean_filter(mode, false)
-      await App.search_items(mode, query)
+      await App.search_items(mode, value)
 
       if (App.window_mode !== mode) {
         return
       }
-
-      checked = true
     }
+
+    checked = true
   }
 
   App[`last_${mode}_query`] = value
