@@ -350,6 +350,7 @@ App.setup_settings = () => {
       [`Sans`, `sans-serif`],
       [`Serif`, `serif`],
       [`Mono`, `monospace`],
+      [`Cursive`, `cursive`],
     ], () => {
       App.apply_theme()
     })
