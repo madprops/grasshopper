@@ -101,6 +101,7 @@ App.view_media = (item) => {
 
   App.hide_media_elements(what)
   App[`current_${what}_item`] = item
+  App[`current_media_type`] = what
   DOM.el(`#${what}`).src = item.url
   App.stop_media_timeout(what)
 

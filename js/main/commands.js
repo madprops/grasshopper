@@ -266,24 +266,33 @@ App.check_command = (command, args) => {
     }
   }
 
+  let valid = false
+
   if (command) {
     if (command.mode) {
       if (command.mode === `items`) {
-        if (!args.on_items) {
-          return false
+        if (args.on_items) {
+          valid = true
         }
       }
-      else if (command.mode !== args.mode) {
-        return false
+      else if (command.mode === args.mode) {
+        valid = true
       }
     }
-
-    if (command.media) {
-      if (command.media !== args.media) {
-        return false
+    else if (command.media) {
+      if (App.on_media()) {
+        if (command.media === App[`current_media_type`]) {
+          valid = true
+        }
       }
+      else if (command.media === args.media) {
+        valid = true
+      }
+    }
+    else {
+      valid = true
     }
   }
 
-  return true
+  return valid
 }
