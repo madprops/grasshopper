@@ -45,3 +45,4 @@ App.item_range_on = false
 App.item_range_highlight = false
 App.maxed_items = [`stars`, `history`, `bookmarks`]
 App.max_items = 500
+App.media_scroll = 33

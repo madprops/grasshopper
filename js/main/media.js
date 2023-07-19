@@ -295,3 +295,11 @@ App.search_media = (mode) => {
 
   return items
 }
+
+App.scroll_media_up = (what = App.window_mode) => {
+  DOM.el(`#window_content_${what}`).scrollTop -= App.media_scroll
+}
+
+App.scroll_media_down = (what = App.window_mode) => {
+  DOM.el(`#window_content_${what}`).scrollTop += App.media_scroll
+}

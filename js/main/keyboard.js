@@ -382,13 +382,24 @@ App.setup_keyboard = () => {
         e.preventDefault()
         return
       }
-      else if (e.key === `Enter`) {
-        App.open_media()
+      else if (e.key === `ArrowUp`) {
+        App.scroll_media_up()
         e.preventDefault()
         return
       }
-      else if (e.key === ` `) {
-        App.show_media_menu(mode)
+      else if (e.key === `ArrowDown`) {
+        App.scroll_media_down()
+        e.preventDefault()
+        return
+      }
+      else if (e.key === `Enter`) {
+        if (e.shiftKey) {
+          App.show_media_menu(mode)
+        }
+        else {
+          App.open_media()
+        }
+
         e.preventDefault()
         return
       }
