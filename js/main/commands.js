@@ -87,7 +87,7 @@ App.commands = [
     App.copy_title(args.item)
   }},
   {name: `Background`, cmd: `set_background`, mode: `items`, action: (args) => {
-    App.set_background_image(args.item.url)
+    App.change_background(args.item.url)
   }},
 
   {name: App.separator_string},

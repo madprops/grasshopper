@@ -117,7 +117,9 @@ App.change_color = (name, color) => {
   App.apply_theme()
 }
 
-App.set_background_image = (url) => {
+App.change_background = (url) => {
   App.set_setting(`background_image`, url)
+  App.set_setting(`background_effect`, `none`)
+  App.set_setting(`background_tiles`, `none`)
   App.apply_theme()
 }

@@ -227,7 +227,7 @@ App.more_menu_items = (o_items, item, multiple, some_loaded) => {
     items.push({
       text: `Background `,
       action: () => {
-        App.set_background_image(item.url)
+        App.change_background(item.url)
       }
     })
   }
