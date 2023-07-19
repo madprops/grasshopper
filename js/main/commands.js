@@ -86,7 +86,7 @@ App.commands = [
   {name: `Copy Title`, cmd: `copy_item_title`, mode: `items`, action: (args) => {
     App.copy_title(args.item)
   }},
-  {name: `Background`, cmd: `set_background`, mode: `items`, action: (args) => {
+  {name: `Background`, cmd: `set_background`, media: `image`, action: (args) => {
     App.change_background(args.item.url)
   }},
 
@@ -216,6 +216,21 @@ App.run_command = (args) => {
     args.item = App.get_selected()
   }
 
+  if (args.item) {
+    if (args.item.image) {
+      args.media = `image`
+    }
+    else if (args.item.video) {
+      args.media = `video`
+    }
+    else if (args.item.audio) {
+      args.media = `audio`
+    }
+    else if (args.item.text) {
+      args.media = `text`
+    }
+  }
+
   let command
 
   for (let c of App.commands) {
@@ -232,10 +247,14 @@ App.run_command = (args) => {
           return
         }
       }
-      else {
-        if (command.mode !== args.mode) {
-          return
-        }
+      else if (command.mode !== args.mode) {
+        return
+      }
+    }
+
+    if (command.media) {
+      if (command.media !== args.media) {
+        return
       }
     }
 
