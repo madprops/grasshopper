@@ -1,4 +1,4 @@
-App.image_extensions = [`jpg`, `png`, `gif`, `webp`, `bmp`]
+App.image_extensions = [`jpg`, `jpeg`, `png`, `gif`, `webp`, `bmp`]
 App.video_extensions = [`mp4`, `webm`]
 App.audio_extensions = [`mp3`, `ogg`, `flac`]
 App.text_extensions = [`pdf`, `epub`, `txt`]
