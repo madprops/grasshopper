@@ -1,6 +1,6 @@
 App.create_popup = (args) => {
   let p = {}
-  p.setup = false
+  p.setup_done = false
 
   let popup = DOM.create(`div`, `popup_main`, `popup_${args.id}`)
   let container = DOM.create(`div`, `popup_container`, `${args.id}_container`)
@@ -24,13 +24,16 @@ App.create_popup = (args) => {
   DOM.el(`#main`).append(popup)
   p.element = popup
 
-  p.show = () => {
-    if (args.setup && !p.setup) {
+  p.setup = () => {
+    if (args.setup && !p.setup_done) {
       args.setup()
-      p.setup = true
+      p.setup_done = true
       App.log(`${args.id} popup setup`)
     }
+  }
 
+  p.show = () => {
+    p.setup()
     p.element.style.display = `flex`
     App.popup_mode = args.id
     p.open = true
@@ -46,6 +49,10 @@ App.create_popup = (args) => {
 
 App.show_popup = (id) => {
   App.popups[id].show()
+}
+
+App.setup_popup = (id) => {
+  App.popups[id].setup()
 }
 
 App.setup_popups = () => {

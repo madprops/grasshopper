@@ -351,6 +351,10 @@ svg {
   display: none !important;
 }
 
+.hidden_2 {
+  display: none !important;
+}
+
 .action {
   cursor: pointer;
   transition: text-shadow 171ms;

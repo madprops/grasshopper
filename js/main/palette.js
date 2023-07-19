@@ -18,16 +18,27 @@ App.setup_palette = () => {
 }
 
 App.show_palette = () => {
-  NeedContext.hide()
-  App.show_popup(`palette`)
+  // Create initial elements
+  App.setup_popup(`palette`)
   let container = DOM.el(`#palette_commands`)
   let filter = DOM.el(`#palette_filter`)
   let els = DOM.els(`.palette_item`, container)
 
+  // Hide all commands that are not available in the current mode
   for (let el of els) {
     el.classList.remove(`hidden`)
+    let command = App.get_command(el.dataset.command)
+
+    if (App.check_command(command, {from: `palette`})) {
+      el.classList.remove(`hidden_2`)
+    }
+    else {
+      el.classList.add(`hidden_2`)
+    }
   }
 
+  NeedContext.hide()
+  App.show_popup(`palette`)
   App.palette_select_first()
   container.scrollTop = 0
   filter.value = ``
@@ -47,12 +58,16 @@ App.palette_select = (el) => {
   App.palette_selected.scrollIntoView({block: `nearest`})
 }
 
+App.palette_item_hidden = (el) => {
+  return el.classList.contains(`hidden`) || el.classList.contains(`hidden_2`)
+}
+
 App.palette_select_first = () => {
   let container = DOM.el(`#palette_commands`)
   let els = DOM.els(`.palette_item`, container)
 
   for (let el of els) {
-    if (!el.classList.contains(`hidden`)) {
+    if (!App.palette_item_hidden(el)) {
       App.palette_select(el)
       break
     }
@@ -76,7 +91,7 @@ App.palette_next = (reverse = false) => {
   let first
 
   for (let el of els) {
-    if (!el.classList.contains(`hidden`)) {
+    if (!App.palette_item_hidden(el)) {
       if (waypoint) {
         App.palette_select(el)
         return

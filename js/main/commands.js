@@ -223,7 +223,27 @@ App.sort_commands = () => {
   })
 }
 
+App.get_command = (cmd) => {
+  for (let c of App.commands) {
+    if (c.cmd === cmd) {
+      return c
+    }
+  }
+}
+
 App.run_command = (args) => {
+  let command = App.get_command(args.cmd)
+
+  if (command) {
+    if (!App.check_command(command, args)) {
+      return
+    }
+
+    command.action(args)
+  }
+}
+
+App.check_command = (command, args) => {
   args.mode = App.window_mode
   args.on_items = App.on_items()
 
@@ -246,33 +266,24 @@ App.run_command = (args) => {
     }
   }
 
-  let command
-
-  for (let c of App.commands) {
-    if (c.cmd === args.cmd) {
-      command = c
-      break
-    }
-  }
-
   if (command) {
     if (command.mode) {
       if (command.mode === `items`) {
         if (!args.on_items) {
-          return
+          return false
         }
       }
       else if (command.mode !== args.mode) {
-        return
+        return false
       }
     }
 
     if (command.media) {
       if (command.media !== args.media) {
-        return
+        return false
       }
     }
-
-    command.action(args)
   }
+
+  return true
 }
