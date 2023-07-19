@@ -119,7 +119,7 @@ App.settings_do_action = (what) => {
   }
 }
 
-App.settings_setup_checkboxes = (container, category) => {
+App.settings_setup_checkboxes = (container) => {
   let items = DOM.els(`.settings_checkbox`, container)
 
   for (let item of items) {
@@ -329,7 +329,7 @@ App.setup_settings = () => {
 
   function prepare (category) {
     let container = DOM.el(`#settings_${category}_container`)
-    App.settings_setup_checkboxes(container, category)
+    App.settings_setup_checkboxes(container)
     App.settings_setup_text(container)
     App.add_settings_switchers(category)
     App.add_settings_filter(category)
