@@ -111,10 +111,3 @@ App.apply_theme = () => {
 App.set_css_var = (name, value) => {
   document.documentElement.style.setProperty(`--${name}`, value)
 }
-
-App.change_background = (url) => {
-  App.set_setting(`background_image`, url)
-  App.set_setting(`background_effect`, `none`)
-  App.set_setting(`background_tiles`, `none`)
-  App.apply_theme()
-}
