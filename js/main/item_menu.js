@@ -149,6 +149,15 @@ App.get_window_menu_items = async (item) => {
 App.common_menu_items = (o_items, item, multiple) => {
   let items = []
 
+  if (item.image || item.video) {
+    items.push({
+      text: `View`,
+      action: () => {
+        App.view_media(item)
+      }
+    })
+  }
+
   if (item.mode !== `stars`) {
     items.push({
       text: `Star`,
