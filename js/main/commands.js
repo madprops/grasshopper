@@ -164,6 +164,21 @@ App.commands = [
 
   {name: App.separator_string},
 
+  {name: `Filter Image`, cmd: `filter_image`, action: (args) => {
+    App.set_filter_mode(args.mode, `image`)
+  }},
+  {name: `Filter Video`, cmd: `filter_video`, action: (args) => {
+    App.set_filter_mode(args.mode, `video`)
+  }},
+  {name: `Filter Audio`, cmd: `filter_audio`, action: (args) => {
+    App.set_filter_mode(args.mode, `audio`)
+  }},
+  {name: `Filter Text`, cmd: `filter_text`, action: (args) => {
+    App.set_filter_mode(args.mode, `text`)
+  }},
+
+  {name: App.separator_string},
+
   {name: `Reload Extension`, cmd: `reload_extension`, action: (args) => {
     App.reload_extension()
   }},
