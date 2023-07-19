@@ -164,16 +164,16 @@ App.commands = [
 
   {name: App.separator_string},
 
-  {name: `Filter Image`, cmd: `filter_image`, action: (args) => {
+  {name: `Filter Image`, cmd: `filter_image`, mode: `items`, action: (args) => {
     App.set_filter_mode(args.mode, `image`)
   }},
-  {name: `Filter Video`, cmd: `filter_video`, action: (args) => {
+  {name: `Filter Video`, cmd: `filter_video`, mode: `items`, action: (args) => {
     App.set_filter_mode(args.mode, `video`)
   }},
-  {name: `Filter Audio`, cmd: `filter_audio`, action: (args) => {
+  {name: `Filter Audio`, cmd: `filter_audio`, mode: `items`, action: (args) => {
     App.set_filter_mode(args.mode, `audio`)
   }},
-  {name: `Filter Text`, cmd: `filter_text`, action: (args) => {
+  {name: `Filter Text`, cmd: `filter_text`, mode: `items`, action: (args) => {
     App.set_filter_mode(args.mode, `text`)
   }},
 
