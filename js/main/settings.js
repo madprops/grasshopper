@@ -501,7 +501,17 @@ App.start_theme_settings = () => {
     })
 
     App[`${name}_color_picker`].on(`change`, (picker, color) => {
-      App.change_color(name, color)
+      App.set_setting(`${name}_color`, color)
+      App.apply_theme()
+    })
+
+    DOM.ev(el, `contextmenu`, (e) => {
+      App.reset_single_setting(e, () => {
+        App.set_default_setting(`${name}_color`)
+        App[`${name}_color_picker`].setColor(App.get_setting(`${name}_color`))
+      })
+
+      e.preventDefault()
     })
   }
 
