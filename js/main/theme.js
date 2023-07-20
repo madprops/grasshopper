@@ -80,7 +80,7 @@ App.apply_theme = () => {
     }
 
     let bg = DOM.el(`#background`)
-    let bg_effects = [`blur`, `grayscale`, `invert`, `rotate`]
+    let bg_effects = [`blur`, `grayscale`, `invert`, `rotate_1`, `rotate_2`, `rotate_3`]
     let bg_effect = App.get_setting(`background_effect`)
 
     for (let eff of bg_effects) {

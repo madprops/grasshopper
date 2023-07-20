@@ -48,8 +48,16 @@ body, html {
   filter: invert(1);
 }
 
-#background.rotate {
+#background.rotate_1 {
   filter: hue-rotate(90deg);
+}
+
+#background.rotate_2 {
+  filter: hue-rotate(180deg);
+}
+
+#background.rotate_3 {
+  filter: hue-rotate(270deg);
 }
 
 #background.tiles {

@@ -522,7 +522,9 @@ App.start_theme_settings = () => {
     [`None`, `none`],
     [`Gray`, `grayscale`],
     [`Invert`, `invert`],
-    [`Rotate`, `rotate`],
+    [`Rotate 1`, `rotate_1`],
+    [`Rotate 2`, `rotate_2`],
+    [`Rotate 3`, `rotate_3`],
     [`Blur`, `blur`],
   ], () => {
     App.apply_theme()
