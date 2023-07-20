@@ -248,12 +248,13 @@ App.check_command = (command, args) => {
   args.on_items = App.on_items()
   args.on_media = App.on_media()
 
-  if (args.on_items && !args.item) {
-    args.item = App.get_selected()
-  }
-
-  if (args.on_media && !args.item) {
-    args.item = App.current_media_item
+  if (!args.item) {
+    if (args.on_items) {
+      args.item = App.get_selected()
+    }
+    else if (args.on_media) {
+      args.item = App.current_media_item
+    }
   }
 
   if (args.item) {
