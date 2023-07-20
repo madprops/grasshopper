@@ -197,6 +197,10 @@ App.media_star = (what) => {
 }
 
 App.open_media = (what = App.window_mode) => {
+  if (what === `video`) {
+    App.stop_video()
+  }
+
   let item = App[`current_${what}_item`]
 
   if (item.mode === `tabs`) {
