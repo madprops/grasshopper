@@ -246,9 +246,14 @@ App.run_command = (args) => {
 App.check_command = (command, args) => {
   args.mode = App.window_mode
   args.on_items = App.on_items()
+  args.on_media = App.on_media()
 
   if (args.on_items && !args.item) {
     args.item = App.get_selected()
+  }
+
+  if (args.on_media && !args.item) {
+    args.item = App.current_media_item
   }
 
   if (args.item) {
@@ -280,12 +285,7 @@ App.check_command = (command, args) => {
       }
     }
     else if (command.media) {
-      if (App.on_media()) {
-        if (command.media === App[`current_media_type`]) {
-          valid = true
-        }
-      }
-      else if (command.media === args.media) {
+      if (command.media === args.media) {
         valid = true
       }
     }

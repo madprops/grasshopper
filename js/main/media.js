@@ -100,8 +100,7 @@ App.view_media = (item) => {
   }
 
   App.hide_media_elements(what)
-  App[`current_${what}_item`] = item
-  App[`current_media_type`] = what
+  App.current_media_item = item
   DOM.el(`#${what}`).src = item.url
   App.stop_media_timeout(what)
 
@@ -139,11 +138,11 @@ App.stop_media_timeout = (what) => {
 }
 
 App.media_prev = (what = App.window_mode) => {
-  App.cycle_media(App[`current_${what}_item`], what, `prev`)
+  App.cycle_media(App.current_media_item, what, `prev`)
 }
 
 App.media_next = (what = App.window_mode) => {
-  App.cycle_media(App[`current_${what}_item`], what, `next`)
+  App.cycle_media(App.current_media_item, what, `next`)
 }
 
 App.cycle_media = (item, what, dir) => {
@@ -192,12 +191,12 @@ App.media_show_error = (what) => {
   DOM.el(`#${what}_loading`).textContent = `Error`
 }
 
-App.media_star = (what) => {
-  App.star_items(App[`current_${what}_item`])
+App.media_star = () => {
+  App.star_items(App.current_media_item)
 }
 
-App.open_media = (what = App.window_mode) => {
-  let item = App[`current_${what}_item`]
+App.open_media = () => {
+  let item = App.current_media_item
 
   if (item.mode === `tabs`) {
     App.focus_tab(item)
@@ -210,13 +209,13 @@ App.open_media = (what = App.window_mode) => {
   }
 }
 
-App.media_copy = (what) => {
-  App.copy_url(App[`current_${what}_item`])
+App.media_copy = () => {
+  App.copy_url(App.current_media_item)
 }
 
 App.media_background = (what = App.window_mode) => {
   if (what === `image`) {
-    App.change_background(App[`current_${what}_item`].url)
+    App.change_background(App.current_media_item.url)
   }
 }
 
@@ -253,14 +252,14 @@ App.show_media_menu = (what) => {
   items.push({
     text: `Star`,
     action: () => {
-      App.media_star(what)
+      App.media_star()
     }
   })
 
   items.push({
     text: `Copy URL`,
     action: () => {
-      App.media_copy(what)
+      App.media_copy()
     }
   })
 
