@@ -37,7 +37,7 @@ body, html {
 }
 
 #background.blur {
-  filter: blur(5px);
+  filter: blur(6px);
 }
 
 #background.grayscale {
