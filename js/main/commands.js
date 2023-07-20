@@ -253,7 +253,7 @@ App.check_command = (command, args) => {
       args.item = App.get_selected()
     }
     else if (args.on_media) {
-      args.item = App.current_media_item
+      args.item = App.current_media_item()
     }
   }
 
