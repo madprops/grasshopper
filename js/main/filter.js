@@ -281,9 +281,9 @@ App.show_filter_menu = (mode) => {
 
       continue
     }
-    else if (filter_mode[0] === `by_what`) {
+    else if (filter_mode[0] === `refine`) {
       items.push({
-        text: `Refine`,
+        text: filter_mode[1],
         get_items: () => {
           return App.get_filter_refine(mode)
         },
@@ -324,7 +324,7 @@ App.cycle_filter_modes = (mode, reverse = true) => {
     else if (filter_mode[0] === `custom`) {
       continue
     }
-    else if (filter_mode[0] === `by_what`) {
+    else if (filter_mode[0] === `refine`) {
       continue
     }
 
@@ -425,7 +425,7 @@ App.create_filter_menu = (mode) => {
   fmodes.push([`custom`, `Custom`])
   fmodes.push(...(App.filter_modes(mode) || []))
   fmodes.push([App.separator_string])
-  fmodes.push([`by_what`, `By What`])
+  fmodes.push([`refine`, `Refine`])
   App[`${mode}_filter_modes`] = fmodes
 
   DOM.ev(filter_menu, `click`, () => {
