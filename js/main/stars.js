@@ -39,7 +39,7 @@ App.setup_stars = () => {
     App.update_star_editor_info()
   },
   after_hide: () => {
-    App.refresh_filter(App.window_mode, `star`)
+    App.refresh_filter(App.active_mode, `star`)
   }})
 }
 
@@ -189,7 +189,7 @@ App.star_editor_save = () => {
     url: url
   })
 
-  if (App.last_window_mode === `stars`) {
+  if (App.active_mode === `stars`) {
     App.show_mode(`stars`)
   }
   else {
