@@ -258,8 +258,6 @@ App.show_filter_menu = (mode) => {
 
       if (filters.length > 0) {
         if (filters.length === 1) {
-          items.push({separator: true})
-
           items.push({
             text: `Custom`,
             action: () => {
@@ -268,8 +266,6 @@ App.show_filter_menu = (mode) => {
           })
         }
         else {
-          items.push({separator: true})
-
           items.push({
             text: `Custom`,
             get_items: () => {
@@ -422,9 +418,9 @@ App.create_filter_menu = (mode) => {
   fmodes.push([`video`, `Video`])
   fmodes.push([`audio`, `Audio`])
   fmodes.push([`text`, `Text`])
-  fmodes.push([`custom`, `Custom`])
   fmodes.push(...(App.filter_modes(mode) || []))
   fmodes.push([App.separator_string])
+  fmodes.push([`custom`, `Custom`])
   fmodes.push([`refine`, `Refine`])
   App[`${mode}_filter_modes`] = fmodes
 
