@@ -86,8 +86,9 @@ App.create_media_windows = (what) => {
   }, colored_top: true})
 }
 
-App.view_media = (item) => {
+App.view_media = (o_item) => {
   let what
+  let item = App.soft_copy_item(o_item)
 
   if (item.image) {
     what = `image`
@@ -204,13 +205,10 @@ App.open_media = (what = App.window_mode) => {
   let item = App[`current_${what}_item`]
 
   if (item.mode === `tabs`) {
-    App.focus_tab(item)
+    App.focus_or_open_item(item)
   }
   else if (item.mode === `stars`) {
     App.open_star(item)
-  }
-  else {
-    App.focus_or_open_item(item)
   }
 }
 

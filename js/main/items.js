@@ -1420,3 +1420,17 @@ App.highlights = (mode) => {
 App.select = (item, dehighlight = true) => {
   App.select_item(item, `nearest_smooth`, dehighlight)
 }
+
+App.soft_copy_item = (o_item) => {
+  let item = {}
+
+  for (let key in o_item) {
+    if (key === `element`) {
+      continue
+    }
+
+    item[key] = o_item[key]
+  }
+
+  return item
+}

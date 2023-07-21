@@ -62,10 +62,13 @@ App.open_star = async (item) => {
 }
 
 App.get_stars = (query = ``) => {
-  let results = structuredClone(App.stars.filter(x =>
-    x.title.toLowerCase().includes(query) ||
-    x.url.toLowerCase().includes(query)
-  ))
+  let results = structuredClone(App.stars.filter(x => {
+    if (!x.url || !x.title) {
+      return false
+    }
+
+    return x.title.toLowerCase().includes(query) || x.url.toLowerCase().includes(query)
+  }))
 
   results.sort((a, b) => (a.date_last_visit < b.date_last_visit) ? 1 : -1)
   App.last_stars_query = query
@@ -85,6 +88,10 @@ App.update_star = (item, add_visit = true) => {
 }
 
 App.star_item = (item, save = true) => {
+  if (!item.url || !item.title) {
+    return
+  }
+
   let old = App.get_star_by_url(item.url)
 
   if (old) {
