@@ -1,6 +1,7 @@
 App.setup_media = () => {
-  App.create_media_windows(`image`)
-  App.create_media_windows(`video`)
+  for (let type of App.view_media_types) {
+    App.create_media_windows(type)
+  }
 }
 
 App.create_media_windows = (what) => {
@@ -40,7 +41,7 @@ App.create_media_windows = (what) => {
         DOM.el(`#${what}_loading`).classList.add(`hidden`)
       })
     }
-    else if (what === `video`) {
+    else if (what === `video` || what === `audio`) {
       DOM.ev(media, `canplay`, () => {
         App.stop_media_timeout(what)
         media.classList.remove(`hidden`)
@@ -77,29 +78,31 @@ App.create_media_windows = (what) => {
       App.media_wheel.call(e, what)
     })
   }, after_hide: () => {
-    if (what === `video`) {
-      App.stop_video()
+    if (what === `video` || what === `audio`) {
+      App.stop_media_player(what)
     }
 
     App.hide_media_elements(what)
     App.stop_media_timeout(what)
-  }, colored_top: true})
+  }, colored_top: true, cls: `media`})
+}
+
+App.get_media_type = (item) => {
+  for (let type of App.view_media_types) {
+    if (item[type]) {
+      return type
+    }
+  }
 }
 
 App.view_media = (o_item) => {
-  let what
-  let item = App.soft_copy_item(o_item)
+  let what = App.get_media_type(o_item)
 
-  if (item.image) {
-    what = `image`
-  }
-  else if (item.video) {
-    what = `video`
-  }
-  else {
+  if (!what) {
     return
   }
 
+  let item = App.soft_copy_item(o_item)
   App.hide_media_elements(what)
   App[`current_${what}_item`] = item
   App[`current_media_type`] = what
@@ -124,10 +127,10 @@ App.view_media = (o_item) => {
   }
 }
 
-App.stop_video = () => {
-  let video = DOM.el(`#video`)
-  video.pause()
-  video.src = ``
+App.stop_media_player = (what) => {
+  let player = DOM.el(`#${what}`)
+  player.pause()
+  player.src = ``
 }
 
 App.hide_media_elements = (what) => {
@@ -198,8 +201,8 @@ App.media_star = (what) => {
 }
 
 App.open_media = (what = App.window_mode) => {
-  if (what === `video`) {
-    App.stop_video()
+  if (what === `video` || what === `audio`) {
+    App.stop_media_player(what)
   }
 
   let item = App[`current_${what}_item`]
@@ -246,7 +249,7 @@ App.media_wheel = App.create_debouncer((e, what) => {
 }, App.wheel_delay)
 
 App.on_media = () => {
-  return App.window_mode === `image` || App.window_mode === `video`
+  return App.view_media_types.includes(App.window_mode)
 }
 
 App.show_media_menu = (what) => {
@@ -281,9 +284,8 @@ App.show_media_menu = (what) => {
 
 App.search_media = (mode) => {
   let items = []
-  let types = [`image`, `video`, `audio`, `text`]
 
-  for (let type of types) {
+  for (let type of App.media_types) {
     let subitems = []
 
     for (let ext of App[`${type}_extensions`].filter(x => x !== `jpeg`)) {

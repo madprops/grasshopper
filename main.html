@@ -618,10 +618,25 @@
           <video id="video" class="media" controls>
         </div>
       </div>
-      </template>
+    </template>
 
     <template id="template_video_top">
       <div id="video_buttons" class="flex_row_center gap_2 grow"></div>
+    </template>
+
+    <template id="template_audio">
+      <div class="flex_column_center gap_2">
+        <div id="audio_url" class="media_url"></div>
+
+        <div id="audio_container" class="media_container">
+          <div id="audio_loading" class="media_loading hidden"></div>
+          <audio id="audio" class="media" controls>
+        </div>
+      </div>
+    </template>
+
+    <template id="template_audio_top">
+      <div id="audio_buttons" class="flex_row_center gap_2 grow"></div>
     </template>
 
     <script src="js/main/init.js"></script>

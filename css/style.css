@@ -656,11 +656,7 @@ input::placeholder {
   margin-right: 0.5rem;
 }
 
-#window_top_image {
-  margin-bottom: 0.8rem;
-}
-
-#window_top_video {
+.window_top_media {
   margin-bottom: 0.8rem;
 }
 

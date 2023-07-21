@@ -46,3 +46,5 @@ App.item_range_highlight = false
 App.maxed_items = [`stars`, `history`, `bookmarks`]
 App.max_items = 500
 App.media_scroll = 33
+App.media_types = [`image`, `video`, `audio`, `text`]
+App.view_media_types = [`image`, `video`, `audio`]
