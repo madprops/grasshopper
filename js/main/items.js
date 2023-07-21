@@ -229,11 +229,15 @@ App.hide_item = (it) => {
   it.visible = false
 }
 
+App.clear_items = (mode) => {
+  App[`${mode}_items`] = []
+}
+
 App.process_info_list = (mode, info_list) => {
   let container = DOM.el(`#${mode}_container`)
   container.innerHTML = ``
-  App[`${mode}_items`] = []
   App[`${mode}_idx`] = 0
+  App.clear_items(mode)
   let items = App.get_items(mode)
   let exclude = []
 
@@ -644,7 +648,7 @@ App.show_mode = async (mode, cycle = false) => {
 
   // Unload inactive items
   for (let m of App.modes) {
-    App[`${m}_items`] = []
+    App.clear_items(m)
     let c = DOM.el(`#${m}_container`)
 
     if (c) {
