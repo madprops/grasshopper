@@ -254,6 +254,7 @@ App.on_media = () => {
 
 App.show_media_menu = (what) => {
   let items = []
+  let item = App.current_media_item()
 
   items.push({
     text: `Star`,
@@ -268,6 +269,15 @@ App.show_media_menu = (what) => {
       App.media_copy(what)
     }
   })
+
+  if (item.mode !== `bookmarks`) {
+    items.push({
+      text: `Bookmark `,
+      action: () => {
+        App.bookmark_items(item)
+      }
+    })
+  }
 
   if (what === `image`) {
     items.push({
