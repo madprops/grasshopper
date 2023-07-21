@@ -25,7 +25,8 @@ App.setup_title_editor = () => {
   colored_top: true})
 }
 
-App.show_title_editor = (item) => {
+App.show_title_editor = (o_item) => {
+  let item = App.soft_copy_item(o_item)
   App.title_editor_item = item
   let title = item.title
   let title_match = App.get_title(item.url)

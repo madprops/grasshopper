@@ -204,11 +204,11 @@ App.open_media = (what = App.window_mode) => {
 
   let item = App[`current_${what}_item`]
 
-  if (item.mode === `tabs`) {
-    App.focus_or_open_item(item)
-  }
-  else if (item.mode === `stars`) {
+  if (item.mode === `stars`) {
     App.open_star(item)
+  }
+  else {
+    App.focus_or_open_item(item)
   }
 }
 
