@@ -642,6 +642,7 @@ App.show_mode = async (mode, cycle = false) => {
   App.empty_footer_info()
   App.cancel_filter()
 
+  // Unload inactive items
   for (let m of App.modes) {
     App[`${m}_items`] = []
     let c = DOM.el(`#${m}_container`)
