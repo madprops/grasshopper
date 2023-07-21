@@ -636,6 +636,7 @@ App.get_last_window_value = (cycle) => {
 }
 
 App.show_mode = async (mode, cycle = false) => {
+  App.active_mode = mode
   let value = App.get_last_window_value(cycle)
   App.windows[mode].show()
   App.empty_footer_info()

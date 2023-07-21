@@ -43,7 +43,7 @@ App.setup_tabs = () => {
   browser.tabs.onUpdated.addListener(async (id, cinfo, info) => {
     App.log(`Tab Updated: ID: ${id}`)
 
-    if (App.window_mode === `tabs` && info.windowId === App.window_id) {
+    if (App.active_mode === `tabs` && info.windowId === App.window_id) {
       await App.refresh_tab(id)
       App.tabs_check()
     }
@@ -52,7 +52,7 @@ App.setup_tabs = () => {
   browser.tabs.onActivated.addListener(async (info) => {
     App.log(`Tab Activated: ID: ${info.tabId}`)
 
-    if (App.window_mode === `tabs` && info.windowId === App.window_id) {
+    if (App.active_mode === `tabs` && info.windowId === App.window_id) {
       await App.on_tab_activated(info)
       App.tabs_check()
     }
@@ -61,16 +61,19 @@ App.setup_tabs = () => {
   browser.tabs.onRemoved.addListener((id, info) => {
     App.log(`Tab Removed: ID: ${id}`)
 
-    if (App.window_mode === `tabs` && info.windowId === App.window_id) {
-      App.remove_closed_tab(id)
-      App.tabs_check()
+    if (info.windowId === App.window_id) {
+      if (App.active_mode === `tabs`) {
+        App.remove_closed_tab(id)
+        App.tabs_check()
+      }
     }
+
   })
 
   browser.tabs.onMoved.addListener((id, info) => {
     App.log(`Tab Moved: ID: ${id}`)
 
-    if (App.window_mode === `tabs` && info.windowId === App.window_id) {
+    if (App.active_mode === `tabs` && info.windowId === App.window_id) {
       App.move_item(`tabs`, info.fromIndex, info.toIndex)
       App.tabs_check()
     }
@@ -79,7 +82,7 @@ App.setup_tabs = () => {
   browser.tabs.onDetached.addListener((id, info) => {
     App.log(`Tab Detached: ID: ${id}`)
 
-    if (App.window_mode === `tabs` && info.oldWindowId === App.window_id) {
+    if (App.active_mode === `tabs` && info.oldWindowId === App.window_id) {
       App.remove_closed_tab(id)
       App.tabs_check()
     }
@@ -760,7 +763,7 @@ App.hide_playing = () => {
 }
 
 App.check_playing = () => {
-  if (App.window_mode !== `tabs`) {
+  if (App.active_mode !== `tabs`) {
     return
   }
 
@@ -1024,7 +1027,12 @@ App.browser_forward = () => {
 App.switch_to_tabs = () => {
   if (App.get_setting(`switch_to_tabs`)) {
     if (App.window_mode !== `tabs`) {
-      App.show_mode(`tabs`)
+      if (App.active_mode === `tabs`) {
+        App.raise_window(`tabs`)
+      }
+      else {
+        App.show_mode(`tabs`)
+      }
     }
   }
 }
