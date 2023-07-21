@@ -173,7 +173,7 @@ App.cycle_media = (item, what, dir) => {
       }
     }
 
-    if (it === item) {
+    if (it.id === item.id) {
       waypoint = true
     }
   }
