@@ -613,10 +613,6 @@ input::placeholder {
   pointer-events: none;
 }
 
-#window_content_image {
-  max-height: 100vh;
-}
-
 .media_url {
   white-space: nowrap;
   overflow: hidden;
