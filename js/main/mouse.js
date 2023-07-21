@@ -328,8 +328,6 @@ App.on_middle_click = (e) => {
       }
 
       if (item) {
-        App.select(item, false)
-
         if (App.highlights(mode)) {
           App.dehighlight(mode)
         }
