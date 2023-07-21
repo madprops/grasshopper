@@ -641,8 +641,17 @@ App.show_mode = async (mode, cycle = false) => {
   App.windows[mode].show()
   App.empty_footer_info()
   App.cancel_filter()
+
+  for (let m of App.modes) {
+    App[`${m}_items`] = []
+    let c = DOM.el(`#${m}_container`)
+
+    if (c) {
+      c.innerHTML = ``
+    }
+  }
+
   let container = DOM.el(`#${mode}_container`)
-  container.innerHTML = ``
   App.set_filter(mode, value, false)
   let m = App.filter_modes(mode)[0]
   App.set_filter_mode(mode, m[0], false)
@@ -658,7 +667,7 @@ App.show_mode = async (mode, cycle = false) => {
     items = await App[`get_${mode}`]()
   }
 
-  if (mode !== App.window_mode) {
+  if (mode !== App.active_mode) {
     return
   }
 
