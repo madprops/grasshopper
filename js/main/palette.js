@@ -142,7 +142,7 @@ App.fill_palette_container = () => {
     el.dataset.command = cmd.cmd
 
     if (cmd.cmd.includes("bookmark")) {
-      el.dataset.alias = "bmark"
+      el.dataset.alias = "bmarks"
     }
 
     container.append(el)
