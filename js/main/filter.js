@@ -24,11 +24,11 @@ App.do_filter = async (mode, force = false) => {
   let by_what
 
   if (value.startsWith(`title:`)) {
-    value = value.replace(`title:`, ``)
+    value = value.replace(`title:`, ``).trim()
     by_what = `title`
   }
   else if (value.startsWith(`url:`)) {
-    value = value.replace(`url:`, ``)
+    value = value.replace(`url:`, ``).trim()
     by_what = `url`
   }
   else {
