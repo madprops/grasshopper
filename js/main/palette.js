@@ -142,8 +142,8 @@ App.fill_palette_container = () => {
     el.dataset.command = cmd.cmd
     let name_lower = cmd.name.toLowerCase()
 
-    if (name_lower.includes("bookmark")) {
-      el.dataset.alias = name_lower.replace("bookmark", "bmark")
+    if (name_lower.includes(`bookmark`)) {
+      el.dataset.alias = name_lower.replace(`bookmark`, `bmark`)
     }
 
     container.append(el)
