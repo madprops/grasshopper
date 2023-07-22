@@ -60,7 +60,7 @@ App.get_bookmarks = async (query = ``) => {
 }
 
 App.bookmarks_action = (item) => {
-  App.item_action(item)
+  App.focus_or_open_item(item)
 }
 
 App.bookmarks_action_alt = (item) => {

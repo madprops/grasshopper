@@ -1305,15 +1305,6 @@ App.get_mode_name = (mode) => {
   return App.capitalize(mode)
 }
 
-App.item_action = async (item) => {
-  if (App.highlights(item.mode)) {
-    App.open_items(item)
-  }
-  else {
-    await App.focus_or_open_item(item)
-  }
-}
-
 App.on_item_window = (mode = App.window_mode) => {
   return App.mode_order.includes(mode)
 }
