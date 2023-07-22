@@ -321,6 +321,9 @@ App.process_info = (mode, info, exclude = [], o_item) => {
     item.muted = info.mutedInfo.muted
     item.discarded = info.discarded
   }
+  else if (mode === `bookmarks`) {
+    item.parent_id = info.parentId
+  }
 
   if (o_item) {
     if (o_item.created) {

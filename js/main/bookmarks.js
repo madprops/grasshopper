@@ -67,13 +67,39 @@ App.bookmarks_action_alt = (item) => {
   App.open_items(item, true)
 }
 
+App.get_bookmarks_folder = async () => {
+  let bookmarks_folder = App.get_setting(`bookmarks_folder`)
+  let results = await browser.bookmarks.search({title: bookmarks_folder})
+  let folder
+
+  for (let res of results) {
+    if (res.title === bookmarks_folder && res.type === `folder`) {
+      folder = res
+      break
+    }
+  }
+
+  if (!folder) {
+    folder = await browser.bookmarks.create({title: bookmarks_folder})
+  }
+
+  return folder
+}
+
 App.bookmark_items = async (item, active) => {
   if (!active) {
     active = App.get_active_items(item.mode, item)
   }
 
+  let folder = await App.get_bookmarks_folder()
+
+  if (!folder) {
+    return
+  }
+
   let bookmarks = await App.get_bookmarks()
-  let urls = bookmarks.map(x => App.format_url(x.url || ``))
+  let folder_bookmarks = bookmarks.filter(x => x.parentId === folder.id)
+  let urls = folder_bookmarks.map(x => App.format_url(x.url || ``))
   let items = []
 
   for (let item of active) {
@@ -98,20 +124,6 @@ App.bookmark_items = async (item, active) => {
   let force = (items.length === 1) || !App.get_setting(`warn_on_bookmark`)
 
   App.show_confirm(`Bookmark these items? (${items.length})`, async () => {
-    let results = await browser.bookmarks.search({title: App.bookmarks_folder})
-    let folder
-
-    for (let res of results) {
-      if (res.title === App.bookmarks_folder && res.type === `folder`) {
-        folder = res
-        break
-      }
-    }
-
-    if (!folder) {
-      folder = await browser.bookmarks.create({title: App.bookmarks_folder})
-    }
-
     for (let item of items) {
       await browser.bookmarks.create({parentId: folder.id, title: item.title, url: item.url})
     }
