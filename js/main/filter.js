@@ -491,6 +491,9 @@ App.do_filter_2 = (mode) => {
     if (text.includes(value)) {
       item.classList.remove(`hidden`)
     }
+    else if (item.dataset.alias && item.dataset.alias.includes(value)) {
+      item.classList.remove(`hidden`)
+    }
     else {
       item.classList.add(`hidden`)
     }

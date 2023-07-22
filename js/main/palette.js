@@ -140,6 +140,11 @@ App.fill_palette_container = () => {
     let el = DOM.create(`div`, `palette_item action filter_item filter_text`)
     el.textContent = cmd.name
     el.dataset.command = cmd.cmd
+
+    if (cmd.cmd.includes("bookmark")) {
+      el.dataset.alias = "bmark"
+    }
+
     container.append(el)
   }
 }
