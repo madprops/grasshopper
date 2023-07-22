@@ -49,6 +49,8 @@ App.get_bookmarks = async (query = ``) => {
     return []
   }
 
+  results = results.filter(x => x.type === `bookmark`)
+
   results.sort((a, b) => {
     return a.dateAdded > b.dateAdded ? -1 : 1
   })
@@ -96,8 +98,22 @@ App.bookmark_items = async (item, active) => {
   let force = (items.length === 1) || !App.get_setting(`warn_on_bookmark`)
 
   App.show_confirm(`Bookmark these items? (${items.length})`, async () => {
+    let folder
+    let results = await browser.bookmarks.search({title: App.bookmarks_folder})
+
+    for (let res of results) {
+      if (res.title === App.bookmarks_folder && res.type === `folder`) {
+        folder = res
+        break
+      }
+    }
+
+    if (!folder) {
+      folder = await browser.bookmarks.create({title: App.bookmarks_folder})
+    }
+
     for (let item of items) {
-      await browser.bookmarks.create({title: item.title, url: item.url})
+      await browser.bookmarks.create({parentId: folder.id, title: item.title, url: item.url})
     }
 
     App.beep()
