@@ -16,6 +16,7 @@ App.default_settings = {
   closed_index: {value: 3, category: `basic`, version: 1},
   custom_filters: {value: [], category: `basic`, version: 1},
   mute_click: {value: true, category: `basic`, version: 1},
+  bookmarks_folder: {value: `Grasshopper`, category: `basic`, version: 1},
 
   background_color: {value: `rgb(45, 45, 55)`, category: `theme`, version: 1},
   text_color: {value: `rgb(233, 233, 233)`, category: `theme`, version: 1},
@@ -75,7 +76,6 @@ App.default_settings = {
   close_on_focus: {value: true, category: `more`, version: 1},
   close_on_open: {value: true, category: `more`, version: 1},
   case_insensitive_filter: {value: true, category: `more`, version: 1},
-  bookmarks_folder: {value: `Grasshopper`, category: `more`, version: 1},
   all_bookmarks: {value: true, category: `more`, version: 1},
 }
 
