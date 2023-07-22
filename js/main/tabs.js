@@ -3,11 +3,9 @@ App.setup_tabs = () => {
     [App.separator_string],
     [`pinned`, `Pinned`],
     [`normal`, `Normal`],
-    [App.separator_string],
     [`playing`, `Playing`],
     [`unloaded`, `Unloaded`],
     [`duplicate`, `Duplicate`],
-    [App.separator_string],
     [`title`, `Has Title`],
   ]
 
