@@ -1,6 +1,6 @@
 App.setup_bookmarks = () => {
   App.bookmarks_actions = [
-    {text: `Bookmark`, action: () => {
+    {text: `BMark`, action: () => {
       App.bookmark_active()
     }},
     {text: `Media`, get_items: () => {
