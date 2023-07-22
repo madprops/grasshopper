@@ -1,7 +1,7 @@
 App.image_extensions = [`jpg`, `jpeg`, `png`, `gif`, `webp`, `bmp`]
 App.video_extensions = [`mp4`, `webm`]
 App.audio_extensions = [`mp3`, `ogg`, `flac`, `wav`]
-App.text_extensions = [`pdf`, `epub`, `txt`]
+App.text_extensions = [`txt`, `pdf`, `epub`]
 
 App.create_debouncer = (func, delay) => {
   let timer
