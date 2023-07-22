@@ -95,14 +95,14 @@ App.get_bookmarks_folder = async () => {
 }
 
 App.bookmark_items = async (item, active) => {
-  if (!active) {
-    active = App.get_active_items(item.mode, item)
-  }
-
   let folder = await App.get_bookmarks_folder()
 
   if (!folder) {
     return
+  }
+
+  if (!active) {
+    active = App.get_active_items(item.mode, item)
   }
 
   let bookmarks = await App.get_bookmarks()
