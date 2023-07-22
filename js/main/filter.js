@@ -141,9 +141,6 @@ App.filter_check = (args) => {
     else if (args.filter_mode === `title`) {
       match = App.get_title(args.item.url)
     }
-    else if (args.filter_mode === `star`) {
-      match = App.get_star_by_url(args.item.url)
-    }
     else if (args.filter_mode === `image`) {
       match = args.item.image
     }

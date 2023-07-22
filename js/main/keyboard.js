@@ -87,9 +87,6 @@ App.check_items_keyboard = (e) => {
       if (mode === `tabs`) {
         App.close_tabs(item)
       }
-      else if (mode === `stars`) {
-        App.remove_stars(item)
-      }
 
       e.preventDefault()
       return
@@ -192,9 +189,6 @@ App.check_items_keyboard = (e) => {
       if (App.highlights(mode)) {
         if (mode === `tabs`) {
           App.close_tabs(item)
-        }
-        else if (mode === `stars`) {
-          App.remove_stars(item)
         }
 
         e.preventDefault()
@@ -354,13 +348,6 @@ App.setup_keyboard = () => {
       }
       else if (App.settings_filter_focused()) {
         App.filter_settings()
-        return
-      }
-    }
-    else if (mode === `star_editor`) {
-      if (e.key === `Enter`) {
-        App.star_editor_save()
-        e.preventDefault()
         return
       }
     }

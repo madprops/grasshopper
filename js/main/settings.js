@@ -4,7 +4,6 @@ App.default_settings = {
   font: {value: `sans-serif`, category: `basic`, version: 1},
   font_size: {value: 16, category: `basic`, version: 1},
   lock_drag: {value: false, category: `basic`, version: 1},
-  quick_star: {value: true, category: `basic`, version: 1},
   fetch_favicons: {value: true, category: `basic`, version: 1},
   show_pick_button: {value: false, category: `basic`, version: 1},
   scrollbars: {value: false, category: `basic`, version: 1},
@@ -12,10 +11,9 @@ App.default_settings = {
   height: {value: 80, category: `basic`, version: 1},
   beep: {value: 80, category: `basic`, version: 1},
   tabs_index: {value: 0, category: `basic`, version: 1},
-  stars_index: {value: 1, category: `basic`, version: 1},
-  history_index: {value: 2, category: `basic`, version: 1},
-  bookmarks_index: {value: 3, category: `basic`, version: 1},
-  closed_index: {value: 4, category: `basic`, version: 1},
+  history_index: {value: 1, category: `basic`, version: 1},
+  bookmarks_index: {value: 2, category: `basic`, version: 1},
+  closed_index: {value: 3, category: `basic`, version: 1},
   custom_filters: {value: [], category: `basic`, version: 1},
   mute_click: {value: true, category: `basic`, version: 1},
 
@@ -40,8 +38,6 @@ App.default_settings = {
   warn_on_duplicate_tabs: {value: true, category: `warns`, version: 1},
   warn_on_close_duplicate_tabs: {value: true, category: `warns`, version: 1},
   warn_on_close_normal_tabs: {value: true, category: `warns`, version: 1},
-  warn_on_star: {value: true, category: `warns`, version: 1},
-  warn_on_unstar: {value: true, category: `warns`, version: 1},
   warn_on_open: {value: true, category: `warns`, version: 1},
   warn_on_untitle_tabs: {value: true, category: `warns`, version: 1},
   warn_on_bookmark: {value: true, category: `warns`, version: 1},
@@ -381,7 +377,6 @@ App.setup_settings = () => {
     DOM.ev(DOM.el(`#settings_mode_order`), `contextmenu`, (e) => {
       App.reset_single_setting(e, () => {
         App.set_default_setting(`tabs_index`)
-        App.set_default_setting(`stars_index`)
         App.set_default_setting(`history_index`)
         App.set_default_setting(`bookmarks_index`)
         App.set_default_setting(`closed_index`)

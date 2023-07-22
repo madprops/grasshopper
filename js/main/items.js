@@ -1306,12 +1306,7 @@ App.item_action = async (item) => {
     App.open_items(item)
   }
   else {
-    if (item.mode === `stars`) {
-      await App.open_star(item)
-    }
-    else {
-      await App.focus_or_open_item(item)
-    }
+    await App.focus_or_open_item(item)
   }
 }
 

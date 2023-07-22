@@ -1,9 +1,4 @@
 App.setup_bookmarks = () => {
-  App.bookmarks_filter_modes = [
-    [App.separator_string],
-    [`star`, `Has Star`],
-  ]
-
   App.bookmarks_actions = [
     {text: `Bookmark`, action: () => {
       App.bookmark_active()

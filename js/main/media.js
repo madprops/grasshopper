@@ -196,23 +196,13 @@ App.media_show_error = (what) => {
   DOM.el(`#${what}_loading`).textContent = `Error`
 }
 
-App.media_star = (what) => {
-  App.star_items(App[`current_${what}_item`])
-}
-
 App.open_media = (what = App.window_mode) => {
   if (what === `video` || what === `audio`) {
     App.stop_media_player(what)
   }
 
   let item = App[`current_${what}_item`]
-
-  if (item.mode === `stars`) {
-    App.open_star(item)
-  }
-  else {
-    App.focus_or_open_item(item)
-  }
+  App.focus_or_open_item(item)
 }
 
 App.media_copy = (what) => {
@@ -255,13 +245,6 @@ App.on_media = () => {
 App.show_media_menu = (what) => {
   let items = []
   let item = App.current_media_item()
-
-  items.push({
-    text: `Star`,
-    action: () => {
-      App.media_star(what)
-    }
-  })
 
   items.push({
     text: `Copy URL`,

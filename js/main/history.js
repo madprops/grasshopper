@@ -1,9 +1,4 @@
 App.setup_history = () => {
-  App.history_filter_modes = [
-    [App.separator_string],
-    [`star`, `Has Star`],
-  ]
-
   App.history_actions = [
     {text: `Media`, get_items: () => {
       return App.search_media(`history`)

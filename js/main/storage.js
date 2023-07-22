@@ -36,17 +36,6 @@ App.stor_save_settings = () => {
   App.save_local_storage(App.stor_settings_name, App.settings)
 }
 
-App.stor_get_stars = () => {
-  App.stars = App.get_local_storage(App.stor_stars_name, [])
-  App.check_stars()
-  App.log(`Stor: Got stars`)
-}
-
-App.stor_save_stars = () => {
-  App.log(`Stor: Saving stars`)
-  App.save_local_storage(App.stor_stars_name, App.stars)
-}
-
 App.stor_get_titles = () => {
   App.titles = App.get_local_storage(App.stor_titles_name, [])
   App.check_titles()

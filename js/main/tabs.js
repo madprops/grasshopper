@@ -8,7 +8,6 @@ App.setup_tabs = () => {
     [`unloaded`, `Unloaded`],
     [`duplicate`, `Duplicate`],
     [App.separator_string],
-    [`star`, `Has Star`],
     [`title`, `Has Title`],
   ]
 

@@ -66,41 +66,6 @@ App.show_item_menu = (item, x, y) => {
       }
     })
   }
-
-  else if (item.mode === `stars`) {
-    items.push({
-      text: `Open`,
-      action: () => {
-        App.open_items(item, true)
-      }
-    })
-
-    if (!multiple) {
-      items.push({
-        text: `Edit`,
-        action: () => {
-          App.add_or_edit_star(item)
-        }
-      })
-    }
-
-    App.common_menu_items(items, item, multiple)
-    App.more_menu_items(items, item, multiple)
-
-    if (items.length >= min_close_sep) {
-      items.push({
-        separator: true
-      })
-    }
-
-    items.push({
-      text: `Remove`,
-      action: () => {
-        App.remove_stars(item)
-      }
-    })
-  }
-
   else {
     items.push({
       text: `Open`,
@@ -154,15 +119,6 @@ App.common_menu_items = (o_items, item, multiple) => {
       text: `View`,
       action: () => {
         App.view_media(item)
-      }
-    })
-  }
-
-  if (item.mode !== `stars`) {
-    items.push({
-      text: `Star`,
-      action: () => {
-        App.star_items(item)
       }
     })
   }

@@ -44,9 +44,6 @@ App.commands = [
   {name: `Show Closed`, cmd: `show_closed`, action: (args) => {
     App.show_mode(`closed`)
   }},
-  {name: `Show Stars`, cmd: `show_stars`, action: (args) => {
-    App.show_mode(`stars`)
-  }},
   {name: `Show Main`, cmd: `show_main`, action: (args) => {
     App.show_main_mode()
   }},
@@ -67,12 +64,6 @@ App.commands = [
 
   {name: `Open Items`, cmd: `open_items`, mode: `items`, action: (args) => {
     App.open_items(args.item, true)
-  }},
-  {name: `Star Items`, cmd: `star_items`, mode: `items`, action: (args) => {
-    App.star_items(args.item)
-  }},
-  {name: `Star Active`, cmd: `star_active`, action: (args) => {
-    App.star_active(args.item)
   }},
   {name: `Bookmark Items`, cmd: `bookmark_items`, mode: `items`, action: (args) => {
     App.bookmark_items(args.item)

@@ -1,9 +1,4 @@
 App.setup_closed = () => {
-  App.closed_filter_modes = [
-    [App.separator_string],
-    [`star`, `Has Star`],
-  ]
-
   App.closed_actions = [
     {text: `Forget All`, action: () => {
       App.forget_all_closed_tabs()
