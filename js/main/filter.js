@@ -487,11 +487,23 @@ App.do_filter_2 = (mode) => {
   for (let item of items) {
     let text = DOM.el_or_self(`.filter_text`, item).textContent
     text = text.toLowerCase().trim()
+    let show = false
 
     if (text.includes(value)) {
-      item.classList.remove(`hidden`)
+      show = true
     }
-    else if (item.dataset.alias && item.dataset.alias.includes(value)) {
+    else if (item.dataset.alias) {
+      let words = item.dataset.alias.split(`;`)
+
+      for (let w of words) {
+        if (w.includes(value)) {
+          show = true
+          break
+        }
+      }
+    }
+
+    if (show) {
       item.classList.remove(`hidden`)
     }
     else {
