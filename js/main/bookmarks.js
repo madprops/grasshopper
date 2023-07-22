@@ -98,8 +98,8 @@ App.bookmark_items = async (item, active) => {
   let force = (items.length === 1) || !App.get_setting(`warn_on_bookmark`)
 
   App.show_confirm(`Bookmark these items? (${items.length})`, async () => {
-    let folder
     let results = await browser.bookmarks.search({title: App.bookmarks_folder})
+    let folder
 
     for (let res of results) {
       if (res.title === App.bookmarks_folder && res.type === `folder`) {
