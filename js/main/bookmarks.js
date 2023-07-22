@@ -49,6 +49,14 @@ App.get_bookmarks = async (query = ``) => {
     return []
   }
 
+  if (!App.get_setting(`all_bookmarks`)) {
+    let folder = await App.get_bookmarks_folder()
+
+    if (folder) {
+      results = results.filter(x => x.parentId === folder.id)
+    }
+  }
+
   results = results.filter(x => x.type === `bookmark`)
 
   results.sort((a, b) => {
