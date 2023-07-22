@@ -493,10 +493,10 @@ App.do_filter_2 = (mode) => {
       show = true
     }
     else if (item.dataset.alias) {
-      let words = item.dataset.alias.split(`;`)
+      let aliases = item.dataset.alias.split(`;`)
 
-      for (let w of words) {
-        if (w.includes(value)) {
+      for (let alias of aliases) {
+        if (alias.includes(value)) {
           show = true
           break
         }
