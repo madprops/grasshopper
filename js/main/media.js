@@ -281,7 +281,7 @@ App.search_media = (mode) => {
   for (let type of App.media_types) {
     let subitems = []
 
-    for (let ext of App[`${type}_extensions`].filter(x => x !== `jpeg`)) {
+    for (let ext of App[`${type}_extensions`]) {
       subitems.push({text: ext, action: () => {
         App.set_filter_mode(mode, type, false)
         App.set_filter(mode, `.${ext}`)
