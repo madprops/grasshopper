@@ -26,7 +26,6 @@
     <script src="js/main/scroller.js"></script>
     <script src="js/main/tabs.js"></script>
     <script src="js/main/titles.js"></script>
-    <script src="js/main/stars.js"></script>
     <script src="js/main/bookmarks.js"></script>
     <script src="js/main/closed.js"></script>
     <script src="js/main/history.js"></script>
@@ -59,49 +58,6 @@
       <div id="background"></div>
       <div id="main"></div>
     </div>
-
-    <template id="template_star_editor">
-      <div class="flex_column_center gap_4 editor_container" id="star_editor_container">
-        <div class="flex_column_center gap_1">
-          <div>Title of the star</div>
-          <input type="text" autocomplete="off" spellcheck="false" id="star_editor_title" class="text editor_text" placeholder="Title of the star">
-        </div>
-
-        <div class="flex_column_center gap_1">
-          <div>URL of the star</div>
-          <textarea autocomplete="off" spellcheck="false" id="star_editor_url" class="text editor_text" placeholder="URL of the star" rows="4"></textarea>
-        </div>
-
-        <div id="star_editor_info" class="flex_column_center gap_1">
-          <div class="flex_row_center gap_1">
-            <div>Visits:</div>
-            <div id="star_editor_visits"></div>
-          </div>
-
-          <div class="flex_row_center gap_1">
-            <div>Last Visit:</div>
-            <div id="star_editor_visited"></div>
-          </div>
-
-          <div class="flex_row_center gap_1">
-            <div>Added On:</div>
-            <div id="star_editor_added"></div>
-          </div>
-        </div>
-
-        <div class="flex_row_center gap_2">
-          <div id="star_editor_remove" class="button button_2">Remove</div>
-          <div id="star_editor_save" class="button">Save</div>
-        </div>
-      </div>
-    </template>
-
-    <template id="template_star_editor_top">
-      <div class="flex_row_center gap_2">
-        <div>Star Editor</div>
-        <div id="star_editor_close" class="button">Close</div>
-      </div>
-    </template>
 
     <template id="template_title_editor">
       <div class="flex_column_center gap_4 editor_container" id="title_editor_container">
@@ -145,11 +101,6 @@
         <div class="settings_item" title="Dragging requires holding Ctrl to work">
           <div class="settings_label">Lock Drag</div>
           <input type="checkbox" class="settings_checkbox" id="settings_lock_drag" data-setting="lock_drag">
-        </div>
-
-        <div class="settings_item" title="Bypass the star editor when saving stars">
-          <div class="settings_label">Quick Star</div>
-          <input type="checkbox" class="settings_checkbox" id="settings_quick_star" data-setting="quick_star">
         </div>
 
         <div class="settings_item" title="Make network requests to fetch favicons when neceessary">
@@ -337,19 +288,9 @@
           <input type="checkbox" class="settings_checkbox" id="settings_warn_on_close_duplicate_tabs" data-setting="warn_on_close_duplicate_tabs">
         </div>
 
-        <div class="settings_item" title="Warn when starring multiple items">
-          <div class="settings_label">Warn On<br>Star Items</div>
-          <input type="checkbox" class="settings_checkbox" id="settings_warn_on_star" data-setting="warn_on_star">
-        </div>
-
         <div class="settings_item" title="Warn when bookmarking multiple items">
           <div class="settings_label">Warn On<br>Bookmark Items</div>
           <input type="checkbox" class="settings_checkbox" id="settings_warn_on_bookmark" data-setting="warn_on_bookmark">
-        </div>
-
-        <div class="settings_item" title="Warn when un-starring items">
-          <div class="settings_label">Warn On<br>Un-Star Items</div>
-          <input type="checkbox" class="settings_checkbox" id="settings_warn_on_unstar" data-setting="warn_on_unstar">
         </div>
 
         <div class="settings_item" title="Warn when opening multiple items">
