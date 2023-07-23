@@ -407,8 +407,8 @@ App.create_item_element = (item) => {
   }
 
   let text = DOM.create(`div`, `item_text action`)
-  let text_1 = DOM.create(`div`, `item_text_0`)
-  let text_2 = DOM.create(`div`, `item_text_1 hidden`)
+  let text_1 = DOM.create(`div`, `item_text_1`)
+  let text_2 = DOM.create(`div`, `item_text_2 hidden`)
   text.append(text_1)
   text.append(text_2)
   item.element.append(text)
@@ -592,7 +592,7 @@ App.set_item_text = (item) => {
 
   for (let [i, line] of lines.entries()) {
     let text = line.substring(0, App.max_text_length).trim()
-    let text_el = DOM.el(`.item_text_${i}`, item.element)
+    let text_el = DOM.el(`.item_text_${i + 1}`, item.element)
     text_el.classList.remove(`hidden`)
     text_el.textContent = text
   }
