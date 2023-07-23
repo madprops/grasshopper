@@ -164,6 +164,8 @@ App.setup_window = () => {
     if (App.get_setting(`autoselect`)) {
       clearInterval(App.refocus_timeout)
     }
+
+    App.item_range_on = false
   })
 }
 
