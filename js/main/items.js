@@ -459,27 +459,23 @@ App.create_item_element = (item) => {
     item.element.append(pick)
   }
 
-  if (App.get_setting(`close_icon`) || App.get_setting(`open_icon`)) {
-    let alt
-    let cls = `item_button item_button_right`
-
-    if (item.mode === `tabs`) {
-      if (App.get_setting(`close_icon`)) {
-        alt = DOM.create(`div`, cls + ` item_button_close`)
-        alt.textContent = App.get_setting(`close_icon`)
-        alt.title = `Close`
-      }
+  if (item.mode === `tabs`) {
+    if (App.get_setting(`close_icon`)) {
+      let alt = DOM.create(`div`, `item_button item_button_right item_button_close`)
+      alt.textContent = App.get_setting(`close_icon`)
+      alt.title = `Close`
+      alt.draggable = true
+      item.element.append(alt)
     }
-    else {
-      if (App.get_setting(`open_icon`)) {
-        alt = DOM.create(`div`, cls + ` item_button_open`)
-        alt.textContent = App.get_setting(`open_icon`)
-        alt.title = `Open`
-      }
+  }
+  else {
+    if (App.get_setting(`open_icon`)) {
+      let alt = DOM.create(`div`, `item_button item_button_right item_button_open`)
+      alt.textContent = App.get_setting(`open_icon`)
+      alt.title = `Open`
+      alt.draggable = true
+      item.element.append(alt)
     }
-
-    alt.draggable = true
-    item.element.append(alt)
   }
 
   item.created = true
