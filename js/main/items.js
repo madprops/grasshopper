@@ -461,20 +461,20 @@ App.create_item_element = (item) => {
 
   if (item.mode === `tabs`) {
     if (App.get_setting(`close_icon`)) {
-      let alt = DOM.create(`div`, `item_button item_button_right item_button_close`)
-      alt.textContent = App.get_setting(`close_icon`)
-      alt.title = `Close`
-      alt.draggable = true
-      item.element.append(alt)
+      let btn = DOM.create(`div`, `item_button item_button_right item_button_close`)
+      btn.textContent = App.get_setting(`close_icon`)
+      btn.title = `Close`
+      btn.draggable = true
+      item.element.append(btn)
     }
   }
   else {
     if (App.get_setting(`open_icon`)) {
-      let alt = DOM.create(`div`, `item_button item_button_right item_button_open`)
-      alt.textContent = App.get_setting(`open_icon`)
-      alt.title = `Open`
-      alt.draggable = true
-      item.element.append(alt)
+      let btn = DOM.create(`div`, `item_button item_button_right item_button_open`)
+      btn.textContent = App.get_setting(`open_icon`)
+      btn.title = `Open`
+      btn.draggable = true
+      item.element.append(btn)
     }
   }
 
