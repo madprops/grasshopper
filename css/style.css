@@ -222,7 +222,7 @@ svg {
 }
 
 .item_border .item {
-  border: 1px solid var(--alt_color_1);
+  border-bottom: 1px solid var(--alt_color_1);
 }
 
 .item_icon_container {
