@@ -88,14 +88,19 @@
 
     <template id="template_settings_basic">
       <div id="settings_basic_container" class="settings_container">
-        <div class="settings_item" title="Enable scrollbars instead of hiding them">
-          <div class="settings_label">Scrollbars</div>
-          <input type="checkbox" class="settings_checkbox" id="settings_scrollbars" data-setting="scrollbars">
+        <div class="settings_item" title="Show a border around items">
+          <div class="settings_label">Item Border</div>
+          <input type="checkbox" class="settings_checkbox" id="settings_item_border" data-setting="item_border">
         </div>
 
         <div class="settings_item" title="Show the pick buttons on hover on the left of items">
           <div class="settings_label">Show Pick</div>
           <input type="checkbox" class="settings_checkbox" id="settings_show_pick_button" data-setting="show_pick_button">
+        </div>
+
+        <div class="settings_item" title="Enable scrollbars instead of hiding them">
+          <div class="settings_label">Scrollbars</div>
+          <input type="checkbox" class="settings_checkbox" id="settings_scrollbars" data-setting="scrollbars">
         </div>
 
         <div class="settings_item" title="Make network requests to fetch favicons when neceessary">
@@ -308,11 +313,6 @@
 
     <template id="template_settings_more">
       <div id="settings_more_container" class="settings_container">
-        <div class="settings_item" title="Show a border around items">
-          <div class="settings_label">Item Border</div>
-          <input type="checkbox" class="settings_checkbox" id="settings_item_border" data-setting="item_border">
-        </div>
-
         <div class="settings_item" title="View media when clicking an item">
           <div class="settings_label">View Media</div>
           <input type="checkbox" class="settings_checkbox" id="settings_view_media" data-setting="view_media">
