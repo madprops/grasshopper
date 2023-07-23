@@ -306,7 +306,6 @@ App.process_info = (mode, info, exclude = [], o_item) => {
     mode: mode,
     window_id: info.windowId,
     session_id: info.sessionId,
-    last_visit: info.lastVisitTime,
     image: image,
     video: video,
     audio: audio,
@@ -321,8 +320,12 @@ App.process_info = (mode, info, exclude = [], o_item) => {
     item.muted = info.mutedInfo.muted
     item.discarded = info.discarded
   }
+  else if (mode === `history`) {
+    item.last_visit = info.lastVisitTime
+  }
   else if (mode === `bookmarks`) {
     item.parent_id = info.parentId
+    item.date_added = info.dateAdded
   }
 
   if (o_item) {
@@ -578,7 +581,7 @@ App.set_item_text = (item) => {
   }
 
   if (App.get_setting(`show_tooltips`)) {
-    if (content === item.footer) {
+    if (content === item.footer || text_mode.includes(`_`)) {
       item.element.title = content
     }
     else {
@@ -587,6 +590,10 @@ App.set_item_text = (item) => {
 
     if (item.last_visit) {
       item.element.title += `\nLast Visit: ${App.nice_date(item.last_visit)}`
+    }
+
+    if (item.date_added) {
+      item.element.title += `\nDate Added: ${App.nice_date(item.date_added)}`
     }
   }
 
