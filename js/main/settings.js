@@ -1,4 +1,4 @@
-App.build_default_settings = () => {
+App.build_settings = () => {
   let obj = {}
 
   let category = `basic`

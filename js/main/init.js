@@ -1,7 +1,7 @@
 App.init = async () => {
   let win = await browser.windows.getCurrent({populate: false})
   App.window_id = win.id
-  App.build_default_settings()
+  App.build_settings()
   App.stor_get_settings()
   App.stor_get_titles()
   App.stor_get_command_history()
