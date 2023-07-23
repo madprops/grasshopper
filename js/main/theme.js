@@ -83,11 +83,11 @@ App.apply_theme = () => {
       main.classList.add(`hide_scroller`)
     }
 
-    if (App.get_setting(`item_border`)) {
-      main.classList.add(`item_border`)
+    if (App.get_setting(`borders`)) {
+      main.classList.add(`borders`)
     }
     else {
-      main.classList.remove(`item_border`)
+      main.classList.remove(`borders`)
     }
 
     let bg = DOM.el(`#background`)

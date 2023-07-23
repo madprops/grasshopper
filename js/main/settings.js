@@ -18,7 +18,7 @@ App.build_default_settings = () => {
   obj.closed_index = {value: 3, category: category, version: 1}
   obj.custom_filters = {value: [], category: category, version: 1}
   obj.bookmarks_folder = {value: `Grasshopper`, category: category, version: 1}
-  obj.item_border = {value: false, category: category, version: 1}
+  obj.borders = {value: false, category: category, version: 1}
   obj.view_media = {value: false, category: category, version: 1}
 
   category = `theme`

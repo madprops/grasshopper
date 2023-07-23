@@ -221,7 +221,7 @@ svg {
   gap: 0.611rem;
 }
 
-.item_border .item {
+.borders .item {
   border-bottom: 1px solid var(--alt_color_1);
 }
 
