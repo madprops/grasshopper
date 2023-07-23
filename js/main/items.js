@@ -535,7 +535,15 @@ App.set_item_text = (item) => {
 
     if (icons.length > 0) {
       for (let icon of icons) {
-        let el = DOM.create(`div`, `item_status_icon item_status_${icon}`)
+        let cls = ``
+
+        if (icon === `playing` || icon === `muted`) {
+          if (App.get_setting(`mute_click`)) {
+            cls = ` action`
+          }
+        }
+
+        let el = DOM.create(`div`, `item_status_icon item_status_${icon}${cls}`)
         el.textContent = App.get_setting(`${icon}_icon`)
         status.append(el)
       }
