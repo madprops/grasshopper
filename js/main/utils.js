@@ -1,8 +1,3 @@
-// For debugging
-const a = (s) => {
-  console.info(s)
-}
-
 App.image_extensions = [`jpg`, `jpeg`, `png`, `gif`, `webp`, `bmp`]
 App.video_extensions = [`mp4`, `webm`]
 App.audio_extensions = [`mp3`, `ogg`, `flac`, `wav`]
