@@ -1,39 +1,5 @@
-DOM.ev(window, `mouseup`, (e) => {
-  if (e.button !== 0) {
-    return
-  }
-
-  App.item_range_on = false
-})
-
 App.setup_window_mouse = (mode) => {
   let container = DOM.el(`#${mode}_container`)
-
-  DOM.ev(container, `mousedown`, (e) => {
-    if (e.button !== 0) {
-      return
-    }
-
-    if (!App.cursor_on_item(e, mode)) {
-      return
-    }
-
-    let item = App.get_cursor_item(mode, e)
-
-    if (e.target.classList.contains(`item_pick`)) {
-      if (item.highlighted) {
-        App.item_range_highlight = false
-      }
-      else {
-        App.select_item(item, `none`, false)
-        App.item_range_highlight = true
-      }
-
-      App.toggle_highlight(item)
-      App.item_range_on = true
-      return
-    }
-  })
 
   DOM.ev(container, `click`, (e) => {
     if (e.button !== 0) {
@@ -44,11 +10,15 @@ App.setup_window_mouse = (mode) => {
       return
     }
 
-    if (e.target.classList.contains(`item_pick`)) {
-      return
-    }
-
     let item = App.get_cursor_item(mode, e)
+
+    if (e.target.classList.contains(`item_pick`)) {
+      if (!e.shiftKey && !e.ctrlKey) {
+        App.select(item, false)
+        App.toggle_highlight(item)
+        return
+      }
+    }
 
     if (e.target.classList.contains(`view_media_button`)) {
       if (!e.shiftKey && !e.ctrlKey) {
@@ -131,12 +101,6 @@ App.setup_window_mouse = (mode) => {
     if (App.cursor_on_item(e, mode)) {
       let item = App.get_cursor_item(mode, e)
       App.update_footer_info(item)
-
-      if (App.item_range_on) {
-        if (item.highlighted !== App.item_range_highlight) {
-          App.toggle_highlight(item, App.item_range_highlight)
-        }
-      }
     }
   })
 
