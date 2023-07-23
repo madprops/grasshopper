@@ -71,6 +71,14 @@ App.setup_window_mouse = (mode) => {
       }
     }
 
+    if (App.get_setting(`view_media`)) {
+      if (App.get_media_type(item)) {
+        App.select(item)
+        App.view_media(item)
+        return
+      }
+    }
+
     App[`${mode}_action`](item)
   })
 
