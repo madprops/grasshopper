@@ -33,6 +33,22 @@ App.setup_window_mouse = (mode) => {
       App.item_range_on = true
       return
     }
+  })
+
+  DOM.ev(container, `click`, (e) => {
+    if (e.button !== 0) {
+      return
+    }
+
+    if (!App.cursor_on_item(e, mode)) {
+      return
+    }
+
+    if (e.target.classList.contains(`item_pick`)) {
+      return
+    }
+
+    let item = App.get_cursor_item(mode, e)
 
     if (e.target.classList.contains(`view_media_button`)) {
       if (!e.shiftKey && !e.ctrlKey) {
