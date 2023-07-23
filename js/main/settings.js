@@ -33,6 +33,7 @@ App.default_settings = {
   open_icon: {value: `🚀`, category: `icons`, version: 1},
   pick_icon: {value: `🎯`, category: `icons`, version: 1},
   active_icon: {value: `👁`, category: `icons`, version: 1},
+  view_icon: {value: `▶️`, category: `icons`, version: 1},
 
   warn_on_close_tabs: {value: `special`, category: `warns`, version: 1},
   warn_on_unload_tabs: {value: `special`, category: `warns`, version: 1},
@@ -71,7 +72,6 @@ App.default_settings = {
   close_unloaded_tabs: {value: true, category: `more`, version: 1},
   single_new_tab: {value: true, category: `more`, version: 1},
   show_alt_button: {value: true, category: `more`, version: 1},
-  show_view: {value: true, category: `more`, version: 1},
   autoselect: {value: true, category: `more`, version: 1},
   close_on_focus: {value: true, category: `more`, version: 1},
   close_on_open: {value: true, category: `more`, version: 1},

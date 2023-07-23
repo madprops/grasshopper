@@ -369,7 +369,7 @@ App.check_item_icon = (item) => {
 }
 
 App.check_view_media = (item) => {
-  if (!App.get_setting(`show_view`)) {
+  if (!App.get_setting(`view_icon`)) {
     return
   }
 
@@ -402,9 +402,9 @@ App.create_item_element = (item) => {
   let status = DOM.create(`div`, `item_status hidden`)
   item.element.append(status)
 
-  if (App.get_setting(`show_view`)) {
-    let view_media = DOM.create(`div`, `view_media_button underline action`)
-    view_media.textContent = `View`
+  if (App.get_setting(`view_icon`)) {
+    let view_media = DOM.create(`div`, `view_media_button action`)
+    view_media.textContent = App.get_setting(`view_icon`)
     item.element.append(view_media)
     App.check_view_media(item)
   }
