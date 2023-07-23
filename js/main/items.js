@@ -564,6 +564,7 @@ App.set_item_text = (item) => {
     }
 
     content += path
+    item.footer = path || item.title
   }
   else if (text_mode === `url_title`) {
     content = path
@@ -573,6 +574,7 @@ App.set_item_text = (item) => {
     }
 
     content += item.title
+    item.footer = item.title || path
   }
 
   if (App.get_setting(`show_tooltips`)) {
