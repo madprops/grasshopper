@@ -349,10 +349,7 @@ App.on_middle_click = (e) => {
         return
       }
 
-      if (App.highlights(mode)) {
-        App.dehighlight(mode)
-      }
-
+      App.dehighlight(mode)
       App[`${mode}_action_alt`](item, e.shiftKey)
     }
   }
