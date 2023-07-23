@@ -407,6 +407,10 @@ App.create_item_element = (item) => {
   }
 
   let text = DOM.create(`div`, `item_text action`)
+  let text_1 = DOM.create(`div`, `item_text_0`)
+  let text_2 = DOM.create(`div`, `item_text_1 hidden`)
+  text.append(text_1)
+  text.append(text_2)
   item.element.append(text)
   App.set_item_text(item)
 
@@ -542,14 +546,33 @@ App.set_item_text = (item) => {
 
   let content
   let path = decodeURI(item.path)
+  let text_mode = App.get_setting(`text_mode`)
 
-  if (App.get_setting(`text_mode`) === `title`) {
+  if (text_mode === `title`) {
     content = item.title || path
     item.footer = path || item.title
   }
-  else if (App.get_setting(`text_mode`) === `url`) {
+  else if (text_mode === `url`) {
     content = path || item.title
     item.footer = item.title || path
+  }
+  else if (text_mode === `title_url`) {
+    content = item.title
+
+    if (content) {
+      content += `\n`
+    }
+
+    content += path
+  }
+  else if (text_mode === `url_title`) {
+    content = path
+
+    if (content) {
+      content += `\n`
+    }
+
+    content += item.title
   }
 
   if (App.get_setting(`show_tooltips`)) {
@@ -565,9 +588,14 @@ App.set_item_text = (item) => {
     }
   }
 
-  content = content.substring(0, App.max_text_length).trim()
-  let text = DOM.el(`.item_text`, item.element)
-  text.textContent = content
+  let lines = content.split(`\n`)
+
+  for (let [i, line] of lines.entries()) {
+    let text = line.substring(0, App.max_text_length).trim()
+    let text_el = DOM.el(`.item_text_${i}`, item.element)
+    text_el.classList.remove(`hidden`)
+    text_el.textContent = text
+  }
 }
 
 App.get_item_by_id = (mode, id) => {

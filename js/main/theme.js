@@ -38,16 +38,20 @@ App.apply_theme = () => {
     let h = `${(App.get_setting(`height`) / 100) * 600}px`
     App.set_css_var(`height`, h)
 
-    let item_height = `2.15rem`
+    let item_height = 2.15
 
     if (App.get_setting(`item_height`) === `compact`) {
-      item_height = `1.7rem`
+      item_height = 1.7
     }
     else if (App.get_setting(`item_height`) === `bigger`) {
-      item_height = `2.6rem`
+      item_height = 2.6
     }
 
-    App.set_css_var(`item_height`, item_height)
+    if (App.get_setting(`text_mode`).includes(`_`)) {
+      item_height += 1.1
+    }
+
+    App.set_css_var(`item_height`, `${item_height}rem`)
 
     if (App.get_setting(`background_image`)) {
       App.set_css_var(`background_image`, `url(${App.get_setting(`background_image`)})`)

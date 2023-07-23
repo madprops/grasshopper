@@ -345,7 +345,12 @@ App.setup_settings = () => {
 
   App.create_window(Object.assign({}, common, {id: `settings_basic`, setup: () => {
     prepare(`basic`)
-    App.settings_make_menu(`text_mode`, [[`Title`, `title`], [`URL`, `url`]])
+    App.settings_make_menu(`text_mode`, [
+      [`Title`, `title`],
+      [`URL`, `url`],
+      [`Title / URL`, `title_url`],
+      [`URL / Title`, `url_title`],
+    ])
 
     App.settings_make_menu(`font`, [
       [`Sans`, `sans-serif`],
