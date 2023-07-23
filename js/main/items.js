@@ -451,7 +451,7 @@ App.create_item_element = (item) => {
     item.element.classList.remove(`highlighted`)
   }
 
-  if (App.get_setting(`show_pick_button`)) {
+  if (App.get_setting(`pick_icon`)) {
     let pick = DOM.create(`div`, `item_pick item_button item_button_left`)
     pick.textContent = App.get_setting(`pick_icon`)
     pick.title = `Pick`
@@ -460,25 +460,21 @@ App.create_item_element = (item) => {
   }
 
   if (item.mode === `tabs`) {
-    if (App.get_setting(`show_close_button`)) {
-      if (App.get_setting(`close_icon`)) {
-        let btn = DOM.create(`div`, `item_button item_button_right item_button_close`)
-        btn.textContent = App.get_setting(`close_icon`)
-        btn.title = `Close`
-        btn.draggable = true
-        item.element.append(btn)
-      }
+    if (App.get_setting(`close_icon`)) {
+      let btn = DOM.create(`div`, `item_button item_button_right item_button_close`)
+      btn.textContent = App.get_setting(`close_icon`)
+      btn.title = `Close`
+      btn.draggable = true
+      item.element.append(btn)
     }
   }
   else {
-    if (App.get_setting(`show_open_button`)) {
-      if (App.get_setting(`open_icon`)) {
-        let btn = DOM.create(`div`, `item_button item_button_right item_button_open`)
-        btn.textContent = App.get_setting(`open_icon`)
-        btn.title = `Open`
-        btn.draggable = true
-        item.element.append(btn)
-      }
+    if (App.get_setting(`open_icon`)) {
+      let btn = DOM.create(`div`, `item_button item_button_right item_button_open`)
+      btn.textContent = App.get_setting(`open_icon`)
+      btn.title = `Open`
+      btn.draggable = true
+      item.element.append(btn)
     }
   }
 
