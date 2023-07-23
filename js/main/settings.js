@@ -1,84 +1,94 @@
-App.default_settings = {
-  text_mode: {value: `title`, category: `basic`, version: 1},
-  item_height: {value: `normal`, category: `basic`, version: 1},
-  font: {value: `sans-serif`, category: `basic`, version: 1},
-  font_size: {value: 16, category: `basic`, version: 1},
-  lock_drag: {value: false, category: `basic`, version: 1},
-  fetch_favicons: {value: true, category: `basic`, version: 1},
-  show_pick_button: {value: false, category: `basic`, version: 1},
-  scrollbars: {value: false, category: `basic`, version: 1},
-  width: {value: 70, category: `basic`, version: 1},
-  height: {value: 80, category: `basic`, version: 1},
-  beep: {value: 80, category: `basic`, version: 1},
-  tabs_index: {value: 0, category: `basic`, version: 1},
-  history_index: {value: 1, category: `basic`, version: 1},
-  bookmarks_index: {value: 2, category: `basic`, version: 1},
-  closed_index: {value: 3, category: `basic`, version: 1},
-  custom_filters: {value: [], category: `basic`, version: 1},
-  mute_click: {value: true, category: `basic`, version: 1},
-  bookmarks_folder: {value: `Grasshopper`, category: `basic`, version: 1},
+App.build_default_settings = () => {
+  let obj = {}
 
-  background_color: {value: `rgb(45, 45, 55)`, category: `theme`, version: 1},
-  text_color: {value: `rgb(233, 233, 233)`, category: `theme`, version: 1},
-  background_image: {value: ``, category: `theme`, version: 1},
-  background_effect: {value: `none`, category: `theme`, version: 1},
-  background_tiles: {value: `none`, category: `theme`, version: 1},
+  let category = `basic`
+  obj.text_mode = {value: `title`, category: category, version: 1}
+  obj.item_height = {value: `normal`, category: category, version: 1}
+  obj.font = {value: `sans-serif`, category: category, version: 1}
+  obj.font_size = {value: 16, category: category, version: 1}
+  obj.fetch_favicons = {value: true, category: category, version: 1}
+  obj.show_pick_button = {value: false, category: category, version: 1}
+  obj.scrollbars = {value: false, category: category, version: 1}
+  obj.width = {value: 70, category: category, version: 1}
+  obj.height = {value: 80, category: category, version: 1}
+  obj.beep = {value: 80, category: category, version: 1}
+  obj.tabs_index = {value: 0, category: category, version: 1}
+  obj.history_index = {value: 1, category: category, version: 1}
+  obj.bookmarks_index = {value: 2, category: category, version: 1}
+  obj.closed_index = {value: 3, category: category, version: 1}
+  obj.custom_filters = {value: [], category: category, version: 1}
+  obj.mute_click = {value: true, category: category, version: 1}
+  obj.bookmarks_folder = {value: `Grasshopper`, category: category, version: 1}
 
-  pin_icon: {value: `+`, category: `icons`, version: 1},
-  normal_icon: {value: ``, category: `icons`, version: 1},
-  playing_icon: {value: `🔊`, category: `icons`, version: 1},
-  muted_icon: {value: `🔇`, category: `icons`, version: 1},
-  unloaded_icon: {value: `💤`, category: `icons`, version: 1},
-  close_icon: {value: `x`, category: `icons`, version: 1},
-  open_icon: {value: `🚀`, category: `icons`, version: 1},
-  pick_icon: {value: `🎯`, category: `icons`, version: 1},
-  active_icon: {value: `👁`, category: `icons`, version: 1},
-  view_icon: {value: `▶️`, category: `icons`, version: 1},
+  category = `theme`
+  obj.background_color = {value: `rgb(45, 45, 55)`, category: category, version: 1}
+  obj.text_color = {value: `rgb(233, 233, 233)`, category: category, version: 1}
+  obj.background_image = {value: ``, category: category, version: 1}
+  obj.background_effect = {value: `none`, category: category, version: 1}
+  obj.background_tiles = {value: `none`, category: category, version: 1}
 
-  warn_on_close_tabs: {value: `special`, category: `warns`, version: 1},
-  warn_on_unload_tabs: {value: `special`, category: `warns`, version: 1},
-  warn_on_duplicate_tabs: {value: true, category: `warns`, version: 1},
-  warn_on_close_duplicate_tabs: {value: true, category: `warns`, version: 1},
-  warn_on_close_normal_tabs: {value: true, category: `warns`, version: 1},
-  warn_on_open: {value: true, category: `warns`, version: 1},
-  warn_on_untitle_tabs: {value: true, category: `warns`, version: 1},
-  warn_on_bookmark: {value: true, category: `warns`, version: 1},
+  category = `icons`
+  obj.pin_icon = {value: `+`, category: category, version: 1}
+  obj.normal_icon = {value: ``, category: category, version: 1}
+  obj.playing_icon = {value: `🔊`, category: category, version: 1}
+  obj.muted_icon = {value: `🔇`, category: category, version: 1}
+  obj.unloaded_icon = {value: `💤`, category: category, version: 1}
+  obj.close_icon = {value: `x`, category: category, version: 1}
+  obj.open_icon = {value: `🚀`, category: category, version: 1}
+  obj.pick_icon = {value: `🎯`, category: category, version: 1}
+  obj.active_icon = {value: `👁`, category: category, version: 1}
+  obj.view_icon = {value: `▶️`, category: category, version: 1}
 
-  gestures_enabled: {value: true, category: `mouse`, version: 1},
-  gestures_threshold: {value: 10, category: `mouse`, version: 1},
-  gesture_up: {value: `go_to_top`, category: `mouse`, version: 1},
-  gesture_down: {value: `go_to_bottom`, category: `mouse`, version: 1},
-  gesture_left: {value: `prev_mode`, category: `mouse`, version: 1},
-  gesture_right: {value: `next_mode`, category: `mouse`, version: 1},
-  gesture_up_and_down: {value: `show_all`, category: `mouse`, version: 1},
-  gesture_left_and_right: {value: `filter_domain`, category: `mouse`, version: 1},
-  middle_click_main_menu: {value: `show_main`, category: `mouse`, version: 1},
-  middle_click_filter_menu: {value: `show_all`, category: `mouse`, version: 1},
-  middle_click_back_button: {value: `browser_back`, category: `mouse`, version: 1},
-  middle_click_actions_menu: {value: `browser_reload`, category: `mouse`, version: 1},
-  middle_click_footer: {value: `copy_item_url`, category: `mouse`, version: 1},
-  middle_click_pick_button: {value: `filter_domain`, category: `mouse`, version: 1},
-  middle_click_close_button: {value: `unload_tabs`, category: `mouse`, version: 1},
-  middle_click_open_button: {value: `open_items`, category: `mouse`, version: 1},
+  category = `warns`
+  obj.warn_on_close_tabs = {value: `special`, category: category, version: 1}
+  obj.warn_on_unload_tabs = {value: `special`, category: category, version: 1}
+  obj.warn_on_duplicate_tabs = {value: true, category: category, version: 1}
+  obj.warn_on_close_duplicate_tabs = {value: true, category: category, version: 1}
+  obj.warn_on_close_normal_tabs = {value: true, category: category, version: 1}
+  obj.warn_on_open = {value: true, category: category, version: 1}
+  obj.warn_on_untitle_tabs = {value: true, category: category, version: 1}
+  obj.warn_on_bookmark = {value: true, category: category, version: 1}
 
-  switch_to_tabs: {value: true, category: `more`, version: 1},
-  clear_filter: {value: true, category: `more`, version: 1},
-  show_tooltips: {value: true, category: `more`, version: 1},
-  show_icons: {value: true, category: `more`, version: 1},
-  show_pinline: {value: true, category: `more`, version: 1},
-  show_scroller: {value: true, category: `more`, version: 1},
-  show_footer: {value: true, category: `more`, version: 1},
-  close_duplicate_pins: {value: true, category: `more`, version: 1},
-  close_unloaded_tabs: {value: true, category: `more`, version: 1},
-  single_new_tab: {value: true, category: `more`, version: 1},
-  show_alt_button: {value: true, category: `more`, version: 1},
-  autoselect: {value: true, category: `more`, version: 1},
-  close_on_focus: {value: true, category: `more`, version: 1},
-  close_on_open: {value: true, category: `more`, version: 1},
-  case_insensitive_filter: {value: true, category: `more`, version: 1},
-  all_bookmarks: {value: true, category: `more`, version: 1},
-  item_border: {value: false, category: `more`, version: 1},
-  view_media: {value: false, category: `more`, version: 1},
+  category = `mouse`
+  obj.gestures_enabled = {value: true, category: category, version: 1}
+  obj.gestures_threshold = {value: 10, category: category, version: 1}
+  obj.gesture_up = {value: `go_to_top`, category: category, version: 1}
+  obj.gesture_down = {value: `go_to_bottom`, category: category, version: 1}
+  obj.gesture_left = {value: `prev_mode`, category: category, version: 1}
+  obj.gesture_right = {value: `next_mode`, category: category, version: 1}
+  obj.gesture_up_and_down = {value: `show_all`, category: category, version: 1}
+  obj.gesture_left_and_right = {value: `filter_domain`, category: category, version: 1}
+  obj.middle_click_main_menu = {value: `show_main`, category: category, version: 1}
+  obj.middle_click_filter_menu = {value: `show_all`, category: category, version: 1}
+  obj.middle_click_back_button = {value: `browser_back`, category: category, version: 1}
+  obj.middle_click_actions_menu = {value: `browser_reload`, category: category, version: 1}
+  obj.middle_click_footer = {value: `copy_item_url`, category: category, version: 1}
+  obj.middle_click_pick_button = {value: `filter_domain`, category: category, version: 1}
+  obj.middle_click_close_button = {value: `unload_tabs`, category: category, version: 1}
+  obj.middle_click_open_button = {value: `open_items`, category: category, version: 1}
+
+  category = `more`
+  obj.switch_to_tabs = {value: true, category: category, version: 1}
+  obj.clear_filter = {value: true, category: category, version: 1}
+  obj.show_tooltips = {value: true, category: category, version: 1}
+  obj.show_icons = {value: true, category: category, version: 1}
+  obj.show_pinline = {value: true, category: category, version: 1}
+  obj.show_scroller = {value: true, category: category, version: 1}
+  obj.show_footer = {value: true, category: category, version: 1}
+  obj.close_duplicate_pins = {value: true, category: category, version: 1}
+  obj.close_unloaded_tabs = {value: true, category: category, version: 1}
+  obj.single_new_tab = {value: true, category: category, version: 1}
+  obj.show_alt_button = {value: true, category: category, version: 1}
+  obj.autoselect = {value: true, category: category, version: 1}
+  obj.close_on_focus = {value: true, category: category, version: 1}
+  obj.close_on_open = {value: true, category: category, version: 1}
+  obj.case_insensitive_filter = {value: true, category: category, version: 1}
+  obj.all_bookmarks = {value: true, category: category, version: 1}
+  obj.item_border = {value: false, category: category, version: 1}
+  obj.view_media = {value: false, category: category, version: 1}
+  obj.lock_drag = {value: false, category: category, version: 1}
+
+  App.default_settings = obj
 }
 
 App.make_mode_order = () => {
