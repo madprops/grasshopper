@@ -113,7 +113,9 @@ App.view_media = (o_item) => {
     DOM.el(`#${what}_loading`).classList.remove(`hidden`)
   }, 500)
 
-  DOM.el(`#${what}_url`).textContent = item.url
+  let url_el = DOM.el(`#${what}_url`)
+  url_el.textContent = item.url
+  url_el.title = item.url
   App.show_window(what)
   App.media_show_loading(what)
 
