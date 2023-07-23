@@ -254,10 +254,7 @@ App.setup_keyboard = () => {
     }
 
     if (App.popup_open()) {
-      if (pmode === `textarea` || pmode === `input`) {
-        return
-      }
-      else if (pmode === `confirm`) {
+      if (pmode === `confirm`) {
         if (e.key === `ArrowLeft`) {
           App.focus_confirm_no()
         }
