@@ -17,7 +17,6 @@ App.build_default_settings = () => {
   obj.bookmarks_index = {value: 2, category: category, version: 1}
   obj.closed_index = {value: 3, category: category, version: 1}
   obj.custom_filters = {value: [], category: category, version: 1}
-  obj.mute_click = {value: true, category: category, version: 1}
   obj.bookmarks_folder = {value: `Grasshopper`, category: category, version: 1}
 
   category = `theme`
@@ -87,6 +86,7 @@ App.build_default_settings = () => {
   obj.item_border = {value: false, category: category, version: 1}
   obj.view_media = {value: false, category: category, version: 1}
   obj.lock_drag = {value: false, category: category, version: 1}
+  obj.mute_click = {value: true, category: category, version: 1}
 
   App.default_settings = obj
 }
