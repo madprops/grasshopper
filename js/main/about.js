@@ -33,6 +33,7 @@ App.setup_about = () => {
       `To filter by url start with url:`,
       `To perform gestures, hold the middle mouse button and move in a direction, then release`,
       `Some interface elements can be mapped to commands on middle click`,
+      `Hold on a pick and move the mouse to select multiple items`,
     ]
 
     DOM.ev(DOM.el(`#about_close`), `click`, () => {
