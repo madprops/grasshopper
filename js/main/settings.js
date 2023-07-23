@@ -79,6 +79,8 @@ App.build_default_settings = () => {
   obj.close_duplicate_pins = {value: true, category: category, version: 1}
   obj.close_unloaded_tabs = {value: true, category: category, version: 1}
   obj.single_new_tab = {value: true, category: category, version: 1}
+  obj.show_close_button = {value: true, category: category, version: 1}
+  obj.show_open_button = {value: true, category: category, version: 1}
   obj.autoselect = {value: true, category: category, version: 1}
   obj.close_on_focus = {value: true, category: category, version: 1}
   obj.close_on_open = {value: true, category: category, version: 1}
