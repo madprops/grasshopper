@@ -77,6 +77,7 @@ App.default_settings = {
   close_on_open: {value: true, category: `more`, version: 1},
   case_insensitive_filter: {value: true, category: `more`, version: 1},
   all_bookmarks: {value: true, category: `more`, version: 1},
+  item_border: {value: false, category: `more`, version: 1},
 }
 
 App.make_mode_order = () => {

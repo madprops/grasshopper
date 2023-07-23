@@ -221,6 +221,10 @@ svg {
   gap: 0.611rem;
 }
 
+.item_border .item {
+  border: 1px solid var(--alt_color_1);
+}
+
 .item_icon_container {
   display: flex;
   align-items: center;

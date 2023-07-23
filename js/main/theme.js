@@ -83,6 +83,13 @@ App.apply_theme = () => {
       main.classList.add(`hide_scroller`)
     }
 
+    if (App.get_setting(`item_border`)) {
+      main.classList.add(`item_border`)
+    }
+    else {
+      main.classList.remove(`item_border`)
+    }
+
     let bg = DOM.el(`#background`)
     let bg_effects = [`blur`, `grayscale`, `invert`, `rotate_1`, `rotate_2`, `rotate_3`]
     let bg_effect = App.get_setting(`background_effect`)
