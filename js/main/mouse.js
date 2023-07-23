@@ -54,8 +54,8 @@ App.setup_window_mouse = (mode) => {
       return
     }
 
-    if (e.target.classList.contains(`item_alt`)) {
-      App.alt_button_action(item, e.shiftKey)
+    if (e.target.classList.contains(`item_button_right`)) {
+      App.right_button_action(item)
       return
     }
 
@@ -85,17 +85,14 @@ App.setup_window_mouse = (mode) => {
   DOM.ev(container, `contextmenu`, (e) => {
     if (App.cursor_on_item(e, mode)) {
       let item = App.get_cursor_item(mode, e)
+      App.select(item, false)
 
-      if (item) {
-        App.select(item, false)
-
-        if (!item.highlighted && App.highlights(mode)) {
-          App.dehighlight(mode)
-        }
-
-        App.show_item_menu(item, e.clientX, e.clientY)
-        e.preventDefault()
+      if (!item.highlighted && App.highlights(mode)) {
+        App.dehighlight(mode)
       }
+
+      App.show_item_menu(item, e.clientX, e.clientY)
+      e.preventDefault()
     }
   })
 
@@ -288,7 +285,9 @@ App.cursor_on_item = (e, mode) => {
   return e.target.closest(`.${mode}_item`)
 }
 
-App.alt_button_action = (item, shift) => {
+App.right_button_action = (item) => {
+  App.dehighlight(item.mode)
+
   if (item.mode === `tabs`) {
     App.close_tabs(item)
   }
@@ -314,7 +313,7 @@ App.on_middle_click = (e) => {
         return
       }
 
-      if (e.target.classList.contains(`item_alt_close`)) {
+      if (e.target.classList.contains(`item_button_close`)) {
         let cmd = App.get_setting(`middle_click_close_button`)
 
         if (cmd !== `none`) {
@@ -324,7 +323,7 @@ App.on_middle_click = (e) => {
         return
       }
 
-      if (e.target.classList.contains(`item_alt_open`)) {
+      if (e.target.classList.contains(`item_button_open`)) {
         let cmd = App.get_setting(`middle_click_open_button`)
 
         if (cmd !== `none`) {
@@ -334,13 +333,11 @@ App.on_middle_click = (e) => {
         return
       }
 
-      if (item) {
-        if (App.highlights(mode)) {
-          App.dehighlight(mode)
-        }
-
-        App[`${mode}_action_alt`](item, e.shiftKey)
+      if (App.highlights(mode)) {
+        App.dehighlight(mode)
       }
+
+      App[`${mode}_action_alt`](item, e.shiftKey)
     }
   }
 }

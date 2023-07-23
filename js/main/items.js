@@ -459,19 +459,20 @@ App.create_item_element = (item) => {
     item.element.append(pick)
   }
 
-  if (App.get_setting(`show_alt_button`)) {
-    let alt = DOM.create(`div`, `item_alt item_button item_button_right`)
+  if (App.get_setting(`close_icon`) || App.get_setting(`open_icon`)) {
+    let alt
+    let cls = `item_button item_button_right`
 
     if (item.mode === `tabs`) {
-      if (alt.textContent = App.get_setting(`close_icon`)) {
-        alt.classList.add(`item_alt_close`)
+      if (App.get_setting(`close_icon`)) {
+        alt = DOM.create(`div`, cls + ` item_button_close`)
         alt.textContent = App.get_setting(`close_icon`)
         alt.title = `Close`
       }
     }
     else {
       if (App.get_setting(`open_icon`)) {
-        alt.classList.add(`item_alt_open`)
+        alt = DOM.create(`div`, cls + ` item_button_open`)
         alt.textContent = App.get_setting(`open_icon`)
         alt.title = `Open`
       }
