@@ -1,70 +1,58 @@
-DOM.ev(window, `mouseup`, (e) => {
-  if (e.button !== 0) {
+App.mouse_action = (item, e) => {
+  if (!item) {
     return
   }
 
-  App.item_range_on = false
-})
+  if (e.target.classList.contains(`view_media_button`)) {
+    if (!e.shiftKey && !e.ctrlKey) {
+      App.select(item)
+      App.view_media(item)
+      return
+    }
+  }
+
+  if (e.shiftKey) {
+    App.highlight_range(item)
+    App.select(item, false)
+    return
+  }
+
+  if (e.ctrlKey) {
+    App.select(item, false)
+    App.toggle_highlight(item)
+    return
+  }
+
+  if (e.target.classList.contains(`item_button_right`)) {
+    App.right_button_action(item)
+    return
+  }
+
+  App.select(item)
+
+  if (item.mode === `tabs`) {
+    if (App.get_setting(`mute_click`)) {
+      if (e.target.classList.contains(`item_status_playing`) ||
+        e.target.classList.contains(`item_status_muted`)) {
+        App.toggle_mute_tabs(item)
+        return
+      }
+    }
+  }
+
+  if (App.get_setting(`view_media`)) {
+    if (App.get_media_type(item)) {
+      App.select(item)
+      App.view_media(item)
+      return
+    }
+  }
+
+  App[`${item.mode}_action`](item)
+}
 
 App.setup_window_mouse = (mode) => {
   let container = DOM.el(`#${mode}_container`)
-
-  App.mouse_action = (item, e) => {
-    if (e.target.classList.contains(`item_pick`)) {
-      if (!e.shiftKey && !e.ctrlKey) {
-        App.select(item, false)
-        App.toggle_highlight(item)
-        return
-      }
-    }
-
-    if (e.target.classList.contains(`view_media_button`)) {
-      if (!e.shiftKey && !e.ctrlKey) {
-        App.select(item)
-        App.view_media(item)
-        return
-      }
-    }
-
-    if (e.shiftKey) {
-      App.highlight_range(item)
-      App.select(item, false)
-      return
-    }
-
-    if (e.ctrlKey) {
-      App.select(item, false)
-      App.toggle_highlight(item)
-      return
-    }
-
-    if (e.target.classList.contains(`item_button_right`)) {
-      App.right_button_action(item)
-      return
-    }
-
-    App.select(item)
-
-    if (mode === `tabs`) {
-      if (App.get_setting(`mute_click`)) {
-        if (e.target.classList.contains(`item_status_playing`) ||
-          e.target.classList.contains(`item_status_muted`)) {
-          App.toggle_mute_tabs(item)
-          return
-        }
-      }
-    }
-
-    if (App.get_setting(`view_media`)) {
-      if (App.get_media_type(item)) {
-        App.select(item)
-        App.view_media(item)
-        return
-      }
-    }
-
-    App[`${mode}_action`](item)
-  }
 
   DOM.ev(container, `mousedown`, (e) => {
     if (e.button !== 0) {
@@ -107,6 +95,12 @@ App.setup_window_mouse = (mode) => {
   })
 
   DOM.ev(container, `mouseup`, (e) => {
+    if (e.button !== 0) {
+      return
+    }
+
+    App.item_range_on = false
+
     if (!App.cursor_on_item(e, mode)) {
       return
     }
