@@ -75,9 +75,9 @@ App.setup_window_mouse = (mode) => {
       return
     }
 
-    let item = App.get_cursor_item(mode, e)
 
     if (e.target.classList.contains(`item_pick`)) {
+      let item = App.get_cursor_item(mode, e)
       App.item_range_on = true
 
       if (item.highlighted) {
@@ -103,6 +103,7 @@ App.setup_window_mouse = (mode) => {
       return
     }
 
+    let item = App.get_cursor_item(mode, e)
     App.mouse_action(item, e)
   })
 
