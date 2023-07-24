@@ -9,54 +9,7 @@ DOM.ev(window, `mouseup`, (e) => {
 App.setup_window_mouse = (mode) => {
   let container = DOM.el(`#${mode}_container`)
 
-  DOM.ev(container, `mousedown`, (e) => {
-    if (e.button !== 0) {
-      return
-    }
-
-    if (!App.cursor_on_item(e, mode)) {
-      return
-    }
-
-    let item = App.get_cursor_item(mode, e)
-
-    if (item) {
-      if (e.target.classList.contains(`item_pick`)) {
-        App.item_range_on = true
-
-        if (item.highlighted) {
-          App.item_range_highlight = false
-        }
-        else {
-          App.select_item(item, `none`, false)
-          App.item_range_highlight = true
-        }
-
-        if (e.shiftKey) {
-          App.highlight_range(item)
-        }
-        else {
-          App.toggle_highlight(item)
-        }
-      }
-    }
-  })
-
-  DOM.ev(container, `click`, (e) => {
-    if (e.button !== 0) {
-      return
-    }
-
-    if (e.target.classList.contains(`item_pick`)) {
-      return
-    }
-
-    if (!App.cursor_on_item(e, mode)) {
-      return
-    }
-
-    let item = App.get_cursor_item(mode, e)
-
+  App.mouse_action = (item, e) => {
     if (e.target.classList.contains(`item_pick`)) {
       if (!e.shiftKey && !e.ctrlKey) {
         App.select(item, false)
@@ -111,6 +64,63 @@ App.setup_window_mouse = (mode) => {
     }
 
     App[`${mode}_action`](item)
+  }
+
+  DOM.ev(container, `mousedown`, (e) => {
+    if (e.button !== 0) {
+      return
+    }
+
+    if (!App.cursor_on_item(e, mode)) {
+      return
+    }
+
+    let item = App.get_cursor_item(mode, e)
+
+    if (e.target.classList.contains(`item_pick`)) {
+      App.item_range_on = true
+
+      if (item.highlighted) {
+        App.item_range_highlight = false
+      }
+      else {
+        App.select_item(item, `none`, false)
+        App.item_range_highlight = true
+      }
+
+      if (e.shiftKey) {
+        App.highlight_range(item)
+      }
+      else {
+        App.toggle_highlight(item)
+      }
+
+      return
+    }
+
+    if (App.highlights(mode)) {
+      App.mousedown_date = Date.now()
+      return
+    }
+
+    App.mouse_action(item, e)
+  })
+
+  DOM.ev(container, `mouseup`, (e) => {
+    if (!App.cursor_on_item(e, mode)) {
+      return
+    }
+
+    if (!App.mousedown_date) {
+      return
+    }
+
+    if (Date.now() - App.mousedown_date >= App.mousedown_max) {
+      return
+    }
+
+    let item = App.get_cursor_item(mode, e)
+    App.mouse_action(item, e)
   })
 
   DOM.ev(container, `contextmenu`, (e) => {
