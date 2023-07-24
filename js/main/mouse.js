@@ -111,7 +111,7 @@ App.setup_window_mouse = (mode) => {
       return
     }
 
-    if (Date.now() - App.mousedown_date >= App.mousedown_max) {
+    if ((Date.now() - App.mousedown_date) >= App.mousedown_max) {
       return
     }
 
