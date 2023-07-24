@@ -28,9 +28,10 @@ App.setup_window_mouse = (mode) => {
           App.item_range_highlight = false
         }
         else {
-          App.select_item(item, `none`, false)
           App.item_range_highlight = true
         }
+
+        App.select_item(item, `none`, false)
 
         if (e.shiftKey) {
           App.highlight_range(item)
@@ -149,6 +150,7 @@ App.setup_window_mouse = (mode) => {
 
       if (App.item_range_on) {
         if (item.highlighted !== App.item_range_highlight) {
+          App.select_item(item, `none`, false)
           App.toggle_highlight(item, App.item_range_highlight)
         }
       }
