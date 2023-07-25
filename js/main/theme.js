@@ -38,12 +38,13 @@ App.apply_theme = () => {
     let h = `${(App.get_setting(`height`) / 100) * 600}px`
     App.set_css_var(`height`, h)
 
+    let density = App.get_setting(`density`)
     let item_height = 2.15
 
-    if (App.get_setting(`item_height`) === `compact`) {
+    if (density === `compact`) {
       item_height = 1.7
     }
-    else if (App.get_setting(`item_height`) === `bigger`) {
+    else if (density === `bigger`) {
       item_height = 2.6
     }
 

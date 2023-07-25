@@ -3,7 +3,7 @@ App.build_default_settings = () => {
 
   let category = `basic`
   obj.text_mode = {value: `title`, category: category, version: 1}
-  obj.item_height = {value: `normal`, category: category, version: 1}
+  obj.density = {value: `normal`, category: category, version: 1}
   obj.font = {value: `sans-serif`, category: category, version: 1}
   obj.font_size = {value: 16, category: category, version: 1}
   obj.fetch_favicons = {value: true, category: category, version: 1}
@@ -375,7 +375,7 @@ App.setup_settings = () => {
       App.apply_theme()
     })
 
-    App.settings_make_menu(`item_height`, [
+    App.settings_make_menu(`density`, [
       [`Compact`, `compact`],
       [`Normal`, `normal`],
       [`Bigger`, `bigger`],
