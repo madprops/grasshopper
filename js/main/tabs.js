@@ -1153,13 +1153,20 @@ App.toggle_tabs = () => {
   App.dehighlight(`tabs`)
 
   if (pinned_h.length === 0 && normal_h.length === 0) {
+    App.select_item(normal[0], `none`, false)
+
     for (let item of normal) {
       App.toggle_highlight(item, true)
     }
   }
   else if (normal_h.length > 0) {
+    App.select_item(pinned[0], `none`, false)
+
     for (let item of pinned) {
       App.toggle_highlight(item, true)
     }
+  }
+  else {
+    App.focus_current_tab()
   }
 }
