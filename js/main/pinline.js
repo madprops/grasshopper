@@ -43,6 +43,18 @@ App.do_check_pinline = () => {
           App.toggle_normal_tabs()
         })
 
+        DOM.ev(pinline, `mouseup`, (e) => {
+          if (e.button !== 1) {
+            return
+          }
+
+          let cmd = App.get_setting(`middle_click_pinline`)
+
+          if (cmd !== `none`) {
+            App.run_command({cmd: cmd, item: item, from: `pinline`})
+          }
+        })
+
         last_pinned.element.after(pinline)
         return
       }
