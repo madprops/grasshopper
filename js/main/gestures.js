@@ -9,7 +9,7 @@ App.setup_gestures = () => {
   }
 
   obj.default = (e) => {
-    App.mouse_middle_action(e)
+    App.mouse_middle_action(App.window_mode, e)
   }
 
   NiceGesture.start(DOM.el(`#main`), obj)
