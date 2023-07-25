@@ -163,6 +163,8 @@ App.setup_window = () => {
   })
 
   DOM.ev(document.documentElement, `mouseenter`, () => {
+    App.item_range_on = false
+
     if (App.get_setting(`autoselect`)) {
       clearInterval(App.refocus_timeout)
     }
