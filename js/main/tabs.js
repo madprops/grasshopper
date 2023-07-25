@@ -1148,12 +1148,12 @@ App.toggle_tabs = () => {
   let normal_h = normal.filter(x => x.highlighted)
   App.dehighlight(`tabs`)
 
-  if (pinned_h.length > 0) {
+  if (pinned_h.length === 0 && normal_h.length === 0) {
     for (let item of normal) {
       App.toggle_highlight(item, true)
     }
   }
-  else if (normal_h.length === 0) {
+  else if (normal_h.length > 0) {
     for (let item of pinned) {
       App.toggle_highlight(item, true)
     }

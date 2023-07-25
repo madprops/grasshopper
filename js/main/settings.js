@@ -66,7 +66,7 @@ App.build_default_settings = () => {
   obj.middle_click_pick_button = {value: `filter_domain`, category: category, version: 1}
   obj.middle_click_close_button = {value: `unload_tabs`, category: category, version: 1}
   obj.middle_click_open_button = {value: `open_items`, category: category, version: 1}
-  obj.middle_click_pinline = {value: `toggle_tabs`, category: category, version: 1}
+  obj.middle_click_pinline = {value: `tabs_info`, category: category, version: 1}
 
   category = `more`
   obj.switch_to_tabs = {value: true, category: category, version: 1}
