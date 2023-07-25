@@ -136,7 +136,7 @@ App.bookmark_items = async (item, active) => {
       await browser.bookmarks.create({parentId: folder.id, title: item.title, url: item.url})
     }
 
-    App.beep()
+    App.show_feedback(`Bookmarked`)
   }, undefined, force)
 }
 

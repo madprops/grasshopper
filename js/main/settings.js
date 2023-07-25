@@ -10,7 +10,6 @@ App.build_default_settings = () => {
   obj.scrollbars = {value: false, category: category, version: 1}
   obj.width = {value: 70, category: category, version: 1}
   obj.height = {value: 80, category: category, version: 1}
-  obj.beep = {value: 80, category: category, version: 1}
   obj.tabs_index = {value: 0, category: category, version: 1}
   obj.history_index = {value: 1, category: category, version: 1}
   obj.bookmarks_index = {value: 2, category: category, version: 1}
