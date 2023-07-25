@@ -190,7 +190,7 @@ App.more_menu_items = (o_items, item, multiple, some_loaded) => {
 
   if (item.image && !multiple) {
     items.push({
-      text: `Background `,
+      text: `Background`,
       action: () => {
         App.change_background(item.url)
       }
@@ -199,7 +199,7 @@ App.more_menu_items = (o_items, item, multiple, some_loaded) => {
 
   if (item.mode !== `bookmarks`) {
     items.push({
-      text: `Bookmark `,
+      text: `Bookmark`,
       action: () => {
         App.bookmark_items(item)
       }
