@@ -23,7 +23,7 @@ App.mousedown_action = (item, e) => {
   }
 }
 
-App.mouse_action = (item, e) => {
+App.mouseclick_action = (item, e) => {
   if (!item) {
     return
   }
@@ -110,7 +110,7 @@ App.setup_window_mouse = (mode) => {
     }
 
     let item = App.get_cursor_item(mode, e)
-    App.mouse_action(item, e)
+    App.mouseclick_action(item, e)
   })
 
   DOM.ev(container, `contextmenu`, (e) => {
