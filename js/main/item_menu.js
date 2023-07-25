@@ -114,7 +114,7 @@ App.get_window_menu_items = async (item) => {
 App.common_menu_items = (o_items, item, multiple) => {
   let items = []
 
-  if (item.image || item.video) {
+  if (item.image || item.video || item.audio) {
     items.push({
       text: `View`,
       action: () => {

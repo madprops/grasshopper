@@ -46,7 +46,7 @@ App.setup_window_mouse = (mode) => {
       return
     }
 
-    App.mousecontext_action(mode, e)
+    App.mouse_context_action(mode, e)
   })
 
   DOM.ev(container, `wheel`, (e) => {
@@ -152,7 +152,7 @@ App.mouse_click_action = (mode, e) => {
   App[`${item.mode}_action`](item)
 }
 
-App.mousecontext_action = (mode, e) => {
+App.mouse_context_action = (mode, e) => {
   let item = App.get_cursor_item(mode, e)
   App.select(item, false)
 
@@ -162,6 +162,49 @@ App.mousecontext_action = (mode, e) => {
 
   App.show_item_menu(item, e.clientX, e.clientY)
   e.preventDefault()
+}
+
+App.mouse_middle_action = (e) => {
+  let mode = App.window_mode
+
+  if (App.on_items()) {
+    if (App.cursor_on_item(e, mode)) {
+      let item = App.get_cursor_item(mode, e)
+
+      if (e.target.classList.contains(`item_pick`)) {
+        let cmd = App.get_setting(`middle_click_pick_button`)
+
+        if (cmd !== `none`) {
+          App.run_command({cmd: cmd, item: item, from: `pick_button`})
+        }
+
+        return
+      }
+
+      if (e.target.classList.contains(`item_button_close`)) {
+        let cmd = App.get_setting(`middle_click_close_button`)
+
+        if (cmd !== `none`) {
+          App.run_command({cmd: cmd, item: item, from: `close_button`})
+        }
+
+        return
+      }
+
+      if (e.target.classList.contains(`item_button_open`)) {
+        let cmd = App.get_setting(`middle_click_open_button`)
+
+        if (cmd !== `none`) {
+          App.run_command({cmd: cmd, item: item, from: `open_button`})
+        }
+
+        return
+      }
+
+      App.dehighlight(mode)
+      App[`${mode}_action_alt`](item, e.shiftKey)
+    }
+  }
 }
 
 App.mouse_wheel_action = (mode, e) => {
@@ -210,48 +253,5 @@ App.right_button_action = (item) => {
   }
   else {
     App.open_items(item, true)
-  }
-}
-
-App.mouse_middle_action = (e) => {
-  let mode = App.window_mode
-
-  if (App.on_items()) {
-    if (App.cursor_on_item(e, mode)) {
-      let item = App.get_cursor_item(mode, e)
-
-      if (e.target.classList.contains(`item_pick`)) {
-        let cmd = App.get_setting(`middle_click_pick_button`)
-
-        if (cmd !== `none`) {
-          App.run_command({cmd: cmd, item: item, from: `pick_button`})
-        }
-
-        return
-      }
-
-      if (e.target.classList.contains(`item_button_close`)) {
-        let cmd = App.get_setting(`middle_click_close_button`)
-
-        if (cmd !== `none`) {
-          App.run_command({cmd: cmd, item: item, from: `close_button`})
-        }
-
-        return
-      }
-
-      if (e.target.classList.contains(`item_button_open`)) {
-        let cmd = App.get_setting(`middle_click_open_button`)
-
-        if (cmd !== `none`) {
-          App.run_command({cmd: cmd, item: item, from: `open_button`})
-        }
-
-        return
-      }
-
-      App.dehighlight(mode)
-      App[`${mode}_action_alt`](item, e.shiftKey)
-    }
   }
 }
