@@ -26,7 +26,8 @@ App.setup_window_mouse = (mode) => {
       return
     }
 
-    App.mouse_down_action(mode, e)
+    let item = App.get_cursor_item(mode, e)
+    App.mouse_down_action(item, e)
   })
 
   DOM.ev(window, `mouseup`, (e) => {
@@ -38,7 +39,8 @@ App.setup_window_mouse = (mode) => {
       return
     }
 
-    App.mouse_click_action(mode, e)
+    let item = App.get_cursor_item(mode, e)
+    App.mouse_click_action(item, e)
   })
 
   DOM.ev(container, `contextmenu`, (e) => {
@@ -46,7 +48,8 @@ App.setup_window_mouse = (mode) => {
       return
     }
 
-    App.mouse_context_action(mode, e)
+    let item = App.get_cursor_item(mode, e)
+    App.mouse_context_action(item, e)
   })
 
   DOM.ev(container, `wheel`, (e) => {
@@ -58,16 +61,20 @@ App.setup_window_mouse = (mode) => {
       return
     }
 
-    App.mouse_over_action(mode, e)
+    let item = App.get_cursor_item(mode, e)
+    App.mouse_over_action(item, e)
   })
 
   DOM.ev(container, `mouseout`, (e) => {
-    App.mouse_out_action(mode, e)
+    let item = App.get_selected(mode)
+    App.mouse_out_action(item, e)
   })
 }
 
-App.mouse_down_action = (mode, e) => {
-  let item = App.get_cursor_item(mode, e)
+App.mouse_down_action = (item, e) => {
+  if (!item) {
+    return
+  }
 
   if (e.target.classList.contains(`item_pick`)) {
     App.item_range_on = true
@@ -97,8 +104,10 @@ App.mouse_up_action = (e) => {
   App.item_range_on = false
 }
 
-App.mouse_click_action = (mode, e) => {
-  let item = App.get_cursor_item(mode, e)
+App.mouse_click_action = (item, e) => {
+  if (!item) {
+    return
+  }
 
   if (e.target.classList.contains(`item_pick`)) {
     return
@@ -152,8 +161,11 @@ App.mouse_click_action = (mode, e) => {
   App[`${item.mode}_action`](item)
 }
 
-App.mouse_context_action = (mode, e) => {
-  let item = App.get_cursor_item(mode, e)
+App.mouse_context_action = (item, e) => {
+  if (!item) {
+    return
+  }
+
   App.select(item, false)
 
   if (!item.highlighted && App.highlights(item.mode)) {
@@ -167,44 +179,48 @@ App.mouse_context_action = (mode, e) => {
 App.mouse_middle_action = (e) => {
   let mode = App.window_mode
 
-  if (App.on_items()) {
-    if (App.cursor_on_item(e, mode)) {
-      let item = App.get_cursor_item(mode, e)
-
-      if (e.target.classList.contains(`item_pick`)) {
-        let cmd = App.get_setting(`middle_click_pick_button`)
-
-        if (cmd !== `none`) {
-          App.run_command({cmd: cmd, item: item, from: `pick_button`})
-        }
-
-        return
-      }
-
-      if (e.target.classList.contains(`item_button_close`)) {
-        let cmd = App.get_setting(`middle_click_close_button`)
-
-        if (cmd !== `none`) {
-          App.run_command({cmd: cmd, item: item, from: `close_button`})
-        }
-
-        return
-      }
-
-      if (e.target.classList.contains(`item_button_open`)) {
-        let cmd = App.get_setting(`middle_click_open_button`)
-
-        if (cmd !== `none`) {
-          App.run_command({cmd: cmd, item: item, from: `open_button`})
-        }
-
-        return
-      }
-
-      App.dehighlight(mode)
-      App[`${mode}_action_alt`](item, e.shiftKey)
-    }
+  if (!App.cursor_on_item(e, mode)) {
+    return
   }
+
+  let item = App.get_cursor_item(mode, e)
+
+  if (!item) {
+    return
+  }
+
+  if (e.target.classList.contains(`item_pick`)) {
+    let cmd = App.get_setting(`middle_click_pick_button`)
+
+    if (cmd !== `none`) {
+      App.run_command({cmd: cmd, item: item, from: `pick_button`})
+    }
+
+    return
+  }
+
+  if (e.target.classList.contains(`item_button_close`)) {
+    let cmd = App.get_setting(`middle_click_close_button`)
+
+    if (cmd !== `none`) {
+      App.run_command({cmd: cmd, item: item, from: `close_button`})
+    }
+
+    return
+  }
+
+  if (e.target.classList.contains(`item_button_open`)) {
+    let cmd = App.get_setting(`middle_click_open_button`)
+
+    if (cmd !== `none`) {
+      App.run_command({cmd: cmd, item: item, from: `open_button`})
+    }
+
+    return
+  }
+
+  App.dehighlight(mode)
+  App[`${mode}_action_alt`](item, e.shiftKey)
 }
 
 App.mouse_wheel_action = (mode, e) => {
@@ -222,8 +238,11 @@ App.mouse_wheel_action = (mode, e) => {
   }
 }
 
-App.mouse_over_action = (mode, e) => {
-  let item = App.get_cursor_item(mode, e)
+App.mouse_over_action = (item, e) => {
+  if (!item) {
+    return
+  }
+
   App.update_footer_info(item)
 
   if (App.item_range_on) {
@@ -237,15 +256,19 @@ App.mouse_over_action = (mode, e) => {
   }
 }
 
-App.mouse_out_action = (mode, e) => {
-  let item = App.get_selected(mode)
-
-  if (item) {
-    App.update_footer_info(item)
+App.mouse_out_action = (item, e) => {
+  if (!item) {
+    return
   }
+
+  App.update_footer_info(item)
 }
 
 App.right_button_action = (item) => {
+  if (!item) {
+    return
+  }
+
   App.dehighlight(item.mode)
 
   if (item.mode === `tabs`) {
