@@ -221,8 +221,12 @@ svg {
   gap: 0.611rem;
 }
 
-.borders .item {
+.borders_normal .item {
   border-bottom: 1px solid var(--alt_color_1);
+}
+
+.borders_bigger .item {
+  border-bottom: 3px solid var(--alt_color_1);
 }
 
 .item_icon_container {
@@ -493,10 +497,12 @@ svg {
 }
 
 .pinline {
-  min-height: 2px;
   margin-top: 0.77rem;
   margin-bottom: 0.77rem;
   background-color: var(--alt_color_1);
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 #needcontext-main {

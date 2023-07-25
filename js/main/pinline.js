@@ -36,7 +36,13 @@ App.do_check_pinline = () => {
         return
       }
       else {
-        let pinline = DOM.create(`div`, `pinline`)
+        let pinline = DOM.create(`div`, `pinline action`)
+        pinline.textContent = `Pin Line`
+
+        DOM.ev(pinline, `click`, (e) => {
+          App.toggle_normal_tabs()
+        })
+
         last_pinned.element.after(pinline)
         return
       }
@@ -46,6 +52,6 @@ App.do_check_pinline = () => {
 
 App.remove_pinline = () => {
   for (let el of DOM.els(`.pinline`, DOM.el(`#tabs_container`))) {
-    el.classList.remove(`pinline`)
+    el.remove()
   }
 }

@@ -1136,3 +1136,18 @@ App.check_new_tabs = () => {
     }
   }
 }
+
+App.toggle_normal_tabs = () => {
+  if (App.highlights(`tabs`)) {
+    App.dehighlight(`tabs`)
+    return
+  }
+
+  let items = App.get_items(`tabs`)
+
+  for (let item of items) {
+    if (!item.pinned) {
+      App.toggle_highlight(item, true)
+    }
+  }
+}
