@@ -232,6 +232,10 @@ App.get_pinned_tabs = () => {
   return App.get_items(`tabs`).filter(x => x.pinned)
 }
 
+App.get_normal_tabs = () => {
+  return App.get_items(`tabs`).filter(x => !x.pinned)
+}
+
 App.get_playing_tabs = () => {
   return App.get_items(`tabs`).filter(x => x.audible)
 }
@@ -1137,17 +1141,28 @@ App.check_new_tabs = () => {
   }
 }
 
-App.toggle_normal_tabs = () => {
-  if (App.highlights(`tabs`)) {
+App.toggle_pinned_tabs = () => {
+  let items = App.get_pinned_tabs()
+
+  if (items[0].highlighted) {
     App.dehighlight(`tabs`)
     return
   }
 
-  let items = App.get_items(`tabs`)
+  for (let item of items) {
+    App.toggle_highlight(item, true)
+  }
+}
+
+App.toggle_normal_tabs = () => {
+  let items = App.get_normal_tabs()
+
+  if (items[0].highlighted) {
+    App.dehighlight(`tabs`)
+    return
+  }
 
   for (let item of items) {
-    if (!item.pinned) {
-      App.toggle_highlight(item, true)
-    }
+    App.toggle_highlight(item, true)
   }
 }
