@@ -451,6 +451,10 @@ App.close_tabs = (item, force = false, multiple = true) => {
     ids.push(item.id)
   }
 
+  if (ids.length >= App.max_warn_limit) {
+    warn = true
+  }
+
   if (ids.length === 0) {
     return
   }
