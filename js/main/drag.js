@@ -1,3 +1,19 @@
+App.setup_drag = (mode) => {
+  let container = DOM.el(`#${mode}_container`)
+
+  DOM.ev(container, `dragstart`, (e) => {
+    App.dragstart_action(mode, e)
+  })
+
+  DOM.ev(container, `dragenter`, (e) => {
+    App.dragenter_action(mode, e)
+  })
+
+  DOM.ev(container, `dragend`, (e) => {
+    App.dragend_action(mode, e)
+  })
+}
+
 App.dragstart_action = (mode, e) => {
   if (e.shiftKey || e.ctrlKey) {
     e.preventDefault()
@@ -128,20 +144,4 @@ App.dragend_action = (mode, e) => {
   }
 
   App.update_tabs_index(App.drag_items)
-}
-
-App.setup_drag = (mode) => {
-  let container = DOM.el(`#${mode}_container`)
-
-  DOM.ev(container, `dragstart`, (e) => {
-    App.dragstart_action(mode, e)
-  })
-
-  DOM.ev(container, `dragenter`, (e) => {
-    App.dragenter_action(mode, e)
-  })
-
-  DOM.ev(container, `dragend`, (e) => {
-    App.dragend_action(mode, e)
-  })
 }
