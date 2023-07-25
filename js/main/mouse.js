@@ -85,6 +85,8 @@ App.mouse_up_action = (e) => {
   App.item_range_on = false
 }
 
+// Using this on mousedown instead causes some problems
+// For instance can't move a tab without selecting it
 App.mouse_click_action = (mode, e) => {
   if (!App.cursor_on_item(e, mode)) {
     return
