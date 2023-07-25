@@ -41,7 +41,7 @@ App.do_check_pinline = () => {
         pinline.title = `Pinned tabs above. Normal tabs below`
 
         DOM.ev(pinline, `click`, (e) => {
-          App.toggle_normal_tabs()
+          App.toggle_tabs()
         })
 
         DOM.ev(pinline, `mouseup`, (e) => {

@@ -1141,28 +1141,21 @@ App.check_new_tabs = () => {
   }
 }
 
-App.toggle_pinned_tabs = () => {
-  let items = App.get_pinned_tabs()
+App.toggle_tabs = () => {
+  let pinned = App.get_pinned_tabs()
+  let normal = App.get_normal_tabs()
+  let pinned_h = pinned.filter(x => x.highlighted)
+  let normal_h = normal.filter(x => x.highlighted)
+  App.dehighlight(`tabs`)
 
-  if (items[0].highlighted) {
-    App.dehighlight(`tabs`)
-    return
+  if (pinned_h.length > 0) {
+    for (let item of normal) {
+      App.toggle_highlight(item, true)
+    }
   }
-
-  for (let item of items) {
-    App.toggle_highlight(item, true)
-  }
-}
-
-App.toggle_normal_tabs = () => {
-  let items = App.get_normal_tabs()
-
-  if (items[0].highlighted) {
-    App.dehighlight(`tabs`)
-    return
-  }
-
-  for (let item of items) {
-    App.toggle_highlight(item, true)
+  else if (normal_h.length === 0) {
+    for (let item of pinned) {
+      App.toggle_highlight(item, true)
+    }
   }
 }

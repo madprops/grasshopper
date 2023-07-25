@@ -134,11 +134,8 @@ App.commands = [
   {name: `Title Tab`, cmd: `title_tab`, mode: `tabs`, action: (args) => {
     App.show_title_editor(args.item)
   }},
-  {name: `Toggle Pinned Tabs`, cmd: `toggle_pinned_tabs`, mode: `tabs`, action: (args) => {
-    App.toggle_pinned_tabs(args.item)
-  }},
-  {name: `Toggle Normal Tabs`, cmd: `toggle_normal_tabs`, mode: `tabs`, action: (args) => {
-    App.toggle_normal_tabs(args.item)
+  {name: `Toggle Tabs`, cmd: `toggle_tabs`, mode: `tabs`, action: (args) => {
+    App.toggle_tabs(args.item)
   }},
   {name: `Close Tabs`, cmd: `close_tabs`, mode: `tabs`, action: (args) => {
     App.close_tabs(args.item)
