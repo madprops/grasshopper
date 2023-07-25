@@ -1,5 +1,34 @@
+App.mousedown_action = (item, e) => {
+  if (!item) {
+    return
+  }
+
+  if (e.target.classList.contains(`item_pick`)) {
+    App.item_range_on = true
+
+    if (item.highlighted) {
+      App.item_range_highlight = false
+    }
+    else {
+      App.select_item(item, `none`, false)
+      App.item_range_highlight = true
+    }
+
+    if (e.shiftKey) {
+      App.highlight_range(item)
+    }
+    else {
+      App.toggle_highlight(item)
+    }
+  }
+}
+
 App.mouse_action = (item, e) => {
   if (!item) {
+    return
+  }
+
+  if (e.target.classList.contains(`item_pick`)) {
     return
   }
 
@@ -63,49 +92,20 @@ App.setup_window_mouse = (mode) => {
       return
     }
 
-    if (e.target.classList.contains(`item_pick`)) {
-      let item = App.get_cursor_item(mode, e)
-      App.item_range_on = true
-
-      if (item.highlighted) {
-        App.item_range_highlight = false
-      }
-      else {
-        App.select_item(item, `none`, false)
-        App.item_range_highlight = true
-      }
-
-      if (e.shiftKey) {
-        App.highlight_range(item)
-      }
-      else {
-        App.toggle_highlight(item)
-      }
-
-      return
-    }
-
-    if (App.highlights(mode)) {
-      App.mousedown_date = Date.now()
-      return
-    }
-
     let item = App.get_cursor_item(mode, e)
-    App.mouse_action(item, e)
+    App.mousedown_action(item, e)
   })
 
-  DOM.ev(container, `mouseup`, (e) => {
+  DOM.ev(window, `mouseup`, (e) => {
     if (e.button !== 0) {
       return
     }
 
     App.item_range_on = false
+  })
 
+  DOM.ev(container, `click`, (e) => {
     if (!App.cursor_on_item(e, mode)) {
-      return
-    }
-
-    if ((Date.now() - App.mousedown_date) >= App.mousedown_max) {
       return
     }
 
