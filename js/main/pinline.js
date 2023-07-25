@@ -37,7 +37,9 @@ App.do_check_pinline = () => {
       }
       else {
         let pinline = DOM.create(`div`, `pinline action`)
-        pinline.textContent = `Pin Line`
+        let n1 = App.get_pinned_tabs().length
+        let n2 = App.get_normal_tabs().length
+        pinline.textContent = `Pins: ${n1} - Normal: ${n2}`
         pinline.title = `Pinned tabs above. Normal tabs below`
 
         DOM.ev(pinline, `click`, (e) => {
