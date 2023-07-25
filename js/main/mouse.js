@@ -87,6 +87,7 @@ App.mouse_up_action = (e) => {
 
 // Using this on mousedown instead causes some problems
 // For instance can't move a tab without selecting it
+// And in a popup it would close the popup on selection
 App.mouse_click_action = (mode, e) => {
   if (!App.cursor_on_item(e, mode)) {
     return
