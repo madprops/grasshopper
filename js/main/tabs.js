@@ -417,6 +417,10 @@ App.unload_tabs = (item) => {
 }
 
 App.check_tab_warn = (items, setting) => {
+  if (items.length >= App.max_warn_limit) {
+    return true
+  }
+
   let warn_on_action = App.get_setting(setting)
 
   if (warn_on_action === `always`) {
@@ -449,10 +453,6 @@ App.close_tabs = (item, force = false, multiple = true) => {
   else {
     warn = App.check_tab_warn([item], `warn_on_close_tabs`)
     ids.push(item.id)
-  }
-
-  if (ids.length >= App.max_warn_limit) {
-    warn = true
   }
 
   if (ids.length === 0) {
