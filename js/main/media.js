@@ -87,7 +87,7 @@ App.create_media_windows = (what) => {
   }, colored_top: true, cls: `media`})
 }
 
-App.get_media_type = (item) => {
+App.get_view_media_type = (item) => {
   for (let type of App.view_media_types) {
     if (item[type]) {
       return type
@@ -96,7 +96,7 @@ App.get_media_type = (item) => {
 }
 
 App.view_media = (o_item) => {
-  let what = App.get_media_type(o_item)
+  let what = App.get_view_media_type(o_item)
 
   if (!what) {
     return

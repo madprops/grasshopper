@@ -142,7 +142,7 @@ App.mouse_click_action = (mode, e) => {
   }
 
   if (App.get_setting(`view_media`)) {
-    if (App.get_media_type(item)) {
+    if (App.get_view_media_type(item)) {
       App.select(item)
       App.view_media(item)
       return

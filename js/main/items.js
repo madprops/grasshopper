@@ -375,7 +375,7 @@ App.check_view_media = (item) => {
 
   let view_media = DOM.el(`.view_media_button`, item.element)
 
-  if (App.get_media_type(item)) {
+  if (App.get_view_media_type(item)) {
     view_media.classList.remove(`hidden`)
   }
   else {
