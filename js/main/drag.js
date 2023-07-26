@@ -15,7 +15,7 @@ App.setup_drag = (mode) => {
 }
 
 App.dragstart_action = (mode, e) => {
-  if (e.shiftKey || e.ctrlKey) {
+  if (e.shiftKey) {
     e.preventDefault()
     return false
   }
