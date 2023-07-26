@@ -278,24 +278,20 @@ App.duplicate_tab = async (item) => {
 
 App.duplicate_tabs = async (item) => {
   let items = App.get_active_items(`tabs`, item)
-  let warn = App.get_setting(`warn_on_duplicate_tabs`)
+  let force = !App.get_setting(`warn_on_duplicate_tabs`)
 
   if (items.length === 1) {
-    warn = false
+    force = true
+  }
+  else if (items.length >= App.max_warn_limit) {
+    force = false
   }
 
-  if (warn) {
-    App.show_confirm(`Duplicate tabs? (${items.length})`, () => {
-      for (let it of items) {
-        App.duplicate_tab(it)
-      }
-    })
-  }
-  else {
+  App.show_confirm(`Duplicate tabs? (${items.length})`, () => {
     for (let it of items) {
       App.duplicate_tab(it)
     }
-  }
+  }, undefined, force)
 }
 
 App.do_unload_tab = async (item) => {
@@ -400,20 +396,17 @@ App.unload_tabs = (item) => {
     return
   }
 
-  let warn = App.check_tab_warn(tabs, `warn_on_unload_tabs`)
+  let force = !App.check_tab_warn(tabs, `warn_on_unload_tabs`)
 
-  if (warn) {
-    App.show_confirm(`Unload tabs? (${tabs.length})`, () => {
-      for (let tab of tabs) {
-        App.unload_tab(tab)
-      }
-    })
+  if (tabs.length >= App.max_warn_limit) {
+    force = false
   }
-  else {
+
+  App.show_confirm(`Unload tabs? (${tabs.length})`, () => {
     for (let tab of tabs) {
       App.unload_tab(tab)
     }
-  }
+  }, undefined, force)
 }
 
 App.check_tab_warn = (items, setting) => {
@@ -441,17 +434,17 @@ App.check_tab_warn = (items, setting) => {
   return false
 }
 
-App.close_tabs = (item, force = false, multiple = true) => {
+App.close_tabs = (item, do_force = false, multiple = true) => {
   let ids = []
-  let warn = false
+  let force = false
 
   if (multiple) {
     let items = App.get_active_items(`tabs`, item)
-    warn = App.check_tab_warn(items, `warn_on_close_tabs`)
+    force = !App.check_tab_warn(items, `warn_on_close_tabs`)
     ids = items.map(x => x.id)
   }
   else {
-    warn = App.check_tab_warn([item], `warn_on_close_tabs`)
+    force = !App.check_tab_warn([item], `warn_on_close_tabs`)
     ids.push(item.id)
   }
 
@@ -459,11 +452,15 @@ App.close_tabs = (item, force = false, multiple = true) => {
     return
   }
 
+  if (ids.length >= App.max_warn_limit) {
+    force = false
+  }
+
   let s = App.plural(ids.length, `Close this tab?`, `Close these tabs? (${ids.length})`)
 
   App.show_confirm(s, () => {
     App.do_close_tabs(ids)
-  }, undefined, force || !warn)
+  }, undefined, do_force || force)
 }
 
 App.do_close_tabs = async (ids) => {
@@ -753,10 +750,15 @@ App.close_normal_tabs = () => {
 
   s += `Excluding playing tabs\n`
   s += `Close these tabs? (${ids.length})`
+  let force = !App.get_setting(`warn_on_close_normal_tabs`)
+
+  if (ids.length >= App.max_warn_limit) {
+    force = false
+  }
 
   App.show_confirm(s, () => {
     App.do_close_tabs(ids)
-  }, undefined, !App.get_setting(`warn_on_close_normal_tabs`))
+  }, undefined, force)
 }
 
 App.show_playing = () => {
@@ -889,7 +891,6 @@ App.active_tab_is = (item) => {
 App.close_duplicate_tabs = () => {
   let items = App.get_items(`tabs`)
   let duplicates = App.find_duplicates(items, `url`)
-
   let excess = App.get_excess(duplicates, `url`)
 
   if (App.get_setting(`close_duplicate_pins`)) {
@@ -902,10 +903,7 @@ App.close_duplicate_tabs = () => {
   let ids = excess.map(x => x.id)
 
   if (ids.length === 0) {
-    if (App.get_setting(`warn_on_close_duplicate_tabs`)) {
-      App.show_alert(`No duplicates found`)
-    }
-
+    App.show_alert(`No duplicates found`)
     return
   }
 
@@ -920,10 +918,15 @@ App.close_duplicate_tabs = () => {
 
   s += `Excluding playing tabs\n`
   s += `Close these tabs? (${ids.length})`
+  let force = !App.get_setting(`warn_on_close_duplicate_tabs`)
+
+  if (ids.length >= App.max_warn_limit) {
+    force = false
+  }
 
   App.show_confirm(s, () => {
     App.do_close_tabs(ids)
-  }, undefined, !App.get_setting(`warn_on_close_duplicate_tabs`))
+  }, undefined, force)
 }
 
 App.focus_current_tab = async () => {
