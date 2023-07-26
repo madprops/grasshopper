@@ -243,6 +243,11 @@
           <input type="text" autocomplete="off" spellcheck="false" id="settings_audio_icon" class="text settings_text text_smaller" data-setting="audio_icon">
         </div>
 
+        <div class="settings_item" title="Icon to show on text media">
+          <div class="settings_label">Text Icon</div>
+          <input type="text" autocomplete="off" spellcheck="false" id="settings_text_icon" class="text settings_text text_smaller" data-setting="text_icon">
+        </div>
+
         <div class="settings_item" title="Icon to show on close operations">
           <div class="settings_label">Close Icon</div>
           <input type="text" autocomplete="off" spellcheck="false" id="settings_close_icon" class="text settings_text text_smaller" data-setting="close_icon">
@@ -598,6 +603,21 @@
 
     <template id="template_audio_top">
       <div id="audio_buttons" class="flex_row_center gap_2 grow"></div>
+    </template>
+
+    <template id="template_text">
+      <div class="flex_column_center gap_2 height_100">
+        <div id="text_url" class="media_url"></div>
+
+        <div id="text_container" class="media_container">
+          <div id="text_loading" class="media_loading hidden"></div>
+          <object id="text" class="media">
+        </div>
+      </div>
+    </template>
+
+    <template id="template_text_top">
+      <div id="text_buttons" class="flex_row_center gap_2 grow"></div>
     </template>
 
     <script src="js/main/init.js"></script>

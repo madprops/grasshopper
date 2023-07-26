@@ -1,5 +1,5 @@
 App.setup_media = () => {
-  for (let type of App.view_media_types) {
+  for (let type of App.media_types) {
     App.create_media_windows(type)
   }
 }
@@ -88,7 +88,7 @@ App.create_media_windows = (what) => {
 }
 
 App.get_view_media_type = (item) => {
-  for (let type of App.view_media_types) {
+  for (let type of App.media_types) {
     if (item[type]) {
       return type
     }
@@ -106,7 +106,15 @@ App.view_media = (o_item) => {
   App.hide_media_elements(what)
   App[`current_${what}_item`] = item
   App[`current_media_type`] = what
-  DOM.el(`#${what}`).src = item.url
+  let container = DOM.el(`#${what}`)
+
+  if (what === `text`) {
+    container.data = item.url
+  }
+  else {
+    container.src = item.url
+  }
+
   App.stop_media_timeout(what)
 
   App[`${what}_loading_timeout`] = setTimeout(() => {
@@ -136,6 +144,10 @@ App.stop_media_player = (what) => {
 }
 
 App.hide_media_elements = (what) => {
+  if (what === `text`) {
+    return
+  }
+
   DOM.el(`#${what}`).classList.add(`hidden`)
   DOM.el(`#${what}_loading`).classList.add(`hidden`)
 }
@@ -191,6 +203,10 @@ App.cycle_media = (item, what, dir) => {
 }
 
 App.media_show_loading = (what) => {
+  if (what === `text`) {
+    return
+  }
+
   DOM.el(`#${what}_loading`).textContent = `Loading...`
 }
 
@@ -241,7 +257,7 @@ App.media_wheel = App.create_debouncer((e, what) => {
 }, App.wheel_delay)
 
 App.on_media = () => {
-  return App.view_media_types.includes(App.window_mode)
+  return App.media_types.includes(App.window_mode)
 }
 
 App.show_media_menu = async (what) => {

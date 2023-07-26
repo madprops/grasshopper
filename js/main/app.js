@@ -43,6 +43,5 @@ App.maxed_items = [`history`, `bookmarks`]
 App.max_items = 500
 App.media_scroll = 33
 App.media_types = [`image`, `video`, `audio`, `text`]
-App.view_media_types = [`image`, `video`, `audio`]
 App.mousedown_max = 500
 App.max_warn_limit = 20

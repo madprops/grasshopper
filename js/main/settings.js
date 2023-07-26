@@ -39,6 +39,7 @@ App.build_default_settings = () => {
   obj.image_icon = {value: `🖼️`, category: category, version: 1}
   obj.video_icon = {value: `▶️`, category: category, version: 1}
   obj.audio_icon = {value: `🎵`, category: category, version: 1}
+  obj.text_icon = {value: `📄`, category: category, version: 1}
 
   category = `warns`
   obj.warn_on_close_tabs = {value: `special`, category: category, version: 1}
