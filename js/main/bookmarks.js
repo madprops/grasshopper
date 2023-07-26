@@ -95,19 +95,12 @@ App.get_bookmarks_folder = async () => {
 }
 
 App.bookmark_items = async (item, active) => {
-  let folder = await App.get_bookmarks_folder()
-
-  if (!folder) {
-    return
-  }
-
   if (!active) {
     active = App.get_active_items(item.mode, item)
   }
 
-  let bookmarks = await App.get_bookmarks()
-  let folder_bookmarks = bookmarks.filter(x => x.parentId === folder.id)
-  let urls = folder_bookmarks.map(x => App.format_url(x.url || ``))
+  let folder = await App.get_bookmarks_folder()
+  let urls = await App.get_bookmark_urls(folder)
   let items = []
 
   for (let item of active) {
@@ -151,16 +144,27 @@ App.bookmark_active = async () => {
   App.bookmark_items(undefined, [item])
 }
 
-App.all_bookmarked = async (item) => {
-  let folder = await App.get_bookmarks_folder()
+App.get_bookmark_urls = async (folder) => {
+  if (!folder) {
+    folder = await App.get_bookmarks_folder()
+  }
 
   if (!folder) {
-    return false
+    return []
   }
 
   let bookmarks = await App.get_bookmarks()
   let folder_bookmarks = bookmarks.filter(x => x.parentId === folder.id)
-  let urls = folder_bookmarks.map(x => App.format_url(x.url || ``))
+  return folder_bookmarks.map(x => App.format_url(x.url || ``))
+}
+
+App.all_bookmarked = async (item) => {
+  let urls = await App.get_bookmark_urls()
+
+  if (urls.length === 0) {
+    return false
+  }
+
   let active = App.get_active_items(item.mode, item)
 
   for (let a of active) {
