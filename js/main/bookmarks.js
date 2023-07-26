@@ -150,3 +150,33 @@ App.bookmark_active = async () => {
 
   App.bookmark_items(undefined, [item])
 }
+
+App.all_bookmarked = async (item) => {
+  let folder = await App.get_bookmarks_folder()
+
+  if (!folder) {
+    return
+  }
+
+  let bookmarks = await App.get_bookmarks()
+  let folder_bookmarks = bookmarks.filter(x => x.parentId === folder.id)
+  let urls = folder_bookmarks.map(x => App.format_url(x.url || ``))
+  let active = App.get_active_items(item.mode, item)
+
+  for (let a of active) {
+    let bmarked = false
+
+    for (let u of urls) {
+      if (a.url === u) {
+        bmarked = true
+        break
+      }
+    }
+
+    if (!bmarked) {
+      return false
+    }
+  }
+
+  return true
+}

@@ -1,4 +1,4 @@
-App.show_item_menu = (item, x, y) => {
+App.show_item_menu = async (item, x, y) => {
   let active = App.get_active_items(item.mode, item)
   let multiple = active.length > 1
   let min_close_sep = 3
@@ -51,7 +51,7 @@ App.show_item_menu = (item, x, y) => {
     }
 
     App.common_menu_items(items, item, multiple)
-    App.more_menu_items(items, item, multiple, some_loaded)
+    await App.more_menu_items(items, item, multiple, some_loaded)
 
     if (items.length >= min_close_sep) {
       items.push({
@@ -158,7 +158,7 @@ App.common_menu_items = (o_items, item, multiple) => {
   }
 }
 
-App.more_menu_items = (o_items, item, multiple, some_loaded) => {
+App.more_menu_items = async (o_items, item, multiple, some_loaded) => {
   let items = []
 
   if (item.mode === `tabs`) {
@@ -198,12 +198,16 @@ App.more_menu_items = (o_items, item, multiple, some_loaded) => {
   }
 
   if (item.mode !== `bookmarks`) {
-    items.push({
-      text: `Bookmark`,
-      action: () => {
-        App.bookmark_items(item)
-      }
-    })
+    let bmarked = await App.all_bookmarked(item)
+
+    if (!bmarked) {
+      items.push({
+        text: `Bookmark`,
+        action: () => {
+          App.bookmark_items(item)
+        }
+      })
+    }
   }
 
   if (item.mode === `tabs`) {
