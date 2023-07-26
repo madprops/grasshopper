@@ -382,7 +382,7 @@ App.check_view_media = (item) => {
     view_media.title = App.capitalize(type)
     view_media.classList.remove(`hidden`)
 
-    if (App.get_setting(`view_${type}`) === `icon`) {
+    if (App.get_setting(`view_${type}`) !== `never`) {
       view_media.classList.add(`action`)
     }
     else {

@@ -444,7 +444,7 @@ App.setup_settings = () => {
     prepare(`media`)
 
     let opts = [
-      [`Never View Media`, `never`],
+      [`Never`, `never`],
       [`By Clicking The Icon`, `icon`],
       [`By Clicking The Item`, `item`],
     ]
