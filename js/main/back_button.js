@@ -7,11 +7,6 @@ App.create_back_button = (mode) => {
     App.back_action(mode, e)
   })
 
-  DOM.ev(back, `contextmenu`, (e) => {
-    App.back_action(mode, e)
-    e.preventDefault()
-  })
-
   DOM.ev(back, `auxclick`, (e) => {
     if (e.button === 1) {
       let cmd = App.get_setting(`middle_click_back_button`)
