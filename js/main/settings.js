@@ -525,11 +525,21 @@ App.add_settings_switchers = (category) => {
     App.show_prev_settings()
   })
 
+  DOM.ev(prev, `contextmenu`, (e) => {
+    App.show_prev_settings()
+    e.preventDefault()
+  })
+
   let next = DOM.create(`div`, `button arrow_next`)
   next.textContent = `>`
 
   DOM.ev(next, `click`, () => {
     App.show_next_settings()
+  })
+
+  DOM.ev(next, `contextmenu`, (e) => {
+    App.show_next_settings()
+    e.preventDefault()
   })
 
   DOM.ev(title, `click`, () => {
