@@ -40,6 +40,11 @@ App.setup_about = () => {
       App.hide_window()
     })
 
+    DOM.ev(DOM.el(`#about_close`), `contextmenu`, (e) => {
+      App.hide_window()
+      e.preventDefault()
+    })
+
     let info = DOM.el(`#about_info`)
 
     for (let item of App.about_info_items) {
