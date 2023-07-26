@@ -309,7 +309,7 @@ App.unload_tab = async (item) => {
       let next_item = App.get_next_item(`tabs`)
 
       if (next_item) {
-        await App.focus_tab(next_item, `nearest_instant`)
+        await App.focus_tab(next_item, `nearest_instant`, `unload`)
       }
       else {
         await App.open_new_tab()
