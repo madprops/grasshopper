@@ -731,10 +731,7 @@ App.close_normal_tabs = () => {
   }
 
   if (ids.length === 0) {
-    if (App.get_setting(`warn_on_close_normal_tabs`)) {
-      App.show_alert(`Nothing to close`)
-    }
-
+    App.show_alert(`Nothing to close`)
     return
   }
 
