@@ -60,7 +60,7 @@ App.apply_theme = () => {
       App.set_css_var(`background_image`, `unset`)
     }
 
-    if (App.get_setting(`scrollbars`)) {
+    if (App.get_setting(`show_scrollbars`)) {
       document.body.classList.remove(`no_scrollbars`)
     }
     else {

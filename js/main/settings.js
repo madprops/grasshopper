@@ -7,7 +7,6 @@ App.build_default_settings = () => {
   obj.font = {value: `sans-serif`, category: category, version: 1}
   obj.font_size = {value: 16, category: category, version: 1}
   obj.fetch_favicons = {value: true, category: category, version: 1}
-  obj.scrollbars = {value: false, category: category, version: 1}
   obj.width = {value: 70, category: category, version: 1}
   obj.height = {value: 80, category: category, version: 1}
   obj.tabs_index = {value: 0, category: category, version: 1}
@@ -94,6 +93,7 @@ App.build_default_settings = () => {
   obj.mute_click = {value: true, category: category, version: 1}
 
   category = `show`
+  obj.show_scrollbars = {value: true, category: category, version: 1}
   obj.show_tooltips = {value: true, category: category, version: 1}
   obj.show_icons = {value: true, category: category, version: 1}
   obj.show_pinline = {value: true, category: category, version: 1}
