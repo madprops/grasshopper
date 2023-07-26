@@ -188,15 +188,6 @@ App.more_menu_items = async (o_items, item, multiple, some_loaded) => {
     })
   }
 
-  if (item.image && !multiple) {
-    items.push({
-      text: `Background`,
-      action: () => {
-        App.change_background(item.url)
-      }
-    })
-  }
-
   if (item.mode !== `bookmarks`) {
     let bmarked = await App.all_bookmarked(item)
 
@@ -208,6 +199,15 @@ App.more_menu_items = async (o_items, item, multiple, some_loaded) => {
         }
       })
     }
+  }
+
+  if (item.image && !multiple) {
+    items.push({
+      text: `Background`,
+      action: () => {
+        App.change_background(item.url)
+      }
+    })
   }
 
   if (item.mode === `tabs`) {
