@@ -381,6 +381,13 @@ App.check_view_media = (item) => {
     view_media.textContent = App.get_setting(`${type}_icon`)
     view_media.title = App.capitalize(type)
     view_media.classList.remove(`hidden`)
+
+    if (App.get_setting(`view_${type}`) === `icon`) {
+      view_media.classList.add(`action`)
+    }
+    else {
+      view_media.classList.remove(`action`)
+    }
   }
   else {
     view_media.classList.add(`hidden`)
@@ -406,7 +413,7 @@ App.create_item_element = (item) => {
   let status = DOM.create(`div`, `item_status hidden`)
   item.element.append(status)
 
-  let view_media = DOM.create(`div`, `view_media_button action hidden`)
+  let view_media = DOM.create(`div`, `view_media_button hidden`)
   item.element.append(view_media)
   App.check_view_media(item)
 
