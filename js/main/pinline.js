@@ -23,8 +23,7 @@ App.do_check_pinline = () => {
   App.remove_pinline()
   let tabs = App.divide_tabs(`visible`)
 
-  if ((tabs.pinned_f.length < App.min_pinline_items) ||
-  (tabs.normal_f.length < App.min_pinline_items)) {
+  if ((tabs.pinned_f.length === 0) || (tabs.normal_f.length === 0)) {
     return
   }
 

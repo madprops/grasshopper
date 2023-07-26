@@ -46,4 +46,3 @@ App.media_types = [`image`, `video`, `audio`, `text`]
 App.view_media_types = [`image`, `video`, `audio`]
 App.mousedown_max = 500
 App.max_warn_limit = 20
-App.min_pinline_items = 3
