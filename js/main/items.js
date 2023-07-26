@@ -369,13 +369,21 @@ App.check_item_icon = (item) => {
 }
 
 App.check_view_media = (item) => {
-  if (!App.get_setting(`view_icon`)) {
+  let type = App.get_view_media_type(item)
+
+  if (!type) {
+    return
+  }
+
+  if (!App.get_setting(`${type}_icon`)) {
     return
   }
 
   let view_media = DOM.el(`.view_media_button`, item.element)
 
-  if (App.get_view_media_type(item)) {
+  if (type) {
+    view_media.textContent = App.get_setting(`${type}_icon`)
+    view_media.title = App.capitalize(type)
     view_media.classList.remove(`hidden`)
   }
   else {
@@ -402,12 +410,9 @@ App.create_item_element = (item) => {
   let status = DOM.create(`div`, `item_status hidden`)
   item.element.append(status)
 
-  if (App.get_setting(`view_icon`)) {
-    let view_media = DOM.create(`div`, `view_media_button action`)
-    view_media.textContent = App.get_setting(`view_icon`)
-    item.element.append(view_media)
-    App.check_view_media(item)
-  }
+  let view_media = DOM.create(`div`, `view_media_button action hidden`)
+  item.element.append(view_media)
+  App.check_view_media(item)
 
   let text = DOM.create(`div`, `item_text action`)
   let text_1 = DOM.create(`div`, `item_text_1`)
