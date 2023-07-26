@@ -7,6 +7,11 @@ App.create_main_menu = (mode) => {
     App.show_main_menu(mode)
   })
 
+  DOM.ev(main_menu, `contextmenu`, (e) => {
+    App.show_main_menu(mode)
+    e.preventDefault()
+  })
+
   DOM.ev(main_menu, `auxclick`, (e) => {
     if (e.button === 1) {
       let cmd = App.get_setting(`middle_click_main_menu`)

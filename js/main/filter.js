@@ -425,6 +425,11 @@ App.create_filter_menu = (mode) => {
     App.show_filter_menu(mode)
   })
 
+  DOM.ev(filter_menu, `contextmenu`, (e) => {
+    App.show_filter_menu(mode)
+    e.preventDefault()
+  })
+
   DOM.ev(filter_menu, `auxclick`, (e) => {
     if (e.button === 1) {
       let cmd = App.get_setting(`middle_click_filter_menu`)

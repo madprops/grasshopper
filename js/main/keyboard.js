@@ -46,7 +46,7 @@ App.check_items_keyboard = (e) => {
       return
     }
     else if (e.key === `ArrowRight`) {
-      App.show_actions(mode)
+      App.show_actions_menu(mode)
       e.preventDefault()
       return
     }

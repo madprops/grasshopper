@@ -954,7 +954,7 @@ App.update_item = (mode, id, info) => {
   }
 }
 
-App.show_actions = (mode) => {
+App.show_actions_menu = (mode) => {
   if (App[`${mode}_actions`].length === 0) {
     return
   }

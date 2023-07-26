@@ -5,7 +5,12 @@ App.create_actions_menu = (mode) => {
   actions_menu.title = `Actions (Ctrl + Right)`
 
   DOM.ev(actions_menu, `click`, () => {
-    App.show_actions(mode)
+    App.show_actions_menu(mode)
+  })
+
+  DOM.ev(actions_menu, `contextmenu`, (e) => {
+    App.show_actions_menu(mode)
+    e.preventDefault()
   })
 
   DOM.ev(actions_menu, `auxclick`, (e) => {

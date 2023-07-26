@@ -536,6 +536,17 @@ App.add_settings_switchers = (category) => {
     App.show_settings_menu(category, title)
   })
 
+  DOM.ev(title, `contextmenu`, (e) => {
+    App.show_settings_menu(category, title)
+    e.preventDefault()
+  })
+
+  DOM.ev(title, `auxclick`, (e) => {
+    if (e.button === 1) {
+      App.hide_window()
+    }
+  })
+
   DOM.ev(title.closest(`.window_top`), `wheel`, (e) => {
     App.settings_wheel.call(e)
   })
