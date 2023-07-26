@@ -494,6 +494,13 @@ App.setup_settings = () => {
     App.settings_make_menu(`middle_click_open_button`, opts.slice(0))
     App.settings_make_menu(`middle_click_pinline`, opts.slice(0))
   }}))
+
+  window.addEventListener(`storage`, (e) => {
+    if (e.key === App.stor_settings_name) {
+      App.stor_get_settings()
+      App.restart_settings(`sync`)
+    }
+  })
 }
 
 App.get_setting_title = (category) => {
@@ -796,12 +803,18 @@ App.import_settings = () => {
   })
 }
 
-App.restart_settings = () => {
+App.restart_settings = (type = `normal`) => {
   App.get_mode_order()
   App.make_mode_order()
   App.apply_theme()
   App.refresh_gestures()
-  App.show_settings()
+
+  if (type === `normal`) {
+    App.show_settings()
+  }
+  else {
+    App.show_first_window()
+  }
 }
 
 App.settings_reset_items = (category) => {
