@@ -82,11 +82,6 @@ App.build_default_settings = () => {
   category = `more`
   obj.switch_to_tabs = {value: true, category: category, version: 1}
   obj.clear_filter = {value: true, category: category, version: 1}
-  obj.show_tooltips = {value: true, category: category, version: 1}
-  obj.show_icons = {value: true, category: category, version: 1}
-  obj.show_pinline = {value: true, category: category, version: 1}
-  obj.show_scroller = {value: true, category: category, version: 1}
-  obj.show_footer = {value: true, category: category, version: 1}
   obj.close_duplicate_pins = {value: true, category: category, version: 1}
   obj.close_unloaded_tabs = {value: true, category: category, version: 1}
   obj.single_new_tab = {value: true, category: category, version: 1}
@@ -97,6 +92,16 @@ App.build_default_settings = () => {
   obj.all_bookmarks = {value: true, category: category, version: 1}
   obj.lock_drag = {value: false, category: category, version: 1}
   obj.mute_click = {value: true, category: category, version: 1}
+
+  category = `show`
+  obj.show_tooltips = {value: true, category: category, version: 1}
+  obj.show_icons = {value: true, category: category, version: 1}
+  obj.show_pinline = {value: true, category: category, version: 1}
+  obj.show_scroller = {value: true, category: category, version: 1}
+  obj.show_footer = {value: true, category: category, version: 1}
+  obj.show_pick_buttons = {value: true, category: category, version: 1}
+  obj.show_close_buttons = {value: true, category: category, version: 1}
+  obj.show_open_buttons = {value: true, category: category, version: 1}
 
   App.default_settings = obj
 }
@@ -332,7 +337,7 @@ App.settings_filter_focused = () => {
 }
 
 App.setup_settings = () => {
-  App.settings_categories = [`basic`, `theme`, `icons`, `media`, `mouse`, `warns`, `more`]
+  App.settings_categories = [`basic`, `theme`, `icons`, `media`, `show`, `mouse`, `warns`, `more`]
 
   let common = {
     persistent: false,
@@ -453,6 +458,10 @@ App.setup_settings = () => {
     App.settings_make_menu(`view_video`, opts.slice(0))
     App.settings_make_menu(`view_audio`, opts.slice(0))
     App.settings_make_menu(`view_text`, opts.slice(0))
+  }}))
+
+  App.create_window(Object.assign({}, common, {id: `settings_show`, setup: () => {
+    prepare(`show`)
   }}))
 
   App.create_window(Object.assign({}, common, {id: `settings_mouse`, setup: () => {

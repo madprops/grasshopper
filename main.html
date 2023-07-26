@@ -353,31 +353,6 @@
           <input type="checkbox" class="settings_checkbox" id="settings_autoselect" data-setting="autoselect">
         </div>
 
-        <div class="settings_item" title="Show item icons">
-          <div class="settings_label">Show Icons</div>
-          <input type="checkbox" class="settings_checkbox" id="settings_show_icons" data-setting="show_icons">
-        </div>
-
-        <div class="settings_item" title="Show a line between pinned and normal tabs">
-          <div class="settings_label">Show Pin Line</div>
-          <input type="checkbox" class="settings_checkbox" id="settings_show_pinline" data-setting="show_pinline">
-        </div>
-
-        <div class="settings_item" title="A tooltip appears on item hover with some information">
-          <div class="settings_label">Show Tooltips</div>
-          <input type="checkbox" class="settings_checkbox" id="settings_show_tooltips" data-setting="show_tooltips">
-        </div>
-
-        <div class="settings_item" title="Show the button to scroll to the top when clicked">
-          <div class="settings_label">Show Scroller</div>
-          <input type="checkbox" class="settings_checkbox" id="settings_show_scroller" data-setting="show_scroller">
-        </div>
-
-        <div class="settings_item" title="Show the footer at the bottom">
-          <div class="settings_label">Show Footer</div>
-          <input type="checkbox" class="settings_checkbox" id="settings_show_footer" data-setting="show_footer">
-        </div>
-
         <div class="settings_item" title="Close unloaded tabs when closing normal tabs">
           <div class="settings_label">Close Unloaded Tabs</div>
           <input type="checkbox" class="settings_checkbox" id="settings_close_unloaded_tabs" data-setting="close_unloaded_tabs">
@@ -551,6 +526,56 @@
     </template>
 
     <template id="template_settings_media_top">
+      <div class="flex_row_center gap_2 grow">
+        <div class="settings_title button"></div>
+      </div>
+    </template>
+
+    <template id="template_settings_show">
+      <div id="settings_show_container" class="settings_container">
+        <div class="settings_item" title="Show item icons">
+          <div class="settings_label">Show Icons</div>
+          <input type="checkbox" class="settings_checkbox" id="settings_show_icons" data-setting="show_icons">
+        </div>
+
+        <div class="settings_item" title="Show a line between pinned and normal tabs">
+          <div class="settings_label">Show Pin Line</div>
+          <input type="checkbox" class="settings_checkbox" id="settings_show_pinline" data-setting="show_pinline">
+        </div>
+
+        <div class="settings_item" title="A tooltip appears on item hover with some information">
+          <div class="settings_label">Show Tooltips</div>
+          <input type="checkbox" class="settings_checkbox" id="settings_show_tooltips" data-setting="show_tooltips">
+        </div>
+
+        <div class="settings_item" title="Show the button to scroll to the top when clicked">
+          <div class="settings_label">Show Scroller</div>
+          <input type="checkbox" class="settings_checkbox" id="settings_show_scroller" data-setting="show_scroller">
+        </div>
+
+        <div class="settings_item" title="Show the footer at the bottom">
+          <div class="settings_label">Show Footer</div>
+          <input type="checkbox" class="settings_checkbox" id="settings_show_footer" data-setting="show_footer">
+        </div>
+
+        <div class="settings_item" title="Show pick buttons on the left of items">
+          <div class="settings_label">Show Pick Buttons</div>
+          <input type="checkbox" class="settings_checkbox" id="settings_show_pick_buttons" data-setting="show_pick_buttons">
+        </div>
+
+        <div class="settings_item" title="Show close buttons on the right of items">
+          <div class="settings_label">Show Close Buttons</div>
+          <input type="checkbox" class="settings_checkbox" id="settings_show_close_buttons" data-setting="show_close_buttons">
+        </div>
+
+        <div class="settings_item" title="Show open buttons on the right of items">
+          <div class="settings_label">Show Open Buttons</div>
+          <input type="checkbox" class="settings_checkbox" id="settings_show_open_buttons" data-setting="show_open_buttons">
+        </div>
+      </div>
+    </template>
+
+    <template id="template_settings_show_top">
       <div class="flex_row_center gap_2 grow">
         <div class="settings_title button"></div>
       </div>

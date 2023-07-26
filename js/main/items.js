@@ -459,7 +459,7 @@ App.create_item_element = (item) => {
     item.element.classList.remove(`highlighted`)
   }
 
-  if (App.get_setting(`pick_icon`)) {
+  if (App.get_setting(`show_pick_buttons`)) {
     let pick = DOM.create(`div`, `item_pick item_button item_button_left`)
     pick.textContent = App.get_setting(`pick_icon`)
     pick.title = `Pick`
@@ -468,7 +468,7 @@ App.create_item_element = (item) => {
   }
 
   if (item.mode === `tabs`) {
-    if (App.get_setting(`close_icon`)) {
+    if (App.get_setting(`show_close_buttons`)) {
       let btn = DOM.create(`div`, `item_button item_button_right item_button_close`)
       btn.textContent = App.get_setting(`close_icon`)
       btn.title = `Close`
@@ -477,7 +477,7 @@ App.create_item_element = (item) => {
     }
   }
   else {
-    if (App.get_setting(`open_icon`)) {
+    if (App.get_setting(`show_open_buttons`)) {
       let btn = DOM.create(`div`, `item_button item_button_right item_button_open`)
       btn.textContent = App.get_setting(`open_icon`)
       btn.title = `Open`
