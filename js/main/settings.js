@@ -36,7 +36,7 @@ App.build_default_settings = () => {
   obj.open_icon = {value: `🚀`, category: category, version: 1}
   obj.pick_icon = {value: `🎯`, category: category, version: 1}
   obj.active_icon = {value: `👁`, category: category, version: 1}
-  obj.image_icon = {value: `📷`, category: category, version: 1}
+  obj.image_icon = {value: `🖼️`, category: category, version: 1}
   obj.video_icon = {value: `▶️`, category: category, version: 1}
   obj.audio_icon = {value: `🎵`, category: category, version: 1}
 
