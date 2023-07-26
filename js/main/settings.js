@@ -497,6 +497,7 @@ App.setup_settings = () => {
 
   window.addEventListener(`storage`, (e) => {
     if (e.key === App.stor_settings_name) {
+      App.log(`Settings changed in another window`)
       App.stor_get_settings()
       App.restart_settings(`sync`)
     }
