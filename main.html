@@ -93,11 +93,6 @@
           <input type="checkbox" class="settings_checkbox" id="settings_scrollbars" data-setting="scrollbars" data-action="theme">
         </div>
 
-        <div class="settings_item" title="View media when clicking an item">
-          <div class="settings_label">View Media</div>
-          <input type="checkbox" class="settings_checkbox" id="settings_view_media" data-setting="view_media">
-        </div>
-
         <div class="settings_item" title="Make network requests to fetch favicons when neceessary">
           <div class="settings_label">Fetch Favicons</div>
           <input type="checkbox" class="settings_checkbox" id="settings_fetch_favicons" data-setting="fetch_favicons">
@@ -506,6 +501,56 @@
     </template>
 
     <template id="template_settings_mouse_top">
+      <div class="flex_row_center gap_2 grow">
+        <div class="settings_title button"></div>
+      </div>
+    </template>
+
+    <template id="template_settings_media">
+      <div id="settings_media_container" class="settings_container">
+        <div class="settings_item" title="How to view image media">
+          <div class="settings_label">View Image</div>
+          <div id="settings_view_image" class="settings_menu button" data-setting="view_image"></div>
+        </div>
+
+        <div class="settings_item" title="How to view video media">
+          <div class="settings_label">View Video</div>
+          <div id="settings_view_video" class="settings_menu button" data-setting="view_video"></div>
+        </div>
+
+        <div class="settings_item" title="How to view audio media">
+          <div class="settings_label">View Audio</div>
+          <div id="settings_view_audio" class="settings_menu button" data-setting="view_audio"></div>
+        </div>
+
+        <div class="settings_item" title="How to view text media">
+          <div class="settings_label">View Text</div>
+          <div id="settings_view_text" class="settings_menu button" data-setting="view_text"></div>
+        </div>
+
+        <div class="settings_item" title="Show an icon on image media">
+          <div class="settings_label">Show Image Icon</div>
+          <input type="checkbox" class="settings_checkbox" id="settings_show_image_icon" data-setting="show_image_icon">
+        </div>
+
+        <div class="settings_item" title="Show an icon on video media">
+          <div class="settings_label">Show Video Icon</div>
+          <input type="checkbox" class="settings_checkbox" id="settings_show_video_icon" data-setting="show_video_icon">
+        </div>
+
+        <div class="settings_item" title="Show an icon on audio media">
+          <div class="settings_label">Show Audio Icon</div>
+          <input type="checkbox" class="settings_checkbox" id="settings_show_audio_icon" data-setting="show_audio_icon">
+        </div>
+
+        <div class="settings_item" title="Show an icon on text media">
+          <div class="settings_label">Show Text Icon</div>
+          <input type="checkbox" class="settings_checkbox" id="settings_show_text_icon" data-setting="show_text_icon">
+        </div>
+      </div>
+    </template>
+
+    <template id="template_settings_media_top">
       <div class="flex_row_center gap_2 grow">
         <div class="settings_title button"></div>
       </div>

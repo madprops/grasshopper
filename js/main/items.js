@@ -369,9 +369,9 @@ App.check_item_icon = (item) => {
 }
 
 App.check_view_media = (item) => {
-  let type = App.get_view_media_type(item)
+  let type = App.get_media_type(item)
 
-  if (!type || !App.get_setting(`${type}_icon`)) {
+  if (!type || !App.get_setting(`show_${type}_icon`)) {
     return
   }
 

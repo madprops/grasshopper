@@ -94,6 +94,7 @@ App.mouse_click_action = (mode, e) => {
   }
 
   let item = App.get_cursor_item(mode, e)
+  let media_type = App.get_media_type(item)
 
   if (e.target.classList.contains(`item_pick`)) {
     return
@@ -101,9 +102,13 @@ App.mouse_click_action = (mode, e) => {
 
   if (e.target.classList.contains(`view_media_button`)) {
     if (!e.shiftKey && !e.ctrlKey) {
-      App.select(item)
-      App.view_media(item)
-      return
+      if (media_type) {
+        if (App.get_setting(`view_${media_type}`) === `icon`) {
+          App.select(item)
+          App.view_media(item)
+          return
+        }
+      }
     }
   }
 
@@ -136,8 +141,8 @@ App.mouse_click_action = (mode, e) => {
     }
   }
 
-  if (App.get_setting(`view_media`)) {
-    if (App.get_view_media_type(item)) {
+  if (media_type) {
+    if (App.get_setting(`view_${media_type}`) === `item`) {
       App.select(item)
       App.view_media(item)
       return

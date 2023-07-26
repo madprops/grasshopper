@@ -17,7 +17,6 @@ App.build_default_settings = () => {
   obj.custom_filters = {value: [], category: category, version: 1}
   obj.bookmarks_folder = {value: `Grasshopper`, category: category, version: 1}
   obj.borders = {value: `none`, category: category, version: 2}
-  obj.view_media = {value: false, category: category, version: 1}
 
   category = `theme`
   obj.background_color = {value: `rgb(45, 45, 55)`, category: category, version: 1}
@@ -50,6 +49,16 @@ App.build_default_settings = () => {
   obj.warn_on_open = {value: true, category: category, version: 1}
   obj.warn_on_untitle_tabs = {value: true, category: category, version: 1}
   obj.warn_on_bookmark = {value: true, category: category, version: 1}
+
+  category = `media`
+  obj.view_image = {value: `icon`, category: category, version: 1}
+  obj.view_video = {value: `icon`, category: category, version: 1}
+  obj.view_audio = {value: `icon`, category: category, version: 1}
+  obj.view_text = {value: `icon`, category: category, version: 1}
+  obj.show_image_icon = {value: true, category: category, version: 1}
+  obj.show_video_icon = {value: true, category: category, version: 1}
+  obj.show_audio_icon = {value: true, category: category, version: 1}
+  obj.show_text_icon = {value: true, category: category, version: 1}
 
   category = `mouse`
   obj.gestures_enabled = {value: true, category: category, version: 1}
@@ -323,7 +332,7 @@ App.settings_filter_focused = () => {
 }
 
 App.setup_settings = () => {
-  App.settings_categories = [`basic`, `theme`, `icons`, `mouse`, `warns`, `more`]
+  App.settings_categories = [`basic`, `theme`, `icons`, `media`, `mouse`, `warns`, `more`]
 
   let common = {
     persistent: false,
@@ -429,6 +438,21 @@ App.setup_settings = () => {
 
   App.create_window(Object.assign({}, common, {id: `settings_more`, setup: () => {
     prepare(`more`)
+  }}))
+
+  App.create_window(Object.assign({}, common, {id: `settings_media`, setup: () => {
+    prepare(`media`)
+
+    let opts = [
+      [`Never View Media`, `never`],
+      [`By Clicking The Icon`, `icon`],
+      [`By Clicking The Item`, `item`],
+    ]
+
+    App.settings_make_menu(`view_image`, opts.slice(0))
+    App.settings_make_menu(`view_video`, opts.slice(0))
+    App.settings_make_menu(`view_audio`, opts.slice(0))
+    App.settings_make_menu(`view_text`, opts.slice(0))
   }}))
 
   App.create_window(Object.assign({}, common, {id: `settings_mouse`, setup: () => {
