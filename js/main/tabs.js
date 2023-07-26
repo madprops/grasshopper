@@ -1146,10 +1146,7 @@ App.check_new_tabs = () => {
 }
 
 App.toggle_tabs = () => {
-  let pinned = App.get_pinned_tabs()
-  let normal = App.get_normal_tabs()
-  let pinned_h = pinned.filter(x => x.highlighted)
-  let normal_h = normal.filter(x => x.highlighted)
+  let [pinned, normal, pinned_h, normal_h] = App.divide_tabs(`highlighted`)
   App.dehighlight(`tabs`)
 
   if (pinned_h.length === 0 && normal_h.length === 0) {
@@ -1169,4 +1166,27 @@ App.toggle_tabs = () => {
   else {
     App.focus_current_tab()
   }
+}
+
+App.divide_tabs = (filter) => {
+  let pinned = []
+  let normal = []
+  let pinned_2 = []
+  let normal_2 = []
+
+  for (let item of App.get_items(`tabs`)) {
+    if (item.pinned) {
+      pinned.push(item)
+    }
+    else {
+      normal.push(item)
+    }
+  }
+
+  if (filter) {
+    pinned_2 = pinned.filter(x => x[filter])
+    normal_2 = normal.filter(x => x[filter])
+  }
+
+  return [pinned, normal, pinned_2, normal_2]
 }

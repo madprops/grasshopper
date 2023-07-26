@@ -21,51 +21,38 @@ App.do_check_pinline = () => {
 
   App.log(`Checking pinline`)
   App.remove_pinline()
-  let last_pinned
+  let [pinned, normal, pinned_v, normal_v] = App.divide_tabs(`visible`)
 
-  for (let item of App.get_items(`tabs`)) {
-    if (!item.visible) {
-      continue
-    }
-
-    if (item.pinned) {
-      last_pinned = item
-    }
-    else {
-      if (!last_pinned) {
-        return
-      }
-      else {
-        let pinline = DOM.create(`div`, `pinline action`)
-        let n1 = App.get_pinned_tabs().length
-        let n2 = App.get_normal_tabs().length
-        let s1 = App.plural(n1, `Pin`, `Pins`)
-        let s2 = `Normal`
-        let sep = `&nbsp;&nbsp;+&nbsp;&nbsp;`
-        pinline.innerHTML = `${n1} ${s1}${sep}${n2} ${s2}`
-        pinline.title = `Pinned tabs above. Normal tabs below`
-
-        DOM.ev(pinline, `click`, (e) => {
-          App.toggle_tabs()
-        })
-
-        DOM.ev(pinline, `mouseup`, (e) => {
-          if (e.button !== 1) {
-            return
-          }
-
-          let cmd = App.get_setting(`middle_click_pinline`)
-
-          if (cmd !== `none`) {
-            App.run_command({cmd: cmd, item: item, from: `pinline`})
-          }
-        })
-
-        last_pinned.element.after(pinline)
-        return
-      }
-    }
+  if ((pinned_v.length < App.min_pinline_items) || (normal_v.length < App.min_pinline_items)) {
+    return
   }
+
+  let pinline = DOM.create(`div`, `pinline action`)
+  let n1 = App.get_pinned_tabs().length
+  let n2 = App.get_normal_tabs().length
+  let s1 = App.plural(n1, `Pin`, `Pins`)
+  let s2 = `Normal`
+  let sep = `&nbsp;&nbsp;+&nbsp;&nbsp;`
+  pinline.innerHTML = `${n1} ${s1}${sep}${n2} ${s2}`
+  pinline.title = `Pinned tabs above. Normal tabs below`
+
+  DOM.ev(pinline, `click`, (e) => {
+    App.toggle_tabs()
+  })
+
+  DOM.ev(pinline, `mouseup`, (e) => {
+    if (e.button !== 1) {
+      return
+    }
+
+    let cmd = App.get_setting(`middle_click_pinline`)
+
+    if (cmd !== `none`) {
+      App.run_command({cmd: cmd, item: item, from: `pinline`})
+    }
+  })
+
+  pinned_v.at(-1).element.after(pinline)
 }
 
 App.remove_pinline = () => {
