@@ -21,9 +21,10 @@ App.do_check_pinline = () => {
 
   App.log(`Checking pinline`)
   App.remove_pinline()
-  let [pinned, normal, pinned_v, normal_v] = App.divide_tabs(`visible`)
+  let tabs = App.divide_tabs(`visible`)
 
-  if ((pinned_v.length < App.min_pinline_items) || (normal_v.length < App.min_pinline_items)) {
+  if ((tabs.pinned_f.length < App.min_pinline_items) ||
+  (tabs.normal_f.length < App.min_pinline_items)) {
     return
   }
 
@@ -52,7 +53,7 @@ App.do_check_pinline = () => {
     }
   })
 
-  pinned_v.at(-1).element.after(pinline)
+  tabs.pinned_f.at(-1).element.after(pinline)
 }
 
 App.remove_pinline = () => {

@@ -1146,20 +1146,20 @@ App.check_new_tabs = () => {
 }
 
 App.toggle_tabs = () => {
-  let [pinned, normal, pinned_h, normal_h] = App.divide_tabs(`highlighted`)
+  let tabs = App.divide_tabs(`highlighted`)
   App.dehighlight(`tabs`)
 
-  if (pinned_h.length === 0 && normal_h.length === 0) {
-    App.select_item(normal[0], `none`, false)
+  if (tabs.pinned_f.length === 0 && tabs.normal_f.length === 0) {
+    App.select_item(tabs.normal[0], `none`, false)
 
-    for (let item of normal) {
+    for (let item of tabs.normal) {
       App.toggle_highlight(item, true)
     }
   }
-  else if (normal_h.length > 0) {
-    App.select_item(pinned[0], `none`, false)
+  else if (tabs.normal_f.length > 0) {
+    App.select_item(tabs.pinned[0], `none`, false)
 
-    for (let item of pinned) {
+    for (let item of tabs.pinned) {
       App.toggle_highlight(item, true)
     }
   }
@@ -1171,8 +1171,8 @@ App.toggle_tabs = () => {
 App.divide_tabs = (filter) => {
   let pinned = []
   let normal = []
-  let pinned_2 = []
-  let normal_2 = []
+  let pinned_f = []
+  let normal_f = []
 
   for (let item of App.get_items(`tabs`)) {
     if (item.pinned) {
@@ -1184,9 +1184,14 @@ App.divide_tabs = (filter) => {
   }
 
   if (filter) {
-    pinned_2 = pinned.filter(x => x[filter])
-    normal_2 = normal.filter(x => x[filter])
+    pinned_f = pinned.filter(x => x[filter])
+    normal_f = normal.filter(x => x[filter])
   }
 
-  return [pinned, normal, pinned_2, normal_2]
+  return {
+    pinned: pinned,
+    normal: normal,
+    pinned_f: pinned_f,
+    normal_f: normal_f,
+  }
 }
