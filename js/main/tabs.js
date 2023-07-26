@@ -398,10 +398,6 @@ App.unload_tabs = (item) => {
 
   let force = !App.check_tab_warn(tabs, `warn_on_unload_tabs`)
 
-  if (tabs.length >= App.max_warn_limit) {
-    force = false
-  }
-
   App.show_confirm(`Unload tabs? (${tabs.length})`, () => {
     for (let tab of tabs) {
       App.unload_tab(tab)
@@ -450,10 +446,6 @@ App.close_tabs = (item, do_force = false, multiple = true) => {
 
   if (ids.length === 0) {
     return
-  }
-
-  if (ids.length >= App.max_warn_limit) {
-    force = false
   }
 
   let s = App.plural(ids.length, `Close this tab?`, `Close these tabs? (${ids.length})`)
