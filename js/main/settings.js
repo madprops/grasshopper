@@ -445,8 +445,8 @@ App.setup_settings = () => {
 
     let opts = [
       [`Never`, `never`],
-      [`By Clicking The Icon`, `icon`],
-      [`By Clicking The Item`, `item`],
+      [`By Clicking Icon`, `icon`],
+      [`By Clicking Item`, `item`],
     ]
 
     App.settings_make_menu(`view_image`, opts.slice(0))
