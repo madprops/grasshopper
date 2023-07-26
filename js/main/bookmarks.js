@@ -155,7 +155,7 @@ App.all_bookmarked = async (item) => {
   let folder = await App.get_bookmarks_folder()
 
   if (!folder) {
-    return
+    return false
   }
 
   let bookmarks = await App.get_bookmarks()
