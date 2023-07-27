@@ -54,7 +54,7 @@ App.apply_theme = () => {
     }
 
     if (App.get_setting(`text_mode`).includes(`_`)) {
-      item_height += 1.1
+      item_height += 1
     }
 
     App.set_css_var(`item_height`, `${item_height}rem`)
