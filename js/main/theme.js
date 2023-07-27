@@ -89,7 +89,7 @@ App.apply_theme = () => {
       main.classList.add(`hide_scroller`)
     }
 
-    let item_border_opts = [`normal`, `bigger`, `normal_2`, `bigger_2`]
+    let item_border_opts = [`normal`, `bigger`]
 
     for (let b of item_border_opts) {
       main.classList.remove(`item_border_${b}`)
@@ -99,18 +99,6 @@ App.apply_theme = () => {
 
     if (item_border_opts.includes(item_border)) {
       main.classList.add(`item_border_${item_border}`)
-    }
-
-    let window_border_opts = [`normal`, `bigger`, `huge`]
-
-    for (let b of window_border_opts) {
-      main.classList.remove(`window_border_${b}`)
-    }
-
-    let window_border = App.get_setting(`window_border`)
-
-    if (window_border_opts.includes(window_border)) {
-      main.classList.add(`window_border_${window_border}`)
     }
 
     let bg = DOM.el(`#background`)

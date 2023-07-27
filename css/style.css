@@ -83,18 +83,6 @@ body, html {
   box-sizing: border-box;
 }
 
-.window_border_normal .window_main {
-  border: 1px solid var(--border_color);
-}
-
-.window_border_bigger .window_main {
-  border: 3px solid var(--border_color);
-}
-
-.window_border_huge .window_main {
-  border: 6px solid var(--border_color);
-}
-
 .window_content {
   display: flex;
   flex-direction: column;
@@ -240,14 +228,6 @@ svg {
 
 .item_border_bigger .item {
   border-bottom: 3px solid var(--alt_color_1);
-}
-
-.item_border_normal_2 .item {
-  border-bottom: 1px solid var(--border_color);
-}
-
-.item_border_bigger_2 .item {
-  border-bottom: 3px solid var(--border_color);
 }
 
 .item_icon_container {
