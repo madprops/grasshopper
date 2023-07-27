@@ -610,12 +610,6 @@ input {
   user-select: unset;
 }
 
-input::placeholder {
-  color: var(--text_color);
-  opacity: 0.77;
-  font-size: 1rem;
-}
-
 .full_width {
   width: 100%;
 }
