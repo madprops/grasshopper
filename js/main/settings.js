@@ -365,6 +365,7 @@ App.setup_settings = () => {
 
   App.create_window(Object.assign({}, common, {id: `settings_general`, setup: () => {
     prepare(`general`)
+
     App.settings_make_menu(`text_mode`, [
       [`Title`, `title`],
       [`URL`, `url`],
