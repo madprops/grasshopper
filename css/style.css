@@ -84,27 +84,15 @@ body, html {
 }
 
 .window_border_normal .window_main {
-  border: 3px solid var(--alt_color_2);
+  border: 1px solid var(--border_color);
 }
 
-.window_border_red .window_main {
-  border: 3px solid rgb(255, 0, 0);
+.window_border_bigger .window_main {
+  border: 3px solid var(--border_color);
 }
 
-.window_border_green .window_main {
-  border: 3px solid rgb(0, 255, 0);
-}
-
-.window_border_blue .window_main {
-  border: 3px solid rgb(0, 0, 255);
-}
-
-.window_border_white .window_main {
-  border: 3px solid rgb(255, 255, 255);
-}
-
-.window_border_black .window_main {
-  border: 3px solid rgb(0, 0, 0);
+.window_border_huge .window_main {
+  border: 6px solid var(--border_color);
 }
 
 .window_content {

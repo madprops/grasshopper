@@ -21,6 +21,7 @@ App.build_default_settings = () => {
   category = `theme`
   obj.background_color = {value: `rgb(45, 45, 55)`, category: category, version: 1}
   obj.text_color = {value: `rgb(233, 233, 233)`, category: category, version: 1}
+  obj.border_color = {value: `rgb(33, 140, 77)`, category: category, version: 1}
   obj.background_image = {value: `/img/background.jpg`, category: category, version: 1}
   obj.background_effect = {value: `none`, category: category, version: 1}
   obj.background_tiles = {value: `none`, category: category, version: 1}
@@ -404,11 +405,8 @@ App.setup_settings = () => {
     App.settings_make_menu(`window_border`, [
       [`None`, `none`],
       [`Normal`, `normal`],
-      [`Red`, `red`],
-      [`Green`, `green`],
-      [`Blue`, `blue`],
-      [`White`, `white`],
-      [`Black`, `black`],
+      [`Bigger`, `bigger`],
+      [`Huge`, `huge`],
     ], () => {
       App.apply_theme()
     })
@@ -599,6 +597,7 @@ App.start_theme_settings = () => {
 
   start_color_picker(`background`)
   start_color_picker(`text`)
+  start_color_picker(`border`)
 
   App.settings_make_menu(`background_effect`, [
     [`None`, `none`],

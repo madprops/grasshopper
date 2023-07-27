@@ -7,9 +7,11 @@ App.apply_theme = () => {
   try {
     let background = App.get_setting(`background_color`)
     let text = App.get_setting(`text_color`)
+    let border = App.get_setting(`border_color`)
 
     App.set_css_var(`background_color`, background)
     App.set_css_var(`text_color`, text)
+    App.set_css_var(`border_color`, border)
 
     let main_background = App.colorlib.rgb_to_rgba(background, 0.93)
     App.set_css_var(`main_background`, main_background)
@@ -99,7 +101,7 @@ App.apply_theme = () => {
       main.classList.add(`item_border_${item_border}`)
     }
 
-    let window_border_opts = [`normal`, `bigger`, `red`, `green`, `blue`, `white`, `black`]
+    let window_border_opts = [`normal`, `bigger`, `huge`]
 
     for (let b of window_border_opts) {
       main.classList.remove(`window_border_${b}`)
