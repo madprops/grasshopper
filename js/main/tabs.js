@@ -918,11 +918,11 @@ App.close_duplicate_tabs = () => {
   }, undefined, force)
 }
 
-App.focus_current_tab = async () => {
+App.focus_current_tab = async (scroll = `nearest_smooth`) => {
   let item = await App.get_active_tab_item()
 
   if (item) {
-    App.select_item(item, `nearest_smooth`)
+    App.select_item(item, scroll)
   }
 }
 
@@ -1160,7 +1160,7 @@ App.toggle_tabs = () => {
     }
   }
   else {
-    App.focus_current_tab()
+    App.focus_current_tab(`center_smooth`)
   }
 }
 
