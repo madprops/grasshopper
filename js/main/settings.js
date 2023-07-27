@@ -1,7 +1,7 @@
 App.build_default_settings = () => {
   let obj = {}
 
-  let category = `basic`
+  let category = `general`
   obj.text_mode = {value: `title`, category: category, version: 1}
   obj.item_height = {value: `normal`, category: category, version: 1}
   obj.font = {value: `sans-serif`, category: category, version: 1}
@@ -330,7 +330,7 @@ App.settings_filter_focused = () => {
 }
 
 App.setup_settings = () => {
-  App.settings_categories = [`basic`, `theme`, `icons`, `media`, `show`, `mouse`, `warns`, `more`]
+  App.settings_categories = [`general`, `theme`, `icons`, `media`, `show`, `mouse`, `warns`, `more`]
 
   let common = {
     persistent: false,
@@ -363,8 +363,8 @@ App.setup_settings = () => {
     }
   }
 
-  App.create_window(Object.assign({}, common, {id: `settings_basic`, setup: () => {
-    prepare(`basic`)
+  App.create_window(Object.assign({}, common, {id: `settings_general`, setup: () => {
+    prepare(`general`)
     App.settings_make_menu(`text_mode`, [
       [`Title`, `title`],
       [`URL`, `url`],
@@ -687,7 +687,7 @@ App.reset_settings = (category) => {
   App.show_confirm(`Reset settings? (${App.capitalize(category)})`, () => {
     App.settings_default_category(category)
 
-    if (category === `basic`) {
+    if (category === `general`) {
       App.get_mode_order()
       App.make_mode_order()
     }
@@ -731,7 +731,7 @@ App.get_size_options = () => {
 }
 
 App.show_settings = () => {
-  App.show_window(`settings_basic`)
+  App.show_window(`settings_general`)
 }
 
 App.show_settings_window = (category) => {
