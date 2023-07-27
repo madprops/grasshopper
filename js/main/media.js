@@ -105,7 +105,7 @@ App.view_media = (o_item) => {
   let item = App.soft_copy_item(o_item)
   App.hide_media_elements(what)
   App[`current_media_${what}_item`] = item
-  App[`current_media_type`] = what
+  App.current_media_type = what
   DOM.el(`#view_${what}_player`).src = item.url
   App.stop_media_timeout(what)
 
@@ -144,11 +144,11 @@ App.stop_media_timeout = (what) => {
   clearTimeout(App[`view_${what}_loading_timeout`])
 }
 
-App.media_prev = (what = App.window_mode) => {
+App.media_prev = (what = App.current_media_type) => {
   App.cycle_media(App[`current_media_${what}_item`], what, `prev`)
 }
 
-App.media_next = (what = App.window_mode) => {
+App.media_next = (what = App.current_media_type) => {
   App.cycle_media(App[`current_media_${what}_item`], what, `next`)
 }
 
@@ -241,7 +241,7 @@ App.media_wheel = App.create_debouncer((e, what) => {
 }, App.wheel_delay)
 
 App.on_media = () => {
-  return App.media_types.includes(App.window_mode)
+  return App.window_mode.startsWith(`view_`)
 }
 
 App.show_media_menu = async (what) => {
@@ -309,6 +309,6 @@ App.scroll_media_down = (what = App.window_mode) => {
 }
 
 App.current_media_item = () => {
-  let what = App[`current_media_type`]
+  let what = App.current_media_type
   return App[`current_media_${what}_item`]
 }
