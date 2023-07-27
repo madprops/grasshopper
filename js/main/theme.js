@@ -86,13 +86,13 @@ App.apply_theme = () => {
     let borders = [`normal`, `bigger`]
 
     for (let b of borders) {
-      main.classList.remove(`borders_${b}`)
+      main.classList.remove(`item_borders_${b}`)
     }
 
-    let border = App.get_setting(`borders`)
+    let border = App.get_setting(`item_borders`)
 
     if (border !== `none`) {
-      main.classList.add(`borders_${border}`)
+      main.classList.add(`item_borders_${border}`)
     }
 
     let bg = DOM.el(`#background`)
