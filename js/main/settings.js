@@ -94,9 +94,6 @@ App.build_default_settings = () => {
   obj.show_pinline = {value: true, category: category, version: 1}
   obj.show_scroller = {value: true, category: category, version: 1}
   obj.show_footer = {value: true, category: category, version: 1}
-  obj.show_pick_buttons = {value: true, category: category, version: 1}
-  obj.show_close_buttons = {value: true, category: category, version: 1}
-  obj.show_open_buttons = {value: true, category: category, version: 1}
 
   App.default_settings = obj
 }

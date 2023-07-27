@@ -373,16 +373,14 @@ App.check_view_media = (item) => {
     return
   }
 
-  let icon = App.get_setting(`${type}_icon`)
-
-  if (!icon) {
+  if (!App.get_setting(`${type}_icon`)) {
     return
   }
 
   let view_media = DOM.el(`.view_media_button`, item.element)
 
   if (type) {
-    view_media.textContent = icon
+    view_media.textContent = App.get_setting(`${type}_icon`)
     view_media.title = App.capitalize(type)
     view_media.classList.remove(`hidden`)
 
@@ -463,7 +461,7 @@ App.create_item_element = (item) => {
     item.element.classList.remove(`highlighted`)
   }
 
-  if (App.get_setting(`show_pick_buttons`)) {
+  if (App.get_setting(`pick_icon`)) {
     let pick = DOM.create(`div`, `item_pick item_button item_button_left`)
     pick.textContent = App.get_setting(`pick_icon`)
     pick.title = `Pick`
@@ -472,7 +470,7 @@ App.create_item_element = (item) => {
   }
 
   if (item.mode === `tabs`) {
-    if (App.get_setting(`show_close_buttons`)) {
+    if (App.get_setting(`close_icon`)) {
       let btn = DOM.create(`div`, `item_button item_button_right item_button_close`)
       btn.textContent = App.get_setting(`close_icon`)
       btn.title = `Close`
@@ -481,7 +479,7 @@ App.create_item_element = (item) => {
     }
   }
   else {
-    if (App.get_setting(`show_open_buttons`)) {
+    if (App.get_setting(`open_icon`)) {
       let btn = DOM.create(`div`, `item_button item_button_right item_button_open`)
       btn.textContent = App.get_setting(`open_icon`)
       btn.title = `Open`
