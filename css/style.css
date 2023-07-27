@@ -82,7 +82,12 @@ body, html {
   height: 100vh;
 }
 
-.window_border .window_main {
+.window_border_normal .window_main {
+  border: 1px solid var(--alt_color_2);
+  box-sizing: border-box;
+}
+
+.window_border_bigger .window_main {
   border: 3px solid var(--alt_color_2);
   box-sizing: border-box;
 }

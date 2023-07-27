@@ -83,23 +83,23 @@ App.apply_theme = () => {
       main.classList.add(`hide_scroller`)
     }
 
-    if (App.get_setting(`show_window_border`)) {
-      main.classList.add(`window_border`)
-    }
-    else {
-      main.classList.remove(`window_border`)
-    }
-
     let borders = [`normal`, `bigger`]
 
     for (let b of borders) {
       main.classList.remove(`item_borders_${b}`)
+      main.classList.remove(`window_border_${b}`)
     }
 
-    let border = App.get_setting(`item_borders`)
+    let item_borders = App.get_setting(`item_borders`)
 
-    if (border !== `none`) {
-      main.classList.add(`item_borders_${border}`)
+    if (item_borders !== `none`) {
+      main.classList.add(`item_borders_${item_borders}`)
+    }
+
+    let window_border = App.get_setting(`window_border`)
+
+    if (window_border !== `none`) {
+      main.classList.add(`window_border_${window_border}`)
     }
 
     let bg = DOM.el(`#background`)

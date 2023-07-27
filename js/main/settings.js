@@ -16,6 +16,7 @@ App.build_default_settings = () => {
   obj.custom_filters = {value: [], category: category, version: 1}
   obj.bookmarks_folder = {value: `Grasshopper`, category: category, version: 1}
   obj.item_borders = {value: `none`, category: category, version: 2}
+  obj.window_border = {value: `none`, category: category, version: 2}
 
   category = `theme`
   obj.background_color = {value: `rgb(45, 45, 55)`, category: category, version: 1}
@@ -102,7 +103,6 @@ App.build_default_settings = () => {
   obj.show_pick_buttons = {value: true, category: category, version: 1}
   obj.show_close_buttons = {value: true, category: category, version: 1}
   obj.show_open_buttons = {value: true, category: category, version: 1}
-  obj.show_window_border = {value: false, category: category, version: 1}
 
   App.default_settings = obj
 }
@@ -405,6 +405,14 @@ App.setup_settings = () => {
       [`Normal`, `normal`],
       [`Bigger`, `bigger`],
     ])
+
+    App.settings_make_menu(`window_border`, [
+      [`None`, `none`],
+      [`Normal`, `normal`],
+      [`Bigger`, `bigger`],
+    ], () => {
+      App.apply_theme()
+    })
 
     App.settings_make_menu(`width`, App.get_size_options(), () => {
       App.apply_theme()
