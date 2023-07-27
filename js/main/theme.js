@@ -39,15 +39,16 @@ App.apply_theme = () => {
     App.set_css_var(`height`, h)
 
     let item_height = 2.15
+    let height_diff = 0.45
 
     if (App.get_setting(`item_height`) === `compact`) {
-      item_height = 1.7
+      item_height -= height_diff
     }
     else if (App.get_setting(`item_height`) === `bigger`) {
-      item_height = 2.6
+      item_height += height_diff
     }
     else if (App.get_setting(`item_height`) === `huge`) {
-      item_height = 3.3
+      item_height += (height_diff * 2)
     }
 
     if (App.get_setting(`text_mode`).includes(`_`)) {
