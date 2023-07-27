@@ -20,7 +20,7 @@ App.build_default_settings = () => {
   category = `theme`
   obj.background_color = {value: `rgb(45, 45, 55)`, category: category, version: 1}
   obj.text_color = {value: `rgb(233, 233, 233)`, category: category, version: 1}
-  obj.background_image = {value: ``, category: category, version: 1}
+  obj.background_image = {value: `/img/background.jpg`, category: category, version: 1}
   obj.background_effect = {value: `none`, category: category, version: 1}
   obj.background_tiles = {value: `none`, category: category, version: 1}
 
