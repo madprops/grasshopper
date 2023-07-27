@@ -99,8 +99,15 @@ DOM.create = (type, classes = ``, id = ``) => {
 }
 
 // Add an event listener
-DOM.ev = (element, action, callback, extra) => {
-  element.addEventListener(action, callback, extra)
+DOM.ev = (element, event, callback, extra) => {
+  element.addEventListener(event, callback, extra)
+}
+
+// Add an event listeners
+DOM.evs = (element, events, callback, extra) => {
+  for (let event of events) {
+    element.addEventListener(event, callback, extra)
+  }
 }
 
 // Like jQuery's nextAll

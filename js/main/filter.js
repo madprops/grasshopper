@@ -417,11 +417,7 @@ App.create_filter_menu = (mode) => {
   fmodes.push([`refine`, `Refine`])
   App[`${mode}_filter_modes`] = fmodes
 
-  DOM.ev(filter_menu, `click`, () => {
-    App.show_filter_menu(mode)
-  })
-
-  DOM.ev(filter_menu, `contextmenu`, (e) => {
+  DOM.evs(filter_menu, [`click`, `contextmenu`], (e) => {
     App.show_filter_menu(mode)
     e.preventDefault()
   })

@@ -157,9 +157,7 @@ App.settings_setup_checkboxes = (container) => {
       App.settings_do_action(action)
     })
 
-    DOM.ev(App.get_settings_label(setting), `mouseup`, (e) => {
-      e.preventDefault()
-
+    DOM.evs(App.get_settings_label(setting), [`click`, `contextmenu`], (e) => {
       App.reset_single_setting(e, () => {
         App.set_default_setting(setting)
         el.checked = App.get_setting(setting)
@@ -202,9 +200,7 @@ App.settings_setup_text = (container) => {
       App.settings_do_action(action)
     })
 
-    DOM.ev(App.get_settings_label(setting), `mouseup`, (e) => {
-      e.preventDefault()
-
+    DOM.evs(App.get_settings_label(setting), [`click`, `contextmenu`], (e) => {
       App.reset_single_setting(e, () => {
         App.set_default_setting(setting)
         let value = App.get_setting(setting)
@@ -259,9 +255,7 @@ App.settings_make_menu = (setting, opts, action = () => {}) => {
     NeedContext.show_on_element(el, items, true, el.clientHeight)
   })
 
-  DOM.ev(App.get_settings_label(setting), `mouseup`, (e) => {
-    e.preventDefault()
-
+  DOM.evs(App.get_settings_label(setting), [`click`, `contextmenu`], (e) => {
     App.reset_single_setting(e, () => {
       App.set_default_setting(setting)
       let value = App.get_setting(setting)
@@ -430,9 +424,7 @@ App.setup_settings = () => {
 
     App.make_mode_order()
 
-    DOM.ev(App.get_settings_label(`mode_order`), `mouseup`, (e) => {
-      e.preventDefault()
-
+    DOM.evs(App.get_settings_label(`mode_order`), [`click`, `contextmenu`], (e) => {
       App.reset_single_setting(e, () => {
         App.set_default_setting(`tabs_index`)
         App.set_default_setting(`history_index`)
@@ -597,15 +589,11 @@ App.start_theme_settings = () => {
       App.apply_theme()
     })
 
-    DOM.ev(App.get_settings_label(setting), `mouseup`, (e) => {
-      e.preventDefault()
-
+    DOM.evs(App.get_settings_label(setting), [`click`, `contextmenu`], (e) => {
       App.reset_single_setting(e, () => {
         App.set_default_setting(setting)
         App[setting].setColor(App.get_setting(setting))
       })
-
-      e.preventDefault()
     })
   }
 

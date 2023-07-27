@@ -4,11 +4,7 @@ App.create_actions_menu = (mode) => {
   actions_menu.append(App.create_icon(`sun`))
   actions_menu.title = `Actions (Ctrl + Right)`
 
-  DOM.ev(actions_menu, `click`, () => {
-    App.show_actions_menu(mode)
-  })
-
-  DOM.ev(actions_menu, `contextmenu`, (e) => {
+  DOM.evs(actions_menu, [`click`, `contextmenu`], (e) => {
     App.show_actions_menu(mode)
     e.preventDefault()
   })
