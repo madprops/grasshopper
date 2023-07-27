@@ -86,16 +86,16 @@ App.apply_theme = () => {
       main.classList.add(`hide_scroller`)
     }
 
-    let item_borders_opts = [`normal`, `bigger`, `normal_2`, `bigger_2`]
+    let item_border_opts = [`normal`, `bigger`, `normal_2`, `bigger_2`]
 
-    for (let b of item_borders_opts) {
-      main.classList.remove(`item_borders_${b}`)
+    for (let b of item_border_opts) {
+      main.classList.remove(`item_border_${b}`)
     }
 
-    let item_borders = App.get_setting(`item_borders`)
+    let item_border = App.get_setting(`item_border`)
 
-    if (item_borders_opts.includes(item_borders)) {
-      main.classList.add(`item_borders_${item_borders}`)
+    if (item_border_opts.includes(item_border)) {
+      main.classList.add(`item_border_${item_border}`)
     }
 
     let window_border_opts = [`normal`, `bigger`, `red`, `green`, `blue`, `white`, `black`]

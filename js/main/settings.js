@@ -15,7 +15,7 @@ App.build_default_settings = () => {
   obj.closed_index = {value: 3, category: category, version: 1}
   obj.custom_filters = {value: [], category: category, version: 1}
   obj.bookmarks_folder = {value: `Grasshopper`, category: category, version: 1}
-  obj.item_borders = {value: `none`, category: category, version: 2}
+  obj.item_border = {value: `none`, category: category, version: 2}
   obj.window_border = {value: `none`, category: category, version: 2}
 
   category = `theme`
@@ -401,7 +401,7 @@ App.setup_settings = () => {
       [`Bigger 2`, `bigger_2`],
     ])
 
-    App.settings_make_menu(`item_borders`, [
+    App.settings_make_menu(`item_border`, [
       [`None`, `none`],
       [`Normal`, `normal`],
       [`Bigger`, `bigger`],

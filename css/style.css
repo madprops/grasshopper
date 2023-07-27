@@ -246,19 +246,19 @@ svg {
   gap: 0.611rem;
 }
 
-.item_borders_normal .item {
+.item_border_normal .item {
   border-bottom: 1px solid var(--alt_color_1);
 }
 
-.item_borders_bigger .item {
+.item_border_bigger .item {
   border-bottom: 3px solid var(--alt_color_1);
 }
 
-.item_borders_normal_2 .item {
+.item_border_normal_2 .item {
   border-bottom: 1px solid var(--alt_color_2);
 }
 
-.item_borders_bigger_2 .item {
+.item_border_bigger_2 .item {
   border-bottom: 3px solid var(--alt_color_2);
 }
 
