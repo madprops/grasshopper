@@ -46,7 +46,7 @@ App.apply_theme = () => {
     else if (App.get_setting(`item_height`) === `bigger`) {
       item_height = 2.6
     }
-    else if (App.get_setting(`item_height`) === `bigger_2`) {
+    else if (App.get_setting(`item_height`) === `huge`) {
       item_height = 3.3
     }
 
