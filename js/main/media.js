@@ -5,31 +5,31 @@ App.setup_media = () => {
 }
 
 App.create_media_windows = (what) => {
-  App.create_window({id: what, setup: () => {
-    let media = DOM.el(`#media_${what}`)
-    let buttons = DOM.el(`#media_${what}_buttons`)
+  App.create_window({id: `view_${what}`, setup: () => {
+    let media = DOM.el(`#view_${what}_player`)
+    let buttons = DOM.el(`#view_${what}_buttons`)
 
-    let prev = DOM.create(`div`, `button arrow_prev`, `media_${what}_prev`)
+    let prev = DOM.create(`div`, `button arrow_prev`, `view_${what}_prev`)
     prev.textContent = `<`
     prev.title = `Go To Previous (Left)`
     buttons.append(prev)
 
-    let open = DOM.create(`div`, `button`, `media_${what}_open`)
+    let open = DOM.create(`div`, `button`, `view_${what}_open`)
     open.textContent = `Open`
     open.title = `Open Tab (Enter)`
     buttons.append(open)
 
-    let menu = DOM.create(`div`, `button icon_button`, `media_${what}_menu`)
+    let menu = DOM.create(`div`, `button icon_button`, `view_${what}_menu`)
     menu.title = `Menu (Space)`
     menu.append(App.create_icon(`sun`))
     buttons.append(menu)
 
-    let close = DOM.create(`div`, `button`, `media_${what}_close`)
+    let close = DOM.create(`div`, `button`, `view_${what}_close`)
     close.textContent = `Close`
     close.title = `Close this window`
     buttons.append(close)
 
-    let next = DOM.create(`div`, `button arrow_next`, `media_${what}_next`)
+    let next = DOM.create(`div`, `button arrow_next`, `view_${what}_next`)
     next.textContent = `>`
     next.title = `Go To Next (Right)`
     buttons.append(next)
@@ -38,14 +38,14 @@ App.create_media_windows = (what) => {
       DOM.ev(media, `load`, () => {
         App.stop_media_timeout(what)
         media.classList.remove(`hidden`)
-        DOM.el(`#media_${what}_loading`).classList.add(`hidden`)
+        DOM.el(`#view_${what}_loading`).classList.add(`hidden`)
       })
     }
     else if (what === `video` || what === `audio`) {
       DOM.ev(media, `canplay`, () => {
         App.stop_media_timeout(what)
         media.classList.remove(`hidden`)
-        DOM.el(`#media_${what}_loading`).classList.add(`hidden`)
+        DOM.el(`#view_${what}_loading`).classList.add(`hidden`)
         media.play()
       })
     }
@@ -66,11 +66,11 @@ App.create_media_windows = (what) => {
       App.hide_window()
     })
 
-    DOM.ev(DOM.el(`#media_${what}_prev`), `click`, () => {
+    DOM.ev(DOM.el(`#view_${what}_prev`), `click`, () => {
       App.media_prev(what)
     })
 
-    DOM.ev(DOM.el(`#media_${what}_next`), `click`, () => {
+    DOM.ev(DOM.el(`#view_${what}_next`), `click`, () => {
       App.media_next(what)
     })
 
@@ -106,42 +106,42 @@ App.view_media = (o_item) => {
   App.hide_media_elements(what)
   App[`current_media_${what}_item`] = item
   App[`current_media_type`] = what
-  DOM.el(`#media_${what}`).src = item.url
+  DOM.el(`#view_${what}_player`).src = item.url
   App.stop_media_timeout(what)
 
-  App[`media_${what}_loading_timeout`] = setTimeout(() => {
-    DOM.el(`#media_${what}_loading`).classList.remove(`hidden`)
+  App[`view_${what}_loading_timeout`] = setTimeout(() => {
+    DOM.el(`#view_${what}_loading`).classList.remove(`hidden`)
   }, 500)
 
-  let url_el = DOM.el(`#media_${what}_url`)
+  let url_el = DOM.el(`#view_${what}_url`)
   url_el.textContent = item.url
   url_el.title = item.url
-  App.show_window(what)
+  App.show_window(`view_${what}`)
   App.media_show_loading(what)
 
   if (App.get_visible_media(item.mode, what).length <= 1) {
-    DOM.el(`#media_${what}_prev`).classList.add(`disabled`)
-    DOM.el(`#media_${what}_next`).classList.add(`disabled`)
+    DOM.el(`#view_${what}_prev`).classList.add(`disabled`)
+    DOM.el(`#view_${what}_next`).classList.add(`disabled`)
   }
   else {
-    DOM.el(`#media_${what}_prev`).classList.remove(`disabled`)
-    DOM.el(`#media_${what}_next`).classList.remove(`disabled`)
+    DOM.el(`#view_${what}_prev`).classList.remove(`disabled`)
+    DOM.el(`#view_${what}_next`).classList.remove(`disabled`)
   }
 }
 
 App.stop_media_player = (what) => {
-  let player = DOM.el(`#media_${what}`)
+  let player = DOM.el(`#view_${what}_player`)
   player.pause()
   player.src = ``
 }
 
 App.hide_media_elements = (what) => {
-  DOM.el(`#media_${what}`).classList.add(`hidden`)
-  DOM.el(`#media_${what}_loading`).classList.add(`hidden`)
+  DOM.el(`#view_${what}_player`).classList.add(`hidden`)
+  DOM.el(`#view_${what}_loading`).classList.add(`hidden`)
 }
 
 App.stop_media_timeout = (what) => {
-  clearTimeout(App[`media_${what}_loading_timeout`])
+  clearTimeout(App[`view_${what}_loading_timeout`])
 }
 
 App.media_prev = (what = App.window_mode) => {
@@ -191,11 +191,11 @@ App.cycle_media = (item, what, dir) => {
 }
 
 App.media_show_loading = (what) => {
-  DOM.el(`#media_${what}_loading`).textContent = `Loading...`
+  DOM.el(`#view_${what}_loading`).textContent = `Loading...`
 }
 
 App.media_show_error = (what) => {
-  DOM.el(`#media_${what}_loading`).textContent = `Error`
+  DOM.el(`#view_${what}_loading`).textContent = `Error`
 }
 
 App.open_media = (what = App.window_mode) => {
@@ -277,7 +277,7 @@ App.show_media_menu = async (what) => {
     })
   }
 
-  let btn = DOM.el(`#media_${what}_menu`)
+  let btn = DOM.el(`#view_${what}_menu`)
   NeedContext.show_on_element(btn, items)
 }
 
