@@ -103,7 +103,7 @@ DOM.ev = (element, event, callback, extra) => {
   element.addEventListener(event, callback, extra)
 }
 
-// Add an event listeners
+// Add multiple event listeners
 DOM.evs = (element, events, callback, extra) => {
   for (let event of events) {
     element.addEventListener(event, callback, extra)
