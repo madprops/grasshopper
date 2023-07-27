@@ -830,7 +830,15 @@ App.setup_item_window = (mode) => {
   App.create_window(args)
 }
 
+App.cycle_modes_debouncer = App.create_debouncer((reverse, cycle) => {
+  App.do_cycle_modes(reverse, cycle)
+}, App.wheel_delay, true)
+
 App.cycle_modes = (reverse = false, cycle = false) => {
+  App.cycle_modes_debouncer.call(reverse, cycle)
+}
+
+App.do_cycle_modes = (reverse, cycle) => {
   let modes = App.mode_order
   let index = modes.indexOf(App.window_mode)
   let new_mode
