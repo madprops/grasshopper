@@ -986,9 +986,9 @@ App.settings_commands = () => {
 }
 
 App.tab_warn_opts = [
+  [`Never`, `never`],
   [`Always`, `always`],
   [`Special`, `special`],
-  [`Never`, `never`],
 ]
 
 App.get_setting_category = () => {
