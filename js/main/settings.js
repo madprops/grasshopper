@@ -414,8 +414,8 @@ App.setup_settings = () => {
       [`Red`, `red`],
       [`Green`, `green`],
       [`Blue`, `blue`],
-      [`Black`, `black`],
       [`White`, `white`],
+      [`Black`, `black`],
     ], () => {
       App.apply_theme()
     })

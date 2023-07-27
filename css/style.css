@@ -88,23 +88,23 @@ body, html {
 }
 
 .window_border_red .window_main {
-  border: 3px solid red;
+  border: 3px solid rgb(255, 0, 0);
 }
 
 .window_border_green .window_main {
-  border: 3px solid green;
+  border: 3px solid rgb(0, 255, 0);
 }
 
 .window_border_blue .window_main {
-  border: 3px solid blue;
-}
-
-.window_border_black .window_main {
-  border: 3px solid black;
+  border: 3px solid rgb(0, 0, 255);
 }
 
 .window_border_white .window_main {
-  border: 3px solid white;
+  border: 3px solid rgb(255, 255, 255);
+}
+
+.window_border_black .window_main {
+  border: 3px solid rgb(0, 0, 0);
 }
 
 .window_content {
