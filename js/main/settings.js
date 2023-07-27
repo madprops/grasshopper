@@ -164,6 +164,7 @@ App.settings_setup_checkboxes = (container) => {
       App.reset_single_setting(e, () => {
         App.set_default_setting(setting)
         el.checked = App.get_setting(setting)
+        App.settings_do_action(action)
       })
     })
   }
