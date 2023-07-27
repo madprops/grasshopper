@@ -82,6 +82,11 @@ body, html {
   height: 100vh;
 }
 
+.window_border .window_main {
+  border: 2px solid var(--alt_color_0);
+  box-sizing: border-box;
+}
+
 .window_content {
   display: flex;
   flex-direction: column;

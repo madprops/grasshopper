@@ -83,6 +83,13 @@ App.apply_theme = () => {
       main.classList.add(`hide_scroller`)
     }
 
+    if (App.get_setting(`show_window_border`)) {
+      main.classList.add(`window_border`)
+    }
+    else {
+      main.classList.remove(`window_border`)
+    }
+
     let borders = [`normal`, `bigger`]
 
     for (let b of borders) {

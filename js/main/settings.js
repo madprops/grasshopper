@@ -102,6 +102,7 @@ App.build_default_settings = () => {
   obj.show_pick_buttons = {value: true, category: category, version: 1}
   obj.show_close_buttons = {value: true, category: category, version: 1}
   obj.show_open_buttons = {value: true, category: category, version: 1}
+  obj.show_window_border = {value: false, category: category, version: 1}
 
   App.default_settings = obj
 }
