@@ -83,34 +83,39 @@ App.apply_theme = () => {
       main.classList.add(`hide_scroller`)
     }
 
-    let borders = [`normal`, `bigger`]
+    let item_borders_opts = [`normal`, `bigger`]
 
-    for (let b of borders) {
+    for (let b of item_borders_opts) {
       main.classList.remove(`item_borders_${b}`)
-      main.classList.remove(`window_border_${b}`)
     }
 
     let item_borders = App.get_setting(`item_borders`)
 
-    if (item_borders !== `none`) {
+    if (item_borders_opts.includes(item_borders)) {
       main.classList.add(`item_borders_${item_borders}`)
+    }
+
+    let window_border_opts = [`normal`, `bigger`]
+
+    for (let b of window_border_opts) {
+      main.classList.remove(`window_border_${b}`)
     }
 
     let window_border = App.get_setting(`window_border`)
 
-    if (window_border !== `none`) {
+    if (window_border_opts.includes(window_border)) {
       main.classList.add(`window_border_${window_border}`)
     }
 
     let bg = DOM.el(`#background`)
-    let bg_effects = [`blur`, `grayscale`, `invert`, `rotate_1`, `rotate_2`, `rotate_3`]
+    let bg_effect_opts = [`blur`, `grayscale`, `invert`, `rotate_1`, `rotate_2`, `rotate_3`]
     let bg_effect = App.get_setting(`background_effect`)
 
-    for (let eff of bg_effects) {
+    for (let eff of bg_effect_opts) {
       bg.classList.remove(eff)
     }
 
-    if (bg_effects.includes(bg_effect)) {
+    if (bg_effect_opts.includes(bg_effect)) {
       bg.classList.add(bg_effect)
     }
 
