@@ -261,9 +261,6 @@ App.check_command = (command, args) => {
     else if (args.item.audio) {
       args.media = `audio`
     }
-    else if (args.item.text) {
-      args.media = `text`
-    }
   }
 
   let valid = false

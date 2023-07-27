@@ -150,9 +150,6 @@ App.filter_check = (args) => {
     else if (args.filter_mode === `audio`) {
       match = args.item.audio
     }
-    else if (args.filter_mode === `text`) {
-      match = args.item.text
-    }
     else if (args.filter_mode === `duplicate`) {
       match = args.duplicates.includes(args.item)
     }
@@ -414,7 +411,6 @@ App.create_filter_menu = (mode) => {
   fmodes.push([`image`, `Image`])
   fmodes.push([`video`, `Video`])
   fmodes.push([`audio`, `Audio`])
-  fmodes.push([`text`, `Text`])
   fmodes.push(...(App.filter_modes(mode) || []))
   fmodes.push([App.separator_string])
   fmodes.push([`custom`, `Custom`])

@@ -288,7 +288,6 @@ App.process_info = (mode, info, exclude = [], o_item) => {
   let image = App.is_image(url)
   let video = App.is_video(url)
   let audio = App.is_audio(url)
-  let text = App.is_text(url)
 
   if (mode === `tabs`) {
     let title_match = App.get_title(url)
@@ -309,7 +308,6 @@ App.process_info = (mode, info, exclude = [], o_item) => {
     image: image,
     video: video,
     audio: audio,
-    text: text,
     created: false,
   }
 
@@ -371,7 +369,11 @@ App.check_item_icon = (item) => {
 App.check_view_media = (item) => {
   let type = App.get_media_type(item)
 
-  if (!type || !App.get_setting(`show_${type}_icon`)) {
+  if (!type) {
+    return
+  }
+
+  if (!App.get_setting(`show_${type}_icon`)) {
     return
   }
 

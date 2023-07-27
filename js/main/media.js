@@ -106,15 +106,7 @@ App.view_media = (o_item) => {
   App.hide_media_elements(what)
   App[`current_${what}_item`] = item
   App[`current_media_type`] = what
-  let container = DOM.el(`#${what}`)
-
-  if (what === `text`) {
-    container.data = item.url
-  }
-  else {
-    container.src = item.url
-  }
-
+  DOM.el(`#${what}`).src = item.url
   App.stop_media_timeout(what)
 
   App[`${what}_loading_timeout`] = setTimeout(() => {
@@ -144,10 +136,6 @@ App.stop_media_player = (what) => {
 }
 
 App.hide_media_elements = (what) => {
-  if (what === `text`) {
-    return
-  }
-
   DOM.el(`#${what}`).classList.add(`hidden`)
   DOM.el(`#${what}_loading`).classList.add(`hidden`)
 }
@@ -203,10 +191,6 @@ App.cycle_media = (item, what, dir) => {
 }
 
 App.media_show_loading = (what) => {
-  if (what === `text`) {
-    return
-  }
-
   DOM.el(`#${what}_loading`).textContent = `Loading...`
 }
 

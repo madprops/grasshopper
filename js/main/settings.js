@@ -38,7 +38,6 @@ App.build_default_settings = () => {
   obj.image_icon = {value: `🖼️`, category: category, version: 1}
   obj.video_icon = {value: `▶️`, category: category, version: 1}
   obj.audio_icon = {value: `🎵`, category: category, version: 1}
-  obj.text_icon = {value: `📄`, category: category, version: 1}
 
   category = `warns`
   obj.warn_on_close_tabs = {value: `special`, category: category, version: 1}
@@ -54,11 +53,9 @@ App.build_default_settings = () => {
   obj.view_image = {value: `icon`, category: category, version: 1}
   obj.view_video = {value: `icon`, category: category, version: 1}
   obj.view_audio = {value: `icon`, category: category, version: 1}
-  obj.view_text = {value: `icon`, category: category, version: 1}
   obj.show_image_icon = {value: true, category: category, version: 1}
   obj.show_video_icon = {value: true, category: category, version: 1}
   obj.show_audio_icon = {value: true, category: category, version: 1}
-  obj.show_text_icon = {value: true, category: category, version: 1}
 
   category = `mouse`
   obj.gestures_enabled = {value: true, category: category, version: 1}
@@ -474,7 +471,6 @@ App.setup_settings = () => {
     App.settings_make_menu(`view_image`, opts.slice(0))
     App.settings_make_menu(`view_video`, opts.slice(0))
     App.settings_make_menu(`view_audio`, opts.slice(0))
-    App.settings_make_menu(`view_text`, opts.slice(0))
   }}))
 
   App.create_window(Object.assign({}, common, {id: `settings_show`, setup: () => {
