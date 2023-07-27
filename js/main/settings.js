@@ -886,8 +886,10 @@ App.reset_single_setting = (e, action) => {
   e.preventDefault()
 }
 
-App.settings_wheel = App.create_debouncer((e) => {
-  let direction = App.wheel_direction(e)
+App.settings_wheel = App.create_debouncer((e, direction) => {
+  if (!direction) {
+    direction = App.wheel_direction(e)
+  }
 
   if (direction === `down`) {
     App.show_next_settings()

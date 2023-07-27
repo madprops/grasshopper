@@ -331,14 +331,14 @@ App.setup_keyboard = () => {
       }
       else if (e.key === `ArrowLeft`) {
         if (!App.text_with_value_focused()) {
-          App.show_prev_settings()
+          App.settings_wheel.call(undefined, `up`)
           e.preventDefault()
           return
         }
       }
       else if (e.key === `ArrowRight`) {
         if (!App.text_with_value_focused()) {
-          App.show_next_settings()
+          App.settings_wheel.call(undefined, `down`)
           e.preventDefault()
           return
         }
