@@ -213,6 +213,9 @@ App.settings_setup_text = (container) => {
         }
 
         App.settings_do_action(action)
+      }, () => {
+        App.set_setting(setting, ``)
+        el.value = ``
       })
     })
   }
@@ -859,13 +862,20 @@ App.settings_data_items = () => {
   return items
 }
 
-App.reset_single_setting = (e, action) => {
+App.reset_single_setting = (e, action, clear) => {
   let items = []
 
   items.push({
     text: `Reset`,
     action: action,
   })
+
+  if (clear) {
+    items.push({
+      text: `Clear`,
+      action: clear,
+    })
+  }
 
   NeedContext.show(e.clientX, e.clientY, items)
   e.preventDefault()
