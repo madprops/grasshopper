@@ -255,6 +255,7 @@ App.show_filter_menu = (mode) => {
           items.push({
             text: `Custom`,
             action: () => {
+              App.set_filter_mode(mode, `all`, false)
               App.set_filter(mode, filters[0])
             }
           })
@@ -471,6 +472,7 @@ App.get_custom_filters = (mode) => {
     items.push({
       text: filter,
       action: () => {
+        App.set_filter_mode(mode, `all`, false)
         App.set_filter(mode, filter)
       }
     })
