@@ -83,7 +83,7 @@ App.apply_theme = () => {
       main.classList.add(`hide_scroller`)
     }
 
-    let item_borders_opts = [`normal`, `bigger`]
+    let item_borders_opts = [`normal`, `bigger`, `normal_2`, `bigger_2`]
 
     for (let b of item_borders_opts) {
       main.classList.remove(`item_borders_${b}`)
@@ -95,7 +95,7 @@ App.apply_theme = () => {
       main.classList.add(`item_borders_${item_borders}`)
     }
 
-    let window_border_opts = [`normal`, `bigger`]
+    let window_border_opts = [`normal`, `bigger`, `red`, `green`, `blue`, `black`, `white`]
 
     for (let b of window_border_opts) {
       main.classList.remove(`window_border_${b}`)

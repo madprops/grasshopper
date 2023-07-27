@@ -80,16 +80,31 @@ body, html {
   z-index: 99;
   width: 100vw;
   height: 100vh;
+  box-sizing: border-box;
 }
 
 .window_border_normal .window_main {
-  border: 1px solid var(--alt_color_2);
-  box-sizing: border-box;
+  border: 3px solid var(--alt_color_2);
 }
 
-.window_border_bigger .window_main {
-  border: 3px solid var(--alt_color_2);
-  box-sizing: border-box;
+.window_border_red .window_main {
+  border: 3px solid red;
+}
+
+.window_border_green .window_main {
+  border: 3px solid green;
+}
+
+.window_border_blue .window_main {
+  border: 3px solid blue;
+}
+
+.window_border_black .window_main {
+  border: 3px solid black;
+}
+
+.window_border_white .window_main {
+  border: 3px solid white;
 }
 
 .window_content {
@@ -237,6 +252,14 @@ svg {
 
 .item_borders_bigger .item {
   border-bottom: 3px solid var(--alt_color_1);
+}
+
+.item_borders_normal_2 .item {
+  border-bottom: 1px solid var(--alt_color_2);
+}
+
+.item_borders_bigger_2 .item {
+  border-bottom: 3px solid var(--alt_color_2);
 }
 
 .item_icon_container {

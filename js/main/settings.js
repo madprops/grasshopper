@@ -404,12 +404,18 @@ App.setup_settings = () => {
       [`None`, `none`],
       [`Normal`, `normal`],
       [`Bigger`, `bigger`],
+      [`Normal 2`, `normal_2`],
+      [`Bigger 2`, `bigger_2`],
     ])
 
     App.settings_make_menu(`window_border`, [
       [`None`, `none`],
       [`Normal`, `normal`],
-      [`Bigger`, `bigger`],
+      [`Red`, `red`],
+      [`Green`, `green`],
+      [`Blue`, `blue`],
+      [`Black`, `black`],
+      [`White`, `white`],
     ], () => {
       App.apply_theme()
     })
