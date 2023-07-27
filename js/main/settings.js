@@ -398,6 +398,7 @@ App.setup_settings = () => {
       [`Compact`, `compact`],
       [`Normal`, `normal`],
       [`Bigger`, `bigger`],
+      [`Bigger 2`, `bigger_2`],
     ])
 
     App.settings_make_menu(`item_borders`, [
