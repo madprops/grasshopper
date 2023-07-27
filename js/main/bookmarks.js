@@ -124,6 +124,10 @@ App.bookmark_items = async (item, active) => {
 
   let force = (items.length === 1) || !App.get_setting(`warn_on_bookmark`)
 
+  if (items.length >= App.max_warn_limit) {
+    force = false
+  }
+
   App.show_confirm(`Bookmark these items? (${items.length})`, async () => {
     for (let item of items) {
       await browser.bookmarks.create({parentId: folder.id, title: item.title, url: item.url})
