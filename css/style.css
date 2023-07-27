@@ -795,7 +795,6 @@ select {
   border: 0px solid var(--alt_color_1);
   border-top-width: 1px;
   gap: 0.5rem;
-  width: 100%;
 }
 
 .footer:hover {
