@@ -136,13 +136,19 @@ App.settings_do_action = (what) => {
   }
 }
 
+App.get_settings_label = (setting) => {
+  let item = DOM.el(`#settings_${setting}`)
+  let container = item.closest(`.settings_item`)
+  let label = DOM.el(`.settings_label`, container)
+  return label
+}
+
 App.settings_setup_checkboxes = (container) => {
   let items = DOM.els(`.settings_checkbox`, container)
 
   for (let item of items) {
     let setting = item.dataset.setting
     let action = item.dataset.action
-
     let el = DOM.el(`#settings_${setting}`)
     el.checked = App.get_setting(setting)
 
@@ -151,7 +157,7 @@ App.settings_setup_checkboxes = (container) => {
       App.settings_do_action(action)
     })
 
-    DOM.ev(el, `contextmenu`, (e) => {
+    DOM.ev(App.get_settings_label(setting), `click`, (e) => {
       App.reset_single_setting(e, () => {
         App.set_default_setting(setting)
         el.checked = App.get_setting(setting)
@@ -194,7 +200,7 @@ App.settings_setup_text = (container) => {
       App.settings_do_action(action)
     })
 
-    DOM.ev(el, `contextmenu`, (e) => {
+    DOM.ev(App.get_settings_label(setting), `click`, (e) => {
       App.reset_single_setting(e, () => {
         App.set_default_setting(setting)
         let value = App.get_setting(setting)
@@ -240,7 +246,7 @@ App.settings_make_menu = (setting, opts, action = () => {}) => {
     NeedContext.show_on_element(el, items, true, el.clientHeight)
   })
 
-  DOM.ev(el, `contextmenu`, (e) => {
+  DOM.ev(App.get_settings_label(setting), `click`, (e) => {
     App.reset_single_setting(e, () => {
       App.set_default_setting(setting)
       let value = App.get_setting(setting)
@@ -351,7 +357,6 @@ App.setup_settings = () => {
     App.settings_setup_text(container)
     App.add_settings_switchers(category)
     App.add_settings_filter(category)
-
     container.classList.add(`filter_container`)
 
     for (let el of DOM.els(`.settings_item`, container)) {
@@ -360,6 +365,7 @@ App.setup_settings = () => {
 
     for (let el of DOM.els(`.settings_label`, container)) {
       el.classList.add(`filter_text`)
+      el.classList.add(`action`)
     }
   }
 
@@ -409,7 +415,7 @@ App.setup_settings = () => {
 
     App.make_mode_order()
 
-    DOM.ev(DOM.el(`#settings_mode_order`), `contextmenu`, (e) => {
+    DOM.ev(App.get_settings_label(`mode_order`), `click`, (e) => {
       App.reset_single_setting(e, () => {
         App.set_default_setting(`tabs_index`)
         App.set_default_setting(`history_index`)
@@ -558,25 +564,26 @@ App.add_settings_switchers = (category) => {
 
 App.start_theme_settings = () => {
   function start_color_picker (name) {
-    let el = DOM.el(`#settings_${name}_color_picker`)
+    let el = DOM.el(`#settings_${name}_color`)
+    let setting = `${name}_color`
 
-    App[`${name}_color_picker`] = AColorPicker.createPicker(el, {
+    App[setting] = AColorPicker.createPicker(el, {
       showAlpha: false,
       showHSL: false,
       showHEX: false,
       showRGB: true,
-      color: App.get_setting(`${name}_color`)
+      color: App.get_setting(setting)
     })
 
-    App[`${name}_color_picker`].on(`change`, (picker, color) => {
-      App.set_setting(`${name}_color`, color)
+    App[setting].on(`change`, (picker, color) => {
+      App.set_setting(setting, color)
       App.apply_theme()
     })
 
-    DOM.ev(el, `contextmenu`, (e) => {
+    DOM.ev(App.get_settings_label(setting), `click`, (e) => {
       App.reset_single_setting(e, () => {
-        App.set_default_setting(`${name}_color`)
-        App[`${name}_color_picker`].setColor(App.get_setting(`${name}_color`))
+        App.set_default_setting(setting)
+        App[setting].setColor(App.get_setting(setting))
       })
 
       e.preventDefault()

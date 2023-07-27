@@ -34,7 +34,6 @@ App.setup_about = () => {
       `To perform gestures, hold the middle mouse button and move in a direction, then release`,
       `Some interface elements can be mapped to commands on middle click`,
       `Hold on a pick and move the mouse to select multiple items`,
-      `Right click setting items to reset them`,
     ]
 
     DOM.ev(DOM.el(`#about_close`), `click`, () => {
