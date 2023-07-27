@@ -28,8 +28,8 @@ App.do_check_pinline = () => {
   }
 
   let pinline = DOM.create(`div`, `pinline action`)
-  let n1 = tabs.pinned.length
-  let n2 = tabs.normal.length
+  let n1 = tabs.pinned_f.length
+  let n2 = tabs.normal_f.length
   let s1 = App.plural(n1, `Pin`, `Pins`)
   let s2 = `Normal`
   let sep = `&nbsp;&nbsp;+&nbsp;&nbsp;`

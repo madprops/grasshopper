@@ -1145,14 +1145,18 @@ App.toggle_tabs = () => {
     App.select_item(tabs.normal[0], `none`, false)
 
     for (let item of tabs.normal) {
-      App.toggle_highlight(item, true)
+      if (item.visible) {
+        App.toggle_highlight(item, true)
+      }
     }
   }
   else if (tabs.normal_f.length > 0) {
     App.select_item(tabs.pinned[0], `none`, false)
 
     for (let item of tabs.pinned) {
-      App.toggle_highlight(item, true)
+      if (item.visible) {
+        App.toggle_highlight(item, true)
+      }
     }
   }
   else {
