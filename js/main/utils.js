@@ -11,17 +11,11 @@ App.create_debouncer = (func, delay) => {
   }
 
   function run (...args) {
-    obj.last_run = Date.now()
     func(...args)
   }
 
   obj.call = (...args) => {
     clear()
-
-    if (Date.now() - obj.last_run >= (delay * 5)) {
-      run(...args)
-      return
-    }
 
     timer = setTimeout(() => {
       run(...args)
@@ -37,7 +31,6 @@ App.create_debouncer = (func, delay) => {
     clear()
   }
 
-  obj.last_run = 0
   return obj
 }
 
