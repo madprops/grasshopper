@@ -35,9 +35,6 @@ App.build_default_settings = () => {
   obj.open_icon = {value: `🚀`, category: category, version: 1}
   obj.pick_icon = {value: `🎯`, category: category, version: 1}
   obj.active_icon = {value: `👁`, category: category, version: 1}
-  obj.image_icon = {value: `🖼️`, category: category, version: 1}
-  obj.video_icon = {value: `▶️`, category: category, version: 1}
-  obj.audio_icon = {value: `🎵`, category: category, version: 1}
 
   category = `warns`
   obj.warn_on_close_tabs = {value: `special`, category: category, version: 1}
@@ -53,9 +50,9 @@ App.build_default_settings = () => {
   obj.view_image = {value: `icon`, category: category, version: 1}
   obj.view_video = {value: `icon`, category: category, version: 1}
   obj.view_audio = {value: `icon`, category: category, version: 1}
-  obj.show_image_icon = {value: true, category: category, version: 1}
-  obj.show_video_icon = {value: true, category: category, version: 1}
-  obj.show_audio_icon = {value: true, category: category, version: 1}
+  obj.image_icon = {value: `🖼️`, category: category, version: 1}
+  obj.video_icon = {value: `▶️`, category: category, version: 1}
+  obj.audio_icon = {value: `🎵`, category: category, version: 1}
 
   category = `mouse`
   obj.gestures_enabled = {value: true, category: category, version: 1}

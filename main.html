@@ -223,21 +223,6 @@
           <input type="text" autocomplete="off" spellcheck="false" id="settings_unloaded_icon" class="text settings_text text_smaller" data-setting="unloaded_icon">
         </div>
 
-        <div class="settings_item" title="Icon to show on image media">
-          <div class="settings_label">Image Icon</div>
-          <input type="text" autocomplete="off" spellcheck="false" id="settings_image_icon" class="text settings_text text_smaller" data-setting="image_icon">
-        </div>
-
-        <div class="settings_item" title="Icon to show on video media">
-          <div class="settings_label">Video Icon</div>
-          <input type="text" autocomplete="off" spellcheck="false" id="settings_video_icon" class="text settings_text text_smaller" data-setting="video_icon">
-        </div>
-
-        <div class="settings_item" title="Icon to show on audio media">
-          <div class="settings_label">Audio Icon</div>
-          <input type="text" autocomplete="off" spellcheck="false" id="settings_audio_icon" class="text settings_text text_smaller" data-setting="audio_icon">
-        </div>
-
         <div class="settings_item" title="Icon to show on close operations">
           <div class="settings_label">Close Icon</div>
           <input type="text" autocomplete="off" spellcheck="false" id="settings_close_icon" class="text settings_text text_smaller" data-setting="close_icon">
@@ -493,19 +478,19 @@
           <div id="settings_view_audio" class="settings_menu button" data-setting="view_audio"></div>
         </div>
 
-        <div class="settings_item" title="Show an icon on image media">
-          <div class="settings_label">Show Image Icon</div>
-          <input type="checkbox" class="settings_checkbox" id="settings_show_image_icon" data-setting="show_image_icon">
+        <div class="settings_item" title="Icon to show on image media">
+          <div class="settings_label">Image Icon</div>
+          <input type="text" autocomplete="off" spellcheck="false" id="settings_image_icon" class="text settings_text text_smaller" data-setting="image_icon">
         </div>
 
-        <div class="settings_item" title="Show an icon on video media">
-          <div class="settings_label">Show Video Icon</div>
-          <input type="checkbox" class="settings_checkbox" id="settings_show_video_icon" data-setting="show_video_icon">
+        <div class="settings_item" title="Icon to show on video media">
+          <div class="settings_label">Video Icon</div>
+          <input type="text" autocomplete="off" spellcheck="false" id="settings_video_icon" class="text settings_text text_smaller" data-setting="video_icon">
         </div>
 
-        <div class="settings_item" title="Show an icon on audio media">
-          <div class="settings_label">Show Audio Icon</div>
-          <input type="checkbox" class="settings_checkbox" id="settings_show_audio_icon" data-setting="show_audio_icon">
+        <div class="settings_item" title="Icon to show on audio media">
+          <div class="settings_label">Audio Icon</div>
+          <input type="text" autocomplete="off" spellcheck="false" id="settings_audio_icon" class="text settings_text text_smaller" data-setting="audio_icon">
         </div>
       </div>
     </template>
@@ -622,47 +607,47 @@
 
     <template id="template_image">
       <div class="flex_column_center gap_2">
-        <div id="image_url" class="media_url"></div>
+        <div id="media_image_url" class="media_url"></div>
 
-        <div id="image_container" class="media_container">
-          <div id="image_loading" class="media_loading hidden"></div>
-          <img id="image" class="media">
+        <div id="media_image_container" class="media_container">
+          <div id="media_image_loading" class="media_loading hidden"></div>
+          <img id="media_image" class="media">
         </div>
       </div>
     </template>
 
     <template id="template_image_top">
-      <div id="image_buttons" class="flex_row_center gap_2 grow"></div>
+      <div id="media_image_buttons" class="flex_row_center gap_2 grow"></div>
     </template>
 
     <template id="template_video">
       <div class="flex_column_center gap_2">
-        <div id="video_url" class="media_url"></div>
+        <div id="media_video_url" class="media_url"></div>
 
-        <div id="video_container" class="media_container">
-          <div id="video_loading" class="media_loading hidden"></div>
-          <video id="video" class="media" controls>
+        <div id="media_video_container" class="media_container">
+          <div id="media_video_loading" class="media_loading hidden"></div>
+          <video id="media_video" class="media" controls>
         </div>
       </div>
     </template>
 
     <template id="template_video_top">
-      <div id="video_buttons" class="flex_row_center gap_2 grow"></div>
+      <div id="media_video_buttons" class="flex_row_center gap_2 grow"></div>
     </template>
 
     <template id="template_audio">
       <div class="flex_column_center gap_2">
-        <div id="audio_url" class="media_url"></div>
+        <div id="media_audio_url" class="media_url"></div>
 
-        <div id="audio_container" class="media_container">
-          <div id="audio_loading" class="media_loading hidden"></div>
-          <audio id="audio" class="media" controls>
+        <div id="media_audio_container" class="media_container">
+          <div id="media_audio_loading" class="media_loading hidden"></div>
+          <audio id="media_audio" class="media" controls>
         </div>
       </div>
     </template>
 
     <template id="template_audio_top">
-      <div id="audio_buttons" class="flex_row_center gap_2 grow"></div>
+      <div id="media_audio_buttons" class="flex_row_center gap_2 grow"></div>
     </template>
 
     <template id="template_text">
