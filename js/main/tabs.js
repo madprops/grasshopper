@@ -17,12 +17,12 @@ App.setup_tabs = () => {
       App.undo_close_tab()
     }},
 
-    {text: `Show Info`, action: () => {
-      App.show_tabs_info()
+    {text: `Profiles`, get_items: () => {
+      return App.get_profile_items()
     }},
 
-    {text: `Titles Data`, get_items: () => {
-      return App.get_title_items()
+    {text: `Show Info`, action: () => {
+      App.show_tabs_info()
     }},
 
     {text: `Close Tabs`, get_items: () => {

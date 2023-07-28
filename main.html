@@ -41,7 +41,7 @@
     <script src="js/main/actions_menu.js"></script>
     <script src="js/main/back_button.js"></script>
     <script src="js/main/data.js"></script>
-    <script src="js/main/tab_editor.js"></script>
+    <script src="js/main/profiles.js"></script>
   </head>
 
   <body>
@@ -59,35 +59,35 @@
       <div id="main"></div>
     </div>
 
-    <template id="template_tab_editor">
-      <div class="flex_column_center gap_4 editor_container" id="tab_editor_container">
+    <template id="template_profile_editor">
+      <div class="flex_column_center gap_4 editor_container" id="profile_editor_container">
         <div class="flex_column_center gap_1">
           <div>Set a fixed title</div>
-          <input type="text" autocomplete="off" spellcheck="false" id="tab_editor_title" class="text editor_text" placeholder="Title">
+          <input type="text" autocomplete="off" spellcheck="false" id="profile_editor_title" class="text editor_text" placeholder="Title">
         </div>
 
         <div class="flex_column_center gap_1">
           <div>Add some tags</div>
-          <textarea autocomplete="off" spellcheck="false" id="tab_editor_url" class="text editor_text" placeholder="One per line" rows="4"></textarea>
+          <textarea autocomplete="off" spellcheck="false" id="profile_editor_tags" class="text editor_text" placeholder="One per line" rows="4"></textarea>
         </div>
 
         <div class="flex_column_center gap_1">
           <div>For URLs that start with</div>
-          <textarea autocomplete="off" spellcheck="false" id="tab_editor_url" class="text editor_text" placeholder="URL" rows="4"></textarea>
+          <textarea autocomplete="off" spellcheck="false" id="profile_editor_url" class="text editor_text" placeholder="URL" rows="4"></textarea>
         </div>
 
         <div class="flex_row_center gap_2">
-          <div id="tab_editor_remove" class="button button_2">Remove</div>
-          <div id="tab_editor_refresh_url" class="button button_2">Refresh URL</div>
-          <div id="tab_editor_save" class="button">Save</div>
+          <div id="profile_editor_remove" class="button button_2">Remove</div>
+          <div id="profile_editor_refresh_url" class="button button_2">Refresh URL</div>
+          <div id="profile_editor_save" class="button">Save</div>
         </div>
       </div>
     </template>
 
-    <template id="template_tab_editor_top">
+    <template id="template_profile_editor_top">
       <div class="flex_row_center gap_2">
         <div>Tab Editor</div>
-        <div id="tab_editor_close" class="button">Close</div>
+        <div id="profile_editor_close" class="button">Close</div>
       </div>
     </template>
 

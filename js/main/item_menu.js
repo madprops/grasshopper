@@ -50,6 +50,15 @@ App.show_item_menu = async (item, x, y) => {
       })
     }
 
+    if (!multiple) {
+      items.push({
+        text: `Edit`,
+        action: () => {
+          App.show_profile_editor(item)
+        }
+      })
+    }
+
     await App.common_menu_items(items, item, multiple)
     await App.more_menu_items(items, item, multiple, some_loaded)
 
@@ -162,15 +171,6 @@ App.more_menu_items = async (o_items, item, multiple, some_loaded) => {
   let items = []
 
   if (item.mode === `tabs`) {
-    if (!multiple) {
-      items.push({
-        text: `Edit`,
-        action: () => {
-          App.show_tab_editor(item)
-        }
-      })
-    }
-
     if (some_loaded) {
       items.push({
         text: `Unload`,

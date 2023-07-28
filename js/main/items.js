@@ -294,10 +294,10 @@ App.process_info = (mode, info, exclude = [], o_item) => {
   let audio = App.is_audio(url)
 
   if (mode === `tabs`) {
-    let title_match = App.get_title(url)
+    let profile = App.get_profile(url)
 
-    if (title_match) {
-      title = title_match.title
+    if (profile && profile.title) {
+      title = profile.title
     }
   }
 

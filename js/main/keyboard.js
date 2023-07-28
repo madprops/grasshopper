@@ -348,13 +348,6 @@ App.setup_keyboard = () => {
         return
       }
     }
-    else if (mode === `tab_editor`) {
-      if (e.key === `Enter`) {
-        App.tab_editor_save()
-        e.preventDefault()
-        return
-      }
-    }
     else if (App.on_media()) {
       if (e.key === `ArrowLeft`) {
         App.media_prev()

@@ -36,15 +36,15 @@ App.stor_save_settings = () => {
   App.save_local_storage(App.stor_settings_name, App.settings)
 }
 
-App.stor_get_titles = () => {
-  App.titles = App.get_local_storage(App.stor_titles_name, [])
-  App.check_titles()
-  App.log(`Stor: Got titles`)
+App.stor_get_profiles = () => {
+  App.profiles = App.get_local_storage(App.stor_profiles_name, [])
+  App.check_profiles()
+  App.log(`Stor: Got profiles`)
 }
 
-App.stor_save_titles = () => {
-  App.log(`Stor: Saving titles`)
-  App.save_local_storage(App.stor_titles_name, App.titles)
+App.stor_save_profiles = () => {
+  App.log(`Stor: Saving profiles`)
+  App.save_local_storage(App.stor_profiles_name, App.profiles)
 }
 
 App.stor_get_command_history = () => {
