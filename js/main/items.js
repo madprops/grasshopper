@@ -268,7 +268,7 @@ App.process_info = (mode, info, exclude = [], o_item) => {
   }
 
   if (o_item) {
-    info = Object.assign({}, App.soft_copy_item(o_item), info)
+    info = Object.assign({}, o_item.original_data, info)
   }
 
   if (info.url) {
@@ -351,6 +351,7 @@ App.process_info = (mode, info, exclude = [], o_item) => {
     }
   }
   else {
+    item.original_data = info
     item.id = info.id || App[`${mode}_idx`]
     item.visible = true
     item.highlighted = false
