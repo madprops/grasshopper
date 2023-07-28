@@ -16,7 +16,7 @@ App.setup_tabs = () => {
       App.undo_close_tab()
     }},
 
-    {text: `Profiles`, get_items: () => {
+    {text: `Tab Profiles`, get_items: () => {
       return App.get_profile_items()
     }},
 
