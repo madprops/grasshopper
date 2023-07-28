@@ -323,42 +323,45 @@ App.get_color_items = (mode) => {
 App.clear_profiles_items = () => {
   let items = []
 
-  if (App.profiles.length === 0) {
+  for (let color of App.profile_colors) {
     items.push({
-      text: `No profiles yet`,
-      action: () => {}
+      text: `Remove ${App.capitalize(color)}`,
+      action: () => {
+        App.remove_color(color)
+      }
     })
   }
-  else {
-    for (let color of App.profile_colors) {
-      items.push({
-        text: `Remove ${App.capitalize(color)}`,
-        action: () => {
-          App.remove_color(color)
-        }
-      })
+
+  items.push({
+    text: `Remove Colors`,
+    action: () => {
+      App.remove_colors()
     }
+  })
 
-    items.push({
-      text: `Remove Tags`,
-      action: () => {
-        App.remove_tags()
-      }
-    })
+  items.push({
+    text: `Remove Tags`,
+    action: () => {
+      App.remove_tags()
+    }
+  })
 
-    items.push({
-      text: `Remove All`,
-      action: () => {
-        App.remove_profiles()
-      }
-    })
-  }
+  items.push({
+    text: `Remove All`,
+    action: () => {
+      App.remove_profiles()
+    }
+  })
 
   return items
 }
 
 App.remove_color = (color) => {
   let profiles = []
+
+  if (profiles.length === 0) {
+    return
+  }
 
   for (let profile of App.profiles) {
     if (profile.color === color) {
@@ -380,8 +383,34 @@ App.remove_color = (color) => {
   })
 }
 
+App.remove_colors = () => {
+  let profiles = []
+
+  if (profiles.length === 0) {
+    return
+  }
+
+  for (let profile of App.profiles) {
+    if (profile.color !== `none`) {
+      profiles.push(profile)
+    }
+  }
+
+  App.show_confirm(`Remove all colors? (${profiles.length})`, () => {
+    for (let profile of App.profiles) {
+      profile.color = `none`
+    }
+
+    App.after_profile_remove()
+  })
+}
+
 App.remove_tags = () => {
   let tags = App.get_tags()
+
+  if (tags.length === 0) {
+    return
+  }
 
   App.show_confirm(`Remove all tags? (${tags.length})`, () => {
     for (let profile of App.profiles) {
@@ -393,6 +422,10 @@ App.remove_tags = () => {
 }
 
 App.remove_profiles = () => {
+  if (App.profiles.length === 0) {
+    return
+  }
+
   App.show_confirm(`Remove all profiles? (${App.profiles.length})`, () => {
     App.profiles = []
     App.after_profile_remove()
