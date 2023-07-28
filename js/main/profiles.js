@@ -324,8 +324,22 @@ App.get_tag_items = (mode) => {
 
 App.get_color_items = (mode) => {
   let items = []
+  let count = App.get_profile_count()
+
+  if (!count.colors) {
+    items.push({
+      text: `No colors yet`,
+      action: () => {}
+    })
+
+    return items
+  }
 
   for (let color in App.colors) {
+    if (!count[color]) {
+      continue
+    }
+
     items.push({
       text: App.capitalize(color),
       action: () => {
@@ -341,7 +355,22 @@ App.get_color_items = (mode) => {
 App.clear_profiles_items = () => {
   let items = []
 
+  if (!App.profiles.length) {
+    items.push({
+      text: `No profiles yet`,
+      action: () => {}
+    })
+
+    return items
+  }
+
+  let count = App.get_profile_count()
+
   for (let color in App.colors) {
+    if (!count[color]) {
+      continue
+    }
+
     items.push({
       text: `Remove ${App.capitalize(color)}`,
       action: () => {
@@ -350,26 +379,32 @@ App.clear_profiles_items = () => {
     })
   }
 
-  items.push({
-    text: `Remove All Colors`,
-    action: () => {
-      App.remove_all_colors()
-    }
-  })
+  if (count.colors) {
+    items.push({
+      text: `Remove All Colors`,
+      action: () => {
+        App.remove_all_colors()
+      }
+    })
+  }
 
-  items.push({
-    text: `Remove All Tags`,
-    action: () => {
-      App.remove_all_tags()
-    }
-  })
+  if (count.tags) {
+    items.push({
+      text: `Remove All Tags`,
+      action: () => {
+        App.remove_all_tags()
+      }
+    })
+  }
 
-  items.push({
-    text: `Remove All`,
-    action: () => {
-      App.remove_all_profiles()
-    }
-  })
+  if (App.profiles.length) {
+    items.push({
+      text: `Remove All`,
+      action: () => {
+        App.remove_all_profiles()
+      }
+    })
+  }
 
   return items
 }
@@ -476,4 +511,27 @@ App.get_shared_tags = (items) => {
   })
 
   return shared
+}
+
+App.get_profile_count = () => {
+  let count = {}
+  count.colors = 0
+  count.tags = 0
+
+  for (let profile of App.profiles) {
+    if (profile.color) {
+      if (!count[profile.color]) {
+        count[profile.color] = 0
+      }
+
+      count[profile.color] += 1
+      count.colors += 1
+    }
+
+    if (profile.tags.length) {
+      count.tags += 1
+    }
+  }
+
+  return count
 }
