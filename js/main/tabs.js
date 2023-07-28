@@ -610,9 +610,17 @@ App.do_move_tab_index = async (id, index) => {
 }
 
 App.on_tab_activated = async (info) => {
+  let selected = App.get_selected(`tabs`)
+
   for (let item of App.get_items(`tabs`)) {
     item.active = item.id === info.tabId
     App.check_tab_active(item)
+
+    if (item.active) {
+      if (item !== selected) {
+        App.select_item(item)
+      }
+    }
   }
 }
 
