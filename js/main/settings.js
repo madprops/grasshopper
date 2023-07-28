@@ -83,7 +83,6 @@ App.build_default_settings = () => {
   obj.close_on_focus = {value: true, category: category, version: 1}
   obj.close_on_open = {value: true, category: category, version: 1}
   obj.case_insensitive_filter = {value: true, category: category, version: 1}
-  obj.all_bookmarks = {value: true, category: category, version: 1}
   obj.lock_drag = {value: false, category: category, version: 1}
   obj.mute_click = {value: true, category: category, version: 1}
 

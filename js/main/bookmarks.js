@@ -50,21 +50,14 @@ App.get_bookmarks = async (query = ``) => {
   }
 
   results = results.filter(x => x.type === `bookmark`)
-
-  if (!App.get_setting(`all_bookmarks`)) {
-    let folder = await App.get_bookmarks_folder()
-
-    if (folder) {
-      results = results.filter(x => x.parentId === folder.id)
-    }
-  }
-
-  results.sort((a, b) => {
-    return a.dateAdded > b.dateAdded ? -1 : 1
-  })
-
+  let folder = await App.get_bookmarks_folder()
+  let b1 = results.filter(x => x.parentId === folder.id)
+  let b2 = results.filter(x => x.parentId !== folder.id)
+  b1.sort((a, b) => b.index - a.index)
+  b2.sort((a, b) => b.index - a.index)
+  let bookmarks = [...b1, ...b2]
   App.last_bookmarks_query = query
-  return results.slice(0, App.max_items)
+  return bookmarks.slice(0, App.max_items)
 }
 
 App.bookmarks_action = (item) => {
@@ -100,38 +93,49 @@ App.bookmark_items = async (item, active) => {
   }
 
   let folder = await App.get_bookmarks_folder()
-  let urls = await App.get_bookmark_urls(folder)
-  let items = []
+  let bookmarks = await browser.bookmarks.getChildren(folder.id)
+  let add = []
+  let bump = []
 
   for (let item of active) {
-    let ok = true
+    let bumped = false
 
-    for (let url of urls) {
-      if (item.url === url) {
-        ok = false
+    for (let b of bookmarks) {
+      if (item.url === b.url) {
+        bump.push(b.id)
+        bumped = true
         break
       }
     }
 
-    if (ok) {
-      items.push(item)
+    if (!bumped) {
+      add.push(item)
     }
   }
 
-  if (items.length === 0) {
-    App.show_feedback(`Already bookmarked`)
+  if (add.length === 0 && bump.length === 0) {
     return
   }
 
-  let force = (items.length === 1) || !App.get_setting(`warn_on_bookmark`)
+  let num = add.length + bump.length
 
-  if (items.length >= App.max_warn_limit) {
+  if (num === 0) {
+    return
+  }
+
+  let force = (num === 1) || !App.get_setting(`warn_on_bookmark`)
+
+  if (num >= App.max_warn_limit) {
     force = false
   }
 
-  App.show_confirm(`Bookmark these items? (${items.length})`, async () => {
-    for (let item of items) {
+  App.show_confirm(`Bookmark these items? (${num})`, async () => {
+    for (let item of add) {
       await browser.bookmarks.create({parentId: folder.id, title: item.title, url: item.url})
+    }
+
+    for (let id of bump) {
+      await browser.bookmarks.move(id, {index: bookmarks.length - 1})
     }
 
     App.show_feedback(`Bookmarked`)
@@ -147,18 +151,4 @@ App.bookmark_active = async () => {
   }
 
   App.bookmark_items(undefined, [item])
-}
-
-App.get_bookmark_urls = async (folder) => {
-  if (!folder) {
-    folder = await App.get_bookmarks_folder()
-  }
-
-  if (!folder) {
-    return []
-  }
-
-  let bookmarks = await App.get_bookmarks()
-  let folder_bookmarks = bookmarks.filter(x => x.parentId === folder.id)
-  return folder_bookmarks.map(x => App.format_url(x.url || ``))
 }
