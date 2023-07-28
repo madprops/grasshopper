@@ -13,8 +13,9 @@ App.setup_profile_editor = () => {
     })
 
     let color_select = DOM.el(`#profile_editor_color`)
+    let colors = [`none`, ...App.profile_colors]
 
-    for (let color of App.profile_colors) {
+    for (let color of colors) {
       let option = DOM.create(`option`)
       option.value = color
       option.textContent = App.capitalize(color)
@@ -311,6 +312,22 @@ App.get_tag_items = (mode) => {
         }
       })
     }
+  }
+
+  return items
+}
+
+App.get_color_items = (mode) => {
+  let items = []
+
+  for (let color of App.profile_colors) {
+    items.push({
+      text: App.capitalize(color),
+      action: () => {
+        App.set_filter_mode(mode, `all`, false)
+        App.set_filter(mode, `color: ${color}`)
+      }
+    })
   }
 
   return items

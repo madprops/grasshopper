@@ -35,6 +35,10 @@ App.do_filter = async (mode, force = false) => {
     value = value.replace(`tag:`, ``).trim()
     by_what = `tag`
   }
+  else if (value.startsWith(`color:`)) {
+    value = value.replace(`color:`, ``).trim()
+    by_what = `color`
+  }
   else {
     value = value
     by_what = `all`
@@ -60,7 +64,7 @@ App.do_filter = async (mode, force = false) => {
   if (App.maxed_items.includes(mode)) {
     let svalue = value
 
-    if (by_what === `tag`) {
+    if (by_what === `tag` || by_what === `color`) {
       svalue = ``
     }
 
@@ -135,6 +139,9 @@ App.filter_check = (args) => {
   }
   else if (args.by_what === `tag`) {
     match = args.item.tags.includes(args.value)
+  }
+  else if (args.by_what === `color`) {
+    match = args.item.color === args.value
   }
 
   if (match) {
@@ -303,6 +310,16 @@ App.show_filter_menu = (mode) => {
 
       continue
     }
+    else if (filter_mode[0] === `colors`) {
+      items.push({
+        text: filter_mode[1],
+        get_items: () => {
+          return App.get_color_items(mode)
+        },
+      })
+
+      continue
+    }
 
     let selected = App.filter_mode(mode) === filter_mode[0]
 
@@ -433,6 +450,7 @@ App.create_filter_menu = (mode) => {
   let fmodes = []
   fmodes.push([`all`, `All`])
   fmodes.push([`tags`, `Tags`])
+  fmodes.push([`colors`, `Colors`])
   fmodes.push([`custom`, `Custom`])
   let m_modes = App.filter_modes(mode)
 

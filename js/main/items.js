@@ -294,7 +294,7 @@ App.process_info = (mode, info, exclude = [], o_item) => {
   let audio = App.is_audio(url)
   let profile = App.get_profile(url)
   let tags = []
-  let icon_color = `none`
+  let color = `none`
 
   if (profile) {
     if (profile.tags) {
@@ -306,7 +306,7 @@ App.process_info = (mode, info, exclude = [], o_item) => {
     }
 
     if (profile.color) {
-      icon_color = profile.color
+      color = profile.color
     }
   }
 
@@ -322,7 +322,7 @@ App.process_info = (mode, info, exclude = [], o_item) => {
     video: video,
     audio: audio,
     tags: tags,
-    icon_color: icon_color,
+    color: color,
     created: false,
   }
 
@@ -380,8 +380,8 @@ App.check_item_icon = (item) => {
     let icon = App.get_img_icon(item)
     container.append(icon)
 
-    if (item.icon_color !== `none`) {
-      let c = App.colors[item.icon_color]
+    if (item.color !== `none`) {
+      let c = App.colors[item.color]
       container.style.outline = `2px solid ${c}`
       container.style.borderRadius = `25%`
     }
