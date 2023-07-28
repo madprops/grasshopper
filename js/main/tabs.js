@@ -634,10 +634,8 @@ App.on_tab_activated = async (info) => {
   for (let item of App.get_items(`tabs`)) {
     item.active = item.id === info.tabId
 
-    if (item.active) {
-      if (item === selected) {
-        exit = true
-      }
+    if (item.active && item === selected) {
+      exit = true
     }
 
     App.check_tab_active(item)
@@ -649,13 +647,8 @@ App.on_tab_activated = async (info) => {
     return
   }
 
-  let select = true
-
-  if (App.is_filtered(`tabs`)) {
-    select = false
-  }
-
-  await App.refresh_tab(info.tabId, select)
+  let item = App.get_item_by_id(`tabs`, info.tabId)
+  App.select_item(item)
 }
 
 App.move_tabs = async (item, window_id) => {
