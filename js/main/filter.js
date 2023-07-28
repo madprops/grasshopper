@@ -31,6 +31,10 @@ App.do_filter = async (mode, force = false) => {
     value = value.replace(`url:`, ``).trim()
     by_what = `url`
   }
+  else if (value.startsWith(`tag:`)) {
+    value = value.replace(`tag:`, ``).trim()
+    by_what = `tag`
+  }
   else {
     value = value
     by_what = `all`
@@ -83,6 +87,7 @@ App.do_filter = async (mode, force = false) => {
       by_what: by_what,
       filter_mode: filter_mode,
       duplicates: duplicates,
+      value: value,
     }
 
     return App.filter_check(args)
@@ -120,6 +125,9 @@ App.filter_check = (args) => {
   }
   else if (args.by_what === `url`) {
     match = args.regex.test(args.item.path)
+  }
+  else if (args.by_what === `tag`) {
+    match = args.item.tags.includes(args.value)
   }
 
   if (match) {
@@ -281,6 +289,16 @@ App.show_filter_menu = (mode) => {
 
       continue
     }
+    else if (filter_mode[0] === `tags`) {
+      items.push({
+        text: filter_mode[1],
+        get_items: () => {
+          return App.get_tag_items(mode)
+        },
+      })
+
+      continue
+    }
 
     let selected = App.filter_mode(mode) === filter_mode[0]
 
@@ -407,6 +425,7 @@ App.create_filter_menu = (mode) => {
 
   let fmodes = []
   fmodes.push([`all`, `All`])
+  fmodes.push([`tags`, `Tags`])
   fmodes.push([`custom`, `Custom`])
   let m_modes = App.filter_modes(mode)
 

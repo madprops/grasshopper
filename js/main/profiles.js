@@ -41,7 +41,7 @@ App.show_profile_editor = (o_item) => {
   }
   else {
     save.textContent = `Save`
-    DOM.el(`#profile_editor_url`).value = url
+    DOM.el(`#profile_editor_url`).value = item.url
     DOM.el(`#profile_editor_title`).value = ``
     DOM.el(`#profile_editor_tags`).value = ``
     remove.classList.add(`hidden`)
@@ -61,8 +61,19 @@ App.profile_editor_save = () => {
     return
   }
 
+  let c_tags = []
+
+  for (let tag of tags) {
+    let t = tag.toLowerCase().trim()
+
+    if (!c_tags.includes(t)) {
+      c_tags.push(t)
+    }
+  }
+
+  c_tags.sort()
   App.profiles = App.profiles.filter(x => !x.url.startsWith(url))
-  App.profiles.unshift({url: url, title: title, tags: tags})
+  App.profiles.unshift({url: url, title: title, tags: c_tags})
 
   if (App.profiles.length > App.max_profiles) {
     App.profiles = App.profiles.slice(0, App.max_profiles)
@@ -203,4 +214,33 @@ App.check_profiles = () => {
   if (changed) {
     App.stor_save_profiles()
   }
+}
+
+App.get_tags = () => {
+  let tags = []
+
+  for (let profile of App.profiles) {
+    for (let tag of profile.tags) {
+      if (!tags.includes(tag)) {
+        tags.push(tag)
+      }
+    }
+  }
+
+  return tags.slice(0, App.max_tags)
+}
+
+App.get_tag_items = (mode) => {
+  let items = []
+
+  for (let tag of App.get_tags()) {
+    items.push({
+      text: tag,
+      action: () => {
+        App.set_filter(mode, `tag: ${tag}`)
+      }
+    })
+  }
+
+  return items
 }
