@@ -6,12 +6,6 @@ App.setup_history = () => {
   ]
 
   App.setup_item_window(`history`)
-
-  browser.history.onVisited.addListener((info) => {
-    if (App.window_mode === `history`) {
-      App.insert_item(`history`, info)
-    }
-  })
 }
 
 App.history_time = () => {
