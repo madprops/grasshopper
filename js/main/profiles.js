@@ -161,9 +161,13 @@ App.profile_editor_save = () => {
 
         n_tags.push(...m_tags)
         n_tags.sort()
+        let obj = {url: profile.url, title: profile.title, tags: n_tags.slice(0), color: color}
         App.profiles = App.profiles.filter(x => x.url !== profile.url)
-        App.profiles.unshift({url: profile.url, title: profile.title, tags: n_tags.slice(0), color: color})
-        urls.push(profile.url)
+
+        if (App.used_profile(obj)) {
+          App.profiles.unshift(obj)
+          urls.push(profile.url)
+        }
       }
       else {
         let obj = {url: item.url, title: ``, tags: c_tags.slice(0), color: color}
