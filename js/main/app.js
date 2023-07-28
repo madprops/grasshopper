@@ -1,6 +1,7 @@
 const App = {}
 NeedContext.min_width = `4.5rem`
 App.stor_settings_name = `settings_v100`
+App.stor_titles_name = `titles_v3`
 App.stor_command_history_name = `command_history_v1`
 App.modes = [`tabs`, `bookmarks`, `closed`, `history`]
 App.gestures = [`up`, `down`, `left`, `right`, `up_and_down`, `left_and_right`]
@@ -12,6 +13,7 @@ App.previous_tabs = []
 App.max_closed = 25
 App.history_max_months = 18
 App.icon_size = 25
+App.max_titles = 1000 * 5
 App.max_text_length = 200
 App.settings_save_delay = 250
 App.activated_delay = 2600

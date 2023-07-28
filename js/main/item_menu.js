@@ -162,6 +162,15 @@ App.more_menu_items = async (o_items, item, multiple, some_loaded) => {
   let items = []
 
   if (item.mode === `tabs`) {
+    if (!multiple) {
+      items.push({
+        text: `Title`,
+        action: () => {
+          App.show_title_editor(item)
+        }
+      })
+    }
+
     if (some_loaded) {
       items.push({
         text: `Unload`,

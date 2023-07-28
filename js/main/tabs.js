@@ -5,6 +5,7 @@ App.setup_tabs = () => {
     [`playing`, `Playing`],
     [`unloaded`, `Unloaded`],
     [`duplicate`, `Duplicate`],
+    [`title`, `Has Title`],
   ]
 
   App.tabs_actions = [
@@ -18,6 +19,10 @@ App.setup_tabs = () => {
 
     {text: `Show Info`, action: () => {
       App.show_tabs_info()
+    }},
+
+    {text: `Titles Data`, get_items: () => {
+      return App.get_title_items()
     }},
 
     {text: `Close Tabs`, get_items: () => {

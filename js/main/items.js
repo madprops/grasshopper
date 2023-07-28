@@ -293,6 +293,14 @@ App.process_info = (mode, info, exclude = [], o_item) => {
   let video = App.is_video(url)
   let audio = App.is_audio(url)
 
+  if (mode === `tabs`) {
+    let title_match = App.get_title(url)
+
+    if (title_match) {
+      title = title_match.title
+    }
+  }
+
   let item = {
     title: title,
     url: url,
