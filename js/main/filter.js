@@ -51,16 +51,23 @@ App.do_filter = async (mode, force = false) => {
     }
   }
   catch (err) {
+    App.log(err, `error`)
     return
   }
 
   // This check is to avoid re-fetching items
   // For instance when moving from All to Image
   if (App.maxed_items.includes(mode)) {
-    if (force || (value !== App[`last_${mode}_query`])) {
-      await App.search_items(mode, value)
+    let svalue = value
 
-      if (App.window_mode !== mode) {
+    if (by_what === `tag`) {
+      svalue = ``
+    }
+
+    if (force || (svalue !== App[`last_${mode}_query`])) {
+      await App.search_items(mode, svalue)
+
+      if (App.active_mode !== mode) {
         return
       }
     }

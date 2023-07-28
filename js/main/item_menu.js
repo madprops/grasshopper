@@ -50,13 +50,6 @@ App.show_item_menu = async (item, x, y) => {
       })
     }
 
-    items.push({
-      text: `Edit`,
-      action: () => {
-        App.show_profile_editor(item)
-      }
-    })
-
     await App.common_menu_items(items, item, multiple)
     await App.more_menu_items(items, item, multiple, some_loaded)
 
@@ -120,6 +113,13 @@ App.get_window_menu_items = async (item) => {
 
 App.common_menu_items = async (o_items, item, multiple) => {
   let items = []
+
+  items.push({
+    text: `Edit`,
+    action: () => {
+      App.show_profile_editor(item)
+    }
+  })
 
   if (App.get_media_type(item)) {
     items.push({

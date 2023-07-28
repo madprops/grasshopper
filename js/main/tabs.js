@@ -16,10 +16,6 @@ App.setup_tabs = () => {
       App.undo_close_tab()
     }},
 
-    {text: `Tab Profiles`, get_items: () => {
-      return App.get_profile_items()
-    }},
-
     {text: `Show Info`, action: () => {
       App.show_tabs_info()
     }},

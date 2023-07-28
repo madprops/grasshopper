@@ -293,18 +293,15 @@ App.process_info = (mode, info, exclude = [], o_item) => {
   let video = App.is_video(url)
   let audio = App.is_audio(url)
   let tags = []
+  let profile = App.get_profile(url)
 
-  if (mode === `tabs`) {
-    let profile = App.get_profile(url)
+  if (profile) {
+    if (profile.title) {
+      title = profile.title
+    }
 
-    if (profile) {
-      if (profile.title) {
-        title = profile.title
-      }
-
-      if (profile.tags) {
-        tags = profile.tags
-      }
+    if (profile.tags) {
+      tags = profile.tags
     }
   }
 
@@ -319,6 +316,7 @@ App.process_info = (mode, info, exclude = [], o_item) => {
     image: image,
     video: video,
     audio: audio,
+    tags: tags,
     created: false,
   }
 
@@ -328,7 +326,6 @@ App.process_info = (mode, info, exclude = [], o_item) => {
     item.audible = info.audible
     item.muted = info.mutedInfo.muted
     item.discarded = info.discarded
-    item.tags = tags
   }
   else if (mode === `history`) {
     item.last_visit = info.lastVisitTime

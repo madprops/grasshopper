@@ -57,6 +57,13 @@ App.show_main_menu = (mode) => {
   })
 
   items.push({
+    text: `Profiles`,
+    get_items: () => {
+      return App.get_profile_items()
+    }
+  })
+
+  items.push({
     text: `About`,
     action: () => {
       App.show_window(`about`)
