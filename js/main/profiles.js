@@ -266,6 +266,7 @@ App.get_tag_items = (mode) => {
     items.push({
       text: tag,
       action: () => {
+        App.set_filter_mode(mode, `all`, false)
         App.set_filter(mode, `tag: ${tag}`)
       }
     })
