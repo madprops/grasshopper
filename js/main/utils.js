@@ -242,7 +242,7 @@ App.print_intro = () => {
 \#\_\__(_/_\\_/
   / /       \\
 
-${App.manifest.name} v${App.manifest.version} - ${Date.now()}
+${App.manifest.name} v${App.manifest.version} - ${App.nice_date()}
 `
 
   console.info(s)
