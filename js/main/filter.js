@@ -265,41 +265,6 @@ App.show_filter_menu = (mode) => {
       items.push({separator: true})
       continue
     }
-
-    if (filter_mode[0] === `custom`) {
-      let filters = App.get_setting(`custom_filters`)
-
-      if (filters.length > 0) {
-        if (filters.length === 1) {
-          items.push({
-            text: `Custom`,
-            action: () => {
-              App.set_custom_filter(mode, filters[0])
-            }
-          })
-        }
-        else {
-          items.push({
-            text: `Custom`,
-            get_items: () => {
-              return App.get_custom_filters(mode)
-            },
-          })
-        }
-      }
-
-      continue
-    }
-    else if (filter_mode[0] === `refine`) {
-      items.push({
-        text: filter_mode[1],
-        get_items: () => {
-          return App.get_filter_refine(mode)
-        },
-      })
-
-      continue
-    }
     else if (filter_mode[0] === `tag`) {
       items.push({
         text: filter_mode[1],
@@ -315,6 +280,26 @@ App.show_filter_menu = (mode) => {
         text: filter_mode[1],
         get_items: () => {
           return App.get_color_items(mode)
+        },
+      })
+
+      continue
+    }
+    else if (filter_mode[0] === `custom`) {
+      items.push({
+        text: `Custom`,
+        get_items: () => {
+          return App.get_custom_filters(mode)
+        },
+      })
+
+      continue
+    }
+    else if (filter_mode[0] === `refine`) {
+      items.push({
+        text: filter_mode[1],
+        get_items: () => {
+          return App.get_filter_refine(mode)
         },
       })
 
@@ -347,16 +332,7 @@ App.cycle_filter_modes = (mode, reverse = true) => {
   let first
 
   for (let filter_mode of modes.slice(0).reverse()) {
-    if (filter_mode[0].startsWith(`--`)) {
-      continue
-    }
-    else if (filter_mode[0] === `tag`) {
-      continue
-    }
-    else if (filter_mode[0] === `custom`) {
-      continue
-    }
-    else if (filter_mode[0] === `refine`) {
+    if (filter_mode[2]) {
       continue
     }
 
@@ -443,27 +419,31 @@ App.refresh_filter = (mode, what) => {
 }
 
 App.create_filter_menu = (mode) => {
+  function separator () {
+    return [App.separator_string, undefined, true]
+  }
+
   let filter_menu = DOM.create(`div`, `button icon_button`, `${mode}_filter_modes`)
   filter_menu.title = `Filters (Ctrl + F)`
   filter_menu.append(DOM.create(`div`, ``, `${mode}_filter_modes_text`))
   let fmodes = []
   fmodes.push([`all`, `All`])
-  fmodes.push([`tag`, `Tag`])
-  fmodes.push([`color`, `Color`])
-  fmodes.push([`custom`, `Custom`])
+  fmodes.push([`tag`, `Tag`, true])
+  fmodes.push([`color`, `Color`, true])
+  fmodes.push([`custom`, `Custom`, true])
   let m_modes = App.filter_modes(mode)
 
   if (m_modes) {
-    fmodes.push([App.separator_string])
+    fmodes.push(separator())
     fmodes.push(...m_modes)
   }
 
-  fmodes.push([App.separator_string])
+  fmodes.push(separator())
   fmodes.push([`image`, `Image`])
   fmodes.push([`video`, `Video`])
   fmodes.push([`audio`, `Audio`])
-  fmodes.push([App.separator_string])
-  fmodes.push([`refine`, `Refine`])
+  fmodes.push(separator())
+  fmodes.push([`refine`, `Refine`, true])
   App[`${mode}_filter_modes`] = fmodes
 
   DOM.evs(filter_menu, [`click`, `contextmenu`], (e) => {
@@ -512,13 +492,25 @@ App.create_filter = (mode) => {
 App.get_custom_filters = (mode) => {
   let items = []
 
-  for (let filter of App.get_setting(`custom_filters`)) {
+  let filters = App.get_setting(`custom_filters`)
+
+  if (filters.length === 0) {
     items.push({
-      text: filter,
-      action: () => {
-        App.set_custom_filter(mode, filter)
-      }
+      text: `No custom filters yet`,
+      action: () => {}
     })
+
+    return items
+  }
+  else {
+    for (let filter of App.get_setting(`custom_filters`)) {
+      items.push({
+        text: filter,
+        action: () => {
+          App.set_custom_filter(mode, filter)
+        }
+      })
+    }
   }
 
   return items
