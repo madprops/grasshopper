@@ -155,11 +155,11 @@ App.get_profile = (item_url) => {
 
 App.remove_all_profiles = () => {
   if (App.profiles.length === 0) {
-    App.show_alert(`No tab profiles saved`)
+    App.show_alert(`No profiles saved`)
     return
   }
 
-  App.show_confirm(`Remove all tab profiles? (${App.profiles.length})`, () => {
+  App.show_confirm(`Remove all profiles? (${App.profiles.length})`, () => {
     App.profiles = []
     App.stor_save_profiles()
     App.show_mode(`tabs`)
@@ -170,14 +170,7 @@ App.get_profile_items = () => {
   let items = []
 
   items.push({
-    text: `New`,
-    action: () => {
-      App.show_profile_editor({title: ``, url: ``})
-    }
-  })
-
-  items.push({
-    text: `Remove`,
+    text: `Clear`,
     action: () => {
       App.remove_all_profiles()
     }
