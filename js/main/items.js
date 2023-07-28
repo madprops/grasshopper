@@ -379,6 +379,12 @@ App.check_item_icon = (item) => {
     container.innerHTML = ``
     let icon = App.get_img_icon(item)
     container.append(icon)
+
+    if (item.icon_color !== `none`) {
+      let c = App.colors[item.icon_color]
+      container.style.outline = `2px solid ${c}`
+      container.style.borderRadius = `25%`
+    }
   }
 }
 
@@ -511,11 +517,6 @@ App.create_item_element = (item) => {
 
 App.get_img_icon = (item) => {
   let icon = DOM.create(`img`, `item_icon`)
-
-  if (item.icon_color !== `none`) {
-    icon.style.border = `2px solid ${item.icon_color}`
-  }
-
   icon.loading = `lazy`
   icon.width = App.icon_size
   icon.height = App.icon_size
