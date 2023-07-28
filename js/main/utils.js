@@ -4,12 +4,12 @@ App.audio_extensions = [`mp3`, `ogg`, `flac`, `wav`]
 
 App.create_debouncer = (func, delay) => {
   if (typeof func !== `function`) {
-    console.error(`Invalid debouncer function`)
+    App.log(`Invalid debouncer function`, `error`)
     return
   }
 
   if (!delay) {
-    console.error(`Invalid debouncer delay`)
+    App.log(`Invalid debouncer delay`, `error`)
     return
   }
 
@@ -150,10 +150,13 @@ App.get_template = (id) => {
 
 App.log = (message, mode = `normal`) => {
   if (mode === `error`) {
-    console.error(message)
+    console.error(`🔴 ${message}`)
+  }
+  else if (mode === `normal`) {
+    console.info(`🟢 ${message}`)
   }
   else {
-    console.info(`🟢 ${message}`)
+    console.info(message)
   }
 }
 
@@ -247,5 +250,5 @@ Starting ${App.manifest.name} v${App.manifest.version}
 ${App.nice_date(d)} | ${d}
 `
 
-  console.info(s)
+  App.log(s, `raw`)
 }
