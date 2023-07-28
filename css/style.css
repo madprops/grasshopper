@@ -234,6 +234,7 @@ svg {
   display: flex;
   align-items: center;
   justify-content: center;
+  border-radius: 25%;
 }
 
 .item_icon {
@@ -352,8 +353,8 @@ svg {
   background-color: var(--alt_color_1);
 }
 
-.highlighted .item_icon {
-  outline: 1px solid var(--text_color);
+.highlighted .item_icon_container {
+  outline: 2px solid var(--text_color) !important;
 }
 
 .highlighted .item_button {

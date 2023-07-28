@@ -384,11 +384,9 @@ App.check_item_icon = (item) => {
     if (item.color) {
       let c = App.colors[item.color]
       container.style.outline = `2px solid ${c}`
-      container.style.borderRadius = `25%`
     }
     else {
       container.style.outline = `unset`
-      container.style.borderRadius = `0`
     }
   }
 }
