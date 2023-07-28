@@ -446,7 +446,6 @@ App.create_filter_menu = (mode) => {
   let filter_menu = DOM.create(`div`, `button icon_button`, `${mode}_filter_modes`)
   filter_menu.title = `Filters (Ctrl + F)`
   filter_menu.append(DOM.create(`div`, ``, `${mode}_filter_modes_text`))
-
   let fmodes = []
   fmodes.push([`all`, `All`])
   fmodes.push([`tag`, `Tag`])
