@@ -275,15 +275,24 @@ App.get_tags = () => {
 
 App.get_tag_items = (mode) => {
   let items = []
+  let tags = App.get_tags()
 
-  for (let tag of App.get_tags()) {
+  if (tags.length === 0) {
     items.push({
-      text: tag,
-      action: () => {
-        App.set_filter_mode(mode, `all`, false)
-        App.set_filter(mode, `tag: ${tag}`)
-      }
+      text: `No tags yet`,
+      action: () => {}
     })
+  }
+  else {
+    for (let tag of tags) {
+      items.push({
+        text: tag,
+        action: () => {
+          App.set_filter_mode(mode, `all`, false)
+          App.set_filter(mode, `tag: ${tag}`)
+        }
+      })
+    }
   }
 
   return items
