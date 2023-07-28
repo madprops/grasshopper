@@ -161,6 +161,7 @@ App.profile_editor_save = () => {
     App.profiles = App.profiles.slice(0, App.max_profiles)
   }
 
+  App.clean_profiles()
   App.stor_save_profiles()
   App.hide_window()
 
@@ -338,23 +339,23 @@ App.clear_profiles_items = () => {
   }
 
   items.push({
-    text: `Remove Colors`,
+    text: `Remove All Colors`,
     action: () => {
-      App.remove_colors()
+      App.remove_all_colors()
     }
   })
 
   items.push({
-    text: `Remove Tags`,
+    text: `Remove All Tags`,
     action: () => {
-      App.remove_tags()
+      App.remove_all_tags()
     }
   })
 
   items.push({
     text: `Remove All`,
     action: () => {
-      App.remove_profiles()
+      App.remove_all_profiles()
     }
   })
 
@@ -388,7 +389,7 @@ App.remove_color = (color) => {
   })
 }
 
-App.remove_colors = () => {
+App.remove_all_colors = () => {
   let profiles = []
 
   for (let profile of App.profiles) {
@@ -410,7 +411,7 @@ App.remove_colors = () => {
   })
 }
 
-App.remove_tags = () => {
+App.remove_all_tags = () => {
   let tags = App.get_tags()
 
   if (tags.length === 0) {
@@ -426,7 +427,7 @@ App.remove_tags = () => {
   })
 }
 
-App.remove_profiles = () => {
+App.remove_all_profiles = () => {
   if (App.profiles.length === 0) {
     return
   }
