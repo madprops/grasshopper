@@ -45,4 +45,4 @@ App.media_scroll = 33
 App.media_types = [`image`, `video`, `audio`]
 App.mousedown_max = 500
 App.max_warn_limit = 20
-App.max_tag_filters = 20
+App.max_tag_filters = 30
