@@ -46,9 +46,10 @@ App.media_types = [`image`, `video`, `audio`]
 App.mousedown_max = 500
 App.max_warn_limit = 20
 App.max_tag_filters = 30
-App.profile_colors = [`red`, `green`, `blue`]
+App.profile_colors = [`red`, `green`, `blue`, `yellow`]
 App.colors = {
   red: `rgb(255, 0, 0)`,
   green: `rgb(0, 255, 0)`,
   blue: `rgb(0, 0, 255)`,
+  yellow: `rgb(255, 255, 0)`,
 }
