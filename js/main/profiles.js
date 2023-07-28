@@ -148,15 +148,15 @@ App.remove_profile = () => {
     }
 
     App.stor_save_profiles()
-    App.refresh_filter(App.active_mode, `title`)
     App.hide_window()
   }, undefined, !App.get_setting(`warn_on_remove_profiles`))
 }
 
 App.apply_profiles = (url) => {
-  for (let item of App.get_items(`tabs`)) {
+  for (let item of App.get_items(App.active_mode)) {
     if (item.url === url) {
-      App.refresh_tab(item.id)
+      App.update_item(App.active_mode, item.id, {})
+      return
     }
   }
 }
@@ -178,7 +178,7 @@ App.remove_all_profiles = () => {
   App.show_confirm(`Remove all profiles? (${App.profiles.length})`, () => {
     App.profiles = []
     App.stor_save_profiles()
-    App.show_mode(`tabs`)
+    App.show_mode(App.active_mode)
   })
 }
 
@@ -218,7 +218,7 @@ App.import_profiles = () => {
     App.profiles = json
     App.check_profiles()
     App.stor_save_profiles()
-    App.show_window(`tabs`)
+    App.show_mode(App.active_mode)
   })
 }
 
