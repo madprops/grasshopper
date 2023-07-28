@@ -171,7 +171,7 @@ App.get_tab_info = async (id) => {
   }
 }
 
-App.refresh_tab = async (id, select = false) => {
+App.refresh_tab = async (id) => {
   let info = await App.get_tab_info(id)
 
   if (!info) {
@@ -194,10 +194,6 @@ App.refresh_tab = async (id, select = false) => {
   }
 
   App.check_pinline()
-
-  if (select) {
-    App.select_item(item, `center_smooth`)
-  }
 }
 
 App.mute_tab = async (id) => {
