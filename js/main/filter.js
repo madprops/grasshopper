@@ -326,6 +326,9 @@ App.cycle_filter_modes = (mode, reverse = true) => {
     if (filter_mode[0].startsWith(`--`)) {
       continue
     }
+    else if (filter_mode[0] === `tags`) {
+      continue
+    }
     else if (filter_mode[0] === `custom`) {
       continue
     }
