@@ -76,6 +76,10 @@ App.profile_editor_save = () => {
   let c_tags = []
 
   for (let tag of tags) {
+    if (!tag) {
+      continue
+    }
+
     let t = tag.toLowerCase().trim()
 
     if (!c_tags.includes(t)) {
@@ -102,6 +106,10 @@ App.profile_editor_save = () => {
         let n_tags = []
 
         for (let tag of c_tags) {
+          if (!tag) {
+            continue
+          }
+
           if (!n_tags.includes(tag)) {
             n_tags.push(tag)
           }
@@ -110,6 +118,10 @@ App.profile_editor_save = () => {
         n_tags.sort()
 
         for (let tag of profile.tags) {
+          if (!tag) {
+            continue
+          }
+
           if (!n_tags.includes(tag)) {
             n_tags.push(tag)
           }
@@ -252,7 +264,7 @@ App.get_tags = () => {
 
   for (let profile of App.profiles) {
     for (let tag of profile.tags) {
-      if (!tags.includes(tag)) {
+      if (tag && !tags.includes(tag)) {
         tags.push(tag)
       }
     }
