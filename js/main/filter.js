@@ -405,11 +405,17 @@ App.create_filter_menu = (mode) => {
   let fmodes = []
   fmodes.push([`all`, `All`])
   fmodes.push([`custom`, `Custom`])
+  let m_modes = App.filter_modes(mode)
+
+  if (m_modes) {
+    fmodes.push([App.separator_string])
+    fmodes.push(...m_modes)
+  }
+
   fmodes.push([App.separator_string])
   fmodes.push([`image`, `Image`])
   fmodes.push([`video`, `Video`])
   fmodes.push([`audio`, `Audio`])
-  fmodes.push(...(App.filter_modes(mode) || []))
   fmodes.push([App.separator_string])
   fmodes.push([`refine`, `Refine`])
   App[`${mode}_filter_modes`] = fmodes
