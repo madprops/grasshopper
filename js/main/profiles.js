@@ -359,14 +359,14 @@ App.clear_profiles_items = () => {
 App.remove_color = (color) => {
   let profiles = []
 
-  if (profiles.length === 0) {
-    return
-  }
-
   for (let profile of App.profiles) {
     if (profile.color === color) {
       profiles.push(profile)
     }
+  }
+
+  if (profiles.length === 0) {
+    return
   }
 
   if (profiles.length === 0) {
@@ -386,14 +386,14 @@ App.remove_color = (color) => {
 App.remove_colors = () => {
   let profiles = []
 
-  if (profiles.length === 0) {
-    return
-  }
-
   for (let profile of App.profiles) {
     if (profile.color !== `none`) {
       profiles.push(profile)
     }
+  }
+
+  if (profiles.length === 0) {
+    return
   }
 
   App.show_confirm(`Remove all colors? (${profiles.length})`, () => {
