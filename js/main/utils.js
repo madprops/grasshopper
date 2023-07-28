@@ -4,7 +4,7 @@ App.audio_extensions = [`mp3`, `ogg`, `flac`, `wav`]
 
 App.create_debouncer = (func, delay) => {
   if (typeof func !== `function`) {
-    console.error(`Invalid function`)
+    console.error(`Invalid debouncer function`)
     return
   }
 
