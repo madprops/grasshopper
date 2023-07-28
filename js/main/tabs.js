@@ -36,7 +36,7 @@ App.setup_tabs = () => {
     App.log(`Tab Updated: ID: ${id}`)
 
     if (App.active_mode === `tabs` && info.windowId === App.window_id) {
-      await App.refresh_tab(id)
+      await App.refresh_tab(id, info)
       App.tabs_check()
     }
   })
@@ -176,8 +176,10 @@ App.get_tab_info = async (id) => {
   }
 }
 
-App.refresh_tab = async (id) => {
-  let info = await App.get_tab_info(id)
+App.refresh_tab = async (id, info) => {
+  if (!info) {
+    info = await App.get_tab_info(id)
+  }
 
   if (!info) {
     return
