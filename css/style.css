@@ -686,6 +686,15 @@ select {
 	font-size: 1rem;
 }
 
+select {
+  background-color: var(--alt_color_1);
+  color: var(--text_color);
+  border: 0;
+  outline: 0;
+  min-width: 8rem;
+  text-align: center;
+}
+
 .grow {
   flex-grow: 1;
 }

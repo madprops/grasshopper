@@ -11,6 +11,15 @@ App.setup_profile_editor = () => {
     DOM.ev(DOM.el(`#profile_editor_close`), `click`, () => {
       App.hide_window()
     })
+
+    let color_select = DOM.el(`#profile_editor_color`)
+
+    for (let color of App.profile_colors) {
+      let option = DOM.create(`option`)
+      option.value = color
+      option.textContent = App.capitalize(color)
+      color_select.append(option)
+    }
   },
   colored_top: true})
 }
@@ -47,18 +56,21 @@ App.show_profile_editor = (item) => {
       save.textContent = `Update`
       DOM.el(`#profile_editor_title`).value = profile.title
       DOM.el(`#profile_editor_tags`).value = profile.tags.join(`\n`)
+      DOM.el(`#profile_editor_color`).value = profile.color
       remove.classList.remove(`hidden`)
     }
     else {
       save.textContent = `Save`
       DOM.el(`#profile_editor_title`).value = ``
       DOM.el(`#profile_editor_tags`).value = ``
+      DOM.el(`#profile_editor_color`).value = `none`
       remove.classList.add(`hidden`)
     }
   }
   else {
     save.textContent = `Save`
     DOM.el(`#profile_editor_tags`).value = ``
+    DOM.el(`#profile_editor_color`).value = `none`
     remove.classList.remove(`hidden`)
   }
 
@@ -72,6 +84,7 @@ App.profile_editor_save = () => {
   }
 
   let title = DOM.el(`#profile_editor_title`).value.trim()
+  let color = DOM.el(`#profile_editor_color`).value
   let tags = App.single_linebreak(DOM.el(`#profile_editor_tags`).value.trim()).split(`\n`)
   let c_tags = []
 
@@ -94,7 +107,7 @@ App.profile_editor_save = () => {
   if (single) {
     let item = App.profile_editor_items[0]
     App.profiles = App.profiles.filter(x => x.url !== item.url)
-    App.profiles.unshift({url: item.url, title: title, tags: c_tags.slice(0)})
+    App.profiles.unshift({url: item.url, title: title, tags: c_tags.slice(0), color: color})
     urls.push(item.url)
   }
   else {
@@ -102,7 +115,6 @@ App.profile_editor_save = () => {
       let profile = App.get_profile(item.url)
 
       if (profile) {
-        App.profiles = App.profiles.filter(x => x.url !== profile.url)
         let n_tags = []
 
         for (let tag of c_tags) {
@@ -127,12 +139,13 @@ App.profile_editor_save = () => {
           }
         }
 
-        App.profiles.unshift({url: profile.url, title: profile.title, tags: n_tags.slice(0)})
+        App.profiles = App.profiles.filter(x => x.url !== profile.url)
+        App.profiles.unshift({url: profile.url, title: profile.title, tags: n_tags.slice(0), color: color})
         urls.push(profile.url)
       }
       else {
         App.profiles = App.profiles.filter(x => x.url !== item.url)
-        App.profiles.unshift({url: item.url, title: ``, tags: c_tags.slice(0)})
+        App.profiles.unshift({url: item.url, title: ``, tags: c_tags.slice(0), color: color})
         urls.push(item.url)
       }
     }
@@ -250,6 +263,11 @@ App.check_profiles = () => {
 
     if (profile.title === undefined) {
       profile.title = ``
+      changed = true
+    }
+
+    if (profile.color === undefined) {
+      profile.color = `none`
       changed = true
     }
   }

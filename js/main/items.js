@@ -292,16 +292,21 @@ App.process_info = (mode, info, exclude = [], o_item) => {
   let image = App.is_image(url)
   let video = App.is_video(url)
   let audio = App.is_audio(url)
-  let tags = []
   let profile = App.get_profile(url)
+  let tags = []
+  let icon_color = `none`
 
   if (profile) {
+    if (profile.tags) {
+      tags = profile.tags
+    }
+
     if (profile.title) {
       title = profile.title
     }
 
-    if (profile.tags) {
-      tags = profile.tags
+    if (profile.color) {
+      icon_color = profile.color
     }
   }
 
@@ -317,6 +322,7 @@ App.process_info = (mode, info, exclude = [], o_item) => {
     video: video,
     audio: audio,
     tags: tags,
+    icon_color: icon_color,
     created: false,
   }
 
@@ -505,6 +511,11 @@ App.create_item_element = (item) => {
 
 App.get_img_icon = (item) => {
   let icon = DOM.create(`img`, `item_icon`)
+
+  if (item.icon_color !== `none`) {
+    icon.style.border = `2px solid ${item.icon_color}`
+  }
+
   icon.loading = `lazy`
   icon.width = App.icon_size
   icon.height = App.icon_size
