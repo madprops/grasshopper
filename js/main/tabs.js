@@ -31,7 +31,7 @@ App.setup_tabs = () => {
     App.log(`Tab Updated: ID: ${id}`)
 
     if (App.active_mode === `tabs` && info.windowId === App.window_id) {
-      await App.refresh_tab(id, undefined, info)
+      await App.refresh_tab(id, false, info)
       App.tabs_check()
     }
   })
