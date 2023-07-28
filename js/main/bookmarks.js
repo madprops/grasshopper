@@ -35,6 +35,7 @@ App.get_bookmarks = async (query = ``) => {
 }
 
 App.bookmarks_action = (item) => {
+  App.bookmark_items(undefined, [item], false)
   App.focus_or_open_item(item)
 }
 
@@ -61,7 +62,7 @@ App.get_bookmarks_folder = async () => {
   return folder
 }
 
-App.bookmark_items = async (item, active) => {
+App.bookmark_items = async (item, active, feedback = true) => {
   if (!active) {
     active = App.get_active_items(item.mode, item)
   }
@@ -128,7 +129,9 @@ App.bookmark_items = async (item, active) => {
       await browser.bookmarks.move(id, {index: bookmarks.length - 1})
     }
 
-    App.show_feedback(`Bookmarked`)
+    if (feedback) {
+      App.show_feedback(`Bookmarked`)
+    }
   }, undefined, force)
 }
 
