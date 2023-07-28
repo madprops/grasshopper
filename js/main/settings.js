@@ -221,6 +221,7 @@ App.settings_setup_text = (container) => {
         }
 
         el.value = ``
+        App.settings_do_action(action)
       })
     })
   }
