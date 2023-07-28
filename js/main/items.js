@@ -404,12 +404,12 @@ App.create_item_element = (item) => {
     App.check_item_icon(item)
   }
 
-  let status = DOM.create(`div`, `item_status hidden`)
-  item.element.append(status)
-
   let view_media = DOM.create(`div`, `view_media_button hidden`)
   item.element.append(view_media)
   App.check_view_media(item)
+
+  let status = DOM.create(`div`, `item_status hidden`)
+  item.element.append(status)
 
   let text = DOM.create(`div`, `item_text action`)
   let text_1 = DOM.create(`div`, `item_text_1`)
