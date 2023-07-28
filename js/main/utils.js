@@ -236,13 +236,15 @@ App.get_favicon_url = (url) => {
 }
 
 App.print_intro = () => {
+  let d = Date.now()
   let s = String.raw`
 //_____ __
 @ )====// .\___
 \#\_\__(_/_\\_/
   / /       \\
 
-${App.manifest.name} v${App.manifest.version} - ${App.nice_date()}
+Starting ${App.manifest.name} v${App.manifest.version}
+${App.nice_date(d)} | ${d}
 `
 
   console.info(s)
