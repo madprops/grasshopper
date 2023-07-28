@@ -31,7 +31,7 @@ App.setup_tabs = () => {
     App.log(`Tab Updated: ID: ${id}`)
 
     if (App.active_mode === `tabs` && info.windowId === App.window_id) {
-      await App.refresh_tab(id, info)
+      await App.refresh_tab(id, undefined, info)
       App.tabs_check()
     }
   })
@@ -171,7 +171,7 @@ App.get_tab_info = async (id) => {
   }
 }
 
-App.refresh_tab = async (id, info) => {
+App.refresh_tab = async (id, select, info) => {
   if (!info) {
     info = await App.get_tab_info(id)
   }
@@ -196,6 +196,10 @@ App.refresh_tab = async (id, info) => {
   }
 
   App.check_pinline()
+
+  if (select) {
+    App.select_item(item, `center_smooth`)
+  }
 }
 
 App.mute_tab = async (id) => {
@@ -645,8 +649,13 @@ App.on_tab_activated = async (info) => {
     return
   }
 
-  let item = App.get_item_by_id(`tabs`, info.tabId)
-  App.select_item(item)
+  let select = true
+
+  if (App.is_filtered(`tabs`)) {
+    select = false
+  }
+
+  await App.refresh_tab(info.tabId, select)
 }
 
 App.move_tabs = async (item, window_id) => {
