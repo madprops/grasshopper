@@ -8,16 +8,6 @@ App.setup_profile_editor = () => {
       App.remove_profile()
     })
 
-    let full = DOM.el(`#profile_editor_refresh_url`)
-
-    DOM.ev(full, `click`, () => {
-      App.profile_editor_refresh_url()
-    })
-
-    DOM.ev(DOM.el(`#profile_editor_url`), `input`, () => {
-      App.check_profile_editor()
-    })
-
     DOM.ev(DOM.el(`#profile_editor_close`), `click`, () => {
       App.hide_window()
     })
@@ -25,42 +15,71 @@ App.setup_profile_editor = () => {
   colored_top: true})
 }
 
-App.show_profile_editor = (o_item) => {
-  let item = App.soft_copy_item(o_item)
-  App.profile_editor_item = item
-  let profile = App.get_profile(item.url)
+App.show_profile_editor = (item) => {
+  let items = App.get_active_items(item.mode, item)
+
+  if (items.length === 0) {
+    return
+  }
+
+  App.profile_editor_items = []
+
+  for (let it of items) {
+    App.profile_editor_items.push(App.soft_copy_item(it))
+  }
+
   let remove = DOM.el(`#profile_editor_remove`)
   let save = DOM.el(`#profile_editor_save`)
+  let profile, single
 
-  if (profile) {
-    save.textContent = `Update`
-    DOM.el(`#profile_editor_url`).value = profile.url
-    DOM.el(`#profile_editor_title`).value = profile.title
-    DOM.el(`#profile_editor_tags`).value = profile.tags.join(`\n`)
-    remove.classList.remove(`hidden`)
+  if (items.length === 1) {
+    profile = App.get_profile(item.url)
+    DOM.el(`#profile_editor_title_container`).classList.remove(`hidden`)
+    single = true
   }
   else {
-    save.textContent = `Save`
-    DOM.el(`#profile_editor_url`).value = item.url
-    DOM.el(`#profile_editor_title`).value = ``
-    DOM.el(`#profile_editor_tags`).value = ``
-    remove.classList.add(`hidden`)
+    DOM.el(`#profile_editor_title_container`).classList.add(`hidden`)
+    single = false
+  }
+
+  if (single) {
+    if (profile) {
+      save.textContent = `Update`
+      DOM.el(`#profile_editor_title`).value = profile.title
+      DOM.el(`#profile_editor_tags`).value = profile.tags.join(`\n`)
+      remove.classList.remove(`hidden`)
+    }
+    else {
+      save.textContent = `Save`
+      DOM.el(`#profile_editor_title`).value = ``
+      DOM.el(`#profile_editor_tags`).value = ``
+      remove.classList.add(`hidden`)
+    }
+  }
+  else {
+    if (profile) {
+      save.textContent = `Update`
+      DOM.el(`#profile_editor_tags`).value = profile.tags.join(`\n`)
+      remove.classList.remove(`hidden`)
+    }
+    else {
+      save.textContent = `Save`
+      DOM.el(`#profile_editor_tags`).value = ``
+      remove.classList.add(`hidden`)
+    }
   }
 
   App.show_window(`profile_editor`)
   DOM.el(`#profile_editor_tags`).focus()
-  App.check_profile_editor()
 }
 
 App.profile_editor_save = () => {
-  let title = DOM.el(`#profile_editor_title`).value.trim()
-  let url = DOM.el(`#profile_editor_url`).value.trim()
-  let tags = App.single_linebreak(DOM.el(`#profile_editor_tags`).value.trim()).split(`\n`)
-
-  if (!url) {
+  if (App.profile_editor_items.length === 0) {
     return
   }
 
+  let title = DOM.el(`#profile_editor_title`).value.trim()
+  let tags = App.single_linebreak(DOM.el(`#profile_editor_tags`).value.trim()).split(`\n`)
   let c_tags = []
 
   for (let tag of tags) {
@@ -72,16 +91,42 @@ App.profile_editor_save = () => {
   }
 
   c_tags.sort()
-  App.profiles = App.profiles.filter(x => !x.url.startsWith(url))
-  App.profiles.unshift({url: url, title: title, tags: c_tags})
+  let single = App.profile_editor_items.length === 1
+  let urls = []
+
+  if (single) {
+    let item = App.profile_editor_items[0]
+    App.profiles = App.profiles.filter(x => x.url !== item.url)
+    App.profiles.unshift({url: item.url, title: title, tags: c_tags.slice(0)})
+    urls.push(item.url)
+  }
+  else {
+    for (let item of App.profile_editor_items) {
+      let profile = App.get_profile(item.url)
+
+      if (profile) {
+        App.profiles = App.profiles.filter(x => x.url !== profile.url)
+        App.profiles.unshift({url: profile.url, title: profile.title, tags: c_tags.slice(0)})
+        urls.push(profile.url)
+      }
+      else {
+        App.profiles = App.profiles.filter(x => x.url !== profile.url)
+        App.profiles.unshift({url: item.url, title: item.title, tags: c_tags.slice(0)})
+        urls.push(item.url)
+      }
+    }
+  }
 
   if (App.profiles.length > App.max_profiles) {
     App.profiles = App.profiles.slice(0, App.max_profiles)
   }
 
   App.stor_save_profiles()
-  App.apply_profiles(url)
   App.hide_window()
+
+  for (let url of urls) {
+    App.apply_profiles(url)
+  }
 }
 
 App.remove_profile = () => {
@@ -89,7 +134,7 @@ App.remove_profile = () => {
     let url = DOM.el(`#profile_editor_url`).value.trim()
 
     if (url) {
-      App.profiles = App.profiles.filter(x => !x.url.startsWith(url))
+      App.profiles = App.profiles.filter(x => x.url !== url)
       App.stor_save_profiles()
       App.apply_profiles(url)
       App.refresh_filter(App.active_mode, `title`)
@@ -98,14 +143,9 @@ App.remove_profile = () => {
   }, undefined, !App.get_setting(`warn_on_remove_profile`))
 }
 
-App.profile_editor_refresh_url = () => {
-  DOM.el(`#profile_editor_url`).value = App.profile_editor_item.url
-  App.check_profile_editor()
-}
-
 App.apply_profiles = (url) => {
   for (let item of App.get_items(`tabs`)) {
-    if (item.url.startsWith(url)) {
+    if (item.url === url) {
       App.refresh_tab(item.id)
     }
   }
@@ -113,7 +153,7 @@ App.apply_profiles = (url) => {
 
 App.get_profile = (item_url) => {
   for (let profile of App.profiles) {
-    if (item_url.startsWith(profile.url)) {
+    if (item_url === profile.url) {
       return profile
     }
   }
@@ -177,18 +217,6 @@ App.import_profiles = () => {
     App.stor_save_profiles()
     App.show_window(`tabs`)
   })
-}
-
-App.check_profile_editor = () => {
-  let url = DOM.el(`#profile_editor_url`)
-  let full = DOM.el(`#profile_editor_refresh_url`)
-
-  if (url.value.trim() !== App.profile_editor_item.url) {
-    full.classList.remove(`hidden`)
-  }
-  else {
-    full.classList.add(`hidden`)
-  }
 }
 
 App.check_profiles = () => {

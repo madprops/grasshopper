@@ -50,14 +50,12 @@ App.show_item_menu = async (item, x, y) => {
       })
     }
 
-    if (!multiple) {
-      items.push({
-        text: `Edit`,
-        action: () => {
-          App.show_profile_editor(item)
-        }
-      })
-    }
+    items.push({
+      text: `Edit`,
+      action: () => {
+        App.show_profile_editor(item)
+      }
+    })
 
     await App.common_menu_items(items, item, multiple)
     await App.more_menu_items(items, item, multiple, some_loaded)
