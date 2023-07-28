@@ -3,6 +3,16 @@ App.video_extensions = [`mp4`, `webm`]
 App.audio_extensions = [`mp3`, `ogg`, `flac`, `wav`]
 
 App.create_debouncer = (func, delay) => {
+  if (typeof func !== `function`) {
+    console.error(`Invalid function`)
+    return
+  }
+
+  if (!delay) {
+    console.error(`Invalid debouncer delay`)
+    return
+  }
+
   let timer
   let obj = {}
 
