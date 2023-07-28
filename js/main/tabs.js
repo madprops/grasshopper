@@ -5,7 +5,6 @@ App.setup_tabs = () => {
     [`playing`, `Playing`],
     [`unloaded`, `Unloaded`],
     [`duplicate`, `Duplicate`],
-    [`title`, `Has Title`],
   ]
 
   App.tabs_actions = [

@@ -158,9 +158,6 @@ App.filter_check = (args) => {
     else if (args.filter_mode === `duplicate`) {
       match = args.duplicates.includes(args.item)
     }
-    else if (args.filter_mode === `title`) {
-      match = App.get_title(args.item.url)
-    }
   }
 
   return match
