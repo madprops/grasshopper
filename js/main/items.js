@@ -267,6 +267,10 @@ App.process_info = (mode, info, exclude = [], o_item) => {
     return false
   }
 
+  if (o_item) {
+    info = Object.assign({}, App.soft_copy_item(o_item), info)
+  }
+
   if (info.url) {
     try {
       // Check if valid URL
