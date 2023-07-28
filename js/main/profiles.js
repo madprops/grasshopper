@@ -118,7 +118,7 @@ App.profile_editor_save = () => {
       }
       else {
         App.profiles = App.profiles.filter(x => x.url !== item.url)
-        App.profiles.unshift({url: item.url, title: item.title, tags: c_tags.slice(0)})
+        App.profiles.unshift({url: item.url, title: ``, tags: c_tags.slice(0)})
         urls.push(item.url)
       }
     }
