@@ -348,9 +348,9 @@ App.setup_keyboard = () => {
         return
       }
     }
-    else if (mode === `title_editor`) {
+    else if (mode === `tab_editor`) {
       if (e.key === `Enter`) {
-        App.title_editor_save()
+        App.tab_editor_save()
         e.preventDefault()
         return
       }

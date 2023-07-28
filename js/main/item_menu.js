@@ -164,9 +164,9 @@ App.more_menu_items = async (o_items, item, multiple, some_loaded) => {
   if (item.mode === `tabs`) {
     if (!multiple) {
       items.push({
-        text: `Title`,
+        text: `Edit`,
         action: () => {
-          App.show_title_editor(item)
+          App.show_tab_editor(item)
         }
       })
     }

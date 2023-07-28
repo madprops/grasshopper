@@ -9,7 +9,7 @@ App.init = async () => {
   App.setup_filter()
   App.setup_theme()
   App.setup_tabs()
-  App.setup_title_editor()
+  App.setup_tab_editor()
   App.setup_bookmarks()
   App.setup_history()
   App.setup_closed()

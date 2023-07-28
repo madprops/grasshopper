@@ -41,7 +41,7 @@
     <script src="js/main/actions_menu.js"></script>
     <script src="js/main/back_button.js"></script>
     <script src="js/main/data.js"></script>
-    <script src="js/main/titles.js"></script>
+    <script src="js/main/tab_editor.js"></script>
   </head>
 
   <body>
@@ -59,30 +59,35 @@
       <div id="main"></div>
     </div>
 
-    <template id="template_title_editor">
-      <div class="flex_column_center gap_4 editor_container" id="title_editor_container">
+    <template id="template_tab_editor">
+      <div class="flex_column_center gap_4 editor_container" id="tab_editor_container">
         <div class="flex_column_center gap_1">
           <div>Set a fixed title</div>
-          <input type="text" autocomplete="off" spellcheck="false" id="title_editor_title" class="text editor_text" placeholder="Title">
+          <input type="text" autocomplete="off" spellcheck="false" id="tab_editor_title" class="text editor_text" placeholder="Title">
+        </div>
+
+        <div class="flex_column_center gap_1">
+          <div>Add some tags</div>
+          <textarea autocomplete="off" spellcheck="false" id="tab_editor_url" class="text editor_text" placeholder="One per line" rows="4"></textarea>
         </div>
 
         <div class="flex_column_center gap_1">
           <div>For URLs that start with</div>
-          <textarea autocomplete="off" spellcheck="false" id="title_editor_url" class="text editor_text" placeholder="URL" rows="4"></textarea>
+          <textarea autocomplete="off" spellcheck="false" id="tab_editor_url" class="text editor_text" placeholder="URL" rows="4"></textarea>
         </div>
 
         <div class="flex_row_center gap_2">
-          <div id="title_editor_remove" class="button button_2">Remove</div>
-          <div id="title_editor_refresh_url" class="button button_2">Refresh URL</div>
-          <div id="title_editor_save" class="button">Save</div>
+          <div id="tab_editor_remove" class="button button_2">Remove</div>
+          <div id="tab_editor_refresh_url" class="button button_2">Refresh URL</div>
+          <div id="tab_editor_save" class="button">Save</div>
         </div>
       </div>
     </template>
 
-    <template id="template_title_editor_top">
+    <template id="template_tab_editor_top">
       <div class="flex_row_center gap_2">
-        <div>Title Editor</div>
-        <div id="title_editor_close" class="button">Close</div>
+        <div>Tab Editor</div>
+        <div id="tab_editor_close" class="button">Close</div>
       </div>
     </template>
 
@@ -130,12 +135,12 @@
 
         <div class="settings_item" title="Where to save bookmarks">
           <div class="settings_label">Bookmarks Folder</div>
-          <input type="text" placeholder="Save bookmarks here" id="settings_bookmarks_folder" class="text settings_text" data-setting="bookmarks_folder">
+          <input type="text" autocomplete="off" placeholder="Save bookmarks here" id="settings_bookmarks_folder" class="text settings_text" data-setting="bookmarks_folder">
         </div>
 
         <div class="settings_item" title="These appear in the filters menu. One per line">
           <div class="settings_label">Custom Filters</div>
-          <textarea class="text settings_textarea" id="settings_custom_filters" data-setting="custom_filters" rows="3" placeholder="Add some lines"></textarea>
+          <textarea autocomplete="off" class="text settings_textarea" id="settings_custom_filters" data-setting="custom_filters" rows="3" placeholder="Add some lines"></textarea>
         </div>
 
         <div class="settings_item" title="The modes at the top appear first in the menu and cycle-order">
@@ -165,7 +170,7 @@
 
         <div class="settings_item" title="Background image URL">
           <div class="settings_label">Background Image</div>
-          <input type="text" placeholder="Paste an image URL" id="settings_background_image" class="text settings_text" data-setting="background_image" data-action="theme">
+          <input type="text" autocomplete="off" placeholder="Paste an image URL" id="settings_background_image" class="text settings_text" data-setting="background_image" data-action="theme">
         </div>
 
         <div class="settings_item" title="Effect to apply to the background image">
@@ -539,7 +544,7 @@
           <a href="https://addons.mozilla.org/en-US/firefox/addon/grasshopper-urls" class="action">Firefox Store</a>
         </div>
 
-        <input type="text" class="text small_filter" id="about_filter" placeholder="Filter">
+        <input type="text" autocomplete="off" class="text small_filter" id="about_filter" placeholder="Filter">
         <div id="about_info" class="filter_container"></div>
       </div>
     </template>
@@ -557,13 +562,13 @@
 
     <template id="template_textarea">
       <div id="textarea_message"></div>
-      <textarea id="textarea_text" class="textarea"></textarea>
+      <textarea autocomplete="off" id="textarea_text" class="textarea"></textarea>
       <div id="textarea_copy" class="button">Copy</div>
     </template>
 
     <template id="template_palette">
       <div class="flex_row_center gap_1">
-        <input type="text" id="palette_filter" class="text" placeholder="Command">
+        <input type="text" autocomplete="off" id="palette_filter" class="text" placeholder="Command">
         <div id="palette_info" class="button">?</div>
       </div>
       <div id="palette_commands" class="filter_container"></div>
@@ -571,7 +576,7 @@
 
     <template id="template_input">
       <div id="input_message"></div>
-      <textarea id="input_text" class="textarea"></textarea>
+      <textarea autocomplete="off" id="input_text" class="textarea"></textarea>
       <div id="input_submit" class="button">Submit</div>
     </template>
 

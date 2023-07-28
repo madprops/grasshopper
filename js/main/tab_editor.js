@@ -1,37 +1,37 @@
-App.setup_title_editor = () => {
-  App.create_window({id: `title_editor`, setup: () => {
-    DOM.ev(DOM.el(`#title_editor_save`), `click`, () => {
-      App.title_editor_save()
+App.setup_tab_editor = () => {
+  App.create_window({id: `tab_editor`, setup: () => {
+    DOM.ev(DOM.el(`#tab_editor_save`), `click`, () => {
+      App.tab_editor_save()
     })
 
-    DOM.ev(DOM.el(`#title_editor_remove`), `click`, () => {
+    DOM.ev(DOM.el(`#tab_editor_remove`), `click`, () => {
       App.remove_title()
     })
 
-    let full = DOM.el(`#title_editor_refresh_url`)
+    let full = DOM.el(`#tab_editor_refresh_url`)
 
     DOM.ev(full, `click`, () => {
-      App.title_editor_refresh_url()
+      App.tab_editor_refresh_url()
     })
 
-    DOM.ev(DOM.el(`#title_editor_url`), `input`, () => {
-      App.check_title_editor()
+    DOM.ev(DOM.el(`#tab_editor_url`), `input`, () => {
+      App.check_tab_editor()
     })
 
-    DOM.ev(DOM.el(`#title_editor_close`), `click`, () => {
+    DOM.ev(DOM.el(`#tab_editor_close`), `click`, () => {
       App.hide_window()
     })
   },
   colored_top: true})
 }
 
-App.show_title_editor = (o_item) => {
+App.show_tab_editor = (o_item) => {
   let item = App.soft_copy_item(o_item)
-  App.title_editor_item = item
+  App.tab_editor_item = item
   let title = item.title
   let title_match = App.get_title(item.url)
-  let remove = DOM.el(`#title_editor_remove`)
-  let save = DOM.el(`#title_editor_save`)
+  let remove = DOM.el(`#tab_editor_remove`)
+  let save = DOM.el(`#tab_editor_save`)
   let url = item.url
 
   if (title_match) {
@@ -45,16 +45,16 @@ App.show_title_editor = (o_item) => {
     save.textContent = `Save`
   }
 
-  DOM.el(`#title_editor_url`).value = url
-  DOM.el(`#title_editor_title`).value = title
-  App.show_window(`title_editor`)
-  DOM.el(`#title_editor_title`).focus()
-  App.check_title_editor()
+  DOM.el(`#tab_editor_url`).value = url
+  DOM.el(`#tab_editor_title`).value = title
+  App.show_window(`tab_editor`)
+  DOM.el(`#tab_editor_title`).focus()
+  App.check_tab_editor()
 }
 
-App.title_editor_save = () => {
-  let title = DOM.el(`#title_editor_title`).value.trim()
-  let url = DOM.el(`#title_editor_url`).value.trim()
+App.tab_editor_save = () => {
+  let title = DOM.el(`#tab_editor_title`).value.trim()
+  let url = DOM.el(`#tab_editor_url`).value.trim()
 
   if (!title || !url) {
     return
@@ -74,7 +74,7 @@ App.title_editor_save = () => {
 
 App.remove_title = () => {
   App.show_confirm(`Remove this title?`, () => {
-    let url = DOM.el(`#title_editor_url`).value.trim()
+    let url = DOM.el(`#tab_editor_url`).value.trim()
 
     if (url) {
       App.titles = App.titles.filter(x => !x.url.startsWith(url))
@@ -86,9 +86,9 @@ App.remove_title = () => {
   }, undefined, !App.get_setting(`warn_on_untitle_tabs`))
 }
 
-App.title_editor_refresh_url = () => {
-  DOM.el(`#title_editor_url`).value = App.title_editor_item.url
-  App.check_title_editor()
+App.tab_editor_refresh_url = () => {
+  DOM.el(`#tab_editor_url`).value = App.tab_editor_item.url
+  App.check_tab_editor()
 }
 
 App.apply_titles = (url) => {
@@ -126,7 +126,7 @@ App.get_title_items = () => {
   items.push({
     text: `New`,
     action: () => {
-      App.show_title_editor({title: ``, url: ``})
+      App.show_tab_editor({title: ``, url: ``})
     }
   })
 
@@ -167,11 +167,11 @@ App.import_titles = () => {
   })
 }
 
-App.check_title_editor = () => {
-  let url = DOM.el(`#title_editor_url`)
-  let full = DOM.el(`#title_editor_refresh_url`)
+App.check_tab_editor = () => {
+  let url = DOM.el(`#tab_editor_url`)
+  let full = DOM.el(`#tab_editor_refresh_url`)
 
-  if (url.value.trim() !== App.title_editor_item.url) {
+  if (url.value.trim() !== App.tab_editor_item.url) {
     full.classList.remove(`hidden`)
   }
   else {
