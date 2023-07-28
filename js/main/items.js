@@ -294,7 +294,7 @@ App.process_info = (mode, info, exclude = [], o_item) => {
   let audio = App.is_audio(url)
   let profile = App.get_profile(url)
   let tags = []
-  let color = `none`
+  let color = ``
 
   if (profile) {
     if (profile.tags) {
@@ -380,7 +380,7 @@ App.check_item_icon = (item) => {
     let icon = App.get_img_icon(item)
     container.append(icon)
 
-    if (item.color !== `none`) {
+    if (item.color) {
       let c = App.colors[item.color]
       container.style.outline = `2px solid ${c}`
       container.style.borderRadius = `25%`

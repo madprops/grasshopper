@@ -64,14 +64,14 @@ App.show_profile_editor = (item) => {
       save.textContent = `Save`
       DOM.el(`#profile_editor_title`).value = ``
       DOM.el(`#profile_editor_tags`).value = ``
-      DOM.el(`#profile_editor_color`).value = `none`
+      DOM.el(`#profile_editor_color`).value = ``
       remove.classList.add(`hidden`)
     }
   }
   else {
     save.textContent = `Save`
     DOM.el(`#profile_editor_tags`).value = ``
-    DOM.el(`#profile_editor_color`).value = `none`
+    DOM.el(`#profile_editor_color`).value = ``
     remove.classList.remove(`hidden`)
   }
 
@@ -255,7 +255,7 @@ App.check_profiles = () => {
     }
 
     if (profile.color === undefined) {
-      profile.color = `none`
+      profile.color = ``
       changed = true
     }
   }
@@ -376,7 +376,7 @@ App.remove_color = (color) => {
 
   App.show_confirm(`Remove ${color}? (${profiles.length})`, () => {
     for (let profile of profiles) {
-      profile.color = `none`
+      profile.color = ``
     }
 
     App.after_profile_remove()
@@ -387,7 +387,7 @@ App.remove_colors = () => {
   let profiles = []
 
   for (let profile of App.profiles) {
-    if (profile.color !== `none`) {
+    if (profile.color) {
       profiles.push(profile)
     }
   }
@@ -398,7 +398,7 @@ App.remove_colors = () => {
 
   App.show_confirm(`Remove all colors? (${profiles.length})`, () => {
     for (let profile of App.profiles) {
-      profile.color = `none`
+      profile.color = ``
     }
 
     App.after_profile_remove()
@@ -433,6 +433,19 @@ App.remove_profiles = () => {
 }
 
 App.after_profile_remove = () => {
+  App.clean_profiles()
   App.stor_save_profiles()
   App.show_mode(App.active_mode)
+}
+
+App.clean_profiles = () => {
+  let c_profiles = []
+
+  for (let profile of App.profiles) {
+    if (profile.title || profile.tags.length || profile.color) {
+      c_profiles.push(profile)
+    }
+  }
+
+  App.profiles = c_profiles
 }
