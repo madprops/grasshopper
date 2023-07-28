@@ -57,16 +57,9 @@ App.show_profile_editor = (item) => {
     }
   }
   else {
-    if (profile) {
-      save.textContent = `Update`
-      DOM.el(`#profile_editor_tags`).value = profile.tags.join(`\n`)
-      remove.classList.remove(`hidden`)
-    }
-    else {
-      save.textContent = `Save`
-      DOM.el(`#profile_editor_tags`).value = ``
-      remove.classList.add(`hidden`)
-    }
+    save.textContent = `Save`
+    DOM.el(`#profile_editor_tags`).value = ``
+    remove.classList.remove(`hidden`)
   }
 
   App.show_window(`profile_editor`)
@@ -130,17 +123,18 @@ App.profile_editor_save = () => {
 }
 
 App.remove_profile = () => {
-  App.show_confirm(`Remove this profile?`, () => {
-    let url = DOM.el(`#profile_editor_url`).value.trim()
+  let items = App.profile_editor_items
 
-    if (url) {
-      App.profiles = App.profiles.filter(x => x.url !== url)
-      App.stor_save_profiles()
-      App.apply_profiles(url)
-      App.refresh_filter(App.active_mode, `title`)
-      App.hide_window()
+  App.show_confirm(`Remove profiles? (${items.length})`, () => {
+    for (let item of items) {
+      App.profiles = App.profiles.filter(x => x.url !== item.url)
+      App.apply_profiles(item.url)
     }
-  }, undefined, !App.get_setting(`warn_on_remove_profile`))
+
+    App.stor_save_profiles()
+    App.refresh_filter(App.active_mode, `title`)
+    App.hide_window()
+  }, undefined, !App.get_setting(`warn_on_remove_profiles`))
 }
 
 App.apply_profiles = (url) => {
