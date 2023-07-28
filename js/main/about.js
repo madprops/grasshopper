@@ -48,8 +48,7 @@ App.setup_about = () => {
       info.append(el)
     }
 
-    let manifest = browser.runtime.getManifest()
-    let s = `${manifest.name} v${manifest.version}`
+    let s = `${App.manifest.name} v${App.manifest.version}`
     DOM.el(`#about_name`).textContent = s
   },
   after_show: () => {

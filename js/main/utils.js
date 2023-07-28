@@ -234,3 +234,16 @@ App.escape_regex = (s) => {
 App.get_favicon_url = (url) => {
   return `https://www.google.com/s2/favicons?sz=${App.favicon_size}&domain=${url}`
 }
+
+App.print_intro = () => {
+  let s = String.raw`
+//_____ __
+@ )====// .\___
+\#\_\__(_/_\\_/
+  / /       \\
+
+${App.manifest.name} v${App.manifest.version} - ${Date.now()}
+`
+
+  console.info(s)
+}

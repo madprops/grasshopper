@@ -1,6 +1,8 @@
 App.init = async () => {
   let win = await browser.windows.getCurrent({populate: false})
   App.window_id = win.id
+  App.manifest = browser.runtime.getManifest()
+  App.print_intro()
   App.build_default_settings()
   App.stor_get_settings()
   App.stor_get_profiles()
