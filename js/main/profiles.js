@@ -64,14 +64,14 @@ App.show_profile_editor = (item) => {
       save.textContent = `Save`
       DOM.el(`#profile_editor_title`).value = ``
       DOM.el(`#profile_editor_tags`).value = ``
-      DOM.el(`#profile_editor_color`).value = ``
+      DOM.el(`#profile_editor_color`).value = `none`
       remove.classList.add(`hidden`)
     }
   }
   else {
     save.textContent = `Save`
     DOM.el(`#profile_editor_tags`).value = ``
-    DOM.el(`#profile_editor_color`).value = ``
+    DOM.el(`#profile_editor_color`).value = `none`
     remove.classList.remove(`hidden`)
   }
 
@@ -87,6 +87,11 @@ App.profile_editor_save = () => {
   let title = DOM.el(`#profile_editor_title`).value.trim()
   let color = DOM.el(`#profile_editor_color`).value
   let tags = App.single_linebreak(DOM.el(`#profile_editor_tags`).value.trim()).split(`\n`)
+
+  if (color === `none`) {
+    color = ``
+  }
+
   let c_tags = []
 
   for (let tag of tags) {
