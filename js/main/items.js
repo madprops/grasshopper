@@ -385,6 +385,10 @@ App.check_item_icon = (item) => {
       container.style.outline = `2px solid ${c}`
       container.style.borderRadius = `25%`
     }
+    else {
+      container.style.outline = `unset`
+      container.style.borderRadius = `0`
+    }
   }
 }
 

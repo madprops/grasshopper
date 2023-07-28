@@ -118,8 +118,9 @@ App.profile_editor_save = () => {
 
     if (App.used_profile(obj)) {
       App.profiles.unshift(obj)
-      urls.push(item.url)
     }
+
+    urls.push(item.url)
   }
   else {
     let s_tags = App.get_shared_tags(App.profile_editor_items)
@@ -166,8 +167,9 @@ App.profile_editor_save = () => {
 
         if (App.used_profile(obj)) {
           App.profiles.unshift(obj)
-          urls.push(profile.url)
         }
+
+        urls.push(profile.url)
       }
       else {
         let obj = {url: item.url, title: ``, tags: c_tags.slice(0), color: color}
@@ -175,8 +177,9 @@ App.profile_editor_save = () => {
 
         if (App.used_profile(obj)) {
           App.profiles.unshift(obj)
-          urls.push(item.url)
         }
+
+        urls.push(item.url)
       }
     }
   }
