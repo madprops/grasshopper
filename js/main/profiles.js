@@ -38,6 +38,7 @@ App.show_profile_editor = (item) => {
     App.profile_editor_items.push(App.soft_copy_item(it))
   }
 
+  App.show_window(`profile_editor`)
   let remove = DOM.el(`#profile_editor_remove`)
   let save = DOM.el(`#profile_editor_save`)
   let profile, single
@@ -71,12 +72,12 @@ App.show_profile_editor = (item) => {
   else {
     save.textContent = `Save`
     let s_tags = App.get_shared_tags(App.profile_editor_items).join(`\n`)
+    let s_color = App.get_shared_color(App.profile_editor_items)
     DOM.el(`#profile_editor_tags`).value = s_tags
-    DOM.el(`#profile_editor_color`).value = `none`
+    DOM.el(`#profile_editor_color`).value = s_color || `none`
     remove.classList.remove(`hidden`)
   }
 
-  App.show_window(`profile_editor`)
   DOM.el(`#profile_editor_tags`).focus()
 }
 
@@ -534,6 +535,18 @@ App.get_shared_tags = (items) => {
   })
 
   return shared
+}
+
+App.get_shared_color = (items) => {
+  let first = items[0].color
+
+  for (let item of items) {
+    if (item.color !== first) {
+      return ``
+    }
+  }
+
+  return first
 }
 
 App.get_profile_count = () => {
