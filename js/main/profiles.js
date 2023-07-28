@@ -70,7 +70,8 @@ App.show_profile_editor = (item) => {
   }
   else {
     save.textContent = `Save`
-    DOM.el(`#profile_editor_tags`).value = ``
+    let s_tags = App.get_shared_tags(App.profile_editor_items).join(`\n`)
+    DOM.el(`#profile_editor_tags`).value = s_tags
     DOM.el(`#profile_editor_color`).value = `none`
     remove.classList.remove(`hidden`)
   }
@@ -454,4 +455,14 @@ App.clean_profiles = () => {
   }
 
   App.profiles = c_profiles
+}
+
+App.get_shared_tags = (items) => {
+  let arrays = items.map(obj => obj.tags)
+
+  let shared = arrays.reduce((common, current) => {
+    return common.filter(value => current.includes(value))
+  })
+
+  return shared
 }
