@@ -300,7 +300,7 @@ App.show_filter_menu = (mode) => {
 
       continue
     }
-    else if (filter_mode[0] === `tags`) {
+    else if (filter_mode[0] === `tag`) {
       items.push({
         text: filter_mode[1],
         get_items: () => {
@@ -310,7 +310,7 @@ App.show_filter_menu = (mode) => {
 
       continue
     }
-    else if (filter_mode[0] === `colors`) {
+    else if (filter_mode[0] === `color`) {
       items.push({
         text: filter_mode[1],
         get_items: () => {
@@ -350,7 +350,7 @@ App.cycle_filter_modes = (mode, reverse = true) => {
     if (filter_mode[0].startsWith(`--`)) {
       continue
     }
-    else if (filter_mode[0] === `tags`) {
+    else if (filter_mode[0] === `tag`) {
       continue
     }
     else if (filter_mode[0] === `custom`) {
@@ -449,8 +449,8 @@ App.create_filter_menu = (mode) => {
 
   let fmodes = []
   fmodes.push([`all`, `All`])
-  fmodes.push([`tags`, `Tags`])
-  fmodes.push([`colors`, `Colors`])
+  fmodes.push([`tag`, `Tag`])
+  fmodes.push([`color`, `Color`])
   fmodes.push([`custom`, `Custom`])
   let m_modes = App.filter_modes(mode)
 
