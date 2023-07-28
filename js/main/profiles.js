@@ -231,13 +231,13 @@ App.check_profiles = () => {
       changed = true
     }
 
-    if (profile.profile === undefined) {
-      profile.profile = ``
+    if (profile.tags === undefined) {
+      profile.tags = []
       changed = true
     }
 
-    if (profile.tags === undefined) {
-      profile.tags = []
+    if (profile.title === undefined) {
+      profile.title = ``
       changed = true
     }
   }
