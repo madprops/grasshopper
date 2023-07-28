@@ -99,7 +99,21 @@ App.profile_editor_save = () => {
 
       if (profile) {
         App.profiles = App.profiles.filter(x => x.url !== profile.url)
-        App.profiles.unshift({url: profile.url, title: profile.title, tags: c_tags.slice(0)})
+        let n_tags = []
+
+        for (let tag of c_tags) {
+          if (!n_tags.includes(tag)) {
+            n_tags.push(tag)
+          }
+        }
+
+        for (let tag of profile.tags) {
+          if (!n_tags.includes(tag)) {
+            n_tags.push(tag)
+          }
+        }
+
+        App.profiles.unshift({url: profile.url, title: profile.title, tags: n_tags.slice(0)})
         urls.push(profile.url)
       }
       else {
