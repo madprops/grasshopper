@@ -118,6 +118,8 @@ App.profile_editor_save = () => {
     urls.push(item.url)
   }
   else {
+    let s_tags = App.get_shared_tags(App.profile_editor_items)
+
     for (let item of App.profile_editor_items) {
       let profile = App.get_profile(item.url)
 
@@ -134,18 +136,26 @@ App.profile_editor_save = () => {
           }
         }
 
-        n_tags.sort()
+        let m_tags = []
 
         for (let tag of profile.tags) {
           if (!tag) {
             continue
           }
 
-          if (!n_tags.includes(tag)) {
-            n_tags.push(tag)
+          if (s_tags.includes(tag)) {
+            if (!n_tags.includes(tag)) {
+              continue
+            }
+          }
+
+          if (!n_tags.includes(tag) && !m_tags.includes(tag)) {
+            m_tags.push(tag)
           }
         }
 
+        n_tags.push(...m_tags)
+        n_tags.sort()
         App.profiles = App.profiles.filter(x => x.url !== profile.url)
         App.profiles.unshift({url: profile.url, title: profile.title, tags: n_tags.slice(0), color: color})
         urls.push(profile.url)
