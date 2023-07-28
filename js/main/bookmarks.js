@@ -119,6 +119,7 @@ App.bookmark_items = async (item, active) => {
   }
 
   if (items.length === 0) {
+    App.show_feedback(`Already bookmarked`)
     return
   }
 
@@ -160,31 +161,4 @@ App.get_bookmark_urls = async (folder) => {
   let bookmarks = await App.get_bookmarks()
   let folder_bookmarks = bookmarks.filter(x => x.parentId === folder.id)
   return folder_bookmarks.map(x => App.format_url(x.url || ``))
-}
-
-App.all_bookmarked = async (item) => {
-  let urls = await App.get_bookmark_urls()
-
-  if (urls.length === 0) {
-    return false
-  }
-
-  let active = App.get_active_items(item.mode, item)
-
-  for (let a of active) {
-    let bmarked = false
-
-    for (let u of urls) {
-      if (a.url === u) {
-        bmarked = true
-        break
-      }
-    }
-
-    if (!bmarked) {
-      return false
-    }
-  }
-
-  return true
 }

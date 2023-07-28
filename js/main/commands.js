@@ -131,9 +131,6 @@ App.commands = [
   {name: `Toggle Mute Tabs`, cmd: `toggle_mute_tabs`, mode: `tabs`, action: (args) => {
     App.toggle_mute_tabs(args.item)
   }},
-  {name: `Title Tab`, cmd: `title_tab`, mode: `tabs`, action: (args) => {
-    App.show_title_editor(args.item)
-  }},
   {name: `Toggle Tabs`, cmd: `toggle_tabs`, mode: `tabs`, action: (args) => {
     App.toggle_tabs(args.item)
   }},

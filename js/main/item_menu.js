@@ -162,15 +162,6 @@ App.more_menu_items = async (o_items, item, multiple, some_loaded) => {
   let items = []
 
   if (item.mode === `tabs`) {
-    if (!multiple) {
-      items.push({
-        text: `Title`,
-        action: () => {
-          App.show_title_editor(item)
-        }
-      })
-    }
-
     if (some_loaded) {
       items.push({
         text: `Unload`,
@@ -188,18 +179,12 @@ App.more_menu_items = async (o_items, item, multiple, some_loaded) => {
     })
   }
 
-  if (item.mode !== `bookmarks`) {
-    let bmarked = await App.all_bookmarked(item)
-
-    if (!bmarked) {
-      items.push({
-        text: `Bookmark`,
-        action: () => {
-          App.bookmark_items(item)
-        }
-      })
+  items.push({
+    text: `Bookmark`,
+    action: () => {
+      App.bookmark_items(item)
     }
-  }
+  })
 
   if (item.image && !multiple) {
     items.push({

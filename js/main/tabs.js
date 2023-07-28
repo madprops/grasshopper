@@ -6,7 +6,6 @@ App.setup_tabs = () => {
     [`playing`, `Playing`],
     [`unloaded`, `Unloaded`],
     [`duplicate`, `Duplicate`],
-    [`title`, `Has Title`],
   ]
 
   App.tabs_actions = [
@@ -18,17 +17,9 @@ App.setup_tabs = () => {
       App.undo_close_tab()
     }},
 
-    {text: App.separator_string},
-
     {text: `Show Info`, action: () => {
       App.show_tabs_info()
     }},
-
-    {text: `Titles Data`, get_items: () => {
-      return App.get_title_items()
-    }},
-
-    {text: App.separator_string},
 
     {text: `Close Tabs`, get_items: () => {
       return App.get_close_tabs_items()

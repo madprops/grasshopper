@@ -244,7 +244,7 @@ App.on_media = () => {
   return App.window_mode.startsWith(`media_`)
 }
 
-App.show_media_menu = async (what) => {
+App.show_media_menu = (what) => {
   let items = []
   let item = App.current_media_item()
 
@@ -255,18 +255,12 @@ App.show_media_menu = async (what) => {
     }
   })
 
-  if (item.mode !== `bookmarks`) {
-    let bmarked = await App.all_bookmarked(item)
-
-    if (!bmarked) {
-      items.push({
-        text: `Bookmark `,
-        action: () => {
-          App.bookmark_items(item)
-        }
-      })
+  items.push({
+    text: `Bookmark `,
+    action: () => {
+      App.bookmark_items(item)
     }
-  }
+  })
 
   if (what === `image`) {
     items.push({

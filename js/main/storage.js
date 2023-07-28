@@ -36,17 +36,6 @@ App.stor_save_settings = () => {
   App.save_local_storage(App.stor_settings_name, App.settings)
 }
 
-App.stor_get_titles = () => {
-  App.titles = App.get_local_storage(App.stor_titles_name, [])
-  App.check_titles()
-  App.log(`Stor: Got titles`)
-}
-
-App.stor_save_titles = () => {
-  App.log(`Stor: Saving titles`)
-  App.save_local_storage(App.stor_titles_name, App.titles)
-}
-
 App.stor_get_command_history = () => {
   App.command_history = App.get_local_storage(App.stor_command_history_name, [])
   App.log(`Stor: Got command_history`)
