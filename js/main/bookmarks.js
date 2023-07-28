@@ -68,6 +68,11 @@ App.bookmark_items = async (item, active) => {
 
   let folder = await App.get_bookmarks_folder()
   let bookmarks = await browser.bookmarks.getChildren(folder.id)
+
+  for (let b of bookmarks) {
+    b.url = App.format_url(b.url || ``)
+  }
+
   let add = []
   let bump = []
 
