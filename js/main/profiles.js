@@ -323,77 +323,83 @@ App.get_color_items = (mode) => {
 App.clear_profiles_items = () => {
   let items = []
 
-  for (let color of App.profile_colors) {
+  if (App.profiles.length === 0) {
     items.push({
-      text: `Remove ${App.capitalize(color)}`,
+      text: `No profiles yet`,
+      action: () => {}
+    })
+  }
+  else {
+    for (let color of App.profile_colors) {
+      items.push({
+        text: `Remove ${App.capitalize(color)}`,
+        action: () => {
+          App.remove_color(color)
+        }
+      })
+    }
+
+    items.push({
+      text: `Remove Tags`,
       action: () => {
-        App.remove_color(color)
+        App.remove_tags()
+      }
+    })
+
+    items.push({
+      text: `Remove All`,
+      action: () => {
+        App.remove_profiles()
       }
     })
   }
-
-  items.push({
-    text: `Remove Tags`,
-    action: () => {
-      App.remove_tags()
-    }
-  })
-
-  items.push({
-    text: `Remove All`,
-    action: () => {
-      App.remove_profiles()
-    }
-  })
 
   return items
 }
 
 App.remove_color = (color) => {
-  if (App.profiles.length === 0) {
-    App.show_alert(`No profiles saved`)
+  let profiles = []
+
+  for (let profile of App.profiles) {
+    if (profile.color === color) {
+      profiles.push(profile)
+    }
+  }
+
+  if (profiles.length === 0) {
+    App.show_alert(`No profiles found`)
     return
   }
 
-  App.show_confirm(`Remove ${color}?`, () => {
-    for (let profile of App.profiles) {
-      if (profile.color === color) {
-        profile.color = `none`
-      }
+  App.show_confirm(`Remove ${color}? (${profiles.length})`, () => {
+    for (let profile of profiles) {
+      profile.color = `none`
     }
 
-    App.stor_save_profiles()
-    App.show_mode(App.active_mode)
+    App.after_profile_remove()
   })
 }
 
 App.remove_tags = () => {
-  if (App.profiles.length === 0) {
-    App.show_alert(`No profiles saved`)
-    return
-  }
+  let tags = App.get_tags()
 
-  let n = App.get_tags().length
-
-  App.show_confirm(`Remove all tags? (${n})`, () => {
+  App.show_confirm(`Remove all tags? (${tags.length})`, () => {
     for (let profile of App.profiles) {
       profile.tags = []
     }
 
-    App.stor_save_profiles()
-    App.show_mode(App.active_mode)
+    App.after_profile_remove()
   })
 }
 
 App.remove_profiles = () => {
-  if (App.profiles.length === 0) {
-    App.show_alert(`No profiles saved`)
-    return
-  }
-
   App.show_confirm(`Remove all profiles? (${App.profiles.length})`, () => {
     App.profiles = []
-    App.stor_save_profiles()
-    App.show_mode(App.active_mode)
+    App.after_profile_remove()
   })
+}
+
+App.after_profile_remove = () => {
+  App.stor_save_profiles()
+  App.show_mode(App.active_mode)
 }
