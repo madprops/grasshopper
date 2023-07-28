@@ -195,19 +195,6 @@ App.get_profile = (item_url) => {
   }
 }
 
-App.remove_all_profiles = () => {
-  if (App.profiles.length === 0) {
-    App.show_alert(`No profiles saved`)
-    return
-  }
-
-  App.show_confirm(`Remove all profiles? (${App.profiles.length})`, () => {
-    App.profiles = []
-    App.stor_save_profiles()
-    App.show_mode(App.active_mode)
-  })
-}
-
 App.get_profile_items = () => {
   let items = []
 
@@ -226,9 +213,9 @@ App.get_profile_items = () => {
   })
 
   items.push({
-    text: `Clear`,
-    action: () => {
-      App.remove_all_profiles()
+    text: `Remove`,
+    get_items: () => {
+      return App.clear_profiles_items()
     }
   })
 
@@ -331,4 +318,82 @@ App.get_color_items = (mode) => {
   }
 
   return items
+}
+
+App.clear_profiles_items = () => {
+  let items = []
+
+  for (let color of App.profile_colors) {
+    items.push({
+      text: `Remove ${App.capitalize(color)}`,
+      action: () => {
+        App.remove_color(color)
+      }
+    })
+  }
+
+  items.push({
+    text: `Remove Tags`,
+    action: () => {
+      App.remove_tags()
+    }
+  })
+
+  items.push({
+    text: `Remove All`,
+    action: () => {
+      App.remove_profiles()
+    }
+  })
+
+  return items
+}
+
+App.remove_color = (color) => {
+  if (App.profiles.length === 0) {
+    App.show_alert(`No profiles saved`)
+    return
+  }
+
+  App.show_confirm(`Remove ${color}?`, () => {
+    for (let profile of App.profiles) {
+      if (profile.color === color) {
+        profile.color = `none`
+      }
+    }
+
+    App.stor_save_profiles()
+    App.show_mode(App.active_mode)
+  })
+}
+
+App.remove_tags = () => {
+  if (App.profiles.length === 0) {
+    App.show_alert(`No profiles saved`)
+    return
+  }
+
+  let n = App.get_tags().length
+
+  App.show_confirm(`Remove all tags? (${n})`, () => {
+    for (let profile of App.profiles) {
+      profile.tags = []
+    }
+
+    App.stor_save_profiles()
+    App.show_mode(App.active_mode)
+  })
+}
+
+App.remove_profiles = () => {
+  if (App.profiles.length === 0) {
+    App.show_alert(`No profiles saved`)
+    return
+  }
+
+  App.show_confirm(`Remove all profiles? (${App.profiles.length})`, () => {
+    App.profiles = []
+    App.stor_save_profiles()
+    App.show_mode(App.active_mode)
+  })
 }
