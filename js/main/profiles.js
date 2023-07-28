@@ -143,6 +143,7 @@ App.profile_editor_save = () => {
             continue
           }
 
+          // If shared tag is removed don't include it
           if (s_tags.includes(tag)) {
             if (!n_tags.includes(tag)) {
               continue
