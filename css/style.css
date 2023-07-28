@@ -353,10 +353,6 @@ svg {
   background-color: var(--alt_color_1);
 }
 
-.highlighted .item_icon_container {
-  outline: 2px solid var(--text_color) !important;
-}
-
 .highlighted .item_button {
   filter: hue-rotate(90deg);
 }
