@@ -88,7 +88,18 @@ App.bookmark_items = async (item, active) => {
     }
 
     if (!bumped) {
-      add.push(item)
+      let ok = true
+
+      for (let a of add) {
+        if (a.url === item.url) {
+          ok = false
+          break
+        }
+      }
+
+      if (ok) {
+        add.push(item)
+      }
     }
   }
 
