@@ -463,11 +463,6 @@ App.unmute_tabs = (item) => {
   }
 }
 
-App.tab_is_normal = (item) => {
-  let special = item.pinned || item.audible || item.muted || item.discarded
-  return !special
-}
-
 App.show_tabs_info = () => {
   let all = App.get_items(`tabs`).length
   let pins = App.get_pinned_tabs().length

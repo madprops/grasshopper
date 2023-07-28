@@ -126,18 +126,6 @@ App.filter_check = (args) => {
     if (args.filter_mode === `all`) {
       match = true
     }
-    else if (args.filter_mode === `normal`) {
-      match = App.tab_is_normal(args.item)
-    }
-    else if (args.filter_mode === `playing`) {
-      match = args.item.audible || args.item.muted
-    }
-    else if (args.filter_mode === `pinned`) {
-      match = args.item.pinned
-    }
-    else if (args.filter_mode === `unloaded`) {
-      match = args.item.discarded
-    }
     else if (args.filter_mode === `image`) {
       match = args.item.image
     }
@@ -146,6 +134,18 @@ App.filter_check = (args) => {
     }
     else if (args.filter_mode === `audio`) {
       match = args.item.audio
+    }
+    else if (args.filter_mode === `pinned`) {
+      match = args.item.pinned
+    }
+    else if (args.filter_mode === `normal`) {
+      match = !args.item.pinned
+    }
+    else if (args.filter_mode === `playing`) {
+      match = args.item.audible || args.item.muted
+    }
+    else if (args.filter_mode === `unloaded`) {
+      match = args.item.discarded
     }
     else if (args.filter_mode === `duplicate`) {
       match = args.duplicates.includes(args.item)
