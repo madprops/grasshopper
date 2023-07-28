@@ -107,6 +107,8 @@ App.profile_editor_save = () => {
           }
         }
 
+        n_tags.sort()
+
         for (let tag of profile.tags) {
           if (!n_tags.includes(tag)) {
             n_tags.push(tag)
