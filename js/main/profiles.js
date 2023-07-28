@@ -57,7 +57,7 @@ App.show_profile_editor = (item) => {
       save.textContent = `Update`
       DOM.el(`#profile_editor_title`).value = profile.title
       DOM.el(`#profile_editor_tags`).value = profile.tags.join(`\n`)
-      DOM.el(`#profile_editor_color`).value = profile.color
+      DOM.el(`#profile_editor_color`).value = profile.color || `none`
       remove.classList.remove(`hidden`)
     }
     else {
@@ -113,9 +113,13 @@ App.profile_editor_save = () => {
 
   if (single) {
     let item = App.profile_editor_items[0]
+    let obj = {url: item.url, title: title, tags: c_tags.slice(0), color: color}
     App.profiles = App.profiles.filter(x => x.url !== item.url)
-    App.profiles.unshift({url: item.url, title: title, tags: c_tags.slice(0), color: color})
-    urls.push(item.url)
+
+    if (App.used_profile(obj)) {
+      App.profiles.unshift(obj)
+      urls.push(item.url)
+    }
   }
   else {
     let s_tags = App.get_shared_tags(App.profile_editor_items)
@@ -162,9 +166,13 @@ App.profile_editor_save = () => {
         urls.push(profile.url)
       }
       else {
+        let obj = {url: item.url, title: ``, tags: c_tags.slice(0), color: color}
         App.profiles = App.profiles.filter(x => x.url !== item.url)
-        App.profiles.unshift({url: item.url, title: ``, tags: c_tags.slice(0), color: color})
-        urls.push(item.url)
+
+        if (App.used_profile(obj)) {
+          App.profiles.unshift(obj)
+          urls.push(item.url)
+        }
       }
     }
   }
@@ -491,11 +499,19 @@ App.after_profile_remove = () => {
   App.show_mode(App.active_mode)
 }
 
+App.used_profile = (profile) => {
+  if (profile.title || profile.tags.length || profile.color) {
+    return true
+  }
+
+  return false
+}
+
 App.clean_profiles = () => {
   let c_profiles = []
 
   for (let profile of App.profiles) {
-    if (profile.title || profile.tags.length || profile.color) {
+    if (App.used_profile(profile)) {
       c_profiles.push(profile)
     }
   }
