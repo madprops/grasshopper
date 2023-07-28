@@ -48,7 +48,7 @@ App.show_profile_editor = (o_item) => {
   }
 
   App.show_window(`profile_editor`)
-  DOM.el(`#profile_editor_title`).focus()
+  DOM.el(`#profile_editor_tags`).focus()
   App.check_profile_editor()
 }
 
@@ -227,7 +227,7 @@ App.get_tags = () => {
     }
   }
 
-  return tags.slice(0, App.max_tags)
+  return tags.slice(0, App.max_tag_filters)
 }
 
 App.get_tag_items = (mode) => {
