@@ -31,7 +31,7 @@ App.setup_tabs = () => {
     App.log(`Tab Updated: ID: ${id}`)
 
     if (App.active_mode === `tabs` && info.windowId === App.window_id) {
-      await App.refresh_tab(id)
+      await App.refresh_tab(info)
       App.tabs_check()
     }
   })
@@ -54,7 +54,6 @@ App.setup_tabs = () => {
         App.tabs_check()
       }
     }
-
   })
 
   browser.tabs.onMoved.addListener((id, info) => {
@@ -171,33 +170,16 @@ App.get_tab_info = async (id) => {
   }
 }
 
-App.refresh_tab = async (id, select = false) => {
-  let info = await App.get_tab_info(id)
-
-  if (!info) {
-    return
-  }
-
+App.refresh_tab = async (info) => {
   if (App.get_setting(`single_new_tab`)) {
     if (info.url === App.new_tab_url) {
       App.close_other_new_tabs(info.id)
     }
   }
 
-  let item = App.get_item_by_id(`tabs`, id)
-
-  if (item) {
-    App.update_item(`tabs`, item.id, info)
-  }
-  else {
-    item = App.insert_item(`tabs`, info)
-  }
-
+  let item = App.get_item_by_id(`tabs`, info.id)
+  App.update_item(`tabs`, item.id, info)
   App.check_pinline()
-
-  if (select) {
-    App.select_item(item, `center_smooth`)
-  }
 }
 
 App.mute_tab = async (id) => {
@@ -628,33 +610,10 @@ App.do_move_tab_index = async (id, index) => {
 }
 
 App.on_tab_activated = async (info) => {
-  let exit = false
-
   for (let item of App.get_items(`tabs`)) {
     item.active = item.id === info.tabId
-
-    if (item.active) {
-      if (item === App.get_selected(`tabs`)) {
-        exit = true
-      }
-    }
-
     App.check_tab_active(item)
   }
-
-  // Avoid refreshes
-  // Already selected
-  if (exit) {
-    return
-  }
-
-  let select = true
-
-  if (App.is_filtered(`tabs`)) {
-    select = false
-  }
-
-  await App.refresh_tab(info.tabId, select)
 }
 
 App.move_tabs = async (item, window_id) => {
