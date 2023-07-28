@@ -269,6 +269,7 @@ App.process_info = (mode, info, exclude = [], o_item) => {
 
   if (o_item) {
     info = Object.assign({}, o_item.original_data, info)
+    o_item.original_data = info
   }
 
   if (info.url) {
@@ -347,6 +348,7 @@ App.process_info = (mode, info, exclude = [], o_item) => {
     }
 
     o_item = Object.assign(o_item, item)
+    o_item.original_data = o_item
 
     if (o_item.created) {
       App.refresh_item_element(o_item)
