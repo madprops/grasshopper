@@ -437,9 +437,6 @@ App.create_filter_menu = (mode) => {
   filter_menu.append(DOM.create(`div`, ``, `${mode}_filter_modes_text`))
   let fmodes = []
   fmodes.push([`all`, `All`])
-  fmodes.push([`tag`, `Tag`, true])
-  fmodes.push([`color`, `Color`, true])
-  fmodes.push([`custom`, `Custom`, true])
   let m_modes = App.filter_modes(mode)
 
   if (m_modes) {
@@ -447,6 +444,10 @@ App.create_filter_menu = (mode) => {
     fmodes.push(...m_modes)
   }
 
+  fmodes.push(separator())
+  fmodes.push([`tag`, `Tag`, true])
+  fmodes.push([`color`, `Color`, true])
+  fmodes.push([`custom`, `Custom`, true])
   fmodes.push(separator())
   fmodes.push([`image`, `Image`])
   fmodes.push([`video`, `Video`])
