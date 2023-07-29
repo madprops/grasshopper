@@ -1412,7 +1412,6 @@ App.on_item_window = (mode = App.window_mode) => {
 
 App.show_all = (mode = App.window_mode) => {
   if (App.is_filtered(mode)) {
-    App.clear_filter(mode)
     App.set_filter_mode(mode, `all`)
   }
 }

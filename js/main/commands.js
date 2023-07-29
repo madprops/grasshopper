@@ -11,9 +11,6 @@ App.commands = [
   {name: `Filter Domain`, cmd: `filter_domain`, mode: `items`, action: (args) => {
     App.filter_domain(args.item)
   }},
-  {name: `Clear Filter`, cmd: `clear_filter`, mode: `items`, action: (args) => {
-    App.clear_filter()
-  }},
   {name: `Select All`, cmd: `select_all`, mode: `items`, action: (args) => {
     App.highlight_items()
   }},
