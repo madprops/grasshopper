@@ -54,15 +54,15 @@ App.show_profile_editor = (item) => {
   }
 
   if (single) {
+    DOM.el(`#profile_editor_header`).textContent = `Editing 1 Profile`
+
     if (profile) {
-      save.textContent = `Update`
       DOM.el(`#profile_editor_title`).value = profile.title
       DOM.el(`#profile_editor_tags`).value = profile.tags.join(`\n`)
       DOM.el(`#profile_editor_color`).value = profile.color || `none`
       remove.classList.remove(`hidden`)
     }
     else {
-      save.textContent = `Save`
       DOM.el(`#profile_editor_title`).value = ``
       DOM.el(`#profile_editor_tags`).value = ``
       DOM.el(`#profile_editor_color`).value = `none`
@@ -70,7 +70,7 @@ App.show_profile_editor = (item) => {
     }
   }
   else {
-    save.textContent = `Save`
+    DOM.el(`#profile_editor_header`).textContent = `Editing ${items.length} Profiles`
     let s_tags = App.get_shared_tags(App.profile_editor_items).join(`\n`)
     let s_color = App.get_shared_color(App.profile_editor_items)
     DOM.el(`#profile_editor_tags`).value = s_tags

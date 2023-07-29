@@ -61,6 +61,10 @@
 
     <template id="template_profile_editor">
       <div class="flex_column_center gap_4 editor_container" id="profile_editor_container">
+        <div class="flex_column_center">
+          <div id="profile_editor_header" class="bigger"></div>
+        </div>
+
         <div class="flex_column_center gap_1">
           <div>Add some tags</div>
           <textarea autocomplete="off" spellcheck="false" id="profile_editor_tags" class="text editor_text" placeholder="One per line" rows="3"></textarea>
@@ -589,7 +593,7 @@
         <div id="media_image_url" class="media_url"></div>
 
         <div id="media_image_container" class="media_container">
-          <div id="media_image_loading" class="media_loading hidden"></div>
+          <div id="media_image_loading" class="media_loading hidden bigger"></div>
           <img id="media_image_player" class="media_player">
         </div>
       </div>

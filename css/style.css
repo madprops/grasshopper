@@ -630,10 +630,6 @@ input {
   margin-bottom: 1.6rem;
 }
 
-.media_loading {
-  font-size: 1.1rem;
-}
-
 .media_player {
   position: relative;
   width: 95%;
@@ -787,10 +783,6 @@ select {
 	transform: rotateY(180deg) !important;
 }
 
-.height_100 {
-  height: 100%;
-}
-
 .editor_container {
   padding-bottom: 2rem;
   align-items: stretch;
@@ -809,4 +801,8 @@ select {
   text-align: center;
   padding: 0.35rem;
   resize: none;
+}
+
+.bigger {
+  font-size: 1.1rem;
 }
