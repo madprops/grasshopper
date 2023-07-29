@@ -253,34 +253,13 @@ ${App.nice_date(d)} | ${d}
   App.log(s, `raw`)
 }
 
-App.check_force = (setting, items) => {
-  if (items.length >= App.max_warn_limit) {
+App.check_force = (warn_setting, num) => {
+  if (num >= App.max_warn_limit) {
     return false
   }
 
-  if (setting) {
-    let warn = App.get_setting(setting)
-
-    if (typeof warn === `boolean`) {
-      return !warn
-    }
-    else if (typeof warn === `string`) {
-      if (warn === `always`) {
-        return false
-      }
-      else if (warn === `never`) {
-        return true
-      }
-      else if (warn === `special`) {
-        if (App.window_mode === `tabs`) {
-          for (let item of items) {
-            if (item.pinned || item.audible) {
-              return false
-            }
-          }
-        }
-      }
-    }
+  if (warn_setting) {
+    return !App.get_setting(warn_setting)
   }
 
   return true
