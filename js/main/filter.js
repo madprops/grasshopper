@@ -368,7 +368,7 @@ App.get_filter_mode = (mode, name) => {
 }
 
 App.set_filter_mode = (mode, name, filter = true) => {
-  App.clear_filter(mode)
+  App.set_filter(mode, ``, false)
   let filter_mode = App.get_filter_mode(mode, name)
   App[`${mode}_filter_mode`] = filter_mode[0]
   DOM.el(`#${mode}_filter_modes_text`).textContent = filter_mode[1]
