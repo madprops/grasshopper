@@ -385,7 +385,7 @@ App.unload_tabs = (item) => {
     return
   }
 
-  let force = App.check_tab_force(`warn_on_unload_items`, items)
+  let force = App.check_tab_force(`warn_on_unload_tabs`, items)
 
   App.show_confirm(`Unload items? (${items.length})`, () => {
     for (let it of items) {
@@ -394,7 +394,7 @@ App.unload_tabs = (item) => {
   }, undefined, force)
 }
 
-App.check_tab_foce = (warn_setting, items) => {
+App.check_tab_force = (warn_setting, items) => {
   if (items.length >= App.max_warn_limit) {
     return false
   }
