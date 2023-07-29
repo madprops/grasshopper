@@ -43,7 +43,7 @@ App.show_profile_editor = (item) => {
   App.profile_editor_profiles = App.get_profiles(App.profile_editor_items)
   let profile, single
 
-  if (profiles.length === 0) {
+  if (App.profile_editor_profiles.length === 0) {
     DOM.el(`#profile_editor_remove`).classList.add(`hidden`)
   }
   else {
