@@ -368,18 +368,8 @@ App.get_filter_mode = (mode, name) => {
 }
 
 App.set_filter_mode = (mode, name, filter = true) => {
+  App.clear_filter(mode)
   let filter_mode = App.get_filter_mode(mode, name)
-
-  // If All is clicked again, clear the filter
-  if (filter && filter_mode[0] === `all`) {
-    if (App.filter_mode(mode) === `all`) {
-      if (App.filter_has_value(mode)) {
-        App.clear_filter(mode)
-        return
-      }
-    }
-  }
-
   App[`${mode}_filter_mode`] = filter_mode[0]
   DOM.el(`#${mode}_filter_modes_text`).textContent = filter_mode[1]
 
