@@ -39,9 +39,16 @@ App.show_profile_editor = (item) => {
   }
 
   App.show_window(`profile_editor`)
-  let remove = DOM.el(`#profile_editor_remove`)
-  let save = DOM.el(`#profile_editor_save`)
+  let num = App.profile_editor_items.length
+  App.profile_editor_profiles = App.get_profiles(App.profile_editor_items)
   let profile, single
+
+  if (profiles.length === 0) {
+    DOM.el(`#profile_editor_remove`).classList.add(`hidden`)
+  }
+  else {
+    DOM.el(`#profile_editor_remove`).classList.remove(`hidden`)
+  }
 
   if (items.length === 1) {
     profile = App.get_profile(item.url)
@@ -60,22 +67,19 @@ App.show_profile_editor = (item) => {
       DOM.el(`#profile_editor_title`).value = profile.title
       DOM.el(`#profile_editor_tags`).value = profile.tags.join(`\n`)
       DOM.el(`#profile_editor_color`).value = profile.color || `none`
-      remove.classList.remove(`hidden`)
     }
     else {
       DOM.el(`#profile_editor_title`).value = ``
       DOM.el(`#profile_editor_tags`).value = ``
       DOM.el(`#profile_editor_color`).value = `none`
-      remove.classList.add(`hidden`)
     }
   }
   else {
-    DOM.el(`#profile_editor_header`).textContent = `Editing ${items.length} Profiles`
+    DOM.el(`#profile_editor_header`).textContent = `Editing ${num} Profiles`
     let s_tags = App.get_shared_tags(App.profile_editor_items).join(`\n`)
     let s_color = App.get_shared_color(App.profile_editor_items)
     DOM.el(`#profile_editor_tags`).value = s_tags
     DOM.el(`#profile_editor_color`).value = s_color || `none`
-    remove.classList.remove(`hidden`)
   }
 
   DOM.el(`#profile_editor_tags`).focus()
@@ -219,16 +223,17 @@ App.profile_editor_remove = () => {
     return
   }
 
+  let profiles = App.profile_editor_profiles
   let force = !App.get_setting(`warn_on_remove_profiles`)
 
-  if (items.length >= App.max_warn_limit) {
+  if (profiles.length >= App.max_warn_limit) {
     force = false
   }
 
-  App.show_confirm(`Remove profiles? (${items.length})`, () => {
-    for (let item of items) {
-      App.profiles = App.profiles.filter(x => x.url !== item.url)
-      App.apply_profiles(item.url)
+  App.show_confirm(`Remove profiles? (${profiles.length})`, () => {
+    for (let profile of profiles) {
+      App.profiles = App.profiles.filter(x => x.url !== profile.url)
+      App.apply_profiles(profile.url)
     }
 
     App.stor_save_profiles()
@@ -251,6 +256,19 @@ App.get_profile = (item_url) => {
       return profile
     }
   }
+}
+
+App.get_profiles = (items) => {
+  let urls = items.map(x => x.url)
+  let profiles = []
+
+  for (let profile of App.profiles) {
+    if (urls.includes(profile.url)) {
+      profiles.push(profile)
+    }
+  }
+
+  return profiles
 }
 
 App.get_profile_items = () => {
