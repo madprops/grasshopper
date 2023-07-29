@@ -238,6 +238,7 @@ App.profile_editor_remove = () => {
 
     App.stor_save_profiles()
     App.hide_window()
+    App.refresh_filter(App.active_mode, `edited`)
   }, undefined, force)
 }
 
