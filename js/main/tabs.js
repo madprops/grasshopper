@@ -371,25 +371,25 @@ App.unpin_tabs = (item) => {
 }
 
 App.unload_tabs = (item) => {
-  let tabs = []
+  let items = []
 
-  for (let it of App.get_active_items(`tabs`, item)) {
+  for (let it of App.get_active_items(`items`, item)) {
     if (it.discarded) {
       continue
     }
 
-    tabs.push(it)
+    items.push(it)
   }
 
-  if (tabs.length === 0) {
+  if (items.length === 0) {
     return
   }
 
-  let force = App.check_tab_force(`warn_on_unload_tabs`, tabs)
+  let force = App.check_tab_force(`warn_on_unload_items`, items)
 
-  App.show_confirm(`Unload tabs? (${tabs.length})`, () => {
-    for (let tab of tabs) {
-      App.unload_tab(tab)
+  App.show_confirm(`Unload items? (${items.length})`, () => {
+    for (let it of items) {
+      App.unload_tab(it)
     }
   }, undefined, force)
 }
@@ -712,13 +712,9 @@ App.close_normal_tabs = () => {
     s += `Excluding unloaded tabs\n`
   }
 
+  let force = App.check_force(`warn_on_close_normal_tabs`, ids)
   s += `Excluding playing tabs\n`
   s += `Close these tabs? (${ids.length})`
-  let force = !App.get_setting(`warn_on_close_normal_tabs`)
-
-  if (ids.length >= App.max_warn_limit) {
-    force = false
-  }
 
   App.show_confirm(s, () => {
     App.do_close_tabs(ids)
@@ -880,13 +876,9 @@ App.close_duplicate_tabs = () => {
     s += `Excluding pinned tabs\n`
   }
 
+  let force = App.check_force(`warn_on_close_duplicate_tabs`, ids)
   s += `Excluding playing tabs\n`
   s += `Close these tabs? (${ids.length})`
-  let force = !App.get_setting(`warn_on_close_duplicate_tabs`)
-
-  if (ids.length >= App.max_warn_limit) {
-    force = false
-  }
 
   App.show_confirm(s, () => {
     App.do_close_tabs(ids)
