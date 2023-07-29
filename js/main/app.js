@@ -54,3 +54,4 @@ App.colors = {
   cyan: `rgb(0, 255, 255)`,
   pink: `rgb(255, 0, 255)`,
 }
+App.filter_cmds = [`title`, `url`, `tag`, `color`]

@@ -214,6 +214,8 @@ App.do_profile_editor_save = () => {
   for (let url of urls) {
     App.apply_profiles(url)
   }
+
+  App.refresh_profile_filters()
 }
 
 App.profile_editor_remove = () => {
@@ -238,7 +240,7 @@ App.profile_editor_remove = () => {
 
     App.stor_save_profiles()
     App.hide_window()
-    App.refresh_filter(App.active_mode, `edited`)
+    App.refresh_profile_filters()
   }, undefined, force)
 }
 
@@ -371,8 +373,7 @@ App.get_tag_items = (mode) => {
       items.push({
         text: tag,
         action: () => {
-          App.set_filter_mode(mode, `all`, false)
-          App.set_filter(mode, `tag: ${tag}`)
+          App.set_filter_cmd(mode, `tag`, tag)
         }
       })
     }
@@ -402,8 +403,7 @@ App.get_color_items = (mode) => {
     items.push({
       text: App.capitalize(color),
       action: () => {
-        App.set_filter_mode(mode, `all`, false)
-        App.set_filter(mode, `color: ${color}`)
+        App.set_filter_cmd(mode, `color`, color)
       }
     })
   }
@@ -613,4 +613,20 @@ App.get_profile_count = () => {
   }
 
   return count
+}
+
+App.refresh_profile_filters = () => {
+  let mode = App.active_mode
+  if (App.filter_mode(mode) === `edited`) {
+    App.filter(mode)
+    return
+  }
+
+  let cmd = App.get_filter_cmd()
+
+  if (cmd) {
+    if (cmd[0] === `tag` || cmd[0] === `color`) {
+      App.set_filter_cmd(mode, cmd[0], cmd[1])
+    }
+  }
 }

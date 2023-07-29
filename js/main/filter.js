@@ -22,22 +22,11 @@ App.do_filter = async (mode, force = false) => {
   }
 
   let by_what
+  let cmd = App.get_filter_cmd(value)
 
-  if (value.startsWith(`title:`)) {
-    value = value.replace(`title:`, ``).trim()
-    by_what = `title`
-  }
-  else if (value.startsWith(`url:`)) {
-    value = value.replace(`url:`, ``).trim()
-    by_what = `url`
-  }
-  else if (value.startsWith(`tag:`)) {
-    value = value.replace(`tag:`, ``).trim()
-    by_what = `tag`
-  }
-  else if (value.startsWith(`color:`)) {
-    value = value.replace(`color:`, ``).trim()
-    by_what = `color`
+  if (cmd) {
+    value = cmd[1]
+    by_what = cmd[0]
   }
   else {
     value = value
@@ -421,12 +410,6 @@ App.filter_domain = (item) => {
   App.set_filter(item.mode, hostname)
 }
 
-App.refresh_filter = (mode, what) => {
-  if (App.filter_mode(mode) === what) {
-    App.filter(mode)
-  }
-}
-
 App.create_filter_menu = (mode) => {
   function separator () {
     return [App.separator_string, undefined, true]
@@ -591,4 +574,21 @@ App.get_filter_refine = (mode) => {
   })
 
   return items
+}
+
+App.get_filter_cmd = (value) => {
+  if (value === undefined) {
+    value = App.get_clean_filter(App.active_mode)
+  }
+
+  for (let cmd of App.filter_cmds) {
+    if (value.startsWith(`${cmd}:`)) {
+      return [cmd, value.replace(`${cmd}:`, ``).trim()]
+    }
+  }
+}
+
+App.set_filter_cmd = (mode, cmd, value) => {
+  App.set_filter_mode(mode, `all`, false)
+  App.set_filter(mode, `${cmd}: ${value}`)
 }
