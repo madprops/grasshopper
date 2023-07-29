@@ -160,6 +160,9 @@ body, html {
   max-width: 6rem;
   white-space: nowrap;
   overflow: hidden;
+  text-align: left;
+  align-items: flex-start;
+  justify-content: flex-start;
 }
 
 .button {
@@ -178,6 +181,7 @@ body, html {
   outline: 1px solid var(--alt_color_1);
   min-width: 1.6rem;
   border-radius: var(--border_radius);
+  max-width: 100%;
 }
 
 .button:hover {
