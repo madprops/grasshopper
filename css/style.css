@@ -630,6 +630,10 @@ input {
   margin-bottom: 1.6rem;
 }
 
+.media_loading {
+  font-size: 1.1rem;
+}
+
 .media_player {
   position: relative;
   width: 95%;
