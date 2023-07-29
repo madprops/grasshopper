@@ -156,6 +156,12 @@ body, html {
   background-color: var(--alt_color_0);
 }
 
+.filter_button {
+  max-width: 6rem;
+  white-space: nowrap;
+  overflow: hidden;
+}
+
 .button {
   font-size: 1rem;
   cursor: pointer;

@@ -373,7 +373,7 @@ App.get_tag_items = (mode) => {
       items.push({
         text: tag,
         action: () => {
-          App.set_filter_cmd(mode, `tag`, tag)
+          App.set_custom_filter_mode(mode, `tag_${tag}`, tag)
         }
       })
     }
@@ -403,7 +403,7 @@ App.get_color_items = (mode) => {
     items.push({
       text: App.capitalize(color),
       action: () => {
-        App.set_filter_cmd(mode, `color`, color)
+        App.set_custom_filter_mode(mode, `color_${color}`, App.capitalize(color))
       }
     })
   }
@@ -617,16 +617,10 @@ App.get_profile_count = () => {
 
 App.refresh_profile_filters = () => {
   let mode = App.active_mode
-  if (App.filter_mode(mode) === `edited`) {
+  let filter_mode = App.filter_mode(mode)
+
+  if (filter_mode === `edited` || filter_mode.startsWith(`tag_`) || filter_mode.startsWith(`color_`)) {
     App.filter(mode)
     return
-  }
-
-  let cmd = App.get_filter_cmd()
-
-  if (cmd) {
-    if (cmd[0] === `tag` || cmd[0] === `color`) {
-      App.set_filter_cmd(mode, cmd[0], cmd[1])
-    }
   }
 }

@@ -73,6 +73,14 @@ App.do_filter = async (mode, force = false) => {
   }
 
   let filter_mode = App.filter_mode(mode)
+  let filter_mode_split = filter_mode.split(`_`)
+  let f_value
+
+  if (filter_mode_split.length === 2) {
+    filter_mode = filter_mode_split[0]
+    f_value = filter_mode_split[1]
+  }
+
   let skip = !value && filter_mode === `all`
   let duplicates
 
@@ -88,6 +96,7 @@ App.do_filter = async (mode, force = false) => {
       filter_mode: filter_mode,
       duplicates: duplicates,
       value: value,
+      f_value: f_value,
     }
 
     return App.filter_check(args)
@@ -127,12 +136,6 @@ App.filter_check = (args) => {
   else if (args.by_what === `url`) {
     match = args.regex.test(args.item.path)
   }
-  else if (args.by_what === `tag`) {
-    match = args.item.tags.includes(args.value)
-  }
-  else if (args.by_what === `color`) {
-    match = args.item.color === args.value
-  }
 
   if (match) {
     if (args.filter_mode === `all`) {
@@ -146,6 +149,12 @@ App.filter_check = (args) => {
     }
     else if (args.filter_mode === `audio`) {
       match = args.item.audio
+    }
+    else if (args.filter_mode === `tag`) {
+      match = args.item.tags.includes(args.f_value)
+    }
+    else if (args.filter_mode === `color`) {
+      match = args.item.color === args.f_value
     }
     else if (args.filter_mode === `edited`) {
       if (args.item.tags.length || args.item.custom_title || args.item.color) {
@@ -378,6 +387,13 @@ App.set_filter_mode = (mode, name, filter = true) => {
   }
 }
 
+App.set_custom_filter_mode = (mode, name, title) => {
+  App.set_filter(mode, ``, false)
+  App[`${mode}_filter_mode`] = name
+  DOM.el(`#${mode}_filter_modes_text`).textContent = title
+  App.do_filter(mode)
+}
+
 App.filter_domain = (item) => {
   if (!item) {
     item = App.get_selected(mode)
@@ -405,7 +421,7 @@ App.create_filter_menu = (mode) => {
     return [App.separator_string, undefined, true]
   }
 
-  let filter_menu = DOM.create(`div`, `button icon_button`, `${mode}_filter_modes`)
+  let filter_menu = DOM.create(`div`, `button icon_button filter_button`, `${mode}_filter_modes`)
   filter_menu.title = `Filters (Ctrl + F)`
   filter_menu.append(DOM.create(`div`, ``, `${mode}_filter_modes_text`))
   let fmodes = []
@@ -576,9 +592,4 @@ App.get_filter_cmd = (value) => {
       return [cmd, value.replace(`${cmd}:`, ``).trim()]
     }
   }
-}
-
-App.set_filter_cmd = (mode, cmd, value) => {
-  App.set_filter_mode(mode, `all`, false)
-  App.set_filter(mode, `${cmd}: ${value}`)
 }
