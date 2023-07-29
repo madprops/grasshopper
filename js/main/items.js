@@ -1248,11 +1248,7 @@ App.open_items = (item, shift) => {
     App.after_open(shift)
   }
   else {
-    let force = !App.get_setting(`warn_on_open`)
-
-    if (items.length >= App.max_warn_limit) {
-      force = false
-    }
+    let force = App.check_force(`warn_on_open`, items.length)
 
     App.show_confirm(`Open these items ${items.length}?`, () => {
       for (let item of items) {

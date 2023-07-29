@@ -92,11 +92,7 @@ App.profile_editor_save = () => {
     return
   }
 
-  let force = true
-
-  if (items.length >= App.max_warn_limit) {
-    force = false
-  }
+  let force = App.check_force(undefined, items.length)
 
   App.show_confirm(`Save profiles? (${items.length})`, () => {
     App.do_profile_editor_save()
@@ -226,11 +222,7 @@ App.profile_editor_remove = () => {
   }
 
   let profiles = App.profile_editor_profiles
-  let force = !App.get_setting(`warn_on_remove_profiles`)
-
-  if (profiles.length >= App.max_warn_limit) {
-    force = false
-  }
+  let force = App.check_force(`warn_on_remove_profiles`, profiles.length)
 
   App.show_confirm(`Remove profiles? (${profiles.length})`, () => {
     for (let profile of profiles) {
