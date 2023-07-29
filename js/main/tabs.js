@@ -155,8 +155,8 @@ App.open_new_tab = async (url) => {
   }
 }
 
-App.new_tab = async (url) => {
-  await App.open_new_tab(url)
+App.new_tab = async () => {
+  await App.open_new_tab()
   App.check_close_on_focus()
 }
 
@@ -343,10 +343,15 @@ App.unpin_tabs = (item) => {
 
 App.unload_tabs = (item) => {
   let items = []
+  let active = false
 
   for (let it of App.get_active_items(`tabs`, item)) {
     if (it.discarded) {
       continue
+    }
+
+    if (it.active) {
+      active = true
     }
 
     items.push(it)
@@ -356,18 +361,20 @@ App.unload_tabs = (item) => {
     return
   }
 
-
   let force = App.check_tab_force(`warn_on_unload_tabs`, items)
   let ids = items.map(x => x.id)
 
   App.show_confirm(`Unload items? (${ids.length})`, async () => {
+    if (active) {
+      await App.open_new_tab(`about:blank`)
+    }
+
     App.do_unload_tabs(ids)
   }, undefined, force)
 }
 
 App.do_unload_tabs = async (ids) => {
   try {
-    console.log(ids)
     await browser.tabs.discard(ids)
   }
   catch (err) {
