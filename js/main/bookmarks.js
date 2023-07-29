@@ -146,7 +146,7 @@ App.bookmark_items = async (item, active, feedback = true) => {
     return
   }
 
-  let force = (num === 1) || !App.get_setting(`warn_on_bookmark`)
+  let force = !App.get_setting(`warn_on_bookmark`)
 
   if (num >= App.max_warn_limit) {
     force = false
