@@ -283,35 +283,6 @@ App.duplicate_tabs = async (item) => {
   }, undefined, force)
 }
 
-App.do_unload_tab = async (item) => {
-  try {
-    await browser.tabs.discard(item.id)
-  }
-  catch (err) {
-    App.log(err, `error`)
-  }
-}
-
-App.unload_tab = async (item) => {
-  if (item.active) {
-    try {
-      let next_item = App.get_next_item(`tabs`)
-
-      if (next_item) {
-        await App.focus_tab(next_item, `nearest_instant`, `unload`)
-      }
-      else {
-        await App.open_new_tab()
-      }
-    }
-    catch (err) {
-      App.log(err, `error`)
-    }
-  }
-
-  App.do_unload_tab(item)
-}
-
 App.pin_tab = async (id) => {
   try {
     await browser.tabs.update(id, {pinned: true})
@@ -373,7 +344,7 @@ App.unpin_tabs = (item) => {
 App.unload_tabs = (item) => {
   let items = []
 
-  for (let it of App.get_active_items(`items`, item)) {
+  for (let it of App.get_active_items(`tabs`, item)) {
     if (it.discarded) {
       continue
     }
@@ -385,13 +356,23 @@ App.unload_tabs = (item) => {
     return
   }
 
-  let force = App.check_tab_force(`warn_on_unload_tabs`, items)
 
-  App.show_confirm(`Unload items? (${items.length})`, () => {
-    for (let it of items) {
-      App.unload_tab(it)
-    }
+  let force = App.check_tab_force(`warn_on_unload_tabs`, items)
+  let ids = items.map(x => x.id)
+
+  App.show_confirm(`Unload items? (${ids.length})`, async () => {
+    App.do_unload_tabs(ids)
   }, undefined, force)
+}
+
+App.do_unload_tabs = async (ids) => {
+  try {
+    console.log(ids)
+    await browser.tabs.discard(ids)
+  }
+  catch (err) {
+    App.log(err, `error`)
+  }
 }
 
 App.check_tab_force = (warn_setting, items) => {
