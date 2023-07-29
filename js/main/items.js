@@ -1544,3 +1544,23 @@ App.get_item_title = (item) => {
     return item.title
   }
 }
+
+App.pick_item = (item) => {
+  let mode = item.mode
+  let selected = App.get_selected(mode)
+
+  if (selected !== item) {
+    if (!selected.highlighted) {
+      // Only highlight if it's next to the item
+      let i = App.get_item_element_index(mode, selected.element)
+      let ii = App.get_item_element_index(mode, item.element)
+
+      if (Math.abs(i - ii) === 1) {
+        App.toggle_highlight(selected)
+      }
+    }
+  }
+
+  App.select(item, false)
+  App.toggle_highlight(item)
+}

@@ -59,20 +59,20 @@ App.mouse_down_action = (mode, e) => {
 
   if (e.target.classList.contains(`item_pick`)) {
     App.item_range_on = true
-
-    if (item.highlighted) {
-      App.item_range_highlight = false
-    }
-    else {
-      App.select_item(item, `none`, false)
-      App.item_range_highlight = true
-    }
+    let highlighted = item.highlighted
 
     if (e.shiftKey) {
       App.highlight_range(item)
     }
     else {
-      App.toggle_highlight(item)
+      App.pick_item(item)
+    }
+
+    if (highlighted) {
+      App.item_range_highlight = false
+    }
+    else {
+      App.item_range_highlight = true
     }
   }
 }
@@ -119,8 +119,7 @@ App.mouse_click_action = (mode, e) => {
   }
 
   if (e.ctrlKey) {
-    App.select(item, false)
-    App.toggle_highlight(item)
+    App.pick_item(item)
     return
   }
 
