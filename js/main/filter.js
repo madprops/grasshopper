@@ -22,7 +22,13 @@ App.do_filter = async (mode, force = false) => {
   }
 
   let by_what
-  let cmd = App.get_filter_cmd(value)
+  let cmd
+
+  for (let c of [`title`, `url`]) {
+    if (value.startsWith(`${c}:`)) {
+      cmd = [c, value.replace(`${c}:`, ``).trim()]
+    }
+  }
 
   if (cmd) {
     value = cmd[1]
@@ -580,16 +586,4 @@ App.get_filter_refine = (mode) => {
   })
 
   return items
-}
-
-App.get_filter_cmd = (value) => {
-  if (value === undefined) {
-    value = App.get_clean_filter(App.active_mode)
-  }
-
-  for (let cmd of App.filter_cmds) {
-    if (value.startsWith(`${cmd}:`)) {
-      return [cmd, value.replace(`${cmd}:`, ``).trim()]
-    }
-  }
 }
