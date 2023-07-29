@@ -127,12 +127,13 @@ App.do_filter = async (mode, force = false) => {
 
 App.filter_check = (args) => {
   let match = false
+  let title = App.get_item_title(args.item)
 
   if (args.by_what === `all`) {
-    match = args.regex.test(args.item.title) || args.regex.test(args.item.path)
+    match = args.regex.test(title) || args.regex.test(args.item.path)
   }
   else if (args.by_what === `title`) {
-    match = args.regex.test(args.item.title)
+    match = args.regex.test(title)
   }
   else if (args.by_what === `url`) {
     match = args.regex.test(args.item.path)
@@ -156,6 +157,14 @@ App.filter_check = (args) => {
     }
     else if (args.filter_mode === `audio`) {
       match = args.item.audio
+    }
+    else if (args.filter_mode === `edited`) {
+      if (args.item.tags.length || args.item.custom_title || args.item.color) {
+        match = true
+      }
+      else {
+        match = false
+      }
     }
     else if (args.filter_mode === `pinned`) {
       match = args.item.pinned
@@ -442,6 +451,7 @@ App.create_filter_menu = (mode) => {
   fmodes.push([`image`, `Image`])
   fmodes.push([`video`, `Video`])
   fmodes.push([`audio`, `Audio`])
+  fmodes.push([`edited`, `Edited`])
   fmodes.push(separator())
   fmodes.push([`refine`, `Refine`, true])
   App[`${mode}_filter_modes`] = fmodes

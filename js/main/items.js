@@ -296,6 +296,7 @@ App.process_info = (mode, info, exclude = [], o_item) => {
   let profile = App.get_profile(url)
   let tags = []
   let color = ``
+  let custom_title = ``
 
   if (profile) {
     if (profile.tags) {
@@ -303,7 +304,7 @@ App.process_info = (mode, info, exclude = [], o_item) => {
     }
 
     if (profile.title) {
-      title = profile.title
+      custom_title = profile.title
     }
 
     if (profile.color) {
@@ -313,6 +314,7 @@ App.process_info = (mode, info, exclude = [], o_item) => {
 
   let item = {
     title: title,
+    custom_title: custom_title,
     url: url,
     path: path,
     favicon: info.favIconUrl,
@@ -594,24 +596,25 @@ App.set_item_text = (item) => {
   let content
   let path = decodeURI(item.path)
   let text_mode = App.get_setting(`text_mode`)
+  let title = App.get_item_title(item)
 
   if (text_mode === `title`) {
-    content = item.title || path
-    item.footer = path || item.title
+    content = title || path
+    item.footer = path || title
   }
   else if (text_mode === `url`) {
-    content = path || item.title
-    item.footer = item.title || path
+    content = path || title
+    item.footer = title || path
   }
   else if (text_mode === `title_url`) {
-    content = item.title
+    content = title
 
     if (content) {
       content += `\n`
     }
 
     content += path
-    item.footer = path || item.title
+    item.footer = path || title
   }
   else if (text_mode === `url_title`) {
     content = path
@@ -620,8 +623,8 @@ App.set_item_text = (item) => {
       content += `\n`
     }
 
-    content += item.title
-    item.footer = item.title || path
+    content += title
+    item.footer = title || path
   }
 
   if (App.get_setting(`show_tooltips`)) {
@@ -1485,7 +1488,8 @@ App.copy_url = (item) => {
 }
 
 App.copy_title = (item) => {
-  App.copy_to_clipboard(item.title, `Title`)
+  let title = App.get_item_title(item)
+  App.copy_to_clipboard(title, `Title`)
 }
 
 App.on_items = (mode = App.window_mode) => {
@@ -1535,4 +1539,13 @@ App.soft_copy_item = (o_item) => {
   }
 
   return item
+}
+
+App.get_item_title = (item) => {
+  if (item.custom_title) {
+    return item.custom_title
+  }
+  else {
+    return item.title
+  }
 }

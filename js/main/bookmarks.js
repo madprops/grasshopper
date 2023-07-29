@@ -154,7 +154,8 @@ App.bookmark_items = async (item, active, feedback = true) => {
 
   App.show_confirm(`Bookmark these items? (${num})`, async () => {
     for (let item of add) {
-      await browser.bookmarks.create({parentId: folder.id, title: item.title, url: item.url})
+      let title = App.get_item_title(item)
+      await browser.bookmarks.create({parentId: folder.id, title: title, url: item.url})
     }
 
     for (let id of bump) {
