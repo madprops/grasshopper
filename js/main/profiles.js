@@ -43,15 +43,8 @@ App.show_profile_editor = (item) => {
   App.profile_editor_profiles = profiles
   App.profile_editor_added = added
   App.show_window(`profile_editor`)
-  App.profile_editor_shared_tags = undefined
-  App.profile_editor_shared_color = undefined
 
   if (profiles.length) {
-    if ((profiles.length > 1) && (profiles.length === items.length)) {
-      App.profile_editor_shared_tags = App.get_shared_tags(profiles).join(`\n`)
-      App.profile_editor_shared_color = App.get_shared_color(profiles)
-    }
-
     DOM.el(`#profile_editor_remove`).classList.remove(`hidden`)
   }
   else {
@@ -71,15 +64,15 @@ App.show_profile_editor = (item) => {
     else {
       DOM.el(`#profile_editor_tags`).value = ``
       DOM.el(`#profile_editor_title`).value = ``
-      DOM.el(`#profile_editor_color`).value = `oijiojio`
+      DOM.el(`#profile_editor_color`).value = `none`
     }
   }
   else {
     DOM.el(`#profile_editor_title_container`).classList.add(`hidden`)
     DOM.el(`#profile_editor_header`).textContent = `Editing ${items.length} Profiles`
-    DOM.el(`#profile_editor_tags`).value = App.profile_editor_shared_tags || ``
+    DOM.el(`#profile_editor_tags`).value = ``
     DOM.el(`#profile_editor_title`).value = ``
-    DOM.el(`#profile_editor_color`).value = App.profile_editor_shared_color || `none`
+    DOM.el(`#profile_editor_color`).value = `none`
   }
 
   if (!(DOM.el(`#profile_editor_color`).value in Object.keys(App.colors))) {
@@ -147,44 +140,8 @@ App.do_profile_editor_save = () => {
   // Edited
   if (App.profile_editor_profiles.length) {
     for (let profile of App.profile_editor_profiles) {
-      let n_tags = []
-
-      for (let tag of c_tags) {
-        if (!tag) {
-          continue
-        }
-
-        if (!n_tags.includes(tag)) {
-          n_tags.push(tag)
-        }
-      }
-
-      let m_tags = []
-
-      for (let tag of profile.tags) {
-        if (!tag) {
-          continue
-        }
-
-        // If shared tag is removed don't include it
-        if (App.profile_editor_shared_tags) {
-          if (App.profile_editor_shared_tags.includes(tag)) {
-            if (!n_tags.includes(tag)) {
-              continue
-            }
-          }
-        }
-
-        if (!n_tags.includes(tag) && !m_tags.includes(tag)) {
-          tag = tag.toLowerCase().trim()
-          m_tags.push(tag)
-        }
-      }
-
-      n_tags.push(...m_tags)
-      n_tags.sort()
       let c_title = single ? title : profile.title
-      let obj = {url: profile.url, tags: n_tags.slice(0), title: c_title, color: color}
+      let obj = {url: profile.url, tags: c_tags.slice(0), title: c_title, color: color}
       App.profiles = App.profiles.filter(x => x.url !== profile.url)
 
       if (App.used_profile(obj)) {
@@ -599,28 +556,6 @@ App.clean_profiles = () => {
   }
 
   App.profiles = c_profiles
-}
-
-App.get_shared_tags = (profiles) => {
-  let arrays = profiles.map(obj => obj.tags)
-
-  let shared = arrays.reduce((common, current) => {
-    return common.filter(value => current.includes(value))
-  })
-
-  return shared
-}
-
-App.get_shared_color = (profiles) => {
-  let first = profiles[0].color
-
-  for (let profile of profiles) {
-    if (profile.color !== first) {
-      return ``
-    }
-  }
-
-  return first
 }
 
 App.get_profile_count = () => {
