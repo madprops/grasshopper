@@ -43,22 +43,13 @@ App.show_profile_editor = (item) => {
   App.profile_editor_profiles = profiles
   App.profile_editor_added = added
   App.show_window(`profile_editor`)
-  App.profile_editor_shared_tags = []
-  App.profile_editor_shared_title = ``
-  App.profile_editor_shared_color = ``
-  DOM.el(`#profile_editor_title_container`).classList.remove(`hidden`)
+  App.profile_editor_shared_tags = undefined
+  App.profile_editor_shared_color = undefined
 
   if (profiles.length) {
     if ((profiles.length > 1) && (profiles.length === items.length)) {
       App.profile_editor_shared_tags = App.get_shared_tags(profiles).join(`\n`)
-      App.profile_editor_shared_title = App.get_shared_title(profiles)
       App.profile_editor_shared_color = App.get_shared_color(profiles)
-    }
-
-    if (profiles.length > 1) {
-      if (!App.profile_editor_shared_title) {
-        DOM.el(`#profile_editor_title_container`).classList.add(`hidden`)
-      }
     }
 
     DOM.el(`#profile_editor_remove`).classList.remove(`hidden`)
@@ -69,23 +60,24 @@ App.show_profile_editor = (item) => {
 
   if (items.length === 1) {
     DOM.el(`#profile_editor_header`).textContent = `Editing 1 Profile`
+    DOM.el(`#profile_editor_title_container`).classList.remove(`hidden`)
 
     if (profiles.length) {
       let profile = profiles[0]
       DOM.el(`#profile_editor_tags`).value = profile.tags.join(`\n`)
-      DOM.el(`#profile_editor_title`).value = profile.title || ``
+      DOM.el(`#profile_editor_title`).value = ``
       DOM.el(`#profile_editor_color`).value = profile.color || `none`
     }
     else {
-      DOM.el(`#profile_editor_title`).value = ``
       DOM.el(`#profile_editor_tags`).value = ``
+      DOM.el(`#profile_editor_title`).value = ``
       DOM.el(`#profile_editor_color`).value = `none`
     }
   }
   else {
+    DOM.el(`#profile_editor_title_container`).classList.add(`hidden`)
     DOM.el(`#profile_editor_header`).textContent = `Editing ${items.length} Profiles`
     DOM.el(`#profile_editor_tags`).value = App.profile_editor_shared_tags || ``
-    DOM.el(`#profile_editor_title`).value = App.profile_editor_shared_title || ``
     DOM.el(`#profile_editor_color`).value = App.profile_editor_shared_color || `none`
   }
 
@@ -110,6 +102,7 @@ App.do_profile_editor_save = () => {
   let title = DOM.el(`#profile_editor_title`).value.trim()
   let color = DOM.el(`#profile_editor_color`).value
   let tags = App.single_linebreak(DOM.el(`#profile_editor_tags`).value.trim()).split(`\n`)
+  let single = App.profile_editor_items.length === 1
 
   if (color === `none`) {
     color = ``
@@ -135,7 +128,7 @@ App.do_profile_editor_save = () => {
   // Added
   if (App.profile_editor_added.length) {
     for (let item of App.profile_editor_added) {
-      let obj = {url: item.url, title: title, tags: c_tags.slice(0), color: color}
+      let obj = {url: item.url, tags: c_tags.slice(0), title: title, color: color}
       App.profiles = App.profiles.filter(x => x.url !== item.url)
 
       if (App.used_profile(obj)) {
@@ -149,23 +142,6 @@ App.do_profile_editor_save = () => {
   // Edited
   if (App.profile_editor_profiles.length) {
     for (let profile of App.profile_editor_profiles) {
-      let c_title = title
-      let c_color = color
-
-      if (App.profile_editor_items.length > 1) {
-        if (!App.profile_editor_shared_title) {
-          if (profile.title) {
-            c_title = profile.title
-          }
-        }
-
-        if (!App.profile_editor_shared_color) {
-          if (profile.color) {
-            c_color = profile.color
-          }
-        }
-      }
-
       let n_tags = []
 
       for (let tag of c_tags) {
@@ -202,7 +178,13 @@ App.do_profile_editor_save = () => {
 
       n_tags.push(...m_tags)
       n_tags.sort()
-      let obj = {url: profile.url, title: c_title, tags: n_tags.slice(0), color: c_color}
+      let c_title = profile.title
+
+      if (single) {
+        c_title = title
+      }
+
+      let obj = {url: profile.url, tags: n_tags.slice(0), title: c_title, color: color}
       App.profiles = App.profiles.filter(x => x.url !== profile.url)
 
       if (App.used_profile(obj)) {
@@ -595,18 +577,6 @@ App.get_shared_tags = (profiles) => {
   })
 
   return shared
-}
-
-App.get_shared_title = (profiles) => {
-  let first = profiles[0].title
-
-  for (let profile of profiles) {
-    if (profile.title !== first) {
-      return ``
-    }
-  }
-
-  return first
 }
 
 App.get_shared_color = (profiles) => {
