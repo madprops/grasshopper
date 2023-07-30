@@ -603,7 +603,7 @@ App.set_item_text = (item) => {
   let content
   let path = decodeURI(item.path)
   let text_mode = App.get_setting(`text_mode`)
-  let title = App.get_item_title(item)
+  let title = App.get_title(item)
 
   if (text_mode === `title`) {
     content = title || path
@@ -1490,7 +1490,7 @@ App.copy_url = (item) => {
 }
 
 App.copy_title = (item) => {
-  let title = App.get_item_title(item)
+  let title = App.get_title(item)
   App.copy_to_clipboard(title, `Title`)
 }
 
@@ -1543,7 +1543,7 @@ App.soft_copy_item = (o_item) => {
   return item
 }
 
-App.get_item_title = (item) => {
+App.get_title = (item) => {
   if (item.custom_title) {
     return item.custom_title
   }

@@ -131,7 +131,7 @@ App.do_filter = async (mode, force = false) => {
 
 App.filter_check = (args) => {
   let match = false
-  let title = App.get_item_title(args.item)
+  let title = App.get_title(args.item)
 
   if (args.by_what === `all`) {
     match = args.regex.test(title) || args.regex.test(args.item.path)
