@@ -65,7 +65,7 @@ App.show_profile_editor = (item) => {
     if (profiles.length) {
       let profile = profiles[0]
       DOM.el(`#profile_editor_tags`).value = profile.tags.join(`\n`)
-      DOM.el(`#profile_editor_title`).value = ``
+      DOM.el(`#profile_editor_title`).value = profile.title
       DOM.el(`#profile_editor_color`).value = profile.color || `none`
     }
     else {
