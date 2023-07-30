@@ -53,4 +53,5 @@ App.colors = {
   yellow: `rgb(255, 255, 0)`,
   cyan: `rgb(0, 255, 255)`,
   pink: `rgb(255, 0, 255)`,
+  orange: `rgb(255, 165, 0)`,
 }
