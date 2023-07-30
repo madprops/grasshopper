@@ -405,11 +405,13 @@ App.setup_keyboard = () => {
           if (App.text_with_empty_lines()) {
             App.profile_editor_save()
             e.preventDefault()
+            return
           }
         }
         else {
           App.profile_editor_save()
           e.preventDefault()
+          return
         }
       }
     }
