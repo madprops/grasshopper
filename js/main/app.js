@@ -47,8 +47,8 @@ App.mousedown_max = 500
 App.max_warn_limit = 20
 App.max_tag_filters = 30
 App.colors = {
-  red: `rgb(255, 50, 50)`,
+  red: `rgb(255, 0, 0)`,
   green: `rgb(0, 255, 0)`,
-  blue: `rgb(0, 255, 255)`,
+  blue: `rgb(0, 0, 255)`,
   yellow: `rgb(255, 255, 0)`,
 }
