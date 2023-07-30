@@ -26,23 +26,41 @@ App.setup_profile_editor = () => {
 }
 
 App.show_profile_editor = (item) => {
-  let items = App.get_active_items(item.mode, item)
+  let active = App.get_active_items(item.mode, item)
 
-  if (items.length === 0) {
+  if (active.length === 0) {
     return
   }
 
   App.profile_editor_items = []
 
-  for (let it of items) {
+  for (let it of active) {
     App.profile_editor_items.push(App.soft_copy_item(it))
   }
 
+  let items = App.profile_editor_items
+  let [profiles, added] = App.get_profiles(items)
+  App.profile_editor_profiles = profiles
+  App.profile_editor_added = added
   App.show_window(`profile_editor`)
-  let num = App.profile_editor_items.length
-  App.profile_editor_profiles = App.get_profiles(App.profile_editor_items)
+  App.profile_editor_shared_tags = []
+  App.profile_editor_shared_title = ``
+  App.profile_editor_shared_color = ``
+  DOM.el(`#profile_editor_title_container`).classList.remove(`hidden`)
 
-  if (App.profile_editor_profiles.length) {
+  if (profiles.length) {
+    if ((profiles.length > 1) && (profiles.length === items.length)) {
+      App.profile_editor_shared_tags = App.get_shared_tags(profiles).join(`\n`)
+      App.profile_editor_shared_title = App.get_shared_title(profiles)
+      App.profile_editor_shared_color = App.get_shared_color(profiles)
+    }
+
+    if (profiles.length > 1) {
+      if (!App.profile_editor_shared_title) {
+        DOM.el(`#profile_editor_title_container`).classList.add(`hidden`)
+      }
+    }
+
     DOM.el(`#profile_editor_remove`).classList.remove(`hidden`)
   }
   else {
@@ -52,10 +70,10 @@ App.show_profile_editor = (item) => {
   if (items.length === 1) {
     DOM.el(`#profile_editor_header`).textContent = `Editing 1 Profile`
 
-    if (App.profile_editor_profiles.length) {
-      let profile = App.profile_editor_profiles[0]
-      DOM.el(`#profile_editor_title`).value = profile.title
+    if (profiles.length) {
+      let profile = profiles[0]
       DOM.el(`#profile_editor_tags`).value = profile.tags.join(`\n`)
+      DOM.el(`#profile_editor_title`).value = profile.title || ``
       DOM.el(`#profile_editor_color`).value = profile.color || `none`
     }
     else {
@@ -65,11 +83,10 @@ App.show_profile_editor = (item) => {
     }
   }
   else {
-    DOM.el(`#profile_editor_header`).textContent = `Editing ${num} Profiles`
-    let s_tags = App.get_shared_tags(App.profile_editor_items).join(`\n`)
-    let s_color = App.get_shared_color(App.profile_editor_items)
-    DOM.el(`#profile_editor_tags`).value = s_tags
-    DOM.el(`#profile_editor_color`).value = s_color || `none`
+    DOM.el(`#profile_editor_header`).textContent = `Editing ${items.length} Profiles`
+    DOM.el(`#profile_editor_tags`).value = App.profile_editor_shared_tags || ``
+    DOM.el(`#profile_editor_title`).value = App.profile_editor_shared_title || ``
+    DOM.el(`#profile_editor_color`).value = App.profile_editor_shared_color || `none`
   }
 
   DOM.el(`#profile_editor_tags`).focus()
@@ -113,80 +130,77 @@ App.do_profile_editor_save = () => {
   }
 
   c_tags.sort()
-  let single = App.profile_editor_items.length === 1
   let urls = []
 
-  if (single) {
-    let item = App.profile_editor_items[0]
-    let obj = {url: item.url, title: title, tags: c_tags.slice(0), color: color}
-    App.profiles = App.profiles.filter(x => x.url !== item.url)
+  // Added
+  if (App.profile_editor_added.length) {
+    for (let item of App.profile_editor_added) {
+      let obj = {url: item.url, title: title, tags: c_tags.slice(0), color: color}
+      App.profiles = App.profiles.filter(x => x.url !== item.url)
 
-    if (App.used_profile(obj)) {
-      App.profiles.unshift(obj)
+      if (App.used_profile(obj)) {
+        App.profiles.unshift(obj)
+      }
+
+      urls.push(item.url)
     }
-
-    urls.push(item.url)
   }
-  else {
-    let s_tags = App.get_shared_tags(App.profile_editor_items)
 
-    for (let item of App.profile_editor_items) {
-      let profile = App.get_profile(item.url)
+  // Edited
+  if (App.profile_editor_profiles.length) {
+    for (let profile of App.profile_editor_profiles) {
+      let c_title = title
 
-      if (profile) {
-        let n_tags = []
+      if (App.profile_editor_items.length > 1) {
+        if (!App.profile_editor_shared_title) {
+          c_title = profile.title
+        }
+      }
 
-        for (let tag of c_tags) {
-          if (!tag) {
-            continue
-          }
+      let n_tags = []
 
-          if (!n_tags.includes(tag)) {
-            n_tags.push(tag)
-          }
+      for (let tag of c_tags) {
+        if (!tag) {
+          continue
         }
 
-        let m_tags = []
+        if (!n_tags.includes(tag)) {
+          n_tags.push(tag)
+        }
+      }
 
-        for (let tag of profile.tags) {
-          if (!tag) {
-            continue
-          }
+      let m_tags = []
 
-          // If shared tag is removed don't include it
-          if (s_tags.includes(tag)) {
+      for (let tag of profile.tags) {
+        if (!tag) {
+          continue
+        }
+
+        // If shared tag is removed don't include it
+        if (App.profile_editor_shared_tags) {
+          if (App.profile_editor_shared_tags.includes(tag)) {
             if (!n_tags.includes(tag)) {
               continue
             }
           }
-
-          if (!n_tags.includes(tag) && !m_tags.includes(tag)) {
-            tag = tag.toLowerCase().trim()
-            m_tags.push(tag)
-          }
         }
 
-        n_tags.push(...m_tags)
-        n_tags.sort()
-        let obj = {url: profile.url, title: profile.title, tags: n_tags.slice(0), color: color}
-        App.profiles = App.profiles.filter(x => x.url !== profile.url)
-
-        if (App.used_profile(obj)) {
-          App.profiles.unshift(obj)
+        if (!n_tags.includes(tag) && !m_tags.includes(tag)) {
+          tag = tag.toLowerCase().trim()
+          m_tags.push(tag)
         }
-
-        urls.push(profile.url)
       }
-      else {
-        let obj = {url: item.url, title: ``, tags: c_tags.slice(0), color: color}
-        App.profiles = App.profiles.filter(x => x.url !== item.url)
 
-        if (App.used_profile(obj)) {
-          App.profiles.unshift(obj)
-        }
+      n_tags.push(...m_tags)
+      n_tags.sort()
+      let obj = {url: profile.url, title: c_title, tags: n_tags.slice(0), color: color}
+      App.profiles = App.profiles.filter(x => x.url !== profile.url)
 
-        urls.push(item.url)
+      if (App.used_profile(obj)) {
+        App.profiles.unshift(obj)
       }
+
+      urls.push(profile.url)
     }
   }
 
@@ -245,16 +259,27 @@ App.get_profile = (item_url) => {
 }
 
 App.get_profiles = (items) => {
-  let urls = items.map(x => x.url)
   let profiles = []
+  let add = []
 
-  for (let profile of App.profiles) {
-    if (urls.includes(profile.url)) {
-      profiles.push(profile)
+  for (let item of items) {
+    let has_profile = false
+
+    for (let profile of App.profiles) {
+
+      if (item.url === profile.url) {
+        profiles.push(profile)
+        has_profile = true
+        break
+      }
+    }
+
+    if (!has_profile) {
+      add.push(item)
     }
   }
 
-  return profiles
+  return [profiles, add]
 }
 
 App.get_profile_items = () => {
@@ -553,8 +578,8 @@ App.clean_profiles = () => {
   App.profiles = c_profiles
 }
 
-App.get_shared_tags = (items) => {
-  let arrays = items.map(obj => obj.tags)
+App.get_shared_tags = (profiles) => {
+  let arrays = profiles.map(obj => obj.tags)
 
   let shared = arrays.reduce((common, current) => {
     return common.filter(value => current.includes(value))
@@ -563,11 +588,23 @@ App.get_shared_tags = (items) => {
   return shared
 }
 
-App.get_shared_color = (items) => {
-  let first = items[0].color
+App.get_shared_title = (profiles) => {
+  let first = profiles[0].title
 
-  for (let item of items) {
-    if (item.color !== first) {
+  for (let profile of profiles) {
+    if (profile.title !== first) {
+      return ``
+    }
+  }
+
+  return first
+}
+
+App.get_shared_color = (profiles) => {
+  let first = profiles[0].color
+
+  for (let profile of profiles) {
+    if (profile.color !== first) {
       return ``
     }
   }
