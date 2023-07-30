@@ -171,7 +171,6 @@ App.do_profile_editor_save = () => {
           }
 
           if (!n_tags.includes(tag) && !m_tags.includes(tag)) {
-            // Just in case
             tag = tag.toLowerCase().trim()
             m_tags.push(tag)
           }
