@@ -399,6 +399,20 @@ App.setup_keyboard = () => {
         return
       }
     }
+    else if (mode === `profile_editor`) {
+      if (e.key === `Enter`) {
+        if (App.text_with_value_focused()) {
+          if (App.text_with_empty_lines()) {
+            App.profile_editor_save()
+            e.preventDefault()
+          }
+        }
+        else {
+          App.profile_editor_save()
+          e.preventDefault()
+        }
+      }
+    }
 
     if (App.on_item_window()) {
       App.check_items_keyboard(e)

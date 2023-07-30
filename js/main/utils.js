@@ -264,3 +264,11 @@ App.check_force = (warn_setting, num) => {
 
   return true
 }
+
+App.text_with_empty_lines = () => {
+  if (document.activeElement.tagName === `TEXTAREA`) {
+    return /\s*\n{1,}$/.test(document.activeElement.value)
+  }
+
+  return true
+}
