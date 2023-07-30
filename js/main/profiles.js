@@ -150,10 +150,19 @@ App.do_profile_editor_save = () => {
   if (App.profile_editor_profiles.length) {
     for (let profile of App.profile_editor_profiles) {
       let c_title = title
+      let c_color = color
 
       if (App.profile_editor_items.length > 1) {
         if (!App.profile_editor_shared_title) {
-          c_title = profile.title
+          if (profile.title) {
+            c_title = profile.title
+          }
+        }
+
+        if (!App.profile_editor_shared_color) {
+          if (profile.color) {
+            c_color = profile.color
+          }
         }
       }
 
@@ -193,7 +202,7 @@ App.do_profile_editor_save = () => {
 
       n_tags.push(...m_tags)
       n_tags.sort()
-      let obj = {url: profile.url, title: c_title, tags: n_tags.slice(0), color: color}
+      let obj = {url: profile.url, title: c_title, tags: n_tags.slice(0), color: c_color}
       App.profiles = App.profiles.filter(x => x.url !== profile.url)
 
       if (App.used_profile(obj)) {
