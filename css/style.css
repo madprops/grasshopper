@@ -303,6 +303,10 @@ svg {
   display: flex;
 }
 
+.highlighted .item_info_highlight {
+  display: flex;
+}
+
 .item_button {
   display: flex;
   align-items: center;
@@ -361,14 +365,6 @@ svg {
 
 .highlighted {
   background-color: var(--alt_color_1);
-}
-
-.item_info_highlight {
-  display: none;
-}
-
-.highlighted .item_info_highlight {
-  display: flex;
 }
 
 .selected {
