@@ -179,12 +179,7 @@ App.do_profile_editor_save = () => {
 
       n_tags.push(...m_tags)
       n_tags.sort()
-      let c_title = profile.title
-
-      if (single) {
-        c_title = title
-      }
-
+      let c_title = single ? title : profile.title
       let obj = {url: profile.url, tags: n_tags.slice(0), title: c_title, color: color}
       App.profiles = App.profiles.filter(x => x.url !== profile.url)
 
