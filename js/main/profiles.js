@@ -71,7 +71,7 @@ App.show_profile_editor = (item) => {
     else {
       DOM.el(`#profile_editor_tags`).value = ``
       DOM.el(`#profile_editor_title`).value = ``
-      DOM.el(`#profile_editor_color`).value = `none`
+      DOM.el(`#profile_editor_color`).value = `oijiojio`
     }
   }
   else {
@@ -80,6 +80,10 @@ App.show_profile_editor = (item) => {
     DOM.el(`#profile_editor_tags`).value = App.profile_editor_shared_tags || ``
     DOM.el(`#profile_editor_title`).value = ``
     DOM.el(`#profile_editor_color`).value = App.profile_editor_shared_color || `none`
+  }
+
+  if (!(DOM.el(`#profile_editor_color`).value in Object.keys(App.colors))) {
+    DOM.el(`#profile_editor_color`).value = `none`
   }
 
   DOM.el(`#profile_editor_tags`).focus()
