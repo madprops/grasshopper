@@ -78,6 +78,7 @@ App.show_profile_editor = (item) => {
     DOM.el(`#profile_editor_title_container`).classList.add(`hidden`)
     DOM.el(`#profile_editor_header`).textContent = `Editing ${items.length} Profiles`
     DOM.el(`#profile_editor_tags`).value = App.profile_editor_shared_tags || ``
+    DOM.el(`#profile_editor_title`).value = ``
     DOM.el(`#profile_editor_color`).value = App.profile_editor_shared_color || `none`
   }
 
