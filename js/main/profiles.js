@@ -391,7 +391,7 @@ App.get_tag_items = (mode, action = `filter`) => {
   return items
 }
 
-App.get_color_items = (mode) => {
+App.get_color_items = (mode, action = `filter`) => {
   let items = []
   let count = App.get_profile_count()
 
@@ -412,7 +412,12 @@ App.get_color_items = (mode) => {
     items.push({
       text: App.capitalize(color),
       action: () => {
-        App.set_custom_filter_mode(mode, `color_${color}`, App.capitalize(color))
+        if (action === `filter`) {
+          App.set_custom_filter_mode(mode, `color_${color}`, App.capitalize(color))
+        }
+        else {
+          App.remove_color(color)
+        }
       }
     })
   }
@@ -434,20 +439,14 @@ App.clear_profiles_items = () => {
 
   let count = App.get_profile_count()
 
-  for (let color in App.colors) {
-    if (!count[color]) {
-      continue
-    }
-
+  if (count.colors) {
     items.push({
-      text: `Remove ${App.capitalize(color)}`,
-      action: () => {
-        App.remove_color(color)
+      text: `Remove Color`,
+      get_items: () => {
+        return App.get_color_items(App.active_mode, `remove`)
       }
     })
-  }
 
-  if (count.colors) {
     items.push({
       text: `Remove All Colors`,
       action: () => {
@@ -463,9 +462,7 @@ App.clear_profiles_items = () => {
         return App.get_tag_items(App.active_mode, `remove`)
       }
     })
-  }
 
-  if (count.tags) {
     items.push({
       text: `Remove All Tags`,
       action: () => {
