@@ -25,7 +25,7 @@ App.setup_profile_editor = () => {
   colored_top: true})
 }
 
-App.show_profile_editor = (item) => {
+App.show_profile_editor = (item, type) => {
   let active = App.get_active_items(item.mode, item)
 
   if (active.length === 0) {
@@ -42,7 +42,21 @@ App.show_profile_editor = (item) => {
   let [profiles, added] = App.get_profiles(items)
   App.profile_editor_profiles = profiles
   App.profile_editor_added = added
+  App.profile_editor_type = type
   App.show_window(`profile_editor`)
+  DOM.el(`#profile_editor_tags_container`).classList.add(`hidden`)
+  DOM.el(`#profile_editor_color_container`).classList.add(`hidden`)
+  DOM.el(`#profile_editor_title_container`).classList.add(`hidden`)
+
+  if (type === `tags`) {
+    DOM.el(`#profile_editor_tags_container`).classList.remove(`hidden`)
+  }
+  else if (type === `color`) {
+    DOM.el(`#profile_editor_color_container`).classList.remove(`hidden`)
+  }
+  else if (type === `title`) {
+    DOM.el(`#profile_editor_title_container`).classList.remove(`hidden`)
+  }
 
   if (profiles.length) {
     DOM.el(`#profile_editor_remove`).classList.remove(`hidden`)
@@ -52,23 +66,21 @@ App.show_profile_editor = (item) => {
   }
 
   DOM.el(`#profile_editor_tags`).value = ``
-  DOM.el(`#profile_editor_title`).value = ``
   DOM.el(`#profile_editor_color`).value = `none`
+  DOM.el(`#profile_editor_title`).value = ``
 
   if (items.length === 1) {
     DOM.el(`#profile_editor_header`).textContent = `Editing 1 Profile`
-    DOM.el(`#profile_editor_title_container`).classList.remove(`hidden`)
 
     if (profiles.length) {
       let profile = profiles[0]
       DOM.el(`#profile_editor_tags`).value = profile.tags.join(`\n`)
-      DOM.el(`#profile_editor_title`).value = profile.title
       DOM.el(`#profile_editor_color`).value = profile.color || `none`
+      DOM.el(`#profile_editor_title`).value = profile.title
     }
   }
   else {
     DOM.el(`#profile_editor_header`).textContent = `Editing ${items.length} Profiles`
-    DOM.el(`#profile_editor_title_container`).classList.add(`hidden`)
   }
 
   DOM.el(`#profile_editor_tags`).focus()
@@ -92,7 +104,6 @@ App.do_profile_editor_save = () => {
   let title = DOM.el(`#profile_editor_title`).value.trim()
   let color = DOM.el(`#profile_editor_color`).value
   let tags = App.single_linebreak(DOM.el(`#profile_editor_tags`).value.trim()).split(`\n`)
-  let single = App.profile_editor_items.length === 1
 
   if (color === `none`) {
     color = ``
@@ -115,32 +126,46 @@ App.do_profile_editor_save = () => {
   c_tags.sort()
   let urls = []
 
+  function proc (profile) {
+    let type = App.profile_editor_type
+
+    if (type === `tags`) {
+      profile.tags = c_tags.slice(0)
+    }
+    else if (type === `color`) {
+      profile.color = color
+    }
+    else if (type === `title`) {
+      profile.title = title
+    }
+
+    App.profiles = App.profiles.filter(x => x.url !== profile.url)
+
+    if (App.used_profile(profile)) {
+      App.profiles.unshift(profile)
+    }
+
+    urls.push(profile.url)
+  }
+
   // Added
   if (App.profile_editor_added.length) {
     for (let item of App.profile_editor_added) {
-      let obj = {url: item.url, tags: c_tags.slice(0), title: title, color: color}
-      App.profiles = App.profiles.filter(x => x.url !== item.url)
-
-      if (App.used_profile(obj)) {
-        App.profiles.unshift(obj)
+      let profile = {
+        url: item.url,
+        tags: [],
+        color: ``,
+        title: ``,
       }
 
-      urls.push(item.url)
+      proc(profile)
     }
   }
 
   // Edited
   if (App.profile_editor_profiles.length) {
     for (let profile of App.profile_editor_profiles) {
-      let c_title = single ? title : profile.title
-      let obj = {url: profile.url, tags: c_tags.slice(0), title: c_title, color: color}
-      App.profiles = App.profiles.filter(x => x.url !== profile.url)
-
-      if (App.used_profile(obj)) {
-        App.profiles.unshift(obj)
-      }
-
-      urls.push(profile.url)
+      proc(profile)
     }
   }
 
@@ -581,4 +606,31 @@ App.refresh_profile_filters = () => {
     App.filter(mode)
     return
   }
+}
+
+App.get_edit_items = (item) => {
+  let items = []
+
+  items.push({
+    text: `Edit Tags`,
+    action: () => {
+      return App.show_profile_editor(item, `tags`)
+    }
+  })
+
+  items.push({
+    text: `Edit Color`,
+    action: () => {
+      return App.show_profile_editor(item, `color`)
+    }
+  })
+
+  items.push({
+    text: `Edit Title`,
+    action: () => {
+      return App.show_profile_editor(item, `title`)
+    }
+  })
+
+  return items
 }

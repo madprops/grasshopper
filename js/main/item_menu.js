@@ -116,8 +116,8 @@ App.common_menu_items = async (o_items, item, multiple) => {
 
   items.push({
     text: `Edit`,
-    action: () => {
-      App.show_profile_editor(item)
+    get_items: () => {
+      return App.get_edit_items(item)
     }
   })
 
