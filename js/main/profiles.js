@@ -51,6 +51,10 @@ App.show_profile_editor = (item) => {
     DOM.el(`#profile_editor_remove`).classList.add(`hidden`)
   }
 
+  DOM.el(`#profile_editor_tags`).value = ``
+  DOM.el(`#profile_editor_title`).value = ``
+  DOM.el(`#profile_editor_color`).value = `none`
+
   if (items.length === 1) {
     DOM.el(`#profile_editor_header`).textContent = `Editing 1 Profile`
     DOM.el(`#profile_editor_title_container`).classList.remove(`hidden`)
@@ -61,22 +65,10 @@ App.show_profile_editor = (item) => {
       DOM.el(`#profile_editor_title`).value = profile.title
       DOM.el(`#profile_editor_color`).value = profile.color || `none`
     }
-    else {
-      DOM.el(`#profile_editor_tags`).value = ``
-      DOM.el(`#profile_editor_title`).value = ``
-      DOM.el(`#profile_editor_color`).value = `none`
-    }
   }
   else {
-    DOM.el(`#profile_editor_title_container`).classList.add(`hidden`)
     DOM.el(`#profile_editor_header`).textContent = `Editing ${items.length} Profiles`
-    DOM.el(`#profile_editor_tags`).value = ``
-    DOM.el(`#profile_editor_title`).value = ``
-    DOM.el(`#profile_editor_color`).value = `none`
-  }
-
-  if (!(DOM.el(`#profile_editor_color`).value in Object.keys(App.colors))) {
-    DOM.el(`#profile_editor_color`).value = `none`
+    DOM.el(`#profile_editor_title_container`).classList.add(`hidden`)
   }
 
   DOM.el(`#profile_editor_tags`).focus()
