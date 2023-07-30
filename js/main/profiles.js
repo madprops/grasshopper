@@ -41,29 +41,19 @@ App.show_profile_editor = (item) => {
   App.show_window(`profile_editor`)
   let num = App.profile_editor_items.length
   App.profile_editor_profiles = App.get_profiles(App.profile_editor_items)
-  let profile, single
 
-  if (App.profile_editor_profiles.length === 0) {
-    DOM.el(`#profile_editor_remove`).classList.add(`hidden`)
+  if (App.profile_editor_profiles.length) {
+    DOM.el(`#profile_editor_remove`).classList.remove(`hidden`)
   }
   else {
-    DOM.el(`#profile_editor_remove`).classList.remove(`hidden`)
+    DOM.el(`#profile_editor_remove`).classList.add(`hidden`)
   }
 
   if (items.length === 1) {
-    profile = App.get_profile(item.url)
-    DOM.el(`#profile_editor_title_container`).classList.remove(`hidden`)
-    single = true
-  }
-  else {
-    DOM.el(`#profile_editor_title_container`).classList.add(`hidden`)
-    single = false
-  }
-
-  if (single) {
     DOM.el(`#profile_editor_header`).textContent = `Editing 1 Profile`
 
-    if (profile) {
+    if (App.profile_editor_profiles.length) {
+      let profile = App.profile_editor_profiles[0]
       DOM.el(`#profile_editor_title`).value = profile.title
       DOM.el(`#profile_editor_tags`).value = profile.tags.join(`\n`)
       DOM.el(`#profile_editor_color`).value = profile.color || `none`
