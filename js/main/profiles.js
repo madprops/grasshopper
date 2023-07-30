@@ -355,10 +355,10 @@ App.get_tags = () => {
     }
   }
 
-  return tags.slice(0, App.max_tag_filters)
+  return tags
 }
 
-App.get_tag_items = (mode) => {
+App.get_tag_items = (mode, action = `filter`) => {
   let items = []
   let tags = App.get_tags()
 
@@ -373,9 +373,18 @@ App.get_tag_items = (mode) => {
       items.push({
         text: tag,
         action: () => {
-          App.set_custom_filter_mode(mode, `tag_${tag}`, tag)
+          if (action === `filter`) {
+            App.set_custom_filter_mode(mode, `tag_${tag}`, tag)
+          }
+          else if (action === `remove`) {
+            App.remove_tag(tag)
+          }
         }
       })
+
+      if (items.length >= App.max_tag_filters) {
+        break
+      }
     }
   }
 
@@ -449,6 +458,15 @@ App.clear_profiles_items = () => {
 
   if (count.tags) {
     items.push({
+      text: `Remove Tag`,
+      get_items: () => {
+        return App.get_tag_items(App.active_mode, `remove`)
+      }
+    })
+  }
+
+  if (count.tags) {
+    items.push({
       text: `Remove All Tags`,
       action: () => {
         App.remove_all_tags()
@@ -511,6 +529,18 @@ App.remove_all_colors = () => {
   App.show_confirm(`Remove all colors? (${profiles.length})`, () => {
     for (let profile of App.profiles) {
       profile.color = ``
+    }
+
+    App.after_profile_remove()
+  })
+}
+
+App.remove_tag = (name) => {
+  App.show_confirm(`Remove tag? (${name})`, () => {
+    for (let profile of App.profiles) {
+      if (profile.tags.includes(name)) {
+        profile.tags = profile.tags.filter(tag => tag !== name)
+      }
     }
 
     App.after_profile_remove()
