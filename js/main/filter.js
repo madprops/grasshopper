@@ -503,7 +503,9 @@ App.get_custom_filters = (mode) => {
   if (filters.length === 0) {
     items.push({
       text: `No custom filters yet`,
-      action: () => {}
+      action: () => {
+        App.show_alert(`Add custom filters in the settings`)
+      }
     })
 
     return items

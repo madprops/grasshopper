@@ -363,7 +363,9 @@ App.get_tag_items = (mode, action = `filter`) => {
   if (tags.length === 0) {
     items.push({
       text: `No tags yet`,
-      action: () => {}
+      action: () => {
+        App.show_alert(`Add tags by right clicking items (Edit)`)
+      }
     })
   }
   else {
@@ -396,7 +398,9 @@ App.get_color_items = (mode, action = `filter`) => {
   if (!count.colors) {
     items.push({
       text: `No colors yet`,
-      action: () => {}
+      action: () => {
+        App.show_alert(`Add colors by right clicking items (Edit)`)
+      }
     })
 
     return items
@@ -429,7 +433,9 @@ App.clear_profiles_items = () => {
   if (!App.profiles.length) {
     items.push({
       text: `No profiles yet`,
-      action: () => {}
+      action: () => {
+        App.show_alert(`Edit profiles by right clicking items`)
+      }
     })
 
     return items
