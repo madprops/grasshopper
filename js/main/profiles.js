@@ -4,10 +4,6 @@ App.setup_profile_editor = () => {
       App.profile_editor_save()
     })
 
-    DOM.ev(DOM.el(`#profile_editor_remove`), `click`, () => {
-      App.profile_editor_remove()
-    })
-
     DOM.ev(DOM.el(`#profile_editor_close`), `click`, () => {
       App.hide_window()
     })
@@ -50,19 +46,15 @@ App.show_profile_editor = (item, type) => {
 
   if (type === `tags`) {
     DOM.el(`#profile_editor_tags_container`).classList.remove(`hidden`)
+    DOM.el(`#profile_editor_tags`).focus()
   }
   else if (type === `color`) {
     DOM.el(`#profile_editor_color_container`).classList.remove(`hidden`)
+    DOM.el(`#profile_editor_color`).focus()
   }
   else if (type === `title`) {
     DOM.el(`#profile_editor_title_container`).classList.remove(`hidden`)
-  }
-
-  if (profiles.length) {
-    DOM.el(`#profile_editor_remove`).classList.remove(`hidden`)
-  }
-  else {
-    DOM.el(`#profile_editor_remove`).classList.add(`hidden`)
+    DOM.el(`#profile_editor_title`).focus()
   }
 
   DOM.el(`#profile_editor_tags`).value = ``
@@ -82,8 +74,6 @@ App.show_profile_editor = (item, type) => {
   else {
     DOM.el(`#profile_editor_header`).textContent = `Editing ${items.length} Profiles`
   }
-
-  DOM.el(`#profile_editor_tags`).focus()
 }
 
 App.profile_editor_save = () => {
@@ -184,14 +174,19 @@ App.do_profile_editor_save = () => {
   App.refresh_profile_filters()
 }
 
-App.profile_editor_remove = () => {
-  let items = App.profile_editor_items
+App.remove_profiles = (item) => {
+  let items = App.get_active_items(item.mode, item)
 
   if (items.length === 0) {
     return
   }
 
-  let profiles = App.profile_editor_profiles
+  let [profiles, added] = App.get_profiles(items)
+
+  if (profiles.length === 0) {
+    return
+  }
+
   let force = App.check_force(`warn_on_remove_profiles`, profiles.length)
 
   App.show_confirm(`Remove profiles? (${profiles.length})`, () => {
@@ -201,7 +196,6 @@ App.profile_editor_remove = () => {
     }
 
     App.stor_save_profiles()
-    App.hide_window()
     App.refresh_profile_filters()
   }, undefined, force)
 }
@@ -629,6 +623,13 @@ App.get_edit_items = (item) => {
     text: `Edit Title`,
     action: () => {
       return App.show_profile_editor(item, `title`)
+    }
+  })
+
+  items.push({
+    text: `Remove`,
+    action: () => {
+      return App.remove_profiles(item)
     }
   })
 
