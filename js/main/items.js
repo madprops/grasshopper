@@ -481,6 +481,13 @@ App.create_item_element = (item) => {
     App.check_tab_item(item)
   }
 
+  if (App.get_setting(`highlight_icon`)) {
+    let highlight_icon = DOM.create(`div`, `item_info item_info_highlight`)
+    highlight_icon.textContent = App.get_setting(`highlight_icon`)
+    highlight_icon.title = `This tab is highlighted`
+    item.element.append(highlight_icon)
+  }
+
   if (item.highlighted) {
     item.element.classList.add(`highlighted`)
   }

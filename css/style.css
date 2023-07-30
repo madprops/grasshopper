@@ -363,6 +363,14 @@ svg {
   background-color: var(--alt_color_1);
 }
 
+.item_info_highlight {
+  display: none;
+}
+
+.highlighted .item_info_highlight {
+  display: flex;
+}
+
 .selected {
   background-color: var(--alt_color_1);
 }
