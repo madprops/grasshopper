@@ -237,7 +237,6 @@ App.apply_profiles = (url) => {
   for (let item of App.get_items(App.active_mode)) {
     if (item.url === url) {
       App.update_item(App.active_mode, item.id, {})
-      return
     }
   }
 }
