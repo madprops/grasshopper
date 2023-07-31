@@ -823,7 +823,7 @@ select {
 }
 
 .editor_text {
-  width: 18rem;
+  width: 15rem;
   max-width: 90vw;
   text-align: center;
   padding: 0.35rem;
