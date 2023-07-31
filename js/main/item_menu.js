@@ -117,7 +117,7 @@ App.common_menu_items = async (o_items, item, multiple) => {
   items.push({
     text: `Edit`,
     get_items: () => {
-      return App.get_edit_items(item)
+      return App.get_edit_items(item, multiple)
     }
   })
 

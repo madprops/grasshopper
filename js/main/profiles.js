@@ -44,15 +44,17 @@ App.show_profile_editor = (item, type) => {
   DOM.el(`#profile_editor_color_container`).classList.add(`hidden`)
   DOM.el(`#profile_editor_title_container`).classList.add(`hidden`)
 
-  if (type === `tags`) {
+  if (type === `tags` || type === `all`) {
     DOM.el(`#profile_editor_tags_container`).classList.remove(`hidden`)
     DOM.el(`#profile_editor_tags`).focus()
   }
-  else if (type === `color`) {
+
+  if (type === `color` || type === `all`) {
     DOM.el(`#profile_editor_color_container`).classList.remove(`hidden`)
     DOM.el(`#profile_editor_color`).focus()
   }
-  else if (type === `title`) {
+
+  if (type === `title` || type === `all`) {
     DOM.el(`#profile_editor_title_container`).classList.remove(`hidden`)
     DOM.el(`#profile_editor_title`).focus()
   }
@@ -119,13 +121,15 @@ App.do_profile_editor_save = () => {
   function proc (profile) {
     let type = App.profile_editor_type
 
-    if (type === `tags`) {
+    if (type === `tags` || type === `all`) {
       profile.tags = c_tags.slice(0)
     }
-    else if (type === `color`) {
+
+    if (type === `color` || type === `all`) {
       profile.color = color
     }
-    else if (type === `title`) {
+
+    if (type === `title` || type === `all`) {
       profile.title = title
     }
 
@@ -602,7 +606,7 @@ App.refresh_profile_filters = () => {
   }
 }
 
-App.get_edit_items = (item) => {
+App.get_edit_items = (item, multiple) => {
   let items = []
 
   items.push({
@@ -613,18 +617,27 @@ App.get_edit_items = (item) => {
   })
 
   items.push({
+    text: `Edit Title`,
+    action: () => {
+      return App.show_profile_editor(item, `title`)
+    }
+  })
+
+  items.push({
     text: `Edit Color`,
     action: () => {
       return App.show_profile_editor(item, `color`)
     }
   })
 
-  items.push({
-    text: `Edit Title`,
-    action: () => {
-      return App.show_profile_editor(item, `title`)
-    }
-  })
+  if (!multiple) {
+    items.push({
+      text: `Edit All`,
+      action: () => {
+        return App.show_profile_editor(item, `all`)
+      }
+    })
+  }
 
   items.push({
     text: `Remove`,
