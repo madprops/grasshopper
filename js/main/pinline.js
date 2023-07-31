@@ -41,6 +41,10 @@ App.do_check_pinline = () => {
     App.toggle_tabs()
   })
 
+  DOM.ev(pinline_content, `contextmenu`, (e) => {
+    App.show_pinline_menu(e)
+  })
+
   DOM.ev(pinline_content, `auxclick`, (e) => {
     if (e.button !== 1) {
       return
@@ -61,4 +65,25 @@ App.remove_pinline = () => {
   for (let el of DOM.els(`.pinline`, DOM.el(`#tabs_container`))) {
     el.remove()
   }
+}
+
+App.show_pinline_menu = (e) => {
+  let items = []
+
+  items.push({
+    text: `Select Pins`,
+    action: () => {
+      App.select_pinned_tabs()
+    }
+  })
+
+  items.push({
+    text: `Select Normal`,
+    action: () => {
+      App.select_normal_tabs()
+    }
+  })
+
+  NeedContext.show(e.clientX, e.clientY, items)
+  e.preventDefault()
 }

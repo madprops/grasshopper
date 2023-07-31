@@ -1057,14 +1057,17 @@ App.check_tab_active = (item) => {
 
 App.close_other_new_tabs = (id) => {
   let items = App.get_items(`tabs`)
+  let ids = []
 
   for (let item of items) {
     if (item.url === App.new_tab_url) {
       if (item.id !== id) {
-        App.close_tabs(item)
+        ids.push(item.id)
       }
     }
   }
+
+  App.do_close_tabs(ids)
 }
 
 App.check_new_tabs = () => {
@@ -1139,5 +1142,21 @@ App.divide_tabs = (filter) => {
     normal: normal,
     pinned_f: pinned_f,
     normal_f: normal_f,
+  }
+}
+
+App.select_pinned_tabs = () => {
+  for (let item of App.get_items(`tabs`)) {
+    if (item.pinned && item.visible) {
+      App.toggle_highlight(item, true)
+    }
+  }
+}
+
+App.select_normal_tabs = () => {
+  for (let item of App.get_items(`tabs`)) {
+    if (!item.pinned && item.visible) {
+      App.toggle_highlight(item, true)
+    }
   }
 }
