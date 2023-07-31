@@ -27,6 +27,7 @@ App.setup_profile_editor = () => {
 
 App.show_profile_editor = (item, type) => {
   let active = App.get_active_items(item.mode, item)
+  active = App.remove_duplicates(active)
 
   if (active.length === 0) {
     return

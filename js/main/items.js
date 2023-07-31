@@ -1571,3 +1571,17 @@ App.pick_item = (item) => {
   App.select(item, false)
   App.toggle_highlight(item)
 }
+
+App.remove_duplicates = (items) => {
+  let objs = []
+  let urls = []
+
+  for (let item of items) {
+    if (!urls.includes(item.url)) {
+      objs.push(item)
+      urls.push(item.url)
+    }
+  }
+
+  return objs
+}
