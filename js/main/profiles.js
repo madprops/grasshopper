@@ -63,31 +63,9 @@ App.show_profile_editor = (item, type) => {
     DOM.el(`#profile_editor_color`).focus()
   }
 
-  let shared_tags, shared_title, shared_color
-
-  if (profiles.length > 1 && profiles.length === items.length) {
-    if (type === `all` || type === `tags`) {
-      shared_tags = App.get_shared_tags(profiles)
-    }
-
-    if (type === `all` || type === `title`) {
-      shared_title = App.get_shared_title(profiles)
-    }
-
-    if (type === `all` || type === `color`) {
-      shared_color = App.get_shared_color(profiles)
-    }
-  }
-
-  let s_tags = ``
-
-  if (shared_tags) {
-    s_tags = shared_tags.join(`\n`)
-  }
-
-  DOM.el(`#profile_editor_tags`).value = s_tags || ``
-  DOM.el(`#profile_editor_title`).value = shared_title || ``
-  DOM.el(`#profile_editor_color`).value = shared_color || `none`
+  DOM.el(`#profile_editor_tags`).value = ``
+  DOM.el(`#profile_editor_title`).value = ``
+  DOM.el(`#profile_editor_color`).value = `none`
 
   if (items.length === 1 && profiles.length === 1) {
     DOM.el(`#profile_editor_remove`).classList.remove(`hidden`)
@@ -688,38 +666,4 @@ App.get_edit_items = (item, multiple) => {
 
 App.is_edited = (item) => {
   return item.tags.length || item.custom_title || item.color
-}
-
-App.get_shared_tags = (profiles) => {
-  let arrays = profiles.map(obj => obj.tags)
-
-  let shared = arrays.reduce((common, current) => {
-    return common.filter(value => current.includes(value))
-  })
-
-  return shared
-}
-
-App.get_shared_title = (profiles) => {
-  let first = profiles[0].title
-
-  for (let profile of profiles) {
-    if (profile.title !== first) {
-      return ``
-    }
-  }
-
-  return first
-}
-
-App.get_shared_color = (profiles) => {
-  let first = profiles[0].color
-
-  for (let profile of profiles) {
-    if (profile.color !== first) {
-      return ``
-    }
-  }
-
-  return first
 }
