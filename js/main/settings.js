@@ -76,7 +76,7 @@ App.build_default_settings = () => {
 
   category = `more`
   obj.switch_to_tabs = {value: true, category: category, version: 1}
-  obj.clear_filter = {value: true, category: category, version: 1}
+  obj.clear_filter = {value: false, category: category, version: 1}
   obj.close_duplicate_pins = {value: true, category: category, version: 1}
   obj.close_unloaded_tabs = {value: true, category: category, version: 1}
   obj.single_new_tab = {value: true, category: category, version: 1}
