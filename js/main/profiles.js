@@ -1,11 +1,15 @@
 App.setup_profile_editor = () => {
   App.create_window({id: `profile_editor`, setup: () => {
+    DOM.ev(DOM.el(`#profile_editor_remove`), `click`, () => {
+      App.profile_editor_remove()
+    })
+
     DOM.ev(DOM.el(`#profile_editor_save`), `click`, () => {
       App.profile_editor_save()
     })
 
-    DOM.ev(DOM.el(`#profile_editor_remove`), `click`, () => {
-      App.profile_editor_remove()
+    DOM.ev(DOM.el(`#profile_editor_info`), `click`, () => {
+      App.profiles_info()
     })
 
     DOM.ev(DOM.el(`#profile_editor_close`), `click`, () => {
@@ -786,4 +790,14 @@ App.add_tags = (item) => {
 
 App.add_notes = (item) => {
   App.show_profile_editor(item, `notes`, `add`)
+}
+
+App.profiles_info = () => {
+  let s = `This is data related to specific URLs.`
+  s += ` The input of this data is always manual and not automatic.`
+  s += ` The idea is to help you organize tabs to find them easily later.`
+  s += ` You can use the filter menu to find tabs by tag or color.`
+  s += ` This is saved locally and is not synced.`
+  s += ` To backup or move this data use the Profiles Export/Import feature in the main menu.`
+  App.show_alert(s, undefined, false)
 }
