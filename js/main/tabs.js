@@ -1153,7 +1153,9 @@ App.divide_tabs = (filter) => {
 }
 
 App.select_pinned_tabs = () => {
-  for (let item of App.get_items(`tabs`)) {
+  let items = App.get_pinned_tabs()
+
+  for (let item of items) {
     if (item.pinned && item.visible) {
       App.toggle_highlight(item, true)
     }
@@ -1161,7 +1163,9 @@ App.select_pinned_tabs = () => {
 }
 
 App.select_normal_tabs = () => {
-  for (let item of App.get_items(`tabs`)) {
+  let items = App.get_normal_tabs()
+
+  for (let item of items) {
     if (!item.pinned && item.visible) {
       App.toggle_highlight(item, true)
     }
