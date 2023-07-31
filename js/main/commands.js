@@ -170,6 +170,15 @@ App.commands = [
 
   {name: App.separator_string},
 
+  {name: `Add Tags`, cmd: `add_tags`, mode: `items`, action: (args) => {
+    App.add_tags(args.item)
+  }},
+  {name: `Add Notes`, cmd: `add_notes`, mode: `items`, action: (args) => {
+    App.add_notes(args.item)
+  }},
+
+  {name: App.separator_string},
+
   {name: `Reload Extension`, cmd: `reload_extension`, action: (args) => {
     App.reload_extension()
   }},

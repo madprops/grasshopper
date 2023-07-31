@@ -25,7 +25,7 @@ App.setup_profile_editor = () => {
   colored_top: true})
 }
 
-App.show_profile_editor = (item, type) => {
+App.show_profile_editor = (item, type, action = `edit`) => {
   let active = App.get_active_items(item.mode, item)
   active = App.remove_duplicates(active)
 
@@ -44,6 +44,7 @@ App.show_profile_editor = (item, type) => {
   App.profile_editor_profiles = profiles
   App.profile_editor_added = added
   App.profile_editor_type = type
+  App.profile_editor_action = action
   App.show_window(`profile_editor`)
   DOM.el(`#profile_editor_tags_container`).classList.add(`hidden`)
   DOM.el(`#profile_editor_notes_container`).classList.add(`hidden`)
@@ -91,8 +92,12 @@ App.show_profile_editor = (item, type) => {
 
     if (profiles.length) {
       let profile = profiles[0]
-      DOM.el(`#profile_editor_tags`).value = profile.tags.join(`\n`)
-      DOM.el(`#profile_editor_notes`).value = profile.notes
+
+      if (action === `edit`) {
+        DOM.el(`#profile_editor_tags`).value = profile.tags.join(`\n`)
+        DOM.el(`#profile_editor_notes`).value = profile.notes
+      }
+
       DOM.el(`#profile_editor_title`).value = profile.title
       DOM.el(`#profile_editor_color`).value = profile.color || `none`
     }
@@ -153,15 +158,33 @@ App.do_profile_editor_save = () => {
   c_tags.sort()
   let urls = []
 
-  function proc (profile) {
+  function proc (profile, p_mode) {
     let type = App.profile_editor_type
 
     if (type === `all` || type === `tags`) {
-      profile.tags = c_tags.slice(0)
+      let n_tags = c_tags.slice(0)
+
+      if (p_mode === `edit` && App.profile_editor_action === `add`) {
+        for (let tag of profile.tags) {
+          if (!n_tags.includes(tag)) {
+            n_tags.push(tag)
+          }
+        }
+
+        n_tags.sort()
+      }
+
+      profile.tags = n_tags
     }
 
     if (type === `all` || type === `notes`) {
-      profile.notes = notes
+      let n_notes = notes
+
+      if (p_mode === `edit` && App.profile_editor_action === `add`) {
+        n_notes = `${profile.notes}\n${n_notes}`
+      }
+
+      profile.notes = n_notes
     }
 
     if (type === `all` || type === `title`) {
@@ -188,14 +211,14 @@ App.do_profile_editor_save = () => {
   // Added
   if (App.profile_editor_added.length) {
     for (let item of App.profile_editor_added) {
-      proc(App.get_empty_profile(item.url))
+      proc(App.get_empty_profile(item.url), `add`)
     }
   }
 
   // Edited
   if (App.profile_editor_profiles.length) {
     for (let profile of App.profile_editor_profiles) {
-      proc(profile)
+      proc(profile, `edit`)
     }
   }
 
@@ -701,9 +724,23 @@ App.get_edit_items = (item, multiple) => {
   })
 
   items.push({
+    text: `Add Tags`,
+    action: () => {
+      return App.add_tags(item)
+    }
+  })
+
+  items.push({
     text: `Edit Notes`,
     action: () => {
       return App.show_profile_editor(item, `notes`)
+    }
+  })
+
+  items.push({
+    text: `Add Notes`,
+    action: () => {
+      return App.add_notes(item)
     }
   })
 
@@ -733,4 +770,12 @@ App.get_edit_items = (item, multiple) => {
 
 App.is_edited = (item) => {
   return item.tags.length || item.custom_title || item.color
+}
+
+App.add_tags = (item) => {
+  App.show_profile_editor(item, `tags`, `add`)
+}
+
+App.add_notes = (item) => {
+  App.show_profile_editor(item, `notes`, `add`)
 }
