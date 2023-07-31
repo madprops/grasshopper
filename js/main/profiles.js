@@ -181,7 +181,7 @@ App.do_profile_editor_save = () => {
       let n_notes = notes
 
       if (p_mode === `edit` && App.profile_editor_action === `add`) {
-        n_notes = `${profile.notes}\n${n_notes}`
+        n_notes = `${profile.notes}\n${n_notes}`.trim()
       }
 
       profile.notes = n_notes
