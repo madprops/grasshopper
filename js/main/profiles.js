@@ -63,9 +63,23 @@ App.show_profile_editor = (item, type) => {
     DOM.el(`#profile_editor_title`).focus()
   }
 
-  DOM.el(`#profile_editor_tags`).value = ``
-  DOM.el(`#profile_editor_color`).value = `none`
-  DOM.el(`#profile_editor_title`).value = ``
+  let shared_tags, shared_title, shared_color
+
+  if (profiles.length > 1 && profiles.length === items.length) {
+    shared_tags = App.get_shared_tags(profiles)
+    shared_title = App.get_shared_title(profiles)
+    shared_color = App.get_shared_color(profiles)
+  }
+
+  let s_tags = ``
+
+  if (shared_tags) {
+    s_tags = shared_tags.join(`\n`)
+  }
+
+  DOM.el(`#profile_editor_tags`).value = s_tags || ``
+  DOM.el(`#profile_editor_title`).value = shared_title || ``
+  DOM.el(`#profile_editor_color`).value = shared_color || `none`
 
   if (items.length === 1 && profiles.length === 1) {
     DOM.el(`#profile_editor_remove`).classList.remove(`hidden`)
@@ -80,8 +94,8 @@ App.show_profile_editor = (item, type) => {
     if (profiles.length) {
       let profile = profiles[0]
       DOM.el(`#profile_editor_tags`).value = profile.tags.join(`\n`)
-      DOM.el(`#profile_editor_color`).value = profile.color || `none`
       DOM.el(`#profile_editor_title`).value = profile.title
+      DOM.el(`#profile_editor_color`).value = profile.color || `none`
     }
   }
   else {
@@ -107,8 +121,8 @@ App.get_empty_profile = (url) => {
   return {
     url: url,
     tags: [],
-    color: ``,
     title: ``,
+    color: ``,
   }
 }
 
@@ -145,12 +159,12 @@ App.do_profile_editor_save = () => {
       profile.tags = c_tags.slice(0)
     }
 
-    if (type === `color` || type === `all`) {
-      profile.color = color
-    }
-
     if (type === `title` || type === `all`) {
       profile.title = title
+    }
+
+    if (type === `color` || type === `all`) {
+      profile.color = color
     }
 
     App.profiles = App.profiles.filter(x => x.url !== profile.url)
@@ -666,4 +680,38 @@ App.get_edit_items = (item, multiple) => {
 
 App.is_edited = (item) => {
   return item.tags.length || item.custom_title || item.color
+}
+
+App.get_shared_tags = (profiles) => {
+  let arrays = profiles.map(obj => obj.tags)
+
+  let shared = arrays.reduce((common, current) => {
+    return common.filter(value => current.includes(value))
+  })
+
+  return shared
+}
+
+App.get_shared_title = (profiles) => {
+  let first = profiles[0].title
+
+  for (let profile of profiles) {
+    if (profile.title !== first) {
+      return ``
+    }
+  }
+
+  return first
+}
+
+App.get_shared_color = (profiles) => {
+  let first = profiles[0].color
+
+  for (let profile of profiles) {
+    if (profile.color !== first) {
+      return ``
+    }
+  }
+
+  return first
 }
