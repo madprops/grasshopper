@@ -175,7 +175,7 @@ App.refresh_tab = async (id, select, info) => {
   }
 
   if (App.get_setting(`single_new_tab`)) {
-    if (info.url === App.new_tab_url) {
+    if (App.new_tab_urls.includes(info.url)) {
       App.close_other_new_tabs(info.id)
     }
   }
@@ -1060,14 +1060,16 @@ App.close_other_new_tabs = (id) => {
   let ids = []
 
   for (let item of items) {
-    if (item.url === App.new_tab_url) {
+    if (App.new_tab_urls.includes(info.url)) {
       if (item.id !== id) {
         ids.push(item.id)
       }
     }
   }
 
-  App.do_close_tabs(ids)
+  if (ids.length) {
+    App.do_close_tabs(ids)
+  }
 }
 
 App.check_new_tabs = () => {
@@ -1077,16 +1079,21 @@ App.check_new_tabs = () => {
 
   let items = App.get_items(`tabs`)
   let first = false
+  let ids = []
 
   for (let item of items) {
-    if (item.url === App.new_tab_url) {
+    if (App.new_tab_urls.includes(item.url)) {
       if (first) {
-        App.close_tabs(item)
+        ids.push(item.id)
       }
       else {
         first = true
       }
     }
+  }
+
+  if (ids.length) {
+    App.do_close_tabs(ids)
   }
 }
 
