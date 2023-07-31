@@ -632,7 +632,7 @@ App.after_profile_remove = () => {
 }
 
 App.used_profile = (profile) => {
-  if (profile.title || profile.notes || profile.tags.length || profile.color) {
+  if (profile.tags.length || profile.notes || profile.title || profile.color) {
     return true
   }
 
