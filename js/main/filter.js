@@ -163,12 +163,7 @@ App.filter_check = (args) => {
       match = args.item.color === args.f_value
     }
     else if (args.filter_mode === `edited`) {
-      if (args.item.tags.length || args.item.custom_title || args.item.color) {
-        match = true
-      }
-      else {
-        match = false
-      }
+      match = App.is_edited(item)
     }
     else if (args.filter_mode === `pinned`) {
       match = args.item.pinned

@@ -4,6 +4,10 @@ App.setup_profile_editor = () => {
       App.profile_editor_save()
     })
 
+    DOM.ev(DOM.el(`#profile_editor_remove`), `click`, () => {
+      App.profile_editor_remove()
+    })
+
     DOM.ev(DOM.el(`#profile_editor_close`), `click`, () => {
       App.hide_window()
     })
@@ -62,6 +66,13 @@ App.show_profile_editor = (item, type) => {
   DOM.el(`#profile_editor_tags`).value = ``
   DOM.el(`#profile_editor_color`).value = `none`
   DOM.el(`#profile_editor_title`).value = ``
+
+  if (items.length === 1 && profiles.length === 1) {
+    DOM.el(`#profile_editor_remove`).classList.remove(`hidden`)
+  }
+  else {
+    DOM.el(`#profile_editor_remove`).classList.add(`hidden`)
+  }
 
   if (items.length === 1) {
     DOM.el(`#profile_editor_header`).textContent = `Editing 1 Profile`
@@ -180,9 +191,16 @@ App.do_profile_editor_save = () => {
   App.refresh_profile_filters()
 }
 
-App.remove_profiles = (item) => {
+App.profile_remove_menu = (item) => {
   let items = App.get_active_items(item.mode, item)
+  return App.remove_profiles(items)
+}
 
+App.profile_editor_remove = () => {
+  App.remove_profiles(App.profile_editor_profiles)
+}
+
+App.remove_profiles = (items) => {
   if (items.length === 0) {
     return
   }
@@ -203,6 +221,10 @@ App.remove_profiles = (item) => {
 
     App.stor_save_profiles()
     App.refresh_profile_filters()
+
+    if (App.window_mode === `profile_editor`) {
+      App.hide_window()
+    }
   }, undefined, force)
 }
 
@@ -611,15 +633,6 @@ App.refresh_profile_filters = () => {
 App.get_edit_items = (item, multiple) => {
   let items = []
 
-  if (!multiple) {
-    items.push({
-      text: `Edit All`,
-      action: () => {
-        return App.show_profile_editor(item, `all`)
-      }
-    })
-  }
-
   items.push({
     text: `Edit Tags`,
     action: () => {
@@ -644,9 +657,13 @@ App.get_edit_items = (item, multiple) => {
   items.push({
     text: `Remove`,
     action: () => {
-      return App.remove_profiles(item)
+      App.profile_remove_menu(item)
     }
   })
 
   return items
+}
+
+App.is_edited = (item) => {
+  return item.tags.length || item.custom_title || item.color
 }
