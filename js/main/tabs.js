@@ -438,6 +438,7 @@ App.unmute_tabs = (item) => {
 App.show_tabs_info = () => {
   let all = App.get_items(`tabs`).length
   let pins = App.get_pinned_tabs().length
+  let normal = App.get_normal_tabs().length
   let playing = App.get_playing_tabs().length
   let muted = App.get_muted_tabs().length
   let unloaded = App.get_unloaded_tabs().length
@@ -446,6 +447,7 @@ App.show_tabs_info = () => {
   s += `Tab Count:\n\n`
   s += `All: ${all}\n`
   s += `Pins: ${pins}\n`
+  s += `Normal: ${normal}\n`
   s += `Playing: ${playing}\n`
   s += `Muted: ${muted}\n`
   s += `Unloaded: ${unloaded}`
