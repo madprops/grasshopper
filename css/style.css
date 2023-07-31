@@ -507,11 +507,18 @@ svg {
 .pinline {
   margin-top: 0.7rem;
   margin-bottom: 0.7rem;
-  border: 1px solid var(--alt_color_0);
-  color: var(--alt_color_2);
   display: flex;
   align-items: center;
-  justify-content: center;
+  justify-content: flex-start;
+}
+
+.pinline_content {
+  border: 1px solid var(--alt_color_0);
+  color: var(--alt_color_2);
+  border-radius: 20px;
+  margin-left: 0.11rem;
+  padding-left: 0.5rem;
+  padding-right: 0.5rem;
 }
 
 #needcontext-main {

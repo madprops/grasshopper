@@ -27,20 +27,21 @@ App.do_check_pinline = () => {
     return
   }
 
-  let pinline = DOM.create(`div`, `pinline action`)
+  let pinline = DOM.create(`div`, `pinline`)
+  let pinline_content = DOM.create(`div`, `pinline_content action`)
   let n1 = tabs.pinned_f.length
   let n2 = tabs.normal_f.length
   let s1 = App.plural(n1, `Pin`, `Pins`)
   let s2 = `Normal`
   let sep = `&nbsp;&nbsp;+&nbsp;&nbsp;`
-  pinline.innerHTML = `${n1} ${s1}${sep}${n2} ${s2}`
-  pinline.title = `Pinned tabs above. Normal tabs below`
+  pinline_content.innerHTML = `${n1} ${s1}${sep}${n2} ${s2}`
+  pinline_content.title = `Pinned tabs above. Normal tabs below`
 
-  DOM.ev(pinline, `click`, (e) => {
+  DOM.ev(pinline_content, `click`, (e) => {
     App.toggle_tabs()
   })
 
-  DOM.ev(pinline, `auxclick`, (e) => {
+  DOM.ev(pinline_content, `auxclick`, (e) => {
     if (e.button !== 1) {
       return
     }
@@ -52,6 +53,7 @@ App.do_check_pinline = () => {
     }
   })
 
+  pinline.append(pinline_content)
   tabs.pinned_f.at(-1).element.after(pinline)
 }
 
