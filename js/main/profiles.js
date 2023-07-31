@@ -92,6 +92,15 @@ App.profile_editor_save = () => {
   }, undefined, force)
 }
 
+App.get_empty_profile = (url) => {
+  return {
+    url: item.url,
+    tags: [],
+    color: ``,
+    title: ``,
+  }
+}
+
 App.do_profile_editor_save = () => {
   let title = DOM.el(`#profile_editor_title`).value.trim()
   let color = DOM.el(`#profile_editor_color`).value
@@ -149,14 +158,7 @@ App.do_profile_editor_save = () => {
   // Added
   if (App.profile_editor_added.length) {
     for (let item of App.profile_editor_added) {
-      let profile = {
-        url: item.url,
-        tags: [],
-        color: ``,
-        title: ``,
-      }
-
-      proc(profile)
+      proc(App.get_empty_profile(item.url))
     }
   }
 
