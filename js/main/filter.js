@@ -198,16 +198,6 @@ App.is_filtered = (mode) => {
   return App.filter_has_value(mode) || App.filter_mode(mode) !== `all`
 }
 
-App.check_clear_filter = () => {
-  if (App.on_item_window()) {
-    if (App.get_setting(`clear_filter`)) {
-      if (App.is_filtered(App.window_mode)) {
-        App.show_mode(App.window_mode)
-      }
-    }
-  }
-}
-
 App.clear_filter = (mode = App.window_mode) => {
   if (App.filter_has_value(mode)) {
     App.set_filter(mode, ``)
