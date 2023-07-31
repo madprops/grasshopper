@@ -1156,7 +1156,7 @@ App.select_pinned_tabs = () => {
   let items = App.get_pinned_tabs()
 
   for (let item of items) {
-    if (item.pinned && item.visible) {
+    if (item.visible) {
       App.toggle_highlight(item, true)
     }
   }
@@ -1166,7 +1166,7 @@ App.select_normal_tabs = () => {
   let items = App.get_normal_tabs()
 
   for (let item of items) {
-    if (!item.pinned && item.visible) {
+    if (item.visible) {
       App.toggle_highlight(item, true)
     }
   }
