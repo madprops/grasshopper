@@ -778,8 +778,8 @@ App.show_settings_menu = (category, btn) => {
 
   items.push({
     text: `Reset`,
-    get_items: () => {
-      return App.settings_reset_items(category)
+    action: () => {
+      App.reset_settings(category)
     }
   })
 
@@ -827,26 +827,6 @@ App.restart_settings = (type = `normal`) => {
   }
 }
 
-App.settings_reset_items = (category) => {
-  let items = []
-
-  items.push({
-    text: `Reset ${App.capitalize(category)}`,
-    action: () => {
-      App.reset_settings(category)
-    }
-  })
-
-  items.push({
-    text: `Reset All`,
-    action: () => {
-      App.reset_all_settings()
-    }
-  })
-
-  return items
-}
-
 App.settings_data_items = () => {
   let items = []
 
@@ -861,6 +841,13 @@ App.settings_data_items = () => {
     text: `Import`,
     action: () => {
       App.import_settings()
+    }
+  })
+
+  items.push({
+    text: `Reset All`,
+    action: () => {
+      App.reset_all_settings()
     }
   })
 
