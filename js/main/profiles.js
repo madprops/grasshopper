@@ -737,13 +737,6 @@ App.get_edit_items = (item, multiple) => {
   items.push({separator: true})
 
   items.push({
-    text: `Edit All`,
-    action: () => {
-      return App.show_profile_editor(item, `all`)
-    }
-  })
-
-  items.push({
     text: `Edit Tags`,
     action: () => {
       return App.show_profile_editor(item, `tags`)
@@ -768,6 +761,13 @@ App.get_edit_items = (item, multiple) => {
     text: `Edit Color`,
     action: () => {
       return App.show_profile_editor(item, `color`)
+    }
+  })
+
+  items.push({
+    text: `Edit All`,
+    action: () => {
+      return App.show_profile_editor(item, `all`)
     }
   })
 
