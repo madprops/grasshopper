@@ -132,8 +132,8 @@ App.get_empty_profile = (url) => {
 }
 
 App.do_profile_editor_save = () => {
-  let tags = App.single_linebreak(DOM.el(`#profile_editor_tags`).value.trim()).split(`\n`)
-  let notes = DOM.el(`#profile_editor_notes`).value.trim()
+  let tags = App.single_linebreak(DOM.el(`#profile_editor_tags`).value).split(`\n`)
+  let notes = App.double_linebreak(DOM.el(`#profile_editor_notes`).value)
   let title = DOM.el(`#profile_editor_title`).value.trim()
   let color = DOM.el(`#profile_editor_color`).value
 

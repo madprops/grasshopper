@@ -223,7 +223,11 @@ App.wheel_direction = (e) => {
 }
 
 App.single_linebreak = (s) => {
-  return s.replace(/[\n\r]+/g, `\n`).replace(/ +/g, ` `).trim()
+  return s.replace(/(\n\s*){2,}/g, `\n\n`).replace(/ +/g, ` `).trim()
+}
+
+App.double_linebreak = (s) => {
+  return s.replace(/(\n\s*){3,}/g, `\n\n`).replace(/ +/g, ` `).trim()
 }
 
 App.contains_number = (str) => {
