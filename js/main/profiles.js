@@ -700,6 +700,13 @@ App.get_edit_items = (item, multiple) => {
   })
 
   items.push({
+    text: `Edit Notes`,
+    action: () => {
+      return App.show_profile_editor(item, `notes`)
+    }
+  })
+
+  items.push({
     text: `Edit Title`,
     action: () => {
       return App.show_profile_editor(item, `title`)
