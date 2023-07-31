@@ -155,6 +155,7 @@ App.setup_window = () => {
           App.dehighlight(App.window_mode, `up`)
 
           if (App.window_mode === `tabs`) {
+            App.show_all()
             App.focus_current_tab()
           }
         }
