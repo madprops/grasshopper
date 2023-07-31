@@ -74,12 +74,6 @@ App.setup_tabs = () => {
       App.tabs_check()
     }
   })
-
-  DOM.ev(DOM.el(`#window_tabs`), `dblclick`, (e) => {
-    if (e.target.id === `tabs_container`) {
-      App.new_tab()
-    }
-  })
 }
 
 App.empty_previous_tabs = App.create_debouncer(() => {

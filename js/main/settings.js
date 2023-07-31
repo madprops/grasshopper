@@ -86,6 +86,7 @@ App.build_default_settings = () => {
   obj.case_insensitive_filter = {value: true, category: category, version: 1}
   obj.lock_drag = {value: false, category: category, version: 1}
   obj.mute_click = {value: true, category: category, version: 1}
+  obj.double_click_new_tab = {value: true, category: category, version: 1}
 
   category = `show`
   obj.show_scrollbars = {value: true, category: category, version: 1}
