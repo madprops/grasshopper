@@ -128,9 +128,6 @@ App.commands = [
   {name: `Toggle Mute Tabs`, cmd: `toggle_mute_tabs`, mode: `tabs`, action: (args) => {
     App.toggle_mute_tabs(args.item)
   }},
-  {name: `Toggle Tabs`, cmd: `toggle_tabs`, mode: `tabs`, action: (args) => {
-    App.toggle_tabs(args.item)
-  }},
   {name: `Close Tabs`, cmd: `close_tabs`, mode: `tabs`, action: (args) => {
     App.close_tabs(args.item)
   }},

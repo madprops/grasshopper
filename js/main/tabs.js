@@ -1097,33 +1097,6 @@ App.check_new_tabs = () => {
   }
 }
 
-App.toggle_tabs = () => {
-  let tabs = App.divide_tabs(`highlighted`)
-  App.dehighlight(`tabs`)
-
-  if (tabs.pinned_f.length === 0 && tabs.normal_f.length === 0) {
-    App.select_item(tabs.normal[0], `none`, false)
-
-    for (let item of tabs.normal) {
-      if (item.visible) {
-        App.toggle_highlight(item, true)
-      }
-    }
-  }
-  else if (tabs.normal_f.length > 0) {
-    App.select_item(tabs.pinned[0], `none`, false)
-
-    for (let item of tabs.pinned) {
-      if (item.visible) {
-        App.toggle_highlight(item, true)
-      }
-    }
-  }
-  else {
-    App.focus_current_tab(`center_smooth`)
-  }
-}
-
 App.divide_tabs = (filter) => {
   let pinned = []
   let normal = []
