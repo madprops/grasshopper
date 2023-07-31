@@ -149,6 +149,12 @@ App.commands = [
   {name: `Undo Close Tab`, cmd: `undo_close_tab`, action: (args) => {
     App.undo_close_tab()
   }},
+  {name: `Select Pins`, cmd: `select_pinned_tabs`, mode: `tabs`, action: (args) => {
+    App.select_pinned_tabs()
+  }},
+  {name: `Select Normal`, cmd: `select_normal_tabs`, mode: `tabs`, action: (args) => {
+    App.select_normal_tabs()
+  }},
 
   {name: App.separator_string},
 
