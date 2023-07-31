@@ -16,7 +16,7 @@ App.setup_tabs = () => {
       App.undo_close_tab()
     }},
 
-    {text: `Show Info`, action: () => {
+    {text: `Tabs Info`, action: () => {
       App.show_tabs_info()
     }},
 
