@@ -128,9 +128,6 @@ App.commands = [
   {name: `Toggle Mute Tabs`, cmd: `toggle_mute_tabs`, mode: `tabs`, action: (args) => {
     App.toggle_mute_tabs(args.item)
   }},
-  {name: `Edit Tab`, cmd: `title_tab`, mode: `tabs`, action: (args) => {
-    App.show_profile_editor(args.item)
-  }},
   {name: `Toggle Tabs`, cmd: `toggle_tabs`, mode: `tabs`, action: (args) => {
     App.toggle_tabs(args.item)
   }},
@@ -170,6 +167,9 @@ App.commands = [
 
   {name: App.separator_string},
 
+  {name: `Edit Profiles`, cmd: `edit_profiles`, mode: `items`, action: (args) => {
+    App.edit_profiles(args.item)
+  }},
   {name: `Add Tags`, cmd: `add_tags`, mode: `items`, action: (args) => {
     App.add_tags(args.item)
   }},

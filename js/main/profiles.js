@@ -776,6 +776,10 @@ App.is_edited = (item) => {
   return item.tags.length || item.custom_title || item.color
 }
 
+App.edit_profiles = (item) => {
+  App.show_profile_editor(item, `all`)
+}
+
 App.add_tags = (item) => {
   App.show_profile_editor(item, `tags`, `add`)
 }
