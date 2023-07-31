@@ -48,27 +48,35 @@ App.show_profile_editor = (item, type) => {
   DOM.el(`#profile_editor_color_container`).classList.add(`hidden`)
   DOM.el(`#profile_editor_title_container`).classList.add(`hidden`)
 
-  if (type === `tags` || type === `all`) {
+  if (type === `all` || type === `tags`) {
     DOM.el(`#profile_editor_tags_container`).classList.remove(`hidden`)
     DOM.el(`#profile_editor_tags`).focus()
   }
 
-  if (type === `color` || type === `all`) {
-    DOM.el(`#profile_editor_color_container`).classList.remove(`hidden`)
-    DOM.el(`#profile_editor_color`).focus()
-  }
-
-  if (type === `title` || type === `all`) {
+  if (type === `all` || type === `title`) {
     DOM.el(`#profile_editor_title_container`).classList.remove(`hidden`)
     DOM.el(`#profile_editor_title`).focus()
+  }
+
+  if (type === `all` || type === `color`) {
+    DOM.el(`#profile_editor_color_container`).classList.remove(`hidden`)
+    DOM.el(`#profile_editor_color`).focus()
   }
 
   let shared_tags, shared_title, shared_color
 
   if (profiles.length > 1 && profiles.length === items.length) {
-    shared_tags = App.get_shared_tags(profiles)
-    shared_title = App.get_shared_title(profiles)
-    shared_color = App.get_shared_color(profiles)
+    if (type === `all` || type === `tags`) {
+      shared_tags = App.get_shared_tags(profiles)
+    }
+
+    if (type === `all` || type === `title`) {
+      shared_title = App.get_shared_title(profiles)
+    }
+
+    if (type === `all` || type === `color`) {
+      shared_color = App.get_shared_color(profiles)
+    }
   }
 
   let s_tags = ``
@@ -155,15 +163,15 @@ App.do_profile_editor_save = () => {
   function proc (profile) {
     let type = App.profile_editor_type
 
-    if (type === `tags` || type === `all`) {
+    if (type === `all` || type === `tags`) {
       profile.tags = c_tags.slice(0)
     }
 
-    if (type === `title` || type === `all`) {
+    if (type === `all` || type === `title`) {
       profile.title = title
     }
 
-    if (type === `color` || type === `all`) {
+    if (type === `all` || type === `color`) {
       profile.color = color
     }
 
