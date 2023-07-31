@@ -609,6 +609,15 @@ App.refresh_profile_filters = () => {
 App.get_edit_items = (item, multiple) => {
   let items = []
 
+  if (!multiple) {
+    items.push({
+      text: `Edit All`,
+      action: () => {
+        return App.show_profile_editor(item, `all`)
+      }
+    })
+  }
+
   items.push({
     text: `Edit Tags`,
     action: () => {
@@ -629,15 +638,6 @@ App.get_edit_items = (item, multiple) => {
       return App.show_profile_editor(item, `color`)
     }
   })
-
-  if (!multiple) {
-    items.push({
-      text: `Edit All`,
-      action: () => {
-        return App.show_profile_editor(item, `all`)
-      }
-    })
-  }
 
   items.push({
     text: `Remove`,
