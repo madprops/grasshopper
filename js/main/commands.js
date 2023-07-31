@@ -116,7 +116,7 @@ App.commands = [
   {name: `Unpin Tabs`, cmd: `unpin_tabs`, mode: `tabs`, action: (args) => {
     App.unpin_tabs(args.item)
   }},
-  {name: `Toggle Pin Tabs`, cmd: `toggle_pin_tabs`, mode: `tabs`, action: (args) => {
+  {name: `Toggle Pin`, cmd: `toggle_pin_tabs`, mode: `tabs`, action: (args) => {
     App.toggle_pin_tabs(args.item)
   }},
   {name: `Mute Tabs`, cmd: `mute_tabs`, mode: `tabs`, action: (args) => {
@@ -125,7 +125,7 @@ App.commands = [
   {name: `Unmute Tabs`, cmd: `unmute_tabs`, mode: `tabs`, action: (args) => {
     App.unmute_tabs(args.item)
   }},
-  {name: `Toggle Mute Tabs`, cmd: `toggle_mute_tabs`, mode: `tabs`, action: (args) => {
+  {name: `Toggle Mute`, cmd: `toggle_mute_tabs`, mode: `tabs`, action: (args) => {
     App.toggle_mute_tabs(args.item)
   }},
   {name: `Close Tabs`, cmd: `close_tabs`, mode: `tabs`, action: (args) => {
