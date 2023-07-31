@@ -791,6 +791,13 @@ App.show_settings_menu = (category, btn) => {
   })
 
   items.push({
+    text: `Info`,
+    get_items: () => {
+      return App.settings_info()
+    }
+  })
+
+  items.push({
     text: `Close`,
     action: () => {
       App.hide_window()
@@ -1012,4 +1019,11 @@ App.change_background = (url) => {
   App.set_setting(`background_effect`, `none`)
   App.set_setting(`background_tiles`, `none`)
   App.apply_theme()
+}
+
+App.settings_info = () => {
+  let s = `There are multiple setting sections.`
+  s += ` These are saved locally and not synced.`
+  s += ` To backup or move this data use the Export/Import feature in the menu.`
+  App.show_alert_2(s)
 }

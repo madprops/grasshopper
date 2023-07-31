@@ -800,5 +800,5 @@ App.profiles_info = () => {
   s += ` You can give a tab a fixed title to replace its real one.`
   s += ` This is saved locally and is not synced.`
   s += ` To backup or move this data use the Profiles Export/Import feature in the main menu.`
-  App.show_alert(s, undefined, false)
+  App.show_alert_2(s)
 }
