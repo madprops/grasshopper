@@ -797,6 +797,7 @@ App.profiles_info = () => {
   s += ` The input of this data is always manual and not automatic.`
   s += ` The idea is to help you organize tabs to find them easily later.`
   s += ` You can use the filter menu to find tabs by tag or color.`
+  s += ` You can give a tab a fixed title to replace its real one.`
   s += ` This is saved locally and is not synced.`
   s += ` To backup or move this data use the Profiles Export/Import feature in the main menu.`
   App.show_alert(s, undefined, false)
