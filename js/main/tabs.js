@@ -1060,7 +1060,7 @@ App.close_other_new_tabs = (id) => {
   let ids = []
 
   for (let item of items) {
-    if (App.new_tab_urls.includes(info.url)) {
+    if (App.new_tab_urls.includes(item.url)) {
       if (item.id !== id) {
         ids.push(item.id)
       }
