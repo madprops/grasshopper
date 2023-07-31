@@ -11,6 +11,8 @@ App.create_popup = (args) => {
     if (e.target.isConnected && !e.target.closest(`.popup_container`)) {
       App.popups[args.id].hide()
     }
+
+    e.preventDefault()
   })
 
   DOM.el(`#main`).append(popup)

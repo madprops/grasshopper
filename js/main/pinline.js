@@ -37,11 +37,7 @@ App.do_check_pinline = () => {
   pinline_content.innerHTML = `${n1} ${s1}${sep}${n2} ${s2}`
   pinline_content.title = `Pinned tabs above. Normal tabs below`
 
-  DOM.ev(pinline_content, `click`, (e) => {
-    App.toggle_tabs()
-  })
-
-  DOM.ev(pinline_content, `contextmenu`, (e) => {
+  DOM.evs(pinline_content, [`click`, `contextmenu`], (e) => {
     App.show_pinline_menu(e)
   })
 
@@ -69,6 +65,13 @@ App.remove_pinline = () => {
 
 App.show_pinline_menu = (e) => {
   let items = []
+
+  items.push({
+    text: `Select All`,
+    action: () => {
+      App.highlight_items()
+    }
+  })
 
   items.push({
     text: `Select Pins`,
