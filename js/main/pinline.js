@@ -87,6 +87,13 @@ App.show_pinline_menu = (e) => {
     }
   })
 
+  items.push({
+    text: `Close Normal`,
+    action: () => {
+      App.close_normal_tabs()
+    }
+  })
+
   NeedContext.show(e.clientX, e.clientY, items)
   e.preventDefault()
 }
