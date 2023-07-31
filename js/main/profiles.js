@@ -717,13 +717,6 @@ App.get_edit_items = (item, multiple) => {
   let items = []
 
   items.push({
-    text: `Edit Tags`,
-    action: () => {
-      return App.show_profile_editor(item, `tags`)
-    }
-  })
-
-  items.push({
     text: `Add Tags`,
     action: () => {
       return App.add_tags(item)
@@ -731,16 +724,25 @@ App.get_edit_items = (item, multiple) => {
   })
 
   items.push({
-    text: `Edit Notes`,
+    text: `Add Notes`,
     action: () => {
-      return App.show_profile_editor(item, `notes`)
+      return App.add_notes(item)
+    }
+  })
+
+  items.push({separator: true})
+
+  items.push({
+    text: `Edit Tags`,
+    action: () => {
+      return App.show_profile_editor(item, `tags`)
     }
   })
 
   items.push({
-    text: `Add Notes`,
+    text: `Edit Notes`,
     action: () => {
-      return App.add_notes(item)
+      return App.show_profile_editor(item, `notes`)
     }
   })
 
@@ -757,6 +759,8 @@ App.get_edit_items = (item, multiple) => {
       return App.show_profile_editor(item, `color`)
     }
   })
+
+  items.push({separator: true})
 
   items.push({
     text: `Remove`,
