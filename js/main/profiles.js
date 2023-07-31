@@ -45,12 +45,18 @@ App.show_profile_editor = (item, type) => {
   App.profile_editor_type = type
   App.show_window(`profile_editor`)
   DOM.el(`#profile_editor_tags_container`).classList.add(`hidden`)
+  DOM.el(`#profile_editor_notes_container`).classList.add(`hidden`)
   DOM.el(`#profile_editor_color_container`).classList.add(`hidden`)
   DOM.el(`#profile_editor_title_container`).classList.add(`hidden`)
 
   if (type === `all` || type === `tags`) {
     DOM.el(`#profile_editor_tags_container`).classList.remove(`hidden`)
     DOM.el(`#profile_editor_tags`).focus()
+  }
+
+  if (type === `all` || type === `notes`) {
+    DOM.el(`#profile_editor_notes_container`).classList.remove(`hidden`)
+    DOM.el(`#profile_editor_notes`).focus()
   }
 
   if (type === `all` || type === `title`) {
@@ -63,7 +69,12 @@ App.show_profile_editor = (item, type) => {
     DOM.el(`#profile_editor_color`).focus()
   }
 
+  if (type === `all`) {
+    DOM.el(`#profile_editor_tags`).focus()
+  }
+
   DOM.el(`#profile_editor_tags`).value = ``
+  DOM.el(`#profile_editor_notes`).value = ``
   DOM.el(`#profile_editor_title`).value = ``
   DOM.el(`#profile_editor_color`).value = `none`
 
@@ -80,6 +91,7 @@ App.show_profile_editor = (item, type) => {
     if (profiles.length) {
       let profile = profiles[0]
       DOM.el(`#profile_editor_tags`).value = profile.tags.join(`\n`)
+      DOM.el(`#profile_editor_notes`).value = profile.notes
       DOM.el(`#profile_editor_title`).value = profile.title
       DOM.el(`#profile_editor_color`).value = profile.color || `none`
     }
@@ -107,15 +119,17 @@ App.get_empty_profile = (url) => {
   return {
     url: url,
     tags: [],
+    notes: ``,
     title: ``,
     color: ``,
   }
 }
 
 App.do_profile_editor_save = () => {
+  let tags = App.single_linebreak(DOM.el(`#profile_editor_tags`).value.trim()).split(`\n`)
+  let notes = DOM.el(`#profile_editor_notes`).value.trim()
   let title = DOM.el(`#profile_editor_title`).value.trim()
   let color = DOM.el(`#profile_editor_color`).value
-  let tags = App.single_linebreak(DOM.el(`#profile_editor_tags`).value.trim()).split(`\n`)
 
   if (color === `none`) {
     color = ``
@@ -143,6 +157,10 @@ App.do_profile_editor_save = () => {
 
     if (type === `all` || type === `tags`) {
       profile.tags = c_tags.slice(0)
+    }
+
+    if (type === `all` || type === `notes`) {
+      profile.notes = notes
     }
 
     if (type === `all` || type === `title`) {
@@ -322,6 +340,11 @@ App.check_profiles = () => {
       changed = true
     }
 
+    if (profile.notes === undefined) {
+      profile.notes = ``
+      changed = true
+    }
+
     if (profile.title === undefined) {
       profile.title = ``
       changed = true
@@ -439,22 +462,6 @@ App.clear_profiles_items = () => {
 
   let count = App.get_profile_count()
 
-  if (count.colors) {
-    items.push({
-      text: `Remove Color`,
-      get_items: () => {
-        return App.get_color_items(App.active_mode, `remove`)
-      }
-    })
-
-    items.push({
-      text: `Remove All Colors`,
-      action: () => {
-        App.remove_all_colors()
-      }
-    })
-  }
-
   if (count.tags) {
     items.push({
       text: `Remove Tag`,
@@ -467,6 +474,31 @@ App.clear_profiles_items = () => {
       text: `Remove All Tags`,
       action: () => {
         App.remove_all_tags()
+      }
+    })
+  }
+
+  if (count.notes) {
+    items.push({
+      text: `Remove All Notes`,
+      action: () => {
+        App.remove_all_notes()
+      }
+    })
+  }
+
+  if (count.colors) {
+    items.push({
+      text: `Remove Color`,
+      get_items: () => {
+        return App.get_color_items(App.active_mode, `remove`)
+      }
+    })
+
+    items.push({
+      text: `Remove All Colors`,
+      action: () => {
+        App.remove_all_colors()
       }
     })
   }
@@ -532,6 +564,28 @@ App.remove_all_colors = () => {
   })
 }
 
+App.remove_all_notes = () => {
+  let profiles = []
+
+  for (let profile of App.profiles) {
+    if (profile.notes) {
+      profiles.push(profile)
+    }
+  }
+
+  if (profiles.length === 0) {
+    return
+  }
+
+  App.show_confirm(`Remove all notes? (${profiles.length})`, () => {
+    for (let profile of App.profiles) {
+      profile.notes = ``
+    }
+
+    App.after_profile_remove()
+  })
+}
+
 App.remove_tag = (name) => {
   App.show_confirm(`Remove tag? (${name})`, () => {
     for (let profile of App.profiles) {
@@ -578,7 +632,7 @@ App.after_profile_remove = () => {
 }
 
 App.used_profile = (profile) => {
-  if (profile.title || profile.tags.length || profile.color) {
+  if (profile.title || profile.notes || profile.tags.length || profile.color) {
     return true
   }
 
@@ -599,10 +653,19 @@ App.clean_profiles = () => {
 
 App.get_profile_count = () => {
   let count = {}
-  count.colors = 0
   count.tags = 0
+  count.notes = 0
+  count.colors = 0
 
   for (let profile of App.profiles) {
+    if (profile.tags.length) {
+      count.tags += 1
+    }
+
+    if (profile.notes) {
+      count.notes += 1
+    }
+
     if (profile.color) {
       if (!count[profile.color]) {
         count[profile.color] = 0
@@ -610,10 +673,6 @@ App.get_profile_count = () => {
 
       count[profile.color] += 1
       count.colors += 1
-    }
-
-    if (profile.tags.length) {
-      count.tags += 1
     }
   }
 
