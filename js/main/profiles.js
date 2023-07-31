@@ -137,6 +137,10 @@ App.do_profile_editor_save = () => {
 
     if (App.used_profile(profile)) {
       App.profiles.unshift(profile)
+
+      if (App.profiles.length > App.max_profiles) {
+        App.profiles = App.profiles.slice(0, App.max_profiles)
+      }
     }
 
     urls.push(profile.url)
@@ -161,10 +165,6 @@ App.do_profile_editor_save = () => {
     for (let profile of App.profile_editor_profiles) {
       proc(profile)
     }
-  }
-
-  if (App.profiles.length > App.max_profiles) {
-    App.profiles = App.profiles.slice(0, App.max_profiles)
   }
 
   App.clean_profiles()
