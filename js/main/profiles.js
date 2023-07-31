@@ -94,7 +94,7 @@ App.profile_editor_save = () => {
 
 App.get_empty_profile = (url) => {
   return {
-    url: item.url,
+    url: url,
     tags: [],
     color: ``,
     title: ``,
