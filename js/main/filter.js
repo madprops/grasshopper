@@ -309,7 +309,7 @@ App.show_filter_menu = (mode) => {
     items.push({
       text: filter_mode[1],
       action: () => {
-        App.set_filter_mode(mode, filter_mode[0])
+        App.change_filter_mode(mode, filter_mode[0])
       },
       selected: selected
     })
@@ -377,11 +377,14 @@ App.set_filter_mode = (mode, name, filter = true) => {
   }
 }
 
+App.change_filter_mode = (mode, name) => {
+  App.set_filter_mode(mode, name, false)
+  App.set_filter(mode, ``)
+}
+
 App.set_custom_filter_mode = (mode, name, title) => {
-  App.set_filter(mode, ``, false)
   App[`${mode}_filter_mode`] = name
   DOM.el(`#${mode}_filter_modes_text`).textContent = title
-  App.do_filter(mode)
 }
 
 App.filter_domain = (item) => {
@@ -587,6 +590,5 @@ App.search_items = async (mode, query, deep) => {
 }
 
 App.deep_search = (mode) => {
-  App.set_filter_mode(mode, `all`, false)
   App.do_filter(mode, true, true)
 }

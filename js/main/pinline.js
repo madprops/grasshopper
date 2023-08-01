@@ -83,7 +83,7 @@ App.show_pinline_menu = (e) => {
   items.push({
     text: `Select All`,
     action: () => {
-      App.highlight_items()
+      App.select_all()
     }
   })
 

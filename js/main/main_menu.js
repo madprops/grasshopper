@@ -59,7 +59,7 @@ App.show_main_menu = (mode) => {
   items.push({
     text: `Profiles`,
     get_items: () => {
-      return App.get_profile_items()
+      return App.get_profile_menu_items()
     }
   })
 

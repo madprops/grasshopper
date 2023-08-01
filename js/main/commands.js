@@ -1,193 +1,211 @@
-App.commands = [
-  {name: `Go To Top`, cmd: `go_to_top`, mode: `items`, action: (args) => {
-    App.goto_top()
-  }},
-  {name: `Go To Bottom`, cmd: `go_to_bottom`, mode: `items`, action: (args) => {
-    App.goto_bottom()
-  }},
-  {name: `Go Back`, cmd: `go_back`, mode: `items`, action: (args) => {
-    App.back_action()
-  }},
-  {name: `Filter Domain`, cmd: `filter_domain`, mode: `items`, action: (args) => {
-    App.filter_domain(args.item)
-  }},
-  {name: `Select All`, cmd: `select_all`, mode: `items`, action: (args) => {
-    App.highlight_items()
-  }},
-  {name: `Scroll Up`, cmd: `scroll_up`, mode: `items`, action: (args) => {
-    App.scroll(args.mode, `up`, true)
-  }},
-  {name: `Scroll Down`, cmd: `scroll_down`, mode: `items`, action: (args) => {
-    App.scroll(args.mode, `down`, true)
-  }},
-
-  {name: App.separator_string},
-
-  {name: `Prev Mode`, cmd: `prev_mode`, mode: `items`, action: (args) => {
-    App.cycle_modes(true)
-  }},
-  {name: `Next Mode`, cmd: `next_mode`, mode: `items`, action: (args) => {
-    App.cycle_modes()
-  }},
-  {name: `Show Tabs`, cmd: `show_tabs`, action: (args) => {
-    App.show_mode(`tabs`)
-  }},
-  {name: `Show History`, cmd: `show_history`, action: (args) => {
-    App.show_mode(`history`)
-  }},
-  {name: `Show Bookmarks`, cmd: `show_bookmarks`, action: (args) => {
-    App.show_mode(`bookmarks`)
-  }},
-  {name: `Show Closed`, cmd: `show_closed`, action: (args) => {
-    App.show_mode(`closed`)
-  }},
-  {name: `Show Main`, cmd: `show_main`, action: (args) => {
-    App.show_main_mode()
-  }},
-  {name: `Show Settings`, cmd: `show_settings`, action: (args) => {
-    App.show_settings()
-  }},
-  {name: `Show About`, cmd: `show_about`, action: (args) => {
-    App.show_window(`about`)
-  }},
-  {name: `Show Palette`, cmd: `show_palette`, action: (args) => {
-    App.show_palette()
-  }},
-  {name: `Show All`, cmd: `show_all`, mode: `items`, action: (args) => {
-    App.show_all()
-  }},
-
-  {name: App.separator_string},
-
-  {name: `Open Items`, cmd: `open_items`, mode: `items`, action: (args) => {
-    App.open_items(args.item, true)
-  }},
-  {name: `Bookmark Items`, cmd: `bookmark_items`, mode: `items`, action: (args) => {
-    App.bookmark_items(args.item)
-  }},
-  {name: `Bookmark Active`, cmd: `bookmark_active`, action: (args) => {
-    App.bookmark_active(args.item)
-  }},
-  {name: `Copy URL`, cmd: `copy_item_url`, mode: `items`, action: (args) => {
-    App.copy_url(args.item)
-  }},
-  {name: `Copy Title`, cmd: `copy_item_title`, mode: `items`, action: (args) => {
-    App.copy_title(args.item)
-  }},
-  {name: `Background`, cmd: `set_background`, media: `image`, action: (args) => {
-    App.change_background(args.item.url)
-  }},
-
-  {name: App.separator_string},
-
-  {name: `Back (Browser)`, cmd: `browser_back`, action: (args) => {
-    App.browser_back()
-  }},
-  {name: `Forward (Browser)`, cmd: `browser_forward`, action: (args) => {
-    App.browser_forward()
-  }},
-  {name: `Reload (Browser)`, cmd: `browser_reload`, action: (args) => {
-    App.browser_reload()
-  }},
-
-  {name: App.separator_string},
-
-  {name: `New Tab`, cmd: `new_tab`, mode: `tabs`, action: (args) => {
-    App.new_tab()
-  }},
-  {name: `Unload Tabs`, cmd: `unload_tabs`, mode: `tabs`, action: (args) => {
-    App.unload_tabs(args.item)
-  }},
-  {name: `Duplicate Tabs`, cmd: `duplicate_tab`, mode: `tabs`, action: (args) => {
-    App.duplicate_tabs(args.item)
-  }},
-  {name: `Detach Tabs`, cmd: `detach_tabs`, mode: `tabs`, action: (args) => {
-    App.detach_tabs(args.item)
-  }},
-  {name: `Tabs To Top`, cmd: `tabs_to_top`, mode: `tabs`, action: (args) => {
-    App.move_tabs_vertically(`top`)
-  }},
-  {name: `Tabs To Bottom`, cmd: `tabs_to_bottom`, mode: `tabs`, action: (args) => {
-    App.move_tabs_vertically(`bottom`)
-  }},
-  {name: `Pin Tabs`, cmd: `pin_tabs`, mode: `tabs`, action: (args) => {
-    App.pin_tabs(args.item)
-  }},
-  {name: `Unpin Tabs`, cmd: `unpin_tabs`, mode: `tabs`, action: (args) => {
-    App.unpin_tabs(args.item)
-  }},
-  {name: `Toggle Pin`, cmd: `toggle_pin_tabs`, mode: `tabs`, action: (args) => {
-    App.toggle_pin_tabs(args.item)
-  }},
-  {name: `Mute Tabs`, cmd: `mute_tabs`, mode: `tabs`, action: (args) => {
-    App.mute_tabs(args.item)
-  }},
-  {name: `Unmute Tabs`, cmd: `unmute_tabs`, mode: `tabs`, action: (args) => {
-    App.unmute_tabs(args.item)
-  }},
-  {name: `Toggle Mute`, cmd: `toggle_mute_tabs`, mode: `tabs`, action: (args) => {
-    App.toggle_mute_tabs(args.item)
-  }},
-  {name: `Close Tabs`, cmd: `close_tabs`, mode: `tabs`, action: (args) => {
-    App.close_tabs(args.item)
-  }},
-  {name: `Close Normal`, cmd: `close_normal_tabs`, mode: `tabs`, action: (args) => {
-    App.close_normal_tabs()
-  }},
-  {name: `Close Duplicates`, cmd: `close_duplicate_tabs`, mode: `tabs`, action: (args) => {
-    App.close_duplicate_tabs()
-  }},
-  {name: `Go To Playing Tab`, cmd: `go_to_playing_tab`, mode: `tabs`, action: (args) => {
-    App.go_to_playing_tab()
-  }},
-  {name: `Tabs Info`, cmd: `tabs_info`, mode: `tabs`, action: (args) => {
-    App.show_tabs_info()
-  }},
-  {name: `Undo Close Tab`, cmd: `undo_close_tab`, action: (args) => {
-    App.undo_close_tab()
-  }},
-  {name: `Select Pins`, cmd: `select_pinned_tabs`, mode: `tabs`, action: (args) => {
-    App.select_pinned_tabs()
-  }},
-  {name: `Select Normal`, cmd: `select_normal_tabs`, mode: `tabs`, action: (args) => {
-    App.select_normal_tabs()
-  }},
-
-  {name: App.separator_string},
-
-  {name: `Filter Image`, cmd: `filter_image`, mode: `items`, action: (args) => {
-    App.set_filter_mode(args.mode, `image`)
-  }},
-  {name: `Filter Video`, cmd: `filter_video`, mode: `items`, action: (args) => {
-    App.set_filter_mode(args.mode, `video`)
-  }},
-  {name: `Filter Audio`, cmd: `filter_audio`, mode: `items`, action: (args) => {
-    App.set_filter_mode(args.mode, `audio`)
-  }},
-  {name: `Filter Text`, cmd: `filter_text`, mode: `items`, action: (args) => {
-    App.set_filter_mode(args.mode, `text`)
-  }},
-
-  {name: App.separator_string},
-
-  {name: `Edit Profiles`, cmd: `edit_profiles`, mode: `items`, action: (args) => {
-    App.edit_profiles(args.item)
-  }},
-  {name: `Add Tags`, cmd: `add_tags`, mode: `items`, action: (args) => {
-    App.add_tags(args.item)
-  }},
-  {name: `Add Notes`, cmd: `add_notes`, mode: `items`, action: (args) => {
-    App.add_notes(args.item)
-  }},
-
-  {name: App.separator_string},
-
-  {name: `Reload Extension`, cmd: `reload_extension`, action: (args) => {
-    App.reload_extension()
-  }},
-]
-
 App.setup_commands = () => {
+  let color_filters = []
+
+  for (let color in App.colors) {
+    color_filters.push({name: `Filter ${App.capitalize(color)}`, cmd: `filter_${color}`, mode: `items`, action: (args) => {
+      App.filter_color(args.mode, color)
+    }})
+  }
+
+  let color_changers = []
+
+  for (let color in App.colors) {
+    color_changers.push({name: `Color ${App.capitalize(color)}`, cmd: `color_${color}`, mode: `items`, action: (args) => {
+      App.change_color(args.item, color)
+    }})
+  }
+
+  App.commands = [
+    {name: `Go To Top`, cmd: `go_to_top`, mode: `items`, action: (args) => {
+      App.goto_top()
+    }},
+    {name: `Go To Bottom`, cmd: `go_to_bottom`, mode: `items`, action: (args) => {
+      App.goto_bottom()
+    }},
+    {name: `Go Back`, cmd: `go_back`, mode: `items`, action: (args) => {
+      App.back_action()
+    }},
+    {name: `Select All`, cmd: `select_all`, mode: `items`, action: (args) => {
+      App.select_all()
+    }},
+    {name: `Scroll Up`, cmd: `scroll_up`, mode: `items`, action: (args) => {
+      App.scroll(args.mode, `up`, true)
+    }},
+    {name: `Scroll Down`, cmd: `scroll_down`, mode: `items`, action: (args) => {
+      App.scroll(args.mode, `down`, true)
+    }},
+
+    {name: App.separator_string},
+
+    {name: `Prev Mode`, cmd: `prev_mode`, mode: `items`, action: (args) => {
+      App.cycle_modes(true)
+    }},
+    {name: `Next Mode`, cmd: `next_mode`, mode: `items`, action: (args) => {
+      App.cycle_modes()
+    }},
+    {name: `Show Tabs`, cmd: `show_tabs`, action: (args) => {
+      App.show_mode(`tabs`)
+    }},
+    {name: `Show History`, cmd: `show_history`, action: (args) => {
+      App.show_mode(`history`)
+    }},
+    {name: `Show Bookmarks`, cmd: `show_bookmarks`, action: (args) => {
+      App.show_mode(`bookmarks`)
+    }},
+    {name: `Show Closed`, cmd: `show_closed`, action: (args) => {
+      App.show_mode(`closed`)
+    }},
+    {name: `Show Main`, cmd: `show_main`, action: (args) => {
+      App.show_main_mode()
+    }},
+    {name: `Show Settings`, cmd: `show_settings`, action: (args) => {
+      App.show_settings()
+    }},
+    {name: `Show About`, cmd: `show_about`, action: (args) => {
+      App.show_window(`about`)
+    }},
+    {name: `Show Palette`, cmd: `show_palette`, action: (args) => {
+      App.show_palette()
+    }},
+    {name: `Show All`, cmd: `show_all`, mode: `items`, action: (args) => {
+      App.show_all()
+    }},
+
+    {name: App.separator_string},
+
+    {name: `Open`, cmd: `open_items`, mode: `items`, action: (args) => {
+      App.open_items(args.item, true)
+    }},
+    {name: `Bookmark`, cmd: `bookmark_items`, mode: `items`, action: (args) => {
+      App.bookmark_items(args.item)
+    }},
+    {name: `Bookmark Active`, cmd: `bookmark_active`, action: (args) => {
+      App.bookmark_active(args.item)
+    }},
+    {name: `Copy URL`, cmd: `copy_item_url`, mode: `items`, action: (args) => {
+      App.copy_url(args.item)
+    }},
+    {name: `Copy Title`, cmd: `copy_item_title`, mode: `items`, action: (args) => {
+      App.copy_title(args.item)
+    }},
+    {name: `Background`, cmd: `set_background`, media: `image`, action: (args) => {
+      App.change_background(args.item.url)
+    }},
+
+    {name: App.separator_string},
+
+    {name: `Back`, cmd: `browser_back`, action: (args) => {
+      App.browser_back()
+    }},
+    {name: `Forward`, cmd: `browser_forward`, action: (args) => {
+      App.browser_forward()
+    }},
+    {name: `Reload`, cmd: `browser_reload`, action: (args) => {
+      App.browser_reload()
+    }},
+
+    {name: App.separator_string},
+
+    {name: `New Tab`, cmd: `new_tab`, mode: `tabs`, action: (args) => {
+      App.new_tab()
+    }},
+    {name: `Unload`, cmd: `unload_tabs`, mode: `tabs`, action: (args) => {
+      App.unload_tabs(args.item)
+    }},
+    {name: `Duplicate`, cmd: `duplicate_tab`, mode: `tabs`, action: (args) => {
+      App.duplicate_tabs(args.item)
+    }},
+    {name: `Detach`, cmd: `detach_tabs`, mode: `tabs`, action: (args) => {
+      App.detach_tabs(args.item)
+    }},
+    {name: `Move To Top`, cmd: `tabs_to_top`, mode: `tabs`, action: (args) => {
+      App.move_tabs_vertically(`top`)
+    }},
+    {name: `Move To Bottom`, cmd: `tabs_to_bottom`, mode: `tabs`, action: (args) => {
+      App.move_tabs_vertically(`bottom`)
+    }},
+    {name: `Pin`, cmd: `pin_tabs`, mode: `tabs`, action: (args) => {
+      App.pin_tabs(args.item)
+    }},
+    {name: `Unpin`, cmd: `unpin_tabs`, mode: `tabs`, action: (args) => {
+      App.unpin_tabs(args.item)
+    }},
+    {name: `Toggle Pin`, cmd: `toggle_pin_tabs`, mode: `tabs`, action: (args) => {
+      App.toggle_pin_tabs(args.item)
+    }},
+    {name: `Mute`, cmd: `mute_tabs`, mode: `tabs`, action: (args) => {
+      App.mute_tabs(args.item)
+    }},
+    {name: `Unmute`, cmd: `unmute_tabs`, mode: `tabs`, action: (args) => {
+      App.unmute_tabs(args.item)
+    }},
+    {name: `Toggle Mute`, cmd: `toggle_mute_tabs`, mode: `tabs`, action: (args) => {
+      App.toggle_mute_tabs(args.item)
+    }},
+    {name: `Close`, cmd: `close_tabs`, mode: `tabs`, action: (args) => {
+      App.close_tabs(args.item)
+    }},
+    {name: `Close Normal`, cmd: `close_normal_tabs`, mode: `tabs`, action: (args) => {
+      App.close_normal_tabs()
+    }},
+    {name: `Close Duplicates`, cmd: `close_duplicate_tabs`, mode: `tabs`, action: (args) => {
+      App.close_duplicate_tabs()
+    }},
+    {name: `Go To Playing`, cmd: `go_to_playing_tab`, mode: `tabs`, action: (args) => {
+      App.go_to_playing_tab()
+    }},
+    {name: `Tabs Info`, cmd: `tabs_info`, mode: `tabs`, action: (args) => {
+      App.show_tabs_info()
+    }},
+    {name: `Undo Close`, cmd: `undo_close_tab`, action: (args) => {
+      App.undo_close_tab()
+    }},
+    {name: `Select Pins`, cmd: `select_pinned_tabs`, mode: `tabs`, action: (args) => {
+      App.select_pinned_tabs()
+    }},
+    {name: `Select Normal`, cmd: `select_normal_tabs`, mode: `tabs`, action: (args) => {
+      App.select_normal_tabs()
+    }},
+
+    {name: App.separator_string},
+
+    {name: `Filter Playing`, cmd: `filter_playing`, mode: `tabs`, action: (args) => {
+      App.change_filter_mode(args.mode, `playing`)
+    }},
+    {name: `Filter Edited`, cmd: `filter_edited`, mode: `items`, action: (args) => {
+      App.change_filter_mode(args.mode, `edited`)
+    }},
+    {name: `Filter Image`, cmd: `filter_image`, mode: `items`, action: (args) => {
+      App.change_filter_mode(args.mode, `image`)
+    }},
+    {name: `Filter Video`, cmd: `filter_video`, mode: `items`, action: (args) => {
+      App.change_filter_mode(args.mode, `video`)
+    }},
+    {name: `Filter Audio`, cmd: `filter_audio`, mode: `items`, action: (args) => {
+      App.change_filter_mode(args.mode, `audio`)
+    }},
+    ...color_filters,
+
+    {name: App.separator_string},
+
+    {name: `Edit Profiles`, cmd: `edit_profiles`, mode: `items`, action: (args) => {
+      App.edit_profiles(args.item)
+    }},
+    {name: `Add Tags`, cmd: `add_tags`, mode: `items`, action: (args) => {
+      App.add_tags(args.item)
+    }},
+    {name: `Add Notes`, cmd: `add_notes`, mode: `items`, action: (args) => {
+      App.add_notes(args.item)
+    }},
+    ...color_changers,
+
+    {name: App.separator_string},
+
+    {name: `Restart`, cmd: `restart_extension`, action: (args) => {
+      App.restart_extension()
+    }},
+  ]
+
   App.cmds = App.commands.filter(x => !x.name.startsWith(`--`)).map(x => x.cmd)
   App.sort_commands()
 }

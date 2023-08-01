@@ -205,7 +205,7 @@ App.text_with_value_focused = () => {
   return false
 }
 
-App.reload_extension = () => {
+App.restart_extension = () => {
   browser.runtime.reload()
 }
 

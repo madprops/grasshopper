@@ -383,6 +383,7 @@ App.check_item_icon = (item) => {
     let icon = App.get_img_icon(item)
     container.append(icon)
 
+
     if (item.color) {
       let c = App.colors[item.color]
       container.style.outline = `2px solid ${c}`
@@ -1328,24 +1329,9 @@ App.scroll = (mode, direction, fast = false) => {
   })
 }
 
-App.highlight_items = (mode = App.window_mode) => {
-  let what
-
-  if (App.highlights(mode)) {
-    what = false
-  }
-
+App.select_all = (mode = App.window_mode) => {
   for (let item of App.get_items(mode)) {
-    if (item.visible) {
-      if (what === undefined) {
-        what = !item.highlighted
-      }
-
-      App.toggle_highlight(item, what)
-    }
-    else {
-      App.toggle_highlight(item, false)
-    }
+    App.toggle_highlight(item, true)
   }
 }
 
@@ -1415,7 +1401,8 @@ App.on_item_window = (mode = App.window_mode) => {
 
 App.show_all = (mode = App.window_mode) => {
   if (App.is_filtered(mode)) {
-    App.set_filter_mode(mode, `all`)
+    App.set_filter_mode(mode, `all`, false)
+    App.set_filter(mode, ``)
   }
 }
 

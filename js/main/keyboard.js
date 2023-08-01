@@ -52,7 +52,7 @@ App.check_items_keyboard = (e) => {
     }
     else if (e.key === `a`) {
       if (!filtered) {
-        App.highlight_items()
+        App.select_all()
         e.preventDefault()
       }
 

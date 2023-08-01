@@ -37,7 +37,7 @@ App.setup_profile_editor = () => {
   colored_top: true})
 }
 
-App.show_profile_editor = (item, type, action = `edit`) => {
+App.get_profile_items = (item) => {
   let active = App.get_active_items(item.mode, item)
   active = App.remove_duplicates(active)
 
@@ -51,7 +51,12 @@ App.show_profile_editor = (item, type, action = `edit`) => {
     items.push(App.soft_copy_item(it))
   }
 
-  App.profile_editor_items = items
+  return items
+}
+
+App.show_profile_editor = (item, type, action = `edit`) => {
+  App.profile_editor_items = App.get_profile_items(item)
+  let items = App.profile_editor_items
   let [profiles, added] = App.get_profiles(items)
   App.profile_editor_profiles = profiles
   App.profile_editor_added = added
@@ -121,20 +126,6 @@ App.show_profile_editor = (item, type, action = `edit`) => {
   App.window_goto_top(`profile_editor`)
 }
 
-App.profile_editor_save = () => {
-  let items = App.profile_editor_items
-
-  if (items.length === 0) {
-    return
-  }
-
-  let force = App.check_force(undefined, items.length)
-
-  App.show_confirm(`Save profiles? (${items.length})`, () => {
-    App.do_profile_editor_save()
-  }, undefined, force)
-}
-
 App.get_empty_profile = (url) => {
   return {
     url: url,
@@ -178,25 +169,42 @@ App.get_input_tags = () => {
   return c_tags
 }
 
-App.do_profile_editor_save = () => {
-  let tags = App.get_input_tags()
-  let notes = App.double_linebreak(DOM.el(`#profile_editor_notes`).value)
-  let title = DOM.el(`#profile_editor_title`).value.trim()
-  let color = DOM.el(`#profile_editor_color`).value
+App.profile_editor_save = () => {
+  let items = App.profile_editor_items
 
-  if (color === `none`) {
-    color = ``
+  if (items.length === 0) {
+    return
+  }
+
+  let force = App.check_force(undefined, items.length)
+
+  App.show_confirm(`Save profiles? (${items.length})`, () => {
+    let args = {}
+    args.tags = App.get_input_tags()
+    args.notes = App.double_linebreak(DOM.el(`#profile_editor_notes`).value)
+    args.title = DOM.el(`#profile_editor_title`).value.trim()
+    args.color = DOM.el(`#profile_editor_color`).value
+    args.type = App.profile_editor_type
+    args.profiles = App.profile_editor_profiles
+    args.added = App.profile_editor_added
+    args.action = App.profile_editor_action
+    args.from = `editor`
+    App.save_profile(args)
+  }, undefined, force)
+}
+
+App.save_profile = (args) => {
+  if (args.color === `none`) {
+    args.color = ``
   }
 
   let urls = []
 
   function proc (profile, p_mode) {
-    let type = App.profile_editor_type
-
-    if (type === `all` || type === `tags`) {
+    if (args.type === `all` || args.type === `tags`) {
       let n_tags = []
 
-      if (p_mode === `edit` && App.profile_editor_action === `add`) {
+      if (p_mode === `edit` && args.action === `add`) {
         for (let tag of profile.tags) {
           if (!n_tags.includes(tag)) {
             n_tags.push(tag)
@@ -204,7 +212,7 @@ App.do_profile_editor_save = () => {
         }
       }
 
-      for (let tag of tags) {
+      for (let tag of args.tags) {
         if (!n_tags.includes(tag)) {
           n_tags.push(tag)
         }
@@ -213,22 +221,22 @@ App.do_profile_editor_save = () => {
       profile.tags = n_tags
     }
 
-    if (type === `all` || type === `notes`) {
-      let n_notes = notes
+    if (args.type === `all` || args.type === `notes`) {
+      let n_notes = args.notes
 
-      if (p_mode === `edit` && App.profile_editor_action === `add`) {
+      if (p_mode === `edit` && args.action === `add`) {
         n_notes = `${profile.notes}\n${n_notes}`.trim()
       }
 
       profile.notes = n_notes
     }
 
-    if (type === `all` || type === `title`) {
-      profile.title = title
+    if (args.type === `all` || args.type === `title`) {
+      profile.title = args.title
     }
 
-    if (type === `all` || type === `color`) {
-      profile.color = color
+    if (args.type === `all` || args.type === `color`) {
+      profile.color = args.color
     }
 
     App.profiles = App.profiles.filter(x => x.url !== profile.url)
@@ -245,22 +253,25 @@ App.do_profile_editor_save = () => {
   }
 
   // Added
-  if (App.profile_editor_added.length) {
-    for (let item of App.profile_editor_added) {
+  if (args.added.length) {
+    for (let item of args.added) {
       proc(App.get_empty_profile(item.url), `add`)
     }
   }
 
   // Edited
-  if (App.profile_editor_profiles.length) {
-    for (let profile of App.profile_editor_profiles) {
+  if (args.profiles.length) {
+    for (let profile of args.profiles) {
       proc(App.copy_profile(profile), `edit`)
     }
   }
 
   App.clean_profiles()
   App.stor_save_profiles()
-  App.hide_window()
+
+  if (args.from === `editor`) {
+    App.hide_window()
+  }
 
   for (let url of urls) {
     App.apply_profiles(url)
@@ -346,7 +357,7 @@ App.get_profiles = (items) => {
   return [profiles, add]
 }
 
-App.get_profile_items = () => {
+App.get_profile_menu_items = () => {
   let items = []
 
   items.push({
@@ -448,12 +459,14 @@ App.get_tag_items = (mode, action = `filter`) => {
     })
   }
   else {
-    items.push({
-      text: `All`,
-      action: () => {
-        App.remove_all_tags()
-      }
-    })
+    if (action === `remove`) {
+      items.push({
+        text: `All`,
+        action: () => {
+          App.remove_all_tags()
+        }
+      })
+    }
 
     for (let tag of tags) {
       items.push({
@@ -461,6 +474,7 @@ App.get_tag_items = (mode, action = `filter`) => {
         action: () => {
           if (action === `filter`) {
             App.set_custom_filter_mode(mode, `tag_${tag}`, tag)
+            App.set_filter(mode, ``)
           }
           else if (action === `remove`) {
             App.remove_tag(tag)
@@ -492,12 +506,14 @@ App.get_color_items = (mode, action = `filter`) => {
     return items
   }
 
-  items.push({
-    text: `All`,
-    action: () => {
-      App.remove_all_colors()
-    }
-  })
+  if (action === `remove`) {
+    items.push({
+      text: `All`,
+      action: () => {
+        App.remove_all_colors()
+      }
+    })
+  }
 
   for (let color in App.colors) {
     if (!count[color]) {
@@ -508,7 +524,7 @@ App.get_color_items = (mode, action = `filter`) => {
       text: App.capitalize(color),
       action: () => {
         if (action === `filter`) {
-          App.set_custom_filter_mode(mode, `color_${color}`, App.capitalize(color))
+          App.filter_color(mode, color)
         }
         else {
           App.remove_color(color)
@@ -550,6 +566,15 @@ App.clear_profiles_items = () => {
       text: `Remove Notes`,
       action: () => {
         App.remove_all_notes()
+      }
+    })
+  }
+
+  if (count.titles) {
+    items.push({
+      text: `Remove Titles`,
+      action: () => {
+        App.remove_all_titles()
       }
     })
   }
@@ -646,6 +671,28 @@ App.remove_all_notes = () => {
   })
 }
 
+App.remove_all_titles = () => {
+  let profiles = []
+
+  for (let profile of App.profiles) {
+    if (profile.title) {
+      profiles.push(profile)
+    }
+  }
+
+  if (profiles.length === 0) {
+    return
+  }
+
+  App.show_confirm(`Remove all titles? (${profiles.length})`, () => {
+    for (let profile of App.profiles) {
+      profile.title = ``
+    }
+
+    App.after_profile_remove()
+  })
+}
+
 App.remove_tag = (name) => {
   App.show_confirm(`Remove tag? (${name})`, () => {
     for (let profile of App.profiles) {
@@ -716,6 +763,7 @@ App.get_profile_count = () => {
   count.tags = 0
   count.notes = 0
   count.colors = 0
+  count.titles = 0
 
   for (let profile of App.profiles) {
     if (profile.tags.length) {
@@ -733,6 +781,10 @@ App.get_profile_count = () => {
 
       count[profile.color] += 1
       count.colors += 1
+    }
+
+    if (profile.title) {
+      count.titles += 1
     }
   }
 
@@ -888,4 +940,25 @@ App.insert_tag = (tag) => {
 App.show_profile_urls = () => {
   let s = App.profile_editor_items.map(x => x.url).join(`\n\n`)
   App.show_alert_2(s)
+}
+
+App.change_color = (item, color) => {
+  let items = App.get_profile_items(item)
+  let [profiles, added] = App.get_profiles(items)
+  let args = {}
+  args.color = color
+  args.profiles = profiles
+  args.added = added
+  args.type = `color`
+  args.from = `color_items`
+  let force = items.length === 1
+
+  App.show_confirm(`Color items ${color}? (${items.length})`, () => {
+    App.save_profile(args)
+  }, undefined, force)
+}
+
+App.filter_color = (mode, color) => {
+  App.set_custom_filter_mode(mode, `color_${color}`, App.capitalize(color))
+  App.set_filter(mode, ``)
 }
