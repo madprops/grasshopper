@@ -143,7 +143,7 @@ App.setup_window = () => {
       return
     }
 
-    if (App.get_setting(`autoselect`)) {
+    if (App.get_setting(`auto_restore`)) {
       clearInterval(App.refocus_timeout)
 
       App.refocus_timeout = setTimeout(() => {
