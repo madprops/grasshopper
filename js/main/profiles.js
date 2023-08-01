@@ -838,24 +838,35 @@ App.profiles_info = () => {
 }
 
 App.show_tag_picker = (e) => {
-  let tags = App.get_tags()
-  let input_tags = App.get_input_tags()
   let items = []
+  let tags = App.get_tags()
 
-  for (let tag of tags) {
-    if (input_tags.includes(tag)) {
-      continue
-    }
-
+  if (tags.length === 0) {
     items.push({
-      text: tag,
+      text: `No tags yet`,
       action: () => {
-        App.insert_tag(tag)
+        App.show_alert(`Add some tags first`)
       }
     })
+  }
+  else {
+    let input_tags = App.get_input_tags()
 
-    if (items.length >= App.max_tag_filters) {
-      break
+    for (let tag of tags) {
+      if (input_tags.includes(tag)) {
+        continue
+      }
+
+      items.push({
+        text: tag,
+        action: () => {
+          App.insert_tag(tag)
+        }
+      })
+
+      if (items.length >= App.max_tag_filters) {
+        break
+      }
     }
   }
 
