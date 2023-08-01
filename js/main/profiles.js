@@ -16,7 +16,7 @@ App.setup_profile_editor = () => {
       App.hide_window()
     })
 
-    DOM.ev(DOM.el(`#profile_editor_tag_pick`), `click`, (e) => {
+    DOM.ev(DOM.el(`#profile_editor_tag_add`), `click`, (e) => {
       App.show_tag_picker(e)
     })
 
