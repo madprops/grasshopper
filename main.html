@@ -69,18 +69,28 @@
           <div class="flex_row_center gap_1">
             <div>Tags</div>
             <div>|</div>
-            <div id="profile_editor_tag_add" class="underline action">Add</div>
+            <div id="profile_editor_tags_add" class="underline action">Add</div>
+            <div>|</div>
+            <div id="profile_editor_tags_clear" class="underline action">Clear</div>
           </div>
           <textarea autocomplete="off" spellcheck="false" id="profile_editor_tags" class="text editor_text" placeholder="One tag per line" rows="3"></textarea>
         </div>
 
         <div id="profile_editor_notes_container" class="flex_column_center gap_1">
-          <div>Notes</div>
+          <div class="flex_row_center gap_1">
+            <div>Notes</div>
+            <div>|</div>
+            <div id="profile_editor_notes_clear" class="underline action">Clear</div>
+          </div>
           <textarea autocomplete="off" spellcheck="false" id="profile_editor_notes" class="text editor_text" placeholder="Write something" rows="3"></textarea>
         </div>
 
         <div id="profile_editor_title_container" class="flex_column_center gap_1">
-          <div>Title</div>
+          <div class="flex_row_center gap_1">
+            <div>Title</div>
+            <div>|</div>
+            <div id="profile_editor_title_clear" class="underline action">Clear</div>
+          </div>
           <input type="text" autocomplete="off" spellcheck="false" id="profile_editor_title" class="text editor_text" placeholder="Set a fixed title">
         </div>
 

@@ -16,8 +16,20 @@ App.setup_profile_editor = () => {
       App.hide_window()
     })
 
-    DOM.ev(DOM.el(`#profile_editor_tag_add`), `click`, (e) => {
+    DOM.ev(DOM.el(`#profile_editor_tags_add`), `click`, (e) => {
       App.show_tag_picker(e)
+    })
+
+    DOM.ev(DOM.el(`#profile_editor_tags_clear`), `click`, (e) => {
+      App.profile_editor_clear(`tags`)
+    })
+
+    DOM.ev(DOM.el(`#profile_editor_notes_clear`), `click`, (e) => {
+      App.profile_editor_clear(`notes`)
+    })
+
+    DOM.ev(DOM.el(`#profile_editor_title_clear`), `click`, (e) => {
+      App.profile_editor_clear(`title`)
     })
 
     let color_select = DOM.el(`#profile_editor_color`)
@@ -868,4 +880,8 @@ App.insert_tag = (tag) => {
   el.value = `${value}\n${tag}`.trim()
   el.scrollTop = el.scrollHeight
   el.focus()
+}
+
+App.profile_editor_clear = (what) => {
+  DOM.el(`#profile_editor_${what}`).value = ``
 }
