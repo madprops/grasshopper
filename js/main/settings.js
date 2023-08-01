@@ -603,12 +603,12 @@ App.start_theme_settings = () => {
 
   App.settings_make_menu(`background_effect`, [
     [`None`, `none`],
-    [`Blur`, `blur`],
     [`Gray`, `grayscale`],
     [`Invert`, `invert`],
     [`Rotate 1`, `rotate_1`],
     [`Rotate 2`, `rotate_2`],
     [`Rotate 3`, `rotate_3`],
+    [`Blur`, `blur`],
   ], () => {
     App.apply_theme()
   })
