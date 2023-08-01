@@ -213,16 +213,6 @@ App.settings_setup_text = (container) => {
         }
 
         App.settings_do_action(action)
-      }, () => {
-        if (is_textarea) {
-          App.set_setting(setting, [])
-        }
-        else {
-          App.set_setting(setting, ``)
-        }
-
-        el.value = ``
-        App.settings_do_action(action)
       })
     })
   }
@@ -861,20 +851,13 @@ App.settings_data_items = () => {
   return items
 }
 
-App.reset_single_setting = (e, action, clear) => {
+App.reset_single_setting = (e, action) => {
   let items = []
 
   items.push({
     text: `Reset`,
     action: action,
   })
-
-  if (clear) {
-    items.push({
-      text: `Clear`,
-      action: clear,
-    })
-  }
 
   NeedContext.show(e.clientX, e.clientY, items)
   e.preventDefault()
