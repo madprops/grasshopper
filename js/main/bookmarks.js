@@ -3,6 +3,9 @@ App.setup_bookmarks = () => {
     {text: `BMark`, action: () => {
       App.bookmark_active()
     }},
+    {text: `Deep`, action: () => {
+      App.deep_search(`bookmarks`)
+    }},
     {text: `Media`, get_items: () => {
       return App.search_media(`bookmarks`)
     }},
@@ -43,7 +46,7 @@ App.setup_bookmarks = () => {
   App.setup_item_window(`bookmarks`)
 }
 
-App.get_bookmarks = async (query = ``) => {
+App.get_bookmarks = async (query = ``, deep = false) => {
   App.log(`Getting bookmarks`)
   let results = []
 
@@ -63,7 +66,13 @@ App.get_bookmarks = async (query = ``) => {
   b2.sort((a, b) => b.index - a.index)
   let bookmarks = [...b1, ...b2]
   App.last_bookmarks_query = query
-  return bookmarks.slice(0, App.max_items)
+  let max_items = App.max_items
+
+  if (deep) {
+    max_items = App.deep_max_items
+  }
+
+  return bookmarks.slice(0, max_items)
 }
 
 App.bookmarks_action = (item) => {

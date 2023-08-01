@@ -12,7 +12,7 @@ App.cancel_filter = () => {
   App.filter_debouncer.cancel()
 }
 
-App.do_filter = async (mode, force = false) => {
+App.do_filter = async (mode, force = false, deep = false) => {
   App.cancel_filter()
   App.log(`Filter: ${mode}`)
   let value = App.get_clean_filter(mode, false)
@@ -64,7 +64,7 @@ App.do_filter = async (mode, force = false) => {
     }
 
     if (force || (svalue !== App[`last_${mode}_query`])) {
-      await App.search_items(mode, svalue)
+      await App.search_items(mode, svalue, deep)
 
       if (App.active_mode !== mode) {
         return
@@ -368,7 +368,6 @@ App.get_filter_mode = (mode, name) => {
 }
 
 App.set_filter_mode = (mode, name, filter = true) => {
-  App.set_filter(mode, ``, false)
   let filter_mode = App.get_filter_mode(mode, name)
   App[`${mode}_filter_mode`] = filter_mode[0]
   DOM.el(`#${mode}_filter_modes_text`).textContent = filter_mode[1]
@@ -573,4 +572,21 @@ App.get_filter_refine = (mode) => {
   })
 
   return items
+}
+
+App.search_items = async (mode, query, deep) => {
+  let q = query || `Empty`
+  App.log(`Searching ${mode}: ${q}`)
+  let items = await App[`get_${mode}`](query, deep)
+
+  if (App.window_mode !== mode) {
+    return
+  }
+
+  App.process_info_list(mode, items)
+}
+
+App.deep_search = (mode) => {
+  App.set_filter_mode(mode, `all`, false)
+  App.do_filter(mode, true, true)
 }

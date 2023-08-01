@@ -1,5 +1,8 @@
 App.setup_history = () => {
   App.history_actions = [
+    {text: `Deep`, action: () => {
+      App.deep_search(`history`)
+    }},
     {text: `Media`, get_items: () => {
       return App.search_media(`history`)
     }},
@@ -14,19 +17,30 @@ App.setup_history = () => {
   })
 }
 
-App.history_time = () => {
-  return Date.now() - (1000 * 60 * 60 * 24 * 30 * App.history_max_months)
+App.history_time = (deep = false) => {
+  let months = App.history_max_months
+
+  if (deep) {
+    months = App.deep_history_max_months
+  }
+
+  return Date.now() - (1000 * 60 * 60 * 24 * 30 * months)
 }
 
-App.get_history = async (query = ``) => {
+App.get_history = async (query = ``, deep = false) => {
   App.log(`Getting history`)
   let results
+  let max_items = App.max_items
+
+  if (deep) {
+    max_items = App.deep_max_items
+  }
 
   try {
     results = await browser.history.search({
       text: query,
-      maxResults: App.max_items,
-      startTime: App.history_time()
+      maxResults: max_items,
+      startTime: App.history_time(deep)
     })
   }
   catch (err) {
