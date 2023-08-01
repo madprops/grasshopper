@@ -16,6 +16,10 @@ App.setup_profile_editor = () => {
       App.hide_window()
     })
 
+    DOM.ev(DOM.el(`#profile_editor_tag_pick`), `click`, (e) => {
+      App.show_tag_picker(e)
+    })
+
     let color_select = DOM.el(`#profile_editor_color`)
     let colors = [`none`, ...Object.keys(App.colors)]
 
@@ -145,16 +149,12 @@ App.copy_profile_obj = (profile) => {
   return obj
 }
 
-App.do_profile_editor_save = () => {
-  let tags = App.single_linebreak(DOM.el(`#profile_editor_tags`).value).split(`\n`)
-  let notes = App.double_linebreak(DOM.el(`#profile_editor_notes`).value)
-  let title = DOM.el(`#profile_editor_title`).value.trim()
-  let color = DOM.el(`#profile_editor_color`).value
+App.get_clean_tag_input = () => {
+  return App.single_linebreak(DOM.el(`#profile_editor_tags`).value)
+}
 
-  if (color === `none`) {
-    color = ``
-  }
-
+App.get_input_tags = () => {
+  let tags = App.get_clean_tag_input().split(`\n`)
   let c_tags = []
 
   for (let tag of tags) {
@@ -169,14 +169,26 @@ App.do_profile_editor_save = () => {
     }
   }
 
-  c_tags.sort()
+  return c_tags
+}
+
+App.do_profile_editor_save = () => {
+  let tags = App.get_input_tags()
+  let notes = App.double_linebreak(DOM.el(`#profile_editor_notes`).value)
+  let title = DOM.el(`#profile_editor_title`).value.trim()
+  let color = DOM.el(`#profile_editor_color`).value
+
+  if (color === `none`) {
+    color = ``
+  }
+
   let urls = []
 
   function proc (profile, p_mode) {
     let type = App.profile_editor_type
 
     if (type === `all` || type === `tags`) {
-      let n_tags = c_tags.slice(0)
+      let n_tags = tags.slice(0)
 
       if (p_mode === `edit` && App.profile_editor_action === `add`) {
         for (let tag of profile.tags) {
@@ -184,8 +196,6 @@ App.do_profile_editor_save = () => {
             n_tags.push(tag)
           }
         }
-
-        n_tags.sort()
       }
 
       profile.tags = n_tags
@@ -818,4 +828,37 @@ App.profiles_info = () => {
   s += ` This is saved locally and is not synced.`
   s += ` To backup or move this data use the Profiles Export/Import feature in the main menu.`
   App.show_alert_2(s)
+}
+
+App.show_tag_picker = (e) => {
+  let tags = App.get_tags()
+  let input_tags = App.get_input_tags()
+  let items = []
+
+  for (let tag of tags) {
+    if (input_tags.includes(tag)) {
+      continue
+    }
+
+    items.push({
+      text: tag,
+      action: () => {
+        App.insert_tag(tag)
+      }
+    })
+
+    if (items.length >= App.max_tag_filters) {
+      break
+    }
+  }
+
+  NeedContext.show(e.clientX, e.clientY, items)
+}
+
+App.insert_tag = (tag) => {
+  let el = DOM.el(`#profile_editor_tags`)
+  let value = App.get_clean_tag_input()
+  el.value = `${value}\n${tag}`.trim()
+  el.scrollTop = el.scrollHeight
+  el.focus()
 }
