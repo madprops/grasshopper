@@ -442,6 +442,13 @@ App.get_tag_items = (mode, action = `filter`) => {
     })
   }
   else {
+    items.push({
+      text: `All`,
+      action: () => {
+        App.remove_all_tags()
+      }
+    })
+
     for (let tag of tags) {
       items.push({
         text: tag,
@@ -478,6 +485,13 @@ App.get_color_items = (mode, action = `filter`) => {
 
     return items
   }
+
+  items.push({
+    text: `All`,
+    action: () => {
+      App.remove_all_colors()
+    }
+  })
 
   for (let color in App.colors) {
     if (!count[color]) {
@@ -518,23 +532,16 @@ App.clear_profiles_items = () => {
 
   if (count.tags) {
     items.push({
-      text: `Remove Tag`,
+      text: `Remove Tags`,
       get_items: () => {
         return App.get_tag_items(App.active_mode, `remove`)
-      }
-    })
-
-    items.push({
-      text: `Remove All Tags`,
-      action: () => {
-        App.remove_all_tags()
       }
     })
   }
 
   if (count.notes) {
     items.push({
-      text: `Remove All Notes`,
+      text: `Remove Notes`,
       action: () => {
         App.remove_all_notes()
       }
@@ -546,13 +553,6 @@ App.clear_profiles_items = () => {
       text: `Remove Color`,
       get_items: () => {
         return App.get_color_items(App.active_mode, `remove`)
-      }
-    })
-
-    items.push({
-      text: `Remove All Colors`,
-      action: () => {
-        App.remove_all_colors()
       }
     })
   }
@@ -840,33 +840,32 @@ App.show_tag_picker = (e) => {
   let items = []
   let tags = App.get_tags()
 
-  if (tags.length === 0) {
+  let input_tags = App.get_input_tags()
+
+  for (let tag of tags) {
+    if (input_tags.includes(tag)) {
+      continue
+    }
+
     items.push({
-      text: `No tags yet`,
+      text: tag,
       action: () => {
-        App.show_alert(`Add some tags first`)
+        App.insert_tag(tag)
       }
     })
-  }
-  else {
-    let input_tags = App.get_input_tags()
 
-    for (let tag of tags) {
-      if (input_tags.includes(tag)) {
-        continue
-      }
-
-      items.push({
-        text: tag,
-        action: () => {
-          App.insert_tag(tag)
-        }
-      })
-
-      if (items.length >= App.max_tag_filters) {
-        break
-      }
+    if (items.length >= App.max_tag_filters) {
+      break
     }
+  }
+
+  if (items.length === 0) {
+    items.push({
+      text: `No tags to add`,
+      action: () => {
+        App.show_alert(`Add some tags manually`)
+      }
+    })
   }
 
   NeedContext.show(e.clientX, e.clientY, items)
