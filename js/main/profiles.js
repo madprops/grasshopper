@@ -156,7 +156,7 @@ App.get_empty_profile = (url) => {
   }
 }
 
-App.copy_profile_obj = (profile) => {
+App.copy_profile = (profile) => {
   let obj = {}
   obj.url = profile.url
   obj.tags = profile.tags.slice(0)
@@ -265,7 +265,7 @@ App.do_profile_editor_save = () => {
   // Edited
   if (App.profile_editor_profiles.length) {
     for (let profile of App.profile_editor_profiles) {
-      proc(App.copy_profile_obj(profile), `edit`)
+      proc(App.copy_profile(profile), `edit`)
     }
   }
 
