@@ -887,14 +887,6 @@ App.insert_tag = (tag) => {
 }
 
 App.profile_editor_clear = (what) => {
-  let value
-
-  if (what === `color`) {
-    value = `none`
-  }
-  else {
-    value = ``
-  }
-
+  let value = what === `color` ? `none` : ``
   DOM.el(`#profile_editor_${what}`).value = value
 }
