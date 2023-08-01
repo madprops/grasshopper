@@ -102,7 +102,6 @@ App.show_profile_editor = (item, type, action = `edit`) => {
       let profile = profiles[0]
 
       if (action === `edit`) {
-        console.log(profile.tags)
         DOM.el(`#profile_editor_tags`).value = profile.tags.join(`\n`)
         DOM.el(`#profile_editor_notes`).value = profile.notes
       }
