@@ -20,6 +20,10 @@ App.setup_profile_editor = () => {
       App.show_tag_picker(e)
     })
 
+    DOM.ev(DOM.el(`#profile_editor_header`), `click`, (e) => {
+      App.show_profile_urls()
+    })
+
     let color_select = DOM.el(`#profile_editor_color`)
     let colors = [`none`, ...Object.keys(App.colors)]
 
@@ -41,13 +45,13 @@ App.show_profile_editor = (item, type, action = `edit`) => {
     return
   }
 
-  App.profile_editor_items = []
+  let items = []
 
   for (let it of active) {
-    App.profile_editor_items.push(App.soft_copy_item(it))
+    items.push(App.soft_copy_item(it))
   }
 
-  let items = App.profile_editor_items
+  App.profile_editor_items = items
   let [profiles, added] = App.get_profiles(items)
   App.profile_editor_profiles = profiles
   App.profile_editor_added = added
@@ -113,6 +117,8 @@ App.show_profile_editor = (item, type, action = `edit`) => {
   else {
     DOM.el(`#profile_editor_header`).textContent = `Editing ${items.length} Profiles`
   }
+
+  App.window_goto_top(`profile_editor`)
 }
 
 App.profile_editor_save = () => {
@@ -877,4 +883,9 @@ App.insert_tag = (tag) => {
   el.value = `${value}\n${tag}`.trim()
   el.scrollTop = el.scrollHeight
   el.focus()
+}
+
+App.show_profile_urls = () => {
+  let s = App.profile_editor_items.map(x => x.url).join(`\n\n`)
+  App.show_alert_2(s)
 }

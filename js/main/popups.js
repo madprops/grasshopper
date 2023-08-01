@@ -86,7 +86,9 @@ App.show_alert = (message, autohide_delay = 0, pre = true) => {
     msg.classList.remove(`pre`)
   }
 
-  msg.textContent = message
+  let text = App.make_html_safe(message)
+  text = text.replace(/\n/g, `<br>`)
+  msg.innerHTML = text
   App.show_popup(`alert`)
 
   if (autohide_delay > 0) {

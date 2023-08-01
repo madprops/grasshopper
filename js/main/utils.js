@@ -276,3 +276,7 @@ App.text_with_empty_lines = () => {
 
   return true
 }
+
+App.make_html_safe = (s) => {
+  return s.replace(/\</g, `&lt;`).replace(/\>/g, `&gt;`)
+}
