@@ -32,6 +32,10 @@ App.setup_profile_editor = () => {
       App.profile_editor_clear(`title`)
     })
 
+    DOM.ev(DOM.el(`#profile_editor_color_clear`), `click`, (e) => {
+      App.profile_editor_clear(`color`)
+    })
+
     let color_select = DOM.el(`#profile_editor_color`)
     let colors = [`none`, ...Object.keys(App.colors)]
 
@@ -883,5 +887,10 @@ App.insert_tag = (tag) => {
 }
 
 App.profile_editor_clear = (what) => {
-  DOM.el(`#profile_editor_${what}`).value = ``
+  if (what === `color`) {
+    DOM.el(`#profile_editor_${what}`).value = `none`
+  }
+  else {
+    DOM.el(`#profile_editor_${what}`).value = ``
+  }
 }
