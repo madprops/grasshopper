@@ -102,6 +102,7 @@ App.show_profile_editor = (item, type, action = `edit`) => {
       let profile = profiles[0]
 
       if (action === `edit`) {
+        console.log(profile.tags)
         DOM.el(`#profile_editor_tags`).value = profile.tags.join(`\n`)
         DOM.el(`#profile_editor_notes`).value = profile.notes
       }
@@ -188,13 +189,19 @@ App.do_profile_editor_save = () => {
     let type = App.profile_editor_type
 
     if (type === `all` || type === `tags`) {
-      let n_tags = tags.slice(0)
+      let n_tags = []
 
       if (p_mode === `edit` && App.profile_editor_action === `add`) {
         for (let tag of profile.tags) {
           if (!n_tags.includes(tag)) {
             n_tags.push(tag)
           }
+        }
+      }
+
+      for (let tag of tags) {
+        if (!n_tags.includes(tag)) {
+          n_tags.push(tag)
         }
       }
 
