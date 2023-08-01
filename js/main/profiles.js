@@ -887,10 +887,14 @@ App.insert_tag = (tag) => {
 }
 
 App.profile_editor_clear = (what) => {
+  let value
+
   if (what === `color`) {
-    DOM.el(`#profile_editor_${what}`).value = `none`
+    value = `none`
   }
   else {
-    DOM.el(`#profile_editor_${what}`).value = ``
+    value = ``
   }
+
+  DOM.el(`#profile_editor_${what}`).value = value
 }
