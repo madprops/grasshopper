@@ -135,6 +135,16 @@ App.get_empty_profile = (url) => {
   }
 }
 
+App.copy_profile_obj = (profile) => {
+  let obj = {}
+  obj.url = profile.url
+  obj.tags = profile.tags.slice(0)
+  obj.notes = profile.notes
+  obj.title = profile.title
+  obj.color = profile.color
+  return obj
+}
+
 App.do_profile_editor_save = () => {
   let tags = App.single_linebreak(DOM.el(`#profile_editor_tags`).value).split(`\n`)
   let notes = App.double_linebreak(DOM.el(`#profile_editor_notes`).value)
@@ -222,7 +232,7 @@ App.do_profile_editor_save = () => {
   // Edited
   if (App.profile_editor_profiles.length) {
     for (let profile of App.profile_editor_profiles) {
-      proc(profile, `edit`)
+      proc(App.copy_profile_obj(profile), `edit`)
     }
   }
 
