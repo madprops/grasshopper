@@ -1,6 +1,7 @@
 App.show_item_menu = async (item, x, y) => {
   let active = App.get_active_items(item.mode, item)
   let multiple = active.length > 1
+  let min_more_sep = 2
   let min_close_sep = 3
   let items = []
 
@@ -47,6 +48,12 @@ App.show_item_menu = async (item, x, y) => {
         action: () => {
           App.mute_tabs(item)
         }
+      })
+    }
+
+    if (items.length >= min_more_sep) {
+      items.push({
+        separator: true
       })
     }
 
