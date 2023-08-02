@@ -33,8 +33,25 @@ App.setup_profile_editor = () => {
       option.textContent = App.capitalize(color)
       color_select.append(option)
     }
+
+    DOM.ev(color_select, `change`, () => {
+      App.set_color_icons(color_select.value)
+    })
   },
   colored_top: true})
+}
+
+App.set_color_icons = (color) => {
+  let icon = App.color_emojis[color]
+
+  if (icon) {
+    DOM.el(`#profile_editor_color_icon_1`).textContent = icon
+    DOM.el(`#profile_editor_color_icon_2`).textContent = icon
+  }
+  else {
+    DOM.el(`#profile_editor_color_icon_1`).textContent = ``
+    DOM.el(`#profile_editor_color_icon_2`).textContent = ``
+  }
 }
 
 App.get_profile_items = (item) => {
@@ -97,6 +114,9 @@ App.show_profile_editor = (item, type, action = `edit`) => {
   DOM.el(`#profile_editor_title`).value = ``
   DOM.el(`#profile_editor_color`).value = `none`
 
+  DOM.el(`#profile_editor_color_icon_1`).textContent = ``
+  DOM.el(`#profile_editor_color_icon_2`).textContent = ``
+
   if (items.length === 1 && profiles.length === 1) {
     DOM.el(`#profile_editor_remove`).classList.remove(`hidden`)
   }
@@ -117,6 +137,7 @@ App.show_profile_editor = (item, type, action = `edit`) => {
 
       DOM.el(`#profile_editor_title`).value = profile.title
       DOM.el(`#profile_editor_color`).value = profile.color || `none`
+      App.set_color_icons(profile.color)
     }
   }
   else {
