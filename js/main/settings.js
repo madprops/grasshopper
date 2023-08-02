@@ -313,14 +313,12 @@ App.filter_settings = () => {
 
 App.do_filter_settings = () => {
   App.filter_settings_debouncer.cancel()
-  let category = App.get_setting_category()
-  App.do_filter_2(`settings_${category}`)
+  App.do_filter_2(`settings_${App.settings_category}`)
 }
 
 App.clear_settings_filter = () => {
   if (App.settings_filter_focused()) {
-    let category = App.get_setting_category()
-    let mode = `settings_${category}`
+    let mode = `settings_${App.settings_category}`
 
     if (App.filter_has_value(mode)) {
       App.set_filter(mode, ``)
@@ -342,8 +340,7 @@ App.setup_settings = () => {
     persistent: false,
     colored_top: true,
     after_show: () => {
-      let category = App.get_setting_category()
-      DOM.el(`#settings_${category}_filter`).focus()
+      DOM.el(`#settings_${App.settings_category}_filter`).focus()
     },
     on_hide: () => {
       App.apply_theme()
@@ -755,7 +752,7 @@ App.show_next_settings = () => {
 }
 
 App.settings_index = () => {
-  return App.settings_categories.indexOf(App.get_setting_category())
+  return App.settings_categories.indexOf(App.settings_category)
 }
 
 App.show_settings_menu = () => {
@@ -975,20 +972,15 @@ App.tab_warn_opts = [
   [`Special`, `special`],
 ]
 
-App.get_setting_category = () => {
-  return App.window_mode.replace(`settings_`, ``)
-}
-
 App.on_settings_window = (mode) => {
   return mode.startsWith(`settings_`)
 }
 
 App.settings_menu_items = (action = `normal`) => {
   let items = []
-  let current = App.get_setting_category()
 
   for (let c of App.settings_categories) {
-    let selected = c === current
+    let selected = c === App.settings_category
 
     items.push({
       text: App.capitalize(c),
