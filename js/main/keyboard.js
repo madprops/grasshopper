@@ -350,7 +350,12 @@ App.setup_keyboard = () => {
       return
     }
     else if (App.on_media()) {
-      if (e.key === `ArrowLeft`) {
+      if (e.key === `Escape`) {
+        App.hide_window()
+        e.preventDefault()
+        return
+      }
+      else if (e.key === `ArrowLeft`) {
         App.media_prev()
         e.preventDefault()
         return
