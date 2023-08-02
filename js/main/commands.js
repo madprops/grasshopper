@@ -3,7 +3,7 @@ App.setup_commands = () => {
 
   for (let color in App.colors) {
     let icon = App.color_emojis[color]
-    let name = `Color ${App.capitalize(color)} ${icon}`.trim()
+    let name = `Filter ${App.capitalize(color)} ${icon}`.trim()
 
     color_filters.push({name: name, cmd: `filter_${color}`, mode: `items`, action: (args) => {
       App.filter_color(args.mode, color)
