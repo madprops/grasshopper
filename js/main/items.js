@@ -1543,7 +1543,7 @@ App.pick_item = (item) => {
     }
   }
 
-  App.select(item, false)
+  App.select_item(item, `none`, false)
   App.toggle_highlight(item)
 }
 
