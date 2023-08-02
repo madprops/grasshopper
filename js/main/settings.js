@@ -755,7 +755,7 @@ App.get_size_options = () => {
 }
 
 App.show_settings = () => {
-  App.show_window(`settings_general`)
+  App.show_settings_category(`general`)
 }
 
 App.show_settings_category = (category) => {
