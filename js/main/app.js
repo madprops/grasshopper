@@ -54,3 +54,9 @@ App.colors = {
   blue: `rgb(77, 77, 255)`,
   yellow: `rgb(255, 255, 77)`,
 }
+App.color_emojis = {
+  red: `🔴`,
+  green: `🟢`,
+  blue: `🔵`,
+  yellow: `🟡`,
+}

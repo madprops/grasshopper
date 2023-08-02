@@ -2,7 +2,10 @@ App.setup_commands = () => {
   let color_filters = []
 
   for (let color in App.colors) {
-    color_filters.push({name: `Filter ${App.capitalize(color)}`, cmd: `filter_${color}`, mode: `items`, action: (args) => {
+    let icon = App.color_emojis[color]
+    let name = `Color ${App.capitalize(color)} ${icon}`.trim()
+
+    color_filters.push({name: name, cmd: `filter_${color}`, mode: `items`, action: (args) => {
       App.filter_color(args.mode, color)
     }})
   }
@@ -10,7 +13,10 @@ App.setup_commands = () => {
   let color_changers = []
 
   for (let color in App.colors) {
-    color_changers.push({name: `Color ${App.capitalize(color)}`, cmd: `color_${color}`, mode: `items`, action: (args) => {
+    let icon = App.color_emojis[color]
+    let name = `Color ${App.capitalize(color)} ${icon}`.trim()
+
+    color_changers.push({name: name, cmd: `color_${color}`, mode: `items`, action: (args) => {
       App.change_color(args.item, color)
     }})
   }
@@ -18,7 +24,10 @@ App.setup_commands = () => {
   let media_filters = []
 
   for (let media of App.media_types) {
-    media_filters.push({name: `Filter ${App.capitalize(media)}`, cmd: `filter_${media}`, mode: `items`, action: (args) => {
+    let icon = App.get_setting(`${media}_icon`) || ``
+    let name = `Filter ${App.capitalize(media)} ${icon}`.trim()
+
+    media_filters.push({name: name, cmd: `filter_${media}`, mode: `items`, action: (args) => {
       App.change_filter_mode(args.mode, media)
     }})
   }
@@ -102,13 +111,13 @@ App.setup_commands = () => {
 
     {name: App.separator_string},
 
-    {name: `Back`, cmd: `browser_back`, action: (args) => {
+    {name: `Back ⬅️`, cmd: `browser_back`, action: (args) => {
       App.browser_back()
     }},
-    {name: `Forward`, cmd: `browser_forward`, action: (args) => {
+    {name: `Forward ➡️`, cmd: `browser_forward`, action: (args) => {
       App.browser_forward()
     }},
-    {name: `Reload`, cmd: `browser_reload`, action: (args) => {
+    {name: `Reload 🔃`, cmd: `browser_reload`, action: (args) => {
       App.browser_reload()
     }},
 
@@ -204,7 +213,7 @@ App.setup_commands = () => {
 
     {name: App.separator_string},
 
-    {name: `Restart`, cmd: `restart_extension`, action: (args) => {
+    {name: `Restart 🤖`, cmd: `restart_extension`, action: (args) => {
       App.restart_extension()
     }},
   ]
