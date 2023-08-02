@@ -52,7 +52,7 @@ App.show_main_menu = (mode) => {
   items.push({
     text: `Settings`,
     get_items: () => {
-      return App.settings_menu_items()
+      return App.settings_menu_items(`main_menu`)
     }
   })
 

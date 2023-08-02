@@ -523,6 +523,7 @@ App.get_setting_title = (category) => {
 App.add_settings_switchers = (category) => {
   let buttons = DOM.el(`#window_top_settings_${category}`)
   let title = DOM.el(`.settings_title`, buttons)
+  title.id = `settings_title_${category}`
   title.textContent = App.get_setting_title(category)
 
   let prev = DOM.create(`div`, `button arrow_prev`)
@@ -541,11 +542,11 @@ App.add_settings_switchers = (category) => {
   })
 
   DOM.ev(title, `click`, () => {
-    App.show_settings_menu(category, title)
+    App.show_settings_menu()
   })
 
   DOM.ev(title, `contextmenu`, (e) => {
-    App.show_settings_menu(category, title)
+    App.show_settings_menu()
     e.preventDefault()
   })
 
@@ -727,6 +728,7 @@ App.show_settings = () => {
 }
 
 App.show_settings_window = (category) => {
+  App.settings_category = category
   App.show_window(`settings_${category}`)
 }
 
@@ -756,7 +758,10 @@ App.settings_index = () => {
   return App.settings_categories.indexOf(App.get_setting_category())
 }
 
-App.show_settings_menu = (category, btn) => {
+App.show_settings_menu = () => {
+  let category = App.settings_category
+  let btn = DOM.el(`#settings_title_${category}`)
+
   let items = []
 
   items.push({
@@ -816,11 +821,11 @@ App.restart_settings = (type = `normal`) => {
   App.apply_theme()
   App.refresh_gestures()
 
-  if (type === `normal`) {
-    App.show_settings()
+  if (App.on_item_window() || type === `sync`) {
+    App.show_mode(App.active_mode)
   }
   else {
-    App.show_first_window()
+    App.show_settings()
   }
 }
 
@@ -842,7 +847,7 @@ App.settings_data_items = () => {
   })
 
   items.push({
-    text: `Reset All`,
+    text: `Reset`,
     action: () => {
       App.reset_all_settings()
     }
@@ -978,7 +983,7 @@ App.on_settings_window = (mode) => {
   return mode.startsWith(`settings_`)
 }
 
-App.settings_menu_items = () => {
+App.settings_menu_items = (action = `normal`) => {
   let items = []
   let current = App.get_setting_category()
 
@@ -991,6 +996,17 @@ App.settings_menu_items = () => {
         App.show_settings_window(c)
       },
       selected: selected,
+    })
+  }
+
+  if (action === `main_menu`) {
+    items.push({separator: true})
+
+    items.push({
+      text: `Data`,
+      get_items: () => {
+        return App.settings_data_items()
+      },
     })
   }
 
