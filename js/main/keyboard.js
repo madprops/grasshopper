@@ -432,7 +432,7 @@ App.setup_keyboard = () => {
 
       return
     }
-    else if (App.on_items(true)) {
+    else if (App.on_items()) {
       App.check_items_keyboard(e)
     }
   })
