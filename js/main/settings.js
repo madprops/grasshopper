@@ -720,7 +720,7 @@ App.reset_settings = (category) => {
     }
 
     App.apply_theme()
-    App.show_window(`settings_${category}`)
+    App.show_settings_category(category)
   })
 }
 
