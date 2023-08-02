@@ -89,7 +89,7 @@ NeedContext.show = (x, y, items, root = true) => {
   if (!root) {
     let el = document.createElement(`div`)
     el.classList.add(`needcontext-back`)
-    el.textContent = `Back`
+    el.innerHTML = `⬅️&nbsp;&nbsp;Back`
 
     el.addEventListener(`click`, () => {
       NeedContext.go_back()
@@ -369,13 +369,10 @@ NeedContext.init = () => {
       padding-right: 10px;
       padding-top: 3px;
       padding-bottom: 3px;
-      font-weight: bold;
-      opacity: 0.7;
-      font-size 0.9rem;
     }
 
     .needcontext-back:hover {
-      text-decoration: underline;
+      text-shadow: 0 0 1rem currentColor;
     }
 
     .needcontext-separator {
