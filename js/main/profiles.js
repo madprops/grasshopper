@@ -24,6 +24,14 @@ App.setup_profile_editor = () => {
       App.show_profile_urls()
     })
 
+    DOM.ev(DOM.el(`#profile_editor_color_icon_1`), `click`, () => {
+      App.prev_color_select()
+    })
+
+    DOM.ev(DOM.el(`#profile_editor_color_icon_2`), `click`, () => {
+      App.next_color_select()
+    })
+
     let color_select = DOM.el(`#profile_editor_color`)
     let colors = [`none`, ...Object.keys(App.colors)]
 
@@ -39,19 +47,6 @@ App.setup_profile_editor = () => {
     })
   },
   colored_top: true})
-}
-
-App.set_color_icons = (color) => {
-  let icon = App.color_emojis[color]
-
-  if (icon) {
-    DOM.el(`#profile_editor_color_icon_1`).textContent = icon
-    DOM.el(`#profile_editor_color_icon_2`).textContent = icon
-  }
-  else {
-    DOM.el(`#profile_editor_color_icon_1`).textContent = ``
-    DOM.el(`#profile_editor_color_icon_2`).textContent = ``
-  }
 }
 
 App.get_profile_items = (item) => {
@@ -113,9 +108,7 @@ App.show_profile_editor = (item, type, action = `edit`) => {
   DOM.el(`#profile_editor_notes`).value = ``
   DOM.el(`#profile_editor_title`).value = ``
   DOM.el(`#profile_editor_color`).value = `none`
-
-  DOM.el(`#profile_editor_color_icon_1`).textContent = ``
-  DOM.el(`#profile_editor_color_icon_2`).textContent = ``
+  App.set_color_icons(`none`)
 
   if (items.length === 1 && profiles.length === 1) {
     DOM.el(`#profile_editor_remove`).classList.remove(`hidden`)
@@ -949,4 +942,45 @@ App.change_color = (item, color) => {
 App.filter_color = (mode, color) => {
   App.set_custom_filter_mode(mode, `color_${color}`, App.capitalize(color))
   App.set_filter(mode, ``)
+}
+
+App.prev_color_select = () => {
+  let color_select = DOM.el(`#profile_editor_color`)
+  let colors = [`none`, ...Object.keys(App.colors)]
+  let index = colors.indexOf(color_select.value)
+  index--
+
+  if (index < 0) {
+    index = colors.length - 1
+  }
+
+  color_select.value = colors[index]
+  App.set_color_icons(color_select.value)
+}
+
+App.next_color_select = () => {
+  let color_select = DOM.el(`#profile_editor_color`)
+  let colors = [`none`, ...Object.keys(App.colors)]
+  let index = colors.indexOf(color_select.value)
+  index++
+
+  if (index >= colors.length) {
+    index = 0
+  }
+
+  color_select.value = colors[index]
+  App.set_color_icons(color_select.value)
+}
+
+App.set_color_icons = (color) => {
+  if (!color) {
+    color = `none`
+  }
+
+  let icon = App.color_emojis[color]
+
+  if (icon) {
+    DOM.el(`#profile_editor_color_icon_1`).textContent = icon
+    DOM.el(`#profile_editor_color_icon_2`).textContent = icon
+  }
 }
