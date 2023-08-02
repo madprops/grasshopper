@@ -404,10 +404,12 @@ App.export_profiles = () => {
 
 App.import_profiles = () => {
   App.import_data((json) => {
-    App.profiles = json
-    App.check_profiles()
-    App.stor_save_profiles()
-    App.show_mode(App.active_mode)
+    if (App.is_array(json)) {
+      App.profiles = json
+      App.check_profiles()
+      App.stor_save_profiles()
+      App.show_mode(App.active_mode)
+    }
   })
 }
 

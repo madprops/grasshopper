@@ -269,3 +269,7 @@ App.is_object = (o) => {
 
   return false
 }
+
+App.is_array = (a) => {
+  return Array.isArray(a)
+}
