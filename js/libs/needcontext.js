@@ -70,9 +70,12 @@ NeedContext.show_on_element = (el, items, expand = false, margin = 0) => {
 }
 
 // Show the menu
-NeedContext.show = (x, y, items) => {
+NeedContext.show = (x, y, items, root = true) => {
   if (!NeedContext.created) {
     NeedContext.create()
+  }
+
+  if (root) {
     NeedContext.level = 0
   }
 
@@ -83,7 +86,7 @@ NeedContext.show = (x, y, items) => {
   c.innerHTML = ``
   let index = 0
 
-  if (NeedContext.level > 0) {
+  if (!root) {
     let el = document.createElement(`div`)
     el.classList.add(`needcontext-back`)
     el.textContent = `Back`
@@ -135,6 +138,7 @@ NeedContext.show = (x, y, items) => {
   }
 
   NeedContext.layers[NeedContext.level] = {
+    root: root,
     items: items,
     normal_items: normal_items,
     x: x,
@@ -278,7 +282,7 @@ NeedContext.select_action = async (e, index = NeedContext.index, mode = `mouse`)
       y = e.clientY
     }
 
-    NeedContext.show(x, y, items)
+    NeedContext.show(x, y, items, false)
   }
 
   NeedContext.hide()
@@ -501,14 +505,17 @@ NeedContext.create = () => {
   NeedContext.created = true
 }
 
+// Current layer
 NeedContext.get_layer = () => {
   return NeedContext.layers[NeedContext.level]
 }
 
+// Previous layer
 NeedContext.prev_layer = () => {
   return NeedContext.layers[NeedContext.level - 1]
 }
 
+// Go back to previous layer
 NeedContext.go_back = () => {
   if (NeedContext.level === 0) {
     return
@@ -516,7 +523,7 @@ NeedContext.go_back = () => {
 
   let layer = NeedContext.prev_layer()
   NeedContext.level -= 1
-  NeedContext.show(layer.x, layer.y, layer.items)
+  NeedContext.show(layer.x, layer.y, layer.items, layer.root)
 }
 
 // Start
