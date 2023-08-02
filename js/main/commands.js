@@ -111,13 +111,13 @@ App.setup_commands = () => {
 
     {name: App.separator_string},
 
-    {name: `Back ⬅️`, cmd: `browser_back`, action: (args) => {
+    {name: `Back`, cmd: `browser_back`, action: (args) => {
       App.browser_back()
     }},
-    {name: `Forward ➡️`, cmd: `browser_forward`, action: (args) => {
+    {name: `Forward`, cmd: `browser_forward`, action: (args) => {
       App.browser_forward()
     }},
-    {name: `Reload 🔃`, cmd: `browser_reload`, action: (args) => {
+    {name: `Reload`, cmd: `browser_reload`, action: (args) => {
       App.browser_reload()
     }},
 
