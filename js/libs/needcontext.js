@@ -14,6 +14,7 @@ NeedContext.after_hide = () => {}
 NeedContext.min_width = `25px`
 NeedContext.min_height = `25px`
 NeedContext.back_text = `⬅️&nbsp;&nbsp;Back`
+NeedContext.item_sep = `4px`
 NeedContext.layers = {}
 NeedContext.level = 0
 
@@ -338,7 +339,6 @@ NeedContext.init = () => {
       font-family: sans-serif;
       display: flex;
       flex-direction: column;
-      gap: 3px;
       user-select: none;
       border: 1px solid #2B2F39;
       border-radius: 5px;
@@ -362,15 +362,15 @@ NeedContext.init = () => {
     .needcontext-normal {
       padding-left: 10px;
       padding-right: 10px;
-      padding-top: 3px;
-      padding-bottom: 3px;
+      padding-top: ${NeedContext.item_sep};
+      padding-bottom: ${NeedContext.item_sep};
     }
 
     .needcontext-back {
       padding-left: 10px;
       padding-right: 10px;
-      padding-top: 3px;
-      padding-bottom: 3px;
+      padding-top: ${NeedContext.item_sep};
+      padding-bottom: ${NeedContext.item_sep};
     }
 
     .needcontext-back:hover {
@@ -381,8 +381,8 @@ NeedContext.init = () => {
       border-top: 1px solid currentColor;
       margin-left: 10px;
       margin-right: 10px;
-      margin-top: 3px;
-      margin-bottom: 3px;
+      margin-top: ${NeedContext.item_sep};
+      margin-bottom: ${NeedContext.item_sep};
       opacity: 0.7;
     }
 

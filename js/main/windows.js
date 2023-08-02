@@ -132,10 +132,6 @@ App.raise_window = (mode) => {
 }
 
 App.setup_window = () => {
-  DOM.ev(window, `blur`, () => {
-    NeedContext.hide()
-  })
-
   DOM.ev(document.documentElement, `mouseleave`, () => {
     App.item_range_on = false
 
