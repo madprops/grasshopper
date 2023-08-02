@@ -1,6 +1,6 @@
 App.create_step_back_button = (mode) => {
   let btn = DOM.create(`div`, `button icon_button`, `${mode}_back`)
-  btn.title = `Step Back (Ctrl + Backspace)`
+  btn.title = `Step Back (Ctrl + Backspace | Esc)`
   btn.append(App.create_icon(`back`))
 
   DOM.ev(btn, `click`, (e) => {
