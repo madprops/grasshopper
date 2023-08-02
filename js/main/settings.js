@@ -1057,7 +1057,7 @@ App.random_theme = () => {
   App.set_setting(`background_color`, c1)
   App.set_setting(`text_color`, c2)
   App.set_setting(`background_effect`, `none`)
-  App.set_setting(`background_tiles`, `200px`)
+  App.set_setting(`background_tiles`, `${App.seed_canvas_size}px`)
   let seed = App.random_sequence(8)
   App.set_setting(`background_image`, `seed:${seed}`)
   App.apply_theme()

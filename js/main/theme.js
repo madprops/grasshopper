@@ -64,8 +64,8 @@ App.apply_theme = () => {
       if (bg_img.startsWith(`seed:`)) {
         let seed = bg_img.split(`:`)[1]
         let canvas = DOM.create(`canvas`)
-        canvas.width = 200
-        canvas.height = 200
+        canvas.width = App.seed_canvas_size
+        canvas.height = App.seed_canvas_size
         jdenticon.update(canvas, seed)
 
         canvas.toBlob(
