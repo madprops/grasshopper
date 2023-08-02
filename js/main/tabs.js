@@ -444,7 +444,6 @@ App.show_tabs_info = () => {
   let unloaded = App.get_unloaded_tabs().length
 
   let s = ``
-  s += `Tab Count:\n\n`
   s += `All: ${all}\n`
   s += `Pins: ${pins}\n`
   s += `Normal: ${normal}\n`
