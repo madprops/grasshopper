@@ -15,6 +15,14 @@ App.setup_commands = () => {
     }})
   }
 
+  let media_filters = []
+
+  for (let media of App.media_types) {
+    media_filters.push({name: `Filter ${App.capitalize(media)}`, cmd: `filter_${media}`, mode: `items`, action: (args) => {
+      App.change_filter_mode(args.mode, media)
+    }})
+  }
+
   App.commands = [
     {name: `Go To Top`, cmd: `go_to_top`, mode: `items`, action: (args) => {
       App.goto_top()
@@ -178,15 +186,7 @@ App.setup_commands = () => {
     {name: `Filter Edited`, cmd: `filter_edited`, mode: `items`, action: (args) => {
       App.change_filter_mode(args.mode, `edited`)
     }},
-    {name: `Filter Image`, cmd: `filter_image`, mode: `items`, action: (args) => {
-      App.change_filter_mode(args.mode, `image`)
-    }},
-    {name: `Filter Video`, cmd: `filter_video`, mode: `items`, action: (args) => {
-      App.change_filter_mode(args.mode, `video`)
-    }},
-    {name: `Filter Audio`, cmd: `filter_audio`, mode: `items`, action: (args) => {
-      App.change_filter_mode(args.mode, `audio`)
-    }},
+    ...media_filters,
     ...color_filters,
 
     {name: App.separator_string},
@@ -282,14 +282,11 @@ App.check_command = (command, args) => {
   }
 
   if (args.item) {
-    if (args.item.image) {
-      args.media = `image`
-    }
-    else if (args.item.video) {
-      args.media = `video`
-    }
-    else if (args.item.audio) {
-      args.media = `audio`
+    for (let media of App.media_types) {
+      if (args.item[media]) {
+        args.media = media
+        break
+      }
     }
   }
 
