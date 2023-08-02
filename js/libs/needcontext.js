@@ -90,6 +90,7 @@ NeedContext.show = (x, y, items, root = true) => {
     let el = document.createElement(`div`)
     el.classList.add(`needcontext-back`)
     el.innerHTML = `⬅️&nbsp;&nbsp;Back`
+    el.title = `Shortcut: Backspace`
 
     el.addEventListener(`click`, () => {
       NeedContext.go_back()
