@@ -98,8 +98,7 @@ App.build_default_settings = () => {
   App.default_settings = obj
 }
 
-App.settings_background_effects_opts =
-[
+App.settings_background_effects_opts = [
   [`None`, `none`],
   [`Gray`, `grayscale`],
   [`Invert`, `invert`],
@@ -109,8 +108,7 @@ App.settings_background_effects_opts =
   [`Blur`, `blur`],
 ]
 
-App.settings_background_tiles_opts =
-[
+App.settings_background_tiles_opts = [
   [`None`, `none`],
   [`50px`, `50px`],
   [`100px`, `100px`],
