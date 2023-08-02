@@ -818,7 +818,7 @@ App.restart_settings = (type = `normal`) => {
   App.apply_theme()
   App.refresh_gestures()
 
-  if (App.on_item_window() || type === `sync`) {
+  if (App.on_items() || type === `sync`) {
     App.show_mode(App.active_mode)
   }
   else {

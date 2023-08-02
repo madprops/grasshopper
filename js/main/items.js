@@ -721,7 +721,7 @@ App.intersection_observer = (mode, options) => {
 App.get_last_window_value = (cycle) => {
   let last_mode = App.window_mode
 
-  if (!App.on_item_window(last_mode)) {
+  if (!App.on_items(last_mode)) {
     last_mode = `tabs`
   }
 
@@ -1395,10 +1395,6 @@ App.get_mode_name = (mode) => {
   return App.capitalize(mode)
 }
 
-App.on_item_window = (mode = App.window_mode) => {
-  return App.mode_order.includes(mode)
-}
-
 App.show_all = (mode = App.window_mode) => {
   if (App.is_filtered(mode)) {
     App.set_filter_mode(mode, `all`, false)
@@ -1481,8 +1477,14 @@ App.copy_title = (item) => {
   App.copy_to_clipboard(title, `Title`)
 }
 
-App.on_items = (mode = App.window_mode) => {
-  return App.on_item_window(mode) && !App.popup_open()
+App.on_items = (mode = App.window_mode, check_popups = false) => {
+  let on_items = App.modes.includes(mode)
+
+  if (on_items && check_popups) {
+    on_items = !App.popup_open()
+  }
+
+  return on_items
 }
 
 App.get_next_item = (mode) => {

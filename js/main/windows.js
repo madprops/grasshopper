@@ -115,7 +115,7 @@ App.hide_all_windows = () => {
 App.show_window = (mode) => {
   App.log(`Show Window: ${mode}`)
 
-  if (App.on_item_window(mode)) {
+  if (App.on_items(mode)) {
     App.show_mode(mode)
   }
   else {
@@ -151,7 +151,7 @@ App.setup_window = () => {
           return
         }
 
-        if (App.on_item_window()) {
+        if (App.on_items()) {
           App.dehighlight(App.window_mode, `up`)
           App.show_all()
 
@@ -182,7 +182,7 @@ App.window_goto_bottom = (mode) => {
 }
 
 App.hide_window = () => {
-  if (App.on_item_window()) {
+  if (App.on_items()) {
     return
   }
 

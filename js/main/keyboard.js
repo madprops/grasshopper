@@ -315,8 +315,7 @@ App.setup_keyboard = () => {
 
       return
     }
-
-    if (App.on_settings()) {
+    else if (App.on_settings()) {
       if (e.key === `Escape`) {
         if (App.settings_filter_focused()) {
           App.clear_settings_filter()
@@ -347,6 +346,8 @@ App.setup_keyboard = () => {
         App.filter_settings()
         return
       }
+
+      return
     }
     else if (App.on_media()) {
       if (e.key === `ArrowLeft`) {
@@ -380,6 +381,8 @@ App.setup_keyboard = () => {
         e.preventDefault()
         return
       }
+
+      return
     }
     else if (mode === `about`) {
       if (e.key === `Escape`) {
@@ -398,9 +401,16 @@ App.setup_keyboard = () => {
         App.filter_about()
         return
       }
+
+      return
     }
     else if (mode === `profile_editor`) {
-      if (e.key === `Enter`) {
+      if (e.key === `Escape`) {
+        App.hide_window()
+        e.preventDefault()
+        return
+      }
+      else if (e.key === `Enter`) {
         if (App.text_with_value_focused()) {
           if (App.text_with_empty_lines()) {
             App.profile_editor_save()
@@ -414,17 +424,11 @@ App.setup_keyboard = () => {
           return
         }
       }
-    }
 
-    if (App.on_item_window()) {
-      App.check_items_keyboard(e)
+      return
     }
-    else {
-      if (e.key === `Escape`) {
-        App.hide_window()
-        e.preventDefault()
-        return
-      }
+    else if (App.on_items(true)) {
+      App.check_items_keyboard(e)
     }
   })
 }

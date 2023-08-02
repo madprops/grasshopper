@@ -204,7 +204,7 @@ App.set_filter = (mode, text, filter = true) => {
   App.focus_filter(mode)
 
   if (filter) {
-    if (App.on_item_window(mode)) {
+    if (App.on_items(mode)) {
       App.do_filter(mode)
     }
     else if (App.on_settings(mode)) {
