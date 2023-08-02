@@ -792,7 +792,6 @@ App.settings_index = () => {
 App.show_settings_menu = () => {
   let category = App.settings_category
   let btn = DOM.el(`#settings_title_${category}`)
-
   let items = []
 
   items.push({
