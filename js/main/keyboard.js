@@ -69,7 +69,7 @@ App.check_items_keyboard = (e) => {
       return
     }
     else if (e.key === `Backspace`) {
-      App.back_action(mode, e)
+      App.step_back(mode, e)
       e.preventDefault()
       return
     }
@@ -139,7 +139,9 @@ App.check_items_keyboard = (e) => {
 
   if (!e.ctrlKey && !e.shiftKey) {
     if (e.key === `Escape`) {
-      App.back_action(mode, e)
+      App.step_back(mode, e)
+      e.preventDefault()
+      return
     }
     else if (e.key === `Enter`) {
       App[`${mode}_action`](item)
@@ -158,10 +160,12 @@ App.check_items_keyboard = (e) => {
     }
     else if (e.key === `ArrowUp`) {
       arrow(`up`, e)
+      e.preventDefault()
       return
     }
     else if (e.key === `ArrowDown`) {
       arrow(`down`, e)
+      e.preventDefault()
       return
     }
     else if (e.key === `ArrowLeft`) {

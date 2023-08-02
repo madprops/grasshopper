@@ -1,13 +1,13 @@
-App.create_back_button = (mode) => {
-  let back = DOM.create(`div`, `button icon_button`, `${mode}_back`)
-  back.title = `Go Back (Ctrl + Backspace)`
-  back.append(App.create_icon(`back`))
+App.create_step_back_button = (mode) => {
+  let btn = DOM.create(`div`, `button icon_button`, `${mode}_back`)
+  btn.title = `Step Back (Ctrl + Backspace)`
+  btn.append(App.create_icon(`back`))
 
-  DOM.ev(back, `click`, (e) => {
-    App.back_action(mode, e)
+  DOM.ev(btn, `click`, (e) => {
+    App.step_back(mode, e)
   })
 
-  DOM.ev(back, `auxclick`, (e) => {
+  DOM.ev(btn, `auxclick`, (e) => {
     if (e.button === 1) {
       let cmd = App.get_setting(`middle_click_back_button`)
 
@@ -17,10 +17,10 @@ App.create_back_button = (mode) => {
     }
   })
 
-  return back
+  return btn
 }
 
-App.back_action = (mode = App.window_mode, e) => {
+App.step_back = (mode = App.window_mode, e) => {
   let item = App.get_selected(mode)
 
   if (App.highlights(mode)) {

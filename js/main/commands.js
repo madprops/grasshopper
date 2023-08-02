@@ -39,8 +39,8 @@ App.setup_commands = () => {
     {name: `Go To Bottom`, cmd: `go_to_bottom`, mode: `items`, action: (args) => {
       App.goto_bottom()
     }},
-    {name: `Go Back`, cmd: `go_back`, mode: `items`, action: (args) => {
-      App.back_action()
+    {name: `Step Back`, cmd: `step_back`, mode: `items`, action: (args) => {
+      App.step_back()
     }},
     {name: `Select All`, cmd: `select_all`, mode: `items`, action: (args) => {
       App.select_all()
@@ -111,10 +111,10 @@ App.setup_commands = () => {
 
     {name: App.separator_string},
 
-    {name: `Back`, cmd: `browser_back`, action: (args) => {
+    {name: `⬅️ Back`, cmd: `browser_back`, action: (args) => {
       App.browser_back()
     }},
-    {name: `Forward`, cmd: `browser_forward`, action: (args) => {
+    {name: `Forward ➡️`, cmd: `browser_forward`, action: (args) => {
       App.browser_forward()
     }},
     {name: `Reload`, cmd: `browser_reload`, action: (args) => {
