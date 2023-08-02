@@ -40,6 +40,28 @@ App.setup_about = () => {
       App.hide_window()
     })
 
+    let image = DOM.el(`#about_image`)
+
+    DOM.ev(image, `click`, () => {
+      if (image.classList.contains(`hue_rotate`)) {
+        image.classList.remove(`hue_rotate`)
+        image.classList.add(`invert`)
+      }
+      else if (image.classList.contains(`invert`)) {
+        image.classList.remove(`invert`)
+
+        if (image.classList.contains(`flipped`)) {
+          image.classList.remove(`flipped`)
+        }
+        else {
+          image.classList.add(`flipped`)
+        }
+      }
+      else {
+        image.classList.add(`hue_rotate`)
+      }
+    })
+
     let info = DOM.el(`#about_info`)
 
     for (let item of App.about_info_items) {
@@ -58,6 +80,10 @@ App.setup_about = () => {
       App.clear_about_filter()
     }
 
+    let image = DOM.el(`#about_image`)
+    image.classList.remove(`hue_rotate`)
+    image.classList.remove(`invert`)
+    image.classList.remove(`flipped`)
     filter.focus()
   }, colored_top: true})
 }

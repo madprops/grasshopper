@@ -571,6 +571,11 @@ svg {
   margin-bottom: 0.5rem;
 }
 
+#about_image {
+  width: 51%;
+  cursor: pointer;
+}
+
 a:visited, a:link, a:hover {
 	color: var(--text_color);
 }
@@ -806,10 +811,6 @@ select {
   height: 100%;
 }
 
-.flipped {
-	transform: rotateY(180deg) !important;
-}
-
 .editor_container {
   padding-bottom: 2rem;
   align-items: stretch;
@@ -832,4 +833,16 @@ select {
 
 .bigger {
   font-size: 1.1rem;
+}
+
+.flipped {
+	transform: rotateY(180deg) !important;
+}
+
+.invert {
+  filter: invert(100%);
+}
+
+.hue_rotate {
+  filter: hue-rotate(90deg);
 }
