@@ -51,8 +51,8 @@ App.show_main_menu = (mode) => {
 
   items.push({
     text: `Settings`,
-    action: () => {
-      App.show_settings()
+    get_items: () => {
+      return App.settings_menu_items()
     }
   })
 
