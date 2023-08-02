@@ -13,6 +13,8 @@ NeedContext.after_hide = () => {}
 // Minimum menu width and height
 NeedContext.min_width = `25px`
 NeedContext.min_height = `25px`
+NeedContext.layers = {}
+NeedContext.level = 0
 
 // Set defaults
 NeedContext.set_defaults = () => {
@@ -71,16 +73,31 @@ NeedContext.show_on_element = (el, items, expand = false, margin = 0) => {
 NeedContext.show = (x, y, items) => {
   if (!NeedContext.created) {
     NeedContext.create()
+    NeedContext.level = 0
   }
 
   NeedContext.hide()
-
   items = items.slice(0)
   let selected_index = 0
   let c = NeedContext.container
   c.innerHTML = ``
   let index = 0
-  NeedContext.items = []
+
+  if (NeedContext.level > 0) {
+    let el = document.createElement(`div`)
+    el.classList.add(`needcontext-back`)
+    el.textContent = `Back`
+    let layer = NeedContext.prev_layer()
+
+    el.addEventListener(`click`, () => {
+      NeedContext.level -= 1
+      NeedContext.show(layer.x, layer.y, layer.items)
+    })
+
+    c.append(el)
+  }
+
+  let normal_items = []
 
   for (let item of items) {
     let el = document.createElement(`div`)
@@ -112,11 +129,17 @@ NeedContext.show = (x, y, items) => {
       })
 
       index += 1
-      NeedContext.items.push(item)
+      normal_items.push(item)
     }
 
     item.element = el
     c.append(el)
+  }
+
+  NeedContext.layers[NeedContext.level] = {
+    items: normal_items,
+    x: x,
+    y: y,
   }
 
   NeedContext.main.classList.remove(`needcontext-hidden`)
@@ -185,10 +208,9 @@ NeedContext.select_item = (index) => {
 NeedContext.select_up = () => {
   let waypoint = false
   let first_visible
+  let items = NeedContext.get_layer().items
 
-  for (let i=NeedContext.items.length-1; i>=0; i--) {
-    let item = NeedContext.items[i]
-
+  for (let item of items) {
     if (!NeedContext.is_visible(item.element)) {
       continue
     }
@@ -214,10 +236,9 @@ NeedContext.select_up = () => {
 NeedContext.select_down = () => {
   let waypoint = false
   let first_visible
+  let items = NeedContext.get_layer().items
 
-  for (let i=0; i<NeedContext.items.length; i++) {
-    let item = NeedContext.items[i]
-
+  for (let item of items) {
     if (!NeedContext.is_visible(item.element)) {
       continue
     }
@@ -241,11 +262,17 @@ NeedContext.select_down = () => {
 
 // Do the selected action
 NeedContext.select_action = async (e, index = NeedContext.index) => {
+  if (!e.target.classList.contains(`needcontext-normal`)) {
+    return
+  }
+
   let x = NeedContext.last_x
   let y = NeedContext.last_y
-  let item = NeedContext.items[index]
+  let item = NeedContext.get_layer().items[index]
 
   function show_below (items) {
+    NeedContext.level += 1
+
     if (e.clientY) {
       y = e.clientY
     }
@@ -330,6 +357,19 @@ NeedContext.init = () => {
       padding-right: 10px;
       padding-top: 3px;
       padding-bottom: 3px;
+    }
+
+    .needcontext-back {
+      padding-left: 10px;
+      padding-right: 10px;
+      padding-top: 3px;
+      padding-bottom: 3px;
+      font-weight: bold;
+      opacity: 0.7;
+    }
+
+    .needcontext-back:hover {
+      text-decoration: underline;
     }
 
     .needcontext-separator {
@@ -451,6 +491,14 @@ NeedContext.create = () => {
   NeedContext.main.append(NeedContext.container)
   document.body.appendChild(NeedContext.main)
   NeedContext.created = true
+}
+
+NeedContext.get_layer = () => {
+  return NeedContext.layers[NeedContext.level]
+}
+
+NeedContext.prev_layer = () => {
+  return NeedContext.layers[NeedContext.level - 1]
 }
 
 // Start
