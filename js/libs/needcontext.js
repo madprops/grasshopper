@@ -87,11 +87,9 @@ NeedContext.show = (x, y, items) => {
     let el = document.createElement(`div`)
     el.classList.add(`needcontext-back`)
     el.textContent = `Back`
-    let layer = NeedContext.prev_layer()
 
     el.addEventListener(`click`, () => {
-      NeedContext.level -= 1
-      NeedContext.show(layer.x, layer.y, layer.items)
+      NeedContext.go_back()
     })
 
     c.append(el)
@@ -137,7 +135,8 @@ NeedContext.show = (x, y, items) => {
   }
 
   NeedContext.layers[NeedContext.level] = {
-    items: normal_items,
+    items: items,
+    normal_items: normal_items,
     x: x,
     y: y,
   }
@@ -208,7 +207,7 @@ NeedContext.select_item = (index) => {
 NeedContext.select_up = () => {
   let waypoint = false
   let first_visible
-  let items = NeedContext.get_layer().items
+  let items = NeedContext.get_layer().normal_items.slice(0).reverse()
 
   for (let item of items) {
     if (!NeedContext.is_visible(item.element)) {
@@ -236,7 +235,7 @@ NeedContext.select_up = () => {
 NeedContext.select_down = () => {
   let waypoint = false
   let first_visible
-  let items = NeedContext.get_layer().items
+  let items = NeedContext.get_layer().normal_items
 
   for (let item of items) {
     if (!NeedContext.is_visible(item.element)) {
@@ -261,14 +260,16 @@ NeedContext.select_down = () => {
 }
 
 // Do the selected action
-NeedContext.select_action = async (e, index = NeedContext.index) => {
-  if (!e.target.classList.contains(`needcontext-normal`)) {
-    return
+NeedContext.select_action = async (e, index = NeedContext.index, mode = `mouse`) => {
+  if (mode === `mouse`) {
+    if (!e.target.classList.contains(`needcontext-normal`)) {
+      return
+    }
   }
 
   let x = NeedContext.last_x
   let y = NeedContext.last_y
-  let item = NeedContext.get_layer().items[index]
+  let item = NeedContext.get_layer().normal_items[index]
 
   function show_below (items) {
     NeedContext.level += 1
@@ -452,12 +453,18 @@ NeedContext.init = () => {
       e.preventDefault()
     }
     else if (e.key === `Enter`) {
-      NeedContext.select_action(e)
+      NeedContext.select_action(e, undefined, `keyboard`)
       e.preventDefault()
     }
     else if (e.key === `Backspace`) {
-      NeedContext.filter.value = ``
-      NeedContext.do_filter()
+      if (NeedContext.filter.value) {
+        NeedContext.filter.value = ``
+        NeedContext.do_filter()
+      }
+      else {
+        NeedContext.go_back()
+      }
+
       e.preventDefault()
     }
   })
@@ -499,6 +506,16 @@ NeedContext.get_layer = () => {
 
 NeedContext.prev_layer = () => {
   return NeedContext.layers[NeedContext.level - 1]
+}
+
+NeedContext.go_back = () => {
+  if (NeedContext.level === 0) {
+    return
+  }
+
+  let layer = NeedContext.prev_layer()
+  NeedContext.level -= 1
+  NeedContext.show(layer.x, layer.y, layer.items)
 }
 
 // Start

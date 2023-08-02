@@ -485,27 +485,13 @@ App.create_filter = (mode) => {
 App.get_custom_filters = (mode) => {
   let items = []
 
-  let filters = App.get_setting(`custom_filters`)
-
-  if (filters.length === 0) {
+  for (let filter of App.get_setting(`custom_filters`)) {
     items.push({
-      text: `No custom filters yet`,
+      text: filter,
       action: () => {
-        App.show_alert(`Add custom filters in the settings`)
+        App.set_custom_filter(mode, filter)
       }
     })
-
-    return items
-  }
-  else {
-    for (let filter of App.get_setting(`custom_filters`)) {
-      items.push({
-        text: filter,
-        action: () => {
-          App.set_custom_filter(mode, filter)
-        }
-      })
-    }
   }
 
   return items

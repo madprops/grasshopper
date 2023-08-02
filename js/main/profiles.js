@@ -450,41 +450,31 @@ App.get_tag_items = (mode, action = `filter`) => {
   let items = []
   let tags = App.get_tags()
 
-  if (tags.length === 0) {
+  if (action === `remove`) {
     items.push({
-      text: `No tags yet`,
+      text: `All`,
       action: () => {
-        App.show_alert(`Add tags by right clicking items (Edit)`)
+        App.remove_all_tags()
       }
     })
   }
-  else {
-    if (action === `remove`) {
-      items.push({
-        text: `All`,
-        action: () => {
-          App.remove_all_tags()
-        }
-      })
-    }
 
-    for (let tag of tags) {
-      items.push({
-        text: tag,
-        action: () => {
-          if (action === `filter`) {
-            App.set_custom_filter_mode(mode, `tag_${tag}`, tag)
-            App.set_filter(mode, ``)
-          }
-          else if (action === `remove`) {
-            App.remove_tag(tag)
-          }
+  for (let tag of tags) {
+    items.push({
+      text: tag,
+      action: () => {
+        if (action === `filter`) {
+          App.set_custom_filter_mode(mode, `tag_${tag}`, tag)
+          App.set_filter(mode, ``)
         }
-      })
-
-      if (items.length >= App.max_tag_filters) {
-        break
+        else if (action === `remove`) {
+          App.remove_tag(tag)
+        }
       }
+    })
+
+    if (items.length >= App.max_tag_filters) {
+      break
     }
   }
 
@@ -494,17 +484,6 @@ App.get_tag_items = (mode, action = `filter`) => {
 App.get_color_items = (mode, action = `filter`) => {
   let items = []
   let count = App.get_profile_count()
-
-  if (!count.colors) {
-    items.push({
-      text: `No colors yet`,
-      action: () => {
-        App.show_alert(`Add colors by right clicking items (Edit)`)
-      }
-    })
-
-    return items
-  }
 
   if (action === `remove`) {
     items.push({
@@ -538,18 +517,6 @@ App.get_color_items = (mode, action = `filter`) => {
 
 App.clear_profiles_items = () => {
   let items = []
-
-  if (!App.profiles.length) {
-    items.push({
-      text: `No profiles yet`,
-      action: () => {
-        App.show_alert(`Edit profiles by right clicking items`)
-      }
-    })
-
-    return items
-  }
-
   let count = App.get_profile_count()
 
   if (count.tags) {
