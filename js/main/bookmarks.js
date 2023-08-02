@@ -76,7 +76,7 @@ App.get_bookmarks = async (query = ``, deep = false) => {
 }
 
 App.bookmarks_action = (item) => {
-  App.bookmark_items(undefined, [item], false, true)
+  App.bookmark_items(undefined, [item], false)
   App.focus_or_open_item(item)
 }
 
@@ -103,7 +103,7 @@ App.get_bookmarks_folder = async () => {
   return folder
 }
 
-App.bookmark_items = async (item, active, feedback = true, do_force = false) => {
+App.bookmark_items = async (item, active, feedback = true) => {
   if (!active) {
     active = App.get_active_items(item.mode, item)
   }
@@ -157,6 +157,10 @@ App.bookmark_items = async (item, active, feedback = true, do_force = false) => 
 
   let force = App.check_force(`warn_on_bookmark`, num)
 
+  if (num === 1) {
+    force = true
+  }
+
   App.show_confirm(`Bookmark these items? (${num})`, async () => {
     for (let item of add) {
       let title = App.get_title(item)
@@ -176,7 +180,7 @@ App.bookmark_items = async (item, active, feedback = true, do_force = false) => 
     if (feedback) {
       App.show_feedback(`Bookmarked`)
     }
-  }, undefined, do_force || force)
+  }, undefined, force)
 }
 
 App.bookmark_active = async () => {
