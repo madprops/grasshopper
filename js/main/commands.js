@@ -169,6 +169,9 @@ App.setup_commands = () => {
 
     {name: App.separator_string},
 
+    {name: `Filter Domain`, cmd: `filter_domain`, mode: `items`, action: (args) => {
+      App.filter_domain(args.item)
+    }},
     {name: `Filter Playing`, cmd: `filter_playing`, mode: `tabs`, action: (args) => {
       App.change_filter_mode(args.mode, `playing`)
     }},
