@@ -367,6 +367,7 @@ NeedContext.init = () => {
       padding-bottom: 3px;
       font-weight: bold;
       opacity: 0.7;
+      font-size 0.9rem;
     }
 
     .needcontext-back:hover {
