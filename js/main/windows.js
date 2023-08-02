@@ -90,8 +90,8 @@ App.create_window = (args) => {
     }
   }
 
-  w.hide = () => {
-    if (args.on_hide) {
+  w.hide = (bypass = false) => {
+    if (!bypass && args.on_hide) {
       args.on_hide()
     }
     else {
@@ -181,12 +181,12 @@ App.window_goto_bottom = (mode) => {
   el.scrollTop = el.scrollHeight
 }
 
-App.hide_window = () => {
+App.hide_window = (bypass = false) => {
   if (App.on_items()) {
     return
   }
 
-  App.windows[App.window_mode].hide()
+  App.windows[App.window_mode].hide(bypass)
 }
 
 App.make_window_visible = () => {

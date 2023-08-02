@@ -114,7 +114,6 @@ App.show_dialog = (message, buttons) => {
   for (let button of buttons) {
     let btn = DOM.create(`div`, `button`)
     btn.textContent = button[0]
-
     DOM.ev(btn, `click`, () => {
       App.hide_popup()
       button[1]()

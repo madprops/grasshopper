@@ -46,7 +46,13 @@ App.setup_profile_editor = () => {
       App.set_color_icons(color_select.value)
     })
   },
-  colored_top: true})
+  colored_top: true, on_hide: () => {
+    App.show_confirm(`Save changes?`, () => {
+      App.profile_editor_save()
+    }, () => {
+      App.hide_window(true)
+    })
+  }})
 }
 
 App.get_profile_items = (item) => {
@@ -284,7 +290,7 @@ App.save_profile = (args) => {
   App.stor_save_profiles()
 
   if (args.from === `editor`) {
-    App.hide_window()
+    App.hide_window(true)
   }
 
   for (let url of urls) {
@@ -326,7 +332,7 @@ App.remove_profiles = (items) => {
     App.refresh_profile_filters()
 
     if (App.window_mode === `profile_editor`) {
-      App.hide_window()
+      App.hide_window(true)
     }
   }, undefined, force)
 }
