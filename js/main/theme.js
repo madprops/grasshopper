@@ -58,9 +58,27 @@ App.apply_theme = () => {
     }
 
     App.set_css_var(`item_height`, `${item_height}rem`)
+    let bg_img = App.get_setting(`background_image`)
 
-    if (App.get_setting(`background_image`)) {
-      App.set_css_var(`background_image`, `url(${App.get_setting(`background_image`)})`)
+    if (bg_img) {
+      if (bg_img.startsWith(`seed:`)) {
+        let seed = bg_img.split(`:`)[1]
+        let canvas = DOM.create(`canvas`)
+        canvas.width = 200
+        canvas.height = 200
+        jdenticon.update(canvas, seed)
+
+        canvas.toBlob(
+          (blob) => {
+            let url = URL.createObjectURL(blob)
+            App.set_css_var(`background_image`, `url(${url})`)
+          },
+          `image/png`, 0.8
+        )
+      }
+      else {
+        App.set_css_var(`background_image`, `url(${bg_img})`)
+      }
     }
     else {
       App.set_css_var(`background_image`, `unset`)

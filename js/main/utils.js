@@ -269,3 +269,30 @@ App.is_object = (o) => {
 
   return false
 }
+
+App.get_random_int = (min, max, exclude = undefined) => {
+  let num = Math.floor(Math.random() * (max - min + 1) + min)
+
+  if (exclude !== undefined) {
+    if (num === exclude) {
+      if (num + 1 <= max) {
+        num = num + 1
+      }
+      else if (num - 1 >= min) {
+        num = num - 1
+      }
+    }
+  }
+
+  return num
+}
+
+App.random_sequence = (n) => {
+  let s = ``
+
+  for (let i=0; i<n; i++) {
+    s += App.get_random_int(0, 9)
+  }
+
+  return s
+}

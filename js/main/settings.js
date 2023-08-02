@@ -1056,9 +1056,10 @@ App.random_theme = () => {
   c2 = App.colorlib.hex_to_rgb(c2)
   App.set_setting(`background_color`, c1)
   App.set_setting(`text_color`, c2)
-  App.set_setting(`background_image`, ``)
   App.set_setting(`background_effect`, `none`)
-  App.set_setting(`background_tiles`, `none`)
+  App.set_setting(`background_tiles`, `200px`)
+  let seed = App.random_sequence(8)
+  App.set_setting(`background_image`, `seed:${seed}`)
   App.apply_theme()
 
   if (App.on_settings()) {
