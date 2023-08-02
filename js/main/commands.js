@@ -213,6 +213,9 @@ App.setup_commands = () => {
 
     {name: App.separator_string},
 
+    {name: `Random Theme`, cmd: `random_theme`, action: (args) => {
+      App.random_theme()
+    }},
     {name: `Restart 🤖`, cmd: `restart_extension`, action: (args) => {
       App.restart_extension()
     }},

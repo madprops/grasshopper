@@ -261,3 +261,11 @@ App.text_with_empty_lines = () => {
 App.make_html_safe = (s) => {
   return s.replace(/\</g, `&lt;`).replace(/\>/g, `&gt;`)
 }
+
+App.is_object = (o) => {
+  if (typeof o === `object` && !Array.isArray(o) && o !== null) {
+    return true
+  }
+
+  return false
+}

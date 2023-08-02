@@ -158,11 +158,16 @@ App.settings_setup_checkboxes = (container) => {
     })
 
     DOM.evs(App.get_settings_label(setting), [`click`, `contextmenu`], (e) => {
-      App.reset_single_setting(e, () => {
-        App.set_default_setting(setting)
-        el.checked = App.get_setting(setting)
-        App.settings_do_action(action)
-      })
+      App.settings_label_menu(e,
+      [
+        {
+          name: `Reset`, action: () => {
+            App.set_default_setting(setting)
+            el.checked = App.get_setting(setting)
+            App.settings_do_action(action)
+          }
+        },
+      ])
     })
   }
 }
@@ -201,19 +206,24 @@ App.settings_setup_text = (container) => {
     })
 
     DOM.evs(App.get_settings_label(setting), [`click`, `contextmenu`], (e) => {
-      App.reset_single_setting(e, () => {
-        App.set_default_setting(setting)
-        let value = App.get_setting(setting)
+      App.settings_label_menu(e,
+      [
+        {
+          name: `Reset`,  action: () => {
+            App.set_default_setting(setting)
+            let value = App.get_setting(setting)
 
-        if (is_textarea) {
-          el.value = value.join(`\n`)
-        }
-        else {
-          el.value = value
-        }
+            if (is_textarea) {
+              el.value = value.join(`\n`)
+            }
+            else {
+              el.value = value
+            }
 
-        App.settings_do_action(action)
-      })
+            App.settings_do_action(action)
+          }
+        },
+      ])
     })
   }
 }
@@ -247,19 +257,24 @@ App.settings_make_menu = (setting, opts, action = () => {}) => {
   })
 
   DOM.evs(App.get_settings_label(setting), [`click`, `contextmenu`], (e) => {
-    App.reset_single_setting(e, () => {
-      App.set_default_setting(setting)
-      let value = App.get_setting(setting)
+    App.settings_label_menu(e,
+    [
+      {
+        name: `Reset`, action: () => {
+          App.set_default_setting(setting)
+          let value = App.get_setting(setting)
 
-      for (let o of opts) {
-        if (o[1] === value) {
-          el.textContent = o[0]
-          break
+          for (let o of opts) {
+            if (o[1] === value) {
+              el.textContent = o[0]
+              break
+            }
+          }
+
+          action()
         }
-      }
-
-      action()
-    })
+      },
+    ])
   })
 
   for (let o of opts) {
@@ -413,14 +428,19 @@ App.setup_settings = () => {
     App.make_mode_order()
 
     DOM.evs(App.get_settings_label(`mode_order`), [`click`, `contextmenu`], (e) => {
-      App.reset_single_setting(e, () => {
-        App.set_default_setting(`tabs_index`)
-        App.set_default_setting(`history_index`)
-        App.set_default_setting(`bookmarks_index`)
-        App.set_default_setting(`closed_index`)
-        App.get_mode_order()
-        App.make_mode_order()
-      })
+      App.settings_label_menu(e,
+      [
+        {
+          name: `Reset`, action: () => {
+            App.set_default_setting(`tabs_index`)
+            App.set_default_setting(`history_index`)
+            App.set_default_setting(`bookmarks_index`)
+            App.set_default_setting(`closed_index`)
+            App.get_mode_order()
+            App.make_mode_order()
+          }
+        },
+      ])
     })
   }}))
 
@@ -579,10 +599,20 @@ App.start_theme_settings = () => {
     })
 
     DOM.evs(App.get_settings_label(setting), [`click`, `contextmenu`], (e) => {
-      App.reset_single_setting(e, () => {
-        App.set_default_setting(setting)
-        App[setting].setColor(App.get_setting(setting))
-      })
+      App.settings_label_menu(e,
+      [
+        {
+          name: `Reset`, action: () => {
+            App.set_default_setting(setting)
+            App[setting].setColor(App.get_setting(setting))
+          }
+        },
+        {
+          name: `Random`, action: () => {
+            App.random_theme(name)
+          }
+        },
+      ])
     })
   }
 
@@ -724,7 +754,7 @@ App.show_settings = () => {
   App.show_window(`settings_general`)
 }
 
-App.show_settings_window = (category) => {
+App.show_settings_category = (category) => {
   App.settings_category = category
   App.show_window(`settings_${category}`)
 }
@@ -737,7 +767,7 @@ App.show_prev_settings = () => {
     index = App.settings_categories.length - 1
   }
 
-  App.show_settings_window(App.settings_categories[index])
+  App.show_settings_category(App.settings_categories[index])
 }
 
 App.show_next_settings = () => {
@@ -748,7 +778,7 @@ App.show_next_settings = () => {
     index = 0
   }
 
-  App.show_settings_window(App.settings_categories[index])
+  App.show_settings_category(App.settings_categories[index])
 }
 
 App.settings_index = () => {
@@ -805,10 +835,12 @@ App.export_settings = () => {
 
 App.import_settings = () => {
   App.import_data((json) => {
-    App.settings = json
-    App.check_settings()
-    App.stor_save_settings()
-    App.restart_settings()
+    if (App.is_object(json)) {
+      App.settings = json
+      App.check_settings()
+      App.stor_save_settings()
+      App.restart_settings()
+    }
   })
 }
 
@@ -853,13 +885,15 @@ App.settings_data_items = () => {
   return items
 }
 
-App.reset_single_setting = (e, action) => {
+App.settings_label_menu = (e, args) => {
   let items = []
 
-  items.push({
-    text: `Reset`,
-    action: action,
-  })
+  for (let arg of args) {
+    items.push({
+      text: arg.name,
+      action: arg.action,
+    })
+  }
 
   NeedContext.show(e.clientX, e.clientY, items)
   e.preventDefault()
@@ -981,7 +1015,7 @@ App.settings_menu_items = (action = `normal`) => {
     items.push({
       text: App.capitalize(c),
       action: () => {
-        App.show_settings_window(c)
+        App.show_settings_category(c)
       },
       selected: selected,
     })
@@ -1013,4 +1047,21 @@ App.settings_info = () => {
   s += ` These are saved locally and not synced.`
   s += ` To backup or move this data use the Export/Import feature in the menu.`
   App.show_alert_2(s)
+}
+
+App.random_theme = () => {
+  let c1 = App.colorlib.get_dark_color()
+  let c2 = App.colorlib.get_lighter_or_darker(c1, 0.777)
+  c1 = App.colorlib.hex_to_rgb(c1)
+  c2 = App.colorlib.hex_to_rgb(c2)
+  App.set_setting(`background_color`, c1)
+  App.set_setting(`text_color`, c2)
+  App.set_setting(`background_image`, ``)
+  App.set_setting(`background_effect`, `none`)
+  App.set_setting(`background_tiles`, `none`)
+  App.apply_theme()
+
+  if (App.on_settings()) {
+    App.show_settings_category(`theme`)
+  }
 }
