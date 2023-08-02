@@ -944,8 +944,8 @@ App.check_settings = () => {
   }
 }
 
-App.on_settings = () => {
-  return App.window_mode.startsWith(`settings_`)
+App.on_settings = (mode = App.window_mode) => {
+  return mode.startsWith(`settings_`)
 }
 
 App.settings_commands = () => {
@@ -971,10 +971,6 @@ App.tab_warn_opts = [
   [`Always`, `always`],
   [`Special`, `special`],
 ]
-
-App.on_settings_window = (mode) => {
-  return mode.startsWith(`settings_`)
-}
 
 App.settings_menu_items = (action = `normal`) => {
   let items = []
