@@ -1,3 +1,7 @@
+App.image_extensions = [`jpg`, `jpeg`, `png`, `gif`, `webp`, `bmp`]
+App.video_extensions = [`mp4`, `webm`]
+App.audio_extensions = [`mp3`, `ogg`, `flac`, `wav`]
+
 App.setup_media = () => {
   for (let type of App.media_types) {
     App.create_media_windows(type)
@@ -305,4 +309,19 @@ App.scroll_media_down = (what = App.window_mode) => {
 App.current_media_item = () => {
   let what = App.current_media_type
   return App[`current_media_${what}_item`]
+}
+
+App.is_image = (src) => {
+  let extension = App.get_extension(src).toLowerCase()
+  return extension && App.image_extensions.includes(extension)
+}
+
+App.is_video = (src) => {
+  let extension = App.get_extension(src).toLowerCase()
+  return extension && App.video_extensions.includes(extension)
+}
+
+App.is_audio = (src) => {
+  let extension = App.get_extension(src).toLowerCase()
+  return extension && App.audio_extensions.includes(extension)
 }

@@ -1,7 +1,3 @@
-App.image_extensions = [`jpg`, `jpeg`, `png`, `gif`, `webp`, `bmp`]
-App.video_extensions = [`mp4`, `webm`]
-App.audio_extensions = [`mp3`, `ogg`, `flac`, `wav`]
-
 App.create_debouncer = (func, delay) => {
   if (typeof func !== `function`) {
     App.log(`Invalid debouncer function`, `error`)
@@ -97,21 +93,6 @@ App.capitalize = (s) => {
 
 App.nice_date = (date = Date.now()) => {
   return dateFormat(date, `dd/mmm/yy | h:MM tt`)
-}
-
-App.is_image = (src) => {
-  let extension = App.get_extension(src).toLowerCase()
-  return extension && App.image_extensions.includes(extension)
-}
-
-App.is_video = (src) => {
-  let extension = App.get_extension(src).toLowerCase()
-  return extension && App.video_extensions.includes(extension)
-}
-
-App.is_audio = (src) => {
-  let extension = App.get_extension(src).toLowerCase()
-  return extension && App.audio_extensions.includes(extension)
 }
 
 App.is_url = (s) => {
