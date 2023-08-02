@@ -44,14 +44,33 @@ App.setup_profile_editor = () => {
 
     DOM.ev(color_select, `change`, () => {
       App.set_color_icons(color_select.value)
+      App.profile_editor_modified = true
+    })
+
+    DOM.ev(DOM.el(`#profile_editor_tags`), `input`, (e) => {
+      App.profile_editor_modified = true
+    })
+
+    DOM.ev(DOM.el(`#profile_editor_notes`), `input`, (e) => {
+      App.profile_editor_modified = true
+    })
+
+    DOM.ev(DOM.el(`#profile_editor_title`), `input`, (e) => {
+      App.profile_editor_modified = true
     })
   },
-  colored_top: true, on_hide: () => {
-    App.show_confirm(`Save changes?`, () => {
-      App.profile_editor_save()
-    }, () => {
+  colored_top: true,
+  on_hide: () => {
+    if (App.profile_editor_modified) {
+      App.show_confirm(`Save changes?`, () => {
+        App.profile_editor_save()
+      }, () => {
+        App.hide_window(true)
+      })
+    }
+    else {
       App.hide_window(true)
-    })
+    }
   }})
 }
 
@@ -85,6 +104,7 @@ App.show_profile_editor = (item, type, action = `edit`) => {
   DOM.el(`#profile_editor_notes_container`).classList.add(`hidden`)
   DOM.el(`#profile_editor_color_container`).classList.add(`hidden`)
   DOM.el(`#profile_editor_title_container`).classList.add(`hidden`)
+  App.profile_editor_modified = false
 
   if (type === `all` || type === `tags`) {
     DOM.el(`#profile_editor_tags_container`).classList.remove(`hidden`)
@@ -964,6 +984,7 @@ App.prev_color_select = () => {
 
   color_select.value = colors[index]
   App.set_color_icons(color_select.value)
+  App.profile_editor_modified = true
 }
 
 App.next_color_select = () => {
@@ -978,6 +999,7 @@ App.next_color_select = () => {
 
   color_select.value = colors[index]
   App.set_color_icons(color_select.value)
+  App.profile_editor_modified = true
 }
 
 App.set_color_icons = (color) => {
