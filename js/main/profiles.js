@@ -541,8 +541,11 @@ App.get_color_items = (mode, action = `filter`) => {
       continue
     }
 
+    let icon = App.color_emojis[color]
+    let name = `${icon} ${App.capitalize(color)}`
+
     items.push({
-      text: App.capitalize(color),
+      text: name,
       action: () => {
         if (action === `filter`) {
           App.filter_color(mode, color)

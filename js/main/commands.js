@@ -3,7 +3,7 @@ App.setup_commands = () => {
 
   for (let color in App.colors) {
     let icon = App.color_emojis[color]
-    let name = `Filter ${App.capitalize(color)} ${icon}`.trim()
+    let name = `${icon} Filter ${App.capitalize(color)}`.trim()
 
     color_filters.push({name: name, cmd: `filter_${color}`, mode: `items`, action: (args) => {
       App.filter_color(args.mode, color)
@@ -14,7 +14,7 @@ App.setup_commands = () => {
 
   for (let color in App.colors) {
     let icon = App.color_emojis[color]
-    let name = `Color ${App.capitalize(color)} ${icon}`.trim()
+    let name = `${icon} Color ${App.capitalize(color)}`.trim()
 
     color_changers.push({name: name, cmd: `color_${color}`, mode: `items`, action: (args) => {
       App.change_color(args.item, color)
@@ -25,7 +25,7 @@ App.setup_commands = () => {
 
   for (let media of App.media_types) {
     let icon = App.get_setting(`${media}_icon`) || ``
-    let name = `Filter ${App.capitalize(media)} ${icon}`.trim()
+    let name = `${icon} Filter ${App.capitalize(media)}`.trim()
 
     media_filters.push({name: name, cmd: `filter_${media}`, mode: `items`, action: (args) => {
       App.change_filter_mode(args.mode, media)
@@ -216,7 +216,7 @@ App.setup_commands = () => {
     {name: `Random Theme`, cmd: `random_theme`, action: (args) => {
       App.random_theme()
     }},
-    {name: `Restart 🤖`, cmd: `restart_extension`, action: (args) => {
+    {name: `🤖 Restart`, cmd: `restart_extension`, action: (args) => {
       App.restart_extension()
     }},
   ]
