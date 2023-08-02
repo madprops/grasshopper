@@ -61,4 +61,4 @@ App.color_emojis = {
   blue: `🔵`,
   yellow: `🟡`,
 }
-App.seed_canvas_size = 150
+App.seed_canvas_size = 50

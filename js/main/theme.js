@@ -61,24 +61,7 @@ App.apply_theme = () => {
     let bg_img = App.get_setting(`background_image`)
 
     if (bg_img) {
-      if (bg_img.startsWith(`seed:`)) {
-        let seed = bg_img.split(`:`)[1]
-        let canvas = DOM.create(`canvas`)
-        canvas.width = App.seed_canvas_size
-        canvas.height = App.seed_canvas_size
-        jdenticon.update(canvas, seed)
-
-        canvas.toBlob(
-          (blob) => {
-            let url = URL.createObjectURL(blob)
-            App.set_css_var(`background_image`, `url(${url})`)
-          },
-          `image/png`, 0.8
-        )
-      }
-      else {
-        App.set_css_var(`background_image`, `url(${bg_img})`)
-      }
+      App.set_css_var(`background_image`, `url(${bg_img})`)
     }
     else {
       App.set_css_var(`background_image`, `unset`)
