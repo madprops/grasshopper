@@ -818,8 +818,8 @@ App.show_settings_menu = () => {
 
   items.push({
     text: `Info`,
-    get_items: () => {
-      return App.settings_info()
+    action: () => {
+      App.settings_info()
     }
   })
 
