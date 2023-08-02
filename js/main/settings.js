@@ -98,6 +98,32 @@ App.build_default_settings = () => {
   App.default_settings = obj
 }
 
+App.settings_background_effects_opts =
+[
+  [`None`, `none`],
+  [`Gray`, `grayscale`],
+  [`Invert`, `invert`],
+  [`Rotate 1`, `rotate_1`],
+  [`Rotate 2`, `rotate_2`],
+  [`Rotate 3`, `rotate_3`],
+  [`Blur`, `blur`],
+]
+
+App.settings_background_tiles_opts =
+[
+  [`None`, `none`],
+  [`50px`, `50px`],
+  [`100px`, `100px`],
+  [`150px`, `150px`],
+  [`200px`, `200px`],
+  [`250px`, `250px`],
+  [`300px`, `300px`],
+  [`350px`, `350px`],
+  [`400px`, `400px`],
+  [`450px`, `450px`],
+  [`500px`, `500px`],
+]
+
 App.make_mode_order = () => {
   let mode_order = DOM.el(`#settings_mode_order`)
   mode_order.innerHTML = ``
@@ -619,31 +645,11 @@ App.start_theme_settings = () => {
   start_color_picker(`background`)
   start_color_picker(`text`)
 
-  App.settings_make_menu(`background_effect`, [
-    [`None`, `none`],
-    [`Gray`, `grayscale`],
-    [`Invert`, `invert`],
-    [`Rotate 1`, `rotate_1`],
-    [`Rotate 2`, `rotate_2`],
-    [`Rotate 3`, `rotate_3`],
-    [`Blur`, `blur`],
-  ], () => {
+  App.settings_make_menu(`background_effect`, App.settings_background_effects_opts, () => {
     App.apply_theme()
   })
 
-  App.settings_make_menu(`background_tiles`, [
-    [`None`, `none`],
-    [`50px`, `50px`],
-    [`100px`, `100px`],
-    [`150px`, `150px`],
-    [`200px`, `200px`],
-    [`250px`, `250px`],
-    [`300px`, `300px`],
-    [`350px`, `350px`],
-    [`400px`, `400px`],
-    [`450px`, `450px`],
-    [`500px`, `500px`],
-  ], () => {
+  App.settings_make_menu(`background_tiles`, App.settings_background_tiles_opts, () => {
     App.apply_theme()
   })
 }
@@ -1056,8 +1062,10 @@ App.random_theme = () => {
   c2 = App.colorlib.hex_to_rgb(c2)
   App.set_setting(`background_color`, c1)
   App.set_setting(`text_color`, c2)
-  App.set_setting(`background_effect`, `none`)
-  App.set_setting(`background_tiles`, `${App.seed_canvas_size}px`)
+  let effect = App.random_choice(App.settings_background_effects_opts)
+  let tiles = App.random_choice(App.settings_background_tiles_opts)
+  App.set_setting(`background_effect`, effect[1])
+  App.set_setting(`background_tiles`, tiles[1])
   let seed = App.random_sequence(8)
   App.set_setting(`background_image`, `seed:${seed}`)
   App.apply_theme()

@@ -296,3 +296,7 @@ App.random_sequence = (n) => {
 
   return s
 }
+
+App.random_choice = (list) => {
+  return list[App.get_random_int(0, list.length - 1)]
+}
