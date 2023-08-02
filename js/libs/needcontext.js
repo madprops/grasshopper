@@ -13,6 +13,7 @@ NeedContext.after_hide = () => {}
 // Minimum menu width and height
 NeedContext.min_width = `25px`
 NeedContext.min_height = `25px`
+NeedContext.back_text = `⬅️&nbsp;&nbsp;Back`
 NeedContext.layers = {}
 NeedContext.level = 0
 
@@ -89,7 +90,7 @@ NeedContext.show = (x, y, items, root = true) => {
   if (!root) {
     let el = document.createElement(`div`)
     el.classList.add(`needcontext-back`)
-    el.innerHTML = `⬅️&nbsp;&nbsp;Back`
+    el.innerHTML = NeedContext.back_text
     el.title = `Shortcut: Backspace`
 
     el.addEventListener(`click`, () => {
