@@ -1052,20 +1052,3 @@ App.settings_info = () => {
   s += ` To backup or move this data use the Export/Import feature in the menu.`
   App.show_alert_2(s)
 }
-
-App.random_theme = () => {
-  let c1 = App.colorlib.get_dark_color()
-  let c2 = App.colorlib.get_lighter_or_darker(c1, 0.8)
-  c1 = App.colorlib.hex_to_rgb(c1)
-  c2 = App.colorlib.hex_to_rgb(c2)
-  App.set_setting(`background_color`, c1)
-  App.set_setting(`text_color`, c2)
-  App.set_setting(`background_image`, ``)
-  App.set_setting(`background_effect`, ``)
-  App.set_setting(`background_tiles`, ``)
-  App.apply_theme()
-
-  if (App.on_settings()) {
-    App.show_settings_category(`theme`)
-  }
-}
