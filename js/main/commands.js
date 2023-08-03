@@ -3,7 +3,7 @@ App.setup_commands = () => {
 
   for (let color in App.colors) {
     let icon = App.color_emojis[color]
-    let name = `${icon} Filter ${App.capitalize(color)}`.trim()
+    let name = `${icon} Filter ${App.capitalize(color)}`
 
     color_filters.push({name: name, cmd: `filter_${color}`, mode: `items`, action: (args) => {
       App.filter_color(args.mode, color)
@@ -14,7 +14,7 @@ App.setup_commands = () => {
 
   for (let color in App.colors) {
     let icon = App.color_emojis[color]
-    let name = `${icon} Color ${App.capitalize(color)}`.trim()
+    let name = `${icon} Color ${App.capitalize(color)}`
 
     color_changers.push({name: name, cmd: `color_${color}`, mode: `items`, action: (args) => {
       App.change_color(args.item, color)
@@ -29,6 +29,17 @@ App.setup_commands = () => {
 
     media_filters.push({name: name, cmd: `filter_${media}`, mode: `items`, action: (args) => {
       App.change_filter_mode(args.mode, media)
+    }})
+  }
+
+  let show_modes = []
+
+  for (let mode of App.modes) {
+    let icon = App.mode_emojis[mode]
+    let name = `${icon} Show ${App.get_mode_name(mode)}`
+
+    show_modes.push({name: name, cmd: `show_${mode}`, action: (args) => {
+      App.show_mode(mode)
     }})
   }
 
@@ -60,18 +71,7 @@ App.setup_commands = () => {
     {name: `Next Mode`, cmd: `next_mode`, mode: `items`, action: (args) => {
       App.cycle_modes()
     }},
-    {name: `Show Tabs`, cmd: `show_tabs`, action: (args) => {
-      App.show_mode(`tabs`)
-    }},
-    {name: `Show History`, cmd: `show_history`, action: (args) => {
-      App.show_mode(`history`)
-    }},
-    {name: `Show Bookmarks`, cmd: `show_bookmarks`, action: (args) => {
-      App.show_mode(`bookmarks`)
-    }},
-    {name: `Show Closed`, cmd: `show_closed`, action: (args) => {
-      App.show_mode(`closed`)
-    }},
+    ...show_modes,
     {name: `Show Main`, cmd: `show_main`, action: (args) => {
       App.show_main_mode()
     }},
