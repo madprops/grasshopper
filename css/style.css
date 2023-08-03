@@ -41,7 +41,7 @@ body, html {
 }
 
 #background.grayscale {
-  filter: grayscale(100%);
+  filter: grayscale(1);
 }
 
 #background.invert {
@@ -229,6 +229,7 @@ svg {
   scroll-margin: 4.2rem;
   padding-left: var(--item_margin);
   padding-right: var(--item_margin);
+  transition: text-shadow 171ms;
   gap: 0.611rem;
 }
 
@@ -289,6 +290,10 @@ svg {
   align-self: stretch;
   align-items: center;
   flex-shrink: 0;
+}
+
+.item_hover .item_text {
+  text-shadow: 0 0 1rem currentColor;
 }
 
 .has_pin_icon .pin_item .item_info_pin {
@@ -840,7 +845,7 @@ select {
 }
 
 .invert {
-  filter: invert(100%);
+  filter: invert(1);
 }
 
 .hue_rotate {

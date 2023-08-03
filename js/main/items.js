@@ -447,7 +447,7 @@ App.create_item_element = (item) => {
   let status = DOM.create(`div`, `item_status hidden`)
   item.element.append(status)
 
-  let text = DOM.create(`div`, `item_text action`)
+  let text = DOM.create(`div`, `item_text`)
   let text_1 = DOM.create(`div`, `item_text_1`)
   let text_2 = DOM.create(`div`, `item_text_2 hidden`)
   text.append(text_1)
