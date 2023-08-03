@@ -1509,11 +1509,13 @@ App.pick_item = (item) => {
   let selected = App.get_selected(item.mode)
 
   if (selected !== item) {
-    let i = App.get_item_element_index(item.mode, selected.element)
-    let ii = App.get_item_element_index(item.mode, item.element)
+    if (!App.multiple_selected(item.mode)) {
+      let i = App.get_item_element_index(item.mode, selected.element)
+      let ii = App.get_item_element_index(item.mode, item.element)
 
-    if (Math.abs(i - ii) > 1) {
-      App.toggle_selected(selected, false)
+      if (Math.abs(i - ii) > 1) {
+        App.toggle_selected(selected, false)
+      }
     }
   }
 
