@@ -108,7 +108,7 @@ App.mouse_click_action = (mode, e) => {
     if (!e.shiftKey && !e.ctrlKey) {
       if (media_type) {
         if (App.get_setting(`view_${media_type}`) === `icon`) {
-          App.select(item)
+          App.select_item(item, `nearest_smooth`)
           App.view_media(item)
           return
         }
@@ -118,7 +118,6 @@ App.mouse_click_action = (mode, e) => {
 
   if (e.shiftKey) {
     App.select_range(item)
-    App.select(item, false)
     return
   }
 
@@ -132,7 +131,7 @@ App.mouse_click_action = (mode, e) => {
     return
   }
 
-  App.select(item)
+  App.select_item(item, `nearest_smooth`)
 
   if (item.mode === `tabs`) {
     if (App.get_setting(`mute_click`)) {
@@ -146,7 +145,7 @@ App.mouse_click_action = (mode, e) => {
 
   if (media_type) {
     if (App.get_setting(`view_${media_type}`) === `item`) {
-      App.select(item)
+      App.select_item(item, `nearest_smooth`)
       App.view_media(item)
       return
     }
@@ -169,7 +168,7 @@ App.mouse_context_action = (mode, e) => {
   }
 
   let item = App.get_cursor_item(mode, e)
-  App.select(item, !item.selected)
+  App.select_item(item, `nearest_smooth`, !item.selected)
   App.show_item_menu(item, e.clientX, e.clientY)
   e.preventDefault()
 }

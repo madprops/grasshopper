@@ -89,7 +89,6 @@ App.select_next = (mode, dir) => {
 
     if (waypoint) {
       App.select_range(item)
-      App.select(item, false)
       break
     }
     else {
@@ -1461,10 +1460,6 @@ App.multiple_selected = (mode) => {
   }
 
   return false
-}
-
-App.select = (item, deselect = true) => {
-  App.select_item(item, `nearest_smooth`, deselect)
 }
 
 App.soft_copy_item = (o_item) => {
