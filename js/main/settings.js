@@ -1014,9 +1014,11 @@ App.settings_menu_items = (action = `normal`) => {
 
   for (let c of App.settings_categories) {
     let selected = c === App.settings_category
+    let icon = App.settings_emojis[c]
+    let name = `${icon} ${App.capitalize(c)}`
 
     items.push({
-      text: App.capitalize(c),
+      text: name,
       action: () => {
         App.show_settings_category(c)
       },

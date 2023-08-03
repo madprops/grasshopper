@@ -61,3 +61,13 @@ App.color_emojis = {
   blue: `🔵`,
   yellow: `🟡`,
 }
+App.settings_emojis = {
+  general: `⚙️`,
+  theme: `🎨`,
+  icons: `🖼️`,
+  media: `📷`,
+  show: `👁️`,
+  mouse: `🖱️`,
+  warns: `🚨`,
+  more: `💠`,
+}
