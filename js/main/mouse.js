@@ -170,12 +170,11 @@ App.mouse_context_action = (mode, e) => {
 
   let item = App.get_cursor_item(mode, e)
 
-  App.select(item, false)
-
-  if (!item.selected && App.multiple_selected(item.mode)) {
+  if (!item.selected) {
     App.deselect(item.mode)
   }
 
+  App.select(item, false)
   App.show_item_menu(item, e.clientX, e.clientY)
   e.preventDefault()
 }
