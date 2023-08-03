@@ -317,7 +317,7 @@ svg {
 }
 
 .item_button:active {
-  border: 1px solid var(--alt_color_1);
+  background-color: var(--alt_background_2);
 }
 
 .item_top_container {
