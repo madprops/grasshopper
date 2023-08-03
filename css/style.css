@@ -284,7 +284,7 @@ svg {
   display: flex;
 }
 
-.highlighted .item_info_highlight {
+.selected .item_info_selected {
   display: flex;
 }
 
@@ -346,10 +346,6 @@ svg {
   gap: 0.66rem;
   flex-grow: 0;
   flex-shrink: 0;
-}
-
-.highlighted {
-  background-color: var(--alt_color_1);
 }
 
 .selected {

@@ -23,8 +23,8 @@ App.create_step_back_button = (mode) => {
 App.step_back = (mode = App.window_mode, e) => {
   let item = App.get_selected(mode)
 
-  if (App.highlights(mode)) {
-    App.dehighlight(mode, `selected`)
+  if (App.multiple_selected(mode)) {
+    App.deselect(mode, `selected`)
   }
   else if (App.filter_has_value(mode)) {
     App.clear_filter(mode)

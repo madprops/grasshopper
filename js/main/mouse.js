@@ -63,20 +63,20 @@ App.mouse_down_action = (mode, e) => {
 
   if (e.target.classList.contains(`item_pick`)) {
     App.item_range_on = true
-    let highlighted = item.highlighted
+    let selected = item.selected
 
     if (e.shiftKey) {
-      App.highlight_range(item)
+      App.select_range(item)
     }
     else {
       App.pick_item(item)
     }
 
-    if (highlighted) {
-      App.item_range_highlight = false
+    if (selected) {
+      App.item_range_select = false
     }
     else {
-      App.item_range_highlight = true
+      App.item_range_select = true
     }
   }
 }
@@ -117,7 +117,7 @@ App.mouse_click_action = (mode, e) => {
   }
 
   if (e.shiftKey) {
-    App.highlight_range(item)
+    App.select_range(item)
     App.select(item, false)
     return
   }
@@ -172,8 +172,8 @@ App.mouse_context_action = (mode, e) => {
 
   App.select(item, false)
 
-  if (!item.highlighted && App.highlights(item.mode)) {
-    App.dehighlight(item.mode)
+  if (!item.selected && App.multiple_selected(item.mode)) {
+    App.deselect(item.mode)
   }
 
   App.show_item_menu(item, e.clientX, e.clientY)
@@ -217,7 +217,7 @@ App.mouse_middle_action = (mode, e) => {
     return
   }
 
-  App.dehighlight(mode)
+  App.deselect(mode)
   App[`${mode}_action_alt`](item, e.shiftKey)
 }
 
@@ -246,12 +246,12 @@ App.mouse_over_action = (mode, e) => {
   App.update_footer_info(item)
 
   if (App.item_range_on) {
-    if (item.highlighted !== App.item_range_highlight) {
-      if (App.item_range_highlight) {
+    if (item.selected !== App.item_range_select) {
+      if (App.item_range_select) {
         App.select_item(item, `none`, false)
       }
 
-      App.toggle_highlight(item, App.item_range_highlight)
+      App.toggle_selected(item, App.item_range_select)
     }
   }
 }
@@ -270,7 +270,7 @@ App.mouse_out_action = (mode, e) => {
 }
 
 App.right_button_action = (item) => {
-  App.dehighlight(item.mode)
+  App.deselect(item.mode)
 
   if (item.mode === `tabs`) {
     App.close_tabs(item)

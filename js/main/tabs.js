@@ -1129,7 +1129,7 @@ App.select_pinned_tabs = () => {
 
   for (let item of App.get_items(`tabs`)) {
     if (item.visible && item.pinned) {
-      App.toggle_highlight(item, true)
+      App.toggle_selected(item, true)
 
       if (!first) {
         App.select_item(item, `none`, false)
@@ -1137,7 +1137,7 @@ App.select_pinned_tabs = () => {
       }
     }
     else {
-      App.toggle_highlight(item, false)
+      App.toggle_selected(item, false)
     }
   }
 }
@@ -1147,7 +1147,7 @@ App.select_normal_tabs = () => {
 
   for (let item of App.get_items(`tabs`)) {
     if (item.visible && !item.pinned) {
-      App.toggle_highlight(item, true)
+      App.toggle_selected(item, true)
 
       if (!first) {
         App.select_item(item, `none`, false)
@@ -1155,7 +1155,7 @@ App.select_normal_tabs = () => {
       }
     }
     else {
-      App.toggle_highlight(item, false)
+      App.toggle_selected(item, false)
     }
   }
 }
