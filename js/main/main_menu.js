@@ -36,8 +36,11 @@ App.show_main_menu = (mode) => {
   let items = []
 
   for (let m of App.mode_order) {
+    let icon = App.mode_emojis[m]
+    let name = `${icon} ${App.get_mode_name(m)}`
+
     items.push({
-      text: App.get_mode_name(m),
+      text: name,
       action: () => {
         App.show_mode(m)
       },

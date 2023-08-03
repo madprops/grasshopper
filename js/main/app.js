@@ -71,3 +71,9 @@ App.settings_emojis = {
   warns: `🚨`,
   more: `💠`,
 }
+App.mode_emojis = {
+  tabs: `📑`,
+  bookmarks: `📚`,
+  closed: `📕`,
+  history: `📜`,
+}
