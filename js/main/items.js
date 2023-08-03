@@ -1081,7 +1081,7 @@ App.select_range = (item) => {
 
   if (item.selected) {
     for (let [i, it] of items.entries()) {
-      if (!it.visible) {
+      if (!it.visible || !it.selected) {
         continue
       }
 
@@ -1118,7 +1118,7 @@ App.select_range = (item) => {
     }
 
     for (let it of slice) {
-      if (!it.visible) {
+      if (!it.visible || it.selected) {
         continue
       }
 
