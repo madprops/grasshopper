@@ -1324,7 +1324,7 @@ App.scroll = (mode, direction, fast = false) => {
 
 App.select_all = (mode = App.window_mode) => {
   for (let item of App.get_items(mode).slice(0).reverse()) {
-    App.toggle_selected(item, true)
+    App.toggle_selected(item, true, false)
   }
 }
 
