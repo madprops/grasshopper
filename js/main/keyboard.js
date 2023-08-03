@@ -13,7 +13,7 @@ App.check_items_keyboard = (e) => {
       App.select_item(item, `nearest_smooth`)
     }
     else {
-      if (App.deselect(mode, direction)) {
+      if (App.deselect(mode, direction) > 1) {
         e.preventDefault()
         return
       }

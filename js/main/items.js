@@ -1123,7 +1123,7 @@ App.select_range = (item) => {
 }
 
 App.deselect = (mode = App.window_mode, select = `none`) => {
-  let some = false
+  let num = 0
   let first, last
 
   for (let item of App.selected_items(mode)) {
@@ -1134,7 +1134,7 @@ App.deselect = (mode = App.window_mode, select = `none`) => {
     }
 
     last = item
-    some = true
+    num += 1
   }
 
   if (select === `up`) {
@@ -1152,7 +1152,7 @@ App.deselect = (mode = App.window_mode, select = `none`) => {
     App.select_item(selected, `nearest_smooth`, false)
   }
 
-  return some
+  return num
 }
 
 App.toggle_selected = (item, what) => {
