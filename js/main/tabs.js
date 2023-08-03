@@ -249,7 +249,7 @@ App.tabs_action = async (item) => {
 }
 
 App.tabs_action_alt = (item, shift_key = false) => {
-  App.close_tabs(item, shift_key)
+  App.close_tabs(item, shift_key, false)
 }
 
 App.duplicate_tab = async (item) => {
