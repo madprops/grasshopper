@@ -380,7 +380,6 @@ App.check_item_icon = (item) => {
     let icon = App.get_img_icon(item)
     container.append(icon)
 
-
     if (item.color) {
       let c = App.colors[item.color]
       container.style.outline = `2px solid ${c}`
