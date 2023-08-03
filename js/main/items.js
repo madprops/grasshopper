@@ -456,13 +456,6 @@ App.create_item_element = (item) => {
   if (item.mode === `tabs`) {
     item.element.draggable = true
 
-    if (App.get_setting(`active_icon`)) {
-      let active_icon = DOM.create(`div`, `item_info item_info_active`)
-      active_icon.textContent = App.get_setting(`active_icon`)
-      active_icon.title = `This tab is active`
-      item.element.append(active_icon)
-    }
-
     if (App.get_setting(`pin_icon`)) {
       let pin_icon = DOM.create(`div`, `item_info item_info_pin`)
       pin_icon.textContent = App.get_setting(`pin_icon`)
@@ -478,13 +471,6 @@ App.create_item_element = (item) => {
     }
 
     App.check_tab_item(item)
-  }
-
-  if (App.get_setting(`selected_icon`)) {
-    let selected_icon = DOM.create(`div`, `item_info item_info_selected`)
-    selected_icon.textContent = App.get_setting(`selected_icon`)
-    selected_icon.title = `This tab is selected`
-    item.element.append(selected_icon)
   }
 
   if (item.selected) {

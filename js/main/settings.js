@@ -34,8 +34,6 @@ App.build_default_settings = () => {
   obj.close_icon = {value: `x`, category: category, version: 1}
   obj.open_icon = {value: `🚀`, category: category, version: 1}
   obj.pick_icon = {value: `🎯`, category: category, version: 1}
-  obj.active_icon = {value: `👁`, category: category, version: 1}
-  obj.selected_icon = {value: `☀️`, category: category, version: 1}
 
   category = `warns`
   obj.warn_on_close_tabs = {value: `special`, category: category, version: 1}

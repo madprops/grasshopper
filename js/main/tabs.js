@@ -610,8 +610,6 @@ App.on_tab_activated = async (info) => {
     if (item.active && item === selected) {
       exit = true
     }
-
-    App.check_tab_active(item)
   }
 
   // Avoid refreshes
@@ -1019,7 +1017,6 @@ App.create_playing_icon = () => {
 App.check_tab_item = (item) => {
   if (item.mode === `tabs`) {
     App.check_tab_pinned(item)
-    App.check_tab_active(item)
   }
 }
 
@@ -1039,17 +1036,6 @@ App.check_tab_pinned = (item) => {
     }
     else {
       item.element.classList.add(`normal_item`)
-    }
-  }
-}
-
-App.check_tab_active = (item) => {
-  if (item.mode === `tabs` && App.get_setting(`active_icon`)) {
-    if (item.active) {
-      item.element.classList.add(`active`)
-    }
-    else {
-      item.element.classList.remove(`active`)
     }
   }
 }
