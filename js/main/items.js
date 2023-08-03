@@ -166,14 +166,20 @@ App.set_selected = (mode, item) => {
   }
 }
 
-App.get_items = (mode) => {
+App.get_items = (mode, reverse = false) => {
   let item_string = `${mode}_items`
 
   if (App[item_string]) {
     App[item_string] = App[item_string].filter(x => x !== undefined)
   }
 
-  return App[item_string] || []
+  let items = App[item_string] || []
+
+  if (reverse) {
+    items = items.slice(0).reverse()
+  }
+
+  return items
 }
 
 App.select_first_item = (mode, by_active = false) => {
@@ -1323,7 +1329,7 @@ App.scroll = (mode, direction, fast = false) => {
 }
 
 App.select_all = (mode = App.window_mode) => {
-  for (let item of App.get_items(mode).slice(0).reverse()) {
+  for (let item of App.get_items(mode, true)) {
     App.toggle_selected(item, true, false)
   }
 }
