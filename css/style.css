@@ -316,6 +316,10 @@ svg {
   opacity: 1;
 }
 
+.item_button:active {
+  border: 1px solid var(--alt_color_1);
+}
+
 .item_top_container {
   margin-left: var(--item_margin);
   margin-right: var(--item_margin);
