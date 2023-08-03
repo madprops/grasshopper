@@ -77,7 +77,6 @@ App.select_next = (mode, dir) => {
   }
 
   let current = App.last_highlight || App.get_selected(mode)
-
   if (dir === `above`) {
     items.reverse()
   }
@@ -1081,11 +1080,13 @@ App.select_range = (item) => {
     return
   }
 
-  let items = App[`${item.mode}_items`].slice(0)
+  let items = App.get_items(item.mode).slice(0)
   let index_1 = items.indexOf(item)
   let index_2 = items.indexOf(App.last_highlight)
 
   if (item.selected) {
+    let reverse = index_1 > index_2 ? `normal` : `reverse`
+
     for (let [i, it] of items.entries()) {
       if (!it.visible || !it.selected) {
         continue
@@ -1105,7 +1106,7 @@ App.select_range = (item) => {
       }
 
       if (unselect) {
-        App.toggle_selected(it, false)
+        App.toggle_selected(it, false, reverse)
       }
     }
   }
@@ -1138,7 +1139,7 @@ App.deselect = (mode = App.window_mode, select = `none`) => {
   let first, last
 
   for (let item of App.selected_items(mode)) {
-    App.toggle_selected(item, false, false)
+    App.toggle_selected(item, false, `none`)
 
     if (!first) {
       first = item
@@ -1176,7 +1177,7 @@ App.deselect = (mode = App.window_mode, select = `none`) => {
   return num
 }
 
-App.toggle_selected = (item, what, select = true) => {
+App.toggle_selected = (item, what, select = `normal`) => {
   let selected
 
   if (what !== undefined) {
@@ -1205,12 +1206,17 @@ App.toggle_selected = (item, what, select = true) => {
 
   item.selected = selected
 
-  if (select && !selected) {
+  if ((select === `normal` || select === `reverse`) && !selected) {
     if (App.get_selected(item.mode) === item) {
       let items = App.selected_items(item.mode)
 
-      if (items.length > 1) {
-        App.select_item(items.at(-1), `none`, false)
+      if (select === `reverse`) {
+        items.reverse()
+      }
+
+      if (items.length) {
+        let it = items.at(0)
+        App.select_item(it, `none`, false)
       }
     }
   }
