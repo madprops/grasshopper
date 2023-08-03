@@ -91,7 +91,7 @@ App.setup_commands = () => {
     {name: App.separator_string},
 
     {name: `Open`, cmd: `open_items`, mode: `items`, action: (args) => {
-      App.open_items(args.item, true)
+      App.open_items(args.mode, true)
     }},
     {name: `Bookmark`, cmd: `bookmark_items`, mode: `items`, action: (args) => {
       App.bookmark_items(args.item)
@@ -127,13 +127,13 @@ App.setup_commands = () => {
       App.new_tab()
     }},
     {name: `Unload`, cmd: `unload_tabs`, mode: `tabs`, action: (args) => {
-      App.unload_tabs(args.item)
+      App.unload_tabs()
     }},
     {name: `Duplicate`, cmd: `duplicate_tab`, mode: `tabs`, action: (args) => {
-      App.duplicate_tabs(args.item)
+      App.duplicate_tabs()
     }},
     {name: `Detach`, cmd: `detach_tabs`, mode: `tabs`, action: (args) => {
-      App.detach_tabs(args.item)
+      App.detach_tabs()
     }},
     {name: `Move To Top`, cmd: `tabs_to_top`, mode: `tabs`, action: (args) => {
       App.move_tabs_vertically(`top`)
@@ -142,25 +142,25 @@ App.setup_commands = () => {
       App.move_tabs_vertically(`bottom`)
     }},
     {name: `Pin`, cmd: `pin_tabs`, mode: `tabs`, action: (args) => {
-      App.pin_tabs(args.item)
+      App.pin_tabs()
     }},
     {name: `Unpin`, cmd: `unpin_tabs`, mode: `tabs`, action: (args) => {
-      App.unpin_tabs(args.item)
+      App.unpin_tabs()
     }},
     {name: `Toggle Pin`, cmd: `toggle_pin_tabs`, mode: `tabs`, action: (args) => {
-      App.toggle_pin_tabs(args.item)
+      App.toggle_pin_tabs()
     }},
     {name: `Mute`, cmd: `mute_tabs`, mode: `tabs`, action: (args) => {
-      App.mute_tabs(args.item)
+      App.mute_tabs()
     }},
     {name: `Unmute`, cmd: `unmute_tabs`, mode: `tabs`, action: (args) => {
-      App.unmute_tabs(args.item)
+      App.unmute_tabs()
     }},
     {name: `Toggle Mute`, cmd: `toggle_mute_tabs`, mode: `tabs`, action: (args) => {
-      App.toggle_mute_tabs(args.item)
+      App.toggle_mute_tabs()
     }},
     {name: `Close`, cmd: `close_tabs`, mode: `tabs`, action: (args) => {
-      App.close_tabs(args.item)
+      App.close_tabs()
     }},
     {name: `Close Normal`, cmd: `close_normal_tabs`, mode: `tabs`, action: (args) => {
       App.close_normal_tabs()

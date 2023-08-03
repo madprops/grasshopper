@@ -148,7 +148,7 @@ App.setup_window = () => {
         }
 
         if (App.on_items()) {
-          App.dehighlight(App.window_mode, `up`)
+          App.deselect_all(App.window_mode)
           App.show_all()
 
           if (App.window_mode === `tabs`) {

@@ -81,7 +81,7 @@ App.bookmarks_action = (item) => {
 }
 
 App.bookmarks_action_alt = (item) => {
-  App.open_items(item, true)
+  App.open_items(`bookmarks`, true)
 }
 
 App.get_bookmarks_folder = async () => {

@@ -52,9 +52,9 @@ App.dragstart_action = (mode, e) => {
   e.dataTransfer.setData(`text/plain`, App.drag_item.url)
   App.drag_items = []
 
-  if (App.drag_item.highlighted) {
+  if (App.drag_item.selected) {
     for (let item of App.get_items(mode)) {
-      if (item.highlighted) {
+      if (item.selected) {
         App.drag_items.push(item)
       }
     }

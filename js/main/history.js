@@ -61,5 +61,5 @@ App.history_action = (item) => {
 }
 
 App.history_action_alt = (item) => {
-  App.open_items(item, true)
+  App.open_items(`history`, true)
 }
