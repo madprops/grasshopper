@@ -77,3 +77,5 @@ App.mode_emojis = {
   closed: `📕`,
   history: `📜`,
 }
+App.star_icon = `⭐`
+App.clipboard_icon = `📋`

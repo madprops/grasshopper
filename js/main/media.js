@@ -253,14 +253,14 @@ App.show_media_menu = (what) => {
   let item = App.current_media_item()
 
   items.push({
-    text: `Copy URL`,
+    text: `${App.clipboard_icon} Copy URL`,
     action: () => {
       App.media_copy(what)
     }
   })
 
   items.push({
-    text: `Bookmark `,
+    text: `${App.star_icon} Bookmark`,
     action: () => {
       App.bookmark_items(item)
     }
@@ -268,7 +268,7 @@ App.show_media_menu = (what) => {
 
   if (what === `image`) {
     items.push({
-      text: `Background`,
+      text: `${App.settings_emojis.theme} Background`,
       action: () => {
         App.media_background(what)
       }
