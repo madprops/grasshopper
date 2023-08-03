@@ -1113,6 +1113,10 @@ App.select_range = (item) => {
       slice = items.slice(index_2 + 1, index_1 + 1)
     }
 
+    if (index_1 < index_2) {
+      slice.reverse()
+    }
+
     for (let it of slice) {
       if (!it.visible) {
         continue
@@ -1139,20 +1143,28 @@ App.deselect = (mode = App.window_mode, select = `none`) => {
   }
 
   App.last_highlight = undefined
+  let next_item
 
   if (select === `up`) {
     if (first) {
-      App.select_item(first, `nearest_smooth`, false)
+      next_item = first
     }
   }
   else if (select === `down`) {
     if (last) {
-      App.select_item(last, `nearest_smooth`, false)
+      next_item = last
     }
   }
   else if (select === `selected`) {
     let selected = App.get_selected(mode)
-    App.select_item(selected, `nearest_smooth`, false)
+
+    if (selected) {
+      next_item = selected
+    }
+  }
+
+  if (next_item) {
+    App.select_item(next_item, `nearest_smooth`, false)
   }
 
   return num
