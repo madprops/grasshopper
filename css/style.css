@@ -36,30 +36,6 @@ body, html {
   background-size: cover;
 }
 
-#background.blur {
-  filter: blur(6px);
-}
-
-#background.grayscale {
-  filter: grayscale(1);
-}
-
-#background.invert {
-  filter: invert(1);
-}
-
-#background.rotate_1 {
-  filter: hue-rotate(90deg);
-}
-
-#background.rotate_2 {
-  filter: hue-rotate(180deg);
-}
-
-#background.rotate_3 {
-  filter: hue-rotate(270deg);
-}
-
 #background.tiles {
   background-size: var(--background_tile_width) auto;
   background-repeat: repeat;
@@ -840,14 +816,34 @@ select {
   font-size: 1.1rem;
 }
 
-.flipped {
-	transform: rotateY(180deg) !important;
+/* Effects */
+
+.blur {
+  filter: blur(6px);
+}
+
+.grayscale {
+  filter: grayscale(1);
 }
 
 .invert {
   filter: invert(1);
 }
 
-.hue_rotate {
+.rotate_1 {
   filter: hue-rotate(90deg);
 }
+
+.rotate_2 {
+  filter: hue-rotate(180deg);
+}
+
+.rotate_3 {
+  filter: hue-rotate(270deg);
+}
+
+.flipped {
+	transform: rotateY(180deg) !important;
+}
+
+/* */
