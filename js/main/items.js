@@ -76,7 +76,7 @@ App.select_next = (mode, dir) => {
     return
   }
 
-  let current = App.get_selected(mode)
+  let current = App.last_highlight || App.get_selected(mode)
 
   if (dir === `above`) {
     items.reverse()
@@ -1061,20 +1061,24 @@ App.move_item_element = (mode, el, to_index) => {
 }
 
 App.select_range = (item) => {
-  let last_selected = App.get_selected(item.mode)
-
-  if (last_selected === item) {
-    App.deselect(item.mode, `selected`)
+  if (App.last_highlight === item) {
+    App.deselect(item.mode)
+    App.select_item(item, `nearest_instant`, false)
     return
   }
 
-  if (item === last_selected) {
+  if (!App.last_highlight || !App.last_highlight.selected) {
+    App.last_highlight = App.get_selected(item.mode)
+    App.toggle_selected(App.last_highlight, true)
+  }
+
+  if (item === App.last_highlight) {
     return
   }
 
-  let items = App[`${item.mode}_items`]
+  let items = App[`${item.mode}_items`].slice(0)
   let index_1 = items.indexOf(item)
-  let index_2 = items.indexOf(last_selected)
+  let index_2 = items.indexOf(App.last_highlight)
 
   if (item.selected) {
     for (let [i, it] of items.entries()) {
@@ -1125,7 +1129,7 @@ App.deselect = (mode = App.window_mode, select = `none`) => {
   let first, last
 
   for (let item of App.selected_items(mode)) {
-    App.toggle_selected(item, false)
+    App.toggle_selected(item, false, false)
 
     if (!first) {
       first = item
@@ -1134,6 +1138,8 @@ App.deselect = (mode = App.window_mode, select = `none`) => {
     last = item
     num += 1
   }
+
+  App.last_highlight = undefined
 
   if (select === `up`) {
     if (first) {
@@ -1153,7 +1159,7 @@ App.deselect = (mode = App.window_mode, select = `none`) => {
   return num
 }
 
-App.toggle_selected = (item, what) => {
+App.toggle_selected = (item, what, select = true) => {
   let selected
 
   if (what !== undefined) {
@@ -1170,12 +1176,28 @@ App.toggle_selected = (item, what) => {
   if (selected) {
     item.element.classList.add(`selected`)
     App.set_selected(item.mode, item)
+    App.last_highlight = item
   }
   else {
     item.element.classList.remove(`selected`)
+
+    if (App.last_highlight === item) {
+      App.last_highlight = undefined
+    }
   }
 
   item.selected = selected
+
+  if (select && !selected) {
+    if (App.get_selected(item.mode) === item) {
+      let items = App.selected_items(item.mode)
+
+      if (items.length > 1) {
+        App.select_item(items.at(-1), `none`, false)
+      }
+    }
+  }
+
   App.update_footer_count(item.mode)
 }
 
