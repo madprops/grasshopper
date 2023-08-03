@@ -1233,9 +1233,16 @@ App.after_open = (shift = false) => {
   App.switch_to_tabs()
 }
 
-App.open_items = (item, shift) => {
+App.open_items = (item, shift, multiple = true) => {
   let mode = item.mode
-  let items = App.get_active_items(mode, item)
+  let items
+
+  if (multiple) {
+    items = App.get_active_items(mode, item)
+  }
+  else {
+    items = [item]
+  }
 
   if (items.length === 1) {
     App.open_tab(items[0])

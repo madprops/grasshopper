@@ -263,12 +263,10 @@ App.mouse_out_action = (mode, e) => {
 }
 
 App.right_button_action = (item) => {
-  App.deselect(item.mode)
-
   if (item.mode === `tabs`) {
-    App.close_tabs(item)
+    App.close_tabs(item, false, false)
   }
   else {
-    App.open_items(item, true)
+    App.open_items(item, true, false)
   }
 }
