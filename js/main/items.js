@@ -9,11 +9,56 @@ App.remove_selected_class = (mode) => {
   }
 }
 
+App.select_item = async (item, scroll = `nearest`, dehighlight = true) => {
+  if (!item) {
+    return
+  }
+
+  if (!item.created) {
+    App.create_item_element(item)
+  }
+
+  if (dehighlight) {
+    App.dehighlight(item.mode)
+  }
+
+  let selected = App.get_selected(item.mode)
+
+  if (selected === item) {
+    App.scroll_to_item(item, scroll)
+    return
+  }
+
+  App.set_selected(item.mode, item)
+  App.remove_selected_class(item.mode)
+  item.element.classList.add(`selected`)
+
+  if (scroll !== `none`) {
+    App.scroll_to_item(item, scroll)
+  }
+
+  App.update_footer_info(item)
+
+  if (item.mode === `tabs`) {
+    try {
+      await browser.tabs.warmup(item.id)
+    }
+    catch (err) {
+      App.log(err, `error`)
+    }
+  }
+}
+
+App.check_highlight = (item) => {
+  let highlighted = item.highlighted
+  App.toggle_highlight(item, !highlighted)
+}
+
 App.select_item_above = (mode) => {
   let item = App.get_next_visible_item({mode: mode, reverse: true})
 
   if (item) {
-    App.select(item, `nearest`)
+    App.select_item(item, `nearest`)
   }
 }
 
@@ -21,11 +66,11 @@ App.select_item_below = (mode) => {
   let item = App.get_next_visible_item({mode: mode})
 
   if (item) {
-    App.select(item, `nearest`)
+    App.select_item(item, `nearest`)
   }
 }
 
-App.select_next = (mode, dir) => {
+App.highlight_next = (mode, dir) => {
   let waypoint = false
   let items = App.get_items(mode).slice(0)
 
@@ -33,7 +78,7 @@ App.select_next = (mode, dir) => {
     return
   }
 
-  let current = App.last_selected || App.get_selected(mode)
+  let current = App.last_highlight || App.get_selected(mode)
 
   if (dir === `above`) {
     items.reverse()
@@ -45,7 +90,8 @@ App.select_next = (mode, dir) => {
     }
 
     if (waypoint) {
-      App.select_range(item)
+      App.highlight_range(item)
+      App.select(item, false)
       break
     }
     else {
@@ -56,7 +102,7 @@ App.select_next = (mode, dir) => {
   }
 }
 
-App.select_to_edge = (mode, dir) => {
+App.highlight_to_edge = (mode, dir) => {
   let items = App.get_items(mode).slice(0)
 
   if (items.length === 0) {
@@ -67,7 +113,7 @@ App.select_to_edge = (mode, dir) => {
     items.reverse()
   }
 
-  App.select_range(items[0])
+  App.highlight_range(items[0])
 }
 
 App.get_next_visible_item = (args) => {
@@ -111,6 +157,18 @@ App.get_next_visible_item = (args) => {
   }
 }
 
+App.get_selected = (mode = App.window_mode) => {
+  return App[`selected_${mode}_item`]
+}
+
+App.set_selected = (mode, item) => {
+  App[`selected_${mode}_item`] = item
+
+  if (!item) {
+    App.remove_selected_class(mode)
+  }
+}
+
 App.get_items = (mode) => {
   let item_string = `${mode}_items`
 
@@ -125,7 +183,7 @@ App.select_first_item = (mode, by_active = false) => {
   if (mode === `tabs` && by_active) {
     for (let item of App.get_items(mode)) {
       if (item.visible && item.active) {
-        App.select(item, `center`)
+        App.select_item(item, `center`)
         return
       }
     }
@@ -133,7 +191,7 @@ App.select_first_item = (mode, by_active = false) => {
 
   for (let item of App.get_items(mode)) {
     if (item.visible) {
-      App.select(item)
+      App.select_item(item)
       return
     }
   }
@@ -152,7 +210,7 @@ App.remove_item = (item) => {
     let next_item = App.get_next_item(mode)
 
     if (next_item) {
-      App.select(next_item)
+      App.select_item(next_item)
     }
   }
 
@@ -305,7 +363,7 @@ App.process_info = (mode, info, exclude = [], o_item) => {
     item.original_data = info
     item.id = info.id || App[`${mode}_idx`]
     item.visible = true
-    item.selected = false
+    item.highlighted = false
     App.create_empty_item_element(item)
     App[`${mode}_idx`] += 1
     return item
@@ -400,37 +458,48 @@ App.create_item_element = (item) => {
   if (item.mode === `tabs`) {
     item.element.draggable = true
 
+    if (App.get_setting(`active_icon`)) {
+      let active_icon = DOM.create(`div`, `item_info item_info_active`)
+      active_icon.textContent = App.get_setting(`active_icon`)
+      active_icon.title = `This tab is active`
+      item.element.append(active_icon)
+    }
+
     if (App.get_setting(`pin_icon`)) {
       let pin_icon = DOM.create(`div`, `item_info item_info_pin`)
       pin_icon.textContent = App.get_setting(`pin_icon`)
+      pin_icon.title = `This tab is pinned`
       item.element.append(pin_icon)
     }
 
     if (App.get_setting(`normal_icon`)) {
       let normal_icon = DOM.create(`div`, `item_info item_info_normal`)
       normal_icon.textContent = App.get_setting(`normal_icon`)
+      normal_icon.title = `This tab is normal`
       item.element.append(normal_icon)
     }
 
     App.check_tab_item(item)
   }
 
-  if (App.get_setting(`selected_icon`)) {
-    let selected_icon = DOM.create(`div`, `item_info item_info_selected`)
-    selected_icon.textContent = App.get_setting(`selected_icon`)
-    item.element.append(selected_icon)
+  if (App.get_setting(`highlight_icon`)) {
+    let highlight_icon = DOM.create(`div`, `item_info item_info_highlight`)
+    highlight_icon.textContent = App.get_setting(`highlight_icon`)
+    highlight_icon.title = `This tab is highlighted`
+    item.element.append(highlight_icon)
   }
 
-  if (item.selected) {
-    item.element.classList.add(`selected`)
+  if (item.highlighted) {
+    item.element.classList.add(`highlighted`)
   }
   else {
-    item.element.classList.remove(`selected`)
+    item.element.classList.remove(`highlighted`)
   }
 
   if (App.get_setting(`pick_icon`)) {
     let pick = DOM.create(`div`, `item_pick item_button item_button_left`)
     pick.textContent = App.get_setting(`pick_icon`)
+    pick.title = `Pick`
     pick.draggable = true
     item.element.append(pick)
   }
@@ -439,6 +508,7 @@ App.create_item_element = (item) => {
     if (App.get_setting(`close_icon`)) {
       let btn = DOM.create(`div`, `item_button item_button_right item_button_close`)
       btn.textContent = App.get_setting(`close_icon`)
+      btn.title = `Close`
       btn.draggable = true
       item.element.append(btn)
     }
@@ -447,6 +517,7 @@ App.create_item_element = (item) => {
     if (App.get_setting(`open_icon`)) {
       let btn = DOM.create(`div`, `item_button item_button_right item_button_open`)
       btn.textContent = App.get_setting(`open_icon`)
+      btn.title = `Open`
       btn.draggable = true
       item.element.append(btn)
     }
@@ -1006,46 +1077,47 @@ App.move_item_element = (mode, el, to_index) => {
   }
 }
 
-App.select_range = (item) => {
-  if (App.last_selected === item) {
-    App.deselect_all(item.mode)
-    App.select(item, `nearest_instant`, false)
+App.highlight_range = (item) => {
+  if (App.last_highlight === item) {
+    App.dehighlight(item.mode)
+    App.select_item(item, `nearest_instant`, false)
     return
   }
 
-  if (!App.last_selected || !App.last_selected.selected) {
-    App.toggle_select(App.last_selected)
+  if (!App.last_highlight || !App.last_highlight.highlighted) {
+    App.last_highlight = App.get_selected(item.mode)
+    App.toggle_highlight(App.last_highlight, true)
   }
 
-  if (item === App.last_selected) {
+  if (item === App.last_highlight) {
     return
   }
 
   let items = App[`${item.mode}_items`]
   let index_1 = items.indexOf(item)
-  let index_2 = items.indexOf(App.last_selected)
+  let index_2 = items.indexOf(App.last_highlight)
 
-  if (item.selected) {
+  if (item.highlighted) {
     for (let [i, it] of items.entries()) {
       if (!it.visible) {
         continue
       }
 
-      let unselect = false
+      let unhighlight = false
 
       if (index_1 < index_2) {
         if (i > index_1) {
-          unselect = true
+          unhighlight = true
         }
       }
       else {
         if (i < index_1) {
-          unselect = true
+          unhighlight = true
         }
       }
 
-      if (unselect) {
-        App.toggle_select(it, false)
+      if (unhighlight) {
+        App.toggle_highlight(it, false)
       }
     }
   }
@@ -1064,25 +1136,26 @@ App.select_range = (item) => {
         continue
       }
 
-      App.toggle_select(it, true)
+      App.toggle_highlight(it, true)
     }
   }
 
-  // Make sure the item is the last selected
-  App.toggle_select(item, true)
+  // Make sure the item is the last highlight
+  App.toggle_highlight(item, true)
+  let highlights = App.get_highlights(item.mode)
 
-  if (App.get_selected(item.mode).length <= 1) {
-    App.deselect_all(item.mode)
+  if (highlights.length <= 1) {
+    App.dehighlight(item.mode)
     return
   }
 }
 
-App.deselect_all = (mode = App.window_mode, select = `up`) => {
+App.dehighlight = (mode = App.window_mode, select = `none`) => {
   let some = false
   let first, last
 
-  for (let item of App.get_selected(mode)) {
-    App.toggle_select(item, false)
+  for (let item of App.get_highlights(mode)) {
+    App.toggle_highlight(item, false, false)
 
     if (!first) {
       first = item
@@ -1092,65 +1165,72 @@ App.deselect_all = (mode = App.window_mode, select = `up`) => {
     some = true
   }
 
-  let next_item
+  App.last_highlight = undefined
 
   if (select === `up`) {
     if (first) {
-      next_item = first
+      App.select_item(first, `nearest_smooth`, false)
     }
   }
   else if (select === `down`) {
     if (last) {
-      next_item = last
+      App.select_item(last, `nearest_smooth`, false)
     }
   }
   else if (select === `selected`) {
-    if (App.last_selected) {
-      next_item = App.last_selected
-    }
-  }
-
-  App.last_selected = undefined
-
-  if (next_item) {
-    App.select(next_item, `nearest_smooth`, false)
+    let selected = App.get_selected(mode)
+    App.select_item(selected, `nearest_smooth`, false)
   }
 
   return some
 }
 
-App.toggle_select = (item, what) => {
-  let selected
+App.toggle_highlight = (item, what, select = true) => {
+  let highlight
 
   if (what !== undefined) {
-    selected = what
+    highlight = what
   }
   else {
-    selected = !item.selected
+    highlight = !item.highlighted
   }
 
   if (!item.visible) {
-    selected = false
+    highlight = false
   }
 
-  if (selected) {
-    item.element.classList.add(`selected`)
-    item.selected_date = Date.now()
-    App.last_selected = item
+  if (highlight) {
+    item.element.classList.add(`highlighted`)
+    App.last_highlight = item
   }
   else {
-    item.element.classList.remove(`selected`)
+    item.element.classList.remove(`highlighted`)
+
+    if (App.last_highlight === item) {
+      App.last_highlight = undefined
+    }
   }
 
-  item.selected = selected
+  item.highlighted = highlight
+
+  if (select && !highlight) {
+    if (App.get_selected(item.mode) === item) {
+      let highlights = App.get_highlights(item.mode)
+
+      if (highlights.length > 0) {
+        App.select_item(highlights.at(-1), `none`, false)
+      }
+    }
+  }
+
   App.update_footer_count(item.mode)
 }
 
-App.get_selected = (mode = App.window_mode) => {
+App.get_highlights = (mode = App.window_mode) => {
   let ans = []
 
   for (let item of App.get_items(mode)) {
-    if (item.selected) {
+    if (item.highlighted) {
       ans.push(item)
     }
   }
@@ -1167,8 +1247,9 @@ App.after_open = (shift = false) => {
   App.switch_to_tabs()
 }
 
-App.open_items = (mode, shift) => {
-  let items = App.get_selected(mode)
+App.open_items = (item, shift) => {
+  let mode = item.mode
+  let items = App.get_active_items(mode, item)
 
   if (items.length === 1) {
     App.open_tab(items[0])
@@ -1182,17 +1263,17 @@ App.open_items = (mode, shift) => {
         App.open_tab(item)
       }
 
-      App.deselect_all(mode)
+      App.dehighlight(mode)
       App.after_open(shift)
     }, () => {
-      App.deselect_all(mode)
+      App.dehighlight(mode)
     }, force)
   }
 }
 
 App.goto_top = (mode = App.window_mode, select = false) => {
   if (select) {
-    App.select(App.get_items(mode).at(0), `nearest_instant`)
+    App.select_item(App.get_items(mode).at(0), `nearest_instant`)
   }
   else {
     let el = DOM.el(`#${mode}_container`)
@@ -1208,7 +1289,7 @@ App.goto_top = (mode = App.window_mode, select = false) => {
 
 App.goto_bottom = (mode = App.window_mode, select = false) => {
   if (select) {
-    App.select(App.get_items(mode).at(-1), `nearest_instant`)
+    App.select_item(App.get_items(mode).at(-1), `nearest_instant`)
   }
   else {
     let el = DOM.el(`#${mode}_container`)
@@ -1250,7 +1331,7 @@ App.scroll = (mode, direction, fast = false) => {
 
 App.select_all = (mode = App.window_mode) => {
   for (let item of App.get_items(mode)) {
-    App.toggle_select(item, true)
+    App.toggle_highlight(item, true)
   }
 }
 
@@ -1261,6 +1342,26 @@ App.create_icon = (name, type = 1) => {
   icon_use.href.baseVal = `#${name}_icon`
   icon.append(icon_use)
   return icon
+}
+
+App.get_active_items = (mode, item) => {
+  let highlights = App.get_highlights(mode)
+
+  if (highlights.length === 0) {
+    if (item) {
+      return [item]
+    }
+    else {
+      return [App.get_selected(mode)]
+    }
+  }
+  else {
+    if (!highlights.includes(item)) {
+      highlights.push(item)
+    }
+
+    return highlights
+  }
 }
 
 App.insert_item = (mode, info) => {
@@ -1391,16 +1492,18 @@ App.get_next_item = (mode) => {
   App.get_next_visible_item({mode: mode, reverse: true, wrap: false})
 }
 
-App.select = (item, scroll = `nearest`, single = true) => {
-  if (single) {
-    App.deselect_all(item.mode)
+App.highlights = (mode) => {
+  for (let item of App.get_items(mode)) {
+    if (item.highlighted) {
+      return true
+    }
   }
 
-  App.toggle_select(item, true)
+  return false
+}
 
-  if (scroll !== `none`) {
-    App.scroll_to_item(item, scroll)
-  }
+App.select = (item, dehighlight = true) => {
+  App.select_item(item, `nearest_smooth`, dehighlight)
 }
 
 App.soft_copy_item = (o_item) => {
@@ -1431,18 +1534,19 @@ App.pick_item = (item) => {
   let selected = App.get_selected(mode)
 
   if (selected !== item) {
-    if (!selected.selected) {
-      // Only select if it's next to the item
+    if (!selected.highlighted) {
+      // Only highlight if it's next to the item
       let i = App.get_item_element_index(mode, selected.element)
       let ii = App.get_item_element_index(mode, item.element)
 
       if (Math.abs(i - ii) === 1) {
-        App.toggle_select(selected)
+        App.toggle_highlight(selected)
       }
     }
   }
 
-  App.select(item, `none`, false)
+  App.select_item(item, `none`, false)
+  App.toggle_highlight(item)
 }
 
 App.remove_duplicates = (items) => {

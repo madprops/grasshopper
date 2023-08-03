@@ -54,7 +54,7 @@ App.create_footer = (mode) => {
     }
 
     if (e.shiftKey) {
-      App.select_to_edge(mode, `down`)
+      App.highlight_to_edge(mode, `down`)
     }
 
     App.goto_bottom(mode)
@@ -107,7 +107,7 @@ App.update_footer_count = (mode) => {
 
 App.do_update_footer_count = (mode) => {
   App.footer_count_debouncer.cancel()
-  let n1 = App.get_selected(mode).length
+  let n1 = App.get_highlights(mode).length
   let n2 = App.get_visible(mode).length
   let count
 

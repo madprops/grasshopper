@@ -10,10 +10,10 @@ App.check_items_keyboard = (e) => {
     }
 
     if (!App.element_is_visible(item.element)) {
-      App.select(item, `nearest_smooth`)
+      App.select_item(item, `nearest_smooth`)
     }
     else {
-      if (App.deselect_all(mode, direction)) {
+      if (App.dehighlight(mode, direction)) {
         e.preventDefault()
         return
       }
@@ -85,7 +85,7 @@ App.check_items_keyboard = (e) => {
     }
     else if (e.key === `Delete`) {
       if (mode === `tabs`) {
-        App.close_tabs()
+        App.close_tabs(item)
       }
 
       e.preventDefault()
@@ -101,22 +101,22 @@ App.check_items_keyboard = (e) => {
       return
     }
     else if (e.key === `Home`) {
-      App.select_to_edge(mode, `up`)
+      App.highlight_to_edge(mode, `up`)
       e.preventDefault()
       return
     }
     else if (e.key === `End`) {
-      App.select_to_edge(mode, `down`)
+      App.highlight_to_edge(mode, `down`)
       e.preventDefault()
       return
     }
     else if (e.key === `ArrowUp`) {
-      App.select_next(mode, `above`)
+      App.highlight_next(mode, `above`)
       e.preventDefault()
       return
     }
     else if (e.key === `ArrowDown`) {
-      App.select_next(mode, `below`)
+      App.highlight_next(mode, `below`)
       e.preventDefault()
       return
     }
@@ -190,9 +190,9 @@ App.check_items_keyboard = (e) => {
       return
     }
     else if (e.key === `Delete`) {
-      if (App.get_selected().length > 1) {
-        App.close_tabs()
+      if (App.highlights(mode)) {
         if (mode === `tabs`) {
+          App.close_tabs(item)
         }
 
         e.preventDefault()

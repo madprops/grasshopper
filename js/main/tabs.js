@@ -112,7 +112,7 @@ App.after_focus_tab = (method) => {
 
 App.focus_tab = async (item, scroll, method = `normal`) => {
   if (item.created) {
-    App.select(item, scroll)
+    App.select_item(item, scroll)
   }
 
   if (item.window_id) {
@@ -192,7 +192,7 @@ App.refresh_tab = async (id, select, info) => {
   App.check_pinline()
 
   if (select) {
-    App.select(item, `center_smooth`)
+    App.select_item(item, `center_smooth`)
   }
 }
 
@@ -249,7 +249,7 @@ App.tabs_action = async (item) => {
 }
 
 App.tabs_action_alt = (item, shift_key = false) => {
-  App.close_tabs(shift_key)
+  App.close_tabs(item, shift_key)
 }
 
 App.duplicate_tab = async (item) => {
@@ -261,8 +261,8 @@ App.duplicate_tab = async (item) => {
   }
 }
 
-App.duplicate_tabs = async () => {
-  let items = App.get_selected(`tabs`)
+App.duplicate_tabs = async (item) => {
+  let items = App.get_active_items(`tabs`, item)
   let force = App.check_force(`warn_on_duplicate_tabs`, items.length)
 
   if (items.length === 1) {
@@ -294,10 +294,10 @@ App.unpin_tab = async (id) => {
   }
 }
 
-App.pin_tabs = () => {
+App.pin_tabs = (item) => {
   let ids = []
 
-  for (let it of App.get_selected(`tabs`)) {
+  for (let it of App.get_active_items(`tabs`, item)) {
     if (it.pinned || it.discarded) {
       continue
     }
@@ -314,10 +314,10 @@ App.pin_tabs = () => {
   }
 }
 
-App.unpin_tabs = () => {
+App.unpin_tabs = (item) => {
   let ids = []
 
-  for (let it of App.get_selected(`tabs`)) {
+  for (let it of App.get_active_items(`tabs`, item)) {
     if (!it.pinned || it.discarded) {
       continue
     }
@@ -334,11 +334,11 @@ App.unpin_tabs = () => {
   }
 }
 
-App.unload_tabs = () => {
+App.unload_tabs = (item) => {
   let items = []
   let active = false
 
-  for (let it of App.get_selected(`tabs`)) {
+  for (let it of App.get_active_items(`tabs`, item)) {
     if (it.discarded) {
       continue
     }
@@ -400,9 +400,9 @@ App.check_tab_force = (warn_setting, items) => {
   return true
 }
 
-App.close_tabs = (do_force = false) => {
+App.close_tabs = (item, do_force = false) => {
   let ids = []
-  let items = App.get_selected(`tabs`)
+  let items = App.get_active_items(`tabs`, item)
   let force = App.check_tab_force(`warn_on_close_tabs`, items)
   ids = items.map(x => x.id)
 
@@ -423,14 +423,14 @@ App.do_close_tabs = async (ids) => {
   }
 }
 
-App.mute_tabs = () => {
-  for (let it of App.get_selected(`tabs`)) {
+App.mute_tabs = (item) => {
+  for (let it of App.get_active_items(`tabs`, item)) {
     App.mute_tab(it.id)
   }
 }
 
-App.unmute_tabs = () => {
-  for (let it of App.get_selected(`tabs`)) {
+App.unmute_tabs = (item) => {
+  for (let it of App.get_active_items(`tabs`, item)) {
     App.unmute_tab(it.id)
   }
 }
@@ -463,11 +463,11 @@ App.toggle_pin = (item) => {
   }
 }
 
-App.toggle_pin_tabs = () => {
+App.toggle_pin_tabs = (item) => {
   let ids = []
   let action
 
-  for (let it of App.get_selected(`tabs`)) {
+  for (let it of App.get_active_items(`tabs`, item)) {
     if (!action) {
       if (it.pinned) {
         action = `unpin`
@@ -505,11 +505,11 @@ App.toggle_pin_tabs = () => {
   }
 }
 
-App.toggle_mute_tabs = () => {
+App.toggle_mute_tabs = (item) => {
   let ids = []
   let action
 
-  for (let it of App.get_selected(`tabs`)) {
+  for (let it of App.get_active_items(`tabs`, item)) {
     if (!action) {
       if (it.muted) {
         action = `unmute`
@@ -610,6 +610,8 @@ App.on_tab_activated = async (info) => {
     if (item.active && item === selected) {
       exit = true
     }
+
+    App.check_tab_active(item)
   }
 
   // Avoid refreshes
@@ -627,8 +629,8 @@ App.on_tab_activated = async (info) => {
   await App.refresh_tab(info.tabId, select)
 }
 
-App.move_tabs = async (window_id) => {
-  for (let it of App.get_selected(`tabs`)) {
+App.move_tabs = async (item, window_id) => {
+  for (let it of App.get_active_items(`tabs`, item)) {
     let index = it.pinned ? 0 : -1
 
     try {
@@ -649,15 +651,15 @@ App.detach_tab = async (item) => {
   }
 }
 
-App.detach_tabs = async () => {
-  if (App.get_selected(`tabs`).length === 1) {
+App.detach_tabs = async (item) => {
+  if (App.get_active_items(`tabs`, item).length === 1) {
     await App.detach_tab(item)
   }
   else {
     let info = await browser.windows.create({focused: false})
 
     setTimeout(() => {
-      App.move_tabs(info.id)
+      App.move_tabs(item, info.id)
     }, 250)
   }
 }
@@ -869,12 +871,20 @@ App.focus_current_tab = async (scroll = `nearest_smooth`) => {
   let item = await App.get_active_tab_item()
 
   if (item) {
-    App.select(item, scroll)
+    App.select_item(item, scroll)
   }
 }
 
-App.move_tabs_vertically = async (direction) => {
-  let items = App.get_selected(`tabs`)
+App.move_tabs_vertically = async (direction, item) => {
+  if (!item) {
+    item = App.get_selected(`tabs`)
+  }
+
+  if (!item) {
+    return
+  }
+
+  let items = App.get_active_items(item.mode, item)
 
   if (items[0].pinned) {
     for (let item of items) {
@@ -1009,6 +1019,7 @@ App.create_playing_icon = () => {
 App.check_tab_item = (item) => {
   if (item.mode === `tabs`) {
     App.check_tab_pinned(item)
+    App.check_tab_active(item)
   }
 }
 
@@ -1028,6 +1039,17 @@ App.check_tab_pinned = (item) => {
     }
     else {
       item.element.classList.add(`normal_item`)
+    }
+  }
+}
+
+App.check_tab_active = (item) => {
+  if (item.mode === `tabs` && App.get_setting(`active_icon`)) {
+    if (item.active) {
+      item.element.classList.add(`active`)
+    }
+    else {
+      item.element.classList.remove(`active`)
     }
   }
 }
@@ -1107,15 +1129,15 @@ App.select_pinned_tabs = () => {
 
   for (let item of App.get_items(`tabs`)) {
     if (item.visible && item.pinned) {
-      App.toggle_select(item, true)
+      App.toggle_highlight(item, true)
 
       if (!first) {
-        App.select(item, `none`, false)
+        App.select_item(item, `none`, false)
         first = true
       }
     }
     else {
-      App.toggle_select(item, false)
+      App.toggle_highlight(item, false)
     }
   }
 }
@@ -1125,15 +1147,15 @@ App.select_normal_tabs = () => {
 
   for (let item of App.get_items(`tabs`)) {
     if (item.visible && !item.pinned) {
-      App.toggle_select(item, true)
+      App.toggle_highlight(item, true)
 
       if (!first) {
-        App.select(item, `none`, false)
+        App.select_item(item, `none`, false)
         first = true
       }
     }
     else {
-      App.toggle_select(item, false)
+      App.toggle_highlight(item, false)
     }
   }
 }

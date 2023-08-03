@@ -19,7 +19,7 @@ App.show_item_menu = async (item, x, y) => {
       items.push({
         text: `Unpin`,
         action: () => {
-          App.unpin_tabs()
+          App.unpin_tabs(item)
         }
       })
     }
@@ -28,7 +28,7 @@ App.show_item_menu = async (item, x, y) => {
       items.push({
         text: `Pin`,
         action: () => {
-          App.pin_tabs()
+          App.pin_tabs(item)
         }
       })
     }
@@ -37,7 +37,7 @@ App.show_item_menu = async (item, x, y) => {
       items.push({
         text: `Unmute`,
         action: () => {
-          App.unmute_tabs()
+          App.unmute_tabs(item)
         }
       })
     }
@@ -46,7 +46,7 @@ App.show_item_menu = async (item, x, y) => {
       items.push({
         text: `Mute`,
         action: () => {
-          App.mute_tabs()
+          App.mute_tabs(item)
         }
       })
     }
@@ -69,7 +69,7 @@ App.show_item_menu = async (item, x, y) => {
     items.push({
       text: `Close`,
       action: () => {
-        App.close_tabs()
+        App.close_tabs(item)
       }
     })
   }
@@ -77,7 +77,7 @@ App.show_item_menu = async (item, x, y) => {
     items.push({
       text: `Open`,
       action: () => {
-        App.open_items(item.mode, true)
+        App.open_items(item, true)
       }
     })
 
@@ -95,7 +95,7 @@ App.get_window_menu_items = async (item) => {
   items.push({
     text: `Detach`,
     action: () => {
-      App.detach_tabs()
+      App.detach_tabs(item)
     }
   })
 
@@ -110,7 +110,7 @@ App.get_window_menu_items = async (item) => {
     items.push({
       text: text,
       action: () => {
-        App.move_tabs(win.id)
+        App.move_tabs(item, win.id)
       }
     })
   }
@@ -190,7 +190,7 @@ App.more_menu_items = async (o_items, item, multiple, some_loaded) => {
       items.push({
         text: `Unload`,
         action: () => {
-          App.unload_tabs()
+          App.unload_tabs(item)
         }
       })
     }
@@ -198,7 +198,7 @@ App.more_menu_items = async (o_items, item, multiple, some_loaded) => {
     items.push({
       text: `Duplicate`,
       action: () => {
-        App.duplicate_tabs()
+        App.duplicate_tabs(item)
       }
     })
   }
@@ -229,14 +229,14 @@ App.more_menu_items = async (o_items, item, multiple, some_loaded) => {
     items.push({
       text: `To Top`,
       action: () => {
-        App.move_tabs_vertically(`top`)
+        App.move_tabs_vertically(`top`, item)
       }
     })
 
     items.push({
       text: `To Bottom`,
       action: () => {
-        App.move_tabs_vertically(`bottom`)
+        App.move_tabs_vertically(`bottom`, item)
       }
     })
 

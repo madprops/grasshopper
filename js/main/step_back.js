@@ -23,8 +23,8 @@ App.create_step_back_button = (mode) => {
 App.step_back = (mode = App.window_mode, e) => {
   let item = App.get_selected(mode)
 
-  if (App.get_selected().length > 1) {
-    App.deselect_all(mode, `selected`)
+  if (App.highlights(mode)) {
+    App.dehighlight(mode, `selected`)
   }
   else if (App.filter_has_value(mode)) {
     App.clear_filter(mode)
@@ -33,7 +33,7 @@ App.step_back = (mode = App.window_mode, e) => {
     App.show_all()
   }
   else if (item && !App.element_is_visible(item.element)) {
-    App.select(item, `center_smooth`)
+    App.select_item(item, `center_smooth`)
   }
   else if (mode === `tabs` && !item.active) {
     App.focus_current_tab()

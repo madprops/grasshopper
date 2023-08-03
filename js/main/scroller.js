@@ -45,7 +45,7 @@ App.create_scroller = (mode) => {
     }
 
     if (e.shiftKey) {
-      App.select_to_edge(mode, `up`)
+      App.highlight_to_edge(mode, `up`)
     }
 
     App.goto_top(mode)
