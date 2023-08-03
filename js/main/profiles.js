@@ -12,7 +12,7 @@ App.setup_profile_editor = () => {
       App.profiles_info()
     })
 
-    DOM.ev(DOM.el(`#profile_editor_close`), `click`, () => {
+    DOM.evs(DOM.el(`#profile_editor_close`), [`click`, `auxclick`], () => {
       App.hide_window()
     })
 

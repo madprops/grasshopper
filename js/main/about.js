@@ -36,7 +36,7 @@ App.setup_about = () => {
       `Hold on a pick and move the mouse to select multiple items`,
     ]
 
-    DOM.ev(DOM.el(`#about_close`), `click`, () => {
+    DOM.evs(DOM.el(`#about_close`), [`click`, `auxclick`], () => {
       App.hide_window()
     })
 
