@@ -1064,8 +1064,7 @@ App.select_range = (item) => {
   let last_selected = App.get_selected(item.mode)
 
   if (last_selected === item) {
-    App.deselect(item.mode)
-    App.select_item(item, `nearest_instant`, false)
+    App.deselect(item.mode, `selected`)
     return
   }
 

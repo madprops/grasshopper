@@ -72,7 +72,7 @@ App.mouse_down_action = (mode, e) => {
       App.pick_item(item)
     }
 
-    if (selected) {
+    if (selected && App.multiple_selected(mode)) {
       App.item_range_select = false
     }
     else {
