@@ -171,12 +171,6 @@ App.bookmark_items = async (item, active, feedback = true) => {
       await browser.bookmarks.move(id, {index: bookmarks.length - 1})
     }
 
-    if (App.active_mode === `bookmarks`) {
-      if (bump.length > 0) {
-        App.show_mode(`bookmarks`)
-      }
-    }
-
     if (feedback) {
       App.show_feedback(`Bookmarked`)
     }
