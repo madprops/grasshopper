@@ -1212,7 +1212,7 @@ App.toggle_selected = (item, what, select = true) => {
           continue
         }
 
-        App.select_item(it, `none`, false)
+        App.set_selected(it)
         break
       }
     }
