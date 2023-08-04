@@ -1,8 +1,11 @@
 const App = {}
+
 NeedContext.min_width = `4.5rem`
+
 App.stor_settings_name = `settings_v100`
 App.stor_profiles_name = `profiles_v1`
 App.stor_command_history_name = `command_history_v1`
+
 App.modes = [`tabs`, `bookmarks`, `closed`, `history`]
 App.gestures = [`up`, `down`, `left`, `right`, `up_and_down`, `left_and_right`]
 App.default_setting_string = `__default__`
@@ -48,12 +51,14 @@ App.media_types = [`image`, `video`, `audio`]
 App.mousedown_max = 500
 App.max_warn_limit = 20
 App.max_tag_filters = 50
+
 App.colors = {
   red: `rgb(255, 77, 77)`,
   green: `rgb(77, 255, 77)`,
   blue: `rgb(77, 77, 255)`,
   yellow: `rgb(255, 255, 77)`,
 }
+
 App.color_emojis = {
   none: `⚫`,
   red: `🔴`,
@@ -61,6 +66,7 @@ App.color_emojis = {
   blue: `🔵`,
   yellow: `🟡`,
 }
+
 App.settings_emojis = {
   general: `⚙️`,
   theme: `🎨`,
@@ -71,18 +77,22 @@ App.settings_emojis = {
   warns: `🚨`,
   more: `💠`,
 }
+
 App.mode_emojis = {
   tabs: `📑`,
   bookmarks: `⭐`,
   closed: `📕`,
   history: `📜`,
 }
+
 App.clipboard_icon = `📋`
 App.bot_emoji = `🤖`
+
 App.dark_theme_colors = {
   background: `rgb(30, 30, 33)`,
   text: `rgb(250, 250, 250)`,
 }
+
 App.light_theme_colors = {
   background: `rgb(200, 200, 200)`,
   text: `rgb(50, 50, 55)`,
