@@ -33,6 +33,8 @@ App.select_item = async (item, scroll = `nearest`, deselect = true) => {
   if (scroll !== `none`) {
     App.scroll_to_item(item, scroll)
   }
+
+  App.update_footer_info(item)
 }
 
 App.select_item_above = (mode) => {
