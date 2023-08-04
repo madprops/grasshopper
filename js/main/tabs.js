@@ -401,17 +401,17 @@ App.check_tab_force = (warn_setting, items) => {
 }
 
 App.close_tabs = (item, do_force = false, multiple = true) => {
-  let ids = []
+  let items = []
 
   if (multiple) {
-    let items = App.get_active_items(`tabs`, item)
-    ids = items.map(x => x.id)
+    items = App.get_active_items(`tabs`, item)
   }
   else {
-    ids.push(item.id)
+    items = [item]
   }
 
-  let force = App.check_tab_force(`warn_on_close_tabs`, ids)
+  let force = App.check_tab_force(`warn_on_close_tabs`, items)
+  let ids = items.map(x => x.id)
 
   if (ids.length === 0) {
     return
