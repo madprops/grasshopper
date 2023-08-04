@@ -93,10 +93,10 @@ App.setup_commands = () => {
     {name: `Open`, cmd: `open_items`, mode: `items`, action: (args) => {
       App.open_items(args.item, true)
     }},
-    {name: `Bookmark`, cmd: `bookmark_items`, mode: `items`, action: (args) => {
+    {name: App.get_icontext(`bookmark`), cmd: `bookmark_items`, mode: `items`, action: (args) => {
       App.bookmark_items(args.item)
     }},
-    {name: `Bookmark Active`, cmd: `bookmark_active`, action: (args) => {
+    {name: App.get_icontext(`bookmark_active`), cmd: `bookmark_active`, action: (args) => {
       App.bookmark_active(args.item)
     }},
     {name: `Copy URL`, cmd: `copy_item_url`, mode: `items`, action: (args) => {

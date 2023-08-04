@@ -285,6 +285,10 @@ App.get_icontext = (s) => {
     icon = App.mode_emojis.bookmarks
     name = `Bookmark`
   }
+  else if (s === `bookmark_active`) {
+    icon = App.mode_emojis.bookmarks
+    name = `Bookmark Active`
+  }
   else if (s === `random_theme`) {
     icon = App.settings_emojis.theme
     name = `Random Theme`
