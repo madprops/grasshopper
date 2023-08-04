@@ -79,10 +79,10 @@ App.settings_emojis = {
 }
 
 App.mode_emojis = {
-  tabs: `📑`,
+  tabs: `📚`,
+  history: `⏳`,
   bookmarks: `⭐`,
-  closed: `📕`,
-  history: `📜`,
+  closed: `🔃`,
 }
 
 App.clipboard_icon = `📋`
