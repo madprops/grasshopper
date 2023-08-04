@@ -18,6 +18,12 @@ App.select_item = async (item, scroll = `nearest`, deselect = true) => {
     App.create_item_element(item)
   }
 
+  if (item === App.get_selected(item.mode)) {
+    if (App.selected_items(item.mode).length === 1) {
+      return
+    }
+  }
+
   if (deselect) {
     App.deselect(item.mode)
   }
