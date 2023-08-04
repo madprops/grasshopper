@@ -213,6 +213,12 @@ App.setup_commands = () => {
 
     {name: App.separator_string},
 
+    {name: App.get_icontext(`dark_theme`), cmd: `dark_theme`, action: (args) => {
+      App.dark_theme()
+    }},
+    {name: App.get_icontext(`light_theme`), cmd: `light_theme`, action: (args) => {
+      App.light_theme()
+    }},
     {name: App.get_icontext(`random_theme`), cmd: `random_theme`, action: (args) => {
       App.random_theme()
     }},

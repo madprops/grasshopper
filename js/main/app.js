@@ -79,3 +79,11 @@ App.mode_emojis = {
 }
 App.clipboard_icon = `📋`
 App.bot_emoji = `🤖`
+App.dark_theme_colors = {
+  background: `rgb(30, 30, 33)`,
+  text: `rgb(255, 255, 255)`,
+}
+App.light_theme_colors = {
+  background: `rgb(200, 200, 200)`,
+  text: `rgb(30, 30, 33)`,
+}
