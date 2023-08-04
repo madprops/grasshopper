@@ -210,7 +210,6 @@ App.mouse_middle_action = (mode, e) => {
     return
   }
 
-  App.deselect(mode)
   App[`${mode}_action_alt`](item, e.shiftKey)
 }
 
