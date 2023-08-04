@@ -76,11 +76,12 @@ App.get_bookmarks = async (query = ``, deep = false) => {
 }
 
 App.bookmarks_action = (item) => {
-  App.bookmark_items(undefined, [item], false)
+  App.check_bookmark(item)
   App.focus_or_open_item(item)
 }
 
 App.bookmarks_action_alt = (item) => {
+  App.check_bookmark(item)
   App.open_items(item, true, false)
 }
 
@@ -186,4 +187,10 @@ App.bookmark_active = async () => {
   }
 
   App.bookmark_items(undefined, [item])
+}
+
+App.check_bookmark = (item) => {
+  if (App.active_mode === `bookmarks`) {
+    App.bookmark_items(undefined, [item], false)
+  }
 }

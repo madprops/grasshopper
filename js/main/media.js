@@ -208,6 +208,7 @@ App.open_media = (what = App.window_mode) => {
   }
 
   let item = App[`current_media_${what}_item`]
+  App.check_bookmark(item)
   App.focus_or_open_item(item)
 }
 
