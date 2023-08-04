@@ -1545,8 +1545,14 @@ App.pick_item = (item) => {
     if (!App.multiple_selected(item.mode)) {
       let i = App.get_item_element_index(item.mode, selected.element)
       let ii = App.get_item_element_index(item.mode, item.element)
+      let ind = Math.abs(i - ii) > 1
+      let p = false
 
-      if (Math.abs(i - ii) > 1) {
+      if (App.get_setting(`show_pinline`)) {
+        p = selected.pinned !== item.pinned
+      }
+
+      if (ind || p) {
         App.toggle_selected(selected, false)
       }
     }
