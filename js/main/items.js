@@ -77,6 +77,7 @@ App.select_next = (mode, dir) => {
   }
 
   let current = App.last_highlight || App.get_selected(mode)
+
   if (dir === `above`) {
     items.reverse()
   }
@@ -1083,7 +1084,7 @@ App.select_range = (item) => {
   let index_2 = items.indexOf(App.last_highlight)
 
   if (item.selected) {
-    let reverse = index_1 > index_2 ? `normal` : `reverse`
+    let reverse = index_1 < index_2
 
     for (let [i, it] of items.entries()) {
       if (!it.visible || !it.selected) {
@@ -1104,8 +1105,17 @@ App.select_range = (item) => {
       }
 
       if (unselect) {
-        App.toggle_selected(it, false, reverse)
+        App.toggle_selected(it, false)
       }
+    }
+
+    let selected = App.selected_items(item.mode)
+
+    if (reverse) {
+      App.select_item(selected.at(-1), `none`, false)
+    }
+    else {
+      App.select_item(selected.at(0), `none`, false)
     }
   }
   else {
@@ -1137,7 +1147,7 @@ App.deselect = (mode = App.window_mode, select = `none`) => {
   let first, last
 
   for (let item of App.selected_items(mode)) {
-    App.toggle_selected(item, false, `none`)
+    App.toggle_selected(item, false, false)
 
     if (!first) {
       first = item
@@ -1175,7 +1185,7 @@ App.deselect = (mode = App.window_mode, select = `none`) => {
   return num
 }
 
-App.toggle_selected = (item, what, select = `normal`) => {
+App.toggle_selected = (item, what, select = true) => {
   let items = App.selected_items(item.mode)
   let selected
 
@@ -1196,7 +1206,8 @@ App.toggle_selected = (item, what, select = `normal`) => {
     App.last_highlight = item
   }
   else {
-    if (items.length === 1 && select !== `none`) {
+    if (items.length === 1 && select) {
+      App.last_highlight = items[0]
       return
     }
 
@@ -1209,12 +1220,8 @@ App.toggle_selected = (item, what, select = `normal`) => {
 
   item.selected = selected
 
-  if (select !== `none` && !selected) {
+  if (select && !selected) {
     if (items.length && App.get_selected(item.mode) === item) {
-      if (select === `reverse`) {
-        items = items.slice(0).reverse()
-      }
-
       for (let it of items) {
         if (it === item) {
           continue
