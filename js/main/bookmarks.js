@@ -190,7 +190,7 @@ App.bookmark_active = async () => {
 }
 
 App.check_bookmark = (item) => {
-  if (App.active_mode === `bookmarks`) {
+  if (item.mode === `bookmarks`) {
     App.bookmark_items(undefined, [item], false)
   }
 }
