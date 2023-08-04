@@ -253,7 +253,7 @@ App.show_media_menu = (what) => {
   let item = App.current_media_item()
 
   items.push({
-    text: `${App.clipboard_icon} Copy URL`,
+    text: App.get_icontext(`copy_url`),
     action: () => {
       App.media_copy(what)
     }

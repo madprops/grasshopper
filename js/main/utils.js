@@ -293,6 +293,10 @@ App.get_icontext = (s) => {
     icon = App.bot_emoji
     name = `Restart`
   }
+  else if (s === `copy_url`) {
+    icon = App.clipboard_icon
+    name = `Copy URL`
+  }
 
   return `${icon} ${name}`
 }
