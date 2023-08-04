@@ -165,7 +165,7 @@ App.filter_check = (args) => {
     else if (args.filter_mode === `edited`) {
       match = App.is_edited(args.item)
     }
-    else if (args.filter_mode === `pinned`) {
+    else if (args.filter_mode === `pins`) {
       match = args.item.pinned
     }
     else if (args.filter_mode === `normal`) {
