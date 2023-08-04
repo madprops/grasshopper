@@ -78,3 +78,4 @@ App.mode_emojis = {
   history: `📜`,
 }
 App.clipboard_icon = `📋`
+App.bot_emoji = `🤖`
