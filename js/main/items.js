@@ -1568,7 +1568,7 @@ App.pick_item = (item, e) => {
       }
     }
 
-    App.select_item(item, `none`, false)
+    App.toggle_selected(item, true)
 
     if (unselect) {
       App.toggle_selected(selected, false)
