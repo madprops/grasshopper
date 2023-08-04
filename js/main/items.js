@@ -1110,13 +1110,16 @@ App.select_range = (item) => {
     }
 
     let selected = App.selected_items(item.mode)
+    let next_item
 
     if (reverse) {
-      App.select_item(selected.at(-1), `none`, false)
+      next_item = selected.at(-1)
     }
     else {
-      App.select_item(selected.at(0), `none`, false)
+      next_item = selected.at(0)
     }
+
+    App.select_item(next_item, `none`, false)
   }
   else {
     let slice
