@@ -46,9 +46,9 @@ App.build_default_settings = () => {
   obj.warn_on_bookmark = {value: true, category: category, version: 1}
 
   category = `media`
-  obj.view_image = {value: `icon`, category: category, version: 1}
-  obj.view_video = {value: `icon`, category: category, version: 1}
-  obj.view_audio = {value: `icon`, category: category, version: 1}
+  obj.view_image = {value: `item`, category: category, version: 1}
+  obj.view_video = {value: `item`, category: category, version: 1}
+  obj.view_audio = {value: `item`, category: category, version: 1}
   obj.image_icon = {value: `🖼️`, category: category, version: 1}
   obj.video_icon = {value: `▶️`, category: category, version: 1}
   obj.audio_icon = {value: `🎵`, category: category, version: 1}
