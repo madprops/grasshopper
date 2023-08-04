@@ -33,8 +33,6 @@ App.select_item = async (item, scroll = `nearest`, deselect = true) => {
   if (scroll !== `none`) {
     App.scroll_to_item(item, scroll)
   }
-
-  App.update_footer_info(item)
 }
 
 App.select_item_above = (mode) => {
@@ -148,7 +146,10 @@ App.set_selected = (mode, item) => {
 
   if (!item) {
     App.remove_selected_class(mode)
+    return
   }
+
+  App.update_footer_info(item)
 }
 
 App.get_items = (mode, reverse = false) => {
