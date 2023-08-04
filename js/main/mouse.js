@@ -29,10 +29,6 @@ App.setup_window_mouse = (mode) => {
     App.mouse_click_action(mode, e)
   })
 
-  DOM.ev(container, `dblclick`, (e) => {
-    App.mouse_double_click_action(mode, e)
-  })
-
   DOM.ev(container, `contextmenu`, (e) => {
     App.mouse_context_action(mode, e)
   })
@@ -152,14 +148,6 @@ App.mouse_click_action = (mode, e) => {
   }
 
   App[`${item.mode}_action`](item)
-}
-
-App.mouse_double_click_action = (mode, e) => {
-  if (App.get_setting(`double_click_new_tab`)) {
-    if (e.target.classList.contains(`container`)) {
-      App.new_tab()
-    }
-  }
 }
 
 App.mouse_context_action = (mode, e) => {
