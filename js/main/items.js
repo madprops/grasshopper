@@ -59,7 +59,7 @@ App.select_next = (mode, dir) => {
     return
   }
 
-  let current = App.last_highlight || App.get_selected(mode)
+  let current = App.get_selected(mode)
 
   if (dir === `above`) {
     items.reverse()
@@ -147,7 +147,6 @@ App.set_selected = (item) => {
     return
   }
 
-  App.last_highlight = item
   App[`last_selected_${item.mode}`] = item
   App.update_footer_info(item)
 }
@@ -1048,23 +1047,16 @@ App.move_item_element = (mode, el, to_index) => {
 }
 
 App.select_range = (item) => {
-  if (App.last_highlight === item) {
+  let selected = App.get_selected(item.mode)
+
+  if (item === selected) {
     App.select_item(item, `nearest_instant`)
-    return
-  }
-
-  if (!App.last_highlight || !App.last_highlight.selected) {
-    App.last_highlight = App.get_selected(item.mode)
-    App.toggle_selected(App.last_highlight, true)
-  }
-
-  if (item === App.last_highlight) {
     return
   }
 
   let items = App.get_items(item.mode).slice(0)
   let index_1 = items.indexOf(item)
-  let index_2 = items.indexOf(App.last_highlight)
+  let index_2 = items.indexOf(selected)
 
   if (item.selected) {
     let reverse = index_1 < index_2
@@ -1143,7 +1135,6 @@ App.deselect = (mode = App.window_mode, select = `none`) => {
     num += 1
   }
 
-  App.last_highlight = undefined
   let next_item
 
   if (select === `up`) {
@@ -1191,16 +1182,7 @@ App.toggle_selected = (item, what, select = true) => {
     App.set_selected(item)
   }
   else {
-    if (items.length === 1 && select) {
-      App.last_highlight = items[0]
-      return
-    }
-
     item.element.classList.remove(`selected`)
-
-    if (App.last_highlight === item) {
-      App.last_highlight = undefined
-    }
   }
 
   item.selected = selected
