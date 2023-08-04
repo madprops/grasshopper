@@ -1550,7 +1550,12 @@ App.pick_item = (item) => {
     }
   }
 
-  App.select_item(item, `none`, false)
+  if (item.selected) {
+    App.toggle_selected(item, false)
+  }
+  else {
+    App.select_item(item, `none`, false)
+  }
 }
 
 App.remove_duplicates = (items) => {
