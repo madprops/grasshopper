@@ -23,32 +23,9 @@ App.select_item = async (item, scroll = `nearest`, deselect = true) => {
   }
 
   App.toggle_selected(item, true)
-  let selected = App.get_selected(item.mode)
-
-  if (selected === item) {
-    if (scroll !== `none`) {
-      App.scroll_to_item(item, scroll)
-    }
-
-    return
-  }
-
-  App.remove_selected_class(item.mode)
-  item.element.classList.add(`selected`)
 
   if (scroll !== `none`) {
     App.scroll_to_item(item, scroll)
-  }
-
-  App.update_footer_info(item)
-
-  if (item.mode === `tabs`) {
-    try {
-      await browser.tabs.warmup(item.id)
-    }
-    catch (err) {
-      App.log(err, `error`)
-    }
   }
 }
 
