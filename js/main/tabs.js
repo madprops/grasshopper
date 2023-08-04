@@ -1147,6 +1147,6 @@ App.select_tabs = (type = `pins`) => {
   }
 
   if (first) {
-    App.select_item(first, `none`, false)
+    App.set_selected(first)
   }
 }

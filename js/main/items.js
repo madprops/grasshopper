@@ -141,15 +141,19 @@ App.get_selected = (mode = App.window_mode) => {
   return App[`last_selected_${mode}`]
 }
 
-App.set_selected = (mode, item) => {
-  App[`last_selected_${mode}`] = item
-
+App.set_selected = (item) => {
   if (!item) {
     App.remove_selected_class(mode)
     return
   }
 
+  App.last_highlight = item
+  App[`last_selected_${item.mode}`] = item
   App.update_footer_info(item)
+}
+
+App.clear_selected = (mode) => {
+  App[`last_selected_${mode}`] = undefined
 }
 
 App.get_items = (mode) => {
@@ -1099,7 +1103,7 @@ App.select_range = (item) => {
       next_item = selected.at(0)
     }
 
-    App.select_item(next_item, `none`, false)
+    App.set_selected(next_item)
   }
   else {
     let slice
@@ -1185,8 +1189,7 @@ App.toggle_selected = (item, what, select = true) => {
 
   if (selected) {
     item.element.classList.add(`selected`)
-    App.set_selected(item.mode, item)
-    App.last_highlight = item
+    App.set_selected(item)
   }
   else {
     if (items.length === 1 && select) {

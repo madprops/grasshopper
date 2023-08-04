@@ -121,7 +121,7 @@ App.do_filter = async (mode, force = false, deep = false) => {
     }
   }
 
-  App.set_selected(mode, undefined)
+  App.clear_selected(mode)
   App.select_first_item(mode, !App.is_filtered(mode))
   App.update_footer_info(App.get_selected(mode))
   App.update_footer_count(mode)
