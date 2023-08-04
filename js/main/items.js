@@ -1575,7 +1575,7 @@ App.get_icontext = (s) => {
     name = `Background`
   }
   else if (s === `bookmark`) {
-    icon = App.star_icon
+    icon = App.mode_emojis.bookmarks
     name = `Bookmark`
   }
 
