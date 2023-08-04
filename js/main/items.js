@@ -462,14 +462,12 @@ App.create_item_element = (item) => {
     if (App.get_setting(`pin_icon`)) {
       let pin_icon = DOM.create(`div`, `item_info item_info_pin`)
       pin_icon.textContent = App.get_setting(`pin_icon`)
-      pin_icon.title = `This tab is pinned`
       item.element.append(pin_icon)
     }
 
     if (App.get_setting(`normal_icon`)) {
       let normal_icon = DOM.create(`div`, `item_info item_info_normal`)
       normal_icon.textContent = App.get_setting(`normal_icon`)
-      normal_icon.title = `This tab is normal`
       item.element.append(normal_icon)
     }
 
