@@ -178,10 +178,10 @@ App.setup_commands = () => {
       App.undo_close_tab()
     }},
     {name: `Select Pins`, cmd: `select_pinned_tabs`, mode: `tabs`, action: (args) => {
-      App.select_pinned_tabs()
+      App.select_tabs(`pins`)
     }},
     {name: `Select Normal`, cmd: `select_normal_tabs`, mode: `tabs`, action: (args) => {
-      App.select_normal_tabs()
+      App.select_tabs(`normal`)
     }},
 
     {name: App.separator_string},

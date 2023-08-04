@@ -69,14 +69,14 @@ App.show_pinline_menu = (e) => {
   items.push({
     text: `Select Pins`,
     action: () => {
-      App.select_pinned_tabs()
+      App.select_tabs(`pins`)
     }
   })
 
   items.push({
     text: `Select Normal`,
     action: () => {
-      App.select_normal_tabs()
+      App.select_tabs(`normal`)
     }
   })
 

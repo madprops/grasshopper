@@ -1117,24 +1117,36 @@ App.divide_tabs = (filter) => {
   }
 }
 
-App.select_pinned_tabs = () => {
-  for (let item of App.get_items(`tabs`, true)) {
-    if (item.visible && item.pinned) {
-      App.toggle_selected(item, true)
+App.select_tabs = (type = `pins`) => {
+  let first
+
+  for (let item of App.get_items(`tabs`)) {
+    let valid
+
+    if (type === `pins`) {
+      valid = item.pinned
+    }
+    else if (type === `normal`) {
+      valid = !item.pinned
+    }
+
+    if (item.visible && valid) {
+      if (!first) {
+        first = item
+      }
+
+      if (!item.selected) {
+        App.toggle_selected(item, true, false)
+      }
     }
     else {
-      App.toggle_selected(item, false)
+      if (item.selected) {
+        App.toggle_selected(item, false, false)
+      }
     }
   }
-}
 
-App.select_normal_tabs = () => {
-  for (let item of App.get_items(`tabs`, true)) {
-    if (item.visible && !item.pinned) {
-      App.toggle_selected(item, true)
-    }
-    else {
-      App.toggle_selected(item, false)
-    }
+  if (first) {
+    App.select_item(first, `none`, false)
   }
 }

@@ -152,20 +152,14 @@ App.set_selected = (mode, item) => {
   App.update_footer_info(item)
 }
 
-App.get_items = (mode, reverse = false) => {
+App.get_items = (mode) => {
   let item_string = `${mode}_items`
 
   if (App[item_string]) {
     App[item_string] = App[item_string].filter(x => x !== undefined)
   }
 
-  let items = App[item_string] || []
-
-  if (reverse) {
-    items = items.slice(0).reverse()
-  }
-
-  return items
+  return App[item_string] || []
 }
 
 App.select_first_item = (mode, by_active = false) => {
@@ -1336,8 +1330,18 @@ App.scroll = (mode, direction, fast = false) => {
 }
 
 App.select_all = (mode = App.window_mode) => {
-  for (let item of App.get_items(mode, true)) {
+  let first
+
+  for (let item of App.get_items(mode)) {
+    if (!first) {
+      first = item
+    }
+
     App.toggle_selected(item, true, false)
+  }
+
+  if (first) {
+    App.select_item(first, `none`, false)
   }
 }
 
