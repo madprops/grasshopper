@@ -35,7 +35,6 @@ App.fast_scroll_percent = 16.66
 App.double_tap_date = 0
 App.scroller_max_top = 10
 App.dragging = false
-App.max_smooth_scroll = 1000 * 2
 App.favicon_size = 64
 App.no_favicons = [`history`, `bookmarks`]
 App.new_tab_urls = [`about:newtab`, `about:blank`]
