@@ -239,10 +239,6 @@ App.mouse_over_action = (mode, e) => {
 
   if (App.item_range_on) {
     if (item.selected !== App.item_range_select) {
-      if (App.item_range_select) {
-        App.select_item(item, `none`, false)
-      }
-
       App.toggle_selected(item, App.item_range_select)
     }
   }
