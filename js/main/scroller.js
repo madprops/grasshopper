@@ -39,7 +39,7 @@ App.create_scroller = (mode) => {
   let scroller = DOM.create(`div`, `scroller`, `${mode}_scroller`)
   scroller.textContent = `Go To Top`
 
-  DOM.evs(scroller, [`click`, `auxclick`], (e) => {
+  DOM.ev(scroller, `click`, (e) => {
     if (e.ctrlKey) {
       return
     }
