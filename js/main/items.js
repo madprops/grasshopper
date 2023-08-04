@@ -1049,8 +1049,7 @@ App.move_item_element = (mode, el, to_index) => {
 
 App.select_range = (item) => {
   if (App.last_highlight === item) {
-    App.deselect(item.mode)
-    App.select_item(item, `nearest_instant`, false)
+    App.select_item(item, `nearest_instant`)
     return
   }
 
