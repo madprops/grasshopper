@@ -204,7 +204,7 @@ App.more_menu_items = async (o_items, item, multiple, some_loaded) => {
   }
 
   items.push({
-    text: `Bookmark`,
+    text: App.get_icontext(`bookmark`),
     action: () => {
       App.bookmark_items(item)
     }
@@ -212,7 +212,7 @@ App.more_menu_items = async (o_items, item, multiple, some_loaded) => {
 
   if (item.image && !multiple) {
     items.push({
-      text: `Background`,
+      text: App.get_icontext(`background`),
       action: () => {
         App.change_background(item.url)
       }

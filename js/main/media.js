@@ -260,7 +260,7 @@ App.show_media_menu = (what) => {
   })
 
   items.push({
-    text: `${App.star_icon} Bookmark`,
+    text: App.get_icontext(`bookmark`),
     action: () => {
       App.bookmark_items(item)
     }
@@ -268,7 +268,7 @@ App.show_media_menu = (what) => {
 
   if (what === `image`) {
     items.push({
-      text: `${App.settings_emojis.theme} Background`,
+      text: App.get_icontext(`background`),
       action: () => {
         App.media_background(what)
       }

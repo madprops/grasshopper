@@ -1566,3 +1566,18 @@ App.remove_duplicates = (items) => {
 
   return objs
 }
+
+App.get_icontext = (s) => {
+  let icon, name
+
+  if (s === `background`) {
+    icon = App.settings_emojis.theme
+    name = `Background`
+  }
+  else if (s === `bookmark`) {
+    icon = App.star_icon
+    name = `Bookmark`
+  }
+
+  return `${icon} ${name}`
+}
