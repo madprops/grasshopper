@@ -1176,6 +1176,7 @@ App.deselect = (mode = App.window_mode, select = `none`) => {
 }
 
 App.toggle_selected = (item, what, select = `normal`) => {
+  let items = App.selected_items(item.mode)
   let selected
 
   if (what !== undefined) {
@@ -1195,6 +1196,10 @@ App.toggle_selected = (item, what, select = `normal`) => {
     App.last_highlight = item
   }
   else {
+    if (items.length === 1 && select !== `none`) {
+      return
+    }
+
     item.element.classList.remove(`selected`)
 
     if (App.last_highlight === item) {
@@ -1204,9 +1209,7 @@ App.toggle_selected = (item, what, select = `normal`) => {
 
   item.selected = selected
 
-  if ((select === `normal` || select === `reverse`) && !selected) {
-    let items = App.selected_items(item.mode)
-
+  if (select !== `none` && !selected) {
     if (items.length && App.get_selected(item.mode) === item) {
       if (select === `reverse`) {
         items = items.slice(0).reverse()
@@ -1539,25 +1542,6 @@ App.get_title = (item) => {
 }
 
 App.pick_item = (item) => {
-  let selected = App.get_selected(item.mode)
-
-  if (selected !== item) {
-    if (!App.multiple_selected(item.mode)) {
-      let i = App.get_item_element_index(item.mode, selected.element)
-      let ii = App.get_item_element_index(item.mode, item.element)
-      let ind = Math.abs(i - ii) > 1
-      let p = false
-
-      if (App.get_setting(`show_pinline`)) {
-        p = selected.pinned !== item.pinned
-      }
-
-      if (ind || p) {
-        App.toggle_selected(selected, false)
-      }
-    }
-  }
-
   if (item.selected) {
     App.toggle_selected(item, false)
   }
