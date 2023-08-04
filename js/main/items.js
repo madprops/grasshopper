@@ -1578,10 +1578,6 @@ App.get_icontext = (s) => {
     icon = App.mode_emojis.bookmarks
     name = `Bookmark`
   }
-  else if (s === `bmark`) {
-    icon = App.mode_emojis.bookmarks
-    name = `BMark`
-  }
 
   return `${icon} ${name}`
 }

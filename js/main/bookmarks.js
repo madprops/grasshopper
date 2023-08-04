@@ -1,6 +1,6 @@
 App.setup_bookmarks = () => {
   App.bookmarks_actions = [
-    {text: App.get_icontext(`bmark`), action: () => {
+    {text: App.get_icontext(`bookmark`), action: () => {
       App.bookmark_active()
     }},
     {text: `Deep Search`, action: () => {
