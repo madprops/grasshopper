@@ -33,7 +33,7 @@ App.select_item = async (item, scroll = `nearest`, deselect = true) => {
   App.toggle_selected(item, true)
 }
 
-App.select_item_above = (mode) => {
+App.select_above = (mode) => {
   let item = App.get_next_visible_item({mode: mode, reverse: true})
 
   if (item) {
@@ -41,7 +41,7 @@ App.select_item_above = (mode) => {
   }
 }
 
-App.select_item_below = (mode) => {
+App.select_below = (mode) => {
   let item = App.get_next_visible_item({mode: mode})
 
   if (item) {
@@ -1116,6 +1116,8 @@ App.select_range = (item) => {
       App.toggle_selected(it, true)
     }
   }
+
+  App.scroll_to_item(item, `nearest_smooth`)
 }
 
 App.deselect = (mode = App.window_mode, select = `none`) => {

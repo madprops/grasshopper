@@ -19,10 +19,10 @@ App.check_items_keyboard = (e) => {
       }
 
       if (direction === `up`) {
-        App.select_item_above(mode)
+        App.select_above(mode)
       }
       else if (direction === `down`) {
-        App.select_item_below(mode)
+        App.select_below(mode)
       }
     }
 
