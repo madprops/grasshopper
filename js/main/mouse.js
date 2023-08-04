@@ -69,7 +69,7 @@ App.mouse_down_action = (mode, e) => {
       App.select_range(item)
     }
     else {
-      App.pick_item(item)
+      App.pick_item(item, e)
     }
 
     if (selected && App.multiple_selected(mode)) {
@@ -122,7 +122,7 @@ App.mouse_click_action = (mode, e) => {
   }
 
   if (e.ctrlKey) {
-    App.pick_item(item)
+    App.pick_item(item, e)
     return
   }
 

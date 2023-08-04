@@ -1541,12 +1541,36 @@ App.get_title = (item) => {
   }
 }
 
-App.pick_item = (item) => {
+App.pick_item = (item, e) => {
   if (item.selected) {
     App.toggle_selected(item, false)
   }
   else {
+    let selected = App.get_selected(item.mode)
+    let unselect = false
+
+    if (App.get_setting(`smart_pick`) && !e.ctrlKey) {
+      if (selected !== item && !item.selected) {
+        if (!App.multiple_selected(item.mode)) {
+          let i = App.get_item_element_index(item.mode, selected.element)
+          let ii = App.get_item_element_index(item.mode, item.element)
+          let ind = Math.abs(i - ii) > 1
+          let p = false
+
+          if (App.get_setting(`show_pinline`)) {
+            p = selected.pinned !== item.pinned
+          }
+
+          unselect = ind || p
+        }
+      }
+    }
+
     App.select_item(item, `none`, false)
+
+    if (unselect) {
+      App.toggle_selected(selected, false)
+    }
   }
 }
 
