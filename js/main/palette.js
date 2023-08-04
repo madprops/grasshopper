@@ -145,6 +145,9 @@ App.fill_palette_container = () => {
     if (name_lower.includes(`bookmark`)) {
       el.dataset.alias = name_lower.replace(`bookmark`, `bmark`)
     }
+    else if (name_lower.includes(`bmark`)) {
+      el.dataset.alias = name_lower.replace(`bmark`, `bookmark`)
+    }
 
     container.append(el)
   }
