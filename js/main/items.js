@@ -1162,30 +1162,34 @@ App.deselect = (mode = App.window_mode, select = `none`) => {
 
 App.toggle_selected = (item, what, select = true) => {
   let items = App.selected_items(item.mode)
-  let selected
+  let new_selected
 
   if (what !== undefined) {
-    selected = what
+    new_selected = what
   }
   else {
-    selected = !item.selected
+    new_selected = !item.selected
   }
 
   if (!item.visible) {
-    selected = false
+    new_selected = false
   }
 
-  if (selected) {
+  if (new_selected) {
     item.element.classList.add(`selected`)
     App.set_selected(item)
   }
   else {
+    if (items.length === 1 && select) {
+      return
+    }
+
     item.element.classList.remove(`selected`)
   }
 
-  item.selected = selected
+  item.selected = new_selected
 
-  if (select && !selected) {
+  if (select && !new_selected) {
     if (items.length && App.get_selected(item.mode) === item) {
       for (let it of items) {
         if (it === item) {
