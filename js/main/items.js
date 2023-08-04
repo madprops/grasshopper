@@ -1205,16 +1205,20 @@ App.toggle_selected = (item, what, select = `normal`) => {
   item.selected = selected
 
   if ((select === `normal` || select === `reverse`) && !selected) {
-    if (App.get_selected(item.mode) === item) {
-      let items = App.selected_items(item.mode)
+    let items = App.selected_items(item.mode)
 
+    if (items.length && App.get_selected(item.mode) === item) {
       if (select === `reverse`) {
-        items.reverse()
+        items = items.slice(0).reverse()
       }
 
-      if (items.length) {
-        let it = items.at(0)
+      for (let it of items) {
+        if (it === item) {
+          continue
+        }
+
         App.select_item(it, `none`, false)
+        break
       }
     }
   }
