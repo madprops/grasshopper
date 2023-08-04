@@ -40,7 +40,7 @@ App.closed_action = (item) => {
 }
 
 App.closed_action_alt = (item) => {
-  App.open_items(item, true)
+  App.open_items(item, true, false)
 }
 
 App.undo_close_tab = async () => {
