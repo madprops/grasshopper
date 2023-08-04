@@ -607,6 +607,16 @@ App.start_theme_settings = () => {
           }
         },
         {
+          name: `Dark`, action: () => {
+            App.dark_theme(name)
+          }
+        },
+        {
+          name: `Light`, action: () => {
+            App.light_theme(name)
+          }
+        },
+        {
           name: `Random`, action: () => {
             App.random_theme(name)
           }
