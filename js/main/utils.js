@@ -286,11 +286,11 @@ App.get_icontext = (s) => {
     name = `Bookmark`
   }
   else if (s === `random_theme`) {
-    icon =  App.settings_emojis.theme
+    icon = App.settings_emojis.theme
     name = `Random Theme`
   }
   else if (s === `restart`) {
-    icon =  App.bot_emoji
+    icon = App.bot_emoji
     name = `Restart`
   }
 
