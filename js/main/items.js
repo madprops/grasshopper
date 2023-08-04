@@ -1343,7 +1343,7 @@ App.select_all = (mode = App.window_mode) => {
   }
 
   if (first) {
-    App.select_item(first, `none`, false)
+    App.set_selected(first)
   }
 }
 
