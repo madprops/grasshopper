@@ -6,7 +6,7 @@ App.build_default_settings = () => {
   obj.item_height = {value: `normal`, category: category, version: 1}
   obj.font = {value: `sans-serif`, category: category, version: 1}
   obj.font_size = {value: 16, category: category, version: 1}
-  obj.fetch_favicons = {value: true, category: category, version: 1}
+  obj.fetch_favicons = {value: false, category: category, version: 1}
   obj.width = {value: 75, category: category, version: 1}
   obj.height = {value: 85, category: category, version: 1}
   obj.tabs_index = {value: 0, category: category, version: 1}
