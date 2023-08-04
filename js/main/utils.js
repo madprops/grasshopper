@@ -273,3 +273,26 @@ App.is_object = (o) => {
 App.is_array = (a) => {
   return Array.isArray(a)
 }
+
+App.get_icontext = (s) => {
+  let icon, name
+
+  if (s === `background`) {
+    icon = App.settings_emojis.theme
+    name = `Background`
+  }
+  else if (s === `bookmark`) {
+    icon = App.mode_emojis.bookmarks
+    name = `Bookmark`
+  }
+  else if (s === `random_theme`) {
+    icon =  App.settings_emojis.theme
+    name = `Random Theme`
+  }
+  else if (s === `restart`) {
+    icon =  App.bot_emoji
+    name = `Restart`
+  }
+
+  return `${icon} ${name}`
+}
