@@ -464,25 +464,6 @@ App.create_item_element = (item) => {
     item.element.classList.remove(`selected`)
   }
 
-  if (item.mode === `tabs`) {
-    if (App.get_setting(`close_icon`)) {
-      let btn = DOM.create(`div`, `item_button item_button_right item_button_close`)
-      btn.textContent = App.get_setting(`close_icon`)
-      btn.title = `Close`
-      btn.draggable = true
-      item.element.append(btn)
-    }
-  }
-  else {
-    if (App.get_setting(`open_icon`)) {
-      let btn = DOM.create(`div`, `item_button item_button_right item_button_open`)
-      btn.textContent = App.get_setting(`open_icon`)
-      btn.title = `Open`
-      btn.draggable = true
-      item.element.append(btn)
-    }
-  }
-
   item.created = true
   item.element.classList.remove(`empty_item`)
   App.log(`Item created in ${item.mode}`)

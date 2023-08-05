@@ -83,11 +83,6 @@ App.mouse_click_action = (mode, e) => {
     return
   }
 
-  if (e.target.classList.contains(`item_button_right`)) {
-    App.right_button_action(item)
-    return
-  }
-
   App.select_item(item, `nearest_smooth`)
 
   if (item.mode === `tabs`) {
@@ -128,27 +123,6 @@ App.mouse_middle_action = (mode, e) => {
   }
 
   let item = App.get_cursor_item(mode, e)
-
-  if (e.target.classList.contains(`item_button_close`)) {
-    let cmd = App.get_setting(`middle_click_close_button`)
-
-    if (cmd !== `none`) {
-      App.run_command({cmd: cmd, item: item, from: `close_button`})
-    }
-
-    return
-  }
-
-  if (e.target.classList.contains(`item_button_open`)) {
-    let cmd = App.get_setting(`middle_click_open_button`)
-
-    if (cmd !== `none`) {
-      App.run_command({cmd: cmd, item: item, from: `open_button`})
-    }
-
-    return
-  }
-
   App[`${mode}_action_alt`](item, e.shiftKey)
 }
 
@@ -187,14 +161,5 @@ App.mouse_out_action = (mode, e) => {
 
   if (selected) {
     App.update_footer_info(selected)
-  }
-}
-
-App.right_button_action = (item) => {
-  if (item.mode === `tabs`) {
-    App.close_tabs(item, false, false)
-  }
-  else {
-    App.open_items(item, true, false)
   }
 }
