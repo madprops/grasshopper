@@ -42,8 +42,6 @@ App.mouse_up_action = (e) => {
   if (e.button !== 0) {
     return
   }
-
-  App.item_range_on = false
 }
 
 // Using this on mousedown instead causes some problems
