@@ -171,7 +171,7 @@ App.show_profile_editor = (item, type, action = `edit`) => {
           DOM.el(`#profile_editor_notes`).value = shared
         }
         else if (type === `title`) {
-          let shared = App.get_shared_titles(profiles)
+          let shared = App.get_shared_title(profiles)
           DOM.el(`#profile_editor_title`).value = shared
         }
         else if (type === `color`) {
