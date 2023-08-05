@@ -58,7 +58,6 @@ App.mouse_down_action = (mode, e) => {
   let item = App.get_cursor_item(mode, e)
 
   if (e.target.classList.contains(`item_pick`)) {
-
     if (!App.item_range_on) {
       if (item.selected && App.multiple_selected(mode)) {
         App.item_range_select = false
