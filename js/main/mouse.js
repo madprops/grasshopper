@@ -231,7 +231,7 @@ App.mouse_over_action = (mode, e) => {
     let o = App.item_range_item
 
     if (o.selected !== App.item_range_select) {
-      App.pick_item(o, e)
+      App.toggle_selected(o, App.item_range_select)
     }
 
     if (item.selected !== App.item_range_select) {
