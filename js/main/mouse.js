@@ -59,8 +59,16 @@ App.mouse_down_action = (mode, e) => {
 
   if (e.target.classList.contains(`item_pick`)) {
     App.item_range_on = true
+    let selected = item.selected
 
-    if (item.selected && App.multiple_selected(mode)) {
+    if (e.shiftKey) {
+      App.select_range(item)
+    }
+    else {
+      App.pick_item(item, e)
+    }
+
+    if (selected && App.multiple_selected(mode)) {
       App.item_range_select = false
     }
     else {
@@ -89,13 +97,6 @@ App.mouse_click_action = (mode, e) => {
   let media_type = App.get_media_type(item)
 
   if (e.target.classList.contains(`item_pick`)) {
-    if (e.shiftKey) {
-      App.select_range(item)
-    }
-    else {
-      App.pick_item(item, e)
-    }
-
     return
   }
 
