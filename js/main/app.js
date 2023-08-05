@@ -86,7 +86,7 @@ App.bot_emoji = `🤖`
 
 App.dark_theme_colors = {
   background: `rgb(33, 33, 42)`,
-  text: `rgb(250, 250, 250)`,
+  text: `rgb(242, 242, 242)`,
 }
 
 App.light_theme_colors = {
