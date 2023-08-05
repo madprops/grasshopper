@@ -1264,19 +1264,13 @@ App.goto_bottom = (mode = App.window_mode, select = false) => {
 
 App.scroll = (mode, direction) => {
   let el = DOM.el(`#${mode}_container`)
-  let top
 
   if (direction === `up`) {
-    top = el.scrollTop - App.scroll_amount
+    el.scrollTop -= App.scroll_amount
   }
   else if (direction === `down`) {
-    top = el.scrollTop + App.scroll_amount
+    el.scrollTop += App.scroll_amount
   }
-
-  el.scrollTo({
-    top: top,
-    behavior: `instant`,
-  })
 }
 
 App.select_all = (mode = App.window_mode) => {
