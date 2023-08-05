@@ -461,8 +461,8 @@ App.setup_settings = () => {
 
     let opts = [
       [`Never`, `never`],
-      [`By Clicking Icon`, `icon`],
-      [`By Clicking Item`, `item`],
+      [`On Icon Click`, `icon`],
+      [`On Item Click`, `item`],
     ]
 
     for (let m of App.modes) {
