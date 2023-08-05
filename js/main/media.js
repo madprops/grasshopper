@@ -218,7 +218,9 @@ App.media_copy = (what) => {
 
 App.media_background = (what = App.window_mode) => {
   if (what === `image`) {
-    App.change_background(App[`current_media_${what}_item`].url)
+    let item = App[`current_media_${what}_item`]
+    App.check_bookmark(item)
+    App.change_background(item.url)
   }
 }
 
