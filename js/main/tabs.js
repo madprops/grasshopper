@@ -250,7 +250,7 @@ App.tabs_action = async (item) => {
 
 App.tabs_action_alt = (item, shift = false) => {
   if (shift) {
-    App.unload_tabs(item)
+    App.unload_tabs(item, false)
   }
   else {
     App.close_tabs(item, false)
@@ -339,11 +339,20 @@ App.unpin_tabs = (item) => {
   }
 }
 
-App.unload_tabs = (item) => {
+App.unload_tabs = (item, multiple = true) => {
+  let its = []
+
+  if (multiple) {
+    its = App.get_active_items(`tabs`, item)
+  }
+  else {
+    its = [item]
+  }
+
   let items = []
   let active = false
 
-  for (let it of App.get_active_items(`tabs`, item)) {
+  for (let it of its) {
     if (it.discarded || App.new_tab_urls.includes(it.url)) {
       continue
     }
