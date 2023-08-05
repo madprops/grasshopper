@@ -146,6 +146,7 @@ App.set_selected = (item) => {
   }
 
   App[`last_selected_${item.mode}`] = item
+  item.selected_date = Date.now()
   App.update_footer_info(item)
 }
 
@@ -348,6 +349,7 @@ App.process_info = (mode, info, exclude = [], o_item) => {
     item.id = info.id || App[`${mode}_idx`]
     item.visible = true
     item.selected = false
+    item.selected_date = 0
     App.create_empty_item_element(item)
     App[`${mode}_idx`] += 1
     return item
@@ -1183,6 +1185,7 @@ App.toggle_selected = (item, what, select = true) => {
   }
   else {
     if (items.length === 1 && select) {
+      item.selected_date = Date.now()
       return
     }
 
@@ -1523,14 +1526,10 @@ App.pick_item = (item, e) => {
         if (!App.multiple_selected(item.mode)) {
           let i = App.get_item_element_index(item.mode, selected.element)
           let ii = App.get_item_element_index(item.mode, item.element)
-          let ind = Math.abs(i - ii) > 1
-          let p = false
 
-          if (App.get_setting(`show_pinline`)) {
-            p = selected.pinned !== item.pinned
+          if (Math.abs(i - ii) > 1) {
+            unselect = (Date.now() - selected.selected_date) > App.max_pick_delay
           }
-
-          unselect = ind || p
         }
       }
     }
