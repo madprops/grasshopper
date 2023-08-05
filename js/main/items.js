@@ -1510,7 +1510,7 @@ App.get_title = (item) => {
   }
 }
 
-App.pick_item = (item, e, scroll = true) => {
+App.pick_item = (item, e) => {
   if (item.selected) {
     App.toggle_selected(item, false)
   }
@@ -1536,10 +1536,6 @@ App.pick_item = (item, e, scroll = true) => {
     }
 
     App.toggle_selected(item, true)
-
-    if (scroll) {
-      App.scroll_to_item(item, `nearest_instant`)
-    }
 
     if (unselect) {
       App.toggle_selected(selected, false)
