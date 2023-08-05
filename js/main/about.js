@@ -7,7 +7,6 @@ App.setup_about = () => {
       `Cycle with Left and Right if filter is empty`,
       `Middle Click closes or opens items`,
       `Shift + Middle Click unloads tabs`,
-      `Shift + Middle Click bypasses some confirmations`,
       `Shift + Up/Down selects multiple items`,
       `Shift + Home/End selects towards edges`,
       `Ctrl + Click selects multiple items`,
