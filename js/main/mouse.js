@@ -29,10 +29,6 @@ App.setup_window_mouse = (mode) => {
     App.mouse_context_action(mode, e)
   })
 
-  DOM.ev(container, `wheel`, (e) => {
-    App.mouse_wheel_action(mode, e)
-  })
-
   DOM.ev(container, `mouseover`, (e) => {
     App.mouse_over_action(mode, e)
   })
@@ -124,21 +120,6 @@ App.mouse_middle_action = (mode, e) => {
 
   let item = App.get_cursor_item(mode, e)
   App[`${mode}_action_alt`](item, e.shiftKey)
-}
-
-App.mouse_wheel_action = (mode, e) => {
-  if (e.shiftKey) {
-    let direction = App.wheel_direction(e)
-
-    if (direction === `up`) {
-      App.scroll(mode, `up`, true)
-    }
-    else if (direction === `down`) {
-      App.scroll(mode, `down`, true)
-    }
-
-    e.preventDefault()
-  }
 }
 
 App.mouse_over_action = (mode, e) => {

@@ -56,12 +56,6 @@ App.setup_commands = () => {
     {name: `Select All`, cmd: `select_all`, mode: `items`, action: (args) => {
       App.select_all()
     }},
-    {name: `Scroll Up`, cmd: `scroll_up`, mode: `items`, action: (args) => {
-      App.scroll(args.mode, `up`, true)
-    }},
-    {name: `Scroll Down`, cmd: `scroll_down`, mode: `items`, action: (args) => {
-      App.scroll(args.mode, `down`, true)
-    }},
 
     {name: App.separator_string},
 

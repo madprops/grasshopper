@@ -1262,24 +1262,15 @@ App.goto_bottom = (mode = App.window_mode, select = false) => {
   App.do_check_scroller(mode)
 }
 
-App.scroll = (mode, direction, fast = false) => {
+App.scroll = (mode, direction) => {
   let el = DOM.el(`#${mode}_container`)
-  let amount
-
-  if (fast) {
-    amount = Math.floor(el.scrollHeight * (App.fast_scroll_percent / 100))
-  }
-  else {
-    amount = App.normal_scroll_pixels
-  }
-
   let top
 
   if (direction === `up`) {
-    top = el.scrollTop - amount
+    top = el.scrollTop - App.scroll_amount
   }
   else if (direction === `down`) {
-    top = el.scrollTop + amount
+    top = el.scrollTop + App.scroll_amount
   }
 
   el.scrollTo({

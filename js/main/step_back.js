@@ -39,10 +39,6 @@ App.step_back = (mode = App.window_mode, e) => {
     App.focus_current_tab()
   }
   else if (mode === `tabs` && e.key !== `Escape`) {
-    if (e.shiftKey) {
-      App.do_empty_previous_tabs()
-    }
-
     App.go_to_previous_tab()
   }
   else if (mode !== App.mode_order[0]) {

@@ -25,7 +25,6 @@ App.setup_about = () => {
       `Ctrl + Delete removes items`,
       `Some keys can be used without Ctrl if filter is empty`,
       `Double click on empty tabs space opens a new tab`,
-      `Shift while on scrollwheel makes it scroll faster`,
       `Escape clears the filter and closes windows/popups`,
       `Double tap Ctrl to show the command palette`,
       `Command palette commands take into account selected items`,

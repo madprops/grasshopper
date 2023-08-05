@@ -121,12 +121,12 @@ App.check_items_keyboard = (e) => {
       return
     }
     else if (e.key === `PageUp`) {
-      App.scroll(mode, `up`, true)
+      App.scroll(mode, `up`)
       e.preventDefault()
       return
     }
     else if (e.key === `PageDown`) {
-      App.scroll(mode, `down`, true)
+      App.scroll(mode, `down`)
       e.preventDefault()
       return
     }
@@ -149,12 +149,12 @@ App.check_items_keyboard = (e) => {
       return
     }
     else if (e.key === `PageUp`) {
-      App.scroll(mode, `up`, false)
+      App.scroll(mode, `up`)
       e.preventDefault()
       return
     }
     else if (e.key === `PageDown`) {
-      App.scroll(mode, `down`, false)
+      App.scroll(mode, `down`)
       e.preventDefault()
       return
     }
