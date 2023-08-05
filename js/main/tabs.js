@@ -340,19 +340,10 @@ App.unpin_tabs = (item) => {
 }
 
 App.unload_tabs = (item, multiple = true) => {
-  let its = []
-
-  if (multiple) {
-    its = App.get_active_items(`tabs`, item)
-  }
-  else {
-    its = [item]
-  }
-
   let items = []
   let active = false
 
-  for (let it of its) {
+  for (let it of App.get_active_items(`tabs`, item, multiple)) {
     if (it.discarded || App.new_tab_urls.includes(it.url)) {
       continue
     }
@@ -415,15 +406,7 @@ App.check_tab_force = (warn_setting, items) => {
 }
 
 App.close_tabs = (item, multiple = true) => {
-  let items = []
-
-  if (multiple) {
-    items = App.get_active_items(`tabs`, item)
-  }
-  else {
-    items = [item]
-  }
-
+  let items = App.get_active_items(`tabs`, item, multiple)
   let force = App.check_tab_force(`warn_on_close_tabs`, items)
   let ids = items.map(x => x.id)
 

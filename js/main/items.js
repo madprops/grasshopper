@@ -1298,7 +1298,11 @@ App.create_icon = (name, type = 1) => {
   return icon
 }
 
-App.get_active_items = (mode, item) => {
+App.get_active_items = (mode, item, multiple = true) => {
+  if (!multiple) {
+    return [item]
+  }
+
   let selected = App.selected_items(mode)
 
   if (selected.length === 1) {
