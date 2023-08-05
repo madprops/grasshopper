@@ -904,7 +904,6 @@ App.settings_wheel = App.create_debouncer((e, direction) => {
 }, App.wheel_delay)
 
 App.get_setting = (setting) => {
-  console.log(setting)
   let value = App.settings[setting].value
 
   if (value === App.default_setting_string) {

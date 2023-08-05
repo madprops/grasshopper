@@ -175,7 +175,7 @@ App.refresh_tab = async (id, select, info) => {
   }
 
   if (App.get_setting(`single_new_tab`)) {
-    if (App.new_tab_urls.includes(info.url)) {
+    if (App.is_new_tab(info.url)) {
       App.close_other_new_tabs(info.id)
     }
   }
@@ -344,7 +344,7 @@ App.unload_tabs = (item, multiple = true) => {
   let active = false
 
   for (let it of App.get_active_items(`tabs`, item, multiple)) {
-    if (it.discarded || App.new_tab_urls.includes(it.url)) {
+    if (it.discarded || App.is_new_tab(it.url)) {
       continue
     }
 
@@ -364,7 +364,14 @@ App.unload_tabs = (item, multiple = true) => {
 
   App.show_confirm(`Unload items? (${ids.length})`, async () => {
     if (active) {
-      await App.open_new_tab(`about:blank`)
+      let next = App.get_next_item(`tabs`, true)
+
+      if (next) {
+        await App.focus_tab(next, `nearest_smooth`)
+      }
+      else {
+        await App.open_new_tab(`about:blank`)
+      }
     }
 
     App.do_unload_tabs(ids)
@@ -1049,7 +1056,7 @@ App.close_other_new_tabs = (id) => {
   let ids = []
 
   for (let item of items) {
-    if (App.new_tab_urls.includes(item.url)) {
+    if (App.is_new_tab(item.url)) {
       if (item.id !== id) {
         ids.push(item.id)
       }
@@ -1071,7 +1078,7 @@ App.check_new_tabs = () => {
   let ids = []
 
   for (let item of items) {
-    if (App.new_tab_urls.includes(item.url)) {
+    if (App.is_new_tab(item.url)) {
       if (first) {
         ids.push(item.id)
       }
@@ -1146,4 +1153,8 @@ App.select_tabs = (type = `pins`) => {
   if (first) {
     App.set_selected(first)
   }
+}
+
+App.is_new_tab = (url) => {
+  return App.new_tab_urls.includes(url)
 }

@@ -97,6 +97,7 @@ App.select_to_edge = (mode, dir) => {
 App.get_next_visible_item = (args) => {
   let def_args = {
     reverse: false,
+    free: false,
     wrap: true,
   }
 
@@ -108,7 +109,6 @@ App.get_next_visible_item = (args) => {
   }
 
   let items = App.get_items(args.mode).slice(0)
-  let o_item = App.get_selected(args.mode)
 
   if (args.reverse) {
     items.reverse()
@@ -116,12 +116,18 @@ App.get_next_visible_item = (args) => {
 
   for (let item of items) {
     if (waypoint) {
+      if (args.free) {
+        if (item.selected || item.discarded) {
+          continue
+        }
+      }
+
       if (item.visible) {
         return item
       }
     }
 
-    if (item === o_item) {
+    if (item.selected) {
       waypoint = true
     }
   }
@@ -1426,9 +1432,9 @@ App.on_items = (mode = App.window_mode, check_popups = false) => {
   return on_items
 }
 
-App.get_next_item = (mode) => {
-  return App.get_next_visible_item({mode: mode, wrap: false}) ||
-  App.get_next_visible_item({mode: mode, reverse: true, wrap: false})
+App.get_next_item = (mode, free = false) => {
+  return App.get_next_visible_item({mode: mode, wrap: false, free: free}) ||
+  App.get_next_visible_item({mode: mode, reverse: true, wrap: false, free: free})
 }
 
 App.multiple_selected = (mode) => {
