@@ -1535,11 +1535,11 @@ App.pick_item = (item, e) => {
       }
     }
 
+    App.select_item(item, `nearest_instant`, false)
+
     if (unselect) {
       App.toggle_selected(selected, false)
     }
-
-    App.select_item(item, `nearest_instant`, false)
   }
 }
 
