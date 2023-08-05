@@ -73,7 +73,7 @@ App.mouse_click_action = (mode, e) => {
   }
 
   if (e.ctrlKey) {
-    App.toggle_selected(item)
+    App.pick_item(item)
     return
   }
 
