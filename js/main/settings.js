@@ -25,13 +25,6 @@ App.build_default_settings = () => {
   obj.background_effect = {value: `none`, category: category, version: 1}
   obj.background_tiles = {value: `none`, category: category, version: 1}
 
-  category = `icons`
-  obj.pin_icon = {value: `+`, category: category, version: 1}
-  obj.normal_icon = {value: ``, category: category, version: 1}
-  obj.playing_icon = {value: `🔊`, category: category, version: 1}
-  obj.muted_icon = {value: `🔇`, category: category, version: 1}
-  obj.unloaded_icon = {value: `💤`, category: category, version: 1}
-
   category = `warns`
   obj.warn_on_close_tabs = {value: `special`, category: category, version: 1}
   obj.warn_on_unload_tabs = {value: `special`, category: category, version: 1}
@@ -85,6 +78,11 @@ App.build_default_settings = () => {
   obj.show_pinline = {value: true, category: category, version: 1}
   obj.show_scroller = {value: true, category: category, version: 1}
   obj.show_footer = {value: true, category: category, version: 1}
+  obj.pin_icon = {value: `+`, category: category, version: 1}
+  obj.normal_icon = {value: ``, category: category, version: 1}
+  obj.playing_icon = {value: `🔊`, category: category, version: 1}
+  obj.muted_icon = {value: `🔇`, category: category, version: 1}
+  obj.unloaded_icon = {value: `💤`, category: category, version: 1}
 
   App.default_settings = obj
 }
@@ -340,7 +338,7 @@ App.settings_filter_focused = () => {
 }
 
 App.setup_settings = () => {
-  App.settings_categories = [`general`, `theme`, `icons`, `media`, `show`, `mouse`, `warns`, `more`]
+  App.settings_categories = [`general`, `theme`, `media`, `show`, `mouse`, `warns`, `more`]
 
   let common = {
     persistent: false,
@@ -440,10 +438,6 @@ App.setup_settings = () => {
     prepare(`theme`)
   }}))
 
-  App.create_window(Object.assign({}, common, {id: `settings_icons`, setup: () => {
-    prepare(`icons`)
-  }}))
-
   App.create_window(Object.assign({}, common, {id: `settings_warns`, setup: () => {
     prepare(`warns`)
     App.settings_make_menu(`warn_on_close_tabs`, App.tab_warn_opts)
@@ -514,9 +508,6 @@ App.get_setting_title = (category) => {
 
   if (category === `warns`) {
     name = `Warn`
-  }
-  else if (category === `icons`) {
-    name = `Icon`
   }
   else {
     name = App.capitalize(category)
