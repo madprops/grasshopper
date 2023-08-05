@@ -85,7 +85,7 @@ App.clipboard_icon = `📋`
 App.bot_emoji = `🤖`
 
 App.dark_theme_colors = {
-  background: `rgb(30, 30, 33)`,
+  background: `rgb(33, 33, 42)`,
   text: `rgb(250, 250, 250)`,
 }
 
