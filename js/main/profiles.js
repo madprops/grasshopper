@@ -160,6 +160,28 @@ App.show_profile_editor = (item, type, action = `edit`) => {
     }
   }
   else {
+    if (action === `edit`) {
+      if (items.length === profiles.length) {
+        if (type === `tags`) {
+          let shared = App.get_shared_tags(profiles)
+          DOM.el(`#profile_editor_tags`).value = shared.join(`\n`)
+        }
+        else if (type === `notes`) {
+          let shared = App.get_shared_notes(profiles)
+          DOM.el(`#profile_editor_notes`).value = shared
+        }
+        else if (type === `title`) {
+          let shared = App.get_shared_titles(profiles)
+          DOM.el(`#profile_editor_title`).value = shared
+        }
+        else if (type === `color`) {
+          let shared = App.get_shared_color(profiles)
+          DOM.el(`#profile_editor_color`).value = shared || `none`
+          App.set_color_icons(shared)
+        }
+      }
+    }
+
     DOM.el(`#profile_editor_header`).textContent = `Editing ${items.length} Profiles`
   }
 
@@ -1016,4 +1038,50 @@ App.set_color_icons = (color) => {
     DOM.el(`#profile_editor_color_icon_1`).textContent = icon
     DOM.el(`#profile_editor_color_icon_2`).textContent = icon
   }
+}
+
+App.get_shared_tags = (profiles) => {
+  let arrays = profiles.map(obj => obj.tags)
+
+  let shared = arrays.reduce((common, current) => {
+    return common.filter(value => current.includes(value))
+  })
+
+  return shared
+}
+
+App.get_shared_notes = (profiles) => {
+  let first = profiles[0].notes
+
+  for (let profile of profiles) {
+    if (profile.notes !== first) {
+      return ``
+    }
+  }
+
+  return first
+}
+
+App.get_shared_title = (profiles) => {
+  let first = profiles[0].title
+
+  for (let profile of profiles) {
+    if (profile.title !== first) {
+      return ``
+    }
+  }
+
+  return first
+}
+
+App.get_shared_color = (profiles) => {
+  let first = profiles[0].color
+
+  for (let profile of profiles) {
+    if (profile.color !== first) {
+      return ``
+    }
+  }
+
+  return first
 }
