@@ -157,7 +157,6 @@ App.set_selected = (item) => {
   }
 
   App[`last_selected_${item.mode}`] = item
-  item.selected_date = Date.now()
   App.update_footer_info(item)
 }
 
@@ -1164,7 +1163,6 @@ App.toggle_selected = (item, what, select = true) => {
   }
   else {
     if (items.length === 1 && select) {
-      item.selected_date = Date.now()
       return
     }
 
