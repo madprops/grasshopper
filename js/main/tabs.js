@@ -248,8 +248,13 @@ App.tabs_action = async (item) => {
   App.check_close_on_focus()
 }
 
-App.tabs_action_alt = (item, shift_key = false) => {
-  App.close_tabs(item, shift_key, false)
+App.tabs_action_alt = (item, shift = false) => {
+  if (shift) {
+    App.unload_tabs(item)
+  }
+  else {
+    App.close_tabs(item, false)
+  }
 }
 
 App.duplicate_tab = async (item) => {
@@ -339,7 +344,7 @@ App.unload_tabs = (item) => {
   let active = false
 
   for (let it of App.get_active_items(`tabs`, item)) {
-    if (it.discarded) {
+    if (it.discarded || App.new_tab_urls.includes(it.url)) {
       continue
     }
 
@@ -400,7 +405,7 @@ App.check_tab_force = (warn_setting, items) => {
   return true
 }
 
-App.close_tabs = (item, do_force = false, multiple = true) => {
+App.close_tabs = (item, multiple = true) => {
   let items = []
 
   if (multiple) {
@@ -421,7 +426,7 @@ App.close_tabs = (item, do_force = false, multiple = true) => {
 
   App.show_confirm(s, () => {
     App.do_close_tabs(ids)
-  }, undefined, do_force || force)
+  }, undefined, force)
 }
 
 App.do_close_tabs = async (ids) => {
