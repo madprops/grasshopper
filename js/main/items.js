@@ -349,7 +349,6 @@ App.process_info = (mode, info, exclude = [], o_item) => {
     item.id = info.id || App[`${mode}_idx`]
     item.visible = true
     item.selected = false
-    item.selected_date = 0
     App.create_empty_item_element(item)
     App[`${mode}_idx`] += 1
     return item
@@ -463,14 +462,6 @@ App.create_item_element = (item) => {
   }
   else {
     item.element.classList.remove(`selected`)
-  }
-
-  if (App.get_setting(`pick_icon`)) {
-    let pick = DOM.create(`div`, `item_pick item_button item_button_left`)
-    pick.textContent = App.get_setting(`pick_icon`)
-    pick.title = `Pick`
-    pick.draggable = true
-    item.element.append(pick)
   }
 
   if (item.mode === `tabs`) {
@@ -1510,35 +1501,6 @@ App.get_title = (item) => {
   }
   else {
     return item.title
-  }
-}
-
-App.pick_item = (item, e) => {
-  if (item.selected) {
-    App.toggle_selected(item, false)
-  }
-  else {
-    let selected = App.get_selected(item.mode)
-    let unselect = false
-
-    if (App.get_setting(`smart_pick`) && !e.ctrlKey) {
-      if (selected !== item && !item.selected) {
-        if (!App.multiple_selected(item.mode)) {
-          let i = App.get_item_element_index(item.mode, selected.element)
-          let ii = App.get_item_element_index(item.mode, item.element)
-
-          if (Math.abs(i - ii) > 1) {
-            unselect = (Date.now() - selected.selected_date) > App.max_pick_delay
-          }
-        }
-      }
-    }
-
-    App.toggle_selected(item, true)
-
-    if (unselect) {
-      App.toggle_selected(selected, false)
-    }
   }
 }
 

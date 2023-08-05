@@ -17,10 +17,6 @@ App.cursor_on_item = (e, mode) => {
 App.setup_window_mouse = (mode) => {
   let container = DOM.el(`#${mode}_container`)
 
-  DOM.ev(container, `mousedown`, (e) => {
-    App.mouse_down_action(mode, e)
-  })
-
   DOM.ev(window, `mouseup`, (e) => {
     App.mouse_up_action(e)
   })
@@ -46,32 +42,6 @@ App.setup_window_mouse = (mode) => {
   })
 }
 
-App.mouse_down_action = (mode, e) => {
-  if (e.button !== 0) {
-    return
-  }
-
-  if (!App.cursor_on_item(e, mode)) {
-    return
-  }
-
-  let item = App.get_cursor_item(mode, e)
-
-  if (e.target.classList.contains(`item_pick`)) {
-    if (!App.item_range_on) {
-      if (item.selected && App.multiple_selected(mode)) {
-        App.item_range_select = false
-      }
-      else {
-        App.item_range_select = true
-      }
-
-      App.item_range_item = item
-      App.item_range_on = true
-    }
-  }
-}
-
 App.mouse_up_action = (e) => {
   if (e.button !== 0) {
     return
@@ -91,17 +61,6 @@ App.mouse_click_action = (mode, e) => {
   let item = App.get_cursor_item(mode, e)
   let media_type = App.get_media_type(item)
 
-  if (e.target.classList.contains(`item_pick`)) {
-    if (e.shiftKey) {
-      App.select_range(item)
-    }
-    else {
-      App.pick_item(item, e)
-    }
-
-    return
-  }
-
   if (e.target.classList.contains(`view_media_button`)) {
     if (!e.shiftKey && !e.ctrlKey) {
       if (media_type) {
@@ -120,7 +79,7 @@ App.mouse_click_action = (mode, e) => {
   }
 
   if (e.ctrlKey) {
-    App.pick_item(item, e)
+    App.toggle_selected(item)
     return
   }
 
@@ -170,16 +129,6 @@ App.mouse_middle_action = (mode, e) => {
 
   let item = App.get_cursor_item(mode, e)
 
-  if (e.target.classList.contains(`item_pick`)) {
-    let cmd = App.get_setting(`middle_click_pick_button`)
-
-    if (cmd !== `none`) {
-      App.run_command({cmd: cmd, item: item, from: `pick_button`})
-    }
-
-    return
-  }
-
   if (e.target.classList.contains(`item_button_close`)) {
     let cmd = App.get_setting(`middle_click_close_button`)
 
@@ -226,18 +175,6 @@ App.mouse_over_action = (mode, e) => {
   let item = App.get_cursor_item(mode, e)
   item.element.classList.add(`item_hover`)
   App.update_footer_info(item)
-
-  if (App.item_range_on) {
-    let o = App.item_range_item
-
-    if (o.selected !== App.item_range_select) {
-      App.pick_item(o, e)
-    }
-
-    if (item.selected !== App.item_range_select) {
-      App.toggle_selected(item, App.item_range_select)
-    }
-  }
 }
 
 App.mouse_out_action = (mode, e) => {
