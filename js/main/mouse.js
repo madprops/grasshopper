@@ -60,7 +60,7 @@ App.mouse_click_action = (mode, e) => {
   if (e.target.classList.contains(`view_media_button`)) {
     if (!e.shiftKey && !e.ctrlKey) {
       if (media_type) {
-        if (App.get_setting(`view_${media_type}`) === `icon`) {
+        if (App.get_setting(`view_${media_type}_${mode}`) === `icon`) {
           App.select_item(item, `nearest_smooth`)
           App.view_media(item)
           return
@@ -92,7 +92,7 @@ App.mouse_click_action = (mode, e) => {
   }
 
   if (media_type) {
-    if (App.get_setting(`view_${media_type}`) === `item`) {
+    if (App.get_setting(`view_${media_type}_${mode}`) === `item`) {
       App.select_item(item, `nearest_smooth`)
       App.view_media(item)
       return

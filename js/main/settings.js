@@ -36,9 +36,18 @@ App.build_default_settings = () => {
   obj.warn_on_bookmark = {value: true, category: category, version: 1}
 
   category = `media`
-  obj.view_image = {value: `item`, category: category, version: 1}
-  obj.view_video = {value: `item`, category: category, version: 1}
-  obj.view_audio = {value: `item`, category: category, version: 1}
+  obj.view_image_tabs = {value: `icon`, category: category, version: 1}
+  obj.view_video_tabs = {value: `icon`, category: category, version: 1}
+  obj.view_audio_tabs = {value: `icon`, category: category, version: 1}
+  obj.view_image_history = {value: `item`, category: category, version: 1}
+  obj.view_video_history = {value: `item`, category: category, version: 1}
+  obj.view_audio_history = {value: `item`, category: category, version: 1}
+  obj.view_image_bookmarks = {value: `item`, category: category, version: 1}
+  obj.view_video_bookmarks = {value: `item`, category: category, version: 1}
+  obj.view_audio_bookmarks = {value: `item`, category: category, version: 1}
+  obj.view_image_closed = {value: `item`, category: category, version: 1}
+  obj.view_video_closed = {value: `item`, category: category, version: 1}
+  obj.view_audio_closed = {value: `item`, category: category, version: 1}
   obj.image_icon = {value: `🖼️`, category: category, version: 1}
   obj.video_icon = {value: `▶️`, category: category, version: 1}
   obj.audio_icon = {value: `🎵`, category: category, version: 1}
@@ -456,9 +465,11 @@ App.setup_settings = () => {
       [`By Clicking Item`, `item`],
     ]
 
-    App.settings_make_menu(`view_image`, opts.slice(0))
-    App.settings_make_menu(`view_video`, opts.slice(0))
-    App.settings_make_menu(`view_audio`, opts.slice(0))
+    for (let m of App.modes) {
+      App.settings_make_menu(`view_image_${m}`, opts.slice(0))
+      App.settings_make_menu(`view_video_${m}`, opts.slice(0))
+      App.settings_make_menu(`view_audio_${m}`, opts.slice(0))
+    }
   }}))
 
   App.create_window(Object.assign({}, common, {id: `settings_show`, setup: () => {
