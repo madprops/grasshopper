@@ -1021,7 +1021,6 @@ App.settings_menu_items = (action = `normal`) => {
   let items = []
 
   for (let c of App.settings_categories) {
-    let selected = c === App.settings_category
     let icon = App.settings_emojis[c]
     let name = `${icon} ${App.capitalize(c)}`
 
@@ -1030,7 +1029,6 @@ App.settings_menu_items = (action = `normal`) => {
       action: () => {
         App.show_settings_category(c)
       },
-      selected: selected,
     })
   }
 
