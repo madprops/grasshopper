@@ -1117,9 +1117,7 @@ App.select_range = (item) => {
     }
   }
 
-  if (!App.item_range_on) {
-    App.scroll_to_item(item, `nearest_instant`)
-  }
+  App.scroll_to_item(item, `nearest_instant`)
 }
 
 App.deselect = (mode = App.window_mode, select = `none`) => {
