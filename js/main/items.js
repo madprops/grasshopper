@@ -34,7 +34,7 @@ App.select_item = async (item, scroll = `nearest`, deselect = true) => {
 }
 
 App.select_above = (mode) => {
-  let item = App.get_next_visible_item({mode: mode, reverse: true})
+  let item = App.get_other_item({mode: mode, reverse: true})
 
   if (item) {
     App.select_item(item, `nearest`)
@@ -42,7 +42,7 @@ App.select_above = (mode) => {
 }
 
 App.select_below = (mode) => {
-  let item = App.get_next_visible_item({mode: mode})
+  let item = App.get_other_item({mode: mode})
 
   if (item) {
     App.select_item(item, `nearest`)
@@ -94,9 +94,10 @@ App.select_to_edge = (mode, dir) => {
   App.select_range(items[0])
 }
 
-App.get_next_visible_item = (args) => {
+App.get_other_item = (args) => {
   let def_args = {
     reverse: false,
+    visible: true,
     free: false,
     wrap: true,
   }
@@ -116,15 +117,19 @@ App.get_next_visible_item = (args) => {
 
   for (let item of items) {
     if (waypoint) {
+      if (args.visible) {
+        if (!item.visible) {
+          continue
+        }
+      }
+
       if (args.free) {
         if (item.selected || item.discarded) {
           continue
         }
       }
 
-      if (item.visible) {
-        return item
-      }
+      return item
     }
 
     if (item.selected) {
@@ -1432,9 +1437,14 @@ App.on_items = (mode = App.window_mode, check_popups = false) => {
   return on_items
 }
 
-App.get_next_item = (mode, free = false) => {
-  return App.get_next_visible_item({mode: mode, wrap: false, free: free}) ||
-  App.get_next_visible_item({mode: mode, reverse: true, wrap: false, free: free})
+App.get_next_item = (mode) => {
+  return App.get_other_item({mode: mode, wrap: false}) ||
+  App.get_other_item({mode: mode, reverse: true, wrap: false})
+}
+
+App.get_next_free_item = (mode) => {
+  return App.get_other_item({mode: mode, wrap: false, free: true}) ||
+  App.get_other_item({mode: mode, reverse: true, wrap: false, free: true})
 }
 
 App.multiple_selected = (mode) => {
