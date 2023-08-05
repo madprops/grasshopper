@@ -58,21 +58,17 @@ App.mouse_down_action = (mode, e) => {
   let item = App.get_cursor_item(mode, e)
 
   if (e.target.classList.contains(`item_pick`)) {
-    App.item_range_on = true
-    let selected = item.selected
 
-    if (e.shiftKey) {
-      App.select_range(item)
-    }
-    else {
-      App.pick_item(item, e)
-    }
+    if (!App.item_range_on) {
+      if (item.selected && App.multiple_selected(mode)) {
+        App.item_range_select = false
+      }
+      else {
+        App.item_range_select = true
+      }
 
-    if (selected && App.multiple_selected(mode)) {
-      App.item_range_select = false
-    }
-    else {
-      App.item_range_select = true
+      App.item_range_item = item
+      App.item_range_on = true
     }
   }
 }
@@ -97,6 +93,13 @@ App.mouse_click_action = (mode, e) => {
   let media_type = App.get_media_type(item)
 
   if (e.target.classList.contains(`item_pick`)) {
+    if (e.shiftKey) {
+      App.select_range(item)
+    }
+    else {
+      App.pick_item(item, e)
+    }
+
     return
   }
 
@@ -226,6 +229,12 @@ App.mouse_over_action = (mode, e) => {
   App.update_footer_info(item)
 
   if (App.item_range_on) {
+    let o = App.item_range_item
+
+    if (o.selected !== App.item_range_select) {
+      App.toggle_selected(o, App.item_range_select)
+    }
+
     if (item.selected !== App.item_range_select) {
       App.toggle_selected(item, App.item_range_select)
     }

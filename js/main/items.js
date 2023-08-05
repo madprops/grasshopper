@@ -1537,15 +1537,11 @@ App.pick_item = (item, e) => {
       }
     }
 
-    App.toggle_selected(item, true)
-
     if (unselect) {
       App.toggle_selected(selected, false)
     }
 
-    if (!App.item_range_on) {
-      App.scroll_to_item(item, `nearest_instant`)
-    }
+    App.select_item(item, `nearest_instant`, false)
   }
 }
 
