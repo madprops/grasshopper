@@ -154,9 +154,6 @@ App.random_theme = () => {
 App.set_theme = (c1, c2) => {
   App.set_setting(`background_color`, c1)
   App.set_setting(`text_color`, c2)
-  App.set_setting(`background_image`, ``)
-  App.set_setting(`background_effect`, `none`)
-  App.set_setting(`background_tiles`, `none`)
   App.apply_theme()
 
   if (App.on_settings()) {
