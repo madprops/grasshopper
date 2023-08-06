@@ -691,7 +691,7 @@ App.start_theme_settings = () => {
   App.settings_make_menu(`auto_background`, auto_opts)
 }
 
-App.settings_menu_cycle = (el, setting, dir, items) => {
+App.settings_menu_cycle = (el, setting, dir, o_items) => {
   let cycle = true
 
   if (setting === `font_size` || setting === `width` || setting === `height`) {
@@ -699,7 +699,7 @@ App.settings_menu_cycle = (el, setting, dir, items) => {
   }
 
   let waypoint = false
-  items = items.slice(0)
+  let items = o_items.slice(0)
 
   if (dir === `prev`) {
     items.reverse()
