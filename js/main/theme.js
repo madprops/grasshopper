@@ -182,7 +182,7 @@ App.random_background = async () => {
         App.show_settings_category(`theme`)
       }
       else {
-        App.show_alert_2(`Background changed to:\n\n${h.url}`)
+        App.show_feedback_2(`Background changed to:\n\n${h.url}`)
       }
 
       break

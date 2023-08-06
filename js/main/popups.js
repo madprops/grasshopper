@@ -96,12 +96,12 @@ App.show_alert = (message, autohide_delay = 0, pre = true) => {
   }
 }
 
-App.show_alert_2 = (message) => {
-  App.show_alert(message, undefined, false)
-}
-
 App.show_feedback = (message) => {
   App.show_alert(message, App.alert_autohide_delay)
+}
+
+App.show_feedback_2 = (message) => {
+  App.show_alert(message, App.alert_autohide_delay, false)
 }
 
 App.show_dialog = (message, buttons) => {
