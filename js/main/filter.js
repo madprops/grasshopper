@@ -42,7 +42,7 @@ App.do_filter = async (mode, force = false, deep = false) => {
   let regex
 
   try {
-    if (App.get_setting(`case_insensitive_filter`)) {
+    if (App.get_setting(`case_insensitive`)) {
       regex = new RegExp(value, `i`)
     }
     else {
