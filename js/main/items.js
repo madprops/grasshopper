@@ -374,17 +374,19 @@ App.create_empty_item_element = (item) => {
 }
 
 App.check_item_icon = (item) => {
-  let container = DOM.el(`.item_icon_container`, item.element)
-  container.innerHTML = ``
-  let icon = App.get_img_icon(item)
-  container.append(icon)
+  if (App.get_setting(`show_icons`)) {
+    let container = DOM.el(`.item_icon_container`, item.element)
+    container.innerHTML = ``
+    let icon = App.get_img_icon(item)
+    container.append(icon)
 
-  if (item.color) {
-    let c = App.colors[item.color]
-    container.style.outline = `2px solid ${c}`
-  }
-  else {
-    container.style.outline = `unset`
+    if (item.color) {
+      let c = App.colors[item.color]
+      container.style.outline = `2px solid ${c}`
+    }
+    else {
+      container.style.outline = `unset`
+    }
   }
 }
 
@@ -428,9 +430,11 @@ App.refresh_item_element = (item) => {
 App.create_item_element = (item) => {
   item.element.innerHTML = ``
 
-  let icon_container = DOM.create(`div`, `item_icon_container`)
-  item.element.append(icon_container)
-  App.check_item_icon(item)
+  if (App.get_setting(`show_icons`)) {
+    let icon_container = DOM.create(`div`, `item_icon_container`)
+    item.element.append(icon_container)
+    App.check_item_icon(item)
+  }
 
   let view_media = DOM.create(`div`, `view_media_button hidden`)
   item.element.append(view_media)

@@ -16,7 +16,7 @@ App.build_default_settings = () => {
   obj.custom_filters = {value: [`search`, `watch`, `wiki`], category: category, version: 1}
   obj.bookmarks_folder = {value: `Grasshopper`, category: category, version: 1}
   obj.item_border = {value: `none`, category: category, version: 2}
-  obj.pick_mode = {value: `smart`, category: category, version: 1}
+  obj.pick_mode = {value: `none`, category: category, version: 1}
 
   category = `theme`
   obj.background_color = {value: `rgb(45, 45, 55)`, category: category, version: 1}
@@ -87,6 +87,7 @@ App.build_default_settings = () => {
   category = `show`
   obj.show_scrollbars = {value: true, category: category, version: 1}
   obj.show_tooltips = {value: true, category: category, version: 1}
+  obj.show_icons = {value: true, category: category, version: 1}
   obj.show_pinline = {value: true, category: category, version: 1}
   obj.show_scroller = {value: true, category: category, version: 1}
   obj.show_footer = {value: true, category: category, version: 1}
