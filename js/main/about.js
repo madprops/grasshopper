@@ -33,6 +33,7 @@ App.setup_about = () => {
       `To perform gestures, hold the middle mouse button and move in a direction, then release`,
       `Some interface elements can be mapped to commands on middle click`,
       `The profile editor can help you organize and find tabs`,
+      `Data like settings and profiles can be exported and imported`,
     ]
 
     DOM.evs(DOM.el(`#about_close`), [`click`, `auxclick`], () => {
