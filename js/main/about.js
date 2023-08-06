@@ -6,7 +6,6 @@ App.setup_about = () => {
       `Cycle modes with the top-left menu or (Shift) Tab`,
       `Cycle with Left and Right if filter is empty`,
       `Middle Click closes or opens items`,
-      `Shift + Middle Click unloads tabs`,
       `Shift + Up/Down selects multiple items`,
       `Shift + Home/End selects towards edges`,
       `Ctrl + Click selects multiple items`,
