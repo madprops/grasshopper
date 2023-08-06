@@ -2,7 +2,7 @@ App.setup_commands = () => {
   let color_filters = []
 
   for (let color in App.colors) {
-    let icon = App.color_emojis[color]
+    let icon = App.color_icons[color]
     let name = `${icon} Filter ${App.capitalize(color)}`
 
     color_filters.push({name: name, cmd: `filter_${color}`, mode: `items`, action: (args) => {
@@ -13,7 +13,7 @@ App.setup_commands = () => {
   let color_changers = []
 
   for (let color in App.colors) {
-    let icon = App.color_emojis[color]
+    let icon = App.color_icons[color]
     let name = `${icon} Color ${App.capitalize(color)}`
 
     color_changers.push({name: name, cmd: `color_${color}`, mode: `items`, action: (args) => {

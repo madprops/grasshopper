@@ -559,7 +559,7 @@ App.get_color_items = (mode, action = `filter`) => {
       continue
     }
 
-    let icon = App.color_emojis[color]
+    let icon = App.color_icons[color]
     let name = `${icon} ${App.capitalize(color)}`
 
     items.push({
@@ -1017,7 +1017,7 @@ App.set_color_icons = (color) => {
     color = `none`
   }
 
-  let icon = App.color_emojis[color]
+  let icon = App.color_icons[color]
 
   if (icon) {
     DOM.el(`#profile_editor_color_icon_1`).textContent = icon

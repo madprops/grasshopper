@@ -58,7 +58,7 @@ App.colors = {
   yellow: `rgb(255, 255, 77)`,
 }
 
-App.color_emojis = {
+App.color_icons = {
   none: `⚫`,
   red: `🔴`,
   green: `🟢`,
