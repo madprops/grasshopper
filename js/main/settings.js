@@ -25,6 +25,8 @@ App.build_default_settings = () => {
   obj.background_image = {value: `/img/background.jpg`, category: category, version: 1}
   obj.background_effect = {value: `none`, category: category, version: 1}
   obj.background_tiles = {value: `none`, category: category, version: 1}
+  obj.auto_theme = {value: 0, category: category, version: 1}
+  obj.auto_background = {value: 0, category: category, version: 1}
 
   category = `warns`
   obj.warn_on_close_tabs = {value: `special`, category: category, version: 1}
@@ -82,8 +84,6 @@ App.build_default_settings = () => {
   obj.lock_drag = {value: false, category: category, version: 1}
   obj.mute_click = {value: true, category: category, version: 1}
   obj.double_click_new = {value: false, category: category, version: 1}
-  obj.auto_theme = {value: false, category: category, version: 1}
-  obj.auto_background = {value: false, category: category, version: 1}
 
   category = `show`
   obj.show_scrollbars = {value: true, category: category, version: 1}
@@ -677,6 +677,18 @@ App.start_theme_settings = () => {
   App.settings_make_menu(`background_tiles`, tiles_opts, () => {
     App.apply_theme()
   })
+
+  let auto_opts = [
+    [`Never`, 0],
+    [`5 minutes`, 5],
+    [`30 minutes`, 30],
+    [`1 hour`, 60],
+    [`12 hours`, 60 * 12],
+    [`24 hours`, 60 * 24],
+  ]
+
+  App.settings_make_menu(`auto_theme`, auto_opts)
+  App.settings_make_menu(`auto_background`, auto_opts)
 }
 
 App.settings_menu_cycle = (el, setting, dir, items) => {

@@ -1,21 +1,33 @@
 App.setup_theme = () => {
   App.colorlib = ColorLib()
-  App.apply_theme()
 
-  if (isNaN(App.auto_theme_delay)) {
-    App.log(`Theme interval: invalid delay`, `error`)
+  let theme_mins = parseInt(App.get_setting(`auto_theme`))
+
+  if (isNaN(theme_mins)) {
+    App.log(`Auto theme delay is not a number`, `error`)
   }
-  else {
+  else if (theme_mins > 0) {
     setInterval(() => {
-      if (App.get_setting(`auto_theme`)) {
-        App.random_theme()
-      }
+      App.random_theme()
+    }, theme_mins * 1000 * 60)
 
-      if (App.get_setting(`auto_background`)) {
-        App.random_background(false)
-      }
-    }, App.auto_theme_delay)
+    App.log(`Started auto theme interval`)
   }
+
+  let background_mins = parseInt(App.get_setting(`auto_background`))
+
+  if (isNaN(background_mins)) {
+    App.log(`Auto background delay is not a number`, `error`)
+  }
+  else if (background_mins > 0) {
+    setInterval(() => {
+      App.random_background(false)
+    }, background_mins * 1000 * 60)
+
+    App.log(`Started auto background interval`)
+  }
+
+  App.apply_theme()
 }
 
 App.apply_theme = () => {
