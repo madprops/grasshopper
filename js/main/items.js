@@ -34,7 +34,7 @@ App.select_item = async (item, scroll = `nearest`, deselect = true) => {
 }
 
 App.select_above = (mode) => {
-  let item = App.get_other_item({mode: mode, reverse: true})
+  let item = App.get_other_item({mode: mode}, true)
 
   if (item) {
     App.select_item(item, `nearest`)
@@ -94,11 +94,11 @@ App.select_to_edge = (mode, dir) => {
   App.select_range(items[0])
 }
 
-App.get_other_item = (args) => {
+App.get_other_item = (args, reverse = false) => {
   let def_args = {
-    reverse: false,
-    visible: true,
-    free: false,
+    only_visible: true,
+    no_selected: false,
+    no_discarded: false,
     wrap: true,
   }
 
@@ -109,22 +109,32 @@ App.get_other_item = (args) => {
     waypoint = true
   }
 
+  if (!args.item) {
+    args.item = App.get_selected(args.mode)
+  }
+
   let items = App.get_items(args.mode).slice(0)
 
-  if (args.reverse) {
+  if (reverse) {
     items.reverse()
   }
 
   for (let item of items) {
     if (waypoint) {
-      if (args.visible) {
+      if (args.only_visible) {
         if (!item.visible) {
           continue
         }
       }
 
-      if (args.free) {
-        if (item.selected || item.discarded) {
+      if (args.no_selected) {
+        if (item.selected) {
+          continue
+        }
+      }
+
+      if (args.no_discarded) {
+        if (item.discarded) {
           continue
         }
       }
@@ -132,7 +142,7 @@ App.get_other_item = (args) => {
       return item
     }
 
-    if (item.selected) {
+    if (item === args.item) {
       waypoint = true
     }
   }
@@ -1471,14 +1481,14 @@ App.on_items = (mode = App.window_mode, check_popups = false) => {
   return on_items
 }
 
-App.get_next_item = (mode) => {
-  return App.get_other_item({mode: mode, wrap: false}) ||
-  App.get_other_item({mode: mode, reverse: true, wrap: false})
-}
+App.get_next_item = (mode, args = {}) => {
+  let def_args = {
+    mode: mode,
+    wrap: false,
+  }
 
-App.get_next_free_item = (mode) => {
-  return App.get_other_item({mode: mode, wrap: false, free: true}) ||
-  App.get_other_item({mode: mode, reverse: true, wrap: false, free: true})
+  args = Object.assign(def_args, args)
+  return App.get_other_item(args) || App.get_other_item(args, true)
 }
 
 App.multiple_selected = (mode) => {

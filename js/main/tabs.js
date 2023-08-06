@@ -359,7 +359,14 @@ App.unload_tabs = (item, multiple = true) => {
 
   App.show_confirm(`Unload items? (${ids.length})`, async () => {
     if (active) {
-      let next = App.get_next_free_item(`tabs`, true)
+      let next
+
+      if (ids.length > 1) {
+        next = App.get_next_item(`tabs`, {mode: `tabs`, no_selected: true, no_discarded: true})
+      }
+      else {
+        next = App.get_next_item(`tabs`, {mode: `tabs`, no_discarded: true, item: item})
+      }
 
       if (next) {
         await App.focus_tab(next, `nearest_smooth`)
