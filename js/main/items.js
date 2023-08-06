@@ -1528,7 +1528,7 @@ App.remove_duplicates = (items) => {
   return objs
 }
 
-App.pick = (item, scroll = true) => {
+App.pick_1 = (item, scroll = true) => {
   if (App.get_setting(`pick_mode`) === `single`) {
     App.select_item(item, `nearest_smooth`)
     return
