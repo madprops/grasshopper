@@ -422,6 +422,7 @@ App.setup_settings = () => {
     ])
 
     App.settings_make_menu(`pick_mode`, [
+      [`None`, `none`],
       [`Smart`, `smart`],
       [`Simple`, `simple`],
       [`Single`, `single`],

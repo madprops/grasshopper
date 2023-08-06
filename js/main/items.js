@@ -473,11 +473,13 @@ App.create_item_element = (item) => {
   }
 
   if (App.get_setting(`pick_icon`)) {
-    let pick = DOM.create(`div`, `item_pick item_button item_button_left`)
-    pick.textContent = App.get_setting(`pick_icon`)
-    pick.title = `Pick`
-    pick.draggable = true
-    item.element.append(pick)
+    if (App.get_setting(`pick_mode`) !== `none`) {
+      let pick = DOM.create(`div`, `item_pick item_button item_button_left`)
+      pick.textContent = App.get_setting(`pick_icon`)
+      pick.title = `Pick`
+      pick.draggable = true
+      item.element.append(pick)
+    }
   }
 
   if (item.mode === `tabs`) {
