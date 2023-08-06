@@ -1534,7 +1534,7 @@ App.pick = (item) => {
   App.select_item(item, `nearest_instant`, false)
 }
 
-App.pick_btn = (item, scroll = true) => {
+App.pick_btn = (item) => {
   let pick_mode = App.get_setting(`pick_mode`)
 
   if (pick_mode === `none`) {
@@ -1570,10 +1570,6 @@ App.pick_btn = (item, scroll = true) => {
 
     if (unselect) {
       App.toggle_selected(selected, false)
-    }
-
-    if (scroll) {
-      App.scroll_to_item(item, `nearest_instant`)
     }
   }
 }
