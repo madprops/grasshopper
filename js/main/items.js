@@ -1497,8 +1497,3 @@ App.remove_duplicates = (items) => {
 
   return objs
 }
-
-App.pick_item = (item) => {
-  App.toggle_selected(item)
-  App.scroll_to_item(item, `nearest_instant`)
-}

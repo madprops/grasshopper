@@ -73,7 +73,7 @@ App.mouse_click_action = (mode, e) => {
   }
 
   if (e.ctrlKey) {
-    App.pick_item(item)
+    App.select_item(item, `nearest_instant`, false)
     return
   }
 
