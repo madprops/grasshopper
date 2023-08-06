@@ -1535,7 +1535,13 @@ App.pick = (item) => {
 }
 
 App.pick_btn = (item, scroll = true) => {
-  if (App.get_setting(`pick_mode`) === `single`) {
+  let pick_mode = App.get_setting(`pick_mode`)
+
+  if (pick_mode === `none`) {
+    return
+  }
+
+  if (pick_mode === `single`) {
     App.select_item(item, `nearest_smooth`)
     return
   }
@@ -1547,7 +1553,7 @@ App.pick_btn = (item, scroll = true) => {
     let selected = App.get_selected(item.mode)
     let unselect = false
 
-    if (App.get_setting(`pick_mode`) === `smart`) {
+    if (pick_mode === `smart`) {
       if (selected !== item && !item.selected) {
         if (!App.multiple_selected(item.mode)) {
           let i = App.get_item_element_index(item.mode, selected.element)
