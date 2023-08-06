@@ -815,3 +815,35 @@ select {
 }
 
 /* */
+
+.item_button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: var(--background_color);
+  position: absolute;
+  height: var(--item_height);
+  padding-left: 0.38rem;
+  padding-right: 0.38rem;
+  box-sizing: border-box;
+  border: 1px solid var(--alt_color_2);
+  opacity: 0;
+  z-index: 99;
+  min-width: 2rem;
+}
+
+.item_button_left {
+  left: 0;
+}
+
+.item_button_right {
+  right: 0;
+}
+
+.item_button:hover {
+  opacity: 1;
+}
+
+.item_button:active {
+  background-color: var(--alt_background_2);
+}

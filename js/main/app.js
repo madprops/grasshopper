@@ -47,6 +47,9 @@ App.media_types = [`image`, `video`, `audio`]
 App.mousedown_max = 500
 App.max_warn_limit = 20
 App.max_tag_filters = 50
+App.item_range_on = false
+App.item_range_select = false
+App.max_pick_delay = 2000
 
 App.colors = {
   red: `rgb(255, 77, 77)`,

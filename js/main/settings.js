@@ -66,6 +66,9 @@ App.build_default_settings = () => {
   obj.middle_click_back_button = {value: `browser_back`, category: category, version: 1}
   obj.middle_click_actions_menu = {value: `browser_reload`, category: category, version: 1}
   obj.middle_click_footer = {value: `copy_item_url`, category: category, version: 1}
+  obj.middle_click_pick_button = {value: `filter_domain`, category: category, version: 1}
+  obj.middle_click_close_button = {value: `unload_tabs`, category: category, version: 1}
+  obj.middle_click_open_button = {value: `open_items`, category: category, version: 1}
   obj.middle_click_pinline = {value: `close_normal_tabs`, category: category, version: 1}
 
   category = `more`
@@ -79,6 +82,7 @@ App.build_default_settings = () => {
   obj.case_insensitive_filter = {value: true, category: category, version: 1}
   obj.lock_drag = {value: false, category: category, version: 1}
   obj.mute_click = {value: true, category: category, version: 1}
+  obj.smart_pick = {value: true, category: category, version: 1}
 
   category = `show`
   obj.show_scrollbars = {value: true, category: category, version: 1}
@@ -91,6 +95,9 @@ App.build_default_settings = () => {
   obj.playing_icon = {value: `🔊`, category: category, version: 1}
   obj.muted_icon = {value: `🔇`, category: category, version: 1}
   obj.unloaded_icon = {value: `💤`, category: category, version: 1}
+  obj.close_icon = {value: `x`, category: category, version: 1}
+  obj.open_icon = {value: `🚀`, category: category, version: 1}
+  obj.pick_icon = {value: `🎯`, category: category, version: 1}
 
   App.default_settings = obj
 }
@@ -501,6 +508,9 @@ App.setup_settings = () => {
     App.settings_make_menu(`middle_click_back_button`, opts.slice(0))
     App.settings_make_menu(`middle_click_actions_menu`, opts.slice(0))
     App.settings_make_menu(`middle_click_footer`, opts.slice(0))
+    App.settings_make_menu(`middle_click_pick_button`, opts.slice(0))
+    App.settings_make_menu(`middle_click_close_button`, opts.slice(0))
+    App.settings_make_menu(`middle_click_open_button`, opts.slice(0))
     App.settings_make_menu(`middle_click_pinline`, opts.slice(0))
   }}))
 
