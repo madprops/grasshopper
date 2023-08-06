@@ -50,6 +50,7 @@ App.max_tag_filters = 50
 App.item_range_on = false
 App.item_range_select = false
 App.max_pick_delay = 2000
+App.auto_theme_delay = 1000 * 60 * 30
 
 App.colors = {
   red: `rgb(255, 77, 77)`,

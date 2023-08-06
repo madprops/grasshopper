@@ -1,6 +1,21 @@
 App.setup_theme = () => {
   App.colorlib = ColorLib()
   App.apply_theme()
+
+  if (isNaN(App.auto_theme_delay)) {
+    App.log(`Theme interval: invalid delay`, `error`)
+  }
+  else {
+    setInterval(() => {
+      if (App.get_setting(`auto_theme`)) {
+        App.random_theme()
+      }
+
+      if (App.get_setting(`auto_background`)) {
+        App.random_background(false)
+      }
+    }, App.auto_theme_delay)
+  }
 }
 
 App.apply_theme = () => {
@@ -157,11 +172,13 @@ App.set_theme = (c1, c2) => {
   App.apply_theme()
 
   if (App.on_settings()) {
-    App.show_settings_category(`theme`)
+    if (App.settings_category === `theme`) {
+      App.show_settings_category(`theme`)
+    }
   }
 }
 
-App.random_background = async () => {
+App.random_background = async (feedback = true) => {
   let history_1 = await App.get_history(`.jpg`)
   let history_2 = await App.get_history(`.png`)
   let history_3 = await App.get_history(`.gif`)
@@ -176,9 +193,13 @@ App.random_background = async () => {
       App.apply_theme()
 
       if (App.on_settings()) {
-        App.show_settings_category(`theme`)
+        if (App.settings_category === `theme`) {
+          App.show_settings_category(`theme`)
+          break
+        }
       }
-      else {
+
+      if (feedback) {
         App.show_feedback_2(`Background changed to:\n\n${h.url}`)
       }
 

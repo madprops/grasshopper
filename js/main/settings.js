@@ -82,6 +82,8 @@ App.build_default_settings = () => {
   obj.lock_drag = {value: false, category: category, version: 1}
   obj.mute_click = {value: true, category: category, version: 1}
   obj.double_click_new = {value: false, category: category, version: 1}
+  obj.auto_theme = {value: false, category: category, version: 1}
+  obj.auto_background = {value: false, category: category, version: 1}
 
   category = `show`
   obj.show_scrollbars = {value: true, category: category, version: 1}
