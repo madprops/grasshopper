@@ -491,9 +491,9 @@ App.setup_settings = () => {
     ]
 
     for (let m of App.modes) {
-      App.settings_make_menu(`view_image_${m}`, opts.slice(0))
-      App.settings_make_menu(`view_video_${m}`, opts.slice(0))
-      App.settings_make_menu(`view_audio_${m}`, opts.slice(0))
+      App.settings_make_menu(`view_image_${m}`, opts)
+      App.settings_make_menu(`view_video_${m}`, opts)
+      App.settings_make_menu(`view_audio_${m}`, opts)
     }
   }}))
 
@@ -518,18 +518,18 @@ App.setup_settings = () => {
     let opts = App.settings_commands()
 
     for (let gesture of App.gestures) {
-      App.settings_make_menu(`gesture_${gesture}`, opts.slice(0))
+      App.settings_make_menu(`gesture_${gesture}`, opts)
     }
 
-    App.settings_make_menu(`middle_click_main_menu`, opts.slice(0))
-    App.settings_make_menu(`middle_click_filter_menu`, opts.slice(0))
-    App.settings_make_menu(`middle_click_back_button`, opts.slice(0))
-    App.settings_make_menu(`middle_click_actions_menu`, opts.slice(0))
-    App.settings_make_menu(`middle_click_footer`, opts.slice(0))
-    App.settings_make_menu(`middle_click_pick_button`, opts.slice(0))
-    App.settings_make_menu(`middle_click_close_button`, opts.slice(0))
-    App.settings_make_menu(`middle_click_open_button`, opts.slice(0))
-    App.settings_make_menu(`middle_click_pinline`, opts.slice(0))
+    App.settings_make_menu(`middle_click_main_menu`, opts)
+    App.settings_make_menu(`middle_click_filter_menu`, opts)
+    App.settings_make_menu(`middle_click_back_button`, opts)
+    App.settings_make_menu(`middle_click_actions_menu`, opts)
+    App.settings_make_menu(`middle_click_footer`, opts)
+    App.settings_make_menu(`middle_click_pick_button`, opts)
+    App.settings_make_menu(`middle_click_close_button`, opts)
+    App.settings_make_menu(`middle_click_open_button`, opts)
+    App.settings_make_menu(`middle_click_pinline`, opts)
   }}))
 
   window.addEventListener(`storage`, (e) => {
@@ -687,8 +687,8 @@ App.start_theme_settings = () => {
     [`24 hours`, 60 * 24],
   ]
 
-  App.settings_make_menu(`auto_theme`, auto_opts.slice(0))
-  App.settings_make_menu(`auto_background`, auto_opts.slice(0))
+  App.settings_make_menu(`auto_theme`, auto_opts)
+  App.settings_make_menu(`auto_background`, auto_opts)
 }
 
 App.settings_menu_cycle = (el, setting, dir, items) => {
