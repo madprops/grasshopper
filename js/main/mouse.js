@@ -255,7 +255,7 @@ App.mouse_out_action = (mode, e) => {
 
 App.right_button_action = (item) => {
   if (item.mode === `tabs`) {
-    App.close_tabs(item, false, false)
+    App.close_tabs(item, false)
   }
   else {
     App.open_items(item, true, false)
