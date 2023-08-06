@@ -95,8 +95,11 @@ App.mouse_click_action = (mode, e) => {
     if (e.shiftKey) {
       App.select_range(item)
     }
+    else if (e.ctrlKey) {
+      App.pick_2(item)
+    }
     else {
-      App.pick_item(item, e)
+      App.pick(item)
     }
 
     return
@@ -120,7 +123,7 @@ App.mouse_click_action = (mode, e) => {
   }
 
   if (e.ctrlKey) {
-    App.pick_item(item)
+    App.pick_2(item)
     return
   }
 
@@ -231,11 +234,11 @@ App.mouse_over_action = (mode, e) => {
     let o = App.item_range_item
 
     if (o.selected !== App.item_range_select) {
-      App.pick_item(o, false)
+      App.pick(o, false)
     }
 
     if (item.selected !== App.item_range_select) {
-      App.pick_item(item, false)
+      App.pick(item, false)
     }
   }
 }
@@ -255,7 +258,7 @@ App.mouse_out_action = (mode, e) => {
 
 App.right_button_action = (item) => {
   if (item.mode === `tabs`) {
-    App.close_tabs(item, false)
+    App.close_tabs(item, false, false)
   }
   else {
     App.open_items(item, true, false)

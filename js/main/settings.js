@@ -16,6 +16,7 @@ App.build_default_settings = () => {
   obj.custom_filters = {value: [`search`, `watch`, `wiki`], category: category, version: 1}
   obj.bookmarks_folder = {value: `Grasshopper`, category: category, version: 1}
   obj.item_border = {value: `none`, category: category, version: 2}
+  obj.pick_mode = {value: `smart`, category: category, version: 1}
 
   category = `theme`
   obj.background_color = {value: `rgb(45, 45, 55)`, category: category, version: 1}
@@ -418,6 +419,12 @@ App.setup_settings = () => {
       [`None`, `none`],
       [`Normal`, `normal`],
       [`Bigger`, `bigger`],
+    ])
+
+    App.settings_make_menu(`pick_mode`, [
+      [`Smart`, `smart`],
+      [`Simple`, `simple`],
+      [`Single`, `single`],
     ])
 
     App.settings_make_menu(`width`, App.get_size_options(), () => {
