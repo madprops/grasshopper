@@ -54,7 +54,6 @@ App.setup_tabs = () => {
         App.tabs_check()
       }
     }
-
   })
 
   browser.tabs.onMoved.addListener((id, info) => {
@@ -72,6 +71,28 @@ App.setup_tabs = () => {
     if (App.active_mode === `tabs` && info.oldWindowId === App.window_id) {
       App.remove_closed_tab(id)
       App.tabs_check()
+    }
+  })
+
+  App.create_popup({
+    id: `close_normal`, setup: () => {
+      DOM.el(`#close_normal_unloaded`).checked = true
+
+      DOM.ev(DOM.el(`#close_normal_button`), `click`, () => {
+        let close_unloaded = DOM.el(`#close_normal_unloaded`).checked
+        App.do_close_normal_tabs(close_unloaded)
+      })
+    }
+  })
+
+  App.create_popup({
+    id: `close_duplicates`, setup: () => {
+      DOM.el(`#close_duplicates_pins`).checked = true
+
+      DOM.ev(DOM.el(`#close_duplicates_button`), `click`, () => {
+        let close_pins = DOM.el(`#close_duplicates_pins`).checked
+        App.do_close_duplicate_tabs(close_pins)
+      })
     }
   })
 }
@@ -676,10 +697,14 @@ App.detach_tabs = async (item) => {
 }
 
 App.close_normal_tabs = () => {
+  App.show_popup(`close_normal`)
+}
+
+App.do_close_normal_tabs = (close_unloaded = true) => {
   let ids = []
 
   for (let it of App.get_items(`tabs`)) {
-    if (!App.get_setting(`close_unloaded_tabs`)) {
+    if (!close_unloaded) {
       if (it.discarded) {
         continue
       }
@@ -695,21 +720,9 @@ App.close_normal_tabs = () => {
     return
   }
 
-  let s = ``
-  s += `Close normal tabs\n`
-
-  if (App.get_setting(`close_unloaded_tabs`)) {
-    s += `Including unloaded tabs\n`
-  }
-  else {
-    s += `Excluding unloaded tabs\n`
-  }
-
   let force = App.check_force(`warn_on_close_normal_tabs`, ids)
-  s += `Excluding playing tabs\n`
-  s += `Close these tabs? (${ids.length})`
 
-  App.show_confirm(s, () => {
+  App.show_confirm(`Close these tabs? (${ids.length})`, () => {
     App.do_close_tabs(ids)
   }, undefined, force)
 }
@@ -842,11 +855,15 @@ App.active_tab_is = (item) => {
 }
 
 App.close_duplicate_tabs = () => {
+  App.show_popup(`close_duplicates`)
+}
+
+App.do_close_duplicate_tabs = (close_pins = true) => {
   let items = App.get_items(`tabs`)
   let duplicates = App.find_duplicates(items, `url`)
   let excess = App.get_excess(duplicates, `url`)
 
-  if (App.get_setting(`close_duplicate_pins`)) {
+  if (close_pins) {
     excess = excess.filter(x => !x.playing)
   }
   else {
@@ -860,20 +877,9 @@ App.close_duplicate_tabs = () => {
     return
   }
 
-  let s = `Close duplicates\n`
-
-  if (App.get_setting(`close_duplicate_pins`)) {
-    s += `Including pinned tabs\n`
-  }
-  else {
-    s += `Excluding pinned tabs\n`
-  }
-
   let force = App.check_force(`warn_on_close_duplicate_tabs`, ids)
-  s += `Excluding playing tabs\n`
-  s += `Close these tabs? (${ids.length})`
 
-  App.show_confirm(s, () => {
+  App.show_confirm(`Close these tabs? (${ids.length})`, () => {
     App.do_close_tabs(ids)
   }, undefined, force)
 }

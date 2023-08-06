@@ -7,12 +7,10 @@ App.create_popup = (args) => {
   container.innerHTML = App.get_template(args.id)
   popup.append(container)
 
-  DOM.evs(popup, [`click`, `contextmenu`, `auxclick`], (e) => {
+  DOM.evs(popup, [`click`, `auxclick`], (e) => {
     if (e.target.isConnected && !e.target.closest(`.popup_container`)) {
       App.popups[args.id].hide()
     }
-
-    e.preventDefault()
   })
 
   DOM.el(`#main`).append(popup)

@@ -295,16 +295,6 @@
           <input type="checkbox" class="settings_checkbox" id="settings_auto_restore" data-setting="auto_restore">
         </div>
 
-        <div class="settings_item" title="Close unloaded tabs when closing normal tabs">
-          <div class="settings_label">Close Unloaded Tabs</div>
-          <input type="checkbox" class="settings_checkbox" id="settings_close_unloaded_tabs" data-setting="close_unloaded_tabs">
-        </div>
-
-        <div class="settings_item" title="Close pins when closing duplicate tabs">
-          <div class="settings_label">Close Duplicate Pins</div>
-          <input type="checkbox" class="settings_checkbox" id="settings_close_duplicate_pins" data-setting="close_duplicate_pins">
-        </div>
-
         <div class="settings_item" title="Don't allow more than a single new tab to be open">
           <div class="settings_label">Single New Tab</div>
           <input type="checkbox" class="settings_checkbox" id="settings_single_new_tab" data-setting="single_new_tab">
@@ -621,6 +611,26 @@
         <div id="palette_info" class="button">?</div>
       </div>
       <div id="palette_commands" class="filter_container"></div>
+    </template>
+
+    <template id="template_close_normal">
+      <div class="flex_column_center gap_2">
+        <div class="flex_row_center gap_1">
+          <input id="close_normal_unloaded" class="settings_checkbox" type="checkbox">
+          <div class="no_shrink">Close Unloaded</div>
+        </div>
+        <div id="close_normal_button" class="button">Close</div>
+      </div>
+    </template>
+
+    <template id="template_close_duplicates">
+      <div class="flex_column_center gap_2">
+        <div class="flex_row_center gap_1">
+          <input id="close_duplicates_pins" class="settings_checkbox" type="checkbox">
+          <div class="no_shrink">Close Pins</div>
+        </div>
+        <div id="close_duplicates_button" class="button">Close</div>
+      </div>
     </template>
 
     <template id="template_input">
