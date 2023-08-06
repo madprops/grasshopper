@@ -239,7 +239,6 @@ App.mouse_over_action = (mode, e) => {
   }
 
   let item = App.get_cursor_item(mode, e)
-  item.element.classList.add(`item_hover`)
   App.update_footer_info(item)
 
   if (App.item_range_on) {
@@ -256,11 +255,6 @@ App.mouse_over_action = (mode, e) => {
 }
 
 App.mouse_out_action = (mode, e) => {
-  if (App.cursor_on_item(e, mode)) {
-    let item = App.get_cursor_item(mode, e)
-    item.element.classList.remove(`item_hover`)
-  }
-
   let selected = App.get_selected(mode)
 
   if (selected) {
