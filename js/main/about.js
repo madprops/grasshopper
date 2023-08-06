@@ -32,6 +32,7 @@ App.setup_about = () => {
       `To filter by url start with url:`,
       `To perform gestures, hold the middle mouse button and move in a direction, then release`,
       `Some interface elements can be mapped to commands on middle click`,
+      `The profile editor can help you organize and find tabs`,
     ]
 
     DOM.evs(DOM.el(`#about_close`), [`click`, `auxclick`], () => {

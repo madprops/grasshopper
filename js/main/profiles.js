@@ -8,10 +8,6 @@ App.setup_profile_editor = () => {
       App.profile_editor_save()
     })
 
-    DOM.ev(DOM.el(`#profile_editor_info`), `click`, () => {
-      App.profiles_info()
-    })
-
     DOM.evs(DOM.el(`#profile_editor_close`), [`click`, `auxclick`], () => {
       App.hide_window()
     })
@@ -915,17 +911,6 @@ App.add_tags = (item) => {
 
 App.add_notes = (item) => {
   App.show_profile_editor(item, `notes`, `add`)
-}
-
-App.profiles_info = () => {
-  let s = `This is data related to specific URLs.`
-  s += ` The input of this data is always manual and not automatic.`
-  s += ` The idea is to help you organize tabs to find them easily later.`
-  s += ` You can use the filter menu to find tabs by tag or color.`
-  s += ` You can give a tab a fixed title to replace its real one.`
-  s += ` This is saved locally and is not synced.`
-  s += ` To backup or move this data use the Profiles Export/Import feature in the main menu.`
-  App.show_alert_2(s)
 }
 
 App.show_tag_picker = (e) => {
