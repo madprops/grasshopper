@@ -434,8 +434,8 @@ App.create_filter_menu = (mode) => {
   fmodes.push([`tag`, `Tag`, true])
   fmodes.push([`color`, `Color`, true])
   fmodes.push([`edited`, `Edited`])
-  fmodes.push([`custom`, `Custom`, true])
   fmodes.push(separator())
+  fmodes.push([`custom`, `Custom`, true])
   fmodes.push([`refine`, `Refine`, true])
   App[`${mode}_filter_modes`] = fmodes
 
