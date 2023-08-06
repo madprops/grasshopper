@@ -123,6 +123,9 @@ App.setup_commands = () => {
     {name: `Unload`, cmd: `unload_tabs`, mode: `tabs`, action: (args) => {
       App.unload_tabs(args.item)
     }},
+    {name: `Unload Single`, cmd: `unload_tabs_single`, mode: `tabs`, action: (args) => {
+      App.unload_tabs(args.item, false)
+    }},
     {name: `Duplicate`, cmd: `duplicate_tab`, mode: `tabs`, action: (args) => {
       App.duplicate_tabs(args.item)
     }},
@@ -155,6 +158,9 @@ App.setup_commands = () => {
     }},
     {name: `Close`, cmd: `close_tabs`, mode: `tabs`, action: (args) => {
       App.close_tabs(args.item)
+    }},
+    {name: `Close Single`, cmd: `close_tabs_single`, mode: `tabs`, action: (args) => {
+      App.close_tabs(args.item, true)
     }},
     {name: `Close Normal`, cmd: `close_normal_tabs`, mode: `tabs`, action: (args) => {
       App.close_normal_tabs()
