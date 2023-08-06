@@ -209,25 +209,34 @@ App.settings_setup_text = (container) => {
       App.settings_do_action(action)
     })
 
-    DOM.evs(App.get_settings_label(setting), [`click`, `contextmenu`], (e) => {
-      App.settings_label_menu(e,
-      [
-        {
-          name: `Reset`,  action: () => {
-            App.set_default_setting(setting)
-            let value = App.get_setting(setting)
+    let menu = [
+      {
+        name: `Reset`,  action: () => {
+          App.set_default_setting(setting)
+          let value = App.get_setting(setting)
 
-            if (is_textarea) {
-              el.value = value.join(`\n`)
-            }
-            else {
-              el.value = value
-            }
-
-            App.settings_do_action(action)
+          if (is_textarea) {
+            el.value = value.join(`\n`)
           }
-        },
-      ])
+          else {
+            el.value = value
+          }
+
+          App.settings_do_action(action)
+        }
+      },
+    ]
+
+    if (setting === `background_image`) {
+      menu.push({
+        name: `Random`, action: () => {
+          App.random_background()
+        }
+      })
+    }
+
+    DOM.evs(App.get_settings_label(setting), [`click`, `contextmenu`], (e) => {
+      App.settings_label_menu(e, menu)
     })
   }
 }
