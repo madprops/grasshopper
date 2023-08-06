@@ -422,7 +422,6 @@ svg {
 .settings_checkbox {
   width: 1.07rem;
   height: 1.07rem;
-  flex-shrink: 0;
 }
 
 .text_smaller {
