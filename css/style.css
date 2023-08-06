@@ -422,6 +422,7 @@ svg {
 .settings_checkbox {
   width: 1.07rem;
   height: 1.07rem;
+  flex-shrink: 0;
 }
 
 .text_smaller {
@@ -860,8 +861,4 @@ select {
 
 .item_button:active {
   background-color: var(--alt_background_2);
-}
-
-.no_shrink {
-  flex-shrink: 0;
 }
