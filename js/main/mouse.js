@@ -96,10 +96,10 @@ App.mouse_click_action = (mode, e) => {
       App.select_range(item)
     }
     else if (e.ctrlKey) {
-      App.pick_2(item)
+      App.pick(item)
     }
     else {
-      App.pick_1(item)
+      App.pick_btn(item)
     }
 
     return
@@ -123,7 +123,7 @@ App.mouse_click_action = (mode, e) => {
   }
 
   if (e.ctrlKey) {
-    App.pick_2(item)
+    App.pick(item)
     return
   }
 
@@ -234,11 +234,11 @@ App.mouse_over_action = (mode, e) => {
     let o = App.item_range_item
 
     if (o.selected !== App.item_range_select) {
-      App.pick_1(o, false)
+      App.pick_btn(o, false)
     }
 
     if (item.selected !== App.item_range_select) {
-      App.pick_1(item, false)
+      App.pick_btn(item, false)
     }
   }
 }

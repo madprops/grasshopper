@@ -49,12 +49,8 @@ App.create_footer = (mode) => {
   footer.append(footer_info)
 
   DOM.ev(footer, `click`, (e) => {
-    if (e.ctrlKey) {
+    if (e.shiftKey || e.ctrlKey) {
       return
-    }
-
-    if (e.shiftKey) {
-      App.select_to_edge(mode, `down`)
     }
 
     App.goto_bottom(mode)
