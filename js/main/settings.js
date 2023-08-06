@@ -687,8 +687,8 @@ App.start_theme_settings = () => {
     [`24 hours`, 60 * 24],
   ]
 
-  App.settings_make_menu(`auto_theme`, auto_opts)
-  App.settings_make_menu(`auto_background`, auto_opts)
+  App.settings_make_menu(`auto_theme`, auto_opts.slice(0))
+  App.settings_make_menu(`auto_background`, auto_opts.slice(0))
 }
 
 App.settings_menu_cycle = (el, setting, dir, items) => {
