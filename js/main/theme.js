@@ -163,3 +163,25 @@ App.set_theme = (c1, c2) => {
     App.show_settings_category(`theme`)
   }
 }
+
+App.random_background = async () => {
+  let history_1 = await App.get_history(`.jpg`)
+  let history_2 = await App.get_history(`.png`)
+  let history = [...history_1, ...history_2]
+  App.shuffle_array(history)
+
+  for (let h of history) {
+    if (App.is_image(h.url)) {
+      App.set_setting(`background_image`, h.url)
+      App.set_setting(`background_effect`, `none`)
+      App.set_setting(`background_tiles`, `none`)
+      App.apply_theme()
+
+      if (App.on_settings()) {
+        App.show_settings_category(`theme`)
+      }
+
+      break
+    }
+  }
+}

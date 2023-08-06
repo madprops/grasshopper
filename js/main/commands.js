@@ -35,7 +35,7 @@ App.setup_commands = () => {
   let show_modes = []
 
   for (let mode of App.modes) {
-    let icon = App.mode_emojis[mode]
+    let icon = App.mode_icons[mode]
     let name = `${icon} Show ${App.get_mode_name(mode)}`
 
     show_modes.push({name: name, cmd: `show_${mode}`, action: (args) => {
@@ -99,7 +99,7 @@ App.setup_commands = () => {
     {name: `Copy Title`, cmd: `copy_item_title`, mode: `items`, action: (args) => {
       App.copy_title(args.item)
     }},
-    {name: `Background`, cmd: `set_background`, media: `image`, action: (args) => {
+    {name: App.get_icontext(`background`), cmd: `set_background`, media: `image`, action: (args) => {
       App.change_background(args.item.url)
     }},
 
@@ -221,6 +221,9 @@ App.setup_commands = () => {
     }},
     {name: App.get_icontext(`random_theme`), cmd: `random_theme`, action: (args) => {
       App.random_theme()
+    }},
+    {name: App.get_icontext(`random_background`), cmd: `random_background`, action: (args) => {
+      App.random_background()
     }},
     {name: App.get_icontext(`restart`), cmd: `restart_extension`, action: (args) => {
       App.restart_extension()

@@ -275,40 +275,15 @@ App.is_array = (a) => {
 }
 
 App.get_icontext = (s) => {
-  let icon, name
+  let it = App.icontext[s]
+  return `${it.icon} ${it.name}`
+}
 
-  if (s === `background`) {
-    icon = App.settings_emojis.theme
-    name = `Background`
+App.shuffle_array = (array) => {
+  for (let i=array.length-1; i>0; i--) {
+    let j = Math.floor(Math.random() * (i + 1))
+    let temp = array[i]
+    array[i] = array[j]
+    array[j] = temp
   }
-  else if (s === `bookmark`) {
-    icon = App.mode_emojis.bookmarks
-    name = `Bookmark`
-  }
-  else if (s === `bookmark_active`) {
-    icon = App.mode_emojis.bookmarks
-    name = `Bookmark Active`
-  }
-  else if (s === `dark_theme`) {
-    icon = App.settings_emojis.theme
-    name = `Dark Theme`
-  }
-  else if (s === `light_theme`) {
-    icon = App.settings_emojis.theme
-    name = `Light Theme`
-  }
-  else if (s === `random_theme`) {
-    icon = App.settings_emojis.theme
-    name = `Random Theme`
-  }
-  else if (s === `restart`) {
-    icon = App.bot_emoji
-    name = `Restart`
-  }
-  else if (s === `copy_url`) {
-    icon = App.clipboard_icon
-    name = `Copy URL`
-  }
-
-  return `${icon} ${name}`
 }

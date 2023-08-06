@@ -66,7 +66,7 @@ App.color_emojis = {
   yellow: `🟡`,
 }
 
-App.settings_emojis = {
+App.settings_icons = {
   general: `⚙️`,
   theme: `🎨`,
   icons: `🖼️`,
@@ -77,7 +77,7 @@ App.settings_emojis = {
   more: `💠`,
 }
 
-App.mode_emojis = {
+App.mode_icons = {
   tabs: `📚`,
   history: `⏳`,
   bookmarks: `⭐`,
@@ -85,7 +85,7 @@ App.mode_emojis = {
 }
 
 App.clipboard_icon = `📋`
-App.bot_emoji = `🤖`
+App.bot_icon = `🤖`
 
 App.dark_theme_colors = {
   background: `rgb(33, 33, 42)`,
@@ -95,4 +95,43 @@ App.dark_theme_colors = {
 App.light_theme_colors = {
   background: `rgb(200, 200, 200)`,
   text: `rgb(50, 50, 55)`,
+}
+
+App.icontext = {
+  bookmark: {
+    icon: App.mode_icons.bookmarks,
+    name: `Bookmark`,
+  },
+  bookmark_active: {
+    icon: App.mode_icons.bookmarks,
+    name: `Bookmark This`,
+  },
+  dark_theme: {
+    icon: App.settings_icons.theme,
+    name: `Dark Theme`,
+  },
+  light_theme: {
+    icon: App.settings_icons.theme,
+    name: `Light Theme`,
+  },
+  random_theme: {
+    icon: App.settings_icons.theme,
+    name: `Rnd Theme`,
+  },
+  random_background: {
+    icon: App.settings_icons.theme,
+    name: `Rnd Background`,
+  },
+  background: {
+    icon: App.settings_icons.theme,
+    name: `Background`,
+  },
+  restart: {
+    icon: App.bot_icon,
+    name: `Restart`,
+  },
+  copy_url: {
+    icon: App.clipboard_icon,
+    name: `Copy URL`,
+  }
 }

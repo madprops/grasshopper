@@ -154,6 +154,9 @@ App.fill_palette_container = () => {
     else if (name_lower.includes(`light`)) {
       el.dataset.alias = name_lower.replace(`light`, `white`)
     }
+    else if (name_lower.includes(`rnd`)) {
+      el.dataset.alias = name_lower.replace(`rnd`, `random`)
+    }
 
     container.append(el)
   }

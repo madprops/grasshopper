@@ -1029,7 +1029,7 @@ App.settings_menu_items = (action = `normal`) => {
   let items = []
 
   for (let c of App.settings_categories) {
-    let icon = App.settings_emojis[c]
+    let icon = App.settings_icons[c]
     let name = `${icon} ${App.capitalize(c)}`
 
     items.push({
