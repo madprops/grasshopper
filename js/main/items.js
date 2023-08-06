@@ -1545,7 +1545,12 @@ App.remove_duplicates = (items) => {
 }
 
 App.pick = (item) => {
-  App.select_item(item, `nearest_instant`, false)
+  if (item.selected) {
+    App.toggle_selected(item, false)
+  }
+  else {
+    App.select_item(item, `nearest_instant`, false)
+  }
 }
 
 App.pick_btn = (item) => {
