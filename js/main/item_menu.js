@@ -57,8 +57,8 @@ App.show_item_menu = async (item, x, y) => {
       })
     }
 
-    await App.common_menu_items(items, item, multiple)
-    await App.more_menu_items(items, item, multiple, some_loaded)
+    App.common_menu_items(items, item, multiple)
+    App.more_menu_items(items, item, multiple, some_loaded)
 
     if (items.length >= min_close_sep) {
       items.push({
@@ -81,8 +81,8 @@ App.show_item_menu = async (item, x, y) => {
       }
     })
 
-    await App.common_menu_items(items, item, multiple)
-    await App.more_menu_items(items, item, multiple)
+    App.common_menu_items(items, item, multiple)
+    App.more_menu_items(items, item, multiple)
   }
 
   NeedContext.show(x, y, items)
@@ -118,7 +118,7 @@ App.get_window_menu_items = async (item) => {
   return items
 }
 
-App.common_menu_items = async (o_items, item, multiple) => {
+App.common_menu_items = (o_items, item, multiple) => {
   let items = []
 
   if (multiple) {
@@ -182,7 +182,7 @@ App.common_menu_items = async (o_items, item, multiple) => {
   }
 }
 
-App.more_menu_items = async (o_items, item, multiple, some_loaded) => {
+App.more_menu_items = (o_items, item, multiple, some_loaded) => {
   let items = []
 
   if (item.mode === `tabs`) {

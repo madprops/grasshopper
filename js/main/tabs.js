@@ -278,7 +278,7 @@ App.duplicate_tab = async (item) => {
   }
 }
 
-App.duplicate_tabs = async (item) => {
+App.duplicate_tabs = (item) => {
   let items = App.get_active_items(`tabs`, item)
   let force = App.check_force(`warn_on_duplicate_tabs`, items.length)
 
@@ -447,7 +447,7 @@ App.close_tabs = (item, multiple = true) => {
   }, undefined, force)
 }
 
-App.do_close_tabs = async (ids) => {
+App.do_close_tabs = (ids) => {
   for (let id of ids) {
     App.close_tab(id)
   }
@@ -890,7 +890,7 @@ App.focus_current_tab = async (scroll = `nearest_smooth`) => {
   }
 }
 
-App.move_tabs_vertically = async (direction, item) => {
+App.move_tabs_vertically = (direction, item) => {
   if (!item) {
     item = App.get_selected(`tabs`)
   }

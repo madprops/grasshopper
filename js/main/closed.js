@@ -51,7 +51,7 @@ App.undo_close_tab = async () => {
   }
 }
 
-App.forget_all_closed_tabs = async () => {
+App.forget_all_closed_tabs = () => {
   let items = App.get_items(`closed`)
 
   App.show_confirm(`Forget all closed tabs? (${items.length})`, () => {
@@ -61,7 +61,7 @@ App.forget_all_closed_tabs = async () => {
   })
 }
 
-App.forget_closed_tabs = async (item) => {
+App.forget_closed_tabs = (item) => {
   let active = App.get_active_items(`closed`, item)
 
   App.show_confirm(`Forget closed tabs? (${active.length})`, () => {

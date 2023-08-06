@@ -148,6 +148,12 @@ App.fill_palette_container = () => {
     else if (name_lower.includes(`bmark`)) {
       el.dataset.alias = name_lower.replace(`bmark`, `bookmark`)
     }
+    else if (name_lower.includes(`dark`)) {
+      el.dataset.alias = name_lower.replace(`dark`, `black`)
+    }
+    else if (name_lower.includes(`light`)) {
+      el.dataset.alias = name_lower.replace(`light`, `white`)
+    }
 
     container.append(el)
   }
