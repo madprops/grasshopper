@@ -17,7 +17,7 @@ App.start_auto_theme_interval = () => {
       App.random_theme()
     }, theme_mins * 1000 * 60)
 
-    App.log(`Started auto theme interval`)
+    App.log(`Started auto theme interval: ${theme_mins} minutes`)
   }
 }
 
@@ -33,7 +33,7 @@ App.start_auto_background_interval = () => {
       App.random_background(false)
     }, background_mins * 1000 * 60)
 
-    App.log(`Started auto background interval`)
+    App.log(`Started auto background interval: ${background_mins} minutes`)
   }
 }
 
