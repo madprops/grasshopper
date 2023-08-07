@@ -111,12 +111,14 @@ App.do_filter = async (mode, force = false, deep = false) => {
     }
   }
 
-  for (let alias of App.get_setting(`aliases`)) {
-    let split = alias.split(`=`)
-    let a = split[0].trim()
-    let b = split[1].trim()
-    alias_regex(a, b)
-    alias_regex(b, a)
+  if (value) {
+    for (let alias of App.get_setting(`aliases`)) {
+      let split = alias.split(`=`)
+      let a = split[0].trim()
+      let b = split[1].trim()
+      alias_regex(a, b)
+      alias_regex(b, a)
+    }
   }
 
   function matched (item) {
