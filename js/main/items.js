@@ -169,6 +169,10 @@ App.set_selected = (item) => {
   item.selected_date = Date.now()
   App[`last_selected_${item.mode}`] = item
   App.update_footer_info(item)
+
+  if (App.get_setting(`auto_theme`) === `domain`) {
+    App.seeded_theme(item.hostname)
+  }
 }
 
 App.clear_selected = (mode) => {
@@ -295,6 +299,7 @@ App.process_info = (mode, info, exclude = [], o_item) => {
   }
 
   let path = App.remove_protocol(url)
+  let hostname = App.get_hostname(url)
   let title = info.title || ``
   let image = App.is_image(url)
   let video = App.is_video(url)
@@ -323,6 +328,7 @@ App.process_info = (mode, info, exclude = [], o_item) => {
     custom_title: custom_title,
     url: url,
     path: path,
+    hostname: hostname,
     favicon: info.favIconUrl,
     mode: mode,
     window_id: info.windowId,
@@ -535,7 +541,7 @@ App.get_img_icon = (item) => {
   }
 
   DOM.ev(icon, `error`, () => {
-    let icon_2 = App.get_jdenticon(item.url)
+    let icon_2 = App.get_jdenticon(item.hostname)
     icon.replaceWith(icon_2)
   })
 
@@ -543,12 +549,11 @@ App.get_img_icon = (item) => {
   return icon
 }
 
-App.get_jdenticon = (url) => {
-  let hostname = App.get_hostname(url) || `hostname`
+App.get_jdenticon = (hostname) => {
   let icon = DOM.create(`canvas`, `item_icon`)
   icon.width = App.icon_size
   icon.height = App.icon_size
-  jdenticon.update(icon, hostname)
+  jdenticon.update(icon, hostname || `hostname`)
   return icon
 }
 

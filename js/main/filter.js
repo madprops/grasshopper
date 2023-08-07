@@ -436,7 +436,7 @@ App.filter_domain = (item) => {
     return
   }
 
-  let hostname = App.get_hostname(item.url)
+  let hostname = item.hostname
 
   if (!hostname && item.url.includes(`:`)) {
     hostname = item.url.split(`:`)[0] + `:`

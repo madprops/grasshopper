@@ -9,7 +9,7 @@ App.start_theme_interval = (setting) => {
   clearInterval(App[`${setting}_interval`])
   let s = App.get_setting(setting)
 
-  if (s === `none`) {
+  if (s === `none` || s === `domain`) {
     return
   }
 
@@ -240,4 +240,16 @@ App.refresh_theme_settings = () => {
   App.background_color.setColor(App.get_setting(`background_color`))
   App.text_color.setColor(App.get_setting(`text_color`))
   DOM.el(`#settings_background_image`).value = App.get_setting(`background_image`)
+}
+
+App.seeded_theme = (hostname) => {
+  let rand = App.seeded_random(hostname)
+
+  function get() {
+    return App.get_random_int(0, 80, undefined, rand)
+  }
+
+  let c1 = `rgb(${get()}, ${get()}, ${get()})`
+  let c2 = App.colorlib.get_lighter_or_darker(c1, 0.8)
+  App.set_theme(c1, c2)
 }
