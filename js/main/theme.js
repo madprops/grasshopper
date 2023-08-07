@@ -246,7 +246,7 @@ App.seeded_theme = (hostname) => {
   let rand = App.seeded_random(hostname)
 
   function get() {
-    return App.get_random_int(0, 80, undefined, rand)
+    return App.get_random_int(0, 88, undefined, rand)
   }
 
   let c1 = `rgb(${get()}, ${get()}, ${get()})`
