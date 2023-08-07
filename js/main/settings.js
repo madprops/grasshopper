@@ -26,8 +26,8 @@ App.build_default_settings = () => {
   obj.background_image = {value: `/img/background.jpg`, category: category, version: 1}
   obj.background_effect = {value: `none`, category: category, version: 1}
   obj.background_tiles = {value: `none`, category: category, version: 1}
-  obj.auto_theme = {value: 0, category: category, version: 1}
-  obj.auto_background = {value: 0, category: category, version: 1}
+  obj.auto_theme = {value: `never`, category: category, version: 2}
+  obj.auto_background = {value: `never`, category: category, version: 2}
 
   category = `warns`
   obj.warn_on_close_tabs = {value: `special`, category: category, version: 1}
@@ -680,24 +680,24 @@ App.start_theme_settings = () => {
   })
 
   let auto_opts = [
-    [`Never`, 0],
-    [`5 seconds`, 1 / 12],
-    [`30 seconds`, 1 / 2],
-    [`1 minute`, 1],
-    [`5 minutes`, 5],
-    [`30 minutes`, 30],
-    [`1 hour`, 60],
-    [`6 hours`, 60 * 6],
-    [`12 hours`, 60 * 12],
-    [`24 hours`, 60 * 24],
+    [`Never`, `never`],
+    [`5 seconds`, `5_seconds`],
+    [`30 seconds`, `30_seconds`],
+    [`1 minute`, `1_minutes`],
+    [`5 minutes`, `5_minutes`],
+    [`30 minutes`, `30_minutes`],
+    [`1 hour`, `1_hours`],
+    [`6 hours`, `6_hours`],
+    [`12 hours`, `12_hours`],
+    [`24 hours`, `24_hours`],
   ]
 
   App.settings_make_menu(`auto_theme`, auto_opts, () => {
-    App.start_auto_theme_interval()
+    App.start_theme_interval(`auto_theme`)
   })
 
   App.settings_make_menu(`auto_background`, auto_opts, () => {
-    App.start_auto_background_interval()
+    App.start_theme_interval(`auto_background`)
   })
 }
 

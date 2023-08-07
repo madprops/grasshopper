@@ -1,39 +1,45 @@
 App.setup_theme = () => {
   App.colorlib = ColorLib()
-  App.start_auto_theme_interval()
-  App.start_auto_background_interval()
+  App.start_theme_interval(`auto_theme`)
+  App.start_theme_interval(`auto_background`)
   App.apply_theme()
 }
 
-App.start_auto_theme_interval = () => {
-  clearInterval(App.auto_theme_interval)
-  let theme_mins = parseFloat(App.get_setting(`auto_theme`))
+App.start_theme_interval = (setting) => {
+  clearInterval(App[`${setting}_interval`])
+  let s = App.get_setting(setting)
 
-  if (isNaN(theme_mins)) {
-    App.log(`Auto theme delay is not a number`, `error`)
+  if (s === `none`) {
+    return
   }
-  else if (theme_mins > 0) {
-    App.auto_theme_interval = setInterval(() => {
-      App.random_theme()
-    }, theme_mins * 1000 * 60)
 
-    App.log(`Started auto theme interval: ${theme_mins} min`)
+  let delay
+  let split = s.split(`_`)
+
+  if (split[1] === `seconds`) {
+    delay = split[0] * 1000
   }
-}
-
-App.start_auto_background_interval = () => {
-  clearInterval(App.auto_background_interval)
-  let background_mins = parseFloat(App.get_setting(`auto_background`))
-
-  if (isNaN(background_mins)) {
-    App.log(`Auto background delay is not a number`, `error`)
+  else if (split[1] === `minutes`) {
+    delay = split[0] * 1000 * 60
   }
-  else if (background_mins > 0) {
-    App.auto_background_interval = setInterval(() => {
-      App.random_background(false)
-    }, background_mins * 1000 * 60)
+  else if (split[1] === `hours`) {
+    delay = split[0] * 1000 * 60 * 60
+  }
+  else {
+    return
+  }
 
-    App.log(`Started auto background interval: ${background_mins} min`)
+  if (delay > 0) {
+    App[`${setting}_interval`] = setInterval(() => {
+      if (setting === `auto_theme`) {
+        App.random_theme()
+      }
+      else if (setting === `auto_background`) {
+        App.random_background(false)
+      }
+    }, delay)
+
+    App.log(`Started ${setting} interval: ${s}`)
   }
 }
 
