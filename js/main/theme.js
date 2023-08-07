@@ -7,7 +7,7 @@ App.setup_theme = () => {
 
 App.start_auto_theme_interval = () => {
   clearInterval(App.auto_theme_interval)
-  let theme_mins = parseInt(App.get_setting(`auto_theme`))
+  let theme_mins = parseFloat(App.get_setting(`auto_theme`))
 
   if (isNaN(theme_mins)) {
     App.log(`Auto theme delay is not a number`, `error`)
@@ -23,7 +23,7 @@ App.start_auto_theme_interval = () => {
 
 App.start_auto_background_interval = () => {
   clearInterval(App.auto_background_interval)
-  let background_mins = parseInt(App.get_setting(`auto_background`))
+  let background_mins = parseFloat(App.get_setting(`auto_background`))
 
   if (isNaN(background_mins)) {
     App.log(`Auto background delay is not a number`, `error`)
