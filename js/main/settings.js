@@ -685,6 +685,7 @@ App.start_theme_settings = () => {
     [`5 minutes`, 5],
     [`30 minutes`, 30],
     [`1 hour`, 60],
+    [`6 hours`, 60 * 6],
     [`12 hours`, 60 * 12],
     [`24 hours`, 60 * 24],
   ]
