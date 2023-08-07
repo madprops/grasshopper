@@ -436,8 +436,8 @@ App.setup_settings = () => {
     App.settings_make_menu(`pick_mode`, [
       [`None`, `none`],
       [`Smart`, `smart`],
-      [`Simple`, `simple`],
       [`Single`, `single`],
+      [`Simple`, `simple`],
     ])
 
     App.settings_make_menu(`width`, App.get_size_options(), () => {
