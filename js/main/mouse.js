@@ -245,11 +245,11 @@ App.mouse_over_action = (mode, e) => {
     let o = App.item_range_item
 
     if (o.selected !== App.item_range_select) {
-      App.pick_btn(o)
+      App.pick_btn(o, true)
     }
 
     if (item.selected !== App.item_range_select) {
-      App.pick_btn(item)
+      App.pick_btn(item, true)
     }
   }
 }

@@ -1553,14 +1553,14 @@ App.pick = (item) => {
   }
 }
 
-App.pick_btn = (item) => {
+App.pick_btn = (item, range = false) => {
   let pick_mode = App.get_setting(`pick_mode`)
 
   if (pick_mode === `none`) {
     return
   }
 
-  if (pick_mode === `single`) {
+  if (pick_mode === `single` && !range) {
     App.select_item(item, `nearest_smooth`)
     return
   }
@@ -1575,10 +1575,7 @@ App.pick_btn = (item) => {
     if (pick_mode === `smart`) {
       if (selected !== item && !item.selected) {
         if (!App.multiple_selected(item.mode)) {
-          let i = App.get_item_element_index(item.mode, selected.element)
-          let ii = App.get_item_element_index(item.mode, item.element)
-
-          if (Math.abs(i - ii) > 1) {
+          if (App.get_index_diff(selected, item) > 1) {
             unselect = (Date.now() - selected.selected_date) > App.max_pick_delay
           }
         }
@@ -1591,4 +1588,10 @@ App.pick_btn = (item) => {
       App.toggle_selected(selected, false)
     }
   }
+}
+
+App.get_index_diff = (item_1, item_2) => {
+  let i = App.get_item_element_index(item_1.mode, item_1.element)
+  let ii = App.get_item_element_index(item_2.mode, item_2.element)
+  return Math.abs(i - ii)
 }
