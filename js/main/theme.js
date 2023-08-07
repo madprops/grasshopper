@@ -198,7 +198,7 @@ App.set_theme = (c1, c2) => {
 
   if (App.on_settings()) {
     if (App.settings_category === `theme`) {
-      App.show_settings_category(`theme`)
+      App.refresh_theme_settings()
     }
   }
 }
@@ -213,13 +213,11 @@ App.random_background = async (feedback = true) => {
   for (let h of history) {
     if (App.is_image(h.url)) {
       App.set_setting(`background_image`, h.url)
-      App.set_setting(`background_effect`, `none`)
-      App.set_setting(`background_tiles`, `none`)
       App.apply_theme()
 
       if (App.on_settings()) {
         if (App.settings_category === `theme`) {
-          App.show_settings_category(`theme`)
+          App.refresh_theme_settings()
           break
         }
       }
@@ -235,7 +233,11 @@ App.random_background = async (feedback = true) => {
 
 App.change_background = (url) => {
   App.set_setting(`background_image`, url)
-  App.set_setting(`background_effect`, `none`)
-  App.set_setting(`background_tiles`, `none`)
   App.apply_theme()
+}
+
+App.refresh_theme_settings = () => {
+  App.background_color.setColor(App.get_setting(`background_color`))
+  App.text_color.setColor(App.get_setting(`text_color`))
+  DOM.el(`#settings_background_image`).value = App.get_setting(`background_image`)
 }
