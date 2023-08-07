@@ -1084,13 +1084,6 @@ App.settings_menu_items = (action = `normal`) => {
   return items
 }
 
-App.change_background = (url) => {
-  App.set_setting(`background_image`, url)
-  App.set_setting(`background_effect`, `none`)
-  App.set_setting(`background_tiles`, `none`)
-  App.apply_theme()
-}
-
 App.settings_info = () => {
   let s = `There are multiple setting sections.`
   s += ` These are saved locally and not synced.`

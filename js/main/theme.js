@@ -226,3 +226,10 @@ App.random_background = async (feedback = true) => {
     }
   }
 }
+
+App.change_background = (url) => {
+  App.set_setting(`background_image`, url)
+  App.set_setting(`background_effect`, `none`)
+  App.set_setting(`background_tiles`, `none`)
+  App.apply_theme()
+}
