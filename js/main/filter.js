@@ -12,6 +12,17 @@ App.cancel_filter = () => {
   App.filter_debouncer.cancel()
 }
 
+App.make_filter_regex = (value) => {
+  if (App.get_setting(`case_insensitive`)) {
+    regex = new RegExp(value, `i`)
+  }
+  else {
+    regex = new RegExp(value)
+  }
+
+  return regex
+}
+
 App.do_filter = async (mode, force = false, deep = false) => {
   App.cancel_filter()
   App.log(`Filter: ${mode}`)
@@ -37,21 +48,6 @@ App.do_filter = async (mode, force = false, deep = false) => {
   else {
     value = value
     by_what = `all`
-  }
-
-  let regex
-
-  try {
-    if (App.get_setting(`case_insensitive`)) {
-      regex = new RegExp(value, `i`)
-    }
-    else {
-      regex = new RegExp(value)
-    }
-  }
-  catch (err) {
-    App.log(err, `error`)
-    return
   }
 
   // This check is to avoid re-fetching items
@@ -94,10 +90,32 @@ App.do_filter = async (mode, force = false, deep = false) => {
     duplicates = App.find_duplicates(items, `url`)
   }
 
+  let regexes = [App.make_filter_regex(value)]
+  let value_lower = value.toLowerCase()
+
+  for (let alias of App.get_setting(`aliases`)) {
+    let split = alias.split(`=`)
+    let a = split[0].trim()
+    let b = split[1].trim()
+    let a2 = a.toLowerCase()
+    let b2 = b.toLowerCase()
+    let rep = value_lower.replace(a2, b2)
+
+    if (value_lower !== rep) {
+      regexes.push(App.make_filter_regex(rep))
+    }
+
+    rep = value_lower.replace(b2, a2)
+
+    if (value_lower !== value_lower.replace(b2, a2)) {
+      regexes.push(App.make_filter_regex(rep))
+    }
+  }
+
   function matched (item) {
     let args = {
       item: item,
-      regex: regex,
+      regexes: regexes,
       by_what: by_what,
       filter_mode: filter_mode,
       duplicates: duplicates,
@@ -133,14 +151,20 @@ App.filter_check = (args) => {
   let match = false
   let title = App.get_title(args.item)
 
-  if (args.by_what === `all`) {
-    match = args.regex.test(title) || args.regex.test(args.item.path)
-  }
-  else if (args.by_what === `title`) {
-    match = args.regex.test(title)
-  }
-  else if (args.by_what === `url`) {
-    match = args.regex.test(args.item.path)
+  for (let regex of args.regexes) {
+    if (args.by_what === `all`) {
+      match = regex.test(title) || regex.test(args.item.path)
+    }
+    else if (args.by_what === `title`) {
+      match = regex.test(title)
+    }
+    else if (args.by_what === `url`) {
+      match = regex.test(args.item.path)
+    }
+
+    if (match) {
+      break
+    }
   }
 
   if (match) {
