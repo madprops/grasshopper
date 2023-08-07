@@ -185,7 +185,7 @@ App.light_theme = () => {
 
 App.random_theme = () => {
   let c1 = App.colorlib.get_dark_color()
-  let c2 = App.colorlib.get_lighter_or_darker(c1, 0.8)
+  let c2 = App.colorlib.get_lighter_or_darker(c1, App.color_contrast)
   c1 = App.colorlib.hex_to_rgb(c1)
   c2 = App.colorlib.hex_to_rgb(c2)
   App.set_theme(c1, c2)
@@ -246,10 +246,10 @@ App.seeded_theme = (hostname) => {
   let rand = App.seeded_random(hostname)
 
   function get() {
-    return App.get_random_int(0, 88, undefined, rand)
+    return App.get_random_int(0, App.seeded_theme_max, undefined, rand)
   }
 
   let c1 = `rgb(${get()}, ${get()}, ${get()})`
-  let c2 = App.colorlib.get_lighter_or_darker(c1, 0.8)
+  let c2 = App.colorlib.get_lighter_or_darker(c1, App.color_contrast)
   App.set_theme(c1, c2)
 }
