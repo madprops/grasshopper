@@ -5,6 +5,7 @@
   --scroller_shadow: inset 0 0 0.1rem currentColor;
   --scroller_padding: 0.29rem;
   --border_radius: 3px;
+  --color_transition: background-color 1200ms linear, color 1200ms linear;
 }
 
 body, html {
@@ -57,6 +58,7 @@ body, html {
   width: 100vw;
   height: 100vh;
   box-sizing: border-box;
+  transition: var(--color_transition);
 }
 
 .window_content {
@@ -158,6 +160,7 @@ body, html {
   min-width: 1.6rem;
   border-radius: var(--border_radius);
   max-width: 100%;
+  transition: var(--color_transition);
 }
 
 .button:hover {
@@ -734,6 +737,7 @@ select {
   cursor: pointer;
   border: 1px solid var(--alt_color_1);
   padding: var(--scroller_padding);
+  transition: var(--color_transition);
 }
 
 .scroller:hover {
@@ -758,6 +762,7 @@ select {
   border: 0px solid var(--alt_color_1);
   border-top-width: 1px;
   gap: 0.5rem;
+  transition: var(--color_transition);
 }
 
 .footer:hover {
