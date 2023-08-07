@@ -113,11 +113,18 @@ App.do_filter = async (mode, force = false, deep = false) => {
 
   if (value) {
     for (let alias of App.get_setting(`aliases`)) {
-      let split = alias.split(`=`)
-      let a = split[0].trim()
-      let b = split[1].trim()
-      alias_regex(a, b)
-      alias_regex(b, a)
+      if (alias.includes(`=`)) {
+        try {
+          let split = alias.split(`=`)
+          let a = split[0].trim()
+          let b = split[1].trim()
+          alias_regex(a, b)
+          alias_regex(b, a)
+        }
+        catch (err) {
+          continue
+        }
+      }
     }
   }
 
