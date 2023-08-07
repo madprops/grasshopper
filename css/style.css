@@ -17,7 +17,6 @@ body, html {
   padding: 0;
   overflow: hidden;
   background-color: var(--background_color);
-  transition: background-color 2s, color 2s;
 }
 
 .no_scrollbars *:not(textarea):not(input) {
@@ -35,7 +34,6 @@ body, html {
   background-repeat: no-repeat;
 	background-position: center;
   background-size: cover;
-  transition: background-color 2s, color 2s;
 }
 
 #background.tiles {
