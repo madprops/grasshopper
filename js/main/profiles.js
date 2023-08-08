@@ -309,6 +309,10 @@ App.copy_profile = (profile) => {
   obj.notes = profile.notes
   obj.title = profile.title
   obj.color = profile.color
+  obj.theme_enabled = profile.theme_enabled
+  obj.background_color = profile.background_color
+  obj.text_color = profile.text_color
+  obj.icon = profile.icon
   return obj
 }
 
