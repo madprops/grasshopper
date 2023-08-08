@@ -208,9 +208,14 @@ App.set_theme = (c1, c2) => {
 }
 
 App.set_default_theme = () => {
-  let c1 = App.get_setting(`background_color`)
-  let c2 = App.get_setting(`text_color`)
-  App.apply_theme(c1, c2)
+  let background = App.get_setting(`background_color`)
+  let text = App.get_setting(`text_color`)
+
+  if (background === App.last_background_color && text === App.last_text_color) {
+    return
+  }
+
+  App.apply_theme(background, text)
 }
 
 App.set_color_auto = (background) => {
