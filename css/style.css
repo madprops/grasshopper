@@ -802,6 +802,11 @@ select {
   resize: none;
 }
 
+.editor_text_smaller {
+  width: 5rem;
+  max-width: 5rem;
+}
+
 .bigger {
   font-size: 1.1rem;
 }

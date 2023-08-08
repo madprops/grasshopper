@@ -309,6 +309,7 @@ App.process_info = (mode, info, exclude = [], o_item) => {
   let color = ``
   let custom_title = ``
   let background = ``
+  let icon = ``
 
   if (profile) {
     if (profile.tags) {
@@ -317,6 +318,10 @@ App.process_info = (mode, info, exclude = [], o_item) => {
 
     if (profile.title) {
       custom_title = profile.title
+    }
+
+    if (profile.icon) {
+      icon = profile.icon
     }
 
     if (profile.color) {
@@ -335,6 +340,7 @@ App.process_info = (mode, info, exclude = [], o_item) => {
     path: path,
     hostname: hostname,
     favicon: info.favIconUrl,
+    icon: icon,
     mode: mode,
     window_id: info.windowId,
     session_id: info.sessionId,
@@ -399,7 +405,15 @@ App.check_item_icon = (item) => {
   if (App.get_setting(`show_icons`)) {
     let container = DOM.el(`.item_icon_container`, item.element)
     container.innerHTML = ``
-    let icon = App.get_img_icon(item)
+    let icon
+
+    if (item.icon) {
+      icon = App.get_profile_icon(item)
+    }
+    else {
+      icon = App.get_img_icon(item)
+    }
+
     container.append(icon)
 
     if (item.color) {
@@ -530,6 +544,12 @@ App.create_item_element = (item) => {
   item.created = true
   item.element.classList.remove(`empty_item`)
   App.log(`Item created in ${item.mode}`)
+}
+
+App.get_profile_icon = (item) => {
+  let icon = DOM.create(`div`, `item_icon`)
+  icon.textContent = item.icon
+  return icon
 }
 
 App.get_img_icon = (item) => {

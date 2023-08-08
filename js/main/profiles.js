@@ -55,6 +55,10 @@ App.setup_profile_editor = () => {
       App.profile_modified()
     })
 
+    DOM.ev(DOM.el(`#profile_editor_icon`), `input`, (e) => {
+      App.profile_modified()
+    })
+
     let bg = DOM.el(`#profile_editor_background`)
 
     App.profile_editor_background = AColorPicker.createPicker(bg, {
@@ -133,6 +137,7 @@ App.show_profile_editor = (item, type, action = `edit`) => {
   DOM.el(`#profile_editor_notes_container`).classList.add(`hidden`)
   DOM.el(`#profile_editor_color_container`).classList.add(`hidden`)
   DOM.el(`#profile_editor_title_container`).classList.add(`hidden`)
+  DOM.el(`#profile_editor_icon_container`).classList.add(`hidden`)
   DOM.el(`#profile_editor_background_container`).classList.add(`hidden`)
   DOM.el(`#profile_editor_background`).classList.add(`hidden`)
   App.profile_editor_modified = false
@@ -162,6 +167,11 @@ App.show_profile_editor = (item, type, action = `edit`) => {
     DOM.el(`#profile_editor_background_enabled`).focus()
   }
 
+  if (type === `all` || type === `icon`) {
+    DOM.el(`#profile_editor_icon_container`).classList.remove(`hidden`)
+    DOM.el(`#profile_editor_icon`).focus()
+  }
+
   if (type === `all`) {
     DOM.el(`#profile_editor_tags`).focus()
   }
@@ -170,6 +180,7 @@ App.show_profile_editor = (item, type, action = `edit`) => {
   DOM.el(`#profile_editor_notes`).value = ``
   DOM.el(`#profile_editor_title`).value = ``
   DOM.el(`#profile_editor_color`).value = `none`
+  DOM.el(`#profile_editor_icon`).value = ``
   DOM.el(`#profile_editor_background_enabled`).checked = false
   App.set_color_icons(`none`)
 
@@ -192,6 +203,7 @@ App.show_profile_editor = (item, type, action = `edit`) => {
       }
 
       DOM.el(`#profile_editor_title`).value = profile.title
+      DOM.el(`#profile_editor_icon`).value = profile.icon
       DOM.el(`#profile_editor_color`).value = profile.color || `none`
       App.set_color_icons(profile.color)
 
@@ -216,6 +228,10 @@ App.show_profile_editor = (item, type, action = `edit`) => {
         else if (type === `title`) {
           let shared = App.get_shared_title(profiles)
           DOM.el(`#profile_editor_title`).value = shared
+        }
+        else if (type === `icon`) {
+          let shared = App.get_shared_icon(profiles)
+          DOM.el(`#profile_editor_icon`).value = shared
         }
         else if (type === `color`) {
           let shared = App.get_shared_color(profiles)
@@ -309,6 +325,7 @@ App.profile_editor_save = () => {
     args.tags = App.get_input_tags()
     args.notes = App.double_linebreak(DOM.el(`#profile_editor_notes`).value)
     args.title = DOM.el(`#profile_editor_title`).value.trim()
+    args.icon = DOM.el(`#profile_editor_icon`).value.trim()
     args.color = DOM.el(`#profile_editor_color`).value
     args.background_enabled = DOM.el(`#profile_editor_background_enabled`).checked
     let hex = App.profile_editor_background.color
@@ -362,6 +379,10 @@ App.save_profile = (args) => {
 
     if (args.type === `all` || args.type === `title`) {
       profile.title = args.title
+    }
+
+    if (args.type === `all` || args.type === `icon`) {
+      profile.icon = args.icon
     }
 
     if (args.type === `all` || args.type === `color`) {
@@ -559,6 +580,11 @@ App.check_profiles = () => {
       changed = true
     }
 
+    if (profile.icon === undefined) {
+      profile.icon = ``
+      changed = true
+    }
+
     if (profile.color === undefined) {
       profile.color = ``
       changed = true
@@ -715,6 +741,15 @@ App.clear_profiles_items = () => {
     })
   }
 
+  if (count.icons) {
+    items.push({
+      text: `Remove Icons`,
+      action: () => {
+        App.remove_all_icons()
+      }
+    })
+  }
+
   if (App.profiles.length) {
     items.push({
       text: `Remove All`,
@@ -843,6 +878,28 @@ App.remove_all_titles = () => {
   })
 }
 
+App.remove_all_icons = () => {
+  let profiles = []
+
+  for (let profile of App.profiles) {
+    if (profile.icon) {
+      profiles.push(profile)
+    }
+  }
+
+  if (profiles.length === 0) {
+    return
+  }
+
+  App.show_confirm(`Remove all icons? (${profiles.length})`, () => {
+    for (let profile of App.profiles) {
+      profile.icon = ``
+    }
+
+    App.after_profile_remove()
+  })
+}
+
 App.remove_tag = (name) => {
   App.show_confirm(`Remove tag? (${name})`, () => {
     for (let profile of App.profiles) {
@@ -885,12 +942,13 @@ App.remove_all_profiles = () => {
 App.after_profile_remove = () => {
   App.clean_profiles()
   App.stor_save_profiles()
+  App.clear_items(`tabs`)
   App.show_mode(App.active_mode)
 }
 
 App.used_profile = (profile) => {
   if (profile.tags.length || profile.notes || profile.title ||
-  profile.color || profile.background_enabled || profile.background) {
+  profile.color || profile.background_enabled || profile.background || profile.icon) {
     return true
   }
 
@@ -916,6 +974,7 @@ App.get_profile_count = () => {
   count.colors = 0
   count.titles = 0
   count.backgrounds = 0
+  count.icons = 0
 
   for (let profile of App.profiles) {
     if (profile.tags.length) {
@@ -937,6 +996,10 @@ App.get_profile_count = () => {
 
     if (profile.title) {
       count.titles += 1
+    }
+
+    if (profile.icon) {
+      count.icons += 1
     }
 
     if (profile.background_enabled) {
@@ -1008,6 +1071,13 @@ App.get_edit_items = (item, multiple) => {
     text: `Edit Background`,
     action: () => {
       return App.show_profile_editor(item, `background`)
+    }
+  })
+
+  items.push({
+    text: `Edit Icon`,
+    action: () => {
+      return App.show_profile_editor(item, `icon`)
     }
   })
 
@@ -1185,6 +1255,18 @@ App.get_shared_title = (profiles) => {
 
   for (let profile of profiles) {
     if (profile.title !== first) {
+      return ``
+    }
+  }
+
+  return first
+}
+
+App.get_shared_icon = (profiles) => {
+  let first = profiles[0].icon
+
+  for (let profile of profiles) {
+    if (profile.icon !== first) {
       return ``
     }
   }
