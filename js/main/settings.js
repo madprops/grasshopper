@@ -29,7 +29,7 @@ App.build_default_settings = () => {
   obj.auto_theme = {value: `never`, category: category, version: 2}
   obj.auto_background = {value: `never`, category: category, version: 2}
   obj.domain_backgrounds = {value: [], category: category, version: 2}
-  obj.color_transitions = {value: true, category: category, version: 2}
+  obj.color_transitions = {value: false, category: category, version: 2}
 
   category = `warns`
   obj.warn_on_close_tabs = {value: `special`, category: category, version: 1}
