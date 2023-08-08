@@ -40,19 +40,19 @@ App.setup_profile_editor = () => {
 
     DOM.ev(color_select, `change`, () => {
       App.set_color_icons(color_select.value)
-      App.profile_editor_modified = true
+      App.profile_modified()
     })
 
     DOM.ev(DOM.el(`#profile_editor_tags`), `input`, (e) => {
-      App.profile_editor_modified = true
+      App.profile_modified()
     })
 
     DOM.ev(DOM.el(`#profile_editor_notes`), `input`, (e) => {
-      App.profile_editor_modified = true
+      App.profile_modified()
     })
 
     DOM.ev(DOM.el(`#profile_editor_title`), `input`, (e) => {
-      App.profile_editor_modified = true
+      App.profile_modified()
     })
 
     let bg = DOM.el(`#profile_editor_background`)
@@ -66,9 +66,8 @@ App.setup_profile_editor = () => {
     })
 
     App.profile_editor_background.on(`change`, (picker, color) => {
-      if (App.profile_ready) {
-        App.profile_editor_modified = true
-      }
+      App.profile_modified()
+      App.profile_apply_theme()
     })
 
     DOM.ev(DOM.el(`#profile_editor_background_enabled`), `change`, (e) => {
@@ -79,7 +78,7 @@ App.setup_profile_editor = () => {
         bg.classList.add(`hidden`)
       }
 
-      App.profile_editor_modified = true
+      App.profile_modified()
     })
   },
   colored_top: true,
@@ -95,6 +94,12 @@ App.setup_profile_editor = () => {
       App.hide_window(true)
     }
   }})
+}
+
+App.profile_modified = () => {
+  if (App.profile_ready) {
+    App.profile_editor_modified = true
+  }
 }
 
 App.get_profile_items = (item) => {
@@ -221,10 +226,10 @@ App.show_profile_editor = (item, type, action = `edit`) => {
           let enabled = App.get_shared_background_enabled(profiles)
 
           if (enabled) {
-            DOM.el(`#profile_editor_background_enabled`).checked = true
             let shared = App.get_shared_background(profiles)
 
             if (shared) {
+              DOM.el(`#profile_editor_background_enabled`).checked = true
               DOM.el(`#profile_editor_background`).classList.remove(`hidden`)
               App.profile_editor_background.setColor(shared)
             }
@@ -237,6 +242,11 @@ App.show_profile_editor = (item, type, action = `edit`) => {
   }
 
   App.window_goto_top(`profile_editor`)
+
+  if (DOM.el(`#profile_editor_background_enabled`).checked) {
+    App.profile_apply_theme()
+  }
+
   App.profile_ready = true
 }
 
@@ -1117,7 +1127,7 @@ App.prev_color_select = () => {
 
   color_select.value = colors[index]
   App.set_color_icons(color_select.value)
-  App.profile_editor_modified = true
+  App.profile_modified()
 }
 
 App.next_color_select = () => {
@@ -1132,7 +1142,7 @@ App.next_color_select = () => {
 
   color_select.value = colors[index]
   App.set_color_icons(color_select.value)
-  App.profile_editor_modified = true
+  App.profile_modified()
 }
 
 App.set_color_icons = (color) => {
@@ -1216,4 +1226,10 @@ App.get_shared_background = (profiles) => {
   }
 
   return first
+}
+
+App.profile_apply_theme = () => {
+  let c1 = App.colorlib.hex_to_rgb(App.profile_editor_background.color)
+  let c2 = App.colorlib.get_lighter_or_darker(c1, App.color_contrast)
+  App.apply_theme(c1, c2)
 }
