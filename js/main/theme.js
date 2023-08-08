@@ -43,7 +43,7 @@ App.start_theme_interval = (setting) => {
   }
 }
 
-App.apply_theme = (background, text, check = false) => {
+App.apply_theme = (background, text, check = false, safe_mode = false) => {
   try {
     if (!background) {
       background = App.get_setting(`background_color`)
@@ -61,10 +61,8 @@ App.apply_theme = (background, text, check = false) => {
 
     App.last_background_color = background
     App.last_text_color = text
-    let border = App.get_setting(`border_color`)
     App.set_css_var(`background_color`, background)
     App.set_css_var(`text_color`, text)
-    App.set_css_var(`border_color`, border)
     let main_background = App.colorlib.rgb_to_rgba(background, 0.93)
     App.set_css_var(`main_background`, main_background)
     let alt_color_0 = App.colorlib.rgb_to_rgba(text, 0.15)
@@ -77,6 +75,13 @@ App.apply_theme = (background, text, check = false) => {
     App.set_css_var(`alt_background`, alt_background)
     let alt_background_2 = App.colorlib.get_lighter_or_darker(background, 0.06)
     App.set_css_var(`alt_background_2`, alt_background_2)
+
+    if (safe_mode) {
+      return
+    }
+
+    let border = App.get_setting(`border_color`)
+    App.set_css_var(`border_color`, border)
     App.set_css_var(`font_size`, App.get_setting(`font_size`) + `px`)
     App.set_css_var(`font`, `${App.get_setting(`font`)}, sans-serif`)
     let w = `${(App.get_setting(`width`) / 100) * 800}px`
@@ -171,13 +176,17 @@ App.apply_theme = (background, text, check = false) => {
       App.set_css_var(`color_transition`, `background-color 1400ms, color 600ms`)
     }
     else {
-      App.set_css_var(`color_transition`, `none`)
+      App.set_cs_var(`color_transition`, `none`)
     }
   }
   catch (err) {
     App.log(err, `error`)
-    App.set_default_theme()
+    App.theme_safe_mode()
   }
+}
+
+App.theme_safe_mode = () => {
+  App.apply_theme(`rgb(30, 30, 30)`, `rgb(225, 225, 225)`, false, true)
 }
 
 App.set_css_var = (name, value) => {
