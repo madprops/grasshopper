@@ -5,7 +5,6 @@
   --scroller_shadow: inset 0 0 0.1rem currentColor;
   --scroller_padding: 0.29rem;
   --border_radius: 3px;
-  --color_transition: background-color 1400ms, color 1400ms;
 }
 
 body, html {
@@ -58,7 +57,7 @@ body, html {
   width: 100vw;
   height: 100vh;
   box-sizing: border-box;
-  transition: var(--color_transition);
+  transition: var(--color_transitions);
 }
 
 .window_content {
@@ -160,7 +159,7 @@ body, html {
   min-width: 1.6rem;
   border-radius: var(--border_radius);
   max-width: 100%;
-  transition: var(--color_transition);
+  transition: var(--color_transitions);
 }
 
 .button:hover {
@@ -383,15 +382,15 @@ svg {
 
 .settings_text {
   flex-grow: 0;
-  width: 14rem;
-  max-width: 14rem;
+  width: 15rem;
+  max-width: 15rem;
   text-align: center;
 }
 
 .settings_textarea {
   flex-grow: 0;
-  width: 14rem;
-  max-width: 14rem;
+  width: 15rem;
+  max-width: 15rem;
   text-align: center;
   resize: none;
 }
@@ -490,7 +489,7 @@ svg {
 #needcontext-main {
   background-color: var(--alt_background) !important;
   scrollbar-color: var(--alt_color_2) var(--alt_color_1) !important;
-  transition: var(--color_transition);
+  transition: var(--color_transitions);
 }
 
 #needcontext-container {
@@ -499,7 +498,7 @@ svg {
   border-color: var(--alt_color_2) !important;
   font-size: var(--font_size) !important;
   font-family: var(--font) !important;
-  transition: var(--color_transition);
+  transition: var(--color_transitions);
 }
 
 .needcontext-item-selected {
@@ -563,7 +562,7 @@ a:visited, a:link, a:hover {
   border: 2px solid var(--alt_color_1);
   color: var(--text_color);
   max-width: 98%;
-  transition: var(--color_transition);
+  transition: var(--color_transitions);
 }
 
 .popup_main {
@@ -575,7 +574,7 @@ a:visited, a:link, a:hover {
   height: 100vh;
   width: 100vw;
   background-color: var(--alt_background);
-  transition: var(--color_transition);
+  transition: var(--color_transitions);
 }
 
 #popup_alert {
@@ -741,7 +740,7 @@ select {
   cursor: pointer;
   border: 1px solid var(--alt_color_1);
   padding: var(--scroller_padding);
-  transition: var(--color_transition);
+  transition: var(--color_transitions);
 }
 
 .scroller:hover {
@@ -766,7 +765,7 @@ select {
   border: 0px solid var(--alt_color_1);
   border-top-width: 1px;
   gap: 0.5rem;
-  transition: var(--color_transition);
+  transition: var(--color_transitions);
 }
 
 .footer:hover {

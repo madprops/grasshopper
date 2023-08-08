@@ -158,6 +158,13 @@ App.apply_theme = (background, text) => {
     else {
       bg.classList.remove(`tiles`)
     }
+
+    if (App.get_setting(`color_transitions`)) {
+      App.set_css_var(`color_transitions`, `background-color 1400ms, color 1400ms`)
+    }
+    else {
+      App.set_css_var(`color_transitions`, `none`)
+    }
   }
   catch (err) {
     App.log(err, `error`)
