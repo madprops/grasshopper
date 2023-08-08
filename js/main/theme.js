@@ -176,8 +176,7 @@ App.apply_theme = (background, text, check = false) => {
   }
   catch (err) {
     App.log(err, `error`)
-    App.settings_default_category(`theme`)
-    App.stor_save_settings()
+    App.set_default_theme()
   }
 }
 
