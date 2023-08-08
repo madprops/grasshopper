@@ -224,35 +224,44 @@ App.set_color_auto = (background, text) => {
     return
   }
 
-  background = background.toLowerCase()
+  background = App.parse_color(background)
 
-  if (background.startsWith(`rgb`)) {
+  if (!text) {
+    text = App.colorlib.get_lighter_or_darker(background, App.color_contrast)
+  }
+  else {
+    text = App.parse_color(text)
+  }
+
+  App.apply_theme(background, text, true)
+}
+
+App.parse_color = (color) => {
+  color = color.toLowerCase()
+
+  if (color.startsWith(`rgb`)) {
     // Do nothing
   }
-  else if (background.startsWith(`#`)) {
+  else if (color.startsWith(`#`)) {
     try {
-      background = App.colorlib.hex_to_rgb(background)
+      color = App.colorlib.hex_to_rgb(color)
     }
     catch (err) {
       return
     }
   }
   else {
-    let c = App.color_names[background]
+    let c = App.color_names[color]
 
     if (c) {
-      background = App.colorlib.hex_to_rgb(c)
+      color = App.colorlib.hex_to_rgb(c)
     }
     else {
       return
     }
   }
 
-  if (!text) {
-    text = App.colorlib.get_lighter_or_darker(background, App.color_contrast)
-  }
-
-  App.apply_theme(background, text, true)
+  return color
 }
 
 App.random_background = async (feedback = true) => {
@@ -346,9 +355,19 @@ App.do_check_active_color = () => {
       try {
         let split = line.split(`=`)
         let d = split[0].trim()
+        let background, text
+
+        if (split[1].includes(`;`)) {
+          let split_2 = split[1].split(`;`)
+          background = split_2[0].trim()
+          text = split_2[1].trim()
+        }
+        else {
+          background = split[1].trim()
+        }
 
         if ((d === item.hostname) || (App.get_hostname(d) === item.hostname)) {
-          App.set_color_auto(split[1].trim())
+          App.set_color_auto(background, text)
           return
         }
       }
