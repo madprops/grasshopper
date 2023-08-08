@@ -324,6 +324,7 @@ App.check_active_color = () => {
   let item = App.get_active_tab_item()
 
   if (!item.hostname) {
+    App.set_default_theme()
     return
   }
 
