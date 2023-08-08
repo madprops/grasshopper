@@ -188,7 +188,7 @@ App.theme_safe_mode = () => {
   App.apply_theme(`rgb(33, 33, 33)`, `rgb(222, 222, 222)`, false, true)
 
   if (!App.theme_safe_mode_msg) {
-    App.show_alert(`Theme settings are invalid. Using safe mode`)
+    App.show_alert_2(`Theme settings are invalid. Using safe mode`)
     App.theme_safe_mode_msg = true
   }
 }
