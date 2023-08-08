@@ -843,16 +843,6 @@ App.get_active_tab_item = () => {
   }
 }
 
-App.active_tab_is = (item) => {
-  let active = App.get_active_tab_item()
-
-  if (active) {
-    return active === item
-  }
-
-  return false
-}
-
 App.close_duplicate_tabs = () => {
   App.show_popup(`close_duplicates`)
   DOM.el(`#close_duplicates_pins`).checked = false
