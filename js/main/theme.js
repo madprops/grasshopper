@@ -286,18 +286,28 @@ App.refresh_theme_settings = () => {
   DOM.el(`#settings_background_image`).value = App.get_setting(`background_image`)
 }
 
-App.seeded_theme = (hostname) => {
-  if (!hostname) {
+App.seeded_theme = (item) => {
+  if (!item || !item.hostname) {
     return
   }
 
-  let rand = App.seeded_random(hostname)
+  let background
 
-  function get() {
-    return App.get_random_int(0, App.seeded_theme_max, undefined, rand)
+  if (item.seed_background && item.seed_hostname === item.hostname) {
+    background = item.seed_background
+  }
+  else {
+    let rand = App.seeded_random(item.hostname)
+
+    function get() {
+      return App.get_random_int(0, App.seeded_theme_max, undefined, rand)
+    }
+
+    background = `rgb(${get()}, ${get()}, ${get()})`
+    item.seed_background = background
+    item.seed_hostname = item.hostname
   }
 
-  let background = `rgb(${get()}, ${get()}, ${get()})`
   App.set_color_auto(background)
 }
 
@@ -327,7 +337,7 @@ App.check_item_colors = (item) => {
   }
 
   if (App.get_setting(`auto_theme`) === `domain`) {
-    App.seeded_theme(item.hostname)
+    App.seeded_theme(item)
   }
   else {
     App.set_default_theme()
