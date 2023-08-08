@@ -212,6 +212,15 @@ App.set_default_theme = () => {
 }
 
 App.set_color_auto = (background) => {
+  if (background.startsWith(`#`)) {
+    try {
+      background = App.colorlib.hex_to_rgb(background)
+    }
+    catch (err) {
+      return
+    }
+  }
+
   let text = App.colorlib.get_lighter_or_darker(background, App.color_contrast)
   App.apply_theme(background, text)
 }
@@ -275,11 +284,10 @@ App.check_item_colors = (item) => {
     if (line.includes(`=`)) {
       try {
         let split = line.split(`=`)
-        let domain = split[0].trim()
-        let background = split[1].trim()
+        let d = split[0].trim()
 
-        if (domain === item.hostname) {
-          App.set_color_auto(background)
+        if ((d === item.hostname) || (App.get_hostname(d) === item.hostname)) {
+          App.set_color_auto(split[1].trim())
           return
         }
       }
