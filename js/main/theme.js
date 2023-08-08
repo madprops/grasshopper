@@ -243,6 +243,10 @@ App.refresh_theme_settings = () => {
 }
 
 App.seeded_theme = (hostname) => {
+  if (!hostname) {
+    return
+  }
+
   let rand = App.seeded_random(hostname)
 
   function get() {
@@ -252,4 +256,15 @@ App.seeded_theme = (hostname) => {
   let c1 = `rgb(${get()}, ${get()}, ${get()})`
   let c2 = App.colorlib.get_lighter_or_darker(c1, App.color_contrast)
   App.set_theme(c1, c2)
+}
+
+App.check_item_colors = (item) => {
+  if (item.background) {
+    let c1 = item.background
+    let c2 = App.colorlib.get_lighter_or_darker(c1, App.color_contrast)
+    App.set_theme(c1, c2)
+  }
+  else if (App.get_setting(`auto_theme`) === `domain`) {
+    App.seeded_theme(item.hostname)
+  }
 }

@@ -169,10 +169,7 @@ App.set_selected = (item) => {
   item.selected_date = Date.now()
   App[`last_selected_${item.mode}`] = item
   App.update_footer_info(item)
-
-  if (App.get_setting(`auto_theme`) === `domain`) {
-    App.seeded_theme(item.hostname)
-  }
+  App.check_item_colors(item)
 }
 
 App.clear_selected = (mode) => {
@@ -308,6 +305,7 @@ App.process_info = (mode, info, exclude = [], o_item) => {
   let tags = []
   let color = ``
   let custom_title = ``
+  let background = ``
 
   if (profile) {
     if (profile.tags) {
@@ -320,6 +318,10 @@ App.process_info = (mode, info, exclude = [], o_item) => {
 
     if (profile.color) {
       color = profile.color
+    }
+
+    if (profile.background) {
+      background = profile.background
     }
   }
 
@@ -338,6 +340,7 @@ App.process_info = (mode, info, exclude = [], o_item) => {
     audio: audio,
     tags: tags,
     color: color,
+    background: background,
     created: false,
   }
 
