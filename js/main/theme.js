@@ -214,11 +214,26 @@ App.set_default_theme = () => {
 }
 
 App.set_color_auto = (background) => {
-  if (background.startsWith(`#`)) {
+  background = background.toLowerCase()
+
+  if (background.startsWith(`rgb`)) {
+    // Do nothing
+  }
+  else if (background.startsWith(`#`)) {
     try {
       background = App.colorlib.hex_to_rgb(background)
     }
     catch (err) {
+      return
+    }
+  }
+  else {
+    let c = App.color_names[background]
+
+    if (c) {
+      background = App.colorlib.hex_to_rgb(c)
+    }
+    else {
       return
     }
   }
