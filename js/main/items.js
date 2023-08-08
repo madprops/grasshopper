@@ -308,7 +308,8 @@ App.process_info = (mode, info, exclude = [], o_item) => {
   let tags = []
   let color = ``
   let custom_title = ``
-  let background = ``
+  let background_color = ``
+  let text_color = ``
   let icon = ``
 
   if (profile) {
@@ -328,8 +329,9 @@ App.process_info = (mode, info, exclude = [], o_item) => {
       color = profile.color
     }
 
-    if (profile.background_enabled && profile.background) {
-      background = profile.background
+    if (profile.theme_enabled) {
+      text_color = profile.text_color
+      background_color = profile.background_color
     }
   }
 
@@ -349,7 +351,8 @@ App.process_info = (mode, info, exclude = [], o_item) => {
     audio: audio,
     tags: tags,
     color: color,
-    background: background,
+    background_color: background_color,
+    text_color: text_color,
     created: false,
   }
 

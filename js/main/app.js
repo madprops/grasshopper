@@ -53,7 +53,8 @@ App.max_pick_delay = 2000
 App.auto_theme_delay = 1000 * 60 * 30
 App.seeded_theme_max = 88
 App.color_contrast = 0.8
-App.default_profile_background = `rgb(0, 0, 0)`
+App.default_profile_background_color = `rgb(50, 50, 50)`
+App.default_profile_text_color = `rgb(200, 200, 200)`
 App.hostname_colors = {}
 App.tabs_items = []
 

@@ -218,7 +218,7 @@ App.set_default_theme = () => {
   App.apply_theme(background, text)
 }
 
-App.set_color_auto = (background) => {
+App.set_color_auto = (background, text) => {
   if (!background) {
     return
   }
@@ -247,7 +247,9 @@ App.set_color_auto = (background) => {
     }
   }
 
-  let text = App.colorlib.get_lighter_or_darker(background, App.color_contrast)
+  if (!text) {
+    text = App.colorlib.get_lighter_or_darker(background, App.color_contrast)
+  }
 
   if (background === App.last_background_color && text === App.last_text_color) {
     return
@@ -328,8 +330,8 @@ App.check_active_color = () => {
     return
   }
 
-  if (item.background) {
-    App.set_color_auto(item.background)
+  if (item.background_color && item.text_color) {
+    App.set_color_auto(item.background_color, item.text_color)
     return
   }
 
