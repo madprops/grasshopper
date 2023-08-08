@@ -316,6 +316,10 @@ App.seeded_theme = (item) => {
 }
 
 App.check_item_colors = (item) => {
+  if (App.get_selected(item.mode) !== item) {
+    return
+  }
+
   if (item.background) {
     App.set_color_auto(item.background)
     return
