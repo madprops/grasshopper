@@ -65,6 +65,12 @@ App.setup_profile_editor = () => {
       color: `rgb(0, 0, 0)`
     })
 
+    App.profile_editor_background.on(`change`, (picker, color) => {
+      if (App.profile_ready) {
+        App.profile_editor_modified = true
+      }
+    })
+
     DOM.ev(DOM.el(`#profile_editor_background_enabled`), `change`, (e) => {
       if (e.target.checked) {
         bg.classList.remove(`hidden`)
@@ -72,6 +78,8 @@ App.setup_profile_editor = () => {
       else {
         bg.classList.add(`hidden`)
       }
+
+      App.profile_editor_modified = true
     })
   },
   colored_top: true,
@@ -107,6 +115,7 @@ App.get_profile_items = (item) => {
 }
 
 App.show_profile_editor = (item, type, action = `edit`) => {
+  App.profile_ready = false
   App.profile_editor_items = App.get_profile_items(item)
   let items = App.profile_editor_items
   let [profiles, added] = App.get_profiles(items)
@@ -228,6 +237,7 @@ App.show_profile_editor = (item, type, action = `edit`) => {
   }
 
   App.window_goto_top(`profile_editor`)
+  App.profile_ready = true
 }
 
 App.get_empty_profile = (url) => {
