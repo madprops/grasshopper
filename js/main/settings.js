@@ -377,7 +377,7 @@ App.setup_settings = () => {
     },
     on_hide: () => {
       App.apply_theme()
-      App.show_first_window()
+      App.show_first_mode(true)
     },
   }
 

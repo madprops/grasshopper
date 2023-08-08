@@ -55,6 +55,7 @@ App.seeded_theme_max = 88
 App.color_contrast = 0.8
 App.default_profile_background = `rgb(0, 0, 0)`
 App.hostname_colors = {}
+App.tabs_items = []
 
 App.colors = {
   red: `rgb(255, 77, 77)`,

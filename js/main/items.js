@@ -244,7 +244,11 @@ App.process_info_list = (mode, info_list) => {
   let container = DOM.el(`#${mode}_container`)
   container.innerHTML = ``
   App[`${mode}_idx`] = 0
-  App.clear_items(mode)
+
+  if (mode !== `tabs`) {
+    App.clear_items(mode)
+  }
+
   let items = App.get_items(mode)
   let exclude = []
 
@@ -743,11 +747,13 @@ App.show_mode = async (mode, cycle = false) => {
 
   // Unload inactive items
   for (let m of App.modes) {
-    App.clear_items(m)
-    let c = DOM.el(`#${m}_container`)
+    if (m !== `tabs`) {
+      App.clear_items(m)
+      let c = DOM.el(`#${m}_container`)
 
-    if (c) {
-      c.innerHTML = ``
+      if (c) {
+        c.innerHTML = ``
+      }
     }
   }
 
@@ -758,12 +764,20 @@ App.show_mode = async (mode, cycle = false) => {
   App[`${mode}_filter_mode`] = m[0]
   App[`last_${mode}_query`] = undefined
   let maxed = App.maxed_items.includes(mode)
+  let items_ready = false
   let items
+
+  if (mode === `tabs`) {
+    if (App.tabs_items.length > 0) {
+      items = App.tabs_items
+      items_ready = true
+    }
+  }
 
   if (maxed && value) {
     items = []
   }
-  else {
+  else if (!items_ready) {
     items = await App[`get_${mode}`]()
   }
 
@@ -790,7 +804,7 @@ App.show_mode = async (mode, cycle = false) => {
   if (maxed && value) {
     // Filter will search
   }
-  else {
+  else if (!items_ready) {
     App.process_info_list(mode, items)
   }
 
@@ -934,8 +948,14 @@ App.mode_order_down = (el) => {
   }
 }
 
-App.show_first_window = () => {
-  App.show_mode(App.mode_order[0])
+App.show_first_mode = (clear = false) => {
+  let mode = App.mode_order[0]
+
+  if (clear) {
+    App.clear_items(mode)
+  }
+
+  App.show_mode(mode)
 }
 
 App.focus_or_open_item = async (item) => {

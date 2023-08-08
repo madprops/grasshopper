@@ -321,7 +321,11 @@ App.seeded_theme = (item) => {
 }
 
 App.check_item_colors = (item) => {
-  if (App.get_selected(item.mode) !== item) {
+  if (!item.hostname) {
+    return
+  }
+
+  if (item !== App.get_active_tab_item()) {
     return
   }
 
@@ -330,29 +334,27 @@ App.check_item_colors = (item) => {
     return
   }
 
-  if (item.hostname) {
-    for (let line of App.get_setting(`domain_backgrounds`)) {
-      if (line.includes(`=`)) {
-        try {
-          let split = line.split(`=`)
-          let d = split[0].trim()
+  for (let line of App.get_setting(`domain_backgrounds`)) {
+    if (line.includes(`=`)) {
+      try {
+        let split = line.split(`=`)
+        let d = split[0].trim()
 
-          if ((d === item.hostname) || (App.get_hostname(d) === item.hostname)) {
-            App.set_color_auto(split[1].trim())
-            return
-          }
-        }
-        catch (err) {
-          continue
+        if ((d === item.hostname) || (App.get_hostname(d) === item.hostname)) {
+          App.set_color_auto(split[1].trim())
+          return
         }
       }
+      catch (err) {
+        continue
+      }
+    }
+
+    if (App.get_setting(`auto_theme`) === `domain`) {
+      App.seeded_theme(item)
+      return
     }
   }
 
-  if (App.get_setting(`auto_theme`) === `domain`) {
-    App.seeded_theme(item)
-  }
-  else {
-    App.set_default_theme()
-  }
+  App.set_default_theme()
 }
