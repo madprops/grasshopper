@@ -816,6 +816,7 @@ App.show_mode = async (mode, cycle = false) => {
 
   App.focus_filter(mode)
   App.do_check_scroller(mode)
+  App.check_active_color()
 }
 
 App.show_main_mode = () => {
