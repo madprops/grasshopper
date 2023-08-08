@@ -57,6 +57,7 @@ App.default_profile_background_color = `rgb(50, 50, 50)`
 App.default_profile_text_color = `rgb(200, 200, 200)`
 App.hostname_colors = {}
 App.colors = [`red`, `green`, `blue`, `yellow`]
+App.check_active_color_delay = 33
 
 App.color_icons = {
   none: `⚫`,

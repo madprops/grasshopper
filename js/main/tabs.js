@@ -213,6 +213,8 @@ App.refresh_tab = async (id, select, info) => {
       App.select_item(item, `nearest_smooth`)
     }
   }
+
+  App.check_active_color()
 }
 
 App.mute_tab = async (id) => {
@@ -648,7 +650,6 @@ App.on_tab_activated = async (info) => {
   }
 
   await App.refresh_tab(info.tabId, select)
-  App.check_active_color()
 }
 
 App.move_tabs = async (item, window_id) => {

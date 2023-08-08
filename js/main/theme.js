@@ -319,7 +319,16 @@ App.seeded_theme = (item) => {
   App.set_color_auto(background)
 }
 
+App.check_active_color_debouncer = App.create_debouncer(() => {
+  App.do_check_active_color()
+}, App.check_active_color_delay)
+
 App.check_active_color = () => {
+  App.check_active_color_debouncer.call()
+}
+
+App.do_check_active_color = () => {
+  App.check_active_color_debouncer.cancel()
   let item = App.get_active_tab_item()
 
   if (!item || !item.hostname) {
