@@ -214,6 +214,10 @@ App.set_default_theme = () => {
 }
 
 App.set_color_auto = (background) => {
+  if (!background) {
+    return
+  }
+
   background = background.toLowerCase()
 
   if (background.startsWith(`rgb`)) {
@@ -292,9 +296,10 @@ App.seeded_theme = (item) => {
   }
 
   let background
+  let hc = App.hostname_colors[item.hostname]
 
-  if (item.seed_background && item.seed_hostname === item.hostname) {
-    background = item.seed_background
+  if (hc) {
+    background = hc
   }
   else {
     let rand = App.seeded_random(item.hostname)
@@ -304,8 +309,7 @@ App.seeded_theme = (item) => {
     }
 
     background = `rgb(${get()}, ${get()}, ${get()})`
-    item.seed_background = background
-    item.seed_hostname = item.hostname
+    App.hostname_colors[item.hostname] = background
   }
 
   App.set_color_auto(background)
