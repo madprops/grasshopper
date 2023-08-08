@@ -632,12 +632,11 @@ App.do_move_tab_index = async (id, index) => {
 
 App.on_tab_activated = async (info) => {
   let exit = false
-  let selected = App.get_selected(`tabs`)
 
   for (let item of App.get_items(`tabs`)) {
     item.active = item.id === info.tabId
 
-    if (item.active && item === selected) {
+    if (item.active) {
       exit = true
     }
   }
