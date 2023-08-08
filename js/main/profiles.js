@@ -550,7 +550,7 @@ App.check_profiles = () => {
     }
 
     if (profile.background === undefined) {
-      profile.background = `rgb(55, 55, 55)`
+      profile.background = `rgb(0, 0, 0)`
       changed = true
     }
   }
@@ -686,6 +686,15 @@ App.clear_profiles_items = () => {
     })
   }
 
+  if (count.backgrounds) {
+    items.push({
+      text: `Remove Backgrounds`,
+      action: () => {
+        App.remove_all_backgrounds(App.active_mode, `remove`)
+      }
+    })
+  }
+
   if (App.profiles.length) {
     items.push({
       text: `Remove All`,
@@ -741,6 +750,29 @@ App.remove_all_colors = () => {
   App.show_confirm(`Remove all colors? (${profiles.length})`, () => {
     for (let profile of App.profiles) {
       profile.color = ``
+    }
+
+    App.after_profile_remove()
+  })
+}
+
+App.remove_all_backgrounds = () => {
+  let profiles = []
+
+  for (let profile of App.profiles) {
+    if (profile.background_enabled) {
+      profiles.push(profile)
+    }
+  }
+
+  if (profiles.length === 0) {
+    return
+  }
+
+  App.show_confirm(`Remove all backgrounds? (${profiles.length})`, () => {
+    for (let profile of App.profiles) {
+      profile.background_enabled = false
+      profile.background = `rgb(0, 0, 0)`
     }
 
     App.after_profile_remove()
@@ -863,6 +895,7 @@ App.get_profile_count = () => {
   count.notes = 0
   count.colors = 0
   count.titles = 0
+  count.backgrounds = 0
 
   for (let profile of App.profiles) {
     if (profile.tags.length) {
@@ -884,6 +917,10 @@ App.get_profile_count = () => {
 
     if (profile.title) {
       count.titles += 1
+    }
+
+    if (profile.background_enabled) {
+      count.backgrounds += 1
     }
   }
 
@@ -944,6 +981,13 @@ App.get_edit_items = (item, multiple) => {
     text: `Edit Color`,
     action: () => {
       return App.show_profile_editor(item, `color`)
+    }
+  })
+
+  items.push({
+    text: `Edit Background`,
+    action: () => {
+      return App.show_profile_editor(item, `background`)
     }
   })
 

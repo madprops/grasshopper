@@ -320,7 +320,7 @@ App.process_info = (mode, info, exclude = [], o_item) => {
       color = profile.color
     }
 
-    if (profile.background) {
+    if (profile.background_enabled && profile.background) {
       background = profile.background
     }
   }
