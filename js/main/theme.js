@@ -323,11 +323,7 @@ App.seeded_theme = (item) => {
 App.check_active_color = () => {
   let item = App.get_active_tab_item()
 
-  if (!item) {
-    return
-  }
-
-  if (!item.hostname) {
+  if (!item || !item.hostname) {
     App.set_default_theme()
     return
   }
