@@ -209,7 +209,9 @@ App.refresh_tab = async (id, select, info) => {
   App.check_pinline()
 
   if (select) {
-    App.select_item(item, `center_smooth`)
+    if (App.get_selected(`tabs`) !== item) {
+      App.select_item(item, `nearest_smooth`)
+    }
   }
 }
 
@@ -631,21 +633,12 @@ App.do_move_tab_index = async (id, index) => {
 }
 
 App.on_tab_activated = async (info) => {
-  let exit = false
-
   for (let item of App.get_items(`tabs`)) {
     item.active = item.id === info.tabId
 
     if (item.active) {
       exit = true
     }
-  }
-
-  // Avoid refreshes
-  // Already selected
-  if (exit) {
-    App.check_active_color()
-    return
   }
 
   let select = true
