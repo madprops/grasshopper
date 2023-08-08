@@ -24,6 +24,7 @@ App.init = async () => {
   App.setup_items()
   App.setup_gestures()
   App.setup_palette()
+  App.apply_theme()
   App.show_first_mode(true)
   App.make_window_visible()
 }

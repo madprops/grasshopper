@@ -58,6 +58,7 @@ App.default_profile_text_color = `rgb(200, 200, 200)`
 App.hostname_colors = {}
 App.colors = [`red`, `green`, `blue`, `yellow`]
 App.check_active_color_delay = 33
+App.theme_safe_mode_msg = false
 
 App.color_icons = {
   none: `⚫`,

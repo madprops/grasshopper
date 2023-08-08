@@ -2,7 +2,6 @@ App.setup_theme = () => {
   App.colorlib = ColorLib()
   App.start_theme_interval(`auto_theme`)
   App.start_theme_interval(`auto_background`)
-  App.apply_theme()
 }
 
 App.start_theme_interval = (setting) => {
@@ -187,6 +186,11 @@ App.apply_theme = (background, text, check = false, safe_mode = false) => {
 
 App.theme_safe_mode = () => {
   App.apply_theme(`rgb(33, 33, 33)`, `rgb(222, 222, 222)`, false, true)
+
+  if (!App.theme_safe_mode_msg) {
+    App.show_alert(`Theme settings are invalid. Using safe mode`)
+    App.theme_safe_mode_msg = true
+  }
 }
 
 App.set_css_var = (name, value) => {
