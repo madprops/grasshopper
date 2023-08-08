@@ -91,12 +91,12 @@ App.setup_profile_editor = () => {
 
     DOM.ev(DOM.el(`#profile_editor_theme_enabled`), `change`, (e) => {
       if (e.target.checked) {
-        bg.classList.remove(`hidden`)
-        tc.classList.remove(`hidden`)
+        DOM.el(`#profile_editor_background_color_container`).classList.remove(`hidden`)
+        DOM.el(`#profile_editor_text_color_container`).classList.remove(`hidden`)
       }
       else {
-        bg.classList.add(`hidden`)
-        tc.classList.add(`hidden`)
+        DOM.el(`#profile_editor_background_color_container`).classList.add(`hidden`)
+        DOM.el(`#profile_editor_text_color_container`).classList.add(`hidden`)
       }
 
       App.profile_modified()
@@ -156,8 +156,8 @@ App.show_profile_editor = (item, type, action = `edit`) => {
   DOM.el(`#profile_editor_title_container`).classList.add(`hidden`)
   DOM.el(`#profile_editor_icon_container`).classList.add(`hidden`)
   DOM.el(`#profile_editor_theme_container`).classList.add(`hidden`)
-  DOM.el(`#profile_editor_background_color`).classList.add(`hidden`)
-  DOM.el(`#profile_editor_text_color`).classList.add(`hidden`)
+  DOM.el(`#profile_editor_background_color_container`).classList.add(`hidden`)
+  DOM.el(`#profile_editor_text_color_container`).classList.add(`hidden`)
   App.profile_editor_modified = false
 
   if (type === `all` || type === `tags`) {
@@ -227,8 +227,8 @@ App.show_profile_editor = (item, type, action = `edit`) => {
 
       if (profile.theme_enabled) {
         DOM.el(`#profile_editor_theme_enabled`).checked = true
-        DOM.el(`#profile_editor_background_color`).classList.remove(`hidden`)
-        DOM.el(`#profile_editor_text_color`).classList.remove(`hidden`)
+        DOM.el(`#profile_editor_background_color_container`).classList.remove(`hidden`)
+        DOM.el(`#profile_editor_text_color_container`).classList.remove(`hidden`)
         App.profile_editor_background_color.setColor(profile.background_color)
         App.profile_editor_text_color.setColor(profile.text_color)
       }
@@ -267,8 +267,8 @@ App.show_profile_editor = (item, type, action = `edit`) => {
 
             if (shared_bg && shared_tc) {
               DOM.el(`#profile_editor_theme_enabled`).checked = true
-              DOM.el(`#profile_editor_background_color`).classList.remove(`hidden`)
-              DOM.el(`#profile_editor_text_color`).classList.remove(`hidden`)
+              DOM.el(`#profile_editor_background_color_container`).classList.remove(`hidden`)
+              DOM.el(`#profile_editor_text_color_container`).classList.remove(`hidden`)
               App.profile_editor_background_color.setColor(shared_bg)
               App.profile_editor_text_color.setColor(shared_tc)
             }
