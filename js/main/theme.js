@@ -302,6 +302,11 @@ App.seeded_theme = (hostname) => {
 }
 
 App.check_item_colors = (item) => {
+  if (item.background) {
+    App.set_color_auto(item.background)
+    return
+  }
+
   for (let line of App.get_setting(`domain_backgrounds`)) {
     if (line.includes(`=`)) {
       try {
@@ -319,10 +324,7 @@ App.check_item_colors = (item) => {
     }
   }
 
-  if (item.background) {
-    App.set_color_auto(item.background)
-  }
-  else if (App.get_setting(`auto_theme`) === `domain`) {
+  if (App.get_setting(`auto_theme`) === `domain`) {
     App.seeded_theme(item.hostname)
   }
   else {
