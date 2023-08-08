@@ -995,6 +995,7 @@ App.update_item = (mode, id, info) => {
   for (let item of App.get_items(mode)) {
     if (item.id === id) {
       App.process_info(mode, info, [], item)
+      App.check_item_colors(item)
       break
     }
   }
