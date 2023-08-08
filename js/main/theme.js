@@ -53,6 +53,8 @@ App.apply_theme = (background, text) => {
       text = App.get_setting(`text_color`)
     }
 
+    App.last_background_color = background
+    App.last_text_color = text
     let border = App.get_setting(`border_color`)
     App.set_css_var(`background_color`, background)
     App.set_css_var(`text_color`, text)
@@ -222,6 +224,11 @@ App.set_color_auto = (background) => {
   }
 
   let text = App.colorlib.get_lighter_or_darker(background, App.color_contrast)
+
+  if (background === App.last_background_color && text === App.last_text_color) {
+    return
+  }
+
   App.apply_theme(background, text)
 }
 
