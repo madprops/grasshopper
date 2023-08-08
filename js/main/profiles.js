@@ -455,12 +455,10 @@ App.apply_profiles = (url) => {
   for (let item of App.get_items(App.active_mode)) {
     if (item.url === url) {
       App.update_item(App.active_mode, item.id, {})
-
-      if (item.selected) {
-        App.check_item_colors(item)
-      }
     }
   }
+
+  App.check_active_color()
 }
 
 App.get_profile = (item_url) => {

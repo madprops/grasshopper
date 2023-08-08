@@ -645,6 +645,7 @@ App.on_tab_activated = async (info) => {
   // Avoid refreshes
   // Already selected
   if (exit) {
+    App.check_active_color()
     return
   }
 
@@ -655,6 +656,7 @@ App.on_tab_activated = async (info) => {
   }
 
   await App.refresh_tab(info.tabId, select)
+  App.check_active_color()
 }
 
 App.move_tabs = async (item, window_id) => {

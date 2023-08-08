@@ -320,12 +320,10 @@ App.seeded_theme = (item) => {
   App.set_color_auto(background)
 }
 
-App.check_item_colors = (item) => {
-  if (!item.hostname) {
-    return
-  }
+App.check_active_color = () => {
+  let item = App.get_active_tab_item()
 
-  if (item !== App.get_active_tab_item()) {
+  if (!item.hostname) {
     return
   }
 

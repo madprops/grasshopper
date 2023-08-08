@@ -169,7 +169,6 @@ App.set_selected = (item) => {
   item.selected_date = Date.now()
   App[`last_selected_${item.mode}`] = item
   App.update_footer_info(item)
-  App.check_item_colors(item)
 }
 
 App.clear_selected = (mode) => {
@@ -1015,7 +1014,6 @@ App.update_item = (mode, id, info) => {
   for (let item of App.get_items(mode)) {
     if (item.id === id) {
       App.process_info(mode, info, [], item)
-      App.check_item_colors(item)
       break
     }
   }
