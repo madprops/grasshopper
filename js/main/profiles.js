@@ -734,7 +734,7 @@ App.clear_profiles_items = () => {
 
   if (count.backgrounds) {
     items.push({
-      text: `Remove Backgrounds`,
+      text: `Remove BG`,
       action: () => {
         App.remove_all_backgrounds(App.active_mode, `remove`)
       }
@@ -1068,7 +1068,7 @@ App.get_edit_items = (item, multiple) => {
   })
 
   items.push({
-    text: `Edit Background`,
+    text: `Edit BG`,
     action: () => {
       return App.show_profile_editor(item, `background`)
     }
