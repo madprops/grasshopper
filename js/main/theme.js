@@ -350,11 +350,11 @@ App.check_active_color = () => {
         continue
       }
     }
+  }
 
-    if (App.get_setting(`auto_theme`) === `domain`) {
-      App.seeded_theme(item)
-      return
-    }
+  if (App.get_setting(`auto_theme`) === `domain`) {
+    App.seeded_theme(item)
+    return
   }
 
   App.set_default_theme()
