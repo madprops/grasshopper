@@ -43,7 +43,7 @@ App.start_theme_interval = (setting) => {
   }
 }
 
-App.apply_theme = (background, text) => {
+App.apply_theme = (background, text, check = false) => {
   try {
     if (!background) {
       background = App.get_setting(`background_color`)
@@ -51,6 +51,12 @@ App.apply_theme = (background, text) => {
 
     if (!text) {
       text = App.get_setting(`text_color`)
+    }
+
+    if (check) {
+      if (background === App.last_background_color && text === App.last_text_color) {
+        return
+      }
     }
 
     App.last_background_color = background
@@ -210,12 +216,7 @@ App.set_theme = (c1, c2) => {
 App.set_default_theme = () => {
   let background = App.get_setting(`background_color`)
   let text = App.get_setting(`text_color`)
-
-  if (background === App.last_background_color && text === App.last_text_color) {
-    return
-  }
-
-  App.apply_theme(background, text)
+  App.apply_theme(background, text, true)
 }
 
 App.set_color_auto = (background, text) => {
@@ -251,11 +252,7 @@ App.set_color_auto = (background, text) => {
     text = App.colorlib.get_lighter_or_darker(background, App.color_contrast)
   }
 
-  if (background === App.last_background_color && text === App.last_text_color) {
-    return
-  }
-
-  App.apply_theme(background, text)
+  App.apply_theme(background, text, true)
 }
 
 App.random_background = async (feedback = true) => {
