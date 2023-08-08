@@ -53,6 +53,7 @@ App.max_pick_delay = 2000
 App.auto_theme_delay = 1000 * 60 * 30
 App.seeded_theme_max = 88
 App.color_contrast = 0.8
+App.default_profile_background = `rgb(0, 0, 0)`
 
 App.colors = {
   red: `rgb(255, 77, 77)`,

@@ -62,7 +62,7 @@ App.setup_profile_editor = () => {
       showHSL: false,
       showHEX: false,
       showRGB: true,
-      color: `rgb(0, 0, 0)`
+      color: App.default_profile_background
     })
 
     App.profile_editor_background.on(`change`, (picker, color) => {
@@ -257,6 +257,8 @@ App.get_empty_profile = (url) => {
     notes: ``,
     title: ``,
     color: ``,
+    background_enabled: false,
+    background: App.default_profile_background
   }
 }
 
@@ -570,7 +572,7 @@ App.check_profiles = () => {
     }
 
     if (profile.background === undefined) {
-      profile.background = `rgb(0, 0, 0)`
+      profile.background = App.default_profile_background
       changed = true
     }
   }
@@ -792,7 +794,7 @@ App.remove_all_backgrounds = () => {
   App.show_confirm(`Remove all backgrounds? (${profiles.length})`, () => {
     for (let profile of App.profiles) {
       profile.background_enabled = false
-      profile.background = `rgb(0, 0, 0)`
+      profile.background = App.default_profile_background
     }
 
     App.after_profile_remove()
