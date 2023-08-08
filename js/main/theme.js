@@ -53,45 +53,28 @@ App.apply_theme = (background, text) => {
       text = App.get_setting(`text_color`)
     }
 
-    if (background === App.last_background_color && text === App.last_text_color) {
-      return
-    }
-
-    App.last_background_color = background
-    App.last_text_color = text
     let border = App.get_setting(`border_color`)
-
     App.set_css_var(`background_color`, background)
     App.set_css_var(`text_color`, text)
     App.set_css_var(`border_color`, border)
-
     let main_background = App.colorlib.rgb_to_rgba(background, 0.93)
     App.set_css_var(`main_background`, main_background)
-
     let alt_color_0 = App.colorlib.rgb_to_rgba(text, 0.15)
     App.set_css_var(`alt_color_0`, alt_color_0)
-
     let alt_color_1 = App.colorlib.rgb_to_rgba(text, 0.20)
     App.set_css_var(`alt_color_1`, alt_color_1)
-
     let alt_color_2 = App.colorlib.rgb_to_rgba(text, 0.50)
     App.set_css_var(`alt_color_2`, alt_color_2)
-
     let alt_background = App.colorlib.rgb_to_rgba(background, 0.55)
     App.set_css_var(`alt_background`, alt_background)
-
     let alt_background_2 = App.colorlib.get_lighter_or_darker(background, 0.06)
     App.set_css_var(`alt_background_2`, alt_background_2)
-
     App.set_css_var(`font_size`, App.get_setting(`font_size`) + `px`)
     App.set_css_var(`font`, `${App.get_setting(`font`)}, sans-serif`)
-
     let w = `${(App.get_setting(`width`) / 100) * 800}px`
     App.set_css_var(`width`, w)
-
     let h = `${(App.get_setting(`height`) / 100) * 600}px`
     App.set_css_var(`height`, h)
-
     let item_height = 2.15
     let height_diff = 0.45
 
@@ -221,6 +204,11 @@ App.set_default_theme = () => {
   App.apply_theme(c1, c2)
 }
 
+App.set_color_auto = (background) => {
+  let text = App.colorlib.get_lighter_or_darker(background, App.color_contrast)
+  App.apply_theme(background, text)
+}
+
 App.random_background = async (feedback = true) => {
   let history_1 = await App.get_history(`.jpg`)
   let history_2 = await App.get_history(`.png`)
@@ -271,16 +259,31 @@ App.seeded_theme = (hostname) => {
     return App.get_random_int(0, App.seeded_theme_max, undefined, rand)
   }
 
-  let c1 = `rgb(${get()}, ${get()}, ${get()})`
-  let c2 = App.colorlib.get_lighter_or_darker(c1, App.color_contrast)
-  App.apply_theme(c1, c2)
+  let background = `rgb(${get()}, ${get()}, ${get()})`
+  App.set_color_auto(background)
 }
 
 App.check_item_colors = (item) => {
+  for (let line of App.get_setting(`domain_backgrounds`)) {
+    if (line.includes(`=`)) {
+      try {
+        let split = line.split(`=`)
+        let domain = split[0].trim()
+        let background = split[1].trim()
+
+        if (domain === item.hostname) {
+          App.set_color_auto(background)
+          return
+        }
+      }
+      catch (err) {
+        continue
+      }
+    }
+  }
+
   if (item.background) {
-    let c1 = item.background
-    let c2 = App.colorlib.get_lighter_or_darker(c1, App.color_contrast)
-    App.apply_theme(c1, c2)
+    App.set_color_auto(item.background)
   }
   else if (App.get_setting(`auto_theme`) === `domain`) {
     App.seeded_theme(item.hostname)
