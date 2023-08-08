@@ -162,10 +162,10 @@ App.apply_theme = (background, text) => {
     }
 
     if (App.get_setting(`color_transitions`)) {
-      App.set_css_var(`color_transitions`, `background-color 1400ms, color 1400ms`)
+      App.set_css_var(`color_transition`, `background-color 1400ms, color 600ms`)
     }
     else {
-      App.set_css_var(`color_transitions`, `none`)
+      App.set_css_var(`color_transition`, `none`)
     }
   }
   catch (err) {
