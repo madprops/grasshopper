@@ -1,7 +1,7 @@
 App.setup_commands = () => {
   let color_filters = []
 
-  for (let color in App.colors) {
+  for (let color of App.colors) {
     let icon = App.color_icons[color]
     let name = `${icon} Filter ${App.capitalize(color)}`
 
@@ -12,7 +12,7 @@ App.setup_commands = () => {
 
   let color_changers = []
 
-  for (let color in App.colors) {
+  for (let color of App.colors) {
     let icon = App.color_icons[color]
     let name = `${icon} Color ${App.capitalize(color)}`
 

@@ -874,3 +874,21 @@ select {
 .item_button:active {
   background-color: var(--alt_background_2);
 }
+
+/* Colors */
+
+.color_red .item_icon_container {
+  outline: 2px solid rgb(255, 77, 77);
+}
+
+.color_green .item_icon_container {
+  outline: 2px solid rgb(77, 255, 77);
+}
+
+.color_blue .item_icon_container {
+  outline: 2px solid rgb(77, 77, 255);
+}
+
+.color_yellow .item_icon_container {
+  outline: 2px solid rgb(255, 255, 77);
+}

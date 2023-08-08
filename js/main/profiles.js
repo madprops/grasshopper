@@ -29,7 +29,7 @@ App.setup_profile_editor = () => {
     })
 
     let color_select = DOM.el(`#profile_editor_color`)
-    let colors = [`none`, ...Object.keys(App.colors)]
+    let colors = [`none`, ...App.colors]
 
     for (let color of colors) {
       let option = DOM.create(`option`)
@@ -704,7 +704,7 @@ App.get_color_items = (mode, action = `filter`) => {
     })
   }
 
-  for (let color in App.colors) {
+  for (let color of App.colors) {
     if (!count[color]) {
       continue
     }
@@ -1226,7 +1226,7 @@ App.filter_color = (mode, color) => {
 
 App.prev_color_select = () => {
   let color_select = DOM.el(`#profile_editor_color`)
-  let colors = [`none`, ...Object.keys(App.colors)]
+  let colors = [`none`, ...App.colors]
   let index = colors.indexOf(color_select.value)
   index--
 
@@ -1241,7 +1241,7 @@ App.prev_color_select = () => {
 
 App.next_color_select = () => {
   let color_select = DOM.el(`#profile_editor_color`)
-  let colors = [`none`, ...Object.keys(App.colors)]
+  let colors = [`none`, ...App.colors]
   let index = colors.indexOf(color_select.value)
   index++
 

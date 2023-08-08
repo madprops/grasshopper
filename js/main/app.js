@@ -57,13 +57,7 @@ App.default_profile_background_color = `rgb(50, 50, 50)`
 App.default_profile_text_color = `rgb(200, 200, 200)`
 App.hostname_colors = {}
 App.tabs_items = []
-
-App.colors = {
-  red: `rgb(255, 77, 77)`,
-  green: `rgb(77, 255, 77)`,
-  blue: `rgb(77, 77, 255)`,
-  yellow: `rgb(255, 255, 77)`,
-}
+App.colors = [`red`, `green`, `blue`, `yellow`]
 
 App.color_icons = {
   none: `⚫`,

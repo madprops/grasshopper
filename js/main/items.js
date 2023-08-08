@@ -418,14 +418,6 @@ App.check_item_icon = (item) => {
     }
 
     container.append(icon)
-
-    if (item.color) {
-      let c = App.colors[item.color]
-      container.style.outline = `2px solid ${c}`
-    }
-    else {
-      container.style.outline = `unset`
-    }
   }
 }
 
@@ -459,11 +451,22 @@ App.check_view_media = (item) => {
   }
 }
 
+App.set_item_color = (item) => {
+  for (let c of App.colors) {
+    item.element.classList.remove(`color_${c}`)
+  }
+
+  if (item.color) {
+    item.element.classList.add(`color_${item.color}`)
+  }
+}
+
 App.refresh_item_element = (item) => {
   App.check_tab_item(item)
   App.check_item_icon(item)
   App.check_view_media(item)
   App.set_item_text(item)
+  App.set_item_color(item)
 }
 
 App.create_item_element = (item) => {
@@ -489,6 +492,7 @@ App.create_item_element = (item) => {
   text.append(text_2)
   item.element.append(text)
   App.set_item_text(item)
+  App.set_item_color(item)
 
   if (item.mode === `tabs`) {
     item.element.draggable = true
