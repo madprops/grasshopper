@@ -451,13 +451,16 @@ App.check_view_media = (item) => {
   }
 }
 
-App.set_item_color = (item) => {
-  for (let c of App.colors) {
-    item.element.classList.remove(`color_${c}`)
-  }
+App.set_color_icon = (item) => {
+  let el = DOM.el(`.item_info_color`, item.element)
 
   if (item.color) {
-    item.element.classList.add(`color_${item.color}`)
+    el.textContent = App.color_icons[item.color]
+    el.classList.remove(`hidden`)
+  }
+  else {
+    el.textContent = ``
+    el.classList.add(`hidden`)
   }
 }
 
@@ -466,11 +469,15 @@ App.refresh_item_element = (item) => {
   App.check_item_icon(item)
   App.check_view_media(item)
   App.set_item_text(item)
-  App.set_item_color(item)
+  App.set_color_icon(item)
 }
 
 App.create_item_element = (item) => {
   item.element.innerHTML = ``
+
+  let color_icon = DOM.create(`div`, `item_info_color hidden`)
+  item.element.append(color_icon)
+  App.set_color_icon(item)
 
   if (App.get_setting(`show_icons`)) {
     let icon_container = DOM.create(`div`, `item_icon_container`)
@@ -492,7 +499,6 @@ App.create_item_element = (item) => {
   text.append(text_2)
   item.element.append(text)
   App.set_item_text(item)
-  App.set_item_color(item)
 
   if (item.mode === `tabs`) {
     item.element.draggable = true
