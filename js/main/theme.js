@@ -307,19 +307,21 @@ App.check_item_colors = (item) => {
     return
   }
 
-  for (let line of App.get_setting(`domain_backgrounds`)) {
-    if (line.includes(`=`)) {
-      try {
-        let split = line.split(`=`)
-        let d = split[0].trim()
+  if (item.hostname) {
+    for (let line of App.get_setting(`domain_backgrounds`)) {
+      if (line.includes(`=`)) {
+        try {
+          let split = line.split(`=`)
+          let d = split[0].trim()
 
-        if ((d === item.hostname) || (App.get_hostname(d) === item.hostname)) {
-          App.set_color_auto(split[1].trim())
-          return
+          if ((d === item.hostname) || (App.get_hostname(d) === item.hostname)) {
+            App.set_color_auto(split[1].trim())
+            return
+          }
         }
-      }
-      catch (err) {
-        continue
+        catch (err) {
+          continue
+        }
       }
     }
   }
