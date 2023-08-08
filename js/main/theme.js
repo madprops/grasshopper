@@ -176,7 +176,7 @@ App.apply_theme = (background, text, check = false, safe_mode = false) => {
       App.set_css_var(`color_transition`, `background-color 1400ms, color 600ms`)
     }
     else {
-      App.set_cs_var(`color_transition`, `none`)
+      App.set_css_var(`color_transition`, `none`)
     }
   }
   catch (err) {
@@ -186,7 +186,7 @@ App.apply_theme = (background, text, check = false, safe_mode = false) => {
 }
 
 App.theme_safe_mode = () => {
-  App.apply_theme(`rgb(30, 30, 30)`, `rgb(225, 225, 225)`, false, true)
+  App.apply_theme(`rgb(33, 33, 33)`, `rgb(222, 222, 222)`, false, true)
 }
 
 App.set_css_var = (name, value) => {
