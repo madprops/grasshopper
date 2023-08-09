@@ -21,7 +21,10 @@ App.get_domain_props = (setting, item) => {
           continue
         }
 
-        if ((domain === item.hostname) || (App.get_hostname(domain) === item.hostname)) {
+        let clean = App.format_url(domain)
+        clean = App.remove_protocol(clean)
+
+        if (item.path.startsWith(clean)) {
           return {
             prop_1: prop_1,
             prop_2: prop_2,
@@ -29,6 +32,7 @@ App.get_domain_props = (setting, item) => {
         }
       }
       catch (err) {
+        App.log(err, `error`)
         continue
       }
     }
