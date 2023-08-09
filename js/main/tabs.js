@@ -121,7 +121,6 @@ App.get_tabs = async () => {
 App.after_focus_tab = (method) => {
   if (method === `normal`) {
     App.check_close_on_focus()
-    App.switch_to_tabs()
   }
 }
 
@@ -962,14 +961,6 @@ App.browser_back = () => {
 
 App.browser_forward = () => {
   browser.tabs.goForward()
-}
-
-App.switch_to_tabs = () => {
-  if (App.get_setting(`switch_to_tabs`)) {
-    if (App.window_mode !== `tabs`) {
-      App.show_mode(`tabs`)
-    }
-  }
 }
 
 App.get_close_tabs_items = () => {

@@ -1165,7 +1165,6 @@ App.after_open = (shift = false) => {
   }
 
   App.check_close_on_open()
-  App.switch_to_tabs()
 }
 
 App.open_items = (item, shift, multiple = true) => {

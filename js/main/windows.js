@@ -206,5 +206,8 @@ App.restore = () => {
     if (App.window_mode === `tabs`) {
       App.focus_current_tab()
     }
+    else {
+      App.show_first_mode()
+    }
   }
 }

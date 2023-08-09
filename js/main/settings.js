@@ -84,7 +84,6 @@ App.build_default_settings = () => {
   obj.middle_click_pinline = {value: `close_normal_tabs`, category: category, version: 1}
 
   category = `more`
-  obj.switch_to_tabs = {value: true, category: category, version: 1}
   obj.single_new_tab = {value: true, category: category, version: 1}
   obj.auto_restore = {value: true, category: category, version: 1}
   obj.close_on_focus = {value: true, category: category, version: 1}
