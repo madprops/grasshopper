@@ -518,7 +518,7 @@ App.apply_profiles = (url) => {
     }
   }
 
-  App.check_active_color()
+  App.check_item_theme()
 }
 
 App.get_profile = (item_url) => {

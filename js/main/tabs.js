@@ -212,7 +212,7 @@ App.refresh_tab = async (id, select, info) => {
     }
   }
 
-  App.check_active_color()
+  App.check_item_theme()
 }
 
 App.mute_tab = async (id) => {
