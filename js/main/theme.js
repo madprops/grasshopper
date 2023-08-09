@@ -279,7 +279,12 @@ App.parse_color = (color) => {
 App.random_background = async (feedback = true) => {
   let history_1 = await App.get_history(`.jpg`)
   let history_2 = await App.get_history(`.png`)
-  let history_3 = await App.get_history(`.gif`)
+  let history_3 = []
+
+  if (App.get_setting(`random_background_gifs`)) {
+    history_3 = await App.get_history(`.gif`)
+  }
+
   let history = [...history_1, ...history_2, ...history_3]
   App.shuffle_array(history)
 
