@@ -449,6 +449,7 @@ App.setup_settings = () => {
     App.settings_make_menu(`color_mode`, [
       [`None`, `none`],
       [`Icon`, `icon`],
+      [`Icon 2`, `icon_2`],
       [`Item`, `item`],
     ])
 

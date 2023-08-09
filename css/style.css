@@ -911,3 +911,7 @@ select {
   color: white;
   border: var(--color_border);
 }
+
+.color_only_icon .item_icon_container {
+  display: none;
+}

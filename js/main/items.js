@@ -466,12 +466,19 @@ App.apply_color_mode = (item) => {
   let color_mode = App.get_setting(`color_mode`)
   let color = item.color || App.domain_color(item)
 
-  if (color_mode === `icon`) {
+  if (color_mode.startsWith(`icon`)) {
     let el = DOM.el(`.item_info_color`, item.element)
 
     if (color) {
       el.textContent = App.color_icons[color]
       el.classList.remove(`hidden`)
+
+      if (color_mode === `icon_2`) {
+        item.element.classList.add(`color_only_icon`)
+      }
+      else {
+        item.element.classList.remove(`color_only_icon`)
+      }
     }
     else {
       el.textContent = ``
