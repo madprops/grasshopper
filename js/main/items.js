@@ -451,16 +451,26 @@ App.check_view_media = (item) => {
   }
 }
 
-App.set_color_icon = (item) => {
-  let el = DOM.el(`.item_info_color`, item.element)
+App.apply_color_mode = (item) => {
+  let color_mode = App.get_setting(`color_mode`)
 
-  if (item.color) {
-    el.textContent = App.color_icons[item.color]
-    el.classList.remove(`hidden`)
+  if (color_mode === `icon`) {
+    let el = DOM.el(`.item_info_color`, item.element)
+
+    if (item.color) {
+      el.textContent = App.color_icons[item.color]
+      el.classList.remove(`hidden`)
+    }
+    else {
+      el.textContent = ``
+      el.classList.add(`hidden`)
+    }
   }
-  else {
-    el.textContent = ``
-    el.classList.add(`hidden`)
+  else if (color_mode === `item`) {
+    if (item.color) {
+      item.element.classList.add(`colored`)
+      item.element.classList.add(`color_${item.color}`)
+    }
   }
 }
 
@@ -469,7 +479,7 @@ App.refresh_item_element = (item) => {
   App.check_item_icon(item)
   App.check_view_media(item)
   App.set_item_text(item)
-  App.set_color_icon(item)
+  App.apply_color_mode(item)
 }
 
 App.create_item_element = (item) => {
@@ -477,7 +487,7 @@ App.create_item_element = (item) => {
 
   let color_icon = DOM.create(`div`, `item_info_color hidden`)
   item.element.append(color_icon)
-  App.set_color_icon(item)
+  App.apply_color_mode(item)
 
   if (App.get_setting(`show_icons`)) {
     let icon_container = DOM.create(`div`, `item_icon_container`)

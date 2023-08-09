@@ -322,6 +322,10 @@ svg {
   background-color: var(--alt_color_1);
 }
 
+.colored.selected {
+  border: 2px solid white;
+}
+
 .hidden {
   display: none !important;
 }
@@ -877,18 +881,26 @@ select {
 
 /* Colors */
 
-.color_red .item_icon_container {
-  outline: 2px solid rgb(255, 77, 77);
+.color_red {
+  background-color: rgb(255, 77, 77);
+  color: white;
+  border: 2px solid black;
 }
 
-.color_green .item_icon_container {
-  outline: 2px solid rgb(77, 255, 77);
+.color_green {
+  background-color: rgb(77, 255, 77);
+  color: white;
+  border: 2px solid black;
 }
 
-.color_blue .item_icon_container {
-  outline: 2px solid rgb(77, 77, 255);
+.color_blue {
+  background-color: rgb(77, 77, 255);
+  color: white;
+  border: 2px solid black;
 }
 
-.color_yellow .item_icon_container {
-  outline: 2px solid rgb(255, 255, 77);
+.color_yellow {
+  background-color: rgb(255, 255, 77);
+  color: white;
+  border: 2px solid black;
 }
