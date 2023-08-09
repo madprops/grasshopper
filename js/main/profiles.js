@@ -582,6 +582,7 @@ App.import_profiles = () => {
       App.profiles = json
       App.check_profiles()
       App.stor_save_profiles()
+      App.clear_all_items()
       App.show_mode(App.active_mode)
     }
   })
@@ -979,7 +980,7 @@ App.remove_all_profiles = () => {
 App.after_profile_remove = () => {
   App.clean_profiles()
   App.stor_save_profiles()
-  App.clear_items(`tabs`)
+  App.clear_all_items()
   App.show_mode(App.active_mode)
 }
 

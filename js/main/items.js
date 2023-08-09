@@ -812,11 +812,12 @@ App.show_mode = async (mode, cycle = false) => {
   App.set_filter_mode(mode, m[0], false)
   App[`${mode}_filter_mode`] = m[0]
   App[`last_${mode}_query`] = undefined
+  let persistent = App.persistent_modes.includes(mode)
   let maxed = App.maxed_items.includes(mode)
   let items_ready = false
   let items
 
-  if (App.persistent_modes.includes(mode)) {
+  if (persistent) {
     if (App[`${mode}_items`].length > 0) {
       items = App[`${mode}_items`]
       items_ready = true
@@ -841,8 +842,10 @@ App.show_mode = async (mode, cycle = false) => {
     items = await App[`get_${mode}`]()
   }
 
-  if (mode !== App.active_mode) {
-    return
+  if (!persistent) {
+    if (mode !== App.active_mode) {
+      return
+    }
   }
 
   if (mode === `tabs`) {
