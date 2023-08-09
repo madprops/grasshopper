@@ -207,12 +207,26 @@ App.light_theme = () => {
 
 App.random_theme = () => {
   let c1, c2
-  let include_light = App.get_setting(`random_theme_light`)
+  let types = []
 
-  if (include_light && (App.get_random_int(0, 1) === 1)) {
+  if (App.get_setting(`random_theme_light`)) {
+    types.push(`light`)
+  }
+
+  if (App.get_setting(`random_theme_dark`)) {
+    types.push(`dark`)
+  }
+
+  if (types.length === 0) {
+    return
+  }
+
+  let type = App.random_choice(types)
+
+  if (type === `light`) {
     c1 = App.colorlib.get_light_color()
   }
-  else {
+  else if (type === `dark`) {
     c1 = App.colorlib.get_dark_color()
   }
 

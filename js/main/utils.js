@@ -342,3 +342,7 @@ App.get_random_int = (min, max, exclude = undefined, random_function) => {
 
   return num
 }
+
+App.random_choice = (list) => {
+  return list[App.get_random_int(0, list.length - 1)]
+}

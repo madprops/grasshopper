@@ -35,6 +35,7 @@ App.build_default_settings = () => {
   obj.color_transitions = {value: false, category: category, version: 1}
   obj.random_background_gifs = {value: true, category: category, version: 1}
   obj.random_theme_light = {value: true, category: category, version: 1}
+  obj.random_theme_dark = {value: true, category: category, version: 1}
 
   category = `warns`
   obj.warn_on_close_tabs = {value: `special`, category: category, version: 1}
