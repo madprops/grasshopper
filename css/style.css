@@ -882,25 +882,25 @@ select {
 /* Colors */
 
 .color_red {
-  background-color: rgb(255, 77, 77);
+  background-color: rgb(172, 59, 59);
   color: white;
   border: 2px solid black;
 }
 
 .color_green {
-  background-color: rgb(77, 255, 77);
+  background-color: rgb(46, 104, 46);
   color: white;
   border: 2px solid black;
 }
 
 .color_blue {
-  background-color: rgb(77, 77, 255);
+  background-color: rgb(59, 59, 147);
   color: white;
   border: 2px solid black;
 }
 
 .color_yellow {
-  background-color: rgb(255, 255, 77);
+  background-color: rgb(128, 128, 41);
   color: white;
   border: 2px solid black;
 }
