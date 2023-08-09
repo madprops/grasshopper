@@ -874,43 +874,7 @@ App.settings_index = () => {
 App.show_settings_menu = () => {
   let category = App.settings_category
   let btn = DOM.el(`#settings_title_${category}`)
-  let items = []
-
-  items.push({
-    text: `Jump`,
-    get_items: () => {
-      return App.settings_menu_items()
-    }
-  })
-
-  items.push({
-    text: `Reset`,
-    action: () => {
-      App.reset_settings(category)
-    }
-  })
-
-  items.push({
-    text: `Data`,
-    get_items: () => {
-      return App.settings_data_items()
-    }
-  })
-
-  items.push({
-    text: `Info`,
-    action: () => {
-      App.settings_info()
-    }
-  })
-
-  items.push({
-    text: `Close`,
-    action: () => {
-      App.hide_window()
-    }
-  })
-
+  let items = App.settings_menu_items(`normal`, category)
   NeedContext.show_on_element(btn, items)
 }
 
@@ -1091,23 +1055,38 @@ App.tab_warn_opts = [
   [`Special`, `special`],
 ]
 
-App.settings_menu_items = (action = `normal`) => {
+App.settings_menu_items = (action = `normal`, category) => {
   let items = []
 
-  for (let c of App.settings_categories) {
-    let icon = App.settings_icons[c]
-    let name = `${icon} ${App.capitalize(c)}`
+  if (action === `normal` || action === `main_menu`) {
+    for (let c of App.settings_categories) {
+      let icon = App.settings_icons[c]
+      let name = `${icon} ${App.capitalize(c)}`
+
+      items.push({
+        text: name,
+        action: () => {
+          App.show_settings_category(c)
+        },
+      })
+    }
+  }
+
+  if (action === `normal`) {
+    items.push({separator: true})
 
     items.push({
-      text: name,
+      text: `Reset`,
       action: () => {
-        App.show_settings_category(c)
-      },
+        App.reset_settings(category)
+      }
     })
   }
 
-  if (action === `main_menu`) {
-    items.push({separator: true})
+  if (action === `normal` || action === `main_menu`) {
+    if (action === `main_menu`) {
+      items.push({separator: true})
+    }
 
     items.push({
       text: `Data`,
@@ -1117,12 +1096,14 @@ App.settings_menu_items = (action = `normal`) => {
     })
   }
 
-  return items
-}
+  if (action === `normal`) {
+    items.push({
+      text: `Close`,
+      action: () => {
+        App.hide_window()
+      }
+    })
+  }
 
-App.settings_info = () => {
-  let s = `There are multiple setting sections.`
-  s += ` These are saved locally and not synced.`
-  s += ` To backup or move this data use the Export/Import feature in the menu.`
-  App.show_alert_2(s)
+  return items
 }
