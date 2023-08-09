@@ -231,8 +231,23 @@ App.settings_setup_text = (container) => {
           }
 
           App.settings_do_action(action)
-        }
+          el.focus()
+        },
       },
+      {
+        name: `Clear`,  action: () => {
+          if (is_textarea) {
+            App.set_setting(setting, [])
+          }
+          else {
+            App.set_setting(setting, ``)
+          }
+
+          el.value = ``
+          App.settings_do_action(action)
+          el.focus()
+        },
+      }
     ]
 
     if (setting === `background_image`) {
