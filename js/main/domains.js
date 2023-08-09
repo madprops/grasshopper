@@ -1,22 +1,30 @@
-App.domain_color = (item) => {
+App.get_domain_props = (setting, item) => {
   if (!item || !item.hostname) {
     return
   }
 
-  for (let line of App.get_setting(`domain_colors`)) {
+  for (let line of App.get_setting(setting)) {
     if (line.includes(`=`)) {
       try {
         let split = line.split(`=`)
         let domain = split[0].trim()
-        let color = split[1].trim().toLowerCase()
+        let prop_1 = split[1].trim()
+        let prop_2
 
-        if (!domain || !color) {
+        if (prop_1.includes(`;`)) {
+          let split_2 = prop_1.split(`;`)
+          prop_1 = split_2[0].trim()
+          prop_2 = split_2[1].trim()
+        }
+
+        if (!domain || !prop_1) {
           continue
         }
 
         if ((domain === item.hostname) || (App.get_hostname(domain) === item.hostname)) {
-          if (App.colors.includes(color)) {
-            return color
+          return {
+            prop_1: prop_1,
+            prop_2: prop_2,
           }
         }
       }
@@ -27,29 +35,18 @@ App.domain_color = (item) => {
   }
 }
 
-App.domain_icon = (item) => {
-  if (!item || !item.hostname) {
-    return
+App.domain_color = (item) => {
+  let color = App.get_domain_props(`domain_colors`, item)
+
+  if (color && App.colors.includes(color.prop_1.toLowerCase())) {
+    return color.prop_1
   }
+}
 
-  for (let line of App.get_setting(`domain_icons`)) {
-    if (line.includes(`=`)) {
-      try {
-        let split = line.split(`=`)
-        let domain = split[0].trim()
-        let icon = split[1].trim()
+App.domain_icon = (item) => {
+  let icon = App.get_domain_props(`domain_icons`, item)
 
-        if (!domain || !icon) {
-          continue
-        }
-
-        if ((domain === item.hostname) || (App.get_hostname(domain) === item.hostname)) {
-          return icon
-        }
-      }
-      catch (err) {
-        continue
-      }
-    }
+  if (icon) {
+    return icon.prop_1
   }
 }

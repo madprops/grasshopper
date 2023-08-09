@@ -362,31 +362,11 @@ App.do_check_active_color = () => {
     return
   }
 
-  for (let line of App.get_setting(`domain_themes`)) {
-    if (line.includes(`=`)) {
-      try {
-        let split = line.split(`=`)
-        let domain = split[0].trim()
-        let background, text
+  let domain_theme = App.get_domain_props(`domain_themes`, item)
 
-        if (split[1].includes(`;`)) {
-          let split_2 = split[1].split(`;`)
-          background = split_2[0].trim()
-          text = split_2[1].trim()
-        }
-        else {
-          background = split[1].trim()
-        }
-
-        if ((domain === item.hostname) || (App.get_hostname(domain) === item.hostname)) {
-          App.set_color_auto(background, text)
-          return
-        }
-      }
-      catch (err) {
-        continue
-      }
-    }
+  if (domain_theme) {
+    App.set_color_auto(domain_theme.prop_1, domain_theme.prop_2)
+    return
   }
 
   if (App.get_setting(`auto_theme`) === `domain`) {
