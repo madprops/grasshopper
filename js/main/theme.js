@@ -184,6 +184,17 @@ App.apply_theme = (background, text, check = false, safe_mode = false) => {
     else {
       App.set_css_var(`border_radius`, `0`)
     }
+
+    let hover_opts = [`glow`, `underline`, `bold`]
+    let hover_effect = App.get_setting(`hover_effect`)
+
+    for (let eff of hover_opts) {
+      main.classList.remove(`hover_effect_${eff}`)
+    }
+
+    if (hover_opts.includes(hover_effect)) {
+      main.classList.add(`hover_effect_${hover_effect}`)
+    }
   }
   catch (err) {
     App.log(err, `error`)

@@ -270,8 +270,16 @@ svg {
   flex-shrink: 0;
 }
 
-.item:hover .item_text {
+.hover_effect_glow .item:hover .item_text {
   text-shadow: 0 0 1rem currentColor;
+}
+
+.hover_effect_underline .item:hover .item_text {
+  text-decoration: underline;
+}
+
+.hover_effect_bold .item:hover .item_text {
+  font-weight: bold;
 }
 
 .has_pin_icon .pin_item .item_info_pin {

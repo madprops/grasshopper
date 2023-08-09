@@ -22,6 +22,7 @@ App.build_default_settings = () => {
   obj.domain_themes = {value: [], category: category, version: 1}
   obj.domain_colors = {value: [], category: category, version: 1}
   obj.domain_icons = {value: [], category: category, version: 1}
+  obj.hover_effect = {value: `glow`, category: category, version: 1}
 
   category = `theme`
   obj.background_color = {value: `rgb(45, 45, 55)`, category: category, version: 1}
@@ -470,6 +471,13 @@ App.setup_settings = () => {
       [`Icon`, `icon`],
       [`Icon 2`, `icon_2`],
       [`Item`, `item`],
+    ])
+
+    App.settings_make_menu(`hover_effect`, [
+      [`None`, `none`],
+      [`Glow`, `glow`],
+      [`Underline`, `underline`],
+      [`Bold`, `bold`],
     ])
 
     App.settings_make_menu(`width`, App.get_size_options(), () => {
