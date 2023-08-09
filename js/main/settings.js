@@ -378,7 +378,8 @@ App.setup_settings = () => {
     },
     on_hide: () => {
       App.apply_theme()
-      App.show_first_mode(true)
+      App.clear_all_items()
+      App.show_first_mode()
     },
   }
 

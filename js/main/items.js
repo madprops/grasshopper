@@ -237,14 +237,24 @@ App.hide_item = (it) => {
 
 App.clear_items = (mode) => {
   App[`${mode}_items`] = []
+  let c = DOM.el(`#${mode}_container`)
+
+  if (c) {
+    DOM.el(`#${mode}_container`).innerHTML = ``
+  }
+}
+
+App.clear_all_items = () => {
+  for (let mode of App.modes) {
+    App.clear_items(mode)
+  }
 }
 
 App.process_info_list = (mode, info_list) => {
   let container = DOM.el(`#${mode}_container`)
-  container.innerHTML = ``
   App[`${mode}_idx`] = 0
 
-  if (mode !== `tabs`) {
+  if (!App.persistent_modes.includes(mode)) {
     App.clear_items(mode)
   }
 
@@ -786,19 +796,6 @@ App.show_mode = async (mode, cycle = false) => {
   App.windows[mode].show()
   App.empty_footer_info()
   App.cancel_filter()
-
-  // Unload inactive items
-  for (let m of App.modes) {
-    if (m !== `tabs`) {
-      App.clear_items(m)
-      let c = DOM.el(`#${m}_container`)
-
-      if (c) {
-        c.innerHTML = ``
-      }
-    }
-  }
-
   let container = DOM.el(`#${mode}_container`)
   App.set_filter(mode, value, false)
   let m = App.filter_modes(mode)[0]
@@ -809,11 +806,22 @@ App.show_mode = async (mode, cycle = false) => {
   let items_ready = false
   let items
 
-  if (mode === `tabs`) {
-    if (App.tabs_items.length > 0) {
-      items = App.tabs_items
+  if (App.persistent_modes.includes(mode)) {
+    if (App[`${mode}_items`].length > 0) {
+      items = App[`${mode}_items`]
       items_ready = true
     }
+  }
+
+  // Unload inactive items
+  for (let m of App.modes) {
+    if (App.persistent_modes.includes(m)) {
+      if (App[`${m}_items`].length > 0) {
+        continue
+      }
+    }
+
+    App.clear_items(m)
   }
 
   if (maxed && value) {
@@ -991,14 +999,8 @@ App.mode_order_down = (el) => {
   }
 }
 
-App.show_first_mode = (clear = false) => {
-  let mode = App.mode_order[0]
-
-  if (clear) {
-    App.clear_items(mode)
-  }
-
-  App.show_mode(mode)
+App.show_first_mode = () => {
+  App.show_mode(App.mode_order[0])
 }
 
 App.focus_or_open_item = async (item) => {

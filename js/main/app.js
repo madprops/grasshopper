@@ -61,6 +61,7 @@ App.check_active_color_delay = 33
 App.theme_safe_mode_msg = false
 App.last_filter_input = 0
 App.recent_filter_input = 1250
+App.persistent_modes = [`tabs`]
 
 App.color_icons = {
   none: `⚫`,
