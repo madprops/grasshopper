@@ -56,7 +56,7 @@ App.color_contrast = 0.8
 App.default_profile_background_color = `rgb(50, 50, 50)`
 App.default_profile_text_color = `rgb(200, 200, 200)`
 App.hostname_colors = {}
-App.colors = [`red`, `green`, `blue`, `yellow`, `purple`]
+App.colors = [`red`, `green`, `blue`, `yellow`, `purple`, `orange`]
 App.check_active_color_delay = 33
 App.theme_safe_mode_msg = false
 App.last_filter_input = 0
@@ -70,6 +70,7 @@ App.color_icons = {
   blue: `🔵`,
   yellow: `🟡`,
   purple: `🟣`,
+  orange: `🟠`,
 }
 
 App.settings_icons = {
