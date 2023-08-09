@@ -1,5 +1,5 @@
 App.get_domain_props = (setting, item) => {
-  if (!item || !item.hostname) {
+  if (!item || !item.path) {
     return
   }
 

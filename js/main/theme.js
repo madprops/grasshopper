@@ -352,7 +352,7 @@ App.do_check_active_color = () => {
   App.check_active_color_debouncer.cancel()
   let item = App.get_active_tab_item()
 
-  if (!item || !item.hostname) {
+  if (!item || !item.hostname || !item.path) {
     App.set_default_theme()
     return
   }
