@@ -59,6 +59,8 @@ App.hostname_colors = {}
 App.colors = [`red`, `green`, `blue`, `yellow`]
 App.check_active_color_delay = 33
 App.theme_safe_mode_msg = false
+App.last_filter_input = 0
+App.recent_filter_input = 1250
 
 App.color_icons = {
   none: `⚫`,
