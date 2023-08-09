@@ -68,6 +68,9 @@ App.show_mode = async (mode, cycle = false) => {
   else if (!items_ready) {
     App.process_info_list(mode, items)
   }
+  else {
+    App.update_footer_info(App.get_selected(mode))
+  }
 
   if (value) {
     App.do_filter(mode, true)
@@ -176,4 +179,8 @@ App.update_mode_order = () => {
 
 App.show_first_mode = () => {
   App.show_mode(App.mode_order[0])
+}
+
+App.first_mode = () => {
+  return App.mode_order[0]
 }
