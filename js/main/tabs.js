@@ -49,10 +49,8 @@ App.setup_tabs = () => {
     App.log(`Tab Removed: ID: ${id}`)
 
     if (info.windowId === App.window_id) {
-      if (App.active_mode === `tabs`) {
-        App.remove_closed_tab(id)
-        App.tabs_check()
-      }
+      App.remove_closed_tab(id)
+      App.tabs_check()
     }
   })
 
@@ -728,10 +726,6 @@ App.hide_playing = () => {
 }
 
 App.check_playing = () => {
-  if (App.active_mode !== `tabs`) {
-    return
-  }
-
   let playing = App.get_playing_tabs()
 
   if (playing.length > 0) {
@@ -973,12 +967,7 @@ App.browser_forward = () => {
 App.switch_to_tabs = () => {
   if (App.get_setting(`switch_to_tabs`)) {
     if (App.window_mode !== `tabs`) {
-      if (App.active_mode === `tabs`) {
-        App.raise_window(`tabs`)
-      }
-      else {
-        App.show_mode(`tabs`)
-      }
+      App.show_mode(`tabs`)
     }
   }
 }
