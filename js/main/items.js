@@ -434,18 +434,9 @@ App.check_item_icon = (item) => {
 
 App.check_view_media = (item) => {
   let type = App.get_media_type(item)
-
-  if (!type) {
-    return
-  }
-
-  if (!App.get_setting(`${type}_icon`)) {
-    return
-  }
-
   let view_media = DOM.el(`.view_media_button`, item.element)
 
-  if (type) {
+  if (type && App.get_setting(`${type}_icon`)) {
     view_media.textContent = App.get_setting(`${type}_icon`)
     view_media.title = App.capitalize(type)
     view_media.classList.remove(`hidden`)
