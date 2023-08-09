@@ -482,7 +482,7 @@ App.setup_settings = () => {
 
     App.settings_make_menu(`auto_restore`, [
       [`Never`, `never`],
-      [`1 Seconds`, `1_seconds`],
+      [`1 Second`, `1_seconds`],
       [`5 Seconds`, `5_seconds`],
       [`10 Seconds`, `10_seconds`],
       [`30 Seconds`, `30_seconds`],
