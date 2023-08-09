@@ -5,6 +5,7 @@
   --scroller_shadow: inset 0 0 0.1rem currentColor;
   --scroller_padding: 0.29rem;
   --border_radius: 3px;
+  --color_border: 2px solid black;
 }
 
 body, html {
@@ -884,23 +885,23 @@ select {
 .color_red {
   background-color: rgb(172, 59, 59);
   color: white;
-  border: 2px solid black;
+  border: var(--color_border);
 }
 
 .color_green {
   background-color: rgb(46, 104, 46);
   color: white;
-  border: 2px solid black;
+  border: var(--color_border);
 }
 
 .color_blue {
   background-color: rgb(59, 59, 147);
   color: white;
-  border: 2px solid black;
+  border: var(--color_border);
 }
 
 .color_yellow {
   background-color: rgb(128, 128, 41);
   color: white;
-  border: 2px solid black;
+  border: var(--color_border);
 }
