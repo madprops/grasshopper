@@ -140,22 +140,11 @@ App.setup_window = () => {
     }
 
     if (App.get_setting(`auto_restore`)) {
-      clearInterval(App.refocus_timeout)
+      clearInterval(App.restore_timeout)
 
-      App.refocus_timeout = setTimeout(() => {
-        if (NeedContext.open) {
-          return
-        }
-
-        if (App.on_items()) {
-          App.deselect(App.window_mode, `up`)
-          App.show_all()
-
-          if (App.window_mode === `tabs`) {
-            App.focus_current_tab()
-          }
-        }
-      }, App.refocus_delay)
+      App.restore_timeout = setTimeout(() => {
+        App.restore()
+      }, App.restore_delay)
     }
   })
 
@@ -163,7 +152,7 @@ App.setup_window = () => {
     App.item_range_on = false
 
     if (App.get_setting(`auto_restore`)) {
-      clearInterval(App.refocus_timeout)
+      clearInterval(App.restore_timeout)
     }
   })
 }
@@ -202,5 +191,20 @@ App.check_close_on_focus = () => {
 App.check_close_on_open = () => {
   if (App.get_setting(`close_on_open`)) {
     App.close_window()
+  }
+}
+
+App.restore = () => {
+  if (NeedContext.open) {
+    return
+  }
+
+  if (App.on_items()) {
+    App.deselect(App.window_mode, `up`)
+    App.show_all()
+
+    if (App.window_mode === `tabs`) {
+      App.focus_current_tab()
+    }
   }
 }
