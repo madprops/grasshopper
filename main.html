@@ -238,9 +238,14 @@
           <div id="settings_auto_background" class="settings_menu button" data-setting="auto_background"></div>
         </div>
 
-        <div class="settings_item" title="Set fixed colors per domain. You can specify only the background or both background and text colors if you separate them wtih a semicolon. Format: example.com = rgb(0, 0, 0) ; rgb(200, 200, 200). Hex and color names are also supported">
-          <div class="settings_label">Domain Backgrounds</div>
-          <textarea autocomplete="off" class="text settings_textarea" id="settings_domain_backgrounds" data-setting="domain_backgrounds" rows="3" placeholder="One domain per line"></textarea>
+        <div class="settings_item" title="Set fixed themes per domain. You can specify only the background or both background and text colors if you separate them wtih a semicolon. Format: example.com = rgb(0, 0, 0) ; rgb(200, 200, 200). Hex and color names are also supported">
+          <div class="settings_label">Domain Themes</div>
+          <textarea autocomplete="off" class="text settings_textarea" id="settings_domain_themes" data-setting="domain_themes" rows="3" placeholder="One domain per line"></textarea>
+        </div>
+
+        <div class="settings_item" title="Set fixed colors per domain. Format: example.com = green">
+          <div class="settings_label">Domain Colors</div>
+          <textarea autocomplete="off" class="text settings_textarea" id="settings_domain_colors" data-setting="domain_colors" rows="3" placeholder="One domain per line"></textarea>
         </div>
 
         <div class="settings_item" title="Warn when duplicating tabs">

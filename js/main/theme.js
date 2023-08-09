@@ -362,11 +362,11 @@ App.do_check_active_color = () => {
     return
   }
 
-  for (let line of App.get_setting(`domain_backgrounds`)) {
+  for (let line of App.get_setting(`domain_themes`)) {
     if (line.includes(`=`)) {
       try {
         let split = line.split(`=`)
-        let d = split[0].trim()
+        let domain = split[0].trim()
         let background, text
 
         if (split[1].includes(`;`)) {
@@ -378,7 +378,7 @@ App.do_check_active_color = () => {
           background = split[1].trim()
         }
 
-        if ((d === item.hostname) || (App.get_hostname(d) === item.hostname)) {
+        if ((domain === item.hostname) || (App.get_hostname(domain) === item.hostname)) {
           App.set_color_auto(background, text)
           return
         }
@@ -395,4 +395,29 @@ App.do_check_active_color = () => {
   }
 
   App.set_default_theme()
+}
+
+App.domain_colored = (item) => {
+  if (!item || !item.hostname) {
+    return
+  }
+
+  for (let line of App.get_setting(`domain_colors`)) {
+    if (line.includes(`=`)) {
+      try {
+        let split = line.split(`=`)
+        let domain = split[0].trim()
+        let color = split[1].trim().toLowerCase()
+
+        if ((domain === item.hostname) || (App.get_hostname(domain) === item.hostname)) {
+          if (App.colors.includes(color)) {
+            return color
+          }
+        }
+      }
+      catch (err) {
+        continue
+      }
+    }
+  }
 }

@@ -463,12 +463,13 @@ App.check_view_media = (item) => {
 
 App.apply_color_mode = (item) => {
   let color_mode = App.get_setting(`color_mode`)
+  let color = item.color || App.domain_colored(item)
 
   if (color_mode === `icon`) {
     let el = DOM.el(`.item_info_color`, item.element)
 
-    if (item.color) {
-      el.textContent = App.color_icons[item.color]
+    if (color) {
+      el.textContent = App.color_icons[color]
       el.classList.remove(`hidden`)
     }
     else {
@@ -482,9 +483,9 @@ App.apply_color_mode = (item) => {
       item.element.classList.remove(`color_${color}`)
     }
 
-    if (item.color) {
+    if (color) {
       item.element.classList.add(`colored`)
-      item.element.classList.add(`color_${item.color}`)
+      item.element.classList.add(`color_${color}`)
     }
   }
 }

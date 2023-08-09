@@ -10,8 +10,8 @@ App.build_default_settings = () => {
   obj.width = {value: 75, category: category, version: 1}
   obj.height = {value: 85, category: category, version: 1}
   obj.tabs_index = {value: 0, category: category, version: 1}
-  obj.history_index = {value: 1, category: category, version: 1}
-  obj.bookmarks_index = {value: 2, category: category, version: 1}
+  obj.bookmarks_index = {value: 1, category: category, version: 1}
+  obj.history_index = {value: 2, category: category, version: 1}
   obj.closed_index = {value: 3, category: category, version: 1}
   obj.custom_filters = {value: [`search`, `watch`, `wiki`], category: category, version: 1}
   obj.bookmarks_folder = {value: `Grasshopper`, category: category, version: 1}
@@ -29,7 +29,8 @@ App.build_default_settings = () => {
   obj.background_tiles = {value: `none`, category: category, version: 1}
   obj.auto_theme = {value: `never`, category: category, version: 2}
   obj.auto_background = {value: `never`, category: category, version: 2}
-  obj.domain_backgrounds = {value: [], category: category, version: 2}
+  obj.domain_themes = {value: [], category: category, version: 2}
+  obj.domain_colors = {value: [], category: category, version: 2}
   obj.color_transitions = {value: false, category: category, version: 2}
 
   category = `warns`
