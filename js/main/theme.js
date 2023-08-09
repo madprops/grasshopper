@@ -177,6 +177,13 @@ App.apply_theme = (background, text, check = false, safe_mode = false) => {
     else {
       App.set_css_var(`color_transition`, `none`)
     }
+
+    if (App.get_setting(`rounded_corners`)) {
+      App.set_css_var(`border_radius`, `3px`)
+    }
+    else {
+      App.set_css_var(`border_radius`, `0`)
+    }
   }
   catch (err) {
     App.log(err, `error`)
