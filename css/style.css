@@ -907,7 +907,7 @@ select {
 }
 
 .color_purple {
-  background-color: rgb(134, 37, 179);
+  background-color: rgb(124, 35, 166);
   color: white;
   border: var(--color_border);
 }
