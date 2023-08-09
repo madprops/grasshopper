@@ -905,3 +905,9 @@ select {
   color: white;
   border: var(--color_border);
 }
+
+.color_purple {
+  background-color: rgb(134, 37, 179);
+  color: white;
+  border: var(--color_border);
+}

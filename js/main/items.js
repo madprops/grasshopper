@@ -477,6 +477,11 @@ App.apply_color_mode = (item) => {
     }
   }
   else if (color_mode === `item`) {
+    for (let color of App.colors) {
+      item.element.classList.remove(`colored`)
+      item.element.classList.remove(`color_${color}`)
+    }
+
     if (item.color) {
       item.element.classList.add(`colored`)
       item.element.classList.add(`color_${item.color}`)
