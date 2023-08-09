@@ -504,9 +504,17 @@ App.remove_profiles = (items) => {
 }
 
 App.apply_profiles = (url) => {
-  for (let item of App.get_items(App.active_mode)) {
+  let items = []
+
+  if (!App.persistent_modes.includes(App.active_mode)) {
+    items.push(...App.get_items(App.active_mode))
+  }
+
+  items.push(...App.get_persistent_items())
+
+  for (let item of items) {
     if (item.url === url) {
-      App.update_item(App.active_mode, item.id, {})
+      App.update_item(item.mode, item.id, {})
     }
   }
 

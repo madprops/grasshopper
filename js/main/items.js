@@ -1681,3 +1681,13 @@ App.get_index_diff = (item_1, item_2) => {
   let ii = App.get_item_element_index(item_2.mode, item_2.element)
   return Math.abs(i - ii)
 }
+
+App.get_persistent_items = () => {
+  let items = []
+
+  for (let mode of App.persistent_modes) {
+    items.push(...App.get_items(mode))
+  }
+
+  return items
+}
