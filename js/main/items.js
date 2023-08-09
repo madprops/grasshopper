@@ -1348,6 +1348,10 @@ App.scroll_to_item = (item, scroll = `nearest`) => {
     behavior = `instant`
   }
 
+  if (!App.get_setting(`smooth_scrolling`)) {
+    behavior = `instant`
+  }
+
   let a = [`nearest`, `center`].includes(scroll)
   let b = [`instant`, `smooth`].includes(behavior)
 
