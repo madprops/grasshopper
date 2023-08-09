@@ -140,11 +140,7 @@ App.setup_window = () => {
     }
 
     if (App.get_setting(`auto_restore`)) {
-      clearInterval(App.restore_timeout)
-
-      App.restore_timeout = setTimeout(() => {
-        App.restore()
-      }, App.restore_delay)
+      App.start_auto_restore()
     }
   })
 
@@ -212,4 +208,19 @@ App.restore = () => {
       App.show_first_mode()
     }
   }
+}
+
+App.start_auto_restore = () => {
+  clearInterval(App.restore_timeout)
+  let d = App.get_setting(`auto_restore`)
+
+  if (d === `never`) {
+    return
+  }
+
+  let delay = App.parse_delay(d)
+
+  App.restore_timeout = setTimeout(() => {
+    App.restore()
+  }, delay)
 }

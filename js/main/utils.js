@@ -346,3 +346,20 @@ App.get_random_int = (min, max, exclude = undefined, random_function) => {
 App.random_choice = (list) => {
   return list[App.get_random_int(0, list.length - 1)]
 }
+
+App.parse_delay = (s) => {
+  let delay
+  let split = s.split(`_`)
+
+  if (split[1] === `seconds`) {
+    delay = split[0] * 1000
+  }
+  else if (split[1] === `minutes`) {
+    delay = split[0] * 1000 * 60
+  }
+  else if (split[1] === `hours`) {
+    delay = split[0] * 1000 * 60 * 60
+  }
+
+  return delay
+}

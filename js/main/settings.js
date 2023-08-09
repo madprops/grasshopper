@@ -23,6 +23,7 @@ App.build_default_settings = () => {
   obj.domain_colors = {value: [], category: category, version: 1}
   obj.domain_icons = {value: [], category: category, version: 1}
   obj.hover_effect = {value: `glow`, category: category, version: 1}
+  obj.auto_restore = {value: `10_seconds`, category: category, version: 1}
 
   category = `theme`
   obj.background_color = {value: `rgb(45, 45, 55)`, category: category, version: 1}
@@ -86,7 +87,6 @@ App.build_default_settings = () => {
 
   category = `more`
   obj.single_new_tab = {value: true, category: category, version: 1}
-  obj.auto_restore = {value: true, category: category, version: 1}
   obj.close_on_focus = {value: true, category: category, version: 1}
   obj.close_on_open = {value: true, category: category, version: 1}
   obj.case_insensitive = {value: true, category: category, version: 1}
@@ -479,6 +479,17 @@ App.setup_settings = () => {
       [`Underline`, `underline`],
       [`Bold`, `bold`],
     ])
+
+    App.settings_make_menu(`auto_restore`, [
+      [`Never`, `never`],
+      [`1 Seconds`, `1_seconds`],
+      [`5 Seconds`, `5_seconds`],
+      [`10 Seconds`, `10_seconds`],
+      [`30 Seconds`, `30_seconds`],
+      [`1 minute`, `1_minutes`],
+    ], () => {
+      clearInterval(App.restore_timeout)
+    })
 
     App.settings_make_menu(`width`, App.get_size_options(), () => {
       App.apply_theme()

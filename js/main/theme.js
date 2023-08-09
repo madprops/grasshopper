@@ -12,19 +12,9 @@ App.start_theme_interval = (setting) => {
     return
   }
 
-  let delay
-  let split = s.split(`_`)
+  let delay = App.parse_delay(s)
 
-  if (split[1] === `seconds`) {
-    delay = split[0] * 1000
-  }
-  else if (split[1] === `minutes`) {
-    delay = split[0] * 1000 * 60
-  }
-  else if (split[1] === `hours`) {
-    delay = split[0] * 1000 * 60 * 60
-  }
-  else {
+  if (!delay) {
     return
   }
 
