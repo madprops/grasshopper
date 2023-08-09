@@ -418,10 +418,11 @@ App.check_item_icon = (item) => {
   if (App.get_setting(`show_icons`)) {
     let container = DOM.el(`.item_icon_container`, item.element)
     container.innerHTML = ``
+    let icon_text = item.icon || App.domain_icon(item)
     let icon
 
-    if (item.icon) {
-      icon = App.get_profile_icon(item)
+    if (icon_text) {
+      icon = App.set_text_icon(icon_text)
     }
     else {
       icon = App.get_img_icon(item)
@@ -463,7 +464,7 @@ App.check_view_media = (item) => {
 
 App.apply_color_mode = (item) => {
   let color_mode = App.get_setting(`color_mode`)
-  let color = item.color || App.domain_colored(item)
+  let color = item.color || App.domain_color(item)
 
   if (color_mode === `icon`) {
     let el = DOM.el(`.item_info_color`, item.element)
@@ -585,9 +586,9 @@ App.create_item_element = (item) => {
   App.log(`Item created in ${item.mode}`)
 }
 
-App.get_profile_icon = (item) => {
+App.set_text_icon = (icon_text) => {
   let icon = DOM.create(`div`, `item_icon`)
-  icon.textContent = item.icon
+  icon.textContent = icon_text
   return icon
 }
 

@@ -19,6 +19,9 @@ App.build_default_settings = () => {
   obj.pick_mode = {value: `none`, category: category, version: 1}
   obj.color_mode = {value: `icon`, category: category, version: 1}
   obj.aliases = {value: [`earth = planet`], category: category, version: 1}
+  obj.domain_themes = {value: [], category: category, version: 1}
+  obj.domain_colors = {value: [], category: category, version: 1}
+  obj.domain_icons = {value: [], category: category, version: 1}
 
   category = `theme`
   obj.background_color = {value: `rgb(45, 45, 55)`, category: category, version: 1}
@@ -29,9 +32,7 @@ App.build_default_settings = () => {
   obj.background_tiles = {value: `none`, category: category, version: 1}
   obj.auto_theme = {value: `never`, category: category, version: 2}
   obj.auto_background = {value: `never`, category: category, version: 2}
-  obj.domain_themes = {value: [], category: category, version: 2}
-  obj.domain_colors = {value: [], category: category, version: 2}
-  obj.color_transitions = {value: false, category: category, version: 2}
+  obj.color_transitions = {value: false, category: category, version: 1}
 
   category = `warns`
   obj.warn_on_close_tabs = {value: `special`, category: category, version: 1}
