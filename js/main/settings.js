@@ -31,8 +31,8 @@ App.build_default_settings = () => {
   obj.background_image = {value: `/img/background.jpg`, category: category, version: 1}
   obj.background_effect = {value: `none`, category: category, version: 1}
   obj.background_tiles = {value: `none`, category: category, version: 1}
-  obj.auto_theme = {value: `never`, category: category, version: 2}
-  obj.auto_background = {value: `never`, category: category, version: 2}
+  obj.auto_theme = {value: `never`, category: category, version: 3}
+  obj.auto_background = {value: `never`, category: category, version: 3}
   obj.color_transitions = {value: false, category: category, version: 1}
   obj.random_background_gifs = {value: true, category: category, version: 1}
   obj.random_theme_light = {value: true, category: category, version: 1}

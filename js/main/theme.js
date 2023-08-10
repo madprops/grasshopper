@@ -69,8 +69,6 @@ App.apply_theme = (background, text, check = false, safe_mode = false) => {
       return
     }
 
-    let border = App.get_setting(`border_color`)
-    App.set_css_var(`border_color`, border)
     App.set_css_var(`font_size`, App.get_setting(`font_size`) + `px`)
     App.set_css_var(`font`, `${App.get_setting(`font`)}, sans-serif`)
     let w = `${(App.get_setting(`width`) / 100) * 800}px`
