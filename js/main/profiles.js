@@ -20,28 +20,15 @@ App.setup_profile_editor = () => {
       App.show_profile_urls()
     })
 
-    DOM.ev(DOM.el(`#profile_editor_color_icon_1`), `click`, () => {
-      App.prev_color_select()
-    })
+    App.profile_editor_color_opts = [[`None`, ``]]
 
-    DOM.ev(DOM.el(`#profile_editor_color_icon_2`), `click`, () => {
-      App.next_color_select()
-    })
-
-    let color_select = DOM.el(`#profile_editor_color`)
-    let colors = [`none`, ...App.colors]
-
-    for (let color of colors) {
-      let option = DOM.create(`option`)
-      option.value = color
-      option.textContent = App.capitalize(color)
-      color_select.append(option)
+    for (let color of App.colors) {
+      let icon = App.color_icons[color]
+      let name = `${icon} ${App.capitalize(color)}`
+      App.profile_editor_color_opts.push([name, color])
     }
 
-    DOM.ev(color_select, `change`, () => {
-      App.set_color_icons(color_select.value)
-      App.profile_modified()
-    })
+    App.profile_make_menu(`color`, App.profile_editor_color_opts)
 
     DOM.ev(DOM.el(`#profile_editor_tags`), `input`, (e) => {
       App.profile_modified()
@@ -197,10 +184,9 @@ App.show_profile_editor = (item, type, action = `edit`) => {
   DOM.el(`#profile_editor_tags`).value = ``
   DOM.el(`#profile_editor_notes`).value = ``
   DOM.el(`#profile_editor_title`).value = ``
-  DOM.el(`#profile_editor_color`).value = `none`
   DOM.el(`#profile_editor_icon`).value = ``
   DOM.el(`#profile_editor_theme_enabled`).checked = false
-  App.set_color_icons(`none`)
+  App.current_profile_editor_color = ``
 
   if (items.length === 1 && profiles.length === 1) {
     DOM.el(`#profile_editor_remove`).classList.remove(`hidden`)
@@ -222,8 +208,7 @@ App.show_profile_editor = (item, type, action = `edit`) => {
 
       DOM.el(`#profile_editor_title`).value = profile.title
       DOM.el(`#profile_editor_icon`).value = profile.icon
-      DOM.el(`#profile_editor_color`).value = profile.color || `none`
-      App.set_color_icons(profile.color)
+      App.current_profile_editor_color = profile.color
 
       if (profile.theme_enabled) {
         DOM.el(`#profile_editor_theme_enabled`).checked = true
@@ -255,8 +240,7 @@ App.show_profile_editor = (item, type, action = `edit`) => {
         }
         else if (type === `color`) {
           let shared = App.get_shared_color(profiles)
-          DOM.el(`#profile_editor_color`).value = shared || `none`
-          App.set_color_icons(shared)
+          App.current_profile_editor_color = shared
         }
         else if (type === `theme`) {
           let enabled = App.get_shared_theme_enabled(profiles)
@@ -286,6 +270,7 @@ App.show_profile_editor = (item, type, action = `edit`) => {
     App.profile_apply_theme()
   }
 
+  App.set_profile_color()
   App.profile_ready = true
 }
 
@@ -355,7 +340,7 @@ App.profile_editor_save = () => {
     args.notes = App.double_linebreak(DOM.el(`#profile_editor_notes`).value)
     args.title = DOM.el(`#profile_editor_title`).value.trim()
     args.icon = DOM.el(`#profile_editor_icon`).value.trim()
-    args.color = DOM.el(`#profile_editor_color`).value
+    args.color = App.current_profile_editor_color
     args.theme_enabled = DOM.el(`#profile_editor_theme_enabled`).checked
     let hex = App.profile_editor_background_color.color
     args.background_color = App.colorlib.hex_to_rgb(hex)
@@ -371,10 +356,6 @@ App.profile_editor_save = () => {
 }
 
 App.save_profile = (args) => {
-  if (args.color === `none`) {
-    args.color = ``
-  }
-
   let urls = []
 
   function proc (profile, p_mode) {
@@ -1245,7 +1226,6 @@ App.prev_color_select = () => {
   }
 
   color_select.value = colors[index]
-  App.set_color_icons(color_select.value)
   color_select.focus()
   App.profile_modified()
 }
@@ -1261,29 +1241,8 @@ App.next_color_select = () => {
   }
 
   color_select.value = colors[index]
-  App.set_color_icons(color_select.value)
   color_select.focus()
   App.profile_modified()
-}
-
-App.set_color_icons = (color) => {
-  if (!color) {
-    color = `none`
-  }
-
-  let icon_1, icon_2
-
-  if (color === `none`) {
-    icon_1 = App.arrow_left_icon
-    icon_2 = App.arrow_right_icon
-  }
-  else {
-    icon_1 = App.color_icons[color]
-    icon_2 = App.color_icons[color]
-  }
-
-  DOM.el(`#profile_editor_color_icon_1`).textContent = icon_1
-  DOM.el(`#profile_editor_color_icon_2`).textContent = icon_2
 }
 
 App.get_shared_tags = (profiles) => {
@@ -1384,4 +1343,100 @@ App.profile_apply_theme = () => {
   let c1 = App.colorlib.hex_to_rgb(App.profile_editor_background_color.color)
   let c2 = App.colorlib.hex_to_rgb(App.profile_editor_text_color.color)
   App.apply_theme(c1, c2)
+}
+
+App.profile_make_menu = (prop, opts) => {
+  let el = DOM.el(`#profile_editor_${prop}`)
+
+  DOM.ev(el, `click`, () => {
+    let items = []
+
+    for (let o of opts) {
+      items.push({
+        text: o[0],
+        action: () => {
+          App.profile_editor_set_menu(el, prop, o)
+        },
+      })
+    }
+
+    NeedContext.show_on_element(el, items, true, el.clientHeight)
+  })
+
+  let buttons = DOM.create(`div`, `flex_row_center gap_1`)
+  let prev = DOM.create(`div`, `button`)
+  prev.textContent = `<`
+  let next = DOM.create(`div`, `button`)
+  next.textContent = `>`
+
+  function prev_fn () {
+    App.profile_menu_cycle(el, prop, `prev`, opts)
+  }
+
+  function next_fn () {
+    App.profile_menu_cycle(el, prop, `next`, opts)
+  }
+
+  DOM.ev(prev, `click`, prev_fn)
+  DOM.ev(next, `click`, next_fn)
+
+  buttons.append(prev)
+  buttons.append(next)
+  el.after(buttons)
+  prev.after(el)
+}
+
+App.profile_menu_cycle = (el, prop, dir, o_items) => {
+  let cycle = true
+  let waypoint = false
+  let items = o_items.slice(0)
+
+  if (dir === `prev`) {
+    items.reverse()
+  }
+
+  let s_item
+
+  if (cycle) {
+    s_item = items[0]
+  }
+
+  for (let item of items) {
+    if (item[0] === App.separator_string) {
+      continue
+    }
+
+    if (waypoint) {
+      s_item = item
+      break
+    }
+
+    if (item[1] === App.current_profile_editor_color) {
+      waypoint = true
+    }
+  }
+
+  if (s_item) {
+    App.profile_editor_set_menu(el, prop, s_item)
+  }
+}
+
+App.profile_editor_set_menu = (el, prop, item) => {
+  el.textContent = item[0]
+  App[`current_profile_editor_${prop}`] = item[1]
+  App.profile_modified()
+}
+
+App.get_profile_editor_menu_item = (value, opts) => {
+  for (let opt of opts) {
+    if (opt[1] === value) {
+      return opt
+    }
+  }
+}
+
+App.set_profile_color = () => {
+  let color = App.current_profile_editor_color
+  let item = App.get_profile_editor_menu_item(color, App.profile_editor_color_opts)
+  App.profile_editor_set_menu(DOM.el(`#profile_editor_color`), `color`, item)
 }

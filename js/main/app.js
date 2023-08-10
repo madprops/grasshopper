@@ -92,8 +92,6 @@ App.mode_icons = {
 
 App.clipboard_icon = `📋`
 App.bot_icon = `🤖`
-App.arrow_left_icon = `⬅`
-App.arrow_right_icon = `➡`
 
 App.dark_theme_colors = {
   background: `rgb(33, 33, 42)`,
