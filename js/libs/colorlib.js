@@ -1,8 +1,27 @@
 const ColorLib = (function () {
+  function get_random_int (min, max, exclude = undefined, random_function) {
+    let num
 
-	function get_random_int (min, max) {
-		return Math.floor(Math.random() * (max - min + 1) + min)
-	}
+    if (random_function) {
+      num = Math.floor(random_function() * (max - min + 1) + min)
+    }
+    else {
+      num = Math.floor(Math.random() * (max - min + 1) + min)
+    }
+
+    if (exclude) {
+      if (num === exclude) {
+        if (num + 1 <= max) {
+          num = num + 1
+        }
+        else if (num - 1 >= min) {
+          num = num - 1
+        }
+      }
+    }
+
+    return num
+  }
 
   let num_instances = 0
 
@@ -309,7 +328,7 @@ const ColorLib = (function () {
 
     instance.hex_to_rgb = function (hex) {
       return instance.array_to_rgb(instance.hex_to_rgb_array(hex))
-    }		
+    }
 
     instance.check_array = function (array) {
       for (let i = 0; i < array.length; i++) {
@@ -529,19 +548,23 @@ const ColorLib = (function () {
                          (a[3] - b[3]) * (a[3] - b[3]) ) / ( 256 * Math.sqrt(4) ))
     }
 
-    instance.get_dark_color = function () {
+    instance.get_dark_color = function (rand) {
       let n = 55
 
       return instance.rgb_to_hex([
-        get_random_int(0, n), get_random_int(0, n), get_random_int(0, n)
+        get_random_int(0, n, undefined, rand),
+        get_random_int(0, n, undefined, rand),
+        get_random_int(0, n, undefined, rand),
       ])
     }
 
-    instance.get_light_color = function () {
+    instance.get_light_color = function (rand) {
       let n = 55
 
       return instance.rgb_to_hex([
-        255 - get_random_int(0, n), 255 - get_random_int(0, n), 255 - get_random_int(0, n)
+        255 - get_random_int(0, n, undefined, rand),
+        255 - get_random_int(0, n, undefined, rand),
+        255 - get_random_int(0, n, undefined, rand),
       ])
     }
 

@@ -215,21 +215,11 @@ App.light_theme = () => {
 
 App.random_theme = () => {
   let c1, c2
-  let types = []
+  let type = App.get_color_type()
 
-  if (App.get_setting(`random_theme_light`)) {
-    types.push(`light`)
-  }
-
-  if (App.get_setting(`random_theme_dark`)) {
-    types.push(`dark`)
-  }
-
-  if (types.length === 0) {
+  if (!type) {
     return
   }
-
-  let type = App.random_choice(types)
 
   if (type === `light`) {
     c1 = App.colorlib.get_light_color()
@@ -367,12 +357,19 @@ App.seeded_theme = (item) => {
   }
   else {
     let rand = App.seeded_random(url)
+    let type = App.get_color_type(rand)
 
-    function get() {
-      return App.get_random_int(0, App.seeded_theme_max, undefined, rand)
+    if (!type) {
+      return
     }
 
-    background = `rgb(${get()}, ${get()}, ${get()})`
+    if (type === `dark`) {
+      background = App.colorlib.get_dark_color(rand)
+    }
+    else if (type === `light`) {
+      background = App.colorlib.get_light_color(rand)
+    }
+
     App.hostname_colors[url] = background
   }
 
@@ -414,4 +411,22 @@ App.do_check_item_theme = () => {
   }
 
   App.set_default_theme()
+}
+
+App.get_color_type = (rand) => {
+  let types = []
+
+  if (App.get_setting(`random_theme_dark`)) {
+    types.push(`dark`)
+  }
+
+  if (App.get_setting(`random_theme_light`)) {
+    types.push(`light`)
+  }
+
+  if (types.length === 0) {
+    return
+  }
+
+  return App.random_choice(types, rand)
 }

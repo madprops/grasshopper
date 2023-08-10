@@ -150,6 +150,9 @@ App.settings_do_action = (what) => {
   if (what === `theme`) {
     App.apply_theme()
   }
+  else if (what === `hostname_colors`) {
+    App.hostname_colors = {}
+  }
 }
 
 App.get_settings_label = (setting) => {

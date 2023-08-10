@@ -311,7 +311,7 @@ App.get_seed = (str) => {
 App.seeded_random = (str) => {
   let num = App.get_seed(str)[0]
 
-  return function() {
+  return function () {
     let t = num += 0x6D2B79F5
     t = Math.imul(t ^ t >>> 15, t | 1)
     t ^= t + Math.imul(t ^ t >>> 7, t | 61)
@@ -343,8 +343,8 @@ App.get_random_int = (min, max, exclude = undefined, random_function) => {
   return num
 }
 
-App.random_choice = (list) => {
-  return list[App.get_random_int(0, list.length - 1)]
+App.random_choice = (list, rand) => {
+  return list[App.get_random_int(0, list.length - 1, undefined, rand)]
 }
 
 App.parse_delay = (s) => {
