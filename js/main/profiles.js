@@ -296,6 +296,7 @@ App.get_empty_profile = (url) => {
     notes: ``,
     title: ``,
     color: ``,
+    icon: ``,
     theme_enabled: false,
     background_color: App.default_profile_background_color,
     text_color: App.default_profile_text_color,
