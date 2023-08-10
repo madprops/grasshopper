@@ -1215,36 +1215,6 @@ App.filter_color = (mode, color) => {
   App.set_filter(mode, ``)
 }
 
-App.prev_color_select = () => {
-  let color_select = DOM.el(`#profile_editor_color`)
-  let colors = [`none`, ...App.colors]
-  let index = colors.indexOf(color_select.value)
-  index -= 1
-
-  if (index < 0) {
-    index = colors.length - 1
-  }
-
-  color_select.value = colors[index]
-  color_select.focus()
-  App.profile_modified()
-}
-
-App.next_color_select = () => {
-  let color_select = DOM.el(`#profile_editor_color`)
-  let colors = [`none`, ...App.colors]
-  let index = colors.indexOf(color_select.value)
-  index += 1
-
-  if (index >= colors.length) {
-    index = 0
-  }
-
-  color_select.value = colors[index]
-  color_select.focus()
-  App.profile_modified()
-}
-
 App.get_shared_tags = (profiles) => {
   let arrays = profiles.map(obj => obj.tags)
 
