@@ -415,12 +415,13 @@ App.do_check_item_theme = () => {
 
 App.get_color_type = (rand) => {
   let types = []
+  let type = App.get_setting(`random_themes`)
 
-  if (App.get_setting(`random_theme_dark`)) {
+  if (type === `dark` || type === `both`) {
     types.push(`dark`)
   }
 
-  if (App.get_setting(`random_theme_light`)) {
+  if (type === `light` || type === `both`) {
     types.push(`light`)
   }
 
