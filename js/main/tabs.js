@@ -387,7 +387,7 @@ App.unload_tabs = (item, multiple = true) => {
       }
 
       if (next) {
-        await App.focus_tab(next, `nearest_smooth`)
+        await App.focus_tab(next, `nearest_smooth`, `unload`)
       }
       else {
         await App.open_new_tab(`about:blank`)
