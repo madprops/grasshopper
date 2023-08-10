@@ -1077,17 +1077,6 @@ App.tab_warn_opts = [
 App.settings_menu_items = (action = `normal`, category) => {
   let items = []
 
-  if (action === `normal`) {
-    items.push({
-      text: `Close`,
-      action: () => {
-        App.hide_window()
-      }
-    })
-
-    items.push({separator: true})
-  }
-
   if (action === `normal` || action === `main_menu`) {
     for (let c of App.settings_categories) {
       let icon = App.settings_icons[c]
@@ -1124,6 +1113,18 @@ App.settings_menu_items = (action = `normal`, category) => {
         return App.settings_data_items()
       },
     })
+  }
+
+  if (action === `normal`) {
+    items.push({separator: true})
+
+    items.push({
+      text: `Close`,
+      action: () => {
+        App.hide_window()
+      }
+    })
+
   }
 
   return items
