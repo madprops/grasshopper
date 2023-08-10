@@ -217,10 +217,6 @@ App.random_theme = () => {
   let c1, c2
   let type = App.get_color_type()
 
-  if (!type) {
-    return
-  }
-
   if (type === `light`) {
     c1 = App.colorlib.get_light_color()
   }
@@ -359,10 +355,6 @@ App.seeded_theme = (item) => {
 
   let rand = App.seeded_random(url)
   let type = App.get_color_type(rand)
-
-  if (!type) {
-    return
-  }
 
   if (type === `dark`) {
     background = App.colorlib.get_dark_color(rand)
