@@ -608,16 +608,28 @@ App.get_setting_title = (category) => {
 
 App.add_settings_switchers = (category) => {
   let top = DOM.el(`#window_top_settings_${category}`)
+
+  if (DOM.dataset(top, `done`)) {
+    return
+  }
+
   let container = DOM.create(`div`, `flex_row_center gap_2 grow`)
+  top.append(container)
   let title = DOM.create(`div`, `settings_title button`)
   container.append(title)
-  top.append(container)
+  let reset = DOM.create(`div`, `button`)
+  reset.textContent = `Reset`
+  container.append(reset)
+
+  DOM.ev(reset, `click`, () => {
+    App.reset_settings(category)
+  })
+
   title.id = `settings_title_${category}`
   title.textContent = App.get_setting_title(category)
-
   let prev = DOM.create(`div`, `button arrow_prev`)
   prev.textContent = `<`
-  title.before(prev)
+  container.prepend(prev)
 
   DOM.ev(prev, `click`, () => {
     App.show_prev_settings()
@@ -625,6 +637,7 @@ App.add_settings_switchers = (category) => {
 
   let next = DOM.create(`div`, `button arrow_next`)
   next.textContent = `>`
+  container.append(next)
 
   DOM.ev(next, `click`, () => {
     App.show_next_settings()
@@ -649,7 +662,7 @@ App.add_settings_switchers = (category) => {
     App.settings_wheel.call(e)
   })
 
-  title.after(next)
+  DOM.dataset(top, `done`, true)
 }
 
 App.start_theme_settings = () => {
