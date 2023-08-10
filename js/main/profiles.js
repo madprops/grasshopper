@@ -57,8 +57,8 @@ App.setup_profile_editor = () => {
     })
 
     App.profile_editor_background_color.on(`change`, (picker, color) => {
-      App.profile_modified()
       App.profile_apply_theme()
+      App.profile_modified()
     })
 
     let tc = DOM.el(`#profile_editor_text_color`)
@@ -72,8 +72,8 @@ App.setup_profile_editor = () => {
     })
 
     App.profile_editor_text_color.on(`change`, (picker, color) => {
-      App.profile_modified()
       App.profile_apply_theme()
+      App.profile_modified()
     })
 
     DOM.ev(DOM.el(`#profile_editor_theme_enabled`), `change`, (e) => {
@@ -86,6 +86,7 @@ App.setup_profile_editor = () => {
         DOM.el(`#profile_editor_text_color_container`).classList.add(`hidden`)
       }
 
+      App.profile_apply_theme()
       App.profile_modified()
     })
   },
@@ -267,11 +268,7 @@ App.show_profile_editor = (item, type, action = `edit`) => {
   }
 
   App.window_goto_top(`profile_editor`)
-
-  if (DOM.el(`#profile_editor_theme_enabled`).checked) {
-    App.profile_apply_theme()
-  }
-
+  App.profile_apply_theme()
   App.set_profile_color()
   App.profile_ready = true
 }
@@ -1312,9 +1309,14 @@ App.get_shared_text_color = (profiles) => {
 }
 
 App.profile_apply_theme = () => {
-  let c1 = App.colorlib.hex_to_rgb(App.profile_editor_background_color.color)
-  let c2 = App.colorlib.hex_to_rgb(App.profile_editor_text_color.color)
-  App.apply_theme(c1, c2)
+  if (DOM.el(`#profile_editor_theme_enabled`).checked) {
+    let c1 = App.colorlib.hex_to_rgb(App.profile_editor_background_color.color)
+    let c2 = App.colorlib.hex_to_rgb(App.profile_editor_text_color.color)
+    App.apply_theme(c1, c2)
+  }
+  else {
+    App.set_default_theme()
+  }
 }
 
 App.profile_make_menu = (prop, opts) => {
