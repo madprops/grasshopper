@@ -352,25 +352,22 @@ App.refresh_theme_settings = () => {
 }
 
 App.seeded_theme = (item) => {
-  if (!item || !item.hostname) {
-    return
-  }
-
+  let url = item.hostname || item.path
+  let hc = App.hostname_colors[url]
   let background
-  let hc = App.hostname_colors[item.hostname]
 
   if (hc) {
     background = hc
   }
   else {
-    let rand = App.seeded_random(item.hostname)
+    let rand = App.seeded_random(url)
 
     function get() {
       return App.get_random_int(0, App.seeded_theme_max, undefined, rand)
     }
 
     background = `rgb(${get()}, ${get()}, ${get()})`
-    App.hostname_colors[item.hostname] = background
+    App.hostname_colors[url] = background
   }
 
   App.set_color_auto(background)
@@ -388,7 +385,7 @@ App.do_check_item_theme = () => {
   App.check_item_theme_debouncer.cancel()
   let item = App.get_active_tab_item()
 
-  if (!item || !item.hostname || !item.path) {
+  if (!item || !item.path) {
     App.set_default_theme()
     return
   }
