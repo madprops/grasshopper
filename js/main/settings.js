@@ -741,7 +741,6 @@ App.start_theme_settings = () => {
 
   let auto_opts = [
     [`Never`, `never`],
-    [`30 seconds`, `30_seconds`],
     [`1 minute`, `1_minutes`],
     [`5 minutes`, `5_minutes`],
     [`30 minutes`, `30_minutes`],
