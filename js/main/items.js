@@ -340,8 +340,13 @@ App.process_info = (mode, info, exclude = [], o_item) => {
     }
 
     if (profile.theme_enabled) {
-      text_color = profile.text_color
-      background_color = profile.background_color
+      if (profile.background_color) {
+        background_color = profile.background_color
+      }
+
+      if (profile.text_color) {
+        text_color = profile.text_color
+      }
     }
   }
 

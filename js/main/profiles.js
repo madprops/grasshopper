@@ -219,7 +219,13 @@ App.show_profile_editor = (item, type, action = `edit`) => {
         DOM.el(`#profile_editor_theme_enabled`).checked = true
         DOM.el(`#profile_editor_background_color_container`).classList.remove(`hidden`)
         DOM.el(`#profile_editor_text_color_container`).classList.remove(`hidden`)
+      }
+
+      if (profile.background_color) {
         App.profile_editor_background_color.setColor(profile.background_color)
+      }
+
+      if (profile.text_color) {
         App.profile_editor_text_color.setColor(profile.text_color)
       }
     }
@@ -284,8 +290,8 @@ App.get_empty_profile = (url) => {
     color: ``,
     icon: ``,
     theme_enabled: false,
-    background_color: App.default_profile_background_color,
-    text_color: App.default_profile_text_color,
+    background_color: ``,
+    text_color: ``,
   }
 }
 
@@ -411,6 +417,7 @@ App.save_profile = (args) => {
     App.profiles = App.profiles.filter(x => x.url !== profile.url)
 
     if (App.used_profile(profile)) {
+      console.log(profile)
       App.profiles.unshift(profile)
 
       if (App.profiles.length > App.max_profiles) {
@@ -619,12 +626,12 @@ App.check_profiles = () => {
     }
 
     if (profile.background_color === undefined) {
-      profile.background_color = App.default_profile_background_color
+      profile.background_color = ``
       changed = true
     }
 
     if (profile.text_color === undefined) {
-      profile.text_color = App.default_profile_text_color
+      profile.text_color = ``
       changed = true
     }
   }
@@ -855,8 +862,8 @@ App.remove_all_themes = () => {
   App.show_confirm(`Remove all backgrounds? (${profiles.length})`, () => {
     for (let profile of App.profiles) {
       profile.theme_enabled = false
-      profile.background_color = App.default_profile_background_color
-      profile.text_color = App.default_profile_text_color
+      profile.background_color = ``
+      profile.text_color = ``
     }
 
     App.after_profile_remove()
