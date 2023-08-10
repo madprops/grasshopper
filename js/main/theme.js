@@ -353,26 +353,25 @@ App.seeded_theme = (item) => {
   let background
 
   if (hc) {
-    background = hc
-  }
-  else {
-    let rand = App.seeded_random(url)
-    let type = App.get_color_type(rand)
-
-    if (!type) {
-      return
-    }
-
-    if (type === `dark`) {
-      background = App.colorlib.get_dark_color(rand)
-    }
-    else if (type === `light`) {
-      background = App.colorlib.get_light_color(rand)
-    }
-
-    App.hostname_colors[url] = background
+    App.set_color_auto(hc)
+    return
   }
 
+  let rand = App.seeded_random(url)
+  let type = App.get_color_type(rand)
+
+  if (!type) {
+    return
+  }
+
+  if (type === `dark`) {
+    background = App.colorlib.get_dark_color(rand)
+  }
+  else if (type === `light`) {
+    background = App.colorlib.get_light_color(rand)
+  }
+
+  App.hostname_colors[url] = background
   App.set_color_auto(background)
 }
 
