@@ -189,6 +189,8 @@ App.show_profile_editor = (item, type, action = `edit`) => {
   DOM.el(`#profile_editor_title`).value = ``
   DOM.el(`#profile_editor_icon`).value = ``
   DOM.el(`#profile_editor_theme_enabled`).checked = false
+  App.profile_editor_background_color.setColor(App.default_profile_background_color)
+  App.profile_editor_text_color.setColor(App.default_profile_text_color)
   App.current_profile_editor_color = ``
 
   if (items.length === 1 && profiles.length === 1) {
