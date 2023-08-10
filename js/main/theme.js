@@ -247,7 +247,13 @@ App.random_theme = () => {
 App.set_theme = (c1, c2) => {
   App.set_setting(`background_color`, c1)
   App.set_setting(`text_color`, c2)
-  App.apply_theme(c1, c2, true)
+
+  if (App.window_mode === `profile_editor`) {
+    // Don't apply theme
+  }
+  else {
+    App.apply_theme(c1, c2, true)
+  }
 
   if (App.on_settings()) {
     if (App.settings_category === `theme`) {
