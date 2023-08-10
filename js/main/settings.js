@@ -607,8 +607,11 @@ App.get_setting_title = (category) => {
 }
 
 App.add_settings_switchers = (category) => {
-  let buttons = DOM.el(`#window_top_settings_${category}`)
-  let title = DOM.el(`.settings_title`, buttons)
+  let top = DOM.el(`#window_top_settings_${category}`)
+  let container = DOM.create(`div`, `flex_row_center gap_2 grow`)
+  let title = DOM.create(`div`, `settings_title button`)
+  container.append(title)
+  top.append(container)
   title.id = `settings_title_${category}`
   title.textContent = App.get_setting_title(category)
 
@@ -1089,17 +1092,6 @@ App.settings_menu_items = (action = `normal`, category) => {
         },
       })
     }
-  }
-
-  if (action === `normal`) {
-    items.push({separator: true})
-
-    items.push({
-      text: `Reset`,
-      action: () => {
-        App.reset_settings(category)
-      }
-    })
   }
 
   if (action === `normal` || action === `main_menu`) {
