@@ -223,7 +223,6 @@ svg {
   display: flex;
   align-items: center;
   justify-content: center;
-  border-radius: 25%;
 }
 
 .item_icon {
@@ -488,7 +487,7 @@ svg {
 .pinline_content {
   border: 1px solid var(--alt_color_1);
   color: var(--alt_color_2);
-  border-radius: 20px;
+  border-radius: var(--border_radius_2);
   margin-left: 0.11rem;
   padding-left: 0.5rem;
   padding-right: 0.5rem;

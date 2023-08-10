@@ -170,9 +170,11 @@ App.apply_theme = (background, text, check = false, safe_mode = false) => {
 
     if (App.get_setting(`rounded_corners`)) {
       App.set_css_var(`border_radius`, `3px`)
+      App.set_css_var(`border_radius_2`, `20px`)
     }
     else {
       App.set_css_var(`border_radius`, `0`)
+      App.set_css_var(`border_radius_2`, `0`)
     }
 
     let hover_opts = [`glow`, `underline`, `bold`]
