@@ -1108,9 +1108,7 @@ App.settings_menu_items = (action = `normal`, category) => {
   }
 
   if (action === `normal` || action === `main_menu`) {
-    if (action === `main_menu`) {
-      items.push({separator: true})
-    }
+    items.push({separator: true})
 
     items.push({
       text: `Data`,
@@ -1121,15 +1119,12 @@ App.settings_menu_items = (action = `normal`, category) => {
   }
 
   if (action === `normal`) {
-    items.push({separator: true})
-
     items.push({
       text: `Close`,
       action: () => {
         App.hide_window()
       }
     })
-
   }
 
   return items
