@@ -28,7 +28,6 @@ App.build_default_settings = () => {
   category = `theme`
   obj.background_color = {value: `rgb(45, 45, 55)`, category: category, version: 1}
   obj.text_color = {value: `rgb(233, 233, 233)`, category: category, version: 1}
-  obj.border_color = {value: `rgb(33, 140, 77)`, category: category, version: 1}
   obj.background_image = {value: `/img/background.jpg`, category: category, version: 1}
   obj.background_effect = {value: `none`, category: category, version: 1}
   obj.background_tiles = {value: `none`, category: category, version: 1}
@@ -742,7 +741,6 @@ App.start_theme_settings = () => {
 
   let auto_opts = [
     [`Never`, `never`],
-    [`5 seconds`, `5_seconds`],
     [`30 seconds`, `30_seconds`],
     [`1 minute`, `1_minutes`],
     [`5 minutes`, `5_minutes`],
