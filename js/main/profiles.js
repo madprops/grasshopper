@@ -417,7 +417,6 @@ App.save_profile = (args) => {
     App.profiles = App.profiles.filter(x => x.url !== profile.url)
 
     if (App.used_profile(profile)) {
-      console.log(profile)
       App.profiles.unshift(profile)
 
       if (App.profiles.length > App.max_profiles) {
