@@ -1238,7 +1238,7 @@ App.prev_color_select = () => {
   let color_select = DOM.el(`#profile_editor_color`)
   let colors = [`none`, ...App.colors]
   let index = colors.indexOf(color_select.value)
-  index--
+  index -= 1
 
   if (index < 0) {
     index = colors.length - 1
@@ -1254,7 +1254,7 @@ App.next_color_select = () => {
   let color_select = DOM.el(`#profile_editor_color`)
   let colors = [`none`, ...App.colors]
   let index = colors.indexOf(color_select.value)
-  index++
+  index += 1
 
   if (index >= colors.length) {
     index = 0
