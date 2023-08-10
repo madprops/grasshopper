@@ -593,19 +593,6 @@ App.setup_settings = () => {
   })
 }
 
-App.get_setting_title = (category) => {
-  let name
-
-  if (category === `warns`) {
-    name = `Warn`
-  }
-  else {
-    name = App.capitalize(category)
-  }
-
-  return `${name} Settings`
-}
-
 App.add_settings_switchers = (category) => {
   let top = DOM.el(`#window_top_settings_${category}`)
 
@@ -616,17 +603,24 @@ App.add_settings_switchers = (category) => {
   let container = DOM.create(`div`, `flex_row_center gap_2 grow`)
   top.append(container)
   let title = DOM.create(`div`, `settings_title button`)
+  title.id = `settings_title_${category}`
+  title.textContent = App.capitalize(category)
   container.append(title)
   let reset = DOM.create(`div`, `button`)
   reset.textContent = `Reset`
   container.append(reset)
+  let close = DOM.create(`div`, `button`)
+  close.textContent = `Close`
+  container.append(close)
 
   DOM.ev(reset, `click`, () => {
     App.reset_settings(category)
   })
 
-  title.id = `settings_title_${category}`
-  title.textContent = App.get_setting_title(category)
+  DOM.ev(close, `click`, () => {
+    App.hide_window()
+  })
+
   let prev = DOM.create(`div`, `button arrow_prev`)
   prev.textContent = `<`
   container.prepend(prev)
@@ -1093,39 +1087,26 @@ App.tab_warn_opts = [
 App.settings_menu_items = (action = `normal`, category) => {
   let items = []
 
-  if (action === `normal` || action === `main_menu`) {
-    for (let c of App.settings_categories) {
-      let icon = App.settings_icons[c]
-      let name = `${icon} ${App.capitalize(c)}`
-
-      items.push({
-        text: name,
-        action: () => {
-          App.show_settings_category(c)
-        },
-      })
-    }
-  }
-
-  if (action === `normal` || action === `main_menu`) {
-    items.push({separator: true})
+  for (let c of App.settings_categories) {
+    let icon = App.settings_icons[c]
+    let name = `${icon} ${App.capitalize(c)}`
 
     items.push({
-      text: `Data`,
-      get_items: () => {
-        return App.settings_data_items()
+      text: name,
+      action: () => {
+        App.show_settings_category(c)
       },
     })
   }
 
-  if (action === `normal`) {
-    items.push({
-      text: `Close`,
-      action: () => {
-        App.hide_window()
-      }
-    })
-  }
+  items.push({separator: true})
+
+  items.push({
+    text: `Data`,
+    get_items: () => {
+      return App.settings_data_items()
+    },
+  })
 
   return items
 }
