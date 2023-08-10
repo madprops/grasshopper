@@ -1246,6 +1246,7 @@ App.prev_color_select = () => {
 
   color_select.value = colors[index]
   App.set_color_icons(color_select.value)
+  color_select.focus()
   App.profile_modified()
 }
 
@@ -1261,6 +1262,7 @@ App.next_color_select = () => {
 
   color_select.value = colors[index]
   App.set_color_icons(color_select.value)
+  color_select.focus()
   App.profile_modified()
 }
 
@@ -1269,12 +1271,19 @@ App.set_color_icons = (color) => {
     color = `none`
   }
 
-  let icon = App.color_icons[color]
+  let icon_1, icon_2
 
-  if (icon) {
-    DOM.el(`#profile_editor_color_icon_1`).textContent = icon
-    DOM.el(`#profile_editor_color_icon_2`).textContent = icon
+  if (color === `none`) {
+    icon_1 = App.arrow_left_icon
+    icon_2 = App.arrow_right_icon
   }
+  else {
+    icon_1 = App.color_icons[color]
+    icon_2 = App.color_icons[color]
+  }
+
+  DOM.el(`#profile_editor_color_icon_1`).textContent = icon_1
+  DOM.el(`#profile_editor_color_icon_2`).textContent = icon_2
 }
 
 App.get_shared_tags = (profiles) => {
