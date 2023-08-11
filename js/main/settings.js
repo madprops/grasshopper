@@ -1081,6 +1081,10 @@ App.get_setting = (setting) => {
 }
 
 App.set_setting = (setting, value) => {
+  if (value.toString() === App.get_default_setting(setting).toString()) {
+    value = App.default_setting_string
+  }
+
   App.settings[setting].value = value
   App.save_settings_debouncer.call()
 }
