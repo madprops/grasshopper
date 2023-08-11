@@ -21,6 +21,7 @@ App.build_default_settings = () => {
   obj.aliases = {value: [`earth = planet`], category: category, version: 1}
   obj.domain_themes = {value: [], category: category, version: 1}
   obj.domain_colors = {value: [], category: category, version: 1}
+  obj.domain_titles = {value: [], category: category, version: 1}
   obj.domain_icons = {value: [], category: category, version: 1}
   obj.hover_effect = {value: `glow`, category: category, version: 1}
   obj.auto_restore = {value: `10_seconds`, category: category, version: 1}

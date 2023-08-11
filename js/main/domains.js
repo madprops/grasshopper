@@ -63,3 +63,11 @@ App.domain_icon = (item) => {
     return icon.prop_1
   }
 }
+
+App.domain_title = (item) => {
+  let title = App.get_domain_props(`domain_titles`, item)
+
+  if (title) {
+    return title.prop_1
+  }
+}

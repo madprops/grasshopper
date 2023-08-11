@@ -1449,7 +1449,14 @@ App.get_title = (item) => {
     return item.custom_title
   }
   else {
-    return item.title
+    let domain_title = App.domain_title(item)
+
+    if (domain_title) {
+      return domain_title
+    }
+    else {
+      return item.title
+    }
   }
 }
 
