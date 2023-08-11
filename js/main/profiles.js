@@ -272,6 +272,7 @@ App.show_profile_editor = (item, type, action = `edit`) => {
             let shared_bg = App.get_shared_background_color(profiles)
             let shared_tc = App.get_shared_text_color(profiles)
             let shared_bi = App.get_shared_background_image(profiles)
+            console.log(shared_bg, shared_tc, shared_bi)
 
             if (shared_bg && shared_tc && shared_bi) {
               DOM.el(`#profile_editor_theme_enabled`).checked = true
@@ -1318,10 +1319,10 @@ App.get_shared_theme_enabled = (profiles) => {
 }
 
 App.get_shared_background_color = (profiles) => {
-  let first = profiles[0].background
+  let first = profiles[0].background_color
 
   for (let profile of profiles) {
-    if (profile.background !== first) {
+    if (profile.background_color !== first) {
       return ``
     }
   }
