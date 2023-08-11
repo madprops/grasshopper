@@ -436,6 +436,7 @@ svg {
 .text_smaller {
   width: 5rem;
   max-width: 5rem;
+  text-align: center;
 }
 
 .gap_1 {
