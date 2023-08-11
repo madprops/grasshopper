@@ -1007,6 +1007,7 @@ App.restart_settings = (type = `normal`) => {
   App.refresh_gestures()
 
   if (App.on_items() || type === `sync`) {
+    App.clear_all_items()
     App.show_mode(App.active_mode)
   }
   else {
