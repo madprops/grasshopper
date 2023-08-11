@@ -884,7 +884,7 @@ App.focus_or_open_item = async (item) => {
     if (App.urls_equal(tab.url, item.url)) {
       let o = {
         id: tab.id,
-        window_id: tab.windowId
+        window_id: tab.window_id
       }
 
       await App.focus_tab(o)
