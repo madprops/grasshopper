@@ -6,13 +6,13 @@ App.setup_theme = () => {
 
 App.start_theme_interval = (setting) => {
   clearInterval(App[`${setting}_interval`])
-  let s = App.get_setting(setting)
+  let sett = App.get_setting(setting)
 
-  if (s === `none` || s === `domain`) {
+  if (sett === `never` || sett === `domain`) {
     return
   }
 
-  let delay = App.parse_delay(s)
+  let delay = App.parse_delay(sett)
 
   if (!delay) {
     return
@@ -20,6 +20,14 @@ App.start_theme_interval = (setting) => {
 
   if (delay > 0) {
     App[`${setting}_interval`] = setInterval(() => {
+      clearInterval(App[`${setting}_interval`])
+      let sett = App.get_setting(setting)
+
+      if (sett === `never` || sett === `domain`) {
+        clearInterval(App[`${setting}_interval`])
+        return
+      }
+
       if (setting === `auto_theme`) {
         App.random_theme()
       }
@@ -28,7 +36,7 @@ App.start_theme_interval = (setting) => {
       }
     }, delay)
 
-    App.log(`Started ${setting} interval: ${s}`)
+    App.log(`Started ${setting} interval: ${sett}`)
   }
 }
 
