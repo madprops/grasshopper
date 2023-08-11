@@ -418,7 +418,7 @@ App.do_check_item_theme = () => {
   let domain_theme = App.get_domain_props(`domain_themes`, item)
 
   if (domain_theme) {
-    App.set_color_auto(domain_theme.prop_1, domain_theme.prop_2)
+    App.set_color_auto(domain_theme.prop_1, domain_theme.prop_2, domain_theme.prop_3)
     return
   }
 

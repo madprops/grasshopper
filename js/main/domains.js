@@ -9,12 +9,16 @@ App.get_domain_props = (setting, item) => {
         let split = line.split(`=`)
         let domain = split[0].trim()
         let prop_1 = split[1].trim()
-        let prop_2
+        let prop_2, prop_3
 
         if (prop_1.includes(`;`)) {
           let split_2 = prop_1.split(`;`)
           prop_1 = split_2[0].trim()
           prop_2 = split_2[1].trim()
+
+          if (split_2.length > 2) {
+            prop_3 = split_2[2].trim()
+          }
         }
 
         if (!domain || !prop_1) {
@@ -28,6 +32,7 @@ App.get_domain_props = (setting, item) => {
           return {
             prop_1: prop_1,
             prop_2: prop_2,
+            prop_3: prop_3,
           }
         }
       }

@@ -76,8 +76,7 @@ App.setup_profile_editor = () => {
       App.profile_modified()
     })
 
-    DOM.ev(DOM.el(`#profile_editor_background_image`), `input`, (e) => {
-      console.log(4)
+    DOM.ev(DOM.el(`#profile_editor_background_image`), `blur`, (e) => {
       App.profile_apply_theme()
       App.profile_modified()
     })
@@ -272,7 +271,6 @@ App.show_profile_editor = (item, type, action = `edit`) => {
             let shared_bg = App.get_shared_background_color(profiles)
             let shared_tc = App.get_shared_text_color(profiles)
             let shared_bi = App.get_shared_background_image(profiles)
-            console.log(shared_bg, shared_tc, shared_bi)
 
             if (shared_bg && shared_tc && shared_bi) {
               DOM.el(`#profile_editor_theme_enabled`).checked = true
