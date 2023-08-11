@@ -187,5 +187,6 @@ App.first_mode = () => {
 
 App.getting = (mode) => {
   let icon = App.mode_icons[mode]
-  App.log(`${icon} Getting ${mode}`)
+  let name = App.capitalize(mode)
+  App.log(`${icon} Getting ${name}`)
 }
