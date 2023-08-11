@@ -713,6 +713,7 @@ App.do_close_normal_tabs = (close_unloaded = true) => {
 
   App.show_confirm(`Close these tabs? (${ids.length})`, () => {
     App.do_close_tabs(ids)
+    App.check_close_popup()
   }, undefined, force)
 }
 
@@ -857,6 +858,7 @@ App.do_close_duplicate_tabs = (close_pins = true) => {
 
   App.show_confirm(`Close these tabs? (${ids.length})`, () => {
     App.do_close_tabs(ids)
+    App.check_close_popup()
   }, undefined, force)
 }
 

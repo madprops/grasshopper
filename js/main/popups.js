@@ -223,3 +223,9 @@ App.popup_open = () => {
 
   return false
 }
+
+App.check_close_popup = () => {
+  if (App.popup_open()) {
+    App.hide_popup()
+  }
+}
