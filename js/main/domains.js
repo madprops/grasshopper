@@ -13,10 +13,12 @@ App.get_domain_props = (setting, item) => {
 
         if (prop_1.includes(`;`)) {
           let split_2 = prop_1.split(`;`)
+
+          if (split.length >= 2)
           prop_1 = split_2[0].trim()
           prop_2 = split_2[1].trim()
 
-          if (split_2.length > 2) {
+          if (split_2.length >= 3) {
             prop_3 = split_2[2].trim()
           }
         }
