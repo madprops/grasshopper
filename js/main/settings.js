@@ -392,6 +392,14 @@ App.setup_settings = () => {
     }
   })
 
+  App.create_popup({
+    id: `add_domain_icon`, setup: () => {
+      DOM.ev(DOM.el(`#add_domain_icon_add`), `click`, () => {
+        App.do_add_domain_icon()
+      })
+    }
+  })
+
   App.settings_categories = [`general`, `theme`, `media`, `show`, `mouse`, `warns`, `more`]
 
   let common = {
@@ -521,6 +529,10 @@ App.setup_settings = () => {
 
     DOM.ev(DOM.el(`#domain_themes_add`), `click`, () => {
       App.add_domain_theme()
+    })
+
+    DOM.ev(DOM.el(`#domain_icons_add`), `click`, () => {
+      App.add_domain_icon()
     })
   }}))
 
@@ -1122,10 +1134,10 @@ App.settings_menu_items = (action = `normal`, category) => {
 
 App.add_domain_theme = () => {
   App.show_popup(`add_domain_theme`)
-  let dm = DOM.el(`#add_domain_theme_domain`).value = ``
-  let bc = DOM.el(`#add_domain_theme_background_color`).value = ``
-  let tc = DOM.el(`#add_domain_theme_text_color`).value = ``
-  let bi = DOM.el(`#add_domain_theme_background_image`).value = ``
+  DOM.el(`#add_domain_theme_domain`).value = ``
+  DOM.el(`#add_domain_theme_background_color`).value = ``
+  DOM.el(`#add_domain_theme_text_color`).value = ``
+  DOM.el(`#add_domain_theme_background_image`).value = ``
   DOM.el(`#add_domain_theme_domain`).focus()
 }
 
@@ -1157,6 +1169,27 @@ App.do_add_domain_theme = () => {
       text.value = App.one_linebreak(`${text.value}\n${line}`.trim())
       text.focus()
     }
+  }
+
+  App.hide_popup()
+}
+
+App.add_domain_icon = () => {
+  App.show_popup(`add_domain_icon`)
+  DOM.el(`#add_domain_icon_domain`).value = ``
+  DOM.el(`#add_domain_icon_icon`).value = ``
+  DOM.el(`#add_domain_icon_domain`).focus()
+}
+
+App.do_add_domain_icon = () => {
+  let dm = DOM.el(`#add_domain_icon_domain`).value
+  let ic = DOM.el(`#add_domain_icon_icon`).value
+
+  if (dm && ic) {
+    let line = `\n${dm} = ${ic}`
+    let text = DOM.el(`#settings_domain_icons`)
+    text.value = App.one_linebreak(`${text.value}\n${line}`.trim())
+    text.focus()
   }
 
   App.hide_popup()
