@@ -4,10 +4,6 @@ App.setup_profile_editor = () => {
       App.profile_editor_remove()
     })
 
-    DOM.ev(DOM.el(`#profile_editor_save`), `click`, () => {
-      App.profile_editor_save()
-    })
-
     DOM.evs(DOM.el(`#profile_editor_close`), [`click`, `auxclick`], () => {
       App.hide_window()
     })

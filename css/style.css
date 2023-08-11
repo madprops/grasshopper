@@ -795,12 +795,6 @@ select {
   justify-content: center;
 }
 
-.editor_icon {
-  width: 1.7rem;
-  height: 1.7rem;
-  align-self: center;
-}
-
 .editor_text {
   width: 15rem;
   max-width: 15rem;
