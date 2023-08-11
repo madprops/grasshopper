@@ -326,6 +326,13 @@ App.setup_keyboard = () => {
           return
         }
       }
+      else if (pmode === `add_domain_title`) {
+        if (e.key === `Enter`) {
+          App.do_add_domain_title()
+          e.preventDefault()
+          return
+        }
+      }
 
       if (e.key === `Escape`) {
         App.hide_popup()

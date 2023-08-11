@@ -207,7 +207,11 @@
         </div>
 
         <div class="settings_item" title="Set fixed titles per domain. Format: example.com = Example">
-          <div class="settings_label">Domain Titles</div>
+          <div class="flex_row_center gap_1">
+            <div class="settings_label">Domain Titles</div>
+            <div>|</div>
+            <div id="domain_titles_add" class="action">Add</div>
+          </div>
           <textarea autocomplete="off" class="text settings_textarea" id="settings_domain_titles" data-setting="domain_titles" rows="3" placeholder="One domain per line"></textarea>
         </div>
 
@@ -790,6 +794,19 @@
           <input type="text" autocomplete="off" spellcheck="false" id="add_domain_icon_icon" class="text editor_text text_smaller" placeholder="Icon">
         </div>
         <div id="add_domain_icon_add" class="button">Add Domain Icon</div>
+      </div>
+    </template>
+
+    <template id="template_add_domain_title">
+      <div class="flex_column_center gap_2">
+        <div class="flex_column_center gap_2">
+          <input type="text" autocomplete="off" spellcheck="false" id="add_domain_title_domain" class="text editor_text" placeholder="Domain">
+        </div>
+
+        <div class="flex_column_center gap_2">
+          <input type="text" autocomplete="off" spellcheck="false" id="add_domain_title_title" class="text editor_text text_smaller" placeholder="Title">
+        </div>
+        <div id="add_domain_title_add" class="button">Add Domain Title</div>
       </div>
     </template>
 

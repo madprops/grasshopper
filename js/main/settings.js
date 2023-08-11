@@ -400,6 +400,14 @@ App.setup_settings = () => {
     }
   })
 
+  App.create_popup({
+    id: `add_domain_title`, setup: () => {
+      DOM.ev(DOM.el(`#add_domain_title_add`), `click`, () => {
+        App.do_add_domain_title()
+      })
+    }
+  })
+
   App.settings_categories = [`general`, `theme`, `media`, `show`, `mouse`, `warns`, `more`]
 
   let common = {
@@ -533,6 +541,10 @@ App.setup_settings = () => {
 
     DOM.ev(DOM.el(`#domain_icons_add`), `click`, () => {
       App.add_domain_icon()
+    })
+
+    DOM.ev(DOM.el(`#domain_titles_add`), `click`, () => {
+      App.add_domain_title()
     })
   }}))
 
@@ -1188,6 +1200,27 @@ App.do_add_domain_icon = () => {
   if (dm && ic) {
     let line = `\n${dm} = ${ic}`
     let text = DOM.el(`#settings_domain_icons`)
+    text.value = App.one_linebreak(`${text.value}\n${line}`.trim())
+    text.focus()
+  }
+
+  App.hide_popup()
+}
+
+App.add_domain_title = () => {
+  App.show_popup(`add_domain_title`)
+  DOM.el(`#add_domain_title_domain`).value = ``
+  DOM.el(`#add_domain_title_title`).value = ``
+  DOM.el(`#add_domain_title_domain`).focus()
+}
+
+App.do_add_domain_title = () => {
+  let dm = DOM.el(`#add_domain_title_domain`).value
+  let ic = DOM.el(`#add_domain_title_title`).value
+
+  if (dm && ic) {
+    let line = `\n${dm} = ${ic}`
+    let text = DOM.el(`#settings_domain_titles`)
     text.value = App.one_linebreak(`${text.value}\n${line}`.trim())
     text.focus()
   }
