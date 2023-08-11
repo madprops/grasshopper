@@ -774,7 +774,7 @@ App.get_previous_tabs = async () => {
   App.previous_tabs = App.get_items(`tabs`).slice(0)
 
   App.previous_tabs.sort((a, b) => {
-    return a.lastAccessed > b.lastAccessed ? -1 : 1
+    return a.last_accessed > b.last_accessed ? -1 : 1
   })
 
   App.previous_tabs_index = 1

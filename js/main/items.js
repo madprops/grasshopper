@@ -387,6 +387,7 @@ App.process_info = (mode, info, exclude = [], o_item) => {
     item.audible = info.audible
     item.muted = info.mutedInfo.muted
     item.discarded = info.discarded
+    item.last_accessed = info.lastAccessed
   }
   else if (mode === `history`) {
     item.last_visit = info.lastVisitTime
