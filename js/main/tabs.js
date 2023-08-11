@@ -100,7 +100,7 @@ App.tabs_check = () => {
 }
 
 App.get_tabs = async () => {
-  App.log(`Getting tabs`)
+  App.getting(`tabs`)
   let tabs
 
   try {
@@ -771,7 +771,7 @@ App.do_empty_previous_tabs = () => {
 }
 
 App.get_previous_tabs = async () => {
-  App.previous_tabs = await App.get_tabs()
+  App.previous_tabs = App.get_items(`tabs`).slice(0)
 
   App.previous_tabs.sort((a, b) => {
     return a.lastAccessed > b.lastAccessed ? -1 : 1

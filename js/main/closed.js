@@ -19,7 +19,7 @@ App.setup_closed = () => {
 }
 
 App.get_closed = async () => {
-  App.log(`Getting closed`)
+  App.getting(`closed`)
   let results
 
   try {

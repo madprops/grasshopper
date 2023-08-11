@@ -47,7 +47,7 @@ App.setup_bookmarks = () => {
 }
 
 App.get_bookmarks = async (query = ``, deep = false) => {
-  App.log(`Getting bookmarks`)
+  App.getting(`bookmarks`)
   let results = []
 
   try {

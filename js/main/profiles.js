@@ -76,14 +76,22 @@ App.setup_profile_editor = () => {
       App.profile_modified()
     })
 
+    DOM.ev(DOM.el(`#profile_editor_background_image`), `input`, (e) => {
+      console.log(4)
+      App.profile_apply_theme()
+      App.profile_modified()
+    })
+
     DOM.ev(DOM.el(`#profile_editor_theme_enabled`), `change`, (e) => {
       if (e.target.checked) {
         DOM.el(`#profile_editor_background_color_container`).classList.remove(`hidden`)
         DOM.el(`#profile_editor_text_color_container`).classList.remove(`hidden`)
+        DOM.el(`#profile_editor_background_image_container`).classList.remove(`hidden`)
       }
       else {
         DOM.el(`#profile_editor_background_color_container`).classList.add(`hidden`)
         DOM.el(`#profile_editor_text_color_container`).classList.add(`hidden`)
+        DOM.el(`#profile_editor_background_image_container`).classList.add(`hidden`)
       }
 
       App.profile_apply_theme()
@@ -148,6 +156,7 @@ App.show_profile_editor = (item, type, action = `edit`) => {
   DOM.el(`#profile_editor_theme_container`).classList.add(`hidden`)
   DOM.el(`#profile_editor_background_color_container`).classList.add(`hidden`)
   DOM.el(`#profile_editor_text_color_container`).classList.add(`hidden`)
+  DOM.el(`#profile_editor_background_image_container`).classList.add(`hidden`)
   App.profile_editor_modified = false
 
   if (type === `all` || type === `tags`) {
@@ -191,6 +200,7 @@ App.show_profile_editor = (item, type, action = `edit`) => {
   DOM.el(`#profile_editor_theme_enabled`).checked = false
   App.profile_editor_background_color.setColor(App.default_profile_background_color)
   App.profile_editor_text_color.setColor(App.default_profile_text_color)
+  DOM.el(`#profile_editor_background_image`).value = ``
   App.current_profile_editor_color = ``
 
   if (items.length === 1 && profiles.length === 1) {
@@ -219,6 +229,8 @@ App.show_profile_editor = (item, type, action = `edit`) => {
         DOM.el(`#profile_editor_theme_enabled`).checked = true
         DOM.el(`#profile_editor_background_color_container`).classList.remove(`hidden`)
         DOM.el(`#profile_editor_text_color_container`).classList.remove(`hidden`)
+        DOM.el(`#profile_editor_background_image_container`).classList.remove(`hidden`)
+        DOM.el(`#profile_editor_background_image`).value = profile.background_image
       }
 
       if (profile.background_color) {
@@ -259,11 +271,14 @@ App.show_profile_editor = (item, type, action = `edit`) => {
           if (enabled) {
             let shared_bg = App.get_shared_background_color(profiles)
             let shared_tc = App.get_shared_text_color(profiles)
+            let shared_bi = App.get_shared_background_image(profiles)
 
-            if (shared_bg && shared_tc) {
+            if (shared_bg && shared_tc && shared_bi) {
               DOM.el(`#profile_editor_theme_enabled`).checked = true
               DOM.el(`#profile_editor_background_color_container`).classList.remove(`hidden`)
               DOM.el(`#profile_editor_text_color_container`).classList.remove(`hidden`)
+              DOM.el(`#profile_editor_background_image_container`).classList.remove(`hidden`)
+              DOM.el(`#profile_editor_background_image`).value = shared_bi
               App.profile_editor_background_color.setColor(shared_bg)
               App.profile_editor_text_color.setColor(shared_tc)
             }
@@ -292,6 +307,7 @@ App.get_empty_profile = (url) => {
     theme_enabled: false,
     background_color: ``,
     text_color: ``,
+    background_image: ``,
   }
 }
 
@@ -305,6 +321,7 @@ App.copy_profile = (profile) => {
   obj.theme_enabled = profile.theme_enabled
   obj.background_color = profile.background_color
   obj.text_color = profile.text_color
+  obj.background_image = profile.background_image
   obj.icon = profile.icon
   return obj
 }
@@ -353,6 +370,7 @@ App.profile_editor_save = () => {
     args.background_color = App.colorlib.hex_to_rgb(hex)
     hex = App.profile_editor_text_color.color
     args.text_color = App.colorlib.hex_to_rgb(hex)
+    args.background_image =  DOM.el(`#profile_editor_background_image`).value.trim()
     args.type = App.profile_editor_type
     args.profiles = App.profile_editor_profiles
     args.added = App.profile_editor_added
@@ -412,6 +430,7 @@ App.save_profile = (args) => {
       profile.theme_enabled = args.theme_enabled
       profile.background_color = args.background_color
       profile.text_color = args.text_color
+      profile.background_image = args.background_image
     }
 
     App.profiles = App.profiles.filter(x => x.url !== profile.url)
@@ -631,6 +650,11 @@ App.check_profiles = () => {
 
     if (profile.text_color === undefined) {
       profile.text_color = ``
+      changed = true
+    }
+
+    if (profile.background_image === undefined) {
+      profile.background_image = ``
       changed = true
     }
   }
@@ -858,11 +882,12 @@ App.remove_all_themes = () => {
     return
   }
 
-  App.show_confirm(`Remove all backgrounds? (${profiles.length})`, () => {
+  App.show_confirm(`Remove all themes? (${profiles.length})`, () => {
     for (let profile of App.profiles) {
       profile.theme_enabled = false
       profile.background_color = ``
       profile.text_color = ``
+      profile.background_image = ``
     }
 
     App.after_profile_remove()
@@ -984,7 +1009,7 @@ App.after_profile_remove = () => {
 App.used_profile = (profile) => {
   if (profile.tags.length || profile.notes || profile.title ||
   profile.color || profile.theme_enabled || profile.background_color ||
-  profile.text_color || profile.icon) {
+  profile.text_color || profile.background_image || profile.icon) {
     return true
   }
 
@@ -1316,11 +1341,24 @@ App.get_shared_text_color = (profiles) => {
   return first
 }
 
+App.get_shared_background_image = (profiles) => {
+  let first = profiles[0].background_image
+
+  for (let profile of profiles) {
+    if (profile.background_image !== first) {
+      return ``
+    }
+  }
+
+  return first
+}
+
 App.profile_apply_theme = () => {
   if (DOM.el(`#profile_editor_theme_enabled`).checked) {
     let c1 = App.colorlib.hex_to_rgb(App.profile_editor_background_color.color)
     let c2 = App.colorlib.hex_to_rgb(App.profile_editor_text_color.color)
-    App.apply_theme(c1, c2)
+    let bi =  DOM.el(`#profile_editor_background_image`).value.trim()
+    App.apply_theme({background_color: c1, text_color: c2, background_image: bi, check: true})
   }
   else {
     App.set_default_theme()

@@ -22,7 +22,7 @@ App.history_time = (deep = false) => {
 }
 
 App.get_history = async (query = ``, deep = false) => {
-  App.log(`Getting history`)
+  App.getting(`history`)
   let results
   let max_items = App.max_items
 

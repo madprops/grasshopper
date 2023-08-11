@@ -184,3 +184,8 @@ App.show_first_mode = () => {
 App.first_mode = () => {
   return App.mode_order[0]
 }
+
+App.getting = (mode) => {
+  let icon = App.mode_icons[mode]
+  App.log(`${icon} Getting ${mode}`)
+}

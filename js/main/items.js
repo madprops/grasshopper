@@ -318,8 +318,10 @@ App.process_info = (mode, info, exclude = [], o_item) => {
   let tags = []
   let color = ``
   let custom_title = ``
+  let theme_enabled = false
   let background_color = ``
   let text_color = ``
+  let background_image = ``
   let icon = ``
 
   if (profile) {
@@ -340,12 +342,18 @@ App.process_info = (mode, info, exclude = [], o_item) => {
     }
 
     if (profile.theme_enabled) {
+      theme_enabled = true
+
       if (profile.background_color) {
         background_color = profile.background_color
       }
 
       if (profile.text_color) {
         text_color = profile.text_color
+      }
+
+      if (profile.background_image) {
+        background_image = profile.background_image
       }
     }
   }
@@ -366,8 +374,10 @@ App.process_info = (mode, info, exclude = [], o_item) => {
     audio: audio,
     tags: tags,
     color: color,
+    theme_enabled: theme_enabled,
     background_color: background_color,
     text_color: text_color,
+    background_image: background_image,
     created: false,
   }
 
@@ -869,9 +879,7 @@ App.cycle_modes_debouncer = App.create_debouncer((reverse, cycle) => {
 }, App.wheel_delay, true)
 
 App.focus_or_open_item = async (item) => {
-  let tabs = await App.get_tabs()
-
-  for (let tab of tabs) {
+  for (let tab of App.get_items(`tabs`)) {
     if (App.urls_equal(tab.url, item.url)) {
       let o = {
         id: tab.id,

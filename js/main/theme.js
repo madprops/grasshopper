@@ -39,40 +39,54 @@ App.start_theme_interval = (setting) => {
   }
 }
 
-App.apply_theme = (background, text, check = false, safe_mode = false) => {
+App.apply_theme = (args) => {
+  let def_args = {
+    check: false,
+    safe_mode: false,
+  }
+
+  args = Object.assign(def_args, args)
+
   try {
-    if (!background) {
-      background = App.get_setting(`background_color`)
+    if (!args.background_color) {
+      args.background_color = App.get_setting(`background_color`)
     }
 
-    if (!text) {
-      text = App.get_setting(`text_color`)
+    if (!args.text_color) {
+      args.text_color = App.get_setting(`text_color`)
     }
 
-    if (check) {
-      if (background === App.last_background_color && text === App.last_text_color) {
+    if (!args.background_image) {
+      args.background_image = App.get_setting(`background_image`)
+    }
+
+    if (args.check) {
+      if (args.background_color === App.last_background_color &&
+        args.text_color === App.last_background_image &&
+        args.background_image === App.last_background_image) {
         return
       }
     }
 
-    App.last_background_color = background
-    App.last_text_color = text
-    App.set_css_var(`background_color`, background)
-    App.set_css_var(`text_color`, text)
-    let main_background = App.colorlib.rgb_to_rgba(background, 0.93)
+    App.last_background_color = args.background_color
+    App.last_text_color = args.text_color
+    App.last_background_image = args.background_image
+    App.set_css_var(`background_color`, args.background_color)
+    App.set_css_var(`text_color`, args.text_color)
+    let main_background = App.colorlib.rgb_to_rgba(args.background_color, 0.93)
     App.set_css_var(`main_background`, main_background)
-    let alt_color_0 = App.colorlib.rgb_to_rgba(text, 0.15)
+    let alt_color_0 = App.colorlib.rgb_to_rgba(args.text_color, 0.15)
     App.set_css_var(`alt_color_0`, alt_color_0)
-    let alt_color_1 = App.colorlib.rgb_to_rgba(text, 0.20)
+    let alt_color_1 = App.colorlib.rgb_to_rgba(args.text_color, 0.20)
     App.set_css_var(`alt_color_1`, alt_color_1)
-    let alt_color_2 = App.colorlib.rgb_to_rgba(text, 0.50)
+    let alt_color_2 = App.colorlib.rgb_to_rgba(args.text_color, 0.50)
     App.set_css_var(`alt_color_2`, alt_color_2)
-    let alt_background = App.colorlib.rgb_to_rgba(background, 0.55)
+    let alt_background = App.colorlib.rgb_to_rgba(args.background_color, 0.55)
     App.set_css_var(`alt_background`, alt_background)
-    let alt_background_2 = App.colorlib.get_lighter_or_darker(background, 0.06)
+    let alt_background_2 = App.colorlib.get_lighter_or_darker(args.background_color, 0.06)
     App.set_css_var(`alt_background_2`, alt_background_2)
 
-    if (safe_mode) {
+    if (args.safe_mode) {
       return
     }
 
@@ -100,10 +114,9 @@ App.apply_theme = (background, text, check = false, safe_mode = false) => {
     }
 
     App.set_css_var(`item_height`, `${item_height}rem`)
-    let bg_img = App.get_setting(`background_image`)
 
-    if (bg_img) {
-      App.set_css_var(`background_image`, `url(${bg_img})`)
+    if (args.background_image) {
+      App.set_css_var(`background_image`, `url(${args.background_image})`)
     }
     else {
       App.set_css_var(`background_image`, `unset`)
@@ -200,7 +213,12 @@ App.apply_theme = (background, text, check = false, safe_mode = false) => {
 }
 
 App.theme_safe_mode = () => {
-  App.apply_theme(`rgb(33, 33, 33)`, `rgb(222, 222, 222)`, false, true)
+  App.apply_theme({
+    background_color: `rgb(33, 33, 33)`,
+    text_color: `rgb(222, 222, 222)`,
+    check: false,
+    safe_mode: true,
+  })
 
   if (!App.theme_safe_mode_msg) {
     App.show_alert_2(`Theme settings are invalid. Using safe mode`)
@@ -245,7 +263,7 @@ App.set_theme = (c1, c2) => {
     // Don't apply theme
   }
   else {
-    App.apply_theme(c1, c2, true)
+    App.apply_theme({background_color: c1, text_color: c2, check: true})
   }
 
   if (App.on_settings()) {
@@ -258,10 +276,10 @@ App.set_theme = (c1, c2) => {
 App.set_default_theme = () => {
   let background = App.get_setting(`background_color`)
   let text = App.get_setting(`text_color`)
-  App.apply_theme(background, text, true)
+  App.apply_theme({background_color: background, text_color: text, check: true})
 }
 
-App.set_color_auto = (background, text) => {
+App.set_color_auto = (background, text, background_image) => {
   if (!background) {
     return
   }
@@ -275,7 +293,8 @@ App.set_color_auto = (background, text) => {
     text = App.parse_color(text)
   }
 
-  App.apply_theme(background, text, true)
+  App.apply_theme({background_color: background,
+    text_color: text, background_image: background_image, check: true})
 }
 
 App.parse_color = (color) => {
@@ -391,8 +410,8 @@ App.do_check_item_theme = () => {
     return
   }
 
-  if (item.background_color && item.text_color) {
-    App.set_color_auto(item.background_color, item.text_color)
+  if (item.theme_enabled) {
+    App.set_color_auto(item.background_color, item.text_color, item.background_image)
     return
   }
 
