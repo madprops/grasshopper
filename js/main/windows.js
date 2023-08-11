@@ -191,9 +191,7 @@ App.check_close_on_open = () => {
 }
 
 App.restore = () => {
-  if (NeedContext.open) {
-    return
-  }
+  NeedContext.hide()
 
   if (App.on_items()) {
     App.deselect(App.window_mode, `up`)
