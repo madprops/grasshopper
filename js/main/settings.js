@@ -568,7 +568,7 @@ App.setup_settings = () => {
     })
 
     DOM.ev(DOM.el(`#alias_add`), `click`, () => {
-      App.add_aliase()
+      App.add_alias()
     })
   }}))
 
@@ -1266,7 +1266,7 @@ App.add_domain_color = () => {
 
 App.do_add_domain_color = () => {
   let dm = DOM.el(`#add_domain_color_domain`).value
-  let ic = DOM.el(`#add_domain_color_color`).value
+  let ic = DOM.el(`#add_domain_color_color`).value.toLowerCase()
 
   if (dm && ic) {
     let line = `\n${dm} = ${ic}`
@@ -1278,7 +1278,7 @@ App.do_add_domain_color = () => {
   App.hide_popup()
 }
 
-App.add_aliase = () => {
+App.add_alias = () => {
   App.show_popup(`add_alias`)
   DOM.el(`#add_alias_term_1`).value = ``
   DOM.el(`#add_alias_term_2`).value = ``
