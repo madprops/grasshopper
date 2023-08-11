@@ -333,6 +333,20 @@ App.setup_keyboard = () => {
           return
         }
       }
+      else if (pmode === `add_domain_color`) {
+        if (e.key === `Enter`) {
+          App.do_add_domain_color()
+          e.preventDefault()
+          return
+        }
+      }
+      else if (pmode === `add_alias`) {
+        if (e.key === `Enter`) {
+          App.do_add_alias()
+          e.preventDefault()
+          return
+        }
+      }
 
       if (e.key === `Escape`) {
         App.hide_popup()

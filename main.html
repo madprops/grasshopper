@@ -197,12 +197,20 @@
         </div>
 
         <div class="settings_item" title="Filter aliases. Format: cat = kot">
-          <div class="settings_label">Aliases</div>
+          <div class="flex_row_center gap_1">
+            <div class="settings_label">Aliases</div>
+            <div>|</div>
+            <div id="alias_add" class="action">Add</div>
+          </div>
           <textarea autocomplete="off" class="text settings_textarea" id="settings_aliases" data-setting="aliases" rows="3" placeholder="One alias per line"></textarea>
         </div>
 
         <div class="settings_item" title="Set fixed colors per domain. These have to use one of the available profile colors, like red, green, blue, yellow, purple, and orange. Format: example.com = green">
-          <div class="settings_label">Domain Colors</div>
+          <div class="flex_row_center gap_1">
+            <div class="settings_label">Domain Colors</div>
+            <div>|</div>
+            <div id="domain_colors_add" class="action">Add</div>
+          </div>
           <textarea autocomplete="off" class="text settings_textarea" id="settings_domain_colors" data-setting="domain_colors" rows="3" placeholder="One domain per line"></textarea>
         </div>
 
@@ -807,6 +815,32 @@
           <input type="text" autocomplete="off" spellcheck="false" id="add_domain_title_title" class="text editor_text text_smaller" placeholder="Title">
         </div>
         <div id="add_domain_title_add" class="button">Add Domain Title</div>
+      </div>
+    </template>
+
+    <template id="template_add_domain_color">
+      <div class="flex_column_center gap_2">
+        <div class="flex_column_center gap_2">
+          <input type="text" autocomplete="off" spellcheck="false" id="add_domain_color_domain" class="text editor_text" placeholder="Domain">
+        </div>
+
+        <div class="flex_column_center gap_2">
+          <input type="text" autocomplete="off" spellcheck="false" id="add_domain_color_color" class="text editor_text text_smaller" placeholder="Color">
+        </div>
+        <div id="add_domain_color_add" class="button">Add Domain Color</div>
+      </div>
+    </template>
+
+    <template id="template_add_alias">
+      <div class="flex_column_center gap_2">
+        <div class="flex_column_center gap_2">
+          <input type="text" autocomplete="off" spellcheck="false" id="add_alias_term_1" class="text editor_text" placeholder="Term 1">
+        </div>
+
+        <div class="flex_column_center gap_2">
+          <input type="text" autocomplete="off" spellcheck="false" id="add_alias_term_2" class="text editor_text text_smaller" placeholder="Term 2">
+        </div>
+        <div id="add_alias_add" class="button">Add Alias</div>
       </div>
     </template>
 

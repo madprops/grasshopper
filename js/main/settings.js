@@ -408,6 +408,22 @@ App.setup_settings = () => {
     }
   })
 
+  App.create_popup({
+    id: `add_domain_color`, setup: () => {
+      DOM.ev(DOM.el(`#add_domain_color_add`), `click`, () => {
+        App.do_add_domain_color()
+      })
+    }
+  })
+
+  App.create_popup({
+    id: `add_alias`, setup: () => {
+      DOM.ev(DOM.el(`#add_alias_add`), `click`, () => {
+        App.do_add_alias()
+      })
+    }
+  })
+
   App.settings_categories = [`general`, `theme`, `media`, `show`, `mouse`, `warns`, `more`]
 
   let common = {
@@ -545,6 +561,14 @@ App.setup_settings = () => {
 
     DOM.ev(DOM.el(`#domain_titles_add`), `click`, () => {
       App.add_domain_title()
+    })
+
+    DOM.ev(DOM.el(`#domain_colors_add`), `click`, () => {
+      App.add_domain_color()
+    })
+
+    DOM.ev(DOM.el(`#alias_add`), `click`, () => {
+      App.add_aliase()
     })
   }}))
 
@@ -1221,6 +1245,48 @@ App.do_add_domain_title = () => {
   if (dm && ic) {
     let line = `\n${dm} = ${ic}`
     let text = DOM.el(`#settings_domain_titles`)
+    text.value = App.one_linebreak(`${text.value}\n${line}`.trim())
+    text.focus()
+  }
+
+  App.hide_popup()
+}
+
+App.add_domain_color = () => {
+  App.show_popup(`add_domain_color`)
+  DOM.el(`#add_domain_color_domain`).value = ``
+  DOM.el(`#add_domain_color_color`).value = ``
+  DOM.el(`#add_domain_color_domain`).focus()
+}
+
+App.do_add_domain_color = () => {
+  let dm = DOM.el(`#add_domain_color_domain`).value
+  let ic = DOM.el(`#add_domain_color_color`).value
+
+  if (dm && ic) {
+    let line = `\n${dm} = ${ic}`
+    let text = DOM.el(`#settings_domain_colors`)
+    text.value = App.one_linebreak(`${text.value}\n${line}`.trim())
+    text.focus()
+  }
+
+  App.hide_popup()
+}
+
+App.add_aliase = () => {
+  App.show_popup(`add_alias`)
+  DOM.el(`#add_alias_term_1`).value = ``
+  DOM.el(`#add_alias_term_2`).value = ``
+  DOM.el(`#add_alias_term_1`).focus()
+}
+
+App.do_add_alias = () => {
+  let t1 = DOM.el(`#add_alias_term_1`).value
+  let t2 = DOM.el(`#add_alias_term_2`).value
+
+  if (t1 && t2) {
+    let line = `\n${t1} = ${t2}`
+    let text = DOM.el(`#settings_aliases`)
     text.value = App.one_linebreak(`${text.value}\n${line}`.trim())
     text.focus()
   }
