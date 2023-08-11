@@ -257,14 +257,6 @@ App.settings_setup_text = (container) => {
       }
     ]
 
-    if (setting === `background_image`) {
-      menu.push({
-        name: `Random`, action: () => {
-          App.random_background()
-        }
-      })
-    }
-
     DOM.evs(App.get_settings_label(setting), [`click`, `contextmenu`], (e) => {
       App.settings_label_menu(e, menu)
     })
@@ -700,22 +692,19 @@ App.start_theme_settings = () => {
             App[setting].setColor(App.get_setting(setting))
           }
         },
-        {
-          name: `Dark`, action: () => {
-            App.dark_theme(name)
-          }
-        },
-        {
-          name: `Light`, action: () => {
-            App.light_theme(name)
-          }
-        },
-        {
-          name: `Random`, action: () => {
-            App.random_theme(name)
-          }
-        },
       ])
+    })
+
+    DOM.ev(DOM.el(`#settings_background_color_random`), `click`, () => {
+      App.random_theme()
+    })
+
+    DOM.ev(DOM.el(`#settings_text_color_random`), `click`, () => {
+      App.random_theme()
+    })
+
+    DOM.ev(DOM.el(`#settings_background_image_random`), `click`, () => {
+      App.random_background()
     })
   }
 
