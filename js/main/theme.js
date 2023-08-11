@@ -280,14 +280,14 @@ App.set_default_theme = () => {
 }
 
 App.set_color_auto = (background, text, background_image) => {
-  if (!background) {
-    return
+  if (background) {
+    background = App.parse_color(background)
   }
 
-  background = App.parse_color(background)
-
   if (!text) {
-    text = App.colorlib.get_lighter_or_darker(background, App.color_contrast)
+    if (background) {
+      text = App.colorlib.get_lighter_or_darker(background, App.color_contrast)
+    }
   }
   else {
     text = App.parse_color(text)
