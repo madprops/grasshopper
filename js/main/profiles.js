@@ -83,14 +83,10 @@ App.setup_profile_editor = () => {
 
     DOM.ev(DOM.el(`#profile_editor_theme_enabled`), `change`, (e) => {
       if (e.target.checked) {
-        DOM.el(`#profile_editor_background_color_container`).classList.remove(`hidden`)
-        DOM.el(`#profile_editor_text_color_container`).classList.remove(`hidden`)
-        DOM.el(`#profile_editor_background_image_container`).classList.remove(`hidden`)
+        DOM.el(`#profile_editor_theme_inputs`).classList.remove(`hidden`)
       }
       else {
-        DOM.el(`#profile_editor_background_color_container`).classList.add(`hidden`)
-        DOM.el(`#profile_editor_text_color_container`).classList.add(`hidden`)
-        DOM.el(`#profile_editor_background_image_container`).classList.add(`hidden`)
+        DOM.el(`#profile_editor_theme_inputs`).classList.add(`hidden`)
       }
 
       App.profile_apply_theme()
@@ -153,9 +149,7 @@ App.show_profile_editor = (item, type, action = `edit`) => {
   DOM.el(`#profile_editor_title_container`).classList.add(`hidden`)
   DOM.el(`#profile_editor_icon_container`).classList.add(`hidden`)
   DOM.el(`#profile_editor_theme_container`).classList.add(`hidden`)
-  DOM.el(`#profile_editor_background_color_container`).classList.add(`hidden`)
-  DOM.el(`#profile_editor_text_color_container`).classList.add(`hidden`)
-  DOM.el(`#profile_editor_background_image_container`).classList.add(`hidden`)
+  DOM.el(`#profile_editor_theme_inputs`).classList.add(`hidden`)
   App.profile_editor_modified = false
 
   if (type === `all` || type === `tags`) {
@@ -226,10 +220,7 @@ App.show_profile_editor = (item, type, action = `edit`) => {
 
       if (profile.theme_enabled) {
         DOM.el(`#profile_editor_theme_enabled`).checked = true
-        DOM.el(`#profile_editor_background_color_container`).classList.remove(`hidden`)
-        DOM.el(`#profile_editor_text_color_container`).classList.remove(`hidden`)
-        DOM.el(`#profile_editor_background_image_container`).classList.remove(`hidden`)
-        DOM.el(`#profile_editor_background_image`).value = profile.background_image
+        DOM.el(`#profile_editor_theme_inputs`).classList.remove(`hidden`)
       }
 
       if (profile.background_color) {
@@ -274,9 +265,7 @@ App.show_profile_editor = (item, type, action = `edit`) => {
 
             if (shared_bg && shared_tc && shared_bi) {
               DOM.el(`#profile_editor_theme_enabled`).checked = true
-              DOM.el(`#profile_editor_background_color_container`).classList.remove(`hidden`)
-              DOM.el(`#profile_editor_text_color_container`).classList.remove(`hidden`)
-              DOM.el(`#profile_editor_background_image_container`).classList.remove(`hidden`)
+              DOM.el(`#profile_editor_theme_inputs`).classList.remove(`hidden`)
               DOM.el(`#profile_editor_background_image`).value = shared_bi
               App.profile_editor_background_color.setColor(shared_bg)
               App.profile_editor_text_color.setColor(shared_tc)
