@@ -100,12 +100,12 @@ App.setup_profile_editor = () => {
         App.profile_editor_save()
       }, () => {
         App.hide_window(true)
-        App.do_check_item_theme()
+        App.check_item_theme()
       })
     }
     else {
       App.hide_window(true)
-      App.do_check_item_theme()
+      App.check_item_theme()
     }
   }})
 }
