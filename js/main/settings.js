@@ -90,7 +90,7 @@ App.build_default_settings = () => {
   obj.case_insensitive = {value: true, category: category, version: 1}
   obj.lock_drag = {value: false, category: category, version: 1}
   obj.mute_click = {value: true, category: category, version: 1}
-  obj.double_click_new = {value: false, category: category, version: 1}
+  obj.double_click_new = {value: true, category: category, version: 1}
   obj.rounded_corners = {value: true, category: category, version: 1}
   obj.smooth_scrolling = {value: true, category: category, version: 1}
 
