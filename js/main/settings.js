@@ -181,9 +181,11 @@ App.settings_setup_checkboxes = (container) => {
       [
         {
           name: `Reset`, action: () => {
-            App.set_default_setting(setting)
-            el.checked = App.get_setting(setting)
-            App.settings_do_action(action)
+            App.show_confirm(`Reset setting?`, () => {
+              App.set_default_setting(setting)
+              el.checked = App.get_setting(setting)
+              App.settings_do_action(action)
+            })
           }
         },
       ])
@@ -227,32 +229,36 @@ App.settings_setup_text = (container) => {
     let menu = [
       {
         name: `Reset`,  action: () => {
-          App.set_default_setting(setting)
-          let value = App.get_setting(setting)
+          App.show_confirm(`Reset setting?`, () => {
+            App.set_default_setting(setting)
+            let value = App.get_setting(setting)
 
-          if (is_textarea) {
-            el.value = value.join(`\n`)
-          }
-          else {
-            el.value = value
-          }
+            if (is_textarea) {
+              el.value = value.join(`\n`)
+            }
+            else {
+              el.value = value
+            }
 
-          App.settings_do_action(action)
-          el.focus()
+            App.settings_do_action(action)
+            el.focus()
+          })
         },
       },
       {
         name: `Clear`,  action: () => {
-          if (is_textarea) {
-            App.set_setting(setting, [])
-          }
-          else {
-            App.set_setting(setting, ``)
-          }
+          App.show_confirm(`Clear setting?`, () => {
+            if (is_textarea) {
+              App.set_setting(setting, [])
+            }
+            else {
+              App.set_setting(setting, ``)
+            }
 
-          el.value = ``
-          App.settings_do_action(action)
-          el.focus()
+            el.value = ``
+            App.settings_do_action(action)
+            el.focus()
+          })
         },
       }
     ]
@@ -296,17 +302,19 @@ App.settings_make_menu = (setting, opts, action = () => {}) => {
     [
       {
         name: `Reset`, action: () => {
-          App.set_default_setting(setting)
-          let value = App.get_setting(setting)
+          App.show_confirm(`Reset setting?`, () => {
+            App.set_default_setting(setting)
+            let value = App.get_setting(setting)
 
-          for (let o of opts) {
-            if (o[1] === value) {
-              el.textContent = o[0]
-              break
+            for (let o of opts) {
+              if (o[1] === value) {
+                el.textContent = o[0]
+                break
+              }
             }
-          }
 
-          action()
+            action()
+          })
         }
       },
     ])
@@ -549,12 +557,14 @@ App.setup_settings = () => {
       [
         {
           name: `Reset`, action: () => {
-            App.set_default_setting(`tabs_index`)
-            App.set_default_setting(`history_index`)
-            App.set_default_setting(`bookmarks_index`)
-            App.set_default_setting(`closed_index`)
-            App.get_mode_order()
-            App.make_mode_order()
+            App.show_confirm(`Reset setting?`, () => {
+              App.set_default_setting(`tabs_index`)
+              App.set_default_setting(`history_index`)
+              App.set_default_setting(`bookmarks_index`)
+              App.set_default_setting(`closed_index`)
+              App.get_mode_order()
+              App.make_mode_order()
+            })
           }
         },
       ])
@@ -745,8 +755,10 @@ App.start_theme_settings = () => {
       [
         {
           name: `Reset`, action: () => {
-            App.set_default_setting(setting)
-            App[setting].setColor(App.get_setting(setting))
+            App.show_confirm(`Reset setting?`, () => {
+              App.set_default_setting(setting)
+              App[setting].setColor(App.get_setting(setting))
+            })
           }
         },
       ])
