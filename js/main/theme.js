@@ -180,7 +180,7 @@ App.apply_theme = (args) => {
     }
 
     if (App.get_setting(`color_transitions`)) {
-      App.set_css_var(`color_transition`, `background-color 1400ms, color 600ms`)
+      App.set_css_var(`color_transition`, `background-color 1400ms, color 800ms`)
     }
     else {
       App.set_css_var(`color_transition`, `none`)
