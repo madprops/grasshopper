@@ -1193,25 +1193,8 @@ App.do_add_domain_theme = () => {
   let bi = DOM.el(`#add_domain_theme_background_image`).value
 
   if (dm) {
-    let props = ``
-
-    if (bc) {
-      props += `${bc} ; `
-    }
-    else {
-      props += ` ; `
-    }
-
-    if (tc) {
-      props += ` ${tc} ;`
-    }
-    else {
-      props += ` ; `
-    }
-
-    if (bi) {
-      props += ` ${bi}`
-    }
+    let props = `${bc} ; ${tc} ; ${bi}`
+    props = props.replace(/[;\s]+$/g, ``)
 
     if (props.length > 0)  {
       let line = `\n${dm} = ${props}`
