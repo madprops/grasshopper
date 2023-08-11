@@ -1184,23 +1184,28 @@ App.do_add_domain_theme = () => {
   let bi = DOM.el(`#add_domain_theme_background_image`).value
 
   if (dm) {
-    let props = []
+    let props = ``
 
     if (bc) {
-      props.push(bc)
+      props += `${bc} ; `
+    }
+    else {
+      props += ` ; `
     }
 
     if (tc) {
-      props.push(tc)
+      props += ` ${tc} ;`
+    }
+    else {
+      props += ` ; `
     }
 
     if (bi) {
-      props.push(bi)
+      props += ` ${bi}`
     }
 
     if (props.length > 0)  {
-      let joined = props.join(` ; `)
-      let line = `\n${dm} = ${joined}`
+      let line = `\n${dm} = ${props}`
       let text = DOM.el(`#settings_domain_themes`)
       text.value = App.one_linebreak(`${text.value}\n${line}`.trim())
       text.focus()
