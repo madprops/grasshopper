@@ -763,18 +763,6 @@ App.start_theme_settings = () => {
         },
       ])
     })
-
-    DOM.ev(DOM.el(`#settings_background_color_random`), `click`, () => {
-      App.random_theme()
-    })
-
-    DOM.ev(DOM.el(`#settings_text_color_random`), `click`, () => {
-      App.random_theme()
-    })
-
-    DOM.ev(DOM.el(`#settings_background_image_random`), `click`, () => {
-      App.random_background()
-    })
   }
 
   start_color_picker(`background`)
@@ -837,6 +825,18 @@ App.start_theme_settings = () => {
     [`Dark & Light`, `both`],
   ], () => {
     App.hostname_colors = {}
+  })
+
+  DOM.ev(DOM.el(`#settings_background_color_random`), `click`, () => {
+    App.random_theme()
+  })
+
+  DOM.ev(DOM.el(`#settings_text_color_random`), `click`, () => {
+    App.random_theme()
+  })
+
+  DOM.ev(DOM.el(`#settings_background_image_random`), `click`, () => {
+    App.random_background()
   })
 }
 
