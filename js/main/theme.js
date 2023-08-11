@@ -20,7 +20,6 @@ App.start_theme_interval = (setting) => {
 
   if (delay > 0) {
     App[`${setting}_interval`] = setInterval(() => {
-      clearInterval(App[`${setting}_interval`])
       let sett = App.get_setting(setting)
 
       if (sett === `never` || sett === `domain`) {
