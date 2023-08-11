@@ -29,7 +29,7 @@ App.create_media_windows = (what) => {
     buttons.append(menu)
 
     let close = DOM.create(`div`, `button`, `media_${what}_close`)
-    close.textContent = `Close`
+    close.textContent = App.close_text
     close.title = `Close this window`
     buttons.append(close)
 
@@ -210,6 +210,7 @@ App.open_media = (what = App.window_mode) => {
   let item = App[`current_media_${what}_item`]
   App.check_bookmark(item)
   App.focus_or_open_item(item)
+  App.hide_window()
 }
 
 App.media_copy = (what) => {

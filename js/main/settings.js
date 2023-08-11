@@ -611,7 +611,7 @@ App.add_settings_switchers = (category) => {
   reset.textContent = `Reset`
   container.append(reset)
   let close = DOM.create(`div`, `button`)
-  close.textContent = `Close`
+  close.textContent = App.close_text
   container.append(close)
 
   DOM.ev(reset, `click`, () => {

@@ -35,9 +35,13 @@ App.setup_about = () => {
       `Data like settings and profiles can be exported and imported`,
     ]
 
-    DOM.evs(DOM.el(`#about_close`), [`click`, `auxclick`], () => {
+    let close = DOM.el(`#about_close`)
+
+    DOM.evs(close, [`click`, `auxclick`], () => {
       App.hide_window()
     })
+
+    close.textContent = App.close_text
 
     let image = DOM.el(`#about_image`)
 

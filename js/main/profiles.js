@@ -4,9 +4,13 @@ App.setup_profile_editor = () => {
       App.profile_editor_remove()
     })
 
-    DOM.evs(DOM.el(`#profile_editor_close`), [`click`, `auxclick`], () => {
+    let close = DOM.el(`#profile_editor_close`)
+
+    DOM.evs(close, [`click`, `auxclick`], () => {
       App.hide_window()
     })
+
+    close.textContent = App.close_text
 
     DOM.ev(DOM.el(`#profile_editor_tags_add`), `click`, (e) => {
       App.show_tag_picker(e)
