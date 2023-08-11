@@ -778,20 +778,20 @@ App.clear_profiles_items = () => {
     })
   }
 
-  if (count.themes) {
-    items.push({
-      text: `Remove Theme`,
-      action: () => {
-        App.remove_all_themes()
-      }
-    })
-  }
-
   if (count.icons) {
     items.push({
       text: `Remove Icons`,
       action: () => {
         App.remove_all_icons()
+      }
+    })
+  }
+
+  if (count.themes) {
+    items.push({
+      text: `Remove Themes`,
+      action: () => {
+        App.remove_all_themes()
       }
     })
   }
