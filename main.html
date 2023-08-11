@@ -217,7 +217,11 @@
         </div>
 
         <div class="settings_item" title="Set fixed themes per domain. There are 3 properties, background color, text color, and background image. Format: example.com = rgb(0, 0, 0) ; green ; http://image.jpg. RGB, hex, and color names are supported. You can leave some properties empty, for instance if you only want a background image you can do example.com = ; ; http://image.jpg">
-          <div class="settings_label">Domain Themes</div>
+          <div class="flex_row_center gap_1">
+            <div class="settings_label">Domain Themes</div>
+            <div>|</div>
+            <div id="domain_themes_add" class="action">Add</div>
+          </div>
           <textarea autocomplete="off" class="text settings_textarea" id="settings_domain_themes" data-setting="domain_themes" rows="3" placeholder="One domain per line"></textarea>
         </div>
 
@@ -733,6 +737,28 @@
 
     <template id="template_media_audio_top">
       <div id="media_audio_buttons" class="flex_row_center gap_2 grow"></div>
+    </template>
+
+    <template id="template_add_domain_theme">
+      <div class="flex_column_center gap_2">
+        <div class="flex_column_center gap_2">
+          <input type="text" autocomplete="off" spellcheck="false" id="add_domain_theme_domain" class="text editor_text" placeholder="Domain">
+        </div>
+
+        <div class="flex_column_center gap_2">
+          <input type="text" autocomplete="off" spellcheck="false" id="add_domain_theme_background_color" class="text editor_text" placeholder="Background Color">
+        </div>
+
+        <div class="flex_column_center gap_2">
+          <input type="text" autocomplete="off" spellcheck="false" id="add_domain_theme_text_color" class="text editor_text" placeholder="Text Color">
+        </div>
+
+        <div class="flex_column_center gap_2">
+          <input type="text" autocomplete="off" spellcheck="false" id="add_domain_theme_background_image" class="text editor_text" placeholder="Background Image">
+        </div>
+
+        <div id="add_domain_theme_add" class="button">Add Domain Theme</div>
+      </div>
     </template>
 
     <script src="js/main/init.js"></script>

@@ -295,17 +295,27 @@ App.setup_keyboard = () => {
         else if (e.key === `Enter`) {
           App.palette_enter()
           e.preventDefault()
+          return
         }
         else if (e.key === `ArrowUp`) {
           App.palette_next(true)
           e.preventDefault()
+          return
         }
         else if (e.key === `ArrowDown`) {
           App.palette_next()
           e.preventDefault()
+          return
         }
         else if (App.palette_filter_focused()) {
           App.filter_palette()
+          return
+        }
+      }
+      else if (pmode === `add_domain_theme`) {
+        if (e.key === `Enter`) {
+          App.do_add_domain_theme()
+          e.preventDefault()
           return
         }
       }

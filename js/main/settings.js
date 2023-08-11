@@ -392,6 +392,14 @@ App.settings_filter_focused = () => {
 }
 
 App.setup_settings = () => {
+  App.create_popup({
+    id: `add_domain_theme`, setup: () => {
+      DOM.ev(DOM.el(`#add_domain_theme_add`), `click`, () => {
+        App.do_add_domain_theme()
+      })
+    }
+  })
+
   App.settings_categories = [`general`, `theme`, `media`, `show`, `mouse`, `warns`, `more`]
 
   let common = {
@@ -517,6 +525,10 @@ App.setup_settings = () => {
           }
         },
       ])
+    })
+
+    DOM.ev(DOM.el(`#domain_themes_add`), `click`, () => {
+      App.add_domain_theme()
     })
   }}))
 
@@ -1117,4 +1129,46 @@ App.settings_menu_items = (action = `normal`, category) => {
   })
 
   return items
+}
+
+App.add_domain_theme = () => {
+  App.show_popup(`add_domain_theme`)
+  let dm = DOM.el(`#add_domain_theme_domain`).value = ``
+  let bc = DOM.el(`#add_domain_theme_background_color`).value = ``
+  let tc = DOM.el(`#add_domain_theme_text_color`).value = ``
+  let bi = DOM.el(`#add_domain_theme_background_image`).value = ``
+  DOM.el(`#add_domain_theme_domain`).focus()
+}
+
+App.do_add_domain_theme = () => {
+  let dm = DOM.el(`#add_domain_theme_domain`).value
+  let bc = DOM.el(`#add_domain_theme_background_color`).value
+  let tc = DOM.el(`#add_domain_theme_text_color`).value
+  let bi = DOM.el(`#add_domain_theme_background_image`).value
+
+  if (dm) {
+    let props = []
+
+    if (bc) {
+      props.push(bc)
+    }
+
+    if (tc) {
+      props.push(tc)
+    }
+
+    if (bi) {
+      props.push(bi)
+    }
+
+    if (props.length > 0)  {
+      let joined = props.join(` ; `)
+      let line = `\n${dm} = ${joined}`
+      let text = DOM.el(`#settings_domain_themes`)
+      text.value = App.one_linebreak(`${text.value}\n${line}`.trim())
+      text.focus()
+    }
+  }
+
+  App.hide_popup()
 }

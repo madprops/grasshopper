@@ -203,6 +203,10 @@ App.wheel_direction = (e) => {
   }
 }
 
+App.one_linebreak = (s) => {
+  return s.replace(/(\n\s*){2,}/g, `\n`).replace(/ +/g, ` `).trim()
+}
+
 App.single_linebreak = (s) => {
   return s.replace(/(\n\s*){2,}/g, `\n\n`).replace(/ +/g, ` `).trim()
 }
