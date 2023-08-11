@@ -13,12 +13,12 @@ App.build_default_settings = () => {
   obj.history_index = {value: 1, category: category, version: 1}
   obj.bookmarks_index = {value: 2, category: category, version: 1}
   obj.closed_index = {value: 3, category: category, version: 1}
-  obj.custom_filters = {value: [`search`, `watch`, `wiki`], category: category, version: 1}
-  obj.bookmarks_folder = {value: `Grasshopper`, category: category, version: 1}
   obj.item_border = {value: `none`, category: category, version: 2}
   obj.pick_mode = {value: `none`, category: category, version: 1}
   obj.color_mode = {value: `icon`, category: category, version: 1}
-  obj.aliases = {value: [`earth = planet`], category: category, version: 1}
+  obj.bookmarks_folder = {value: `Grasshopper`, category: category, version: 1}
+  obj.custom_filters = {value: [], category: category, version: 1}
+  obj.aliases = {value: [], category: category, version: 1}
   obj.domain_themes = {value: [], category: category, version: 1}
   obj.domain_colors = {value: [], category: category, version: 1}
   obj.domain_titles = {value: [], category: category, version: 1}
