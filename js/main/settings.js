@@ -413,6 +413,15 @@ App.setup_settings = () => {
       DOM.ev(DOM.el(`#add_domain_color_add`), `click`, () => {
         App.do_add_domain_color()
       })
+
+      let colors = DOM.el(`#add_domain_color_color`)
+
+      for (let color of App.colors) {
+        let opt = DOM.create(`option`)
+        opt.value = color
+        opt.textContent = App.capitalize(color)
+        colors.append(opt)
+      }
     }
   })
 
@@ -1260,13 +1269,13 @@ App.do_add_domain_title = () => {
 App.add_domain_color = () => {
   App.show_popup(`add_domain_color`)
   DOM.el(`#add_domain_color_domain`).value = ``
-  DOM.el(`#add_domain_color_color`).value = ``
+  DOM.el(`#add_domain_color_color`).value = `red`
   DOM.el(`#add_domain_color_domain`).focus()
 }
 
 App.do_add_domain_color = () => {
   let dm = DOM.el(`#add_domain_color_domain`).value
-  let ic = DOM.el(`#add_domain_color_color`).value.toLowerCase()
+  let ic = DOM.el(`#add_domain_color_color`).value
 
   if (dm && ic) {
     let line = `\n${dm} = ${ic}`
