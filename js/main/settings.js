@@ -578,17 +578,6 @@ App.setup_settings = () => {
       [`Item`, `item`],
     ])
 
-    App.settings_make_menu(`auto_restore`, [
-      [`Never`, `never`],
-      [`1 Second`, `1_seconds`],
-      [`5 Seconds`, `5_seconds`],
-      [`10 Seconds`, `10_seconds`],
-      [`30 Seconds`, `30_seconds`],
-      [`1 minute`, `1_minutes`],
-    ], () => {
-      clearInterval(App.restore_timeout)
-    })
-
     App.settings_make_menu(`width`, App.get_size_options(), () => {
       App.apply_theme()
     })
@@ -639,6 +628,17 @@ App.setup_settings = () => {
 
   App.create_window(Object.assign({}, common, {id: `settings_more`, setup: () => {
     prepare(`more`)
+
+    App.settings_make_menu(`auto_restore`, [
+      [`Never`, `never`],
+      [`1 Second`, `1_seconds`],
+      [`5 Seconds`, `5_seconds`],
+      [`10 Seconds`, `10_seconds`],
+      [`30 Seconds`, `30_seconds`],
+      [`1 minute`, `1_minutes`],
+    ], () => {
+      clearInterval(App.restore_timeout)
+    })
 
     App.settings_make_menu(`hover_effect`, [
       [`None`, `none`],
