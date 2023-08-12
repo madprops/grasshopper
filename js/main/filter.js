@@ -543,7 +543,7 @@ App.set_custom_filter = (mode, filter) => {
   App.set_filter(mode, filter)
 }
 
-App.do_filter_2 = (mode, similar = true) => {
+App.do_filter_2 = (mode) => {
   let value = App.get_clean_filter(mode)
   value = App.only_chars(value)
   let win = DOM.el(`#${mode}_container`)
@@ -568,10 +568,8 @@ App.do_filter_2 = (mode, similar = true) => {
         }
       }
     }
-    else if (similar) {
-      if (App.similarity(value, text) >= App.similarity_threshold) {
-        show = true
-      }
+    else if (App.similarity(value, text) >= App.similarity_threshold) {
+      show = true
     }
 
     if (show) {
