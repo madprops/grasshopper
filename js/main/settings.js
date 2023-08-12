@@ -1206,21 +1206,26 @@ App.add_domain_theme = () => {
 }
 
 App.do_add_domain_theme = () => {
-  let dm = DOM.el(`#add_domain_theme_domain`).value
-  let bc = DOM.el(`#add_domain_theme_background_color`).value
-  let tc = DOM.el(`#add_domain_theme_text_color`).value
-  let bi = DOM.el(`#add_domain_theme_background_image`).value
+  App.do_add_setting_list_pair_props(`domain_themes`, `domain_theme`, `domain`,
+  [`background_color`, `text_color`, `background_image`])
+}
 
-  if (dm) {
-    let props = `${bc} ; ${tc} ; ${bi}`
-    props = props.replace(/[;\s]+$/g, ``)
+App.do_add_setting_list_pair_props = (setting, short, left, props) => {
+  let domain = DOM.el(`#add_${short}_${left}`).value
+  let values = []
 
-    if (props.length > 0)  {
-      let line = `\n${dm} = ${props}`
-      let text = DOM.el(`#settings_domain_themes`)
-      text.value = App.one_linebreak(`${text.value}\n${line}`.trim())
-      text.focus()
-    }
+  for (let p of props) {
+    let v = DOM.el(`#add_${short}_${p}`).value.trim()
+    values.push(v)
+  }
+
+  if (domain) {
+    let joined = values.join(` ; `)
+    joined = joined.replace(/[;\s]+$/g, ``)
+    let line = `\n${domain} = ${joined}`
+    let text = DOM.el(`#settings_${setting}`)
+    text.value = App.one_linebreak(`${text.value}\n${line}`.trim())
+    text.focus()
   }
 
   App.hide_popup()
@@ -1234,17 +1239,7 @@ App.add_domain_icon = () => {
 }
 
 App.do_add_domain_icon = () => {
-  let dm = DOM.el(`#add_domain_icon_domain`).value
-  let ic = DOM.el(`#add_domain_icon_icon`).value
-
-  if (dm && ic) {
-    let line = `\n${dm} = ${ic}`
-    let text = DOM.el(`#settings_domain_icons`)
-    text.value = App.one_linebreak(`${text.value}\n${line}`.trim())
-    text.focus()
-  }
-
-  App.hide_popup()
+  App.do_add_setting_list_pair(`domain_icons`, `domain_icon`, `domain`, `icon`)
 }
 
 App.add_domain_title = () => {
@@ -1255,17 +1250,7 @@ App.add_domain_title = () => {
 }
 
 App.do_add_domain_title = () => {
-  let dm = DOM.el(`#add_domain_title_domain`).value
-  let ic = DOM.el(`#add_domain_title_title`).value
-
-  if (dm && ic) {
-    let line = `\n${dm} = ${ic}`
-    let text = DOM.el(`#settings_domain_titles`)
-    text.value = App.one_linebreak(`${text.value}\n${line}`.trim())
-    text.focus()
-  }
-
-  App.hide_popup()
+  App.do_add_setting_list_pair(`domain_titles`, `domain_title`, `domain`, `title`)
 }
 
 App.add_domain_color = () => {
@@ -1276,17 +1261,7 @@ App.add_domain_color = () => {
 }
 
 App.do_add_domain_color = () => {
-  let dm = DOM.el(`#add_domain_color_domain`).value
-  let ic = DOM.el(`#add_domain_color_color`).value
-
-  if (dm && ic) {
-    let line = `\n${dm} = ${ic}`
-    let text = DOM.el(`#settings_domain_colors`)
-    text.value = App.one_linebreak(`${text.value}\n${line}`.trim())
-    text.focus()
-  }
-
-  App.hide_popup()
+  App.do_add_setting_list_pair(`domain_colors`, `domain_color`, `domain`, `color`)
 }
 
 App.add_alias = () => {
@@ -1297,12 +1272,16 @@ App.add_alias = () => {
 }
 
 App.do_add_alias = () => {
-  let t1 = DOM.el(`#add_alias_term_1`).value
-  let t2 = DOM.el(`#add_alias_term_2`).value
+  App.do_add_setting_list_pair(`aliases`, `alias`, `term_1`, `term_2`)
+}
 
-  if (t1 && t2) {
-    let line = `\n${t1} = ${t2}`
-    let text = DOM.el(`#settings_aliases`)
+App.do_add_setting_list_pair = (setting, short, name_1, name_2) => {
+  let v1 = DOM.el(`#add_${short}_${name_1}`).value
+  let v2 = DOM.el(`#add_${short}_${name_2}`).value
+
+  if (v1 && v2) {
+    let line = `\n${v1} = ${v2}`
+    let text = DOM.el(`#settings_${setting}`)
     text.value = App.one_linebreak(`${text.value}\n${line}`.trim())
     text.focus()
   }
