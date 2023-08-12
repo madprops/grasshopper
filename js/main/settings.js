@@ -1263,7 +1263,7 @@ App.do_add_setting_list_item = (setting, short, left, props) => {
     values.push(v)
   }
 
-  if (left) {
+  if (name) {
     let value
 
     if (props.length === 1) {
