@@ -1349,8 +1349,8 @@ App.do_add_setting_list_item = (setting, short, left, props = []) => {
 
     if (new_value) {
       textarea.value = new_value
-      App.do_save_text_setting(setting, textarea)
       App.scroll_to_bottom(text)
+      App.do_save_text_setting(setting, textarea)
     }
   }
 
