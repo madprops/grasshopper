@@ -266,8 +266,13 @@ App.tabs_action = async (item) => {
   App.check_close_on_focus()
 }
 
-App.tabs_action_alt = (item) => {
-  App.close_tabs(item, false)
+App.tabs_action_alt = (item, shift) => {
+  if (shift) {
+    App.unload_tabs(item, false)
+  }
+  else {
+    App.close_tabs(item, false)
+  }
 }
 
 App.duplicate_tab = async (item) => {
