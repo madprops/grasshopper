@@ -543,7 +543,7 @@ App.set_custom_filter = (mode, filter) => {
   App.set_filter(mode, filter)
 }
 
-App.do_filter_2 = (mode, similar = false) => {
+App.do_filter_2 = (mode, similar = true) => {
   let value = App.get_clean_filter(mode)
   value = App.only_chars(value)
   let win = DOM.el(`#${mode}_container`)
