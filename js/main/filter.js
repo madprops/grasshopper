@@ -552,7 +552,7 @@ App.do_filter_2 = (mode) => {
 
   for (let item of items) {
     let text = DOM.el_or_self(`.filter_text`, item).textContent
-    text = App.only_chars(text).toLowerCase().trim()
+    text = App.only_chars(text).toLowerCase()
     let show = false
 
     if (text.includes(value)) {
