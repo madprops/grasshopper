@@ -1036,7 +1036,7 @@ App.settings_index = () => {
 App.show_settings_menu = () => {
   let category = App.settings_category
   let btn = DOM.el(`#settings_title_${category}`)
-  let items = App.settings_menu_items(`normal`, category)
+  let items = App.settings_menu_items()
   NeedContext.show_on_element(btn, items)
 }
 
@@ -1218,7 +1218,7 @@ App.tab_warn_opts = [
   [`Special`, `special`],
 ]
 
-App.settings_menu_items = (action = `normal`, category) => {
+App.settings_menu_items = () => {
   let items = []
 
   for (let c of App.settings_categories) {
