@@ -438,7 +438,6 @@ App.save_profile = (args) => {
     App.profiles = App.profiles.filter(x => x.url !== profile.url)
 
     if (App.used_profile(profile)) {
-      console.log(profile)
       App.profiles.unshift(profile)
 
       if (App.profiles.length > App.max_profiles) {
@@ -463,7 +462,6 @@ App.save_profile = (args) => {
     }
   }
 
-  App.clean_profiles()
   App.stor_save_profiles()
 
   if (args.from === `editor`) {
@@ -965,7 +963,6 @@ App.remove_all_profiles = () => {
 }
 
 App.after_profile_remove = () => {
-  App.clean_profiles()
   App.stor_save_profiles()
   App.clear_all_items()
   App.show_mode(App.active_mode)
@@ -983,18 +980,6 @@ App.used_profile = (profile) => {
   }
 
   return false
-}
-
-App.clean_profiles = () => {
-  let c_profiles = []
-
-  for (let profile of App.profiles) {
-    if (App.used_profile(profile)) {
-      c_profiles.push(profile)
-    }
-  }
-
-  App.profiles = c_profiles
 }
 
 App.get_profile_count = () => {
