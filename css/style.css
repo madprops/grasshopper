@@ -919,7 +919,9 @@ select {
   display: none;
 }
 
-.select_2 {
+.editor_select {
   background-color: transparent;
   border: 1px solid var(--alt_color_1);
+  padding: 0.35rem;
+  cursor: pointer;
 }
