@@ -1315,6 +1315,7 @@ App.do_add_setting_list_item = (setting, short, left, props = []) => {
 
   if (name) {
     let text = DOM.el(`#settings_${setting}`)
+    let new_value
 
     if (props.length > 0) {
       let value
@@ -1329,15 +1330,18 @@ App.do_add_setting_list_item = (setting, short, left, props = []) => {
 
       if (value) {
         let line = `\n${name} = ${value}`
-        text.value = App.one_linebreak(`${text.value}\n${line}`)
+        new_value = App.one_linebreak(`${text.value}\n${line}`)
       }
     }
     else {
-      text.value = App.one_linebreak(`${text.value}\n${name}`)
+      new_value = App.one_linebreak(`${text.value}\n${name}`)
     }
 
-    App.scroll_to_bottom(text)
-    text.focus()
+    if (new_value) {
+      text.value = new_value
+      App.scroll_to_bottom(text)
+      text.focus()
+    }
   }
 
   App.hide_popup()
