@@ -566,6 +566,9 @@ App.do_filter_2 = (mode) => {
           show = true
           break
         }
+        else if (App.similarity(value, alias) >= App.similarity_threshold) {
+          show = true
+        }
       }
     }
     else if (App.similarity(value, text) >= App.similarity_threshold) {
