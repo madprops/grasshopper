@@ -1206,29 +1206,8 @@ App.add_domain_theme = () => {
 }
 
 App.do_add_domain_theme = () => {
-  App.do_add_setting_list_props(`domain_themes`, `domain_theme`, `domain`,
+  App.do_add_setting_list_item(`domain_themes`, `domain_theme`, `domain`,
   [`background_color`, `text_color`, `background_image`])
-}
-
-App.do_add_setting_list_props = (setting, short, left, props) => {
-  let domain = DOM.el(`#add_${short}_${left}`).value
-  let values = []
-
-  for (let p of props) {
-    let v = DOM.el(`#add_${short}_${p}`).value.trim()
-    values.push(v)
-  }
-
-  if (domain) {
-    let joined = values.join(` ; `)
-    joined = joined.replace(/[;\s]+$/g, ``)
-    let line = `\n${domain} = ${joined}`
-    let text = DOM.el(`#settings_${setting}`)
-    text.value = App.one_linebreak(`${text.value}\n${line}`.trim())
-    text.focus()
-  }
-
-  App.hide_popup()
 }
 
 App.add_domain_icon = () => {
@@ -1239,7 +1218,7 @@ App.add_domain_icon = () => {
 }
 
 App.do_add_domain_icon = () => {
-  App.do_add_setting_list_pair(`domain_icons`, `domain_icon`, `domain`, `icon`)
+  App.do_add_setting_list_item(`domain_icons`, `domain_icon`, `domain`, [`icon`])
 }
 
 App.add_domain_title = () => {
@@ -1250,7 +1229,7 @@ App.add_domain_title = () => {
 }
 
 App.do_add_domain_title = () => {
-  App.do_add_setting_list_pair(`domain_titles`, `domain_title`, `domain`, `title`)
+  App.do_add_setting_list_item(`domain_titles`, `domain_title`, `domain`, [`title`])
 }
 
 App.add_domain_color = () => {
@@ -1261,7 +1240,7 @@ App.add_domain_color = () => {
 }
 
 App.do_add_domain_color = () => {
-  App.do_add_setting_list_pair(`domain_colors`, `domain_color`, `domain`, `color`)
+  App.do_add_setting_list_item(`domain_colors`, `domain_color`, `domain`, [`color`])
 }
 
 App.add_alias = () => {
@@ -1272,15 +1251,30 @@ App.add_alias = () => {
 }
 
 App.do_add_alias = () => {
-  App.do_add_setting_list_pair(`aliases`, `alias`, `term_1`, `term_2`)
+  App.do_add_setting_list_item(`aliases`, `alias`, `term_1`, [`term_2`])
 }
 
-App.do_add_setting_list_pair = (setting, short, name_1, name_2) => {
-  let v1 = DOM.el(`#add_${short}_${name_1}`).value
-  let v2 = DOM.el(`#add_${short}_${name_2}`).value
+App.do_add_setting_list_item = (setting, short, left, props) => {
+  let name = DOM.el(`#add_${short}_${left}`).value
+  let values = []
 
-  if (v1 && v2) {
-    let line = `\n${v1} = ${v2}`
+  for (let prop of props) {
+    let v = DOM.el(`#add_${short}_${prop}`).value.trim()
+    values.push(v)
+  }
+
+  if (left) {
+    let value
+
+    if (props.length === 1) {
+      value = values[0]
+    }
+    else {
+      let joined = values.join(` ; `)
+      value = joined.replace(/[;\s]+$/g, ``)
+    }
+
+    let line = `\n${name} = ${value}`
     let text = DOM.el(`#settings_${setting}`)
     text.value = App.one_linebreak(`${text.value}\n${line}`.trim())
     text.focus()
