@@ -165,18 +165,25 @@ App.get_settings_label = (setting) => {
 App.settings_setup_labels = (container) => {
   let items = DOM.els(`.settings_label`, container)
 
+  function proc (item, id, text) {
+    let c = DOM.create(`div`, `flex_row_center gap_1`)
+    let d = DOM.create(`div`)
+    d.textContent = `|`
+    let a = DOM.create(`div`, `action`)
+    a.id = id
+    a.textContent = text
+    item.before(c)
+    c.append(item)
+    c.append(d)
+    c.append(a)
+  }
+
   for (let item of items) {
     if (item.dataset.add) {
-      let c = DOM.create(`div`, `flex_row_center gap_1`)
-      let d = DOM.create(`div`)
-      d.textContent = `|`
-      let a = DOM.create(`div`, `action`)
-      a.id = `${item.dataset.add}_add`
-      a.textContent = `Add`
-      item.before(c)
-      c.append(item)
-      c.append(d)
-      c.append(a)
+      proc(item, `${item.dataset.add}_add`, `Add`)
+    }
+    else if (item.dataset.rnd) {
+      proc(item, `settings_${item.dataset.rnd}_random`, `Rnd`)
     }
   }
 }
@@ -613,8 +620,8 @@ App.setup_settings = () => {
   }}))
 
   App.create_window(Object.assign({}, common, {id: `settings_theme`, setup: () => {
-    App.start_theme_settings()
     prepare(`theme`)
+    App.start_theme_settings()
   }}))
 
   App.create_window(Object.assign({}, common, {id: `settings_warns`, setup: () => {
