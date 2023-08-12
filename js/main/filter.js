@@ -12,12 +12,31 @@ App.cancel_filter = () => {
   App.filter_debouncer.cancel()
 }
 
-App.make_filter_regex = (value) => {
-  if (App.get_setting(`case_insensitive`)) {
-    regex = new RegExp(value, `i`)
+App.make_filter_regex = (value, by_what) => {
+  if (by_what.startsWith(`re`)) {
+    let cleaned = value.replace(/\\+$/, ``)
+
+    try {
+      if (App.get_setting(`case_insensitive`)) {
+        regex = new RegExp(cleaned, `i`)
+      }
+      else {
+        regex = new RegExp(cleaned)
+      }
+    }
+    catch (err) {
+      return
+    }
   }
   else {
-    regex = new RegExp(value)
+    let cleaned = App.escape_regex(value)
+
+    if (App.get_setting(`case_insensitive`)) {
+      regex = new RegExp(cleaned, `i`)
+    }
+    else {
+      regex = new RegExp(cleaned)
+    }
   }
 
   return regex
@@ -35,7 +54,7 @@ App.do_filter = async (mode, force = false, deep = false) => {
   let by_what
   let cmd
 
-  for (let c of [`title`, `url`]) {
+  for (let c of [`title`, `url`, `re`, `re_title`, `re_url`]) {
     if (value.startsWith(`${c}:`)) {
       cmd = [c, value.replace(`${c}:`, ``).trim()]
     }
@@ -54,10 +73,6 @@ App.do_filter = async (mode, force = false, deep = false) => {
   // For instance when moving from All to Image
   if (App.maxed_items.includes(mode)) {
     let svalue = value
-
-    if (by_what === `tag` || by_what === `color`) {
-      svalue = ``
-    }
 
     if (force || (svalue !== App[`last_${mode}_query`])) {
       await App.search_items(mode, svalue, deep)
@@ -90,7 +105,16 @@ App.do_filter = async (mode, force = false, deep = false) => {
     duplicates = App.find_duplicates(items, `url`)
   }
 
-  let regexes = [App.make_filter_regex(value)]
+  let regexes = []
+  let reg = App.make_filter_regex(value, by_what)
+
+  if (reg) {
+    regexes.push(reg)
+  }
+  else {
+    return
+  }
+
   let value_lower = value.toLowerCase()
   let insensitive = App.get_setting(`case_insensitive`)
 
@@ -99,14 +123,18 @@ App.do_filter = async (mode, force = false, deep = false) => {
       let rep = value_lower.replace(b.toLowerCase(), a.toLowerCase())
 
       if (value_lower !== rep) {
-        regexes.push(App.make_filter_regex(rep))
+        let reg = App.make_filter_regex(rep, by_what)
+
+        if (reg) {
+          regexes.push(reg)
+        }
       }
     }
     else {
       let rep = value.replace(a, b)
 
       if (value !== rep) {
-        regexes.push(App.make_filter_regex(rep))
+        regexes.push(App.make_filter_regex(rep, by_what))
       }
     }
   }
@@ -168,13 +196,13 @@ App.filter_check = (args) => {
   let title = App.get_title(args.item)
 
   for (let regex of args.regexes) {
-    if (args.by_what === `all`) {
+    if (args.by_what === `all` || args.by_what === `re`) {
       match = regex.test(title) || regex.test(args.item.path)
     }
-    else if (args.by_what === `title`) {
+    else if (args.by_what === `title` || args.by_what === `re_title`) {
       match = regex.test(title)
     }
-    else if (args.by_what === `url`) {
+    else if (args.by_what === `url` || args.by_what === `re_url`) {
       match = regex.test(args.item.path)
     }
 
@@ -602,9 +630,30 @@ App.get_filter_refine = (mode) => {
   })
 
   items.push({
-    text: `By Both`,
+    text: `By All`,
     action: () => {
       App.filter_cmd(mode, `all`)
+    },
+  })
+
+  items.push({
+    text: `By Regex Title`,
+    action: () => {
+      App.filter_cmd(mode, `re_title`)
+    },
+  })
+
+  items.push({
+    text: `By Regex URL`,
+    action: () => {
+      App.filter_cmd(mode, `re_url`)
+    },
+  })
+
+  items.push({
+    text: `By Regex All`,
+    action: () => {
+      App.filter_cmd(mode, `re`)
     },
   })
 
