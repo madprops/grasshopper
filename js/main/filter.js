@@ -637,21 +637,21 @@ App.get_filter_refine = (mode) => {
   })
 
   items.push({
-    text: `By Regex Title`,
+    text: `Regex Title`,
     action: () => {
       App.filter_cmd(mode, `re_title`)
     },
   })
 
   items.push({
-    text: `By Regex URL`,
+    text: `Regex URL`,
     action: () => {
       App.filter_cmd(mode, `re_url`)
     },
   })
 
   items.push({
-    text: `By Regex All`,
+    text: `Regex All`,
     action: () => {
       App.filter_cmd(mode, `re`)
     },
