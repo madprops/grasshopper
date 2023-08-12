@@ -162,6 +162,25 @@ App.get_settings_label = (setting) => {
   return label
 }
 
+App.settings_setup_labels = (container) => {
+  let items = DOM.els(`.settings_label`, container)
+
+  for (let item of items) {
+    if (item.dataset.add) {
+      let c = DOM.create(`div`, `flex_row_center gap_1`)
+      let d = DOM.create(`div`)
+      d.textContent = `|`
+      let a = DOM.create(`div`, `action`)
+      a.id = `${item.dataset.add}_add`
+      a.textContent = `Add`
+      item.before(c)
+      c.append(item)
+      c.append(d)
+      c.append(a)
+    }
+  }
+}
+
 App.settings_setup_checkboxes = (container) => {
   let items = DOM.els(`.settings_checkbox`, container)
 
@@ -459,6 +478,7 @@ App.setup_settings = () => {
 
   function prepare (category) {
     let container = DOM.el(`#settings_${category}_container`)
+    App.settings_setup_labels(container)
     App.settings_setup_checkboxes(container)
     App.settings_setup_text(container)
     App.add_settings_switchers(category)
@@ -587,7 +607,7 @@ App.setup_settings = () => {
       App.add_domain_color()
     })
 
-    DOM.ev(DOM.el(`#alias_add`), `click`, () => {
+    DOM.ev(DOM.el(`#aliases_add`), `click`, () => {
       App.add_alias()
     })
   }}))
