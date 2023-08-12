@@ -13,6 +13,8 @@ App.cancel_filter = () => {
 }
 
 App.make_filter_regex = (value, by_what) => {
+  let regex
+
   if (by_what.startsWith(`re`)) {
     let cleaned = value.replace(/\\+$/, ``)
 
@@ -24,9 +26,7 @@ App.make_filter_regex = (value, by_what) => {
         regex = new RegExp(cleaned)
       }
     }
-    catch (err) {
-      return
-    }
+    catch (err) {}
   }
   else {
     let cleaned = App.escape_regex(value)
