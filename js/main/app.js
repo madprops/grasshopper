@@ -63,6 +63,7 @@ App.last_filter_input = 0
 App.recent_filter_input = 1250
 App.persistent_modes = [`tabs`]
 App.close_text = `Close`
+App.similarity_threshold = 0.7
 
 App.color_icons = {
   red: `🔴`,

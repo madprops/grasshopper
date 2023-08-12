@@ -543,15 +543,16 @@ App.set_custom_filter = (mode, filter) => {
   App.set_filter(mode, filter)
 }
 
-App.do_filter_2 = (mode) => {
+App.do_filter_2 = (mode, similar = false) => {
   let value = App.get_clean_filter(mode)
+  value = App.only_chars(value)
   let win = DOM.el(`#${mode}_container`)
   let container = DOM.el_or_self(`.filter_container`, win)
   let items = DOM.els(`.filter_item`, container)
 
   for (let item of items) {
     let text = DOM.el_or_self(`.filter_text`, item).textContent
-    text = text.toLowerCase().trim()
+    text = App.only_chars(text).toLowerCase().trim()
     let show = false
 
     if (text.includes(value)) {
@@ -565,6 +566,11 @@ App.do_filter_2 = (mode) => {
           show = true
           break
         }
+      }
+    }
+    else if (similar) {
+      if (App.similarity(value, text) >= App.similarity_threshold) {
+        show = true
       }
     }
 

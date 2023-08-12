@@ -200,6 +200,14 @@ App.restart_extension = () => {
   browser.runtime.reload()
 }
 
+App.only_chars = (s) => {
+  return s.replace(/[^\w]/g, ``)
+}
+
+App.no_space = (s) => {
+  return s.replace(/\s+/g, ``)
+}
+
 App.single_space = (s) => {
   return s.replace(/\s+/g, ` `)
 }
@@ -333,7 +341,7 @@ App.seeded_random = (str) => {
   }
 }
 
-App.get_random_int = (min, max, exclude = undefined, random_function) => {
+App.random_int = (min, max, exclude = undefined, random_function) => {
   let num
 
   if (random_function) {
@@ -358,7 +366,7 @@ App.get_random_int = (min, max, exclude = undefined, random_function) => {
 }
 
 App.random_choice = (list, rand) => {
-  return list[App.get_random_int(0, list.length - 1, undefined, rand)]
+  return list[App.random_int(0, list.length - 1, undefined, rand)]
 }
 
 App.parse_delay = (s) => {
@@ -380,4 +388,58 @@ App.parse_delay = (s) => {
 
 App.scroll_to_bottom = (el) => {
   el.scrollTop = el.scrollHeight
+}
+
+App.similarity = (s1, s2) => {
+  let longer = s1
+  let shorter = s2
+
+  if (s1.length < s2.length) {
+    longer = s2
+    shorter = s1
+  }
+
+  let longer_length = longer.length
+
+  if (longer_length == 0) {
+    return 1.0
+  }
+
+  return (longer_length - App.similarity_distance(longer, shorter)) / parseFloat(longer_length)
+}
+
+App.similarity_distance = (s1, s2) => {
+  s1 = s1.toLowerCase()
+  s2 = s2.toLowerCase()
+
+  let costs = new Array()
+
+  for (let i=0; i<=s1.length; i++) {
+    let last_value = i
+
+    for (let j = 0; j <= s2.length; j++) {
+      if (i == 0) {
+        costs[j] = j
+      }
+      else {
+        if (j > 0) {
+          let new_value = costs[j - 1]
+
+          if (s1.charAt(i - 1) != s2.charAt(j - 1)) {
+            new_value = Math.min(Math.min(new_value, last_value),
+              costs[j]) + 1
+          }
+
+          costs[j - 1] = last_value
+          last_value = new_value
+        }
+      }
+    }
+
+    if (i > 0) {
+      costs[s2.length] = last_value
+    }
+  }
+
+  return costs[s2.length]
 }
