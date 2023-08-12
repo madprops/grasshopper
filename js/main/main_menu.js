@@ -52,12 +52,23 @@ App.show_main_menu = (mode) => {
     separator: true
   })
 
-  items.push({
-    text: `Settings`,
-    get_items: () => {
-      return App.show_settings()
-    }
-  })
+  if (App.get_setting(`direct_settings`)) {
+    items.push({
+      text: `Settings`,
+      action: () => {
+        App.show_settings()
+      }
+    })
+  }
+  else {
+    items.push({
+      text: `Settings`,
+      get_items: () => {
+        return App.settings_menu_items(`main_menu`)
+      }
+    })
+  }
+
 
   items.push({
     text: `Profiles`,

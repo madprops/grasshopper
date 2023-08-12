@@ -96,6 +96,7 @@ App.build_default_settings = () => {
   obj.bookmarks_index = {value: 2, category: category, version: 1}
   obj.closed_index = {value: 3, category: category, version: 1}
   obj.hover_effect = {value: `glow`, category: category, version: 1}
+  obj.direct_settings = {value: true, category: category, version: 1}
 
   category = `show`
   obj.show_scrollbars = {value: true, category: category, version: 1}
