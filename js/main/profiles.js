@@ -1,3 +1,17 @@
+App.profile_props = {
+  tags: [],
+  notes: ``,
+  title: ``,
+  color: ``,
+  icon: ``,
+  theme_enabled: false,
+  background_color: ``,
+  text_color: ``,
+  background_image: ``
+}
+
+App.profile_props_theme = [`background_color`, `text_color`, `background_image`]
+
 App.setup_profile_editor = () => {
   App.create_window({id: `profile_editor`, setup: () => {
     DOM.ev(DOM.el(`#profile_editor_remove`), `click`, () => {
@@ -424,6 +438,7 @@ App.save_profile = (args) => {
     App.profiles = App.profiles.filter(x => x.url !== profile.url)
 
     if (App.used_profile(profile)) {
+      console.log(profile)
       App.profiles.unshift(profile)
 
       if (App.profiles.length > App.max_profiles) {
@@ -601,49 +616,11 @@ App.check_profiles = () => {
       changed = true
     }
 
-    if (profile.tags === undefined) {
-      profile.tags = []
-      changed = true
-    }
-
-    if (profile.notes === undefined) {
-      profile.notes = ``
-      changed = true
-    }
-
-    if (profile.title === undefined) {
-      profile.title = ``
-      changed = true
-    }
-
-    if (profile.icon === undefined) {
-      profile.icon = ``
-      changed = true
-    }
-
-    if (profile.color === undefined) {
-      profile.color = ``
-      changed = true
-    }
-
-    if (profile.theme_enabled === undefined) {
-      profile.theme_enabled = false
-      changed = true
-    }
-
-    if (profile.background_color === undefined) {
-      profile.background_color = ``
-      changed = true
-    }
-
-    if (profile.text_color === undefined) {
-      profile.text_color = ``
-      changed = true
-    }
-
-    if (profile.background_image === undefined) {
-      profile.background_image = ``
-      changed = true
+    for (let prop in App.profile_props) {
+      if (profile[prop] === undefined) {
+        profile[prop] = App.profile_props[prop]
+        changed = true
+      }
     }
   }
 
@@ -995,10 +972,14 @@ App.after_profile_remove = () => {
 }
 
 App.used_profile = (profile) => {
-  if (profile.tags.length || profile.notes || profile.title ||
-  profile.color || profile.theme_enabled || profile.background_color ||
-  profile.text_color || profile.background_image || profile.icon) {
-    return true
+  for (let prop in App.profile_props) {
+    if (App.profile_props_theme.includes(prop)) {
+      continue
+    }
+
+    if (profile[prop].toString() !== App.profile_props[prop].toString()) {
+      return true
+    }
   }
 
   return false
@@ -1148,10 +1129,6 @@ App.get_edit_items = (item, multiple) => {
   })
 
   return items
-}
-
-App.is_edited = (item) => {
-  return item.tags.length || item.custom_title || item.color
 }
 
 App.edit_profiles = (item) => {

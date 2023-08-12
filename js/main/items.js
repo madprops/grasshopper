@@ -315,6 +315,7 @@ App.process_info = (mode, info, exclude = [], o_item) => {
   let video = App.is_video(url)
   let audio = App.is_audio(url)
   let profile = App.get_profile(url)
+  let has_profile = false
   let tags = []
   let color = ``
   let custom_title = ``
@@ -325,6 +326,8 @@ App.process_info = (mode, info, exclude = [], o_item) => {
   let icon = ``
 
   if (profile) {
+    has_profile = true
+
     if (profile.tags) {
       tags = profile.tags
     }
@@ -372,6 +375,7 @@ App.process_info = (mode, info, exclude = [], o_item) => {
     image: image,
     video: video,
     audio: audio,
+    has_profile: has_profile,
     tags: tags,
     color: color,
     theme_enabled: theme_enabled,
