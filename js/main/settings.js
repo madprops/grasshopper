@@ -1206,11 +1206,11 @@ App.add_domain_theme = () => {
 }
 
 App.do_add_domain_theme = () => {
-  App.do_add_setting_list_pair_props(`domain_themes`, `domain_theme`, `domain`,
+  App.do_add_setting_list_props(`domain_themes`, `domain_theme`, `domain`,
   [`background_color`, `text_color`, `background_image`])
 }
 
-App.do_add_setting_list_pair_props = (setting, short, left, props) => {
+App.do_add_setting_list_props = (setting, short, left, props) => {
   let domain = DOM.el(`#add_${short}_${left}`).value
   let values = []
 
