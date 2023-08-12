@@ -221,9 +221,8 @@ App.settings_setup_checkboxes = (container) => {
 
 App.do_save_text_setting = (setting, el) => {
   let value = el.value.trim()
-  let is_textarea = el.classList.contains(`settings_textarea`)
 
-  if (is_textarea) {
+  if (el.classList.contains(`settings_textarea`)) {
     let cleaned = App.single_linebreak(value)
     el.value = cleaned
     value = cleaned.split(`\n`).filter(x => x !== ``).map(x => x.trim())
@@ -1349,7 +1348,7 @@ App.do_add_setting_list_item = (setting, short, left, props = []) => {
 
     if (new_value) {
       textarea.value = new_value
-      App.scroll_to_bottom(text)
+      App.scroll_to_bottom(textarea)
       App.do_save_text_setting(setting, textarea)
     }
   }
