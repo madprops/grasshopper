@@ -377,3 +377,7 @@ App.parse_delay = (s) => {
 
   return delay
 }
+
+App.scroll_to_bottom = (el) => {
+  el.scrollTop = el.scrollHeight
+}

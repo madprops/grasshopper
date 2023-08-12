@@ -468,6 +468,14 @@ App.setup_settings = () => {
     }, element: App.add_setting_list_item_html(`alias`, `term_1`, [`term_2`])
   })
 
+  App.create_popup({
+    id: `add_custom_filter`, setup: () => {
+      DOM.ev(DOM.el(`#add_custom_filter_add`), `click`, () => {
+        App.do_add_custom_filter()
+      })
+    }, element: App.add_setting_list_item_html(`custom_filter`, `filter`, [])
+  })
+
   App.settings_categories = [`general`, `theme`, `media`, `show`, `mouse`, `warns`, `more`]
 
   let common = {
@@ -616,6 +624,10 @@ App.setup_settings = () => {
 
     DOM.ev(DOM.el(`#aliases_add`), `click`, () => {
       App.add_alias()
+    })
+
+    DOM.ev(DOM.el(`#custom_filters_add`), `click`, () => {
+      App.add_custom_filter()
     })
   }}))
 
@@ -1282,7 +1294,17 @@ App.do_add_alias = () => {
   App.do_add_setting_list_item(`aliases`, `alias`, `term_1`, [`term_2`])
 }
 
-App.do_add_setting_list_item = (setting, short, left, props) => {
+App.add_custom_filter = () => {
+  App.show_popup(`add_custom_filter`)
+  DOM.el(`#add_custom_filter_filter`).value = ``
+  DOM.el(`#add_custom_filter_filter`).focus()
+}
+
+App.do_add_custom_filter = () => {
+  App.do_add_setting_list_item(`custom_filters`, `custom_filter`, `filter`)
+}
+
+App.do_add_setting_list_item = (setting, short, left, props = []) => {
   let name = DOM.el(`#add_${short}_${left}`).value
   let values = []
 
@@ -1292,22 +1314,30 @@ App.do_add_setting_list_item = (setting, short, left, props) => {
   }
 
   if (name) {
-    let value
+    let text = DOM.el(`#settings_${setting}`)
 
-    if (props.length === 1) {
-      value = values[0]
+    if (props.length > 0) {
+      let value
+
+      if (props.length === 1) {
+        value = values[0]
+      }
+      else {
+        let joined = values.join(` ; `)
+        value = joined.replace(/[;\s]+$/g, ``)
+      }
+
+      if (value) {
+        let line = `\n${name} = ${value}`
+        text.value = App.one_linebreak(`${text.value}\n${line}`)
+      }
     }
     else {
-      let joined = values.join(` ; `)
-      value = joined.replace(/[;\s]+$/g, ``)
+      text.value = App.one_linebreak(`${text.value}\n${name}`)
     }
 
-    if (value) {
-      let line = `\n${name} = ${value}`
-      let text = DOM.el(`#settings_${setting}`)
-      text.value = App.one_linebreak(`${text.value}\n${line}`.trim())
-      text.focus()
-    }
+    App.scroll_to_bottom(text)
+    text.focus()
   }
 
   App.hide_popup()
