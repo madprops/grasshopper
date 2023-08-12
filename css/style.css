@@ -918,3 +918,8 @@ select {
 .color_only_icon .item_icon_container {
   display: none;
 }
+
+.select_2 {
+  background-color: transparent;
+  border: 1px solid var(--alt_color_1);
+}

@@ -1327,7 +1327,7 @@ App.add_setting_list_item_html = (short, left, props) => {
 
     if (prop.endsWith(`__select`)) {
       let p = prop.replace(`__select`, ``)
-      el = DOM.create(`select`, ``, `add_${short}_${p}`)
+      el = DOM.create(`select`, `select_2`, `add_${short}_${p}`)
     }
     else {
       el = DOM.create(`input`, `text text editor_text text_smaller`, `add_${short}_${prop}`)
