@@ -4,7 +4,15 @@ App.create_popup = (args) => {
 
   let popup = DOM.create(`div`, `popup_main`, `popup_${args.id}`)
   let container = DOM.create(`div`, `popup_container`, `${args.id}_container`)
-  container.innerHTML = App.get_template(args.id)
+
+  if (args.element) {
+    container.innerHTML = ``
+    container.append(args.element)
+  }
+  else {
+    container.innerHTML = App.get_template(args.id)
+  }
+
   popup.append(container)
 
   DOM.evs(popup, [`click`, `auxclick`], (e) => {

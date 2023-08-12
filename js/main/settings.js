@@ -397,7 +397,8 @@ App.setup_settings = () => {
       DOM.ev(DOM.el(`#add_domain_theme_add`), `click`, () => {
         App.do_add_domain_theme()
       })
-    }
+    }, element: App.add_setting_list_item_html(`domain_theme`, `domain`,
+        [`background_color`, `text_color`, `background_image`])
   })
 
   App.create_popup({
@@ -405,7 +406,7 @@ App.setup_settings = () => {
       DOM.ev(DOM.el(`#add_domain_icon_add`), `click`, () => {
         App.do_add_domain_icon()
       })
-    }
+    }, element: App.add_setting_list_item_html(`domain_icon`, `domain`, [`icon`])
   })
 
   App.create_popup({
@@ -413,7 +414,7 @@ App.setup_settings = () => {
       DOM.ev(DOM.el(`#add_domain_title_add`), `click`, () => {
         App.do_add_domain_title()
       })
-    }
+    }, element: App.add_setting_list_item_html(`domain_title`, `domain`, [`title`])
   })
 
   App.create_popup({
@@ -430,7 +431,7 @@ App.setup_settings = () => {
         opt.textContent = App.capitalize(color)
         colors.append(opt)
       }
-    }
+    }, element: App.add_setting_list_item_html(`domain_color`, `domain`, [`color__select`])
   })
 
   App.create_popup({
@@ -438,7 +439,7 @@ App.setup_settings = () => {
       DOM.ev(DOM.el(`#add_alias_add`), `click`, () => {
         App.do_add_alias()
       })
-    }
+    }, element: App.add_setting_list_item_html(`alias`, `term_1`, [`term_2`])
   })
 
   App.settings_categories = [`general`, `theme`, `media`, `show`, `mouse`, `warns`, `more`]
@@ -1281,4 +1282,39 @@ App.do_add_setting_list_item = (setting, short, left, props) => {
   }
 
   App.hide_popup()
+}
+
+App.add_setting_list_item_html = (short, left, props) => {
+  let container = DOM.create(`div`, `flex_column_center gap_3`)
+  let name = DOM.create(`input`, `text editor_text`, `add_${short}_${left}`)
+  name.type = `text`
+  name.spellcheck = false
+  name.autocomplete = false
+  name.placeholder = App.capitalize_all(left.replace(/_/g, ` `))
+  let els = []
+
+  for (let prop of props) {
+    let el
+
+    if (prop.endsWith(`__select`)) {
+      let p = prop.replace(`__select`, ``)
+      el = DOM.create(`select`, ``, `add_${short}_${p}`)
+    }
+    else {
+      el = DOM.create(`input`, `text text editor_text text_smaller`, `add_${short}_${prop}`)
+      el.type = `text`
+      el.spellcheck = false
+      el.autocomplete = false
+      el.placeholder = App.capitalize_all(prop.replace(/_/g, ` `))
+    }
+
+    els.push(el)
+  }
+
+  let add = DOM.create(`div`, `button`, `add_${short}_add`)
+  add.textContent = `Add ${App.capitalize_all(short.replace(/_/g, ` `))}`
+  container.append(name)
+  container.append(...els)
+  container.append(add)
+  return container
 }

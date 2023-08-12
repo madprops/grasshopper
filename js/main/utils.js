@@ -91,6 +91,16 @@ App.capitalize = (s) => {
   return s.charAt(0).toUpperCase() + s.slice(1)
 }
 
+App.capitalize_all = (s) => {
+  let words = s.split(` `)
+
+  let capitalized = words.map(word => {
+    return word.charAt(0).toUpperCase() + word.slice(1)
+  })
+
+  return capitalized.join(` `)
+}
+
 App.nice_date = (date = Date.now()) => {
   return dateFormat(date, `dd/mmm/yy | h:MM tt`)
 }
