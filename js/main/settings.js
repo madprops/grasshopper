@@ -1275,10 +1275,12 @@ App.do_add_setting_list_item = (setting, short, left, props) => {
       value = joined.replace(/[;\s]+$/g, ``)
     }
 
-    let line = `\n${name} = ${value}`
-    let text = DOM.el(`#settings_${setting}`)
-    text.value = App.one_linebreak(`${text.value}\n${line}`.trim())
-    text.focus()
+    if (value) {
+      let line = `\n${name} = ${value}`
+      let text = DOM.el(`#settings_${setting}`)
+      text.value = App.one_linebreak(`${text.value}\n${line}`.trim())
+      text.focus()
+    }
   }
 
   App.hide_popup()
