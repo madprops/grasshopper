@@ -219,15 +219,31 @@ App.settings_setup_checkboxes = (container) => {
   }
 }
 
-App.settings_setup_text = (container) => {
-  let items = DOM.els(`.settings_text`, container)
-  items.push(...DOM.els(`.settings_textarea`, container))
+App.do_save_text_setting = (setting, el) => {
+  let value = el.value.trim()
+  let is_textarea = el.classList.contains(`settings_textarea`)
 
-  for (let item of items) {
-    let setting = item.dataset.setting
-    let action = item.dataset.action
-    let el = DOM.el(`#settings_${setting}`)
-    let is_textarea = item.classList.contains(`settings_textarea`)
+  if (is_textarea) {
+    let cleaned = App.single_linebreak(value)
+    el.value = cleaned
+    value = cleaned.split(`\n`).filter(x => x !== ``).map(x => x.trim())
+  }
+  else {
+    el.value = value
+  }
+
+  App.set_setting(setting, value)
+  App.settings_do_action(el.dataset.action)
+}
+
+App.settings_setup_text = (container) => {
+  let els = DOM.els(`.settings_text`, container)
+  els.push(...DOM.els(`.settings_textarea`, container))
+
+  for (let el of els) {
+    let setting = el.dataset.setting
+    let action = el.dataset.action
+    let is_textarea = el.classList.contains(`settings_textarea`)
     let value = App.get_setting(setting)
 
     if (is_textarea) {
@@ -236,20 +252,20 @@ App.settings_setup_text = (container) => {
 
     el.value = value
 
+    DOM.ev(el, `focus`, () => {
+      DOM.dataset(el, `modified`, false)
+    })
+
+    DOM.ev(el, `input`, () => {
+      DOM.dataset(el, `modified`, true)
+    })
+
     DOM.ev(el, `blur`, () => {
-      let value = el.value.trim()
-
-      if (is_textarea) {
-        let cleaned = App.single_linebreak(value)
-        el.value = cleaned
-        value = cleaned.split(`\n`).filter(x => x !== ``).map(x => x.trim())
-      }
-      else {
-        el.value = value
+      if (!DOM.dataset(el, `modified`)) {
+        return
       }
 
-      App.set_setting(setting, value)
-      App.settings_do_action(action)
+      App.do_save_text_setting(setting, el)
     })
 
     let menu = [
@@ -1122,12 +1138,6 @@ App.get_setting = (setting) => {
 }
 
 App.set_setting = (setting, value) => {
-  if (value !== App.default_setting_string) {
-    if (value.toString() === App.get_default_setting(setting).toString()) {
-      value = App.default_setting_string
-    }
-  }
-
   App.settings[setting].value = value
   App.save_settings_debouncer.call()
 }
@@ -1314,7 +1324,7 @@ App.do_add_setting_list_item = (setting, short, left, props = []) => {
   }
 
   if (name) {
-    let text = DOM.el(`#settings_${setting}`)
+    let textarea = DOM.el(`#settings_${setting}`)
     let new_value
 
     if (props.length > 0) {
@@ -1330,17 +1340,17 @@ App.do_add_setting_list_item = (setting, short, left, props = []) => {
 
       if (value) {
         let line = `\n${name} = ${value}`
-        new_value = App.one_linebreak(`${text.value}\n${line}`)
+        new_value = App.one_linebreak(`${textarea.value}\n${line}`)
       }
     }
     else {
-      new_value = App.one_linebreak(`${text.value}\n${name}`)
+      new_value = App.one_linebreak(`${textarea.value}\n${name}`)
     }
 
     if (new_value) {
-      text.value = new_value
+      textarea.value = new_value
+      App.do_save_text_setting(setting, textarea)
       App.scroll_to_bottom(text)
-      text.focus()
     }
   }
 
