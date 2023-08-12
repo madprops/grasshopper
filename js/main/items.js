@@ -882,12 +882,7 @@ App.cycle_modes_debouncer = App.create_debouncer((reverse, cycle) => {
 App.focus_or_open_item = async (item) => {
   for (let tab of App.get_items(`tabs`)) {
     if (App.urls_equal(tab.url, item.url)) {
-      let o = {
-        id: tab.id,
-        window_id: tab.window_id
-      }
-
-      await App.focus_tab(o)
+      await App.focus_tab(tab)
       return `focused`
     }
   }
