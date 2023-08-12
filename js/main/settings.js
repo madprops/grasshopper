@@ -9,22 +9,19 @@ App.build_default_settings = () => {
   obj.fetch_favicons = {value: false, category: category, version: 1}
   obj.width = {value: 75, category: category, version: 1}
   obj.height = {value: 85, category: category, version: 1}
-  obj.tabs_index = {value: 0, category: category, version: 1}
-  obj.history_index = {value: 1, category: category, version: 1}
-  obj.bookmarks_index = {value: 2, category: category, version: 1}
-  obj.closed_index = {value: 3, category: category, version: 1}
   obj.item_border = {value: `none`, category: category, version: 2}
   obj.pick_mode = {value: `none`, category: category, version: 1}
   obj.color_mode = {value: `icon`, category: category, version: 1}
   obj.bookmarks_folder = {value: `Grasshopper`, category: category, version: 1}
+  obj.auto_restore = {value: `10_seconds`, category: category, version: 1}
+
+  category = `lists`
   obj.custom_filters = {value: [], category: category, version: 1}
   obj.aliases = {value: [], category: category, version: 1}
   obj.domain_themes = {value: [], category: category, version: 1}
   obj.domain_colors = {value: [], category: category, version: 1}
   obj.domain_titles = {value: [], category: category, version: 1}
   obj.domain_icons = {value: [], category: category, version: 1}
-  obj.hover_effect = {value: `glow`, category: category, version: 1}
-  obj.auto_restore = {value: `10_seconds`, category: category, version: 1}
 
   category = `theme`
   obj.background_color = {value: `rgb(45, 45, 55)`, category: category, version: 1}
@@ -94,6 +91,11 @@ App.build_default_settings = () => {
   obj.double_click_new = {value: true, category: category, version: 1}
   obj.rounded_corners = {value: true, category: category, version: 1}
   obj.smooth_scrolling = {value: true, category: category, version: 1}
+  obj.tabs_index = {value: 0, category: category, version: 1}
+  obj.history_index = {value: 1, category: category, version: 1}
+  obj.bookmarks_index = {value: 2, category: category, version: 1}
+  obj.closed_index = {value: 3, category: category, version: 1}
+  obj.hover_effect = {value: `glow`, category: category, version: 1}
 
   category = `show`
   obj.show_scrollbars = {value: true, category: category, version: 1}
@@ -491,7 +493,7 @@ App.setup_settings = () => {
     }, element: App.add_setting_list_item_html(`custom_filter`, `filter`, [])
   })
 
-  App.settings_categories = [`general`, `theme`, `media`, `show`, `mouse`, `warns`, `more`]
+  App.settings_categories = [`general`, `theme`, `media`, `show`, `mouse`, `warns`, `lists`, `more`]
 
   let common = {
     persistent: false,
@@ -575,13 +577,6 @@ App.setup_settings = () => {
       [`Item`, `item`],
     ])
 
-    App.settings_make_menu(`hover_effect`, [
-      [`None`, `none`],
-      [`Glow`, `glow`],
-      [`Underline`, `underline`],
-      [`Bold`, `bold`],
-    ])
-
     App.settings_make_menu(`auto_restore`, [
       [`Never`, `never`],
       [`1 Second`, `1_seconds`],
@@ -600,26 +595,10 @@ App.setup_settings = () => {
     App.settings_make_menu(`height`, App.get_size_options(), () => {
       App.apply_theme()
     })
+  }}))
 
-    App.make_mode_order()
-
-    DOM.evs(App.get_settings_label(`mode_order`), [`click`, `contextmenu`], (e) => {
-      App.settings_label_menu(e,
-      [
-        {
-          name: `Reset`, action: () => {
-            App.show_confirm(`Reset setting?`, () => {
-              App.set_default_setting(`tabs_index`)
-              App.set_default_setting(`history_index`)
-              App.set_default_setting(`bookmarks_index`)
-              App.set_default_setting(`closed_index`)
-              App.get_mode_order()
-              App.make_mode_order()
-            })
-          }
-        },
-      ])
-    })
+  App.create_window(Object.assign({}, common, {id: `settings_lists`, setup: () => {
+    prepare(`lists`)
 
     DOM.ev(DOM.el(`#domain_themes_add`), `click`, () => {
       App.add_domain_theme()
@@ -659,6 +638,33 @@ App.setup_settings = () => {
 
   App.create_window(Object.assign({}, common, {id: `settings_more`, setup: () => {
     prepare(`more`)
+
+    App.settings_make_menu(`hover_effect`, [
+      [`None`, `none`],
+      [`Glow`, `glow`],
+      [`Underline`, `underline`],
+      [`Bold`, `bold`],
+    ])
+
+    App.make_mode_order()
+
+    DOM.evs(App.get_settings_label(`mode_order`), [`click`, `contextmenu`], (e) => {
+      App.settings_label_menu(e,
+      [
+        {
+          name: `Reset`, action: () => {
+            App.show_confirm(`Reset setting?`, () => {
+              App.set_default_setting(`tabs_index`)
+              App.set_default_setting(`history_index`)
+              App.set_default_setting(`bookmarks_index`)
+              App.set_default_setting(`closed_index`)
+              App.get_mode_order()
+              App.make_mode_order()
+            })
+          }
+        },
+      ])
+    })
   }}))
 
   App.create_window(Object.assign({}, common, {id: `settings_media`, setup: () => {

@@ -161,16 +161,6 @@
           <div id="settings_item_border" class="settings_menu button" data-setting="item_border"></div>
         </div>
 
-        <div class="settings_item" title="Width of the popup">
-          <div class="settings_label">Popup Width</div>
-          <div id="settings_width" class="settings_menu button" data-setting="width"></div>
-        </div>
-
-        <div class="settings_item" title="Height of the popup">
-          <div class="settings_label">Popup Height</div>
-          <div id="settings_height" class="settings_menu button" data-setting="height"></div>
-        </div>
-
         <div class="settings_item" title="What to do when using the picks on the left">
           <div class="settings_label">Pick Mode</div>
           <div id="settings_pick_mode" class="settings_menu button" data-setting="pick_mode"></div>
@@ -181,21 +171,30 @@
           <div id="settings_color_mode" class="settings_menu button" data-setting="color_mode"></div>
         </div>
 
-        <div class="settings_item" title="What effect to apply on item hover">
-          <div class="settings_label">Hover Effect</div>
-          <div id="settings_hover_effect" class="settings_menu button" data-setting="hover_effect"></div>
-        </div>
-
         <div class="settings_item" title="When to auto-restore when mouse leaves the window">
           <div class="settings_label">Auto Restore</div>
           <div id="settings_auto_restore" class="settings_menu button" data-setting="auto_restore"></div>
+        </div>
+
+        <div class="settings_item" title="Width of the popup">
+          <div class="settings_label">Popup Width</div>
+          <div id="settings_width" class="settings_menu button" data-setting="width"></div>
+        </div>
+
+        <div class="settings_item" title="Height of the popup">
+          <div class="settings_label">Popup Height</div>
+          <div id="settings_height" class="settings_menu button" data-setting="height"></div>
         </div>
 
         <div class="settings_item" title="Where to save bookmarks">
           <div class="settings_label">Bookmarks Folder</div>
           <input type="text" autocomplete="off" placeholder="Save bookmarks here" id="settings_bookmarks_folder" class="text settings_text" data-setting="bookmarks_folder">
         </div>
+      </div>
+    </template>
 
+    <template id="template_settings_lists">
+      <div id="settings_lists_container" class="settings_container">
         <div class="settings_item" title="These appear in the filters menu">
           <div class="settings_label" data-add="custom_filters">Custom Filters</div>
           <textarea autocomplete="off" class="text settings_textarea" id="settings_custom_filters" data-setting="custom_filters" rows="3" placeholder="One filter per line"></textarea>
@@ -224,11 +223,6 @@
         <div class="settings_item" title="Set fixed themes per domain. There are 3 properties, background color, text color, and background image. Format: example.com = rgb(0, 0, 0) ; green ; http://image.jpg. RGB, hex, and color names are supported. You can leave some properties empty, for instance if you only want a background image you can do example.com = ; ; http://image.jpg">
           <div class="settings_label" data-add="domain_themes">Domain Themes</div>
           <textarea autocomplete="off" class="text settings_textarea" id="settings_domain_themes" data-setting="domain_themes" rows="3" placeholder="One domain per line"></textarea>
-        </div>
-
-        <div class="settings_item" title="The modes at the top appear first in the menu and cycle-order">
-          <div class="settings_label">Mode Order</div>
-          <div id="settings_mode_order"></div>
         </div>
       </div>
     </template>
@@ -376,6 +370,16 @@
         <div class="settings_item" title="Enable smooth scrolling in some cases">
           <div class="settings_label">Smooth Scrolling</div>
           <input type="checkbox" class="settings_checkbox" id="settings_smooth_scrolling" data-setting="smooth_scrolling" data-action="theme">
+        </div>
+
+        <div class="settings_item" title="What effect to apply on item hover">
+          <div class="settings_label">Hover Effect</div>
+          <div id="settings_hover_effect" class="settings_menu button" data-setting="hover_effect"></div>
+        </div>
+
+        <div class="settings_item" title="The modes at the top appear first in the menu and cycle-order">
+          <div class="settings_label">Mode Order</div>
+          <div id="settings_mode_order"></div>
         </div>
       </div>
     </template>
