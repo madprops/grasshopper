@@ -273,6 +273,16 @@
 
     <template id="template_settings_warns">
       <div id="settings_warns_container" class="settings_container">
+        <div class="settings_item" title="Warn when closing tabs">
+          <div class="settings_label">Warn On<br>Close Tabs</div>
+          <div id="settings_warn_on_close_tabs" class="settings_menu button" data-setting="warn_on_close_tabs"></div>
+        </div>
+
+        <div class="settings_item" title="Warn when unloading tabs">
+          <div class="settings_label">Warn On<br>Unload Tabs</div>
+          <div id="settings_warn_on_unload_tabs" class="settings_menu button" data-setting="warn_on_unload_tabs"></div>
+        </div>
+
         <div class="settings_item" title="Warn when duplicating tabs">
           <div class="settings_label">Warn On<br>Duplicate Tabs</div>
           <input type="checkbox" class="settings_checkbox" id="settings_warn_on_duplicate_tabs" data-setting="warn_on_duplicate_tabs">
@@ -302,21 +312,31 @@
           <div class="settings_label">Warn On<br>Open Items</div>
           <input type="checkbox" class="settings_checkbox" id="settings_warn_on_open" data-setting="warn_on_open">
         </div>
-
-        <div class="settings_item" title="Warn when closing tabs">
-          <div class="settings_label">Warn On<br>Close Tabs</div>
-          <div id="settings_warn_on_close_tabs" class="settings_menu button" data-setting="warn_on_close_tabs"></div>
-        </div>
-
-        <div class="settings_item" title="Warn when unloading tabs">
-          <div class="settings_label">Warn On<br>Unload Tabs</div>
-          <div id="settings_warn_on_unload_tabs" class="settings_menu button" data-setting="warn_on_unload_tabs"></div>
-        </div>
       </div>
     </template>
 
     <template id="template_settings_more">
       <div id="settings_more_container" class="settings_container">
+        <div class="settings_item" title="The modes at the top appear first in the menu and cycle-order">
+          <div class="settings_label">Mode Order</div>
+          <div id="settings_mode_order"></div>
+        </div>
+
+        <div class="settings_item" title="Where to save bookmarks">
+          <div class="settings_label">Bookmarks Folder</div>
+          <input type="text" autocomplete="off" placeholder="Save bookmarks here" id="settings_bookmarks_folder" class="text settings_text" data-setting="bookmarks_folder">
+        </div>
+
+        <div class="settings_item" title="When to auto-restore when mouse leaves the window">
+          <div class="settings_label">Auto Restore</div>
+          <div id="settings_auto_restore" class="settings_menu button" data-setting="auto_restore"></div>
+        </div>
+
+        <div class="settings_item" title="What effect to apply on item hover">
+          <div class="settings_label">Hover Effect</div>
+          <div id="settings_hover_effect" class="settings_menu button" data-setting="hover_effect"></div>
+        </div>
+
         <div class="settings_item" title="Dragging requires holding Ctrl to work">
           <div class="settings_label">Lock Drag</div>
           <input type="checkbox" class="settings_checkbox" id="settings_lock_drag" data-setting="lock_drag">
@@ -365,26 +385,6 @@
         <div class="settings_item" title="Enter settings directly from the main menu">
           <div class="settings_label">Direct Settings</div>
           <input type="checkbox" class="settings_checkbox" id="settings_direct_settings" data-setting="direct_settings">
-        </div>
-
-        <div class="settings_item" title="When to auto-restore when mouse leaves the window">
-          <div class="settings_label">Auto Restore</div>
-          <div id="settings_auto_restore" class="settings_menu button" data-setting="auto_restore"></div>
-        </div>
-
-        <div class="settings_item" title="What effect to apply on item hover">
-          <div class="settings_label">Hover Effect</div>
-          <div id="settings_hover_effect" class="settings_menu button" data-setting="hover_effect"></div>
-        </div>
-
-        <div class="settings_item" title="Where to save bookmarks">
-          <div class="settings_label">Bookmarks Folder</div>
-          <input type="text" autocomplete="off" placeholder="Save bookmarks here" id="settings_bookmarks_folder" class="text settings_text" data-setting="bookmarks_folder">
-        </div>
-
-        <div class="settings_item" title="The modes at the top appear first in the menu and cycle-order">
-          <div class="settings_label">Mode Order</div>
-          <div id="settings_mode_order"></div>
         </div>
       </div>
     </template>
