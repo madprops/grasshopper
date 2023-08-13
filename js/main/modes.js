@@ -23,7 +23,7 @@ App.show_mode = async (mode, cycle = false) => {
     }
   }
 
-  // Unload inactive items
+  // Clear inactive items
   for (let m of App.modes) {
     if (App.persistent_modes.includes(m)) {
       if (App[`${m}_items`].length > 0) {
