@@ -45,6 +45,7 @@ App.show_mode = async (mode, cycle = false) => {
   }
   else if (!items_ready) {
     items = await App[`get_${mode}`]()
+    was_filtered = false
   }
 
   if (!persistent) {
