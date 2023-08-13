@@ -89,10 +89,9 @@ App.build_default_settings = () => {
   obj.mute_click = {value: true, category: category, version: 1}
   obj.double_click_new = {value: true, category: category, version: 1}
   obj.rounded_corners = {value: true, category: category, version: 1}
-  obj.tabs_index = {value: 0, category: category, version: 1}
-  obj.history_index = {value: 1, category: category, version: 1}
-  obj.bookmarks_index = {value: 2, category: category, version: 1}
-  obj.closed_index = {value: 3, category: category, version: 1}
+  obj.history_index = {value: 1, category: category, version: 2}
+  obj.bookmarks_index = {value: 2, category: category, version: 2}
+  obj.closed_index = {value: 3, category: category, version: 2}
   obj.hover_effect = {value: `glow`, category: category, version: 1}
   obj.direct_settings = {value: true, category: category, version: 1}
   obj.bookmarks_folder = {value: `Grasshopper`, category: category, version: 1}
@@ -115,38 +114,6 @@ App.build_default_settings = () => {
   obj.pick_icon = {value: `🎯`, category: category, version: 1}
 
   App.default_settings = obj
-}
-
-App.make_mode_order = () => {
-  let mode_order = DOM.el(`#settings_mode_order`)
-  mode_order.innerHTML = ``
-
-  for (let m of App.mode_order) {
-    let row = DOM.create(`div`, `mode_order_row`)
-    row.dataset.mode = m
-
-    let up = DOM.create(`div`, `button mode_order_button`)
-    up.textContent = `Up`
-    row.append(up)
-
-    DOM.ev(up, `click`, () => {
-      App.mode_order_up(row)
-    })
-
-    let text = DOM.create(`div`, `mode_order_item_text`)
-    text.textContent = App.get_mode_name(m)
-    row.append(text)
-
-    let down = DOM.create(`div`, `button mode_order_button`)
-    down.textContent = `Down`
-    row.append(down)
-
-    DOM.ev(down, `click`, () => {
-      App.mode_order_down(row)
-    })
-
-    mode_order.append(row)
-  }
 }
 
 App.settings_do_action = (what) => {

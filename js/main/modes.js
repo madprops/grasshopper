@@ -5,6 +5,7 @@ App.show_mode = async (mode, cycle = false) => {
   App.empty_footer_info()
   App.cancel_filter()
   let container = DOM.el(`#${mode}_container`)
+  let was_filtered = App.was_filtered(mode)
   App.set_filter(mode, value, false)
   let m = App.filter_modes(mode)[0]
   App.set_filter_mode(mode, m[0], false)
@@ -72,7 +73,7 @@ App.show_mode = async (mode, cycle = false) => {
     App.update_footer_info(App.get_selected(mode))
   }
 
-  if (value) {
+  if (value || was_filtered) {
     App.do_filter(mode, true)
   }
   else {
@@ -103,9 +104,13 @@ App.mode_order_down = (el) => {
 }
 
 App.get_mode_order = () => {
-  let imodes = []
+  let imodes = [{mode: `tabs`, index: 0}]
 
   for (let mode of App.modes) {
+    if (mode === `tabs`) {
+      continue
+    }
+
     imodes.push({mode: mode, index: App.get_setting(`${mode}_index`)})
   }
 
@@ -189,4 +194,40 @@ App.getting = (mode) => {
   let icon = App.mode_icons[mode]
   let name = App.capitalize(mode)
   App.log(`${icon} Getting ${name}`)
+}
+
+App.make_mode_order = () => {
+  let mode_order = DOM.el(`#settings_mode_order`)
+  mode_order.innerHTML = ``
+
+  for (let mode of App.mode_order) {
+    if (mode === `tabs`) {
+      continue
+    }
+
+    let row = DOM.create(`div`, `mode_order_row`)
+    row.dataset.mode = mode
+
+    let up = DOM.create(`div`, `button mode_order_button`)
+    up.textContent = `Up`
+    row.append(up)
+
+    DOM.ev(up, `click`, () => {
+      App.mode_order_up(row)
+    })
+
+    let text = DOM.create(`div`, `mode_order_item_text`)
+    text.textContent = App.get_mode_name(mode)
+    row.append(text)
+
+    let down = DOM.create(`div`, `button mode_order_button`)
+    down.textContent = `Down`
+    row.append(down)
+
+    DOM.ev(down, `click`, () => {
+      App.mode_order_down(row)
+    })
+
+    mode_order.append(row)
+  }
 }

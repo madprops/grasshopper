@@ -192,20 +192,7 @@ App.check_close_on_open = () => {
 
 App.restore = () => {
   NeedContext.hide()
-
-  if (App.on_items()) {
-    App.deselect(App.window_mode, `up`)
-    App.show_all()
-
-    if (App.window_mode === App.first_mode()) {
-      if (App.window_mode === `tabs`) {
-        App.focus_current_tab()
-      }
-    }
-    else {
-      App.show_first_mode()
-    }
-  }
+  App.show_first_mode()
 }
 
 App.start_auto_restore = () => {

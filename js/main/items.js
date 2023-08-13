@@ -189,7 +189,7 @@ App.select_first_item = (mode, by_active = false) => {
   if (mode === `tabs` && by_active) {
     for (let item of App.get_items(mode)) {
       if (item.visible && item.active) {
-        App.select_item(item, `center`)
+        App.select_item(item, `nearest_smooth`)
         return
       }
     }

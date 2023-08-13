@@ -675,3 +675,17 @@ App.search_items = async (mode, query, deep) => {
 App.deep_search = (mode) => {
   App.do_filter(mode, true, true)
 }
+
+App.was_filtered = (mode) => {
+  if (App.get_filter(mode)) {
+    return true
+  }
+
+  let fmode = App.filter_mode(mode)
+
+  if (fmode && fmode !== `all`) {
+    return true
+  }
+
+  return false
+}
