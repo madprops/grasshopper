@@ -604,7 +604,7 @@ App.setup_settings = () => {
       [`30 Seconds`, `30_seconds`],
       [`1 minute`, `1_minutes`],
     ], () => {
-      clearInterval(App.restore_timeout)
+      clearTimeout(App.restore_timeout)
     })
 
     App.settings_make_menu(`hover_effect`, [
