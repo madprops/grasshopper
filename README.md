@@ -4,4 +4,4 @@
 
 ---
 
-![](https://i.imgur.com/xyO6oIa.png)
+![](img/grasshopper.png)
