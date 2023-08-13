@@ -2,11 +2,9 @@ App.show_mode = async (mode, cycle = false) => {
   App.windows[mode].show()
   let was_filtered = App.was_filtered(mode)
 
-  if (App.active_mode === mode) {
-    if (!was_filtered) {
-      App.select_first_item(mode, true)
-      return
-    }
+  if ((App.active_mode === mode) && (App[`${mode}_items`].length > 0) && !was_filtered) {
+    App.select_first_item(mode, true)
+    return
   }
 
   App.active_mode = mode
