@@ -89,9 +89,10 @@ App.build_default_settings = () => {
   obj.mute_click = {value: true, category: category, version: 1}
   obj.double_click_new = {value: true, category: category, version: 1}
   obj.rounded_corners = {value: true, category: category, version: 1}
-  obj.history_index = {value: 1, category: category, version: 2}
-  obj.bookmarks_index = {value: 2, category: category, version: 2}
-  obj.closed_index = {value: 3, category: category, version: 2}
+  obj.tabs_index = {value: 0, category: category, version: 1}
+  obj.history_index = {value: 1, category: category, version: 1}
+  obj.bookmarks_index = {value: 2, category: category, version: 1}
+  obj.closed_index = {value: 3, category: category, version: 1}
   obj.hover_effect = {value: `glow`, category: category, version: 1}
   obj.direct_settings = {value: true, category: category, version: 1}
   obj.bookmarks_folder = {value: `Grasshopper`, category: category, version: 1}

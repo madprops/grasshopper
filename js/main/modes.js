@@ -104,13 +104,9 @@ App.mode_order_down = (el) => {
 }
 
 App.get_mode_order = () => {
-  let imodes = [{mode: `tabs`, index: 0}]
+  let imodes = []
 
   for (let mode of App.modes) {
-    if (mode === `tabs`) {
-      continue
-    }
-
     imodes.push({mode: mode, index: App.get_setting(`${mode}_index`)})
   }
 
@@ -201,10 +197,6 @@ App.make_mode_order = () => {
   mode_order.innerHTML = ``
 
   for (let mode of App.mode_order) {
-    if (mode === `tabs`) {
-      continue
-    }
-
     let row = DOM.create(`div`, `mode_order_row`)
     row.dataset.mode = mode
 
