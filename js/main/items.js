@@ -276,8 +276,11 @@ App.process_info_list = (mode, info_list) => {
     container.append(item.element)
   }
 
+  if (mode === `tabs`) {
+    App.check_playing()
+  }
+
   App.update_footer_count(mode)
-  App.check_playing()
   App.do_check_pinline()
   App.check_new_tabs()
 }

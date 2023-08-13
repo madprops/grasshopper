@@ -1,11 +1,19 @@
 App.show_mode = async (mode, cycle = false) => {
+  App.windows[mode].show()
+  let was_filtered = App.was_filtered(mode)
+
+  if (App.active_mode === mode) {
+    if (!was_filtered) {
+      App.select_first_item(mode, true)
+      return
+    }
+  }
+
   App.active_mode = mode
   let value = App.get_last_window_value(cycle)
-  App.windows[mode].show()
   App.empty_footer_info()
   App.cancel_filter()
   let container = DOM.el(`#${mode}_container`)
-  let was_filtered = App.was_filtered(mode)
   App.set_filter(mode, value, false)
   let m = App.filter_modes(mode)[0]
   App.set_filter_mode(mode, m[0], false)
