@@ -1381,6 +1381,32 @@ App.scroll_to_item = (item, scroll = `nearest`) => {
     App.hide_scroller(item.mode)
   }
 
+  if (behavior === `smooth`) {
+    // Check how far an item is going to be scrolled
+    let top = item.element.getBoundingClientRect().top
+    let diff
+
+    if (top < 0) {
+      diff = Math.abs(top)
+    }
+    else {
+      let container = DOM.el(`#${item.mode}_container`)
+      let height = container.clientHeight
+
+      if (top > height) {
+        diff = top - height
+      }
+      else {
+        diff = 0
+      }
+    }
+
+    // If distance is too big then make it instant
+    if (diff > App.max_smooth_scroll) {
+      behavior = `instant`
+    }
+  }
+
   item.element.scrollIntoView({
     block: scroll,
     behavior: behavior,
