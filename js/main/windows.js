@@ -190,11 +190,6 @@ App.check_close_on_open = () => {
   }
 }
 
-App.restore = () => {
-  NeedContext.hide()
-  App.show_first_mode()
-}
-
 App.start_auto_restore = () => {
   clearInterval(App.restore_timeout)
   let d = App.get_setting(`auto_restore`)
@@ -206,6 +201,7 @@ App.start_auto_restore = () => {
   let delay = App.parse_delay(d)
 
   App.restore_timeout = setTimeout(() => {
-    App.restore()
+    NeedContext.hide()
+    App.show_first_mode()
   }, delay)
 }
