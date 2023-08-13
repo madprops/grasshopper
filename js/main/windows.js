@@ -206,8 +206,9 @@ App.start_auto_restore = () => {
 }
 
 App.recover = () => {
+  NeedContext.hide()
+
   if (App.on_items()) {
-    NeedContext.hide()
     App.show_first_mode()
   }
 }
