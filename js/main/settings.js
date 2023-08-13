@@ -12,6 +12,7 @@ App.build_default_settings = () => {
   obj.item_border = {value: `none`, category: category, version: 2}
   obj.pick_mode = {value: `none`, category: category, version: 1}
   obj.color_mode = {value: `icon`, category: category, version: 1}
+  obj.smooth_scrolling = {value: true, category: category, version: 1}
 
   category = `lists`
   obj.custom_filters = {value: [], category: category, version: 1}
@@ -88,7 +89,6 @@ App.build_default_settings = () => {
   obj.mute_click = {value: true, category: category, version: 1}
   obj.double_click_new = {value: true, category: category, version: 1}
   obj.rounded_corners = {value: true, category: category, version: 1}
-  obj.smooth_scrolling = {value: true, category: category, version: 1}
   obj.tabs_index = {value: 0, category: category, version: 1}
   obj.history_index = {value: 1, category: category, version: 1}
   obj.bookmarks_index = {value: 2, category: category, version: 1}
