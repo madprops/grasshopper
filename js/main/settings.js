@@ -12,8 +12,6 @@ App.build_default_settings = () => {
   obj.item_border = {value: `none`, category: category, version: 2}
   obj.pick_mode = {value: `none`, category: category, version: 1}
   obj.color_mode = {value: `icon`, category: category, version: 1}
-  obj.bookmarks_folder = {value: `Grasshopper`, category: category, version: 1}
-  obj.auto_restore = {value: `10_seconds`, category: category, version: 1}
 
   category = `lists`
   obj.custom_filters = {value: [], category: category, version: 1}
@@ -97,6 +95,8 @@ App.build_default_settings = () => {
   obj.closed_index = {value: 3, category: category, version: 1}
   obj.hover_effect = {value: `glow`, category: category, version: 1}
   obj.direct_settings = {value: true, category: category, version: 1}
+  obj.bookmarks_folder = {value: `Grasshopper`, category: category, version: 1}
+  obj.auto_restore = {value: `10_seconds`, category: category, version: 1}
 
   category = `show`
   obj.show_scrollbars = {value: true, category: category, version: 1}
