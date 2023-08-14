@@ -806,7 +806,7 @@ App.start_theme_settings = () => {
             }
 
             App.show_confirm(`Reset setting?`, () => {
-              App[setting].setColor(App.get_setting(setting))
+              App[setting].setColor(App.get_default_setting(setting))
               App.set_default_setting(setting)
             })
           }
