@@ -472,6 +472,10 @@ svg {
   border: 1px solid var(--alt_color_1);
 }
 
+.add_setting_container {
+  gap: 1.25rem;
+}
+
 .text_smaller {
   width: 5rem;
   max-width: 5rem;
@@ -484,10 +488,6 @@ svg {
 
 .gap_2 {
   gap: 1rem;
-}
-
-.gap_2p5 {
-  gap: 1.25rem;
 }
 
 .gap_3 {

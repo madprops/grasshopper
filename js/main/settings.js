@@ -1412,7 +1412,7 @@ App.do_add_setting_list_item = (setting, short, left, props = []) => {
 }
 
 App.add_setting_list_item_html = (short, left, props, to = false) => {
-  let container = DOM.create(`div`, `flex_column_center gap_2p5`)
+  let container = DOM.create(`div`, `flex_column_center add_setting_container`)
   let name = DOM.create(`input`, `text editor_text`, `add_${short}_${left}`)
   name.type = `text`
   name.spellcheck = false
