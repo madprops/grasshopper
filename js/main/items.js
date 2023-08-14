@@ -1576,6 +1576,10 @@ App.check_borders_proc = (list) => {
 }
 
 App.do_check_borders = (mode) => {
+  if (App.get_setting(`item_border`) === `none`) {
+    return
+  }
+
   if (mode === `tabs`) {
     let tabs = App.divide_tabs(`visible`)
     App.check_borders_proc(tabs.pinned_f)
