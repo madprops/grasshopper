@@ -219,6 +219,10 @@ svg {
   border-bottom: 3px solid var(--alt_color_1);
 }
 
+.item_border_huge .item {
+  border-bottom: 5px solid var(--alt_color_1);
+}
+
 .item_icon_container {
   display: flex;
   align-items: center;

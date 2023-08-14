@@ -145,7 +145,7 @@ App.apply_theme = (args) => {
       main.classList.add(`hide_scroller`)
     }
 
-    let item_border_opts = [`normal`, `bigger`]
+    let item_border_opts = [`normal`, `bigger`, `huge`]
 
     for (let b of item_border_opts) {
       main.classList.remove(`item_border_${b}`)

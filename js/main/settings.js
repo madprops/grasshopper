@@ -546,6 +546,7 @@ App.setup_settings = () => {
       [`None`, `none`],
       [`Normal`, `normal`],
       [`Bigger`, `bigger`],
+      [`Huge`, `huge`],
     ])
 
     App.settings_make_menu(`pick_mode`, [
