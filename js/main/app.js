@@ -29,6 +29,7 @@ App.filter_delay_2 = 100
 App.footer_delay = 100
 App.scroller_delay = 100
 App.pinline_delay = 100
+App.check_borders_delay = 100
 App.wheel_delay = 100
 App.scroll_amount = 150
 App.double_tap_date = 0

@@ -204,6 +204,7 @@ App.refresh_tab = async (id, select, info) => {
   }
 
   App.check_pinline()
+  App.check_borders(`tabs`)
 
   if (select) {
     if (App.get_selected(`tabs`) !== item) {

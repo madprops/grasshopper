@@ -221,6 +221,7 @@ App.remove_item = (item) => {
   }
 
   item.element.remove()
+  App.check_borders(mode)
   App.filter_item_by_id(mode, item.id)
   App.update_footer_count(mode)
 }
@@ -282,6 +283,7 @@ App.process_info_list = (mode, info_list) => {
 
   App.update_footer_count(mode)
   App.do_check_pinline()
+  App.check_borders(mode)
   App.check_new_tabs()
 }
 
@@ -960,6 +962,8 @@ App.move_item = (mode, from_index, to_index) => {
   if (App.get_selected(mode) === item) {
     App.scroll_to_item(App.get_selected(mode), `center_smooth`)
   }
+
+  App.check_borders(mode)
 }
 
 App.move_item_element = (mode, el, to_index) => {
@@ -1310,6 +1314,7 @@ App.insert_item = (mode, info) => {
     DOM.el(`#${mode}_container`).prepend(item.element)
   }
 
+  App.check_borders(mode)
   App.update_footer_count(mode)
   return item
 }
@@ -1547,4 +1552,36 @@ App.get_persistent_items = () => {
   }
 
   return items
+}
+
+App.check_borders_debouncer = App.create_debouncer((mode) => {
+  App.do_check_borders(mode)
+}, App.check_borders_delay)
+
+App.check_borders = (mode) => {
+  if (App.get_setting(`show_pinline`)) {
+    App.check_borders_debouncer.call(mode)
+  }
+}
+
+App.check_borders_proc = (list) => {
+  for (let [i, tab] of list.entries()) {
+    if (i === list.length - 1) {
+      tab.element.classList.add(`last_item`)
+    }
+    else {
+      tab.element.classList.remove(`last_item`)
+    }
+  }
+}
+
+App.do_check_borders = (mode) => {
+  if (mode === `tabs`) {
+    let tabs = App.divide_tabs(`visible`)
+    App.check_borders_proc(tabs.pinned_f)
+    App.check_borders_proc(tabs.normal_f)
+  }
+  else {
+    App.check_borders_proc(App.get_items(mode))
+  }
 }

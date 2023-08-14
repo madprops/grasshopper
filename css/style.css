@@ -211,6 +211,10 @@ svg {
   gap: 0.611rem;
 }
 
+.last_item {
+  border-color: transparent !important;
+}
+
 .item_border_normal .item {
   border-bottom: 1px solid var(--alt_color_1);
 }
