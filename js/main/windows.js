@@ -58,7 +58,7 @@ App.create_window = (args) => {
       if (!args.persistent || !w.setup) {
         args.setup()
         w.setup = true
-        App.log(`${args.id} window setup`)
+        App.log(`Setup Window: ${args.id}`)
       }
     }
   }

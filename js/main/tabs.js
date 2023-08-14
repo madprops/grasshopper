@@ -37,8 +37,6 @@ App.setup_tabs = () => {
   })
 
   browser.tabs.onActivated.addListener(async (info) => {
-    App.log(`Tab Activated: ID: ${info.tabId}`)
-
     if (info.windowId === App.window_id) {
       await App.on_tab_activated(info)
       App.tabs_check()
