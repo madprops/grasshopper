@@ -167,7 +167,7 @@ App.settings_setup_labels = (container) => {
     }
 
     if (item.dataset.rnd) {
-      btns.push([`settings_${item.dataset.rnd}_random`, `Rnd`])
+      btns.push([`settings_${item.dataset.rnd}_random`, App.random_text])
     }
 
     if (btns.length > 0) {

@@ -64,6 +64,7 @@ App.last_filter_input = 0
 App.recent_filter_input = 1250
 App.persistent_modes = [`tabs`]
 App.close_text = `Close`
+App.random_text = `Rnd`
 App.similarity_threshold = 0.7
 App.max_smooth_scroll = 1000 * 2
 App.settings_ready = false
@@ -128,11 +129,11 @@ App.icontext = {
   },
   random_theme: {
     icon: App.settings_icons.theme,
-    name: `Rnd Theme`,
+    name: `${App.random_text} Theme`,
   },
   random_background: {
     icon: App.settings_icons.theme,
-    name: `Rnd Background`,
+    name: `${App.random_text} Background`,
   },
   background: {
     icon: App.settings_icons.theme,
