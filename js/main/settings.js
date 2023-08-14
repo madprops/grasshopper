@@ -178,6 +178,10 @@ App.settings_setup_checkboxes = (container) => {
       [
         {
           name: `Reset`, action: () => {
+            if (App.check_setting_default(setting)) {
+              return
+            }
+
             App.show_confirm(`Reset setting?`, () => {
               App.set_default_setting(setting)
               el.checked = App.get_setting(setting)
@@ -241,6 +245,10 @@ App.settings_setup_text = (container) => {
     let menu = [
       {
         name: `Reset`,  action: () => {
+          if (App.check_setting_default(setting)) {
+            return
+          }
+
           App.show_confirm(`Reset setting?`, () => {
             App.set_default_setting(setting)
             let value = App.get_setting(setting)
@@ -314,6 +322,10 @@ App.settings_make_menu = (setting, opts, action = () => {}) => {
     [
       {
         name: `Reset`, action: () => {
+          if (App.check_setting_default(setting)) {
+            return
+          }
+
           App.show_confirm(`Reset setting?`, () => {
             App.set_default_setting(setting)
             let value = App.get_setting(setting)
@@ -622,6 +634,10 @@ App.setup_settings = () => {
       [
         {
           name: `Reset`, action: () => {
+            if (App.check_setting_default(`mode_order`)) {
+              return
+            }
+
             App.show_confirm(`Reset setting?`, () => {
               App.set_default_setting(`tabs_index`)
               App.set_default_setting(`history_index`)
@@ -785,9 +801,13 @@ App.start_theme_settings = () => {
       [
         {
           name: `Reset`, action: () => {
+            if (App.check_setting_default(setting)) {
+              return
+            }
+
             App.show_confirm(`Reset setting?`, () => {
-              App.set_default_setting(setting)
               App[setting].setColor(App.get_setting(setting))
+              App.set_default_setting(setting)
             })
           }
         },
@@ -1103,9 +1123,7 @@ App.get_setting = (setting) => {
   let value = App.settings[setting].value
 
   if (value === App.default_setting_string) {
-    if (value === App.default_setting_string) {
-      value = App.get_default_setting(setting)
-    }
+    value = App.get_default_setting(setting)
   }
 
   return value
@@ -1364,4 +1382,20 @@ App.add_setting_list_item_html = (short, left, props) => {
   container.append(...els)
   container.append(add)
   return container
+}
+
+App.is_default_setting = (setting) => {
+  return App.settings[setting].value === App.default_setting_string
+}
+
+App.check_setting_default = (setting) => {
+  if (setting === `mode_order`) {
+    return App.is_default_setting(`tabs_index`) &&
+    App.is_default_setting(`history_index`) &&
+    App.is_default_setting(`bookmarks_index`) &&
+    App.is_default_setting(`closed_index`)
+  }
+  else {
+    return App.is_default_setting(setting)
+  }
 }
