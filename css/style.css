@@ -914,6 +914,11 @@ select {
   background-color: rgb(170, 127, 59);
 }
 
+.colored.selected {
+  background-color: var(--alt_color_1);
+  color: var(--text_color);
+}
+
 .color_only_icon .item_icon_container {
   display: none;
 }
@@ -923,9 +928,4 @@ select {
   border: 1px solid var(--alt_color_1);
   padding: 0.35rem;
   cursor: pointer;
-}
-
-.colored.selected {
-  background-color: var(--alt_color_1);
-  color: var(--text_color);
 }
