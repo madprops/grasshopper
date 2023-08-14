@@ -147,11 +147,11 @@ App.log = (message, mode = `normal`) => {
     console.info(`🟢 ${message}`)
   }
   else if (mode === `debug`) {
-    if (App.settings_ready) {
-      if (App.get_setting(`debug_mode`)) {
-        console.info(`🔵 ${message}`)
-      }
+    if (App.settings_ready && !App.get_setting(`debug_mode`)) {
+      return
     }
+
+    console.info(`🔵 ${message}`)
   }
   else {
     console.info(message)
