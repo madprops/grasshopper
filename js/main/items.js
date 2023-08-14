@@ -283,7 +283,7 @@ App.process_info_list = (mode, info_list) => {
 
   App.update_footer_count(mode)
   App.do_check_pinline()
-  App.check_borders(mode)
+  App.do_check_borders(mode)
   App.check_new_tabs()
 }
 
