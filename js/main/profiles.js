@@ -108,6 +108,9 @@ App.setup_profile_editor = () => {
     })
   },
   colored_top: true,
+  after_show: () => {
+    App.scroll_profile_text()
+  },
   on_hide: () => {
     if (App.profile_editor_modified) {
       App.show_confirm(`Save changes?`, () => {
@@ -295,7 +298,6 @@ App.show_profile_editor = (item, type, action = `edit`) => {
   App.window_goto_top(`profile_editor`)
   App.profile_apply_theme()
   App.set_profile_color()
-  App.scroll_profile_text()
   App.profile_ready = true
 }
 
