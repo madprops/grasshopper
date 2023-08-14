@@ -293,7 +293,7 @@ svg {
   font-weight: bold;
 }
 
-.hover_effect_bigger .item:hover {
+.hover_effect_bigger .item:hover .item_text {
   font-size: var(--bigger_font);
 }
 
@@ -349,11 +349,11 @@ svg {
   background-color: var(--alt_color_1);
 }
 
-.selected_effect_underline .selected {
+.selected_effect_underline .selected .item_text {
   text-decoration: underline;
 }
 
-.selected_effect_bigger .selected {
+.selected_effect_bigger .selected .item_text {
   font-size: var(--bigger_font);
 }
 
