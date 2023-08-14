@@ -92,7 +92,7 @@ App.show_mode = async (mode, cycle = false) => {
     App.do_filter(mode, true)
   }
   else {
-    App.select_first_item(mode, true)
+    App.select_first_item(mode, true, `center_instant`)
   }
 
   App[`${mode}_changed`] = false

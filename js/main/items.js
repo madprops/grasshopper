@@ -185,11 +185,11 @@ App.get_items = (mode) => {
   return App[item_string] || []
 }
 
-App.select_first_item = (mode, by_active = false) => {
+App.select_first_item = (mode, by_active = false, scroll = `nearest_instant`) => {
   if (mode === `tabs` && by_active) {
     for (let item of App.get_items(mode)) {
       if (item.visible && item.active) {
-        App.select_item(item, `center_instant`)
+        App.select_item(item, scroll)
         return
       }
     }
