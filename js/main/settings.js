@@ -163,7 +163,7 @@ App.settings_setup_labels = (container) => {
     let btns = []
 
     if (item.dataset.add) {
-      btns.push([`${item.dataset.add}_add`, `Add`])
+      btns.push([`settings_${item.dataset.add}_add`, `Add`])
     }
 
     if (item.dataset.rnd) {
@@ -597,27 +597,27 @@ App.setup_settings = () => {
   App.create_window(Object.assign({}, common, {id: `settings_lists`, setup: () => {
     prepare(`lists`)
 
-    DOM.ev(DOM.el(`#domain_themes_add`), `click`, () => {
+    DOM.ev(DOM.el(`#settings_domain_themes_add`), `click`, () => {
       App.add_domain_theme()
     })
 
-    DOM.ev(DOM.el(`#domain_icons_add`), `click`, () => {
+    DOM.ev(DOM.el(`#settings_domain_icons_add`), `click`, () => {
       App.add_domain_icon()
     })
 
-    DOM.ev(DOM.el(`#domain_titles_add`), `click`, () => {
+    DOM.ev(DOM.el(`#settings_domain_titles_add`), `click`, () => {
       App.add_domain_title()
     })
 
-    DOM.ev(DOM.el(`#domain_colors_add`), `click`, () => {
+    DOM.ev(DOM.el(`#settings_domain_colors_add`), `click`, () => {
       App.add_domain_color()
     })
 
-    DOM.ev(DOM.el(`#aliases_add`), `click`, () => {
+    DOM.ev(DOM.el(`#settings_aliases_add`), `click`, () => {
       App.add_alias()
     })
 
-    DOM.ev(DOM.el(`#custom_filters_add`), `click`, () => {
+    DOM.ev(DOM.el(`#settings_custom_filters_add`), `click`, () => {
       App.add_custom_filter()
     })
   }}))
@@ -927,7 +927,7 @@ App.start_theme_settings = () => {
     App.random_background()
   })
 
-  DOM.ev(DOM.el(`#background_pool_add`), `click`, () => {
+  DOM.ev(DOM.el(`#settings_background_pool_add`), `click`, () => {
     App.add_background_pool()
   })
 
