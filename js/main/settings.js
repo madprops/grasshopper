@@ -14,14 +14,6 @@ App.build_default_settings = () => {
   obj.color_mode = {value: `icon`, category: category, version: 1}
   obj.smooth_scrolling = {value: true, category: category, version: 1}
 
-  category = `lists`
-  obj.custom_filters = {value: [], category: category, version: 1}
-  obj.aliases = {value: [], category: category, version: 1}
-  obj.domain_themes = {value: [], category: category, version: 1}
-  obj.domain_colors = {value: [], category: category, version: 1}
-  obj.domain_titles = {value: [], category: category, version: 1}
-  obj.domain_icons = {value: [], category: category, version: 1}
-
   category = `theme`
   obj.background_color = {value: `rgb(45, 45, 55)`, category: category, version: 1}
   obj.text_color = {value: `rgb(233, 233, 233)`, category: category, version: 1}
@@ -33,16 +25,6 @@ App.build_default_settings = () => {
   obj.color_transitions = {value: true, category: category, version: 1}
   obj.random_background_gifs = {value: true, category: category, version: 1}
   obj.random_themes = {value: `dark`, category: category, version: 1}
-
-  category = `warns`
-  obj.warn_on_close_tabs = {value: `special`, category: category, version: 1}
-  obj.warn_on_unload_tabs = {value: `special`, category: category, version: 1}
-  obj.warn_on_duplicate_tabs = {value: true, category: category, version: 1}
-  obj.warn_on_close_duplicate_tabs = {value: true, category: category, version: 1}
-  obj.warn_on_close_normal_tabs = {value: true, category: category, version: 1}
-  obj.warn_on_open = {value: true, category: category, version: 1}
-  obj.warn_on_remove_profiles = {value: true, category: category, version: 1}
-  obj.warn_on_bookmark = {value: true, category: category, version: 1}
 
   category = `media`
   obj.view_image_tabs = {value: `icon`, category: category, version: 1}
@@ -60,6 +42,22 @@ App.build_default_settings = () => {
   obj.image_icon = {value: `🖼️`, category: category, version: 1}
   obj.video_icon = {value: `▶️`, category: category, version: 1}
   obj.audio_icon = {value: `🎵`, category: category, version: 1}
+
+  category = `show`
+  obj.show_scrollbars = {value: true, category: category, version: 1}
+  obj.show_tooltips = {value: true, category: category, version: 1}
+  obj.show_icons = {value: true, category: category, version: 1}
+  obj.show_pinline = {value: true, category: category, version: 1}
+  obj.show_scroller = {value: true, category: category, version: 1}
+  obj.show_footer = {value: true, category: category, version: 1}
+  obj.pin_icon = {value: `+`, category: category, version: 1}
+  obj.normal_icon = {value: ``, category: category, version: 1}
+  obj.playing_icon = {value: `🔊`, category: category, version: 1}
+  obj.muted_icon = {value: `🔇`, category: category, version: 1}
+  obj.unloaded_icon = {value: `💤`, category: category, version: 1}
+  obj.close_icon = {value: `x`, category: category, version: 1}
+  obj.open_icon = {value: `🚀`, category: category, version: 1}
+  obj.pick_icon = {value: `🎯`, category: category, version: 1}
 
   category = `mouse`
   obj.gestures_enabled = {value: true, category: category, version: 1}
@@ -80,6 +78,24 @@ App.build_default_settings = () => {
   obj.middle_click_open_button = {value: `open_items`, category: category, version: 1}
   obj.middle_click_pinline = {value: `close_normal_tabs`, category: category, version: 1}
 
+  category = `warns`
+  obj.warn_on_close_tabs = {value: `special`, category: category, version: 1}
+  obj.warn_on_unload_tabs = {value: `special`, category: category, version: 1}
+  obj.warn_on_duplicate_tabs = {value: true, category: category, version: 1}
+  obj.warn_on_close_duplicate_tabs = {value: true, category: category, version: 1}
+  obj.warn_on_close_normal_tabs = {value: true, category: category, version: 1}
+  obj.warn_on_open = {value: true, category: category, version: 1}
+  obj.warn_on_remove_profiles = {value: true, category: category, version: 1}
+  obj.warn_on_bookmark = {value: true, category: category, version: 1}
+
+  category = `lists`
+  obj.custom_filters = {value: [], category: category, version: 1}
+  obj.aliases = {value: [], category: category, version: 1}
+  obj.domain_themes = {value: [], category: category, version: 1}
+  obj.domain_colors = {value: [], category: category, version: 1}
+  obj.domain_titles = {value: [], category: category, version: 1}
+  obj.domain_icons = {value: [], category: category, version: 1}
+
   category = `more`
   obj.single_new_tab = {value: true, category: category, version: 1}
   obj.close_on_focus = {value: true, category: category, version: 1}
@@ -98,22 +114,6 @@ App.build_default_settings = () => {
   obj.bookmarks_folder = {value: `Grasshopper`, category: category, version: 1}
   obj.auto_restore = {value: `10_seconds`, category: category, version: 1}
   obj.debug_mode = {value: false, category: category, version: 1}
-
-  category = `show`
-  obj.show_scrollbars = {value: true, category: category, version: 1}
-  obj.show_tooltips = {value: true, category: category, version: 1}
-  obj.show_icons = {value: true, category: category, version: 1}
-  obj.show_pinline = {value: true, category: category, version: 1}
-  obj.show_scroller = {value: true, category: category, version: 1}
-  obj.show_footer = {value: true, category: category, version: 1}
-  obj.pin_icon = {value: `+`, category: category, version: 1}
-  obj.normal_icon = {value: ``, category: category, version: 1}
-  obj.playing_icon = {value: `🔊`, category: category, version: 1}
-  obj.muted_icon = {value: `🔇`, category: category, version: 1}
-  obj.unloaded_icon = {value: `💤`, category: category, version: 1}
-  obj.close_icon = {value: `x`, category: category, version: 1}
-  obj.open_icon = {value: `🚀`, category: category, version: 1}
-  obj.pick_icon = {value: `🎯`, category: category, version: 1}
 
   App.default_settings = obj
 }
@@ -386,7 +386,8 @@ App.add_settings_filter = (category) => {
   filter.type = `text`
   filter.autocomplete = `off`
   filter.spellcheck = false
-  filter.placeholder = `Filter`
+  let items = DOM.els(`.settings_item`, container)
+  filter.placeholder = `Filter (${items.length})`
   container.prepend(filter)
 }
 
