@@ -9,6 +9,12 @@ App.setup_history = () => {
   ]
 
   App.setup_item_window(`history`)
+
+  browser.history.onVisited.addListener((info) => {
+    if (App.active_mode === `history`) {
+      App.history_changed = true
+    }
+  })
 }
 
 App.history_time = (deep = false) => {

@@ -1,8 +1,15 @@
+App.setup_modes = () => {
+  for (let mode of App.modes) {
+    App[`${mode}_changed`] = false
+  }
+}
+
 App.show_mode = async (mode, cycle = false) => {
   App.windows[mode].show()
   let was_filtered = App.was_filtered(mode)
 
-  if ((App.active_mode === mode) && (App[`${mode}_items`].length > 0) && !was_filtered) {
+  if ((App.active_mode === mode) && (App[`${mode}_items`].length > 0)
+  && !was_filtered && !App[`${mode}_changed`]) {
     App.select_first_item(mode, true)
     return
   }
@@ -87,6 +94,7 @@ App.show_mode = async (mode, cycle = false) => {
     App.select_first_item(mode, true)
   }
 
+  App[`${mode}_changed`] = false
   App.focus_filter(mode)
   App.do_check_scroller(mode)
   App.check_item_theme()

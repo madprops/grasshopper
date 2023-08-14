@@ -24,6 +24,7 @@ App.init = async () => {
   App.setup_items()
   App.setup_gestures()
   App.setup_palette()
+  App.setup_modes()
   App.apply_theme()
   App.clear_all_items()
   App.show_first_mode()
