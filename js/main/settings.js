@@ -560,6 +560,8 @@ App.setup_settings = () => {
       [`Icon`, `icon`],
       [`Icon 2`, `icon_2`],
       [`Item`, `item`],
+      [`Both`, `both`],
+      [`Both 2`, `both_2`],
     ])
 
     App.settings_make_menu(`width`, App.get_size_options(), () => {
