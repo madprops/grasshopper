@@ -808,22 +808,6 @@ App.intersection_observer = (mode, options) => {
   }, options)
 }
 
-App.get_last_window_value = (cycle) => {
-  let last_mode = App.window_mode
-
-  if (!App.on_items(last_mode)) {
-    last_mode = `tabs`
-  }
-
-  let value = ``
-
-  if (cycle) {
-    value = App.get_filter(last_mode)
-  }
-
-  return value
-}
-
 App.setup_item_window = (mode) => {
   let args = {}
   args.id = mode

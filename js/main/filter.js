@@ -688,3 +688,19 @@ App.was_filtered = (mode) => {
 
   return false
 }
+
+App.get_last_filter_value = (cycle) => {
+  let last_mode = App.active_mode
+
+  if (!App.on_items(last_mode)) {
+    last_mode = `tabs`
+  }
+
+  let value = ``
+
+  if (cycle) {
+    value = App.get_filter(last_mode)
+  }
+
+  return value
+}

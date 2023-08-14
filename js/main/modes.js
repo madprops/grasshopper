@@ -15,8 +15,8 @@ App.show_mode = async (mode, cycle = false) => {
     return
   }
 
+  let value = App.get_last_filter_value(cycle)
   App.active_mode = mode
-  let value = App.get_last_window_value(cycle)
   App.empty_footer_info()
   App.cancel_filter()
   let container = DOM.el(`#${mode}_container`)
