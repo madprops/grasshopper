@@ -8,8 +8,9 @@ App.show_mode = async (mode, cycle = false) => {
   App.windows[mode].show()
   let was_filtered = App.was_filtered(mode)
 
-  if ((App.active_mode === mode) && (App[`${mode}_items`].length > 0)
-  && !was_filtered && !App[`${mode}_changed`]) {
+  if ((App.active_mode === mode) &&
+  (App[`${mode}_items`].length > 0) &&
+  !was_filtered && !App[`${mode}_changed`]) {
     App.select_first_item(mode, true)
     return
   }
