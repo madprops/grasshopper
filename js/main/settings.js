@@ -267,6 +267,10 @@ App.settings_setup_text = (container) => {
       },
       {
         name: `Clear`,  action: () => {
+          if (el.value === ``) {
+            return
+          }
+
           App.show_confirm(`Clear setting?`, () => {
             if (is_textarea) {
               App.set_setting(setting, [])
