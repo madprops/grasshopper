@@ -334,7 +334,7 @@ svg {
 
 .selected {
   background-color: var(--alt_color_1);
-  border-bottom-color: transparent !important;
+  border-color: transparent !important;
 }
 
 .hidden {
