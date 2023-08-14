@@ -259,6 +259,7 @@ App.settings_setup_text = (container) => {
       }
 
       App.do_save_text_setting(setting, el)
+      App.scroll_to_bottom(el)
     })
 
     let menu = [
@@ -509,6 +510,7 @@ App.setup_settings = () => {
     colored_top: true,
     after_show: () => {
       DOM.el(`#settings_${App.settings_category}_filter`).focus()
+      App.scroll_settings_text(App.settings_category)
     },
     on_hide: () => {
       App.apply_theme()
@@ -1436,7 +1438,7 @@ App.add_setting_list_item_html = (short, left, props, to = false) => {
     els.push(el)
   }
 
-  let add = DOM.create(`div`, `button`, `add_${short}_add`)
+  let add = DOM.create(`div`, `button settings_add_button`, `add_${short}_add`)
   let label =App.capitalize_all(short.replace(/_/g, ` `))
 
   if (to) {
@@ -1466,5 +1468,14 @@ App.check_setting_default = (setting) => {
   }
   else {
     return App.is_default_setting(setting)
+  }
+}
+
+App.scroll_settings_text = (category) => {
+  let container = DOM.el(`#settings_${category}_container`)
+  let els = DOM.els(`.settings_textarea`, container)
+
+  for (let el of els) {
+    App.scroll_to_bottom(el)
   }
 }
