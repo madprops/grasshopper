@@ -180,15 +180,13 @@ App.settings_setup_checkboxes = (container) => {
       [
         {
           name: `Reset`, action: () => {
-            if (App.check_setting_default(setting)) {
-              return
-            }
+            let force = App.check_setting_default(setting)
 
             App.show_confirm(`Reset setting?`, () => {
               App.set_default_setting(setting)
               el.checked = App.get_setting(setting)
               App.settings_do_action(action)
-            })
+            }, undefined, force)
           }
         },
       ])
@@ -247,9 +245,7 @@ App.settings_setup_text = (container) => {
     let menu = [
       {
         name: `Reset`,  action: () => {
-          if (App.check_setting_default(setting)) {
-            return
-          }
+          let force = App.check_setting_default(setting)
 
           App.show_confirm(`Reset setting?`, () => {
             App.set_default_setting(setting)
@@ -264,7 +260,7 @@ App.settings_setup_text = (container) => {
 
             App.settings_do_action(action)
             el.focus()
-          })
+          }, undefined, force)
         },
       },
       {
@@ -328,9 +324,7 @@ App.settings_make_menu = (setting, opts, action = () => {}) => {
     [
       {
         name: `Reset`, action: () => {
-          if (App.check_setting_default(setting)) {
-            return
-          }
+          let force = App.check_setting_default(setting)
 
           App.show_confirm(`Reset setting?`, () => {
             App.set_default_setting(setting)
@@ -344,7 +338,7 @@ App.settings_make_menu = (setting, opts, action = () => {}) => {
             }
 
             action()
-          })
+          }, undefined, force)
         }
       },
     ])
@@ -653,9 +647,7 @@ App.setup_settings = () => {
       [
         {
           name: `Reset`, action: () => {
-            if (App.check_setting_default(`mode_order`)) {
-              return
-            }
+            let force = App.check_setting_default(`mode_order`)
 
             App.show_confirm(`Reset setting?`, () => {
               App.set_default_setting(`tabs_index`)
@@ -664,7 +656,7 @@ App.setup_settings = () => {
               App.set_default_setting(`closed_index`)
               App.get_mode_order()
               App.make_mode_order()
-            })
+            }, undefined, force)
           }
         },
       ])
@@ -820,14 +812,12 @@ App.start_theme_settings = () => {
       [
         {
           name: `Reset`, action: () => {
-            if (App.check_setting_default(setting)) {
-              return
-            }
+            let force = App.check_setting_default(setting)
 
             App.show_confirm(`Reset setting?`, () => {
               App[setting].setColor(App.get_default_setting(setting))
               App.set_default_setting(setting)
-            })
+            }, undefined, force)
           }
         },
       ])
@@ -1404,7 +1394,8 @@ App.add_setting_list_item_html = (short, left, props) => {
 }
 
 App.is_default_setting = (setting) => {
-  return App.settings[setting].value === App.default_setting_string
+  return App.settings[setting].value === App.default_setting_string ||
+  App.settings[setting].value === App.get_default_setting(setting)
 }
 
 App.check_setting_default = (setting) => {
