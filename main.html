@@ -239,6 +239,11 @@
           <input type="text" autocomplete="off" placeholder="Paste an image URL" id="settings_background_image" class="text settings_text" data-setting="background_image" data-action="theme">
         </div>
 
+        <div class="settings_item" title="Rotate between these background images">
+          <div class="settings_label">Background Pool</div>
+          <textarea autocomplete="off" class="text settings_textarea" id="settings_background_pool" data-setting="background_pool" rows="3" placeholder="One image URL per line"></textarea>
+        </div>
+
         <div class="settings_item" title="Effect to apply to the background image">
           <div class="settings_label">Background Effect</div>
           <div id="settings_background_effect" class="settings_menu button" data-setting="background_effect"></div>
@@ -262,6 +267,11 @@
         <div class="settings_item" title="What kind of themes to include when getting a random theme">
           <div class="settings_label">Random Themes</div>
           <div id="settings_random_themes" class="settings_menu button" data-setting="random_themes"></div>
+        </div>
+
+        <div class="settings_item" title="Include gifs in random backgrounds as well as jpg and png">
+          <div class="settings_label">Only From Pool<br>On Auto Background</div>
+          <input type="checkbox" class="settings_checkbox" id="settings_auto_background_pool" data-setting="auto_background_pool">
         </div>
 
         <div class="settings_item" title="Include gifs in random backgrounds as well as jpg and png">

@@ -31,7 +31,13 @@ App.start_theme_interval = (setting) => {
         App.random_theme()
       }
       else if (setting === `auto_background`) {
-        App.random_background(false)
+        if (App.get_setting(`auto_background_pool`) &&
+        App.get_setting(`background_pool`).length > 0) {
+          App.background_from_pool()
+        }
+        else {
+          App.random_background()
+        }
       }
     }, delay)
 
@@ -336,7 +342,7 @@ App.parse_color = (color) => {
   return color
 }
 
-App.random_background = async (feedback = true) => {
+App.random_background = async () => {
   let history_1 = await App.get_history(`.jpg`)
   let history_2 = await App.get_history(`.png`)
   let history_3 = []
@@ -350,21 +356,19 @@ App.random_background = async (feedback = true) => {
 
   for (let h of history) {
     if (App.is_image(h.url)) {
-      App.set_setting(`background_image`, h.url)
-      App.apply_theme()
-
-      if (App.on_settings()) {
-        if (App.settings_category === `theme`) {
-          App.refresh_theme_settings()
-          break
-        }
-      }
-
-      if (feedback) {
-        App.show_feedback_2(`Background changed to:\n\n${h.url}`)
-      }
-
+      App.change_background(h.url)
       break
+    }
+  }
+}
+
+App.change_background = (url) => {
+  App.set_setting(`background_image`, url)
+  App.apply_theme()
+
+  if (App.on_settings()) {
+    if (App.settings_category === `theme`) {
+      App.refresh_theme_settings()
     }
   }
 }
@@ -458,4 +462,34 @@ App.get_color_type = (rand) => {
   }
 
   return App.random_choice(types, rand)
+}
+
+App.background_from_pool = () => {
+  let bi = App.get_setting(`background_image`)
+  let next_image
+  let waypoint = false
+  let images = App.get_setting(`background_pool`)
+
+  if (images.length === 0) {
+    return
+  }
+
+  for (let image of images) {
+    if (waypoint) {
+      next_image = image
+      break
+    }
+
+    if (bi === image) {
+      waypoint = true
+    }
+  }
+
+  if (!next_image) {
+    next_image = images[0]
+  }
+
+  if (next_image) {
+    App.change_background(next_image)
+  }
 }
