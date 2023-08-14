@@ -31,17 +31,32 @@ App.start_theme_interval = (setting) => {
         App.random_theme()
       }
       else if (setting === `auto_background`) {
-        if (App.get_setting(`auto_background_pool`) &&
-        App.get_setting(`background_pool`).length > 0) {
-          App.background_from_pool()
-        }
-        else {
-          App.random_background()
-        }
+        App.auto_background_action()
       }
     }, delay)
 
     App.log(`Started ${setting} interval: ${sett}`, `debug`)
+  }
+}
+
+App.auto_background_action = () => {
+  let mode = App.get_setting(`auto_background_mode`)
+
+  if (mode === `pool`) {
+    App.background_from_pool()
+  }
+  else if (mode === `random`) {
+    App.random_background()
+  }
+  else if (mode === `pool_random`) {
+    let n = App.random_int(0, 1)
+
+    if (n === 0) {
+      App.background_from_pool(true)
+    }
+    else {
+      App.random_background()
+    }
   }
 }
 
@@ -464,7 +479,7 @@ App.get_color_type = (rand) => {
   return App.random_choice(types, rand)
 }
 
-App.background_from_pool = () => {
+App.background_from_pool = (random = false) => {
   let bi = App.get_setting(`background_image`)
   let next_image
   let waypoint = false
@@ -474,19 +489,28 @@ App.background_from_pool = () => {
     return
   }
 
-  for (let image of images) {
-    if (waypoint) {
-      next_image = image
-      break
-    }
+  if (random) {
+    let choices = images.filter(x => x !== bi)
 
-    if (bi === image) {
-      waypoint = true
+    if (choices.length > 0) {
+      next_image = App.random_choice(choices)
     }
   }
+  else {
+    for (let image of images) {
+      if (waypoint) {
+        next_image = image
+        break
+      }
 
-  if (!next_image) {
-    next_image = images[0]
+      if (bi === image) {
+        waypoint = true
+      }
+    }
+
+    if (!next_image) {
+      next_image = images[0]
+    }
   }
 
   if (next_image) {

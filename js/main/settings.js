@@ -22,11 +22,11 @@ App.build_default_settings = () => {
   obj.background_tiles = {value: `none`, category: category, version: 1}
   obj.auto_theme = {value: `never`, category: category, version: 3}
   obj.auto_background = {value: `never`, category: category, version: 3}
+  obj.auto_background_mode = {value: `pool`, category: category, version: 1}
   obj.color_transitions = {value: true, category: category, version: 1}
   obj.random_background_gifs = {value: true, category: category, version: 1}
   obj.random_themes = {value: `dark`, category: category, version: 1}
   obj.background_pool = {value: [], category: category, version: 1}
-  obj.auto_background_pool = {value: true, category: category, version: 1}
 
   category = `media`
   obj.view_image_tabs = {value: `icon`, category: category, version: 1}
@@ -887,6 +887,12 @@ App.start_theme_settings = () => {
   App.settings_make_menu(`auto_background`, auto_opts, () => {
     App.start_theme_interval(`auto_background`)
   })
+
+  App.settings_make_menu(`auto_background_mode`, [
+    [`Only Pool`, `pool`],
+    [`Only Random`, `random`],
+    [`Pool & Random`, `pool_random`],
+  ])
 
   App.settings_make_menu(`random_themes`, [
     [`Only Dark`, `dark`],
