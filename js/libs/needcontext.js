@@ -13,7 +13,7 @@ NeedContext.after_hide = () => {}
 // Minimum menu width and height
 NeedContext.min_width = `25px`
 NeedContext.min_height = `25px`
-NeedContext.back_text = `⬅️&nbsp;&nbsp;Back`
+NeedContext.back_text = `⬅️ Back`
 NeedContext.item_sep = `4px`
 NeedContext.layers = {}
 NeedContext.level = 0
