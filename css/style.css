@@ -431,7 +431,7 @@ svg {
   width: 15rem;
   max-width: 15rem;
   text-align: center;
-  resize: none;
+  resize: vertical;
 }
 
 .settings_info {
@@ -632,7 +632,7 @@ a:visited, a:link, a:hover {
   border: none;
   width: 60vw;
   height: 40vh;
-  resize: none;
+  resize: vertical;
 }
 
 input {
@@ -833,7 +833,7 @@ select {
   max-width: 15rem;
   text-align: center;
   padding: 0.35rem;
-  resize: none;
+  resize: vertical;
 }
 
 .editor_text_smaller {
