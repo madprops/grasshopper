@@ -477,6 +477,14 @@ App.setup_settings = () => {
     }, element: App.add_setting_list_item_html(`custom_filter`, `filter`, [])
   })
 
+  App.create_popup({
+    id: `add_background_pool`, setup: () => {
+      DOM.ev(DOM.el(`#add_background_pool_add`), `click`, () => {
+        App.do_add_background_pool()
+      })
+    }, element: App.add_setting_list_item_html(`background_pool`, `image_url`, [], true)
+  })
+
   App.settings_categories = [`general`, `theme`, `media`, `show`, `mouse`, `warns`, `lists`, `more`]
 
   let common = {
@@ -899,6 +907,10 @@ App.start_theme_settings = () => {
   DOM.ev(DOM.el(`#settings_background_image_random`), `click`, () => {
     App.random_background()
   })
+
+  DOM.ev(DOM.el(`#background_pool_add`), `click`, () => {
+    App.add_background_pool()
+  })
 }
 
 App.settings_menu_cycle = (el, setting, dir, o_items) => {
@@ -1317,6 +1329,16 @@ App.do_add_custom_filter = () => {
   App.do_add_setting_list_item(`custom_filters`, `custom_filter`, `filter`)
 }
 
+App.add_background_pool = () => {
+  App.show_popup(`add_background_pool`)
+  DOM.el(`#add_background_pool_image_url`).value = ``
+  DOM.el(`#add_background_pool_image_url`).focus()
+}
+
+App.do_add_background_pool = () => {
+  App.do_add_setting_list_item(`background_pool`, `background_pool`, `image_url`)
+}
+
 App.do_add_setting_list_item = (setting, short, left, props = []) => {
   let name = DOM.el(`#add_${short}_${left}`).value
   let values = []
@@ -1360,7 +1382,7 @@ App.do_add_setting_list_item = (setting, short, left, props = []) => {
   App.hide_popup()
 }
 
-App.add_setting_list_item_html = (short, left, props) => {
+App.add_setting_list_item_html = (short, left, props, to = false) => {
   let container = DOM.create(`div`, `flex_column_center gap_3`)
   let name = DOM.create(`input`, `text editor_text`, `add_${short}_${left}`)
   name.type = `text`
@@ -1388,7 +1410,15 @@ App.add_setting_list_item_html = (short, left, props) => {
   }
 
   let add = DOM.create(`div`, `button`, `add_${short}_add`)
-  add.textContent = `Add ${App.capitalize_all(short.replace(/_/g, ` `))}`
+  let label =App.capitalize_all(short.replace(/_/g, ` `))
+
+  if (to) {
+    add.textContent = `Add To ${label}`
+  }
+  else {
+    add.textContent = `Add ${label}`
+  }
+
   container.append(name)
   container.append(...els)
   container.append(add)

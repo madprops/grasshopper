@@ -359,6 +359,13 @@ App.setup_keyboard = () => {
           return
         }
       }
+      else if (pmode === `add_background_pool`) {
+        if (e.key === `Enter`) {
+          App.do_add_background_pool()
+          e.preventDefault()
+          return
+        }
+      }
 
       if (e.key === `Escape`) {
         App.hide_popup()
