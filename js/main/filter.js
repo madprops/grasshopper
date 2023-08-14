@@ -381,7 +381,7 @@ App.show_filter_menu = (mode) => {
     items.push({
       text: filter_mode[1],
       action: () => {
-        App.change_filter_mode(mode, filter_mode[0])
+        App.set_filter_mode(mode, filter_mode[0])
       },
       selected: selected
     })
@@ -447,11 +447,6 @@ App.set_filter_mode = (mode, name, filter = true) => {
   if (filter) {
     App.do_filter(mode)
   }
-}
-
-App.change_filter_mode = (mode, name) => {
-  App.set_filter_mode(mode, name, false)
-  App.set_filter(mode, ``)
 }
 
 App.set_custom_filter_mode = (mode, name, title) => {
