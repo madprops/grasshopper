@@ -147,7 +147,7 @@ App.log = (message, mode = `normal`) => {
     console.info(`🟢 ${message}`)
   }
   else if (mode === `debug`) {
-    if (App.settings && App.settings.debug_mode) {
+    if (App.settings_ready) {
       if (App.get_setting(`debug_mode`)) {
         console.info(`🔵 ${message}`)
       }

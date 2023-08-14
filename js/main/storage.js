@@ -28,6 +28,7 @@ App.save_local_storage = (ls_name, obj) => {
 App.stor_get_settings = () => {
   App.settings = App.get_local_storage(App.stor_settings_name, {})
   App.check_settings()
+  App.settings_ready = true
   App.log(`Stor: Got settings`, `debug`)
 }
 
