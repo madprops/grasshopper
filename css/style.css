@@ -431,6 +431,9 @@ svg {
   width: 15rem;
   max-width: 15rem;
   text-align: center;
+  white-space: pre;
+  overflow-wrap: normal;
+  overflow-x: scroll;
 }
 
 .settings_info {
@@ -631,6 +634,9 @@ a:visited, a:link, a:hover {
   border: none;
   width: 60vw;
   height: 40vh;
+  white-space: pre;
+  overflow-wrap: normal;
+  overflow-x: scroll;
 }
 
 input {
@@ -840,6 +846,12 @@ select {
 .editor_text_smaller {
   width: 5rem;
   max-width: 5rem;
+}
+
+.pre_text {
+  white-space: pre;
+  overflow-wrap: normal;
+  overflow-x: scroll;
 }
 
 .bigger {

@@ -395,6 +395,7 @@ App.parse_delay = (s) => {
 
 App.scroll_to_bottom = (el) => {
   el.scrollTop = el.scrollHeight
+  el.scrollLeft = 0
 }
 
 App.similarity = (s1, s2) => {
