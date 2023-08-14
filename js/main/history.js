@@ -11,6 +11,8 @@ App.setup_history = () => {
   App.setup_item_window(`history`)
 
   browser.history.onVisited.addListener((info) => {
+    App.log(`History Visited`, `debug`)
+
     if (App.active_mode === `history`) {
       App.history_changed = true
     }

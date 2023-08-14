@@ -205,7 +205,7 @@ App.first_mode = () => {
 App.getting = (mode) => {
   let icon = App.mode_icons[mode]
   let name = App.capitalize(mode)
-  App.log(`${icon} Getting ${name}`)
+  App.log(`${icon} Getting ${name}`, `debug`)
 }
 
 App.make_mode_order = () => {

@@ -44,7 +44,7 @@ App.make_filter_regex = (value, by_what) => {
 
 App.do_filter = async (mode, force = false, deep = false) => {
   App.cancel_filter()
-  App.log(`Filter: ${mode}`)
+  App.log(`Filter: ${mode}`, `debug`)
   let value = App.get_clean_filter(mode, false)
 
   if (value.endsWith(`|`)) {
@@ -662,7 +662,7 @@ App.get_filter_refine = (mode) => {
 
 App.search_items = async (mode, query, deep) => {
   let q = query || `Empty`
-  App.log(`Searching ${mode}: ${q}`)
+  App.log(`Searching ${mode}: ${q}`, `debug`)
   let items = await App[`get_${mode}`](query, deep)
 
   if (App.window_mode !== mode) {

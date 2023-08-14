@@ -28,31 +28,31 @@ App.save_local_storage = (ls_name, obj) => {
 App.stor_get_settings = () => {
   App.settings = App.get_local_storage(App.stor_settings_name, {})
   App.check_settings()
-  App.log(`Stor: Got settings`)
+  App.log(`Stor: Got settings`, `debug`)
 }
 
 App.stor_save_settings = () => {
-  App.log(`Stor: Saving settings`)
+  App.log(`Stor: Saving settings`, `debug`)
   App.save_local_storage(App.stor_settings_name, App.settings)
 }
 
 App.stor_get_profiles = () => {
   App.profiles = App.get_local_storage(App.stor_profiles_name, [])
   App.check_profiles()
-  App.log(`Stor: Got profiles`)
+  App.log(`Stor: Got profiles`, `debug`)
 }
 
 App.stor_save_profiles = () => {
-  App.log(`Stor: Saving profiles`)
+  App.log(`Stor: Saving profiles`, `debug`)
   App.save_local_storage(App.stor_profiles_name, App.profiles)
 }
 
 App.stor_get_command_history = () => {
   App.command_history = App.get_local_storage(App.stor_command_history_name, [])
-  App.log(`Stor: Got command_history`)
+  App.log(`Stor: Got command_history`, `debug`)
 }
 
 App.stor_save_command_history = () => {
-  App.log(`Stor: Saving command_history`)
+  App.log(`Stor: Saving command_history`, `debug`)
   App.save_local_storage(App.stor_command_history_name, App.command_history)
 }

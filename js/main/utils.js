@@ -155,6 +155,11 @@ App.log = (message, mode = `normal`) => {
   else if (mode === `normal`) {
     console.info(`🟢 ${message}`)
   }
+  else if (mode === `debug`) {
+    if (App.get_setting(`debug_mode`)) {
+      console.info(`🔵 ${message}`)
+    }
+  }
   else {
     console.info(message)
   }

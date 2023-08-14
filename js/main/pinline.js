@@ -19,7 +19,7 @@ App.do_check_pinline = () => {
     return
   }
 
-  App.log(`Checking pinline`)
+  App.log(`Checking pinline`, `debug`)
   App.remove_pinline()
   let tabs = App.divide_tabs(`visible`)
 

@@ -35,7 +35,7 @@ App.start_theme_interval = (setting) => {
       }
     }, delay)
 
-    App.log(`Started ${setting} interval: ${sett}`)
+    App.log(`Started ${setting} interval: ${sett}`, `debug`)
   }
 }
 

@@ -97,7 +97,7 @@ App.build_default_settings = () => {
   obj.direct_settings = {value: true, category: category, version: 1}
   obj.bookmarks_folder = {value: `Grasshopper`, category: category, version: 1}
   obj.auto_restore = {value: `10_seconds`, category: category, version: 1}
-  obj.console_logs = {value: true, category: category, version: 1}
+  obj.debug_mode = {value: false, category: category, version: 1}
 
   category = `show`
   obj.show_scrollbars = {value: true, category: category, version: 1}
@@ -713,7 +713,7 @@ App.setup_settings = () => {
 
   window.addEventListener(`storage`, (e) => {
     if (e.key === App.stor_settings_name) {
-      App.log(`Settings changed in another window`)
+      App.log(`Settings changed in another window`, `debug`)
       App.stor_get_settings()
       App.restart_settings(`sync`)
     }
@@ -1164,7 +1164,7 @@ App.check_settings = () => {
       App.settings[setting].value === undefined ||
       App.settings[setting].version === undefined)
     {
-      App.log(`Stor: Adding setting: ${setting}`)
+      App.log(`Stor: Adding setting: ${setting}`, `debug`)
       App.settings[setting] = {}
       set_default(setting)
       changed = true
@@ -1174,13 +1174,13 @@ App.check_settings = () => {
   for (let setting in App.settings) {
     // Remove unused settings
     if (App.default_settings[setting] === undefined) {
-      App.log(`Stor: Deleting setting: ${setting}`)
+      App.log(`Stor: Deleting setting: ${setting}`, `debug`)
       delete App.settings[setting]
       changed = true
     }
     // Check new version
     else if (App.settings[setting].version !== App.default_settings[setting].version) {
-      App.log(`Stor: Upgrading setting: ${setting}`)
+      App.log(`Stor: Upgrading setting: ${setting}`, `debug`)
       set_default(setting)
       changed = true
     }
