@@ -897,15 +897,7 @@ App.any_item_visible = (mode) => {
 }
 
 App.get_visible = (mode) => {
-  let items = []
-
-  for (let item of App.get_items(mode)) {
-    if (item.visible) {
-      items.push(item)
-    }
-  }
-
-  return items
+  return App.get_items(mode).filter(x => x.visible)
 }
 
 App.update_item = (mode, id, info) => {
@@ -1586,6 +1578,6 @@ App.do_check_borders = (mode) => {
     App.check_borders_proc(tabs.normal_f)
   }
   else {
-    App.check_borders_proc(App.get_items(mode))
+    App.check_borders_proc(App.get_visible(mode))
   }
 }
