@@ -195,7 +195,7 @@ App.apply_theme = (args) => {
       App.set_css_var(`border_radius_2`, `0`)
     }
 
-    let hover_opts = [`glow`, `underline`, `bold`]
+    let hover_opts = [`glow`, `underline`, `bold`, `bigger`]
     let hover_effect = App.get_setting(`hover_effect`)
 
     for (let eff of hover_opts) {
@@ -204,6 +204,17 @@ App.apply_theme = (args) => {
 
     if (hover_opts.includes(hover_effect)) {
       main.classList.add(`hover_effect_${hover_effect}`)
+    }
+
+    let selected_opts = [`background`, `underline`, `bigger`]
+
+    for (let eff of selected_opts) {
+      if (App.get_setting(`selected_effect_${eff}`)) {
+        main.classList.add(`selected_effect_${eff}`)
+      }
+      else {
+        main.classList.remove(`selected_effect_${eff}`)
+      }
     }
   }
   catch (err) {

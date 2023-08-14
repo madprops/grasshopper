@@ -5,6 +5,7 @@
   --scroller_shadow: inset 0 0 0.1rem currentColor;
   --scroller_padding: 0.29rem;
   --color_border: 1px solid black;
+  --bigger_font: 1.2rem;
 }
 
 body, html {
@@ -292,6 +293,10 @@ svg {
   font-weight: bold;
 }
 
+.hover_effect_bigger .item:hover {
+  font-size: var(--bigger_font);
+}
+
 .has_pin_icon .pin_item .item_info_pin {
   display: flex;
 }
@@ -337,8 +342,19 @@ svg {
 }
 
 .selected {
-  background-color: var(--alt_color_1);
   border-color: transparent !important;
+}
+
+.selected_effect_background .selected {
+  background-color: var(--alt_color_1);
+}
+
+.selected_effect_underline .selected {
+  text-decoration: underline;
+}
+
+.selected_effect_bigger .selected {
+  font-size: var(--bigger_font);
 }
 
 .hidden {
@@ -919,7 +935,7 @@ select {
   background-color: rgb(170, 127, 59);
 }
 
-.colored.selected {
+.selected_effect_background.colored.selected {
   background-color: var(--alt_color_1);
   color: var(--text_color);
 }
