@@ -29,11 +29,15 @@ App.setup_about = () => {
       `Double tap Ctrl to show the command palette`,
       `Command palette commands take into account selected items`,
       `To filter by title start with title:`,
-      `To filter by url start with url:`,
+      `To filter by URL start with url:`,
+      `To filter with regex start with re:`,
+      `To filter with regex by title start with re_title:`,
+      `To filter with regex by URL start with re_url:`,
       `To perform gestures, hold the middle mouse button and move in a direction, then release`,
       `Some interface elements can be mapped to commands on middle click`,
       `The profile editor can help you organize and find tabs`,
       `Data like settings and profiles can be exported and imported`,
+
     ]
 
     let close = DOM.el(`#about_close`)
