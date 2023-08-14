@@ -97,6 +97,7 @@ App.build_default_settings = () => {
   obj.direct_settings = {value: true, category: category, version: 1}
   obj.bookmarks_folder = {value: `Grasshopper`, category: category, version: 1}
   obj.auto_restore = {value: `10_seconds`, category: category, version: 1}
+  obj.console_logs = {value: true, category: category, version: 1}
 
   category = `show`
   obj.show_scrollbars = {value: true, category: category, version: 1}

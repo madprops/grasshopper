@@ -140,6 +140,15 @@ App.get_template = (id) => {
 }
 
 App.log = (message, mode = `normal`) => {
+  if (App.settings) {
+    // This is because it can print early
+    let c = App.settings.console_logs
+
+    if (c && !c.value) {
+      return
+    }
+  }
+
   if (mode === `error`) {
     console.error(`🔴 ${message}`)
   }
