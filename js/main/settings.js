@@ -140,25 +140,38 @@ App.get_settings_label = (setting) => {
 App.settings_setup_labels = (container) => {
   let items = DOM.els(`.settings_label`, container)
 
-  function proc (item, id, text) {
-    let c = DOM.create(`div`, `flex_row_center gap_1`)
-    let d = DOM.create(`div`)
-    d.textContent = `|`
-    let a = DOM.create(`div`, `action`)
-    a.id = id
-    a.textContent = text
-    item.before(c)
-    c.append(item)
-    c.append(d)
-    c.append(a)
+  function proc (item, btns) {
+    let bc = DOM.create(`div`, `flex_row_center gap_1`)
+
+    for (let btn of btns) {
+      let c = DOM.create(`div`, `flex_row_center gap_1`)
+      let d = DOM.create(`div`)
+      d.textContent = `|`
+      let a = DOM.create(`div`, `action`)
+      a.id = btn[0]
+      a.textContent = btn[1]
+      c.append(d)
+      c.append(a)
+      bc.append(c)
+    }
+
+    item.before(bc)
+    bc.prepend(item)
   }
 
   for (let item of items) {
+    let btns = []
+
     if (item.dataset.add) {
-      proc(item, `${item.dataset.add}_add`, `Add`)
+      btns.push([`${item.dataset.add}_add`, `Add`])
     }
-    else if (item.dataset.rnd) {
-      proc(item, `settings_${item.dataset.rnd}_random`, `Rnd`)
+
+    if (item.dataset.rnd) {
+      btns.push([`settings_${item.dataset.rnd}_random`, `Rnd`])
+    }
+
+    if (btns.length > 0) {
+      proc(item, btns)
     }
   }
 }
@@ -916,6 +929,10 @@ App.start_theme_settings = () => {
 
   DOM.ev(DOM.el(`#background_pool_add`), `click`, () => {
     App.add_background_pool()
+  })
+
+  DOM.ev(DOM.el(`#settings_background_pool_random`), `click`, () => {
+    App.background_from_pool(true)
   })
 }
 
