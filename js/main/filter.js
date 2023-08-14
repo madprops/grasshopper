@@ -313,6 +313,10 @@ App.get_filter = (mode) => {
   return DOM.el(`#${mode}_filter`).value
 }
 
+App.filter_empty = (mode) => {
+  return App.get_filter(mode) === ``
+}
+
 App.get_clean_filter = (mode, lowercase = true) => {
   let value = App.single_space(App.get_filter(mode)).trim()
 

@@ -190,9 +190,15 @@ App.check_items_keyboard = (e) => {
       return
     }
     else if (e.key === `Delete`) {
-      let d = Date.now() - App.last_filter_input
+      if (!item) {
+        e.preventDefault()
+        return
+      }
 
-      if (App.multiple_selected(mode) || (d > App.recent_filter_input)) {
+      let d = Date.now() - App.last_filter_input
+      let ok = (d > App.recent_filter_input) && App.filter_empty(mode)
+
+      if (ok || App.multiple_selected(mode)) {
         if (mode === `tabs`) {
           App.close_tabs(item)
         }
