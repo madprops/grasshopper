@@ -295,7 +295,15 @@ App.show_profile_editor = (item, type, action = `edit`) => {
   App.window_goto_top(`profile_editor`)
   App.profile_apply_theme()
   App.set_profile_color()
+  App.scroll_profile_text()
   App.profile_ready = true
+}
+
+App.scroll_profile_text = () => {
+  setTimeout(() => {
+    App.scroll_to_bottom(DOM.el(`#profile_editor_tags`))
+    App.scroll_to_bottom(DOM.el(`#profile_editor_notes`))
+  }, App.scroll_bottom_delay)
 }
 
 App.get_empty_profile = (url) => {

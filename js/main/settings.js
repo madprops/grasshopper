@@ -1472,10 +1472,12 @@ App.check_setting_default = (setting) => {
 }
 
 App.scroll_settings_text = (category) => {
-  let container = DOM.el(`#settings_${category}_container`)
-  let els = DOM.els(`.settings_textarea`, container)
+  setTimeout(() => {
+    let container = DOM.el(`#settings_${category}_container`)
+    let els = DOM.els(`.settings_textarea`, container)
 
-  for (let el of els) {
-    App.scroll_to_bottom(el)
-  }
+    for (let el of els) {
+      App.scroll_to_bottom(el)
+    }
+  }, App.scroll_bottom_delay)
 }
