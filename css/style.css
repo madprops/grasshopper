@@ -486,6 +486,10 @@ svg {
   gap: 1rem;
 }
 
+.gap_2p5 {
+  gap: 1.25rem;
+}
+
 .gap_3 {
   gap: 1.5rem;
 }
