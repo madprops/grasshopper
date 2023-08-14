@@ -170,6 +170,10 @@ App.settings_setup_labels = (container) => {
       btns.push([`settings_${item.dataset.rnd}_random`, App.random_text])
     }
 
+    if (item.dataset.next) {
+      btns.push([`settings_${item.dataset.next}_next`, `Next`])
+    }
+
     if (btns.length > 0) {
       proc(item, btns)
     }
@@ -931,7 +935,7 @@ App.start_theme_settings = () => {
     App.add_background_pool()
   })
 
-  DOM.ev(DOM.el(`#settings_background_pool_random`), `click`, () => {
+  DOM.ev(DOM.el(`#settings_background_pool_next`), `click`, () => {
     App.background_from_pool()
   })
 }
