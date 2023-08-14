@@ -192,32 +192,32 @@
       <div id="settings_lists_container" class="settings_container">
         <div class="settings_item" title="Filter aliases. Format: this = that">
           <div class="settings_label" data-add="aliases">Aliases</div>
-          <textarea autocomplete="off" class="text settings_textarea" id="settings_aliases" data-setting="aliases" rows="3" placeholder="One alias per line"></textarea>
+          <textarea autocomplete="off" spellcheck="false" class="text settings_textarea" id="settings_aliases" data-setting="aliases" rows="3" placeholder="One alias per line"></textarea>
         </div>
 
         <div class="settings_item" title="These appear in the filters menu">
           <div class="settings_label" data-add="custom_filters">Custom Filters</div>
-          <textarea autocomplete="off" class="text settings_textarea" id="settings_custom_filters" data-setting="custom_filters" rows="3" placeholder="One filter per line"></textarea>
+          <textarea autocomplete="off" spellcheck="false" class="text settings_textarea" id="settings_custom_filters" data-setting="custom_filters" rows="3" placeholder="One filter per line"></textarea>
         </div>
 
         <div class="settings_item" title="Set fixed colors per domain. These have to use one of the available profile colors, like red, green, blue, yellow, purple, and orange. Format: example.com = green">
           <div class="settings_label" data-add="domain_colors">Domain Colors</div>
-          <textarea autocomplete="off" class="text settings_textarea" id="settings_domain_colors" data-setting="domain_colors" rows="3" placeholder="One domain per line"></textarea>
+          <textarea autocomplete="off" spellcheck="false" class="text settings_textarea" id="settings_domain_colors" data-setting="domain_colors" rows="3" placeholder="One domain per line"></textarea>
         </div>
 
         <div class="settings_item" title="Set fixed titles per domain. Format: example.com = Example">
           <div class="settings_label" data-add="domain_titles">Domain Titles</div>
-          <textarea autocomplete="off" class="text settings_textarea" id="settings_domain_titles" data-setting="domain_titles" rows="3" placeholder="One domain per line"></textarea>
+          <textarea autocomplete="off" spellcheck="false" class="text settings_textarea" id="settings_domain_titles" data-setting="domain_titles" rows="3" placeholder="One domain per line"></textarea>
         </div>
 
         <div class="settings_item" title="Set fixed icons per domain. Format: example.com = 😀">
           <div class="settings_label" data-add="domain_icons">Domain Icons</div>
-          <textarea autocomplete="off" class="text settings_textarea" id="settings_domain_icons" data-setting="domain_icons" rows="3" placeholder="One domain per line"></textarea>
+          <textarea autocomplete="off" spellcheck="false" class="text settings_textarea" id="settings_domain_icons" data-setting="domain_icons" rows="3" placeholder="One domain per line"></textarea>
         </div>
 
         <div class="settings_item" title="Set fixed themes per domain. There are 3 properties, background color, text color, and background image. Format: example.com = rgb(0, 0, 0) ; green ; http://image.jpg. RGB, hex, and color names are supported. You can leave some properties empty, for instance if you only want a background image you can do example.com = ; ; http://image.jpg">
           <div class="settings_label" data-add="domain_themes">Domain Themes</div>
-          <textarea autocomplete="off" class="text settings_textarea" id="settings_domain_themes" data-setting="domain_themes" rows="3" placeholder="One domain per line"></textarea>
+          <textarea autocomplete="off" spellcheck="false" class="text settings_textarea" id="settings_domain_themes" data-setting="domain_themes" rows="3" placeholder="One domain per line"></textarea>
         </div>
       </div>
     </template>
@@ -236,12 +236,12 @@
 
         <div class="settings_item" title="Background image URL">
           <div class="settings_label" data-rand="background_image">Background Image</div>
-          <input type="text" autocomplete="off" placeholder="Paste an image URL" id="settings_background_image" class="text settings_text" data-setting="background_image" data-action="theme">
+          <input type="text" autocomplete="off" spellcheck="false" placeholder="Paste an image URL" id="settings_background_image" class="text settings_text" data-setting="background_image" data-action="theme">
         </div>
 
         <div class="settings_item" title="Rotate between these background images">
           <div class="settings_label" data-add="background_pool" data-next="background_pool">Background Pool</div>
-          <textarea autocomplete="off" class="text settings_textarea" id="settings_background_pool" data-setting="background_pool" rows="3" placeholder="One image URL per line"></textarea>
+          <textarea autocomplete="off" spellcheck="false" class="text settings_textarea" id="settings_background_pool" data-setting="background_pool" rows="3" placeholder="One image URL per line"></textarea>
         </div>
 
         <div class="settings_item" title="Effect to apply to the background image">
@@ -339,7 +339,7 @@
 
         <div class="settings_item" title="Where to save bookmarks">
           <div class="settings_label">Bookmarks Folder</div>
-          <input type="text" autocomplete="off" placeholder="Save bookmarks here" id="settings_bookmarks_folder" class="text settings_text" data-setting="bookmarks_folder">
+          <input type="text" autocomplete="off" spellcheck="false" placeholder="Save bookmarks here" id="settings_bookmarks_folder" class="text settings_text" data-setting="bookmarks_folder">
         </div>
 
         <div class="settings_item" title="When to auto-restore when mouse leaves the window">
@@ -661,7 +661,7 @@
 
         <img id="about_image" src="img/grasshopper.png" title="This is the sovl of the Grasshopper">
 
-        <input type="text" autocomplete="off" class="text small_filter" id="about_filter" placeholder="Filter">
+        <input type="text" autocomplete="off" spellcheck="false" class="text small_filter" id="about_filter" placeholder="Filter">
         <div id="about_info" class="filter_container"></div>
       </div>
     </template>
@@ -679,13 +679,13 @@
 
     <template id="template_textarea">
       <div id="textarea_message"></div>
-      <textarea autocomplete="off" id="textarea_text" class="textarea"></textarea>
+      <textarea autocomplete="off" spellcheck="false" id="textarea_text" class="textarea"></textarea>
       <div id="textarea_copy" class="button">Copy</div>
     </template>
 
     <template id="template_palette">
       <div class="flex_row_center gap_1">
-        <input type="text" autocomplete="off" id="palette_filter" class="text" placeholder="Command">
+        <input type="text" autocomplete="off" spellcheck="false" id="palette_filter" class="text" placeholder="Command">
         <div id="palette_info" class="button">?</div>
       </div>
       <div id="palette_commands" class="filter_container"></div>
@@ -715,7 +715,7 @@
 
     <template id="template_input">
       <div id="input_message"></div>
-      <textarea autocomplete="off" id="input_text" class="textarea"></textarea>
+      <textarea autocomplete="off" spellcheck="false" id="input_text" class="textarea"></textarea>
       <div id="input_submit" class="button">Submit</div>
     </template>
 
