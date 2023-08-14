@@ -1551,7 +1551,7 @@ App.check_borders_debouncer = App.create_debouncer((mode) => {
 }, App.check_borders_delay)
 
 App.check_borders = (mode) => {
-  if (App.get_setting(`show_pinline`)) {
+  if (App.get_setting(`item_border`) === `none`) {
     App.check_borders_debouncer.call(mode)
   }
 }
