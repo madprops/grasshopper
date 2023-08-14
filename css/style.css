@@ -223,10 +223,6 @@ svg {
   border-bottom: 5px solid var(--alt_color_1);
 }
 
-.selected {
-  border-bottom-color: transparent !important;
-}
-
 .item_icon_container {
   display: flex;
   align-items: center;
@@ -338,6 +334,7 @@ svg {
 
 .selected {
   background-color: var(--alt_color_1);
+  border-bottom-color: transparent !important;
 }
 
 .hidden {
