@@ -932,7 +932,7 @@ App.start_theme_settings = () => {
   })
 
   DOM.ev(DOM.el(`#settings_background_pool_random`), `click`, () => {
-    App.background_from_pool(true)
+    App.background_from_pool()
   })
 }
 
