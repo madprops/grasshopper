@@ -26,6 +26,7 @@ NeedContext.set_defaults = () => {
   NeedContext.first_mousedown = false
   NeedContext.last_x = 0
   NeedContext.last_y = 0
+  NeedContext.layers = {}
 }
 
 // Filter from keyboard input
@@ -81,9 +82,26 @@ NeedContext.show = (x, y, items, root = true) => {
     NeedContext.level = 0
   }
 
-  NeedContext.hide()
   items = items.slice(0)
-  let selected_index = 0
+  let selected_index
+  let layer = NeedContext.get_layer()
+
+  if (layer) {
+    selected_index = layer.last_index
+  }
+  else {
+    selected_index = 0
+  }
+
+  for (let [i, item] of items.entries()) {
+    if (i === selected_index) {
+      item.selected = true
+    }
+    else {
+      item.selected = false
+    }
+  }
+
   let c = NeedContext.container
   c.innerHTML = ``
   let index = 0
@@ -120,10 +138,6 @@ NeedContext.show = (x, y, items, root = true) => {
         el.title = item.title
       }
 
-      if (item.selected) {
-        selected_index = index
-      }
-
       el.addEventListener(`mousemove`, () => {
         let index = parseInt(el.dataset.index)
 
@@ -144,6 +158,7 @@ NeedContext.show = (x, y, items, root = true) => {
     root: root,
     items: items,
     normal_items: normal_items,
+    last_index: selected_index,
     x: x,
     y: y,
   }
@@ -279,6 +294,7 @@ NeedContext.select_action = async (e, index = NeedContext.index, mode = `mouse`)
   let item = NeedContext.get_layer().normal_items[index]
 
   function show_below (items) {
+    NeedContext.get_layer().last_index = index
     NeedContext.level += 1
 
     if (e.clientY) {
@@ -288,9 +304,8 @@ NeedContext.select_action = async (e, index = NeedContext.index, mode = `mouse`)
     NeedContext.show(x, y, items, false)
   }
 
-  NeedContext.hide()
-
   if (item.action) {
+    NeedContext.hide()
     item.action(e)
   }
   else if (item.items) {
