@@ -1,7 +1,7 @@
 {
-    "manifest_version": 3,
+    "manifest_version": 2,
     "name": "Grasshopper",
-    "version": "681",
+    "version": "677",
     "description": "Godspeed You Tab Emperor",
     "permissions": [
         "tabs",
@@ -12,7 +12,7 @@
     "icons": {
         "128": "img/icon128.png"
     },
-    "action": {
+    "browser_action": {
         "default_icon": {
             "128": "img/icon128.png"
         },
@@ -25,7 +25,7 @@
         "default_icon": "img/icon128.png"
     },
     "commands": {
-        "_execute_action": {
+        "_execute_browser_action": {
             "suggested_key": {
                 "default": "Ctrl+Space"
             },

@@ -129,6 +129,10 @@ App.focus_tab = async (item, scroll, method = `normal`) => {
     App.select_item(item, scroll)
   }
 
+  if (item.window_id) {
+    await browser.windows.update(item.window_id, {focused: true})
+  }
+
   try {
     await browser.tabs.update(item.id, {active: true})
   }
