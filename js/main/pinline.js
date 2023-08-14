@@ -11,7 +11,7 @@ App.check_pinline = () => {
 App.do_check_pinline = () => {
   App.pinline_debouncer.cancel()
 
-  if (App.window_mode !== `tabs`) {
+  if (App.active_mode !== `tabs`) {
     return
   }
 
