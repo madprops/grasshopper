@@ -191,7 +191,6 @@ App.check_items_keyboard = (e) => {
     }
     else if (e.key === `Delete`) {
       if (!item) {
-        e.preventDefault()
         return
       }
 
