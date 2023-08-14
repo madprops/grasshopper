@@ -431,7 +431,6 @@ svg {
   width: 15rem;
   max-width: 15rem;
   text-align: center;
-  resize: vertical;
 }
 
 .settings_info {
@@ -632,7 +631,6 @@ a:visited, a:link, a:hover {
   border: none;
   width: 60vw;
   height: 40vh;
-  resize: vertical;
 }
 
 input {
@@ -714,6 +712,10 @@ textarea,
 select {
 	font-family: var(--font);
 	font-size: 1rem;
+}
+
+textarea {
+  resize: vertical;
 }
 
 select {
@@ -833,7 +835,6 @@ select {
   max-width: 15rem;
   text-align: center;
   padding: 0.35rem;
-  resize: vertical;
 }
 
 .editor_text_smaller {
