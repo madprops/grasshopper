@@ -114,9 +114,7 @@ App.build_default_settings = () => {
   obj.bookmarks_folder = {value: `Grasshopper`, category: category, version: 1}
   obj.auto_restore = {value: `10_seconds`, category: category, version: 1}
   obj.debug_mode = {value: false, category: category, version: 1}
-  obj.selected_effect_background = {value: true, category: category, version: 1}
-  obj.selected_effect_underline = {value: false, category: category, version: 1}
-  obj.selected_effect_bigger = {value: false, category: category, version: 1}
+  obj.selected_effect = {value: `background`, category: category, version: 1}
 
   App.default_settings = obj
 }
@@ -635,6 +633,14 @@ App.setup_settings = () => {
     App.settings_make_menu(`hover_effect`, [
       [`None`, `none`],
       [`Glow`, `glow`],
+      [`Underline`, `underline`],
+      [`Bold`, `bold`],
+      [`Bigger`, `bigger`],
+    ])
+
+    App.settings_make_menu(`selected_effect`, [
+      [`None`, `none`],
+      [`Background`, `background`],
       [`Underline`, `underline`],
       [`Bold`, `bold`],
       [`Bigger`, `bigger`],

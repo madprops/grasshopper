@@ -206,15 +206,15 @@ App.apply_theme = (args) => {
       main.classList.add(`hover_effect_${hover_effect}`)
     }
 
-    let selected_opts = [`background`, `underline`, `bigger`]
+    let selected_opts = [`background`, `underline`, `bold`, `bigger`]
+    let selected_effect = App.get_setting(`selected_effect`)
 
     for (let eff of selected_opts) {
-      if (App.get_setting(`selected_effect_${eff}`)) {
-        main.classList.add(`selected_effect_${eff}`)
-      }
-      else {
-        main.classList.remove(`selected_effect_${eff}`)
-      }
+      main.classList.remove(`selected_effect_${eff}`)
+    }
+
+    if (selected_opts.includes(selected_effect)) {
+      main.classList.add(`selected_effect_${selected_effect}`)
     }
   }
   catch (err) {

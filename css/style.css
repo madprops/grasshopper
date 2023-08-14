@@ -353,6 +353,10 @@ svg {
   text-decoration: underline;
 }
 
+.selected_effect_bold .selected .item_text {
+  font-weight: bold;
+}
+
 .selected_effect_bigger .selected .item_text {
   font-size: var(--bigger_font);
 }
