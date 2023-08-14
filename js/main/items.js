@@ -1572,6 +1572,8 @@ App.do_check_borders = (mode) => {
     return
   }
 
+  App.log(`Checking borders`)
+
   if (mode === `tabs`) {
     let tabs = App.divide_tabs(`visible`)
     App.check_borders_proc(tabs.pinned_f)

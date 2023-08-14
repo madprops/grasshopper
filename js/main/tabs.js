@@ -197,14 +197,17 @@ App.refresh_tab = async (id, select, info) => {
   let item = App.get_item_by_id(`tabs`, id)
 
   if (item) {
+    if (item.pinned !== info.pinned) {
+      App.check_pinline()
+      App.check_borders(`tabs`)
+    }
+
     App.update_item(`tabs`, item.id, info)
   }
   else {
     item = App.insert_item(`tabs`, info)
+    App.check_pinline()
   }
-
-  App.check_pinline()
-  App.check_borders(`tabs`)
 
   if (select) {
     if (App.get_selected(`tabs`) !== item) {
