@@ -1,45 +1,15 @@
 App.setup_filter = () => {
-  App.filter_debouncer = App.create_debouncer((mode) => {
-    App.do_filter(mode)
+  App.filter_debouncer = App.create_debouncer((mode, force, deep) => {
+    App.do_filter(mode, force, deep)
   }, App.filter_delay)
 }
 
-App.filter = (mode) => {
-  App.filter_debouncer.call(mode)
+App.filter = (mode, force, deep) => {
+  App.filter_debouncer.call(mode, force, deep)
 }
 
 App.cancel_filter = () => {
   App.filter_debouncer.cancel()
-}
-
-App.make_filter_regex = (value, by_what) => {
-  let regex
-
-  if (by_what.startsWith(`re`)) {
-    let cleaned = value.replace(/\\+$/, ``)
-
-    try {
-      if (App.get_setting(`case_insensitive`)) {
-        regex = new RegExp(cleaned, `i`)
-      }
-      else {
-        regex = new RegExp(cleaned)
-      }
-    }
-    catch (err) {}
-  }
-  else {
-    let cleaned = App.escape_regex(value)
-
-    if (App.get_setting(`case_insensitive`)) {
-      regex = new RegExp(cleaned, `i`)
-    }
-    else {
-      regex = new RegExp(cleaned)
-    }
-  }
-
-  return regex
 }
 
 App.do_filter = async (mode, force = false, deep = false) => {
@@ -192,6 +162,36 @@ App.do_filter = async (mode, force = false, deep = false) => {
   App.do_check_scroller(mode)
 }
 
+App.make_filter_regex = (value, by_what) => {
+  let regex
+
+  if (by_what.startsWith(`re`)) {
+    let cleaned = value.replace(/\\+$/, ``)
+
+    try {
+      if (App.get_setting(`case_insensitive`)) {
+        regex = new RegExp(cleaned, `i`)
+      }
+      else {
+        regex = new RegExp(cleaned)
+      }
+    }
+    catch (err) {}
+  }
+  else {
+    let cleaned = App.escape_regex(value)
+
+    if (App.get_setting(`case_insensitive`)) {
+      regex = new RegExp(cleaned, `i`)
+    }
+    else {
+      regex = new RegExp(cleaned)
+    }
+  }
+
+  return regex
+}
+
 App.filter_check = (args) => {
   let match = false
   let title = App.get_title(args.item)
@@ -274,13 +274,13 @@ App.set_filter = (mode, text, filter = true) => {
 
   if (filter) {
     if (App.on_items(mode)) {
-      App.do_filter(mode)
+      App.filter(mode)
     }
     else if (App.on_settings(mode)) {
-      App.do_filter_settings()
+      App.filter_settings()
     }
     else {
-      App[`do_filter_${mode}`]()
+      App[`filter_${mode}`]()
     }
   }
 }
@@ -446,7 +446,7 @@ App.set_filter_mode = (mode, name, filter = true) => {
   DOM.el(`#${mode}_filter_modes_text`).textContent = filter_mode[1]
 
   if (filter) {
-    App.do_filter(mode)
+    App.filter(mode)
   }
 }
 
@@ -673,7 +673,7 @@ App.search_items = async (mode, query, deep) => {
 }
 
 App.deep_search = (mode) => {
-  App.do_filter(mode, true, true)
+  App.filter(mode, true, true)
 }
 
 App.was_filtered = (mode) => {
