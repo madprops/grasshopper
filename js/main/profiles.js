@@ -669,8 +669,7 @@ App.get_tag_items = (mode, action = `filter`) => {
       text: tag,
       action: () => {
         if (action === `filter`) {
-          App.set_custom_filter_mode(mode, `tag_${tag}`, tag)
-          App.set_filter(mode, ``)
+          App.filter_tag(mode, tag)
         }
         else if (action === `remove`) {
           App.remove_tag(tag)
@@ -1435,4 +1434,24 @@ App.profile_editor_right = () => {
   if (!el.classList.contains(`hidden`)) {
     App.profile_menu_cycle(DOM.el(`#profile_editor_color`), `color`, `next`, App.profile_editor_color_opts)
   }
+}
+
+App.get_item_tag_items = (item) => {
+  let items = []
+
+  for (let tag of item.tags) {
+    items.push({
+      text: tag,
+      action: () => {
+        App.filter_tag(item.mode, tag)
+      }
+    })
+  }
+
+  return items
+}
+
+App.filter_tag = (mode, tag) => {
+  App.set_custom_filter_mode(mode, `tag_${tag}`, tag)
+  App.set_filter(mode, ``)
 }

@@ -148,7 +148,7 @@ App.common_menu_items = (o_items, item, multiple) => {
   }
 
   if (!multiple) {
-    if (item.color) {
+    if (item.color || item.tags.length) {
       items.push({
         text: `Filter`,
         get_items: () => {
@@ -280,17 +280,26 @@ App.more_menu_items = (o_items, item, multiple, some_loaded) => {
 App.filter_menu_items = (item) => {
   let items = []
 
+  if (item.tags.length) {
+    items.push({
+      text: `By Tag`,
+      get_items: () => {
+        return App.get_item_tag_items(item)
+      }
+    })
+  }
+
   items.push({
-    text: `Domain`,
+    text: `By Color`,
     action: () => {
-      App.filter_domain(item)
+      App.filter_color(item.mode, item.color)
     }
   })
 
   items.push({
-    text: `Color`,
+    text: `Domain`,
     action: () => {
-      App.filter_color(item.mode, item.color)
+      App.filter_domain(item)
     }
   })
 
