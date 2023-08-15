@@ -91,8 +91,8 @@ App.build_default_settings = () => {
   obj.warn_on_bookmark = {value: true, category: category, version: 1}
 
   category = `lists`
-  obj.custom_filters = {value: [], category: category, version: 1}
   obj.aliases = {value: [], category: category, version: 1}
+  obj.custom_filters = {value: [], category: category, version: 1}
   obj.domain_themes = {value: [], category: category, version: 1}
   obj.domain_colors = {value: [], category: category, version: 1}
   obj.domain_titles = {value: [], category: category, version: 1}
