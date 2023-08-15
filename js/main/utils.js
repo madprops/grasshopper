@@ -451,3 +451,7 @@ App.similarity_distance = (s1, s2) => {
 
   return costs[s2.length]
 }
+
+App.to_set = (array) => {
+  return [...new Set(array)]
+}
