@@ -282,7 +282,7 @@ App.filter_menu_items = (item) => {
 
   if (item.tags.length) {
     items.push({
-      text: `Tag..`,
+      text: `Tag`,
       get_items: () => {
         return App.get_item_tag_items(item)
       }
