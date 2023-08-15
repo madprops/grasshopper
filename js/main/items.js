@@ -1311,13 +1311,6 @@ App.insert_item = (mode, info) => {
   return item
 }
 
-App.show_all = (mode = App.window_mode) => {
-  if (App.is_filtered(mode)) {
-    App.set_filter_mode(mode, `all`, false)
-    App.set_filter(mode, ``)
-  }
-}
-
 App.container_is_scrolled = (mode) => {
   let container = DOM.el(`#${mode}_container`)
   return container.scrollHeight > container.clientHeight

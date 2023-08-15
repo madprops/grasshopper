@@ -1201,11 +1201,6 @@ App.change_color = (item, color) => {
   }, undefined, force)
 }
 
-App.filter_color = (mode, color) => {
-  App.set_custom_filter_mode(mode, `color_${color}`, App.capitalize(color))
-  App.set_filter(mode, ``)
-}
-
 App.get_shared_tags = (profiles) => {
   let arrays = profiles.map(obj => obj.tags)
 
@@ -1449,9 +1444,4 @@ App.get_item_tag_items = (item) => {
   }
 
   return items
-}
-
-App.filter_tag = (mode, tag) => {
-  App.set_custom_filter_mode(mode, `tag_${tag}`, tag)
-  App.set_filter(mode, ``)
 }

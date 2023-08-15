@@ -266,19 +266,34 @@ App.clear_filter = (mode = App.window_mode) => {
   }
 }
 
-App.set_filter = (mode, text, filter = true) => {
+App.set_filter = (mode, text, filter = true, instant = true) => {
   DOM.el(`#${mode}_filter`).value = text
   App.focus_filter(mode)
 
   if (filter) {
     if (App.on_items(mode)) {
-      App.filter(mode)
+      if (instant) {
+        App.do_filter(mode)
+      }
+      else {
+        App.filter(mode)
+      }
     }
     else if (App.on_settings(mode)) {
-      App.filter_settings()
+      if (instant) {
+        App.do_filter_settings()
+      }
+      else {
+        App.filter_settings()
+      }
     }
     else {
-      App[`filter_${mode}`]()
+      if (instant) {
+        App[`do_filter_${mode}`]()
+      }
+      else {
+        App[`filter_${mode}`]()
+      }
     }
   }
 }
@@ -410,7 +425,7 @@ App.cycle_filter_modes = (mode, reverse = true) => {
     }
 
     if (waypoint) {
-      App.set_filter_mode(mode, filter_mode[0])
+      App.set_filter_mode(mode, filter_mode[0], true, false)
       return
     }
 
@@ -419,7 +434,7 @@ App.cycle_filter_modes = (mode, reverse = true) => {
     }
   }
 
-  App.set_filter_mode(mode, first[0])
+  App.set_filter_mode(mode, first[0], true, false)
 }
 
 App.filter_modes = (mode) => {
@@ -438,41 +453,24 @@ App.get_filter_mode = (mode, name) => {
   }
 }
 
-App.set_filter_mode = (mode, name, filter = true) => {
+App.set_filter_mode = (mode, name, filter = true, instant = true) => {
   let filter_mode = App.get_filter_mode(mode, name)
   App[`${mode}_filter_mode`] = filter_mode[0]
   DOM.el(`#${mode}_filter_modes_text`).textContent = filter_mode[1]
 
   if (filter) {
-    App.filter(mode)
+    if (instant) {
+      App.do_filter(mode)
+    }
+    else {
+      App.filter(mode)
+    }
   }
 }
 
 App.set_custom_filter_mode = (mode, name, title) => {
   App[`${mode}_filter_mode`] = name
   DOM.el(`#${mode}_filter_modes_text`).textContent = title
-}
-
-App.filter_domain = (item) => {
-  if (!item) {
-    item = App.get_selected(mode)
-  }
-
-  if (!item) {
-    return
-  }
-
-  let hostname = item.hostname
-
-  if (!hostname && item.url.includes(`:`)) {
-    hostname = item.url.split(`:`)[0] + `:`
-  }
-
-  if (!hostname) {
-    return
-  }
-
-  App.set_filter(item.mode, hostname)
 }
 
 App.create_filter_menu = (mode) => {
@@ -671,7 +669,7 @@ App.search_items = async (mode, query, deep) => {
 }
 
 App.deep_search = (mode) => {
-  App.filter(mode, true, true)
+  App.do_filter(mode, true, true)
 }
 
 App.was_filtered = (mode) => {
@@ -702,4 +700,43 @@ App.get_last_filter_value = (cycle) => {
   }
 
   return value
+}
+
+App.filter_domain = (item) => {
+  if (!item) {
+    item = App.get_selected(mode)
+  }
+
+  if (!item) {
+    return
+  }
+
+  let hostname = item.hostname
+
+  if (!hostname && item.url.includes(`:`)) {
+    hostname = item.url.split(`:`)[0] + `:`
+  }
+
+  if (!hostname) {
+    return
+  }
+
+  App.set_filter(item.mode, hostname)
+}
+
+App.filter_tag = (mode, tag) => {
+  App.set_custom_filter_mode(mode, `tag_${tag}`, tag)
+  App.set_filter(mode, ``)
+}
+
+App.filter_color = (mode, color) => {
+  App.set_custom_filter_mode(mode, `color_${color}`, App.capitalize(color))
+  App.set_filter(mode, ``)
+}
+
+App.show_all = (mode = App.window_mode) => {
+  if (App.is_filtered(mode)) {
+    App.set_filter_mode(mode, `all`, false)
+    App.set_filter(mode, ``)
+  }
 }
