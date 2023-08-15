@@ -289,12 +289,14 @@ App.filter_menu_items = (item) => {
     })
   }
 
-  items.push({
-    text: `By Color`,
-    action: () => {
-      App.filter_color(item.mode, item.color)
-    }
-  })
+  if (item.color) {
+    items.push({
+      text: `By Color`,
+      action: () => {
+        App.filter_color(item.mode, item.color)
+      }
+    })
+  }
 
   items.push({
     text: `Domain`,
