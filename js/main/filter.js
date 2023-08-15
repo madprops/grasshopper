@@ -1,8 +1,6 @@
-App.setup_filter = () => {
-  App.filter_debouncer = App.create_debouncer((mode, force, deep) => {
-    App.do_filter(mode, force, deep)
-  }, App.filter_delay)
-}
+App.filter_debouncer = App.create_debouncer((mode, force, deep) => {
+  App.do_filter(mode, force, deep)
+}, App.filter_delay)
 
 App.filter = (mode, force, deep) => {
   App.filter_debouncer.call(mode, force, deep)

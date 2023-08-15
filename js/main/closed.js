@@ -1,3 +1,7 @@
+App.closed_on_changed_debouncer = App.create_debouncer(() => {
+  App.show_mode(`closed`)
+}, 1000)
+
 App.setup_closed = () => {
   App.closed_actions = [
     {text: `Forget All`, action: () => {
@@ -6,10 +10,6 @@ App.setup_closed = () => {
   ]
 
   App.setup_item_window(`closed`)
-
-  App.closed_on_changed_debouncer = App.create_debouncer(() => {
-    App.show_mode(`closed`)
-  }, 1000)
 
   browser.sessions.onChanged.addListener(() => {
     if (App.active_mode === `closed`) {

@@ -8,7 +8,6 @@ App.init = async () => {
   App.stor_get_profiles()
   App.stor_get_command_history()
   App.setup_commands()
-  App.setup_filter()
   App.setup_theme()
   App.setup_tabs()
   App.setup_profile_editor()
