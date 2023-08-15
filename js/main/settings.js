@@ -217,7 +217,7 @@ App.do_save_text_setting = (setting, el) => {
   let value = el.value.trim()
 
   if (el.classList.contains(`settings_textarea`)) {
-    let cleaned = App.single_linebreak(value)
+    let cleaned = App.one_linebreak(value)
     el.value = cleaned
     value = cleaned.split(`\n`).filter(x => x !== ``).map(x => x.trim())
   }
