@@ -148,12 +148,22 @@ App.common_menu_items = (o_items, item, multiple) => {
   }
 
   if (!multiple) {
-    items.push({
-      text: `Filter`,
-      action: () => {
-        App.filter_domain(item)
-      }
-    })
+    if (item.color) {
+      items.push({
+        text: `Filter`,
+        get_items: () => {
+          return App.filter_menu_items(item)
+        }
+      })
+    }
+    else {
+      items.push({
+        text: `Filter`,
+        action: () => {
+          App.filter_domain(item)
+        }
+      })
+    }
   }
 
   if (!multiple) {
@@ -265,4 +275,24 @@ App.more_menu_items = (o_items, item, multiple, some_loaded) => {
       }
     })
   }
+}
+
+App.filter_menu_items = (item) => {
+  let items = []
+
+  items.push({
+    text: `Domain`,
+    action: () => {
+      App.filter_domain(item)
+    }
+  })
+
+  items.push({
+    text: `Color`,
+    action: () => {
+      App.filter_color(item.mode, item.color)
+    }
+  })
+
+  return items
 }

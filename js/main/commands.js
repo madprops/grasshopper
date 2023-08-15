@@ -189,6 +189,9 @@ App.setup_commands = () => {
     {name: `Filter Domain`, cmd: `filter_domain`, mode: `items`, action: (args) => {
       App.filter_domain(args.item)
     }},
+    {name: `Filter Color`, cmd: `filter_color`, mode: `items`, color: true, action: (args) => {
+      App.filter_color(args.mode, args.item.color)
+    }},
     {name: `Filter Playing`, cmd: `filter_playing`, mode: `tabs`, action: (args) => {
       App.set_filter_mode(args.mode, `playing`)
     }},
@@ -309,28 +312,42 @@ App.check_command = (command, args) => {
         break
       }
     }
+
+    if (args.item.color) {
+      args.color = args.item.color
+    }
   }
 
-  let valid = false
+  let valid = true
 
   if (command) {
-    if (command.mode) {
-      if (command.mode === `items`) {
-        if (args.on_items) {
-          valid = true
+    if (valid) {
+      if (command.media) {
+        if (command.media !== args.media) {
+          valid = false
         }
       }
-      else if (command.mode === args.mode) {
-        valid = true
+    }
+
+    if (valid) {
+      if (command.color) {
+        if (!args.color) {
+          valid = false
+        }
       }
     }
-    else if (command.media) {
-      if (command.media === args.media) {
-        valid = true
+
+    if (valid) {
+      if (command.mode) {
+        if (command.mode === `items`) {
+          if (!args.on_items) {
+            valid = false
+          }
+        }
+        else if (command.mode !== args.mode) {
+          valid = false
+        }
       }
-    }
-    else {
-      valid = true
     }
   }
 
