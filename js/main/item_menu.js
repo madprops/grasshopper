@@ -282,7 +282,7 @@ App.filter_menu_items = (item) => {
 
   if (item.tags.length) {
     items.push({
-      text: `By Tag`,
+      text: `Tag..`,
       get_items: () => {
         return App.get_item_tag_items(item)
       }
@@ -291,7 +291,7 @@ App.filter_menu_items = (item) => {
 
   if (item.color) {
     items.push({
-      text: `By Color`,
+      text: `Color`,
       action: () => {
         App.filter_color(item.mode, item.color)
       }
