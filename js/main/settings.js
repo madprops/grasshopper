@@ -117,6 +117,7 @@ App.build_default_settings = () => {
   obj.auto_restore = {value: `10_seconds`, category: category, version: 1}
   obj.debug_mode = {value: false, category: category, version: 1}
   obj.selected_effect = {value: `background`, category: category, version: 1}
+  obj.double_click_action = {value: false, category: category, version: 1}
 
   App.default_settings = obj
 }

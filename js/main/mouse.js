@@ -156,6 +156,10 @@ App.mouse_click_action = (mode, e) => {
     }
   }
 
+  if (App.get_setting(`double_click_action`)) {
+    return
+  }
+
   App[`${item.mode}_action`](item)
 }
 
@@ -163,7 +167,18 @@ App.mouse_double_click_action = (mode, e) => {
   if (App.get_setting(`double_click_new`)) {
     if (e.target.classList.contains(`container`)) {
       App.new_tab()
+      return
     }
+  }
+
+  if (!App.cursor_on_item(e, mode)) {
+    return
+  }
+
+  let item = App.get_cursor_item(mode, e)
+
+  if (App.get_setting(`double_click_action`)) {
+    App[`${item.mode}_action`](item)
   }
 }
 
