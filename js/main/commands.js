@@ -231,7 +231,7 @@ App.setup_commands = () => {
     {name: App.get_icontext(`next_background`), cmd: `next_background`, action: (args) => {
       App.background_from_pool()
     }},
-    {name: App.get_icontext(`add_to_background_pool`), cmd: `add_to_background_pool`, action: (args) => {
+    {name: App.get_icontext(`add_to_pool`), cmd: `add_to_background_pool`, media: `image`, action: (args) => {
       App.add_to_background_pool()
     }},
 

@@ -227,6 +227,13 @@ App.more_menu_items = (o_items, item, multiple, some_loaded) => {
         App.change_background(item.url)
       }
     })
+
+    items.push({
+      text: App.get_icontext(`add_to_pool`),
+      action: () => {
+        App.add_to_background_pool(item.url)
+      }
+    })
   }
 
   if (item.mode === `tabs`) {

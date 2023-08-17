@@ -385,8 +385,11 @@ App.change_background = (url) => {
   App.check_theme_refresh()
 }
 
-App.add_to_background_pool = () => {
-  let url = App.get_setting(`background_image`)
+App.add_to_background_pool = (url) => {
+  if (!url) {
+    url = App.get_setting(`background_image`)
+  }
+
   let pool = App.get_setting(`background_pool`)
 
   if (!pool.includes(url)) {

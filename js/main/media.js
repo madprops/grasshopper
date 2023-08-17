@@ -277,6 +277,13 @@ App.show_media_menu = (what) => {
         App.media_background(what)
       }
     })
+
+    items.push({
+      text: App.get_icontext(`add_to_pool`),
+      action: () => {
+        App.add_to_background_pool(item.url)
+      }
+    })
   }
 
   let btn = DOM.el(`#media_${what}_menu`)

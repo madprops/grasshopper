@@ -141,9 +141,9 @@ App.icontext = {
     icon: App.settings_icons.theme,
     name: `Next Background`,
   },
-  add_to_background_pool: {
+  add_to_pool: {
     icon: App.settings_icons.theme,
-    name: `Add To BG Pool`,
+    name: `Add To Pool`,
   },
   background: {
     icon: App.settings_icons.theme,
