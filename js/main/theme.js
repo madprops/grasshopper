@@ -566,9 +566,13 @@ App.animate_background_image = (url) => {
     App.set_css_var(`background_image_${newnum}`, `unset`)
   }
 
+  function proc (n1, n2) {
+    new_el.style.opacity = n1
+    old_el.style.opacity = n2
+  }
+
   if (!App.get_setting(`background_transitions`) || !App.first_bg_image) {
-    new_el.style.opacity = 1
-    old_el.style.opacity = 0
+    proc(1, 0)
     App.first_bg_image = true
     return
   }
@@ -576,8 +580,7 @@ App.animate_background_image = (url) => {
   let op_new = 0
   let op_old = 1
   let amount = 0.1
-  new_el.style.opacity = op_new
-  old_el.style.opacity = op_old
+  proc(op_new, op_old)
   App.first_bg_image = true
 
   App.background_animation_1 = setTimeout(() => {
@@ -585,22 +588,19 @@ App.animate_background_image = (url) => {
       try {
         op_new += amount
         op_old -= amount
-        new_el.style.opacity = op_new
-        old_el.style.opacity = op_old
+        proc(op_new, op_old)
 
         if ((op_new >= 1) && (op_old <= 0)) {
-          new_el.style.opacity = 1
-          old_el.style.opacity = 0
+          proc(1, 0)
           clearInterval(App.background_animation_2)
         }
       }
       catch (err) {
-        new_el.style.opacity = 1
-        old_el.style.opacity = 0
+        proc(1, 0)
         clearInterval(App.background_animation_2)
       }
     }, 100)
-  }, 250)
+  }, 300)
 
   App.active_background = newnum
 }
