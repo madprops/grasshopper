@@ -28,7 +28,7 @@ App.setup_tabs = () => {
   App.setup_item_window(`tabs`)
 
   browser.tabs.onUpdated.addListener(async (id, cinfo, info) => {
-    App.log(`Tab Updated: ID: ${id}`, `debug`)
+    App.debug(`Tab Updated: ID: ${id}`)
 
     if (info.windowId === App.window_id) {
       await App.refresh_tab(id, false, info)
@@ -37,7 +37,7 @@ App.setup_tabs = () => {
   })
 
   browser.tabs.onActivated.addListener(async (info) => {
-    App.log(`Tab Activated: ID: ${info.tabId}`, `debug`)
+    App.debug(`Tab Activated: ID: ${info.tabId}`)
 
     if (info.windowId === App.window_id) {
       await App.on_tab_activated(info)
@@ -46,7 +46,7 @@ App.setup_tabs = () => {
   })
 
   browser.tabs.onRemoved.addListener((id, info) => {
-    App.log(`Tab Removed: ID: ${id}`, `debug`)
+    App.debug(`Tab Removed: ID: ${id}`)
 
     if (info.windowId === App.window_id) {
       App.remove_closed_tab(id)
@@ -55,7 +55,7 @@ App.setup_tabs = () => {
   })
 
   browser.tabs.onMoved.addListener((id, info) => {
-    App.log(`Tab Moved: ID: ${id}`, `debug`)
+    App.debug(`Tab Moved: ID: ${id}`)
 
     if (info.windowId === App.window_id) {
       App.move_item(`tabs`, info.fromIndex, info.toIndex)
@@ -64,7 +64,7 @@ App.setup_tabs = () => {
   })
 
   browser.tabs.onDetached.addListener((id, info) => {
-    App.log(`Tab Detached: ID: ${id}`, `debug`)
+    App.debug(`Tab Detached: ID: ${id}`)
 
     if (info.oldWindowId === App.window_id) {
       App.remove_closed_tab(id)
@@ -107,7 +107,7 @@ App.get_tabs = async () => {
     tabs = await browser.tabs.query({currentWindow: true})
   }
   catch (err) {
-    App.log(err, `error`)
+    App.error(err)
     return
   }
 
@@ -137,7 +137,7 @@ App.focus_tab = async (item, scroll, method = `normal`) => {
     await browser.tabs.update(item.id, {active: true})
   }
   catch (err) {
-    App.log(err, `error`)
+    App.error(err)
     App.remove_closed_tab(item.id)
     App.tabs_check()
   }
@@ -150,7 +150,7 @@ App.close_tab = async (id) => {
     await browser.tabs.remove(id)
   }
   catch (err) {
-    App.log(err, `error`)
+    App.error(err)
   }
 }
 
@@ -159,7 +159,7 @@ App.open_new_tab = async (url) => {
     await browser.tabs.create({url: url, active: true})
   }
   catch (err) {
-    App.log(err, `error`)
+    App.error(err)
   }
 }
 
@@ -174,7 +174,7 @@ App.get_tab_info = async (id) => {
     return info
   }
   catch (err) {
-    App.log(err, `error`)
+    App.error(err)
     return
   }
 }
@@ -221,7 +221,7 @@ App.mute_tab = async (id) => {
     await browser.tabs.update(id, {muted: true})
   }
   catch (err) {
-    App.log(err, `error`)
+    App.error(err)
   }
 }
 
@@ -230,7 +230,7 @@ App.unmute_tab = async (id) => {
     await browser.tabs.update(id, {muted: false})
   }
   catch (err) {
-    App.log(err, `error`)
+    App.error(err)
   }
 }
 
@@ -282,7 +282,7 @@ App.duplicate_tab = async (item) => {
     await browser.tabs.duplicate(item.id)
   }
   catch (err) {
-    App.log(err, `error`)
+    App.error(err)
   }
 }
 
@@ -306,7 +306,7 @@ App.pin_tab = async (id) => {
     await browser.tabs.update(id, {pinned: true})
   }
   catch (err) {
-    App.log(err, `error`)
+    App.error(err)
   }
 }
 
@@ -315,7 +315,7 @@ App.unpin_tab = async (id) => {
     await browser.tabs.update(id, {pinned: false})
   }
   catch (err) {
-    App.log(err, `error`)
+    App.error(err)
   }
 }
 
@@ -410,7 +410,7 @@ App.do_unload_tabs = async (ids) => {
     await browser.tabs.discard(ids)
   }
   catch (err) {
-    App.log(err, `error`)
+    App.error(err)
   }
 }
 
@@ -591,7 +591,7 @@ App.open_tab = async (item) => {
     return tab
   }
   catch (err) {
-    App.log(err, `error`)
+    App.error(err)
   }
 }
 
@@ -632,7 +632,7 @@ App.do_move_tab_index = async (id, index) => {
     ans = await browser.tabs.move(id, {index: index})
   }
   catch (err) {
-    App.log(err, `error`)
+    App.error(err)
   }
 
   return ans
@@ -664,7 +664,7 @@ App.move_tabs = async (item, window_id) => {
       await browser.tabs.move(it.id, {index: index, windowId: window_id})
     }
     catch (err) {
-      App.log(err, `error`)
+      App.error(err)
     }
   }
 }
@@ -674,7 +674,7 @@ App.detach_tab = async (item) => {
     await browser.windows.create({tabId: item.id, focused: false})
   }
   catch (err) {
-    App.log(err, `error`)
+    App.error(err)
   }
 }
 
@@ -817,7 +817,7 @@ App.get_active_tab = async () => {
     return tabs[0]
   }
   catch (err) {
-    App.log(err, `error`)
+    App.error(err)
   }
 }
 

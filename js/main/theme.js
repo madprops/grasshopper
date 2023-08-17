@@ -29,7 +29,7 @@ App.start_theme_interval = (setting) => {
 
       if (setting === `auto_theme`) {
         try {
-          App.log(`Auto Theme`, `debug`)
+          App.debug(`Auto Theme`)
           App.random_theme()
         }
         catch (err) {
@@ -38,7 +38,7 @@ App.start_theme_interval = (setting) => {
       }
       else if (setting === `auto_background`) {
         try {
-          App.log(`Auto Background`, `debug`)
+          App.debug(`Auto Background`)
           App.auto_background_action()
         }
         catch (err) {
@@ -47,7 +47,7 @@ App.start_theme_interval = (setting) => {
       }
     }, delay)
 
-    App.log(`Started ${setting} interval: ${sett}`, `debug`)
+    App.debug(`Started ${setting} interval: ${sett}`)
   }
 }
 
@@ -73,7 +73,7 @@ App.auto_background_action = () => {
 }
 
 App.apply_theme = (args) => {
-  App.log(`Apply Theme`, `debug`)
+  App.debug(`Apply Theme`)
 
   let def_args = {
     check: false,
@@ -251,7 +251,7 @@ App.apply_theme = (args) => {
     }
   }
   catch (err) {
-    App.log(err, `error`)
+    App.error(err)
     App.theme_safe_mode()
   }
 }
@@ -546,7 +546,7 @@ App.background_from_pool = (random = false) => {
 App.animate_background_image = (url) => {
   clearTimeout(App.background_animation_1)
   clearInterval(App.background_animation_2)
-  App.log(`Animate Background`, `debug`)
+  App.debug(`Animate Background`)
 
   let newnum, oldnum
 

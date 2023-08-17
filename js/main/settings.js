@@ -783,7 +783,7 @@ App.setup_settings = () => {
 
   window.addEventListener(`storage`, (e) => {
     if (e.key === App.stor_settings_name) {
-      App.log(`Settings changed in another window`, `debug`)
+      App.debug(`Settings changed in another window`)
       App.stor_get_settings()
       App.restart_settings(`sync`)
     }
@@ -1250,7 +1250,7 @@ App.check_settings = () => {
       App.settings[setting].value === undefined ||
       App.settings[setting].version === undefined)
     {
-      App.log(`Stor: Adding setting: ${setting}`, `debug`)
+      App.debug(`Stor: Adding setting: ${setting}`)
       App.settings[setting] = {}
       set_default(setting)
       changed = true
@@ -1260,13 +1260,13 @@ App.check_settings = () => {
   for (let setting in App.settings) {
     // Remove unused settings
     if (App.default_settings[setting] === undefined) {
-      App.log(`Stor: Deleting setting: ${setting}`, `debug`)
+      App.debug(`Stor: Deleting setting: ${setting}`)
       delete App.settings[setting]
       changed = true
     }
     // Check new version
     else if (App.settings[setting].version !== App.default_settings[setting].version) {
-      App.log(`Stor: Upgrading setting: ${setting}`, `debug`)
+      App.debug(`Stor: Upgrading setting: ${setting}`)
       set_default(setting)
       changed = true
     }

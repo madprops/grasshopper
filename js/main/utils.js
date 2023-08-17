@@ -1,11 +1,11 @@
 App.create_debouncer = (func, delay) => {
   if (typeof func !== `function`) {
-    App.log(`Invalid debouncer function`, `error`)
+    App.error(`Invalid debouncer function`)
     return
   }
 
   if (!delay) {
-    App.log(`Invalid debouncer delay`, `error`)
+    App.error(`Invalid debouncer delay`)
     return
   }
 
@@ -169,6 +169,14 @@ App.log = (message, mode = `normal`) => {
   else {
     console.info(message)
   }
+}
+
+App.debug = (message) => {
+  App.log(message, `debug`)
+}
+
+App.error = (message) => {
+  App.log(message, `error`)
 }
 
 App.find_duplicates = (objects, property) => {

@@ -30,7 +30,7 @@ App.get_domain_props = (setting, item) => {
       }
     }
     catch (err) {
-      App.log(err, `error`)
+      App.error(err)
       continue
     }
   }

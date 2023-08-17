@@ -58,7 +58,7 @@ App.create_window = (args) => {
       if (!args.persistent || !w.setup) {
         args.setup()
         w.setup = true
-        App.log(`Setup Window: ${args.id}`, `debug`)
+        App.debug(`Setup Window: ${args.id}`)
       }
     }
   }
@@ -113,7 +113,7 @@ App.hide_all_windows = () => {
 }
 
 App.show_window = (mode) => {
-  App.log(`Show Window: ${mode}`, `debug`)
+  App.debug(`Show Window: ${mode}`)
 
   if (App.on_items(mode)) {
     App.show_mode(mode)

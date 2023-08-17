@@ -24,7 +24,7 @@ App.get_closed = async () => {
     })
   }
   catch (err) {
-    App.log(err, `error`)
+    App.error(err)
     return []
   }
 

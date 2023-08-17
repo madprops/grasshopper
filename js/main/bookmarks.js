@@ -12,7 +12,7 @@ App.setup_bookmarks = () => {
   ]
 
   browser.bookmarks.onCreated.addListener((id, info) => {
-    App.log(`Bookmark Created: ID: ${id}`, `debug`)
+    App.debug(`Bookmark Created: ID: ${id}`)
 
     if (App.active_mode === `bookmarks`) {
       App.insert_item(`bookmarks`, info)
@@ -20,7 +20,7 @@ App.setup_bookmarks = () => {
   })
 
   browser.bookmarks.onRemoved.addListener((id, info) => {
-    App.log(`Bookmark Removed: ID: ${id}`, `debug`)
+    App.debug(`Bookmark Removed: ID: ${id}`)
 
     if (App.active_mode === `bookmarks`) {
       let item = App.get_item_by_id(`bookmarks`, id)
@@ -32,7 +32,7 @@ App.setup_bookmarks = () => {
   })
 
   browser.bookmarks.onChanged.addListener((id, info) => {
-    App.log(`Bookmark Changed: ID: ${id}`, `debug`)
+    App.debug(`Bookmark Changed: ID: ${id}`)
 
     if (App.active_mode === `bookmarks`) {
       let item = App.get_item_by_id(`bookmarks`, id)
@@ -54,7 +54,7 @@ App.get_bookmarks = async (query = ``, deep = false) => {
     results = await browser.bookmarks.search({query: query})
   }
   catch (err) {
-    App.log(err, `error`)
+    App.error(err)
     return []
   }
 

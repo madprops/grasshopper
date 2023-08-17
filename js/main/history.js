@@ -11,7 +11,7 @@ App.setup_history = () => {
   App.setup_item_window(`history`)
 
   browser.history.onVisited.addListener((info) => {
-    App.log(`History Visited`, `debug`)
+    App.debug(`History Visited`)
 
     if (App.active_mode === `history`) {
       App.history_changed = true
@@ -46,7 +46,7 @@ App.get_history = async (query = ``, deep = false) => {
     })
   }
   catch (err) {
-    App.log(err, `error`)
+    App.error(err)
     return []
   }
 

@@ -641,7 +641,7 @@ App.create_item_element = (item) => {
 
   item.created = true
   item.element.classList.remove(`empty_item`)
-  App.log(`Item created in ${item.mode}`, `debug`)
+  App.debug(`Item created in ${item.mode}`)
 }
 
 App.set_text_icon = (icon_text) => {
@@ -1592,7 +1592,7 @@ App.do_check_borders = (mode) => {
     return
   }
 
-  App.log(`Checking borders`, `debug`)
+  App.debug(`Checking borders`)
 
   if (mode === `tabs`) {
     let tabs = App.divide_tabs(`visible`)

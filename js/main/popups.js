@@ -28,7 +28,7 @@ App.create_popup = (args) => {
     if (args.setup && !p.setup_done) {
       args.setup()
       p.setup_done = true
-      App.log(`Popup Setup: ${args.id}`, `debug`)
+      App.debug(`Popup Setup: ${args.id}`)
     }
   }
 
