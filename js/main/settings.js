@@ -152,6 +152,7 @@ App.settings_setup_labels = (container) => {
       let a = DOM.create(`div`, `action`)
       a.id = btn[0]
       a.textContent = btn[1]
+      a.title = btn[2] || btn[1]
       c.append(d)
       c.append(a)
       bc.append(c)
@@ -174,6 +175,10 @@ App.settings_setup_labels = (container) => {
 
     if (item.dataset.next) {
       btns.push([`settings_${item.dataset.next}_next`, `Next`])
+    }
+
+    if (item.dataset.shuffle) {
+      btns.push([`settings_${item.dataset.shuffle}_shuffle`, App.shuffle_icon, `Shuffle`])
     }
 
     if (btns.length > 0) {
@@ -972,6 +977,10 @@ App.start_theme_settings = () => {
   DOM.ev(DOM.el(`#settings_background_pool_next`), `click`, () => {
     App.background_from_pool()
   })
+
+  DOM.ev(DOM.el(`#settings_background_pool_shuffle`), `click`, () => {
+    App.shuffle_background_pool()
+  })
 }
 
 App.settings_menu_cycle = (el, setting, dir, o_items) => {
@@ -1527,4 +1536,16 @@ App.scroll_settings_text = (category) => {
 
 App.get_textarea_setting_value = (setting) => {
   return App.get_setting(setting).join(`\n`)
+}
+
+App.shuffle_background_pool = () => {
+  App.show_confirm(`Shuffle BG Pool?`, () => {
+    let pool = App.get_setting(`background_pool`)
+    App.shuffle_array(pool)
+    App.set_setting(`background_pool`, pool)
+    let value = App.get_textarea_setting_value(`background_pool`)
+    let pool_el = DOM.el(`#settings_background_pool`)
+    pool_el.value = value
+    App.scroll_to_bottom(pool_el)
+  })
 }
