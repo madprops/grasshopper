@@ -228,7 +228,7 @@ App.setup_commands = () => {
     {name: App.get_icontext(`random_background`), cmd: `random_background`, action: (args) => {
       App.random_background()
     }},
-    {name: `Next Background`, cmd: `next_background`, action: (args) => {
+    {name: App.get_icontext(`next_background`), cmd: `next_background`, action: (args) => {
       App.background_from_pool()
     }},
     {name: App.get_icontext(`restart`), cmd: `restart_extension`, action: (args) => {

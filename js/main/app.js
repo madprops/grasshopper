@@ -137,6 +137,10 @@ App.icontext = {
     icon: App.settings_icons.theme,
     name: `${App.random_text} Background`,
   },
+  next_background: {
+    icon: App.settings_icons.theme,
+    name: `Next Background`,
+  },
   background: {
     icon: App.settings_icons.theme,
     name: `Background`,
