@@ -98,7 +98,6 @@ App.apply_theme = (args) => {
     let bg_color_changed = args.background_color !== App.last_background_color
     let text_color_changed = args.text_color !== App.last_text_color
     let bg_image_changed = args.background_image !== App.last_background_image
-    console.log(bg_color_changed, text_color_changed)
 
     if (args.check) {
       if (!bg_color_changed && !text_color_changed) {
