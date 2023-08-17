@@ -274,6 +274,10 @@ App.set_css_var = (name, value) => {
   document.documentElement.style.setProperty(`--${name}`, value)
 }
 
+App.get_css_var = (name) => {
+  return getComputedStyle(document.documentElement).getPropertyValue(name);
+}
+
 App.dark_theme = () => {
   App.set_theme(App.dark_theme_colors.background, App.dark_theme_colors.text)
 }
@@ -569,6 +573,17 @@ App.animate_background_image = (url) => {
     App.set_css_var(`background_image_${newnum}`, `unset`)
   }
 
+  let old_var = App.get_css_var(`--background_image_${oldnum}`)
+
+  if (!old_var) {
+    if (url) {
+      App.set_css_var(`background_image_${oldnum}`, `url(${url})`)
+    }
+    else {
+      App.set_css_var(`background_image_${oldnum}`, `unset`)
+    }
+  }
+
   function proc (n1, n2) {
     new_el.style.opacity = n1
     old_el.style.opacity = n2
@@ -603,7 +618,7 @@ App.animate_background_image = (url) => {
         clearInterval(App.background_animation_2)
       }
     }, 120)
-  }, 300)
+  }, 240)
 
   App.active_background = newnum
 }
