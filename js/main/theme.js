@@ -392,21 +392,15 @@ App.random_background = async () => {
 
   for (let h of history) {
     if (App.is_image(h.url)) {
-      App.apply_background(h.url)
+      App.change_background(h.url)
       break
     }
   }
 }
 
-App.apply_background = (url) => {
-  App.set_setting(`background_image`, url)
-  App.apply_theme()
-  App.check_theme_refresh()
-}
-
 App.change_background = (url) => {
   App.set_setting(`background_image`, url)
-  App.apply_theme()
+  App.check_item_theme()
   App.check_theme_refresh()
 }
 
@@ -548,7 +542,7 @@ App.background_from_pool = (random = false) => {
   }
 
   if (next_image) {
-    App.apply_background(next_image)
+    App.change_background(next_image)
   }
 }
 
