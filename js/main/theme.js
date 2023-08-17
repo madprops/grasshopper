@@ -599,7 +599,7 @@ App.animate_background_image = (url) => {
         proc(1, 0)
         clearInterval(App.background_animation_2)
       }
-    }, 100)
+    }, 120)
   }, 300)
 
   App.active_background = newnum
