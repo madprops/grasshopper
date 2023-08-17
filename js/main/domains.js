@@ -48,6 +48,14 @@ App.get_domain_props = (setting, item) => {
   }
 }
 
+App.domain_tags = (item) => {
+  let tags = App.get_domain_props(`domain_tags`, item)
+
+  if (tags) {
+    return tags.prop_1
+  }
+}
+
 App.domain_color = (item) => {
   let color = App.get_domain_props(`domain_colors`, item)
 

@@ -392,6 +392,22 @@ App.process_info = (mode, info, exclude = [], o_item) => {
     created: false,
   }
 
+  if (!item.tags.length) {
+    let t = App.domain_tags(item)
+
+    if (t) {
+      item.tags = t
+    }
+  }
+
+  if (!item.color) {
+    let c = App.domain_color(item)
+
+    if (c) {
+      item.color = c
+    }
+  }
+
   if (mode === `tabs`) {
     item.active = info.active
     item.pinned = info.pinned
@@ -488,15 +504,6 @@ App.check_view_media = (item) => {
 App.apply_color_mode = (item) => {
   let color_mode = App.get_setting(`color_mode`)
   let color = item.color
-
-  if (!color) {
-    let c = App.domain_color(item)
-
-    if (c) {
-      color = c
-      item.color = c
-    }
-  }
 
   if (color_mode.startsWith(`icon`) || color_mode.startsWith(`both`)) {
     let el = DOM.el(`.item_info_color`, item.element)
