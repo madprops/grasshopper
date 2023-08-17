@@ -487,7 +487,16 @@ App.check_view_media = (item) => {
 
 App.apply_color_mode = (item) => {
   let color_mode = App.get_setting(`color_mode`)
-  let color = item.color || App.domain_color(item)
+  let color = item.color
+
+  if (!color) {
+    let c = App.domain_color(item)
+
+    if (c) {
+      color = c
+      item.color = c
+    }
+  }
 
   if (color_mode.startsWith(`icon`) || color_mode.startsWith(`both`)) {
     let el = DOM.el(`.item_info_color`, item.element)

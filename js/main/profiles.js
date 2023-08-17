@@ -687,7 +687,14 @@ App.get_tag_items = (mode, action = `filter`) => {
 
 App.get_color_items = (mode, action = `filter`) => {
   let items = []
-  let count = App.get_profile_count()
+  let count
+
+  if (action === `remove`) {
+    count = App.get_profile_count()
+  }
+  else if (action === `filter`) {
+    count = App.get_active_colors(mode)
+  }
 
   if (action === `remove`) {
     items.push({
@@ -1444,4 +1451,21 @@ App.get_item_tag_items = (item) => {
   }
 
   return items
+}
+
+App.get_active_colors = (mode) => {
+  let count = {colors: 0}
+
+  for (let item of App.get_items(mode)) {
+    if (item.color) {
+      if (!count[item.color]) {
+        count[item.color] = 0
+      }
+
+      count[item.color] += 1
+      count.colors += 1
+    }
+  }
+
+  return count
 }
