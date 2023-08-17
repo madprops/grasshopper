@@ -591,8 +591,8 @@ App.animate_background_image = (url) => {
   App.background_animation_1 = setTimeout(() => {
     App.background_animation_2 = setInterval(() => {
       try {
-        op_new += amount
-        op_old -= amount
+        op_new = parseFloat(Math.min(op_new + amount, 1).toFixed(1))
+        op_old = parseFloat(Math.max(op_old - amount, 0).toFixed(1))
         proc(op_new, op_old)
 
         if ((op_new >= 1) && (op_old <= 0)) {
