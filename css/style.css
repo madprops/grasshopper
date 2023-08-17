@@ -20,6 +20,27 @@ body, html {
   background-color: var(--background_color);
 }
 
+input[type=text],
+textarea,
+select {
+	font-family: var(--font);
+	font-size: 1rem;
+}
+
+textarea {
+  resize: vertical;
+  height: 5.4rem;
+}
+
+select {
+  background-color: var(--alt_color_1);
+  color: var(--text_color);
+  border: 0;
+  outline: 0;
+  min-width: 8rem;
+  text-align: center;
+}
+
 .no_scrollbars *:not(textarea):not(input) {
 	scrollbar-width: none !important;
 }
@@ -716,27 +737,6 @@ input {
 
 .linkbutton:hover {
   text-decoration: underline;
-}
-
-input[type=text],
-textarea,
-select {
-	font-family: var(--font);
-	font-size: 1rem;
-}
-
-textarea {
-  resize: vertical;
-  height: 5.4rem;
-}
-
-select {
-  background-color: var(--alt_color_1);
-  color: var(--text_color);
-  border: 0;
-  outline: 0;
-  min-width: 8rem;
-  text-align: center;
 }
 
 .grow {
