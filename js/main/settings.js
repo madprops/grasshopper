@@ -248,7 +248,7 @@ App.settings_setup_text = (container) => {
     let value = App.get_setting(setting)
 
     if (is_textarea) {
-      value = App.get_setting(setting).join(`\n`)
+      value = App.get_textarea_setting_value(setting)
     }
 
     el.value = value
@@ -1523,4 +1523,8 @@ App.scroll_settings_text = (category) => {
       App.scroll_to_bottom(el)
     }
   }, App.scroll_bottom_delay)
+}
+
+App.get_textarea_setting_value = (setting) => {
+  return App.get_setting(setting).join(`\n`)
 }

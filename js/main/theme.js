@@ -413,6 +413,7 @@ App.refresh_theme_settings = () => {
   App.background_color.setColor(App.get_setting(`background_color`))
   App.text_color.setColor(App.get_setting(`text_color`))
   DOM.el(`#settings_background_image`).value = App.get_setting(`background_image`)
+  DOM.el(`#settings_background_pool`).value = App.get_textarea_setting_value(`background_pool`)
 }
 
 App.seeded_theme = (item) => {
