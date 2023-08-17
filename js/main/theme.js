@@ -562,9 +562,9 @@ App.animate_background_image = (url) => {
     return
   }
 
-  let amount = 0.1
   let op_new = 0
   let op_old = 1
+  let amount = 0.1
   new_el.style.opacity = op_new
   old_el.style.opacity = op_old
 
