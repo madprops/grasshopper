@@ -410,11 +410,6 @@ App.add_to_background_pool = (url) => {
 
   if (!pool.includes(url)) {
     pool.push(url)
-
-    if (pool.length > App.background_pool_max) {
-      pool = pool.slice(0 - App.background_pool_max)
-    }
-
     App.set_setting(`background_pool`, pool)
     App.check_theme_refresh()
   }

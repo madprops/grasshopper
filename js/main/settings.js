@@ -228,11 +228,6 @@ App.do_save_text_setting = (setting, el) => {
     value = App.one_linebreak(value)
     value = value.split(`\n`).filter(x => x !== ``).map(x => x.trim())
     value = App.to_set(value)
-
-    if (App[`${setting}_max`]) {
-      value = value.slice(0 - App[`${setting}_max`])
-    }
-
     el.value = value.join(`\n`)
   }
   else {
