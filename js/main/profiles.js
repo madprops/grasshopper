@@ -985,8 +985,18 @@ App.remove_all_profiles = () => {
   })
 }
 
-App.after_profile_remove = () => {
+App.remove_empty_profiles = () => {
+  for (let profile of App.profiles) {
+    if (!App.used_profile(profile)) {
+      App.profiles = App.profiles.filter(p => p !== profile)
+    }
+  }
+
   App.stor_save_profiles()
+}
+
+App.after_profile_remove = () => {
+  App.remove_empty_profiles()
   App.clear_all_items()
   App.show_mode(App.active_mode)
 }
