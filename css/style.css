@@ -27,6 +27,11 @@ select {
 	font-size: 1rem;
 }
 
+input {
+  font-family: var(--font);
+  user-select: unset;
+}
+
 textarea {
   resize: vertical;
   height: 5.4rem;
@@ -665,11 +670,6 @@ a:visited, a:link, a:hover {
   white-space: pre;
 }
 
-input {
-  font-family: var(--font);
-  user-select: unset;
-}
-
 .full_width {
   width: 100%;
 }
@@ -955,6 +955,8 @@ input {
 .color_orange {
   background-color: rgb(170, 127, 59);
 }
+
+/*  */
 
 .selected_effect_background.colored.selected {
   background-color: var(--alt_color_1);
