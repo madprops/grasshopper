@@ -92,6 +92,7 @@ App.apply_theme = (args) => {
 
     App.last_background_color = args.background_color
     App.last_text_color = args.text_color
+    let bg_image_changed = App.last_background_image !== args.background_image
     App.last_background_image = args.background_image
     App.set_css_var(`background_color`, args.background_color)
     App.set_css_var(`text_color`, args.text_color)
@@ -136,7 +137,10 @@ App.apply_theme = (args) => {
     }
 
     App.set_css_var(`item_height`, `${item_height}rem`)
-    App.animate_background_image(args.background_image)
+
+    if (bg_image_changed) {
+      App.animate_background_image(args.background_image)
+    }
 
     if (App.get_setting(`show_scrollbars`)) {
       document.body.classList.remove(`no_scrollbars`)
@@ -173,26 +177,27 @@ App.apply_theme = (args) => {
       main.classList.add(`item_border_${item_border}`)
     }
 
-    let bg = DOM.el(`#background_${App.active_background}`)
+    let all = DOM.el(`#all`)
+
     let bg_effect_opts = [`blur`, `grayscale`, `invert`, `rotate_1`, `rotate_2`, `rotate_3`]
     let bg_effect = App.get_setting(`background_effect`)
 
     for (let eff of bg_effect_opts) {
-      bg.classList.remove(eff)
+      all.classList.remove(`background_effect_${eff}`)
     }
 
     if (bg_effect_opts.includes(bg_effect)) {
-      bg.classList.add(bg_effect)
+      all.classList.add(`background_effect_${bg_effect}`)
     }
 
     let bg_tiles = App.get_setting(`background_tiles`)
 
     if (bg_tiles !== `none`) {
       App.set_css_var(`background_tile_width`, bg_tiles)
-      bg.classList.add(`tiles`)
+      all.classList.add(`background_tiles`)
     }
     else {
-      bg.classList.remove(`tiles`)
+      all.classList.remove(`background_tiles`)
     }
 
     if (App.get_setting(`color_transitions`)) {
@@ -543,8 +548,6 @@ App.animate_background_image = (url) => {
 
   let new_el = DOM.el(`#background_${newnum}`)
   let old_el = DOM.el(`#background_${oldnum}`)
-  new_el.style.opacity = 0
-  old_el.opacity = 1
 
   if (url) {
     App.set_css_var(`background_image_${newnum}`, `url(${url})`)
@@ -578,7 +581,7 @@ App.animate_background_image = (url) => {
         clearInterval(App.background_animation_2)
       }
     }, 100)
-  }, 500)
+  }, 250)
 
   App.active_background = newnum
 }

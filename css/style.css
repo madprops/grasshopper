@@ -84,7 +84,31 @@ select {
   z-index: 21;
 }
 
-#background.tiles {
+.background_effect_blur .background {
+  filter: blur(6px);
+}
+
+.background_effect_grayscale .background {
+  filter: grayscale(1);
+}
+
+.background_effect_invert .background {
+  filter: invert(1);
+}
+
+.background_effect_rotate_1 .background {
+  filter: hue-rotate(90deg);
+}
+
+.background_effect_rotate_2 .background {
+  filter: hue-rotate(180deg);
+}
+
+.background_effect_rotate_3 .background {
+  filter: hue-rotate(270deg);
+}
+
+.background_tiles .background {
   background-size: var(--background_tile_width) auto;
   background-repeat: repeat;
 }
