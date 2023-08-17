@@ -298,11 +298,7 @@ App.set_theme = (c1, c2) => {
     App.apply_theme({background_color: c1, text_color: c2, check: true})
   }
 
-  if (App.on_settings()) {
-    if (App.settings_category === `theme`) {
-      App.refresh_theme_settings()
-    }
-  }
+  App.check_theme_refresh()
 }
 
 App.set_default_theme = () => {
@@ -380,27 +376,17 @@ App.random_background = async () => {
 App.apply_background = (url) => {
   App.set_setting(`background_image`, url)
   App.apply_theme()
-
-  if (App.on_settings()) {
-    if (App.settings_category === `theme`) {
-      App.refresh_theme_settings()
-    }
-  }
+  App.check_theme_refresh()
 }
 
 App.change_background = (url) => {
   App.set_setting(`background_image`, url)
-  App.add_to_background_pool(url)
   App.apply_theme()
-
-  if (App.on_settings()) {
-    if (App.settings_category === `theme`) {
-      App.refresh_theme_settings()
-    }
-  }
+  App.check_theme_refresh()
 }
 
-App.add_to_background_pool = (url) => {
+App.add_to_background_pool = () => {
+  let url = App.get_setting(`background_image`)
   let pool = App.get_setting(`background_pool`)
 
   if (!pool.includes(url)) {
@@ -411,6 +397,15 @@ App.add_to_background_pool = (url) => {
     }
 
     App.set_setting(`background_pool`, pool)
+    App.check_theme_refresh()
+  }
+}
+
+App.check_theme_refresh = () => {
+  if (App.on_settings()) {
+    if (App.settings_category === `theme`) {
+      App.refresh_theme_settings()
+    }
   }
 }
 

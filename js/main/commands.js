@@ -231,6 +231,9 @@ App.setup_commands = () => {
     {name: App.get_icontext(`next_background`), cmd: `next_background`, action: (args) => {
       App.background_from_pool()
     }},
+    {name: App.get_icontext(`add_to_background_pool`), cmd: `next_background`, action: (args) => {
+      App.add_to_background_pool()
+    }},
 
     {name: App.separator_string},
 

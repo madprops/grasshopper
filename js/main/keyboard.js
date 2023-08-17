@@ -262,26 +262,21 @@ App.setup_keyboard = () => {
       }
     }
     else if (App.popup_open()) {
-      if (pmode === `confirm`) {
-        if (e.key === `ArrowLeft`) {
-          App.focus_confirm_no()
-        }
-        else if (e.key === `ArrowRight`) {
-          App.focus_confirm_yes()
-        }
-        else if (e.key === `Enter`) {
-          App.confirm_enter()
-        }
-      }
-      else if (pmode === `dialog`) {
+      if (pmode === `dialog`) {
         if (e.key === `Enter`) {
           App.dialog_enter()
+          e.preventDefault()
+          return
         }
         else if (e.key === `ArrowLeft`) {
           App.dialog_left()
+          e.preventDefault()
+          return
         }
         else if (e.key === `ArrowRight`) {
           App.dialog_right()
+          e.preventDefault()
+          return
         }
       }
       else if (pmode === `palette`) {
