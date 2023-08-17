@@ -12,7 +12,6 @@ App.build_default_settings = () => {
   obj.item_border = {value: `none`, category: category, version: 2}
   obj.pick_mode = {value: `none`, category: category, version: 1}
   obj.color_mode = {value: `icon`, category: category, version: 1}
-  obj.smooth_scrolling = {value: true, category: category, version: 1}
 
   category = `theme`
   obj.background_color = {value: `rgb(45, 45, 55)`, category: category, version: 1}
@@ -118,6 +117,7 @@ App.build_default_settings = () => {
   obj.debug_mode = {value: false, category: category, version: 1}
   obj.selected_effect = {value: `background`, category: category, version: 1}
   obj.double_click_action = {value: false, category: category, version: 1}
+  obj.smooth_scrolling = {value: true, category: category, version: 1}
 
   App.default_settings = obj
 }
