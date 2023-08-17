@@ -64,7 +64,6 @@ select {
   height: 100%;
   transition: var(--color_transition);
   background-color: var(--background_color);
-  background-color: var(--background_color);
   background-repeat: no-repeat;
 	background-position: center;
   background-size: cover;
