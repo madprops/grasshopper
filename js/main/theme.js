@@ -320,7 +320,7 @@ App.set_theme = (c1, c2) => {
     // Don't apply theme
   }
   else {
-    App.apply_theme({background_color: c1, text_color: c2, check: true})
+    App.check_item_theme()
   }
 
   App.check_theme_refresh()
