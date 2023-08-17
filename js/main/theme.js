@@ -95,16 +95,20 @@ App.apply_theme = (args) => {
       args.background_image = App.get_setting(`background_image`)
     }
 
+    let bg_color_changed = args.background_color === App.last_background_color
+    let text_color_changed = args.text_color === App.last_text_color
+    let bg_image_changed = args.background_image !== App.last_background_image
+
     if (args.check) {
-      if (args.background_color === App.last_background_color && args.text_color === App.last_text_color &&
-        (args.background_image && (args.background_image === App.last_background_image))) {
-        return
+      if (bg_color_changed && text_color_changed) {
+        if (args.background_image && !bg_image_changed) {
+          return
+        }
       }
     }
 
     App.last_background_color = args.background_color
     App.last_text_color = args.text_color
-    let bg_image_changed = App.last_background_image !== args.background_image
     App.last_background_image = args.background_image
     App.set_css_var(`background_color`, args.background_color)
     App.set_css_var(`text_color`, args.text_color)
@@ -463,6 +467,7 @@ App.check_item_theme = () => {
 }
 
 App.do_check_item_theme = () => {
+  App.debug(`Check Item Theme`)
   App.check_item_theme_debouncer.cancel()
   let item = App.get_active_tab_item()
 

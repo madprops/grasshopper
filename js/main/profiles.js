@@ -247,6 +247,10 @@ App.show_profile_editor = (item, type, action = `edit`) => {
       if (profile.text_color) {
         App.profile_editor_text_color.setColor(profile.text_color)
       }
+
+      if (profile.background_image) {
+        DOM.el(`#profile_editor_background_image`).value = profile.background_image
+      }
     }
   }
   else {

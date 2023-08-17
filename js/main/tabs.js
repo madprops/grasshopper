@@ -654,6 +654,7 @@ App.on_tab_activated = async (info) => {
   }
 
   await App.refresh_tab(info.tabId, select)
+  App.check_item_theme()
 }
 
 App.move_tabs = async (item, window_id) => {
