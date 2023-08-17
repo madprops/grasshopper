@@ -28,10 +28,20 @@ App.start_theme_interval = (setting) => {
       }
 
       if (setting === `auto_theme`) {
-        App.random_theme()
+        try {
+          App.random_theme()
+        }
+        catch (err) {
+          clearInterval(App[`${setting}_interval`])
+        }
       }
       else if (setting === `auto_background`) {
-        App.auto_background_action()
+        try {
+          App.auto_background_action()
+        }
+        catch (err) {
+          clearInterval(App[`${setting}_interval`])
+        }
       }
     }, delay)
 
