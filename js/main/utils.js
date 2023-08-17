@@ -158,7 +158,12 @@ App.get_template = (id) => {
   }
 }
 
-App.log = (message, mode = `normal`) => {
+App.log = (message, mode = `normal`, date = false) => {
+  if (date) {
+    let d = App.nice_date(undefined, true)
+    message = `${message} - ${d}`
+  }
+
   if (mode === `error`) {
     console.error(`🔴 ${message}`)
   }
@@ -178,12 +183,11 @@ App.log = (message, mode = `normal`) => {
 }
 
 App.debug = (message) => {
-  let d = App.nice_date(undefined, true)
-  App.log(`${message} - ${d}`, `debug`)
+  App.log(message, `debug`, true)
 }
 
 App.error = (message) => {
-  App.log(message, `error`)
+  App.log(message, `error`, true)
 }
 
 App.find_duplicates = (objects, property) => {
