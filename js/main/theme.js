@@ -275,7 +275,7 @@ App.set_css_var = (name, value) => {
 }
 
 App.get_css_var = (name) => {
-  return getComputedStyle(document.documentElement).getPropertyValue(name);
+  return getComputedStyle(document.documentElement).getPropertyValue(`--${name}`)
 }
 
 App.dark_theme = () => {
@@ -573,16 +573,7 @@ App.animate_background_image = (url) => {
     App.set_css_var(`background_image_${newnum}`, `unset`)
   }
 
-  let old_var = App.get_css_var(`--background_image_${oldnum}`)
-
-  if (!old_var) {
-    if (url) {
-      App.set_css_var(`background_image_${oldnum}`, `url(${url})`)
-    }
-    else {
-      App.set_css_var(`background_image_${oldnum}`, `unset`)
-    }
-  }
+  App.active_background = newnum
 
   function proc (n1, n2) {
     new_el.style.opacity = n1
@@ -619,6 +610,4 @@ App.animate_background_image = (url) => {
       }
     }, 120)
   }, 240)
-
-  App.active_background = newnum
 }
