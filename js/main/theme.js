@@ -556,7 +556,6 @@ App.animate_background_image = (url) => {
     App.set_css_var(`background_image_${newnum}`, `unset`)
   }
 
-
   if (!App.get_setting(`background_transitions`) || !App.first_bg_image) {
     new_el.style.opacity = 1
     old_el.style.opacity = 0
