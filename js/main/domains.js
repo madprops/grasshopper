@@ -11,19 +11,19 @@ App.get_domain_props = (setting, item) => {
     try {
       let split = line.split(`=`)
       let domain = split[0].trim()
-      let prop_1 = split[1].trim()
-      let props = [prop_1]
+      let value = split[1].trim()
 
-      if (!domain) {
+      if (!domain || !value) {
         continue
       }
 
+      let props = [value]
       let clean = App.format_url(domain)
       clean = App.remove_protocol(clean)
 
       if (item.path.startsWith(clean)) {
-        if (prop_1.includes(`;`)) {
-          props = prop_1.split(`;`).map((p) => p.trim())
+        if (value.includes(`;`)) {
+          props = value.split(`;`).map((p) => p.trim())
         }
 
         return props
