@@ -194,7 +194,12 @@
           <textarea autocomplete="off" spellcheck="false" class="text settings_textarea" id="settings_custom_filters" data-setting="custom_filters" rows="3" placeholder="One filter per line"></textarea>
         </div>
 
-        <div class="settings_item" title="Set fixed colors per domain. These have to use one of the available profile colors, like red, green, blue, yellow, purple, and orange. Format: example.com = green">
+        <div class="settings_item" title="Set tags per domain. Multiple tags can be separated by a semicolon. Format: example.com = nice ; web">
+          <div class="settings_label" data-add="domain_colors">Domain Tags</div>
+          <textarea autocomplete="off" spellcheck="false" class="text settings_textarea" id="settings_domain_tags" data-setting="domain_tags" rows="3" placeholder="One domain per line"></textarea>
+        </div>
+
+        <div class="settings_item" title="Set colors per domain. These have to use one of the available profile colors, like red, green, blue, yellow, purple, and orange. Format: example.com = green">
           <div class="settings_label" data-add="domain_colors">Domain Colors</div>
           <textarea autocomplete="off" spellcheck="false" class="text settings_textarea" id="settings_domain_colors" data-setting="domain_colors" rows="3" placeholder="One domain per line"></textarea>
         </div>
@@ -406,7 +411,7 @@
           <input type="checkbox" class="settings_checkbox" id="settings_direct_settings" data-setting="direct_settings">
         </div>
 
-        <div class="settings_item" title="Print log messages to the browser console">
+        <div class="settings_item" title="Print log messages to the browser console, and other information">
           <div class="settings_label">Debug Mode</div>
           <input type="checkbox" class="settings_checkbox" id="settings_debug_mode" data-setting="debug_mode">
         </div>

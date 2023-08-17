@@ -92,6 +92,7 @@ App.build_default_settings = () => {
   category = `lists`
   obj.aliases = {value: [], category: category, version: 1}
   obj.custom_filters = {value: [], category: category, version: 1}
+  obj.domain_tags = {value: [], category: category, version: 1}
   obj.domain_themes = {value: [], category: category, version: 1}
   obj.domain_colors = {value: [], category: category, version: 1}
   obj.domain_titles = {value: [], category: category, version: 1}
@@ -403,8 +404,14 @@ App.add_settings_filter = (category) => {
   filter.type = `text`
   filter.autocomplete = `off`
   filter.spellcheck = false
-  let items = DOM.els(`.settings_item`, container)
-  filter.placeholder = `Filter (${items.length})`
+  let s = ``
+
+  if (App.get_setting(`debug_mode`)) {
+    let items = DOM.els(`.settings_item`, container)
+    s = ` (${items.length})`
+  }
+
+  filter.placeholder = `Filter${s}`
   container.prepend(filter)
 }
 
