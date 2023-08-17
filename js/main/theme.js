@@ -29,6 +29,7 @@ App.start_theme_interval = (setting) => {
 
       if (setting === `auto_theme`) {
         try {
+          App.log(`Auto Theme`, `debug`)
           App.random_theme()
         }
         catch (err) {
@@ -37,6 +38,7 @@ App.start_theme_interval = (setting) => {
       }
       else if (setting === `auto_background`) {
         try {
+          App.log(`Auto Background`, `debug`)
           App.auto_background_action()
         }
         catch (err) {
@@ -544,6 +546,7 @@ App.background_from_pool = (random = false) => {
 App.animate_background_image = (url) => {
   clearTimeout(App.background_animation_1)
   clearInterval(App.background_animation_2)
+  App.log(`Animate Background`, `debug`)
 
   let newnum, oldnum
 
