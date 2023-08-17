@@ -546,29 +546,28 @@ App.animate_background_image = (url) => {
   clearTimeout(App.background_animation_1)
   clearInterval(App.background_animation_2)
   App.debug(`Animate Background`)
-
-  let newnum, oldnum
+  let new_num, old_num
 
   if (App.active_background === 1) {
-    oldnum = 1
-    newnum = 2
+    old_num = 1
+    new_num = 2
   }
   else {
-    oldnum = 2
-    newnum = 1
+    old_num = 2
+    new_num = 1
   }
 
-  let new_el = DOM.el(`#background_${newnum}`)
-  let old_el = DOM.el(`#background_${oldnum}`)
+  let new_el = DOM.el(`#background_${new_num}`)
+  let old_el = DOM.el(`#background_${old_num}`)
 
   if (url) {
-    App.set_css_var(`background_image_${newnum}`, `url(${url})`)
+    App.set_css_var(`background_image_${new_num}`, `url(${url})`)
   }
   else {
-    App.set_css_var(`background_image_${newnum}`, `unset`)
+    App.set_css_var(`background_image_${new_num}`, `unset`)
   }
 
-  App.active_background = newnum
+  App.active_background = new_num
 
   function proc (n1, n2) {
     new_el.style.opacity = n1
