@@ -393,18 +393,18 @@ App.process_info = (mode, info, exclude = [], o_item) => {
   }
 
   if (!item.tags.length) {
-    let t = App.domain_tags(item)
+    let props = App.domain_tags(item)
 
-    if (t) {
-      item.tags = t
+    if (props) {
+      item.tags = props
     }
   }
 
   if (!item.color) {
-    let c = App.domain_color(item)
+    let props = App.domain_color(item)
 
-    if (c) {
-      item.color = c
+    if (props) {
+      item.color = props[0]
     }
   }
 

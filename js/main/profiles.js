@@ -653,7 +653,14 @@ App.get_tags = () => {
 
 App.get_tag_items = (mode, action = `filter`) => {
   let items = []
-  let tags = App.get_tags()
+  let tags
+
+  if (action === `remove`) {
+    tags = App.get_tags()
+  }
+  else if (action === `filter`) {
+    tags = App.get_active_tags(mode)
+  }
 
   if (action === `remove`) {
     items.push({
@@ -1468,4 +1475,18 @@ App.get_active_colors = (mode) => {
   }
 
   return count
+}
+
+App.get_active_tags = (mode) => {
+  let tags = []
+
+  for (let item of App.get_items(mode)) {
+    for (let tag of item.tags) {
+      if (tag && !tags.includes(tag)) {
+        tags.push(tag)
+      }
+    }
+  }
+
+  return tags
 }
