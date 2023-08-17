@@ -4,32 +4,34 @@ App.get_domain_props = (setting, item) => {
   }
 
   for (let line of App.get_setting(setting)) {
-    if (line.includes(`=`)) {
-      try {
-        let split = line.split(`=`)
-        let domain = split[0].trim()
-        let prop_1 = split[1].trim()
-        let props = [prop_1]
+    if (!line.includes(`=`)) {
+      return
+    }
 
-        if (!domain) {
-          continue
-        }
+    try {
+      let split = line.split(`=`)
+      let domain = split[0].trim()
+      let prop_1 = split[1].trim()
+      let props = [prop_1]
 
-        let clean = App.format_url(domain)
-        clean = App.remove_protocol(clean)
-
-        if (item.path.startsWith(clean)) {
-          if (prop_1.includes(`;`)) {
-            props = prop_1.split(`;`).map((p) => p.trim())
-          }
-
-          return props
-        }
-      }
-      catch (err) {
-        App.log(err, `error`)
+      if (!domain) {
         continue
       }
+
+      let clean = App.format_url(domain)
+      clean = App.remove_protocol(clean)
+
+      if (item.path.startsWith(clean)) {
+        if (prop_1.includes(`;`)) {
+          props = prop_1.split(`;`).map((p) => p.trim())
+        }
+
+        return props
+      }
+    }
+    catch (err) {
+      App.log(err, `error`)
+      continue
     }
   }
 }
