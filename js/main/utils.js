@@ -114,8 +114,14 @@ App.capitalize_all = (s) => {
   return capitalized.join(` `)
 }
 
-App.nice_date = (date = Date.now()) => {
-  return dateFormat(date, `dd/mmm/yy | h:MM tt`)
+App.nice_date = (date = Date.now(), seconds = false) => {
+  let s = ``
+
+  if (seconds) {
+    s = `:ss`
+  }
+
+  return dateFormat(date, `dd/mmm/yy | h:MM${s} tt`)
 }
 
 App.is_url = (s) => {
@@ -172,7 +178,8 @@ App.log = (message, mode = `normal`) => {
 }
 
 App.debug = (message) => {
-  App.log(message, `debug`)
+  let d = App.nice_date(undefined, true)
+  App.log(`${message} - ${d}`, `debug`)
 }
 
 App.error = (message) => {
