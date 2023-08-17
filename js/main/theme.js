@@ -95,13 +95,19 @@ App.apply_theme = (args) => {
       args.background_image = App.get_setting(`background_image`)
     }
 
-    let bg_color_changed = args.background_color === App.last_background_color
-    let text_color_changed = args.text_color === App.last_text_color
+    let bg_color_changed = args.background_color !== App.last_background_color
+    let text_color_changed = args.text_color !== App.last_text_color
     let bg_image_changed = args.background_image !== App.last_background_image
+    console.log(bg_color_changed, text_color_changed)
 
     if (args.check) {
-      if (bg_color_changed && text_color_changed) {
-        if (args.background_image && !bg_image_changed) {
+      if (!bg_color_changed && !text_color_changed) {
+        if (args.background_image) {
+          if (!bg_image_changed) {
+            return
+          }
+        }
+        else {
           return
         }
       }
