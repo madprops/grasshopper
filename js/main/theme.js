@@ -572,12 +572,19 @@ App.animate_background_image = (url) => {
 
   App.background_animation_1 = setTimeout(() => {
     App.background_animation_2 = setInterval(() => {
-      op_new += amount
-      op_old -= amount
-      new_el.style.opacity = op_new
-      old_el.style.opacity = op_old
+      try {
+        op_new += amount
+        op_old -= amount
+        new_el.style.opacity = op_new
+        old_el.style.opacity = op_old
 
-      if ((op_new >= 1) && (op_old <= 0)) {
+        if ((op_new >= 1) && (op_old <= 0)) {
+          new_el.style.opacity = 1
+          old_el.style.opacity = 0
+          clearInterval(App.background_animation_2)
+        }
+      }
+      catch (err) {
         new_el.style.opacity = 1
         old_el.style.opacity = 0
         clearInterval(App.background_animation_2)
