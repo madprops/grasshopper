@@ -345,6 +345,13 @@ App.setup_keyboard = () => {
           return
         }
       }
+      else if (pmode === `add_domain_tag`) {
+        if (e.key === `Enter`) {
+          App.do_add_domain_tag()
+          e.preventDefault()
+          return
+        }
+      }
       else if (pmode === `add_alias`) {
         if (e.key === `Enter`) {
           App.do_add_alias()

@@ -472,6 +472,14 @@ App.setup_settings = () => {
   })
 
   App.create_popup({
+    id: `add_domain_tag`, setup: () => {
+      DOM.ev(DOM.el(`#add_domain_tag_add`), `click`, () => {
+        App.do_add_domain_tag()
+      })
+    }, element: App.add_setting_list_item_html(`domain_tag`, `domain`, [`tags`])
+  })
+
+  App.create_popup({
     id: `add_domain_color`, setup: () => {
       DOM.ev(DOM.el(`#add_domain_color_add`), `click`, () => {
         App.do_add_domain_color()
@@ -624,6 +632,10 @@ App.setup_settings = () => {
 
     DOM.ev(DOM.el(`#settings_domain_icons_add`), `click`, () => {
       App.add_domain_icon()
+    })
+
+    DOM.ev(DOM.el(`#settings_domain_tags_add`), `click`, () => {
+      App.add_domain_tag()
     })
 
     DOM.ev(DOM.el(`#settings_domain_titles_add`), `click`, () => {
@@ -1339,6 +1351,17 @@ App.add_domain_title = () => {
 
 App.do_add_domain_title = () => {
   App.do_add_setting_list_item(`domain_titles`, `domain_title`, `domain`, [`title`])
+}
+
+App.add_domain_tag = () => {
+  App.show_popup(`add_domain_tag`)
+  DOM.el(`#add_domain_tag_domain`).value = ``
+  DOM.el(`#add_domain_tag_tags`).value = ``
+  DOM.el(`#add_domain_tag_domain`).focus()
+}
+
+App.do_add_domain_tag = () => {
+  App.do_add_setting_list_item(`domain_tags`, `domain_tag`, `domain`, [`tags`])
 }
 
 App.add_domain_color = () => {
