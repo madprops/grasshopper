@@ -408,6 +408,17 @@ App.process_info = (mode, info, exclude = [], o_item) => {
     }
   }
 
+  if (!item.theme_enabled) {
+    let theme = App.domain_theme(item)
+
+    if (theme) {
+      item.theme_enabled = true
+      item.background_color = theme[0] || ``
+      item.text_color = theme[1] || ``
+      item.background_image = theme[2] || ``
+    }
+  }
+
   if (mode === `tabs`) {
     item.active = info.active
     item.pinned = info.pinned

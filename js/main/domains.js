@@ -65,3 +65,11 @@ App.domain_title = (item) => {
     return props[0]
   }
 }
+
+App.domain_theme = (item) => {
+  let theme = App.get_domain_props(`domain_themes`, item)
+
+  if (theme) {
+    return theme
+  }
+}
