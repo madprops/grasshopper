@@ -315,14 +315,7 @@ App.random_theme = () => {
 App.set_theme = (c1, c2) => {
   App.set_setting(`background_color`, c1)
   App.set_setting(`text_color`, c2)
-
-  if (App.window_mode === `profile_editor`) {
-    // Don't apply theme
-  }
-  else {
-    App.check_item_theme()
-  }
-
+  App.check_item_theme()
   App.check_theme_refresh()
 }
 
@@ -467,6 +460,11 @@ App.check_item_theme = () => {
 
 App.do_check_item_theme = () => {
   App.debug(`Check Item Theme`)
+
+  if (App.window_mode === `profile_editor`) {
+    return
+  }
+
   App.check_item_theme_debouncer.cancel()
   let item = App.get_active_tab_item()
 
