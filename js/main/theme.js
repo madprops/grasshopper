@@ -390,7 +390,28 @@ App.apply_background = (url) => {
 
 App.change_background = (url) => {
   App.set_setting(`background_image`, url)
+  App.add_to_background_pool(url)
   App.apply_theme()
+
+  if (App.on_settings()) {
+    if (App.settings_category === `theme`) {
+      App.refresh_theme_settings()
+    }
+  }
+}
+
+App.add_to_background_pool = (url) => {
+  let pool = App.get_setting(`background_pool`)
+
+  if (!pool.includes(url)) {
+    pool.push(url)
+
+    if (pool.length > App.background_pool_max) {
+      pool = pool.slice(0 - App.background_pool_max)
+    }
+
+    App.set_setting(`background_pool`, pool)
+  }
 }
 
 App.refresh_theme_settings = () => {
