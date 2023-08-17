@@ -6,7 +6,7 @@ App.build_default_settings = () => {
   obj.item_height = {value: `normal`, category: category, version: 1}
   obj.font = {value: `sans-serif`, category: category, version: 1}
   obj.font_size = {value: 16, category: category, version: 1}
-  obj.fetch_favicons = {value: false, category: category, version: 1}
+  obj.favicon_source = {value: `none`, category: category, version: 1}
   obj.width = {value: 75, category: category, version: 1}
   obj.height = {value: 85, category: category, version: 1}
   obj.item_border = {value: `none`, category: category, version: 2}
@@ -591,6 +591,12 @@ App.setup_settings = () => {
       [`Item`, `item`],
       [`Both`, `both`],
       [`Both 2`, `both_2`],
+    ])
+
+    App.settings_make_menu(`favicon_source`, [
+      [`None`, `none`],
+      [`Google`, `google`],
+      [`4get`, `4get`],
     ])
 
     App.settings_make_menu(`width`, App.get_size_options(), () => {

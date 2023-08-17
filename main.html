@@ -130,11 +130,6 @@
 
     <template id="template_settings_general">
       <div id="settings_general_container" class="settings_container">
-        <div class="settings_item" title="Make network requests to fetch favicons when necessary">
-          <div class="settings_label">Fetch Favicons</div>
-          <input type="checkbox" class="settings_checkbox" id="settings_fetch_favicons" data-setting="fetch_favicons">
-        </div>
-
         <div class="settings_item" title="Enable smooth scrolling in some cases">
           <div class="settings_label">Smooth Scrolling</div>
           <input type="checkbox" class="settings_checkbox" id="settings_smooth_scrolling" data-setting="smooth_scrolling">
@@ -173,6 +168,11 @@
         <div class="settings_item" title="How to show that an item has a certain color. 'Icon 2' shows the color icon while hiding the favicon">
           <div class="settings_label">Color Mode</div>
           <div id="settings_color_mode" class="settings_menu button" data-setting="color_mode"></div>
+        </div>
+
+        <div class="settings_item" title="Where to make network requests to fetch favicons when necessary">
+          <div class="settings_label">Favicon Source</div>
+          <div id="settings_favicon_source" class="settings_menu button" data-setting="favicon_source"></div>
         </div>
 
         <div class="settings_item" title="Width of the popup">

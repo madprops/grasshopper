@@ -71,6 +71,19 @@ App.get_hostname = (url) => {
   return url_obj.hostname
 }
 
+App.get_protocol = (url) => {
+  let url_obj
+
+  try {
+    url_obj = new URL(url)
+  }
+  catch (err) {
+    return ``
+  }
+
+  return url_obj.protocol
+}
+
 App.urls_equal = (u1, u2) => {
   return App.remove_slashes_end(u1) === App.remove_slashes_end(u2)
 }
@@ -248,8 +261,20 @@ App.escape_regex = (s) => {
   return s.replace(/[^A-Za-z0-9|]/g, `\\$&`)
 }
 
-App.get_favicon_url = (url) => {
-  return `https://www.google.com/s2/favicons?sz=${App.favicon_size}&domain=${url}`
+App.hostname_full = (item) => {
+  return `${item.protocol}//${item.hostname}`
+}
+
+App.get_favicon_url = (item) => {
+  let url = App.hostname_full(item)
+  let source = App.get_setting(`favicon_source`)
+
+  if (source === `google`) {
+    return `https://www.google.com/s2/favicons?sz=${App.favicon_size}&domain=${url}`
+  }
+  else if (source === `4get`) {
+    return `https://4get.ca/favicon?s=${url}`
+  }
 }
 
 App.print_intro = () => {

@@ -314,6 +314,7 @@ App.process_info = (mode, info, exclude = [], o_item) => {
   }
 
   let path = App.remove_protocol(url)
+  let protocol = App.get_protocol(url)
   let hostname = App.get_hostname(url)
   let title = info.title || ``
   let image = App.is_image(url)
@@ -371,6 +372,7 @@ App.process_info = (mode, info, exclude = [], o_item) => {
     custom_title: custom_title,
     url: url,
     path: path,
+    protocol: protocol,
     hostname: hostname,
     favicon: info.favIconUrl,
     icon: icon,
@@ -627,10 +629,10 @@ App.get_img_icon = (item) => {
   icon.width = App.icon_size
   icon.height = App.icon_size
 
-  if (App.get_setting(`fetch_favicons`)) {
+  if (App.get_setting(`favicon_source`) !== `none`) {
     if (!item.favicon && App.no_favicons.includes(item.mode)) {
       if (App.is_url(item.url)) {
-        item.favicon = App.get_favicon_url(item.url)
+        item.favicon = App.get_favicon_url(item)
       }
     }
   }
