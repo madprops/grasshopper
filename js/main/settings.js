@@ -89,9 +89,7 @@ App.build_default_settings = () => {
   obj.warn_on_remove_profiles = {value: true, category: category, version: 1}
   obj.warn_on_bookmark = {value: true, category: category, version: 1}
 
-  category = `lists`
-  obj.aliases = {value: [], category: category, version: 1}
-  obj.custom_filters = {value: [], category: category, version: 1}
+  category = `domain`
   obj.domain_tags = {value: [], category: category, version: 1}
   obj.domain_themes = {value: [], category: category, version: 1}
   obj.domain_colors = {value: [], category: category, version: 1}
@@ -119,6 +117,8 @@ App.build_default_settings = () => {
   obj.selected_effect = {value: `background`, category: category, version: 1}
   obj.double_click_action = {value: false, category: category, version: 1}
   obj.smooth_scrolling = {value: true, category: category, version: 1}
+  obj.aliases = {value: [], category: category, version: 1}
+  obj.custom_filters = {value: [], category: category, version: 1}
 
   App.default_settings = obj
 }
@@ -512,7 +512,7 @@ App.setup_settings = () => {
     }, element: App.add_setting_list_item_html(`background_pool`, `image_url`, [], true)
   })
 
-  App.settings_categories = [`general`, `theme`, `media`, `show`, `mouse`, `warns`, `lists`, `more`]
+  App.settings_categories = [`general`, `theme`, `media`, `show`, `mouse`, `warns`, `domain`, `more`]
 
   let common = {
     persistent: false,
@@ -615,8 +615,8 @@ App.setup_settings = () => {
     })
   }}))
 
-  App.create_window(Object.assign({}, common, {id: `settings_lists`, setup: () => {
-    prepare(`lists`)
+  App.create_window(Object.assign({}, common, {id: `settings_domain`, setup: () => {
+    prepare(`domain`)
 
     DOM.ev(DOM.el(`#settings_domain_themes_add`), `click`, () => {
       App.add_domain_theme()
@@ -632,14 +632,6 @@ App.setup_settings = () => {
 
     DOM.ev(DOM.el(`#settings_domain_colors_add`), `click`, () => {
       App.add_domain_color()
-    })
-
-    DOM.ev(DOM.el(`#settings_aliases_add`), `click`, () => {
-      App.add_alias()
-    })
-
-    DOM.ev(DOM.el(`#settings_custom_filters_add`), `click`, () => {
-      App.add_custom_filter()
     })
   }}))
 
@@ -683,6 +675,14 @@ App.setup_settings = () => {
       [`Bold`, `bold`],
       [`Bigger`, `bigger`],
     ])
+
+    DOM.ev(DOM.el(`#settings_aliases_add`), `click`, () => {
+      App.add_alias()
+    })
+
+    DOM.ev(DOM.el(`#settings_custom_filters_add`), `click`, () => {
+      App.add_custom_filter()
+    })
 
     App.make_mode_order()
 

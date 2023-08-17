@@ -87,7 +87,7 @@ App.settings_icons = {
   show: `👁️`,
   mouse: `🖱️`,
   warns: `🚨`,
-  lists: `💾`,
+  domain: `💾`,
   more: `💠`,
 }
 

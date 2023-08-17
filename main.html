@@ -182,18 +182,8 @@
       </div>
     </template>
 
-    <template id="template_settings_lists">
-      <div id="settings_lists_container" class="settings_container">
-        <div class="settings_item" title="Filter aliases. Format: this = that">
-          <div class="settings_label" data-add="aliases">Aliases</div>
-          <textarea autocomplete="off" spellcheck="false" class="text settings_textarea" id="settings_aliases" data-setting="aliases" rows="3" placeholder="One alias per line"></textarea>
-        </div>
-
-        <div class="settings_item" title="These appear in the filters menu">
-          <div class="settings_label" data-add="custom_filters">Custom Filters</div>
-          <textarea autocomplete="off" spellcheck="false" class="text settings_textarea" id="settings_custom_filters" data-setting="custom_filters" rows="3" placeholder="One filter per line"></textarea>
-        </div>
-
+    <template id="template_settings_domain">
+      <div id="settings_domain_container" class="settings_container">
         <div class="settings_item" title="Set tags per domain. Multiple tags can be separated by a semicolon. Format: example.com = nice ; web">
           <div class="settings_label" data-add="domain_colors">Domain Tags</div>
           <textarea autocomplete="off" spellcheck="false" class="text settings_textarea" id="settings_domain_tags" data-setting="domain_tags" rows="3" placeholder="One domain per line"></textarea>
@@ -339,6 +329,16 @@
         <div class="settings_item" title="Where to save bookmarks">
           <div class="settings_label">Bookmarks Folder</div>
           <input type="text" autocomplete="off" spellcheck="false" placeholder="Save bookmarks here" id="settings_bookmarks_folder" class="text settings_text" data-setting="bookmarks_folder">
+        </div>
+
+        <div class="settings_item" title="Filter aliases. Format: this = that">
+          <div class="settings_label" data-add="aliases">Aliases</div>
+          <textarea autocomplete="off" spellcheck="false" class="text settings_textarea" id="settings_aliases" data-setting="aliases" rows="3" placeholder="One alias per line"></textarea>
+        </div>
+
+        <div class="settings_item" title="These appear in the filters menu">
+          <div class="settings_label" data-add="custom_filters">Custom Filters</div>
+          <textarea autocomplete="off" spellcheck="false" class="text settings_textarea" id="settings_custom_filters" data-setting="custom_filters" rows="3" placeholder="One filter per line"></textarea>
         </div>
 
         <div class="settings_item" title="When to auto-restore when mouse leaves the window">
