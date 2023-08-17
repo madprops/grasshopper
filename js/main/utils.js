@@ -266,13 +266,13 @@ App.hostname_full = (item) => {
 }
 
 App.get_favicon_url = (item) => {
-  let url = App.hostname_full(item)
   let source = App.get_setting(`favicon_source`)
 
   if (source === `google`) {
-    return `https://www.google.com/s2/favicons?sz=${App.favicon_size}&domain=${url}`
+    return `https://www.google.com/s2/favicons?sz=${App.favicon_size}&domain=${item.url}`
   }
   else if (source === `4get`) {
+    let url = App.hostname_full(item)
     return `https://4get.ca/favicon?s=${url}`
   }
 }
