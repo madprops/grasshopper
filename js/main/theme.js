@@ -571,7 +571,6 @@ App.animate_background_image = (url) => {
       op_old -= amount
       new_el.style.opacity = op_new
       old_el.style.opacity = op_old
-      console.log(op_new, op_old)
 
       if ((op_new >= 1) && (op_old <= 0)) {
         new_el.style.opacity = 1
