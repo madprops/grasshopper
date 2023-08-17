@@ -61,6 +61,8 @@ App.auto_background_action = () => {
 }
 
 App.apply_theme = (args) => {
+  App.log(`Apply Theme`, `debug`)
+
   let def_args = {
     check: false,
     safe_mode: false,
@@ -82,9 +84,8 @@ App.apply_theme = (args) => {
     }
 
     if (args.check) {
-      if (args.background_color === App.last_background_color &&
-        args.text_color === App.last_background_image &&
-        args.background_image === App.last_background_image) {
+      if (args.background_color === App.last_background_color && args.text_color === App.last_text_color &&
+        (args.background_image && (args.background_image === App.last_background_image))) {
         return
       }
     }
@@ -135,13 +136,7 @@ App.apply_theme = (args) => {
     }
 
     App.set_css_var(`item_height`, `${item_height}rem`)
-
-    if (args.background_image) {
-      App.set_css_var(`background_image`, `url(${args.background_image})`)
-    }
-    else {
-      App.set_css_var(`background_image`, `unset`)
-    }
+    App.animate_background_image(args.background_image)
 
     if (App.get_setting(`show_scrollbars`)) {
       document.body.classList.remove(`no_scrollbars`)
@@ -178,7 +173,7 @@ App.apply_theme = (args) => {
       main.classList.add(`item_border_${item_border}`)
     }
 
-    let bg = DOM.el(`#background`)
+    let bg = DOM.el(`#background_${App.active_background}`)
     let bg_effect_opts = [`blur`, `grayscale`, `invert`, `rotate_1`, `rotate_2`, `rotate_3`]
     let bg_effect = App.get_setting(`background_effect`)
 
@@ -529,4 +524,62 @@ App.background_from_pool = (random = false) => {
   if (next_image) {
     App.apply_background(next_image)
   }
+}
+
+App.animate_background_image = (url) => {
+  clearTimeout(App.background_animation_1)
+  clearInterval(App.background_animation_2)
+
+  let newnum, oldnum
+
+  if (App.active_background === 1) {
+    oldnum = 1
+    newnum = 2
+  }
+  else {
+    oldnum = 2
+    newnum = 1
+  }
+
+  let new_el = DOM.el(`#background_${newnum}`)
+  let old_el = DOM.el(`#background_${oldnum}`)
+  new_el.style.opacity = 0
+  old_el.opacity = 1
+
+  if (url) {
+    App.set_css_var(`background_image_${newnum}`, `url(${url})`)
+  }
+  else {
+    App.set_css_var(`background_image_${newnum}`, `unset`)
+  }
+
+  if (!App.get_setting(`background_transitions`)) {
+    new_el.style.opacity = 1
+    old_el.style.opacity = 0
+    return
+  }
+
+  let amount = 0.1
+  let op_new = 0
+  let op_old = 1
+  new_el.style.opacity = op_new
+  old_el.style.opacity = op_old
+
+  App.background_animation_1 = setTimeout(() => {
+    App.background_animation_2 = setInterval(() => {
+      op_new += amount
+      op_old -= amount
+      new_el.style.opacity = op_new
+      old_el.style.opacity = op_old
+      console.log(op_new, op_old)
+
+      if ((op_new >= 1) && (op_old <= 0)) {
+        new_el.style.opacity = 1
+        old_el.style.opacity = 0
+        clearInterval(App.background_animation_2)
+      }
+    }, 100)
+  }, 500)
+
+  App.active_background = newnum
 }

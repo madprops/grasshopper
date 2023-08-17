@@ -70,6 +70,7 @@ App.max_smooth_scroll = 1000 * 2
 App.settings_ready = false
 App.scroll_bottom_delay = 150
 App.background_pool_max = 100
+App.active_background = 1
 
 App.color_icons = {
   red: `🔴`,

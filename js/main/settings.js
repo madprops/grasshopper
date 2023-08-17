@@ -23,6 +23,7 @@ App.build_default_settings = () => {
   obj.auto_background = {value: `never`, category: category, version: 3}
   obj.auto_background_mode = {value: `pool`, category: category, version: 1}
   obj.color_transitions = {value: true, category: category, version: 1}
+  obj.background_transitions = {value: true, category: category, version: 1}
   obj.random_background_gifs = {value: true, category: category, version: 1}
   obj.random_themes = {value: `dark`, category: category, version: 1}
   obj.background_pool = {value: [], category: category, version: 1}
