@@ -727,6 +727,7 @@ select {
 
 textarea {
   resize: vertical;
+  height: 5.4rem;
 }
 
 select {
