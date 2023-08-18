@@ -26,8 +26,15 @@ App.init = async () => {
   App.setup_modes()
   App.apply_theme()
   App.clear_all_items()
+
+  // Tabs are always available
   await App.show_mode(`tabs`)
+
+  // Show first mode
+  // unless it's tabs
   App.show_first_mode(false)
+
+  // And finally
   App.make_window_visible()
 }
 
