@@ -457,7 +457,7 @@ App.do_check_item_theme = () => {
   App.set_default_theme()
 }
 
-App.get_color_type = (rand) => {
+App.get_color_type = (rand, inverse = false) => {
   let types = []
   let type = App.get_setting(`random_themes`)
 
@@ -473,7 +473,18 @@ App.get_color_type = (rand) => {
     return
   }
 
-  return App.random_choice(types, rand)
+  let color = App.random_choice(types, rand)
+
+  if (inverse) {
+    if (color === `dark`) {
+      color = `light`
+    }
+    else if (color === `light`) {
+      color = `dark`
+    }
+  }
+
+  return color
 }
 
 App.background_from_pool = (random = false) => {
@@ -640,24 +651,15 @@ App.check_theme_refresh = () => {
 }
 
 App.random_settings_color = (what) => {
-  let type = App.get_color_type()
+  let inverse = what === `text`
+  let type = App.get_color_type(undefined, inverse)
   let color
 
   if (type === `light`) {
-    if (what === `background`) {
-      color = App.colorlib.get_light_color()
-    }
-    else if (what === `text`) {
-      color = App.colorlib.get_dark_color()
-    }
+    color = App.colorlib.get_light_color()
   }
   else if (type === `dark`) {
-    if (what === `background`) {
-      color = App.colorlib.get_dark_color()
-    }
-    else if (what === `text`) {
-      color = App.colorlib.get_light_color()
-    }
+    color = App.colorlib.get_dark_color()
   }
 
   color = App.colorlib.hex_to_rgb(color)
