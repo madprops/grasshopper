@@ -160,6 +160,10 @@ App.mouse_click_action = (mode, e) => {
     return
   }
 
+  if (e.altKey) {
+    return
+  }
+
   App[`${item.mode}_action`](item)
 }
 

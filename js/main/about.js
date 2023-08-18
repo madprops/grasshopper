@@ -37,6 +37,7 @@ App.setup_about = () => {
       `Some interface elements can be mapped to commands on middle click`,
       `The profile editor can help you organize and find tabs`,
       `Data like settings and profiles can be exported and imported`,
+      `Alt + Click selects items without triggering actions`,
 
     ]
 
