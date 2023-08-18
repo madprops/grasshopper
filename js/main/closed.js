@@ -73,6 +73,5 @@ App.forget_closed_tabs = (item) => {
 }
 
 App.after_forget = () => {
-  App.closed_changed = true
-  App.show_mode(`closed`)
+  App.show_mode(`closed`, undefined, true)
 }
