@@ -195,8 +195,16 @@ App.update_mode_order = () => {
   App.get_mode_order()
 }
 
-App.show_first_mode = () => {
-  App.show_mode(App.mode_order[0])
+App.show_first_mode = (allow_same = true) => {
+  let mode = App.mode_order[0]
+
+  if (!allow_same) {
+    if (App.active_mode === mode) {
+      return
+    }
+  }
+
+  App.show_mode(mode)
 }
 
 App.first_mode = () => {
