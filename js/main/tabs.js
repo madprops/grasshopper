@@ -20,6 +20,10 @@ App.setup_tabs = () => {
       App.show_tabs_info()
     }},
 
+    {text: `Tab URLs`, action: () => {
+      App.show_tab_urls()
+    }},
+
     {text: `Close Tabs`, get_items: () => {
       return App.get_close_tabs_items()
     }},
@@ -482,6 +486,17 @@ App.show_tabs_info = () => {
   s += `Unloaded: ${unloaded}`
 
   App.show_alert(s)
+}
+
+App.show_tab_urls = () => {
+  let urls = []
+
+  for (let item of App.get_items(`tabs`)) {
+    urls.push(item.url)
+  }
+
+  let s = App.to_set(urls).join(`\n`)
+  App.show_textarea(`All tab URLs`, s)
 }
 
 App.toggle_pin = (item) => {
