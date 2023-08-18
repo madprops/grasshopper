@@ -77,8 +77,8 @@ select {
   background-size: cover;
 }
 
-.background.tiles {
-  background-size: var(--tiles_width) auto;
+.tiles {
+  background-size: var(--bg_tiles_width) auto;
   background-repeat: repeat;
 }
 
