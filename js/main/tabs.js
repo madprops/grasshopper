@@ -32,7 +32,7 @@ App.setup_tabs = () => {
 
     if (info.windowId === App.window_id) {
       await App.refresh_tab(id, false, info)
-      App.tabs_check()
+      App.check_playing(`tabs`)
     }
   })
 
@@ -41,7 +41,7 @@ App.setup_tabs = () => {
 
     if (info.windowId === App.window_id) {
       await App.on_tab_activated(info)
-      App.tabs_check()
+      App.check_playing(`tabs`)
     }
   })
 
@@ -50,7 +50,7 @@ App.setup_tabs = () => {
 
     if (info.windowId === App.window_id) {
       App.remove_closed_tab(id)
-      App.tabs_check()
+      App.check_playing(`tabs`)
     }
   })
 
@@ -59,7 +59,7 @@ App.setup_tabs = () => {
 
     if (info.windowId === App.window_id) {
       App.move_item(`tabs`, info.fromIndex, info.toIndex)
-      App.tabs_check()
+      App.check_playing(`tabs`)
     }
   })
 
@@ -68,7 +68,7 @@ App.setup_tabs = () => {
 
     if (info.oldWindowId === App.window_id) {
       App.remove_closed_tab(id)
-      App.tabs_check()
+      App.check_playing(`tabs`)
     }
   })
 
@@ -94,10 +94,6 @@ App.setup_tabs = () => {
 App.empty_previous_tabs = App.create_debouncer(() => {
   App.do_empty_previous_tabs()
 }, App.empty_previous_tabs_delay)
-
-App.tabs_check = () => {
-  App.check_playing()
-}
 
 App.get_tabs = async () => {
   App.getting(`tabs`)
@@ -139,7 +135,7 @@ App.focus_tab = async (item, scroll, method = `normal`) => {
   catch (err) {
     App.error(err)
     App.remove_closed_tab(item.id)
-    App.tabs_check()
+    App.check_playing(`tabs`)
   }
 
   App.after_focus_tab(method)
@@ -240,10 +236,6 @@ App.get_pinned_tabs = () => {
 
 App.get_normal_tabs = () => {
   return App.get_items(`tabs`).filter(x => !x.pinned)
-}
-
-App.get_playing_tabs = () => {
-  return App.get_items(`tabs`).filter(x => x.audible)
 }
 
 App.get_muted_tabs = () => {
@@ -725,55 +717,6 @@ App.do_close_normal_tabs = (close_unloaded = true) => {
   }, undefined, force)
 }
 
-App.show_playing = () => {
-  DOM.el(`#tabs_playing`).classList.remove(`hidden`)
-}
-
-App.hide_playing = () => {
-  DOM.el(`#tabs_playing`).classList.add(`hidden`)
-}
-
-App.check_playing = () => {
-  let playing = App.get_playing_tabs()
-
-  if (playing.length > 0) {
-    App.show_playing()
-  }
-  else {
-    App.hide_playing()
-  }
-}
-
-App.go_to_playing_tab = () => {
-  App.show_all(`tabs`)
-  let items = App.get_items(`tabs`)
-  let waypoint = false
-  let first
-
-  for (let item of items) {
-    if (item.audible) {
-      if (!first) {
-        first = item
-      }
-
-      if (waypoint) {
-        App.focus_tab(item, `center_smooth`, `playing`)
-        return
-      }
-    }
-
-    if (!waypoint && item.active) {
-      waypoint = true
-      continue
-    }
-  }
-
-  // If none found then pick the first one
-  if (first) {
-    App.focus_tab(first, `center_smooth`, `playing`)
-  }
-}
-
 App.do_empty_previous_tabs = () => {
   App.previous_tabs = []
 }
@@ -991,19 +934,6 @@ App.get_close_tabs_items = () => {
   })
 
   return items
-}
-
-App.create_playing_icon = () => {
-  playing = DOM.create(`div`, `button icon_button hidden`, `tabs_playing`)
-  playing.title = `Go To Playing Tab (Ctrl + Dot)`
-  let playing_icon = App.create_icon(`speaker`)
-
-  DOM.ev(playing, `click`, () => {
-    App.go_to_playing_tab()
-  })
-
-  playing.append(playing_icon)
-  return playing
 }
 
 App.check_tab_item = (item) => {

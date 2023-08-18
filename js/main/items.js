@@ -277,10 +277,7 @@ App.process_info_list = (mode, info_list) => {
     container.append(item.element)
   }
 
-  if (mode === `tabs`) {
-    App.check_playing()
-  }
-
+  App.check_playing(mode)
   App.update_footer_count(mode)
   App.do_check_pinline()
   App.do_check_borders(mode)
@@ -864,12 +861,7 @@ App.setup_item_window = (mode) => {
     let main_menu = App.create_main_menu(mode)
     let filter = App.create_filter(mode)
     let filter_modes = App.create_filter_menu(mode)
-    let playing
-
-    if (mode === `tabs`) {
-      playing = App.create_playing_icon()
-    }
-
+    let playing = App.create_playing_icon(mode)
     let back = App.create_step_back_button(mode)
     let actions_menu = App.create_actions_menu(mode)
     App.setup_drag(mode, container)
@@ -878,11 +870,7 @@ App.setup_item_window = (mode) => {
     left_top.append(main_menu)
     left_top.append(filter_modes)
     left_top.append(filter)
-
-    if (playing) {
-      right_top.append(playing)
-    }
-
+    right_top.append(playing)
     right_top.append(back)
 
     if (actions_menu) {

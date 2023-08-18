@@ -99,6 +99,7 @@ App.show_mode = async (mode, cycle = false) => {
   App.focus_filter(mode)
   App.do_check_scroller(mode)
   App.check_item_theme()
+  App.check_playing(mode)
 }
 
 App.mode_order_up = (el) => {
