@@ -77,32 +77,8 @@ select {
   background-size: cover;
 }
 
-.background_effect_blur .background {
-  filter: blur(6px);
-}
-
-.background_effect_grayscale .background {
-  filter: grayscale(1);
-}
-
-.background_effect_invert .background {
-  filter: invert(1);
-}
-
-.background_effect_rotate_1 .background {
-  filter: hue-rotate(90deg);
-}
-
-.background_effect_rotate_2 .background {
-  filter: hue-rotate(180deg);
-}
-
-.background_effect_rotate_3 .background {
-  filter: hue-rotate(270deg);
-}
-
-.background_tiles .background {
-  background-size: var(--background_tile_width) auto;
+.background.tiles {
+  background-size: var(--tiles_width) auto;
   background-repeat: repeat;
 }
 
@@ -656,18 +632,6 @@ svg {
   cursor: pointer;
 }
 
-#about_image.rotate {
-  filter: hue-rotate(90deg);
-}
-
-#about_image.invert {
-  filter: invert(1);
-}
-
-#about_image.flipped {
-	transform: rotateY(180deg);
-}
-
 a:visited, a:link, a:hover {
 	color: var(--text_color);
 }
@@ -911,6 +875,38 @@ a:visited, a:link, a:hover {
 .bigger {
   font-size: 1.1rem;
 }
+
+/* Effects */
+
+.blur {
+  filter: blur(6px);
+}
+
+.grayscale {
+  filter: grayscale(1);
+}
+
+.invert {
+  filter: invert(1);
+}
+
+.rotate_1 {
+  filter: hue-rotate(90deg);
+}
+
+.rotate_2 {
+  filter: hue-rotate(180deg);
+}
+
+.rotate_3 {
+  filter: hue-rotate(270deg);
+}
+
+.flipped {
+	transform: rotateY(180deg);
+}
+
+/* */
 
 .item_button {
   display: flex;

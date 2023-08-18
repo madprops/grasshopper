@@ -198,27 +198,38 @@ App.apply_theme = (args) => {
       main.classList.add(`item_border_${item_border}`)
     }
 
-    let all = DOM.el(`#all`)
+    let bg1 = DOM.el(`#background_1`)
+    let bg2 = DOM.el(`#background_2`)
+
+    function bg_add (cls) {
+      bg1.classList.add(cls)
+      bg2.classList.add(cls)
+    }
+
+    function bg_rem (cls) {
+      bg1.classList.remove(cls)
+      bg2.classList.remove(cls)
+    }
 
     let bg_effect_opts = [`blur`, `grayscale`, `invert`, `rotate_1`, `rotate_2`, `rotate_3`]
     let bg_effect = App.get_setting(`background_effect`)
 
     for (let eff of bg_effect_opts) {
-      all.classList.remove(`background_effect_${eff}`)
+      bg_rem(eff)
     }
 
     if (bg_effect_opts.includes(bg_effect)) {
-      all.classList.add(`background_effect_${bg_effect}`)
+      bg_add(bg_effect)
     }
 
     let bg_tiles = App.get_setting(`background_tiles`)
 
     if (bg_tiles !== `none`) {
-      App.set_css_var(`background_tile_width`, bg_tiles)
-      all.classList.add(`background_tiles`)
+      App.set_css_var(`tiles_width`, bg_tiles)
+      bg_add(`tiles`)
     }
     else {
-      all.classList.remove(`background_tiles`)
+      bg_rem(`tiles`)
     }
 
     if (App.get_setting(`color_transitions`)) {
