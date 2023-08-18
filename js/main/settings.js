@@ -182,6 +182,10 @@ App.settings_setup_labels = (container) => {
       btns.push([`settings_${item.dataset.id}_shuffle`, App.shuffle_icon, `Shuffle`])
     }
 
+    if (item.dataset.remove) {
+      btns.push([`settings_${item.dataset.id}_remove`, `Rem`, `Remove`])
+    }
+
     if (btns.length > 0) {
       proc(item, btns)
     }
@@ -966,6 +970,10 @@ App.start_theme_settings = () => {
     App.random_background()
   })
 
+  DOM.ev(DOM.el(`#settings_background_image_remove`), `click`, () => {
+    App.remove_from_background_pool()
+  })
+
   DOM.ev(DOM.el(`#settings_background_pool_add`), `click`, () => {
     App.add_background_pool()
   })
@@ -1534,14 +1542,31 @@ App.get_textarea_setting_value = (setting) => {
   return App.get_setting(setting).join(`\n`)
 }
 
+App.refresh_background_pool = () => {
+  let value = App.get_textarea_setting_value(`background_pool`)
+  let pool_el = DOM.el(`#settings_background_pool`)
+  pool_el.value = value
+  App.scroll_to_bottom(pool_el)
+}
+
 App.shuffle_background_pool = () => {
   App.show_confirm(`Shuffle BG Pool?`, () => {
     let pool = App.get_setting(`background_pool`)
     App.shuffle_array(pool)
     App.set_setting(`background_pool`, pool)
-    let value = App.get_textarea_setting_value(`background_pool`)
-    let pool_el = DOM.el(`#settings_background_pool`)
-    pool_el.value = value
-    App.scroll_to_bottom(pool_el)
+    App.refresh_background_pool()
   })
+}
+
+App.remove_from_background_pool = () => {
+  let url = App.get_setting(`background_image`)
+  let pool = App.get_setting(`background_pool`)
+
+  if (pool.includes(url)) {
+    App.show_confirm(`Remove URL from pool?`, () => {
+      pool = pool.filter(x => x !== url)
+      App.set_setting(`background_pool`, pool)
+      App.refresh_background_pool()
+    })
+  }
 }
