@@ -48,6 +48,7 @@ App.create_popup = (args) => {
 }
 
 App.show_popup = (id) => {
+  clearTimeout(App.alert_autohide)
   App.popups[id].show()
 }
 
@@ -82,7 +83,6 @@ App.setup_popups = () => {
 }
 
 App.show_alert = (message, autohide_delay = 0, pre = true) => {
-  clearTimeout(App.alert_autohide)
   let msg = DOM.el(`#alert_message`)
 
   if (pre) {
@@ -117,7 +117,6 @@ App.show_feedback_2 = (message) => {
 }
 
 App.show_dialog = (message, buttons) => {
-  clearTimeout(App.alert_autohide)
   DOM.el(`#dialog_message`).textContent = message
   let btns = DOM.el(`#dialog_buttons`)
   btns.innerHTML = ``
@@ -218,6 +217,8 @@ App.input_enter = () => {
 }
 
 App.hide_popup = () => {
+  clearTimeout(App.alert_autohide)
+
   for (let id in App.popups) {
     App.popups[id].hide()
   }
