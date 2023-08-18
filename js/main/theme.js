@@ -610,7 +610,7 @@ App.remove_from_background_pool = () => {
   let pool = App.get_setting(`background_pool`)
 
   if (pool.includes(url)) {
-    App.show_confirm(`Remove URL from pool?`, () => {
+    App.show_confirm(`Remove from background pool?`, () => {
       pool = pool.filter(x => x !== url)
       App.set_setting(`background_pool`, pool)
       App.check_theme_refresh()

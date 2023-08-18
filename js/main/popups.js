@@ -117,6 +117,7 @@ App.show_feedback_2 = (message) => {
 }
 
 App.show_dialog = (message, buttons) => {
+  clearTimeout(App.alert_autohide)
   DOM.el(`#dialog_message`).textContent = message
   let btns = DOM.el(`#dialog_buttons`)
   btns.innerHTML = ``
