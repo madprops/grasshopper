@@ -495,7 +495,8 @@ App.show_tab_urls = () => {
     urls.push(item.url)
   }
 
-  let s = App.to_set(urls).join(`\n`)
+  urls = App.to_set(urls)
+  let s = urls.join(`\n`)
   App.show_textarea(`All Open Tabs (${urls.length})`, s)
 }
 
