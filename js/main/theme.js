@@ -397,35 +397,6 @@ App.change_background = (url) => {
   App.check_theme_refresh()
 }
 
-App.add_to_background_pool = (url) => {
-  if (!url) {
-    url = App.get_setting(`background_image`)
-  }
-
-  let pool = App.get_setting(`background_pool`)
-
-  if (!pool.includes(url)) {
-    pool.push(url)
-    App.set_setting(`background_pool`, pool)
-    App.check_theme_refresh()
-  }
-}
-
-App.check_theme_refresh = () => {
-  if (App.on_settings()) {
-    if (App.settings_category === `theme`) {
-      App.refresh_theme_settings()
-    }
-  }
-}
-
-App.refresh_theme_settings = () => {
-  App.background_color.setColor(App.get_setting(`background_color`))
-  App.text_color.setColor(App.get_setting(`text_color`))
-  DOM.el(`#settings_background_image`).value = App.get_setting(`background_image`)
-  DOM.el(`#settings_background_pool`).value = App.get_textarea_setting_value(`background_pool`)
-}
-
 App.seeded_theme = (item) => {
   let url = item.hostname || item.path
   let hc = App.hostname_colors[url]
@@ -569,10 +540,10 @@ App.animate_background_image = (url) => {
     return
   }
   else {
-    let img = new Image()
-    img.src = url
+    App.background_image = new Image()
+    App.background_image.src = url
 
-    DOM.ev(img, `load`, () => {
+    DOM.ev(App.background_image, `load`, () => {
       bg(`url(${url})`)
 
       if (!App.get_setting(`background_transitions`) || !App.first_bg_image) {
@@ -605,10 +576,11 @@ App.animate_background_image = (url) => {
       }, 120)
     })
 
-    DOM.ev(img, `error`, () => {
+    DOM.ev(App.background_image, `error`, () => {
       proc(1, 0)
       bg(`unset`)
       App.first_bg_image = true
+      clearInterval(App.background_interval)
     })
   }
 }

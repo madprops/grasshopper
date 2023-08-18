@@ -170,6 +170,10 @@ App.settings_setup_labels = (container) => {
       btns.push([`settings_${item.dataset.id}_add`, `Add`])
     }
 
+    if (item.dataset.remove) {
+      btns.push([`settings_${item.dataset.id}_remove`, `Rem`, `Remove`])
+    }
+
     if (item.dataset.rand) {
       btns.push([`settings_${item.dataset.id}_random`, App.random_text])
     }
@@ -180,10 +184,6 @@ App.settings_setup_labels = (container) => {
 
     if (item.dataset.shuffle) {
       btns.push([`settings_${item.dataset.id}_shuffle`, App.shuffle_icon, `Shuffle`])
-    }
-
-    if (item.dataset.remove) {
-      btns.push([`settings_${item.dataset.id}_remove`, `Rem`, `Remove`])
     }
 
     if (btns.length > 0) {
@@ -970,6 +970,10 @@ App.start_theme_settings = () => {
     App.random_background()
   })
 
+  DOM.ev(DOM.el(`#settings_background_image_add`), `click`, () => {
+    App.add_to_background_pool()
+  })
+
   DOM.ev(DOM.el(`#settings_background_image_remove`), `click`, () => {
     App.remove_from_background_pool()
   })
@@ -1568,5 +1572,30 @@ App.remove_from_background_pool = () => {
       App.set_setting(`background_pool`, pool)
       App.refresh_background_pool()
     })
+  }
+}
+
+App.add_to_background_pool = (url) => {
+  if (!url) {
+    url = App.get_setting(`background_image`)
+  }
+
+  let pool = App.get_setting(`background_pool`)
+
+  if (!pool.includes(url)) {
+    pool.push(url)
+    App.set_setting(`background_pool`, pool)
+    App.check_theme_refresh()
+  }
+}
+
+App.check_theme_refresh = () => {
+  if (App.on_settings()) {
+    if (App.settings_category === `theme`) {
+      App.background_color.setColor(App.get_setting(`background_color`))
+      App.text_color.setColor(App.get_setting(`text_color`))
+      DOM.el(`#settings_background_image`).value = App.get_setting(`background_image`)
+      App.refresh_background_pool()
+    }
   }
 }
