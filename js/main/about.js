@@ -38,7 +38,7 @@ App.setup_about = () => {
       `The profile editor can help you organize and find tabs`,
       `Data like settings and profiles can be exported and imported`,
       `Alt + Click selects items without triggering actions`,
-
+      `Right Click on the filter shows recent filters used`,
     ]
 
     let close = DOM.el(`#about_close`)
