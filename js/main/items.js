@@ -1588,7 +1588,7 @@ App.do_check_borders = (mode) => {
   }
 }
 
-// Always have tabs available
+// Clear but always have tabs available
 App.clear_show = async () => {
   App.clear_all_items()
   await App.do_show_mode(`tabs`)
