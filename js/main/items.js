@@ -884,10 +884,6 @@ App.setup_item_window = (mode) => {
   App.create_window(args)
 }
 
-App.cycle_modes_debouncer = App.create_debouncer((reverse, cycle) => {
-  App.do_cycle_modes(reverse, cycle)
-}, App.wheel_delay, true)
-
 App.focus_or_open_item = async (item) => {
   for (let tab of App.get_items(`tabs`)) {
     if (App.urls_equal(tab.url, item.url)) {

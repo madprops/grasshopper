@@ -151,6 +151,10 @@ App.show_main_mode = () => {
   App.show_mode(App.mode_order[0])
 }
 
+App.cycle_modes_debouncer = App.create_debouncer((reverse, cycle) => {
+  App.do_cycle_modes(reverse, cycle)
+}, App.wheel_delay, true)
+
 App.cycle_modes = (reverse = false, cycle = false) => {
   App.cycle_modes_debouncer.call(reverse, cycle)
 }
