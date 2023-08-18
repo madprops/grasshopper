@@ -545,30 +545,12 @@ App.background_from_pool = (random = false) => {
 }
 
 App.animate_background_image = (url) => {
-  clearTimeout(App.background_animation_1)
-  clearInterval(App.background_animation_2)
+  clearInterval(App.background_interval)
   App.debug(`Animate Background`)
-  let new_num, old_num
-
-  if (App.active_background === 1) {
-    old_num = 1
-    new_num = 2
-  }
-  else {
-    old_num = 2
-    new_num = 1
-  }
-
+  let new_num = App.active_background === 1 ? 2 : 1
+  let old_num = new_num === 1 ? 2 : 1
   let new_el = DOM.el(`#background_${new_num}`)
   let old_el = DOM.el(`#background_${old_num}`)
-
-  if (url) {
-    App.set_css_var(`background_image_${new_num}`, `url(${url})`)
-  }
-  else {
-    App.set_css_var(`background_image_${new_num}`, `unset`)
-  }
-
   App.active_background = new_num
 
   function proc (n1, n2) {
@@ -576,34 +558,53 @@ App.animate_background_image = (url) => {
     old_el.style.opacity = n2
   }
 
-  if (!App.get_setting(`background_transitions`) || !App.first_bg_image) {
+  if (!url) {
     proc(1, 0)
+    App.set_css_var(`background_image_${new_num}`, `unset`)
     App.first_bg_image = true
     return
   }
+  else {
+    let img = new Image()
+    img.src = url
 
-  let op_new = 0
-  let op_old = 1
-  let amount = 0.1
-  proc(op_new, op_old)
-  App.first_bg_image = true
+    DOM.ev(img, `load`, () => {
+      App.set_css_var(`background_image_${new_num}`, `url(${url})`)
 
-  App.background_animation_1 = setTimeout(() => {
-    App.background_animation_2 = setInterval(() => {
-      try {
-        op_new = parseFloat(Math.min(op_new + amount, 1).toFixed(1))
-        op_old = parseFloat(Math.max(op_old - amount, 0).toFixed(1))
-        proc(op_new, op_old)
-
-        if ((op_new >= 1) && (op_old <= 0)) {
-          proc(1, 0)
-          clearInterval(App.background_animation_2)
-        }
-      }
-      catch (err) {
+      if (!App.get_setting(`background_transitions`) || !App.first_bg_image) {
         proc(1, 0)
-        clearInterval(App.background_animation_2)
+        App.first_bg_image = true
+        return
       }
-    }, 120)
-  }, 240)
+
+      let op_new = 0
+      let op_old = 1
+      let amount = 0.1
+      proc(op_new, op_old)
+      App.first_bg_image = true
+
+      App.background_interval = setInterval(() => {
+        try {
+          op_new = parseFloat(Math.min(op_new + amount, 1).toFixed(1))
+          op_old = parseFloat(Math.max(op_old - amount, 0).toFixed(1))
+          proc(op_new, op_old)
+
+          if ((op_new >= 1) && (op_old <= 0)) {
+            proc(1, 0)
+            clearInterval(App.background_interval)
+          }
+        }
+        catch (err) {
+          proc(1, 0)
+          clearInterval(App.background_interval)
+        }
+      }, 120)
+    })
+
+    DOM.ev(img, `error`, () => {
+      proc(1, 0)
+      App.set_css_var(`background_image_${new_num}`, `unset`)
+      App.first_bg_image = true
+    })
+  }
 }
