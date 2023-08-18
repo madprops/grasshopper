@@ -786,7 +786,12 @@ App.update_filter_history = (mode) => {
 
 App.do_update_filter_history = (mode) => {
   App.debug(`Update Filter History`)
-  let value = App.get_filter(mode)
+  let value = App.get_filter(mode).trim()
+
+  if (!value) {
+    return
+  }
+
   App.filter_history = App.filter_history.filter(x => x !== value)
   App.filter_history.unshift(value)
   App.filter_history = App.filter_history.slice(0, App.max_filter_history)
