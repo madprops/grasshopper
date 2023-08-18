@@ -616,6 +616,9 @@ App.remove_from_background_pool = () => {
       App.check_theme_refresh()
     })
   }
+  else {
+    App.show_feedback(`Not in background pool`)
+  }
 }
 
 App.add_to_background_pool = (url) => {
@@ -629,6 +632,10 @@ App.add_to_background_pool = (url) => {
     pool.push(url)
     App.set_setting(`background_pool`, pool)
     App.check_theme_refresh()
+    App.show_feedback(`Added to background pool`)
+  }
+  else {
+    App.show_feedback(`Already in background pool`)
   }
 }
 
