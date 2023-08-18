@@ -252,3 +252,7 @@ App.make_mode_order = () => {
     mode_order.append(row)
   }
 }
+
+App.after_action = (mode) => {
+  App.update_filter_history(mode)
+}

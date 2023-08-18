@@ -1,3 +1,7 @@
+App.setup_filter = () => {
+  App.stor_get_filter_history()
+}
+
 App.filter_debouncer = App.create_debouncer((mode, force, deep) => {
   App.do_filter(mode, force, deep)
 }, App.filter_delay)
@@ -544,6 +548,11 @@ App.create_filter = (mode) => {
     App.filter(mode)
   })
 
+  DOM.ev(filter, `contextmenu`, (e) => {
+    App.show_filter_history(e, mode)
+    e.preventDefault()
+  })
+
   return filter
 }
 
@@ -739,4 +748,36 @@ App.show_all = (mode = App.window_mode) => {
     App.set_filter_mode(mode, `all`, false)
     App.set_filter(mode, ``)
   }
+}
+
+App.show_filter_history = (e, mode) => {
+  let items = []
+
+  for (let value of App.filter_history) {
+    items.push({
+      text: value,
+      action: () => {
+        App.set_filter(mode, value)
+      }
+    })
+  }
+
+  NeedContext.show(e.clientX, e.clientY, items)
+}
+
+App.update_filter_history_debouncer = App.create_debouncer((mode) => {
+  App.do_update_filter_history(mode)
+}, App.update_filter_delay)
+
+App.update_filter_history = (mode) => {
+  App.update_filter_history_debouncer.call(mode)
+}
+
+App.do_update_filter_history = (mode) => {
+  App.debug(`Update Filter History`)
+  let value = App.get_filter(mode)
+  App.filter_history = App.filter_history.filter(x => x !== value)
+  App.filter_history.unshift(value)
+  App.filter_history = App.filter_history.slice(0, App.max_filter_history)
+  App.stor_save_filter_history()
 }

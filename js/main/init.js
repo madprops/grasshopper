@@ -23,6 +23,7 @@ App.init = async () => {
   App.setup_items()
   App.setup_gestures()
   App.setup_palette()
+  App.setup_filter()
   App.setup_modes()
   App.apply_theme()
   await App.clear_show()

@@ -33,6 +33,7 @@ App.get_closed = async () => {
 
 App.closed_action = (item) => {
   App.focus_or_open_item(item)
+  App.after_action(`closed`)
 }
 
 App.closed_action_alt = (item) => {

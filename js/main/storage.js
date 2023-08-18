@@ -57,3 +57,13 @@ App.stor_save_command_history = () => {
   App.debug(`Stor: Saving command_history`)
   App.save_local_storage(App.stor_command_history_name, App.command_history)
 }
+
+App.stor_get_filter_history = () => {
+  App.filter_history = App.get_local_storage(App.stor_filter_history_name, [])
+  App.debug(`Stor: Got filter_history`)
+}
+
+App.stor_save_filter_history = () => {
+  App.debug(`Stor: Saving filter_history`)
+  App.save_local_storage(App.stor_filter_history_name, App.filter_history)
+}

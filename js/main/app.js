@@ -5,6 +5,7 @@ NeedContext.min_width = `4.5rem`
 App.stor_settings_name = `settings_v100`
 App.stor_profiles_name = `profiles_v1`
 App.stor_command_history_name = `command_history_v1`
+App.stor_filter_history_name = `filter_history_v1`
 
 App.modes = [`tabs`, `bookmarks`, `closed`, `history`]
 App.gestures = [`up`, `down`, `left`, `right`, `up_and_down`, `left_and_right`]
@@ -53,7 +54,9 @@ App.item_range_on = false
 App.item_range_select = false
 App.max_pick_delay = 2000
 App.auto_theme_delay = 1000 * 60 * 30
+App.update_filter_delay = 250
 App.seeded_theme_max = 88
+App.max_filter_history = 10
 App.color_contrast = 0.8
 App.default_profile_background_color = `rgb(45, 45, 55)`
 App.default_profile_text_color = `rgb(233, 233, 233)`
