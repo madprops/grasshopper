@@ -182,8 +182,6 @@ App.settings_setup_labels = (container) => {
       btns.push([`settings_${item.dataset.id}_shuffle`, App.shuffle_icon, `Shuffle`])
     }
 
-    console.log(btns)
-
     if (btns.length > 0) {
       proc(item, btns)
     }
