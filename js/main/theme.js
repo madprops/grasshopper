@@ -558,9 +558,13 @@ App.animate_background_image = (url) => {
     old_el.style.opacity = n2
   }
 
+  function bg (value) {
+    new_el.style.backgroundImage = value
+  }
+
   if (!url) {
     proc(1, 0)
-    App.set_css_var(`background_image_${new_num}`, `unset`)
+    bg(`unset`)
     App.first_bg_image = true
     return
   }
@@ -569,7 +573,7 @@ App.animate_background_image = (url) => {
     img.src = url
 
     DOM.ev(img, `load`, () => {
-      App.set_css_var(`background_image_${new_num}`, `url(${url})`)
+      bg(`url(${url})`)
 
       if (!App.get_setting(`background_transitions`) || !App.first_bg_image) {
         proc(1, 0)
@@ -603,7 +607,7 @@ App.animate_background_image = (url) => {
 
     DOM.ev(img, `error`, () => {
       proc(1, 0)
-      App.set_css_var(`background_image_${new_num}`, `unset`)
+      bg(`unset`)
       App.first_bg_image = true
     })
   }

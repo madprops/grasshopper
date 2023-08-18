@@ -62,7 +62,6 @@ select {
   left: 0;
   width: 100%;
   height: 100%;
-  z-index: 18;
   background-color: var(--background_color);
   transition: var(--color_transition);
 }
@@ -76,16 +75,6 @@ select {
   background-repeat: no-repeat;
 	background-position: center;
   background-size: cover;
-}
-
-#background_1 {
-  background-image: var(--background_image_1);
-  z-index: 20;
-}
-
-#background_2 {
-  background-image: var(--background_image_2);
-  z-index: 21;
 }
 
 .background_effect_blur .background {
