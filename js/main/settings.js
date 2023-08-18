@@ -167,20 +167,22 @@ App.settings_setup_labels = (container) => {
     let btns = []
 
     if (item.dataset.add) {
-      btns.push([`settings_${item.dataset.add}_add`, `Add`])
+      btns.push([`settings_${item.dataset.id}_add`, `Add`])
     }
 
     if (item.dataset.rand) {
-      btns.push([`settings_${item.dataset.rand}_random`, App.random_text])
+      btns.push([`settings_${item.dataset.id}_random`, App.random_text])
     }
 
     if (item.dataset.next) {
-      btns.push([`settings_${item.dataset.next}_next`, `Next`])
+      btns.push([`settings_${item.dataset.id}_next`, `Next`])
     }
 
     if (item.dataset.shuffle) {
-      btns.push([`settings_${item.dataset.shuffle}_shuffle`, App.shuffle_icon, `Shuffle`])
+      btns.push([`settings_${item.dataset.id}_shuffle`, App.shuffle_icon, `Shuffle`])
     }
+
+    console.log(btns)
 
     if (btns.length > 0) {
       proc(item, btns)
