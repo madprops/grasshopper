@@ -187,27 +187,27 @@
     <template id="template_settings_domain">
       <div id="settings_domain_container" class="settings_container">
         <div class="settings_item" title="Set tags per domain. Multiple tags can be separated by a semicolon. Format: example.com = nice ; web">
-          <div class="settings_label" data-id="domain_tags" data-add="true">Domain Tags</div>
+          <div class="settings_label" data-id="domain_tags" data-add="Add domain tag">Domain Tags</div>
           <textarea autocomplete="off" spellcheck="false" class="text settings_textarea" id="settings_domain_tags" data-setting="domain_tags" placeholder="One domain per line"></textarea>
         </div>
 
         <div class="settings_item" title="Set fixed titles per domain. Format: example.com = Example">
-          <div class="settings_label" data-id="domain_titles" data-add="true">Domain Titles</div>
+          <div class="settings_label" data-id="domain_titles" data-add="Add domain title">Domain Titles</div>
           <textarea autocomplete="off" spellcheck="false" class="text settings_textarea" id="settings_domain_titles" data-setting="domain_titles" placeholder="One domain per line"></textarea>
         </div>
 
         <div class="settings_item" title="Set fixed icons per domain. Format: example.com = 😀">
-          <div class="settings_label" data-id="domain_icons" data-add="true">Domain Icons</div>
+          <div class="settings_label" data-id="domain_icons" data-add="Add domain icon">Domain Icons</div>
           <textarea autocomplete="off" spellcheck="false" class="text settings_textarea" id="settings_domain_icons" data-setting="domain_icons" placeholder="One domain per line"></textarea>
         </div>
 
         <div class="settings_item" title="Set colors per domain. These have to use one of the available profile colors, like red, green, blue, yellow, purple, and orange. Format: example.com = green">
-          <div class="settings_label" data-id="domain_colors" data-add="true">Domain Colors</div>
+          <div class="settings_label" data-id="domain_colors" data-add="Add domain color">Domain Colors</div>
           <textarea autocomplete="off" spellcheck="false" class="text settings_textarea" id="settings_domain_colors" data-setting="domain_colors" placeholder="One domain per line"></textarea>
         </div>
 
         <div class="settings_item" title="Set fixed themes per domain. There are 3 properties, background color, text color, and background image. Format: example.com = rgb(0, 0, 0) ; green ; http://image.jpg. RGB, hex, and color names are supported. You can leave some properties empty, for instance if you only want a background image you can do example.com = ; ; http://image.jpg">
-          <div class="settings_label" data-id="domain_themes" data-add="true">Domain Themes</div>
+          <div class="settings_label" data-id="domain_themes" data-add="Add domain theme">Domain Themes</div>
           <textarea autocomplete="off" spellcheck="false" class="text settings_textarea" id="settings_domain_themes" data-setting="domain_themes" placeholder="One domain per line"></textarea>
         </div>
       </div>
@@ -216,22 +216,22 @@
     <template id="template_settings_theme">
       <div id="settings_theme_container" class="settings_container">
         <div class="settings_item" title="Theme background color">
-          <div class="settings_label" data-id="background_color" data-rand="true">Background Color</div>
+          <div class="settings_label" data-id="background_color" data-rand="Random color theme">Background Color</div>
           <div id="settings_background_color" data-setting="background_color"></div>
         </div>
 
         <div class="settings_item" title="Theme text color">
-          <div class="settings_label" data-id="text_color" data-rand="true">Text Color</div>
+          <div class="settings_label" data-id="text_color" data-rand="Random color theme">Text Color</div>
           <div id="settings_text_color" data-setting="text_color"></div>
         </div>
 
         <div class="settings_item" title="Background image URL">
-          <div class="settings_label" data-id="background_image" data-rand="true" data-add="true" data-remove="true">BG Image</div>
+          <div class="settings_label" data-id="background_image" data-rand="Random background" data-add="Add to background pool" data-remove="Remove from background pool">BG Image</div>
           <input type="text" autocomplete="off" spellcheck="false" placeholder="Paste an image URL" id="settings_background_image" class="text settings_text" data-setting="background_image" data-action="theme">
         </div>
 
         <div class="settings_item" title="Rotate between these background images">
-          <div class="settings_label" data-id="background_pool" data-add="true" data-next="true" data-shuffle="true">BG Pool</div>
+          <div class="settings_label" data-id="background_pool" data-add="Add image URL to background pool" data-next="Next image from background pool" data-shuffle="Shuffle the background pool">BG Pool</div>
           <textarea autocomplete="off" spellcheck="false" class="text settings_textarea" id="settings_background_pool" data-setting="background_pool" placeholder="One image URL per line"></textarea>
         </div>
 
@@ -339,12 +339,12 @@
         </div>
 
         <div class="settings_item" title="Filter aliases. Format: this = that">
-          <div class="settings_label" data-id="aliases" data-add="true">Aliases</div>
+          <div class="settings_label" data-id="aliases" data-add="Add an alias">Aliases</div>
           <textarea autocomplete="off" spellcheck="false" class="text settings_textarea" id="settings_aliases" data-setting="aliases" placeholder="One alias per line"></textarea>
         </div>
 
         <div class="settings_item" title="These appear in the filters menu">
-          <div class="settings_label" data-id="custom_filters" data-add="true">Custom Filters</div>
+          <div class="settings_label" data-id="custom_filters" data-add="Add a custom filter">Custom Filters</div>
           <textarea autocomplete="off" spellcheck="false" class="text settings_textarea" id="settings_custom_filters" data-setting="custom_filters" placeholder="One filter per line"></textarea>
         </div>
 

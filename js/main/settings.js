@@ -153,7 +153,7 @@ App.settings_setup_labels = (container) => {
       let a = DOM.create(`div`, `action`)
       a.id = btn[0]
       a.textContent = btn[1]
-      a.title = btn[2] || btn[1]
+      a.title = btn[2]
       c.append(d)
       c.append(a)
       bc.append(c)
@@ -167,23 +167,23 @@ App.settings_setup_labels = (container) => {
     let btns = []
 
     if (item.dataset.add) {
-      btns.push([`settings_${item.dataset.id}_add`, `Add`])
+      btns.push([`settings_${item.dataset.id}_add`, `Add`, item.dataset.add])
     }
 
     if (item.dataset.remove) {
-      btns.push([`settings_${item.dataset.id}_remove`, `Rem`, `Remove`])
+      btns.push([`settings_${item.dataset.id}_remove`, `Rem`, item.dataset.remove])
     }
 
     if (item.dataset.rand) {
-      btns.push([`settings_${item.dataset.id}_random`, App.random_text])
+      btns.push([`settings_${item.dataset.id}_random`, App.random_text, item.dataset.rand])
     }
 
     if (item.dataset.next) {
-      btns.push([`settings_${item.dataset.id}_next`, `Next`])
+      btns.push([`settings_${item.dataset.id}_next`, `Next`, item.dataset.next])
     }
 
     if (item.dataset.shuffle) {
-      btns.push([`settings_${item.dataset.id}_shuffle`, App.shuffle_icon, `Shuffle`])
+      btns.push([`settings_${item.dataset.id}_shuffle`, App.shuffle_icon, item.dataset.shuffle])
     }
 
     if (btns.length > 0) {
