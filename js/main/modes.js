@@ -4,7 +4,15 @@ App.setup_modes = () => {
   }
 }
 
-App.show_mode = async (mode, cycle = false) => {
+App.show_mode_debouncer = App.create_debouncer((mode, cycle) => {
+  App.do_show_mode(mode, cycle)
+}, App.show_mode_delay)
+
+App.show_mode = (mode, cycle) => {
+  App.show_mode_debouncer.call(mode, cycle)
+}
+
+App.do_show_mode = async (mode, cycle = false) => {
   App.windows[mode].show()
   let was_filtered = App.was_filtered(mode)
 
@@ -148,18 +156,10 @@ App.get_mode_name = (mode) => {
 }
 
 App.show_main_mode = () => {
-  App.show_mode(App.mode_order[0])
+  App.do_show_mode(App.mode_order[0])
 }
 
-App.cycle_modes_debouncer = App.create_debouncer((reverse, cycle) => {
-  App.do_cycle_modes(reverse, cycle)
-}, App.wheel_delay)
-
-App.cycle_modes = (reverse = false, cycle = false) => {
-  App.cycle_modes_debouncer.call(reverse, cycle)
-}
-
-App.do_cycle_modes = (reverse, cycle) => {
+App.cycle_modes = (reverse, cycle) => {
   let modes = App.mode_order
   let index = modes.indexOf(App.window_mode)
   let new_mode
@@ -208,7 +208,7 @@ App.show_first_mode = (allow_same = true) => {
     }
   }
 
-  App.show_mode(mode)
+  App.do_show_mode(mode)
 }
 
 App.first_mode = () => {

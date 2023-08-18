@@ -542,7 +542,7 @@ App.setup_settings = () => {
     on_hide: async () => {
       App.apply_theme()
       App.clear_all_items()
-      await App.show_mode(`tabs`)
+      await App.do_show_mode(`tabs`)
       App.show_first_mode(false)
     },
   }
@@ -1160,7 +1160,7 @@ App.restart_settings = (type = `normal`) => {
 
   if (App.on_items() || type === `sync`) {
     App.clear_all_items()
-    App.show_mode(App.active_mode)
+    App.do_show_mode(App.active_mode)
   }
   else {
     App.show_settings()

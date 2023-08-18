@@ -31,6 +31,7 @@ App.scroller_delay = 100
 App.pinline_delay = 100
 App.check_borders_delay = 100
 App.wheel_delay = 100
+App.show_mode_delay = 100
 App.scroll_amount = 150
 App.double_tap_date = 0
 App.scroller_max_top = 10

@@ -36,7 +36,7 @@ App.get_playing_tabs = () => {
 
 App.go_to_playing_tab = async () => {
   if (App.active_mode !== `tabs`) {
-    await App.show_mode(`tabs`)
+    await App.do_show_mode(`tabs`)
   }
   else {
     App.show_all(`tabs`)

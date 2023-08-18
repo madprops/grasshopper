@@ -42,7 +42,7 @@ App.show_main_menu = (mode) => {
     items.push({
       text: name,
       action: () => {
-        App.show_mode(m)
+        App.do_show_mode(m)
       },
       selected: m === mode
     })
@@ -101,5 +101,5 @@ App.show_main_menu = (mode) => {
 }
 
 App.show_first_item_window = () => {
-  App.show_mode(App.mode_order[0])
+  App.do_show_mode(App.mode_order[0])
 }

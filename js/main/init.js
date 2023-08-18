@@ -28,7 +28,7 @@ App.init = async () => {
   App.clear_all_items()
 
   // Tabs are always available
-  await App.show_mode(`tabs`)
+  await App.do_show_mode(`tabs`)
 
   // Show first mode
   // unless it's tabs
