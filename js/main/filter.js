@@ -762,6 +762,17 @@ App.show_filter_history = (e, mode) => {
     })
   }
 
+  if (items.length > 0) {
+    items.push({separator: true})
+
+    items.push({
+      text: `Clear`,
+      action: () => {
+        App.clear_filter_history()
+      }
+    })
+  }
+
   NeedContext.show(e.clientX, e.clientY, items)
 }
 
@@ -779,5 +790,10 @@ App.do_update_filter_history = (mode) => {
   App.filter_history = App.filter_history.filter(x => x !== value)
   App.filter_history.unshift(value)
   App.filter_history = App.filter_history.slice(0, App.max_filter_history)
+  App.stor_save_filter_history()
+}
+
+App.clear_filter_history = () => {
+  App.filter_history = []
   App.stor_save_filter_history()
 }
