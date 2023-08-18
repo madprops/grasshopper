@@ -32,7 +32,7 @@ App.setup_tabs = () => {
 
     if (info.windowId === App.window_id) {
       await App.refresh_tab(id, false, info)
-      App.check_playing(`tabs`)
+      App.check_playing()
     }
   })
 
@@ -41,7 +41,7 @@ App.setup_tabs = () => {
 
     if (info.windowId === App.window_id) {
       await App.on_tab_activated(info)
-      App.check_playing(`tabs`)
+      App.check_playing()
     }
   })
 
@@ -50,7 +50,7 @@ App.setup_tabs = () => {
 
     if (info.windowId === App.window_id) {
       App.remove_closed_tab(id)
-      App.check_playing(`tabs`)
+      App.check_playing()
     }
   })
 
@@ -59,7 +59,7 @@ App.setup_tabs = () => {
 
     if (info.windowId === App.window_id) {
       App.move_item(`tabs`, info.fromIndex, info.toIndex)
-      App.check_playing(`tabs`)
+      App.check_playing()
     }
   })
 
@@ -68,7 +68,7 @@ App.setup_tabs = () => {
 
     if (info.oldWindowId === App.window_id) {
       App.remove_closed_tab(id)
-      App.check_playing(`tabs`)
+      App.check_playing()
     }
   })
 
@@ -135,7 +135,7 @@ App.focus_tab = async (item, scroll, method = `normal`) => {
   catch (err) {
     App.error(err)
     App.remove_closed_tab(item.id)
-    App.check_playing(`tabs`)
+    App.check_playing()
   }
 
   App.after_focus_tab(method)

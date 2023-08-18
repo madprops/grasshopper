@@ -539,10 +539,11 @@ App.setup_settings = () => {
       DOM.el(`#settings_${App.settings_category}_filter`).focus()
       App.scroll_settings_text(App.settings_category)
     },
-    on_hide: () => {
+    on_hide: async () => {
       App.apply_theme()
       App.clear_all_items()
-      App.show_first_mode()
+      await App.show_mode(`tabs`)
+      App.show_first_mode(false)
     },
   }
 
