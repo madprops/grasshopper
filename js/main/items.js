@@ -1587,3 +1587,9 @@ App.do_check_borders = (mode) => {
     App.check_borders_proc(App.get_visible(mode))
   }
 }
+
+App.clear_show = async () => {
+  App.clear_all_items()
+  await App.do_show_mode(`tabs`)
+  App.show_first_mode(false)
+}

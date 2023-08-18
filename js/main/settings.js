@@ -541,9 +541,7 @@ App.setup_settings = () => {
     },
     on_hide: async () => {
       App.apply_theme()
-      App.clear_all_items()
-      await App.do_show_mode(`tabs`)
-      App.show_first_mode(false)
+      App.clear_show()
     },
   }
 
@@ -1159,8 +1157,7 @@ App.restart_settings = (type = `normal`) => {
   App.refresh_gestures()
 
   if (App.on_items() || type === `sync`) {
-    App.clear_all_items()
-    App.do_show_mode(App.active_mode)
+    App.clear_show()
   }
   else {
     App.show_settings()

@@ -613,8 +613,7 @@ App.import_profiles = () => {
       App.profiles = json
       App.check_profiles()
       App.stor_save_profiles()
-      App.clear_all_items()
-      App.do_show_mode(App.active_mode)
+      App.clear_show()
     }
   })
 }
@@ -1001,8 +1000,7 @@ App.remove_empty_profiles = () => {
 
 App.after_profile_remove = () => {
   App.remove_empty_profiles()
-  App.clear_all_items()
-  App.do_show_mode(App.active_mode)
+  App.clear_show()
 }
 
 App.used_profile = (profile) => {
