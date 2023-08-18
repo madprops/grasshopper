@@ -584,3 +584,83 @@ App.animate_background_image = (url) => {
     })
   }
 }
+
+App.shuffle_background_pool = () => {
+  App.show_confirm(`Shuffle BG Pool?`, () => {
+    let pool = App.get_setting(`background_pool`)
+    App.shuffle_array(pool)
+    App.set_setting(`background_pool`, pool)
+    App.check_theme_refresh()
+  })
+}
+
+App.remove_from_background_pool = () => {
+  let url = App.get_setting(`background_image`)
+  let pool = App.get_setting(`background_pool`)
+
+  if (pool.includes(url)) {
+    App.show_confirm(`Remove URL from pool?`, () => {
+      pool = pool.filter(x => x !== url)
+      App.set_setting(`background_pool`, pool)
+      App.check_theme_refresh()
+    })
+  }
+}
+
+App.add_to_background_pool = (url) => {
+  if (!url) {
+    url = App.get_setting(`background_image`)
+  }
+
+  let pool = App.get_setting(`background_pool`)
+
+  if (!pool.includes(url)) {
+    pool.push(url)
+    App.set_setting(`background_pool`, pool)
+    App.check_theme_refresh()
+  }
+}
+
+App.refresh_background_pool = () => {
+  let value = App.get_textarea_setting_value(`background_pool`)
+  let pool_el = DOM.el(`#settings_background_pool`)
+  pool_el.value = value
+  App.scroll_to_bottom(pool_el)
+}
+
+App.check_theme_refresh = () => {
+  if (App.on_settings()) {
+    if (App.settings_category === `theme`) {
+      App.background_color.setColor(App.get_setting(`background_color`))
+      App.text_color.setColor(App.get_setting(`text_color`))
+      DOM.el(`#settings_background_image`).value = App.get_setting(`background_image`)
+      App.refresh_background_pool()
+    }
+  }
+}
+
+App.random_settings_color = (what) => {
+  let type = App.get_color_type()
+  let color
+
+  if (type === `light`) {
+    if (what === `background`) {
+      color = App.colorlib.get_light_color()
+    }
+    else if (what === `text`) {
+      color = App.colorlib.get_dark_color()
+    }
+  }
+  else if (type === `dark`) {
+    if (what === `background`) {
+      color = App.colorlib.get_dark_color()
+    }
+    else if (what === `text`) {
+      color = App.colorlib.get_light_color()
+    }
+  }
+
+  color = App.colorlib.hex_to_rgb(color)
+  App.set_setting(`${what}_color`, color)
+  App.check_theme_refresh()
+}
