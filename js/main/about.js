@@ -52,8 +52,8 @@ App.setup_about = () => {
     let image = DOM.el(`#about_image`)
 
     DOM.ev(image, `click`, () => {
-      if (image.classList.contains(`rotate_1`)) {
-        image.classList.remove(`rotate_1`)
+      if (image.classList.contains(`rotate`)) {
+        image.classList.remove(`rotate`)
         image.classList.add(`invert`)
       }
       else if (image.classList.contains(`invert`)) {
@@ -67,7 +67,7 @@ App.setup_about = () => {
         }
       }
       else {
-        image.classList.add(`rotate_1`)
+        image.classList.add(`rotate`)
       }
     })
 
@@ -90,7 +90,7 @@ App.setup_about = () => {
     }
 
     let image = DOM.el(`#about_image`)
-    image.classList.remove(`rotate_1`)
+    image.classList.remove(`rotate`)
     image.classList.remove(`invert`)
     image.classList.remove(`flipped`)
     filter.focus()
