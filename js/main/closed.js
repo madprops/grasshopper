@@ -51,19 +51,28 @@ App.undo_close_tab = async () => {
 App.forget_all_closed_tabs = () => {
   let items = App.get_items(`closed`)
 
-  App.show_confirm(`Forget all closed tabs? (${items.length})`, () => {
+  App.show_confirm(`Forget all closed tabs? (${items.length})`, async () => {
     for (let item of items) {
-      browser.sessions.forgetClosedTab(item.window_id, item.session_id)
+      await browser.sessions.forgetClosedTab(item.window_id, item.session_id)
     }
+
+    App.after_forget()
   })
 }
 
 App.forget_closed_tabs = (item) => {
   let active = App.get_active_items(`closed`, item)
 
-  App.show_confirm(`Forget closed tabs? (${active.length})`, () => {
+  App.show_confirm(`Forget closed tabs? (${active.length})`, async () => {
     for (let item of active) {
-      browser.sessions.forgetClosedTab(item.window_id, item.session_id)
+      await browser.sessions.forgetClosedTab(item.window_id, item.session_id)
     }
+
+    App.after_forget()
   }, undefined, active.length <= 1)
+}
+
+App.after_forget = () => {
+  App.closed_changed = true
+  App.show_mode(`closed`)
 }
