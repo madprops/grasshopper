@@ -959,11 +959,11 @@ App.start_theme_settings = () => {
   })
 
   DOM.ev(DOM.el(`#settings_background_color_random`), `click`, () => {
-    App.random_theme()
+    App.random_settings_color(`background`)
   })
 
   DOM.ev(DOM.el(`#settings_text_color_random`), `click`, () => {
-    App.random_theme()
+    App.random_settings_color(`text`)
   })
 
   DOM.ev(DOM.el(`#settings_background_image_random`), `click`, () => {
@@ -1598,4 +1598,30 @@ App.check_theme_refresh = () => {
       App.refresh_background_pool()
     }
   }
+}
+
+App.random_settings_color = (what) => {
+  let type = App.get_color_type()
+  let color
+
+  if (type === `light`) {
+    if (what === `background`) {
+      color = App.colorlib.get_light_color()
+    }
+    else if (what === `text`) {
+      color = App.colorlib.get_dark_color()
+    }
+  }
+  else if (type === `dark`) {
+    if (what === `background`) {
+      color = App.colorlib.get_dark_color()
+    }
+    else if (what === `text`) {
+      color = App.colorlib.get_light_color()
+    }
+  }
+
+  color = App.colorlib.hex_to_rgb(color)
+  App.set_setting(`${what}_color`, color)
+  App.check_theme_refresh()
 }
