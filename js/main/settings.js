@@ -11,7 +11,6 @@ App.build_default_settings = () => {
   obj.height = {value: 85, category: category, version: 1}
   obj.item_border = {value: `none`, category: category, version: 2}
   obj.pick_mode = {value: `none`, category: category, version: 1}
-  obj.color_mode = {value: `item`, category: category, version: 1}
 
   category = `theme`
   obj.background_color = {value: `rgb(45, 45, 55)`, category: category, version: 1}
@@ -98,6 +97,7 @@ App.build_default_settings = () => {
   obj.color_yellow = {value: `rgb(128, 128, 41)`, category: category, version: 1}
   obj.color_purple = {value: `rgb(124, 35, 166)`, category: category, version: 1}
   obj.color_orange = {value: `rgb(170, 127, 59)`, category: category, version: 1}
+  obj.color_mode = {value: `item`, category: category, version: 1}
 
   category = `domains`
   obj.domain_tags = {value: [], category: category, version: 1}
@@ -622,13 +622,6 @@ App.setup_settings = () => {
       [`Simple`, `simple`],
     ])
 
-    App.settings_make_menu(`color_mode`, [
-      [`None`, `none`],
-      [`Icon`, `icon`],
-      [`Icon 2`, `icon_2`],
-      [`Item`, `item`],
-    ])
-
     App.settings_make_menu(`favicon_source`, [
       [`None`, `none`],
       [`Google`, `google`],
@@ -675,6 +668,13 @@ App.setup_settings = () => {
 
   App.create_window(Object.assign({}, common, {id: `settings_colors`, setup: () => {
     prepare(`colors`)
+
+    App.settings_make_menu(`color_mode`, [
+      [`None`, `none`],
+      [`Icon`, `icon`],
+      [`Icon 2`, `icon_2`],
+      [`Item`, `item`],
+    ])
 
     for (let color of App.colors) {
       App.start_color_picker(`color_${color}`)
