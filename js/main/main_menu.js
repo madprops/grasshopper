@@ -37,9 +37,10 @@ App.show_main_menu = (mode) => {
 
   for (let m of App.mode_order) {
     let icon = App.mode_icons[m]
-    let name = `${icon} ${App.get_mode_name(m)}`
+    let name = App.get_mode_name(m)
 
     items.push({
+      icon: icon,
       text: name,
       action: () => {
         App.do_show_mode(m)
