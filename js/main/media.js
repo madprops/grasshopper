@@ -257,6 +257,14 @@ App.show_media_menu = (what) => {
   let item = App.current_media_item()
 
   items.push({
+    text: `Select`,
+    action: () => {
+      App.hide_window()
+      App.select_item_by_id(item.mode, item.id)
+    }
+  })
+
+  items.push({
     text: `${App.clipboard_icon} Copy URL`,
     action: () => {
       App.media_copy(what)

@@ -1594,3 +1594,11 @@ App.clear_show = async () => {
   await App.do_show_mode(`tabs`)
   App.show_first_mode(false)
 }
+
+App.select_item_by_id = (mode, id) => {
+  let item = App.get_item_by_id(mode, id)
+
+  if (item) {
+    App.select_item(item, `center_instant`)
+  }
+}
