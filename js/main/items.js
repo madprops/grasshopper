@@ -920,39 +920,6 @@ App.update_item = (mode, id, info) => {
   }
 }
 
-App.show_actions_menu = (mode) => {
-  if (App[`${mode}_actions`].length === 0) {
-    return
-  }
-
-  let items = []
-
-  for (let item of App[`${mode}_actions`]) {
-    if (item.text === App.separator_string) {
-      items.push({separator: true})
-      continue
-    }
-
-    if (item.conditional) {
-      items.push(item.conditional())
-    }
-    else if (item.action) {
-      items.push({text: item.text, action: () => {
-        item.action()
-      }})
-    }
-    else if (item.items) {
-      items.push({text: item.text, items: item.items})
-    }
-    else if (item.get_items) {
-      items.push({text: item.text, get_items: item.get_items})
-    }
-  }
-
-  let btn = DOM.el(`#${mode}_actions`)
-  NeedContext.show_on_element(btn, items, true, btn.clientHeight)
-}
-
 App.get_item_element_index = (mode, el) => {
   return DOM.els(`.${mode}_item`).indexOf(el)
 }

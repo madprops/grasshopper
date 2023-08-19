@@ -1,6 +1,6 @@
 App.setup_bookmarks = () => {
   App.bookmarks_actions = [
-    {text: `${App.mode_icons.bookmarks} Bookmark`, action: () => {
+    {icon: App.mode_icons.bookmarks, text: `Bookmark`, action: () => {
       App.bookmark_active()
     }},
     {text: `Deep Search`, action: () => {
