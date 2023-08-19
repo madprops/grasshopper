@@ -11,7 +11,7 @@ App.build_default_settings = () => {
   obj.height = {value: 85, category: category, version: 1}
   obj.item_border = {value: `none`, category: category, version: 2}
   obj.pick_mode = {value: `none`, category: category, version: 1}
-  obj.color_mode = {value: `icon`, category: category, version: 1}
+  obj.color_mode = {value: `item`, category: category, version: 1}
 
   category = `theme`
   obj.background_color = {value: `rgb(45, 45, 55)`, category: category, version: 1}
@@ -627,8 +627,6 @@ App.setup_settings = () => {
       [`Icon`, `icon`],
       [`Icon 2`, `icon_2`],
       [`Item`, `item`],
-      [`Both`, `both`],
-      [`Both 2`, `both_2`],
     ])
 
     App.settings_make_menu(`favicon_source`, [

@@ -513,14 +513,14 @@ App.apply_color_mode = (item) => {
   let color_mode = App.get_setting(`color_mode`)
   let color = item.color
 
-  if (color_mode.startsWith(`icon`) || color_mode.startsWith(`both`)) {
+  if (color_mode.startsWith(`icon`)) {
     let el = DOM.el(`.item_info_color`, item.element)
 
     if (color) {
       el.innerHTML = App.color_icon(color)
       el.classList.remove(`hidden`)
 
-      if (color_mode === `icon_2` || color_mode === `both_2`) {
+      if (color_mode === `icon_2`) {
         item.element.classList.add(`color_only_icon`)
       }
       else {
@@ -533,7 +533,7 @@ App.apply_color_mode = (item) => {
     }
   }
 
-  if (color_mode === `item` || color_mode.startsWith(`both`)) {
+  if (color_mode === `item`) {
     for (let color of App.colors) {
       item.element.classList.remove(`colored`)
       item.element.classList.remove(`color_${color}`)
