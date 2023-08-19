@@ -247,6 +247,10 @@ App.setup_commands = () => {
 }
 
 App.update_command_history = (cmd) => {
+  if (!App.get_setting(`command_history`)) {
+    return
+  }
+
   App.command_history = App.command_history.filter(x => x !== cmd)
 
   // Remove non-existent commands
@@ -261,6 +265,10 @@ App.update_command_history = (cmd) => {
 
 App.sort_commands = () => {
   App.sorted_commands = App.commands.filter(x => !x.name.startsWith(`--`)).slice(0)
+
+  if (!App.get_setting(`command_history`)) {
+    return
+  }
 
   App.sorted_commands.sort((a, b) => {
     let ia = App.command_history.indexOf(a.cmd)

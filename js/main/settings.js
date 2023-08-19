@@ -120,6 +120,7 @@ App.build_default_settings = () => {
   obj.smooth_scrolling = {value: true, category: category, version: 1}
   obj.aliases = {value: [], category: category, version: 1}
   obj.custom_filters = {value: [], category: category, version: 1}
+  obj.command_history = {value: true, category: category, version: 1}
 
   App.default_settings = obj
 }
@@ -130,6 +131,10 @@ App.settings_do_action = (what) => {
   }
   else if (what === `hostname_colors`) {
     App.hostname_colors = {}
+  }
+  else if (what === `commands`) {
+    App.sort_commands()
+    App.fill_palette()
   }
 }
 
