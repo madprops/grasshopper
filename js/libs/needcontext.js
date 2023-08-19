@@ -18,6 +18,7 @@ NeedContext.back_text = `Back`
 NeedContext.item_sep = `4px`
 NeedContext.layers = {}
 NeedContext.level = 0
+NeedContext.gap = `0.45rem`
 
 // Set defaults
 NeedContext.set_defaults = () => {
@@ -395,7 +396,7 @@ NeedContext.init = () => {
       display: flex;
       flex-direction: row;
       align-items: center;
-      gap: 0.5rem;
+      gap: ${NeedContext.gap};
     }
 
     .needcontext-normal {
@@ -413,7 +414,7 @@ NeedContext.init = () => {
       display: flex;
       flex-direction: row;
       align-items: center;
-      gap: 0.5rem;
+      gap: ${NeedContext.gap};
     }
 
     .needcontext-back:hover {
