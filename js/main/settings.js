@@ -353,6 +353,7 @@ App.settings_make_menu = (setting, opts, action = () => {}) => {
       let selected = App.get_setting(setting) === o[1]
 
       items.push({
+        icon: o[2],
         text: o[0],
         action: () => {
           el.textContent = o[0]
@@ -1316,7 +1317,7 @@ App.settings_commands = () => {
       items.push([App.separator_string])
     }
     else {
-      items.push([cmd.name, cmd.cmd])
+      items.push([cmd.name, cmd.cmd, cmd.icon])
     }
   }
 
