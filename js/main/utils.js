@@ -496,5 +496,5 @@ App.to_set = (array) => {
 }
 
 App.color_icon = (color) => {
-  return `<div class="color_icon color_${color}"></div>`
+  return `<div class='color_icon color_${color}'></div>`
 }
