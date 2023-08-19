@@ -593,22 +593,28 @@ App.do_filter_2 = (mode) => {
     if (text.includes(value)) {
       show = true
     }
-    else if (item.dataset.alias) {
-      let aliases = item.dataset.alias.split(`;`)
 
-      for (let alias of aliases) {
-        if (alias.includes(value)) {
-          show = true
-          break
-        }
-        else if (App.similarity(value, alias) >= App.similarity_threshold) {
-          show = true
-          break
+    if (!show) {
+      if (item.dataset.alias) {
+        let aliases = item.dataset.alias.split(`;`)
+
+        for (let alias of aliases) {
+          if (alias.includes(value)) {
+            show = true
+            break
+          }
+          else if (App.similarity(value, alias) >= App.similarity_threshold) {
+            show = true
+            break
+          }
         }
       }
     }
-    else if (App.similarity(value, text) >= App.similarity_threshold) {
-      show = true
+
+    if (!show) {
+      if (App.similarity(value, text) >= App.similarity_threshold) {
+        show = true
+      }
     }
 
     if (show) {
