@@ -982,6 +982,30 @@ a:visited, a:link, a:hover {
   background-color: var(--color_orange);
 }
 
+.color_red_2 {
+  background-color: var(--color_red_2);
+}
+
+.color_green_2 {
+  background-color: var(--color_green_2);
+}
+
+.color_blue_2 {
+  background-color: var(--color_blue_2);
+}
+
+.color_yellow_2 {
+  background-color: var(--color_yellow_2);
+}
+
+.color_purple_2 {
+  background-color: var(--color_purple_2);
+}
+
+.color_orange_2 {
+  background-color: var(--color_orange_2);
+}
+
 .selected_effect_background.colored.selected {
   background-color: var(--alt_color_1);
   color: var(--text_color);
