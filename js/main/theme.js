@@ -140,6 +140,14 @@ App.apply_theme = (args) => {
     App.set_css_var(`color_yellow`, App.get_setting(`color_yellow`))
     App.set_css_var(`color_purple`, App.get_setting(`color_purple`))
     App.set_css_var(`color_orange`, App.get_setting(`color_orange`))
+
+    App.set_css_var(`color_red_2`, App.colorlib.rgb_to_rgba(App.get_setting(`color_red`), 0.5))
+    App.set_css_var(`color_green_2`, App.colorlib.rgb_to_rgba(App.get_setting(`color_green`), 0.5))
+    App.set_css_var(`color_blue_2`, App.colorlib.rgb_to_rgba(App.get_setting(`color_blue`), 0.5))
+    App.set_css_var(`color_yellow_2`, App.colorlib.rgb_to_rgba(App.get_setting(`color_yellow`), 0.5))
+    App.set_css_var(`color_purple_2`, App.colorlib.rgb_to_rgba(App.get_setting(`color_purple`), 0.5))
+    App.set_css_var(`color_orange_2`, App.colorlib.rgb_to_rgba(App.get_setting(`color_orange`), 0.5))
+
     App.set_css_var(`font_size`, App.get_setting(`font_size`) + `px`)
     App.set_css_var(`font`, `${App.get_setting(`font`)}, sans-serif`)
     let w = `${(App.get_setting(`width`) / 100) * 800}px`
