@@ -668,6 +668,21 @@ App.setup_settings = () => {
   }}))
 
   App.create_window(Object.assign({}, common, {id: `settings_colors`, setup: () => {
+    let container = DOM.el(`#settings_colors_container`)
+
+    for (let color of App.colors) {
+      let el = DOM.create(`div`, `settings_item`)
+      el.title = `What color to use for ${color}`
+      let label = DOM.create(`div`, `settings_label`)
+      label.textContent = `Color ${App.capitalize(color)}`
+      let picker = DOM.create(`div`, undefined, `settings_color_${color}`)
+      picker.dataset.setting = `color_${color}`
+      el.append(label)
+      el.append(picker)
+      container.append(el)
+      App.start_color_picker(`color_${color}`)
+    }
+
     prepare(`colors`)
 
     App.settings_make_menu(`color_mode`, [
@@ -676,10 +691,6 @@ App.setup_settings = () => {
       [`Icon 2`, `icon_2`],
       [`Item`, `item`],
     ])
-
-    for (let color of App.colors) {
-      App.start_color_picker(`color_${color}`)
-    }
   }}))
 
   App.create_window(Object.assign({}, common, {id: `settings_warns`, setup: () => {
