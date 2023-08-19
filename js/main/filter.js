@@ -549,8 +549,10 @@ App.create_filter = (mode) => {
   })
 
   DOM.ev(filter, `contextmenu`, (e) => {
-    App.show_filter_history(e, mode)
-    e.preventDefault()
+    if (App.get_setting(`show_filter_history`)) {
+      App.show_filter_history(e, mode)
+      e.preventDefault()
+    }
   })
 
   return filter

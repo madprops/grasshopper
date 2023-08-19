@@ -46,12 +46,6 @@ App.build_default_settings = () => {
   obj.audio_icon = {value: `🎵`, category: category, version: 1}
 
   category = `show`
-  obj.show_scrollbars = {value: true, category: category, version: 1}
-  obj.show_tooltips = {value: true, category: category, version: 1}
-  obj.show_icons = {value: true, category: category, version: 1}
-  obj.show_pinline = {value: true, category: category, version: 1}
-  obj.show_scroller = {value: true, category: category, version: 1}
-  obj.show_footer = {value: true, category: category, version: 1}
   obj.pin_icon = {value: `+`, category: category, version: 1}
   obj.normal_icon = {value: ``, category: category, version: 1}
   obj.playing_icon = {value: `🔊`, category: category, version: 1}
@@ -60,6 +54,13 @@ App.build_default_settings = () => {
   obj.close_icon = {value: `x`, category: category, version: 1}
   obj.open_icon = {value: `🚀`, category: category, version: 1}
   obj.pick_icon = {value: `🎯`, category: category, version: 1}
+  obj.show_scrollbars = {value: true, category: category, version: 1}
+  obj.show_tooltips = {value: true, category: category, version: 1}
+  obj.show_icons = {value: true, category: category, version: 1}
+  obj.show_pinline = {value: true, category: category, version: 1}
+  obj.show_scroller = {value: true, category: category, version: 1}
+  obj.show_footer = {value: true, category: category, version: 1}
+  obj.show_filter_history = {value: true, category: category, version: 1}
 
   category = `mouse`
   obj.gestures_enabled = {value: true, category: category, version: 1}
@@ -120,7 +121,7 @@ App.build_default_settings = () => {
   obj.smooth_scrolling = {value: true, category: category, version: 1}
   obj.aliases = {value: [], category: category, version: 1}
   obj.custom_filters = {value: [], category: category, version: 1}
-  obj.command_history = {value: true, category: category, version: 1}
+  obj.sort_commands = {value: true, category: category, version: 1}
 
   App.default_settings = obj
 }
