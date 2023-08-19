@@ -75,6 +75,11 @@ NeedContext.show_on_element = (el, items, expand = false, margin = 0) => {
   }
 }
 
+// Show at the center
+NeedContext.show_center = (items) => {
+  NeedContext.show(undefined, undefined, items)
+}
+
 // Show the menu
 NeedContext.show = (x, y, items, root = true) => {
   if (!NeedContext.created) {
@@ -83,6 +88,15 @@ NeedContext.show = (x, y, items, root = true) => {
 
   if (root) {
     NeedContext.level = 0
+  }
+
+  let center
+
+  if (x === undefined && y === undefined) {
+    center = true
+  }
+  else {
+    center = false
   }
 
   items = items.slice(0)
@@ -186,30 +200,38 @@ NeedContext.show = (x, y, items, root = true) => {
 
   NeedContext.main.classList.remove(`needcontext-hidden`)
 
-  if (y < 5) {
-    y = 5
+  if (center) {
+    c.style.left = `50%`
+    c.style.top = `50%`
+    c.style.transform = `translate(-50%, -50%)`
   }
+  else {
+    if (y < 5) {
+      y = 5
+    }
 
-  if (x < 5) {
-    x = 5
+    if (x < 5) {
+      x = 5
+    }
+
+    if ((y + c.offsetHeight) + 5 > window.innerHeight) {
+      y = window.innerHeight - c.offsetHeight - 5
+    }
+
+    if ((x + c.offsetWidth) + 5 > window.innerWidth) {
+      x = window.innerWidth - c.offsetWidth - 5
+    }
+
+    NeedContext.last_x = x
+    NeedContext.last_y = y
+
+    x = Math.max(x, 0)
+    y = Math.max(y, 0)
+
+    c.style.left = `${x}px`
+    c.style.top = `${y}px`
+    c.style.transform = `unset`
   }
-
-  if ((y + c.offsetHeight) + 5 > window.innerHeight) {
-    y = window.innerHeight - c.offsetHeight - 5
-  }
-
-  if ((x + c.offsetWidth) + 5 > window.innerWidth) {
-    x = window.innerWidth - c.offsetWidth - 5
-  }
-
-  NeedContext.last_x = x
-  NeedContext.last_y = y
-
-  x = Math.max(x, 0)
-  y = Math.max(y, 0)
-
-  c.style.left = `${x}px`
-  c.style.top = `${y}px`
 
   NeedContext.filter.value = ``
   NeedContext.filter.focus()

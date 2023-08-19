@@ -783,7 +783,12 @@ App.show_filter_history = (e, mode) => {
     })
   }
 
-  NeedContext.show(e.clientX, e.clientY, items)
+  if (e) {
+    NeedContext.show(e.clientX, e.clientY, items)
+  }
+  else {
+    NeedContext.show_center(items)
+  }
 }
 
 App.update_filter_history = (mode) => {

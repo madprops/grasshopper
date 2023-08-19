@@ -200,6 +200,9 @@ App.setup_commands = () => {
     }},
     ...media_filters,
     ...color_filters,
+    {name: `Filter History`, cmd: `filter_history`, mode: `items`, action: (args) => {
+      App.show_filter_history(undefined, args.mode)
+    }},
 
     {name: App.separator_string},
 
