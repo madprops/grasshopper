@@ -257,6 +257,7 @@ App.show_media_menu = (what) => {
   let item = App.current_media_item()
 
   items.push({
+    icon: App.mode_icons[item.mode],
     text: `Select`,
     action: () => {
       App.hide_window()
@@ -265,14 +266,16 @@ App.show_media_menu = (what) => {
   })
 
   items.push({
-    text: `${App.clipboard_icon} Copy URL`,
+    icon: App.clipboard_icon,
+    text: `Copy URL`,
     action: () => {
       App.media_copy(what)
     }
   })
 
   items.push({
-    text: `${App.mode_icons.bookmarks} Bookmark`,
+    icon: App.mode_icons.bookmarks,
+    text: `Bookmark`,
     action: () => {
       App.bookmark_items(item)
     }
@@ -280,14 +283,16 @@ App.show_media_menu = (what) => {
 
   if (what === `image`) {
     items.push({
-      text: `${App.settings_icons.theme} Background`,
+      icon: App.settings_icons.theme,
+      text: `Background`,
       action: () => {
         App.media_background(what)
       }
     })
 
     items.push({
-      text: `${App.settings_icons.theme} Add To Pool`,
+      icon: App.settings_icons.theme,
+      text: `Add To Pool`,
       action: () => {
         App.add_to_background_pool(item.url)
       }
