@@ -76,15 +76,6 @@ App.auto_theme_delay = 1000 * 60 * 30
 App.check_item_theme_delay = 33
 App.scroll_bottom_delay = 150
 
-App.color_icons = {
-  red: `🔴`,
-  green: `🟢`,
-  blue: `🔵`,
-  yellow: `🟡`,
-  purple: `🟣`,
-  orange: `🟠`,
-}
-
 App.settings_icons = {
   general: `⚙️`,
   theme: `🎨`,
@@ -116,53 +107,6 @@ App.dark_theme_colors = {
 App.light_theme_colors = {
   background: `rgb(200, 200, 200)`,
   text: `rgb(50, 50, 55)`,
-}
-
-App.icontext = {
-  bookmark: {
-    icon: App.mode_icons.bookmarks,
-    name: `Bookmark`,
-  },
-  bookmark_active: {
-    icon: App.mode_icons.bookmarks,
-    name: `Bookmark This`,
-  },
-  dark_theme: {
-    icon: App.settings_icons.theme,
-    name: `Dark Theme`,
-  },
-  light_theme: {
-    icon: App.settings_icons.theme,
-    name: `Light Theme`,
-  },
-  random_theme: {
-    icon: App.settings_icons.theme,
-    name: `${App.random_text} Theme`,
-  },
-  random_background: {
-    icon: App.settings_icons.theme,
-    name: `${App.random_text} Background`,
-  },
-  next_background: {
-    icon: App.settings_icons.theme,
-    name: `Next Background`,
-  },
-  add_to_pool: {
-    icon: App.settings_icons.theme,
-    name: `Add To Pool`,
-  },
-  background: {
-    icon: App.settings_icons.theme,
-    name: `Background`,
-  },
-  restart: {
-    icon: App.bot_icon,
-    name: `Restart`,
-  },
-  copy_url: {
-    icon: App.clipboard_icon,
-    name: `Copy URL`,
-  }
 }
 
 App.color_names = {

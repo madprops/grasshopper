@@ -214,7 +214,7 @@ App.more_menu_items = (o_items, item, multiple, some_loaded) => {
   }
 
   items.push({
-    text: App.get_icontext(`bookmark`),
+    text: `${App.mode_icons.bookmarks} Bookmark`,
     action: () => {
       App.bookmark_items(item)
     }
@@ -222,14 +222,14 @@ App.more_menu_items = (o_items, item, multiple, some_loaded) => {
 
   if (item.image && !multiple) {
     items.push({
-      text: App.get_icontext(`background`),
+      text: `${App.settings_icons.theme} Background`,
       action: () => {
         App.change_background(item.url)
       }
     })
 
     items.push({
-      text: App.get_icontext(`add_to_pool`),
+      text: `${App.settings_icons.theme} Add To Pool`,
       action: () => {
         App.add_to_background_pool(item.url)
       }

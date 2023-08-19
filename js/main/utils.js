@@ -347,11 +347,6 @@ App.is_array = (a) => {
   return Array.isArray(a)
 }
 
-App.get_icontext = (s) => {
-  let it = App.icontext[s]
-  return `${it.icon} ${it.name}`
-}
-
 App.shuffle_array = (array) => {
   for (let i=array.length-1; i>0; i--) {
     let j = Math.floor(Math.random() * (i + 1))
@@ -498,4 +493,8 @@ App.similarity_distance = (s1, s2) => {
 
 App.to_set = (array) => {
   return [...new Set(array)]
+}
+
+App.color_icon = (color) => {
+  return `<div class="color_icon color_${color}"></div>`
 }

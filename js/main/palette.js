@@ -138,7 +138,13 @@ App.fill_palette = () => {
 
   for (let cmd of App.sorted_commands) {
     let el = DOM.create(`div`, `palette_item action filter_item filter_text`)
-    el.textContent = cmd.name
+    el.innerHTML = ``
+
+    if (cmd.icon) {
+      el.innerHTML = `${cmd.icon}&nbsp;`
+    }
+
+    el.innerHTML = `${el.innerHTML}${cmd.name}`
     el.dataset.command = cmd.cmd
     let name_lower = cmd.name.toLowerCase()
 

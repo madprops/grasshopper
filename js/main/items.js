@@ -517,7 +517,7 @@ App.apply_color_mode = (item) => {
     let el = DOM.el(`.item_info_color`, item.element)
 
     if (color) {
-      el.textContent = App.color_icons[color]
+      el.innerHTML = App.color_icon(color)
       el.classList.remove(`hidden`)
 
       if (color_mode === `icon_2` || color_mode === `both_2`) {

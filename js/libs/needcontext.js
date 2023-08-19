@@ -130,7 +130,15 @@ NeedContext.show = (x, y, items, root = true) => {
     }
     else {
       el.classList.add(`needcontext-normal`)
-      el.textContent = item.text
+
+      if (item.html) {
+        el.innerHTML = item.html
+      }
+
+      if (item.text) {
+        el.textContent = item.text
+      }
+
       el.dataset.index = index
       item.index = index
 
@@ -372,6 +380,10 @@ NeedContext.init = () => {
 
     .needcontext-item {
       white-space: nowrap;
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      gap: 0.5rem;
     }
 
     .needcontext-normal {

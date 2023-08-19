@@ -37,7 +37,7 @@ App.setup_profile_editor = () => {
     App.profile_editor_color_opts = [[`None`, ``]]
 
     for (let color of App.colors) {
-      let icon = App.color_icons[color]
+      let icon = App.color_icon(color)
       let name = `${icon} ${App.capitalize(color)}`
       App.profile_editor_color_opts.push([name, color])
     }
@@ -720,7 +720,7 @@ App.get_color_items = (mode, action = `filter`) => {
       continue
     }
 
-    let icon = App.color_icons[color]
+    let icon = App.color_icon(color)
     let name = `${icon} ${App.capitalize(color)}`
 
     items.push({
@@ -1353,7 +1353,7 @@ App.profile_make_menu = (prop, opts) => {
 
     for (let o of opts) {
       items.push({
-        text: o[0],
+        html: o[0],
         action: () => {
           App.profile_editor_set_menu(el, prop, o)
         },
@@ -1422,7 +1422,7 @@ App.profile_menu_cycle = (el, prop, dir, o_items) => {
 }
 
 App.profile_editor_set_menu = (el, prop, item) => {
-  el.textContent = item[0]
+  el.innerHTML = item[0]
   App[`current_profile_editor_${prop}`] = item[1]
   App.profile_modified()
 }

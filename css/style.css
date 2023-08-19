@@ -502,6 +502,11 @@ svg {
 
 .settings_menu {
   min-width: 8rem;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
 }
 
 .settings_checkbox {
@@ -793,6 +798,10 @@ a:visited, a:link, a:hover {
   padding: 0.25rem;
   cursor: pointer;
   white-space: nowrap;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: flex-start;
 }
 
 .palette_selected {
@@ -942,6 +951,12 @@ a:visited, a:link, a:hover {
 
 .item_button:active {
   background-color: var(--alt_background_2);
+}
+
+.color_icon {
+  height: 1rem;
+  width: 1rem;
+  border-radius: 50%;
 }
 
 .colored {

@@ -257,14 +257,14 @@ App.show_media_menu = (what) => {
   let item = App.current_media_item()
 
   items.push({
-    text: App.get_icontext(`copy_url`),
+    text: `${App.clipboard_icon} Copy URL`,
     action: () => {
       App.media_copy(what)
     }
   })
 
   items.push({
-    text: App.get_icontext(`bookmark`),
+    text: `${App.mode_icons.bookmarks} Bookmark`,
     action: () => {
       App.bookmark_items(item)
     }
@@ -272,14 +272,14 @@ App.show_media_menu = (what) => {
 
   if (what === `image`) {
     items.push({
-      text: App.get_icontext(`background`),
+      text: `${App.settings_icons.theme} Background`,
       action: () => {
         App.media_background(what)
       }
     })
 
     items.push({
-      text: App.get_icontext(`add_to_pool`),
+      text: `${App.settings_icons.theme} Add To Pool`,
       action: () => {
         App.add_to_background_pool(item.url)
       }
