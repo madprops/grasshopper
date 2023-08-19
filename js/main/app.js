@@ -18,27 +18,6 @@ App.max_closed = 25
 App.icon_size = 25
 App.max_profiles = 1000 * 5
 App.max_text_length = 200
-
-App.settings_save_delay = 250
-App.activated_delay = 2600
-App.opened_delay = 2600
-App.restore_delay = 1000 * 10
-App.double_tap_delay = 300
-App.empty_previous_tabs_delay = 2000
-App.alert_autohide_delay = 1500
-App.filter_delay = 200
-App.filter_delay_2 = 100
-App.footer_delay = 100
-App.scroller_delay = 100
-App.pinline_delay = 100
-App.check_borders_delay = 100
-App.wheel_delay = 100
-App.show_mode_delay = 100
-App.max_pick_delay = 2000
-App.auto_theme_delay = 1000 * 60 * 30
-App.check_item_theme_delay = 33
-App.scroll_bottom_delay = 150
-
 App.scroll_amount = 150
 App.double_tap_date = 0
 App.scroller_max_top = 10
@@ -76,6 +55,26 @@ App.max_smooth_scroll = 1000 * 2
 App.settings_ready = false
 App.active_background = 1
 App.first_bg_image = false
+
+App.settings_save_delay = 250
+App.activated_delay = 2600
+App.opened_delay = 2600
+App.restore_delay = 1000 * 10
+App.double_tap_delay = 300
+App.empty_previous_tabs_delay = 2000
+App.alert_autohide_delay = 1500
+App.filter_delay = 200
+App.filter_delay_2 = 100
+App.footer_delay = 100
+App.scroller_delay = 100
+App.pinline_delay = 100
+App.check_borders_delay = 100
+App.wheel_delay = 100
+App.show_mode_delay = 100
+App.max_pick_delay = 2000
+App.auto_theme_delay = 1000 * 60 * 30
+App.check_item_theme_delay = 33
+App.scroll_bottom_delay = 150
 
 App.color_icons = {
   red: `🔴`,
