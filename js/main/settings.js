@@ -90,7 +90,7 @@ App.build_default_settings = () => {
   obj.warn_on_remove_profiles = {value: true, category: category, version: 1}
   obj.warn_on_bookmark = {value: true, category: category, version: 1}
 
-  category = `domain`
+  category = `domains`
   obj.domain_tags = {value: [], category: category, version: 1}
   obj.domain_themes = {value: [], category: category, version: 1}
   obj.domain_colors = {value: [], category: category, version: 1}
@@ -530,7 +530,7 @@ App.setup_settings = () => {
     }, element: App.add_setting_list_item_html(`background_pool`, `image_url`, [], true)
   })
 
-  App.settings_categories = [`general`, `theme`, `media`, `show`, `mouse`, `warns`, `domain`, `more`]
+  App.settings_categories = [`general`, `theme`, `media`, `show`, `mouse`, `warns`, `domains`, `more`]
 
   let common = {
     persistent: false,
@@ -632,8 +632,8 @@ App.setup_settings = () => {
     })
   }}))
 
-  App.create_window(Object.assign({}, common, {id: `settings_domain`, setup: () => {
-    prepare(`domain`)
+  App.create_window(Object.assign({}, common, {id: `settings_domains`, setup: () => {
+    prepare(`domains`)
 
     DOM.ev(DOM.el(`#settings_domain_themes_add`), `click`, () => {
       App.add_domain_theme()
