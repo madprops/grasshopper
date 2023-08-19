@@ -768,9 +768,17 @@ App.show_filter_history = (e, mode) => {
     items.push({separator: true})
 
     items.push({
-      text: `Clear`,
+      text: `Forget`,
       action: () => {
-        App.clear_filter_history()
+        App.forget_filter_history()
+      }
+    })
+  }
+  else {
+    items.push({
+      text: `Empty`,
+      action: () => {
+        App.show_alert(`Filters you use appear here`)
       }
     })
   }
@@ -792,7 +800,9 @@ App.update_filter_history = (mode) => {
   App.stor_save_filter_history()
 }
 
-App.clear_filter_history = () => {
-  App.filter_history = []
-  App.stor_save_filter_history()
+App.forget_filter_history = () => {
+  App.show_confirm(`Forget filter history?`, () => {
+    App.filter_history = []
+    App.stor_save_filter_history()
+  })
 }
