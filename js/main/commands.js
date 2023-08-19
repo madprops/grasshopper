@@ -225,10 +225,10 @@ App.setup_commands = () => {
     {icon: App.settings_icons.theme, name: `Light Theme`, cmd: `light_theme`, action: (args) => {
       App.light_theme()
     }},
-    {icon: App.settings_icons.theme, name: `Random Theme`, cmd: `random_theme`, action: (args) => {
+    {icon: App.settings_icons.theme, name: `${App.random_text} Theme`, cmd: `random_theme`, action: (args) => {
       App.random_theme()
     }},
-    {icon: App.settings_icons.theme, name: `Random Background`, cmd: `random_background`, action: (args) => {
+    {icon: App.settings_icons.theme, name: `${App.random_text} Background`, cmd: `random_background`, action: (args) => {
       App.random_background()
     }},
     {icon: App.settings_icons.theme, name: `Next Background`, cmd: `next_background`, action: (args) => {

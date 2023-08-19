@@ -603,6 +603,7 @@ App.do_filter_2 = (mode) => {
         }
         else if (App.similarity(value, alias) >= App.similarity_threshold) {
           show = true
+          break
         }
       }
     }
