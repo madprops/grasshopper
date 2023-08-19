@@ -34,12 +34,12 @@ App.setup_profile_editor = () => {
       App.show_profile_urls()
     })
 
-    App.profile_editor_color_opts = [[`None`, ``]]
+    App.profile_editor_color_opts = [[``, `None`, ``]]
 
     for (let color of App.colors) {
       let icon = App.color_icon(color)
-      let name = `${icon} ${App.capitalize(color)}`
-      App.profile_editor_color_opts.push([name, color])
+      let name = App.capitalize(color)
+      App.profile_editor_color_opts.push([icon, name, color])
     }
 
     App.profile_make_menu(`color`, App.profile_editor_color_opts)
@@ -1353,7 +1353,8 @@ App.profile_make_menu = (prop, opts) => {
 
     for (let o of opts) {
       items.push({
-        html: o[0],
+        icon: o[0],
+        text: o[1],
         action: () => {
           App.profile_editor_set_menu(el, prop, o)
         },
@@ -1411,7 +1412,7 @@ App.profile_menu_cycle = (el, prop, dir, o_items) => {
       break
     }
 
-    if (item[1] === App.current_profile_editor_color) {
+    if (item[2] === App.current_profile_editor_color) {
       waypoint = true
     }
   }
@@ -1422,14 +1423,14 @@ App.profile_menu_cycle = (el, prop, dir, o_items) => {
 }
 
 App.profile_editor_set_menu = (el, prop, item) => {
-  el.innerHTML = item[0]
-  App[`current_profile_editor_${prop}`] = item[1]
+  el.innerHTML = item[0] + item[1]
+  App[`current_profile_editor_${prop}`] = item[2]
   App.profile_modified()
 }
 
 App.get_profile_editor_menu_item = (value, opts) => {
   for (let opt of opts) {
-    if (opt[1] === value) {
+    if (opt[2] === value) {
       return opt
     }
   }
