@@ -141,7 +141,7 @@ App.fill_palette = () => {
     el.innerHTML = ``
 
     if (cmd.icon) {
-      el.innerHTML = `${cmd.icon}&nbsp;`
+      el.innerHTML = `<div>${cmd.icon}</div>`
     }
 
     el.innerHTML = `${el.innerHTML}${cmd.name}`
