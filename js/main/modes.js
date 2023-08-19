@@ -255,6 +255,6 @@ App.make_mode_order = () => {
   }
 }
 
-App.after_action = (mode) => {
-  App.update_filter_history(mode)
+App.on_action = (mode) => {
+  App.do_update_filter_history(mode)
 }

@@ -59,8 +59,8 @@ App.get_history = async (query = ``, deep = false) => {
 }
 
 App.history_action = (item) => {
+  App.on_action(`history`)
   App.focus_or_open_item(item)
-  App.after_action(`history`)
 }
 
 App.history_action_alt = (item) => {

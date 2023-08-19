@@ -260,9 +260,9 @@ App.remove_closed_tab = (id) => {
 }
 
 App.tabs_action = async (item) => {
+  App.on_action(`tabs`)
   await App.focus_tab(item, `nearest_smooth`)
   App.check_close_on_focus()
-  App.after_action(`tabs`)
 }
 
 App.tabs_action_alt = (item, shift) => {
