@@ -385,8 +385,12 @@ svg {
   border-color: transparent !important;
 }
 
-.selected_effect_background .selected {
+.selected_effect_background .selected:not(.colored) {
   background-color: var(--alt_color_1);
+}
+
+.selected_effect_background .selected.colored {
+  text-decoration: underline;
 }
 
 .selected_effect_underline .selected .item_text {
