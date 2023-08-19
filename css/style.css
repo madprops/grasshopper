@@ -6,12 +6,6 @@
   --scroller_padding: 0.29rem;
   --color_border: 1px solid black;
   --bigger_font: 1.2rem;
-  --color_red: rgb(172, 59, 59);
-  --color_green: rgb(46, 104, 46);
-  --color_blue: rgb(59, 59, 147);
-  --color_yellow: rgb(128, 128, 41);
-  --color_purple: rgb(124, 35, 166);
-  --color_orange: rgb(170, 127, 59);
 }
 
 body, html {

@@ -91,6 +91,14 @@ App.build_default_settings = () => {
   obj.warn_on_remove_profiles = {value: true, category: category, version: 1}
   obj.warn_on_bookmark = {value: true, category: category, version: 1}
 
+  category = `colors`
+  obj.color_red = {value: `rgb(172, 59, 59)`, category: category, version: 1}
+  obj.color_green = {value: `rgb(46, 104, 46)`, category: category, version: 1}
+  obj.color_blue = {value: `rgb(59, 59, 147)`, category: category, version: 1}
+  obj.color_yellow = {value: `rgb(128, 128, 41)`, category: category, version: 1}
+  obj.color_purple = {value: `rgb(124, 35, 166)`, category: category, version: 1}
+  obj.color_orange = {value: `rgb(170, 127, 59)`, category: category, version: 1}
+
   category = `domains`
   obj.domain_tags = {value: [], category: category, version: 1}
   obj.domain_themes = {value: [], category: category, version: 1}
@@ -536,7 +544,7 @@ App.setup_settings = () => {
     }, element: App.add_setting_list_item_html(`background_pool`, `image_url`, [], true)
   })
 
-  App.settings_categories = [`general`, `theme`, `media`, `show`, `mouse`, `warns`, `domains`, `more`]
+  App.settings_categories = [`general`, `theme`, `media`, `show`, `mouse`, `warns`, `colors`, `domains`, `more`]
 
   let common = {
     persistent: false,
@@ -665,6 +673,14 @@ App.setup_settings = () => {
   App.create_window(Object.assign({}, common, {id: `settings_theme`, setup: () => {
     prepare(`theme`)
     App.start_theme_settings()
+  }}))
+
+  App.create_window(Object.assign({}, common, {id: `settings_colors`, setup: () => {
+    prepare(`colors`)
+
+    for (let color of App.colors) {
+      App.start_color_picker(`color_${color}`)
+    }
   }}))
 
   App.create_window(Object.assign({}, common, {id: `settings_warns`, setup: () => {
@@ -860,43 +876,42 @@ App.add_settings_switchers = (category) => {
   DOM.dataset(top, `done`, true)
 }
 
+App.start_color_picker = (setting) => {
+  let el = DOM.el(`#settings_${setting}`)
+
+  App[setting] = AColorPicker.createPicker(el, {
+    showAlpha: false,
+    showHSL: false,
+    showHEX: false,
+    showRGB: true,
+    color: App.get_setting(setting)
+  })
+
+  App[setting].on(`change`, (picker, color) => {
+    App.set_setting(setting, color)
+    App.apply_theme()
+  })
+
+  DOM.evs(App.get_settings_label(setting), [`click`, `contextmenu`], (e) => {
+    App.settings_label_menu(e,
+    [
+      {
+        name: `Reset`, action: () => {
+          let force = App.check_setting_default(setting)
+
+          App.show_confirm(`Reset setting?`, () => {
+            App[setting].setColor(App.get_default_setting(setting))
+            App.set_default_setting(setting)
+          }, undefined, force)
+        }
+      },
+    ])
+  })
+}
+
 App.start_theme_settings = () => {
-  function start_color_picker (name) {
-    let el = DOM.el(`#settings_${name}_color`)
-    let setting = `${name}_color`
-
-    App[setting] = AColorPicker.createPicker(el, {
-      showAlpha: false,
-      showHSL: false,
-      showHEX: false,
-      showRGB: true,
-      color: App.get_setting(setting)
-    })
-
-    App[setting].on(`change`, (picker, color) => {
-      App.set_setting(setting, color)
-      App.apply_theme()
-    })
-
-    DOM.evs(App.get_settings_label(setting), [`click`, `contextmenu`], (e) => {
-      App.settings_label_menu(e,
-      [
-        {
-          name: `Reset`, action: () => {
-            let force = App.check_setting_default(setting)
-
-            App.show_confirm(`Reset setting?`, () => {
-              App[setting].setColor(App.get_default_setting(setting))
-              App.set_default_setting(setting)
-            }, undefined, force)
-          }
-        },
-      ])
-    })
-  }
-
-  start_color_picker(`background`)
-  start_color_picker(`text`)
+  App.start_color_picker(`background_color`)
+  App.start_color_picker(`text_color`)
 
   let effects_opts = [
     [`None`, `none`],
