@@ -45,8 +45,9 @@ NeedContext.do_filter = () => {
     }
   }
 
-  for (let el of document.querySelectorAll(`.needcontext-item`)) {
-    let text = el.textContent.toLowerCase()
+  for (let text_el of document.querySelectorAll(`.needcontext-text`)) {
+    let el = text_el.closest(`.needcontext-item`)
+    let text = text_el.textContent.toLowerCase()
     text = NeedContext.remove_spaces(text)
 
     if (text.includes(value)) {
@@ -145,6 +146,7 @@ NeedContext.show = (x, y, items, root = true) => {
 
       if (item.text) {
         let text = document.createElement(`div`)
+        text.classList.add(`needcontext-text`)
         text.textContent = item.text
         el.append(text)
       }
@@ -360,7 +362,7 @@ NeedContext.init = () => {
     }
 
     .needcontext-hidden {
-      display: none;
+      display: none !important;
     }
 
     #needcontext-container {
