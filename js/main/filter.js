@@ -776,15 +776,7 @@ App.show_filter_history = (e, mode) => {
   NeedContext.show(e.clientX, e.clientY, items)
 }
 
-App.update_filter_history_debouncer = App.create_debouncer((mode) => {
-  App.do_update_filter_history(mode)
-}, App.update_filter_delay)
-
 App.update_filter_history = (mode) => {
-  App.update_filter_history_debouncer.call(mode)
-}
-
-App.do_update_filter_history = (mode) => {
   App.debug(`Update Filter History`)
   let value = App.get_filter(mode).trim()
 

@@ -54,7 +54,6 @@ App.item_range_on = false
 App.item_range_select = false
 App.max_pick_delay = 2000
 App.auto_theme_delay = 1000 * 60 * 30
-App.update_filter_delay = 250
 App.seeded_theme_max = 88
 App.max_filter_history = 10
 App.color_contrast = 0.8
