@@ -13,7 +13,8 @@ NeedContext.after_hide = () => {}
 // Minimum menu width and height
 NeedContext.min_width = `25px`
 NeedContext.min_height = `25px`
-NeedContext.back_text = `⬅️ Back`
+NeedContext.back_icon = `⬅️`
+NeedContext.back_text = `Back`
 NeedContext.item_sep = `4px`
 NeedContext.layers = {}
 NeedContext.level = 0
@@ -109,7 +110,12 @@ NeedContext.show = (x, y, items, root = true) => {
   if (!root) {
     let el = document.createElement(`div`)
     el.classList.add(`needcontext-back`)
-    el.innerHTML = NeedContext.back_text
+    let icon = document.createElement(`div`)
+    icon.innerHTML = NeedContext.back_icon
+    let text = document.createElement(`div`)
+    text.textContent = NeedContext.back_text
+    el.append(icon)
+    el.append(text)
     el.title = `Shortcut: Backspace`
 
     el.addEventListener(`click`, () => {
@@ -123,10 +129,6 @@ NeedContext.show = (x, y, items, root = true) => {
 
   for (let item of items) {
     let el = document.createElement(`div`)
-    let icon = document.createElement(`div`)
-    let text = document.createElement(`div`)
-    el.append(icon)
-    el.append(text)
     el.classList.add(`needcontext-item`)
 
     if (item.separator) {
@@ -136,11 +138,15 @@ NeedContext.show = (x, y, items, root = true) => {
       el.classList.add(`needcontext-normal`)
 
       if (item.icon) {
+        let icon = document.createElement(`div`)
         icon.innerHTML = item.icon
+        el.append(icon)
       }
 
       if (item.text) {
+        let text = document.createElement(`div`)
         text.textContent = item.text
+        el.append(text)
       }
 
       el.dataset.index = index
@@ -402,6 +408,10 @@ NeedContext.init = () => {
       padding-right: 10px;
       padding-top: ${NeedContext.item_sep};
       padding-bottom: ${NeedContext.item_sep};
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      gap: 0.5rem;
     }
 
     .needcontext-back:hover {

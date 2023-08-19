@@ -721,9 +721,10 @@ App.get_color_items = (mode, action = `filter`) => {
     }
 
     let icon = App.color_icon(color)
-    let name = `${icon} ${App.capitalize(color)}`
+    let name = App.capitalize(color)
 
     items.push({
+      icon: icon,
       text: name,
       action: () => {
         if (action === `filter`) {
