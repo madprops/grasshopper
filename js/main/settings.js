@@ -91,12 +91,12 @@ App.build_default_settings = () => {
   obj.warn_on_bookmark = {value: true, category: category, version: 1}
 
   category = `colors`
-  obj.color_red = {value: `rgb(172, 59, 59)`, category: category, version: 1}
-  obj.color_green = {value: `rgb(46, 104, 46)`, category: category, version: 1}
-  obj.color_blue = {value: `rgb(59, 59, 147)`, category: category, version: 1}
-  obj.color_yellow = {value: `rgb(128, 128, 41)`, category: category, version: 1}
-  obj.color_purple = {value: `rgb(124, 35, 166)`, category: category, version: 1}
-  obj.color_orange = {value: `rgb(170, 127, 59)`, category: category, version: 1}
+  obj.color_red = {value: `rgba(172, 59, 59, 0.44)`, category: category, version: 1}
+  obj.color_green = {value: `rgba(46, 104, 46, 0.44)`, category: category, version: 1}
+  obj.color_blue = {value: `rgba(59, 59, 147, 0.44)`, category: category, version: 1}
+  obj.color_yellow = {value: `rgba(128, 128, 41, 0.44)`, category: category, version: 1}
+  obj.color_purple = {value: `rgba(124, 35, 166, 0.44)`, category: category, version: 1}
+  obj.color_orange = {value: `rgba(170, 127, 59, 0.44)`, category: category, version: 1}
   obj.color_mode = {value: `item`, category: category, version: 1}
 
   category = `domains`
@@ -680,7 +680,7 @@ App.setup_settings = () => {
       el.append(label)
       el.append(picker)
       container.append(el)
-      App.start_color_picker(`color_${color}`)
+      App.start_color_picker(`color_${color}`, true)
     }
 
     prepare(`colors`)
@@ -886,11 +886,11 @@ App.add_settings_switchers = (category) => {
   DOM.dataset(top, `done`, true)
 }
 
-App.start_color_picker = (setting) => {
+App.start_color_picker = (setting, alpha = false) => {
   let el = DOM.el(`#settings_${setting}`)
 
   App[setting] = AColorPicker.createPicker(el, {
-    showAlpha: false,
+    showAlpha: alpha,
     showHSL: false,
     showHEX: false,
     showRGB: true,
