@@ -511,6 +511,7 @@ App.background_from_pool = (random = false) => {
   let images = App.get_setting(`background_pool`)
 
   if (images.length === 0) {
+    App.show_feedback(`The background pool is empty`)
     return
   }
 
