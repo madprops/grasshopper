@@ -1335,9 +1335,10 @@ App.settings_menu_items = () => {
 
   for (let c of App.settings_categories) {
     let icon = App.settings_icons[c]
-    let name = `${icon} ${App.capitalize(c)}`
+    let name = App.capitalize(c)
 
     items.push({
+      icon: icon,
       text: name,
       action: () => {
         App.show_settings_category(c)
