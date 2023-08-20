@@ -26,8 +26,13 @@ App.setup_profile_editor = () => {
 
     close.textContent = App.close_text
 
-    DOM.ev(DOM.el(`#profile_editor_url_update`), `click`, (e) => {
-      App.profile_editor_update_url(e)
+    DOM.ev(DOM.el(`#profile_editor_url_root`), `click`, (e) => {
+      App.profile_editor_root_url(e)
+      App.profile_modified()
+    })
+
+    DOM.ev(DOM.el(`#profile_editor_url_full`), `click`, (e) => {
+      App.profile_editor_full_url(e)
       App.profile_modified()
     })
 
@@ -1554,7 +1559,15 @@ App.get_active_tags = (mode) => {
   return tags
 }
 
-App.profile_editor_update_url = () => {
+App.profile_editor_root_url = () => {
+  let el = DOM.el(`#profile_editor_url`)
+  let item = App.profile_editor_items[0]
+  el.value = item.protocol + `//` + item.hostname
+  App.scroll_to_right(el)
+  el.focus()
+}
+
+App.profile_editor_full_url = () => {
   let el = DOM.el(`#profile_editor_url`)
   el.value = App.profile_editor_items[0].url
   App.scroll_to_right(el)
