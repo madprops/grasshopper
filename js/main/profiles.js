@@ -343,7 +343,6 @@ App.focus_first_profile_editor_input = () => {
   for (let c of DOM.els(`.editor_container`, container)) {
     if (!c.classList.contains(`hidden`)) {
       let input = DOM.el(`.editor_input`, c)
-      console.log(c)
       input.focus()
       break
     }
