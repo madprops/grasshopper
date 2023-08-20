@@ -1575,7 +1575,7 @@ App.get_edit_options = (item) => {
 
   if (profiles.length) {
     items.push({
-      text: `Edit Root`,
+      text: `Edit`,
       action: () => {
         App.show_profile_editor(item, `all`)
       }
@@ -1584,7 +1584,7 @@ App.get_edit_options = (item) => {
 
   if (!exact) {
     items.push({
-      text: `New Edit`,
+      text: `New`,
       action: () => {
         App.show_profile_editor(item, `all`, `new`)
       }
