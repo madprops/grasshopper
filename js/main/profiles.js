@@ -193,32 +193,26 @@ App.show_profile_editor = (item, type, action = `edit`) => {
 
   if (type === `all` || type === `tags`) {
     DOM.el(`#profile_editor_tags_container`).classList.remove(`hidden`)
-    DOM.el(`#profile_editor_tags`).focus()
   }
 
   if (type === `all` || type === `notes`) {
     DOM.el(`#profile_editor_notes_container`).classList.remove(`hidden`)
-    DOM.el(`#profile_editor_notes`).focus()
   }
 
   if (type === `all` || type === `title`) {
     DOM.el(`#profile_editor_title_container`).classList.remove(`hidden`)
-    DOM.el(`#profile_editor_title`).focus()
   }
 
   if (type === `all` || type === `color`) {
     DOM.el(`#profile_editor_color_container`).classList.remove(`hidden`)
-    DOM.el(`#profile_editor_color`).focus()
   }
 
   if (type === `all` || type === `theme`) {
     DOM.el(`#profile_editor_theme_container`).classList.remove(`hidden`)
-    DOM.el(`#profile_editor_theme_enabled`).focus()
   }
 
   if (type === `all` || type === `icon`) {
     DOM.el(`#profile_editor_icon_container`).classList.remove(`hidden`)
-    DOM.el(`#profile_editor_icon`).focus()
   }
 
   DOM.el(`#profile_editor_url`).value = ``
@@ -335,11 +329,18 @@ App.scroll_profile_text = () => {
 
     if (url.value) {
       App.scroll_to_right(url)
-      url.focus()
     }
 
     App.scroll_to_bottom(DOM.el(`#profile_editor_tags`))
     App.scroll_to_bottom(DOM.el(`#profile_editor_notes`))
+
+    for (let c of DOM.els(`.editor_container`, DOM.el(`#profile_editor_container`))) {
+      if (!c.classList.contains(`hidden`)) {
+        let input = DOM.el(`.editor_input`, c)
+        input.focus()
+        break
+      }
+    }
   }, App.scroll_bottom_delay)
 }
 
