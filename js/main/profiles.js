@@ -318,6 +318,13 @@ App.show_profile_editor = (item, type, action = `edit`) => {
 
 App.scroll_profile_text = () => {
   setTimeout(() => {
+    let url = DOM.el(`#profile_editor_url`)
+
+    if (url.value) {
+      App.scroll_to_right(url)
+      url.focus()
+    }
+
     App.scroll_to_bottom(DOM.el(`#profile_editor_tags`))
     App.scroll_to_bottom(DOM.el(`#profile_editor_notes`))
   }, App.scroll_bottom_delay)

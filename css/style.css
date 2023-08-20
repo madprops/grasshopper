@@ -149,8 +149,6 @@ select {
   color: var(--text_color);
   outline: 1px solid var(--alt_color_1);
   border-width: 0;
-  padding-left: var(--widget_padding_hor);
-  padding-right: var(--widget_padding_hor);
   padding-top: var(--widget_padding_vert);
   padding-bottom: var(--widget_padding_vert);
 }
