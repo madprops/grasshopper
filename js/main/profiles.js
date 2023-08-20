@@ -160,6 +160,7 @@ App.show_profile_editor = (item, type, action = `edit`) => {
   App.profile_editor_type = type
   App.profile_editor_action = action
   App.show_window(`profile_editor`)
+  DOM.el(`#profile_editor_url_container`).classList.add(`hidden`)
   DOM.el(`#profile_editor_tags_container`).classList.add(`hidden`)
   DOM.el(`#profile_editor_notes_container`).classList.add(`hidden`)
   DOM.el(`#profile_editor_color_container`).classList.add(`hidden`)
@@ -203,6 +204,7 @@ App.show_profile_editor = (item, type, action = `edit`) => {
     DOM.el(`#profile_editor_tags`).focus()
   }
 
+  DOM.el(`#profile_editor_url`).value = ``
   DOM.el(`#profile_editor_tags`).value = ``
   DOM.el(`#profile_editor_notes`).value = ``
   DOM.el(`#profile_editor_title`).value = ``
@@ -222,6 +224,7 @@ App.show_profile_editor = (item, type, action = `edit`) => {
 
   if (items.length === 1) {
     DOM.el(`#profile_editor_header`).textContent = `Editing 1 Profile`
+    DOM.el(`#profile_editor_url_container`).classList.remove(`hidden`)
 
     if (profiles.length) {
       let profile = profiles[0]
@@ -231,6 +234,7 @@ App.show_profile_editor = (item, type, action = `edit`) => {
         DOM.el(`#profile_editor_notes`).value = profile.notes
       }
 
+      DOM.el(`#profile_editor_url`).value = profile.url
       DOM.el(`#profile_editor_title`).value = profile.title
       DOM.el(`#profile_editor_icon`).value = profile.icon
       App.current_profile_editor_color = profile.color
@@ -251,6 +255,9 @@ App.show_profile_editor = (item, type, action = `edit`) => {
       if (profile.background_image) {
         DOM.el(`#profile_editor_background_image`).value = profile.background_image
       }
+    }
+    else {
+      DOM.el(`#profile_editor_url`).value = items[0].url
     }
   }
   else {
