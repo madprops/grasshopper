@@ -1,4 +1,6 @@
 App.profile_props = {
+  url: ``,
+  exact: false,
   tags: [],
   notes: ``,
   title: ``,
@@ -37,6 +39,10 @@ App.setup_profile_editor = () => {
     })
 
     DOM.ev(DOM.el(`#profile_editor_url`), `input`, (e) => {
+      App.profile_modified()
+    })
+
+    DOM.ev(DOM.el(`#profile_editor_exact`), `change`, (e) => {
       App.profile_modified()
     })
 
@@ -191,6 +197,7 @@ App.show_profile_editor = (item, type, action = `edit`) => {
   App.profile_editor_action = action
   App.show_window(`profile_editor`)
   DOM.el(`#profile_editor_url_container`).classList.add(`hidden`)
+  DOM.el(`#profile_editor_exact_container`).classList.add(`hidden`)
   DOM.el(`#profile_editor_tags_container`).classList.add(`hidden`)
   DOM.el(`#profile_editor_notes_container`).classList.add(`hidden`)
   DOM.el(`#profile_editor_color_container`).classList.add(`hidden`)
@@ -225,6 +232,7 @@ App.show_profile_editor = (item, type, action = `edit`) => {
   }
 
   DOM.el(`#profile_editor_url`).value = ``
+  DOM.el(`#profile_editor_exact`).checked = false
   DOM.el(`#profile_editor_tags`).value = ``
   DOM.el(`#profile_editor_notes`).value = ``
   DOM.el(`#profile_editor_title`).value = ``
@@ -245,6 +253,7 @@ App.show_profile_editor = (item, type, action = `edit`) => {
   if (items.length === 1) {
     DOM.el(`#profile_editor_header`).textContent = `Editing 1 Profile`
     DOM.el(`#profile_editor_url_container`).classList.remove(`hidden`)
+    DOM.el(`#profile_editor_exact_container`).classList.remove(`hidden`)
 
     if (profiles.length && !App.profile_editor_new) {
       let profile = profiles[0]
@@ -255,6 +264,7 @@ App.show_profile_editor = (item, type, action = `edit`) => {
       }
 
       DOM.el(`#profile_editor_url`).value = profile.url
+      DOM.el(`#profile_editor_exact`).checked = profile.exact
       DOM.el(`#profile_editor_title`).value = profile.title
       DOM.el(`#profile_editor_icon`).value = profile.icon
       App.current_profile_editor_color = profile.color
@@ -423,6 +433,7 @@ App.profile_editor_save = () => {
   App.show_confirm(`Save profiles? (${items.length})`, () => {
     let args = {}
     args.url = DOM.el(`#profile_editor_url`).value.trim()
+    args.exact = DOM.el(`#profile_editor_exact`).checked
     args.tags = App.get_input_tags()
     args.notes = App.double_linebreak(DOM.el(`#profile_editor_notes`).value)
     args.title = DOM.el(`#profile_editor_title`).value.trim()
@@ -444,7 +455,7 @@ App.profile_editor_save = () => {
 }
 
 App.save_profile = (args) => {
-  let urls = []
+  let profiles = []
 
   function proc (profile, p_mode) {
     let og_url = profile.url
@@ -455,6 +466,10 @@ App.save_profile = (args) => {
     }
 
     profile.url = App.format_url(profile.url)
+
+    if (args.type === `all`) {
+      profile.exact = args.exact
+    }
 
     if (args.type === `all` || args.type === `tags`) {
       let n_tags = []
@@ -519,8 +534,7 @@ App.save_profile = (args) => {
       }
     }
 
-    urls.push(og_url)
-    urls.push(profile.url)
+    profiles.push(profile)
   }
 
   // Added
@@ -543,8 +557,8 @@ App.save_profile = (args) => {
     App.hide_window(true)
   }
 
-  for (let url of urls) {
-    App.apply_profiles(url)
+  for (let profile of profiles) {
+    App.apply_profile(profile)
   }
 
   App.refresh_profile_filters()
@@ -575,7 +589,7 @@ App.remove_profiles = (items) => {
   App.show_confirm(`Remove profiles? (${profiles.length})`, () => {
     for (let profile of profiles) {
       App.profiles = App.profiles.filter(x => x.url !== profile.url)
-      App.apply_profiles(profile.url)
+      App.apply_profile(profile)
     }
 
     App.stor_save_profiles()
@@ -587,7 +601,7 @@ App.remove_profiles = (items) => {
   }, undefined, force)
 }
 
-App.apply_profiles = (url) => {
+App.apply_profile = (profile) => {
   let items = []
 
   if (!App.persistent_modes.includes(App.active_mode)) {
@@ -597,24 +611,42 @@ App.apply_profiles = (url) => {
   items.push(...App.get_persistent_items())
 
   for (let item of items) {
-    if (item.url.startsWith(url)) {
-      App.update_item(item.mode, item.id, {})
+    if (profile.exact) {
+      if (item.url === profile.url) {
+        App.update_item(item.mode, item.id, {})
+      }
+    }
+    else {
+      if (item.url.startsWith(profile.url)) {
+        App.update_item(item.mode, item.id, {})
+      }
     }
   }
 
   App.check_item_theme()
 }
 
-App.get_profile = (item_url) => {
+App.get_profile = (url) => {
   let current
 
+  function proc (profile) {
+    if (!current) {
+      current = profile
+    }
+    else if (profile.url.length > current.url.length) {
+      current = profile
+    }
+  }
+
   for (let profile of App.profiles) {
-    if (item_url.startsWith(profile.url)) {
-      if (!current) {
-        current = profile
+    if (profile.exact) {
+      if (url === profile.url) {
+        proc(profile)
       }
-      else if (profile.url.length > current.url.length) {
-        current = profile
+    }
+    else {
+      if (url.startsWith(profile.url)) {
+        proc(profile)
       }
     }
   }
