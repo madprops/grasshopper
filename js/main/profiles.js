@@ -175,9 +175,19 @@ App.show_profile_editor = (item, type, action = `edit`) => {
   App.profile_ready = false
   App.profile_editor_items = App.get_profile_items(item)
   let items = App.profile_editor_items
-  let [profiles, added] = App.get_profiles(items)
+  let profiles = []
+  let added = []
+
+  if (!App.profile_editor_new) {
+    [profiles, added] = App.get_profiles(items)
+  }
+  else {
+    added = [item]
+  }
+
   App.profile_editor_profiles = profiles
   App.profile_editor_added = added
+
   App.profile_editor_type = type
   App.profile_editor_action = action
   App.show_window(`profile_editor`)
