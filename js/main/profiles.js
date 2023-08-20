@@ -1553,6 +1553,14 @@ App.profile_editor_update_url = () => {
 App.get_edit_options = (item) => {
   let items = []
   let [profiles, added] = App.get_profiles([item])
+  let exact = false
+
+  for (let profile of profiles) {
+    if (profile.url === item.url) {
+      exact = true
+      break
+    }
+  }
 
   if (profiles.length) {
     items.push({
@@ -1563,12 +1571,14 @@ App.get_edit_options = (item) => {
     })
   }
 
-  items.push({
-    text: `New Edit`,
-    action: () => {
-      App.show_profile_editor(item, `all`, `new`)
-    }
-  })
+  if (!exact) {
+    items.push({
+      text: `New Edit`,
+      action: () => {
+        App.show_profile_editor(item, `all`, `new`)
+      }
+    })
+  }
 
   return items
 }
