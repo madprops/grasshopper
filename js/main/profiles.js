@@ -217,7 +217,7 @@ App.show_profile_editor = (item, type, action = `edit`) => {
   }
 
   if (type === `all`) {
-    DOM.el(`#profile_editor_tags`).focus()
+    DOM.el(`#profile_editor_color`).focus()
   }
 
   DOM.el(`#profile_editor_url`).value = ``
@@ -334,7 +334,6 @@ App.scroll_profile_text = () => {
 
     if (url.value) {
       App.scroll_to_right(url)
-      url.focus()
     }
 
     App.scroll_to_bottom(DOM.el(`#profile_editor_tags`))
@@ -503,6 +502,7 @@ App.save_profile = (args) => {
       }
     }
 
+    urls.push(og_url)
     urls.push(profile.url)
   }
 
