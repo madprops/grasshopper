@@ -455,7 +455,7 @@ App.profile_editor_save = () => {
 }
 
 App.save_profile = (args) => {
-  let profiles = []
+  let urls = []
 
   function proc (profile, p_mode) {
     let og_url = profile.url
@@ -534,7 +534,8 @@ App.save_profile = (args) => {
       }
     }
 
-    profiles.push(profile)
+    urls.push(og_url)
+    urls.push(profile.url)
   }
 
   // Added
@@ -557,8 +558,8 @@ App.save_profile = (args) => {
     App.hide_window(true)
   }
 
-  for (let profile of profiles) {
-    App.apply_profile(profile)
+  for (let url of urls) {
+    App.apply_profile(url)
   }
 
   App.refresh_profile_filters()
@@ -589,7 +590,7 @@ App.remove_profiles = (items) => {
   App.show_confirm(`Remove profiles? (${profiles.length})`, () => {
     for (let profile of profiles) {
       App.profiles = App.profiles.filter(x => x.url !== profile.url)
-      App.apply_profile(profile)
+      App.apply_profile(profile.url)
     }
 
     App.stor_save_profiles()
@@ -601,7 +602,7 @@ App.remove_profiles = (items) => {
   }, undefined, force)
 }
 
-App.apply_profile = (profile) => {
+App.apply_profile = (url) => {
   let items = []
 
   if (!App.persistent_modes.includes(App.active_mode)) {
@@ -611,15 +612,8 @@ App.apply_profile = (profile) => {
   items.push(...App.get_persistent_items())
 
   for (let item of items) {
-    if (profile.exact) {
-      if (item.url === profile.url) {
-        App.update_item(item.mode, item.id, {})
-      }
-    }
-    else {
-      if (item.url.startsWith(profile.url)) {
-        App.update_item(item.mode, item.id, {})
-      }
+    if (item.url.startsWith(url)) {
+      App.update_item(item.mode, item.id, {})
     }
   }
 
