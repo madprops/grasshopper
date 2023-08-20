@@ -320,6 +320,7 @@ App.show_profile_editor = (item, type, action = `edit`) => {
   App.window_goto_top(`profile_editor`)
   App.profile_apply_theme()
   App.set_profile_color()
+  App.focus_first_profile_editor_input()
   App.profile_ready = true
 }
 
@@ -333,15 +334,20 @@ App.scroll_profile_text = () => {
 
     App.scroll_to_bottom(DOM.el(`#profile_editor_tags`))
     App.scroll_to_bottom(DOM.el(`#profile_editor_notes`))
-
-    for (let c of DOM.els(`.editor_container`, DOM.el(`#profile_editor_container`))) {
-      if (!c.classList.contains(`hidden`)) {
-        let input = DOM.el(`.editor_input`, c)
-        input.focus()
-        break
-      }
-    }
   }, App.scroll_bottom_delay)
+}
+
+App.focus_first_profile_editor_input = () => {
+  let container = DOM.el(`#profile_editor_container`)
+
+  for (let c of DOM.els(`.editor_container`, container)) {
+    if (!c.classList.contains(`hidden`)) {
+      let input = DOM.el(`.editor_input`, c)
+      console.log(c)
+      input.focus()
+      break
+    }
+  }
 }
 
 App.get_empty_profile = (url) => {
