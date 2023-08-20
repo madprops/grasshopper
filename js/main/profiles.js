@@ -618,17 +618,12 @@ App.get_profiles = (items) => {
   let add = []
 
   for (let item of items) {
-    let has_profile = false
+    let profile = App.get_profile(item.url)
 
-    for (let profile of App.profiles) {
-      if (item.url.startsWith(profile.url)) {
-        profiles.push(profile)
-        has_profile = true
-        break
-      }
+    if (profile) {
+      profiles.push(profile)
     }
-
-    if (!has_profile) {
+    else {
       add.push(item)
     }
   }
@@ -636,7 +631,11 @@ App.get_profiles = (items) => {
   return [profiles, add]
 }
 
-App.get_profile_menu_items = () => {
+let profile = App.get_profile_menu_items = () => {
+
+  if (profile) {
+    profiles.push(profile)
+  }
   let items = []
 
   items.push({
