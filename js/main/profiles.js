@@ -430,6 +430,8 @@ App.save_profile = (args) => {
       return
     }
 
+    profile.url = App.format_url(profile.url)
+
     if (args.type === `all` || args.type === `tags`) {
       let n_tags = []
 
