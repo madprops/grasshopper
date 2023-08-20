@@ -26,6 +26,10 @@ App.setup_profile_editor = () => {
 
     close.textContent = App.close_text
 
+    DOM.ev(DOM.el(`#profile_editor_url_update`), `click`, (e) => {
+      App.profile_editor_update_url(e)
+    })
+
     DOM.ev(DOM.el(`#profile_editor_tags_add`), `click`, (e) => {
       App.show_tag_picker(e)
     })
@@ -383,6 +387,7 @@ App.profile_editor_save = () => {
 
   App.show_confirm(`Save profiles? (${items.length})`, () => {
     let args = {}
+    args.url = DOM.el(`#profile_editor_url`).value.trim()
     args.tags = App.get_input_tags()
     args.notes = App.double_linebreak(DOM.el(`#profile_editor_notes`).value)
     args.title = DOM.el(`#profile_editor_title`).value.trim()
@@ -407,6 +412,12 @@ App.save_profile = (args) => {
   let urls = []
 
   function proc (profile, p_mode) {
+    profile.url = args.url || profile.url
+
+    if (!profile.url) {
+      return
+    }
+
     if (args.type === `all` || args.type === `tags`) {
       let n_tags = []
 
@@ -1509,4 +1520,11 @@ App.get_active_tags = (mode) => {
   }
 
   return tags
+}
+
+App.profile_editor_update_url = () => {
+  let el = DOM.el(`#profile_editor_url`)
+  el.value = App.profile_editor_items[0].url
+  App.scroll_to_right(el)
+  el.focus()
 }

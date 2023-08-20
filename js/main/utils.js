@@ -437,6 +437,10 @@ App.scroll_to_bottom = (el) => {
   el.scrollLeft = 0
 }
 
+App.scroll_to_right = (el) => {
+  el.scrollLeft = el.scrollWidth
+}
+
 App.similarity = (s1, s2) => {
   let longer = s1
   let shorter = s2
