@@ -177,10 +177,6 @@ App.settings_setup_labels = (container) => {
       btns.push([`settings_${item.dataset.id}_add`, `Add`, item.dataset.add])
     }
 
-    if (item.dataset.remove) {
-      btns.push([`settings_${item.dataset.id}_remove`, `Rem`, item.dataset.remove])
-    }
-
     if (item.dataset.rand) {
       btns.push([`settings_${item.dataset.id}_random`, App.random_text, item.dataset.rand])
     }
@@ -921,10 +917,6 @@ App.start_theme_settings = () => {
 
   DOM.ev(DOM.el(`#settings_background_image_add`), `click`, () => {
     App.add_to_background_pool()
-  })
-
-  DOM.ev(DOM.el(`#settings_background_image_remove`), `click`, () => {
-    App.remove_from_background_pool()
   })
 
   DOM.ev(DOM.el(`#settings_background_pool_add`), `click`, () => {
