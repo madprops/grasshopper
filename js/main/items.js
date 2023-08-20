@@ -169,6 +169,7 @@ App.set_selected = (item) => {
   item.selected_date = Date.now()
   App[`last_selected_${item.mode}`] = item
   App.update_footer_info(item)
+  App.check_item_theme()
 }
 
 App.clear_selected = (mode) => {

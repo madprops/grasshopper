@@ -454,7 +454,7 @@ App.do_check_item_theme = () => {
   }
 
   App.check_item_theme_debouncer.cancel()
-  let item = App.get_active_tab_item()
+  let item = App.get_selected(App.window_mode)
 
   if (!item || !item.path) {
     App.set_default_theme()
