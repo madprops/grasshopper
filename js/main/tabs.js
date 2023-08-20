@@ -214,6 +214,8 @@ App.refresh_tab = async (id, select, info) => {
       App.select_item(item, `nearest_smooth`)
     }
   }
+
+  App.check_item_theme()
 }
 
 App.mute_tab = async (id) => {
