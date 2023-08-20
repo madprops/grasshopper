@@ -132,8 +132,8 @@ App.common_menu_items = (o_items, item, multiple) => {
   else {
     items.push({
       text: `Edit`,
-      action: () => {
-        App.show_profile_editor(item, `all`)
+      get_items: () => {
+        return App.get_edit_options(item)
       }
     })
   }

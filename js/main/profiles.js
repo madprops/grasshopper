@@ -160,6 +160,13 @@ App.get_profile_items = (item) => {
 }
 
 App.show_profile_editor = (item, type, action = `edit`) => {
+  let new_edit = false
+
+  if (action === `new`) {
+    new_edit = true
+    action = `edit`
+  }
+
   App.profile_ready = false
   App.profile_editor_items = App.get_profile_items(item)
   let items = App.profile_editor_items
@@ -235,7 +242,7 @@ App.show_profile_editor = (item, type, action = `edit`) => {
     DOM.el(`#profile_editor_header`).textContent = `Editing 1 Profile`
     DOM.el(`#profile_editor_url_container`).classList.remove(`hidden`)
 
-    if (profiles.length) {
+    if (profiles.length && !new_edit) {
       let profile = profiles[0]
 
       if (action === `edit`) {
@@ -1541,4 +1548,27 @@ App.profile_editor_update_url = () => {
   el.value = App.profile_editor_items[0].url
   App.scroll_to_right(el)
   el.focus()
+}
+
+App.get_edit_options = (item) => {
+  let items = []
+  let [profiles, added] = App.get_profiles([item])
+
+  if (profiles.length) {
+    items.push({
+      text: `Edit Root`,
+      action: () => {
+        App.show_profile_editor(item, `all`)
+      }
+    })
+  }
+
+  items.push({
+    text: `New Edit`,
+    action: () => {
+      App.show_profile_editor(item, `all`, `new`)
+    }
+  })
+
+  return items
 }
