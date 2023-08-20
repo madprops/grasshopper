@@ -558,10 +558,7 @@ App.save_profile = (args) => {
     App.hide_window(true)
   }
 
-  for (let url of urls) {
-    App.apply_profile(url)
-  }
-
+  App.apply_profiles(urls)
   App.refresh_profile_filters()
 }
 
@@ -590,9 +587,9 @@ App.remove_profiles = (items) => {
   App.show_confirm(`Remove profiles? (${profiles.length})`, () => {
     for (let profile of profiles) {
       App.profiles = App.profiles.filter(x => x.url !== profile.url)
-      App.apply_profile(profile.url)
     }
 
+    App.apply_profiles(profiles.map(x => x.url))
     App.stor_save_profiles()
     App.refresh_profile_filters()
 
@@ -602,7 +599,7 @@ App.remove_profiles = (items) => {
   }, undefined, force)
 }
 
-App.apply_profile = (url) => {
+App.apply_profiles = (urls) => {
   let items = []
 
   if (!App.persistent_modes.includes(App.active_mode)) {
@@ -612,8 +609,10 @@ App.apply_profile = (url) => {
   items.push(...App.get_persistent_items())
 
   for (let item of items) {
-    if (item.url.startsWith(url)) {
-      App.update_item(item.mode, item.id, {})
+    for (let url of urls) {
+      if (item.url.startsWith(url)) {
+        App.update_item(item.mode, item.id, {})
+      }
     }
   }
 
