@@ -187,7 +187,6 @@ App.show_profile_editor = (item, type, action = `edit`) => {
 
   App.profile_editor_profiles = profiles
   App.profile_editor_added = added
-
   App.profile_editor_type = type
   App.profile_editor_action = action
   App.show_window(`profile_editor`)
