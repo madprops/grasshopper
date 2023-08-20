@@ -631,11 +631,7 @@ App.get_profiles = (items) => {
   return [profiles, add]
 }
 
-let profile = App.get_profile_menu_items = () => {
-
-  if (profile) {
-    profiles.push(profile)
-  }
+App.get_profile_menu_items = () => {
   let items = []
 
   items.push({
@@ -1581,21 +1577,21 @@ App.profile_editor_full_url = () => {
 
 App.get_edit_options = (item) => {
   let items = []
-  let [profiles, added] = App.get_profiles([item])
-  let exact = false
+  let profile = App.get_profile(item.url)
+  let exact = profile && (profile.url === item.url)
 
-  for (let profile of profiles) {
-    if (profile.url === item.url) {
-      exact = true
-      break
-    }
-  }
-
-  if (profiles.length) {
+  if (profile) {
     items.push({
       text: `Edit`,
       action: () => {
         App.show_profile_editor(item, `all`)
+      }
+    })
+
+    items.push({
+      text: `Remove`,
+      action: () => {
+        App.remove_profiles([profile])
       }
     })
   }
