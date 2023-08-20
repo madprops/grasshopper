@@ -312,41 +312,6 @@ App.setup_keyboard = () => {
           return
         }
       }
-      else if (pmode === `add_domain_theme`) {
-        if (e.key === `Enter`) {
-          App.do_add_domain_theme()
-          e.preventDefault()
-          return
-        }
-      }
-      else if (pmode === `add_domain_icon`) {
-        if (e.key === `Enter`) {
-          App.do_add_domain_icon()
-          e.preventDefault()
-          return
-        }
-      }
-      else if (pmode === `add_domain_title`) {
-        if (e.key === `Enter`) {
-          App.do_add_domain_title()
-          e.preventDefault()
-          return
-        }
-      }
-      else if (pmode === `add_domain_color`) {
-        if (e.key === `Enter`) {
-          App.do_add_domain_color()
-          e.preventDefault()
-          return
-        }
-      }
-      else if (pmode === `add_domain_tag`) {
-        if (e.key === `Enter`) {
-          App.do_add_domain_tag()
-          e.preventDefault()
-          return
-        }
-      }
       else if (pmode === `add_alias`) {
         if (e.key === `Enter`) {
           App.do_add_alias()

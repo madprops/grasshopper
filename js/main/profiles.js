@@ -536,7 +536,7 @@ App.apply_profiles = (url) => {
   items.push(...App.get_persistent_items())
 
   for (let item of items) {
-    if (item.url === url) {
+    if (item.url.startsWith(url)) {
       App.update_item(item.mode, item.id, {})
     }
   }
@@ -546,7 +546,7 @@ App.apply_profiles = (url) => {
 
 App.get_profile = (item_url) => {
   for (let profile of App.profiles) {
-    if (item_url === profile.url) {
+    if (item_url.startsWith(profile.url)) {
       return profile
     }
   }
@@ -560,8 +560,7 @@ App.get_profiles = (items) => {
     let has_profile = false
 
     for (let profile of App.profiles) {
-
-      if (item.url === profile.url) {
+      if (item.url.startsWith(profile.url)) {
         profiles.push(profile)
         has_profile = true
         break

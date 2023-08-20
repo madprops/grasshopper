@@ -389,33 +389,6 @@ App.process_info = (mode, info, exclude = [], o_item) => {
     created: false,
   }
 
-  if (!item.tags.length) {
-    let tags = App.domain_tags(item)
-
-    if (tags) {
-      item.tags = tags
-    }
-  }
-
-  if (!item.color) {
-    let color = App.domain_color(item)
-
-    if (color) {
-      item.color = color
-    }
-  }
-
-  if (!item.theme_enabled) {
-    let theme = App.domain_theme(item)
-
-    if (theme) {
-      item.theme_enabled = true
-      item.background_color = theme[0] || ``
-      item.text_color = theme[1] || ``
-      item.background_image = theme[2] || ``
-    }
-  }
-
   if (mode === `tabs`) {
     item.active = info.active
     item.pinned = info.pinned
@@ -469,11 +442,10 @@ App.check_item_icon = (item) => {
   if (App.get_setting(`show_icons`)) {
     let container = DOM.el(`.item_icon_container`, item.element)
     container.innerHTML = ``
-    let icon_text = item.icon || App.domain_icon(item)
     let icon
 
-    if (icon_text) {
-      icon = App.set_text_icon(icon_text)
+    if (item.icon) {
+      icon = App.set_text_icon(item.icon)
     }
     else {
       icon = App.get_img_icon(item)
@@ -1426,19 +1398,7 @@ App.soft_copy_item = (o_item) => {
 }
 
 App.get_title = (item) => {
-  if (item.custom_title) {
-    return item.custom_title
-  }
-  else {
-    let domain_title = App.domain_title(item)
-
-    if (domain_title) {
-      return domain_title
-    }
-    else {
-      return item.title
-    }
-  }
+  return item.custom_title || item.title
 }
 
 App.remove_duplicates = (items) => {

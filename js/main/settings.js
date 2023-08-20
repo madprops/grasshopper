@@ -99,13 +99,6 @@ App.build_default_settings = () => {
   obj.color_orange = {value: `rgba(170, 127, 59, 0.44)`, category: category, version: 1}
   obj.color_mode = {value: `item`, category: category, version: 1}
 
-  category = `domains`
-  obj.domain_tags = {value: [], category: category, version: 1}
-  obj.domain_themes = {value: [], category: category, version: 1}
-  obj.domain_colors = {value: [], category: category, version: 1}
-  obj.domain_titles = {value: [], category: category, version: 1}
-  obj.domain_icons = {value: [], category: category, version: 1}
-
   category = `more`
   obj.single_new_tab = {value: true, category: category, version: 1}
   obj.close_on_focus = {value: true, category: category, version: 1}
@@ -472,56 +465,6 @@ App.settings_filter_focused = () => {
 
 App.setup_settings = () => {
   App.create_popup({
-    id: `add_domain_theme`, setup: () => {
-      DOM.ev(DOM.el(`#add_domain_theme_add`), `click`, () => {
-        App.do_add_domain_theme()
-      })
-    }, element: App.add_setting_list_item_html(`domain_theme`, `domain`,
-        [`background_color`, `text_color`, `background_image`])
-  })
-
-  App.create_popup({
-    id: `add_domain_icon`, setup: () => {
-      DOM.ev(DOM.el(`#add_domain_icon_add`), `click`, () => {
-        App.do_add_domain_icon()
-      })
-    }, element: App.add_setting_list_item_html(`domain_icon`, `domain`, [`icon`])
-  })
-
-  App.create_popup({
-    id: `add_domain_title`, setup: () => {
-      DOM.ev(DOM.el(`#add_domain_title_add`), `click`, () => {
-        App.do_add_domain_title()
-      })
-    }, element: App.add_setting_list_item_html(`domain_title`, `domain`, [`title`])
-  })
-
-  App.create_popup({
-    id: `add_domain_tag`, setup: () => {
-      DOM.ev(DOM.el(`#add_domain_tag_add`), `click`, () => {
-        App.do_add_domain_tag()
-      })
-    }, element: App.add_setting_list_item_html(`domain_tag`, `domain`, [`tags`])
-  })
-
-  App.create_popup({
-    id: `add_domain_color`, setup: () => {
-      DOM.ev(DOM.el(`#add_domain_color_add`), `click`, () => {
-        App.do_add_domain_color()
-      })
-
-      let colors = DOM.el(`#add_domain_color_color`)
-
-      for (let color of App.colors) {
-        let opt = DOM.create(`option`)
-        opt.value = color
-        opt.textContent = App.capitalize(color)
-        colors.append(opt)
-      }
-    }, element: App.add_setting_list_item_html(`domain_color`, `domain`, [`color__select`])
-  })
-
-  App.create_popup({
     id: `add_alias`, setup: () => {
       DOM.ev(DOM.el(`#add_alias_add`), `click`, () => {
         App.do_add_alias()
@@ -545,7 +488,7 @@ App.setup_settings = () => {
     }, element: App.add_setting_list_item_html(`background_pool`, `image_url`, [], true)
   })
 
-  App.settings_categories = [`general`, `theme`, `media`, `show`, `mouse`, `warns`, `colors`, `domains`, `more`]
+  App.settings_categories = [`general`, `theme`, `media`, `show`, `mouse`, `warns`, `colors`, `more`]
 
   let common = {
     persistent: false,
@@ -635,30 +578,6 @@ App.setup_settings = () => {
 
     App.settings_make_menu(`height`, App.get_size_options(), () => {
       App.apply_theme()
-    })
-  }}))
-
-  App.create_window(Object.assign({}, common, {id: `settings_domains`, setup: () => {
-    prepare(`domains`)
-
-    DOM.ev(DOM.el(`#settings_domain_themes_add`), `click`, () => {
-      App.add_domain_theme()
-    })
-
-    DOM.ev(DOM.el(`#settings_domain_icons_add`), `click`, () => {
-      App.add_domain_icon()
-    })
-
-    DOM.ev(DOM.el(`#settings_domain_tags_add`), `click`, () => {
-      App.add_domain_tag()
-    })
-
-    DOM.ev(DOM.el(`#settings_domain_titles_add`), `click`, () => {
-      App.add_domain_title()
-    })
-
-    DOM.ev(DOM.el(`#settings_domain_colors_add`), `click`, () => {
-      App.add_domain_color()
     })
   }}))
 
@@ -1367,64 +1286,6 @@ App.settings_menu_items = () => {
   })
 
   return items
-}
-
-App.add_domain_theme = () => {
-  App.show_popup(`add_domain_theme`)
-  DOM.el(`#add_domain_theme_domain`).value = ``
-  DOM.el(`#add_domain_theme_background_color`).value = ``
-  DOM.el(`#add_domain_theme_text_color`).value = ``
-  DOM.el(`#add_domain_theme_background_image`).value = ``
-  DOM.el(`#add_domain_theme_domain`).focus()
-}
-
-App.do_add_domain_theme = () => {
-  App.do_add_setting_list_item(`domain_themes`, `domain_theme`, `domain`,
-  [`background_color`, `text_color`, `background_image`])
-}
-
-App.add_domain_icon = () => {
-  App.show_popup(`add_domain_icon`)
-  DOM.el(`#add_domain_icon_domain`).value = ``
-  DOM.el(`#add_domain_icon_icon`).value = ``
-  DOM.el(`#add_domain_icon_domain`).focus()
-}
-
-App.do_add_domain_icon = () => {
-  App.do_add_setting_list_item(`domain_icons`, `domain_icon`, `domain`, [`icon`])
-}
-
-App.add_domain_title = () => {
-  App.show_popup(`add_domain_title`)
-  DOM.el(`#add_domain_title_domain`).value = ``
-  DOM.el(`#add_domain_title_title`).value = ``
-  DOM.el(`#add_domain_title_domain`).focus()
-}
-
-App.do_add_domain_title = () => {
-  App.do_add_setting_list_item(`domain_titles`, `domain_title`, `domain`, [`title`])
-}
-
-App.add_domain_tag = () => {
-  App.show_popup(`add_domain_tag`)
-  DOM.el(`#add_domain_tag_domain`).value = ``
-  DOM.el(`#add_domain_tag_tags`).value = ``
-  DOM.el(`#add_domain_tag_domain`).focus()
-}
-
-App.do_add_domain_tag = () => {
-  App.do_add_setting_list_item(`domain_tags`, `domain_tag`, `domain`, [`tags`])
-}
-
-App.add_domain_color = () => {
-  App.show_popup(`add_domain_color`)
-  DOM.el(`#add_domain_color_domain`).value = ``
-  DOM.el(`#add_domain_color_color`).value = `red`
-  DOM.el(`#add_domain_color_domain`).focus()
-}
-
-App.do_add_domain_color = () => {
-  App.do_add_setting_list_item(`domain_colors`, `domain_color`, `domain`, [`color`])
 }
 
 App.add_alias = () => {

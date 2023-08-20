@@ -41,7 +41,6 @@
     <script src="js/main/step_back.js"></script>
     <script src="js/main/data.js"></script>
     <script src="js/main/profiles.js"></script>
-    <script src="js/main/domains.js"></script>
     <script src="js/main/modes.js"></script>
     <script src="js/main/playing.js"></script>
   </head>
@@ -67,6 +66,11 @@
       <div class="flex_column_center gap_4 editor_container" id="profile_editor_container">
         <div class="flex_column_center">
           <div id="profile_editor_header" class="action bigger"></div>
+        </div>
+
+        <div id="profile_editor_title_container" class="flex_column_center gap_1">
+          <div>Domain</div>
+          <input type="text" autocomplete="off" spellcheck="false" id="profile_editor_domain" class="text editor_text" placeholder="Root URL">
         </div>
 
         <div id="profile_editor_tags_container" class="flex_column_center gap_1">
@@ -176,35 +180,6 @@
         <div class="settings_item" title="Height of the popup">
           <div class="settings_label">Popup Height</div>
           <div id="settings_height" class="settings_menu button" data-setting="height"></div>
-        </div>
-      </div>
-    </template>
-
-    <template id="template_settings_domains">
-      <div id="settings_domains_container" class="settings_container">
-        <div class="settings_item" title="Set tags per domain. Multiple tags can be separated by a semicolon. Format: example.com = nice ; web">
-          <div class="settings_label" data-id="domain_tags" data-add="Add domain tag">Domain Tags</div>
-          <textarea autocomplete="off" spellcheck="false" class="text settings_textarea" id="settings_domain_tags" data-setting="domain_tags" placeholder="One domain per line"></textarea>
-        </div>
-
-        <div class="settings_item" title="Set fixed titles per domain. Format: example.com = Example">
-          <div class="settings_label" data-id="domain_titles" data-add="Add domain title">Domain Titles</div>
-          <textarea autocomplete="off" spellcheck="false" class="text settings_textarea" id="settings_domain_titles" data-setting="domain_titles" placeholder="One domain per line"></textarea>
-        </div>
-
-        <div class="settings_item" title="Set fixed icons per domain. Format: example.com = 😀">
-          <div class="settings_label" data-id="domain_icons" data-add="Add domain icon">Domain Icons</div>
-          <textarea autocomplete="off" spellcheck="false" class="text settings_textarea" id="settings_domain_icons" data-setting="domain_icons" placeholder="One domain per line"></textarea>
-        </div>
-
-        <div class="settings_item" title="Set colors per domain. These have to use one of the available profile colors, like red, green, blue, yellow, purple, and orange. Format: example.com = green">
-          <div class="settings_label" data-id="domain_colors" data-add="Add domain color">Domain Colors</div>
-          <textarea autocomplete="off" spellcheck="false" class="text settings_textarea" id="settings_domain_colors" data-setting="domain_colors" placeholder="One domain per line"></textarea>
-        </div>
-
-        <div class="settings_item" title="Set fixed themes per domain. There are 3 properties, background color, text color, and background image. Format: example.com = rgb(0, 0, 0) ; green ; http://image.jpg. RGB, hex, and color names are supported. You can leave some properties empty, for instance if you only want a background image you can do example.com = ; ; http://image.jpg">
-          <div class="settings_label" data-id="domain_themes" data-add="Add domain theme">Domain Themes</div>
-          <textarea autocomplete="off" spellcheck="false" class="text settings_textarea" id="settings_domain_themes" data-setting="domain_themes" placeholder="One domain per line"></textarea>
         </div>
       </div>
     </template>
