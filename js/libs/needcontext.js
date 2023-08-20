@@ -352,11 +352,24 @@ NeedContext.select_action = async (e, index = NeedContext.index, mode = `mouse`)
     item.action(e)
   }
   else if (item.items) {
-    show_below(item.items)
+    if (item.items.length === 1 && item.direct) {
+      NeedContext.hide()
+      item.items[0].action(e)
+    }
+    else {
+      show_below(item.items)
+    }
   }
   else if (item.get_items) {
     let items = await item.get_items()
-    show_below(items)
+
+    if (items.length === 1 && item.direct) {
+      NeedContext.hide()
+      items[0].action(e)
+    }
+    else {
+      show_below(items)
+    }
   }
 }
 
