@@ -28,6 +28,11 @@ App.setup_profile_editor = () => {
 
     DOM.ev(DOM.el(`#profile_editor_url_update`), `click`, (e) => {
       App.profile_editor_update_url(e)
+      App.profile_modified()
+    })
+
+    DOM.ev(DOM.el(`#profile_editor_url`), `input`, (e) => {
+      App.profile_modified()
     })
 
     DOM.ev(DOM.el(`#profile_editor_tags_add`), `click`, (e) => {

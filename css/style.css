@@ -381,7 +381,7 @@ svg {
   background-color: var(--alt_color_1);
 }
 
-.selected_effect_background .selected.colored {
+.selected_effect_background .selected.colored .item_text {
   text-decoration: underline;
 }
 
