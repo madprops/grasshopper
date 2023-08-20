@@ -75,8 +75,8 @@ NeedContext.show_on_element = (el, items, expand = false, margin = 0) => {
   }
 }
 
-// Show at the center
-NeedContext.show_center = (items) => {
+// Show on center of window
+NeedContext.show_on_center = (items) => {
   NeedContext.show(undefined, undefined, items)
 }
 

@@ -794,7 +794,7 @@ App.show_filter_history = (e, mode) => {
     NeedContext.show(e.clientX, e.clientY, items)
   }
   else {
-    NeedContext.show_center(items)
+    NeedContext.show_on_center(items)
   }
 }
 
