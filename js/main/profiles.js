@@ -160,10 +160,10 @@ App.get_profile_items = (item) => {
 }
 
 App.show_profile_editor = (item, type, action = `edit`) => {
-  let new_edit = false
+  App.profile_editor_new = false
 
   if (action === `new`) {
-    new_edit = true
+    App.profile_editor_new = true
     action = `edit`
   }
 
@@ -242,7 +242,7 @@ App.show_profile_editor = (item, type, action = `edit`) => {
     DOM.el(`#profile_editor_header`).textContent = `Editing 1 Profile`
     DOM.el(`#profile_editor_url_container`).classList.remove(`hidden`)
 
-    if (profiles.length && !new_edit) {
+    if (profiles.length && !App.profile_editor_new) {
       let profile = profiles[0]
 
       if (action === `edit`) {
@@ -431,6 +431,7 @@ App.save_profile = (args) => {
   let urls = []
 
   function proc (profile, p_mode) {
+    let og_url = profile.url
     profile.url = args.url || profile.url
 
     if (!profile.url) {
@@ -488,7 +489,11 @@ App.save_profile = (args) => {
       profile.background_image = args.background_image
     }
 
-    App.profiles = App.profiles.filter(x => x.url !== profile.url)
+    App.profiles = App.profiles.filter(x => x.url !== og_url)
+
+    if (og_url !== profile.url) {
+      App.profiles = App.profiles.filter(x => x.url !== profile.url)
+    }
 
     if (App.used_profile(profile)) {
       App.profiles.unshift(profile)
