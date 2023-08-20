@@ -216,10 +216,6 @@ App.show_profile_editor = (item, type, action = `edit`) => {
     DOM.el(`#profile_editor_icon`).focus()
   }
 
-  if (type === `all`) {
-    DOM.el(`#profile_editor_color`).focus()
-  }
-
   DOM.el(`#profile_editor_url`).value = ``
   DOM.el(`#profile_editor_tags`).value = ``
   DOM.el(`#profile_editor_notes`).value = ``
@@ -334,6 +330,7 @@ App.scroll_profile_text = () => {
 
     if (url.value) {
       App.scroll_to_right(url)
+      url.focus()
     }
 
     App.scroll_to_bottom(DOM.el(`#profile_editor_tags`))
@@ -589,11 +586,20 @@ App.apply_profiles = (url) => {
 }
 
 App.get_profile = (item_url) => {
+  let current
+
   for (let profile of App.profiles) {
     if (item_url.startsWith(profile.url)) {
-      return profile
+      if (!current) {
+        current = profile
+      }
+      else if (profile.url.length > current.url.length) {
+        current = profile
+      }
     }
   }
+
+  return current
 }
 
 App.get_profiles = (items) => {
