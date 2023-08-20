@@ -177,13 +177,17 @@ App.log = (message, mode = `normal`, date = false) => {
 
     console.info(`🔵 ${message}`)
   }
+  else if (mode === `debug_force`) {
+    console.info(`🔵 ${message}`)
+  }
   else {
     console.info(message)
   }
 }
 
-App.debug = (message) => {
-  App.log(message, `debug`, true)
+App.debug = (message, force = false) => {
+  let s = force ? `debug_force` : `debug`
+  App.log(message, s, true)
 }
 
 App.error = (message) => {
