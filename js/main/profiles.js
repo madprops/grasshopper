@@ -1467,7 +1467,16 @@ App.profile_apply_theme = () => {
     let c1 = App.colorlib.hex_to_rgb(App.profile_editor_background_color.color)
     let c2 = App.colorlib.hex_to_rgb(App.profile_editor_text_color.color)
     let bi =  DOM.el(`#profile_editor_background_image`).value.trim()
-    App.apply_theme({background_color: c1, text_color: c2, background_image: bi, check: true})
+    let be =  App.current_profile_editor_background_effect
+    let bt =  App.current_profile_editor_background_tiles
+    App.apply_theme({
+      background_color: c1,
+      text_color: c2,
+      background_image: bi,
+      background_effect: be,
+      background_tiles: bt,
+      check: true
+    })
   }
   else {
     App.set_default_theme()
@@ -1551,6 +1560,10 @@ App.profile_editor_set_menu = (el, prop, item) => {
   el.innerHTML = (item[2] || ``) + item[0]
   App[`current_profile_editor_${prop}`] = item[1]
   App.profile_modified()
+
+  if (prop === `background_effect` || prop === `background_tiles`) {
+    App.profile_apply_theme()
+  }
 }
 
 App.get_profile_editor_menu_item = (value, opts) => {
