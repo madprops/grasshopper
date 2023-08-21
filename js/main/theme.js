@@ -549,6 +549,13 @@ App.animate_background_image = (url) => {
   let old_num = new_num === 1 ? 2 : 1
   let new_el = DOM.el(`#background_${new_num}`)
   let old_el = DOM.el(`#background_${old_num}`)
+
+  if (new_el.style.backgroundImage) {
+    if (new_el.style.backgroundImage === old_el.style.backgroundImage) {
+      return
+    }
+  }
+
   App.active_background = new_num
 
   function proc (n1, n2) {
