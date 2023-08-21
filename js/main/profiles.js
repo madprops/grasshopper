@@ -1562,20 +1562,20 @@ App.get_profile_editor_menu_item = (value, opts) => {
 }
 
 App.set_profile_color = () => {
-  let color = App.current_profile_editor_color
-  let item = App.get_profile_editor_menu_item(color, App.profile_editor_color_opts)
+  let value = App.current_profile_editor_color
+  let item = App.get_profile_editor_menu_item(value, App.profile_editor_color_opts)
   App.profile_editor_set_menu(DOM.el(`#profile_editor_color`), `color`, item)
 }
 
 App.set_profile_background_effect = () => {
-  let color = App.current_profile_editor_background_effect
-  let item = App.get_profile_editor_menu_item(color, App.background_effects)
+  let value = App.current_profile_editor_background_effect
+  let item = App.get_profile_editor_menu_item(value, App.background_effects)
   App.profile_editor_set_menu(DOM.el(`#profile_editor_background_effect`), `background_effect`, item)
 }
 
 App.set_profile_background_tiles = () => {
-  let color = App.current_profile_editor_background_tiles
-  let item = App.get_profile_editor_menu_item(color, App.background_tiles)
+  let value = App.current_profile_editor_background_tiles
+  let item = App.get_profile_editor_menu_item(value, App.background_tiles)
   App.profile_editor_set_menu(DOM.el(`#profile_editor_background_tiles`), `background_tiles`, item)
 }
 

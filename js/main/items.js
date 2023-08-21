@@ -365,11 +365,11 @@ App.process_info = (mode, info, exclude = [], o_item) => {
         background_image = profile.background_image
       }
 
-      if (profile.background_effect && profile.background_effect !== `none`) {
+      if (profile.background_effect) {
         background_effect = profile.background_effect
       }
 
-      if (profile.background_tiles && profile.background_tiles !== `none`) {
+      if (profile.background_tiles) {
         background_tiles = profile.background_tiles
       }
     }
