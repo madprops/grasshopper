@@ -843,35 +843,11 @@ App.start_theme_settings = () => {
   App.start_color_picker(`background_color`)
   App.start_color_picker(`text_color`)
 
-  let effects_opts = [
-    [`None`, `none`],
-    [`Gray`, `grayscale`],
-    [`Invert`, `invert`],
-    [`Rotate 1`, `rotate_1`],
-    [`Rotate 2`, `rotate_2`],
-    [`Rotate 3`, `rotate_3`],
-    [`Blur`, `blur`],
-  ]
-
-  App.settings_make_menu(`background_effect`, effects_opts, () => {
+  App.settings_make_menu(`background_effect`, App.background_effects, () => {
     App.apply_theme()
   })
 
-  let tiles_opts = [
-    [`None`, `none`],
-    [`50px`, `50px`],
-    [`100px`, `100px`],
-    [`150px`, `150px`],
-    [`200px`, `200px`],
-    [`250px`, `250px`],
-    [`300px`, `300px`],
-    [`350px`, `350px`],
-    [`400px`, `400px`],
-    [`450px`, `450px`],
-    [`500px`, `500px`],
-  ]
-
-  App.settings_make_menu(`background_tiles`, tiles_opts, () => {
+  App.settings_make_menu(`background_tiles`, App.background_tiles, () => {
     App.apply_theme()
   })
 
