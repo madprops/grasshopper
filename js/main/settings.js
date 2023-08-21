@@ -123,6 +123,7 @@ App.build_default_settings = () => {
   obj.aliases = {value: [], category: category, version: 1}
   obj.custom_filters = {value: [], category: category, version: 1}
   obj.sort_commands = {value: true, category: category, version: 1}
+  obj.all_bookmarks = {value: true, category: category, version: 1}
 
   App.default_settings = obj
 }
