@@ -294,12 +294,10 @@ App.show_profile_editor = (item, type, action = `edit`) => {
 
       if (profile.background_effect) {
         App.current_profile_editor_background_effect = profile.background_effect
-        App.set_profile_background_effect()
       }
 
       if (profile.background_tiles) {
         App.current_profile_editor_background_tiles = profile.background_tiles
-        App.set_profile_background_tiles()
       }
     }
     else {
@@ -347,8 +345,6 @@ App.show_profile_editor = (item, type, action = `edit`) => {
               App.profile_editor_text_color.setColor(shared_tc)
               App.current_profile_editor_background_effect = shared_be
               App.current_profile_editor_background_tiles = shared_bt
-              App.set_profile_background_effect()
-              App.set_profile_background_tiles()
             }
           }
         }
@@ -361,6 +357,8 @@ App.show_profile_editor = (item, type, action = `edit`) => {
   App.window_goto_top(`profile_editor`)
   App.profile_apply_theme()
   App.set_profile_color()
+  App.set_profile_background_effect()
+  App.set_profile_background_tiles()
   App.focus_first_profile_editor_input()
   App.profile_ready = true
 }
@@ -1554,7 +1552,7 @@ App.profile_menu_cycle = (el, prop, dir, o_items) => {
 }
 
 App.profile_editor_set_menu = (el, prop, item) => {
-  el.innerHTML = item[2] + item[0]
+  el.innerHTML = (item[2] || ``) + item[0]
   App[`current_profile_editor_${prop}`] = item[1]
   App.profile_modified()
 }
@@ -1575,7 +1573,7 @@ App.set_profile_color = () => {
 
 App.set_profile_background_effect = () => {
   let color = App.current_profile_background_effect
-  let item = App.get_profile_editor_menu_item(color, App.background_effect)
+  let item = App.get_profile_editor_menu_item(color, App.background_effects)
   App.profile_editor_set_menu(DOM.el(`#profile_editor_background_effect`), `background_effect`, item)
 }
 
