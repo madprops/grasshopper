@@ -322,6 +322,8 @@ App.process_info = (mode, info, exclude = [], o_item) => {
   let has_profile = false
   let tags = []
   let color = ``
+  let background_effect = ``
+  let background_tiles = ``
   let custom_title = ``
   let theme_enabled = false
   let background_color = ``
@@ -344,7 +346,7 @@ App.process_info = (mode, info, exclude = [], o_item) => {
       icon = profile.icon
     }
 
-    if (profile.color) {
+    if (profile.color && profile.color !== `none`) {
       color = profile.color
     }
 
@@ -361,6 +363,14 @@ App.process_info = (mode, info, exclude = [], o_item) => {
 
       if (profile.background_image) {
         background_image = profile.background_image
+      }
+
+      if (profile.background_effect && profile.background_effect !== `none`) {
+        background_effect = profile.background_effect
+      }
+
+      if (profile.background_tiles && profile.background_tiles !== `none`) {
+        background_tiles = profile.background_tiles
       }
     }
   }
@@ -387,6 +397,8 @@ App.process_info = (mode, info, exclude = [], o_item) => {
     background_color: background_color,
     text_color: text_color,
     background_image: background_image,
+    background_effect: background_effect,
+    background_tiles: background_tiles,
     created: false,
   }
 

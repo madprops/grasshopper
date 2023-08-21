@@ -246,8 +246,8 @@ App.show_profile_editor = (item, type, action = `edit`) => {
   App.profile_editor_text_color.setColor(App.default_profile_text_color)
   DOM.el(`#profile_editor_background_image`).value = ``
   App.current_profile_editor_color = `none`
-  App.current_profile_background_effect = `none`
-  App.current_profile_background_tiles = `none`
+  App.current_profile_editor_background_effect = `none`
+  App.current_profile_editor_background_tiles = `none`
 
   if (items.length === 1 && profiles.length === 1) {
     DOM.el(`#profile_editor_remove`).classList.remove(`hidden`)
@@ -288,17 +288,9 @@ App.show_profile_editor = (item, type, action = `edit`) => {
         App.profile_editor_text_color.setColor(profile.text_color)
       }
 
-      if (profile.background_image) {
-        DOM.el(`#profile_editor_background_image`).value = profile.background_image
-      }
-
-      if (profile.background_effect) {
-        App.current_profile_editor_background_effect = profile.background_effect
-      }
-
-      if (profile.background_tiles) {
-        App.current_profile_editor_background_tiles = profile.background_tiles
-      }
+      DOM.el(`#profile_editor_background_image`).value = profile.background_image
+      App.current_profile_editor_background_effect = profile.background_effect
+      App.current_profile_editor_background_tiles = profile.background_tiles
     }
     else {
       DOM.el(`#profile_editor_url`).value = items[0].url
@@ -465,6 +457,8 @@ App.profile_editor_save = () => {
     hex = App.profile_editor_text_color.color
     args.text_color = App.colorlib.hex_to_rgb(hex)
     args.background_image =  DOM.el(`#profile_editor_background_image`).value.trim()
+    args.background_effect =  App.current_profile_editor_background_effect
+    args.background_tiles = App.current_profile_editor_background_tiles
     args.type = App.profile_editor_type
     args.profiles = App.profile_editor_profiles
     args.added = App.profile_editor_added
@@ -538,6 +532,8 @@ App.save_profile = (args) => {
       profile.background_color = args.background_color
       profile.text_color = args.text_color
       profile.background_image = args.background_image
+      profile.background_effect = args.background_effect
+      profile.background_tiles = args.background_tiles
     }
 
     App.profiles = App.profiles.filter(x => x.url !== og_url)
@@ -1572,13 +1568,13 @@ App.set_profile_color = () => {
 }
 
 App.set_profile_background_effect = () => {
-  let color = App.current_profile_background_effect
+  let color = App.current_profile_editor_background_effect
   let item = App.get_profile_editor_menu_item(color, App.background_effects)
   App.profile_editor_set_menu(DOM.el(`#profile_editor_background_effect`), `background_effect`, item)
 }
 
 App.set_profile_background_tiles = () => {
-  let color = App.current_profile_background_tiles
+  let color = App.current_profile_editor_background_tiles
   let item = App.get_profile_editor_menu_item(color, App.background_tiles)
   App.profile_editor_set_menu(DOM.el(`#profile_editor_background_tiles`), `background_tiles`, item)
 }
