@@ -589,9 +589,15 @@ App.animate_background_image = (url) => {
       let amount = 0.1
       proc(op_new, op_old)
       App.first_bg_image = true
+      let date = Date.now()
+      App.animate_background_date = date
 
       function tick () {
         try {
+          if (App.animate_background_date !== date) {
+            return
+          }
+
           op_new = parseFloat(Math.min(op_new + amount, 1).toFixed(1))
           op_old = parseFloat(Math.max(op_old - amount, 0).toFixed(1))
           proc(op_new, op_old)
