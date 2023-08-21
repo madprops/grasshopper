@@ -584,7 +584,6 @@ App.animate_background_image = (url) => {
       let amount = 0.1
       proc(op_new, op_old)
       App.first_bg_image = true
-      console.log(1)
 
       function tick () {
         try {
@@ -593,7 +592,6 @@ App.animate_background_image = (url) => {
           proc(op_new, op_old)
 
           if ((op_new >= 1) && (op_old <= 0)) {
-            console.log(2)
             proc(1, 0)
             return
           }
