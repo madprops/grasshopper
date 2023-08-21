@@ -544,7 +544,6 @@ App.background_from_pool = (random = false) => {
 }
 
 App.animate_background_image = (url) => {
-  clearInterval(App.background_interval)
   App.debug(`Animate Background`)
   let new_num = App.active_background === 1 ? 2 : 1
   let old_num = new_num === 1 ? 2 : 1
@@ -585,30 +584,36 @@ App.animate_background_image = (url) => {
       let amount = 0.1
       proc(op_new, op_old)
       App.first_bg_image = true
+      console.log(1)
 
-      App.background_interval = setInterval(() => {
+      function tick () {
         try {
           op_new = parseFloat(Math.min(op_new + amount, 1).toFixed(1))
           op_old = parseFloat(Math.max(op_old - amount, 0).toFixed(1))
           proc(op_new, op_old)
 
           if ((op_new >= 1) && (op_old <= 0)) {
+            console.log(2)
             proc(1, 0)
-            clearInterval(App.background_interval)
+            return
           }
+
+          setTimeout(() => {
+            tick()
+          }, App.background_animation_delay)
         }
         catch (err) {
           proc(1, 0)
-          clearInterval(App.background_interval)
         }
-      }, 120)
+      }
+
+      tick()
     })
 
     DOM.ev(App.background_image, `error`, () => {
       proc(1, 0)
       bg(`unset`)
       App.first_bg_image = true
-      clearInterval(App.background_interval)
     })
   }
 }

@@ -152,7 +152,7 @@ App.setup_profile_editor = () => {
 }
 
 App.profile_modified = () => {
-  if (App.profile_ready) {
+  if (App.profile_editor_ready) {
     App.profile_editor_modified = true
   }
 }
@@ -175,6 +175,7 @@ App.get_profile_items = (item) => {
 }
 
 App.show_profile_editor = (item, type, action = `edit`) => {
+  App.profile_editor_ready = false
   App.profile_editor_new = false
 
   if (action === `new`) {
@@ -182,7 +183,6 @@ App.show_profile_editor = (item, type, action = `edit`) => {
     action = `edit`
   }
 
-  App.profile_ready = false
   App.profile_editor_items = App.get_profile_items(item)
   let items = App.profile_editor_items
   let profiles = []
@@ -347,12 +347,12 @@ App.show_profile_editor = (item, type, action = `edit`) => {
   }
 
   App.window_goto_top(`profile_editor`)
-  App.profile_apply_theme()
   App.set_profile_color()
   App.set_profile_background_effect()
   App.set_profile_background_tiles()
   App.focus_first_profile_editor_input()
-  App.profile_ready = true
+  App.profile_editor_ready = true
+  App.profile_apply_theme()
 }
 
 App.scroll_profile_text = () => {
@@ -1463,6 +1463,10 @@ App.get_shared_background_tiles = (profiles) => {
 }
 
 App.profile_apply_theme = () => {
+  if (!App.profile_editor_ready) {
+    return
+  }
+
   if (DOM.el(`#profile_editor_theme_enabled`).checked) {
     let c1 = App.colorlib.hex_to_rgb(App.profile_editor_background_color.color)
     let c2 = App.colorlib.hex_to_rgb(App.profile_editor_text_color.color)
