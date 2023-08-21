@@ -1142,7 +1142,7 @@ App.get_profile_count = () => {
       count.notes += 1
     }
 
-    if (profile.color) {
+    if (profile.color && profile.color !== `none`) {
       if (!count[profile.color]) {
         count[profile.color] = 0
       }
