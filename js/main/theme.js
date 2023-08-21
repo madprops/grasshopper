@@ -95,23 +95,21 @@ App.apply_theme = (args) => {
       args.background_image = App.get_setting(`background_image`)
     }
 
-    let bg_color_changed = args.background_color !== App.last_background_color
-    let text_color_changed = args.text_color !== App.last_text_color
-    let bg_image_changed = args.background_image !== App.last_background_image
-
-    if (args.check) {
-      if (!bg_color_changed && !text_color_changed) {
-        if (args.background_image) {
-          if (!bg_image_changed) {
-            return
-          }
-        }
-        else {
-          return
-        }
-      }
+    if (!args.background_effect) {
+      args.background_effect = App.get_setting(`background_effect`)
     }
 
+    if (!args.background_tiles) {
+      args.background_tiles = App.get_setting(`background_tiles`)
+    }
+
+    let s_args = JSON.stringify(args)
+
+    if (App.last_theme_args === s_args) {
+      return
+    }
+
+    App.last_theme_args = s_args
     App.last_background_color = args.background_color
     App.last_text_color = args.text_color
     App.last_background_image = args.background_image
@@ -164,10 +162,7 @@ App.apply_theme = (args) => {
     }
 
     App.set_css_var(`item_height`, `${item_height}rem`)
-
-    if (bg_image_changed) {
-      App.animate_background_image(args.background_image)
-    }
+    App.animate_background_image(args.background_image)
 
     if (App.get_setting(`show_scrollbars`)) {
       document.body.classList.remove(`no_scrollbars`)
@@ -218,20 +213,17 @@ App.apply_theme = (args) => {
     }
 
     let bg_effect_opts = [`blur`, `grayscale`, `invert`, `rotate_1`, `rotate_2`, `rotate_3`]
-    let bg_effect = App.get_setting(`background_effect`)
 
     for (let eff of bg_effect_opts) {
       bg_rem(eff)
     }
 
-    if (bg_effect_opts.includes(bg_effect)) {
-      bg_add(bg_effect)
+    if (bg_effect_opts.includes(args.background_effect)) {
+      bg_add(args.background_effect)
     }
 
-    let bg_tiles = App.get_setting(`background_tiles`)
-
-    if (bg_tiles !== `none`) {
-      App.set_css_var(`bg_tiles_width`, bg_tiles)
+    if (args.background_tiles !== `none`) {
+      App.set_css_var(`bg_tiles_width`, args.background_tiles)
       bg_add(`tiles`)
     }
     else {
@@ -342,22 +334,22 @@ App.set_default_theme = () => {
   App.apply_theme({background_color: background, text_color: text, check: true})
 }
 
-App.set_color_auto = (background, text, background_image) => {
-  if (background) {
-    background = App.parse_color(background)
+App.set_color_auto = (args) => {
+  if (args.background_color) {
+    args.background_color = App.parse_color(args.background_color)
   }
 
-  if (!text) {
-    if (background) {
-      text = App.colorlib.get_lighter_or_darker(background, App.color_contrast)
+  if (!args.text_color) {
+    if (args.background_color) {
+      args.text_color = App.colorlib.get_lighter_or_darker(args.background_color, App.color_contrast)
     }
   }
   else {
-    text = App.parse_color(text)
+    args.text_color = App.parse_color(args.text_color)
   }
 
-  App.apply_theme({background_color: background,
-    text_color: text, background_image: background_image, check: true})
+  args.check = true
+  App.apply_theme(args)
 }
 
 App.parse_color = (color) => {
@@ -420,7 +412,7 @@ App.seeded_theme = (item) => {
   let background
 
   if (hc) {
-    App.set_color_auto(hc)
+    App.set_color_auto({background_color: hc})
     return
   }
 
@@ -435,7 +427,7 @@ App.seeded_theme = (item) => {
   }
 
   App.hostname_colors[url] = background
-  App.set_color_auto(background)
+  App.set_color_auto({background_color: background})
 }
 
 App.check_item_theme_debouncer = App.create_debouncer(() => {
@@ -462,7 +454,14 @@ App.do_check_item_theme = () => {
   }
 
   if (item.theme_enabled) {
-    App.set_color_auto(item.background_color, item.text_color, item.background_image)
+    App.set_color_auto({
+      background_color: item.background_color,
+      text_color: item.text_color,
+      background_image: item.background_image,
+      background_effect: item.background_effect,
+      background_tiles: item.background_tiles,
+    })
+
     return
   }
 
