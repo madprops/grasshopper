@@ -1301,9 +1301,9 @@ App.do_add_custom_filter = () => {
 App.add_background_pool = (url) => {
   let url_el = DOM.el(`#add_background_pool_image_url`)
   App.show_popup(`add_background_pool`)
-  url_el.value = ``
   DOM.el(`#add_background_pool_effect`).value = App.get_setting(`background_effect`)
   DOM.el(`#add_background_pool_tiles`).value = App.get_setting(`background_tiles`)
+  url_el.value = ``
 
   if (url) {
     url_el.value = url
