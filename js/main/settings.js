@@ -372,8 +372,7 @@ App.settings_make_menu = (setting, opts, action = () => {}) => {
 
           App.show_confirm(`Reset setting?`, () => {
             App.set_default_setting(setting)
-            let value = App.get_setting(setting)
-            App.set_settings_menu(setting, value)
+            App.set_settings_menu(setting)
             action()
           }, undefined, force)
         }
@@ -1452,6 +1451,10 @@ App.get_textarea_setting_value = (setting) => {
 }
 
 App.set_settings_menu = (setting, value) => {
+  if (!value) {
+    value = App.get_setting(setting)
+  }
+
   let el = DOM.el(`#settings_${setting}`)
   let opts = App[`settings_${setting}_opts`]
 
