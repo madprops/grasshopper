@@ -710,15 +710,23 @@ App.add_to_background_pool = (url) => {
   }
 
   let pool = App.get_setting(`background_pool`)
+  let match = false
 
-  if (!pool.includes(url)) {
+  for (let image of pool) {
+    if (image.startsWith(url)) {
+      match = true
+      break
+    }
+  }
+
+  if (match) {
+    App.show_feedback(`Already in background pool`)
+  }
+  else {
     pool.push(url)
     App.set_setting(`background_pool`, pool)
     App.check_theme_refresh()
     App.show_feedback(`Added to background pool`)
-  }
-  else {
-    App.show_feedback(`Already in background pool`)
   }
 }
 
