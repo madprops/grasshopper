@@ -1383,8 +1383,13 @@ App.add_setting_list_item_html = (short, left, props, to = false) => {
     let el
 
     if (prop.endsWith(`__select`)) {
+      el = DOM.create(`div`, `flex_column_center gap_1`)
+      let label = DOM.create(`div`)
+      label.textContent = App.capitalize_all(prop.replace(`__select`, ``).replace(/_/g, ` `))
       let p = prop.replace(`__select`, ``)
-      el = DOM.create(`select`, `editor_select`, `add_${short}_${p}`)
+      let select = DOM.create(`select`, `editor_select`, `add_${short}_${p}`)
+      el.append(label)
+      el.append(select)
     }
     else {
       el = DOM.create(`input`, `text text editor_text text_smaller`, `add_${short}_${prop}`)
@@ -1398,7 +1403,7 @@ App.add_setting_list_item_html = (short, left, props, to = false) => {
   }
 
   let add = DOM.create(`div`, `button settings_add_button`, `add_${short}_add`)
-  let label =App.capitalize_all(short.replace(/_/g, ` `))
+  let label = App.capitalize_all(short.replace(/_/g, ` `))
 
   if (to) {
     add.textContent = `Add To ${label}`
