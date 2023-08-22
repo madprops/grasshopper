@@ -723,7 +723,7 @@ App.add_to_background_pool = (url) => {
     App.show_feedback(`Already in background pool`)
   }
   else {
-    pool.push(url)
+    pool.push(`${url} ; none ; none`)
     App.set_setting(`background_pool`, pool)
     App.check_theme_refresh()
     App.show_feedback(`Added to background pool`)
