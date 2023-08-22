@@ -1333,7 +1333,7 @@ App.do_add_setting_list_item = (setting, short, left, props = []) => {
 
   for (let prop of props) {
     let v = DOM.el(`#add_${short}_${prop}`).value.trim()
-    values.push(v)
+    values.push(v.replace(`none`, ``))
   }
 
   let textarea = DOM.el(`#settings_${setting}`)

@@ -555,8 +555,8 @@ App.background_from_pool = (random = false) => {
 
   if (next_image) {
     let image
-    let bg_effect = `none`
-    let bg_tiles = `none`
+    let bg_effect
+    let bg_tiles
 
     if (next_image.includes(`;`)) {
       let split = next_image.split(`;`)
