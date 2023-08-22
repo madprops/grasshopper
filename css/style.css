@@ -1013,3 +1013,8 @@ a:visited, a:link, a:hover {
   padding: 0.35rem;
   cursor: pointer;
 }
+
+.full_width {
+  width: 92vw !important;
+  min-width: 92vw !important;
+}

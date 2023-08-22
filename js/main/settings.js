@@ -268,6 +268,10 @@ App.settings_setup_text = (container) => {
 
     DOM.ev(el, `focus`, () => {
       DOM.dataset(el, `modified`, false)
+
+      if (el.dataset.expand) {
+        el.classList.add(`full_width`)
+      }
     })
 
     DOM.ev(el, `input`, () => {
@@ -275,6 +279,10 @@ App.settings_setup_text = (container) => {
     })
 
     DOM.ev(el, `blur`, () => {
+      if (el.dataset.expand) {
+        el.classList.remove(`full_width`)
+      }
+
       if (!DOM.dataset(el, `modified`)) {
         return
       }
