@@ -412,6 +412,7 @@ App.change_background = (url, bg_eff, bg_tiles) => {
   }
 
   if (bg_tiles) {
+    console.log(bg_tiles)
     App.set_setting(`background_tiles`, bg_tiles)
   }
 
@@ -743,6 +744,8 @@ App.check_theme_refresh = () => {
       App.background_color.setColor(App.get_setting(`background_color`))
       App.text_color.setColor(App.get_setting(`text_color`))
       DOM.el(`#settings_background_image`).value = App.get_setting(`background_image`)
+      App.set_settings_menu(`background_effect`, App.get_setting(`background_effect`))
+      App.set_settings_menu(`background_tiles`, App.get_setting(`background_tiles`))
       App.refresh_background_pool()
     }
   }

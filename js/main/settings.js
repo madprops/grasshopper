@@ -361,6 +361,8 @@ App.settings_make_menu = (setting, opts, action = () => {}) => {
     NeedContext.show_on_element(el, items, true, el.clientHeight)
   })
 
+  App[`settings_${setting}_opts`] = opts
+
   DOM.evs(App.get_settings_label(setting), [`click`, `contextmenu`], (e) => {
     App.settings_label_menu(e,
     [
@@ -371,14 +373,7 @@ App.settings_make_menu = (setting, opts, action = () => {}) => {
           App.show_confirm(`Reset setting?`, () => {
             App.set_default_setting(setting)
             let value = App.get_setting(setting)
-
-            for (let o of opts) {
-              if (o[1] === value) {
-                el.textContent = o[0]
-                break
-              }
-            }
-
+            App.set_settings_menu(setting, value)
             action()
           }, undefined, force)
         }
@@ -1454,4 +1449,16 @@ App.scroll_settings_text = (category) => {
 
 App.get_textarea_setting_value = (setting) => {
   return App.get_setting(setting).join(`\n`)
+}
+
+App.set_settings_menu = (setting, value) => {
+  let el = DOM.el(`#settings_${setting}`)
+  let opts = App[`settings_${setting}_opts`]
+
+  for (let o of opts) {
+    if (o[1] === value) {
+      el.textContent = o[0]
+      break
+    }
+  }
 }
