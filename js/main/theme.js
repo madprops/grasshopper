@@ -400,8 +400,21 @@ App.random_background = async () => {
   }
 }
 
-App.change_background = (url) => {
+App.change_background = (url, bg_eff, bg_tiles) => {
+  if (!url) {
+    return
+  }
+
   App.set_setting(`background_image`, url)
+
+  if (bg_eff) {
+    App.set_setting(`background_effect`, bg_eff)
+  }
+
+  if (bg_tiles) {
+    App.set_setting(`background_tiles`, bg_tiles)
+  }
+
   App.check_item_theme()
   App.check_theme_refresh()
 }
@@ -523,12 +536,14 @@ App.background_from_pool = (random = false) => {
   }
   else {
     for (let image of images) {
+      let img = image.split(`;`)[0].trim()
+
       if (waypoint) {
         next_image = image
         break
       }
 
-      if (bi === image) {
+      if (bi === img) {
         waypoint = true
       }
     }
@@ -539,7 +554,30 @@ App.background_from_pool = (random = false) => {
   }
 
   if (next_image) {
-    App.change_background(next_image)
+    let image
+    let bg_effect = `none`
+    let bg_tiles = `none`
+
+    if (next_image.includes(`;`)) {
+      let split = next_image.split(`;`)
+
+      if (split.length >= 1) {
+        image = split[0].trim()
+      }
+
+      if (split.length >= 2) {
+        bg_effect = split[1].toLowerCase().trim()
+      }
+
+      if (split.length >= 3) {
+        bg_tiles = split[2].toLowerCase().trim()
+      }
+    }
+    else {
+      image = next_image
+    }
+
+    App.change_background(image, bg_effect, bg_tiles)
   }
 }
 

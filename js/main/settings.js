@@ -486,7 +486,25 @@ App.setup_settings = () => {
       DOM.ev(DOM.el(`#add_background_pool_add`), `click`, () => {
         App.do_add_background_pool()
       })
-    }, element: App.add_setting_list_item_html(`background_pool`, `image_url`, [], true)
+
+      let eff = DOM.el(`#add_background_pool_background_effect`)
+
+      for (let e of App.background_effects) {
+        let o = DOM.create(`option`)
+        o.textContent = e[0]
+        o.value = e[1]
+        eff.append(o)
+      }
+
+      let tiles = DOM.el(`#add_background_pool_background_tiles`)
+
+      for (let e of App.background_tiles) {
+        let o = DOM.create(`option`)
+        o.textContent = e[0]
+        o.value = e[1]
+        tiles.append(o)
+      }
+    }, element: App.add_setting_list_item_html(`background_pool`, `image_url`, [`background_effect__select`, `background_tiles__select`], true)
   })
 
   App.settings_categories = [`general`, `theme`, `media`, `show`, `mouse`, `warns`, `colors`, `more`]
@@ -1289,15 +1307,22 @@ App.do_add_custom_filter = () => {
 App.add_background_pool = () => {
   App.show_popup(`add_background_pool`)
   DOM.el(`#add_background_pool_image_url`).value = ``
+  DOM.el(`#add_background_pool_background_effect`).value = `none`
+  DOM.el(`#add_background_pool_background_tiles`).value = `none`
   DOM.el(`#add_background_pool_image_url`).focus()
 }
 
 App.do_add_background_pool = () => {
-  App.do_add_setting_list_item(`background_pool`, `background_pool`, `image_url`)
+  App.do_add_setting_list_item(`background_pool`, `background_pool`, undefined, [`image_url`, `background_effect`, `background_tiles`])
 }
 
 App.do_add_setting_list_item = (setting, short, left, props = []) => {
-  let name = DOM.el(`#add_${short}_${left}`).value
+  let name
+
+  if (left) {
+    name = DOM.el(`#add_${short}_${left}`).value
+  }
+
   let values = []
 
   for (let prop of props) {
@@ -1305,35 +1330,41 @@ App.do_add_setting_list_item = (setting, short, left, props = []) => {
     values.push(v)
   }
 
-  if (name) {
-    let textarea = DOM.el(`#settings_${setting}`)
-    let new_value
+  let textarea = DOM.el(`#settings_${setting}`)
+  let new_value
 
-    if (props.length > 0) {
-      let value
+  if (props.length > 0) {
+    let value
 
-      if (props.length === 1) {
-        value = values[0]
-      }
-      else {
-        let joined = values.join(` ; `)
-        value = joined.replace(/[;\s]+$/g, ``)
-      }
-
-      if (value) {
-        let line = `\n${name} = ${value}`
-        new_value = App.one_linebreak(`${textarea.value}\n${line}`)
-      }
+    if (props.length === 1) {
+      value = values[0]
     }
     else {
-      new_value = App.one_linebreak(`${textarea.value}\n${name}`)
+      let joined = values.join(` ; `)
+      value = joined.replace(/[;\s]+$/g, ``)
     }
 
-    if (new_value) {
-      textarea.value = new_value
-      App.scroll_to_bottom(textarea)
-      App.do_save_text_setting(setting, textarea)
+    if (value) {
+      let line
+
+      if (name) {
+        line = `\n${name} = ${value}`
+      }
+      else {
+        line = `\n${value}`
+      }
+
+      new_value = App.one_linebreak(`${textarea.value}\n${line}`)
     }
+  }
+  else {
+    new_value = App.one_linebreak(`${textarea.value}\n${name}`)
+  }
+
+  if (new_value) {
+    textarea.value = new_value
+    App.scroll_to_bottom(textarea)
+    App.do_save_text_setting(setting, textarea)
   }
 
   App.hide_popup()
