@@ -91,7 +91,7 @@ App.setup_profile_editor = () => {
       showHSL: false,
       showHEX: false,
       showRGB: true,
-      color: App.default_profile_background_color
+      color: App.dark_theme_colors.background
     })
 
     App.profile_editor_background_color.on(`change`, (picker, color) => {
@@ -106,7 +106,7 @@ App.setup_profile_editor = () => {
       showHSL: false,
       showHEX: false,
       showRGB: true,
-      color: App.default_profile_text_color
+      color: App.dark_theme_colors.text
     })
 
     App.profile_editor_text_color.on(`change`, (picker, color) => {
@@ -242,8 +242,8 @@ App.show_profile_editor = (item, type, action = `edit`) => {
   DOM.el(`#profile_editor_title`).value = ``
   DOM.el(`#profile_editor_icon`).value = ``
   DOM.el(`#profile_editor_theme_enabled`).checked = false
-  App.profile_editor_background_color.setColor(App.default_profile_background_color)
-  App.profile_editor_text_color.setColor(App.default_profile_text_color)
+  App.profile_editor_background_color.setColor(App.dark_theme_colors.background)
+  App.profile_editor_text_color.setColor(App.dark_theme_colors.text)
   DOM.el(`#profile_editor_background_image`).value = ``
   App.current_profile_editor_color = `none`
   App.current_profile_editor_background_effect = `none`
