@@ -587,9 +587,8 @@ App.animate_background_image = (url) => {
   let old_num = new_num === 1 ? 2 : 1
   let new_el = DOM.el(`#background_${new_num}`)
   let old_el = DOM.el(`#background_${old_num}`)
-  let u = `url("${url}")`
 
-  if (new_el.style.backgroundImage === u || old_el.style.backgroundImage === u) {
+  if (url && old_el.style.backgroundImage.includes(url)) {
     return
   }
 
