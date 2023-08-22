@@ -506,3 +506,20 @@ App.to_set = (array) => {
 App.color_icon = (color) => {
   return `<div class='color_icon color_${color}_2'></div>`
 }
+
+App.get_line = (textarea) => {
+  let pos = textarea.selectionStart
+  let text = textarea.value
+  let start = pos
+  let end = pos
+
+  while (start > 0 && text[start - 1] !== '\n') {
+    start--
+  }
+
+  while (end < text.length && text[end] !== '\n') {
+    end++
+  }
+
+  return text.substring(start, end).trim()
+}

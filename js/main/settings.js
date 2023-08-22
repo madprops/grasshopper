@@ -916,16 +916,12 @@ App.start_theme_settings = () => {
     App.random_background()
   })
 
-  DOM.ev(DOM.el(`#settings_background_image_add`), `click`, () => {
-    App.add_background_pool(DOM.el(`#settings_background_image`).value)
-  })
-
   DOM.ev(DOM.el(`#settings_background_image_remove`), `click`, () => {
     App.remove_from_background_pool()
   })
 
   DOM.ev(DOM.el(`#settings_background_pool_add`), `click`, () => {
-    App.add_background_pool()
+    App.add_background_pool(DOM.el(`#settings_background_image`).value)
   })
 
   DOM.ev(DOM.el(`#settings_background_pool_next`), `click`, () => {
@@ -934,6 +930,11 @@ App.start_theme_settings = () => {
 
   DOM.ev(DOM.el(`#settings_background_pool_shuffle`), `click`, () => {
     App.shuffle_background_pool()
+  })
+
+  DOM.ev(DOM.el(`#settings_background_pool`), `contextmenu`, (e) => {
+    console.log(App.get_line(e.target))
+    e.preventDefault()
   })
 }
 
