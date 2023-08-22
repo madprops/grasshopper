@@ -487,7 +487,7 @@ App.setup_settings = () => {
         App.do_add_background_pool()
       })
 
-      let eff = DOM.el(`#add_background_pool_background_effect`)
+      let eff = DOM.el(`#add_background_pool_effect`)
 
       for (let e of App.background_effects) {
         let o = DOM.create(`option`)
@@ -496,7 +496,7 @@ App.setup_settings = () => {
         eff.append(o)
       }
 
-      let tiles = DOM.el(`#add_background_pool_background_tiles`)
+      let tiles = DOM.el(`#add_background_pool_tiles`)
 
       for (let e of App.background_tiles) {
         let o = DOM.create(`option`)
@@ -504,7 +504,7 @@ App.setup_settings = () => {
         o.value = e[1]
         tiles.append(o)
       }
-    }, element: App.add_setting_list_item_html(`background_pool`, `image_url`, [`background_effect__select`, `background_tiles__select`], true)
+    }, element: App.add_setting_list_item_html(`background_pool`, `image_url`, [`effect__select`, `tiles__select`], true)
   })
 
   App.settings_categories = [`general`, `theme`, `media`, `show`, `mouse`, `warns`, `colors`, `more`]
@@ -1307,13 +1307,13 @@ App.do_add_custom_filter = () => {
 App.add_background_pool = () => {
   App.show_popup(`add_background_pool`)
   DOM.el(`#add_background_pool_image_url`).value = ``
-  DOM.el(`#add_background_pool_background_effect`).value = `none`
-  DOM.el(`#add_background_pool_background_tiles`).value = `none`
+  DOM.el(`#add_background_pool_effect`).value = `none`
+  DOM.el(`#add_background_pool_tiles`).value = `none`
   DOM.el(`#add_background_pool_image_url`).focus()
 }
 
 App.do_add_background_pool = () => {
-  App.do_add_setting_list_item(`background_pool`, `background_pool`, undefined, [`image_url`, `background_effect`, `background_tiles`])
+  App.do_add_setting_list_item(`background_pool`, `background_pool`, undefined, [`image_url`, `effect`, `tiles`])
 }
 
 App.do_add_setting_list_item = (setting, short, left, props = []) => {
