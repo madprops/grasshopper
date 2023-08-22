@@ -179,7 +179,7 @@ select {
   font-size: 1rem;
   cursor: pointer;
   flex-shrink: 0;
-  background-color: var(--alt_color_1);
+  background-color: var(--alt_color_0);
   color: var(--text_color);
   border-width: 0;
   text-align: center;
@@ -504,10 +504,6 @@ svg {
 .settings_checkbox {
   width: 1.07rem;
   height: 1.07rem;
-}
-
-.settings_add_button {
-  background-color: var(--alt_color_0);
 }
 
 .add_setting_container {

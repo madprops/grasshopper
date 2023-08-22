@@ -1402,7 +1402,7 @@ App.add_setting_list_item_html = (short, left, props, to = false) => {
     els.push(el)
   }
 
-  let add = DOM.create(`div`, `button settings_add_button`, `add_${short}_add`)
+  let add = DOM.create(`div`, `button`, `add_${short}_add`)
   let label = App.capitalize_all(short.replace(/_/g, ` `))
 
   if (to) {
