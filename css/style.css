@@ -508,7 +508,6 @@ svg {
 
 .settings_add_button {
   background-color: var(--alt_color_0);
-  border: 1px solid var(--alt_color_1);
 }
 
 .add_setting_container {
