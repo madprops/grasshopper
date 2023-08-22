@@ -915,7 +915,7 @@ App.start_theme_settings = () => {
   })
 
   DOM.ev(DOM.el(`#settings_background_image_add`), `click`, () => {
-    App.add_to_background_pool()
+    App.add_background_pool(DOM.el(`#settings_background_image`).value)
   })
 
   DOM.ev(DOM.el(`#settings_background_image_remove`), `click`, () => {
@@ -1304,12 +1304,18 @@ App.do_add_custom_filter = () => {
   App.do_add_setting_list_item(`custom_filters`, `custom_filter`, `filter`)
 }
 
-App.add_background_pool = () => {
+App.add_background_pool = (url) => {
+  let url_el = DOM.el(`#add_background_pool_image_url`)
   App.show_popup(`add_background_pool`)
-  DOM.el(`#add_background_pool_image_url`).value = ``
+  url_el.value = ``
   DOM.el(`#add_background_pool_effect`).value = `none`
   DOM.el(`#add_background_pool_tiles`).value = `none`
-  DOM.el(`#add_background_pool_image_url`).focus()
+
+  if (url) {
+    url_el.value = url
+  }
+
+  url_el.focus()
 }
 
 App.do_add_background_pool = () => {
