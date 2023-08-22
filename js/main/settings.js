@@ -931,11 +931,6 @@ App.start_theme_settings = () => {
   DOM.ev(DOM.el(`#settings_background_pool_shuffle`), `click`, () => {
     App.shuffle_background_pool()
   })
-
-  DOM.ev(DOM.el(`#settings_background_pool`), `contextmenu`, (e) => {
-    console.log(App.get_line(e.target))
-    e.preventDefault()
-  })
 }
 
 App.settings_menu_cycle = (el, setting, dir, o_items) => {
