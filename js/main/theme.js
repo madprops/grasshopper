@@ -412,7 +412,6 @@ App.change_background = (url, bg_eff, bg_tiles) => {
   }
 
   if (bg_tiles) {
-    console.log(bg_tiles)
     App.set_setting(`background_tiles`, bg_tiles)
   }
 
