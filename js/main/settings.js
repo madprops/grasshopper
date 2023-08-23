@@ -606,7 +606,7 @@ App.setup_settings = () => {
     ])
 
     DOM.ev(DOM.el(`#settings_aliases_add`), `click`, () => {
-      App.add_parts(`aliases`, `alias`)
+      App.addlist_parts(`aliases`, `alias`)
     })
 
     DOM.ev(DOM.el(`#settings_custom_filters_add`), `click`, () => {
@@ -636,7 +636,7 @@ App.setup_settings = () => {
     })
 
     DOM.ev(DOM.el(`#settings_aliases`), `click`, (e) => {
-      App.on_line_click(e, `parts`, `aliases`, `alias`)
+      App.addlist_click(e, `parts`, `aliases`, `alias`)
     })
   }}))
 
@@ -857,7 +857,7 @@ App.start_theme_settings = () => {
   })
 
   DOM.ev(DOM.el(`#settings_background_pool_add`), `click`, () => {
-    App.add_components(`background_pool`, `pool`)
+    App.addlist_components(`background_pool`, `pool`)
   })
 
   DOM.ev(DOM.el(`#settings_background_pool_next`), `click`, () => {
@@ -869,7 +869,7 @@ App.start_theme_settings = () => {
   })
 
   DOM.ev(DOM.el(`#settings_background_pool`), `click`, (e) => {
-    App.on_line_click(e, `components`, `background_pool`, `pool`)
+    App.addlist_click(e, `components`, `background_pool`, `pool`)
   })
 }
 
@@ -1259,6 +1259,29 @@ App.set_settings_menu = (setting, value) => {
 }
 
 App.apply_pool = (full) => {
-  let c = App.get_components(full)
+  let c = App.addlist_components(full)
   App.change_background(c[0], c[1], c[2])
+}
+
+App.do_save_text_setting = (setting, el) => {
+  let value = el.value.trim()
+
+  if (el.classList.contains(`settings_textarea`)) {
+    value = App.one_linebreak(value)
+    value = value.split(`\n`).filter(x => x !== ``).map(x => x.trim())
+    value = App.to_set(value)
+    el.value = value.join(`\n`)
+  }
+  else {
+    el.value = value
+  }
+
+  el.scrollTop = 0
+  App.set_setting(setting, value)
+  App.settings_do_action(el.dataset.action)
+}
+
+App.refresh_textarea = (setting) => {
+  let value = App.get_textarea_setting_value(setting)
+  DOM.el(`#settings_${setting}`).value = value
 }

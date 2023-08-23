@@ -1,14 +1,14 @@
-App.setup_settings_widgets = () => {
+App.setup_addlist = () => {
   App.create_popup({
     id: `addlist_alias`, setup: () => {
       DOM.ev(DOM.el(`#add_alias_add`), `click`, () => {
-        App.do_add_parts(`aliases`, `alias`)
+        App.do_addlist_parts(`aliases`, `alias`)
       })
 
       DOM.ev(DOM.el(`#add_alias_remove`), `click`, () => {
-        App.remove_parts(`aliases`, `alias`)
+        App.addlist_remove_parts(`aliases`, `alias`)
       })
-    }, element: App.add_setting_list_item_html(`alias`, `term_1`, [`term_2`])
+    }, element: App.addlist_html(`alias`, `term_1`, [`term_2`])
   })
 
   App.create_popup({
@@ -16,17 +16,17 @@ App.setup_settings_widgets = () => {
       DOM.ev(DOM.el(`#add_custom_filter_add`), `click`, () => {
         App.do_add_custom_filter()
       })
-    }, element: App.add_setting_list_item_html(`custom_filter`, `filter`, [])
+    }, element: App.addlist_html(`custom_filter`, `filter`, [])
   })
 
   App.create_popup({
     id: `addlist_pool`, setup: () => {
       DOM.ev(DOM.el(`#add_pool_add`), `click`, () => {
-        App.do_add_components(`background_pool`, `pool`)
+        App.do_addlist_components(`background_pool`, `pool`)
       })
 
       DOM.ev(DOM.el(`#add_pool_remove`), `click`, () => {
-        App.remove_component(`background_pool`, `pool`)
+        App.addlist_remove_component(`background_pool`, `pool`)
       })
 
       let eff = DOM.el(`#add_pool_effect`)
@@ -46,12 +46,12 @@ App.setup_settings_widgets = () => {
         o.value = e[1]
         tiles.append(o)
       }
-    }, element: App.add_setting_list_item_html(`pool`, `image_url`,
+    }, element: App.addlist_html(`pool`, `image_url`,
     [`effect__select`, `tiles__select`], true, [`background_image`, `background_effect`, `background_tiles`])
   })
 }
 
-App.do_add_setting_list_item = (setting, short, left, props = []) => {
+App.do_addlist = (setting, short, left, props = []) => {
   let name
 
   if (left) {
@@ -107,7 +107,7 @@ App.do_add_setting_list_item = (setting, short, left, props = []) => {
   return ans
 }
 
-App.add_setting_list_item_html = (short, left, props, to = false, settings) => {
+App.addlist_html = (short, left, props, to = false, settings) => {
   let container = DOM.create(`div`, `flex_column_center add_setting_container`)
   let name = DOM.create(`input`, `text editor_text`, `add_${short}_${left}`)
   name.type = `text`
@@ -168,7 +168,7 @@ App.add_setting_list_item_html = (short, left, props, to = false, settings) => {
   return container
 }
 
-App.add_parts = (setting, short, parts = []) => {
+App.addlist_parts = (setting, short, parts = []) => {
   App.show_popup(`addlist_${short}`)
   DOM.el(`#add_${short}_term_1`).value = parts[0] || ``
   DOM.el(`#add_${short}_term_2`).value = parts[1] || ``
@@ -182,7 +182,7 @@ App.add_parts = (setting, short, parts = []) => {
   }
 }
 
-App.do_add_parts = (setting, short) => {
+App.do_addlist_parts = (setting, short) => {
   let term_1 = DOM.el(`#add_${short}_term_1`).value
   let term_2 = DOM.el(`#add_${short}_term_2`).value
 
@@ -193,23 +193,13 @@ App.do_add_parts = (setting, short) => {
   let parts = App.addlist_data.parts
 
   if (parts.length) {
-    App.remove_parts(setting, short, parts, true)
+    App.addlist_remove_parts(setting, short, parts, true)
   }
 
-  App.do_add_setting_list_item(setting, short, `term_1`, [`term_2`])
+  App.do_addlist(setting, short, `term_1`, [`term_2`])
 }
 
-App.add_custom_filter = () => {
-  App.show_popup(`addlist_custom_filter`)
-  DOM.el(`#add_custom_filter_filter`).value = ``
-  DOM.el(`#add_custom_filter_filter`).focus()
-}
-
-App.do_add_custom_filter = () => {
-  App.do_add_setting_list_item(`custom_filters`, `custom_filter`, `filter`)
-}
-
-App.add_components = (setting, short, components = []) => {
+App.addlist_components = (setting, short, components = []) => {
   App.show_popup(`addlist_${short}`)
 
   if (!components.length) {
@@ -234,7 +224,7 @@ App.add_components = (setting, short, components = []) => {
   }
 }
 
-App.do_add_components = (setting, short) => {
+App.do_addlist_components = (setting, short) => {
   let ids = App[`setting_list_ids_${short}`]
   let first = DOM.el(`#${ids[0]}`).value
 
@@ -242,15 +232,15 @@ App.do_add_components = (setting, short) => {
     return
   }
 
-  App.remove_component(setting, short, first, true)
-  let value = App.do_add_setting_list_item(setting, short, undefined, App[`setting_list_props_${short}`])
+  App.addlist_remove_component(setting, short, first, true)
+  let value = App.do_addlist(setting, short, undefined, App[`setting_list_props_${short}`])
 
   if (value) {
     App.apply_pool(value)
   }
 }
 
-App.remove_component = (setting, short, first, force, action) => {
+App.addlist_remove_component = (setting, short, first, force, action) => {
   if (!first) {
     let ids = App[`setting_list_ids_${short}`]
     first = DOM.el(`#${ids[0]}`).value
@@ -284,7 +274,14 @@ App.remove_component = (setting, short, first, force, action) => {
   }
 }
 
-App.get_components = (full) => {
+App.addlist_get_parts = (full) => {
+  let split = full.split(`=`)
+  let term_1 = split[0].trim()
+  let term_2 = split[1].trim()
+  return [term_1, term_2]
+}
+
+App.addlist_get_components = (full) => {
   let c = []
 
   if (full.includes(`;`)) {
@@ -301,14 +298,7 @@ App.get_components = (full) => {
   return c
 }
 
-App.get_parts = (full) => {
-  let split = full.split(`=`)
-  let term_1 = split[0].trim()
-  let term_2 = split[1].trim()
-  return [term_1, term_2]
-}
-
-App.remove_parts = (setting, short, parts = [], force = false) => {
+App.addlist_remove_parts = (setting, short, parts = [], force = false) => {
   if (parts.length === 0) {
     parts.push(DOM.el(`#add_${short}_term_1`).value)
     parts.push(DOM.el(`#add_${short}_term_2`).value)
@@ -332,53 +322,28 @@ App.remove_parts = (setting, short, parts = [], force = false) => {
   }
 }
 
-App.on_line_click = (e, type, setting, short) => {
+App.addlist_click = (e, type, setting, short) => {
   let line = App.get_line_under_caret(e.target)
 
   if (line) {
-    let data
-
-    if (type === `components`) {
-      data = App.get_components(line)
-      App.add_components(setting, short, data)
+    if (type === `parts`) {
+      let items = App.addlist_get_parts(line)
+      App.addlist_parts(setting, short, items)
     }
-    else if (type === `parts`) {
-      data = App.get_parts(line)
-      App.add_parts(setting, short, data)
+    else if (type === `components`) {
+      let items = App.addlist_get_components(line)
+      App.addlist_components(setting, short, items)
     }
   }
-}
-
-App.do_save_text_setting = (setting, el) => {
-  let value = el.value.trim()
-
-  if (el.classList.contains(`settings_textarea`)) {
-    value = App.one_linebreak(value)
-    value = value.split(`\n`).filter(x => x !== ``).map(x => x.trim())
-    value = App.to_set(value)
-    el.value = value.join(`\n`)
-  }
-  else {
-    el.value = value
-  }
-
-  el.scrollTop = 0
-  App.set_setting(setting, value)
-  App.settings_do_action(el.dataset.action)
-}
-
-App.refresh_textarea = (setting) => {
-  let value = App.get_textarea_setting_value(setting)
-  DOM.el(`#settings_${setting}`).value = value
 }
 
 App.addlist_enter = () => {
   let d = App.addlist_data
 
   if (d.mode === `parts`) {
-    App.do_add_parts(d.setting, d.short)
+    App.do_addlist_parts(d.setting, d.short)
   }
   else if (d.mode === `components`) {
-    App.do_add_components(d.setting, d.short)
+    App.do_addlist_components(d.setting, d.short)
   }
 }
