@@ -36,6 +36,8 @@ App.select_item = (item, scroll = `nearest`, deselect = true) => {
     App.scroll_to_item(item, scroll)
   }
   else {
+    // Items just got created
+    // Give them time to render
     requestAnimationFrame(() => {
       App.scroll_to_item(item, scroll)
     })
