@@ -127,7 +127,7 @@ App.apply_theme = (args) => {
     App.set_css_var(`alt_color_1`, alt_color_1)
     let alt_color_2 = App.colorlib.rgb_to_rgba(args.text_color, 0.50)
     App.set_css_var(`alt_color_2`, alt_color_2)
-    let alt_background = App.colorlib.rgb_to_rgba(args.background_color, 0.7)
+    let alt_background = App.colorlib.rgb_to_rgba(args.background_color, 0.66)
     App.set_css_var(`alt_background`, alt_background)
     let alt_background_2 = App.colorlib.get_lighter_or_darker(args.background_color, 0.06)
     App.set_css_var(`alt_background_2`, alt_background_2)
