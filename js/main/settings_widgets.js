@@ -161,11 +161,12 @@ App.add_setting_list_item_html = (short, left, props, to = false) => {
   return container
 }
 
-App.add_alias = (parts = []) => {
+App.add_alias = (parts = [], line) => {
   App.show_popup(`add_alias`)
   DOM.el(`#add_alias_term_1`).value = parts[0] || ``
   DOM.el(`#add_alias_term_2`).value = parts[1] || ``
   DOM.el(`#add_alias_term_1`).focus()
+  App.add_parts = parts
 }
 
 App.do_add_alias = () => {
@@ -176,7 +177,10 @@ App.do_add_alias = () => {
     return
   }
 
-  App.remove_from_aliases(true)
+  if (App.add_parts.length) {
+    App.remove_from_aliases(App.add_parts, true)
+  }
+
   App.do_add_setting_list_item(`aliases`, `alias`, `term_1`, [`term_2`])
 }
 
@@ -233,11 +237,16 @@ App.remove_from_background_pool = (url, force) => {
   })
 }
 
-App.remove_from_aliases = (force) => {
-  App.remove_parts(`aliases`, `alias`, force)
+App.remove_from_aliases = (parts = [], force) => {
+  if (parts.length === 0) {
+    parts.push(DOM.el(`#add_alias_term_1`).value)
+    parts.push(DOM.el(`#add_alias_term_2`).value)
+  }
+
+  App.remove_parts(`aliases`, parts, force)
 }
 
-App.remove_component = (setting, url, force) => {
+App.remove_component = (setting, url, force, action) => {
   let items = App.get_setting(setting)
 
   if (!items.length) {
@@ -261,7 +270,10 @@ App.remove_component = (setting, url, force) => {
     App.show_confirm(`Remove item?`, () => {
       items = items.filter(x => !x.startsWith(url))
       App.set_setting(setting, items)
-      action()
+
+      if (action) {
+        action()
+      }
     }, undefined, force)
   }
   else {
@@ -293,17 +305,16 @@ App.get_parts = (full) => {
   return [term_1, term_2]
 }
 
-App.remove_parts = (setting, short, force = false) => {
-  let term_1 = DOM.el(`#add_${short}_term_1`).value
-  let term_2 = DOM.el(`#add_${short}_term_2`).value
+App.remove_parts = (setting, parts, force = false) => {
   let items = App.get_setting(setting)
+  console.log(parts)
 
   for (let item of items) {
     let split = item.split(`=`)
     let term_1b = split[0].trim()
     let term_2b = split[1].trim()
 
-    if ((term_1 === term_1b) && (term_2 === term_2b)) {
+    if ((parts[0] === term_1b) && (parts[1] === term_2b)) {
       App.show_confirm(`Remove item?`, () => {
         items = items.filter(x => x !== item)
         App.set_setting(setting, items)
@@ -329,4 +340,22 @@ App.on_line_click = (e, type, short) => {
 
     App[`add_${short}`](data)
   }
+}
+
+App.do_save_text_setting = (setting, el) => {
+  let value = el.value.trim()
+
+  if (el.classList.contains(`settings_textarea`)) {
+    value = App.one_linebreak(value)
+    value = value.split(`\n`).filter(x => x !== ``).map(x => x.trim())
+    value = App.to_set(value)
+    el.value = value.join(`\n`)
+  }
+  else {
+    el.value = value
+  }
+
+  el.scrollTop = 0
+  App.set_setting(setting, value)
+  App.settings_do_action(el.dataset.action)
 }

@@ -686,7 +686,6 @@ App.refresh_background_pool = () => {
   let value = App.get_textarea_setting_value(`background_pool`)
   let pool_el = DOM.el(`#settings_background_pool`)
   pool_el.value = value
-  App.scroll_to_bottom(pool_el)
 }
 
 App.check_theme_refresh = () => {

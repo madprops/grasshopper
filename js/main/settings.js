@@ -233,23 +233,6 @@ App.settings_setup_checkboxes = (container) => {
   }
 }
 
-App.do_save_text_setting = (setting, el) => {
-  let value = el.value.trim()
-
-  if (el.classList.contains(`settings_textarea`)) {
-    value = App.one_linebreak(value)
-    value = value.split(`\n`).filter(x => x !== ``).map(x => x.trim())
-    value = App.to_set(value)
-    el.value = value.join(`\n`)
-  }
-  else {
-    el.value = value
-  }
-
-  App.set_setting(setting, value)
-  App.settings_do_action(el.dataset.action)
-}
-
 App.settings_setup_text = (container) => {
   let els = DOM.els(`.settings_text`, container)
   els.push(...DOM.els(`.settings_textarea`, container))
@@ -280,7 +263,6 @@ App.settings_setup_text = (container) => {
       }
 
       App.do_save_text_setting(setting, el)
-      App.scroll_to_bottom(el)
     })
 
     let menu = [
@@ -322,6 +304,15 @@ App.settings_setup_text = (container) => {
             App.settings_do_action(action)
             el.focus()
           })
+        },
+      },
+      {
+        name: `Copy`,  action: () => {
+          if (el.value === ``) {
+            return
+          }
+
+          App.copy_to_clipboard(el.value)
         },
       }
     ]
@@ -1276,6 +1267,5 @@ App.set_settings_menu = (setting, value) => {
 }
 
 App.apply_pool = (full) => {
-  let parts = App.get_pool_parts(full)
-  App.change_background(parts.image, parts.effect, parts.tiles)
+  App.change_background(App.get_components(full))
 }
