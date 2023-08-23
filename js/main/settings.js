@@ -268,10 +268,6 @@ App.settings_setup_text = (container) => {
 
     DOM.ev(el, `focus`, () => {
       DOM.dataset(el, `modified`, false)
-
-      if (el.dataset.expand) {
-        el.classList.add(`full_width`)
-      }
     })
 
     DOM.ev(el, `input`, () => {
@@ -279,10 +275,6 @@ App.settings_setup_text = (container) => {
     })
 
     DOM.ev(el, `blur`, () => {
-      if (el.dataset.expand) {
-        el.classList.remove(`full_width`)
-      }
-
       if (!DOM.dataset(el, `modified`)) {
         return
       }
@@ -484,12 +476,12 @@ App.setup_settings = () => {
   })
 
   App.create_popup({
-    id: `add_background_pool`, setup: () => {
-      DOM.ev(DOM.el(`#add_background_pool_add`), `click`, () => {
-        App.do_add_background_pool()
+    id: `add_pool`, setup: () => {
+      DOM.ev(DOM.el(`#add_pool_add`), `click`, () => {
+        App.do_add_pool()
       })
 
-      let eff = DOM.el(`#add_background_pool_effect`)
+      let eff = DOM.el(`#add_pool_effect`)
 
       for (let e of App.background_effects) {
         let o = DOM.create(`option`)
@@ -498,7 +490,7 @@ App.setup_settings = () => {
         eff.append(o)
       }
 
-      let tiles = DOM.el(`#add_background_pool_tiles`)
+      let tiles = DOM.el(`#add_pool_tiles`)
 
       for (let e of App.background_tiles) {
         let o = DOM.create(`option`)
@@ -506,7 +498,7 @@ App.setup_settings = () => {
         o.value = e[1]
         tiles.append(o)
       }
-    }, element: App.add_setting_list_item_html(`background_pool`, `image_url`, [`effect__select`, `tiles__select`], true)
+    }, element: App.add_setting_list_item_html(`pool`, `image_url`, [`effect__select`, `tiles__select`], true)
   })
 
   App.settings_categories = [`general`, `theme`, `media`, `show`, `mouse`, `warns`, `colors`, `more`]
@@ -921,7 +913,7 @@ App.start_theme_settings = () => {
   })
 
   DOM.ev(DOM.el(`#settings_background_pool_add`), `click`, () => {
-    App.add_background_pool(DOM.el(`#settings_background_image`).value)
+    App.add_pool(DOM.el(`#settings_background_image`).value)
   })
 
   DOM.ev(DOM.el(`#settings_background_pool_next`), `click`, () => {
@@ -930,6 +922,15 @@ App.start_theme_settings = () => {
 
   DOM.ev(DOM.el(`#settings_background_pool_shuffle`), `click`, () => {
     App.shuffle_background_pool()
+  })
+
+  DOM.ev(DOM.el(`#settings_background_pool`), `click`, (e) => {
+    let line = App.get_line(e.target)
+
+    if (line) {
+      let parts = App.get_pool_parts(line)
+      App.add_pool(parts.image, parts.effect, parts.tiles)
+    }
   })
 }
 
@@ -1302,11 +1303,11 @@ App.do_add_custom_filter = () => {
   App.do_add_setting_list_item(`custom_filters`, `custom_filter`, `filter`)
 }
 
-App.add_background_pool = (url) => {
-  let url_el = DOM.el(`#add_background_pool_image_url`)
-  App.show_popup(`add_background_pool`)
-  DOM.el(`#add_background_pool_effect`).value = App.get_setting(`background_effect`)
-  DOM.el(`#add_background_pool_tiles`).value = App.get_setting(`background_tiles`)
+App.add_pool = (url, effect, tiles) => {
+  let url_el = DOM.el(`#add_pool_image_url`)
+  App.show_popup(`add_pool`)
+  DOM.el(`#add_pool_effect`).value = effect || App.get_setting(`background_effect`)
+  DOM.el(`#add_pool_tiles`).value = tiles || App.get_setting(`background_tiles`)
   url_el.value = ``
 
   if (url) {
@@ -1316,8 +1317,8 @@ App.add_background_pool = (url) => {
   url_el.focus()
 }
 
-App.do_add_background_pool = () => {
-  App.do_add_setting_list_item(`background_pool`, `background_pool`, undefined, [`image_url`, `effect`, `tiles`])
+App.do_add_pool = () => {
+  App.do_add_setting_list_item(`background_pool`, `pool`, undefined, [`image_url`, `effect`, `tiles`])
 }
 
 App.do_add_setting_list_item = (setting, short, left, props = []) => {

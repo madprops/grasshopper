@@ -554,30 +554,8 @@ App.background_from_pool = (random = false) => {
   }
 
   if (next_image) {
-    let image
-    let bg_effect
-    let bg_tiles
-
-    if (next_image.includes(`;`)) {
-      let split = next_image.split(`;`)
-
-      if (split.length >= 1) {
-        image = split[0].trim()
-      }
-
-      if (split.length >= 2) {
-        bg_effect = split[1].toLowerCase().trim()
-      }
-
-      if (split.length >= 3) {
-        bg_tiles = split[2].toLowerCase().trim()
-      }
-    }
-    else {
-      image = next_image
-    }
-
-    App.change_background(image, bg_effect, bg_tiles)
+    let parts = App.get_pool_parts(next_image)
+    App.change_background(parts.image, parts.effect, parts.tiles)
   }
 }
 
@@ -765,4 +743,33 @@ App.random_settings_color = (what) => {
   color = App.colorlib.hex_to_rgb(color)
   App.set_setting(`${what}_color`, color)
   App.check_theme_refresh()
+}
+
+App.get_pool_parts = (full) => {
+  let image, effect, tiles
+
+  if (full.includes(`;`)) {
+    let split = full.split(`;`)
+
+    if (split.length >= 1) {
+      image = split[0].trim()
+    }
+
+    if (split.length >= 2) {
+      effect = split[1].toLowerCase().trim()
+    }
+
+    if (split.length >= 3) {
+      tiles = split[2].toLowerCase().trim()
+    }
+  }
+  else {
+    image = full
+  }
+
+  return {
+    image: image,
+    effect: effect,
+    tiles: tiles,
+  }
 }
