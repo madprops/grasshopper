@@ -132,9 +132,6 @@ App.setup_profile_editor = () => {
     })
   },
   colored_top: true,
-  after_show: () => {
-    App.scroll_profile_text()
-  },
   on_hide: () => {
     if (App.profile_editor_modified) {
       App.show_confirm(`Save changes?`, () => {
@@ -235,7 +232,8 @@ App.show_profile_editor = (item, type, action = `edit`) => {
     DOM.el(`#profile_editor_icon_container`).classList.remove(`hidden`)
   }
 
-  DOM.el(`#profile_editor_url`).value = ``
+  let url_el = DOM.el(`#profile_editor_url`)
+  url_el.value = ``
   DOM.el(`#profile_editor_exact`).checked = false
   DOM.el(`#profile_editor_tags`).value = ``
   DOM.el(`#profile_editor_notes`).value = ``
@@ -269,7 +267,7 @@ App.show_profile_editor = (item, type, action = `edit`) => {
         DOM.el(`#profile_editor_notes`).value = profile.notes
       }
 
-      DOM.el(`#profile_editor_url`).value = profile.url
+      url_el.value = profile.url
       DOM.el(`#profile_editor_exact`).checked = profile.exact
       DOM.el(`#profile_editor_title`).value = profile.title
       DOM.el(`#profile_editor_icon`).value = profile.icon
@@ -293,7 +291,7 @@ App.show_profile_editor = (item, type, action = `edit`) => {
       App.current_profile_editor_background_tiles = profile.background_tiles
     }
     else {
-      DOM.el(`#profile_editor_url`).value = items[0].url
+      url_el.value = items[0].url
     }
   }
   else {
@@ -353,19 +351,10 @@ App.show_profile_editor = (item, type, action = `edit`) => {
   App.focus_first_profile_editor_input()
   App.profile_editor_ready = true
   App.profile_apply_theme()
-}
 
-App.scroll_profile_text = () => {
-  setTimeout(() => {
-    let url = DOM.el(`#profile_editor_url`)
-
-    if (url.value) {
-      App.scroll_to_right(url)
-    }
-
-    App.scroll_to_bottom(DOM.el(`#profile_editor_tags`))
-    App.scroll_to_bottom(DOM.el(`#profile_editor_notes`))
-  }, App.scroll_bottom_delay)
+  requestAnimationFrame(() => {
+    App.scroll_to_right(url_el)
+  })
 }
 
 App.focus_first_profile_editor_input = () => {
@@ -1307,7 +1296,7 @@ App.show_tag_picker = (e) => {
 App.insert_tag = (tag) => {
   let el = DOM.el(`#profile_editor_tags`)
   let value = App.get_clean_tag_input()
-  el.value = `${value}\n${tag}`.trim()
+  el.value = `${tag}\n${value}`.trim()
   el.scrollTop = el.scrollHeight
   el.focus()
 }
