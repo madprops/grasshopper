@@ -651,7 +651,7 @@ App.shuffle_background_pool = () => {
   })
 }
 
-App.remove_from_background_pool = (url) => {
+App.remove_from_background_pool = (url, force) => {
   let pool = App.get_setting(`background_pool`)
 
   if (!pool.length) {
@@ -677,7 +677,7 @@ App.remove_from_background_pool = (url) => {
       App.set_setting(`background_pool`, pool)
       App.check_theme_refresh()
       return
-    })
+    }, undefined, force)
   }
   else {
     App.show_feedback(`Not in background pool`)

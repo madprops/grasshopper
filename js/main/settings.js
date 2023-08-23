@@ -1322,6 +1322,13 @@ App.add_pool = (url, effect, tiles) => {
 }
 
 App.do_add_pool = () => {
+  let url = DOM.el(`#add_pool_image_url`).value
+
+  if (!url) {
+    return
+  }
+
+  App.remove_from_background_pool(url, true)
   let value = App.do_add_setting_list_item(`background_pool`, `pool`, undefined, [`image_url`, `effect`, `tiles`])
 
   if (value) {
