@@ -248,21 +248,17 @@ App.remove_from_background_pool = () => {
   })
 }
 
-App.remove_component = (setting, url, force, action) => {
+App.remove_component = (setting, first, force, action) => {
   let items = App.get_setting(setting)
 
   if (!items.length) {
     return
   }
 
-  if (!url) {
-    url = App.get_setting(`background_image`)
-  }
-
   let match = false
 
-  for (let image of items) {
-    if (image.startsWith(url)) {
+  for (let item of items) {
+    if (item.startsWith(first)) {
       match = true
       break
     }
@@ -270,8 +266,9 @@ App.remove_component = (setting, url, force, action) => {
 
   if (match) {
     App.show_confirm(`Remove item?`, () => {
-      items = items.filter(x => !x.startsWith(url))
+      items = items.filter(x => !x.startsWith(first))
       App.set_setting(setting, items)
+      App.refresh_textarea(setting)
 
       if (action) {
         action()
@@ -284,20 +281,20 @@ App.remove_component = (setting, url, force, action) => {
 }
 
 App.get_components = (full) => {
-  let components = []
+  let c = []
 
   if (full.includes(`;`)) {
     let split = full.split(`;`)
 
-    for (let c of split) {
-      components.push(c.trim())
+    for (let item of split) {
+      c.push(item.trim())
     }
   }
   else {
-    components.push(full)
+    c.push(full)
   }
 
-  return components
+  return c
 }
 
 App.get_parts = (full) => {
@@ -364,4 +361,9 @@ App.do_save_text_setting = (setting, el) => {
   el.scrollTop = 0
   App.set_setting(setting, value)
   App.settings_do_action(el.dataset.action)
+}
+
+App.refresh_textarea = (setting) => {
+  let value = App.get_textarea_setting_value(setting)
+  DOM.el(`#settings_${setting}`).value = value
 }

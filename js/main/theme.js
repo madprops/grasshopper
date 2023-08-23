@@ -682,12 +682,6 @@ App.add_to_background_pool = (url) => {
   }
 }
 
-App.refresh_background_pool = () => {
-  let value = App.get_textarea_setting_value(`background_pool`)
-  let pool_el = DOM.el(`#settings_background_pool`)
-  pool_el.value = value
-}
-
 App.check_theme_refresh = () => {
   if (App.on_settings()) {
     if (App.settings_category === `theme`) {
@@ -696,7 +690,7 @@ App.check_theme_refresh = () => {
       DOM.el(`#settings_background_image`).value = App.get_setting(`background_image`)
       App.set_settings_menu(`background_effect`)
       App.set_settings_menu(`background_tiles`)
-      App.refresh_background_pool()
+      App.refresh_textarea(`background_pool`)
     }
   }
 }

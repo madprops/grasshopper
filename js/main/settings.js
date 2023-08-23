@@ -1259,5 +1259,6 @@ App.set_settings_menu = (setting, value) => {
 }
 
 App.apply_pool = (full) => {
-  App.change_background(App.get_components(full))
+  let c = App.get_components(full)
+  App.change_background(c[0], c[1], c[2])
 }
