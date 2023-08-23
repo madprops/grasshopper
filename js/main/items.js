@@ -14,11 +14,11 @@ App.select_item = (item, scroll = `nearest`, deselect = true) => {
     return
   }
 
+  let prev = App.get_selected(item.mode)
+
   if (!item.created) {
     App.create_item_element(item)
   }
-
-  App.scroll_to_item(item, scroll)
 
   if (item === App.get_selected(item.mode)) {
     if (App.selected_items(item.mode).length === 1) {
@@ -31,6 +31,16 @@ App.select_item = (item, scroll = `nearest`, deselect = true) => {
   }
 
   App.toggle_selected(item, true)
+
+  if (prev) {
+    App.scroll_to_item(item, scroll)
+  }
+  else {
+    // Skip tick to draw elements
+    setTimeout(() => {
+      App.scroll_to_item(item, scroll)
+    }, 1)
+  }
 }
 
 App.select_above = (mode) => {
@@ -187,23 +197,21 @@ App.get_items = (mode) => {
 }
 
 App.select_first_item = (mode, by_active = false, scroll = `nearest_instant`) => {
-  setTimeout(() => {
-    if (mode === `tabs` && by_active) {
-      for (let item of App.get_items(mode)) {
-        if (item.visible && item.active) {
-          App.select_item(item, scroll)
-          return
-        }
-      }
-    }
-
+  if (mode === `tabs` && by_active) {
     for (let item of App.get_items(mode)) {
-      if (item.visible) {
-        App.select_item(item)
+      if (item.visible && item.active) {
+        App.select_item(item, scroll)
         return
       }
     }
-  }, 1)
+  }
+
+  for (let item of App.get_items(mode)) {
+    if (item.visible) {
+      App.select_item(item)
+      return
+    }
+  }
 }
 
 App.filter_item_by_id = (mode, id) => {
