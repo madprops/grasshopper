@@ -210,7 +210,8 @@ App.addlist_remove_single = (setting, short, value, force = false) => {
   for (let item of items) {
     if (item === value) {
       App.show_confirm(`Remove item?`, () => {
-        App.after_addlist(setting, items, item)
+        items = items.filter(x => x !== item)
+        App.after_addlist(setting, items)
       }, undefined, force)
     }
   }
@@ -269,6 +270,7 @@ App.addlist_remove_parts = (setting, short, parts = [], force = false) => {
 
     if ((parts[0] === term_1b) && (parts[1] === term_2b)) {
       App.show_confirm(`Remove item?`, () => {
+        items = items.filter(x => x !== item)
         App.after_addlist(setting, items, item)
       }, undefined, force)
     }
@@ -333,7 +335,7 @@ App.do_addlist_components = (setting, short) => {
   }
 }
 
-App.addlist_remove_components = (setting, short, first, force, action) => {
+App.addlist_remove_components = (setting, short, first, force) => {
   if (!first) {
     let ids = App[`setting_list_ids_${short}`]
     first = DOM.el(`#${ids[0]}`).value
@@ -356,6 +358,7 @@ App.addlist_remove_components = (setting, short, first, force, action) => {
 
   if (match) {
     App.show_confirm(`Remove item?`, () => {
+      items = items.filter(x => !x.startsWith(first))
       App.after_addlist(setting, items, first)
     }, undefined, force)
   }
@@ -396,8 +399,7 @@ App.addlist_enter = () => {
   }
 }
 
-App.after_addlist = (setting, items, item) => {
-  items = items.filter(x => x !== item)
+App.after_addlist = (setting, items) => {
   App.set_setting(setting, items)
   let el = DOM.el(`#settings_${setting}`)
   el.value = App.get_textarea_setting_value(setting)
