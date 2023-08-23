@@ -6,7 +6,7 @@ App.setup_settings_widgets = () => {
       })
 
       DOM.ev(DOM.el(`#add_alias_remove`), `click`, () => {
-        App.remove_equals_parts(`aliases`, `alias`)
+        App.remove_from_aliases()
       })
     }, element: App.add_setting_list_item_html(`alias`, `term_1`, [`term_2`])
   })
@@ -26,7 +26,7 @@ App.setup_settings_widgets = () => {
       })
 
       DOM.ev(DOM.el(`#add_pool_remove`), `click`, () => {
-        App.do_remove_pool()
+        App.remove_from_pool()
       })
 
       let eff = DOM.el(`#add_pool_effect`)
@@ -161,14 +161,22 @@ App.add_setting_list_item_html = (short, left, props, to = false) => {
   return container
 }
 
-App.add_alias = (args = {}) => {
+App.add_alias = (parts = []) => {
   App.show_popup(`add_alias`)
-  DOM.el(`#add_alias_term_1`).value = args.term_1 || ``
-  DOM.el(`#add_alias_term_2`).value = args.term_2 || ``
+  DOM.el(`#add_alias_term_1`).value = parts[0] || ``
+  DOM.el(`#add_alias_term_2`).value = parts[1] || ``
   DOM.el(`#add_alias_term_1`).focus()
 }
 
 App.do_add_alias = () => {
+  let term_1 = DOM.el(`#add_alias_term_1`).value
+  let term_2 = DOM.el(`#add_alias_term_2`).value
+
+  if (!term_1 || !term_2) {
+    return
+  }
+
+  App.remove_from_aliases(true)
   App.do_add_setting_list_item(`aliases`, `alias`, `term_1`, [`term_2`])
 }
 
@@ -182,15 +190,15 @@ App.do_add_custom_filter = () => {
   App.do_add_setting_list_item(`custom_filters`, `custom_filter`, `filter`)
 }
 
-App.add_pool = (args = {}) => {
+App.add_pool = (components = []) => {
   let url_el = DOM.el(`#add_pool_image_url`)
   App.show_popup(`add_pool`)
-  DOM.el(`#add_pool_effect`).value = args.effect || App.get_setting(`background_effect`)
-  DOM.el(`#add_pool_tiles`).value = args.tiles || App.get_setting(`background_tiles`)
+  DOM.el(`#add_pool_effect`).value = components[1] || App.get_setting(`background_effect`)
+  DOM.el(`#add_pool_tiles`).value = components[2] || App.get_setting(`background_tiles`)
   url_el.value = ``
 
-  if (args.url) {
-    url_el.value = url
+  if (components[0]) {
+    url_el.value = components[0]
   }
 
   url_el.focus()
@@ -211,7 +219,7 @@ App.do_add_pool = () => {
   }
 }
 
-App.do_remove_pool = () => {
+App.remove_from_pool = () => {
   let url = DOM.el(`#add_pool_image_url`).value
 
   if (url) {
@@ -220,9 +228,19 @@ App.do_remove_pool = () => {
 }
 
 App.remove_from_background_pool = (url, force) => {
-  let pool = App.get_setting(`background_pool`)
+  App.remove_component(`background_pool`, url, force, () => {
+    App.check_theme_refresh()
+  })
+}
 
-  if (!pool.length) {
+App.remove_from_aliases = (force) => {
+  App.remove_parts(`aliases`, `alias`, force)
+}
+
+App.remove_component = (setting, url, force) => {
+  let items = App.get_setting(setting)
+
+  if (!items.length) {
     return
   }
 
@@ -232,7 +250,7 @@ App.remove_from_background_pool = (url, force) => {
 
   let match = false
 
-  for (let image of pool) {
+  for (let image of items) {
     if (image.startsWith(url)) {
       match = true
       break
@@ -240,59 +258,42 @@ App.remove_from_background_pool = (url, force) => {
   }
 
   if (match) {
-    App.show_confirm(`Remove from background pool?`, () => {
-      pool = pool.filter(x => !x.startsWith(url))
-      App.set_setting(`background_pool`, pool)
-      App.check_theme_refresh()
-      return
+    App.show_confirm(`Remove item?`, () => {
+      items = items.filter(x => !x.startsWith(url))
+      App.set_setting(setting, items)
+      action()
     }, undefined, force)
   }
   else {
-    App.show_feedback(`Not in background pool`)
+    App.show_feedback(`Item not in list`)
   }
 }
 
-App.get_pool_parts = (full) => {
-  let image, effect, tiles
+App.get_components = (full) => {
+  let components = []
 
   if (full.includes(`;`)) {
     let split = full.split(`;`)
 
-    if (split.length >= 1) {
-      image = split[0].trim()
-    }
-
-    if (split.length >= 2) {
-      effect = split[1].toLowerCase().trim()
-    }
-
-    if (split.length >= 3) {
-      tiles = split[2].toLowerCase().trim()
+    for (let c of split) {
+      components.push(c.trim())
     }
   }
   else {
-    image = full
+    components.push(full)
   }
 
-  return {
-    image: image,
-    effect: effect,
-    tiles: tiles,
-  }
+  return components
 }
 
-App.get_equals_parts = (full) => {
+App.get_parts = (full) => {
   let split = full.split(`=`)
   let term_1 = split[0].trim()
   let term_2 = split[1].trim()
-
-  return {
-    term_1: term_1,
-    term_2: term_2,
-  }
+  return [term_1, term_2]
 }
 
-App.remove_equals_parts = (setting, short) => {
+App.remove_parts = (setting, short, force = false) => {
   let term_1 = DOM.el(`#add_${short}_term_1`).value
   let term_2 = DOM.el(`#add_${short}_term_2`).value
   let items = App.get_setting(setting)
@@ -308,7 +309,7 @@ App.remove_equals_parts = (setting, short) => {
         App.set_setting(setting, items)
         let el = DOM.el(`#settings_${setting}`)
         el.value = App.get_textarea_setting_value(setting)
-      })
+      }, undefined, force)
     }
   }
 }
@@ -317,15 +318,15 @@ App.on_line_click = (e, type, short) => {
   let line = App.get_line_under_caret(e.target)
 
   if (line) {
-    let parts
+    let data
 
     if (type === `components`) {
-      parts = App.get_pool_parts(line)
+      data = App.get_components(line)
     }
-    else if (type === `equals`) {
-      parts = App.get_equals_parts(line)
+    else if (type === `parts`) {
+      data = App.get_parts(line)
     }
 
-    App[`add_${short}`](parts)
+    App[`add_${short}`](data)
   }
 }

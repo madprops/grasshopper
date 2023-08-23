@@ -649,7 +649,7 @@ App.setup_settings = () => {
     })
 
     DOM.ev(DOM.el(`#settings_aliases`), `click`, (e) => {
-      App.on_line_click(e, `equals`, `alias`)
+      App.on_line_click(e, `parts`, `alias`)
     })
   }}))
 
