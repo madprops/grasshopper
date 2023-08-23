@@ -481,6 +481,10 @@ App.setup_settings = () => {
         App.do_add_pool()
       })
 
+      DOM.ev(DOM.el(`#add_pool_remove`), `click`, () => {
+        App.do_remove_pool()
+      })
+
       let eff = DOM.el(`#add_pool_effect`)
 
       for (let e of App.background_effects) {
@@ -925,7 +929,7 @@ App.start_theme_settings = () => {
   })
 
   DOM.ev(DOM.el(`#settings_background_pool`), `click`, (e) => {
-    let line = App.get_line(e.target)
+    let line = App.get_line(e.target).trim()
 
     if (line) {
       let parts = App.get_pool_parts(line)
@@ -1325,6 +1329,14 @@ App.do_add_pool = () => {
   }
 }
 
+App.do_remove_pool = () => {
+  let url = DOM.el(`#add_pool_image_url`).value
+
+  if (url) {
+    App.remove_from_background_pool(url)
+  }
+}
+
 App.do_add_setting_list_item = (setting, short, left, props = []) => {
   let name
 
@@ -1415,6 +1427,7 @@ App.add_setting_list_item_html = (short, left, props, to = false) => {
     els.push(el)
   }
 
+  let btns = DOM.create(`div`, `flex_row_center gap_1`)
   let add = DOM.create(`div`, `button`, `add_${short}_add`)
   let label = App.capitalize_all(short.replace(/_/g, ` `))
 
@@ -1425,9 +1438,15 @@ App.add_setting_list_item_html = (short, left, props, to = false) => {
     add.textContent = `Add ${label}`
   }
 
+  let remove = DOM.create(`div`, `button`, `add_${short}_remove`)
+  remove.textContent = `Remove`
+
   container.append(name)
   container.append(...els)
-  container.append(add)
+
+  btns.append(remove)
+  btns.append(add)
+  container.append(btns)
   return container
 }
 

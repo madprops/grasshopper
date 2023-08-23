@@ -651,14 +651,17 @@ App.shuffle_background_pool = () => {
   })
 }
 
-App.remove_from_background_pool = () => {
+App.remove_from_background_pool = (url) => {
   let pool = App.get_setting(`background_pool`)
 
   if (!pool.length) {
     return
   }
 
-  let url = App.get_setting(`background_image`)
+  if (!url) {
+    url = App.get_setting(`background_image`)
+  }
+
   let match = false
 
   for (let image of pool) {
