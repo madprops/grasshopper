@@ -112,7 +112,7 @@ App.do_addlist = (setting, short, left, props = []) => {
 }
 
 App.addlist_html = (short, left, props, to = false, settings) => {
-  let container = DOM.create(`div`, `flex_column_center add_setting_container`)
+  let container = DOM.create(`div`, `flex_column_center addlist_container`)
   let name = DOM.create(`input`, `text editor_text`, `add_${short}_${left}`)
   name.type = `text`
   name.spellcheck = false
