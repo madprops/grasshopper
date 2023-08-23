@@ -59,7 +59,7 @@ App.do_addlist = (setting, short, left, props = []) => {
   let name
 
   if (left) {
-    name = DOM.el(`#add_${short}_${left}`).value
+    name = DOM.el(`#add_${short}_${left}`).value.trim()
   }
 
   let values = []
@@ -338,7 +338,7 @@ App.do_addlist_components = (setting, short) => {
 App.addlist_remove_components = (setting, short, first, force) => {
   if (!first) {
     let ids = App[`setting_list_ids_${short}`]
-    first = DOM.el(`#${ids[0]}`).value
+    first = DOM.el(`#${ids[0]}`).value.trim()
   }
 
   let items = App.get_setting(setting)
