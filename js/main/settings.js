@@ -1376,19 +1376,18 @@ App.do_add_setting_list_item = (setting, short, left, props = []) => {
       let line
 
       if (name) {
-        line = `\n${name} = ${value}`
-        ans = `${name} = ${value}`
+        line = `${name} = ${value}`
       }
       else {
-        line = `\n${value}`
-        ans = value
+        line = value
       }
 
-      new_value = App.one_linebreak(`${textarea.value}\n${line}`)
+      ans = line
+      new_value = App.one_linebreak(`${line}\n${textarea.value}`)
     }
   }
   else {
-    new_value = App.one_linebreak(`${textarea.value}\n${name}`)
+    new_value = App.one_linebreak(`${name}\n${textarea.value}`)
     ans = name
   }
 
