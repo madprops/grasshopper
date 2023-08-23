@@ -312,6 +312,13 @@ App.setup_keyboard = () => {
           return
         }
       }
+      else if (pmode.startsWith(`addlist_`)) {
+        if (e.key === `Enter`) {
+          App.addlist_enter()
+          e.preventDefault()
+          return
+        }
+      }
 
       if (e.key === `Escape`) {
         App.hide_popup()

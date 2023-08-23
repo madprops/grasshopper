@@ -606,7 +606,7 @@ App.setup_settings = () => {
     ])
 
     DOM.ev(DOM.el(`#settings_aliases_add`), `click`, () => {
-      App.add_parts(`alias`)
+      App.add_parts(`aliases`, `alias`)
     })
 
     DOM.ev(DOM.el(`#settings_custom_filters_add`), `click`, () => {
@@ -636,7 +636,7 @@ App.setup_settings = () => {
     })
 
     DOM.ev(DOM.el(`#settings_aliases`), `click`, (e) => {
-      App.on_line_click(e, `parts`, `alias`)
+      App.on_line_click(e, `parts`, `aliases`, `alias`)
     })
   }}))
 
@@ -857,7 +857,7 @@ App.start_theme_settings = () => {
   })
 
   DOM.ev(DOM.el(`#settings_background_pool_add`), `click`, () => {
-    App.add_components(`pool`)
+    App.add_components(`background_pool`, `pool`)
   })
 
   DOM.ev(DOM.el(`#settings_background_pool_next`), `click`, () => {
@@ -869,7 +869,7 @@ App.start_theme_settings = () => {
   })
 
   DOM.ev(DOM.el(`#settings_background_pool`), `click`, (e) => {
-    App.on_line_click(e, `components`, `pool`)
+    App.on_line_click(e, `components`, `background_pool`, `pool`)
   })
 }
 

@@ -1,6 +1,6 @@
 App.setup_settings_widgets = () => {
   App.create_popup({
-    id: `add_alias`, setup: () => {
+    id: `addlist_alias`, setup: () => {
       DOM.ev(DOM.el(`#add_alias_add`), `click`, () => {
         App.do_add_parts(`aliases`, `alias`)
       })
@@ -12,7 +12,7 @@ App.setup_settings_widgets = () => {
   })
 
   App.create_popup({
-    id: `add_custom_filter`, setup: () => {
+    id: `addlist_custom_filter`, setup: () => {
       DOM.ev(DOM.el(`#add_custom_filter_add`), `click`, () => {
         App.do_add_custom_filter()
       })
@@ -20,7 +20,7 @@ App.setup_settings_widgets = () => {
   })
 
   App.create_popup({
-    id: `add_pool`, setup: () => {
+    id: `addlist_pool`, setup: () => {
       DOM.ev(DOM.el(`#add_pool_add`), `click`, () => {
         App.do_add_components(`background_pool`, `pool`)
       })
@@ -168,12 +168,18 @@ App.add_setting_list_item_html = (short, left, props, to = false, settings) => {
   return container
 }
 
-App.add_parts = (short, parts = []) => {
-  App.show_popup(`add_${short}`)
+App.add_parts = (setting, short, parts = []) => {
+  App.show_popup(`addlist_${short}`)
   DOM.el(`#add_${short}_term_1`).value = parts[0] || ``
   DOM.el(`#add_${short}_term_2`).value = parts[1] || ``
   DOM.el(`#add_${short}_term_1`).focus()
-  App.add_parts_item = parts
+
+  App.addlist_data = {
+    setting: setting,
+    short: short,
+    mode: `parts`,
+    parts: parts,
+  }
 }
 
 App.do_add_parts = (setting, short) => {
@@ -184,15 +190,17 @@ App.do_add_parts = (setting, short) => {
     return
   }
 
-  if (App.add_parts_item.length) {
-    App.remove_parts(setting, short, App.add_parts_item, true)
+  let parts = App.addlist_data.parts
+
+  if (parts.length) {
+    App.remove_parts(setting, short, parts, true)
   }
 
   App.do_add_setting_list_item(setting, short, `term_1`, [`term_2`])
 }
 
 App.add_custom_filter = () => {
-  App.show_popup(`add_custom_filter`)
+  App.show_popup(`addlist_custom_filter`)
   DOM.el(`#add_custom_filter_filter`).value = ``
   DOM.el(`#add_custom_filter_filter`).focus()
 }
@@ -201,8 +209,8 @@ App.do_add_custom_filter = () => {
   App.do_add_setting_list_item(`custom_filters`, `custom_filter`, `filter`)
 }
 
-App.add_components = (short, components = []) => {
-  App.show_popup(`add_${short}`)
+App.add_components = (setting, short, components = []) => {
+  App.show_popup(`addlist_${short}`)
 
   if (!components.length) {
     for (let setting of App[`setting_list_settings_${short}`]) {
@@ -218,6 +226,12 @@ App.add_components = (short, components = []) => {
   }
 
   DOM.el(`#${ids[0]}`).focus()
+
+  App.addlist_data = {
+    setting: setting,
+    short: short,
+    mode: `components`,
+  }
 }
 
 App.do_add_components = (setting, short) => {
@@ -318,7 +332,7 @@ App.remove_parts = (setting, short, parts = [], force = false) => {
   }
 }
 
-App.on_line_click = (e, type, short) => {
+App.on_line_click = (e, type, setting, short) => {
   let line = App.get_line_under_caret(e.target)
 
   if (line) {
@@ -326,11 +340,11 @@ App.on_line_click = (e, type, short) => {
 
     if (type === `components`) {
       data = App.get_components(line)
-      App.add_components(short, data)
+      App.add_components(setting, short, data)
     }
     else if (type === `parts`) {
       data = App.get_parts(line)
-      App.add_parts(short, data)
+      App.add_parts(setting, short, data)
     }
   }
 }
@@ -356,4 +370,15 @@ App.do_save_text_setting = (setting, el) => {
 App.refresh_textarea = (setting) => {
   let value = App.get_textarea_setting_value(setting)
   DOM.el(`#settings_${setting}`).value = value
+}
+
+App.addlist_enter = () => {
+  let d = App.addlist_data
+
+  if (d.mode === `parts`) {
+    App.do_add_parts(d.setting, d.short)
+  }
+  else if (d.mode === `components`) {
+    App.do_add_components(d.setting, d.short)
+  }
 }
