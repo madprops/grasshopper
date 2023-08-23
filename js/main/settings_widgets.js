@@ -22,11 +22,11 @@ App.setup_settings_widgets = () => {
   App.create_popup({
     id: `add_pool`, setup: () => {
       DOM.ev(DOM.el(`#add_pool_add`), `click`, () => {
-        App.do_add_pool()
+        App.do_add_components()
       })
 
       DOM.ev(DOM.el(`#add_pool_remove`), `click`, () => {
-        App.remove_from_pool()
+        App.remove_from_components()
       })
 
       let eff = DOM.el(`#add_pool_effect`)
@@ -46,7 +46,8 @@ App.setup_settings_widgets = () => {
         o.value = e[1]
         tiles.append(o)
       }
-    }, element: App.add_setting_list_item_html(`pool`, `image_url`, [`effect__select`, `tiles__select`], true)
+    }, element: App.add_setting_list_item_html(`pool`, `image_url`,
+    [`effect__select`, `tiles__select`], true, [`background_image`, `background_effect`, `background_tiles`])
   })
 }
 
@@ -106,7 +107,7 @@ App.do_add_setting_list_item = (setting, short, left, props = []) => {
   return ans
 }
 
-App.add_setting_list_item_html = (short, left, props, to = false) => {
+App.add_setting_list_item_html = (short, left, props, to = false, settings) => {
   let container = DOM.create(`div`, `flex_column_center add_setting_container`)
   let name = DOM.create(`input`, `text editor_text`, `add_${short}_${left}`)
   name.type = `text`
@@ -158,6 +159,8 @@ App.add_setting_list_item_html = (short, left, props, to = false) => {
   btns.append(remove)
   btns.append(add)
   container.append(btns)
+  App[`setting_list_els_${short}`] = [name, ...els]
+  App[`setting_list_settings_${short}`] = settings
   return container
 }
 
@@ -194,18 +197,22 @@ App.do_add_custom_filter = () => {
   App.do_add_setting_list_item(`custom_filters`, `custom_filter`, `filter`)
 }
 
-App.add_pool = (components = []) => {
-  let url_el = DOM.el(`#add_pool_image_url`)
-  App.show_popup(`add_pool`)
-  DOM.el(`#add_pool_effect`).value = components[1] || App.get_setting(`background_effect`)
-  DOM.el(`#add_pool_tiles`).value = components[2] || App.get_setting(`background_tiles`)
-  url_el.value = ``
-
-  if (components[0]) {
-    url_el.value = components[0]
+App.add_components = (short, components = []) => {
+  if (!components.length) {
+    for (let setting of App[`setting_list_settings_${short}`]) {
+      let value = App.get_setting(setting)
+      components.push(value)
+    }
   }
 
-  url_el.focus()
+  App.show_popup(`add_${short}`)
+  let els = App[`setting_list_els_${short}`]
+
+  for (let [i, el] of els.entries()) {
+    el.value = components[i]
+  }
+
+  els[0].focus()
 }
 
 App.do_add_pool = () => {
@@ -328,12 +335,12 @@ App.on_line_click = (e, type, short) => {
 
     if (type === `components`) {
       data = App.get_components(line)
+      App.add_components(short, data)
     }
     else if (type === `parts`) {
       data = App.get_parts(line)
+      App.add_parts(short, data)
     }
-
-    App.add_parts(short, data)
   }
 }
 
