@@ -22,11 +22,11 @@ App.setup_settings_widgets = () => {
   App.create_popup({
     id: `add_pool`, setup: () => {
       DOM.ev(DOM.el(`#add_pool_add`), `click`, () => {
-        App.do_add_components()
+        App.do_add_components(`background_pool`, `pool`)
       })
 
       DOM.ev(DOM.el(`#add_pool_remove`), `click`, () => {
-        App.remove_from_components()
+        App.remove_from_background_pool()
       })
 
       let eff = DOM.el(`#add_pool_effect`)
@@ -115,6 +115,7 @@ App.add_setting_list_item_html = (short, left, props, to = false, settings) => {
   name.autocomplete = false
   name.placeholder = App.capitalize_words(left.replace(/_/g, ` `))
   let els = []
+  let ids = [name.id]
 
   for (let prop of props) {
     let el
@@ -127,6 +128,7 @@ App.add_setting_list_item_html = (short, left, props, to = false, settings) => {
       let select = DOM.create(`select`, `editor_select`, `add_${short}_${p}`)
       el.append(label)
       el.append(select)
+      ids.push(select.id)
     }
     else {
       el = DOM.create(`input`, `text text editor_text text_smaller`, `add_${short}_${prop}`)
@@ -134,6 +136,7 @@ App.add_setting_list_item_html = (short, left, props, to = false, settings) => {
       el.spellcheck = false
       el.autocomplete = false
       el.placeholder = App.capitalize_words(prop.replace(/_/g, ` `))
+      ids.push(el.id)
     }
 
     els.push(el)
@@ -152,14 +155,15 @@ App.add_setting_list_item_html = (short, left, props, to = false, settings) => {
 
   let remove = DOM.create(`div`, `button`, `add_${short}_remove`)
   remove.textContent = `Remove`
-
   container.append(name)
   container.append(...els)
-
   btns.append(remove)
   btns.append(add)
   container.append(btns)
-  App[`setting_list_els_${short}`] = [name, ...els]
+  App[`setting_list_props_${short}`] = []
+  App[`setting_list_props_${short}`].push(left.replace(`__select`, ``))
+  App[`setting_list_props_${short}`].push(...props.map(x => x.replace(`__select`, ``)))
+  App[`setting_list_ids_${short}`] = ids
   App[`setting_list_settings_${short}`] = settings
   return container
 }
@@ -198,6 +202,8 @@ App.do_add_custom_filter = () => {
 }
 
 App.add_components = (short, components = []) => {
+  App.show_popup(`add_${short}`)
+
   if (!components.length) {
     for (let setting of App[`setting_list_settings_${short}`]) {
       let value = App.get_setting(setting)
@@ -205,41 +211,39 @@ App.add_components = (short, components = []) => {
     }
   }
 
-  App.show_popup(`add_${short}`)
-  let els = App[`setting_list_els_${short}`]
+  let ids = App[`setting_list_ids_${short}`]
 
-  for (let [i, el] of els.entries()) {
-    el.value = components[i]
+  for (let [i, id] of ids.entries()) {
+    DOM.el(`#${id}`).value = components[i]
   }
 
-  els[0].focus()
+  DOM.el(`#${ids[0]}`).focus()
 }
 
-App.do_add_pool = () => {
-  let url = DOM.el(`#add_pool_image_url`).value
+App.do_add_components = (setting, short) => {
+  let ids = App[`setting_list_ids_${short}`]
+  let first = DOM.el(`#${ids[0]}`).value
 
-  if (!url) {
+  if (!first) {
     return
   }
 
-  App.remove_from_background_pool(url, true)
-  let value = App.do_add_setting_list_item(`background_pool`, `pool`, undefined, [`image_url`, `effect`, `tiles`])
+  App.remove_component(setting, first, true)
+  let value = App.do_add_setting_list_item(setting, short, undefined, App[`setting_list_props_${short}`])
 
   if (value) {
     App.apply_pool(value)
   }
 }
 
-App.remove_from_pool = () => {
+App.remove_from_background_pool = () => {
   let url = DOM.el(`#add_pool_image_url`).value
 
-  if (url) {
-    App.remove_from_background_pool(url)
+  if (!url) {
+    return
   }
-}
 
-App.remove_from_background_pool = (url, force) => {
-  App.remove_component(`background_pool`, url, force, () => {
+  App.remove_component(`background_pool`, url, false, () => {
     App.check_theme_refresh()
   })
 }
