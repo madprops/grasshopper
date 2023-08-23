@@ -610,7 +610,7 @@ App.setup_settings = () => {
     })
 
     DOM.ev(DOM.el(`#settings_custom_filters_add`), `click`, () => {
-      App.add_custom_filter()
+      App.addlist_single(`custom_filters`, `custom_filter`)
     })
 
     App.make_mode_order()
@@ -637,6 +637,10 @@ App.setup_settings = () => {
 
     DOM.ev(DOM.el(`#settings_aliases`), `click`, (e) => {
       App.addlist_click(e, `parts`, `aliases`, `alias`)
+    })
+
+    DOM.ev(DOM.el(`#settings_custom_filters`), `click`, (e) => {
+      App.addlist_click(e, `single`, `custom_filters`, `custom_filter`)
     })
   }}))
 

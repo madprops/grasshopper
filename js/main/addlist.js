@@ -14,7 +14,11 @@ App.setup_addlist = () => {
   App.create_popup({
     id: `addlist_custom_filter`, setup: () => {
       DOM.ev(DOM.el(`#add_custom_filter_add`), `click`, () => {
-        App.do_add_custom_filter()
+        App.do_addlist_single(`custom_filters`, `custom_filter`)
+      })
+
+      DOM.ev(DOM.el(`#add_custom_filter_remove`), `click`, () => {
+        App.addlist_remove_single(`custom_filters`, `custom_filter`)
       })
     }, element: App.addlist_html(`custom_filter`, `value`, [])
   })
@@ -170,7 +174,9 @@ App.addlist_html = (short, left, props, to = false, settings) => {
 
 App.addlist_single = (setting, short, value) => {
   App.show_popup(`addlist_${short}`)
-  DOM.el(`#add_${short}_value`).value = value || ``
+  let el = DOM.el(`#add_${short}_value`)
+  el.value = value || ``
+  el.focus()
 
   App.addlist_data = {
     setting: setting,
@@ -202,14 +208,9 @@ App.addlist_remove_single = (setting, short, value, force = false) => {
   let items = App.get_setting(setting)
 
   for (let item of items) {
-    let split = item.split(`=`)
-    let term_1b = split[0].trim()
-    let term_2b = split[1].trim()
-
-    if ((parts[0] === term_1b) && (parts[1] === term_2b)) {
+    if (item === value) {
       App.show_confirm(`Remove item?`, () => {
-        items = items.filter(x => x !== item)
-        App.after_addlist(setting)
+        App.after_addlist(setting, items, item)
       }, undefined, force)
     }
   }
@@ -268,8 +269,7 @@ App.addlist_remove_parts = (setting, short, parts = [], force = false) => {
 
     if ((parts[0] === term_1b) && (parts[1] === term_2b)) {
       App.show_confirm(`Remove item?`, () => {
-        items = items.filter(x => x !== item)
-        App.after_addlist(setting)
+        App.after_addlist(setting, items, item)
       }, undefined, force)
     }
   }
@@ -356,8 +356,7 @@ App.addlist_remove_components = (setting, short, first, force, action) => {
 
   if (match) {
     App.show_confirm(`Remove item?`, () => {
-      items = items.filter(x => !x.startsWith(first))
-      App.after_addlist(setting)
+      App.after_addlist(setting, items, first)
     }, undefined, force)
   }
   else {
@@ -397,7 +396,8 @@ App.addlist_enter = () => {
   }
 }
 
-App.after_addlist = (setting) => {
+App.after_addlist = (setting, items, item) => {
+  items = items.filter(x => x !== item)
   App.set_setting(setting, items)
   let el = DOM.el(`#settings_${setting}`)
   el.value = App.get_textarea_setting_value(setting)
