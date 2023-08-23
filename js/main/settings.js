@@ -1318,7 +1318,11 @@ App.add_pool = (url, effect, tiles) => {
 }
 
 App.do_add_pool = () => {
-  App.do_add_setting_list_item(`background_pool`, `pool`, undefined, [`image_url`, `effect`, `tiles`])
+  let value = App.do_add_setting_list_item(`background_pool`, `pool`, undefined, [`image_url`, `effect`, `tiles`])
+
+  if (value) {
+    App.apply_pool(value)
+  }
 }
 
 App.do_add_setting_list_item = (setting, short, left, props = []) => {
@@ -1336,7 +1340,7 @@ App.do_add_setting_list_item = (setting, short, left, props = []) => {
   }
 
   let textarea = DOM.el(`#settings_${setting}`)
-  let new_value
+  let new_value, ans
 
   if (props.length > 0) {
     let value
@@ -1354,9 +1358,11 @@ App.do_add_setting_list_item = (setting, short, left, props = []) => {
 
       if (name) {
         line = `\n${name} = ${value}`
+        ans = `${name} = ${value}`
       }
       else {
         line = `\n${value}`
+        ans = value
       }
 
       new_value = App.one_linebreak(`${textarea.value}\n${line}`)
@@ -1364,6 +1370,7 @@ App.do_add_setting_list_item = (setting, short, left, props = []) => {
   }
   else {
     new_value = App.one_linebreak(`${textarea.value}\n${name}`)
+    ans = name
   }
 
   if (new_value) {
@@ -1373,6 +1380,7 @@ App.do_add_setting_list_item = (setting, short, left, props = []) => {
   }
 
   App.hide_popup()
+  return ans
 }
 
 App.add_setting_list_item_html = (short, left, props, to = false) => {
@@ -1469,4 +1477,9 @@ App.set_settings_menu = (setting, value) => {
       break
     }
   }
+}
+
+App.apply_pool = (full) => {
+  let parts = App.get_pool_parts(full)
+  App.change_background(parts.image, parts.effect, parts.tiles)
 }

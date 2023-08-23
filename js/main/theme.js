@@ -554,8 +554,7 @@ App.background_from_pool = (random = false) => {
   }
 
   if (next_image) {
-    let parts = App.get_pool_parts(next_image)
-    App.change_background(parts.image, parts.effect, parts.tiles)
+    App.apply_pool(next_image)
   }
 }
 
