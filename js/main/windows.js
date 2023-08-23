@@ -201,11 +201,11 @@ App.start_auto_restore = () => {
   let delay = App.parse_delay(d)
 
   App.restore_timeout = setTimeout(() => {
-    App.recover()
+    App.restore()
   }, delay)
 }
 
-App.recover = () => {
+App.restore = () => {
   NeedContext.hide()
 
   if (App.on_items()) {
