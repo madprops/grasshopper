@@ -147,6 +147,7 @@ App.fill_palette = () => {
     el.innerHTML = `${el.innerHTML}${cmd.name}`
     el.dataset.command = cmd.cmd
     let name_lower = cmd.name.toLowerCase()
+    let rand = App.random_text.toLowerCase()
 
     if (name_lower.includes(`bookmark`)) {
       el.dataset.alias = name_lower.replace(`bookmark`, `bmark`)
@@ -160,7 +161,10 @@ App.fill_palette = () => {
     else if (name_lower === `light theme`) {
       el.dataset.alias = `white theme`
     }
-    else if (name_lower === `rand background`) {
+    else if (name_lower === `${rand} theme`) {
+      el.dataset.alias = `random theme`
+    }
+    else if (name_lower === `${rand} background`) {
       el.dataset.alias = `random background`
     }
     else if (name_lower === `rem background`) {
