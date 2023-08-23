@@ -108,7 +108,14 @@ App.capitalize_all = (s) => {
   let words = s.split(` `)
 
   let capitalized = words.map(word => {
-    return word.charAt(0).toUpperCase() + word.slice(1)
+    let w = word.charAt(0).toUpperCase() + word.slice(1)
+    let lower = w.toLowerCase()
+
+    if (lower === `url`) {
+      w = `URL`
+    }
+
+    return w
   })
 
   return capitalized.join(` `)
