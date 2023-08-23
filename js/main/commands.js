@@ -234,6 +234,9 @@ App.setup_commands = () => {
     {icon: App.settings_icons.theme, name: `Next Background`, cmd: `next_background`, action: (args) => {
       App.background_from_pool()
     }},
+    {icon: App.settings_icons.theme, name: `Rem Background`, cmd: `remove_background`, action: (args) => {
+      App.change_background(``)
+    }},
     {icon: App.settings_icons.theme, name: `Add To BG Pool`, cmd: `add_to_background_pool`, media: `image`, action: (args) => {
       App.add_to_background_pool()
     }},

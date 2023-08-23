@@ -406,10 +406,6 @@ App.random_background = async () => {
 }
 
 App.change_background = (url, bg_eff, bg_tiles) => {
-  if (!url) {
-    return
-  }
-
   App.set_setting(`background_image`, url)
 
   if (bg_eff) {

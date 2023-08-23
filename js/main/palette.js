@@ -163,6 +163,9 @@ App.fill_palette = () => {
     else if (name_lower.includes(`rand`)) {
       el.dataset.alias = name_lower.replace(`rand`, `random`)
     }
+    else if (name_lower.includes(`rem`)) {
+      el.dataset.alias = name_lower.replace(`rem`, `remove`)
+    }
 
     container.append(el)
   }
