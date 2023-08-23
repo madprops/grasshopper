@@ -367,21 +367,59 @@ App.addlist_remove_components = (setting, short, first, force) => {
   }
 }
 
-App.addlist_click = (e, type, setting, short) => {
+App.addlist_click = (e, type, setting, short, use) => {
   let line = App.get_line_under_caret(e.target)
+  let items
 
   if (line) {
+    if (type === `single`) {
+      items = [line]
+    }
+    else if (type === `parts`) {
+      items = App.addlist_get_parts(line)
+    }
+    else if (type === `components`) {
+      items = App.addlist_get_components(line)
+    }
+  }
+
+  if (!line || !items) {
+    return
+  }
+
+  function edit () {
     if (type === `single`) {
       App.addlist_single(setting, short, line)
     }
     else if (type === `parts`) {
-      let items = App.addlist_get_parts(line)
       App.addlist_parts(setting, short, items)
     }
     else if (type === `components`) {
-      let items = App.addlist_get_components(line)
       App.addlist_components(setting, short, items)
     }
+  }
+
+  if (use) {
+    let menu = []
+
+    menu.push({
+      text: `Edit`,
+      action: () => {
+        edit()
+      }
+    })
+
+    menu.push({
+      text: `Use`,
+      action: () => {
+        use(items)
+      }
+    })
+
+    NeedContext.show(e.clientX, e.clientY, menu)
+  }
+  else {
+    edit()
   }
 }
 
