@@ -26,7 +26,7 @@ App.setup_settings_widgets = () => {
       })
 
       DOM.ev(DOM.el(`#add_pool_remove`), `click`, () => {
-        App.remove_from_background_pool()
+        App.remove_component(`background_pool`, `pool`)
       })
 
       let eff = DOM.el(`#add_pool_effect`)
@@ -228,7 +228,7 @@ App.do_add_components = (setting, short) => {
     return
   }
 
-  App.remove_component(setting, first, true)
+  App.remove_component(setting, short, first, true)
   let value = App.do_add_setting_list_item(setting, short, undefined, App[`setting_list_props_${short}`])
 
   if (value) {
@@ -236,19 +236,12 @@ App.do_add_components = (setting, short) => {
   }
 }
 
-App.remove_from_background_pool = () => {
-  let url = DOM.el(`#add_pool_image_url`).value
-
-  if (!url) {
-    return
+App.remove_component = (setting, short, first, force, action) => {
+  if (!first) {
+    let ids = App[`setting_list_ids_${short}`]
+    first = DOM.el(`#${ids[0]}`).value
   }
 
-  App.remove_component(`background_pool`, url, false, () => {
-    App.check_theme_refresh()
-  })
-}
-
-App.remove_component = (setting, first, force, action) => {
   let items = App.get_setting(setting)
 
   if (!items.length) {
@@ -269,10 +262,7 @@ App.remove_component = (setting, first, force, action) => {
       items = items.filter(x => !x.startsWith(first))
       App.set_setting(setting, items)
       App.refresh_textarea(setting)
-
-      if (action) {
-        action()
-      }
+      App.check_theme_refresh()
     }, undefined, force)
   }
   else {
