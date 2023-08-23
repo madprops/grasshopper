@@ -2,11 +2,11 @@ App.setup_settings_widgets = () => {
   App.create_popup({
     id: `add_alias`, setup: () => {
       DOM.ev(DOM.el(`#add_alias_add`), `click`, () => {
-        App.do_add_alias()
+        App.do_add_parts(`aliases`, `alias`)
       })
 
       DOM.ev(DOM.el(`#add_alias_remove`), `click`, () => {
-        App.remove_from_aliases()
+        App.remove_parts(`aliases`, `alias`)
       })
     }, element: App.add_setting_list_item_html(`alias`, `term_1`, [`term_2`])
   })
@@ -161,27 +161,27 @@ App.add_setting_list_item_html = (short, left, props, to = false) => {
   return container
 }
 
-App.add_alias = (parts = [], line) => {
-  App.show_popup(`add_alias`)
-  DOM.el(`#add_alias_term_1`).value = parts[0] || ``
-  DOM.el(`#add_alias_term_2`).value = parts[1] || ``
-  DOM.el(`#add_alias_term_1`).focus()
-  App.add_parts = parts
+App.add_parts = (short, parts = []) => {
+  App.show_popup(`add_${short}`)
+  DOM.el(`#add_${short}_term_1`).value = parts[0] || ``
+  DOM.el(`#add_${short}_term_2`).value = parts[1] || ``
+  DOM.el(`#add_${short}_term_1`).focus()
+  App.add_parts_item = parts
 }
 
-App.do_add_alias = () => {
-  let term_1 = DOM.el(`#add_alias_term_1`).value
-  let term_2 = DOM.el(`#add_alias_term_2`).value
+App.do_add_parts = (setting, short) => {
+  let term_1 = DOM.el(`#add_${short}_term_1`).value
+  let term_2 = DOM.el(`#add_${short}_term_2`).value
 
   if (!term_1 || !term_2) {
     return
   }
 
-  if (App.add_parts.length) {
-    App.remove_from_aliases(App.add_parts, true)
+  if (App.add_parts_item.length) {
+    App.remove_parts(setting, short, App.add_parts_item, true)
   }
 
-  App.do_add_setting_list_item(`aliases`, `alias`, `term_1`, [`term_2`])
+  App.do_add_setting_list_item(setting, short, `term_1`, [`term_2`])
 }
 
 App.add_custom_filter = () => {
@@ -235,15 +235,6 @@ App.remove_from_background_pool = (url, force) => {
   App.remove_component(`background_pool`, url, force, () => {
     App.check_theme_refresh()
   })
-}
-
-App.remove_from_aliases = (parts = [], force) => {
-  if (parts.length === 0) {
-    parts.push(DOM.el(`#add_alias_term_1`).value)
-    parts.push(DOM.el(`#add_alias_term_2`).value)
-  }
-
-  App.remove_parts(`aliases`, parts, force)
 }
 
 App.remove_component = (setting, url, force, action) => {
@@ -305,9 +296,13 @@ App.get_parts = (full) => {
   return [term_1, term_2]
 }
 
-App.remove_parts = (setting, parts, force = false) => {
+App.remove_parts = (setting, short, parts = [], force = false) => {
+  if (parts.length === 0) {
+    parts.push(DOM.el(`#add_${short}_term_1`).value)
+    parts.push(DOM.el(`#add_${short}_term_2`).value)
+  }
+
   let items = App.get_setting(setting)
-  console.log(parts)
 
   for (let item of items) {
     let split = item.split(`=`)
@@ -338,7 +333,7 @@ App.on_line_click = (e, type, short) => {
       data = App.get_parts(line)
     }
 
-    App[`add_${short}`](data)
+    App.add_parts(short, data)
   }
 }
 

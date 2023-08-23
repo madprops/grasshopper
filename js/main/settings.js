@@ -610,7 +610,7 @@ App.setup_settings = () => {
     ])
 
     DOM.ev(DOM.el(`#settings_aliases_add`), `click`, () => {
-      App.add_alias()
+      App.add_parts(`alias`)
     })
 
     DOM.ev(DOM.el(`#settings_custom_filters_add`), `click`, () => {
