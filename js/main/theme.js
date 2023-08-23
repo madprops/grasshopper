@@ -235,7 +235,7 @@ App.apply_theme = (args) => {
     }
 
     if (App.get_setting(`color_transitions`)) {
-      let d = App.color_transition
+      let d = App.color_transition_delay
       App.set_css_var(`color_transition`, `background-color ${d}ms, color ${d}ms`)
     }
     else {
