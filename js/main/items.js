@@ -187,21 +187,23 @@ App.get_items = (mode) => {
 }
 
 App.select_first_item = (mode, by_active = false, scroll = `nearest_instant`) => {
-  if (mode === `tabs` && by_active) {
+  setTimeout(() => {
+    if (mode === `tabs` && by_active) {
+      for (let item of App.get_items(mode)) {
+        if (item.visible && item.active) {
+          App.select_item(item, scroll)
+          return
+        }
+      }
+    }
+
     for (let item of App.get_items(mode)) {
-      if (item.visible && item.active) {
-        App.select_item(item, scroll)
+      if (item.visible) {
+        App.select_item(item)
         return
       }
     }
-  }
-
-  for (let item of App.get_items(mode)) {
-    if (item.visible) {
-      App.select_item(item)
-      return
-    }
-  }
+  }, 1)
 }
 
 App.filter_item_by_id = (mode, id) => {

@@ -244,6 +244,11 @@ svg {
   gap: 0.611rem;
 }
 
+.empty_item {
+  min-height: var(--item_height);
+  width: 100px;
+}
+
 .last_item {
   border-color: transparent !important;
 }
