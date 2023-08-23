@@ -36,10 +36,9 @@ App.select_item = (item, scroll = `nearest`, deselect = true) => {
     App.scroll_to_item(item, scroll)
   }
   else {
-    // Skip tick to draw elements
-    setTimeout(() => {
+    requestAnimationFrame(() => {
       App.scroll_to_item(item, scroll)
-    }, 1)
+    })
   }
 }
 
@@ -286,6 +285,7 @@ App.process_info_list = (mode, info_list) => {
 
     items.push(item)
     container.append(item.element)
+    console.log(item.element.offsetHeight)
   }
 
   App.check_playing(mode)
