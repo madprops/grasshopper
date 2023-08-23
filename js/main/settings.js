@@ -1408,7 +1408,7 @@ App.add_setting_list_item_html = (short, left, props, to = false) => {
   name.type = `text`
   name.spellcheck = false
   name.autocomplete = false
-  name.placeholder = App.capitalize_all(left.replace(/_/g, ` `))
+  name.placeholder = App.capitalize_words(left.replace(/_/g, ` `))
   let els = []
 
   for (let prop of props) {
@@ -1417,7 +1417,7 @@ App.add_setting_list_item_html = (short, left, props, to = false) => {
     if (prop.endsWith(`__select`)) {
       el = DOM.create(`div`, `flex_column_center gap_1`)
       let label = DOM.create(`div`)
-      label.textContent = App.capitalize_all(prop.replace(`__select`, ``).replace(/_/g, ` `))
+      label.textContent = App.capitalize_words(prop.replace(`__select`, ``).replace(/_/g, ` `))
       let p = prop.replace(`__select`, ``)
       let select = DOM.create(`select`, `editor_select`, `add_${short}_${p}`)
       el.append(label)
@@ -1428,7 +1428,7 @@ App.add_setting_list_item_html = (short, left, props, to = false) => {
       el.type = `text`
       el.spellcheck = false
       el.autocomplete = false
-      el.placeholder = App.capitalize_all(prop.replace(/_/g, ` `))
+      el.placeholder = App.capitalize_words(prop.replace(/_/g, ` `))
     }
 
     els.push(el)
@@ -1436,7 +1436,7 @@ App.add_setting_list_item_html = (short, left, props, to = false) => {
 
   let btns = DOM.create(`div`, `flex_row_center gap_1`)
   let add = DOM.create(`div`, `button`, `add_${short}_add`)
-  let label = App.capitalize_all(short.replace(/_/g, ` `))
+  let label = App.capitalize_words(short.replace(/_/g, ` `))
 
   if (to) {
     add.textContent = `Add To ${label}`
