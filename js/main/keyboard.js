@@ -326,9 +326,9 @@ App.setup_keyboard = () => {
           return
         }
       }
-      else if (pmode === `add_background_pool`) {
+      else if (pmode === `add_pool`) {
         if (e.key === `Enter`) {
-          App.do_add_background_pool()
+          App.do_add_pool()
           e.preventDefault()
           return
         }

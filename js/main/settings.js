@@ -912,7 +912,7 @@ App.start_theme_settings = () => {
     App.random_background()
   })
 
-  DOM.ev(DOM.el(`#settings_background_image_remove`), `click`, () => {
+  DOM.ev(DOM.el(`#settings_background_pool_remove`), `click`, () => {
     App.remove_from_background_pool()
   })
 
