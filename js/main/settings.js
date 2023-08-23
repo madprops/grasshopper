@@ -878,7 +878,7 @@ App.start_theme_settings = () => {
     [`24 hours`, `24_hours`],
   ]
 
-  App.settings_make_menu(`auto_theme`, [...auto_opts, [`Domain`, `domain`]], () => {
+  App.settings_make_menu(`auto_theme`, [...auto_opts, [`Domain`, `domain`], [`Party`, `party`]], () => {
     App.start_theme_interval(`auto_theme`)
   })
 

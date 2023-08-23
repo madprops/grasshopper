@@ -12,6 +12,10 @@ App.start_theme_interval = (setting) => {
     return
   }
 
+  if (sett === `party`) {
+    sett = App.theme_party_delay
+  }
+
   let delay = App.parse_delay(sett)
 
   if (!delay) {
