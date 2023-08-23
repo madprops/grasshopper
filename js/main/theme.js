@@ -656,39 +656,6 @@ App.shuffle_background_pool = () => {
   })
 }
 
-App.remove_from_background_pool = (url, force) => {
-  let pool = App.get_setting(`background_pool`)
-
-  if (!pool.length) {
-    return
-  }
-
-  if (!url) {
-    url = App.get_setting(`background_image`)
-  }
-
-  let match = false
-
-  for (let image of pool) {
-    if (image.startsWith(url)) {
-      match = true
-      break
-    }
-  }
-
-  if (match) {
-    App.show_confirm(`Remove from background pool?`, () => {
-      pool = pool.filter(x => !x.startsWith(url))
-      App.set_setting(`background_pool`, pool)
-      App.check_theme_refresh()
-      return
-    }, undefined, force)
-  }
-  else {
-    App.show_feedback(`Not in background pool`)
-  }
-}
-
 App.add_to_background_pool = (url) => {
   if (!url) {
     url = App.get_setting(`background_image`)
@@ -750,33 +717,4 @@ App.random_settings_color = (what) => {
   color = App.colorlib.hex_to_rgb(color)
   App.set_setting(`${what}_color`, color)
   App.check_theme_refresh()
-}
-
-App.get_pool_parts = (full) => {
-  let image, effect, tiles
-
-  if (full.includes(`;`)) {
-    let split = full.split(`;`)
-
-    if (split.length >= 1) {
-      image = split[0].trim()
-    }
-
-    if (split.length >= 2) {
-      effect = split[1].toLowerCase().trim()
-    }
-
-    if (split.length >= 3) {
-      tiles = split[2].toLowerCase().trim()
-    }
-  }
-  else {
-    image = full
-  }
-
-  return {
-    image: image,
-    effect: effect,
-    tiles: tiles,
-  }
 }

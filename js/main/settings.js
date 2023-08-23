@@ -464,6 +464,10 @@ App.setup_settings = () => {
       DOM.ev(DOM.el(`#add_alias_add`), `click`, () => {
         App.do_add_alias()
       })
+
+      DOM.ev(DOM.el(`#add_alias_remove`), `click`, () => {
+        App.remove_equals_parts(`aliases`, `alias`)
+      })
     }, element: App.add_setting_list_item_html(`alias`, `term_1`, [`term_2`])
   })
 
@@ -692,6 +696,15 @@ App.setup_settings = () => {
           }
         },
       ])
+    })
+
+    DOM.ev(DOM.el(`#settings_aliases`), `click`, (e) => {
+      let line = App.get_line_under_caret(e.target)
+
+      if (line) {
+        let parts = App.get_equals_parts(line)
+        App.add_alias(parts.term_1, parts.term_2)
+      }
     })
   }}))
 
@@ -1285,10 +1298,10 @@ App.settings_menu_items = () => {
   return items
 }
 
-App.add_alias = () => {
+App.add_alias = (term_1, term_2) => {
   App.show_popup(`add_alias`)
-  DOM.el(`#add_alias_term_1`).value = ``
-  DOM.el(`#add_alias_term_2`).value = ``
+  DOM.el(`#add_alias_term_1`).value = term_1 || ``
+  DOM.el(`#add_alias_term_2`).value = term_2 || ``
   DOM.el(`#add_alias_term_1`).focus()
 }
 
@@ -1340,6 +1353,39 @@ App.do_remove_pool = () => {
 
   if (url) {
     App.remove_from_background_pool(url)
+  }
+}
+
+App.remove_from_background_pool = (url, force) => {
+  let pool = App.get_setting(`background_pool`)
+
+  if (!pool.length) {
+    return
+  }
+
+  if (!url) {
+    url = App.get_setting(`background_image`)
+  }
+
+  let match = false
+
+  for (let image of pool) {
+    if (image.startsWith(url)) {
+      match = true
+      break
+    }
+  }
+
+  if (match) {
+    App.show_confirm(`Remove from background pool?`, () => {
+      pool = pool.filter(x => !x.startsWith(url))
+      App.set_setting(`background_pool`, pool)
+      App.check_theme_refresh()
+      return
+    }, undefined, force)
+  }
+  else {
+    App.show_feedback(`Not in background pool`)
   }
 }
 
@@ -1494,4 +1540,65 @@ App.set_settings_menu = (setting, value) => {
 App.apply_pool = (full) => {
   let parts = App.get_pool_parts(full)
   App.change_background(parts.image, parts.effect, parts.tiles)
+}
+
+App.get_pool_parts = (full) => {
+  let image, effect, tiles
+
+  if (full.includes(`;`)) {
+    let split = full.split(`;`)
+
+    if (split.length >= 1) {
+      image = split[0].trim()
+    }
+
+    if (split.length >= 2) {
+      effect = split[1].toLowerCase().trim()
+    }
+
+    if (split.length >= 3) {
+      tiles = split[2].toLowerCase().trim()
+    }
+  }
+  else {
+    image = full
+  }
+
+  return {
+    image: image,
+    effect: effect,
+    tiles: tiles,
+  }
+}
+
+App.get_equals_parts = (full) => {
+  let split = full.split(`=`)
+  let term_1 = split[0].trim()
+  let term_2 = split[1].trim()
+
+  return {
+    term_1: term_1,
+    term_2: term_2,
+  }
+}
+
+App.remove_equals_parts = (setting, short) => {
+  let term_1 = DOM.el(`#add_${short}_term_1`).value
+  let term_2 = DOM.el(`#add_${short}_term_2`).value
+  let items = App.get_setting(setting)
+
+  for (let item of items) {
+    let split = item.split(`=`)
+    let term_1b = split[0].trim()
+    let term_2b = split[1].trim()
+
+    if ((term_1 === term_1b) && (term_2 === term_2b)) {
+      App.show_confirm(`Remove item?`, () => {
+        items = items.filter(x => x !== item)
+        App.set_setting(setting, items)
+        let el = DOM.el(`#settings_${setting}`)
+        el.value = App.get_textarea_setting_value(setting)
+      })
+    }
+  }
 }
