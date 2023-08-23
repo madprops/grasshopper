@@ -287,7 +287,6 @@ App.process_info_list = (mode, info_list) => {
 
     items.push(item)
     container.append(item.element)
-    console.log(item.element.offsetHeight)
   }
 
   App.check_playing(mode)
