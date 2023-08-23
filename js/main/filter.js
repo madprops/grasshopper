@@ -599,7 +599,9 @@ App.do_filter_2 = (mode) => {
         let aliases = item.dataset.alias.split(`;`)
 
         for (let alias of aliases) {
-          if (alias.includes(value)) {
+          let text = App.only_chars(alias).toLowerCase()
+
+          if (text.includes(value)) {
             show = true
             break
           }

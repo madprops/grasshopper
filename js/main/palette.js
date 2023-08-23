@@ -154,17 +154,17 @@ App.fill_palette = () => {
     else if (name_lower.includes(`bmark`)) {
       el.dataset.alias = name_lower.replace(`bmark`, `bookmark`)
     }
-    else if (name_lower.includes(`dark`)) {
-      el.dataset.alias = name_lower.replace(`dark`, `black`)
+    else if (name_lower === `dark theme`) {
+      el.dataset.alias = `black theme`
     }
-    else if (name_lower.includes(`light`)) {
-      el.dataset.alias = name_lower.replace(`light`, `white`)
+    else if (name_lower === `light theme`) {
+      el.dataset.alias = `white theme`
     }
-    else if (name_lower.includes(`rand`)) {
-      el.dataset.alias = name_lower.replace(`rand`, `random`)
+    else if (name_lower === `rand background`) {
+      el.dataset.alias = `random background`
     }
-    else if (name_lower.includes(`rem`)) {
-      el.dataset.alias = name_lower.replace(`rem`, `remove`)
+    else if (name_lower === `rem background`) {
+      el.dataset.alias = `remove background`
     }
 
     container.append(el)
