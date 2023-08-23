@@ -512,7 +512,6 @@ App.setup_settings = () => {
     colored_top: true,
     after_show: () => {
       DOM.el(`#settings_${App.settings_category}_filter`).focus()
-      App.scroll_settings_text(App.settings_category)
     },
     on_hide: async () => {
       App.apply_theme()
@@ -1393,7 +1392,6 @@ App.do_add_setting_list_item = (setting, short, left, props = []) => {
 
   if (new_value) {
     textarea.value = new_value
-    App.scroll_to_bottom(textarea)
     App.do_save_text_setting(setting, textarea)
   }
 
@@ -1471,17 +1469,6 @@ App.check_setting_default = (setting) => {
   else {
     return App.is_default_setting(setting)
   }
-}
-
-App.scroll_settings_text = (category) => {
-  setTimeout(() => {
-    let container = DOM.el(`#settings_${category}_container`)
-    let els = DOM.els(`.settings_textarea`, container)
-
-    for (let el of els) {
-      App.scroll_to_bottom(el)
-    }
-  }, App.scroll_bottom_delay)
 }
 
 App.get_textarea_setting_value = (setting) => {
