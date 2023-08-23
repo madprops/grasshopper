@@ -928,7 +928,13 @@ App.start_theme_settings = () => {
     App.shuffle_background_pool()
   })
 
-  DOM.ev(DOM.el(`#settings_background_pool`), `click`, (e) => {
+  let pool = DOM.el(`#settings_background_pool`)
+
+  DOM.ev(pool, `mousedown`, (e) => {
+    e.preventDefault()
+  })
+
+  DOM.ev(pool, `mouseup`, (e) => {
     let line = App.get_line(e.target).trim()
 
     if (line) {
