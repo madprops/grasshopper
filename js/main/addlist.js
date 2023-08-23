@@ -187,7 +187,7 @@ App.addlist_single = (setting, short, value) => {
 }
 
 App.do_addlist_single = (setting, short) => {
-  let value = DOM.el(`#add_${short}_value`).value
+  let value = DOM.el(`#add_${short}_value`).value.trim()
 
   if (!value) {
     return
@@ -239,8 +239,8 @@ App.addlist_parts = (setting, short, parts = []) => {
 }
 
 App.do_addlist_parts = (setting, short) => {
-  let term_1 = DOM.el(`#add_${short}_term_1`).value
-  let term_2 = DOM.el(`#add_${short}_term_2`).value
+  let term_1 = DOM.el(`#add_${short}_term_1`).value.trim()
+  let term_2 = DOM.el(`#add_${short}_term_2`).value.trim()
 
   if (!term_1 || !term_2) {
     return
@@ -257,8 +257,8 @@ App.do_addlist_parts = (setting, short) => {
 
 App.addlist_remove_parts = (setting, short, parts = [], force = false) => {
   if (!parts.length) {
-    parts.push(DOM.el(`#add_${short}_term_1`).value)
-    parts.push(DOM.el(`#add_${short}_term_2`).value)
+    parts.push(DOM.el(`#add_${short}_term_1`).value.trim())
+    parts.push(DOM.el(`#add_${short}_term_2`).value.trim())
   }
 
   let items = App.get_setting(setting)
@@ -321,7 +321,7 @@ App.addlist_components = (setting, short, components = []) => {
 
 App.do_addlist_components = (setting, short) => {
   let ids = App[`setting_list_ids_${short}`]
-  let first = DOM.el(`#${ids[0]}`).value
+  let first = DOM.el(`#${ids[0]}`).value.trim()
 
   if (!first) {
     return
