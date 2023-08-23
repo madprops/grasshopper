@@ -929,7 +929,7 @@ App.start_theme_settings = () => {
   })
 
   DOM.ev(DOM.el(`#settings_background_pool`), `click`, (e) => {
-    let line = App.get_line(e.target)
+    let line = App.get_line_under_caret(e.target)
 
     if (line) {
       let parts = App.get_pool_parts(line)
