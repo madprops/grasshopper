@@ -370,18 +370,18 @@ App.addlist_remove_components = (setting, short, first, force) => {
   }
 }
 
-App.addlist_click = (e, type, setting, short, use, action) => {
-  let line = App.get_line_under_caret(e.target)
+App.addlist_click = (args = {}) => {
+  let line = App.get_line_under_caret(args.e.target)
   let items
 
   if (line) {
-    if (type === `single`) {
+    if (args.type === `single`) {
       items = [line]
     }
-    else if (type === `parts`) {
+    else if (args.type === `parts`) {
       items = App.addlist_get_parts(line)
     }
-    else if (type === `components`) {
+    else if (args.type === `components`) {
       items = App.addlist_get_components(line)
     }
   }
@@ -391,18 +391,18 @@ App.addlist_click = (e, type, setting, short, use, action) => {
   }
 
   function edit () {
-    if (type === `single`) {
-      App.addlist_single(setting, short, line, action)
+    if (args.type === `single`) {
+      App.addlist_single(args.setting, args.short, line, args.action)
     }
-    else if (type === `parts`) {
-      App.addlist_parts(setting, short, items, action)
+    else if (args.type === `parts`) {
+      App.addlist_parts(args.setting, args.short, items, args.action)
     }
-    else if (type === `components`) {
-      App.addlist_components(setting, short, items, action)
+    else if (args.type === `components`) {
+      App.addlist_components(args.setting, args.short, items, args.action)
     }
   }
 
-  if (use) {
+  if (args.use) {
     let menu = []
 
     menu.push({
@@ -415,11 +415,11 @@ App.addlist_click = (e, type, setting, short, use, action) => {
     menu.push({
       text: `Use`,
       action: () => {
-        use(items)
+        args.use(items)
       }
     })
 
-    NeedContext.show(e.clientX, e.clientY, menu)
+    NeedContext.show(args.e.clientX, args.e.clientY, menu)
   }
   else {
     edit()
