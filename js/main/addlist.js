@@ -189,14 +189,8 @@ App.addlist_single = (args = {}) => {
   let el = DOM.el(`#add_${args.short}_value`)
   el.value = args.items || ``
   el.focus()
-
-  App.addlist_data = {
-    mode: `single`,
-    setting: args.setting,
-    short: args.short,
-    value: args.items,
-    action: args.action,
-  }
+  args.mode = `single`
+  App.addlist_data = args
 }
 
 App.do_addlist_single = (setting, short) => {
@@ -206,8 +200,8 @@ App.do_addlist_single = (setting, short) => {
     return
   }
 
-  if (App.addlist_data.value) {
-    App.addlist_remove_single(setting, short, App.addlist_data.value, true)
+  if (App.addlist_data.items) {
+    App.addlist_remove_single(setting, short, App.addlist_data.items, true)
   }
 
   App.do_addlist({setting: setting, short: short, left: `value`})
@@ -247,14 +241,8 @@ App.addlist_parts = (args = {}) => {
   DOM.el(`#add_${args.short}_term_1`).value = args.items[0] || ``
   DOM.el(`#add_${args.short}_term_2`).value = args.items[1] || ``
   DOM.el(`#add_${args.short}_term_1`).focus()
-
-  App.addlist_data = {
-    mode: `parts`,
-    setting: args.setting,
-    short: args.short,
-    parts: args.items,
-    action: args.action,
-  }
+  args.mode = `parts`
+  App.addlist_data = args
 }
 
 App.do_addlist_parts = (setting, short) => {
@@ -265,7 +253,7 @@ App.do_addlist_parts = (setting, short) => {
     return
   }
 
-  let parts = App.addlist_data.parts
+  let parts = App.addlist_data.items
 
   if (parts.length) {
     App.addlist_remove_parts(setting, short, parts, true)
@@ -335,14 +323,8 @@ App.addlist_components = (args = {}) => {
   }
 
   DOM.el(`#${ids[0]}`).focus()
-
-  App.addlist_data = {
-    mode: `components`,
-    setting: args.setting,
-    short: args.short,
-    components: args.items,
-    action: args.action,
-  }
+  args.mode = `components`
+  App.addlist_data = args
 }
 
 App.do_addlist_components = (setting, short) => {
