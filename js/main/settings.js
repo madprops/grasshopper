@@ -869,7 +869,7 @@ App.start_theme_settings = () => {
   })
 
   DOM.ev(DOM.el(`#settings_background_pool_shuffle`), `click`, () => {
-    App.shuffle_background_pool()
+    App.shuffle_textarea(`background_pool`)
   })
 
   DOM.ev(DOM.el(`#settings_background_pool`), `click`, (e) => {
@@ -1290,4 +1290,13 @@ App.do_save_text_setting = (setting, el) => {
 App.refresh_textarea = (setting) => {
   let value = App.get_textarea_setting_value(setting)
   DOM.el(`#settings_${setting}`).value = value
+}
+
+App.shuffle_textarea = (setting) => {
+  App.show_confirm(`Shuffle items?`, () => {
+    let items = App.get_setting(setting)
+    App.shuffle_array(items)
+    App.set_setting(setting, items)
+    App.check_theme_refresh()
+  })
 }

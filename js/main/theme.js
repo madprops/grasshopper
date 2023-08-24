@@ -643,39 +643,21 @@ App.animate_background_image = (url) => {
   }
 }
 
-App.shuffle_background_pool = () => {
-  App.show_confirm(`Shuffle BG Pool?`, () => {
-    let pool = App.get_setting(`background_pool`)
-    App.shuffle_array(pool)
-    App.set_setting(`background_pool`, pool)
-    App.check_theme_refresh()
-  })
-}
-
 App.add_to_background_pool = (url) => {
   if (!url) {
     url = App.get_setting(`background_image`)
   }
 
+  if (!url) {
+    return
+  }
+
+  App.addlist_remove_components(`background_pool`, `pool`, url, true)
   let pool = App.get_setting(`background_pool`)
-  let match = false
-
-  for (let image of pool) {
-    if (image.startsWith(url)) {
-      match = true
-      break
-    }
-  }
-
-  if (match) {
-    App.show_feedback(`Already in background pool`)
-  }
-  else {
-    pool.push(`${url} ; none ; none`)
-    App.set_setting(`background_pool`, pool)
-    App.check_theme_refresh()
-    App.show_feedback(`Added to background pool`)
-  }
+  pool.unshift(`${url} ; none ; none`)
+  App.set_setting(`background_pool`, pool)
+  App.check_theme_refresh()
+  App.show_feedback(`Added to background pool`)
 }
 
 App.check_theme_refresh = () => {
