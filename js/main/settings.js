@@ -861,7 +861,9 @@ App.start_theme_settings = () => {
   })
 
   DOM.ev(DOM.el(`#settings_background_pool_add`), `click`, () => {
-    App.addlist_components(`background_pool`, `pool`)
+    App.addlist_components(`background_pool`, `pool`, undefined, (value) => {
+      App.apply_pool(value)
+    })
   })
 
   DOM.ev(DOM.el(`#settings_background_pool_next`), `click`, () => {
@@ -875,6 +877,8 @@ App.start_theme_settings = () => {
   DOM.ev(DOM.el(`#settings_background_pool`), `click`, (e) => {
     App.addlist_click(e, `components`, `background_pool`, `pool`, (c) => {
       App.change_background(c[0], c[1], c[2])
+    }, (value) => {
+      App.apply_pool(value)
     })
   })
 }
@@ -1265,6 +1269,10 @@ App.set_settings_menu = (setting, value) => {
 }
 
 App.apply_pool = (full) => {
+  if (!full) {
+    return
+  }
+
   let c = App.addlist_get_components(full)
   App.change_background(c[0], c[1], c[2])
 }

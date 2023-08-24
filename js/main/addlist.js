@@ -172,7 +172,7 @@ App.addlist_html = (short, left, props, to = false, settings) => {
   return container
 }
 
-App.addlist_single = (setting, short, value) => {
+App.addlist_single = (setting, short, value, action) => {
   App.show_popup(`addlist_${short}`)
   let el = DOM.el(`#add_${short}_value`)
   el.value = value || ``
@@ -183,6 +183,7 @@ App.addlist_single = (setting, short, value) => {
     short: short,
     mode: `single`,
     value: value,
+    action: action,
   }
 }
 
@@ -224,7 +225,7 @@ App.addlist_get_parts = (full) => {
   return [term_1, term_2]
 }
 
-App.addlist_parts = (setting, short, parts = []) => {
+App.addlist_parts = (setting, short, parts = [], action) => {
   App.show_popup(`addlist_${short}`)
   DOM.el(`#add_${short}_term_1`).value = parts[0] || ``
   DOM.el(`#add_${short}_term_2`).value = parts[1] || ``
@@ -235,6 +236,7 @@ App.addlist_parts = (setting, short, parts = []) => {
     short: short,
     mode: `parts`,
     parts: parts,
+    action: action,
   }
 }
 
@@ -294,7 +296,7 @@ App.addlist_get_components = (full) => {
   return c
 }
 
-App.addlist_components = (setting, short, components = []) => {
+App.addlist_components = (setting, short, components = [], action) => {
   App.show_popup(`addlist_${short}`)
 
   if (!components.length) {
@@ -316,6 +318,7 @@ App.addlist_components = (setting, short, components = []) => {
     setting: setting,
     short: short,
     mode: `components`,
+    action: action,
   }
 }
 
@@ -330,8 +333,8 @@ App.do_addlist_components = (setting, short) => {
   App.addlist_remove_components(setting, short, first, true)
   let value = App.do_addlist(setting, short, undefined, App[`setting_list_props_${short}`])
 
-  if (value) {
-    App.apply_pool(value)
+  if (App.addlist_data.action) {
+    App.addlist_data.action(value)
   }
 }
 
@@ -367,7 +370,7 @@ App.addlist_remove_components = (setting, short, first, force) => {
   }
 }
 
-App.addlist_click = (e, type, setting, short, use) => {
+App.addlist_click = (e, type, setting, short, use, action) => {
   let line = App.get_line_under_caret(e.target)
   let items
 
@@ -389,13 +392,13 @@ App.addlist_click = (e, type, setting, short, use) => {
 
   function edit () {
     if (type === `single`) {
-      App.addlist_single(setting, short, line)
+      App.addlist_single(setting, short, line, action)
     }
     else if (type === `parts`) {
-      App.addlist_parts(setting, short, items)
+      App.addlist_parts(setting, short, items, action)
     }
     else if (type === `components`) {
-      App.addlist_components(setting, short, items)
+      App.addlist_components(setting, short, items, action)
     }
   }
 
