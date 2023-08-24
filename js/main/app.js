@@ -48,6 +48,7 @@ App.recent_filter_input = 1250
 App.persistent_modes = [`tabs`]
 App.close_text = `Close`
 App.random_text = `Rand`
+App.remove_text = `Rm`
 App.similarity_threshold = 0.7
 App.max_smooth_scroll = 1000 * 2
 App.settings_ready = false

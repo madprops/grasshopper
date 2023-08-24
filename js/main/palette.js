@@ -148,6 +148,7 @@ App.fill_palette = () => {
     el.dataset.command = cmd.cmd
     let name_lower = cmd.name.toLowerCase()
     let rand = App.random_text.toLowerCase()
+    let rem = App.remove_text.toLowerCase()
 
     if (name_lower.includes(`bookmark`)) {
       el.dataset.alias = name_lower.replace(`bookmark`, `bmark`)
@@ -167,7 +168,7 @@ App.fill_palette = () => {
     else if (name_lower === `${rand} background`) {
       el.dataset.alias = `random background`
     }
-    else if (name_lower === `rem background`) {
+    else if (name_lower === `${rem} background`) {
       el.dataset.alias = `remove background`
     }
 

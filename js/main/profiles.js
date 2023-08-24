@@ -840,7 +840,7 @@ App.clear_profiles_items = () => {
 
   if (count.tags) {
     items.push({
-      text: `Remove Tags`,
+      text: `${App.remove_text} Tags`,
       get_items: () => {
         return App.get_tag_items(App.active_mode, `remove`)
       }
@@ -849,7 +849,7 @@ App.clear_profiles_items = () => {
 
   if (count.notes) {
     items.push({
-      text: `Remove Notes`,
+      text: `${App.remove_text} Notes`,
       action: () => {
         App.remove_all_notes()
       }
@@ -858,7 +858,7 @@ App.clear_profiles_items = () => {
 
   if (count.titles) {
     items.push({
-      text: `Remove Titles`,
+      text: `${App.remove_text} Titles`,
       action: () => {
         App.remove_all_titles()
       }
@@ -867,7 +867,7 @@ App.clear_profiles_items = () => {
 
   if (count.colors) {
     items.push({
-      text: `Remove Color`,
+      text: `${App.remove_text} Colors`,
       get_items: () => {
         return App.get_color_items(App.active_mode, `remove`)
       }
@@ -876,7 +876,7 @@ App.clear_profiles_items = () => {
 
   if (count.icons) {
     items.push({
-      text: `Remove Icons`,
+      text: `${App.remove_text} Icons`,
       action: () => {
         App.remove_all_icons()
       }
@@ -885,7 +885,7 @@ App.clear_profiles_items = () => {
 
   if (count.themes) {
     items.push({
-      text: `Remove Themes`,
+      text: `${App.remove_text} Themes`,
       action: () => {
         App.remove_all_themes()
       }
@@ -894,7 +894,7 @@ App.clear_profiles_items = () => {
 
   if (App.profiles.length) {
     items.push({
-      text: `Remove All`,
+      text: `${App.remove_text} All`,
       action: () => {
         App.remove_all_profiles()
       }
