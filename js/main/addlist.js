@@ -8,7 +8,7 @@ App.setup_addlist = () => {
       DOM.ev(DOM.el(`#add_alias_remove`), `click`, () => {
         App.addlist_remove_parts(`aliases`, `alias`)
       })
-    }, element: App.addlist_html(`alias`, `term_1`, [`term_2`])
+    }, element: App.addlist_html({short: `alias`, left: `term_1`, props: [`term_2`]})
   })
 
   App.create_popup({
@@ -20,7 +20,7 @@ App.setup_addlist = () => {
       DOM.ev(DOM.el(`#add_custom_filter_remove`), `click`, () => {
         App.addlist_remove_single(`custom_filters`, `custom_filter`)
       })
-    }, element: App.addlist_html(`custom_filter`, `value`, [])
+    }, element: App.addlist_html({short: `custom_filter`, left: `value`})
   })
 
   App.create_popup({
@@ -50,8 +50,9 @@ App.setup_addlist = () => {
         o.value = e[1]
         tiles.append(o)
       }
-    }, element: App.addlist_html(`pool`, `image_url`,
-    [`effect__select`, `tiles__select`], true, [`background_image`, `background_effect`, `background_tiles`])
+    }, element: App.addlist_html({short: `pool`, left: `image_url`,
+    props: [`effect__select`, `tiles__select`], to: true,
+    settings: [`background_image`, `background_effect`, `background_tiles`]})
   })
 }
 
@@ -111,17 +112,23 @@ App.do_addlist = (setting, short, left, props = []) => {
   return ans
 }
 
-App.addlist_html = (short, left, props, to = false, settings) => {
+App.addlist_html = (args = {}) => {
+  let def_args = {
+    to: false,
+    props: [],
+  }
+
+  args = Object.assign(def_args, args)
   let container = DOM.create(`div`, `flex_column_center addlist_container`)
-  let name = DOM.create(`input`, `text editor_text`, `add_${short}_${left}`)
+  let name = DOM.create(`input`, `text editor_text`, `add_${args.short}_${args.left}`)
   name.type = `text`
   name.spellcheck = false
   name.autocomplete = false
-  name.placeholder = App.capitalize_words(left.replace(/_/g, ` `))
+  name.placeholder = App.capitalize_words(args.left.replace(/_/g, ` `))
   let els = []
   let ids = [name.id]
 
-  for (let prop of props) {
+  for (let prop of args.props) {
     let el
 
     if (prop.endsWith(`__select`)) {
@@ -129,13 +136,13 @@ App.addlist_html = (short, left, props, to = false, settings) => {
       let label = DOM.create(`div`)
       label.textContent = App.capitalize_words(prop.replace(`__select`, ``).replace(/_/g, ` `))
       let p = prop.replace(`__select`, ``)
-      let select = DOM.create(`select`, `editor_select`, `add_${short}_${p}`)
+      let select = DOM.create(`select`, `editor_select`, `add_${args.short}_${p}`)
       el.append(label)
       el.append(select)
       ids.push(select.id)
     }
     else {
-      el = DOM.create(`input`, `text text editor_text text_smaller`, `add_${short}_${prop}`)
+      el = DOM.create(`input`, `text text editor_text text_smaller`, `add_${args.short}_${prop}`)
       el.type = `text`
       el.spellcheck = false
       el.autocomplete = false
@@ -147,28 +154,28 @@ App.addlist_html = (short, left, props, to = false, settings) => {
   }
 
   let btns = DOM.create(`div`, `flex_row_center gap_1`)
-  let add = DOM.create(`div`, `button`, `add_${short}_add`)
-  let label = App.capitalize_words(short.replace(/_/g, ` `))
+  let add = DOM.create(`div`, `button`, `add_${args.short}_add`)
+  let label = App.capitalize_words(args.short.replace(/_/g, ` `))
 
-  if (to) {
+  if (args.to) {
     add.textContent = `Add To ${label}`
   }
   else {
     add.textContent = `Add ${label}`
   }
 
-  let remove = DOM.create(`div`, `button`, `add_${short}_remove`)
+  let remove = DOM.create(`div`, `button`, `add_${args.short}_remove`)
   remove.textContent = `Remove`
   container.append(name)
   container.append(...els)
   btns.append(remove)
   btns.append(add)
   container.append(btns)
-  App[`setting_list_props_${short}`] = []
-  App[`setting_list_props_${short}`].push(left.replace(`__select`, ``))
-  App[`setting_list_props_${short}`].push(...props.map(x => x.replace(`__select`, ``)))
-  App[`setting_list_ids_${short}`] = ids
-  App[`setting_list_settings_${short}`] = settings
+  App[`setting_list_props_${args.short}`] = []
+  App[`setting_list_props_${args.short}`].push(args.left.replace(`__select`, ``))
+  App[`setting_list_props_${args.short}`].push(...args.props.map(x => x.replace(`__select`, ``)))
+  App[`setting_list_ids_${args.short}`] = ids
+  App[`setting_list_settings_${args.short}`] = args.settings
   return container
 }
 
@@ -226,6 +233,11 @@ App.addlist_get_parts = (full) => {
 }
 
 App.addlist_parts = (args = {}) => {
+  let def_args = {
+    items: [],
+  }
+
+  args = Object.assign(def_args, args)
   App.show_popup(`addlist_${args.short}`)
   DOM.el(`#add_${args.short}_term_1`).value = args.items[0] || ``
   DOM.el(`#add_${args.short}_term_2`).value = args.items[1] || ``
@@ -297,6 +309,11 @@ App.addlist_get_components = (full) => {
 }
 
 App.addlist_components = (args = {}) => {
+  let def_args = {
+    items: [],
+  }
+
+  args = Object.assign(def_args, args)
   App.show_popup(`addlist_${args.short}`)
 
   if (!args.items.length) {

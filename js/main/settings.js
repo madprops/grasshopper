@@ -606,11 +606,11 @@ App.setup_settings = () => {
     ])
 
     DOM.ev(DOM.el(`#settings_aliases_add`), `click`, () => {
-      App.addlist_parts(`aliases`, `alias`)
+      App.addlist_parts({setting: `aliases`, short: `alias`})
     })
 
     DOM.ev(DOM.el(`#settings_custom_filters_add`), `click`, () => {
-      App.addlist_single(`custom_filters`, `custom_filter`)
+      App.addlist_single({setting: `custom_filters`, short: `custom_filter`})
     })
 
     App.make_mode_order()
@@ -861,9 +861,9 @@ App.start_theme_settings = () => {
   })
 
   DOM.ev(DOM.el(`#settings_background_pool_add`), `click`, () => {
-    App.addlist_components(`background_pool`, `pool`, undefined, (value) => {
+    App.addlist_components({setting: `background_pool`, short: `pool`, action: (value) => {
       App.apply_pool(value)
-    })
+    }})
   })
 
   DOM.ev(DOM.el(`#settings_background_pool_next`), `click`, () => {
