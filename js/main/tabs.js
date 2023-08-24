@@ -745,12 +745,13 @@ App.do_empty_previous_tabs = () => {
 
 App.get_previous_tabs = async () => {
   App.previous_tabs = App.get_items(`tabs`).slice(0)
+  App.previous_tabs = App.previous_tabs.filter(x => !x.active)
 
   App.previous_tabs.sort((a, b) => {
     return a.last_accessed > b.last_accessed ? -1 : 1
   })
 
-  App.previous_tabs_index = 1
+  App.previous_tabs_index = 0
 }
 
 App.go_to_previous_tab = async () => {
@@ -771,8 +772,8 @@ App.go_to_previous_tab = async () => {
     App.focus_tab(item, `center_smooth`, `previous`)
     App.previous_tabs_index += 1
 
-    if (App.previous_tabs_index >= App.previous_tabs.length) {
-      App.previous_tabs_index = 0
+    if (App.previous_tabs_index >= (App.previous_tabs.length - 1)) {
+      await App.get_previous_tabs()
     }
   }
 }
