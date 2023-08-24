@@ -56,27 +56,32 @@ App.setup_addlist = () => {
   })
 }
 
-App.do_addlist = ({setting, short, left, props = []}) => {
+App.do_addlist = (args = {}) => {
+  let def_args = {
+    props: [],
+  }
+
+  args = Object.assign(def_args, args)
   let name
 
-  if (left) {
-    name = DOM.el(`#add_${short}_${left}`).value.trim()
+  if (args.left) {
+    name = DOM.el(`#add_${args.short}_${args.left}`).value.trim()
   }
 
   let values = []
 
-  for (let prop of props) {
-    let v = DOM.el(`#add_${short}_${prop}`).value.trim()
+  for (let prop of args.props) {
+    let v = DOM.el(`#add_${args.short}_${prop}`).value.trim()
     values.push(v)
   }
 
-  let textarea = DOM.el(`#settings_${setting}`)
+  let textarea = DOM.el(`#settings_${args.setting}`)
   let new_value, ans
 
-  if (props.length > 0) {
+  if (args.props.length > 0) {
     let value
 
-    if (props.length === 1) {
+    if (args.props.length === 1) {
       value = values[0]
     }
     else {
@@ -105,24 +110,30 @@ App.do_addlist = ({setting, short, left, props = []}) => {
 
   if (new_value) {
     textarea.value = new_value
-    App.do_save_text_setting(setting, textarea)
+    App.do_save_text_setting(args.setting, textarea)
   }
 
   App.hide_popup()
   return ans
 }
 
-App.addlist_html = ({short, left, props = [], to = false, settings}) => {
+App.addlist_html = (args = {}) => {
+  let def_args = {
+    to: false,
+    props: [],
+  }
+
+  args = Object.assign(def_args, args)
   let container = DOM.create(`div`, `flex_column_center addlist_container`)
-  let name = DOM.create(`input`, `text editor_text`, `add_${short}_${left}`)
+  let name = DOM.create(`input`, `text editor_text`, `add_${args.short}_${args.left}`)
   name.type = `text`
   name.spellcheck = false
   name.autocomplete = false
-  name.placeholder = App.capitalize_words(left.replace(/_/g, ` `))
+  name.placeholder = App.capitalize_words(args.left.replace(/_/g, ` `))
   let els = []
   let ids = [name.id]
 
-  for (let prop of props) {
+  for (let prop of args.props) {
     let el
 
     if (prop.endsWith(`__select`)) {
@@ -130,13 +141,13 @@ App.addlist_html = ({short, left, props = [], to = false, settings}) => {
       let label = DOM.create(`div`)
       label.textContent = App.capitalize_words(prop.replace(`__select`, ``).replace(/_/g, ` `))
       let p = prop.replace(`__select`, ``)
-      let select = DOM.create(`select`, `editor_select`, `add_${short}_${p}`)
+      let select = DOM.create(`select`, `editor_select`, `add_${args.short}_${p}`)
       el.append(label)
       el.append(select)
       ids.push(select.id)
     }
     else {
-      el = DOM.create(`input`, `text text editor_text text_smaller`, `add_${short}_${prop}`)
+      el = DOM.create(`input`, `text text editor_text text_smaller`, `add_${args.short}_${prop}`)
       el.type = `text`
       el.spellcheck = false
       el.autocomplete = false
@@ -148,43 +159,43 @@ App.addlist_html = ({short, left, props = [], to = false, settings}) => {
   }
 
   let btns = DOM.create(`div`, `flex_row_center gap_1`)
-  let add = DOM.create(`div`, `button`, `add_${short}_add`)
-  let label = App.capitalize_words(short.replace(/_/g, ` `))
+  let add = DOM.create(`div`, `button`, `add_${args.short}_add`)
+  let label = App.capitalize_words(args.short.replace(/_/g, ` `))
 
-  if (to) {
+  if (args.to) {
     add.textContent = `Add To ${label}`
   }
   else {
     add.textContent = `Add ${label}`
   }
 
-  let remove = DOM.create(`div`, `button`, `add_${short}_remove`)
+  let remove = DOM.create(`div`, `button`, `add_${args.short}_remove`)
   remove.textContent = `Remove`
   container.append(name)
   container.append(...els)
   btns.append(remove)
   btns.append(add)
   container.append(btns)
-  App[`setting_list_props_${short}`] = []
-  App[`setting_list_props_${short}`].push(left.replace(`__select`, ``))
-  App[`setting_list_props_${short}`].push(...props.map(x => x.replace(`__select`, ``)))
-  App[`setting_list_ids_${short}`] = ids
-  App[`setting_list_settings_${short}`] = settings
+  App[`setting_list_props_${args.short}`] = []
+  App[`setting_list_props_${args.short}`].push(args.left.replace(`__select`, ``))
+  App[`setting_list_props_${args.short}`].push(...args.props.map(x => x.replace(`__select`, ``)))
+  App[`setting_list_ids_${args.short}`] = ids
+  App[`setting_list_settings_${args.short}`] = args.settings
   return container
 }
 
-App.addlist_single = ({setting, short, items, action}) => {
-  App.show_popup(`addlist_${short}`)
-  let el = DOM.el(`#add_${short}_value`)
-  el.value = items || ``
+App.addlist_single = (args = {}) => {
+  App.show_popup(`addlist_${args.short}`)
+  let el = DOM.el(`#add_${args.short}_value`)
+  el.value = args.items || ``
   el.focus()
 
   App.addlist_data = {
     mode: `single`,
-    setting: setting,
-    short: short,
-    value: items,
-    action: action,
+    setting: args.setting,
+    short: args.short,
+    value: args.items,
+    action: args.action,
   }
 }
 
@@ -226,18 +237,23 @@ App.addlist_get_parts = (full) => {
   return [term_1, term_2]
 }
 
-App.addlist_parts = ({setting, short, items = [], action}) => {
-  App.show_popup(`addlist_${short}`)
-  DOM.el(`#add_${short}_term_1`).value = items[0] || ``
-  DOM.el(`#add_${short}_term_2`).value = items[1] || ``
-  DOM.el(`#add_${short}_term_1`).focus()
+App.addlist_parts = (args = {}) => {
+  let def_args = {
+    items: [],
+  }
+
+  args = Object.assign(def_args, args)
+  App.show_popup(`addlist_${args.short}`)
+  DOM.el(`#add_${args.short}_term_1`).value = args.items[0] || ``
+  DOM.el(`#add_${args.short}_term_2`).value = args.items[1] || ``
+  DOM.el(`#add_${args.short}_term_1`).focus()
 
   App.addlist_data = {
     mode: `parts`,
-    setting: setting,
-    short: short,
-    parts: items,
-    action: action,
+    setting: args.setting,
+    short: args.short,
+    parts: args.items,
+    action: args.action,
   }
 }
 
@@ -297,30 +313,35 @@ App.addlist_get_components = (full) => {
   return c
 }
 
-App.addlist_components = ({setting, short, items = [], action}) => {
-  App.show_popup(`addlist_${short}`)
+App.addlist_components = (args = {}) => {
+  let def_args = {
+    items: [],
+  }
 
-  if (!items.length) {
-    for (let setting of App[`setting_list_settings_${short}`]) {
+  args = Object.assign(def_args, args)
+  App.show_popup(`addlist_${args.short}`)
+
+  if (!args.items.length) {
+    for (let setting of App[`setting_list_settings_${args.short}`]) {
       let value = App.get_setting(setting)
-      items.push(value)
+      args.items.push(value)
     }
   }
 
-  let ids = App[`setting_list_ids_${short}`]
+  let ids = App[`setting_list_ids_${args.short}`]
 
   for (let [i, id] of ids.entries()) {
-    DOM.el(`#${id}`).value = items[i]
+    DOM.el(`#${id}`).value = args.items[i]
   }
 
   DOM.el(`#${ids[0]}`).focus()
 
   App.addlist_data = {
     mode: `components`,
-    setting: setting,
-    short: short,
-    components: items,
-    action: action,
+    setting: args.setting,
+    short: args.short,
+    components: args.items,
+    action: args.action,
   }
 }
 
@@ -372,18 +393,18 @@ App.addlist_remove_components = (setting, short, first, force) => {
   }
 }
 
-App.addlist_click = ({e, type, setting, short, use, action}) => {
-  let line = App.get_line_under_caret(e.target)
+App.addlist_click = (args = {}) => {
+  let line = App.get_line_under_caret(args.e.target)
   let items
 
   if (line) {
-    if (type === `single`) {
+    if (args.type === `single`) {
       items = line
     }
-    else if (type === `parts`) {
+    else if (args.type === `parts`) {
       items = App.addlist_get_parts(line)
     }
-    else if (type === `components`) {
+    else if (args.type === `components`) {
       items = App.addlist_get_components(line)
     }
   }
@@ -394,24 +415,24 @@ App.addlist_click = ({e, type, setting, short, use, action}) => {
 
   function edit () {
     let obj = {
-      setting: setting,
-      short: short,
+      setting: args.setting,
+      short: args.short,
       items: items,
-      action: action,
+      action: args.action,
     }
 
-    if (type === `single`) {
+    if (args.type === `single`) {
       App.addlist_single(obj)
     }
-    else if (type === `parts`) {
+    else if (args.type === `parts`) {
       App.addlist_parts(obj)
     }
-    else if (type === `components`) {
+    else if (args.type === `components`) {
       App.addlist_components(obj)
     }
   }
 
-  if (use) {
+  if (args.use) {
     let menu = []
 
     menu.push({
@@ -424,11 +445,11 @@ App.addlist_click = ({e, type, setting, short, use, action}) => {
     menu.push({
       text: `Use`,
       action: () => {
-        use(items)
+        args.use(items)
       }
     })
 
-    NeedContext.show(e.clientX, e.clientY, menu)
+    NeedContext.show(args.e.clientX, args.e.clientY, menu)
   }
   else {
     edit()
