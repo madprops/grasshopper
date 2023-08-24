@@ -578,17 +578,18 @@ App.animate_background_image = (url) => {
     old_el.style.opacity = n2
   }
 
-  function bg (value) {
+  function bg_new (value) {
     new_el.style.backgroundImage = value
   }
 
-  function unset () {
+  function bg_old (value) {
     old_el.style.backgroundImage = value
   }
 
   if (!url) {
     proc(1, 0)
-    bg(`unset`)
+    bg_new(`unset`)
+    bg_old(`unset`)
     App.first_bg_image = true
     return
   }
@@ -597,7 +598,7 @@ App.animate_background_image = (url) => {
     App.background_image.src = url
 
     DOM.ev(App.background_image, `load`, () => {
-      bg(`url(${url})`)
+      bg_new(`url(${url})`)
 
       if (!App.get_setting(`background_transitions`) || !App.first_bg_image) {
         proc(1, 0)
@@ -625,7 +626,7 @@ App.animate_background_image = (url) => {
 
           if ((op_new >= 1) && (op_old <= 0)) {
             proc(1, 0)
-            unset()
+            bg_old(`unset`)
             return
           }
 
@@ -635,7 +636,7 @@ App.animate_background_image = (url) => {
         }
         catch (err) {
           proc(1, 0)
-          unset()
+          bg_old(`unset`)
         }
       }
 
@@ -644,8 +645,8 @@ App.animate_background_image = (url) => {
 
     DOM.ev(App.background_image, `error`, () => {
       proc(1, 0)
-      bg(`unset`)
-      unset()
+      bg_new(`unset`)
+      bg_old(`unset`)
       App.first_bg_image = true
     })
   }
