@@ -56,27 +56,32 @@ App.setup_addlist = () => {
   })
 }
 
-App.do_addlist = (setting, short, left, props = []) => {
+App.do_addlist = (args = {}) => {
+  let def_args = {
+    props: [],
+  }
+
+  args = Object.assign(def_args, args)
   let name
 
-  if (left) {
-    name = DOM.el(`#add_${short}_${left}`).value.trim()
+  if (args.left) {
+    name = DOM.el(`#add_${args.short}_${args.left}`).value.trim()
   }
 
   let values = []
 
-  for (let prop of props) {
-    let v = DOM.el(`#add_${short}_${prop}`).value.trim()
+  for (let prop of args.props) {
+    let v = DOM.el(`#add_${args.short}_${prop}`).value.trim()
     values.push(v)
   }
 
-  let textarea = DOM.el(`#settings_${setting}`)
+  let textarea = DOM.el(`#settings_${args.setting}`)
   let new_value, ans
 
-  if (props.length > 0) {
+  if (args.props.length > 0) {
     let value
 
-    if (props.length === 1) {
+    if (args.props.length === 1) {
       value = values[0]
     }
     else {
@@ -105,7 +110,7 @@ App.do_addlist = (setting, short, left, props = []) => {
 
   if (new_value) {
     textarea.value = new_value
-    App.do_save_text_setting(setting, textarea)
+    App.do_save_text_setting(args.setting, textarea)
   }
 
   App.hide_popup()
@@ -205,7 +210,7 @@ App.do_addlist_single = (setting, short) => {
     App.addlist_remove_single(setting, short, App.addlist_data.value, true)
   }
 
-  App.do_addlist(setting, short, `value`)
+  App.do_addlist({setting: setting, short: short, left: `value`})
 }
 
 App.addlist_remove_single = (setting, short, value, force = false) => {
@@ -266,7 +271,7 @@ App.do_addlist_parts = (setting, short) => {
     App.addlist_remove_parts(setting, short, parts, true)
   }
 
-  App.do_addlist(setting, short, `term_1`, [`term_2`])
+  App.do_addlist({setting: setting, short: short, left: `term_1`, props: [`term_2`]})
 }
 
 App.addlist_remove_parts = (setting, short, parts = [], force = false) => {
@@ -349,7 +354,7 @@ App.do_addlist_components = (setting, short) => {
   }
 
   App.addlist_remove_components(setting, short, first, true)
-  let value = App.do_addlist(setting, short, undefined, App[`setting_list_props_${short}`])
+  let value = App.do_addlist({setting: setting, short: short, props: App[`setting_list_props_${short}`]})
 
   if (App.addlist_data.action) {
     App.addlist_data.action(value)
