@@ -95,10 +95,6 @@ App.setup_tabs = () => {
   })
 }
 
-App.empty_previous_tabs = App.create_debouncer(() => {
-  App.do_empty_previous_tabs()
-}, App.empty_previous_tabs_delay)
-
 App.get_tabs = async () => {
   App.getting(`tabs`)
   let tabs
@@ -735,6 +731,14 @@ App.do_close_normal_tabs = (close_unloaded = true) => {
   }, undefined, force)
 }
 
+App.empty_previous_tabs_debouncer = App.create_debouncer(() => {
+  App.do_empty_previous_tabs()
+}, App.empty_previous_tabs_delay)
+
+App.empty_previous_tabs = () => {
+  App.empty_previous_tabs_debouncer.call()
+}
+
 App.do_empty_previous_tabs = () => {
   App.previous_tabs = []
 }
@@ -754,7 +758,7 @@ App.go_to_previous_tab = async () => {
     await App.get_previous_tabs()
   }
 
-  App.empty_previous_tabs.call()
+  App.empty_previous_tabs()
 
   if (App.previous_tabs.length <= 1) {
     return
