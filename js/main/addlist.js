@@ -172,18 +172,18 @@ App.addlist_html = (short, left, props, to = false, settings) => {
   return container
 }
 
-App.addlist_single = (setting, short, value, action) => {
-  App.show_popup(`addlist_${short}`)
-  let el = DOM.el(`#add_${short}_value`)
-  el.value = value || ``
+App.addlist_single = (args = {}) => {
+  App.show_popup(`addlist_${args.short}`)
+  let el = DOM.el(`#add_${args.short}_value`)
+  el.value = args.items || ``
   el.focus()
 
   App.addlist_data = {
-    setting: setting,
-    short: short,
     mode: `single`,
-    value: value,
-    action: action,
+    setting: args.setting,
+    short: args.short,
+    value: args.items,
+    action: args.action,
   }
 }
 
@@ -225,18 +225,18 @@ App.addlist_get_parts = (full) => {
   return [term_1, term_2]
 }
 
-App.addlist_parts = (setting, short, parts = [], action) => {
-  App.show_popup(`addlist_${short}`)
-  DOM.el(`#add_${short}_term_1`).value = parts[0] || ``
-  DOM.el(`#add_${short}_term_2`).value = parts[1] || ``
-  DOM.el(`#add_${short}_term_1`).focus()
+App.addlist_parts = (args = {}) => {
+  App.show_popup(`addlist_${args.short}`)
+  DOM.el(`#add_${args.short}_term_1`).value = args.items[0] || ``
+  DOM.el(`#add_${args.short}_term_2`).value = args.items[1] || ``
+  DOM.el(`#add_${args.short}_term_1`).focus()
 
   App.addlist_data = {
-    setting: setting,
-    short: short,
     mode: `parts`,
-    parts: parts,
-    action: action,
+    setting: args.setting,
+    short: args.short,
+    parts: args.items,
+    action: args.action,
   }
 }
 
@@ -296,29 +296,30 @@ App.addlist_get_components = (full) => {
   return c
 }
 
-App.addlist_components = (setting, short, components = [], action) => {
-  App.show_popup(`addlist_${short}`)
+App.addlist_components = (args = {}) => {
+  App.show_popup(`addlist_${args.short}`)
 
-  if (!components.length) {
-    for (let setting of App[`setting_list_settings_${short}`]) {
+  if (!args.items.length) {
+    for (let setting of App[`setting_list_settings_${args.short}`]) {
       let value = App.get_setting(setting)
-      components.push(value)
+      args.items.push(value)
     }
   }
 
-  let ids = App[`setting_list_ids_${short}`]
+  let ids = App[`setting_list_ids_${args.short}`]
 
   for (let [i, id] of ids.entries()) {
-    DOM.el(`#${id}`).value = components[i]
+    DOM.el(`#${id}`).value = args.items[i]
   }
 
   DOM.el(`#${ids[0]}`).focus()
 
   App.addlist_data = {
-    setting: setting,
-    short: short,
     mode: `components`,
-    action: action,
+    setting: args.setting,
+    short: args.short,
+    components: args.items,
+    action: args.action,
   }
 }
 
@@ -376,7 +377,7 @@ App.addlist_click = (args = {}) => {
 
   if (line) {
     if (args.type === `single`) {
-      items = [line]
+      items = line
     }
     else if (args.type === `parts`) {
       items = App.addlist_get_parts(line)
@@ -391,14 +392,21 @@ App.addlist_click = (args = {}) => {
   }
 
   function edit () {
+    let obj = {
+      setting: args.setting,
+      short: args.short,
+      items: items,
+      action: args.action,
+    }
+
     if (args.type === `single`) {
-      App.addlist_single(args.setting, args.short, line, args.action)
+      App.addlist_single(obj)
     }
     else if (args.type === `parts`) {
-      App.addlist_parts(args.setting, args.short, items, args.action)
+      App.addlist_parts(obj)
     }
     else if (args.type === `components`) {
-      App.addlist_components(args.setting, args.short, items, args.action)
+      App.addlist_components(obj)
     }
   }
 
