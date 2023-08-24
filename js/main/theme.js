@@ -80,6 +80,7 @@ App.apply_theme = (args) => {
   App.debug(`Apply Theme`)
 
   let def_args = {
+    check: false,
     safe_mode: false,
   }
 
@@ -108,8 +109,10 @@ App.apply_theme = (args) => {
 
     let s_args = JSON.stringify(args)
 
-    if (App.last_theme_args === s_args) {
-      return
+    if (args.check) {
+      if (App.last_theme_args === s_args) {
+        return
+      }
     }
 
     App.last_theme_args = s_args
@@ -334,7 +337,7 @@ App.set_theme = (c1, c2) => {
 App.set_default_theme = () => {
   let background = App.get_setting(`background_color`)
   let text = App.get_setting(`text_color`)
-  App.apply_theme({background_color: background, text_color: text})
+  App.apply_theme({background_color: background, text_color: text, check: true})
 }
 
 App.set_color_auto = (args) => {
@@ -351,6 +354,7 @@ App.set_color_auto = (args) => {
     args.text_color = App.parse_color(args.text_color)
   }
 
+  args.check = true
   App.apply_theme(args)
 }
 
