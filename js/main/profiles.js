@@ -1468,7 +1468,6 @@ App.profile_apply_theme = () => {
       background_image: bi,
       background_effect: be,
       background_tiles: bt,
-      check: true
     })
   }
   else {

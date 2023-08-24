@@ -80,7 +80,6 @@ App.apply_theme = (args) => {
   App.debug(`Apply Theme`)
 
   let def_args = {
-    check: false,
     safe_mode: false,
   }
 
@@ -283,7 +282,6 @@ App.theme_safe_mode = () => {
   App.apply_theme({
     background_color: `rgb(33, 33, 33)`,
     text_color: `rgb(222, 222, 222)`,
-    check: false,
     safe_mode: true,
   })
 
@@ -336,7 +334,7 @@ App.set_theme = (c1, c2) => {
 App.set_default_theme = () => {
   let background = App.get_setting(`background_color`)
   let text = App.get_setting(`text_color`)
-  App.apply_theme({background_color: background, text_color: text, check: true})
+  App.apply_theme({background_color: background, text_color: text})
 }
 
 App.set_color_auto = (args) => {
@@ -353,7 +351,6 @@ App.set_color_auto = (args) => {
     args.text_color = App.parse_color(args.text_color)
   }
 
-  args.check = true
   App.apply_theme(args)
 }
 
