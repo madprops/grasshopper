@@ -582,6 +582,10 @@ App.animate_background_image = (url) => {
     new_el.style.backgroundImage = value
   }
 
+  function unset () {
+    old_el.style.backgroundImage = value
+  }
+
   if (!url) {
     proc(1, 0)
     bg(`unset`)
@@ -621,6 +625,7 @@ App.animate_background_image = (url) => {
 
           if ((op_new >= 1) && (op_old <= 0)) {
             proc(1, 0)
+            unset()
             return
           }
 
@@ -630,6 +635,7 @@ App.animate_background_image = (url) => {
         }
         catch (err) {
           proc(1, 0)
+          unset()
         }
       }
 
@@ -639,6 +645,7 @@ App.animate_background_image = (url) => {
     DOM.ev(App.background_image, `error`, () => {
       proc(1, 0)
       bg(`unset`)
+      unset()
       App.first_bg_image = true
     })
   }
