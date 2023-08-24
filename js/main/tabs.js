@@ -259,6 +259,7 @@ App.remove_closed_tab = (id) => {
 
 App.tabs_action = async (item) => {
   App.on_action(`tabs`)
+  App.do_empty_previous_tabs()
   await App.focus_tab(item, `nearest_smooth`)
   App.check_close_on_focus()
 }
