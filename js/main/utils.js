@@ -449,6 +449,11 @@ App.scroll_to_bottom = (el) => {
   el.scrollLeft = 0
 }
 
+App.scroll_to_top = (el) => {
+  el.scrollTop = 0
+  el.scrollLeft = 0
+}
+
 App.scroll_to_right = (el) => {
   el.scrollLeft = el.scrollWidth
 }

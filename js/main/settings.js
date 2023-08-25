@@ -258,6 +258,7 @@ App.settings_setup_text = (container) => {
         return
       }
 
+      App.scroll_to_top(el)
       App.do_save_text_setting(setting, el)
     })
 
