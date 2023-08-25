@@ -51,7 +51,7 @@ App.setup_addlist = () => {
         tiles.append(o)
       }
     }, element: App.addlist_html({short: `pool`, type: `components`, left: `image_url`,
-    props: [`effect__select`, `tiles__select`], to: true,
+    props: [`effect__select`, `tiles__select`],
     settings: [`background_image`, `background_effect`, `background_tiles`]})
   })
 }
@@ -119,7 +119,6 @@ App.do_addlist = (args = {}) => {
 
 App.addlist_html = (args = {}) => {
   let def_args = {
-    to: false,
     props: [],
   }
 
@@ -168,15 +167,7 @@ App.addlist_html = (args = {}) => {
 
   let btns = DOM.create(`div`, `flex_row_center gap_1`)
   let add = DOM.create(`div`, `button`, `add_${args.short}_add`)
-  let label = App.capitalize_words(args.short.replace(/_/g, ` `))
-
-  if (args.to) {
-    add.textContent = `Add To ${label}`
-  }
-  else {
-    add.textContent = `Add ${label}`
-  }
-
+  add.textContent = `Add`
   let remove = DOM.create(`div`, `button`, `add_${args.short}_remove`)
   remove.textContent = `Remove`
   container.append(name)
@@ -193,7 +184,10 @@ App.addlist_html = (args = {}) => {
 }
 
 App.addlist_single = (args = {}) => {
+  let def_args = App.addlist_def_args()
+  args = Object.assign(def_args, args)
   App.show_popup(`addlist_${args.short}`)
+  App.check_addlist_buttons(args)
   let el = DOM.el(`#add_${args.short}_value`)
   el.value = args.items || ``
   el.focus()
@@ -240,12 +234,10 @@ App.addlist_get_parts = (full) => {
 }
 
 App.addlist_parts = (args = {}) => {
-  let def_args = {
-    items: [],
-  }
-
+  let def_args = App.addlist_def_args()
   args = Object.assign(def_args, args)
   App.show_popup(`addlist_${args.short}`)
+  App.check_addlist_buttons(args)
   DOM.el(`#add_${args.short}_value_1`).value = args.items[0] || ``
   DOM.el(`#add_${args.short}_value_2`).value = args.items[1] || ``
   DOM.el(`#add_${args.short}_value_1`).focus()
@@ -310,12 +302,10 @@ App.addlist_get_components = (full) => {
 }
 
 App.addlist_components = (args = {}) => {
-  let def_args = {
-    items: [],
-  }
-
+  let def_args = App.addlist_def_args()
   args = Object.assign(def_args, args)
   App.show_popup(`addlist_${args.short}`)
+  App.check_addlist_buttons(args)
 
   if (!args.items.length) {
     for (let setting of App[`setting_list_settings_${args.short}`]) {
@@ -409,6 +399,7 @@ App.addlist_click = (args = {}) => {
       short: args.short,
       items: items,
       action: args.action,
+      update: true,
     }
 
     if (args.type === `single`) {
@@ -465,4 +456,25 @@ App.after_addlist = (setting, items) => {
   let el = DOM.el(`#settings_${setting}`)
   el.value = App.get_textarea_setting_value(setting)
   App.check_theme_refresh()
+}
+
+App.check_addlist_buttons = (args) => {
+  let remove_el = DOM.el(`#add_${args.short}_remove`)
+  let add_el = DOM.el(`#add_${args.short}_add`)
+
+  if (args.update) {
+    remove_el.classList.remove(`hidden`)
+    add_el.textContent = `Update`
+  }
+  else {
+    remove_el.classList.add(`hidden`)
+    add_el.textContent = `Add`
+  }
+}
+
+App.addlist_def_args = () => {
+  return {
+    update: false,
+    items: [],
+  }
 }
