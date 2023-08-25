@@ -8,7 +8,7 @@ App.setup_addlist = () => {
       DOM.ev(DOM.el(`#add_alias_remove`), `click`, () => {
         App.addlist_remove_parts(`aliases`, `alias`)
       })
-    }, element: App.addlist_html({short: `alias`, left: `term_1`, props: [`term_2`]})
+    }, element: App.addlist_html({short: `alias`, type: `parts`})
   })
 
   App.create_popup({
@@ -20,7 +20,7 @@ App.setup_addlist = () => {
       DOM.ev(DOM.el(`#add_custom_filter_remove`), `click`, () => {
         App.addlist_remove_single(`custom_filters`, `custom_filter`)
       })
-    }, element: App.addlist_html({short: `custom_filter`, left: `value`})
+    }, element: App.addlist_html({short: `custom_filter`, type: `single`})
   })
 
   App.create_popup({
@@ -50,7 +50,7 @@ App.setup_addlist = () => {
         o.value = e[1]
         tiles.append(o)
       }
-    }, element: App.addlist_html({short: `pool`, left: `image_url`,
+    }, element: App.addlist_html({short: `pool`, type: `components`, left: `image_url`,
     props: [`effect__select`, `tiles__select`], to: true,
     settings: [`background_image`, `background_effect`, `background_tiles`]})
   })
@@ -121,6 +121,14 @@ App.addlist_html = (args = {}) => {
   let def_args = {
     to: false,
     props: [],
+  }
+
+  if (args.type === `parts`) {
+    args.left = `value_1`
+    args.props = [`value_2`]
+  }
+  else if (args.type === `single`) {
+    args.left = `value`
   }
 
   args = Object.assign(def_args, args)
@@ -226,9 +234,9 @@ App.addlist_remove_single = (setting, short, value, force = false) => {
 
 App.addlist_get_parts = (full) => {
   let split = full.split(`=`)
-  let term_1 = split[0].trim()
-  let term_2 = split[1].trim()
-  return [term_1, term_2]
+  let value_1 = split[0].trim()
+  let value_2 = split[1].trim()
+  return [value_1, value_2]
 }
 
 App.addlist_parts = (args = {}) => {
@@ -238,18 +246,18 @@ App.addlist_parts = (args = {}) => {
 
   args = Object.assign(def_args, args)
   App.show_popup(`addlist_${args.short}`)
-  DOM.el(`#add_${args.short}_term_1`).value = args.items[0] || ``
-  DOM.el(`#add_${args.short}_term_2`).value = args.items[1] || ``
-  DOM.el(`#add_${args.short}_term_1`).focus()
+  DOM.el(`#add_${args.short}_value_1`).value = args.items[0] || ``
+  DOM.el(`#add_${args.short}_value_2`).value = args.items[1] || ``
+  DOM.el(`#add_${args.short}_value_1`).focus()
   args.mode = `parts`
   App.addlist_data = args
 }
 
 App.do_addlist_parts = (setting, short) => {
-  let term_1 = DOM.el(`#add_${short}_term_1`).value.trim()
-  let term_2 = DOM.el(`#add_${short}_term_2`).value.trim()
+  let value_1 = DOM.el(`#add_${short}_value_1`).value.trim()
+  let value_2 = DOM.el(`#add_${short}_value_2`).value.trim()
 
-  if (!term_1 || !term_2) {
+  if (!value_1 || !value_2) {
     return
   }
 
@@ -259,23 +267,23 @@ App.do_addlist_parts = (setting, short) => {
     App.addlist_remove_parts(setting, short, parts, true)
   }
 
-  App.do_addlist({setting: setting, short: short, left: `term_1`, props: [`term_2`]})
+  App.do_addlist({setting: setting, short: short, left: `value_1`, props: [`value_2`]})
 }
 
 App.addlist_remove_parts = (setting, short, parts = [], force = false) => {
   if (!parts.length) {
-    parts.push(DOM.el(`#add_${short}_term_1`).value.trim())
-    parts.push(DOM.el(`#add_${short}_term_2`).value.trim())
+    parts.push(DOM.el(`#add_${short}_value_1`).value.trim())
+    parts.push(DOM.el(`#add_${short}_value_2`).value.trim())
   }
 
   let items = App.get_setting(setting)
 
   for (let item of items) {
     let split = item.split(`=`)
-    let term_1b = split[0].trim()
-    let term_2b = split[1].trim()
+    let value_1b = split[0].trim()
+    let value_2b = split[1].trim()
 
-    if ((parts[0] === term_1b) && (parts[1] === term_2b)) {
+    if ((parts[0] === value_1b) && (parts[1] === value_2b)) {
       App.show_confirm(`Remove item?`, () => {
         items = items.filter(x => x !== item)
         App.after_addlist(setting, items, item)
