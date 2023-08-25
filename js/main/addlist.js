@@ -8,7 +8,7 @@ App.setup_addlist = () => {
       DOM.ev(DOM.el(`#add_alias_remove`), `click`, () => {
         App.addlist_remove_parts(`aliases`, `alias`)
       })
-    }, element: App.addlist_html({short: `alias`, type: `parts`})
+    }, element: App.addlist_html({short: `alias`, type: `parts`, title: `Alias Editor`})
   })
 
   App.create_popup({
@@ -20,7 +20,7 @@ App.setup_addlist = () => {
       DOM.ev(DOM.el(`#add_custom_filter_remove`), `click`, () => {
         App.addlist_remove_single(`custom_filters`, `custom_filter`)
       })
-    }, element: App.addlist_html({short: `custom_filter`, type: `single`})
+    }, element: App.addlist_html({short: `custom_filter`, type: `single`, title: `Custom Filter Editor`})
   })
 
   App.create_popup({
@@ -51,7 +51,7 @@ App.setup_addlist = () => {
         tiles.append(o)
       }
     }, element: App.addlist_html({short: `pool`, type: `components`, left: `image_url`,
-    props: [`effect__select`, `tiles__select`],
+    props: [`effect__select`, `tiles__select`], title: `Pool Editor`,
     settings: [`background_image`, `background_effect`, `background_tiles`]})
   })
 }
@@ -165,6 +165,9 @@ App.addlist_html = (args = {}) => {
     els.push(el)
   }
 
+  let title = DOM.create(`div`, `bigger`)
+  title.textContent = args.title
+  container.append(title)
   let btns = DOM.create(`div`, `flex_row_center gap_1`)
   let add = DOM.create(`div`, `button`, `add_${args.short}_add`)
   add.textContent = `Add`
