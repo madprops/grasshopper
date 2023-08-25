@@ -607,11 +607,11 @@ App.setup_settings = () => {
     ])
 
     DOM.ev(DOM.el(`#settings_aliases_add`), `click`, () => {
-      App.addlist_parts({setting: `aliases`, short: `alias`})
+      App.addlist_parts({id: `alias`})
     })
 
     DOM.ev(DOM.el(`#settings_custom_filters_add`), `click`, () => {
-      App.addlist_single({setting: `custom_filters`, short: `custom_filter`})
+      App.addlist_single({id: `custom_filter`})
     })
 
     App.make_mode_order()
@@ -637,11 +637,11 @@ App.setup_settings = () => {
     })
 
     DOM.ev(DOM.el(`#settings_aliases`), `click`, (e) => {
-      App.addlist_click({e: e, type: `parts`, setting: `aliases`, short: `alias`})
+      App.addlist_click({e: e, id: `alias`})
     })
 
     DOM.ev(DOM.el(`#settings_custom_filters`), `click`, (e) => {
-      App.addlist_click({e: e, type: `single`, setting: `custom_filters`, short: `custom_filter`})
+      App.addlist_click({e: e, id: `custom_filter`})
     })
   }}))
 
@@ -862,7 +862,7 @@ App.start_theme_settings = () => {
   })
 
   DOM.ev(DOM.el(`#settings_background_pool_add`), `click`, () => {
-    App.addlist_components({setting: `background_pool`, short: `pool`, action: (value) => {
+    App.addlist_components({id: `pool`, action: (value) => {
       App.apply_pool(value)
     }})
   })
@@ -876,7 +876,7 @@ App.start_theme_settings = () => {
   })
 
   DOM.ev(DOM.el(`#settings_background_pool`), `click`, (e) => {
-    App.addlist_click({e: e, type: `components`, setting: `background_pool`, short: `pool`, use: (c) => {
+    App.addlist_click({e: e, id: `pool`, use: (c) => {
       App.change_background(c[0], c[1], c[2])
     }, action: (value) => {
       App.apply_pool(value)
