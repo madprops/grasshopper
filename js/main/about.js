@@ -41,6 +41,7 @@ App.setup_about = () => {
       `Right Click on the filter shows recent filters used`,
       `In the filter, $month resolves to current month name`,
       `In the filter, $year resolves to full year number`,
+      `The filter mode "No Tab" shows items that are not open in a tab`,
     ]
 
     let close = DOM.el(`#about_close`)
