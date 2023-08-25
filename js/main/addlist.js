@@ -1,11 +1,11 @@
 App.setup_addlist = () => {
   App.create_popup({
     id: `addlist_alias`, setup: () => {
-      DOM.ev(DOM.el(`#add_alias_add`), `click`, () => {
+      DOM.ev(DOM.el(`#addlist_button_add_alias`), `click`, () => {
         App.do_addlist_parts(`aliases`, `alias`)
       })
 
-      DOM.ev(DOM.el(`#add_alias_remove`), `click`, () => {
+      DOM.ev(DOM.el(`#addlist_button_remove_alias`), `click`, () => {
         App.addlist_remove_parts(`aliases`, `alias`)
       })
     }, element: App.addlist_register({id: `alias`, setting: `aliases`, type: `parts`,
@@ -14,11 +14,11 @@ App.setup_addlist = () => {
 
   App.create_popup({
     id: `addlist_custom_filter`, setup: () => {
-      DOM.ev(DOM.el(`#add_custom_filter_add`), `click`, () => {
+      DOM.ev(DOM.el(`#addlist_button_add_custom_filter`), `click`, () => {
         App.do_addlist_single(`custom_filter`)
       })
 
-      DOM.ev(DOM.el(`#add_custom_filter_remove`), `click`, () => {
+      DOM.ev(DOM.el(`#addlist_button_remove_custom_filter`), `click`, () => {
         App.addlist_remove_single(`custom_filters`, `custom_filter`)
       })
     }, element: App.addlist_register({id: `custom_filter`, setting: `custom_filters`, type: `single`,
@@ -27,11 +27,11 @@ App.setup_addlist = () => {
 
   App.create_popup({
     id: `addlist_pool`, setup: () => {
-      DOM.ev(DOM.el(`#add_pool_add`), `click`, () => {
+      DOM.ev(DOM.el(`#addlist_button_add_pool`), `click`, () => {
         App.do_addlist_components(`pool`)
       })
 
-      DOM.ev(DOM.el(`#add_pool_remove`), `click`, () => {
+      DOM.ev(DOM.el(`#addlist_button_remove_pool`), `click`, () => {
         App.addlist_remove_components(`background_pool`, `pool`)
       })
 
@@ -63,8 +63,8 @@ App.do_addlist = (id) => {
   let new_value
   let values = []
 
-  for (let sett of o_args.settings) {
-    let el = DOM.el(`#addlist_widget_${sett}`)
+  for (let [i, w] of o_args.widgets.entries()) {
+    let el = App.addlist_widget(id, i)
     values.push(el.value.trim())
   }
 
@@ -94,29 +94,26 @@ App.do_addlist = (id) => {
 }
 
 App.addlist_register = (args = {}) => {
-  let def_args = {
-    props: [],
-  }
-
-  args = Object.assign(def_args, args)
   let container = DOM.create(`div`, `flex_column_center addlist_container`)
   let els = []
 
   for (let [i, w] of args.widgets.entries()) {
     if (w === `text`) {
-      let el = DOM.create(`input`, `text editor_text`, `addlist_widget_${i}`)
+      let el = DOM.create(`input`, `text editor_text`, `addlist_widget_${args.id}_${i}`)
       el.type = `text`
       el.spellcheck = false
       el.autocomplete = false
       el.placeholder = `Fix me`
+      els.push(el)
     }
     else if (w === `select`) {
       el = DOM.create(`div`, `flex_column_center gap_1`)
       let label = DOM.create(`div`)
-      label.textContent = App.capitalize_words(prop.replace(`__select`, ``).replace(/_/g, ` `))
-      let select = DOM.create(`select`, `editor_select`, `addlist_widget_${i}`)
+      label.textContent = `Fix me too`
+      let select = DOM.create(`select`, `editor_select`, `addlist_widget_${args.id}_${i}`)
       el.append(label)
       el.append(select)
+      els.push(el)
     }
   }
 
@@ -142,7 +139,7 @@ App.addlist_single = (args = {}) => {
   args = Object.assign(def_args, args)
   App.show_popup(`addlist_${args.id}`)
   App.check_addlist_buttons(args)
-  let el = App.addlist_item(args.id, 0)
+  let el = App.addlist_widget(args.id, 0)
   el.value = args.items || ``
   el.focus()
   args.mode = `single`
@@ -150,7 +147,7 @@ App.addlist_single = (args = {}) => {
 }
 
 App.do_addlist_single = (id) => {
-  let value = App.addlist_item(id, 0).value.trim()
+  let value = App.addlist_widget(id, 0).value.trim()
 
   if (!value) {
     return
@@ -165,7 +162,7 @@ App.do_addlist_single = (id) => {
 
 App.addlist_remove_single = (setting, id, value, force = false) => {
   if (!value) {
-    value = App.addlist_item(id, 0).value.trim()
+    value = App.addlist_widget(id, 0).value.trim()
   }
 
   let items = App.get_setting(setting)
@@ -194,18 +191,20 @@ App.addlist_parts = (args = {}) => {
   App.check_addlist_buttons(args)
   let o_args = App[`addlist_args_${args.id}`]
 
-  for (let [i, sett] of o_args.settings.entries()) {
-    DOM.el(`#addlist_widget_${sett}`).value = args.items[i] || ``
+  for (let [i, w] of o_args.widgets.entries()) {
+    let el = App.addlist_widget(args.id, i)
+    let value = args.items[i] || ``
+    el.value = value
   }
 
-  App.addlist_item(args.id, 0).focus()
+  App.addlist_widget(args.id, 0).focus()
   args.mode = `parts`
   App.addlist_data = args
 }
 
 App.do_addlist_parts = (id) => {
-  let value_1 = DOM.el(`#addlist_widget_0`).value.trim()
-  let value_2 = DOM.el(`#addlist_widget_1`).value.trim()
+  let value_1 = App.addlist_widget(id, 0).value.trim()
+  let value_2 = App.addlist_widget(id, 1).value.trim()
 
   if (!value_1 || !value_2) {
     return
@@ -224,8 +223,10 @@ App.addlist_remove_parts = (id, parts = [], force = false) => {
   let o_args = App[`addlist_args_${id}`]
 
   if (!parts.length) {
-    parts.push(DOM.el(`#addlist_widget_0`).value.trim())
-    parts.push(DOM.el(`#addlist_widget_1`).value.trim())
+    let el_1 = App.addlist_widget(id, 0)
+    let el_2 = App.addlist_widget(id, 1)
+    parts.push(el_1.value.trim())
+    parts.push(el_2.value.trim())
   }
 
   let items = App.get_setting(o_args.setting)
@@ -268,25 +269,18 @@ App.addlist_components = (args = {}) => {
   App.check_addlist_buttons(args)
   let o_args = App[`addlist_args_${args.id}`]
 
-  if (!args.items.length) {
-    for (let setting of o_args.settings) {
-      let value = App.get_setting(setting)
-      args.items.push(value)
-    }
+  for (let [i, w] of o_args.widgets.entries()) {
+    let value = args.items[i] || ``
+    App.addlist_widget(args.id, i).value = value
   }
 
-  for (let [i, setting] of o_args.settings.entries()) {
-    let value = args.items[i]
-    DOM.el(`#addlist_widget_${setting}`).value = value
-  }
-
-  App.addlist_item(args.id, 0).focus()
+  App.addlist_widget(args.id, 0).focus()
   args.mode = `components`
   App.addlist_data = args
 }
 
 App.do_addlist_components = (id) => {
-  let first = App.addlist_item(id, 0).value.trim()
+  let first = App.addlist_widget(id, 0).value.trim()
 
   if (!first) {
     return
@@ -302,7 +296,7 @@ App.do_addlist_components = (id) => {
 
 App.addlist_remove_components = (id, first, force) => {
   if (!first) {
-    first = App.addlist_item(id, 0).value.trim()
+    first = App.addlist_widget(id, 0).value.trim()
   }
 
   let items = App.get_setting(setting)
@@ -417,7 +411,7 @@ App.after_addlist = (setting, items) => {
 }
 
 App.check_addlist_buttons = (args) => {
-  let remove_el = DOM.el(`#addlist_button_remvoe_${args.id}`)
+  let remove_el = DOM.el(`#addlist_button_remove_${args.id}`)
   let add_el = DOM.el(`#addlist_button_add_${args.id}`)
 
   if (args.update) {
@@ -437,6 +431,6 @@ App.addlist_def_args = () => {
   }
 }
 
-App.addlist_item = (id, i = 0) => {
-  return DOM.el(`#addlist_widget_${i}`)
+App.addlist_widget = (id, i = 0) => {
+  return DOM.el(`#addlist_widget_${id}_${i}`)
 }
