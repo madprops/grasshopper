@@ -567,11 +567,12 @@ App.animate_background_image = (url) => {
   let new_el = DOM.el(`#background_${new_num}`)
   let old_el = DOM.el(`#background_${old_num}`)
 
-  if (url && old_el.style.backgroundImage.includes(url)) {
+  if (url === App.background_url) {
     return
   }
 
   App.active_background = new_num
+  App.background_url = url
 
   function opacity (n1, n2) {
     new_el.style.opacity = n1
@@ -590,7 +591,7 @@ App.animate_background_image = (url) => {
     opacity(1, 0)
     bg_new(`unset`)
     bg_old(`unset`)
-    App.first_bg_image = true
+    App.first_background = true
     return
   }
   else {
@@ -600,9 +601,9 @@ App.animate_background_image = (url) => {
     DOM.ev(App.background_image, `load`, () => {
       bg_new(`url(${url})`)
 
-      if (!App.get_setting(`background_transitions`) || !App.first_bg_image) {
+      if (!App.get_setting(`background_transitions`) || !App.first_background) {
         opacity(1, 0)
-        App.first_bg_image = true
+        App.first_background = true
         return
       }
 
@@ -610,7 +611,7 @@ App.animate_background_image = (url) => {
       let op_old = 1
       let amount = 0.1
       opacity(op_new, op_old)
-      App.first_bg_image = true
+      App.first_background = true
       let date = Date.now()
       App.animate_background_date = date
 
@@ -647,7 +648,7 @@ App.animate_background_image = (url) => {
       opacity(1, 0)
       bg_new(`unset`)
       bg_old(`unset`)
-      App.first_bg_image = true
+      App.first_background = true
     })
   }
 }

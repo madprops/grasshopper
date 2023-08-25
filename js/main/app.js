@@ -53,7 +53,8 @@ App.similarity_threshold = 0.7
 App.max_smooth_scroll = 1000 * 2
 App.settings_ready = false
 App.active_background = 1
-App.first_bg_image = false
+App.background_url = `__unset__`
+App.first_background = false
 
 App.settings_save_delay = 250
 App.activated_delay = 2600
