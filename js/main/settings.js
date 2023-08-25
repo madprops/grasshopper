@@ -120,8 +120,8 @@ App.build_default_settings = () => {
   obj.selected_effect = {value: `background`, category: category, version: 1}
   obj.double_click_action = {value: false, category: category, version: 1}
   obj.smooth_scrolling = {value: true, category: category, version: 1}
-  obj.aliases = {value: [`planet = earth`, `animal = grasshopper`], category: category, version: 1}
-  obj.custom_filters = {value: [`re: ($month | $year)`, `re: \\d{2}\\/\\d{2}\\/\\d{4}`], category: category, version: 1}
+  obj.aliases = {value: [`planet = earth`, `animal = grasshopper`, `food = leaves`], category: category, version: 1}
+  obj.custom_filters = {value: [`re: (today | $day)`, `re: ($month | $year)`, `re: \\d{2}\\/\\d{2}\\/\\d{4}`], category: category, version: 1}
   obj.sort_commands = {value: true, category: category, version: 1}
   obj.all_bookmarks = {value: true, category: category, version: 1}
 
