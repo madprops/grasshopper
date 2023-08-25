@@ -347,9 +347,13 @@ NeedContext.select_action = async (e, index = NeedContext.index, mode = `mouse`)
     NeedContext.show(x, y, items, false)
   }
 
-  if (item.action) {
+  if (e.button === 0 && item.action) {
     NeedContext.hide()
     item.action(e)
+  }
+  else if (e.button === 1 && item.alt_action) {
+    NeedContext.hide()
+    item.alt_action(e)
   }
   else if (item.items) {
     if (item.items.length === 1 && item.direct) {

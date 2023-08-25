@@ -799,6 +799,9 @@ App.show_filter_history = (e, mode) => {
       text: value,
       action: () => {
         App.set_filter(mode, value)
+      },
+      alt_action: () => {
+        App.forget_filter_history_item(value)
       }
     })
   }
@@ -849,4 +852,9 @@ App.forget_filter_history = () => {
     App.filter_history = []
     App.stor_save_filter_history()
   })
+}
+
+App.forget_filter_history_item = (value) => {
+  App.filter_history = App.filter_history.filter(x => x !== value)
+  App.stor_save_filter_history()
 }
