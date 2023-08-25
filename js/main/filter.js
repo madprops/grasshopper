@@ -261,6 +261,18 @@ App.filter_check = (args) => {
     else if (args.filter_mode === `duplicate`) {
       match = args.duplicates.includes(args.item)
     }
+    else if (args.filter_mode === `notab`) {
+      let no_tab = true
+
+      for (let tab of App.get_items(`tabs`)) {
+        if (tab.path === args.item.path) {
+          no_tab = false
+          break
+        }
+      }
+
+      match = no_tab
+    }
   }
 
   return match
@@ -512,6 +524,11 @@ App.create_filter_menu = (mode) => {
   fmodes.push([`tag`, `Tag`, true])
   fmodes.push([`color`, `Color`, true])
   fmodes.push([`edited`, `Edited`])
+
+  if (mode !== `tabs`) {
+    fmodes.push([`notab`, `No Tab`])
+  }
+
   fmodes.push(separator())
   fmodes.push([`custom`, `Custom`, true])
   fmodes.push([`refine`, `Refine`, true])
