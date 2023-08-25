@@ -2,7 +2,7 @@ App.setup_addlist = () => {
   App.create_popup({
     id: `addlist_alias`, setup: () => {
       DOM.ev(DOM.el(`#addlist_button_add_alias`), `click`, () => {
-        App.do_addlist_parts(`aliases`, `alias`)
+        App.do_addlist_parts(`alias`)
       })
 
       DOM.ev(DOM.el(`#addlist_button_remove_alias`), `click`, () => {
@@ -59,7 +59,7 @@ App.setup_addlist = () => {
 
 App.do_addlist = (id) => {
   let o_args = App[`addlist_args_${id}`]
-  let area = DOM.el(`#settings_${args.setting}`)
+  let area = DOM.el(`#settings_${o_args.setting}`)
   let new_value
   let values = []
 
@@ -68,13 +68,13 @@ App.do_addlist = (id) => {
     values.push(el.value.trim())
   }
 
-  if (o_args.mode === `single`) {
+  if (o_args.type === `single`) {
     new_value = values[0]
   }
-  else if (o_args.mode === `parts`) {
+  else if (o_args.type === `parts`) {
     new_value = line = `${values[0]} = ${values[1]}`
   }
-  else if (o_args.mode === `components`) {
+  else if (o_args.type === `components`) {
     let joined = values.join(` ; `)
     new_value = joined.replace(/[;\s]+$/g, ``)
   }
@@ -84,7 +84,7 @@ App.do_addlist = (id) => {
 
     if (new_value) {
       area.value = new_area
-      App.do_save_text_setting(args.area, area)
+      App.do_save_text_setting(o_args.setting, area)
     }
 
     App.hide_popup()
