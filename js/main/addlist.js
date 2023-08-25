@@ -9,7 +9,7 @@ App.setup_addlist = () => {
         App.addlist_remove_parts(`alias`)
       })
     }, element: App.addlist_register({id: `alias`, setting: `aliases`, type: `parts`,
-    widgets: [`text`, `text`], title: `Alias Editor`})
+    widgets: [`text`, `text`], labels: [`Term 1`, `Term 2`], title: `Alias Editor`})
   })
 
   App.create_popup({
@@ -22,7 +22,7 @@ App.setup_addlist = () => {
         App.addlist_remove_single(`custom_filter`)
       })
     }, element: App.addlist_register({id: `custom_filter`, setting: `custom_filters`, type: `single`,
-    widgets: [`text`], title: `Custom Filter Editor`})
+    widgets: [`text`], labels: [`Filter`], title: `Custom Filter Editor`})
   })
 
   App.create_popup({
