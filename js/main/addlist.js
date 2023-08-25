@@ -335,17 +335,18 @@ App.addlist_remove_components = (id, first, force) => {
 }
 
 App.addlist_click = (args = {}) => {
+  let o_args = App[`addlist_args_${args.id}`]
   let line = App.get_line_under_caret(args.e.target)
   let items
 
   if (line) {
-    if (args.type === `single`) {
+    if (o_args.type === `single`) {
       items = line
     }
-    else if (args.type === `parts`) {
+    else if (o_args.type === `parts`) {
       items = App.addlist_get_parts(line)
     }
-    else if (args.type === `components`) {
+    else if (o_args.type === `components`) {
       items = App.addlist_get_components(line)
     }
   }
@@ -357,19 +358,18 @@ App.addlist_click = (args = {}) => {
   function edit () {
     let obj = {
       id: args.id,
-      setting: args.setting,
       items: items,
       action: args.action,
       update: true,
     }
 
-    if (args.type === `single`) {
+    if (o_args.type === `single`) {
       App.addlist_single(obj)
     }
-    else if (args.type === `parts`) {
+    else if (o_args.type === `parts`) {
       App.addlist_parts(obj)
     }
-    else if (args.type === `components`) {
+    else if (o_args.type === `components`) {
       App.addlist_components(obj)
     }
   }
