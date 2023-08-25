@@ -6,7 +6,7 @@ App.setup_addlist = () => {
       })
 
       DOM.ev(DOM.el(`#addlist_button_remove_alias`), `click`, () => {
-        App.addlist_remove_parts(`aliases`, `alias`)
+        App.addlist_remove_parts(`alias`)
       })
     }, element: App.addlist_register({id: `alias`, setting: `aliases`, type: `parts`,
     widgets: [`text`, `text`], title: `Alias Editor`})
@@ -19,7 +19,7 @@ App.setup_addlist = () => {
       })
 
       DOM.ev(DOM.el(`#addlist_button_remove_custom_filter`), `click`, () => {
-        App.addlist_remove_single(`custom_filters`, `custom_filter`)
+        App.addlist_remove_single(`custom_filter`)
       })
     }, element: App.addlist_register({id: `custom_filter`, setting: `custom_filters`, type: `single`,
     widgets: [`text`], title: `Custom Filter Editor`})
@@ -32,7 +32,7 @@ App.setup_addlist = () => {
       })
 
       DOM.ev(DOM.el(`#addlist_button_remove_pool`), `click`, () => {
-        App.addlist_remove_components(`background_pool`, `pool`)
+        App.addlist_remove_components(`pool`)
       })
 
       let eff = DOM.el(`#addlist_widget_pool_1`)
