@@ -39,9 +39,10 @@ App.setup_about = () => {
       `Data like settings and profiles can be exported and imported`,
       `Alt + Click selects items without triggering actions`,
       `Right Click on the filter shows recent filters used`,
+      `In the filter, $day resolves to the current week day`,
       `In the filter, $month resolves to the current month name`,
       `In the filter, $year resolves to the full year number`,
-      `The filter mode "No Tab" shows items that are not open in a tab`,
+      `The filter mode 'No Tab' shows items that are not open in a tab`,
     ]
 
     let close = DOM.el(`#about_close`)

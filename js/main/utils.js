@@ -188,7 +188,7 @@ App.log = (message, mode = `normal`, date = false) => {
     console.info(`🔵 ${message}`)
   }
   else if (mode === `green`) {
-    console.log(`%c${message}`, `color: lightgreen;`)
+    console.info(`%c${message}`, `color: lightgreen;`)
   }
   else {
     console.info(message)

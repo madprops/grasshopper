@@ -167,8 +167,10 @@ App.do_filter = async (mode, force = false, deep = false) => {
 
 App.replace_filter_vars = (value) => {
   let date = Date.now()
+  let day = dateFormat(date, `dddd`).toLowerCase()
   let month = dateFormat(date, `mmmm`).toLowerCase()
   let year = dateFormat(date, `yyyy`)
+  value = value.replace(/\$day/g, day)
   value = value.replace(/\$month/g, month)
   value = value.replace(/\$year/g, year)
   return value
