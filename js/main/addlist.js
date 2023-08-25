@@ -228,7 +228,7 @@ App.addlist_remove_parts = (id, parts = [], force = false) => {
     parts.push(DOM.el(`#addlist_widget_1`).value.trim())
   }
 
-  let items = App.get_setting(setting)
+  let items = App.get_setting(o_args.setting)
 
   for (let item of items) {
     let split = item.split(`=`)
@@ -238,7 +238,7 @@ App.addlist_remove_parts = (id, parts = [], force = false) => {
     if ((parts[0] === value_1b) && (parts[1] === value_2b)) {
       App.show_confirm(`Remove item?`, () => {
         items = items.filter(x => x !== item)
-        App.after_addlist(setting, items, item)
+        App.after_addlist(o_args.setting, items, item)
       }, undefined, force)
     }
   }
@@ -264,7 +264,7 @@ App.addlist_get_components = (full) => {
 App.addlist_components = (args = {}) => {
   let def_args = App.addlist_def_args()
   args = Object.assign(def_args, args)
-  App.show_popup(`addlist_${args.short}`)
+  App.show_popup(`addlist_${args.id}`)
   App.check_addlist_buttons(args)
   let o_args = App[`addlist_args_${args.id}`]
 
@@ -417,8 +417,8 @@ App.after_addlist = (setting, items) => {
 }
 
 App.check_addlist_buttons = (args) => {
-  let remove_el = DOM.el(`#add_${args.short}_remove`)
-  let add_el = DOM.el(`#add_${args.short}_add`)
+  let remove_el = DOM.el(`#addlist_button_remvoe_${args.id}`)
+  let add_el = DOM.el(`#addlist_button_add_${args.id}`)
 
   if (args.update) {
     remove_el.classList.remove(`hidden`)
