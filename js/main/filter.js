@@ -47,6 +47,7 @@ App.do_filter = async (mode, force = false, deep = false) => {
     let svalue = value
 
     if (force || (svalue !== App[`last_${mode}_query`])) {
+      svalue = App.replace_filter_vars(svalue)
       await App.search_items(mode, svalue, deep)
 
       if (App.active_mode !== mode) {
