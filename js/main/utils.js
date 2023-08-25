@@ -187,6 +187,9 @@ App.log = (message, mode = `normal`, date = false) => {
   else if (mode === `debug_force`) {
     console.info(`🔵 ${message}`)
   }
+  else if (mode === `green`) {
+    console.log(`%c${message}`, `color: lightgreen;`)
+  }
   else {
     console.info(message)
   }
@@ -314,12 +317,10 @@ App.print_intro = () => {
 @ )====// .\___
 \#\_\__(_/_\\_/
   / /       \\
-
-Starting ${App.manifest.name} v${App.manifest.version}
-${App.nice_date(d)} | ${d}
 `
-
-  App.log(s, `raw`)
+  App.log(s.trim(), `green`)
+  App.log(`Starting ${App.manifest.name} v${App.manifest.version}`)
+  App.log(`${App.nice_date(d)} | ${d}`)
 }
 
 App.check_force = (warn_setting, num) => {
