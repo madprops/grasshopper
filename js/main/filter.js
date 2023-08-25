@@ -164,7 +164,17 @@ App.do_filter = async (mode, force = false, deep = false) => {
   App.do_check_scroller(mode)
 }
 
+App.replace_filter_vars = (value) => {
+  let date = Date.now()
+  let month = dateFormat(date, `mmmm`).toLowerCase()
+  let year = dateFormat(date, `yyyy`)
+  value = value.replace(/\$month/g, month)
+  value = value.replace(/\$year/g, year)
+  return value
+}
+
 App.make_filter_regex = (value, by_what) => {
+  value = App.replace_filter_vars(value)
   let regex
 
   if (by_what.startsWith(`re`)) {

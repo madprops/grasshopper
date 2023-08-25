@@ -120,8 +120,8 @@ App.build_default_settings = () => {
   obj.selected_effect = {value: `background`, category: category, version: 1}
   obj.double_click_action = {value: false, category: category, version: 1}
   obj.smooth_scrolling = {value: true, category: category, version: 1}
-  obj.aliases = {value: [], category: category, version: 1}
-  obj.custom_filters = {value: [], category: category, version: 1}
+  obj.aliases = {value: [`earth = planet`], category: category, version: 1}
+  obj.custom_filters = {value: [`$month`, `$year`], category: category, version: 1}
   obj.sort_commands = {value: true, category: category, version: 1}
   obj.all_bookmarks = {value: true, category: category, version: 1}
 

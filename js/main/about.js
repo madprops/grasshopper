@@ -39,6 +39,8 @@ App.setup_about = () => {
       `Data like settings and profiles can be exported and imported`,
       `Alt + Click selects items without triggering actions`,
       `Right Click on the filter shows recent filters used`,
+      `In the filter, $month resolves to current month name`,
+      `In the filter, $year resolves to full year number`,
     ]
 
     let close = DOM.el(`#about_close`)
