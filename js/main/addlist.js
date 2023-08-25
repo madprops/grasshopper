@@ -35,7 +35,7 @@ App.setup_addlist = () => {
         App.addlist_remove_components(`background_pool`, `pool`)
       })
 
-      let eff = DOM.el(`#add_pool_effect`)
+      let eff = DOM.el(`#addlist_widget_pool_1`)
 
       for (let e of App.background_effects) {
         let o = DOM.create(`option`)
@@ -44,7 +44,7 @@ App.setup_addlist = () => {
         eff.append(o)
       }
 
-      let tiles = DOM.el(`#add_pool_tiles`)
+      let tiles = DOM.el(`#addlist_widget_pool_2`)
 
       for (let e of App.background_tiles) {
         let o = DOM.create(`option`)
@@ -53,7 +53,7 @@ App.setup_addlist = () => {
         tiles.append(o)
       }
     }, element: App.addlist_register({id: `pool`, setting: `background_pool`, type: `components`,
-    widgets: [`text`, `select`, `select`], title: `Pool Editor`,})
+    widgets: [`text`, `select`, `select`], labels: [`Background Image`, `Effect`, `Tiles`], title: `Pool Editor`,})
   })
 }
 
@@ -94,6 +94,11 @@ App.do_addlist = (id) => {
 }
 
 App.addlist_register = (args = {}) => {
+  let def_args = {
+    labels: [],
+  }
+
+  args = Object.assign(def_args, args)
   let container = DOM.create(`div`, `flex_column_center addlist_container`)
   let els = []
 
@@ -103,13 +108,13 @@ App.addlist_register = (args = {}) => {
       el.type = `text`
       el.spellcheck = false
       el.autocomplete = false
-      el.placeholder = `Fix me`
+      el.placeholder = args.labels[i] || `Value`
       els.push(el)
     }
     else if (w === `select`) {
       el = DOM.create(`div`, `flex_column_center gap_1`)
       let label = DOM.create(`div`)
-      label.textContent = `Fix me too`
+      label.textContent = args.labels[i] || `Select`
       let select = DOM.create(`select`, `editor_select`, `addlist_widget_${args.id}_${i}`)
       el.append(label)
       el.append(select)
@@ -154,24 +159,26 @@ App.do_addlist_single = (id) => {
   }
 
   if (App.addlist_data.items) {
-    App.addlist_remove_single(setting, id, App.addlist_data.items, true)
+    App.addlist_remove_single(id, App.addlist_data.items, true)
   }
 
   App.do_addlist(id)
 }
 
-App.addlist_remove_single = (setting, id, value, force = false) => {
+App.addlist_remove_single = (id, value, force = false) => {
+  let o_args = App[`addlist_args_${id}`]
+
   if (!value) {
     value = App.addlist_widget(id, 0).value.trim()
   }
 
-  let items = App.get_setting(setting)
+  let items = App.get_setting(o_args.setting)
 
   for (let item of items) {
     if (item === value) {
       App.show_confirm(`Remove item?`, () => {
         items = items.filter(x => x !== item)
-        App.after_addlist(setting, items)
+        App.after_addlist(o_args.setting, items)
       }, undefined, force)
     }
   }
@@ -239,7 +246,7 @@ App.addlist_remove_parts = (id, parts = [], force = false) => {
     if ((parts[0] === value_1b) && (parts[1] === value_2b)) {
       App.show_confirm(`Remove item?`, () => {
         items = items.filter(x => x !== item)
-        App.after_addlist(o_args.setting, items, item)
+        App.after_addlist(o_args.setting, items)
       }, undefined, force)
     }
   }
@@ -295,11 +302,13 @@ App.do_addlist_components = (id) => {
 }
 
 App.addlist_remove_components = (id, first, force) => {
+  let o_args = App[`addlist_args_${id}`]
+
   if (!first) {
     first = App.addlist_widget(id, 0).value.trim()
   }
 
-  let items = App.get_setting(setting)
+  let items = App.get_setting(o_args.setting)
 
   if (!items.length) {
     return
@@ -317,7 +326,7 @@ App.addlist_remove_components = (id, first, force) => {
   if (match) {
     App.show_confirm(`Remove item?`, () => {
       items = items.filter(x => !x.startsWith(first))
-      App.after_addlist(setting, items, first)
+      App.after_addlist(o_args.setting, items)
     }, undefined, force)
   }
   else {

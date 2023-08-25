@@ -862,7 +862,11 @@ App.start_theme_settings = () => {
   })
 
   DOM.ev(DOM.el(`#settings_background_pool_add`), `click`, () => {
-    App.addlist_components({id: `pool`, action: (value) => {
+    App.addlist_components({id: `pool`, items: [
+      App.get_setting(`background_image`),
+      App.get_setting(`background_effect`),
+      App.get_setting(`background_tiles`),
+    ], action: (value) => {
       App.apply_pool(value)
     }})
   })
