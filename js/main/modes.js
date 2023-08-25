@@ -217,10 +217,10 @@ App.first_mode = () => {
   return App.mode_order[0]
 }
 
-App.getting = (mode) => {
+App.getting = (mode, force = false) => {
   let icon = App.mode_icons[mode]
   let name = App.capitalize(mode)
-  App.debug(`${icon} Getting ${name}`)
+  App.debug(`${icon} Getting ${name}`, force)
 }
 
 App.make_mode_order = () => {
