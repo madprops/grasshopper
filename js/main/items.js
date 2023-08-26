@@ -20,13 +20,6 @@ App.select_item = (item, scroll = `nearest`, deselect = true) => {
 
   let prev = App.get_selected(item.mode)
 
-  if (item === prev) {
-    if (App.selected_items(item.mode).length === 1) {
-      App.scroll_to_item(item, scroll)
-      return
-    }
-  }
-
   if (deselect) {
     App.deselect(item.mode)
   }
@@ -1033,10 +1026,16 @@ App.select_range = (item) => {
 }
 
 App.deselect = (mode = App.window_mode, select = `none`) => {
+  let items = App.selected_items(mode)
+
+  if (items.length < 2) {
+    return
+  }
+
   let num = 0
   let first, last
 
-  for (let item of App.selected_items(mode)) {
+  for (let item of items) {
     App.toggle_selected(item, false, false)
 
     if (!first) {
@@ -1121,15 +1120,7 @@ App.toggle_selected = (item, what, select = true) => {
 }
 
 App.selected_items = (mode = App.window_mode) => {
-  let ans = []
-
-  for (let item of App.get_items(mode)) {
-    if (item.selected) {
-      ans.push(item)
-    }
-  }
-
-  return ans
+  return App.get_items(mode).filter(x => x.selected)
 }
 
 App.after_open = (shift = false) => {
