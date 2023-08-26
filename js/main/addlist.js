@@ -53,7 +53,7 @@ App.setup_addlist = () => {
         tiles.append(o)
       }
     }, element: App.addlist_register({id: `pool`, setting: `background_pool`, type: `components`,
-    widgets: [`text`, `select`, `select`], labels: [`Background Image`, `Effect`, `Tiles`], title: `Pool Editor`,})
+    widgets: [`text`, `select`, `select`], labels: [`Image URL`, `Effect`, `Tiles`], title: `Pool Editor`,})
   })
 }
 
