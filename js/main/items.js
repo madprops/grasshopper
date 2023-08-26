@@ -14,14 +14,15 @@ App.select_item = (item, scroll = `nearest`, deselect = true) => {
     return
   }
 
-  let prev = App.get_selected(item.mode)
-
   if (!item.created) {
     App.create_item_element(item)
   }
 
-  if (item === App.get_selected(item.mode)) {
+  let prev = App.get_selected(item.mode)
+
+  if (item === prev) {
     if (App.selected_items(item.mode).length === 1) {
+      App.scroll_to_item(item, scroll)
       return
     }
   }
