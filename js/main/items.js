@@ -40,6 +40,7 @@ App.select_item = (item, scroll = `nearest`, deselect = true) => {
     // Give them time to render
     requestAnimationFrame(() => {
       App.scroll_to_item(item, scroll)
+      App.do_check_scroller(item.mode)
     })
   }
 }
