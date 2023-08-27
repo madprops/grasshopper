@@ -25,7 +25,11 @@ App.build_default_settings = () => {
   obj.background_transitions = {value: true, category: category, version: 1}
   obj.random_background_gifs = {value: true, category: category, version: 1}
   obj.random_themes = {value: `dark`, category: category, version: 1}
-  obj.background_pool = {value: [`/img/background_1.jpg`, `/img/background_2.jpg`, `/img/background_3.gif`], category: category, version: 1}
+  obj.background_pool = {value: [
+    `/img/background_1.jpg ; none ; none`,
+    `/img/background_2.jpg ; none ; none`,
+    `/img/background_3.gif ; none ; none`
+  ], category: category, version: 1}
 
   category = `media`
   obj.view_image_tabs = {value: `icon`, category: category, version: 1}

@@ -147,8 +147,8 @@ App.addlist_register = (args = {}) => {
   remove.textContent = `Remove`
   let add = DOM.create(`div`, `button`, `addlist_add_${args.id}`)
   add.textContent = `Add`
-  btns.append(use)
   btns.append(remove)
+  btns.append(use)
   btns.append(add)
   container.append(btns)
 
