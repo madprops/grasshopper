@@ -333,7 +333,14 @@ App.addlist_components = (args = {}) => {
       el.src = value
     }
     else {
-      el.value = value
+      if (!value) {
+        if (w === `select`) {
+          el.selectedIndex = 0
+        }
+      }
+      else {
+        el.value = value
+      }
     }
   }
 
