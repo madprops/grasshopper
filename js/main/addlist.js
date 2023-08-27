@@ -76,9 +76,26 @@ App.addlist_register = (args = {}) => {
 
   args = Object.assign(def_args, args)
   let container = DOM.create(`div`, `flex_column_center addlist_container`)
-  let title = DOM.create(`div`, `bigger`)
+  let top = DOM.create(`div`, `flex_row_center gap_3 full_width`)
+  let title = DOM.create(`div`, `addlist_title`)
   title.textContent = args.title
-  container.append(title)
+  let btn_prev = DOM.create(`div`, `button`, `addlist_prev_${args.id}`)
+  btn_prev.textContent = `<`
+  let btn_next = DOM.create(`div`, `button`, `addlist_next_${args.id}`)
+  btn_next.textContent = `>`
+
+  DOM.ev(btn_prev, `click`, () => {
+    App.addlist_next(args.id, true)
+  })
+
+  DOM.ev(btn_next, `click`, () => {
+    App.addlist_next(args.id)
+  })
+
+  top.append(btn_prev)
+  top.append(title)
+  top.append(btn_next)
+  container.append(top)
   let els = []
 
   for (let [i, w] of args.widgets.entries()) {
@@ -123,11 +140,11 @@ App.addlist_register = (args = {}) => {
 
   container.append(...els)
   let btns = DOM.create(`div`, `flex_row_center gap_1`)
-  let use = DOM.create(`div`, `button`, `addlist_button_use_${args.id}`)
+  let use = DOM.create(`div`, `button`, `addlist_use_${args.id}`)
   use.textContent = `Use`
-  let remove = DOM.create(`div`, `button`, `addlist_button_remove_${args.id}`)
+  let remove = DOM.create(`div`, `button`, `addlist_remove_${args.id}`)
   remove.textContent = `Remove`
-  let add = DOM.create(`div`, `button`, `addlist_button_add_${args.id}`)
+  let add = DOM.create(`div`, `button`, `addlist_add_${args.id}`)
   add.textContent = `Add`
   btns.append(use)
   btns.append(remove)
@@ -375,22 +392,28 @@ App.addlist_remove_components = (id, first, force) => {
 
 App.addlist_click = (args = {}) => {
   let o_args = App[`addlist_args_${args.id}`]
-  let line = App.get_line_under_caret(args.e.target)
-  let items
 
-  if (line) {
-    if (o_args.type === `single`) {
-      items = line
-    }
-    else if (o_args.type === `parts`) {
-      items = App.addlist_get_parts(line)
-    }
-    else if (o_args.type === `components`) {
-      items = App.addlist_get_components(line)
-    }
+  if (!args.line) {
+    args.line = App.get_line_under_caret(args.e.target)
   }
 
-  if (!line || !items) {
+  if (!args.line) {
+    return
+  }
+
+  let items
+
+  if (o_args.type === `single`) {
+    items = line
+  }
+  else if (o_args.type === `parts`) {
+    items = App.addlist_get_parts(args.line)
+  }
+  else if (o_args.type === `components`) {
+    items = App.addlist_get_components(args.line)
+  }
+
+  if (!items) {
     return
   }
 
@@ -399,6 +422,7 @@ App.addlist_click = (args = {}) => {
     items: items,
     action: args.action,
     use: args.use,
+    line: args.line,
     update: true,
   }
 
@@ -435,16 +459,22 @@ App.after_addlist = (setting, items) => {
 }
 
 App.check_addlist_buttons = (args) => {
-  let use_el = DOM.el(`#addlist_button_use_${args.id}`)
-  let remove_el = DOM.el(`#addlist_button_remove_${args.id}`)
-  let add_el = DOM.el(`#addlist_button_add_${args.id}`)
+  let use_el = DOM.el(`#addlist_use_${args.id}`)
+  let remove_el = DOM.el(`#addlist_remove_${args.id}`)
+  let add_el = DOM.el(`#addlist_add_${args.id}`)
+  let prev_el = DOM.el(`#addlist_prev_${args.id}`)
+  let next_el = DOM.el(`#addlist_next_${args.id}`)
 
   if (args.update) {
     remove_el.classList.remove(`hidden`)
+    prev_el.classList.remove(`hidden`)
+    next_el.classList.remove(`hidden`)
     add_el.textContent = `Update`
   }
   else {
     remove_el.classList.add(`hidden`)
+    prev_el.classList.add(`hidden`)
+    next_el.classList.add(`hidden`)
     add_el.textContent = `Add`
   }
 
@@ -482,4 +512,40 @@ App.addlist_use = () => {
   }
 
   App.hide_popup()
+}
+
+App.addlist_next = (id, reverse = false) => {
+  let data = App.addlist_data
+  let o_args = App[`addlist_args_${id}`]
+  let lines = App.get_setting(o_args.setting).slice(0)
+
+  if (lines.length < 2) {
+    return
+  }
+
+  let waypoint = false
+
+  if (reverse) {
+    lines.reverse()
+  }
+
+  let next
+
+  for (let line of lines) {
+    if (waypoint) {
+      next = line
+      break
+    }
+
+    if (line === data.line) {
+      waypoint = true
+    }
+  }
+
+  if (!next) {
+    next = lines[0]
+  }
+
+  data.line = next
+  App.addlist_click(data)
 }
