@@ -1,40 +1,16 @@
 App.setup_addlist = () => {
   App.create_popup({
-    id: `addlist_alias`, setup: () => {
-      DOM.ev(DOM.el(`#addlist_button_add_alias`), `click`, () => {
-        App.do_addlist_parts(`alias`)
-      })
-
-      DOM.ev(DOM.el(`#addlist_button_remove_alias`), `click`, () => {
-        App.addlist_remove_parts(`alias`)
-      })
-    }, element: App.addlist_register({id: `alias`, setting: `aliases`, type: `parts`,
+    id: `addlist_alias`, element: App.addlist_register({id: `alias`, setting: `aliases`, type: `parts`,
     widgets: [`text`, `text`], labels: [`Term 1`, `Term 2`], title: `Alias Editor`})
   })
 
   App.create_popup({
-    id: `addlist_custom_filter`, setup: () => {
-      DOM.ev(DOM.el(`#addlist_button_add_custom_filter`), `click`, () => {
-        App.do_addlist_single(`custom_filter`)
-      })
-
-      DOM.ev(DOM.el(`#addlist_button_remove_custom_filter`), `click`, () => {
-        App.addlist_remove_single(`custom_filter`)
-      })
-    }, element: App.addlist_register({id: `custom_filter`, setting: `custom_filters`, type: `single`,
+    id: `addlist_custom_filter`, element: App.addlist_register({id: `custom_filter`, setting: `custom_filters`, type: `single`,
     widgets: [`text`], labels: [`Filter`], title: `Custom Filter Editor`})
   })
 
   App.create_popup({
     id: `addlist_pool`, setup: () => {
-      DOM.ev(DOM.el(`#addlist_button_add_pool`), `click`, () => {
-        App.do_addlist_components(`pool`)
-      })
-
-      DOM.ev(DOM.el(`#addlist_button_remove_pool`), `click`, () => {
-        App.addlist_remove_components(`pool`)
-      })
-
       let eff = DOM.el(`#addlist_widget_pool_1`)
 
       for (let e of App.background_effects) {
@@ -147,13 +123,49 @@ App.addlist_register = (args = {}) => {
 
   container.append(...els)
   let btns = DOM.create(`div`, `flex_row_center gap_1`)
-  let add = DOM.create(`div`, `button`, `addlist_button_add_${args.id}`)
-  add.textContent = `Add`
+  let use = DOM.create(`div`, `button`, `addlist_button_use_${args.id}`)
+  use.textContent = `Use`
   let remove = DOM.create(`div`, `button`, `addlist_button_remove_${args.id}`)
   remove.textContent = `Remove`
+  let add = DOM.create(`div`, `button`, `addlist_button_add_${args.id}`)
+  add.textContent = `Add`
+  btns.append(use)
   btns.append(remove)
   btns.append(add)
   container.append(btns)
+
+  if (args.type === `single`) {
+    DOM.ev(add, `click`, () => {
+      App.do_addlist_single(args.id)
+    })
+
+    DOM.ev(remove, `click`, () => {
+      App.addlist_remove_single(args.id)
+    })
+  }
+  else if (args.type === `parts`) {
+    DOM.ev(add, `click`, () => {
+      App.do_addlist_parts(args.id)
+    })
+
+    DOM.ev(remove, `click`, () => {
+      App.addlist_remove_parts(args.id)
+    })
+  }
+  else if (args.type === `components`) {
+    DOM.ev(add, `click`, () => {
+      App.do_addlist_components(args.id)
+    })
+
+    DOM.ev(remove, `click`, () => {
+      App.addlist_remove_components(args.id)
+    })
+  }
+
+  DOM.ev(use, `click`, () => {
+    App.addlist_use()
+  })
+
   App[`addlist_args_${args.id}`] = args
   return container
 }
@@ -382,46 +394,22 @@ App.addlist_click = (args = {}) => {
     return
   }
 
-  function edit () {
-    let obj = {
-      id: args.id,
-      items: items,
-      action: args.action,
-      update: true,
-    }
-
-    if (o_args.type === `single`) {
-      App.addlist_single(obj)
-    }
-    else if (o_args.type === `parts`) {
-      App.addlist_parts(obj)
-    }
-    else if (o_args.type === `components`) {
-      App.addlist_components(obj)
-    }
+  let obj = {
+    id: args.id,
+    items: items,
+    action: args.action,
+    use: args.use,
+    update: true,
   }
 
-  if (args.use) {
-    let menu = []
-
-    menu.push({
-      text: `Edit`,
-      action: () => {
-        edit()
-      }
-    })
-
-    menu.push({
-      text: `Use`,
-      action: () => {
-        args.use(items)
-      }
-    })
-
-    NeedContext.show(args.e.clientX, args.e.clientY, menu)
+  if (o_args.type === `single`) {
+    App.addlist_single(obj)
   }
-  else {
-    edit()
+  else if (o_args.type === `parts`) {
+    App.addlist_parts(obj)
+  }
+  else if (o_args.type === `components`) {
+    App.addlist_components(obj)
   }
 }
 
@@ -447,6 +435,7 @@ App.after_addlist = (setting, items) => {
 }
 
 App.check_addlist_buttons = (args) => {
+  let use_el = DOM.el(`#addlist_button_use_${args.id}`)
   let remove_el = DOM.el(`#addlist_button_remove_${args.id}`)
   let add_el = DOM.el(`#addlist_button_add_${args.id}`)
 
@@ -457,6 +446,13 @@ App.check_addlist_buttons = (args) => {
   else {
     remove_el.classList.add(`hidden`)
     add_el.textContent = `Add`
+  }
+
+  if (args.use) {
+    use_el.classList.remove(`hidden`)
+  }
+  else {
+    use_el.classList.add(`hidden`)
   }
 }
 
@@ -476,4 +472,14 @@ App.update_image = (id) => {
   let img = DOM.el(`#addlist_image_${o_args.id}`)
   let el = App.addlist_widget(id, o_args.image)
   img.src = el.value.trim()
+}
+
+App.addlist_use = () => {
+  let data = App.addlist_data
+
+  if (data.use) {
+    data.use(data.items)
+  }
+
+  App.hide_popup()
 }
