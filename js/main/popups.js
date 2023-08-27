@@ -2,7 +2,7 @@ App.create_popup = (args) => {
   let p = {}
   p.setup_done = false
 
-  let popup = DOM.create(`div`, `popup_main`, `popup_${args.id}`)
+  let popup = DOM.create(`div`, `popup_main hidden`, `popup_${args.id}`)
   let container = DOM.create(`div`, `popup_container`, `${args.id}_container`)
 
   if (args.element) {
@@ -34,13 +34,13 @@ App.create_popup = (args) => {
 
   p.show = () => {
     p.setup()
-    p.element.style.display = `flex`
+    p.element.classList.remove(`hidden`)
     App.popup_mode = args.id
     p.open = true
   }
 
   p.hide = () => {
-    p.element.style.display = `none`
+    p.element.classList.add(`hidden`)
     p.open = false
   }
 
@@ -50,6 +50,19 @@ App.create_popup = (args) => {
 App.show_popup = (id) => {
   clearTimeout(App.alert_autohide)
   App.popups[id].show()
+  App.popups[id].show_date = Date.now()
+  let open = App.open_popups()
+
+  open.sort((a, b) => {
+    return a.show_date < b.show_date ? -1 : 1
+  })
+
+  let zindex = 999
+
+  for (let popup of open) {
+    popup.element.style.zIndex = zindex
+    zindex += 1
+  }
 }
 
 App.setup_popup = (id) => {
@@ -238,4 +251,16 @@ App.check_close_popup = () => {
   if (App.popup_open()) {
     App.hide_popup()
   }
+}
+
+App.open_popups = () => {
+  let open = []
+
+  for (let popup in App.popups) {
+    if (App.popups[popup].open) {
+      open.push(App.popups[popup])
+    }
+  }
+
+  return open
 }
