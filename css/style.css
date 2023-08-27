@@ -516,6 +516,8 @@ svg {
   background-color: var(--background_color);
   height: 100%;
   width: 100%;
+  outline: none;
+  border: none;
 }
 
 .addlist_area {

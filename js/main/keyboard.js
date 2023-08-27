@@ -318,6 +318,20 @@ App.setup_keyboard = () => {
           e.preventDefault()
           return
         }
+        else if (e.key === `ArrowLeft`) {
+          if (!App.text_with_value_focused()) {
+            App.addlist_left()
+            e.preventDefault()
+            return
+          }
+        }
+        else if (e.key === `ArrowRight`) {
+          if (!App.text_with_value_focused()) {
+            App.addlist_right()
+            e.preventDefault()
+            return
+          }
+        }
       }
 
       if (e.key === `Escape`) {

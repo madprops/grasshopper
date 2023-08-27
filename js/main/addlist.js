@@ -75,7 +75,8 @@ App.addlist_register = (args = {}) => {
   }
 
   args = Object.assign(def_args, args)
-  let container = DOM.create(`div`, `flex_column_center addlist_container`)
+  let container = DOM.create(`div`, `flex_column_center addlist_container`, `addlist_container_${args.id}`)
+  container.tabIndex = 0
   let top = DOM.create(`div`, `flex_row_center gap_3 full_width`)
   let title = DOM.create(`div`, `addlist_title`)
   title.textContent = args.title
@@ -194,7 +195,7 @@ App.addlist_single = (args = {}) => {
   App.check_addlist_buttons(args)
   let el = App.addlist_widget(args.id, 0)
   el.value = args.items || ``
-  el.focus()
+  App.addlist_check_focus(args.id)
   args.mode = `single`
   App.addlist_data = args
 }
@@ -252,7 +253,7 @@ App.addlist_parts = (args = {}) => {
     el.value = value
   }
 
-  App.addlist_widget(args.id, 0).focus()
+  App.addlist_check_focus(args.id)
   args.mode = `parts`
   App.addlist_data = args
 }
@@ -337,7 +338,7 @@ App.addlist_components = (args = {}) => {
   }
 
   App.update_image(args.id)
-  App.addlist_widget(args.id, 0).focus()
+  App.addlist_check_focus(args.id)
   args.mode = `components`
   App.addlist_data = args
 }
@@ -451,6 +452,14 @@ App.addlist_enter = () => {
   }
 }
 
+App.addlist_left = () => {
+  App.addlist_next(App.addlist_data.id, true)
+}
+
+App.addlist_right = () => {
+  App.addlist_next(App.addlist_data.id)
+}
+
 App.after_addlist = (setting, items) => {
   App.set_setting(setting, items)
   let el = DOM.el(`#settings_${setting}`)
@@ -548,4 +557,15 @@ App.addlist_next = (id, reverse = false) => {
 
   data.line = next
   App.addlist_click(data)
+}
+
+App.addlist_check_focus = (id) => {
+  let el = App.addlist_widget(id, 0)
+
+  if (!el.value) {
+    el.focus()
+  }
+  else {
+    DOM.el(`#addlist_container_${id}`).focus()
+  }
 }
