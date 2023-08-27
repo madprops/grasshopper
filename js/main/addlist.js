@@ -440,15 +440,21 @@ App.addlist_click = (args = {}) => {
 
 App.addlist_enter = () => {
   let data = App.addlist_data
+  let modified = App.addlist_modified(data.id)
 
-  if (data.mode === `single`) {
-    App.do_addlist_single(data.id)
+  if (data.use && !modified) {
+    App.addlist_use()
   }
-  else if (data.mode === `parts`) {
-    App.do_addlist_parts(data.id)
-  }
-  else if (data.mode === `components`) {
-    App.do_addlist_components(data.id)
+  else {
+    if (data.mode === `single`) {
+      App.do_addlist_single(data.id)
+    }
+    else if (data.mode === `parts`) {
+      App.do_addlist_parts(data.id)
+    }
+    else if (data.mode === `components`) {
+      App.do_addlist_components(data.id)
+    }
   }
 }
 
@@ -568,4 +574,24 @@ App.addlist_check_focus = (id) => {
   else {
     DOM.el(`#addlist_container_${id}`).focus()
   }
+}
+
+App.addlist_modified = (id) => {
+  let data = App.addlist_data
+
+  if (!data.items.length) {
+    return
+  }
+
+  let o_args = App[`addlist_args_${id}`]
+
+  for (let [i, w] of o_args.widgets.entries()) {
+    let el = App.addlist_widget(id, i)
+
+    if (data.items[i] !== el.value.trim()) {
+      return true
+    }
+  }
+
+  return false
 }
