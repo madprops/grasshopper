@@ -518,6 +518,11 @@ svg {
   width: 100%;
 }
 
+.addlist_area {
+  overflow-x: hidden;
+  cursor: pointer;
+}
+
 .text_smaller {
   width: 5rem;
   max-width: 5rem;
