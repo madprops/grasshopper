@@ -53,7 +53,7 @@ App.setup_addlist = () => {
         tiles.append(o)
       }
     }, element: App.addlist_register({id: `pool`, setting: `background_pool`, type: `components`,
-    widgets: [`text`, `select`, `select`], labels: [`Image URL`, `Effect`, `Tiles`], title: `Pool Editor`,})
+    widgets: [`text`, `select`, `select`], labels: [`Image URL`, `Effect`, `Tiles`], title: `Pool Editor`, image: 0})
   })
 }
 
@@ -100,11 +100,16 @@ App.addlist_register = (args = {}) => {
 
   args = Object.assign(def_args, args)
   let container = DOM.create(`div`, `flex_column_center addlist_container`)
+  let title = DOM.create(`div`, `bigger`)
+  title.textContent = args.title
+  container.append(title)
   let els = []
 
   for (let [i, w] of args.widgets.entries()) {
+    let id = `addlist_widget_${args.id}_${i}`
+
     if (w === `text`) {
-      let el = DOM.create(`input`, `text editor_text`, `addlist_widget_${args.id}_${i}`)
+      let el = DOM.create(`input`, `text editor_text`, id)
       el.type = `text`
       el.spellcheck = false
       el.autocomplete = false
@@ -115,23 +120,37 @@ App.addlist_register = (args = {}) => {
       el = DOM.create(`div`, `flex_column_center gap_1`)
       let label = DOM.create(`div`)
       label.textContent = args.labels[i] || `Select`
-      let select = DOM.create(`select`, `editor_select`, `addlist_widget_${args.id}_${i}`)
+      let select = DOM.create(`select`, `editor_select`, id)
       el.append(label)
       el.append(select)
       els.push(el)
     }
   }
 
+  if (args.image !== undefined) {
+    DOM.ev(els[args.image], `input`, () => {
+      App.update_image(args.id)
+    })
+
+    let img = DOM.create(`img`, `small_image hidden`, `addlist_image_${args.id}`)
+
+    DOM.ev(img, `load`, (e) => {
+      e.target.classList.remove(`hidden`)
+    })
+
+    DOM.ev(img, `error`, (e) => {
+      e.target.classList.add(`hidden`)
+    })
+
+    container.append(img)
+  }
+
   container.append(...els)
-  let title = DOM.create(`div`, `bigger`)
-  title.textContent = args.title
-  container.append(title)
   let btns = DOM.create(`div`, `flex_row_center gap_1`)
   let add = DOM.create(`div`, `button`, `addlist_button_add_${args.id}`)
   add.textContent = `Add`
   let remove = DOM.create(`div`, `button`, `addlist_button_remove_${args.id}`)
   remove.textContent = `Remove`
-  container.append(...els)
   btns.append(remove)
   btns.append(add)
   container.append(btns)
@@ -278,9 +297,17 @@ App.addlist_components = (args = {}) => {
 
   for (let [i, w] of o_args.widgets.entries()) {
     let value = args.items[i] || ``
-    App.addlist_widget(args.id, i).value = value
+    let el = App.addlist_widget(args.id, i)
+
+    if (w === `image`) {
+      el.src = value
+    }
+    else {
+      el.value = value
+    }
   }
 
+  App.update_image(args.id)
   App.addlist_widget(args.id, 0).focus()
   args.mode = `components`
   App.addlist_data = args
@@ -442,4 +469,11 @@ App.addlist_def_args = () => {
 
 App.addlist_widget = (id, i = 0) => {
   return DOM.el(`#addlist_widget_${id}_${i}`)
+}
+
+App.update_image = (id) => {
+  let o_args = App[`addlist_args_${id}`]
+  let img = DOM.el(`#addlist_image_${o_args.id}`)
+  let el = App.addlist_widget(id, o_args.image)
+  img.src = el.value.trim()
 }

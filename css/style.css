@@ -513,6 +513,9 @@ svg {
 
 .addlist_container {
   gap: 1.5rem;
+  background-color: var(--background_color);
+  height: 100%;
+  width: 100%;
 }
 
 .text_smaller {
@@ -1021,4 +1024,9 @@ a:visited, a:link, a:hover {
 
 .pointer {
   cursor: pointer;
+}
+
+.small_image {
+  width: 10rem;
+  height: auto;
 }
