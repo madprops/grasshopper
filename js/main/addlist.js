@@ -1,12 +1,12 @@
 App.setup_addlist = () => {
   App.create_popup({
     id: `addlist_alias`, element: App.addlist_register({id: `alias`, setting: `aliases`, type: `parts`,
-    widgets: [`text`, `text`], labels: [`Term 1`, `Term 2`], title: `Alias Editor`})
+    widgets: [`text`, `text`], labels: [`Term 1`, `Term 2`], title: `Aliases`})
   })
 
   App.create_popup({
     id: `addlist_custom_filter`, element: App.addlist_register({id: `custom_filter`, setting: `custom_filters`, type: `single`,
-    widgets: [`text`], labels: [`Filter`], title: `Custom Filter Editor`})
+    widgets: [`text`], labels: [`Filter`], title: `Custom Filters`})
   })
 
   App.create_popup({
@@ -29,7 +29,7 @@ App.setup_addlist = () => {
         tiles.append(o)
       }
     }, element: App.addlist_register({id: `pool`, setting: `background_pool`, type: `components`,
-    widgets: [`text`, `select`, `select`], labels: [`Image URL`, `Effect`, `Tiles`], title: `Pool Editor`, image: 0})
+    widgets: [`text`, `select`, `select`], labels: [`Image URL`, `Effect`, `Tiles`], title: `BG Pool`, image: 0})
   })
 }
 
@@ -404,7 +404,7 @@ App.addlist_click = (args = {}) => {
   let items
 
   if (o_args.type === `single`) {
-    items = line
+    items = args.line
   }
   else if (o_args.type === `parts`) {
     items = App.addlist_get_parts(args.line)
