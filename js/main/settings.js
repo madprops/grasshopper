@@ -28,7 +28,7 @@ App.build_default_settings = () => {
   obj.background_pool = {value: [
     `/img/background_1.jpg ; none ; none`,
     `/img/background_2.jpg ; none ; none`,
-    `/img/background_3.gif ; none ; none`
+    `/img/background_3.gif ; none ; none`,
   ], category: category, version: 1}
 
   category = `media`
