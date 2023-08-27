@@ -512,7 +512,7 @@ svg {
 }
 
 .addlist_container {
-  gap: 1.5rem;
+  gap: 1.35rem;
   background-color: var(--background_color);
   height: 100%;
   width: 100%;
