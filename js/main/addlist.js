@@ -147,10 +147,6 @@ App.addlist_register = (args = {}) => {
   remove.textContent = `Remove`
   let add = DOM.create(`div`, `button`, `addlist_add_${args.id}`)
   add.textContent = `Add`
-  btns.append(remove)
-  btns.append(use)
-  btns.append(add)
-  container.append(btns)
 
   if (args.type === `single`) {
     DOM.ev(add, `click`, () => {
@@ -183,6 +179,11 @@ App.addlist_register = (args = {}) => {
   DOM.ev(use, `click`, () => {
     App.addlist_use()
   })
+
+  btns.append(use)
+  btns.append(remove)
+  btns.append(add)
+  container.append(btns)
 
   App[`addlist_args_${args.id}`] = args
   return container
