@@ -1026,16 +1026,10 @@ App.select_range = (item) => {
 }
 
 App.deselect = (mode = App.window_mode, select = `none`) => {
-  let items = App.selected_items(mode)
-
-  if (items.length < 2) {
-    return
-  }
-
   let num = 0
   let first, last
 
-  for (let item of items) {
+  for (let item of App.selected_items(mode)) {
     App.toggle_selected(item, false, false)
 
     if (!first) {
