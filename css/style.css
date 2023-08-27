@@ -684,8 +684,6 @@ a:visited, a:link, a:hover {
   color: var(--text_color);
   max-width: 98%;
   transition: var(--color_transition);
-  margin-top: auto;
-  margin-bottom: auto;
 }
 
 #popup_alert {
