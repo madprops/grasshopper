@@ -195,7 +195,7 @@ App.check_close_on_open = () => {
 }
 
 App.check_restore = () => {
-  if (App.get_setting(`auto_restore`) === `on_action`) {
+  if (App.get_setting(`auto_restore`) === `action`) {
     App.restore()
   }
 }
@@ -204,7 +204,7 @@ App.start_auto_restore = () => {
   clearTimeout(App.restore_timeout)
   let d = App.get_setting(`auto_restore`)
 
-  if (d === `never` || d === `on_action`) {
+  if (d === `never` || d === `action`) {
     return
   }
 
