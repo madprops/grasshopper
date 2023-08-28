@@ -522,7 +522,13 @@ App.update_image = (id) => {
   let o_args = App[`addlist_args_${id}`]
   let img = DOM.el(`#addlist_image_${o_args.id}`)
   let el = App.addlist_widget(id, o_args.image)
-  img.src = el.value.trim()
+  let url = el.value.trim()
+
+  if (!App.is_url(url)) {
+    url = `/img/${url}`
+  }
+
+  img.src = url
 }
 
 App.addlist_use = () => {

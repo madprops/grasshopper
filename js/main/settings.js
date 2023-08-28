@@ -15,7 +15,7 @@ App.build_default_settings = () => {
   category = `theme`
   obj.background_color = {value: `rgb(45, 45, 55)`, category: category, version: 1}
   obj.text_color = {value: `rgb(233, 233, 233)`, category: category, version: 1}
-  obj.background_image = {value: `/img/background_1.jpg`, category: category, version: 1}
+  obj.background_image = {value: `waves.jpg`, category: category, version: 1}
   obj.background_effect = {value: `none`, category: category, version: 1}
   obj.background_tiles = {value: `none`, category: category, version: 1}
   obj.auto_theme = {value: `never`, category: category, version: 3}
@@ -1337,7 +1337,7 @@ App.default_backgrounds = () => {
   let items = []
 
   for (let name of names) {
-    items.push(`/img/${name} ; none ; none`)
+    items.push(`${name} ; none ; none`)
   }
 
   return items

@@ -567,6 +567,10 @@ App.animate_background_image = (url) => {
   let new_el = DOM.el(`#background_${new_num}`)
   let old_el = DOM.el(`#background_${old_num}`)
 
+  if (!App.is_url(url)) {
+    url = `/img/${url}`
+  }
+
   if (url === App.background_url) {
     return
   }
