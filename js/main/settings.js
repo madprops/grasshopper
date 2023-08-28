@@ -123,10 +123,10 @@ App.build_default_settings = () => {
   obj.double_click_action = {value: false, category: category, version: 1}
   obj.smooth_scrolling = {value: true, category: category, version: 1}
   obj.aliases = {value: [
-    `animal = grasshopper`,
-    `planet = earth`,
     `big = huge`,
     `quick = fast`,
+    `planet = earth`,
+    `locust = grasshopper`
   ], category: category, version: 1}
   obj.custom_filters = {value: [
     `re: (today | $day)`,
