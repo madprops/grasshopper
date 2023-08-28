@@ -15,7 +15,7 @@ App.build_default_settings = () => {
   category = `theme`
   obj.background_color = {value: `rgb(45, 45, 55)`, category: category, version: 1}
   obj.text_color = {value: `rgb(233, 233, 233)`, category: category, version: 1}
-  obj.background_image = {value: `/img/waves.jpg`, category: category, version: 1}
+  obj.background_image = {value: `/img/background_1.jpg`, category: category, version: 1}
   obj.background_effect = {value: `none`, category: category, version: 1}
   obj.background_tiles = {value: `none`, category: category, version: 1}
   obj.auto_theme = {value: `never`, category: category, version: 3}
@@ -25,12 +25,7 @@ App.build_default_settings = () => {
   obj.background_transitions = {value: true, category: category, version: 1}
   obj.random_background_gifs = {value: true, category: category, version: 1}
   obj.random_themes = {value: `dark`, category: category, version: 1}
-  obj.background_pool = {value: [
-    `/img/waves.jpg`,
-    `/img/lights.jpg`,
-    `/img/merkoba.jpg`,
-    `/img/orbit.gif`,
-  ], category: category, version: 1}
+  obj.background_pool = {value: App.default_backgrounds(), category: category, version: 1}
 
   category = `media`
   obj.view_image_tabs = {value: `icon`, category: category, version: 1}
@@ -1329,4 +1324,21 @@ App.shuffle_textarea = (setting) => {
     App.set_setting(setting, items)
     App.check_theme_refresh()
   })
+}
+
+App.default_backgrounds = () => {
+  let names = [
+    `waves.jpg`,
+    `lights.jpg`,
+    `merkoba.jpg`,
+    `orbit.gif`,
+  ]
+
+  let items = []
+
+  for (let name of names) {
+    items.push(`/img/${name} ; none ; none`)
+  }
+
+  return items
 }
