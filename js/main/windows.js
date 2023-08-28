@@ -182,6 +182,10 @@ App.check_close_on_focus = () => {
   if (App.get_setting(`close_on_focus`)) {
     App.close_window()
   }
+
+  if (App.get_setting(`auto_restore`) === `on_action`) {
+    App.restore()
+  }
 }
 
 App.check_close_on_open = () => {
@@ -194,7 +198,7 @@ App.start_auto_restore = () => {
   clearTimeout(App.restore_timeout)
   let d = App.get_setting(`auto_restore`)
 
-  if (d === `never`) {
+  if (d === `never` || d === `on_action`) {
     return
   }
 

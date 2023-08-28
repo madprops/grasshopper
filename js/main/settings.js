@@ -597,7 +597,7 @@ App.setup_settings = () => {
       [`5 Seconds`, `5_seconds`],
       [`10 Seconds`, `10_seconds`],
       [`30 Seconds`, `30_seconds`],
-      [`1 minute`, `1_minutes`],
+      [`On Action`, `on_action`],
     ], () => {
       clearTimeout(App.restore_timeout)
     })
