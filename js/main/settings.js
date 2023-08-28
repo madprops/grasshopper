@@ -1317,7 +1317,7 @@ App.shuffle_textarea = (setting) => {
 }
 
 App.default_backgrounds = () => {
-  let exts = [`jpg`, `jpg`, `gif`]
+  let exts = [`jpg`, `jpg`, `gif`, `jpg`]
   let items = []
 
   for (let [i, ext] of exts.entries()) {
