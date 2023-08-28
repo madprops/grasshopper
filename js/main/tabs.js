@@ -724,11 +724,32 @@ App.do_close_normal_tabs = (close_unloaded = true) => {
     return
   }
 
-  let force = App.check_force(`warn_on_close_normal_tabs`, ids)
+  let force = App.check_force(`warn_on_close_normal_tabs`, ids.length)
 
   App.show_confirm(`Close these tabs? (${ids.length})`, () => {
     App.do_close_tabs(ids)
     App.check_close_popup()
+  }, undefined, force)
+}
+
+App.close_unloaded_tabs = () => {
+  let ids = []
+
+  for (let it of App.get_items(`tabs`)) {
+    if (it.discarded) {
+      ids.push(it.id)
+    }
+  }
+
+  if (ids.length === 0) {
+    App.show_alert(`Nothing to close`)
+    return
+  }
+
+  let force = App.check_force(`warn_on_close_unloaded_tabs`, ids.length)
+
+  App.show_confirm(`Close these tabs? (${ids.length})`, () => {
+    App.do_close_tabs(ids)
   }, undefined, force)
 }
 
@@ -829,7 +850,7 @@ App.do_close_duplicate_tabs = (close_pins = true) => {
     return
   }
 
-  let force = App.check_force(`warn_on_close_duplicate_tabs`, ids)
+  let force = App.check_force(`warn_on_close_duplicate_tabs`, ids.length)
 
   App.show_confirm(`Close these tabs? (${ids.length})`, () => {
     App.do_close_tabs(ids)
@@ -947,6 +968,13 @@ App.get_close_tabs_items = () => {
     text: `Normal`,
     action: () => {
       App.close_normal_tabs()
+    }
+  })
+
+  items.push({
+    text: `Unloaded`,
+    action: () => {
+      App.close_unloaded_tabs()
     }
   })
 

@@ -165,6 +165,9 @@ App.setup_commands = () => {
     {name: `Close Normal`, cmd: `close_normal_tabs`, mode: `tabs`, action: (args) => {
       App.close_normal_tabs()
     }},
+    {name: `Close Unloaded`, cmd: `close_unloaded_tabs`, mode: `tabs`, action: (args) => {
+      App.close_unloaded_tabs()
+    }},
     {name: `Close Duplicates`, cmd: `close_duplicate_tabs`, mode: `tabs`, action: (args) => {
       App.close_duplicate_tabs()
     }},
