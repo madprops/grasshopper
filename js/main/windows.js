@@ -183,14 +183,20 @@ App.check_close_on_focus = () => {
     App.close_window()
   }
 
-  if (App.get_setting(`auto_restore`) === `on_action`) {
-    App.restore()
-  }
+  App.check_restore()
 }
 
 App.check_close_on_open = () => {
   if (App.get_setting(`close_on_open`)) {
     App.close_window()
+  }
+
+  App.check_restore()
+}
+
+App.check_restore = () => {
+  if (App.get_setting(`auto_restore`) === `on_action`) {
+    App.restore()
   }
 }
 
@@ -213,6 +219,10 @@ App.restore = () => {
   NeedContext.hide()
 
   if (App.on_items()) {
-    App.show_first_mode()
+    let mode = App.active_mode
+    if ((mode !== App.mode_order[0]) || App.is_filtered(mode)) {
+      console.log(4)
+      App.show_first_mode()
+    }
   }
 }
