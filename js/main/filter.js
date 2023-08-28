@@ -533,8 +533,8 @@ App.create_filter_menu = (mode) => {
   }
 
   fmodes.push(separator())
-  fmodes.push([`custom`, `Custom`, true])
   fmodes.push([`refine`, `Refine`, true])
+  fmodes.push([`custom`, `Custom`, true])
   App[`${mode}_filter_modes`] = fmodes
 
   DOM.evs(filter_menu, [`click`, `contextmenu`], (e) => {
