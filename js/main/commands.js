@@ -171,6 +171,9 @@ App.setup_commands = () => {
     {name: `Close Duplicates`, cmd: `close_duplicate_tabs`, mode: `tabs`, action: (args) => {
       App.close_duplicate_tabs()
     }},
+    {name: `Close Visible`, cmd: `close_visible_tabs`, mode: `tabs`, action: (args) => {
+      App.close_visible_tabs()
+    }},
     {name: `Go To Playing`, cmd: `go_to_playing_tab`, mode: `tabs`, action: (args) => {
       App.go_to_playing_tab()
     }},

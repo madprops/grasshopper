@@ -753,6 +753,27 @@ App.close_unloaded_tabs = () => {
   }, undefined, force)
 }
 
+App.close_visible_tabs = () => {
+  let ids = []
+
+  for (let it of App.get_items(`tabs`)) {
+    if (it.visible) {
+      ids.push(it.id)
+    }
+  }
+
+  if (ids.length === 0) {
+    App.show_alert(`Nothing to close`)
+    return
+  }
+
+  let force = App.check_force(`warn_on_close_visible_tabs`, ids.length)
+
+  App.show_confirm(`Close these tabs? (${ids.length})`, () => {
+    App.do_close_tabs(ids)
+  }, undefined, force)
+}
+
 App.empty_previous_tabs_debouncer = App.create_debouncer(() => {
   App.do_empty_previous_tabs()
 }, App.empty_previous_tabs_delay)
@@ -982,6 +1003,13 @@ App.get_close_tabs_items = () => {
     text: `Duplicates`,
     action: () => {
       App.close_duplicate_tabs()
+    }
+  })
+
+  items.push({
+    text: `Visible`,
+    action: () => {
+      App.close_visible_tabs()
     }
   })
 

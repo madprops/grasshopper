@@ -84,9 +84,10 @@ App.build_default_settings = () => {
   obj.warn_on_close_tabs = {value: `special`, category: category, version: 1}
   obj.warn_on_unload_tabs = {value: `special`, category: category, version: 1}
   obj.warn_on_duplicate_tabs = {value: true, category: category, version: 1}
-  obj.warn_on_close_duplicate_tabs = {value: true, category: category, version: 1}
   obj.warn_on_close_normal_tabs = {value: true, category: category, version: 1}
   obj.warn_on_close_unloaded_tabs = {value: true, category: category, version: 1}
+  obj.warn_on_close_duplicate_tabs = {value: true, category: category, version: 1}
+  obj.warn_on_close_visible_tabs = {value: true, category: category, version: 1}
   obj.warn_on_open = {value: true, category: category, version: 1}
   obj.warn_on_remove_profiles = {value: true, category: category, version: 1}
   obj.warn_on_bookmark = {value: true, category: category, version: 1}
