@@ -13,6 +13,19 @@ App.build_default_settings = () => {
   obj.pick_mode = {value: `none`, category: category, version: 1}
   obj.wrap_text = {value: false, category: category, version: 1}
   obj.auto_restore = {value: `10_seconds`, category: category, version: 1}
+  obj.bookmarks_folder = {value: `Grasshopper`, category: category, version: 1}
+  obj.aliases = {value: [
+    `big = huge`,
+    `quick = fast`,
+    `planet = earth`,
+    `locust = grasshopper`
+  ], category: category, version: 1}
+  obj.custom_filters = {value: [
+    `re: (today | $day)`,
+    `re: ($month | $year)`,
+    `re: \\d{2}\\/\\d{2}\\/\\d{4}`,
+    `re: (youtu|twitch)`,
+  ], category: category, version: 1}
 
   category = `theme`
   obj.background_color = {value: `rgb(45, 45, 55)`, category: category, version: 1}
@@ -118,23 +131,10 @@ App.build_default_settings = () => {
   obj.closed_index = {value: 3, category: category, version: 1}
   obj.hover_effect = {value: `glow`, category: category, version: 1}
   obj.direct_settings = {value: true, category: category, version: 1}
-  obj.bookmarks_folder = {value: `Grasshopper`, category: category, version: 1}
   obj.debug_mode = {value: false, category: category, version: 1}
   obj.selected_effect = {value: `background`, category: category, version: 1}
   obj.double_click_action = {value: false, category: category, version: 1}
   obj.smooth_scrolling = {value: true, category: category, version: 1}
-  obj.aliases = {value: [
-    `big = huge`,
-    `quick = fast`,
-    `planet = earth`,
-    `locust = grasshopper`
-  ], category: category, version: 1}
-  obj.custom_filters = {value: [
-    `re: (today | $day)`,
-    `re: ($month | $year)`,
-    `re: \\d{2}\\/\\d{2}\\/\\d{4}`,
-    `re: (youtu|twitch)`,
-  ], category: category, version: 1}
   obj.sort_commands = {value: true, category: category, version: 1}
   obj.all_bookmarks = {value: true, category: category, version: 1}
 

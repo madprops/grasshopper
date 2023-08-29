@@ -213,6 +213,21 @@
           <div class="settings_label">Popup Height</div>
           <div id="settings_height" class="settings_menu button" data-setting="height"></div>
         </div>
+
+        <div class="settings_item" title="Where to save bookmarks">
+          <div class="settings_label">Bookmarks Folder</div>
+          <input type="text" autocomplete="off" spellcheck="false" placeholder="Save bookmarks here" id="settings_bookmarks_folder" class="text settings_text" data-setting="bookmarks_folder">
+        </div>
+
+        <div class="settings_item" title="Filter aliases. Format: this = that">
+          <div class="settings_label" data-id="aliases" data-add="Add an alias">Aliases</div>
+          <textarea autocomplete="off" spellcheck="false" class="text settings_textarea addlist_area" id="settings_aliases" data-setting="aliases" placeholder="One alias per line"></textarea>
+        </div>
+
+        <div class="settings_item" title="These appear in the filters menu">
+          <div class="settings_label" data-id="custom_filters" data-add="Add a custom filter">Custom Filters</div>
+          <textarea autocomplete="off" spellcheck="false" class="text settings_textarea addlist_area" id="settings_custom_filters" data-setting="custom_filters" placeholder="One filter per line"></textarea>
+        </div>
       </div>
     </template>
 
@@ -353,21 +368,6 @@
         <div class="settings_item" title="The modes at the top appear first in the menu and cycle-order">
           <div class="settings_label">Mode Order</div>
           <div id="settings_mode_order"></div>
-        </div>
-
-        <div class="settings_item" title="Where to save bookmarks">
-          <div class="settings_label">Bookmarks Folder</div>
-          <input type="text" autocomplete="off" spellcheck="false" placeholder="Save bookmarks here" id="settings_bookmarks_folder" class="text settings_text" data-setting="bookmarks_folder">
-        </div>
-
-        <div class="settings_item" title="Filter aliases. Format: this = that">
-          <div class="settings_label" data-id="aliases" data-add="Add an alias">Aliases</div>
-          <textarea autocomplete="off" spellcheck="false" class="text settings_textarea addlist_area" id="settings_aliases" data-setting="aliases" placeholder="One alias per line"></textarea>
-        </div>
-
-        <div class="settings_item" title="These appear in the filters menu">
-          <div class="settings_label" data-id="custom_filters" data-add="Add a custom filter">Custom Filters</div>
-          <textarea autocomplete="off" spellcheck="false" class="text settings_textarea addlist_area" id="settings_custom_filters" data-setting="custom_filters" placeholder="One filter per line"></textarea>
         </div>
 
         <div class="settings_item" title="What effect to apply on selected items">
