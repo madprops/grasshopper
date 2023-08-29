@@ -128,6 +128,10 @@ App.setup_tabs = () => {
   })
 }
 
+App.pre_show_tabs = () => {
+  App.tabs_locked = false
+}
+
 App.get_tabs = async () => {
   App.getting(`tabs`)
   let tabs
