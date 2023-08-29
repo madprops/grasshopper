@@ -16,6 +16,10 @@ App.setup_tabs = () => {
       App.undo_close_tab()
     }},
 
+    {text: `Sort Tabs`, action: () => {
+      App.sort_tabs()
+    }},
+
     {text: `Tabs Info`, action: () => {
       App.show_tabs_info()
     }},
@@ -90,6 +94,15 @@ App.setup_tabs = () => {
       DOM.ev(DOM.el(`#close_duplicates_button`), `click`, () => {
         let close_pins = DOM.el(`#close_duplicates_pins`).checked
         App.do_close_duplicate_tabs(close_pins)
+      })
+    }
+  })
+
+  App.create_popup({
+    id: `sort_tabs`, setup: () => {
+      DOM.ev(DOM.el(`#sort_tabs_button`), `click`, () => {
+        let sort_pins = DOM.el(`#sort_tabs_pins`).checked
+        App.do_sort_tabs(sort_pins)
       })
     }
   })
@@ -754,13 +767,7 @@ App.close_unloaded_tabs = () => {
 }
 
 App.close_visible_tabs = () => {
-  let ids = []
-
-  for (let it of App.get_items(`tabs`)) {
-    if (it.visible) {
-      ids.push(it.id)
-    }
-  }
+  let ids = App.get_visible(`tabs`).map(x => x.id)
 
   if (ids.length === 0) {
     App.show_alert(`Nothing to close`)
@@ -1055,6 +1062,7 @@ App.close_other_new_tabs = (id) => {
   }
 
   if (ids.length) {
+    console.log(1)
     App.do_close_tabs(ids)
   }
 }
@@ -1080,6 +1088,7 @@ App.check_new_tabs = () => {
   }
 
   if (ids.length) {
+    console.log(2)
     App.do_close_tabs(ids)
   }
 }
@@ -1148,4 +1157,55 @@ App.select_tabs = (type = `pins`) => {
 
 App.is_new_tab = (url) => {
   return App.new_tab_urls.includes(url)
+}
+
+App.sort_tabs = () => {
+  App.show_popup(`sort_tabs`)
+  DOM.el(`#sort_tabs_pins`).checked = false
+  DOM.el(`#sort_tabs_reverse`).checked = false
+}
+
+App.do_sort_tabs = () => {
+  function sort (list, reverse) {
+    list.sort((a, b) => {
+      if (a.hostname !== b.hostname) {
+        if (reverse) {
+          return a.hostname < b.hostname ? 1 : -1
+        }
+        else {
+          return a.hostname > b.hostname ? 1 : -1
+        }
+      }
+
+      return a.title < b.title ? -1 : 1
+    })
+  }
+
+  App.show_confirm(`Sort tabs?`, async () => {
+    let items = App.get_items(`tabs`).slice(0)
+
+    if (!items.length) {
+      return
+    }
+
+    let include_pins = DOM.el(`#sort_tabs_pins`).checked
+    let reverse = DOM.el(`#sort_tabs_reverse`).checked
+    let normal = items.filter(x => !x.pinned)
+    let pins = items.filter(x => x.pinned)
+    sort(normal, reverse)
+
+    if (include_pins) {
+      sort(pins, reverse)
+    }
+
+    let all = [...pins, ...normal]
+
+    for (let [i, item] of all.entries()) {
+      await App.do_move_tab_index(item.id, i)
+    }
+
+    App.check_close_popup()
+    App.clear_all_items()
+    await App.do_show_mode(`tabs`)
+  })
 }
