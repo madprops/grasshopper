@@ -2,6 +2,10 @@ App.build_default_settings = () => {
   let obj = {}
 
   let category = `general`
+  obj.tabs_index = {value: 0, category: category, version: 1}
+  obj.history_index = {value: 1, category: category, version: 1}
+  obj.bookmarks_index = {value: 2, category: category, version: 1}
+  obj.closed_index = {value: 3, category: category, version: 1}
   obj.text_mode = {value: `title`, category: category, version: 1}
   obj.item_height = {value: `normal`, category: category, version: 1}
   obj.font = {value: `sans-serif`, category: category, version: 1}
@@ -125,10 +129,6 @@ App.build_default_settings = () => {
   obj.mute_click = {value: true, category: category, version: 1}
   obj.double_click_new = {value: true, category: category, version: 1}
   obj.rounded_corners = {value: true, category: category, version: 1}
-  obj.tabs_index = {value: 0, category: category, version: 1}
-  obj.history_index = {value: 1, category: category, version: 1}
-  obj.bookmarks_index = {value: 2, category: category, version: 1}
-  obj.closed_index = {value: 3, category: category, version: 1}
   obj.hover_effect = {value: `glow`, category: category, version: 1}
   obj.direct_settings = {value: true, category: category, version: 1}
   obj.debug_mode = {value: false, category: category, version: 1}
@@ -561,6 +561,28 @@ App.setup_settings = () => {
     App.settings_make_menu(`height`, App.get_size_options(), () => {
       App.apply_theme()
     })
+
+    App.make_mode_order()
+
+    DOM.evs(App.get_settings_label(`mode_order`), [`click`, `contextmenu`], (e) => {
+      App.settings_label_menu(e,
+      [
+        {
+          name: `Reset`, action: () => {
+            let force = App.check_setting_default(`mode_order`)
+
+            App.show_confirm(`Reset setting?`, () => {
+              App.set_default_setting(`tabs_index`)
+              App.set_default_setting(`history_index`)
+              App.set_default_setting(`bookmarks_index`)
+              App.set_default_setting(`closed_index`)
+              App.get_mode_order()
+              App.make_mode_order()
+            }, undefined, force)
+          }
+        },
+      ])
+    })
   }}))
 
   App.create_window(Object.assign({}, common, {id: `settings_theme`, setup: () => {
@@ -625,28 +647,6 @@ App.setup_settings = () => {
 
     DOM.ev(DOM.el(`#settings_custom_filters_add`), `click`, () => {
       App.addlist_single({id: `custom_filter`})
-    })
-
-    App.make_mode_order()
-
-    DOM.evs(App.get_settings_label(`mode_order`), [`click`, `contextmenu`], (e) => {
-      App.settings_label_menu(e,
-      [
-        {
-          name: `Reset`, action: () => {
-            let force = App.check_setting_default(`mode_order`)
-
-            App.show_confirm(`Reset setting?`, () => {
-              App.set_default_setting(`tabs_index`)
-              App.set_default_setting(`history_index`)
-              App.set_default_setting(`bookmarks_index`)
-              App.set_default_setting(`closed_index`)
-              App.get_mode_order()
-              App.make_mode_order()
-            }, undefined, force)
-          }
-        },
-      ])
     })
 
     DOM.ev(DOM.el(`#settings_aliases`), `click`, (e) => {

@@ -228,6 +228,11 @@
           <div class="settings_label" data-id="custom_filters" data-add="Add a custom filter">Custom Filters</div>
           <textarea autocomplete="off" spellcheck="false" class="text settings_textarea addlist_area" id="settings_custom_filters" data-setting="custom_filters" placeholder="One filter per line"></textarea>
         </div>
+
+        <div class="settings_item" title="The modes at the top appear first in the menu and cycle-order">
+          <div class="settings_label">Mode Order</div>
+          <div id="settings_mode_order"></div>
+        </div>
       </div>
     </template>
 
@@ -365,11 +370,6 @@
 
     <template id="template_settings_more">
       <div id="settings_more_container" class="settings_container">
-        <div class="settings_item" title="The modes at the top appear first in the menu and cycle-order">
-          <div class="settings_label">Mode Order</div>
-          <div id="settings_mode_order"></div>
-        </div>
-
         <div class="settings_item" title="What effect to apply on selected items">
           <div class="settings_label">Selected Effect</div>
           <div id="settings_selected_effect" class="settings_menu button" data-setting="selected_effect"></div>
