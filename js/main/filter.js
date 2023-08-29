@@ -18,6 +18,7 @@ App.do_filter = async (mode, force = false, deep = false) => {
   App.cancel_filter()
   App.debug(`Filter: ${mode}`)
   let value = App.get_clean_filter(mode, false)
+  value = App.remove_protocol(value)
 
   if (value.endsWith(`|`)) {
     return
