@@ -762,6 +762,7 @@ App.set_item_text = (item) => {
     }
   }
 
+  content = content || `Empty`
   let lines = content.split(`\n`)
 
   for (let [i, line] of lines.entries()) {
