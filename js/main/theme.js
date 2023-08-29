@@ -150,7 +150,7 @@ App.apply_theme = (args) => {
     App.set_css_var(`width`, w)
     let h = `${(App.get_setting(`height`) / 100) * 600}px`
     App.set_css_var(`height`, h)
-    let item_padding = 0.4
+    let item_padding = 0.42
     let height_diff = 0.15
 
     if (App.get_setting(`item_height`) === `compact`) {
