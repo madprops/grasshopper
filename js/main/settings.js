@@ -583,6 +583,22 @@ App.setup_settings = () => {
         },
       ])
     })
+
+    DOM.ev(DOM.el(`#settings_aliases_add`), `click`, () => {
+      App.addlist_parts({id: `alias`})
+    })
+
+    DOM.ev(DOM.el(`#settings_custom_filters_add`), `click`, () => {
+      App.addlist_single({id: `custom_filter`})
+    })
+
+    DOM.ev(DOM.el(`#settings_aliases`), `click`, (e) => {
+      App.addlist_click({e: e, id: `alias`})
+    })
+
+    DOM.ev(DOM.el(`#settings_custom_filters`), `click`, (e) => {
+      App.addlist_click({e: e, id: `custom_filter`})
+    })
   }}))
 
   App.create_window(Object.assign({}, common, {id: `settings_theme`, setup: () => {
@@ -640,22 +656,6 @@ App.setup_settings = () => {
       [`Bold`, `bold`],
       [`Bigger`, `bigger`],
     ])
-
-    DOM.ev(DOM.el(`#settings_aliases_add`), `click`, () => {
-      App.addlist_parts({id: `alias`})
-    })
-
-    DOM.ev(DOM.el(`#settings_custom_filters_add`), `click`, () => {
-      App.addlist_single({id: `custom_filter`})
-    })
-
-    DOM.ev(DOM.el(`#settings_aliases`), `click`, (e) => {
-      App.addlist_click({e: e, id: `alias`})
-    })
-
-    DOM.ev(DOM.el(`#settings_custom_filters`), `click`, (e) => {
-      App.addlist_click({e: e, id: `custom_filter`})
-    })
   }}))
 
   App.create_window(Object.assign({}, common, {id: `settings_media`, setup: () => {

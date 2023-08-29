@@ -477,6 +477,7 @@ App.after_addlist = (setting, items) => {
   let el = DOM.el(`#settings_${setting}`)
   el.value = App.get_textarea_setting_value(setting)
   App.check_theme_refresh()
+  App.hide_popup()
 }
 
 App.check_addlist_buttons = (args) => {
