@@ -234,7 +234,6 @@ svg {
   flex-direction: row;
   cursor: pointer;
   align-items: center;
-  min-height: var(--item_height);
   direction: ltr;
   flex-shrink: 0;
   scroll-margin: 4.2rem;
@@ -245,8 +244,9 @@ svg {
 }
 
 .empty_item {
-  min-height: var(--item_height);
-  width: 100px;
+  min-width: 100px;
+  padding-top: var(--item_padding);
+  padding-bottom: var(--item_padding);
 }
 
 .last_item {
@@ -305,6 +305,8 @@ svg {
   height: 100%;
   width: 100%;
   flex-shrink: 1;
+  padding-top: var(--item_padding);
+  padding-bottom: var(--item_padding);
 }
 
 .no_wrap .item_text {

@@ -150,24 +150,20 @@ App.apply_theme = (args) => {
     App.set_css_var(`width`, w)
     let h = `${(App.get_setting(`height`) / 100) * 600}px`
     App.set_css_var(`height`, h)
-    let item_height = 2.15
-    let height_diff = 0.45
+    let item_padding = 0.45
+    let height_diff = 0.15
 
     if (App.get_setting(`item_height`) === `compact`) {
-      item_height -= height_diff
+      item_padding -= height_diff
     }
     else if (App.get_setting(`item_height`) === `bigger`) {
-      item_height += height_diff
+      item_padding += height_diff
     }
     else if (App.get_setting(`item_height`) === `huge`) {
-      item_height += (height_diff * 2)
+      item_padding += (height_diff * 2)
     }
 
-    if (App.get_setting(`text_mode`).includes(`_`)) {
-      item_height += 1
-    }
-
-    App.set_css_var(`item_height`, `${item_height}rem`)
+    App.set_css_var(`item_padding`, `${item_padding}rem`)
     App.animate_background_image(args.background_image)
 
     if (App.get_setting(`show_scrollbars`)) {
