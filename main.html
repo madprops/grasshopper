@@ -159,6 +159,11 @@
 
     <template id="template_settings_general">
       <div id="settings_general_container" class="settings_container">
+        <div class="settings_item" title="Wrap long text into multiple lines">
+          <div class="settings_label">Wrap Text</div>
+          <input type="checkbox" class="settings_checkbox" id="settings_wrap_text" data-setting="wrap_text">
+        </div>
+
         <div class="settings_item" title="What font to use">
           <div class="settings_label">Font</div>
           <div id="settings_font" class="settings_menu button" data-setting="font"></div>
@@ -383,11 +388,6 @@
         <div class="settings_item" title="Re-ordering tabs through dragging requires holding Ctrl to work. This is to avoid accidental re-ordering">
           <div class="settings_label">Require Ctrl<br>On Re-Ordering</div>
           <input type="checkbox" class="settings_checkbox" id="settings_lock_drag" data-setting="lock_drag">
-        </div>
-
-        <div class="settings_item" title="Wrap long text into multiple lines">
-          <div class="settings_label">Wrap Text</div>
-          <input type="checkbox" class="settings_checkbox" id="settings_wrap_text" data-setting="wrap_text">
         </div>
 
         <div class="settings_item" title="Enable smooth scrolling in some cases">

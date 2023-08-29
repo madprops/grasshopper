@@ -11,6 +11,7 @@ App.build_default_settings = () => {
   obj.height = {value: 85, category: category, version: 1}
   obj.item_border = {value: `none`, category: category, version: 2}
   obj.pick_mode = {value: `none`, category: category, version: 1}
+  obj.wrap_text = {value: false, category: category, version: 1}
 
   category = `theme`
   obj.background_color = {value: `rgb(45, 45, 55)`, category: category, version: 1}
@@ -136,7 +137,6 @@ App.build_default_settings = () => {
   ], category: category, version: 1}
   obj.sort_commands = {value: true, category: category, version: 1}
   obj.all_bookmarks = {value: true, category: category, version: 1}
-  obj.wrap_text = {value: false, category: category, version: 1}
 
   App.default_settings = obj
 }
