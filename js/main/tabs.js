@@ -1062,7 +1062,6 @@ App.close_other_new_tabs = (id) => {
   }
 
   if (ids.length) {
-    console.log(1)
     App.do_close_tabs(ids)
   }
 }
@@ -1088,7 +1087,6 @@ App.check_new_tabs = () => {
   }
 
   if (ids.length) {
-    console.log(2)
     App.do_close_tabs(ids)
   }
 }
