@@ -12,6 +12,7 @@ App.build_default_settings = () => {
   obj.item_border = {value: `none`, category: category, version: 2}
   obj.pick_mode = {value: `none`, category: category, version: 1}
   obj.wrap_text = {value: false, category: category, version: 1}
+  obj.auto_restore = {value: `10_seconds`, category: category, version: 1}
 
   category = `theme`
   obj.background_color = {value: `rgb(45, 45, 55)`, category: category, version: 1}
@@ -118,7 +119,6 @@ App.build_default_settings = () => {
   obj.hover_effect = {value: `glow`, category: category, version: 1}
   obj.direct_settings = {value: true, category: category, version: 1}
   obj.bookmarks_folder = {value: `Grasshopper`, category: category, version: 1}
-  obj.auto_restore = {value: `10_seconds`, category: category, version: 1}
   obj.debug_mode = {value: false, category: category, version: 1}
   obj.selected_effect = {value: `background`, category: category, version: 1}
   obj.double_click_action = {value: false, category: category, version: 1}
@@ -512,6 +512,17 @@ App.setup_settings = () => {
       App.apply_theme()
     })
 
+    App.settings_make_menu(`auto_restore`, [
+      [`Never`, `never`],
+      [`1 Second`, `1_seconds`],
+      [`5 Seconds`, `5_seconds`],
+      [`10 Seconds`, `10_seconds`],
+      [`30 Seconds`, `30_seconds`],
+      [`On Action`, `action`],
+    ], () => {
+      clearTimeout(App.restore_timeout)
+    })
+
     App.settings_make_menu(`font_size`, App.get_font_size_options(), () => {
       App.apply_theme()
     })
@@ -591,17 +602,6 @@ App.setup_settings = () => {
 
   App.create_window(Object.assign({}, common, {id: `settings_more`, setup: () => {
     prepare(`more`)
-
-    App.settings_make_menu(`auto_restore`, [
-      [`Never`, `never`],
-      [`1 Second`, `1_seconds`],
-      [`5 Seconds`, `5_seconds`],
-      [`10 Seconds`, `10_seconds`],
-      [`30 Seconds`, `30_seconds`],
-      [`On Action`, `action`],
-    ], () => {
-      clearTimeout(App.restore_timeout)
-    })
 
     App.settings_make_menu(`hover_effect`, [
       [`None`, `none`],
