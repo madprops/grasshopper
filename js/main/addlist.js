@@ -184,7 +184,6 @@ App.addlist_register = (args = {}) => {
   btns.append(remove)
   btns.append(add)
   container.append(btns)
-
   App[`addlist_args_${args.id}`] = args
   return container
 }
