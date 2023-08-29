@@ -136,6 +136,7 @@ App.build_default_settings = () => {
   ], category: category, version: 1}
   obj.sort_commands = {value: true, category: category, version: 1}
   obj.all_bookmarks = {value: true, category: category, version: 1}
+  obj.wrap_text = {value: false, category: category, version: 1}
 
   App.default_settings = obj
 }

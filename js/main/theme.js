@@ -274,6 +274,13 @@ App.apply_theme = (args) => {
     if (selected_opts.includes(selected_effect)) {
       main.classList.add(`selected_effect_${selected_effect}`)
     }
+
+    if (App.get_setting(`wrap_text`)) {
+      main.classList.remove(`no_wrap`)
+    }
+    else {
+      main.classList.add(`no_wrap`)
+    }
   }
   catch (err) {
     App.error(err)

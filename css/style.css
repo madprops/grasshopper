@@ -304,9 +304,12 @@ svg {
   justify-content: center;
   height: 100%;
   width: 100%;
+  flex-shrink: 1;
+}
+
+.no_wrap .item_text {
   white-space: nowrap;
   overflow: hidden;
-  flex-shrink: 1;
 }
 
 .item_info {
