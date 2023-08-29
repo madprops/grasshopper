@@ -15,6 +15,7 @@ App.show_mode = (mode, cycle) => {
 App.do_show_mode = async (mode, cycle = false, force = false) => {
   App.windows[mode].show()
   let was_filtered = App.was_filtered(mode)
+  App.tabs_locked = false
 
   if (!force) {
     if ((App.active_mode === mode) &&

@@ -36,6 +36,10 @@ App.setup_tabs = () => {
   App.setup_item_window(`tabs`)
 
   browser.tabs.onUpdated.addListener(async (id, cinfo, info) => {
+    if (App.tabs_locked) {
+      return
+    }
+
     App.debug(`Tab Updated: ID: ${id}`)
 
     if (info.windowId === App.window_id) {
@@ -45,6 +49,10 @@ App.setup_tabs = () => {
   })
 
   browser.tabs.onActivated.addListener(async (info) => {
+    if (App.tabs_locked) {
+      return
+    }
+
     App.debug(`Tab Activated: ID: ${info.tabId}`)
 
     if (info.windowId === App.window_id) {
@@ -54,6 +62,10 @@ App.setup_tabs = () => {
   })
 
   browser.tabs.onRemoved.addListener((id, info) => {
+    if (App.tabs_locked) {
+      return
+    }
+
     App.debug(`Tab Removed: ID: ${id}`)
 
     if (info.windowId === App.window_id) {
@@ -63,6 +75,10 @@ App.setup_tabs = () => {
   })
 
   browser.tabs.onMoved.addListener((id, info) => {
+    if (App.tabs_locked) {
+      return
+    }
+
     App.debug(`Tab Moved: ID: ${id}`)
 
     if (info.windowId === App.window_id) {
@@ -72,6 +88,10 @@ App.setup_tabs = () => {
   })
 
   browser.tabs.onDetached.addListener((id, info) => {
+    if (App.tabs_locked) {
+      return
+    }
+
     App.debug(`Tab Detached: ID: ${id}`)
 
     if (info.oldWindowId === App.window_id) {
@@ -1197,11 +1217,13 @@ App.do_sort_tabs = () => {
     }
 
     let all = [...pins, ...normal]
+    App.tabs_locked = true
 
     for (let [i, item] of all.entries()) {
       await App.do_move_tab_index(item.id, i)
     }
 
+    App.tabs_locked = false
     App.check_close_popup()
     App.clear_all_items()
     await App.do_show_mode(`tabs`)
