@@ -177,6 +177,9 @@ App.setup_commands = () => {
     {name: `Go To Playing`, cmd: `go_to_playing_tab`, mode: `tabs`, action: (args) => {
       App.go_to_playing_tab()
     }},
+    {name: `Sort Tabs`, cmd: `sort_tabs`, mode: `tabs`, action: (args) => {
+      App.sort_tabs()
+    }},
     {name: `Tabs Info`, cmd: `tabs_info`, mode: `tabs`, action: (args) => {
       App.show_tabs_info()
     }},
