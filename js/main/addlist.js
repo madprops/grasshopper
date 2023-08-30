@@ -34,18 +34,28 @@ App.setup_addlist = () => {
 
   App.create_popup({
     id: `addlist_extra_menu`, setup: () => {
-      let commands = DOM.el(`#addlist_widget_extra_menu_1`)
-      let cmds = App.commands.filter(x => !x.name.startsWith(`--`)).slice(0)
-
-      for (let cmd of cmds) {
-        let o = DOM.create(`option`)
-        o.textContent = cmd.name
-        o.value = cmd.cmd
-        commands.append(o)
-      }
+      App.fill_commands(DOM.el(`#addlist_widget_extra_menu_1`))
     }, element: App.addlist_register({id: `extra_menu`, setting: `extra_menu`,
     widgets: [`text`, `select`], labels: [`Name`, `Command`], title: `Extra Menu`})
   })
+
+  App.create_popup({
+    id: `addlist_empty_menu`, setup: () => {
+      App.fill_commands(DOM.el(`#addlist_widget_empty_menu_1`))
+    }, element: App.addlist_register({id: `empty_menu`, setting: `empty_menu`,
+    widgets: [`text`, `select`], labels: [`Name`, `Command`], title: `Empty Menu`})
+  })
+}
+
+App.fill_commands = (el) => {
+  let cmds = App.commands.filter(x => !x.name.startsWith(`--`)).slice(0)
+
+  for (let cmd of cmds) {
+    let o = DOM.create(`option`)
+    o.textContent = cmd.name
+    o.value = cmd.cmd
+    el.append(o)
+  }
 }
 
 App.do_addlist = (id) => {

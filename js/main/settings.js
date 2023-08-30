@@ -80,6 +80,7 @@ App.build_default_settings = () => {
   obj.show_footer = {value: true, category: category, version: 1}
   obj.show_filter_history = {value: true, category: category, version: 1}
   obj.extra_menu = {value: [], category: category, version: 1}
+  obj.empty_menu = {value: [], category: category, version: 1}
 
   category = `mouse`
   obj.gestures_enabled = {value: true, category: category, version: 1}
@@ -684,6 +685,14 @@ App.setup_settings = () => {
 
     DOM.ev(DOM.el(`#settings_extra_menu`), `click`, (e) => {
       App.addlist_click({e: e, id: `extra_menu`})
+    })
+
+    DOM.ev(DOM.el(`#settings_empty_menu_add`), `click`, () => {
+      App.addlist({id: `empty_menu`})
+    })
+
+    DOM.ev(DOM.el(`#settings_empty_menu`), `click`, (e) => {
+      App.addlist_click({e: e, id: `empty_menu`})
     })
   }}))
 

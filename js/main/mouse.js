@@ -187,14 +187,16 @@ App.mouse_double_click_action = (mode, e) => {
 }
 
 App.mouse_context_action = (mode, e) => {
+  e.preventDefault()
+
   if (!App.cursor_on_item(e, mode)) {
+    App.show_empty_menu(e.clientX, e.clientY)
     return
   }
 
   let item = App.get_cursor_item(mode, e)
   App.select_item(item, `nearest_smooth`, !item.selected)
   App.show_item_menu(item, e.clientX, e.clientY)
-  e.preventDefault()
 }
 
 App.mouse_middle_action = (mode, e) => {
