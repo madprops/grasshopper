@@ -99,22 +99,16 @@ App.do_addlist = (id) => {
     App.addlist_remove(id, v2, true)
   }
 
-  let area = DOM.el(`#settings_${o_args.setting}`)
-  let new_value = values.join(` ; `)
+  let new_line = values.join(` ; `)
 
-  if (new_value) {
-    let new_area = App.one_linebreak(`${new_value}\n${area.value}`)
-
-    if (new_value) {
-      area.value = new_area
-      App.do_save_text_setting(o_args.setting, area)
-    }
-
-    App.hide_popup()
+  if (new_line) {
+    let lines = App.get_setting(o_args.setting)
+    lines.splice(data.index, 0, new_line)
+    App.after_addlist(o_args.setting, lines)
   }
 
   if (data.action) {
-    data.action(new_value)
+    data.action(new_line)
   }
 }
 
@@ -319,6 +313,8 @@ App.addlist_click = (args = {}) => {
     return
   }
 
+  let lines = args.e.target.value.split(`\n`)
+  args.index = lines.indexOf(args.line)
   let items = App.addlist_items(args.line)
 
   if (!items) {
@@ -331,6 +327,7 @@ App.addlist_click = (args = {}) => {
     action: args.action,
     use: args.use,
     line: args.line,
+    index: args.index,
     update: true,
   }
 
@@ -357,10 +354,10 @@ App.addlist_right = () => {
   App.addlist_next(App.addlist_data.id)
 }
 
-App.after_addlist = (setting, items) => {
-  App.set_setting(setting, items)
-  let el = DOM.el(`#settings_${setting}`)
-  el.value = App.get_textarea_setting_value(setting)
+App.after_addlist = (setting, lines) => {
+  App.set_setting(setting, lines)
+  let area = DOM.el(`#settings_${setting}`)
+  area.value = App.get_textarea_setting_value(setting)
   App.check_theme_refresh()
   App.hide_popup()
 }
