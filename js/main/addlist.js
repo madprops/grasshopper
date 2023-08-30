@@ -44,7 +44,7 @@ App.setup_addlist = () => {
         commands.append(o)
       }
     }, element: App.addlist_register({id: `extra_menu`, setting: `extra_menu`,
-    widgets: [`text`, `select`], labels: [`Title`, `Command`], title: `Extra Menu`})
+    widgets: [`text`, `select`], labels: [`Name`, `Command`], title: `Extra Menu`})
   })
 }
 

@@ -622,11 +622,6 @@
 
     <template id="template_settings_show">
       <div id="settings_show_container" class="settings_container">
-        <div class="settings_item" title="Extra items in the item menus. If this is empty the entry won't be shown">
-          <div class="settings_label" data-id="extra_menu" data-add="Add a command">Extra Menu</div>
-          <textarea autocomplete="off" spellcheck="false" class="text settings_textarea addlist_area" id="settings_extra_menu" data-setting="extra_menu" placeholder="One command per line"></textarea>
-        </div>
-
         <div class="settings_item" title="Icon to show on pinned tabs">
           <div class="settings_label">Pin Icon</div>
           <input type="text" autocomplete="off" spellcheck="false" id="settings_pin_icon" class="text settings_text text_smaller" data-setting="pin_icon">
@@ -700,6 +695,11 @@
         <div class="settings_item" title="Show filter history when right clicking the filter">
           <div class="settings_label">Show<br>Filter History</div>
           <input type="checkbox" class="settings_checkbox" id="settings_show_filter_history" data-setting="show_filter_history">
+        </div>
+
+        <div class="settings_item" title="Extra items in the item menus. If this is empty the entry won't be shown">
+          <div class="settings_label" data-id="extra_menu" data-add="Add a command">Extra Menu</div>
+          <textarea autocomplete="off" spellcheck="false" class="text settings_textarea addlist_area" id="settings_extra_menu" data-setting="extra_menu" placeholder="One command per line"></textarea>
         </div>
       </div>
     </template>
