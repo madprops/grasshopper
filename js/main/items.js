@@ -453,7 +453,7 @@ App.process_info = (mode, info, exclude = [], o_item) => {
 
 App.create_empty_item_element = (item) => {
   item.element = DOM.create(`div`, `grasshopper_item item ${item.mode}_item empty_item`)
-  item.element.textContent = App.empty_string
+  item.element.textContent = App.empty_text
   item.element.dataset.id = item.id
   App[`${item.mode}_item_observer`].observe(item.element)
 }
@@ -762,7 +762,7 @@ App.set_item_text = (item) => {
     }
   }
 
-  content = content || App.empty_string
+  content = content || App.empty_text
   let lines = content.split(`\n`)
 
   for (let [i, line] of lines.entries()) {
