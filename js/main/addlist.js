@@ -75,6 +75,7 @@ App.do_addlist = (id) => {
     return
   }
 
+  App.addlist_remove(id, undefined, true)
   App.addlist_remove(id, values[0], true)
   let area = DOM.el(`#settings_${o_args.setting}`)
   let new_value = values.join(` ; `)
@@ -244,6 +245,16 @@ App.addlist = (args = {}) => {
 }
 
 App.addlist_remove = (id, first, force) => {
+  let data = App.addlist_data
+
+  if (!first) {
+    if (data.update) {
+      if (data.items.length) {
+        first = data.items[0]
+      }
+    }
+  }
+
   if (!first) {
     first = App.addlist_widget(id, 0).value.trim()
   }
