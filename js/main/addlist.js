@@ -195,7 +195,11 @@ App.addlist_register = (args = {}) => {
   })
 
   DOM.ev(remove, `click`, () => {
-    App.addlist_remove(args.id)
+    let data = App.addlist_data
+
+    if (data.update && data.items.length) {
+      App.addlist_remove(args.id, data.items[0])
+    }
   })
 
   DOM.ev(use, `click`, () => {
@@ -260,6 +264,10 @@ App.addlist = (args = {}) => {
 }
 
 App.addlist_remove = (id, value, force) => {
+  if (!value) {
+    return
+  }
+
   let o_args = App[`addlist_args_${id}`]
   let lines = App.get_setting(o_args.setting)
 
