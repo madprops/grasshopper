@@ -1,15 +1,5 @@
 App.setup_addlist = () => {
   App.create_popup({
-    id: `addlist_alias`, element: App.addlist_register({id: `alias`, setting: `aliases`, type: `parts`,
-    widgets: [`text`, `text`], labels: [`Term 1`, `Term 2`], title: `Aliases`})
-  })
-
-  App.create_popup({
-    id: `addlist_custom_filter`, element: App.addlist_register({id: `custom_filter`, setting: `custom_filters`, type: `single`,
-    widgets: [`text`], labels: [`Filter`], title: `Custom Filters`})
-  })
-
-  App.create_popup({
     id: `addlist_pool`, setup: () => {
       let eff = DOM.el(`#addlist_widget_pool_1`)
 
@@ -28,15 +18,46 @@ App.setup_addlist = () => {
         o.value = e[1]
         tiles.append(o)
       }
-    }, element: App.addlist_register({id: `pool`, setting: `background_pool`, type: `components`,
+    }, element: App.addlist_register({id: `pool`, setting: `background_pool`,
     widgets: [`text`, `select`, `select`], labels: [`Image URL`, `Effect`, `Tiles`], title: `BG Pool`, image: 0})
+  })
+
+  App.create_popup({
+    id: `addlist_custom_filter`, element: App.addlist_register({id: `custom_filter`, setting: `custom_filters`,
+    widgets: [`text`], labels: [`Filter`], title: `Custom Filters`})
+  })
+
+  App.create_popup({
+    id: `addlist_alias`, element: App.addlist_register({id: `alias`, setting: `aliases`,
+    widgets: [`text`, `text`], labels: [`Term 1`, `Term 2`], title: `Aliases`})
+  })
+
+  App.create_popup({
+    id: `addlist_extra_menu`, setup: () => {
+      let commands = DOM.el(`#addlist_widget_extra_menu_1`)
+      let cmds = App.commands.filter(x => !x.name.startsWith(`--`)).slice(0)
+
+      for (let cmd of cmds) {
+        let o = DOM.create(`option`)
+        o.textContent = cmd.name
+        o.value = cmd.cmd
+        commands.append(o)
+      }
+    }, element: App.addlist_register({id: `extra_menu`, setting: `extra_menu`,
+    widgets: [`text`, `select`], labels: [`Title`, `Command`], title: `Extra Menu`})
   })
 }
 
 App.do_addlist = (id) => {
+  let first = App.addlist_widget(id, 0).value.trim()
+
+  if (!first) {
+    return
+  }
+
+  App.addlist_remove(id, first, true)
   let o_args = App[`addlist_args_${id}`]
   let area = DOM.el(`#settings_${o_args.setting}`)
-  let new_value
   let values = []
 
   for (let [i, w] of o_args.widgets.entries()) {
@@ -44,16 +65,8 @@ App.do_addlist = (id) => {
     values.push(el.value.trim())
   }
 
-  if (o_args.type === `single`) {
-    new_value = values[0]
-  }
-  else if (o_args.type === `parts`) {
-    new_value = line = `${values[0]} = ${values[1]}`
-  }
-  else if (o_args.type === `components`) {
-    let joined = values.join(` ; `)
-    new_value = joined.replace(/[;\s]+$/g, ``)
-  }
+  let joined = values.join(` ; `)
+  let new_value = joined.replace(/[;\s]+$/g, ``)
 
   if (new_value) {
     let new_area = App.one_linebreak(`${new_value}\n${area.value}`)
@@ -66,7 +79,9 @@ App.do_addlist = (id) => {
     App.hide_popup()
   }
 
-  return new_value
+  if (App.addlist_data.action) {
+    App.addlist_data.action(new_value)
+  }
 }
 
 App.addlist_register = (args = {}) => {
@@ -148,33 +163,13 @@ App.addlist_register = (args = {}) => {
   let add = DOM.create(`div`, `button`, `addlist_add_${args.id}`)
   add.textContent = `Add`
 
-  if (args.type === `single`) {
-    DOM.ev(add, `click`, () => {
-      App.do_addlist_single(args.id)
-    })
+  DOM.ev(add, `click`, () => {
+    App.do_addlist(args.id)
+  })
 
-    DOM.ev(remove, `click`, () => {
-      App.addlist_remove_single(args.id)
-    })
-  }
-  else if (args.type === `parts`) {
-    DOM.ev(add, `click`, () => {
-      App.do_addlist_parts(args.id)
-    })
-
-    DOM.ev(remove, `click`, () => {
-      App.addlist_remove_parts(args.id)
-    })
-  }
-  else if (args.type === `components`) {
-    DOM.ev(add, `click`, () => {
-      App.do_addlist_components(args.id)
-    })
-
-    DOM.ev(remove, `click`, () => {
-      App.addlist_remove_components(args.id)
-    })
-  }
+  DOM.ev(remove, `click`, () => {
+    App.addlist_remove(args.id)
+  })
 
   DOM.ev(use, `click`, () => {
     App.addlist_use()
@@ -188,120 +183,7 @@ App.addlist_register = (args = {}) => {
   return container
 }
 
-App.addlist_single = (args = {}) => {
-  let def_args = App.addlist_def_args()
-  args = Object.assign(def_args, args)
-  App.show_popup(`addlist_${args.id}`)
-  App.check_addlist_buttons(args)
-  let el = App.addlist_widget(args.id, 0)
-  el.value = args.items || ``
-  App.addlist_check_focus(args.id)
-  args.mode = `single`
-  App.addlist_data = args
-}
-
-App.do_addlist_single = (id) => {
-  let value = App.addlist_widget(id, 0).value.trim()
-
-  if (!value) {
-    return
-  }
-
-  if (App.addlist_data.items) {
-    App.addlist_remove_single(id, App.addlist_data.items, true)
-  }
-
-  App.do_addlist(id)
-}
-
-App.addlist_remove_single = (id, value, force = false) => {
-  let o_args = App[`addlist_args_${id}`]
-
-  if (!value) {
-    value = App.addlist_widget(id, 0).value.trim()
-  }
-
-  let items = App.get_setting(o_args.setting)
-
-  for (let item of items) {
-    if (item === value) {
-      App.show_confirm(`Remove item?`, () => {
-        items = items.filter(x => x !== item)
-        App.after_addlist(o_args.setting, items)
-      }, undefined, force)
-    }
-  }
-}
-
-App.addlist_get_parts = (full) => {
-  let split = full.split(`=`)
-  let value_1 = split[0].trim()
-  let value_2 = split[1].trim()
-  return [value_1, value_2]
-}
-
-App.addlist_parts = (args = {}) => {
-  let def_args = App.addlist_def_args()
-  args = Object.assign(def_args, args)
-  App.show_popup(`addlist_${args.id}`)
-  App.check_addlist_buttons(args)
-  let o_args = App[`addlist_args_${args.id}`]
-
-  for (let [i, w] of o_args.widgets.entries()) {
-    let el = App.addlist_widget(args.id, i)
-    let value = args.items[i] || ``
-    el.value = value
-  }
-
-  App.addlist_check_focus(args.id)
-  args.mode = `parts`
-  App.addlist_data = args
-}
-
-App.do_addlist_parts = (id) => {
-  let value_1 = App.addlist_widget(id, 0).value.trim()
-  let value_2 = App.addlist_widget(id, 1).value.trim()
-
-  if (!value_1 || !value_2) {
-    return
-  }
-
-  let parts = App.addlist_data.items
-
-  if (parts.length) {
-    App.addlist_remove_parts(id, parts, true)
-  }
-
-  App.do_addlist(id)
-}
-
-App.addlist_remove_parts = (id, parts = [], force = false) => {
-  let o_args = App[`addlist_args_${id}`]
-
-  if (!parts.length) {
-    let el_1 = App.addlist_widget(id, 0)
-    let el_2 = App.addlist_widget(id, 1)
-    parts.push(el_1.value.trim())
-    parts.push(el_2.value.trim())
-  }
-
-  let items = App.get_setting(o_args.setting)
-
-  for (let item of items) {
-    let split = item.split(`=`)
-    let value_1b = split[0].trim()
-    let value_2b = split[1].trim()
-
-    if ((parts[0] === value_1b) && (parts[1] === value_2b)) {
-      App.show_confirm(`Remove item?`, () => {
-        items = items.filter(x => x !== item)
-        App.after_addlist(o_args.setting, items)
-      }, undefined, force)
-    }
-  }
-}
-
-App.addlist_get_components = (full) => {
+App.addlist_components = (full) => {
   let c = []
 
   if (full.includes(`;`)) {
@@ -318,7 +200,7 @@ App.addlist_get_components = (full) => {
   return c
 }
 
-App.addlist_components = (args = {}) => {
+App.addlist = (args = {}) => {
   let def_args = App.addlist_def_args()
   args = Object.assign(def_args, args)
   App.show_popup(`addlist_${args.id}`)
@@ -342,28 +224,15 @@ App.addlist_components = (args = {}) => {
     }
   }
 
-  App.update_image(args.id)
+  if (o_args.image !== undefined) {
+    App.update_image(args.id)
+  }
+
   App.addlist_check_focus(args.id)
-  args.mode = `components`
   App.addlist_data = args
 }
 
-App.do_addlist_components = (id) => {
-  let first = App.addlist_widget(id, 0).value.trim()
-
-  if (!first) {
-    return
-  }
-
-  App.addlist_remove_components(id, first, true)
-  let value = App.do_addlist(id)
-
-  if (App.addlist_data.action) {
-    App.addlist_data.action(value)
-  }
-}
-
-App.addlist_remove_components = (id, first, force) => {
+App.addlist_remove = (id, first, force) => {
   let o_args = App[`addlist_args_${id}`]
 
   if (!first) {
@@ -397,8 +266,6 @@ App.addlist_remove_components = (id, first, force) => {
 }
 
 App.addlist_click = (args = {}) => {
-  let o_args = App[`addlist_args_${args.id}`]
-
   if (!args.line) {
     args.line = App.get_line_under_caret(args.e.target)
   }
@@ -407,17 +274,7 @@ App.addlist_click = (args = {}) => {
     return
   }
 
-  let items
-
-  if (o_args.type === `single`) {
-    items = args.line
-  }
-  else if (o_args.type === `parts`) {
-    items = App.addlist_get_parts(args.line)
-  }
-  else if (o_args.type === `components`) {
-    items = App.addlist_get_components(args.line)
-  }
+  let items = App.addlist_components(args.line)
 
   if (!items) {
     return
@@ -432,15 +289,7 @@ App.addlist_click = (args = {}) => {
     update: true,
   }
 
-  if (o_args.type === `single`) {
-    App.addlist_single(obj)
-  }
-  else if (o_args.type === `parts`) {
-    App.addlist_parts(obj)
-  }
-  else if (o_args.type === `components`) {
-    App.addlist_components(obj)
-  }
+  App.addlist(obj)
 }
 
 App.addlist_enter = () => {
@@ -451,15 +300,7 @@ App.addlist_enter = () => {
     App.addlist_use()
   }
   else {
-    if (data.mode === `single`) {
-      App.do_addlist_single(data.id)
-    }
-    else if (data.mode === `parts`) {
-      App.do_addlist_parts(data.id)
-    }
-    else if (data.mode === `components`) {
-      App.do_addlist_components(data.id)
-    }
+    App.do_addlist(data.id)
   }
 }
 

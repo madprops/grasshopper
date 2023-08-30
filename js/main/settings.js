@@ -18,11 +18,12 @@ App.build_default_settings = () => {
   obj.wrap_text = {value: false, category: category, version: 1}
   obj.auto_restore = {value: `10_seconds`, category: category, version: 1}
   obj.bookmarks_folder = {value: `Grasshopper`, category: category, version: 1}
+  obj.extra_menu = {value: [], category: category, version: 1}
   obj.aliases = {value: [
-    `big = huge`,
-    `quick = fast`,
-    `planet = earth`,
-    `locust = grasshopper`
+    `big ; huge`,
+    `quick ; fast`,
+    `planet ; earth`,
+    `locust ; grasshopper`
   ], category: category, version: 1}
   obj.custom_filters = {value: [
     `re: (today | $day)`,
@@ -585,19 +586,27 @@ App.setup_settings = () => {
     })
 
     DOM.ev(DOM.el(`#settings_aliases_add`), `click`, () => {
-      App.addlist_parts({id: `alias`})
-    })
-
-    DOM.ev(DOM.el(`#settings_custom_filters_add`), `click`, () => {
-      App.addlist_single({id: `custom_filter`})
+      App.addlist({id: `alias`})
     })
 
     DOM.ev(DOM.el(`#settings_aliases`), `click`, (e) => {
       App.addlist_click({e: e, id: `alias`})
     })
 
+    DOM.ev(DOM.el(`#settings_custom_filters_add`), `click`, () => {
+      App.addlist({id: `custom_filter`})
+    })
+
     DOM.ev(DOM.el(`#settings_custom_filters`), `click`, (e) => {
       App.addlist_click({e: e, id: `custom_filter`})
+    })
+
+    DOM.ev(DOM.el(`#settings_extra_menu_add`), `click`, () => {
+      App.addlist({id: `extra_menu`})
+    })
+
+    DOM.ev(DOM.el(`#settings_extra_menu`), `click`, (e) => {
+      App.addlist_click({e: e, id: `extra_menu`})
     })
   }}))
 
@@ -875,7 +884,7 @@ App.start_theme_settings = () => {
   })
 
   DOM.ev(DOM.el(`#settings_background_pool_add`), `click`, () => {
-    App.addlist_components({id: `pool`, items: [
+    App.addlist({id: `pool`, items: [
       App.get_setting(`background_image`),
       App.get_setting(`background_effect`),
       App.get_setting(`background_tiles`),
@@ -1291,7 +1300,7 @@ App.apply_pool = (full) => {
     return
   }
 
-  let c = App.addlist_get_components(full)
+  let c = App.addlist_components(full)
   App.change_background(c[0], c[1], c[2])
 }
 
