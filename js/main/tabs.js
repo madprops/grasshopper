@@ -151,12 +151,6 @@ App.get_tabs = async () => {
   return tabs
 }
 
-App.after_focus_tab = (method) => {
-  if (method === `normal`) {
-    App.check_close_on_focus()
-  }
-}
-
 App.focus_tab = async (item, scroll, method = `normal`) => {
   if (item.created) {
     App.select_item(item, scroll)
@@ -175,7 +169,7 @@ App.focus_tab = async (item, scroll, method = `normal`) => {
     App.check_playing()
   }
 
-  App.after_focus_tab(method)
+  App.after_focus(method)
 }
 
 App.close_tab = async (id) => {
@@ -198,7 +192,7 @@ App.open_new_tab = async (url) => {
 
 App.new_tab = async () => {
   await App.open_new_tab()
-  App.check_close_on_focus()
+  App.after_focus()
 }
 
 App.get_tab_info = async (id) => {
@@ -298,7 +292,6 @@ App.tabs_action = async (item) => {
   App.on_action(`tabs`)
   App.do_empty_previous_tabs()
   await App.focus_tab(item, `nearest_smooth`)
-  App.check_close_on_focus()
 }
 
 App.tabs_action_alt = (item, shift) => {

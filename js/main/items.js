@@ -1119,12 +1119,26 @@ App.selected_items = (mode = App.window_mode) => {
   return App.get_items(mode).filter(x => x.selected)
 }
 
+App.after_focus = (method = `normal`) => {
+  if (method === `normal`) {
+    if (App.get_setting(`close_on_focus`)) {
+      App.close_window()
+    }
+  }
+
+  App.check_restore()
+}
+
 App.after_open = (shift = false) => {
   if (shift) {
     return
   }
 
-  App.check_close_on_open()
+  if (App.get_setting(`close_on_open`)) {
+    App.close_window()
+  }
+
+  App.check_restore()
 }
 
 App.open_items = (item, shift, multiple = true) => {
