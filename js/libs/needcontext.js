@@ -347,7 +347,7 @@ NeedContext.select_action = async (e, index = NeedContext.index, mode = `mouse`)
     NeedContext.show(x, y, items, false)
   }
 
-  if (e.button === 0 && item.action) {
+  if ((e.button === 0 || mode === `keyboard`) && item.action) {
     NeedContext.hide()
     item.action(e)
   }
