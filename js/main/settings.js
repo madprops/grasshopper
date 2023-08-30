@@ -18,7 +18,6 @@ App.build_default_settings = () => {
   obj.wrap_text = {value: false, category: category, version: 1}
   obj.auto_restore = {value: `10_seconds`, category: category, version: 1}
   obj.bookmarks_folder = {value: `Grasshopper`, category: category, version: 1}
-  obj.extra_menu = {value: [], category: category, version: 1}
   obj.aliases = {value: [
     `big ; huge`,
     `quick ; fast`,
@@ -80,6 +79,7 @@ App.build_default_settings = () => {
   obj.show_scroller = {value: true, category: category, version: 1}
   obj.show_footer = {value: true, category: category, version: 1}
   obj.show_filter_history = {value: true, category: category, version: 1}
+  obj.extra_menu = {value: [], category: category, version: 1}
 
   category = `mouse`
   obj.gestures_enabled = {value: true, category: category, version: 1}
@@ -600,14 +600,6 @@ App.setup_settings = () => {
     DOM.ev(DOM.el(`#settings_custom_filters`), `click`, (e) => {
       App.addlist_click({e: e, id: `custom_filter`})
     })
-
-    DOM.ev(DOM.el(`#settings_extra_menu_add`), `click`, () => {
-      App.addlist({id: `extra_menu`})
-    })
-
-    DOM.ev(DOM.el(`#settings_extra_menu`), `click`, (e) => {
-      App.addlist_click({e: e, id: `extra_menu`})
-    })
   }}))
 
   App.create_window(Object.assign({}, common, {id: `settings_theme`, setup: () => {
@@ -685,6 +677,14 @@ App.setup_settings = () => {
 
   App.create_window(Object.assign({}, common, {id: `settings_show`, setup: () => {
     prepare(`show`)
+
+    DOM.ev(DOM.el(`#settings_extra_menu_add`), `click`, () => {
+      App.addlist({id: `extra_menu`})
+    })
+
+    DOM.ev(DOM.el(`#settings_extra_menu`), `click`, (e) => {
+      App.addlist_click({e: e, id: `extra_menu`})
+    })
   }}))
 
   App.create_window(Object.assign({}, common, {id: `settings_mouse`, setup: () => {
