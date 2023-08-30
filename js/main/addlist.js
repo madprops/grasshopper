@@ -75,8 +75,23 @@ App.do_addlist = (id) => {
     return
   }
 
-  App.addlist_remove(id, undefined, true)
-  App.addlist_remove(id, values[0], true)
+  let data = App.addlist_data
+  let v1 = ``
+
+  if (data.update && data.items.length) {
+    v1 = data.items[0]
+  }
+
+  if (v1) {
+    App.addlist_remove(id, v1, true)
+  }
+
+  let v2 = App.addlist_widget(id, 0).value.trim()
+
+  if (v2 && (v1 !== v2)) {
+    App.addlist_remove(id, v2, true)
+  }
+
   let area = DOM.el(`#settings_${o_args.setting}`)
   let new_value = values.join(` ; `)
 
@@ -91,8 +106,8 @@ App.do_addlist = (id) => {
     App.hide_popup()
   }
 
-  if (App.addlist_data.action) {
-    App.addlist_data.action(new_value)
+  if (data.action) {
+    data.action(new_value)
   }
 }
 
@@ -244,25 +259,7 @@ App.addlist = (args = {}) => {
   App.addlist_data = args
 }
 
-App.addlist_remove = (id, first, force) => {
-  let data = App.addlist_data
-
-  if (!first) {
-    if (data.update) {
-      if (data.items.length) {
-        first = data.items[0]
-      }
-    }
-  }
-
-  if (!first) {
-    first = App.addlist_widget(id, 0).value.trim()
-  }
-
-  if (!first) {
-    return
-  }
-
+App.addlist_remove = (id, value, force) => {
   let o_args = App[`addlist_args_${id}`]
   let lines = App.get_setting(o_args.setting)
 
@@ -280,7 +277,7 @@ App.addlist_remove = (id, first, force) => {
         continue
       }
 
-      if (items[0] === first) {
+      if (items[0] === value) {
         continue
       }
 
