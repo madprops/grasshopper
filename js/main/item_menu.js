@@ -59,6 +59,7 @@ App.show_item_menu = async (item, x, y) => {
 
     App.common_menu_items(items, item, multiple)
     App.more_menu_items(items, item, multiple, some_loaded)
+    App.extra_menu_items(items, item, multiple, some_loaded)
 
     if (items.length >= min_close_sep) {
       items.push({
@@ -281,6 +282,35 @@ App.more_menu_items = (o_items, item, multiple, some_loaded) => {
   if (items.length > 0) {
     o_items.push({
       text: `More`,
+      get_items: () => {
+        return items
+      }
+    })
+  }
+}
+
+App.extra_menu_items = (o_items, item, multiple, some_loaded) => {
+  let items = []
+  let extra_menu = App.get_setting(`extra_menu`)
+
+  if (!extra_menu.length) {
+    return
+  }
+
+  for (let cmd of extra_menu) {
+    let split = cmd.split(`;`).map(x => x.trim())
+
+    items.push({
+      text: split[0],
+      action: (item) => {
+        App.run_command({cmd: split[1], item: item, from: `extra_menu`})
+      }
+    })
+  }
+
+  if (items.length > 0) {
+    o_items.push({
+      text: `Extra`,
       get_items: () => {
         return items
       }
