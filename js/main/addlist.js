@@ -238,6 +238,10 @@ App.addlist_remove = (id, first, force) => {
     first = App.addlist_widget(id, 0).value.trim()
   }
 
+  if (!first) {
+    return
+  }
+
   let o_args = App[`addlist_args_${id}`]
   let lines = App.get_setting(o_args.setting)
 
