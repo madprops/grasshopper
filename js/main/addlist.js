@@ -184,7 +184,7 @@ App.addlist_register = (args = {}) => {
   return container
 }
 
-App.addlist_components = (full) => {
+App.addlist_items = (full) => {
   let c = []
 
   if (full.includes(`;`)) {
@@ -234,36 +234,36 @@ App.addlist = (args = {}) => {
 }
 
 App.addlist_remove = (id, first, force) => {
-  let o_args = App[`addlist_args_${id}`]
-
   if (!first) {
     first = App.addlist_widget(id, 0).value.trim()
   }
 
-  let items = App.get_setting(o_args.setting)
+  let o_args = App[`addlist_args_${id}`]
+  let lines = App.get_setting(o_args.setting)
 
-  if (!items.length) {
+  if (!lines.length) {
     return
   }
 
-  let match = false
+  App.show_confirm(`Remove item?`, () => {
+    let new_lines = []
 
-  for (let item of items) {
-    if (item.startsWith(first)) {
-      match = true
-      break
+    for (let line of lines) {
+      let items = App.addlist_items(line)
+
+      if (!items.length) {
+        continue
+      }
+
+      if (items[0] === first) {
+        continue
+      }
+
+      new_lines.push(line)
     }
-  }
 
-  if (match) {
-    App.show_confirm(`Remove item?`, () => {
-      items = items.filter(x => !x.startsWith(first))
-      App.after_addlist(o_args.setting, items)
-    }, undefined, force)
-  }
-  else {
-    App.show_feedback(`Item not in list`)
-  }
+    App.after_addlist(o_args.setting, new_lines)
+  }, undefined, force)
 }
 
 App.addlist_click = (args = {}) => {
@@ -275,7 +275,7 @@ App.addlist_click = (args = {}) => {
     return
   }
 
-  let items = App.addlist_components(args.line)
+  let items = App.addlist_items(args.line)
 
   if (!items) {
     return

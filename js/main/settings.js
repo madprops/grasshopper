@@ -1300,8 +1300,8 @@ App.apply_pool = (full) => {
     return
   }
 
-  let c = App.addlist_components(full)
-  App.change_background(c[0], c[1], c[2])
+  let items = App.addlist_items(full)
+  App.change_background(items[0], items[1], items[2])
 }
 
 App.do_save_text_setting = (setting, el) => {
