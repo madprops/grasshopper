@@ -80,7 +80,7 @@ App.build_default_settings = () => {
   obj.show_footer = {value: true, category: category, version: 1}
   obj.show_filter_history = {value: true, category: category, version: 1}
   obj.extra_menu = {value: [], category: category, version: 1}
-  obj.empty_menu = {value: [`New Tab ; new_tab`], category: category, version: 1}
+  obj.empty_menu = {value: [`Select ; select_all`, `New Tab ; new_tab`, ], category: category, version: 1}
 
   category = `mouse`
   obj.gestures_enabled = {value: true, category: category, version: 1}

@@ -117,7 +117,7 @@ App.setup_commands = () => {
 
     {name: App.separator_string},
 
-    {name: `New Tab`, cmd: `new_tab`, mode: `tabs`, action: (args) => {
+    {name: `New Tab`, cmd: `new_tab`, action: (args) => {
       App.new_tab()
     }},
     {name: `Unload`, cmd: `unload_tabs`, mode: `tabs`, action: (args) => {
@@ -174,7 +174,7 @@ App.setup_commands = () => {
     {name: `Close Visible`, cmd: `close_visible_tabs`, mode: `tabs`, action: (args) => {
       App.close_visible_tabs()
     }},
-    {name: `Go To Playing`, cmd: `go_to_playing_tab`, mode: `tabs`, action: (args) => {
+    {name: `Go To Playing`, cmd: `go_to_playing_tab`, action: (args) => {
       App.go_to_playing_tab()
     }},
     {name: `Sort Tabs`, cmd: `sort_tabs`, mode: `tabs`, action: (args) => {
