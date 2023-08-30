@@ -377,6 +377,7 @@ App.get_empty_profile = (url) => {
     title: ``,
     color: ``,
     icon: ``,
+    exact: false,
     theme_enabled: false,
     background_color: ``,
     text_color: ``,
@@ -1100,6 +1101,10 @@ App.after_profile_remove = () => {
 
 App.used_profile = (profile) => {
   for (let prop in App.profile_props) {
+    if (prop === `url` || prop === `exact`) {
+      continue
+    }
+
     if (App.profile_props_theme.includes(prop)) {
       continue
     }
