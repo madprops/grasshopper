@@ -45,6 +45,13 @@ App.setup_addlist = () => {
     }, element: App.addlist_register({id: `empty_menu`, setting: `empty_menu`,
     widgets: [`text`, `select`], labels: [`Name`, `Command`], title: `Empty Menu`})
   })
+
+  App.create_popup({
+    id: `addlist_footer_menu`, setup: () => {
+      App.fill_commands(DOM.el(`#addlist_widget_footer_menu_1`))
+    }, element: App.addlist_register({id: `footer_menu`, setting: `footer_menu`,
+    widgets: [`text`, `select`], labels: [`Name`, `Command`], title: `Footer Menu`})
+  })
 }
 
 App.fill_commands = (el) => {

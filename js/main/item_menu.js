@@ -292,13 +292,13 @@ App.more_menu_items = (o_items, item, multiple, some_loaded) => {
 
 App.extra_menu_items = (o_items, item) => {
   let items = []
-  let extra_menu = App.get_setting(`extra_menu`)
+  let menu = App.get_setting(`extra_menu`)
 
-  if (!extra_menu.length) {
+  if (!menu.length) {
     return
   }
 
-  for (let cmd of extra_menu) {
+  for (let cmd of menu) {
     let split = cmd.split(`;`).map(x => x.trim())
 
     items.push({
@@ -352,13 +352,13 @@ App.filter_menu_items = (item) => {
 
 App.show_empty_menu = (x, y) => {
   let items = []
-  let extra_menu = App.get_setting(`empty_menu`)
+  let menu = App.get_setting(`empty_menu`)
 
-  if (!extra_menu.length) {
+  if (!menu.length) {
     return
   }
 
-  for (let cmd of extra_menu) {
+  for (let cmd of menu) {
     let split = cmd.split(`;`).map(x => x.trim())
 
     items.push({

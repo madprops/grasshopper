@@ -81,6 +81,7 @@ App.build_default_settings = () => {
   obj.show_filter_history = {value: true, category: category, version: 1}
   obj.extra_menu = {value: [], category: category, version: 1}
   obj.empty_menu = {value: [`Select ; select_all`, `New Tab ; new_tab`, ], category: category, version: 1}
+  obj.footer_menu = {value: [`Copy URL ; copy_url`, `Copy Title ; copy_title`, ], category: category, version: 1}
 
   category = `mouse`
   obj.gestures_enabled = {value: true, category: category, version: 1}
@@ -693,6 +694,14 @@ App.setup_settings = () => {
 
     DOM.ev(DOM.el(`#settings_empty_menu`), `click`, (e) => {
       App.addlist_click({e: e, id: `empty_menu`})
+    })
+
+    DOM.ev(DOM.el(`#settings_footer_menu_add`), `click`, () => {
+      App.addlist({id: `footer_menu`})
+    })
+
+    DOM.ev(DOM.el(`#settings_footer_menu`), `click`, (e) => {
+      App.addlist_click({e: e, id: `footer_menu`})
     })
   }}))
 
