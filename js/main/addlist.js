@@ -196,6 +196,8 @@ App.addlist_register = (args = {}) => {
   remove.textContent = `Remove`
   let add = DOM.create(`div`, `button`, `addlist_add_${args.id}`)
   add.textContent = `Add`
+  let move = DOM.create(`div`, `button`, `addlist_move_${args.id}`)
+  move.textContent = `Move`
 
   DOM.ev(add, `click`, () => {
     App.do_addlist(args.id)
@@ -209,12 +211,17 @@ App.addlist_register = (args = {}) => {
     }
   })
 
+  DOM.ev(move, `click`, (e) => {
+    App.addlist_move_menu(e)
+  })
+
   DOM.ev(use, `click`, () => {
     App.addlist_use()
   })
 
   btns.append(use)
   btns.append(remove)
+  btns.append(move)
   btns.append(add)
   container.append(btns)
   App[`addlist_args_${args.id}`] = args
@@ -361,18 +368,21 @@ App.after_addlist = (setting, items) => {
 App.check_addlist_buttons = (args) => {
   let use_el = DOM.el(`#addlist_use_${args.id}`)
   let remove_el = DOM.el(`#addlist_remove_${args.id}`)
+  let move_el = DOM.el(`#addlist_move_${args.id}`)
   let add_el = DOM.el(`#addlist_add_${args.id}`)
   let prev_el = DOM.el(`#addlist_prev_${args.id}`)
   let next_el = DOM.el(`#addlist_next_${args.id}`)
 
   if (args.update) {
     remove_el.classList.remove(`hidden`)
+    move_el.classList.remove(`hidden`)
     prev_el.classList.remove(`hidden`)
     next_el.classList.remove(`hidden`)
     add_el.textContent = `Update`
   }
   else {
     remove_el.classList.add(`hidden`)
+    move_el.classList.add(`hidden`)
     prev_el.classList.add(`hidden`)
     next_el.classList.add(`hidden`)
     add_el.textContent = `Add`
@@ -485,4 +495,56 @@ App.addlist_modified = (id) => {
   }
 
   return false
+}
+
+App.addlist_move_menu = (e) => {
+  let items = []
+
+  items.push({
+    text: `Move Up`,
+    action: () => {
+      App.addlist_move(`up`)
+    }
+  })
+
+  items.push({
+    text: `Move Down`,
+    action: () => {
+      App.addlist_move(`down`)
+    }
+  })
+
+  e.preventDefault()
+  NeedContext.show(e.clientX, e.clientY, items)
+}
+
+App.addlist_move = (dir) => {
+  let data = App.addlist_data
+  let o_args = App[`addlist_args_${data.id}`]
+  let lines = App.get_setting(o_args.setting)
+  let value = data.items[0]
+
+  for (let [i, line] of lines.entries()) {
+    let items = App.addlist_items(line)
+
+    if (!items.length) {
+      continue
+    }
+
+    if (items[0] === value) {
+      if (dir === `up`) {
+        if (i > 0 && i < lines.length) {
+          [lines[i], lines[i - 1]] = [lines[i - 1], lines[i]]
+        }
+      }
+      else if (dir === `down`) {
+        if (i >= 0 && i < lines.length - 1) {
+          [lines[i], lines[i + 1]] = [lines[i + 1], lines[i]]
+        }
+      }
+
+      App.after_addlist(o_args.setting, lines)
+      break
+    }
+  }
 }
