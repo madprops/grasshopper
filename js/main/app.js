@@ -55,6 +55,7 @@ App.settings_ready = false
 App.active_background = 1
 App.background_url = `__unset__`
 App.first_background = false
+App.empty_string = `Empty`
 
 App.settings_save_delay = 250
 App.activated_delay = 2600
