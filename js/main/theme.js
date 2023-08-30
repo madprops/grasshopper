@@ -669,7 +669,7 @@ App.add_to_background_pool = (url) => {
     return
   }
 
-  App.addlist_remove_components(`background_pool`, `pool`, url, true)
+  App.addlist_remove(`pool`, url, true)
   let pool = App.get_setting(`background_pool`)
   pool.unshift(`${url} ; none ; none`)
   App.set_setting(`background_pool`, pool)
