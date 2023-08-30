@@ -55,18 +55,25 @@ App.do_addlist = (id) => {
     return
   }
 
-  App.addlist_remove(id, first, true)
   let o_args = App[`addlist_args_${id}`]
-  let area = DOM.el(`#settings_${o_args.setting}`)
   let values = []
 
   for (let [i, w] of o_args.widgets.entries()) {
     let el = App.addlist_widget(id, i)
-    values.push(el.value.trim())
+    let value = el.value.trim()
+
+    if (value) {
+      values.push(value)
+    }
   }
 
-  let joined = values.join(` ; `)
-  let new_value = joined.replace(/[;\s]+$/g, ``)
+  if (values.length !== o_args.widgets.length) {
+    return
+  }
+
+  App.addlist_remove(id, first, true)
+  let area = DOM.el(`#settings_${o_args.setting}`)
+  let new_value = values.join(` ; `)
 
   if (new_value) {
     let new_area = App.one_linebreak(`${new_value}\n${area.value}`)
