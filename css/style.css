@@ -550,6 +550,10 @@ svg {
   text-align: center;
 }
 
+.addlist_buttons {
+  margin-top: 0.8rem;
+}
+
 .text_smaller {
   width: 5rem;
   max-width: 5rem;

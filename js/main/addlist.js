@@ -201,7 +201,7 @@ App.addlist_register = (args = {}) => {
   }
 
   container.append(...els)
-  let btns = DOM.create(`div`, `flex_row_center gap_1`)
+  let btns = DOM.create(`div`, `flex_row_center gap_1 addlist_buttons`)
   let use = DOM.create(`div`, `button`, `addlist_use_${args.id}`)
   use.textContent = `Use`
   let remove = DOM.create(`div`, `button`, `addlist_remove_${args.id}`)
