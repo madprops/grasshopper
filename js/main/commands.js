@@ -252,7 +252,7 @@ App.setup_commands = () => {
     {name: `Background`, cmd: `change_background`, media: `image`, icon: themeicon, action: (args) => {
       App.change_background(args.item.url)
     }},
-    {name: `Add To Pool`, cmd: `add_to_background_pool`, media: `image`, icon: themeicon, action: (args) => {
+    {name: `Add To Pool`, cmd: `add_to_pool`, media: `image`, icon: themeicon, action: (args) => {
       App.add_to_background_pool()
     }},
 
