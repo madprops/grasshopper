@@ -85,6 +85,7 @@ App.setup_about = () => {
 
     let s = `${App.manifest.name} v${App.manifest.version}`
     DOM.el(`#about_name`).textContent = s
+    DOM.el(`#about_timeago`).textContent = `Started: ${App.timeago(App.start_date)}`
   },
   after_show: () => {
     let filter = DOM.el(`#about_filter`)
