@@ -214,11 +214,11 @@ App.textarea_copy = () => {
   App.copy_to_clipboard(DOM.el(`#textarea_text`).value.trim())
 }
 
-App.show_input = (message, button, action) => {
+App.show_input = (message, button, action, value = ``) => {
   App.input_action = action
   DOM.el(`#input_message`).textContent = message
   let input_text = DOM.el(`#input_text`)
-  input_text.value = ``
+  input_text.value = value
   DOM.el(`#input_submit`).textContent = button
   App.show_popup(`input`)
   input_text.focus()

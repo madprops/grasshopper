@@ -327,7 +327,12 @@ App.settings_setup_text = (container) => {
 
           App.copy_to_clipboard(el.value)
         },
-      }
+      },
+      {
+        name: `Edit`,  action: () => {
+          App.edit_setting(setting)
+        },
+      },
     ]
 
     DOM.evs(App.get_settings_label(setting), [`click`, `contextmenu`], (e) => {
@@ -1368,4 +1373,14 @@ App.default_backgrounds = () => {
   }
 
   return items
+}
+
+App.edit_setting = (setting) => {
+  let value = App.get_textarea_setting_value(setting)
+
+  App.show_input(`Edit: ${setting}`, `Done`, (text) => {
+    let el = DOM.el(`#settings_${setting}`)
+    el.value = text
+    App.do_save_text_setting(setting, el)
+  }, value)
 }

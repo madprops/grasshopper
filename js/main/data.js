@@ -4,7 +4,7 @@ App.export_data = (obj) => {
 
 App.import_data = (action) => {
   App.show_input(`Paste data text here`, `Import`, (text) => {
-    if (!text) {
+    if (!text.trim()) {
       return
     }
 
