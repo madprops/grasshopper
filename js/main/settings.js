@@ -1390,3 +1390,11 @@ App.settings_get_menu_item = (value, opts) => {
     }
   }
 }
+
+App.settings_get_menu_item_2 = (value, opts) => {
+  for (let opt of opts) {
+    if (opt[0] === value) {
+      return opt
+    }
+  }
+}

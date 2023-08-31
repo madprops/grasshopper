@@ -42,7 +42,18 @@ App.do_addlist = (id) => {
 
   for (let [i, w] of o_args.widgets.entries()) {
     let el = App.addlist_widget(id, i)
-    let value = el.value.trim()
+    let value
+
+    if (w === `text`) {
+      value = el.value.trim()
+    }
+    else if (w === `select`) {
+      let opt = App.settings_get_menu_item_2(el.textContent.trim(), o_args.sources[i])
+
+      if (opt) {
+        value = opt[1]
+      }
+    }
 
     if (value) {
       values.push(value)
@@ -162,7 +173,6 @@ App.addlist_register = (args = {}) => {
 
       DOM.ev(s_prev, `click`, prev_fn)
       DOM.ev(s_next, `click`, next_fn)
-
       s_container.append(s_prev)
       s_container.append(select)
       s_container.append(s_next)
@@ -271,7 +281,10 @@ App.addlist = (args = {}) => {
         }
         else if (w === `select`) {
           let opt = App.settings_get_menu_item(value, o_args.sources[i])
-          el.textContent = opt[0]
+
+          if (opt) {
+            el.textContent = opt[0]
+          }
         }
       }
     }
