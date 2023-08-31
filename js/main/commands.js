@@ -43,6 +43,8 @@ App.setup_commands = () => {
     }})
   }
 
+  let tabicon =  App.mode_icons.tabs
+
   App.commands = [
     {name: `Go To Top`, cmd: `go_to_top`, mode: `items`, action: (args) => {
       App.goto_top()
@@ -84,10 +86,10 @@ App.setup_commands = () => {
 
     {name: App.separator_string},
 
-    {name: `Open`, cmd: `open_items`, mode: `items`, action: (args) => {
+    {name: `Open`, cmd: `open`, mode: `items`, action: (args) => {
       App.open_items(args.item, true)
     }},
-    {icon: App.mode_icons.bookmarks, name: `Bookmark`, cmd: `bookmark_items`, mode: `items`, action: (args) => {
+    {icon: App.mode_icons.bookmarks, name: `Bookmark`, cmd: `bookmark`, mode: `items`, action: (args) => {
       App.bookmark_items(args.item)
     }},
     {icon: App.mode_icons.bookmarks, name: `Bookmark This`, cmd: `bookmark_active`, action: (args) => {
@@ -117,79 +119,79 @@ App.setup_commands = () => {
 
     {name: App.separator_string},
 
-    {name: `New Tab`, cmd: `new_tab`, action: (args) => {
+    {name: `New Tab`, cmd: `new_tab`, icon: tabicon, action: (args) => {
       App.new_tab()
     }},
-    {name: `Unload`, cmd: `unload_tabs`, mode: `tabs`, action: (args) => {
+    {name: `Unload`, cmd: `unload`, mode: `tabs`, icon: tabicon, action: (args) => {
       App.unload_tabs(args.item)
     }},
-    {name: `Unload Single`, cmd: `unload_tabs_single`, mode: `tabs`, action: (args) => {
+    {name: `Unload Single`, cmd: `unload_single`, mode: `tabs`, icon: tabicon, action: (args) => {
       App.unload_tabs(args.item, false)
     }},
-    {name: `Duplicate`, cmd: `duplicate_tab`, mode: `tabs`, action: (args) => {
+    {name: `Duplicate`, cmd: `duplicate`, mode: `tabs`, icon: tabicon, action: (args) => {
       App.duplicate_tabs(args.item)
     }},
-    {name: `Detach`, cmd: `detach_tabs`, mode: `tabs`, action: (args) => {
+    {name: `Detach`, cmd: `detach`, mode: `tabs`, icon: tabicon, action: (args) => {
       App.detach_tabs(args.item)
     }},
-    {name: `Move To Top`, cmd: `tabs_to_top`, mode: `tabs`, action: (args) => {
+    {name: `Move To Top`, cmd: `move_to_top`, mode: `tabs`, icon: tabicon, action: (args) => {
       App.move_tabs_vertically(`top`)
     }},
-    {name: `Move To Bottom`, cmd: `tabs_to_bottom`, mode: `tabs`, action: (args) => {
+    {name: `Move To Bottom`, cmd: `move_to_bottom`, mode: `tabs`, icon: tabicon, action: (args) => {
       App.move_tabs_vertically(`bottom`)
     }},
-    {name: `Pin`, cmd: `pin_tabs`, mode: `tabs`, action: (args) => {
+    {name: `Pin`, cmd: `pin`, mode: `tabs`, icon: tabicon, action: (args) => {
       App.pin_tabs(args.item)
     }},
-    {name: `Unpin`, cmd: `unpin_tabs`, mode: `tabs`, action: (args) => {
+    {name: `Unpin`, cmd: `unpin`, mode: `tabs`, icon: tabicon, action: (args) => {
       App.unpin_tabs(args.item)
     }},
-    {name: `Toggle Pin`, cmd: `toggle_pin_tabs`, mode: `tabs`, action: (args) => {
+    {name: `Toggle Pin`, cmd: `toggle_pin`, mode: `tabs`, icon: tabicon, action: (args) => {
       App.toggle_pin_tabs(args.item)
     }},
-    {name: `Mute`, cmd: `mute_tabs`, mode: `tabs`, action: (args) => {
+    {name: `Mute`, cmd: `mute`, mode: `tabs`, icon: tabicon, action: (args) => {
       App.mute_tabs(args.item)
     }},
-    {name: `Unmute`, cmd: `unmute_tabs`, mode: `tabs`, action: (args) => {
+    {name: `Unmute`, cmd: `unmute`, mode: `tabs`, icon: tabicon, action: (args) => {
       App.unmute_tabs(args.item)
     }},
-    {name: `Toggle Mute`, cmd: `toggle_mute_tabs`, mode: `tabs`, action: (args) => {
+    {name: `Toggle Mute`, cmd: `toggle_mute`, mode: `tabs`, icon: tabicon, action: (args) => {
       App.toggle_mute_tabs(args.item)
     }},
-    {name: `Close`, cmd: `close_tabs`, mode: `tabs`, action: (args) => {
+    {name: `Close`, cmd: `close`, mode: `tabs`, icon: tabicon, action: (args) => {
       App.close_tabs(args.item)
     }},
-    {name: `Close Single`, cmd: `close_tabs_single`, mode: `tabs`, action: (args) => {
+    {name: `Close Single`, cmd: `close_single`, mode: `tabs`, icon: tabicon, action: (args) => {
       App.close_tabs(args.item, true)
     }},
-    {name: `Close Normal`, cmd: `close_normal_tabs`, mode: `tabs`, action: (args) => {
+    {name: `Close Normal`, cmd: `close_normal`, mode: `tabs`, icon: tabicon, action: (args) => {
       App.close_normal_tabs()
     }},
-    {name: `Close Unloaded`, cmd: `close_unloaded_tabs`, mode: `tabs`, action: (args) => {
+    {name: `Close Unloaded`, cmd: `close_unloaded`, mode: `tabs`, icon: tabicon, action: (args) => {
       App.close_unloaded_tabs()
     }},
-    {name: `Close Duplicates`, cmd: `close_duplicate_tabs`, mode: `tabs`, action: (args) => {
+    {name: `Close Duplicates`, cmd: `close_duplicate`, mode: `tabs`, icon: tabicon, action: (args) => {
       App.close_duplicate_tabs()
     }},
-    {name: `Close Visible`, cmd: `close_visible_tabs`, mode: `tabs`, action: (args) => {
+    {name: `Close Visible`, cmd: `close_visible`, mode: `tabs`, icon: tabicon, action: (args) => {
       App.close_visible_tabs()
     }},
-    {name: `Go To Playing`, cmd: `go_to_playing_tab`, action: (args) => {
+    {name: `Go To Playing`, cmd: `go_to_playing`, icon: tabicon, action: (args) => {
       App.go_to_playing_tab()
     }},
-    {name: `Sort Tabs`, cmd: `sort_tabs`, mode: `tabs`, action: (args) => {
+    {name: `Sort Tabs`, cmd: `sort_tabs`, mode: `tabs`, icon: tabicon, action: (args) => {
       App.sort_tabs()
     }},
-    {name: `Tabs Info`, cmd: `tabs_info`, mode: `tabs`, action: (args) => {
+    {name: `Tabs Info`, cmd: `tabs_info`, mode: `tabs`, icon: tabicon, action: (args) => {
       App.show_tabs_info()
     }},
-    {name: `Undo Close`, cmd: `undo_close_tab`, action: (args) => {
+    {name: `Undo Close`, cmd: `undo_close`, icon: tabicon, action: (args) => {
       App.undo_close_tab()
     }},
-    {name: `Select Pins`, cmd: `select_pinned_tabs`, mode: `tabs`, action: (args) => {
+    {name: `Select Pins`, cmd: `select_pinned`, mode: `tabs`, icon: tabicon, action: (args) => {
       App.select_tabs(`pins`)
     }},
-    {name: `Select Normal`, cmd: `select_normal_tabs`, mode: `tabs`, action: (args) => {
+    {name: `Select Normal`, cmd: `select_normal`, mode: `tabs`, icon: tabicon, action: (args) => {
       App.select_tabs(`normal`)
     }},
 

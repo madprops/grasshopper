@@ -98,9 +98,9 @@ App.build_default_settings = () => {
   obj.middle_click_actions_menu = {value: `browser_reload`, category: category, version: 1}
   obj.middle_click_footer = {value: `copy_url`, category: category, version: 1}
   obj.middle_click_pick_button = {value: `filter_domain`, category: category, version: 1}
-  obj.middle_click_close_button = {value: `unload_tabs_single`, category: category, version: 1}
-  obj.middle_click_open_button = {value: `open_items`, category: category, version: 1}
-  obj.middle_click_pinline = {value: `close_normal_tabs`, category: category, version: 1}
+  obj.middle_click_close_button = {value: `unload_single`, category: category, version: 1}
+  obj.middle_click_open_button = {value: `open`, category: category, version: 1}
+  obj.middle_click_pinline = {value: `close_normal`, category: category, version: 1}
 
   category = `warns`
   obj.warn_on_close_tabs = {value: `special`, category: category, version: 1}
