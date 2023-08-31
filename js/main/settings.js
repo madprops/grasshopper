@@ -328,12 +328,15 @@ App.settings_setup_text = (container) => {
           App.copy_to_clipboard(el.value)
         },
       },
-      {
+    ]
+
+    if (is_textarea) {
+      menu.push({
         name: `Edit`,  action: () => {
           App.edit_setting(setting)
         },
-      },
-    ]
+      })
+    }
 
     DOM.evs(App.get_settings_label(setting), [`click`, `contextmenu`], (e) => {
       App.settings_label_menu(e, menu)
