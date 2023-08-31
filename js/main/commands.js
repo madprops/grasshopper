@@ -93,10 +93,10 @@ App.setup_commands = () => {
     {icon: App.mode_icons.bookmarks, name: `Bookmark This`, cmd: `bookmark_active`, action: (args) => {
       App.bookmark_active(args.item)
     }},
-    {icon: App.clipboard_icon, name: `Copy URL`, cmd: `copy_item_url`, mode: `items`, action: (args) => {
+    {icon: App.clipboard_icon, name: `Copy URL`, cmd: `copy_url`, mode: `items`, action: (args) => {
       App.copy_url(args.item)
     }},
-    {icon: App.clipboard_icon, name: `Copy Title`, cmd: `copy_item_title`, mode: `items`, action: (args) => {
+    {icon: App.clipboard_icon, name: `Copy Title`, cmd: `copy_title`, mode: `items`, action: (args) => {
       App.copy_title(args.item)
     }},
     {icon: App.settings_icons.theme, name: `Background`, cmd: `change_background`, media: `image`, action: (args) => {
