@@ -106,10 +106,6 @@ App.do_addlist = (id) => {
     lines.splice(data.index, 0, new_line)
     App.after_addlist(o_args.setting, lines)
   }
-
-  if (data.action) {
-    data.action(new_line)
-  }
 }
 
 App.addlist_register = (args = {}) => {
@@ -324,7 +320,6 @@ App.addlist_click = (args = {}) => {
   let obj = {
     id: args.id,
     items: items,
-    action: args.action,
     use: args.use,
     line: args.line,
     index: args.index,
