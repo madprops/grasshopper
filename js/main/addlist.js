@@ -128,7 +128,7 @@ App.addlist_register = (args = {}) => {
       s_prev.textContent = `<`
       let s_next = DOM.create(`div`, `button arrow_next`)
       s_next.textContent = `>`
-      let s_container = DOM.create(`div`, `flex_row_center gap_2 grow`)
+      let s_container = DOM.create(`div`, `flex_row_center gap_1`)
 
       DOM.ev(select, `click`, () => {
         let items = []
