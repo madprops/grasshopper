@@ -119,9 +119,9 @@ App.addlist_register = (args = {}) => {
   let top = DOM.create(`div`, `flex_row_center gap_3 full_width`)
   let title = DOM.create(`div`, `addlist_title`)
   title.textContent = args.title
-  let btn_prev = DOM.create(`div`, `action`, `addlist_prev_${args.id}`)
+  let btn_prev = DOM.create(`div`, `button`, `addlist_prev_${args.id}`)
   btn_prev.textContent = `<`
-  let btn_next = DOM.create(`div`, `action`, `addlist_next_${args.id}`)
+  let btn_next = DOM.create(`div`, `button`, `addlist_next_${args.id}`)
   btn_next.textContent = `>`
 
   DOM.ev(btn_prev, `click`, () => {
