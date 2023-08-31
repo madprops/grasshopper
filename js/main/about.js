@@ -85,7 +85,6 @@ App.setup_about = () => {
 
     let s = `${App.manifest.name} v${App.manifest.version}`
     DOM.el(`#about_name`).textContent = s
-    DOM.el(`#about_timeago`).textContent = `Started: ${App.timeago(App.start_date)}`
   },
   after_show: () => {
     let filter = DOM.el(`#about_filter`)
@@ -94,6 +93,7 @@ App.setup_about = () => {
       App.clear_about_filter()
     }
 
+    DOM.el(`#about_timeago`).textContent = `Started: ${App.timeago(App.start_date)}`
     let image = DOM.el(`#about_image`)
     image.classList.remove(`rotate_1`)
     image.classList.remove(`invert`)
