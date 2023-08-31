@@ -294,8 +294,8 @@ App.settings_setup_text = (container) => {
               el.value = value
             }
 
+            App.scroll_to_top(el)
             App.settings_do_action(action)
-            el.focus()
           }, undefined, force)
         },
       },
@@ -1358,6 +1358,7 @@ App.default_backgrounds = () => {
     `lights.jpg`,
     `merkoba.jpg`,
     `orbit.gif`,
+    `lake.gif`,
   ]
 
   let items = []
