@@ -31,7 +31,7 @@ App.set_footer_info = (mode, text) => {
   if (footer) {
     let info = DOM.el(`.footer_info`, footer)
     info.textContent = text
-    info.title = `Click to go to bottom`
+    info.title = text
   }
 }
 
