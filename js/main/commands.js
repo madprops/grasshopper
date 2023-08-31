@@ -44,6 +44,7 @@ App.setup_commands = () => {
   }
 
   let tabicon =  App.mode_icons.tabs
+  let themeicon = App.settings_icons.theme
 
   App.commands = [
     {name: `Go To Top`, cmd: `go_to_top`, mode: `items`, action: (args) => {
@@ -89,19 +90,19 @@ App.setup_commands = () => {
     {name: `Open`, cmd: `open`, mode: `items`, action: (args) => {
       App.open_items(args.item, true)
     }},
-    {icon: App.mode_icons.bookmarks, name: `Bookmark`, cmd: `bookmark`, mode: `items`, action: (args) => {
+    {name: `Bookmark`, cmd: `bookmark`, mode: `items`, icon: App.mode_icons.bookmarks, action: (args) => {
       App.bookmark_items(args.item)
     }},
-    {icon: App.mode_icons.bookmarks, name: `BMark Active`, cmd: `bookmark_active`, action: (args) => {
+    {name: `BMark Active`, cmd: `bookmark_active`, icon: App.mode_icons.bookmarks, action: (args) => {
       App.bookmark_active(args.item)
     }},
-    {icon: App.clipboard_icon, name: `Copy URL`, cmd: `copy_url`, mode: `items`, action: (args) => {
+    {name: `Copy URL`, cmd: `copy_url`, mode: `items`, icon: App.clipboard_icon, action: (args) => {
       App.copy_url(args.item)
     }},
-    {icon: App.clipboard_icon, name: `Copy Title`, cmd: `copy_title`, mode: `items`, action: (args) => {
+    {name: `Copy Title`, cmd: `copy_title`, mode: `items`, icon: App.clipboard_icon, action: (args) => {
       App.copy_title(args.item)
     }},
-    {icon: App.settings_icons.theme, name: `Background`, cmd: `change_background`, media: `image`, action: (args) => {
+    {name: `Background`, cmd: `change_background`, media: `image`, icon: themeicon, action: (args) => {
       App.change_background(args.item.url)
     }},
 
@@ -233,31 +234,31 @@ App.setup_commands = () => {
 
     {name: App.separator_string},
 
-    {icon: App.settings_icons.theme, name: `Dark Theme`, cmd: `dark_theme`, action: (args) => {
+    {name: `Dark Theme`, cmd: `dark_theme`, icon: themeicon, action: (args) => {
       App.dark_theme()
     }},
-    {icon: App.settings_icons.theme, name: `Light Theme`, cmd: `light_theme`, action: (args) => {
+    {name: `Light Theme`, cmd: `light_theme`, icon: themeicon, action: (args) => {
       App.light_theme()
     }},
-    {icon: App.settings_icons.theme, name: `${App.random_text} Theme`, cmd: `random_theme`, action: (args) => {
+    {name: `${App.random_text} Theme`, cmd: `random_theme`, icon: themeicon, action: (args) => {
       App.random_theme()
     }},
-    {icon: App.settings_icons.theme, name: `${App.random_text} Background`, cmd: `random_background`, action: (args) => {
+    {name: `${App.random_text} Background`, cmd: `random_background`, icon: themeicon, action: (args) => {
       App.random_background()
     }},
-    {icon: App.settings_icons.theme, name: `Next Background`, cmd: `next_background`, action: (args) => {
+    {name: `Next Background`, cmd: `next_background`, icon: themeicon, action: (args) => {
       App.background_from_pool()
     }},
-    {icon: App.settings_icons.theme, name: `${App.remove_text} Background`, cmd: `remove_background`, action: (args) => {
+    {name: `${App.remove_text} Background`, cmd: `remove_background`, icon: themeicon, action: (args) => {
       App.change_background(``)
     }},
-    {icon: App.settings_icons.theme, name: `Add To Pool`, cmd: `add_to_background_pool`, media: `image`, action: (args) => {
+    {name: `Add To Pool`, cmd: `add_to_background_pool`, media: `image`, icon: themeicon, action: (args) => {
       App.add_to_background_pool()
     }},
 
     {name: App.separator_string},
 
-    {icon: App.bot_icon, name: `Restart`, cmd: `restart_extension`, action: (args) => {
+    {name: `Restart`, cmd: `restart_extension`, icon: App.bot_icon, action: (args) => {
       App.restart_extension()
     }},
   ]
