@@ -1310,13 +1310,8 @@ App.set_settings_menu = (setting, value) => {
 
   let el = DOM.el(`#settings_${setting}`)
   let opts = App[`settings_${setting}_opts`]
-
-  for (let o of opts) {
-    if (o[1] === value) {
-      el.textContent = o[0]
-      break
-    }
-  }
+  let opt = App.settings_get_menu_item(value, opts)
+  el.textContent = opt[0]
 }
 
 App.apply_pool = (full) => {
@@ -1386,4 +1381,12 @@ App.edit_setting = (setting) => {
     el.value = text
     App.do_save_text_setting(setting, el)
   }, value)
+}
+
+App.settings_get_menu_item = (value, opts) => {
+  for (let opt of opts) {
+    if (opt[1] === value) {
+      return opt
+    }
+  }
 }

@@ -1,25 +1,10 @@
 App.setup_addlist = () => {
+  App.addlist_commands = App.settings_commands()
+
   App.create_popup({
-    id: `addlist_pool`, setup: () => {
-      let eff = DOM.el(`#addlist_widget_pool_1`)
-
-      for (let e of App.background_effects) {
-        let o = DOM.create(`option`)
-        o.textContent = e[0]
-        o.value = e[1]
-        eff.append(o)
-      }
-
-      let tiles = DOM.el(`#addlist_widget_pool_2`)
-
-      for (let e of App.background_tiles) {
-        let o = DOM.create(`option`)
-        o.textContent = e[0]
-        o.value = e[1]
-        tiles.append(o)
-      }
-    }, element: App.addlist_register({id: `pool`, setting: `background_pool`,
-    widgets: [`text`, `select`, `select`], labels: [`Image URL`, `Effect`, `Tiles`], title: `BG Pool`, image: 0})
+    id: `addlist_pool`, element: App.addlist_register({id: `pool`, setting: `background_pool`,
+    widgets: [`text`, `select`, `select`], labels: [`Image URL`, `Effect`, `Tiles`], title: `BG Pool`, image: 0,
+    sources: [undefined, App.background_effects, App.background_tiles]})
   })
 
   App.create_popup({
@@ -33,36 +18,22 @@ App.setup_addlist = () => {
   })
 
   App.create_popup({
-    id: `addlist_extra_menu`, setup: () => {
-      App.fill_commands(DOM.el(`#addlist_widget_extra_menu_1`))
-    }, element: App.addlist_register({id: `extra_menu`, setting: `extra_menu`,
-    widgets: [`text`, `select`], labels: [`Name`, `Command`], title: `Extra Menu`})
+    id: `addlist_extra_menu`, element: App.addlist_register({id: `extra_menu`, setting: `extra_menu`,
+    widgets: [`text`, `select`], labels: [`Name`, `Command`], title: `Extra Menu`,
+    sources: [undefined, App.addlist_commands.slice(0)]})
   })
 
   App.create_popup({
-    id: `addlist_empty_menu`, setup: () => {
-      App.fill_commands(DOM.el(`#addlist_widget_empty_menu_1`))
-    }, element: App.addlist_register({id: `empty_menu`, setting: `empty_menu`,
-    widgets: [`text`, `select`], labels: [`Name`, `Command`], title: `Empty Menu`})
+    id: `addlist_empty_menu`, element: App.addlist_register({id: `empty_menu`, setting: `empty_menu`,
+    widgets: [`text`, `select`], labels: [`Name`, `Command`], title: `Empty Menu`,
+    sources: [undefined, App.addlist_commands.slice(0)]})
   })
 
   App.create_popup({
-    id: `addlist_footer_menu`, setup: () => {
-      App.fill_commands(DOM.el(`#addlist_widget_footer_menu_1`))
-    }, element: App.addlist_register({id: `footer_menu`, setting: `footer_menu`,
-    widgets: [`text`, `select`], labels: [`Name`, `Command`], title: `Footer Menu`})
+    id: `addlist_footer_menu`, element: App.addlist_register({id: `footer_menu`, setting: `footer_menu`,
+    widgets: [`text`, `select`], labels: [`Name`, `Command`], title: `Footer Menu`,
+    sources: [undefined, App.addlist_commands.slice(0)]})
   })
-}
-
-App.fill_commands = (el) => {
-  let cmds = App.commands.filter(x => !x.name.startsWith(`--`)).slice(0)
-
-  for (let cmd of cmds) {
-    let o = DOM.create(`option`)
-    o.textContent = cmd.name
-    o.value = cmd.cmd
-    el.append(o)
-  }
 }
 
 App.do_addlist = (id) => {
@@ -153,9 +124,50 @@ App.addlist_register = (args = {}) => {
       el = DOM.create(`div`, `flex_column_center gap_1`)
       let label = DOM.create(`div`)
       label.textContent = args.labels[i] || `Select`
-      let select = DOM.create(`select`, `editor_select`, id)
+      let select = DOM.create(`div`, `settings_menu button`, id)
+      let s_prev = DOM.create(`div`, `button arrow_prev`)
+      s_prev.textContent = `<`
+      let s_next = DOM.create(`div`, `button arrow_next`)
+      s_next.textContent = `>`
+      let s_container = DOM.create(`div`, `flex_row_center gap_2 grow`)
+
+      DOM.ev(select, `click`, () => {
+        let items = []
+
+        for (let o of args.sources[i]) {
+          if (o[0] === App.separator_string) {
+            items.push({separator: true})
+            continue
+          }
+
+          items.push({
+            icon: o[2],
+            text: o[0],
+            action: () => {
+              select.textContent = o[0]
+            },
+          })
+        }
+
+        NeedContext.show_on_element(select, items, true, select.clientHeight)
+      })
+
+      function prev_fn () {
+        App.addlist_menu_cycle(select, `prev`, args.sources[i])
+      }
+
+      function next_fn () {
+        App.addlist_menu_cycle(select, `next`, args.sources[i])
+      }
+
+      DOM.ev(s_prev, `click`, prev_fn)
+      DOM.ev(s_next, `click`, next_fn)
+
+      s_container.append(s_prev)
+      s_container.append(select)
+      s_container.append(s_next)
       el.append(label)
-      el.append(select)
+      el.append(s_container)
       els.push(el)
     }
   }
@@ -251,10 +263,16 @@ App.addlist = (args = {}) => {
     }
     else {
       if (!value && (w === `select`)) {
-        el.selectedIndex = 0
+        el.textContent = o_args.sources[i][0][0]
       }
       else {
-        el.value = value
+        if (w === `text`) {
+          el.value = value
+        }
+        else if (w === `select`) {
+          let opt = App.settings_get_menu_item(value, o_args.sources[i])
+          el.textContent = opt[0]
+        }
       }
     }
   }
@@ -549,5 +567,35 @@ App.addlist_move = (dir) => {
       App.after_addlist(o_args.setting, lines)
       break
     }
+  }
+}
+
+App.addlist_menu_cycle = (el, dir, o_items) => {
+  let waypoint = false
+  let items = o_items.slice(0)
+
+  if (dir === `prev`) {
+    items.reverse()
+  }
+
+  let s_item = items[0]
+
+  for (let item of items) {
+    if (item[0] === App.separator_string) {
+      continue
+    }
+
+    if (waypoint) {
+      s_item = item
+      break
+    }
+
+    if (item[0] === el.textContent) {
+      waypoint = true
+    }
+  }
+
+  if (s_item) {
+    el.textContent = s_item[0]
   }
 }
