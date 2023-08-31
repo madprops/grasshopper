@@ -5,7 +5,7 @@ App.setup_commands = () => {
     let icon = App.color_icon(color)
     let name = `Filter ${App.capitalize(color)}`
 
-    color_filters.push({icon: icon, name: name, cmd: `filter_${color}`, mode: `items`, action: (args) => {
+    color_filters.push({name: name, cmd: `filter_${color}`, mode: `items`, icon: icon, action: (args) => {
       App.filter_color(args.mode, color)
     }})
   }
@@ -16,7 +16,7 @@ App.setup_commands = () => {
     let icon = App.color_icon(color)
     let name = `Color ${App.capitalize(color)}`
 
-    color_changers.push({icon: icon, name: name, cmd: `color_${color}`, mode: `items`, action: (args) => {
+    color_changers.push({name: name, cmd: `color_${color}`, mode: `items`, icon: icon, action: (args) => {
       App.change_color(args.item, color)
     }})
   }
@@ -27,7 +27,7 @@ App.setup_commands = () => {
     let icon = App.get_setting(`${media}_icon`) || ``
     let name = `Filter ${App.capitalize(media)}`.trim()
 
-    media_filters.push({icon: icon, name: name, cmd: `filter_${media}`, mode: `items`, action: (args) => {
+    media_filters.push({name: name, cmd: `filter_${media}`, mode: `items`, icon: icon, action: (args) => {
       App.set_filter_mode(args.mode, media)
     }})
   }
@@ -38,7 +38,7 @@ App.setup_commands = () => {
     let icon = App.mode_icons[mode]
     let name = `Show ${App.get_mode_name(mode)}`
 
-    show_modes.push({icon: icon, name: name, cmd: `show_${mode}`, action: (args) => {
+    show_modes.push({name: name, cmd: `show_${mode}`, icon: icon, action: (args) => {
       App.show_mode(mode)
     }})
   }
@@ -101,9 +101,6 @@ App.setup_commands = () => {
     }},
     {name: `Copy Title`, cmd: `copy_title`, mode: `items`, icon: App.clipboard_icon, action: (args) => {
       App.copy_title(args.item)
-    }},
-    {name: `Background`, cmd: `change_background`, media: `image`, icon: themeicon, action: (args) => {
-      App.change_background(args.item.url)
     }},
 
     {name: App.separator_string},
@@ -251,6 +248,9 @@ App.setup_commands = () => {
     }},
     {name: `${App.remove_text} Background`, cmd: `remove_background`, icon: themeicon, action: (args) => {
       App.change_background(``)
+    }},
+    {name: `Background`, cmd: `change_background`, media: `image`, icon: themeicon, action: (args) => {
+      App.change_background(args.item.url)
     }},
     {name: `Add To Pool`, cmd: `add_to_background_pool`, media: `image`, icon: themeicon, action: (args) => {
       App.add_to_background_pool()
