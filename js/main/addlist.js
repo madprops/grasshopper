@@ -37,30 +37,18 @@ App.setup_addlist = () => {
 }
 
 App.do_addlist = (id) => {
-  let o_args = App[`addlist_args_${id}`]
+  let oargs = App.addlist_oargs(id)
   let values = []
 
-  for (let [i, w] of o_args.widgets.entries()) {
-    let el = App.addlist_widget(id, i)
-    let value
-
-    if (w === `text`) {
-      value = el.value.trim()
-    }
-    else if (w === `select`) {
-      let opt = App.settings_get_menu_item_2(el.textContent.trim(), o_args.sources[i])
-
-      if (opt) {
-        value = opt[1]
-      }
-    }
+  for (let [i, w] of oargs.widgets.entries()) {
+    let value = App.addlist_get_value(i, w)
 
     if (value) {
       values.push(value)
     }
   }
 
-  if (values.length !== o_args.widgets.length) {
+  if (values.length !== oargs.widgets.length) {
     return
   }
 
@@ -84,9 +72,9 @@ App.do_addlist = (id) => {
   let new_line = values.join(` ; `)
 
   if (new_line) {
-    let lines = App.get_setting(o_args.setting)
+    let lines = App.get_setting(oargs.setting)
     lines.splice(data.index, 0, new_line)
-    App.after_addlist(o_args.setting, lines)
+    App.after_addlist(oargs.setting, lines)
   }
 }
 
@@ -262,9 +250,9 @@ App.addlist = (args = {}) => {
   args = Object.assign(def_args, args)
   App.show_popup(`addlist_${args.id}`)
   App.check_addlist_buttons(args)
-  let o_args = App[`addlist_args_${args.id}`]
+  let oargs = App.addlist_oargs(args.id)
 
-  for (let [i, w] of o_args.widgets.entries()) {
+  for (let [i, w] of oargs.widgets.entries()) {
     let value = args.items[i] || ``
     let el = App.addlist_widget(args.id, i)
 
@@ -273,14 +261,14 @@ App.addlist = (args = {}) => {
     }
     else {
       if (!value && (w === `select`)) {
-        el.textContent = o_args.sources[i][0][0]
+        el.textContent = oargs.sources[i][0][0]
       }
       else {
         if (w === `text`) {
           el.value = value
         }
         else if (w === `select`) {
-          let opt = App.settings_get_menu_item(value, o_args.sources[i])
+          let opt = App.settings_get_menu_item(value, oargs.sources[i])
 
           if (opt) {
             el.textContent = opt[0]
@@ -290,7 +278,7 @@ App.addlist = (args = {}) => {
     }
   }
 
-  if (o_args.image !== undefined) {
+  if (oargs.image !== undefined) {
     App.update_image(args.id)
   }
 
@@ -303,8 +291,8 @@ App.addlist_remove = (id, value, force) => {
     return
   }
 
-  let o_args = App[`addlist_args_${id}`]
-  let lines = App.get_setting(o_args.setting)
+  let oargs = App.addlist_oargs(id)
+  let lines = App.get_setting(oargs.setting)
 
   if (!lines.length) {
     return
@@ -327,7 +315,7 @@ App.addlist_remove = (id, value, force) => {
       new_lines.push(line)
     }
 
-    App.after_addlist(o_args.setting, new_lines)
+    App.after_addlist(oargs.setting, new_lines)
   }, undefined, force)
 }
 
@@ -439,9 +427,9 @@ App.addlist_widget = (id, i = 0) => {
 }
 
 App.update_image = (id) => {
-  let o_args = App[`addlist_args_${id}`]
-  let img = DOM.el(`#addlist_image_${o_args.id}`)
-  let el = App.addlist_widget(id, o_args.image)
+  let oargs = App.addlist_oargs(id)
+  let img = DOM.el(`#addlist_image_${oargs.id}`)
+  let el = App.addlist_widget(id, oargs.image)
   let url = el.value.trim()
 
   if (!App.is_url(url)) {
@@ -463,8 +451,8 @@ App.addlist_use = () => {
 
 App.addlist_next = (id, reverse = false) => {
   let data = App.addlist_data
-  let o_args = App[`addlist_args_${id}`]
-  let lines = App.get_setting(o_args.setting).slice(0)
+  let oargs = App.addlist_oargs(id)
+  let lines = App.get_setting(oargs.setting).slice(0)
 
   if (lines.length <= 1) {
     return
@@ -518,12 +506,12 @@ App.addlist_modified = (id) => {
     return
   }
 
-  let o_args = App[`addlist_args_${id}`]
+  let oargs = App.addlist_oargs(id)
 
-  for (let [i, w] of o_args.widgets.entries()) {
-    let el = App.addlist_widget(id, i)
+  for (let [i, w] of oargs.widgets.entries()) {
+    let value = App.addlist_get_value(i, w)
 
-    if (data.items[i] !== el.value.trim()) {
+    if (data.items[i] !== value) {
       return true
     }
   }
@@ -554,8 +542,8 @@ App.addlist_move_menu = (e) => {
 
 App.addlist_move = (dir) => {
   let data = App.addlist_data
-  let o_args = App[`addlist_args_${data.id}`]
-  let lines = App.get_setting(o_args.setting)
+  let oargs = App.addlist_oargs(data.id)
+  let lines = App.get_setting(oargs.setting)
   let value = data.items[0]
 
   for (let [i, line] of lines.entries()) {
@@ -577,7 +565,7 @@ App.addlist_move = (dir) => {
         }
       }
 
-      App.after_addlist(o_args.setting, lines)
+      App.after_addlist(oargs.setting, lines)
       break
     }
   }
@@ -611,4 +599,28 @@ App.addlist_menu_cycle = (el, dir, o_items) => {
   if (s_item) {
     el.textContent = s_item[0]
   }
+}
+
+App.addlist_get_value = (i, w) => {
+  let id = App.addlist_data.id
+  let oargs = App.addlist_oargs(id)
+  let el = App.addlist_widget(id, i)
+  let value
+
+  if (w === `text`) {
+    value = el.value.trim()
+  }
+  else if (w === `select`) {
+    let opt = App.settings_get_menu_item_2(el.textContent.trim(), oargs.sources[i])
+
+    if (opt) {
+      value = opt[1]
+    }
+  }
+
+  return value
+}
+
+App.addlist_oargs = (id) => {
+  return App[`addlist_args_${id}`]
 }
