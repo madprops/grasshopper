@@ -6,6 +6,7 @@ App.stor_settings_name = `settings_v100`
 App.stor_profiles_name = `profiles_v1`
 App.stor_command_history_name = `command_history_v1`
 App.stor_filter_history_name = `filter_history_v1`
+App.stor_first_time_name = `first_time_v1`
 
 App.modes = [`tabs`, `bookmarks`, `closed`, `history`]
 App.gestures = [`up`, `down`, `left`, `right`, `up_and_down`, `left_and_right`]

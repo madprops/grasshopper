@@ -67,3 +67,13 @@ App.stor_save_filter_history = () => {
   App.debug(`Stor: Saving filter_history`)
   App.save_local_storage(App.stor_filter_history_name, App.filter_history)
 }
+
+App.stor_get_first_time = () => {
+  App.first_time = App.get_local_storage(App.stor_first_time_name, {})
+  App.debug(`Stor: Got first_time`)
+}
+
+App.stor_save_first_time = () => {
+  App.debug(`Stor: Saving first_time`)
+  App.save_local_storage(App.stor_first_time_name, App.first_time)
+}

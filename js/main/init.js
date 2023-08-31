@@ -7,6 +7,7 @@ App.init = async () => {
   App.stor_get_settings()
   App.stor_get_profiles()
   App.stor_get_command_history()
+  App.stor_get_first_time()
   App.setup_commands()
   App.setup_theme()
   App.setup_tabs()
@@ -29,6 +30,7 @@ App.init = async () => {
   App.apply_theme()
   await App.clear_show()
   App.make_window_visible()
+  App.check_first_time()
 }
 
 App.init()

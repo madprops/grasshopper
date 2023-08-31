@@ -536,3 +536,11 @@ App.get_line_under_caret = (textarea) => {
 
   return text.substring(start, end).trim()
 }
+
+App.check_first_time = () => {
+  if (!App.first_time.date) {
+    App.show_alert_2(`Welcome. The main menu is the top left button`)
+    App.first_time.date = Date.now()
+    App.stor_save_first_time()
+  }
+}
