@@ -541,6 +541,13 @@ svg {
   flex-grow: 1;
   justify-content: center;
   align-items: center;
+  flex-shrink: 0;
+}
+
+.addlist_text {
+  width: 12rem;
+  max-width: 12rem;
+  text-align: center;
 }
 
 .text_smaller {

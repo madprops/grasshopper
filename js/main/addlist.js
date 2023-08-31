@@ -119,9 +119,9 @@ App.addlist_register = (args = {}) => {
   let top = DOM.create(`div`, `flex_row_center gap_3 full_width`)
   let title = DOM.create(`div`, `addlist_title`)
   title.textContent = args.title
-  let btn_prev = DOM.create(`div`, `button`, `addlist_prev_${args.id}`)
+  let btn_prev = DOM.create(`div`, `action`, `addlist_prev_${args.id}`)
   btn_prev.textContent = `<`
-  let btn_next = DOM.create(`div`, `button`, `addlist_next_${args.id}`)
+  let btn_next = DOM.create(`div`, `action`, `addlist_next_${args.id}`)
   btn_next.textContent = `>`
 
   DOM.ev(btn_prev, `click`, () => {
@@ -142,7 +142,7 @@ App.addlist_register = (args = {}) => {
     let id = `addlist_widget_${args.id}_${i}`
 
     if (w === `text`) {
-      let el = DOM.create(`input`, `text editor_text`, id)
+      let el = DOM.create(`input`, `text addlist_text`, id)
       el.type = `text`
       el.spellcheck = false
       el.autocomplete = false
@@ -309,8 +309,11 @@ App.addlist_click = (args = {}) => {
     return
   }
 
-  let lines = args.e.target.value.split(`\n`)
-  args.index = lines.indexOf(args.line)
+  if (args.index === undefined) {
+    let lines = args.e.target.value.split(`\n`)
+    args.index = lines.indexOf(args.line)
+  }
+
   let items = App.addlist_items(args.line)
 
   if (!items) {
@@ -427,34 +430,37 @@ App.addlist_next = (id, reverse = false) => {
   let o_args = App[`addlist_args_${id}`]
   let lines = App.get_setting(o_args.setting).slice(0)
 
-  if (lines.length < 2) {
+  if (lines.length <= 1) {
     return
   }
 
-  let waypoint = false
+  let index
 
   if (reverse) {
-    lines.reverse()
-  }
-
-  let next
-
-  for (let line of lines) {
-    if (waypoint) {
-      next = line
-      break
+    if (data.index === undefined) {
+      index = 0
     }
-
-    if (line === data.line) {
-      waypoint = true
+    else if (data.index <= 0) {
+      index = lines.length - 1
+    }
+    else {
+      index = data.index - 1
     }
   }
-
-  if (!next) {
-    next = lines[0]
+  else {
+    if (data.index === undefined) {
+      index = 0
+    }
+    else if (data.index >= (lines.length - 1)) {
+      index = 0
+    }
+    else {
+      index = data.index + 1
+    }
   }
 
-  data.line = next
+  data.index = index
+  data.line = lines[index]
   App.addlist_click(data)
 }
 
