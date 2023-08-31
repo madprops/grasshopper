@@ -302,6 +302,11 @@ App.addlist_remove = (id, value, force) => {
 
 App.addlist_click = (args = {}) => {
   if (!args.line) {
+    if (!args.e.target.value.trim()) {
+      App.addlist({id: args.id})
+      return
+    }
+
     args.line = App.get_line_under_caret(args.e.target)
   }
 
