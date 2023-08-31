@@ -79,9 +79,6 @@ App.build_default_settings = () => {
   obj.show_scroller = {value: true, category: category, version: 1}
   obj.show_footer = {value: true, category: category, version: 1}
   obj.show_filter_history = {value: true, category: category, version: 1}
-  obj.extra_menu = {value: [], category: category, version: 1}
-  obj.empty_menu = {value: [`Select ; select_all`, `New Tab ; new_tab`, ], category: category, version: 1}
-  obj.footer_menu = {value: [`Copy URL ; copy_url`, `Copy Title ; copy_title`, ], category: category, version: 1}
 
   category = `mouse`
   obj.gestures_enabled = {value: true, category: category, version: 1}
@@ -101,6 +98,9 @@ App.build_default_settings = () => {
   obj.middle_click_close_button = {value: `unload_single`, category: category, version: 1}
   obj.middle_click_open_button = {value: `open`, category: category, version: 1}
   obj.middle_click_pinline = {value: `close_normal`, category: category, version: 1}
+  obj.extra_menu = {value: [], category: category, version: 1}
+  obj.empty_menu = {value: [`Select ; select_all`, `New Tab ; new_tab`, ], category: category, version: 1}
+  obj.footer_menu = {value: [`Copy URL ; copy_url`, `Copy Title ; copy_title`, ], category: category, version: 1}
 
   category = `warns`
   obj.warn_on_close_tabs = {value: `special`, category: category, version: 1}
@@ -687,30 +687,6 @@ App.setup_settings = () => {
 
   App.create_window(Object.assign({}, common, {id: `settings_show`, setup: () => {
     prepare(`show`)
-
-    DOM.ev(DOM.el(`#settings_extra_menu_add`), `click`, () => {
-      App.addlist({id: `extra_menu`})
-    })
-
-    DOM.ev(DOM.el(`#settings_extra_menu`), `click`, (e) => {
-      App.addlist_click({e: e, id: `extra_menu`})
-    })
-
-    DOM.ev(DOM.el(`#settings_empty_menu_add`), `click`, () => {
-      App.addlist({id: `empty_menu`})
-    })
-
-    DOM.ev(DOM.el(`#settings_empty_menu`), `click`, (e) => {
-      App.addlist_click({e: e, id: `empty_menu`})
-    })
-
-    DOM.ev(DOM.el(`#settings_footer_menu_add`), `click`, () => {
-      App.addlist({id: `footer_menu`})
-    })
-
-    DOM.ev(DOM.el(`#settings_footer_menu`), `click`, (e) => {
-      App.addlist_click({e: e, id: `footer_menu`})
-    })
   }}))
 
   App.create_window(Object.assign({}, common, {id: `settings_mouse`, setup: () => {
@@ -742,6 +718,30 @@ App.setup_settings = () => {
     App.settings_make_menu(`middle_click_close_button`, opts)
     App.settings_make_menu(`middle_click_open_button`, opts)
     App.settings_make_menu(`middle_click_pinline`, opts)
+
+    DOM.ev(DOM.el(`#settings_extra_menu_add`), `click`, () => {
+      App.addlist({id: `extra_menu`})
+    })
+
+    DOM.ev(DOM.el(`#settings_extra_menu`), `click`, (e) => {
+      App.addlist_click({e: e, id: `extra_menu`})
+    })
+
+    DOM.ev(DOM.el(`#settings_empty_menu_add`), `click`, () => {
+      App.addlist({id: `empty_menu`})
+    })
+
+    DOM.ev(DOM.el(`#settings_empty_menu`), `click`, (e) => {
+      App.addlist_click({e: e, id: `empty_menu`})
+    })
+
+    DOM.ev(DOM.el(`#settings_footer_menu_add`), `click`, () => {
+      App.addlist({id: `footer_menu`})
+    })
+
+    DOM.ev(DOM.el(`#settings_footer_menu`), `click`, (e) => {
+      App.addlist_click({e: e, id: `footer_menu`})
+    })
   }}))
 
   window.addEventListener(`storage`, (e) => {
