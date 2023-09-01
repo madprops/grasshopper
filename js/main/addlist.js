@@ -273,8 +273,8 @@ App.addlist = (args = {}) => {
     App.update_image(args.id)
   }
 
-  App.addlist_check_focus(args.id)
   App.addlist_data = args
+  App.addlist_check_focus(args.id)
 }
 
 App.addlist_remove = (id, value, force) => {
@@ -483,13 +483,22 @@ App.addlist_next = (id, reverse = false) => {
 }
 
 App.addlist_check_focus = (id) => {
-  let el = App.addlist_widget(id, 0)
+  let oargs = App.addlist_oargs(id)
+  let data = App.addlist_data
 
-  if (!el.value) {
-    el.focus()
-  }
-  else {
-    DOM.el(`#addlist_container_${id}`).focus()
+  for (let [i, w] of oargs.widgets.entries()) {
+    if (w === `image`) {
+      continue
+    }
+
+    let el = App.addlist_widget(id, i)
+
+    if (data.update) {
+      DOM.el(`#addlist_container_${id}`).focus()
+    }
+    else {
+      el.focus()
+    }
   }
 }
 

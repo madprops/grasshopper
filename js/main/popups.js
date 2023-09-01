@@ -4,6 +4,7 @@ App.create_popup = (args) => {
 
   let popup = DOM.create(`div`, `popup_main hidden`, `popup_${args.id}`)
   let container = DOM.create(`div`, `popup_container`, `${args.id}_container`)
+  container.tabIndex = 0
 
   if (args.element) {
     container.innerHTML = ``
@@ -36,6 +37,7 @@ App.create_popup = (args) => {
     p.setup()
     p.element.classList.remove(`hidden`)
     App.popup_mode = args.id
+    container.focus()
     p.open = true
   }
 
