@@ -25,7 +25,7 @@ App.create_menubutton = (args = {}) => {
           args.button.textContent = opt[0]
 
           if (args.on_change) {
-            args.on_change(opt)
+            args.on_change(args, opt)
           }
         },
       })
@@ -68,7 +68,11 @@ App.menubutton_cycle = (args, dir) => {
     opts.reverse()
   }
 
-  let opt = opts[0]
+  let opt
+
+  if (args.wrap) {
+    opt = opts[0]
+  }
 
   for (let item of opts) {
     if (item[0] === App.separator_string) {
@@ -89,7 +93,7 @@ App.menubutton_cycle = (args, dir) => {
     args.button.textContent = opt[0]
 
     if (args.on_change) {
-      args.on_change(opt)
+      args.on_change(args, opt)
     }
   }
 }

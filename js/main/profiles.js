@@ -1481,7 +1481,16 @@ App.profile_apply_theme = () => {
 }
 
 App.profile_make_menu = (prop, opts) => {
-  let el = DOM.el(`#profile_editor_${prop}`)
+  App.create_menubutton({
+    button: el,
+    selected: App.get_setting(setting),
+    on_change: (args, opt) => {
+      App.profile_editor_set_menu(args.button, prop, opt)
+    },
+    opts: opts,
+  })
+
+  let el =
 
   DOM.ev(el, `click`, () => {
     let items = []

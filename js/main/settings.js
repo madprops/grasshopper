@@ -350,7 +350,7 @@ App.settings_make_menu = (setting, opts, action = () => {}) => {
   App.create_menubutton({
     button: DOM.el(`#settings_${setting}`),
     selected: App.get_setting(setting),
-    on_change: (opt) => {
+    on_change: (args, opt) => {
       App.set_setting(setting, opt[1])
       action()
     },
