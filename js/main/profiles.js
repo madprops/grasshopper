@@ -1489,6 +1489,8 @@ App.profile_make_menu = (prop, opts) => {
       if (prop === `background_effect` || prop === `background_tiles`) {
         App.profile_apply_theme()
       }
+
+      App[`current_profile_editor_${prop}`] = opt[1]
     },
     opts: opts,
   })
