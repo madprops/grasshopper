@@ -694,11 +694,11 @@ App.setup_settings = () => {
     prepare(`keyboard`)
 
     DOM.ev(DOM.el(`#settings_keyboard_shortcuts_add`), `click`, () => {
-      App.addlist({id: `keyboard_shortcuts`})
+      App.addlist({id: `keyboard_shortcut`})
     })
 
     DOM.ev(DOM.el(`#settings_keyboard_shortcuts`), `click`, (e) => {
-      App.addlist_click({e: e, id: `keyboard_shortcuts`})
+      App.addlist_click({e: e, id: `keyboard_shortcut`})
     })
   }}))
 
