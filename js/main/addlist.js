@@ -37,7 +37,7 @@ App.setup_addlist = () => {
 
   App.create_popup({
     id: `addlist_keyboard_shortcuts`, element: App.addlist_register({id: `keyboard_shortcuts`, setting: `keyboard_shortcuts`,
-    widgets: [`text_char`, `select`], labels: [`Key`, `Command`], title: `Keyboard Shortcuts`,
+    widgets: [`key`, `select`], labels: [`Key`, `Command`], title: `Keyboard Shortcuts`,
     sources: [undefined, App.addlist_commands.slice(0)]})
   })
 }
@@ -134,13 +134,6 @@ App.addlist_register = (args = {}) => {
       el.placeholder = args.labels[i] || `Value`
       els.push(el)
     }
-    else if (w === `text_char`) {
-      let el = DOM.create(`input`, `text addlist_text_char`, id)
-      el.type = `text`
-      el.spellcheck = false
-      el.autocomplete = false
-      els.push(el)
-    }
     else if (w === `select`) {
       let el = DOM.create(`div`, `flex_column_center gap_1`)
       let label = DOM.create(`div`)
@@ -153,6 +146,20 @@ App.addlist_register = (args = {}) => {
       let mb = App[`addlist_menubutton_${args.id}_${i}`]
       el.append(label)
       el.append(mb.container)
+      els.push(el)
+    }
+    else if (w === `key`) {
+      let el = DOM.create(`input`, `text addlist_text`, id)
+      el.type = `text`
+      el.spellcheck = false
+      el.autocomplete = false
+      el.placeholder = args.labels[i] || `Key`
+
+      DOM.ev(el, `keydown`, (e) => {
+        el.value = e.code
+        e.preventDefault()
+      })
+
       els.push(el)
     }
   }
@@ -248,7 +255,7 @@ App.addlist = (args = {}) => {
       el.src = value
     }
     else {
-      if (w === `text` || w === `text_char`) {
+      if (w === `text` || w === `key`) {
         el.value = value
       }
       else if (w === `select`) {
@@ -572,11 +579,8 @@ App.addlist_get_value = (i, w) => {
   let el = App.addlist_widget(id, i)
   let value
 
-  if (w === `text`) {
+  if (w === `text` || w === `key`) {
     value = el.value.trim()
-  }
-  else if (w === `text_char`) {
-    value = el.value.trim().toLowerCase()
   }
   else if (w === `select`) {
     value = App[`addlist_menubutton_${id}_${i}`].value

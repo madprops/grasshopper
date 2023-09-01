@@ -52,17 +52,17 @@ App.check_items_keyboard = (e) => {
     }
   }
 
+  console.log(check_kbs)
+
   if (check_kbs) {
     for (let line of App.get_setting(`keyboard_shortcuts`)) {
       let items = App.addlist_items(line)
-      let key = items[0].toLowerCase()
 
-      if (key !== e.key.toLowerCase()) {
+      if (items[0] !== e.code) {
         continue
       }
 
-      let cmd = items[1]
-      App.run_command({cmd: cmd, from: `keyboard_shortcut`})
+      App.run_command({cmd: items[1], from: `keyboard_shortcut`})
       e.preventDefault()
       e.stopPropagation()
       return
