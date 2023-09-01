@@ -52,8 +52,6 @@ App.check_items_keyboard = (e) => {
     }
   }
 
-  console.log(check_kbs)
-
   if (check_kbs) {
     for (let line of App.get_setting(`keyboard_shortcuts`)) {
       let items = App.addlist_items(line)
