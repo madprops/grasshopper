@@ -45,7 +45,7 @@ App.create_menubutton = (args = {}) => {
       args.button.textContent = opt[0]
     }
     else if (opt.length === 3) {
-      args.button.innerHTML = (opt[2] || ``) + opt[0]
+      args.button.innerHTML = `<div>` + (opt[2] || ``) +`</div>` + opt[0]
     }
 
     args.value = opt[1]
@@ -71,7 +71,7 @@ App.create_menubutton = (args = {}) => {
   if (args.selected) {
     for (let opt of args.opts) {
       if (args.selected === opt[1]) {
-        args.button.textContent = opt[0]
+        args.text(args, opt)
         break
       }
     }
