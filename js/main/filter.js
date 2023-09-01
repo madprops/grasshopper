@@ -301,7 +301,6 @@ App.clear_filter = (mode = App.window_mode) => {
 
 App.set_filter = (mode, text, filter = true, instant = true) => {
   App.get_filter_el(mode).value = text
-  App.focus_filter(mode)
 
   if (filter) {
     if (App.on_items(mode)) {
