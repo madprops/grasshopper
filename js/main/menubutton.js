@@ -1,10 +1,9 @@
 App.create_menubutton = (args = {}) => {
-  let c = DOM.create(`div`, `flex_row_center gap_1`)
-
   if (!args.button) {
     args.button = DOM.create(`div`, `settings_menu button`, args.id)
   }
 
+  let buttons = DOM.create(`div`, `flex_row_center gap_1`)
   let prev = DOM.create(`div`, `button arrow_prev`)
   prev.textContent = `<`
   let next = DOM.create(`div`, `button arrow_next`)
@@ -43,12 +42,22 @@ App.create_menubutton = (args = {}) => {
     App.menubutton_cycle(args, `next`)
   }
 
+  if (args.selected) {
+    for (let opt of args.opts) {
+      if (args.selected === opt[1]) {
+        args.button.textContent = opt[0]
+        break
+      }
+    }
+  }
+
   DOM.ev(prev, `click`, prev_fn)
   DOM.ev(next, `click`, next_fn)
-  c.append(prev)
-  c.append(args.button)
-  c.append(next)
-  return c
+  buttons.append(prev)
+  buttons.append(next)
+  args.button.after(buttons)
+  prev.after(args.button)
+  return buttons
 }
 
 App.menubutton_cycle = (args, dir) => {

@@ -123,7 +123,9 @@ App.addlist_register = (args = {}) => {
       el = DOM.create(`div`, `flex_column_center gap_1`)
       let label = DOM.create(`div`)
       label.textContent = args.labels[i] || `Select`
-      let menubutton = App.create_menubutton({id: id, opts: args.sources[i]})
+      let menubutton = App.create_menubutton({
+        id: id, opts: args.sources[i],
+      })
       el.append(label)
       el.append(menubutton)
       els.push(el)

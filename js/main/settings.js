@@ -347,13 +347,15 @@ App.settings_setup_text = (container) => {
 App.settings_make_menu = (setting, opts, action = () => {}) => {
   let no_wrap = [`font_size`, `width`, `height`]
 
-  let menubutton = App.create_menubutton({
+  App.create_menubutton({
     button: DOM.el(`#settings_${setting}`),
+    selected: App.get_setting(setting),
     on_change: (opt) => {
       App.set_setting(setting, opt[1])
       action()
     },
     wrap: !no_wrap.includes(setting),
+    opts: opts,
   })
 
   App[`settings_${setting}_opts`] = opts
@@ -374,12 +376,6 @@ App.settings_make_menu = (setting, opts, action = () => {}) => {
       },
     ])
   })
-
-  for (let opt of opts) {
-    if (App.get_setting(setting) === opt[1]) {
-      menubutton.textContent = opt[0]
-    }
-  }
 }
 
 App.add_settings_filter = (category) => {
