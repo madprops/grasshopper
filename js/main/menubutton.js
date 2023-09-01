@@ -101,7 +101,7 @@ App.menubutton_cycle = (args, dir) => {
   }
 
   for (let o of opts) {
-    if (o[0] === App.separator_string) {
+    if (o.text === App.separator_string) {
       continue
     }
 
@@ -110,7 +110,7 @@ App.menubutton_cycle = (args, dir) => {
       break
     }
 
-    if (o[0] === args.button.textContent) {
+    if (o.text === args.button.textContent) {
       waypoint = true
     }
   }
