@@ -8,12 +8,12 @@ App.setup_addlist = () => {
   })
 
   App.create_popup({
-    id: `addlist_custom_filter`, element: App.addlist_register({id: `custom_filter`, setting: `custom_filters`,
+    id: `addlist_custom_filters`, element: App.addlist_register({id: `custom_filters`, setting: `custom_filters`,
     widgets: [`text`], labels: [`Filter`], title: `Custom Filters`})
   })
 
   App.create_popup({
-    id: `addlist_alias`, element: App.addlist_register({id: `alias`, setting: `aliases`,
+    id: `addlist_aliases`, element: App.addlist_register({id: `aliases`, setting: `aliases`,
     widgets: [`text`, `text`], labels: [`Term 1`, `Term 2`], title: `Aliases`})
   })
 
@@ -36,7 +36,7 @@ App.setup_addlist = () => {
   })
 
   App.create_popup({
-    id: `addlist_keyboard_shortcut`, element: App.addlist_register({id: `keyboard_shortcut`, setting: `keyboard_shortcuts`,
+    id: `addlist_keyboard_shortcuts`, element: App.addlist_register({id: `keyboard_shortcuts`, setting: `keyboard_shortcuts`,
     widgets: [`key`, `select`], labels: [`Key`, `Command`], title: `Keyboard Shortcuts`,
     sources: [undefined, App.addlist_commands.slice(0)]})
   })

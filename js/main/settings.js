@@ -556,19 +556,19 @@ App.setup_settings = () => {
     })
 
     DOM.ev(DOM.el(`#settings_aliases_add`), `click`, () => {
-      App.addlist({id: `alias`})
+      App.addlist({id: `aliases`})
     })
 
     DOM.ev(DOM.el(`#settings_aliases`), `click`, (e) => {
-      App.addlist_click({e: e, id: `alias`})
+      App.addlist_click({e: e, id: `aliases`})
     })
 
     DOM.ev(DOM.el(`#settings_custom_filters_add`), `click`, () => {
-      App.addlist({id: `custom_filter`})
+      App.addlist({id: `custom_filters`})
     })
 
     DOM.ev(DOM.el(`#settings_custom_filters`), `click`, (e) => {
-      App.addlist_click({e: e, id: `custom_filter`})
+      App.addlist_click({e: e, id: `custom_filters`})
     })
   }}))
 
@@ -694,11 +694,11 @@ App.setup_settings = () => {
     prepare(`keyboard`)
 
     DOM.ev(DOM.el(`#settings_keyboard_shortcuts_add`), `click`, () => {
-      App.addlist({id: `keyboard_shortcut`})
+      App.addlist({id: `keyboard_shortcuts`})
     })
 
     DOM.ev(DOM.el(`#settings_keyboard_shortcuts`), `click`, (e) => {
-      App.addlist_click({e: e, id: `keyboard_shortcut`})
+      App.addlist_click({e: e, id: `keyboard_shortcuts`})
     })
   }}))
 
