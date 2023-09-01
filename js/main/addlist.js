@@ -82,6 +82,7 @@ App.do_addlist = (id) => {
     let lines = App.get_setting(oargs.setting)
     lines.splice(data.index, 0, new_line)
     App.after_addlist(oargs.id, lines)
+    App.addlist_use(false)
   }
 }
 
@@ -353,7 +354,6 @@ App.after_addlist = (id, lines) => {
   area.value = App.get_textarea_setting_value(oargs.setting)
   App.check_theme_refresh()
   App.hide_popup()
-  App.addlist_use(false)
 }
 
 App.check_addlist_buttons = (args) => {
