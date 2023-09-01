@@ -883,8 +883,8 @@ App.start_theme_settings = () => {
   })
 
   DOM.ev(DOM.el(`#settings_background_pool`), `click`, (e) => {
-    App.addlist_click({e: e, id: `pool`, use: (c) => {
-      App.change_background(c[0], c[1], c[2])
+    App.addlist_click({e: e, id: `pool`, use: (v) => {
+      App.change_background(v[0], v[1], v[2])
     }})
   })
 }

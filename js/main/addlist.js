@@ -36,7 +36,7 @@ App.setup_addlist = () => {
   })
 }
 
-App.do_addlist = (id) => {
+App.addlist_values = (id) => {
   let oargs = App.addlist_oargs(id)
   let values = []
 
@@ -47,6 +47,13 @@ App.do_addlist = (id) => {
       values.push(value)
     }
   }
+
+  return values
+}
+
+App.do_addlist = (id) => {
+  let oargs = App.addlist_oargs(id)
+  let values = App.addlist_values(id)
 
   if (values.length !== oargs.widgets.length) {
     return
@@ -74,7 +81,7 @@ App.do_addlist = (id) => {
   if (new_line) {
     let lines = App.get_setting(oargs.setting)
     lines.splice(data.index, 0, new_line)
-    App.after_addlist(oargs.setting, lines)
+    App.after_addlist(oargs.id, lines)
   }
 }
 
@@ -181,6 +188,7 @@ App.addlist_register = (args = {}) => {
   })
 
   DOM.ev(use, `click`, () => {
+    App.hide_popup()
     App.addlist_use()
   })
 
@@ -276,7 +284,7 @@ App.addlist_remove = (id, value, force) => {
       new_lines.push(line)
     }
 
-    App.after_addlist(oargs.setting, new_lines)
+    App.after_addlist(oargs.id, new_lines)
   }, undefined, force)
 }
 
@@ -322,6 +330,7 @@ App.addlist_enter = () => {
   let modified = App.addlist_modified(data.id)
 
   if (data.use && !modified) {
+    App.hide_popup()
     App.addlist_use()
   }
   else {
@@ -337,12 +346,14 @@ App.addlist_right = () => {
   App.addlist_next(App.addlist_data.id)
 }
 
-App.after_addlist = (setting, lines) => {
-  App.set_setting(setting, lines)
-  let area = DOM.el(`#settings_${setting}`)
-  area.value = App.get_textarea_setting_value(setting)
+App.after_addlist = (id, lines) => {
+  let oargs = App.addlist_oargs(id)
+  App.set_setting(oargs.setting, lines)
+  let area = DOM.el(`#settings_${oargs.setting}`)
+  area.value = App.get_textarea_setting_value(oargs.setting)
   App.check_theme_refresh()
   App.hide_popup()
+  App.addlist_use(false)
 }
 
 App.check_addlist_buttons = (args) => {
@@ -400,14 +411,15 @@ App.update_image = (id) => {
   img.src = url
 }
 
-App.addlist_use = () => {
+App.addlist_use = (force = true) => {
   let data = App.addlist_data
 
   if (data.use) {
-    data.use(data.items)
+    App.show_confirm(`Use this now?`, () => {
+      let values = App.addlist_values(data.id)
+      data.use(values)
+    }, undefined, force)
   }
-
-  App.hide_popup()
 }
 
 App.addlist_next = (id, reverse = false) => {
@@ -526,7 +538,7 @@ App.addlist_move = (dir) => {
         }
       }
 
-      App.after_addlist(oargs.setting, lines)
+      App.after_addlist(oargs.id, lines)
       break
     }
   }
