@@ -90,6 +90,11 @@ App.show_item_menu = async (item, x, y) => {
   NeedContext.show(x, y, items)
 }
 
+App.show_item_menu_2 = (item) => {
+  let rect = item.element.getBoundingClientRect()
+  App.show_item_menu(item, rect.left, rect.top)
+}
+
 App.get_window_menu_items = async (item) => {
   let items = []
   let wins = await browser.windows.getAll({populate: false})

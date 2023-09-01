@@ -129,8 +129,7 @@ App.check_items_keyboard = (e) => {
 
   if (e.shiftKey && !e.ctrlKey) {
     if (e.key === `Enter`) {
-      let rect = item.element.getBoundingClientRect()
-      App.show_item_menu(item, rect.left, rect.top)
+      App.show_item_menu_2(item)
       e.preventDefault()
       return
     }
