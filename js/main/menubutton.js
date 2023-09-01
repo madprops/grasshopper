@@ -28,7 +28,7 @@ App.create_menubutton = (args = {}) => {
         icon: opt.icon,
         text: opt.text,
         action: () => {
-          args.text(args, opt)
+          App.menubutton_set_text(args, opt)
 
           if (args.on_change) {
             args.on_change(args, opt)
@@ -40,20 +40,9 @@ App.create_menubutton = (args = {}) => {
     NeedContext.show_on_element(args.button, items, true, args.button.clientHeight)
   })
 
-  args.text = (args, opt) => {
-    if (opt.length === 2) {
-      args.button.textContent = opt.text
-    }
-    else if (opt.length === 3) {
-      args.button.innerHTML = `<div>` + (opt.icon || ``) + `</div>` + opt.text
-    }
-
-    args.value = opt.value
-  }
-
   args.set = (value, on_change = true) => {
     let opt = App.menubutton_opt(args, value)
-    args.text(args, opt)
+    App.menubutton_set_text(args, opt)
 
     if (on_change && args.on_change) {
       args.on_change(args, opt)
@@ -71,7 +60,7 @@ App.create_menubutton = (args = {}) => {
   if (args.selected) {
     for (let opt of args.opts) {
       if (args.selected === opt.value) {
-        args.text(args, opt)
+        App.menubutton_set_text(args, opt)
         break
       }
     }
@@ -84,6 +73,17 @@ App.create_menubutton = (args = {}) => {
   args.button.after(args.container)
   prev.after(args.button)
   return args
+}
+
+App.menubutton_set_text = (args, opt) => {
+  if (opt.icon) {
+    args.button.innerHTML = `<div>` + (opt.icon || ``) + `</div>` + opt.text
+  }
+  else {
+    args.button.textContent = opt.text
+  }
+
+  args.value = opt.value
 }
 
 App.menubutton_cycle = (args, dir) => {
@@ -116,7 +116,7 @@ App.menubutton_cycle = (args, dir) => {
   }
 
   if (opt) {
-    args.text(args, opt)
+    App.menubutton_set_text(args, opt)
 
     if (args.on_change) {
       args.on_change(args, opt)

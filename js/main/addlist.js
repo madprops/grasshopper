@@ -48,6 +48,7 @@ App.addlist_values = (id) => {
     }
   }
 
+  console.log(values)
   return values
 }
 

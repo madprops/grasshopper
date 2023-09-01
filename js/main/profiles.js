@@ -56,12 +56,12 @@ App.setup_profile_editor = () => {
       App.show_profile_urls()
     })
 
-    App.profile_editor_color_opts = [[`None`, `none`, ``]]
+    App.profile_editor_color_opts = [{text: `None`, value: `none`}]
 
     for (let color of App.colors) {
       let icon = App.color_icon(color)
       let name = App.capitalize(color)
-      App.profile_editor_color_opts.push([name, color, icon])
+      App.profile_editor_color_opts.push({text: name, value: color, icon: icon})
     }
 
     App.profile_make_menu(`color`, App.profile_editor_color_opts)

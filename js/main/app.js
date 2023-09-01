@@ -265,25 +265,25 @@ App.color_names = {
 }
 
 App.background_effects = [
-  [`None`, `none`],
-  [`Gray`, `grayscale`],
-  [`Invert`, `invert`],
-  [`Rotate 1`, `rotate_1`],
-  [`Rotate 2`, `rotate_2`],
-  [`Rotate 3`, `rotate_3`],
-  [`Blur`, `blur`],
+  {text: `None`, value: `none`},
+  {text: `Gray`, value: `grayscale`},
+  {text: `Invert`, value: `invert`},
+  {text: `Rotate 1`, value: `rotate_1`},
+  {text: `Rotate 2`, value: `rotate_2`},
+  {text: `Rotate 3`, value: `rotate_3`},
+  {text: `Blur`, value: `blur`},
 ]
 
 App.background_tiles = [
-  [`None`, `none`],
-  [`50px`, `50px`],
-  [`100px`, `100px`],
-  [`150px`, `150px`],
-  [`200px`, `200px`],
-  [`250px`, `250px`],
-  [`300px`, `300px`],
-  [`350px`, `350px`],
-  [`400px`, `400px`],
-  [`450px`, `450px`],
-  [`500px`, `500px`],
+  {text: `None`, value: `none`},
+  {text: `50px`, value: `50px`},
+  {text: `100px`, value: `100px`},
+  {text: `150px`, value: `150px`},
+  {text: `200px`, value: `200px`},
+  {text: `250px`, value: `250px`},
+  {text: `300px`, value: `300px`},
+  {text: `350px`, value: `350px`},
+  {text: `400px`, value: `400px`},
+  {text: `450px`, value: `450px`},
+  {text: `500px`, value: `500px`},
 ]
