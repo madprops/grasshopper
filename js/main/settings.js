@@ -1,14 +1,3 @@
-App.setting_presets = [
-  {
-    category: `general`,
-    name: `Double`,
-    settings: [
-      [`text_mode`, `title_url`],
-      [`item_border`, `normal`],
-    ]
-  }
-]
-
 App.build_default_settings = () => {
   let obj = {}
 
@@ -1311,7 +1300,6 @@ App.edit_setting = (setting) => {
 
 App.settings_actions = (category) => {
   let items = []
-  let has_presets = [`general`]
 
   items.push({
     text: `Reset`,
@@ -1320,41 +1308,6 @@ App.settings_actions = (category) => {
     }
   })
 
-  if (has_presets.includes(category)) {
-    items.push({
-      text: `Presets`,
-      get_items: () => {
-        return App.setting_preset_items(category)
-      }
-    })
-  }
-
   let btn = DOM.el(`#settings_actions_${category}`)
   NeedContext.show_on_element(btn, items, true, btn.clientHeight)
-}
-
-App.setting_preset_items = (category) => {
-  let items = []
-
-  for (let preset of App.setting_presets) {
-    if (preset.category === category) {
-      items.push({
-        text: preset.name,
-        action: () => {
-          App.apply_settings_preset(preset)
-        }
-      })
-    }
-  }
-
-  return items
-}
-
-App.apply_settings_preset = (preset) => {
-  App.show_confirm(`Apply preset?`, () => {
-    for (let setting of preset.settings) {
-      App.set_setting(setting[0], setting[1])
-      App.show_settings_category(preset.category)
-    }
-  })
 }
