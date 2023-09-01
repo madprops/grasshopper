@@ -28,7 +28,7 @@ App.create_menubutton = (args = {}) => {
         icon: opt[2],
         text: opt[0],
         action: () => {
-          args.button.textContent = opt[0]
+          args.text(args, opt)
 
           if (args.on_change) {
             args.on_change(args, opt)
@@ -40,9 +40,18 @@ App.create_menubutton = (args = {}) => {
     NeedContext.show_on_element(args.button, items, true, args.button.clientHeight)
   })
 
+  args.text = (args, opt) => {
+    if (opt.length === 2) {
+      args.button.textContent = opt[0]
+    }
+    else if (opt.length === 3) {
+      args.button.innerHTML = (opt[2] || ``) + opt[0]
+    }
+  }
+
   args.set = (value, on_change = true) => {
     let opt = App.menubutton_item(args, value)
-    args.button.textContent = opt[0]
+    args.text(args, opt)
 
     if (on_change && args.on_change) {
       args.on_change(args, opt)
@@ -105,7 +114,7 @@ App.menubutton_cycle = (args, dir) => {
   }
 
   if (opt) {
-    args.button.textContent = opt[0]
+    args.text(args, opt)
 
     if (args.on_change) {
       args.on_change(args, opt)
