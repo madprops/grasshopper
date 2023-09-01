@@ -589,8 +589,8 @@ App.create_filter = (mode) => {
   })
 
   DOM.ev(filter, `input`, () => {
-    console.log(11111111)
-    App.trigger_filter(mode)
+    App.last_filter_input = Date.now()
+    App.filter(mode)
   })
 
   return filter
@@ -865,12 +865,6 @@ App.forget_filter_history = () => {
 App.forget_filter_history_item = (value) => {
   App.filter_history = App.filter_history.filter(x => x !== value)
   App.stor_save_filter_history()
-}
-
-App.trigger_filter = (mode) => {
-  App.focus_filter(mode)
-  App.last_filter_input = Date.now()
-  App.filter(mode)
 }
 
 App.filter_is_focused = (mode) => {
