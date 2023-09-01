@@ -52,7 +52,7 @@ App.create_menubutton = (args = {}) => {
   }
 
   args.set = (value, on_change = true) => {
-    let opt = App.menubutton_item(args, value)
+    let opt = App.menubutton_opt(args, value)
     args.text(args, opt)
 
     if (on_change && args.on_change) {
@@ -100,17 +100,17 @@ App.menubutton_cycle = (args, dir) => {
     opt = opts[0]
   }
 
-  for (let item of opts) {
-    if (item[0] === App.separator_string) {
+  for (let o of opts) {
+    if (o[0] === App.separator_string) {
       continue
     }
 
     if (waypoint) {
-      opt = item
+      opt = o
       break
     }
 
-    if (item[0] === args.button.textContent) {
+    if (o[0] === args.button.textContent) {
       waypoint = true
     }
   }
@@ -124,7 +124,7 @@ App.menubutton_cycle = (args, dir) => {
   }
 }
 
-App.menubutton_item = (args, value) => {
+App.menubutton_opt = (args, value) => {
   for (let opt of args.opts) {
     if (opt[1] === value) {
       return opt
