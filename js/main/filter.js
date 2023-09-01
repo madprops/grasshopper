@@ -285,10 +285,6 @@ App.filter_check = (args) => {
   return match
 }
 
-App.focus_filter = (mode) => {
-  App.get_filter_el(mode).focus()
-}
-
 App.is_filtered = (mode) => {
   return App.filter_has_value(mode) || App.filter_mode(mode) !== `all`
 }

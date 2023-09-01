@@ -37,8 +37,6 @@ App.select_item = (item, scroll = `nearest`, deselect = true) => {
       App.do_check_scroller(item.mode)
     })
   }
-
-  App.blur_filter(item.mode)
 }
 
 App.select_above = (mode) => {
