@@ -29,10 +29,13 @@ App.check_items_keyboard = (e) => {
     e.preventDefault()
   }
 
-  let shortcuts = App.get_setting(`keyboard_shortcuts`)
   let kbs_shift = App.get_setting(`keyboard_shortcuts_shift`)
   let kbs_alt = App.get_setting(`keyboard_shortcuts_alt`)
   let check_kbs = true
+
+  if (App.filter_is_focused(mode)) {
+    check_kbs = false
+  }
 
   if (e.ctrlKey) {
     check_kbs = false
@@ -47,7 +50,7 @@ App.check_items_keyboard = (e) => {
   }
 
   if (check_kbs) {
-    for (let line of shortcuts) {
+    for (let line of App.get_setting(`keyboard_shortcuts`)) {
       let items = App.addlist_items(line)
       let key = items[0].toLowerCase()
 

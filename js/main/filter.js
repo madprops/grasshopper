@@ -286,7 +286,7 @@ App.filter_check = (args) => {
 }
 
 App.focus_filter = (mode) => {
-  DOM.el(`#${mode}_filter`).focus()
+  App.get_filter_el(mode).focus()
 }
 
 App.is_filtered = (mode) => {
@@ -300,7 +300,7 @@ App.clear_filter = (mode = App.window_mode) => {
 }
 
 App.set_filter = (mode, text, filter = true, instant = true) => {
-  DOM.el(`#${mode}_filter`).value = text
+  App.get_filter_el(mode).value = text
   App.focus_filter(mode)
 
   if (filter) {
@@ -356,8 +356,12 @@ App.filter_has_value = (mode) => {
   return App.get_filter(mode) !== ``
 }
 
+App.get_filter_el = (mode) => {
+  return DOM.el(`#${mode}_filter`)
+}
+
 App.get_filter = (mode) => {
-  return DOM.el(`#${mode}_filter`).value
+  return App.get_filter_el(mode).value
 }
 
 App.filter_empty = (mode) => {
@@ -862,4 +866,8 @@ App.trigger_filter = (mode) => {
   App.focus_filter(mode)
   App.last_filter_input = Date.now()
   App.filter(mode)
+}
+
+App.filter_is_focused = (mode) => {
+  return App.get_filter_el(mode) === document.activeElement
 }

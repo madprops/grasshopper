@@ -38,7 +38,7 @@ App.setup_addlist = () => {
   App.create_popup({
     id: `addlist_keyboard_shortcuts`, element: App.addlist_register({id: `keyboard_shortcuts`, setting: `keyboard_shortcuts`,
     widgets: [`text_char`, `select`], labels: [`Key`, `Command`], title: `Keyboard Shortcuts`,
-    sources: [undefined, App.addlist_commands.slice(0)], info: `Shift + Alt + Key`})
+    sources: [undefined, App.addlist_commands.slice(0)]})
   })
 }
 
@@ -121,13 +121,6 @@ App.addlist_register = (args = {}) => {
   top.append(title)
   top.append(btn_next)
   container.append(top)
-
-  if (args.info) {
-    let info = DOM.create(`div`, `addlist_info`)
-    info.textContent = args.info
-    container.append(info)
-  }
-
   let els = []
 
   for (let [i, w] of args.widgets.entries()) {
