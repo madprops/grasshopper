@@ -440,15 +440,15 @@ App.profile_editor_save = () => {
     args.notes = App.double_linebreak(DOM.el(`#profile_editor_notes`).value)
     args.title = DOM.el(`#profile_editor_title`).value.trim()
     args.icon = DOM.el(`#profile_editor_icon`).value.trim()
-    args.color = App.current_profile_editor_color
+    args.color = App.profile_menubutton_color.value
     args.theme_enabled = DOM.el(`#profile_editor_theme_enabled`).checked
     let hex = App.profile_editor_background_color.color
     args.background_color = App.colorlib.hex_to_rgb(hex)
     hex = App.profile_editor_text_color.color
     args.text_color = App.colorlib.hex_to_rgb(hex)
     args.background_image =  DOM.el(`#profile_editor_background_image`).value.trim()
-    args.background_effect =  App.current_profile_editor_background_effect
-    args.background_tiles = App.current_profile_editor_background_tiles
+    args.background_effect =  App.profile_menubutton_background_effect.value
+    args.background_tiles = App.profile_menubutton_background_tiles.value
     args.type = App.profile_editor_type
     args.profiles = App.profile_editor_profiles
     args.added = App.profile_editor_added
@@ -1493,8 +1493,6 @@ App.profile_make_menu = (prop, opts) => {
       if (prop === `background_effect` || prop === `background_tiles`) {
         App.profile_apply_theme()
       }
-
-      App[`current_profile_editor_${prop}`] = opt.value
     },
     opts: opts,
   })
