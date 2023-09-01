@@ -81,11 +81,11 @@ App.setup_commands = () => {
     {name: `Show Palette`, cmd: `show_palette`, action: (args) => {
       App.show_palette()
     }},
-    {name: `Show All`, cmd: `show_all`, mode: `items`, action: (args) => {
-      App.show_all()
-    }},
     {name: `Item Menu`, cmd: `item_menu`, mode: `items`, action: (args) => {
       App.show_item_menu_2(args.item)
+    }},
+    {name: `Show All`, cmd: `show_all`, mode: `items`, action: (args) => {
+      App.show_all()
     }},
 
     {name: App.separator_string},
