@@ -687,13 +687,12 @@ a:visited, a:link, a:hover {
   background-color: var(--alt_background);
   transition: var(--color_transition);
   overflow-y: auto;
+  justify-content: center;
 }
 
 .popup_container {
   position: absolute;
-  top: 25%;
-  left: 50%;
-  transform: translateX(-50%);
+  top: 22%;
   padding: 0.8rem;
   display: flex;
   flex-direction: column;
