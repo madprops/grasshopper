@@ -261,14 +261,9 @@ App.check_items_keyboard = (e) => {
     }
   }
 
-  let ignore = [`Shift`, `Control`, `Alt`, `Meta`]
-
-  // Make filter ignore these
-  if (ignore.includes(e.key)) {
-    return
+  if (e.key.length === 1 || e.key === `Backspace`) {
+    App.trigger_filter(mode)
   }
-
-  App.trigger_filter(mode)
 }
 
 App.setup_keyboard = () => {
