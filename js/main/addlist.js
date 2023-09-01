@@ -89,6 +89,7 @@ App.do_addlist = (id) => {
 App.addlist_register = (args = {}) => {
   let def_args = {
     labels: [],
+    sources: [],
   }
 
   args = Object.assign(def_args, args)
@@ -235,7 +236,7 @@ App.addlist = (args = {}) => {
     }
     else {
       if (!value && (w === `select`)) {
-        App[`addlist_menubutton_${args.id}_${i}`].set(oargs.sources[i][0][1])
+        App[`addlist_menubutton_${args.id}_${i}`].set(oargs.sources[i][0].value)
       }
       else {
         if (w === `text`) {
