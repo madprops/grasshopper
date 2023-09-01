@@ -30,23 +30,36 @@ App.check_items_keyboard = (e) => {
   }
 
   let shortcuts = App.get_setting(`keyboard_shortcuts`)
+  let kbs_shift = App.get_setting(`keyboard_shortcuts_shift`)
+  let kbs_alt = App.get_setting(`keyboard_shortcuts_alt`)
+  let check_kbs = true
 
-  for (let line of shortcuts) {
-    if (!e.shiftKey || !e.altKey || e.ctrlKey) {
-      continue
+  if (e.ctrlKey) {
+    check_kbs = false
+  }
+
+  if (kbs_shift && !e.shiftKey) {
+    check_kbs = false
+  }
+
+  if (kbs_alt && !e.altKey) {
+    check_kbs = false
+  }
+
+  if (check_kbs) {
+    for (let line of shortcuts) {
+      let items = App.addlist_items(line)
+      let key = items[0].toLowerCase()
+
+      if (key !== e.key.toLowerCase()) {
+        continue
+      }
+
+      let cmd = items[1]
+      App.run_command({cmd: cmd, from: `keyboard_shortcut`})
+      e.preventDefault()
+      return
     }
-
-    let items = App.addlist_items(line)
-    let key = items[0].toLowerCase()
-
-    if (key !== e.key.toLowerCase()) {
-      continue
-    }
-
-    let cmd = items[1]
-    App.run_command({cmd: cmd, from: `keyboard_shortcut`})
-    e.preventDefault()
-    return
   }
 
   if (e.ctrlKey && !e.shiftKey) {

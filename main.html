@@ -565,9 +565,19 @@
 
     <template id="template_settings_keyboard">
       <div id="settings_keyboard_container" class="settings_container">
-        <div class="settings_item" title="Custom keyboard shortcuts. The key requires holding shift">
+        <div class="settings_item" title="Custom keyboard shortcuts. The key requires holding shiftZ">
           <div class="settings_label" data-id="keyboard_shortcuts" data-add="Add a shortcut">Keyboard Shortcuts</div>
           <textarea autocomplete="off" spellcheck="false" class="text settings_textarea addlist_area" id="settings_keyboard_shortcuts" data-setting="keyboard_shortcuts" placeholder="One shortcut per line"></textarea>
+        </div>
+
+        <div class="settings_item" title="Require Shift on keyboard shortcuts">
+          <div class="settings_label">Keyboard Shortcuts<br>Require Shift</div>
+          <input type="checkbox" class="settings_checkbox" id="settings_keyboard_shortcuts_shift" data-setting="keyboard_shortcuts_shift">
+        </div>
+
+        <div class="settings_item" title="Require Shift on keyboard shortcuts">
+          <div class="settings_label">Keyboard Shortcuts<br>Require Alt</div>
+          <input type="checkbox" class="settings_checkbox" id="settings_keyboard_shortcuts_alt" data-setting="keyboard_shortcuts_alt">
         </div>
       </div>
     </template>
