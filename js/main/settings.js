@@ -1044,7 +1044,7 @@ App.settings_data_items = () => {
   })
 
   items.push({
-    text: `Reset`,
+    text: `Reset All`,
     action: () => {
       App.reset_all_settings()
     }
