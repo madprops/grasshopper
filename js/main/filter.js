@@ -588,7 +588,6 @@ App.create_filter = (mode) => {
   })
 
   DOM.ev(filter, `input`, () => {
-    App.last_filter_input = Date.now()
     App.filter(mode)
   })
 

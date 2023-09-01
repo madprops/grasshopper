@@ -229,17 +229,14 @@ App.check_items_keyboard = (e) => {
         return
       }
 
-      let d = Date.now() - App.last_filter_input
-      let ok = (d > App.recent_filter_input) && App.filter_empty(mode)
-
-      if (ok || App.multiple_selected(mode)) {
+      if (!filter_focus) {
         if (mode === `tabs`) {
           App.close_tabs(item)
+          e.preventDefault()
         }
-
-        e.preventDefault()
-        return
       }
+
+      return
     }
     else if (e.key === `Home`) {
       if (!filter_focus) {
@@ -257,7 +254,7 @@ App.check_items_keyboard = (e) => {
     }
   }
 
-  let allowed = [`Backspace`, `ArrowLeft`, `ArrowRight`, `Home`, `End`, `Delete`]
+  let allowed = [`Backspace`]
 
   if (e.key.length === 1 || allowed.includes(e.key)) {
     App.focus_filter(mode)
