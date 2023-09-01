@@ -1,9 +1,15 @@
 App.create_menubutton = (args = {}) => {
+  let def_args = {
+    wrap: true,
+  }
+
+  args = Object.assign(def_args, args)
+
   if (!args.button) {
     args.button = DOM.create(`div`, `settings_menu button`, args.id)
   }
 
-  let buttons = DOM.create(`div`, `flex_row_center gap_1`)
+  args.container = DOM.create(`div`, `flex_row_center gap_1`)
   let prev = DOM.create(`div`, `button arrow_prev`)
   prev.textContent = `<`
   let next = DOM.create(`div`, `button arrow_next`)
@@ -34,6 +40,15 @@ App.create_menubutton = (args = {}) => {
     NeedContext.show_on_element(args.button, items, true, args.button.clientHeight)
   })
 
+  args.set = (value, on_change = true) => {
+    let opt = App.menubutton_item(args, value)
+    args.button.textContent = opt[0]
+
+    if (on_change && args.on_change) {
+      args.on_change(args, opt)
+    }
+  }
+
   function prev_fn () {
     App.menubutton_cycle(args, `prev`)
   }
@@ -53,11 +68,11 @@ App.create_menubutton = (args = {}) => {
 
   DOM.ev(prev, `click`, prev_fn)
   DOM.ev(next, `click`, next_fn)
-  buttons.append(prev)
-  buttons.append(next)
-  args.button.after(buttons)
+  args.container.append(prev)
+  args.container.append(next)
+  args.button.after(args.container)
   prev.after(args.button)
-  return buttons
+  return args
 }
 
 App.menubutton_cycle = (args, dir) => {
@@ -94,6 +109,22 @@ App.menubutton_cycle = (args, dir) => {
 
     if (args.on_change) {
       args.on_change(args, opt)
+    }
+  }
+}
+
+App.menubutton_item = (args, value) => {
+  for (let opt of args.opts) {
+    if (opt[1] === value) {
+      return opt
+    }
+  }
+}
+
+App.menubutton_item_2 = (args, name) => {
+  for (let opt of args.opts) {
+    if (opt[0] === name) {
+      return opt
     }
   }
 }

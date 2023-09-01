@@ -1481,113 +1481,32 @@ App.profile_apply_theme = () => {
 }
 
 App.profile_make_menu = (prop, opts) => {
-  App.create_menubutton({
-    button: el,
-    selected: App.get_setting(setting),
+  App[`profile_menubutton_${prop}`] = App.create_menubutton({
+    button: DOM.el(`#profile_editor_${prop}`),
     on_change: (args, opt) => {
-      App.profile_editor_set_menu(args.button, prop, opt)
+      App.profile_modified()
+
+      if (prop === `background_effect` || prop === `background_tiles`) {
+        App.profile_apply_theme()
+      }
     },
     opts: opts,
   })
-
-  let el =
-
-  DOM.ev(el, `click`, () => {
-    let items = []
-
-    for (let o of opts) {
-      items.push({
-        icon: o[2],
-        text: o[0],
-        action: () => {
-          App.profile_editor_set_menu(el, prop, o)
-        },
-      })
-    }
-
-    NeedContext.show_on_element(el, items, true, el.clientHeight)
-  })
-
-  let buttons = DOM.create(`div`, `flex_row_center gap_1`)
-  let prev = DOM.create(`div`, `button`)
-  prev.textContent = `<`
-  let next = DOM.create(`div`, `button`)
-  next.textContent = `>`
-
-  function prev_fn () {
-    App.profile_menu_cycle(el, prop, `prev`, opts)
-  }
-
-  function next_fn () {
-    App.profile_menu_cycle(el, prop, `next`, opts)
-  }
-
-  DOM.ev(prev, `click`, prev_fn)
-  DOM.ev(next, `click`, next_fn)
-
-  buttons.append(prev)
-  buttons.append(next)
-  el.after(buttons)
-  prev.after(el)
-}
-
-App.profile_menu_cycle = (el, prop, dir, o_items) => {
-  let cycle = true
-  let waypoint = false
-  let items = o_items.slice(0)
-
-  if (dir === `prev`) {
-    items.reverse()
-  }
-
-  let s_item
-
-  if (cycle) {
-    s_item = items[0]
-  }
-
-  for (let item of items) {
-    if (waypoint) {
-      s_item = item
-      break
-    }
-
-    if (item[1] === App[`current_profile_editor_${prop}`]) {
-      waypoint = true
-    }
-  }
-
-  if (s_item) {
-    App.profile_editor_set_menu(el, prop, s_item)
-  }
-}
-
-App.profile_editor_set_menu = (el, prop, item) => {
-  el.innerHTML = (item[2] || ``) + item[0]
-  App[`current_profile_editor_${prop}`] = item[1]
-  App.profile_modified()
-
-  if (prop === `background_effect` || prop === `background_tiles`) {
-    App.profile_apply_theme()
-  }
 }
 
 App.set_profile_color = () => {
   let value = App.current_profile_editor_color
-  let item = App.settings_get_menu_item(value, App.profile_editor_color_opts)
-  App.profile_editor_set_menu(DOM.el(`#profile_editor_color`), `color`, item)
+  App.profile_menubutton_color.set(value)
 }
 
 App.set_profile_background_effect = () => {
   let value = App.current_profile_editor_background_effect
-  let item = App.settings_get_menu_item(value, App.background_effects)
-  App.profile_editor_set_menu(DOM.el(`#profile_editor_background_effect`), `background_effect`, item)
+  App.profile_menubutton_background_effect.set(value)
 }
 
 App.set_profile_background_tiles = () => {
   let value = App.current_profile_editor_background_tiles
-  let item = App.settings_get_menu_item(value, App.background_tiles)
-  App.profile_editor_set_menu(DOM.el(`#profile_editor_background_tiles`), `background_tiles`, item)
+  App.profile_menubutton_background_tiles.set(value)
 }
 
 App.profile_editor_left = () => {

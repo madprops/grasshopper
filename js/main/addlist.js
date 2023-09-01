@@ -127,7 +127,7 @@ App.addlist_register = (args = {}) => {
         id: id, opts: args.sources[i],
       })
       el.append(label)
-      el.append(menubutton)
+      el.append(menubutton.container)
       els.push(el)
     }
   }

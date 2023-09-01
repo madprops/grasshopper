@@ -347,7 +347,7 @@ App.settings_setup_text = (container) => {
 App.settings_make_menu = (setting, opts, action = () => {}) => {
   let no_wrap = [`font_size`, `width`, `height`]
 
-  App.create_menubutton({
+  App[`settings_menubutton_${setting}`] = App.create_menubutton({
     button: DOM.el(`#settings_${setting}`),
     selected: App.get_setting(setting),
     on_change: (args, opt) => {
@@ -1222,10 +1222,7 @@ App.set_settings_menu = (setting, value) => {
     value = App.get_setting(setting)
   }
 
-  let el = DOM.el(`#settings_${setting}`)
-  let opts = App[`settings_${setting}_opts`]
-  let opt = App.settings_get_menu_item(value, opts)
-  el.textContent = opt[0]
+  App[`settings_menubutton_${setting}`].set(value)
 }
 
 App.apply_pool = (full) => {
@@ -1295,20 +1292,4 @@ App.edit_setting = (setting) => {
     el.value = text
     App.do_save_text_setting(setting, el)
   }, value)
-}
-
-App.settings_get_menu_item = (value, opts) => {
-  for (let opt of opts) {
-    if (opt[1] === value) {
-      return opt
-    }
-  }
-}
-
-App.settings_get_menu_item_2 = (value, opts) => {
-  for (let opt of opts) {
-    if (opt[0] === value) {
-      return opt
-    }
-  }
 }
