@@ -30,6 +30,7 @@ App.check_items_keyboard = (e) => {
   }
 
   let kbs_shift = App.get_setting(`keyboard_shortcuts_shift`)
+  let kbs_ctrl = App.get_setting(`keyboard_shortcuts_ctrl`)
   let kbs_alt = App.get_setting(`keyboard_shortcuts_alt`)
   let check_kbs = true
 
@@ -37,11 +38,11 @@ App.check_items_keyboard = (e) => {
     check_kbs = false
   }
 
-  if (e.ctrlKey) {
+  if (kbs_shift && !e.shiftKey) {
     check_kbs = false
   }
 
-  if (kbs_shift && !e.shiftKey) {
+  if (kbs_ctrl && !e.ctrlKey) {
     check_kbs = false
   }
 
