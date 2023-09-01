@@ -359,8 +359,6 @@ App.settings_make_menu = (setting, opts, action = () => {}) => {
     },
   })
 
-  App[`settings_${setting}_opts`] = opts
-
   DOM.evs(App.get_settings_label(setting), [`click`, `contextmenu`], (e) => {
     App.settings_label_menu(e,
     [
