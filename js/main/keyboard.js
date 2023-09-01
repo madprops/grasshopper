@@ -34,10 +34,6 @@ App.check_items_keyboard = (e) => {
   let kbs_alt = App.get_setting(`keyboard_shortcuts_alt`)
   let check_kbs = true
 
-  if (App.filter_is_focused(mode)) {
-    check_kbs = false
-  }
-
   if (kbs_ctrl && !e.ctrlKey) {
     check_kbs = false
   }
