@@ -209,17 +209,15 @@ App.check_items_keyboard = (e) => {
       if (!filtered) {
         App.cycle_modes(true, true)
         e.preventDefault()
+        return
       }
-
-      return
     }
     else if (e.key === `ArrowRight`) {
       if (!filtered) {
         App.cycle_modes(false, true)
         e.preventDefault()
+        return
       }
-
-      return
     }
     else if (e.key === `Tab`) {
       App.cycle_modes(false, true)
@@ -240,29 +238,28 @@ App.check_items_keyboard = (e) => {
         }
 
         e.preventDefault()
+        return
       }
-
-      return
     }
     else if (e.key === `Home`) {
       if (!filtered) {
         App.goto_top(mode, true)
         e.preventDefault()
+        return
       }
-
-      return
     }
     else if (e.key === `End`) {
       if (!filtered) {
         App.goto_bottom(mode, true)
         e.preventDefault()
+        return
       }
-
-      return
     }
   }
 
-  if (e.key.length === 1 || e.key === `Backspace`) {
+  let allowed = [`Backspace`, `ArrowLeft`, `ArrowRight`, `Home`, `End`, `Delete`]
+
+  if (e.key.length === 1 || allowed.includes(e.key)) {
     App.focus_filter(mode)
   }
 }
