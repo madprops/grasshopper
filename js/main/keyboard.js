@@ -2,6 +2,7 @@ App.check_items_keyboard = (e) => {
   let mode = App.window_mode
   let item = App.get_selected(mode)
   let filtered = App.filter_has_value(mode)
+  let filter_focus = App.filter_is_focused(mode)
 
   function arrow (direction, e) {
     if (!item) {
@@ -88,7 +89,7 @@ App.check_items_keyboard = (e) => {
       return
     }
     else if (e.key === `a`) {
-      if (!filtered) {
+      if (!filter_focus) {
         App.select_all()
         e.preventDefault()
       }
