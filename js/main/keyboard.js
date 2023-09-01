@@ -1,7 +1,6 @@
 App.check_items_keyboard = (e) => {
   let mode = App.window_mode
   let item = App.get_selected(mode)
-  let filtered = App.filter_has_value(mode)
   let filter_focus = App.filter_is_focused(mode)
 
   function arrow (direction, e) {
@@ -207,14 +206,14 @@ App.check_items_keyboard = (e) => {
       return
     }
     else if (e.key === `ArrowLeft`) {
-      if (!filtered) {
+      if (!filter_focus) {
         App.cycle_modes(true, true)
         e.preventDefault()
         return
       }
     }
     else if (e.key === `ArrowRight`) {
-      if (!filtered) {
+      if (!filter_focus) {
         App.cycle_modes(false, true)
         e.preventDefault()
         return
@@ -243,14 +242,14 @@ App.check_items_keyboard = (e) => {
       }
     }
     else if (e.key === `Home`) {
-      if (!filtered) {
+      if (!filter_focus) {
         App.goto_top(mode, true)
         e.preventDefault()
         return
       }
     }
     else if (e.key === `End`) {
-      if (!filtered) {
+      if (!filter_focus) {
         App.goto_bottom(mode, true)
         e.preventDefault()
         return
