@@ -243,9 +243,9 @@ App.show_profile_editor = (item, type, action = `edit`) => {
   App.profile_editor_background_color.setColor(App.dark_theme_colors.background)
   App.profile_editor_text_color.setColor(App.dark_theme_colors.text)
   DOM.el(`#profile_editor_background_image`).value = ``
-  App.current_profile_editor_color = `none`
-  App.current_profile_editor_background_effect = `none`
-  App.current_profile_editor_background_tiles = `none`
+  let color = `none`
+  let background_effect = `none`
+  let background_tiles = `none`
 
   if (items.length === 1 && profiles.length === 1) {
     DOM.el(`#profile_editor_remove`).classList.remove(`hidden`)
@@ -271,7 +271,7 @@ App.show_profile_editor = (item, type, action = `edit`) => {
       DOM.el(`#profile_editor_exact`).checked = profile.exact
       DOM.el(`#profile_editor_title`).value = profile.title
       DOM.el(`#profile_editor_icon`).value = profile.icon
-      App.current_profile_editor_color = profile.color
+      color = profile.color
 
       if (profile.theme_enabled) {
         DOM.el(`#profile_editor_theme_enabled`).checked = true
@@ -287,8 +287,8 @@ App.show_profile_editor = (item, type, action = `edit`) => {
       }
 
       DOM.el(`#profile_editor_background_image`).value = profile.background_image
-      App.current_profile_editor_background_effect = profile.background_effect
-      App.current_profile_editor_background_tiles = profile.background_tiles
+      background_effect = profile.background_effect
+      background_tiles = profile.background_tiles
     }
     else {
       url_el.value = items[0].url
@@ -315,7 +315,7 @@ App.show_profile_editor = (item, type, action = `edit`) => {
         }
         else if (type === `color`) {
           let shared = App.get_shared_color(profiles)
-          App.current_profile_editor_color = shared
+          color = shared
         }
         else if (type === `theme`) {
           let enabled = App.get_shared_theme_enabled(profiles)
@@ -333,8 +333,8 @@ App.show_profile_editor = (item, type, action = `edit`) => {
               DOM.el(`#profile_editor_background_image`).value = shared_bi
               App.profile_editor_background_color.setColor(shared_bg)
               App.profile_editor_text_color.setColor(shared_tc)
-              App.current_profile_editor_background_effect = shared_be
-              App.current_profile_editor_background_tiles = shared_bt
+              background_effect = shared_be
+              background_tiles = shared_bt
             }
           }
         }
@@ -345,9 +345,9 @@ App.show_profile_editor = (item, type, action = `edit`) => {
   }
 
   App.window_goto_top(`profile_editor`)
-  App.set_profile_color()
-  App.set_profile_background_effect()
-  App.set_profile_background_tiles()
+  App.set_profile_color(color)
+  App.set_profile_background_effect(background_effect)
+  App.set_profile_background_tiles(background_tiles)
   App.focus_first_profile_editor_input()
   App.profile_editor_ready = true
   App.profile_apply_theme()
@@ -1469,8 +1469,8 @@ App.profile_apply_theme = () => {
     let c1 = App.colorlib.hex_to_rgb(App.profile_editor_background_color.color)
     let c2 = App.colorlib.hex_to_rgb(App.profile_editor_text_color.color)
     let bi =  DOM.el(`#profile_editor_background_image`).value.trim()
-    let be =  App.current_profile_editor_background_effect
-    let bt =  App.current_profile_editor_background_tiles
+    let be =  App.profile_menubutton_background_effect.value
+    let bt =  App.profile_menubutton_background_tiles.value
     App.apply_theme({
       background_color: c1,
       text_color: c2,
@@ -1500,18 +1500,15 @@ App.profile_make_menu = (prop, opts) => {
   })
 }
 
-App.set_profile_color = () => {
-  let value = App.current_profile_editor_color
+App.set_profile_color = (value) => {
   App.profile_menubutton_color.set(value)
 }
 
-App.set_profile_background_effect = () => {
-  let value = App.current_profile_editor_background_effect
+App.set_profile_background_effect = (value) => {
   App.profile_menubutton_background_effect.set(value)
 }
 
-App.set_profile_background_tiles = () => {
-  let value = App.current_profile_editor_background_tiles
+App.set_profile_background_tiles = (value) => {
   App.profile_menubutton_background_tiles.set(value)
 }
 
