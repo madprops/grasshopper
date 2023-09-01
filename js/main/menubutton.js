@@ -10,7 +10,7 @@ App.create_menubutton = (args = {}) => {
   let next = DOM.create(`div`, `button arrow_next`)
   next.textContent = `>`
 
-  DOM.ev(button, `click`, () => {
+  DOM.ev(args.button, `click`, () => {
     let items = []
 
     for (let opt of args.opts) {
@@ -23,7 +23,7 @@ App.create_menubutton = (args = {}) => {
         icon: opt[2],
         text: opt[0],
         action: () => {
-          button.textContent = opt[0]
+          args.button.textContent = opt[0]
 
           if (args.on_change) {
             args.on_change(opt)
@@ -32,7 +32,7 @@ App.create_menubutton = (args = {}) => {
       })
     }
 
-    NeedContext.show_on_element(button, items, true, button.clientHeight)
+    NeedContext.show_on_element(args.button, items, true, args.button.clientHeight)
   })
 
   function prev_fn () {
@@ -46,7 +46,7 @@ App.create_menubutton = (args = {}) => {
   DOM.ev(prev, `click`, prev_fn)
   DOM.ev(next, `click`, next_fn)
   c.append(prev)
-  c.append(button)
+  c.append(args.button)
   c.append(next)
   return c
 }

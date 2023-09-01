@@ -347,7 +347,7 @@ App.settings_setup_text = (container) => {
 App.settings_make_menu = (setting, opts, action = () => {}) => {
   let no_wrap = [`font_size`, `width`, `height`]
 
-  let el = App.create_menubutton({
+  let menubutton = App.create_menubutton({
     button: DOM.el(`#settings_${setting}`),
     on_change: (opt) => {
       App.set_setting(setting, opt[1])
@@ -375,9 +375,9 @@ App.settings_make_menu = (setting, opts, action = () => {}) => {
     ])
   })
 
-  for (let o of opts) {
-    if (App.get_setting(setting) === o[1]) {
-      el.textContent = o[0]
+  for (let opt of opts) {
+    if (App.get_setting(setting) === opt[1]) {
+      menubutton.textContent = opt[0]
     }
   }
 }
