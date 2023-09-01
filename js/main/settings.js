@@ -102,6 +102,9 @@ App.build_default_settings = () => {
   obj.empty_menu = {value: [`Select ; select_all`, `New Tab ; new_tab`, ], category: category, version: 1}
   obj.footer_menu = {value: [`Copy URL ; copy_url`, `Copy Title ; copy_title`, ], category: category, version: 1}
 
+  category = `keyboard`
+  obj.keyboard_shortcuts = {value: [], category: category, version: 1}
+
   category = `warns`
   obj.warn_on_close_tabs = {value: `special`, category: category, version: 1}
   obj.warn_on_unload_tabs = {value: `special`, category: category, version: 1}
@@ -425,7 +428,7 @@ App.settings_filter_focused = () => {
 }
 
 App.setup_settings = () => {
-  App.settings_categories = [`general`, `theme`, `media`, `show`, `mouse`, `warns`, `colors`, `more`]
+  App.settings_categories = [`general`, `theme`, `media`, `show`, `mouse`, `keyboard`, `warns`, `colors`, `more`]
 
   let common = {
     persistent: false,
@@ -695,6 +698,18 @@ App.setup_settings = () => {
 
     DOM.ev(DOM.el(`#settings_footer_menu`), `click`, (e) => {
       App.addlist_click({e: e, id: `footer_menu`})
+    })
+  }}))
+
+  App.create_window(Object.assign({}, common, {id: `settings_keyboard`, setup: () => {
+    prepare(`keyboard`)
+
+    DOM.ev(DOM.el(`#settings_keyboard_shortcuts_add`), `click`, () => {
+      App.addlist({id: `keyboard_shortcuts`})
+    })
+
+    DOM.ev(DOM.el(`#settings_keyboard_shortcuts`), `click`, (e) => {
+      App.addlist_click({e: e, id: `keyboard_shortcuts`})
     })
   }}))
 

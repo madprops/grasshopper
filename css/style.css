@@ -550,6 +550,12 @@ svg {
   text-align: center;
 }
 
+.addlist_text_char {
+  width: 1.5rem;
+  max-width: 1.5rem;
+  text-align: center;
+}
+
 .addlist_buttons {
   margin-top: 0.5rem;
 }

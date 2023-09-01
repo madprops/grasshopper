@@ -87,6 +87,7 @@ App.settings_icons = {
   media: `📷`,
   show: `👁️`,
   mouse: `🖱️`,
+  keyboard: `⌨️`,
   warns: `🚨`,
   colors: `🇧🇮`,
   more: `💠`,

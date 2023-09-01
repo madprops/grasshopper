@@ -29,6 +29,26 @@ App.check_items_keyboard = (e) => {
     e.preventDefault()
   }
 
+  let shortcuts = App.get_setting(`keyboard_shortcuts`)
+
+  for (let line of shortcuts) {
+    if (!e.shiftKey || e.ctrlKey) {
+      continue
+    }
+
+    let items = App.addlist_items(line)
+    let key = items[0].toLowerCase()
+
+    if (key !== e.key.toLowerCase()) {
+      continue
+    }
+
+    let cmd = items[1]
+    App.run_command({cmd: cmd, from: `keyboard_shortcut`})
+    e.preventDefault()
+    return
+  }
+
   if (e.ctrlKey && !e.shiftKey) {
     if (e.key === `ArrowUp`) {
       App.move_tabs_vertically(`top`)
@@ -225,7 +245,7 @@ App.check_items_keyboard = (e) => {
     }
   }
 
-  App.focus_filter(mode)
+  App.trigger_filter(mode)
 }
 
 App.setup_keyboard = () => {

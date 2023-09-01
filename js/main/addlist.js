@@ -34,6 +34,12 @@ App.setup_addlist = () => {
     widgets: [`text`, `select`], labels: [`Name`, `Command`], title: `Footer Menu`,
     sources: [undefined, App.addlist_commands.slice(0)]})
   })
+
+  App.create_popup({
+    id: `addlist_keyboard_shortcuts`, element: App.addlist_register({id: `keyboard_shortcuts`, setting: `keyboard_shortcuts`,
+    widgets: [`text_char`, `select`], labels: [`Key`, `Command`], title: `Keyboard Shortcuts`,
+    sources: [undefined, App.addlist_commands.slice(0)], info: `Shift + Key`})
+  })
 }
 
 App.addlist_values = (id) => {
@@ -43,7 +49,7 @@ App.addlist_values = (id) => {
   for (let [i, w] of oargs.widgets.entries()) {
     let value = App.addlist_get_value(i, w)
 
-    if (value) {
+    if (value || w === `checkbox`) {
       values.push(value)
     }
   }
@@ -70,7 +76,7 @@ App.do_addlist = (id) => {
     App.addlist_remove(id, v1, true)
   }
 
-  let v2 = App.addlist_widget(id, 0).value.trim()
+  let v2 = values[0]
 
   if (v2 && (v1 !== v2)) {
     App.addlist_remove(id, v2, true)
@@ -115,6 +121,13 @@ App.addlist_register = (args = {}) => {
   top.append(title)
   top.append(btn_next)
   container.append(top)
+
+  if (args.info) {
+    let info = DOM.create(`div`, `addlist_info`)
+    info.textContent = args.info
+    container.append(info)
+  }
+
   let els = []
 
   for (let [i, w] of args.widgets.entries()) {
@@ -128,8 +141,15 @@ App.addlist_register = (args = {}) => {
       el.placeholder = args.labels[i] || `Value`
       els.push(el)
     }
+    else if (w === `text_char`) {
+      let el = DOM.create(`input`, `text addlist_text_char`, id)
+      el.type = `text`
+      el.spellcheck = false
+      el.autocomplete = false
+      els.push(el)
+    }
     else if (w === `select`) {
-      el = DOM.create(`div`, `flex_column_center gap_1`)
+      let el = DOM.create(`div`, `flex_column_center gap_1`)
       let label = DOM.create(`div`)
       label.textContent = args.labels[i] || `Select`
 
@@ -140,6 +160,16 @@ App.addlist_register = (args = {}) => {
       let mb = App[`addlist_menubutton_${args.id}_${i}`]
       el.append(label)
       el.append(mb.container)
+      els.push(el)
+    }
+    else if (w === `checkbox`) {
+      let el = DOM.create(`div`, `flex_column_center gap_1`)
+      let checkbox = DOM.create(`input`, `checkbox addlist_checkbox`, id)
+      checkbox.type = `checkbox`
+      let label = DOM.create(`div`)
+      label.textContent = args.labels[i] || `Checkbox`
+      el.append(label)
+      el.append(checkbox)
       els.push(el)
     }
   }
@@ -204,20 +234,21 @@ App.addlist_register = (args = {}) => {
 }
 
 App.addlist_items = (full) => {
-  let c = []
+  let items = []
 
   if (full.includes(`;`)) {
     let split = full.split(`;`)
 
     for (let item of split) {
-      c.push(item.trim())
+      items.push(item.trim())
     }
   }
   else {
-    c.push(full)
+    items.push(full)
   }
 
-  return c
+  items = items.map(x => x === "true" ? true : (x === "false" ? false : x))
+  return items
 }
 
 App.addlist = (args = {}) => {
@@ -235,16 +266,19 @@ App.addlist = (args = {}) => {
       el.src = value
     }
     else {
-      if (!value && (w === `select`)) {
-        App[`addlist_menubutton_${args.id}_${i}`].set(oargs.sources[i][0].value)
+      if (w === `text` || w === `text_char`) {
+        el.value = value
       }
-      else {
-        if (w === `text`) {
-          el.value = value
-        }
-        else if (w === `select`) {
+      else if (w === `select`) {
+        if (value) {
           App[`addlist_menubutton_${args.id}_${i}`].set(value)
         }
+        else {
+          App[`addlist_menubutton_${args.id}_${i}`].set(oargs.sources[i][0].value)
+        }
+      }
+      else if (w === `checkbox`) {
+        el.checked = value
       }
     }
   }
@@ -553,8 +587,14 @@ App.addlist_get_value = (i, w) => {
   if (w === `text`) {
     value = el.value.trim()
   }
+  else if (w === `text_char`) {
+    value = el.value.trim().toLowerCase()
+  }
   else if (w === `select`) {
     value = App[`addlist_menubutton_${id}_${i}`].value
+  }
+  else if (w === `checkbox`) {
+    value = el.checked
   }
 
   return value

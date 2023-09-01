@@ -577,11 +577,6 @@ App.create_filter = (mode) => {
   filter.spellcheck = false
   filter.placeholder = `Filter`
 
-  DOM.ev(filter, `input`, () => {
-    App.last_filter_input = Date.now()
-    App.filter(mode)
-  })
-
   DOM.ev(filter, `contextmenu`, (e) => {
     if (App.get_setting(`show_filter_history`)) {
       App.show_filter_history(e, mode)
@@ -861,4 +856,10 @@ App.forget_filter_history = () => {
 App.forget_filter_history_item = (value) => {
   App.filter_history = App.filter_history.filter(x => x !== value)
   App.stor_save_filter_history()
+}
+
+App.trigger_filter = (mode) => {
+  App.focus_filter(mode)
+  App.last_filter_input = Date.now()
+  App.filter(mode)
 }
