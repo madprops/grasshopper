@@ -113,6 +113,7 @@ App.build_default_settings = () => {
   obj.warn_on_open = {value: true, category: category, version: 1}
   obj.warn_on_remove_profiles = {value: true, category: category, version: 1}
   obj.warn_on_bookmark = {value: true, category: category, version: 1}
+  obj.warn_on_color = {value: true, category: category, version: 1}
 
   category = `colors`
   obj.color_red = {value: `rgba(172, 59, 59, 0.44)`, category: category, version: 1}

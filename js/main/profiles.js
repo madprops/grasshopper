@@ -1320,7 +1320,11 @@ App.change_color = (item, color) => {
   args.added = added
   args.type = `color`
   args.from = `color_items`
-  let force = items.length === 1
+  let force = !App.get_setting(`warn_on_color`)
+
+  if (items.length === 1) {
+    force = true
+  }
 
   App.show_confirm(`Color items ${color}? (${items.length})`, () => {
     App.save_profile(args)
