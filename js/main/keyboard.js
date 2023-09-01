@@ -258,10 +258,10 @@ App.check_items_keyboard = (e) => {
     }
   }
 
+  let ignore = [`Shift`, `Control`, `Alt`, `Meta`]
+
   // Make filter ignore these
-  if (e.key === `Shift` ||
-  e.key === `Control` ||
-  e.key === `Alt`) {
+  if (ignore.includes(e.key)) {
     return
   }
 
