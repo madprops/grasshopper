@@ -38,11 +38,11 @@ App.check_items_keyboard = (e) => {
     check_kbs = false
   }
 
-  if (kbs_shift && !e.shiftKey) {
+  if (kbs_ctrl && !e.ctrlKey) {
     check_kbs = false
   }
 
-  if (kbs_ctrl && !e.ctrlKey) {
+  if (kbs_shift && !e.shiftKey) {
     check_kbs = false
   }
 
