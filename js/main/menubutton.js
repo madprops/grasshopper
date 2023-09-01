@@ -131,11 +131,3 @@ App.menubutton_item = (args, value) => {
     }
   }
 }
-
-App.menubutton_item_2 = (args, name) => {
-  for (let opt of args.opts) {
-    if (opt[0] === name) {
-      return opt
-    }
-  }
-}
