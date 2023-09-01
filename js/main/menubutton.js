@@ -19,14 +19,14 @@ App.create_menubutton = (args = {}) => {
     let items = []
 
     for (let opt of args.opts) {
-      if (opt[0] === App.separator_string) {
+      if (opt.text === App.separator_string) {
         items.push({separator: true})
         continue
       }
 
       items.push({
-        icon: opt[2],
-        text: opt[0],
+        icon: opt.icon,
+        text: opt.text,
         action: () => {
           args.text(args, opt)
 
@@ -42,13 +42,13 @@ App.create_menubutton = (args = {}) => {
 
   args.text = (args, opt) => {
     if (opt.length === 2) {
-      args.button.textContent = opt[0]
+      args.button.textContent = opt.text
     }
     else if (opt.length === 3) {
-      args.button.innerHTML = `<div>` + (opt[2] || ``) + `</div>` + opt[0]
+      args.button.innerHTML = `<div>` + (opt.icon || ``) + `</div>` + opt.text
     }
 
-    args.value = opt[1]
+    args.value = opt.value
   }
 
   args.set = (value, on_change = true) => {
@@ -70,7 +70,7 @@ App.create_menubutton = (args = {}) => {
 
   if (args.selected) {
     for (let opt of args.opts) {
-      if (args.selected === opt[1]) {
+      if (args.selected === opt.value) {
         args.text(args, opt)
         break
       }
@@ -126,7 +126,7 @@ App.menubutton_cycle = (args, dir) => {
 
 App.menubutton_opt = (args, value) => {
   for (let opt of args.opts) {
-    if (opt[1] === value) {
+    if (opt.value === value) {
       return opt
     }
   }

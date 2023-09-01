@@ -1494,7 +1494,7 @@ App.profile_make_menu = (prop, opts) => {
         App.profile_apply_theme()
       }
 
-      App[`current_profile_editor_${prop}`] = opt[1]
+      App[`current_profile_editor_${prop}`] = opt.value
     },
     opts: opts,
   })

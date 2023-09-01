@@ -365,7 +365,7 @@ App.settings_make_menu = (setting, opts, action = () => {}) => {
     selected: App.get_setting(setting),
     wrap: !no_wrap.includes(setting),
     on_change: (args, opt) => {
-      App.set_setting(setting, opt[1])
+      App.set_setting(setting, opt.value)
       action()
     },
   })
@@ -473,28 +473,28 @@ App.setup_settings = () => {
     prepare(`general`)
 
     App.settings_make_menu(`text_mode`, [
-      [`Title`, `title`],
-      [`URL`, `url`],
-      [`Title / URL`, `title_url`],
-      [`URL / Title`, `url_title`],
+      {text: `Title`, value: `title`},
+      {text: `URL`, value: `url`},
+      {text: `Title / URL`, value: `title_url`},
+      {text: `URL / Title`, value: `url_title`},
     ])
 
     App.settings_make_menu(`font`, [
-      [`Sans`, `sans-serif`],
-      [`Serif`, `serif`],
-      [`Mono`, `monospace`],
-      [`Cursive`, `cursive`],
+      {text: `Sans`, value: `sans-serif`},
+      {text: `Serif`, value: `serif`},
+      {text: `Mono`, value: `monospace`},
+      {text: `Cursive`, value: `cursive`},
     ], () => {
       App.apply_theme()
     })
 
     App.settings_make_menu(`auto_restore`, [
-      [`Never`, `never`],
-      [`1 Second`, `1_seconds`],
-      [`5 Seconds`, `5_seconds`],
-      [`10 Seconds`, `10_seconds`],
-      [`30 Seconds`, `30_seconds`],
-      [`On Action`, `action`],
+      {text: `Never`, value: `never`},
+      {text: `1 Second`, value: `1_seconds`},
+      {text: `5 Seconds`, value: `5_seconds`},
+      {text: `10 Seconds`, value: `10_seconds`},
+      {text: `30 Seconds`, value: `30_seconds`},
+      {text: `On Action`, value: `action`},
     ], () => {
       clearTimeout(App.restore_timeout)
     })
@@ -504,30 +504,30 @@ App.setup_settings = () => {
     })
 
     App.settings_make_menu(`item_height`, [
-      [`Compact`, `compact`],
-      [`Normal`, `normal`],
-      [`Bigger`, `bigger`],
-      [`Huge`, `huge`],
+      {text: `Compact`, value: `compact`},
+      {text: `Normal`, value: `normal`},
+      {text: `Bigger`, value: `bigger`},
+      {text: `Huge`, value: `huge`},
     ])
 
     App.settings_make_menu(`item_border`, [
-      [`None`, `none`],
-      [`Normal`, `normal`],
-      [`Bigger`, `bigger`],
-      [`Huge`, `huge`],
+      {text: `None`, value: `none`},
+      {text: `Normal`, value: `normal`},
+      {text: `Bigger`, value: `bigger`},
+      {text: `Huge`, value: `huge`},
     ])
 
     App.settings_make_menu(`pick_mode`, [
-      [`None`, `none`],
-      [`Smart`, `smart`],
-      [`Single`, `single`],
-      [`Simple`, `simple`],
+      {text: `None`, value: `none`},
+      {text: `Smart`, value: `smart`},
+      {text: `Single`, value: `single`},
+      {text: `Simple`, value: `simple`},
     ])
 
     App.settings_make_menu(`favicon_source`, [
-      [`None`, `none`],
-      [`Google`, `google`],
-      [`4get`, `4get`],
+      {text: `None`, value: `none`},
+      {text: `Google`, value: `google`},
+      {text: `4get`, value: `4get`},
     ])
 
     App.settings_make_menu(`width`, App.get_size_options(), () => {
@@ -601,10 +601,10 @@ App.setup_settings = () => {
     prepare(`colors`)
 
     App.settings_make_menu(`color_mode`, [
-      [`None`, `none`],
-      [`Icon`, `icon`],
-      [`Icon 2`, `icon_2`],
-      [`Item`, `item`],
+      {text: `None`, value: `none`},
+      {text: `Icon`, value: `icon`},
+      {text: `Icon 2`, value: `icon_2`},
+      {text: `Item`, value: `item`},
     ])
   }}))
 
@@ -618,19 +618,19 @@ App.setup_settings = () => {
     prepare(`more`)
 
     App.settings_make_menu(`hover_effect`, [
-      [`None`, `none`],
-      [`Glow`, `glow`],
-      [`Underline`, `underline`],
-      [`Bold`, `bold`],
-      [`Bigger`, `bigger`],
+      {text: `None`, value: `none`},
+      {text: `Glow`, value: `glow`},
+      {text: `Underline`, value: `underline`},
+      {text: `Bold`, value: `bold`},
+      {text: `Bigger`, value: `bigger`},
     ])
 
     App.settings_make_menu(`selected_effect`, [
-      [`None`, `none`],
-      [`Background`, `background`],
-      [`Underline`, `underline`],
-      [`Bold`, `bold`],
-      [`Bigger`, `bigger`],
+      {text: `None`, value: `none`},
+      {text: `Background`, value: `background`},
+      {text: `Underline`, value: `underline`},
+      {text: `Bold`, value: `bold`},
+      {text: `Bigger`, value: `bigger`},
     ])
   }}))
 
@@ -638,9 +638,9 @@ App.setup_settings = () => {
     prepare(`media`)
 
     let opts = [
-      [`Never`, `never`],
-      [`On Icon Click`, `icon`],
-      [`On Item Click`, `item`],
+      {text: `Never`, value: `never`},
+      {text: `On Icon Click`, value: `icon`},
+      {text: `On Item Click`, value: `item`},
     ]
 
     for (let m of App.modes) {
@@ -662,8 +662,8 @@ App.setup_settings = () => {
     })
 
     App.settings_make_menu(`gestures_threshold`, [
-      [`Normal`, 10],
-      [`Less Sensitive`, 100],
+      {text: `Normal`, value: 10},
+      {text: `Less Sensitive`, value: 100},
     ], () => {
       App.refresh_gestures()
     })
@@ -831,17 +831,21 @@ App.start_theme_settings = () => {
   })
 
   let auto_opts = [
-    [`Never`, `never`],
-    [`1 minute`, `1_minutes`],
-    [`5 minutes`, `5_minutes`],
-    [`30 minutes`, `30_minutes`],
-    [`1 hour`, `1_hours`],
-    [`6 hours`, `6_hours`],
-    [`12 hours`, `12_hours`],
-    [`24 hours`, `24_hours`],
+    {text: `Never`, value: `never`},
+    {text: `1 minute`, value: `1_minutes`},
+    {text: `5 minutes`, value: `5_minutes`},
+    {text: `30 minutes`, value: `30_minutes`},
+    {text: `1 hour`, value: `1_hours`},
+    {text: `6 hours`, value: `6_hours`},
+    {text: `12 hours`, value: `12_hours`},
+    {text: `24 hours`, value: `24_hours`},
   ]
 
-  App.settings_make_menu(`auto_theme`, [...auto_opts, [`Domain`, `domain`], [`Party`, `party`]], () => {
+  let theme_opts = [...auto_opts]
+  theme_opts.push({text: `Domain`, value: `domain`})
+  theme_opts.push({text: `Party`, value: `party`})
+
+  App.settings_make_menu(`auto_theme`, theme_opts, () => {
     App.start_theme_interval(`auto_theme`)
   })
 
@@ -850,15 +854,15 @@ App.start_theme_settings = () => {
   })
 
   App.settings_make_menu(`auto_background_mode`, [
-    [`Only Pool`, `pool`],
-    [`Only Random`, `random`],
-    [`Pool & Random`, `pool_random`],
+    {text: `Only Pool`, value: `pool`},
+    {text: `Only Random`, value: `random`},
+    {text: `Pool & Random`, value: `pool_random`},
   ])
 
   App.settings_make_menu(`random_themes`, [
-    [`Only Dark`, `dark`],
-    [`Only Light`, `light`],
-    [`Dark & Light`, `both`],
+    {text: `Only Dark`, value: `dark`},
+    {text: `Only Light`, value: `light`},
+    {text: `Dark & Light`, value: `both`},
   ], () => {
     App.hostname_colors = {}
   })
@@ -945,7 +949,7 @@ App.get_font_size_options = () => {
   let opts = []
 
   for (let i=12; i<=22; i++) {
-    opts.push([`${i} px`, i])
+    opts.push({text: `${i} px`, value: i})
   }
 
   return opts
@@ -955,7 +959,7 @@ App.get_size_options = () => {
   let opts = []
 
   for (let i=50; i<=100; i+=5) {
-    opts.push([`${i}%`, i])
+    opts.push({text: `${i}%`, value: i})
   }
 
   return opts
@@ -1157,16 +1161,16 @@ App.on_settings = (mode = App.window_mode) => {
 
 App.settings_commands = () => {
   let items = [
-    [`Do Nothing`, `none`],
-    [App.separator_string],
+    {text: `Do Nothing`, value: `none`},
+    {text: App.separator_string},
   ]
 
   for (let cmd of App.commands) {
     if (cmd.name === App.separator_string) {
-      items.push([App.separator_string])
+      items.push({text: App.separator_string})
     }
     else {
-      items.push([cmd.name, cmd.cmd, cmd.icon])
+      items.push({text: cmd.name, value: cmd.cmd, icon: cmd.icon})
     }
   }
 
@@ -1174,9 +1178,9 @@ App.settings_commands = () => {
 }
 
 App.tab_warn_opts = [
-  [`Never`, `never`],
-  [`Always`, `always`],
-  [`Special`, `special`],
+  {text: `Never`, value: `never`},
+  {text: `Always`, value: `always`},
+  {text: `Special`, value: `special`},
 ]
 
 App.settings_menu_items = () => {
@@ -1306,9 +1310,8 @@ App.edit_setting = (setting) => {
 }
 
 App.settings_actions = (category) => {
-  let has_presets = [`general`]
-
   let items = []
+  let has_presets = [`general`]
 
   items.push({
     text: `Reset`,
