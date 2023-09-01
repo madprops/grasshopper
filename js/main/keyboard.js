@@ -46,6 +46,12 @@ App.check_items_keyboard = (e) => {
     check_kbs = false
   }
 
+  if (!kbs_ctrl && !kbs_alt) {
+    if (filter_focus) {
+      check_kbs = false
+    }
+  }
+
   if (check_kbs) {
     for (let line of App.get_setting(`keyboard_shortcuts`)) {
       let items = App.addlist_items(line)
