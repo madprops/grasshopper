@@ -349,14 +349,14 @@ App.settings_make_menu = (setting, opts, action = () => {}) => {
   let no_wrap = [`font_size`, `width`, `height`]
 
   App[`settings_menubutton_${setting}`] = App.create_menubutton({
+    opts: opts,
     button: DOM.el(`#settings_${setting}`),
     selected: App.get_setting(setting),
+    wrap: !no_wrap.includes(setting),
     on_change: (args, opt) => {
       App.set_setting(setting, opt[1])
       action()
     },
-    wrap: !no_wrap.includes(setting),
-    opts: opts,
   })
 
   App[`settings_${setting}_opts`] = opts
