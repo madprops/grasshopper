@@ -345,32 +345,15 @@ App.settings_setup_text = (container) => {
 }
 
 App.settings_make_menu = (setting, opts, action = () => {}) => {
-  let el = DOM.el(`#settings_${setting}`)
+  let no_wrap = [`font_size`, `width`, `height`]
 
-  DOM.ev(el, `click`, () => {
-    let items = []
-
-    for (let o of opts) {
-      if (o[0] === App.separator_string) {
-        items.push({separator: true})
-        continue
-      }
-
-      let selected = App.get_setting(setting) === o[1]
-
-      items.push({
-        icon: o[2],
-        text: o[0],
-        action: () => {
-          el.textContent = o[0]
-          App.set_setting(setting, o[1])
-          action()
-        },
-        selected: selected
-      })
-    }
-
-    NeedContext.show_on_element(el, items, true, el.clientHeight)
+  let el = App.create_menubutton({
+    button: DOM.el(`#settings_${setting}`),
+    on_change: (opt) => {
+      App.set_setting(setting, opt[1])
+      action()
+    },
+    wrap: !no_wrap.includes(setting),
   })
 
   App[`settings_${setting}_opts`] = opts
@@ -397,30 +380,6 @@ App.settings_make_menu = (setting, opts, action = () => {}) => {
       el.textContent = o[0]
     }
   }
-
-  let buttons = DOM.create(`div`, `flex_row_center gap_1`)
-  let prev = DOM.create(`div`, `button`)
-  prev.textContent = `<`
-  let next = DOM.create(`div`, `button`)
-  next.textContent = `>`
-
-  function prev_fn () {
-    App.settings_menu_cycle(el, setting, `prev`, opts)
-    action()
-  }
-
-  function next_fn () {
-    App.settings_menu_cycle(el, setting, `next`, opts)
-    action()
-  }
-
-  DOM.ev(prev, `click`, prev_fn)
-  DOM.ev(next, `click`, next_fn)
-
-  buttons.append(prev)
-  buttons.append(next)
-  el.after(buttons)
-  prev.after(el)
 }
 
 App.add_settings_filter = (category) => {
@@ -932,47 +891,6 @@ App.start_theme_settings = () => {
       App.change_background(c[0], c[1], c[2])
     }})
   })
-}
-
-App.settings_menu_cycle = (el, setting, dir, o_items) => {
-  let cycle = true
-
-  if (setting === `font_size` || setting === `width` || setting === `height`) {
-    cycle = false
-  }
-
-  let waypoint = false
-  let items = o_items.slice(0)
-
-  if (dir === `prev`) {
-    items.reverse()
-  }
-
-  let s_item
-
-  if (cycle) {
-    s_item = items[0]
-  }
-
-  for (let item of items) {
-    if (item[0] === App.separator_string) {
-      continue
-    }
-
-    if (waypoint) {
-      s_item = item
-      break
-    }
-
-    if (item[1] === App.get_setting(setting)) {
-      waypoint = true
-    }
-  }
-
-  if (s_item) {
-    el.textContent = s_item[0]
-    App.set_setting(setting, s_item[1])
-  }
 }
 
 App.settings_default_category = (category) => {

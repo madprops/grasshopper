@@ -123,49 +123,9 @@ App.addlist_register = (args = {}) => {
       el = DOM.create(`div`, `flex_column_center gap_1`)
       let label = DOM.create(`div`)
       label.textContent = args.labels[i] || `Select`
-      let select = DOM.create(`div`, `settings_menu button`, id)
-      let s_prev = DOM.create(`div`, `button arrow_prev`)
-      s_prev.textContent = `<`
-      let s_next = DOM.create(`div`, `button arrow_next`)
-      s_next.textContent = `>`
-      let s_container = DOM.create(`div`, `flex_row_center gap_1`)
-
-      DOM.ev(select, `click`, () => {
-        let items = []
-
-        for (let o of args.sources[i]) {
-          if (o[0] === App.separator_string) {
-            items.push({separator: true})
-            continue
-          }
-
-          items.push({
-            icon: o[2],
-            text: o[0],
-            action: () => {
-              select.textContent = o[0]
-            },
-          })
-        }
-
-        NeedContext.show_on_element(select, items, true, select.clientHeight)
-      })
-
-      function prev_fn () {
-        App.addlist_menu_cycle(select, `prev`, args.sources[i])
-      }
-
-      function next_fn () {
-        App.addlist_menu_cycle(select, `next`, args.sources[i])
-      }
-
-      DOM.ev(s_prev, `click`, prev_fn)
-      DOM.ev(s_next, `click`, next_fn)
-      s_container.append(s_prev)
-      s_container.append(select)
-      s_container.append(s_next)
+      let menubutton = App.create_menubutton({id: id, opts: args.sources[i]})
       el.append(label)
-      el.append(s_container)
+      el.append(menubutton)
       els.push(el)
     }
   }
@@ -568,36 +528,6 @@ App.addlist_move = (dir) => {
       App.after_addlist(oargs.setting, lines)
       break
     }
-  }
-}
-
-App.addlist_menu_cycle = (el, dir, o_items) => {
-  let waypoint = false
-  let items = o_items.slice(0)
-
-  if (dir === `prev`) {
-    items.reverse()
-  }
-
-  let s_item = items[0]
-
-  for (let item of items) {
-    if (item[0] === App.separator_string) {
-      continue
-    }
-
-    if (waypoint) {
-      s_item = item
-      break
-    }
-
-    if (item[0] === el.textContent) {
-      waypoint = true
-    }
-  }
-
-  if (s_item) {
-    el.textContent = s_item[0]
   }
 }
 
