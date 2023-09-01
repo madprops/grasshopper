@@ -1515,7 +1515,7 @@ App.profile_editor_left = () => {
   let el = DOM.el(`#profile_editor_color_container`)
 
   if (!el.classList.contains(`hidden`)) {
-    App.profile_menu_cycle(DOM.el(`#profile_editor_color`), `color`, `prev`, App.profile_editor_color_opts)
+    App.profile_menubutton_color.prev()
   }
 }
 
@@ -1523,7 +1523,7 @@ App.profile_editor_right = () => {
   let el = DOM.el(`#profile_editor_color_container`)
 
   if (!el.classList.contains(`hidden`)) {
-    App.profile_menu_cycle(DOM.el(`#profile_editor_color`), `color`, `next`, App.profile_editor_color_opts)
+    App.profile_menubutton_color.next()
   }
 }
 

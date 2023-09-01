@@ -60,11 +60,11 @@ App.create_menubutton = (args = {}) => {
     }
   }
 
-  function prev_fn () {
+  args.prev = () => {
     App.menubutton_cycle(args, `prev`)
   }
 
-  function next_fn () {
+  args.next = () => {
     App.menubutton_cycle(args, `next`)
   }
 
@@ -77,8 +77,8 @@ App.create_menubutton = (args = {}) => {
     }
   }
 
-  DOM.ev(prev, `click`, prev_fn)
-  DOM.ev(next, `click`, next_fn)
+  DOM.ev(prev, `click`, args.prev)
+  DOM.ev(next, `click`, args.next)
   args.container.append(prev)
   args.container.append(next)
   args.button.after(args.container)
