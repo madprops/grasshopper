@@ -245,6 +245,13 @@ App.check_items_keyboard = (e) => {
     }
   }
 
+  // Make filter ignore these
+  if (e.key === `Shift` ||
+  e.key === `Control` ||
+  e.key === `Alt`) {
+    return
+  }
+
   App.trigger_filter(mode)
 }
 

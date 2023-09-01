@@ -49,7 +49,7 @@ App.addlist_values = (id) => {
   for (let [i, w] of oargs.widgets.entries()) {
     let value = App.addlist_get_value(i, w)
 
-    if (value || w === `checkbox`) {
+    if (value) {
       values.push(value)
     }
   }
@@ -162,16 +162,6 @@ App.addlist_register = (args = {}) => {
       el.append(mb.container)
       els.push(el)
     }
-    else if (w === `checkbox`) {
-      let el = DOM.create(`div`, `flex_column_center gap_1`)
-      let checkbox = DOM.create(`input`, `checkbox addlist_checkbox`, id)
-      checkbox.type = `checkbox`
-      let label = DOM.create(`div`)
-      label.textContent = args.labels[i] || `Checkbox`
-      el.append(label)
-      el.append(checkbox)
-      els.push(el)
-    }
   }
 
   if (args.image !== undefined) {
@@ -247,7 +237,6 @@ App.addlist_items = (full) => {
     items.push(full)
   }
 
-  items = items.map(x => x === "true" ? true : (x === "false" ? false : x))
   return items
 }
 
@@ -276,9 +265,6 @@ App.addlist = (args = {}) => {
         else {
           App[`addlist_menubutton_${args.id}_${i}`].set(oargs.sources[i][0].value)
         }
-      }
-      else if (w === `checkbox`) {
-        el.checked = value
       }
     }
   }
@@ -592,9 +578,6 @@ App.addlist_get_value = (i, w) => {
   }
   else if (w === `select`) {
     value = App[`addlist_menubutton_${id}_${i}`].value
-  }
-  else if (w === `checkbox`) {
-    value = el.checked
   }
 
   return value
