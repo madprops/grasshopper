@@ -288,3 +288,13 @@ App.background_tiles = [
   {text: `450px`, value: `450px`},
   {text: `500px`, value: `500px`},
 ]
+
+App.effects = [
+  {text: `None`, value: `none`},
+  {text: `Glow`, value: `glow`},
+  {text: `Opacity`, value: `opacity`},
+  {text: `Background`, value: `background`},
+  {text: `Underline`, value: `underline`},
+  {text: `Bold`, value: `bold`},
+  {text: `Bigger`, value: `bigger`},
+]

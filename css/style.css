@@ -324,8 +324,16 @@ svg {
   flex-shrink: 0;
 }
 
+.hover_effect_background .item:hover {
+  background-color: var(--alt_color_1);
+}
+
 .hover_effect_glow .item:hover .item_text {
   text-shadow: 0 0 1rem currentColor;
+}
+
+.hover_effect_opacity .item:hover {
+  opacity: 0.8;
 }
 
 .hover_effect_underline .item:hover .item_text {
@@ -394,6 +402,14 @@ svg {
 
 .selected_effect_background .selected.colored .item_text {
   text-decoration: underline;
+}
+
+.selected_effect_glow .selected .item_text {
+  text-shadow: 0 0 1rem currentColor;
+}
+
+.selected_effect_opacity .selected {
+  opacity: 0.8;
 }
 
 .selected_effect_underline .selected .item_text {
