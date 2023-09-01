@@ -47,6 +47,8 @@ App.create_menubutton = (args = {}) => {
     else if (opt.length === 3) {
       args.button.innerHTML = (opt[2] || ``) + opt[0]
     }
+
+    args.value = opt[1]
   }
 
   args.set = (value, on_change = true) => {

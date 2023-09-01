@@ -123,11 +123,14 @@ App.addlist_register = (args = {}) => {
       el = DOM.create(`div`, `flex_column_center gap_1`)
       let label = DOM.create(`div`)
       label.textContent = args.labels[i] || `Select`
-      let menubutton = App.create_menubutton({
+
+      App[`addlist_menubutton_${args.id}_${i}`] = App.create_menubutton({
         id: id, opts: args.sources[i],
       })
+
+      let mb = App[`addlist_menubutton_${args.id}_${i}`]
       el.append(label)
-      el.append(menubutton.container)
+      el.append(mb.container)
       els.push(el)
     }
   }
@@ -223,18 +226,14 @@ App.addlist = (args = {}) => {
     }
     else {
       if (!value && (w === `select`)) {
-        el.textContent = oargs.sources[i][0][0]
+        App[`addlist_menubutton_${args.id}_${i}`].set(oargs.sources[i][0][1])
       }
       else {
         if (w === `text`) {
           el.value = value
         }
         else if (w === `select`) {
-          let opt = App.settings_get_menu_item(value, oargs.sources[i])
-
-          if (opt) {
-            el.textContent = opt[0]
-          }
+          App[`addlist_menubutton_${args.id}_${i}`].set(value)
         }
       }
     }
@@ -535,7 +534,6 @@ App.addlist_move = (dir) => {
 
 App.addlist_get_value = (i, w) => {
   let id = App.addlist_data.id
-  let oargs = App.addlist_oargs(id)
   let el = App.addlist_widget(id, i)
   let value
 
@@ -543,11 +541,7 @@ App.addlist_get_value = (i, w) => {
     value = el.value.trim()
   }
   else if (w === `select`) {
-    let opt = App.settings_get_menu_item_2(el.textContent.trim(), oargs.sources[i])
-
-    if (opt) {
-      value = opt[1]
-    }
+    value = App[`addlist_menubutton_${id}_${i}`].value
   }
 
   return value
