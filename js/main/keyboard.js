@@ -32,7 +32,7 @@ App.check_items_keyboard = (e) => {
   let shortcuts = App.get_setting(`keyboard_shortcuts`)
 
   for (let line of shortcuts) {
-    if (!e.shiftKey || e.ctrlKey) {
+    if (!e.shiftKey || !e.altKey || e.ctrlKey) {
       continue
     }
 
