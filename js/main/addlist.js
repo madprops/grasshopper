@@ -9,12 +9,12 @@ App.setup_addlist = () => {
 
   App.create_popup({
     id: `addlist_custom_filter`, element: App.addlist_register({id: `custom_filter`, setting: `custom_filters`,
-    widgets: [`text`], labels: [`Filter`], title: `Custom Filter`})
+    widgets: [`text`], labels: [`Filter`], title: `Custom Filters`})
   })
 
   App.create_popup({
     id: `addlist_alias`, element: App.addlist_register({id: `alias`, setting: `aliases`,
-    widgets: [`text`, `text`], labels: [`Term 1`, `Term 2`], title: `Alias`})
+    widgets: [`text`, `text`], labels: [`Term 1`, `Term 2`], title: `Aliases`})
   })
 
   App.create_popup({
@@ -37,7 +37,7 @@ App.setup_addlist = () => {
 
   App.create_popup({
     id: `addlist_keyboard_shortcut`, element: App.addlist_register({id: `keyboard_shortcut`, setting: `keyboard_shortcuts`,
-    widgets: [`key`, `select`], labels: [`Key`, `Command`], title: `Keyboard Shortcut`,
+    widgets: [`key`, `select`], labels: [`Key`, `Command`], title: `Keyboard Shortcuts`,
     sources: [undefined, App.addlist_commands.slice(0)]})
   })
 }
@@ -487,10 +487,6 @@ App.addlist_check_focus = (id) => {
   let data = App.addlist_data
 
   for (let [i, w] of oargs.widgets.entries()) {
-    if (w === `image`) {
-      continue
-    }
-
     let el = App.addlist_widget(id, i)
 
     if (data.update) {
@@ -499,6 +495,8 @@ App.addlist_check_focus = (id) => {
     else {
       el.focus()
     }
+
+    return
   }
 }
 
