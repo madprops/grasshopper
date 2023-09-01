@@ -1,3 +1,14 @@
+App.setting_presets = [
+  {
+    category: `general`,
+    name: `Double`,
+    settings: [
+      [`text_mode`, `title_url`],
+      [`item_border`, `normal`],
+    ]
+  }
+]
+
 App.build_default_settings = () => {
   let obj = {}
 
@@ -720,15 +731,16 @@ App.add_settings_switchers = (category) => {
   title.id = `settings_title_${category}`
   title.textContent = App.capitalize(category)
   container.append(title)
-  let reset = DOM.create(`div`, `button`)
-  reset.textContent = `Reset`
-  container.append(reset)
+  let actions = DOM.create(`div`, `button icon_button`)
+  actions.id = `settings_actions_${category}`
+  actions.append(App.create_icon(`sun`))
+  container.append(actions)
   let close = DOM.create(`div`, `button`)
   close.textContent = App.close_text
   container.append(close)
 
-  DOM.ev(reset, `click`, () => {
-    App.reset_settings(category)
+  DOM.ev(actions, `click`, () => {
+    App.settings_actions(category)
   })
 
   DOM.ev(close, `click`, () => {
@@ -1291,4 +1303,55 @@ App.edit_setting = (setting) => {
     el.value = text
     App.do_save_text_setting(setting, el)
   }, value)
+}
+
+App.settings_actions = (category) => {
+  let has_presets = [`general`]
+
+  let items = []
+
+  items.push({
+    text: `Reset`,
+    action: () => {
+      App.reset_settings(category)
+    }
+  })
+
+  if (has_presets.includes(category)) {
+    items.push({
+      text: `Presets`,
+      get_items: () => {
+        return App.setting_preset_items(category)
+      }
+    })
+  }
+
+  let btn = DOM.el(`#settings_actions_${category}`)
+  NeedContext.show_on_element(btn, items, true, btn.clientHeight)
+}
+
+App.setting_preset_items = (category) => {
+  let items = []
+
+  for (let preset of App.setting_presets) {
+    if (preset.category === category) {
+      items.push({
+        text: preset.name,
+        action: () => {
+          App.apply_settings_preset(preset)
+        }
+      })
+    }
+  }
+
+  return items
+}
+
+App.apply_settings_preset = (preset) => {
+  App.show_confirm(`Apply preset?`, () => {
+    for (let setting of preset.settings) {
+      App.set_setting(setting[0], setting[1])
+      App.show_settings_category(preset.category)
+    }
+  })
 }
