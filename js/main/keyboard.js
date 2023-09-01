@@ -61,6 +61,7 @@ App.check_items_keyboard = (e) => {
       let cmd = items[1]
       App.run_command({cmd: cmd, from: `keyboard_shortcut`})
       e.preventDefault()
+      e.stopPropagation()
       return
     }
   }
@@ -262,7 +263,7 @@ App.check_items_keyboard = (e) => {
   }
 
   if (e.key.length === 1 || e.key === `Backspace`) {
-    App.trigger_filter(mode)
+    App.focus_filter(mode)
   }
 }
 

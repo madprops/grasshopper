@@ -588,6 +588,11 @@ App.create_filter = (mode) => {
     }
   })
 
+  DOM.ev(filter, `input`, () => {
+    console.log(11111111)
+    App.trigger_filter(mode)
+  })
+
   return filter
 }
 
@@ -870,4 +875,8 @@ App.trigger_filter = (mode) => {
 
 App.filter_is_focused = (mode) => {
   return App.get_filter_el(mode) === document.activeElement
+}
+
+App.blur_filter = (mode) => {
+  App.get_filter_el(mode).blur()
 }

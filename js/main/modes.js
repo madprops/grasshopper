@@ -112,7 +112,6 @@ App.do_show_mode = async (mode, cycle = false, force = false) => {
   }
 
   App[`${mode}_changed`] = false
-  App.focus_filter(mode)
   App.check_item_theme()
   App.check_playing(mode)
 }
