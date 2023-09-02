@@ -394,13 +394,7 @@ App.addlist_click = (args = {}) => {
     update: true,
   }
 
-  if (args.e.button === 0) {
-    App.addlist(obj)
-  }
-  else if (args.e.button === 1) {
-    console.log(`aux`)
-  }
-
+  App.addlist(obj)
   args.e.preventDefault()
 }
 
@@ -684,13 +678,7 @@ App.addlist_buttons = (args) => {
     App.addlist({id: args.id, items: items || [], action: args.action})
   })
 
-  DOM.ev(DOM.el(`#settings_${args.id}`), `mousedown`, (e) => {
-    if (e.button === 1) {
-      e.preventDefault()
-    }
-  })
-
-  DOM.ev(DOM.el(`#settings_${args.id}`), `mouseup`, (e) => {
+  DOM.ev(DOM.el(`#settings_${args.id}`), `click`, (e) => {
     App.addlist_click({e: e, id: args.id, use: args.use})
   })
 }
