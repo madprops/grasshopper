@@ -1,44 +1,89 @@
 App.setup_addlist = () => {
   App.addlist_commands = App.settings_commands()
 
+  function on_hide (id) {
+    let modified = App.addlist_modified(id)
+    console.log(id, modified)
+
+    if (modified) {
+      App.show_confirm(`Save changes?`, () => {
+        let values = App.addlist_values(data.id)
+        data.use(values)
+      }, () => {
+        App.hide_popup(true)
+      })
+    }
+    else {
+      App.hide_popup(true)
+    }
+  }
+
+  id = `pool`
+
   App.create_popup({
-    id: `addlist_pool`, element: App.addlist_register({id: `pool`, setting: `background_pool`,
+    id: `addlist_pool`, element: App.addlist_register({id: id, setting: `background_pool`,
     widgets: [`text`, `select`, `select`], labels: [`Image URL`, `Effect`, `Tiles`], title: `BG Pool`, image: 0,
-    sources: [undefined, App.background_effects, App.background_tiles]})
+    sources: [undefined, App.background_effects, App.background_tiles]}), on_hide: () => {
+      on_hide(id)
+    }
   })
 
-  App.create_popup({
-    id: `addlist_custom_filters`, element: App.addlist_register({id: `custom_filters`, setting: `custom_filters`,
-    widgets: [`text`], labels: [`Filter`], title: `Custom Filters`})
-  })
+  id = `custom_filters`
 
   App.create_popup({
-    id: `addlist_aliases`, element: App.addlist_register({id: `aliases`, setting: `aliases`,
-    widgets: [`text`, `text`], labels: [`Term 1`, `Term 2`], title: `Aliases`})
+    id: `addlist_custom_filters`, element: App.addlist_register({id: id, setting: `custom_filters`,
+    widgets: [`text`], labels: [`Filter`], title: `Custom Filters`}), on_hide: () => {
+      on_hide(id)
+    }
   })
 
+  id = `aliases`
+
   App.create_popup({
-    id: `addlist_extra_menu`, element: App.addlist_register({id: `extra_menu`, setting: `extra_menu`,
+    id: `addlist_aliases`, element: App.addlist_register({id: id, setting: `aliases`,
+    widgets: [`text`, `text`], labels: [`Term 1`, `Term 2`], title: `Aliases`}), on_hide: () => {
+      on_hide(id)
+    }
+  })
+
+  id = `extra_menu`
+
+  App.create_popup({
+    id: `addlist_extra_menu`, element: App.addlist_register({id: id, setting: `extra_menu`,
     widgets: [`text`, `select`], labels: [`Name`, `Command`], title: `Extra Menu`,
-    sources: [undefined, App.addlist_commands.slice(0)]})
+    sources: [undefined, App.addlist_commands.slice(0)]}), on_hide: () => {
+      on_hide(id)
+    }
   })
 
+  id = `empty_menu`
+
   App.create_popup({
-    id: `addlist_empty_menu`, element: App.addlist_register({id: `empty_menu`, setting: `empty_menu`,
+    id: `addlist_empty_menu`, element: App.addlist_register({id: id, setting: `empty_menu`,
     widgets: [`text`, `select`], labels: [`Name`, `Command`], title: `Empty Menu`,
-    sources: [undefined, App.addlist_commands.slice(0)]})
+    sources: [undefined, App.addlist_commands.slice(0)]}), on_hide: () => {
+      on_hide(id)
+    }
   })
 
+  id = `footer_menu`
+
   App.create_popup({
-    id: `addlist_footer_menu`, element: App.addlist_register({id: `footer_menu`, setting: `footer_menu`,
+    id: `addlist_footer_menu`, element: App.addlist_register({id: id, setting: `footer_menu`,
     widgets: [`text`, `select`], labels: [`Name`, `Command`], title: `Footer Menu`,
-    sources: [undefined, App.addlist_commands.slice(0)]})
+    sources: [undefined, App.addlist_commands.slice(0)]}), on_hide: () => {
+      on_hide(id)
+    }
   })
 
+  id = `keyboard_shortcuts`
+
   App.create_popup({
-    id: `addlist_keyboard_shortcuts`, element: App.addlist_register({id: `keyboard_shortcuts`, setting: `keyboard_shortcuts`,
+    id: `addlist_keyboard_shortcuts`, element: App.addlist_register({id: id, setting: `keyboard_shortcuts`,
     widgets: [`key`, `select`, `checkbox`, `checkbox`, `checkbox`], labels: [`Key`, `Command`, `Require Ctrl`, `Require Shift`, `Require Alt`], title: `Keyboard Shortcuts`,
-    sources: [undefined, App.addlist_commands.slice(0), true, false, false]})
+    sources: [undefined, App.addlist_commands.slice(0), true, false, false]}), on_hide: () => {
+      on_hide(id)
+    }
   })
 }
 
@@ -259,7 +304,7 @@ App.addlist = (args = {}) => {
   let oargs = App.addlist_oargs(args.id)
 
   for (let [i, w] of oargs.widgets.entries()) {
-    let value = args.items[i] || ``
+    let value = args.items[i]
     let el = App.addlist_widget(args.id, i)
 
     if (w === `image`) {
@@ -267,7 +312,12 @@ App.addlist = (args = {}) => {
     }
     else {
       if (w === `text` || w === `key`) {
-        el.value = value
+        if (value) {
+          el.value = value
+        }
+        else {
+          el.value = ``
+        }
       }
       else if (w === `select`) {
         if (value) {
@@ -278,7 +328,12 @@ App.addlist = (args = {}) => {
         }
       }
       else if (w === `checkbox`) {
-        el.checked = oargs.sources[i]
+        if (value !== undefined) {
+          el.checked = value
+        }
+        else {
+          el.checked = oargs.sources[i]
+        }
       }
     }
   }

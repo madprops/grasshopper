@@ -41,9 +41,18 @@ App.create_popup = (args) => {
     p.open = true
   }
 
-  p.hide = () => {
-    p.element.classList.add(`hidden`)
-    p.open = false
+  p.hide = (bypass = false) => {
+    if (!bypass && args.on_hide) {
+      args.on_hide(args.id)
+    }
+    else {
+      p.element.classList.add(`hidden`)
+      p.open = false
+
+      if (args.after_hide) {
+        args.after_hide(args.id)
+      }
+    }
   }
 
   App.popups[args.id] = p
@@ -231,11 +240,11 @@ App.input_enter = () => {
   App.input_action(DOM.el(`#input_text`).value.trim())
 }
 
-App.hide_popup = () => {
+App.hide_popup = (bypass = false) => {
   clearTimeout(App.alert_autohide)
 
   for (let id in App.popups) {
-    App.popups[id].hide()
+    App.popups[id].hide(bypass)
   }
 }
 

@@ -92,13 +92,13 @@ App.create_window = (args) => {
 
   w.hide = (bypass = false) => {
     if (!bypass && args.on_hide) {
-      args.on_hide()
+      args.on_hide(args.id)
     }
     else {
       App.show_last_window()
 
       if (args.after_hide) {
-        args.after_hide()
+        args.after_hide(args.id)
       }
     }
   }
