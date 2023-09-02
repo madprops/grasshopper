@@ -3,18 +3,16 @@ App.setup_addlist = () => {
 
   function on_hide (id) {
     let modified = App.addlist_modified(id)
-    console.log(id, modified)
 
     if (modified) {
       App.show_confirm(`Save changes?`, () => {
-        let values = App.addlist_values(data.id)
-        data.use(values)
+        App.addlist_update(id)
       }, () => {
-        App.hide_popup(true)
+        App.hide_addlist()
       })
     }
     else {
-      App.hide_popup(true)
+      App.hide_addlist()
     }
   }
 
@@ -265,7 +263,7 @@ App.addlist_register = (args = {}) => {
   })
 
   DOM.ev(use, `click`, () => {
-    App.hide_popup()
+    App.hide_addlist()
     App.addlist_use()
   })
 
@@ -421,7 +419,7 @@ App.addlist_enter = () => {
   let modified = App.addlist_modified(data.id)
 
   if (data.use && !modified) {
-    App.hide_popup()
+    App.hide_addlist()
     App.addlist_use()
   }
   else {
@@ -443,7 +441,7 @@ App.after_addlist = (id, lines) => {
   let area = DOM.el(`#settings_${oargs.setting}`)
   area.value = App.get_textarea_setting_value(oargs.setting)
   App.check_theme_refresh()
-  App.hide_popup()
+  App.hide_addlist()
 }
 
 App.check_addlist_buttons = (args) => {
@@ -661,4 +659,8 @@ App.addlist_get_value = (i, w) => {
 
 App.addlist_oargs = (id) => {
   return App[`addlist_args_${id}`]
+}
+
+App.hide_addlist = () => {
+  App.hide_popup(true)
 }
