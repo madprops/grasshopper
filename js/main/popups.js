@@ -247,7 +247,7 @@ App.input_enter = () => {
 App.hide_all_popups = () => {
   clearTimeout(App.alert_autohide)
 
-  for (let popup of App.open_popups()) {
+  for (let popup of App.open_popup_list()) {
     popup.hide()
   }
 }
@@ -256,7 +256,7 @@ App.hide_popup = (id, bypass = false) => {
   App.popups[id].hide(bypass)
 }
 
-App.open_popups = () => {
+App.open_popup_list = () => {
   let open = []
 
   for (let id in App.popups) {

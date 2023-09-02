@@ -661,7 +661,6 @@ App.hide_addlist = (check = true) => {
     })
   }
   else {
-    console.log(p_id)
     App.hide_popup(p_id, true)
   }
 }
