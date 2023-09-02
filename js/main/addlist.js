@@ -317,7 +317,6 @@ App.addlist = (args = {}) => {
   }
 
   App.addlist_data = args
-  App.current_addlist = args.id
   App.addlist_check_focus(args.id)
 }
 
@@ -639,14 +638,14 @@ App.addlist_oargs = (id) => {
 }
 
 App.hide_addlist = (check = true) => {
-  let id = App.current_addlist
-  let oargs = App.addlist_oargs(id)
-  let modified = App.addlist_modified(id)
+  let data = App.addlist_data
+  let oargs = App.addlist_oargs(data.id)
+  let modified = App.addlist_modified(data.id)
   let p_id = oargs.popup_id
 
   if (check && modified) {
     App.show_confirm(`Save changes?`, () => {
-      App.addlist_update(id)
+      App.addlist_update(data.id)
     }, () => {
       App.hide_popup(p_id, true)
     })
