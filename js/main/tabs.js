@@ -31,6 +31,10 @@ App.setup_tabs = () => {
     {text: `Close Tabs`, get_items: () => {
       return App.get_close_tabs_items()
     }},
+
+    {text: `Open Tabs`, action: () => {
+      App.open_tabs()
+    }},
   ]
 
   App.setup_item_window(`tabs`)
@@ -1236,5 +1240,32 @@ App.do_sort_tabs = () => {
     App.check_close_popup()
     App.clear_all_items()
     await App.do_show_mode(`tabs`)
+  })
+}
+
+App.open_tabs = () => {
+  App.show_input(`Open Tabs`, `Open`, (text) => {
+    let urls = text.split(`\n`).map(x => x.trim()).filter(x => x !== ``)
+    let to_open = []
+
+    if (urls.length) {
+      for (let url of urls) {
+        if (App.is_url(url)) {
+          if (App.get_item_by_url(`tabs`, url)) {
+            continue
+          }
+
+          to_open.push(url)
+        }
+      }
+    }
+
+    if (to_open.length) {
+      App.show_confirm(`Open Tabs? (${to_open.length})`, () => {
+        for (let url of to_open) {
+          App.open_tab({url: url})
+        }
+      })
+    }
   })
 }

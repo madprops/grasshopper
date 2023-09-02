@@ -189,6 +189,9 @@ App.setup_commands = () => {
     {name: `Tab URLs`, cmd: `tab_urls`, mode: `tabs`, icon: tabicon, action: (args) => {
       App.show_tab_urls()
     }},
+    {name: `Open Tabs`, cmd: `open_tabs`, mode: `tabs`, icon: tabicon, action: (args) => {
+      App.open_tabs()
+    }},
     {name: `Undo Close`, cmd: `undo_close`, icon: tabicon, action: (args) => {
       App.undo_close_tab()
     }},

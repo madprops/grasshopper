@@ -247,7 +247,7 @@ App.addlist_items = (full) => {
     items.push(full)
   }
 
-  items = items.map(x => x === "true" ? true : (x === "false" ? false : x))
+  items = items.map(x => x === `true` ? true : (x === `false` ? false : x))
   return items
 }
 
