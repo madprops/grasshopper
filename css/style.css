@@ -537,6 +537,10 @@ svg {
   height: 1.07rem;
 }
 
+.settings_image {
+  max-width: 90%;
+}
+
 .addlist_container {
   gap: 1.35rem;
   background-color: var(--background_color);
@@ -718,7 +722,7 @@ a:visited, a:link, a:hover {
   background-color: var(--background_color);
   border: 2px solid var(--alt_color_1);
   color: var(--text_color);
-  max-width: 98%;
+  max-width: 90%;
   transition: var(--color_transition);
   outline: none;
 }
