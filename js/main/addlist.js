@@ -5,10 +5,10 @@ App.setup_addlist = () => {
     App.hide_addlist()
   }
 
-  let id = `pool`
+  let id = `background_pool`
 
   App.create_popup({
-    id: `addlist_${id}`, element: App.addlist_register({id: id, setting: `background_pool`,
+    id: `addlist_${id}`, element: App.addlist_register({id: id,
     widgets: [`text`, `select`, `select`], labels: [`Image URL`, `Effect`, `Tiles`], title: `BG Pool`, image: 0,
     sources: [undefined, App.background_effects, App.background_tiles]}), on_hide: on_hide
   })
@@ -16,21 +16,21 @@ App.setup_addlist = () => {
   id = `custom_filters`
 
   App.create_popup({
-    id: `addlist_${id}`, element: App.addlist_register({id: id, setting: `custom_filters`,
+    id: `addlist_${id}`, element: App.addlist_register({id: id,
     widgets: [`text`], labels: [`Filter`], title: `Custom Filters`}), on_hide: on_hide
   })
 
   id = `aliases`
 
   App.create_popup({
-    id: `addlist_${id}`, element: App.addlist_register({id: id, setting: `aliases`,
+    id: `addlist_${id}`, element: App.addlist_register({id: id,
     widgets: [`text`, `text`], labels: [`Term 1`, `Term 2`], title: `Aliases`}), on_hide: on_hide
   })
 
   id = `extra_menu`
 
   App.create_popup({
-    id: `addlist_${id}`, element: App.addlist_register({id: id, setting: `extra_menu`,
+    id: `addlist_${id}`, element: App.addlist_register({id: id,
     widgets: [`select`], labels: [`Command`], title: `Extra Menu`,
     sources: [App.addlist_commands.slice(0)]}), on_hide: on_hide
   })
@@ -38,7 +38,7 @@ App.setup_addlist = () => {
   id = `pinline_menu`
 
   App.create_popup({
-    id: `addlist_${id}`, element: App.addlist_register({id: id, setting: `pinline_menu`,
+    id: `addlist_${id}`, element: App.addlist_register({id: id,
     widgets: [`select`], labels: [`Command`], title: `Pinline Menu`,
     sources: [App.addlist_commands.slice(0)]}), on_hide: on_hide
   })
@@ -46,7 +46,7 @@ App.setup_addlist = () => {
   id = `empty_menu`
 
   App.create_popup({
-    id: `addlist_${id}`, element: App.addlist_register({id: id, setting: `empty_menu`,
+    id: `addlist_${id}`, element: App.addlist_register({id: id,
     widgets: [`select`], labels: [`Command`], title: `Empty Menu`,
     sources: [App.addlist_commands.slice(0)]}), on_hide: on_hide
   })
@@ -54,7 +54,7 @@ App.setup_addlist = () => {
   id = `footer_menu`
 
   App.create_popup({
-    id: `addlist_${id}`, element: App.addlist_register({id: id, setting: `footer_menu`,
+    id: `addlist_${id}`, element: App.addlist_register({id: id,
     widgets: [`select`], labels: [`Command`], title: `Footer Menu`,
     sources: [App.addlist_commands.slice(0)]}), on_hide: on_hide
   })
@@ -62,8 +62,9 @@ App.setup_addlist = () => {
   id = `keyboard_shortcuts`
 
   App.create_popup({
-    id: `addlist_${id}`, element: App.addlist_register({id: id, setting: `keyboard_shortcuts`,
-    widgets: [`key`, `select`, `checkbox`, `checkbox`, `checkbox`], labels: [`Key`, `Command`, `Require Ctrl`, `Require Shift`, `Require Alt`], title: `Keyboard Shortcuts`,
+    id: `addlist_${id}`, element: App.addlist_register({id: id,
+    widgets: [`key`, `select`, `checkbox`, `checkbox`, `checkbox`],
+    labels: [`Key`, `Command`, `Require Ctrl`, `Require Shift`, `Require Alt`], title: `Keyboard Shortcuts`,
     sources: [undefined, App.addlist_commands.slice(0), true, false, false]}), on_hide: on_hide
   })
 }
@@ -111,9 +112,9 @@ App.addlist_update = (id) => {
   let new_line = values.join(` ; `)
 
   if (new_line) {
-    let lines = App.get_setting(oargs.setting)
+    let lines = App.get_setting(id)
     lines.splice(data.index, 0, new_line)
-    App.after_addlist(oargs.id, lines)
+    App.after_addlist(id, lines)
     App.addlist_use(false)
   }
 }
@@ -332,8 +333,7 @@ App.addlist_remove = (id, value, force) => {
     return
   }
 
-  let oargs = App.addlist_oargs(id)
-  let lines = App.get_setting(oargs.setting)
+  let lines = App.get_setting(id)
 
   if (!lines.length) {
     return
@@ -356,7 +356,7 @@ App.addlist_remove = (id, value, force) => {
       new_lines.push(line)
     }
 
-    App.after_addlist(oargs.id, new_lines)
+    App.after_addlist(id, new_lines)
   }, undefined, force)
 }
 
@@ -394,7 +394,14 @@ App.addlist_click = (args = {}) => {
     update: true,
   }
 
-  App.addlist(obj)
+  if (args.e.button === 0) {
+    App.addlist(obj)
+  }
+  else if (args.e.button === 1) {
+    console.log(`aux`)
+  }
+
+  args.e.preventDefault()
 }
 
 App.addlist_enter = () => {
@@ -419,10 +426,9 @@ App.addlist_right = () => {
 }
 
 App.after_addlist = (id, lines) => {
-  let oargs = App.addlist_oargs(id)
-  App.set_setting(oargs.setting, lines)
-  let area = DOM.el(`#settings_${oargs.setting}`)
-  area.value = App.get_textarea_setting_value(oargs.setting)
+  App.set_setting(id, lines)
+  let area = DOM.el(`#settings_${id}`)
+  area.value = App.get_textarea_setting_value(id)
   App.check_theme_refresh()
   App.hide_addlist(false)
 }
@@ -495,8 +501,7 @@ App.addlist_use = (force = true) => {
 
 App.addlist_next = (id, reverse = false) => {
   let data = App.addlist_data
-  let oargs = App.addlist_oargs(id)
-  let lines = App.get_setting(oargs.setting).slice(0)
+  let lines = App.get_setting(id).slice(0)
 
   if (lines.length <= 1) {
     return
@@ -593,8 +598,7 @@ App.addlist_move_menu = (e) => {
 
 App.addlist_move = (dir) => {
   let data = App.addlist_data
-  let oargs = App.addlist_oargs(data.id)
-  let lines = App.get_setting(oargs.setting)
+  let lines = App.get_setting(data.id)
   let value = data.items[0]
 
   for (let [i, line] of lines.entries()) {
@@ -616,7 +620,7 @@ App.addlist_move = (dir) => {
         }
       }
 
-      App.after_addlist(oargs.id, lines)
+      App.after_addlist(data.id, lines)
       break
     }
   }
@@ -667,4 +671,20 @@ App.on_addlist = (pmode = App.popup_mode) => {
 
 App.addlist_popup = (id) => {
   return `addlist_${id}`
+}
+
+App.addlist_buttons = (args) => {
+  DOM.ev(DOM.el(`#settings_${args.id}_add`), `click`, () => {
+    App.addlist({id: args.id, items: args.items || [], action: args.action})
+  })
+
+  DOM.ev(DOM.el(`#settings_${args.id}`), `mousedown`, (e) => {
+    if (e.button === 1) {
+      e.preventDefault()
+    }
+  })
+
+  DOM.ev(DOM.el(`#settings_${args.id}`), `mouseup`, (e) => {
+    App.addlist_click({e: e, id: args.id, use: args.use})
+  })
 }

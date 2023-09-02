@@ -553,21 +553,8 @@ App.setup_settings = () => {
       ])
     })
 
-    DOM.ev(DOM.el(`#settings_aliases_add`), `click`, () => {
-      App.addlist({id: `aliases`})
-    })
-
-    DOM.ev(DOM.el(`#settings_aliases`), `click`, (e) => {
-      App.addlist_click({e: e, id: `aliases`})
-    })
-
-    DOM.ev(DOM.el(`#settings_custom_filters_add`), `click`, () => {
-      App.addlist({id: `custom_filters`})
-    })
-
-    DOM.ev(DOM.el(`#settings_custom_filters`), `click`, (e) => {
-      App.addlist_click({e: e, id: `custom_filters`})
-    })
+    App.addlist_buttons({id: `aliases`})
+    App.addlist_buttons({id: `custom_filters`})
   }}))
 
   App.create_window(Object.assign({}, common, {id: `settings_theme`, setup: () => {
@@ -662,50 +649,15 @@ App.setup_settings = () => {
     App.settings_make_menu(`middle_click_close_button`, opts)
     App.settings_make_menu(`middle_click_open_button`, opts)
     App.settings_make_menu(`middle_click_pinline`, opts)
-
-    DOM.ev(DOM.el(`#settings_extra_menu_add`), `click`, () => {
-      App.addlist({id: `extra_menu`})
-    })
-
-    DOM.ev(DOM.el(`#settings_extra_menu`), `click`, (e) => {
-      App.addlist_click({e: e, id: `extra_menu`})
-    })
-
-    DOM.ev(DOM.el(`#settings_pinline_menu_add`), `click`, () => {
-      App.addlist({id: `pinline_menu`})
-    })
-
-    DOM.ev(DOM.el(`#settings_pinline_menu`), `click`, (e) => {
-      App.addlist_click({e: e, id: `pinline_menu`})
-    })
-
-    DOM.ev(DOM.el(`#settings_empty_menu_add`), `click`, () => {
-      App.addlist({id: `empty_menu`})
-    })
-
-    DOM.ev(DOM.el(`#settings_empty_menu`), `click`, (e) => {
-      App.addlist_click({e: e, id: `empty_menu`})
-    })
-
-    DOM.ev(DOM.el(`#settings_footer_menu_add`), `click`, () => {
-      App.addlist({id: `footer_menu`})
-    })
-
-    DOM.ev(DOM.el(`#settings_footer_menu`), `click`, (e) => {
-      App.addlist_click({e: e, id: `footer_menu`})
-    })
+    App.addlist_buttons({id: `extra_menu`})
+    App.addlist_buttons({id: `pinline_menu`})
+    App.addlist_buttons({id: `empty_menu`})
+    App.addlist_buttons({id: `footer_menu`})
   }}))
 
   App.create_window(Object.assign({}, common, {id: `settings_keyboard`, setup: () => {
     prepare(`keyboard`)
-
-    DOM.ev(DOM.el(`#settings_keyboard_shortcuts_add`), `click`, () => {
-      App.addlist({id: `keyboard_shortcuts`})
-    })
-
-    DOM.ev(DOM.el(`#settings_keyboard_shortcuts`), `click`, (e) => {
-      App.addlist_click({e: e, id: `keyboard_shortcuts`})
-    })
+    App.addlist_buttons({id: `keyboard_shortcuts`})
   }}))
 
   window.addEventListener(`storage`, (e) => {
@@ -878,14 +830,18 @@ App.start_theme_settings = () => {
     App.random_background()
   })
 
-  DOM.ev(DOM.el(`#settings_background_pool_add`), `click`, () => {
-    App.addlist({id: `pool`, items: [
+  App.addlist_buttons({id: `background_pool`,
+    items: [
       App.get_setting(`background_image`),
       App.get_setting(`background_effect`),
       App.get_setting(`background_tiles`),
-    ], action: (value) => {
+    ],
+    action: (value) => {
       App.apply_pool(value)
-    }})
+    },
+    use: (v) => {
+      App.change_background(v[0], v[1], v[2])
+    }
   })
 
   DOM.ev(DOM.el(`#settings_background_pool_next`), `click`, () => {
@@ -894,12 +850,6 @@ App.start_theme_settings = () => {
 
   DOM.ev(DOM.el(`#settings_background_pool_shuffle`), `click`, () => {
     App.shuffle_textarea(`background_pool`)
-  })
-
-  DOM.ev(DOM.el(`#settings_background_pool`), `click`, (e) => {
-    App.addlist_click({e: e, id: `pool`, use: (v) => {
-      App.change_background(v[0], v[1], v[2])
-    }})
   })
 }
 
