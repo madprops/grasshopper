@@ -195,7 +195,7 @@ App.setup_commands = () => {
     {name: `Undo Close`, cmd: `undo_close`, icon: tabicon, action: (args) => {
       App.undo_close_tab()
     }},
-    {name: `Select Pins`, cmd: `select_pinned`, mode: `tabs`, icon: tabicon, action: (args) => {
+    {name: `Select Pins`, cmd: `select_pins`, mode: `tabs`, icon: tabicon, action: (args) => {
       App.select_tabs(`pins`)
     }},
     {name: `Select Normal`, cmd: `select_normal`, mode: `tabs`, icon: tabicon, action: (args) => {

@@ -190,7 +190,7 @@ App.mouse_context_action = (mode, e) => {
   e.preventDefault()
 
   if (!App.cursor_on_item(e, mode)) {
-    App.show_empty_menu(e.clientX, e.clientY)
+    App.show_custom_menu(e, `empty`)
     return
   }
 
@@ -290,26 +290,4 @@ App.right_button_action = (item) => {
   else {
     App.open_items(item, true, false)
   }
-}
-
-App.show_empty_menu = (x, y) => {
-  let items = []
-  let menu = App.get_setting(`empty_menu`)
-
-  if (!menu.length) {
-    return
-  }
-
-  for (let cmd of menu) {
-    let split = cmd.split(`;`).map(x => x.trim())
-
-    items.push({
-      text: split[0],
-      action: () => {
-        App.run_command({cmd: split[1], from: `empty_menu`})
-      }
-    })
-  }
-
-  NeedContext.show(x, y, items)
 }

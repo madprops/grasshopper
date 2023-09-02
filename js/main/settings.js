@@ -99,6 +99,11 @@ App.build_default_settings = () => {
   obj.middle_click_open_button = {value: `open`, category: category, version: 1}
   obj.middle_click_pinline = {value: `close_normal`, category: category, version: 1}
   obj.extra_menu = {value: [], category: category, version: 1}
+  obj.pinline_menu = {value: [
+    `Select Pins ; select_pins`,
+    `Select Normal ; select_normal`,
+    `Select All ; select_all`
+  ], category: category, version: 1}
   obj.empty_menu = {value: [`Select ; select_all`, `New Tab ; new_tab`, ], category: category, version: 1}
   obj.footer_menu = {value: [`Copy URL ; copy_url`, `Copy Title ; copy_title`, ], category: category, version: 1}
 
@@ -668,6 +673,14 @@ App.setup_settings = () => {
 
     DOM.ev(DOM.el(`#settings_extra_menu`), `click`, (e) => {
       App.addlist_click({e: e, id: `extra_menu`})
+    })
+
+    DOM.ev(DOM.el(`#settings_pinline_menu_add`), `click`, () => {
+      App.addlist({id: `pinline_menu`})
+    })
+
+    DOM.ev(DOM.el(`#settings_pinline_menu`), `click`, (e) => {
+      App.addlist_click({e: e, id: `pinline_menu`})
     })
 
     DOM.ev(DOM.el(`#settings_empty_menu_add`), `click`, () => {

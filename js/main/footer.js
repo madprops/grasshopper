@@ -57,7 +57,7 @@ App.create_footer = (mode) => {
   })
 
   DOM.ev(footer, `contextmenu`, (e) => {
-    App.show_footer_menu(e)
+    App.show_custom_menu(e, `footer`)
   })
 
   DOM.ev(footer, `auxclick`, (e) => {
@@ -97,27 +97,4 @@ App.do_update_footer_count = (mode) => {
   }
 
   DOM.el(`#${mode}_footer_count`).textContent = count
-}
-
-App.show_footer_menu = (e) => {
-  let items = []
-  let menu = App.get_setting(`footer_menu`)
-
-  if (!menu.length) {
-    return
-  }
-
-  for (let cmd of menu) {
-    let split = cmd.split(`;`).map(x => x.trim())
-
-    items.push({
-      text: split[0],
-      action: () => {
-        App.run_command({cmd: split[1], from: `footer_menu`})
-      }
-    })
-  }
-
-  e.preventDefault()
-  NeedContext.show(e.clientX, e.clientY, items)
 }

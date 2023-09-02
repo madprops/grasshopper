@@ -38,7 +38,7 @@ App.do_check_pinline = () => {
   pinline_content.title = `Pins above. Normal below`
 
   DOM.evs(pinline_content, [`click`, `contextmenu`], (e) => {
-    App.show_pinline_menu(e)
+    App.show_custom_menu(e, `pinline`)
   })
 
   DOM.ev(pinline_content, `auxclick`, (e) => {
@@ -61,32 +61,4 @@ App.remove_pinline = () => {
   for (let el of DOM.els(`.pinline`, DOM.el(`#tabs_container`))) {
     el.remove()
   }
-}
-
-App.show_pinline_menu = (e) => {
-  let items = []
-
-  items.push({
-    text: `Select Pins`,
-    action: () => {
-      App.select_tabs(`pins`)
-    }
-  })
-
-  items.push({
-    text: `Select Normal`,
-    action: () => {
-      App.select_tabs(`normal`)
-    }
-  })
-
-  items.push({
-    text: `Select All`,
-    action: () => {
-      App.select_all()
-    }
-  })
-
-  NeedContext.show(e.clientX, e.clientY, items)
-  e.preventDefault()
 }
