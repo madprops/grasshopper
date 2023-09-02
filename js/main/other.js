@@ -35,7 +35,7 @@ App.custom_menu_items = (what) => {
   let menu = App.get_setting(name)
 
   if (!menu.length) {
-    return
+    return items
   }
 
   for (let cmd of menu) {

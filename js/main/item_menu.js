@@ -59,7 +59,7 @@ App.show_item_menu = async (item, x, y) => {
 
     App.common_menu_items(items, item, multiple)
     App.more_menu_items(items, item, multiple, some_loaded)
-    App.extra_menu_items(items, item)
+    App.extra_menu_items(items)
 
     if (items.length >= min_close_sep) {
       items.push({
@@ -84,7 +84,7 @@ App.show_item_menu = async (item, x, y) => {
 
     App.common_menu_items(items, item, multiple)
     App.more_menu_items(items, item, multiple)
-    App.extra_menu_items(items, item)
+    App.extra_menu_items(items)
   }
 
   NeedContext.show(x, y, items)
@@ -293,7 +293,7 @@ App.more_menu_items = (o_items, item, multiple, some_loaded) => {
   }
 }
 
-App.extra_menu_items = (o_items, item) => {
+App.extra_menu_items = (o_items) => {
   let items = App.custom_menu_items(`extra`)
 
   if (items.length > 0) {
