@@ -247,7 +247,6 @@ App.addlist_register = (args = {}) => {
   btns.append(move)
   btns.append(add)
   container.append(btns)
-  args.popup_id = `addlist_${args.id}`
   App[`addlist_args_${args.id}`] = args
   return container
 }
@@ -274,7 +273,7 @@ App.addlist = (args = {}) => {
   let def_args = App.addlist_def_args()
   args = Object.assign(def_args, args)
   let oargs = App.addlist_oargs(args.id)
-  App.show_popup(oargs.popup_id)
+  App.show_popup(App.addlist_popup(args.id))
   App.check_addlist_buttons(args)
 
   for (let [i, w] of oargs.widgets.entries()) {
@@ -639,9 +638,8 @@ App.addlist_oargs = (id) => {
 
 App.hide_addlist = (check = true) => {
   let data = App.addlist_data
-  let oargs = App.addlist_oargs(data.id)
   let modified = App.addlist_modified(data.id)
-  let p_id = oargs.popup_id
+  let p_id = App.addlist_popup(data.id)
 
   if (check && modified) {
     App.show_confirm(`Save changes?`, () => {
@@ -657,4 +655,8 @@ App.hide_addlist = (check = true) => {
 
 App.on_addlist = (pmode = App.popup_mode) => {
   return pmode.startsWith(`addlist_`)
+}
+
+App.addlist_popup = (id) => {
+  return `addlist_${id}`
 }
