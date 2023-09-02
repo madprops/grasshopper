@@ -296,23 +296,7 @@ App.more_menu_items = (o_items, item, multiple, some_loaded) => {
 }
 
 App.extra_menu_items = (o_items, item) => {
-  let items = []
-  let menu = App.get_setting(`extra_menu`)
-
-  if (!menu.length) {
-    return
-  }
-
-  for (let cmd of menu) {
-    let split = cmd.split(`;`).map(x => x.trim())
-
-    items.push({
-      text: split[0],
-      action: () => {
-        App.run_command({cmd: split[1], item: item, from: `extra_menu`})
-      }
-    })
-  }
+  let items = App.custom_menu_items(`extra`)
 
   if (items.length > 0) {
     o_items.push({

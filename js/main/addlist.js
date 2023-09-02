@@ -31,32 +31,32 @@ App.setup_addlist = () => {
 
   App.create_popup({
     id: `addlist_${id}`, element: App.addlist_register({id: id, setting: `extra_menu`,
-    widgets: [`text`, `select`], labels: [`Name`, `Command`], title: `Extra Menu`,
-    sources: [undefined, App.addlist_commands.slice(0)]}), on_hide: on_hide
+    widgets: [`select`], labels: [`Command`], title: `Extra Menu`,
+    sources: [App.addlist_commands.slice(0)]}), on_hide: on_hide
   })
 
   id = `pinline_menu`
 
   App.create_popup({
     id: `addlist_${id}`, element: App.addlist_register({id: id, setting: `pinline_menu`,
-    widgets: [`text`, `select`], labels: [`Name`, `Command`], title: `Pinline Menu`,
-    sources: [undefined, App.addlist_commands.slice(0)]}), on_hide: on_hide
+    widgets: [`select`], labels: [`Command`], title: `Pinline Menu`,
+    sources: [App.addlist_commands.slice(0)]}), on_hide: on_hide
   })
 
   id = `empty_menu`
 
   App.create_popup({
     id: `addlist_${id}`, element: App.addlist_register({id: id, setting: `empty_menu`,
-    widgets: [`text`, `select`], labels: [`Name`, `Command`], title: `Empty Menu`,
-    sources: [undefined, App.addlist_commands.slice(0)]}), on_hide: on_hide
+    widgets: [`select`], labels: [`Command`], title: `Empty Menu`,
+    sources: [App.addlist_commands.slice(0)]}), on_hide: on_hide
   })
 
   id = `footer_menu`
 
   App.create_popup({
     id: `addlist_${id}`, element: App.addlist_register({id: id, setting: `footer_menu`,
-    widgets: [`text`, `select`], labels: [`Name`, `Command`], title: `Footer Menu`,
-    sources: [undefined, App.addlist_commands.slice(0)]}), on_hide: on_hide
+    widgets: [`select`], labels: [`Command`], title: `Footer Menu`,
+    sources: [App.addlist_commands.slice(0)]}), on_hide: on_hide
   })
 
   id = `keyboard_shortcuts`

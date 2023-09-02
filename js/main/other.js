@@ -24,6 +24,12 @@ App.print_intro = () => {
 }
 
 App.show_custom_menu = (e, what) => {
+  let items = App.custom_menu_items(what)
+  NeedContext.show(e.clientX, e.clientY, items)
+  e.preventDefault()
+}
+
+App.custom_menu_items = (what) => {
   let items = []
   let name = `${what}_menu`
   let menu = App.get_setting(name)
@@ -33,16 +39,19 @@ App.show_custom_menu = (e, what) => {
   }
 
   for (let cmd of menu) {
-    let split = cmd.split(`;`).map(x => x.trim())
+    let c = App.get_command(cmd)
+
+    if (!c) {
+      continue
+    }
 
     items.push({
-      text: split[0],
+      text: c.name,
       action: () => {
-        App.run_command({cmd: split[1], from: name})
+        App.run_command({cmd: c.cmd, from: name})
       }
     })
   }
 
-  e.preventDefault()
-  NeedContext.show(e.clientX, e.clientY, items)
+  return items
 }

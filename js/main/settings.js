@@ -98,14 +98,10 @@ App.build_default_settings = () => {
   obj.middle_click_close_button = {value: `unload_single`, category: category, version: 1}
   obj.middle_click_open_button = {value: `open`, category: category, version: 1}
   obj.middle_click_pinline = {value: `close_normal`, category: category, version: 1}
-  obj.extra_menu = {value: [], category: category, version: 1}
-  obj.pinline_menu = {value: [
-    `Select Pins ; select_pins`,
-    `Select Normal ; select_normal`,
-    `Select All ; select_all`
-  ], category: category, version: 1}
-  obj.empty_menu = {value: [`Select ; select_all`, `New Tab ; new_tab`, ], category: category, version: 1}
-  obj.footer_menu = {value: [`Copy URL ; copy_url`, `Copy Title ; copy_title`, ], category: category, version: 1}
+  obj.extra_menu = {value: [], category: category, version: 2}
+  obj.pinline_menu = {value: [`select_pins`, `select_normal`, `select_all`], category: category, version: 2}
+  obj.empty_menu = {value: [`select_all`, `new_tab`, ], category: category, version: 2}
+  obj.footer_menu = {value: [`copy_url`, `copy_title`, ], category: category, version: 2}
 
   category = `keyboard`
   obj.keyboard_shortcuts = {value: [], category: category, version: 2}
