@@ -288,9 +288,7 @@ App.more_menu_items = (o_items, item, multiple, some_loaded) => {
   if (items.length > 0) {
     o_items.push({
       text: `More`,
-      get_items: () => {
-        return items
-      }
+      items: items,
     })
   }
 }
@@ -301,9 +299,7 @@ App.extra_menu_items = (o_items, item) => {
   if (items.length > 0) {
     o_items.push({
       text: `Extra`,
-      get_items: () => {
-        return items
-      }
+      items: items,
     })
   }
 }
