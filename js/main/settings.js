@@ -103,7 +103,7 @@ App.build_default_settings = () => {
   obj.footer_menu = {value: [`Copy URL ; copy_url`, `Copy Title ; copy_title`, ], category: category, version: 1}
 
   category = `keyboard`
-  obj.keyboard_shortcuts = {value: [], category: category, version: 2}
+  obj.keyboard_shortcuts = {value: [], category: category, version: 3}
 
   category = `warns`
   obj.warn_on_close_tabs = {value: `special`, category: category, version: 1}
