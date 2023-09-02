@@ -831,11 +831,13 @@ App.start_theme_settings = () => {
   })
 
   App.addlist_buttons({id: `background_pool`,
-    items: [
-      App.get_setting(`background_image`),
-      App.get_setting(`background_effect`),
-      App.get_setting(`background_tiles`),
-    ],
+    get_items: () => {
+      return [
+        App.get_setting(`background_image`),
+        App.get_setting(`background_effect`),
+        App.get_setting(`background_tiles`),
+      ]
+    },
     action: (value) => {
       App.apply_pool(value)
     },

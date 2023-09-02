@@ -675,6 +675,10 @@ App.addlist_popup = (id) => {
 
 App.addlist_buttons = (args) => {
   DOM.ev(DOM.el(`#settings_${args.id}_add`), `click`, () => {
+    if (args.get_items) {
+      args.items = args.get_items()
+    }
+
     App.addlist({id: args.id, items: args.items || [], action: args.action})
   })
 
