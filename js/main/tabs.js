@@ -35,6 +35,18 @@ App.setup_tabs = () => {
 
   App.setup_item_window(`tabs`)
 
+  browser.tabs.onCreated.addListener(async (info) => {
+    if (App.tabs_locked) {
+      return
+    }
+
+    App.debug(`Tab Created: ID: ${info.id}`)
+
+    if (info.windowId === App.window_id) {
+      await App.refresh_tab(info.id, false, info)
+    }
+  })
+
   browser.tabs.onUpdated.addListener(async (id, cinfo, info) => {
     if (App.tabs_locked) {
       return
