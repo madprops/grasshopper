@@ -42,6 +42,10 @@ App.create_popup = (args) => {
   }
 
   p.hide = (bypass = false) => {
+    if (!p.open) {
+      return
+    }
+
     if (!bypass && args.on_hide) {
       args.on_hide(args.id)
     }
@@ -123,7 +127,7 @@ App.show_alert = (message, autohide_delay = 0, pre = true) => {
 
   if (autohide_delay > 0) {
     App.alert_autohide = setTimeout(() => {
-      App.hide_popup()
+      App.hide_all_popups()
     }, autohide_delay)
   }
 }
@@ -192,7 +196,7 @@ App.dialog_right = () => {
 }
 
 App.dialog_enter = () => {
-  App.hide_popup()
+  App.hide_all_popups()
   App.dialog_buttons[App.dialog_index][1]()
 }
 
@@ -221,7 +225,7 @@ App.show_textarea = (message, text) => {
 }
 
 App.textarea_copy = () => {
-  App.hide_popup()
+  App.hide_all_popups()
   App.copy_to_clipboard(DOM.el(`#textarea_text`).value.trim())
 }
 
@@ -236,16 +240,32 @@ App.show_input = (message, button, action, value = ``) => {
 }
 
 App.input_enter = () => {
-  App.hide_popup()
+  App.hide_all_popups()
   App.input_action(DOM.el(`#input_text`).value.trim())
 }
 
-App.hide_popup = (bypass = false) => {
+App.hide_all_popups = () => {
   clearTimeout(App.alert_autohide)
 
-  for (let id in App.popups) {
-    App.popups[id].hide(bypass)
+  for (let popup of App.open_popups()) {
+    popup.hide()
   }
+}
+
+App.hide_popup = (id, bypass = false) => {
+  App.popups[id].hide(bypass)
+}
+
+App.open_popups = () => {
+  let open = []
+
+  for (let id in App.popups) {
+    if (App.popups[id].open) {
+      open.push(App.popups[id])
+    }
+  }
+
+  return open
 }
 
 App.popup_open = () => {
@@ -260,7 +280,7 @@ App.popup_open = () => {
 
 App.check_close_popup = () => {
   if (App.popup_open()) {
-    App.hide_popup()
+    App.hide_all_popups()
   }
 }
 

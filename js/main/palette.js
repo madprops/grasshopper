@@ -125,7 +125,7 @@ App.palette_action = (el) => {
   let cmd = el.dataset.command
 
   if (cmd) {
-    App.hide_popup()
+    App.hide_all_popups()
     App.update_command_history(cmd)
     App.fill_palette()
     App.run_command({cmd: cmd, from: `palette`})
@@ -186,7 +186,7 @@ App.clear_palette_filter = () => {
       App.set_filter(`palette`, ``)
     }
     else {
-      App.hide_popup()
+      App.hide_all_popups()
     }
   }
 }

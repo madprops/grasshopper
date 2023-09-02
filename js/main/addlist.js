@@ -1,28 +1,12 @@
 App.setup_addlist = () => {
   App.addlist_commands = App.settings_commands()
-
-  function on_hide (id) {
-    let modified = App.addlist_modified(id)
-
-    if (modified) {
-      App.show_confirm(`Save changes?`, () => {
-        App.addlist_update(id)
-      }, () => {
-        App.hide_addlist()
-      })
-    }
-    else {
-      App.hide_addlist()
-    }
-  }
-
-  id = `pool`
+  let id = `pool`
 
   App.create_popup({
     id: `addlist_pool`, element: App.addlist_register({id: id, setting: `background_pool`,
     widgets: [`text`, `select`, `select`], labels: [`Image URL`, `Effect`, `Tiles`], title: `BG Pool`, image: 0,
     sources: [undefined, App.background_effects, App.background_tiles]}), on_hide: () => {
-      on_hide(id)
+      App.hide_addlist()
     }
   })
 
@@ -31,7 +15,7 @@ App.setup_addlist = () => {
   App.create_popup({
     id: `addlist_custom_filters`, element: App.addlist_register({id: id, setting: `custom_filters`,
     widgets: [`text`], labels: [`Filter`], title: `Custom Filters`}), on_hide: () => {
-      on_hide(id)
+      App.hide_addlist()
     }
   })
 
@@ -40,7 +24,7 @@ App.setup_addlist = () => {
   App.create_popup({
     id: `addlist_aliases`, element: App.addlist_register({id: id, setting: `aliases`,
     widgets: [`text`, `text`], labels: [`Term 1`, `Term 2`], title: `Aliases`}), on_hide: () => {
-      on_hide(id)
+      App.hide_addlist()
     }
   })
 
@@ -50,7 +34,7 @@ App.setup_addlist = () => {
     id: `addlist_extra_menu`, element: App.addlist_register({id: id, setting: `extra_menu`,
     widgets: [`text`, `select`], labels: [`Name`, `Command`], title: `Extra Menu`,
     sources: [undefined, App.addlist_commands.slice(0)]}), on_hide: () => {
-      on_hide(id)
+      App.hide_addlist()
     }
   })
 
@@ -60,7 +44,7 @@ App.setup_addlist = () => {
     id: `addlist_empty_menu`, element: App.addlist_register({id: id, setting: `empty_menu`,
     widgets: [`text`, `select`], labels: [`Name`, `Command`], title: `Empty Menu`,
     sources: [undefined, App.addlist_commands.slice(0)]}), on_hide: () => {
-      on_hide(id)
+      App.hide_addlist()
     }
   })
 
@@ -70,7 +54,7 @@ App.setup_addlist = () => {
     id: `addlist_footer_menu`, element: App.addlist_register({id: id, setting: `footer_menu`,
     widgets: [`text`, `select`], labels: [`Name`, `Command`], title: `Footer Menu`,
     sources: [undefined, App.addlist_commands.slice(0)]}), on_hide: () => {
-      on_hide(id)
+      App.hide_addlist()
     }
   })
 
@@ -80,7 +64,7 @@ App.setup_addlist = () => {
     id: `addlist_keyboard_shortcuts`, element: App.addlist_register({id: id, setting: `keyboard_shortcuts`,
     widgets: [`key`, `select`, `checkbox`, `checkbox`, `checkbox`], labels: [`Key`, `Command`, `Require Ctrl`, `Require Shift`, `Require Alt`], title: `Keyboard Shortcuts`,
     sources: [undefined, App.addlist_commands.slice(0), true, false, false]}), on_hide: () => {
-      on_hide(id)
+      App.hide_addlist()
     }
   })
 }
@@ -263,7 +247,7 @@ App.addlist_register = (args = {}) => {
   })
 
   DOM.ev(use, `click`, () => {
-    App.hide_addlist()
+    App.hide_addlist(false)
     App.addlist_use()
   })
 
@@ -272,6 +256,7 @@ App.addlist_register = (args = {}) => {
   btns.append(move)
   btns.append(add)
   container.append(btns)
+  args.popup_id = `addlist_${args.id}`
   App[`addlist_args_${args.id}`] = args
   return container
 }
@@ -297,9 +282,9 @@ App.addlist_items = (full) => {
 App.addlist = (args = {}) => {
   let def_args = App.addlist_def_args()
   args = Object.assign(def_args, args)
-  App.show_popup(`addlist_${args.id}`)
-  App.check_addlist_buttons(args)
   let oargs = App.addlist_oargs(args.id)
+  App.show_popup(oargs.popup_id)
+  App.check_addlist_buttons(args)
 
   for (let [i, w] of oargs.widgets.entries()) {
     let value = args.items[i]
@@ -341,6 +326,7 @@ App.addlist = (args = {}) => {
   }
 
   App.addlist_data = args
+  App.current_addlist = args.id
   App.addlist_check_focus(args.id)
 }
 
@@ -441,7 +427,7 @@ App.after_addlist = (id, lines) => {
   let area = DOM.el(`#settings_${oargs.setting}`)
   area.value = App.get_textarea_setting_value(oargs.setting)
   App.check_theme_refresh()
-  App.hide_addlist()
+  App.hide_addlist(false)
 }
 
 App.check_addlist_buttons = (args) => {
@@ -661,6 +647,25 @@ App.addlist_oargs = (id) => {
   return App[`addlist_args_${id}`]
 }
 
-App.hide_addlist = () => {
-  App.hide_popup(true)
+App.hide_addlist = (check = true) => {
+  let id = App.current_addlist
+  let oargs = App.addlist_oargs(id)
+  let modified = App.addlist_modified(id)
+  let p_id = oargs.popup_id
+
+  if (check && modified) {
+    App.show_confirm(`Save changes?`, () => {
+      App.addlist_update(id)
+    }, () => {
+      App.hide_popup(p_id, true)
+    })
+  }
+  else {
+    console.log(p_id)
+    App.hide_popup(p_id, true)
+  }
+}
+
+App.on_addlist = (pmode = App.popup_mode) => {
+  return pmode.startsWith(`addlist_`)
 }

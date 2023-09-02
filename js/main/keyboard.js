@@ -317,7 +317,7 @@ App.setup_keyboard = () => {
             e.preventDefault()
           }
           else {
-            App.hide_popup()
+            App.hide_all_popups()
             e.preventDefault()
           }
 
@@ -343,7 +343,7 @@ App.setup_keyboard = () => {
           return
         }
       }
-      else if (pmode.startsWith(`addlist_`)) {
+      else if (App.on_addlist()) {
         if (e.key === `Enter`) {
           App.addlist_enter()
           e.preventDefault()
@@ -366,7 +366,7 @@ App.setup_keyboard = () => {
       }
 
       if (e.key === `Escape`) {
-        App.hide_popup()
+        App.hide_all_popups()
         e.preventDefault()
         return
       }
