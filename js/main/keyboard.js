@@ -29,37 +29,38 @@ App.check_items_keyboard = (e) => {
     e.preventDefault()
   }
 
-  let kbs_shift = App.get_setting(`keyboard_shortcuts_shift`)
-  let kbs_ctrl = App.get_setting(`keyboard_shortcuts_ctrl`)
-  let kbs_alt = App.get_setting(`keyboard_shortcuts_alt`)
-  let check_kbs = true
+  for (let line of App.get_setting(`keyboard_shortcuts`)) {
+    let items = App.addlist_items(line)
 
-  if (kbs_ctrl && !e.ctrlKey) {
-    check_kbs = false
-  }
+    if (items[0] !== e.code) {
+      continue
+    }
 
-  if (kbs_shift && !e.shiftKey) {
-    check_kbs = false
-  }
+    let kbs_ctrl = items[2]
+    let kbs_shift = items[3]
+    let kbs_alt = items[4]
 
-  if (kbs_alt && !e.altKey) {
-    check_kbs = false
-  }
+    let check_kbs = true
 
-  if (!kbs_ctrl && !kbs_alt) {
-    if (filter_focus) {
+    if (kbs_ctrl && !e.ctrlKey) {
       check_kbs = false
     }
-  }
 
-  if (check_kbs) {
-    for (let line of App.get_setting(`keyboard_shortcuts`)) {
-      let items = App.addlist_items(line)
+    if (kbs_shift && !e.shiftKey) {
+      check_kbs = false
+    }
 
-      if (items[0] !== e.code) {
-        continue
+    if (kbs_alt && !e.altKey) {
+      check_kbs = false
+    }
+
+    if (!kbs_ctrl && !kbs_alt) {
+      if (filter_focus) {
+        check_kbs = false
       }
+    }
 
+    if (check_kbs) {
       App.run_command({cmd: items[1], from: `keyboard_shortcut`})
       e.preventDefault()
       e.stopPropagation()

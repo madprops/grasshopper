@@ -104,9 +104,6 @@ App.build_default_settings = () => {
 
   category = `keyboard`
   obj.keyboard_shortcuts = {value: [], category: category, version: 2}
-  obj.keyboard_shortcuts_ctrl = {value: true, category: category, version: 1}
-  obj.keyboard_shortcuts_shift = {value: false, category: category, version: 1}
-  obj.keyboard_shortcuts_alt = {value: false, category: category, version: 1}
 
   category = `warns`
   obj.warn_on_close_tabs = {value: `special`, category: category, version: 1}
