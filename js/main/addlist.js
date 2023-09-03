@@ -74,11 +74,8 @@ App.addlist_values = (id) => {
   let values = []
 
   for (let [i, w] of oargs.widgets.entries()) {
-    let value = App.addlist_get_value(i, w)
-
-    if (value || w === `checkbox`) {
-      values.push(value)
-    }
+    let v = App.addlist_get_value(i, w)
+    values.push(v)
   }
 
   return values
@@ -96,10 +93,10 @@ App.addlist_save = (id) => {
     }
   }
 
-  let oargs = App.addlist_oargs(id)
   let values = App.addlist_values(id)
+  let filled = App.addlist_filled(values)
 
-  if (values.length !== oargs.widgets.length) {
+  if (!filled) {
     return
   }
 
@@ -235,12 +232,12 @@ App.addlist_register = (args = {}) => {
   use.textContent = `Use`
   let remove = DOM.create(`div`, `button`, `addlist_remove_${args.id}`)
   remove.textContent = `Rem`
-  let add = DOM.create(`div`, `button`, `addlist_add_${args.id}`)
-  add.textContent = `Add`
+  let save = DOM.create(`div`, `button`, `addlist_save_${args.id}`)
+  save.textContent = `Save`
   let move = DOM.create(`div`, `button`, `addlist_move_${args.id}`)
   move.textContent = App.vertical_icon
 
-  DOM.ev(add, `click`, () => {
+  DOM.ev(save, `click`, () => {
     App.addlist_save(args.id)
   })
 
@@ -263,7 +260,7 @@ App.addlist_register = (args = {}) => {
 
   btns.append(remove)
   btns.append(move)
-  btns.append(add)
+  btns.append(save)
   btns.append(use)
   container.append(btns)
   App[`addlist_args_${args.id}`] = args
@@ -444,7 +441,6 @@ App.check_addlist_buttons = (args) => {
   let use_el = DOM.el(`#addlist_use_${args.id}`)
   let remove_el = DOM.el(`#addlist_remove_${args.id}`)
   let move_el = DOM.el(`#addlist_move_${args.id}`)
-  let add_el = DOM.el(`#addlist_add_${args.id}`)
   let prev_el = DOM.el(`#addlist_prev_${args.id}`)
   let next_el = DOM.el(`#addlist_next_${args.id}`)
 
@@ -453,14 +449,12 @@ App.check_addlist_buttons = (args) => {
     move_el.classList.remove(`hidden`)
     prev_el.classList.remove(`hidden`)
     next_el.classList.remove(`hidden`)
-    add_el.textContent = `Save`
   }
   else {
     remove_el.classList.add(`hidden`)
     move_el.classList.add(`hidden`)
     prev_el.classList.add(`hidden`)
     next_el.classList.add(`hidden`)
-    add_el.textContent = `Add`
   }
 
   if (args.use) {
@@ -564,16 +558,21 @@ App.addlist_check_focus = (id) => {
 
 App.addlist_modified = (id) => {
   let data = App.addlist_data
+  let values = App.addlist_values(id)
+
+  if (!data.edit) {
+    if (App.addlist_filled(values)) {
+      return true
+    }
+
+    return false
+  }
 
   if (!data.items.length) {
     return
   }
 
-  let oargs = App.addlist_oargs(id)
-
-  for (let [i, w] of oargs.widgets.entries()) {
-    let value = App.addlist_get_value(i, w)
-
+  for (let value of values) {
     if (data.items[i] !== value) {
       return true
     }
@@ -700,4 +699,14 @@ App.addlist_buttons = (args) => {
       e.preventDefault()
     }
   })
+}
+
+App.addlist_filled = (values) => {
+  for (let value of values) {
+    if (value === ``) {
+      return false
+    }
+  }
+
+  return true
 }
