@@ -85,6 +85,13 @@ App.addlist_values = (id) => {
 }
 
 App.addlist_save = (id) => {
+  let modified = App.addlist_modified(id)
+
+  if (!modified) {
+    App.hide_addlist()
+    return
+  }
+
   let oargs = App.addlist_oargs(id)
   let values = App.addlist_values(id)
 
