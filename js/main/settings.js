@@ -1238,6 +1238,18 @@ App.default_backgrounds = () => {
     items.push(`${name} ; none ; none`)
   }
 
+  let tiles = [
+    `purple.jpg`,
+    `wind.jpg`,
+    `overlap.jpg`,
+    `balls.png`,
+    `tetris.png`,
+  ]
+
+  for (let name of tiles) {
+    items.push(`${name} ; none ; 200px`)
+  }
+
   return items
 }
 
