@@ -84,7 +84,7 @@ App.addlist_values = (id) => {
   return values
 }
 
-App.addlist_update = (id) => {
+App.addlist_save = (id) => {
   let oargs = App.addlist_oargs(id)
   let values = App.addlist_values(id)
 
@@ -95,7 +95,7 @@ App.addlist_update = (id) => {
   let data = App.addlist_data
   let v1 = ``
 
-  if (data.update && data.items.length) {
+  if (data.edit && data.items.length) {
     v1 = data.items[0]
   }
 
@@ -224,20 +224,20 @@ App.addlist_register = (args = {}) => {
   let use = DOM.create(`div`, `button`, `addlist_use_${args.id}`)
   use.textContent = `Use`
   let remove = DOM.create(`div`, `button`, `addlist_remove_${args.id}`)
-  remove.textContent = `Remove`
+  remove.textContent = `Rem`
   let add = DOM.create(`div`, `button`, `addlist_add_${args.id}`)
   add.textContent = `Add`
   let move = DOM.create(`div`, `button`, `addlist_move_${args.id}`)
   move.textContent = App.vertical_icon
 
   DOM.ev(add, `click`, () => {
-    App.addlist_update(args.id)
+    App.addlist_save(args.id)
   })
 
   DOM.ev(remove, `click`, () => {
     let data = App.addlist_data
 
-    if (data.update && data.items.length) {
+    if (data.edit && data.items.length) {
       App.addlist_remove(args.id, data.items[0])
     }
   })
@@ -391,7 +391,7 @@ App.addlist_click = (args = {}) => {
     use: args.use,
     line: args.line,
     index: args.index,
-    update: true,
+    edit: true,
   }
 
   App.addlist(obj)
@@ -407,7 +407,7 @@ App.addlist_enter = () => {
     App.addlist_use()
   }
   else {
-    App.addlist_update(data.id)
+    App.addlist_save(data.id)
   }
 }
 
@@ -435,12 +435,12 @@ App.check_addlist_buttons = (args) => {
   let prev_el = DOM.el(`#addlist_prev_${args.id}`)
   let next_el = DOM.el(`#addlist_next_${args.id}`)
 
-  if (args.update) {
+  if (args.edit) {
     remove_el.classList.remove(`hidden`)
     move_el.classList.remove(`hidden`)
     prev_el.classList.remove(`hidden`)
     next_el.classList.remove(`hidden`)
-    add_el.textContent = `Update`
+    add_el.textContent = `Save`
   }
   else {
     remove_el.classList.add(`hidden`)
@@ -460,7 +460,7 @@ App.check_addlist_buttons = (args) => {
 
 App.addlist_def_args = () => {
   return {
-    update: false,
+    edit: false,
     items: [],
   }
 }
@@ -538,7 +538,7 @@ App.addlist_check_focus = (id) => {
   for (let [i, w] of oargs.widgets.entries()) {
     let el = App.addlist_widget(id, i)
 
-    if (data.update) {
+    if (data.edit) {
       DOM.el(`#addlist_container_${id}`).focus()
     }
     else {
@@ -649,7 +649,7 @@ App.hide_addlist = (check = true) => {
 
   if (check && modified) {
     App.show_confirm(`Save changes?`, () => {
-      App.addlist_update(data.id)
+      App.addlist_save(data.id)
     }, () => {
       App.hide_popup(p_id, true)
     })
