@@ -228,7 +228,7 @@ App.addlist_register = (args = {}) => {
   let add = DOM.create(`div`, `button`, `addlist_add_${args.id}`)
   add.textContent = `Add`
   let move = DOM.create(`div`, `button`, `addlist_move_${args.id}`)
-  move.textContent = `Move`
+  move.textContent = App.vertical_icon
 
   DOM.ev(add, `click`, () => {
     App.addlist_update(args.id)
@@ -251,10 +251,10 @@ App.addlist_register = (args = {}) => {
     App.addlist_use()
   })
 
-  btns.append(use)
   btns.append(remove)
   btns.append(move)
   btns.append(add)
+  btns.append(use)
   container.append(btns)
   App[`addlist_args_${args.id}`] = args
   return container

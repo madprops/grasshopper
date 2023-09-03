@@ -101,6 +101,7 @@ App.mode_icons = {
 App.clipboard_icon = `📋`
 App.bot_icon = `🤖`
 App.shuffle_icon = `🔀`
+App.vertical_icon = `↕️`
 
 App.dark_theme_colors = {
   background: `rgb(33, 33, 42)`,
