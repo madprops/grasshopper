@@ -560,19 +560,11 @@ App.addlist_modified = (id) => {
   let data = App.addlist_data
   let values = App.addlist_values(id)
 
-  if (!data.edit) {
-    if (App.addlist_filled(values)) {
-      return true
-    }
-
-    return false
-  }
-
   if (!data.items.length) {
     return
   }
 
-  for (let value of values) {
+  for (let [i, value] of values.entries()) {
     if (data.items[i] !== value) {
       return true
     }
