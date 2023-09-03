@@ -1240,9 +1240,7 @@ App.default_backgrounds = () => {
 
   let tiles = [
     `purple.jpg`,
-    `wind.jpg`,
     `overlap.jpg`,
-    `kazam.jpg`,
   ]
 
   for (let name of tiles) {
