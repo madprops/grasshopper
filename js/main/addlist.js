@@ -396,7 +396,6 @@ App.addlist_click = (args = {}) => {
   }
 
   let obj = {
-    e: args.e,
     id: args.id,
     items: items,
     use: args.use,
@@ -406,7 +405,10 @@ App.addlist_click = (args = {}) => {
   }
 
   App.addlist(obj)
-  args.e.preventDefault()
+
+  if (args.e) {
+    args.e.preventDefault()
+  }
 }
 
 App.addlist_enter = () => {
