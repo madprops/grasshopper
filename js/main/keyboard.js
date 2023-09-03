@@ -349,6 +349,11 @@ App.setup_keyboard = () => {
           e.preventDefault()
           return
         }
+        else if (e.key === `Escape`) {
+          App.addlist_hide(true, `escape`)
+          e.preventDefault()
+          return
+        }
         else if (e.key === `ArrowLeft`) {
           if (!App.text_with_value_focused()) {
             App.addlist_left()

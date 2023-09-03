@@ -2,7 +2,7 @@ App.setup_addlist = () => {
   App.addlist_commands = App.settings_commands()
 
   function on_hide () {
-    App.hide_addlist()
+    App.addlist_hide()
   }
 
   let id = `background_pool`
@@ -88,7 +88,7 @@ App.addlist_save = (id) => {
     let modified = App.addlist_modified(id)
 
     if (!modified) {
-      App.hide_addlist(false)
+      App.addlist_hide(false)
       return
     }
   }
@@ -183,7 +183,7 @@ App.addlist_register = (args = {}) => {
       els.push(el)
     }
     else if (w === `key`) {
-      let el = DOM.create(`input`, `text addlist_text`, id)
+      let el = DOM.create(`input`, `text addlist_text addlist_key`, id)
       el.type = `text`
       el.spellcheck = false
       el.autocomplete = false
@@ -254,7 +254,7 @@ App.addlist_register = (args = {}) => {
   })
 
   DOM.ev(use, `click`, () => {
-    App.hide_addlist(false)
+    App.addlist_hide(false)
     App.addlist_use()
   })
 
@@ -413,7 +413,7 @@ App.addlist_enter = () => {
   let modified = App.addlist_modified(data.id)
 
   if (data.use && !modified) {
-    App.hide_addlist()
+    App.addlist_hide()
     App.addlist_use()
   }
   else {
@@ -434,7 +434,7 @@ App.after_addlist = (id, lines) => {
   let area = DOM.el(`#settings_${id}`)
   area.value = App.get_textarea_setting_value(id)
   App.check_theme_refresh()
-  App.hide_addlist(false)
+  App.addlist_hide(false)
 }
 
 App.check_addlist_buttons = (args) => {
@@ -646,7 +646,13 @@ App.addlist_oargs = (id) => {
   return App[`addlist_args_${id}`]
 }
 
-App.hide_addlist = (check = true) => {
+App.addlist_hide = (check = true, from = `normal`) => {
+  if (from === `escape`) {
+    if (document.activeElement.classList.contains(`addlist_key`)) {
+      return
+    }
+  }
+
   let data = App.addlist_data
   let modified = App.addlist_modified(data.id)
   let p_id = App.addlist_popup(data.id)
