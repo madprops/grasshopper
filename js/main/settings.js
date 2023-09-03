@@ -1230,7 +1230,6 @@ App.default_backgrounds = () => {
     `merkoba.jpg`,
     `grid.jpg`,
     `orbit.gif`,
-    `lake.gif`,
   ]
 
   let items = []
