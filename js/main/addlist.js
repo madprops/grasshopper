@@ -688,4 +688,10 @@ App.addlist_buttons = (args) => {
   DOM.ev(DOM.el(`#settings_${args.id}`), `click`, (e) => {
     App.addlist_click({e: e, id: args.id, use: args.use})
   })
+
+  DOM.ev(DOM.el(`#settings_${args.id}`), `mousedown`, (e) => {
+    if (e.button === 1) {
+      e.preventDefault()
+    }
+  })
 }
