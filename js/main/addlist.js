@@ -85,11 +85,15 @@ App.addlist_values = (id) => {
 }
 
 App.addlist_save = (id) => {
-  let modified = App.addlist_modified(id)
+  let data = App.addlist_data
 
-  if (!modified) {
-    App.hide_addlist(false)
-    return
+  if (data.edit) {
+    let modified = App.addlist_modified(id)
+
+    if (!modified) {
+      App.hide_addlist(false)
+      return
+    }
   }
 
   let oargs = App.addlist_oargs(id)
@@ -99,7 +103,6 @@ App.addlist_save = (id) => {
     return
   }
 
-  let data = App.addlist_data
   let v1 = ``
 
   if (data.edit && data.items.length) {
