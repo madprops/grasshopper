@@ -1229,6 +1229,7 @@ App.default_backgrounds = () => {
     `lights.jpg`,
     `merkoba.jpg`,
     `hopper.jpg`,
+    `grid.jpg`,
     `orbit.gif`,
     `lake.gif`,
   ]
