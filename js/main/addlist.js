@@ -234,8 +234,8 @@ App.addlist_register = (args = {}) => {
   remove.textContent = `Rem`
   let save = DOM.create(`div`, `button`, `addlist_save_${args.id}`)
   save.textContent = `Save`
-  let move = DOM.create(`div`, `button`, `addlist_move_${args.id}`)
-  move.textContent = App.vertical_icon
+  let move = DOM.create(`div`, `button icon_button`, `addlist_move_${args.id}`)
+  move.append(App.create_icon(`sun`))
 
   DOM.ev(save, `click`, () => {
     App.addlist_save(args.id)
