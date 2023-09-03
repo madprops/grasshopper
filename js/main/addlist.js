@@ -396,6 +396,7 @@ App.addlist_click = (args = {}) => {
   }
 
   let obj = {
+    e: args.e,
     id: args.id,
     items: items,
     use: args.use,
