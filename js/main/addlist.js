@@ -88,7 +88,7 @@ App.addlist_save = (id) => {
   let modified = App.addlist_modified(id)
 
   if (!modified) {
-    App.hide_addlist()
+    App.hide_addlist(false)
     return
   }
 
