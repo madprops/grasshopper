@@ -107,7 +107,7 @@ App.apply_theme = (args) => {
       args.background_tiles = App.get_setting(`background_tiles`)
     }
 
-    let s_args = JSON.stringify(args)
+    let s_args = App.str(args)
 
     if (args.check) {
       if (App.last_theme_args === s_args) {
@@ -533,14 +533,12 @@ App.background_from_pool = (random = false) => {
   }
   else {
     for (let image of images) {
-      let img = App.obj(image)
-
       if (waypoint) {
         next_image = image
         break
       }
 
-      if (bi === img.url) {
+      if (bi === image.url) {
         waypoint = true
       }
     }
@@ -551,7 +549,7 @@ App.background_from_pool = (random = false) => {
   }
 
   if (next_image) {
-    App.apply_background(App.obj(next_image))
+    App.apply_background(next_image)
   }
 }
 

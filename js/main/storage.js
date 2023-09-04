@@ -3,7 +3,7 @@ App.get_local_storage = (ls_name, fallback) => {
 
   if (localStorage[ls_name]) {
     try {
-      obj = JSON.parse(localStorage.getItem(ls_name))
+      obj = App.obj(localStorage.getItem(ls_name))
     }
     catch (err) {
       localStorage.removeItem(ls_name)
@@ -22,7 +22,7 @@ App.get_local_storage = (ls_name, fallback) => {
 }
 
 App.save_local_storage = (ls_name, obj) => {
-  localStorage.setItem(ls_name, JSON.stringify(obj))
+  localStorage.setItem(ls_name, App.str(obj))
 }
 
 App.stor_get_settings = () => {

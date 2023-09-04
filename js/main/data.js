@@ -11,7 +11,7 @@ App.import_data = (action) => {
     let json
 
     try {
-      json = JSON.parse(text)
+      json = App.obj(text)
     }
     catch (err) {
       App.show_alert(`Invalid JSON`)

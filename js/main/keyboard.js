@@ -29,9 +29,7 @@ App.check_items_keyboard = (e) => {
     e.preventDefault()
   }
 
-  for (let line of App.get_setting(`keyboard_shortcuts`)) {
-    let sc = App.obj(line)
-
+  for (let sc of App.get_setting(`keyboard_shortcuts`)) {
     if (sc.key !== e.code) {
       continue
     }
