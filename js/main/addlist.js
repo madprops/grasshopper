@@ -687,15 +687,16 @@ App.addlist_key = () => {
 }
 
 App.addlist_list = (args) => {
-  App.show_popup(`addlist_list`)
-  let c = DOM.el(`#addlist_list_items`)
-  c.innerHTML = ``
   let lines = App.get_setting(args.id)
 
   if (!lines.length) {
     App.show_feedback(`No items yet`)
     return
   }
+
+  App.show_popup(`addlist_list`)
+  let c = DOM.el(`#addlist_list_items`)
+  c.innerHTML = ``
 
   for (let [i, line] of lines.entries()) {
     let el = DOM.create(`div`, `addlist_list_item action`)
