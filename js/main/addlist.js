@@ -1,5 +1,4 @@
 App.setup_addlist = () => {
-  App.create_popup({id: `addlist_list`})
   App.addlist_commands = App.settings_commands()
 
   function on_hide () {
@@ -694,24 +693,23 @@ App.addlist_list = (args) => {
     return
   }
 
-  App.show_popup(`addlist_list`)
-  let c = DOM.el(`#addlist_list_items`)
-  c.innerHTML = ``
+  let items = []
 
   for (let [i, line] of lines.entries()) {
-    let el = DOM.create(`div`, `addlist_list_item action`)
     let values = []
 
     for (let key in line) {
       values.push(line[key])
     }
 
-    DOM.ev(el, `click`, () => {
-      App.hide_popup(`addlist_list`)
-      App.addlist_view({id: args.id, index: i, use: args.use})
+    items.push({
+      text: values.join(` `),
+      action: () => {
+        App.addlist_view({id: args.id, index: i, use: args.use})
+      }
     })
-
-    el.textContent = values.join(` `)
-    c.append(el)
   }
+
+  let area = DOM.el(`#settings_${args.id}`)
+  NeedContext.show_on_element(area, items, true, area.clientHeight)
 }
