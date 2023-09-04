@@ -8,7 +8,7 @@
 // It's meant to be used in single lines
 // It uses = to assign values
 // Properties are separated by semicolons
-// These can be configured by changing the constants below
+// These can be configured by changing the variables below
 
 const Objection = {}
 Objection.assigner = `=`
