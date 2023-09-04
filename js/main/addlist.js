@@ -24,7 +24,7 @@ App.setup_addlist = () => {
 
   App.create_popup({
     id: `addlist_${id}`, element: App.addlist_register({id: id, pk: `a`,
-    widgets: [`text`, `text`], labels: [`Term 1`, `Term 2`], title: `Aliases`, keys: [`a`, `b`]}), on_hide: on_hide
+    widgets: [`text`, `text`], labels: [`Term A`, `Term B`], title: `Aliases`, keys: [`a`, `b`]}), on_hide: on_hide
   })
 
   id = `extra_menu`
