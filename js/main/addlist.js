@@ -8,74 +8,75 @@ App.setup_addlist = () => {
   let id = `background_pool`
 
   App.create_popup({
-    id: `addlist_${id}`, element: App.addlist_register({id: id,
+    id: `addlist_${id}`, element: App.addlist_register({id: id, pk: `url`,
     widgets: [`text`, `select`, `select`], labels: [`Image URL`, `Effect`, `Tiles`], title: `BG Pool`, image: 0,
-    sources: [undefined, App.background_effects, App.background_tiles]}), on_hide: on_hide
+    sources: [undefined, App.background_effects, App.background_tiles], keys: [`url`, `effect`, `tiles`]}), on_hide: on_hide
   })
 
   id = `custom_filters`
 
   App.create_popup({
-    id: `addlist_${id}`, element: App.addlist_register({id: id,
-    widgets: [`text`], labels: [`Filter`], title: `Custom Filters`}), on_hide: on_hide
+    id: `addlist_${id}`, element: App.addlist_register({id: id, pk: `filter`,
+    widgets: [`text`], labels: [`Filter`], title: `Custom Filters`, keys: [`filter`]}), on_hide: on_hide
   })
 
   id = `aliases`
 
   App.create_popup({
-    id: `addlist_${id}`, element: App.addlist_register({id: id,
-    widgets: [`text`, `text`], labels: [`Term 1`, `Term 2`], title: `Aliases`}), on_hide: on_hide
+    id: `addlist_${id}`, element: App.addlist_register({id: id, pk: `a`,
+    widgets: [`text`, `text`], labels: [`Term 1`, `Term 2`], title: `Aliases`, keys: [`a`, `b`]}), on_hide: on_hide
   })
 
   id = `extra_menu`
 
   App.create_popup({
-    id: `addlist_${id}`, element: App.addlist_register({id: id,
+    id: `addlist_${id}`, element: App.addlist_register({id: id, pk: `cmd`,
     widgets: [`select`], labels: [`Command`], title: `Extra Menu`,
-    sources: [App.addlist_commands.slice(0)]}), on_hide: on_hide
+    sources: [App.addlist_commands.slice(0)], keys: [`cmd`]}), on_hide: on_hide
   })
 
   id = `pinline_menu`
 
   App.create_popup({
-    id: `addlist_${id}`, element: App.addlist_register({id: id,
+    id: `addlist_${id}`, element: App.addlist_register({id: id, pk: `cmd`,
     widgets: [`select`], labels: [`Command`], title: `Pinline Menu`,
-    sources: [App.addlist_commands.slice(0)]}), on_hide: on_hide
+    sources: [App.addlist_commands.slice(0)], keys: [`cmd`]}), on_hide: on_hide
   })
 
   id = `empty_menu`
 
   App.create_popup({
-    id: `addlist_${id}`, element: App.addlist_register({id: id,
+    id: `addlist_${id}`, element: App.addlist_register({id: id, pk: `cmd`,
     widgets: [`select`], labels: [`Command`], title: `Empty Menu`,
-    sources: [App.addlist_commands.slice(0)]}), on_hide: on_hide
+    sources: [App.addlist_commands.slice(0)], keys: [`cmd`]}), on_hide: on_hide
   })
 
   id = `footer_menu`
 
   App.create_popup({
-    id: `addlist_${id}`, element: App.addlist_register({id: id,
+    id: `addlist_${id}`, element: App.addlist_register({id: id, pk: `cmd`,
     widgets: [`select`], labels: [`Command`], title: `Footer Menu`,
-    sources: [App.addlist_commands.slice(0)]}), on_hide: on_hide
+    sources: [App.addlist_commands.slice(0)], keys: [`cmd`]}), on_hide: on_hide
   })
 
   id = `keyboard_shortcuts`
 
   App.create_popup({
-    id: `addlist_${id}`, element: App.addlist_register({id: id,
+    id: `addlist_${id}`, element: App.addlist_register({id: id, pk: `key`,
     widgets: [`key`, `select`, `checkbox`, `checkbox`, `checkbox`],
     labels: [`Key`, `Command`, `Require Ctrl`, `Require Shift`, `Require Alt`], title: `Keyboard Shortcuts`,
-    sources: [undefined, App.addlist_commands.slice(0), true, false, false]}), on_hide: on_hide
+    sources: [undefined, App.addlist_commands.slice(0), true, false, false], keys: [`key`, `cmd`, `ctrl`, `shift`, `alt`]}), on_hide: on_hide
   })
 }
 
 App.addlist_values = (id) => {
   let oargs = App.addlist_oargs(id)
-  let values = []
+  let values = {}
 
-  for (let [i, w] of oargs.widgets.entries()) {
-    let v = App.addlist_get_value(i, w)
-    values.push(v)
+  for (let [i, key] of oargs.keys.entries()) {
+    let w = oargs.widgets[i]
+    let value = App.addlist_get_value(i, w)
+    values[key] = value
   }
 
   return values
@@ -100,30 +101,28 @@ App.addlist_save = (id) => {
     return
   }
 
+  let oargs = App.addlist_oargs(id)
   let v1 = ``
 
   if (data.edit && data.items.length) {
-    v1 = data.items[0]
+    v1 = data.items[pk]
   }
 
   if (v1) {
     App.addlist_remove(id, v1, true)
   }
 
-  let v2 = values[0]
+  let v2 = values[oargs.pk]
 
   if (v2 && (v1 !== v2)) {
     App.addlist_remove(id, v2, true)
   }
 
-  let new_line = values.join(` ; `)
-
-  if (new_line) {
-    let lines = App.get_setting(id)
-    lines.splice(data.index, 0, new_line)
-    App.after_addlist(id, lines)
-    App.addlist_use(false)
-  }
+  let str = Objection.stringify(values)
+  let lines = App.get_setting(id)
+  lines.splice(data.index, 0, str)
+  App.after_addlist(id, lines)
+  App.addlist_use(false)
 }
 
 App.addlist_register = (args = {}) => {
@@ -267,34 +266,18 @@ App.addlist_register = (args = {}) => {
   return container
 }
 
-App.addlist_items = (full) => {
-  let items = []
-
-  if (full.includes(`;`)) {
-    let split = full.split(`;`)
-
-    for (let item of split) {
-      items.push(item.trim())
-    }
-  }
-  else {
-    items.push(full)
-  }
-
-  items = items.map(x => x === `true` ? true : (x === `false` ? false : x))
-  return items
-}
-
 App.addlist = (args = {}) => {
   let def_args = App.addlist_def_args()
   args = Object.assign(def_args, args)
   let oargs = App.addlist_oargs(args.id)
   App.show_popup(App.addlist_popup(args.id))
   App.addlist_check_buttons(args)
+  let widgets = oargs.widgets
 
-  for (let [i, w] of oargs.widgets.entries()) {
-    let value = args.items[i]
+  for (let [i, key] of oargs.keys.entries()) {
+    let value = args.items[key]
     let el = App.addlist_widget(args.id, i)
+    let w = widgets[i]
 
     if (w === `image`) {
       el.src = value
@@ -346,17 +329,19 @@ App.addlist_remove = (id, value, force) => {
     return
   }
 
+  let oargs = App.addlist_oargs(id)
+
   App.show_confirm(`Remove item?`, () => {
     let new_lines = []
 
     for (let line of lines) {
-      let items = App.addlist_items(line)
+      let items = Objection.parse(line)
 
-      if (!items.length) {
+      if (!Object.keys(items).length) {
         continue
       }
 
-      if (items[0] === value) {
+      if (items[oargs.pk] === value) {
         continue
       }
 
@@ -386,9 +371,13 @@ App.addlist_click = (args = {}) => {
     args.index = lines.indexOf(args.line)
   }
 
-  let items = App.addlist_items(args.line)
+  let items
 
-  if (!items) {
+  try {
+    items = Objection.parse(args.line)
+  }
+  catch (err) {
+    App.error(err)
     return
   }
 
@@ -494,8 +483,7 @@ App.addlist_use = (force = true) => {
 
   if (data.use) {
     App.show_confirm(`Use this now?`, () => {
-      let values = App.addlist_values(data.id)
-      data.use(values)
+      data.use(App.addlist_values(data.id))
     }, undefined, force)
   }
 }
@@ -558,14 +546,15 @@ App.addlist_check_focus = (id) => {
 
 App.addlist_modified = (id) => {
   let data = App.addlist_data
-  let values = App.addlist_values(id)
 
-  if (!data.items.length) {
-    return
+  if (!Object.keys(data.items).length) {
+    return false
   }
 
-  for (let [i, value] of values.entries()) {
-    if (data.items[i] !== value) {
+  let values = App.addlist_values(id)
+
+  for (let key in values) {
+    if (values[key] !== data.items[key]) {
       return true
     }
   }
@@ -597,16 +586,17 @@ App.addlist_move_menu = (e) => {
 App.addlist_move = (dir) => {
   let data = App.addlist_data
   let lines = App.get_setting(data.id)
-  let value = data.items[0]
+  let oargs = App.addlist_oargs(data.id)
+  let value = data.items[oargs.pk]
 
   for (let [i, line] of lines.entries()) {
-    let items = App.addlist_items(line)
+    let items = Objection.parse(line)
 
-    if (!items.length) {
+    if (!Object.keys(items).length) {
       continue
     }
 
-    if (items[0] === value) {
+    if (items[oargs.pk] === value) {
       if (dir === `up`) {
         if (i > 0 && i < lines.length) {
           [lines[i], lines[i - 1]] = [lines[i - 1], lines[i]]
@@ -704,8 +694,8 @@ App.addlist_buttons = (args) => {
 }
 
 App.addlist_filled = (values) => {
-  for (let value of values) {
-    if (value === ``) {
+  for (let key in values) {
+    if (values[key] === ``) {
       return false
     }
   }

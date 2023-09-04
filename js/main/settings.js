@@ -19,17 +19,17 @@ App.build_default_settings = () => {
   obj.auto_restore = {value: `10_seconds`, category: category, version: 1}
   obj.bookmarks_folder = {value: `Grasshopper`, category: category, version: 1}
   obj.aliases = {value: [
-    `big ; huge`,
-    `quick ; fast`,
-    `planet ; earth`,
-    `locust ; grasshopper`
-  ], category: category, version: 1}
+    `a = big ; b = huge`,
+    `a = quick ; b = fast`,
+    `a = planet ; b = earth`,
+    `a = locust ; b = grasshopper`,
+  ], category: category, version: 2}
   obj.custom_filters = {value: [
-    `re: (today | $day)`,
-    `re: ($month | $year)`,
-    `re: \\d{2}\\/\\d{2}\\/\\d{4}`,
-    `re: (youtu|twitch)`,
-  ], category: category, version: 1}
+    `filter = re: (today | $day)`,
+    `filter = re: ($month | $year)`,
+    `filter = re: \\d{2}\\/\\d{2}\\/\\d{4}`,
+    `filter = re: (youtu|twitch)`,
+  ], category: category, version: 2}
 
   category = `theme`
   obj.background_color = {value: `rgb(45, 45, 55)`, category: category, version: 1}
@@ -44,7 +44,7 @@ App.build_default_settings = () => {
   obj.background_transitions = {value: true, category: category, version: 1}
   obj.random_background_gifs = {value: true, category: category, version: 1}
   obj.random_themes = {value: `dark`, category: category, version: 1}
-  obj.background_pool = {value: App.default_backgrounds(), category: category, version: 1}
+  obj.background_pool = {value: App.default_backgrounds(), category: category, version: 2}
 
   category = `media`
   obj.view_image_tabs = {value: `icon`, category: category, version: 1}
@@ -102,13 +102,23 @@ App.build_default_settings = () => {
   obj.middle_click_pinline = {value: `close_normal`, category: category, version: 1}
 
   category = `menus`
-  obj.extra_menu = {value: [], category: category, version: 2}
-  obj.pinline_menu = {value: [`select_pins`, `select_normal`, `select_all`], category: category, version: 2}
-  obj.empty_menu = {value: [`select_all`, `new_tab`, ], category: category, version: 2}
-  obj.footer_menu = {value: [`copy_url`, `copy_title`, ], category: category, version: 2}
+  obj.extra_menu = {value: [], category: category, version: 3}
+  obj.pinline_menu = {value: [
+    `cmd = select_pins"`,
+    `cmd = select_normal"`,
+    `cmd = select_all"`,
+  ], category: category, version: 3}
+  obj.empty_menu = {value: [
+    `cmd = select_all"`,
+    `cmd = new_tab"`,
+  ], category: category, version: 3}
+  obj.footer_menu = {value: [
+    `cmd = copy_url"`,
+    `cmd = copy_title"`,
+  ], category: category, version: 3}
 
   category = `keyboard`
-  obj.keyboard_shortcuts = {value: [], category: category, version: 2}
+  obj.keyboard_shortcuts = {value: [], category: category, version: 3}
 
   category = `warns`
   obj.warn_on_close_tabs = {value: `special`, category: category, version: 1}
@@ -1253,7 +1263,7 @@ App.default_backgrounds = () => {
   let items = []
 
   for (let name of names) {
-    items.push(`${name} ; none ; none`)
+    items.push(`url = ${name} ; effect = none ; tiles = none`)
   }
 
   let tiles = [
@@ -1265,7 +1275,7 @@ App.default_backgrounds = () => {
   ]
 
   for (let name of tiles) {
-    items.push(`${name} ; none ; 200px`)
+    items.push(`url = ${name} ; effect = none ; tiles = 200px`)
   }
 
   return items
