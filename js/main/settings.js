@@ -1273,7 +1273,14 @@ App.edit_setting = (setting) => {
   let value = App.str(sett)
 
   App.show_input(`Edit: ${setting}`, `Save`, (text) => {
-    App.set_setting(setting, App.obj(text))
+    try {
+      App.set_setting(setting, App.obj(text))
+      return true
+    }
+    catch (err) {
+      App.show_alert_2(`${err}`)
+      return false
+    }
   }, value)
 }
 

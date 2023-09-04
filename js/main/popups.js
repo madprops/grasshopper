@@ -259,8 +259,11 @@ App.focus_textarea = (el) => {
 }
 
 App.input_enter = () => {
-  App.hide_popup(`input`)
-  App.input_action(DOM.el(`#input_text`).value.trim())
+  let ans = App.input_action(DOM.el(`#input_text`).value.trim())
+
+  if (ans) {
+    App.hide_popup(`input`)
+  }
 }
 
 App.hide_all_popups = () => {

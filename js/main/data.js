@@ -5,7 +5,7 @@ App.export_data = (obj) => {
 App.import_data = (action) => {
   App.show_input(`Paste data text here`, `Import`, (text) => {
     if (!text.trim()) {
-      return
+      return true
     }
 
     let json
@@ -14,8 +14,8 @@ App.import_data = (action) => {
       json = App.obj(text)
     }
     catch (err) {
-      App.show_alert(`Invalid JSON`)
-      return
+      App.show_alert_2(`${err}`)
+      return false
     }
 
     if (json) {
@@ -23,5 +23,7 @@ App.import_data = (action) => {
         action(json)
       })
     }
+
+    return true
   })
 }
