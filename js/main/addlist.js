@@ -2,7 +2,7 @@ App.setup_addlist = () => {
   App.addlist_commands = App.settings_commands()
 
   function on_hide () {
-    App.addlist_hide()
+    App.hide_addlist()
   }
 
   let id = `background_pool`
@@ -88,7 +88,7 @@ App.addlist_save = (id) => {
     let modified = App.addlist_modified(id)
 
     if (!modified) {
-      App.addlist_hide(false)
+      App.hide_addlist(false)
       return
     }
   }
@@ -254,7 +254,7 @@ App.addlist_register = (args = {}) => {
   })
 
   DOM.ev(use, `click`, () => {
-    App.addlist_hide(false)
+    App.hide_addlist(false)
     App.addlist_use()
   })
 
@@ -290,7 +290,7 @@ App.addlist = (args = {}) => {
   args = Object.assign(def_args, args)
   let oargs = App.addlist_oargs(args.id)
   App.show_popup(App.addlist_popup(args.id))
-  App.check_addlist_buttons(args)
+  App.addlist_check_buttons(args)
 
   for (let [i, w] of oargs.widgets.entries()) {
     let value = args.items[i]
@@ -413,7 +413,7 @@ App.addlist_enter = () => {
   let modified = App.addlist_modified(data.id)
 
   if (data.use && !modified) {
-    App.addlist_hide()
+    App.hide_addlist()
     App.addlist_use()
   }
   else {
@@ -434,10 +434,10 @@ App.after_addlist = (id, lines) => {
   let area = DOM.el(`#settings_${id}`)
   area.value = App.get_textarea_setting_value(id)
   App.check_theme_refresh()
-  App.addlist_hide(false)
+  App.hide_addlist(false)
 }
 
-App.check_addlist_buttons = (args) => {
+App.addlist_check_buttons = (args) => {
   let use_el = DOM.el(`#addlist_use_${args.id}`)
   let remove_el = DOM.el(`#addlist_remove_${args.id}`)
   let move_el = DOM.el(`#addlist_move_${args.id}`)
@@ -646,12 +646,17 @@ App.addlist_oargs = (id) => {
   return App[`addlist_args_${id}`]
 }
 
-App.addlist_hide = (check = true, from = `normal`) => {
+App.hide_addlist = (check = true, from = `normal`) => {
+  if (!App.on_addlist()) {
+    return
+  }
+
   if (from === `escape`) {
     if (document.activeElement.classList.contains(`addlist_key`)) {
       return
     }
   }
+
 
   let data = App.addlist_data
   let modified = App.addlist_modified(data.id)

@@ -661,10 +661,11 @@ App.add_to_background_pool = (url) => {
     return
   }
 
-  App.addlist_remove(`pool`, url, true)
-  let pool = App.get_setting(`background_pool`)
+  let s = `background_pool`
+  App.addlist_remove(s, url, true)
+  let pool = App.get_setting(s)
   pool.unshift(`${url} ; none ; none`)
-  App.set_setting(`background_pool`, pool)
+  App.set_setting(s, pool)
   App.check_theme_refresh()
   App.show_feedback(`Added to background pool`)
 }
