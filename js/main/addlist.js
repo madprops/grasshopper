@@ -1,4 +1,5 @@
 App.setup_addlist = () => {
+  App.create_popup({id: `addlist_list`})
   App.addlist_commands = App.settings_commands()
 
   function on_hide () {
@@ -662,6 +663,10 @@ App.addlist_buttons = (args) => {
     App.addlist_view({id: args.id, index: 0, use: args.use})
   })
 
+  DOM.ev(DOM.el(`#settings_${args.id}_list`), `click`, () => {
+    App.addlist_list({id: args.id, use: args.use})
+  })
+
   DOM.ev(DOM.el(`#settings_${args.id}_edit`), `click`, () => {
     App.edit_setting(args.id)
   })
@@ -679,4 +684,33 @@ App.addlist_filled = (values) => {
 
 App.addlist_key = () => {
   return document.activeElement.classList.contains(`addlist_key`)
+}
+
+App.addlist_list = (args) => {
+  App.show_popup(`addlist_list`)
+  let c = DOM.el(`#addlist_list_container`)
+  c.innerHTML = ``
+  let lines = App.get_setting(args.id)
+
+  if (!lines.length) {
+    App.show_feedback(`No items yet`)
+    return
+  }
+
+  for (let [i, line] of lines.entries()) {
+    let el = DOM.create(`div`, `action`)
+    let values = []
+
+    for (let key in line) {
+      values.push(line[key])
+    }
+
+    DOM.ev(el, `click`, () => {
+      App.hide_popup(`addlist_list`)
+      App.addlist_view({id: args.id, index: i, use: args.use})
+    })
+
+    el.textContent = values.join(` `)
+    c.append(el)
+  }
 }

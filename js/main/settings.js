@@ -44,7 +44,7 @@ App.build_default_settings = () => {
   obj.background_transitions = {value: true, category: category, version: 1}
   obj.random_background_gifs = {value: true, category: category, version: 1}
   obj.random_themes = {value: `dark`, category: category, version: 1}
-  obj.background_pool = {value: App.default_backgrounds(), category: category, version: 3}
+  obj.background_pool = {value: App.backgrounds, category: category, version: 3}
 
   category = `media`
   obj.view_image_tabs = {value: `icon`, category: category, version: 1}
@@ -362,6 +362,9 @@ App.add_settings_addlist = (container) => {
     let view = DOM.create(`div`, `action`, `settings_${setting}_view`)
     view.textContent = `View`
     el.append(view)
+    let list = DOM.create(`div`, `action`, `settings_${setting}_list`)
+    list.textContent = `List`
+    el.append(list)
     let edit = DOM.create(`div`, `action`, `settings_${setting}_edit`)
     edit.textContent = `Edit`
     el.append(edit)
@@ -1263,21 +1266,6 @@ App.shuffle_textarea = (setting) => {
     App.set_setting(setting, items)
     App.check_theme_refresh()
   })
-}
-
-App.default_backgrounds = () => {
-  return [
-    {url: `waves.jpg`, effect: `none`, tiles: `none`},
-    {url: `lights.jpg`, effect: `none`, tiles: `none`},
-    {url: `merkoba.jpg`, effect: `none`, tiles: `none`},
-    {url: `grid.jpg`, effect: `none`, tiles: `none`},
-    {url: `orbit.gif`, effect: `none`, tiles: `none`},
-    {url: `purple.jpg`, effect: `none`, tiles: `200px`},
-    {url: `wind.jpg`, effect: `grayscale`, tiles: `200px`},
-    {url: `overlap.jpg`, effect: `none`, tiles: `200px`},
-    {url: `stones.jpg`, effect: `none`, tiles: `200px`},
-    {url: `kazam.jpg`, effect: `none`, tiles: `200px`},
-  ]
 }
 
 App.edit_setting = (setting) => {
