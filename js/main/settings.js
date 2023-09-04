@@ -1242,6 +1242,7 @@ App.default_backgrounds = () => {
     `purple.jpg`,
     `wind.jpg`,
     `overlap.jpg`,
+    `stones.jpg`,
     `kazam.jpg`,
   ]
 
