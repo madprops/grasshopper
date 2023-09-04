@@ -268,10 +268,17 @@ App.open_popup_list = () => {
   return open
 }
 
-App.popup_is_open = (id) => {
+App.popup_is_open = (id, exact = true) => {
   for (let pid of App.open_popup_list()) {
-    if (pid.startsWith(id)) {
-      return true
+    if (exact) {
+      if (pid === id) {
+        return true
+      }
+    }
+    else {
+      if (pid.startsWith(id)) {
+        return true
+      }
     }
   }
 

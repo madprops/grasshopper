@@ -675,7 +675,7 @@ App.hide_addlist = (check = true, from = `normal`) => {
 }
 
 App.on_addlist = () => {
-  return App.popup_is_open(`addlist_`)
+  return App.popup_is_open(`addlist_`, false)
 }
 
 App.addlist_popup = (id) => {
