@@ -353,6 +353,11 @@ App.addlist_remove = (id, value, force) => {
 App.addlist_view = (args = {}) => {
   let items = App.get_setting(args.id)[args.index]
 
+  if (!items) {
+    App.show_feedback(`No items yet`)
+    return
+  }
+
   let obj = {
     id: args.id,
     items: items,
