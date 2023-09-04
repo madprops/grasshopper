@@ -1244,30 +1244,23 @@ App.shuffle_textarea = (setting) => {
 }
 
 App.default_backgrounds = () => {
-  let names = [
-    `waves.jpg`,
-    `lights.jpg`,
-    `merkoba.jpg`,
-    `grid.jpg`,
-    `orbit.gif`,
+  let bgs = [
+    {url: `waves.jpg`, effect: `none`, tiles: `none`},
+    {url: `lights.jpg`, effect: `none`, tiles: `none`},
+    {url: `merkoba.jpg`, effect: `none`, tiles: `none`},
+    {url: `grid.jpg`, effect: `none`, tiles: `none`},
+    {url: `orbit.gif`, effect: `none`, tiles: `none`},
+    {url: `purple.jpg`, effect: `none`, tiles: `200px`},
+    {url: `wind.jpg`, effect: `grayscale`, tiles: `200px`},
+    {url: `overlap.jpg`, effect: `none`, tiles: `200px`},
+    {url: `stones.jpg`, effect: `none`, tiles: `200px`},
+    {url: `kazam.jpg`, effect: `none`, tiles: `200px`},
   ]
 
   let items = []
 
-  for (let name of names) {
-    items.push(`url = ${name} ; effect = none ; tiles = none`)
-  }
-
-  let tiles = [
-    `purple.jpg`,
-    `wind.jpg`,
-    `overlap.jpg`,
-    `stones.jpg`,
-    `kazam.jpg`,
-  ]
-
-  for (let name of tiles) {
-    items.push(`url = ${name} ; effect = none ; tiles = 200px`)
+  for (let bg of bgs) {
+    items.push(`url = ${bg.url} ; effect = ${bg.effect} ; tiles = ${bg.tiles}`)
   }
 
   return items
