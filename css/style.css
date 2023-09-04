@@ -538,9 +538,19 @@ svg {
   border: none;
 }
 
-.addlist_area {
-  overflow-x: hidden;
-  cursor: pointer;
+.settings_addlist {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  padding: 0.5rem;
+  background-color: var(--alt_color_0);
+  width: 15rem;
+  gap: 1rem;
+}
+
+.settings_addlist div {
+  text-decoration: underline;
 }
 
 .addlist_title {

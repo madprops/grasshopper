@@ -95,8 +95,8 @@ App.addlist_save = (id) => {
     }
   }
 
-  let values = App.addlist_values(id)
-  let filled = App.addlist_filled(values)
+  let line = App.addlist_values(id)
+  let filled = App.addlist_filled(line)
 
   if (!filled) {
     return
@@ -113,15 +113,14 @@ App.addlist_save = (id) => {
     App.addlist_remove(id, v1, true)
   }
 
-  let v2 = values[oargs.pk]
+  let v2 = line[oargs.pk]
 
   if (v2 && (v1 !== v2)) {
     App.addlist_remove(id, v2, true)
   }
 
-  let str = Objection.stringify(values)
   let lines = App.get_setting(id)
-  lines.splice(data.index, 0, str)
+  lines.splice(data.index, 0, line)
   App.after_addlist(id, lines)
   App.addlist_use(false)
 }
@@ -336,13 +335,11 @@ App.addlist_remove = (id, value, force) => {
     let new_lines = []
 
     for (let line of lines) {
-      let items = App.obj(line)
-
-      if (!Object.keys(items).length) {
+      if (!Object.keys(line).length) {
         continue
       }
 
-      if (items[oargs.pk] === value) {
+      if (line[oargs.pk] === value) {
         continue
       }
 
@@ -353,33 +350,8 @@ App.addlist_remove = (id, value, force) => {
   }, undefined, force)
 }
 
-App.addlist_click = (args = {}) => {
-  if (!args.line) {
-    if (!args.e.target.value.trim()) {
-      return
-    }
-
-    args.line = App.get_line_under_caret(args.e.target)
-  }
-
-  if (!args.line) {
-    return
-  }
-
-  if (args.index === undefined) {
-    let lines = args.e.target.value.split(`\n`)
-    args.index = lines.indexOf(args.line)
-  }
-
-  let items
-
-  try {
-    items = App.obj(args.line)
-  }
-  catch (err) {
-    App.error(err)
-    return
-  }
+App.addlist_view = (args = {}) => {
+  let items = App.get_setting(args.id)[args.index]
 
   let obj = {
     id: args.id,
@@ -424,9 +396,6 @@ App.addlist_right = () => {
 
 App.after_addlist = (id, lines) => {
   App.set_setting(id, lines)
-  let area = DOM.el(`#settings_${id}`)
-  area.value = App.get_textarea_setting_value(id)
-  App.check_theme_refresh()
   App.hide_addlist(false)
 }
 
@@ -527,7 +496,7 @@ App.addlist_next = (id, reverse = false) => {
 
   data.index = index
   data.line = lines[index]
-  App.addlist_click(data)
+  App.addlist_view(data)
 }
 
 App.addlist_check_focus = (id) => {
@@ -598,13 +567,11 @@ App.addlist_move = (dir) => {
   let value = data.items[oargs.pk]
 
   for (let [i, line] of lines.entries()) {
-    let items = App.obj(line)
-
-    if (!Object.keys(items).length) {
+    if (!Object.keys(line).length) {
       continue
     }
 
-    if (items[oargs.pk] === value) {
+    if (line[oargs.pk] === value) {
       if (dir === `up`) {
         if (i > 0 && i < lines.length) {
           [lines[i], lines[i - 1]] = [lines[i - 1], lines[i]]
@@ -690,14 +657,12 @@ App.addlist_buttons = (args) => {
     App.addlist({id: args.id, items: items})
   })
 
-  DOM.ev(DOM.el(`#settings_${args.id}`), `click`, (e) => {
-    App.addlist_click({e: e, id: args.id, use: args.use})
+  DOM.ev(DOM.el(`#settings_${args.id}_view`), `click`, () => {
+    App.addlist_view({id: args.id, index: 0})
   })
 
-  DOM.ev(DOM.el(`#settings_${args.id}`), `mousedown`, (e) => {
-    if (e.button === 1) {
-      e.preventDefault()
-    }
+  DOM.ev(DOM.el(`#settings_${args.id}_edit`), `click`, () => {
+    App.edit_setting(args.id)
   })
 }
 

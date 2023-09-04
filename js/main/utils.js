@@ -503,23 +503,6 @@ App.color_icon = (color) => {
   return `<div class='color_icon color_${color}_2'></div>`
 }
 
-App.get_line_under_caret = (textarea) => {
-  let pos = textarea.selectionStart
-  let text = textarea.value
-  let start = pos
-  let end = pos
-
-  while ((start > 0) && (text[start - 1] !== `\n`)) {
-    start--
-  }
-
-  while ((end < text.length) && (text[end] !== `\n`)) {
-    end++
-  }
-
-  return text.substring(start, end).trim()
-}
-
 App.MINUTE = 60000
 App.HOUR = 3600000
 App.DAY = 86400000
@@ -577,5 +560,9 @@ App.timeago = (date) => {
 }
 
 App.obj = (str) => {
-  return Objection.parse(str)
+  return JSON.parse(str)
+}
+
+App.str = (obj) => {
+  return JSON.stringify(obj, null, 2)
 }

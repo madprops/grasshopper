@@ -19,17 +19,17 @@ App.build_default_settings = () => {
   obj.auto_restore = {value: `10_seconds`, category: category, version: 1}
   obj.bookmarks_folder = {value: `Grasshopper`, category: category, version: 1}
   obj.aliases = {value: [
-    `a = big ; b = huge`,
-    `a = quick ; b = fast`,
-    `a = planet ; b = earth`,
-    `a = locust ; b = grasshopper`,
-  ], category: category, version: 2}
+    {a: `big`, b: `huge`},
+    {a: `quick`, b: `fast`},
+    {a: `planet`, b: `earth`},
+    {a: `locust`, b: `grasshopper`},
+  ], category: category, version: 3}
   obj.custom_filters = {value: [
-    `filter = re: (today | $day)`,
-    `filter = re: ($month | $year)`,
-    `filter = re: \\d{2}\\/\\d{2}\\/\\d{4}`,
-    `filter = re: (youtu|twitch)`,
-  ], category: category, version: 2}
+    {filter: `re: (today | $day)`},
+    {filter: `re: ($month | $year)`},
+    {filter: `re: \\d{2}\\/\\d{2}\\/\\d{4}`},
+    {filter: `re: (youtu|twitch)`},
+  ], category: category, version: 3}
 
   category = `theme`
   obj.background_color = {value: `rgb(45, 45, 55)`, category: category, version: 1}
@@ -44,7 +44,7 @@ App.build_default_settings = () => {
   obj.background_transitions = {value: true, category: category, version: 1}
   obj.random_background_gifs = {value: true, category: category, version: 1}
   obj.random_themes = {value: `dark`, category: category, version: 1}
-  obj.background_pool = {value: App.default_backgrounds(), category: category, version: 2}
+  obj.background_pool = {value: App.default_backgrounds(), category: category, version: 3}
 
   category = `media`
   obj.view_image_tabs = {value: `icon`, category: category, version: 1}
@@ -102,23 +102,23 @@ App.build_default_settings = () => {
   obj.middle_click_pinline = {value: `close_normal`, category: category, version: 1}
 
   category = `menus`
-  obj.extra_menu = {value: [], category: category, version: 3}
+  obj.extra_menu = {value: [], category: category, version: 4}
   obj.pinline_menu = {value: [
-    `cmd = select_pins`,
-    `cmd = select_normal`,
-    `cmd = select_all`,
-  ], category: category, version: 3}
+    {cmd: `select_pins`},
+    {cmd: `select_normal`},
+    {cmd: `select_all`},
+  ], category: category, version: 4}
   obj.empty_menu = {value: [
-    `cmd = select_all`,
-    `cmd = new_tab`,
-  ], category: category, version: 3}
+    {cmd: `select_all`},
+    {cmd: `new_tab`},
+  ], category: category, version: 4}
   obj.footer_menu = {value: [
-    `cmd = copy_url`,
-    `cmd = copy_title`,
-  ], category: category, version: 3}
+    {cmd: `copy_url`},
+    {cmd: `copy_title`},
+  ], category: category, version: 4}
 
   category = `keyboard`
-  obj.keyboard_shortcuts = {value: [], category: category, version: 3}
+  obj.keyboard_shortcuts = {value: [], category: category, version: 4}
 
   category = `warns`
   obj.warn_on_close_tabs = {value: `special`, category: category, version: 1}
@@ -208,10 +208,6 @@ App.settings_setup_labels = (container) => {
 
   for (let item of items) {
     let btns = []
-
-    if (item.dataset.add) {
-      btns.push([`settings_${item.dataset.id}_add`, `Add`, item.dataset.add])
-    }
 
     if (item.dataset.rand) {
       btns.push([`settings_${item.dataset.id}_random`, App.random_text, item.dataset.rand])
@@ -349,13 +345,38 @@ App.settings_setup_text = (container) => {
       },
     ]
 
-    if (is_textarea) {
-      menu.push({
-        name: `Edit`,  action: () => {
-          App.edit_setting(setting)
+    DOM.evs(App.get_settings_label(setting), [`click`, `contextmenu`], (e) => {
+      App.settings_label_menu(e, menu)
+    })
+  }
+}
+
+App.add_settings_addlist = (container) => {
+  let els = DOM.els(`.settings_addlist`, container)
+
+  for (let el of els) {
+    let setting = el.dataset.setting
+    let add = DOM.create(`div`, `action`, `settings_${setting}_add`)
+    add.textContent = `Add`
+    el.append(add)
+    let view = DOM.create(`div`, `action`, `settings_${setting}_view`)
+    view.textContent = `View`
+    el.append(view)
+    let edit = DOM.create(`div`, `action`, `settings_${setting}_edit`)
+    edit.textContent = `Edit`
+    el.append(edit)
+
+    let menu = [
+      {
+        name: `Reset`,  action: () => {
+          let force = App.check_setting_default(setting)
+
+          App.show_confirm(`Reset setting?`, () => {
+            App.set_default_setting(setting)
+          }, undefined, force)
         },
-      })
-    }
+      },
+    ]
 
     DOM.evs(App.get_settings_label(setting), [`click`, `contextmenu`], (e) => {
       App.settings_label_menu(e, menu)
@@ -462,6 +483,7 @@ App.setup_settings = () => {
     App.settings_setup_labels(container)
     App.settings_setup_checkboxes(container)
     App.settings_setup_text(container)
+    App.add_settings_addlist(container)
     App.add_settings_switchers(category)
     App.add_settings_filter(category)
     container.classList.add(`filter_container`)
@@ -1244,7 +1266,7 @@ App.shuffle_textarea = (setting) => {
 }
 
 App.default_backgrounds = () => {
-  let bgs = [
+  return [
     {url: `waves.jpg`, effect: `none`, tiles: `none`},
     {url: `lights.jpg`, effect: `none`, tiles: `none`},
     {url: `merkoba.jpg`, effect: `none`, tiles: `none`},
@@ -1256,23 +1278,14 @@ App.default_backgrounds = () => {
     {url: `stones.jpg`, effect: `none`, tiles: `200px`},
     {url: `kazam.jpg`, effect: `none`, tiles: `200px`},
   ]
-
-  let items = []
-
-  for (let bg of bgs) {
-    items.push(`url = ${bg.url} ; effect = ${bg.effect} ; tiles = ${bg.tiles}`)
-  }
-
-  return items
 }
 
 App.edit_setting = (setting) => {
-  let value = App.get_textarea_setting_value(setting)
+  let sett = App.get_setting(setting)
+  let value = App.str(sett)
 
   App.show_input(`Edit: ${setting}`, `Done`, (text) => {
-    let el = DOM.el(`#settings_${setting}`)
-    el.value = text
-    App.do_save_text_setting(setting, el)
+    App.set_setting(setting, App.obj(text))
   }, value)
 }
 

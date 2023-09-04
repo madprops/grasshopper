@@ -8,7 +8,6 @@
     <script src="js/libs/needcontext.js"></script>
     <script src="js/libs/nicegesture.js"></script>
     <script src="js/libs/colorlib.js"></script>
-    <script src="js/libs/objection.js"></script>
     <script src="js/libs/jdenticon.js"></script>
     <script src="js/libs/acolorpicker.min.js"></script>
     <script src="js/libs/dateformat.js"></script>
@@ -223,13 +222,13 @@
         </div>
 
         <div class="settings_item" title="Filter aliases. If you use one, the other is also checked">
-          <div class="settings_label" data-id="aliases" data-add="Add an alias">Aliases</div>
-          <textarea autocomplete="off" spellcheck="false" class="text settings_textarea addlist_area" id="settings_aliases" data-setting="aliases" placeholder="One alias per line"></textarea>
+          <div class="settings_label" data-id="aliases">Aliases</div>
+          <div id="settings_aliases" class="settings_addlist" data-setting="aliases"></div>
         </div>
 
         <div class="settings_item" title="These appear in the filters menu">
-          <div class="settings_label" data-id="custom_filters" data-add="Add a custom filter">Custom Filters</div>
-          <textarea autocomplete="off" spellcheck="false" class="text settings_textarea addlist_area" id="settings_custom_filters" data-setting="custom_filters" placeholder="One filter per line"></textarea>
+          <div class="settings_label" data-id="custom_filters">Custom Filters</div>
+          <div id="settings_custom_filters" class="settings_addlist" data-setting="custom_filters"></div>
         </div>
 
         <div class="settings_item" title="The modes at the top appear first in the menu and cycle-order">
@@ -257,8 +256,8 @@
         </div>
 
         <div class="settings_item" title="Rotate between these background images">
-          <div class="settings_label" data-id="background_pool" data-add="Add to the background pool" data-next="Apply next item from the background pool" data-shuffle="Shuffle the background pool">Pool</div>
-          <textarea autocomplete="off" spellcheck="false" class="text settings_textarea addlist_area" id="settings_background_pool" data-setting="background_pool" placeholder="One image URL per line"></textarea>
+          <div class="settings_label" data-id="background_pool" data-next="Apply next item from the background pool" data-shuffle="Shuffle the background pool">Pool</div>
+          <div id="settings_background_pool" class="settings_addlist" data-setting="background_pool"></div>
         </div>
 
         <div class="settings_item" title="Effect to apply to the background image">
@@ -560,23 +559,23 @@
     <template id="template_settings_menus">
       <div id="settings_menus_container" class="settings_container">
         <div class="settings_item" title="Extra items in the item menus. If this is empty the entry won't be shown">
-          <div class="settings_label" data-id="extra_menu" data-add="Add a command">Extra Menu</div>
-          <textarea autocomplete="off" spellcheck="false" class="text settings_textarea addlist_area" id="settings_extra_menu" data-setting="extra_menu" placeholder="One command per line"></textarea>
+          <div class="settings_label" data-id="extra_menu">Extra Menu</div>
+          <div id="settings_extra_menu" class="settings_addlist" data-setting="extra_menu"></div>
         </div>
 
         <div class="settings_item" title="Menu to show when clicking the pin line. If this is empty the entry won't be shown">
-          <div class="settings_label" data-id="pinline_menu" data-add="Add a command">Pinline Menu</div>
-          <textarea autocomplete="off" spellcheck="false" class="text settings_textarea addlist_area" id="settings_pinline_menu" data-setting="pinline_menu" placeholder="One command per line"></textarea>
+          <div class="settings_label" data-id="pinline_menu">Pinline Menu</div>
+          <div id="settings_pinline_menu" class="settings_addlist" data-setting="pinline_menu"></div>
         </div>
 
         <div class="settings_item" title="Menu to show when right clicking empty space">
-          <div class="settings_label" data-id="empty_menu" data-add="Add a command">Empty Menu</div>
-          <textarea autocomplete="off" spellcheck="false" class="text settings_textarea addlist_area" id="settings_empty_menu" data-setting="empty_menu" placeholder="One command per line"></textarea>
+          <div class="settings_label" data-id="empty_menu">Empty Menu</div>
+          <div id="settings_empty_menu" class="settings_addlist" data-setting="empty_menu"></div>
         </div>
 
         <div class="settings_item" title="Menu to show when right clicking the footer">
-          <div class="settings_label" data-id="footer_menu" data-add="Add a command">Footer Menu</div>
-          <textarea autocomplete="off" spellcheck="false" class="text settings_textarea addlist_area" id="settings_footer_menu" data-setting="footer_menu" placeholder="One command per line"></textarea>
+          <div class="settings_label" data-id="footer_menu">Footer Menu</div>
+          <div id="settings_footer_menu" class="settings_addlist" data-setting="footer_menu"></div>
         </div>
       </div>
     </template>
@@ -584,8 +583,8 @@
     <template id="template_settings_keyboard">
       <div id="settings_keyboard_container" class="settings_container">
         <div class="settings_item" title="Custom keyboard shortcuts">
-          <div class="settings_label" data-id="keyboard_shortcuts" data-add="Add a shortcut">Keyboard Shortcuts</div>
-          <textarea autocomplete="off" spellcheck="false" class="text settings_textarea addlist_area" id="settings_keyboard_shortcuts" data-setting="keyboard_shortcuts" placeholder="One shortcut per line"></textarea>
+          <div class="settings_label" data-id="keyboard_shortcuts">Keyboard Shortcuts</div>
+          <div id="settings_keyboard_shortcuts" class="settings_addlist" data-setting="keyboard_shortcuts"></div>
         </div>
 
         <img src="img/keyboard.jpg" class="settings_image" title="Cewik typing on his keyboard">

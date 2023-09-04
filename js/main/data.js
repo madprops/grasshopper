@@ -1,5 +1,5 @@
 App.export_data = (obj) => {
-  App.show_textarea(`Copy this to import later`, JSON.stringify(obj, null, 2))
+  App.show_textarea(`Copy this to import later`, App.str(obj))
 }
 
 App.import_data = (action) => {

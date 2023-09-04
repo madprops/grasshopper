@@ -105,8 +105,8 @@ App.bot_icon = `🤖`
 App.shuffle_icon = `🔀`
 
 App.dark_theme_colors = {
-  background: `rgb(33, 33, 42)`,
-  text: `rgb(242, 242, 242)`,
+  background: `rgb(45, 45, 55)`,
+  text: `rgb(233, 233, 233)`,
 }
 
 App.light_theme_colors = {

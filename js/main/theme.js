@@ -666,7 +666,6 @@ App.add_to_background_pool = (url) => {
   let pool = App.get_setting(s)
   pool.unshift(`${url} ; none ; none`)
   App.set_setting(s, pool)
-  App.check_theme_refresh()
   App.show_feedback(`Added to background pool`)
 }
 
