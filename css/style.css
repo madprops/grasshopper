@@ -572,12 +572,6 @@ svg {
   margin-top: 0.5rem;
 }
 
-.addlist_list_item {
-  max-width: 15rem;
-  white-space: nowrap;
-  overflow: hidden;
-}
-
 .text_smaller {
   width: 5rem;
   max-width: 5rem;
