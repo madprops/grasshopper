@@ -3,8 +3,8 @@ const Objection = {}
 Objection.assigner = `=`
 Objection.separator = `;`
 Objection.spacing = true
-Objection.cast_bools = true
-Objection.cast_numbers = true
+Objection.cast_bool = true
+Objection.cast_number = true
 
 // Parse an objection type string into a js object
 Objection.parse = (str, args = {}) => {
@@ -18,7 +18,7 @@ Objection.parse = (str, args = {}) => {
       continue
     }
 
-    if (args.cast_bools) {
+    if (args.cast_bool) {
       if (value === `true`) {
         value = true
       }
@@ -28,7 +28,7 @@ Objection.parse = (str, args = {}) => {
     }
 
     if (typeof value === `string`) {
-      if (args.cast_numbers) {
+      if (args.cast_number) {
         if (!isNaN(value)) {
           value = Number(value)
         }
@@ -83,8 +83,8 @@ Objection.def_args = (args) => {
     assigner: Objection.assigner,
     separator: Objection.separator,
     spacing: Objection.spacing,
-    cast_bools: Objection.cast_bools,
-    cast_numbers: Objection.cast_numbers,
+    cast_bool: Objection.cast_bool,
+    cast_number: Objection.cast_number,
   }
 
   return Object.assign(def_args, args)
