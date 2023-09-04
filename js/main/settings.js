@@ -104,17 +104,17 @@ App.build_default_settings = () => {
   category = `menus`
   obj.extra_menu = {value: [], category: category, version: 3}
   obj.pinline_menu = {value: [
-    `cmd = select_pins"`,
-    `cmd = select_normal"`,
-    `cmd = select_all"`,
+    `cmd = select_pins`,
+    `cmd = select_normal`,
+    `cmd = select_all`,
   ], category: category, version: 3}
   obj.empty_menu = {value: [
-    `cmd = select_all"`,
-    `cmd = new_tab"`,
+    `cmd = select_all`,
+    `cmd = new_tab`,
   ], category: category, version: 3}
   obj.footer_menu = {value: [
-    `cmd = copy_url"`,
-    `cmd = copy_title"`,
+    `cmd = copy_url`,
+    `cmd = copy_title`,
   ], category: category, version: 3}
 
   category = `keyboard`
@@ -855,9 +855,9 @@ App.start_theme_settings = () => {
   App.addlist_buttons({id: `background_pool`,
     get_items: () => {
       return [
-        App.get_setting(`background_image`),
-        App.get_setting(`background_effect`),
-        App.get_setting(`background_tiles`),
+        `cmd: ${App.get_setting(`background_image`)}`,
+        `cmd: ${App.get_setting(`background_effect`)}`,
+        `cmd: ${App.get_setting(`background_tiles`)}`,
       ]
     },
     action: (value) => {

@@ -575,3 +575,7 @@ App.timeago = (date) => {
 
   return s
 }
+
+App.obj = (str) => {
+  return Objection.parse(str)
+}

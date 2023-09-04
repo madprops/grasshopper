@@ -65,7 +65,8 @@ App.setup_addlist = () => {
     id: `addlist_${id}`, element: App.addlist_register({id: id, pk: `key`,
     widgets: [`key`, `select`, `checkbox`, `checkbox`, `checkbox`],
     labels: [`Key`, `Command`, `Require Ctrl`, `Require Shift`, `Require Alt`], title: `Keyboard Shortcuts`,
-    sources: [undefined, App.addlist_commands.slice(0), true, false, false], keys: [`key`, `cmd`, `ctrl`, `shift`, `alt`]}), on_hide: on_hide
+    sources: [undefined, App.addlist_commands.slice(0), true, false, false],
+    keys: [`key`, `cmd`, `ctrl`, `shift`, `alt`]}), on_hide: on_hide
   })
 }
 
@@ -269,6 +270,7 @@ App.addlist_register = (args = {}) => {
 App.addlist = (args = {}) => {
   let def_args = App.addlist_def_args()
   args = Object.assign(def_args, args)
+  console.log(args)
   let oargs = App.addlist_oargs(args.id)
   App.show_popup(App.addlist_popup(args.id))
   App.addlist_check_buttons(args)
@@ -335,7 +337,7 @@ App.addlist_remove = (id, value, force) => {
     let new_lines = []
 
     for (let line of lines) {
-      let items = Objection.parse(line)
+      let items = App.obj(line)
 
       if (!Object.keys(items).length) {
         continue
@@ -374,7 +376,7 @@ App.addlist_click = (args = {}) => {
   let items
 
   try {
-    items = Objection.parse(args.line)
+    items = App.obj(args.line)
   }
   catch (err) {
     App.error(err)
@@ -590,7 +592,7 @@ App.addlist_move = (dir) => {
   let value = data.items[oargs.pk]
 
   for (let [i, line] of lines.entries()) {
-    let items = Objection.parse(line)
+    let items = App.obj(line)
 
     if (!Object.keys(items).length) {
       continue
@@ -673,7 +675,7 @@ App.addlist_popup = (id) => {
 
 App.addlist_buttons = (args) => {
   DOM.ev(DOM.el(`#settings_${args.id}_add`), `click`, () => {
-    let items = []
+    let items = {}
 
     if (args.get_items) {
       items = args.get_items()

@@ -30,36 +30,31 @@ App.check_items_keyboard = (e) => {
   }
 
   for (let line of App.get_setting(`keyboard_shortcuts`)) {
-    let items = App.addlist_items(line)
-    let key = items[0]
-    let cmd = items[1]
-    let kbs_ctrl = items[2]
-    let kbs_shift = items[3]
-    let kbs_alt = items[4]
+    let sc = App.obj(line)
 
-    if (key !== e.code) {
+    if (sc.key !== e.code) {
       continue
     }
 
-    if (kbs_ctrl && !e.ctrlKey) {
+    if (sc.ctrl && !e.ctrlKey) {
       continue
     }
 
-    if (kbs_shift && !e.shiftKey) {
+    if (sc.shift && !e.shiftKey) {
       continue
     }
 
-    if (kbs_alt && !e.altKey) {
+    if (sc.alt && !e.altKey) {
       continue
     }
 
-    if (!kbs_ctrl && !kbs_alt) {
+    if (!sc.ctrl && !sc.alt) {
       if (filter_focus) {
         continue
       }
     }
 
-    App.run_command({cmd: cmd, from: `keyboard_shortcut`})
+    App.run_command({cmd: sc.cmd, from: `keyboard_shortcut`})
     e.preventDefault()
     e.stopPropagation()
     return
