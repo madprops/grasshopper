@@ -551,6 +551,10 @@ App.addlist_check_focus = (id) => {
 App.addlist_modified = (id) => {
   let data = App.addlist_data
 
+  if (!data.edit) {
+    return false
+  }
+
   if (!Object.keys(data.items).length) {
     return false
   }
