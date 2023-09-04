@@ -104,7 +104,7 @@ App.addlist_save = (id) => {
   let oargs = App.addlist_oargs(id)
   let v1 = ``
 
-  if (data.edit && data.items.length) {
+  if (data.edit && Object.keys(data.items).length) {
     v1 = data.items[pk]
   }
 
@@ -243,8 +243,8 @@ App.addlist_register = (args = {}) => {
   DOM.ev(remove, `click`, () => {
     let data = App.addlist_data
 
-    if (data.edit && data.items.length) {
-      App.addlist_remove(args.id, data.items[0])
+    if (data.edit && Object.keys(data.items).length) {
+      App.addlist_remove(args.id, data.items[args.pk])
     }
   })
 
