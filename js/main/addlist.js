@@ -270,7 +270,6 @@ App.addlist_register = (args = {}) => {
 App.addlist = (args = {}) => {
   let def_args = App.addlist_def_args()
   args = Object.assign(def_args, args)
-  console.log(args)
   let oargs = App.addlist_oargs(args.id)
   App.show_popup(App.addlist_popup(args.id))
   App.addlist_check_buttons(args)
@@ -400,6 +399,10 @@ App.addlist_click = (args = {}) => {
 }
 
 App.addlist_enter = () => {
+  if (App.addlist_key()) {
+    return
+  }
+
   let data = App.addlist_data
   let modified = App.addlist_modified(data.id)
 
@@ -644,7 +647,7 @@ App.hide_addlist = (check = true, from = `normal`) => {
   }
 
   if (from === `escape`) {
-    if (document.activeElement.classList.contains(`addlist_key`)) {
+    if (App.addlist_key()) {
       return
     }
   }
@@ -703,4 +706,8 @@ App.addlist_filled = (values) => {
   }
 
   return true
+}
+
+App.addlist_key = () => {
+  return document.activeElement.classList.contains(`addlist_key`)
 }
