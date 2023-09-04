@@ -64,7 +64,7 @@ App.setup_addlist = () => {
   App.create_popup({
     id: `addlist_${id}`, element: App.addlist_register({id: id,
     widgets: [`key`, `select`, `checkbox`, `checkbox`, `checkbox`],
-    labels: [`Key`, `Command`, `Require Ctrl`, `Require Shift`, `Require Alt`], title: `KB Shortcuts`,
+    labels: [`Key`, `Command`, `Require Ctrl`, `Require Shift`, `Require Alt`], title: `Keyboard Shortcuts`,
     sources: [undefined, App.addlist_commands.slice(0), true, false, false]}), on_hide: on_hide
   })
 }
@@ -135,7 +135,7 @@ App.addlist_register = (args = {}) => {
   args = Object.assign(def_args, args)
   let container = DOM.create(`div`, `flex_column_center addlist_container`, `addlist_container_${args.id}`)
   container.tabIndex = 0
-  let top = DOM.create(`div`, `flex_row_center gap_3 full_width`)
+  let top = DOM.create(`div`, `flex_row_center gap_2 full_width`)
   let title = DOM.create(`div`, `addlist_title`)
   title.textContent = args.title
   let btn_prev = DOM.create(`div`, `button`, `addlist_prev_${args.id}`)
