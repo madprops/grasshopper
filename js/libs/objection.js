@@ -67,29 +67,13 @@ Objection.stringify = (obj, args = {}) => {
       }
     }
 
-    let property
-
-    if (args.spacing) {
-      property = `${key} ${args.assigner} ${escaped}`
-    }
-    else {
-      property = `${key}${args.assigner}${escaped}`
-    }
-
+    let s = args.spacing ? ` ` : ``
+    let property = `${key}${s}${args.assigner}${s}${escaped}`
     items.push(property)
   }
 
-  let separator
-
-  if (args.spacing) {
-    separator = ` ${args.separator} `
-  }
-  else {
-    separator = args.separator
-  }
-
-  let str = items.join(separator)
-  return str
+  let sep = args.spacing ? ` ${args.separator} ` : args.separator
+  return items.join(sep)
 }
 
 // Split util
