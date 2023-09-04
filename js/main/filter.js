@@ -115,20 +115,13 @@ App.do_filter = async (mode, force = false, deep = false) => {
 
   if (value) {
     for (let alias of App.get_setting(`aliases`)) {
-      if (alias.includes(`;`)) {
-        try {
-          let split = alias.split(`;`)
-
-          if (split.length === 2) {
-            let a = split[0].trim()
-            let b = split[1].trim()
-            alias_regex(a, b)
-            alias_regex(b, a)
-          }
-        }
-        catch (err) {
-          continue
-        }
+      try {
+        let obj = App.obj(alias)
+        alias_regex(obj.a, obj.b)
+        alias_regex(obj.b, obj.a)
+      }
+      catch (err) {
+        continue
       }
     }
   }
@@ -598,10 +591,12 @@ App.get_custom_filters = (mode) => {
   let items = []
 
   for (let filter of App.get_setting(`custom_filters`)) {
+    let obj = App.obj(filter)
+
     items.push({
-      text: filter,
+      text: obj.filter,
       action: () => {
-        App.set_custom_filter(mode, filter)
+        App.set_custom_filter(mode, obj.filter)
       }
     })
   }
