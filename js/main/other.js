@@ -38,8 +38,9 @@ App.custom_menu_items = (what) => {
     return items
   }
 
-  for (let cmd of menu) {
-    let c = App.get_command(cmd)
+  for (let item of menu) {
+    let obj = App.obj(item)
+    let c = App.get_command(obj.cmd)
 
     if (!c) {
       continue
