@@ -80,7 +80,7 @@ App.build_default_settings = () => {
   obj.show_footer = {value: true, category: category, version: 1}
   obj.show_filter_history = {value: true, category: category, version: 1}
 
-  category = `mouse`
+  category = `gestures`
   obj.gestures_enabled = {value: true, category: category, version: 1}
   obj.gestures_threshold = {value: 10, category: category, version: 1}
   obj.gesture_up = {value: `go_to_top`, category: category, version: 1}
@@ -89,6 +89,8 @@ App.build_default_settings = () => {
   obj.gesture_right = {value: `next_mode`, category: category, version: 1}
   obj.gesture_up_and_down = {value: `show_all`, category: category, version: 1}
   obj.gesture_left_and_right = {value: `filter_domain`, category: category, version: 1}
+
+  category = `auxclick`
   obj.middle_click_main_menu = {value: `show_main`, category: category, version: 1}
   obj.middle_click_filter_menu = {value: `show_all`, category: category, version: 1}
   obj.middle_click_back_button = {value: `browser_back`, category: category, version: 1}
@@ -98,6 +100,8 @@ App.build_default_settings = () => {
   obj.middle_click_close_button = {value: `unload_single`, category: category, version: 1}
   obj.middle_click_open_button = {value: `open`, category: category, version: 1}
   obj.middle_click_pinline = {value: `close_normal`, category: category, version: 1}
+
+  category = `menus`
   obj.extra_menu = {value: [], category: category, version: 2}
   obj.pinline_menu = {value: [`select_pins`, `select_normal`, `select_all`], category: category, version: 2}
   obj.empty_menu = {value: [`select_all`, `new_tab`, ], category: category, version: 2}
@@ -429,7 +433,7 @@ App.settings_filter_focused = () => {
 }
 
 App.setup_settings = () => {
-  App.settings_categories = [`general`, `theme`, `media`, `show`, `mouse`, `keyboard`, `warns`, `colors`, `more`]
+  App.settings_categories = [`general`, `theme`, `media`, `show`, `gestures`, `auxclick`, `menus`, `keyboard`, `warns`, `colors`, `more`]
 
   let common = {
     persistent: false,
@@ -620,8 +624,8 @@ App.setup_settings = () => {
     prepare(`show`)
   }}))
 
-  App.create_window(Object.assign({}, common, {id: `settings_mouse`, setup: () => {
-    prepare(`mouse`)
+  App.create_window(Object.assign({}, common, {id: `settings_gestures`, setup: () => {
+    prepare(`gestures`)
 
     DOM.ev(DOM.el(`#settings_gestures_enabled`), `change`, () => {
       App.refresh_gestures()
@@ -639,7 +643,11 @@ App.setup_settings = () => {
     for (let gesture of App.gestures) {
       App.settings_make_menu(`gesture_${gesture}`, opts)
     }
+  }}))
 
+  App.create_window(Object.assign({}, common, {id: `settings_auxclick`, setup: () => {
+    prepare(`auxclick`)
+    let opts = App.settings_commands()
     App.settings_make_menu(`middle_click_main_menu`, opts)
     App.settings_make_menu(`middle_click_filter_menu`, opts)
     App.settings_make_menu(`middle_click_back_button`, opts)
@@ -649,6 +657,10 @@ App.setup_settings = () => {
     App.settings_make_menu(`middle_click_close_button`, opts)
     App.settings_make_menu(`middle_click_open_button`, opts)
     App.settings_make_menu(`middle_click_pinline`, opts)
+  }}))
+
+  App.create_window(Object.assign({}, common, {id: `settings_menus`, setup: () => {
+    prepare(`menus`)
     App.addlist_buttons({id: `extra_menu`})
     App.addlist_buttons({id: `pinline_menu`})
     App.addlist_buttons({id: `empty_menu`})
@@ -877,7 +889,7 @@ App.reset_settings = (category) => {
       App.get_mode_order()
       App.make_mode_order()
     }
-    else if (category === `mouse`) {
+    else if (category === `gestures`) {
       App.refresh_gestures()
     }
 
