@@ -1070,7 +1070,13 @@ App.set_setting = (setting, value) => {
 }
 
 App.get_default_setting = (setting) => {
-  return App.default_settings[setting].value
+  let value = App.default_settings[setting].value
+
+  if (typeof value === `object`) {
+    value = [...value]
+  }
+
+  return value
 }
 
 App.save_settings_debouncer = App.create_debouncer(() => {
