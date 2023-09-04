@@ -533,14 +533,14 @@ App.background_from_pool = (random = false) => {
   }
   else {
     for (let image of images) {
-      let img = image.split(`;`)[0].trim()
+      let img = App.obj(image)
 
       if (waypoint) {
         next_image = image
         break
       }
 
-      if (bi === img) {
+      if (bi === img.url) {
         waypoint = true
       }
     }
@@ -551,7 +551,7 @@ App.background_from_pool = (random = false) => {
   }
 
   if (next_image) {
-    App.apply_pool(next_image)
+    App.apply_background(App.obj(next_image))
   }
 }
 

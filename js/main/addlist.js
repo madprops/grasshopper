@@ -356,7 +356,6 @@ App.addlist_remove = (id, value, force) => {
 App.addlist_click = (args = {}) => {
   if (!args.line) {
     if (!args.e.target.value.trim()) {
-      App.addlist({id: args.id})
       return
     }
 
@@ -684,7 +683,7 @@ App.addlist_buttons = (args) => {
       items = args.get_items()
     }
 
-    App.addlist({id: args.id, items: items || [], action: args.action})
+    App.addlist({id: args.id, items: items})
   })
 
   DOM.ev(DOM.el(`#settings_${args.id}`), `click`, (e) => {

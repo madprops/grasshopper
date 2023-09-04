@@ -860,11 +860,8 @@ App.start_theme_settings = () => {
         `cmd: ${App.get_setting(`background_tiles`)}`,
       ]
     },
-    action: (value) => {
-      App.apply_pool(value)
-    },
-    use: (v) => {
-      App.change_background(v[0], v[1], v[2])
+    use: (obj) => {
+      App.apply_background(obj)
     }
   })
 
@@ -1210,13 +1207,8 @@ App.set_settings_menu = (setting, value) => {
   App[`settings_menubutton_${setting}`].set(value)
 }
 
-App.apply_pool = (full) => {
-  if (!full) {
-    return
-  }
-
-  let items = App.addlist_items(full)
-  App.change_background(items[0], items[1], items[2])
+App.apply_background = (bg) => {
+  App.change_background(bg.url, bg.effect, bg.tiles)
 }
 
 App.do_save_text_setting = (setting, el) => {
