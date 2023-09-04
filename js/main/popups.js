@@ -223,9 +223,14 @@ App.show_confirm = (message, confirm_action, cancel_action, force = false) => {
 }
 
 App.show_textarea = (message, text) => {
+  let textarea = DOM.el(`#textarea_text`)
   DOM.el(`#textarea_message`).textContent = message
-  DOM.el(`#textarea_text`).value = text
+  textarea.value = text
   App.show_popup(`textarea`)
+
+  requestAnimationFrame(() => {
+    App.focus_textarea(textarea)
+  })
 }
 
 App.textarea_copy = () => {
@@ -236,11 +241,21 @@ App.textarea_copy = () => {
 App.show_input = (message, button, action, value = ``) => {
   App.input_action = action
   DOM.el(`#input_message`).textContent = message
-  let input_text = DOM.el(`#input_text`)
-  input_text.value = value
+  let textarea = DOM.el(`#input_text`)
+  textarea.value = value
   DOM.el(`#input_submit`).textContent = button
   App.show_popup(`input`)
-  input_text.focus()
+
+  requestAnimationFrame(() => {
+    App.focus_textarea(textarea)
+  })
+}
+
+App.focus_textarea = (el) => {
+  el.focus()
+  el.selectionStart = 0
+  el.selectionEnd = 0
+  App.scroll_to_top(el)
 }
 
 App.input_enter = () => {
