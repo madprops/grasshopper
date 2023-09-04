@@ -64,7 +64,7 @@ App.setup_addlist = () => {
   App.create_popup({
     id: `addlist_${id}`, element: App.addlist_register({id: id,
     widgets: [`key`, `select`, `checkbox`, `checkbox`, `checkbox`],
-    labels: [`Key`, `Command`, `Require Ctrl`, `Require Shift`, `Require Alt`], title: `Keyboard Shortcuts`,
+    labels: [`Key`, `Command`, `Require Ctrl`, `Require Shift`, `Require Alt`], title: `KB Shortcuts`,
     sources: [undefined, App.addlist_commands.slice(0), true, false, false]}), on_hide: on_hide
   })
 }
