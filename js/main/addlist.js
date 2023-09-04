@@ -674,12 +674,8 @@ App.hide_addlist = (check = true, from = `normal`) => {
   }
 }
 
-App.on_addlist = (pmode = App.popup_mode) => {
-  if (pmode) {
-    return pmode.startsWith(`addlist_`)
-  }
-
-  return false
+App.on_addlist = () => {
+  return App.popup_is_open(`addlist_`)
 }
 
 App.addlist_popup = (id) => {
