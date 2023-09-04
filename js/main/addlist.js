@@ -675,7 +675,11 @@ App.hide_addlist = (check = true, from = `normal`) => {
 }
 
 App.on_addlist = (pmode = App.popup_mode) => {
-  return pmode.startsWith(`addlist_`)
+  if (pmode) {
+    return pmode.startsWith(`addlist_`)
+  }
+
+  return false
 }
 
 App.addlist_popup = (id) => {
