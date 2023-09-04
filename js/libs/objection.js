@@ -18,6 +18,11 @@ Objection.parse = (str, args = {}) => {
       continue
     }
 
+    let regex = new RegExp(`\\\\${args.assigner}`)
+    value = value.replace(regex, args.assigner)
+    regex = new RegExp(`\\\\${args.separator}`)
+    value = value.replace(regex, args.separator)
+
     if (args.cast_bool) {
       if (value === `true`) {
         value = true
@@ -47,13 +52,28 @@ Objection.stringify = (obj, args = {}) => {
   let items = []
 
   for (let key in obj) {
+    let value = obj[key]
+    let escaped = ``
+
+    for (let c of value) {
+      if (c === args.assigner) {
+        escaped += `\\${c}`
+      }
+      else if (c === args.separator) {
+        escaped += `\\${c}`
+      }
+      else {
+        escaped += c
+      }
+    }
+
     let property
 
     if (args.spacing) {
-      property = `${key} ${args.assigner} ${obj[key]}`
+      property = `${key} ${args.assigner} ${escaped}`
     }
     else {
-      property = `${key}${args.assigner}${obj[key]}`
+      property = `${key}${args.assigner}${escaped}`
     }
 
     items.push(property)
@@ -74,7 +94,9 @@ Objection.stringify = (obj, args = {}) => {
 
 // Split util
 Objection.split = (str, char) => {
-  return str.split(char).map(x => x.trim())
+  let regstring = `(^|[^\\\\])\\${char}`
+  let regex = new RegExp(regstring)
+  return str.split(regex).map(x => x.trim()).filter(x => x !== "")
 }
 
 // Fill args object
