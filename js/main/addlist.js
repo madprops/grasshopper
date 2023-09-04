@@ -363,10 +363,6 @@ App.addlist_view = (args = {}) => {
   }
 
   App.addlist(obj)
-
-  if (args.e) {
-    args.e.preventDefault()
-  }
 }
 
 App.addlist_enter = () => {
