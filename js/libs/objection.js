@@ -80,7 +80,7 @@ Objection.stringify = (obj, args = {}) => {
 Objection.split = (str, char) => {
   let regstring = `(^|[^\\\\])\\${char}`
   let regex = new RegExp(regstring)
-  return str.split(regex).map(x => x.trim()).filter(x => x !== "")
+  return str.split(regex).map(x => x.trim()).filter(x => x !== ``)
 }
 
 // Fill args object
