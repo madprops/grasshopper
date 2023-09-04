@@ -1272,7 +1272,7 @@ App.edit_setting = (setting) => {
   let sett = App.get_setting(setting)
   let value = App.str(sett)
 
-  App.show_input(`Edit: ${setting}`, `Done`, (text) => {
+  App.show_input(`Edit: ${setting}`, `Save`, (text) => {
     App.set_setting(setting, App.obj(text))
   }, value)
 }
