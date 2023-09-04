@@ -774,7 +774,7 @@ App.do_close_normal_tabs = (close_unloaded = true) => {
 
   App.show_confirm(`Close these tabs? (${ids.length})`, () => {
     App.do_close_tabs(ids)
-    App.check_close_popup()
+    App.hide_all_popups()
   }, undefined, force)
 }
 
@@ -915,7 +915,7 @@ App.do_close_duplicate_tabs = (close_pins = true) => {
 
   App.show_confirm(`Close these tabs? (${ids.length})`, () => {
     App.do_close_tabs(ids)
-    App.check_close_popup()
+    App.hide_all_popups()
   }, undefined, force)
 }
 
@@ -1237,7 +1237,7 @@ App.do_sort_tabs = () => {
     }
 
     App.tabs_locked = false
-    App.check_close_popup()
+    App.hide_all_popups()
     App.clear_all_items()
     await App.do_show_mode(`tabs`)
   })

@@ -657,7 +657,6 @@ App.hide_addlist = (check = true, from = `normal`) => {
     }
   }
 
-
   let data = App.addlist_data
   let modified = App.addlist_modified(data.id)
   let p_id = App.addlist_popup(data.id)

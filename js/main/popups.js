@@ -127,7 +127,7 @@ App.show_alert = (message, autohide_delay = 0, pre = true) => {
 
   if (autohide_delay > 0) {
     App.alert_autohide = setTimeout(() => {
-      App.hide_all_popups()
+      App.hide_popup(`alert`)
     }, autohide_delay)
   }
 }
@@ -145,6 +145,10 @@ App.show_feedback_2 = (message) => {
 }
 
 App.show_dialog = (message, buttons) => {
+  if (App.popups[`dialog`].open) {
+    return
+  }
+
   DOM.el(`#dialog_message`).textContent = message
   let btns = DOM.el(`#dialog_buttons`)
   btns.innerHTML = ``
@@ -196,7 +200,7 @@ App.dialog_right = () => {
 }
 
 App.dialog_enter = () => {
-  App.hide_all_popups()
+  App.hide_popup(`dialog`)
   App.dialog_buttons[App.dialog_index][1]()
 }
 
@@ -225,7 +229,7 @@ App.show_textarea = (message, text) => {
 }
 
 App.textarea_copy = () => {
-  App.hide_all_popups()
+  App.hide_popup(`textarea`)
   App.copy_to_clipboard(DOM.el(`#textarea_text`).value.trim())
 }
 
@@ -240,7 +244,7 @@ App.show_input = (message, button, action, value = ``) => {
 }
 
 App.input_enter = () => {
-  App.hide_all_popups()
+  App.hide_popup(`input`)
   App.input_action(DOM.el(`#input_text`).value.trim())
 }
 
@@ -293,12 +297,6 @@ App.popup_open = () => {
   }
 
   return false
-}
-
-App.check_close_popup = () => {
-  if (App.popup_open()) {
-    App.hide_all_popups()
-  }
 }
 
 App.open_popups = () => {
