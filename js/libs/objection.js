@@ -2,11 +2,10 @@
 const Objection = {}
 
 Objection.parse = (str) => {
-  let items = str.split(`;`).map(x => x.trim()).filter(x => x.length > 0)
   let obj = {}
 
-  for (let item of items) {
-    let [key, value] = item.split(`=`).map(x => x.trim())
+  for (let item of Objection.split(str, `;`)) {
+    let [key, value] = Objection.split(item, `=`)
 
     if (!key || !value) {
       continue
@@ -37,4 +36,8 @@ Objection.stringify = (obj) => {
 
   let str = items.join(` ; `)
   return str
+}
+
+Objection.split = (str, char) => {
+  return str.split(char).map(x => x.trim())
 }

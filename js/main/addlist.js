@@ -105,7 +105,7 @@ App.addlist_save = (id) => {
   let v1 = ``
 
   if (data.edit && Object.keys(data.items).length) {
-    v1 = data.items[pk]
+    v1 = data.items[oargs.pk]
   }
 
   if (v1) {
