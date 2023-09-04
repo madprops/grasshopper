@@ -876,11 +876,11 @@ App.start_theme_settings = () => {
 
   App.addlist_buttons({id: `background_pool`,
     get_items: () => {
-      return [
-        `cmd: ${App.get_setting(`background_image`)}`,
-        `cmd: ${App.get_setting(`background_effect`)}`,
-        `cmd: ${App.get_setting(`background_tiles`)}`,
-      ]
+      return {
+        url: App.get_setting(`background_image`),
+        effect: App.get_setting(`background_effect`),
+        tiles: App.get_setting(`background_tiles`),
+      }
     },
     use: (obj) => {
       App.apply_background(obj)
