@@ -326,27 +326,37 @@ svg {
   flex-shrink: 0;
 }
 
-.hover_effect_background .item:hover {
+.hover_effect_background .item:hover,
+.selected_effect_background .selected:not(.colored) {
   background-color: var(--alt_color_1);
 }
 
-.hover_effect_glow .item:hover .item_text {
-  text-shadow: 0 0 1rem currentColor;
-}
-
-.hover_effect_opacity .item:hover {
-  opacity: 0.8;
-}
-
-.hover_effect_underline .item:hover .item_text {
+.selected_effect_background .selected.colored .item_text {
   text-decoration: underline;
 }
 
-.hover_effect_bold .item:hover .item_text {
+.hover_effect_glow .item:hover .item_text,
+.selected_effect_glow .selected .item_text  {
+  text-shadow: 0 0 1rem currentColor;
+}
+
+.hover_effect_opacity .item:hover,
+.selected_effect_opacity .selected {
+  opacity: 0.8;
+}
+
+.hover_effect_underline .item:hover .item_text,
+.selected_effect_underline .selected .item_text {
+  text-decoration: underline;
+}
+
+.hover_effect_bold .item:hover .item_text,
+.selected_effect_bold .selected .item_text {
   font-weight: bold;
 }
 
-.hover_effect_bigger .item:hover .item_text {
+.hover_effect_bigger .item:hover .item_text,
+.selected_effect_bigger .selected .item_text {
   font-size: var(--bigger_font);
 }
 
@@ -396,34 +406,6 @@ svg {
 
 .selected {
   border-color: transparent !important;
-}
-
-.selected_effect_background .selected:not(.colored) {
-  background-color: var(--alt_color_1);
-}
-
-.selected_effect_background .selected.colored .item_text {
-  text-decoration: underline;
-}
-
-.selected_effect_glow .selected .item_text {
-  text-shadow: 0 0 1rem currentColor;
-}
-
-.selected_effect_opacity .selected {
-  opacity: 0.8;
-}
-
-.selected_effect_underline .selected .item_text {
-  text-decoration: underline;
-}
-
-.selected_effect_bold .selected .item_text {
-  font-weight: bold;
-}
-
-.selected_effect_bigger .selected .item_text {
-  font-size: var(--bigger_font);
 }
 
 .hidden {
