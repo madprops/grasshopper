@@ -5,11 +5,12 @@ Objection.separator = `;`
 Objection.spacing = true
 
 // Parse an objection type string into a js object
-Objection.parse = (str) => {
+Objection.parse = (str, args = {}) => {
+  args = Objection.def_args(args)
   let obj = {}
 
-  for (let item of Objection.split(str, Objection.separator)) {
-    let [key, value] = Objection.split(item, Objection.assigner)
+  for (let item of Objection.split(str, args.separator)) {
+    let [key, value] = Objection.split(item, args.assigner)
 
     if (!key || !value) {
       continue
@@ -32,17 +33,18 @@ Objection.parse = (str) => {
 }
 
 // Transform a js object into an objection type string
-Objection.stringify = (obj) => {
+Objection.stringify = (obj, args = {}) => {
+  args = Objection.def_args(args)
   let items = []
 
   for (let key in obj) {
     let property
 
-    if (Objection.spacing) {
-      property = `${key} = ${obj[key]}`
+    if (args.spacing) {
+      property = `${key} ${args.assigner} ${obj[key]}`
     }
     else {
-      property = `${key}=${obj[key]}`
+      property = `${key}${args.assigner}${obj[key]}`
     }
 
     items.push(property)
@@ -50,11 +52,11 @@ Objection.stringify = (obj) => {
 
   let separator
 
-  if (Objection.spacing) {
-    separator = ` ${Objection.separator} `
+  if (args.spacing) {
+    separator = ` ${args.separator} `
   }
   else {
-    separator = Objection.separator
+    separator = args.separator
   }
 
   let str = items.join(separator)
@@ -64,4 +66,15 @@ Objection.stringify = (obj) => {
 // Split util
 Objection.split = (str, char) => {
   return str.split(char).map(x => x.trim())
+}
+
+// Fill args object
+Objection.def_args = (args) => {
+  let def_args = {
+    assigner: Objection.assigner,
+    separator: Objection.separator,
+    spacing: Objection.spacing,
+  }
+
+  return Object.assign(def_args, args)
 }
