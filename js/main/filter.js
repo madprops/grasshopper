@@ -604,7 +604,7 @@ App.set_custom_filter = (mode, filter) => {
 App.do_filter_2 = (mode) => {
   let value = App.get_clean_filter(mode)
   value = App.only_chars(value)
-  let win = DOM.el(`#${mode}_container`)
+  let win = DOM.el(`#popup_${mode}_container`)
   let container = DOM.el_or_self(`.filter_container`, win)
   let items = DOM.els(`.filter_item`, container)
 
