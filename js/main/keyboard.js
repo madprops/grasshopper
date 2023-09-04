@@ -350,7 +350,7 @@ App.setup_keyboard = () => {
           return
         }
         else if (e.key === `Escape`) {
-          App.addlist_hide(true, `escape`)
+          App.hide_addlist(true, `escape`)
           e.preventDefault()
           return
         }
