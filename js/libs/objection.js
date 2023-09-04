@@ -6,16 +6,20 @@
 // Will be parsed into {name: `Swordfish`, level: 5, equipped: true}
 // It auto casts numbers and booleans
 // It's meant to be used in single lines
-// Each property is separated by a semicolon
+// It uses = to assign values
+// Properties are separated by semicolons
+// These can be configured by changing the constants below
 
 const Objection = {}
+Objection.assigner = `=`
+Objection.separator = `;`
 
 // Parse an objection type string into a js object
 Objection.parse = (str) => {
   let obj = {}
 
-  for (let item of Objection.split(str, `;`)) {
-    let [key, value] = Objection.split(item, `=`)
+  for (let item of Objection.split(str, Objection.separator)) {
+    let [key, value] = Objection.split(item, Objection.assigner)
 
     if (!key || !value) {
       continue
@@ -45,7 +49,7 @@ Objection.stringify = (obj) => {
     items.push(`${key} = ${obj[key]}`)
   }
 
-  let str = items.join(` ; `)
+  let str = items.join(` ${Objection.separator} `)
   return str
 }
 
