@@ -1,15 +1,4 @@
 // Objection v1.0
-
-// This is a simple library to add parsing for simple objects
-// For example: let str = `name = swordfish ; level = 5 ; equipped = true`
-// You can do: let obj = Objection.parse(str)
-// Will be parsed into {name: `swordfish`, level: 5, equipped: true}
-// It auto casts numbers and booleans
-// It's meant to be used in single lines
-// It uses = to assign values
-// Properties are separated by semicolons
-// These can be configured by changing the variables below
-
 const Objection = {}
 Objection.assigner = `=`
 Objection.separator = `;`
