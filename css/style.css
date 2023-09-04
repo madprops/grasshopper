@@ -525,6 +525,10 @@ svg {
   max-width: 90%;
 }
 
+.settings_info {
+  max-width: 15rem;
+}
+
 .addlist_container {
   gap: 1.35rem;
   background-color: var(--background_color);
