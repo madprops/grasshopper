@@ -191,12 +191,13 @@ App.settings_setup_labels = (container) => {
 
   function proc (item, btns) {
     let bc = DOM.create(`div`, `flex_row_center gap_1`)
+    let cls = `action underline`
 
     for (let btn of btns) {
       let c = DOM.create(`div`, `flex_row_center gap_1`)
       let d = DOM.create(`div`)
       d.textContent = `|`
-      let a = DOM.create(`div`, `action`)
+      let a = DOM.create(`div`, cls)
       a.id = btn[0]
       a.textContent = btn[1]
       a.title = btn[2]
@@ -212,7 +213,7 @@ App.settings_setup_labels = (container) => {
   for (let item of items) {
     let btns = []
 
-    if (item.dataset.rand) {
+    if (item.dataset.random) {
       btns.push([`settings_${item.dataset.id}_random`, App.random_text, item.dataset.rand])
     }
 
@@ -221,7 +222,7 @@ App.settings_setup_labels = (container) => {
     }
 
     if (item.dataset.shuffle) {
-      btns.push([`settings_${item.dataset.id}_shuffle`, App.shuffle_icon, item.dataset.shuffle])
+      btns.push([`settings_${item.dataset.id}_shuffle`, `Shuffle`, item.dataset.shuffle])
     }
 
     if (btns.length) {
@@ -417,19 +418,20 @@ App.settings_setup_number = (container) => {
 
 App.add_settings_addlist = (container) => {
   let els = DOM.els(`.settings_addlist`, container)
+  let cls = `action underline`
 
   for (let el of els) {
     let setting = el.dataset.setting
-    let add = DOM.create(`div`, `action`, `settings_${setting}_add`)
+    let add = DOM.create(`div`, cls, `settings_${setting}_add`)
     add.textContent = `Add`
     el.append(add)
-    let view = DOM.create(`div`, `action`, `settings_${setting}_view`)
+    let view = DOM.create(`div`, cls, `settings_${setting}_view`)
     view.textContent = `View`
     el.append(view)
-    let list = DOM.create(`div`, `action`, `settings_${setting}_list`)
+    let list = DOM.create(`div`, cls, `settings_${setting}_list`)
     list.textContent = `List`
     el.append(list)
-    let edit = DOM.create(`div`, `action`, `settings_${setting}_edit`)
+    let edit = DOM.create(`div`, cls, `settings_${setting}_edit`)
     edit.textContent = `Edit`
     el.append(edit)
 

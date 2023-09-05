@@ -557,10 +557,6 @@ svg {
   gap: 1rem;
 }
 
-.settings_addlist div {
-  text-decoration: underline;
-}
-
 .addlist_title {
   display: flex;
   font-size: 1.1rem;
