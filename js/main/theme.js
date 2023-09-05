@@ -662,7 +662,7 @@ App.add_to_background_pool = (url) => {
   let s = `background_pool`
   App.addlist_remove(s, url, true)
   let pool = App.get_setting(s)
-  pool.unshift(`${url} ; none ; none`)
+  pool.unshift({url: url, effect: `none`, tiles: `none`})
   App.set_setting(s, pool)
   App.show_feedback(`Added to background pool`)
 }

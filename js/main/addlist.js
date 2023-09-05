@@ -27,7 +27,10 @@ App.setup_addlist = () => {
 
       if (items.effect !== `none`) {
         let eff = App.get_background_effect(items.effect)
-        s += ` (${eff.text})`
+
+        if (eff) {
+          s += ` (${eff.text})`
+        }
       }
 
       if (items.tiles !== `none`) {
