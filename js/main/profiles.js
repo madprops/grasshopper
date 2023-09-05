@@ -247,7 +247,7 @@ App.show_profile_editor = (item, type, action = `edit`) => {
   let background_effect = `none`
   let background_tiles = `none`
 
-  if (items.length === 1 && profiles.length === 1) {
+  if (profiles.length) {
     DOM.el(`#profile_editor_remove`).classList.remove(`hidden`)
   }
   else {
@@ -382,6 +382,8 @@ App.get_empty_profile = (url) => {
     background_color: ``,
     text_color: ``,
     background_image: ``,
+    background_effect: `none`,
+    background_tiles: `none`,
   }
 }
 
@@ -1503,11 +1505,11 @@ App.set_profile_color = (value) => {
 }
 
 App.set_profile_background_effect = (value) => {
-  App.profile_menubutton_background_effect.set(value)
+  App.profile_menubutton_background_effect.set(value || `none`)
 }
 
 App.set_profile_background_tiles = (value) => {
-  App.profile_menubutton_background_tiles.set(value)
+  App.profile_menubutton_background_tiles.set(value || `none`)
 }
 
 App.profile_editor_left = () => {
@@ -1597,13 +1599,6 @@ App.get_edit_options = (item) => {
       text: `Edit`,
       action: () => {
         App.show_profile_editor(item, `all`)
-      }
-    })
-
-    items.push({
-      text: `Remove`,
-      action: () => {
-        App.remove_profiles([profile])
       }
     })
   }
