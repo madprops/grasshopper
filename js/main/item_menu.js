@@ -21,8 +21,8 @@ App.show_item_menu = async (item, x, y) => {
         some_unpinned = true
       }
 
-      if (it.pinned) {
-        some_pinned = true
+      if (it.muted) {
+        some_muted = true
       }
       else {
         some_unmuted = true
