@@ -132,7 +132,7 @@ App.addlist_values = (id) => {
   return values
 }
 
-App.addlist_save = (id) => {
+App.addlist_save = (id, force_use = false) => {
   let data = App.addlist_data
 
   if (data.edit) {
@@ -171,7 +171,7 @@ App.addlist_save = (id) => {
   let lines = App.get_setting(id)
   lines.splice(data.index, 0, line)
   App.after_addlist(id, lines)
-  App.addlist_use(false)
+  App.addlist_use(force_use)
 }
 
 App.addlist_register = (args = {}) => {
@@ -302,8 +302,7 @@ App.addlist_register = (args = {}) => {
   })
 
   DOM.ev(use, `click`, () => {
-    App.hide_addlist(false)
-    App.addlist_use()
+    App.addlist_check_use()
   })
 
   btns.append(remove)
@@ -424,16 +423,7 @@ App.addlist_enter = () => {
     return
   }
 
-  let data = App.addlist_data
-  let modified = App.addlist_modified(data.id)
-
-  if (data.use && !modified) {
-    App.hide_addlist()
-    App.addlist_use()
-  }
-  else {
-    App.addlist_save(data.id)
-  }
+  App.addlist_check_use()
 }
 
 App.addlist_left = () => {
@@ -508,6 +498,19 @@ App.addlist_use = (force = true) => {
     App.show_confirm(`Use this now?`, () => {
       data.use(App.addlist_values(data.id))
     }, undefined, force)
+  }
+}
+
+App.addlist_check_use = () => {
+  let data = App.addlist_data
+  let modified = App.addlist_modified(data.id)
+
+  if (modified) {
+    App.addlist_save(data.id, true)
+  }
+  else if (data.use) {
+    App.hide_addlist()
+    App.addlist_use()
   }
 }
 
