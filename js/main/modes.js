@@ -4,15 +4,15 @@ App.setup_modes = () => {
   }
 }
 
-App.show_mode_debouncer = App.create_debouncer((mode, cycle) => {
-  App.do_show_mode(mode, cycle)
+App.show_mode_debouncer = App.create_debouncer((mode, reuse_filter) => {
+  App.do_show_mode(mode, reuse_filter)
 }, App.show_mode_delay)
 
-App.show_mode = (mode, cycle) => {
-  App.show_mode_debouncer.call(mode, cycle)
+App.show_mode = (mode, reuse_filter) => {
+  App.show_mode_debouncer.call(mode, reuse_filter)
 }
 
-App.do_show_mode = async (mode, cycle = false, force = false) => {
+App.do_show_mode = async (mode, reuse_filter = false, force = false) => {
   let pre_show = App[`pre_show_${mode}`]
 
   if (pre_show) {
@@ -31,7 +31,7 @@ App.do_show_mode = async (mode, cycle = false, force = false) => {
     }
   }
 
-  let value = App.get_last_filter_value(cycle)
+  let value = App.get_last_filter_value(reuse_filter)
   App.active_mode = mode
   App.empty_footer_info()
   App.cancel_filter()
@@ -165,7 +165,7 @@ App.show_main_mode = () => {
   App.do_show_mode(App.mode_order[0])
 }
 
-App.cycle_modes = (reverse, cycle) => {
+App.cycle_modes = (reverse, reuse_filter = true) => {
   let modes = App.mode_order
   let index = modes.indexOf(App.window_mode)
   let new_mode
@@ -191,7 +191,7 @@ App.cycle_modes = (reverse, cycle) => {
     }
   }
 
-  App.show_mode(new_mode, cycle)
+  App.show_mode(new_mode, reuse_filter)
 }
 
 App.update_mode_order = () => {

@@ -159,7 +159,7 @@ App.check_items_keyboard = (e) => {
       return
     }
     else if (e.key === `Tab`) {
-      App.cycle_modes(true, true)
+      App.cycle_modes(true)
       e.preventDefault()
       return
     }
@@ -198,20 +198,20 @@ App.check_items_keyboard = (e) => {
     }
     else if (e.key === `ArrowLeft`) {
       if (!filter_focus) {
-        App.cycle_modes(true, true)
+        App.cycle_modes(true)
         e.preventDefault()
         return
       }
     }
     else if (e.key === `ArrowRight`) {
       if (!filter_focus) {
-        App.cycle_modes(false, true)
+        App.cycle_modes(false)
         e.preventDefault()
         return
       }
     }
     else if (e.key === `Tab`) {
-      App.cycle_modes(false, true)
+      App.cycle_modes(false)
       e.preventDefault()
       return
     }
