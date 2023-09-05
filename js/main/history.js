@@ -20,10 +20,10 @@ App.setup_history = () => {
 }
 
 App.history_time = (deep = false) => {
-  let months = App.history_max_months
+  let months = App.get_setting(`history_max_months`)
 
   if (deep) {
-    months = App.deep_history_max_months
+    months = App.get_setting(`deep_history_max_months`)
   }
 
   return Date.now() - (1000 * 60 * 60 * 24 * 30 * months)
@@ -32,10 +32,10 @@ App.history_time = (deep = false) => {
 App.get_history = async (query = ``, deep = false) => {
   App.getting(`history`)
   let results
-  let max_items = App.max_items
+  let max_items = App.get_setting(`max_items`)
 
   if (deep) {
-    max_items = App.deep_max_items
+    max_items = App.get_setting(`deep_max_items`)
   }
 
   try {

@@ -21,6 +21,7 @@ body, html {
 }
 
 input[type=text],
+input[type=number],
 textarea,
 select {
 	font-family: var(--font);
@@ -474,6 +475,13 @@ svg {
   flex-grow: 0;
   width: 15rem;
   max-width: 15rem;
+  text-align: center;
+}
+
+.settings_number {
+  flex-grow: 0;
+  width: 7rem;
+  max-width: 7rem;
   text-align: center;
 }
 

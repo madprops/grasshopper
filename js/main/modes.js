@@ -13,6 +13,10 @@ App.show_mode = (mode, reuse_filter) => {
 }
 
 App.do_show_mode = async (mode, reuse_filter = false, force = false) => {
+  if (!App.get_setting(`reuse_filter`)) {
+    reuse_filter = false
+  }
+
   let pre_show = App[`pre_show_${mode}`]
 
   if (pre_show) {

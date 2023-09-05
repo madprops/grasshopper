@@ -159,6 +159,11 @@ App.build_default_settings = () => {
   obj.smooth_scrolling = {value: true, category: category, version: 1}
   obj.sort_commands = {value: true, category: category, version: 1}
   obj.all_bookmarks = {value: true, category: category, version: 1}
+  obj.reuse_filter = {value: true, category: category, version: 1}
+  obj.max_items = {value: 500, category: category, version: 1}
+  obj.deep_max_items = {value: 5000, category: category, version: 1}
+  obj.history_max_months = {value: 18, category: category, version: 1}
+  obj.deep_history_max_months = {value: 54, category: category, version: 1}
 
   App.default_settings = obj
 }
@@ -166,13 +171,6 @@ App.build_default_settings = () => {
 App.settings_do_action = (what) => {
   if (what === `theme`) {
     App.apply_theme()
-  }
-  else if (what === `hostname_colors`) {
-    App.hostname_colors = {}
-  }
-  else if (what === `commands`) {
-    App.sort_commands()
-    App.fill_palette()
   }
 }
 
@@ -351,6 +349,61 @@ App.settings_setup_text = (container) => {
   }
 }
 
+App.settings_setup_number = (container) => {
+  let els = DOM.els(`.settings_number`, container)
+
+  for (let el of els) {
+    let setting = el.dataset.setting
+    let action = el.dataset.action
+    let value = App.get_setting(setting)
+    el.value = value
+
+    DOM.ev(el, `focus`, () => {
+      DOM.dataset(el, `modified`, false)
+    })
+
+    DOM.ev(el, `input`, () => {
+      DOM.dataset(el, `modified`, true)
+    })
+
+    DOM.ev(el, `blur`, () => {
+      if (!DOM.dataset(el, `modified`)) {
+        return
+      }
+
+      App.set_setting(setting, el.value)
+    })
+
+    let menu = [
+      {
+        name: `Reset`,  action: () => {
+          let force = App.check_setting_default(setting)
+
+          App.show_confirm(`Reset setting?`, () => {
+            App.set_default_setting(setting)
+            let value = App.get_setting(setting)
+            el.value = value
+            App.settings_do_action(action)
+          }, undefined, force)
+        },
+      },
+      {
+        name: `Copy`,  action: () => {
+          if (el.value === ``) {
+            return
+          }
+
+          App.copy_to_clipboard(el.value)
+        },
+      },
+    ]
+
+    DOM.evs(App.get_settings_label(setting), [`click`, `contextmenu`], (e) => {
+      App.settings_label_menu(e, menu)
+    })
+  }
+}
+
 App.add_settings_addlist = (container) => {
   let els = DOM.els(`.settings_addlist`, container)
 
@@ -486,6 +539,7 @@ App.setup_settings = () => {
     App.settings_setup_labels(container)
     App.settings_setup_checkboxes(container)
     App.settings_setup_text(container)
+    App.settings_setup_number(container)
     App.add_settings_addlist(container)
     App.add_settings_switchers(category)
     App.add_settings_filter(category)
