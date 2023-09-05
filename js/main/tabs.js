@@ -28,12 +28,12 @@ App.setup_tabs = () => {
       App.show_tab_urls()
     }},
 
-    {text: `Close Tabs`, get_items: () => {
-      return App.get_close_tabs_items()
-    }},
-
     {text: `Open Tabs`, action: () => {
       App.open_tabs()
+    }},
+
+    {text: `Close Tabs`, get_items: () => {
+      return App.get_close_tabs_items()
     }},
   ]
 
