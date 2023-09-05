@@ -839,6 +839,15 @@ App.clear_profiles_items = () => {
   let items = []
   let count = App.get_profile_count()
 
+  if (count.titles) {
+    items.push({
+      text: `${App.remove_text} Titles`,
+      action: () => {
+        App.remove_all_titles()
+      }
+    })
+  }
+
   if (count.tags) {
     items.push({
       text: `${App.remove_text} Tags`,
@@ -853,15 +862,6 @@ App.clear_profiles_items = () => {
       text: `${App.remove_text} Notes`,
       action: () => {
         App.remove_all_notes()
-      }
-    })
-  }
-
-  if (count.titles) {
-    items.push({
-      text: `${App.remove_text} Titles`,
-      action: () => {
-        App.remove_all_titles()
       }
     })
   }
@@ -1191,6 +1191,13 @@ App.get_edit_items = (item, multiple) => {
   items.push({separator: true})
 
   items.push({
+    text: `Edit Title`,
+    action: () => {
+      return App.show_profile_editor(item, `title`)
+    }
+  })
+
+  items.push({
     text: `Edit Tags`,
     action: () => {
       return App.show_profile_editor(item, `tags`)
@@ -1201,13 +1208,6 @@ App.get_edit_items = (item, multiple) => {
     text: `Edit Notes`,
     action: () => {
       return App.show_profile_editor(item, `notes`)
-    }
-  })
-
-  items.push({
-    text: `Edit Title`,
-    action: () => {
-      return App.show_profile_editor(item, `title`)
     }
   })
 

@@ -83,8 +83,13 @@
         </div>
 
         <div id="profile_editor_exact_container" class="editor_container flex_column_center gap_1" title="Match exact URL. Else it uses startsWith">
-          <div>Exact</div>
+          <div>Exact URL</div>
           <input type="checkbox" id="profile_editor_exact" class="settings_checkbox editor_input">
+        </div>
+
+        <div id="profile_editor_title_container" class="editor_container flex_column_center gap_1">
+          <div>Title</div>
+          <input type="text" autocomplete="off" spellcheck="false" id="profile_editor_title" class="text editor_text editor_input" placeholder="Set a fixed title">
         </div>
 
         <div id="profile_editor_tags_container" class="editor_container flex_column_center gap_1">
@@ -102,19 +107,14 @@
           <textarea autocomplete="off" spellcheck="false" id="profile_editor_notes" class="text editor_text editor_input" placeholder="Write something"></textarea>
         </div>
 
-        <div id="profile_editor_title_container" class="editor_container flex_column_center gap_1">
-          <div>Title</div>
-          <input type="text" autocomplete="off" spellcheck="false" id="profile_editor_title" class="text editor_text editor_input" placeholder="Set a fixed title">
+        <div id="profile_editor_icon_container" class="editor_container flex_column_center gap_1">
+          <div>Icon</div>
+          <input type="text" autocomplete="off" spellcheck="false" id="profile_editor_icon" class="text editor_text editor_text_smaller editor_input" placeholder="😃">
         </div>
 
         <div id="profile_editor_color_container" class="editor_container flex_column_center gap_1">
           <div>Color</div>
           <div id="profile_editor_color" class="settings_menu button editor_input"></div>
-        </div>
-
-        <div id="profile_editor_icon_container" class="editor_container flex_column_center gap_1">
-          <div>Icon</div>
-          <input type="text" autocomplete="off" spellcheck="false" id="profile_editor_icon" class="text editor_text editor_text_smaller editor_input">
         </div>
 
         <div id="profile_editor_theme_container" class="editor_container flex_column_center gap_2">
@@ -645,7 +645,7 @@
       <div id="settings_media_container" class="settings_container">
         <div class="settings_item" title="Icon to show on image media">
           <div class="settings_label">Image Icon</div>
-          <input type="text" autocomplete="off" spellcheck="false" id="settings_image_icon" class="text settings_text text_smaller" data-setting="image_icon">
+          <input type="text" autocomplete="off" spellcheck="false" id="settings_image_icon" class="text settings_text text_smaller" data-setting="image_icon" placeholder="😃">
         </div>
 
         <div class="settings_item" title="How to view image media">
@@ -670,7 +670,7 @@
 
         <div class="settings_item" title="Icon to show on video media">
           <div class="settings_label">Video Icon</div>
-          <input type="text" autocomplete="off" spellcheck="false" id="settings_video_icon" class="text settings_text text_smaller" data-setting="video_icon">
+          <input type="text" autocomplete="off" spellcheck="false" id="settings_video_icon" class="text settings_text text_smaller" data-setting="video_icon" placeholder="😃">
         </div>
 
         <div class="settings_item" title="How to view video media">
@@ -695,7 +695,7 @@
 
         <div class="settings_item" title="Icon to show on audio media">
           <div class="settings_label">Audio Icon</div>
-          <input type="text" autocomplete="off" spellcheck="false" id="settings_audio_icon" class="text settings_text text_smaller" data-setting="audio_icon">
+          <input type="text" autocomplete="off" spellcheck="false" id="settings_audio_icon" class="text settings_text text_smaller" data-setting="audio_icon" placeholder="😃">
         </div>
 
         <div class="settings_item" title="How to view audio media">
@@ -724,42 +724,42 @@
       <div id="settings_show_container" class="settings_container">
         <div class="settings_item" title="Icon to show on pinned tabs">
           <div class="settings_label">Pin Icon</div>
-          <input type="text" autocomplete="off" spellcheck="false" id="settings_pin_icon" class="text settings_text text_smaller" data-setting="pin_icon">
+          <input type="text" autocomplete="off" spellcheck="false" id="settings_pin_icon" class="text settings_text text_smaller" data-setting="pin_icon" placeholder="😃">
         </div>
 
         <div class="settings_item" title="Icon to show on normal tabs">
           <div class="settings_label">Normal Icon</div>
-          <input type="text" autocomplete="off" spellcheck="false" id="settings_normal_icon" class="text settings_text text_smaller" data-setting="normal_icon">
+          <input type="text" autocomplete="off" spellcheck="false" id="settings_normal_icon" class="text settings_text text_smaller" data-setting="normal_icon" placeholder="😃">
         </div>
 
         <div class="settings_item" title="Icon to show on playing tabs">
           <div class="settings_label">Playing Icon</div>
-          <input type="text" autocomplete="off" spellcheck="false" id="settings_playing_icon" class="text settings_text text_smaller" data-setting="playing_icon">
+          <input type="text" autocomplete="off" spellcheck="false" id="settings_playing_icon" class="text settings_text text_smaller" data-setting="playing_icon" placeholder="😃">
         </div>
 
         <div class="settings_item" title="Icon to show on muted tabs">
           <div class="settings_label">Muted Icon</div>
-          <input type="text" autocomplete="off" spellcheck="false" id="settings_muted_icon" class="text settings_text text_smaller" data-setting="muted_icon">
+          <input type="text" autocomplete="off" spellcheck="false" id="settings_muted_icon" class="text settings_text text_smaller" data-setting="muted_icon" placeholder="😃">
         </div>
 
         <div class="settings_item" title="Icon to show on unloaded tabs">
           <div class="settings_label">Unloaded Icon</div>
-          <input type="text" autocomplete="off" spellcheck="false" id="settings_unloaded_icon" class="text settings_text text_smaller" data-setting="unloaded_icon">
+          <input type="text" autocomplete="off" spellcheck="false" id="settings_unloaded_icon" class="text settings_text text_smaller" data-setting="unloaded_icon" placeholder="😃">
         </div>
 
         <div class="settings_item" title="Icon to show on close operations">
           <div class="settings_label">Close Icon</div>
-          <input type="text" autocomplete="off" spellcheck="false" id="settings_close_icon" class="text settings_text text_smaller" data-setting="close_icon">
+          <input type="text" autocomplete="off" spellcheck="false" id="settings_close_icon" class="text settings_text text_smaller" data-setting="close_icon" placeholder="😃">
         </div>
 
         <div class="settings_item" title="Icon to show on open operations">
           <div class="settings_label">Open Icon</div>
-          <input type="text" autocomplete="off" spellcheck="false" id="settings_open_icon" class="text settings_text text_smaller" data-setting="open_icon">
+          <input type="text" autocomplete="off" spellcheck="false" id="settings_open_icon" class="text settings_text text_smaller" data-setting="open_icon" placeholder="😃">
         </div>
 
         <div class="settings_item" title="Icon to show on the pick button">
           <div class="settings_label">Pick Icon</div>
-          <input type="text" autocomplete="off" spellcheck="false" id="settings_pick_icon" class="text settings_text text_smaller" data-setting="pick_icon">
+          <input type="text" autocomplete="off" spellcheck="false" id="settings_pick_icon" class="text settings_text text_smaller" data-setting="pick_icon" placeholder="😃">
         </div>
 
         <div class="settings_item" title="Show a line between pinned and normal tabs">
