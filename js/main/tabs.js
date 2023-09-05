@@ -397,9 +397,13 @@ App.unpin_tabs = (item) => {
     return
   }
 
-  for (let id of ids) {
-    App.unpin_tab(id)
-  }
+  let force = App.check_force(`warn_on_unpin_tabs`, ids.length, true)
+
+  App.show_confirm(`Unpin items? (${ids.length})`, async () => {
+    for (let id of ids) {
+      App.unpin_tab(id)
+    }
+  }, undefined, force)
 }
 
 App.unload_tabs = (item, multiple = true) => {
