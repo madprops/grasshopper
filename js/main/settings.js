@@ -32,8 +32,8 @@ App.build_default_settings = () => {
   ], category: category, version: 3}
 
   category = `theme`
-  obj.background_color = {value: `rgb(45, 45, 55)`, category: category, version: 1}
-  obj.text_color = {value: `rgb(233, 233, 233)`, category: category, version: 1}
+  obj.background_color = {value: App.dark_theme.background, category: category, version: 1}
+  obj.text_color = {value: App.dark_theme.text, category: category, version: 1}
   obj.background_image = {value: `waves.jpg`, category: category, version: 1}
   obj.background_effect = {value: `none`, category: category, version: 1}
   obj.background_tiles = {value: `none`, category: category, version: 1}

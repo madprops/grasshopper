@@ -241,10 +241,10 @@ App.setup_commands = () => {
     {name: App.separator_string},
 
     {name: `Dark Theme`, cmd: `dark_theme`, icon: themeicon, action: (args) => {
-      App.dark_theme()
+      App.set_dark_theme()
     }},
     {name: `Light Theme`, cmd: `light_theme`, icon: themeicon, action: (args) => {
-      App.light_theme()
+      App.set_light_theme()
     }},
     {name: `${App.random_text} Theme`, cmd: `random_theme`, icon: themeicon, action: (args) => {
       App.random_theme()

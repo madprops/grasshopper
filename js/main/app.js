@@ -100,12 +100,12 @@ App.clipboard_icon = `📋`
 App.bot_icon = `🤖`
 App.shuffle_icon = `🔀`
 
-App.dark_theme_colors = {
+App.dark_theme = {
   background: `rgb(45, 45, 55)`,
   text: `rgb(233, 233, 233)`,
 }
 
-App.light_theme_colors = {
+App.light_theme = {
   background: `rgb(200, 200, 200)`,
   text: `rgb(50, 50, 55)`,
 }
