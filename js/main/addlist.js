@@ -5,6 +5,17 @@ App.setup_addlist = () => {
     App.hide_addlist()
   }
 
+  function cmd_name (cmd) {
+    let c = App.get_command(cmd)
+
+    if (c) {
+      return c.name
+    }
+    else {
+      return `None`
+    }
+  }
+
   let id = `background_pool`
 
   App.create_popup({
@@ -54,7 +65,7 @@ App.setup_addlist = () => {
     widgets: [`select`], labels: [`Command`], title: `Extra Menu`,
     sources: [App.addlist_commands.slice(0)],
     keys: [`cmd`], list_text: (items) => {
-      return App.get_command(items.cmd).name
+      return cmd_name(items.cmd)
     }}), on_hide: on_hide
   })
 
@@ -65,7 +76,7 @@ App.setup_addlist = () => {
     widgets: [`select`], labels: [`Command`], title: `Pinline Menu`,
     sources: [App.addlist_commands.slice(0)],
     keys: [`cmd`], list_text: (items) => {
-      return App.get_command(items.cmd).name
+      return cmd_name(items.cmd)
     }}), on_hide: on_hide
   })
 
@@ -76,7 +87,7 @@ App.setup_addlist = () => {
     widgets: [`select`], labels: [`Command`], title: `Empty Menu`,
     sources: [App.addlist_commands.slice(0)],
     keys: [`cmd`], list_text: (items) => {
-      return App.get_command(items.cmd).name
+      return cmd_name(items.cmd)
     }}), on_hide: on_hide
   })
 
@@ -87,7 +98,7 @@ App.setup_addlist = () => {
     widgets: [`select`], labels: [`Command`], title: `Footer Menu`,
     sources: [App.addlist_commands.slice(0)],
     keys: [`cmd`], list_text: (items) => {
-      return App.get_command(items.cmd).name
+      return cmd_name(items.cmd)
     }}), on_hide: on_hide
   })
 
@@ -99,7 +110,7 @@ App.setup_addlist = () => {
     labels: [`Key`, `Command`, `Require Ctrl`, `Require Shift`, `Require Alt`], title: `Keyboard Shortcuts`,
     sources: [undefined, App.addlist_commands.slice(0), true, false, false],
     keys: [`key`, `cmd`, `ctrl`, `shift`, `alt`], list_text: (items) => {
-      let cmd = App.get_command(items.cmd).name
+      let cmd = cmd_name(items.cmd)
       return `${items.key} = ${cmd}`
     }}), on_hide: on_hide
   })
