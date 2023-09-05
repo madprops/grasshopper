@@ -223,7 +223,7 @@ App.common_menu_items = (o_items, item, multiple) => {
     })
   }
 
-  if (items.length > 0) {
+  if (items.length) {
     for (let c of items) {
       o_items.push(c)
     }
@@ -278,7 +278,7 @@ App.more_menu_items = (o_items, item, multiple, some_loaded) => {
   }
 
   if (item.mode === `tabs`) {
-    if (items.length > 0) {
+    if (items.length) {
       items.push({
         separator: true
       })
@@ -315,7 +315,7 @@ App.more_menu_items = (o_items, item, multiple, some_loaded) => {
     })
   }
 
-  if (items.length > 0) {
+  if (items.length) {
     o_items.push({
       text: `More`,
       items: items,
@@ -326,7 +326,7 @@ App.more_menu_items = (o_items, item, multiple, some_loaded) => {
 App.extra_menu_items = (o_items) => {
   let items = App.custom_menu_items(`extra`)
 
-  if (items.length > 0) {
+  if (items.length) {
     o_items.push({
       text: `Extra`,
       items: items,

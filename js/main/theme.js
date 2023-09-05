@@ -527,7 +527,7 @@ App.background_from_pool = (random = false) => {
   if (random) {
     let choices = images.filter(x => x !== bi)
 
-    if (choices.length > 0) {
+    if (choices.length) {
       next_image = App.random_choice(choices)
     }
   }

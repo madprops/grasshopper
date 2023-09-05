@@ -28,7 +28,7 @@ App.do_show_mode = async (mode, reuse_filter = false, force = false) => {
 
   if (!force) {
     if ((App.active_mode === mode) &&
-    (App[`${mode}_items`].length > 0) &&
+    (App[`${mode}_items`].length) &&
     !was_filtered && !App[`${mode}_changed`]) {
       App.select_first_item(mode, true)
       return
@@ -51,7 +51,7 @@ App.do_show_mode = async (mode, reuse_filter = false, force = false) => {
   let items
 
   if (persistent) {
-    if (App[`${mode}_items`].length > 0) {
+    if (App[`${mode}_items`].length) {
       items = App[`${mode}_items`]
       items_ready = true
     }
@@ -60,7 +60,7 @@ App.do_show_mode = async (mode, reuse_filter = false, force = false) => {
   // Clear inactive items
   for (let m of App.modes) {
     if (App.persistent_modes.includes(m)) {
-      if (App[`${m}_items`].length > 0) {
+      if (App[`${m}_items`].length) {
         continue
       }
     }

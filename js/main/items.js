@@ -689,7 +689,7 @@ App.set_item_text = (item) => {
     let status = DOM.el(`.item_status`, item.element)
     status.innerHTML = ``
 
-    if (icons.length > 0) {
+    if (icons.length) {
       for (let icon of icons) {
         let cls = ``
 

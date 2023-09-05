@@ -22,7 +22,7 @@ App.hide_playing = (mode) => {
 App.check_playing = (mode = App.active_mode) => {
   let playing = App.get_playing_tabs()
 
-  if (playing.length > 0) {
+  if (playing.length) {
     App.show_playing(mode)
   }
   else {

@@ -800,7 +800,7 @@ App.show_filter_history = (e, mode) => {
     })
   }
 
-  if (items.length > 0) {
+  if (items.length) {
     items.push({separator: true})
 
     items.push({

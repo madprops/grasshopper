@@ -224,7 +224,7 @@ App.settings_setup_labels = (container) => {
       btns.push([`settings_${item.dataset.id}_shuffle`, App.shuffle_icon, item.dataset.shuffle])
     }
 
-    if (btns.length > 0) {
+    if (btns.length) {
       proc(item, btns)
     }
   }
