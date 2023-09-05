@@ -99,7 +99,8 @@ App.setup_addlist = () => {
     labels: [`Key`, `Command`, `Require Ctrl`, `Require Shift`, `Require Alt`], title: `Keyboard Shortcuts`,
     sources: [undefined, App.addlist_commands.slice(0), true, false, false],
     keys: [`key`, `cmd`, `ctrl`, `shift`, `alt`], list_text: (items) => {
-      return `${items.key} = ${items.cmd}`
+      let cmd = App.get_command(items.cmd).name
+      return `${items.key} = ${cmd}`
     }}), on_hide: on_hide
   })
 }
