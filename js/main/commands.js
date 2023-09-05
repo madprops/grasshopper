@@ -129,6 +129,9 @@ App.setup_commands = () => {
     {name: `Unload Single`, cmd: `unload_single`, mode: `tabs`, icon: tabicon, action: (args) => {
       App.unload_tabs(args.item, false)
     }},
+    {name: `Load`, cmd: `load`, mode: `tabs`, icon: tabicon, action: (args) => {
+      App.load_tabs(args.item)
+    }},
     {name: `Duplicate`, cmd: `duplicate`, mode: `tabs`, icon: tabicon, action: (args) => {
       App.duplicate_tabs(args.item)
     }},
