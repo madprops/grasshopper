@@ -25,9 +25,9 @@ App.show_item_menu = async (item, x, y) => {
 
     if (some_unloaded) {
       items.push({
-        text: `Wake`,
+        text: `Load`,
         action: () => {
-          App.wake_tabs(item)
+          App.load_tabs(item)
         }
       })
     }

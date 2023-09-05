@@ -134,7 +134,7 @@ App.build_default_settings = () => {
   obj.warn_on_color = {value: true, category: category, version: 1}
   obj.warn_on_pin_tabs = {value: true, category: category, version: 1}
   obj.warn_on_unpin_tabs = {value: true, category: category, version: 1}
-  obj.warn_on_wake_tabs = {value: true, category: category, version: 1}
+  obj.warn_on_load_tabs = {value: true, category: category, version: 1}
 
   category = `colors`
   obj.color_red = {value: `rgba(172, 59, 59, 0.44)`, category: category, version: 1}

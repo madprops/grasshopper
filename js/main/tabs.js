@@ -1275,7 +1275,7 @@ App.open_tabs = () => {
   })
 }
 
-App.wake_tabs = (item) => {
+App.load_tabs = (item) => {
   let items = []
 
   for (let it of App.get_active_items(`tabs`, item)) {
@@ -1290,11 +1290,11 @@ App.wake_tabs = (item) => {
     return
   }
 
-  let force = App.check_force(`warn_on_wake_tabs`, items.length, true)
+  let force = App.check_force(`warn_on_load_tabs`, items.length, true)
 
-  App.show_confirm(`Wake items? (${items.length})`, async () => {
+  App.show_confirm(`Load items? (${items.length})`, async () => {
     for (let it of items) {
-      App.focus_tab(it, `none`, `wake`)
+      App.focus_tab(it, `none`, `load`)
     }
   }, undefined, force)
 }

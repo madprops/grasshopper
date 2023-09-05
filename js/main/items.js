@@ -1120,7 +1120,7 @@ App.selected_items = (mode = App.window_mode) => {
 }
 
 App.after_focus = (method = `normal`) => {
-  if (method === `wake`) {
+  if (method === `load`) {
     return
   }
 
