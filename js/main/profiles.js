@@ -375,7 +375,7 @@ App.get_empty_profile = (url) => {
     tags: [],
     notes: ``,
     title: ``,
-    color: ``,
+    color: `none`,
     icon: ``,
     exact: false,
     theme_enabled: false,
@@ -1499,7 +1499,7 @@ App.profile_make_menu = (prop, opts) => {
 }
 
 App.set_profile_color = (value) => {
-  App.profile_menubutton_color.set(value)
+  App.profile_menubutton_color.set(value || `none`)
 }
 
 App.set_profile_background_effect = (value) => {
