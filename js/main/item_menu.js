@@ -6,24 +6,33 @@ App.show_item_menu = async (item, x, y) => {
   let items = []
 
   if (item.mode === `tabs`) {
-    let some_loaded = false
-    let some_unloaded = false
+    let some_pinned = false
+    let some_unpinned = false
     let some_muted = false
     let some_unmuted = false
+    let some_loaded = false
+    let some_unloaded = false
 
     for (let it of active) {
+      if (it.pinned) {
+        some_pinned = true
+      }
+      else {
+        some_unpinned = true
+      }
+
+      if (it.pinned) {
+        some_pinned = true
+      }
+      else {
+        some_unmuted = true
+      }
+
       if (it.discarded) {
         some_unloaded = true
       }
       else {
         some_loaded = true
-      }
-
-      if (it.muted) {
-        some_muted = true
-      }
-      else {
-        some_unmuted = true
       }
     }
 
@@ -36,20 +45,20 @@ App.show_item_menu = async (item, x, y) => {
       })
     }
 
-    if (item.pinned && some_loaded) {
-      items.push({
-        text: `Unpin`,
-        action: () => {
-          App.unpin_tabs(item)
-        }
-      })
-    }
-
-    if (!item.pinned && some_loaded) {
+    if (some_unpinned) {
       items.push({
         text: `Pin`,
         action: () => {
           App.pin_tabs(item)
+        }
+      })
+    }
+
+    if (some_pinned) {
+      items.push({
+        text: `Unpin`,
+        action: () => {
+          App.unpin_tabs(item)
         }
       })
     }
