@@ -158,7 +158,7 @@ App.get_profile_items = (item) => {
   let active = App.get_active_items(item.mode, item)
   active = App.remove_duplicates(active)
 
-  if (active.length === 0) {
+  if (!active.length) {
     return
   }
 
@@ -426,7 +426,7 @@ App.get_input_tags = () => {
 App.profile_editor_save = () => {
   let items = App.profile_editor_items
 
-  if (items.length === 0) {
+  if (!items.length) {
     return
   }
 
@@ -578,13 +578,13 @@ App.profile_editor_remove = () => {
 }
 
 App.remove_profiles = (items) => {
-  if (items.length === 0) {
+  if (!items.length) {
     return
   }
 
   let [profiles, added] = App.get_profiles(items)
 
-  if (profiles.length === 0) {
+  if (!profiles.length) {
     return
   }
 
@@ -914,11 +914,11 @@ App.remove_color = (color) => {
     }
   }
 
-  if (profiles.length === 0) {
+  if (!profiles.length) {
     return
   }
 
-  if (profiles.length === 0) {
+  if (!profiles.length) {
     App.show_alert(`No profiles found`)
     return
   }
@@ -941,7 +941,7 @@ App.remove_all_colors = () => {
     }
   }
 
-  if (profiles.length === 0) {
+  if (!profiles.length) {
     return
   }
 
@@ -963,7 +963,7 @@ App.remove_all_themes = () => {
     }
   }
 
-  if (profiles.length === 0) {
+  if (!profiles.length) {
     return
   }
 
@@ -988,7 +988,7 @@ App.remove_all_notes = () => {
     }
   }
 
-  if (profiles.length === 0) {
+  if (!profiles.length) {
     return
   }
 
@@ -1010,7 +1010,7 @@ App.remove_all_titles = () => {
     }
   }
 
-  if (profiles.length === 0) {
+  if (!profiles.length) {
     return
   }
 
@@ -1032,7 +1032,7 @@ App.remove_all_icons = () => {
     }
   }
 
-  if (profiles.length === 0) {
+  if (!profiles.length) {
     return
   }
 
@@ -1060,7 +1060,7 @@ App.remove_tag = (name) => {
 App.remove_all_tags = () => {
   let tags = App.get_tags()
 
-  if (tags.length === 0) {
+  if (!tags.length) {
     return
   }
 
@@ -1074,7 +1074,7 @@ App.remove_all_tags = () => {
 }
 
 App.remove_all_profiles = () => {
-  if (App.profiles.length === 0) {
+  if (!App.profiles.length) {
     return
   }
 
@@ -1286,7 +1286,7 @@ App.show_tag_picker = (e) => {
     }
   }
 
-  if (items.length === 0) {
+  if (!items.length) {
     items.push({
       text: `No tags to add`,
       action: () => {

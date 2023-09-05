@@ -23,7 +23,7 @@ App.create_actions_menu = (mode) => {
 }
 
 App.show_actions_menu = (mode) => {
-  if (App[`${mode}_actions`].length === 0) {
+  if (!App[`${mode}_actions`].length) {
     return
   }
 

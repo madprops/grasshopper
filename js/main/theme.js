@@ -495,7 +495,7 @@ App.get_color_type = (rand, inverse = false) => {
     types.push(`light`)
   }
 
-  if (types.length === 0) {
+  if (!types.length) {
     return
   }
 
@@ -519,7 +519,7 @@ App.background_from_pool = (random = false) => {
   let waypoint = false
   let images = App.get_setting(`background_pool`)
 
-  if (images.length === 0) {
+  if (!images.length) {
     App.show_feedback(`The background pool is empty`)
     return
   }

@@ -59,7 +59,7 @@ App.select_next = (mode, dir) => {
   let waypoint = false
   let items = App.get_items(mode).slice(0)
 
-  if (items.length === 0) {
+  if (!items.length) {
     return
   }
 
@@ -89,7 +89,7 @@ App.select_next = (mode, dir) => {
 App.select_to_edge = (mode, dir) => {
   let items = App.get_items(mode).slice(0)
 
-  if (items.length === 0) {
+  if (!items.length) {
     return
   }
 

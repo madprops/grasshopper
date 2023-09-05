@@ -152,7 +152,7 @@ App.bookmark_items = async (item, active, feedback = true) => {
     }
   }
 
-  if (add.length === 0 && bump.length === 0) {
+  if (!add.length && !bump.length) {
     return
   }
 
