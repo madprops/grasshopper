@@ -868,20 +868,20 @@ App.clear_profiles_items = () => {
     })
   }
 
-  if (count.colors) {
-    items.push({
-      text: `${App.remove_text} Colors`,
-      get_items: () => {
-        return App.get_color_items(App.active_mode, `remove`)
-      }
-    })
-  }
-
   if (count.icons) {
     items.push({
       text: `${App.remove_text} Icons`,
       action: () => {
         App.remove_all_icons()
+      }
+    })
+  }
+
+  if (count.colors) {
+    items.push({
+      text: `${App.remove_text} Colors`,
+      get_items: () => {
+        return App.get_color_items(App.active_mode, `remove`)
       }
     })
   }
@@ -1214,6 +1214,13 @@ App.get_edit_items = (item, multiple) => {
   })
 
   items.push({
+    text: `Edit Icon`,
+    action: () => {
+      return App.show_profile_editor(item, `icon`)
+    }
+  })
+
+  items.push({
     text: `Edit Color`,
     action: () => {
       return App.show_profile_editor(item, `color`)
@@ -1224,13 +1231,6 @@ App.get_edit_items = (item, multiple) => {
     text: `Edit Theme`,
     action: () => {
       return App.show_profile_editor(item, `theme`)
-    }
-  })
-
-  items.push({
-    text: `Edit Icon`,
-    action: () => {
-      return App.show_profile_editor(item, `icon`)
     }
   })
 
