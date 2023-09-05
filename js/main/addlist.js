@@ -10,21 +10,41 @@ App.setup_addlist = () => {
   App.create_popup({
     id: `addlist_${id}`, element: App.addlist_register({id: id, pk: `url`,
     widgets: [`text`, `select`, `select`], labels: [`Image URL`, `Effect`, `Tiles`], title: `BG Pool`, image: 0,
-    sources: [undefined, App.background_effects, App.background_tiles], keys: [`url`, `effect`, `tiles`]}), on_hide: on_hide
+    sources: [undefined, App.background_effects, App.background_tiles],
+    keys: [`url`, `effect`, `tiles`], list_text: (items) => {
+      let s = items.url
+
+      if (items.effect !== `none`) {
+        let eff = App.get_background_effect(items.effect)
+        s += ` (${eff.text})`
+      }
+
+      if (items.tiles !== `none`) {
+        s += ` (Tiled)`
+      }
+
+      return s
+    }}), on_hide: on_hide
   })
 
   id = `custom_filters`
 
   App.create_popup({
     id: `addlist_${id}`, element: App.addlist_register({id: id, pk: `filter`,
-    widgets: [`text`], labels: [`Filter`], title: `Custom Filters`, keys: [`filter`]}), on_hide: on_hide
+    widgets: [`text`], labels: [`Filter`], title: `Custom Filters`,
+    keys: [`filter`], list_text: (items) => {
+      return items.filter
+    }}), on_hide: on_hide
   })
 
   id = `aliases`
 
   App.create_popup({
     id: `addlist_${id}`, element: App.addlist_register({id: id, pk: `a`,
-    widgets: [`text`, `text`], labels: [`Term A`, `Term B`], title: `Aliases`, keys: [`a`, `b`]}), on_hide: on_hide
+    widgets: [`text`, `text`], labels: [`Term A`, `Term B`], title: `Aliases`,
+    keys: [`a`, `b`], list_text: (items) => {
+      return `${items.a} = ${items.b}`
+    }}), on_hide: on_hide
   })
 
   id = `extra_menu`
@@ -32,7 +52,10 @@ App.setup_addlist = () => {
   App.create_popup({
     id: `addlist_${id}`, element: App.addlist_register({id: id, pk: `cmd`,
     widgets: [`select`], labels: [`Command`], title: `Extra Menu`,
-    sources: [App.addlist_commands.slice(0)], keys: [`cmd`]}), on_hide: on_hide
+    sources: [App.addlist_commands.slice(0)],
+    keys: [`cmd`], list_text: (items) => {
+      return App.get_command(items.cmd).name
+    }}), on_hide: on_hide
   })
 
   id = `pinline_menu`
@@ -40,7 +63,10 @@ App.setup_addlist = () => {
   App.create_popup({
     id: `addlist_${id}`, element: App.addlist_register({id: id, pk: `cmd`,
     widgets: [`select`], labels: [`Command`], title: `Pinline Menu`,
-    sources: [App.addlist_commands.slice(0)], keys: [`cmd`]}), on_hide: on_hide
+    sources: [App.addlist_commands.slice(0)],
+    keys: [`cmd`], list_text: (items) => {
+      return App.get_command(items.cmd).name
+    }}), on_hide: on_hide
   })
 
   id = `empty_menu`
@@ -48,7 +74,10 @@ App.setup_addlist = () => {
   App.create_popup({
     id: `addlist_${id}`, element: App.addlist_register({id: id, pk: `cmd`,
     widgets: [`select`], labels: [`Command`], title: `Empty Menu`,
-    sources: [App.addlist_commands.slice(0)], keys: [`cmd`]}), on_hide: on_hide
+    sources: [App.addlist_commands.slice(0)],
+    keys: [`cmd`], list_text: (items) => {
+      return App.get_command(items.cmd).name
+    }}), on_hide: on_hide
   })
 
   id = `footer_menu`
@@ -56,7 +85,10 @@ App.setup_addlist = () => {
   App.create_popup({
     id: `addlist_${id}`, element: App.addlist_register({id: id, pk: `cmd`,
     widgets: [`select`], labels: [`Command`], title: `Footer Menu`,
-    sources: [App.addlist_commands.slice(0)], keys: [`cmd`]}), on_hide: on_hide
+    sources: [App.addlist_commands.slice(0)],
+    keys: [`cmd`], list_text: (items) => {
+      return App.get_command(items.cmd).name
+    }}), on_hide: on_hide
   })
 
   id = `keyboard_shortcuts`
@@ -66,7 +98,9 @@ App.setup_addlist = () => {
     widgets: [`key`, `select`, `checkbox`, `checkbox`, `checkbox`],
     labels: [`Key`, `Command`, `Require Ctrl`, `Require Shift`, `Require Alt`], title: `Keyboard Shortcuts`,
     sources: [undefined, App.addlist_commands.slice(0), true, false, false],
-    keys: [`key`, `cmd`, `ctrl`, `shift`, `alt`]}), on_hide: on_hide
+    keys: [`key`, `cmd`, `ctrl`, `shift`, `alt`], list_text: (items) => {
+      return `${items.key} = ${items.cmd}`
+    }}), on_hide: on_hide
   })
 }
 
@@ -694,16 +728,13 @@ App.addlist_list = (args) => {
   }
 
   let items = []
+  let oargs = App.addlist_oargs(args.id)
 
   for (let [i, line] of lines.entries()) {
-    let values = []
-
-    for (let key in line) {
-      values.push(line[key])
-    }
+    let title = oargs.list_text(line)
 
     items.push({
-      text: values.join(` `),
+      text: title,
       action: () => {
         App.addlist_view({id: args.id, index: i, use: args.use})
       }

@@ -1367,3 +1367,13 @@ App.settings_actions = (category) => {
   let btn = DOM.el(`#settings_actions_${category}`)
   NeedContext.show_on_element(btn, items, true, btn.clientHeight)
 }
+
+App.get_background_effect = (value) => {
+  for (let key in App.background_effects) {
+    let eff = App.background_effects[key]
+
+    if (eff.value === value) {
+      return eff
+    }
+  }
+}
