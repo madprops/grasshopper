@@ -371,7 +371,13 @@ App.settings_setup_number = (container) => {
         return
       }
 
-      App.set_setting(setting, el.value)
+      let value = parseInt(el.value)
+
+      if (isNaN(value)) {
+        return
+      }
+
+      App.set_setting(setting, value)
     })
 
     let menu = [
