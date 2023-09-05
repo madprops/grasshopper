@@ -369,7 +369,7 @@ App.pin_tabs = (item) => {
     ids.push(it.id)
   }
 
-  if (ids.length === 0) {
+  if (!ids.length) {
     return
   }
 
@@ -393,7 +393,7 @@ App.unpin_tabs = (item) => {
     ids.push(it.id)
   }
 
-  if (ids.length === 0) {
+  if (!ids.length) {
     return
   }
 
@@ -422,7 +422,7 @@ App.unload_tabs = (item, multiple = true) => {
     items.push(it)
   }
 
-  if (items.length === 0) {
+  if (!items.length) {
     return
   }
 
@@ -491,7 +491,7 @@ App.close_tabs = (item, multiple = true) => {
   let force = App.check_tab_force(`warn_on_close_tabs`, items)
   let ids = items.map(x => x.id)
 
-  if (ids.length === 0) {
+  if (!ids.length) {
     return
   }
 
@@ -509,15 +509,47 @@ App.do_close_tabs = (ids) => {
 }
 
 App.mute_tabs = (item) => {
+  let ids = []
+
   for (let it of App.get_active_items(`tabs`, item)) {
-    App.mute_tab(it.id)
+    if (!it.muted) {
+      ids.push(it.id)
+    }
   }
+
+  if (!ids.length) {
+    return
+  }
+
+  let force = App.check_force(`warn_on_mute_tabs`, ids.length, true)
+
+  App.show_confirm(`Mute items? (${ids.length})`, async () => {
+    for (let id of ids) {
+      App.mute_tab(id)
+    }
+  }, undefined, force)
 }
 
 App.unmute_tabs = (item) => {
+  let ids = []
+
   for (let it of App.get_active_items(`tabs`, item)) {
-    App.unmute_tab(it.id)
+    if (it.muted) {
+      ids.push(it.id)
+    }
   }
+
+  if (!ids.length) {
+    return
+  }
+
+  let force = App.check_force(`warn_on_unmute_tabs`, ids.length, true)
+
+  App.show_confirm(`Unmute items? (${ids.length})`, async () => {
+    for (let id of ids) {
+      App.unmute_tab(id)
+    }
+  }, undefined, force)
 }
 
 App.show_tabs_info = () => {
@@ -588,7 +620,7 @@ App.toggle_pin_tabs = (item) => {
     ids.push(it.id)
   }
 
-  if (ids.length === 0) {
+  if (!ids.length) {
     return
   }
 
@@ -630,7 +662,7 @@ App.toggle_mute_tabs = (item) => {
     ids.push(it.id)
   }
 
-  if (ids.length === 0) {
+  if (!ids.length) {
     return
   }
 
@@ -770,7 +802,7 @@ App.do_close_normal_tabs = (close_unloaded = true) => {
     }
   }
 
-  if (ids.length === 0) {
+  if (!ids.length) {
     App.show_alert(`Nothing to close`)
     return
   }
@@ -792,7 +824,7 @@ App.close_unloaded_tabs = () => {
     }
   }
 
-  if (ids.length === 0) {
+  if (!ids.length) {
     App.show_alert(`Nothing to close`)
     return
   }
@@ -807,7 +839,7 @@ App.close_unloaded_tabs = () => {
 App.close_visible_tabs = () => {
   let ids = App.get_visible(`tabs`).map(x => x.id)
 
-  if (ids.length === 0) {
+  if (!ids.length) {
     App.show_alert(`Nothing to close`)
     return
   }
@@ -843,7 +875,7 @@ App.get_previous_tabs = async () => {
 }
 
 App.go_to_previous_tab = async () => {
-  if (App.previous_tabs.length === 0) {
+  if (!App.previous_tabs.length) {
     await App.get_previous_tabs()
   }
 
@@ -911,7 +943,7 @@ App.do_close_duplicate_tabs = (close_pins = true) => {
 
   let ids = excess.map(x => x.id)
 
-  if (ids.length === 0) {
+  if (!ids.length) {
     App.show_alert(`No duplicates found`)
     return
   }
@@ -1286,7 +1318,7 @@ App.load_tabs = (item) => {
     items.push(it)
   }
 
-  if (items.length === 0) {
+  if (!items.length) {
     return
   }
 

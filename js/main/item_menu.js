@@ -10,15 +10,30 @@ App.show_item_menu = async (item, x, y) => {
     let some_unloaded = false
 
     for (let it of active) {
-      if (!it.discarded) {
-        some_loaded = true
-      }
-
       if (it.discarded) {
         some_unloaded = true
       }
+      else {
+        some_loaded = true
+      }
 
       if (some_loaded && some_unloaded) {
+        break
+      }
+    }
+
+    let some_muted = false
+    let some_unmuted = false
+
+    for (let it of active) {
+      if (it.muted) {
+        some_muted = true
+      }
+      else {
+        some_unmuted = true
+      }
+
+      if (some_unmuted && some_muted) {
         break
       }
     }
@@ -59,11 +74,20 @@ App.show_item_menu = async (item, x, y) => {
       })
     }
 
-    if (!item.muted) {
+    if (some_unmuted) {
       items.push({
         text: `Mute`,
         action: () => {
           App.mute_tabs(item)
+        }
+      })
+    }
+
+    if (some_muted) {
+      items.push({
+        text: `Unmute`,
+        action: () => {
+          App.unmute_tabs(item)
         }
       })
     }
