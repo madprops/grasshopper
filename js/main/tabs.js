@@ -377,9 +377,17 @@ App.pin_tabs = (item) => {
     return
   }
 
-  for (let id of ids) {
-    App.pin_tab(id)
+  let force = App.check_force(`warn_on_pin_tabs`, ids.length)
+
+  if (ids.length === 1) {
+    force = true
   }
+
+  App.show_confirm(`Pin items? (${ids.length})`, async () => {
+    for (let id of ids) {
+      App.pin_tab(id)
+    }
+  }, undefined, force)
 }
 
 App.unpin_tabs = (item) => {
@@ -1269,4 +1277,32 @@ App.open_tabs = () => {
       })
     }
   })
+}
+
+App.wake_tabs = (item) => {
+  let items = []
+
+  for (let it of App.get_active_items(`tabs`, item)) {
+    if (!it.discarded) {
+      continue
+    }
+
+    items.push(it)
+  }
+
+  if (items.length === 0) {
+    return
+  }
+
+  let force = App.check_force(`warn_on_wake_tabs`, items.length)
+
+  if (items.length === 1) {
+    force = true
+  }
+
+  App.show_confirm(`Wake items? (${items.length})`, async () => {
+    for (let it of items) {
+      App.focus_tab(it, `none`, `wake`)
+    }
+  }, undefined, force)
 }

@@ -1120,6 +1120,10 @@ App.selected_items = (mode = App.window_mode) => {
 }
 
 App.after_focus = (method = `normal`) => {
+  if (method === `wake`) {
+    return
+  }
+
   if (method === `normal`) {
     if (App.get_setting(`close_on_focus`)) {
       App.close_window()

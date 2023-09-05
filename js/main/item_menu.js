@@ -7,12 +7,29 @@ App.show_item_menu = async (item, x, y) => {
 
   if (item.mode === `tabs`) {
     let some_loaded = false
+    let some_unloaded = false
 
     for (let it of active) {
       if (!it.discarded) {
         some_loaded = true
+      }
+
+      if (it.discarded) {
+        some_unloaded = true
+      }
+
+      if (some_loaded && some_unloaded) {
         break
       }
+    }
+
+    if (some_unloaded) {
+      items.push({
+        text: `Wake`,
+        action: () => {
+          App.wake_tabs(item)
+        }
+      })
     }
 
     if (item.pinned && some_loaded) {
