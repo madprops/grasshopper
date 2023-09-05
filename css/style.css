@@ -21,7 +21,6 @@ body, html {
 }
 
 input[type=text],
-input[type=number],
 textarea,
 select {
 	font-family: var(--font);
@@ -483,6 +482,7 @@ svg {
   width: 7rem;
   max-width: 7rem;
   text-align: center;
+	font-size: 1rem;
 }
 
 .settings_textarea {
