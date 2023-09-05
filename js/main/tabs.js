@@ -331,11 +331,7 @@ App.duplicate_tab = async (item) => {
 
 App.duplicate_tabs = (item) => {
   let items = App.get_active_items(`tabs`, item)
-  let force = App.check_force(`warn_on_duplicate_tabs`, items.length)
-
-  if (items.length === 1) {
-    force = true
-  }
+  let force = App.check_force(`warn_on_duplicate_tabs`, items.length, true)
 
   App.show_confirm(`Duplicate tabs? (${items.length})`, () => {
     for (let it of items) {
@@ -377,11 +373,7 @@ App.pin_tabs = (item) => {
     return
   }
 
-  let force = App.check_force(`warn_on_pin_tabs`, ids.length)
-
-  if (ids.length === 1) {
-    force = true
-  }
+  let force = App.check_force(`warn_on_pin_tabs`, ids.length, true)
 
   App.show_confirm(`Pin items? (${ids.length})`, async () => {
     for (let id of ids) {
@@ -1294,11 +1286,7 @@ App.wake_tabs = (item) => {
     return
   }
 
-  let force = App.check_force(`warn_on_wake_tabs`, items.length)
-
-  if (items.length === 1) {
-    force = true
-  }
+  let force = App.check_force(`warn_on_wake_tabs`, items.length, true)
 
   App.show_confirm(`Wake items? (${items.length})`, async () => {
     for (let it of items) {

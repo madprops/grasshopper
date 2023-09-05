@@ -306,7 +306,11 @@ App.get_favicon_url = (item) => {
   }
 }
 
-App.check_force = (warn_setting, num) => {
+App.check_force = (warn_setting, num, force_single = false) => {
+  if (num === 1 && force_single) {
+    return true
+  }
+
   if (num >= App.max_warn_limit) {
     return false
   }
