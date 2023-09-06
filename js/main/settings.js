@@ -425,9 +425,6 @@ App.add_settings_addlist = (container) => {
     let add = DOM.create(`div`, cls, `settings_${setting}_add`)
     add.textContent = `Add`
     el.append(add)
-    let view = DOM.create(`div`, cls, `settings_${setting}_view`)
-    view.textContent = `View`
-    el.append(view)
     let list = DOM.create(`div`, cls, `settings_${setting}_list`)
     list.textContent = `List`
     el.append(list)

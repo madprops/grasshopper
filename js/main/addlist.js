@@ -710,10 +710,6 @@ App.addlist_buttons = (args) => {
     App.addlist({id: args.id, items: items})
   })
 
-  DOM.ev(DOM.el(`#settings_${args.id}_view`), `click`, () => {
-    App.addlist_view({id: args.id, index: 0, use: args.use})
-  })
-
   DOM.ev(DOM.el(`#settings_${args.id}_list`), `click`, () => {
     App.addlist_list({id: args.id, use: args.use})
   })
