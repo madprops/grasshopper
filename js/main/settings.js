@@ -445,6 +445,15 @@ App.add_settings_addlist = (container) => {
           }, undefined, force)
         },
       },
+      {
+        name: `Clear`,  action: () => {
+          let force = App.check_setting_default(setting)
+
+          App.show_confirm(`Clear setting?`, () => {
+            App.set_setting(setting, [])
+          }, undefined, force)
+        },
+      },
     ]
 
     DOM.evs(App.get_settings_label(setting), [`click`, `contextmenu`], (e) => {
