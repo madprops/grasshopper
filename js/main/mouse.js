@@ -291,3 +291,11 @@ App.right_button_action = (item) => {
     App.open_items(item, true, false)
   }
 }
+
+App.shift_middle_click = (mode, item) => {
+  let cmd = App.get_setting(`shift_middle_click_${mode}`)
+
+  if (cmd !== `none`) {
+    App.run_command({cmd: cmd, item: item, from: `shift_middle_click`})
+  }
+}

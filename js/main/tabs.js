@@ -313,7 +313,7 @@ App.tabs_action = async (item) => {
 
 App.tabs_action_alt = (item, shift) => {
   if (shift) {
-    App.unload_tabs(item, false)
+    App.shift_middle_click(`tabs`, item)
   }
   else {
     App.close_tabs(item, false)
