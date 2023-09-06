@@ -424,13 +424,19 @@ App.addlist_enter = () => {
   }
 
   let data = App.addlist_data
-  let modified = App.addlist_modified(data.id)
 
-  if (modified) {
-    App.addlist_save(data.id)
+  if (data.edit) {
+    let modified = App.addlist_modified(data.id)
+
+    if (modified) {
+      App.addlist_save(data.id)
+    }
+    else if (data.use) {
+      App.addlist_use()
+    }
   }
-  else if (data.use) {
-    App.addlist_use()
+  else {
+    App.addlist_save(data.id)
   }
 }
 
