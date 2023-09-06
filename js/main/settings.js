@@ -444,11 +444,13 @@ App.add_settings_addlist = (container) => {
       },
       {
         name: `Clear`,  action: () => {
-          let force = App.check_setting_default(setting)
+          if (!App.get_setting(setting).length) {
+            return
+          }
 
           App.show_confirm(`Clear setting?`, () => {
             App.set_setting(setting, [])
-          }, undefined, force)
+          })
         },
       },
     ]
@@ -1277,8 +1279,8 @@ App.settings_menu_items = () => {
 }
 
 App.is_default_setting = (setting) => {
-  return App.settings[setting].value === App.default_setting_string ||
-  App.settings[setting].value === App.get_default_setting(setting)
+  return (App.settings[setting].value === App.default_setting_string) ||
+  (App.str(App.settings[setting].value) === App.str(App.get_default_setting(setting)))
 }
 
 App.check_setting_default = (setting) => {
