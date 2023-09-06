@@ -1623,6 +1623,14 @@ App.get_edit_options = (item) => {
 }
 
 App.profile_editor_background_image_none = () => {
-  DOM.el(`#profile_editor_background_image`).value = `none`
+  let el = DOM.el(`#profile_editor_background_image`)
+
+  if (el.value === `none`) {
+    el.value = ``
+  }
+  else {
+    el.value = `none`
+  }
+
   App.profile_apply_theme()
 }
