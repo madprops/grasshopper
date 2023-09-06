@@ -836,5 +836,9 @@ App.addlist_check = (args) => {
 
 App.addlist_clear_image = () => {
   let data = App.addlist_data
-  DOM.el(`#addlist_image_${data.id}`).src = ``
+  let img = DOM.el(`#addlist_image_${data.id}`)
+
+  if (img) {
+    img.src = ``
+  }
 }
