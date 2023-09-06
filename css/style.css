@@ -545,7 +545,7 @@ svg {
   justify-content: center;
   padding: 0.5rem;
   background-color: var(--alt_color_0);
-  width: 15rem;
+  min-width: 15rem;
   gap: 1rem;
 }
 
