@@ -410,7 +410,6 @@ App.addlist_view = (args = {}) => {
     id: args.id,
     items: items,
     use: args.use,
-    line: args.line,
     index: args.index,
     edit: true,
   }
@@ -465,18 +464,16 @@ App.addlist_check_buttons = (args) => {
     move_el.classList.remove(`hidden`)
     prev_el.classList.remove(`hidden`)
     next_el.classList.remove(`hidden`)
+
+    if (args.use) {
+      use_el.classList.remove(`hidden`)
+    }
   }
   else {
     remove_el.classList.add(`hidden`)
     move_el.classList.add(`hidden`)
     prev_el.classList.add(`hidden`)
     next_el.classList.add(`hidden`)
-  }
-
-  if (args.use) {
-    use_el.classList.remove(`hidden`)
-  }
-  else {
     use_el.classList.add(`hidden`)
   }
 }
@@ -575,7 +572,6 @@ App.addlist_next = (id, reverse = false) => {
   }
 
   data.index = index
-  data.line = lines[index]
   App.addlist_view(data)
 }
 
@@ -728,13 +724,7 @@ App.addlist_popup = (id) => {
 
 App.addlist_buttons = (args) => {
   DOM.ev(DOM.el(`#settings_${args.id}_add`), `click`, () => {
-    let items = {}
-
-    if (args.get_items) {
-      items = args.get_items()
-    }
-
-    App.addlist({id: args.id, items: items})
+    App.addlist({id: args.id})
   })
 
   DOM.ev(DOM.el(`#settings_${args.id}_list`), `click`, () => {
@@ -798,4 +788,32 @@ App.addlist_clear = (id) => {
   App.show_confirm(`Clear setting?`, () => {
     App.set_setting(id, [])
   })
+}
+
+App.addlist_exists = (id, items) => {
+  let lines = App.get_setting(id)
+
+  for (let [i, line] of lines.entries()) {
+    let matched = true
+
+    for (let key in line) {
+      if (line[key] !== items[key]) {
+        matched = false
+        break
+      }
+    }
+
+    if (matched) {
+      return [true, i]
+    }
+  }
+
+  return [false, 0]
+}
+
+App.addlist_check = (args) => {
+  let [edit, index] = App.addlist_exists(args.id, args.items)
+  args.edit = edit
+  args.index = index
+  App.addlist(args)
 }

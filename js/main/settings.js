@@ -217,6 +217,10 @@ App.settings_setup_labels = (container) => {
       btns.push([`settings_${item.dataset.id}_random`, App.random_text, item.dataset.rand])
     }
 
+    if (item.dataset.view) {
+      btns.push([`settings_${item.dataset.id}_view`, `View`, item.dataset.view])
+    }
+
     if (item.dataset.next) {
       btns.push([`settings_${item.dataset.id}_next`, `Next`, item.dataset.next])
     }
@@ -900,13 +904,6 @@ App.start_theme_settings = () => {
   })
 
   App.addlist_buttons({id: `background_pool`,
-    get_items: () => {
-      return {
-        url: App.get_setting(`background_image`),
-        effect: App.get_setting(`background_effect`),
-        tiles: App.get_setting(`background_tiles`),
-      }
-    },
     use: (obj) => {
       App.apply_background(obj)
     }
@@ -918,6 +915,18 @@ App.start_theme_settings = () => {
 
   DOM.ev(DOM.el(`#settings_background_pool_shuffle`), `click`, () => {
     App.shuffle_addlist(`background_pool`)
+  })
+
+  DOM.ev(DOM.el(`#settings_background_pool_view`), `click`, () => {
+    let items = {
+      url: App.get_setting(`background_image`),
+      effect: App.get_setting(`background_effect`),
+      tiles: App.get_setting(`background_tiles`),
+    }
+
+    App.addlist_check({id: `background_pool`, items: items, use: (obj) => {
+      App.apply_background(obj)
+    }})
   })
 }
 
