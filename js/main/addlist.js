@@ -453,28 +453,31 @@ App.after_addlist = (id, lines) => {
 }
 
 App.addlist_check_buttons = (args) => {
-  let use_el = DOM.el(`#addlist_use_${args.id}`)
   let remove_el = DOM.el(`#addlist_remove_${args.id}`)
   let move_el = DOM.el(`#addlist_move_${args.id}`)
   let prev_el = DOM.el(`#addlist_prev_${args.id}`)
   let next_el = DOM.el(`#addlist_next_${args.id}`)
+  let use_el = DOM.el(`#addlist_use_${args.id}`)
+  let num = App.get_setting(args.id).length
+
+  remove_el.classList.add(`hidden`)
+  move_el.classList.add(`hidden`)
+  prev_el.classList.add(`hidden`)
+  next_el.classList.add(`hidden`)
+  use_el.classList.add(`hidden`)
 
   if (args.edit) {
     remove_el.classList.remove(`hidden`)
     move_el.classList.remove(`hidden`)
-    prev_el.classList.remove(`hidden`)
-    next_el.classList.remove(`hidden`)
+
+    if (num > 1) {
+      prev_el.classList.remove(`hidden`)
+      next_el.classList.remove(`hidden`)
+    }
 
     if (args.use) {
       use_el.classList.remove(`hidden`)
     }
-  }
-  else {
-    remove_el.classList.add(`hidden`)
-    move_el.classList.add(`hidden`)
-    prev_el.classList.add(`hidden`)
-    next_el.classList.add(`hidden`)
-    use_el.classList.add(`hidden`)
   }
 }
 
