@@ -560,6 +560,10 @@ App.animate_background_image = (url) => {
   let new_el = DOM.el(`#background_${new_num}`)
   let old_el = DOM.el(`#background_${old_num}`)
 
+  if (!url) {
+    url = `none`
+  }
+
   if (!App.is_url(url) && url !== `none`) {
     url = `/img/${url}`
   }
@@ -589,6 +593,18 @@ App.animate_background_image = (url) => {
   }
   else {
     App.background_image = new Image()
+
+    DOM.ev(App.background_image, `load`, () => {
+      on_load()
+    })
+
+    DOM.ev(App.background_image, `error`, () => {
+      opacity(1, 0)
+      bg_new(`unset`)
+      bg_old(`unset`)
+      App.first_background = true
+    })
+
     App.background_image.src = url
   }
 
@@ -642,17 +658,6 @@ App.animate_background_image = (url) => {
 
     tick()
   }
-
-  DOM.ev(App.background_image, `load`, () => {
-    on_load()
-  })
-
-  DOM.ev(App.background_image, `error`, () => {
-    opacity(1, 0)
-    bg_new(`unset`)
-    bg_old(`unset`)
-    App.first_background = true
-  })
 }
 
 App.add_to_background_pool = (url) => {
