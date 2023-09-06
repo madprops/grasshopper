@@ -20,6 +20,7 @@ App.init = async () => {
   App.setup_about()
   App.setup_keyboard()
   App.setup_popups()
+  App.setup_dialog()
   App.setup_media()
   App.setup_window()
   App.setup_items()

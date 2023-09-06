@@ -18,7 +18,7 @@ App.create_popup = (args) => {
 
   DOM.evs(popup, [`click`, `auxclick`], (e) => {
     if (e.target.isConnected && !e.target.closest(`.popup_container`)) {
-      App.popups[args.id].hide()
+      p.dismiss()
     }
   })
 
@@ -59,6 +59,14 @@ App.create_popup = (args) => {
     }
   }
 
+  p.dismiss = () => {
+    App.popups[args.id].hide()
+
+    if (args.on_dismiss) {
+      args.on_dismiss()
+    }
+  }
+
   App.popups[args.id] = p
 }
 
@@ -87,10 +95,6 @@ App.setup_popup = (id) => {
 App.setup_popups = () => {
   App.create_popup({
     id: `alert`
-  })
-
-  App.create_popup({
-    id: `dialog`
   })
 
   App.create_popup({
@@ -142,84 +146,6 @@ App.show_feedback = (message) => {
 
 App.show_feedback_2 = (message) => {
   App.show_alert(message, App.alert_autohide_delay, false)
-}
-
-App.show_dialog = (message, buttons) => {
-  if (App.popups[`dialog`].open) {
-    return
-  }
-
-  DOM.el(`#dialog_message`).textContent = message
-  let btns = DOM.el(`#dialog_buttons`)
-  btns.innerHTML = ``
-
-  for (let button of buttons) {
-    let btn = DOM.create(`div`, `button`)
-    btn.textContent = button[0]
-    DOM.ev(btn, `click`, () => {
-      App.popups[`dialog`].hide()
-      button[1]()
-    })
-
-    if (button[2]) {
-      btn.classList.add(`button_2`)
-    }
-
-    btns.append(btn)
-    button.element = btn
-  }
-
-  App.dialog_buttons = buttons
-  App.focus_dialog_button(buttons.length - 1)
-  App.show_popup(`dialog`)
-}
-
-App.focus_dialog_button = (index) => {
-  for (let [i, btn] of App.dialog_buttons.entries()) {
-    if (i === index) {
-      btn.element.classList.add(`hovered`)
-    }
-    else {
-      btn.element.classList.remove(`hovered`)
-    }
-  }
-
-  App.dialog_index = index
-}
-
-App.dialog_left = () => {
-  if (App.dialog_index > 0) {
-    App.focus_dialog_button(App.dialog_index - 1)
-  }
-}
-
-App.dialog_right = () => {
-  if (App.dialog_index < App.dialog_buttons.length - 1) {
-    App.focus_dialog_button(App.dialog_index + 1)
-  }
-}
-
-App.dialog_enter = () => {
-  App.hide_popup(`dialog`)
-  App.dialog_buttons[App.dialog_index][1]()
-}
-
-App.show_confirm = (message, confirm_action, cancel_action, force = false) => {
-  if (force) {
-    confirm_action()
-    return
-  }
-
-  if (!cancel_action) {
-    cancel_action = () => {}
-  }
-
-  let buttons = [
-    [`Cancel`, cancel_action, true],
-    [`Confirm`, confirm_action]
-  ]
-
-  App.show_dialog(message, buttons)
 }
 
 App.show_textarea = (message, text) => {
@@ -327,4 +253,8 @@ App.open_popups = () => {
   }
 
   return open
+}
+
+App.dismiss_popup = (id) => {
+  App.popups[id].dismiss()
 }

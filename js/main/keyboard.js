@@ -292,6 +292,11 @@ App.setup_keyboard = () => {
           e.preventDefault()
           return
         }
+        else if (e.key === `Escape`) {
+          App.dismiss_popup(`dialog`)
+          e.preventDefault()
+          return
+        }
         else if (e.key === `ArrowLeft`) {
           App.dialog_left()
           e.preventDefault()
