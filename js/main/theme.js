@@ -572,6 +572,7 @@ App.animate_background_image = (url, instant = false) => {
     set_url()
     opacity(1, 0)
     bg_old(`unset`)
+    App.first_background = true
     return
   }
 
