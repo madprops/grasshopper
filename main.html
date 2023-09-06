@@ -72,6 +72,11 @@
           <div id="profile_editor_header" class="action bigger"></div>
         </div>
 
+        <div id="profile_editor_exact_container" class="editor_container flex_column_center gap_1" title="Match exact URL. Else it uses startsWith">
+          <div>Exact</div>
+          <input type="checkbox" id="profile_editor_exact" class="settings_checkbox editor_input">
+        </div>
+
         <div id="profile_editor_url_container" class="editor_container flex_column_center gap_1" title="Match URLs that start with this">
           <div class="flex_row_center gap_1">
             <div>URL</div>
@@ -83,9 +88,9 @@
           <input type="text" autocomplete="off" spellcheck="false" id="profile_editor_url" class="text editor_text editor_input" placeholder="Domain Root URL">
         </div>
 
-        <div id="profile_editor_exact_container" class="editor_container flex_column_center gap_1" title="Match exact URL. Else it uses startsWith">
-          <div>Exact</div>
-          <input type="checkbox" id="profile_editor_exact" class="settings_checkbox editor_input">
+        <div id="profile_editor_color_container" class="editor_container flex_column_center gap_1">
+          <div>Color</div>
+          <div id="profile_editor_color" class="settings_menu button editor_input"></div>
         </div>
 
         <div id="profile_editor_title_container" class="editor_container flex_column_center gap_1">
@@ -111,11 +116,6 @@
         <div id="profile_editor_icon_container" class="editor_container flex_column_center gap_1">
           <div>Icon</div>
           <input type="text" autocomplete="off" spellcheck="false" id="profile_editor_icon" class="text editor_text editor_text_smaller editor_input" placeholder="😃">
-        </div>
-
-        <div id="profile_editor_color_container" class="editor_container flex_column_center gap_1">
-          <div>Color</div>
-          <div id="profile_editor_color" class="settings_menu button editor_input"></div>
         </div>
 
         <div id="profile_editor_theme_container" class="editor_container flex_column_center gap_2">
