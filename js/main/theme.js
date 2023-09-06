@@ -559,7 +559,7 @@ App.animate_background_image = (url, instant = false) => {
     old_el.style.backgroundImage = value
   }
 
-  function set_url (value) {
+  function set_url () {
     if (url === `none`) {
       bg_new(`unset`)
     }
@@ -596,7 +596,7 @@ App.animate_background_image = (url, instant = false) => {
   }
 
   function on_load () {
-    set_url(url)
+    set_url()
 
     if (!App.get_setting(`background_transitions`) || !App.first_background) {
       opacity(1, 0)
