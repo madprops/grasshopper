@@ -164,7 +164,6 @@ App.apply_theme = (args) => {
     }
 
     App.set_css_var(`item_padding`, `${item_padding}rem`)
-    App.animate_background_image(args.background_image)
 
     if (App.get_setting(`show_scrollbars`)) {
       document.body.classList.remove(`no_scrollbars`)
@@ -201,36 +200,8 @@ App.apply_theme = (args) => {
       main.classList.add(`item_border_${item_border}`)
     }
 
-    let bg1 = DOM.el(`#background_1`)
-    let bg2 = DOM.el(`#background_2`)
-
-    function bg_add (cls) {
-      bg1.classList.add(cls)
-      bg2.classList.add(cls)
-    }
-
-    function bg_rem (cls) {
-      bg1.classList.remove(cls)
-      bg2.classList.remove(cls)
-    }
-
-    let bg_effect_opts = [`blur`, `grayscale`, `invert`, `rotate_1`, `rotate_2`, `rotate_3`]
-
-    for (let eff of bg_effect_opts) {
-      bg_rem(eff)
-    }
-
-    if (bg_effect_opts.includes(args.background_effect)) {
-      bg_add(args.background_effect)
-    }
-
-    if (args.background_tiles !== `none`) {
-      App.set_css_var(`bg_tiles_width`, args.background_tiles)
-      bg_add(`tiles`)
-    }
-    else {
-      bg_rem(`tiles`)
-    }
+    App.animate_background_image(args.background_image)
+    App.apply_background_effects(args.background_effect, args.background_tiles)
 
     if (App.get_setting(`color_transitions`)) {
       let d = App.color_transition_delay
@@ -704,4 +675,35 @@ App.random_settings_color = (what) => {
   color = App.colorlib.hex_to_rgb(color)
   App.set_setting(`${what}_color`, color)
   App.check_theme_refresh()
+}
+
+App.apply_background_effects = (effect, tiles) => {
+  let num = App.active_background
+  let bg = DOM.el(`#background_${num}`)
+
+  function bg_add (cls) {
+    bg.classList.add(cls)
+  }
+
+  function bg_rem (cls) {
+    bg.classList.remove(cls)
+  }
+
+  let bg_effect_opts = [`blur`, `grayscale`, `invert`, `rotate_1`, `rotate_2`, `rotate_3`]
+
+  for (let eff of bg_effect_opts) {
+    bg_rem(eff)
+  }
+
+  if (bg_effect_opts.includes(effect)) {
+    bg_add(effect)
+  }
+
+  if (tiles !== `none`) {
+    App.set_css_var(`bg_tiles_width`, tiles)
+    bg_add(`tiles`)
+  }
+  else {
+    bg_rem(`tiles`)
+  }
 }
