@@ -717,6 +717,10 @@ App.addlist_buttons = (args) => {
   DOM.ev(DOM.el(`#settings_${args.id}_edit`), `click`, () => {
     App.edit_setting(args.id)
   })
+
+  DOM.ev(DOM.el(`#settings_${args.id}_clear`), `click`, () => {
+    App.addlist_clear(args.id)
+  })
 }
 
 App.addlist_filled = (values) => {
@@ -757,4 +761,14 @@ App.addlist_list = (args) => {
 
   let area = DOM.el(`#settings_${args.id}`)
   NeedContext.show_on_element(area, items, true, area.clientHeight)
+}
+
+App.addlist_clear = (id) => {
+  if (!App.get_setting(id).length) {
+    return
+  }
+
+  App.show_confirm(`Clear setting?`, () => {
+    App.set_setting(id, [])
+  })
 }

@@ -431,6 +431,9 @@ App.add_settings_addlist = (container) => {
     let edit = DOM.create(`div`, cls, `settings_${setting}_edit`)
     edit.textContent = `Edit`
     el.append(edit)
+    let clear = DOM.create(`div`, cls, `settings_${setting}_clear`)
+    clear.textContent = `Clear`
+    el.append(clear)
 
     let menu = [
       {
@@ -440,17 +443,6 @@ App.add_settings_addlist = (container) => {
           App.show_confirm(`Reset setting?`, () => {
             App.set_default_setting(setting)
           }, undefined, force)
-        },
-      },
-      {
-        name: `Clear`,  action: () => {
-          if (!App.get_setting(setting).length) {
-            return
-          }
-
-          App.show_confirm(`Clear setting?`, () => {
-            App.set_setting(setting, [])
-          })
         },
       },
     ]
