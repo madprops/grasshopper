@@ -700,10 +700,11 @@ App.apply_background_effects = (effect, tiles) => {
   }
 
   if (tiles !== `none`) {
-    App.set_css_var(`bg_tiles_width`, tiles)
+    bg.style.backgroundSize = `${tiles} auto`
     bg_add(`tiles`)
   }
   else {
+    bg.style.backgroundSize = `unset`
     bg_rem(`tiles`)
   }
 }
