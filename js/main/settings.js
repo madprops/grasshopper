@@ -280,19 +280,7 @@ App.settings_setup_text = (container) => {
 
     el.value = value
 
-    DOM.ev(el, `focus`, () => {
-      DOM.dataset(el, `modified`, false)
-    })
-
-    DOM.ev(el, `input`, () => {
-      DOM.dataset(el, `modified`, true)
-    })
-
-    DOM.ev(el, `blur`, () => {
-      if (!DOM.dataset(el, `modified`)) {
-        return
-      }
-
+    DOM.ev(el, `change`, () => {
       App.scroll_to_top(el)
       App.do_save_text_setting(setting, el)
     })
@@ -364,19 +352,7 @@ App.settings_setup_number = (container) => {
     let value = App.get_setting(setting)
     el.value = value
 
-    DOM.ev(el, `focus`, () => {
-      DOM.dataset(el, `modified`, false)
-    })
-
-    DOM.ev(el, `input`, () => {
-      DOM.dataset(el, `modified`, true)
-    })
-
-    DOM.ev(el, `blur`, () => {
-      if (!DOM.dataset(el, `modified`)) {
-        return
-      }
-
+    DOM.ev(el, `change`, () => {
       let value = parseInt(el.value)
 
       if (isNaN(value)) {
