@@ -517,6 +517,7 @@ App.addlist_use = (force = true) => {
   if (data.use) {
     App.show_confirm(`Use this now?`, () => {
       data.use(line)
+      App.hide_addlist(true)
     }, undefined, force)
   }
 }
