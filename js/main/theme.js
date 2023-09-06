@@ -539,10 +539,6 @@ App.animate_background_image = (url) => {
     url = `/img/${url}`
   }
 
-  if (url === App.background_url) {
-    return
-  }
-
   App.active_background = new_num
   App.background_url = url
 
