@@ -132,7 +132,7 @@ App.addlist_values = (id) => {
   return values
 }
 
-App.addlist_save = (id, force_use = false) => {
+App.addlist_save = (id) => {
   let data = App.addlist_data
 
   if (data.edit) {
@@ -140,7 +140,7 @@ App.addlist_save = (id, force_use = false) => {
 
     if (!modified) {
       App.hide_addlist(false)
-      return
+      return false
     }
   }
 
@@ -148,7 +148,7 @@ App.addlist_save = (id, force_use = false) => {
   let filled = App.addlist_filled(line)
 
   if (!filled) {
-    return
+    return false
   }
 
   let oargs = App.addlist_oargs(id)
@@ -171,7 +171,7 @@ App.addlist_save = (id, force_use = false) => {
   let lines = App.get_setting(id)
   lines.splice(data.index, 0, line)
   App.after_addlist(id, lines)
-  App.addlist_use(force_use)
+  return true
 }
 
 App.addlist_register = (args = {}) => {
@@ -423,7 +423,15 @@ App.addlist_enter = () => {
     return
   }
 
-  App.addlist_check_use()
+  let data = App.addlist_data
+  let modified = App.addlist_modified(data.id)
+
+  if (modified) {
+    App.addlist_save(data.id)
+  }
+  else if (data.use) {
+    App.addlist_use()
+  }
 }
 
 App.addlist_left = () => {
@@ -493,23 +501,35 @@ App.update_image = (id) => {
 
 App.addlist_use = (force = true) => {
   let data = App.addlist_data
+  let line = App.addlist_values(data.id)
+  let filled = App.addlist_filled(line)
+
+  if (!filled) {
+    return false
+  }
 
   if (data.use) {
     App.show_confirm(`Use this now?`, () => {
-      data.use(App.addlist_values(data.id))
+      data.use(line)
     }, undefined, force)
   }
 }
 
 App.addlist_check_use = () => {
   let data = App.addlist_data
+
+  if (!data.use) {
+    return
+  }
+
   let modified = App.addlist_modified(data.id)
+  let ans = true
 
   if (modified) {
-    App.addlist_save(data.id, true)
+    ans = App.addlist_save(data.id)
   }
-  else if (data.use) {
-    App.hide_addlist()
+
+  if (ans) {
     App.addlist_use()
   }
 }
