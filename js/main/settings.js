@@ -63,7 +63,7 @@ App.build_default_settings = () => {
   obj.video_icon = {value: `▶️`, category: category, version: 1}
   obj.audio_icon = {value: `🎵`, category: category, version: 1}
 
-  category = `show`
+  category = `icons`
   obj.pin_icon = {value: `+`, category: category, version: 1}
   obj.normal_icon = {value: ``, category: category, version: 1}
   obj.playing_icon = {value: `🔊`, category: category, version: 1}
@@ -72,6 +72,8 @@ App.build_default_settings = () => {
   obj.close_icon = {value: `x`, category: category, version: 1}
   obj.open_icon = {value: `🚀`, category: category, version: 1}
   obj.pick_icon = {value: `🎯`, category: category, version: 1}
+
+  category = `show`
   obj.show_scrollbars = {value: true, category: category, version: 1}
   obj.show_tooltips = {value: true, category: category, version: 1}
   obj.show_icons = {value: true, category: category, version: 1}
@@ -492,7 +494,7 @@ App.settings_filter_focused = () => {
 }
 
 App.setup_settings = () => {
-  App.settings_categories = [`general`, `theme`, `media`, `show`, `gestures`, `auxclick`, `menus`, `keyboard`, `warns`, `colors`, `more`]
+  App.settings_categories = [`general`, `theme`, `media`, `icons`, `show`, `gestures`, `auxclick`, `menus`, `keyboard`, `warns`, `colors`, `more`]
 
   let common = {
     persistent: false,
@@ -679,6 +681,10 @@ App.setup_settings = () => {
       App.settings_make_menu(`view_video_${m}`, opts)
       App.settings_make_menu(`view_audio_${m}`, opts)
     }
+  }}))
+
+  App.create_window(Object.assign({}, common, {id: `settings_icons`, setup: () => {
+    prepare(`icons`)
   }}))
 
   App.create_window(Object.assign({}, common, {id: `settings_show`, setup: () => {

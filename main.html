@@ -725,8 +725,8 @@
       </div>
     </template>
 
-    <template id="template_settings_show">
-      <div id="settings_show_container" class="settings_container">
+    <template id="template_settings_icons">
+      <div id="settings_icons_container" class="settings_container">
         <div class="settings_item" title="Icon to show on pinned tabs">
           <div class="settings_label">Pin Icon</div>
           <input type="text" autocomplete="off" spellcheck="false" id="settings_pin_icon" class="text settings_text text_smaller" data-setting="pin_icon" placeholder="☺">
@@ -766,7 +766,11 @@
           <div class="settings_label">Pick Icon</div>
           <input type="text" autocomplete="off" spellcheck="false" id="settings_pick_icon" class="text settings_text text_smaller" data-setting="pick_icon" placeholder="☺">
         </div>
+      </div>
+    </template>
 
+    <template id="template_settings_show">
+      <div id="settings_show_container" class="settings_container">
         <div class="settings_item" title="Show a line between pinned and normal tabs">
           <div class="settings_label">Show Pinline</div>
           <input type="checkbox" class="settings_checkbox" id="settings_show_pinline" data-setting="show_pinline">

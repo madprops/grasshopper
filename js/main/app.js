@@ -79,6 +79,7 @@ App.settings_icons = {
   theme: `🎨`,
   icons: `🖼️`,
   media: `📷`,
+  icons: `👁️`,
   show: `👁️`,
   gestures: `🖱️`,
   auxclick: `🖱️`,
