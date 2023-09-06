@@ -704,7 +704,7 @@ App.apply_background_effects = (effect, tiles) => {
     bg_add(`tiles`)
   }
   else {
-    bg.style.backgroundSize = `unset`
+    bg.style.backgroundSize = `cover`
     bg_rem(`tiles`)
   }
 }
