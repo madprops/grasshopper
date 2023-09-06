@@ -540,6 +540,11 @@ App.addlist_check_use = () => {
 
 App.addlist_next = (id, reverse = false) => {
   let data = App.addlist_data
+
+  if (!data.edit) {
+    return
+  }
+
   let lines = App.get_setting(id).slice(0)
 
   if (lines.length <= 1) {
