@@ -266,18 +266,11 @@ App.settings_setup_checkboxes = (container) => {
 
 App.settings_setup_text = (container) => {
   let els = DOM.els(`.settings_text`, container)
-  els.push(...DOM.els(`.settings_textarea`, container))
 
   for (let el of els) {
     let setting = el.dataset.setting
     let action = el.dataset.action
-    let is_textarea = el.classList.contains(`settings_textarea`)
     let value = App.get_setting(setting)
-
-    if (is_textarea) {
-      value = App.get_textarea_setting_value(setting)
-    }
-
     el.value = value
 
     DOM.ev(el, `change`, () => {
@@ -292,15 +285,7 @@ App.settings_setup_text = (container) => {
 
           App.show_confirm(`Reset setting?`, () => {
             App.set_default_setting(setting)
-            let value = App.get_setting(setting)
-
-            if (is_textarea) {
-              el.value = value.join(`\n`)
-            }
-            else {
-              el.value = value
-            }
-
+            el.value = App.get_setting(setting)
             App.scroll_to_top(el)
             App.settings_do_action(action)
           }, undefined, force)
@@ -313,14 +298,8 @@ App.settings_setup_text = (container) => {
           }
 
           App.show_confirm(`Clear setting?`, () => {
-            if (is_textarea) {
-              App.set_setting(setting, [])
-            }
-            else {
-              App.set_setting(setting, ``)
-            }
-
             el.value = ``
+            App.set_setting(setting, ``)
             App.settings_do_action(action)
             el.focus()
           })
@@ -938,7 +917,7 @@ App.start_theme_settings = () => {
   })
 
   DOM.ev(DOM.el(`#settings_background_pool_shuffle`), `click`, () => {
-    App.shuffle_textarea(`background_pool`)
+    App.shuffle_addlist(`background_pool`)
   })
 }
 
@@ -1263,10 +1242,6 @@ App.check_setting_default = (setting) => {
   }
 }
 
-App.get_textarea_setting_value = (setting) => {
-  return App.get_setting(setting).join(`\n`)
-}
-
 App.set_settings_menu = (setting, value) => {
   if (!value) {
     value = App.get_setting(setting)
@@ -1281,28 +1256,13 @@ App.apply_background = (bg) => {
 
 App.do_save_text_setting = (setting, el) => {
   let value = el.value.trim()
-
-  if (el.classList.contains(`settings_textarea`)) {
-    value = App.one_linebreak(value)
-    value = value.split(`\n`).filter(x => x !== ``).map(x => x.trim())
-    value = App.to_set(value)
-    el.value = value.join(`\n`)
-  }
-  else {
-    el.value = value
-  }
-
+  el.value = value
   el.scrollTop = 0
   App.set_setting(setting, value)
   App.settings_do_action(el.dataset.action)
 }
 
-App.refresh_textarea = (setting) => {
-  let value = App.get_textarea_setting_value(setting)
-  DOM.el(`#settings_${setting}`).value = value
-}
-
-App.shuffle_textarea = (setting) => {
+App.shuffle_addlist = (setting) => {
   App.show_confirm(`Shuffle items?`, () => {
     let items = App.get_setting(setting)
     App.shuffle_array(items)

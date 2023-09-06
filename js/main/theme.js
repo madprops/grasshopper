@@ -685,7 +685,6 @@ App.check_theme_refresh = () => {
       DOM.el(`#settings_background_image`).value = App.get_setting(`background_image`)
       App.set_settings_menu(`background_effect`)
       App.set_settings_menu(`background_tiles`)
-      App.refresh_textarea(`background_pool`)
     }
   }
 }
