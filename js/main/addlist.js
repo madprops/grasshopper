@@ -458,8 +458,6 @@ App.addlist_check_buttons = (args) => {
   let prev_el = DOM.el(`#addlist_prev_${args.id}`)
   let next_el = DOM.el(`#addlist_next_${args.id}`)
   let use_el = DOM.el(`#addlist_use_${args.id}`)
-  let num = App.get_setting(args.id).length
-
   remove_el.classList.add(`hidden`)
   move_el.classList.add(`hidden`)
   prev_el.classList.add(`hidden`)
@@ -467,6 +465,7 @@ App.addlist_check_buttons = (args) => {
   use_el.classList.add(`hidden`)
 
   if (args.edit) {
+    let num = App.get_setting(args.id).length
     remove_el.classList.remove(`hidden`)
     move_el.classList.remove(`hidden`)
 
