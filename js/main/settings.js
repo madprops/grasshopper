@@ -177,7 +177,7 @@ App.build_default_settings = () => {
 
 App.settings_do_action = (what) => {
   if (what === `theme`) {
-    App.settings_apply_theme()
+    App.apply_theme_2()
   }
 }
 
@@ -503,7 +503,7 @@ App.setup_settings = () => {
       DOM.el(`#settings_${App.settings_category}_filter`).focus()
     },
     on_hide: async () => {
-      App.settings_apply_theme()
+      App.apply_theme_2()
       App.clear_show()
     },
   }
@@ -545,7 +545,7 @@ App.setup_settings = () => {
       {text: `Mono`, value: `monospace`},
       {text: `Cursive`, value: `cursive`},
     ], () => {
-      App.settings_apply_theme()
+      App.apply_theme_2()
     })
 
     App.settings_make_menu(`auto_restore`, [
@@ -560,7 +560,7 @@ App.setup_settings = () => {
     })
 
     App.settings_make_menu(`font_size`, App.get_font_size_options(), () => {
-      App.settings_apply_theme()
+      App.apply_theme_2()
     })
 
     App.settings_make_menu(`item_height`, [
@@ -591,11 +591,11 @@ App.setup_settings = () => {
     ])
 
     App.settings_make_menu(`width`, App.get_size_options(), () => {
-      App.settings_apply_theme()
+      App.apply_theme_2()
     })
 
     App.settings_make_menu(`height`, App.get_size_options(), () => {
-      App.settings_apply_theme()
+      App.apply_theme_2()
     })
 
     App.make_mode_order()
@@ -828,7 +828,7 @@ App.start_color_picker = (setting, alpha = false) => {
 
   App[setting].on(`change`, (picker, color) => {
     App.set_setting(setting, color)
-    App.settings_apply_theme()
+    App.apply_theme_2()
   })
 
   DOM.evs(App.get_settings_label(setting), [`click`, `contextmenu`], (e) => {
@@ -853,11 +853,11 @@ App.start_theme_settings = () => {
   App.start_color_picker(`text_color`)
 
   App.settings_make_menu(`background_effect`, App.background_effects, () => {
-    App.settings_apply_theme()
+    App.apply_theme_2()
   })
 
   App.settings_make_menu(`background_tiles`, App.background_tiles, () => {
-    App.settings_apply_theme()
+    App.apply_theme_2()
   })
 
   let auto_opts = [
@@ -962,7 +962,7 @@ App.reset_settings = (category) => {
       App.refresh_gestures()
     }
 
-    App.settings_apply_theme()
+    App.apply_theme_2()
     App.show_settings_category(category)
   })
 }
@@ -1058,7 +1058,7 @@ App.import_settings = () => {
 App.restart_settings = (type = `normal`) => {
   App.get_mode_order()
   App.make_mode_order()
-  App.settings_apply_theme()
+  App.apply_theme_2()
   App.refresh_gestures()
 
   if (App.on_items() || type === `sync`) {
@@ -1331,8 +1331,4 @@ App.get_background_effect = (value) => {
       return eff
     }
   }
-}
-
-App.settings_apply_theme = () => {
-  App.apply_theme({instant: true})
 }

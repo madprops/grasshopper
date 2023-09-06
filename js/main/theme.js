@@ -247,6 +247,10 @@ App.apply_theme = (args) => {
   }
 }
 
+App.apply_theme_2 = () => {
+  App.apply_theme({instant: true})
+}
+
 App.theme_safe_mode = () => {
   App.apply_theme({
     background_color: `rgb(33, 33, 33)`,
