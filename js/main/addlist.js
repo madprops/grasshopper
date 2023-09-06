@@ -790,7 +790,7 @@ App.addlist_clear = (id) => {
   })
 }
 
-App.addlist_exists = (id, items) => {
+App.addlist_get_line = (id, items) => {
   let lines = App.get_setting(id)
 
   for (let [i, line] of lines.entries()) {
@@ -812,7 +812,7 @@ App.addlist_exists = (id, items) => {
 }
 
 App.addlist_check = (args) => {
-  let [edit, index] = App.addlist_exists(args.id, args.items)
+  let [edit, index] = App.addlist_get_line(args.id, args.items)
   args.edit = edit
   args.index = index
   App.addlist(args)
