@@ -1257,12 +1257,12 @@ App.check_setting_default = (setting) => {
   }
 }
 
-App.set_settings_menu = (setting, value) => {
+App.set_settings_menu = (setting, value, on_change) => {
   if (!value) {
     value = App.get_setting(setting)
   }
 
-  App[`settings_menubutton_${setting}`].set(value)
+  App[`settings_menubutton_${setting}`].set(value, on_change)
 }
 
 App.apply_background = (bg) => {

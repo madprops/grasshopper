@@ -662,11 +662,11 @@ App.add_to_background_pool = (url) => {
 App.check_theme_refresh = () => {
   if (App.on_settings()) {
     if (App.settings_category === `theme`) {
-      App.background_color.setColor(App.get_setting(`background_color`))
-      App.text_color.setColor(App.get_setting(`text_color`))
+      App.background_color.setColor(App.get_setting(`background_color`), true)
+      App.text_color.setColor(App.get_setting(`text_color`), true)
       DOM.el(`#settings_background_image`).value = App.get_setting(`background_image`)
-      App.set_settings_menu(`background_effect`)
-      App.set_settings_menu(`background_tiles`)
+      App.set_settings_menu(`background_effect`, undefined, false)
+      App.set_settings_menu(`background_tiles`, undefined, false)
     }
   }
 }
