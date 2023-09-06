@@ -200,7 +200,7 @@ App.apply_theme = (args) => {
       main.classList.add(`item_border_${item_border}`)
     }
 
-    App.animate_background_image(args.background_image)
+    App.animate_background_image(args.background_image, args.instant)
     App.apply_background_effects(args.background_effect, args.background_tiles)
 
     if (App.get_setting(`color_transitions`)) {
@@ -524,7 +524,7 @@ App.background_from_pool = (random = false) => {
   }
 }
 
-App.animate_background_image = (url) => {
+App.animate_background_image = (url, instant = false) => {
   App.debug(`Animate Background`)
   let new_num = App.active_background === 1 ? 2 : 1
   let old_num = new_num === 1 ? 2 : 1
@@ -555,6 +555,22 @@ App.animate_background_image = (url) => {
     old_el.style.backgroundImage = value
   }
 
+  function set_url (value) {
+    if (url === `none`) {
+      bg_new(`unset`)
+    }
+    else {
+      bg_new(`url(${url})`)
+    }
+  }
+
+  if (instant) {
+    set_url()
+    opacity(1, 0)
+    bg_old(`unset`)
+    return
+  }
+
   if (url === `none`) {
     on_load()
   }
@@ -576,12 +592,7 @@ App.animate_background_image = (url) => {
   }
 
   function on_load () {
-    if (url === `none`) {
-      bg_new(`unset`)
-    }
-    else {
-      bg_new(`url(${url})`)
-    }
+    set_url(url)
 
     if (!App.get_setting(`background_transitions`) || !App.first_background) {
       opacity(1, 0)
