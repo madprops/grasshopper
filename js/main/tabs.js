@@ -812,7 +812,9 @@ App.do_close_normal_tabs = (close_unloaded = true) => {
   App.show_confirm(`Close these tabs? (${ids.length})`, () => {
     App.do_close_tabs(ids)
     App.hide_all_popups()
-  }, undefined, force)
+  }, () => {
+    App.hide_popup(`close_normal`)
+  }, force)
 }
 
 App.close_unloaded_tabs = () => {
@@ -953,7 +955,9 @@ App.do_close_duplicate_tabs = (close_pins = true) => {
   App.show_confirm(`Close these tabs? (${ids.length})`, () => {
     App.do_close_tabs(ids)
     App.hide_all_popups()
-  }, undefined, force)
+  }, () => {
+    App.hide_popup(`close_duplicates`)
+  }, force)
 }
 
 App.focus_current_tab = async (scroll = `nearest_smooth`) => {
