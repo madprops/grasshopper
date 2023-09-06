@@ -560,7 +560,7 @@ App.animate_background_image = (url) => {
   let new_el = DOM.el(`#background_${new_num}`)
   let old_el = DOM.el(`#background_${old_num}`)
 
-  if (!App.is_url(url)) {
+  if (!App.is_url(url) && url !== `none`) {
     url = `/img/${url}`
   }
 
@@ -584,70 +584,75 @@ App.animate_background_image = (url) => {
     old_el.style.backgroundImage = value
   }
 
-  if (!url) {
-    opacity(1, 0)
-    bg_new(`unset`)
-    bg_old(`unset`)
-    App.first_background = true
-    return
+  if (url === `none`) {
+    on_load()
   }
   else {
     App.background_image = new Image()
     App.background_image.src = url
+  }
 
-    DOM.ev(App.background_image, `load`, () => {
+  function on_load () {
+    if (url === `none`) {
+      bg_new(`unset`)
+    }
+    else {
       bg_new(`url(${url})`)
+    }
 
-      if (!App.get_setting(`background_transitions`) || !App.first_background) {
-        opacity(1, 0)
-        App.first_background = true
-        return
-      }
-
-      let op_new = 0
-      let op_old = 1
-      let amount = 0.1
-      opacity(op_new, op_old)
+    if (!App.get_setting(`background_transitions`) || !App.first_background) {
+      opacity(1, 0)
       App.first_background = true
-      let date = Date.now()
-      App.animate_background_date = date
+      return
+    }
 
-      function tick () {
-        try {
-          if (App.animate_background_date !== date) {
-            return
-          }
+    let op_new = 0
+    let op_old = 1
+    let amount = 0.1
+    opacity(op_new, op_old)
+    App.first_background = true
+    let date = Date.now()
+    App.animate_background_date = date
 
-          op_new = parseFloat(Math.min(op_new + amount, 1).toFixed(1))
-          op_old = parseFloat(Math.max(op_old - amount, 0).toFixed(1))
-          opacity(op_new, op_old)
-
-          if ((op_new >= 1) && (op_old <= 0)) {
-            opacity(1, 0)
-            bg_old(`unset`)
-            return
-          }
-
-          setTimeout(() => {
-            tick()
-          }, App.background_animation_delay)
+    function tick () {
+      try {
+        if (App.animate_background_date !== date) {
+          return
         }
-        catch (err) {
+
+        op_new = parseFloat(Math.min(op_new + amount, 1).toFixed(1))
+        op_old = parseFloat(Math.max(op_old - amount, 0).toFixed(1))
+        opacity(op_new, op_old)
+
+        if ((op_new >= 1) && (op_old <= 0)) {
           opacity(1, 0)
           bg_old(`unset`)
+          return
         }
+
+        setTimeout(() => {
+          tick()
+        }, App.background_animation_delay)
       }
+      catch (err) {
+        opacity(1, 0)
+        bg_old(`unset`)
+      }
+    }
 
-      tick()
-    })
-
-    DOM.ev(App.background_image, `error`, () => {
-      opacity(1, 0)
-      bg_new(`unset`)
-      bg_old(`unset`)
-      App.first_background = true
-    })
+    tick()
   }
+
+  DOM.ev(App.background_image, `load`, () => {
+    on_load()
+  })
+
+  DOM.ev(App.background_image, `error`, () => {
+    opacity(1, 0)
+    bg_new(`unset`)
+    bg_old(`unset`)
+    App.first_background = true
+  })
 }
 
 App.add_to_background_pool = (url) => {

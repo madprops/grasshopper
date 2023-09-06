@@ -31,7 +31,12 @@ App.setup_profile_editor = () => {
     close.textContent = App.close_text
 
     DOM.ev(DOM.el(`#profile_editor_url_root`), `click`, (e) => {
-      App.profile_editor_root_url(e)
+      App.profile_editor_root_url()
+      App.profile_modified()
+    })
+
+    DOM.ev(DOM.el(`#profile_editor_background_image_none`), `click`, (e) => {
+      App.profile_editor_background_image_none()
       App.profile_modified()
     })
 
@@ -1615,4 +1620,9 @@ App.get_edit_options = (item) => {
   }
 
   return items
+}
+
+App.profile_editor_background_image_none = () => {
+  DOM.el(`#profile_editor_background_image`).value = `none`
+  App.profile_apply_theme()
 }
