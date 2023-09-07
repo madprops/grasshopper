@@ -99,7 +99,7 @@ App.setup_commands = () => {
     {name: `Bookmark`, cmd: `bookmark`, mode: `items`, icon: App.mode_icons.bookmarks, action: (args) => {
       App.bookmark_items(args.item)
     }},
-    {name: `BMark Active`, cmd: `bookmark_active`, icon: App.mode_icons.bookmarks, action: (args) => {
+    {name: `Bookmark`, cmd: `bookmark_active`, icon: App.mode_icons.bookmarks, action: (args) => {
       App.bookmark_active(args.item)
     }},
     {name: `Copy URL`, cmd: `copy_url`, mode: `items`, icon: App.clipboard_icon, action: (args) => {
