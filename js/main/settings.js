@@ -122,8 +122,8 @@ App.build_default_settings = () => {
   category = `menus`
   obj.tabs_actions = {value: [
     {cmd: `new`},
-    {cmd: `reopen`},
     {cmd: `sort`},
+    {cmd: `reopen`},
     {cmd: `info`},
     {cmd: `show_urls`},
     {cmd: `open_urls`},
