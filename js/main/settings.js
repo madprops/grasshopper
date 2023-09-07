@@ -679,8 +679,8 @@ App.setup_settings = () => {
 
   App.create_window(Object.assign({}, common, {id: `settings_more`, setup: () => {
     prepare(`more`)
-    App.settings_make_menu(`hover_effect`, App.effects.slice(0))
-    App.settings_make_menu(`selected_effect`, App.effects.slice(0))
+    App.settings_make_menu(`hover_effect`, App.effects)
+    App.settings_make_menu(`selected_effect`, App.effects)
   }}))
 
   App.create_window(Object.assign({}, common, {id: `settings_media`, setup: () => {
