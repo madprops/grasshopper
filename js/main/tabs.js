@@ -524,7 +524,7 @@ App.show_tabs_info = () => {
   App.show_alert(s)
 }
 
-App.show_tab_urls = () => {
+App.show_urls = () => {
   let urls = []
 
   for (let item of App.get_items(`tabs`)) {
@@ -1237,8 +1237,8 @@ App.do_sort_tabs = () => {
   })
 }
 
-App.open_tabs = () => {
-  App.show_input(`Open Tabs`, `Open`, (text) => {
+App.open_urls = () => {
+  App.show_input(`Open URLs`, `Open`, (text) => {
     let urls = text.split(`\n`).map(x => x.trim()).filter(x => x !== ``)
     let to_open = []
 
@@ -1255,12 +1255,14 @@ App.open_tabs = () => {
     }
 
     if (to_open.length) {
-      App.show_confirm(`Open Tabs? (${to_open.length})`, () => {
+      App.show_confirm(`Open URLs? (${to_open.length})`, () => {
         for (let url of to_open) {
           App.open_tab({url: url})
         }
       })
     }
+
+    return true
   })
 }
 

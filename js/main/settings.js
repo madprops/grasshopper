@@ -125,8 +125,8 @@ App.build_default_settings = () => {
     {cmd: `reopen`},
     {cmd: `sort`},
     {cmd: `info`},
-    {cmd: `urls`},
-    {cmd: `open_tabs`},
+    {cmd: `show_urls`},
+    {cmd: `open_urls`},
     {cmd: `close_menu`},
   ], category: category, version: 1},
   obj.history_actions = {value: [

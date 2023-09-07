@@ -195,11 +195,11 @@ App.setup_commands = () => {
     {name: `Show Info`, cmd: `info`, mode: `tabs`, icon: tabicon, action: (args) => {
       App.show_tabs_info()
     }},
-    {name: `Tab URLs`, cmd: `urls`, mode: `tabs`, icon: tabicon, action: (args) => {
-      App.show_tab_urls()
+    {name: `Show URLs`, cmd: `show_urls`, mode: `tabs`, icon: tabicon, action: (args) => {
+      App.show_urls()
     }},
-    {name: `Open Tabs`, cmd: `open_tabs`, mode: `tabs`, icon: tabicon, action: (args) => {
-      App.open_tabs()
+    {name: `Open URLs`, cmd: `open_urls`, mode: `tabs`, icon: tabicon, action: (args) => {
+      App.open_urls()
     }},
     {name: `Reopen`, cmd: `reopen`, icon: tabicon, action: (args) => {
       App.reopen_tab()
