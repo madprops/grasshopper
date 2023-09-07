@@ -310,7 +310,7 @@ App.more_menu_items = (o_items, item, multiple, some_loaded) => {
     items.push({
       text: `Forget`,
       action: () => {
-        App.forget_closed_tabs(item)
+        App.forget_closed_item(item)
       }
     })
   }

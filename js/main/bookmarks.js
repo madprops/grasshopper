@@ -1,14 +1,7 @@
 App.setup_bookmarks = () => {
   App.bookmarks_actions = [
-    {icon: App.mode_icons.bookmarks, text: `Bookmark`, action: () => {
-      App.bookmark_active()
-    }},
-    {text: `Deep Search`, action: () => {
-      App.deep_search(`bookmarks`)
-    }},
-    {text: `Media Search`, get_items: () => {
-      return App.search_media(`bookmarks`)
-    }},
+    `deep_search`,
+    `search_media`,
   ]
 
   browser.bookmarks.onCreated.addListener((id, info) => {

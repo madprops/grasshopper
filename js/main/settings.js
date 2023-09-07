@@ -128,7 +128,7 @@ App.build_default_settings = () => {
   ], category: category, version: 4}
   obj.empty_menu = {value: [
     {cmd: `select_all`},
-    {cmd: `new_tab`},
+    {cmd: `new`},
   ], category: category, version: 4}
   obj.footer_menu = {value: [
     {cmd: `copy_url`},

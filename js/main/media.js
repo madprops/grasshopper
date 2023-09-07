@@ -316,10 +316,12 @@ App.search_media = (mode) => {
       }})
     }
 
-    items.push({text: App.capitalize(type), items: subitems})
+    items.push({text: App.capitalize(type), action: () => {
+      NeedContext.show_on_center(subitems)
+    }})
   }
 
-  return items
+  NeedContext.show_on_center(items)
 }
 
 App.scroll_media_up = (what = App.window_mode) => {

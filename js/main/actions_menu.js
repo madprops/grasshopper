@@ -30,35 +30,14 @@ App.show_actions_menu = (mode) => {
   let items = []
 
   for (let item of App[`${mode}_actions`]) {
-    if (item.text === App.separator_string) {
-      items.push({separator: true})
-      continue
-    }
+    let c = App.get_command(item)
 
-    if (item.conditional) {
-      items.push(item.conditional())
-    }
-    else if (item.action) {
+    if (c) {
       items.push({
-        icon: item.icon,
-        text: item.text,
+        text: c.name,
         action: () => {
-          item.action()
+          App.run_command({cmd: c.cmd, from: `actions`})
         }
-      })
-    }
-    else if (item.items) {
-      items.push({
-        icon: item.icon,
-        text: item.text,
-        items: item.items
-      })
-    }
-    else if (item.get_items) {
-      items.push({
-        icon: item.icon,
-        text: item.text,
-        get_items: item.get_items
       })
     }
   }

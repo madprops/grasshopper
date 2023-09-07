@@ -1,8 +1,6 @@
 App.setup_closed = () => {
   App.closed_actions = [
-    {text: `Forget All`, action: () => {
-      App.forget_all_closed_tabs()
-    }},
+    `forget_closed`
   ]
 
   App.setup_item_window(`closed`)
@@ -36,7 +34,7 @@ App.closed_action = (item) => {
   App.focus_or_open_item(item)
 }
 
-App.undo_close_tab = async () => {
+App.reopen_tab = async () => {
   let closed = await App.get_closed()
 
   if (closed && closed.length) {
@@ -44,7 +42,7 @@ App.undo_close_tab = async () => {
   }
 }
 
-App.forget_all_closed_tabs = () => {
+App.forget_closed = () => {
   let items = App.get_items(`closed`)
 
   App.show_confirm(`Forget all closed tabs? (${items.length})`, async () => {
@@ -56,7 +54,7 @@ App.forget_all_closed_tabs = () => {
   })
 }
 
-App.forget_closed_tabs = (item) => {
+App.forget_closed_item = (item) => {
   let active = App.get_active_items(`closed`, item)
 
   App.show_confirm(`Forget closed tabs? (${active.length})`, async () => {

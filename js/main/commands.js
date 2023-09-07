@@ -123,7 +123,7 @@ App.setup_commands = () => {
 
     {name: App.separator_string},
 
-    {name: `New Tab`, cmd: `new_tab`, icon: tabicon, action: (args) => {
+    {name: `New`, cmd: `new`, icon: tabicon, action: (args) => {
       App.new_tab()
     }},
     {name: `Unload`, cmd: `unload`, mode: `tabs`, icon: tabicon, action: (args) => {
@@ -171,6 +171,9 @@ App.setup_commands = () => {
     {name: `Close Single`, cmd: `close_single`, mode: `tabs`, icon: tabicon, action: (args) => {
       App.close_tabs(args.item, false)
     }},
+    {name: `Close Menu`, cmd: `close_menu`, mode: `tabs`, icon: tabicon, action: (args) => {
+      App.close_menu()
+    }},
     {name: `Close Normal`, cmd: `close_normal`, mode: `tabs`, icon: tabicon, action: (args) => {
       App.close_normal_tabs()
     }},
@@ -186,20 +189,20 @@ App.setup_commands = () => {
     {name: `Go To Playing`, cmd: `go_to_playing`, icon: tabicon, action: (args) => {
       App.go_to_playing_tab()
     }},
-    {name: `Sort Tabs`, cmd: `sort_tabs`, mode: `tabs`, icon: tabicon, action: (args) => {
+    {name: `Sort`, cmd: `sort`, mode: `tabs`, icon: tabicon, action: (args) => {
       App.sort_tabs()
     }},
-    {name: `Tabs Info`, cmd: `tabs_info`, mode: `tabs`, icon: tabicon, action: (args) => {
+    {name: `Show Info`, cmd: `info`, mode: `tabs`, icon: tabicon, action: (args) => {
       App.show_tabs_info()
     }},
-    {name: `Tab URLs`, cmd: `tab_urls`, mode: `tabs`, icon: tabicon, action: (args) => {
+    {name: `Tab URLs`, cmd: `urls`, mode: `tabs`, icon: tabicon, action: (args) => {
       App.show_tab_urls()
     }},
     {name: `Open Tabs`, cmd: `open_tabs`, mode: `tabs`, icon: tabicon, action: (args) => {
       App.open_tabs()
     }},
-    {name: `Undo Close`, cmd: `undo_close`, icon: tabicon, action: (args) => {
-      App.undo_close_tab()
+    {name: `Reopen`, cmd: `reopen`, icon: tabicon, action: (args) => {
+      App.reopen_tab()
     }},
     {name: `Select Pins`, cmd: `select_pins`, mode: `tabs`, icon: tabicon, action: (args) => {
       App.select_tabs(`pins`)
@@ -226,6 +229,15 @@ App.setup_commands = () => {
     ...color_filters,
     {name: `Filter History`, cmd: `filter_history`, mode: `items`, action: (args) => {
       App.show_filter_history(undefined, args.mode)
+    }},
+    {name: `Deep Search`, cmd: `deep_search`, mode: `items`, action: (args) => {
+      App.deep_search(args.mode)
+    }},
+    {name: `Search Media`, cmd: `search_media`, mode: `items`, action: (args) => {
+      App.search_media(args.mode)
+    }},
+    {name: `Forget Closed`, cmd: `forget_closed`, mode: `items`, action: (args) => {
+      App.forget_closed()
     }},
 
     {name: App.separator_string},

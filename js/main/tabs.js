@@ -8,33 +8,13 @@ App.setup_tabs = () => {
   ]
 
   App.tabs_actions = [
-    {text: `New Tab`, action: () => {
-      App.new_tab()
-    }},
-
-    {text: `Undo Close`, action: () => {
-      App.undo_close_tab()
-    }},
-
-    {text: `Sort Tabs`, action: () => {
-      App.sort_tabs()
-    }},
-
-    {text: `Tabs Info`, action: () => {
-      App.show_tabs_info()
-    }},
-
-    {text: `Tab URLs`, action: () => {
-      App.show_tab_urls()
-    }},
-
-    {text: `Open Tabs`, action: () => {
-      App.open_tabs()
-    }},
-
-    {text: `Close Tabs`, get_items: () => {
-      return App.get_close_tabs_items()
-    }},
+    `new`,
+    `reopen`,
+    `sort`,
+    `info`,
+    `urls`,
+    `open_tabs`,
+    `close_menu`,
   ]
 
   App.setup_item_window(`tabs`)
@@ -1054,7 +1034,7 @@ App.browser_forward = () => {
   browser.tabs.goForward()
 }
 
-App.get_close_tabs_items = () => {
+App.close_menu = () => {
   let items = []
 
   items.push({
@@ -1085,7 +1065,7 @@ App.get_close_tabs_items = () => {
     }
   })
 
-  return items
+  NeedContext.show_on_center(items)
 }
 
 App.check_tab_item = (item) => {

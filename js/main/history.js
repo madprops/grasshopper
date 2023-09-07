@@ -1,11 +1,7 @@
 App.setup_history = () => {
   App.history_actions = [
-    {text: `Deep Seach`, action: () => {
-      App.deep_search(`history`)
-    }},
-    {text: `Media Seach`, get_items: () => {
-      return App.search_media(`history`)
-    }},
+    `deep_search`,
+    `search_media`,
   ]
 
   App.setup_item_window(`history`)
