@@ -19,6 +19,7 @@ NeedContext.item_sep = `4px`
 NeedContext.layers = {}
 NeedContext.level = 0
 NeedContext.gap = `0.45rem`
+NeedContext.center_top = `50%`
 
 // Set defaults
 NeedContext.set_defaults = () => {
@@ -202,7 +203,7 @@ NeedContext.show = (x, y, items, root = true) => {
 
   if (center) {
     c.style.left = `50%`
-    c.style.top = `50%`
+    c.style.top = NeedContext.center_top
     c.style.transform = `translate(-50%, -50%)`
   }
   else {

@@ -1,6 +1,7 @@
 const App = {}
 
 NeedContext.min_width = `4.5rem`
+NeedContext.center_top = `22%`
 
 App.stor_settings_name = `settings_v100`
 App.stor_profiles_name = `profiles_v1`
