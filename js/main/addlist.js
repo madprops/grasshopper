@@ -52,7 +52,7 @@ App.setup_addlist = () => {
     widgets: [`text`, `select`, `select`], labels: [`Image URL`, `Effect`, `Tiles`], title: `BG Pool`, image: 0,
     sources: [undefined, App.background_effects, App.background_tiles],
     keys: [`url`, `effect`, `tiles`], list_text: (items) => {
-      let s = items.url
+      let s = App.remove_protocol(items.url)
 
       if (items.effect !== `none`) {
         let eff = App.get_background_effect(items.effect)
