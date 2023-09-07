@@ -1,8 +1,4 @@
 App.setup_closed = () => {
-  App.closed_actions = [
-    `forget_closed`
-  ]
-
   App.setup_item_window(`closed`)
 
   browser.sessions.onChanged.addListener(() => {

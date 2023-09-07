@@ -23,25 +23,7 @@ App.create_actions_menu = (mode) => {
 }
 
 App.show_actions_menu = (mode) => {
-  if (!App[`${mode}_actions`].length) {
-    return
-  }
-
-  let items = []
-
-  for (let item of App[`${mode}_actions`]) {
-    let c = App.get_command(item)
-
-    if (c) {
-      items.push({
-        text: c.name,
-        action: () => {
-          App.run_command({cmd: c.cmd, from: `actions`})
-        }
-      })
-    }
-  }
-
+  let items = App.custom_menu_items(`${mode}_actions`)
   let btn = DOM.el(`#${mode}_actions`)
   NeedContext.show_on_element(btn, items, true, btn.clientHeight)
 }

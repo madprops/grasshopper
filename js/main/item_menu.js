@@ -324,7 +324,7 @@ App.more_menu_items = (o_items, item, multiple, some_loaded) => {
 }
 
 App.extra_menu_items = (o_items) => {
-  let items = App.custom_menu_items(`extra`)
+  let items = App.custom_menu_items(`extra_menu`)
 
   if (items.length) {
     o_items.push({

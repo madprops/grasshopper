@@ -1,9 +1,4 @@
 App.setup_history = () => {
-  App.history_actions = [
-    `deep_search`,
-    `search_media`,
-  ]
-
   App.setup_item_window(`history`)
 
   browser.history.onVisited.addListener((info) => {

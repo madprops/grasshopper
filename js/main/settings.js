@@ -120,6 +120,26 @@ App.build_default_settings = () => {
   obj.alt_middle_click_closed = {value: `color_blue`, category: category, version: 1}
 
   category = `menus`
+  obj.tabs_actions = {value: [
+    {cmd: `new`},
+    {cmd: `reopen`},
+    {cmd: `sort`},
+    {cmd: `info`},
+    {cmd: `urls`},
+    {cmd: `open_tabs`},
+    {cmd: `close_menu`},
+  ], category: category, version: 1},
+  obj.history_actions = {value: [
+    {cmd: `deep_search`},
+    {cmd: `search_media`},
+  ], category: category, version: 1},
+  obj.bookmarks_actions = {value: [
+    {cmd: `deep_search`},
+    {cmd: `search_media`},
+  ], category: category, version: 1},
+  obj.closed_actions = {value: [
+    {cmd: `forget_closed`},
+  ], category: category, version: 1},
   obj.extra_menu = {value: [], category: category, version: 4}
   obj.pinline_menu = {value: [
     {cmd: `select_pins`},

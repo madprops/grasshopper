@@ -1,9 +1,4 @@
 App.setup_bookmarks = () => {
-  App.bookmarks_actions = [
-    `deep_search`,
-    `search_media`,
-  ]
-
   browser.bookmarks.onCreated.addListener((id, info) => {
     App.debug(`Bookmark Created: ID: ${id}`)
 

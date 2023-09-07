@@ -24,14 +24,13 @@ App.print_intro = () => {
 }
 
 App.show_custom_menu = (e, what) => {
-  let items = App.custom_menu_items(what)
+  let items = App.custom_menu_items(`${what}_menu`)
   NeedContext.show(e.clientX, e.clientY, items)
   e.preventDefault()
 }
 
-App.custom_menu_items = (what) => {
+App.custom_menu_items = (name) => {
   let items = []
-  let name = `${what}_menu`
   let menu = App.get_setting(name)
 
   if (!menu.length) {

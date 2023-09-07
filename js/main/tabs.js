@@ -1,22 +1,4 @@
 App.setup_tabs = () => {
-  App.tabs_filter_modes = [
-    [`pins`, `Pins`],
-    [`normal`, `Normal`],
-    [`playing`, `Playing`],
-    [`unloaded`, `Unloaded`],
-    [`duplicate`, `Duplicate`],
-  ]
-
-  App.tabs_actions = [
-    `new`,
-    `reopen`,
-    `sort`,
-    `info`,
-    `urls`,
-    `open_tabs`,
-    `close_menu`,
-  ]
-
   App.setup_item_window(`tabs`)
   App.debug_tabs = false
 
