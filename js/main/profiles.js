@@ -1311,18 +1311,40 @@ App.change_color = (item, color) => {
   let items = App.get_profile_items(item)
   let [profiles, added] = App.get_profiles(items)
   let args = {}
-  args.color = color
   args.profiles = profiles
   args.added = added
   args.type = `color`
   args.from = `color_items`
-  let force = !App.get_setting(`warn_on_color`)
+  let colored = false
 
-  if (items.length === 1) {
-    force = true
+  if (profiles.length) {
+    if (profiles.length === items.length) {
+      if (profiles[0].color === color) {
+        colored = true
+      }
+    }
   }
 
-  App.show_confirm(`Color items ${color}? (${items.length})`, () => {
+  let force = App.check_force(`warn_on_color`, items.length, true)
+  let msg
+
+  if (colored) {
+    msg = `Remove color ${color}?`
+  }
+  else {
+    msg = `Color items ${color}?`
+  }
+
+  msg += ` (${items.length})`
+
+  App.show_confirm(msg, () => {
+    if (colored) {
+      args.color = `none`
+    }
+    else {
+      args.color = color
+    }
+
     App.save_profile(args)
   }, undefined, force)
 }

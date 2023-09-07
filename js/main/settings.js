@@ -102,7 +102,7 @@ App.build_default_settings = () => {
   obj.middle_click_close_button = {value: `unload_single`, category: category, version: 1}
   obj.middle_click_open_button = {value: `open`, category: category, version: 1}
   obj.middle_click_pinline = {value: `close_normal`, category: category, version: 1}
-  obj.shift_middle_click_tabs = {value: `unload`, category: category, version: 1}
+  obj.shift_middle_click_tabs = {value: `color_green`, category: category, version: 1}
 
   category = `menus`
   obj.extra_menu = {value: [], category: category, version: 4}
