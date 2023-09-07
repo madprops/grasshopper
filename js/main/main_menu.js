@@ -70,6 +70,7 @@ App.show_main_menu = (mode) => {
     })
   }
 
+  items.push({separator: true})
 
   items.push({
     text: `Profiles`,
