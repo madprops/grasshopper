@@ -236,7 +236,12 @@ App.mouse_middle_action = (mode, e) => {
     return
   }
 
-  App[`${mode}_action_alt`](item, e.shiftKey)
+  if (e.shiftKey) {
+    App.shift_middle_click(item)
+    return
+  }
+
+  App[`${mode}_action_alt`](item)
 }
 
 App.mouse_wheel_action = (mode, e) => {
@@ -292,8 +297,8 @@ App.right_button_action = (item) => {
   }
 }
 
-App.shift_middle_click = (mode, item) => {
-  let cmd = App.get_setting(`shift_middle_click_${mode}`)
+App.shift_middle_click = (item) => {
+  let cmd = App.get_setting(`shift_middle_click_${item.mode}`)
 
   if (cmd !== `none`) {
     App.run_command({cmd: cmd, item: item, from: `shift_middle_click`})
