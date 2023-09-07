@@ -134,7 +134,7 @@ App.build_default_settings = () => {
     {cmd: `search_media`},
   ], category: category, name: `History Actions`, version: 1},
   obj.bookmarks_actions = {value: [
-    {cmd: `bookmark_active`},
+    {cmd: `bookmark_this`},
     {cmd: `deep_search`},
     {cmd: `search_media`},
   ], category: category, name: `Bookmark Actions`, version: 1},
