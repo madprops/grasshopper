@@ -237,13 +237,13 @@ App.mouse_middle_action = (mode, e) => {
   }
 
   if (e.ctrlKey) {
-    App.ctrl_middle_click(item)
+    App.middle_click(item, `ctrl`)
   }
   else if (e.shiftKey) {
-    App.shift_middle_click(item)
+    App.middle_click(item, `shift`)
   }
   else if (e.altKey) {
-    App.alt_middle_click(item)
+    App.middle_click(item, `alt`)
   }
   else {
     App.middle_click(item)
@@ -303,34 +303,16 @@ App.right_button_action = (item) => {
   }
 }
 
-App.middle_click = (item) => {
-  let cmd = App.get_setting(`middle_click_${item.mode}`)
+App.middle_click = (item, key = ``) => {
+  let s = `middle_click_${item.mode}`
+
+  if (key) {
+    s = `${key}_${s}`
+  }
+
+  let cmd = App.get_setting(s)
 
   if (cmd !== `none`) {
     App.run_command({cmd: cmd, item: item, from: `middle_click`})
-  }
-}
-
-App.ctrl_middle_click = (item) => {
-  let cmd = App.get_setting(`ctrl_middle_click_${item.mode}`)
-
-  if (cmd !== `none`) {
-    App.run_command({cmd: cmd, item: item, from: `ctrl_middle_click`})
-  }
-}
-
-App.shift_middle_click = (item) => {
-  let cmd = App.get_setting(`shift_middle_click_${item.mode}`)
-
-  if (cmd !== `none`) {
-    App.run_command({cmd: cmd, item: item, from: `shift_middle_click`})
-  }
-}
-
-App.alt_middle_click = (item) => {
-  let cmd = App.get_setting(`alt_middle_click_${item.mode}`)
-
-  if (cmd !== `none`) {
-    App.run_command({cmd: cmd, item: item, from: `alt_middle_click`})
   }
 }
