@@ -91,7 +91,7 @@ App.setup_commands = () => {
     {name: App.separator_string},
 
     {name: `Open`, cmd: `open`, mode: `items`, action: (args) => {
-      App.open_items(args.item, true)
+      App.open_items(args.item)
     }},
     {name: `Open Single`, cmd: `open_single`, mode: `items`, action: (args) => {
       App.open_items(args.item, false)
