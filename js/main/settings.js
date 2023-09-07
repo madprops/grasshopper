@@ -74,10 +74,10 @@ App.build_default_settings = () => {
   obj.pick_icon = {value: `🎯`, category: category, version: 1}
 
   category = `show`
+  obj.show_pinline = {value: `normal`, category: category, version: 1}
   obj.show_scrollbars = {value: true, category: category, version: 1}
   obj.show_tooltips = {value: true, category: category, version: 1}
   obj.show_icons = {value: true, category: category, version: 1}
-  obj.show_pinline = {value: true, category: category, version: 1}
   obj.show_scroller = {value: true, category: category, version: 1}
   obj.show_footer = {value: true, category: category, version: 1}
   obj.show_filter_history = {value: true, category: category, version: 1}
@@ -208,7 +208,6 @@ App.build_default_settings = () => {
   obj.deep_max_items = {value: 5000, category: category, version: 1}
   obj.history_max_months = {value: 18, category: category, version: 1}
   obj.deep_history_max_months = {value: 54, category: category, version: 1}
-  obj.always_show_pinline = {value: false, category: category, version: 1}
 
   App.default_settings = obj
 }
@@ -727,6 +726,12 @@ App.setup_settings = () => {
 
   App.create_window(Object.assign({}, common, {id: `settings_show`, setup: () => {
     prepare(`show`)
+
+    App.settings_make_menu(`show_pinline`, [
+      {text: `Never`, value: `never`},
+      {text: `Normal`, value: `normal`},
+      {text: `Always`, value: `always`},
+    ])
   }}))
 
   App.create_window(Object.assign({}, common, {id: `settings_gestures`, setup: () => {

@@ -3,7 +3,7 @@ App.pinline_debouncer = App.create_debouncer(() => {
 }, App.pinline_delay)
 
 App.check_pinline = () => {
-  if (App.get_setting(`show_pinline`)) {
+  if (App.get_setting(`show_pinline`) !== `never`) {
     App.pinline_debouncer.call()
   }
 }
@@ -15,7 +15,7 @@ App.do_check_pinline = () => {
     return
   }
 
-  if (!App.get_setting(`show_pinline`)) {
+  if (App.get_setting(`show_pinline`) === `never`) {
     return
   }
 
@@ -27,7 +27,7 @@ App.do_check_pinline = () => {
     return
   }
 
-  if (!App.get_setting(`always_show_pinline`)) {
+  if (App.get_setting(`show_pinline`) === `normal`) {
     if ((!tabs.pinned_f.length) || (!tabs.normal_f.length)) {
       return
     }
