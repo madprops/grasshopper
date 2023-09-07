@@ -128,32 +128,32 @@ App.build_default_settings = () => {
     {cmd: `show_urls`},
     {cmd: `open_urls`},
     {cmd: `close_menu`},
-  ], category: category, version: 1},
+  ], category: category, name: `Tab Actions`, version: 1},
   obj.history_actions = {value: [
     {cmd: `deep_search`},
     {cmd: `search_media`},
-  ], category: category, version: 1},
+  ], category: category, name: `History Actions`, version: 1},
   obj.bookmarks_actions = {value: [
     {cmd: `deep_search`},
     {cmd: `search_media`},
-  ], category: category, version: 1},
+  ], category: category, name: `Bookmark Actions`, version: 1},
   obj.closed_actions = {value: [
     {cmd: `forget_closed`},
-  ], category: category, version: 1},
-  obj.extra_menu = {value: [], category: category, version: 4}
+  ], category: category, name: `Closed Actions`, version: 1},
+  obj.extra_menu = {value: [], category: category, name: `Extra Menu`, version: 4}
   obj.pinline_menu = {value: [
     {cmd: `select_pins`},
     {cmd: `select_normal`},
     {cmd: `select_all`},
-  ], category: category, version: 4}
+  ], category: category, name: `Pinline Menu`, version: 4}
   obj.empty_menu = {value: [
     {cmd: `select_all`},
     {cmd: `new`},
-  ], category: category, version: 4}
+  ], category: category, name: `Empty Menu`, version: 4}
   obj.footer_menu = {value: [
     {cmd: `copy_url`},
     {cmd: `copy_title`},
-  ], category: category, version: 4}
+  ], category: category, name: `Footer Menu`, version: 4}
 
   category = `keyboard`
   obj.keyboard_shortcuts = {value: [], category: category, version: 4}

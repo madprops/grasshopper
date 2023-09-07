@@ -83,15 +83,13 @@ App.setup_addlist = () => {
     }})
   }))
 
-  for (let key in App.default_settings) {
-    let cmd = App.default_settings[key]
+  for (let id in App.default_settings) {
+    let cmd = App.default_settings[id]
 
     if (cmd.category === `menus`) {
-      let id = key
-
       App.create_popup(Object.assign({}, args, {
         id: `addlist_${id}`, element: App.addlist_register({id: id, pk: `cmd`,
-        widgets: [`select`], labels: [`Command`], title: `Custom Menu`,
+        widgets: [`select`], labels: [`Command`], title: cmd.name,
         sources: [App.addlist_commands.slice(0)],
         keys: [`cmd`], list_text: (items) => {
           return cmd_name(items.cmd)
