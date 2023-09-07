@@ -311,10 +311,6 @@ App.tabs_action = async (item) => {
   await App.focus_tab(item, `nearest_smooth`)
 }
 
-App.tabs_action_alt = (item) => {
-  App.close_tabs(item, false)
-}
-
 App.duplicate_tab = async (item) => {
   try {
     await browser.tabs.duplicate(item.id)

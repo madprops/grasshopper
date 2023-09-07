@@ -36,10 +36,6 @@ App.closed_action = (item) => {
   App.focus_or_open_item(item)
 }
 
-App.closed_action_alt = (item) => {
-  App.open_items(item, true, false)
-}
-
 App.undo_close_tab = async () => {
   let closed = await App.get_closed()
 

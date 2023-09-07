@@ -62,7 +62,3 @@ App.history_action = (item) => {
   App.on_action(`history`)
   App.focus_or_open_item(item)
 }
-
-App.history_action_alt = (item) => {
-  App.open_items(item, true, false)
-}

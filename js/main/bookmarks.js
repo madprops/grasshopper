@@ -86,11 +86,6 @@ App.bookmarks_action = (item) => {
   App.focus_or_open_item(item)
 }
 
-App.bookmarks_action_alt = (item) => {
-  App.check_bookmark(item)
-  App.open_items(item, true, false)
-}
-
 App.get_bookmarks_folder = async () => {
   let bookmarks_folder = App.get_setting(`bookmarks_folder`)
   let results = await browser.bookmarks.search({title: bookmarks_folder})

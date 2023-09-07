@@ -93,6 +93,9 @@ App.setup_commands = () => {
     {name: `Open`, cmd: `open`, mode: `items`, action: (args) => {
       App.open_items(args.item, true)
     }},
+    {name: `Open Single`, cmd: `open_single`, mode: `items`, action: (args) => {
+      App.open_items(args.item, false)
+    }},
     {name: `Bookmark`, cmd: `bookmark`, mode: `items`, icon: App.mode_icons.bookmarks, action: (args) => {
       App.bookmark_items(args.item)
     }},
@@ -166,7 +169,7 @@ App.setup_commands = () => {
       App.close_tabs(args.item)
     }},
     {name: `Close Single`, cmd: `close_single`, mode: `tabs`, icon: tabicon, action: (args) => {
-      App.close_tabs(args.item, true)
+      App.close_tabs(args.item, false)
     }},
     {name: `Close Normal`, cmd: `close_normal`, mode: `tabs`, icon: tabicon, action: (args) => {
       App.close_normal_tabs()

@@ -99,9 +99,13 @@ App.build_default_settings = () => {
   obj.middle_click_actions_menu = {value: `browser_reload`, category: category, version: 1}
   obj.middle_click_footer = {value: `copy_url`, category: category, version: 1}
   obj.middle_click_pick_button = {value: `filter_domain`, category: category, version: 1}
-  obj.middle_click_close_button = {value: `unload_single`, category: category, version: 1}
+  obj.middle_click_close_button = {value: `unload`, category: category, version: 1}
   obj.middle_click_open_button = {value: `open`, category: category, version: 1}
   obj.middle_click_pinline = {value: `close_normal`, category: category, version: 1}
+  obj.middle_click_tabs = {value: `close`, category: category, version: 1}
+  obj.middle_click_history = {value: `open`, category: category, version: 1}
+  obj.middle_click_bookmarks = {value: `open`, category: category, version: 1}
+  obj.middle_click_closed = {value: `open`, category: category, version: 1}
   obj.shift_middle_click_tabs = {value: `color_green`, category: category, version: 1}
   obj.shift_middle_click_history = {value: `color_green`, category: category, version: 1}
   obj.shift_middle_click_bookmarks = {value: `color_green`, category: category, version: 1}
@@ -728,6 +732,10 @@ App.setup_settings = () => {
     App.settings_make_menu(`middle_click_close_button`, opts)
     App.settings_make_menu(`middle_click_open_button`, opts)
     App.settings_make_menu(`middle_click_pinline`, opts)
+    App.settings_make_menu(`middle_click_tabs`, opts)
+    App.settings_make_menu(`middle_click_history`, opts)
+    App.settings_make_menu(`middle_click_bookmarks`, opts)
+    App.settings_make_menu(`middle_click_closed`, opts)
     App.settings_make_menu(`shift_middle_click_tabs`, opts)
     App.settings_make_menu(`shift_middle_click_history`, opts)
     App.settings_make_menu(`shift_middle_click_bookmarks`, opts)
