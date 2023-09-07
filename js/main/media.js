@@ -78,6 +78,10 @@ App.create_media_windows = (what) => {
       App.media_next(what)
     })
 
+    DOM.ev(DOM.el(`#media_${what}_url`), `click`, () => {
+      App.media_copy(what)
+    })
+
     DOM.ev(buttons, `wheel`, (e) => {
       App.media_wheel.call(e, what)
     })
