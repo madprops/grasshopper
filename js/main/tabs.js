@@ -756,6 +756,7 @@ App.do_close_normal_tabs = (close_unloaded = true) => {
   }
 
   if (!ids.length) {
+    App.hide_popup(`close_normal`)
     App.show_alert(`Nothing to close`)
     return
   }
@@ -899,6 +900,7 @@ App.do_close_duplicate_tabs = (close_pins = true) => {
   let ids = excess.map(x => x.id)
 
   if (!ids.length) {
+    App.hide_popup(`close_duplicates`)
     App.show_alert(`No duplicates found`)
     return
   }
