@@ -74,7 +74,7 @@ App.build_default_settings = () => {
   obj.pick_icon = {value: `🎯`, category: category, version: 1}
 
   category = `show`
-  obj.show_pinline = {value: `normal`, category: category, version: 1}
+  obj.show_pinline = {value: `normal`, category: category, version: 2}
   obj.show_scrollbars = {value: true, category: category, version: 1}
   obj.show_tooltips = {value: true, category: category, version: 1}
   obj.show_icons = {value: true, category: category, version: 1}
