@@ -106,10 +106,18 @@ App.build_default_settings = () => {
   obj.middle_click_history = {value: `open`, category: category, version: 1}
   obj.middle_click_bookmarks = {value: `open`, category: category, version: 1}
   obj.middle_click_closed = {value: `open`, category: category, version: 1}
+  obj.ctrl_middle_click_tabs = {value: `color_red`, category: category, version: 1}
+  obj.ctrl_middle_click_history = {value: `color_red`, category: category, version: 1}
+  obj.ctrl_middle_click_bookmarks = {value: `color_red`, category: category, version: 1}
+  obj.ctrl_middle_click_closed = {value: `color_red`, category: category, version: 1}
   obj.shift_middle_click_tabs = {value: `color_green`, category: category, version: 1}
   obj.shift_middle_click_history = {value: `color_green`, category: category, version: 1}
   obj.shift_middle_click_bookmarks = {value: `color_green`, category: category, version: 1}
   obj.shift_middle_click_closed = {value: `color_green`, category: category, version: 1}
+  obj.alt_middle_click_tabs = {value: `color_blue`, category: category, version: 1}
+  obj.alt_middle_click_history = {value: `color_blue`, category: category, version: 1}
+  obj.alt_middle_click_bookmarks = {value: `color_blue`, category: category, version: 1}
+  obj.alt_middle_click_closed = {value: `color_blue`, category: category, version: 1}
 
   category = `menus`
   obj.extra_menu = {value: [], category: category, version: 4}
@@ -736,10 +744,18 @@ App.setup_settings = () => {
     App.settings_make_menu(`middle_click_history`, opts)
     App.settings_make_menu(`middle_click_bookmarks`, opts)
     App.settings_make_menu(`middle_click_closed`, opts)
+    App.settings_make_menu(`ctrl_middle_click_tabs`, opts)
+    App.settings_make_menu(`ctrl_middle_click_history`, opts)
+    App.settings_make_menu(`ctrl_middle_click_bookmarks`, opts)
+    App.settings_make_menu(`ctrl_middle_click_closed`, opts)
     App.settings_make_menu(`shift_middle_click_tabs`, opts)
     App.settings_make_menu(`shift_middle_click_history`, opts)
     App.settings_make_menu(`shift_middle_click_bookmarks`, opts)
     App.settings_make_menu(`shift_middle_click_closed`, opts)
+    App.settings_make_menu(`alt_middle_click_tabs`, opts)
+    App.settings_make_menu(`alt_middle_click_history`, opts)
+    App.settings_make_menu(`alt_middle_click_bookmarks`, opts)
+    App.settings_make_menu(`alt_middle_click_closed`, opts)
   }}))
 
   App.create_window(Object.assign({}, common, {id: `settings_menus`, setup: () => {
