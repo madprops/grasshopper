@@ -341,6 +341,20 @@ App.setup_keyboard = () => {
           return
         }
       }
+      else if (pmode === `close_normal`) {
+        if (e.key === `Enter`) {
+          App.close_normal_tabs_action()
+          e.preventDefault()
+          return
+        }
+      }
+      else if (pmode === `close_duplicates`) {
+        if (e.key === `Enter`) {
+          App.close_duplicate_tabs_action()
+          e.preventDefault()
+          return
+        }
+      }
       else if (App.on_addlist()) {
         if (e.key === `Enter`) {
           App.addlist_enter()

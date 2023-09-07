@@ -82,8 +82,7 @@ App.setup_tabs = () => {
   App.create_popup({
     id: `close_normal`, setup: () => {
       DOM.ev(DOM.el(`#close_normal_button`), `click`, () => {
-        let close_unloaded = DOM.el(`#close_normal_unloaded`).checked
-        App.do_close_normal_tabs(close_unloaded)
+        App.close_normal_tabs_action()
       })
     }
   })
@@ -91,8 +90,7 @@ App.setup_tabs = () => {
   App.create_popup({
     id: `close_duplicates`, setup: () => {
       DOM.ev(DOM.el(`#close_duplicates_button`), `click`, () => {
-        let close_pins = DOM.el(`#close_duplicates_pins`).checked
-        App.do_close_duplicate_tabs(close_pins)
+        App.close_duplicate_tabs_action()
       })
     }
   })
@@ -740,6 +738,11 @@ App.close_normal_tabs = () => {
   DOM.el(`#close_normal_unloaded`).checked = false
 }
 
+App.close_normal_tabs_action = () => {
+  let close_unloaded = DOM.el(`#close_normal_unloaded`).checked
+  App.do_close_normal_tabs(close_unloaded)
+}
+
 App.do_close_normal_tabs = (close_unloaded = true) => {
   let ids = []
 
@@ -883,6 +886,11 @@ App.get_active_tab_item = () => {
 App.close_duplicate_tabs = () => {
   App.show_popup(`close_duplicates`)
   DOM.el(`#close_duplicates_pins`).checked = false
+}
+
+App.close_duplicate_tabs_action = () => {
+  let close_pins = DOM.el(`#close_duplicates_pins`).checked
+  App.do_close_duplicate_tabs(close_pins)
 }
 
 App.do_close_duplicate_tabs = (close_pins = true) => {
