@@ -731,31 +731,14 @@ App.setup_settings = () => {
   App.create_window(Object.assign({}, common, {id: `settings_auxclick`, setup: () => {
     prepare(`auxclick`)
     let opts = App.settings_commands()
-    App.settings_make_menu(`middle_click_main_menu`, opts)
-    App.settings_make_menu(`middle_click_filter_menu`, opts)
-    App.settings_make_menu(`middle_click_back_button`, opts)
-    App.settings_make_menu(`middle_click_actions_menu`, opts)
-    App.settings_make_menu(`middle_click_footer`, opts)
-    App.settings_make_menu(`middle_click_pick_button`, opts)
-    App.settings_make_menu(`middle_click_close_button`, opts)
-    App.settings_make_menu(`middle_click_open_button`, opts)
-    App.settings_make_menu(`middle_click_pinline`, opts)
-    App.settings_make_menu(`middle_click_tabs`, opts)
-    App.settings_make_menu(`middle_click_history`, opts)
-    App.settings_make_menu(`middle_click_bookmarks`, opts)
-    App.settings_make_menu(`middle_click_closed`, opts)
-    App.settings_make_menu(`ctrl_middle_click_tabs`, opts)
-    App.settings_make_menu(`ctrl_middle_click_history`, opts)
-    App.settings_make_menu(`ctrl_middle_click_bookmarks`, opts)
-    App.settings_make_menu(`ctrl_middle_click_closed`, opts)
-    App.settings_make_menu(`shift_middle_click_tabs`, opts)
-    App.settings_make_menu(`shift_middle_click_history`, opts)
-    App.settings_make_menu(`shift_middle_click_bookmarks`, opts)
-    App.settings_make_menu(`shift_middle_click_closed`, opts)
-    App.settings_make_menu(`alt_middle_click_tabs`, opts)
-    App.settings_make_menu(`alt_middle_click_history`, opts)
-    App.settings_make_menu(`alt_middle_click_bookmarks`, opts)
-    App.settings_make_menu(`alt_middle_click_closed`, opts)
+
+    for (let key in App.default_settings) {
+      let cmd = App.default_settings[key]
+
+      if (cmd.category === `auxclick`) {
+        App.settings_make_menu(key, opts)
+      }
+    }
   }}))
 
   App.create_window(Object.assign({}, common, {id: `settings_menus`, setup: () => {
