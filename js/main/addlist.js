@@ -25,7 +25,27 @@ App.setup_addlist = () => {
     after_hide: after_hide,
   }
 
-  let id = `background_pool`
+  let id = `aliases`
+
+  App.create_popup(Object.assign({}, args, {
+    id: `addlist_${id}`, element: App.addlist_register({id: id, pk: `a`,
+    widgets: [`text`, `text`], labels: [`Term A`, `Term B`], title: `Aliases`,
+    keys: [`a`, `b`], list_text: (items) => {
+      return `${items.a} = ${items.b}`
+    }})
+  }))
+
+  id = `custom_filters`
+
+  App.create_popup(Object.assign({}, args, {
+    id: `addlist_${id}`, element: App.addlist_register({id: id, pk: `filter`,
+    widgets: [`text`], labels: [`Filter`], title: `Custom Filters`,
+    keys: [`filter`], list_text: (items) => {
+      return items.filter
+    }})
+  }))
+
+  id = `background_pool`
 
   App.create_popup(Object.assign({}, args, {
     id: `addlist_${id}`, element: App.addlist_register({id: id, pk: `url`,
@@ -50,70 +70,6 @@ App.setup_addlist = () => {
     }})
   }))
 
-  id = `custom_filters`
-
-  App.create_popup(Object.assign({}, args, {
-    id: `addlist_${id}`, element: App.addlist_register({id: id, pk: `filter`,
-    widgets: [`text`], labels: [`Filter`], title: `Custom Filters`,
-    keys: [`filter`], list_text: (items) => {
-      return items.filter
-    }})
-  }))
-
-  id = `aliases`
-
-  App.create_popup(Object.assign({}, args, {
-    id: `addlist_${id}`, element: App.addlist_register({id: id, pk: `a`,
-    widgets: [`text`, `text`], labels: [`Term A`, `Term B`], title: `Aliases`,
-    keys: [`a`, `b`], list_text: (items) => {
-      return `${items.a} = ${items.b}`
-    }})
-  }))
-
-  id = `extra_menu`
-
-  App.create_popup(Object.assign({}, args, {
-    id: `addlist_${id}`, element: App.addlist_register({id: id, pk: `cmd`,
-    widgets: [`select`], labels: [`Command`], title: `Extra Menu`,
-    sources: [App.addlist_commands.slice(0)],
-    keys: [`cmd`], list_text: (items) => {
-      return cmd_name(items.cmd)
-    }})
-  }))
-
-  id = `pinline_menu`
-
-  App.create_popup(Object.assign({}, args, {
-    id: `addlist_${id}`, element: App.addlist_register({id: id, pk: `cmd`,
-    widgets: [`select`], labels: [`Command`], title: `Pinline Menu`,
-    sources: [App.addlist_commands.slice(0)],
-    keys: [`cmd`], list_text: (items) => {
-      return cmd_name(items.cmd)
-    }})
-  }))
-
-  id = `empty_menu`
-
-  App.create_popup(Object.assign({}, args, {
-    id: `addlist_${id}`, element: App.addlist_register({id: id, pk: `cmd`,
-    widgets: [`select`], labels: [`Command`], title: `Empty Menu`,
-    sources: [App.addlist_commands.slice(0)],
-    keys: [`cmd`], list_text: (items) => {
-      return cmd_name(items.cmd)
-    }})
-  }))
-
-  id = `footer_menu`
-
-  App.create_popup(Object.assign({}, args, {
-    id: `addlist_${id}`, element: App.addlist_register({id: id, pk: `cmd`,
-    widgets: [`select`], labels: [`Command`], title: `Footer Menu`,
-    sources: [App.addlist_commands.slice(0)],
-    keys: [`cmd`], list_text: (items) => {
-      return cmd_name(items.cmd)
-    }})
-  }))
-
   id = `keyboard_shortcuts`
 
   App.create_popup(Object.assign({}, args, {
@@ -126,6 +82,23 @@ App.setup_addlist = () => {
       return `${items.key} = ${cmd}`
     }})
   }))
+
+  for (let key in App.default_settings) {
+    let cmd = App.default_settings[key]
+
+    if (cmd.category === `menus`) {
+      let id = key
+
+      App.create_popup(Object.assign({}, args, {
+        id: `addlist_${id}`, element: App.addlist_register({id: id, pk: `cmd`,
+        widgets: [`select`], labels: [`Command`], title: `Custom Menu`,
+        sources: [App.addlist_commands.slice(0)],
+        keys: [`cmd`], list_text: (items) => {
+          return cmd_name(items.cmd)
+        }})
+      }))
+    }
+  }
 }
 
 App.addlist_values = (id) => {

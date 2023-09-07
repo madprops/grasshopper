@@ -764,10 +764,14 @@ App.setup_settings = () => {
 
   App.create_window(Object.assign({}, common, {id: `settings_menus`, setup: () => {
     prepare(`menus`)
-    App.addlist_buttons({id: `extra_menu`})
-    App.addlist_buttons({id: `pinline_menu`})
-    App.addlist_buttons({id: `empty_menu`})
-    App.addlist_buttons({id: `footer_menu`})
+
+    for (let key in App.default_settings) {
+      let cmd = App.default_settings[key]
+
+      if (cmd.category === `menus`) {
+        App.addlist_buttons({id: key})
+      }
+    }
   }}))
 
   App.create_window(Object.assign({}, common, {id: `settings_keyboard`, setup: () => {
