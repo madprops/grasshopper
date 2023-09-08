@@ -1727,7 +1727,7 @@ App.start_auto_reload = () => {
 
   if (delay > 0) {
     App.auto_reload_interval = setInterval(() => {
-      App.debug(`Auto reloading tabs`, true)
+      App.debug(`Auto reloading tabs`)
       let sett = App.get_setting(setting)
 
       if (sett === `never`) {
