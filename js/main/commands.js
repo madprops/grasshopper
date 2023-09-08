@@ -106,11 +106,11 @@ App.setup_commands = () => {
 
     {name: `Open`, cmd: `open`, mode: `items`, action: (args) => {
       App.open_items(args.item)
-    }, info: `Open tabs`},
+    }, info: `Open items`},
 
     {name: `Open Single`, cmd: `open_single`, mode: `items`, action: (args) => {
       App.open_items(args.item, false)
-    }, info: `Open only the selected tab`},
+    }, info: `Open only the selected item`},
 
     {name: `Bookmark`, cmd: `bookmark`, mode: `items`, icon: App.mode_icons.bookmarks, action: (args) => {
       App.bookmark_items(args.item)
