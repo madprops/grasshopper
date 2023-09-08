@@ -156,7 +156,7 @@ App.mouse_click_action = (mode, e) => {
     }
   }
 
-  if (App.get_setting(`double_click_action`)) {
+  if (App.get_setting(`double_click_command`) === `action`) {
     return
   }
 
@@ -180,16 +180,10 @@ App.mouse_double_click_action = (mode, e) => {
   }
 
   let item = App.get_cursor_item(mode, e)
+  let cmd = App.get_setting(`double_click_command`)
 
-  if (App.get_setting(`double_click_action`)) {
-    App[`${mode}_action`](item)
-  }
-  else {
-    let cmd = App.get_setting(`double_click_command`)
-
-    if (cmd !== `none`) {
-      App.run_command({cmd: cmd, item: item, from: `double_click`})
-    }
+  if (cmd !== `none`) {
+    App.run_command({cmd: cmd, item: item, from: `double_click`})
   }
 }
 

@@ -510,11 +510,8 @@ App.build_default_settings = () => {
   obj.selected_effect = {value: `background`, category: category, type: `menu`, name: `Selected Effect`, version: 1,
   info: `What effect to use on selected items`}
 
-  obj.double_click_command = {value: `none`, category: category, type: `menu`, name: `Double Click Command`, version: 1,
+  obj.double_click_command = {value: `color_green`, category: category, type: `menu`, name: `Double Click Command`, version: 1,
   info: `What command to perform when double clicking an item`}
-
-  obj.double_click_action = {value: false, category: category, type: `checkbox`, name: `Double Click Action`, version: 1,
-  info: `Require double click to focus or open an item`}
 
   obj.lock_drag = {value: false, category: category, type: `checkbox`, name: `Lock Drag`, version: 1,
   info: `Require holding Ctrl to re-order tab items`}

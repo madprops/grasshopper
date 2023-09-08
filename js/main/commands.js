@@ -90,6 +90,9 @@ App.setup_commands = () => {
 
     {name: App.separator_string},
 
+    {name: `Action`, cmd: `action`, mode: `items`, action: (args) => {
+      App[`${args.mode}_action`](args.item)
+    }},
     {name: `Open`, cmd: `open`, mode: `items`, action: (args) => {
       App.open_items(args.item)
     }},
