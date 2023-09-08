@@ -22,8 +22,8 @@ App.build_default_settings = () => {
   obj.font_size = {value: 16, category: category, type: `menu`, name: `Font Size`, version: 1,
   info: `The font size to use for text. The interface scales accordingly`}
 
-  obj.favicon_source = {value: `none`, category: category, type: `menu`, name: `Favicon Source`, version: 1,
-  info: `Where to get favicons from, on modes that don't support local favicons like history and bookmarks`}
+  obj.item_border = {value: `none`, category: category, type: `menu`, name: `Item Border`, version: 2,
+  info: `Border between each item`}
 
   obj.width = {value: 75, category: category, type: `menu`, name: `Width`, version: 1,
   info: `Width of the popup`}
@@ -31,15 +31,15 @@ App.build_default_settings = () => {
   obj.height = {value: 85, category: category, type: `menu`, name: `Height`, version: 1,
   info: `Height of the popup`}
 
-  obj.item_border = {value: `none`, category: category, type: `menu`, name: `Item Border`, version: 2,
-  info: `Border between each item`}
-
   obj.pick_mode = {value: `none`, category: category, type: `menu`, name: `Pick Mode`, version: 1,
   info: `What pick mode to use. The picks appear on the left of items`}
 
   obj.auto_restore = {value: `1_seconds`, category: category, type: `menu`, name: `Auto Restore`, version: 1,
   info: `When to auto-restore after the mouse leaves the window. Or if it should restore instantly after an action.
   Restore means going back to the primary mode and clearing the filter`}
+
+  obj.favicon_source = {value: `none`, category: category, type: `menu`, name: `Favicon Source`, version: 1,
+  info: `Where to get favicons from, on modes that don't support local favicons like history and bookmarks`}
 
   obj.bookmarks_folder = {value: `Grasshopper`, category: category, type: `text`, name: `Bookmarks Folder`, version: 1,
   info: `Where to save bookmarks`}
@@ -1767,7 +1767,6 @@ App.fill_settings = (category) => {
       }
 
       let el = DOM.create(`div`, `settings_item`)
-      el.title = `Custom menu (${key})`
       let label = DOM.create(`div`, `settings_label`)
       label.id = `settings_label_${key}`
       label.textContent = cmd.name
@@ -1802,6 +1801,7 @@ App.fill_settings = (category) => {
 
       widget.id = `settings_${key}`
       el.append(widget)
+      el.title = cmd.info
       c.append(el)
     }
   }
