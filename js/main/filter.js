@@ -256,6 +256,9 @@ App.filter_check = (args) => {
     else if (args.filter_mode === `color`) {
       match = args.item.color === args.f_value
     }
+    else if (args.filter_mode === `autoreload`) {
+      match = args.item.auto_reload
+    }
     else if (args.filter_mode === `edited`) {
       match = args.item.has_profile
     }
@@ -539,6 +542,7 @@ App.create_filter_menu = (mode) => {
   fmodes.push(separator())
   fmodes.push([`tag`, `Tag`, true])
   fmodes.push([`color`, `Color`, true])
+  fmodes.push([`autoreload`, `Reload`])
   fmodes.push([`edited`, `Edited`])
 
   if (mode !== `tabs`) {
