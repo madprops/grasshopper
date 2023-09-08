@@ -2,46 +2,103 @@ App.build_default_settings = () => {
   let obj = {}
 
   let category = `general`
-  obj.wrap_text = {value: false, category: category, type: `checkbox`, name: `Wrap Text`, version: 1}
-  obj.primary_mode = {value: `tabs`, category: category, type: `menu`, name: `Primary Mode`, version: 1}
-  obj.text_mode = {value: `title`, category: category, type: `menu`, name: `Text Mode`, version: 1}
-  obj.item_height = {value: `normal`, category: category, type: `menu`, name: `Item Height`, version: 1}
-  obj.font = {value: `sans-serif`, category: category, type: `menu`, name: `Font`, version: 1}
-  obj.font_size = {value: 16, category: category, type: `menu`, name: `Font Size`, version: 1}
-  obj.favicon_source = {value: `none`, category: category, type: `menu`, name: `Favicon Source`, version: 1}
-  obj.width = {value: 75, category: category, type: `menu`, name: `Width`, version: 1}
-  obj.height = {value: 85, category: category, type: `menu`, name: `Height`, version: 1}
-  obj.item_border = {value: `none`, category: category, type: `menu`, name: `Item Border`, version: 2}
-  obj.pick_mode = {value: `none`, category: category, type: `menu`, name: `Pick Mode`, version: 1}
-  obj.auto_restore = {value: `1_seconds`, category: category, type: `menu`, name: `Auto Restore`, version: 1}
-  obj.bookmarks_folder = {value: `Grasshopper`, category: category, type: `text`, name: `Bookmarks Folder`, version: 1}
+
+  obj.wrap_text = {value: false, category: category, type: `checkbox`, name: `Wrap Text`, version: 1,
+  info: `Allow long lines to wrap`}
+
+  obj.primary_mode = {value: `tabs`, category: category, type: `menu`, name: `Primary Mode`, version: 1,
+  info: `The main preferred mode. This is shown at startup`}
+
+  obj.text_mode = {value: `title`, category: category, type: `menu`, name: `Text Mode`, version: 1,
+  info: `What to show as the text for each item`}
+
+  obj.item_height = {value: `normal`, category: category, type: `menu`, name: `Item Height`, version: 1,
+  info: `How tall each item should be`}
+
+  obj.font = {value: `sans-serif`, category: category, type: `menu`, name: `Font`, version: 1,
+  info: `The font to use for text`}
+
+  obj.font_size = {value: 16, category: category, type: `menu`, name: `Font Size`, version: 1,
+  info: `The font size to use for text. The interface scales accordingly`}
+
+  obj.favicon_source = {value: `none`, category: category, type: `menu`, name: `Favicon Source`, version: 1,
+  info: `Where to get favicons from, on modes that don't support local favicons like history and bookmarks`}
+
+  obj.width = {value: 75, category: category, type: `menu`, name: `Width`, version: 1,
+  info: `Width of the popup`}
+
+  obj.height = {value: 85, category: category, type: `menu`, name: `Height`, version: 1,
+  info: `Height of the popup`}
+
+  obj.item_border = {value: `none`, category: category, type: `menu`, name: `Item Border`, version: 2,
+  info: `Border between each item`}
+
+  obj.pick_mode = {value: `none`, category: category, type: `menu`, name: `Pick Mode`, version: 1,
+  info: `What pick mode to use. The picks appear on the left of items`}
+
+  obj.auto_restore = {value: `1_seconds`, category: category, type: `menu`, name: `Auto Restore`, version: 1,
+  info: `When to auto-restore after the mouse leaves the window. Or if it should restore instantly after an action.
+  Restore means going back to the primary mode and clearing the filter`}
+
+  obj.bookmarks_folder = {value: `Grasshopper`, category: category, type: `text`, name: `Bookmarks Folder`, version: 1,
+  info: `Where to save bookmarks`}
+
   obj.aliases = {value: [
     {a: `big`, b: `huge`},
     {a: `quick`, b: `fast`},
     {a: `planet`, b: `earth`},
     {a: `locust`, b: `grasshopper`},
-  ], category: category, type: `list`, name: `Aliases`, version: 3}
+  ], category: category, type: `list`, name: `Aliases`, version: 3,
+  info: `Aliases to use when using the filter. For example, 'big' will match 'huge' if you added that`}
+
   obj.custom_filters = {value: [
     {filter: `re: (today | $day)`},
     {filter: `re: ($month | $year)`},
     {filter: `re: \\d{2}\\/\\d{2}\\/\\d{4}`},
     {filter: `re: (youtu|twitch)`},
-  ], category: category, type: `list`, name: `Custom Filters`, version: 3}
+  ], category: category, type: `list`, name: `Custom Filters`, version: 3,
+  info: `Pre-made filters to use. These appear in the Custom section`}
 
   category = `theme`
-  obj.background_color = {value: App.dark_theme.background, category: category, type: `color`, name: `Background Color`, action: `theme`, btns: [`random`], version: 1}
-  obj.text_color = {value: App.dark_theme.text, category: category, type: `color`, name: `Text Color`, action: `theme`, btns: [`random`], version: 1}
-  obj.background_image = {value: `waves.jpg`, category: category, type: `text`, name: `Background Image`, action: `theme`, btns: [`random`], version: 1}
-  obj.background_pool = {value: App.backgrounds, category: category, type: `list`, name: `Pool`, btns: [`view`, `next`, `shuffle`], version: 3}
-  obj.background_effect = {value: `none`, category: category, type: `menu`, action: `theme`, name: `Background Effect`, version: 1}
-  obj.background_tiles = {value: `none`, category: category, type: `menu`, action: `theme`, name: `Background Tiles`, version: 1}
-  obj.auto_theme = {value: `never`, category: category, type: `menu`, name: `Auto Theme`, version: 3}
-  obj.auto_background = {value: `never`, category: category, type: `menu`, name: `Auto Background`, version: 3}
-  obj.auto_background_mode = {value: `pool`, category: category, type: `menu`, name: `Auto Background Mode`, version: 1}
-  obj.random_themes = {value: `dark`, category: category, type: `menu`, name: `Random Themes`, version: 1}
-  obj.color_transitions = {value: true, category: category, type: `checkbox`, name: `Color Transitions`, version: 1}
-  obj.background_transitions = {value: true, category: category, type: `checkbox`, name: `Background Transitions`, version: 1}
-  obj.random_background_gifs = {value: true, category: category, type: `checkbox`, name: `Include Gifs`, version: 1}
+
+  obj.background_color = {value: App.dark_theme.background, category: category, type: `color`, name: `Background Color`, action: `theme`, btns: [`random`], version: 1,
+  info: `The background color`}
+
+  obj.text_color = {value: App.dark_theme.text, category: category, type: `color`, name: `Text Color`, action: `theme`, btns: [`random`], version: 1,
+  info: `The text color`}
+
+  obj.background_image = {value: `waves.jpg`, category: category, type: `text`, name: `Background Image`, action: `theme`, btns: [`random`], version: 1,
+  info: `The background image`}
+
+  obj.background_pool = {value: App.backgrounds, category: category, type: `list`, name: `Pool`, btns: [`view`, `next`, `shuffle`], version: 3,
+  info: `Prepared backgrounds to use, either manually or automatically`}
+
+  obj.background_effect = {value: `none`, category: category, type: `menu`, action: `theme`, name: `Background Effect`, version: 1,
+  info: `The effect on the background image`}
+
+  obj.background_tiles = {value: `none`, category: category, type: `menu`, action: `theme`, name: `Background Tiles`, version: 1,
+  info: `The tile size of the background image`}
+
+  obj.auto_theme = {value: `never`, category: category, type: `menu`, name: `Auto Theme`, version: 3,
+  info: `Change the theme automatically`}
+
+  obj.auto_background = {value: `never`, category: category, type: `menu`, name: `Auto Background`, version: 3,
+  info: `Change the background automatically`}
+
+  obj.auto_background_mode = {value: `pool`, category: category, type: `menu`, name: `Auto Background Mode`, version: 1,
+  info: `Behavior of the auto background`}
+
+  obj.random_themes = {value: `dark`, category: category, type: `menu`, name: `Random Themes`, version: 1,
+  info: `Behavior of the random theme`}
+
+  obj.color_transitions = {value: true, category: category, type: `checkbox`, name: `Color Transitions`, version: 1,
+  info: `Animate color changes`}
+
+  obj.background_transitions = {value: true, category: category, type: `checkbox`, name: `Background Transitions`, version: 1,
+  info: `Animate background changes`}
+
+  obj.random_background_gifs = {value: true, category: category, type: `checkbox`, name: `Include Gifs`, version: 1,
+  info: `Consider gifs on random backgrounds`}
 
   category = `media`
   obj.image_icon = {value: `🖼️`, category: category, type: `text_smaller`, name: `View Image Icon`, version: 1}
@@ -1211,15 +1268,17 @@ App.get_setting = (setting) => {
   return value
 }
 
-App.set_setting = (setting, value) => {
+App.set_setting = (setting, value, do_action = true) => {
   if (App.str(App.settings[setting].value) !== App.str(value)) {
     App.settings[setting].value = value
     App.save_settings_debouncer.call()
 
-    let def = App.default_settings[setting]
+    if (do_action) {
+      let def = App.default_settings[setting]
 
-    if (def.action) {
-      App.settings_do_action(def.action)
+      if (def.action) {
+        App.settings_do_action(def.action)
+      }
     }
   }
 }

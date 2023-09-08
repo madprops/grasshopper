@@ -377,14 +377,14 @@ App.random_background = async () => {
 }
 
 App.change_background = (url, bg_eff, bg_tiles) => {
-  App.set_setting(`background_image`, url)
+  App.set_setting(`background_image`, url, false)
 
   if (bg_eff) {
-    App.set_setting(`background_effect`, bg_eff)
+    App.set_setting(`background_effect`, bg_eff, false)
   }
 
   if (bg_tiles) {
-    App.set_setting(`background_tiles`, bg_tiles)
+    App.set_setting(`background_tiles`, bg_tiles, false)
   }
 
   App.check_item_theme()
