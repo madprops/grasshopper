@@ -586,28 +586,6 @@ svg {
   gap: 2rem;
 }
 
-#settings_mode_order {
-  border: 1px solid var(--alt_color_1);
-  display: table;
-  border-spacing: 0.8rem;
-}
-
-.mode_order_row {
-  display: table-row;
-}
-
-.mode_order_item_text {
-  display: table-cell;
-  text-align: center;
-  padding-left: 0.8rem;
-  padding-right: 0.8rem;
-}
-
-.mode_order_button {
-  min-width: 4rem;
-  display: table-cell;
-}
-
 .pinline {
   margin-top: 0.7rem;
   margin-bottom: 0.7rem;

@@ -224,38 +224,6 @@ App.getting = (mode, force = false) => {
   App.debug(`${icon} Getting ${name}`, force)
 }
 
-App.make_mode_order = () => {
-  let mode_order = DOM.el(`#settings_mode_order`)
-  mode_order.innerHTML = ``
-
-  for (let mode of App.mode_order) {
-    let row = DOM.create(`div`, `mode_order_row`)
-    row.dataset.mode = mode
-
-    let up = DOM.create(`div`, `button mode_order_button`)
-    up.textContent = `Up`
-    row.append(up)
-
-    DOM.ev(up, `click`, () => {
-      App.mode_order_up(row)
-    })
-
-    let text = DOM.create(`div`, `mode_order_item_text`)
-    text.textContent = App.get_mode_name(mode)
-    row.append(text)
-
-    let down = DOM.create(`div`, `button mode_order_button`)
-    down.textContent = `Down`
-    row.append(down)
-
-    DOM.ev(down, `click`, () => {
-      App.mode_order_down(row)
-    })
-
-    mode_order.append(row)
-  }
-}
-
 App.on_action = (mode) => {
   App.update_filter_history(mode)
 }

@@ -14,7 +14,7 @@ App.build_default_settings = () => {
   obj.pick_mode = {value: `none`, category: category, type: `menu`, name: `Pick Mode`, version: 1}
   obj.auto_restore = {value: `1_seconds`, category: category, type: `menu`, name: `Auto Restore`, version: 1}
   obj.bookmarks_folder = {value: `Grasshopper`, category: category, type: `text`, name: `Bookmarks Folder`, version: 1}
-  obj.mode_order = {value: App.modes_obj, category: category, type: `list`, name: `Mode Order`, version: 1}
+  obj.mode_order = {value: App.modes_obj, category: category, type: `list`, name: `Mode Order`, version: 3}
   obj.aliases = {value: [
     {a: `big`, b: `huge`},
     {a: `quick`, b: `fast`},
@@ -1408,6 +1408,7 @@ App.fill_settings = (category) => {
         widget = DOM.create(`div`, `settings_menu button`)
       }
       else if (cmd.type === `list`) {
+        console.log(key)
         widget = DOM.create(`div`, `settings_addlist`)
       }
       else if (cmd.type === `text`) {
