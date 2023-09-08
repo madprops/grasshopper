@@ -1,6 +1,7 @@
 App.build_default_settings = () => {
   let obj = {}
 
+  // ###################
   let category = `general`
 
   obj.wrap_text = {value: false, category: category, type: `checkbox`, name: `Wrap Text`, version: 1,
@@ -59,6 +60,7 @@ App.build_default_settings = () => {
   ], category: category, type: `list`, name: `Custom Filters`, version: 3,
   info: `Pre-made filters to use. These appear in the Custom section`}
 
+  // ###################
   category = `theme`
 
   obj.background_color = {value: App.dark_theme.background, category: category, type: `color`, name: `Background Color`, action: `theme`, btns: [`random`], version: 1,
@@ -100,6 +102,7 @@ App.build_default_settings = () => {
   obj.random_background_gifs = {value: true, category: category, type: `checkbox`, name: `Include Gifs`, version: 1,
   info: `Consider gifs on random backgrounds`}
 
+  // ###################
   category = `media`
 
   obj.image_icon = {value: `🖼️`, category: category, type: `text_smaller`, name: `View Image Icon`, version: 1,
@@ -147,6 +150,7 @@ App.build_default_settings = () => {
   obj.view_audio_closed = {value: `icon`, category: category, type: `menu`, name: `View Audio (Closed)`, version: 1,
   info: `What to do when clicking on an audio in closed mode`}
 
+  // ###################
   category = `icons`
 
   obj.pin_icon = {value: `+`, category: category, type: `text_smaller`, name: `Pin Icon`, version: 1,
@@ -173,7 +177,9 @@ App.build_default_settings = () => {
   obj.pick_icon = {value: `🎯`, category: category, type: `text_smaller`, name: `Pick Icon`, version: 1,
   info: `Icon for the picks`}
 
+  // ###################
   category = `show`
+
   obj.show_pinline = {value: `normal`, category: category, type: `menu`, name: `Show Pinline`, version: 2,
   info: `Show the widget between pinned and normal tabs`}
 
@@ -198,7 +204,9 @@ App.build_default_settings = () => {
   obj.show_feedback = {value: true, category: category, type: `checkbox`, name: `Show Feedback`, version: 1,
   info: `Show feedback messages on certain actions`}
 
+  // ###################
   category = `gestures`
+
   obj.gestures_enabled = {value: true, category: category, type: `checkbox`, name: `Gestures Enabled`, version: 1,
   info: `Enable mouse gestures`}
 
@@ -277,7 +285,9 @@ App.build_default_settings = () => {
   obj.gesture_left_and_right_alt = {value: `none`, category: category, type: `menu`, name: `Gesture Left Right + Alt`, version: 1,
   info: `Left and Right while pressing Alt`}
 
+  // ###################
   category = `auxclick`
+
   obj.middle_click_tabs = {value: `close`, category: category, type: `menu`, name: `Middle Click Tabs`, version: 1,
   info: `Middle click on tab items`}
 
@@ -353,6 +363,7 @@ App.build_default_settings = () => {
   obj.middle_click_pinline = {value: `close_normal`, category: category, type: `menu`, name: `Middle Click Pinline`, version: 1,
   info: `Middle click on the pinline`}
 
+  // ###################
   category = `menus`
 
   obj.tabs_actions = {value: [
@@ -406,93 +417,158 @@ App.build_default_settings = () => {
   ], category: category, type: `list`, name: `Footer Menu`, version: 4,
   info: `Menu when right clicking the footer`}
 
+  // ###################
   category = `keyboard`
+
   obj.keyboard_shortcuts = {value: [], category: category, type: `list`, name: `Keyboard Shortcuts`, version: 4,
   info: `Extra keyboard shortcuts. If these are triggered the default shortcuts get ignored`}
 
+  // ###################
   category = `warns`
 
   obj.warn_on_close_tabs = {value: `special`, category: category, type: `menu`, name: `Warn On Close Tabs`, version: 1,
-  info: ``}
+  info: `When to warn on close tabs`}
 
   obj.warn_on_unload_tabs = {value: `special`, category: category, type: `menu`, name: `Warn On Unload Tabs`, version: 1,
-  info: ``}
+  info: `When to warn on unload tabs`}
 
   obj.warn_on_close_normal_tabs = {value: true, category: category, type: `checkbox`, name: `Warn On Close Normal`, version: 1,
-  info: ``}
+  info: `Warn when closing normal tabs`}
 
   obj.warn_on_close_unloaded_tabs = {value: true, category: category, type: `checkbox`, name: `Warn On Close Unloaded`, version: 1,
-  info: ``}
+  info: `Warn when closing unloaded tabs`}
 
   obj.warn_on_close_duplicate_tabs = {value: true, category: category, type: `checkbox`, name: `Warn On Close Duplicates`, version: 1,
-  info: ``}
-
-  obj.warn_on_duplicate_tabs = {value: true, category: category, type: `checkbox`, name: `Warn Duplicate Tabs`, version: 1,
-  info: ``}
+  info: `Warn when closing duplicate tabs`}
 
   obj.warn_on_close_visible_tabs = {value: true, category: category, type: `checkbox`, name: `Warn On Close Visible`, version: 1,
-  info: ``}
+  info: `Warn when closing visible tabs`}
+
+  obj.warn_on_duplicate_tabs = {value: true, category: category, type: `checkbox`, name: `Warn Duplicate Tabs`, version: 1,
+  info: `Warn when duplicating tabs`}
 
   obj.warn_on_open = {value: true, category: category, type: `checkbox`, name: `Warn On Open`, version: 1,
-  info: ``}
+  info: `Warn when opening items`}
 
   obj.warn_on_remove_profiles = {value: true, category: category, type: `checkbox`, name: `Warn On Remove Profiles`, version: 1,
-  info: ``}
+  info: `Warn when removing profiles`}
 
   obj.warn_on_bookmark = {value: true, category: category, type: `checkbox`, name: `Warn On Bookmark`, version: 1,
-  info: ``}
+  info: `Warn when adding bookmarks`}
 
   obj.warn_on_color = {value: true, category: category, type: `checkbox`, name: `Warn On Color`, version: 1,
-  info: ``}
+  info: `Warn when changing colors`}
 
   obj.warn_on_pin_tabs = {value: true, category: category, type: `checkbox`, name: `Warn On Pin Tabs`, version: 1,
-  info: ``}
+  info: `Warn when pinning tabs`}
 
   obj.warn_on_unpin_tabs = {value: true, category: category, type: `checkbox`, name: `Warn On Unpin Tabs`, version: 1,
-  info: ``}
+  info: `Warn when unpinning tabs`}
 
   obj.warn_on_load_tabs = {value: true, category: category, type: `checkbox`, name: `Warn On Load Tabs`, version: 1,
-  info: ``}
+  info: `Warn when loading tabs`}
 
   obj.warn_on_mute_tabs = {value: true, category: category, type: `checkbox`, name: `Warn On Mute Tabs`, version: 1,
-  info: ``}
+  info: `Warn when muting tabs`}
 
   obj.warn_on_unmute_tabs = {value: true, category: category, type: `checkbox`, name: `Warn On Unmute Tabs`, version: 1,
-  info: ``}
+  info: `Warn when unmuting tabs`}
 
+  // ###################
   category = `colors`
-  obj.color_red = {value: `rgba(172, 59, 59, 0.44)`, category: category, type: `color`, name: `Color Red`, version: 1}
-  obj.color_green = {value: `rgba(46, 104, 46, 0.44)`, category: category, type: `color`, name: `Color Green`, version: 1}
-  obj.color_blue = {value: `rgba(59, 59, 147, 0.44)`, category: category, type: `color`, name: `Color Blue`, version: 1}
-  obj.color_yellow = {value: `rgba(128, 128, 41, 0.44)`, category: category, type: `color`, name: `Color Yellow`, version: 1}
-  obj.color_purple = {value: `rgba(124, 35, 166, 0.44)`, category: category, type: `color`, name: `Color Purple`, version: 1}
-  obj.color_orange = {value: `rgba(170, 127, 59, 0.44)`, category: category, type: `color`, name: `Color Orange`, version: 1}
-  obj.color_mode = {value: `item`, category: category, type: `menu`, name: `Color Mode`, version: 1}
 
+  obj.color_red = {value: `rgba(172, 59, 59, 0.44)`, category: category, type: `color`, name: `Color Red`, version: 1,
+  info: `Color an item red`}
+
+  obj.color_green = {value: `rgba(46, 104, 46, 0.44)`, category: category, type: `color`, name: `Color Green`, version: 1,
+  info: `Color an item green`}
+
+  obj.color_blue = {value: `rgba(59, 59, 147, 0.44)`, category: category, type: `color`, name: `Color Blue`, version: 1,
+  info: `Color an item blue`}
+
+  obj.color_yellow = {value: `rgba(128, 128, 41, 0.44)`, category: category, type: `color`, name: `Color Yellow`, version: 1,
+  info: `Color an item yellow`}
+
+  obj.color_purple = {value: `rgba(124, 35, 166, 0.44)`, category: category, type: `color`, name: `Color Purple`, version: 1,
+  info: `Color an item purple`}
+
+  obj.color_orange = {value: `rgba(170, 127, 59, 0.44)`, category: category, type: `color`, name: `Color Orange`, version: 1,
+  info: `Color an item orange`}
+
+  obj.color_mode = {value: `item`, category: category, type: `menu`, name: `Color Mode`, version: 1,
+  info: `What color mode to use`}
+
+  // ###################
   category = `more`
-  obj.hover_effect = {value: `glow`, category: category, type: `menu`, name: `Hover Effect`, version: 1}
-  obj.selected_effect = {value: `background`, category: category, type: `menu`, name: `Selected Effect`, version: 1}
-  obj.double_click_action = {value: `none`, category: category, type: `menu`, name: `Double Click Action`, version: 1}
-  obj.single_new_tab = {value: true, category: category, type: `checkbox`, name: `Single New Tab`, version: 1}
-  obj.close_on_focus = {value: true, category: category, type: `checkbox`, name: `Close On Focus`, version: 1}
-  obj.close_on_open = {value: true, category: category, type: `checkbox`, name: `Close On Open`, version: 1}
-  obj.case_insensitive = {value: true, category: category, type: `checkbox`, name: `Case Insensitive`, version: 1}
-  obj.lock_drag = {value: false, category: category, type: `checkbox`, name: `Lock Drag`, version: 1}
-  obj.mute_click = {value: true, category: category, type: `checkbox`, name: `Mute Click`, version: 1}
-  obj.double_click_new = {value: true, category: category, type: `checkbox`, name: `Double Click New`, version: 1}
-  obj.rounded_corners = {value: true, category: category, type: `checkbox`, name: `Rounded Corners`, version: 1}
-  obj.direct_settings = {value: true, category: category, type: `checkbox`, name: `Direct Settings`, version: 1}
-  obj.debug_mode = {value: false, category: category, type: `checkbox`, name: `Debug Mode`, version: 1}
-  obj.smooth_scrolling = {value: true, category: category, type: `checkbox`, name: `Smooth Scrolling`, version: 1}
-  obj.sort_commands = {value: true, category: category, type: `checkbox`, name: `Sort Commands`, version: 1}
-  obj.all_bookmarks = {value: true, category: category, type: `checkbox`, name: `All Bookmarks`, version: 1}
-  obj.reuse_filter = {value: true, category: category, type: `checkbox`, name: `Re-Use Filter`, version: 1}
-  obj.max_search_items = {value: 500, category: category, type: `number`, name: `Max Search Items`, version: 1}
-  obj.deep_max_search_items = {value: 5000, category: category, type: `number`, name: `Deep Max Search Items`, version: 1}
-  obj.history_max_months = {value: 18, category: category, type: `number`, name: `History Max Months`, version: 1}
-  obj.deep_history_max_months = {value: 54, category: category, type: `number`, name: `Deep History Max Months`, version: 1}
-  obj.filter_delay = {value: 50, category: category, type: `number`, name: `Filter Delay`, action: `filter_debouncers`, version: 1}
-  obj.filter_delay_search = {value: 225, category: category, type: `number`, name: `Filter Delay (Search)`, action: `filter_debouncers`, version: 1}
+
+  obj.hover_effect = {value: `glow`, category: category, type: `menu`, name: `Hover Effect`, version: 1,
+  info: `What effect to use when hoving items`}
+
+  obj.selected_effect = {value: `background`, category: category, type: `menu`, name: `Selected Effect`, version: 1,
+  info: `What effect to use on selected items`}
+
+  obj.double_click_action = {value: `none`, category: category, type: `menu`, name: `Double Click Action`, version: 1,
+  info: `What action to perform when double clicking an item`}
+
+  obj.single_new_tab = {value: true, category: category, type: `checkbox`, name: `Single New Tab`, version: 1,
+  info: `Keep only one new tab at any time`}
+
+  obj.close_on_focus = {value: true, category: category, type: `checkbox`, name: `Close On Focus`, version: 1,
+  info: `Close the popup when focusing a tab`}
+
+  obj.close_on_open = {value: true, category: category, type: `checkbox`, name: `Close On Open`, version: 1,
+  info: `Close the popup when opening a popup`}
+
+  obj.case_insensitive = {value: true, category: category, type: `checkbox`, name: `Case Insensitive`, version: 1,
+  info: `Make the filter case insensitive`}
+
+  obj.lock_drag = {value: false, category: category, type: `checkbox`, name: `Lock Drag`, version: 1,
+  info: `Require Ctrl to re-order tab items`}
+
+  obj.mute_click = {value: true, category: category, type: `checkbox`, name: `Mute Click`, version: 1,
+  info: `Un-Mute tabs when clicking on the mute icon`}
+
+  obj.double_click_new = {value: true, category: category, type: `checkbox`, name: `Double Click New`, version: 1,
+  info: `Open a new tab when double clicking empty space`}
+
+  obj.rounded_corners = {value: true, category: category, type: `checkbox`, name: `Rounded Corners`, version: 1,
+  info: `Allow rounded corners in some parts of the interface`}
+
+  obj.direct_settings = {value: true, category: category, type: `checkbox`, name: `Direct Settings`, version: 1,
+  info: `Go straight to General when clicking Settings. Else show a menu to pick a category`}
+
+  obj.debug_mode = {value: false, category: category, type: `checkbox`, name: `Debug Mode`, version: 1,
+  info: `Enable some data for developers`}
+
+  obj.smooth_scrolling = {value: true, category: category, type: `checkbox`, name: `Smooth Scrolling`, version: 1,
+  info: `Allow smooth scrolling in some cases. Else it's always instant`}
+
+  obj.sort_commands = {value: true, category: category, type: `checkbox`, name: `Sort Commands`, version: 1,
+  info: `Sort commands in the palette by recent use`}
+
+  obj.all_bookmarks = {value: true, category: category, type: `checkbox`, name: `All Bookmarks`, version: 1,
+  info: `Show other bookmarks apart from the configured bookmarks folder`}
+
+  obj.reuse_filter = {value: true, category: category, type: `checkbox`, name: `Re-Use Filter`, version: 1,
+  info: `Re-use the filter when moving across modes`}
+
+  obj.max_search_items = {value: 500, category: category, type: `number`, name: `Max Search Items`, version: 1,
+  info: `Max items to return on search modes like history and bookmarks`}
+
+  obj.deep_max_search_items = {value: 5000, category: category, type: `number`, name: `Deep Max Search Items`, version: 1,
+  info: `Max search items to return in deep mode (more items)`}
+
+  obj.history_max_months = {value: 18, category: category, type: `number`, name: `History Max Months`, version: 1,
+  info: `How many months back to consider when searching history`}
+
+  obj.deep_history_max_months = {value: 54, category: category, type: `number`, name: `Deep History Max Months`, version: 1,
+  info: `How many months back to consider when searching history in deep mode (more months)`}
+
+  obj.filter_delay = {value: 50, category: category, type: `number`, name: `Filter Delay`, action: `filter_debouncers`, version: 1,
+  info: `The filter delay on instant modes like tabs and closed`}
+
+  obj.filter_delay_search = {value: 225, category: category, type: `number`, name: `Filter Delay (Search)`, action: `filter_debouncers`, version: 1,
+  info: `The filter delay on search modes like history and bookmarks`}
 
   App.default_settings = obj
 }
