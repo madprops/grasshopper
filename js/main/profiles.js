@@ -1294,7 +1294,7 @@ App.get_edit_items = (item, multiple) => {
   })
 
   items.push({
-    text: `Edit Auto Reload`,
+    text: `Edit Reload`,
     action: () => {
       return App.show_profile_editor(item, `auto_reload`)
     }
