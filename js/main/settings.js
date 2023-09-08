@@ -219,7 +219,6 @@ App.settings_do_action = (what) => {
     App.apply_theme_2()
   }
   else if (what === `filter_debouncers`) {
-    console.log(11)
     App.start_filter_debouncers()
   }
 }
