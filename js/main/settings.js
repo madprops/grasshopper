@@ -1630,7 +1630,7 @@ App.settings_commands = () => {
       items.push({text: App.separator_string})
     }
     else {
-      items.push({text: cmd.name, value: cmd.cmd, icon: cmd.icon})
+      items.push({text: cmd.name, value: cmd.cmd, icon: cmd.icon, info: cmd.info})
     }
   }
 

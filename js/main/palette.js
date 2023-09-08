@@ -172,6 +172,7 @@ App.fill_palette = () => {
       el.dataset.alias = `remove background`
     }
 
+    el.title = cmd.info
     container.append(el)
   }
 }

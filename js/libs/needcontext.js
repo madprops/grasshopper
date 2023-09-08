@@ -167,6 +167,10 @@ NeedContext.show = (x, y, items, root = true) => {
         el.append(text)
       }
 
+      if (item.info) {
+        el.title = item.info
+      }
+
       el.dataset.index = index
       item.index = index
 

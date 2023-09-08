@@ -27,6 +27,7 @@ App.create_menubutton = (args = {}) => {
       items.push({
         icon: opt.icon,
         text: opt.text,
+        info: opt.info,
         action: () => {
           App.menubutton_set_text(args, opt)
 
