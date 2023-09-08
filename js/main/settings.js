@@ -382,6 +382,15 @@ App.settings_setup_number = (container) => {
     DOM.ev(el, `change`, () => {
       let value = parseInt(el.value)
 
+      if (el.min) {
+        let min = parseInt(el.min)
+
+        if (value < min) {
+          value = min
+          el.value = value
+        }
+      }
+
       if (isNaN(value)) {
         return
       }
