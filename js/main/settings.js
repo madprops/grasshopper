@@ -517,7 +517,7 @@ App.build_default_settings = () => {
   info: `Require double click to focus or open an item`}
 
   obj.lock_drag = {value: false, category: category, type: `checkbox`, name: `Lock Drag`, version: 1,
-  info: `Require Ctrl to re-order tab items`}
+  info: `Require holding Ctrl to re-order tab items`}
 
   obj.single_new_tab = {value: true, category: category, type: `checkbox`, name: `Single New Tab`, version: 1,
   info: `Keep only one new tab at any time`}
