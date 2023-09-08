@@ -208,7 +208,7 @@ App.build_default_settings = () => {
   obj.deep_max_items = {value: 5000, category: category, version: 1}
   obj.history_max_months = {value: 18, category: category, version: 1}
   obj.deep_history_max_months = {value: 54, category: category, version: 1}
-  obj.filter_delay_quick = {value: 50, category: category, version: 1}
+  obj.filter_delay = {value: 50, category: category, version: 1}
   obj.filter_delay_search = {value: 200, category: category, version: 1}
 
   App.default_settings = obj

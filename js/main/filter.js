@@ -6,7 +6,7 @@ App.setup_filter = () => {
 App.start_filter_debouncers = () => {
   App.filter_debouncer_quick = App.create_debouncer((mode, force, deep) => {
     App.do_filter(mode, force, deep)
-  }, App.get_setting(`filter_delay_quick`))
+  }, App.get_setting(`filter_delay`))
 
   App.filter_debouncer_search = App.create_debouncer((mode, force, deep) => {
     App.do_filter(mode, force, deep)
