@@ -44,12 +44,7 @@ App.build_default_settings = () => {
   obj.bookmarks_folder = {value: `Grasshopper`, category: category, type: `text`, name: `Bookmarks Folder`, version: 1,
   info: `Where to save bookmarks`}
 
-  obj.aliases = {value: [
-    {a: `big`, b: `huge`},
-    {a: `quick`, b: `fast`},
-    {a: `planet`, b: `earth`},
-    {a: `locust`, b: `grasshopper`},
-  ], category: category, type: `list`, name: `Aliases`, version: 3,
+  obj.aliases = {value: [], category: category, type: `list`, name: `Aliases`, version: 3,
   info: `Aliases to use when using the filter. For example, 'big' will match 'huge' if you added that`}
 
   obj.custom_filters = {value: [
