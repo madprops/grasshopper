@@ -1325,7 +1325,15 @@ App.change_color = (item, color) => {
     }
   }
 
-  let force = App.check_force(`warn_on_color`, items.length, true)
+  let force
+
+  if (colored) {
+    force = App.check_force(`warn_on_remove_color`, items.length, true)
+  }
+  else {
+    force = App.check_force(`warn_on_color`, items.length, true)
+  }
+
   let msg
 
   if (colored) {

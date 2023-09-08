@@ -459,6 +459,9 @@ App.build_default_settings = () => {
   obj.warn_on_color = {value: true, category: category, type: `checkbox`, name: `Warn On Color`, version: 1,
   info: `Warn when changing colors`}
 
+  obj.warn_on_remove_color = {value: true, category: category, type: `checkbox`, name: `Warn On Remove Color`, version: 1,
+  info: `Warn when removing colors`}
+
   obj.warn_on_pin_tabs = {value: true, category: category, type: `checkbox`, name: `Warn On Pin Tabs`, version: 1,
   info: `Warn when pinning tabs`}
 
