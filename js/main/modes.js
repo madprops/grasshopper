@@ -158,7 +158,7 @@ App.cycle_modes = (reverse, reuse_filter = true) => {
     }
   }
   else {
-    if (index === modes.length - 1) {
+    if (index === App.modes.length - 1) {
       new_mode = App.modes[0]
     }
     else {
