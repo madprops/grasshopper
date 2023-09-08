@@ -1018,8 +1018,13 @@ App.get_last_pin_index = () => {
   return i
 }
 
-App.browser_reload = () => {
-  browser.tabs.reload()
+App.browser_reload = (id) => {
+  if (id !== undefined) {
+    browser.tabs.reload(id)
+  }
+  else {
+    browser.tabs.reload()
+  }
 }
 
 App.browser_back = () => {

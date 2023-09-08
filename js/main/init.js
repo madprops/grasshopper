@@ -28,6 +28,7 @@ App.init = async () => {
   App.setup_palette()
   App.setup_filter()
   App.setup_modes()
+  App.setup_profiles()
   App.apply_theme_2()
   await App.clear_show()
   App.make_window_visible()

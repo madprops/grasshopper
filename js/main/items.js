@@ -327,13 +327,14 @@ App.process_info = (mode, info, exclude = [], o_item) => {
   let has_profile = false
   let tags = []
   let color = ``
+  let background_image = ``
   let background_effect = ``
   let background_tiles = ``
   let custom_title = ``
   let theme_enabled = false
   let background_color = ``
   let text_color = ``
-  let background_image = ``
+  let auto_reload = false
   let icon = ``
 
   if (profile) {
@@ -353,6 +354,10 @@ App.process_info = (mode, info, exclude = [], o_item) => {
 
     if (profile.color && profile.color !== `none`) {
       color = profile.color
+    }
+
+    if (profile.auto_reload) {
+      auto_reload = true
     }
 
     if (profile.theme_enabled) {
@@ -404,6 +409,7 @@ App.process_info = (mode, info, exclude = [], o_item) => {
     background_image: background_image,
     background_effect: background_effect,
     background_tiles: background_tiles,
+    auto_reload: auto_reload,
     created: false,
   }
 

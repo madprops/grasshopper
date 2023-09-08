@@ -1,3 +1,7 @@
+App.setup_profiles = () => {
+  App.start_auto_reload()
+}
+
 App.profile_props = {
   url: ``,
   exact: false,
@@ -12,6 +16,7 @@ App.profile_props = {
   background_image: ``,
   background_effect: `none`,
   background_tiles: `none`,
+  auto_reload: false,
 }
 
 App.profile_props_theme = [`background_color`, `text_color`, `background_image`, `background_effect`, `background_tiles`]
@@ -135,6 +140,10 @@ App.setup_profile_editor = () => {
       App.profile_apply_theme()
       App.profile_modified()
     })
+
+    DOM.ev(DOM.el(`#profile_editor_auto_reload`), `change`, (e) => {
+      App.profile_modified()
+    })
   },
   colored_top: true,
   on_hide: () => {
@@ -237,6 +246,10 @@ App.show_profile_editor = (item, type, action = `edit`) => {
     DOM.el(`#profile_editor_icon_container`).classList.remove(`hidden`)
   }
 
+  if (type === `all` || type === `auto_reload`) {
+    DOM.el(`#profile_editor_auto_reload`).classList.remove(`hidden`)
+  }
+
   let url_el = DOM.el(`#profile_editor_url`)
   url_el.value = ``
   DOM.el(`#profile_editor_exact`).checked = false
@@ -244,6 +257,7 @@ App.show_profile_editor = (item, type, action = `edit`) => {
   DOM.el(`#profile_editor_notes`).value = ``
   DOM.el(`#profile_editor_title`).value = ``
   DOM.el(`#profile_editor_icon`).value = ``
+  DOM.el(`#profile_editor_auto_reload`).checked = false
   DOM.el(`#profile_editor_theme_enabled`).checked = false
   App.profile_editor_background_color.setColor(App.dark_theme.background)
   App.profile_editor_text_color.setColor(App.dark_theme.text)
@@ -276,6 +290,7 @@ App.show_profile_editor = (item, type, action = `edit`) => {
       DOM.el(`#profile_editor_exact`).checked = profile.exact
       DOM.el(`#profile_editor_title`).value = profile.title
       DOM.el(`#profile_editor_icon`).value = profile.icon
+      DOM.el(`#profile_editor_auto_reload`).checked = profile.auto_reload
       color = profile.color
 
       if (profile.theme_enabled) {
@@ -321,6 +336,13 @@ App.show_profile_editor = (item, type, action = `edit`) => {
         else if (type === `color`) {
           let shared = App.get_shared_color(profiles)
           color = shared
+        }
+        else if (type === `auto_reload`) {
+          let shared = App.get_shared_auto_reload(profiles)
+
+          if (shared) {
+            DOM.el(`#profile_editor_auto_reload`).checked = shared || false
+          }
         }
         else if (type === `theme`) {
           let enabled = App.get_shared_theme_enabled(profiles)
@@ -376,6 +398,7 @@ App.get_empty_profile = (url) => {
     background_image: ``,
     background_effect: `none`,
     background_tiles: `none`,
+    auto_reload: 0,
   }
 }
 
@@ -391,6 +414,7 @@ App.copy_profile = (profile) => {
   obj.text_color = profile.text_color
   obj.background_image = profile.background_image
   obj.icon = profile.icon
+  obj.auto_reload = profile.auto_reload
   return obj
 }
 
@@ -443,6 +467,7 @@ App.profile_editor_save = () => {
     args.background_image =  DOM.el(`#profile_editor_background_image`).value.trim()
     args.background_effect =  App.profile_menubutton_background_effect.value
     args.background_tiles = App.profile_menubutton_background_tiles.value
+    args.auto_reload = DOM.el(`#profile_editor_auto_reload`).checked
     args.type = App.profile_editor_type
     args.profiles = App.profile_editor_profiles
     args.added = App.profile_editor_added
@@ -509,6 +534,10 @@ App.save_profile = (args) => {
 
     if (args.type === `all` || args.type === `color`) {
       profile.color = args.color
+    }
+
+    if (args.type === `all` || args.type === `auto_reload`) {
+      profile.auto_reload = args.auto_reload
     }
 
     if (args.type === `all` || args.type === `theme`) {
@@ -1229,6 +1258,13 @@ App.get_edit_items = (item, multiple) => {
   })
 
   items.push({
+    text: `Edit Auto Reload`,
+    action: () => {
+      return App.show_profile_editor(item, `auto_reload`)
+    }
+  })
+
+  items.push({
     text: `Edit Theme`,
     action: () => {
       return App.show_profile_editor(item, `theme`)
@@ -1425,12 +1461,24 @@ App.get_shared_color = (profiles) => {
   return first
 }
 
+App.get_shared_auto_reload = (profiles) => {
+  let first = profiles[0].auto_reload
+
+  for (let profile of profiles) {
+    if (profile.auto_reload !== first) {
+      return
+    }
+  }
+
+  return first
+}
+
 App.get_shared_theme_enabled = (profiles) => {
   let first = profiles[0].theme_enabled
 
   for (let profile of profiles) {
     if (profile.theme_enabled !== first) {
-      return ``
+      return
     }
   }
 
@@ -1660,4 +1708,40 @@ App.profile_editor_background_image_none = () => {
   }
 
   App.profile_apply_theme()
+}
+
+App.start_auto_reload = () => {
+  clearInterval(App.auto_reload_interval)
+  let setting = `auto_reload_delay`
+  let sett = App.get_setting(setting)
+
+  if (sett === `never`) {
+    return
+  }
+
+  let delay = App.parse_delay(sett)
+
+  if (!delay) {
+    return
+  }
+
+  if (delay > 0) {
+    App.auto_reload_interval = setInterval(() => {
+      App.debug(`Auto reloading tabs`)
+      let sett = App.get_setting(setting)
+
+      if (sett === `never`) {
+        clearInterval(App.auto_reload_interval)
+        return
+      }
+
+      for (let item of App.get_items(`tabs`)) {
+        if (item.auto_reload) {
+          App.browser_reload(item.id)
+        }
+      }
+    }, delay)
+
+    App.debug(`Started auto reload interval`)
+  }
 }
