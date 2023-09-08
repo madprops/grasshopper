@@ -110,7 +110,8 @@ App.setup_addlist = () => {
 
     if (cmd.category === `menus`) {
       App.create_popup(Object.assign({}, args, {
-        id: `addlist_${id}`, element: App.addlist_register({
+        id: `addlist_${id}`,
+        element: App.addlist_register({
           id: id,
           pk: `cmd`,
           widgets: [`select`], labels: [`Command`],
