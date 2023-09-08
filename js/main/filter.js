@@ -1,14 +1,17 @@
 App.setup_filter = () => {
   App.stor_get_filter_history()
+  App.start_filter_debouncers()
 }
 
-App.filter_debouncer_quick = App.create_debouncer((mode, force, deep) => {
-  App.do_filter(mode, force, deep)
-}, App.filter_delay_quick)
+App.start_filter_debouncers = () => {
+  App.filter_debouncer_quick = App.create_debouncer((mode, force, deep) => {
+    App.do_filter(mode, force, deep)
+  }, App.get_setting(`filter_delay_quick`))
 
-App.filter_debouncer_search = App.create_debouncer((mode, force, deep) => {
-  App.do_filter(mode, force, deep)
-}, App.filter_delay_search)
+  App.filter_debouncer_search = App.create_debouncer((mode, force, deep) => {
+    App.do_filter(mode, force, deep)
+  }, App.get_setting(`filter_delay_search`))
+}
 
 App.filter = (mode, force, deep) => {
   if (App.search_modes.includes(mode)) {

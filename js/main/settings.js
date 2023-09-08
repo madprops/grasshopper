@@ -208,6 +208,8 @@ App.build_default_settings = () => {
   obj.deep_max_items = {value: 5000, category: category, version: 1}
   obj.history_max_months = {value: 18, category: category, version: 1}
   obj.deep_history_max_months = {value: 54, category: category, version: 1}
+  obj.filter_delay_quick = {value: 50, category: category, version: 1}
+  obj.filter_delay_search = {value: 200, category: category, version: 1}
 
   App.default_settings = obj
 }
@@ -215,6 +217,10 @@ App.build_default_settings = () => {
 App.settings_do_action = (what) => {
   if (what === `theme`) {
     App.apply_theme_2()
+  }
+  else if (what === `filter_debouncers`) {
+    console.log(11)
+    App.start_filter_debouncers()
   }
 }
 
@@ -382,6 +388,7 @@ App.settings_setup_number = (container) => {
       }
 
       App.set_setting(setting, value)
+      App.settings_do_action(action)
     })
 
     let menu = [
