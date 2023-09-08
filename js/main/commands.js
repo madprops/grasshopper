@@ -18,7 +18,7 @@ App.setup_commands = () => {
 
     color_changers.push({name: name, cmd: `color_${color}`, mode: `items`, icon: icon, action: (args) => {
       App.change_color(args.item, color)
-    }, info: `Change color of URL: ${color}`})
+    }, info: `Change color of profile: ${color}`})
   }
 
   color_changers.push({name: `Remove Color`, cmd: `remove_color`, mode: `items`, action: (args) => {
