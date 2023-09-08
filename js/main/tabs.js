@@ -1,4 +1,12 @@
 App.setup_tabs = () => {
+  App.tabs_filter_modes = [
+    [`pins`, `Pins`],
+    [`normal`, `Normal`],
+    [`playing`, `Playing`],
+    [`unloaded`, `Unloaded`],
+    [`duplicate`, `Duplicate`],
+  ]
+
   App.setup_item_window(`tabs`)
   App.debug_tabs = false
 

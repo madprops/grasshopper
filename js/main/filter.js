@@ -540,8 +540,8 @@ App.create_filter_menu = (mode) => {
   fmodes.push([`video`, `Video`])
   fmodes.push([`audio`, `Audio`])
   fmodes.push(separator())
-  fmodes.push([`tag`, `Tag`, true])
-  fmodes.push([`color`, `Color`, true])
+  fmodes.push([`tag`, `Tag`])
+  fmodes.push([`color`, `Color`])
   fmodes.push([`autoreload`, `Reload`])
   fmodes.push([`edited`, `Edited`])
 
@@ -550,8 +550,8 @@ App.create_filter_menu = (mode) => {
   }
 
   fmodes.push(separator())
-  fmodes.push([`refine`, `Refine`, true])
-  fmodes.push([`custom`, `Custom`, true])
+  fmodes.push([`refine`, `Refine`])
+  fmodes.push([`custom`, `Custom`])
   App[`${mode}_filter_modes`] = fmodes
 
   DOM.evs(filter_menu, [`click`, `contextmenu`], (e) => {
