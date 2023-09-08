@@ -148,16 +148,16 @@ App.mouse_click_action = (mode, e) => {
     }
   }
 
+  if (e.altKey) {
+    return
+  }
+
   if (media_type) {
     if (App.get_setting(`view_${media_type}_${mode}`) === `item`) {
       App.select_item(item, `nearest_smooth`)
       App.view_media(item)
       return
     }
-  }
-
-  if (e.altKey) {
-    return
   }
 
   App[`${item.mode}_action`](item)
