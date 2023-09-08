@@ -101,98 +101,260 @@ App.build_default_settings = () => {
   info: `Consider gifs on random backgrounds`}
 
   category = `media`
-  obj.image_icon = {value: `🖼️`, category: category, type: `text_smaller`, name: `View Image Icon`, version: 1}
-  obj.view_image_tabs = {value: `icon`, category: category, type: `menu`, name: `View Image (Tabs)`, version: 1}
-  obj.view_image_history = {value: `icon`, category: category, type: `menu`, name: `View Image (History)`, version: 1}
-  obj.view_image_bookmarks = {value: `icon`, category: category, type: `menu`, name: `View Image (Bookmarks)`, version: 1}
-  obj.view_image_closed = {value: `icon`, category: category, type: `menu`, name: `View Image (Closed)`, version: 1}
-  obj.video_icon = {value: `▶️`, category: category, type: `text_smaller`, name: `View Video Icon`, version: 1}
-  obj.view_video_tabs = {value: `icon`, category: category, type: `menu`, name: `View Video (Tabs)`, version: 1}
-  obj.view_video_history = {value: `icon`, category: category, type: `menu`, name: `View Video (History)`, version: 1}
-  obj.view_video_bookmarks = {value: `icon`, category: category, type: `menu`, name: `View Video (Bookmarks)`, version: 1}
-  obj.view_video_closed = {value: `icon`, category: category, type: `menu`, name: `View Video (Closed)`, version: 1}
-  obj.audio_icon = {value: `🎵`, category: category, type: `text_smaller`, name: `View Audio Icon`, version: 1}
-  obj.view_audio_tabs = {value: `icon`, category: category, type: `menu`, name: `View Audio (Tabs)`, version: 1}
-  obj.view_audio_history = {value: `icon`, category: category, type: `menu`, name: `View Audio (History)`, version: 1}
-  obj.view_audio_bookmarks = {value: `icon`, category: category, type: `menu`, name: `View Audio (Bookmarks)`, version: 1}
-  obj.view_audio_closed = {value: `icon`, category: category, type: `menu`, name: `View Audio (Closed)`, version: 1}
+
+  obj.image_icon = {value: `🖼️`, category: category, type: `text_smaller`, name: `View Image Icon`, version: 1,
+  info: `Media icon for images`}
+
+  obj.view_image_tabs = {value: `icon`, category: category, type: `menu`, name: `View Image (Tabs)`, version: 1,
+  info: `What to do when clicking on an image in tabs mode`}
+
+  obj.view_image_history = {value: `icon`, category: category, type: `menu`, name: `View Image (History)`, version: 1,
+  info: `What to do when clicking on an image in history mode`}
+
+  obj.view_image_bookmarks = {value: `icon`, category: category, type: `menu`, name: `View Image (Bookmarks)`, version: 1,
+  info: `What to do when clicking on an image in bookmarks mode`}
+
+  obj.view_image_closed = {value: `icon`, category: category, type: `menu`, name: `View Image (Closed)`, version: 1,
+  info: `What to do when clicking on an image in closed mode`}
+
+  obj.video_icon = {value: `▶️`, category: category, type: `text_smaller`, name: `View Video Icon`, version: 1,
+  info: `Media icon for videos`}
+
+  obj.view_video_tabs = {value: `icon`, category: category, type: `menu`, name: `View Video (Tabs)`, version: 1,
+  info: `What to do when clicking on a video in tabs mode`}
+
+  obj.view_video_history = {value: `icon`, category: category, type: `menu`, name: `View Video (History)`, version: 1,
+  info: `What to do when clicking on a video in history mode`}
+
+  obj.view_video_bookmarks = {value: `icon`, category: category, type: `menu`, name: `View Video (Bookmarks)`, version: 1,
+  info: `What to do when clicking on a video in bookmarks mode`}
+
+  obj.view_video_closed = {value: `icon`, category: category, type: `menu`, name: `View Video (Closed)`, version: 1,
+  info: `What to do when clicking on a video in closed mode`}
+
+  obj.audio_icon = {value: `🎵`, category: category, type: `text_smaller`, name: `View Audio Icon`, version: 1,
+  info: `Media icon for audio`}
+
+  obj.view_audio_tabs = {value: `icon`, category: category, type: `menu`, name: `View Audio (Tabs)`, version: 1,
+  info: `What to do when clicking on an audio in tabs mode`}
+
+  obj.view_audio_history = {value: `icon`, category: category, type: `menu`, name: `View Audio (History)`, version: 1,
+  info: `What to do when clicking on an audio in history mode`}
+
+  obj.view_audio_bookmarks = {value: `icon`, category: category, type: `menu`, name: `View Audio (Bookmarks)`, version: 1,
+  info: `What to do when clicking on an audio in bookmarks mode`}
+
+  obj.view_audio_closed = {value: `icon`, category: category, type: `menu`, name: `View Audio (Closed)`, version: 1,
+  info: `What to do when clicking on an audio in closed mode`}
 
   category = `icons`
-  obj.pin_icon = {value: `+`, category: category, type: `text_smaller`, name: `Pin Icon`, version: 1}
-  obj.normal_icon = {value: ``, category: category, type: `text_smaller`, name: `Normal Icon`, version: 1}
-  obj.playing_icon = {value: `🔊`, category: category, type: `text_smaller`, name: `Playing Icon`, version: 1}
-  obj.muted_icon = {value: `🔇`, category: category, type: `text_smaller`, name: `Muted Icon`, version: 1}
-  obj.unloaded_icon = {value: `💤`, category: category, type: `text_smaller`, name: `Unloaded Icon`, version: 1}
-  obj.close_icon = {value: `x`, category: category, type: `text_smaller`, name: `Close Icon`, version: 1}
-  obj.open_icon = {value: `🚀`, category: category, type: `text_smaller`, name: `Open Icon`, version: 1}
-  obj.pick_icon = {value: `🎯`, category: category, type: `text_smaller`, name: `Pick Icon`, version: 1}
+
+  obj.pin_icon = {value: `+`, category: category, type: `text_smaller`, name: `Pin Icon`, version: 1,
+  info: `Icon for pinned tabs`}
+
+  obj.normal_icon = {value: ``, category: category, type: `text_smaller`, name: `Normal Icon`, version: 1,
+  info: `Icon for normal tabs`}
+
+  obj.playing_icon = {value: `🔊`, category: category, type: `text_smaller`, name: `Playing Icon`, version: 1,
+  info: `Icons for tabs emitting audio`}
+
+  obj.muted_icon = {value: `🔇`, category: category, type: `text_smaller`, name: `Muted Icon`, version: 1,
+  info: `Icons for muted tabs`}
+
+  obj.unloaded_icon = {value: `💤`, category: category, type: `text_smaller`, name: `Unloaded Icon`, version: 1,
+  info: `Icons for unloaded tabs`}
+
+  obj.close_icon = {value: `x`, category: category, type: `text_smaller`, name: `Close Icon`, version: 1,
+  info: `Icon for the close buttons`}
+
+  obj.open_icon = {value: `🚀`, category: category, type: `text_smaller`, name: `Open Icon`, version: 1,
+  info: `Icon for the open buttons`}
+
+  obj.pick_icon = {value: `🎯`, category: category, type: `text_smaller`, name: `Pick Icon`, version: 1,
+  info: `Icon for the picks`}
 
   category = `show`
-  obj.show_pinline = {value: `normal`, category: category, type: `menu`, name: `Show Pinline`, version: 2}
-  obj.show_scrollbars = {value: true, category: category, type: `checkbox`, name: `Show Scrollbars`, version: 1}
-  obj.show_tooltips = {value: true, category: category, type: `checkbox`, name: `Show Tooltips`, version: 1}
-  obj.show_icons = {value: true, category: category, type: `checkbox`, name: `Show Icons`, version: 1}
-  obj.show_scroller = {value: true, category: category, type: `checkbox`, name: `Show Scrollers`, version: 1}
-  obj.show_footer = {value: true, category: category, type: `checkbox`, name: `Show Footer`, version: 1}
-  obj.show_filter_history = {value: true, category: category, type: `checkbox`, name: `Show Filter History`, version: 1}
-  obj.show_feedback = {value: true, category: category, type: `checkbox`, name: `Show Feedback`, version: 1}
+  obj.show_pinline = {value: `normal`, category: category, type: `menu`, name: `Show Pinline`, version: 2,
+  info: `Show the widget between pinned and normal tabs`}
+
+  obj.show_scrollbars = {value: true, category: category, type: `checkbox`, name: `Show Scrollbars`, version: 1,
+  info: `Show the regular scrollbars. Else scrollbars are disabled`}
+
+  obj.show_tooltips = {value: true, category: category, type: `checkbox`, name: `Show Tooltips`, version: 1,
+  info: `Show tooltips when hovering items`}
+
+  obj.show_icons = {value: true, category: category, type: `checkbox`, name: `Show Icons`, version: 1,
+  info: `Show item icons`}
+
+  obj.show_scroller = {value: true, category: category, type: `checkbox`, name: `Show Scrollers`, version: 1,
+  info: `Show the scroller widget when scrolling the lists`}
+
+  obj.show_footer = {value: true, category: category, type: `checkbox`, name: `Show Footer`, version: 1,
+  info: `Show the footer at the bottom`}
+
+  obj.show_filter_history = {value: true, category: category, type: `checkbox`, name: `Show Filter History`, version: 1,
+  info: `Show the filter history when right clicking the filter`}
+
+  obj.show_feedback = {value: true, category: category, type: `checkbox`, name: `Show Feedback`, version: 1,
+  info: `Show feedback messages on certain actions`}
 
   category = `gestures`
-  obj.gestures_enabled = {value: true, category: category, type: `checkbox`, name: `Gestures Enabled`, version: 1}
-  obj.gestures_threshold = {value: 10, category: category, type: `menu`, name: `Gestures Threshold`, version: 1}
-  obj.gesture_up = {value: `go_to_top`, category: category, type: `menu`, name: `Gesture Up`, version: 1}
-  obj.gesture_up_ctrl = {value: `none`, category: category, type: `menu`, name: `Gesture Up + Ctrl`, version: 1}
-  obj.gesture_up_shift = {value: `none`, category: category, type: `menu`, name: `Gesture Up + Shift`, version: 1}
-  obj.gesture_up_alt = {value: `none`, category: category, type: `menu`, name: `Gesture Up + Alt`, version: 1}
-  obj.gesture_down = {value: `go_to_bottom`, category: category, type: `menu`, name: `Gesture Down`, version: 1}
-  obj.gesture_down_ctrl = {value: `none`, category: category, type: `menu`, name: `Gesture Down + Ctrl`, version: 1}
-  obj.gesture_down_shift = {value: `none`, category: category, type: `menu`, name: `Gesture Down + Shift`, version: 1}
-  obj.gesture_down_alt = {value: `none`, category: category, type: `menu`, name: `Gesture Down + Alt`, version: 1}
-  obj.gesture_left = {value: `prev_mode`, category: category, type: `menu`, name: `Gesture Left`, version: 1}
-  obj.gesture_left_ctrl = {value: `none`, category: category, type: `menu`, name: `Gesture Left + Ctrl`, version: 1}
-  obj.gesture_left_shift = {value: `none`, category: category, type: `menu`, name: `Gesture Left + Shift`, version: 1}
-  obj.gesture_left_alt = {value: `none`, category: category, type: `menu`, name: `Gesture Left + Alt`, version: 1}
-  obj.gesture_right = {value: `next_mode`, category: category, type: `menu`, name: `Gesture Right`, version: 1}
-  obj.gesture_right_ctrl = {value: `none`, category: category, type: `menu`, name: `Gesture Right + Ctrl`, version: 1}
-  obj.gesture_right_shift = {value: `none`, category: category, type: `menu`, name: `Gesture Right + Shift`, version: 1}
-  obj.gesture_right_alt = {value: `none`, category: category, type: `menu`, name: `Gesture Right + Alt`, version: 1}
-  obj.gesture_up_and_down = {value: `show_all`, category: category, type: `menu`, name: `Gesture Up Down`, version: 1}
-  obj.gesture_up_and_down_ctrl = {value: `none`, category: category, type: `menu`, name: `Gesture Up Down + Ctrl`, version: 1}
-  obj.gesture_up_and_down_shift = {value: `none`, category: category, type: `menu`, name: `Gesture Up Down + Shift`, version: 1}
-  obj.gesture_up_and_down_alt = {value: `none`, category: category, type: `menu`, name: `Gesture Up Down + Alt`, version: 1}
-  obj.gesture_left_and_right = {value: `filter_domain`, category: category, type: `menu`, name: `Gesture Left Right`, version: 1}
-  obj.gesture_left_and_right_ctrl = {value: `none`, category: category, type: `menu`, name: `Gesture Left Right + Ctrl`, version: 1}
-  obj.gesture_left_and_right_shift = {value: `none`, category: category, type: `menu`, name: `Gesture Left Right + Shift`, version: 1}
-  obj.gesture_left_and_right_alt = {value: `none`, category: category, type: `menu`, name: `Gesture Left Right + Alt`, version: 1}
+  obj.gestures_enabled = {value: true, category: category, type: `checkbox`, name: `Gestures Enabled`, version: 1,
+  info: `Enable mouse gestures`}
+
+  obj.gestures_threshold = {value: 10, category: category, type: `menu`, name: `Gestures Threshold`, version: 1,
+  info: `How sensitive gestures are`}
+
+  obj.gesture_up = {value: `go_to_top`, category: category, type: `menu`, name: `Gesture Up`, version: 1,
+  info: `Up`}
+
+  obj.gesture_up_ctrl = {value: `none`, category: category, type: `menu`, name: `Gesture Up + Ctrl`, version: 1,
+  info: `Up while pressing Ctrl`}
+
+  obj.gesture_up_shift = {value: `none`, category: category, type: `menu`, name: `Gesture Up + Shift`, version: 1,
+  info: `Up while pressing Shift`}
+
+  obj.gesture_up_alt = {value: `none`, category: category, type: `menu`, name: `Gesture Up + Alt`, version: 1,
+  info: `Up while pressing Alt`}
+
+  obj.gesture_down = {value: `go_to_bottom`, category: category, type: `menu`, name: `Gesture Down`, version: 1,
+  info: `Down`}
+
+  obj.gesture_down_ctrl = {value: `none`, category: category, type: `menu`, name: `Gesture Down + Ctrl`, version: 1,
+  info: `Down while pressing Ctrl`}
+
+  obj.gesture_down_shift = {value: `none`, category: category, type: `menu`, name: `Gesture Down + Shift`, version: 1,
+  info: `Down while pressing Shift`}
+
+  obj.gesture_down_alt = {value: `none`, category: category, type: `menu`, name: `Gesture Down + Alt`, version: 1,
+  info: `Down while pressing Alt`}
+
+  obj.gesture_left = {value: `prev_mode`, category: category, type: `menu`, name: `Gesture Left`, version: 1,
+  info: `Left`}
+
+  obj.gesture_left_ctrl = {value: `none`, category: category, type: `menu`, name: `Gesture Left + Ctrl`, version: 1,
+  info: `Left while pressing Ctrl`}
+
+  obj.gesture_left_shift = {value: `none`, category: category, type: `menu`, name: `Gesture Left + Shift`, version: 1,
+  info: `Left while pressing Shift`}
+
+  obj.gesture_left_alt = {value: `none`, category: category, type: `menu`, name: `Gesture Left + Alt`, version: 1,
+  info: `Left while pressing Alt`}
+
+  obj.gesture_right = {value: `next_mode`, category: category, type: `menu`, name: `Gesture Right`, version: 1,
+  info: `Right`}
+
+  obj.gesture_right_ctrl = {value: `none`, category: category, type: `menu`, name: `Gesture Right + Ctrl`, version: 1,
+  info: `Right while pressing Ctrl`}
+
+  obj.gesture_right_shift = {value: `none`, category: category, type: `menu`, name: `Gesture Right + Shift`, version: 1,
+  info: `Right while pressing Shift`}
+
+  obj.gesture_right_alt = {value: `none`, category: category, type: `menu`, name: `Gesture Right + Alt`, version: 1,
+  info: `Right while pressing Alt`}
+
+  obj.gesture_up_and_down = {value: `show_all`, category: category, type: `menu`, name: `Gesture Up Down`, version: 1,
+  info: `Up and Down`}
+
+  obj.gesture_up_and_down_ctrl = {value: `none`, category: category, type: `menu`, name: `Gesture Up Down + Ctrl`, version: 1,
+  info: `Up and Down while pressing Ctrl`}
+
+  obj.gesture_up_and_down_shift = {value: `none`, category: category, type: `menu`, name: `Gesture Up Down + Shift`, version: 1,
+  info: `Up and Down while pressing Shift`}
+
+  obj.gesture_up_and_down_alt = {value: `none`, category: category, type: `menu`, name: `Gesture Up Down + Alt`, version: 1,
+  info: `Up and Down while pressing Alt`}
+
+  obj.gesture_left_and_right = {value: `filter_domain`, category: category, type: `menu`, name: `Gesture Left Right`, version: 1,
+  info: `Left and Right`}
+
+  obj.gesture_left_and_right_ctrl = {value: `none`, category: category, type: `menu`, name: `Gesture Left Right + Ctrl`, version: 1,
+  info: `Left and Right while pressing Ctrl`}
+
+  obj.gesture_left_and_right_shift = {value: `none`, category: category, type: `menu`, name: `Gesture Left Right + Shift`, version: 1,
+  info: `Left and Right while pressing Shift`}
+
+  obj.gesture_left_and_right_alt = {value: `none`, category: category, type: `menu`, name: `Gesture Left Right + Alt`, version: 1,
+  info: `Left and Right while pressing Alt`}
 
   category = `auxclick`
-  obj.middle_click_tabs = {value: `close`, category: category, type: `menu`, name: `Middle Click Tabs`, version: 1}
-  obj.middle_click_tabs_ctrl = {value: `color_red`, category: category, type: `menu`, name: `Middle Click Tabs + Ctrl`, version: 1}
-  obj.middle_click_tabs_shift = {value: `color_green`, category: category, type: `menu`, name: `Middle Click Tabs + Shift`, version: 1}
-  obj.middle_click_tabs_alt = {value: `color_blue`, category: category, type: `menu`, name: `Middle Click Tabs + Alt`, version: 1}
-  obj.middle_click_history = {value: `open`, category: category, type: `menu`, name: `Middle Click History`, version: 1}
-  obj.middle_click_history_ctrl = {value: `color_red`, category: category, type: `menu`, name: `Middle Click History + Ctrl`, version: 1}
-  obj.middle_click_history_shift = {value: `color_green`, category: category, type: `menu`, name: `Middle Click History + Shift`, version: 1}
-  obj.middle_click_history_alt = {value: `color_blue`, category: category, type: `menu`, name: `Middle Click History + Alt`, version: 1}
-  obj.middle_click_bookmarks = {value: `open`, category: category, type: `menu`, name: `Middle Click Bookmarks`, version: 1}
-  obj.middle_click_bookmarks_ctrl = {value: `color_red`, category: category, type: `menu`, name: `Middle Click Bookmarks + Ctrl`, version: 1}
-  obj.middle_click_bookmarks_shift = {value: `color_green`, category: category, type: `menu`, name: `Middle Click Bookmarks + Shift`, version: 1}
-  obj.middle_click_bookmarks_alt = {value: `color_blue`, category: category, type: `menu`, name: `Middle Click Bookmarks + Alt`, version: 1}
-  obj.middle_click_closed = {value: `open`, category: category, type: `menu`, name: `Middle Click Closed`, version: 1}
-  obj.middle_click_closed_ctrl = {value: `color_red`, category: category, type: `menu`, name: `Middle Click Closed + Ctrl`, version: 1}
-  obj.middle_click_closed_shift = {value: `color_green`, category: category, type: `menu`, name: `Middle Click Closed + Shift`, version: 1}
-  obj.middle_click_closed_alt = {value: `color_blue`, category: category, type: `menu`, name: `Middle Click Closed + Alt`, version: 1}
-  obj.middle_click_main_menu = {value: `show_main`, category: category, type: `menu`, name: `Middle Click Main Menu`, version: 1}
-  obj.middle_click_filter_menu = {value: `show_all`, category: category, type: `menu`, name: `Middle Click Filter Menu`, version: 1}
-  obj.middle_click_back_button = {value: `browser_back`, category: category, type: `menu`, name: `Middle Click Back Button`, version: 1}
-  obj.middle_click_actions_menu = {value: `browser_reload`, category: category, type: `menu`, name: `Middle Click Actions Menu`, version: 1}
-  obj.middle_click_footer = {value: `copy_url`, category: category, type: `menu`, name: `Middle Click Footer`, version: 1}
-  obj.middle_click_pick_button = {value: `filter_domain`, category: category, type: `menu`, name: `Middle Click Pick Button`, version: 1}
-  obj.middle_click_close_button = {value: `unload`, category: category, type: `menu`, name: `Middle Click Close Button`, version: 1}
-  obj.middle_click_open_button = {value: `open`, category: category, type: `menu`, name: `Middle Click Open Button`, version: 1}
-  obj.middle_click_pinline = {value: `close_normal`, category: category, type: `menu`, name: `Middle Click Pinline`, version: 1}
+  obj.middle_click_tabs = {value: `close`, category: category, type: `menu`, name: `Middle Click Tabs`, version: 1,
+  info: `Middle click on tab items`}
+
+  obj.middle_click_tabs_ctrl = {value: `color_red`, category: category, type: `menu`, name: `Middle Click Tabs + Ctrl`, version: 1,
+  info: `Middle click on tab items while pressing Ctrl`}
+
+  obj.middle_click_tabs_shift = {value: `color_green`, category: category, type: `menu`, name: `Middle Click Tabs + Shift`, version: 1,
+  info: `Middle click on tab items while pressing Shift`}
+
+  obj.middle_click_tabs_alt = {value: `color_blue`, category: category, type: `menu`, name: `Middle Click Tabs + Alt`, version: 1,
+  info: `Middle click on tab items while pressing Alt`}
+
+  obj.middle_click_history = {value: `open`, category: category, type: `menu`, name: `Middle Click History`, version: 1,
+  info: `Middle click on history items`}
+
+  obj.middle_click_history_ctrl = {value: `color_red`, category: category, type: `menu`, name: `Middle Click History + Ctrl`, version: 1,
+  info: `Middle click on history items while pressing Ctrl`}
+
+  obj.middle_click_history_shift = {value: `color_green`, category: category, type: `menu`, name: `Middle Click History + Shift`, version: 1,
+  info: `Middle click on history items while pressing Shift`}
+
+  obj.middle_click_history_alt = {value: `color_blue`, category: category, type: `menu`, name: `Middle Click History + Alt`, version: 1,
+  info: `Middle click on history items while pressing Alt`}
+
+  obj.middle_click_bookmarks = {value: `open`, category: category, type: `menu`, name: `Middle Click Bookmarks`, version: 1,
+  info: `Middle click on bookmark items`}
+
+  obj.middle_click_bookmarks_ctrl = {value: `color_red`, category: category, type: `menu`, name: `Middle Click Bookmarks + Ctrl`, version: 1,
+  info: `Middle click on bookmark items while pressing Ctrl`}
+
+  obj.middle_click_bookmarks_shift = {value: `color_green`, category: category, type: `menu`, name: `Middle Click Bookmarks + Shift`, version: 1,
+  info: `Middle click on bookmark items while pressing Shift`}
+
+  obj.middle_click_bookmarks_alt = {value: `color_blue`, category: category, type: `menu`, name: `Middle Click Bookmarks + Alt`, version: 1,
+  info: `Middle click on bookmark items while pressing Alt`}
+
+  obj.middle_click_closed = {value: `open`, category: category, type: `menu`, name: `Middle Click Closed`, version: 1,
+  info: `Middle click on closed items`}
+
+  obj.middle_click_closed_ctrl = {value: `color_red`, category: category, type: `menu`, name: `Middle Click Closed + Ctrl`, version: 1,
+  info: `Middle click on closed items while pressing Ctrl`}
+
+  obj.middle_click_closed_shift = {value: `color_green`, category: category, type: `menu`, name: `Middle Click Closed + Shift`, version: 1,
+  info: `Middle click on closed items while pressing Shift`}
+
+  obj.middle_click_closed_alt = {value: `color_blue`, category: category, type: `menu`, name: `Middle Click Closed + Alt`, version: 1,
+  info: `Middle click on closed items while pressing Alt`}
+
+  obj.middle_click_main_menu = {value: `show_main`, category: category, type: `menu`, name: `Middle Click Main Menu`, version: 1,
+  info: `Middle click on the main menu`}
+
+  obj.middle_click_filter_menu = {value: `show_all`, category: category, type: `menu`, name: `Middle Click Filter Menu`, version: 1,
+  info: `Middle click on the filter menu`}
+
+  obj.middle_click_back_button = {value: `browser_back`, category: category, type: `menu`, name: `Middle Click Back Button`, version: 1,
+  info: `Middle click on the back button`}
+
+  obj.middle_click_actions_menu = {value: `browser_reload`, category: category, type: `menu`, name: `Middle Click Actions Menu`, version: 1,
+  info: `Middle click on the actions menu`}
+
+  obj.middle_click_footer = {value: `copy_url`, category: category, type: `menu`, name: `Middle Click Footer`, version: 1,
+  info: `Middle click on the footer`}
+
+  obj.middle_click_pick_button = {value: `filter_domain`, category: category, type: `menu`, name: `Middle Click Pick Button`, version: 1,
+  info: `Middle click on the pick button`}
+
+  obj.middle_click_close_button = {value: `unload`, category: category, type: `menu`, name: `Middle Click Close Button`, version: 1,
+  info: `Middle click on the close buttons`}
+
+  obj.middle_click_open_button = {value: `open`, category: category, type: `menu`, name: `Middle Click Open Button`, version: 1,
+  info: `Middle click on the open buttons`}
+
+  obj.middle_click_pinline = {value: `close_normal`, category: category, type: `menu`, name: `Middle Click Pinline`, version: 1,
+  info: `Middle click on the pinline`}
 
   category = `menus`
+
   obj.tabs_actions = {value: [
     {cmd: `new`},
     {cmd: `sort`},
@@ -201,54 +363,102 @@ App.build_default_settings = () => {
     {cmd: `show_urls`},
     {cmd: `open_urls`},
     {cmd: `close_menu`},
-  ], category: category, type: `list`, name: `Tab Actions`, version: 1},
+  ], category: category, type: `list`, name: `Tab Actions`, version: 1,
+  info: `Tabs action menu`}
+
   obj.history_actions = {value: [
     {cmd: `deep_search`},
     {cmd: `search_media`},
-  ], category: category, type: `list`, name: `History Actions`, version: 1},
+  ], category: category, type: `list`, name: `History Actions`, version: 1,
+  info: `History action menu`}
+
   obj.bookmarks_actions = {value: [
     {cmd: `bookmark_this`},
     {cmd: `deep_search`},
     {cmd: `search_media`},
-  ], category: category, type: `list`, name: `Bookmark Actions`, version: 1},
+  ], category: category, type: `list`, name: `Bookmark Actions`, version: 1,
+  info: `Bookmarks action menu`}
+
   obj.closed_actions = {value: [
     {cmd: `forget_closed`},
-  ], category: category, type: `list`, name: `Closed Actions`, version: 1},
-  obj.extra_menu = {value: [], category: category, type: `list`, name: `Extra Menu`, version: 4}
+  ], category: category, type: `list`, name: `Closed Actions`, version: 1,
+  info: `Closed action menu`}
+
+  obj.extra_menu = {value: [], category: category, type: `list`, name: `Extra Menu`, version: 4,
+  info: `If this has items an Extra menu is shown in the item menu when right clicking items`}
+
   obj.pinline_menu = {value: [
     {cmd: `select_pins`},
     {cmd: `select_normal`},
     {cmd: `select_all`},
-  ], category: category, type: `list`, name: `Pinline Menu`, version: 4}
+  ], category: category, type: `list`, name: `Pinline Menu`, version: 4,
+  info: `Menu when clicking the pinline`}
+
   obj.empty_menu = {value: [
     {cmd: `select_all`},
     {cmd: `new`},
-  ], category: category, type: `list`, name: `Empty Menu`, version: 4}
+  ], category: category, type: `list`, name: `Empty Menu`, version: 4,
+  info: `Menu when right clicking empty space`}
+
   obj.footer_menu = {value: [
     {cmd: `copy_url`},
     {cmd: `copy_title`},
-  ], category: category, type: `list`, name: `Footer Menu`, version: 4}
+  ], category: category, type: `list`, name: `Footer Menu`, version: 4,
+  info: `Menu when right clicking the footer`}
 
   category = `keyboard`
-  obj.keyboard_shortcuts = {value: [], category: category, type: `list`, name: `Keyboard Shortcuts`, version: 4}
+  obj.keyboard_shortcuts = {value: [], category: category, type: `list`, name: `Keyboard Shortcuts`, version: 4,
+  info: `Extra keyboard shortcuts. If these are triggered the default shortcuts get ignored`}
 
   category = `warns`
-  obj.warn_on_close_tabs = {value: `special`, category: category, type: `menu`, name: `Warn On Close Tabs`, version: 1}
-  obj.warn_on_unload_tabs = {value: `special`, category: category, type: `menu`, name: `Warn On Unload Tabs`, version: 1}
-  obj.warn_on_close_normal_tabs = {value: true, category: category, type: `checkbox`, name: `Warn On Close Normal`, version: 1}
-  obj.warn_on_close_unloaded_tabs = {value: true, category: category, type: `checkbox`, name: `Warn On Close Unloaded`, version: 1}
-  obj.warn_on_close_duplicate_tabs = {value: true, category: category, type: `checkbox`, name: `Warn On Close Duplicates`, version: 1}
-  obj.warn_on_duplicate_tabs = {value: true, category: category, type: `checkbox`, name: `Warn Duplicate Tabs`, version: 1}
-  obj.warn_on_close_visible_tabs = {value: true, category: category, type: `checkbox`, name: `Warn On Close Visible`, version: 1}
-  obj.warn_on_open = {value: true, category: category, type: `checkbox`, name: `Warn On Open`, version: 1}
-  obj.warn_on_remove_profiles = {value: true, category: category, type: `checkbox`, name: `Warn On Remove Profiles`, version: 1}
-  obj.warn_on_bookmark = {value: true, category: category, type: `checkbox`, name: `Warn On Bookmark`, version: 1}
-  obj.warn_on_color = {value: true, category: category, type: `checkbox`, name: `Warn On Color`, version: 1}
-  obj.warn_on_pin_tabs = {value: true, category: category, type: `checkbox`, name: `Warn On Pin Tabs`, version: 1}
-  obj.warn_on_unpin_tabs = {value: true, category: category, type: `checkbox`, name: `Warn On Unpin Tabs`, version: 1}
-  obj.warn_on_load_tabs = {value: true, category: category, type: `checkbox`, name: `Warn On Load Tabs`, version: 1}
-  obj.warn_on_mute_tabs = {value: true, category: category, type: `checkbox`, name: `Warn On Mute Tabs`, version: 1}
-  obj.warn_on_unmute_tabs = {value: true, category: category, type: `checkbox`, name: `Warn On Unmute Tabs`, version: 1}
+
+  obj.warn_on_close_tabs = {value: `special`, category: category, type: `menu`, name: `Warn On Close Tabs`, version: 1,
+  info: ``}
+
+  obj.warn_on_unload_tabs = {value: `special`, category: category, type: `menu`, name: `Warn On Unload Tabs`, version: 1,
+  info: ``}
+
+  obj.warn_on_close_normal_tabs = {value: true, category: category, type: `checkbox`, name: `Warn On Close Normal`, version: 1,
+  info: ``}
+
+  obj.warn_on_close_unloaded_tabs = {value: true, category: category, type: `checkbox`, name: `Warn On Close Unloaded`, version: 1,
+  info: ``}
+
+  obj.warn_on_close_duplicate_tabs = {value: true, category: category, type: `checkbox`, name: `Warn On Close Duplicates`, version: 1,
+  info: ``}
+
+  obj.warn_on_duplicate_tabs = {value: true, category: category, type: `checkbox`, name: `Warn Duplicate Tabs`, version: 1,
+  info: ``}
+
+  obj.warn_on_close_visible_tabs = {value: true, category: category, type: `checkbox`, name: `Warn On Close Visible`, version: 1,
+  info: ``}
+
+  obj.warn_on_open = {value: true, category: category, type: `checkbox`, name: `Warn On Open`, version: 1,
+  info: ``}
+
+  obj.warn_on_remove_profiles = {value: true, category: category, type: `checkbox`, name: `Warn On Remove Profiles`, version: 1,
+  info: ``}
+
+  obj.warn_on_bookmark = {value: true, category: category, type: `checkbox`, name: `Warn On Bookmark`, version: 1,
+  info: ``}
+
+  obj.warn_on_color = {value: true, category: category, type: `checkbox`, name: `Warn On Color`, version: 1,
+  info: ``}
+
+  obj.warn_on_pin_tabs = {value: true, category: category, type: `checkbox`, name: `Warn On Pin Tabs`, version: 1,
+  info: ``}
+
+  obj.warn_on_unpin_tabs = {value: true, category: category, type: `checkbox`, name: `Warn On Unpin Tabs`, version: 1,
+  info: ``}
+
+  obj.warn_on_load_tabs = {value: true, category: category, type: `checkbox`, name: `Warn On Load Tabs`, version: 1,
+  info: ``}
+
+  obj.warn_on_mute_tabs = {value: true, category: category, type: `checkbox`, name: `Warn On Mute Tabs`, version: 1,
+  info: ``}
+
+  obj.warn_on_unmute_tabs = {value: true, category: category, type: `checkbox`, name: `Warn On Unmute Tabs`, version: 1,
+  info: ``}
 
   category = `colors`
   obj.color_red = {value: `rgba(172, 59, 59, 0.44)`, category: category, type: `color`, name: `Color Red`, version: 1}
@@ -281,8 +491,8 @@ App.build_default_settings = () => {
   obj.deep_max_search_items = {value: 5000, category: category, type: `number`, name: `Deep Max Search Items`, version: 1}
   obj.history_max_months = {value: 18, category: category, type: `number`, name: `History Max Months`, version: 1}
   obj.deep_history_max_months = {value: 54, category: category, type: `number`, name: `Deep History Max Months`, version: 1}
-  obj.filter_delay = {value: 50, category: category, type: `number`, name: `Filter Delay`, version: 1}
-  obj.filter_delay_search = {value: 225, category: category, type: `number`, name: `Filter Delay (Search)`, version: 1}
+  obj.filter_delay = {value: 50, category: category, type: `number`, name: `Filter Delay`, action: `filter_debouncers`, version: 1}
+  obj.filter_delay_search = {value: 225, category: category, type: `number`, name: `Filter Delay (Search)`, action: `filter_debouncers`, version: 1}
 
   App.default_settings = obj
 }
