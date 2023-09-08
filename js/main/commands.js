@@ -21,6 +21,10 @@ App.setup_commands = () => {
     }, info: `Change color of URL: ${color}`})
   }
 
+  color_changers.push({name: `Remove Color`, cmd: `remove_color`, mode: `items`, action: (args) => {
+    App.change_color(args.item, `none`)
+  }, info: `Remove the current color of items`})
+
   let media_filters = []
 
   for (let media of App.media_types) {

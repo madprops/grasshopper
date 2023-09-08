@@ -1315,19 +1315,27 @@ App.change_color = (item, color) => {
   args.added = added
   args.type = `color`
   args.from = `color_items`
-  let colored = false
+  let force
+  let some = false
 
-  if (profiles.length) {
-    if (profiles.length === items.length) {
-      if (profiles[0].color === color) {
-        colored = true
-      }
+  if (added.length) {
+    if (color !== `none`) {
+      some = true
     }
   }
 
-  let force
+  for (let profile of profiles) {
+    if (profile.color !== color) {
+      some = true
+      break
+    }
+  }
 
-  if (colored) {
+  if (!some) {
+    return
+  }
+
+  if (color === `none`) {
     force = App.check_force(`warn_on_remove_color`, items.length, true)
   }
   else {
@@ -1336,8 +1344,8 @@ App.change_color = (item, color) => {
 
   let msg
 
-  if (colored) {
-    msg = `Remove color ${color}?`
+  if (color === `none`) {
+    msg = `Remove color?`
   }
   else {
     msg = `Color items ${color}?`
@@ -1346,13 +1354,7 @@ App.change_color = (item, color) => {
   msg += ` (${items.length})`
 
   App.show_confirm(msg, () => {
-    if (colored) {
-      args.color = `none`
-    }
-    else {
-      args.color = color
-    }
-
+    args.color = color
     App.save_profile(args)
   }, undefined, force)
 }
