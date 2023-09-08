@@ -3,7 +3,7 @@ App.init = async () => {
   App.window_id = win.id
   App.manifest = browser.runtime.getManifest()
   App.print_intro()
-  App.build_default_settings()
+  App.build_settings()
   App.stor_get_settings()
   App.stor_get_profiles()
   App.stor_get_command_history()

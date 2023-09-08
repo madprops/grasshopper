@@ -1,4 +1,4 @@
-App.build_default_settings = () => {
+App.build_settings = () => {
   let obj = {}
 
   // ###################
@@ -571,7 +571,7 @@ App.build_default_settings = () => {
   obj.debug_mode = {value: false, category: category, type: `checkbox`, name: `Debug Mode`, version: 1,
   info: `Enable some data for developers`}
 
-  App.default_settings = obj
+  App.settings_props = obj
 }
 
 App.settings_do_action = (what) => {
@@ -611,25 +611,25 @@ App.settings_setup_labels = (category) => {
     bc.prepend(item)
   }
 
-  for (let key in App.default_settings) {
-    let cmd = App.default_settings[key]
+  for (let key in App.settings_props) {
+    let props = App.settings_props[key]
 
-    if ((cmd.category === category) && cmd.btns) {
+    if ((props.category === category) && props.btns) {
       let btns = []
 
-      if (cmd.btns.includes(`random`)) {
+      if (props.btns.includes(`random`)) {
         btns.push([`settings_${key}_random`, App.random_text])
       }
 
-      if (cmd.btns.includes(`view`)) {
+      if (props.btns.includes(`view`)) {
         btns.push([`settings_${key}_view`, `View`])
       }
 
-      if (cmd.btns.includes(`next`)) {
+      if (props.btns.includes(`next`)) {
         btns.push([`settings_${key}_next`, `Next`])
       }
 
-      if (cmd.btns.includes(`shuffle`)) {
+      if (props.btns.includes(`shuffle`)) {
         btns.push([`settings_${key}_shuffle`, `Shuffle`])
       }
 
@@ -641,10 +641,10 @@ App.settings_setup_labels = (category) => {
 }
 
 App.settings_setup_checkboxes = (category) => {
-  for (let key in App.default_settings) {
-    let cmd = App.default_settings[key]
+  for (let key in App.settings_props) {
+    let props = App.settings_props[key]
 
-    if ((cmd.category === category) && cmd.type === `checkbox`) {
+    if ((props.category === category) && props.type === `checkbox`) {
       let el = DOM.el(`#settings_${key}`)
       el.checked = App.get_setting(key)
 
@@ -672,14 +672,14 @@ App.settings_setup_checkboxes = (category) => {
 }
 
 App.settings_setup_text = (category) => {
-  for (let key in App.default_settings) {
-    let cmd = App.default_settings[key]
+  for (let key in App.settings_props) {
+    let props = App.settings_props[key]
 
-    if (cmd.category !== category) {
+    if (props.category !== category) {
       continue
     }
 
-    if (cmd.type !== `text` && cmd.type !== `text_smaller`) {
+    if (props.type !== `text` && props.type !== `text_smaller`) {
       continue
     }
 
@@ -735,14 +735,14 @@ App.settings_setup_text = (category) => {
 }
 
 App.settings_setup_number = (category) => {
-  for (let key in App.default_settings) {
-    let cmd = App.default_settings[key]
+  for (let key in App.settings_props) {
+    let props = App.settings_props[key]
 
-    if (cmd.category !== category) {
+    if (props.category !== category) {
       continue
     }
 
-    if (cmd.type !== `number`) {
+    if (props.type !== `number`) {
       continue
     }
 
@@ -799,11 +799,11 @@ App.settings_setup_number = (category) => {
 }
 
 App.add_settings_addlist = (category) => {
-  for (let key in App.default_settings) {
-    let cmd = App.default_settings[key]
+  for (let key in App.settings_props) {
+    let props = App.settings_props[key]
 
-    if (cmd.category === category) {
-      if (cmd.type !== `list`) {
+    if (props.category === category) {
+      if (props.type !== `list`) {
         continue
       }
 
@@ -1130,10 +1130,10 @@ App.setup_settings = () => {
 
     let opts = App.settings_commands()
 
-    for (let key in App.default_settings) {
-      let cmd = App.default_settings[key]
+    for (let key in App.settings_props) {
+      let props = App.settings_props[key]
 
-      if (cmd.category === `gestures`) {
+      if (props.category === `gestures`) {
         if (key.startsWith(`gesture_`)) {
           App.settings_make_menu(key, opts)
         }
@@ -1145,10 +1145,10 @@ App.setup_settings = () => {
     prepare(`auxclick`)
     let opts = App.settings_commands()
 
-    for (let key in App.default_settings) {
-      let cmd = App.default_settings[key]
+    for (let key in App.settings_props) {
+      let props = App.settings_props[key]
 
-      if (cmd.category === `auxclick`) {
+      if (props.category === `auxclick`) {
         App.settings_make_menu(key, opts)
       }
     }
@@ -1157,10 +1157,10 @@ App.setup_settings = () => {
   App.create_window(Object.assign({}, common, {id: `settings_menus`, setup: () => {
     prepare(`menus`)
 
-    for (let key in App.default_settings) {
-      let cmd = App.default_settings[key]
+    for (let key in App.settings_props) {
+      let props = App.settings_props[key]
 
-      if (cmd.category === `menus`) {
+      if (props.category === `menus`) {
         App.addlist_buttons({id: key})
       }
     }
@@ -1368,10 +1368,10 @@ App.start_theme_settings = () => {
 }
 
 App.settings_default_category = (category) => {
-  for (let setting in App.default_settings) {
-    let item = App.default_settings[setting]
+  for (let setting in App.settings_props) {
+    let props = App.settings_props[setting]
 
-    if (item.category === category) {
+    if (props.category === category) {
       App.set_default_setting(setting, false)
     }
   }
@@ -1396,7 +1396,7 @@ App.reset_settings = (category) => {
 
 App.reset_all_settings = () => {
   App.show_confirm(`Reset all settings?`, () => {
-    for (let setting in App.default_settings) {
+    for (let setting in App.settings_props) {
       App.set_default_setting(setting)
     }
 
@@ -1564,17 +1564,17 @@ App.set_setting = (setting, value, do_action = true) => {
     App.save_settings_debouncer.call()
 
     if (do_action) {
-      let def = App.default_settings[setting]
+      let props = App.settings_props[setting]
 
-      if (def.action) {
-        App.settings_do_action(def.action)
+      if (props.action) {
+        App.settings_do_action(props.action)
       }
     }
   }
 }
 
 App.get_default_setting = (setting) => {
-  let value = App.default_settings[setting].value
+  let value = App.settings_props[setting].value
 
   if (typeof value === `object`) {
     value = [...value]
@@ -1592,10 +1592,10 @@ App.check_settings = () => {
 
   function set_default (setting) {
     App.settings[setting].value = App.default_setting_string
-    App.settings[setting].version = App.default_settings[setting].version
+    App.settings[setting].version = App.settings_props[setting].version
   }
 
-  for (let setting in App.default_settings) {
+  for (let setting in App.settings_props) {
     // Fill defaults
     if (App.settings[setting] === undefined ||
       App.settings[setting].value === undefined ||
@@ -1610,13 +1610,13 @@ App.check_settings = () => {
 
   for (let setting in App.settings) {
     // Remove unused settings
-    if (App.default_settings[setting] === undefined) {
+    if (App.settings_props[setting] === undefined) {
       App.debug(`Stor: Deleting setting: ${setting}`)
       delete App.settings[setting]
       changed = true
     }
     // Check new version
-    else if (App.settings[setting].version !== App.default_settings[setting].version) {
+    else if (App.settings[setting].version !== App.settings_props[setting].version) {
       App.debug(`Stor: Upgrading setting: ${setting}`)
       set_default(setting)
       changed = true
@@ -1763,53 +1763,53 @@ App.fill_settings = (category) => {
   let c = DOM.el(`#setting_${category}`)
   c.innerHTML = ``
 
-  for (let key in App.default_settings) {
-    let cmd = App.default_settings[key]
+  for (let key in App.settings_props) {
+    let props = App.settings_props[key]
 
-    if (cmd.category === category) {
+    if (props.category === category) {
       let el = DOM.create(`div`, `settings_item`)
       let label = DOM.create(`div`, `settings_label`)
       label.id = `settings_label_${key}`
-      label.textContent = cmd.name
+      label.textContent = props.name
       el.append(label)
       let widget
 
-      if (cmd.type === `menu`) {
+      if (props.type === `menu`) {
         widget = DOM.create(`div`, `settings_menu button`)
       }
-      else if (cmd.type === `list`) {
+      else if (props.type === `list`) {
         widget = DOM.create(`div`, `settings_addlist`)
       }
-      else if (cmd.type === `text`) {
+      else if (props.type === `text`) {
         widget = DOM.create(`input`, `text settings_text`)
         widget.type = `text`
         widget.autocomplete=`off`
         widget.spellcheck=`false`
       }
-      else if (cmd.type === `text_smaller`) {
+      else if (props.type === `text_smaller`) {
         widget = DOM.create(`input`, `text settings_text text_smaller`)
         widget.placeholder = `☺`
         widget.type = `text`
         autocomplete=`off`
         spellcheck=`false`
       }
-      else if (cmd.type === `number`) {
+      else if (props.type === `number`) {
         widget = DOM.create(`input`, `text settings_number`)
         widget.type = `number`
         widget.autocomplete=`off`
         widget.spellcheck=`false`
       }
-      else if (cmd.type === `checkbox`) {
+      else if (props.type === `checkbox`) {
         widget = DOM.create(`input`, `settings_checkbox`)
         widget.type = `checkbox`
       }
-      else if (cmd.type === `color`) {
+      else if (props.type === `color`) {
         widget = DOM.create(`div`, `settings_color`)
       }
 
       widget.id = `settings_${key}`
       el.append(widget)
-      el.title = cmd.info
+      el.title = props.info
       c.append(el)
     }
   }
