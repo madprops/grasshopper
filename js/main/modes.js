@@ -137,7 +137,7 @@ App.get_mode_name = (mode) => {
   }
 }
 
-App.show_main_mode = () => {
+App.show_primary_mode = () => {
   App.do_show_mode(App.primary_mode())
 }
 

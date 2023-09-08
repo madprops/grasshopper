@@ -69,8 +69,8 @@ App.setup_commands = () => {
       App.cycle_modes()
     }},
     ...show_modes,
-    {name: `Show Main`, cmd: `show_main`, action: (args) => {
-      App.show_main_mode()
+    {name: `Show Primary`, cmd: `show_main`, action: (args) => {
+      App.show_primary_mode()
     }},
     {name: `Show Settings`, cmd: `show_settings`, action: (args) => {
       App.show_settings()
