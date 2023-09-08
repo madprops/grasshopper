@@ -16,14 +16,14 @@ App.build_default_settings = () => {
   obj.item_height = {value: `normal`, category: category, type: `menu`, name: `Item Height`, version: 1,
   info: `How tall each item should be`}
 
+  obj.item_border = {value: `none`, category: category, type: `menu`, name: `Item Border`, version: 2,
+  info: `Border between each item`}
+
   obj.font = {value: `sans-serif`, category: category, type: `menu`, name: `Font`, version: 1,
   info: `The font to use for text`}
 
   obj.font_size = {value: 16, category: category, type: `menu`, name: `Font Size`, version: 1,
   info: `The font size to use for text. The interface scales accordingly`}
-
-  obj.item_border = {value: `none`, category: category, type: `menu`, name: `Item Border`, version: 2,
-  info: `Border between each item`}
 
   obj.width = {value: 75, category: category, type: `menu`, name: `Width`, version: 1,
   info: `Width of the popup`}
