@@ -41,7 +41,7 @@ App.step_back = (mode = App.window_mode, e) => {
   else if (mode === `tabs` && e.key !== `Escape`) {
     App.go_to_previous_tab()
   }
-  else if (mode !== App.mode_order[0]) {
+  else if (mode !== App.primary_mode()) {
     App.show_main_mode()
   }
 }

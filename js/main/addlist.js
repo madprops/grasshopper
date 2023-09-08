@@ -45,16 +45,6 @@ App.setup_addlist = () => {
     }})
   }))
 
-  id = `mode_order`
-
-  App.create_popup(Object.assign({}, args, {
-    id: `addlist_${id}`, element: App.addlist_register({id: id, pk: `mode`,
-    widgets: [`text`, `select`], labels: [`Mode`], title: `Mode Order`, sources: [undefined, App.mode_opts],
-    keys: [`name`, `mode`], list_text: (items) => {
-      return App.capitalize(`${items.mode}`)
-    }})
-  }))
-
   id = `background_pool`
 
   App.create_popup(Object.assign({}, args, {

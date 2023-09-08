@@ -120,32 +120,29 @@ App.do_show_mode = async (mode, reuse_filter = false, force = false) => {
   App.check_playing(mode)
 }
 
-App.get_mode_order = () => {
-  App.mode_order = App.get_setting(`mode_order`).map(x => x.mode)
-}
-
 App.get_mode_index = (mode) => {
-  for (let [i, it] of App.mode_order.entries()) {
-    if (it.mode === mode) {
+  for (let [i, m] of App.modes) {
+    if (m === mode) {
       return i
     }
   }
 }
 
 App.get_mode_name = (mode) => {
-  for (let m of App.get_setting(`mode_order`)) {
-    if (m.mode === mode) {
-      return m.name
-    }
+  if (mode === `bookmarks`) {
+    return `BMarks`
+  }
+  else {
+    return App.capitalize(mode)
   }
 }
 
 App.show_main_mode = () => {
-  App.do_show_mode(App.mode_order[0])
+  App.do_show_mode(App.primary_mode())
 }
 
 App.cycle_modes = (reverse, reuse_filter = true) => {
-  let modes = App.mode_order
+  let modes = App.modes
   let index = modes.indexOf(App.window_mode)
   let new_mode
 
@@ -173,8 +170,12 @@ App.cycle_modes = (reverse, reuse_filter = true) => {
   App.show_mode(new_mode, reuse_filter)
 }
 
-App.show_first_mode = (allow_same = true) => {
-  let mode = App.mode_order[0]
+App.primary_mode = () => {
+  return App.get_setting(`primary_mode`)
+}
+
+App.show_primary_mode = (allow_same = true) => {
+  let mode = App.primary_mode()
 
   if (!allow_same) {
     if (App.active_mode === mode) {
@@ -183,10 +184,6 @@ App.show_first_mode = (allow_same = true) => {
   }
 
   App.do_show_mode(mode)
-}
-
-App.first_mode = () => {
-  return App.mode_order[0]
 }
 
 App.getting = (mode, force = false) => {

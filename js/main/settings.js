@@ -3,6 +3,7 @@ App.build_default_settings = () => {
 
   let category = `general`
   obj.wrap_text = {value: false, category: category, type: `checkbox`, name: `Wrap Text`, version: 1}
+  obj.primary_mode = {value: `tabs`, category: category, type: `menu`, name: `Primary Mode`, version: 1}
   obj.text_mode = {value: `title`, category: category, type: `menu`, name: `Text Mode`, version: 1}
   obj.item_height = {value: `normal`, category: category, type: `menu`, name: `Item Height`, version: 1}
   obj.font = {value: `sans-serif`, category: category, type: `menu`, name: `Font`, version: 1}
@@ -14,12 +15,6 @@ App.build_default_settings = () => {
   obj.pick_mode = {value: `none`, category: category, type: `menu`, name: `Pick Mode`, version: 1}
   obj.auto_restore = {value: `1_seconds`, category: category, type: `menu`, name: `Auto Restore`, version: 1}
   obj.bookmarks_folder = {value: `Grasshopper`, category: category, type: `text`, name: `Bookmarks Folder`, version: 1}
-  obj.mode_order = {value: [
-    {name: `Tabs`, mode: `tabs`},
-    {name: `History`, mode: `history`},
-    {name: `BMarks`, mode: `bookmarks`},
-    {name: `Closed`, mode: `closed`},
-  ], category: category, type: `list`, name: `Mode Order`, action: `mode_order`, version: 3}
   obj.aliases = {value: [
     {a: `big`, b: `huge`},
     {a: `quick`, b: `fast`},
@@ -241,9 +236,6 @@ App.settings_do_action = (what) => {
   }
   else if (what === `filter_debouncers`) {
     App.start_filter_debouncers()
-  }
-  else if (what === `mode_order`) {
-    App.get_mode_order()
   }
 }
 
@@ -658,6 +650,13 @@ App.setup_settings = () => {
       {text: `4get`, value: `4get`},
     ])
 
+    App.settings_make_menu(`primary_mode`, [
+      {text: `Tabs`, value: `tabs`},
+      {text: `History`, value: `history`},
+      {text: `Bookmarks`, value: `bookmarks`},
+      {text: `Closed`, value: `closed`},
+    ])
+
     App.settings_make_menu(`width`, App.get_size_options(), () => {
       App.apply_theme_2()
     })
@@ -666,7 +665,6 @@ App.setup_settings = () => {
       App.apply_theme_2()
     })
 
-    App.addlist_buttons({id: `mode_order`})
     App.addlist_buttons({id: `aliases`})
     App.addlist_buttons({id: `custom_filters`})
   }}))

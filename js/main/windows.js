@@ -204,8 +204,8 @@ App.restore = () => {
 
   if (App.on_items()) {
     let mode = App.active_mode
-    if ((mode !== App.mode_order[0]) || App.is_filtered(mode)) {
-      App.show_first_mode()
+    if ((mode !== App.primary_mode()) || App.is_filtered(mode)) {
+      App.show_primary_mode()
     }
   }
 }

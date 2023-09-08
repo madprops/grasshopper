@@ -1,5 +1,4 @@
 App.setup_items = () => {
-  App.get_mode_order()
   App.start_item_observers()
 }
 
@@ -794,7 +793,7 @@ App.get_item_by_url = (mode, url) => {
 }
 
 App.start_item_observers = () => {
-  for (let mode of App.mode_order) {
+  for (let mode of App.modes) {
     let options = {
       root: DOM.el(`#${mode}_container`),
       rootMargin: `0px`,
@@ -1550,7 +1549,7 @@ App.do_check_borders = (mode) => {
 App.clear_show = async () => {
   App.clear_all_items()
   await App.do_show_mode(`tabs`)
-  App.show_first_mode(false)
+  App.show_primary_mode(false)
 }
 
 App.select_item_by_id = (mode, id) => {

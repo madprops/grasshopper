@@ -35,7 +35,7 @@ App.create_main_menu = (mode) => {
 App.show_main_menu = (mode) => {
   let items = []
 
-  for (let m of App.mode_order) {
+  for (let m of App.modes) {
     let icon = App.mode_icons[m]
     let name = App.get_mode_name(m)
 
@@ -100,8 +100,4 @@ App.show_main_menu = (mode) => {
 
   let btn = DOM.el(`#${mode}_main_menu`)
   NeedContext.show_on_element(btn, items, true, btn.clientHeight)
-}
-
-App.show_first_item_window = () => {
-  App.do_show_mode(App.mode_order[0])
 }

@@ -262,13 +262,6 @@ App.color_names = {
   yellowgreen: `#9acd32`,
 }
 
-App.mode_opts = [
-  {text: `Tabs`, value: `tabs`},
-  {text: `History`, value: `history`},
-  {text: `Bookmarks`, value: `bookmarks`},
-  {text: `Closed`, value: `closed`},
-]
-
 App.backgrounds = [
   {url: `waves.jpg`, effect: `none`, tiles: `none`},
   {url: `lights.jpg`, effect: `none`, tiles: `none`},
