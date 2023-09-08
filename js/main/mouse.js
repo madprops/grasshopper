@@ -156,10 +156,6 @@ App.mouse_click_action = (mode, e) => {
     }
   }
 
-  if (App.get_setting(`double_click_action`)) {
-    return
-  }
-
   if (e.altKey) {
     return
   }
