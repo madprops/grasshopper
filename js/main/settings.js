@@ -1356,13 +1356,13 @@ App.settings_default_category = (category) => {
     let item = App.default_settings[setting]
 
     if (item.category === category) {
-      App.set_default_setting(setting)
+      App.set_default_setting(setting, false)
     }
   }
 }
 
-App.set_default_setting = (setting) => {
-  App.set_setting(setting, App.default_setting_string)
+App.set_default_setting = (setting, do_action) => {
+  App.set_setting(setting, App.default_setting_string, do_action)
 }
 
 App.reset_settings = (category) => {
