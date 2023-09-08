@@ -1224,7 +1224,8 @@ App.refresh_profile_filters = () => {
   let mode = App.active_mode
   let filter_mode = App.filter_mode(mode)
 
-  if (filter_mode === `edited` || filter_mode.startsWith(`tag_`) || filter_mode.startsWith(`color_`)) {
+  if (filter_mode === `edited` || filter_mode.startsWith(`tag_`) ||
+  filter_mode.startsWith(`color_`) || filter_mode === `autoreload`) {
     App.filter(mode)
     return
   }
