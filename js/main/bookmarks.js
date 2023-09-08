@@ -59,10 +59,10 @@ App.get_bookmarks = async (query = ``, deep = false) => {
 
   let bookmarks = [...b1, ...b2]
   App.last_bookmarks_query = query
-  let max_items = App.get_setting(`max_items`)
+  let max_items = App.get_setting(`max_search_items`)
 
   if (deep) {
-    max_items = App.get_setting(`deep_max_items`)
+    max_items = App.get_setting(`deep_max_search_items`)
   }
 
   return bookmarks.slice(0, max_items)

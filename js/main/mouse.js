@@ -180,9 +180,10 @@ App.mouse_double_click_action = (mode, e) => {
   }
 
   let item = App.get_cursor_item(mode, e)
+  let cmd = App.get_setting(`double_click_action`)
 
-  if (App.get_setting(`double_click_action`)) {
-    App[`${item.mode}_action`](item)
+  if (cmd !== `none`) {
+    App.run_command({cmd: cmd, item: item, from: `double_click`})
   }
 }
 

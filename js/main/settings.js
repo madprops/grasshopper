@@ -203,29 +203,29 @@ App.build_default_settings = () => {
   obj.color_mode = {value: `item`, category: category, type: `menu`, name: `Color Mode`, version: 1}
 
   category = `more`
-  obj.hover_effect = {value: `glow`, category: category, type: `menu`, name: ``, version: 1}
-  obj.selected_effect = {value: `background`, category: category, type: `menu`, name: ``, version: 1}
-  obj.single_new_tab = {value: true, category: category, type: `checkbox`, name: ``, version: 1}
-  obj.close_on_focus = {value: true, category: category, type: `checkbox`, name: ``, version: 1}
-  obj.close_on_open = {value: true, category: category, type: `checkbox`, name: ``, version: 1}
-  obj.case_insensitive = {value: true, category: category, type: `checkbox`, name: ``, version: 1}
-  obj.lock_drag = {value: false, category: category, type: `checkbox`, name: ``, version: 1}
-  obj.mute_click = {value: true, category: category, type: `checkbox`, name: ``, version: 1}
-  obj.double_click_new = {value: true, category: category, type: `checkbox`, name: ``, version: 1}
-  obj.rounded_corners = {value: true, category: category, type: `checkbox`, name: ``, version: 1}
-  obj.direct_settings = {value: true, category: category, type: `checkbox`, name: ``, version: 1}
-  obj.debug_mode = {value: false, category: category, type: `checkbox`, name: ``, version: 1}
-  obj.double_click_action = {value: false, category: category, type: `checkbox`, name: ``, version: 1}
-  obj.smooth_scrolling = {value: true, category: category, type: `checkbox`, name: ``, version: 1}
-  obj.sort_commands = {value: true, category: category, type: `checkbox`, name: ``, version: 1}
-  obj.all_bookmarks = {value: true, category: category, type: `checkbox`, name: ``, version: 1}
-  obj.reuse_filter = {value: true, category: category, type: `checkbox`, name: ``, version: 1}
-  obj.max_items = {value: 500, category: category, type: `number`, name: ``, version: 1}
-  obj.deep_max_items = {value: 5000, category: category, type: `number`, name: ``, version: 1}
-  obj.history_max_months = {value: 18, category: category, type: `number`, name: ``, version: 1}
-  obj.deep_history_max_months = {value: 54, category: category, type: `number`, name: ``, version: 1}
-  obj.filter_delay = {value: 50, category: category, type: `number`, name: ``, version: 1}
-  obj.filter_delay_search = {value: 225, category: category, type: `number`, name: ``, version: 1}
+  obj.hover_effect = {value: `glow`, category: category, type: `menu`, name: `Hover Effect`, version: 1}
+  obj.selected_effect = {value: `background`, category: category, type: `menu`, name: `Selected Effect`, version: 1}
+  obj.double_click_action = {value: `none`, category: category, type: `menu`, name: `Double Click Action`, version: 1}
+  obj.single_new_tab = {value: true, category: category, type: `checkbox`, name: `Single New Tab`, version: 1}
+  obj.close_on_focus = {value: true, category: category, type: `checkbox`, name: `Close On Focus`, version: 1}
+  obj.close_on_open = {value: true, category: category, type: `checkbox`, name: `Close On Open`, version: 1}
+  obj.case_insensitive = {value: true, category: category, type: `checkbox`, name: `Case Insensitive`, version: 1}
+  obj.lock_drag = {value: false, category: category, type: `checkbox`, name: `Lock Drag`, version: 1}
+  obj.mute_click = {value: true, category: category, type: `checkbox`, name: `Mute Click`, version: 1}
+  obj.double_click_new = {value: true, category: category, type: `checkbox`, name: `Double Click New`, version: 1}
+  obj.rounded_corners = {value: true, category: category, type: `checkbox`, name: `Rounded Corners`, version: 1}
+  obj.direct_settings = {value: true, category: category, type: `checkbox`, name: `Direct Settings`, version: 1}
+  obj.debug_mode = {value: false, category: category, type: `checkbox`, name: `Debug Mode`, version: 1}
+  obj.smooth_scrolling = {value: true, category: category, type: `checkbox`, name: `Smooth Scrolling`, version: 1}
+  obj.sort_commands = {value: true, category: category, type: `checkbox`, name: `Sort Commands`, version: 1}
+  obj.all_bookmarks = {value: true, category: category, type: `checkbox`, name: `All Bookmarks`, version: 1}
+  obj.reuse_filter = {value: true, category: category, type: `checkbox`, name: `Re-Use Filter`, version: 1}
+  obj.max_search_items = {value: 500, category: category, type: `number`, name: `Max Search Items`, version: 1}
+  obj.deep_max_search_items = {value: 5000, category: category, type: `number`, name: `Deep Max Search Items`, version: 1}
+  obj.history_max_months = {value: 18, category: category, type: `number`, name: `History Max Months`, version: 1}
+  obj.deep_history_max_months = {value: 54, category: category, type: `number`, name: `Deep History Max Months`, version: 1}
+  obj.filter_delay = {value: 50, category: category, type: `number`, name: `Filter Delay`, version: 1}
+  obj.filter_delay_search = {value: 225, category: category, type: `number`, name: `Filter Delay (Search)`, version: 1}
 
   App.default_settings = obj
 }
@@ -593,7 +593,6 @@ App.setup_settings = () => {
 
   function prepare (category) {
     App.fill_settings(category)
-    let container = DOM.el(`#settings_${category}_container`)
     App.settings_setup_checkboxes(category)
     App.settings_setup_text(category)
     App.settings_setup_number(category)
@@ -601,6 +600,7 @@ App.setup_settings = () => {
     App.settings_setup_labels(category)
     App.add_settings_switchers(category)
     App.add_settings_filter(category)
+    let container = DOM.el(`#settings_${category}_container`)
     container.classList.add(`filter_container`)
 
     for (let el of DOM.els(`.settings_item`, container)) {
@@ -715,7 +715,6 @@ App.setup_settings = () => {
       App.start_color_picker(`color_${color}`, true)
     }
 
-
     App.settings_make_menu(`color_mode`, [
       {text: `None`, value: `none`},
       {text: `Icon`, value: `icon`},
@@ -734,6 +733,7 @@ App.setup_settings = () => {
     prepare(`more`)
     App.settings_make_menu(`hover_effect`, App.effects)
     App.settings_make_menu(`selected_effect`, App.effects)
+    App.settings_make_menu(`double_click_action`, App.settings_commands())
   }}))
 
   App.create_window(Object.assign({}, common, {id: `settings_media`, setup: () => {

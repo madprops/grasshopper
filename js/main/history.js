@@ -23,10 +23,10 @@ App.history_time = (deep = false) => {
 App.get_history = async (query = ``, deep = false) => {
   App.getting(`history`)
   let results
-  let max_items = App.get_setting(`max_items`)
+  let max_items = App.get_setting(`max_search_items`)
 
   if (deep) {
-    max_items = App.get_setting(`deep_max_items`)
+    max_items = App.get_setting(`deep_max_search_items`)
   }
 
   try {
