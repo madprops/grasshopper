@@ -456,7 +456,7 @@ svg {
   align-self: flex-start;
 }
 
-.settings_container {
+.settings_container, .settings_subcontainer {
   display: flex;
   flex-direction: column;
   margin-bottom: 3rem;

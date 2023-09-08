@@ -3,8 +3,8 @@ App.setup_gestures = () => {
   let obj = {}
 
   for (let gesture of App.gestures) {
-    obj[gesture] = () => {
-      App.gesture_action(gesture)
+    obj[gesture] = (e) => {
+      App.gesture_action(e, gesture)
     }
   }
 
@@ -16,8 +16,20 @@ App.setup_gestures = () => {
   App.check_gestures()
 }
 
-App.gesture_action = (gesture) => {
-  let cmd = App.get_setting(`gesture_${gesture}`)
+App.gesture_action = (e, gesture) => {
+  let s = `gesture_${gesture}`
+
+  if (e.ctrlKey) {
+    s += `_ctrl`
+  }
+  else if (e.shiftKey) {
+    s += `_shift`
+  }
+  else if (e.altKey) {
+    s += `_alt`
+  }
+
+  let cmd = App.get_setting(s)
 
   if (cmd !== `none`) {
     App.run_command({cmd: cmd, from: `gesture`})

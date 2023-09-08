@@ -87,11 +87,29 @@ App.build_default_settings = () => {
   obj.gestures_enabled = {value: true, category: category, version: 1}
   obj.gestures_threshold = {value: 10, category: category, version: 1}
   obj.gesture_up = {value: `go_to_top`, category: category, version: 1}
+  obj.gesture_up_ctrl = {value: `none`, category: category, version: 1}
+  obj.gesture_up_shift = {value: `none`, category: category, version: 1}
+  obj.gesture_up_alt = {value: `none`, category: category, version: 1}
   obj.gesture_down = {value: `go_to_bottom`, category: category, version: 1}
+  obj.gesture_down_ctrl = {value: `none`, category: category, version: 1}
+  obj.gesture_down_shift = {value: `none`, category: category, version: 1}
+  obj.gesture_down_alt = {value: `none`, category: category, version: 1}
   obj.gesture_left = {value: `prev_mode`, category: category, version: 1}
+  obj.gesture_left_ctrl = {value: `none`, category: category, version: 1}
+  obj.gesture_left_shift = {value: `none`, category: category, version: 1}
+  obj.gesture_left_alt = {value: `none`, category: category, version: 1}
   obj.gesture_right = {value: `next_mode`, category: category, version: 1}
+  obj.gesture_right_ctrl = {value: `none`, category: category, version: 1}
+  obj.gesture_right_shift = {value: `none`, category: category, version: 1}
+  obj.gesture_right_alt = {value: `none`, category: category, version: 1}
   obj.gesture_up_and_down = {value: `show_all`, category: category, version: 1}
+  obj.gesture_up_and_down_ctrl = {value: `none`, category: category, version: 1}
+  obj.gesture_up_and_down_shift = {value: `none`, category: category, version: 1}
+  obj.gesture_up_and_down_alt = {value: `none`, category: category, version: 1}
   obj.gesture_left_and_right = {value: `filter_domain`, category: category, version: 1}
+  obj.gesture_left_and_right_ctrl = {value: `none`, category: category, version: 1}
+  obj.gesture_left_and_right_shift = {value: `none`, category: category, version: 1}
+  obj.gesture_left_and_right_alt = {value: `none`, category: category, version: 1}
 
   category = `auxclick`
   obj.middle_click_main_menu = {value: `show_main`, category: category, version: 1}
@@ -751,6 +769,7 @@ App.setup_settings = () => {
   }}))
 
   App.create_window(Object.assign({}, common, {id: `settings_gestures`, setup: () => {
+    App.fill_setting_gestures()
     prepare(`gestures`)
 
     DOM.ev(DOM.el(`#settings_gestures_enabled`), `change`, () => {
@@ -766,8 +785,14 @@ App.setup_settings = () => {
 
     let opts = App.settings_commands()
 
-    for (let gesture of App.gestures) {
-      App.settings_make_menu(`gesture_${gesture}`, opts)
+    for (let key in App.default_settings) {
+      let cmd = App.default_settings[key]
+
+      if (cmd.category === `gestures`) {
+        if (key.startsWith(`gesture_`)) {
+          App.settings_make_menu(key, opts)
+        }
+      }
     }
   }}))
 
@@ -1391,6 +1416,57 @@ App.get_background_effect = (value) => {
 
     if (eff.value === value) {
       return eff
+    }
+  }
+}
+
+App.fill_setting_gestures = () => {
+  let c = DOM.el(`#setting_gestures`)
+  c.innerHTML = ``
+
+  for (let key in App.default_settings) {
+    if (!key.startsWith(`gesture_`)) {
+      continue
+    }
+
+    let cmd = App.default_settings[key]
+
+    if (cmd.category === `gestures`) {
+      let el = DOM.create(`div`, `settings_item`)
+      el.title = `Action to perform on gesture (${key})`
+      let label = DOM.create(`div`, `settings_label`)
+      let s = `Gesture`
+
+      if (key.includes(`_up`)) {
+        s += ` Up`
+      }
+      else if (key.includes(`_down`)) {
+        s += `Down`
+      }
+      else if (key.includes(`_left`)) {
+        s += ` Left`
+      }
+      else if (key.includes(`_right`)) {
+        s += ` Right`
+      }
+
+      if (key.includes(`_ctrl`)) {
+        s += ` + Ctrl`
+      }
+      else if (key.includes(`_shift`)) {
+        s += ` + Shift`
+      }
+      else if (key.includes(`_alt`)) {
+        s += ` + Alt`
+      }
+
+      label.textContent = s
+      el.append(label)
+      let menu = DOM.create(`div`, `settings_menu button`)
+      menu.id = `settings_${key}`
+      menu.dataset.setting = key
+      el.append(menu)
+      c.append(el)
     }
   }
 }
