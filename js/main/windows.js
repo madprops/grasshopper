@@ -148,7 +148,7 @@ App.setup_window = () => {
     App.item_range_on = false
 
     if (App.get_setting(`auto_restore`)) {
-      clearTimeout(App.restore_timeout)
+      App.clear_restore()
     }
   })
 }
@@ -185,7 +185,7 @@ App.check_restore = () => {
 }
 
 App.start_auto_restore = () => {
-  clearTimeout(App.restore_timeout)
+  App.clear_restore()
   let d = App.get_setting(`auto_restore`)
 
   if (d === `never` || d === `action`) {
@@ -208,4 +208,8 @@ App.restore = () => {
       App.show_first_mode()
     }
   }
+}
+
+App.clear_restore = () => {
+  clearTimeout(App.restore_timeout)
 }

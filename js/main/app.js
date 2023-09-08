@@ -52,6 +52,7 @@ App.settings_ready = false
 App.active_background = 1
 App.background_url = `__unset__`
 App.first_background = false
+App.filter_search_date = 0
 
 App.settings_save_delay = 250
 App.activated_delay = 2600

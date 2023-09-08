@@ -62,7 +62,13 @@ App.do_filter = async (mode, force = false, deep = false) => {
 
     if (force || (svalue !== App[`last_${mode}_query`])) {
       svalue = App.replace_filter_vars(svalue)
-      await App.search_items(mode, svalue, deep)
+      let search_date = Date.now()
+      App.filter_search_date = search_date
+      await App.search_items(mode, svalue, deep, search_date)
+
+      if (App.filter_search_date !== search_date) {
+        return
+      }
 
       if (App.active_mode !== mode) {
         return
@@ -713,10 +719,14 @@ App.get_filter_refine = (mode) => {
   return items
 }
 
-App.search_items = async (mode, query, deep) => {
+App.search_items = async (mode, query, deep, date) => {
   let q = query || `Empty`
   App.debug(`Searching ${mode}: ${q}`)
   let items = await App[`get_${mode}`](query, deep)
+
+  if (App.filter_search_date !== date) {
+    return
+  }
 
   if (App.window_mode !== mode) {
     return

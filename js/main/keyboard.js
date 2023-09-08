@@ -249,6 +249,7 @@ App.check_items_keyboard = (e) => {
 
   if (e.key.length === 1 || allowed.includes(e.key)) {
     App.focus_filter(mode)
+    App.clear_restore()
   }
 }
 
