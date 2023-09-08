@@ -1368,11 +1368,11 @@ App.start_theme_settings = () => {
 }
 
 App.settings_default_category = (category) => {
-  for (let setting in App.settings_props) {
-    let props = App.settings_props[setting]
+  for (let key in App.settings_props) {
+    let props = App.settings_props[key]
 
     if (props.category === category) {
-      App.set_default_setting(setting, false)
+      App.set_default_setting(key, false)
     }
   }
 }
@@ -1396,8 +1396,8 @@ App.reset_settings = (category) => {
 
 App.reset_all_settings = () => {
   App.show_confirm(`Reset all settings?`, () => {
-    for (let setting in App.settings_props) {
-      App.set_default_setting(setting)
+    for (let key in App.settings_props) {
+      App.set_default_setting(key)
     }
 
     App.restart_settings()
@@ -1595,30 +1595,30 @@ App.check_settings = () => {
     App.settings[setting].version = App.settings_props[setting].version
   }
 
-  for (let setting in App.settings_props) {
+  for (let key in App.settings_props) {
     // Fill defaults
-    if (App.settings[setting] === undefined ||
-      App.settings[setting].value === undefined ||
-      App.settings[setting].version === undefined)
+    if (App.settings[key] === undefined ||
+      App.settings[key].value === undefined ||
+      App.settings[key].version === undefined)
     {
-      App.debug(`Stor: Adding setting: ${setting}`)
-      App.settings[setting] = {}
-      set_default(setting)
+      App.debug(`Stor: Adding setting: ${key}`)
+      App.settings[key] = {}
+      set_default(key)
       changed = true
     }
   }
 
-  for (let setting in App.settings) {
+  for (let key in App.settings) {
     // Remove unused settings
-    if (App.settings_props[setting] === undefined) {
-      App.debug(`Stor: Deleting setting: ${setting}`)
+    if (App.settings_props[key] === undefined) {
+      App.debug(`Stor: Deleting setting: ${key}`)
       delete App.settings[setting]
       changed = true
     }
     // Check new version
-    else if (App.settings[setting].version !== App.settings_props[setting].version) {
-      App.debug(`Stor: Upgrading setting: ${setting}`)
-      set_default(setting)
+    else if (App.settings[key].version !== App.settings_props[key].version) {
+      App.debug(`Stor: Upgrading setting: ${key}`)
+      set_default(key)
       changed = true
     }
   }
