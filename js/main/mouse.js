@@ -138,7 +138,7 @@ App.mouse_click_action = (mode, e) => {
 
   App.select_item(item, `nearest_smooth`)
 
-  if (item.mode === `tabs`) {
+  if (mode === `tabs`) {
     if (App.get_setting(`mute_click`)) {
       if (e.target.classList.contains(`item_status_playing`) ||
         e.target.classList.contains(`item_status_muted`)) {
@@ -146,10 +146,6 @@ App.mouse_click_action = (mode, e) => {
         return
       }
     }
-  }
-
-  if (e.altKey) {
-    return
   }
 
   if (media_type) {
@@ -160,7 +156,15 @@ App.mouse_click_action = (mode, e) => {
     }
   }
 
-  App[`${item.mode}_action`](item)
+  if (App.get_setting(`double_click_action`)) {
+    return
+  }
+
+  if (e.altKey) {
+    return
+  }
+
+  App[`${mode}_action`](item)
 }
 
 App.mouse_double_click_action = (mode, e) => {
@@ -176,10 +180,16 @@ App.mouse_double_click_action = (mode, e) => {
   }
 
   let item = App.get_cursor_item(mode, e)
-  let cmd = App.get_setting(`double_click_action`)
 
-  if (cmd !== `none`) {
-    App.run_command({cmd: cmd, item: item, from: `double_click`})
+  if (App.get_setting(`double_click_action`)) {
+    App[`${mode}_action`](item)
+  }
+  else {
+    let cmd = App.get_setting(`double_click_command`)
+
+    if (cmd !== `none`) {
+      App.run_command({cmd: cmd, item: item, from: `double_click`})
+    }
   }
 }
 

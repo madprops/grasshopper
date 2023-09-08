@@ -510,8 +510,14 @@ App.build_default_settings = () => {
   obj.selected_effect = {value: `background`, category: category, type: `menu`, name: `Selected Effect`, version: 1,
   info: `What effect to use on selected items`}
 
-  obj.double_click_action = {value: `none`, category: category, type: `menu`, name: `Double Click Action`, version: 1,
-  info: `What action to perform when double clicking an item`}
+  obj.double_click_command = {value: `none`, category: category, type: `menu`, name: `Double Click Command`, version: 1,
+  info: `What command to perform when double clicking an item`}
+
+  obj.double_click_action = {value: false, category: category, type: `checkbox`, name: `Double Click Action`, version: 1,
+  info: `Require double click to focus or open an item`}
+
+  obj.lock_drag = {value: false, category: category, type: `checkbox`, name: `Lock Drag`, version: 1,
+  info: `Require Ctrl to re-order tab items`}
 
   obj.single_new_tab = {value: true, category: category, type: `checkbox`, name: `Single New Tab`, version: 1,
   info: `Keep only one new tab at any time`}
@@ -525,9 +531,6 @@ App.build_default_settings = () => {
   obj.case_insensitive = {value: true, category: category, type: `checkbox`, name: `Case Insensitive`, version: 1,
   info: `Make the filter case insensitive`}
 
-  obj.lock_drag = {value: false, category: category, type: `checkbox`, name: `Lock Drag`, version: 1,
-  info: `Require Ctrl to re-order tab items`}
-
   obj.mute_click = {value: true, category: category, type: `checkbox`, name: `Mute Click`, version: 1,
   info: `Un-Mute tabs when clicking on the mute icon`}
 
@@ -539,9 +542,6 @@ App.build_default_settings = () => {
 
   obj.direct_settings = {value: true, category: category, type: `checkbox`, name: `Direct Settings`, version: 1,
   info: `Go straight to General when clicking Settings. Else show a menu to pick a category`}
-
-  obj.debug_mode = {value: false, category: category, type: `checkbox`, name: `Debug Mode`, version: 1,
-  info: `Enable some data for developers`}
 
   obj.smooth_scrolling = {value: true, category: category, type: `checkbox`, name: `Smooth Scrolling`, version: 1,
   info: `Allow smooth scrolling in some cases. Else it's always instant`}
@@ -572,6 +572,9 @@ App.build_default_settings = () => {
 
   obj.filter_delay_search = {value: 225, category: category, type: `number`, name: `Filter Delay (Search)`, action: `filter_debouncers`, version: 1,
   info: `The filter delay on search modes like history and bookmarks`}
+
+  obj.debug_mode = {value: false, category: category, type: `checkbox`, name: `Debug Mode`, version: 1,
+  info: `Enable some data for developers`}
 
   App.default_settings = obj
 }
@@ -1068,7 +1071,7 @@ App.setup_settings = () => {
     prepare(`more`)
     App.settings_make_menu(`hover_effect`, App.effects)
     App.settings_make_menu(`selected_effect`, App.effects)
-    App.settings_make_menu(`double_click_action`, App.settings_commands())
+    App.settings_make_menu(`double_click_command`, App.settings_commands())
   }}))
 
   App.create_window(Object.assign({}, common, {id: `settings_media`, setup: () => {
