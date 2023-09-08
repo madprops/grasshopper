@@ -307,7 +307,7 @@ App.middle_click = (item, key = ``) => {
   let s = `middle_click_${item.mode}`
 
   if (key) {
-    s = `${key}_${s}`
+    s = `${s}_${key}`
   }
 
   let cmd = App.get_setting(s)
