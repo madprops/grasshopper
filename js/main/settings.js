@@ -1076,6 +1076,9 @@ App.setup_settings = () => {
       {text: `20 Minutes`, value: `20_minutes`},
       {text: `30 Minutes`, value: `30_minutes`},
       {text: `1 Hour`, value: `1_hours`},
+      {text: `6 hours`, value: `6_hours`},
+      {text: `12 hours`, value: `12_hours`},
+      {text: `24 hours`, value: `24_hours`},
     ], () => {
       App.start_auto_reload()
     })
