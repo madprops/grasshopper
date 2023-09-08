@@ -10,6 +10,14 @@ App.stor_filter_history_name = `filter_history_v1`
 App.stor_first_time_name = `first_time_v1`
 
 App.modes = [`tabs`, `history`, `bookmarks`, `closed`]
+
+App.modes_obj = [
+  {mode: `tabs`},
+  {mode: `history`},
+  {mode: `bookmarks`},
+  {mode: `closed`},
+]
+
 App.gestures = [`up`, `down`, `left`, `right`, `up_and_down`, `left_and_right`]
 App.default_setting_string = `__default__`
 App.separator_string = `--separator--`

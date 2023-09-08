@@ -2,34 +2,31 @@ App.build_default_settings = () => {
   let obj = {}
 
   let category = `general`
-  obj.tabs_index = {value: 0, category: category, version: 1}
-  obj.history_index = {value: 1, category: category, version: 1}
-  obj.bookmarks_index = {value: 2, category: category, version: 1}
-  obj.closed_index = {value: 3, category: category, version: 1}
-  obj.text_mode = {value: `title`, category: category, version: 1}
-  obj.item_height = {value: `normal`, category: category, version: 1}
-  obj.font = {value: `sans-serif`, category: category, version: 1}
-  obj.font_size = {value: 16, category: category, version: 1}
-  obj.favicon_source = {value: `none`, category: category, version: 1}
-  obj.width = {value: 75, category: category, version: 1}
-  obj.height = {value: 85, category: category, version: 1}
-  obj.item_border = {value: `none`, category: category, version: 2}
-  obj.pick_mode = {value: `none`, category: category, version: 1}
-  obj.wrap_text = {value: false, category: category, version: 1}
-  obj.auto_restore = {value: `1_seconds`, category: category, version: 1}
-  obj.bookmarks_folder = {value: `Grasshopper`, category: category, version: 1}
+  obj.wrap_text = {value: false, category: category, type: `checkbox`, name: `Wrap Text`, version: 1}
+  obj.text_mode = {value: `title`, category: category, type: `menu`, name: `Text Mode`, version: 1}
+  obj.item_height = {value: `normal`, category: category, type: `menu`, name: `Item Height`, version: 1}
+  obj.font = {value: `sans-serif`, category: category, type: `menu`, name: `Font`, version: 1}
+  obj.font_size = {value: 16, category: category, type: `menu`, name: `Font Size`, version: 1}
+  obj.favicon_source = {value: `none`, category: category, type: `menu`, name: `Favicon Source`, version: 1}
+  obj.width = {value: 75, category: category, type: `menu`, name: `Width`, version: 1}
+  obj.height = {value: 85, category: category, type: `menu`, name: `Height`, version: 1}
+  obj.item_border = {value: `none`, category: category, type: `menu`, name: `Item Border`, version: 2}
+  obj.pick_mode = {value: `none`, category: category, type: `menu`, name: `Pick Mode`, version: 1}
+  obj.auto_restore = {value: `1_seconds`, category: category, type: `menu`, name: `Auto Restore`, version: 1}
+  obj.bookmarks_folder = {value: `Grasshopper`, category: category, type: `text`, name: `Bookmarks Folder`, version: 1}
+  obj.mode_order = {value: App.modes_obj, category: category, type: `list`, name: `Mode Order`, version: 1}
   obj.aliases = {value: [
     {a: `big`, b: `huge`},
     {a: `quick`, b: `fast`},
     {a: `planet`, b: `earth`},
     {a: `locust`, b: `grasshopper`},
-  ], category: category, version: 3}
+  ], category: category, type: `list`, name: `Aliases`, version: 3}
   obj.custom_filters = {value: [
     {filter: `re: (today | $day)`},
     {filter: `re: ($month | $year)`},
     {filter: `re: \\d{2}\\/\\d{2}\\/\\d{4}`},
     {filter: `re: (youtu|twitch)`},
-  ], category: category, version: 3}
+  ], category: category, type: `list`, name: `Custom Filters`, version: 3}
 
   category = `theme`
   obj.background_color = {value: App.dark_theme.background, category: category, version: 1}
@@ -47,21 +44,21 @@ App.build_default_settings = () => {
   obj.background_pool = {value: App.backgrounds, category: category, version: 3}
 
   category = `media`
-  obj.view_image_tabs = {value: `icon`, category: category, version: 1}
-  obj.view_video_tabs = {value: `icon`, category: category, version: 1}
-  obj.view_audio_tabs = {value: `icon`, category: category, version: 1}
-  obj.view_image_history = {value: `icon`, category: category, version: 1}
-  obj.view_video_history = {value: `icon`, category: category, version: 1}
-  obj.view_audio_history = {value: `icon`, category: category, version: 1}
-  obj.view_image_bookmarks = {value: `icon`, category: category, version: 1}
-  obj.view_video_bookmarks = {value: `icon`, category: category, version: 1}
-  obj.view_audio_bookmarks = {value: `icon`, category: category, version: 1}
-  obj.view_image_closed = {value: `icon`, category: category, version: 1}
-  obj.view_video_closed = {value: `icon`, category: category, version: 1}
-  obj.view_audio_closed = {value: `icon`, category: category, version: 1}
-  obj.image_icon = {value: `🖼️`, category: category, version: 1}
-  obj.video_icon = {value: `▶️`, category: category, version: 1}
-  obj.audio_icon = {value: `🎵`, category: category, version: 1}
+  obj.image_icon = {value: `🖼️`, category: category, type: `text_smaller`, name: `View Image Icon`, version: 1}
+  obj.view_image_tabs = {value: `icon`, category: category, type: `menu`, name: `View Image (Tabs)`, version: 1}
+  obj.view_image_history = {value: `icon`, category: category, type: `menu`, name: `View Image (History)`, version: 1}
+  obj.view_image_bookmarks = {value: `icon`, category: category, type: `menu`, name: `View Image (Bookmarks)`, version: 1}
+  obj.view_image_closed = {value: `icon`, category: category, type: `menu`, name: `View Image (Closed)`, version: 1}
+  obj.video_icon = {value: `▶️`, category: category, type: `text_smaller`, name: `View Video Icon`, version: 1}
+  obj.view_video_tabs = {value: `icon`, category: category, type: `menu`, name: `View Video (Tabs)`, version: 1}
+  obj.view_video_history = {value: `icon`, category: category, type: `menu`, name: `View Video (History)`, version: 1}
+  obj.view_video_bookmarks = {value: `icon`, category: category, type: `menu`, name: `View Video (Bookmarks)`, version: 1}
+  obj.view_video_closed = {value: `icon`, category: category, type: `menu`, name: `View Video (Closed)`, version: 1}
+  obj.audio_icon = {value: `🎵`, category: category, type: `text_smaller`, name: `View Audio Icon`, version: 1}
+  obj.view_audio_tabs = {value: `icon`, category: category, type: `menu`, name: `View Audio (Tabs)`, version: 1}
+  obj.view_audio_history = {value: `icon`, category: category, type: `menu`, name: `View Audio (History)`, version: 1}
+  obj.view_audio_bookmarks = {value: `icon`, category: category, type: `menu`, name: `View Audio (Bookmarks)`, version: 1}
+  obj.view_audio_closed = {value: `icon`, category: category, type: `menu`, name: `View Audio (Closed)`, version: 1}
 
   category = `icons`
   obj.pin_icon = {value: `+`, category: category, version: 1}
@@ -84,59 +81,59 @@ App.build_default_settings = () => {
   obj.show_feedback = {value: true, category: category, version: 1}
 
   category = `gestures`
-  obj.gestures_enabled = {value: true, category: category, version: 1}
-  obj.gestures_threshold = {value: 10, category: category, version: 1}
-  obj.gesture_up = {value: `go_to_top`, category: category, name: `Gesture Up`, version: 1}
-  obj.gesture_up_ctrl = {value: `none`, category: category, name: `Gesture Up + Ctrl`, version: 1}
-  obj.gesture_up_shift = {value: `none`, category: category, name: `Gesture Up + Shift`, version: 1}
-  obj.gesture_up_alt = {value: `none`, category: category, name: `Gesture Up + Alt`, version: 1}
-  obj.gesture_down = {value: `go_to_bottom`, category: category, name: `Gesture Down`, version: 1}
-  obj.gesture_down_ctrl = {value: `none`, category: category, name: `Gesture Down + Ctrl`, version: 1}
-  obj.gesture_down_shift = {value: `none`, category: category, name: `Gesture Down + Shift`, version: 1}
-  obj.gesture_down_alt = {value: `none`, category: category, name: `Gesture Down + Alt`, version: 1}
-  obj.gesture_left = {value: `prev_mode`, category: category, name: `Gesture Left`, version: 1}
-  obj.gesture_left_ctrl = {value: `none`, category: category, name: `Gesture Left + Ctrl`, version: 1}
-  obj.gesture_left_shift = {value: `none`, category: category, name: `Gesture Left + Shift`, version: 1}
-  obj.gesture_left_alt = {value: `none`, category: category, name: `Gesture Left + Alt`, version: 1}
-  obj.gesture_right = {value: `next_mode`, category: category, name: `Gesture Right`, version: 1}
-  obj.gesture_right_ctrl = {value: `none`, category: category, name: `Gesture Right + Ctrl`, version: 1}
-  obj.gesture_right_shift = {value: `none`, category: category, name: `Gesture Right + Shift`, version: 1}
-  obj.gesture_right_alt = {value: `none`, category: category, name: `Gesture Right + Alt`, version: 1}
-  obj.gesture_up_and_down = {value: `show_all`, category: category, name: `Gesture Up Down`, version: 1}
-  obj.gesture_up_and_down_ctrl = {value: `none`, category: category, name: `Gesture Up Down + Ctrl`, version: 1}
-  obj.gesture_up_and_down_shift = {value: `none`, category: category, name: `Gesture Up Down + Shift`, version: 1}
-  obj.gesture_up_and_down_alt = {value: `none`, category: category, name: `Gesture Up Down + Alt`, version: 1}
-  obj.gesture_left_and_right = {value: `filter_domain`, category: category, name: `Gesture Left Right`, version: 1}
-  obj.gesture_left_and_right_ctrl = {value: `none`, category: category, name: `Gesture Left Right + Ctrl`, version: 1}
-  obj.gesture_left_and_right_shift = {value: `none`, category: category, name: `Gesture Left Right + Shift`, version: 1}
-  obj.gesture_left_and_right_alt = {value: `none`, category: category, name: `Gesture Left Right + Alt`, version: 1}
+  obj.gestures_enabled = {value: true, category: category, type: `checkbox`, name: `Gestures Enabled`, version: 1}
+  obj.gestures_threshold = {value: 10, category: category, type: `menu`, name: `Gestures Threshold`, version: 1}
+  obj.gesture_up = {value: `go_to_top`, category: category, type: `menu`, name: `Gesture Up`, version: 1}
+  obj.gesture_up_ctrl = {value: `none`, category: category, type: `menu`, name: `Gesture Up + Ctrl`, version: 1}
+  obj.gesture_up_shift = {value: `none`, category: category, type: `menu`, name: `Gesture Up + Shift`, version: 1}
+  obj.gesture_up_alt = {value: `none`, category: category, type: `menu`, name: `Gesture Up + Alt`, version: 1}
+  obj.gesture_down = {value: `go_to_bottom`, category: category, type: `menu`, name: `Gesture Down`, version: 1}
+  obj.gesture_down_ctrl = {value: `none`, category: category, type: `menu`, name: `Gesture Down + Ctrl`, version: 1}
+  obj.gesture_down_shift = {value: `none`, category: category, type: `menu`, name: `Gesture Down + Shift`, version: 1}
+  obj.gesture_down_alt = {value: `none`, category: category, type: `menu`, name: `Gesture Down + Alt`, version: 1}
+  obj.gesture_left = {value: `prev_mode`, category: category, type: `menu`, name: `Gesture Left`, version: 1}
+  obj.gesture_left_ctrl = {value: `none`, category: category, type: `menu`, name: `Gesture Left + Ctrl`, version: 1}
+  obj.gesture_left_shift = {value: `none`, category: category, type: `menu`, name: `Gesture Left + Shift`, version: 1}
+  obj.gesture_left_alt = {value: `none`, category: category, type: `menu`, name: `Gesture Left + Alt`, version: 1}
+  obj.gesture_right = {value: `next_mode`, category: category, type: `menu`, name: `Gesture Right`, version: 1}
+  obj.gesture_right_ctrl = {value: `none`, category: category, type: `menu`, name: `Gesture Right + Ctrl`, version: 1}
+  obj.gesture_right_shift = {value: `none`, category: category, type: `menu`, name: `Gesture Right + Shift`, version: 1}
+  obj.gesture_right_alt = {value: `none`, category: category, type: `menu`, name: `Gesture Right + Alt`, version: 1}
+  obj.gesture_up_and_down = {value: `show_all`, category: category, type: `menu`, name: `Gesture Up Down`, version: 1}
+  obj.gesture_up_and_down_ctrl = {value: `none`, category: category, type: `menu`, name: `Gesture Up Down + Ctrl`, version: 1}
+  obj.gesture_up_and_down_shift = {value: `none`, category: category, type: `menu`, name: `Gesture Up Down + Shift`, version: 1}
+  obj.gesture_up_and_down_alt = {value: `none`, category: category, type: `menu`, name: `Gesture Up Down + Alt`, version: 1}
+  obj.gesture_left_and_right = {value: `filter_domain`, category: category, type: `menu`, name: `Gesture Left Right`, version: 1}
+  obj.gesture_left_and_right_ctrl = {value: `none`, category: category, type: `menu`, name: `Gesture Left Right + Ctrl`, version: 1}
+  obj.gesture_left_and_right_shift = {value: `none`, category: category, type: `menu`, name: `Gesture Left Right + Shift`, version: 1}
+  obj.gesture_left_and_right_alt = {value: `none`, category: category, type: `menu`, name: `Gesture Left Right + Alt`, version: 1}
 
   category = `auxclick`
-  obj.middle_click_tabs = {value: `close`, category: category, name: `Middle Click Tabs`, version: 1}
-  obj.middle_click_tabs_ctrl = {value: `color_red`, category: category, name: `Middle Click Tabs + Ctrl`, version: 1}
-  obj.middle_click_tabs_shift = {value: `color_green`, category: category, name: `Middle Click Tabs + Shift`, version: 1}
-  obj.middle_click_tabs_alt = {value: `color_blue`, category: category, name: `Middle Click Tabs + Alt`, version: 1}
-  obj.middle_click_history = {value: `open`, category: category, name: `Middle Click History`, version: 1}
-  obj.middle_click_history_ctrl = {value: `color_red`, category: category, name: `Middle Click History + Ctrl`, version: 1}
-  obj.middle_click_history_shift = {value: `color_green`, category: category, name: `Middle Click History + Shift`, version: 1}
-  obj.middle_click_history_alt = {value: `color_blue`, category: category, name: `Middle Click History + Alt`, version: 1}
-  obj.middle_click_bookmarks = {value: `open`, category: category, name: `Middle Click Bookmarks`, version: 1}
-  obj.middle_click_bookmarks_ctrl = {value: `color_red`, category: category, name: `Middle Click Bookmarks + Ctrl`, version: 1}
-  obj.middle_click_bookmarks_shift = {value: `color_green`, category: category, name: `Middle Click Bookmarks + Shift`, version: 1}
-  obj.middle_click_bookmarks_alt = {value: `color_blue`, category: category, name: `Middle Click Bookmarks + Alt`, version: 1}
-  obj.middle_click_closed = {value: `open`, category: category, name: `Middle Click Closed`, version: 1}
-  obj.middle_click_closed_ctrl = {value: `color_red`, category: category, name: `Middle Click Closed + Ctrl`, version: 1}
-  obj.middle_click_closed_shift = {value: `color_green`, category: category, name: `Middle Click Closed + Shift`, version: 1}
-  obj.middle_click_closed_alt = {value: `color_blue`, category: category, name: `Middle Click Closed + Alt`, version: 1}
-  obj.middle_click_main_menu = {value: `show_main`, category: category, name: `Middle Click Main Menu`, version: 1}
-  obj.middle_click_filter_menu = {value: `show_all`, category: category, name: `Middle Click Filter Menu`, version: 1}
-  obj.middle_click_back_button = {value: `browser_back`, category: category, name: `Middle Click Back Button`, version: 1}
-  obj.middle_click_actions_menu = {value: `browser_reload`, category: category, name: `Middle Click Actions Menu`, version: 1}
-  obj.middle_click_footer = {value: `copy_url`, category: category, name: `Middle Click Footer`, version: 1}
-  obj.middle_click_pick_button = {value: `filter_domain`, category: category, name: `Middle Click Pick Button`, version: 1}
-  obj.middle_click_close_button = {value: `unload`, category: category, name: `Middle Click Close Button`, version: 1}
-  obj.middle_click_open_button = {value: `open`, category: category, name: `Middle Click Open Button`, version: 1}
-  obj.middle_click_pinline = {value: `close_normal`, category: category, name: `Middle Click Pinline`, version: 1}
+  obj.middle_click_tabs = {value: `close`, category: category, type: `menu`, name: `Middle Click Tabs`, version: 1}
+  obj.middle_click_tabs_ctrl = {value: `color_red`, category: category, type: `menu`, name: `Middle Click Tabs + Ctrl`, version: 1}
+  obj.middle_click_tabs_shift = {value: `color_green`, category: category, type: `menu`, name: `Middle Click Tabs + Shift`, version: 1}
+  obj.middle_click_tabs_alt = {value: `color_blue`, category: category, type: `menu`, name: `Middle Click Tabs + Alt`, version: 1}
+  obj.middle_click_history = {value: `open`, category: category, type: `menu`, name: `Middle Click History`, version: 1}
+  obj.middle_click_history_ctrl = {value: `color_red`, category: category, type: `menu`, name: `Middle Click History + Ctrl`, version: 1}
+  obj.middle_click_history_shift = {value: `color_green`, category: category, type: `menu`, name: `Middle Click History + Shift`, version: 1}
+  obj.middle_click_history_alt = {value: `color_blue`, category: category, type: `menu`, name: `Middle Click History + Alt`, version: 1}
+  obj.middle_click_bookmarks = {value: `open`, category: category, type: `menu`, name: `Middle Click Bookmarks`, version: 1}
+  obj.middle_click_bookmarks_ctrl = {value: `color_red`, category: category, type: `menu`, name: `Middle Click Bookmarks + Ctrl`, version: 1}
+  obj.middle_click_bookmarks_shift = {value: `color_green`, category: category, type: `menu`, name: `Middle Click Bookmarks + Shift`, version: 1}
+  obj.middle_click_bookmarks_alt = {value: `color_blue`, category: category, type: `menu`, name: `Middle Click Bookmarks + Alt`, version: 1}
+  obj.middle_click_closed = {value: `open`, category: category, type: `menu`, name: `Middle Click Closed`, version: 1}
+  obj.middle_click_closed_ctrl = {value: `color_red`, category: category, type: `menu`, name: `Middle Click Closed + Ctrl`, version: 1}
+  obj.middle_click_closed_shift = {value: `color_green`, category: category, type: `menu`, name: `Middle Click Closed + Shift`, version: 1}
+  obj.middle_click_closed_alt = {value: `color_blue`, category: category, type: `menu`, name: `Middle Click Closed + Alt`, version: 1}
+  obj.middle_click_main_menu = {value: `show_main`, category: category, type: `menu`, name: `Middle Click Main Menu`, version: 1}
+  obj.middle_click_filter_menu = {value: `show_all`, category: category, type: `menu`, name: `Middle Click Filter Menu`, version: 1}
+  obj.middle_click_back_button = {value: `browser_back`, category: category, type: `menu`, name: `Middle Click Back Button`, version: 1}
+  obj.middle_click_actions_menu = {value: `browser_reload`, category: category, type: `menu`, name: `Middle Click Actions Menu`, version: 1}
+  obj.middle_click_footer = {value: `copy_url`, category: category, type: `menu`, name: `Middle Click Footer`, version: 1}
+  obj.middle_click_pick_button = {value: `filter_domain`, category: category, type: `menu`, name: `Middle Click Pick Button`, version: 1}
+  obj.middle_click_close_button = {value: `unload`, category: category, type: `menu`, name: `Middle Click Close Button`, version: 1}
+  obj.middle_click_open_button = {value: `open`, category: category, type: `menu`, name: `Middle Click Open Button`, version: 1}
+  obj.middle_click_pinline = {value: `close_normal`, category: category, type: `menu`, name: `Middle Click Pinline`, version: 1}
 
   category = `menus`
   obj.tabs_actions = {value: [
@@ -601,6 +598,7 @@ App.setup_settings = () => {
   }
 
   App.create_window(Object.assign({}, common, {id: `settings_general`, setup: () => {
+    App.fill_settings(`general`)
     prepare(`general`)
 
     App.settings_make_menu(`text_mode`, [
@@ -669,28 +667,7 @@ App.setup_settings = () => {
       App.apply_theme_2()
     })
 
-    App.make_mode_order()
-
-    DOM.evs(App.get_settings_label(`mode_order`), [`click`, `contextmenu`], (e) => {
-      App.settings_label_menu(e,
-      [
-        {
-          name: `Reset`, action: () => {
-            let force = App.check_setting_default(`mode_order`)
-
-            App.show_confirm(`Reset setting?`, () => {
-              App.set_default_setting(`tabs_index`)
-              App.set_default_setting(`history_index`)
-              App.set_default_setting(`bookmarks_index`)
-              App.set_default_setting(`closed_index`)
-              App.get_mode_order()
-              App.make_mode_order()
-            }, undefined, force)
-          }
-        },
-      ])
-    })
-
+    App.addlist_buttons({id: `mode_order`})
     App.addlist_buttons({id: `aliases`})
     App.addlist_buttons({id: `custom_filters`})
   }}))
@@ -769,7 +746,7 @@ App.setup_settings = () => {
   }}))
 
   App.create_window(Object.assign({}, common, {id: `settings_gestures`, setup: () => {
-    App.settings_fill({category: `gestures`, cls: `settings_menu button`, starts_with: `gesture_`})
+    App.fill_settings(`gestures`)
     prepare(`gestures`)
 
     DOM.ev(DOM.el(`#settings_gestures_enabled`), `change`, () => {
@@ -797,7 +774,7 @@ App.setup_settings = () => {
   }}))
 
   App.create_window(Object.assign({}, common, {id: `settings_auxclick`, setup: () => {
-    App.settings_fill({category: `auxclick`, cls: `settings_menu button`})
+    App.fill_settings(`auxclick`)
     prepare(`auxclick`)
     let opts = App.settings_commands()
 
@@ -811,7 +788,7 @@ App.setup_settings = () => {
   }}))
 
   App.create_window(Object.assign({}, common, {id: `settings_menus`, setup: () => {
-    App.settings_fill({category: `menus`, cls: `settings_addlist`})
+    App.fill_settings(`menus`)
     prepare(`menus`)
 
     for (let key in App.default_settings) {
@@ -1043,11 +1020,7 @@ App.reset_settings = (category) => {
   App.show_confirm(`Reset settings? (${App.capitalize(category)})`, () => {
     App.settings_default_category(category)
 
-    if (category === `general`) {
-      App.get_mode_order()
-      App.make_mode_order()
-    }
-    else if (category === `gestures`) {
+    if (category === `gestures`) {
       App.refresh_gestures()
     }
 
@@ -1145,8 +1118,6 @@ App.import_settings = () => {
 }
 
 App.restart_settings = (type = `normal`) => {
-  App.get_mode_order()
-  App.make_mode_order()
   App.apply_theme_2()
   App.refresh_gestures()
 
@@ -1335,15 +1306,7 @@ App.is_default_setting = (setting) => {
 }
 
 App.check_setting_default = (setting) => {
-  if (setting === `mode_order`) {
-    return App.is_default_setting(`tabs_index`) &&
-    App.is_default_setting(`history_index`) &&
-    App.is_default_setting(`bookmarks_index`) &&
-    App.is_default_setting(`closed_index`)
-  }
-  else {
-    return App.is_default_setting(setting)
-  }
+  return App.is_default_setting(setting)
 }
 
 App.set_settings_menu = (setting, value, on_change) => {
@@ -1422,18 +1385,16 @@ App.get_background_effect = (value) => {
   }
 }
 
-App.settings_fill = (args) => {
-  let c = DOM.el(`#setting_${args.category}`)
+App.fill_settings = (category) => {
+  let c = DOM.el(`#setting_${category}`)
   c.innerHTML = ``
 
   for (let key in App.default_settings) {
     let cmd = App.default_settings[key]
 
-    if (cmd.category === args.category) {
-      if (args.starts_with) {
-        if (!key.startsWith(args.starts_with)) {
-          continue
-        }
+    if (cmd.category === category) {
+      if (cmd.type === `special`) {
+        continue
       }
 
       let el = DOM.create(`div`, `settings_item`)
@@ -1441,10 +1402,37 @@ App.settings_fill = (args) => {
       let label = DOM.create(`div`, `settings_label`)
       label.textContent = cmd.name
       el.append(label)
-      let menu = DOM.create(`div`, args.cls)
-      menu.id = `settings_${key}`
-      menu.dataset.setting = key
-      el.append(menu)
+      let widget
+
+      if (cmd.type === `menu`) {
+        widget = DOM.create(`div`, `settings_menu button`)
+      }
+      else if (cmd.type === `list`) {
+        widget = DOM.create(`div`, `settings_addlist`)
+      }
+      else if (cmd.type === `text`) {
+        widget = DOM.create(`input`, `text settings_text`)
+        widget.type = `text`
+      }
+      else if (cmd.type === `text_smaller`) {
+        widget = DOM.create(`input`, `text settings_text text_smaller`)
+        widget.type = `text`
+      }
+      else if (cmd.type === `number`) {
+        widget = DOM.create(`input`, `settings_number`)
+        widget.type = `number`
+      }
+      else if (cmd.type === `checkbox`) {
+        widget = DOM.create(`input`, `settings_checkbox`)
+        widget.type = `checkbox`
+      }
+      else if (cmd.type === `color`) {
+        widget = DOM.create(`div`, `settings_color`)
+      }
+
+      widget.id = `settings_${key}`
+      widget.dataset.setting = key
+      el.append(widget)
       c.append(el)
     }
   }

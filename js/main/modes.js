@@ -139,14 +139,7 @@ App.mode_order_down = (el) => {
 }
 
 App.get_mode_order = () => {
-  let imodes = []
-
-  for (let mode of App.modes) {
-    imodes.push({mode: mode, index: App.get_setting(`${mode}_index`)})
-  }
-
-  imodes.sort((a, b) => (a.index > b.index) ? 1 : -1)
-  App.mode_order = imodes.map(x => x.mode)
+  App.mode_order = App.get_setting(`mode_order`).map(x => x.mode)
 }
 
 App.get_mode_index = (mode) => {
