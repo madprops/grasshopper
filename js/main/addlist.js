@@ -28,59 +28,81 @@ App.setup_addlist = () => {
   let id = `aliases`
 
   App.create_popup(Object.assign({}, args, {
-    id: `addlist_${id}`, element: App.addlist_register({id: id, pk: `a`,
-    widgets: [`text`, `text`], labels: [`Term A`, `Term B`],
-    keys: [`a`, `b`], list_text: (items) => {
-      return `${items.a} = ${items.b}`
-    }})
+    id: `addlist_${id}`,
+    element: App.addlist_register({
+      id: id,
+      pk: `a`,
+      widgets: [`text`, `text`],
+      labels: [`Term A`, `Term B`],
+      keys: [`a`, `b`],
+      list_text: (items) => {
+        return `${items.a} = ${items.b}`
+      }
+    })
   }))
 
   id = `custom_filters`
 
   App.create_popup(Object.assign({}, args, {
-    id: `addlist_${id}`, element: App.addlist_register({id: id, pk: `filter`,
-    widgets: [`text`], labels: [`Filter`],
-    keys: [`filter`], list_text: (items) => {
-      return items.filter
-    }})
+    id: `addlist_${id}`,
+    element: App.addlist_register({
+      id: id,
+      pk: `filter`,
+      widgets: [`text`],
+      labels: [`Filter`],
+      keys: [`filter`],
+      list_text: (items) => {
+        return items.filter
+      }
+    })
   }))
 
   id = `background_pool`
 
   App.create_popup(Object.assign({}, args, {
-    id: `addlist_${id}`, element: App.addlist_register({id: id, pk: `url`,
-    widgets: [`text`, `select`, `select`], labels: [`Image URL`, `Effect`, `Tiles`], image: 0,
-    sources: [undefined, App.background_effects, App.background_tiles],
-    keys: [`url`, `effect`, `tiles`], list_text: (items) => {
-      let s = App.remove_protocol(items.url)
+    id: `addlist_${id}`,
+    element: App.addlist_register({
+      id: id,
+      pk: `url`,
+      widgets: [`text`, `select`, `select`],
+      labels: [`Image URL`, `Effect`, `Tiles`],
+      image: 0,
+      sources: [undefined, App.background_effects, App.background_tiles],
+      keys: [`url`, `effect`, `tiles`], list_text: (items) => {
+        let s = App.remove_protocol(items.url)
 
-      if (items.effect !== `none`) {
-        let eff = App.get_background_effect(items.effect)
+        if (items.effect !== `none`) {
+          let eff = App.get_background_effect(items.effect)
 
-        if (eff) {
-          s += ` (${eff.text})`
+          if (eff) {
+            s += ` (${eff.text})`
+          }
         }
-      }
 
-      if (items.tiles !== `none`) {
-        s += ` (Tiled)`
-      }
+        if (items.tiles !== `none`) {
+          s += ` (Tiled)`
+        }
 
-      return s
-    }})
+        return s
+      }
+    })
   }))
 
   id = `keyboard_shortcuts`
 
   App.create_popup(Object.assign({}, args, {
-    id: `addlist_${id}`, element: App.addlist_register({id: id, pk: `key`,
-    widgets: [`key`, `select`, `checkbox`, `checkbox`, `checkbox`],
-    labels: [`Key`, `Command`, `Require Ctrl`, `Require Shift`, `Require Alt`],
-    sources: [undefined, App.addlist_commands.slice(0), true, false, false],
-    keys: [`key`, `cmd`, `ctrl`, `shift`, `alt`], list_text: (items) => {
-      let cmd = cmd_name(items.cmd)
-      return `${items.key} = ${cmd}`
-    }})
+    id: `addlist_${id}`,
+    element: App.addlist_register({
+      id: id,
+      pk: `key`,
+      widgets: [`key`, `select`, `checkbox`, `checkbox`, `checkbox`],
+      labels: [`Key`, `Command`, `Require Ctrl`, `Require Shift`, `Require Alt`],
+      sources: [undefined, App.addlist_commands.slice(0), true, false, false],
+      keys: [`key`, `cmd`, `ctrl`, `shift`, `alt`], list_text: (items) => {
+        let cmd = cmd_name(items.cmd)
+        return `${items.key} = ${cmd}`
+      }
+    })
   }))
 
   for (let id in App.default_settings) {
@@ -88,12 +110,15 @@ App.setup_addlist = () => {
 
     if (cmd.category === `menus`) {
       App.create_popup(Object.assign({}, args, {
-        id: `addlist_${id}`, element: App.addlist_register({id: id, pk: `cmd`,
-        widgets: [`select`], labels: [`Command`],
-        sources: [App.addlist_commands.slice(0)],
-        keys: [`cmd`], list_text: (items) => {
-          return cmd_name(items.cmd)
-        }})
+        id: `addlist_${id}`, element: App.addlist_register({
+          id: id,
+          pk: `cmd`,
+          widgets: [`select`], labels: [`Command`],
+          sources: [App.addlist_commands.slice(0)],
+          keys: [`cmd`], list_text: (items) => {
+            return cmd_name(items.cmd)
+          }
+        })
       }))
     }
   }
