@@ -2,16 +2,26 @@ App.setup_filter = () => {
   App.stor_get_filter_history()
 }
 
-App.filter_debouncer = App.create_debouncer((mode, force, deep) => {
+App.filter_debouncer_quick = App.create_debouncer((mode, force, deep) => {
   App.do_filter(mode, force, deep)
-}, App.filter_delay)
+}, App.filter_delay_quick)
+
+App.filter_debouncer_search = App.create_debouncer((mode, force, deep) => {
+  App.do_filter(mode, force, deep)
+}, App.filter_delay_search)
 
 App.filter = (mode, force, deep) => {
-  App.filter_debouncer.call(mode, force, deep)
+  if (App.search_modes.includes(mode)) {
+    App.filter_debouncer_search.call(mode, force, deep)
+  }
+  else {
+    App.filter_debouncer_quick.call(mode, force, deep)
+  }
 }
 
 App.cancel_filter = () => {
-  App.filter_debouncer.cancel()
+  App.filter_debouncer_quick.cancel()
+  App.filter_debouncer_search.cancel()
 }
 
 App.do_filter = async (mode, force = false, deep = false) => {
@@ -44,7 +54,7 @@ App.do_filter = async (mode, force = false, deep = false) => {
 
   // This check is to avoid re-fetching items
   // For instance when moving from All to Image
-  if (App.maxed_items.includes(mode)) {
+  if (App.search_modes.includes(mode)) {
     let svalue = value
 
     if (force || (svalue !== App[`last_${mode}_query`])) {

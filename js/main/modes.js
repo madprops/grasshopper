@@ -46,7 +46,7 @@ App.do_show_mode = async (mode, reuse_filter = false, force = false) => {
   App[`${mode}_filter_mode`] = m[0]
   App[`last_${mode}_query`] = undefined
   let persistent = App.persistent_modes.includes(mode)
-  let maxed = App.maxed_items.includes(mode)
+  let search = App.search_modes.includes(mode)
   let items_ready = false
   let items
 
@@ -68,7 +68,7 @@ App.do_show_mode = async (mode, reuse_filter = false, force = false) => {
     App.clear_items(m)
   }
 
-  if (maxed && value) {
+  if (search && value) {
     items = []
   }
   else if (!items_ready) {
@@ -98,7 +98,7 @@ App.do_show_mode = async (mode, reuse_filter = false, force = false) => {
     }
   }
 
-  if (maxed && value) {
+  if (search && value) {
     // Filter will search
   }
   else if (!items_ready) {
