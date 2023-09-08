@@ -745,9 +745,9 @@ App.check_profiles = () => {
       changed = true
     }
 
-    for (let prop in App.profile_props) {
-      if (profile[prop] === undefined) {
-        profile[prop] = App.profile_props[prop]
+    for (let key in App.profile_props) {
+      if (profile[key] === undefined) {
+        profile[key] = App.profile_props[key]
         changed = true
       }
     }
@@ -1154,16 +1154,16 @@ App.after_profile_remove = () => {
 }
 
 App.used_profile = (profile) => {
-  for (let prop in App.profile_props) {
-    if (prop === `url` || prop === `exact`) {
+  for (let key in App.profile_props) {
+    if (key === `url` || key === `exact`) {
       continue
     }
 
-    if (App.profile_props_theme.includes(prop)) {
+    if (App.profile_props_theme.includes(key)) {
       continue
     }
 
-    if (profile[prop].toString() !== App.profile_props[prop].toString()) {
+    if (profile[key].toString() !== App.profile_props[key].toString()) {
       return true
     }
   }
