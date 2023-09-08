@@ -177,70 +177,7 @@
 
     <template id="template_settings_theme">
       <div id="settings_theme_container" class="settings_container">
-        <div class="settings_item" title="Theme background color">
-          <div class="settings_label" data-id="background_color" data-random="Random background color">Background Color</div>
-          <div id="settings_background_color" data-setting="background_color"></div>
-        </div>
-
-        <div class="settings_item" title="Theme text color">
-          <div class="settings_label" data-id="text_color" data-random="Random text color">Text Color</div>
-          <div id="settings_text_color" data-setting="text_color"></div>
-        </div>
-
-        <div class="settings_item" title="Background image URL">
-          <div class="settings_label" data-id="background_image" data-random="Random background">Background Image</div>
-          <input type="text" autocomplete="off" spellcheck="false" placeholder="Paste an image URL" id="settings_background_image" class="text settings_text" data-setting="background_image" data-action="theme">
-        </div>
-
-        <div class="settings_item" title="Rotate between these background images">
-          <div class="settings_label" data-id="background_pool" data-next="Apply next item from the background pool" data-shuffle="Shuffle the background pool" data-view="View current background configuration in pool">Pool</div>
-          <div id="settings_background_pool" class="settings_addlist" data-setting="background_pool"></div>
-        </div>
-
-        <div class="settings_item" title="Effect to apply to the background image">
-          <div class="settings_label">Background Effect</div>
-          <div id="settings_background_effect" class="settings_menu button" data-setting="background_effect"></div>
-        </div>
-
-        <div class="settings_item" title="Tile width for the background image">
-          <div class="settings_label">Background Tiles</div>
-          <div id="settings_background_tiles" class="settings_menu button" data-setting="background_tiles"></div>
-        </div>
-
-        <div class="settings_item" title="Change the theme automatically">
-          <div class="settings_label">Auto Theme</div>
-          <div id="settings_auto_theme" class="settings_menu button" data-setting="auto_theme"></div>
-        </div>
-
-        <div class="settings_item" title="Change the background automatically">
-          <div class="settings_label">Auto Background</div>
-          <div id="settings_auto_background" class="settings_menu button" data-setting="auto_background"></div>
-        </div>
-
-        <div class="settings_item" title="What kind of themes to include when getting a random theme">
-          <div class="settings_label">Random Themes</div>
-          <div id="settings_random_themes" class="settings_menu button" data-setting="random_themes"></div>
-        </div>
-
-        <div class="settings_item" title="What sources to use for auto background">
-          <div class="settings_label">Auto Background Mode</div>
-          <div id="settings_auto_background_mode" class="settings_menu button" data-setting="auto_background_mode"></div>
-        </div>
-
-        <div class="settings_item" title="Include gifs in random backgrounds as well as jpg and png">
-          <div class="settings_label">Include Gif Images<br>On Random Background</div>
-          <input type="checkbox" class="settings_checkbox" id="settings_random_background_gifs" data-setting="random_background_gifs">
-        </div>
-
-        <div class="settings_item" title="Add a transition effect when changing theme colors">
-          <div class="settings_label">Color Transitions</div>
-          <input type="checkbox" class="settings_checkbox" id="settings_color_transitions" data-setting="color_transitions">
-        </div>
-
-        <div class="settings_item" title="Add a transition effect when changing the background">
-          <div class="settings_label">BG Transitions</div>
-          <input type="checkbox" class="settings_checkbox" id="settings_background_transitions" data-setting="background_transitions">
-        </div>
+        <div id="setting_theme" class="settings_subcontainer"></div>
       </div>
     </template>
 

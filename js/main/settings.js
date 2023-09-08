@@ -19,7 +19,7 @@ App.build_default_settings = () => {
     {name: `History`, mode: `history`},
     {name: `BMarks`, mode: `bookmarks`},
     {name: `Closed`, mode: `closed`},
-  ], category: category, type: `list`, name: `Mode Order`, version: 3}
+  ], category: category, type: `list`, name: `Mode Order`, action: `mode_order`, version: 3}
   obj.aliases = {value: [
     {a: `big`, b: `huge`},
     {a: `quick`, b: `fast`},
@@ -34,19 +34,19 @@ App.build_default_settings = () => {
   ], category: category, type: `list`, name: `Custom Filters`, version: 3}
 
   category = `theme`
-  obj.background_color = {value: App.dark_theme.background, category: category, version: 1}
-  obj.text_color = {value: App.dark_theme.text, category: category, version: 1}
-  obj.background_image = {value: `waves.jpg`, category: category, version: 1}
-  obj.background_effect = {value: `none`, category: category, version: 1}
-  obj.background_tiles = {value: `none`, category: category, version: 1}
-  obj.auto_theme = {value: `never`, category: category, version: 3}
-  obj.auto_background = {value: `never`, category: category, version: 3}
-  obj.auto_background_mode = {value: `pool`, category: category, version: 1}
-  obj.color_transitions = {value: true, category: category, version: 1}
-  obj.background_transitions = {value: true, category: category, version: 1}
-  obj.random_background_gifs = {value: true, category: category, version: 1}
-  obj.random_themes = {value: `dark`, category: category, version: 1}
-  obj.background_pool = {value: App.backgrounds, category: category, version: 3}
+  obj.background_color = {value: App.dark_theme.background, category: category, type: `menu`, name: `Background Color`, version: 1}
+  obj.text_color = {value: App.dark_theme.text, category: category, type: `menu`, name: `Text Color`, version: 1}
+  obj.background_image = {value: `waves.jpg`, category: category, type: `menu`, name: `Background Image`, version: 1}
+  obj.background_pool = {value: App.backgrounds, category: category, type: `menu`, name: `Background Pool`, version: 3}
+  obj.background_effect = {value: `none`, category: category, type: `menu`, name: `Background Effect`, version: 1}
+  obj.background_tiles = {value: `none`, category: category, type: `menu`, name: `Background Tiles`, version: 1}
+  obj.auto_theme = {value: `never`, category: category, type: `menu`, name: `Auto Theme`, version: 3}
+  obj.auto_background = {value: `never`, category: category, type: `menu`, name: `Auto Background`, version: 3}
+  obj.auto_background_mode = {value: `pool`, category: category, type: `menu`, name: `Auto Background Mode`, version: 1}
+  obj.color_transitions = {value: true, category: category, type: `menu`, name: `Color Transitions`, version: 1}
+  obj.background_transitions = {value: true, category: category, type: `menu`, name: `Background Transitions`, version: 1}
+  obj.random_background_gifs = {value: true, category: category, type: `menu`, name: `Include Gifs`, version: 1}
+  obj.random_themes = {value: `dark`, category: category, type: `menu`, name: `Random Themes`, version: 1}
 
   category = `media`
   obj.image_icon = {value: `🖼️`, category: category, type: `text_smaller`, name: `View Image Icon`, version: 1}
@@ -242,6 +242,9 @@ App.settings_do_action = (what) => {
   else if (what === `filter_debouncers`) {
     App.start_filter_debouncers()
   }
+  else if (what === `mode_order`) {
+    App.get_mode_order()
+  }
 }
 
 App.get_settings_label = (setting) => {
@@ -305,13 +308,11 @@ App.settings_setup_checkboxes = (container) => {
 
   for (let item of items) {
     let setting = item.dataset.setting
-    let action = item.dataset.action
     let el = DOM.el(`#settings_${setting}`)
     el.checked = App.get_setting(setting)
 
     DOM.ev(el, `change`, () => {
       App.set_setting(setting, el.checked)
-      App.settings_do_action(action)
     })
 
     DOM.evs(App.get_settings_label(setting), [`click`, `contextmenu`], (e) => {
@@ -324,7 +325,6 @@ App.settings_setup_checkboxes = (container) => {
             App.show_confirm(`Reset setting?`, () => {
               App.set_default_setting(setting)
               el.checked = App.get_setting(setting)
-              App.settings_do_action(action)
             }, undefined, force)
           }
         },
@@ -338,7 +338,6 @@ App.settings_setup_text = (container) => {
 
   for (let el of els) {
     let setting = el.dataset.setting
-    let action = el.dataset.action
     let value = App.get_setting(setting)
     el.value = value
 
@@ -356,7 +355,6 @@ App.settings_setup_text = (container) => {
             App.set_default_setting(setting)
             el.value = App.get_setting(setting)
             App.scroll_to_top(el)
-            App.settings_do_action(action)
           }, undefined, force)
         },
       },
@@ -369,7 +367,6 @@ App.settings_setup_text = (container) => {
           App.show_confirm(`Clear setting?`, () => {
             el.value = ``
             App.set_setting(setting, ``)
-            App.settings_do_action(action)
             el.focus()
           })
         },
@@ -396,7 +393,6 @@ App.settings_setup_number = (container) => {
 
   for (let el of els) {
     let setting = el.dataset.setting
-    let action = el.dataset.action
     let value = App.get_setting(setting)
     el.value = value
 
@@ -417,7 +413,6 @@ App.settings_setup_number = (container) => {
       }
 
       App.set_setting(setting, value)
-      App.settings_do_action(action)
     })
 
     let menu = [
@@ -429,7 +424,6 @@ App.settings_setup_number = (container) => {
             App.set_default_setting(setting)
             let value = App.get_setting(setting)
             el.value = value
-            App.settings_do_action(action)
           }, undefined, force)
         },
       },
@@ -1199,8 +1193,16 @@ App.get_setting = (setting) => {
 }
 
 App.set_setting = (setting, value) => {
-  App.settings[setting].value = value
-  App.save_settings_debouncer.call()
+  if (App.str(App.settings[setting].value) !== App.str(value)) {
+    App.settings[setting].value = value
+    App.save_settings_debouncer.call()
+
+    let def = App.default_settings[setting]
+
+    if (def.action) {
+      App.settings_do_action(def.action)
+    }
+  }
 }
 
 App.get_default_setting = (setting) => {
@@ -1331,7 +1333,6 @@ App.do_save_text_setting = (setting, el) => {
   el.value = value
   el.scrollTop = 0
   App.set_setting(setting, value)
-  App.settings_do_action(el.dataset.action)
 }
 
 App.shuffle_addlist = (setting) => {

@@ -120,31 +120,13 @@ App.do_show_mode = async (mode, reuse_filter = false, force = false) => {
   App.check_playing(mode)
 }
 
-App.mode_order_up = (el) => {
-  let prev = el.previousElementSibling
-
-  if (prev) {
-    el.parentNode.insertBefore(el, prev)
-    App.update_mode_order()
-  }
-}
-
-App.mode_order_down = (el) => {
-  let next = el.nextElementSibling
-
-  if (next) {
-    el.parentNode.insertBefore(next, el)
-    App.update_mode_order()
-  }
-}
-
 App.get_mode_order = () => {
   App.mode_order = App.get_setting(`mode_order`).map(x => x.mode)
 }
 
 App.get_mode_index = (mode) => {
   for (let [i, it] of App.mode_order.entries()) {
-    if (it === mode) {
+    if (it.mode === mode) {
       return i
     }
   }
@@ -189,17 +171,6 @@ App.cycle_modes = (reverse, reuse_filter = true) => {
   }
 
   App.show_mode(new_mode, reuse_filter)
-}
-
-App.update_mode_order = () => {
-  let boxes = DOM.els(`.mode_order_row`, DOM.el(`#settings_mode_order`))
-  let modes = boxes.map(x => x.dataset.mode)
-
-  for (let [i, mode] of modes.entries()) {
-    App.set_setting(`${mode}_index`, i)
-  }
-
-  App.get_mode_order()
 }
 
 App.show_first_mode = (allow_same = true) => {
