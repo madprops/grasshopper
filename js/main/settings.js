@@ -16,7 +16,7 @@ App.build_default_settings = () => {
   obj.item_border = {value: `none`, category: category, version: 2}
   obj.pick_mode = {value: `none`, category: category, version: 1}
   obj.wrap_text = {value: false, category: category, version: 1}
-  obj.auto_restore = {value: `10_seconds`, category: category, version: 1}
+  obj.auto_restore = {value: `1_seconds`, category: category, version: 1}
   obj.bookmarks_folder = {value: `Grasshopper`, category: category, version: 1}
   obj.aliases = {value: [
     {a: `big`, b: `huge`},

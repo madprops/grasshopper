@@ -129,6 +129,10 @@ App.get_tabs = async () => {
 }
 
 App.focus_tab = async (item, scroll, method = `normal`) => {
+  if (!item) {
+    return
+  }
+
   if (item.created) {
     App.select_item(item, scroll)
   }
