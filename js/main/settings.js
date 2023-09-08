@@ -86,57 +86,57 @@ App.build_default_settings = () => {
   category = `gestures`
   obj.gestures_enabled = {value: true, category: category, version: 1}
   obj.gestures_threshold = {value: 10, category: category, version: 1}
-  obj.gesture_up = {value: `go_to_top`, category: category, version: 1}
-  obj.gesture_up_ctrl = {value: `none`, category: category, version: 1}
-  obj.gesture_up_shift = {value: `none`, category: category, version: 1}
-  obj.gesture_up_alt = {value: `none`, category: category, version: 1}
-  obj.gesture_down = {value: `go_to_bottom`, category: category, version: 1}
-  obj.gesture_down_ctrl = {value: `none`, category: category, version: 1}
-  obj.gesture_down_shift = {value: `none`, category: category, version: 1}
-  obj.gesture_down_alt = {value: `none`, category: category, version: 1}
-  obj.gesture_left = {value: `prev_mode`, category: category, version: 1}
-  obj.gesture_left_ctrl = {value: `none`, category: category, version: 1}
-  obj.gesture_left_shift = {value: `none`, category: category, version: 1}
-  obj.gesture_left_alt = {value: `none`, category: category, version: 1}
-  obj.gesture_right = {value: `next_mode`, category: category, version: 1}
-  obj.gesture_right_ctrl = {value: `none`, category: category, version: 1}
-  obj.gesture_right_shift = {value: `none`, category: category, version: 1}
-  obj.gesture_right_alt = {value: `none`, category: category, version: 1}
-  obj.gesture_up_and_down = {value: `show_all`, category: category, version: 1}
-  obj.gesture_up_and_down_ctrl = {value: `none`, category: category, version: 1}
-  obj.gesture_up_and_down_shift = {value: `none`, category: category, version: 1}
-  obj.gesture_up_and_down_alt = {value: `none`, category: category, version: 1}
-  obj.gesture_left_and_right = {value: `filter_domain`, category: category, version: 1}
-  obj.gesture_left_and_right_ctrl = {value: `none`, category: category, version: 1}
-  obj.gesture_left_and_right_shift = {value: `none`, category: category, version: 1}
-  obj.gesture_left_and_right_alt = {value: `none`, category: category, version: 1}
+  obj.gesture_up = {value: `go_to_top`, category: category, name: `Gesture Up`, version: 1}
+  obj.gesture_up_ctrl = {value: `none`, category: category, name: `Gesture Up + Ctrl`, version: 1}
+  obj.gesture_up_shift = {value: `none`, category: category, name: `Gesture Up + Shift`, version: 1}
+  obj.gesture_up_alt = {value: `none`, category: category, name: `Gesture Up + Alt`, version: 1}
+  obj.gesture_down = {value: `go_to_bottom`, category: category, name: `Gesture Down`, version: 1}
+  obj.gesture_down_ctrl = {value: `none`, category: category, name: `Gesture Down + Ctrl`, version: 1}
+  obj.gesture_down_shift = {value: `none`, category: category, name: `Gesture Down + Shift`, version: 1}
+  obj.gesture_down_alt = {value: `none`, category: category, name: `Gesture Down + Alt`, version: 1}
+  obj.gesture_left = {value: `prev_mode`, category: category, name: `Gesture Left`, version: 1}
+  obj.gesture_left_ctrl = {value: `none`, category: category, name: `Gesture Left + Ctrl`, version: 1}
+  obj.gesture_left_shift = {value: `none`, category: category, name: `Gesture Left + Shift`, version: 1}
+  obj.gesture_left_alt = {value: `none`, category: category, name: `Gesture Left + Alt`, version: 1}
+  obj.gesture_right = {value: `next_mode`, category: category, name: `Gesture Right`, version: 1}
+  obj.gesture_right_ctrl = {value: `none`, category: category, name: `Gesture Right + Ctrl`, version: 1}
+  obj.gesture_right_shift = {value: `none`, category: category, name: `Gesture Right + Shift`, version: 1}
+  obj.gesture_right_alt = {value: `none`, category: category, name: `Gesture Right + Alt`, version: 1}
+  obj.gesture_up_and_down = {value: `show_all`, category: category, name: `Gesture Up Down`, version: 1}
+  obj.gesture_up_and_down_ctrl = {value: `none`, category: category, name: `Gesture Up Down + Ctrl`, version: 1}
+  obj.gesture_up_and_down_shift = {value: `none`, category: category, name: `Gesture Up Down + Shift`, version: 1}
+  obj.gesture_up_and_down_alt = {value: `none`, category: category, name: `Gesture Up Down + Alt`, version: 1}
+  obj.gesture_left_and_right = {value: `filter_domain`, category: category, name: `Gesture Left Right`, version: 1}
+  obj.gesture_left_and_right_ctrl = {value: `none`, category: category, name: `Gesture Left Right + Ctrl`, version: 1}
+  obj.gesture_left_and_right_shift = {value: `none`, category: category, name: `Gesture Left Right + Shift`, version: 1}
+  obj.gesture_left_and_right_alt = {value: `none`, category: category, name: `Gesture Left Right + Alt`, version: 1}
 
   category = `auxclick`
-  obj.middle_click_tabs = {value: `close`, category: category, version: 1}
-  obj.middle_click_tabs_ctrl = {value: `color_red`, category: category, version: 1}
-  obj.middle_click_tabs_shift = {value: `color_green`, category: category, version: 1}
-  obj.middle_click_tabs_alt = {value: `color_blue`, category: category, version: 1}
-  obj.middle_click_history = {value: `open`, category: category, version: 1}
-  obj.middle_click_history_ctrl = {value: `color_red`, category: category, version: 1}
-  obj.middle_click_history_shift = {value: `color_green`, category: category, version: 1}
-  obj.middle_click_history_alt = {value: `color_blue`, category: category, version: 1}
-  obj.middle_click_bookmarks = {value: `open`, category: category, version: 1}
-  obj.middle_click_bookmarks_ctrl = {value: `color_red`, category: category, version: 1}
-  obj.middle_click_bookmarks_shift = {value: `color_green`, category: category, version: 1}
-  obj.middle_click_bookmarks_alt = {value: `color_blue`, category: category, version: 1}
-  obj.middle_click_closed = {value: `open`, category: category, version: 1}
-  obj.middle_click_closed_ctrl = {value: `color_red`, category: category, version: 1}
-  obj.middle_click_closed_shift = {value: `color_green`, category: category, version: 1}
-  obj.middle_click_closed_alt = {value: `color_blue`, category: category, version: 1}
-  obj.middle_click_main_menu = {value: `show_main`, category: category, version: 1}
-  obj.middle_click_filter_menu = {value: `show_all`, category: category, version: 1}
-  obj.middle_click_back_button = {value: `browser_back`, category: category, version: 1}
-  obj.middle_click_actions_menu = {value: `browser_reload`, category: category, version: 1}
-  obj.middle_click_footer = {value: `copy_url`, category: category, version: 1}
-  obj.middle_click_pick_button = {value: `filter_domain`, category: category, version: 1}
-  obj.middle_click_close_button = {value: `unload`, category: category, version: 1}
-  obj.middle_click_open_button = {value: `open`, category: category, version: 1}
-  obj.middle_click_pinline = {value: `close_normal`, category: category, version: 1}
+  obj.middle_click_tabs = {value: `close`, category: category, name: `Middle Click Tabs`, version: 1}
+  obj.middle_click_tabs_ctrl = {value: `color_red`, category: category, name: `Middle Click Tabs + Ctrl`, version: 1}
+  obj.middle_click_tabs_shift = {value: `color_green`, category: category, name: `Middle Click Tabs + Shift`, version: 1}
+  obj.middle_click_tabs_alt = {value: `color_blue`, category: category, name: `Middle Click Tabs + Alt`, version: 1}
+  obj.middle_click_history = {value: `open`, category: category, name: `Middle Click History`, version: 1}
+  obj.middle_click_history_ctrl = {value: `color_red`, category: category, name: `Middle Click History + Ctrl`, version: 1}
+  obj.middle_click_history_shift = {value: `color_green`, category: category, name: `Middle Click History + Shift`, version: 1}
+  obj.middle_click_history_alt = {value: `color_blue`, category: category, name: `Middle Click History + Alt`, version: 1}
+  obj.middle_click_bookmarks = {value: `open`, category: category, name: `Middle Click Bookmarks`, version: 1}
+  obj.middle_click_bookmarks_ctrl = {value: `color_red`, category: category, name: `Middle Click Bookmarks + Ctrl`, version: 1}
+  obj.middle_click_bookmarks_shift = {value: `color_green`, category: category, name: `Middle Click Bookmarks + Shift`, version: 1}
+  obj.middle_click_bookmarks_alt = {value: `color_blue`, category: category, name: `Middle Click Bookmarks + Alt`, version: 1}
+  obj.middle_click_closed = {value: `open`, category: category, name: `Middle Click Closed`, version: 1}
+  obj.middle_click_closed_ctrl = {value: `color_red`, category: category, name: `Middle Click Closed + Ctrl`, version: 1}
+  obj.middle_click_closed_shift = {value: `color_green`, category: category, name: `Middle Click Closed + Shift`, version: 1}
+  obj.middle_click_closed_alt = {value: `color_blue`, category: category, name: `Middle Click Closed + Alt`, version: 1}
+  obj.middle_click_main_menu = {value: `show_main`, category: category, name: `Middle Click Main Menu`, version: 1}
+  obj.middle_click_filter_menu = {value: `show_all`, category: category, name: `Middle Click Filter Menu`, version: 1}
+  obj.middle_click_back_button = {value: `browser_back`, category: category, name: `Middle Click Back Button`, version: 1}
+  obj.middle_click_actions_menu = {value: `browser_reload`, category: category, name: `Middle Click Actions Menu`, version: 1}
+  obj.middle_click_footer = {value: `copy_url`, category: category, name: `Middle Click Footer`, version: 1}
+  obj.middle_click_pick_button = {value: `filter_domain`, category: category, name: `Middle Click Pick Button`, version: 1}
+  obj.middle_click_close_button = {value: `unload`, category: category, name: `Middle Click Close Button`, version: 1}
+  obj.middle_click_open_button = {value: `open`, category: category, name: `Middle Click Open Button`, version: 1}
+  obj.middle_click_pinline = {value: `close_normal`, category: category, name: `Middle Click Pinline`, version: 1}
 
   category = `menus`
   obj.tabs_actions = {value: [
@@ -769,7 +769,7 @@ App.setup_settings = () => {
   }}))
 
   App.create_window(Object.assign({}, common, {id: `settings_gestures`, setup: () => {
-    App.fill_setting_gestures()
+    App.settings_fill({category: `gestures`, cls: `settings_menu button`, starts_with: `gesture_`})
     prepare(`gestures`)
 
     DOM.ev(DOM.el(`#settings_gestures_enabled`), `change`, () => {
@@ -797,7 +797,7 @@ App.setup_settings = () => {
   }}))
 
   App.create_window(Object.assign({}, common, {id: `settings_auxclick`, setup: () => {
-    App.fill_setting_auxclick()
+    App.settings_fill({category: `auxclick`, cls: `settings_menu button`})
     prepare(`auxclick`)
     let opts = App.settings_commands()
 
@@ -811,6 +811,7 @@ App.setup_settings = () => {
   }}))
 
   App.create_window(Object.assign({}, common, {id: `settings_menus`, setup: () => {
+    App.settings_fill({category: `menus`, cls: `settings_addlist`})
     prepare(`menus`)
 
     for (let key in App.default_settings) {
@@ -1421,89 +1422,26 @@ App.get_background_effect = (value) => {
   }
 }
 
-App.fill_setting_gestures = () => {
-  let c = DOM.el(`#setting_gestures`)
-  c.innerHTML = ``
-
-  for (let key in App.default_settings) {
-    if (!key.startsWith(`gesture_`)) {
-      continue
-    }
-
-    let cmd = App.default_settings[key]
-
-    if (cmd.category === `gestures`) {
-      let el = DOM.create(`div`, `settings_item`)
-      el.title = `Action to perform on gesture (${key})`
-      let label = DOM.create(`div`, `settings_label`)
-      let s = `Gesture`
-
-      if (key.includes(`_up`)) {
-        s += ` Up`
-      }
-      else if (key.includes(`_down`)) {
-        s += ` Down`
-      }
-      else if (key.includes(`_left`)) {
-        s += ` Left`
-      }
-      else if (key.includes(`_right`)) {
-        s += ` Right`
-      }
-
-      if (key.includes(`_ctrl`)) {
-        s += ` + Ctrl`
-      }
-      else if (key.includes(`_shift`)) {
-        s += ` + Shift`
-      }
-      else if (key.includes(`_alt`)) {
-        s += ` + Alt`
-      }
-
-      label.textContent = s
-      el.append(label)
-      let menu = DOM.create(`div`, `settings_menu button`)
-      menu.id = `settings_${key}`
-      menu.dataset.setting = key
-      el.append(menu)
-      c.append(el)
-    }
-  }
-}
-
-App.fill_setting_auxclick = () => {
-  let c = DOM.el(`#setting_auxclick`)
+App.settings_fill = (args) => {
+  let c = DOM.el(`#setting_${args.category}`)
   c.innerHTML = ``
 
   for (let key in App.default_settings) {
     let cmd = App.default_settings[key]
 
-    if (cmd.category === `auxclick`) {
+    if (cmd.category === args.category) {
+      if (args.starts_with) {
+        if (!key.startsWith(args.starts_with)) {
+          continue
+        }
+      }
+
       let el = DOM.create(`div`, `settings_item`)
-      el.title = `Action to perform on middle click (${key})`
+      el.title = `Custom menu (${key})`
       let label = DOM.create(`div`, `settings_label`)
-
-      let s = `Middle Click`
-      let word = key.replace(`middle_click_`, ``)
-      word = word.replace(`_ctrl`, ``)
-      word = word.replace(`_shift`, ``)
-      word = word.replace(`_alt`, ``)
-      s += ` ${word}`
-
-      if (key.includes(`_ctrl`)) {
-        s += ` + Ctrl`
-      }
-      else if (key.includes(`_shift`)) {
-        s += ` + Shift`
-      }
-      else if (key.includes(`_alt`)) {
-        s += ` + Alt`
-      }
-
-      label.textContent = s
+      label.textContent = cmd.name
       el.append(label)
-      let menu = DOM.create(`div`, `settings_menu button`)
+      let menu = DOM.create(`div`, args.cls)
       menu.id = `settings_${key}`
       menu.dataset.setting = key
       el.append(menu)
