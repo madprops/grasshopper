@@ -907,6 +907,15 @@ App.clear_profiles_items = () => {
     })
   }
 
+  if (count.auto_reload) {
+    items.push({
+      text: `Auto Reload`,
+      action: () => {
+        App.remove_all_auto_reload()
+      }
+    })
+  }
+
   if (count.themes) {
     items.push({
       text: `Themes`,
@@ -1068,6 +1077,28 @@ App.remove_all_icons = () => {
   })
 }
 
+App.remove_all_auto_reload = () => {
+  let profiles = []
+
+  for (let profile of App.profiles) {
+    if (profile.auto_reload) {
+      profiles.push(profile)
+    }
+  }
+
+  if (!profiles.length) {
+    return
+  }
+
+  App.show_confirm(`Remove all auto reload? (${profiles.length})`, () => {
+    for (let profile of App.profiles) {
+      profile.auto_reload = false
+    }
+
+    App.after_profile_remove()
+  })
+}
+
 App.remove_tag = (name) => {
   App.show_confirm(`Remove tag? (${name})`, () => {
     for (let profile of App.profiles) {
@@ -1149,6 +1180,7 @@ App.get_profile_count = () => {
   count.backgrounds = 0
   count.icons = 0
   count.themes = 0
+  count.auto_reload = 0
 
   for (let profile of App.profiles) {
     if (profile.tags.length) {
@@ -1178,6 +1210,10 @@ App.get_profile_count = () => {
 
     if (profile.theme_enabled) {
       count.themes += 1
+    }
+
+    if (profile.auto_reload) {
+      count.auto_reload += 1
     }
   }
 
