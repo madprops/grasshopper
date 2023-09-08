@@ -472,7 +472,7 @@ svg {
 .settings_text {
   flex-grow: 0;
   width: 15rem;
-  max-width: 15rem;
+  max-width: 90%;
   text-align: center;
 }
 
@@ -486,6 +486,7 @@ svg {
 
 .settings_info {
   text-align: center;
+  max-width: 16rem;
 }
 
 .settings_title {
@@ -522,10 +523,6 @@ svg {
 
 .settings_image {
   max-width: 90%;
-}
-
-.settings_info {
-  max-width: 15rem;
 }
 
 .addlist_container {
