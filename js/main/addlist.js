@@ -382,7 +382,7 @@ App.addlist_view = (args = {}) => {
   let items = App.get_setting(args.id)[args.index]
 
   if (!items) {
-    App.show_feedback(`No items yet`)
+    App.addlist_no_items()
     return
   }
 
@@ -745,7 +745,7 @@ App.addlist_list = (args) => {
   let lines = App.get_setting(args.id)
 
   if (!lines.length) {
-    App.show_feedback(`No items yet`)
+    App.addlist_no_items()
     return
   }
 
@@ -812,4 +812,8 @@ App.addlist_clear_image = () => {
   if (img) {
     img.src = ``
   }
+}
+
+App.addlist_no_items = () => {
+  App.show_feedback(`No items yet`, true)
 }

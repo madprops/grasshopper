@@ -81,6 +81,7 @@ App.build_default_settings = () => {
   obj.show_scroller = {value: true, category: category, version: 1}
   obj.show_footer = {value: true, category: category, version: 1}
   obj.show_filter_history = {value: true, category: category, version: 1}
+  obj.show_feedback = {value: true, category: category, version: 1}
 
   category = `gestures`
   obj.gestures_enabled = {value: true, category: category, version: 1}
