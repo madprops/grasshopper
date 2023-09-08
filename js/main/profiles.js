@@ -1307,7 +1307,7 @@ App.show_profile_urls = () => {
   App.show_alert_2(s)
 }
 
-App.change_color = (item, color) => {
+App.change_color = (item, color, toggle = false) => {
   let items = App.get_profile_items(item)
   let [profiles, added] = App.get_profiles(items)
   let args = {}
@@ -1317,6 +1317,14 @@ App.change_color = (item, color) => {
   args.from = `color_items`
   let force
   let some = false
+
+  if (toggle) {
+    if (profiles.length) {
+      if (profiles[0].color === color) {
+        color = `none`
+      }
+    }
+  }
 
   if (added.length) {
     if (color !== `none`) {

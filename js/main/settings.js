@@ -291,49 +291,49 @@ App.build_default_settings = () => {
   obj.middle_click_tabs = {value: `close`, category: category, type: `menu`, name: `Middle Click Tabs`, version: 1,
   info: `Middle click on tab items`}
 
-  obj.middle_click_tabs_ctrl = {value: `color_red`, category: category, type: `menu`, name: `Middle Click Tabs + Ctrl`, version: 1,
+  obj.middle_click_tabs_ctrl = {value: `toggle_red`, category: category, type: `menu`, name: `Middle Click Tabs + Ctrl`, version: 1,
   info: `Middle click on tab items while pressing Ctrl`}
 
-  obj.middle_click_tabs_shift = {value: `color_green`, category: category, type: `menu`, name: `Middle Click Tabs + Shift`, version: 1,
+  obj.middle_click_tabs_shift = {value: `toggle_green`, category: category, type: `menu`, name: `Middle Click Tabs + Shift`, version: 1,
   info: `Middle click on tab items while pressing Shift`}
 
-  obj.middle_click_tabs_alt = {value: `color_blue`, category: category, type: `menu`, name: `Middle Click Tabs + Alt`, version: 1,
+  obj.middle_click_tabs_alt = {value: `toggle_blue`, category: category, type: `menu`, name: `Middle Click Tabs + Alt`, version: 1,
   info: `Middle click on tab items while pressing Alt`}
 
   obj.middle_click_history = {value: `open`, category: category, type: `menu`, name: `Middle Click History`, version: 1,
   info: `Middle click on history items`}
 
-  obj.middle_click_history_ctrl = {value: `color_red`, category: category, type: `menu`, name: `Middle Click History + Ctrl`, version: 1,
+  obj.middle_click_history_ctrl = {value: `toggle_red`, category: category, type: `menu`, name: `Middle Click History + Ctrl`, version: 1,
   info: `Middle click on history items while pressing Ctrl`}
 
-  obj.middle_click_history_shift = {value: `color_green`, category: category, type: `menu`, name: `Middle Click History + Shift`, version: 1,
+  obj.middle_click_history_shift = {value: `toggle_green`, category: category, type: `menu`, name: `Middle Click History + Shift`, version: 1,
   info: `Middle click on history items while pressing Shift`}
 
-  obj.middle_click_history_alt = {value: `color_blue`, category: category, type: `menu`, name: `Middle Click History + Alt`, version: 1,
+  obj.middle_click_history_alt = {value: `toggle_blue`, category: category, type: `menu`, name: `Middle Click History + Alt`, version: 1,
   info: `Middle click on history items while pressing Alt`}
 
   obj.middle_click_bookmarks = {value: `open`, category: category, type: `menu`, name: `Middle Click Bookmarks`, version: 1,
   info: `Middle click on bookmark items`}
 
-  obj.middle_click_bookmarks_ctrl = {value: `color_red`, category: category, type: `menu`, name: `Middle Click Bookmarks + Ctrl`, version: 1,
+  obj.middle_click_bookmarks_ctrl = {value: `toggle_red`, category: category, type: `menu`, name: `Middle Click Bookmarks + Ctrl`, version: 1,
   info: `Middle click on bookmark items while pressing Ctrl`}
 
-  obj.middle_click_bookmarks_shift = {value: `color_green`, category: category, type: `menu`, name: `Middle Click Bookmarks + Shift`, version: 1,
+  obj.middle_click_bookmarks_shift = {value: `toggle_green`, category: category, type: `menu`, name: `Middle Click Bookmarks + Shift`, version: 1,
   info: `Middle click on bookmark items while pressing Shift`}
 
-  obj.middle_click_bookmarks_alt = {value: `color_blue`, category: category, type: `menu`, name: `Middle Click Bookmarks + Alt`, version: 1,
+  obj.middle_click_bookmarks_alt = {value: `toggle_blue`, category: category, type: `menu`, name: `Middle Click Bookmarks + Alt`, version: 1,
   info: `Middle click on bookmark items while pressing Alt`}
 
   obj.middle_click_closed = {value: `open`, category: category, type: `menu`, name: `Middle Click Closed`, version: 1,
   info: `Middle click on closed items`}
 
-  obj.middle_click_closed_ctrl = {value: `color_red`, category: category, type: `menu`, name: `Middle Click Closed + Ctrl`, version: 1,
+  obj.middle_click_closed_ctrl = {value: `toggle_red`, category: category, type: `menu`, name: `Middle Click Closed + Ctrl`, version: 1,
   info: `Middle click on closed items while pressing Ctrl`}
 
-  obj.middle_click_closed_shift = {value: `color_green`, category: category, type: `menu`, name: `Middle Click Closed + Shift`, version: 1,
+  obj.middle_click_closed_shift = {value: `toggle_green`, category: category, type: `menu`, name: `Middle Click Closed + Shift`, version: 1,
   info: `Middle click on closed items while pressing Shift`}
 
-  obj.middle_click_closed_alt = {value: `color_blue`, category: category, type: `menu`, name: `Middle Click Closed + Alt`, version: 1,
+  obj.middle_click_closed_alt = {value: `toggle_blue`, category: category, type: `menu`, name: `Middle Click Closed + Alt`, version: 1,
   info: `Middle click on closed items while pressing Alt`}
 
   obj.middle_click_main_menu = {value: `show_main`, category: category, type: `menu`, name: `Middle Click Main Menu`, version: 1,
