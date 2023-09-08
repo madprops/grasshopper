@@ -7,7 +7,7 @@ App.setup_commands = () => {
 
     color_filters.push({name: name, cmd: `filter_${color}`, mode: `items`, icon: icon, action: (args) => {
       App.filter_color(args.mode, color)
-    }, info: `Filter color: ${color}`})
+    }, info: `Filter by color: ${color}`})
   }
 
   let color_changers = []
@@ -18,7 +18,7 @@ App.setup_commands = () => {
 
     color_changers.push({name: name, cmd: `color_${color}`, mode: `items`, icon: icon, action: (args) => {
       App.change_color(args.item, color)
-    }, info: `Change color: ${color}`})
+    }, info: `Change color of URL: ${color}`})
   }
 
   let media_filters = []
@@ -29,7 +29,7 @@ App.setup_commands = () => {
 
     media_filters.push({name: name, cmd: `filter_${media}`, mode: `items`, icon: icon, action: (args) => {
       App.set_filter_mode(args.mode, media)
-    }, info: `Filter media: ${media}`})
+    }, info: `Filter by media: ${media}`})
   }
 
   let show_modes = []
