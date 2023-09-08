@@ -459,7 +459,6 @@ svg {
 .settings_container, .settings_subcontainer {
   display: flex;
   flex-direction: column;
-  margin-bottom: 3rem;
   gap: 1.8rem;
   align-items: center;
   justify-content: center;
