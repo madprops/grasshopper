@@ -151,11 +151,11 @@ App.get_mode_index = (mode) => {
 }
 
 App.get_mode_name = (mode) => {
-  if (mode === `bookmarks`) {
-    return `BMarks`
+  for (let m of App.get_setting(`mode_order`)) {
+    if (m.mode === mode) {
+      return m.name
+    }
   }
-
-  return App.capitalize(mode)
 }
 
 App.show_main_mode = () => {

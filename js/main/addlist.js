@@ -49,8 +49,8 @@ App.setup_addlist = () => {
 
   App.create_popup(Object.assign({}, args, {
     id: `addlist_${id}`, element: App.addlist_register({id: id, pk: `mode`,
-    widgets: [`select`], labels: [`Mode`], title: `Mode Order`, sources: [App.modes_obj],
-    keys: [`mode`], list_text: (items) => {
+    widgets: [`text`, `select`], labels: [`Mode`], title: `Mode Order`, sources: [undefined, App.mode_opts],
+    keys: [`name`, `mode`], list_text: (items) => {
       return App.capitalize(`${items.mode}`)
     }})
   }))
