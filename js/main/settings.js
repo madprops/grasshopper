@@ -1255,7 +1255,6 @@ App.start_color_picker = (setting, alpha = false) => {
 
   App[setting].on(`change`, (picker, color) => {
     App.set_setting(setting, color)
-    App.apply_theme_2()
   })
 
   DOM.evs(App.get_settings_label(setting), [`click`, `contextmenu`], (e) => {
