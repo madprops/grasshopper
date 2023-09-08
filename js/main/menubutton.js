@@ -110,7 +110,7 @@ App.menubutton_cycle = (args, dir) => {
       break
     }
 
-    if (o.text === args.button.textContent) {
+    if (o.value === args.value) {
       waypoint = true
     }
   }
