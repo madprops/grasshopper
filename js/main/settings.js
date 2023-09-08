@@ -29,19 +29,19 @@ App.build_default_settings = () => {
   ], category: category, type: `list`, name: `Custom Filters`, version: 3}
 
   category = `theme`
-  obj.background_color = {value: App.dark_theme.background, category: category, type: `menu`, name: `Background Color`, version: 1}
-  obj.text_color = {value: App.dark_theme.text, category: category, type: `menu`, name: `Text Color`, version: 1}
-  obj.background_image = {value: `waves.jpg`, category: category, type: `menu`, name: `Background Image`, version: 1}
-  obj.background_pool = {value: App.backgrounds, category: category, type: `menu`, name: `Background Pool`, version: 3}
+  obj.background_color = {value: App.dark_theme.background, category: category, type: `color`, name: `Background Color`, btns: [`random`], version: 1}
+  obj.text_color = {value: App.dark_theme.text, category: category, type: `color`, name: `Text Color`, btns: [`random`], version: 1}
+  obj.background_image = {value: `waves.jpg`, category: category, type: `text`, name: `Background Image`, btns: [`random`], version: 1}
+  obj.background_pool = {value: App.backgrounds, category: category, type: `list`, name: `Pool`, btns: [`view`, `next`, `shuffle`], version: 3}
   obj.background_effect = {value: `none`, category: category, type: `menu`, name: `Background Effect`, version: 1}
   obj.background_tiles = {value: `none`, category: category, type: `menu`, name: `Background Tiles`, version: 1}
   obj.auto_theme = {value: `never`, category: category, type: `menu`, name: `Auto Theme`, version: 3}
   obj.auto_background = {value: `never`, category: category, type: `menu`, name: `Auto Background`, version: 3}
   obj.auto_background_mode = {value: `pool`, category: category, type: `menu`, name: `Auto Background Mode`, version: 1}
-  obj.color_transitions = {value: true, category: category, type: `menu`, name: `Color Transitions`, version: 1}
-  obj.background_transitions = {value: true, category: category, type: `menu`, name: `Background Transitions`, version: 1}
-  obj.random_background_gifs = {value: true, category: category, type: `menu`, name: `Include Gifs`, version: 1}
   obj.random_themes = {value: `dark`, category: category, type: `menu`, name: `Random Themes`, version: 1}
+  obj.color_transitions = {value: true, category: category, type: `checkbox`, name: `Color Transitions`, version: 1}
+  obj.background_transitions = {value: true, category: category, type: `checkbox`, name: `Background Transitions`, version: 1}
+  obj.random_background_gifs = {value: true, category: category, type: `checkbox`, name: `Include Gifs`, version: 1}
 
   category = `media`
   obj.image_icon = {value: `🖼️`, category: category, type: `text_smaller`, name: `View Image Icon`, version: 1}
@@ -61,24 +61,24 @@ App.build_default_settings = () => {
   obj.view_audio_closed = {value: `icon`, category: category, type: `menu`, name: `View Audio (Closed)`, version: 1}
 
   category = `icons`
-  obj.pin_icon = {value: `+`, category: category, version: 1}
-  obj.normal_icon = {value: ``, category: category, version: 1}
-  obj.playing_icon = {value: `🔊`, category: category, version: 1}
-  obj.muted_icon = {value: `🔇`, category: category, version: 1}
-  obj.unloaded_icon = {value: `💤`, category: category, version: 1}
-  obj.close_icon = {value: `x`, category: category, version: 1}
-  obj.open_icon = {value: `🚀`, category: category, version: 1}
-  obj.pick_icon = {value: `🎯`, category: category, version: 1}
+  obj.pin_icon = {value: `+`, category: category, type: `text_smaller`, name: `Pin Icon`, version: 1}
+  obj.normal_icon = {value: ``, category: category, type: `text_smaller`, name: `Normal Icon`, version: 1}
+  obj.playing_icon = {value: `🔊`, category: category, type: `text_smaller`, name: `Playing Icon`, version: 1}
+  obj.muted_icon = {value: `🔇`, category: category, type: `text_smaller`, name: `Muted Icon`, version: 1}
+  obj.unloaded_icon = {value: `💤`, category: category, type: `text_smaller`, name: `Unloaded Icon`, version: 1}
+  obj.close_icon = {value: `x`, category: category, type: `text_smaller`, name: `Close Icon`, version: 1}
+  obj.open_icon = {value: `🚀`, category: category, type: `text_smaller`, name: `Open Icon`, version: 1}
+  obj.pick_icon = {value: `🎯`, category: category, type: `text_smaller`, name: `Pick Icon`, version: 1}
 
   category = `show`
-  obj.show_pinline = {value: `normal`, category: category, version: 2}
-  obj.show_scrollbars = {value: true, category: category, version: 1}
-  obj.show_tooltips = {value: true, category: category, version: 1}
-  obj.show_icons = {value: true, category: category, version: 1}
-  obj.show_scroller = {value: true, category: category, version: 1}
-  obj.show_footer = {value: true, category: category, version: 1}
-  obj.show_filter_history = {value: true, category: category, version: 1}
-  obj.show_feedback = {value: true, category: category, version: 1}
+  obj.show_pinline = {value: `normal`, category: category, type: `menu`, name: `Show Pinline`, version: 2}
+  obj.show_scrollbars = {value: true, category: category, type: `checkbox`, name: `Show Scrollbars`, version: 1}
+  obj.show_tooltips = {value: true, category: category, type: `checkbox`, name: `Show Tooltips`, version: 1}
+  obj.show_icons = {value: true, category: category, type: `checkbox`, name: `Show Icons`, version: 1}
+  obj.show_scroller = {value: true, category: category, type: `checkbox`, name: `Show Scrollers`, version: 1}
+  obj.show_footer = {value: true, category: category, type: `checkbox`, name: `Show Footer`, version: 1}
+  obj.show_filter_history = {value: true, category: category, type: `checkbox`, name: `Show Filter History`, version: 1}
+  obj.show_feedback = {value: true, category: category, type: `checkbox`, name: `Show Feedback`, version: 1}
 
   category = `gestures`
   obj.gestures_enabled = {value: true, category: category, type: `checkbox`, name: `Gestures Enabled`, version: 1}
@@ -176,56 +176,56 @@ App.build_default_settings = () => {
   obj.keyboard_shortcuts = {value: [], category: category, version: 4}
 
   category = `warns`
-  obj.warn_on_close_tabs = {value: `special`, category: category, version: 1}
-  obj.warn_on_unload_tabs = {value: `special`, category: category, version: 1}
-  obj.warn_on_duplicate_tabs = {value: true, category: category, version: 1}
-  obj.warn_on_close_normal_tabs = {value: true, category: category, version: 1}
-  obj.warn_on_close_unloaded_tabs = {value: true, category: category, version: 1}
-  obj.warn_on_close_duplicate_tabs = {value: true, category: category, version: 1}
-  obj.warn_on_close_visible_tabs = {value: true, category: category, version: 1}
-  obj.warn_on_open = {value: true, category: category, version: 1}
-  obj.warn_on_remove_profiles = {value: true, category: category, version: 1}
-  obj.warn_on_bookmark = {value: true, category: category, version: 1}
-  obj.warn_on_color = {value: true, category: category, version: 1}
-  obj.warn_on_pin_tabs = {value: true, category: category, version: 1}
-  obj.warn_on_unpin_tabs = {value: true, category: category, version: 1}
-  obj.warn_on_load_tabs = {value: true, category: category, version: 1}
-  obj.warn_on_mute_tabs = {value: true, category: category, version: 1}
-  obj.warn_on_unmute_tabs = {value: true, category: category, version: 1}
+  obj.warn_on_close_tabs = {value: `special`, category: category, type: `menu`, name: `Warn On Close Tabs`, version: 1}
+  obj.warn_on_unload_tabs = {value: `special`, category: category, type: `menu`, name: `Warn On Unload Tabs`, version: 1}
+  obj.warn_on_close_normal_tabs = {value: true, category: category, type: `checkbox`, name: `Warn On Close Normal`, version: 1}
+  obj.warn_on_close_unloaded_tabs = {value: true, category: category, type: `checkbox`, name: `Warn On Close Unloaded`, version: 1}
+  obj.warn_on_close_duplicate_tabs = {value: true, category: category, type: `checkbox`, name: `Warn On Close Duplicates`, version: 1}
+  obj.warn_on_duplicate_tabs = {value: true, category: category, type: `checkbox`, name: `Warn Duplicate Tabs`, version: 1}
+  obj.warn_on_close_visible_tabs = {value: true, category: category, type: `checkbox`, name: `Warn On Close Visible`, version: 1}
+  obj.warn_on_open = {value: true, category: category, type: `checkbox`, name: `Warn On Open`, version: 1}
+  obj.warn_on_remove_profiles = {value: true, category: category, type: `checkbox`, name: `Warn On Remove Profiles`, version: 1}
+  obj.warn_on_bookmark = {value: true, category: category, type: `checkbox`, name: `Warn On Bookmark`, version: 1}
+  obj.warn_on_color = {value: true, category: category, type: `checkbox`, name: `Warn On Color`, version: 1}
+  obj.warn_on_pin_tabs = {value: true, category: category, type: `checkbox`, name: `Warn On Pin Tabs`, version: 1}
+  obj.warn_on_unpin_tabs = {value: true, category: category, type: `checkbox`, name: `Warn On Unpin Tabs`, version: 1}
+  obj.warn_on_load_tabs = {value: true, category: category, type: `checkbox`, name: `Warn On Load Tabs`, version: 1}
+  obj.warn_on_mute_tabs = {value: true, category: category, type: `checkbox`, name: `Warn On Mute Tabs`, version: 1}
+  obj.warn_on_unmute_tabs = {value: true, category: category, type: `checkbox`, name: `Warn On Unmute Tabs`, version: 1}
 
   category = `colors`
-  obj.color_red = {value: `rgba(172, 59, 59, 0.44)`, category: category, version: 1}
-  obj.color_green = {value: `rgba(46, 104, 46, 0.44)`, category: category, version: 1}
-  obj.color_blue = {value: `rgba(59, 59, 147, 0.44)`, category: category, version: 1}
-  obj.color_yellow = {value: `rgba(128, 128, 41, 0.44)`, category: category, version: 1}
-  obj.color_purple = {value: `rgba(124, 35, 166, 0.44)`, category: category, version: 1}
-  obj.color_orange = {value: `rgba(170, 127, 59, 0.44)`, category: category, version: 1}
-  obj.color_mode = {value: `item`, category: category, version: 1}
+  obj.color_red = {value: `rgba(172, 59, 59, 0.44)`, category: category, type: `color`, name: `Color Red`, version: 1}
+  obj.color_green = {value: `rgba(46, 104, 46, 0.44)`, category: category, type: `color`, name: `Color Green`, version: 1}
+  obj.color_blue = {value: `rgba(59, 59, 147, 0.44)`, category: category, type: `color`, name: `Color Blue`, version: 1}
+  obj.color_yellow = {value: `rgba(128, 128, 41, 0.44)`, category: category, type: `color`, name: `Color Yellow`, version: 1}
+  obj.color_purple = {value: `rgba(124, 35, 166, 0.44)`, category: category, type: `color`, name: `Color Purple`, version: 1}
+  obj.color_orange = {value: `rgba(170, 127, 59, 0.44)`, category: category, type: `color`, name: `Color Orange`, version: 1}
+  obj.color_mode = {value: `item`, category: category, type: `menu`, name: `Color Mode`, version: 1}
 
   category = `more`
-  obj.single_new_tab = {value: true, category: category, version: 1}
-  obj.close_on_focus = {value: true, category: category, version: 1}
-  obj.close_on_open = {value: true, category: category, version: 1}
-  obj.case_insensitive = {value: true, category: category, version: 1}
-  obj.lock_drag = {value: false, category: category, version: 1}
-  obj.mute_click = {value: true, category: category, version: 1}
-  obj.double_click_new = {value: true, category: category, version: 1}
-  obj.rounded_corners = {value: true, category: category, version: 1}
-  obj.hover_effect = {value: `glow`, category: category, version: 1}
-  obj.direct_settings = {value: true, category: category, version: 1}
-  obj.debug_mode = {value: false, category: category, version: 1}
-  obj.selected_effect = {value: `background`, category: category, version: 1}
-  obj.double_click_action = {value: false, category: category, version: 1}
-  obj.smooth_scrolling = {value: true, category: category, version: 1}
-  obj.sort_commands = {value: true, category: category, version: 1}
-  obj.all_bookmarks = {value: true, category: category, version: 1}
-  obj.reuse_filter = {value: true, category: category, version: 1}
-  obj.max_items = {value: 500, category: category, version: 1}
-  obj.deep_max_items = {value: 5000, category: category, version: 1}
-  obj.history_max_months = {value: 18, category: category, version: 1}
-  obj.deep_history_max_months = {value: 54, category: category, version: 1}
-  obj.filter_delay = {value: 50, category: category, version: 1}
-  obj.filter_delay_search = {value: 225, category: category, version: 1}
+  obj.hover_effect = {value: `glow`, category: category, type: `menu`, name: ``, version: 1}
+  obj.selected_effect = {value: `background`, category: category, type: `menu`, name: ``, version: 1}
+  obj.single_new_tab = {value: true, category: category, type: `checkbox`, name: ``, version: 1}
+  obj.close_on_focus = {value: true, category: category, type: `checkbox`, name: ``, version: 1}
+  obj.close_on_open = {value: true, category: category, type: `checkbox`, name: ``, version: 1}
+  obj.case_insensitive = {value: true, category: category, type: `checkbox`, name: ``, version: 1}
+  obj.lock_drag = {value: false, category: category, type: `checkbox`, name: ``, version: 1}
+  obj.mute_click = {value: true, category: category, type: `checkbox`, name: ``, version: 1}
+  obj.double_click_new = {value: true, category: category, type: `checkbox`, name: ``, version: 1}
+  obj.rounded_corners = {value: true, category: category, type: `checkbox`, name: ``, version: 1}
+  obj.direct_settings = {value: true, category: category, type: `checkbox`, name: ``, version: 1}
+  obj.debug_mode = {value: false, category: category, type: `checkbox`, name: ``, version: 1}
+  obj.double_click_action = {value: false, category: category, type: `checkbox`, name: ``, version: 1}
+  obj.smooth_scrolling = {value: true, category: category, type: `checkbox`, name: ``, version: 1}
+  obj.sort_commands = {value: true, category: category, type: `checkbox`, name: ``, version: 1}
+  obj.all_bookmarks = {value: true, category: category, type: `checkbox`, name: ``, version: 1}
+  obj.reuse_filter = {value: true, category: category, type: `checkbox`, name: ``, version: 1}
+  obj.max_items = {value: 500, category: category, type: `number`, name: ``, version: 1}
+  obj.deep_max_items = {value: 5000, category: category, type: `number`, name: ``, version: 1}
+  obj.history_max_months = {value: 18, category: category, type: `number`, name: ``, version: 1}
+  obj.deep_history_max_months = {value: 54, category: category, type: `number`, name: ``, version: 1}
+  obj.filter_delay = {value: 50, category: category, type: `number`, name: ``, version: 1}
+  obj.filter_delay_search = {value: 225, category: category, type: `number`, name: ``, version: 1}
 
   App.default_settings = obj
 }
@@ -246,9 +246,7 @@ App.get_settings_label = (setting) => {
   return label
 }
 
-App.settings_setup_labels = (container) => {
-  let items = DOM.els(`.settings_label`, container)
-
+App.settings_setup_labels = (category) => {
   function proc (item, btns) {
     let bc = DOM.create(`div`, `flex_row_center gap_1`)
     let cls = `action underline`
@@ -260,7 +258,6 @@ App.settings_setup_labels = (container) => {
       let a = DOM.create(`div`, cls)
       a.id = btn[0]
       a.textContent = btn[1]
-      a.title = btn[2]
       c.append(d)
       c.append(a)
       bc.append(c)
@@ -270,82 +267,95 @@ App.settings_setup_labels = (container) => {
     bc.prepend(item)
   }
 
-  for (let item of items) {
-    let btns = []
+  for (let key in App.default_settings) {
+    let cmd = App.default_settings[key]
 
-    if (item.dataset.random) {
-      btns.push([`settings_${item.dataset.id}_random`, App.random_text, item.dataset.rand])
-    }
+    if ((cmd.category === category) && cmd.btns) {
+      let btns = []
 
-    if (item.dataset.view) {
-      btns.push([`settings_${item.dataset.id}_view`, `View`, item.dataset.view])
-    }
+      if (cmd.btns.includes(`random`)) {
+        btns.push([`settings_${key}_random`, App.random_text])
+      }
 
-    if (item.dataset.next) {
-      btns.push([`settings_${item.dataset.id}_next`, `Next`, item.dataset.next])
-    }
+      if (cmd.btns.includes(`view`)) {
+        btns.push([`settings_${key}_view`, `View`])
+      }
 
-    if (item.dataset.shuffle) {
-      btns.push([`settings_${item.dataset.id}_shuffle`, `Shuffle`, item.dataset.shuffle])
-    }
+      if (cmd.btns.includes(`next`)) {
+        btns.push([`settings_${key}_next`, `Next`])
+      }
 
-    if (btns.length) {
-      proc(item, btns)
+      if (cmd.btns.includes(`shuffle`)) {
+        btns.push([`settings_${key}_shuffle`, `Shuffle`])
+      }
+
+      if (btns.length) {
+        proc(DOM.el(`#settings_label_${key}`), btns)
+      }
     }
   }
 }
 
-App.settings_setup_checkboxes = (container) => {
-  let items = DOM.els(`.settings_checkbox`, container)
+App.settings_setup_checkboxes = (category) => {
+  for (let key in App.default_settings) {
+    let cmd = App.default_settings[key]
 
-  for (let item of items) {
-    let setting = item.dataset.setting
-    let el = DOM.el(`#settings_${setting}`)
-    el.checked = App.get_setting(setting)
+    if ((cmd.category === category) && cmd.type === `checkbox`) {
+      let el = DOM.el(`#settings_${key}`)
+      el.checked = App.get_setting(key)
 
-    DOM.ev(el, `change`, () => {
-      App.set_setting(setting, el.checked)
-    })
+      DOM.ev(el, `change`, () => {
+        App.set_setting(key, el.checked)
+      })
 
-    DOM.evs(App.get_settings_label(setting), [`click`, `contextmenu`], (e) => {
-      App.settings_label_menu(e,
-      [
-        {
-          name: `Reset`, action: () => {
-            let force = App.check_setting_default(setting)
+      DOM.evs(App.get_settings_label(key), [`click`, `contextmenu`], (e) => {
+        App.settings_label_menu(e,
+        [
+          {
+            name: `Reset`, action: () => {
+              let force = App.check_setting_default(key)
 
-            App.show_confirm(`Reset setting?`, () => {
-              App.set_default_setting(setting)
-              el.checked = App.get_setting(setting)
-            }, undefined, force)
-          }
-        },
-      ])
-    })
+              App.show_confirm(`Reset setting?`, () => {
+                App.set_default_setting(key)
+                el.checked = App.get_setting(key)
+              }, undefined, force)
+            }
+          },
+        ])
+      })
+    }
   }
 }
 
-App.settings_setup_text = (container) => {
-  let els = DOM.els(`.settings_text`, container)
+App.settings_setup_text = (category) => {
+  for (let key in App.default_settings) {
+    let cmd = App.default_settings[key]
 
-  for (let el of els) {
-    let setting = el.dataset.setting
-    let value = App.get_setting(setting)
+    if (cmd.category !== category) {
+      continue
+    }
+
+    if (cmd.type !== `text` && cmd.type !== `text_smaller`) {
+      continue
+    }
+
+    let el = DOM.el(`#settings_${key}`)
+    let value = App.get_setting(key)
     el.value = value
 
     DOM.ev(el, `change`, () => {
       App.scroll_to_top(el)
-      App.do_save_text_setting(setting, el)
+      App.do_save_text_setting(key, el)
     })
 
     let menu = [
       {
         name: `Reset`,  action: () => {
-          let force = App.check_setting_default(setting)
+          let force = App.check_setting_default(key)
 
           App.show_confirm(`Reset setting?`, () => {
-            App.set_default_setting(setting)
-            el.value = App.get_setting(setting)
+            App.set_default_setting(key)
+            el.value = App.get_setting(key)
             App.scroll_to_top(el)
           }, undefined, force)
         },
@@ -358,7 +368,7 @@ App.settings_setup_text = (container) => {
 
           App.show_confirm(`Clear setting?`, () => {
             el.value = ``
-            App.set_setting(setting, ``)
+            App.set_setting(key, ``)
             el.focus()
           })
         },
@@ -374,18 +384,26 @@ App.settings_setup_text = (container) => {
       },
     ]
 
-    DOM.evs(App.get_settings_label(setting), [`click`, `contextmenu`], (e) => {
+    DOM.evs(App.get_settings_label(key), [`click`, `contextmenu`], (e) => {
       App.settings_label_menu(e, menu)
     })
   }
 }
 
-App.settings_setup_number = (container) => {
-  let els = DOM.els(`.settings_number`, container)
+App.settings_setup_number = (category) => {
+  for (let key in App.default_settings) {
+    let cmd = App.default_settings[key]
 
-  for (let el of els) {
-    let setting = el.dataset.setting
-    let value = App.get_setting(setting)
+    if (cmd.category !== category) {
+      continue
+    }
+
+    if (cmd.type !== `number`) {
+      continue
+    }
+
+    let el = DOM.el(`#settings_${key}`)
+    let value = App.get_setting(key)
     el.value = value
 
     DOM.ev(el, `change`, () => {
@@ -404,17 +422,17 @@ App.settings_setup_number = (container) => {
         return
       }
 
-      App.set_setting(setting, value)
+      App.set_setting(key, value)
     })
 
     let menu = [
       {
         name: `Reset`,  action: () => {
-          let force = App.check_setting_default(setting)
+          let force = App.check_setting_default(key)
 
           App.show_confirm(`Reset setting?`, () => {
-            App.set_default_setting(setting)
-            let value = App.get_setting(setting)
+            App.set_default_setting(key)
+            let value = App.get_setting(key)
             el.value = value
           }, undefined, force)
         },
@@ -430,46 +448,52 @@ App.settings_setup_number = (container) => {
       },
     ]
 
-    DOM.evs(App.get_settings_label(setting), [`click`, `contextmenu`], (e) => {
+    DOM.evs(App.get_settings_label(key), [`click`, `contextmenu`], (e) => {
       App.settings_label_menu(e, menu)
     })
   }
 }
 
-App.add_settings_addlist = (container) => {
-  let els = DOM.els(`.settings_addlist`, container)
-  let cls = `action underline`
+App.add_settings_addlist = (category) => {
+  for (let key in App.default_settings) {
+    let cmd = App.default_settings[key]
 
-  for (let el of els) {
-    let setting = el.dataset.setting
-    let add = DOM.create(`div`, cls, `settings_${setting}_add`)
-    add.textContent = `Add`
-    el.append(add)
-    let list = DOM.create(`div`, cls, `settings_${setting}_list`)
-    list.textContent = `List`
-    el.append(list)
-    let edit = DOM.create(`div`, cls, `settings_${setting}_edit`)
-    edit.textContent = `Edit`
-    el.append(edit)
-    let clear = DOM.create(`div`, cls, `settings_${setting}_clear`)
-    clear.textContent = `Clear`
-    el.append(clear)
+    if (cmd.category === category) {
+      if (cmd.type !== `list`) {
+        continue
+      }
 
-    let menu = [
-      {
-        name: `Reset`,  action: () => {
-          let force = App.check_setting_default(setting)
+      let el = DOM.el(`#settings_${key}`)
+      let cls = `action underline`
+      let add = DOM.create(`div`, cls, `settings_${key}_add`)
+      add.textContent = `Add`
+      el.append(add)
+      let list = DOM.create(`div`, cls, `settings_${key}_list`)
+      list.textContent = `List`
+      el.append(list)
+      let edit = DOM.create(`div`, cls, `settings_${key}_edit`)
+      edit.textContent = `Edit`
+      el.append(edit)
+      let clear = DOM.create(`div`, cls, `settings_${key}_clear`)
+      clear.textContent = `Clear`
+      el.append(clear)
 
-          App.show_confirm(`Reset setting?`, () => {
-            App.set_default_setting(setting)
-          }, undefined, force)
+      let menu = [
+        {
+          name: `Reset`,  action: () => {
+            let force = App.check_setting_default(key)
+
+            App.show_confirm(`Reset setting?`, () => {
+              App.set_default_setting(key)
+            }, undefined, force)
+          },
         },
-      },
-    ]
+      ]
 
-    DOM.evs(App.get_settings_label(setting), [`click`, `contextmenu`], (e) => {
-      App.settings_label_menu(e, menu)
-    })
+      DOM.evs(App.get_settings_label(key), [`click`, `contextmenu`], (e) => {
+        App.settings_label_menu(e, menu)
+      })
+    }
   }
 }
 
@@ -568,12 +592,13 @@ App.setup_settings = () => {
   }
 
   function prepare (category) {
+    App.fill_settings(category)
     let container = DOM.el(`#settings_${category}_container`)
-    App.settings_setup_labels(container)
-    App.settings_setup_checkboxes(container)
-    App.settings_setup_text(container)
-    App.settings_setup_number(container)
-    App.add_settings_addlist(container)
+    App.settings_setup_checkboxes(category)
+    App.settings_setup_text(category)
+    App.settings_setup_number(category)
+    App.add_settings_addlist(category)
+    App.settings_setup_labels(category)
     App.add_settings_switchers(category)
     App.add_settings_filter(category)
     container.classList.add(`filter_container`)
@@ -589,7 +614,6 @@ App.setup_settings = () => {
   }
 
   App.create_window(Object.assign({}, common, {id: `settings_general`, setup: () => {
-    App.fill_settings(`general`)
     prepare(`general`)
 
     App.settings_make_menu(`text_mode`, [
@@ -675,6 +699,7 @@ App.setup_settings = () => {
   }}))
 
   App.create_window(Object.assign({}, common, {id: `settings_colors`, setup: () => {
+    prepare(`colors`)
     let container = DOM.el(`#settings_colors_container`)
 
     for (let color of App.colors) {
@@ -690,7 +715,6 @@ App.setup_settings = () => {
       App.start_color_picker(`color_${color}`, true)
     }
 
-    prepare(`colors`)
 
     App.settings_make_menu(`color_mode`, [
       {text: `None`, value: `none`},
@@ -743,7 +767,6 @@ App.setup_settings = () => {
   }}))
 
   App.create_window(Object.assign({}, common, {id: `settings_gestures`, setup: () => {
-    App.fill_settings(`gestures`)
     prepare(`gestures`)
 
     DOM.ev(DOM.el(`#settings_gestures_enabled`), `change`, () => {
@@ -771,7 +794,6 @@ App.setup_settings = () => {
   }}))
 
   App.create_window(Object.assign({}, common, {id: `settings_auxclick`, setup: () => {
-    App.fill_settings(`auxclick`)
     prepare(`auxclick`)
     let opts = App.settings_commands()
 
@@ -785,7 +807,6 @@ App.setup_settings = () => {
   }}))
 
   App.create_window(Object.assign({}, common, {id: `settings_menus`, setup: () => {
-    App.fill_settings(`menus`)
     prepare(`menus`)
 
     for (let key in App.default_settings) {
@@ -1404,6 +1425,7 @@ App.fill_settings = (category) => {
       let el = DOM.create(`div`, `settings_item`)
       el.title = `Custom menu (${key})`
       let label = DOM.create(`div`, `settings_label`)
+      label.id = `settings_label_${key}`
       label.textContent = cmd.name
       el.append(label)
       let widget
@@ -1435,7 +1457,6 @@ App.fill_settings = (category) => {
       }
 
       widget.id = `settings_${key}`
-      widget.dataset.setting = key
       el.append(widget)
       c.append(el)
     }

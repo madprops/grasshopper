@@ -192,204 +192,13 @@
 
     <template id="template_settings_warns">
       <div id="settings_warns_container" class="settings_container">
-        <div class="settings_item" title="Warn when closing tabs">
-          <div class="settings_label">Warn On<br>Close Tabs</div>
-          <div id="settings_warn_on_close_tabs" class="settings_menu button" data-setting="warn_on_close_tabs"></div>
-        </div>
-
-        <div class="settings_item" title="Warn when unloading tabs">
-          <div class="settings_label">Warn On<br>Unload Tabs</div>
-          <div id="settings_warn_on_unload_tabs" class="settings_menu button" data-setting="warn_on_unload_tabs"></div>
-        </div>
-
-        <div class="settings_item" title="Warn when duplicating tabs">
-          <div class="settings_label">Warn On<br>Duplicate Tabs</div>
-          <input type="checkbox" class="settings_checkbox" id="settings_warn_on_duplicate_tabs" data-setting="warn_on_duplicate_tabs">
-        </div>
-
-        <div class="settings_item" title="Warn when pinning tabs">
-          <div class="settings_label">Warn On<br>Pin Tabs</div>
-          <input type="checkbox" class="settings_checkbox" id="settings_warn_on_pin_tabs" data-setting="warn_on_pin_tabs">
-        </div>
-
-        <div class="settings_item" title="Warn when unpinning tabs">
-          <div class="settings_label">Warn On<br>Unpin Tabs</div>
-          <input type="checkbox" class="settings_checkbox" id="settings_warn_on_unpin_tabs" data-setting="warn_on_unpin_tabs">
-        </div>
-
-        <div class="settings_item" title="Warn when loading unloaded tabs">
-          <div class="settings_label">Warn On<br>Load Tabs</div>
-          <input type="checkbox" class="settings_checkbox" id="settings_warn_on_load_tabs" data-setting="warn_on_load_tabs">
-        </div>
-
-        <div class="settings_item" title="Warn when muting tabs">
-          <div class="settings_label">Warn On<br>Mute Tabs</div>
-          <input type="checkbox" class="settings_checkbox" id="settings_warn_on_mute_tabs" data-setting="warn_on_mute_tabs">
-        </div>
-
-        <div class="settings_item" title="Warn when unmuting tabs">
-          <div class="settings_label">Warn On<br>Unmute Tabs</div>
-          <input type="checkbox" class="settings_checkbox" id="settings_warn_on_unmute_tabs" data-setting="warn_on_unmute_tabs">
-        </div>
-
-        <div class="settings_item" title="Warn when removing profiles">
-          <div class="settings_label">Warn On<br>Remove Profiles</div>
-          <input type="checkbox" class="settings_checkbox" id="settings_warn_on_remove_profiles" data-setting="warn_on_remove_profiles">
-        </div>
-
-        <div class="settings_item" title="Warn when closing normal tabs">
-          <div class="settings_label">Warn On<br>Close Normal Tabs</div>
-          <input type="checkbox" class="settings_checkbox" id="settings_warn_on_close_normal_tabs" data-setting="warn_on_close_normal_tabs">
-        </div>
-
-        <div class="settings_item" title="Warn when closing unloaded tabs">
-          <div class="settings_label">Warn On<br>Close Unloaded Tabs</div>
-          <input type="checkbox" class="settings_checkbox" id="settings_warn_on_close_unloaded_tabs" data-setting="warn_on_close_unloaded_tabs">
-        </div>
-
-        <div class="settings_item" title="Warn when closing duplicate tabs">
-          <div class="settings_label">Warn On<br>Close Duplicate Tabs</div>
-          <input type="checkbox" class="settings_checkbox" id="settings_warn_on_close_duplicate_tabs" data-setting="warn_on_close_duplicate_tabs">
-        </div>
-
-        <div class="settings_item" title="Warn when closing visible tabs">
-          <div class="settings_label">Warn On<br>Close Visible Tabs</div>
-          <input type="checkbox" class="settings_checkbox" id="settings_warn_on_close_visible_tabs" data-setting="warn_on_close_visible_tabs">
-        </div>
-
-        <div class="settings_item" title="Warn when bookmarking multiple items">
-          <div class="settings_label">Warn On<br>Bookmark Items</div>
-          <input type="checkbox" class="settings_checkbox" id="settings_warn_on_bookmark" data-setting="warn_on_bookmark">
-        </div>
-
-        <div class="settings_item" title="Warn when opening multiple items">
-          <div class="settings_label">Warn On<br>Open Items</div>
-          <input type="checkbox" class="settings_checkbox" id="settings_warn_on_open" data-setting="warn_on_open">
-        </div>
-
-        <div class="settings_item" title="Warn when changing the color of items">
-          <div class="settings_label">Warn On<br>Color</div>
-          <input type="checkbox" class="settings_checkbox" id="settings_warn_on_color" data-setting="warn_on_color">
-        </div>
+        <div id="setting_warns" class="settings_subcontainer"></div>
       </div>
     </template>
 
     <template id="template_settings_more">
       <div id="settings_more_container" class="settings_container">
-        <div class="settings_item" title="What effect to apply on selected items">
-          <div class="settings_label">Selected Effect</div>
-          <div id="settings_selected_effect" class="settings_menu button" data-setting="selected_effect"></div>
-        </div>
-
-        <div class="settings_item" title="What effect to apply on item hover">
-          <div class="settings_label">Hover Effect</div>
-          <div id="settings_hover_effect" class="settings_menu button" data-setting="hover_effect"></div>
-        </div>
-
-        <div class="settings_item" title="Require double click to focus or open items instead of single click">
-          <div class="settings_label">Double Click<br>To Focus/Open</div>
-          <input type="checkbox" class="settings_checkbox" id="settings_double_click_action" data-setting="double_click_action">
-        </div>
-
-        <div class="settings_item" title="Re-ordering tabs through dragging requires holding Ctrl to work. This is to avoid accidental re-ordering">
-          <div class="settings_label">Require Ctrl<br>On Re-Ordering</div>
-          <input type="checkbox" class="settings_checkbox" id="settings_lock_drag" data-setting="lock_drag">
-        </div>
-
-        <div class="settings_item" title="Enable smooth scrolling in some cases">
-          <div class="settings_label">Smooth Scrolling</div>
-          <input type="checkbox" class="settings_checkbox" id="settings_smooth_scrolling" data-setting="smooth_scrolling">
-        </div>
-
-        <div class="settings_item" title="Open a new tab when double clicking empty space at the bottom">
-          <div class="settings_label">Double Click New</div>
-          <input type="checkbox" class="settings_checkbox" id="settings_double_click_new" data-setting="double_click_new">
-        </div>
-
-        <div class="settings_item" title="Allow muting and unmuting by clicking the icons">
-          <div class="settings_label">Mute Click</div>
-          <input type="checkbox" class="settings_checkbox" id="settings_mute_click" data-setting="mute_click">
-        </div>
-
-        <div class="settings_item" title="Close the popup when a tab is focused">
-          <div class="settings_label">Close On Focus</div>
-          <input type="checkbox" class="settings_checkbox" id="settings_close_on_focus" data-setting="close_on_focus">
-        </div>
-
-        <div class="settings_item" title="Close the popup when an item is opened">
-          <div class="settings_label">Close On Open</div>
-          <input type="checkbox" class="settings_checkbox" id="settings_close_on_open" data-setting="close_on_open">
-        </div>
-
-        <div class="settings_item" title="Don't allow more than a single new tab to be open">
-          <div class="settings_label">Single New Tab</div>
-          <input type="checkbox" class="settings_checkbox" id="settings_single_new_tab" data-setting="single_new_tab">
-        </div>
-
-        <div class="settings_item" title="Make the filter case insensitive">
-          <div class="settings_label">Case Insensitive</div>
-          <input type="checkbox" class="settings_checkbox" id="settings_case_insensitive" data-setting="case_insensitive">
-        </div>
-
-        <div class="settings_item" title="Enable rounded corners on buttons and other elements">
-          <div class="settings_label">Rounded Corners</div>
-          <input type="checkbox" class="settings_checkbox" id="settings_rounded_corners" data-setting="rounded_corners" data-action="theme">
-        </div>
-
-        <div class="settings_item" title="Enter settings directly from the main menu">
-          <div class="settings_label">Direct Settings</div>
-          <input type="checkbox" class="settings_checkbox" id="settings_direct_settings" data-setting="direct_settings">
-        </div>
-
-        <div class="settings_item" title="Put recent commands at the top of the palette">
-          <div class="settings_label">Sort Commands</div>
-          <input type="checkbox" class="settings_checkbox" id="settings_sort_commands" data-setting="sort_commands">
-        </div>
-
-        <div class="settings_item" title="Show other bookmarks apart from the bookmarks folder">
-          <div class="settings_label">All Bookmarks</div>
-          <input type="checkbox" class="settings_checkbox" id="settings_all_bookmarks" data-setting="all_bookmarks">
-        </div>
-
-        <div class="settings_item" title="Reuse filter sometimes when cycling and changing modes">
-          <div class="settings_label">Reuse Filter</div>
-          <input type="checkbox" class="settings_checkbox" id="settings_reuse_filter" data-setting="reuse_filter">
-        </div>
-
-        <div class="settings_item" title="Print log messages in the browser console, and show extra information">
-          <div class="settings_label">Debug Mode</div>
-          <input type="checkbox" class="settings_checkbox" id="settings_debug_mode" data-setting="debug_mode">
-        </div>
-
-        <div class="settings_item" title="Max number of list items when showing a search mode">
-          <div class="settings_label">Max Items</div>
-          <input type="number" min="1" class="text settings_number" id="settings_max_items" data-setting="max_items">
-        </div>
-
-        <div class="settings_item" title="Max number of list items when showing a search mode in deep mode">
-          <div class="settings_label">Deep Max Items</div>
-          <input type="number" min="1" class="text settings_number" id="settings_deep_max_items" data-setting="deep_max_items">
-        </div>
-
-        <div class="settings_item" title="How deep to go in history to search for results">
-          <div class="settings_label">History<br>Max Months</div>
-          <input type="number" min="1" class="text settings_number" id="settings_history_max_months" data-setting="history_max_months">
-        </div>
-
-        <div class="settings_item" title="How deep to go in history to search for results in deep mode">
-          <div class="settings_label">Deep History<br>Max Months</div>
-          <input type="number" min="1" class="text settings_number" id="settings_deep_history_max_months" data-setting="deep_history_max_months">
-        </div>
-
-        <div class="settings_item" title="Filter delay for modes that perform a normal filter, like tabs and closed">
-          <div class="settings_label">Filter Delay<br>Normal Modes</div>
-          <input type="number" min="1" class="text settings_number" id="settings_filter_delay" data-setting="filter_delay" data-action="filter_debouncers">
-        </div>
-
-        <div class="settings_item" title="Filter delay for modes where a query is performed, like history and bookmarks">
-          <div class="settings_label">Filter Delay<br>Search Modes</div>
-          <input type="number" min="1" class="text settings_number" id="settings_filter_delay_search" data-setting="filter_delay_search" data-action="filter_debouncers">
-        </div>
+        <div id="setting_more" class="settings_subcontainer"></div>
       </div>
     </template>
 
@@ -397,16 +206,6 @@
       <div id="settings_gestures_container" class="settings_container">
         <div class="settings_info">
           You perform gestures by holding the middle mouse button, moving in a direction, and releasing the button
-        </div>
-
-        <div class="settings_item" title="Gestures are enabled. You perform gestures with the middle mouse button">
-          <div class="settings_label">Gestures Enabled</div>
-          <input type="checkbox" class="settings_checkbox" id="settings_gestures_enabled" data-setting="gestures_enabled">
-        </div>
-
-        <div class="settings_item" title="Less sensitive means gestures require more movement">
-          <div class="settings_label">Gestures Sensitivity</div>
-          <div id="settings_gestures_threshold" class="settings_menu button" data-setting="gestures_threshold"></div>
         </div>
 
         <div id="setting_gestures" class="settings_subcontainer"></div>
@@ -427,11 +226,6 @@
 
     <template id="template_settings_keyboard">
       <div id="settings_keyboard_container" class="settings_container">
-        <div class="settings_item" title="Custom keyboard shortcuts">
-          <div class="settings_label" data-id="keyboard_shortcuts">Keyboard Shortcuts</div>
-          <div id="settings_keyboard_shortcuts" class="settings_addlist" data-setting="keyboard_shortcuts"></div>
-        </div>
-
         <img src="img/keyboard.jpg" class="settings_image" title="Cewik typing on his keyboard">
       </div>
     </template>
@@ -444,89 +238,13 @@
 
     <template id="template_settings_icons">
       <div id="settings_icons_container" class="settings_container">
-        <div class="settings_item" title="Icon to show on pinned tabs">
-          <div class="settings_label">Pin Icon</div>
-          <input type="text" autocomplete="off" spellcheck="false" id="settings_pin_icon" class="settings_text_smaller" data-setting="pin_icon" placeholder="☺">
-        </div>
-
-        <div class="settings_item" title="Icon to show on normal tabs">
-          <div class="settings_label">Normal Icon</div>
-          <input type="text" autocomplete="off" spellcheck="false" id="settings_normal_icon" class="settings_text_smaller" data-setting="normal_icon" placeholder="☺">
-        </div>
-
-        <div class="settings_item" title="Icon to show on playing tabs">
-          <div class="settings_label">Playing Icon</div>
-          <input type="text" autocomplete="off" spellcheck="false" id="settings_playing_icon" class="settings_text_smaller" data-setting="playing_icon" placeholder="☺">
-        </div>
-
-        <div class="settings_item" title="Icon to show on muted tabs">
-          <div class="settings_label">Muted Icon</div>
-          <input type="text" autocomplete="off" spellcheck="false" id="settings_muted_icon" class="settings_text_smaller" data-setting="muted_icon" placeholder="☺">
-        </div>
-
-        <div class="settings_item" title="Icon to show on unloaded tabs">
-          <div class="settings_label">Unloaded Icon</div>
-          <input type="text" autocomplete="off" spellcheck="false" id="settings_unloaded_icon" class="settings_text_smaller" data-setting="unloaded_icon" placeholder="☺">
-        </div>
-
-        <div class="settings_item" title="Icon to show on close operations">
-          <div class="settings_label">Close Icon</div>
-          <input type="text" autocomplete="off" spellcheck="false" id="settings_close_icon" class="settings_text_smaller" data-setting="close_icon" placeholder="☺">
-        </div>
-
-        <div class="settings_item" title="Icon to show on open operations">
-          <div class="settings_label">Open Icon</div>
-          <input type="text" autocomplete="off" spellcheck="false" id="settings_open_icon" class="settings_text_smaller" data-setting="open_icon" placeholder="☺">
-        </div>
-
-        <div class="settings_item" title="Icon to show on the pick button">
-          <div class="settings_label">Pick Icon</div>
-          <input type="text" autocomplete="off" spellcheck="false" id="settings_pick_icon" class="settings_text_smaller" data-setting="pick_icon" placeholder="☺">
-        </div>
+        <div id="setting_icons" class="settings_subcontainer"></div>
       </div>
     </template>
 
     <template id="template_settings_show">
       <div id="settings_show_container" class="settings_container">
-        <div class="settings_item" title="Show a line between pinned and normal tabs">
-          <div class="settings_label">Show Pinline</div>
-          <div id="settings_show_pinline" class="settings_menu button" data-setting="show_pinline"></div>
-        </div>
-
-        <div class="settings_item" title="A tooltip appears on item hover with some information">
-          <div class="settings_label">Show Tooltips</div>
-          <input type="checkbox" class="settings_checkbox" id="settings_show_tooltips" data-setting="show_tooltips">
-        </div>
-
-        <div class="settings_item" title="Show the button to scroll to the top when clicked">
-          <div class="settings_label">Show Scroller</div>
-          <input type="checkbox" class="settings_checkbox" id="settings_show_scroller" data-setting="show_scroller">
-        </div>
-
-        <div class="settings_item" title="Show the footer at the bottom">
-          <div class="settings_label">Show Footer</div>
-          <input type="checkbox" class="settings_checkbox" id="settings_show_footer" data-setting="show_footer">
-        </div>
-
-        <div class="settings_item" title="Show scrollbars instead of hiding them">
-          <div class="settings_label">Show<br>Scrollbars</div>
-          <input type="checkbox" class="settings_checkbox" id="settings_show_scrollbars" data-setting="show_scrollbars" data-action="theme">
-        </div>
-
-        <div class="settings_item" title="Show item icons">
-          <div class="settings_label">Show Icons</div>
-          <input type="checkbox" class="settings_checkbox" id="settings_show_icons" data-setting="show_icons">
-        </div>
-
-        <div class="settings_item" title="Show filter history when right clicking the filter">
-          <div class="settings_label">Show<br>Filter History</div>
-          <input type="checkbox" class="settings_checkbox" id="settings_show_filter_history" data-setting="show_filter_history">
-        </div>
-
-        <div class="settings_item" title="Show feedback messages after certain actions">
-          <div class="settings_label">Show Feedback</div>
-          <input type="checkbox" class="settings_checkbox" id="settings_show_feedback" data-setting="show_feedback">
-        </div>
+        <div id="setting_show" class="settings_subcontainer"></div>
       </div>
     </template>
 
