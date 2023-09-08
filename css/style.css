@@ -464,6 +464,10 @@ svg {
   justify-content: center;
 }
 
+.settings_container {
+  margin-bottom: 3rem;
+}
+
 .settings_button {
   min-width: 10rem;
 }

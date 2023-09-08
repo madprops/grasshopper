@@ -29,12 +29,12 @@ App.build_default_settings = () => {
   ], category: category, type: `list`, name: `Custom Filters`, version: 3}
 
   category = `theme`
-  obj.background_color = {value: App.dark_theme.background, category: category, type: `color`, name: `Background Color`, btns: [`random`], version: 1}
-  obj.text_color = {value: App.dark_theme.text, category: category, type: `color`, name: `Text Color`, btns: [`random`], version: 1}
-  obj.background_image = {value: `waves.jpg`, category: category, type: `text`, name: `Background Image`, btns: [`random`], version: 1}
+  obj.background_color = {value: App.dark_theme.background, category: category, type: `color`, name: `Background Color`, action: `theme`, btns: [`random`], version: 1}
+  obj.text_color = {value: App.dark_theme.text, category: category, type: `color`, name: `Text Color`, action: `theme`, btns: [`random`], version: 1}
+  obj.background_image = {value: `waves.jpg`, category: category, type: `text`, name: `Background Image`, action: `theme`, btns: [`random`], version: 1}
   obj.background_pool = {value: App.backgrounds, category: category, type: `list`, name: `Pool`, btns: [`view`, `next`, `shuffle`], version: 3}
-  obj.background_effect = {value: `none`, category: category, type: `menu`, name: `Background Effect`, version: 1}
-  obj.background_tiles = {value: `none`, category: category, type: `menu`, name: `Background Tiles`, version: 1}
+  obj.background_effect = {value: `none`, category: category, type: `menu`, action: `theme`, name: `Background Effect`, version: 1}
+  obj.background_tiles = {value: `none`, category: category, type: `menu`, action: `theme`, name: `Background Tiles`, version: 1}
   obj.auto_theme = {value: `never`, category: category, type: `menu`, name: `Auto Theme`, version: 3}
   obj.auto_background = {value: `never`, category: category, type: `menu`, name: `Auto Background`, version: 3}
   obj.auto_background_mode = {value: `pool`, category: category, type: `menu`, name: `Auto Background Mode`, version: 1}
