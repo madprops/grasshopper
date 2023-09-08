@@ -637,21 +637,6 @@ App.do_filter_2 = (mode) => {
       show = true
     }
 
-    if (!show) {
-      if (item.dataset.alias) {
-        let aliases = item.dataset.alias.split(`;`)
-
-        for (let alias of aliases) {
-          let text = App.only_chars(alias).toLowerCase()
-
-          if (text.includes(value)) {
-            show = true
-            break
-          }
-        }
-      }
-    }
-
     if (show) {
       item.classList.remove(`hidden`)
     }
