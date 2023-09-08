@@ -272,25 +272,6 @@ App.setup_commands = () => {
 
     {name: App.separator_string},
 
-    {name: `Filter Domain`, cmd: `filter_domain`, mode: `items`, action: (args) => {
-      App.filter_domain(args.item)
-    }, info: `Filter by domain`},
-
-    {name: `Filter Color`, cmd: `filter_color`, mode: `items`, color: true, action: (args) => {
-      App.filter_color(args.mode, args.item.color)
-    }, info: `Filter by color`},
-
-    {name: `Filter Playing`, cmd: `filter_playing`, mode: `tabs`, action: (args) => {
-      App.set_filter_mode(args.mode, `playing`)
-    }, info: `Filter by playing`},
-
-    {name: `Filter Edited`, cmd: `filter_edited`, mode: `items`, action: (args) => {
-      App.set_filter_mode(args.mode, `edited`)
-    }, info: `Filter by edited`},
-
-    ...media_filters,
-    ...color_filters,
-
     {name: `Filter History`, cmd: `filter_history`, mode: `items`, action: (args) => {
       App.show_filter_history(undefined, args.mode)
     }, info: `Show the filter history`},
@@ -322,6 +303,27 @@ App.setup_commands = () => {
     }, info: `Add notes to a profile`},
 
     ...color_changers,
+
+    {name: App.separator_string},
+
+    ...media_filters,
+    ...color_filters,
+
+    {name: `Filter Domain`, cmd: `filter_domain`, mode: `items`, action: (args) => {
+      App.filter_domain(args.item)
+    }, info: `Filter by domain`},
+
+    {name: `Filter Color`, cmd: `filter_color`, mode: `items`, color: true, action: (args) => {
+      App.filter_color(args.mode, args.item.color)
+    }, info: `Filter by color`},
+
+    {name: `Filter Playing`, cmd: `filter_playing`, mode: `tabs`, action: (args) => {
+      App.set_filter_mode(args.mode, `playing`)
+    }, info: `Filter by playing`},
+
+    {name: `Filter Edited`, cmd: `filter_edited`, mode: `items`, action: (args) => {
+      App.set_filter_mode(args.mode, `edited`)
+    }, info: `Filter by edited`},
 
     {name: App.separator_string},
 
