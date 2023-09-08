@@ -203,7 +203,7 @@ App.apply_theme = (args) => {
     App.animate_background_image(args.background_image, args.instant)
     App.apply_background_effects(args.background_effect, args.background_tiles)
 
-    if (App.get_setting(`color_transitions`)) {
+    if (App.get_setting(`animate_color`)) {
       let d = App.color_transition_delay
       App.set_css_var(`color_transition`, `background-color ${d}ms, color ${d}ms`)
     }
@@ -599,7 +599,7 @@ App.animate_background_image = (url, instant = false) => {
   function on_load () {
     set_url()
 
-    if (!App.get_setting(`background_transitions`) || !App.first_background) {
+    if (!App.get_setting(`animate_background`) || !App.first_background) {
       opacity(1, 0)
       App.first_background = true
       return

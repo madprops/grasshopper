@@ -93,10 +93,10 @@ App.build_default_settings = () => {
   obj.random_themes = {value: `dark`, category: category, type: `menu`, name: `Random Themes`, version: 1,
   info: `Behavior of the random theme`}
 
-  obj.color_transitions = {value: true, category: category, type: `checkbox`, name: `Color Transitions`, version: 1,
+  obj.animate_color = {value: true, category: category, type: `checkbox`, name: `Animate Color`, version: 1,
   info: `Animate color changes`}
 
-  obj.background_transitions = {value: true, category: category, type: `checkbox`, name: `Background Transitions`, version: 1,
+  obj.animate_background = {value: true, category: category, type: `checkbox`, name: `Animate Background`, version: 1,
   info: `Animate background changes`}
 
   obj.random_background_gifs = {value: true, category: category, type: `checkbox`, name: `Include Gifs`, version: 1,
