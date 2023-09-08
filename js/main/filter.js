@@ -4,7 +4,7 @@ App.setup_filter = () => {
 }
 
 App.start_filter_debouncers = () => {
-  App.filter_debouncer_quick = App.create_debouncer((mode, force, deep) => {
+  App.filter_debouncer = App.create_debouncer((mode, force, deep) => {
     App.do_filter(mode, force, deep)
   }, App.get_setting(`filter_delay`))
 
@@ -18,12 +18,12 @@ App.filter = (mode, force, deep) => {
     App.filter_debouncer_search.call(mode, force, deep)
   }
   else {
-    App.filter_debouncer_quick.call(mode, force, deep)
+    App.filter_debouncer.call(mode, force, deep)
   }
 }
 
 App.cancel_filter = () => {
-  App.filter_debouncer_quick.cancel()
+  App.filter_debouncer.cancel()
   App.filter_debouncer_search.cancel()
 }
 
