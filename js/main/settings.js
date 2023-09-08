@@ -1441,7 +1441,7 @@ App.fill_setting_gestures = () => {
         s += ` Up`
       }
       else if (key.includes(`_down`)) {
-        s += `Down`
+        s += ` Down`
       }
       else if (key.includes(`_left`)) {
         s += ` Left`
