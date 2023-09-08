@@ -433,16 +433,16 @@ App.build_default_settings = () => {
   info: `When to warn on unload tabs`}
 
   obj.warn_on_close_normal_tabs = {value: true, category: category, type: `checkbox`, name: `Warn On Close Normal`, version: 1,
-  info: `Warn when closing normal tabs`}
+  info: `Warn when closing normal tabs using the close menu`}
 
   obj.warn_on_close_unloaded_tabs = {value: true, category: category, type: `checkbox`, name: `Warn On Close Unloaded`, version: 1,
-  info: `Warn when closing unloaded tabs`}
+  info: `Warn when closing unloaded tabs using the close menu`}
 
   obj.warn_on_close_duplicate_tabs = {value: true, category: category, type: `checkbox`, name: `Warn On Close Duplicates`, version: 1,
-  info: `Warn when closing duplicate tabs`}
+  info: `Warn when closing duplicate tabs using the close menu`}
 
   obj.warn_on_close_visible_tabs = {value: true, category: category, type: `checkbox`, name: `Warn On Close Visible`, version: 1,
-  info: `Warn when closing visible tabs`}
+  info: `Warn when closing visible tabs using the close menu`}
 
   obj.warn_on_duplicate_tabs = {value: true, category: category, type: `checkbox`, name: `Warn Duplicate Tabs`, version: 1,
   info: `Warn when duplicating tabs`}
@@ -1043,18 +1043,7 @@ App.setup_settings = () => {
 
   App.create_window(Object.assign({}, common, {id: `settings_colors`, setup: () => {
     prepare(`colors`)
-    let container = DOM.el(`#settings_colors_container`)
-
     for (let color of App.colors) {
-      let el = DOM.create(`div`, `settings_item`)
-      el.title = `What color to use for ${color}`
-      let label = DOM.create(`div`, `settings_label`)
-      label.textContent = `Color ${App.capitalize(color)}`
-      let picker = DOM.create(`div`, undefined, `settings_color_${color}`)
-      picker.dataset.setting = `color_${color}`
-      el.append(label)
-      el.append(picker)
-      container.append(el)
       App.start_color_picker(`color_${color}`, true)
     }
 
@@ -1762,10 +1751,6 @@ App.fill_settings = (category) => {
     let cmd = App.default_settings[key]
 
     if (cmd.category === category) {
-      if (cmd.type === `special`) {
-        continue
-      }
-
       let el = DOM.create(`div`, `settings_item`)
       let label = DOM.create(`div`, `settings_label`)
       label.id = `settings_label_${key}`
@@ -1785,6 +1770,7 @@ App.fill_settings = (category) => {
       }
       else if (cmd.type === `text_smaller`) {
         widget = DOM.create(`input`, `text settings_text text_smaller`)
+        widget.placeholder = `☺`
         widget.type = `text`
       }
       else if (cmd.type === `number`) {
