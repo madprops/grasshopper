@@ -35,7 +35,6 @@ App.max_warn_limit = 20
 App.max_tag_filters = 50
 App.item_range_on = false
 App.item_range_select = false
-App.seeded_theme_max = 88
 App.max_filter_history = 10
 App.color_contrast = 0.8
 App.hostname_colors = {}

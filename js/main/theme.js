@@ -391,7 +391,7 @@ App.change_background = (url, bg_eff, bg_tiles) => {
   App.check_theme_refresh()
 }
 
-App.seeded_theme = (item) => {
+App.seeded_colors = (item) => {
   let url = item.hostname || item.path
   let hc = App.hostname_colors[url]
   let background
@@ -451,7 +451,7 @@ App.do_check_item_theme = () => {
   }
 
   if (App.get_setting(`auto_colors`) === `domain`) {
-    App.seeded_theme(item)
+    App.seeded_colors(item)
     return
   }
 
