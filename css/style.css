@@ -545,7 +545,7 @@ svg {
   padding: 0.5rem;
   background-color: var(--alt_color_0);
   min-width: 15rem;
-  gap: 1rem;
+  gap: 0.8rem;
 }
 
 .addlist_title {
