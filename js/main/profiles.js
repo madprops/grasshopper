@@ -1768,6 +1768,10 @@ App.profile_tags_add = (e) => {
           App.profile_addlist_count()
         }
       })
+
+      if (items.length >= App.max_tag_filters) {
+        break
+      }
     }
   }
 
