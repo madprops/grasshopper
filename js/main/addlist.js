@@ -791,5 +791,10 @@ App.addlist_edit = (id) => {
 
 App.addlist_update_count = (id) => {
   let lines = App.addlist_get_data(id)
+
+  if (!lines) {
+    return
+  }
+
   DOM.el(`#addlist_button_${id}_count`).textContent = `(${lines.length})`
 }

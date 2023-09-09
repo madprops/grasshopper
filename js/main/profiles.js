@@ -379,6 +379,7 @@ App.show_profile_editor = (item, type, action = `edit`) => {
   App.set_profile_background_tiles(background_tiles)
   App.profile_editor_ready = true
   App.profile_apply_theme()
+  App.profile_addlist_count()
 
   requestAnimationFrame(() => {
     App.scroll_to_right(url_el)
@@ -1751,4 +1752,8 @@ App.profile_tags_add = (e) => {
   }
 
   NeedContext.show(e.clientX, e.clientY, items)
+}
+
+App.profile_addlist_count = () => {
+  App.addlist_update_count(`profile_editor_tags`)
 }
