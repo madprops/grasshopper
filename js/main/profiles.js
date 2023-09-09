@@ -1757,6 +1757,7 @@ App.start_auto_reload = () => {
 
   App.auto_reload_interval = setInterval(() => {
     App.debug(`Auto reloading tabs`)
+
     for (let item of App.get_items(`tabs`)) {
       if (item.auto_reload > 0) {
         let mins = parseInt((Date.now() - item.last_auto_reload) / 1000 / 60)
