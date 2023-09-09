@@ -1814,7 +1814,9 @@ App.profile_setup_labels = () => {
     items.push({
       text: `Reset`,
       action: () => {
-        App.profile_set_default(el.dataset.prop)
+        App.show_confirm(`Reset this?`, () => {
+          App.profile_set_default(el.dataset.prop)
+        })
       },
     })
 
@@ -1832,7 +1834,6 @@ App.profile_set_default = (prop) => {
     App.profile_clear_tags()
   }
   else if (info.type === `menu`) {
-    console.log(`profile_menubutton_${prop}`)
     App[`profile_menubutton_${prop}`].set(info.value)
   }
   else if (prop === `theme_enabled`) {
