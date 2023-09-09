@@ -666,7 +666,7 @@ App.addlist_clear = (id) => {
     return
   }
 
-  App.show_confirm(`Clear setting?`, () => {
+  App.show_confirm(`Clear list?`, () => {
     App.after_addlist(id, [])
   })
 }
