@@ -505,7 +505,7 @@ App.save_profile = (args) => {
       let n_notes = args.notes
 
       if (p_mode === `edit` && args.action === `add`) {
-        n_notes = `${profile.notes}\n${n_notes}`.trim()
+        n_notes = `${n_notes}\n${profile.notes}`.trim()
       }
 
       profile.notes = n_notes
