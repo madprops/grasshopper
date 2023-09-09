@@ -1739,7 +1739,7 @@ App.profile_tags_add = (e) => {
     items.push({
       text: `No tags`,
       action: () => {
-        App.show_feedback(`Add some new tags manually`)
+        App.show_feedback(`Add some tags manually`)
       }
     })
   }
