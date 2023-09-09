@@ -59,10 +59,10 @@ App.build_settings = () => {
   // ###################
   category = `theme`
 
-  obj.background_color = {value: App.dark_theme.background, category: category, type: `color`, name: `Background Color`, action: `theme`, btns: [`random`], version: 1,
+  obj.background_color = {value: App.dark_colors.background, category: category, type: `color`, name: `Background Color`, action: `theme`, btns: [`random`], version: 1,
   info: `The background color`}
 
-  obj.text_color = {value: App.dark_theme.text, category: category, type: `color`, name: `Text Color`, action: `theme`, btns: [`random`], version: 1,
+  obj.text_color = {value: App.dark_colors.text, category: category, type: `color`, name: `Text Color`, action: `theme`, btns: [`random`], version: 1,
   info: `The text color`}
 
   obj.background_image = {value: `waves.jpg`, category: category, type: `text`, name: `Background Image`,

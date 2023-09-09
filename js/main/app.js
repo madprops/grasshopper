@@ -102,12 +102,12 @@ App.clipboard_icon = `📋`
 App.bot_icon = `🤖`
 App.smile_icon = `☺`
 
-App.dark_theme = {
+App.dark_colors = {
   background: `rgb(45, 45, 55)`,
   text: `rgb(233, 233, 233)`,
 }
 
-App.light_theme = {
+App.light_colors = {
   background: `rgb(200, 200, 200)`,
   text: `rgb(50, 50, 55)`,
 }

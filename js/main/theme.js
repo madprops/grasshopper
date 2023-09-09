@@ -272,12 +272,12 @@ App.get_css_var = (name) => {
   return getComputedStyle(document.documentElement).getPropertyValue(`--${name}`)
 }
 
-App.set_dark_theme = () => {
-  App.set_colors(App.dark_theme.background, App.dark_theme.text)
+App.set_dark_colors = () => {
+  App.set_colors(App.dark_colors.background, App.dark_colors.text)
 }
 
-App.set_light_theme = () => {
-  App.set_colors(App.light_theme.background, App.light_theme.text)
+App.set_light_colors = () => {
+  App.set_colors(App.light_colors.background, App.light_colors.text)
 }
 
 App.random_colors = () => {
