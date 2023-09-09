@@ -355,10 +355,6 @@ App.setup_commands = () => {
       App.change_background(args.item.url)
     }, info: `Change the background to the selected image`},
 
-    {name: `Add To Pool`, cmd: `add_to_pool`, media: `image`, icon: themeicon, action: (args) => {
-      App.add_to_background_pool(args.item.url)
-    }, info: `Add background image to the background pool`},
-
     {name: App.separator_string},
 
     {name: `Restart`, cmd: `restart_extension`, icon: App.bot_icon, action: (args) => {

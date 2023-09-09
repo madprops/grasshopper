@@ -267,14 +267,6 @@ App.more_menu_items = (o_items, item, multiple, some_loaded) => {
         App.change_background(item.url)
       }
     })
-
-    items.push({
-      icon: App.settings_icons.theme,
-      text: `Add To Pool`,
-      action: () => {
-        App.add_to_background_pool(item.url)
-      }
-    })
   }
 
   if (item.mode === `tabs`) {

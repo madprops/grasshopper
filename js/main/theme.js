@@ -643,23 +643,6 @@ App.animate_background_image = (url, instant = false) => {
   }
 }
 
-App.add_to_background_pool = (url) => {
-  if (!url) {
-    url = App.get_setting(`background_image`)
-  }
-
-  if (!url) {
-    return
-  }
-
-  let s = `background_pool`
-  App.addlist_remove(s, url, true)
-  let pool = App.get_setting(s)
-  pool.unshift({url: url, effect: `none`, tiles: `none`})
-  App.set_setting(s, pool)
-  App.show_feedback(`Added to background pool`)
-}
-
 App.check_theme_refresh = () => {
   if (App.on_settings()) {
     if (App.settings_category === `theme`) {

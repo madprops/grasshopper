@@ -293,14 +293,6 @@ App.show_media_menu = (what) => {
         App.media_background(what)
       }
     })
-
-    items.push({
-      icon: App.settings_icons.theme,
-      text: `Add To Pool`,
-      action: () => {
-        App.add_to_background_pool(item.url)
-      }
-    })
   }
 
   let btn = DOM.el(`#media_${what}_menu`)

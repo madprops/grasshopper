@@ -1143,8 +1143,6 @@ App.setup_settings = () => {
       App.restart_settings(`sync`)
     }
   })
-
-  App.setup_settings_addlist()
 }
 
 App.add_settings_switchers = (category) => {
@@ -1386,6 +1384,7 @@ App.show_settings = () => {
 }
 
 App.show_settings_category = (category) => {
+  App.check_settings_addlist()
   App.settings_category = category
   App.show_window(`settings_${category}`)
   App.set_default_theme()
@@ -1758,7 +1757,15 @@ App.fill_settings = (category) => {
   }
 }
 
+App.check_settings_addlist = () => {
+  if (!App.settings_addlist_ready) {
+    App.setup_settings_addlist()
+    App.settings_addlist_ready = true
+  }
+}
+
 App.setup_settings_addlist = () => {
+  console.log(111111)
   App.addlist_commands = App.settings_commands()
 
   function cmd_name (cmd) {
