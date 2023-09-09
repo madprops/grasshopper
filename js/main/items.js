@@ -341,7 +341,7 @@ App.process_info = (mode, info, exclude = [], o_item) => {
     has_profile = true
 
     if (profile.tags) {
-      tags = profile.tags.map(x => x.tag)
+      tags = profile.tags.map(x => x.tag || x)
     }
 
     if (profile.title) {
