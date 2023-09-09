@@ -472,7 +472,7 @@ svg {
   min-width: 10rem;
 }
 
-.settings_text {
+.settings_text, .settings_textarea {
   flex-grow: 0;
   width: 15rem;
   max-width: 15rem;
