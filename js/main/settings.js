@@ -1765,21 +1765,21 @@ App.fill_settings = (category) => {
       else if (props.type === `text`) {
         widget = DOM.create(`input`, `text settings_text`)
         widget.type = `text`
-        widget.autocomplete=`off`
-        widget.spellcheck=`false`
+        widget.autocomplete = `off`
+        widget.spellcheck = `false`
       }
       else if (props.type === `text_smaller`) {
         widget = DOM.create(`input`, `text settings_text text_smaller`)
         widget.placeholder = `☺`
         widget.type = `text`
-        autocomplete=`off`
-        spellcheck=`false`
+        autocomplete = `off`
+        spellcheck = `false`
       }
       else if (props.type === `number`) {
         widget = DOM.create(`input`, `text settings_number`)
         widget.type = `number`
-        widget.autocomplete=`off`
-        widget.spellcheck=`false`
+        widget.autocomplete = `off`
+        widget.spellcheck = `false`
       }
       else if (props.type === `checkbox`) {
         widget = DOM.create(`input`, `settings_checkbox`)
