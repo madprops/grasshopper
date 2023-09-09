@@ -812,8 +812,7 @@ App.add_settings_addlist = (category) => {
         continue
       }
 
-      let el = DOM.el(`#settings_${key}`)
-      App.addlist_add_buttons(key, el)
+      App.addlist_add_buttons(`settings_${key}`)
 
       let menu = [
         {
@@ -1144,6 +1143,8 @@ App.setup_settings = () => {
       App.restart_settings(`sync`)
     }
   })
+
+  App.setup_settings_addlist()
 }
 
 App.add_settings_switchers = (category) => {
@@ -1769,6 +1770,140 @@ App.fill_settings = (category) => {
       el.append(widget)
       el.title = props.info
       c.append(el)
+    }
+  }
+}
+
+App.setup_settings_addlist = () => {
+  App.addlist_commands = App.settings_commands()
+
+  function cmd_name (cmd) {
+    let c = App.get_command(cmd)
+
+    if (c) {
+      return c.name
+    }
+    else {
+      return `None`
+    }
+  }
+
+  function on_hide () {
+    App.hide_addlist()
+  }
+
+  function after_hide () {
+    App.addlist_clear_image()
+  }
+
+  let args = {
+    on_hide: on_hide,
+    after_hide: after_hide,
+  }
+
+  let from = `settings`
+  let id = `settings_aliases`
+
+  App.create_popup(Object.assign({}, args, {
+    id: `addlist_${id}`,
+    element: App.addlist_register({
+      from: from,
+      id: id,
+      pk: `a`,
+      widgets: [`text`, `text`],
+      labels: [`Term A`, `Term B`],
+      keys: [`a`, `b`],
+      list_text: (items) => {
+        return `${items.a} = ${items.b}`
+      }
+    })
+  }))
+
+  id = `settings_custom_filters`
+
+  App.create_popup(Object.assign({}, args, {
+    id: `addlist_${id}`,
+    element: App.addlist_register({
+      from: from,
+      id: id,
+      pk: `filter`,
+      widgets: [`text`],
+      labels: [`Filter`],
+      keys: [`filter`],
+      list_text: (items) => {
+        return items.filter
+      }
+    })
+  }))
+
+  id = `settings_background_pool`
+
+  App.create_popup(Object.assign({}, args, {
+    id: `addlist_${id}`,
+    element: App.addlist_register({
+      from: from,
+      id: id,
+      pk: `url`,
+      widgets: [`text`, `select`, `select`],
+      labels: [`Image URL`, `Effect`, `Tiles`],
+      image: 0,
+      sources: [undefined, App.background_effects, App.background_tiles],
+      keys: [`url`, `effect`, `tiles`], list_text: (items) => {
+        let s = App.remove_protocol(items.url)
+
+        if (items.effect !== `none`) {
+          let eff = App.get_background_effect(items.effect)
+
+          if (eff) {
+            s += ` (${eff.text})`
+          }
+        }
+
+        if (items.tiles !== `none`) {
+          s += ` (Tiled)`
+        }
+
+        return s
+      }
+    })
+  }))
+
+  id = `settings_keyboard_shortcuts`
+
+  App.create_popup(Object.assign({}, args, {
+    id: `addlist_${id}`,
+    element: App.addlist_register({
+      from: from,
+      id: id,
+      pk: `key`,
+      widgets: [`key`, `select`, `checkbox`, `checkbox`, `checkbox`],
+      labels: [`Key`, `Command`, `Require Ctrl`, `Require Shift`, `Require Alt`],
+      sources: [undefined, App.addlist_commands.slice(0), true, false, false],
+      keys: [`key`, `cmd`, `ctrl`, `shift`, `alt`], list_text: (items) => {
+        let cmd = cmd_name(items.cmd)
+        return `${items.key} = ${cmd}`
+      }
+    })
+  }))
+
+  for (let key in App.settings_props) {
+    let props = App.settings_props[key]
+    let id = `settings_${key}`
+
+    if (props.category === `menus`) {
+      App.create_popup(Object.assign({}, args, {
+        id: `addlist_${id}`,
+        element: App.addlist_register({
+          from: from,
+          id: id,
+          pk: `cmd`,
+          widgets: [`select`], labels: [`Command`],
+          sources: [App.addlist_commands.slice(0)],
+          keys: [`cmd`], list_text: (items) => {
+            return cmd_name(items.cmd)
+          }
+        })
+      }))
     }
   }
 }

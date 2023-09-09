@@ -1,135 +1,3 @@
-App.setup_addlist = () => {
-  App.addlist_commands = App.settings_commands()
-
-  function cmd_name (cmd) {
-    let c = App.get_command(cmd)
-
-    if (c) {
-      return c.name
-    }
-    else {
-      return `None`
-    }
-  }
-
-  function on_hide () {
-    App.hide_addlist()
-  }
-
-  function after_hide () {
-    App.addlist_clear_image()
-  }
-
-  let args = {
-    on_hide: on_hide,
-    after_hide: after_hide,
-  }
-
-  let id = `aliases`
-
-  App.create_popup(Object.assign({}, args, {
-    id: `addlist_${id}`,
-    element: App.addlist_register({
-      from: `settings`,
-      id: id,
-      pk: `a`,
-      widgets: [`text`, `text`],
-      labels: [`Term A`, `Term B`],
-      keys: [`a`, `b`],
-      list_text: (items) => {
-        return `${items.a} = ${items.b}`
-      }
-    })
-  }))
-
-  id = `custom_filters`
-
-  App.create_popup(Object.assign({}, args, {
-    id: `addlist_${id}`,
-    element: App.addlist_register({
-      from: `settings`,
-      id: id,
-      pk: `filter`,
-      widgets: [`text`],
-      labels: [`Filter`],
-      keys: [`filter`],
-      list_text: (items) => {
-        return items.filter
-      }
-    })
-  }))
-
-  id = `background_pool`
-
-  App.create_popup(Object.assign({}, args, {
-    id: `addlist_${id}`,
-    element: App.addlist_register({
-      from: `settings`,
-      id: id,
-      pk: `url`,
-      widgets: [`text`, `select`, `select`],
-      labels: [`Image URL`, `Effect`, `Tiles`],
-      image: 0,
-      sources: [undefined, App.background_effects, App.background_tiles],
-      keys: [`url`, `effect`, `tiles`], list_text: (items) => {
-        let s = App.remove_protocol(items.url)
-
-        if (items.effect !== `none`) {
-          let eff = App.get_background_effect(items.effect)
-
-          if (eff) {
-            s += ` (${eff.text})`
-          }
-        }
-
-        if (items.tiles !== `none`) {
-          s += ` (Tiled)`
-        }
-
-        return s
-      }
-    })
-  }))
-
-  id = `keyboard_shortcuts`
-
-  App.create_popup(Object.assign({}, args, {
-    id: `addlist_${id}`,
-    element: App.addlist_register({
-      from: `settings`,
-      id: id,
-      pk: `key`,
-      widgets: [`key`, `select`, `checkbox`, `checkbox`, `checkbox`],
-      labels: [`Key`, `Command`, `Require Ctrl`, `Require Shift`, `Require Alt`],
-      sources: [undefined, App.addlist_commands.slice(0), true, false, false],
-      keys: [`key`, `cmd`, `ctrl`, `shift`, `alt`], list_text: (items) => {
-        let cmd = cmd_name(items.cmd)
-        return `${items.key} = ${cmd}`
-      }
-    })
-  }))
-
-  for (let id in App.settings_props) {
-    let props = App.settings_props[id]
-
-    if (props.category === `menus`) {
-      App.create_popup(Object.assign({}, args, {
-        id: `addlist_${id}`,
-        element: App.addlist_register({
-          from: `settings`,
-          id: id,
-          pk: `cmd`,
-          widgets: [`select`], labels: [`Command`],
-          sources: [App.addlist_commands.slice(0)],
-          keys: [`cmd`], list_text: (items) => {
-            return cmd_name(items.cmd)
-          }
-        })
-      }))
-    }
-  }
-}
-
 App.addlist_values = (id) => {
   let oargs = App.addlist_oargs(id)
   let values = {}
@@ -195,7 +63,7 @@ App.addlist_register = (args = {}) => {
   let props = {}
 
   if (args.from === `settings`) {
-    props = App.settings_props[args.id]
+    props = App.settings_props[args.id.replace(`settings_`, ``)]
   }
 
   let container = DOM.create(`div`, `flex_column_center addlist_container`, `addlist_container_${args.id}`)
@@ -782,7 +650,7 @@ App.addlist_list = (args) => {
     })
   }
 
-  let area = DOM.el(`#settings_${args.id}`)
+  let area = DOM.el(`#${args.id}`)
   NeedContext.show_on_element(area, items, true, area.clientHeight)
 }
 
@@ -837,7 +705,8 @@ App.addlist_no_items = () => {
   App.show_feedback(`No items yet`, true)
 }
 
-App.addlist_add_buttons = (id, el) => {
+App.addlist_add_buttons = (id) => {
+  let el = DOM.el(`#${id}`)
   let oargs = App.addlist_oargs(id)
   let cls = `action underline`
   let add = DOM.create(`div`, cls, `addlist_button_${id}_add`)
@@ -874,7 +743,7 @@ App.addlist_get_data = (id) => {
   let oargs = App.addlist_oargs(id)
 
   if (oargs.from === `settings`) {
-    return App.get_setting(id)
+    return App.get_setting(id.replace(`settings_`, ``))
   }
   else if (oargs.from === `profile_editor_tags`){
     return App.profile_editor_tags
@@ -885,7 +754,7 @@ App.addlist_set_data = (id, value) => {
   let oargs = App.addlist_oargs(id)
 
   if (oargs.from === `settings`) {
-    return App.set_setting(id, value)
+    return App.set_setting(id.replace(`settings_`, ``), value)
   }
   else if (oargs.from === `profile_editor_tags`){
     App.profile_editor_tags = value

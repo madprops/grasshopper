@@ -73,7 +73,7 @@ App.setup_profile_editor = () => {
     App.profile_make_menu(`color`, App.profile_editor_color_opts)
     App.profile_make_menu(`background_effect`, App.background_effects)
     App.profile_make_menu(`background_tiles`, App.background_tiles)
-    App.profile_addlist(`profile_tags`)
+    App.profile_addlist_tags()
 
     DOM.ev(DOM.el(`#profile_editor_notes`), `input`, (e) => {
       App.profile_modified()
@@ -721,7 +721,7 @@ App.get_tags = () => {
 
   for (let profile of App.profiles) {
     for (let tag of profile.tags) {
-      if (tag && !tags.includes(tag)) {
+      if (tag && !tags.tags.includes(tag)) {
         tags.push(tag)
       }
     }
@@ -1690,25 +1690,24 @@ App.start_auto_reload = () => {
   App.debug(`Started auto reload interval`)
 }
 
-App.profile_addlist = (id) => {
-  let name = `profile_editor_tags`
+App.profile_addlist_tags = () => {
+  let id = `profile_editor_tags`
 
   App.create_popup({
     id: `addlist_${id}`,
     element: App.addlist_register({
       id: id,
-      pk: `key`,
-      widgets: [`select`],
+      pk: `tag`,
+      widgets: [`text`],
       labels: [`Tag`],
-      sources: [App.get_tags()],
       keys: [`tag`], list_text: (items) => {
-        return items.alias
+        return items.tag
       },
       title: `Tags`,
-      from: name,
+      from: id,
     })
   })
 
-  let el = DOM.el(`#${name}`)
-  App.addlist_add_buttons(el, `${name}`)
+  let el = DOM.el(`#${id}`)
+  App.addlist_add_buttons(id, el)
 }
