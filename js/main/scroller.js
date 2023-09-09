@@ -26,6 +26,10 @@ App.do_check_scroller = (mode) => {
   }
 
   let container = DOM.el(`#${mode}_container`)
+  let percentage = 100 - ((container.scrollTop /
+  (container.scrollHeight - container.clientHeight)) * 100)
+  let per = parseInt(percentage)
+  DOM.el(`#${mode}_scroller_percentage`).textContent = `(${per}%)`
 
   if (container.scrollTop > App.scroller_max_top) {
     App.show_scroller(mode)
@@ -37,7 +41,11 @@ App.do_check_scroller = (mode) => {
 
 App.create_scroller = (mode) => {
   let scroller = DOM.create(`div`, `scroller`, `${mode}_scroller`)
-  scroller.textContent = `Go To Top`
+  let text = DOM.create(`div`)
+  text.textContent = `Go To Top`
+  let percentage = DOM.create(`div`, ``, `${mode}_scroller_percentage`)
+  scroller.append(text)
+  scroller.append(percentage)
 
   DOM.ev(scroller, `click`, (e) => {
     if (e.shiftKey || e.ctrlKey) {
