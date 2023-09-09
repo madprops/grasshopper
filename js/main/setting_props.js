@@ -42,7 +42,7 @@ App.build_settings = () => {
   info: `Where to get favicons from, on modes that don't support local favicons like history and bookmarks`}
 
   obj.bookmarks_folder = {value: `Grasshopper`, category: category, type: `text`,
-  name: `Bookmarks Folder`, placeholder: `Folder name`, version: 1,
+  name: `Bookmarks Folder`, placeholder: `Folder name`, no_empty: true, version: 1,
   info: `Where to save bookmarks`}
 
   obj.aliases = {value: [], category: category, type: `list`, name: `Aliases`, version: 3,

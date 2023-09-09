@@ -113,7 +113,18 @@ App.settings_setup_text = (category) => {
 
     DOM.ev(el, `change`, () => {
       App.scroll_to_top(el)
-      App.do_save_text_setting(key, el)
+      let value = el.value.trim()
+
+      if (props.no_empty) {
+        if (value === ``) {
+          el.value = App.get_setting(key)
+          return
+        }
+      }
+
+      el.value = value
+      el.scrollTop = 0
+      App.set_setting(key, value)
     })
 
     let menu = [
@@ -1068,13 +1079,6 @@ App.set_settings_menu = (setting, value, on_change) => {
 
 App.apply_background = (bg) => {
   App.change_background(bg.url, bg.effect, bg.tiles)
-}
-
-App.do_save_text_setting = (setting, el) => {
-  let value = el.value.trim()
-  el.value = value
-  el.scrollTop = 0
-  App.set_setting(setting, value)
 }
 
 App.shuffle_addlist = (setting) => {
