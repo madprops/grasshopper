@@ -34,6 +34,7 @@ App.setup_profile_editor = () => {
     })
 
     close.textContent = App.close_text
+    DOM.el(`#profile_editor_icon`).placeholder = App.smile_icon
 
     DOM.ev(DOM.el(`#profile_editor_url_root`), `click`, (e) => {
       App.profile_editor_root_url()
@@ -139,7 +140,13 @@ App.setup_profile_editor = () => {
     })
 
     DOM.ev(DOM.el(`#profile_editor_auto_reload`), `change`, (e) => {
-      if (parseInt(e.target.value) < e.target.min) {
+      let value = parseInt(e.target.value)
+
+      if (e.target.value.trim() === `` || isNaN(value)) {
+        e.target.value = e.target.min
+      }
+
+      if (value < e.target.min) {
         e.target.value = e.target.min
       }
 
