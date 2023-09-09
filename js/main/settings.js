@@ -211,22 +211,22 @@ App.build_settings = () => {
   info: `How sensitive gestures are`}
 
   obj.gesture_up = {value: `go_to_top`, category: category, type: `menu`, name: `Gesture Up`, version: 1,
-  info: `Up`}
+  info: `Up gesture`}
 
   obj.gesture_down = {value: `go_to_bottom`, category: category, type: `menu`, name: `Gesture Down`, version: 1,
-  info: `Down`}
+  info: `Down gesture`}
 
   obj.gesture_left = {value: `prev_mode`, category: category, type: `menu`, name: `Gesture Left`, version: 1,
-  info: `Left`}
+  info: `Left gesture`}
 
   obj.gesture_right = {value: `next_mode`, category: category, type: `menu`, name: `Gesture Right`, version: 1,
-  info: `Right`}
+  info: `Right gesture`}
 
   obj.gesture_up_and_down = {value: `show_all`, category: category, type: `menu`, name: `Gesture Up Down`, version: 1,
-  info: `Up and Down`}
+  info: `Up and Down gesture`}
 
   obj.gesture_left_and_right = {value: `filter_domain`, category: category, type: `menu`, name: `Gesture Left Right`, version: 1,
-  info: `Left and Right`}
+  info: `Left and Right gesture`}
 
   // ###################
   category = `auxclick`
