@@ -85,6 +85,16 @@ App.update_footer_count = (mode) => {
 
 App.do_update_footer_count = (mode) => {
   App.footer_count_debouncer.cancel()
+  let el = DOM.el(`#${mode}_footer_count`)
+
+  if (App.get_setting(`show_footer_count`)) {
+    el.classList.remove(`hidden`)
+  }
+  else {
+    el.classList.add(`hidden`)
+    return
+  }
+
   let n1 = App.selected_items(mode).length
   let n2 = App.get_visible(mode).length
   let count
@@ -96,5 +106,5 @@ App.do_update_footer_count = (mode) => {
     count = `(${n2})`
   }
 
-  DOM.el(`#${mode}_footer_count`).textContent = count
+  el.textContent = count
 }

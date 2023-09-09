@@ -201,6 +201,12 @@ App.build_settings = () => {
   obj.show_feedback = {value: true, category: category, type: `checkbox`, name: `Show Feedback`, version: 1,
   info: `Show feedback messages on certain actions`}
 
+  obj.show_footer_count = {value: true, category: category, type: `checkbox`, name: `Count In Footer`, version: 1,
+  info: `Show the item count in the footer`}
+
+  obj.reverse_scroller_percentage = {value: false, category: category, type: `checkbox`, name: `Reverse Scroller %`, version: 1,
+  info: `Reverse the scrolling percentage in the scroller`}
+
   // ###################
   category = `gestures`
 
