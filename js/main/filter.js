@@ -642,6 +642,31 @@ App.do_filter_2 = (mode) => {
       show = true
     }
 
+    if (!show) {
+      if (item.dataset.alias) {
+        let aliases = item.dataset.alias.split(`;`)
+
+        for (let alias of aliases) {
+          let text = App.only_chars(alias).toLowerCase()
+
+          if (text.includes(value)) {
+            show = true
+            break
+          }
+          else if (App.similarity(value, alias) >= App.similarity_threshold) {
+            show = true
+            break
+          }
+        }
+      }
+    }
+
+    if (!show) {
+      if (App.similarity(value, text) >= App.similarity_threshold) {
+        show = true
+      }
+    }
+
     if (show) {
       item.classList.remove(`hidden`)
     }
