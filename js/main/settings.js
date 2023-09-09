@@ -102,7 +102,7 @@ App.build_settings = () => {
   // ###################
   category = `media`
 
-  obj.image_icon = {value: `🖼️`, category: category, type: `text_smaller`, name: `View Image Icon`, placeholder: `☺`, version: 1,
+  obj.image_icon = {value: `🖼️`, category: category, type: `text_smaller`, name: `View Image Icon`, placeholder: App.smile_icon, version: 1,
   info: `Media icon for images`}
 
   obj.view_image_tabs = {value: `icon`, category: category, type: `menu`, name: `View Image (Tabs)`, version: 1,
@@ -117,7 +117,7 @@ App.build_settings = () => {
   obj.view_image_closed = {value: `icon`, category: category, type: `menu`, name: `View Image (Closed)`, version: 1,
   info: `What to do when clicking on an image in closed mode`}
 
-  obj.video_icon = {value: `▶️`, category: category, type: `text_smaller`, name: `View Video Icon`, placeholder: `☺`, version: 1,
+  obj.video_icon = {value: `▶️`, category: category, type: `text_smaller`, name: `View Video Icon`, placeholder: App.smile_icon, version: 1,
   info: `Media icon for videos`}
 
   obj.view_video_tabs = {value: `icon`, category: category, type: `menu`, name: `View Video (Tabs)`, version: 1,
@@ -132,7 +132,7 @@ App.build_settings = () => {
   obj.view_video_closed = {value: `icon`, category: category, type: `menu`, name: `View Video (Closed)`, version: 1,
   info: `What to do when clicking on a video in closed mode`}
 
-  obj.audio_icon = {value: `🎵`, category: category, type: `text_smaller`, name: `View Audio Icon`, placeholder: `☺`, version: 1,
+  obj.audio_icon = {value: `🎵`, category: category, type: `text_smaller`, name: `View Audio Icon`, placeholder: App.smile_icon, version: 1,
   info: `Media icon for audio`}
 
   obj.view_audio_tabs = {value: `icon`, category: category, type: `menu`, name: `View Audio (Tabs)`, version: 1,
@@ -150,28 +150,28 @@ App.build_settings = () => {
   // ###################
   category = `icons`
 
-  obj.pin_icon = {value: `+`, category: category, type: `text_smaller`, name: `Pin Icon`, placeholder: `☺`, version: 1,
+  obj.pin_icon = {value: `+`, category: category, type: `text_smaller`, name: `Pin Icon`, placeholder: App.smile_icon, version: 1,
   info: `Icon for pinned tabs`}
 
-  obj.normal_icon = {value: ``, category: category, type: `text_smaller`, name: `Normal Icon`, placeholder: `☺`, version: 1,
+  obj.normal_icon = {value: ``, category: category, type: `text_smaller`, name: `Normal Icon`, placeholder: App.smile_icon, version: 1,
   info: `Icon for normal tabs`}
 
-  obj.playing_icon = {value: `🔊`, category: category, type: `text_smaller`, name: `Playing Icon`, placeholder: `☺`, version: 1,
+  obj.playing_icon = {value: `🔊`, category: category, type: `text_smaller`, name: `Playing Icon`, placeholder: App.smile_icon, version: 1,
   info: `Icons for tabs emitting audio`}
 
-  obj.muted_icon = {value: `🔇`, category: category, type: `text_smaller`, name: `Muted Icon`, placeholder: `☺`, version: 1,
+  obj.muted_icon = {value: `🔇`, category: category, type: `text_smaller`, name: `Muted Icon`, placeholder: App.smile_icon, version: 1,
   info: `Icons for muted tabs`}
 
-  obj.unloaded_icon = {value: `💤`, category: category, type: `text_smaller`, name: `Unloaded Icon`, placeholder: `☺`, version: 1,
+  obj.unloaded_icon = {value: `💤`, category: category, type: `text_smaller`, name: `Unloaded Icon`, placeholder: App.smile_icon, version: 1,
   info: `Icons for unloaded tabs`}
 
-  obj.close_icon = {value: `x`, category: category, type: `text_smaller`, name: `Close Icon`, placeholder: `☺`, version: 1,
+  obj.close_icon = {value: `x`, category: category, type: `text_smaller`, name: `Close Icon`, placeholder: App.smile_icon, version: 1,
   info: `Icon for the close buttons`}
 
-  obj.open_icon = {value: `🚀`, category: category, type: `text_smaller`, name: `Open Icon`, placeholder: `☺`, version: 1,
+  obj.open_icon = {value: `🚀`, category: category, type: `text_smaller`, name: `Open Icon`, placeholder: App.smile_icon, version: 1,
   info: `Icon for the open buttons`}
 
-  obj.pick_icon = {value: `🎯`, category: category, type: `text_smaller`, name: `Pick Icon`, placeholder: `☺`, version: 1,
+  obj.pick_icon = {value: `🎯`, category: category, type: `text_smaller`, name: `Pick Icon`, placeholder: App.smile_icon, version: 1,
   info: `Icon for the picks`}
 
   // ###################
