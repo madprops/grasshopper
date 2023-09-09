@@ -1770,10 +1770,10 @@ App.fill_settings = (category) => {
       }
       else if (props.type === `text_smaller`) {
         widget = DOM.create(`input`, `text settings_text text_smaller`)
-        widget.placeholder = `☺`
         widget.type = `text`
         widget.autocomplete = `off`
         widget.spellcheck = `false`
+        widget.placeholder = `☺`
       }
       else if (props.type === `number`) {
         widget = DOM.create(`input`, `text settings_number`)
