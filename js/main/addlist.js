@@ -1,14 +1,6 @@
 App.setup_addlist = () => {
   App.addlist_commands = App.settings_commands()
 
-  function on_hide () {
-    App.hide_addlist()
-  }
-
-  function after_hide () {
-    App.addlist_clear_image()
-  }
-
   function cmd_name (cmd) {
     let c = App.get_command(cmd)
 
@@ -18,6 +10,14 @@ App.setup_addlist = () => {
     else {
       return `None`
     }
+  }
+
+  function on_hide () {
+    App.hide_addlist()
+  }
+
+  function after_hide () {
+    App.addlist_clear_image()
   }
 
   let args = {
@@ -30,6 +30,7 @@ App.setup_addlist = () => {
   App.create_popup(Object.assign({}, args, {
     id: `addlist_${id}`,
     element: App.addlist_register({
+      from: `settings`,
       id: id,
       pk: `a`,
       widgets: [`text`, `text`],
@@ -46,6 +47,7 @@ App.setup_addlist = () => {
   App.create_popup(Object.assign({}, args, {
     id: `addlist_${id}`,
     element: App.addlist_register({
+      from: `settings`,
       id: id,
       pk: `filter`,
       widgets: [`text`],
@@ -62,6 +64,7 @@ App.setup_addlist = () => {
   App.create_popup(Object.assign({}, args, {
     id: `addlist_${id}`,
     element: App.addlist_register({
+      from: `settings`,
       id: id,
       pk: `url`,
       widgets: [`text`, `select`, `select`],
@@ -93,6 +96,7 @@ App.setup_addlist = () => {
   App.create_popup(Object.assign({}, args, {
     id: `addlist_${id}`,
     element: App.addlist_register({
+      from: `settings`,
       id: id,
       pk: `key`,
       widgets: [`key`, `select`, `checkbox`, `checkbox`, `checkbox`],
@@ -112,6 +116,7 @@ App.setup_addlist = () => {
       App.create_popup(Object.assign({}, args, {
         id: `addlist_${id}`,
         element: App.addlist_register({
+          from: `settings`,
           id: id,
           pk: `cmd`,
           widgets: [`select`], labels: [`Command`],
@@ -174,9 +179,9 @@ App.addlist_save = (id) => {
     App.addlist_remove(id, v2, true)
   }
 
-  let lines = App.get_setting(id)
+  let lines = App.addlist_get_data(id)
   lines.splice(data.index, 0, line)
-  App.after_addlist(id, lines)
+  App.after_addlist_settings(id, lines)
   return true
 }
 
@@ -187,12 +192,17 @@ App.addlist_register = (args = {}) => {
   }
 
   args = Object.assign(def_args, args)
-  let props = App.settings_props[args.id]
+  let props = {}
+
+  if (args.from === `settings`) {
+    props = App.settings_props[args.id]
+  }
+
   let container = DOM.create(`div`, `flex_column_center addlist_container`, `addlist_container_${args.id}`)
   container.tabIndex = 0
   let top = DOM.create(`div`, `flex_row_center gap_2 full_width`)
   let title = DOM.create(`div`, `addlist_title`)
-  title.textContent = props.name
+  title.textContent = props.name || args.title
   let btn_prev = DOM.create(`div`, `button`, `addlist_prev_${args.id}`)
   btn_prev.textContent = `<`
   let btn_next = DOM.create(`div`, `button`, `addlist_next_${args.id}`)
@@ -378,7 +388,7 @@ App.addlist_remove = (id, value, force) => {
     return
   }
 
-  let lines = App.get_setting(id)
+  let lines = App.addlist_get_data(id)
 
   if (!lines.length) {
     return
@@ -401,12 +411,12 @@ App.addlist_remove = (id, value, force) => {
       new_lines.push(line)
     }
 
-    App.after_addlist(id, new_lines)
+    App.after_addlist_settings(id, new_lines)
   }, undefined, force)
 }
 
 App.addlist_view = (args = {}) => {
-  let items = App.get_setting(args.id)[args.index]
+  let items = App.addlist_get_data(args.id)[args.index]
 
   if (!items) {
     App.addlist_no_items()
@@ -454,8 +464,8 @@ App.addlist_right = () => {
   App.addlist_next(App.addlist_data.id)
 }
 
-App.after_addlist = (id, lines) => {
-  App.set_setting(id, lines)
+App.after_addlist_settings = (id, lines) => {
+  App.addlist_set_data(id, lines)
   App.hide_addlist(false)
 }
 
@@ -472,7 +482,7 @@ App.addlist_check_buttons = (args) => {
   use_el.classList.add(`hidden`)
 
   if (args.edit) {
-    let num = App.get_setting(args.id).length
+    let num = App.addlist_get_data(args.id).length
     remove_el.classList.remove(`hidden`)
     move_el.classList.remove(`hidden`)
 
@@ -554,7 +564,7 @@ App.addlist_next = (id, reverse = false) => {
     return
   }
 
-  let lines = App.get_setting(id).slice(0)
+  let lines = App.addlist_get_data(id).slice(0)
 
   if (lines.length <= 1) {
     return
@@ -652,7 +662,7 @@ App.addlist_move_menu = (e) => {
 
 App.addlist_move = (dir) => {
   let data = App.addlist_data
-  let lines = App.get_setting(data.id)
+  let lines = App.addlist_get_data(data.id)
   let oargs = App.addlist_oargs(data.id)
   let value = data.items[oargs.pk]
 
@@ -673,7 +683,7 @@ App.addlist_move = (dir) => {
         }
       }
 
-      App.after_addlist(data.id, lines)
+      App.after_addlist_settings(data.id, lines)
       break
     }
   }
@@ -736,24 +746,6 @@ App.addlist_popup = (id) => {
   return `addlist_${id}`
 }
 
-App.addlist_buttons = (args) => {
-  DOM.ev(DOM.el(`#settings_${args.id}_add`), `click`, () => {
-    App.addlist({id: args.id, items: {}})
-  })
-
-  DOM.ev(DOM.el(`#settings_${args.id}_list`), `click`, () => {
-    App.addlist_list({id: args.id, use: args.use})
-  })
-
-  DOM.ev(DOM.el(`#settings_${args.id}_edit`), `click`, () => {
-    App.edit_setting(args.id)
-  })
-
-  DOM.ev(DOM.el(`#settings_${args.id}_clear`), `click`, () => {
-    App.addlist_clear(args.id)
-  })
-}
-
 App.addlist_filled = (values) => {
   for (let key in values) {
     if (values[key] === ``) {
@@ -769,7 +761,7 @@ App.addlist_key = () => {
 }
 
 App.addlist_list = (args) => {
-  let lines = App.get_setting(args.id)
+  let lines = App.addlist_get_data(args.id)
 
   if (!lines.length) {
     App.addlist_no_items()
@@ -795,17 +787,17 @@ App.addlist_list = (args) => {
 }
 
 App.addlist_clear = (id) => {
-  if (!App.get_setting(id).length) {
+  if (!App.addlist_get_data(id).length) {
     return
   }
 
   App.show_confirm(`Clear setting?`, () => {
-    App.set_setting(id, [])
+    App.addlist_set_data(id, [])
   })
 }
 
 App.addlist_get_line = (id, items) => {
-  let lines = App.get_setting(id)
+  let lines = App.addlist_get_data(id)
 
   for (let [i, line] of lines.entries()) {
     let matched = true
@@ -843,4 +835,59 @@ App.addlist_clear_image = () => {
 
 App.addlist_no_items = () => {
   App.show_feedback(`No items yet`, true)
+}
+
+App.addlist_add_buttons = (id, el) => {
+  let oargs = App.addlist_oargs(id)
+  let cls = `action underline`
+  let add = DOM.create(`div`, cls, `addlist_button_${id}_add`)
+  add.textContent = `Add`
+  el.append(add)
+  let list = DOM.create(`div`, cls, `addlist_button_${id}_list`)
+  list.textContent = `List`
+  el.append(list)
+  let edit = DOM.create(`div`, cls, `addlist_button_${id}_edit`)
+  edit.textContent = `Edit`
+  el.append(edit)
+  let clear = DOM.create(`div`, cls, `addlist_button_${id}_clear`)
+  clear.textContent = `Clear`
+  el.append(clear)
+
+  DOM.ev(DOM.el(`#addlist_button_${id}_add`), `click`, () => {
+    App.addlist({id: id, items: {}})
+  })
+
+  DOM.ev(DOM.el(`#addlist_button_${id}_list`), `click`, () => {
+    App.addlist_list({id: id, use: oargs.use})
+  })
+
+  DOM.ev(DOM.el(`#addlist_button_${id}_edit`), `click`, () => {
+    App.edit_setting(id)
+  })
+
+  DOM.ev(DOM.el(`#addlist_button_${id}_clear`), `click`, () => {
+    App.addlist_clear(id)
+  })
+}
+
+App.addlist_get_data = (id) => {
+  let oargs = App.addlist_oargs(id)
+
+  if (oargs.from === `settings`) {
+    return App.get_setting(id)
+  }
+  else if (oargs.from === `profile_editor_tags`){
+    return App.profile_editor_tags
+  }
+}
+
+App.addlist_set_data = (id, value) => {
+  let oargs = App.addlist_oargs(id)
+
+  if (oargs.from === `settings`) {
+    return App.set_setting(id, value)
+  }
+  else if (oargs.from === `profile_editor_tags`){
+    App.profile_editor_tags = value
+  }
 }

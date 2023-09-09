@@ -58,10 +58,6 @@ App.setup_profile_editor = () => {
       App.profile_modified()
     })
 
-    DOM.ev(DOM.el(`#profile_editor_tags_add`), `click`, (e) => {
-      App.show_tag_picker(e)
-    })
-
     DOM.ev(DOM.el(`#profile_editor_header`), `click`, (e) => {
       App.show_profile_urls()
     })
@@ -77,10 +73,7 @@ App.setup_profile_editor = () => {
     App.profile_make_menu(`color`, App.profile_editor_color_opts)
     App.profile_make_menu(`background_effect`, App.background_effects)
     App.profile_make_menu(`background_tiles`, App.background_tiles)
-
-    DOM.ev(DOM.el(`#profile_editor_tags`), `input`, (e) => {
-      App.profile_modified()
-    })
+    App.profile_addlist(`profile_tags`)
 
     DOM.ev(DOM.el(`#profile_editor_notes`), `input`, (e) => {
       App.profile_modified()
@@ -252,8 +245,8 @@ App.show_profile_editor = (item, type, action = `edit`) => {
 
   let url_el = DOM.el(`#profile_editor_url`)
   url_el.value = ``
+  App.profile_editor_tags = []
   DOM.el(`#profile_editor_exact`).checked = false
-  DOM.el(`#profile_editor_tags`).value = ``
   DOM.el(`#profile_editor_notes`).value = ``
   DOM.el(`#profile_editor_title`).value = ``
   DOM.el(`#profile_editor_icon`).value = ``
@@ -282,7 +275,7 @@ App.show_profile_editor = (item, type, action = `edit`) => {
       let profile = profiles[0]
 
       if (action === `edit`) {
-        DOM.el(`#profile_editor_tags`).value = profile.tags.join(`\n`)
+        App.profile_editor_tags = profile.tags
         DOM.el(`#profile_editor_notes`).value = profile.notes
       }
 
@@ -319,7 +312,7 @@ App.show_profile_editor = (item, type, action = `edit`) => {
       if (items.length === profiles.length) {
         if (type === `tags`) {
           let shared = App.get_shared_tags(profiles)
-          DOM.el(`#profile_editor_tags`).value = shared.join(`\n`)
+          App.profile_editor_tags = shared
         }
         else if (type === `notes`) {
           let shared = App.get_shared_notes(profiles)
@@ -384,12 +377,7 @@ App.show_profile_editor = (item, type, action = `edit`) => {
 }
 
 App.get_empty_profile = (url) => {
-  let obj = {}
-
-  for (let key in App.profile_props) {
-    obj[key] = App.profile_props[key]
-  }
-
+  let obj = structuredClone(App.profile_props)
   obj.url = url
   return obj
 }
@@ -410,29 +398,6 @@ App.copy_profile = (profile) => {
   return obj
 }
 
-App.get_clean_tag_input = () => {
-  return App.single_linebreak(DOM.el(`#profile_editor_tags`).value)
-}
-
-App.get_input_tags = () => {
-  let tags = App.get_clean_tag_input().split(`\n`)
-  let c_tags = []
-
-  for (let tag of tags) {
-    if (!tag) {
-      continue
-    }
-
-    let t = tag.toLowerCase().trim()
-
-    if (!c_tags.includes(t)) {
-      c_tags.push(t)
-    }
-  }
-
-  return c_tags
-}
-
 App.profile_editor_save = () => {
   let items = App.profile_editor_items
 
@@ -446,7 +411,7 @@ App.profile_editor_save = () => {
     let args = {}
     args.url = DOM.el(`#profile_editor_url`).value.trim()
     args.exact = DOM.el(`#profile_editor_exact`).checked
-    args.tags = App.get_input_tags()
+    args.tags = App.profile_editor_tags
     args.notes = App.double_linebreak(DOM.el(`#profile_editor_notes`).value)
     args.title = DOM.el(`#profile_editor_title`).value.trim()
     args.icon = DOM.el(`#profile_editor_icon`).value.trim()
@@ -562,6 +527,7 @@ App.save_profile = (args) => {
   // Added
   if (args.added.length) {
     for (let item of args.added) {
+      console.log(`added`)
       proc(App.get_empty_profile(item.url), `add`)
     }
   }
@@ -1324,49 +1290,6 @@ App.add_notes = (item) => {
   App.show_profile_editor(item, `notes`, `add`)
 }
 
-App.show_tag_picker = (e) => {
-  let items = []
-  let tags = App.get_tags()
-
-  let input_tags = App.get_input_tags()
-
-  for (let tag of tags) {
-    if (input_tags.includes(tag)) {
-      continue
-    }
-
-    items.push({
-      text: tag,
-      action: () => {
-        App.insert_tag(tag)
-      }
-    })
-
-    if (items.length >= App.max_tag_filters) {
-      break
-    }
-  }
-
-  if (!items.length) {
-    items.push({
-      text: `No tags to add`,
-      action: () => {
-        App.show_alert(`Add some tags manually`)
-      }
-    })
-  }
-
-  NeedContext.show(e.clientX, e.clientY, items)
-}
-
-App.insert_tag = (tag) => {
-  let el = DOM.el(`#profile_editor_tags`)
-  let value = App.get_clean_tag_input()
-  el.value = `${tag}\n${value}`.trim()
-  el.scrollTop = el.scrollHeight
-  el.focus()
-}
-
 App.show_profile_urls = () => {
   let s = App.profile_editor_items.map(x => x.url).join(`\n\n`)
   App.show_alert_2(s)
@@ -1433,13 +1356,15 @@ App.change_color = (item, color, toggle = false) => {
 }
 
 App.get_shared_tags = (profiles) => {
-  let arrays = profiles.map(obj => obj.tags)
+  let first = App.str(profiles[0].tags)
 
-  let shared = arrays.reduce((common, current) => {
-    return common.filter(value => current.includes(value))
-  })
+  for (let profile of profiles) {
+    if (App.str(profile.tags) !== first) {
+      return []
+    }
+  }
 
-  return shared
+  return App.obj(first)
 }
 
 App.get_shared_notes = (profiles) => {
@@ -1763,4 +1688,27 @@ App.start_auto_reload = () => {
   }, App.auto_reload_delay)
 
   App.debug(`Started auto reload interval`)
+}
+
+App.profile_addlist = (id) => {
+  let name = `profile_editor_tags`
+
+  App.create_popup({
+    id: `addlist_${id}`,
+    element: App.addlist_register({
+      id: id,
+      pk: `key`,
+      widgets: [`select`],
+      labels: [`Tag`],
+      sources: [App.get_tags()],
+      keys: [`tag`], list_text: (items) => {
+        return items.alias
+      },
+      title: `Tags`,
+      from: name,
+    })
+  })
+
+  let el = DOM.el(`#${name}`)
+  App.addlist_add_buttons(el, `${name}`)
 }

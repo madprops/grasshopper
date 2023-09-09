@@ -813,19 +813,7 @@ App.add_settings_addlist = (category) => {
       }
 
       let el = DOM.el(`#settings_${key}`)
-      let cls = `action underline`
-      let add = DOM.create(`div`, cls, `settings_${key}_add`)
-      add.textContent = `Add`
-      el.append(add)
-      let list = DOM.create(`div`, cls, `settings_${key}_list`)
-      list.textContent = `List`
-      el.append(list)
-      let edit = DOM.create(`div`, cls, `settings_${key}_edit`)
-      edit.textContent = `Edit`
-      el.append(edit)
-      let clear = DOM.create(`div`, cls, `settings_${key}_clear`)
-      clear.textContent = `Clear`
-      el.append(clear)
+      App.addlist_add_buttons(key, el)
 
       let menu = [
         {
@@ -1037,9 +1025,6 @@ App.setup_settings = () => {
     App.settings_make_menu(`height`, App.get_size_options(), () => {
       App.apply_theme_2()
     })
-
-    App.addlist_buttons({id: `aliases`})
-    App.addlist_buttons({id: `custom_filters`})
   }}))
 
   App.create_window(Object.assign({}, common, {id: `settings_theme`, setup: () => {
@@ -1146,19 +1131,10 @@ App.setup_settings = () => {
 
   App.create_window(Object.assign({}, common, {id: `settings_menus`, setup: () => {
     prepare(`menus`)
-
-    for (let key in App.settings_props) {
-      let props = App.settings_props[key]
-
-      if (props.category === `menus`) {
-        App.addlist_buttons({id: key})
-      }
-    }
   }}))
 
   App.create_window(Object.assign({}, common, {id: `settings_keyboard`, setup: () => {
     prepare(`keyboard`)
-    App.addlist_buttons({id: `keyboard_shortcuts`})
   }}))
 
   window.addEventListener(`storage`, (e) => {
@@ -1330,12 +1306,6 @@ App.start_theme_settings = () => {
     App.random_background()
   })
 
-  App.addlist_buttons({id: `background_pool`,
-    use: (obj) => {
-      App.apply_background(obj)
-    }
-  })
-
   DOM.ev(DOM.el(`#settings_background_pool_next`), `click`, () => {
     App.background_from_pool()
   })
@@ -1350,10 +1320,6 @@ App.start_theme_settings = () => {
       effect: App.get_setting(`background_effect`),
       tiles: App.get_setting(`background_tiles`),
     }
-
-    App.addlist_check({id: `background_pool`, items: items, use: (obj) => {
-      App.apply_background(obj)
-    }})
   })
 }
 
