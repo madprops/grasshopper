@@ -392,7 +392,7 @@ App.show_profile_editor = (item, type, action = `edit`) => {
   App.profile_addlist_count()
 
   if (type === `tags` && action === `add`) {
-    App.profile_tags_addlist_add()
+    App.profile_tags_addlist()
   }
   else if (type === `notes`) {
     DOM.el(`#profile_editor_notes`).focus()
@@ -1791,7 +1791,7 @@ App.profile_addlist_count = () => {
   App.addlist_update_count(`profile_editor_tags`)
 }
 
-App.profile_tags_addlist_add = () => {
+App.profile_tags_addlist = () => {
   App.addlist({id: `profile_editor_tags`, items: {}})
 }
 
