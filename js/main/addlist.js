@@ -49,7 +49,7 @@ App.addlist_save = (id) => {
 
   let lines = App.addlist_get_data(id)
   lines.splice(data.index, 0, line)
-  App.after_addlist_settings(id, lines)
+  App.after_addlist(id, lines)
   return true
 }
 
@@ -279,7 +279,7 @@ App.addlist_remove = (id, value, force) => {
       new_lines.push(line)
     }
 
-    App.after_addlist_settings(id, new_lines)
+    App.after_addlist(id, new_lines)
   }, undefined, force)
 }
 
@@ -332,9 +332,14 @@ App.addlist_right = () => {
   App.addlist_next(App.addlist_data.id)
 }
 
-App.after_addlist_settings = (id, lines) => {
+App.after_addlist = (id, lines) => {
+  let oargs = App.addlist_oargs(id)
   App.addlist_set_data(id, lines)
   App.hide_addlist(false)
+
+  if (oargs.on_modified) {
+    oargs.on_modified()
+  }
 }
 
 App.addlist_check_buttons = (args) => {
@@ -551,7 +556,7 @@ App.addlist_move = (dir) => {
         }
       }
 
-      App.after_addlist_settings(data.id, lines)
+      App.after_addlist(data.id, lines)
       break
     }
   }

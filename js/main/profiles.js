@@ -1704,6 +1704,9 @@ App.profile_addlist_tags = () => {
       },
       title: `Tags`,
       from: id,
+      on_modified: () => {
+        App.profile_modified()
+      },
     })
   })
 
