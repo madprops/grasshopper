@@ -324,7 +324,7 @@ App.show_profile_editor = (item, type, action = `edit`) => {
       if (items.length === profiles.length) {
         if (type === `tags`) {
           let shared = App.get_shared_tags(profiles)
-          App.profile_editor_tags = shared
+          App.profile_editor_tags = App.profile_fix_tags(shared)
         }
         else if (type === `notes`) {
           let shared = App.get_shared_notes(profiles)
