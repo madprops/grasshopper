@@ -1125,6 +1125,15 @@ App.fill_settings = (category) => {
   let c = DOM.el(`#setting_${category}`)
   c.innerHTML = ``
 
+  function input (type, cls, placeholder) {
+    let widget = DOM.create(`input`, `text ${cls}`)
+    widget.type = type
+    widget.autocomplete = `off`
+    widget.spellcheck = false
+    widget.placeholder = placeholder
+    return widget
+  }
+
   for (let key in App.setting_props) {
     let props = App.setting_props[key]
 
@@ -1143,25 +1152,13 @@ App.fill_settings = (category) => {
         widget = DOM.create(`div`, `settings_addlist`)
       }
       else if (props.type === `text`) {
-        widget = DOM.create(`input`, `text settings_text`)
-        widget.type = `text`
-        widget.autocomplete = `off`
-        widget.spellcheck = `false`
-        widget.placeholder = props.placeholder
+        widget = input(`text`, `settings_text`, props.placeholder)
       }
       else if (props.type === `text_smaller`) {
-        widget = DOM.create(`input`, `text settings_text text_smaller`)
-        widget.type = `text`
-        widget.autocomplete = `off`
-        widget.spellcheck = `false`
-        widget.placeholder = props.placeholder
+        widget = input(`text`, `settings_text text_smaller`, props.placeholder)
       }
       else if (props.type === `number`) {
-        widget = DOM.create(`input`, `text settings_number`)
-        widget.type = `number`
-        widget.autocomplete = `off`
-        widget.spellcheck = `false`
-        widget.placeholder = props.placeholder
+        widget = input(`number`, `settings_number`, props.placeholder)
       }
       else if (props.type === `checkbox`) {
         widget = DOM.create(`input`, `settings_checkbox`)
