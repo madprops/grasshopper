@@ -73,6 +73,7 @@ App.check_item_theme_delay = 200
 App.background_animation_delay = 120
 App.color_transition_delay = 1600
 App.theme_party_delay = `3_seconds`
+App.auto_reload_delay = 1000 * 30
 
 App.settings_icons = {
   general: `⚙️`,

@@ -334,7 +334,7 @@ App.process_info = (mode, info, exclude = [], o_item) => {
   let theme_enabled = false
   let background_color = ``
   let text_color = ``
-  let auto_reload = false
+  let auto_reload = 0
   let icon = ``
 
   if (profile) {
@@ -357,7 +357,7 @@ App.process_info = (mode, info, exclude = [], o_item) => {
     }
 
     if (profile.auto_reload) {
-      auto_reload = true
+      auto_reload = profile.auto_reload
     }
 
     if (profile.theme_enabled) {
@@ -445,6 +445,10 @@ App.process_info = (mode, info, exclude = [], o_item) => {
     }
   }
   else {
+    if (mode === `tabs`) {
+      item.last_auto_reload = Date.now()
+    }
+
     item.original_data = info
     item.id = info.id || App[`${mode}_idx`]
     item.visible = true

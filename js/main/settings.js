@@ -508,9 +508,6 @@ App.build_settings = () => {
   obj.double_click_command = {value: `none`, category: category, type: `menu`, name: `Double Click Command`, version: 1,
   info: `What command to perform when double clicking an item`}
 
-  obj.auto_reload_delay = {value: `10_minutes`, category: category, type: `menu`, name: `Auto Reload Delay`, version: 1,
-  info: `Perform auto reloads every x minutes. This only affects items with auto reload enabled in the profile`}
-
   obj.lock_drag = {value: false, category: category, type: `checkbox`, name: `Lock Drag`, version: 1,
   info: `Require holding Ctrl to re-order tab items`}
 
@@ -1067,21 +1064,6 @@ App.setup_settings = () => {
     App.settings_make_menu(`hover_effect`, App.effects)
     App.settings_make_menu(`selected_effect`, App.effects)
     App.settings_make_menu(`double_click_command`, App.settings_commands())
-
-    App.settings_make_menu(`auto_reload_delay`, [
-      {text: `Never`, value: `never`},
-      {text: `1 Minute`, value: `1_minutes`},
-      {text: `5 Minutes`, value: `5_minutes`},
-      {text: `10 Minutes`, value: `10_minutes`},
-      {text: `20 Minutes`, value: `20_minutes`},
-      {text: `30 Minutes`, value: `30_minutes`},
-      {text: `1 Hour`, value: `1_hours`},
-      {text: `6 hours`, value: `6_hours`},
-      {text: `12 hours`, value: `12_hours`},
-      {text: `24 hours`, value: `24_hours`},
-    ], () => {
-      App.start_auto_reload()
-    })
   }}))
 
   App.create_window(Object.assign({}, common, {id: `settings_media`, setup: () => {
@@ -1612,7 +1594,7 @@ App.check_settings = () => {
     // Remove unused settings
     if (App.settings_props[key] === undefined) {
       App.debug(`Stor: Deleting setting: ${key}`)
-      delete App.settings[setting]
+      delete App.settings[key]
       changed = true
     }
     // Check new version

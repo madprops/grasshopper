@@ -16,7 +16,7 @@ App.profile_props = {
   background_image: ``,
   background_effect: `none`,
   background_tiles: `none`,
-  auto_reload: false,
+  auto_reload: 0,
 }
 
 App.profile_props_theme = [`background_color`, `text_color`, `background_image`, `background_effect`, `background_tiles`]
@@ -257,7 +257,7 @@ App.show_profile_editor = (item, type, action = `edit`) => {
   DOM.el(`#profile_editor_notes`).value = ``
   DOM.el(`#profile_editor_title`).value = ``
   DOM.el(`#profile_editor_icon`).value = ``
-  DOM.el(`#profile_editor_auto_reload`).checked = false
+  DOM.el(`#profile_editor_auto_reload`).value = 0
   DOM.el(`#profile_editor_theme_enabled`).checked = false
   App.profile_editor_background_color.setColor(App.dark_theme.background)
   App.profile_editor_text_color.setColor(App.dark_theme.text)
@@ -290,7 +290,7 @@ App.show_profile_editor = (item, type, action = `edit`) => {
       DOM.el(`#profile_editor_exact`).checked = profile.exact
       DOM.el(`#profile_editor_title`).value = profile.title
       DOM.el(`#profile_editor_icon`).value = profile.icon
-      DOM.el(`#profile_editor_auto_reload`).checked = profile.auto_reload
+      DOM.el(`#profile_editor_auto_reload`).value = profile.auto_reload
       color = profile.color
 
       if (profile.theme_enabled) {
@@ -341,7 +341,7 @@ App.show_profile_editor = (item, type, action = `edit`) => {
           let shared = App.get_shared_auto_reload(profiles)
 
           if (shared) {
-            DOM.el(`#profile_editor_auto_reload`).checked = shared || false
+            DOM.el(`#profile_editor_auto_reload`).value = shared
           }
         }
         else if (type === `theme`) {
@@ -467,7 +467,7 @@ App.profile_editor_save = () => {
     args.background_image =  DOM.el(`#profile_editor_background_image`).value.trim()
     args.background_effect =  App.profile_menubutton_background_effect.value
     args.background_tiles = App.profile_menubutton_background_tiles.value
-    args.auto_reload = DOM.el(`#profile_editor_auto_reload`).checked
+    args.auto_reload = parseInt(DOM.el(`#profile_editor_auto_reload`).value.trim())
     args.type = App.profile_editor_type
     args.profiles = App.profile_editor_profiles
     args.added = App.profile_editor_added
@@ -1081,7 +1081,7 @@ App.remove_all_auto_reload = () => {
   let profiles = []
 
   for (let profile of App.profiles) {
-    if (profile.auto_reload) {
+    if (profile.auto_reload !== 0) {
       profiles.push(profile)
     }
   }
@@ -1092,7 +1092,7 @@ App.remove_all_auto_reload = () => {
 
   App.show_confirm(`Remove all auto reload? (${profiles.length})`, () => {
     for (let profile of App.profiles) {
-      profile.auto_reload = false
+      profile.auto_reload = 0
     }
 
     App.after_profile_remove()
@@ -1212,7 +1212,7 @@ App.get_profile_count = () => {
       count.themes += 1
     }
 
-    if (profile.auto_reload) {
+    if (profile.auto_reload !== 0) {
       count.auto_reload += 1
     }
   }
@@ -1503,7 +1503,7 @@ App.get_shared_auto_reload = (profiles) => {
 
   for (let profile of profiles) {
     if (profile.auto_reload !== first) {
-      return
+      return ``
     }
   }
 
@@ -1749,36 +1749,25 @@ App.profile_editor_background_image_none = () => {
 
 App.start_auto_reload = () => {
   clearInterval(App.auto_reload_interval)
-  let setting = `auto_reload_delay`
-  let sett = App.get_setting(setting)
 
-  if (sett === `never`) {
+  if (!App.auto_reload_delay) {
+    App.error(`Wrong auto reload delay`)
     return
   }
 
-  let delay = App.parse_delay(sett)
+  App.auto_reload_interval = setInterval(() => {
+    App.debug(`Auto reloading tabs`)
+    for (let item of App.get_items(`tabs`)) {
+      if (item.auto_reload > 0) {
+        let mins = parseInt((Date.now() - item.last_auto_reload) / 1000 / 60)
 
-  if (!delay) {
-    return
-  }
-
-  if (delay > 0) {
-    App.auto_reload_interval = setInterval(() => {
-      App.debug(`Auto reloading tabs`)
-      let sett = App.get_setting(setting)
-
-      if (sett === `never`) {
-        clearInterval(App.auto_reload_interval)
-        return
-      }
-
-      for (let item of App.get_items(`tabs`)) {
-        if (item.auto_reload) {
+        if (mins >= item.auto_reload) {
           App.browser_reload(item.id)
+          item.last_auto_reload = Date.now()
         }
       }
-    }, delay)
+    }
+  }, App.auto_reload_delay)
 
-    App.debug(`Started auto reload interval`)
-  }
+  App.debug(`Started auto reload interval`)
 }
