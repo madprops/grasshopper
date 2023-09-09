@@ -139,6 +139,10 @@ App.setup_profile_editor = () => {
     })
 
     DOM.ev(DOM.el(`#profile_editor_auto_reload`), `change`, (e) => {
+      if (parseInt(e.target.value) < e.target.min) {
+        e.target.value = e.target.min
+      }
+
       App.profile_modified()
     })
   },
