@@ -1765,7 +1765,6 @@ App.check_settings_addlist = () => {
 }
 
 App.setup_settings_addlist = () => {
-  console.log(111111)
   App.addlist_commands = App.settings_commands()
 
   function cmd_name (cmd) {
