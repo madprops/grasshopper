@@ -29,7 +29,8 @@ App.do_check_scroller = (mode) => {
   let percentage = 100 - ((container.scrollTop /
   (container.scrollHeight - container.clientHeight)) * 100)
   let per = parseInt(percentage)
-  DOM.el(`#${mode}_scroller_percentage`).textContent = `(${per}%)`
+  let sper = App.fillpad(per, 2, 0)
+  DOM.el(`#${mode}_scroller_percentage`).textContent = `(${sper}%)`
 
   if (container.scrollTop > App.scroller_max_top) {
     App.show_scroller(mode)

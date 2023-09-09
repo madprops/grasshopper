@@ -570,3 +570,14 @@ App.obj = (str) => {
 App.str = (obj) => {
   return JSON.stringify(obj, null, 2)
 }
+
+App.fillpad = (s, n, c) => {
+  s = s.toString()
+  let olen = s.length
+
+  for (let i=0; i<(n - olen); i++) {
+    s = c + s
+  }
+
+  return s
+}
