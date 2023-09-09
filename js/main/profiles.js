@@ -384,22 +384,14 @@ App.show_profile_editor = (item, type, action = `edit`) => {
 }
 
 App.get_empty_profile = (url) => {
-  return {
-    url: url,
-    tags: [],
-    notes: ``,
-    title: ``,
-    color: `none`,
-    icon: ``,
-    exact: false,
-    theme_enabled: false,
-    background_color: ``,
-    text_color: ``,
-    background_image: ``,
-    background_effect: `none`,
-    background_tiles: `none`,
-    auto_reload: 0,
+  let obj = {}
+
+  for (let key in App.profile_props) {
+    obj[key] = App.profile_props[key]
   }
+
+  obj.url = url
+  return obj
 }
 
 App.copy_profile = (profile) => {
