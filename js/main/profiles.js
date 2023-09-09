@@ -1761,7 +1761,7 @@ App.start_auto_reload = () => {
       if (item.auto_reload > 0) {
         let mins = parseInt((Date.now() - item.last_auto_reload) / 1000 / 60)
 
-        if (mins >= item.auto_reload) {
+        if (mins >= (item.auto_reload) - 0.1) {
           App.browser_reload(item.id)
           item.last_auto_reload = Date.now()
         }
