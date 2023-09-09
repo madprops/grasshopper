@@ -721,7 +721,7 @@ App.addlist_add_buttons = (id) => {
   let el = DOM.el(`#${id}`)
   let oargs = App.addlist_oargs(id)
   let cls = `action underline`
-  let count = DOM.create(`div`, ``, `addlist_button_${id}_count`)
+  let count = DOM.create(`div`, `action`, `addlist_button_${id}_count`)
   count.textContent = ``
   el.append(count)
   let add = DOM.create(`div`, cls, `addlist_button_${id}_add`)
@@ -736,6 +736,10 @@ App.addlist_add_buttons = (id) => {
   let clear = DOM.create(`div`, cls, `addlist_button_${id}_clear`)
   clear.textContent = `Clear`
   el.append(clear)
+
+  DOM.ev(DOM.el(`#addlist_button_${id}_count`), `click`, () => {
+    App.addlist_list({id: id, use: oargs.use})
+  })
 
   DOM.ev(DOM.el(`#addlist_button_${id}_add`), `click`, () => {
     App.addlist({id: id, items: {}})
