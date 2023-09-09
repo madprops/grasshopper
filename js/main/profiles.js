@@ -1827,15 +1827,15 @@ App.profile_set_default = (prop) => {
   else if (prop === `color`) {
     App.set_profile_color(`none`)
   }
+  else if (prop === `theme_enabled`) {
+    DOM.el(`#profile_editor_theme_enabled`).checked = false
+    App.profile_theme_enabled_changed()
+  }
   else if (prop === `background_color`) {
     App.profile_editor_background_color.setColor(App.dark_colors.background)
   }
   else if (prop === `text_color`) {
     App.profile_editor_text_color.setColor(App.dark_colors.text)
-  }
-  else if (prop === `theme_enabled`) {
-    DOM.el(`#profile_editor_theme_enabled`).checked = false
-    App.profile_theme_enabled_changed()
   }
   else if (prop === `background_image`) {
     DOM.el(`#profile_editor_background_image`).value = ``
