@@ -720,8 +720,8 @@ App.get_tags = () => {
 
   for (let profile of App.profiles) {
     for (let tag of profile.tags) {
-      if (!tags.includes(tag.tag)) {
-        tags.push(tag.tag)
+      if (!tags.includes(tag.name)) {
+        tags.push(tag.name)
       }
     }
   }
@@ -1698,9 +1698,9 @@ App.profile_addlist_tags = () => {
       id: id,
       pk: `tag`,
       widgets: [`text`],
-      labels: [`Tag`],
-      keys: [`tag`], list_text: (items) => {
-        return items.tag
+      labels: [`Name`],
+      keys: [`name`], list_text: (items) => {
+        return items.name
       },
       title: `Tags`,
       from: id,
