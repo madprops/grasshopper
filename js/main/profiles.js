@@ -527,7 +527,6 @@ App.save_profile = (args) => {
   // Added
   if (args.added.length) {
     for (let item of args.added) {
-      console.log(`added`)
       proc(App.get_empty_profile(item.url), `add`)
     }
   }
