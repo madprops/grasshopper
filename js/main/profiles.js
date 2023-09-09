@@ -381,6 +381,13 @@ App.show_profile_editor = (item, type, action = `edit`) => {
   App.profile_apply_theme()
   App.profile_addlist_count()
 
+  if (type === `tags` && action === `add`) {
+    App.profile_tags_add()
+  }
+  else if (type === `notes`) {
+    DOM.el(`#profile_editor_notes`).focus()
+  }
+
   requestAnimationFrame(() => {
     App.scroll_to_right(url_el)
   })
@@ -1767,4 +1774,8 @@ App.profile_tags_add = (e) => {
 
 App.profile_addlist_count = () => {
   App.addlist_update_count(`profile_editor_tags`)
+}
+
+App.profile_tags_add = () => {
+  App.addlist({id: `profile_editor_tags`, items: {}})
 }
