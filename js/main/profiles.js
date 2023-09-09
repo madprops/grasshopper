@@ -277,8 +277,11 @@ App.show_profile_editor = (item, type, action = `edit`) => {
 
   if (items.length === 1) {
     DOM.el(`#profile_editor_header`).textContent = `Editing 1 Profile`
-    DOM.el(`#profile_editor_url_container`).classList.remove(`hidden`)
-    DOM.el(`#profile_editor_exact_container`).classList.remove(`hidden`)
+
+    if (type === `all`) {
+      DOM.el(`#profile_editor_url_container`).classList.remove(`hidden`)
+      DOM.el(`#profile_editor_exact_container`).classList.remove(`hidden`)
+    }
 
     if (profiles.length && !App.profile_editor_new) {
       let profile = profiles[0]
