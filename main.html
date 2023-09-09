@@ -74,13 +74,13 @@
         </div>
 
         <div id="profile_editor_exact_container" class="editor_container flex_column_center gap_1" title="Match exact URL. Else it uses startsWith">
-          <div>Exact</div>
+          <div class="profile_editor_label action" data-prop="exact">Exact</div>
           <input type="checkbox" id="profile_editor_exact" class="settings_checkbox editor_input">
         </div>
 
         <div id="profile_editor_url_container" class="editor_container flex_column_center gap_1" title="Match URLs that start with this">
           <div class="flex_row_center gap_1">
-            <div>URL</div>
+            <div class="profile_editor_label action" data-prop="url">URL</div>
             <div>|</div>
             <div id="profile_editor_url_root" class="action underline">Root</div>
             <div>|</div>
@@ -90,13 +90,13 @@
         </div>
 
         <div id="profile_editor_title_container" class="editor_container flex_column_center gap_1">
-          <div>Title</div>
+          <div class="profile_editor_label action" data-prop="title">Title</div>
           <input type="text" autocomplete="off" spellcheck="false" id="profile_editor_title" class="text settings_text editor_input" placeholder="Set a fixed title">
         </div>
 
         <div id="profile_editor_tags_container" class="editor_container flex_column_center gap_1">
           <div class="flex_row_center gap_1">
-            <div>Tags</div>
+            <div class="profile_editor_label action" data-prop="tags">Tags</div>
             <div>|</div>
             <div id="profile_editor_tags_add" class="action underline">Add</div>
           </div>
@@ -105,43 +105,43 @@
         </div>
 
         <div id="profile_editor_notes_container" class="editor_container flex_column_center gap_1">
-          <div>Notes</div>
+          <div class="profile_editor_label action" data-prop="notes">Notes</div>
           <textarea autocomplete="off" spellcheck="false" id="profile_editor_notes" class="text settings_textarea editor_input" placeholder="Write something"></textarea>
         </div>
 
         <div id="profile_editor_color_container" class="editor_container flex_column_center gap_1">
-          <div>Color</div>
+          <div class="profile_editor_label action" data-prop="color">Color</div>
           <div id="profile_editor_color" class="settings_menu button editor_input"></div>
         </div>
 
         <div id="profile_editor_icon_container" class="editor_container flex_column_center gap_1">
-          <div>Icon</div>
+          <div class="profile_editor_label action" data-prop="icon">Icon</div>
           <input type="text" autocomplete="off" spellcheck="false" id="profile_editor_icon" class="text settings_text text_smaller editor_input">
         </div>
 
         <div id="profile_editor_auto_reload_container" class="editor_container flex_column_center gap_1" title="Auto reload every x minutes. If it's 0 it is disabled">
-          <div>Auto Reload</div>
+          <div class="profile_editor_label action" data-prop="auto_reload">Auto Reload</div>
           <input type="number" id="profile_editor_auto_reload" class="text settings_number" min="0" placeholder="Number">
         </div>
 
         <div id="profile_editor_theme_container" class="editor_container flex_column_center gap_2">
-          <div>Theme</div>
+          <div class="profile_editor_label action" data-prop="theme_enabled">Theme</div>
           <input type="checkbox" id="profile_editor_theme_enabled" class="settings_checkbox editor_input">
 
           <div id="profile_editor_theme_inputs" class="flex_column_center gap_3">
             <div class="flex_column_center gap_2">
-              <div>Background Color</div>
+              <div class="profile_editor_label action" data-prop="background_color">Background Color</div>
               <div id="profile_editor_background_color" class="editor_input"></div>
             </div>
 
             <div class="flex_column_center gap_2">
-              <div>Text Color</div>
+              <div class="profile_editor_label action" data-prop="text_color">Text Color</div>
               <div id="profile_editor_text_color" class="editor_input"></div>
             </div>
 
             <div class="flex_column_center gap_2">
               <div class="flex_row_center gap_1">
-                <div>Background Image</div>
+                <div class="profile_editor_label action" data-prop="background_image">Background Image</div>
                 <div>|</div>
                 <div id="profile_editor_background_image_none" class="action underline">None</div>
               </div>
@@ -149,12 +149,12 @@
             </div>
 
             <div class="flex_column_center gap_2">
-              <div>Background Effect</div>
+              <div class="profile_editor_label action" data-prop="background_effect">Background Effect</div>
               <div id="profile_editor_background_effect" class="settings_menu button editor_input"></div>
             </div>
 
             <div class="flex_column_center gap_2">
-              <div>Background Tiles</div>
+              <div class="profile_editor_label action" data-prop="background_tiles">Background Tiles</div>
               <div id="profile_editor_background_tiles" class="settings_menu button editor_input"></div>
             </div>
           </div>

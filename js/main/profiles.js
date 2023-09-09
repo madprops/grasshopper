@@ -122,21 +122,13 @@ App.setup_profile_editor = () => {
       App.profile_modified()
     })
 
-    DOM.ev(DOM.el(`#profile_editor_background_image`), `blur`, (e) => {
+    DOM.ev(DOM.el(`#profile_editor_background_image`), `blur`, () => {
       App.profile_apply_theme()
       App.profile_modified()
     })
 
-    DOM.ev(DOM.el(`#profile_editor_theme_enabled`), `change`, (e) => {
-      if (e.target.checked) {
-        DOM.el(`#profile_editor_theme_inputs`).classList.remove(`hidden`)
-      }
-      else {
-        DOM.el(`#profile_editor_theme_inputs`).classList.add(`hidden`)
-      }
-
-      App.profile_apply_theme()
-      App.profile_modified()
+    DOM.ev(DOM.el(`#profile_editor_theme_enabled`), `change`, () => {
+      App.profile_theme_enabled_changed()
     })
 
     DOM.ev(DOM.el(`#profile_editor_auto_reload`), `change`, (e) => {
@@ -152,6 +144,8 @@ App.setup_profile_editor = () => {
 
       App.profile_modified()
     })
+
+    App.profile_setup_labels()
   },
   colored_top: true,
   on_hide: () => {
@@ -1804,4 +1798,70 @@ App.profile_fix_tags = (tags) => {
   }
 
   return fixed
+}
+
+App.profile_setup_labels = () => {
+  for (let el of DOM.els(`.profile_editor_label`)) {
+    let items = []
+
+    items.push({
+      text: `Reset`,
+      action: () => {
+        App.profile_set_default(el.dataset.prop)
+      },
+    })
+
+    DOM.evs(el, [`click`, `contextmenu`], (e) => {
+      NeedContext.show(e.clientX, e.clientY, items)
+      e.preventDefault()
+    })
+  }
+}
+
+App.profile_set_default = (prop) => {
+  if (prop === `tags`) {
+    App.profile_editor_tags = []
+    App.profile_addlist_count()
+  }
+  else if (prop === `color`) {
+    App.set_profile_color(`none`)
+  }
+  else if (prop === `background_color`) {
+    App.profile_editor_background_color.setColor(App.dark_colors.background)
+  }
+  else if (prop === `text_color`) {
+    App.profile_editor_text_color.setColor(App.dark_colors.text)
+  }
+  else if (prop === `theme_enabled`) {
+    DOM.el(`#profile_editor_theme_enabled`).checked = false
+    App.profile_theme_enabled_changed()
+  }
+  else {
+    let def = App.profile_props[prop]
+    let el = DOM.el(`#profile_editor_${prop}`)
+
+    if (typeof def === `boolean`) {
+      el.checked = def
+    }
+    else if (typeof def === `string`) {
+      el.value = def
+    }
+    else if (typeof def === `number`) {
+      el.value = def
+    }
+  }
+}
+
+App.profile_theme_enabled_changed = () => {
+  let el = DOM.el(`#profile_editor_theme_enabled`)
+
+  if (el.checked) {
+    DOM.el(`#profile_editor_theme_inputs`).classList.remove(`hidden`)
+  }
+  else {
+    DOM.el(`#profile_editor_theme_inputs`).classList.add(`hidden`)
+  }
+
+  App.profile_apply_theme()
+  App.profile_modified()
 }
