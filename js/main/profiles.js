@@ -462,33 +462,11 @@ App.save_profile = (args) => {
     }
 
     if (args.type === `all` || args.type === `tags`) {
-      let n_tags = []
-
-      if (p_mode === `edit` && args.action === `add`) {
-        for (let tag of profile.tags) {
-          if (!n_tags.includes(tag)) {
-            n_tags.push(tag)
-          }
-        }
-      }
-
-      for (let tag of args.tags) {
-        if (!n_tags.includes(tag)) {
-          n_tags.push(tag)
-        }
-      }
-
-      profile.tags = n_tags
+      profile.tags = args.tags
     }
 
     if (args.type === `all` || args.type === `notes`) {
-      let n_notes = args.notes
-
-      if (p_mode === `edit` && args.action === `add`) {
-        n_notes = `${profile.notes}\n${n_notes}`.trim()
-      }
-
-      profile.notes = n_notes
+      profile.notes = args.notes
     }
 
     if (args.type === `all` || args.type === `title`) {
@@ -1211,22 +1189,6 @@ App.get_edit_items = (item, multiple) => {
   items.push({separator: true})
 
   items.push({
-    text: `Add Tags`,
-    action: () => {
-      return App.add_tags(item)
-    }
-  })
-
-  items.push({
-    text: `Add Notes`,
-    action: () => {
-      return App.add_notes(item)
-    }
-  })
-
-  items.push({separator: true})
-
-  items.push({
     text: `Edit Title`,
     action: () => {
       return App.show_profile_editor(item, `title`)
@@ -1289,14 +1251,6 @@ App.get_edit_items = (item, multiple) => {
 
 App.edit_profiles = (item) => {
   App.show_profile_editor(item, `all`)
-}
-
-App.add_tags = (item) => {
-  App.show_profile_editor(item, `tags`, `add`)
-}
-
-App.add_notes = (item) => {
-  App.show_profile_editor(item, `notes`, `add`)
 }
 
 App.show_profile_urls = () => {
