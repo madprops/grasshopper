@@ -1698,7 +1698,7 @@ App.profile_editor_background_image_none = () => {
 App.start_auto_reload = () => {
   clearInterval(App.auto_reload_interval)
 
-  if (!App.auto_reload_delay) {
+  if (!App.auto_reload_delay || isNaN(App.auto_reload_delay)) {
     App.error(`Wrong auto reload delay`)
     return
   }
