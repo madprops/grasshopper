@@ -1745,6 +1745,7 @@ App.profile_addlist_tags = () => {
       on_modified: () => {
         App.profile_modified()
       },
+      lowercase: true,
     })
   })
 

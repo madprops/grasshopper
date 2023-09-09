@@ -566,11 +566,16 @@ App.addlist_move = (dir) => {
 
 App.addlist_get_value = (i, w) => {
   let id = App.addlist_data.id
+  let oargs = App.addlist_oargs(id)
   let el = App.addlist_widget(id, i)
   let value
 
   if (w === `text` || w === `key`) {
     value = el.value.trim()
+
+    if (oargs.lowercase) {
+      value = value.toLowerCase()
+    }
   }
   else if (w === `select`) {
     value = App[`addlist_menubutton_${id}_${i}`].value
