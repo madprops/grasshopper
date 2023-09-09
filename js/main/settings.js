@@ -213,74 +213,20 @@ App.build_settings = () => {
   obj.gesture_up = {value: `go_to_top`, category: category, type: `menu`, name: `Gesture Up`, version: 1,
   info: `Up`}
 
-  obj.gesture_up_ctrl = {value: `none`, category: category, type: `menu`, name: `Gesture Up + Ctrl`, version: 1,
-  info: `Up while pressing Ctrl`}
-
-  obj.gesture_up_shift = {value: `none`, category: category, type: `menu`, name: `Gesture Up + Shift`, version: 1,
-  info: `Up while pressing Shift`}
-
-  obj.gesture_up_alt = {value: `none`, category: category, type: `menu`, name: `Gesture Up + Alt`, version: 1,
-  info: `Up while pressing Alt`}
-
   obj.gesture_down = {value: `go_to_bottom`, category: category, type: `menu`, name: `Gesture Down`, version: 1,
   info: `Down`}
-
-  obj.gesture_down_ctrl = {value: `none`, category: category, type: `menu`, name: `Gesture Down + Ctrl`, version: 1,
-  info: `Down while pressing Ctrl`}
-
-  obj.gesture_down_shift = {value: `none`, category: category, type: `menu`, name: `Gesture Down + Shift`, version: 1,
-  info: `Down while pressing Shift`}
-
-  obj.gesture_down_alt = {value: `none`, category: category, type: `menu`, name: `Gesture Down + Alt`, version: 1,
-  info: `Down while pressing Alt`}
 
   obj.gesture_left = {value: `prev_mode`, category: category, type: `menu`, name: `Gesture Left`, version: 1,
   info: `Left`}
 
-  obj.gesture_left_ctrl = {value: `none`, category: category, type: `menu`, name: `Gesture Left + Ctrl`, version: 1,
-  info: `Left while pressing Ctrl`}
-
-  obj.gesture_left_shift = {value: `none`, category: category, type: `menu`, name: `Gesture Left + Shift`, version: 1,
-  info: `Left while pressing Shift`}
-
-  obj.gesture_left_alt = {value: `none`, category: category, type: `menu`, name: `Gesture Left + Alt`, version: 1,
-  info: `Left while pressing Alt`}
-
   obj.gesture_right = {value: `next_mode`, category: category, type: `menu`, name: `Gesture Right`, version: 1,
   info: `Right`}
-
-  obj.gesture_right_ctrl = {value: `none`, category: category, type: `menu`, name: `Gesture Right + Ctrl`, version: 1,
-  info: `Right while pressing Ctrl`}
-
-  obj.gesture_right_shift = {value: `none`, category: category, type: `menu`, name: `Gesture Right + Shift`, version: 1,
-  info: `Right while pressing Shift`}
-
-  obj.gesture_right_alt = {value: `none`, category: category, type: `menu`, name: `Gesture Right + Alt`, version: 1,
-  info: `Right while pressing Alt`}
 
   obj.gesture_up_and_down = {value: `show_all`, category: category, type: `menu`, name: `Gesture Up Down`, version: 1,
   info: `Up and Down`}
 
-  obj.gesture_up_and_down_ctrl = {value: `none`, category: category, type: `menu`, name: `Gesture Up Down + Ctrl`, version: 1,
-  info: `Up and Down while pressing Ctrl`}
-
-  obj.gesture_up_and_down_shift = {value: `none`, category: category, type: `menu`, name: `Gesture Up Down + Shift`, version: 1,
-  info: `Up and Down while pressing Shift`}
-
-  obj.gesture_up_and_down_alt = {value: `none`, category: category, type: `menu`, name: `Gesture Up Down + Alt`, version: 1,
-  info: `Up and Down while pressing Alt`}
-
   obj.gesture_left_and_right = {value: `filter_domain`, category: category, type: `menu`, name: `Gesture Left Right`, version: 1,
   info: `Left and Right`}
-
-  obj.gesture_left_and_right_ctrl = {value: `none`, category: category, type: `menu`, name: `Gesture Left Right + Ctrl`, version: 1,
-  info: `Left and Right while pressing Ctrl`}
-
-  obj.gesture_left_and_right_shift = {value: `none`, category: category, type: `menu`, name: `Gesture Left Right + Shift`, version: 1,
-  info: `Left and Right while pressing Shift`}
-
-  obj.gesture_left_and_right_alt = {value: `none`, category: category, type: `menu`, name: `Gesture Left Right + Alt`, version: 1,
-  info: `Left and Right while pressing Alt`}
 
   // ###################
   category = `auxclick`
@@ -288,50 +234,14 @@ App.build_settings = () => {
   obj.middle_click_tabs = {value: `close`, category: category, type: `menu`, name: `Middle Click Tabs`, version: 1,
   info: `Middle click on tab items`}
 
-  obj.middle_click_tabs_ctrl = {value: `toggle_red`, category: category, type: `menu`, name: `Middle Click Tabs + Ctrl`, version: 1,
-  info: `Middle click on tab items while pressing Ctrl`}
-
-  obj.middle_click_tabs_shift = {value: `toggle_green`, category: category, type: `menu`, name: `Middle Click Tabs + Shift`, version: 1,
-  info: `Middle click on tab items while pressing Shift`}
-
-  obj.middle_click_tabs_alt = {value: `toggle_blue`, category: category, type: `menu`, name: `Middle Click Tabs + Alt`, version: 1,
-  info: `Middle click on tab items while pressing Alt`}
-
   obj.middle_click_history = {value: `open`, category: category, type: `menu`, name: `Middle Click History`, version: 1,
   info: `Middle click on history items`}
-
-  obj.middle_click_history_ctrl = {value: `toggle_red`, category: category, type: `menu`, name: `Middle Click History + Ctrl`, version: 1,
-  info: `Middle click on history items while pressing Ctrl`}
-
-  obj.middle_click_history_shift = {value: `toggle_green`, category: category, type: `menu`, name: `Middle Click History + Shift`, version: 1,
-  info: `Middle click on history items while pressing Shift`}
-
-  obj.middle_click_history_alt = {value: `toggle_blue`, category: category, type: `menu`, name: `Middle Click History + Alt`, version: 1,
-  info: `Middle click on history items while pressing Alt`}
 
   obj.middle_click_bookmarks = {value: `open`, category: category, type: `menu`, name: `Middle Click Bookmarks`, version: 1,
   info: `Middle click on bookmark items`}
 
-  obj.middle_click_bookmarks_ctrl = {value: `toggle_red`, category: category, type: `menu`, name: `Middle Click Bookmarks + Ctrl`, version: 1,
-  info: `Middle click on bookmark items while pressing Ctrl`}
-
-  obj.middle_click_bookmarks_shift = {value: `toggle_green`, category: category, type: `menu`, name: `Middle Click Bookmarks + Shift`, version: 1,
-  info: `Middle click on bookmark items while pressing Shift`}
-
-  obj.middle_click_bookmarks_alt = {value: `toggle_blue`, category: category, type: `menu`, name: `Middle Click Bookmarks + Alt`, version: 1,
-  info: `Middle click on bookmark items while pressing Alt`}
-
   obj.middle_click_closed = {value: `open`, category: category, type: `menu`, name: `Middle Click Closed`, version: 1,
   info: `Middle click on closed items`}
-
-  obj.middle_click_closed_ctrl = {value: `toggle_red`, category: category, type: `menu`, name: `Middle Click Closed + Ctrl`, version: 1,
-  info: `Middle click on closed items while pressing Ctrl`}
-
-  obj.middle_click_closed_shift = {value: `toggle_green`, category: category, type: `menu`, name: `Middle Click Closed + Shift`, version: 1,
-  info: `Middle click on closed items while pressing Shift`}
-
-  obj.middle_click_closed_alt = {value: `toggle_blue`, category: category, type: `menu`, name: `Middle Click Closed + Alt`, version: 1,
-  info: `Middle click on closed items while pressing Alt`}
 
   obj.middle_click_main_menu = {value: `show_main`, category: category, type: `menu`, name: `Middle Click Main Menu`, version: 1,
   info: `Middle click on the main menu`}

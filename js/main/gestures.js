@@ -17,19 +17,7 @@ App.setup_gestures = () => {
 }
 
 App.gesture_action = (e, gesture) => {
-  let s = `gesture_${gesture}`
-
-  if (e.ctrlKey) {
-    s += `_ctrl`
-  }
-  else if (e.shiftKey) {
-    s += `_shift`
-  }
-  else if (e.altKey) {
-    s += `_alt`
-  }
-
-  let cmd = App.get_setting(s)
+  let cmd = App.get_setting(`gesture_${gesture}`)
 
   if (cmd !== `none`) {
     App.run_command({cmd: cmd, from: `gesture`})

@@ -237,18 +237,7 @@ App.mouse_middle_action = (mode, e) => {
     return
   }
 
-  if (e.ctrlKey) {
-    App.middle_click(item, `ctrl`)
-  }
-  else if (e.shiftKey) {
-    App.middle_click(item, `shift`)
-  }
-  else if (e.altKey) {
-    App.middle_click(item, `alt`)
-  }
-  else {
-    App.middle_click(item)
-  }
+  App.middle_click(item)
 }
 
 App.mouse_wheel_action = (mode, e) => {
@@ -304,14 +293,8 @@ App.right_button_action = (item) => {
   }
 }
 
-App.middle_click = (item, key = ``) => {
-  let s = `middle_click_${item.mode}`
-
-  if (key) {
-    s = `${s}_${key}`
-  }
-
-  let cmd = App.get_setting(s)
+App.middle_click = (item) => {
+  let cmd = App.get_setting(`middle_click_${item.mode}`)
 
   if (cmd !== `none`) {
     App.run_command({cmd: cmd, item: item, from: `middle_click`})
