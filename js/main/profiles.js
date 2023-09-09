@@ -1737,7 +1737,7 @@ App.profile_tags_add = (e) => {
 
   if (!items.length) {
     items.push({
-      text: `No tags`,
+      text: `No more tags`,
       action: () => {
         App.show_feedback(`Add some tags manually`)
       }
