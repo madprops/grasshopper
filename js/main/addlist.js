@@ -340,6 +340,8 @@ App.after_addlist = (id, lines) => {
   if (oargs.on_modified) {
     oargs.on_modified()
   }
+
+  App.addlist_update_count(id)
 }
 
 App.addlist_check_buttons = (args) => {
@@ -714,6 +716,9 @@ App.addlist_add_buttons = (id) => {
   let el = DOM.el(`#${id}`)
   let oargs = App.addlist_oargs(id)
   let cls = `action underline`
+  let count = DOM.create(`div`, ``, `addlist_button_${id}_count`)
+  count.textContent = ``
+  el.append(count)
   let add = DOM.create(`div`, cls, `addlist_button_${id}_add`)
   add.textContent = `Add`
   el.append(add)
@@ -742,6 +747,8 @@ App.addlist_add_buttons = (id) => {
   DOM.ev(DOM.el(`#addlist_button_${id}_clear`), `click`, () => {
     App.addlist_clear(id)
   })
+
+  App.addlist_update_count(id)
 }
 
 App.addlist_get_data = (id) => {
@@ -780,4 +787,9 @@ App.addlist_edit = (id) => {
       return false
     }
   }, value)
+}
+
+App.addlist_update_count = (id) => {
+  let lines = App.addlist_get_data(id)
+  DOM.el(`#addlist_button_${id}_count`).textContent = `(${lines.length})`
 }
