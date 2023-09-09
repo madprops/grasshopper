@@ -78,8 +78,8 @@ App.build_settings = () => {
   obj.background_tiles = {value: `none`, category: category, type: `menu`, action: `theme`, name: `Background Tiles`, version: 1,
   info: `The tile size of the background image`}
 
-  obj.auto_theme = {value: `never`, category: category, type: `menu`, name: `Auto Theme`, version: 3,
-  info: `Change the theme automatically`}
+  obj.auto_colors = {value: `never`, category: category, type: `menu`, name: `Auto Colors`, version: 3,
+  info: `Change the colors automatically`}
 
   obj.auto_background = {value: `never`, category: category, type: `menu`, name: `Auto Background`, version: 3,
   info: `Change the background automatically`}
@@ -87,8 +87,8 @@ App.build_settings = () => {
   obj.auto_background_mode = {value: `pool`, category: category, type: `menu`, name: `Auto Background Mode`, version: 1,
   info: `Behavior of the auto background`}
 
-  obj.random_themes = {value: `dark`, category: category, type: `menu`, name: `Random Themes`, version: 1,
-  info: `Behavior of the random theme`}
+  obj.random_colors = {value: `dark`, category: category, type: `menu`, name: `Random Colors`, version: 1,
+  info: `Behavior of random colors`}
 
   obj.animate_color = {value: true, category: category, type: `checkbox`, name: `Animate Color`, version: 1,
   info: `Animate color changes`}
@@ -1177,12 +1177,12 @@ App.start_theme_settings = () => {
     {text: `24 hours`, value: `24_hours`},
   ]
 
-  let theme_opts = [...auto_opts]
-  theme_opts.push({text: `Domain`, value: `domain`})
-  theme_opts.push({text: `Party`, value: `party`})
+  let color_opts = [...auto_opts]
+  color_opts.push({text: `Domain`, value: `domain`})
+  color_opts.push({text: `Party`, value: `party`})
 
-  App.settings_make_menu(`auto_theme`, theme_opts, () => {
-    App.start_theme_interval(`auto_theme`)
+  App.settings_make_menu(`auto_colors`, color_opts, () => {
+    App.start_theme_interval(`auto_colors`)
   })
 
   App.settings_make_menu(`auto_background`, auto_opts, () => {
@@ -1195,7 +1195,7 @@ App.start_theme_settings = () => {
     {text: `Pool & Random`, value: `pool_random`},
   ])
 
-  App.settings_make_menu(`random_themes`, [
+  App.settings_make_menu(`random_colors`, [
     {text: `Only Dark`, value: `dark`},
     {text: `Only Light`, value: `light`},
     {text: `Dark & Light`, value: `both`},

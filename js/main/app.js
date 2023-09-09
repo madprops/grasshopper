@@ -69,7 +69,6 @@ App.check_borders_delay = 100
 App.wheel_delay = 100
 App.show_mode_delay = 100
 App.max_pick_delay = 2000
-App.auto_theme_delay = 1000 * 60 * 30
 App.check_item_theme_delay = 200
 App.background_animation_delay = 120
 App.color_transition_delay = 1600

@@ -1,6 +1,6 @@
 App.setup_theme = () => {
   App.colorlib = ColorLib()
-  App.start_theme_interval(`auto_theme`)
+  App.start_theme_interval(`auto_colors`)
   App.start_theme_interval(`auto_background`)
 }
 
@@ -31,10 +31,10 @@ App.start_theme_interval = (setting) => {
         return
       }
 
-      if (setting === `auto_theme`) {
+      if (setting === `auto_colors`) {
         try {
-          App.debug(`Auto Theme`)
-          App.random_theme()
+          App.debug(`Auto Colors`)
+          App.random_colors()
         }
         catch (err) {
           clearInterval(App[`${setting}_interval`])
@@ -273,14 +273,14 @@ App.get_css_var = (name) => {
 }
 
 App.set_dark_theme = () => {
-  App.set_theme(App.dark_theme.background, App.dark_theme.text)
+  App.set_colors(App.dark_theme.background, App.dark_theme.text)
 }
 
 App.set_light_theme = () => {
-  App.set_theme(App.light_theme.background, App.light_theme.text)
+  App.set_colors(App.light_theme.background, App.light_theme.text)
 }
 
-App.random_theme = () => {
+App.random_colors = () => {
   let c1, c2
   let type = App.get_color_type()
 
@@ -294,10 +294,10 @@ App.random_theme = () => {
   c2 = App.colorlib.get_lighter_or_darker(c1, App.color_contrast)
   c1 = App.colorlib.hex_to_rgb(c1)
   c2 = App.colorlib.hex_to_rgb(c2)
-  App.set_theme(c1, c2)
+  App.set_colors(c1, c2)
 }
 
-App.set_theme = (c1, c2) => {
+App.set_colors = (c1, c2) => {
   App.set_setting(`background_color`, c1)
   App.set_setting(`text_color`, c2)
   App.check_item_theme()
@@ -450,7 +450,7 @@ App.do_check_item_theme = () => {
     return
   }
 
-  if (App.get_setting(`auto_theme`) === `domain`) {
+  if (App.get_setting(`auto_colors`) === `domain`) {
     App.seeded_theme(item)
     return
   }
@@ -460,7 +460,7 @@ App.do_check_item_theme = () => {
 
 App.get_color_type = (rand, inverse = false) => {
   let types = []
-  let type = App.get_setting(`random_themes`)
+  let type = App.get_setting(`random_colors`)
 
   if (type === `dark` || type === `both`) {
     types.push(`dark`)

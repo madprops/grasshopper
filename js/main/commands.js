@@ -335,9 +335,9 @@ App.setup_commands = () => {
       App.set_light_theme()
     }, info: `Change to the light color theme`},
 
-    {name: `${App.random_text} Theme`, cmd: `random_theme`, icon: themeicon, action: (args) => {
-      App.random_theme()
-    }, info: `Change to a random color theme`},
+    {name: `${App.random_text} Theme`, cmd: `random_colors`, icon: themeicon, action: (args) => {
+      App.random_colors()
+    }, info: `Change background color and text color to random values`},
 
     {name: `${App.random_text} Background`, cmd: `random_background`, icon: themeicon, action: (args) => {
       App.random_background()
