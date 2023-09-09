@@ -41,7 +41,8 @@ App.build_settings = () => {
   obj.favicon_source = {value: `none`, category: category, type: `menu`, name: `Favicon Source`, version: 1,
   info: `Where to get favicons from, on modes that don't support local favicons like history and bookmarks`}
 
-  obj.bookmarks_folder = {value: `Grasshopper`, category: category, type: `text`, name: `Bookmarks Folder`, version: 1,
+  obj.bookmarks_folder = {value: `Grasshopper`, category: category, type: `text`,
+  name: `Bookmarks Folder`, placeholder: `Folder name`, version: 1,
   info: `Where to save bookmarks`}
 
   obj.aliases = {value: [], category: category, type: `list`, name: `Aliases`, version: 3,
@@ -64,7 +65,8 @@ App.build_settings = () => {
   obj.text_color = {value: App.dark_theme.text, category: category, type: `color`, name: `Text Color`, action: `theme`, btns: [`random`], version: 1,
   info: `The text color`}
 
-  obj.background_image = {value: `waves.jpg`, category: category, type: `text`, name: `Background Image`, action: `theme`, btns: [`random`], version: 1,
+  obj.background_image = {value: `waves.jpg`, category: category, type: `text`, name: `Background Image`,
+  action: `theme`, btns: [`random`], placeholder: `Image URL`, version: 1,
   info: `The background image`}
 
   obj.background_pool = {value: App.backgrounds, category: category, type: `list`, name: `Pool`, btns: [`view`, `next`, `shuffle`], version: 3,
@@ -100,7 +102,7 @@ App.build_settings = () => {
   // ###################
   category = `media`
 
-  obj.image_icon = {value: `🖼️`, category: category, type: `text_smaller`, name: `View Image Icon`, version: 1,
+  obj.image_icon = {value: `🖼️`, category: category, type: `text_smaller`, name: `View Image Icon`, placeholder: `☺`, version: 1,
   info: `Media icon for images`}
 
   obj.view_image_tabs = {value: `icon`, category: category, type: `menu`, name: `View Image (Tabs)`, version: 1,
@@ -115,7 +117,7 @@ App.build_settings = () => {
   obj.view_image_closed = {value: `icon`, category: category, type: `menu`, name: `View Image (Closed)`, version: 1,
   info: `What to do when clicking on an image in closed mode`}
 
-  obj.video_icon = {value: `▶️`, category: category, type: `text_smaller`, name: `View Video Icon`, version: 1,
+  obj.video_icon = {value: `▶️`, category: category, type: `text_smaller`, name: `View Video Icon`, placeholder: `☺`, version: 1,
   info: `Media icon for videos`}
 
   obj.view_video_tabs = {value: `icon`, category: category, type: `menu`, name: `View Video (Tabs)`, version: 1,
@@ -130,7 +132,7 @@ App.build_settings = () => {
   obj.view_video_closed = {value: `icon`, category: category, type: `menu`, name: `View Video (Closed)`, version: 1,
   info: `What to do when clicking on a video in closed mode`}
 
-  obj.audio_icon = {value: `🎵`, category: category, type: `text_smaller`, name: `View Audio Icon`, version: 1,
+  obj.audio_icon = {value: `🎵`, category: category, type: `text_smaller`, name: `View Audio Icon`, placeholder: `☺`, version: 1,
   info: `Media icon for audio`}
 
   obj.view_audio_tabs = {value: `icon`, category: category, type: `menu`, name: `View Audio (Tabs)`, version: 1,
@@ -148,28 +150,28 @@ App.build_settings = () => {
   // ###################
   category = `icons`
 
-  obj.pin_icon = {value: `+`, category: category, type: `text_smaller`, name: `Pin Icon`, version: 1,
+  obj.pin_icon = {value: `+`, category: category, type: `text_smaller`, name: `Pin Icon`, placeholder: `☺`, version: 1,
   info: `Icon for pinned tabs`}
 
-  obj.normal_icon = {value: ``, category: category, type: `text_smaller`, name: `Normal Icon`, version: 1,
+  obj.normal_icon = {value: ``, category: category, type: `text_smaller`, name: `Normal Icon`, placeholder: `☺`, version: 1,
   info: `Icon for normal tabs`}
 
-  obj.playing_icon = {value: `🔊`, category: category, type: `text_smaller`, name: `Playing Icon`, version: 1,
+  obj.playing_icon = {value: `🔊`, category: category, type: `text_smaller`, name: `Playing Icon`, placeholder: `☺`, version: 1,
   info: `Icons for tabs emitting audio`}
 
-  obj.muted_icon = {value: `🔇`, category: category, type: `text_smaller`, name: `Muted Icon`, version: 1,
+  obj.muted_icon = {value: `🔇`, category: category, type: `text_smaller`, name: `Muted Icon`, placeholder: `☺`, version: 1,
   info: `Icons for muted tabs`}
 
-  obj.unloaded_icon = {value: `💤`, category: category, type: `text_smaller`, name: `Unloaded Icon`, version: 1,
+  obj.unloaded_icon = {value: `💤`, category: category, type: `text_smaller`, name: `Unloaded Icon`, placeholder: `☺`, version: 1,
   info: `Icons for unloaded tabs`}
 
-  obj.close_icon = {value: `x`, category: category, type: `text_smaller`, name: `Close Icon`, version: 1,
+  obj.close_icon = {value: `x`, category: category, type: `text_smaller`, name: `Close Icon`, placeholder: `☺`, version: 1,
   info: `Icon for the close buttons`}
 
-  obj.open_icon = {value: `🚀`, category: category, type: `text_smaller`, name: `Open Icon`, version: 1,
+  obj.open_icon = {value: `🚀`, category: category, type: `text_smaller`, name: `Open Icon`, placeholder: `☺`, version: 1,
   info: `Icon for the open buttons`}
 
-  obj.pick_icon = {value: `🎯`, category: category, type: `text_smaller`, name: `Pick Icon`, version: 1,
+  obj.pick_icon = {value: `🎯`, category: category, type: `text_smaller`, name: `Pick Icon`, placeholder: `☺`, version: 1,
   info: `Icon for the picks`}
 
   // ###################
@@ -547,22 +549,28 @@ App.build_settings = () => {
   obj.reuse_filter = {value: true, category: category, type: `checkbox`, name: `Re-Use Filter`, version: 1,
   info: `Re-use the filter when moving across modes`}
 
-  obj.max_search_items = {value: 500, category: category, type: `number`, name: `Max Search Items`, version: 1,
+  obj.max_search_items = {value: 500, category: category, type: `number`,
+  name: `Max Search Items`, placeholder: `Number`, version: 1,
   info: `Max items to return on search modes like history and bookmarks`}
 
-  obj.deep_max_search_items = {value: 5000, category: category, type: `number`, name: `Deep Max Search Items`, version: 1,
+  obj.deep_max_search_items = {value: 5000, category: category, type: `number`,
+  name: `Deep Max Search Items`, placeholder: `Number`, version: 1,
   info: `Max search items to return in deep mode (more items)`}
 
-  obj.history_max_months = {value: 18, category: category, type: `number`, name: `History Max Months`, version: 1,
+  obj.history_max_months = {value: 18, category: category, type: `number`,
+  name: `History Max Months`, placeholder: `Number`, version: 1,
   info: `How many months back to consider when searching history`}
 
-  obj.deep_history_max_months = {value: 54, category: category, type: `number`, name: `Deep History Max Months`, version: 1,
+  obj.deep_history_max_months = {value: 54, category: category, type: `number`,
+  name: `Deep History Max Months`, placeholder: `Number`, version: 1,
   info: `How many months back to consider when searching history in deep mode (more months)`}
 
-  obj.filter_delay = {value: 50, category: category, type: `number`, name: `Filter Delay`, action: `filter_debouncers`, version: 1,
+  obj.filter_delay = {value: 50, category: category, type: `number`,
+  name: `Filter Delay`, action: `filter_debouncers`, placeholder: `Number`, version: 1,
   info: `The filter delay on instant modes like tabs and closed`}
 
-  obj.filter_delay_search = {value: 225, category: category, type: `number`, name: `Filter Delay (Search)`, action: `filter_debouncers`, version: 1,
+  obj.filter_delay_search = {value: 225, category: category, type: `number`,
+  name: `Filter Delay (Search)`, action: `filter_debouncers`, placeholder: `Number`, version: 1,
   info: `The filter delay on search modes like history and bookmarks`}
 
   obj.debug_mode = {value: false, category: category, type: `checkbox`, name: `Debug Mode`, version: 1,
@@ -1767,19 +1775,21 @@ App.fill_settings = (category) => {
         widget.type = `text`
         widget.autocomplete = `off`
         widget.spellcheck = `false`
+        widget.placeholder = props.placeholder
       }
       else if (props.type === `text_smaller`) {
         widget = DOM.create(`input`, `text settings_text text_smaller`)
         widget.type = `text`
         widget.autocomplete = `off`
         widget.spellcheck = `false`
-        widget.placeholder = `☺`
+        widget.placeholder = props.placeholder
       }
       else if (props.type === `number`) {
         widget = DOM.create(`input`, `text settings_number`)
         widget.type = `number`
         widget.autocomplete = `off`
         widget.spellcheck = `false`
+        widget.placeholder = props.placeholder
       }
       else if (props.type === `checkbox`) {
         widget = DOM.create(`input`, `settings_checkbox`)
