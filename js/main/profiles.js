@@ -447,6 +447,16 @@ App.profile_editor_save = () => {
 App.save_profile = (args) => {
   let urls = []
 
+  function has_tag (list, tag) {
+    for (let item of list) {
+      if (item.tag === tag.tag) {
+        return true
+      }
+    }
+
+    return false
+  }
+
   function proc (profile, p_mode) {
     let og_url = profile.url
     profile.url = args.url || profile.url
@@ -462,11 +472,33 @@ App.save_profile = (args) => {
     }
 
     if (args.type === `all` || args.type === `tags`) {
-      profile.tags = args.tags
+      let n_tags = []
+
+      for (let tag of args.tags) {
+        if (!has_tag(n_tags, tag)) {
+          n_tags.push(tag)
+        }
+      }
+
+      if (p_mode === `edit` && args.action === `add`) {
+        for (let tag of profile.tags) {
+          if (!has_tag(n_tags, tag)) {
+            n_tags.push(tag)
+          }
+        }
+      }
+
+      profile.tags = n_tags
     }
 
     if (args.type === `all` || args.type === `notes`) {
-      profile.notes = args.notes
+      let n_notes = args.notes
+
+      if (p_mode === `edit` && args.action === `add`) {
+        n_notes = `${profile.notes}\n${n_notes}`.trim()
+      }
+
+      profile.notes = n_notes
     }
 
     if (args.type === `all` || args.type === `title`) {
@@ -1189,6 +1221,22 @@ App.get_edit_items = (item, multiple) => {
   items.push({separator: true})
 
   items.push({
+    text: `Add Tags`,
+    action: () => {
+      return App.add_tags(item)
+    }
+  })
+
+  items.push({
+    text: `Add Notes`,
+    action: () => {
+      return App.add_notes(item)
+    }
+  })
+
+  items.push({separator: true})
+
+  items.push({
     text: `Edit Title`,
     action: () => {
       return App.show_profile_editor(item, `title`)
@@ -1251,6 +1299,14 @@ App.get_edit_items = (item, multiple) => {
 
 App.edit_profiles = (item) => {
   App.show_profile_editor(item, `all`)
+}
+
+App.add_tags = (item) => {
+  App.show_profile_editor(item, `tags`, `add`)
+}
+
+App.add_notes = (item) => {
+  App.show_profile_editor(item, `notes`, `add`)
 }
 
 App.show_profile_urls = () => {
@@ -1691,6 +1747,7 @@ App.profile_tags_add = (e) => {
         action: () => {
           App.profile_editor_tags.unshift({tag: tag})
           App.profile_modified()
+          App.profile_addlist_count()
         }
       })
     }
