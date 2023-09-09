@@ -736,7 +736,7 @@ App.addlist_add_buttons = (id) => {
   })
 
   DOM.ev(DOM.el(`#addlist_button_${id}_edit`), `click`, () => {
-    App.edit_setting(id)
+    App.addlist_edit(id)
   })
 
   DOM.ev(DOM.el(`#addlist_button_${id}_clear`), `click`, () => {
@@ -764,4 +764,20 @@ App.addlist_set_data = (id, value) => {
   else if (oargs.from === `profile_editor_tags`){
     App.profile_editor_tags = value
   }
+}
+
+App.addlist_edit = (id) => {
+  let sett = App.addlist_get_data(id)
+  let value = App.str(sett)
+
+  App.show_input(`Edit: ${id}`, `Save`, (text) => {
+    try {
+      App.after_addlist(id, App.obj(text))
+      return true
+    }
+    catch (err) {
+      App.show_alert_2(`${err}`)
+      return false
+    }
+  }, value)
 }
