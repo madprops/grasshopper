@@ -240,6 +240,7 @@ App.add_settings_addlist = (category) => {
 
             App.show_confirm(`Reset setting?`, () => {
               App.set_default_setting(key)
+              App.addlist_update_count(`settings_${key}`)
             }, undefined, force)
           },
         },
