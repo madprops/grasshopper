@@ -1545,6 +1545,7 @@ App.profile_apply_theme = () => {
       background_image: bi,
       background_effect: be,
       background_tiles: bt,
+      instant: true,
     })
   }
   else {
@@ -1835,6 +1836,12 @@ App.profile_set_default = (prop) => {
   else if (prop === `theme_enabled`) {
     DOM.el(`#profile_editor_theme_enabled`).checked = false
     App.profile_theme_enabled_changed()
+  }
+  else if (prop === `background_effect`) {
+    App.profile_menubutton_background_effect.set(`none`)
+  }
+  else if (prop === `background_tiles`) {
+    App.profile_menubutton_background_tiles.set(`none`)
   }
   else {
     let def = App.profile_props[prop]
