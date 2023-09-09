@@ -1832,7 +1832,8 @@ App.setup_settings_addlist = () => {
       labels: [`Image URL`, `Effect`, `Tiles`],
       image: 0,
       sources: [undefined, App.background_effects, App.background_tiles],
-      keys: [`url`, `effect`, `tiles`], list_text: (items) => {
+      keys: [`url`, `effect`, `tiles`],
+      list_text: (items) => {
         let s = App.remove_protocol(items.url)
 
         if (items.effect !== `none`) {
@@ -1863,7 +1864,8 @@ App.setup_settings_addlist = () => {
       widgets: [`key`, `select`, `checkbox`, `checkbox`, `checkbox`],
       labels: [`Key`, `Command`, `Require Ctrl`, `Require Shift`, `Require Alt`],
       sources: [undefined, App.addlist_commands.slice(0), true, false, false],
-      keys: [`key`, `cmd`, `ctrl`, `shift`, `alt`], list_text: (items) => {
+      keys: [`key`, `cmd`, `ctrl`, `shift`, `alt`],
+      list_text: (items) => {
         let cmd = cmd_name(items.cmd)
         return `${items.key} = ${cmd}`
       }

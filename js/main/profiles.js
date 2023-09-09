@@ -729,8 +729,8 @@ App.get_tags = () => {
 
   for (let profile of App.profiles) {
     for (let tag of profile.tags) {
-      if (!tags.includes(tag.name)) {
-        tags.push(tag.name)
+      if (!tags.includes(tag.tag)) {
+        tags.push(tag.tag)
       }
     }
   }
@@ -1707,9 +1707,10 @@ App.profile_addlist_tags = () => {
       id: id,
       pk: `tag`,
       widgets: [`text`],
-      labels: [`Name`],
-      keys: [`name`], list_text: (items) => {
-        return items.name
+      labels: [`Tag`],
+      keys: [`tag`],
+      list_text: (items) => {
+        return items.tag
       },
       title: `Tags`,
       from: id,
@@ -1725,7 +1726,7 @@ App.profile_addlist_tags = () => {
 
 App.profile_tags_add = (e) => {
   let tags = App.get_tags()
-  let tags_used = App.profile_editor_tags.map(x => x.name)
+  let tags_used = App.profile_editor_tags.map(x => x.tag)
   let items = []
 
   for (let tag of tags) {
@@ -1733,7 +1734,7 @@ App.profile_tags_add = (e) => {
       items.push({
         text: tag,
         action: () => {
-          App.profile_editor_tags.unshift({name: tag})
+          App.profile_editor_tags.unshift({tag: tag})
           App.profile_modified()
         }
       })
