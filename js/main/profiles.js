@@ -1837,6 +1837,10 @@ App.profile_set_default = (prop) => {
     DOM.el(`#profile_editor_theme_enabled`).checked = false
     App.profile_theme_enabled_changed()
   }
+  else if (prop === `background_image`) {
+    DOM.el(`#profile_editor_background_image`).value = ``
+    App.profile_apply_theme()
+  }
   else if (prop === `background_effect`) {
     App.profile_menubutton_background_effect.set(`none`)
   }
