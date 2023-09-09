@@ -221,6 +221,7 @@ App.show_profile_editor = (item, type, action = `edit`) => {
   DOM.el(`#profile_editor_icon_container`).classList.add(`hidden`)
   DOM.el(`#profile_editor_theme_container`).classList.add(`hidden`)
   DOM.el(`#profile_editor_theme_inputs`).classList.add(`hidden`)
+  DOM.el(`#profile_editor_auto_reload_container`).classList.add(`hidden`)
   App.profile_editor_modified = false
 
   if (type === `all` || type === `tags`) {
@@ -248,7 +249,7 @@ App.show_profile_editor = (item, type, action = `edit`) => {
   }
 
   if (type === `all` || type === `auto_reload`) {
-    DOM.el(`#profile_editor_auto_reload`).classList.remove(`hidden`)
+    DOM.el(`#profile_editor_auto_reload_container`).classList.remove(`hidden`)
   }
 
   let url_el = DOM.el(`#profile_editor_url`)
