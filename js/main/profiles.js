@@ -287,7 +287,7 @@ App.show_profile_editor = (item, type, action = `edit`) => {
       let profile = profiles[0]
 
       if (action === `edit`) {
-        App.profile_editor_tags = profile.tags
+        App.profile_editor_tags = App.profile_fix_tags(profile.tags)
         DOM.el(`#profile_editor_notes`).value = profile.notes
       }
 
@@ -1781,4 +1781,15 @@ App.profile_addlist_count = () => {
 
 App.profile_tags_add = () => {
   App.addlist({id: `profile_editor_tags`, items: {}})
+}
+
+App.profile_fix_tags = (tags) => {
+  let fixed = []
+
+  for (let tag of tags) {
+    let t = tag.tag || tag
+    fixed.push({tag: t})
+  }
+
+  return fixed
 }
