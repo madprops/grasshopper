@@ -35,8 +35,8 @@ App.settings_setup_labels = (category) => {
     bc.prepend(item)
   }
 
-  for (let key in App.settings_props) {
-    let props = App.settings_props[key]
+  for (let key in App.setting_props) {
+    let props = App.setting_props[key]
 
     if ((props.category === category) && props.btns) {
       let btns = []
@@ -65,8 +65,8 @@ App.settings_setup_labels = (category) => {
 }
 
 App.settings_setup_checkboxes = (category) => {
-  for (let key in App.settings_props) {
-    let props = App.settings_props[key]
+  for (let key in App.setting_props) {
+    let props = App.setting_props[key]
 
     if ((props.category === category) && props.type === `checkbox`) {
       let el = DOM.el(`#settings_${key}`)
@@ -96,8 +96,8 @@ App.settings_setup_checkboxes = (category) => {
 }
 
 App.settings_setup_text = (category) => {
-  for (let key in App.settings_props) {
-    let props = App.settings_props[key]
+  for (let key in App.setting_props) {
+    let props = App.setting_props[key]
 
     if (props.category !== category) {
       continue
@@ -159,8 +159,8 @@ App.settings_setup_text = (category) => {
 }
 
 App.settings_setup_number = (category) => {
-  for (let key in App.settings_props) {
-    let props = App.settings_props[key]
+  for (let key in App.setting_props) {
+    let props = App.setting_props[key]
 
     if (props.category !== category) {
       continue
@@ -223,8 +223,8 @@ App.settings_setup_number = (category) => {
 }
 
 App.add_settings_addlist = (category) => {
-  for (let key in App.settings_props) {
-    let props = App.settings_props[key]
+  for (let key in App.setting_props) {
+    let props = App.setting_props[key]
 
     if (props.category === category) {
       if (props.type !== `list`) {
@@ -524,8 +524,8 @@ App.setup_settings = () => {
 
     let opts = App.settings_commands()
 
-    for (let key in App.settings_props) {
-      let props = App.settings_props[key]
+    for (let key in App.setting_props) {
+      let props = App.setting_props[key]
 
       if (props.category === `gestures`) {
         if (key.startsWith(`gesture_`)) {
@@ -539,8 +539,8 @@ App.setup_settings = () => {
     prepare(`auxclick`)
     let opts = App.settings_commands()
 
-    for (let key in App.settings_props) {
-      let props = App.settings_props[key]
+    for (let key in App.setting_props) {
+      let props = App.setting_props[key]
 
       if (props.category === `auxclick`) {
         App.settings_make_menu(key, opts)
@@ -743,8 +743,8 @@ App.start_theme_settings = () => {
 }
 
 App.settings_default_category = (category) => {
-  for (let key in App.settings_props) {
-    let props = App.settings_props[key]
+  for (let key in App.setting_props) {
+    let props = App.setting_props[key]
 
     if (props.category === category) {
       App.set_default_setting(key, false)
@@ -771,7 +771,7 @@ App.reset_settings = (category) => {
 
 App.reset_all_settings = () => {
   App.show_confirm(`Reset all settings?`, () => {
-    for (let key in App.settings_props) {
+    for (let key in App.setting_props) {
       App.set_default_setting(key)
     }
 
@@ -940,7 +940,7 @@ App.set_setting = (setting, value, do_action = true) => {
     App.save_settings_debouncer.call()
 
     if (do_action) {
-      let props = App.settings_props[setting]
+      let props = App.setting_props[setting]
 
       if (props.action) {
         App.settings_do_action(props.action)
@@ -950,7 +950,7 @@ App.set_setting = (setting, value, do_action = true) => {
 }
 
 App.get_default_setting = (setting) => {
-  let value = App.settings_props[setting].value
+  let value = App.setting_props[setting].value
 
   if (typeof value === `object`) {
     value = [...value]
@@ -968,10 +968,10 @@ App.check_settings = () => {
 
   function set_default (setting) {
     App.settings[setting].value = App.default_setting_string
-    App.settings[setting].version = App.settings_props[setting].version
+    App.settings[setting].version = App.setting_props[setting].version
   }
 
-  for (let key in App.settings_props) {
+  for (let key in App.setting_props) {
     // Fill defaults
     if (App.settings[key] === undefined ||
       App.settings[key].value === undefined ||
@@ -986,13 +986,13 @@ App.check_settings = () => {
 
   for (let key in App.settings) {
     // Remove unused settings
-    if (App.settings_props[key] === undefined) {
+    if (App.setting_props[key] === undefined) {
       App.debug(`Stor: Deleting setting: ${key}`)
       delete App.settings[key]
       changed = true
     }
     // Check new version
-    else if (App.settings[key].version !== App.settings_props[key].version) {
+    else if (App.settings[key].version !== App.setting_props[key].version) {
       App.debug(`Stor: Upgrading setting: ${key}`)
       set_default(key)
       changed = true
@@ -1123,8 +1123,8 @@ App.fill_settings = (category) => {
   let c = DOM.el(`#setting_${category}`)
   c.innerHTML = ``
 
-  for (let key in App.settings_props) {
-    let props = App.settings_props[key]
+  for (let key in App.setting_props) {
+    let props = App.setting_props[key]
 
     if (props.category === category) {
       let el = DOM.create(`div`, `settings_item`)
@@ -1298,8 +1298,8 @@ App.setup_settings_addlist = () => {
     })
   }))
 
-  for (let key in App.settings_props) {
-    let props = App.settings_props[key]
+  for (let key in App.setting_props) {
+    let props = App.setting_props[key]
     let id = `settings_${key}`
 
     if (props.category === `menus`) {

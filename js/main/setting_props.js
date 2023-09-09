@@ -486,5 +486,5 @@ App.build_settings = () => {
   obj.debug_mode = {value: false, category: category, type: `checkbox`, name: `Debug Mode`, version: 1,
   info: `Enable some data for developers`}
 
-  App.settings_props = obj
+  App.setting_props = obj
 }

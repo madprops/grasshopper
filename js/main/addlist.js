@@ -63,7 +63,7 @@ App.addlist_register = (args = {}) => {
   let props = {}
 
   if (args.from === `settings`) {
-    props = App.settings_props[args.id.replace(`settings_`, ``)]
+    props = App.setting_props[args.id.replace(`settings_`, ``)]
   }
 
   let container = DOM.create(`div`, `flex_column_center addlist_container`, `addlist_container_${args.id}`)
