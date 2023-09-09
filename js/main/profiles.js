@@ -75,6 +75,10 @@ App.setup_profile_editor = () => {
     App.profile_make_menu(`background_tiles`, App.background_tiles)
     App.profile_addlist_tags()
 
+    DOM.ev(DOM.el(`#profile_editor_tags_add`), `click`, (e) => {
+      App.profile_tags_add(e)
+    })
+
     DOM.ev(DOM.el(`#profile_editor_notes`), `input`, (e) => {
       App.profile_modified()
     })
@@ -1712,4 +1716,33 @@ App.profile_addlist_tags = () => {
 
   let el = DOM.el(`#${id}`)
   App.addlist_add_buttons(id, el)
+}
+
+App.profile_tags_add = (e) => {
+  let tags = App.get_tags()
+  let tags_used = App.profile_editor_tags.map(x => x.name)
+  let items = []
+
+  for (let tag of tags) {
+    if (!tags_used.includes(tag)) {
+      items.push({
+        text: tag,
+        action: () => {
+          App.profile_editor_tags.unshift({name: tag})
+          App.profile_modified()
+        }
+      })
+    }
+  }
+
+  if (!items.length) {
+    items.push({
+      text: `No tags`,
+      action: () => {
+        App.show_feedback(`Add some new tags manually`)
+      }
+    })
+  }
+
+  NeedContext.show(e.clientX, e.clientY, items)
 }
