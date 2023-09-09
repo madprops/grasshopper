@@ -568,8 +568,8 @@ svg {
 }
 
 .text_smaller {
-  width: 5rem;
-  max-width: 5rem;
+  width: 7rem;
+  max-width: 7rem;
   text-align: center;
 }
 
@@ -893,17 +893,6 @@ a:visited, a:link, a:hover {
   justify-content: center;
 }
 
-.editor_text {
-  width: 15rem;
-  max-width: 15rem;
-  text-align: center;
-}
-
-.editor_text_smaller {
-  width: 5rem;
-  max-width: 5rem;
-}
-
 .pre_text {
   white-space: pre;
 }
@@ -1041,13 +1030,6 @@ a:visited, a:link, a:hover {
 
 .color_only_icon .item_icon_container {
   display: none;
-}
-
-.editor_select {
-  background-color: transparent;
-  border: 1px solid var(--alt_color_1);
-  padding: 0.35rem;
-  cursor: pointer;
 }
 
 .pointer {
