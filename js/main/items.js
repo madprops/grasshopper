@@ -171,7 +171,7 @@ App.set_selected = (item) => {
     return
   }
 
-  item.selected_date = Date.now()
+  item.selected_date = App.now()
   App[`last_selected_${item.mode}`] = item
   App.update_footer_info(item)
   App.check_item_theme()
@@ -446,7 +446,7 @@ App.process_info = (mode, info, exclude = [], o_item) => {
   }
   else {
     if (mode === `tabs`) {
-      item.last_auto_reload = Date.now()
+      item.last_auto_reload = App.now()
     }
 
     item.original_data = info
@@ -1099,7 +1099,7 @@ App.toggle_selected = (item, what, select = true) => {
   }
   else {
     if (items.length === 1 && select) {
-      item.selected_date = Date.now()
+      item.selected_date = App.now()
       return
     }
 
@@ -1487,7 +1487,7 @@ App.pick_btn = (item, range = false) => {
       if (selected !== item && !item.selected) {
         if (!App.multiple_selected(item.mode)) {
           if (App.get_index_diff(selected, item) > 1) {
-            unselect = (Date.now() - selected.selected_date) > App.max_pick_delay
+            unselect = (App.now() - selected.selected_date) > App.max_pick_delay
           }
         }
       }

@@ -73,7 +73,7 @@ App.create_popup = (args) => {
 App.show_popup = (id) => {
   clearTimeout(App.alert_autohide)
   App.popups[id].show()
-  App.popups[id].show_date = Date.now()
+  App.popups[id].show_date = App.now()
   let open = App.open_popups()
 
   open.sort((a, b) => {

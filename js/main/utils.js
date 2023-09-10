@@ -121,7 +121,7 @@ App.capitalize_words = (s) => {
   return capitalized.join(` `)
 }
 
-App.nice_date = (date = Date.now(), seconds = false) => {
+App.nice_date = (date = App.now(), seconds = false) => {
   let s = ``
 
   if (seconds) {
@@ -504,7 +504,7 @@ App.DAY = 86400000
 App.YEAR = 31536000000
 
 App.timeago = (date) => {
-  let diff = Date.now() - date
+  let diff = App.now() - date
   let s
 
   if (diff < App.MINUTE) {
@@ -575,4 +575,8 @@ App.fillpad = (s, n, c) => {
 
 App.remove_extension = (s) => {
   return s.split(`.`).slice(0, -1).join(`.`)
+}
+
+App.now = () => {
+  return Date.now()
 }

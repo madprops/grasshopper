@@ -259,13 +259,13 @@ App.setup_keyboard = () => {
     let pmode = App.popup_mode
 
     if (e.key === `Control`) {
-      if (Date.now() - App.double_tap_date < App.double_tap_delay) {
+      if (App.now() - App.double_tap_date < App.double_tap_delay) {
         App.show_palette()
         e.preventDefault()
         return
       }
 
-      App.double_tap_date = Date.now()
+      App.double_tap_date = App.now()
     }
 
     if (NeedContext.open) {

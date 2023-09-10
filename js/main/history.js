@@ -17,7 +17,7 @@ App.history_time = (deep = false) => {
     months = App.get_setting(`deep_history_max_months`)
   }
 
-  return Date.now() - (1000 * 60 * 60 * 24 * 30 * months)
+  return App.now() - (1000 * 60 * 60 * 24 * 30 * months)
 }
 
 App.get_history = async (query = ``, deep = false) => {

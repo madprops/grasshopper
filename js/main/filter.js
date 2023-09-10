@@ -62,7 +62,7 @@ App.do_filter = async (mode, force = false, deep = false) => {
 
     if (force || (svalue !== App[`last_${mode}_query`])) {
       svalue = App.replace_filter_vars(svalue)
-      let search_date = Date.now()
+      let search_date = App.now()
       App.filter_search_date = search_date
       await App.search_items(mode, svalue, deep, search_date)
 
@@ -176,7 +176,7 @@ App.do_filter = async (mode, force = false, deep = false) => {
 }
 
 App.replace_filter_vars = (value) => {
-  let date = Date.now()
+  let date = App.now()
   let day = dateFormat(date, `dddd`).toLowerCase()
   let month = dateFormat(date, `mmmm`).toLowerCase()
   let year = dateFormat(date, `yyyy`)
