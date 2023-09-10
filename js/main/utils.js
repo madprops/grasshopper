@@ -346,15 +346,6 @@ App.is_array = (a) => {
   return Array.isArray(a)
 }
 
-App.shuffle_array = (array) => {
-  for (let i=array.length-1; i>0; i--) {
-    let j = Math.floor(Math.random() * (i + 1))
-    let temp = array[i]
-    array[i] = array[j]
-    array[j] = temp
-  }
-}
-
 App.get_seed = (str) => {
   let h1 = 1779033703, h2 = 3144134277,
   h3 = 1013904242, h4 = 2773480762

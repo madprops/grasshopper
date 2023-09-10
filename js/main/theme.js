@@ -449,7 +449,7 @@ App.get_color_type = (rand, inverse = false) => {
 }
 
 App.next_background = () => {
-  let bi = App.get_setting(`background_image`)
+  let current = App.get_setting(`background_image`)
   let next_image
   let waypoint = false
   let images = App.backgrounds
@@ -460,7 +460,7 @@ App.next_background = () => {
       break
     }
 
-    if (bi === image.url) {
+    if (current === image.url) {
       waypoint = true
     }
   }

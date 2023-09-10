@@ -57,10 +57,6 @@ App.settings_setup_labels = (category) => {
         btns.push([`settings_${key}_next`, `Next`])
       }
 
-      if (props.btns.includes(`shuffle`)) {
-        btns.push([`settings_${key}_shuffle`, `Shuffle`])
-      }
-
       if (btns.length) {
         proc(DOM.el(`#settings_label_${key}`), btns)
       }
@@ -1065,15 +1061,6 @@ App.set_settings_menu = (setting, value, on_change) => {
 
 App.apply_background = (bg) => {
   App.change_background(bg.url, bg.effect, bg.tiles)
-}
-
-App.shuffle_addlist = (setting) => {
-  App.show_confirm(`Shuffle items?`, () => {
-    let items = App.get_setting(setting)
-    App.shuffle_array(items)
-    App.set_setting(setting, items)
-    App.check_theme_refresh()
-  })
 }
 
 App.settings_actions = (category) => {
