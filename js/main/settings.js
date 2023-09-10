@@ -1,6 +1,6 @@
 App.settings_do_action = (what) => {
   if (what === `theme`) {
-    App.apply_theme_2()
+    App.apply_theme()
   }
   else if (what === `filter_debouncers`) {
     App.start_filter_debouncers()
@@ -351,7 +351,7 @@ App.setup_settings = () => {
       DOM.el(`#settings_${App.settings_category}_filter`).focus()
     },
     on_hide: async () => {
-      App.apply_theme_2()
+      App.apply_theme()
       App.clear_show()
     },
   }
@@ -394,7 +394,7 @@ App.setup_settings = () => {
       {text: `Mono`, value: `monospace`},
       {text: `Cursive`, value: `cursive`},
     ], () => {
-      App.apply_theme_2()
+      App.apply_theme()
     })
 
     App.settings_make_menu(`auto_restore`, [
@@ -409,7 +409,7 @@ App.setup_settings = () => {
     })
 
     App.settings_make_menu(`font_size`, App.get_font_size_options(), () => {
-      App.apply_theme_2()
+      App.apply_theme()
     })
 
     App.settings_make_menu(`item_height`, [
@@ -447,11 +447,11 @@ App.setup_settings = () => {
     ])
 
     App.settings_make_menu(`width`, App.get_size_options(), () => {
-      App.apply_theme_2()
+      App.apply_theme()
     })
 
     App.settings_make_menu(`height`, App.get_size_options(), () => {
-      App.apply_theme_2()
+      App.apply_theme()
     })
   }}))
 
@@ -678,11 +678,11 @@ App.start_theme_settings = () => {
   App.start_color_picker(`text_color`)
 
   App.settings_make_menu(`background_effect`, App.background_effects, () => {
-    App.apply_theme_2()
+    App.apply_theme()
   })
 
   App.settings_make_menu(`background_tiles`, App.background_tiles, () => {
-    App.apply_theme_2()
+    App.apply_theme()
   })
 
   let auto_opts = [
@@ -773,7 +773,7 @@ App.reset_settings = (category) => {
       App.refresh_gestures()
     }
 
-    App.apply_theme_2()
+    App.apply_theme()
     App.show_settings_category(category)
   })
 }
@@ -868,7 +868,7 @@ App.import_settings = () => {
 }
 
 App.restart_settings = (type = `normal`) => {
-  App.apply_theme_2()
+  App.apply_theme()
   App.refresh_gestures()
 
   if (App.on_items() || type === `sync`) {

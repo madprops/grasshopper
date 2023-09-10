@@ -1522,11 +1522,10 @@ App.profile_apply_theme = () => {
       background_image: bi,
       background_effect: be,
       background_tiles: bt,
-      instant: true,
     })
   }
   else {
-    App.set_default_theme(true)
+    App.set_default_theme()
   }
 }
 

@@ -48,7 +48,6 @@ App.empty_text = `Empty`
 App.similarity_threshold = 0.7
 App.max_smooth_scroll = 1000 * 2
 App.settings_ready = false
-App.active_background = 1
 App.background_url = `__unset__`
 App.first_background = false
 App.filter_search_date = 0
@@ -71,7 +70,6 @@ App.show_mode_delay = 100
 App.max_pick_delay = 2000
 App.check_item_theme_delay = 200
 App.background_animation_delay = 120
-App.color_transition_delay = 1600
 App.theme_party_delay = `3_seconds`
 App.auto_reload_delay = 1000 * 60
 

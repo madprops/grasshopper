@@ -200,16 +200,8 @@ App.apply_theme = (args) => {
       main.classList.add(`item_border_${item_border}`)
     }
 
-    App.animate_background_image(args.background_image, args.instant)
+    App.set_background(args.background_image)
     App.apply_background_effects(args.background_effect, args.background_tiles)
-
-    if (App.get_setting(`animate_colors`)) {
-      let d = App.color_transition_delay
-      App.set_css_var(`color_transition`, `background-color ${d}ms, color ${d}ms`)
-    }
-    else {
-      App.set_css_var(`color_transition`, `none`)
-    }
 
     if (App.get_setting(`rounded_corners`)) {
       App.set_css_var(`border_radius`, `3px`)
@@ -245,10 +237,6 @@ App.apply_theme = (args) => {
     App.error(err)
     App.theme_safe_mode()
   }
-}
-
-App.apply_theme_2 = () => {
-  App.apply_theme({instant: true})
 }
 
 App.theme_safe_mode = () => {
@@ -304,7 +292,7 @@ App.set_colors = (c1, c2) => {
   App.check_theme_refresh()
 }
 
-App.set_default_theme = (instant = false) => {
+App.set_default_theme = () => {
   let background = App.get_setting(`background_color`)
   let text = App.get_setting(`text_color`)
 
@@ -312,7 +300,6 @@ App.set_default_theme = (instant = false) => {
     background_color: background,
     text_color: text,
     check: true,
-    instant: instant,
   })
 }
 
@@ -534,121 +521,6 @@ App.background_from_pool = (random = false) => {
   }
 }
 
-App.animate_background_image = (url, instant = false) => {
-  App.debug(`Animate Background`)
-  let new_num = App.active_background === 1 ? 2 : 1
-  let old_num = new_num === 1 ? 2 : 1
-  let new_el = DOM.el(`#background_${new_num}`)
-  let old_el = DOM.el(`#background_${old_num}`)
-
-  if (!url) {
-    url = `none`
-  }
-
-  if (!App.is_url(url) && url !== `none`) {
-    url = `/img/${url}`
-  }
-
-  App.active_background = new_num
-  App.background_url = url
-
-  function opacity (n1, n2) {
-    new_el.style.opacity = n1
-    old_el.style.opacity = n2
-  }
-
-  function bg_new (value) {
-    new_el.style.backgroundImage = value
-  }
-
-  function bg_old (value) {
-    old_el.style.backgroundImage = value
-  }
-
-  function set_url () {
-    if (url === `none`) {
-      bg_new(`unset`)
-    }
-    else {
-      bg_new(`url(${url})`)
-    }
-  }
-
-  if (instant) {
-    set_url()
-    opacity(1, 0)
-    bg_old(`unset`)
-    App.first_background = true
-    return
-  }
-
-  if (url === `none`) {
-    on_load()
-  }
-  else {
-    App.background_image = new Image()
-
-    DOM.ev(App.background_image, `load`, () => {
-      on_load()
-    })
-
-    DOM.ev(App.background_image, `error`, () => {
-      opacity(1, 0)
-      bg_new(`unset`)
-      bg_old(`unset`)
-      App.first_background = true
-    })
-
-    App.background_image.src = url
-  }
-
-  function on_load () {
-    set_url()
-
-    if (!App.get_setting(`animate_background`) || !App.first_background) {
-      opacity(1, 0)
-      App.first_background = true
-      return
-    }
-
-    let op_new = 0
-    let op_old = 1
-    let amount = 0.1
-    opacity(op_new, op_old)
-    App.first_background = true
-    let date = Date.now()
-    App.animate_background_date = date
-
-    function tick () {
-      try {
-        if (App.animate_background_date !== date) {
-          return
-        }
-
-        op_new = parseFloat(Math.min(op_new + amount, 1).toFixed(1))
-        op_old = parseFloat(Math.max(op_old - amount, 0).toFixed(1))
-        opacity(op_new, op_old)
-
-        if ((op_new >= 1) && (op_old <= 0)) {
-          opacity(1, 0)
-          bg_old(`unset`)
-          return
-        }
-
-        setTimeout(() => {
-          tick()
-        }, App.background_animation_delay)
-      }
-      catch (err) {
-        opacity(1, 0)
-        bg_old(`unset`)
-      }
-    }
-
-    tick()
-  }
-}
-
 App.check_theme_refresh = () => {
   if (App.on_settings()) {
     if (App.settings_category === `theme`) {
@@ -678,9 +550,21 @@ App.random_settings_color = (what) => {
   App.check_theme_refresh()
 }
 
+App.set_background = (url) => {
+  if (!url || url === `none`) {
+    App.set_css_var(`background_image`, `unset`)
+    return
+  }
+
+  if (!App.is_url(url)) {
+    url = `/img/${url}`
+  }
+
+  App.set_css_var(`background_image`, `url(${url})`)
+}
+
 App.apply_background_effects = (effect, tiles) => {
-  let num = App.active_background
-  let bg = DOM.el(`#background_${num}`)
+  let bg = DOM.el(`#background`)
 
   function bg_add (cls) {
     bg.classList.add(cls)

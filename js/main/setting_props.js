@@ -90,12 +90,6 @@ App.build_settings = () => {
   obj.random_colors = {value: `dark`, category: category, type: `menu`, name: `Random Colors`, version: 1,
   info: `Behavior of random colors`}
 
-  obj.animate_colors = {value: true, category: category, type: `checkbox`, name: `Animate Colors`, version: 1,
-  info: `Animate color changes`}
-
-  obj.animate_background = {value: true, category: category, type: `checkbox`, name: `Animate Background`, version: 1,
-  info: `Animate background changes`}
-
   obj.random_background_gifs = {value: true, category: category, type: `checkbox`, name: `Include Gifs`, version: 1,
   info: `Consider gifs on random backgrounds`}
 
