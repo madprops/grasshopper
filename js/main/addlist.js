@@ -667,6 +667,12 @@ App.addlist_list = (args) => {
 }
 
 App.addlist_clear = (id, force = false) => {
+  let data = App.addlist_get_data(id)
+
+  if (!data) {
+    return
+  }
+
   if (!App.addlist_get_data(id).length) {
     return
   }
