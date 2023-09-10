@@ -339,13 +339,9 @@ App.setup_commands = () => {
       App.random_colors()
     }, info: `Change background color and text color to random values`},
 
-    {name: `${App.random_text} Background`, cmd: `random_background`, icon: themeicon, action: (args) => {
-      App.random_background()
-    }, info: `Change to a random background`},
-
     {name: `Next Background`, cmd: `next_background`, icon: themeicon, action: (args) => {
-      App.background_from_pool()
-    }, info: `Change to the next background from the background pool`},
+      App.next_background()
+    }, info: `Change to the next background`},
 
     {name: `${App.remove_text} Background`, cmd: `remove_background`, icon: themeicon, action: (args) => {
       App.change_background(``)

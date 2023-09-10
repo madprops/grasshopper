@@ -41,6 +41,10 @@ App.settings_setup_labels = (category) => {
     if ((props.category === category) && props.btns) {
       let btns = []
 
+      if (props.btns.includes(`pick`)) {
+        btns.push([`settings_${key}_pick`, `Pick`])
+      }
+
       if (props.btns.includes(`random`)) {
         btns.push([`settings_${key}_random`, App.random_text])
       }
@@ -708,12 +712,6 @@ App.start_theme_settings = () => {
     App.start_theme_interval(`auto_background`)
   })
 
-  App.settings_make_menu(`auto_background_mode`, [
-    {text: `Only Pool`, value: `pool`},
-    {text: `Only Random`, value: `random`},
-    {text: `Pool & Random`, value: `pool_random`},
-  ])
-
   App.settings_make_menu(`random_colors`, [
     {text: `Only Dark`, value: `dark`},
     {text: `Only Light`, value: `light`},
@@ -730,24 +728,8 @@ App.start_theme_settings = () => {
     App.random_settings_color(`text`)
   })
 
-  DOM.ev(DOM.el(`#settings_background_image_random`), `click`, () => {
-    App.random_background()
-  })
-
-  DOM.ev(DOM.el(`#settings_background_pool_next`), `click`, () => {
-    App.background_from_pool()
-  })
-
-  DOM.ev(DOM.el(`#settings_background_pool_shuffle`), `click`, () => {
-    App.shuffle_addlist(`background_pool`)
-  })
-
-  DOM.ev(DOM.el(`#settings_background_pool_view`), `click`, () => {
-    let items = {
-      url: App.get_setting(`background_image`),
-      effect: App.get_setting(`background_effect`),
-      tiles: App.get_setting(`background_tiles`),
-    }
+  DOM.ev(DOM.el(`#settings_background_image_pick`), `click`, (e) => {
+    App.pick_background(e)
   })
 }
 
@@ -1245,39 +1227,6 @@ App.setup_settings_addlist = () => {
     })
   }))
 
-  id = `settings_background_pool`
-
-  App.create_popup(Object.assign({}, args, {
-    id: `addlist_${id}`,
-    element: App.addlist_register({
-      from: from,
-      id: id,
-      pk: `url`,
-      widgets: [`text`, `select`, `select`],
-      labels: [`Image URL`, `Effect`, `Tiles`],
-      image: 0,
-      sources: [undefined, App.background_effects, App.background_tiles],
-      keys: [`url`, `effect`, `tiles`],
-      list_text: (items) => {
-        let s = App.remove_protocol(items.url)
-
-        if (items.effect !== `none`) {
-          let eff = App.get_background_effect(items.effect)
-
-          if (eff) {
-            s += ` (${eff.text})`
-          }
-        }
-
-        if (items.tiles !== `none`) {
-          s += ` (Tiled)`
-        }
-
-        return s
-      }
-    })
-  }))
-
   id = `settings_keyboard_shortcuts`
 
   App.create_popup(Object.assign({}, args, {
@@ -1317,4 +1266,19 @@ App.setup_settings_addlist = () => {
       }))
     }
   }
+}
+
+App.pick_background = (e) => {
+  let items = []
+
+  for (let bg of App.backgrounds) {
+    items.push({
+      text: bg.url,
+      action: () => {
+        App.apply_background(bg)
+      }
+    })
+  }
+
+  NeedContext.show(e.clientX, e.clientY, items)
 }

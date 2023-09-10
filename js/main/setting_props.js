@@ -66,11 +66,8 @@ App.build_settings = () => {
   info: `The text color`}
 
   obj.background_image = {value: `waves.jpg`, category: category, type: `text`, name: `Background Image`,
-  action: `theme`, btns: [`random`], placeholder: `Image URL`, version: 1,
+  action: `theme`, btns: [`pick`], placeholder: `Image URL`, version: 1,
   info: `The background image`}
-
-  obj.background_pool = {value: App.backgrounds, category: category, type: `list`, name: `Pool`, btns: [`view`, `next`, `shuffle`], version: 3,
-  info: `Prepared backgrounds to use, either manually or automatically`}
 
   obj.background_effect = {value: `none`, category: category, type: `menu`, action: `theme`, name: `Background Effect`, version: 1,
   info: `The effect on the background image`}
@@ -84,17 +81,11 @@ App.build_settings = () => {
   obj.auto_background = {value: `never`, category: category, type: `menu`, name: `Auto Background`, version: 3,
   info: `Change the background automatically`}
 
-  obj.auto_background_mode = {value: `pool`, category: category, type: `menu`, name: `Auto Background Mode`, version: 1,
-  info: `Behavior of the auto background`}
-
   obj.random_colors = {value: `dark`, category: category, type: `menu`, name: `Random Colors`, version: 1,
   info: `Behavior of random colors`}
 
   obj.animate_colors = {value: true, category: category, type: `checkbox`, name: `Animate Colors`, version: 1,
   info: `Animate color changes`}
-
-  obj.random_background_gifs = {value: true, category: category, type: `checkbox`, name: `Include Gifs`, version: 1,
-  info: `Consider gifs on random backgrounds`}
 
   // ###################
   category = `media`

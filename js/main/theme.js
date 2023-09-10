@@ -43,7 +43,7 @@ App.start_theme_interval = (setting) => {
       else if (setting === `auto_background`) {
         try {
           App.debug(`Auto Background`)
-          App.auto_background_action()
+          App.next_background()
         }
         catch (err) {
           clearInterval(App[`${setting}_interval`])
@@ -52,27 +52,6 @@ App.start_theme_interval = (setting) => {
     }, delay)
 
     App.debug(`Started ${setting} interval: ${sett}`)
-  }
-}
-
-App.auto_background_action = () => {
-  let mode = App.get_setting(`auto_background_mode`)
-
-  if (mode === `pool`) {
-    App.background_from_pool()
-  }
-  else if (mode === `random`) {
-    App.random_background()
-  }
-  else if (mode === `pool_random`) {
-    let n = App.random_int(0, 1)
-
-    if (n === 0) {
-      App.background_from_pool(true)
-    }
-    else {
-      App.random_background()
-    }
   }
 }
 
@@ -357,26 +336,6 @@ App.parse_color = (color) => {
   return color
 }
 
-App.random_background = async () => {
-  let history_1 = await App.get_history(`.jpg`)
-  let history_2 = await App.get_history(`.png`)
-  let history_3 = []
-
-  if (App.get_setting(`random_background_gifs`)) {
-    history_3 = await App.get_history(`.gif`)
-  }
-
-  let history = [...history_1, ...history_2, ...history_3]
-  App.shuffle_array(history)
-
-  for (let h of history) {
-    if (App.is_image(h.url)) {
-      App.change_background(h.url)
-      break
-    }
-  }
-}
-
 App.change_background = (url, bg_eff, bg_tiles) => {
   App.set_setting(`background_image`, url, false)
 
@@ -489,39 +448,24 @@ App.get_color_type = (rand, inverse = false) => {
   return color
 }
 
-App.background_from_pool = (random = false) => {
+App.next_background = () => {
   let bi = App.get_setting(`background_image`)
   let next_image
   let waypoint = false
-  let images = App.get_setting(`background_pool`)
 
-  if (!images.length) {
-    App.show_feedback(`The background pool is empty`, true)
-    return
-  }
+  for (let image of App.backgrounds) {
+    if (waypoint) {
+      next_image = image
+      break
+    }
 
-  if (random) {
-    let choices = images.filter(x => x !== bi)
-
-    if (choices.length) {
-      next_image = App.random_choice(choices)
+    if (bi === image.url) {
+      waypoint = true
     }
   }
-  else {
-    for (let image of images) {
-      if (waypoint) {
-        next_image = image
-        break
-      }
 
-      if (bi === image.url) {
-        waypoint = true
-      }
-    }
-
-    if (!next_image) {
-      next_image = images[0]
-    }
+  if (!next_image) {
+    next_image = images[0]
   }
 
   if (next_image) {
