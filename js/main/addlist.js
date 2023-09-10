@@ -666,14 +666,14 @@ App.addlist_list = (args) => {
   NeedContext.show_on_element(area, items, true, area.clientHeight)
 }
 
-App.addlist_clear = (id) => {
+App.addlist_clear = (id, force = false) => {
   if (!App.addlist_get_data(id).length) {
     return
   }
 
   App.show_confirm(`Clear this list?`, () => {
     App.after_addlist(id, [])
-  })
+  }, undefined, force)
 }
 
 App.addlist_get_line = (id, items) => {
