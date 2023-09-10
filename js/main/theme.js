@@ -452,8 +452,9 @@ App.next_background = () => {
   let bi = App.get_setting(`background_image`)
   let next_image
   let waypoint = false
+  let images = App.backgrounds
 
-  for (let image of App.backgrounds) {
+  for (let image of images) {
     if (waypoint) {
       next_image = image
       break
