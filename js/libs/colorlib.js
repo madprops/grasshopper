@@ -271,25 +271,29 @@ const ColorLib = (function () {
     }
 
     instance.rgb_to_rgba = function (rgb, alpha) {
+      if (rgb.startsWith("rgba(")) {
+        return rgb
+      }
+
       let split = rgb
         .replace("rgb(", "")
         .replace(")", "")
         .split(",")
 
-      let rgba = `rgba(${split[0].trim()}, ${split[1].trim()}, ${split[2].trim()}, ${alpha})`
-
-      return rgba
+      return `rgba(${split[0].trim()}, ${split[1].trim()}, ${split[2].trim()}, ${alpha})`
     }
 
     instance.rgba_to_rgb = function (rgb) {
+      if (rgb.startsWith("rgb(")) {
+        return rgb
+      }
+
       let split = rgb
         .replace("rgba(", "")
         .replace(")", "")
         .split(",")
 
-      let nrgb = `rgb(${split[0].trim()}, ${split[1].trim()}, ${split[2].trim()})`
-
-      return nrgb
+      return `rgb(${split[0].trim()}, ${split[1].trim()}, ${split[2].trim()})`
     }
 
     instance.rgb_to_hex = function (rgb, hash = true) {
