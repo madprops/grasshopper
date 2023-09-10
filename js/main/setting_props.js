@@ -65,8 +65,8 @@ App.build_settings = () => {
   obj.text_color = {value: App.dark_colors.text, category: category, type: `color`, name: `Text Color`, action: `theme`, btns: [`random`], version: 1,
   info: `The text color`}
 
-  obj.background_image = {value: `waves.jpg`, category: category, type: `text`, name: `Background Image`,
-  action: `theme`, btns: [`pick`], placeholder: `Image URL`, version: 1,
+  obj.background_image = {value: `waves.jpg`, category: category, type: `text`, name: `BG Image`,
+  action: `theme`, btns: [`pick`, `next`], placeholder: `Image URL`, version: 1,
   info: `The background image`}
 
   obj.background_effect = {value: `none`, category: category, type: `menu`, action: `theme`, name: `Background Effect`, version: 1,

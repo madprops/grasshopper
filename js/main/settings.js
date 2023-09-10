@@ -731,6 +731,10 @@ App.start_theme_settings = () => {
   DOM.ev(DOM.el(`#settings_background_image_pick`), `click`, (e) => {
     App.pick_background(e)
   })
+
+  DOM.ev(DOM.el(`#settings_background_image_next`), `click`, (e) => {
+    App.next_background(e)
+  })
 }
 
 App.settings_default_category = (category) => {
