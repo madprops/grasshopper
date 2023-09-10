@@ -203,7 +203,7 @@ App.apply_theme = (args) => {
     App.animate_background_image(args.background_image, args.instant)
     App.apply_background_effects(args.background_effect, args.background_tiles)
 
-    if (App.get_setting(`animate_color`)) {
+    if (App.get_setting(`animate_colors`)) {
       let d = App.color_transition_delay
       App.set_css_var(`color_transition`, `background-color ${d}ms, color ${d}ms`)
     }

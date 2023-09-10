@@ -90,7 +90,7 @@ App.build_settings = () => {
   obj.random_colors = {value: `dark`, category: category, type: `menu`, name: `Random Colors`, version: 1,
   info: `Behavior of random colors`}
 
-  obj.animate_color = {value: true, category: category, type: `checkbox`, name: `Animate Color`, version: 1,
+  obj.animate_colors = {value: true, category: category, type: `checkbox`, name: `Animate Colors`, version: 1,
   info: `Animate color changes`}
 
   obj.animate_background = {value: true, category: category, type: `checkbox`, name: `Animate Background`, version: 1,
@@ -393,6 +393,9 @@ App.build_settings = () => {
   // ###################
   category = `colors`
 
+  obj.color_mode = {value: `item`, category: category, type: `menu`, name: `Color Mode`, version: 1,
+  info: `What color mode to use`}
+
   obj.color_red = {value: `rgba(172, 59, 59, 0.44)`, category: category, type: `color`, name: `Color Red`, version: 1,
   info: `Color an item red`}
 
@@ -410,9 +413,6 @@ App.build_settings = () => {
 
   obj.color_orange = {value: `rgba(170, 127, 59, 0.44)`, category: category, type: `color`, name: `Color Orange`, version: 1,
   info: `Color an item orange`}
-
-  obj.color_mode = {value: `item`, category: category, type: `menu`, name: `Color Mode`, version: 1,
-  info: `What color mode to use`}
 
   // ###################
   category = `more`
