@@ -304,10 +304,16 @@ App.set_colors = (c1, c2) => {
   App.check_theme_refresh()
 }
 
-App.set_default_theme = () => {
+App.set_default_theme = (instant = false) => {
   let background = App.get_setting(`background_color`)
   let text = App.get_setting(`text_color`)
-  App.apply_theme({background_color: background, text_color: text, check: true})
+
+  App.apply_theme({
+    background_color: background,
+    text_color: text,
+    check: true,
+    instant: instant
+  })
 }
 
 App.set_color_auto = (args) => {

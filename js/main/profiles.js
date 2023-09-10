@@ -1526,7 +1526,7 @@ App.profile_apply_theme = () => {
     })
   }
   else {
-    App.set_default_theme()
+    App.set_default_theme(true)
   }
 }
 
