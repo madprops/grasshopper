@@ -141,24 +141,6 @@ App.addlist_register = (args = {}) => {
     }
   }
 
-  if (args.image !== undefined) {
-    DOM.ev(els[args.image], `input`, () => {
-      App.update_image(args.id)
-    })
-
-    let img = DOM.create(`img`, `small_image hidden`, `addlist_image_${args.id}`)
-
-    DOM.ev(img, `load`, (e) => {
-      e.target.classList.remove(`hidden`)
-    })
-
-    DOM.ev(img, `error`, (e) => {
-      e.target.classList.add(`hidden`)
-    })
-
-    container.append(img)
-  }
-
   container.append(...els)
   let btns = DOM.create(`div`, `flex_row_center gap_1 addlist_buttons`)
   let use = DOM.create(`div`, `button`, `addlist_use_${args.id}`)
@@ -212,39 +194,30 @@ App.addlist = (args = {}) => {
     let el = App.addlist_widget(args.id, i)
     let w = widgets[i]
 
-    if (w === `image`) {
-      el.src = value
-    }
-    else {
-      if (w === `text` || w === `key`) {
-        if (value) {
-          el.value = value
-        }
-        else {
-          el.value = ``
-        }
+    if (w === `text` || w === `key`) {
+      if (value) {
+        el.value = value
       }
-      else if (w === `select`) {
-        if (value) {
-          App[`addlist_menubutton_${args.id}_${i}`].set(value)
-        }
-        else {
-          App[`addlist_menubutton_${args.id}_${i}`].set(oargs.sources[i][0].value)
-        }
-      }
-      else if (w === `checkbox`) {
-        if (value !== undefined) {
-          el.checked = value
-        }
-        else {
-          el.checked = oargs.sources[i]
-        }
+      else {
+        el.value = ``
       }
     }
-  }
-
-  if (oargs.image !== undefined) {
-    App.update_image(args.id)
+    else if (w === `select`) {
+      if (value) {
+        App[`addlist_menubutton_${args.id}_${i}`].set(value)
+      }
+      else {
+        App[`addlist_menubutton_${args.id}_${i}`].set(oargs.sources[i][0].value)
+      }
+    }
+    else if (w === `checkbox`) {
+      if (value !== undefined) {
+        el.checked = value
+      }
+      else {
+        el.checked = oargs.sources[i]
+      }
+    }
   }
 
   App.addlist_data = args
@@ -381,19 +354,6 @@ App.addlist_def_args = () => {
 
 App.addlist_widget = (id, i = 0) => {
   return DOM.el(`#addlist_widget_${id}_${i}`)
-}
-
-App.update_image = (id) => {
-  let oargs = App.addlist_oargs(id)
-  let img = DOM.el(`#addlist_image_${oargs.id}`)
-  let el = App.addlist_widget(id, oargs.image)
-  let url = el.value.trim()
-
-  if (!App.is_url(url)) {
-    url = `/img/${url}`
-  }
-
-  img.src = url
 }
 
 App.addlist_use = (force = true) => {
@@ -708,15 +668,6 @@ App.addlist_check = (args) => {
   args.edit = edit
   args.index = index
   App.addlist(args)
-}
-
-App.addlist_clear_image = () => {
-  let data = App.addlist_data
-  let img = DOM.el(`#addlist_image_${data.id}`)
-
-  if (img) {
-    img.src = ``
-  }
 }
 
 App.addlist_no_items = () => {

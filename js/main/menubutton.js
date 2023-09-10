@@ -28,6 +28,7 @@ App.create_menubutton = (args = {}) => {
         icon: opt.icon,
         text: opt.text,
         info: opt.info,
+        image: opt.image,
         action: () => {
           App.menubutton_set_text(args, opt)
 

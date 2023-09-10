@@ -1197,7 +1197,7 @@ App.setup_settings_addlist = () => {
       keys: [`a`, `b`],
       list_text: (items) => {
         return `${items.a} = ${items.b}`
-      }
+      },
     })
   }))
 
@@ -1214,7 +1214,7 @@ App.setup_settings_addlist = () => {
       keys: [`filter`],
       list_text: (items) => {
         return items.filter
-      }
+      },
     })
   }))
 
@@ -1233,7 +1233,7 @@ App.setup_settings_addlist = () => {
       list_text: (items) => {
         let cmd = cmd_name(items.cmd)
         return `${items.key} = ${cmd}`
-      }
+      },
     })
   }))
 
@@ -1252,7 +1252,7 @@ App.setup_settings_addlist = () => {
           sources: [App.addlist_commands.slice(0)],
           keys: [`cmd`], list_text: (items) => {
             return cmd_name(items.cmd)
-          }
+          },
         })
       }))
     }
@@ -1267,7 +1267,8 @@ App.pick_background = (e) => {
       text: App.remove_extension(bg.url),
       action: () => {
         App.apply_background(bg)
-      }
+      },
+      image: App.imgdir + bg.url
     })
   }
 

@@ -154,6 +154,13 @@ NeedContext.show = (x, y, items, root = true) => {
     else {
       el.classList.add(`needcontext-normal`)
 
+      if (item.image) {
+        let image = document.createElement(`img`)
+        image.classList.add(`needcontext-image`)
+        image.src = item.image
+        el.append(image)
+      }
+
       if (item.icon) {
         let icon = document.createElement(`div`)
         icon.innerHTML = item.icon
@@ -476,6 +483,12 @@ NeedContext.init = () => {
 
     .needcontext-item-selected {
       background-color: rgba(0, 0, 0, 0.18);
+    }
+
+    .needcontext-image {
+      width: 1.5rem;
+      height: 1.5rem;
+      object-fit: contain;
     }
   `
 

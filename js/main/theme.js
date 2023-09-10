@@ -510,7 +510,7 @@ App.set_background = (url) => {
   }
 
   if (!App.is_url(url)) {
-    url = `/img/${url}`
+    url = App.imgdir + url
   }
 
   App.set_css_var(`background_image`, `url(${url})`)
