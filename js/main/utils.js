@@ -581,3 +581,7 @@ App.fillpad = (s, n, c) => {
 
   return s
 }
+
+App.remove_extension = (s) => {
+  return s.split(`.`).slice(0, -1).join(`.`)
+}

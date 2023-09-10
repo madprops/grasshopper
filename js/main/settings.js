@@ -1273,7 +1273,7 @@ App.pick_background = (e) => {
 
   for (let bg of App.backgrounds) {
     items.push({
-      text: bg.url,
+      text: App.remove_extension(bg.url),
       action: () => {
         App.apply_background(bg)
       }
