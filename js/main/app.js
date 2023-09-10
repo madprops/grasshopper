@@ -69,7 +69,6 @@ App.wheel_delay = 100
 App.show_mode_delay = 100
 App.max_pick_delay = 2000
 App.check_item_theme_delay = 200
-App.background_animation_delay = 120
 App.theme_party_delay = `3_seconds`
 App.auto_reload_delay = 1000 * 60
 
