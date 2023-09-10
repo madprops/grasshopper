@@ -312,7 +312,7 @@ App.set_default_theme = (instant = false) => {
     background_color: background,
     text_color: text,
     check: true,
-    instant: instant
+    instant: instant,
   })
 }
 
