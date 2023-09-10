@@ -91,6 +91,7 @@ select {
   width: 100vw;
   height: 100vh;
   box-sizing: border-box;
+  transition: var(--color_transition);
 }
 
 .window_content {
@@ -192,6 +193,7 @@ select {
   min-width: 1.6rem;
   border-radius: var(--border_radius);
   max-width: 100%;
+  transition: var(--color_transition);
 }
 
 .button:hover {
@@ -607,6 +609,7 @@ svg {
 #needcontext-main {
   background-color: var(--alt_background) !important;
   scrollbar-color: var(--alt_color_2) var(--alt_color_1) !important;
+  transition: var(--color_transition);
 }
 
 #needcontext-container {
@@ -615,6 +618,7 @@ svg {
   border-color: var(--alt_color_2) !important;
   font-size: var(--font_size) !important;
   font-family: var(--font) !important;
+  transition: var(--color_transition);
 }
 
 .needcontext-item-selected {
@@ -672,6 +676,7 @@ a:visited, a:link, a:hover {
   height: 100vh;
   width: 100vw;
   background-color: var(--alt_background);
+  transition: var(--color_transition);
   overflow-y: auto;
   justify-content: center;
 }
@@ -689,6 +694,7 @@ a:visited, a:link, a:hover {
   border: 2px solid var(--alt_color_1);
   color: var(--text_color);
   max-width: 90%;
+  transition: var(--color_transition);
   outline: none;
 }
 
@@ -841,6 +847,7 @@ a:visited, a:link, a:hover {
   cursor: pointer;
   border: 1px solid var(--alt_color_1);
   padding: var(--scroller_padding);
+  transition: var(--color_transition);
 }
 
 .scroller:hover {
@@ -865,6 +872,7 @@ a:visited, a:link, a:hover {
   border: 0px solid var(--alt_color_1);
   border-top-width: 1px;
   gap: 0.5rem;
+  transition: var(--color_transition);
 }
 
 .footer:hover {
