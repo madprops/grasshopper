@@ -873,7 +873,7 @@ App.clear_profiles_items = () => {
 
   if (count.auto_reload) {
     items.push({
-      text: `Auto Reload`,
+      text: `Reload`,
       action: () => {
         App.remove_all_auto_reload()
       }
