@@ -580,3 +580,7 @@ App.remove_extension = (s) => {
 App.now = () => {
   return Date.now()
 }
+
+App.clone = (obj) => {
+  return structuredClone(obj)
+}

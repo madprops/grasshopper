@@ -374,7 +374,7 @@ App.get_empty_profile = (url) => {
 
   for (let key in App.profile_props) {
     let props = App.profile_props[key]
-    obj[key] = structuredClone(props.value)
+    obj[key] = App.clone(props.value)
   }
 
   obj.url = url
@@ -384,7 +384,7 @@ App.get_empty_profile = (url) => {
 App.copy_profile = (profile) => {
   let obj = {}
   obj.url = profile.url
-  obj.tags = profile.tags.slice(0)
+  obj.tags = App.clone(profile.tags)
   obj.notes = profile.notes
   obj.title = profile.title
   obj.color = profile.color
@@ -433,6 +433,12 @@ App.profile_editor_save = () => {
 
 App.save_profile = (args) => {
   let urls = []
+
+  function add_url (url) {
+    if (!urls.includes(url)) {
+      urls.push(url)
+    }
+  }
 
   function has_tag (list, tag) {
     for (let item of list) {
@@ -527,8 +533,8 @@ App.save_profile = (args) => {
       }
     }
 
-    urls.push(og_url)
-    urls.push(profile.url)
+    add_url(og_url)
+    add_url(profile.url)
   }
 
   // Added
@@ -711,7 +717,7 @@ App.check_profiles = () => {
 
     for (let key in App.profile_props) {
       if (profile[key] === undefined) {
-        profile[key] = structuredClone(App.profile_props[key].value)
+        profile[key] = App.clone(App.profile_props[key].value)
         changed = true
       }
     }
@@ -1862,7 +1868,7 @@ App.profile_set_value = (key, value, actions = false) => {
   let props = App.profile_props[key]
 
   if (props.type === `list`) {
-    App[`profile_editor_${key}`] = value
+    App[`profile_editor_${key}`] = App.clone(value)
 
     if (actions) {
       App.profile_addlist_count()
