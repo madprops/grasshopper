@@ -921,7 +921,7 @@ App.remove_color = (color) => {
 
   App.show_confirm(`Remove ${color}? (${profiles.length})`, () => {
     for (let profile of profiles) {
-      profile.color = ``
+      profile.color = `none`
     }
 
     App.after_profile_remove()
@@ -943,7 +943,7 @@ App.remove_all_colors = () => {
 
   App.show_confirm(`Remove all colors? (${profiles.length})`, () => {
     for (let profile of App.profiles) {
-      profile.color = ``
+      profile.color = `none`
     }
 
     App.after_profile_remove()
@@ -966,9 +966,6 @@ App.remove_all_themes = () => {
   App.show_confirm(`Remove all themes? (${profiles.length})`, () => {
     for (let profile of App.profiles) {
       profile.theme_enabled = false
-      profile.background_color = ``
-      profile.text_color = ``
-      profile.background_image = ``
     }
 
     App.after_profile_remove()
@@ -1849,7 +1846,7 @@ App.profile_set_value = (key, value, actions = false) => {
     }
   }
   else if (props.type === `menu`) {
-    App[`profile_menubutton_${key}`].set(value)
+    App[`profile_menubutton_${key}`].set(value || `none`)
   }
   else if (key === `theme_enabled`) {
     DOM.el(`#profile_editor_theme_enabled`).checked = value
