@@ -383,17 +383,13 @@ App.get_empty_profile = (url) => {
 
 App.copy_profile = (profile) => {
   let obj = {}
-  obj.url = profile.url
-  obj.tags = App.clone(profile.tags)
-  obj.notes = profile.notes
-  obj.title = profile.title
-  obj.color = profile.color
-  obj.theme_enabled = profile.theme_enabled
-  obj.background_color = profile.background_color
-  obj.text_color = profile.text_color
-  obj.background_image = profile.background_image
-  obj.icon = profile.icon
-  obj.auto_reload = profile.auto_reload
+
+  for (let key in App.profile_props) {
+    if (profile[key] !== undefined) {
+      obj[key] = App.clone(profile[key])
+    }
+  }
+
   return obj
 }
 
