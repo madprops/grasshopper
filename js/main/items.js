@@ -434,6 +434,10 @@ App.process_info = (mode, info, exclude = [], o_item) => {
       item.created = true
     }
 
+    if (o_item.auto_reload !== auto_reload) {
+      item.last_auto_reload = App.now()
+    }
+
     o_item = Object.assign(o_item, item)
 
     if (o_item.created) {
