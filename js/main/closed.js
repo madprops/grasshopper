@@ -41,7 +41,7 @@ App.reopen_tab = async () => {
 App.forget_closed = () => {
   let items = App.get_items(`closed`)
 
-  App.show_confirm(`Forget all closed tabs? (${items.length})`, async () => {
+  App.show_confirm(`Forget closed tabs? (${items.length})`, async () => {
     for (let item of items) {
       await browser.sessions.forgetClosedTab(item.window_id, item.session_id)
     }
