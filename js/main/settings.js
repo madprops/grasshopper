@@ -49,10 +49,6 @@ App.settings_setup_labels = (category) => {
         btns.push([`settings_${key}_random`, App.random_text])
       }
 
-      if (props.btns.includes(`view`)) {
-        btns.push([`settings_${key}_view`, `View`])
-      }
-
       if (props.btns.includes(`next`)) {
         btns.push([`settings_${key}_next`, `Next`])
       }
