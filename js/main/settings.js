@@ -45,12 +45,12 @@ App.settings_setup_labels = (category) => {
         btns.push([`settings_${key}_pick`, `Pick`])
       }
 
-      if (props.btns.includes(`random`)) {
-        btns.push([`settings_${key}_random`, App.random_text])
-      }
-
       if (props.btns.includes(`next`)) {
         btns.push([`settings_${key}_next`, `Next`])
+      }
+
+      if (props.btns.includes(`random`)) {
+        btns.push([`settings_${key}_random`, App.random_text])
       }
 
       if (btns.length) {
