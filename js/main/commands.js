@@ -70,7 +70,7 @@ App.setup_commands = () => {
     }, info: `Trigger the back button`},
 
     {name: `Select All`, cmd: `select_all`, mode: `items`, action: (args) => {
-      App.select_all()
+      App.select_all(args.mode, true)
     }, info: `Select all items`},
 
     {name: App.separator_string},

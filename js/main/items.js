@@ -1234,10 +1234,28 @@ App.scroll = (mode, direction) => {
   }
 }
 
-App.select_all = (mode = App.window_mode) => {
+App.select_all = (mode = App.window_mode, toggle = false) => {
+  let items = App.get_items(mode)
+
+  if (toggle) {
+    let all_selected = true
+
+    for (let item of items) {
+      if (!item.selected) {
+        all_selected = false
+        break
+      }
+    }
+
+    if (all_selected) {
+      App.deselect(mode, `selected`)
+      return
+    }
+  }
+
   let first
 
-  for (let item of App.get_items(mode)) {
+  for (let item of items) {
     if (!first) {
       first = item
     }
