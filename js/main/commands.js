@@ -218,23 +218,23 @@ App.setup_commands = () => {
       App.close_tabs(args.item, false)
     }, info: `Close only selected tab`},
 
-    {name: `Close Menu`, cmd: `close_menu`, mode: `tabs`, icon: tabicon, action: (args) => {
+    {name: `Close Menu`, cmd: `close_menu`, mode: `items`, icon: tabicon, action: (args) => {
       App.close_menu()
     }, info: `Open the menu with some tab closing options`},
 
-    {name: `Close Normal`, cmd: `close_normal`, mode: `tabs`, icon: tabicon, action: (args) => {
+    {name: `Close Normal`, cmd: `close_normal`, mode: `items`, icon: tabicon, action: (args) => {
       App.close_normal_tabs()
     }, info: `Close normal tabs`},
 
-    {name: `Close Unloaded`, cmd: `close_unloaded`, mode: `tabs`, icon: tabicon, action: (args) => {
+    {name: `Close Unloaded`, cmd: `close_unloaded`, mode: `items`, icon: tabicon, action: (args) => {
       App.close_unloaded_tabs()
     }, info: `Close unloaded tabs`},
 
-    {name: `Close Duplicates`, cmd: `close_duplicate`, mode: `tabs`, icon: tabicon, action: (args) => {
+    {name: `Close Duplicates`, cmd: `close_duplicate`, mode: `items`, icon: tabicon, action: (args) => {
       App.close_duplicate_tabs()
     }, info: `Close duplicate tabs`},
 
-    {name: `Close Visible`, cmd: `close_visible`, mode: `tabs`, icon: tabicon, action: (args) => {
+    {name: `Close Visible`, cmd: `close_visible`, mode: `items`, icon: tabicon, action: (args) => {
       App.close_visible_tabs()
     }, info: `Close visible tabs`},
 
@@ -242,19 +242,19 @@ App.setup_commands = () => {
       App.go_to_playing_tab()
     }, info: `Go the tab emitting sound`},
 
-    {name: `Sort`, cmd: `sort`, mode: `tabs`, icon: tabicon, action: (args) => {
+    {name: `Sort`, cmd: `sort`, mode: `items`, icon: tabicon, action: (args) => {
       App.sort_tabs()
     }, info: `Open the sort tabs window`},
 
-    {name: `Show Info`, cmd: `info`, mode: `tabs`, icon: tabicon, action: (args) => {
+    {name: `Show Info`, cmd: `info`, mode: `items`, icon: tabicon, action: (args) => {
       App.show_tabs_info()
     }, info: `Show some tab info`},
 
-    {name: `Show URLs`, cmd: `show_urls`, mode: `tabs`, icon: tabicon, action: (args) => {
+    {name: `Show URLs`, cmd: `show_urls`, mode: `items`, icon: tabicon, action: (args) => {
       App.show_urls()
     }, info: `Show a list of open URLs`},
 
-    {name: `Open URLs`, cmd: `open_urls`, mode: `tabs`, icon: tabicon, action: (args) => {
+    {name: `Open URLs`, cmd: `open_urls`, mode: `items`, icon: tabicon, action: (args) => {
       App.open_urls()
     }, info: `Open a list of URLs`},
 
@@ -276,7 +276,7 @@ App.setup_commands = () => {
       App.show_filter_history(undefined, args.mode)
     }, info: `Show the filter history`},
 
-    {name: `Deep Search`, cmd: `deep_search`, mode: `items`, action: (args) => {
+    {name: `Deep Search`, cmd: `deep_search`, mode: `search`, action: (args) => {
       App.deep_search(args.mode)
     }, info: `Do a deep search`},
 
@@ -284,7 +284,7 @@ App.setup_commands = () => {
       App.search_media(args.mode)
     }, info: `Search for media`},
 
-    {name: `Forget Closed`, cmd: `forget_closed`, mode: `items`, action: (args) => {
+    {name: `Forget Closed`, cmd: `forget_closed`, mode: `closed`, action: (args) => {
       App.forget_closed()
     }, info: `Forget closed items`},
 
@@ -470,6 +470,11 @@ App.check_command = (command, args) => {
       if (command.mode) {
         if (command.mode === `items`) {
           if (!args.on_items) {
+            valid = false
+          }
+        }
+        else if (command.mode === `search`) {
+          if (!App.search_modes.includes(args.mode)) {
             valid = false
           }
         }
