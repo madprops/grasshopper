@@ -130,7 +130,7 @@ App.do_filter = async (mode, force = false, deep = false) => {
           match = alias.b
         }
         else if (alias.b.startsWith(value)) {
-          match = alias.a, 2
+          match = alias.a
         }
       }
 
