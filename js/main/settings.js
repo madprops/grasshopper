@@ -1177,7 +1177,6 @@ App.setup_settings_addlist = () => {
 
   let args = {
     on_hide: on_hide,
-    after_hide: after_hide,
   }
 
   let from = `settings`
