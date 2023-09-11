@@ -111,31 +111,36 @@ App.do_filter = async (mode, force = false, deep = false) => {
   let value_lower = value.toLowerCase()
   let insensitive = App.get_setting(`case_insensitive`)
 
-  function alias_regex (a, b) {
-    if (insensitive) {
-      let rep = value_lower.replace(b.toLowerCase(), a.toLowerCase())
+  if (value && by_what === `all`) {
+    let aliases = App.get_setting(`aliases`)
 
-      if (value_lower !== rep) {
-        let reg = App.make_filter_regex(rep, by_what)
+    for (let alias of aliases) {
+      let match
+
+      if (insensitive) {
+        if (alias.a.toLowerCase().startsWith(value_lower)) {
+          match = alias.b
+        }
+        else if (alias.b.toLowerCase().startsWith(value_lower)) {
+          match = alias.a
+        }
+      }
+      else {
+        if (alias.a.startsWith(value)) {
+          match = alias.b
+        }
+        else if (alias.b.startsWith(value)) {
+          match = alias.a, 2
+        }
+      }
+
+      if (match) {
+        reg = App.make_filter_regex(match, by_what)
 
         if (reg) {
           regexes.push(reg)
         }
       }
-    }
-    else {
-      let rep = value.replace(a, b)
-
-      if (value !== rep) {
-        regexes.push(App.make_filter_regex(rep, by_what))
-      }
-    }
-  }
-
-  if (value) {
-    for (let obj of App.get_setting(`aliases`)) {
-      alias_regex(obj.a, obj.b)
-      alias_regex(obj.b, obj.a)
     }
   }
 
