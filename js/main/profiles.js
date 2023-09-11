@@ -99,7 +99,7 @@ App.setup_profile_editor = () => {
       showHSL: false,
       showHEX: false,
       showRGB: true,
-      color: App.profile_background_color()
+      color: App.profile_props.background_color.value
     })
 
     App.profile_editor_background_color.on(`change`, (picker, color) => {
@@ -114,7 +114,7 @@ App.setup_profile_editor = () => {
       showHSL: false,
       showHEX: false,
       showRGB: true,
-      color: App.profile_text_color()
+      color: App.profile_props.text_color.value
     })
 
     App.profile_editor_text_color.on(`change`, (picker, color) => {
@@ -1536,18 +1536,6 @@ App.profile_make_menu = (key, opts) => {
   })
 }
 
-App.set_profile_color = (value) => {
-  App.profile_menubutton_color.set(value || `none`)
-}
-
-App.set_profile_background_effect = (value) => {
-  App.profile_menubutton_background_effect.set(value || `none`)
-}
-
-App.set_profile_background_tiles = (value) => {
-  App.profile_menubutton_background_tiles.set(value || `none`)
-}
-
 App.profile_editor_left = () => {
   let el = DOM.el(`#profile_editor_color_container`)
 
@@ -1813,14 +1801,6 @@ App.profile_theme_enabled_changed = () => {
 
   App.profile_apply_theme()
   App.profile_modified()
-}
-
-App.profile_background_color = () => {
-  return App.profile_props.background_color.value
-}
-
-App.profile_text_color = () => {
-  return App.profile_props.text_color.value
 }
 
 App.profile_get_value = (key) => {
