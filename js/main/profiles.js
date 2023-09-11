@@ -1671,7 +1671,7 @@ App.start_auto_reload = () => {
 
     for (let item of App.get_items(`tabs`)) {
       if (item.auto_reload >= 1) {
-        let mins = parseInt((App.now() - item.last_auto_reload) / 1000 / 60)
+        let mins = Math.round((App.now() - item.last_auto_reload) / 1000 / 60)
 
         if (mins >= (item.auto_reload) - 0.1) {
           App.browser_reload(item.id)
