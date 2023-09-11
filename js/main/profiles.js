@@ -404,20 +404,11 @@ App.profile_editor_save = () => {
 
   App.show_confirm(`Save profiles? (${items.length})`, () => {
     let args = {}
-    args.url = App.profile_get_value(`url`)
-    args.exact = App.profile_get_value(`exact`)
-    args.tags = App.profile_get_value(`tags`)
-    args.notes = App.profile_get_value(`notes`)
-    args.title = App.profile_get_value(`title`)
-    args.icon = App.profile_get_value(`icon`)
-    args.color = App.profile_get_value(`color`)
-    args.theme_enabled = App.profile_get_value(`theme_enabled`)
-    args.background_color = App.profile_get_value(`background_color`)
-    args.text_color = App.profile_get_value(`text_color`)
-    args.background_image = App.profile_get_value(`background_image`)
-    args.background_effect = App.profile_get_value(`background_effect`)
-    args.background_tiles = App.profile_get_value(`background_tiles`)
-    args.auto_reload = App.profile_get_value(`auto_reload`)
+
+    for (let key in App.profile_props) {
+      args[key] = App.profile_get_value(key)
+    }
+
     args.type = App.profile_editor_type
     args.profiles = App.profile_editor_profiles
     args.added = App.profile_editor_added
