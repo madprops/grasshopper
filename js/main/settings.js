@@ -1175,10 +1175,6 @@ App.setup_settings_addlist = () => {
     App.hide_addlist()
   }
 
-  function after_hide () {
-    App.addlist_clear_image()
-  }
-
   let args = {
     on_hide: on_hide,
     after_hide: after_hide,
