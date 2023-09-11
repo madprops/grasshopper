@@ -81,7 +81,7 @@ App.check_items_keyboard = (e) => {
     }
     else if (e.key === `a`) {
       if (!filter_focus) {
-        App.select_all()
+        App.select_all(mode, true)
         e.preventDefault()
       }
 
