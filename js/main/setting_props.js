@@ -387,7 +387,7 @@ App.build_settings = () => {
   obj.color_red = {value: `rgba(172, 59, 59, 0.44)`, category: category, type: `color`, name: `Color Red`, version: 1,
   info: `Color an item red`}
 
-  obj.color_green = {value: `rgba(46, 104, 46, 0.44)`, category: category, type: `color`, name: `Color Green`, version: 1,
+  obj.color_green = {value: `rgba(45, 115, 45, 0.44)`, category: category, type: `color`, name: `Color Green`, version: 1,
   info: `Color an item green`}
 
   obj.color_blue = {value: `rgba(59, 59, 147, 0.44)`, category: category, type: `color`, name: `Color Blue`, version: 1,
