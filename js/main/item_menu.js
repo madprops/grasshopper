@@ -1,4 +1,8 @@
 App.show_item_menu = async (item, x, y) => {
+  if (!item) {
+    return
+  }
+
   let active = App.get_active_items(item.mode, item)
   let multiple = active.length > 1
   let min_more_sep = 2
@@ -121,6 +125,10 @@ App.show_item_menu = async (item, x, y) => {
 }
 
 App.show_item_menu_2 = (item) => {
+  if (!item) {
+    return
+  }
+
   let rect = item.element.getBoundingClientRect()
   App.show_item_menu(item, rect.left, rect.top)
 }
