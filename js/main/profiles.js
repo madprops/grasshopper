@@ -133,6 +133,7 @@ App.setup_profile_editor = () => {
 
     DOM.ev(DOM.el(`#profile_editor_auto_reload`), `change`, (e) => {
       let value = parseInt(e.target.value)
+      e.target.value = value
 
       if (e.target.value.trim() === `` || isNaN(value)) {
         e.target.value = e.target.min

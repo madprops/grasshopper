@@ -187,6 +187,7 @@ App.settings_setup_number = (category) => {
 
     DOM.ev(el, `change`, () => {
       let value = parseInt(el.value)
+      el.value = value
 
       if (el.value.trim() === `` || isNaN(value)) {
         el.value = App.get_setting(key)
