@@ -374,7 +374,13 @@ App.get_empty_profile = (url) => {
 
   for (let key in App.profile_props) {
     let props = App.profile_props[key]
-    obj[key] = App.clone(props.value)
+
+    if (props.type === `list`) {
+      obj[key] = App.clone(props.value)
+    }
+    else {
+      obj[key] = props.value
+    }
   }
 
   obj.url = url
@@ -1664,7 +1670,7 @@ App.start_auto_reload = () => {
     App.debug(`Auto reloading tabs`)
 
     for (let item of App.get_items(`tabs`)) {
-      if (item.auto_reload > 0) {
+      if (item.auto_reload >= 1) {
         let mins = parseInt((App.now() - item.last_auto_reload) / 1000 / 60)
 
         if (mins >= (item.auto_reload) - 0.1) {
