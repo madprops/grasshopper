@@ -355,18 +355,49 @@ App.copy_profile = (profile) => {
 }
 
 App.profile_check_modified = () => {
-  let modified = false
+  let theme_enabled = App.profile_get_value(`theme_enabled`)
 
-  for (let key in App.profile_props) {
-    let props = App.profile_props[key]
-    let value = App.profile_get_value(key)
-    if (App.str(value) !== App.str(props.value)) {
-      modified = true
-      break
+  if (App.profile_editor_added.length) {
+    for (let key in App.profile_props) {
+      if (key === `url`) {
+        continue
+      }
+
+      if (App.profile_props_theme.includes(key)) {
+        if (!theme_enabled) {
+          continue
+        }
+      }
+
+      let value = App.profile_get_value(key)
+      let props = App.profile_props[key]
+
+      if (App.str(value) !== App.str(props.value)) {
+        return true
+      }
+    }
+  }
+  else if (App.profile_editor_profiles.length) {
+    for (let profile of App.profile_editor_profiles) {
+      for (let key in App.profile_props) {
+        if (App.profile_props_theme.includes(key)) {
+          if (!theme_enabled) {
+            continue
+          }
+        }
+
+        let value = profile[key]
+        let value_2 = App.profile_get_value(key)
+
+        if (App.str(value) !== App.str(value_2)) {
+          console.log(key)
+          return true
+        }
+      }
     }
   }
 
-  return modified
+  return false
 }
 
 App.profile_editor_save = () => {
@@ -1731,7 +1762,7 @@ App.profile_set_value = (key, value, actions = false) => {
   let props = App.profile_props[key]
 
   if (props.type === `list`) {
-    let value = App[`profile_fix_${key}`](value)
+    value = App[`profile_fix_${key}`](value)
     App[`profile_editor_${key}`] = App.clone(value)
 
     if (actions) {
