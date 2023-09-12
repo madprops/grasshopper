@@ -1943,15 +1943,11 @@ App.profile_default_all = () => {
 }
 
 App.profile_hide_containers = () => {
-  DOM.el(`#profile_editor_theme_inputs`).classList.add(`hidden`)
-  DOM.el(`#profile_editor_theme_container`).classList.add(`hidden`)
+  App.profile_editor_container(`theme_inputs`, false)
+  App.profile_editor_container(`theme`, false)
 
   for (let key in App.profile_props) {
-    let c = DOM.el(`#profile_editor_${key}_container`)
-
-    if (c) {
-      c.classList.add(`hidden`)
-    }
+    App.profile_editor_container(key, false)
   }
 }
 
@@ -1962,10 +1958,12 @@ App.profile_editor_header = (s) => {
 App.profile_editor_container = (c, show) => {
   let el = DOM.el(`#profile_editor_${c}_container`)
 
-  if (show) {
-    el.classList.remove(`hidden`)
-  }
-  else {
-    el.classList.add(`hidden`)
+  if (el) {
+    if (show) {
+      el.classList.remove(`hidden`)
+    }
+    else {
+      el.classList.add(`hidden`)
+    }
   }
 }
