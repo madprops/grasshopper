@@ -123,18 +123,7 @@ App.setup_profile_editor = () => {
   },
   colored_top: true,
   on_hide: () => {
-    if (App.profile_check_modified()) {
-      App.show_confirm(`Save changes?`, () => {
-        App.profile_editor_save()
-      }, () => {
-        App.hide_window(true)
-        App.check_item_theme()
-      })
-    }
-    else {
-      App.hide_window(true)
-      App.check_item_theme()
-    }
+    App.profile_editor_save()
   }})
 }
 
@@ -277,12 +266,14 @@ App.show_profile_editor = (item, type, action = `edit`) => {
             let shared_be = App.profile_get_shared(`background_effect`, profiles)
             let shared_bt = App.profile_get_shared(`background_tiles`, profiles)
 
-            if (shared_bg && shared_tc && shared_bi && shared_be && shared_bt) {
+            if (shared_bg !== undefined && shared_tc !== undefined &&
+              shared_bi !== undefined && shared_be !== undefined &&
+              shared_bt !== undefined ) {
               DOM.el(`#profile_editor_theme_inputs`).classList.remove(`hidden`)
               App.profile_set_value(`theme_enabled`, true)
               App.profile_set_value(`background_image`, shared_bi)
               App.profile_set_value(`background_color`, shared_bg)
-              App.profile_set_value(`background_text`, shared_tc)
+              App.profile_set_value(`text_color`, shared_tc)
               App.profile_set_value(`background_effect`, shared_be)
               App.profile_set_value(`background_tiles`, shared_bt)
             }
@@ -354,52 +345,6 @@ App.copy_profile = (profile) => {
   return obj
 }
 
-App.profile_check_modified = () => {
-  let theme_enabled = App.profile_get_value(`theme_enabled`)
-
-  if (App.profile_editor_added.length) {
-    for (let key in App.profile_props) {
-      if (key === `url`) {
-        continue
-      }
-
-      if (App.profile_props_theme.includes(key)) {
-        if (!theme_enabled) {
-          continue
-        }
-      }
-
-      let value = App.profile_get_value(key)
-      let props = App.profile_props[key]
-
-      if (App.str(value) !== App.str(props.value)) {
-        return true
-      }
-    }
-  }
-  else if (App.profile_editor_profiles.length) {
-    for (let profile of App.profile_editor_profiles) {
-      for (let key in App.profile_props) {
-        if (App.profile_props_theme.includes(key)) {
-          if (!theme_enabled) {
-            continue
-          }
-        }
-
-        let value = profile[key]
-        let value_2 = App.profile_get_value(key)
-
-        if (App.str(value) !== App.str(value_2)) {
-          console.log(key)
-          return true
-        }
-      }
-    }
-  }
-
-  return false
-}
-
 App.profile_editor_save = () => {
   let items = App.profile_editor_items
 
@@ -407,22 +352,18 @@ App.profile_editor_save = () => {
     return
   }
 
-  let force = App.check_force(undefined, items.length)
+  let args = {}
 
-  App.show_confirm(`Save profiles? (${items.length})`, () => {
-    let args = {}
+  for (let key in App.profile_props) {
+    args[key] = App.profile_get_value(key)
+  }
 
-    for (let key in App.profile_props) {
-      args[key] = App.profile_get_value(key)
-    }
-
-    args.type = App.profile_editor_type
-    args.profiles = App.profile_editor_profiles
-    args.added = App.profile_editor_added
-    args.action = App.profile_editor_action
-    args.from = `editor`
-    App.save_profile(args)
-  }, undefined, force)
+  args.type = App.profile_editor_type
+  args.profiles = App.profile_editor_profiles
+  args.added = App.profile_editor_added
+  args.action = App.profile_editor_action
+  args.from = `editor`
+  App.save_profile(args)
 }
 
 App.save_profile = (args) => {
