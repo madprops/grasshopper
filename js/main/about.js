@@ -42,7 +42,6 @@ App.setup_about = () => {
       `In the filter, $day resolves to the current week day`,
       `In the filter, $month resolves to the current month name`,
       `In the filter, $year resolves to the full year number`,
-      `The filter mode 'No Tab' shows items that are not open in a tab`,
     ]
 
     let close = DOM.el(`#about_close`)

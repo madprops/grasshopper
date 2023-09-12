@@ -405,6 +405,7 @@ App.show_filter_menu = (mode) => {
         get_items: () => {
           return App.get_tag_items(mode)
         },
+        info: filter_mode[3],
       })
 
       continue
@@ -415,6 +416,7 @@ App.show_filter_menu = (mode) => {
         get_items: () => {
           return App.get_color_items(mode)
         },
+        info: filter_mode[3],
       })
 
       continue
@@ -425,6 +427,7 @@ App.show_filter_menu = (mode) => {
         get_items: () => {
           return App.get_custom_filters(mode)
         },
+        info: filter_mode[3],
       })
 
       continue
@@ -435,6 +438,7 @@ App.show_filter_menu = (mode) => {
         get_items: () => {
           return App.get_filter_refine(mode)
         },
+        info: filter_mode[3],
       })
 
       continue
@@ -447,7 +451,8 @@ App.show_filter_menu = (mode) => {
       action: () => {
         App.set_filter_mode(mode, filter_mode[0])
       },
-      selected: selected
+      selected: selected,
+      info: filter_mode[3],
     })
   }
 
@@ -542,22 +547,22 @@ App.create_filter_menu = (mode) => {
   }
 
   fmodes.push(separator())
-  fmodes.push([`image`, `Image`])
-  fmodes.push([`video`, `Video`])
-  fmodes.push([`audio`, `Audio`])
+  fmodes.push([`image`, `Image`, !skip, `Show image items`])
+  fmodes.push([`video`, `Video`, !skip, `Show video items`])
+  fmodes.push([`audio`, `Audio`, !skip, `Show audio items`])
   fmodes.push(separator())
-  fmodes.push([`tag`, `Tag`, skip])
-  fmodes.push([`color`, `Color`, skip])
-  fmodes.push([`autoreload`, `Reload`])
-  fmodes.push([`edited`, `Edited`])
+  fmodes.push([`tag`, `Tag`, skip, `Filter by a specific tag`])
+  fmodes.push([`color`, `Color`, skip, `Filter by a specific color`])
+  fmodes.push([`autoreload`, `Reload`, !skip, `Items that have auto-reload enabled`])
+  fmodes.push([`edited`, `Edited`, !skip, `Items that have a profile`])
 
   if (mode !== `tabs`) {
-    fmodes.push([`notab`, `No Tab`])
+    fmodes.push([`notab`, `No Tab`, !skip, `Items that are not open in a tab`])
   }
 
   fmodes.push(separator())
-  fmodes.push([`refine`, `Refine`, skip])
-  fmodes.push([`custom`, `Custom`, skip])
+  fmodes.push([`refine`, `Refine`, skip, `Refine the filter`])
+  fmodes.push([`custom`, `Custom`, skip, `Pick a custom filter`])
   App[`${mode}_filter_modes`] = fmodes
 
   DOM.evs(filter_menu, [`click`, `contextmenu`], (e) => {
