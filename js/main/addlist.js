@@ -60,17 +60,11 @@ App.addlist_register = (args = {}) => {
   }
 
   args = Object.assign(def_args, args)
-  let props = {}
-
-  if (args.from === `settings`) {
-    props = App.setting_props[args.id.replace(`settings_`, ``)]
-  }
-
   let container = DOM.create(`div`, `flex_column_center addlist_container`, `addlist_container_${args.id}`)
   container.tabIndex = 0
   let top = DOM.create(`div`, `flex_row_center gap_2 full_width`)
   let title = DOM.create(`div`, `addlist_title`)
-  title.textContent = props.name || args.title
+  title.textContent = args.title || `List`
   let btn_prev = DOM.create(`div`, `button`, `addlist_prev_${args.id}`)
   btn_prev.textContent = `<`
   let btn_next = DOM.create(`div`, `button`, `addlist_next_${args.id}`)

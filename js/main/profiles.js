@@ -1691,7 +1691,6 @@ App.profile_addlist_tags = () => {
         return items.tag
       },
       title: `Tags`,
-      from: id,
       on_modified: () => {
         App.profile_modified()
       },
@@ -1724,7 +1723,6 @@ App.profile_addlist_notes = () => {
         return items.note
       },
       title: `Notes`,
-      from: id,
       on_modified: () => {
         App.profile_modified()
       },

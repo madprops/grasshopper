@@ -1190,13 +1190,12 @@ App.setup_settings_addlist = () => {
     set_value: set_value,
   }
 
-  let from = `settings`
   let id = `settings_aliases`
+  let props = App.setting_props[id]
 
   App.create_popup(Object.assign({}, args, {
     id: `addlist_${id}`,
     element: App.addlist_register(Object.assign({}, regobj, {
-      from: from,
       id: id,
       pk: `a`,
       widgets: [`text`, `text`],
@@ -1205,15 +1204,16 @@ App.setup_settings_addlist = () => {
       list_text: (items) => {
         return `${items.a} = ${items.b}`
       },
+      title: props.name,
     }))
   }))
 
   id = `settings_custom_filters`
+  props = App.setting_props[id]
 
   App.create_popup(Object.assign({}, args, {
     id: `addlist_${id}`,
     element: App.addlist_register(Object.assign({}, regobj, {
-      from: from,
       id: id,
       pk: `filter`,
       widgets: [`text`],
@@ -1222,15 +1222,16 @@ App.setup_settings_addlist = () => {
       list_text: (items) => {
         return items.filter
       },
+      title: props.name,
     }))
   }))
 
   id = `settings_keyboard_shortcuts`
+  props = App.setting_props[id]
 
   App.create_popup(Object.assign({}, args, {
     id: `addlist_${id}`,
     element: App.addlist_register(Object.assign({}, regobj, {
-      from: from,
       id: id,
       pk: `key`,
       widgets: [`key`, `select`, `checkbox`, `checkbox`, `checkbox`],
@@ -1241,25 +1242,28 @@ App.setup_settings_addlist = () => {
         let cmd = cmd_name(items.cmd)
         return `${items.key} = ${cmd}`
       },
+      title: props.name,
     }))
   }))
 
   for (let key in App.setting_props) {
-    let props = App.setting_props[key]
     let id = `settings_${key}`
+    props = App.setting_props[key]
 
     if (props.category === `menus`) {
       App.create_popup(Object.assign({}, args, {
         id: `addlist_${id}`,
         element: App.addlist_register(Object.assign({}, regobj, {
-          from: from,
           id: id,
           pk: `cmd`,
-          widgets: [`select`], labels: [`Command`],
+          widgets: [`select`],
+          labels: [`Command`],
           sources: [App.addlist_commands.slice(0)],
-          keys: [`cmd`], list_text: (items) => {
+          keys: [`cmd`],
+          list_text: (items) => {
             return cmd_name(items.cmd)
           },
+          title: props.name,
         }))
       }))
     }
