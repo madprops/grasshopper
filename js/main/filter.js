@@ -267,7 +267,7 @@ App.filter_check = (args) => {
     else if (args.filter_mode === `edited`) {
       match = args.item.has_profile
     }
-    else if (args.filter_mode === `pins`) {
+    else if (args.filter_mode === `pin`) {
       match = args.item.pinned
     }
     else if (args.filter_mode === `normal`) {

@@ -1,6 +1,6 @@
 App.setup_tabs = () => {
   App.tabs_filter_modes = [
-    [`pins`, `Pins`],
+    [`pin`, `Pin`],
     [`normal`, `Normal`],
     [`playing`, `Playing`],
     [`unloaded`, `Unloaded`],
