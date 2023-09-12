@@ -1060,12 +1060,10 @@ App.remove_all_auto_reload = () => {
   })
 }
 
-App.remove_tag = (name) => {
-  App.show_confirm(`Remove tag? (${name})`, () => {
+App.remove_tag = (tag) => {
+  App.show_confirm(`Remove tag? (${tag})`, () => {
     for (let profile of App.profiles) {
-      if (profile.tags.includes(name)) {
-        profile.tags = profile.tags.filter(tag => tag !== name)
-      }
+      profile.tags = profile.tags.filter(x => x.tag !== tag)
     }
 
     App.after_profile_remove()
