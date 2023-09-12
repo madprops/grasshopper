@@ -6,7 +6,7 @@ App.profile_props = {
   url: {value: ``, type: `string`},
   exact: {value: false, type: `boolean`},
   tags: {value: [], type: `list`},
-  notes: {value: ``, type: `string`},
+  notes: {value: [], type: `list`},
   title: {value: ``, type: `string`},
   color: {value: `none`, type: `menu`},
   icon: {value: ``, type: `string`},
@@ -75,13 +75,10 @@ App.setup_profile_editor = () => {
     App.profile_make_menu(`background_effect`, App.background_effects)
     App.profile_make_menu(`background_tiles`, App.background_tiles)
     App.profile_addlist_tags()
+    App.profile_addlist_notes()
 
     DOM.ev(DOM.el(`#profile_editor_tags_add`), `click`, (e) => {
       App.profile_tags_add(e)
-    })
-
-    DOM.ev(DOM.el(`#profile_editor_notes`), `input`, (e) => {
-      App.profile_modified()
     })
 
     DOM.ev(DOM.el(`#profile_editor_title`), `input`, (e) => {
@@ -267,7 +264,7 @@ App.show_profile_editor = (item, type, action = `edit`) => {
 
       if (action === `edit`) {
         App.profile_set_value(`tags`, App.profile_fix_tags(profile.tags))
-        App.profile_set_value(`notes`, profile.notes)
+        App.profile_set_value(`notes`, App.profile_fix_notes(profile.notes))
       }
 
       App.profile_set_value(`url`, profile.url)
@@ -307,8 +304,7 @@ App.show_profile_editor = (item, type, action = `edit`) => {
         }
         else if (type === `notes`) {
           let shared = App.get_shared_notes(profiles)
-          App.profile_set_value(`theme_notes`, shared)
-          DOM.el(`#profile_editor_notes`).value = shared
+          App.profile_set_value(`notes`, App.profile_fix_notes(shared))
         }
         else if (type === `title`) {
           let shared = App.get_shared_title(profiles)
@@ -361,8 +357,8 @@ App.show_profile_editor = (item, type, action = `edit`) => {
   if (type === `tags` && action === `add`) {
     App.profile_tags_addlist()
   }
-  else if (type === `notes`) {
-    DOM.el(`#profile_editor_notes`).focus()
+  else if (type === `notes` && action === `add`) {
+    App.profile_notes_addlist()
   }
 
   requestAnimationFrame(() => {
@@ -482,7 +478,7 @@ App.save_profile = (args) => {
       let n_notes = args.notes
 
       if (p_mode === `edit` && args.action === `add`) {
-        n_notes = `${n_notes}\n${profile.notes}`.trim()
+        n_notes = [...args.notes, ...profile.notes]
       }
 
       profile.notes = n_notes
@@ -987,7 +983,7 @@ App.remove_all_notes = () => {
 
   App.show_confirm(`Remove all notes? (${profiles.length})`, () => {
     for (let profile of App.profiles) {
-      profile.notes = ``
+      profile.notes = []
     }
 
     App.after_profile_remove()
@@ -1707,6 +1703,32 @@ App.profile_addlist_tags = () => {
   App.addlist_add_buttons(id, el)
 }
 
+App.profile_addlist_notes = () => {
+  let id = `profile_editor_notes`
+
+  App.create_popup({
+    id: `addlist_${id}`,
+    element: App.addlist_register({
+      id: id,
+      pk: `note`,
+      widgets: [`text`],
+      labels: [`Note`],
+      keys: [`note`],
+      list_text: (items) => {
+        return items.note
+      },
+      title: `Notes`,
+      from: id,
+      on_modified: () => {
+        App.profile_modified()
+      },
+    })
+  })
+
+  let el = DOM.el(`#${id}`)
+  App.addlist_add_buttons(id, el)
+}
+
 App.profile_tags_add = (e) => {
   let tags = App.get_tags()
   let tags_used = App.profile_editor_tags.map(x => x.tag)
@@ -1743,10 +1765,15 @@ App.profile_tags_add = (e) => {
 
 App.profile_addlist_count = () => {
   App.addlist_update_count(`profile_editor_tags`)
+  App.addlist_update_count(`profile_editor_notes`)
 }
 
 App.profile_tags_addlist = () => {
   App.addlist({id: `profile_editor_tags`, items: {}})
+}
+
+App.profile_notes_addlist = () => {
+  App.addlist({id: `profile_editor_notes`, items: {}})
 }
 
 App.profile_fix_tags = (tags) => {
@@ -1755,6 +1782,17 @@ App.profile_fix_tags = (tags) => {
   for (let tag of tags) {
     let t = tag.tag || tag
     fixed.push({tag: t})
+  }
+
+  return fixed
+}
+
+App.profile_fix_notes = (notes) => {
+  let fixed = []
+
+  for (let note of notes) {
+    let t = note.note || note
+    fixed.push({note: t})
   }
 
   return fixed

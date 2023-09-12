@@ -726,6 +726,9 @@ App.addlist_get_data = (id) => {
   else if (oargs.from === `profile_editor_tags`){
     return App.profile_editor_tags
   }
+  else if (oargs.from === `profile_editor_notes`){
+    return App.profile_editor_notes
+  }
 }
 
 App.addlist_set_data = (id, value) => {
