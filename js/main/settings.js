@@ -1171,7 +1171,7 @@ App.setup_settings_addlist = () => {
     App.hide_addlist()
   }
 
-  let args = {
+  let popobj = {
     on_hide: on_hide,
   }
 
@@ -1193,7 +1193,7 @@ App.setup_settings_addlist = () => {
   let id = `settings_aliases`
   let props = App.setting_props[`aliases`]
 
-  App.create_popup(Object.assign({}, args, {
+  App.create_popup(Object.assign({}, popobj, {
     id: `addlist_${id}`,
     element: App.addlist_register(Object.assign({}, regobj, {
       id: id,
@@ -1211,7 +1211,7 @@ App.setup_settings_addlist = () => {
   id = `settings_custom_filters`
   props = App.setting_props[`custom_filters`]
 
-  App.create_popup(Object.assign({}, args, {
+  App.create_popup(Object.assign({}, popobj, {
     id: `addlist_${id}`,
     element: App.addlist_register(Object.assign({}, regobj, {
       id: id,
@@ -1229,7 +1229,7 @@ App.setup_settings_addlist = () => {
   id = `settings_keyboard_shortcuts`
   props = App.setting_props[`keyboard_shortcuts`]
 
-  App.create_popup(Object.assign({}, args, {
+  App.create_popup(Object.assign({}, popobj, {
     id: `addlist_${id}`,
     element: App.addlist_register(Object.assign({}, regobj, {
       id: id,
@@ -1251,7 +1251,7 @@ App.setup_settings_addlist = () => {
     props = App.setting_props[key]
 
     if (props.category === `menus`) {
-      App.create_popup(Object.assign({}, args, {
+      App.create_popup(Object.assign({}, popobj, {
         id: `addlist_${id}`,
         element: App.addlist_register(Object.assign({}, regobj, {
           id: id,
