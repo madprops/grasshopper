@@ -41,9 +41,9 @@ App.do_show_mode = async (mode, reuse_filter = false, force = false) => {
   App.cancel_filter()
   let container = DOM.el(`#${mode}_container`)
   App.set_filter(mode, value, false)
-  let m = App.filter_modes(mode)[0]
-  App.set_filter_mode(mode, m[0], false)
-  App[`${mode}_filter_mode`] = m[0]
+  let filter_mode = App.filter_modes(mode)[0]
+  App.set_filter_mode(mode, filter_mode.type, false)
+  App[`${mode}_filter_mode`] = filter_mode.type
   App[`last_${mode}_query`] = undefined
   let persistent = App.persistent_modes.includes(mode)
   let search = App.search_modes.includes(mode)

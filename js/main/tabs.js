@@ -1,10 +1,10 @@
 App.setup_tabs = () => {
   App.tabs_filter_modes = [
-    [`pin`, `Pin`, false, `Show pinned tabs`],
-    [`normal`, `Normal`, false, `Show normal tabs`],
-    [`playing`, `Playing`, false, `Show tabs emitting sound`],
-    [`unloaded`, `Unloaded`, false, `Show unloaded tabs`],
-    [`duplicate`, `Duplicate`, false, `Show tabs that have duplicates`],
+    {type: `pin`, text:`Pin`, skip: false, info: `Show pinned tabs`},
+    {type: `normal`, text:`Normal`, skip: false, info: `Show normal tabs`},
+    {type: `playing`, text:`Playing`, skip: false, info: `Show tabs emitting sound`},
+    {type: `unloaded`, text:`Unloaded`, skip: false, info: `Show unloaded tabs`},
+    {type: `duplicate`, text:`Duplicate`, skip: false, info: `Show tabs that have duplicates`},
   ]
 
   App.setup_item_window(`tabs`)

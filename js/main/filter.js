@@ -395,64 +395,64 @@ App.show_filter_menu = (mode) => {
   let items = []
 
   for (let filter_mode of App.filter_modes(mode)) {
-    if (filter_mode[0] === App.separator_string) {
+    if (filter_mode.type === App.separator_string) {
       items.push({separator: true})
       continue
     }
-    else if (filter_mode[0] === `tag`) {
+    else if (filter_mode.type === `tag`) {
       items.push({
-        text: filter_mode[1],
+        text: filter_mode.text,
         get_items: () => {
           return App.get_tag_items(mode)
         },
-        info: filter_mode[3],
+        info: filter_mode.info,
       })
 
       continue
     }
-    else if (filter_mode[0] === `color`) {
+    else if (filter_mode.type === `color`) {
       items.push({
-        text: filter_mode[1],
+        text: filter_mode.text,
         get_items: () => {
           return App.get_color_items(mode)
         },
-        info: filter_mode[3],
+        info: filter_mode.info,
       })
 
       continue
     }
-    else if (filter_mode[0] === `custom`) {
+    else if (filter_mode.type === `custom`) {
       items.push({
         text: `Custom`,
         get_items: () => {
           return App.get_custom_filters(mode)
         },
-        info: filter_mode[3],
+        info: filter_mode.info,
       })
 
       continue
     }
-    else if (filter_mode[0] === `refine`) {
+    else if (filter_mode.type === `refine`) {
       items.push({
-        text: filter_mode[1],
+        text: filter_mode.text,
         get_items: () => {
           return App.get_filter_refine(mode)
         },
-        info: filter_mode[3],
+        info: filter_mode.info,
       })
 
       continue
     }
 
-    let selected = App.filter_mode(mode) === filter_mode[0]
+    let selected = App.filter_mode(mode) === filter_mode.type
 
     items.push({
-      text: filter_mode[1],
+      text: filter_mode.text,
       action: () => {
-        App.set_filter_mode(mode, filter_mode[0])
+        App.set_filter_mode(mode, filter_mode.type)
       },
       selected: selected,
-      info: filter_mode[3],
+      info: filter_mode.info,
     })
   }
 
@@ -471,7 +471,7 @@ App.cycle_filter_modes = (mode, reverse = true) => {
   let first
 
   for (let filter_mode of modes.slice(0).reverse()) {
-    if (filter_mode[2]) {
+    if (filter_mode.skip) {
       continue
     }
 
@@ -480,16 +480,16 @@ App.cycle_filter_modes = (mode, reverse = true) => {
     }
 
     if (waypoint) {
-      App.set_filter_mode(mode, filter_mode[0], true, false)
+      App.set_filter_mode(mode, filter_mode.type, true, false)
       return
     }
 
-    if (filter_mode[0] === App.filter_mode(mode)) {
+    if (filter_mode.type === App.filter_mode(mode)) {
       waypoint = true
     }
   }
 
-  App.set_filter_mode(mode, first[0], true, false)
+  App.set_filter_mode(mode, first.type, true, false)
 }
 
 App.filter_modes = (mode) => {
@@ -500,18 +500,18 @@ App.filter_mode = (mode) => {
   return App[`${mode}_filter_mode`]
 }
 
-App.get_filter_mode = (mode, name) => {
-  for (let fm of App.filter_modes(mode)) {
-    if (fm[0] === name) {
-      return fm
+App.get_filter_mode = (mode, type) => {
+  for (let filter_mode of App.filter_modes(mode)) {
+    if (filter_mode.type === type) {
+      return filter_mode
     }
   }
 }
 
-App.set_filter_mode = (mode, name, filter = true, instant = true) => {
-  let filter_mode = App.get_filter_mode(mode, name)
-  App[`${mode}_filter_mode`] = filter_mode[0]
-  DOM.el(`#${mode}_filter_modes_text`).textContent = filter_mode[1]
+App.set_filter_mode = (mode, type, filter = true, instant = true) => {
+  let filter_mode = App.get_filter_mode(mode, type)
+  App[`${mode}_filter_mode`] = filter_mode.type
+  DOM.el(`#${mode}_filter_modes_text`).textContent = filter_mode.text
 
   if (filter) {
     if (instant) {
@@ -530,16 +530,15 @@ App.set_custom_filter_mode = (mode, name, title) => {
 
 App.create_filter_menu = (mode) => {
   function separator () {
-    return [App.separator_string, undefined, true]
+    return {type: App.separator_string, skip: true}
   }
 
   let filter_menu = DOM.create(`div`, `button icon_button filter_button`, `${mode}_filter_modes`)
   filter_menu.title = `Filters (Ctrl + F)`
   filter_menu.append(DOM.create(`div`, ``, `${mode}_filter_modes_text`))
   let fmodes = []
-  fmodes.push([`all`, `All`])
+  fmodes.push({type: `all`, text: `All`})
   let m_modes = App.filter_modes(mode)
-  let skip = true
 
   if (m_modes) {
     fmodes.push(separator())
@@ -547,22 +546,22 @@ App.create_filter_menu = (mode) => {
   }
 
   fmodes.push(separator())
-  fmodes.push([`image`, `Image`, !skip, `Show image items`])
-  fmodes.push([`video`, `Video`, !skip, `Show video items`])
-  fmodes.push([`audio`, `Audio`, !skip, `Show audio items`])
+  fmodes.push({type: `image`, text: `Image`, skip: false, info: `Show image items`})
+  fmodes.push({type: `video`, text: `Video`, skip: false, info: `Show video items`})
+  fmodes.push({type: `audio`, text: `Audio`, skip: false, info: `Show audio items`})
   fmodes.push(separator())
-  fmodes.push([`tag`, `Tag`, skip, `Filter by a specific tag`])
-  fmodes.push([`color`, `Color`, skip, `Filter by a specific color`])
-  fmodes.push([`autoreload`, `Reload`, !skip, `Items that have auto-reload enabled`])
-  fmodes.push([`edited`, `Edited`, !skip, `Items that have a profile`])
+  fmodes.push({type: `tag`, text: `Tag`, skip: true, skip: `Filter by a specific tag`})
+  fmodes.push({type: `color`, text: `Color`, skip: true, skip: `Filter by a specific color`})
+  fmodes.push({type: `autoreload`, text: `Reload`, skip: false, info: `Items that have auto-reload enabled`})
+  fmodes.push({type: `edited`, text: `Edited`, skip: false, info: `Items that have a profile`})
 
   if (mode !== `tabs`) {
-    fmodes.push([`notab`, `No Tab`, !skip, `Items that are not open in a tab`])
+    fmodes.push({type: `notab`, text: `No Tab`, skip: false, info: `Items that are not open in a tab`})
   }
 
   fmodes.push(separator())
-  fmodes.push([`refine`, `Refine`, skip, `Refine the filter`])
-  fmodes.push([`custom`, `Custom`, skip, `Pick a custom filter`])
+  fmodes.push({type: `refine`, text: `Refine`, skip: true, skip: `Refine the filter`})
+  fmodes.push({type: `custom`, text: `Custom`, skip: true, skip: `Pick a custom filter`})
   App[`${mode}_filter_modes`] = fmodes
 
   DOM.evs(filter_menu, [`click`, `contextmenu`], (e) => {
