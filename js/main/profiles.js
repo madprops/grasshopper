@@ -27,13 +27,14 @@ App.setup_profile_editor = () => {
       App.profile_editor_remove()
     })
 
-    let close = DOM.el(`#profile_editor_close`)
+    DOM.evs(DOM.el(`#profile_editor_save`), [`click`, `auxclick`], () => {
+      App.profile_editor_save()
+    })
 
-    DOM.evs(close, [`click`, `auxclick`], () => {
+    DOM.evs(DOM.el(`#profile_editor_cancel`), [`click`, `auxclick`], () => {
       App.hide_window()
     })
 
-    close.textContent = App.close_text
     DOM.el(`#profile_editor_icon`).placeholder = App.smile_icon
 
     DOM.ev(DOM.el(`#profile_editor_url_root`), `click`, (e) => {
@@ -121,10 +122,7 @@ App.setup_profile_editor = () => {
 
     App.profile_setup_labels()
   },
-  colored_top: true,
-  on_hide: () => {
-    App.profile_editor_save()
-  }})
+  colored_top: true})
 }
 
 App.get_profile_items = (item) => {
