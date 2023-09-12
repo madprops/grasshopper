@@ -215,31 +215,31 @@ App.show_profile_editor = (item, type, action = `edit`) => {
   App.profile_editor_modified = false
 
   if (type === `all` || type === `tags`) {
-    DOM.el(`#profile_editor_tags_container`).classList.remove(`hidden`)
+    App.profile_editor_container(`tags`, true)
   }
 
   if (type === `all` || type === `notes`) {
-    DOM.el(`#profile_editor_notes_container`).classList.remove(`hidden`)
+    App.profile_editor_container(`notes`, true)
   }
 
   if (type === `all` || type === `title`) {
-    DOM.el(`#profile_editor_title_container`).classList.remove(`hidden`)
+    App.profile_editor_container(`title`, true)
   }
 
   if (type === `all` || type === `color`) {
-    DOM.el(`#profile_editor_color_container`).classList.remove(`hidden`)
+    App.profile_editor_container(`color`, true)
   }
 
   if (type === `all` || type === `theme`) {
-    DOM.el(`#profile_editor_theme_container`).classList.remove(`hidden`)
+    App.profile_editor_container(`theme`, true)
   }
 
   if (type === `all` || type === `icon`) {
-    DOM.el(`#profile_editor_icon_container`).classList.remove(`hidden`)
+    App.profile_editor_container(`icon`, true)
   }
 
   if (type === `all` || type === `auto_reload`) {
-    DOM.el(`#profile_editor_auto_reload_container`).classList.remove(`hidden`)
+    App.profile_editor_container(`auto_reload`, true)
   }
 
   App.profile_default_all()
@@ -252,11 +252,11 @@ App.show_profile_editor = (item, type, action = `edit`) => {
   }
 
   if (items.length === 1) {
-    DOM.el(`#profile_editor_header`).textContent = `Editing 1 Profile`
+    App.profile_editor_header(`Editing 1 Profile`)
 
     if (type === `all`) {
-      DOM.el(`#profile_editor_url_container`).classList.remove(`hidden`)
-      DOM.el(`#profile_editor_exact_container`).classList.remove(`hidden`)
+      App.profile_editor_container(`url`, true)
+      App.profile_editor_container(`exact`, true)
     }
 
     if (profiles.length && !App.profile_editor_new) {
@@ -346,7 +346,7 @@ App.show_profile_editor = (item, type, action = `edit`) => {
       }
     }
 
-    DOM.el(`#profile_editor_header`).textContent = `Editing ${items.length} Profiles`
+    App.profile_editor_header(`Editing ${items.length} Profiles`)
   }
 
   App.window_goto_top(`profile_editor`)
@@ -1952,5 +1952,20 @@ App.profile_hide_containers = () => {
     if (c) {
       c.classList.add(`hidden`)
     }
+  }
+}
+
+App.profile_editor_header = (s) => {
+  DOM.el(`#profile_editor_header`).textContent = s
+}
+
+App.profile_editor_container = (c, show) => {
+  let el = DOM.el(`#profile_editor_${c}_container`)
+
+  if (show) {
+    el.classList.remove(`hidden`)
+  }
+  else {
+    el.classList.add(`hidden`)
   }
 }
