@@ -1175,12 +1175,27 @@ App.setup_settings_addlist = () => {
     on_hide: on_hide,
   }
 
+  let get_value = (id) => {
+    let key = id.replace(`settings_`, ``)
+    return App.get_setting(key)
+  }
+
+  let set_value = (id, value) => {
+    let key = id.replace(`settings_`, ``)
+    App.set_setting(key, value)
+  }
+
+  let regobj = {
+    get_value: get_value,
+    set_value: set_value,
+  }
+
   let from = `settings`
   let id = `settings_aliases`
 
   App.create_popup(Object.assign({}, args, {
     id: `addlist_${id}`,
-    element: App.addlist_register({
+    element: App.addlist_register(Object.assign({}, regobj, {
       from: from,
       id: id,
       pk: `a`,
@@ -1190,14 +1205,14 @@ App.setup_settings_addlist = () => {
       list_text: (items) => {
         return `${items.a} = ${items.b}`
       },
-    })
+    }))
   }))
 
   id = `settings_custom_filters`
 
   App.create_popup(Object.assign({}, args, {
     id: `addlist_${id}`,
-    element: App.addlist_register({
+    element: App.addlist_register(Object.assign({}, regobj, {
       from: from,
       id: id,
       pk: `filter`,
@@ -1207,14 +1222,14 @@ App.setup_settings_addlist = () => {
       list_text: (items) => {
         return items.filter
       },
-    })
+    }))
   }))
 
   id = `settings_keyboard_shortcuts`
 
   App.create_popup(Object.assign({}, args, {
     id: `addlist_${id}`,
-    element: App.addlist_register({
+    element: App.addlist_register(Object.assign({}, regobj, {
       from: from,
       id: id,
       pk: `key`,
@@ -1226,7 +1241,7 @@ App.setup_settings_addlist = () => {
         let cmd = cmd_name(items.cmd)
         return `${items.key} = ${cmd}`
       },
-    })
+    }))
   }))
 
   for (let key in App.setting_props) {
@@ -1236,7 +1251,7 @@ App.setup_settings_addlist = () => {
     if (props.category === `menus`) {
       App.create_popup(Object.assign({}, args, {
         id: `addlist_${id}`,
-        element: App.addlist_register({
+        element: App.addlist_register(Object.assign({}, regobj, {
           from: from,
           id: id,
           pk: `cmd`,
@@ -1245,7 +1260,7 @@ App.setup_settings_addlist = () => {
           keys: [`cmd`], list_text: (items) => {
             return cmd_name(items.cmd)
           },
-        })
+        }))
       }))
     }
   }

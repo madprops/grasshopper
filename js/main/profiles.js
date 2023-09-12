@@ -1696,6 +1696,12 @@ App.profile_addlist_tags = () => {
         App.profile_modified()
       },
       lowercase: true,
+      get_value: (id) => {
+        return App.profile_editor_tags
+      },
+      set_value: (id, value) => {
+        App.profile_editor_tags = value
+      },
     })
   })
 
@@ -1721,6 +1727,12 @@ App.profile_addlist_notes = () => {
       from: id,
       on_modified: () => {
         App.profile_modified()
+      },
+      get_value: (id) => {
+        return App.profile_editor_notes
+      },
+      set_value: (id, value) => {
+        App.profile_editor_notes = value
       },
     })
   })

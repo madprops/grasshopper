@@ -719,27 +719,12 @@ App.addlist_add_buttons = (id) => {
 
 App.addlist_get_data = (id) => {
   let oargs = App.addlist_oargs(id)
-
-  if (oargs.from === `settings`) {
-    return App.get_setting(id.replace(`settings_`, ``))
-  }
-  else if (oargs.from === `profile_editor_tags`){
-    return App.profile_editor_tags
-  }
-  else if (oargs.from === `profile_editor_notes`){
-    return App.profile_editor_notes
-  }
+  return oargs.get_value(id)
 }
 
 App.addlist_set_data = (id, value) => {
   let oargs = App.addlist_oargs(id)
-
-  if (oargs.from === `settings`) {
-    return App.set_setting(id.replace(`settings_`, ``), value)
-  }
-  else if (oargs.from === `profile_editor_tags`){
-    App.profile_editor_tags = value
-  }
+  oargs.set_value(id, value)
 }
 
 App.addlist_edit = (id) => {
