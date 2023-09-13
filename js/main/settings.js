@@ -693,9 +693,7 @@ App.start_theme_settings = () => {
     {text: `24 hours`, value: `24_hours`},
   ]
 
-  let color_opts = [...auto_opts]
-
-  App.settings_make_menu(`auto_colors`, color_opts, () => {
+  App.settings_make_menu(`auto_colors`, auto_opts, () => {
     App.start_theme_interval(`auto_colors`)
   })
 
