@@ -487,8 +487,8 @@ App.build_settings = () => {
 
   App.setting_catprops = {
     general: {
-      info: `This is the main settings window with some general settings. There are various categories. Clicking the labels shows menus.
- Use the top buttons to navigate and save/load data`,
+      info: `This is the main settings window with some general settings. There are various categories.
+            Clicking the labels shows menus. Use the top buttons to navigate and save/load data`,
       setup: () => {
         App.settings_make_menu(`text_mode`, [
           {text: `Title`, value: `title`},
