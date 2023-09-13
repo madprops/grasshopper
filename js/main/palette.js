@@ -163,11 +163,8 @@ App.fill_palette = () => {
     else if (name_lower === `light theme`) {
       el.dataset.alias = `white theme`
     }
-    else if (name_lower === `${rand} theme`) {
-      el.dataset.alias = `random theme`
-    }
-    else if (name_lower === `${rand} background`) {
-      el.dataset.alias = `random background`
+    else if (name_lower === `${rand} colors`) {
+      el.dataset.alias = `random colors`
     }
     else if (name_lower === `${rem} background`) {
       el.dataset.alias = `remove background`

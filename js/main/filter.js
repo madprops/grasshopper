@@ -654,7 +654,7 @@ App.do_filter_2 = (mode) => {
         for (let alias of aliases) {
           let text = App.only_chars(alias).toLowerCase()
 
-          if (text.includes(value)) {
+          if (text.startsWith(value)) {
             show = true
             break
           }
