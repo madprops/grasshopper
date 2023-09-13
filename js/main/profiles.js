@@ -1469,3 +1469,9 @@ App.profile_editor_container = (c, show) => {
     }
   }
 }
+
+App.profile_ask_cancel = () => {
+  App.show_confirm(`Close without saving?`, () => {
+    App.hide_window()
+  })
+}

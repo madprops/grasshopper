@@ -482,7 +482,7 @@ App.setup_keyboard = () => {
     }
     else if (mode === `profile_editor`) {
       if (e.key === `Escape`) {
-        App.hide_window()
+        App.profile_ask_cancel()
         e.preventDefault()
         return
       }
