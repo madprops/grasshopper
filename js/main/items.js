@@ -333,7 +333,6 @@ App.process_info = (mode, info, exclude = [], o_item) => {
   let theme_enabled = false
   let background_color = ``
   let text_color = ``
-  let auto_reload = 0
   let icon = ``
 
   if (profile) {
@@ -353,10 +352,6 @@ App.process_info = (mode, info, exclude = [], o_item) => {
 
     if (profile.color && profile.color !== `none`) {
       color = profile.color
-    }
-
-    if (profile.auto_reload) {
-      auto_reload = profile.auto_reload
     }
 
     if (profile.theme_enabled) {
@@ -408,7 +403,6 @@ App.process_info = (mode, info, exclude = [], o_item) => {
     background_image: background_image,
     background_effect: background_effect,
     background_tiles: background_tiles,
-    auto_reload: auto_reload,
     created: false,
   }
 
@@ -433,12 +427,6 @@ App.process_info = (mode, info, exclude = [], o_item) => {
       item.created = true
     }
 
-    if (mode === `tabs`) {
-      if (o_item.auto_reload !== auto_reload) {
-        item.last_auto_reload = App.now()
-      }
-    }
-
     o_item = Object.assign(o_item, item)
 
     if (o_item.created) {
@@ -450,10 +438,6 @@ App.process_info = (mode, info, exclude = [], o_item) => {
     }
   }
   else {
-    if (mode === `tabs`) {
-      item.last_auto_reload = App.now()
-    }
-
     item.original_data = info
     item.id = info.id || App[`${mode}_idx`]
     item.visible = true
