@@ -1295,8 +1295,13 @@ App.profile_tags_add = (e) => {
 }
 
 App.profile_addlist_counts = () => {
-  App.addlist_update_count(`profile_editor_tags`)
-  App.addlist_update_count(`profile_editor_notes`)
+  for (let key in App.profile_props) {
+    let props = App.profile_props[key]
+
+    if (props.type === `list`) {
+      App.addlist_update_count(`profile_editor_${key}`)
+    }
+  }
 }
 
 App.profile_tags_addlist = () => {
