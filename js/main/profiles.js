@@ -178,7 +178,7 @@ App.show_profile_editor = (item, type, action = `edit`) => {
 
   App.window_goto_top(`profile_editor`)
   App.profile_editor_ready = true
-  App.profile_addlist_count()
+  App.profile_addlist_counts()
 
   if (type === `tags` && action === `add`) {
     App.profile_tags_addlist()
@@ -1272,7 +1272,7 @@ App.profile_tags_add = (e) => {
         text: tag,
         action: () => {
           App.profile_editor_tags.unshift({tag: tag})
-          App.profile_addlist_count()
+          App.addlist_update_count(`profile_editor_tags`)
         }
       })
 
@@ -1294,7 +1294,7 @@ App.profile_tags_add = (e) => {
   NeedContext.show(e.clientX, e.clientY, items)
 }
 
-App.profile_addlist_count = () => {
+App.profile_addlist_counts = () => {
   App.addlist_update_count(`profile_editor_tags`)
   App.addlist_update_count(`profile_editor_notes`)
 }
@@ -1354,9 +1354,9 @@ App.profile_setup_labels = () => {
   }
 }
 
-App.profile_set_default = (key) => {
+App.profile_set_default = (key, action = true) => {
   let props = App.profile_props[key]
-  App.profile_set_value(key, props.value, true)
+  App.profile_set_value(key, props.value, action)
 }
 
 App.profile_get_value = (key) => {
@@ -1392,7 +1392,7 @@ App.profile_set_value = (key, value, actions = false) => {
     App[`profile_editor_${key}`] = App.clone(value)
 
     if (actions) {
-      App.profile_addlist_count()
+      App.addlist_update_count(`profile_editor_${key}`)
     }
   }
   else if (props.type === `menu`) {
@@ -1421,7 +1421,7 @@ App.profile_is_default = (key) => {
 
 App.profile_default_all = () => {
   for (let key in App.profile_props) {
-    App.profile_set_default(key)
+    App.profile_set_default(key, false)
   }
 }
 
