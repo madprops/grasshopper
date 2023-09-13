@@ -275,7 +275,7 @@ App.save_profile = (args) => {
   }
 
   function proc (profile, p_mode) {
-    let og_url = profile.url
+    let og_url = profile.url.value
     profile.url.value = args.url || profile.url.value
 
     if (!profile.url.value) {
@@ -396,10 +396,10 @@ App.remove_profiles = (items) => {
 
   App.show_confirm(`Remove profiles? (${profiles.length})`, () => {
     for (let profile of profiles) {
-      App.profiles = App.profiles.filter(x => x.url !== profile.url)
+      App.profiles = App.profiles.filter(x => x.url.value !== profile.url.value)
     }
 
-    App.apply_profiles(profiles.map(x => x.url))
+    App.apply_profiles(profiles.map(x => x.url.value))
     App.stor_save_profiles()
     App.refresh_profile_filters()
 
@@ -434,7 +434,7 @@ App.get_profile = (url) => {
     if (!profile) {
       profile = pf
     }
-    else if (pf.url.length > profile.url.length) {
+    else if (pf.url.length > profile.url.value.length) {
       profile = pf
     }
   }
@@ -467,7 +467,7 @@ App.get_profile = (url) => {
     }
   }
 
-  return current
+  return profile
 }
 
 App.get_profiles = (items) => {
@@ -556,7 +556,7 @@ App.get_tags = () => {
   let tags = []
 
   for (let profile of App.profiles) {
-    for (let tag of profile.tags) {
+    for (let tag of profile.tags.value) {
       if (!tags.includes(tag.tag || tag)) {
         tags.push(tag.tag || tag)
       }
@@ -717,7 +717,7 @@ App.remove_color = (color) => {
   let profiles = []
 
   for (let profile of App.profiles) {
-    if (profile.color === color) {
+    if (profile.color.value === color) {
       profiles.push(profile)
     }
   }
@@ -733,7 +733,7 @@ App.remove_color = (color) => {
 
   App.show_confirm(`Remove ${color}? (${profiles.length})`, () => {
     for (let profile of profiles) {
-      profile.color = `none`
+      profile.color.value = `none`
     }
 
     App.after_profile_remove()
@@ -744,7 +744,7 @@ App.remove_all_colors = () => {
   let profiles = []
 
   for (let profile of App.profiles) {
-    if (profile.color) {
+    if (profile.color.value) {
       profiles.push(profile)
     }
   }
@@ -755,7 +755,7 @@ App.remove_all_colors = () => {
 
   App.show_confirm(`Remove all colors? (${profiles.length})`, () => {
     for (let profile of App.profiles) {
-      profile.color = `none`
+      profile.color.value = `none`
     }
 
     App.after_profile_remove()
@@ -766,7 +766,7 @@ App.remove_all_notes = () => {
   let profiles = []
 
   for (let profile of App.profiles) {
-    if (profile.notes) {
+    if (profile.notes.value) {
       profiles.push(profile)
     }
   }
@@ -777,7 +777,7 @@ App.remove_all_notes = () => {
 
   App.show_confirm(`Remove all notes? (${profiles.length})`, () => {
     for (let profile of App.profiles) {
-      profile.notes = []
+      profile.notes.value = []
     }
 
     App.after_profile_remove()
@@ -788,7 +788,7 @@ App.remove_all_titles = () => {
   let profiles = []
 
   for (let profile of App.profiles) {
-    if (profile.title) {
+    if (profile.title.value) {
       profiles.push(profile)
     }
   }
@@ -799,7 +799,7 @@ App.remove_all_titles = () => {
 
   App.show_confirm(`Remove all titles? (${profiles.length})`, () => {
     for (let profile of App.profiles) {
-      profile.title = ``
+      profile.title.value = ``
     }
 
     App.after_profile_remove()
@@ -810,7 +810,7 @@ App.remove_all_icons = () => {
   let profiles = []
 
   for (let profile of App.profiles) {
-    if (profile.icon) {
+    if (profile.icon.value) {
       profiles.push(profile)
     }
   }
@@ -821,7 +821,7 @@ App.remove_all_icons = () => {
 
   App.show_confirm(`Remove all icons? (${profiles.length})`, () => {
     for (let profile of App.profiles) {
-      profile.icon = ``
+      profile.icon.value = ``
     }
 
     App.after_profile_remove()
@@ -831,7 +831,7 @@ App.remove_all_icons = () => {
 App.remove_tag = (tag) => {
   App.show_confirm(`Remove tag? (${tag})`, () => {
     for (let profile of App.profiles) {
-      profile.tags = profile.tags.filter(x => x.tag !== tag)
+      profile.tags.value = profile.tags.value.filter(x => x.tag !== tag)
     }
 
     App.after_profile_remove()
@@ -847,7 +847,7 @@ App.remove_all_tags = () => {
 
   App.show_confirm(`Remove all tags? (${tags.length})`, () => {
     for (let profile of App.profiles) {
-      profile.tags = []
+      profile.tags.value = []
     }
 
     App.after_profile_remove()
@@ -903,28 +903,28 @@ App.get_profile_count = () => {
   count.icons = 0
 
   for (let profile of App.profiles) {
-    if (profile.tags.length) {
+    if (profile.tags.value.length) {
       count.tags += 1
     }
 
-    if (profile.notes) {
+    if (profile.notes.value) {
       count.notes += 1
     }
 
-    if (profile.color && profile.color !== `none`) {
-      if (!count[profile.color]) {
-        count[profile.color] = 0
+    if (profile.color.value !== `none`) {
+      if (!count[profile.color.value]) {
+        count[profile.color.value] = 0
       }
 
-      count[profile.color] += 1
+      count[profile.color.value] += 1
       count.colors += 1
     }
 
-    if (profile.title) {
+    if (profile.title.value) {
       count.titles += 1
     }
 
-    if (profile.icon) {
+    if (profile.icon.value) {
       count.icons += 1
     }
   }
@@ -1060,7 +1060,7 @@ App.change_color = (item, color, toggle = false) => {
   }
 
   for (let profile of profiles) {
-    if (profile.color !== color) {
+    if (profile.color.value !== color) {
       some = true
       break
     }
@@ -1098,10 +1098,10 @@ App.profile_get_shared = (key, profiles) => {
   let props = App.profile_props[key]
 
   if (props.type === `list`) {
-    let first = App.str(profiles[0][key])
+    let first = App.str(profiles[0][key].value)
 
     for (let profile of profiles) {
-      if (App.str(profile[key]) !== first) {
+      if (App.str(profile[key].value) !== first) {
         return
       }
     }
@@ -1109,10 +1109,10 @@ App.profile_get_shared = (key, profiles) => {
     return App.obj(first)
   }
   else {
-    let first = profiles[0][key]
+    let first = profiles[0][key].value
 
     for (let profile of profiles) {
-      if (profile[key] !== first) {
+      if (profile[key].value !== first) {
         return
       }
     }
