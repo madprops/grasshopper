@@ -2,6 +2,7 @@ App.init = async () => {
   let win = await browser.windows.getCurrent({populate: false})
   App.window_id = win.id
   App.manifest = browser.runtime.getManifest()
+  App.colorlib = ColorLib()
   App.print_intro()
   App.build_settings()
   App.stor_get_settings()
@@ -9,7 +10,6 @@ App.init = async () => {
   App.stor_get_command_history()
   App.stor_get_first_time()
   App.setup_commands()
-  App.setup_theme()
   App.setup_tabs()
   App.setup_profile_editor()
   App.setup_bookmarks()

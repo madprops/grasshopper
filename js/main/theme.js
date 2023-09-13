@@ -1,7 +1,3 @@
-App.setup_theme = () => {
-  App.colorlib = ColorLib()
-}
-
 App.apply_theme = (args) => {
   App.debug(`Apply Theme`)
 
