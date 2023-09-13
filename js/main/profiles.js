@@ -757,7 +757,7 @@ App.remove_all_colors = () => {
 
   App.show_confirm(`Remove all colors? (${profiles.length})`, () => {
     for (let profile of App.profiles) {
-      profile.color.value = `none`
+      profile.color.value = App.profile_get_default(`color`)
     }
 
     App.after_profile_remove()
@@ -779,7 +779,7 @@ App.remove_all_notes = () => {
 
   App.show_confirm(`Remove all notes? (${profiles.length})`, () => {
     for (let profile of App.profiles) {
-      profile.notes.value = []
+      profile.notes.value = App.profile_get_default(`notes`)
     }
 
     App.after_profile_remove()
@@ -801,7 +801,7 @@ App.remove_all_titles = () => {
 
   App.show_confirm(`Remove all titles? (${profiles.length})`, () => {
     for (let profile of App.profiles) {
-      profile.title.value = ``
+      profile.title.value = App.profile_get_default(`title`)
     }
 
     App.after_profile_remove()
@@ -823,7 +823,7 @@ App.remove_all_icons = () => {
 
   App.show_confirm(`Remove all icons? (${profiles.length})`, () => {
     for (let profile of App.profiles) {
-      profile.icon.value = ``
+      profile.icon.value = App.profile_get_default(`icon`)
     }
 
     App.after_profile_remove()
@@ -849,7 +849,7 @@ App.remove_all_tags = () => {
 
   App.show_confirm(`Remove all tags? (${tags.length})`, () => {
     for (let profile of App.profiles) {
-      profile.tags.value = []
+      profile.tags.value = App.profile_get_default(`tags`)
     }
 
     App.after_profile_remove()
@@ -1366,9 +1366,20 @@ App.profile_setup_labels = () => {
   }
 }
 
-App.profile_set_default = (key, action = false) => {
+App.profile_get_default = (key) => {
   let props = App.profile_props[key]
-  App.profile_set_value(key, props.value, action)
+
+  if (props.type === `list`) {
+    return App.clone(props.value)
+  }
+  else {
+    return props.value
+  }
+}
+
+App.profile_set_default = (key, action = false) => {
+  let def = App.profile_get_default(key)
+  App.profile_set_value(key, def, action)
 }
 
 App.profile_get_value = (key) => {
