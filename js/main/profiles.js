@@ -735,7 +735,7 @@ App.remove_color = (color) => {
 
   App.show_confirm(`Remove ${color}? (${profiles.length})`, () => {
     for (let profile of profiles) {
-      profile.color.value = `none`
+      profile.color.value = App.profile_get_default(`color`)
     }
 
     App.after_profile_remove()
