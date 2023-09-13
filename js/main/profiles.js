@@ -196,6 +196,7 @@ App.show_profile_editor = (item, type, action = `edit`) => {
   }
 
   App.window_goto_top(`profile_editor`)
+  App.profile_editor_focus()
   App.profile_editor_ready = true
   App.profile_addlist_counts()
 
@@ -1498,5 +1499,20 @@ App.profile_editor_confirm = () => {
 App.profile_modified = () => {
   if (App.profile_editor_ready) {
     App.profile_was_modified = true
+  }
+}
+
+App.profile_editor_focus = () => {
+  let c = DOM.el(`#profile_editor_container`)
+
+  for (let input of DOM.els(`.editor_input`, c)) {
+    if (input.type === `text`) {
+      let container = input.closest(`.editor_container`)
+
+      if (!container.classList.contains(`hidden`)) {
+        input.focus()
+        break
+      }
+    }
   }
 }
