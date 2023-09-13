@@ -64,9 +64,6 @@ App.build_settings = () => {
   obj.background_tiles = {value: `none`, category: category, type: `menu`, action: `theme`, name: `Background Tiles`, version: 1,
   info: `The tile size of the background image`}
 
-  obj.animate_colors = {value: true, category: category, type: `checkbox`, name: `Animate Colors`, version: 1,
-  info: `Animate color changes`}
-
   // ###################
   category = `media`
 
@@ -552,7 +549,7 @@ App.build_settings = () => {
       },
     },
     theme: {
-      info: `Set the colors and background image. Can also enable automatic changes`,
+      info: `Set the colors and background image`,
       setup: () => {
         App.start_color_picker(`background_color`)
         App.start_color_picker(`text_color`)

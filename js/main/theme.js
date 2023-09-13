@@ -116,14 +116,6 @@ App.apply_theme = (args) => {
     App.set_background(args.background_image)
     App.apply_background_effects(args.background_effect, args.background_tiles)
 
-    if (App.get_setting(`animate_colors`)) {
-      let d = App.color_transition_delay
-      App.set_css_var(`color_transition`, `background-color ${d}ms, color ${d}ms`)
-    }
-    else {
-      App.set_css_var(`color_transition`, `none`)
-    }
-
     if (App.get_setting(`rounded_corners`)) {
       App.set_css_var(`border_radius`, `3px`)
       App.set_css_var(`border_radius_2`, `20px`)
