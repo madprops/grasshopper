@@ -645,6 +645,15 @@ App.clear_profiles_items = () => {
     })
   }
 
+  if (count.colors) {
+    items.push({
+      text: `Colors`,
+      get_items: () => {
+        return App.get_color_items(App.active_mode, `remove`)
+      }
+    })
+  }
+
   if (count.tags) {
     items.push({
       text: `Tags`,
@@ -659,15 +668,6 @@ App.clear_profiles_items = () => {
       text: `Notes`,
       action: () => {
         App.remove_all_notes()
-      }
-    })
-  }
-
-  if (count.colors) {
-    items.push({
-      text: `Colors`,
-      get_items: () => {
-        return App.get_color_items(App.active_mode, `remove`)
       }
     })
   }
@@ -949,6 +949,13 @@ App.get_edit_items = (item, multiple) => {
   })
 
   items.push({
+    text: `Edit Color`,
+    action: () => {
+      return App.show_profile_editor(item, `color`)
+    }
+  })
+
+  items.push({
     text: `Edit Tags`,
     action: () => {
       return App.show_profile_editor(item, `tags`)
@@ -959,13 +966,6 @@ App.get_edit_items = (item, multiple) => {
     text: `Edit Notes`,
     action: () => {
       return App.show_profile_editor(item, `notes`)
-    }
-  })
-
-  items.push({
-    text: `Edit Color`,
-    action: () => {
-      return App.show_profile_editor(item, `color`)
     }
   })
 
