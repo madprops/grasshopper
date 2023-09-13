@@ -60,9 +60,18 @@ App.setup_profile_editor = () => {
     DOM.ev(DOM.el(`#profile_editor_auto_reload`), `change`, (e) => {
       let value = parseInt(e.target.value)
 
-      if (isNaN(value) || value < (e.target.min || 0)) {
-        e.target.value = e.target.min || 0
-        return
+      if (isNaN(value)) {
+        value = e.target.min || 0
+      }
+
+      if (value < (e.target.min || 0)) {
+        value = e.target.min || 0
+      }
+
+      if (e.target.max) {
+        if (value > e.target.max) {
+          value = e.target.max
+        }
       }
 
       e.target.value = value
