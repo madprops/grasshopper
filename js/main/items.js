@@ -326,13 +326,7 @@ App.process_info = (mode, info, exclude = [], o_item) => {
   let has_profile = false
   let tags = []
   let color = ``
-  let background_image = ``
-  let background_effect = ``
-  let background_tiles = ``
   let custom_title = ``
-  let theme_enabled = false
-  let background_color = ``
-  let text_color = ``
   let icon = ``
 
   if (profile) {
@@ -373,12 +367,6 @@ App.process_info = (mode, info, exclude = [], o_item) => {
     has_profile: has_profile,
     tags: tags,
     color: color,
-    theme_enabled: theme_enabled,
-    background_color: background_color,
-    text_color: text_color,
-    background_image: background_image,
-    background_effect: background_effect,
-    background_tiles: background_tiles,
     created: false,
   }
 
