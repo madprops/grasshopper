@@ -368,6 +368,7 @@ App.process_info = (mode, info, exclude = [], o_item) => {
     tags: tags,
     color: color,
     created: false,
+    is_item: true,
   }
 
   if (mode === `tabs`) {

@@ -480,11 +480,11 @@ App.get_profiles = (items) => {
     let profile
 
     if (item.url) {
-      if (item.url.value) {
-        profile = App.get_profile(item.url.value)
+      if (item.is_item) {
+        profile = App.get_profile(item.url)
       }
       else {
-        profile = App.get_profile(item.url)
+        profile = App.get_profile(item.url.value)
       }
     }
 
