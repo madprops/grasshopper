@@ -1399,8 +1399,9 @@ App.profile_set_value = (key, value, actions = false) => {
   let props = App.profile_props[key]
 
   if (props.type === `list`) {
+    // Temporary fix
     if (typeof value === `string`) {
-      value = []
+      value = [...App[`profile_fix_${key}`](value.split(`\n`))]
     }
 
     value = App[`profile_fix_${key}`](value)
