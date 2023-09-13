@@ -1121,6 +1121,7 @@ App.fill_settings = (category) => {
       }
       else if (props.type === `number`) {
         widget = input(`number`, `settings_number`, props.placeholder)
+        widget.min = props.min
       }
       else if (props.type === `checkbox`) {
         widget = DOM.create(`input`, `settings_checkbox`)
