@@ -45,8 +45,14 @@ App.setup_profile_editor = () => {
     }
 
     App.profile_make_menu(`color`, App.profile_editor_color_opts)
-    App.profile_addlist_tags()
-    App.profile_addlist_notes()
+
+    for (let key in App.profile_props) {
+      let props = App.profile_props[key]
+
+      if (props.type === `list`) {
+        App[`profile_addlist_${key}`]()
+      }
+    }
 
     DOM.ev(DOM.el(`#profile_editor_tags_add`), `click`, (e) => {
       App.profile_tags_add(e)
