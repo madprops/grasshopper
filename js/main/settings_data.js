@@ -13,9 +13,6 @@ App.build_settings = () => {
   obj.font = {value: `sans-serif`, category: category, type: `menu`, name: `Font`, version: 1,
   info: `The font to use for text`}
 
-  obj.primary_mode = {value: `tabs`, category: category, type: `menu`, name: `Primary Mode`, version: 1,
-  info: `The main preferred mode. This is shown at startup`}
-
   obj.text_mode = {value: `title`, category: category, type: `menu`, name: `Text Mode`, version: 1,
   info: `What to show as the text for each item`}
 
@@ -30,6 +27,9 @@ App.build_settings = () => {
 
   obj.height = {value: 85, category: category, type: `menu`, name: `Height`, version: 1,
   info: `Height of the popup`}
+
+  obj.primary_mode = {value: `tabs`, category: category, type: `menu`, name: `Primary Mode`, version: 1,
+  info: `The main preferred mode. This is shown at startup`}
 
   obj.pick_mode = {value: `none`, category: category, type: `menu`, name: `Pick Mode`, version: 1,
   info: `What pick mode to use. The picks appear on the left of items`}
