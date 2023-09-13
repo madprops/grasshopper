@@ -338,7 +338,7 @@ App.settings_filter_focused = () => {
 }
 
 App.setup_settings = () => {
-  App.settings_categories = [`general`, `theme`, `media`, `icons`, `show`, `gestures`, `auxclick`, `menus`, `keyboard`, `warns`, `colors`, `more`]
+  App.settings_categories = [`general`, `theme`, `colors`, `media`, `icons`, `show`, `gestures`, `auxclick`, `menus`, `keyboard`, `warns`, `more`]
 
   let common = {
     persistent: false,

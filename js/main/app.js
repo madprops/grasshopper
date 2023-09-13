@@ -72,6 +72,7 @@ App.auto_reload_delay = 1000 * 60
 App.settings_icons = {
   general: `⚙️`,
   theme: `🎨`,
+  colors: `🎨`,
   icons: `🖼️`,
   media: `📷`,
   icons: `👁️`,
@@ -81,7 +82,6 @@ App.settings_icons = {
   menus: `🖱️`,
   keyboard: `⌨️`,
   warns: `🚨`,
-  colors: `🇧🇮`,
   more: `💠`,
 }
 

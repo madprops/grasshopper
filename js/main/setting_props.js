@@ -214,44 +214,44 @@ App.build_settings = () => {
   // ###################
   category = `auxclick`
 
-  obj.middle_click_tabs = {value: `close`, category: category, type: `menu`, name: `Middle Click Tabs`, version: 1,
-  info: `Middle click on tab items`}
+  obj.middle_click_tabs = {value: `close`, category: category, type: `menu`, name: `Middle-Click Tabs`, version: 1,
+  info: `Middle-click on tab items`}
 
-  obj.middle_click_history = {value: `open`, category: category, type: `menu`, name: `Middle Click History`, version: 1,
-  info: `Middle click on history items`}
+  obj.middle_click_history = {value: `open`, category: category, type: `menu`, name: `Middle-Click History`, version: 1,
+  info: `Middle-click on history items`}
 
-  obj.middle_click_bookmarks = {value: `open`, category: category, type: `menu`, name: `Middle Click Bookmarks`, version: 1,
-  info: `Middle click on bookmark items`}
+  obj.middle_click_bookmarks = {value: `open`, category: category, type: `menu`, name: `Middle-Click Bookmarks`, version: 1,
+  info: `Middle-click on bookmark items`}
 
-  obj.middle_click_closed = {value: `open`, category: category, type: `menu`, name: `Middle Click Closed`, version: 1,
-  info: `Middle click on closed items`}
+  obj.middle_click_closed = {value: `open`, category: category, type: `menu`, name: `Middle-Click Closed`, version: 1,
+  info: `Middle-click on closed items`}
 
-  obj.middle_click_main_menu = {value: `show_main`, category: category, type: `menu`, name: `Middle Click Main Menu`, version: 1,
-  info: `Middle click on the main menu`}
+  obj.middle_click_main_menu = {value: `show_main`, category: category, type: `menu`, name: `Middle-Click Main Menu`, version: 1,
+  info: `Middle-click on the main menu`}
 
-  obj.middle_click_filter_menu = {value: `show_all`, category: category, type: `menu`, name: `Middle Click Filter Menu`, version: 1,
-  info: `Middle click on the filter menu`}
+  obj.middle_click_filter_menu = {value: `show_all`, category: category, type: `menu`, name: `Middle-Click Filter Menu`, version: 1,
+  info: `Middle-click on the filter menu`}
 
-  obj.middle_click_back_button = {value: `browser_back`, category: category, type: `menu`, name: `Middle Click Back Button`, version: 1,
-  info: `Middle click on the back button`}
+  obj.middle_click_back_button = {value: `browser_back`, category: category, type: `menu`, name: `Middle-Click Back Button`, version: 1,
+  info: `Middle-click on the back button`}
 
-  obj.middle_click_actions_menu = {value: `browser_reload`, category: category, type: `menu`, name: `Middle Click Actions Menu`, version: 1,
-  info: `Middle click on the actions menu`}
+  obj.middle_click_actions_menu = {value: `browser_reload`, category: category, type: `menu`, name: `Middle-Click Actions Menu`, version: 1,
+  info: `Middle-click on the actions menu`}
 
-  obj.middle_click_footer = {value: `copy_url`, category: category, type: `menu`, name: `Middle Click Footer`, version: 1,
-  info: `Middle click on the footer`}
+  obj.middle_click_footer = {value: `copy_url`, category: category, type: `menu`, name: `Middle-Click Footer`, version: 1,
+  info: `Middle-click on the footer`}
 
-  obj.middle_click_pick_button = {value: `filter_domain`, category: category, type: `menu`, name: `Middle Click Pick Button`, version: 1,
-  info: `Middle click on the pick button`}
+  obj.middle_click_pick_button = {value: `filter_domain`, category: category, type: `menu`, name: `Middle-Click Pick Button`, version: 1,
+  info: `Middle-click on the pick button`}
 
-  obj.middle_click_close_button = {value: `unload`, category: category, type: `menu`, name: `Middle Click Close Button`, version: 1,
-  info: `Middle click on the close buttons`}
+  obj.middle_click_close_button = {value: `unload`, category: category, type: `menu`, name: `Middle-Click Close Button`, version: 1,
+  info: `Middle-click on the close buttons`}
 
-  obj.middle_click_open_button = {value: `open`, category: category, type: `menu`, name: `Middle Click Open Button`, version: 1,
-  info: `Middle click on the open buttons`}
+  obj.middle_click_open_button = {value: `open`, category: category, type: `menu`, name: `Middle-Click Open Button`, version: 1,
+  info: `Middle-click on the open buttons`}
 
-  obj.middle_click_pinline = {value: `close_normal`, category: category, type: `menu`, name: `Middle Click Pinline`, version: 1,
-  info: `Middle click on the pinline`}
+  obj.middle_click_pinline = {value: `close_normal`, category: category, type: `menu`, name: `Middle-Click Pinline`, version: 1,
+  info: `Middle-click on the pinline`}
 
   // ###################
   category = `menus`
