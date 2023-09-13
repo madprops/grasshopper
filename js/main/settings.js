@@ -791,7 +791,6 @@ App.show_settings_category = (category) => {
   App.check_settings_addlist()
   App.settings_category = category
   App.show_window(`settings_${category}`)
-  App.set_default_theme()
 }
 
 App.show_prev_settings = () => {

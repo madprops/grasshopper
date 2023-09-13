@@ -274,17 +274,6 @@ App.set_colors = (c1, c2) => {
   App.check_theme_refresh()
 }
 
-App.set_default_theme = () => {
-  let background = App.get_setting(`background_color`)
-  let text = App.get_setting(`text_color`)
-
-  App.apply_theme({
-    background_color: background,
-    text_color: text,
-    check: true,
-  })
-}
-
 App.parse_color = (color) => {
   color = color.toLowerCase()
 
