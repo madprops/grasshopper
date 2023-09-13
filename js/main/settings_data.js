@@ -562,17 +562,6 @@ App.build_settings = () => {
           App.apply_theme()
         })
 
-        let auto_opts = [
-          {text: `Never`, value: `never`},
-          {text: `1 minute`, value: `1_minutes`},
-          {text: `5 minutes`, value: `5_minutes`},
-          {text: `30 minutes`, value: `30_minutes`},
-          {text: `1 hour`, value: `1_hours`},
-          {text: `6 hours`, value: `6_hours`},
-          {text: `12 hours`, value: `12_hours`},
-          {text: `24 hours`, value: `24_hours`},
-        ]
-
         DOM.ev(DOM.el(`#settings_background_color_random`), `click`, () => {
           App.random_color(`background`)
         })
