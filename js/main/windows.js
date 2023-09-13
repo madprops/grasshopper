@@ -43,7 +43,7 @@ App.create_window = (args) => {
   let content = DOM.create(`div`, `window_content window_content_${args.cls}`, `window_content_${args.id}`)
 
   if (args.element) {
-    content.append(args.element)
+    content.append(args.element.cloneNode(true))
   }
   else {
     let content_html = App.get_template(args.id)
@@ -73,7 +73,7 @@ App.create_window = (args) => {
     if (!args.persistent) {
       if (args.element) {
         content.innerHTML = ``
-        content.append(args.element)
+        content.append(args.element.cloneNode(true))
       }
       else {
         content.innerHTML = content_html
