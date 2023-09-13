@@ -324,9 +324,9 @@ App.process_info = (mode, info, exclude = [], o_item) => {
   let audio = App.is_audio(url)
   let profile = App.get_profile(url)
   let has_profile = false
-  let tags = []
-  let color = ``
   let custom_title = ``
+  let color = ``
+  let tags = []
   let icon = ``
 
   if (profile) {
