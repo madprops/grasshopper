@@ -338,8 +338,6 @@ App.settings_filter_focused = () => {
 }
 
 App.setup_settings = () => {
-  App.settings_categories = [`general`, `theme`, `colors`, `media`, `icons`, `show`, `gestures`, `auxclick`, `menus`, `keyboard`, `warns`, `more`]
-
   let common = {
     persistent: false,
     colored_top: true,
@@ -374,8 +372,10 @@ App.setup_settings = () => {
     }
   }
 
-  App.create_window(Object.assign({}, common, {id: `settings_general`, setup: () => {
-    prepare(`general`)
+  let id = `general`
+
+  App.create_window(Object.assign({}, common, {id: `settings_${id}`, element: App.settings_build_category(id), setup: () => {
+    prepare(id)
 
     App.settings_make_menu(`text_mode`, [
       {text: `Title`, value: `title`},
@@ -451,13 +451,18 @@ App.setup_settings = () => {
     })
   }}))
 
-  App.create_window(Object.assign({}, common, {id: `settings_theme`, setup: () => {
-    prepare(`theme`)
+  id = `theme`
+
+  App.create_window(Object.assign({}, common, {id: `settings_${id}`, element: App.settings_build_category(id), setup: () => {
+    prepare(id)
     App.start_theme_settings()
   }}))
 
-  App.create_window(Object.assign({}, common, {id: `settings_colors`, setup: () => {
-    prepare(`colors`)
+  id = `colors`
+
+  App.create_window(Object.assign({}, common, {id: `settings_${id}`, element: App.settings_build_category(id), setup: () => {
+    prepare(id)
+
     for (let color of App.colors) {
       App.start_color_picker(`color_${color}`, true)
     }
@@ -470,21 +475,27 @@ App.setup_settings = () => {
     ])
   }}))
 
-  App.create_window(Object.assign({}, common, {id: `settings_warns`, setup: () => {
-    prepare(`warns`)
+  id = `warns`
+
+  App.create_window(Object.assign({}, common, {id: `settings_${id}`, element: App.settings_build_category(id), setup: () => {
+    prepare(id)
     App.settings_make_menu(`warn_on_close_tabs`, App.tab_warn_opts)
     App.settings_make_menu(`warn_on_unload_tabs`, App.tab_warn_opts)
   }}))
 
-  App.create_window(Object.assign({}, common, {id: `settings_more`, setup: () => {
-    prepare(`more`)
+  id = `more`
+
+  App.create_window(Object.assign({}, common, {id: `settings_${id}`, element: App.settings_build_category(id), setup: () => {
+    prepare(id)
     App.settings_make_menu(`hover_effect`, App.effects)
     App.settings_make_menu(`selected_effect`, App.effects)
     App.settings_make_menu(`double_click_command`, App.settings_commands())
   }}))
 
-  App.create_window(Object.assign({}, common, {id: `settings_media`, setup: () => {
-    prepare(`media`)
+  id = `media`
+
+  App.create_window(Object.assign({}, common, {id: `settings_${id}`, element: App.settings_build_category(id), setup: () => {
+    prepare(id)
 
     let opts = [
       {text: `Never`, value: `never`},
@@ -499,12 +510,16 @@ App.setup_settings = () => {
     }
   }}))
 
-  App.create_window(Object.assign({}, common, {id: `settings_icons`, setup: () => {
-    prepare(`icons`)
+  id = `icons`
+
+  App.create_window(Object.assign({}, common, {id: `settings_${id}`, element: App.settings_build_category(id), setup: () => {
+    prepare(id)
   }}))
 
-  App.create_window(Object.assign({}, common, {id: `settings_show`, setup: () => {
-    prepare(`show`)
+  id = `show`
+
+  App.create_window(Object.assign({}, common, {id: `settings_${id}`, element: App.settings_build_category(id), setup: () => {
+    prepare(id)
 
     App.settings_make_menu(`show_pinline`, [
       {text: `Never`, value: `never`},
@@ -513,8 +528,10 @@ App.setup_settings = () => {
     ])
   }}))
 
-  App.create_window(Object.assign({}, common, {id: `settings_gestures`, setup: () => {
-    prepare(`gestures`)
+  id = `gestures`
+
+  App.create_window(Object.assign({}, common, {id: `settings_${id}`, element: App.settings_build_category(id), setup: () => {
+    prepare(id)
 
     DOM.ev(DOM.el(`#settings_gestures_enabled`), `change`, () => {
       App.refresh_gestures()
@@ -540,8 +557,10 @@ App.setup_settings = () => {
     }
   }}))
 
-  App.create_window(Object.assign({}, common, {id: `settings_auxclick`, setup: () => {
-    prepare(`auxclick`)
+  id = `auxclick`
+
+  App.create_window(Object.assign({}, common, {id: `settings_${id}`, element: App.settings_build_category(id), setup: () => {
+    prepare(id)
     let opts = App.settings_commands()
 
     for (let key in App.setting_props) {
@@ -553,12 +572,16 @@ App.setup_settings = () => {
     }
   }}))
 
-  App.create_window(Object.assign({}, common, {id: `settings_menus`, setup: () => {
-    prepare(`menus`)
+  id = `menus`
+
+  App.create_window(Object.assign({}, common, {id: `settings_${id}`, element: App.settings_build_category(id), setup: () => {
+    prepare(id)
   }}))
 
-  App.create_window(Object.assign({}, common, {id: `settings_keyboard`, setup: () => {
-    prepare(`keyboard`)
+  id = `keyboard`
+
+  App.create_window(Object.assign({}, common, {id: `settings_${id}`, element: App.settings_build_category(id), setup: () => {
+    prepare(id)
   }}))
 
   window.addEventListener(`storage`, (e) => {
@@ -1292,4 +1315,41 @@ App.pick_background = (e) => {
   }
 
   NeedContext.show(e.clientX, e.clientY, items)
+}
+
+  // <div class="settings_info">
+  // Define keyboard shortcuts
+  // </div>
+
+  // <div id="setting_keyboard" class="settings_subcontainer"></div>
+  // <img src="img/cewik.jpg" class="settings_image" title="Cewik typing on his keyboard">
+
+//   <div id="settings_keyboard_container" class="settings_container">
+//   <div class="settings_info">
+//     You can use these custom shortcuts to run commands.
+//   </div>
+
+//   <div id="setting_keyboard" class="settings_subcontainer"></div>
+//   <img src="img/cewik.jpg" class="settings_image" title="Cewik typing on his keyboard">
+// </div>
+
+App.settings_build_category = (key) => {
+  let cat = App.setting_categories[key]
+  let c = DOM.create(`div`, `settings_container`, `settings_${key}_container`)
+  let info = DOM.create(`div`, `settings_info`)
+  info.textContent = cat.info
+  c.append(info)
+  let sub = DOM.create(`div`, `settings_subcontainer`, `setting_${key}`)
+  c.append(sub)
+
+  if (cat.image) {
+    let img = DOM.create(`img`, `settings_image`)
+    img.src = cat.image
+
+    if (cat.image_title) {
+      img.title = cat.image_title
+    }
+
+    c.append(img)
+  }
 }

@@ -41,10 +41,16 @@ App.create_window = (args) => {
   }
 
   let content = DOM.create(`div`, `window_content window_content_${args.cls}`, `window_content_${args.id}`)
-  let content_html = App.get_template(args.id)
 
-  if (content_html) {
-    content.innerHTML = content_html
+  if (args.element) {
+    content.append(args.element)
+  }
+  else {
+    let content_html = App.get_template(args.id)
+
+    if (content_html) {
+      content.innerHTML = content_html
+    }
   }
 
   el.append(content)

@@ -481,4 +481,48 @@ App.build_settings = () => {
   info: `Enable some data for developers`}
 
   App.setting_props = obj
+
+  // Category data
+  // ###################
+
+  App.setting_categories = {
+    general: {
+      info: `There are various categories. Clicking the labels shows menus`,
+    },
+    theme: {
+      info: `Set the colors and background image. Can also enable automatic changes`,
+    },
+    colors: {
+      info: `These are the colors you assign to items by editing their profiles`,
+    },
+    media: {
+      info: `How to view media items. An icon appears to the left of items. You can make it view media when clicking the icons, the whole item, or never`,
+    },
+    icons: {
+      info: `Customize the icons of items. You can leave them empty`,
+    },
+    show: {
+      info: `Hide or show interface components. Set component behavior`,
+    },
+    gestures: {
+      info: `You perform gestures by holding the middle mouse button, moving in a direction, and releasing the button`,
+    },
+    auxclick: {
+      info: `Perform actions on middle-click`,
+    },
+    menus: {
+      info: `Customize context and action menus`,
+    },
+    keyboard: {
+      info: `You can use these custom shortcuts to run commands. You can define if you need ctrl, shift, or alt`,
+      image: `img/cewik.jpg`,
+      image_title: `Cewik using his keyboard`,
+    },
+    warns: {
+      info: `When to show the confirmation dialog on some actions`,
+    },
+    more: {
+      info: `More advanced settings`,
+    },
+  }
 }
