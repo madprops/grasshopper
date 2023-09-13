@@ -166,14 +166,16 @@ App.show_profile_editor = (item, type, action = `edit`) => {
     if (action === `edit`) {
       if (items.length === profiles.length) {
         for (let key in App.profile_props) {
-          if (type === key) {
+          if (type === `all` || type === key) {
             let shared = App.profile_get_shared(key, profiles)
 
             if (shared !== undefined) {
               App.profile_set_value(key, shared)
             }
 
-            break
+            if (type !== `all`) {
+              break
+            }
           }
         }
       }
