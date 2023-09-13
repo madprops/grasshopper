@@ -183,34 +183,6 @@ App.set_colors = (c1, c2) => {
   App.check_theme_refresh()
 }
 
-App.parse_color = (color) => {
-  color = color.toLowerCase()
-
-  if (color.startsWith(`rgb`)) {
-    // Do nothing
-  }
-  else if (color.startsWith(`#`)) {
-    try {
-      color = App.colorlib.hex_to_rgb(color)
-    }
-    catch (err) {
-      return
-    }
-  }
-  else {
-    let c = App.color_names[color]
-
-    if (c) {
-      color = App.colorlib.hex_to_rgb(c)
-    }
-    else {
-      return
-    }
-  }
-
-  return color
-}
-
 App.change_background = (url, bg_eff, bg_tiles) => {
   App.set_setting(`background_image`, url, false)
 
