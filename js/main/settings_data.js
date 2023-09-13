@@ -64,15 +64,6 @@ App.build_settings = () => {
   obj.background_tiles = {value: `none`, category: category, type: `menu`, action: `theme`, name: `Background Tiles`, version: 1,
   info: `The tile size of the background image`}
 
-  obj.auto_colors = {value: `never`, category: category, type: `menu`, name: `Auto Colors`, version: 3,
-  info: `Change the colors automatically`}
-
-  obj.auto_background = {value: `never`, category: category, type: `menu`, name: `Auto Background`, version: 3,
-  info: `Change the background automatically`}
-
-  obj.random_colors = {value: `dark`, category: category, type: `menu`, name: `Random Colors`, version: 1,
-  info: `Behavior of random colors`}
-
   obj.animate_colors = {value: true, category: category, type: `checkbox`, name: `Animate Colors`, version: 1,
   info: `Animate color changes`}
 
@@ -585,26 +576,12 @@ App.build_settings = () => {
           {text: `24 hours`, value: `24_hours`},
         ]
 
-        App.settings_make_menu(`auto_colors`, auto_opts, () => {
-          App.start_theme_interval(`auto_colors`)
-        })
-
-        App.settings_make_menu(`auto_background`, auto_opts, () => {
-          App.start_theme_interval(`auto_background`)
-        })
-
-        App.settings_make_menu(`random_colors`, [
-          {text: `Only Dark`, value: `dark`},
-          {text: `Only Light`, value: `light`},
-          {text: `Dark & Light`, value: `both`},
-        ])
-
         DOM.ev(DOM.el(`#settings_background_color_random`), `click`, () => {
-          App.random_settings_color(`background`)
+          App.random_color(`background`)
         })
 
         DOM.ev(DOM.el(`#settings_text_color_random`), `click`, () => {
-          App.random_settings_color(`text`)
+          App.random_color(`text`)
         })
 
         DOM.ev(DOM.el(`#settings_background_image_pick`), `click`, (e) => {

@@ -1,54 +1,5 @@
 App.setup_theme = () => {
   App.colorlib = ColorLib()
-  App.start_theme_interval(`auto_colors`)
-  App.start_theme_interval(`auto_background`)
-}
-
-App.start_theme_interval = (setting) => {
-  clearInterval(App[`${setting}_interval`])
-  let sett = App.get_setting(setting)
-
-  if (sett === `never`) {
-    return
-  }
-
-  let delay = App.parse_delay(sett)
-
-  if (!delay || isNaN(delay)) {
-    return
-  }
-
-  if (delay > 0) {
-    App[`${setting}_interval`] = setInterval(() => {
-      let sett = App.get_setting(setting)
-
-      if (sett === `never`) {
-        clearInterval(App[`${setting}_interval`])
-        return
-      }
-
-      if (setting === `auto_colors`) {
-        try {
-          App.debug(`Auto Colors`)
-          App.random_colors()
-        }
-        catch (err) {
-          clearInterval(App[`${setting}_interval`])
-        }
-      }
-      else if (setting === `auto_background`) {
-        try {
-          App.debug(`Auto Background`)
-          App.next_background()
-        }
-        catch (err) {
-          clearInterval(App[`${setting}_interval`])
-        }
-      }
-    }, delay)
-
-    App.debug(`Started ${setting} interval: ${sett}`)
-  }
 }
 
 App.apply_theme = (args) => {
@@ -238,23 +189,6 @@ App.set_light_colors = () => {
   App.set_colors(App.light_colors.background, App.light_colors.text)
 }
 
-App.random_colors = () => {
-  let c1, c2
-  let type = App.get_color_type()
-
-  if (type === `light`) {
-    c1 = App.colorlib.get_light_color()
-  }
-  else if (type === `dark`) {
-    c1 = App.colorlib.get_dark_color()
-  }
-
-  c2 = App.colorlib.get_lighter_or_darker(c1, App.color_contrast)
-  c1 = App.colorlib.hex_to_rgb(c1)
-  c2 = App.colorlib.hex_to_rgb(c2)
-  App.set_colors(c1, c2)
-}
-
 App.set_colors = (c1, c2) => {
   App.set_setting(`background_color`, c1)
   App.set_setting(`text_color`, c2)
@@ -304,36 +238,6 @@ App.change_background = (url, bg_eff, bg_tiles) => {
   App.check_theme_refresh()
 }
 
-App.get_color_type = (rand, inverse = false) => {
-  let types = []
-  let type = App.get_setting(`random_colors`)
-
-  if (type === `dark` || type === `both`) {
-    types.push(`dark`)
-  }
-
-  if (type === `light` || type === `both`) {
-    types.push(`light`)
-  }
-
-  if (!types.length) {
-    return
-  }
-
-  let color = App.random_choice(types, rand)
-
-  if (inverse) {
-    if (color === `dark`) {
-      color = `light`
-    }
-    else if (color === `light`) {
-      color = `dark`
-    }
-  }
-
-  return color
-}
-
 App.next_background = () => {
   let current = App.get_setting(`background_image`)
   let next_image
@@ -372,16 +276,19 @@ App.check_theme_refresh = () => {
   }
 }
 
-App.random_settings_color = (what) => {
-  let inverse = what === `text`
-  let type = App.get_color_type(undefined, inverse)
+App.random_colors = () => {
+  App.random_color(`background`)
+  App.random_color(`text`)
+}
+
+App.random_color = (what) => {
   let color
 
-  if (type === `light`) {
-    color = App.colorlib.get_light_color()
-  }
-  else if (type === `dark`) {
+  if (what === `background`) {
     color = App.colorlib.get_dark_color()
+  }
+  else {
+    color = App.colorlib.get_light_color()
   }
 
   color = App.colorlib.hex_to_rgb(color)
