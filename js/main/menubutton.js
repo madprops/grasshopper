@@ -6,13 +6,13 @@ App.create_menubutton = (args = {}) => {
   args = Object.assign(def_args, args)
 
   if (!args.button) {
-    args.button = DOM.create(`div`, `settings_menu button`, args.id)
+    args.button = DOM.create(`div`, `menubutton button`, args.id)
   }
 
-  args.container = DOM.create(`div`, `flex_row_center gap_1`)
-  let prev = DOM.create(`div`, `button arrow_prev`)
+  args.container = DOM.create(`div`, `menubutton_container`)
+  let prev = DOM.create(`div`, `button`)
   prev.textContent = `<`
-  let next = DOM.create(`div`, `button arrow_next`)
+  let next = DOM.create(`div`, `button`)
   next.textContent = `>`
 
   DOM.ev(args.button, `click`, () => {

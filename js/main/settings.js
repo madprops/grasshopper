@@ -1108,7 +1108,7 @@ App.fill_settings = (category) => {
       let widget
 
       if (props.type === `menu`) {
-        widget = DOM.create(`div`, `settings_menu button`)
+        widget = DOM.create(`div`, `menubutton button`)
       }
       else if (props.type === `list`) {
         widget = DOM.create(`div`, `settings_addlist`)

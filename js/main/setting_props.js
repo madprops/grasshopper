@@ -45,17 +45,6 @@ App.build_settings = () => {
   name: `Bookmarks Folder`, placeholder: `Folder name`, no_empty: true, version: 1,
   info: `Where to save bookmarks`}
 
-  obj.aliases = {value: [], category: category, type: `list`, name: `Aliases`, version: 3,
-  info: `Aliases to use when using the filter. For example, 'big' will match 'huge' if you added that`}
-
-  obj.custom_filters = {value: [
-    {filter: `re: (today | $day)`},
-    {filter: `re: ($month | $year)`},
-    {filter: `re: \\d{2}\\/\\d{2}\\/\\d{4}`},
-    {filter: `re: (youtu|twitch)`},
-  ], category: category, type: `list`, name: `Custom Filters`, version: 3,
-  info: `Pre-made filters to use. These appear in the Custom section`}
-
   // ###################
   category = `theme`
 
@@ -404,6 +393,17 @@ App.build_settings = () => {
 
   // ###################
   category = `more`
+
+  obj.aliases = {value: [], category: category, type: `list`, name: `Aliases`, version: 3,
+  info: `Aliases to use when using the filter. For example, 'big' will match 'huge' if you added that`}
+
+  obj.custom_filters = {value: [
+    {filter: `re: (today | $day)`},
+    {filter: `re: ($month | $year)`},
+    {filter: `re: \\d{2}\\/\\d{2}\\/\\d{4}`},
+    {filter: `re: (youtu|twitch)`},
+  ], category: category, type: `list`, name: `Custom Filters`, version: 3,
+  info: `Pre-made filters to use. These appear in the Custom section`}
 
   obj.hover_effect = {value: `glow`, category: category, type: `menu`, name: `Hover Effect`, version: 1,
   info: `What effect to use when hoving items`}

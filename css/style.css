@@ -510,15 +510,6 @@ svg {
   text-align: center;
 }
 
-.settings_menu {
-  min-width: 8rem;
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  justify-content: center;
-  gap: 0.5rem;
-}
-
 .settings_checkbox {
   width: 1.07rem;
   height: 1.07rem;
@@ -1041,4 +1032,20 @@ a:visited, a:link, a:hover {
 .small_image {
   width: 11.1rem;
   height: auto;
+}
+
+.menubutton_container {
+  display: flex;
+  flex-direction: row;
+  gap: 0.5rem;
+  min-width: 15rem;
+}
+
+.menubutton {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  flex-grow: 1;
 }
