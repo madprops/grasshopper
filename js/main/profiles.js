@@ -909,7 +909,7 @@ App.get_profile_count = () => {
       count.tags += 1
     }
 
-    if (profile.notes.value) {
+    if (profile.notes.value.length) {
       count.notes += 1
     }
 
