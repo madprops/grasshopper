@@ -1,7 +1,3 @@
-App.setup_profiles = () => {
-  App.start_auto_reload()
-}
-
 App.profile_props = {
   url: {value: ``, type: `string`},
   exact: {value: false, type: `boolean`},
@@ -10,7 +6,6 @@ App.profile_props = {
   title: {value: ``, type: `string`},
   color: {value: `none`, type: `menu`},
   icon: {value: ``, type: `string`},
-  auto_reload: {value: 0, type: `number`},
 }
 
 App.setup_profile_editor = () => {
@@ -56,30 +51,7 @@ App.setup_profile_editor = () => {
     DOM.ev(DOM.el(`#profile_editor_tags_add`), `click`, (e) => {
       App.profile_tags_add(e)
     })
-
-    DOM.ev(DOM.el(`#profile_editor_auto_reload`), `change`, (e) => {
-      let value = parseInt(e.target.value)
-
-      if (isNaN(value)) {
-        value = e.target.min || 0
-      }
-
-      if (value < (e.target.min || 0)) {
-        value = e.target.min || 0
-      }
-
-      if (e.target.max) {
-        if (value > e.target.max) {
-          value = e.target.max
-        }
-      }
-
-      e.target.value = value
-    })
-
-    App.profile_setup_labels()
-  },
-  colored_top: true})
+  }})
 }
 
 App.get_profile_items = (item) => {
@@ -147,10 +119,6 @@ App.show_profile_editor = (item, type, action = `edit`) => {
     App.profile_editor_container(`icon`, true)
   }
 
-  if (type === `all` || type === `auto_reload`) {
-    App.profile_editor_container(`auto_reload`, true)
-  }
-
   App.profile_default_all()
 
   if (profiles.length) {
@@ -180,7 +148,6 @@ App.show_profile_editor = (item, type, action = `edit`) => {
       App.profile_set_value(`exact`, profile.exact)
       App.profile_set_value(`title`, profile.title)
       App.profile_set_value(`icon`, profile.icon)
-      App.profile_set_value(`auto_reload`, profile.auto_reload)
       App.profile_set_value(`color`, profile.color)
     }
     else {
@@ -347,10 +314,6 @@ App.save_profile = (args) => {
 
     if (args.type === `all` || args.type === `color`) {
       profile.color = args.color
-    }
-
-    if (args.type === `all` || args.type === `auto_reload`) {
-      profile.auto_reload = args.auto_reload
     }
 
     App.profiles = App.profiles.filter(x => x.url !== og_url)
@@ -718,15 +681,6 @@ App.clear_profiles_items = () => {
     })
   }
 
-  if (count.auto_reloads) {
-    items.push({
-      text: `Reload`,
-      action: () => {
-        App.remove_all_auto_reload()
-      }
-    })
-  }
-
   return items
 }
 
@@ -845,28 +799,6 @@ App.remove_all_icons = () => {
   })
 }
 
-App.remove_all_auto_reload = () => {
-  let profiles = []
-
-  for (let profile of App.profiles) {
-    if (profile.auto_reload !== 0) {
-      profiles.push(profile)
-    }
-  }
-
-  if (!profiles.length) {
-    return
-  }
-
-  App.show_confirm(`Remove all auto-reload? (${profiles.length})`, () => {
-    for (let profile of App.profiles) {
-      profile.auto_reload = 0
-    }
-
-    App.after_profile_remove()
-  })
-}
-
 App.remove_tag = (tag) => {
   App.show_confirm(`Remove tag? (${tag})`, () => {
     for (let profile of App.profiles) {
@@ -940,7 +872,6 @@ App.get_profile_count = () => {
   count.colors = 0
   count.titles = 0
   count.icons = 0
-  count.auto_reloads = 0
 
   for (let profile of App.profiles) {
     if (profile.tags.length) {
@@ -967,10 +898,6 @@ App.get_profile_count = () => {
     if (profile.icon) {
       count.icons += 1
     }
-
-    if (profile.auto_reloads !== 0) {
-      count.auto_reloads += 1
-    }
   }
 
   return count
@@ -980,8 +907,7 @@ App.refresh_profile_filters = () => {
   let mode = App.active_mode
   let filter_mode = App.filter_mode(mode)
 
-  if (filter_mode === `edited` || filter_mode.startsWith(`tag_`) ||
-  filter_mode.startsWith(`color_`) || filter_mode === `autoreload`) {
+  if (filter_mode === `edited` || filter_mode.startsWith(`tag_`) || filter_mode.startsWith(`color_`)) {
     App.filter(mode)
     return
   }
@@ -1047,13 +973,6 @@ App.get_edit_items = (item, multiple) => {
     text: `Edit Icon`,
     action: () => {
       return App.show_profile_editor(item, `icon`)
-    }
-  })
-
-  items.push({
-    text: `Edit Reload`,
-    action: () => {
-      return App.show_profile_editor(item, `auto_reload`)
     }
   })
 
@@ -1283,32 +1202,6 @@ App.get_edit_options = (item) => {
   return items
 }
 
-App.start_auto_reload = () => {
-  clearInterval(App.auto_reload_interval)
-
-  if (!App.auto_reload_delay || isNaN(App.auto_reload_delay)) {
-    App.error(`Wrong auto-reload delay`)
-    return
-  }
-
-  App.auto_reload_interval = setInterval(() => {
-    App.debug(`Auto-reloading tabs`)
-
-    for (let item of App.get_items(`tabs`)) {
-      if (item.auto_reload >= 1) {
-        let mins = Math.round((App.now() - item.last_auto_reload) / 1000 / 60)
-
-        if (mins >= item.auto_reload) {
-          App.browser_reload(item.id)
-          item.last_auto_reload = App.now()
-        }
-      }
-    }
-  }, App.auto_reload_delay)
-
-  App.debug(`Started auto-reload interval`)
-}
-
 App.profile_addlist_tags = () => {
   let id = `profile_editor_tags`
 
@@ -1486,9 +1379,6 @@ App.profile_get_value = (key) => {
     else if (props.type === `string`) {
       return el.value.trim()
     }
-    else if (props.type === `number`) {
-      return parseInt(el.value)
-    }
   }
 }
 
@@ -1516,9 +1406,6 @@ App.profile_set_value = (key, value, actions = false) => {
       el.checked = value
     }
     else if (props.type === `string`) {
-      el.value = value
-    }
-    else if (props.type === `number`) {
       el.value = value
     }
   }
