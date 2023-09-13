@@ -1048,10 +1048,6 @@ App.set_settings_menu = (setting, value, on_change) => {
   App[`settings_menubutton_${setting}`].set(value, on_change)
 }
 
-App.apply_background = (bg) => {
-  App.change_background(bg.url, bg.effect, bg.tiles)
-}
-
 App.settings_actions = (category) => {
   let items = []
 

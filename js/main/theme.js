@@ -300,6 +300,7 @@ App.change_background = (url, bg_eff, bg_tiles) => {
     App.set_setting(`background_tiles`, bg_tiles, false)
   }
 
+  App.apply_theme()
   App.check_theme_refresh()
 }
 
@@ -430,4 +431,8 @@ App.apply_background_effects = (effect, tiles) => {
     bg.style.backgroundSize = `cover`
     bg_rem(`tiles`)
   }
+}
+
+App.apply_background = (bg) => {
+  App.change_background(bg.url, bg.effect, bg.tiles)
 }
