@@ -8,17 +8,13 @@ App.start_theme_interval = (setting) => {
   clearInterval(App[`${setting}_interval`])
   let sett = App.get_setting(setting)
 
-  if (sett === `never` || sett === `domain`) {
+  if (sett === `never`) {
     return
-  }
-
-  if (sett === `party`) {
-    sett = App.theme_party_delay
   }
 
   let delay = App.parse_delay(sett)
 
-  if (!delay) {
+  if (!delay || isNaN(delay)) {
     return
   }
 
@@ -26,7 +22,7 @@ App.start_theme_interval = (setting) => {
     App[`${setting}_interval`] = setInterval(() => {
       let sett = App.get_setting(setting)
 
-      if (sett === `never` || sett === `domain`) {
+      if (sett === `never`) {
         clearInterval(App[`${setting}_interval`])
         return
       }
@@ -275,7 +271,6 @@ App.random_colors = () => {
 App.set_colors = (c1, c2) => {
   App.set_setting(`background_color`, c1)
   App.set_setting(`text_color`, c2)
-  App.check_item_theme()
   App.check_theme_refresh()
 }
 
@@ -288,24 +283,6 @@ App.set_default_theme = () => {
     text_color: text,
     check: true,
   })
-}
-
-App.set_color_auto = (args) => {
-  if (args.background_color) {
-    args.background_color = App.parse_color(args.background_color)
-  }
-
-  if (!args.text_color) {
-    if (args.background_color) {
-      args.text_color = App.colorlib.get_lighter_or_darker(args.background_color, App.color_contrast)
-    }
-  }
-  else {
-    args.text_color = App.parse_color(args.text_color)
-  }
-
-  args.check = true
-  App.apply_theme(args)
 }
 
 App.parse_color = (color) => {
@@ -347,75 +324,7 @@ App.change_background = (url, bg_eff, bg_tiles) => {
     App.set_setting(`background_tiles`, bg_tiles, false)
   }
 
-  App.check_item_theme()
   App.check_theme_refresh()
-}
-
-App.seeded_colors = (item) => {
-  let url = item.hostname || item.path
-  let hc = App.hostname_colors[url]
-  let background
-
-  if (hc) {
-    App.set_color_auto({background_color: hc})
-    return
-  }
-
-  let rand = App.seeded_random(url)
-  let type = App.get_color_type(rand)
-
-  if (type === `dark`) {
-    background = App.colorlib.get_dark_color(rand)
-  }
-  else if (type === `light`) {
-    background = App.colorlib.get_light_color(rand)
-  }
-
-  App.hostname_colors[url] = background
-  App.set_color_auto({background_color: background})
-}
-
-App.check_item_theme_debouncer = App.create_debouncer(() => {
-  App.do_check_item_theme()
-}, App.check_item_theme_delay)
-
-App.check_item_theme = () => {
-  App.check_item_theme_debouncer.call()
-}
-
-App.do_check_item_theme = () => {
-  App.debug(`Check Item Theme`)
-
-  if (App.window_mode === `profile_editor`) {
-    return
-  }
-
-  App.check_item_theme_debouncer.cancel()
-  let item = App.get_selected(App.window_mode)
-
-  if (!item || !item.path) {
-    App.set_default_theme()
-    return
-  }
-
-  if (item.theme_enabled) {
-    App.set_color_auto({
-      background_color: item.background_color,
-      text_color: item.text_color,
-      background_image: item.background_image,
-      background_effect: item.background_effect,
-      background_tiles: item.background_tiles,
-    })
-
-    return
-  }
-
-  if (App.get_setting(`auto_colors`) === `domain`) {
-    App.seeded_colors(item)
-    return
-  }
-
-  App.set_default_theme()
 }
 
 App.get_color_type = (rand, inverse = false) => {

@@ -10,16 +10,8 @@ App.profile_props = {
   title: {value: ``, type: `string`},
   color: {value: `none`, type: `menu`},
   icon: {value: ``, type: `string`},
-  theme_enabled: {value: false, type: `boolean`},
-  background_color: {value: App.dark_colors.background, type: `color`},
-  text_color: {value: App.dark_colors.text, type: `color`},
-  background_image: {value: ``, type: `string`},
-  background_effect: {value: `none`, type: `menu`},
-  background_tiles: {value: `none`, type: `menu`},
   auto_reload: {value: 0, type: `number`},
 }
-
-App.profile_props_theme = [`background_color`, `text_color`, `background_image`, `background_effect`, `background_tiles`]
 
 App.setup_profile_editor = () => {
   App.create_window({id: `profile_editor`, setup: () => {
@@ -41,10 +33,6 @@ App.setup_profile_editor = () => {
       App.profile_editor_root_url()
     })
 
-    DOM.ev(DOM.el(`#profile_editor_background_image_none`), `click`, (e) => {
-      App.profile_editor_background_image_none()
-    })
-
     DOM.ev(DOM.el(`#profile_editor_url_full`), `click`, (e) => {
       App.profile_editor_full_url(e)
     })
@@ -62,49 +50,11 @@ App.setup_profile_editor = () => {
     }
 
     App.profile_make_menu(`color`, App.profile_editor_color_opts)
-    App.profile_make_menu(`background_effect`, App.background_effects)
-    App.profile_make_menu(`background_tiles`, App.background_tiles)
     App.profile_addlist_tags()
     App.profile_addlist_notes()
 
     DOM.ev(DOM.el(`#profile_editor_tags_add`), `click`, (e) => {
       App.profile_tags_add(e)
-    })
-
-    let bg = DOM.el(`#profile_editor_background_color`)
-
-    App.profile_editor_background_color = AColorPicker.createPicker(bg, {
-      showAlpha: false,
-      showHSL: false,
-      showHEX: false,
-      showRGB: true,
-      color: App.profile_props.background_color.value
-    })
-
-    App.profile_editor_background_color.on(`change`, (picker, color) => {
-      App.profile_apply_theme()
-    })
-
-    let tc = DOM.el(`#profile_editor_text_color`)
-
-    App.profile_editor_text_color = AColorPicker.createPicker(tc, {
-      showAlpha: false,
-      showHSL: false,
-      showHEX: false,
-      showRGB: true,
-      color: App.profile_props.text_color.value
-    })
-
-    App.profile_editor_text_color.on(`change`, (picker, color) => {
-      App.profile_apply_theme()
-    })
-
-    DOM.ev(DOM.el(`#profile_editor_background_image`), `blur`, () => {
-      App.profile_apply_theme()
-    })
-
-    DOM.ev(DOM.el(`#profile_editor_theme_enabled`), `change`, () => {
-      App.profile_theme_enabled_changed()
     })
 
     DOM.ev(DOM.el(`#profile_editor_auto_reload`), `change`, (e) => {
@@ -186,10 +136,6 @@ App.show_profile_editor = (item, type, action = `edit`) => {
     App.profile_editor_container(`color`, true)
   }
 
-  if (type === `all` || type === `theme`) {
-    App.profile_editor_container(`theme`, true)
-  }
-
   if (type === `all` || type === `icon`) {
     App.profile_editor_container(`icon`, true)
   }
@@ -229,23 +175,6 @@ App.show_profile_editor = (item, type, action = `edit`) => {
       App.profile_set_value(`icon`, profile.icon)
       App.profile_set_value(`auto_reload`, profile.auto_reload)
       App.profile_set_value(`color`, profile.color)
-
-      if (profile.theme_enabled) {
-        DOM.el(`#profile_editor_theme_inputs`).classList.remove(`hidden`)
-        App.profile_set_value(`theme_enabled`, true)
-      }
-
-      if (profile.background_color) {
-        App.profile_set_value(`background_color`, profile.background_color)
-      }
-
-      if (profile.text_color) {
-        App.profile_set_value(`text_color`, profile.text_color)
-      }
-
-      App.profile_set_value(`background_image`, profile.background_image)
-      App.profile_set_value(`background_effect`, profile.background_effect)
-      App.profile_set_value(`background_tiles`, profile.background_tiles)
     }
     else {
       App.profile_set_value(`url`, items[0].url)
@@ -254,40 +183,15 @@ App.show_profile_editor = (item, type, action = `edit`) => {
   else {
     if (action === `edit`) {
       if (items.length === profiles.length) {
-        if (type === `theme`) {
-          let enabled = App.profile_get_shared(`theme_enabled`, profiles)
+        for (let key in App.profile_props) {
+          if (type === key) {
+            let shared = App.profile_get_shared(key, profiles)
 
-          if (enabled) {
-            let shared_bg = App.profile_get_shared(`background_color`, profiles)
-            let shared_tc = App.profile_get_shared(`text_color`, profiles)
-            let shared_bi = App.profile_get_shared(`background_image`, profiles)
-            let shared_be = App.profile_get_shared(`background_effect`, profiles)
-            let shared_bt = App.profile_get_shared(`background_tiles`, profiles)
-
-            if (shared_bg !== undefined && shared_tc !== undefined &&
-              shared_bi !== undefined && shared_be !== undefined &&
-              shared_bt !== undefined ) {
-              DOM.el(`#profile_editor_theme_inputs`).classList.remove(`hidden`)
-              App.profile_set_value(`theme_enabled`, true)
-              App.profile_set_value(`background_image`, shared_bi)
-              App.profile_set_value(`background_color`, shared_bg)
-              App.profile_set_value(`text_color`, shared_tc)
-              App.profile_set_value(`background_effect`, shared_be)
-              App.profile_set_value(`background_tiles`, shared_bt)
+            if (shared !== undefined) {
+              App.profile_set_value(key, shared)
             }
-          }
-        }
-        else {
-          for (let key in App.profile_props) {
-            if (type === key) {
-              let shared = App.profile_get_shared(key, profiles)
 
-              if (shared !== undefined) {
-                App.profile_set_value(key, shared)
-              }
-
-              break
-            }
+            break
           }
         }
       }
@@ -298,7 +202,6 @@ App.show_profile_editor = (item, type, action = `edit`) => {
 
   App.window_goto_top(`profile_editor`)
   App.profile_editor_ready = true
-  App.profile_apply_theme()
   App.profile_addlist_count()
 
   if (type === `tags` && action === `add`) {
@@ -443,15 +346,6 @@ App.save_profile = (args) => {
       profile.auto_reload = args.auto_reload
     }
 
-    if (args.type === `all` || args.type === `theme`) {
-      profile.theme_enabled = args.theme_enabled
-      profile.background_color = args.background_color
-      profile.text_color = args.text_color
-      profile.background_image = args.background_image
-      profile.background_effect = args.background_effect
-      profile.background_tiles = args.background_tiles
-    }
-
     App.profiles = App.profiles.filter(x => x.url !== og_url)
 
     if (og_url !== profile.url) {
@@ -547,8 +441,6 @@ App.apply_profiles = (urls) => {
       }
     }
   }
-
-  App.check_item_theme()
 }
 
 App.get_profile = (url) => {
@@ -819,20 +711,11 @@ App.clear_profiles_items = () => {
     })
   }
 
-  if (count.auto_reload) {
+  if (count.auto_reloads) {
     items.push({
       text: `Reload`,
       action: () => {
         App.remove_all_auto_reload()
-      }
-    })
-  }
-
-  if (count.themes) {
-    items.push({
-      text: `Themes`,
-      action: () => {
-        App.remove_all_themes()
       }
     })
   }
@@ -883,28 +766,6 @@ App.remove_all_colors = () => {
   App.show_confirm(`Remove all colors? (${profiles.length})`, () => {
     for (let profile of App.profiles) {
       profile.color = `none`
-    }
-
-    App.after_profile_remove()
-  })
-}
-
-App.remove_all_themes = () => {
-  let profiles = []
-
-  for (let profile of App.profiles) {
-    if (profile.theme_enabled) {
-      profiles.push(profile)
-    }
-  }
-
-  if (!profiles.length) {
-    return
-  }
-
-  App.show_confirm(`Remove all themes? (${profiles.length})`, () => {
-    for (let profile of App.profiles) {
-      profile.theme_enabled = false
     }
 
     App.after_profile_remove()
@@ -1057,10 +918,6 @@ App.used_profile = (profile) => {
       continue
     }
 
-    if (App.profile_props_theme.includes(key)) {
-      continue
-    }
-
     if (profile[key].toString() !== App.profile_props[key].value.toString()) {
       return true
     }
@@ -1075,10 +932,8 @@ App.get_profile_count = () => {
   count.notes = 0
   count.colors = 0
   count.titles = 0
-  count.backgrounds = 0
   count.icons = 0
-  count.themes = 0
-  count.auto_reload = 0
+  count.auto_reloads = 0
 
   for (let profile of App.profiles) {
     if (profile.tags.length) {
@@ -1106,12 +961,8 @@ App.get_profile_count = () => {
       count.icons += 1
     }
 
-    if (profile.theme_enabled) {
-      count.themes += 1
-    }
-
-    if (profile.auto_reload !== 0) {
-      count.auto_reload += 1
+    if (profile.auto_reloads !== 0) {
+      count.auto_reloads += 1
     }
   }
 
@@ -1196,13 +1047,6 @@ App.get_edit_items = (item, multiple) => {
     text: `Edit Reload`,
     action: () => {
       return App.show_profile_editor(item, `auto_reload`)
-    }
-  })
-
-  items.push({
-    text: `Edit Theme`,
-    action: () => {
-      return App.show_profile_editor(item, `theme`)
     }
   })
 
@@ -1322,39 +1166,9 @@ App.profile_get_shared = (key, profiles) => {
   }
 }
 
-App.profile_apply_theme = () => {
-  if (!App.profile_editor_ready) {
-    return
-  }
-
-  if (App.profile_get_value(`theme_enabled`)) {
-    let c1 = App.profile_get_value(`background_color`)
-    let c2 = App.profile_get_value(`text_color`)
-    let bi =  App.profile_get_value(`background_image`)
-    let be =  App.profile_get_value(`background_effect`)
-    let bt =  App.profile_get_value(`background_tiles`)
-
-    App.apply_theme({
-      background_color: c1,
-      text_color: c2,
-      background_image: bi,
-      background_effect: be,
-      background_tiles: bt,
-    })
-  }
-  else {
-    App.set_default_theme()
-  }
-}
-
 App.profile_make_menu = (key, opts) => {
   App[`profile_menubutton_${key}`] = App.create_menubutton({
     button: DOM.el(`#profile_editor_${key}`),
-    on_change: (args, opt) => {
-      if (key === `background_effect` || key === `background_tiles`) {
-        App.profile_apply_theme()
-      }
-    },
     opts: opts,
   })
 }
@@ -1460,19 +1274,6 @@ App.get_edit_options = (item) => {
   }
 
   return items
-}
-
-App.profile_editor_background_image_none = () => {
-  let el = DOM.el(`#profile_editor_background_image`)
-
-  if (el.value === `none`) {
-    el.value = ``
-  }
-  else {
-    el.value = `none`
-  }
-
-  App.profile_apply_theme()
 }
 
 App.start_auto_reload = () => {
@@ -1656,19 +1457,6 @@ App.profile_set_default = (key) => {
   App.profile_set_value(key, props.value, true)
 }
 
-App.profile_theme_enabled_changed = () => {
-  let el = DOM.el(`#profile_editor_theme_enabled`)
-
-  if (el.checked) {
-    DOM.el(`#profile_editor_theme_inputs`).classList.remove(`hidden`)
-  }
-  else {
-    DOM.el(`#profile_editor_theme_inputs`).classList.add(`hidden`)
-  }
-
-  App.profile_apply_theme()
-}
-
 App.profile_get_value = (key) => {
   let props = App.profile_props[key]
 
@@ -1711,26 +1499,8 @@ App.profile_set_value = (key, value, actions = false) => {
   else if (props.type === `menu`) {
     App[`profile_menubutton_${key}`].set(value || `none`)
   }
-  else if (key === `theme_enabled`) {
-    DOM.el(`#profile_editor_theme_enabled`).checked = value
-
-    if (actions) {
-      App.profile_theme_enabled_changed()
-    }
-  }
-  else if (key === `background_image`) {
-    DOM.el(`#profile_editor_background_image`).value = value
-
-    if (actions) {
-      App.profile_apply_theme()
-    }
-  }
   else if (props.type === `color`) {
     App[`profile_editor_${key}`].setColor(value)
-
-    if (actions) {
-      App.profile_apply_theme()
-    }
   }
   else {
     let el = DOM.el(`#profile_editor_${key}`)
@@ -1760,9 +1530,6 @@ App.profile_default_all = () => {
 }
 
 App.profile_hide_containers = () => {
-  App.profile_editor_container(`theme`, false)
-  App.profile_editor_container(`theme_inputs`, false)
-
   for (let key in App.profile_props) {
     App.profile_editor_container(key, false)
   }

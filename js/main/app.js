@@ -37,7 +37,6 @@ App.item_range_on = false
 App.item_range_select = false
 App.max_filter_history = 10
 App.color_contrast = 0.8
-App.hostname_colors = {}
 App.colors = [`red`, `green`, `blue`, `yellow`, `purple`, `orange`]
 App.theme_safe_mode_msg = false
 App.persistent_modes = [`tabs`]
@@ -67,9 +66,7 @@ App.check_borders_delay = 100
 App.wheel_delay = 100
 App.show_mode_delay = 100
 App.max_pick_delay = 2000
-App.check_item_theme_delay = 200
 App.color_transition_delay = 1600
-App.theme_party_delay = `3_seconds`
 App.auto_reload_delay = 1000 * 60
 
 App.settings_icons = {

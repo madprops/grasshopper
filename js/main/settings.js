@@ -694,8 +694,6 @@ App.start_theme_settings = () => {
   ]
 
   let color_opts = [...auto_opts]
-  color_opts.push({text: `Domain`, value: `domain`})
-  color_opts.push({text: `Party`, value: `party`})
 
   App.settings_make_menu(`auto_colors`, color_opts, () => {
     App.start_theme_interval(`auto_colors`)
@@ -709,9 +707,7 @@ App.start_theme_settings = () => {
     {text: `Only Dark`, value: `dark`},
     {text: `Only Light`, value: `light`},
     {text: `Dark & Light`, value: `both`},
-  ], () => {
-    App.hostname_colors = {}
-  })
+  ])
 
   DOM.ev(DOM.el(`#settings_background_color_random`), `click`, () => {
     App.random_settings_color(`background`)
