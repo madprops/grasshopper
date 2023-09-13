@@ -52,9 +52,6 @@ App.settings_addlist_ready = false
 App.bgdir = `/img/bg/`
 
 App.settings_save_delay = 250
-App.activated_delay = 2600
-App.opened_delay = 2600
-App.restore_delay = 1000 * 10
 App.double_tap_delay = 300
 App.empty_previous_tabs_delay = 2000
 App.alert_autohide_delay = 1600
