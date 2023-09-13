@@ -185,13 +185,17 @@ App.settings_setup_number = (category) => {
       let value = parseInt(el.value)
 
       if (isNaN(value)) {
-        el.value = App.get_setting(key)
-        return
+        value = App.get_setting(key)
       }
 
       if (value < parseInt(props.min || 0)) {
-        el.value = props.min || 0
-        return
+        value = props.min || 0
+      }
+
+      if (props.max) {
+        if (value > props.max) {
+          value = props.max
+        }
       }
 
       el.value = value
@@ -527,16 +531,6 @@ App.reset_all_settings = () => {
 
     App.restart_settings()
   })
-}
-
-App.get_font_size_options = () => {
-  let opts = []
-
-  for (let i=6; i<=22; i++) {
-    opts.push({text: `${i} px`, value: i})
-  }
-
-  return opts
 }
 
 App.get_size_options = () => {
@@ -888,6 +882,10 @@ App.fill_settings = (category) => {
       else if (props.type === `number`) {
         widget = input(`number`, `settings_number`, props.placeholder)
         widget.min = props.min
+
+        if (props.max) {
+          widget.max = props.max
+        }
       }
       else if (props.type === `checkbox`) {
         widget = DOM.create(`input`, `settings_checkbox`)

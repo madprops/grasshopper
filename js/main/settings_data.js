@@ -7,6 +7,12 @@ App.build_settings = () => {
   obj.wrap_text = {value: false, category: category, type: `checkbox`, name: `Wrap Text`, version: 1,
   info: `Allow long lines to wrap`}
 
+  obj.font_size = {value: 16, category: category, type: `number`, min: 6, max: 28, name: `Font Size`, action: `theme`, version: 1,
+  info: `The font size to use for text. The interface scales accordingly`}
+
+  obj.font = {value: `sans-serif`, category: category, type: `menu`, name: `Font`, version: 1,
+  info: `The font to use for text`}
+
   obj.primary_mode = {value: `tabs`, category: category, type: `menu`, name: `Primary Mode`, version: 1,
   info: `The main preferred mode. This is shown at startup`}
 
@@ -18,12 +24,6 @@ App.build_settings = () => {
 
   obj.item_border = {value: `none`, category: category, type: `menu`, name: `Item Border`, version: 2,
   info: `Border between each item`}
-
-  obj.font = {value: `sans-serif`, category: category, type: `menu`, name: `Font`, version: 1,
-  info: `The font to use for text`}
-
-  obj.font_size = {value: 16, category: category, type: `menu`, name: `Font Size`, version: 1,
-  info: `The font size to use for text. The interface scales accordingly`}
 
   obj.width = {value: 75, category: category, type: `menu`, name: `Width`, version: 1,
   info: `Width of the popup`}
@@ -514,10 +514,6 @@ App.build_settings = () => {
           {text: `On Action`, value: `action`},
         ], () => {
           clearTimeout(App.restore_timeout)
-        })
-
-        App.settings_make_menu(`font_size`, App.get_font_size_options(), () => {
-          App.apply_theme()
         })
 
         App.settings_make_menu(`item_height`, [
