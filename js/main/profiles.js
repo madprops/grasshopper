@@ -1347,7 +1347,7 @@ App.profile_setup_labels = () => {
         }
 
         App.show_confirm(`Reset this?`, () => {
-          App.profile_set_default(key)
+          App.profile_set_default(key, true)
         })
       },
     })
@@ -1359,7 +1359,7 @@ App.profile_setup_labels = () => {
   }
 }
 
-App.profile_set_default = (key, action = true) => {
+App.profile_set_default = (key, action = false) => {
   let props = App.profile_props[key]
   App.profile_set_value(key, props.value, action)
 }
@@ -1426,7 +1426,7 @@ App.profile_is_default = (key) => {
 
 App.profile_default_all = () => {
   for (let key in App.profile_props) {
-    App.profile_set_default(key, false)
+    App.profile_set_default(key)
   }
 }
 
