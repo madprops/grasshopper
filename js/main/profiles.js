@@ -51,6 +51,8 @@ App.setup_profile_editor = () => {
     DOM.ev(DOM.el(`#profile_editor_tags_add`), `click`, (e) => {
       App.profile_tags_add(e)
     })
+
+    App.profile_setup_labels()
   }})
 }
 
