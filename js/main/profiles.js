@@ -213,12 +213,7 @@ App.get_empty_profile = (url) => {
       continue
     }
 
-    if (props.type === `list`) {
-      profile[key].value = App.clone(props.value)
-    }
-    else {
-      profile[key].value = props.value
-    }
+    profile[key].value = App.clone(props.value)
   }
 
   return profile
@@ -458,13 +453,7 @@ App.get_profile = (url) => {
     let props = App.profile_props[key]
 
     if (profile[key].version !== props.version) {
-      if (props.type === `list`) {
-        profile[key].value = App.clone(props.value)
-      }
-      else {
-        profile[key].value = props.value
-      }
-
+      profile[key].value = App.clone(props.value)
       profile[key].version = props.version
     }
   }
@@ -1368,13 +1357,7 @@ App.profile_setup_labels = () => {
 
 App.profile_get_default = (key) => {
   let props = App.profile_props[key]
-
-  if (props.type === `list`) {
-    return App.clone(props.value)
-  }
-  else {
-    return props.value
-  }
+  return App.clone(props.value)
 }
 
 App.profile_set_default = (key, action = false) => {
