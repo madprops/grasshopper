@@ -74,7 +74,6 @@ App.create_window = (args) => {
       if (args.element) {
         content.innerHTML = ``
         content.append(args.element)
-        console.log(content)
       }
       else {
         content.innerHTML = content_html

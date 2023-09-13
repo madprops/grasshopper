@@ -488,41 +488,197 @@ App.build_settings = () => {
   App.setting_catprops = {
     general: {
       info: `There are various categories. Clicking the labels shows menus`,
+      setup: () => {
+        App.settings_make_menu(`text_mode`, [
+          {text: `Title`, value: `title`},
+          {text: `URL`, value: `url`},
+          {text: `Title / URL`, value: `title_url`},
+          {text: `URL / Title`, value: `url_title`},
+        ])
+
+        App.settings_make_menu(`font`, [
+          {text: `Sans`, value: `sans-serif`},
+          {text: `Serif`, value: `serif`},
+          {text: `Mono`, value: `monospace`},
+          {text: `Cursive`, value: `cursive`},
+        ], () => {
+          App.apply_theme()
+        })
+
+        App.settings_make_menu(`auto_restore`, [
+          {text: `Never`, value: `never`},
+          {text: `1 Second`, value: `1_seconds`},
+          {text: `5 Seconds`, value: `5_seconds`},
+          {text: `10 Seconds`, value: `10_seconds`},
+          {text: `30 Seconds`, value: `30_seconds`},
+          {text: `On Action`, value: `action`},
+        ], () => {
+          clearTimeout(App.restore_timeout)
+        })
+
+        App.settings_make_menu(`font_size`, App.get_font_size_options(), () => {
+          App.apply_theme()
+        })
+
+        App.settings_make_menu(`item_height`, [
+          {text: `Compact`, value: `compact`},
+          {text: `Normal`, value: `normal`},
+          {text: `Bigger`, value: `bigger`},
+          {text: `Huge`, value: `huge`},
+        ])
+
+        App.settings_make_menu(`item_border`, [
+          {text: `None`, value: `none`},
+          {text: `Normal`, value: `normal`},
+          {text: `Bigger`, value: `bigger`},
+          {text: `Huge`, value: `huge`},
+        ])
+
+        App.settings_make_menu(`pick_mode`, [
+          {text: `None`, value: `none`},
+          {text: `Smart`, value: `smart`},
+          {text: `Single`, value: `single`},
+          {text: `Simple`, value: `simple`},
+        ])
+
+        App.settings_make_menu(`favicon_source`, [
+          {text: `None`, value: `none`},
+          {text: `Google`, value: `google`},
+          {text: `4get`, value: `4get`},
+        ])
+
+        App.settings_make_menu(`primary_mode`, [
+          {text: `Tabs`, value: `tabs`},
+          {text: `History`, value: `history`},
+          {text: `Bookmarks`, value: `bookmarks`},
+          {text: `Closed`, value: `closed`},
+        ])
+
+        App.settings_make_menu(`width`, App.get_size_options(), () => {
+          App.apply_theme()
+        })
+
+        App.settings_make_menu(`height`, App.get_size_options(), () => {
+          App.apply_theme()
+        })
+      },
     },
     theme: {
       info: `Set the colors and background image. Can also enable automatic changes`,
+      setup: () => {
+        App.start_theme_settings()
+      },
     },
     colors: {
       info: `These are the colors you assign to items by editing their profiles`,
+      setup: () => {
+        for (let color of App.colors) {
+          App.start_color_picker(`color_${color}`, true)
+        }
+
+        App.settings_make_menu(`color_mode`, [
+          {text: `None`, value: `none`},
+          {text: `Icon`, value: `icon`},
+          {text: `Icon 2`, value: `icon_2`},
+          {text: `Item`, value: `item`},
+        ])
+      },
     },
     media: {
       info: `How to view media items. An icon appears to the left of items. You can make it view media when clicking the icons, the whole item, or never`,
+      setup: () => {
+        let opts = [
+          {text: `Never`, value: `never`},
+          {text: `On Icon Click`, value: `icon`},
+          {text: `On Item Click`, value: `item`},
+        ]
+
+        for (let m of App.modes) {
+          App.settings_make_menu(`view_image_${m}`, opts)
+          App.settings_make_menu(`view_video_${m}`, opts)
+          App.settings_make_menu(`view_audio_${m}`, opts)
+        }
+      },
     },
     icons: {
       info: `Customize the icons of items. You can leave them empty`,
+      setup: () => {},
     },
     show: {
       info: `Hide or show interface components. Set component behavior`,
+      setup: () => {
+        App.settings_make_menu(`show_pinline`, [
+          {text: `Never`, value: `never`},
+          {text: `Normal`, value: `normal`},
+          {text: `Always`, value: `always`},
+        ])
+      },
     },
     gestures: {
       info: `You perform gestures by holding the middle mouse button, moving in a direction, and releasing the button`,
+      setup: () => {
+        DOM.ev(DOM.el(`#settings_gestures_enabled`), `change`, () => {
+          App.refresh_gestures()
+        })
+
+        App.settings_make_menu(`gestures_threshold`, [
+          {text: `Normal`, value: 10},
+          {text: `Less Sensitive`, value: 100},
+        ], () => {
+          App.refresh_gestures()
+        })
+
+        let opts = App.settings_commands()
+
+        for (let key in App.setting_props) {
+          let props = App.setting_props[key]
+
+          if (props.category === `gestures`) {
+            if (key.startsWith(`gesture_`)) {
+              App.settings_make_menu(key, opts)
+            }
+          }
+        }
+      },
     },
     auxclick: {
       info: `Perform actions on middle-click`,
+      setup: () => {
+        let opts = App.settings_commands()
+
+        for (let key in App.setting_props) {
+          let props = App.setting_props[key]
+
+          if (props.category === `auxclick`) {
+            App.settings_make_menu(key, opts)
+          }
+        }
+      },
     },
     menus: {
       info: `Customize context and action menus`,
+      setup: () => {},
     },
     keyboard: {
       info: `You can use these custom shortcuts to run commands. You can define if you need ctrl, shift, or alt`,
       image: `img/cewik.jpg`,
       image_title: `Cewik using his keyboard`,
+      setup: () => {},
     },
     warns: {
       info: `When to show the confirmation dialog on some actions`,
+      setup: () => {
+        App.settings_make_menu(`warn_on_close_tabs`, App.tab_warn_opts)
+        App.settings_make_menu(`warn_on_unload_tabs`, App.tab_warn_opts)
+      },
     },
     more: {
       info: `More advanced settings`,
+      setup: () => {
+        App.settings_make_menu(`hover_effect`, App.effects)
+        App.settings_make_menu(`selected_effect`, App.effects)
+        App.settings_make_menu(`double_click_command`, App.settings_commands())
+      },
     },
   }
 }
