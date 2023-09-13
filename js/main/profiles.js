@@ -457,7 +457,7 @@ App.get_profile = (url) => {
   for (let key in profile) {
     let props = App.profile_props[key]
 
-    if (!profile[key].version || profile[key].version < props.version) {
+    if (profile[key].version !== props.version) {
       if (props.type === `list`) {
         profile[key].value = App.clone(props.value)
       }
