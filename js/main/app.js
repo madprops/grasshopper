@@ -265,7 +265,6 @@ App.backgrounds = [
   {url: `orbit.gif`, effect: `none`, tiles: `none`},
   {url: `neurons.jpg`, effect: `invert`, tiles: `200px`},
   {url: `stones.jpg`, effect: `none`, tiles: `200px`},
-  {url: `kazam.jpg`, effect: `none`, tiles: `200px`},
 ]
 
 App.background_effects = [
