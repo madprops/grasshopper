@@ -170,7 +170,7 @@ App.common_menu_items = (o_items, item, multiple) => {
     items.push({
       text: `Edit`,
       get_items: () => {
-        return App.get_edit_items(item, multiple)
+        return App.get_edit_items(item)
       }
     })
   }

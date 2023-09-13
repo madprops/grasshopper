@@ -915,7 +915,7 @@ App.refresh_profile_filters = () => {
   }
 }
 
-App.get_edit_items = (item, multiple) => {
+App.get_edit_items = (item) => {
   let items = []
 
   items.push({
