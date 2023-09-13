@@ -264,7 +264,6 @@ App.backgrounds = [
   {url: `grid.jpg`, effect: `none`, tiles: `none`},
   {url: `orbit.gif`, effect: `none`, tiles: `none`},
   {url: `purple.jpg`, effect: `invert`, tiles: `200px`},
-  {url: `wind.jpg`, effect: `grayscale`, tiles: `200px`},
   {url: `overlap.jpg`, effect: `none`, tiles: `200px`},
   {url: `stones.jpg`, effect: `none`, tiles: `200px`},
   {url: `kazam.jpg`, effect: `none`, tiles: `200px`},

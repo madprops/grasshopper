@@ -785,7 +785,8 @@ App.show_settings = () => {
 }
 
 App.show_settings_category = (category) => {
-  App.check_settings_addlist()
+  App.get_settings_with_list()
+  App.check_settings_addlist(category)
   App.settings_category = category
   App.show_window(`settings_${category}`)
 }
@@ -1135,10 +1136,28 @@ App.fill_settings = (category) => {
   }
 }
 
-App.check_settings_addlist = () => {
+App.get_settings_with_list = () => {
+  if (!App.settings_with_list) {
+    App.settings_with_list = []
+
+    for (let key in App.setting_props) {
+      let props = App.setting_props[key]
+
+      if (props.type === `list`) {
+        if (!App.settings_with_list.includes(props.category)) {
+          App.settings_with_list.push(props.category)
+        }
+      }
+    }
+  }
+}
+
+App.check_settings_addlist = (category) => {
   if (!App.settings_addlist_ready) {
-    App.setup_settings_addlist()
-    App.settings_addlist_ready = true
+    if (App.settings_with_list.includes(category)) {
+      App.setup_settings_addlist()
+      App.settings_addlist_ready = true
+    }
   }
 }
 
