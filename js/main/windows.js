@@ -41,16 +41,17 @@ App.create_window = (args) => {
   }
 
   let content = DOM.create(`div`, `window_content window_content_${args.cls}`, `window_content_${args.id}`)
+  let content_html
 
   if (args.element) {
-    content.append(args.element.cloneNode(true))
+    content_html = args.element.outerHTML
   }
   else {
-    let content_html = App.get_template(args.id)
+    content_html = App.get_template(args.id)
+  }
 
-    if (content_html) {
-      content.innerHTML = content_html
-    }
+  if (content_html) {
+    content.innerHTML = content_html
   }
 
   el.append(content)
@@ -71,13 +72,7 @@ App.create_window = (args) => {
 
   w.show = (scroll = true) => {
     if (!args.persistent) {
-      if (args.element) {
-        content.innerHTML = ``
-        content.append(args.element.cloneNode(true))
-      }
-      else {
-        content.innerHTML = content_html
-      }
+      content.innerHTML = content_html
 
       if (top_html) {
         top.innerHTML = top_html
