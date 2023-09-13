@@ -566,7 +566,57 @@ App.build_settings = () => {
     theme: {
       info: `Set the colors and background image. Can also enable automatic changes`,
       setup: () => {
-        App.start_theme_settings()
+        App.start_color_picker(`background_color`)
+        App.start_color_picker(`text_color`)
+
+        App.settings_make_menu(`background_effect`, App.background_effects, () => {
+          App.apply_theme()
+        })
+
+        App.settings_make_menu(`background_tiles`, App.background_tiles, () => {
+          App.apply_theme()
+        })
+
+        let auto_opts = [
+          {text: `Never`, value: `never`},
+          {text: `1 minute`, value: `1_minutes`},
+          {text: `5 minutes`, value: `5_minutes`},
+          {text: `30 minutes`, value: `30_minutes`},
+          {text: `1 hour`, value: `1_hours`},
+          {text: `6 hours`, value: `6_hours`},
+          {text: `12 hours`, value: `12_hours`},
+          {text: `24 hours`, value: `24_hours`},
+        ]
+
+        App.settings_make_menu(`auto_colors`, auto_opts, () => {
+          App.start_theme_interval(`auto_colors`)
+        })
+
+        App.settings_make_menu(`auto_background`, auto_opts, () => {
+          App.start_theme_interval(`auto_background`)
+        })
+
+        App.settings_make_menu(`random_colors`, [
+          {text: `Only Dark`, value: `dark`},
+          {text: `Only Light`, value: `light`},
+          {text: `Dark & Light`, value: `both`},
+        ])
+
+        DOM.ev(DOM.el(`#settings_background_color_random`), `click`, () => {
+          App.random_settings_color(`background`)
+        })
+
+        DOM.ev(DOM.el(`#settings_text_color_random`), `click`, () => {
+          App.random_settings_color(`text`)
+        })
+
+        DOM.ev(DOM.el(`#settings_background_image_pick`), `click`, (e) => {
+          App.pick_background(e)
+        })
+
+        DOM.ev(DOM.el(`#settings_background_image_next`), `click`, (e) => {
+          App.next_background(e)
+        })
       },
     },
     colors: {
