@@ -263,8 +263,8 @@ App.backgrounds = [
   {url: `merkoba.jpg`, effect: `none`, tiles: `none`},
   {url: `purple.jpg`, effect: `none`, tiles: `none`},
   {url: `orbit.gif`, effect: `none`, tiles: `none`},
-  {url: `neurons.jpg`, effect: `invert`, tiles: `200px`},
   {url: `stones.jpg`, effect: `none`, tiles: `200px`},
+  {url: `neurons.jpg`, effect: `invert`, tiles: `200px`},
 ]
 
 App.background_effects = [
