@@ -266,7 +266,6 @@ App.backgrounds = [
   {url: `neurons.jpg`, effect: `invert`, tiles: `200px`},
   {url: `stones.jpg`, effect: `none`, tiles: `200px`},
   {url: `kazam.jpg`, effect: `none`, tiles: `200px`},
-  {url: `patterns.jpg`, effect: `invert`, tiles: `none`},
 ]
 
 App.background_effects = [
