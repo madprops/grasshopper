@@ -454,27 +454,27 @@ App.build_settings = () => {
   info: `Re-use the filter when moving across modes`}
 
   obj.max_search_items = {value: 500, category: category, type: `number`,
-  name: `Max Search Items`, placeholder: `Number`, min: 1, version: 1,
+  name: `Max Search Items`, placeholder: `Number`, min: 1, max: 99999, version: 1,
   info: `Max items to return on search modes like history and bookmarks`}
 
   obj.deep_max_search_items = {value: 5000, category: category, type: `number`,
-  name: `Deep Max Search Items`, placeholder: `Number`, min: 1, version: 1,
+  name: `Deep Max Search Items`, placeholder: `Number`, min: 1, max: 99999, version: 1,
   info: `Max search items to return in deep mode (more items)`}
 
   obj.history_max_months = {value: 18, category: category, type: `number`,
-  name: `History Max Months`, placeholder: `Number`, min: 1, version: 1,
+  name: `History Max Months`, placeholder: `Number`, min: 1, max: 9999, version: 1,
   info: `How many months back to consider when searching history`}
 
   obj.deep_history_max_months = {value: 54, category: category, type: `number`,
-  name: `Deep History Max Months`, placeholder: `Number`, min: 1, version: 1,
+  name: `Deep History Max Months`, placeholder: `Number`, min: 1, max: 9999, version: 1,
   info: `How many months back to consider when searching history in deep mode (more months)`}
 
   obj.filter_delay = {value: 50, category: category, type: `number`,
-  name: `Filter Delay`, action: `filter_debouncers`, placeholder: `Number`, min: 1, version: 1,
+  name: `Filter Delay`, action: `filter_debouncers`, placeholder: `Number`, min: 1, max: 9999, version: 1,
   info: `The filter delay on instant modes like tabs and closed`}
 
   obj.filter_delay_search = {value: 225, category: category, type: `number`,
-  name: `Filter Delay (Search)`, action: `filter_debouncers`, placeholder: `Number`, min: 1, version: 1,
+  name: `Filter Delay (Search)`, action: `filter_debouncers`, placeholder: `Number`, min: 1, max: 9999, version: 1,
   info: `The filter delay on search modes like history and bookmarks`}
 
   obj.debug_mode = {value: false, category: category, type: `checkbox`, name: `Debug Mode`, version: 1,
