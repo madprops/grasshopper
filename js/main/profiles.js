@@ -1401,7 +1401,7 @@ App.profile_set_value = (key, value, actions = false) => {
   if (props.type === `list`) {
     // Temporary fix
     if (typeof value === `string`) {
-      value = [...App[`profile_fix_${key}`](value.split(`\n`))]
+      value = [...value.split(`\n`)]
     }
 
     value = App[`profile_fix_${key}`](value)
