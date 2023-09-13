@@ -428,27 +428,42 @@ App.apply_profiles = (urls) => {
 }
 
 App.get_profile = (url) => {
-  let current
+  let profile
 
-  function proc (profile) {
-    if (!current) {
-      current = profile
+  function proc (pf) {
+    if (!profile) {
+      profile = pf
     }
-    else if (profile.url.length > current.url.length) {
-      current = profile
+    else if (pf.url.length > profile.url.length) {
+      profile = pf
     }
   }
 
-  for (let profile of App.profiles) {
-    if (profile.exact.value) {
-      if (url === profile.url.value) {
-        proc(profile)
+  for (let pf of App.profiles) {
+    if (pf.exact.value) {
+      if (url === pf.url.value) {
+        proc(pf)
       }
     }
     else {
-      if (url.startsWith(profile.url.value)) {
-        proc(profile)
+      if (url.startsWith(pf.url.value)) {
+        proc(pf)
       }
+    }
+  }
+
+  for (let key in profile) {
+    let props = App.profile_props[key]
+
+    if (!profile[key].version || profile[key].version < props.version) {
+      if (props.type === `list`) {
+        profile[key].value = App.clone(props.value)
+      }
+      else {
+        profile[key].value = props.value
+      }
+
+      profile[key].version = props.version
     }
   }
 
@@ -467,23 +482,6 @@ App.get_profiles = (items) => {
     }
     else {
       add.push(item)
-    }
-  }
-
-  for (let profile of profiles) {
-    for (let key in profile) {
-      let props = App.profile_props[key]
-
-      if (!profile[key].version || profile[key].version < props.version) {
-        if (props.type === `list`) {
-          profile[key].value = App.clone(props.value)
-        }
-        else {
-          profile[key].value = props.value
-        }
-
-        profile[key].version = props.version
-      }
     }
   }
 
@@ -536,14 +534,14 @@ App.check_profiles = () => {
   let changed = false
 
   for (let profile of App.profiles) {
-    if (profile.url === undefined) {
-      profile.url = `https://empty.profile`
+    if (profile.url.value === undefined) {
+      profile.url.value = `https://empty.profile`
       changed = true
     }
 
     for (let key in App.profile_props) {
-      if (profile[key] === undefined) {
-        profile[key] = App.clone(App.profile_props[key].value)
+      if (profile[key].value === undefined) {
+        profile[key].value = App.clone(App.profile_props[key].value)
         changed = true
       }
     }
@@ -1210,7 +1208,7 @@ App.profile_editor_full_url = () => {
 App.get_edit_options = (item) => {
   let items = []
   let profile = App.get_profile(item.url)
-  let exact = profile && (profile.url === item.url)
+  let exact = profile && (profile.url.value === item.url)
 
   if (profile) {
     items.push({
