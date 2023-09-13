@@ -1,11 +1,11 @@
 App.profile_props = {
-  url: {value: ``, type: `string`, version: 1},
+  url: {value: ``, type: `text`, version: 1},
   exact: {value: false, type: `boolean`, version: 1},
   tags: {value: [], type: `list`, version: 1},
   notes: {value: [], type: `list`, version: 1},
-  title: {value: ``, type: `string`, version: 1},
+  title: {value: ``, type: `text`, version: 1},
   color: {value: `none`, type: `menu`, version: 1},
-  icon: {value: ``, type: `string`, version: 1},
+  icon: {value: ``, type: `text`, version: 1},
 }
 
 App.setup_profile_editor = () => {
@@ -51,6 +51,16 @@ App.setup_profile_editor = () => {
 
       if (props.type === `list`) {
         App[`profile_addlist_${key}`]()
+      }
+      else if (props.type === `text`) {
+        DOM.ev(DOM.el(`#profile_editor_${key}`), `input`, () => {
+          App.profile_modified()
+        })
+      }
+      else if (props.type === `boolean`) {
+        DOM.ev(DOM.el(`#profile_editor_${key}`), `change`, () => {
+          App.profile_modified()
+        })
       }
     }
 
@@ -1394,7 +1404,7 @@ App.profile_get_value = (key) => {
     if (props.type === `boolean`) {
       return el.checked
     }
-    else if (props.type === `string`) {
+    else if (props.type === `text`) {
       return el.value.trim()
     }
   }
@@ -1422,7 +1432,7 @@ App.profile_set_value = (key, value, actions = false) => {
     if (props.type === `boolean`) {
       el.checked = value
     }
-    else if (props.type === `string`) {
+    else if (props.type === `text`) {
       el.value = value
     }
   }
