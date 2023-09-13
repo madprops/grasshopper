@@ -1,11 +1,11 @@
 App.profile_props = {
-  url: {value: ``, type: `string`},
-  exact: {value: false, type: `boolean`},
-  tags: {value: [], type: `list`},
-  notes: {value: [], type: `list`},
-  title: {value: ``, type: `string`},
-  color: {value: `none`, type: `menu`},
-  icon: {value: ``, type: `string`},
+  url: {value: ``, type: `string`, version: 1},
+  exact: {value: false, type: `boolean`, version: 1},
+  tags: {value: [], type: `list`, version: 1},
+  notes: {value: [], type: `list`, version: 1},
+  title: {value: ``, type: `string`, version: 1},
+  color: {value: `none`, type: `menu`, version: 1},
+  icon: {value: ``, type: `string`, version: 1},
 }
 
 App.setup_profile_editor = () => {
@@ -148,15 +148,15 @@ App.show_profile_editor = (item, type, action = `edit`) => {
       let profile = profiles[0]
 
       if (action === `edit`) {
-        App.profile_set_value(`tags`, profile.tags)
-        App.profile_set_value(`notes`, profile.notes)
+        App.profile_set_value(`tags`, profile.tags.value)
+        App.profile_set_value(`notes`, profile.notes.value)
       }
 
-      App.profile_set_value(`url`, profile.url)
-      App.profile_set_value(`exact`, profile.exact)
-      App.profile_set_value(`title`, profile.title)
-      App.profile_set_value(`icon`, profile.icon)
-      App.profile_set_value(`color`, profile.color)
+      App.profile_set_value(`url`, profile.url.value)
+      App.profile_set_value(`exact`, profile.exact.value)
+      App.profile_set_value(`title`, profile.title.value)
+      App.profile_set_value(`icon`, profile.icon.value)
+      App.profile_set_value(`color`, profile.color.value)
     }
     else {
       App.profile_set_value(`url`, items[0].url)
@@ -199,21 +199,27 @@ App.show_profile_editor = (item, type, action = `edit`) => {
 }
 
 App.get_empty_profile = (url) => {
-  let obj = {}
+  let profile = {}
 
   for (let key in App.profile_props) {
     let props = App.profile_props[key]
+    profile[key] = {}
+    profile[key].version = props.version
+
+    if (key === `url`) {
+      profile.url.value = url
+      continue
+    }
 
     if (props.type === `list`) {
-      obj[key] = App.clone(props.value)
+      profile[key].value = App.clone(props.value)
     }
     else {
-      obj[key] = props.value
+      profile[key].value = props.value
     }
   }
 
-  obj.url = url
-  return obj
+  return profile
 }
 
 App.copy_profile = (profile) => {
@@ -270,16 +276,16 @@ App.save_profile = (args) => {
 
   function proc (profile, p_mode) {
     let og_url = profile.url
-    profile.url = args.url || profile.url
+    profile.url.value = args.url || profile.url.value
 
-    if (!profile.url) {
+    if (!profile.url.value) {
       return
     }
 
-    profile.url = App.format_url(profile.url)
+    profile.url.value = App.format_url(profile.url.value)
 
     if (args.type === `all`) {
-      profile.exact = args.exact
+      profile.exact.value = args.exact
     }
 
     if (args.type === `all` || args.type === `tags`) {
@@ -292,42 +298,42 @@ App.save_profile = (args) => {
       }
 
       if (p_mode === `edit` && args.action === `add`) {
-        for (let tag of profile.tags) {
+        for (let tag of profile.tags.value) {
           if (!has_tag(n_tags, tag)) {
             n_tags.push(tag)
           }
         }
       }
 
-      profile.tags = n_tags
+      profile.tags.value = n_tags
     }
 
     if (args.type === `all` || args.type === `notes`) {
       let n_notes = args.notes
 
       if (p_mode === `edit` && args.action === `add`) {
-        n_notes = [...args.notes, ...profile.notes]
+        n_notes = [...args.notes, ...profile.notes.value]
       }
 
-      profile.notes = n_notes
+      profile.notes.value = n_notes
     }
 
     if (args.type === `all` || args.type === `title`) {
-      profile.title = args.title
+      profile.title.value = args.title
     }
 
     if (args.type === `all` || args.type === `icon`) {
-      profile.icon = args.icon
+      profile.icon.value = args.icon
     }
 
     if (args.type === `all` || args.type === `color`) {
-      profile.color = args.color
+      profile.color.value = args.color
     }
 
-    App.profiles = App.profiles.filter(x => x.url !== og_url)
+    App.profiles = App.profiles.filter(x => x.url.value !== og_url)
 
-    if (og_url !== profile.url) {
-      App.profiles = App.profiles.filter(x => x.url !== profile.url)
+    if (og_url !== profile.url.value) {
+      App.profiles = App.profiles.filter(x => x.url.value !== profile.url.value)
     }
 
     if (App.used_profile(profile)) {
@@ -339,7 +345,7 @@ App.save_profile = (args) => {
     }
 
     add_url(og_url)
-    add_url(profile.url)
+    add_url(profile.url.value)
   }
 
   // Added
@@ -434,13 +440,13 @@ App.get_profile = (url) => {
   }
 
   for (let profile of App.profiles) {
-    if (profile.exact) {
-      if (url === profile.url) {
+    if (profile.exact.value) {
+      if (url === profile.url.value) {
         proc(profile)
       }
     }
     else {
-      if (url.startsWith(profile.url)) {
+      if (url.startsWith(profile.url.value)) {
         proc(profile)
       }
     }
@@ -461,6 +467,23 @@ App.get_profiles = (items) => {
     }
     else {
       add.push(item)
+    }
+  }
+
+  for (let profile of profiles) {
+    for (let key in profile) {
+      let props = App.profile_props[key]
+
+      if (!profile[key].version || profile[key].version < props.version) {
+        if (props.type === `list`) {
+          profile[key].value = App.clone(props.value)
+        }
+        else {
+          profile[key].value = props.value
+        }
+
+        profile[key].version = props.version
+      }
     }
   }
 
@@ -865,7 +888,7 @@ App.used_profile = (profile) => {
       continue
     }
 
-    if (profile[key].toString() !== App.profile_props[key].value.toString()) {
+    if (profile[key].value.toString() !== App.profile_props[key].value.toString()) {
       return true
     }
   }
@@ -1318,28 +1341,6 @@ App.profile_notes_addlist = () => {
   App.addlist({id: `profile_editor_notes`, items: {}})
 }
 
-App.profile_fix_tags = (tags) => {
-  let fixed = []
-
-  for (let tag of tags) {
-    let t = tag.tag || tag
-    fixed.push({tag: t})
-  }
-
-  return fixed
-}
-
-App.profile_fix_notes = (notes) => {
-  let fixed = []
-
-  for (let note of notes) {
-    let t = note.note || note
-    fixed.push({note: t})
-  }
-
-  return fixed
-}
-
 App.profile_setup_labels = () => {
   for (let el of DOM.els(`.profile_editor_label`)) {
     let key = el.dataset.key
@@ -1399,12 +1400,6 @@ App.profile_set_value = (key, value, actions = false) => {
   let props = App.profile_props[key]
 
   if (props.type === `list`) {
-    // Temporary fix
-    if (typeof value === `string`) {
-      value = [...value.split(`\n`)]
-    }
-
-    value = App[`profile_fix_${key}`](value)
     App[`profile_editor_${key}`] = App.clone(value)
 
     if (actions) {

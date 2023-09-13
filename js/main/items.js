@@ -338,44 +338,20 @@ App.process_info = (mode, info, exclude = [], o_item) => {
   if (profile) {
     has_profile = true
 
-    if (profile.tags) {
-      tags = profile.tags.map(x => x.tag || x)
+    if (profile.title.value) {
+      custom_title = profile.title.value
     }
 
-    if (profile.title) {
-      custom_title = profile.title
+    if (profile.color.value !== `none`) {
+      color = profile.color.value
     }
 
-    if (profile.icon) {
-      icon = profile.icon
+    if (profile.tags.value) {
+      tags = profile.tags.value.map(x => x.tag || x)
     }
 
-    if (profile.color && profile.color !== `none`) {
-      color = profile.color
-    }
-
-    if (profile.theme_enabled) {
-      theme_enabled = true
-
-      if (profile.background_color) {
-        background_color = profile.background_color
-      }
-
-      if (profile.text_color) {
-        text_color = profile.text_color
-      }
-
-      if (profile.background_image) {
-        background_image = profile.background_image
-      }
-
-      if (profile.background_effect) {
-        background_effect = profile.background_effect
-      }
-
-      if (profile.background_tiles) {
-        background_tiles = profile.background_tiles
-      }
+    if (profile.icon.value) {
+      icon = profile.icon.value
     }
   }
 
