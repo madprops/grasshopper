@@ -43,7 +43,6 @@ App.create_window = (args) => {
   let content = DOM.create(`div`, `window_content window_content_${args.cls}`, `window_content_${args.id}`)
 
   if (args.element) {
-    console.log(args.element)
     content.append(args.element)
   }
   else {
@@ -75,6 +74,7 @@ App.create_window = (args) => {
       if (args.element) {
         content.innerHTML = ``
         content.append(args.element)
+        console.log(content)
       }
       else {
         content.innerHTML = content_html
