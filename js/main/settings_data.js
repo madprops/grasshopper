@@ -485,7 +485,7 @@ App.build_settings = () => {
   // Category data
   // ###################
 
-  App.setting_categories = {
+  App.setting_catprops = {
     general: {
       info: `There are various categories. Clicking the labels shows menus`,
     },

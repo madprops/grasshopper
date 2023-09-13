@@ -338,6 +338,8 @@ App.settings_filter_focused = () => {
 }
 
 App.setup_settings = () => {
+  App.settings_categories = Object.keys(App.setting_catprops)
+
   let common = {
     persistent: false,
     colored_top: true,
@@ -374,7 +376,8 @@ App.setup_settings = () => {
 
   let id = `general`
 
-  App.create_window(Object.assign({}, common, {id: `settings_${id}`, element: App.settings_build_category(id), setup: () => {
+  App.create_window(Object.assign({}, common, {id: `settings_${id}`,
+  element: App.settings_build_category(id), setup: () => {
     prepare(id)
 
     App.settings_make_menu(`text_mode`, [
@@ -453,14 +456,16 @@ App.setup_settings = () => {
 
   id = `theme`
 
-  App.create_window(Object.assign({}, common, {id: `settings_${id}`, element: App.settings_build_category(id), setup: () => {
+  App.create_window(Object.assign({}, common, {id: `settings_${id}`,
+  element: App.settings_build_category(id), setup: () => {
     prepare(id)
     App.start_theme_settings()
   }}))
 
   id = `colors`
 
-  App.create_window(Object.assign({}, common, {id: `settings_${id}`, element: App.settings_build_category(id), setup: () => {
+  App.create_window(Object.assign({}, common, {id: `settings_${id}`,
+  element: App.settings_build_category(id), setup: () => {
     prepare(id)
 
     for (let color of App.colors) {
@@ -477,7 +482,8 @@ App.setup_settings = () => {
 
   id = `warns`
 
-  App.create_window(Object.assign({}, common, {id: `settings_${id}`, element: App.settings_build_category(id), setup: () => {
+  App.create_window(Object.assign({}, common, {id: `settings_${id}`,
+  element: App.settings_build_category(id), setup: () => {
     prepare(id)
     App.settings_make_menu(`warn_on_close_tabs`, App.tab_warn_opts)
     App.settings_make_menu(`warn_on_unload_tabs`, App.tab_warn_opts)
@@ -485,7 +491,8 @@ App.setup_settings = () => {
 
   id = `more`
 
-  App.create_window(Object.assign({}, common, {id: `settings_${id}`, element: App.settings_build_category(id), setup: () => {
+  App.create_window(Object.assign({}, common, {id: `settings_${id}`,
+  element: App.settings_build_category(id), setup: () => {
     prepare(id)
     App.settings_make_menu(`hover_effect`, App.effects)
     App.settings_make_menu(`selected_effect`, App.effects)
@@ -494,7 +501,8 @@ App.setup_settings = () => {
 
   id = `media`
 
-  App.create_window(Object.assign({}, common, {id: `settings_${id}`, element: App.settings_build_category(id), setup: () => {
+  App.create_window(Object.assign({}, common, {id: `settings_${id}`,
+  element: App.settings_build_category(id), setup: () => {
     prepare(id)
 
     let opts = [
@@ -512,13 +520,15 @@ App.setup_settings = () => {
 
   id = `icons`
 
-  App.create_window(Object.assign({}, common, {id: `settings_${id}`, element: App.settings_build_category(id), setup: () => {
+  App.create_window(Object.assign({}, common, {id: `settings_${id}`,
+  element: App.settings_build_category(id), setup: () => {
     prepare(id)
   }}))
 
   id = `show`
 
-  App.create_window(Object.assign({}, common, {id: `settings_${id}`, element: App.settings_build_category(id), setup: () => {
+  App.create_window(Object.assign({}, common, {id: `settings_${id}`,
+  element: App.settings_build_category(id), setup: () => {
     prepare(id)
 
     App.settings_make_menu(`show_pinline`, [
@@ -530,7 +540,8 @@ App.setup_settings = () => {
 
   id = `gestures`
 
-  App.create_window(Object.assign({}, common, {id: `settings_${id}`, element: App.settings_build_category(id), setup: () => {
+  App.create_window(Object.assign({}, common, {id: `settings_${id}`,
+  element: App.settings_build_category(id), setup: () => {
     prepare(id)
 
     DOM.ev(DOM.el(`#settings_gestures_enabled`), `change`, () => {
@@ -559,7 +570,8 @@ App.setup_settings = () => {
 
   id = `auxclick`
 
-  App.create_window(Object.assign({}, common, {id: `settings_${id}`, element: App.settings_build_category(id), setup: () => {
+  App.create_window(Object.assign({}, common, {id: `settings_${id}`,
+  element: App.settings_build_category(id), setup: () => {
     prepare(id)
     let opts = App.settings_commands()
 
@@ -574,13 +586,15 @@ App.setup_settings = () => {
 
   id = `menus`
 
-  App.create_window(Object.assign({}, common, {id: `settings_${id}`, element: App.settings_build_category(id), setup: () => {
+  App.create_window(Object.assign({}, common, {id: `settings_${id}`,
+  element: App.settings_build_category(id), setup: () => {
     prepare(id)
   }}))
 
   id = `keyboard`
 
-  App.create_window(Object.assign({}, common, {id: `settings_${id}`, element: App.settings_build_category(id), setup: () => {
+  App.create_window(Object.assign({}, common, {id: `settings_${id}`,
+  element: App.settings_build_category(id), setup: () => {
     prepare(id)
   }}))
 
@@ -1317,24 +1331,8 @@ App.pick_background = (e) => {
   NeedContext.show(e.clientX, e.clientY, items)
 }
 
-  // <div class="settings_info">
-  // Define keyboard shortcuts
-  // </div>
-
-  // <div id="setting_keyboard" class="settings_subcontainer"></div>
-  // <img src="img/cewik.jpg" class="settings_image" title="Cewik typing on his keyboard">
-
-//   <div id="settings_keyboard_container" class="settings_container">
-//   <div class="settings_info">
-//     You can use these custom shortcuts to run commands.
-//   </div>
-
-//   <div id="setting_keyboard" class="settings_subcontainer"></div>
-//   <img src="img/cewik.jpg" class="settings_image" title="Cewik typing on his keyboard">
-// </div>
-
 App.settings_build_category = (key) => {
-  let cat = App.setting_categories[key]
+  let cat = App.setting_catprops[key]
   let c = DOM.create(`div`, `settings_container`, `settings_${key}_container`)
   let info = DOM.create(`div`, `settings_info`)
   info.textContent = cat.info
@@ -1352,4 +1350,6 @@ App.settings_build_category = (key) => {
 
     c.append(img)
   }
+
+  return c
 }

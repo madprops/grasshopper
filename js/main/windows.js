@@ -43,6 +43,7 @@ App.create_window = (args) => {
   let content = DOM.create(`div`, `window_content window_content_${args.cls}`, `window_content_${args.id}`)
 
   if (args.element) {
+    console.log(args.element)
     content.append(args.element)
   }
   else {
@@ -71,7 +72,13 @@ App.create_window = (args) => {
 
   w.show = (scroll = true) => {
     if (!args.persistent) {
-      content.innerHTML = content_html
+      if (args.element) {
+        content.innerHTML = ``
+        content.append(args.element)
+      }
+      else {
+        content.innerHTML = content_html
+      }
 
       if (top_html) {
         top.innerHTML = top_html
