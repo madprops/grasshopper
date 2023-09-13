@@ -5,13 +5,17 @@ App.create_popup = (args) => {
   let popup = DOM.create(`div`, `popup_main hidden`, `popup_${args.id}`)
   let container = DOM.create(`div`, `popup_container`, `popup_${args.id}_container`)
   container.tabIndex = 0
+  let content_html
 
   if (args.element) {
-    container.innerHTML = ``
-    container.append(args.element)
+    content_html = args.element.outerHTML
   }
   else {
-    container.innerHTML = App.get_template(args.id)
+    content_html = App.get_template(args.id)
+  }
+
+  if (content_html) {
+    container.innerHTML = content_html
   }
 
   popup.append(container)
