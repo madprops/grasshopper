@@ -337,6 +337,28 @@ App.settings_filter_focused = () => {
   return document.activeElement.classList.contains(`settings_filter`)
 }
 
+App.prepare_settings_category = (category) => {
+  App.fill_settings(category)
+  App.settings_setup_checkboxes(category)
+  App.settings_setup_text(category)
+  App.settings_setup_number(category)
+  App.add_settings_addlist(category)
+  App.settings_setup_labels(category)
+  App.add_settings_switchers(category)
+  App.add_settings_filter(category)
+  let container = DOM.el(`#settings_${category}_container`)
+  container.classList.add(`filter_container`)
+
+  for (let el of DOM.els(`.settings_item`, container)) {
+    el.classList.add(`filter_item`)
+  }
+
+  for (let el of DOM.els(`.settings_label`, container)) {
+    el.classList.add(`filter_text`)
+    el.classList.add(`action`)
+  }
+}
+
 App.setup_settings = () => {
   App.settings_categories = Object.keys(App.setting_catprops)
 
@@ -352,34 +374,12 @@ App.setup_settings = () => {
     },
   }
 
-  function prepare (category) {
-    App.fill_settings(category)
-    App.settings_setup_checkboxes(category)
-    App.settings_setup_text(category)
-    App.settings_setup_number(category)
-    App.add_settings_addlist(category)
-    App.settings_setup_labels(category)
-    App.add_settings_switchers(category)
-    App.add_settings_filter(category)
-    let container = DOM.el(`#settings_${category}_container`)
-    container.classList.add(`filter_container`)
-
-    for (let el of DOM.els(`.settings_item`, container)) {
-      el.classList.add(`filter_item`)
-    }
-
-    for (let el of DOM.els(`.settings_label`, container)) {
-      el.classList.add(`filter_text`)
-      el.classList.add(`action`)
-    }
-  }
-
   for (let key in App.setting_catprops) {
     let catprops = App.setting_catprops[key]
 
     App.create_window(Object.assign({}, common, {id: `settings_${key}`,
     element: App.settings_build_category(key), setup: () => {
-      prepare(key)
+      App.prepare_settings_category(key)
       catprops.setup()
     }}))
   }
