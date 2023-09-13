@@ -34,7 +34,7 @@ App.build_settings = () => {
   obj.pick_mode = {value: `none`, category: category, type: `menu`, name: `Pick Mode`, version: 1,
   info: `What pick mode to use. The picks appear on the left of items`}
 
-  obj.auto_restore = {value: `1_seconds`, category: category, type: `menu`, name: `Auto Restore`, version: 1,
+  obj.auto_restore = {value: `1_seconds`, category: category, type: `menu`, name: `Auto-Restore`, version: 1,
   info: `When to auto-restore after the mouse leaves the window. Or if it should restore instantly after an action.
   Restore means going back to the primary mode and clearing the filter`}
 

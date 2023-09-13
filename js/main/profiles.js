@@ -849,7 +849,7 @@ App.remove_all_auto_reload = () => {
     return
   }
 
-  App.show_confirm(`Remove all auto reload? (${profiles.length})`, () => {
+  App.show_confirm(`Remove all auto-reload? (${profiles.length})`, () => {
     for (let profile of App.profiles) {
       profile.auto_reload = 0
     }
@@ -1278,12 +1278,12 @@ App.start_auto_reload = () => {
   clearInterval(App.auto_reload_interval)
 
   if (!App.auto_reload_delay || isNaN(App.auto_reload_delay)) {
-    App.error(`Wrong auto reload delay`)
+    App.error(`Wrong auto-reload delay`)
     return
   }
 
   App.auto_reload_interval = setInterval(() => {
-    App.debug(`Auto reloading tabs`)
+    App.debug(`Auto-reloading tabs`)
 
     for (let item of App.get_items(`tabs`)) {
       if (item.auto_reload >= 1) {
@@ -1297,7 +1297,7 @@ App.start_auto_reload = () => {
     }
   }, App.auto_reload_delay)
 
-  App.debug(`Started auto reload interval`)
+  App.debug(`Started auto-reload interval`)
 }
 
 App.profile_addlist_tags = () => {
