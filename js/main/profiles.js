@@ -9,7 +9,7 @@ App.profile_props = {
 }
 
 App.setup_profile_editor = () => {
-  App.create_window({id: `profile_editor`, setup: () => {
+  App.create_window({id: `profile_editor`, colored_top: true, setup: () => {
     DOM.ev(DOM.el(`#profile_editor_remove`), `click`, () => {
       App.profile_editor_remove()
     })
