@@ -82,6 +82,7 @@ App.get_profile_items = (item) => {
 App.show_profile_editor = (item, type, action = `edit`) => {
   App.profile_editor_ready = false
   App.profile_editor_new = false
+  App.profile_was_modified = false
 
   if (action === `new`) {
     App.profile_editor_new = true
@@ -1112,10 +1113,13 @@ App.profile_get_shared = (key, profiles) => {
   }
 }
 
-App.profile_make_menu = (key, opts) => {
+App.profile_make_menu = (key, opts,) => {
   App[`profile_menubutton_${key}`] = App.create_menubutton({
     button: DOM.el(`#profile_editor_${key}`),
     opts: opts,
+    on_change: () => {
+      App.profile_modified()
+    },
   })
 }
 
@@ -1244,6 +1248,9 @@ App.profile_addlist_tags = () => {
       set_value: (id, value) => {
         App.profile_editor_tags = value
       },
+      on_modified: () => {
+        App.profile_modified()
+      }
     })
   })
 
@@ -1272,6 +1279,9 @@ App.profile_addlist_notes = () => {
       set_value: (id, value) => {
         App.profile_editor_notes = value
       },
+      on_modified: () => {
+        App.profile_modified()
+      }
     })
   })
 
@@ -1453,8 +1463,21 @@ App.profile_editor_container = (c, show) => {
   }
 }
 
-App.profile_ask_cancel = () => {
-  App.show_confirm(`Close without saving?`, () => {
+App.profile_editor_confirm = () => {
+  if (App.profile_was_modified) {
+    App.show_confirm(`Save changes?`, () => {
+      App.profile_editor_save()
+    }, () => {
+      App.hide_window()
+    })
+  }
+  else {
     App.hide_window()
-  })
+  }
+}
+
+App.profile_modified = () => {
+  if (App.profile_editor_ready) {
+    App.profile_was_modified = true
+  }
 }
