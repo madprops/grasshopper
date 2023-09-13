@@ -1287,7 +1287,7 @@ App.pick_background = (e) => {
       action: () => {
         App.apply_background(bg)
       },
-      image: App.imgdir + bg.url
+      image: App.bgdir + bg.url
     })
   }
 
