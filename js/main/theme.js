@@ -55,7 +55,6 @@ App.apply_theme = (args) => {
   App.debug(`Apply Theme`)
 
   let def_args = {
-    check: false,
     safe_mode: false,
   }
 
@@ -82,18 +81,6 @@ App.apply_theme = (args) => {
       args.background_tiles = App.get_setting(`background_tiles`)
     }
 
-    let s_args = App.str(args)
-
-    if (args.check) {
-      if (App.last_theme_args === s_args) {
-        return
-      }
-    }
-
-    App.last_theme_args = s_args
-    App.last_background_color = args.background_color
-    App.last_text_color = args.text_color
-    App.last_background_image = args.background_image
     App.set_css_var(`background_color`, args.background_color)
     App.set_css_var(`text_color`, args.text_color)
     let main_background = App.colorlib.rgb_to_rgba(args.background_color, 0.93)
