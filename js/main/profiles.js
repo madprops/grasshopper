@@ -1049,7 +1049,7 @@ App.change_color = (item, color, toggle = false) => {
 
   if (toggle) {
     if (profiles.length) {
-      if (profiles[0].color === color) {
+      if (profiles[0].color.value === color) {
         color = `none`
       }
     }
