@@ -532,7 +532,7 @@ App.reset_all_settings = () => {
 App.get_font_size_options = () => {
   let opts = []
 
-  for (let i=12; i<=22; i++) {
+  for (let i=6; i<=22; i++) {
     opts.push({text: `${i} px`, value: i})
   }
 
