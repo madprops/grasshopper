@@ -477,7 +477,16 @@ App.get_profiles = (items) => {
   let add = []
 
   for (let item of items) {
-    let profile = App.get_profile(item.url)
+    let profile
+
+    if (item.url) {
+      if (item.url.value) {
+        profile = App.get_profile(item.url.value)
+      }
+      else {
+        profile = App.get_profile(item.url)
+      }
+    }
 
     if (profile) {
       profiles.push(profile)
