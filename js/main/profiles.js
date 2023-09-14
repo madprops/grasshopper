@@ -1266,10 +1266,10 @@ App.profile_addlist_tags = () => {
       title: `Tags`,
       lowercase: true,
       get_value: (id) => {
-        return App.profile_editor_tags
+        return App.clone(App.profile_editor_tags)
       },
       set_value: (id, value) => {
-        App.profile_editor_tags = value
+        App.profile_editor_tags = App.clone(value)
       },
       on_modified: () => {
         App.profile_modified()
