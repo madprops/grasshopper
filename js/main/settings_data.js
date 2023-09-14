@@ -54,7 +54,7 @@ App.build_settings = () => {
   obj.text_color = {value: App.dark_colors.text, category: category, type: `color`, name: `Text Color`, action: `theme`, btns: [`random`], version: 1,
   info: `The text color`}
 
-  obj.background_image = {value: ``, category: category, type: `text`, name: `BG Image`,
+  obj.background_image = {value: ``, category: category, type: `text`, name: `Background Image`,
   action: `theme`, placeholder: `Image URL`, btns: [`none`], version: 1,
   info: `The background image`}
 
