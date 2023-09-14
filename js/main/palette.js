@@ -149,7 +149,6 @@ App.fill_palette = () => {
 
     let name_lower = cmd.name.toLowerCase()
     let rand = App.random_text.toLowerCase()
-    let rem = App.remove_text.toLowerCase()
 
     if (name_lower.includes(`bookmark`)) {
       el.dataset.alias = name_lower.replace(`bookmark`, `bmark`)
