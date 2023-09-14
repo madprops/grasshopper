@@ -54,8 +54,8 @@ App.build_settings = () => {
   obj.text_color = {value: App.dark_colors.text, category: category, type: `color`, name: `Text Color`, action: `theme`, btns: [`random`], version: 1,
   info: `The text color`}
 
-  obj.background_image = {value: `background.jpg`, category: category, type: `text`, name: `BG Image`,
-  action: `theme`, placeholder: `Image URL`, version: 1,
+  obj.background_image = {value: ``, category: category, type: `text`, name: `BG Image`,
+  action: `theme`, placeholder: `Image URL`, btns: [`none`], version: 1,
   info: `The background image`}
 
   obj.background_effect = {value: `none`, category: category, type: `menu`, action: `theme`, name: `Background Effect`, version: 1,
@@ -568,6 +568,10 @@ App.build_settings = () => {
 
         DOM.ev(DOM.el(`#settings_text_color_random`), `click`, () => {
           App.random_color(`text`)
+        })
+
+        DOM.ev(DOM.el(`#settings_background_image_none`), `click`, () => {
+          App.settings_background_image_none()
         })
       },
     },

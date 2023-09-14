@@ -45,6 +45,10 @@ App.settings_setup_labels = (category) => {
         btns.push([`settings_${key}_random`, App.random_text])
       }
 
+      if (props.btns.includes(`none`)) {
+        btns.push([`settings_${key}_none`, `None`])
+      }
+
       if (btns.length) {
         proc(DOM.el(`#settings_label_${key}`), btns)
       }
@@ -1058,4 +1062,18 @@ App.settings_build_category = (key) => {
   }
 
   return c
+}
+
+App.settings_background_image_none = () => {
+  let el = DOM.el(`#settings_background_image`)
+
+  if (el.value === `none`) {
+    el.value = ``
+  }
+  else {
+    el.value = `none`
+  }
+
+  App.set_setting(`background_image`, el.value)
+  App.apply_theme()
 }
