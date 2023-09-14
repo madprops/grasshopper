@@ -318,10 +318,13 @@ App.save_profile = (args) => {
     }
 
     if (args.type === `all` || args.type === `notes`) {
-      let n_notes = args.notes
+      let n_notes
 
       if (p_mode === `edit` && args.action === `add`) {
         n_notes = [...args.notes, ...profile.notes.value]
+      }
+      else {
+        n_notes = [...args.notes]
       }
 
       profile.notes.value = n_notes
