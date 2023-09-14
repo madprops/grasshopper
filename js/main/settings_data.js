@@ -358,25 +358,25 @@ App.build_settings = () => {
   // ###################
   category = `colors`
 
-  obj.color_mode = {value: `border_icon`, category: category, type: `menu`, name: `Color Mode`, version: 2,
+  obj.color_mode = {value: `border`, category: category, type: `menu`, name: `Color Mode`, version: 2,
   info: `What color mode to use`}
 
-  obj.color_red = {value: `rgba(172, 59, 59, 0.44)`, category: category, type: `color`, name: `Color Red`, version: 1,
+  obj.color_red = {value: `rgb(172, 59, 59)`, category: category, type: `color`, name: `Color Red`, version: 1,
   info: `Color an item red`}
 
-  obj.color_green = {value: `rgba(45, 115, 45, 0.44)`, category: category, type: `color`, name: `Color Green`, version: 1,
+  obj.color_green = {value: `rgb(45, 115, 45)`, category: category, type: `color`, name: `Color Green`, version: 1,
   info: `Color an item green`}
 
-  obj.color_blue = {value: `rgba(59, 59, 147, 0.44)`, category: category, type: `color`, name: `Color Blue`, version: 1,
+  obj.color_blue = {value: `rgb(59, 59, 147)`, category: category, type: `color`, name: `Color Blue`, version: 1,
   info: `Color an item blue`}
 
-  obj.color_yellow = {value: `rgba(200, 200, 88, 0.44)`, category: category, type: `color`, name: `Color Yellow`, version: 1,
+  obj.color_yellow = {value: `rgb(200, 200, 88)`, category: category, type: `color`, name: `Color Yellow`, version: 1,
   info: `Color an item yellow`}
 
-  obj.color_purple = {value: `rgba(124, 35, 166, 0.44)`, category: category, type: `color`, name: `Color Purple`, version: 1,
+  obj.color_purple = {value: `rgb(124, 35, 166)`, category: category, type: `color`, name: `Color Purple`, version: 1,
   info: `Color an item purple`}
 
-  obj.color_orange = {value: `rgba(189, 144, 74, 0.44)`, category: category, type: `color`, name: `Color Orange`, version: 1,
+  obj.color_orange = {value: `rgb(189, 144, 74)`, category: category, type: `color`, name: `Color Orange`, version: 1,
   info: `Color an item orange`}
 
   // ###################
@@ -591,7 +591,7 @@ App.build_settings = () => {
       info: `These are the colors you assign to items by editing their profiles`,
       setup: () => {
         for (let color of App.colors) {
-          App.start_color_picker(`color_${color}`, true)
+          App.start_color_picker(`color_${color}`)
         }
 
         App.settings_make_menu(`color_mode`, [

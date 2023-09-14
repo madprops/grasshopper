@@ -464,7 +464,7 @@ App.to_set = (array) => {
 }
 
 App.color_icon = (color) => {
-  return `<div class='color_icon color_${color}_2'></div>`
+  return `<div class='color_icon background_${color}'></div>`
 }
 
 App.MINUTE = 60000

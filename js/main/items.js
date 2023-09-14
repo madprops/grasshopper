@@ -491,12 +491,12 @@ App.apply_color_mode = (item) => {
   if (color_mode.includes(`border`)) {
     for (let color of App.colors) {
       item.element.classList.remove(`colored`)
-      item.element.classList.remove(`color_${color}`)
+      item.element.classList.remove(`border_${color}`)
     }
 
     if (color) {
       item.element.classList.add(`colored`)
-      item.element.classList.add(`color_${color}`)
+      item.element.classList.add(`border_${color}`)
     }
   }
 }

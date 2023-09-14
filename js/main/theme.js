@@ -48,9 +48,8 @@ App.apply_theme = (args) => {
     }
 
     for (let color of App.colors) {
-      let rgba = App.get_setting(`color_${color}`)
-      App.set_css_var(`color_${color}`, rgba)
-      App.set_css_var(`color_${color}_2`, App.colorlib.rgba_to_rgb(rgba))
+      let rgb = App.get_setting(`color_${color}`)
+      App.set_css_var(`color_${color}`, rgb)
     }
 
     App.set_css_var(`font_size`, App.get_setting(`font_size`) + `px`)
