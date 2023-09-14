@@ -31,7 +31,7 @@ App.build_settings = () => {
   obj.primary_mode = {value: `tabs`, category: category, type: `menu`, name: `Primary Mode`, version: 1,
   info: `The main preferred mode. This is shown at startup`}
 
-  obj.pick_mode = {value: `none`, category: category, type: `menu`, name: `Pick Mode`, version: 1,
+  obj.pick_mode = {value: `single`, category: category, type: `menu`, name: `Pick Mode`, version: 1,
   info: `What pick mode to use. The picks appear on the left of items`}
 
   obj.auto_restore = {value: `1_seconds`, category: category, type: `menu`, name: `Auto-Restore`, version: 1,
