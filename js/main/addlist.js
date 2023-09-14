@@ -48,6 +48,7 @@ App.addlist_save = (id) => {
   }
 
   let lines = App.addlist_get_data(id)
+  line._date_ = App.now()
   lines.splice(data.index, 0, line)
   App.after_addlist(id, lines)
   return true
@@ -612,7 +613,8 @@ App.addlist_list = (args) => {
       text: title,
       action: () => {
         App.addlist_view({id: args.id, index: i, use: args.use})
-      }
+      },
+      info: App.nice_date(line._date_),
     })
   }
 
