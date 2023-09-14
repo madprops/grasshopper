@@ -198,32 +198,6 @@ App.change_background = (url, bg_eff, bg_tiles) => {
   App.check_theme_refresh()
 }
 
-App.next_background = () => {
-  let current = App.get_setting(`background_image`)
-  let next_image
-  let waypoint = false
-  let images = App.backgrounds
-
-  for (let image of images) {
-    if (waypoint) {
-      next_image = image
-      break
-    }
-
-    if (current === image.url) {
-      waypoint = true
-    }
-  }
-
-  if (!next_image) {
-    next_image = images[0]
-  }
-
-  if (next_image) {
-    App.apply_background(next_image)
-  }
-}
-
 App.check_theme_refresh = () => {
   if (App.on_settings()) {
     if (App.settings_category === `theme`) {
@@ -263,7 +237,7 @@ App.set_background = (url) => {
   }
 
   if (!App.is_url(url)) {
-    url = App.bgdir + url
+    url = App.imgdir + url
   }
 
   App.set_css_var(`background_image`, `url(${url})`)
@@ -298,8 +272,4 @@ App.apply_background_effects = (effect, tiles) => {
     bg.style.backgroundSize = `cover`
     bg_rem(`tiles`)
   }
-}
-
-App.apply_background = (bg) => {
-  App.change_background(bg.url, bg.effect, bg.tiles)
 }

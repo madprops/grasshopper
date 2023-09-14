@@ -41,14 +41,6 @@ App.settings_setup_labels = (category) => {
     if ((props.category === category) && props.btns) {
       let btns = []
 
-      if (props.btns.includes(`pick`)) {
-        btns.push([`settings_${key}_pick`, `Pick`])
-      }
-
-      if (props.btns.includes(`next`)) {
-        btns.push([`settings_${key}_next`, `Next`])
-      }
-
       if (props.btns.includes(`random`)) {
         btns.push([`settings_${key}_random`, App.random_text])
       }
@@ -1043,22 +1035,6 @@ App.setup_settings_addlist = () => {
       }))
     }
   }
-}
-
-App.pick_background = (e) => {
-  let items = []
-
-  for (let bg of App.backgrounds) {
-    items.push({
-      text: App.remove_extension(bg.url),
-      action: () => {
-        App.apply_background(bg)
-      },
-      image: App.bgdir + bg.url
-    })
-  }
-
-  NeedContext.show(e.clientX, e.clientY, items)
 }
 
 App.settings_build_category = (key) => {

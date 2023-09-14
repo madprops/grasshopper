@@ -47,7 +47,7 @@ App.max_smooth_scroll = 1000 * 2
 App.settings_ready = false
 App.filter_search_date = 0
 App.settings_addlist_ready = false
-App.bgdir = `/img/bg/`
+App.imgdir = `/img/`
 
 App.settings_save_delay = 250
 App.double_tap_delay = 300
@@ -104,7 +104,6 @@ App.backgrounds = [
   {url: `lights.jpg`, effect: `none`, tiles: `none`},
   {url: `merkoba.jpg`, effect: `none`, tiles: `none`},
   {url: `purple.jpg`, effect: `none`, tiles: `none`},
-  {url: `orbit.gif`, effect: `none`, tiles: `none`},
   {url: `stones.jpg`, effect: `none`, tiles: `200px`},
   {url: `brains.jpg`, effect: `invert`, tiles: `200px`},
 ]
