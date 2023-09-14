@@ -8,7 +8,7 @@
   --bigger_font: 1.2rem;
   --widget_width: 15rem;
   --widget_width_smaller: 6rem;
-  ---color_transition: background-color 1600ms, color 1600ms
+  --color_transition: background-color 1600ms, color 1600ms;
 }
 
 body, html {

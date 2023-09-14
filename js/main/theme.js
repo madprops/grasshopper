@@ -178,8 +178,9 @@ App.set_light_colors = () => {
 }
 
 App.set_colors = (c1, c2) => {
-  App.set_setting(`background_color`, c1)
-  App.set_setting(`text_color`, c2)
+  App.set_setting(`background_color`, c1, false)
+  App.set_setting(`text_color`, c2, false)
+  App.apply_theme()
   App.check_theme_refresh()
 }
 
