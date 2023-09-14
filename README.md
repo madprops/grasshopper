@@ -28,8 +28,4 @@ Grasshoppers have had a long relationship with humans. Swarms of locusts can hav
 
 ---
 
-![](img/swarm.jpg)
-
----
-
 Monero donations: 83pVC5bSvK14GAdGFPxNvb4ZV7kz8TWowByQTshu3kCGCCHWRVt1qFK8xhJawERw9DdxVfCLRmndbT6nf8jkxqiq2iiCqYm
