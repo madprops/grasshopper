@@ -326,12 +326,8 @@ svg {
 }
 
 .hover_effect_background .item:hover,
-.selected_effect_background .selected:not(.colored) {
+.selected_effect_background .selected {
   background-color: var(--alt_color_1);
-}
-
-.selected_effect_background .selected.colored .item_text {
-  text-decoration: underline;
 }
 
 .hover_effect_glow .item:hover .item_text,
@@ -960,14 +956,16 @@ a:visited, a:link, a:hover {
 
 .colored {
   color: white;
+  border-width: 3px;
+  border-style: solid;
 }
 
 .color_red {
-  background-color: var(--color_red);
+  border-color: var(--color_red);
 }
 
 .color_green {
-  background-color: var(--color_green);
+  border-color: var(--color_green);
 }
 
 .color_blue {
