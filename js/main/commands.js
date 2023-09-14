@@ -339,10 +339,6 @@ App.setup_commands = () => {
       App.random_colors()
     }, info: `Change background color and text color to random values`},
 
-    {name: `${App.remove_text} Background`, cmd: `remove_background`, icon: themeicon, action: (args) => {
-      App.change_background(``)
-    }, info: `Remove the current background`},
-
     {name: `Background`, cmd: `change_background`, media: `image`, icon: themeicon, action: (args) => {
       App.change_background(args.item.url)
     }, info: `Change the background to the selected image`},

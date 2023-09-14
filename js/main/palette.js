@@ -166,9 +166,6 @@ App.fill_palette = () => {
     else if (name_lower === `${rand} colors`) {
       el.dataset.alias = `random colors`
     }
-    else if (name_lower === `${rem} background`) {
-      el.dataset.alias = `remove background`
-    }
 
     el.title = cmd.info
     container.append(el)
