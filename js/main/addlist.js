@@ -331,7 +331,6 @@ App.addlist_check_buttons = (args) => {
     let num = App.addlist_get_data(args.id).length
     remove_el.classList.remove(`hidden`)
     move_el.classList.remove(`hidden`)
-    date_el.classList.remove(`hidden`)
 
     if (args.items._date_) {
       date_el.classList.remove(`hidden`)
