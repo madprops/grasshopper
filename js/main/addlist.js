@@ -326,6 +326,7 @@ App.addlist_check_buttons = (args) => {
   prev_el.classList.add(`hidden`)
   next_el.classList.add(`hidden`)
   use_el.classList.add(`hidden`)
+  date_el.classList.add(`hidden`)
 
   if (args.edit) {
     let num = App.addlist_get_data(args.id).length
