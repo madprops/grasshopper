@@ -281,7 +281,7 @@ App.settings_make_menu = (setting, opts, action = () => {}) => {
 
           App.show_confirm(`Reset setting?`, () => {
             App.set_default_setting(setting)
-            App.set_settings_menu(setting)
+            App.set_settings_menu(setting, undefined, false)
             action()
           }, undefined, force)
         }

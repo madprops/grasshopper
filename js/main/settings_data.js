@@ -358,7 +358,7 @@ App.build_settings = () => {
   // ###################
   category = `colors`
 
-  obj.color_mode = {value: `item`, category: category, type: `menu`, name: `Color Mode`, version: 1,
+  obj.color_mode = {value: `icon`, category: category, type: `menu`, name: `Color Mode`, version: 1,
   info: `What color mode to use`}
 
   obj.color_red = {value: `rgba(172, 59, 59, 0.44)`, category: category, type: `color`, name: `Color Red`, version: 1,
