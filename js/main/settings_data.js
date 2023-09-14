@@ -7,9 +7,6 @@ App.build_settings = () => {
   obj.wrap_text = {value: false, category: category, type: `checkbox`, name: `Wrap Text`, version: 1,
   info: `Allow long lines to wrap`}
 
-  obj.item_border = {value: true, category: category, type: `checkbox`, name: `Item Border`, version: 3,
-  info: `Border between each item`}
-
   obj.font_size = {value: 16, category: category, type: `number`, min: 6, max: 28, name: `Font Size`, action: `theme`, version: 1,
   info: `The font size to use for text. The interface scales accordingly`}
 
@@ -21,6 +18,9 @@ App.build_settings = () => {
 
   obj.item_height = {value: `normal`, category: category, type: `menu`, name: `Item Height`, version: 1,
   info: `How tall each item should be`}
+
+  obj.item_border = {value: `none`, category: category, type: `menu`, name: `Item Border`, version: 2,
+  info: `Border between each item`}
 
   obj.width = {value: 75, category: category, type: `menu`, name: `Width`, version: 1,
   info: `Width of the popup`}
@@ -507,6 +507,13 @@ App.build_settings = () => {
 
         App.settings_make_menu(`item_height`, [
           {text: `Compact`, value: `compact`},
+          {text: `Normal`, value: `normal`},
+          {text: `Bigger`, value: `bigger`},
+          {text: `Huge`, value: `huge`},
+        ])
+
+        App.settings_make_menu(`item_border`, [
+          {text: `None`, value: `none`},
           {text: `Normal`, value: `normal`},
           {text: `Bigger`, value: `bigger`},
           {text: `Huge`, value: `huge`},

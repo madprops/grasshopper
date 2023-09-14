@@ -96,11 +96,16 @@ App.apply_theme = (args) => {
       main.classList.add(`hide_scroller`)
     }
 
-    if (App.get_setting(`item_border`)) {
-      main.classList.add(`item_border`)
+    let item_border_opts = [`normal`, `bigger`, `huge`]
+
+    for (let b of item_border_opts) {
+      main.classList.remove(`item_border_${b}`)
     }
-    else {
-      main.classList.remove(`item_border`)
+
+    let item_border = App.get_setting(`item_border`)
+
+    if (item_border_opts.includes(item_border)) {
+      main.classList.add(`item_border_${item_border}`)
     }
 
     App.set_background(args.background_image)
