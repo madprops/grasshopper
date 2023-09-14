@@ -22,9 +22,9 @@ Grasshoppers have had a long relationship with humans. Swarms of locusts can hav
 
 >They're pretty heavy too, so when they go all Kamikaze into my legs or face it makes a pretty noticeable thud, which always totally catches me off guard.
 
->I had to dissect one in biology. Hated every minute of it...
+>I had to dissect one in biology. Hated every minute of it.
 
->I concur! Years ago we were riding quads and unknowingly drove right into an area with thousands of them. They were all over us! I was freaking out and the friend I was riding with knew how afraid of them I was and couldn’t stop laughing to get us out of there. I almost killed him...
+>I concur! Years ago we were riding quads and unknowingly drove right into an area with thousands of them. They were all over us! I was freaking out and the friend I was riding with knew how afraid of them I was and couldn’t stop laughing to get us out of there. I almost killed him.
 
 ---
 
