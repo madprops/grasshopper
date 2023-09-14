@@ -1,6 +1,6 @@
 App.profile_props = {
   url: {value: ``, type: `text`, version: 1},
-  exact: {value: false, type: `boolean`, version: 1},
+  exact: {value: false, type: `checkbox`, version: 1},
   tags: {value: [], type: `list`, version: 1},
   notes: {value: [], type: `list`, version: 1},
   title: {value: ``, type: `text`, version: 1},
@@ -57,7 +57,7 @@ App.setup_profile_editor = () => {
           App.profile_modified()
         })
       }
-      else if (props.type === `boolean`) {
+      else if (props.type === `checkbox`) {
         DOM.ev(DOM.el(`#profile_editor_${key}`), `change`, () => {
           App.profile_modified()
         })
@@ -1414,7 +1414,7 @@ App.profile_get_value = (key) => {
   else {
     let el = DOM.el(`#profile_editor_${key}`)
 
-    if (props.type === `boolean`) {
+    if (props.type === `checkbox`) {
       return el.checked
     }
     else if (props.type === `text`) {
@@ -1442,7 +1442,7 @@ App.profile_set_value = (key, value, actions = false) => {
   else {
     let el = DOM.el(`#profile_editor_${key}`)
 
-    if (props.type === `boolean`) {
+    if (props.type === `checkbox`) {
       el.checked = value
     }
     else if (props.type === `text`) {
