@@ -948,12 +948,12 @@ App.setup_settings_addlist = () => {
 
   let get_value = (id) => {
     let key = id.replace(`settings_`, ``)
-    return App.get_setting(key)
+    return App.clone(App.get_setting(key))
   }
 
   let set_value = (id, value) => {
     let key = id.replace(`settings_`, ``)
-    App.set_setting(key, value)
+    App.set_setting(key, App.clone(value))
   }
 
   let regobj = {

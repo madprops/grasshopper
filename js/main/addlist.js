@@ -83,6 +83,8 @@ App.addlist_register = (args = {}) => {
   top.append(title)
   top.append(btn_next)
   container.append(top)
+  let date = DOM.create(`div`, `addlist_date hidden`, `addlist_date_${args.id}`)
+  container.append(date)
   let els = []
 
   for (let [i, w] of args.widgets.entries()) {
@@ -176,7 +178,7 @@ App.addlist_register = (args = {}) => {
   return container
 }
 
-App.addlist = (args = {}) => {
+App.addlist_edit = (args = {}) => {
   let def_args = App.addlist_def_args()
   args = Object.assign(def_args, args)
   let oargs = App.addlist_oargs(args.id)
@@ -267,7 +269,7 @@ App.addlist_view = (args = {}) => {
     edit: true,
   }
 
-  App.addlist(obj)
+  App.addlist_edit(obj)
 }
 
 App.addlist_enter = () => {
@@ -318,6 +320,7 @@ App.addlist_check_buttons = (args) => {
   let prev_el = DOM.el(`#addlist_prev_${args.id}`)
   let next_el = DOM.el(`#addlist_next_${args.id}`)
   let use_el = DOM.el(`#addlist_use_${args.id}`)
+  let date_el = DOM.el(`#addlist_date_${args.id}`)
   remove_el.classList.add(`hidden`)
   move_el.classList.add(`hidden`)
   prev_el.classList.add(`hidden`)
@@ -328,6 +331,12 @@ App.addlist_check_buttons = (args) => {
     let num = App.addlist_get_data(args.id).length
     remove_el.classList.remove(`hidden`)
     move_el.classList.remove(`hidden`)
+    date_el.classList.remove(`hidden`)
+
+    if (args.items._date_) {
+      date_el.classList.remove(`hidden`)
+      date_el.textContent = App.nice_date(args.items._date_)
+    }
 
     if (num > 1) {
       prev_el.classList.remove(`hidden`)
@@ -608,13 +617,14 @@ App.addlist_list = (args) => {
 
   for (let [i, line] of lines.entries()) {
     let title = oargs.list_text(line)
+    let info = line._date_ ? App.nice_date(line._date_) : ``
 
     items.push({
       text: title,
       action: () => {
         App.addlist_view({id: args.id, index: i, use: args.use})
       },
-      info: App.nice_date(line._date_),
+      info: info,
     })
   }
 
@@ -663,7 +673,7 @@ App.addlist_check = (args) => {
   let [edit, index] = App.addlist_get_line(args.id, args.items)
   args.edit = edit
   args.index = index
-  App.addlist(args)
+  App.addlist_edit(args)
 }
 
 App.addlist_no_items = () => {
@@ -695,7 +705,7 @@ App.addlist_add_buttons = (id) => {
   })
 
   DOM.ev(DOM.el(`#addlist_button_${id}_add`), `click`, () => {
-    App.addlist({id: id, items: {}})
+    App.addlist_edit({id: id, items: {}})
   })
 
   DOM.ev(DOM.el(`#addlist_button_${id}_list`), `click`, () => {
@@ -703,7 +713,7 @@ App.addlist_add_buttons = (id) => {
   })
 
   DOM.ev(DOM.el(`#addlist_button_${id}_edit`), `click`, () => {
-    App.addlist_edit(id)
+    App.addlist_edit_all(id)
   })
 
   DOM.ev(DOM.el(`#addlist_button_${id}_clear`), `click`, () => {
@@ -723,7 +733,7 @@ App.addlist_set_data = (id, value) => {
   oargs.set_value(id, value)
 }
 
-App.addlist_edit = (id) => {
+App.addlist_edit_all = (id) => {
   let sett = App.addlist_get_data(id)
   let value = App.str(sett)
 

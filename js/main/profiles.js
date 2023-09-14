@@ -1356,11 +1356,11 @@ App.profile_addlist_counts = () => {
 }
 
 App.profile_tags_addlist = () => {
-  App.addlist({id: `profile_editor_tags`, items: {}})
+  App.addlist_edit({id: `profile_editor_tags`, items: {}})
 }
 
 App.profile_notes_addlist = () => {
-  App.addlist({id: `profile_editor_notes`, items: {}})
+  App.addlist_edit({id: `profile_editor_notes`, items: {}})
 }
 
 App.profile_setup_labels = () => {
