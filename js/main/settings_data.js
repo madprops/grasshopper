@@ -349,7 +349,7 @@ App.build_settings = () => {
   // ###################
   category = `colors`
 
-  obj.color_mode = {value: `border`, category: category, type: `menu`, name: `Color Mode`, version: 2,
+  obj.color_mode = {value: `border_icon`, category: category, type: `menu`, name: `Color Mode`, version: 2,
   info: `What color mode to use`}
 
   obj.color_red = {value: `rgb(172, 59, 59)`, category: category, type: `color`, name: `Color Red`, version: 1,
