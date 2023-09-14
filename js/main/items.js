@@ -557,16 +557,6 @@ App.create_item_element = (item) => {
     item.element.classList.remove(`selected`)
   }
 
-  if (App.get_setting(`pick_icon`)) {
-    if (App.get_setting(`pick_mode`) !== `none`) {
-      let pick = DOM.create(`div`, `item_pick item_button item_button_left`)
-      pick.textContent = App.get_setting(`pick_icon`)
-      pick.title = `Pick`
-      pick.draggable = true
-      item.element.append(pick)
-    }
-  }
-
   if (item.mode === `tabs`) {
     if (App.get_setting(`close_icon`)) {
       let btn = DOM.create(`div`, `item_button item_button_right item_button_close`)
@@ -1425,43 +1415,6 @@ App.pick = (item) => {
   }
   else {
     App.select_item(item, `nearest_instant`, false)
-  }
-}
-
-App.pick_btn = (item, range = false) => {
-  let pick_mode = App.get_setting(`pick_mode`)
-
-  if (pick_mode === `none`) {
-    return
-  }
-
-  if (pick_mode === `single` && !range) {
-    App.select_item(item, `nearest_smooth`)
-    return
-  }
-
-  if (item.selected) {
-    App.toggle_selected(item, false)
-  }
-  else {
-    let selected = App.get_selected(item.mode)
-    let unselect = false
-
-    if (pick_mode === `smart`) {
-      if (selected !== item && !item.selected) {
-        if (!App.multiple_selected(item.mode)) {
-          if (App.get_index_diff(selected, item) > 1) {
-            unselect = (App.now() - selected.selected_date) > App.max_pick_delay
-          }
-        }
-      }
-    }
-
-    App.toggle_selected(item, true)
-
-    if (unselect) {
-      App.toggle_selected(selected, false)
-    }
   }
 }
 

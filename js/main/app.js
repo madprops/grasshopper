@@ -32,8 +32,6 @@ App.media_scroll = 33
 App.media_types = [`image`, `video`, `audio`]
 App.max_warn_limit = 20
 App.max_tag_filters = 50
-App.item_range_on = false
-App.item_range_select = false
 App.max_filter_history = 10
 App.colors = [`red`, `green`, `blue`, `yellow`, `purple`, `orange`]
 App.theme_safe_mode_msg = false
@@ -58,7 +56,6 @@ App.scroller_delay = 100
 App.pinline_delay = 100
 App.wheel_delay = 100
 App.show_mode_delay = 100
-App.max_pick_delay = 2000
 
 App.settings_icons = {
   general: `⚙️`,

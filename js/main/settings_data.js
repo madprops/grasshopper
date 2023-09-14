@@ -31,9 +31,6 @@ App.build_settings = () => {
   obj.primary_mode = {value: `tabs`, category: category, type: `menu`, name: `Primary Mode`, version: 1,
   info: `The main preferred mode. This is shown at startup`}
 
-  obj.pick_mode = {value: `single`, category: category, type: `menu`, name: `Pick Mode`, version: 1,
-  info: `What pick mode to use. The picks appear on the left of items`}
-
   obj.auto_restore = {value: `1_seconds`, category: category, type: `menu`, name: `Auto-Restore`, version: 1,
   info: `When to auto-restore after the mouse leaves the window. Or if it should restore instantly after an action.
   Restore means going back to the primary mode and clearing the filter`}
@@ -136,9 +133,6 @@ App.build_settings = () => {
   obj.open_icon = {value: `🚀`, category: category, type: `text_smaller`, name: `Open Icon`, placeholder: App.smile_icon, version: 1,
   info: `Icon for the open buttons`}
 
-  obj.pick_icon = {value: `🎯`, category: category, type: `text_smaller`, name: `Pick Icon`, placeholder: App.smile_icon, version: 1,
-  info: `Icon for the picks`}
-
   // ###################
   category = `show`
 
@@ -228,9 +222,6 @@ App.build_settings = () => {
 
   obj.middle_click_footer = {value: `copy_url`, category: category, type: `menu`, name: `Middle-Click Footer`, version: 1,
   info: `Middle-click on the footer`}
-
-  obj.middle_click_pick_button = {value: `filter_domain`, category: category, type: `menu`, name: `Middle-Click Pick Button`, version: 1,
-  info: `Middle-click on the pick button`}
 
   obj.middle_click_close_button = {value: `unload`, category: category, type: `menu`, name: `Middle-Click Close Button`, version: 1,
   info: `Middle-click on the close buttons`}
@@ -517,13 +508,6 @@ App.build_settings = () => {
           {text: `Normal`, value: `normal`},
           {text: `Bigger`, value: `bigger`},
           {text: `Huge`, value: `huge`},
-        ])
-
-        App.settings_make_menu(`pick_mode`, [
-          {text: `None`, value: `none`},
-          {text: `Smart`, value: `smart`},
-          {text: `Single`, value: `single`},
-          {text: `Simple`, value: `simple`},
         ])
 
         App.settings_make_menu(`favicon_source`, [
