@@ -1265,11 +1265,11 @@ App.profile_addlist_tags = () => {
       },
       title: `Tags`,
       lowercase: true,
-      get_value: (id) => {
-        return App.clone(App.profile_editor_tags)
+      get_data: (id) => {
+        return App.profile_editor_tags
       },
-      set_value: (id, value) => {
-        App.profile_editor_tags = App.clone(value)
+      set_data: (id, value) => {
+        App.profile_editor_tags = value
       },
       on_modified: () => {
         App.profile_modified()
@@ -1296,10 +1296,10 @@ App.profile_addlist_notes = () => {
         return items.note
       },
       title: `Notes`,
-      get_value: (id) => {
+      get_data: (id) => {
         return App.profile_editor_notes
       },
-      set_value: (id, value) => {
+      set_data: (id, value) => {
         App.profile_editor_notes = value
       },
       on_modified: () => {

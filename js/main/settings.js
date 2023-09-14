@@ -946,19 +946,19 @@ App.setup_settings_addlist = () => {
     on_hide: on_hide,
   }
 
-  let get_value = (id) => {
+  let get_data = (id) => {
     let key = id.replace(`settings_`, ``)
-    return App.clone(App.get_setting(key))
+    return App.get_setting(key)
   }
 
-  let set_value = (id, value) => {
+  let set_data = (id, value) => {
     let key = id.replace(`settings_`, ``)
-    App.set_setting(key, App.clone(value))
+    App.set_setting(key, value)
   }
 
   let regobj = {
-    get_value: get_value,
-    set_value: set_value,
+    get_data: get_data,
+    set_data: set_data,
   }
 
   let id = `settings_aliases`

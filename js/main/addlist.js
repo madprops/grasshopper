@@ -725,12 +725,12 @@ App.addlist_add_buttons = (id) => {
 
 App.addlist_get_data = (id) => {
   let oargs = App.addlist_oargs(id)
-  return oargs.get_value(id)
+  return App.clone(oargs.get_data(id))
 }
 
 App.addlist_set_data = (id, value) => {
   let oargs = App.addlist_oargs(id)
-  oargs.set_value(id, value)
+  oargs.set_data(id, App.clone(value))
 }
 
 App.addlist_edit_all = (id) => {
