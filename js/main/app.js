@@ -46,7 +46,6 @@ App.max_smooth_scroll = 1000 * 2
 App.settings_ready = false
 App.filter_search_date = 0
 App.settings_addlist_ready = false
-App.imgdir = `/img/`
 App.default_background = `/img/background.jpg`
 
 App.settings_save_delay = 250
