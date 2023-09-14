@@ -65,26 +65,8 @@ App.show_item_menu = async (item, x, y) => {
       })
     }
 
-    if (some_unmuted) {
-      items.push({
-        text: `Mute`,
-        action: () => {
-          App.mute_tabs(item)
-        }
-      })
-    }
-
-    if (some_muted) {
-      items.push({
-        text: `Unmute`,
-        action: () => {
-          App.unmute_tabs(item)
-        }
-      })
-    }
-
     App.common_menu_items(items, item, multiple)
-    App.more_menu_items(items, item, multiple, some_loaded)
+    App.more_menu_items(items, item, multiple, some_loaded, some_unmuted, some_muted)
     App.extra_menu_items(items)
 
     items.push({
@@ -228,10 +210,28 @@ App.common_menu_items = (o_items, item, multiple) => {
   }
 }
 
-App.more_menu_items = (o_items, item, multiple, some_loaded) => {
+App.more_menu_items = (o_items, item, multiple, some_loaded, some_unmuted, some_muted) => {
   let items = []
 
   if (item.mode === `tabs`) {
+    if (some_unmuted) {
+      items.push({
+        text: `Mute`,
+        action: () => {
+          App.mute_tabs(item)
+        }
+      })
+    }
+
+    if (some_muted) {
+      items.push({
+        text: `Unmute`,
+        action: () => {
+          App.unmute_tabs(item)
+        }
+      })
+    }
+
     if (some_loaded) {
       items.push({
         text: `Unload`,
@@ -250,7 +250,6 @@ App.more_menu_items = (o_items, item, multiple, some_loaded) => {
   }
 
   items.push({
-    icon: App.mode_icons.bookmarks,
     text: `Bookmark`,
     action: () => {
       App.bookmark_items(item)
@@ -259,7 +258,6 @@ App.more_menu_items = (o_items, item, multiple, some_loaded) => {
 
   if (item.image && !multiple) {
     items.push({
-      icon: App.settings_icons.theme,
       text: `Background`,
       action: () => {
         App.change_background(item.url)
