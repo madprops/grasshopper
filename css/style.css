@@ -259,25 +259,25 @@ svg {
   border-width: 2px;
   border-style: solid;
   border-color: transparent;
-  margin: -1px;
+  margin: 0 0 -1px -1px;
 }
 
 .item_border_normal .item {
   border-width: 2px;
   border-color: var(--alt_color_1);
-  margin: -1px;
+  margin: 0 0 -1px -1px;
 }
 
 .item_border_bigger .item {
   border-width: 4px;
   border-color: var(--alt_color_1);
-  margin: -2px;
+  margin: 0 0 -2px -2px;
 }
 
 .item_border_huge .item {
   border-width: 6px;
   border-color: var(--alt_color_1);
-  margin: -3px;
+  margin: 0 0 -3px -3px;
 }
 
 .item_icon_container {
