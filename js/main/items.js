@@ -512,23 +512,20 @@ App.refresh_item_element = (item) => {
 App.create_item_element = (item) => {
   item.element.innerHTML = ``
 
-  let color_icon = DOM.create(`div`, `item_info_color hidden`)
-  item.element.append(color_icon)
-  App.apply_color_mode(item)
-
   if (App.get_setting(`show_icons`)) {
     let icon_container = DOM.create(`div`, `item_icon_container`)
     item.element.append(icon_container)
     App.check_item_icon(item)
   }
 
+  let color_icon = DOM.create(`div`, `item_info_color hidden`)
+  item.element.append(color_icon)
+  App.apply_color_mode(item)
   let view_media = DOM.create(`div`, `view_media_button hidden`)
   item.element.append(view_media)
   App.check_view_media(item)
-
   let status = DOM.create(`div`, `item_status hidden`)
   item.element.append(status)
-
   let text = DOM.create(`div`, `item_text`)
   let text_1 = DOM.create(`div`, `item_text_1`)
   let text_2 = DOM.create(`div`, `item_text_2 hidden`)
