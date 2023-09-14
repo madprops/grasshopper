@@ -488,7 +488,7 @@ App.apply_color_mode = (item) => {
     }
   }
 
-  if (color_mode === `item`) {
+  if (color_mode === `border`) {
     for (let color of App.colors) {
       item.element.classList.remove(`colored`)
       item.element.classList.remove(`color_${color}`)

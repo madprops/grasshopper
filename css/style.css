@@ -961,27 +961,27 @@ a:visited, a:link, a:hover {
 }
 
 .color_red {
-  border-color: var(--color_red);
+  border-color: var(--color_red) !important;
 }
 
 .color_green {
-  border-color: var(--color_green);
+  border-color: var(--color_green) !important;
 }
 
 .color_blue {
-  background-color: var(--color_blue);
+  border-color: var(--color_blue) !important;
 }
 
 .color_yellow {
-  background-color: var(--color_yellow);
+  border-color: var(--color_yellow) !important;
 }
 
 .color_purple {
-  background-color: var(--color_purple);
+  border-color: var(--color_purple) !important;
 }
 
 .color_orange {
-  background-color: var(--color_orange);
+  border-color: var(--color_orange) !important;
 }
 
 .color_red_2 {

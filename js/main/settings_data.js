@@ -358,7 +358,7 @@ App.build_settings = () => {
   // ###################
   category = `colors`
 
-  obj.color_mode = {value: `item`, category: category, type: `menu`, name: `Color Mode`, version: 1,
+  obj.color_mode = {value: `border`, category: category, type: `menu`, name: `Color Mode`, version: 2,
   info: `What color mode to use`}
 
   obj.color_red = {value: `rgba(172, 59, 59, 0.44)`, category: category, type: `color`, name: `Color Red`, version: 1,
@@ -598,7 +598,7 @@ App.build_settings = () => {
           {text: `None`, value: `none`},
           {text: `Icon`, value: `icon`},
           {text: `Icon 2`, value: `icon_2`},
-          {text: `Item`, value: `item`},
+          {text: `Border`, value: `border`},
         ])
       },
     },
