@@ -98,30 +98,6 @@ App.light_colors = {
   text: `rgb(50, 50, 55)`,
 }
 
-App.background_effects = [
-  {text: `None`, value: `none`},
-  {text: `Gray`, value: `grayscale`},
-  {text: `Invert`, value: `invert`},
-  {text: `Rotate 1`, value: `rotate_1`},
-  {text: `Rotate 2`, value: `rotate_2`},
-  {text: `Rotate 3`, value: `rotate_3`},
-  {text: `Blur`, value: `blur`},
-]
-
-App.background_tiles = [
-  {text: `None`, value: `none`},
-  {text: `50px`, value: `50px`},
-  {text: `100px`, value: `100px`},
-  {text: `150px`, value: `150px`},
-  {text: `200px`, value: `200px`},
-  {text: `250px`, value: `250px`},
-  {text: `300px`, value: `300px`},
-  {text: `350px`, value: `350px`},
-  {text: `400px`, value: `400px`},
-  {text: `450px`, value: `450px`},
-  {text: `500px`, value: `500px`},
-]
-
 App.effects = [
   {text: `None`, value: `none`},
   {text: `Glow`, value: `glow`},
@@ -130,4 +106,14 @@ App.effects = [
   {text: `Underline`, value: `underline`},
   {text: `Bold`, value: `bold`},
   {text: `Bigger`, value: `bigger`},
+]
+
+App.background_effects = [
+  {text: `None`, value: `none`},
+  {text: `Gray`, value: `grayscale`},
+  {text: `Invert`, value: `invert`},
+  {text: `Rotate 1`, value: `rotate_1`},
+  {text: `Rotate 2`, value: `rotate_2`},
+  {text: `Rotate 3`, value: `rotate_3`},
+  {text: `Blur`, value: `blur`},
 ]

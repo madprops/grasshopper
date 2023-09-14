@@ -558,7 +558,19 @@ App.build_settings = () => {
           App.apply_theme()
         })
 
-        App.settings_make_menu(`background_tiles`, App.background_tiles, () => {
+        App.settings_make_menu(`background_tiles`, [
+          {text: `None`, value: `none`},
+          {text: `50px`, value: `50px`},
+          {text: `100px`, value: `100px`},
+          {text: `150px`, value: `150px`},
+          {text: `200px`, value: `200px`},
+          {text: `250px`, value: `250px`},
+          {text: `300px`, value: `300px`},
+          {text: `350px`, value: `350px`},
+          {text: `400px`, value: `400px`},
+          {text: `450px`, value: `450px`},
+          {text: `500px`, value: `500px`},
+        ], () => {
           App.apply_theme()
         })
 

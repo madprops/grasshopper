@@ -255,13 +255,13 @@ App.apply_background_effects = (effect, tiles) => {
     bg.classList.remove(cls)
   }
 
-  let bg_effect_opts = [`blur`, `grayscale`, `invert`, `rotate_1`, `rotate_2`, `rotate_3`]
+  let effects = App.background_effects.map(x => x.value)
 
-  for (let eff of bg_effect_opts) {
+  for (let eff of effects) {
     bg_rem(eff)
   }
 
-  if (bg_effect_opts.includes(effect)) {
+  if (effects.includes(effect)) {
     bg_add(effect)
   }
 
