@@ -215,7 +215,6 @@ App.refresh_tab = async (id, select, info) => {
   if (item) {
     if (item.pinned !== info.pinned) {
       App.check_pinline()
-      App.check_borders(`tabs`)
     }
 
     App.update_item(`tabs`, item.id, info)

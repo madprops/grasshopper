@@ -56,7 +56,6 @@ App.filter_delay_2 = 50
 App.footer_delay = 100
 App.scroller_delay = 100
 App.pinline_delay = 100
-App.check_borders_delay = 100
 App.wheel_delay = 100
 App.show_mode_delay = 100
 App.max_pick_delay = 2000
