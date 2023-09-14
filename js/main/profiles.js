@@ -1506,6 +1506,12 @@ App.profile_modified = () => {
 }
 
 App.profile_editor_focus = () => {
+  let cc = DOM.el(`#profile_editor_color_container`)
+
+  if (!cc.classList.contains(`hidden`)) {
+    return
+  }
+
   let c = DOM.el(`#profile_editor_container`)
 
   for (let input of DOM.els(`.editor_input`, c)) {
