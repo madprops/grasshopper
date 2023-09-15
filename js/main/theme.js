@@ -255,7 +255,7 @@ App.set_background = (url) => {
       return
     }
 
-    url = `/img/backgrounds/background_${num}.jpg`
+    url = App.background_path(num)
   }
   else if (!App.is_url(url)) {
     unset()

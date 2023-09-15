@@ -41,20 +41,12 @@ App.settings_setup_labels = (category) => {
     if ((props.category === category) && props.btns) {
       let btns = []
 
+      if (props.btns.includes(`pick`)) {
+        btns.push([`settings_${key}_pick`, `Pick`])
+      }
+
       if (props.btns.includes(`random`)) {
         btns.push([`settings_${key}_random`, `Random`])
-      }
-
-      if (props.btns.includes(`1`)) {
-        btns.push([`settings_${key}_1`, `1`])
-      }
-
-      if (props.btns.includes(`2`)) {
-        btns.push([`settings_${key}_2`, `2`])
-      }
-
-      if (props.btns.includes(`3`)) {
-        btns.push([`settings_${key}_3`, `3`])
       }
 
       if (btns.length) {
@@ -1072,8 +1064,29 @@ App.settings_build_category = (key) => {
   return c
 }
 
-App.settings_background_image_pick = (what) => {
-  DOM.el(`#settings_background_image`).value = what
-  App.set_setting(`background_image`, what)
+App.pick_background = (e) => {
+  let items = []
+
+  for (let num=1; num<=App.num_backgrounds; num++) {
+    items.push({
+      text: `Background ${num}`,
+      action: () => {
+        App.do_pick_background(num)
+      },
+      image: App.background_path(num)
+    })
+  }
+
+  NeedContext.show(e.clientX, e.clientY, items)
+}
+
+App.do_pick_background = (num) => {
+  let value = `Background ${num}`
+  DOM.el(`#settings_background_image`).value = value
+  App.set_setting(`background_image`, value)
   App.apply_theme()
+}
+
+App.background_path = (num) => {
+  return App.backgrounds_dir + `background_${num}.jpg`
 }
