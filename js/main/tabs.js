@@ -1,6 +1,6 @@
 App.setup_tabs = () => {
   App.tabs_filter_modes = [
-    {type: `pin`, text:`Pin`, skip: false, info: `Show pinned tabs`},
+    {type: `pinned`, text:`Pinned`, skip: false, info: `Show pinned tabs`},
     {type: `normal`, text:`Normal`, skip: false, info: `Show normal tabs`},
     {type: `playing`, text:`Playing`, skip: false, info: `Show tabs emitting sound`},
     {type: `unloaded`, text:`Unloaded`, skip: false, info: `Show unloaded tabs`},

@@ -69,7 +69,7 @@ App.setup_commands = () => {
       App.step_back()
     }, info: `Trigger the back button`},
 
-    {name: `Select All`, cmd: `select_all_items`, mode: `items`, action: (args) => {
+    {name: `Select All Items`, cmd: `select_all_items`, mode: `items`, action: (args) => {
       App.select_all(args.mode, true)
     }, info: `Select all items`},
 
