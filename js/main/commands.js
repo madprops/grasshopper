@@ -46,7 +46,7 @@ App.setup_commands = () => {
 
   for (let mode of App.modes) {
     let icon = App.mode_icons[mode]
-    let name = `${App.get_mode_name(mode)}`
+    let name = `Show ${App.get_mode_name(mode)}`
 
     show_modes.push({name: name, cmd: `show_${mode}`, icon: icon, action: (args) => {
       App.show_mode(mode)
@@ -84,23 +84,23 @@ App.setup_commands = () => {
     }, info: `Go to the next mode`},
 
     ...show_modes,
-    {name: `Primary`, cmd: `show_primary`, action: (args) => {
+    {name: `Show Primary`, cmd: `show_primary`, action: (args) => {
       App.show_primary_mode()
     }, info: `Show the primary mode`},
 
-    {name: `Settings`, cmd: `show_settings`, action: (args) => {
+    {name: `Show Settings`, cmd: `show_settings`, action: (args) => {
       App.show_settings()
     }, info: `Show the settings`},
 
-    {name: `About`, cmd: `show_about`, action: (args) => {
+    {name: `Show About`, cmd: `show_about`, action: (args) => {
       App.show_window(`about`)
     }, info: `Show the about window`},
 
-    {name: `Palette`, cmd: `show_palette`, action: (args) => {
+    {name: `Show Palette`, cmd: `show_palette`, action: (args) => {
       App.show_palette()
     }, info: `Show the palette`},
 
-    {name: `Item Menu`, cmd: `show_item_menu`, mode: `items`, action: (args) => {
+    {name: `Show Item Menu`, cmd: `show_item_menu`, mode: `items`, action: (args) => {
       App.show_item_menu_2(args.item)
     }, info: `Show the item menu`},
 
@@ -140,15 +140,15 @@ App.setup_commands = () => {
 
     {name: App.separator_string},
 
-    {name: `Back`, cmd: `browser_back`, action: (args) => {
+    {name: `Go Back`, cmd: `browser_back`, action: (args) => {
       App.browser_back()
     }, info: `Go back in browser history`},
 
-    {name: `Forward`, cmd: `browser_forward`, action: (args) => {
+    {name: `Go Forward`, cmd: `browser_forward`, action: (args) => {
       App.browser_forward()
     }, info: `Go forward in browser history`},
 
-    {name: `Reload`, cmd: `browser_reload`, action: (args) => {
+    {name: `Reload Page`, cmd: `browser_reload`, action: (args) => {
       App.browser_reload()
     }, info: `Reload the current page`},
 
