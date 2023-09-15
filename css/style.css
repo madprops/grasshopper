@@ -247,8 +247,7 @@ svg {
 
 .empty_item {
   min-width: 100px;
-  padding-top: calc(var(--item_padding) * 3);
-  padding-bottom: calc(var(--item_padding) * 3);
+  min-height: 5rem;
 }
 
 .last_item {
