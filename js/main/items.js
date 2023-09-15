@@ -403,8 +403,11 @@ App.check_item_icon = (item) => {
     if (item.icon) {
       icon = App.set_text_icon(item.icon)
     }
+    else if (item.favicon) {
+      icon = App.get_favicon_icon(item)
+    }
     else {
-      icon = App.get_img_icon(item)
+      icon = App.get_jdenticon(item.hostname)
     }
 
     container.append(icon)
@@ -559,25 +562,11 @@ App.set_text_icon = (icon_text) => {
   return icon
 }
 
-App.get_img_icon = (item) => {
+App.get_favicon_icon = (item) => {
   let icon = DOM.create(`img`, `item_icon`)
   icon.loading = `lazy`
   icon.width = App.icon_size
   icon.height = App.icon_size
-
-  if (App.get_setting(`favicon_source`) !== `none`) {
-    if (!item.favicon && App.no_favicons.includes(item.mode)) {
-      if (App.is_url(item.url)) {
-        item.favicon = App.get_favicon_url(item)
-      }
-    }
-  }
-
-  DOM.ev(icon, `error`, () => {
-    let icon_2 = App.get_jdenticon(item.hostname)
-    icon.replaceWith(icon_2)
-  })
-
   icon.src = item.favicon
   return icon
 }

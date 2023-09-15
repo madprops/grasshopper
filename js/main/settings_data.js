@@ -35,9 +35,6 @@ App.build_settings = () => {
   info: `When to auto-restore after the mouse leaves the window. Or if it should restore instantly after an action.
   Restore means going back to the primary mode and clearing the filter`}
 
-  obj.favicon_source = {value: `none`, category: category, type: `menu`, name: `Favicon Source`, version: 1,
-  info: `Where to get favicons from, on modes that don't support local favicons like history and bookmarks`}
-
   obj.bookmarks_folder = {value: `Grasshopper`, category: category, type: `text`,
   name: `Bookmarks Folder`, placeholder: `Folder name`, no_empty: true, version: 1,
   info: `Where to save bookmarks`}
@@ -511,12 +508,6 @@ App.build_settings = () => {
           {text: `Normal`, value: `normal`},
           {text: `Bigger`, value: `bigger`},
           {text: `Huge`, value: `huge`},
-        ])
-
-        App.settings_make_menu(`favicon_source`, [
-          {text: `None`, value: `none`},
-          {text: `Google`, value: `google`},
-          {text: `4get`, value: `4get`},
         ])
 
         App.settings_make_menu(`primary_mode`, [
