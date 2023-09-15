@@ -122,7 +122,7 @@ App.setup_commands = () => {
       App.open_items(args.item, false)
     }, info: `Open only the selected item`},
 
-    {name: `Bookmark Item`, cmd: `bookmark_items`, mode: `items`, icon: App.mode_icons.bookmarks, action: (args) => {
+    {name: `Bookmark Items`, cmd: `bookmark_items`, mode: `items`, icon: App.mode_icons.bookmarks, action: (args) => {
       App.bookmark_items(args.item)
     }, info: `Bookmark this item`},
 
