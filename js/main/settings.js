@@ -45,8 +45,16 @@ App.settings_setup_labels = (category) => {
         btns.push([`settings_${key}_random`, `Random`])
       }
 
-      if (props.btns.includes(`none`)) {
-        btns.push([`settings_${key}_none`, `None`])
+      if (props.btns.includes(`1`)) {
+        btns.push([`settings_${key}_1`, `1`])
+      }
+
+      if (props.btns.includes(`2`)) {
+        btns.push([`settings_${key}_2`, `2`])
+      }
+
+      if (props.btns.includes(`3`)) {
+        btns.push([`settings_${key}_3`, `3`])
       }
 
       if (btns.length) {
@@ -1064,14 +1072,14 @@ App.settings_build_category = (key) => {
   return c
 }
 
-App.settings_background_image_none = () => {
+App.settings_background_image_toggle = (what) => {
   let el = DOM.el(`#settings_background_image`)
 
-  if (el.value === `none`) {
+  if (el.value === what) {
     el.value = ``
   }
   else {
-    el.value = `none`
+    el.value = what
   }
 
   App.set_setting(`background_image`, el.value)

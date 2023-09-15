@@ -231,13 +231,31 @@ App.random_color = (what) => {
 }
 
 App.set_background = (url) => {
-  if (url === `none`) {
+  function unset () {
     App.set_css_var(`background_image`, `unset`)
-    return
   }
 
   if (!url) {
-    url = App.default_background
+    unset()
+    return
+  }
+
+  if (url.startsWith(`BG`)) {
+    let match = url.match(/\d+/)
+
+    if (!match) {
+      unset()
+      return
+    }
+
+    let num = parseInt(match[0])
+
+    if (num > App.num_backgrounds) {
+      unset()
+      return
+    }
+
+    url = `/img/bg/${num}.jpg`
   }
 
   App.set_css_var(`background_image`, `url(${url})`)

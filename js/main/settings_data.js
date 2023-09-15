@@ -51,8 +51,8 @@ App.build_settings = () => {
   obj.text_color = {value: App.dark_colors.text, category: category, type: `color`, name: `Text Color`, action: `theme`, btns: [`random`], version: 1,
   info: `The text color`}
 
-  obj.background_image = {value: ``, category: category, type: `text`, name: `Background Image`,
-  action: `theme`, placeholder: `Image URL`, btns: [`none`], version: 1,
+  obj.background_image = {value: `BG 1`, category: category, type: `text`, name: `Background Image`,
+  action: `theme`, placeholder: `Image URL`, btns: [`1`, `2`, `3`], version: 1,
   info: `The background image`}
 
   obj.background_effect = {value: `none`, category: category, type: `menu`, action: `theme`, name: `Background Effect`, version: 1,
@@ -566,8 +566,16 @@ App.build_settings = () => {
           App.random_color(`text`)
         })
 
-        DOM.ev(DOM.el(`#settings_background_image_none`), `click`, () => {
-          App.settings_background_image_none()
+        DOM.ev(DOM.el(`#settings_background_image_1`), `click`, () => {
+          App.settings_background_image_toggle(`BG 1`)
+        })
+
+        DOM.ev(DOM.el(`#settings_background_image_2`), `click`, () => {
+          App.settings_background_image_toggle(`BG 2`)
+        })
+
+        DOM.ev(DOM.el(`#settings_background_image_3`), `click`, () => {
+          App.settings_background_image_toggle(`BG 3`)
         })
       },
     },
