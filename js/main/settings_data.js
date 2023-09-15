@@ -393,11 +393,11 @@ App.build_settings = () => {
   obj.double_click_command = {value: `none`, category: category, type: `menu`, name: `Double Click Command`, version: 1,
   info: `What command to perform when double clicking an item`}
 
-  obj.lock_drag = {value: false, category: category, type: `checkbox`, name: `Lock Drag`, version: 1,
-  info: `Require holding Ctrl to re-order tab items`}
-
   obj.icon_pick = {value: false, category: category, type: `checkbox`, name: `Icon Pick`, version: 1,
   info: `Clicking the the icons selects items`}
+
+  obj.lock_drag = {value: false, category: category, type: `checkbox`, name: `Lock Drag`, version: 1,
+  info: `Require holding Ctrl to re-order tab items`}
 
   obj.single_new_tab = {value: true, category: category, type: `checkbox`, name: `Single New Tab`, version: 1,
   info: `Keep only one new tab at any time`}
