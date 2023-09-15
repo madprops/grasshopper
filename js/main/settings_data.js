@@ -52,7 +52,8 @@ App.build_settings = () => {
   info: `The text color`}
 
   obj.background_image = {value: `Background 1`, category: category, type: `text`, name: `Background Image`,
-  action: `theme`, placeholder: `Image URL`, btns: [`1`, `2`, `3`], version: 1,
+
+  action: `theme`, placeholder: `Image URL`, btns: App.numstrings(1, 3), version: 1,
   info: `The background image. Pick from the buttons or enter a URL`}
 
   obj.background_effect = {value: `none`, category: category, type: `menu`, action: `theme`, name: `Background Effect`, version: 1,
