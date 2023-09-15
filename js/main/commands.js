@@ -110,7 +110,7 @@ App.setup_commands = () => {
 
     {name: App.separator_string},
 
-    {name: `Action`, cmd: `item_action`, mode: `items`, action: (args) => {
+    {name: `Item Action`, cmd: `item_action`, mode: `items`, action: (args) => {
       App[`${args.mode}_action`](args.item)
     }, info: `Trigger the action for the selected item`},
 
