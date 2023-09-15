@@ -114,11 +114,11 @@ App.setup_commands = () => {
       App[`${args.mode}_action`](args.item)
     }, info: `Trigger the action for the selected item`},
 
-    {name: `Open`, cmd: `open_items`, mode: `items`, action: (args) => {
+    {name: `Open Items`, cmd: `open_items`, mode: `items`, action: (args) => {
       App.open_items(args.item)
     }, info: `Open items`},
 
-    {name: `Open Single`, cmd: `open_single_item`, mode: `items`, action: (args) => {
+    {name: `Open Single Item`, cmd: `open_single_item`, mode: `items`, action: (args) => {
       App.open_items(args.item, false)
     }, info: `Open only the selected item`},
 
