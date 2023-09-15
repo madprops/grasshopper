@@ -232,7 +232,6 @@ App.random_color = (what) => {
 
 App.set_background = (url) => {
   function unset () {
-    console.log(`unset`)
     App.set_css_var(`background_image`, `unset`)
   }
 
