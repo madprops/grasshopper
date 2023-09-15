@@ -1,7 +1,3 @@
-App.setup_items = () => {
-  App.start_item_observers()
-}
-
 App.remove_selected_class = (mode) => {
   for (let el of DOM.els(`.selected`, DOM.el(`#${mode}_container`))) {
     el.classList.remove(`selected`)
@@ -11,10 +7,6 @@ App.remove_selected_class = (mode) => {
 App.select_item = (item, scroll = `nearest`, deselect = true) => {
   if (!item) {
     return
-  }
-
-  if (!item.created) {
-    App.create_item_element(item)
   }
 
   let prev = App.get_selected(item.mode)
@@ -29,12 +21,8 @@ App.select_item = (item, scroll = `nearest`, deselect = true) => {
     App.scroll_to_item(item, scroll)
   }
   else {
-    // Elements just got created
-    // Give them time to render
-    requestAnimationFrame(() => {
-      App.scroll_to_item(item, scroll)
-      App.do_check_scroller(item.mode)
-    })
+    App.scroll_to_item(item, scroll)
+    App.do_check_scroller(item.mode)
   }
 }
 
@@ -364,7 +352,6 @@ App.process_info = (mode, info, exclude = [], o_item) => {
     has_profile: has_profile,
     tags: tags,
     color: color,
-    created: false,
     is_item: true,
   }
 
@@ -385,15 +372,8 @@ App.process_info = (mode, info, exclude = [], o_item) => {
   }
 
   if (o_item) {
-    if (o_item.created) {
-      item.created = true
-    }
-
     o_item = Object.assign(o_item, item)
-
-    if (o_item.created) {
-      App.refresh_item_element(o_item)
-    }
+    App.refresh_item_element(o_item)
 
     if (App.get_selected(mode) === o_item) {
       App.update_footer_info(o_item)
@@ -404,16 +384,10 @@ App.process_info = (mode, info, exclude = [], o_item) => {
     item.id = info.id || App[`${mode}_idx`]
     item.visible = true
     item.selected = false
-    App.create_empty_item_element(item)
+    App.create_item_element(item)
     App[`${mode}_idx`] += 1
     return item
   }
-}
-
-App.create_empty_item_element = (item) => {
-  item.element = DOM.create(`div`, `grasshopper_item item ${item.mode}_item empty_item`)
-  item.element.dataset.id = item.id
-  App[`${item.mode}_item_observer`].observe(item.element)
 }
 
 App.check_item_icon = (item) => {
@@ -505,7 +479,8 @@ App.refresh_item_element = (item) => {
 }
 
 App.create_item_element = (item) => {
-  item.element.innerHTML = ``
+  item.element = DOM.create(`div`, `grasshopper_item item ${item.mode}_item`)
+  item.element.dataset.id = item.id
 
   if (App.get_setting(`show_icons`)) {
     let icon_container = DOM.create(`div`, `item_icon_container`)
@@ -572,10 +547,6 @@ App.create_item_element = (item) => {
       item.element.append(btn)
     }
   }
-
-  item.created = true
-  item.element.classList.remove(`empty_item`)
-  App.debug(`Item created in ${item.mode}`)
 }
 
 App.set_text_icon = (icon_text) => {
@@ -736,42 +707,6 @@ App.get_item_by_url = (mode, url) => {
       }
     }
   }
-}
-
-App.start_item_observers = () => {
-  for (let mode of App.modes) {
-    let options = {
-      root: DOM.el(`#${mode}_container`),
-      rootMargin: `0px`,
-      threshold: 0.1,
-    }
-
-    App.intersection_observer(mode, options)
-  }
-}
-
-App.intersection_observer = (mode, options) => {
-  App[`${mode}_item_observer`] = new IntersectionObserver((entries) => {
-    for (let entry of entries) {
-      if (!entry.isIntersecting) {
-        continue
-      }
-
-      if (!entry.target.classList.contains(`item`)) {
-        return
-      }
-
-      let item = App.get_item_by_id(mode, entry.target.dataset.id)
-
-      if (!item) {
-        continue
-      }
-
-      if (!item.created && item.visible) {
-        App.create_item_element(item)
-      }
-    }
-  }, options)
 }
 
 App.setup_item_window = (mode) => {
