@@ -345,7 +345,7 @@ App.setup_commands = () => {
 
     {name: App.separator_string},
 
-    {name: `Restart`, cmd: `restart_extension`, icon: App.bot_icon, action: (args) => {
+    {name: `Restart Extension`, cmd: `restart_extension`, icon: App.bot_icon, action: (args) => {
       App.restart_extension()
     }, info: `Restart the extension (For debugging)`},
   ]
