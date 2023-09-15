@@ -557,10 +557,6 @@ App.clone = (obj) => {
 App.numstrings = (start, end) => {
   let nums = []
 
-  if (start >= end) {
-    return nums
-  }
-
   for (let i=start; i<=end; i++) {
     nums.push(i.toString())
   }
