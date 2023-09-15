@@ -1,9 +1,15 @@
 App.check_first_time = () => {
   if (!App.first_time.date) {
-    App.show_alert_2(`Hi there. The main menu is the top-left button. Check the settings for some customizations. I constantly experiment and change stuff, so expect things to break.`)
+    App.intro_message()
     App.first_time.date = App.now()
     App.stor_save_first_time()
   }
+}
+
+App.intro_message = () => {
+  let s = `Hi there. The main menu is the top-left button. Check the settings for some customizations.
+  I constantly experiment and change stuff, so expect things to break.`
+  App.show_alert_2(App.single_space(s))
 }
 
 App.restart_extension = () => {
