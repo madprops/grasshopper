@@ -275,8 +275,8 @@ App.build_settings = () => {
   info: `Menu when clicking the pinline`}
 
   obj.empty_menu = {value: [
-    {cmd: `select_all_items`},
     {cmd: `new_tab`},
+    {cmd: `select_all_items`},
   ], category: category, type: `list`, name: `Empty Menu`, version: 4,
   info: `Menu when right clicking empty space`}
 
