@@ -130,11 +130,11 @@ App.setup_commands = () => {
       App.bookmark_active(args.item)
     }, info: `Bookmark the current page`},
 
-    {name: `Copy URL`, cmd: `copy_item_url`, mode: `items`, icon: App.clipboard_icon, action: (args) => {
+    {name: `Copy Item URL`, cmd: `copy_item_url`, mode: `items`, icon: App.clipboard_icon, action: (args) => {
       App.copy_url(args.item)
     }, info: `Copy the URL of an item`},
 
-    {name: `Copy Title`, cmd: `copy_item_title`, mode: `items`, icon: App.clipboard_icon, action: (args) => {
+    {name: `Copy Item Title`, cmd: `copy_item_title`, mode: `items`, icon: App.clipboard_icon, action: (args) => {
       App.copy_title(args.item)
     }, info: `Copy the title of an item`},
 
