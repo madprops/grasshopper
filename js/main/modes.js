@@ -128,12 +128,7 @@ App.get_mode_index = (mode) => {
 }
 
 App.get_mode_name = (mode) => {
-  if (mode === `bookmarks`) {
-    return `BMarks`
-  }
-  else {
-    return App.capitalize(mode)
-  }
+  return App.capitalize(mode)
 }
 
 App.show_primary_mode = () => {

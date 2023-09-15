@@ -46,7 +46,7 @@ App.setup_commands = () => {
 
   for (let mode of App.modes) {
     let icon = App.mode_icons[mode]
-    let name = `Show ${App.get_mode_name(mode)}`
+    let name = `${App.get_mode_name(mode)}`
 
     show_modes.push({name: name, cmd: `show_${mode}`, icon: icon, action: (args) => {
       App.show_mode(mode)
@@ -84,19 +84,19 @@ App.setup_commands = () => {
     }, info: `Go to the next mode`},
 
     ...show_modes,
-    {name: `Show Primary`, cmd: `show_main`, action: (args) => {
+    {name: `Primary`, cmd: `show_main`, action: (args) => {
       App.show_primary_mode()
     }, info: `Show the primary mode`},
 
-    {name: `Show Settings`, cmd: `show_settings`, action: (args) => {
+    {name: `Settings`, cmd: `show_settings`, action: (args) => {
       App.show_settings()
     }, info: `Show the settings`},
 
-    {name: `Show About`, cmd: `show_about`, action: (args) => {
+    {name: `About`, cmd: `show_about`, action: (args) => {
       App.show_window(`about`)
     }, info: `Show the about window`},
 
-    {name: `Show Palette`, cmd: `show_palette`, action: (args) => {
+    {name: `Palette`, cmd: `show_palette`, action: (args) => {
       App.show_palette()
     }, info: `Show the palette`},
 
@@ -126,7 +126,7 @@ App.setup_commands = () => {
       App.bookmark_items(args.item)
     }, info: `Bookmark this item`},
 
-    {name: `BMark This`, cmd: `bookmark_this`, icon: App.mode_icons.bookmarks, action: (args) => {
+    {name: `Bookmark This`, cmd: `bookmark_this`, icon: App.mode_icons.bookmarks, action: (args) => {
       App.bookmark_active(args.item)
     }, info: `Bookmark current page`},
 

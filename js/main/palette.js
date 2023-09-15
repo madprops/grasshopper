@@ -150,13 +150,7 @@ App.fill_palette = () => {
     let name_lower = cmd.name.toLowerCase()
     let rand = App.random_text.toLowerCase()
 
-    if (name_lower.includes(`bookmark`)) {
-      el.dataset.alias = name_lower.replace(`bookmark`, `bmark`)
-    }
-    else if (name_lower.includes(`bmark`)) {
-      el.dataset.alias = name_lower.replace(`bmark`, `bookmark`)
-    }
-    else if (name_lower === `dark theme`) {
+    if (name_lower === `dark theme`) {
       el.dataset.alias = `black theme`
     }
     else if (name_lower === `light theme`) {
