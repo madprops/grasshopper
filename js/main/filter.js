@@ -646,12 +646,6 @@ App.do_filter_2 = (mode) => {
       show = true
     }
 
-    if (!show) {
-      if (App.similarity(value, text) >= App.similarity_threshold) {
-        show = true
-      }
-    }
-
     if (show) {
       item.classList.remove(`hidden`)
     }

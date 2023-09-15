@@ -38,7 +38,6 @@ App.theme_safe_mode_msg = false
 App.persistent_modes = [`tabs`]
 App.close_text = `Close`
 App.empty_text = `Empty`
-App.similarity_threshold = 0.7
 App.max_smooth_scroll = 1000 * 2
 App.settings_ready = false
 App.filter_search_date = 0
