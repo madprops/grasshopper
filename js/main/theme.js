@@ -232,6 +232,7 @@ App.random_color = (what) => {
 
 App.set_background = (url) => {
   function unset () {
+    console.log(`unset`)
     App.set_css_var(`background_image`, `unset`)
   }
 
@@ -240,7 +241,7 @@ App.set_background = (url) => {
     return
   }
 
-  if (url.startsWith(`BG`)) {
+  if (url.toLowerCase().startsWith(`bg`)) {
     let match = url.match(/\d+/)
 
     if (!match) {
@@ -256,6 +257,10 @@ App.set_background = (url) => {
     }
 
     url = `/img/bg/${num}.jpg`
+  }
+  else if (!App.is_url(url)) {
+    unset()
+    return
   }
 
   App.set_css_var(`background_image`, `url(${url})`)
