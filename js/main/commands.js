@@ -69,7 +69,7 @@ App.setup_commands = () => {
       App.step_back()
     }, info: `Trigger the back button`},
 
-    {name: `Select All`, cmd: `select_all`, mode: `items`, action: (args) => {
+    {name: `Select All`, cmd: `select_all_items`, mode: `items`, action: (args) => {
       App.select_all(args.mode, true)
     }, info: `Select all items`},
 
@@ -104,7 +104,7 @@ App.setup_commands = () => {
       App.show_item_menu_2(args.item)
     }, info: `Show the item menu`},
 
-    {name: `Show All`, cmd: `show_all`, mode: `items`, action: (args) => {
+    {name: `Show All`, cmd: `show_all_items`, mode: `items`, action: (args) => {
       App.show_all()
     }, info: `Show all items`},
 
@@ -114,15 +114,15 @@ App.setup_commands = () => {
       App[`${args.mode}_action`](args.item)
     }, info: `Trigger the action for the selected item`},
 
-    {name: `Open`, cmd: `open`, mode: `items`, action: (args) => {
+    {name: `Open`, cmd: `open_items`, mode: `items`, action: (args) => {
       App.open_items(args.item)
     }, info: `Open items`},
 
-    {name: `Open Single`, cmd: `open_single`, mode: `items`, action: (args) => {
+    {name: `Open Single`, cmd: `open_single_item`, mode: `items`, action: (args) => {
       App.open_items(args.item, false)
     }, info: `Open only the selected item`},
 
-    {name: `Bookmark Item`, cmd: `bookmark`, mode: `items`, icon: App.mode_icons.bookmarks, action: (args) => {
+    {name: `Bookmark Item`, cmd: `bookmark_items`, mode: `items`, icon: App.mode_icons.bookmarks, action: (args) => {
       App.bookmark_items(args.item)
     }, info: `Bookmark this item`},
 
@@ -130,11 +130,11 @@ App.setup_commands = () => {
       App.bookmark_active(args.item)
     }, info: `Bookmark the current page`},
 
-    {name: `Copy URL`, cmd: `copy_url`, mode: `items`, icon: App.clipboard_icon, action: (args) => {
+    {name: `Copy URL`, cmd: `copy_item_url`, mode: `items`, icon: App.clipboard_icon, action: (args) => {
       App.copy_url(args.item)
     }, info: `Copy the URL of an item`},
 
-    {name: `Copy Title`, cmd: `copy_title`, mode: `items`, icon: App.clipboard_icon, action: (args) => {
+    {name: `Copy Title`, cmd: `copy_item_title`, mode: `items`, icon: App.clipboard_icon, action: (args) => {
       App.copy_title(args.item)
     }, info: `Copy the title of an item`},
 

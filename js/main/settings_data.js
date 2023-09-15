@@ -187,7 +187,7 @@ App.build_settings = () => {
   obj.gesture_right = {value: `next_mode`, category: category, type: `menu`, name: `Gesture Right`, version: 1,
   info: `Right gesture`}
 
-  obj.gesture_up_and_down = {value: `show_all`, category: category, type: `menu`, name: `Gesture Up Down`, version: 1,
+  obj.gesture_up_and_down = {value: `show_all_items`, category: category, type: `menu`, name: `Gesture Up Down`, version: 1,
   info: `Up and Down gesture`}
 
   obj.gesture_left_and_right = {value: `filter_domain`, category: category, type: `menu`, name: `Gesture Left Right`, version: 1,
@@ -199,19 +199,19 @@ App.build_settings = () => {
   obj.middle_click_tabs = {value: `close_tabs`, category: category, type: `menu`, name: `Middle-Click Tabs`, version: 1,
   info: `Middle-click on tab items`}
 
-  obj.middle_click_history = {value: `open`, category: category, type: `menu`, name: `Middle-Click History`, version: 1,
+  obj.middle_click_history = {value: `open_items`, category: category, type: `menu`, name: `Middle-Click History`, version: 1,
   info: `Middle-click on history items`}
 
-  obj.middle_click_bookmarks = {value: `open`, category: category, type: `menu`, name: `Middle-Click Bookmarks`, version: 1,
+  obj.middle_click_bookmarks = {value: `open_items`, category: category, type: `menu`, name: `Middle-Click Bookmarks`, version: 1,
   info: `Middle-click on bookmark items`}
 
-  obj.middle_click_closed = {value: `open`, category: category, type: `menu`, name: `Middle-Click Closed`, version: 1,
+  obj.middle_click_closed = {value: `open_items`, category: category, type: `menu`, name: `Middle-Click Closed`, version: 1,
   info: `Middle-click on closed items`}
 
   obj.middle_click_main_menu = {value: `show_primary`, category: category, type: `menu`, name: `Middle-Click Main Menu`, version: 1,
   info: `Middle-click on the main menu`}
 
-  obj.middle_click_filter_menu = {value: `show_all`, category: category, type: `menu`, name: `Middle-Click Filter Menu`, version: 1,
+  obj.middle_click_filter_menu = {value: `show_all_items`, category: category, type: `menu`, name: `Middle-Click Filter Menu`, version: 1,
   info: `Middle-click on the filter menu`}
 
   obj.middle_click_back_button = {value: `browser_back`, category: category, type: `menu`, name: `Middle-Click Back Button`, version: 1,
@@ -220,13 +220,13 @@ App.build_settings = () => {
   obj.middle_click_actions_menu = {value: `browser_reload`, category: category, type: `menu`, name: `Middle-Click Actions Menu`, version: 1,
   info: `Middle-click on the actions menu`}
 
-  obj.middle_click_footer = {value: `copy_url`, category: category, type: `menu`, name: `Middle-Click Footer`, version: 1,
+  obj.middle_click_footer = {value: `copy_item_url`, category: category, type: `menu`, name: `Middle-Click Footer`, version: 1,
   info: `Middle-click on the footer`}
 
   obj.middle_click_close_button = {value: `unload_tabs`, category: category, type: `menu`, name: `Middle-Click Close Button`, version: 1,
   info: `Middle-click on the close buttons`}
 
-  obj.middle_click_open_button = {value: `open`, category: category, type: `menu`, name: `Middle-Click Open Button`, version: 1,
+  obj.middle_click_open_button = {value: `open_items`, category: category, type: `menu`, name: `Middle-Click Open Button`, version: 1,
   info: `Middle-click on the open buttons`}
 
   obj.middle_click_pinline = {value: `close_normal_tabs`, category: category, type: `menu`, name: `Middle-Click Pinline`, version: 1,
@@ -270,19 +270,19 @@ App.build_settings = () => {
   obj.pinline_menu = {value: [
     {cmd: `select_pinned_tabs`},
     {cmd: `select_normal_tabs`},
-    {cmd: `select_all`},
+    {cmd: `select_all_items`},
   ], category: category, type: `list`, name: `Pinline Menu`, version: 4,
   info: `Menu when clicking the pinline`}
 
   obj.empty_menu = {value: [
-    {cmd: `select_all`},
+    {cmd: `select_all_items`},
     {cmd: `new_tab`},
   ], category: category, type: `list`, name: `Empty Menu`, version: 4,
   info: `Menu when right clicking empty space`}
 
   obj.footer_menu = {value: [
-    {cmd: `copy_url`},
-    {cmd: `copy_title`},
+    {cmd: `copy_item_url`},
+    {cmd: `copy_item_title`},
   ], category: category, type: `list`, name: `Footer Menu`, version: 4,
   info: `Menu when right clicking the footer`}
 
