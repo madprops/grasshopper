@@ -208,7 +208,7 @@ App.build_settings = () => {
   obj.middle_click_closed = {value: `open`, category: category, type: `menu`, name: `Middle-Click Closed`, version: 1,
   info: `Middle-click on closed items`}
 
-  obj.middle_click_main_menu = {value: `show_main`, category: category, type: `menu`, name: `Middle-Click Main Menu`, version: 1,
+  obj.middle_click_main_menu = {value: `show_primary`, category: category, type: `menu`, name: `Middle-Click Main Menu`, version: 1,
   info: `Middle-click on the main menu`}
 
   obj.middle_click_filter_menu = {value: `show_all`, category: category, type: `menu`, name: `Middle-Click Filter Menu`, version: 1,
@@ -253,7 +253,7 @@ App.build_settings = () => {
   info: `History action menu`}
 
   obj.bookmarks_actions = {value: [
-    {cmd: `bookmark_this`},
+    {cmd: `bookmark_page`},
     {cmd: `deep_search`},
     {cmd: `search_media`},
   ], category: category, type: `list`, name: `Bookmark Actions`, version: 1,

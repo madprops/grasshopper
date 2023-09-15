@@ -84,7 +84,7 @@ App.setup_commands = () => {
     }, info: `Go to the next mode`},
 
     ...show_modes,
-    {name: `Primary`, cmd: `show_main`, action: (args) => {
+    {name: `Primary`, cmd: `show_primary`, action: (args) => {
       App.show_primary_mode()
     }, info: `Show the primary mode`},
 
@@ -122,13 +122,13 @@ App.setup_commands = () => {
       App.open_items(args.item, false)
     }, info: `Open only the selected item`},
 
-    {name: `Bookmark`, cmd: `bookmark`, mode: `items`, icon: App.mode_icons.bookmarks, action: (args) => {
+    {name: `Bookmark Item`, cmd: `bookmark`, mode: `items`, icon: App.mode_icons.bookmarks, action: (args) => {
       App.bookmark_items(args.item)
     }, info: `Bookmark this item`},
 
-    {name: `Bookmark This`, cmd: `bookmark_this`, icon: App.mode_icons.bookmarks, action: (args) => {
+    {name: `Bookmark Page`, cmd: `bookmark_page`, icon: App.mode_icons.bookmarks, action: (args) => {
       App.bookmark_active(args.item)
-    }, info: `Bookmark current page`},
+    }, info: `Bookmark the current page`},
 
     {name: `Copy URL`, cmd: `copy_url`, mode: `items`, icon: App.clipboard_icon, action: (args) => {
       App.copy_url(args.item)
