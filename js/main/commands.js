@@ -154,7 +154,7 @@ App.setup_commands = () => {
 
     {name: App.separator_string},
 
-    {name: `New Tab`, cmd: `new_tab`, icon: tabicon, action: (args) => {
+    {name: `New`, cmd: `new_tab`, icon: tabicon, action: (args) => {
       App.new_tab()
     }, info: `Open a new tab`},
 

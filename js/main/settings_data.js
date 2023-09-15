@@ -236,7 +236,7 @@ App.build_settings = () => {
   category = `menus`
 
   obj.tabs_actions = {value: [
-    {cmd: `new`},
+    {cmd: `new_tab`},
     {cmd: `sort_tabs`},
     {cmd: `reopen_tab`},
     {cmd: `show_tabs_info`},
