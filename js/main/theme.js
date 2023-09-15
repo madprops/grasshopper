@@ -240,7 +240,7 @@ App.set_background = (url) => {
     return
   }
 
-  if (url.toLowerCase().startsWith(`bg`)) {
+  if (url.toLowerCase().startsWith(`background`)) {
     let match = url.match(/\d+/)
 
     if (!match) {
@@ -255,7 +255,7 @@ App.set_background = (url) => {
       return
     }
 
-    url = `/img/bg/${num}.jpg`
+    url = `/img/backgrounds/background_${num}.jpg`
   }
   else if (!App.is_url(url)) {
     unset()

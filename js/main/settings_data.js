@@ -51,7 +51,7 @@ App.build_settings = () => {
   obj.text_color = {value: App.dark_colors.text, category: category, type: `color`, name: `Text Color`, action: `theme`, btns: [`random`], version: 1,
   info: `The text color`}
 
-  obj.background_image = {value: `BG 1`, category: category, type: `text`, name: `Background Image`,
+  obj.background_image = {value: `Background 1`, category: category, type: `text`, name: `Background Image`,
   action: `theme`, placeholder: `Image URL`, btns: [`1`, `2`, `3`], version: 1,
   info: `The background image. Pick from the buttons or enter a URL`}
 
@@ -566,17 +566,11 @@ App.build_settings = () => {
           App.random_color(`text`)
         })
 
-        DOM.ev(DOM.el(`#settings_background_image_1`), `click`, () => {
-          App.settings_background_image_pick(`BG 1`)
-        })
-
-        DOM.ev(DOM.el(`#settings_background_image_2`), `click`, () => {
-          App.settings_background_image_pick(`BG 2`)
-        })
-
-        DOM.ev(DOM.el(`#settings_background_image_3`), `click`, () => {
-          App.settings_background_image_pick(`BG 3`)
-        })
+        for (let i=1; i<=App.num_backgrounds; i++) {
+          DOM.ev(DOM.el(`#settings_background_image_${i}`), `click`, () => {
+            App.settings_background_image_pick(`Background ${i}`)
+          })
+        }
       },
     },
     colors: {
