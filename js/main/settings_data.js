@@ -567,15 +567,15 @@ App.build_settings = () => {
         })
 
         DOM.ev(DOM.el(`#settings_background_image_1`), `click`, () => {
-          App.settings_background_image_toggle(`BG 1`)
+          App.settings_background_image_pick(`BG 1`)
         })
 
         DOM.ev(DOM.el(`#settings_background_image_2`), `click`, () => {
-          App.settings_background_image_toggle(`BG 2`)
+          App.settings_background_image_pick(`BG 2`)
         })
 
         DOM.ev(DOM.el(`#settings_background_image_3`), `click`, () => {
-          App.settings_background_image_toggle(`BG 3`)
+          App.settings_background_image_pick(`BG 3`)
         })
       },
     },

@@ -1072,16 +1072,8 @@ App.settings_build_category = (key) => {
   return c
 }
 
-App.settings_background_image_toggle = (what) => {
-  let el = DOM.el(`#settings_background_image`)
-
-  if (el.value === what) {
-    el.value = ``
-  }
-  else {
-    el.value = what
-  }
-
-  App.set_setting(`background_image`, el.value)
+App.settings_background_image_pick = (what) => {
+  DOM.el(`#settings_background_image`).value = what
+  App.set_setting(`background_image`, what)
   App.apply_theme()
 }
