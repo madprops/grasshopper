@@ -1044,28 +1044,28 @@ App.close_menu = () => {
   let items = []
 
   items.push({
-    text: `Normal`,
+    text: `Close Normal Tabs`,
     action: () => {
       App.close_normal_tabs()
     }
   })
 
   items.push({
-    text: `Unloaded`,
+    text: `Close Unloaded Tabs`,
     action: () => {
       App.close_unloaded_tabs()
     }
   })
 
   items.push({
-    text: `Duplicates`,
+    text: `Close Duplicate Tabs`,
     action: () => {
       App.close_duplicate_tabs()
     }
   })
 
   items.push({
-    text: `Visible`,
+    text: `Close Visible Tabs`,
     action: () => {
       App.close_visible_tabs()
     }
