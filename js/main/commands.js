@@ -104,7 +104,7 @@ App.setup_commands = () => {
       App.show_item_menu_2(args.item)
     }, info: `Show the item menu`},
 
-    {name: `Show All`, cmd: `show_all_items`, mode: `items`, action: (args) => {
+    {name: `Show All Items`, cmd: `show_all_items`, mode: `items`, action: (args) => {
       App.show_all()
     }, info: `Show all items`},
 
