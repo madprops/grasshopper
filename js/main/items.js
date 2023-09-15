@@ -171,7 +171,6 @@ App.set_selected = (item) => {
     return
   }
 
-  item.selected_date = App.now()
   App[`last_selected_${item.mode}`] = item
   App.update_footer_info(item)
 }
@@ -405,7 +404,6 @@ App.process_info = (mode, info, exclude = [], o_item) => {
     item.id = info.id || App[`${mode}_idx`]
     item.visible = true
     item.selected = false
-    item.selected_date = 0
     App.create_empty_item_element(item)
     App[`${mode}_idx`] += 1
     return item
@@ -1036,7 +1034,6 @@ App.toggle_selected = (item, what, select = true) => {
   }
   else {
     if (items.length === 1 && select) {
-      item.selected_date = App.now()
       return
     }
 
