@@ -22,6 +22,7 @@ App.get_closed = async () => {
     return []
   }
 
+  results = results.filter(x => x.tab)
   return results.map(x => x.tab)
 }
 

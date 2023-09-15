@@ -298,6 +298,7 @@ App.more_menu_items = (o_items, item, multiple, some_loaded, some_unmuted, some_
 
   if (item.mode === `closed`) {
     items.push({
+      icon: App.mode_icons.closed,
       text: `Forget`,
       action: () => {
         App.forget_closed_item(item)

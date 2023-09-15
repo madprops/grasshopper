@@ -102,7 +102,12 @@ App.do_show_mode = async (mode, reuse_filter = false, force = false) => {
     // Filter will search
   }
   else if (!items_ready) {
-    App.process_info_list(mode, items)
+    if (items.length) {
+      App.process_info_list(mode, items)
+    }
+    else {
+      App.do_check_scroller(mode)
+    }
   }
   else {
     App.update_footer_info(App.get_selected(mode))
