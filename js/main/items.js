@@ -401,10 +401,10 @@ App.check_item_icon = (item) => {
     let icon
 
     if (item.icon) {
-      icon = App.set_text_icon(item.icon)
+      icon = App.get_texticon(item.icon)
     }
     else if (item.favicon) {
-      icon = App.get_favicon_icon(item)
+      icon = App.get_favicon(item)
     }
     else {
       icon = App.get_jdenticon(item.hostname)
@@ -556,17 +556,23 @@ App.create_item_element = (item) => {
   }
 }
 
-App.set_text_icon = (icon_text) => {
+App.get_texticon = (icon_text) => {
   let icon = DOM.create(`div`, `item_icon`)
   icon.textContent = icon_text
   return icon
 }
 
-App.get_favicon_icon = (item) => {
+App.get_favicon = (item) => {
   let icon = DOM.create(`img`, `item_icon`)
   icon.loading = `lazy`
   icon.width = App.icon_size
   icon.height = App.icon_size
+
+  DOM.ev(icon, `error`, () => {
+    let icon_2 = App.get_jdenticon(item.hostname)
+    icon.replaceWith(icon_2)
+  })
+
   icon.src = item.favicon
   return icon
 }
