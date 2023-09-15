@@ -146,20 +146,6 @@ App.fill_palette = () => {
 
     el.innerHTML = `${el.innerHTML}${cmd.name}`
     el.dataset.command = cmd.cmd
-
-    let name_lower = cmd.name.toLowerCase()
-    let rand = App.random_text.toLowerCase()
-
-    if (name_lower === `dark theme`) {
-      el.dataset.alias = `black theme`
-    }
-    else if (name_lower === `light theme`) {
-      el.dataset.alias = `white theme`
-    }
-    else if (name_lower === `${rand} colors`) {
-      el.dataset.alias = `random colors`
-    }
-
     el.title = cmd.info
     container.append(el)
   }

@@ -42,7 +42,7 @@ App.settings_setup_labels = (category) => {
       let btns = []
 
       if (props.btns.includes(`random`)) {
-        btns.push([`settings_${key}_random`, App.random_text])
+        btns.push([`settings_${key}_random`, `Random`])
       }
 
       if (props.btns.includes(`none`)) {

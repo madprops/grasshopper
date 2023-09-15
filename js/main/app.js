@@ -37,7 +37,6 @@ App.colors = [`red`, `green`, `blue`, `yellow`, `purple`, `orange`]
 App.theme_safe_mode_msg = false
 App.persistent_modes = [`tabs`]
 App.close_text = `Close`
-App.random_text = `Rand`
 App.empty_text = `Empty`
 App.similarity_threshold = 0.7
 App.max_smooth_scroll = 1000 * 2
