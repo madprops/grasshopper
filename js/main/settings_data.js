@@ -196,7 +196,7 @@ App.build_settings = () => {
   // ###################
   category = `auxclick`
 
-  obj.middle_click_tabs = {value: `close`, category: category, type: `menu`, name: `Middle-Click Tabs`, version: 1,
+  obj.middle_click_tabs = {value: `close_tabs`, category: category, type: `menu`, name: `Middle-Click Tabs`, version: 1,
   info: `Middle-click on tab items`}
 
   obj.middle_click_history = {value: `open`, category: category, type: `menu`, name: `Middle-Click History`, version: 1,
@@ -223,13 +223,13 @@ App.build_settings = () => {
   obj.middle_click_footer = {value: `copy_url`, category: category, type: `menu`, name: `Middle-Click Footer`, version: 1,
   info: `Middle-click on the footer`}
 
-  obj.middle_click_close_button = {value: `unload`, category: category, type: `menu`, name: `Middle-Click Close Button`, version: 1,
+  obj.middle_click_close_button = {value: `unload_tabs`, category: category, type: `menu`, name: `Middle-Click Close Button`, version: 1,
   info: `Middle-click on the close buttons`}
 
   obj.middle_click_open_button = {value: `open`, category: category, type: `menu`, name: `Middle-Click Open Button`, version: 1,
   info: `Middle-click on the open buttons`}
 
-  obj.middle_click_pinline = {value: `close_normal`, category: category, type: `menu`, name: `Middle-Click Pinline`, version: 1,
+  obj.middle_click_pinline = {value: `close_normal_tabs`, category: category, type: `menu`, name: `Middle-Click Pinline`, version: 1,
   info: `Middle-click on the pinline`}
 
   // ###################
@@ -237,12 +237,12 @@ App.build_settings = () => {
 
   obj.tabs_actions = {value: [
     {cmd: `new`},
-    {cmd: `sort`},
-    {cmd: `reopen`},
-    {cmd: `show_info`},
-    {cmd: `show_urls`},
-    {cmd: `open_urls`},
-    {cmd: `close_menu`},
+    {cmd: `sort_tabs`},
+    {cmd: `reopen_tab`},
+    {cmd: `show_tabs_info`},
+    {cmd: `show_tab_urls`},
+    {cmd: `open_tab_urls`},
+    {cmd: `close_tabs_menu`},
   ], category: category, type: `list`, name: `Tab Actions`, version: 1,
   info: `Tabs action menu`}
 
@@ -268,15 +268,15 @@ App.build_settings = () => {
   info: `If this has items an Extra menu is shown in the item menu when right clicking items`}
 
   obj.pinline_menu = {value: [
-    {cmd: `select_pins`},
-    {cmd: `select_normal`},
+    {cmd: `select_pinned_tabs`},
+    {cmd: `select_normal_tabs`},
     {cmd: `select_all`},
   ], category: category, type: `list`, name: `Pinline Menu`, version: 4,
   info: `Menu when clicking the pinline`}
 
   obj.empty_menu = {value: [
     {cmd: `select_all`},
-    {cmd: `new`},
+    {cmd: `new_tab`},
   ], category: category, type: `list`, name: `Empty Menu`, version: 4,
   info: `Menu when right clicking empty space`}
 
