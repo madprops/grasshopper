@@ -140,6 +140,13 @@ App.apply_theme = (args) => {
     else {
       main.classList.add(`no_wrap`)
     }
+
+    if (App.get_setting(`icon_pick`)) {
+      main.classList.add(`icon_pick`)
+    }
+    else {
+      main.classList.remove(`icon_pick`)
+    }
   }
   catch (err) {
     App.error(err)

@@ -90,6 +90,13 @@ App.mouse_click_action = (mode, e) => {
     return
   }
 
+  if (App.get_setting(`icon_pick`)) {
+    if (e.target.closest(`.item_icon_container`)) {
+      App.pick(item)
+      return
+    }
+  }
+
   App.select_item(item, `nearest_smooth`)
 
   if (mode === `tabs`) {
