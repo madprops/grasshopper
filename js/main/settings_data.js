@@ -53,7 +53,7 @@ App.build_settings = () => {
 
   obj.background_image = {value: `BG 1`, category: category, type: `text`, name: `Background Image`,
   action: `theme`, placeholder: `Image URL`, btns: [`1`, `2`, `3`], version: 1,
-  info: `The background image`}
+  info: `The background image. Pick from the buttons or enter a URL`}
 
   obj.background_effect = {value: `none`, category: category, type: `menu`, action: `theme`, name: `Background Effect`, version: 1,
   info: `The effect on the background image`}
