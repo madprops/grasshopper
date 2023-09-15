@@ -54,7 +54,8 @@ App.custom_menu_items = (name) => {
       text: c.name,
       action: () => {
         App.run_command({cmd: c.cmd, from: name})
-      }
+      },
+      icon: c.icon,
     })
   }
 
