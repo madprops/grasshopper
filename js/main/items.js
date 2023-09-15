@@ -401,7 +401,7 @@ App.check_item_icon = (item) => {
     let icon
 
     if (item.icon) {
-      icon = App.get_texticon(item.icon)
+      icon = App.get_text_icon(item.icon)
     }
     else if (item.favicon) {
       icon = App.get_favicon(item)
@@ -556,7 +556,7 @@ App.create_item_element = (item) => {
   }
 }
 
-App.get_texticon = (icon_text) => {
+App.get_text_icon = (icon_text) => {
   let icon = DOM.create(`div`, `item_icon`)
   icon.textContent = icon_text
   return icon
