@@ -246,7 +246,7 @@ App.setup_commands = () => {
       App.sort_tabs()
     }, info: `Open the sort tabs window`},
 
-    {name: `Show Info`, cmd: `info`, mode: `items`, icon: tabicon, action: (args) => {
+    {name: `Show Info`, cmd: `show_info`, mode: `items`, icon: tabicon, action: (args) => {
       App.show_tabs_info()
     }, info: `Show some tab info`},
 

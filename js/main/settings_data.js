@@ -239,7 +239,7 @@ App.build_settings = () => {
     {cmd: `new`},
     {cmd: `sort`},
     {cmd: `reopen`},
-    {cmd: `info`},
+    {cmd: `show_info`},
     {cmd: `show_urls`},
     {cmd: `open_urls`},
     {cmd: `close_menu`},
