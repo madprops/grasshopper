@@ -51,6 +51,11 @@ App.addlist_save = (id) => {
   line._date_ = App.now()
   lines.splice(data.index, 0, line)
   App.after_addlist(id, lines)
+
+  if (data.on_save) {
+    data.on_save(line)
+  }
+
   return true
 }
 

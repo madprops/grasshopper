@@ -44,14 +44,7 @@ App.setup_profile_editor = () => {
     }
 
     App.profile_make_menu(`color`, App.profile_editor_color_opts)
-
-    for (let key in App.profile_props) {
-      let props = App.profile_props[key]
-
-      if (props.type === `list`) {
-        App[`profile_addlist_${key}`]()
-      }
-    }
+    App.profile_start_lists()
 
     DOM.ev(DOM.el(`#profile_editor_tags_add`), `click`, (e) => {
       App.profile_tags_add(e)
@@ -954,16 +947,16 @@ App.get_edit_items = (item) => {
   items.push({separator: true})
 
   items.push({
-    text: `Add Tags`,
+    text: `Add Tag`,
     action: () => {
-      App.add_tags(item)
+      App.profile_add_to_list(`tags`, item)
     }
   })
 
   items.push({
-    text: `Add Notes`,
+    text: `Add Note`,
     action: () => {
-      App.add_notes(item)
+      App.profile_add_to_list(`notes`, item)
     }
   })
 
@@ -1022,27 +1015,35 @@ App.edit_profiles = (item) => {
   App.show_profile_editor(item, `all`)
 }
 
-App.add_tags = (item) => {
-  App.show_profile_editor(item, `tags`, `add`)
-}
-
-App.add_notes = (item) => {
-  App.show_profile_editor(item, `notes`, `add`)
-}
-
 App.show_profile_urls = () => {
   let s = App.profile_editor_items.map(x => x.url).join(`\n\n`)
   App.show_alert_2(s)
 }
 
-App.change_color = (item, color, toggle = false) => {
+App.profile_add_to_list = (key, item) => {
+  App.profile_start_lists()
+  App[`profile_editor_${key}`] = []
+
+  App.addlist_edit({id: `profile_editor_${key}`, items: {}, on_save: () => {
+    App.profile_change(item, key, App.profile_get_value(key), `add`)
+  }})
+}
+
+App.profile_change = (item, type, value, action = `edit`) => {
   let items = App.get_profile_items(item)
   let [profiles, added] = App.get_profiles(items)
   let args = {}
   App.profile_urls = []
   args.profiles = profiles
   args.added = added
-  args.type = `color`
+  args.type = type
+  args[type] = value
+  args.action = action
+  App.do_save_profile(args)
+  App.profile_editor_close(false)
+}
+
+App.change_color = (item, color, toggle = false) => {
   let force
   let some = false
 
@@ -1090,9 +1091,7 @@ App.change_color = (item, color, toggle = false) => {
   msg += ` (${items.length})`
 
   App.show_confirm(msg, () => {
-    args.color = color
-    App.do_save_profile(args)
-    App.profile_editor_close(false)
+    App.profile_change(item, `color`, color)
   }, undefined, force)
 }
 
@@ -1231,6 +1230,14 @@ App.get_edit_options = (item) => {
   }
 
   return items
+}
+
+App.profile_start_lists = () => {
+  if (!App.profile_lists_ready) {
+    App.profile_addlist_tags()
+    App.profile_addlist_notes()
+    App.profile_lists_ready = true
+  }
 }
 
 App.profile_addlist_tags = () => {
