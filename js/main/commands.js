@@ -296,12 +296,12 @@ App.setup_commands = () => {
       App.edit_profiles(args.item)
     }, info: `Edit the profile of URLs`},
 
-    {name: `Add Tags`, cmd: `add_tags`, mode: `items`, action: (args) => {
-      App.add_tags(args.item)
+    {name: `Add Tag`, cmd: `add_tag`, mode: `items`, action: (args) => {
+      App.add_tag(args.item)
     }, info: `Add tags to a profile`},
 
-    {name: `Add Notes`, cmd: `add_notes`, mode: `items`, action: (args) => {
-      App.add_notes(args.item)
+    {name: `Add Note`, cmd: `add_note`, mode: `items`, action: (args) => {
+      App.add_note(args.item)
     }, info: `Add notes to a profile`},
 
     ...color_changers,

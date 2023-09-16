@@ -949,14 +949,14 @@ App.get_edit_items = (item) => {
   items.push({
     text: `Add Tag`,
     action: () => {
-      App.profile_add_to_list(`tags`, item)
+      App.add_tag(item)
     }
   })
 
   items.push({
     text: `Add Note`,
     action: () => {
-      App.profile_add_to_list(`notes`, item)
+      App.add_note(item)
     }
   })
 
@@ -1018,6 +1018,14 @@ App.edit_profiles = (item) => {
 App.show_profile_urls = () => {
   let s = App.profile_editor_items.map(x => x.url).join(`\n\n`)
   App.show_alert_2(s)
+}
+
+App.add_tag = (item) => {
+  App.profile_add_to_list(`tags`, item)
+}
+
+App.add_note = (item) => {
+  App.profile_add_to_list(`notes`, item)
 }
 
 App.profile_add_to_list = (key, item) => {
