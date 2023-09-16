@@ -543,8 +543,8 @@ App.get_tags = () => {
 
   for (let profile of App.profiles) {
     for (let tag of profile.tags.value) {
-      if (!tags.includes(tag.value || tag)) {
-        tags.push(tag.value || tag)
+      if (!tags.includes(tag.value)) {
+        tags.push(tag.value)
       }
     }
   }
