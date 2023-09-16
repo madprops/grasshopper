@@ -14,11 +14,11 @@ App.setup_profile_editor = () => {
       App.profile_editor_remove()
     })
 
-    DOM.evs(DOM.el(`#profile_editor_save`), [`click`, `auxclick`], () => {
-      App.profile_editor_save()
-    })
+    let close_el = DOM.el(`#profile_editor_close`)
+    close_el.textContent = App.close_text
 
-    DOM.evs(DOM.el(`#profile_editor_cancel`), [`click`, `auxclick`], () => {
+    DOM.evs(close_el, [`click`, `auxclick`], () => {
+      App.on_profile_editor_done()
       App.hide_window()
     })
 
@@ -93,6 +93,7 @@ App.show_profile_editor = (item, type, action = `edit`) => {
   App.profile_editor_ready = false
   App.profile_editor_new = false
   App.profile_was_modified = false
+  App.profile_urls = []
 
   if (action === `new`) {
     App.profile_editor_new = true
@@ -243,7 +244,7 @@ App.copy_profile = (profile) => {
   return obj
 }
 
-App.profile_editor_save = () => {
+App.save_profile = () => {
   let items = App.profile_editor_items
 
   if (!items.length) {
@@ -260,16 +261,13 @@ App.profile_editor_save = () => {
   args.profiles = App.profile_editor_profiles
   args.added = App.profile_editor_added
   args.action = App.profile_editor_action
-  args.from = `editor`
-  App.save_profile(args)
+  App.do_save_profile(args)
 }
 
-App.save_profile = (args) => {
-  let urls = []
-
+App.do_save_profile = (args) => {
   function add_url (url) {
-    if (!urls.includes(url)) {
-      urls.push(url)
+    if (!App.profile_urls.includes(url)) {
+      App.profile_urls.push(url)
     }
   }
 
@@ -375,13 +373,6 @@ App.save_profile = (args) => {
   }
 
   App.stor_save_profiles()
-
-  if (args.from === `editor`) {
-    App.hide_window(true)
-  }
-
-  App.apply_profiles(urls)
-  App.refresh_profile_filters()
 }
 
 App.profile_remove_menu = (item) => {
@@ -1053,10 +1044,10 @@ App.change_color = (item, color, toggle = false) => {
   let items = App.get_profile_items(item)
   let [profiles, added] = App.get_profiles(items)
   let args = {}
+  App.profile_urls = []
   args.profiles = profiles
   args.added = added
   args.type = `color`
-  args.from = `color_items`
   let force
   let some = false
 
@@ -1105,7 +1096,8 @@ App.change_color = (item, color, toggle = false) => {
 
   App.show_confirm(msg, () => {
     args.color = color
-    App.save_profile(args)
+    App.do_save_profile(args)
+    App.on_profile_editor_done()
   }, undefined, force)
 }
 
@@ -1489,7 +1481,7 @@ App.profile_editor_container = (c, show) => {
 App.profile_editor_confirm = () => {
   if (App.profile_was_modified) {
     App.show_confirm(`Save changes?`, () => {
-      App.profile_editor_save()
+      App.save_profile()
     }, () => {
       App.hide_window()
     })
@@ -1501,7 +1493,7 @@ App.profile_editor_confirm = () => {
 
 App.profile_modified = () => {
   if (App.profile_editor_ready) {
-    App.profile_was_modified = true
+    App.save_profile()
   }
 }
 
@@ -1523,5 +1515,12 @@ App.profile_editor_focus = () => {
         break
       }
     }
+  }
+}
+
+App.on_profile_editor_done = () => {
+  if (App.profile_urls.length) {
+    App.apply_profiles(App.profile_urls)
+    App.refresh_profile_filters()
   }
 }
