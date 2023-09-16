@@ -27,7 +27,7 @@ App.setup_commands = () => {
     }, info: `Toggle color on or off: ${color}`})
   }
 
-  color_changers.push({name: `Remove Color`, cmd: `remove_color`, mode: `items`, action: (args) => {
+  color_changers.push({name: `No Color`, cmd: `remove_color`, mode: `items`, action: (args) => {
     App.change_color(args.item, `none`)
   }, info: `Remove the current color of items`})
 
