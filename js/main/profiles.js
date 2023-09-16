@@ -872,21 +872,14 @@ App.used_profile = (profile) => {
 
 App.get_profile_count = () => {
   let count = {}
-  count.tags = 0
-  count.notes = 0
+
+  for (let key in App.profile_props) {
+    count[key] = 0
+  }
+
   count.colors = 0
-  count.titles = 0
-  count.icons = 0
 
   for (let profile of App.profiles) {
-    if (profile.tags.value.length) {
-      count.tags += 1
-    }
-
-    if (profile.notes.value.length) {
-      count.notes += 1
-    }
-
     if (profile.color.value !== `none`) {
       if (!count[profile.color.value]) {
         count[profile.color.value] = 0
@@ -896,12 +889,16 @@ App.get_profile_count = () => {
       count.colors += 1
     }
 
-    if (profile.title.value) {
-      count.titles += 1
-    }
+    for (let key in App.profile_props) {
+      if (key === `url` || key === `exact` || key === `color`) {
+        continue
+      }
 
-    if (profile.icon.value) {
-      count.icons += 1
+      let props = App.profile_props[key]
+
+      if (App.str(profile[key]) !== App.str(props.value)) {
+        count[key] += 1
+      }
     }
   }
 
