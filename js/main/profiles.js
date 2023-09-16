@@ -300,6 +300,14 @@ App.do_save_profile = (args) => {
       profile.exact.value = args.exact
     }
 
+    if (args.type === `all` || args.type === `title`) {
+      profile.title.value = args.title
+    }
+
+    if (args.type === `all` || args.type === `color`) {
+      profile.color.value = args.color
+    }
+
     if (args.type === `all` || args.type === `tags`) {
       profile.tags.value = add_to_list(`tags`)
     }
@@ -308,16 +316,8 @@ App.do_save_profile = (args) => {
       profile.notes.value = add_to_list(`notes`)
     }
 
-    if (args.type === `all` || args.type === `title`) {
-      profile.title.value = args.title
-    }
-
     if (args.type === `all` || args.type === `icon`) {
       profile.icon.value = args.icon
-    }
-
-    if (args.type === `all` || args.type === `color`) {
-      profile.color.value = args.color
     }
 
     App.profiles = App.profiles.filter(x => x.url.value !== og_url)
