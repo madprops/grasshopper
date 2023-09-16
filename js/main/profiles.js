@@ -1240,61 +1240,33 @@ App.get_edit_options = (item) => {
 
 App.profile_start_lists = () => {
   if (!App.profile_lists_ready) {
-    App.profile_addlist_tags()
-    App.profile_addlist_notes()
+    App.profile_register_addlist(`tags`, `tag`)
+    App.profile_register_addlist(`notes`, `note`)
     App.profile_lists_ready = true
   }
 }
 
-App.profile_addlist_tags = () => {
-  let id = `profile_editor_tags`
+App.profile_register_addlist = (key, short) => {
+  let id = `profile_editor_${key}`
 
   App.create_popup({
     id: `addlist_${id}`,
     element: App.addlist_register({
       id: id,
-      pk: `tag`,
+      pk: short,
       widgets: [`text`],
-      labels: [`Tag`],
+      labels: [App.capitalize(short)],
       keys: [`value`],
       list_text: (items) => {
         return items.value
       },
-      title: `Tags`,
+      title: App.capitalize(key),
       lowercase: true,
       get_data: (id) => {
-        return App.profile_editor_tags
+        return App[id]
       },
       set_data: (id, value) => {
-        App.profile_editor_tags = value
-      },
-    })
-  })
-
-  let el = DOM.el(`#${id}`)
-  App.addlist_add_buttons(id, el)
-}
-
-App.profile_addlist_notes = () => {
-  let id = `profile_editor_notes`
-
-  App.create_popup({
-    id: `addlist_${id}`,
-    element: App.addlist_register({
-      id: id,
-      pk: `note`,
-      widgets: [`text`],
-      labels: [`Note`],
-      keys: [`value`],
-      list_text: (items) => {
-        return items.value
-      },
-      title: `Notes`,
-      get_data: (id) => {
-        return App.profile_editor_notes
-      },
-      set_data: (id, value) => {
-        App.profile_editor_notes = value
+        App[id] = value
       },
     })
   })
