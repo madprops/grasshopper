@@ -482,12 +482,12 @@ App.setup_keyboard = () => {
     }
     else if (mode === `profile_editor`) {
       if (e.key === `Escape`) {
-        App.profile_editor_confirm()
+        App.profile_editor_close()
         e.preventDefault()
         return
       }
       else if (e.key === `Enter`) {
-        App.profile_editor_save()
+        App.profile_editor_close()
         e.preventDefault()
         return
       }

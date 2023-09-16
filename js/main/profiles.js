@@ -18,8 +18,7 @@ App.setup_profile_editor = () => {
     close_el.textContent = App.close_text
 
     DOM.evs(close_el, [`click`, `auxclick`], () => {
-      App.on_profile_editor_done()
-      App.hide_window()
+      App.profile_editor_close()
     })
 
     DOM.el(`#profile_editor_icon`).placeholder = App.smile_icon
@@ -373,7 +372,6 @@ App.do_save_profile = (args) => {
   }
 
   App.stor_save_profiles()
-  console.log(`profile saved`)
 }
 
 App.profile_remove_menu = (item) => {
@@ -1098,7 +1096,7 @@ App.change_color = (item, color, toggle = false) => {
   App.show_confirm(msg, () => {
     args.color = color
     App.do_save_profile(args)
-    App.on_profile_editor_done()
+    App.profile_editor_close()
   }, undefined, force)
 }
 
@@ -1506,9 +1504,11 @@ App.profile_editor_focus = () => {
   }
 }
 
-App.on_profile_editor_done = () => {
+App.profile_editor_close = () => {
   if (App.profile_urls.length) {
     App.apply_profiles(App.profile_urls)
     App.refresh_profile_filters()
   }
+
+  App.hide_window()
 }
