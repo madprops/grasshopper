@@ -322,12 +322,6 @@ App.build_settings = () => {
   obj.warn_on_bookmark = {value: true, category: category, type: `checkbox`, name: `Warn On Bookmark`, version: 1,
   info: `Warn when adding bookmarks`}
 
-  obj.warn_on_color = {value: true, category: category, type: `checkbox`, name: `Warn On Color`, version: 1,
-  info: `Warn when changing colors`}
-
-  obj.warn_on_remove_color = {value: true, category: category, type: `checkbox`, name: `Warn On Remove Color`, version: 1,
-  info: `Warn when removing colors`}
-
   obj.warn_on_pin_tabs = {value: true, category: category, type: `checkbox`, name: `Warn On Pin Tabs`, version: 1,
   info: `Warn when pinning tabs`}
 
@@ -342,6 +336,12 @@ App.build_settings = () => {
 
   obj.warn_on_unmute_tabs = {value: true, category: category, type: `checkbox`, name: `Warn On Unmute Tabs`, version: 1,
   info: `Warn when unmuting tabs`}
+
+  obj.warn_on_color = {value: false, category: category, type: `checkbox`, name: `Warn On Color`, version: 1,
+  info: `Warn when changing colors`}
+
+  obj.warn_on_remove_color = {value: false, category: category, type: `checkbox`, name: `Warn On Remove Color`, version: 1,
+  info: `Warn when removing colors`}
 
   // ###################
   category = `colors`
