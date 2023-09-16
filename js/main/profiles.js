@@ -1,8 +1,8 @@
 App.profile_props = {
   url: {value: ``, type: `text`, version: 1},
   exact: {value: false, type: `checkbox`, version: 1},
-  tags: {value: [], type: `list`, version: 2},
-  notes: {value: [], type: `list`, version: 2},
+  tags: {value: [], type: `list`, label: `Tag`, title: `Tags`, version: 2},
+  notes: {value: [], type: `list`, label: `Note`, title: `Notes`, version: 2},
   title: {value: ``, type: `text`, version: 1},
   color: {value: `none`, type: `menu`, version: 1},
   icon: {value: ``, type: `text`, version: 1},
@@ -1233,8 +1233,14 @@ App.get_edit_options = (item) => {
 
 App.profile_start_lists = () => {
   if (!App.profile_lists_ready) {
-    App.profile_register_addlist(`tags`, `Tag`, `Tags`)
-    App.profile_register_addlist(`notes`, `Note`, `Notes`)
+    for (let key in App.profile_props) {
+      let props = App.profile_props[key]
+
+      if (props.type === `list`) {
+        App.profile_register_addlist(key, props.label, props.title)
+      }
+    }
+
     App.profile_lists_ready = true
   }
 }
