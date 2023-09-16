@@ -944,7 +944,7 @@ App.get_edit_items = (item) => {
   let items = []
 
   items.push({
-    icon: App.color_icon(`green`),
+    icon: App.settings_icons.theme,
     text: `Color`,
     get_items: () => {
       return App.show_color_menu(item)
