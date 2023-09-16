@@ -944,9 +944,10 @@ App.get_edit_items = (item) => {
   let items = []
 
   items.push({
-    text: `Edit All`,
-    action: () => {
-      return App.show_profile_editor(item, `all`)
+    icon: App.color_icon(`purple`),
+    text: `Color`,
+    get_items: () => {
+      return App.show_color_menu(item)
     }
   })
 
@@ -976,13 +977,6 @@ App.get_edit_items = (item) => {
   })
 
   items.push({
-    text: `Edit Color`,
-    get_items: () => {
-      return App.show_color_menu(item)
-    }
-  })
-
-  items.push({
     text: `Edit Tags`,
     action: () => {
       App.show_profile_editor(item, `tags`)
@@ -1000,6 +994,15 @@ App.get_edit_items = (item) => {
     text: `Edit Icon`,
     action: () => {
       App.show_profile_editor(item, `icon`)
+    }
+  })
+
+  items.push({separator: true})
+
+  items.push({
+    text: `Edit All`,
+    action: () => {
+      return App.show_profile_editor(item, `all`)
     }
   })
 
