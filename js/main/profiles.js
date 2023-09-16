@@ -1429,7 +1429,7 @@ App.profile_set_value = (key, value, actions = false) => {
 App.profile_is_default = (key) => {
   let value = App.profile_get_value(key)
   let def_value = App.profile_props[key].value
-  return value.toString() === def_value.toString()
+  return App.str(value) === App.str(def_value)
 }
 
 App.profile_default_all = () => {
