@@ -955,14 +955,14 @@ App.get_edit_items = (item) => {
   items.push({
     text: `Add Tags`,
     action: () => {
-      return App.add_tags(item)
+      App.add_tags(item)
     }
   })
 
   items.push({
     text: `Add Notes`,
     action: () => {
-      return App.add_notes(item)
+      App.add_notes(item)
     }
   })
 
@@ -971,35 +971,35 @@ App.get_edit_items = (item) => {
   items.push({
     text: `Edit Title`,
     action: () => {
-      return App.show_profile_editor(item, `title`)
+      App.show_profile_editor(item, `title`)
     }
   })
 
   items.push({
     text: `Edit Color`,
-    action: () => {
-      return App.show_profile_editor(item, `color`)
+    get_items: () => {
+      return App.show_color_menu(item)
     }
   })
 
   items.push({
     text: `Edit Tags`,
     action: () => {
-      return App.show_profile_editor(item, `tags`)
+      App.show_profile_editor(item, `tags`)
     }
   })
 
   items.push({
     text: `Edit Notes`,
     action: () => {
-      return App.show_profile_editor(item, `notes`)
+      App.show_profile_editor(item, `notes`)
     }
   })
 
   items.push({
     text: `Edit Icon`,
     action: () => {
-      return App.show_profile_editor(item, `icon`)
+      App.show_profile_editor(item, `icon`)
     }
   })
 
@@ -1503,4 +1503,30 @@ App.same_profile = (profile, args) => {
   }
 
   return true
+}
+
+App.show_color_menu = (item) => {
+  let items = []
+
+  items.push({
+    text: `No Color`,
+    action: () => {
+      App.change_color(item, `none`)
+    }
+  })
+
+  for (let color of App.colors) {
+    let icon = App.color_icon(color)
+    let text = `Color ${App.capitalize(color)}`
+
+    items.push({
+      icon: icon,
+      text: text,
+      action: () => {
+        App.change_color(item, color)
+      }
+    })
+  }
+
+  return items
 }
