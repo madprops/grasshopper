@@ -51,16 +51,6 @@ App.setup_profile_editor = () => {
       if (props.type === `list`) {
         App[`profile_addlist_${key}`]()
       }
-      else if (props.type === `text`) {
-        DOM.ev(DOM.el(`#profile_editor_${key}`), `input`, () => {
-          App.profile_modified()
-        })
-      }
-      else if (props.type === `checkbox`) {
-        DOM.ev(DOM.el(`#profile_editor_${key}`), `change`, () => {
-          App.profile_modified()
-        })
-      }
     }
 
     DOM.ev(DOM.el(`#profile_editor_tags_add`), `click`, (e) => {
@@ -91,7 +81,6 @@ App.get_profile_items = (item) => {
 App.show_profile_editor = (item, type, action = `edit`) => {
   App.profile_editor_ready = false
   App.profile_editor_new = false
-  App.profile_was_modified = false
   App.profile_urls = []
 
   if (action === `new`) {
@@ -372,6 +361,7 @@ App.do_save_profile = (args) => {
   }
 
   App.stor_save_profiles()
+  console.log(`saved`)
 }
 
 App.profile_remove_menu = (item) => {
@@ -1096,7 +1086,7 @@ App.change_color = (item, color, toggle = false) => {
   App.show_confirm(msg, () => {
     args.color = color
     App.do_save_profile(args)
-    App.profile_editor_close()
+    App.profile_editor_close(false)
   }, undefined, force)
 }
 
@@ -1131,9 +1121,6 @@ App.profile_make_menu = (key, opts,) => {
   App[`profile_menubutton_${key}`] = App.create_menubutton({
     button: DOM.el(`#profile_editor_${key}`),
     opts: opts,
-    on_change: () => {
-      App.profile_modified()
-    },
   })
 }
 
@@ -1262,9 +1249,6 @@ App.profile_addlist_tags = () => {
       set_data: (id, value) => {
         App.profile_editor_tags = value
       },
-      on_modified: () => {
-        App.profile_modified()
-      }
     })
   })
 
@@ -1293,9 +1277,6 @@ App.profile_addlist_notes = () => {
       set_data: (id, value) => {
         App.profile_editor_notes = value
       },
-      on_modified: () => {
-        App.profile_modified()
-      }
     })
   })
 
@@ -1477,12 +1458,6 @@ App.profile_editor_container = (c, show) => {
   }
 }
 
-App.profile_modified = () => {
-  if (App.profile_editor_ready) {
-    App.save_profile()
-  }
-}
-
 App.profile_editor_focus = () => {
   let cc = DOM.el(`#profile_editor_color_container`)
 
@@ -1504,7 +1479,11 @@ App.profile_editor_focus = () => {
   }
 }
 
-App.profile_editor_close = () => {
+App.profile_editor_close = (save = true) => {
+  if (save) {
+    App.save_profile()
+  }
+
   if (App.profile_urls.length) {
     App.apply_profiles(App.profile_urls)
     App.refresh_profile_filters()
