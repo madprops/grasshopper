@@ -270,6 +270,10 @@ App.do_save_profile = (args) => {
   }
 
   function proc (profile, p_mode) {
+    if (App.same_profile(profile, args)) {
+      return
+    }
+
     let og_url = profile.url.value
     profile.url.value = args.url || profile.url.value
 
@@ -1489,4 +1493,14 @@ App.profile_editor_close = (save = true) => {
   }
 
   App.hide_window()
+}
+
+App.same_profile = (profile, args) => {
+  for (let key in App.profile_props) {
+    if (App.str(profile[key].value) !== App.str(args[key])) {
+      return false
+    }
+  }
+
+  return true
 }
