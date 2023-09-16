@@ -1509,7 +1509,7 @@ App.show_color_menu = (item) => {
   let items = []
 
   items.push({
-    text: `No Color`,
+    text: `Remove Color`,
     action: () => {
       App.change_color(item, `none`)
     }
