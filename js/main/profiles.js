@@ -300,24 +300,21 @@ App.do_save_profile = (args) => {
       profile.exact.value = args.exact
     }
 
-    if (args.type === `all` || args.type === `title`) {
-      profile.title.value = args.title
-    }
+    for (let key in App.profile_props) {
+      if (key === `url` || key === `exact`) {
+        continue
+      }
 
-    if (args.type === `all` || args.type === `color`) {
-      profile.color.value = args.color
-    }
+      if (args.type === `all` || args.type === key) {
+        let props = App.profile_props[key]
 
-    if (args.type === `all` || args.type === `tags`) {
-      profile.tags.value = add_to_list(`tags`)
-    }
-
-    if (args.type === `all` || args.type === `notes`) {
-      profile.notes.value = add_to_list(`notes`)
-    }
-
-    if (args.type === `all` || args.type === `icon`) {
-      profile.icon.value = args.icon
+        if (props.type === `list`) {
+          profile[key].value = add_to_list(key)
+        }
+        else {
+          profile[key].value = args[key]
+        }
+      }
     }
 
     App.profiles = App.profiles.filter(x => x.url.value !== og_url)
