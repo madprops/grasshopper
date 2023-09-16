@@ -361,7 +361,6 @@ App.do_save_profile = (args) => {
   }
 
   App.stor_save_profiles()
-  console.log(`saved`)
 }
 
 App.profile_remove_menu = (item) => {
