@@ -373,6 +373,7 @@ App.do_save_profile = (args) => {
   }
 
   App.stor_save_profiles()
+  console.log(`profile saved`)
 }
 
 App.profile_remove_menu = (item) => {
@@ -1475,19 +1476,6 @@ App.profile_editor_container = (c, show) => {
     else {
       el.classList.add(`hidden`)
     }
-  }
-}
-
-App.profile_editor_confirm = () => {
-  if (App.profile_was_modified) {
-    App.show_confirm(`Save changes?`, () => {
-      App.save_profile()
-    }, () => {
-      App.hide_window()
-    })
-  }
-  else {
-    App.hide_window()
   }
 }
 
