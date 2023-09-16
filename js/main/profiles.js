@@ -1240,13 +1240,13 @@ App.get_edit_options = (item) => {
 
 App.profile_start_lists = () => {
   if (!App.profile_lists_ready) {
-    App.profile_register_addlist(`tags`)
-    App.profile_register_addlist(`notes`)
+    App.profile_register_addlist(`tags`, `Tag`)
+    App.profile_register_addlist(`notes`, `Note`)
     App.profile_lists_ready = true
   }
 }
 
-App.profile_register_addlist = (key) => {
+App.profile_register_addlist = (key, label) => {
   let id = `profile_editor_${key}`
 
   App.create_popup({
@@ -1255,7 +1255,7 @@ App.profile_register_addlist = (key) => {
       id: id,
       pk: `value`,
       widgets: [`text`],
-      labels: [`Value`],
+      labels: [label],
       keys: [`value`],
       list_text: (items) => {
         return items.value
