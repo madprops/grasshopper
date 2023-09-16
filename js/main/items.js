@@ -330,7 +330,7 @@ App.process_info = (mode, info, exclude = [], o_item) => {
     }
 
     if (profile.tags.value) {
-      tags = profile.tags.value.map(x => x.tag || x)
+      tags = profile.tags.value.map(x => x.value || x)
     }
 
     if (profile.icon.value) {

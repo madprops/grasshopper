@@ -1,8 +1,8 @@
 App.profile_props = {
   url: {value: ``, type: `text`, version: 1},
   exact: {value: false, type: `checkbox`, version: 1},
-  tags: {value: [], type: `list`, version: 1},
-  notes: {value: [], type: `list`, version: 1},
+  tags: {value: [], type: `list`, version: 2},
+  notes: {value: [], type: `list`, version: 2},
   title: {value: ``, type: `text`, version: 1},
   color: {value: `none`, type: `menu`, version: 1},
   icon: {value: ``, type: `text`, version: 1},
@@ -252,19 +252,39 @@ App.do_save_profile = (args) => {
     }
   }
 
-  function has_tag (list, tag) {
-    for (let item of list) {
-      if (item.tag === tag.tag) {
-        return true
-      }
-    }
-
-    return false
-  }
-
   function proc (profile, p_mode) {
     if (App.same_profile(profile, args)) {
       return
+    }
+
+    function item_in_list (list, item) {
+      for (let it of list) {
+        if (it.value === item.value) {
+          return true
+        }
+      }
+
+      return false
+    }
+
+    function add_to_list (key) {
+      let n_list = []
+
+      for (let item of args[key]) {
+        if (!item_in_list(n_list, item)) {
+          n_list.push(item)
+        }
+      }
+
+      if (p_mode === `edit` && args.action === `add`) {
+        for (let item of profile[key].value) {
+          if (!item_in_list(n_list, item)) {
+            n_list.push(item)
+          }
+        }
+      }
+
+      return n_list
     }
 
     let og_url = profile.url.value
@@ -281,36 +301,11 @@ App.do_save_profile = (args) => {
     }
 
     if (args.type === `all` || args.type === `tags`) {
-      let n_tags = []
-
-      for (let tag of args.tags) {
-        if (!has_tag(n_tags, tag)) {
-          n_tags.push(tag)
-        }
-      }
-
-      if (p_mode === `edit` && args.action === `add`) {
-        for (let tag of profile.tags.value) {
-          if (!has_tag(n_tags, tag)) {
-            n_tags.push(tag)
-          }
-        }
-      }
-
-      profile.tags.value = n_tags
+      profile.tags.value = add_to_list(`tags`)
     }
 
     if (args.type === `all` || args.type === `notes`) {
-      let n_notes
-
-      if (p_mode === `edit` && args.action === `add`) {
-        n_notes = [...args.notes, ...profile.notes.value]
-      }
-      else {
-        n_notes = [...args.notes]
-      }
-
-      profile.notes.value = n_notes
+      profile.notes.value = add_to_list(`notes`)
     }
 
     if (args.type === `all` || args.type === `title`) {
@@ -548,8 +543,8 @@ App.get_tags = () => {
 
   for (let profile of App.profiles) {
     for (let tag of profile.tags.value) {
-      if (!tags.includes(tag.tag || tag)) {
-        tags.push(tag.tag || tag)
+      if (!tags.includes(tag.value || tag)) {
+        tags.push(tag.value || tag)
       }
     }
   }
@@ -822,7 +817,7 @@ App.remove_all_icons = () => {
 App.remove_tag = (tag) => {
   App.show_confirm(`Remove tag? (${tag})`, () => {
     for (let profile of App.profiles) {
-      profile.tags.value = profile.tags.value.filter(x => x.tag !== tag)
+      profile.tags.value = profile.tags.value.filter(x => x.value !== tag)
     }
 
     App.after_profile_remove()
@@ -1264,9 +1259,9 @@ App.profile_addlist_tags = () => {
       pk: `tag`,
       widgets: [`text`],
       labels: [`Tag`],
-      keys: [`tag`],
+      keys: [`value`],
       list_text: (items) => {
-        return items.tag
+        return items.value
       },
       title: `Tags`,
       lowercase: true,
@@ -1293,9 +1288,9 @@ App.profile_addlist_notes = () => {
       pk: `note`,
       widgets: [`text`],
       labels: [`Note`],
-      keys: [`note`],
+      keys: [`value`],
       list_text: (items) => {
-        return items.note
+        return items.value
       },
       title: `Notes`,
       get_data: (id) => {
@@ -1313,7 +1308,7 @@ App.profile_addlist_notes = () => {
 
 App.profile_tags_add = (e) => {
   let tags = App.get_tags()
-  let tags_used = App.profile_editor_tags.map(x => x.tag)
+  let tags_used = App.profile_editor_tags.map(x => x.value)
   let items = []
 
   for (let tag of tags) {
