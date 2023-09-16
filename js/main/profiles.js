@@ -253,6 +253,10 @@ App.save_profile = () => {
 }
 
 App.do_save_profile = (args) => {
+  if (App.profile_all_defaults(args)) {
+    return
+  }
+
   function add_url (url) {
     if (!App.profile_urls.includes(url)) {
       App.profile_urls.push(url)
@@ -880,7 +884,7 @@ App.used_profile = (profile) => {
       continue
     }
 
-    if (profile[key].value.toString() !== App.profile_props[key].value.toString()) {
+    if (App.str(profile[key].value) !== App.str(App.profile_props[key].value)) {
       return true
     }
   }
@@ -1489,4 +1493,18 @@ App.profile_editor_close = (save = true) => {
   }
 
   App.hide_window()
+}
+
+App.profile_all_defaults = (args) => {
+  for (let key in App.profile_props) {
+    if (key === `url`) {
+      continue
+    }
+
+    if (App.str(args[key]) !== App.str(App.profile_props[key].value)) {
+      return false
+    }
+  }
+
+  return true
 }
