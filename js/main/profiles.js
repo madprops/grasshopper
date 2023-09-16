@@ -1033,43 +1033,46 @@ App.profile_add_to_list = (key, item) => {
   App[`profile_editor_${key}`] = []
 
   App.addlist_edit({id: `profile_editor_${key}`, items: {}, on_save: () => {
-    App.profile_change(item, key, App.profile_get_value(key), `add`)
+    let args = App.profile_change_args(item, key, App.profile_get_value(key), `add`)
+    App.do_save_profile(args)
+    App.profile_editor_close(false)
   }})
 }
 
-App.profile_change = (item, type, value, action = `edit`) => {
+App.profile_change_args = (item, type, value, action = `edit`) => {
+  let args = {}
   let items = App.get_profile_items(item)
   let [profiles, added] = App.get_profiles(items)
-  let args = {}
   App.profile_urls = []
   args.profiles = profiles
   args.added = added
   args.type = type
   args[type] = value
   args.action = action
-  App.do_save_profile(args)
-  App.profile_editor_close(false)
+  return args
 }
 
 App.change_color = (item, color, toggle = false) => {
-  let force
-  let some = false
+  let args = App.profile_change_args(item, `color`, color)
 
   if (toggle) {
-    if (profiles.length) {
-      if (profiles[0].color.value === color) {
+    if (args.profiles.length) {
+      if (args.profiles[0].color.value === color) {
         color = `none`
       }
     }
   }
 
-  if (added.length) {
+  let num_items = args.profiles.length + args.added.length
+  let some = false
+
+  if (args.added.length) {
     if (color !== `none`) {
       some = true
     }
   }
 
-  for (let profile of profiles) {
+  for (let profile of args.profiles) {
     if (profile.color.value !== color) {
       some = true
       break
@@ -1080,11 +1083,13 @@ App.change_color = (item, color, toggle = false) => {
     return
   }
 
+  let force
+
   if (color === `none`) {
-    force = App.check_force(`warn_on_remove_color`, items.length, true)
+    force = App.check_force(`warn_on_remove_color`, num_items, true)
   }
   else {
-    force = App.check_force(`warn_on_color`, items.length, true)
+    force = App.check_force(`warn_on_color`, num_items, true)
   }
 
   let msg
@@ -1096,10 +1101,11 @@ App.change_color = (item, color, toggle = false) => {
     msg = `Color items ${color}?`
   }
 
-  msg += ` (${items.length})`
+  msg += ` (${num_items})`
 
   App.show_confirm(msg, () => {
-    App.profile_change(item, `color`, color)
+    App.do_save_profile(args)
+    App.profile_editor_close(false)
   }, undefined, force)
 }
 
