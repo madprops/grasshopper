@@ -71,7 +71,7 @@ App.get_profile_items = (item) => {
   return items
 }
 
-App.show_profile_editor = (item, type, action = `edit`) => {
+App.show_profile_editor = (item, action = `edit`) => {
   App.profile_editor_ready = false
   App.profile_editor_new = false
   App.profile_urls = []
@@ -95,31 +95,8 @@ App.show_profile_editor = (item, type, action = `edit`) => {
 
   App.profile_editor_profiles = profiles
   App.profile_editor_added = added
-  App.profile_editor_type = type
   App.profile_editor_action = action
   App.show_window(`profile_editor`)
-  App.profile_hide_containers()
-
-  if (type === `all` || type === `tags`) {
-    App.profile_editor_container(`tags`, true)
-  }
-
-  if (type === `all` || type === `notes`) {
-    App.profile_editor_container(`notes`, true)
-  }
-
-  if (type === `all` || type === `title`) {
-    App.profile_editor_container(`title`, true)
-  }
-
-  if (type === `all` || type === `color`) {
-    App.profile_editor_container(`color`, true)
-  }
-
-  if (type === `all` || type === `icon`) {
-    App.profile_editor_container(`icon`, true)
-  }
-
   App.profile_default_all()
 
   if (profiles.length) {
@@ -129,52 +106,24 @@ App.show_profile_editor = (item, type, action = `edit`) => {
     DOM.el(`#profile_editor_remove`).classList.add(`hidden`)
   }
 
-  if (items.length === 1) {
-    App.profile_editor_header(`Editing 1 Profile`)
+  App.profile_editor_header(`Editing 1 Profile`)
 
-    if (type === `all`) {
-      App.profile_editor_container(`url`, true)
-      App.profile_editor_container(`exact`, true)
+  if (profiles.length && !App.profile_editor_new) {
+    let profile = profiles[0]
+
+    if (action === `edit`) {
+      App.profile_set_value(`tags`, profile.tags.value)
+      App.profile_set_value(`notes`, profile.notes.value)
     }
 
-    if (profiles.length && !App.profile_editor_new) {
-      let profile = profiles[0]
-
-      if (action === `edit`) {
-        App.profile_set_value(`tags`, profile.tags.value)
-        App.profile_set_value(`notes`, profile.notes.value)
-      }
-
-      App.profile_set_value(`url`, profile.url.value)
-      App.profile_set_value(`exact`, profile.exact.value)
-      App.profile_set_value(`title`, profile.title.value)
-      App.profile_set_value(`icon`, profile.icon.value)
-      App.profile_set_value(`color`, profile.color.value)
-    }
-    else {
-      App.profile_set_value(`url`, items[0].url)
-    }
+    App.profile_set_value(`url`, profile.url.value)
+    App.profile_set_value(`exact`, profile.exact.value)
+    App.profile_set_value(`title`, profile.title.value)
+    App.profile_set_value(`icon`, profile.icon.value)
+    App.profile_set_value(`color`, profile.color.value)
   }
   else {
-    if (action === `edit`) {
-      if (items.length === profiles.length) {
-        for (let key in App.profile_props) {
-          if (type === `all` || type === key) {
-            let shared = App.profile_get_shared(key, profiles)
-
-            if (shared !== undefined) {
-              App.profile_set_value(key, shared)
-            }
-
-            if (type !== `all`) {
-              break
-            }
-          }
-        }
-      }
-    }
-
-    App.profile_editor_header(`Editing ${items.length} Profiles`)
+    App.profile_set_value(`url`, items[0].url)
   }
 
   App.window_goto_top(`profile_editor`)
@@ -231,7 +180,6 @@ App.save_profile = () => {
     args[key] = App.profile_get_value(key)
   }
 
-  args.type = App.profile_editor_type
   args.profiles = App.profile_editor_profiles
   args.added = App.profile_editor_added
   args.action = App.profile_editor_action
@@ -288,27 +236,24 @@ App.do_save_profile = (args) => {
     }
 
     profile.url.value = App.format_url(profile.url.value)
-
-    if (args.type === `all`) {
-      profile.exact.value = args.exact
-    }
+    profile.exact.value = args.exact
 
     for (let key in App.profile_props) {
       if (key === `url` || key === `exact`) {
         continue
       }
 
-      if (args.type === `all` || args.type === key) {
-        let props = App.profile_props[key]
+      let props = App.profile_props[key]
 
-        if (props.type === `list`) {
-          profile[key].value = add_to_list(key)
-        }
-        else {
-          profile[key].value = args[key]
-        }
+      if (props.type === `list`) {
+        profile[key].value = add_to_list(key)
+      }
+      else {
+        profile[key].value = args[key]
       }
     }
+
+    console.log(profile)
 
     App.profiles = App.profiles.filter(x => x.url.value !== og_url)
 
@@ -926,8 +871,6 @@ App.get_edit_items = (item) => {
     }
   })
 
-  items.push({separator: true})
-
   items.push({
     text: `Add Tag`,
     action: () => {
@@ -945,45 +888,6 @@ App.get_edit_items = (item) => {
   items.push({separator: true})
 
   items.push({
-    text: `Edit Title`,
-    action: () => {
-      App.show_profile_editor(item, `title`)
-    }
-  })
-
-  items.push({
-    text: `Edit Tags`,
-    action: () => {
-      App.show_profile_editor(item, `tags`)
-    }
-  })
-
-  items.push({
-    text: `Edit Notes`,
-    action: () => {
-      App.show_profile_editor(item, `notes`)
-    }
-  })
-
-  items.push({
-    text: `Edit Icon`,
-    action: () => {
-      App.show_profile_editor(item, `icon`)
-    }
-  })
-
-  items.push({separator: true})
-
-  items.push({
-    text: `Edit All`,
-    action: () => {
-      return App.show_profile_editor(item, `all`)
-    }
-  })
-
-  items.push({separator: true})
-
-  items.push({
     text: `Remove`,
     action: () => {
       App.profile_remove_menu(item)
@@ -994,7 +898,7 @@ App.get_edit_items = (item) => {
 }
 
 App.edit_profiles = (item) => {
-  App.show_profile_editor(item, `all`)
+  App.show_profile_editor(item)
 }
 
 App.show_profile_urls = () => {
@@ -1021,15 +925,14 @@ App.profile_add_to_list = (key, item) => {
   }})
 }
 
-App.profile_change_args = (item, type, value, action = `edit`) => {
+App.profile_change_args = (item, key, value, action = `edit`) => {
   let args = {}
   let items = App.get_profile_items(item)
   let [profiles, added] = App.get_profiles(items)
   App.profile_urls = []
   args.profiles = profiles
   args.added = added
-  args.type = type
-  args[type] = value
+  args[key] = value
   args.action = action
   return args
 }
@@ -1211,7 +1114,7 @@ App.get_edit_options = (item) => {
     items.push({
       text: `Edit`,
       action: () => {
-        App.show_profile_editor(item, `all`)
+        App.show_profile_editor(item)
       }
     })
   }
@@ -1220,7 +1123,7 @@ App.get_edit_options = (item) => {
     items.push({
       text: `New`,
       action: () => {
-        App.show_profile_editor(item, `all`, `new`)
+        App.show_profile_editor(item, `new`)
       }
     })
   }
@@ -1414,27 +1317,8 @@ App.profile_default_all = () => {
   }
 }
 
-App.profile_hide_containers = () => {
-  for (let key in App.profile_props) {
-    App.profile_editor_container(key, false)
-  }
-}
-
 App.profile_editor_header = (s) => {
   DOM.el(`#profile_editor_header`).textContent = s
-}
-
-App.profile_editor_container = (c, show) => {
-  let el = DOM.el(`#profile_editor_${c}_container`)
-
-  if (el) {
-    if (show) {
-      el.classList.remove(`hidden`)
-    }
-    else {
-      el.classList.add(`hidden`)
-    }
-  }
 }
 
 App.profile_editor_focus = () => {
