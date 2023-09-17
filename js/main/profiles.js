@@ -238,12 +238,8 @@ App.do_save_profile = (args) => {
 
     profile.url.value = App.format_url(profile.url.value)
 
-    if (args.type === `all`) {
-      profile.exact.value = args.exact
-    }
-
     for (let key in App.profile_props) {
-      if (key === `url` || key === `exact`) {
+      if (key === `url`) {
         continue
       }
 
@@ -839,7 +835,7 @@ App.get_profile_count = () => {
     }
 
     for (let key in App.profile_props) {
-      if (key === `url` || key === `exact` || key === `color`) {
+      if (key === `url` || key === `exact`) {
         continue
       }
 
