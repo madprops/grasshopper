@@ -134,6 +134,11 @@ App.get_empty_profile = (url) => {
 
   for (let key in App.profile_props) {
     let props = App.profile_props[key]
+
+    if (!props) {
+      continue
+    }
+
     profile[key] = {}
     profile[key].version = props.version
 
@@ -238,6 +243,10 @@ App.do_save_profile = (args) => {
 
       if (args.type === `all` || args.type === key) {
         let props = App.profile_props[key]
+
+        if (!props) {
+          continue
+        }
 
         if (props.type === `list`) {
           profile[key].value = add_to_list(key)
@@ -365,6 +374,10 @@ App.get_profile = (url) => {
 
   for (let key in profile) {
     let props = App.profile_props[key]
+
+    if (!props) {
+      continue
+    }
 
     if (profile[key].version !== props.version) {
       profile[key].value = App.clone(props.value)
@@ -834,6 +847,10 @@ App.get_profile_count = () => {
 
       let props = App.profile_props[key]
 
+      if (!props) {
+        continue
+      }
+
       if (App.str(profile[key]) !== App.str(props.value)) {
         count[key] += 1
       }
@@ -1126,6 +1143,10 @@ App.profile_start_addlists = () => {
     for (let key in App.profile_props) {
       let props = App.profile_props[key]
 
+      if (!props) {
+        continue
+      }
+
       if (props.type === `list`) {
         App.profile_register_addlist(key, props.label, props.title)
       }
@@ -1201,6 +1222,10 @@ App.profile_addlist_counts = () => {
   for (let key in App.profile_props) {
     let props = App.profile_props[key]
 
+    if (!props) {
+      continue
+    }
+
     if (props.type === `list`) {
       App.addlist_update_count(`profile_editor_${key}`)
     }
@@ -1234,7 +1259,10 @@ App.profile_setup_labels = () => {
 
 App.profile_get_default = (key) => {
   let props = App.profile_props[key]
-  return App.clone(props.value)
+
+  if (props) {
+    return App.clone(props.value)
+  }
 }
 
 App.profile_set_default = (key, action = false) => {
@@ -1244,6 +1272,10 @@ App.profile_set_default = (key, action = false) => {
 
 App.profile_get_value = (key) => {
   let props = App.profile_props[key]
+
+  if (!props) {
+    return
+  }
 
   if (props.type === `list`) {
     return App[`profile_editor_${key}`]
@@ -1269,6 +1301,10 @@ App.profile_get_value = (key) => {
 
 App.profile_set_value = (key, value, actions = false) => {
   let props = App.profile_props[key]
+
+  if (!props) {
+    return
+  }
 
   if (props.type === `list`) {
     App[`profile_editor_${key}`] = App.clone(value)
