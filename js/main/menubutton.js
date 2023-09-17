@@ -20,7 +20,7 @@ App.create_menubutton = (args = {}) => {
 
     for (let opt of args.opts) {
       if (opt.text === App.separator_string) {
-        items.push({separator: true})
+        App.sep(items)
         continue
       }
 

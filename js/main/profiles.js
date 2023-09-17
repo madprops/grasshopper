@@ -896,7 +896,7 @@ App.get_edit_items = (item) => {
   let [profiles, added] = App.get_profiles(its)
 
   if (its.length === 1 || profiles.length) {
-    items.push({separator: true})
+    App.sep(items)
   }
 
   if (its.length === 1) {

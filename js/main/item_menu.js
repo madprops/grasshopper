@@ -68,10 +68,7 @@ App.show_item_menu = async (item, x, y) => {
     App.common_menu_items(items, item, multiple)
     App.more_menu_items(items, item, multiple, some_loaded, some_unmuted, some_muted)
     App.extra_menu_items(items)
-
-    items.push({
-      separator: true
-    })
+    App.sep(items)
 
     items.push({
       text: `Close`,
@@ -258,9 +255,7 @@ App.more_menu_items = (o_items, item, multiple, some_loaded, some_unmuted, some_
 
   if (item.mode === `tabs`) {
     if (items.length) {
-      items.push({
-        separator: true
-      })
+      App.sep(items)
     }
 
     items.push({

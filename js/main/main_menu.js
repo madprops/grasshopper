@@ -49,9 +49,7 @@ App.show_main_menu = (mode) => {
     })
   }
 
-  items.push({
-    separator: true
-  })
+  App.sep(items)
 
   if (App.get_setting(`direct_settings`)) {
     items.push({
@@ -70,7 +68,7 @@ App.show_main_menu = (mode) => {
     })
   }
 
-  items.push({separator: true})
+  App.sep(items)
 
   items.push({
     text: `Profiles`,
@@ -86,9 +84,7 @@ App.show_main_menu = (mode) => {
     }
   })
 
-  items.push({
-    separator: true
-  })
+  App.sep(items)
 
   items.push({
     text: `Cmd...`,

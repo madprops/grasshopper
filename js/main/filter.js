@@ -392,7 +392,7 @@ App.show_filter_menu = (mode) => {
 
   for (let filter_mode of App.filter_modes(mode)) {
     if (filter_mode.type === App.separator_string) {
-      items.push({separator: true})
+      App.sep(items)
       continue
     }
     else if (filter_mode.type === `tag`) {
@@ -803,7 +803,7 @@ App.show_filter_history = (e, mode) => {
   }
 
   if (items.length) {
-    items.push({separator: true})
+    App.sep(items)
 
     items.push({
       text: `Forget`,

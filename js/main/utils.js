@@ -492,3 +492,7 @@ App.now = () => {
 App.clone = (obj) => {
   return structuredClone(obj)
 }
+
+App.sep = (items) => {
+  items.push({separator: true})
+}
