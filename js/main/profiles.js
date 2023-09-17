@@ -134,11 +134,6 @@ App.get_empty_profile = (url) => {
 
   for (let key in App.profile_props) {
     let props = App.profile_props[key]
-
-    if (!props) {
-      continue
-    }
-
     profile[key] = {}
     profile[key].version = props.version
 
@@ -243,10 +238,6 @@ App.do_save_profile = (args) => {
 
       if (args.type === `all` || args.type === key) {
         let props = App.profile_props[key]
-
-        if (!props) {
-          continue
-        }
 
         if (props.type === `list`) {
           profile[key].value = add_to_list(key)
@@ -375,10 +366,6 @@ App.get_profile = (url) => {
   for (let key in profile) {
     let props = App.profile_props[key]
 
-    if (!props) {
-      continue
-    }
-
     if (profile[key].version !== props.version) {
       profile[key].value = App.clone(props.value)
       profile[key].version = props.version
@@ -468,7 +455,9 @@ App.check_profiles = () => {
 
     for (let key in App.profile_props) {
       if (profile[key] && profile[key].value === undefined) {
-        profile[key].value = App.clone(App.profile_props[key].value)
+        let props = App.profile_props[key]
+
+        profile[key].value = App.clone(props.value)
         changed = true
       }
     }
@@ -847,10 +836,6 @@ App.get_profile_count = () => {
 
       let props = App.profile_props[key]
 
-      if (!props) {
-        continue
-      }
-
       if (App.str(profile[key]) !== App.str(props.value)) {
         count[key] += 1
       }
@@ -1143,10 +1128,6 @@ App.profile_start_addlists = () => {
     for (let key in App.profile_props) {
       let props = App.profile_props[key]
 
-      if (!props) {
-        continue
-      }
-
       if (props.type === `list`) {
         App.profile_register_addlist(key, props.label, props.title)
       }
@@ -1221,10 +1202,6 @@ App.profile_tags_add = (e) => {
 App.profile_addlist_counts = () => {
   for (let key in App.profile_props) {
     let props = App.profile_props[key]
-
-    if (!props) {
-      continue
-    }
 
     if (props.type === `list`) {
       App.addlist_update_count(`profile_editor_${key}`)
@@ -1333,8 +1310,13 @@ App.profile_set_value = (key, value, actions = false) => {
 
 App.profile_is_default = (key) => {
   let value = App.profile_get_value(key)
-  let def_value = App.profile_props[key].value
-  return App.str(value) === App.str(def_value)
+  let props = App.profile_props[key]
+
+  if (!props) {
+    return
+  }
+
+  return App.str(value) === App.str(props.value)
 }
 
 App.profile_default_all = () => {
