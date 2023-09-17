@@ -853,7 +853,7 @@ App.refresh_profile_filters = () => {
   }
 }
 
-App.get_edit_items = (item, multiple) => {
+App.get_edit_items = (item) => {
   let items = []
 
   items.push({
@@ -892,10 +892,15 @@ App.get_edit_items = (item, multiple) => {
     }
   })
 
-  items.push({separator: true})
+  let its = App.get_profile_items(item)
+  let [profiles, added] = App.get_profiles(its)
 
-  if (!multiple) {
-    let profile = App.get_profile(item.url)
+  if (its.length === 1 || profiles.length) {
+    items.push({separator: true})
+  }
+
+  if (its.length === 1) {
+    let profile = profiles[0]
     let exact = false
 
     if (profile) {
@@ -919,12 +924,14 @@ App.get_edit_items = (item, multiple) => {
     }
   }
 
-  items.push({
-    text: `Remove`,
-    action: () => {
-      App.profile_remove_menu(item)
-    }
-  })
+  if (profiles.length) {
+    items.push({
+      text: `Remove`,
+      action: () => {
+        App.profile_remove_menu(item)
+      }
+    })
+  }
 
   return items
 }
