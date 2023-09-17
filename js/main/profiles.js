@@ -860,7 +860,7 @@ App.get_edit_items = (item) => {
     icon: App.settings_icons.theme,
     text: `Color`,
     get_items: () => {
-      return App.show_color_menu(item)
+      return App.color_menu_items(item)
     }
   })
 
@@ -1330,7 +1330,7 @@ App.same_profile = (profile, args) => {
   return true
 }
 
-App.show_color_menu = (item) => {
+App.color_menu_items = (item) => {
   let items = []
 
   items.push({
@@ -1354,4 +1354,9 @@ App.show_color_menu = (item) => {
   }
 
   return items
+}
+
+App.show_color_menu = (item) => {
+  let items = App.color_menu_items(item)
+  NeedContext.show_on_center(items)
 }

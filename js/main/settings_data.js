@@ -239,7 +239,7 @@ App.build_settings = () => {
     {cmd: `show_tabs_info`},
     {cmd: `show_tab_urls`},
     {cmd: `open_tab_urls`},
-    {cmd: `close_tabs_menu`},
+    {cmd: `show_close_tabs_menu`},
   ], category: category, type: `list`, name: `Tab Actions`, version: 1,
   info: `Tabs action menu`}
 

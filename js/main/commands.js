@@ -1,5 +1,9 @@
 App.setup_commands = () => {
   let color_filters = []
+  let tabs_icon =  App.mode_icons.tabs
+  let bookmarks_icon = App.mode_icons.bookmarks
+  let closed_icon = App.mode_icons.closed
+  let theme_icon = App.settings_icons.theme
 
   for (let color of App.colors) {
     let icon = App.color_icon(color)
@@ -31,6 +35,10 @@ App.setup_commands = () => {
     App.change_color(args.item, `none`)
   }, info: `Remove the current color of items`})
 
+  color_changers.push({name: `Color Menu`, cmd: `show_color_menu`, mode: `items`, icon: theme_icon, action: (args) => {
+    App.show_color_menu(args.item)
+  }, info: `Show the colors menu`})
+
   let media_filters = []
 
   for (let media of App.media_types) {
@@ -52,11 +60,6 @@ App.setup_commands = () => {
       App.show_mode(mode)
     }, info: `Show mode: ${mode}`})
   }
-
-  let tabs_icon =  App.mode_icons.tabs
-  let bookmarks_icon = App.mode_icons.bookmarks
-  let closed_icon = App.mode_icons.closed
-  let themeicon = App.settings_icons.theme
 
   App.commands = [
     {name: `Go To Top`, cmd: `go_to_top`, mode: `items`, action: (args) => {
@@ -220,7 +223,7 @@ App.setup_commands = () => {
       App.close_tabs(args.item, false)
     }, info: `Close only selected tab`},
 
-    {name: `Close Tabs Menu`, cmd: `close_tabs_menu`, mode: `items`, icon: tabs_icon, action: (args) => {
+    {name: `Close Tabs Menu`, cmd: `show_close_tabs_menu`, mode: `items`, icon: tabs_icon, action: (args) => {
       App.close_menu()
     }, info: `Open the menu with some tab closing options`},
 
@@ -329,19 +332,19 @@ App.setup_commands = () => {
 
     {name: App.separator_string},
 
-    {name: `Dark Colors`, cmd: `dark_colors`, icon: themeicon, action: (args) => {
+    {name: `Dark Colors`, cmd: `dark_colors`, icon: theme_icon, action: (args) => {
       App.set_dark_colors()
     }, info: `Change to the dark color theme`},
 
-    {name: `Light Colors`, cmd: `light_colors`, icon: themeicon, action: (args) => {
+    {name: `Light Colors`, cmd: `light_colors`, icon: theme_icon, action: (args) => {
       App.set_light_colors()
     }, info: `Change to the light color theme`},
 
-    {name: `Random Colors`, cmd: `random_colors`, icon: themeicon, action: (args) => {
+    {name: `Random Colors`, cmd: `random_colors`, icon: theme_icon, action: (args) => {
       App.random_colors()
     }, info: `Change background color and text color to random values`},
 
-    {name: `Background`, cmd: `change_background`, media: `image`, icon: themeicon, action: (args) => {
+    {name: `Background`, cmd: `change_background`, media: `image`, icon: theme_icon, action: (args) => {
       App.change_background(args.item.url)
     }, info: `Change the background to the selected image`},
 
