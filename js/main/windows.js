@@ -178,7 +178,3 @@ App.hide_window = (bypass = false) => {
 
   App.windows[App.window_mode].hide(bypass)
 }
-
-App.make_window_visible = () => {
-  DOM.el(`#all`).classList.remove(`hidden`)
-}

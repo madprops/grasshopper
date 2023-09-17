@@ -61,3 +61,7 @@ App.custom_menu_items = (name) => {
 
   return items
 }
+
+App.make_window_visible = () => {
+  DOM.el(`#all`).classList.remove(`hidden`)
+}
