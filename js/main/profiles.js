@@ -1357,13 +1357,6 @@ App.same_profile = (profile, args) => {
 App.color_menu_items = (item) => {
   let items = []
 
-  items.push({
-    text: `Remove Color`,
-    action: () => {
-      App.change_color(item, `none`)
-    }
-  })
-
   for (let color of App.colors) {
     let icon = App.color_icon(color)
     let text = `Color ${App.capitalize(color)}`
@@ -1376,6 +1369,15 @@ App.color_menu_items = (item) => {
       }
     })
   }
+
+  App.sep(items)
+
+  items.push({
+    text: `Remove Color`,
+    action: () => {
+      App.change_color(item, `none`)
+    }
+  })
 
   return items
 }
