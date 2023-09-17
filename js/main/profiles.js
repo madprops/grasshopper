@@ -1281,7 +1281,7 @@ App.profile_tags_add = (e) => {
       items.push({
         text: tag,
         action: () => {
-          App.profile_editor_tags.unshift({tag: tag})
+          App.profile_editor_tags.unshift({value: tag})
           App.addlist_update_count(`profile_editor_tags`)
         }
       })
