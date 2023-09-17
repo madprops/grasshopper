@@ -151,8 +151,8 @@ App.addlist_register = (args = {}) => {
   remove.textContent = `Rem`
   let save = DOM.create(`div`, `button`, `addlist_save_${args.id}`)
   save.textContent = `Save`
-  let move = DOM.create(`div`, `button icon_button`, `addlist_move_${args.id}`)
-  move.append(App.create_icon(`sun`))
+  let menu = DOM.create(`div`, `button icon_button`, `addlist_menu_${args.id}`)
+  menu.append(App.create_icon(`sun`))
 
   DOM.ev(save, `click`, () => {
     App.addlist_save(args.id)
@@ -166,8 +166,8 @@ App.addlist_register = (args = {}) => {
     }
   })
 
-  DOM.ev(move, `click`, (e) => {
-    App.addlist_move_menu(e)
+  DOM.ev(menu, `click`, (e) => {
+    App.addlist_menu(e)
   })
 
   DOM.ev(use, `click`, () => {
@@ -175,7 +175,7 @@ App.addlist_register = (args = {}) => {
   })
 
   btns.append(remove)
-  btns.append(move)
+  btns.append(menu)
   btns.append(save)
   btns.append(use)
   container.append(btns)
@@ -321,13 +321,13 @@ App.after_addlist = (id, lines) => {
 
 App.addlist_check_buttons = (args) => {
   let remove_el = DOM.el(`#addlist_remove_${args.id}`)
-  let move_el = DOM.el(`#addlist_move_${args.id}`)
+  let menu_el = DOM.el(`#addlist_menu_${args.id}`)
   let prev_el = DOM.el(`#addlist_prev_${args.id}`)
   let next_el = DOM.el(`#addlist_next_${args.id}`)
   let use_el = DOM.el(`#addlist_use_${args.id}`)
   let date_el = DOM.el(`#addlist_date_${args.id}`)
   remove_el.classList.add(`hidden`)
-  move_el.classList.add(`hidden`)
+  menu_el.classList.add(`hidden`)
   prev_el.classList.add(`hidden`)
   next_el.classList.add(`hidden`)
   use_el.classList.add(`hidden`)
@@ -336,7 +336,7 @@ App.addlist_check_buttons = (args) => {
   if (args.edit) {
     let num = App.addlist_get_data(args.id).length
     remove_el.classList.remove(`hidden`)
-    move_el.classList.remove(`hidden`)
+    menu_el.classList.remove(`hidden`)
 
     if (args.items._date_) {
       date_el.classList.remove(`hidden`)
@@ -483,7 +483,7 @@ App.addlist_modified = (id) => {
   return false
 }
 
-App.addlist_move_menu = (e) => {
+App.addlist_menu = (e) => {
   let items = []
 
   items.push({
