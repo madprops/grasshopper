@@ -31,10 +31,6 @@ App.setup_profile_editor = () => {
       App.profile_editor_full_url(e)
     })
 
-    DOM.ev(DOM.el(`#profile_editor_header`), `click`, (e) => {
-      App.show_profile_urls()
-    })
-
     App.profile_editor_color_opts = [{text: `None`, value: `none`}]
 
     for (let color of App.colors) {
@@ -105,8 +101,6 @@ App.show_profile_editor = (item, action = `edit`) => {
   else {
     DOM.el(`#profile_editor_remove`).classList.add(`hidden`)
   }
-
-  App.profile_editor_header(`Editing 1 Profile`)
 
   if (profiles.length && !new_edit) {
     let profile = profiles[0]
@@ -885,6 +879,20 @@ App.get_edit_items = (item) => {
     }
   })
 
+  items.push({
+    text: `Edit Title`,
+    action: () => {
+      App.profile_edit_text(`title`, `Title`, item)
+    }
+  })
+
+  items.push({
+    text: `Edit Icon`,
+    action: () => {
+      App.profile_edit_text(`icon`, `Icon`, item)
+    }
+  })
+
   items.push({separator: true})
 
   items.push({
@@ -899,11 +907,6 @@ App.get_edit_items = (item) => {
 
 App.edit_profiles = (item) => {
   App.show_profile_editor(item)
-}
-
-App.show_profile_urls = () => {
-  let s = App.profile_editor_items.map(x => x.url).join(`\n\n`)
-  App.show_alert_2(s)
 }
 
 App.add_tag = (item) => {
@@ -923,6 +926,14 @@ App.profile_add_to_list = (key, item) => {
     App.do_save_profile(args)
     App.profile_editor_close(false)
   }})
+}
+
+App.profile_edit_text = (key, title, item) => {
+  App.show_prompt(title, (value) => {
+    let args = App.profile_change_args(item, key, value)
+    App.do_save_profile(args)
+    App.profile_editor_close(false)
+  })
 }
 
 App.profile_change_args = (item, type, value, action = `edit`) => {
@@ -1289,10 +1300,6 @@ App.profile_default_all = () => {
   for (let key in App.profile_props) {
     App.profile_set_default(key)
   }
-}
-
-App.profile_editor_header = (s) => {
-  DOM.el(`#profile_editor_header`).textContent = s
 }
 
 App.profile_editor_focus = () => {

@@ -309,6 +309,13 @@ App.setup_keyboard = () => {
           return
         }
       }
+      else if (pmode === `prompt`) {
+        if (e.key === `Enter`) {
+          App.prompt_submit()
+          e.preventDefault()
+          return
+        }
+      }
       else if (pmode === `palette`) {
         if (e.key === `Escape`) {
           if (App.palette_filter_focused()) {
