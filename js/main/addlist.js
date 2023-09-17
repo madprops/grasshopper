@@ -740,7 +740,7 @@ App.addlist_set_data = (id, value) => {
 
 App.addlist_edit_all = (id) => {
   let sett = App.addlist_get_data(id)
-  let value = App.str(sett)
+  let value = App.str(sett, true)
 
   App.show_input(`Edit: ${id}`, `Save`, (text) => {
     try {

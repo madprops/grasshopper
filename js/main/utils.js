@@ -461,8 +461,13 @@ App.obj = (str) => {
   return JSON.parse(str)
 }
 
-App.str = (obj) => {
-  return JSON.stringify(obj, null, 2)
+App.str = (obj, format = false) => {
+  if (format) {
+    return JSON.stringify(obj, null, 2)
+  }
+  else {
+    return JSON.stringify(obj)
+  }
 }
 
 App.fillpad = (s, n, c) => {
