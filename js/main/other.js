@@ -61,3 +61,7 @@ App.custom_menu_items = (name) => {
 
   return items
 }
+
+App.close_window = () => {
+  window.close()
+}
