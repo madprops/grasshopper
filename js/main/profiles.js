@@ -183,6 +183,7 @@ App.save_profile = () => {
   args.profiles = App.profile_editor_profiles
   args.added = App.profile_editor_added
   args.action = App.profile_editor_action
+  args.type = `all`
   App.do_save_profile(args)
 }
 
@@ -236,24 +237,27 @@ App.do_save_profile = (args) => {
     }
 
     profile.url.value = App.format_url(profile.url.value)
-    profile.exact.value = args.exact
+
+    if (args.type === `all`) {
+      profile.exact.value = args.exact
+    }
 
     for (let key in App.profile_props) {
       if (key === `url` || key === `exact`) {
         continue
       }
 
-      let props = App.profile_props[key]
+      if (args.type === `all` || args.type === key) {
+        let props = App.profile_props[key]
 
-      if (props.type === `list`) {
-        profile[key].value = add_to_list(key)
-      }
-      else {
-        profile[key].value = args[key]
+        if (props.type === `list`) {
+          profile[key].value = add_to_list(key)
+        }
+        else {
+          profile[key].value = args[key]
+        }
       }
     }
-
-    console.log(profile)
 
     App.profiles = App.profiles.filter(x => x.url.value !== og_url)
 
@@ -925,14 +929,15 @@ App.profile_add_to_list = (key, item) => {
   }})
 }
 
-App.profile_change_args = (item, key, value, action = `edit`) => {
+App.profile_change_args = (item, type, value, action = `edit`) => {
   let args = {}
   let items = App.get_profile_items(item)
   let [profiles, added] = App.get_profiles(items)
   App.profile_urls = []
   args.profiles = profiles
   args.added = added
-  args[key] = value
+  args.type = type
+  args[type] = value
   args.action = action
   return args
 }
