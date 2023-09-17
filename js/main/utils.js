@@ -496,3 +496,7 @@ App.clone = (obj) => {
 App.sep = (items) => {
   items.push({separator: true})
 }
+
+App.close_window = () => {
+  window.close()
+}
