@@ -994,33 +994,6 @@ App.change_color = (item, color, toggle = false) => {
   }, undefined, force)
 }
 
-App.profile_get_shared = (key, profiles) => {
-  let props = App.profile_props[key]
-
-  if (props.type === `list`) {
-    let first = App.str(profiles[0][key].value)
-
-    for (let profile of profiles) {
-      if (App.str(profile[key].value) !== first) {
-        return
-      }
-    }
-
-    return App.obj(first)
-  }
-  else {
-    let first = profiles[0][key].value
-
-    for (let profile of profiles) {
-      if (profile[key].value !== first) {
-        return
-      }
-    }
-
-    return first
-  }
-}
-
 App.profile_make_menu = (key, opts,) => {
   App[`profile_menubutton_${key}`] = App.create_menubutton({
     button: DOM.el(`#profile_editor_${key}`),
