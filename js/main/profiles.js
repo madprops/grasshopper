@@ -72,12 +72,12 @@ App.get_profile_items = (item) => {
 }
 
 App.show_profile_editor = (item, action = `edit`) => {
+  let new_edit = false
   App.profile_editor_ready = false
-  App.profile_editor_new = false
   App.profile_urls = []
 
   if (action === `new`) {
-    App.profile_editor_new = true
+    new_edit = true
     action = `edit`
   }
 
@@ -86,7 +86,7 @@ App.show_profile_editor = (item, action = `edit`) => {
   let profiles = []
   let added = []
 
-  if (!App.profile_editor_new) {
+  if (!new_edit) {
     [profiles, added] = App.get_profiles(items)
   }
   else {
@@ -108,7 +108,7 @@ App.show_profile_editor = (item, action = `edit`) => {
 
   App.profile_editor_header(`Editing 1 Profile`)
 
-  if (profiles.length && !App.profile_editor_new) {
+  if (profiles.length && !new_edit) {
     let profile = profiles[0]
 
     if (action === `edit`) {
