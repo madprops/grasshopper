@@ -44,7 +44,7 @@ App.setup_profile_editor = () => {
     }
 
     App.profile_make_menu(`color`, App.profile_editor_color_opts)
-    App.profile_start_lists()
+    App.profile_start_addlists()
 
     DOM.ev(DOM.el(`#profile_editor_tags_add`), `click`, (e) => {
       App.profile_tags_add(e)
@@ -1011,7 +1011,7 @@ App.add_note = (item) => {
 }
 
 App.profile_add_to_list = (key, item) => {
-  App.profile_start_lists()
+  App.profile_start_addlists()
   App[`profile_editor_${key}`] = []
 
   App.addlist_edit({id: `profile_editor_${key}`, items: {}, on_save: () => {
@@ -1228,7 +1228,7 @@ App.get_edit_options = (item) => {
   return items
 }
 
-App.profile_start_lists = () => {
+App.profile_start_addlists = () => {
   if (!App.profile_lists_ready) {
     for (let key in App.profile_props) {
       let props = App.profile_props[key]
