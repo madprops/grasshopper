@@ -69,9 +69,20 @@
 
     <template id="template_profile_editor">
       <div class="flex_column_center gap_4" id="profile_editor_container">
+        <div id="profile_editor_exact_container" class="editor_container flex_column_center gap_1" title="Match exact URL. Else it uses startsWith">
+          <div class="profile_editor_label action" data-key="exact">Exact</div>
+          <input type="checkbox" id="profile_editor_exact" class="settings_checkbox editor_input">
+        </div>
+
         <div id="profile_editor_url_container" class="editor_container flex_column_center gap_1" title="Match URLs that start with this">
-          <div class="profile_editor_label action" data-key="url">URL</div>
-          <input type="text" autocomplete="off" spellcheck="false" id="profile_editor_url" class="text settings_text editor_input" placeholder="Domain Root URL" readonly>
+          <div class="flex_row_center gap_1">
+            <div class="profile_editor_label action" data-key="url">URL</div>
+            <div>|</div>
+            <div id="profile_editor_url_root" class="action underline">Root</div>
+            <div>|</div>
+            <div id="profile_editor_url_full" class="action underline">Full</div>
+          </div>
+          <input type="text" autocomplete="off" spellcheck="false" id="profile_editor_url" class="text settings_text editor_input" placeholder="Domain Root URL">
         </div>
 
         <div id="profile_editor_title_container" class="editor_container flex_column_center gap_1" title="Override the title">

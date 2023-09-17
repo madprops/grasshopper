@@ -1,5 +1,6 @@
 App.profile_props = {
   url: {value: ``, type: `text`, version: 1},
+  exact: {value: false, type: `checkbox`, version: 1},
   tags: {value: [], type: `list`, label: `Tag`, title: `Tags`, version: 2},
   notes: {value: [], type: `list`, label: `Note`, title: `Notes`, version: 2},
   title: {value: ``, type: `text`, version: 1},
@@ -21,6 +22,14 @@ App.setup_profile_editor = () => {
     })
 
     DOM.el(`#profile_editor_icon`).placeholder = App.smile_icon
+
+    DOM.ev(DOM.el(`#profile_editor_url_root`), `click`, (e) => {
+      App.profile_editor_root_url()
+    })
+
+    DOM.ev(DOM.el(`#profile_editor_url_full`), `click`, (e) => {
+      App.profile_editor_full_url(e)
+    })
 
     App.profile_editor_color_opts = [{text: `None`, value: `none`}]
 
@@ -102,12 +111,13 @@ App.show_profile_editor = (item, action = `edit`) => {
     }
 
     App.profile_set_value(`url`, profile.url.value)
+    App.profile_set_value(`exact`, profile.exact.value)
     App.profile_set_value(`title`, profile.title.value)
     App.profile_set_value(`icon`, profile.icon.value)
     App.profile_set_value(`color`, profile.color.value)
   }
   else {
-    App.profile_set_value(`url`, (items[0].url))
+    App.profile_set_value(`url`, items[0].url)
   }
 
   App.window_goto_top(`profile_editor`)
@@ -124,11 +134,6 @@ App.get_empty_profile = (url) => {
 
   for (let key in App.profile_props) {
     let props = App.profile_props[key]
-
-    if (!props) {
-      continue
-    }
-
     profile[key] = {}
     profile[key].version = props.version
 
@@ -219,7 +224,6 @@ App.do_save_profile = (args) => {
 
     let og_url = profile.url.value
     profile.url.value = args.url || profile.url.value
-    profile.url.value = App.domain(profile.url.value)
 
     if (!profile.url.value) {
       return
@@ -234,10 +238,6 @@ App.do_save_profile = (args) => {
 
       if (args.type === `all` || args.type === key) {
         let props = App.profile_props[key]
-
-        if (!props) {
-          continue
-        }
 
         if (props.type === `list`) {
           profile[key].value = add_to_list(key)
@@ -339,25 +339,32 @@ App.apply_profiles = (urls) => {
 }
 
 App.get_profile = (url) => {
-  if (!url) {
-    return
-  }
-
   let profile
 
-  for (let pf of App.profiles) {
-    if (url.startsWith(pf.url.value)) {
+  function proc (pf) {
+    if (!profile) {
       profile = pf
-      break
+    }
+    else if (pf.url.length > profile.url.value.length) {
+      profile = pf
+    }
+  }
+
+  for (let pf of App.profiles) {
+    if (pf.exact.value) {
+      if (url === pf.url.value) {
+        proc(pf)
+      }
+    }
+    else {
+      if (url.startsWith(pf.url.value)) {
+        proc(pf)
+      }
     }
   }
 
   for (let key in profile) {
     let props = App.profile_props[key]
-
-    if (!props) {
-      continue
-    }
 
     if (profile[key].version !== props.version) {
       profile[key].value = App.clone(props.value)
@@ -447,14 +454,8 @@ App.check_profiles = () => {
     }
 
     for (let key in App.profile_props) {
-      if (profile[key].value === undefined) {
-        let props = App.profile_props[key]
-
-        if (!props) {
-          continue
-        }
-
-        profile[key].value = App.clone(props.value)
+      if (profile[key] && profile[key].value === undefined) {
+        profile[key].value = App.clone(App.profile_props[key].value)
         changed = true
       }
     }
@@ -795,17 +796,11 @@ App.after_profile_remove = () => {
 
 App.used_profile = (profile) => {
   for (let key in App.profile_props) {
-    if (key === `url`) {
+    if (key === `url` || key === `exact`) {
       continue
     }
 
-    let props = App.profile_props[key]
-
-    if (!props) {
-      continue
-    }
-
-    if (App.str(profile[key].value) !== App.str(props.value)) {
+    if (App.str(profile[key].value) !== App.str(App.profile_props[key].value)) {
       return true
     }
   }
@@ -833,15 +828,11 @@ App.get_profile_count = () => {
     }
 
     for (let key in App.profile_props) {
-      if (key === `url`) {
+      if (key === `url` || key === `exact`) {
         continue
       }
 
       let props = App.profile_props[key]
-
-      if (!props) {
-        continue
-      }
 
       if (App.str(profile[key]) !== App.str(props.value)) {
         count[key] += 1
@@ -909,12 +900,28 @@ App.get_edit_items = (item) => {
   }
 
   if (its.length === 1) {
+    let profile = profiles[0]
+    let exact = false
+
+    if (profile) {
+      exact = profile.url.value === item.url
+    }
+
     items.push({
       text: `Profile`,
       action: () => {
         App.show_profile_editor(item)
       }
     })
+
+    if (profile && !exact) {
+      items.push({
+        text: `This URL`,
+        action: () => {
+          App.show_profile_editor(item, `new`)
+        }
+      })
+    }
   }
 
   if (profiles.length) {
@@ -1099,14 +1106,25 @@ App.get_active_tags = (mode) => {
   return tags
 }
 
+App.profile_editor_root_url = () => {
+  let el = DOM.el(`#profile_editor_url`)
+  let item = App.profile_editor_items[0]
+  el.value = item.protocol + `//` + item.hostname
+  App.scroll_to_right(el)
+  el.focus()
+}
+
+App.profile_editor_full_url = () => {
+  let el = DOM.el(`#profile_editor_url`)
+  el.value = App.profile_editor_items[0].url
+  App.scroll_to_right(el)
+  el.focus()
+}
+
 App.profile_start_addlists = () => {
   if (!App.profile_lists_ready) {
     for (let key in App.profile_props) {
       let props = App.profile_props[key]
-
-      if (!props) {
-        continue
-      }
 
       if (props.type === `list`) {
         App.profile_register_addlist(key, props.label, props.title)
@@ -1183,10 +1201,6 @@ App.profile_addlist_counts = () => {
   for (let key in App.profile_props) {
     let props = App.profile_props[key]
 
-    if (!props) {
-      continue
-    }
-
     if (props.type === `list`) {
       App.addlist_update_count(`profile_editor_${key}`)
     }
@@ -1220,10 +1234,7 @@ App.profile_setup_labels = () => {
 
 App.profile_get_default = (key) => {
   let props = App.profile_props[key]
-
-  if (props) {
-    return App.clone(props.value)
-  }
+  return App.clone(props.value)
 }
 
 App.profile_set_default = (key, action = false) => {
@@ -1233,10 +1244,6 @@ App.profile_set_default = (key, action = false) => {
 
 App.profile_get_value = (key) => {
   let props = App.profile_props[key]
-
-  if (!props) {
-    return
-  }
 
   if (props.type === `list`) {
     return App[`profile_editor_${key}`]
@@ -1262,10 +1269,6 @@ App.profile_get_value = (key) => {
 
 App.profile_set_value = (key, value, actions = false) => {
   let props = App.profile_props[key]
-
-  if (!props) {
-    return
-  }
 
   if (props.type === `list`) {
     App[`profile_editor_${key}`] = App.clone(value)
@@ -1294,13 +1297,8 @@ App.profile_set_value = (key, value, actions = false) => {
 
 App.profile_is_default = (key) => {
   let value = App.profile_get_value(key)
-  let props = App.profile_props[key].value
-
-  if (!props) {
-    return
-  }
-
-  return App.str(value) === App.str(props)
+  let def_value = App.profile_props[key].value
+  return App.str(value) === App.str(def_value)
 }
 
 App.profile_default_all = () => {

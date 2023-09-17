@@ -496,10 +496,3 @@ App.clone = (obj) => {
 App.sep = (items) => {
   items.push({separator: true})
 }
-
-App.domain = (s) => {
-  let url = new URL(s)
-  let protocol = url.protocol
-  let hostname = url.hostname
-  return `${protocol}//${hostname}`
-}
