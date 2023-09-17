@@ -8,6 +8,7 @@
   --bigger_font: 1.2rem;
   --widget_width: 15rem;
   --widget_width_smaller: 6rem;
+  --text_input_width: 12.5rem;
 }
 
 body, html {
@@ -558,8 +559,8 @@ svg {
 }
 
 .addlist_text {
-  width: 12.5rem;
-  max-width: 12.5rem;
+  width: var(--text_input_width);
+  max-width: var(--text_input_width);
   text-align: center;
 }
 
@@ -1052,6 +1053,6 @@ a:visited, a:link, a:hover {
 
 #prompt_input {
   text-align: center;
-  width: 12.5rem;
-  max-width: 12.5rem;
+  width: var(--text_input_width);
+  max-width: var(--text_input_width);
 }
