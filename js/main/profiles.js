@@ -1,6 +1,5 @@
 App.profile_props = {
   url: {value: ``, type: `text`, version: 1},
-  exact: {value: false, type: `checkbox`, version: 1},
   tags: {value: [], type: `list`, label: `Tag`, title: `Tags`, version: 2},
   notes: {value: [], type: `list`, label: `Note`, title: `Notes`, version: 2},
   title: {value: ``, type: `text`, version: 1},
@@ -363,12 +362,18 @@ App.get_profile = (url) => {
     }
   }
 
-  for (let key in profile) {
-    let props = App.profile_props[key]
+  if (profile) {
+    for (let key in profile) {
+      let props = App.profile_props[key]
 
-    if (profile[key].version !== props.version) {
-      profile[key].value = App.clone(props.value)
-      profile[key].version = props.version
+      if (!props) {
+        continue
+      }
+
+      if (profile[key].version !== props.version) {
+        profile[key].value = App.clone(props.value)
+        profile[key].version = props.version
+      }
     }
   }
 
