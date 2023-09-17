@@ -853,7 +853,7 @@ App.refresh_profile_filters = () => {
   }
 }
 
-App.get_edit_items = (item) => {
+App.get_edit_items = (item, multiple) => {
   let items = []
 
   items.push({
@@ -893,6 +893,31 @@ App.get_edit_items = (item) => {
   })
 
   items.push({separator: true})
+
+  if (!multiple) {
+    let profile = App.get_profile(item.url)
+    let exact = false
+
+    if (profile) {
+      exact = profile.url.value === item.url
+    }
+
+    items.push({
+      text: `Profile`,
+      action: () => {
+        App.show_profile_editor(item)
+      }
+    })
+
+    if (!exact) {
+      items.push({
+        text: `This URL`,
+        action: () => {
+          App.show_profile_editor(item, `new`)
+        }
+      })
+    }
+  }
 
   items.push({
     text: `Remove`,
@@ -1087,32 +1112,6 @@ App.profile_editor_full_url = () => {
   el.value = App.profile_editor_items[0].url
   App.scroll_to_right(el)
   el.focus()
-}
-
-App.get_edit_options = (item) => {
-  let items = []
-  let profile = App.get_profile(item.url)
-  let exact = profile && (profile.url.value === item.url)
-
-  if (profile) {
-    items.push({
-      text: `Edit`,
-      action: () => {
-        App.show_profile_editor(item)
-      }
-    })
-  }
-
-  if (!exact) {
-    items.push({
-      text: `New`,
-      action: () => {
-        App.show_profile_editor(item, `new`)
-      }
-    })
-  }
-
-  return items
 }
 
 App.profile_start_addlists = () => {

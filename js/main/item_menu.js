@@ -138,23 +138,12 @@ App.get_window_menu_items = async (item) => {
 App.common_menu_items = (o_items, item, multiple) => {
   let items = []
 
-  if (multiple) {
-    items.push({
-      text: `Edit`,
-      get_items: () => {
-        return App.get_edit_items(item)
-      }
-    })
-  }
-  else {
-    items.push({
-      text: `Edit`,
-      direct: true,
-      get_items: () => {
-        return App.get_edit_options(item)
-      }
-    })
-  }
+  items.push({
+    text: `Edit`,
+    get_items: () => {
+      return App.get_edit_items(item, multiple)
+    }
+  })
 
   if (App.get_media_type(item)) {
     items.push({
