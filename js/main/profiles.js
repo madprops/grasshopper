@@ -909,7 +909,7 @@ App.get_edit_items = (item, multiple) => {
       }
     })
 
-    if (!exact) {
+    if (profile && !exact) {
       items.push({
         text: `This URL`,
         action: () => {
