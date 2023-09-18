@@ -1220,10 +1220,14 @@ App.scroll_to_item = (item, scroll = `nearest`) => {
     }
   }
 
-  let index = App.get_item_element_index(item.mode, item.element)
+  for (let it of App.get_items(item.mode)) {
+    if (it.visible) {
+      if (it === item) {
+        App.hide_scroller(item.mode)
+      }
 
-  if (index === 0) {
-    App.hide_scroller(item.mode)
+      break
+    }
   }
 
   item.element.scrollIntoView({
