@@ -856,7 +856,7 @@ App.refresh_profile_filters = () => {
   let filter_mode = App.filter_mode(mode)
 
   if (filter_mode === `edited` || filter_mode.startsWith(`tag_`) || filter_mode.startsWith(`color_`)) {
-    App.filter(mode)
+    App.filter({mode: mode})
     return
   }
 }

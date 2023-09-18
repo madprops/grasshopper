@@ -40,9 +40,9 @@ App.do_show_mode = async (mode, reuse_filter = false, force = false) => {
   App.empty_footer_info()
   App.cancel_filter()
   let container = DOM.el(`#${mode}_container`)
-  App.set_filter(mode, value, false)
+  App.set_filter({mode: mode, text: value, filter: false})
   let filter_mode = App.filter_modes(mode)[0]
-  App.set_filter_mode(mode, filter_mode.type, false)
+  App.set_filter_mode({mode: mode, type: filter_mode.type, filter: false})
   App[`${mode}_filter_mode`] = filter_mode.type
   App[`last_${mode}_query`] = undefined
   let persistent = App.persistent_modes.includes(mode)
@@ -114,7 +114,7 @@ App.do_show_mode = async (mode, reuse_filter = false, force = false) => {
   }
 
   if (value || was_filtered) {
-    App.do_filter(mode, true)
+    App.do_filter({mode: mode, force: true})
   }
   else {
     App.select_first_item(mode, true, `center_instant`)

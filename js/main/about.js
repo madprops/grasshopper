@@ -108,7 +108,7 @@ App.about_filter_focused = () => {
 
 App.clear_about_filter = () => {
   if (App.filter_has_value(`about`)) {
-    App.set_filter(`about`, ``)
+    App.set_filter({mode: `about`})
   }
   else {
     App.hide_window()

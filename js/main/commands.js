@@ -46,7 +46,7 @@ App.setup_commands = () => {
     let name = `Filter ${App.capitalize(media)}`.trim()
 
     media_filters.push({name: name, cmd: `filter_${media}`, mode: `items`, icon: icon, action: (args) => {
-      App.set_filter_mode(args.mode, media)
+      App.set_filter_mode({mode: args.mode, type: media})
     }, info: `Filter by media: ${media}`})
   }
 
@@ -323,11 +323,11 @@ App.setup_commands = () => {
     }, info: `Filter by color`},
 
     {name: `Filter Playing`, cmd: `filter_playing`, mode: `tabs`, action: (args) => {
-      App.set_filter_mode(args.mode, `playing`)
+      App.set_filter_mode({mode: args.mode, type: `playing`})
     }, info: `Filter by playing`},
 
     {name: `Filter Edited`, cmd: `filter_edited`, mode: `items`, action: (args) => {
-      App.set_filter_mode(args.mode, `edited`)
+      App.set_filter_mode({mode: args.mode, type: `edited`})
     }, info: `Filter by edited`},
 
     {name: App.separator_string},

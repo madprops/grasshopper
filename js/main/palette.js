@@ -158,7 +158,7 @@ App.palette_filter_focused = () => {
 App.clear_palette_filter = () => {
   if (App.palette_filter_focused()) {
     if (App.filter_has_value(`palette`)) {
-      App.set_filter(`palette`, ``)
+      App.set_filter({mode: `palette`})
     }
     else {
       App.hide_all_popups()

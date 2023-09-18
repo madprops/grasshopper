@@ -4,21 +4,21 @@ App.setup_filter = () => {
 }
 
 App.start_filter_debouncers = () => {
-  App.filter_debouncer = App.create_debouncer((mode, force, deep) => {
-    App.do_filter(mode, force, deep)
+  App.filter_debouncer = App.create_debouncer((args) => {
+    App.do_filter(args)
   }, App.get_setting(`filter_delay`))
 
-  App.filter_debouncer_search = App.create_debouncer((mode, force, deep) => {
-    App.do_filter(mode, force, deep)
+  App.filter_debouncer_search = App.create_debouncer((args) => {
+    App.do_filter(args)
   }, App.get_setting(`filter_delay_search`))
 }
 
-App.filter = (mode, force, deep) => {
-  if (App.search_modes.includes(mode)) {
-    App.filter_debouncer_search.call(mode, force, deep)
+App.filter = (args) => {
+  if (App.search_modes.includes(args.mode)) {
+    App.filter_debouncer_search.call(args)
   }
   else {
-    App.filter_debouncer.call(mode, force, deep)
+    App.filter_debouncer.call(args)
   }
 }
 
@@ -27,10 +27,16 @@ App.cancel_filter = () => {
   App.filter_debouncer_search.cancel()
 }
 
-App.do_filter = async (mode, force = false, deep = false) => {
+App.do_filter = async (args) => {
+  let def_args = {
+    force: false,
+    deep: false,
+  }
+
+  args = Object.assign(def_args, args)
   App.cancel_filter()
-  App.debug(`Filter: ${mode}`)
-  let value = App.get_clean_filter(mode, false)
+  App.debug(`Filter: ${args.mode}`)
+  let value = App.get_clean_filter(args.mode, false)
   value = App.remove_protocol(value)
 
   if (value.endsWith(`|`)) {
@@ -57,32 +63,32 @@ App.do_filter = async (mode, force = false, deep = false) => {
 
   // This check is to avoid re-fetching items
   // For instance when moving from All to Image
-  if (App.search_modes.includes(mode)) {
+  if (App.search_modes.includes(args.mode)) {
     let svalue = value
 
-    if (force || (svalue !== App[`last_${mode}_query`])) {
+    if (args.force || (svalue !== App[`last_${args.mode}_query`])) {
       svalue = App.replace_filter_vars(svalue)
       let search_date = App.now()
       App.filter_search_date = search_date
-      await App.search_items(mode, svalue, deep, search_date)
+      await App.search_items(args.mode, svalue, args.deep, search_date)
 
       if (App.filter_search_date !== search_date) {
         return
       }
 
-      if (App.active_mode !== mode) {
+      if (App.active_mode !== args.mode) {
         return
       }
     }
   }
 
-  let items = App.get_items(mode)
+  let items = App.get_items(args.mode)
 
   if (!items) {
     return
   }
 
-  let filter_mode = App.filter_mode(mode)
+  let filter_mode = App.filter_mode(args.mode)
   let filter_mode_split = filter_mode.split(`_`)
   let f_value
 
@@ -171,12 +177,12 @@ App.do_filter = async (mode, force = false, deep = false) => {
     }
   }
 
-  App.clear_selected(mode)
-  App.select_first_item(mode, !App.is_filtered(mode))
-  App.update_footer_info(App.get_selected(mode))
-  App.update_footer_count(mode)
+  App.clear_selected(args.mode)
+  App.select_first_item(args.mode, !App.is_filtered(args.mode))
+  App.update_footer_info(App.get_selected(args.mode))
+  App.update_footer_count(args.mode)
   App.do_check_pinline()
-  App.do_check_scroller(mode)
+  App.do_check_scroller(args.mode)
 }
 
 App.replace_filter_vars = (value) => {
@@ -305,24 +311,31 @@ App.is_filtered = (mode) => {
 
 App.clear_filter = (mode = App.window_mode) => {
   if (App.filter_has_value(mode)) {
-    App.set_filter(mode, ``)
+    App.set_filter({mode: mode})
   }
 }
 
-App.set_filter = (mode, text, filter = true, instant = true) => {
-  App.get_filter_el(mode).value = text
+App.set_filter = (args) => {
+  let def_args = {
+    text: ``,
+    filter: true,
+    instant: true,
+  }
 
-  if (filter) {
-    if (App.on_items(mode)) {
-      if (instant) {
-        App.do_filter(mode)
+  args = Object.assign(def_args, args)
+  App.get_filter_el(args.mode).value = args.text
+
+  if (args.filter) {
+    if (App.on_items(args.mode)) {
+      if (args.instant) {
+        App.do_filter({mode: args.mode})
       }
       else {
-        App.filter(mode)
+        App.filter({mode: args.mode})
       }
     }
-    else if (App.on_settings(mode)) {
-      if (instant) {
+    else if (App.on_settings(args.mode)) {
+      if (args.instant) {
         App.do_filter_settings()
       }
       else {
@@ -330,11 +343,11 @@ App.set_filter = (mode, text, filter = true, instant = true) => {
       }
     }
     else {
-      if (instant) {
-        App[`do_filter_${mode}`]()
+      if (args.instant) {
+        App[`do_filter_${args.mode}`]()
       }
       else {
-        App[`filter_${mode}`]()
+        App[`filter_${args.mode}`]()
       }
     }
   }
@@ -358,7 +371,7 @@ App.filter_cmd = (mode, cmd) => {
     new_text += cleaned
   }
 
-  App.set_filter(mode, new_text)
+  App.set_filter({mode: mode, text: new_text})
 }
 
 App.filter_has_value = (mode) => {
@@ -445,7 +458,7 @@ App.show_filter_menu = (mode) => {
     items.push({
       text: filter_mode.text,
       action: () => {
-        App.set_filter_mode(mode, filter_mode.type)
+        App.set_filter_mode({mode: mode, type: filter_mode.type})
       },
       selected: selected,
       info: filter_mode.info,
@@ -476,7 +489,7 @@ App.cycle_filter_modes = (mode, reverse = true) => {
     }
 
     if (waypoint) {
-      App.set_filter_mode(mode, filter_mode.type, true, false)
+      App.set_filter_mode({mode: mode, type: filter_mode.type, instant: false})
       return
     }
 
@@ -485,7 +498,7 @@ App.cycle_filter_modes = (mode, reverse = true) => {
     }
   }
 
-  App.set_filter_mode(mode, first.type, true, false)
+  App.set_filter_mode({mode: mode, type: first.type, instant: false})
 }
 
 App.filter_modes = (mode) => {
@@ -504,17 +517,23 @@ App.get_filter_mode = (mode, type) => {
   }
 }
 
-App.set_filter_mode = (mode, type, filter = true, instant = true) => {
-  let filter_mode = App.get_filter_mode(mode, type)
-  App[`${mode}_filter_mode`] = filter_mode.type
-  DOM.el(`#${mode}_filter_modes_text`).textContent = filter_mode.text
+App.set_filter_mode = (args) => {
+  let def_args = {
+    filter: true,
+    instant: true,
+  }
 
-  if (filter) {
-    if (instant) {
-      App.do_filter(mode)
+  args = Object.assign(def_args, args)
+  let filter_mode = App.get_filter_mode(args.mode, args.type)
+  App[`${args.mode}_filter_mode`] = filter_mode.type
+  DOM.el(`#${args.mode}_filter_modes_text`).textContent = filter_mode.text
+
+  if (args.filter) {
+    if (args.instant) {
+      App.do_filter({mode: args.mode})
     }
     else {
-      App.filter(mode)
+      App.filter({mode: args.mode})
     }
   }
 }
@@ -603,7 +622,7 @@ App.create_filter = (mode) => {
   })
 
   DOM.ev(filter, `input`, () => {
-    App.filter(mode)
+    App.filter({mode: mode})
   })
 
   return filter
@@ -625,8 +644,8 @@ App.get_custom_filters = (mode) => {
 }
 
 App.set_custom_filter = (mode, filter) => {
-  App.set_filter_mode(mode, `all`, false)
-  App.set_filter(mode, filter)
+  App.set_filter_mode({mode: mode, type: `all`, filter: false})
+  App.set_filter({mode: mode, text: filter})
 }
 
 App.do_filter_2 = (mode) => {
@@ -715,7 +734,7 @@ App.search_items = async (mode, query, deep, date) => {
 }
 
 App.deep_search = (mode) => {
-  App.do_filter(mode, true, true)
+  App.do_filter({mode: mode, force: true, deep: true})
 }
 
 App.was_filtered = (mode) => {
@@ -767,23 +786,23 @@ App.filter_domain = (item) => {
     return
   }
 
-  App.set_filter(item.mode, hostname)
+  App.set_filter({mode: item.mode, text: hostname})
 }
 
 App.filter_tag = (mode, tag) => {
   App.set_custom_filter_mode(mode, `tag_${tag}`, tag)
-  App.set_filter(mode, ``)
+  App.set_filter({mode: mode})
 }
 
 App.filter_color = (mode, color) => {
   App.set_custom_filter_mode(mode, `color_${color}`, App.capitalize(color))
-  App.set_filter(mode, ``)
+  App.set_filter({mode: mode})
 }
 
 App.show_all = (mode = App.window_mode) => {
   if (App.is_filtered(mode)) {
-    App.set_filter_mode(mode, `all`, false)
-    App.set_filter(mode, ``)
+    App.set_filter_mode({mode: mode, type: `all`, filter: false})
+    App.set_filter({mode: mode})
   }
 }
 
@@ -794,7 +813,7 @@ App.show_filter_history = (e, mode) => {
     items.push({
       text: value,
       action: () => {
-        App.set_filter(mode, value)
+        App.set_filter({mode: mode, text: value})
       },
       alt_action: () => {
         App.forget_filter_history_item(value)

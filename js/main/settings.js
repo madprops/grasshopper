@@ -325,7 +325,7 @@ App.clear_settings_filter = () => {
     let mode = `settings_${App.settings_category}`
 
     if (App.filter_has_value(mode)) {
-      App.set_filter(mode, ``)
+      App.set_filter({mode: mode})
     }
     else {
       App.hide_window()
