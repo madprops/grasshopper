@@ -1203,6 +1203,17 @@ App.container_is_scrolled = (mode) => {
 }
 
 App.scroll_to_item = (item, scroll = `nearest`) => {
+  let behavior = `instant`
+
+  if (scroll === `center_smooth`) {
+    scroll = `center`
+    behavior = `smooth`
+  }
+  else if (scroll === `nearest_smooth`) {
+    scroll = `nearest`
+    behavior = `smooth`
+  }
+
   let index = App.get_item_element_index(item.mode, item.element)
 
   if (index === 0) {
@@ -1211,7 +1222,7 @@ App.scroll_to_item = (item, scroll = `nearest`) => {
 
   item.element.scrollIntoView({
     block: scroll,
-    behavior: `instant`,
+    behavior: behavior,
   })
 }
 
