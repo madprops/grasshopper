@@ -141,7 +141,7 @@ App.focus_tab = async (item, scroll, method = `normal`) => {
     return
   }
 
-  App.select_item(item, scroll)
+  App.select_item({item: item, scroll: scroll})
 
   if (item.window_id) {
     await browser.windows.update(item.window_id, {focused: true})
@@ -224,7 +224,7 @@ App.refresh_tab = async (id, select, info) => {
 
   if (select) {
     if (App.get_selected(`tabs`) !== item) {
-      App.select_item(item, `nearest_smooth`)
+      App.select_item({item: item, scroll: `nearest_smooth`})
     }
   }
 }
@@ -934,7 +934,7 @@ App.focus_current_tab = async (scroll = `nearest_smooth`) => {
   let item = await App.get_active_tab_item()
 
   if (item) {
-    App.select_item(item, scroll)
+    App.select_item({item: item, scroll: scroll})
   }
 }
 

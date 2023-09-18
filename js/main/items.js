@@ -4,28 +4,35 @@ App.remove_selected_class = (mode) => {
   }
 }
 
-App.select_item = (item, scroll = `nearest`, deselect = true) => {
-  if (!item) {
+App.select_item = (args) => {
+  let def_args = {
+    scroll: `nearest`,
+    deselect: true,
+  }
+
+  args = Object.assign(def_args, args)
+
+  if (!args.item) {
     return
   }
 
-  let prev = App.get_selected(item.mode)
+  let prev = App.get_selected(args.item.mode)
 
-  if (deselect) {
-    App.deselect(item.mode)
+  if (args.deselect) {
+    App.deselect(args.item.mode)
   }
 
-  App.toggle_selected(item, true)
+  App.toggle_selected(args.item, true)
 
   if (prev) {
-    App.scroll_to_item(item, scroll)
+    App.scroll_to_item(args.item, args.scroll)
   }
   else {
     // Elements just got created
     // Give them time to render
     requestAnimationFrame(() => {
-      App.scroll_to_item(item, scroll)
-      App.do_check_scroller(item.mode)
+      App.scroll_to_item(args.item, args.scroll)
+      App.do_check_scroller(args.item.mode)
     })
   }
 }
@@ -34,7 +41,7 @@ App.select_above = (mode) => {
   let item = App.get_other_item({mode: mode}, true)
 
   if (item) {
-    App.select_item(item, `nearest`)
+    App.select_item({item: item, scroll: `nearest`})
   }
 }
 
@@ -42,7 +49,7 @@ App.select_below = (mode) => {
   let item = App.get_other_item({mode: mode})
 
   if (item) {
-    App.select_item(item, `nearest`)
+    App.select_item({item: item, scroll: `nearest`})
   }
 }
 
@@ -185,7 +192,7 @@ App.select_first_item = (mode, by_active = false, scroll = `nearest_instant`) =>
   if (mode === `tabs` && by_active) {
     for (let item of App.get_items(mode)) {
       if (item.visible && item.active) {
-        App.select_item(item, scroll)
+        App.select_item({item: item, scroll: scroll})
         return
       }
     }
@@ -193,7 +200,7 @@ App.select_first_item = (mode, by_active = false, scroll = `nearest_instant`) =>
 
   for (let item of App.get_items(mode)) {
     if (item.visible) {
-      App.select_item(item)
+      App.select_item({item: item})
       return
     }
   }
@@ -212,7 +219,7 @@ App.remove_item = (item) => {
     let next_item = App.get_next_item(mode)
 
     if (next_item) {
-      App.select_item(next_item)
+      App.select_item({item: next_item})
     }
   }
 
@@ -838,7 +845,7 @@ App.select_range = (item) => {
   let selected = App.get_selected(item.mode)
 
   if (item === selected) {
-    App.select_item(item, `nearest_instant`)
+    App.select_item({item: item, scroll: `nearest_instant`})
     return
   }
 
@@ -946,7 +953,7 @@ App.deselect = (mode = App.window_mode, select = `none`) => {
   }
 
   if (next_item) {
-    App.select_item(next_item, `nearest_smooth`, false)
+    App.select_item({item: next_item, scroll: `nearest_smooth`, deselect: false})
   }
 
   return num
@@ -1060,7 +1067,7 @@ App.open_items = (item, shift, multiple = true) => {
 
 App.goto_top = (mode = App.window_mode, select = false) => {
   if (select) {
-    App.select_item(App.get_items(mode).at(0), `nearest_instant`)
+    App.select_item({item: App.get_items(mode).at(0), scroll: `nearest_instant`})
   }
   else {
     let el = DOM.el(`#${mode}_container`)
@@ -1076,7 +1083,7 @@ App.goto_top = (mode = App.window_mode, select = false) => {
 
 App.goto_bottom = (mode = App.window_mode, select = false) => {
   if (select) {
-    App.select_item(App.get_items(mode).at(-1), `nearest_instant`)
+    App.select_item({item: App.get_items(mode).at(-1), scroll: `nearest_instant`})
   }
   else {
     let el = DOM.el(`#${mode}_container`)
@@ -1350,7 +1357,7 @@ App.pick = (item) => {
     App.toggle_selected(item, false)
   }
   else {
-    App.select_item(item, `nearest_instant`, false)
+    App.select_item({item: item, scroll: `nearest_instant`, deselect: false})
   }
 }
 
@@ -1381,6 +1388,6 @@ App.select_item_by_id = (mode, id) => {
   let item = App.get_item_by_id(mode, id)
 
   if (item) {
-    App.select_item(item, `center_instant`)
+    App.select_item({item: item, scroll: `center_instant`})
   }
 }
