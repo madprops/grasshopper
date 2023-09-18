@@ -258,7 +258,7 @@ App.process_info_list = (mode, info_list) => {
   let exclude = []
 
   for (let info of info_list) {
-    let item = App.process_info(mode, info, exclude)
+    let item = App.process_info({mode: mode, info: info, exclude: exclude})
 
     if (!item) {
       continue
@@ -278,36 +278,42 @@ App.process_info_list = (mode, info_list) => {
   App.check_new_tabs()
 }
 
-App.process_info = (mode, info, exclude = [], o_item) => {
-  if (!info) {
+App.process_info = (args) => {
+  let def_args = {
+    exclude: [],
+  }
+
+  args = Object.assign(def_args, args)
+
+  if (!args.info) {
     return false
   }
 
-  if (o_item) {
-    info = Object.assign({}, o_item.original_data, info)
-    o_item.original_data = info
+  if (args.o_item) {
+    args.info = Object.assign({}, args.o_item.original_data, args.info)
+    args.o_item.original_data = args.info
   }
 
-  if (info.url) {
+  if (args.info.url) {
     try {
       // Check if valid URL
-      decodeURI(info.url)
+      decodeURI(args.info.url)
     }
     catch (err) {
       return false
     }
   }
 
-  let url = App.format_url(info.url || ``)
+  let url = App.format_url(args.info.url || ``)
 
-  if (exclude.includes(url)) {
+  if (args.exclude.includes(url)) {
     return false
   }
 
   let path = App.remove_protocol(url)
   let protocol = App.get_protocol(url)
   let hostname = App.get_hostname(url)
-  let title = info.title || ``
+  let title = args.info.title || ``
   let image = App.is_image(url)
   let video = App.is_video(url)
   let audio = App.is_audio(url)
@@ -345,11 +351,11 @@ App.process_info = (mode, info, exclude = [], o_item) => {
     path: path,
     protocol: protocol,
     hostname: hostname,
-    favicon: info.favIconUrl,
+    favicon: args.info.favIconUrl,
     icon: icon,
-    mode: mode,
-    window_id: info.windowId,
-    session_id: info.sessionId,
+    mode: args.mode,
+    window_id: args.info.windowId,
+    session_id: args.info.sessionId,
     image: image,
     video: video,
     audio: audio,
@@ -359,37 +365,37 @@ App.process_info = (mode, info, exclude = [], o_item) => {
     is_item: true,
   }
 
-  if (mode === `tabs`) {
-    item.active = info.active
-    item.pinned = info.pinned
-    item.audible = info.audible
-    item.muted = info.mutedInfo.muted
-    item.discarded = info.discarded
-    item.last_accessed = info.lastAccessed
+  if (args.mode === `tabs`) {
+    item.active = args.info.active
+    item.pinned = args.info.pinned
+    item.audible = args.info.audible
+    item.muted = args.info.mutedInfo.muted
+    item.discarded = args.info.discarded
+    item.last_accessed = args.info.lastAccessed
   }
-  else if (mode === `history`) {
-    item.last_visit = info.lastVisitTime
+  else if (args.mode === `history`) {
+    item.last_visit = args.info.lastVisitTime
   }
-  else if (mode === `bookmarks`) {
-    item.parent_id = info.parentId
-    item.date_added = info.dateAdded
+  else if (args.mode === `bookmarks`) {
+    item.parent_id = args.info.parentId
+    item.date_added = args.info.dateAdded
   }
 
-  if (o_item) {
-    o_item = Object.assign(o_item, item)
-    App.refresh_item_element(o_item)
+  if (args.o_item) {
+    args.o_item = Object.assign(args.o_item, item)
+    App.refresh_item_element(args.o_item)
 
-    if (App.get_selected(mode) === o_item) {
-      App.update_footer_info(o_item)
+    if (App.get_selected(args.mode) === args.o_item) {
+      App.update_footer_info(args.o_item)
     }
   }
   else {
-    item.original_data = info
-    item.id = info.id || App[`${mode}_idx`]
+    item.original_data = args.info
+    item.id = args.info.id || App[`${args.mode}_idx`]
     item.visible = true
     item.selected = false
     App.create_item_element(item)
-    App[`${mode}_idx`] += 1
+    App[`${args.mode}_idx`] += 1
     return item
   }
 }
@@ -786,7 +792,7 @@ App.get_visible = (mode) => {
 App.update_item = (mode, id, info) => {
   for (let item of App.get_items(mode)) {
     if (item.id === id) {
-      App.process_info(mode, info, [], item)
+      App.process_info({mode: mode, info: info, o_item: item})
       break
     }
   }
@@ -1163,7 +1169,7 @@ App.get_active_items = (mode, item, multiple = true) => {
 }
 
 App.insert_item = (mode, info) => {
-  let item = App.process_info(mode, info)
+  let item = App.process_info({mode: mode, info: info})
 
   if (mode === `tabs`) {
     App.get_items(mode).splice(info.index, 0, item)
