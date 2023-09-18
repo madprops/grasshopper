@@ -1218,6 +1218,11 @@ App.profile_addlist_counts = () => {
 App.profile_setup_labels = () => {
   for (let el of DOM.els(`.profile_editor_label`)) {
     let key = el.dataset.key
+
+    if (key === `url`) {
+      continue
+    }
+
     let items = []
 
     items.push({
