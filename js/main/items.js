@@ -771,7 +771,7 @@ App.setup_item_window = (mode) => {
 App.focus_or_open_item = async (item) => {
   for (let tab of App.get_items(`tabs`)) {
     if (App.urls_equal(tab.url, item.url)) {
-      await App.focus_tab(tab)
+      await App.focus_tab({item: tab})
       return `focused`
     }
   }

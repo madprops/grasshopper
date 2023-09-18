@@ -136,27 +136,33 @@ App.get_tabs = async () => {
   return tabs
 }
 
-App.focus_tab = async (item, scroll, method = `normal`) => {
-  if (!item) {
+App.focus_tab = async (args) => {
+  let def_args = {
+    method: `normal`,
+  }
+
+  args = Object.assign(def_args, args)
+
+  if (!args.item) {
     return
   }
 
-  App.select_item({item: item, scroll: scroll})
+  App.select_item({item: args.item, scroll: args.scroll})
 
-  if (item.window_id) {
-    await browser.windows.update(item.window_id, {focused: true})
+  if (args.item.window_id) {
+    await browser.windows.update(args.item.window_id, {focused: true})
   }
 
   try {
-    await browser.tabs.update(item.id, {active: true})
+    await browser.tabs.update(args.item.id, {active: true})
   }
   catch (err) {
     App.error(err)
-    App.remove_closed_tab(item.id)
+    App.remove_closed_tab(args.item.id)
     App.check_playing()
   }
 
-  App.after_focus(method)
+  App.after_focus(args.method)
 }
 
 App.close_tab = async (id) => {
@@ -275,7 +281,7 @@ App.remove_closed_tab = (id) => {
 App.tabs_action = async (item) => {
   App.on_action(`tabs`)
   App.do_empty_previous_tabs()
-  await App.focus_tab(item, `nearest`)
+  await App.focus_tab({item: item, scroll: `nearest`})
 }
 
 App.duplicate_tab = async (item) => {
@@ -399,7 +405,7 @@ App.unload_tabs = (item, multiple = true) => {
       }
 
       if (next) {
-        await App.focus_tab(next, `nearest`, `unload`)
+        await App.focus_tab({item: next, scroll: `nearest`, method: `unload`})
       }
       else {
         await App.open_new_tab(`about:blank`)
@@ -855,7 +861,7 @@ App.go_to_previous_tab = async () => {
   let item = App.get_item_by_id(`tabs`, prev_tab.id)
 
   if (item) {
-    App.focus_tab(item, `center`, `previous`)
+    App.focus_tab({item: item, scroll: `center`, method: `previous`})
     App.previous_tabs_index += 1
 
     if (App.previous_tabs_index > (App.previous_tabs.length - 1)) {
@@ -1307,7 +1313,7 @@ App.load_tabs = (item) => {
 
   App.show_confirm(`Load items? (${items.length})`, async () => {
     for (let it of items) {
-      App.focus_tab(it, `none`, `load`)
+      App.focus_tab({item: it, scroll: `none`, method: `load`})
     }
   }, undefined, force)
 }
