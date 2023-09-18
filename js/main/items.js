@@ -31,7 +31,6 @@ App.select_item = (args) => {
     // Give them time to render
     requestAnimationFrame(() => {
       App.scroll_to_item(args.item, args.scroll)
-      App.do_check_scroller(args.item.mode)
     })
   }
 }
