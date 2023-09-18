@@ -1220,6 +1220,7 @@ App.scroll_to_item = (item, scroll = `nearest`) => {
     }
   }
 
+  // If going to the top then hide scroller
   for (let it of App.get_items(item.mode)) {
     if (it.visible) {
       if (it === item) {
