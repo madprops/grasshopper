@@ -4,55 +4,62 @@ App.setup_modes = () => {
   }
 }
 
-App.show_mode_debouncer = App.create_debouncer((mode, reuse_filter) => {
-  App.do_show_mode(mode, reuse_filter)
+App.show_mode_debouncer = App.create_debouncer((args) => {
+  App.do_show_mode(args)
 }, App.show_mode_delay)
 
-App.show_mode = (mode, reuse_filter) => {
-  App.show_mode_debouncer.call(mode, reuse_filter)
+App.show_mode = (args) => {
+  App.show_mode_debouncer.call(args)
 }
 
-App.do_show_mode = async (mode, reuse_filter = false, force = false) => {
-  if (!App.get_setting(`reuse_filter`)) {
-    reuse_filter = false
+App.do_show_mode = async (args) => {
+  let def_args = {
+    reuse_filter: false,
+    force: false,
   }
 
-  let pre_show = App[`pre_show_${mode}`]
+  args = Object.assign(def_args, args)
+
+  if (!App.get_setting(`reuse_filter`)) {
+    args.reuse_filter = false
+  }
+
+  let pre_show = App[`pre_show_${args.mode}`]
 
   if (pre_show) {
     pre_show()
   }
 
-  App.windows[mode].show()
-  let was_filtered = App.was_filtered(mode)
+  App.windows[args.mode].show()
+  let was_filtered = App.was_filtered(args.mode)
 
-  if (!force) {
-    if ((App.active_mode === mode) &&
-    (App[`${mode}_items`].length) &&
-    !was_filtered && !App[`${mode}_changed`]) {
-      App.select_first_item(mode, true)
+  if (!args.force) {
+    if ((App.active_mode === args.mode) &&
+    (App[`${args.mode}_items`].length) &&
+    !was_filtered && !App[`${args.mode}_changed`]) {
+      App.select_first_item(args.mode, true)
       return
     }
   }
 
-  let value = App.get_last_filter_value(reuse_filter)
-  App.active_mode = mode
+  let value = App.get_last_filter_value(args.reuse_filter)
+  App.active_mode = args.mode
   App.empty_footer_info()
   App.cancel_filter()
-  let container = DOM.el(`#${mode}_container`)
-  App.set_filter({mode: mode, text: value, filter: false})
-  let filter_mode = App.filter_modes(mode)[0]
-  App.set_filter_mode({mode: mode, type: filter_mode.type, filter: false})
-  App[`${mode}_filter_mode`] = filter_mode.type
-  App[`last_${mode}_query`] = undefined
-  let persistent = App.persistent_modes.includes(mode)
-  let search = App.search_modes.includes(mode)
+  let container = DOM.el(`#${args.mode}_container`)
+  App.set_filter({mode: args.mode, text: value, filter: false})
+  let filter_mode = App.filter_modes(args.mode)[0]
+  App.set_filter_mode({mode: args.mode, type: filter_mode.type, filter: false})
+  App[`${args.mode}_filter_mode`] = filter_mode.type
+  App[`last_${args.mode}_query`] = undefined
+  let persistent = App.persistent_modes.includes(args.mode)
+  let search = App.search_modes.includes(args.mode)
   let items_ready = false
   let items
 
   if (persistent) {
-    if (App[`${mode}_items`].length) {
-      items = App[`${mode}_items`]
+    if (App[`${args.mode}_items`].length) {
+      items = App[`${args.mode}_items`]
       items_ready = true
     }
   }
@@ -72,17 +79,17 @@ App.do_show_mode = async (mode, reuse_filter = false, force = false) => {
     items = []
   }
   else if (!items_ready) {
-    items = await App[`get_${mode}`]()
+    items = await App[`get_${args.mode}`]()
     was_filtered = false
   }
 
   if (!persistent) {
-    if (mode !== App.active_mode) {
+    if (args.mode !== App.active_mode) {
       return
     }
   }
 
-  if (mode === `tabs`) {
+  if (args.mode === `tabs`) {
     if (App.get_setting(`pin_icon`)) {
       container.classList.add(`has_pin_icon`)
     }
@@ -103,25 +110,25 @@ App.do_show_mode = async (mode, reuse_filter = false, force = false) => {
   }
   else if (!items_ready) {
     if (items.length) {
-      App.process_info_list(mode, items)
+      App.process_info_list(args.mode, items)
     }
     else {
-      App.do_check_scroller(mode)
+      App.do_check_scroller(args.mode)
     }
   }
   else {
-    App.update_footer_info(App.get_selected(mode))
+    App.update_footer_info(App.get_selected(args.mode))
   }
 
   if (value || was_filtered) {
-    App.do_filter({mode: mode, force: true})
+    App.do_filter({mode: args.mode, force: true})
   }
   else {
-    App.select_first_item(mode, true, `center_instant`)
+    App.select_first_item(args.mode, true, `center_instant`)
   }
 
-  App[`${mode}_changed`] = false
-  App.check_playing(mode)
+  App[`${args.mode}_changed`] = false
+  App.check_playing(args.mode)
 }
 
 App.get_mode_index = (mode) => {
@@ -137,7 +144,7 @@ App.get_mode_name = (mode) => {
 }
 
 App.show_primary_mode = () => {
-  App.do_show_mode(App.primary_mode())
+  App.do_show_mode({mode: App.primary_mode()})
 }
 
 App.cycle_modes = (reverse, reuse_filter = true) => {
@@ -165,7 +172,7 @@ App.cycle_modes = (reverse, reuse_filter = true) => {
     }
   }
 
-  App.show_mode(new_mode, reuse_filter)
+  App.show_mode({mode: new_mode, reuse_filter: reuse_filter})
 }
 
 App.primary_mode = () => {
@@ -181,7 +188,7 @@ App.show_primary_mode = (allow_same = true) => {
     }
   }
 
-  App.do_show_mode(mode)
+  App.do_show_mode({mode: mode})
 }
 
 App.getting = (mode, force = false) => {

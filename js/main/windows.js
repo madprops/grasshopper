@@ -129,7 +129,7 @@ App.show_window = (mode) => {
   App.debug(`Show Window: ${mode}`)
 
   if (App.on_items(mode)) {
-    App.do_show_mode(mode)
+    App.do_show_mode({mode: mode})
   }
   else {
     App.windows[mode].show()

@@ -43,7 +43,7 @@ App.show_main_menu = (mode) => {
       icon: icon,
       text: name,
       action: () => {
-        App.do_show_mode(m, true)
+        App.do_show_mode({mode: m, reuse_filter: true})
       },
       selected: m === mode
     })

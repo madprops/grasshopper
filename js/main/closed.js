@@ -64,5 +64,5 @@ App.forget_closed_item = (item) => {
 }
 
 App.after_forget = () => {
-  App.show_mode(`closed`, undefined, true)
+  App.show_mode({mode: `closed`, force: true})
 }

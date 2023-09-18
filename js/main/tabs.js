@@ -1255,7 +1255,7 @@ App.do_sort_tabs = () => {
     App.tabs_locked = false
     App.hide_all_popups()
     App.clear_all_items()
-    await App.do_show_mode(`tabs`)
+    await App.do_show_mode({mode: `tabs`})
   })
 }
 

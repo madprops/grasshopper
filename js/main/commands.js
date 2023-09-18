@@ -57,7 +57,7 @@ App.setup_commands = () => {
     let name = `Show ${App.get_mode_name(mode)}`
 
     show_modes.push({name: name, cmd: `show_${mode}`, icon: icon, action: (args) => {
-      App.show_mode(mode)
+      App.show_mode({mode: mode})
     }, info: `Show mode: ${mode}`})
   }
 
