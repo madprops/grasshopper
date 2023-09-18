@@ -6,7 +6,6 @@ App.remove_selected_class = (mode) => {
 
 App.select_item = (args) => {
   let def_args = {
-    scroll: `nearest`,
     deselect: true,
   }
 
@@ -188,7 +187,7 @@ App.get_items = (mode) => {
   return App[item_string] || []
 }
 
-App.select_first_item = (mode, by_active = false, scroll = `nearest_instant`) => {
+App.select_first_item = (mode, by_active = false, scroll = `nearest`) => {
   if (mode === `tabs` && by_active) {
     for (let item of App.get_items(mode)) {
       if (item.visible && item.active) {
@@ -815,7 +814,7 @@ App.move_item = (mode, from_index, to_index) => {
   App.move_item_element(mode, item.element, to_index)
 
   if (App.get_selected(mode) === item) {
-    App.scroll_to_item(App.get_selected(mode), `center_smooth`)
+    App.scroll_to_item(App.get_selected(mode), `center`)
   }
 }
 
@@ -845,7 +844,7 @@ App.select_range = (item) => {
   let selected = App.get_selected(item.mode)
 
   if (item === selected) {
-    App.select_item({item: item, scroll: `nearest_instant`})
+    App.select_item({item: item, scroll: `nearest`})
     return
   }
 
@@ -914,7 +913,7 @@ App.select_range = (item) => {
     }
   }
 
-  App.scroll_to_item(item, `nearest_instant`)
+  App.scroll_to_item(item, `nearest`)
 }
 
 App.deselect = (mode = App.window_mode, select = `none`) => {
@@ -953,7 +952,7 @@ App.deselect = (mode = App.window_mode, select = `none`) => {
   }
 
   if (next_item) {
-    App.select_item({item: next_item, scroll: `nearest_smooth`, deselect: false})
+    App.select_item({item: next_item, scroll: `nearest`, deselect: false})
   }
 
   return num
@@ -1067,7 +1066,7 @@ App.open_items = (item, shift, multiple = true) => {
 
 App.goto_top = (mode = App.window_mode, select = false) => {
   if (select) {
-    App.select_item({item: App.get_items(mode).at(0), scroll: `nearest_instant`})
+    App.select_item({item: App.get_items(mode).at(0), scroll: `nearest`})
   }
   else {
     let el = DOM.el(`#${mode}_container`)
@@ -1083,7 +1082,7 @@ App.goto_top = (mode = App.window_mode, select = false) => {
 
 App.goto_bottom = (mode = App.window_mode, select = false) => {
   if (select) {
-    App.select_item({item: App.get_items(mode).at(-1), scroll: `nearest_instant`})
+    App.select_item({item: App.get_items(mode).at(-1), scroll: `nearest`})
   }
   else {
     let el = DOM.el(`#${mode}_container`)
@@ -1204,74 +1203,15 @@ App.container_is_scrolled = (mode) => {
 }
 
 App.scroll_to_item = (item, scroll = `nearest`) => {
-  let behavior
-
-  if (scroll === `nearest_instant`) {
-    scroll = `nearest`
-    behavior = `instant`
-  }
-  else if (scroll === `center_instant`) {
-    scroll = `center`
-    behavior = `instant`
-  }
-  else if (scroll === `nearest_smooth`) {
-    scroll = `nearest`
-    behavior = `smooth`
-  }
-  else if (scroll === `center_smooth`) {
-    scroll = `center`
-    behavior = `smooth`
-  }
-  else {
-    behavior = `instant`
-  }
-
-  if (!App.get_setting(`smooth_scrolling`)) {
-    behavior = `instant`
-  }
-
-  let a = [`nearest`, `center`].includes(scroll)
-  let b = [`instant`, `smooth`].includes(behavior)
-
-  if (!a || !b) {
-    return
-  }
-
   let index = App.get_item_element_index(item.mode, item.element)
 
   if (index === 0) {
     App.hide_scroller(item.mode)
   }
 
-  if (behavior === `smooth`) {
-    // Check how far an item is going to be scrolled
-    let top = item.element.getBoundingClientRect().top
-    let diff
-
-    if (top < 0) {
-      diff = Math.abs(top)
-    }
-    else {
-      let container = DOM.el(`#${item.mode}_container`)
-      let height = container.clientHeight
-
-      if (top > height) {
-        diff = top - height
-      }
-      else {
-        diff = 0
-      }
-    }
-
-    // If distance is too big then make it instant
-    if (diff > App.max_smooth_scroll) {
-      behavior = `instant`
-    }
-  }
-
   item.element.scrollIntoView({
     block: scroll,
-    behavior: behavior,
+    behavior: `instant`,
   })
 }
 
@@ -1357,7 +1297,7 @@ App.pick = (item) => {
     App.toggle_selected(item, false)
   }
   else {
-    App.select_item({item: item, scroll: `nearest_instant`, deselect: false})
+    App.select_item({item: item, scroll: `nearest`, deselect: false})
   }
 }
 
@@ -1388,6 +1328,6 @@ App.select_item_by_id = (mode, id) => {
   let item = App.get_item_by_id(mode, id)
 
   if (item) {
-    App.select_item({item: item, scroll: `center_instant`})
+    App.select_item({item: item, scroll: `center`})
   }
 }

@@ -53,7 +53,7 @@ App.go_to_playing_tab = async () => {
       }
 
       if (waypoint) {
-        App.focus_tab(item, `center_smooth`, `playing`)
+        App.focus_tab(item, `center`, `playing`)
         return
       }
     }
@@ -66,6 +66,6 @@ App.go_to_playing_tab = async () => {
 
   // If none found then pick the first one
   if (first) {
-    App.focus_tab(first, `center_smooth`, `playing`)
+    App.focus_tab(first, `center`, `playing`)
   }
 }

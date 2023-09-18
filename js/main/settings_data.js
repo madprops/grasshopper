@@ -420,9 +420,6 @@ App.build_settings = () => {
   obj.direct_settings = {value: true, category: category, type: `checkbox`, name: `Direct Settings`, version: 1,
   info: `Go straight to General when clicking Settings. Else show a menu to pick a category`}
 
-  obj.smooth_scrolling = {value: true, category: category, type: `checkbox`, name: `Smooth Scrolling`, version: 1,
-  info: `Allow smooth scrolling in some cases. Else it's always instant`}
-
   obj.sort_commands = {value: true, category: category, type: `checkbox`, name: `Sort Commands`, version: 1,
   info: `Sort commands in the palette by recent use`}
 

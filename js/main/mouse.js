@@ -67,7 +67,7 @@ App.mouse_click_action = (mode, e) => {
     if (!e.shiftKey && !e.ctrlKey) {
       if (media_type) {
         if (App.get_setting(`view_${media_type}_${mode}`) === `icon`) {
-          App.select_item({item: item, scroll: `nearest_smooth`})
+          App.select_item({item: item, scroll: `nearest`})
           App.view_media(item)
           return
         }
@@ -97,7 +97,7 @@ App.mouse_click_action = (mode, e) => {
     }
   }
 
-  App.select_item({item: item, scroll: `nearest_smooth`})
+  App.select_item({item: item, scroll: `nearest`})
 
   if (mode === `tabs`) {
     if (App.get_setting(`mute_click`)) {
@@ -111,7 +111,7 @@ App.mouse_click_action = (mode, e) => {
 
   if (media_type) {
     if (App.get_setting(`view_${media_type}_${mode}`) === `item`) {
-      App.select_item({item: item, scroll: `nearest_smooth`})
+      App.select_item({item: item, scroll: `nearest`})
       App.view_media(item)
       return
     }
@@ -157,7 +157,7 @@ App.mouse_context_action = (mode, e) => {
   }
 
   let item = App.get_cursor_item(mode, e)
-  App.select_item({item: item, scroll: `nearest_smooth`, deselect: !item.selected})
+  App.select_item({item: item, scroll: `nearest`, deselect: !item.selected})
   App.show_item_menu(item, e.clientX, e.clientY)
 }
 

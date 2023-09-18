@@ -224,7 +224,7 @@ App.refresh_tab = async (id, select, info) => {
 
   if (select) {
     if (App.get_selected(`tabs`) !== item) {
-      App.select_item({item: item, scroll: `nearest_smooth`})
+      App.select_item({item: item, scroll: `nearest`})
     }
   }
 }
@@ -275,7 +275,7 @@ App.remove_closed_tab = (id) => {
 App.tabs_action = async (item) => {
   App.on_action(`tabs`)
   App.do_empty_previous_tabs()
-  await App.focus_tab(item, `nearest_smooth`)
+  await App.focus_tab(item, `nearest`)
 }
 
 App.duplicate_tab = async (item) => {
@@ -399,7 +399,7 @@ App.unload_tabs = (item, multiple = true) => {
       }
 
       if (next) {
-        await App.focus_tab(next, `nearest_smooth`, `unload`)
+        await App.focus_tab(next, `nearest`, `unload`)
       }
       else {
         await App.open_new_tab(`about:blank`)
@@ -855,7 +855,7 @@ App.go_to_previous_tab = async () => {
   let item = App.get_item_by_id(`tabs`, prev_tab.id)
 
   if (item) {
-    App.focus_tab(item, `center_smooth`, `previous`)
+    App.focus_tab(item, `center`, `previous`)
     App.previous_tabs_index += 1
 
     if (App.previous_tabs_index > (App.previous_tabs.length - 1)) {
@@ -930,7 +930,7 @@ App.do_close_duplicate_tabs = (close_pins = true) => {
   }, force)
 }
 
-App.focus_current_tab = async (scroll = `nearest_smooth`) => {
+App.focus_current_tab = async (scroll = `nearest`) => {
   let item = await App.get_active_tab_item()
 
   if (item) {

@@ -124,7 +124,7 @@ App.do_show_mode = async (args) => {
     App.do_filter({mode: args.mode, force: true})
   }
   else {
-    App.select_first_item(args.mode, true, `center_instant`)
+    App.select_first_item(args.mode, true, `center`)
   }
 
   App[`${args.mode}_changed`] = false

@@ -10,7 +10,7 @@ App.check_items_keyboard = (e) => {
     }
 
     if (!App.element_is_visible(item.element)) {
-      App.select_item({item: item, scroll: `nearest_smooth`})
+      App.select_item({item: item, scroll: `nearest`})
     }
     else {
       if (App.deselect(mode, direction) > 1) {
