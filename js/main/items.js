@@ -1203,38 +1203,12 @@ App.container_is_scrolled = (mode) => {
 }
 
 App.scroll_to_item = (item, scroll = `nearest`) => {
-  let behavior = `instant`
-
-  if (scroll === `center_smooth`) {
-    scroll = `center`
-    behavior = `smooth`
-  }
-  else if (scroll === `nearest_smooth`) {
-    scroll = `nearest`
-    behavior = `smooth`
-  }
-
-  if (behavior === `smooth`) {
-    if (!App.get_setting(`smooth_scrolling`)) {
-      behavior = `instant`
-    }
-  }
-
-  // If going to the top then hide scroller
-  for (let it of App.get_items(item.mode)) {
-    if (it.visible) {
-      if (it === item) {
-        App.hide_scroller(item.mode)
-      }
-
-      break
-    }
-  }
-
   item.element.scrollIntoView({
     block: scroll,
-    behavior: behavior,
+    behavior: `instant`,
   })
+
+  App.do_check_scroller(item.mode)
 }
 
 App.copy_url = (item) => {
