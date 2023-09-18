@@ -1214,6 +1214,12 @@ App.scroll_to_item = (item, scroll = `nearest`) => {
     behavior = `smooth`
   }
 
+  if (behavior === `smooth`) {
+    if (!App.get_setting(`smooth_scrolling`)) {
+      behavior = `instant`
+    }
+  }
+
   let index = App.get_item_element_index(item.mode, item.element)
 
   if (index === 0) {
