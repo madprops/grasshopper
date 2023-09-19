@@ -49,7 +49,7 @@ select {
   text-align: center;
 }
 
-.no_scrollbars *:not(textarea):not(input) {
+.no_scrollbars .item_container {
 	scrollbar-width: none !important;
 }
 
@@ -132,7 +132,7 @@ select {
   justify-content: start;
 }
 
-.container {
+.item_container {
   margin-bottom: var(--item_margin);
   display: flex;
   flex-direction: column;
