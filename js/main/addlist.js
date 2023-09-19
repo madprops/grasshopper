@@ -449,43 +449,47 @@ App.addlist_menu = (e) => {
     }
   })
 
-  items.push({
-    text: `List Items`,
-    action: () => {
-      data.button = `menu`
-      App.addlist_list(data)
-    }
-  })
+  let lines = App.addlist_get_data(data.id)
 
-  items.push({
-    text: `Move Item`,
-    items: [
-      {
-        text: `To Top`,
-        action: () => {
-          App.addlist_move(`top`)
-        }
-      },
-      {
-        text: `Move Up`,
-        action: () => {
-          App.addlist_move(`up`)
-        }
-      },
-      {
-        text: `Move Down`,
-        action: () => {
-          App.addlist_move(`down`)
-        }
-      },
-      {
-        text: `To Bottom`,
-        action: () => {
-          App.addlist_move(`bottom`)
-        }
-      },
-    ],
-  })
+  if (lines.length > 1) {
+    items.push({
+      text: `List Items`,
+      action: () => {
+        data.button = `menu`
+        App.addlist_list(data)
+      }
+    })
+
+    items.push({
+      text: `Move Item`,
+      items: [
+        {
+          text: `To Top`,
+          action: () => {
+            App.addlist_move(`top`)
+          }
+        },
+        {
+          text: `Move Up`,
+          action: () => {
+            App.addlist_move(`up`)
+          }
+        },
+        {
+          text: `Move Down`,
+          action: () => {
+            App.addlist_move(`down`)
+          }
+        },
+        {
+          text: `To Bottom`,
+          action: () => {
+            App.addlist_move(`bottom`)
+          }
+        },
+      ],
+    })
+  }
 
   let btn = DOM.el(`#addlist_menu_${id}`)
   NeedContext.show_on_element(btn, items, true, btn.clientHeight)
