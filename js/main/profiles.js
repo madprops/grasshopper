@@ -956,8 +956,8 @@ App.add_note = (item) => {
   App.profile_add_to_list(`notes`, item)
 }
 
-App.profile_addlist_on_save = (key, item) => {
-  let args = App.profile_change_args(item, key, App.profile_get_value(key), `add`)
+App.profile_addlist_on_save = (key, item, action = `add`) => {
+  let args = App.profile_change_args(item, key, App.profile_get_value(key), action)
   App.do_save_profile(args)
   App.profile_editor_close(false)
 }
@@ -1412,8 +1412,7 @@ App.show_notes = (item) => {
       App.profile_start_addlists()
       App.profile_set_value(`notes`, profile.notes.value)
       App.addlist_view({id: `profile_editor_notes`, index: 0, on_save: () => {
-        console.log(`save`)
-        App.profile_addlist_on_save(`notes`, item)
+        App.profile_addlist_on_save(`notes`, item, `edit`)
       }})
     }
   }
