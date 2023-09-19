@@ -142,7 +142,7 @@ App.common_menu_items = (o_items, item, multiple) => {
     }
   })
 
-  if (item.has_notes) {
+  if (item.has_notes && !multiple) {
     items.push({
       text: `Notes`,
       action: () => {
