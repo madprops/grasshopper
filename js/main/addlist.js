@@ -452,6 +452,7 @@ App.addlist_menu = (e) => {
     text: `New`,
     action: () => {
       data.items = {}
+      data.edit = false
       App.addlist_edit(data)
     }
   })

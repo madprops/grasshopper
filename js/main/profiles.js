@@ -1149,13 +1149,15 @@ App.profile_start_addlists = () => {
 
 App.profile_register_addlist = (key, label, title) => {
   let id = `profile_editor_${key}`
+  let lowercase = false
   let widget
 
   if (key === `notes`) {
     widget = `textarea`
   }
-  else {
+  else if (key === `tags`) {
     widget = `text`
+    lowercase = true
   }
 
   App.create_popup({
@@ -1170,7 +1172,7 @@ App.profile_register_addlist = (key, label, title) => {
         return items.value
       },
       title: title,
-      lowercase: true,
+      lowercase: lowercase,
       get_data: (id) => {
         return App[id]
       },
