@@ -223,6 +223,9 @@ App.build_settings = () => {
   obj.middle_click_pinline = {value: `close_normal_tabs`, category: category, type: `menu`, name: `Middle-Click Pinline`, version: 1,
   info: `Middle-click on the pinline`}
 
+  obj.middle_click_close_icon = {value: `unload_tabs`, category: category, type: `menu`, name: `Middle-Click Close Icon`, version: 1,
+  info: `Middle-click on the close buttons`}
+
   // ###################
   category = `menus`
 

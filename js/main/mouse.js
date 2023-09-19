@@ -180,6 +180,17 @@ App.mouse_middle_action = (mode, e) => {
   }
 
   let item = App.get_cursor_item(mode, e)
+
+  if (e.target.classList.contains(`close_icon`)) {
+    let cmd = App.get_setting(`middle_click_close_icon`)
+
+    if (cmd !== `none`) {
+      App.run_command({cmd: cmd, item: item, from: `close_button`})
+    }
+
+    return
+  }
+
   let cmd = App.get_setting(`middle_click_${item.mode}`)
 
   if (cmd !== `none`) {
