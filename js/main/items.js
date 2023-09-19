@@ -505,15 +505,13 @@ App.apply_color_mode = (item) => {
 
 App.add_close_icon = (item, side) => {
   if (item.mode === `tabs` && App.get_setting(`close_icon`)) {
-    if (side === `left`) {
-      if (!App.get_setting(`close_icon_on_left`)) {
-        return
-      }
+    let on_left = App.get_setting(`close_icon_on_left`)
+
+    if (side === `left` && !on_left) {
+      return
     }
-    else if (side === `right`) {
-      if (App.get_setting(`close_icon_on_left`)) {
-        return
-      }
+    else if (side === `right` && on_left) {
+      return
     }
 
     let close = DOM.create(`div`, `close_icon action`)
