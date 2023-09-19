@@ -250,11 +250,11 @@ svg {
   margin: 0 0 -1px -1px;
 }
 
-.item div:first-child {
+.item > div:first-child {
   padding-left: var(--item_margin);
 }
 
-.item div:last-child {
+.item > div:last-child {
   padding-right: var(--item_margin);
 }
 
