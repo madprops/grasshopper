@@ -930,9 +930,9 @@ App.get_edit_items = (item) => {
     }
   })
 
-  App.sep(items)
-
   if (profiles.length) {
+    App.sep(items)
+
     items.push({
       text: `Remove`,
       action: () => {
