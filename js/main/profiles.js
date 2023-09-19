@@ -94,12 +94,13 @@ App.show_profile_editor = (item, action = `edit`) => {
   App.profile_editor_action = action
   App.show_window(`profile_editor`)
   App.profile_default_all()
+  let remove_el = DOM.el(`#profile_editor_remove`)
 
   if (profiles.length) {
-    DOM.el(`#profile_editor_remove`).classList.remove(`hidden`)
+    remove_el.classList.remove(`hidden`)
   }
   else {
-    DOM.el(`#profile_editor_remove`).classList.add(`hidden`)
+    remove_el.classList.add(`hidden`)
   }
 
   if (profiles.length && !new_edit) {
@@ -863,6 +864,35 @@ App.refresh_profile_filters = () => {
 
 App.get_edit_items = (item) => {
   let items = []
+  let its = App.get_profile_items(item)
+  let [profiles, added] = App.get_profiles(its)
+
+  if (its.length === 1) {
+    let profile = profiles[0]
+    let exact = false
+
+    if (profile) {
+      exact = profile.url.value === item.url
+    }
+
+    items.push({
+      text: `Profile`,
+      action: () => {
+        App.show_profile_editor(item)
+      }
+    })
+
+    if (profile && !exact) {
+      items.push({
+        text: `This URL`,
+        action: () => {
+          App.show_profile_editor(item, `new`)
+        }
+      })
+    }
+
+    App.sep(items)
+  }
 
   items.push({
     icon: App.settings_icons.theme,
@@ -900,37 +930,7 @@ App.get_edit_items = (item) => {
     }
   })
 
-  let its = App.get_profile_items(item)
-  let [profiles, added] = App.get_profiles(its)
-
-  if (its.length === 1 || profiles.length) {
-    App.sep(items)
-  }
-
-  if (its.length === 1) {
-    let profile = profiles[0]
-    let exact = false
-
-    if (profile) {
-      exact = profile.url.value === item.url
-    }
-
-    items.push({
-      text: `Profile`,
-      action: () => {
-        App.show_profile_editor(item)
-      }
-    })
-
-    if (profile && !exact) {
-      items.push({
-        text: `This URL`,
-        action: () => {
-          App.show_profile_editor(item, `new`)
-        }
-      })
-    }
-  }
+  App.sep(items)
 
   if (profiles.length) {
     items.push({
