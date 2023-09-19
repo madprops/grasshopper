@@ -848,7 +848,7 @@ App.fill_settings = (category) => {
     widget.type = type
     widget.autocomplete = `off`
     widget.spellcheck = false
-    widget.placeholder = placeholder
+    widget.placeholder = placeholder || ``
     return widget
   }
 
