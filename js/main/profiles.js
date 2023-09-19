@@ -21,7 +21,7 @@ App.setup_profile_editor = () => {
       App.profile_editor_close()
     })
 
-    DOM.el(`#profile_editor_icon`).placeholder = App.smile_icon
+    DOM.el(`#profile_editor_icon`).placeholder = App.icon_placeholder
 
     DOM.ev(DOM.el(`#profile_editor_url_root`), `click`, (e) => {
       App.profile_editor_root_url()
