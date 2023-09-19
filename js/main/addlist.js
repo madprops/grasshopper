@@ -441,15 +441,7 @@ App.addlist_menu = (e) => {
   let items = []
 
   items.push({
-    text: `List`,
-    action: () => {
-      data.button = `menu`
-      App.addlist_list(data)
-    }
-  })
-
-  items.push({
-    text: `New`,
+    text: `New Item`,
     action: () => {
       data.items = {}
       data.edit = false
@@ -458,17 +450,41 @@ App.addlist_menu = (e) => {
   })
 
   items.push({
-    text: `Move Up`,
+    text: `List Items`,
     action: () => {
-      App.addlist_move(`up`)
+      data.button = `menu`
+      App.addlist_list(data)
     }
   })
 
   items.push({
-    text: `Move Down`,
-    action: () => {
-      App.addlist_move(`down`)
-    }
+    text: `Move Item`,
+    items: [
+      {
+        text: `To Top`,
+        action: () => {
+          App.addlist_move(`top`)
+        }
+      },
+      {
+        text: `Move Up`,
+        action: () => {
+          App.addlist_move(`up`)
+        }
+      },
+      {
+        text: `Move Down`,
+        action: () => {
+          App.addlist_move(`down`)
+        }
+      },
+      {
+        text: `To Bottom`,
+        action: () => {
+          App.addlist_move(`bottom`)
+        }
+      },
+    ],
   })
 
   let btn = DOM.el(`#addlist_menu_${id}`)
@@ -487,7 +503,15 @@ App.addlist_move = (dir) => {
     }
 
     if (line[oargs.pk] === value) {
-      if (dir === `up`) {
+      if (dir === `top`) {
+        let item = lines.splice(i, 1)[0]
+        lines.unshift(item)
+      }
+      else if (dir === `bottom`) {
+        let item = lines.splice(i, 1)[0]
+        lines.push(item)
+      }
+      else if (dir === `up`) {
         if (i > 0 && i < lines.length) {
           [lines[i], lines[i - 1]] = [lines[i - 1], lines[i]]
         }
