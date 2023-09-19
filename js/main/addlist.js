@@ -294,6 +294,9 @@ App.addlist_enter = () => {
     else if (data.use) {
       App.addlist_use()
     }
+    else {
+      App.hide_addlist(false)
+    }
   }
   else {
     App.addlist_save(data.id)
