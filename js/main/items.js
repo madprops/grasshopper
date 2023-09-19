@@ -575,7 +575,6 @@ App.create_item_element = (item) => {
       item.element.append(normal_icon)
     }
 
-
     App.add_close_icon(item, `right`)
     App.check_tab_item(item)
   }
