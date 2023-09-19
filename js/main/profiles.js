@@ -2,7 +2,6 @@ App.profile_props = {
   url: {value: ``, type: `text`, version: 1},
   exact: {value: false, type: `checkbox`, version: 1},
   tags: {value: [], type: `list`, label: `Tag`, title: `Tags`, version: 2},
-  notes: {value: [], type: `list`, label: `Note`, title: `Notes`, version: 2},
   title: {value: ``, type: `text`, version: 1},
   color: {value: `none`, type: `menu`, version: 1},
   icon: {value: ``, type: `text`, version: 1},
@@ -108,7 +107,6 @@ App.show_profile_editor = (item, action = `edit`) => {
 
     if (action === `edit`) {
       App.profile_set_value(`tags`, profile.tags.value)
-      App.profile_set_value(`notes`, profile.notes.value)
     }
 
     App.profile_set_value(`url`, profile.url.value)
@@ -615,15 +613,6 @@ App.clear_profiles_items = () => {
     })
   }
 
-  if (count.notes) {
-    items.push({
-      text: `Notes`,
-      action: () => {
-        App.remove_all_notes()
-      }
-    })
-  }
-
   if (count.icons) {
     items.push({
       text: `Icons`,
@@ -679,28 +668,6 @@ App.remove_all_colors = () => {
   App.show_confirm(`Remove all colors? (${profiles.length})`, () => {
     for (let profile of App.profiles) {
       profile.color.value = App.profile_get_default(`color`)
-    }
-
-    App.after_profile_remove()
-  })
-}
-
-App.remove_all_notes = () => {
-  let profiles = []
-
-  for (let profile of App.profiles) {
-    if (profile.notes.value) {
-      profiles.push(profile)
-    }
-  }
-
-  if (!profiles.length) {
-    return
-  }
-
-  App.show_confirm(`Remove all notes? (${profiles.length})`, () => {
-    for (let profile of App.profiles) {
-      profile.notes.value = App.profile_get_default(`notes`)
     }
 
     App.after_profile_remove()
@@ -890,55 +857,47 @@ App.get_edit_items = (item) => {
         }
       })
     }
-
-    App.sep(items)
   }
-
-  items.push({
-    icon: App.settings_icons.theme,
-    text: `Color`,
-    get_items: () => {
-      return App.color_menu_items(item)
-    }
-  })
-
-  items.push({
-    text: `Add Tag`,
-    action: () => {
-      App.add_tag(item)
-    }
-  })
-
-  items.push({
-    text: `Add Note`,
-    action: () => {
-      App.add_note(item)
-    }
-  })
-
-  items.push({
-    text: `Edit Title`,
-    action: () => {
-      App.profile_edit_text(`title`, `Title`, item)
-    }
-  })
-
-  items.push({
-    text: `Edit Icon`,
-    action: () => {
-      App.profile_edit_text(`icon`, `Icon`, item)
-    }
-  })
-
-  if (profiles.length) {
-    App.sep(items)
-
+  else {
     items.push({
-      text: `Remove`,
-      action: () => {
-        App.profile_remove_menu(item)
+      icon: App.settings_icons.theme,
+      text: `Color`,
+      get_items: () => {
+        return App.color_menu_items(item)
       }
     })
+
+    items.push({
+      text: `Add Tag`,
+      action: () => {
+        App.add_tag(item)
+      }
+    })
+
+    items.push({
+      text: `Edit Title`,
+      action: () => {
+        App.profile_edit_text(`title`, `Title`, item)
+      }
+    })
+
+    items.push({
+      text: `Edit Icon`,
+      action: () => {
+        App.profile_edit_text(`icon`, `Icon`, item)
+      }
+    })
+
+    if (profiles.length) {
+      App.sep(items)
+
+      items.push({
+        text: `Remove`,
+        action: () => {
+          App.profile_remove_menu(item)
+        }
+      })
+    }
   }
 
   return items
@@ -950,10 +909,6 @@ App.edit_profiles = (item) => {
 
 App.add_tag = (item) => {
   App.profile_add_to_list(`tags`, item)
-}
-
-App.add_note = (item) => {
-  App.profile_add_to_list(`notes`, item)
 }
 
 App.profile_addlist_on_save = (key, item) => {
@@ -1149,21 +1104,13 @@ App.profile_start_addlists = () => {
 
 App.profile_register_addlist = (key, label, title) => {
   let id = `profile_editor_${key}`
-  let widget
-
-  if (key === `notes`) {
-    widget = `textarea`
-  }
-  else {
-    widget = `text`
-  }
 
   App.create_popup({
     id: `addlist_${id}`,
     element: App.addlist_register({
       id: id,
       pk: `value`,
-      widgets: [widget],
+      widgets: [`text`],
       labels: [label],
       keys: [`value`],
       list_text: (items) => {
@@ -1402,18 +1349,4 @@ App.color_menu_items = (item) => {
 App.show_color_menu = (item) => {
   let items = App.color_menu_items(item)
   NeedContext.show_on_center(items)
-}
-
-App.show_notes = (item) => {
-  let profile = App.get_profile(item.url)
-
-  if (profile) {
-    if (profile.notes.value.length) {
-      App.profile_start_addlists()
-      App.profile_set_value(`notes`, profile.notes.value)
-      App.addlist_view({id: `profile_editor_notes`, index: 0, on_save: () => {
-        App.profile_addlist_on_save(`notes`, item)
-      }})
-    }
-  }
 }

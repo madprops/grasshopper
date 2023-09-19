@@ -103,13 +103,6 @@ App.addlist_register = (args = {}) => {
       el.placeholder = args.labels[i] || `Value`
       els.push(el)
     }
-    if (w === `textarea`) {
-      let el = DOM.create(`textarea`, `text addlist_textarea`, id)
-      el.spellcheck = false
-      el.autocomplete = false
-      el.placeholder = args.labels[i] || `Value`
-      els.push(el)
-    }
     else if (w === `select`) {
       let el = DOM.create(`div`, `flex_column_center gap_1`)
       let label = DOM.create(`div`)
@@ -152,8 +145,6 @@ App.addlist_register = (args = {}) => {
 
   container.append(...els)
   let btns = DOM.create(`div`, `flex_row_center gap_1 addlist_buttons`)
-  let use = DOM.create(`div`, `button`, `addlist_use_${args.id}`)
-  use.textContent = `Use`
   let remove = DOM.create(`div`, `button`, `addlist_remove_${args.id}`)
   remove.textContent = `Rem`
   let save = DOM.create(`div`, `button`, `addlist_save_${args.id}`)
@@ -177,14 +168,9 @@ App.addlist_register = (args = {}) => {
     App.addlist_menu()
   })
 
-  DOM.ev(use, `click`, () => {
-    App.addlist_check_use()
-  })
-
   btns.append(remove)
   btns.append(menu)
   btns.append(save)
-  btns.append(use)
   container.append(btns)
   App[`addlist_args_${args.id}`] = args
   return container
@@ -203,7 +189,7 @@ App.addlist_edit = (args = {}) => {
     let el = App.addlist_widget(args.id, i)
     let w = widgets[i]
 
-    if (w === `text` || w === `textarea` || w === `key`) {
+    if (w === `text` || w === `key`) {
       if (value) {
         el.value = value
       }
@@ -291,9 +277,6 @@ App.addlist_enter = () => {
     if (modified) {
       App.addlist_save(data.id)
     }
-    else if (data.use) {
-      App.addlist_use()
-    }
     else {
       App.hide_addlist(false)
     }
@@ -328,13 +311,11 @@ App.addlist_check_buttons = (args) => {
   let menu_el = DOM.el(`#addlist_menu_${args.id}`)
   let prev_el = DOM.el(`#addlist_prev_${args.id}`)
   let next_el = DOM.el(`#addlist_next_${args.id}`)
-  let use_el = DOM.el(`#addlist_use_${args.id}`)
   let date_el = DOM.el(`#addlist_date_${args.id}`)
   remove_el.classList.add(`hidden`)
   menu_el.classList.add(`hidden`)
   prev_el.classList.add(`hidden`)
   next_el.classList.add(`hidden`)
-  use_el.classList.add(`hidden`)
   date_el.classList.add(`hidden`)
 
   if (args.edit) {
@@ -351,10 +332,6 @@ App.addlist_check_buttons = (args) => {
       prev_el.classList.remove(`hidden`)
       next_el.classList.remove(`hidden`)
     }
-
-    if (args.use) {
-      use_el.classList.remove(`hidden`)
-    }
   }
 }
 
@@ -367,42 +344,6 @@ App.addlist_def_args = () => {
 
 App.addlist_widget = (id, i = 0) => {
   return DOM.el(`#addlist_widget_${id}_${i}`)
-}
-
-App.addlist_use = (force = true) => {
-  let data = App.addlist_data
-  let line = App.addlist_values(data.id)
-  let filled = App.addlist_filled(line)
-
-  if (!filled) {
-    return false
-  }
-
-  if (data.use) {
-    App.show_confirm(`Use this now?`, () => {
-      data.use(line)
-      App.hide_addlist(true)
-    }, undefined, force)
-  }
-}
-
-App.addlist_check_use = () => {
-  let data = App.addlist_data
-
-  if (!data.use) {
-    return
-  }
-
-  let modified = App.addlist_modified(data.id)
-  let ans = true
-
-  if (modified) {
-    ans = App.addlist_save(data.id)
-  }
-
-  if (ans) {
-    App.addlist_use()
-  }
 }
 
 App.addlist_next = (id, reverse = false) => {
@@ -490,20 +431,21 @@ App.addlist_modified = (id) => {
 App.addlist_menu = (e) => {
   let id = App.addlist_data.id
   let data = App.addlist_data
-  let oargs = App.addlist_oargs(id)
   let items = []
 
   items.push({
     text: `List`,
     action: () => {
-      App.addlist_list({id: id, use: oargs.use, button: `menu`})
+      data.button = `menu`
+      App.addlist_list(data)
     }
   })
 
   items.push({
     text: `New`,
     action: () => {
-      App.addlist_edit({id: id, items: {}, on_save: data.on_save, use: data.use})
+      data.items = {}
+      App.addlist_edit(data)
     }
   })
 
@@ -560,7 +502,7 @@ App.addlist_get_value = (i, w) => {
   let el = App.addlist_widget(id, i)
   let value
 
-  if (w === `text` || w === `textarea` || w === `key`) {
+  if (w === `text` || w === `key`) {
     value = el.value.trim()
 
     if (oargs.lowercase) {
@@ -648,7 +590,8 @@ App.addlist_list = (args) => {
     items.push({
       text: title,
       action: () => {
-        App.addlist_view({id: args.id, index: i, use: args.use})
+        args.index = i
+        App.addlist_view(args)
       },
       info: info,
     })
@@ -735,7 +678,7 @@ App.addlist_add_buttons = (id) => {
   el.append(clear)
 
   DOM.ev(DOM.el(`#addlist_button_${id}_count`), `click`, () => {
-    App.addlist_list({id: id, use: oargs.use})
+    App.addlist_list({id: id})
   })
 
   DOM.ev(DOM.el(`#addlist_button_${id}_add`), `click`, () => {
@@ -743,7 +686,7 @@ App.addlist_add_buttons = (id) => {
   })
 
   DOM.ev(DOM.el(`#addlist_button_${id}_list`), `click`, () => {
-    App.addlist_list({id: id, use: oargs.use})
+    App.addlist_list({id: id})
   })
 
   DOM.ev(DOM.el(`#addlist_button_${id}_edit`), `click`, () => {

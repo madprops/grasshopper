@@ -325,7 +325,6 @@ App.process_info = (args) => {
   let profile = App.get_profile(url)
   let has_profile = false
   let custom_title = ``
-  let has_notes = false
   let color = ``
   let tags = []
   let icon = ``
@@ -343,10 +342,6 @@ App.process_info = (args) => {
 
     if (profile.tags.value.length) {
       tags = profile.tags.value.map(x => x.value)
-    }
-
-    if (profile.notes.value.length) {
-      has_notes = true
     }
 
     if (profile.icon.value) {
@@ -371,7 +366,6 @@ App.process_info = (args) => {
     audio: audio,
     has_profile: has_profile,
     tags: tags,
-    has_notes: has_notes,
     color: color,
     is_item: true,
   }

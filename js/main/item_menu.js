@@ -139,17 +139,9 @@ App.common_menu_items = (o_items, item, multiple) => {
     text: `Edit`,
     get_items: () => {
       return App.get_edit_items(item)
-    }
+    },
+    direct: true,
   })
-
-  if (item.has_notes && !multiple) {
-    items.push({
-      text: `Notes`,
-      action: () => {
-        return App.show_notes(item)
-      }
-    })
-  }
 
   if (App.get_media_type(item)) {
     items.push({
