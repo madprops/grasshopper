@@ -109,7 +109,7 @@ App.build_settings = () => {
   // ###################
   category = `icons`
 
-  obj.pin_icon = {value: `+`, category: category, type: `text_smaller`, name: `Pin Icon`, placeholder: App.smile_icon, version: 1,
+  obj.pin_icon = {value: ``, category: category, type: `text_smaller`, name: `Pin Icon`, placeholder: App.smile_icon, version: 1,
   info: `Icon for pinned tabs`}
 
   obj.normal_icon = {value: ``, category: category, type: `text_smaller`, name: `Normal Icon`, placeholder: App.smile_icon, version: 1,
@@ -126,9 +126,6 @@ App.build_settings = () => {
 
   obj.close_icon = {value: `x`, category: category, type: `text_smaller`, name: `Close Icon`, placeholder: App.smile_icon, version: 1,
   info: `Icon for the close buttons`}
-
-  obj.open_icon = {value: `🚀`, category: category, type: `text_smaller`, name: `Open Icon`, placeholder: App.smile_icon, version: 1,
-  info: `Icon for the open buttons`}
 
   obj.notes_icon = {value: `📜`, category: category, type: `text_smaller`, name: `Notes Icon`, placeholder: App.smile_icon, version: 1,
   info: `Icon for items with notes📜`}
@@ -222,12 +219,6 @@ App.build_settings = () => {
 
   obj.middle_click_footer = {value: `copy_item_url`, category: category, type: `menu`, name: `Middle-Click Footer`, version: 1,
   info: `Middle-click on the footer`}
-
-  obj.middle_click_close_button = {value: `unload_tabs`, category: category, type: `menu`, name: `Middle-Click Close Button`, version: 1,
-  info: `Middle-click on the close buttons`}
-
-  obj.middle_click_open_button = {value: `open_items`, category: category, type: `menu`, name: `Middle-Click Open Button`, version: 1,
-  info: `Middle-click on the open buttons`}
 
   obj.middle_click_pinline = {value: `close_normal_tabs`, category: category, type: `menu`, name: `Middle-Click Pinline`, version: 1,
   info: `Middle-click on the pinline`}

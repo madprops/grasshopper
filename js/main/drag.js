@@ -30,11 +30,6 @@ App.dragstart_action = (mode, e) => {
     return false
   }
 
-  if (e.target.closest(`.item_button`)) {
-    e.preventDefault()
-    return false
-  }
-
   App.drag_element = e.target.closest(`.grasshopper_item`)
 
   if (!App.drag_element) {

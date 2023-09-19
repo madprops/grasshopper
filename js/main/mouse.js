@@ -85,11 +85,6 @@ App.mouse_click_action = (mode, e) => {
     return
   }
 
-  if (e.target.classList.contains(`item_button_right`)) {
-    App.right_button_action(item)
-    return
-  }
-
   if (App.get_setting(`icon_pick`)) {
     if (e.target.closest(`.item_icon_container`)) {
       App.pick(item)
@@ -100,6 +95,13 @@ App.mouse_click_action = (mode, e) => {
   App.select_item({item: item, scroll: `nearest`})
 
   if (mode === `tabs`) {
+    if (App.get_setting(`close_icon`)) {
+      if (e.target.classList.contains(`close_icon`)) {
+        App.close_tabs(item, false, false)
+        return
+      }
+    }
+
     if (App.get_setting(`mute_click`)) {
       if (App.get_setting(`muted_icon`) || App.get_setting(`playing_icon`)) {
         if (e.target.classList.contains(`item_status_playing`) ||
@@ -112,11 +114,8 @@ App.mouse_click_action = (mode, e) => {
   }
 
   if (App.get_setting(`notes_click`)) {
-    console.log(1)
     if (App.get_setting(`notes_icon`)) {
-      console.log(2)
       if (e.target.classList.contains(`notes_icon`)) {
-        console.log(3)
         App.show_notes(item)
         return
       }
@@ -181,28 +180,11 @@ App.mouse_middle_action = (mode, e) => {
   }
 
   let item = App.get_cursor_item(mode, e)
+  let cmd = App.get_setting(`middle_click_${item.mode}`)
 
-  if (e.target.classList.contains(`item_button_close`)) {
-    let cmd = App.get_setting(`middle_click_close_button`)
-
-    if (cmd !== `none`) {
-      App.run_command({cmd: cmd, item: item, from: `close_button`})
-    }
-
-    return
+  if (cmd !== `none`) {
+    App.run_command({cmd: cmd, item: item, from: `middle_click`})
   }
-
-  if (e.target.classList.contains(`item_button_open`)) {
-    let cmd = App.get_setting(`middle_click_open_button`)
-
-    if (cmd !== `none`) {
-      App.run_command({cmd: cmd, item: item, from: `open_button`})
-    }
-
-    return
-  }
-
-  App.middle_click(item)
 }
 
 App.mouse_wheel_action = (mode, e) => {
@@ -243,13 +225,5 @@ App.right_button_action = (item) => {
   }
   else {
     App.open_items(item, true, false)
-  }
-}
-
-App.middle_click = (item) => {
-  let cmd = App.get_setting(`middle_click_${item.mode}`)
-
-  if (cmd !== `none`) {
-    App.run_command({cmd: cmd, item: item, from: `middle_click`})
   }
 }
