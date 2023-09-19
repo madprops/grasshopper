@@ -166,8 +166,8 @@ App.addlist_register = (args = {}) => {
     }
   })
 
-  DOM.ev(menu, `click`, (e) => {
-    App.addlist_menu(e)
+  DOM.ev(menu, `click`, () => {
+    App.addlist_menu()
   })
 
   DOM.ev(use, `click`, () => {
@@ -484,7 +484,16 @@ App.addlist_modified = (id) => {
 }
 
 App.addlist_menu = (e) => {
+  let id = App.addlist_data.id
+  let oargs = App.addlist_oargs(id)
   let items = []
+
+  items.push({
+    text: `List`,
+    action: () => {
+      App.addlist_list({id: id, use: oargs.use, button: `menu`})
+    }
+  })
 
   items.push({
     text: `Move Up`,
@@ -500,8 +509,8 @@ App.addlist_menu = (e) => {
     }
   })
 
-  e.preventDefault()
-  NeedContext.show(e.clientX, e.clientY, items)
+  let btn = DOM.el(`#addlist_menu_${id}`)
+  NeedContext.show_on_element(btn, items, true, btn.clientHeight)
 }
 
 App.addlist_move = (dir) => {
@@ -633,8 +642,16 @@ App.addlist_list = (args) => {
     })
   }
 
-  let area = DOM.el(`#${args.id}`)
-  NeedContext.show_on_element(area, items, true, area.clientHeight)
+  let btn
+
+  if (args.button === `menu`) {
+    btn = DOM.el(`#addlist_menu_${args.id}`)
+  }
+  else {
+    btn = DOM.el(`#${args.id}`)
+  }
+
+  NeedContext.show_on_element(btn, items, true, btn.clientHeight)
 }
 
 App.addlist_clear = (id, force = false) => {
