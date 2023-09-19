@@ -247,7 +247,7 @@ svg {
   border-color: transparent;
   border-left-width: 0;
   border-right-width: 0;
-  margin: 0 0 -1px -1px;
+  margin-top: -1px;
 }
 
 .item > div:first-child {
