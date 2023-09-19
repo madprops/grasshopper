@@ -136,9 +136,6 @@ App.build_settings = () => {
   obj.show_pinline = {value: `normal`, category: category, type: `menu`, name: `Show Pinline`, version: 2,
   info: `Show the widget between pinned and normal tabs`}
 
-  obj.show_scrollbars = {value: true, category: category, type: `checkbox`, name: `Show Scrollbars`, version: 1,
-  info: `Show the regular scrollbars. Else scrollbars are disabled`}
-
   obj.show_tooltips = {value: true, category: category, type: `checkbox`, name: `Show Tooltips`, version: 1,
   info: `Show tooltips when hovering items`}
 
@@ -159,6 +156,9 @@ App.build_settings = () => {
 
   obj.show_footer_count = {value: true, category: category, type: `checkbox`, name: `Count In Footer`, version: 1,
   info: `Show the item count in the footer`}
+
+  obj.show_scrollbars = {value: false, category: category, type: `checkbox`, name: `Show Scrollbars`, version: 1,
+  info: `Show the regular scrollbars. Else scrollbars are disabled`}
 
   obj.reverse_scroller_percentage = {value: false, category: category, type: `checkbox`, name: `Reverse Scroller %`, version: 1,
   info: `Reverse the scrolling percentage in the scroller`}
