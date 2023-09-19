@@ -143,7 +143,7 @@ App.mouse_click_action = (mode, e) => {
 
 App.mouse_double_click_action = (mode, e) => {
   if (App.get_setting(`double_click_new`)) {
-    if (e.target.classList.contains(`container`)) {
+    if (e.target.classList.contains(`item_container`)) {
       App.new_tab()
       return
     }

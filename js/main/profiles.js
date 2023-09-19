@@ -1003,6 +1003,7 @@ App.change_color = (item, color, toggle = false) => {
     }
   }
 
+  args.color = color
   let num_items = args.profiles.length + args.added.length
   let some = false
 
