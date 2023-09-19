@@ -489,14 +489,14 @@ App.addlist_menu = (e) => {
   let items = []
 
   items.push({
-    text: `List Items`,
+    text: `List`,
     action: () => {
       App.addlist_list({id: id, use: oargs.use, button: `menu`})
     }
   })
 
   items.push({
-    text: `New Item`,
+    text: `New`,
     action: () => {
       App.addlist_edit({id: id, items: {}})
     }
