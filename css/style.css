@@ -240,21 +240,22 @@ svg {
   direction: ltr;
   flex-shrink: 0;
   scroll-margin: 4.2rem;
-  padding-left: var(--item_margin);
-  padding-right: var(--item_margin);
   transition: text-shadow 171ms;
   gap: 0.611rem;
-}
-
-.last_item {
-  border-color: transparent !important;
-}
-
-.item {
-  border-width: 2px;
+  border-width: 1px;
   border-style: solid;
   border-color: transparent;
+  border-left-width: 0;
+  border-right-width: 0;
   margin: 0 0 -1px -1px;
+}
+
+.item div:first-child {
+  padding-left: var(--item_margin);
+}
+
+.item div:last-child {
+  padding-right: var(--item_margin);
 }
 
 .item_border_normal .item {

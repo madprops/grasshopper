@@ -503,6 +503,14 @@ App.apply_color_mode = (item) => {
   }
 }
 
+App.add_close_icon = (item) => {
+  if (App.get_setting(`close_icon`)) {
+    let close = DOM.create(`div`, `close_icon action`)
+    close.textContent = `x`
+    item.element.append(close)
+  }
+}
+
 App.refresh_item_element = (item) => {
   App.check_tab_item(item)
   App.check_item_icon(item)
@@ -515,11 +523,15 @@ App.refresh_item_element = (item) => {
 App.create_item_element = (item) => {
   item.element = DOM.create(`div`, `grasshopper_item item ${item.mode}_item`)
   item.element.dataset.id = item.id
+  App.add_close_icon(item)
 
   if (App.get_setting(`show_icons`)) {
     let icon_container = DOM.create(`div`, `item_icon_container`)
     item.element.append(icon_container)
-    App.check_item_icon(item)
+
+    if (App.get_setting(`close_icon_on_left`)) {
+      App.check_item_icon(item)
+    }
   }
 
   let color_icon = DOM.create(`div`, `item_info_color hidden`)
@@ -557,10 +569,8 @@ App.create_item_element = (item) => {
       item.element.append(normal_icon)
     }
 
-    if (App.get_setting(`close_icon`)) {
-      let close = DOM.create(`div`, `close_icon action`)
-      close.textContent = `x`
-      item.element.append(close)
+    if (!App.get_setting(`close_icon_on_left`)) {
+      App.check_item_icon(item)
     }
 
     App.check_tab_item(item)

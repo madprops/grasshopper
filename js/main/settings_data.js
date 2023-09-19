@@ -163,6 +163,9 @@ App.build_settings = () => {
   obj.reverse_scroller_percentage = {value: false, category: category, type: `checkbox`, name: `Reverse Scroller %`, version: 1,
   info: `Reverse the scrolling percentage in the scroller`}
 
+  obj.close_icon_on_left = {value: false, category: category, type: `checkbox`, name: `Close Icon On Left`, version: 1,
+  info: `Put the close icon on the left side`}
+
   // ###################
   category = `gestures`
 
