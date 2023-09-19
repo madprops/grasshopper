@@ -303,6 +303,10 @@ App.setup_commands = () => {
       App.add_tag(args.item)
     }, info: `Add tags to a profile`},
 
+    {name: `Add Note`, cmd: `add_note`, mode: `items`, action: (args) => {
+      App.add_note(args.item)
+    }, info: `Add notes to a profile`},
+
     ...color_changers,
 
     {name: App.separator_string},
