@@ -263,21 +263,21 @@ svg {
   border-top-width: 2px;
   border-bottom-width: 2px;
   border-color: var(--alt_color_1);
-  margin: 0 0 -1px -1px;
+  margin-top: -1px;
 }
 
 .item_border_bigger .item {
   border-top-width: 4px;
   border-bottom-width: 4px;
   border-color: var(--alt_color_1);
-  margin: 0 0 -2px -2px;
+  margin-top: -2px;
 }
 
 .item_border_huge .item {
   border-top-width: 6px;
   border-bottom-width: 6px;
   border-color: var(--alt_color_1);
-  margin: 0 0 -3px -3px;
+  margin-top: -3px;
 }
 
 .item_icon_container {
