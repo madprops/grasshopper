@@ -557,13 +557,13 @@ App.create_item_element = (item) => {
       item.element.append(normal_icon)
     }
 
-    App.check_tab_item(item)
-  }
+    if (App.get_setting(`close_icon`)) {
+      let close = DOM.create(`div`, `close_icon action`)
+      close.textContent = `x`
+      item.element.append(close)
+    }
 
-  if (App.get_setting(`close_icon`)) {
-    let close = DOM.create(`div`, `close_icon action`)
-    close.textContent = `x`
-    item.element.append(close)
+    App.check_tab_item(item)
   }
 
   if (item.selected) {
