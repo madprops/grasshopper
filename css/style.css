@@ -564,6 +564,12 @@ svg {
   text-align: center;
 }
 
+.addlist_textarea {
+  width: var(--text_input_width);
+  max-width: var(--text_input_width);
+  text-align: center;
+}
+
 .addlist_buttons {
   margin-top: 0.5rem;
 }

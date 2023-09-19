@@ -1145,13 +1145,21 @@ App.profile_start_addlists = () => {
 
 App.profile_register_addlist = (key, label, title) => {
   let id = `profile_editor_${key}`
+  let widget
+
+  if (key === `notes`) {
+    widget = `textarea`
+  }
+  else {
+    widget = `text`
+  }
 
   App.create_popup({
     id: `addlist_${id}`,
     element: App.addlist_register({
       id: id,
       pk: `value`,
-      widgets: [`text`],
+      widgets: [widget],
       labels: [label],
       keys: [`value`],
       list_text: (items) => {

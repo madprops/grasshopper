@@ -103,6 +103,13 @@ App.addlist_register = (args = {}) => {
       el.placeholder = args.labels[i] || `Value`
       els.push(el)
     }
+    if (w === `textarea`) {
+      let el = DOM.create(`textarea`, `text addlist_textarea`, id)
+      el.spellcheck = false
+      el.autocomplete = false
+      el.placeholder = args.labels[i] || `Value`
+      els.push(el)
+    }
     else if (w === `select`) {
       let el = DOM.create(`div`, `flex_column_center gap_1`)
       let label = DOM.create(`div`)
@@ -196,7 +203,7 @@ App.addlist_edit = (args = {}) => {
     let el = App.addlist_widget(args.id, i)
     let w = widgets[i]
 
-    if (w === `text` || w === `key`) {
+    if (w === `text` || w === `textarea` || w === `key`) {
       if (value) {
         el.value = value
       }
@@ -555,7 +562,7 @@ App.addlist_get_value = (i, w) => {
   let el = App.addlist_widget(id, i)
   let value
 
-  if (w === `text` || w === `key`) {
+  if (w === `text` || w === `textarea` || w === `key`) {
     value = el.value.trim()
 
     if (oargs.lowercase) {
