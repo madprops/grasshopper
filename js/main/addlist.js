@@ -273,15 +273,9 @@ App.addlist_view = (args = {}) => {
     return
   }
 
-  let obj = {
-    id: args.id,
-    items: items,
-    use: args.use,
-    index: args.index,
-    edit: true,
-  }
-
-  App.addlist_edit(obj)
+  args.items = items
+  args.edit = true
+  App.addlist_edit(args)
 }
 
 App.addlist_enter = () => {
@@ -492,6 +486,7 @@ App.addlist_modified = (id) => {
 
 App.addlist_menu = (e) => {
   let id = App.addlist_data.id
+  let data = App.addlist_data
   let oargs = App.addlist_oargs(id)
   let items = []
 
@@ -505,7 +500,7 @@ App.addlist_menu = (e) => {
   items.push({
     text: `New`,
     action: () => {
-      App.addlist_edit({id: id, items: {}})
+      App.addlist_edit({id: id, items: {}, on_save: data.on_save, use: data.use})
     }
   })
 
