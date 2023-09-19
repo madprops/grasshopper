@@ -958,7 +958,7 @@ App.add_note = (item) => {
 
 App.profile_add_to_list = (key, item) => {
   App.profile_start_addlists()
-  App[`profile_editor_${key}`] = []
+  App.profile_set_value(key, [])
 
   App.addlist_edit({id: `profile_editor_${key}`, items: {}, on_save: () => {
     let args = App.profile_change_args(item, key, App.profile_get_value(key), `add`)
@@ -1390,4 +1390,16 @@ App.color_menu_items = (item) => {
 App.show_color_menu = (item) => {
   let items = App.color_menu_items(item)
   NeedContext.show_on_center(items)
+}
+
+App.show_notes = (item) => {
+  let profile = App.get_profile(item.url)
+
+  if (profile) {
+    if (profile.notes.value.length) {
+      App.profile_start_addlists()
+      App.profile_set_value(`notes`, profile.notes.value)
+      App.addlist_view({id: `profile_editor_notes`, index: 0})
+    }
+  }
 }
