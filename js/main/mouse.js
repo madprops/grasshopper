@@ -101,9 +101,23 @@ App.mouse_click_action = (mode, e) => {
 
   if (mode === `tabs`) {
     if (App.get_setting(`mute_click`)) {
-      if (e.target.classList.contains(`item_status_playing`) ||
-        e.target.classList.contains(`item_status_muted`)) {
-        App.toggle_mute_tabs(item)
+      if (App.get_setting(`muted_icon`) || App.get_setting(`playing_icon`)) {
+        if (e.target.classList.contains(`item_status_playing`) ||
+          e.target.classList.contains(`item_status_muted`)) {
+          App.toggle_mute_tabs(item)
+          return
+        }
+      }
+    }
+  }
+
+  if (App.get_setting(`notes_click`)) {
+    console.log(1)
+    if (App.get_setting(`notes_icon`)) {
+      console.log(2)
+      if (e.target.classList.contains(`notes_icon`)) {
+        console.log(3)
+        App.show_notes(item)
         return
       }
     }

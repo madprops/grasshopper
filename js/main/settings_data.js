@@ -130,6 +130,9 @@ App.build_settings = () => {
   obj.open_icon = {value: `🚀`, category: category, type: `text_smaller`, name: `Open Icon`, placeholder: App.smile_icon, version: 1,
   info: `Icon for the open buttons`}
 
+  obj.notes_icon = {value: `📜`, category: category, type: `text_smaller`, name: `Notes Icon`, placeholder: App.smile_icon, version: 1,
+  info: `Icon for items with notes📜`}
+
   // ###################
   category = `show`
 
@@ -410,6 +413,9 @@ App.build_settings = () => {
 
   obj.mute_click = {value: true, category: category, type: `checkbox`, name: `Mute Click`, version: 1,
   info: `Un-Mute tabs when clicking on the mute icon`}
+
+  obj.notes_click = {value: true, category: category, type: `checkbox`, name: `Notes Click`, version: 1,
+  info: `Show notes when clicking the notes icon`}
 
   obj.double_click_new = {value: true, category: category, type: `checkbox`, name: `Double Click New`, version: 1,
   info: `Open a new tab when double clicking empty space`}
