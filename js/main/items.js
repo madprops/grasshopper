@@ -560,9 +560,11 @@ App.create_item_element = (item) => {
     App.check_tab_item(item)
   }
 
-  let close = DOM.create(`div`, `close_icon action`)
-  close.textContent = `x`
-  item.element.append(close)
+  if (App.get_setting(`close_icon`)) {
+    let close = DOM.create(`div`, `close_icon action`)
+    close.textContent = `x`
+    item.element.append(close)
+  }
 
   if (item.selected) {
     item.element.classList.add(`selected`)

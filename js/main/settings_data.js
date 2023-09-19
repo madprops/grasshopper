@@ -124,11 +124,11 @@ App.build_settings = () => {
   obj.unloaded_icon = {value: `💤`, category: category, type: `text_smaller`, name: `Unloaded Icon`, placeholder: App.smile_icon, version: 1,
   info: `Icons for unloaded tabs`}
 
-  obj.close_icon = {value: `x`, category: category, type: `text_smaller`, name: `Close Icon`, placeholder: App.smile_icon, version: 1,
-  info: `Icon for the close buttons`}
-
   obj.notes_icon = {value: `📜`, category: category, type: `text_smaller`, name: `Notes Icon`, placeholder: App.smile_icon, version: 1,
   info: `Icon for items with notes📜`}
+
+  obj.close_icon = {value: `x`, category: category, type: `text_smaller`, name: `Close Icon`, placeholder: App.smile_icon, version: 1,
+  info: `Icon for the close buttons`}
 
   // ###################
   category = `show`
