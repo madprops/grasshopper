@@ -470,17 +470,6 @@ App.str = (obj, format = false) => {
   }
 }
 
-App.fillpad = (s, n, c) => {
-  s = s.toString()
-  let olen = s.length
-
-  for (let i=0; i<(n - olen); i++) {
-    s = c + s
-  }
-
-  return s
-}
-
 App.remove_extension = (s) => {
   return s.split(`.`).slice(0, -1).join(`.`)
 }
