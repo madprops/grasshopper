@@ -249,13 +249,7 @@ svg {
   border-style: solid;
   border-color: transparent;
   margin-top: -1px;
-}
-
-.item > div:first-child {
   padding-left: var(--item_margin);
-}
-
-.item > div:last-child {
   padding-right: var(--item_margin);
 }
 
