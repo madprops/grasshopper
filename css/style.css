@@ -260,24 +260,24 @@ svg {
 }
 
 .item_border_normal .item {
-  border-top-width: 2px;
-  border-bottom-width: 2px;
+  border-top-width: 1px;
+  border-bottom-width: 1px;
   border-color: var(--alt_color_1);
   margin-top: -1px;
 }
 
 .item_border_bigger .item {
-  border-top-width: 4px;
-  border-bottom-width: 4px;
+  border-top-width: 2px;
+  border-bottom-width: 2px;
   border-color: var(--alt_color_1);
   margin-top: -2px;
 }
 
 .item_border_huge .item {
-  border-top-width: 6px;
-  border-bottom-width: 6px;
+  border-top-width: 4px;
+  border-bottom-width: 4px;
   border-color: var(--alt_color_1);
-  margin-top: -3px;
+  margin-top: -4px;
 }
 
 .item_icon_container {
