@@ -431,6 +431,35 @@ App.check_item_icon = (item) => {
   }
 }
 
+App.check_item_status = (item) => {
+  let unloaded = DOM.el(`.unloaded_icon`, item.element)
+
+  if (item.discarded) {
+    unloaded.classList.remove(`hidden`)
+  }
+  else {
+    unloaded.classList.add(`hidden`)
+  }
+
+  let playing = DOM.el(`.playing_icon`, item.element)
+
+  if (item.audible) {
+    playing.classList.remove(`hidden`)
+  }
+  else {
+    playing.classList.add(`hidden`)
+  }
+
+  let muted = DOM.el(`.muted_icon`, item.element)
+
+  if (item.muted) {
+    muted.classList.remove(`hidden`)
+  }
+  else {
+    muted.classList.add(`hidden`)
+  }
+}
+
 App.check_item_notes = (item) => {
   if (item.has_notes) {
     DOM.el(`.notes_icon`, item.element).classList.remove(`hidden`)
@@ -514,7 +543,7 @@ App.add_close_icon = (item, side) => {
       return
     }
 
-    let close = DOM.create(`div`, `close_icon action`)
+    let close = DOM.create(`div`, `close_icon item_node action`)
     close.textContent = App.get_setting(`close_icon`)
     item.element.append(close)
   }
@@ -525,6 +554,7 @@ App.refresh_item_element = (item) => {
   App.check_item_icon(item)
   App.check_view_media(item)
   App.check_item_notes(item)
+  App.check_item_status(item)
   App.set_item_text(item)
   App.apply_color_mode(item)
 }
@@ -546,8 +576,26 @@ App.create_item_element = (item) => {
   let view_media = DOM.create(`div`, `view_media_button hidden`)
   item.element.append(view_media)
   App.check_view_media(item)
-  let status = DOM.create(`div`, `item_status hidden`)
-  item.element.append(status)
+
+  if (item.mode === `tabs`) {
+    let unloaded = DOM.create(`div`, `unloaded_icon item_node`)
+    unloaded.textContent = App.get_setting(`unloaded_icon`)
+    item.element.append(unloaded)
+    let cls = ``
+
+    if (App.get_setting(`mute_click`)) {
+      cls += ` action`
+    }
+
+    let playing = DOM.create(`div`, `playing_icon item_node${cls}`)
+    playing.textContent = App.get_setting(`playing_icon`)
+    item.element.append(playing)
+    let muted = DOM.create(`div`, `muted_icon item_node${cls}`)
+    muted.textContent = App.get_setting(`muted_icon`)
+    item.element.append(muted)
+    App.check_item_status(item)
+  }
+
   let text = DOM.create(`div`, `item_text`)
   let text_1 = DOM.create(`div`, `item_text_1`)
   let text_2 = DOM.create(`div`, `item_text_2 hidden`)
@@ -555,7 +603,7 @@ App.create_item_element = (item) => {
   text.append(text_2)
   item.element.append(text)
   App.set_item_text(item)
-  let notes = DOM.create(`div`, `notes_icon action hidden`)
+  let notes = DOM.create(`div`, `notes_icon item_node action hidden`)
   notes.textContent = App.get_setting(`notes_icon`)
   item.element.append(notes)
   App.check_item_notes(item)
@@ -617,46 +665,6 @@ App.get_jdenticon = (hostname) => {
 }
 
 App.set_item_text = (item) => {
-  if (item.mode === `tabs`) {
-    let icons = []
-
-    if (item.discarded && App.get_setting(`unloaded_icon`)) {
-      icons.push(`unloaded`)
-    }
-
-    if (!item.muted && item.audible && App.get_setting(`playing_icon`)) {
-      icons.push(`playing`)
-    }
-
-    if (item.muted && App.get_setting(`muted_icon`)) {
-      icons.push(`muted`)
-    }
-
-    let status = DOM.el(`.item_status`, item.element)
-    status.innerHTML = ``
-
-    if (icons.length) {
-      for (let icon of icons) {
-        let cls = ``
-
-        if (icon === `playing` || icon === `muted`) {
-          if (App.get_setting(`mute_click`)) {
-            cls = ` action`
-          }
-        }
-
-        let el = DOM.create(`div`, `item_status_icon item_status_${icon}${cls}`)
-        el.textContent = App.get_setting(`${icon}_icon`)
-        status.append(el)
-      }
-
-      status.classList.remove(`hidden`)
-    }
-    else {
-      status.classList.add(`hidden`)
-    }
-  }
-
   let content
   let path = decodeURI(item.path)
   let text_mode = App.get_setting(`text_mode`)
