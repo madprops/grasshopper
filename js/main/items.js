@@ -515,7 +515,7 @@ App.add_close_icon = (item, side) => {
     }
 
     let close = DOM.create(`div`, `close_icon action`)
-    close.textContent = `x`
+    close.textContent = App.get_setting(`close_icon`)
     item.element.append(close)
   }
 }
