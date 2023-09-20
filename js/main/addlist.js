@@ -297,14 +297,8 @@ App.addlist_right = () => {
 }
 
 App.after_addlist = (id, lines) => {
-  let oargs = App.addlist_oargs(id)
   App.addlist_set_data(id, lines)
   App.hide_addlist(false)
-
-  if (oargs.on_modified) {
-    oargs.on_modified()
-  }
-
   App.addlist_update_count(id)
 }
 
