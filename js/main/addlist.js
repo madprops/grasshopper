@@ -51,11 +51,6 @@ App.addlist_save = (id) => {
   line._date_ = App.now()
   lines.splice(data.index, 0, line)
   App.after_addlist(id, lines)
-
-  if (data.on_save) {
-    data.on_save(line)
-  }
-
   return true
 }
 
@@ -743,7 +738,12 @@ App.addlist_get_data = (id) => {
 
 App.addlist_set_data = (id, value) => {
   let oargs = App.addlist_oargs(id)
+  let data = App.addlist_data
   oargs.set_data(id, App.clone(value))
+
+  if (data.on_set) {
+    data.on_set()
+  }
 }
 
 App.addlist_edit_all = (id) => {
