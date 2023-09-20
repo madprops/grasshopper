@@ -443,7 +443,7 @@ App.check_item_status = (item) => {
 
   let playing = DOM.el(`.playing_icon`, item.element)
 
-  if (item.audible) {
+  if (item.audible && !item.muted) {
     playing.classList.remove(`hidden`)
   }
   else {
@@ -578,7 +578,7 @@ App.create_item_element = (item) => {
   App.check_view_media(item)
 
   if (item.mode === `tabs`) {
-    let unloaded = DOM.create(`div`, `unloaded_icon item_node`)
+    let unloaded = DOM.create(`div`, `unloaded_icon item_node hidden`)
     unloaded.textContent = App.get_setting(`unloaded_icon`)
     item.element.append(unloaded)
     let cls = ``
@@ -587,10 +587,10 @@ App.create_item_element = (item) => {
       cls += ` action`
     }
 
-    let playing = DOM.create(`div`, `playing_icon item_node${cls}`)
+    let playing = DOM.create(`div`, `playing_icon item_node hidden${cls}`)
     playing.textContent = App.get_setting(`playing_icon`)
     item.element.append(playing)
-    let muted = DOM.create(`div`, `muted_icon item_node${cls}`)
+    let muted = DOM.create(`div`, `muted_icon item_node hidden${cls}`)
     muted.textContent = App.get_setting(`muted_icon`)
     item.element.append(muted)
     App.check_item_status(item)

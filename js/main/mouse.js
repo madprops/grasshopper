@@ -104,8 +104,8 @@ App.mouse_click_action = (mode, e) => {
 
     if (App.get_setting(`mute_click`)) {
       if (App.get_setting(`muted_icon`) || App.get_setting(`playing_icon`)) {
-        if (e.target.classList.contains(`item_status_playing`) ||
-          e.target.classList.contains(`item_status_muted`)) {
+        if (e.target.classList.contains(`playing_icon`) ||
+          e.target.classList.contains(`muted_icon`)) {
           App.toggle_mute_tabs(item)
           return
         }
