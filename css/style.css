@@ -249,13 +249,7 @@ svg {
   border-style: solid;
   border-color: transparent;
   margin-top: -1px;
-}
-
-.item > div:nth-child(1 of :not(.hidden))  {
   padding-left: var(--item_margin);
-}
-
-.item > div:nth-last-child(1 of :not(.hidden)) {
   padding-right: var(--item_margin);
 }
 
@@ -328,12 +322,10 @@ svg {
   flex-shrink: 1;
   padding-top: var(--item_padding);
   padding-bottom: var(--item_padding);
-  overflow: hidden;
 }
 
-.no_wrap .item_text_1, .no_wrap .item_text_2 {
+.no_wrap .item_text {
   white-space: nowrap;
-  max-width: 100%;
   overflow: hidden;
 }
 
