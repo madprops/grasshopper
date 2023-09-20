@@ -956,7 +956,7 @@ App.add_note = (item) => {
   App.profile_add_to_list(`notes`, item)
 }
 
-App.profile_addlist_on_set = (key, item, action = `add`) => {
+App.profile_addlist_on_set = (key, item, action) => {
   let args = App.profile_change_args(item, key, App.profile_get_value(key), action)
   App.do_save_profile(args)
   App.profile_editor_close(false)
@@ -967,7 +967,7 @@ App.profile_add_to_list = (key, item) => {
   App.profile_set_value(key, [])
 
   App.addlist_edit({id: `profile_editor_${key}`, items: {}, on_set: () => {
-    App.profile_addlist_on_set(key, item)
+    App.profile_addlist_on_set(key, item, `add`)
   }})
 }
 
