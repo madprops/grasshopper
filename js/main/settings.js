@@ -45,10 +45,6 @@ App.settings_setup_labels = (category) => {
         btns.push([`settings_${key}_pick`, `Pick`])
       }
 
-      if (props.btns.includes(`random`)) {
-        btns.push([`settings_${key}_random`, `Random`])
-      }
-
       if (btns.length) {
         proc(DOM.el(`#settings_label_${key}`), btns)
       }

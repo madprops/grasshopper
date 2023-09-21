@@ -334,34 +334,6 @@ App.is_array = (a) => {
   return Array.isArray(a)
 }
 
-App.random_int = (min, max, exclude = undefined, random_function) => {
-  let num
-
-  if (random_function) {
-    num = Math.floor(random_function() * (max - min + 1) + min)
-  }
-  else {
-    num = Math.floor(Math.random() * (max - min + 1) + min)
-  }
-
-  if (exclude) {
-    if (num === exclude) {
-      if (num + 1 <= max) {
-        num = num + 1
-      }
-      else if (num - 1 >= min) {
-        num = num - 1
-      }
-    }
-  }
-
-  return num
-}
-
-App.random_choice = (list, rand) => {
-  return list[App.random_int(0, list.length - 1, undefined, rand)]
-}
-
 App.parse_delay = (s) => {
   let delay
   let split = s.split(`_`)

@@ -220,26 +220,6 @@ App.check_theme_refresh = () => {
   }
 }
 
-App.random_colors = () => {
-  App.random_color(`background`)
-  App.random_color(`text`)
-}
-
-App.random_color = (what) => {
-  let color
-
-  if (what === `background`) {
-    color = App.colorlib.get_dark_color()
-  }
-  else {
-    color = App.colorlib.get_light_color()
-  }
-
-  color = App.colorlib.hex_to_rgb(color)
-  App.set_setting(`${what}_color`, color)
-  App.check_theme_refresh()
-}
-
 App.set_background = (url) => {
   function unset () {
     App.set_css_var(`background_image`, `unset`)
