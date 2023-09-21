@@ -89,22 +89,6 @@ App.do_show_mode = async (args) => {
     }
   }
 
-  if (args.mode === `tabs`) {
-    if (App.get_setting(`pin_icon`)) {
-      container.classList.add(`has_pin_icon`)
-    }
-    else {
-      container.classList.remove(`has_pin_icon`)
-    }
-
-    if (App.get_setting(`normal_icon`)) {
-      container.classList.add(`has_normal_icon`)
-    }
-    else {
-      container.classList.remove(`has_normal_icon`)
-    }
-  }
-
   if (search && value) {
     // Filter will search
   }

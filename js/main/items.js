@@ -432,31 +432,63 @@ App.check_item_icon = (item) => {
 }
 
 App.check_item_status = (item) => {
-  let unloaded = DOM.el(`.unloaded_icon`, item.element)
-
-  if (item.discarded) {
-    unloaded.classList.remove(`hidden`)
-  }
-  else {
-    unloaded.classList.add(`hidden`)
+  if (item.mode !== `tabs`) {
+    return
   }
 
-  let playing = DOM.el(`.playing_icon`, item.element)
+  if (App.get_setting(`unloaded_icon`)) {
+    let unloaded = DOM.el(`.unloaded_icon`, item.element)
 
-  if (item.audible && !item.muted) {
-    playing.classList.remove(`hidden`)
-  }
-  else {
-    playing.classList.add(`hidden`)
+    if (item.discarded) {
+      unloaded.classList.remove(`hidden`)
+    }
+    else {
+      unloaded.classList.add(`hidden`)
+    }
   }
 
-  let muted = DOM.el(`.muted_icon`, item.element)
+  if (App.get_setting(`playing_icon`)) {
+    let playing = DOM.el(`.playing_icon`, item.element)
 
-  if (item.muted) {
-    muted.classList.remove(`hidden`)
+    if (item.audible && !item.muted) {
+      playing.classList.remove(`hidden`)
+    }
+    else {
+      playing.classList.add(`hidden`)
+    }
   }
-  else {
-    muted.classList.add(`hidden`)
+
+  if (App.get_setting(`muted_icon`)) {
+    let muted = DOM.el(`.muted_icon`, item.element)
+
+    if (item.muted) {
+      muted.classList.remove(`hidden`)
+    }
+    else {
+      muted.classList.add(`hidden`)
+    }
+  }
+
+  if (App.get_setting(`pin_icon`)) {
+    let pin = DOM.el(`.pin_icon`, item.element)
+
+    if (item.pinned) {
+      pin.classList.remove(`hidden`)
+    }
+    else {
+      pin.classList.add(`hidden`)
+    }
+  }
+
+  if (App.get_setting(`normal_icon`)) {
+    let pin = DOM.el(`.normal_icon`, item.element)
+
+    if (!item.pinned) {
+      pin.classList.remove(`hidden`)
+    }
+    else {
+      pin.classList.add(`hidden`)
+    }
   }
 }
 
@@ -578,22 +610,35 @@ App.create_item_element = (item) => {
   App.check_view_media(item)
 
   if (item.mode === `tabs`) {
-    let unloaded = DOM.create(`div`, `unloaded_icon item_node hidden`)
-    unloaded.textContent = App.get_setting(`unloaded_icon`)
-    item.element.append(unloaded)
+    let unloaded_icon = App.get_setting(`unloaded_icon`)
+
+    if (unloaded_icon) {
+      let unloaded = DOM.create(`div`, `unloaded_icon item_node hidden`)
+      unloaded.textContent = unloaded_icon
+      item.element.append(unloaded)
+    }
+
     let cls = ``
 
     if (App.get_setting(`mute_click`)) {
       cls += ` action`
     }
 
-    let playing = DOM.create(`div`, `playing_icon item_node hidden${cls}`)
-    playing.textContent = App.get_setting(`playing_icon`)
-    item.element.append(playing)
-    let muted = DOM.create(`div`, `muted_icon item_node hidden${cls}`)
-    muted.textContent = App.get_setting(`muted_icon`)
-    item.element.append(muted)
-    App.check_item_status(item)
+    let playing_icon = App.get_setting(`playing_icon`)
+
+    if (playing_icon) {
+      let playing = DOM.create(`div`, `playing_icon item_node hidden${cls}`)
+      playing.textContent = playing_icon
+      item.element.append(playing)
+    }
+
+    let muted_icon = App.get_setting(`muted_icon`)
+
+    if (muted_icon) {
+      let muted = DOM.create(`div`, `muted_icon item_node hidden${cls}`)
+      muted.textContent = muted_icon
+      item.element.append(muted)
+    }
   }
 
   let text = DOM.create(`div`, `item_text`)
@@ -612,19 +657,20 @@ App.create_item_element = (item) => {
     item.element.draggable = true
 
     if (App.get_setting(`pin_icon`)) {
-      let pin_icon = DOM.create(`div`, `item_info item_info_pin`)
+      let pin_icon = DOM.create(`div`, `pin_icon item_node hidden`)
       pin_icon.textContent = App.get_setting(`pin_icon`)
       item.element.append(pin_icon)
     }
 
     if (App.get_setting(`normal_icon`)) {
-      let normal_icon = DOM.create(`div`, `item_info item_info_normal`)
+      let normal_icon = DOM.create(`div`, `normal_icon item_node hidden`)
       normal_icon.textContent = App.get_setting(`normal_icon`)
       item.element.append(normal_icon)
     }
 
     App.add_close_icon(item, `right`)
     App.check_tab_item(item)
+    App.check_item_status(item)
   }
 
   if (item.selected) {

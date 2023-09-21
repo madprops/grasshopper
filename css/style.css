@@ -292,9 +292,6 @@ svg {
   object-fit: contain;
   flex-grow: 0;
   flex-shrink: 0;
-  display: flex;
-  align-items: center;
-  justify-content: center;
 }
 
 .icon_pick .item_icon_container:hover .item_icon{
@@ -319,15 +316,6 @@ svg {
   white-space: nowrap;
   max-width: 100%;
   overflow: hidden;
-}
-
-.item_info {
-  display: none;
-  flex-direction: row;
-  gap: 0.5rem;
-  align-self: stretch;
-  align-items: center;
-  flex-shrink: 0;
 }
 
 .hover_effect_background .item:hover,
@@ -358,22 +346,6 @@ svg {
 .hover_effect_bigger .item:hover .item_text,
 .selected_effect_bigger .selected .item_text {
   font-size: var(--bigger_font);
-}
-
-.has_pin_icon .pin_item .item_info_pin {
-  display: flex;
-}
-
-.has_normal_icon .normal_item .item_info_normal {
-  display: flex;
-}
-
-.active .item_info_active {
-  display: flex;
-}
-
-.selected .item_info_selected {
-  display: flex;
 }
 
 .item_top_container {
