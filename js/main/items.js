@@ -565,7 +565,7 @@ App.create_item_element = (item) => {
   App.add_close_icon(item, `left`)
 
   if (App.get_setting(`show_icons`)) {
-    let icon_container = DOM.create(`div`, `item_icon_container`)
+    let icon_container = DOM.create(`div`, `item_icon_container item_node`)
     item.element.append(icon_container)
     App.check_item_icon(item)
   }
