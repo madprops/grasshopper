@@ -1051,7 +1051,7 @@ App.change_color = (item, color, toggle = false) => {
 }
 
 App.profile_make_menu = (key, opts,) => {
-  App[`profile_menubutton_${key}`] = App.create_menubutton({
+  App[`profile_menubutton_${key}`] = Menubutton.create({
     button: DOM.el(`#profile_editor_${key}`),
     opts: opts,
   })

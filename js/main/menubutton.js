@@ -1,4 +1,6 @@
-App.create_menubutton = (args = {}) => {
+const Menubutton = {}
+
+Menubutton.create = (args = {}) => {
   let def_args = {
     wrap: true,
   }
@@ -30,7 +32,7 @@ App.create_menubutton = (args = {}) => {
         info: opt.info,
         image: opt.image,
         action: () => {
-          App.menubutton_set_text(args, opt)
+          Menubutton.set_text(args, opt)
 
           if (args.on_change) {
             args.on_change(args, opt)
@@ -43,8 +45,8 @@ App.create_menubutton = (args = {}) => {
   })
 
   args.set = (value, on_change = true) => {
-    let opt = App.menubutton_opt(args, value)
-    App.menubutton_set_text(args, opt)
+    let opt = Menubutton.opt(args, value)
+    Menubutton.set_text(args, opt)
 
     if (on_change && args.on_change) {
       args.on_change(args, opt)
@@ -52,17 +54,17 @@ App.create_menubutton = (args = {}) => {
   }
 
   args.prev = () => {
-    App.menubutton_cycle(args, `prev`)
+    Menubutton.cycle(args, `prev`)
   }
 
   args.next = () => {
-    App.menubutton_cycle(args, `next`)
+    Menubutton.cycle(args, `next`)
   }
 
   if (args.selected) {
     for (let opt of args.opts) {
       if (args.selected === opt.value) {
-        App.menubutton_set_text(args, opt)
+        Menubutton.set_text(args, opt)
         break
       }
     }
@@ -77,7 +79,7 @@ App.create_menubutton = (args = {}) => {
   return args
 }
 
-App.menubutton_set_text = (args, opt) => {
+Menubutton.set_text = (args, opt) => {
   if (opt.icon) {
     args.button.innerHTML = `<div>` + (opt.icon || ``) + `</div>` + opt.text
   }
@@ -88,7 +90,7 @@ App.menubutton_set_text = (args, opt) => {
   args.value = opt.value
 }
 
-App.menubutton_cycle = (args, dir) => {
+Menubutton.cycle = (args, dir) => {
   let waypoint = false
   let opts = args.opts.slice(0)
 
@@ -118,7 +120,7 @@ App.menubutton_cycle = (args, dir) => {
   }
 
   if (opt) {
-    App.menubutton_set_text(args, opt)
+    Menubutton.set_text(args, opt)
 
     if (args.on_change) {
       args.on_change(args, opt)
@@ -126,7 +128,7 @@ App.menubutton_cycle = (args, dir) => {
   }
 }
 
-App.menubutton_opt = (args, value) => {
+Menubutton.opt = (args, value) => {
   for (let opt of args.opts) {
     if (opt.value === value) {
       return opt
