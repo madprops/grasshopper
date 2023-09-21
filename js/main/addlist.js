@@ -1,36 +1,38 @@
-App.addlist_values = (id) => {
-  let oargs = App.addlist_oargs(id)
+const Addlist = {}
+
+Addlist.values = (id) => {
+  let oargs = Addlist.oargs(id)
   let values = {}
 
   for (let [i, key] of oargs.keys.entries()) {
     let w = oargs.widgets[i]
-    let value = App.addlist_get_value(i, w)
+    let value = Addlist.get_value(i, w)
     values[key] = value
   }
 
   return values
 }
 
-App.addlist_save = (id) => {
-  let data = App.addlist_data
+Addlist.save = (id) => {
+  let data = Addlist.data
 
   if (data.edit) {
-    let modified = App.addlist_modified(id)
+    let modified = Addlist.modified(id)
 
     if (!modified) {
-      App.hide_addlist(false)
+      Addlist.hide_addlist(false)
       return false
     }
   }
 
-  let line = App.addlist_values(id)
-  let filled = App.addlist_filled(line)
+  let line = Addlist.values(id)
+  let filled = Addlist.filled(line)
 
   if (!filled) {
     return false
   }
 
-  let oargs = App.addlist_oargs(id)
+  let oargs = Addlist.oargs(id)
   let v1 = ``
 
   if (data.edit && Object.keys(data.items).length) {
@@ -38,23 +40,23 @@ App.addlist_save = (id) => {
   }
 
   if (v1) {
-    App.addlist_remove(id, v1, true)
+    Addlist.remove(id, v1, true)
   }
 
   let v2 = line[oargs.pk]
 
   if (v2 && (v1 !== v2)) {
-    App.addlist_remove(id, v2, true)
+    Addlist.remove(id, v2, true)
   }
 
-  let lines = App.addlist_get_data(id)
+  let lines = Addlist.get_data(id)
   line._date_ = App.now()
   lines.splice(data.index, 0, line)
-  App.after_addlist(id, lines)
+  Addlist.after(id, lines)
   return true
 }
 
-App.addlist_register = (args = {}) => {
+Addlist.register = (args = {}) => {
   let def_args = {
     labels: [],
     sources: [],
@@ -72,11 +74,11 @@ App.addlist_register = (args = {}) => {
   btn_next.textContent = `>`
 
   DOM.ev(btn_prev, `click`, () => {
-    App.addlist_next(args.id, true)
+    Addlist.next(args.id, true)
   })
 
   DOM.ev(btn_next, `click`, () => {
-    App.addlist_next(args.id)
+    Addlist.next(args.id)
   })
 
   top.append(btn_prev)
@@ -155,19 +157,19 @@ App.addlist_register = (args = {}) => {
   menu.append(App.create_icon(`sun`))
 
   DOM.ev(save, `click`, () => {
-    App.addlist_save(args.id)
+    Addlist.save(args.id)
   })
 
   DOM.ev(remove, `click`, () => {
-    let data = App.addlist_data
+    let data = Addlist.data
 
     if (data.edit && Object.keys(data.items).length) {
-      App.addlist_remove(args.id, data.items[args.pk])
+      Addlist.remove(args.id, data.items[args.pk])
     }
   })
 
   DOM.ev(menu, `click`, () => {
-    App.addlist_menu()
+    Addlist.menu()
   })
 
   btns.append(remove)
@@ -178,17 +180,17 @@ App.addlist_register = (args = {}) => {
   return container
 }
 
-App.addlist_edit = (args = {}) => {
-  let def_args = App.addlist_def_args()
+Addlist.edit = (args = {}) => {
+  let def_args = Addlist.def_args()
   args = Object.assign(def_args, args)
-  let oargs = App.addlist_oargs(args.id)
-  App.show_popup(App.addlist_popup(args.id))
-  App.addlist_check_buttons(args)
+  let oargs = Addlist.oargs(args.id)
+  App.show_popup(Addlist.popup(args.id))
+  Addlist.check_buttons(args)
   let widgets = oargs.widgets
 
   for (let [i, key] of oargs.keys.entries()) {
     let value = args.items[key]
-    let el = App.addlist_widget(args.id, i)
+    let el = Addlist.widget(args.id, i)
     let w = widgets[i]
 
     if (w === `text` || w === `textarea` || w === `key`) {
@@ -217,22 +219,22 @@ App.addlist_edit = (args = {}) => {
     }
   }
 
-  App.addlist_data = args
-  App.addlist_check_focus(args.id)
+  Addlist.data = args
+  Addlist.check_focus(args.id)
 }
 
-App.addlist_remove = (id, value, force) => {
+Addlist.remove = (id, value, force) => {
   if (!value) {
     return
   }
 
-  let lines = App.addlist_get_data(id)
+  let lines = Addlist.get_data(id)
 
   if (!lines.length) {
     return
   }
 
-  let oargs = App.addlist_oargs(id)
+  let oargs = Addlist.oargs(id)
 
   App.show_confirm(`Remove item?`, () => {
     let new_lines = []
@@ -249,60 +251,60 @@ App.addlist_remove = (id, value, force) => {
       new_lines.push(line)
     }
 
-    App.after_addlist(id, new_lines)
+    Addlist.after(id, new_lines)
   }, undefined, force)
 }
 
-App.addlist_view = (args = {}) => {
-  let items = App.addlist_get_data(args.id)[args.index]
+Addlist.view = (args = {}) => {
+  let items = Addlist.get_data(args.id)[args.index]
 
   if (!items) {
-    App.addlist_no_items()
+    Addlist.no_items()
     return
   }
 
   args.items = items
   args.edit = true
-  App.addlist_edit(args)
+  Addlist.edit(args)
 }
 
-App.addlist_enter = () => {
-  if (App.addlist_key()) {
+Addlist.enter = () => {
+  if (Addlist.key()) {
     return
   }
 
-  let data = App.addlist_data
+  let data = Addlist.data
 
   if (data.edit) {
-    let modified = App.addlist_modified(data.id)
+    let modified = Addlist.modified(data.id)
 
     if (modified) {
-      App.addlist_save(data.id)
+      Addlist.save(data.id)
     }
     else {
-      App.hide_addlist(false)
+      Addlist.hide_addlist(false)
     }
   }
   else {
-    App.addlist_save(data.id)
+    Addlist.save(data.id)
   }
 }
 
-App.addlist_left = () => {
-  App.addlist_next(App.addlist_data.id, true)
+Addlist.left = () => {
+  Addlist.next(Addlist.data.id, true)
 }
 
-App.addlist_right = () => {
-  App.addlist_next(App.addlist_data.id)
+Addlist.right = () => {
+  Addlist.next(Addlist.data.id)
 }
 
-App.after_addlist = (id, lines) => {
-  App.addlist_set_data(id, lines)
-  App.hide_addlist(false)
-  App.addlist_update_count(id)
+Addlist.after = (id, lines) => {
+  Addlist.set_data(id, lines)
+  Addlist.hide_addlist(false)
+  Addlist.update_count(id)
 }
 
-App.addlist_check_buttons = (args) => {
+Addlist.check_buttons = (args) => {
   let remove_el = DOM.el(`#addlist_remove_${args.id}`)
   let menu_el = DOM.el(`#addlist_menu_${args.id}`)
   let prev_el = DOM.el(`#addlist_prev_${args.id}`)
@@ -315,7 +317,7 @@ App.addlist_check_buttons = (args) => {
   date_el.classList.add(`hidden`)
 
   if (args.edit) {
-    let num = App.addlist_get_data(args.id).length
+    let num = Addlist.get_data(args.id).length
     remove_el.classList.remove(`hidden`)
     menu_el.classList.remove(`hidden`)
 
@@ -331,25 +333,25 @@ App.addlist_check_buttons = (args) => {
   }
 }
 
-App.addlist_def_args = () => {
+Addlist.def_args = () => {
   return {
     edit: false,
     items: [],
   }
 }
 
-App.addlist_widget = (id, i = 0) => {
+Addlist.widget = (id, i = 0) => {
   return DOM.el(`#addlist_widget_${id}_${i}`)
 }
 
-App.addlist_next = (id, reverse = false) => {
-  let data = App.addlist_data
+Addlist.next = (id, reverse = false) => {
+  let data = Addlist.data
 
   if (!data.edit) {
     return
   }
 
-  let lines = App.addlist_get_data(id).slice(0)
+  let lines = Addlist.get_data(id).slice(0)
 
   if (lines.length <= 1) {
     return
@@ -381,15 +383,15 @@ App.addlist_next = (id, reverse = false) => {
   }
 
   data.index = index
-  App.addlist_view(data)
+  Addlist.view(data)
 }
 
-App.addlist_check_focus = (id) => {
-  let oargs = App.addlist_oargs(id)
-  let data = App.addlist_data
+Addlist.check_focus = (id) => {
+  let oargs = Addlist.oargs(id)
+  let data = Addlist.data
 
   for (let [i, w] of oargs.widgets.entries()) {
-    let el = App.addlist_widget(id, i)
+    let el = Addlist.widget(id, i)
 
     if (data.edit) {
       DOM.el(`#addlist_container_${id}`).focus()
@@ -402,8 +404,8 @@ App.addlist_check_focus = (id) => {
   }
 }
 
-App.addlist_modified = (id) => {
-  let data = App.addlist_data
+Addlist.modified = (id) => {
+  let data = Addlist.data
 
   if (!data.edit) {
     return false
@@ -413,7 +415,7 @@ App.addlist_modified = (id) => {
     return false
   }
 
-  let values = App.addlist_values(id)
+  let values = Addlist.values(id)
 
   for (let key in values) {
     if (values[key] !== data.items[key]) {
@@ -424,9 +426,9 @@ App.addlist_modified = (id) => {
   return false
 }
 
-App.addlist_menu = (e) => {
-  let id = App.addlist_data.id
-  let data = App.addlist_data
+Addlist.menu = (e) => {
+  let id = Addlist.data.id
+  let data = Addlist.data
   let items = []
 
   items.push({
@@ -434,18 +436,18 @@ App.addlist_menu = (e) => {
     action: () => {
       data.items = {}
       data.edit = false
-      App.addlist_edit(data)
+      Addlist.edit(data)
     }
   })
 
-  let lines = App.addlist_get_data(data.id)
+  let lines = Addlist.get_data(data.id)
 
   if (lines.length > 1) {
     items.push({
       text: `List Items`,
       action: () => {
         data.button = `menu`
-        App.addlist_list(data)
+        Addlist.list(data)
       }
     })
 
@@ -455,25 +457,25 @@ App.addlist_menu = (e) => {
         {
           text: `To Top`,
           action: () => {
-            App.addlist_move(`top`)
+            Addlist.move(`top`)
           }
         },
         {
           text: `Move Up`,
           action: () => {
-            App.addlist_move(`up`)
+            Addlist.move(`up`)
           }
         },
         {
           text: `Move Down`,
           action: () => {
-            App.addlist_move(`down`)
+            Addlist.move(`down`)
           }
         },
         {
           text: `To Bottom`,
           action: () => {
-            App.addlist_move(`bottom`)
+            Addlist.move(`bottom`)
           }
         },
       ],
@@ -484,10 +486,10 @@ App.addlist_menu = (e) => {
   NeedContext.show_on_element(btn, items, true, btn.clientHeight)
 }
 
-App.addlist_move = (dir) => {
-  let data = App.addlist_data
-  let lines = App.addlist_get_data(data.id)
-  let oargs = App.addlist_oargs(data.id)
+Addlist.move = (dir) => {
+  let data = Addlist.data
+  let lines = Addlist.get_data(data.id)
+  let oargs = Addlist.oargs(data.id)
   let value = data.items[oargs.pk]
 
   for (let [i, line] of lines.entries()) {
@@ -515,16 +517,16 @@ App.addlist_move = (dir) => {
         }
       }
 
-      App.after_addlist(data.id, lines)
+      Addlist.after(data.id, lines)
       break
     }
   }
 }
 
-App.addlist_get_value = (i, w) => {
-  let id = App.addlist_data.id
-  let oargs = App.addlist_oargs(id)
-  let el = App.addlist_widget(id, i)
+Addlist.get_value = (i, w) => {
+  let id = Addlist.data.id
+  let oargs = Addlist.oargs(id)
+  let el = Addlist.widget(id, i)
   let value
 
   if (w === `text` || w === `textarea` || w === `key`) {
@@ -544,28 +546,28 @@ App.addlist_get_value = (i, w) => {
   return value
 }
 
-App.addlist_oargs = (id) => {
+Addlist.oargs = (id) => {
   return App[`addlist_args_${id}`]
 }
 
-App.hide_addlist = (check = true, from = `normal`) => {
-  if (!App.on_addlist()) {
+Addlist.hide_addlist = (check = true, from = `normal`) => {
+  if (!Addlist.on_addlist()) {
     return
   }
 
   if (from === `escape`) {
-    if (App.addlist_key()) {
+    if (Addlist.key()) {
       return
     }
   }
 
-  let data = App.addlist_data
-  let modified = App.addlist_modified(data.id)
-  let p_id = App.addlist_popup(data.id)
+  let data = Addlist.data
+  let modified = Addlist.modified(data.id)
+  let p_id = Addlist.popup(data.id)
 
   if (check && modified) {
     App.show_confirm(`Save changes?`, () => {
-      App.addlist_save(data.id)
+      Addlist.save(data.id)
     }, () => {
       App.hide_popup(p_id, true)
     })
@@ -575,15 +577,15 @@ App.hide_addlist = (check = true, from = `normal`) => {
   }
 }
 
-App.on_addlist = () => {
+Addlist.on_addlist = () => {
   return App.popup_is_open(`addlist_`, false)
 }
 
-App.addlist_popup = (id) => {
+Addlist.popup = (id) => {
   return `addlist_${id}`
 }
 
-App.addlist_filled = (values) => {
+Addlist.filled = (values) => {
   for (let key in values) {
     if (values[key] === ``) {
       return false
@@ -593,20 +595,20 @@ App.addlist_filled = (values) => {
   return true
 }
 
-App.addlist_key = () => {
+Addlist.key = () => {
   return document.activeElement.classList.contains(`addlist_key`)
 }
 
-App.addlist_list = (args) => {
-  let lines = App.addlist_get_data(args.id)
+Addlist.list = (args) => {
+  let lines = Addlist.get_data(args.id)
 
   if (!lines.length) {
-    App.addlist_no_items()
+    Addlist.no_items()
     return
   }
 
   let items = []
-  let oargs = App.addlist_oargs(args.id)
+  let oargs = Addlist.oargs(args.id)
 
   for (let [i, line] of lines.entries()) {
     let title = oargs.list_text(line)
@@ -616,7 +618,7 @@ App.addlist_list = (args) => {
       text: title,
       action: () => {
         args.index = i
-        App.addlist_view(args)
+        Addlist.view(args)
       },
       info: info,
     })
@@ -634,24 +636,24 @@ App.addlist_list = (args) => {
   NeedContext.show_on_element(btn, items, true, btn.clientHeight)
 }
 
-App.addlist_clear = (id, force = false) => {
-  let data = App.addlist_get_data(id)
+Addlist.clear = (id, force = false) => {
+  let data = Addlist.get_data(id)
 
   if (!data) {
     return
   }
 
-  if (!App.addlist_get_data(id).length) {
+  if (!Addlist.get_data(id).length) {
     return
   }
 
   App.show_confirm(`Clear this list?`, () => {
-    App.after_addlist(id, [])
+    Addlist.after(id, [])
   }, undefined, force)
 }
 
-App.addlist_get_line = (id, items) => {
-  let lines = App.addlist_get_data(id)
+Addlist.get_line = (id, items) => {
+  let lines = Addlist.get_data(id)
 
   for (let [i, line] of lines.entries()) {
     let matched = true
@@ -671,20 +673,13 @@ App.addlist_get_line = (id, items) => {
   return [false, 0]
 }
 
-App.addlist_check = (args) => {
-  let [edit, index] = App.addlist_get_line(args.id, args.items)
-  args.edit = edit
-  args.index = index
-  App.addlist_edit(args)
-}
-
-App.addlist_no_items = () => {
+Addlist.no_items = () => {
   App.show_feedback(`No items yet`, true)
 }
 
-App.addlist_add_buttons = (id) => {
+Addlist.add_buttons = (id) => {
   let el = DOM.el(`#${id}`)
-  let oargs = App.addlist_oargs(id)
+  let oargs = Addlist.oargs(id)
   let cls = `action underline`
   let count = DOM.create(`div`, `action`, `addlist_button_${id}_count`)
   count.textContent = ``
@@ -703,36 +698,36 @@ App.addlist_add_buttons = (id) => {
   el.append(clear)
 
   DOM.ev(DOM.el(`#addlist_button_${id}_count`), `click`, () => {
-    App.addlist_list({id: id})
+    Addlist.list({id: id})
   })
 
   DOM.ev(DOM.el(`#addlist_button_${id}_add`), `click`, () => {
-    App.addlist_edit({id: id, items: {}})
+    Addlist.edit({id: id, items: {}})
   })
 
   DOM.ev(DOM.el(`#addlist_button_${id}_list`), `click`, () => {
-    App.addlist_list({id: id})
+    Addlist.list({id: id})
   })
 
   DOM.ev(DOM.el(`#addlist_button_${id}_edit`), `click`, () => {
-    App.addlist_edit_all(id)
+    Addlist.edit_all(id)
   })
 
   DOM.ev(DOM.el(`#addlist_button_${id}_clear`), `click`, () => {
-    App.addlist_clear(id)
+    Addlist.clear(id)
   })
 
-  App.addlist_update_count(id)
+  Addlist.update_count(id)
 }
 
-App.addlist_get_data = (id) => {
-  let oargs = App.addlist_oargs(id)
+Addlist.get_data = (id) => {
+  let oargs = Addlist.oargs(id)
   return App.clone(oargs.get_data(id))
 }
 
-App.addlist_set_data = (id, value) => {
-  let oargs = App.addlist_oargs(id)
-  let data = App.addlist_data
+Addlist.set_data = (id, value) => {
+  let oargs = Addlist.oargs(id)
+  let data = Addlist.data
   oargs.set_data(id, App.clone(value))
 
   if (data.on_set) {
@@ -740,24 +735,24 @@ App.addlist_set_data = (id, value) => {
   }
 }
 
-App.addlist_edit_all = (id) => {
-  let sett = App.addlist_get_data(id)
+Addlist.edit_all = (id) => {
+  let sett = Addlist.get_data(id)
   let value = App.str(sett, true)
 
-  App.show_input(`Edit: ${id}`, `Save`, (text) => {
+  Addlist.show_input(`Edit: ${id}`, `Save`, (text) => {
     try {
-      App.after_addlist(id, App.obj(text))
+      Addlist.after(id, Addlist.obj(text))
       return true
     }
     catch (err) {
-      App.show_alert_2(`${err}`)
+      Addlist.show_alert_2(`${err}`)
       return false
     }
   }, value)
 }
 
-App.addlist_update_count = (id) => {
-  let lines = App.addlist_get_data(id)
+Addlist.update_count = (id) => {
+  let lines = Addlist.get_data(id)
 
   if (!lines) {
     return

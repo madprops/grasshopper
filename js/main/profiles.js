@@ -966,7 +966,7 @@ App.profile_add_to_list = (key, item) => {
   App.profile_start_addlists()
   App.profile_set_value(key, [])
 
-  App.addlist_edit({id: `profile_editor_${key}`, items: {}, on_set: () => {
+  Addlist.edit({id: `profile_editor_${key}`, items: {}, on_set: () => {
     App.profile_addlist_on_set(key, item, `add`)
   }})
 }
@@ -1163,7 +1163,7 @@ App.profile_register_addlist = (key, label, title) => {
 
   App.create_popup({
     id: `addlist_${id}`,
-    element: App.addlist_register({
+    element: Addlist.register({
       id: id,
       pk: `value`,
       widgets: [widget],
@@ -1184,7 +1184,7 @@ App.profile_register_addlist = (key, label, title) => {
   })
 
   let el = DOM.el(`#${id}`)
-  App.addlist_add_buttons(id, el)
+  Addlist.add_buttons(id, el)
 }
 
 App.profile_tags_add = (e) => {
@@ -1198,7 +1198,7 @@ App.profile_tags_add = (e) => {
         text: tag,
         action: () => {
           App.profile_editor_tags.unshift({value: tag})
-          App.addlist_update_count(`profile_editor_tags`)
+          Addlist.update_count(`profile_editor_tags`)
         }
       })
 
@@ -1225,7 +1225,7 @@ App.profile_addlist_counts = () => {
     let props = App.profile_props[key]
 
     if (props.type === `list`) {
-      App.addlist_update_count(`profile_editor_${key}`)
+      Addlist.update_count(`profile_editor_${key}`)
     }
   }
 }
@@ -1313,7 +1313,7 @@ App.profile_set_value = (key, value, actions = false) => {
     App[`profile_editor_${key}`] = App.clone(value)
 
     if (actions) {
-      App.addlist_update_count(`profile_editor_${key}`)
+      Addlist.update_count(`profile_editor_${key}`)
     }
   }
   else if (props.type === `menu`) {
@@ -1414,7 +1414,8 @@ App.show_notes = (item) => {
     if (profile.notes.value.length) {
       App.profile_start_addlists()
       App.profile_set_value(`notes`, profile.notes.value)
-      App.addlist_view({id: `profile_editor_notes`, index: 0, on_set: () => {
+
+      Addlist.view({id: `profile_editor_notes`, index: 0, on_set: () => {
         App.profile_addlist_on_set(`notes`, item, `edit`)
       }})
     }

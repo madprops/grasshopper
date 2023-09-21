@@ -232,7 +232,7 @@ App.add_settings_addlist = (category) => {
         continue
       }
 
-      App.addlist_add_buttons(`settings_${key}`)
+      Addlist.add_buttons(`settings_${key}`)
 
       let menu = [
         {
@@ -241,7 +241,7 @@ App.add_settings_addlist = (category) => {
 
             App.show_confirm(`Reset setting?`, () => {
               App.set_default_setting(key)
-              App.addlist_update_count(`settings_${key}`)
+              Addlist.update_count(`settings_${key}`)
             }, undefined, force)
           },
         },
@@ -921,7 +921,7 @@ App.check_settings_addlist = (category) => {
 }
 
 App.setup_settings_addlist = () => {
-  App.addlist_commands = App.settings_commands()
+  App.cmdlist = App.settings_commands()
 
   function cmd_name (cmd) {
     let c = App.get_command(cmd)
@@ -935,7 +935,7 @@ App.setup_settings_addlist = () => {
   }
 
   function on_hide () {
-    App.hide_addlist()
+    Addlist.hide_addlist()
   }
 
   let popobj = {
@@ -962,7 +962,7 @@ App.setup_settings_addlist = () => {
 
   App.create_popup(Object.assign({}, popobj, {
     id: `addlist_${id}`,
-    element: App.addlist_register(Object.assign({}, regobj, {
+    element: Addlist.register(Object.assign({}, regobj, {
       id: id,
       pk: `a`,
       widgets: [`text`, `text`],
@@ -980,7 +980,7 @@ App.setup_settings_addlist = () => {
 
   App.create_popup(Object.assign({}, popobj, {
     id: `addlist_${id}`,
-    element: App.addlist_register(Object.assign({}, regobj, {
+    element: Addlist.register(Object.assign({}, regobj, {
       id: id,
       pk: `filter`,
       widgets: [`text`],
@@ -998,12 +998,12 @@ App.setup_settings_addlist = () => {
 
   App.create_popup(Object.assign({}, popobj, {
     id: `addlist_${id}`,
-    element: App.addlist_register(Object.assign({}, regobj, {
+    element: Addlist.register(Object.assign({}, regobj, {
       id: id,
       pk: `key`,
       widgets: [`key`, `select`, `checkbox`, `checkbox`, `checkbox`],
       labels: [`Key`, `Command`, `Require Ctrl`, `Require Shift`, `Require Alt`],
-      sources: [undefined, App.addlist_commands.slice(0), true, false, false],
+      sources: [undefined, App.cmdlist.slice(0), true, false, false],
       keys: [`key`, `cmd`, `ctrl`, `shift`, `alt`],
       list_text: (items) => {
         let cmd = cmd_name(items.cmd)
@@ -1020,12 +1020,12 @@ App.setup_settings_addlist = () => {
     if (props.category === `menus`) {
       App.create_popup(Object.assign({}, popobj, {
         id: `addlist_${id}`,
-        element: App.addlist_register(Object.assign({}, regobj, {
+        element: Addlist.register(Object.assign({}, regobj, {
           id: id,
           pk: `cmd`,
           widgets: [`select`],
           labels: [`Command`],
-          sources: [App.addlist_commands.slice(0)],
+          sources: [App.cmdlist.slice(0)],
           keys: [`cmd`],
           list_text: (items) => {
             return cmd_name(items.cmd)

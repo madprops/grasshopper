@@ -363,9 +363,9 @@ App.setup_keyboard = () => {
           return
         }
       }
-      else if (App.on_addlist()) {
+      else if (Addlist.on_addlist()) {
         if (e.key === `Enter`) {
-          App.addlist_enter()
+          Addlist.enter()
           e.preventDefault()
           return
         }
@@ -376,14 +376,14 @@ App.setup_keyboard = () => {
         }
         else if (e.key === `ArrowLeft`) {
           if (!App.text_with_value_focused()) {
-            App.addlist_left()
+            Addlist.left()
             e.preventDefault()
             return
           }
         }
         else if (e.key === `ArrowRight`) {
           if (!App.text_with_value_focused()) {
-            App.addlist_right()
+            Addlist.right()
             e.preventDefault()
             return
           }
