@@ -570,7 +570,7 @@ App.create_item_element = (item) => {
     App.check_item_icon(item)
   }
 
-  let color_icon = DOM.create(`div`, `item_info_color hidden`)
+  let color_icon = DOM.create(`div`, `item_info_color item_node hidden`)
   item.element.append(color_icon)
   App.apply_color_mode(item)
   let view_media = DOM.create(`div`, `view_media_button hidden`)

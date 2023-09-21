@@ -928,12 +928,6 @@ a:visited, a:link, a:hover {
 
 /* */
 
-.item_info_color {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
 .color_icon {
   height: 1rem;
   width: 1rem;
