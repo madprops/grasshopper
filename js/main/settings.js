@@ -935,7 +935,7 @@ App.setup_settings_addlist = () => {
   }
 
   function on_hide () {
-    Addlist.hide_addlist()
+    Addlist.hide()
   }
 
   let popobj = {

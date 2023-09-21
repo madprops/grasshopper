@@ -20,7 +20,7 @@ Addlist.save = (id) => {
     let modified = Addlist.modified(id)
 
     if (!modified) {
-      Addlist.hide_addlist(false)
+      Addlist.hide(false)
       return false
     }
   }
@@ -282,7 +282,7 @@ Addlist.enter = () => {
       Addlist.save(data.id)
     }
     else {
-      Addlist.hide_addlist(false)
+      Addlist.hide(false)
     }
   }
   else {
@@ -300,7 +300,7 @@ Addlist.right = () => {
 
 Addlist.after = (id, lines) => {
   Addlist.set_data(id, lines)
-  Addlist.hide_addlist(false)
+  Addlist.hide(false)
   Addlist.update_count(id)
 }
 
@@ -550,7 +550,7 @@ Addlist.oargs = (id) => {
   return App[`addlist_args_${id}`]
 }
 
-Addlist.hide_addlist = (check = true, from = `normal`) => {
+Addlist.hide = (check = true, from = `normal`) => {
   if (!Addlist.on_addlist()) {
     return
   }
