@@ -442,7 +442,7 @@ svg {
   margin-bottom: 3rem;
 }
 
-.settings_top_buttons {
+.settings_buttons {
   display: flex;
   flex-direction: row;
   align-items: center;

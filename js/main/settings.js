@@ -335,7 +335,7 @@ App.settings_filter_focused = () => {
 
 App.prepare_settings_category = (category) => {
   App.fill_settings(category)
-  App.settings_top_buttons(category)
+  App.settings_buttons(category)
   App.settings_setup_checkboxes(category)
   App.settings_setup_text(category)
   App.settings_setup_number(category)
@@ -836,13 +836,13 @@ App.get_background_effect = (value) => {
   }
 }
 
-App.settings_top_buttons = (category) => {
+App.settings_buttons = (category) => {
   let cat = App.setting_catprops[category]
 
-  if (cat.top_buttons) {
-    let btc = DOM.create(`div`, `settings_top_buttons`)
+  if (cat.buttons) {
+    let btc = DOM.create(`div`, `settings_buttons`)
 
-    for (let item of cat.top_buttons) {
+    for (let item of cat.buttons) {
       let btn = DOM.create(`div`, `button`)
       btn.textContent = item.text
 

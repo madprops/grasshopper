@@ -557,7 +557,7 @@ App.build_settings = () => {
           App.pick_background(e)
         })
       },
-      top_buttons: [
+      buttons: [
         {text: `Random Dark`, action: () => {
           App.random_colors(`dark`)
         }},
