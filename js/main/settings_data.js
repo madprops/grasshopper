@@ -685,7 +685,6 @@ App.build_settings = () => {
       { filter: `re: (today | $day)` },
       { filter: `re: ($month | $year)` },
       { filter: `re: \\d{2}\\/\\d{2}\\/\\d{4}` },
-      { filter: `re: (youtu|twitch)` },
     ], category: category, type: `list`,
     name: `Custom Filters`, version: 3,
     info: `Pre-made filters to use. These appear in the Custom section`
