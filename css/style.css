@@ -441,6 +441,14 @@ svg {
   margin-bottom: 3rem;
 }
 
+.settings_top_buttons {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  gap: 0.8rem;
+}
+
 .settings_button {
   min-width: 10rem;
 }

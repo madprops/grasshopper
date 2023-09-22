@@ -340,6 +340,10 @@ App.setup_commands = () => {
       App.set_light_colors()
     }, info: `Change to the light color theme`},
 
+    {name: `Random Colors`, cmd: `random_colors`, icon: theme_icon, action: (args) => {
+      App.random_colors()
+    }, info: `Change background color and text color to random values`},
+
     {name: `Background`, cmd: `change_background`, media: `image`, icon: theme_icon, action: (args) => {
       App.change_background(args.item.url)
     }, info: `Change the background to the selected image`},

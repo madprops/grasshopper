@@ -220,6 +220,32 @@ App.check_theme_refresh = () => {
   }
 }
 
+App.random_colors = (type = `dark`) => {
+  if (type === `dark`) {
+    App.random_color(`background`, `dark`)
+    App.random_color(`text`, `light`)
+  }
+  else {
+    App.random_color(`background`, `light`)
+    App.random_color(`text`, `dark`)
+  }
+}
+
+App.random_color = (what, type) => {
+  let color
+
+  if (type === `dark`) {
+    color = App.colorlib.get_dark_color()
+  }
+  else if (type === `light`) {
+    color = App.colorlib.get_light_color()
+  }
+
+  color = App.colorlib.hex_to_rgb(color)
+  App.set_setting(`${what}_color`, color)
+  App.check_theme_refresh()
+}
+
 App.set_background = (url) => {
   function unset () {
     App.set_css_var(`background_image`, `unset`)

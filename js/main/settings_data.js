@@ -557,6 +557,14 @@ App.build_settings = () => {
           App.pick_background(e)
         })
       },
+      top_buttons: [
+        {text: `Random Dark`, action: () => {
+          App.random_colors(`dark`)
+        }},
+        {text: `Random Light`, action: () => {
+          App.random_colors(`light`)
+        }},
+      ]
     },
     colors: {
       info: `These are the colors you assign to items by editing their profiles`,
