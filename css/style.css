@@ -10,6 +10,7 @@
   --widget_width: 15rem;
   --widget_width_smaller: 6rem;
   --text_input_width: 12.5rem;
+  --action_effect: 0 0 0.5rem currentColor
 }
 
 body, html {
@@ -305,7 +306,7 @@ svg {
   align-items: flex-start;
   justify-content: center;
   height: 100%;
-  width: 100%;
+  flex-grow: 1;
   flex-shrink: 1;
   padding-top: var(--item_padding);
   padding-bottom: var(--item_padding);
@@ -325,7 +326,7 @@ svg {
 
 .hover_effect_glow .item:hover .item_text,
 .selected_effect_glow .selected .item_text  {
-  text-shadow: 0 0 1rem currentColor;
+  text-shadow: var(--action_effect);
 }
 
 .hover_effect_opacity .item:hover,
@@ -394,7 +395,7 @@ svg {
 }
 
 .action:hover {
-  text-shadow: 0 0 1rem currentColor;
+  text-shadow: var(--action_effect);
 }
 
 .flex_column_center {
