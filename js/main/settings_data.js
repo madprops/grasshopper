@@ -528,7 +528,7 @@ App.build_settings = () => {
       },
     },
     theme: {
-      info: `Set the colors and background image`,
+      info: `Here you can change the color theme and background image. Colors can be randomized. The background image can have an effect and/or tile mode`,
       setup: () => {
         App.start_color_picker(`background_color`)
         App.start_color_picker(`text_color`)
