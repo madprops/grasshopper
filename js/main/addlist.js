@@ -730,7 +730,7 @@ Addlist.set_data = (id, value) => {
   let data = Addlist.data
   oargs.set_data(id, App.clone(value))
 
-  if (data.on_set) {
+  if (data && data.on_set) {
     data.on_set()
   }
 }
@@ -739,13 +739,13 @@ Addlist.edit_all = (id) => {
   let sett = Addlist.get_data(id)
   let value = App.str(sett, true)
 
-  Addlist.show_input(`Edit: ${id}`, `Save`, (text) => {
+  App.show_input(`Edit: ${id}`, `Save`, (text) => {
     try {
-      Addlist.after(id, Addlist.obj(text))
+      Addlist.after(id, App.obj(text))
       return true
     }
     catch (err) {
-      Addlist.show_alert_2(`${err}`)
+      App.show_alert_2(`${err}`)
       return false
     }
   }, value)
