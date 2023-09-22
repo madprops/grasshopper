@@ -1403,16 +1403,13 @@ App.select_item_by_id = (mode, id) => {
 }
 
 App.item_is_visible = (item) => {
-  let top
   let container_rect = item.element.parentElement.getBoundingClientRect()
   let rect = item.element.getBoundingClientRect()
   let scroller = DOM.el(`#${item.mode}_scroller`)
+  let top = container_rect.top
 
-  if (scroller.classList.contains(`hidden`)) {
-    top = container_rect.top
-  }
-  else {
-    top = container_rect.top + scroller.clientHeight
+  if (!scroller.classList.contains(`hidden`)) {
+    top += scroller.clientHeight
   }
 
   let top_visible = rect.top >= (top - 2)
