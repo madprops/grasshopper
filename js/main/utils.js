@@ -229,14 +229,6 @@ App.get_excess = (objects, property) => {
   return excess
 }
 
-App.element_is_visible = (el) => {
-  let container_rect = el.parentElement.getBoundingClientRect()
-  let rect = el.getBoundingClientRect()
-  let top_visible = rect.top >= container_rect.top - 2
-  let bottom_visible = rect.bottom <= container_rect.bottom + 2
-  return top_visible && bottom_visible
-}
-
 App.text_with_value_focused = () => {
   let el = document.activeElement
 

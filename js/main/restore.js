@@ -31,7 +31,7 @@ App.restore = () => {
     else {
       let item = App.get_selected(mode)
 
-      if (item && !App.element_is_visible(item.element)) {
+      if (item && !App.item_is_visible(item)) {
         App.select_item({item: item, scroll: `center`})
       }
     }

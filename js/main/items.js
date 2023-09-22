@@ -1401,3 +1401,21 @@ App.select_item_by_id = (mode, id) => {
     App.select_item({item: item, scroll: `center`})
   }
 }
+
+App.item_is_visible = (item) => {
+  let top
+  let container_rect = item.element.parentElement.getBoundingClientRect()
+  let rect = item.element.getBoundingClientRect()
+  let scroller = DOM.el(`#${item.mode}_scroller`)
+
+  if (scroller.classList.contains(`hidden`)) {
+    top = container_rect.top
+  }
+  else {
+    top = container_rect.top + scroller.clientHeight
+  }
+
+  let top_visible = rect.top >= (top - 2)
+  let bottom_visible = rect.bottom <= container_rect.bottom + 2
+  return top_visible && bottom_visible
+}

@@ -9,7 +9,7 @@ App.check_items_keyboard = (e) => {
       return
     }
 
-    if (!App.element_is_visible(item.element)) {
+    if (!App.item_is_visible(item)) {
       App.select_item({item: item, scroll: `nearest`})
     }
     else {
