@@ -61,6 +61,8 @@ App.do_filter = async (args) => {
     by_what = `all`
   }
 
+  let search = false
+
   // This check is to avoid re-fetching items
   // For instance when moving from All to Image
   if (App.search_modes.includes(args.mode)) {
@@ -79,6 +81,8 @@ App.do_filter = async (args) => {
       if (App.active_mode !== args.mode) {
         return
       }
+
+      search = true
     }
   }
 
@@ -159,6 +163,7 @@ App.do_filter = async (args) => {
       duplicates: duplicates,
       value: value,
       f_value: f_value,
+      search: search,
     }
 
     return App.filter_check(args)
@@ -230,20 +235,27 @@ App.make_filter_regex = (value, by_what) => {
 App.filter_check = (args) => {
   let match = false
   let title = App.get_title(args.item)
+  title = App.remove_quotes(title).trim()
 
-  for (let regex of args.regexes) {
-    if (args.by_what === `all` || args.by_what === `re`) {
-      match = regex.test(title) || regex.test(args.item.path)
-    }
-    else if (args.by_what === `title` || args.by_what === `re_title`) {
-      match = regex.test(title)
-    }
-    else if (args.by_what === `url` || args.by_what === `re_url`) {
-      match = regex.test(args.item.path)
-    }
+  if (args.search) {
+    match = true
+  }
 
-    if (match) {
-      break
+  if (!match) {
+    for (let regex of args.regexes) {
+      if (args.by_what === `all` || args.by_what === `re`) {
+        match = regex.test(title) || regex.test(args.item.path)
+      }
+      else if (args.by_what === `title` || args.by_what === `re_title`) {
+        match = regex.test(title)
+      }
+      else if (args.by_what === `url` || args.by_what === `re_url`) {
+        match = regex.test(args.item.path)
+      }
+
+      if (match) {
+        break
+      }
     }
   }
 
@@ -391,7 +403,9 @@ App.filter_empty = (mode) => {
 }
 
 App.get_clean_filter = (mode, lowercase = true) => {
-  let value = App.single_space(App.get_filter(mode)).trim()
+  let value = App.get_filter(mode)
+  value = App.single_space(value)
+  value = App.remove_quotes(value).trim()
 
   if (lowercase) {
     value = value.toLowerCase()
@@ -612,7 +626,13 @@ App.create_filter = (mode) => {
   filter.type = `text`
   filter.autocomplete = `off`
   filter.spellcheck = false
-  filter.placeholder = `Filter`
+
+  if (App.search_modes.includes(mode)) {
+    filter.placeholder = `Search`
+  }
+  else {
+    filter.placeholder = `Filter`
+  }
 
   DOM.ev(filter, `contextmenu`, (e) => {
     if (App.get_setting(`show_filter_history`)) {

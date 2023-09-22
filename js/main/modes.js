@@ -46,7 +46,6 @@ App.do_show_mode = async (args) => {
   App.active_mode = args.mode
   App.empty_footer_info()
   App.cancel_filter()
-  let container = DOM.el(`#${args.mode}_container`)
   App.set_filter({mode: args.mode, text: value, filter: false})
   let filter_mode = App.filter_modes(args.mode)[0]
   App.set_filter_mode({mode: args.mode, type: filter_mode.type, filter: false})

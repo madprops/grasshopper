@@ -253,6 +253,10 @@ App.single_space = (s) => {
   return s.replace(/\s+/g, ` `)
 }
 
+App.remove_quotes = (s) => {
+  return s.replace(/'/g, ``)
+}
+
 App.wheel_direction = (e) => {
   if (e.deltaY > 0) {
     return `down`
