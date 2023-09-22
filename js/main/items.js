@@ -1412,7 +1412,8 @@ App.item_is_visible = (item) => {
     top += scroller.clientHeight
   }
 
-  let top_visible = rect.top >= (top - 2)
-  let bottom_visible = rect.bottom <= container_rect.bottom + 2
+  let extra = 2
+  let top_visible = rect.top >= (top - extra)
+  let bottom_visible = rect.bottom <= (container_rect.bottom + extra)
   return top_visible && bottom_visible
 }
