@@ -1249,10 +1249,11 @@ App.get_active_items = (mode, item, multiple = true) => {
 
 App.insert_item = (mode, info) => {
   let item = App.process_info({mode: mode, info: info})
+  let container = DOM.el(`#${mode}_container`)
 
   if (mode === `tabs`) {
     App.get_items(mode).splice(info.index, 0, item)
-    DOM.el(`#${mode}_container`).append(item.element)
+    container.append(item.element)
     App.move_item_element(`tabs`, item.element, info.index)
   }
   else {
@@ -1263,7 +1264,7 @@ App.insert_item = (mode, info) => {
     }
 
     App.get_items(mode).unshift(item)
-    DOM.el(`#${mode}_container`).prepend(item.element)
+    container.prepend(item.element)
   }
 
   App.update_footer_count(mode)
