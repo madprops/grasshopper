@@ -1,0 +1,15 @@
+.menubutton_container {
+  display: flex;
+  flex-direction: row;
+  gap: 0.5rem;
+  min-width: var(--widget_width);
+}
+
+.menubutton {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  flex-grow: 1;
+}

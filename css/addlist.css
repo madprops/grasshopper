@@ -1,0 +1,44 @@
+.addlist_container {
+  gap: 1.35rem;
+  background-color: var(--background_color);
+  height: 100%;
+  width: 100%;
+  outline: none;
+  border: none;
+}
+
+.addlist_control {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  padding: 0.5rem;
+  background-color: var(--alt_color_0);
+  min-width: var(--widget_width);
+  gap: 0.8rem;
+}
+
+.addlist_title {
+  display: flex;
+  font-size: 1.1rem;
+  flex-grow: 1;
+  justify-content: center;
+  align-items: center;
+  flex-shrink: 0;
+}
+
+.addlist_text {
+  width: var(--text_input_width);
+  max-width: var(--text_input_width);
+  text-align: center;
+}
+
+.addlist_textarea {
+  width: var(--text_input_width);
+  max-width: var(--text_input_width);
+  text-align: center;
+}
+
+.addlist_buttons {
+  margin-top: 0.5rem;
+}
