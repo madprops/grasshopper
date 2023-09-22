@@ -1,4 +1,7 @@
 App.build_settings = () => {
+  // Setting Properties
+  // ###################
+
   let props = {}
 
   // ###################
@@ -834,7 +837,7 @@ App.build_settings = () => {
 
   App.setting_props = props
 
-  // Category data
+  // Category Properties
   // ###################
 
   let catprops = {}
