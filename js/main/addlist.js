@@ -100,15 +100,15 @@ Addlist.register = (args = {}) => {
       el.placeholder = args.labels[i] || `Value`
       els.push(el)
     }
-    if (w === `textarea`) {
+    else if (w === `textarea`) {
       let el = DOM.create(`textarea`, `text addlist_textarea`, id)
       el.spellcheck = false
       el.autocomplete = false
       el.placeholder = args.labels[i] || `Value`
       els.push(el)
     }
-    else if (w === `select`) {
-      let el = DOM.create(`div`, `addlist_select`)
+    else if (w === `menu`) {
+      let el = DOM.create(`div`, `addlist_menu`)
       let label = DOM.create(`div`)
       label.textContent = args.labels[i] || `Select`
 
@@ -201,7 +201,7 @@ Addlist.edit = (args = {}) => {
         el.value = ``
       }
     }
-    else if (w === `select`) {
+    else if (w === `menu`) {
       if (value) {
         App[`addlist_menubutton_${args.id}_${i}`].set(value)
       }
@@ -536,7 +536,7 @@ Addlist.get_value = (i, w) => {
       value = value.toLowerCase()
     }
   }
-  else if (w === `select`) {
+  else if (w === `menu`) {
     value = App[`addlist_menubutton_${id}_${i}`].value
   }
   else if (w === `checkbox`) {

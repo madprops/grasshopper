@@ -83,7 +83,7 @@ App.settings_setup_checkboxes = (category) => {
   }
 }
 
-App.settings_setup_text = (category) => {
+App.settings_setup_texts = (category) => {
   for (let key in App.setting_props) {
     let props = App.setting_props[key]
 
@@ -157,7 +157,7 @@ App.settings_setup_text = (category) => {
   }
 }
 
-App.settings_setup_number = (category) => {
+App.settings_setup_numbers = (category) => {
   for (let key in App.setting_props) {
     let props = App.setting_props[key]
 
@@ -223,7 +223,7 @@ App.settings_setup_number = (category) => {
   }
 }
 
-App.add_settings_addlist = (category) => {
+App.setting_setup_lists = (category) => {
   for (let key in App.setting_props) {
     let props = App.setting_props[key]
 
@@ -336,10 +336,10 @@ App.settings_filter_focused = () => {
 App.prepare_settings_category = (category) => {
   App.fill_settings(category)
   App.settings_buttons(category)
+  App.settings_setup_texts(category)
   App.settings_setup_checkboxes(category)
-  App.settings_setup_text(category)
-  App.settings_setup_number(category)
-  App.add_settings_addlist(category)
+  App.settings_setup_numbers(category)
+  App.setting_setup_lists(category)
   App.settings_setup_labels(category)
   App.add_settings_switchers(category)
   App.add_settings_filter(category)
@@ -1029,7 +1029,7 @@ App.setup_settings_addlist = () => {
     element: Addlist.register(Object.assign({}, regobj, {
       id: id,
       pk: `key`,
-      widgets: [`key`, `select`, `checkbox`, `checkbox`, `checkbox`],
+      widgets: [`key`, `menu`, `checkbox`, `checkbox`, `checkbox`],
       labels: [`Key`, `Command`, `Require Ctrl`, `Require Shift`, `Require Alt`],
       sources: [undefined, App.cmdlist.slice(0), true, false, false],
       keys: [`key`, `cmd`, `ctrl`, `shift`, `alt`],
@@ -1051,7 +1051,7 @@ App.setup_settings_addlist = () => {
         element: Addlist.register(Object.assign({}, regobj, {
           id: id,
           pk: `cmd`,
-          widgets: [`select`],
+          widgets: [`menu`],
           labels: [`Command`],
           sources: [App.cmdlist.slice(0)],
           keys: [`cmd`],
