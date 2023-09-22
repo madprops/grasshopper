@@ -63,9 +63,9 @@ Addlist.register = (args = {}) => {
   }
 
   args = Object.assign(def_args, args)
-  let container = DOM.create(`div`, `flex_column_center addlist_container`, `addlist_container_${args.id}`)
+  let container = DOM.create(`div`, `addlist_container`, `addlist_container_${args.id}`)
   container.tabIndex = 0
-  let top = DOM.create(`div`, `flex_row_center gap_2 full_width`)
+  let top = DOM.create(`div`, `addlist_top`)
   let title = DOM.create(`div`, `addlist_title`)
   title.textContent = args.title || `List`
   let btn_prev = DOM.create(`div`, `button`, `addlist_prev_${args.id}`)
@@ -108,7 +108,7 @@ Addlist.register = (args = {}) => {
       els.push(el)
     }
     else if (w === `select`) {
-      let el = DOM.create(`div`, `flex_column_center gap_1`)
+      let el = DOM.create(`div`, `addlist_select`)
       let label = DOM.create(`div`)
       label.textContent = args.labels[i] || `Select`
 
@@ -136,7 +136,7 @@ Addlist.register = (args = {}) => {
       els.push(el)
     }
     else if (w === `checkbox`) {
-      let el = DOM.create(`div`, `flex_column_center gap_1`)
+      let el = DOM.create(`div`, `addlist_checkbox`)
       let checkbox = DOM.create(`input`, `checkbox addlist_checkbox`, id)
       checkbox.type = `checkbox`
       let label = DOM.create(`div`)
@@ -148,7 +148,7 @@ Addlist.register = (args = {}) => {
   }
 
   container.append(...els)
-  let btns = DOM.create(`div`, `flex_row_center gap_1 addlist_buttons`)
+  let btns = DOM.create(`div`, `addlist_buttons`)
   let remove = DOM.create(`div`, `button`, `addlist_remove_${args.id}`)
   remove.textContent = `Rem`
   let save = DOM.create(`div`, `button`, `addlist_save_${args.id}`)
