@@ -221,7 +221,7 @@ App.make_filter_regex = (value, by_what) => {
     let cleaned = App.escape_regex(value)
 
     if (App.get_setting(`case_insensitive`)) {
-      regex = new RegExp(cleaned, `gi`)
+      regex = new RegExp(cleaned, `i`)
     }
     else {
       regex = new RegExp(cleaned)
