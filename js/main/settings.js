@@ -842,15 +842,21 @@ App.settings_buttons = (category) => {
   if (cat.buttons) {
     let btc = DOM.create(`div`, `settings_buttons`)
 
-    for (let item of cat.buttons) {
-      let btn = DOM.create(`div`, `button`)
-      btn.textContent = item.text
+    for (let row of cat.buttons) {
+      let row_el = DOM.create(`div`, `settings_buttons_row`)
 
-      DOM.ev(btn, `click`, () => {
-        item.action()
-      })
+      for (let item of row) {
+        let btn = DOM.create(`div`, `button`)
+        btn.textContent = item.text
 
-      btc.append(btn)
+        DOM.ev(btn, `click`, () => {
+          item.action()
+        })
+
+        row_el.append(btn)
+      }
+
+      btc.append(row_el)
     }
 
     DOM.el(`#setting_${category}`).before(btc)
