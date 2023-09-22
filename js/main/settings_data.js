@@ -682,8 +682,8 @@ App.build_settings = () => {
 
   props.custom_filters = {
     value: [
-      { filter: `re: (today | $day)` },
-      { filter: `re: ($month | $year)` },
+      { filter: `re: (today|$day)` },
+      { filter: `re: ($month|$year)` },
       { filter: `re: \\d{2}\\/\\d{2}\\/\\d{4}` },
     ], category: category, type: `list`,
     name: `Custom Filters`, version: 3,

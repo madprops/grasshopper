@@ -204,16 +204,15 @@ App.replace_filter_vars = (value) => {
 App.make_filter_regex = (value, by_what) => {
   value = App.replace_filter_vars(value)
   let regex
-
   if (by_what.startsWith(`re`)) {
     let cleaned = value.replace(/\\+$/, ``)
 
     try {
       if (App.get_setting(`case_insensitive`)) {
-        regex = new RegExp(cleaned, `i`)
+        regex = new RegExp(cleaned, `gi`)
       }
       else {
-        regex = new RegExp(cleaned)
+        regex = new RegExp(cleaned, `g`)
       }
     }
     catch (err) {}
