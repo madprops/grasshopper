@@ -739,7 +739,7 @@ Addlist.edit_all = (id) => {
   let sett = Addlist.get_data(id)
   let value = App.str(sett, true)
 
-  App.show_input(`Edit: ${id}`, `Save`, (text) => {
+  App.show_input(id, `Save`, (text) => {
     try {
       Addlist.after(id, App.obj(text))
       return true
