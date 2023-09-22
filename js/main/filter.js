@@ -234,14 +234,15 @@ App.make_filter_regex = (value, by_what) => {
 
 App.filter_check = (args) => {
   let match = false
-  let title = App.get_title(args.item)
-  title = App.remove_quotes(title).trim()
 
   if (args.search) {
     match = true
   }
 
   if (!match) {
+    let title = App.get_title(args.item)
+    title = App.remove_quotes(title).trim()
+
     for (let regex of args.regexes) {
       if (args.by_what === `all` || args.by_what === `re`) {
         match = regex.test(title) || regex.test(args.item.path)
