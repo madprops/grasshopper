@@ -429,7 +429,6 @@ NeedContext.init = () => {
       user-select: none;
       border: 1px solid #2B2F39;
       border-radius: 5px;
-      cursor: pointer;
       padding-top: 6px;
       padding-bottom: 6px;
       max-height: 80vh;
@@ -455,6 +454,7 @@ NeedContext.init = () => {
       padding-right: 10px;
       padding-top: ${NeedContext.item_sep};
       padding-bottom: ${NeedContext.item_sep};
+      cursor: pointer;
     }
 
     .needcontext-back {
@@ -466,6 +466,7 @@ NeedContext.init = () => {
       flex-direction: row;
       align-items: center;
       gap: ${NeedContext.gap};
+      cursor: pointer;
     }
 
     .needcontext-back:hover {
