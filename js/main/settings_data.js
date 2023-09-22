@@ -637,14 +637,12 @@ App.build_settings = () => {
           App.refresh_gestures()
         })
 
-        let opts = App.settings_commands()
-
         for (let key in App.setting_props) {
           let props = App.setting_props[key]
 
           if (props.category === `gestures`) {
             if (key.startsWith(`gesture_`)) {
-              App.settings_make_menu(key, opts)
+              App.settings_make_menu(key, App.cmdlist)
             }
           }
         }
@@ -653,13 +651,11 @@ App.build_settings = () => {
     auxclick: {
       info: `Perform actions on middle-click`,
       setup: () => {
-        let opts = App.settings_commands()
-
         for (let key in App.setting_props) {
           let props = App.setting_props[key]
 
           if (props.category === `auxclick`) {
-            App.settings_make_menu(key, opts)
+            App.settings_make_menu(key, App.cmdlist)
           }
         }
       },
@@ -686,7 +682,7 @@ App.build_settings = () => {
       setup: () => {
         App.settings_make_menu(`hover_effect`, App.effects)
         App.settings_make_menu(`selected_effect`, App.effects)
-        App.settings_make_menu(`double_click_command`, App.settings_commands())
+        App.settings_make_menu(`double_click_command`, App.cmdlist)
       },
     },
   }

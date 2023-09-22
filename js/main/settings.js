@@ -357,6 +357,7 @@ App.prepare_settings_category = (category) => {
 }
 
 App.setup_settings = () => {
+  App.cmdlist = App.settings_commands()
   App.settings_categories = Object.keys(App.setting_catprops)
 
   let common = {
@@ -949,8 +950,6 @@ App.check_settings_addlist = (category) => {
 }
 
 App.setup_settings_addlist = () => {
-  App.cmdlist = App.settings_commands()
-
   function cmd_name (cmd) {
     let c = App.get_command(cmd)
 
