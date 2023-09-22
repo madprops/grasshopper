@@ -787,7 +787,7 @@ a:visited, a:link, a:hover {
 
 #popup_palette_container {
   max-height: 50%;
-  min-width: 15rem;
+  min-width: 16rem;
 }
 
 #palette_commands {
