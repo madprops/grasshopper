@@ -9,7 +9,7 @@ App.build_settings = () => {
   info: `Allow long lines to wrap`}
 
   obj.font_size = {value: 16, category: category, type: `number`,
-  min: 6, max: 28, name: `Font Size`, placeholder: `px`, action: `theme`, version: 1,
+  name: `Font Size`, placeholder: `px`, min: 6, max: 28, action: `theme`, version: 1,
   info: `The font size in pixels to use for text. The interface scales accordingly`}
 
   obj.font = {value: `sans-serif`, category: category, type: `menu`,
@@ -29,11 +29,11 @@ App.build_settings = () => {
   info: `Border between each item`}
 
   obj.width = {value: 75, category: category, type: `menu`,
-   name: `Width`, version: 1,
+  name: `Width`, version: 1,
   info: `Width of the popup`}
 
   obj.height = {value: 85, category: category, type: `menu`,
-   name: `Height`, version: 1,
+  name: `Height`, version: 1,
   info: `Height of the popup`}
 
   obj.primary_mode = {value: `tabs`, category: category, type: `menu`,
@@ -66,11 +66,11 @@ App.build_settings = () => {
   info: `The background image. Pick from the buttons or enter a URL`}
 
   obj.background_effect = {value: `none`, category: category, type: `menu`,
-  action: `theme`, name: `Background Effect`, version: 1,
+  name: `Background Effect`, action: `theme`, version: 1,
   info: `The effect on the background image`}
 
   obj.background_tiles = {value: `none`, category: category, type: `menu`,
-  action: `theme`, name: `Background Tiles`, version: 1,
+  name: `Background Tiles`, action: `theme`, version: 1,
   info: `The tile size of the background image`}
 
   // ###################
