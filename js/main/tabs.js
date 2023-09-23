@@ -459,7 +459,8 @@ App.close_tabs = (item, multiple = true) => {
     return
   }
 
-  let s = App.plural(ids.length, `Close this tab?`, `Close these tabs? (${ids.length})`)
+  let msg = App.close_tabs_message(ids.length)
+  let s = App.plural(ids.length, `Close this tab?`, msg)
 
   App.show_confirm(s, () => {
     App.do_close_tabs(ids)
@@ -779,7 +780,7 @@ App.do_close_normal_tabs = (close_unloaded = true) => {
 
   let force = App.check_force(`warn_on_close_normal_tabs`, ids.length)
 
-  App.show_confirm(`Close these tabs? (${ids.length})`, () => {
+  App.show_confirm(App.close_tabs_message(ids.length), () => {
     App.do_close_tabs(ids)
     App.hide_all_popups()
   }, () => {
@@ -803,7 +804,7 @@ App.close_unloaded_tabs = () => {
 
   let force = App.check_force(`warn_on_close_unloaded_tabs`, ids.length)
 
-  App.show_confirm(`Close these tabs? (${ids.length})`, () => {
+  App.show_confirm(App.close_tabs_message(ids.length), () => {
     App.do_close_tabs(ids)
   }, undefined, force)
 }
@@ -818,9 +819,13 @@ App.close_visible_tabs = () => {
 
   let force = App.check_force(`warn_on_close_visible_tabs`, ids.length)
 
-  App.show_confirm(`Close visible tabs? (${ids.length})`, () => {
+  App.show_confirm(App.close_tabs_message(ids.length), () => {
     App.do_close_tabs(ids)
   }, undefined, force)
+}
+
+App.close_tabs_message = (count) => {
+  return `Close these tabs? (${count})`
 }
 
 App.empty_previous_tabs_debouncer = App.create_debouncer(() => {
@@ -928,7 +933,7 @@ App.do_close_duplicate_tabs = (close_pins = true) => {
 
   let force = App.check_force(`warn_on_close_duplicate_tabs`, ids.length)
 
-  App.show_confirm(`Close these tabs? (${ids.length})`, () => {
+  App.show_confirm(App.close_tabs_message(ids.length), () => {
     App.do_close_tabs(ids)
     App.hide_all_popups()
   }, () => {
