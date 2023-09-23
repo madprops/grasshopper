@@ -818,7 +818,7 @@ App.close_visible_tabs = () => {
 
   let force = App.check_force(`warn_on_close_visible_tabs`, ids.length)
 
-  App.show_confirm(`Close these tabs? (${ids.length})`, () => {
+  App.show_confirm(`Close visible tabs? (${ids.length})`, () => {
     App.do_close_tabs(ids)
   }, undefined, force)
 }
