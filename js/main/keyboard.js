@@ -211,12 +211,8 @@ App.check_items_keyboard = (e) => {
       return
     }
     else if (e.key === `Delete`) {
-      if (!item) {
-        return
-      }
-
-      if (!filter_focus || !App.filter_has_value(mode) || App.filter_at_end(mode)) {
-        if (mode === `tabs`) {
+      if (item && mode === `tabs`) {
+        if (!filter_focus || !App.filter_has_value(mode) || App.filter_at_end(mode)) {
           App.close_tabs(item)
           e.preventDefault()
         }
