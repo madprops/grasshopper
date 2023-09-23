@@ -215,7 +215,7 @@ App.check_items_keyboard = (e) => {
         return
       }
 
-      if (!filter_focus || (App.filter_has_value(mode) && App.filter_at_end(mode))) {
+      if (!filter_focus || !App.filter_has_value(mode) || App.filter_at_end(mode)) {
         if (mode === `tabs`) {
           App.close_tabs(item)
           e.preventDefault()
