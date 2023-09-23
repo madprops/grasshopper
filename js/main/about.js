@@ -22,6 +22,7 @@ App.setup_about = () => {
       `Ctrl + Down moves tabs to the bottom`,
       `Ctrl + F shows the filters`,
       `Ctrl + Dot goes to the playing tab`,
+      `Ctrl + Comma goes to the previous tab`,
       `Delete closes selected tabs`,
       `Ctrl + Delete closes visible tabs when filtered`,
       `Double click on empty tabs space opens a new tab`,

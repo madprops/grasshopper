@@ -97,6 +97,11 @@ App.check_items_keyboard = (e) => {
       e.preventDefault()
       return
     }
+    else if (e.key === `,`) {
+      App.go_to_previous_tab()
+      e.preventDefault()
+      return
+    }
     else if (e.key === `Home`) {
       App.goto_top(mode, true)
       e.preventDefault()
