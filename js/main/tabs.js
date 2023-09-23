@@ -459,8 +459,8 @@ App.close_tabs = (item, multiple = true) => {
     return
   }
 
-  let msg = App.close_tabs_message(ids.length)
-  let s = App.plural(ids.length, `Close this tab?`, msg)
+  let plural = App.close_tabs_message(ids.length)
+  let s = App.plural(ids.length, `Close this tab?`, plural)
 
   App.show_confirm(s, () => {
     App.do_close_tabs(ids)
