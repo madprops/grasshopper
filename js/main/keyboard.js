@@ -97,11 +97,6 @@ App.check_items_keyboard = (e) => {
       e.preventDefault()
       return
     }
-    else if (e.key === `Backspace`) {
-      App.step_back(mode, e)
-      e.preventDefault()
-      return
-    }
     else if (e.key === `Home`) {
       App.goto_top(mode, true)
       e.preventDefault()
@@ -114,7 +109,7 @@ App.check_items_keyboard = (e) => {
     }
     else if (e.key === `Delete`) {
       if (mode === `tabs`) {
-        App.close_tabs(item)
+        App.close_visible_tabs()
       }
 
       e.preventDefault()
