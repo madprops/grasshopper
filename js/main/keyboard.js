@@ -108,7 +108,7 @@ App.check_items_keyboard = (e) => {
       return
     }
     else if (e.key === `Delete`) {
-      if (mode === `tabs`) {
+      if (mode === `tabs` && App.is_filtered(mode)) {
         App.close_visible_tabs()
       }
 
