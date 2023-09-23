@@ -901,3 +901,9 @@ App.filter_is_focused = (mode) => {
 App.blur_filter = (mode) => {
   App.get_filter_el(mode).blur()
 }
+
+App.filter_at_end = (mode) => {
+  let filter = App.get_filter_el(mode)
+  return filter.selectionStart === filter.selectionEnd &&
+  filter.selectionEnd === filter.value.length
+}

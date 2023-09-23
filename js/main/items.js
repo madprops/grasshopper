@@ -1139,7 +1139,7 @@ App.open_items = (item, shift, multiple = true) => {
 
 App.goto_top = (mode = App.window_mode, select = false) => {
   if (select) {
-    App.select_item({item: App.get_items(mode).at(0), scroll: `nearest`})
+    App.select_item({item: App.get_visible(mode).at(0), scroll: `nearest`})
   }
   else {
     let el = DOM.el(`#${mode}_container`)
@@ -1155,7 +1155,7 @@ App.goto_top = (mode = App.window_mode, select = false) => {
 
 App.goto_bottom = (mode = App.window_mode, select = false) => {
   if (select) {
-    App.select_item({item: App.get_items(mode).at(-1), scroll: `nearest`})
+    App.select_item({item: App.get_visible(mode).at(-1), scroll: `nearest`})
   }
   else {
     let el = DOM.el(`#${mode}_container`)
