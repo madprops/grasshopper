@@ -231,6 +231,10 @@ App.setup_commands = () => {
       App.close_normal_tabs()
     }, info: `Close normal tabs`},
 
+    {name: `Close Playing Tabs`, cmd: `close_playing_tabs`, mode: `items`, icon: tabs_icon, action: (args) => {
+      App.close_playing_tabs()
+    }, info: `Close playing tabs`},
+
     {name: `Close Unloaded Tabs`, cmd: `close_unloaded_tabs`, mode: `items`, icon: tabs_icon, action: (args) => {
       App.close_unloaded_tabs()
     }, info: `Close unloaded tabs`},
