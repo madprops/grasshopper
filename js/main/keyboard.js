@@ -351,6 +351,11 @@ App.setup_keyboard = () => {
           e.preventDefault()
           return
         }
+        else if (e.key === ` `) {
+          App.close_tabs_toggle()
+          e.preventDefault()
+          return
+        }
       }
       else if (Addlist.on_addlist()) {
         if (e.key === `Enter`) {

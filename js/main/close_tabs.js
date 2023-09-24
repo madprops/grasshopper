@@ -71,6 +71,20 @@ App.close_tabs_popup = (type) => {
   DOM.el(`#close_tabs_include_unloaded`).checked = false
 }
 
+App.close_tabs_toggle = () => {
+  let type = App.close_tabs_type
+  let checkbox
+
+  if (type === `normal`) {
+    checkbox = DOM.el(`#close_tabs_include_unloaded`)
+  }
+  else {
+    checkbox = DOM.el(`#close_tabs_include_pins`)
+  }
+
+  checkbox.checked = !checkbox.checked
+}
+
 App.close_tabs_action = () => {
   let type = App.close_tabs_type
   let arg
