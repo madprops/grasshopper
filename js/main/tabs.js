@@ -165,9 +165,9 @@ App.focus_tab = async (args) => {
   App.after_focus(args.method)
 }
 
-App.close_tab = async (id) => {
+App.close_tab_or_tabs = async (id_or_ids) => {
   try {
-    await browser.tabs.remove(id)
+    await browser.tabs.remove(id_or_ids)
   }
   catch (err) {
     App.error(err)
@@ -469,14 +469,8 @@ App.close_tabs = (item, multiple = true) => {
   let s = App.plural(ids.length, `Close this tab?`, plural)
 
   App.show_confirm(s, () => {
-    App.do_close_tabs(ids)
+    App.close_tab_or_tabs(ids)
   }, undefined, force)
-}
-
-App.do_close_tabs = (ids) => {
-  for (let id of ids) {
-    App.close_tab(id)
-  }
 }
 
 App.mute_tabs = (item) => {
@@ -787,7 +781,7 @@ App.do_close_normal_tabs = (close_unloaded = true) => {
   let force = App.check_force(`warn_on_close_normal_tabs`, ids.length)
 
   App.show_confirm(App.close_tabs_message(ids.length), () => {
-    App.do_close_tabs(ids)
+    App.close_tab_or_tabs(ids)
     App.hide_all_popups()
   }, () => {
     App.hide_popup(`close_normal`)
@@ -811,7 +805,7 @@ App.close_unloaded_tabs = () => {
   let force = App.check_force(`warn_on_close_unloaded_tabs`, ids.length)
 
   App.show_confirm(App.close_tabs_message(ids.length), () => {
-    App.do_close_tabs(ids)
+    App.close_tab_or_tabs(ids)
   }, undefined, force)
 }
 
@@ -826,7 +820,7 @@ App.close_visible_tabs = () => {
   let force = App.check_force(`warn_on_close_visible_tabs`, ids.length)
 
   App.show_confirm(App.close_tabs_message(ids.length), () => {
-    App.do_close_tabs(ids)
+    App.close_tab_or_tabs(ids)
   }, undefined, force)
 }
 
@@ -940,7 +934,7 @@ App.do_close_duplicate_tabs = (close_pins = true) => {
   let force = App.check_force(`warn_on_close_duplicate_tabs`, ids.length)
 
   App.show_confirm(App.close_tabs_message(ids.length), () => {
-    App.do_close_tabs(ids)
+    App.close_tab_or_tabs(ids)
     App.hide_all_popups()
   }, () => {
     App.hide_popup(`close_duplicates`)
@@ -1128,7 +1122,7 @@ App.close_other_new_tabs = (id) => {
   }
 
   if (ids.length) {
-    App.do_close_tabs(ids)
+    App.close_tab_or_tabs(ids)
   }
 }
 
@@ -1153,7 +1147,7 @@ App.check_new_tabs = () => {
   }
 
   if (ids.length) {
-    App.do_close_tabs(ids)
+    App.close_tab_or_tabs(ids)
   }
 }
 

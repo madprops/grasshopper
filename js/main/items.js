@@ -1129,10 +1129,10 @@ App.open_items = (item, shift, multiple = true) => {
         App.open_tab(item)
       }
 
-      App.deselect(mode)
+      App.deselect(mode, `selected`)
       App.after_open(shift)
     }, () => {
-      App.deselect(mode)
+      App.deselect(mode, `selected`)
     }, force)
   }
 }
