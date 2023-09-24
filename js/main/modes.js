@@ -38,7 +38,11 @@ App.do_show_mode = async (args) => {
     (App[`${args.mode}_items`].length) &&
     !was_filtered && !App[`${args.mode}_changed`]) {
       App.select_first_item(args.mode, true)
-      App.check_pinline()
+
+      if (args.mode === `tabs`) {
+        App.check_pinline()
+      }
+
       return
     }
   }
@@ -113,7 +117,10 @@ App.do_show_mode = async (args) => {
 
   App[`${args.mode}_changed`] = false
   App.check_playing(args.mode)
-  App.check_pinline()
+
+  if (args.mode === `tabs`) {
+    App.check_pinline()
+  }
 }
 
 App.get_mode_index = (mode) => {
