@@ -201,7 +201,13 @@ App.get_tab_info = async (id) => {
 
 App.refresh_tab = async (id, select, info) => {
   if (!info) {
-    info = await App.get_tab_info(id)
+    try {
+      info = await App.get_tab_info(id)
+    }
+    catch (err) {
+      App.check_pinline()
+      return
+    }
   }
 
   if (!info) {

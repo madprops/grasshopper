@@ -3,8 +3,10 @@ App.pinline_debouncer = App.create_debouncer(() => {
 }, App.pinline_delay)
 
 App.check_pinline = () => {
-  if (App.get_setting(`show_pinline`) !== `never`) {
-    App.pinline_debouncer.call()
+  if (App.active_mode === `tabs`) {
+    if (App.get_setting(`show_pinline`) !== `never`) {
+      App.pinline_debouncer.call()
+    }
   }
 }
 
