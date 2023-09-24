@@ -252,7 +252,7 @@ App.check_items_keyboard = (e) => {
 App.setup_keyboard = () => {
   DOM.ev(document, `keydown`, (e) => {
     let mode = App.window_mode
-    let pmode = App.popup_mode
+    let pmode = App.popup_mode()
 
     if (e.key === `Control`) {
       if (App.now() - App.double_tap_date < App.double_tap_delay) {

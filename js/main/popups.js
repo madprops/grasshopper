@@ -36,7 +36,6 @@ App.create_popup = (args) => {
   p.show = () => {
     p.setup()
     p.element.classList.remove(`hidden`)
-    App.popup_mode = args.id
     container.focus()
     p.open = true
   }
@@ -269,4 +268,20 @@ App.open_popups = () => {
 
 App.dismiss_popup = (id) => {
   App.popups[id].dismiss()
+}
+
+App.popup_mode = () => {
+  let highest_z = 0
+  let pmode
+
+  for (let popup of App.open_popup_list()) {
+    let z = parseInt(App.popups[popup].element.style.zIndex)
+
+    if (z > highest_z) {
+      highest_z = z
+      pmode = popup
+    }
+  }
+
+  return pmode
 }
