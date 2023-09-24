@@ -24,17 +24,7 @@ App.close_tabs = (item, multiple = true) => {
   }, undefined, force)
 }
 
-App.close_normal_tabs = () => {
-  App.show_popup(`close_normal`)
-  DOM.el(`#close_normal_unloaded`).checked = false
-}
-
-App.close_normal_tabs_action = () => {
-  let close_unloaded = DOM.el(`#close_normal_unloaded`).checked
-  App.do_close_normal_tabs(close_unloaded)
-}
-
-App.do_close_normal_tabs = (close_unloaded = true) => {
+App.close_normal_tabs = (close_unloaded = true) => {
   let ids = []
 
   for (let it of App.get_items(`tabs`)) {
@@ -67,13 +57,32 @@ App.close_tabs_popup = (type) => {
   App.show_popup(`close_tabs`)
   let title = App.capitalize_words(`Close ${type} tabs`)
   DOM.el(`#close_tabs_title`).textContent = title
+
+  if (type === `normal`) {
+    DOM.el(`#close_tabs_include_pins_container`).classList.add(`hidden`)
+    DOM.el(`#close_tabs_include_unloaded_container`).classList.remove(`hidden`)
+  }
+  else {
+    DOM.el(`#close_tabs_include_pins_container`).classList.remove(`hidden`)
+    DOM.el(`#close_tabs_include_unloaded_container`).classList.add(`hidden`)
+  }
+
   DOM.el(`#close_tabs_include_pins`).checked = false
+  DOM.el(`#close_tabs_include_unloaded`).checked = false
 }
 
 App.close_tabs_action = () => {
   let type = App.close_tabs_type
-  let close_pins = DOM.el(`#close_tabs_include_pins`).checked
-  App[`close_${type}_tabs`](close_pins)
+  let arg
+
+  if (type === `normal`) {
+    arg = DOM.el(`#close_tabs_include_unloaded`).checked
+  }
+  else {
+    arg = DOM.el(`#close_tabs_include_pins`).checked
+  }
+
+  App[`close_${type}_tabs`](arg)
 }
 
 App.close_playing_tabs = (close_pins = false) => {
@@ -208,7 +217,7 @@ App.close_tabs_menu = () => {
   items.push({
     text: `Close Normal Tabs`,
     action: () => {
-      App.close_normal_tabs()
+      App.close_tabs_popup(`normal`)
     }
   })
 

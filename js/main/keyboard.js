@@ -345,16 +345,9 @@ App.setup_keyboard = () => {
           return
         }
       }
-      else if (pmode === `close_normal`) {
+      else if (pmode === `close_tabs`) {
         if (e.key === `Enter`) {
-          App.close_normal_tabs_action()
-          e.preventDefault()
-          return
-        }
-      }
-      else if (pmode === `close_duplicates`) {
-        if (e.key === `Enter`) {
-          App.close_duplicate_tabs_action()
+          App.close_tabs_action()
           e.preventDefault()
           return
         }

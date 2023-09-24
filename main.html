@@ -174,26 +174,18 @@
       <div id="palette_commands" class="filter_container"></div>
     </template>
 
-    <template id="template_close_normal">
-      <div class="flex_column_center gap_2">
-        <div class="bigger">Close Normal Tabs</div>
-
-        <div class="flex_row_center gap_1 self_start" title="Include unloaded tabs">
-          <input id="close_normal_unloaded" class="settings_checkbox" type="checkbox">
-          <div>Include Unloaded</div>
-        </div>
-
-        <div id="close_normal_button" class="button">Close</div>
-      </div>
-    </template>
-
     <template id="template_close_tabs">
       <div class="flex_column_center gap_2">
         <div id="close_tabs_title" class="bigger"></div>
 
-        <div class="flex_row_center gap_1 self_start" title="Include pinned tabs">
+        <div id="close_tabs_include_pins_container" class="flex_row_center gap_1 self_start hidden" title="Include pinned tabs">
           <input id="close_tabs_include_pins" class="settings_checkbox" type="checkbox">
           <div>Include Pins</div>
+        </div>
+
+        <div id="close_tabs_include_unloaded_container" class="flex_row_center gap_1 self_start hidden" title="Include unloaded tabs">
+          <input id="close_tabs_include_unloaded" class="settings_checkbox" type="checkbox">
+          <div>Include Unloaded</div>
         </div>
 
         <div id="close_tabs_button" class="button">Close</div>

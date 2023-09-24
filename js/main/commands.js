@@ -228,7 +228,7 @@ App.setup_commands = () => {
     }, info: `Open the menu with some tab closing options`},
 
     {name: `Close Normal Tabs`, cmd: `close_normal_tabs`, mode: `items`, icon: tabs_icon, action: (args) => {
-      App.close_normal_tabs()
+      App.close_tabs_popup(`normal`)
     }, info: `Close normal tabs`},
 
     {name: `Close Playing Tabs`, cmd: `close_playing_tabs`, mode: `items`, icon: tabs_icon, action: (args) => {
