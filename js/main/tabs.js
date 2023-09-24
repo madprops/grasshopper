@@ -788,6 +788,27 @@ App.do_close_normal_tabs = (close_unloaded = true) => {
   }, force)
 }
 
+App.close_playing_tabs = () => {
+  let ids = []
+
+  for (let it of App.get_items(`tabs`)) {
+    if (it.audible) {
+      ids.push(it.id)
+    }
+  }
+
+  if (!ids.length) {
+    App.show_alert(`Nothing to close`)
+    return
+  }
+
+  let force = App.check_force(`warn_on_close_playing_tabs`, ids.length)
+
+  App.show_confirm(App.close_tabs_message(ids.length), () => {
+    App.close_tab_or_tabs(ids)
+  }, undefined, force)
+}
+
 App.close_unloaded_tabs = () => {
   let ids = []
 
@@ -1056,6 +1077,13 @@ App.close_menu = () => {
     text: `Close Normal Tabs`,
     action: () => {
       App.close_normal_tabs()
+    }
+  })
+
+  items.push({
+    text: `Close Playing Tabs`,
+    action: () => {
+      App.close_playing_tabs()
     }
   })
 

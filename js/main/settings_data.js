@@ -541,6 +541,12 @@ App.build_settings = () => {
     info: `Warn when closing normal tabs using the close menu`
   }
 
+  props.warn_on_close_playing_tabs = {
+    value: true, category: category, type: `checkbox`,
+    name: `Warn On Close Playing`, version: 1,
+    info: `Warn when closing playing tabs using the close menu`
+  }
+
   props.warn_on_close_unloaded_tabs = {
     value: true, category: category, type: `checkbox`,
     name: `Warn On Close Unloaded`, version: 1,
