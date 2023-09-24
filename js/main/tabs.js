@@ -96,9 +96,9 @@ App.setup_tabs = () => {
   })
 
   App.create_popup({
-    id: `close_duplicates`, setup: () => {
-      DOM.ev(DOM.el(`#close_duplicates_button`), `click`, () => {
-        App.close_duplicate_tabs_action()
+    id: `close_tabs`, setup: () => {
+      DOM.ev(DOM.el(`#close_tabs_button`), `click`, () => {
+        App.close_tabs_action()
       })
     }
   })
@@ -163,15 +163,6 @@ App.focus_tab = async (args) => {
   }
 
   App.after_focus(args.method)
-}
-
-App.close_tab_or_tabs = async (id_or_ids) => {
-  try {
-    await browser.tabs.remove(id_or_ids)
-  }
-  catch (err) {
-    App.error(err)
-  }
 }
 
 App.open_new_tab = async (url) => {
@@ -456,23 +447,6 @@ App.check_tab_force = (warn_setting, items) => {
   return true
 }
 
-App.close_tabs = (item, multiple = true) => {
-  let items = App.get_active_items(`tabs`, item, multiple)
-  let force = App.check_tab_force(`warn_on_close_tabs`, items)
-  let ids = items.map(x => x.id)
-
-  if (!ids.length) {
-    return
-  }
-
-  let plural = App.close_tabs_message(ids.length)
-  let s = App.plural(ids.length, `Close this tab?`, plural)
-
-  App.show_confirm(s, () => {
-    App.close_tab_or_tabs(ids)
-  }, undefined, force)
-}
-
 App.mute_tabs = (item) => {
   let ids = []
 
@@ -747,108 +721,6 @@ App.detach_tabs = async (item) => {
   }
 }
 
-App.close_normal_tabs = () => {
-  App.show_popup(`close_normal`)
-  DOM.el(`#close_normal_unloaded`).checked = false
-}
-
-App.close_normal_tabs_action = () => {
-  let close_unloaded = DOM.el(`#close_normal_unloaded`).checked
-  App.do_close_normal_tabs(close_unloaded)
-}
-
-App.do_close_normal_tabs = (close_unloaded = true) => {
-  let ids = []
-
-  for (let it of App.get_items(`tabs`)) {
-    if (!close_unloaded) {
-      if (it.discarded) {
-        continue
-      }
-    }
-
-    if (!it.pinned && !it.audible) {
-      ids.push(it.id)
-    }
-  }
-
-  if (!ids.length) {
-    App.hide_popup(`close_normal`)
-    App.show_alert(`Nothing to close`)
-    return
-  }
-
-  let force = App.check_force(`warn_on_close_normal_tabs`, ids.length)
-
-  App.show_confirm(App.close_tabs_message(ids.length), () => {
-    App.close_tab_or_tabs(ids)
-    App.hide_all_popups()
-  }, () => {
-    App.hide_popup(`close_normal`)
-  }, force)
-}
-
-App.close_playing_tabs = () => {
-  let ids = []
-
-  for (let it of App.get_items(`tabs`)) {
-    if (it.audible) {
-      ids.push(it.id)
-    }
-  }
-
-  if (!ids.length) {
-    App.show_alert(`Nothing to close`)
-    return
-  }
-
-  let force = App.check_force(`warn_on_close_playing_tabs`, ids.length)
-
-  App.show_confirm(App.close_tabs_message(ids.length), () => {
-    App.close_tab_or_tabs(ids)
-  }, undefined, force)
-}
-
-App.close_unloaded_tabs = () => {
-  let ids = []
-
-  for (let it of App.get_items(`tabs`)) {
-    if (it.discarded) {
-      ids.push(it.id)
-    }
-  }
-
-  if (!ids.length) {
-    App.show_alert(`Nothing to close`)
-    return
-  }
-
-  let force = App.check_force(`warn_on_close_unloaded_tabs`, ids.length)
-
-  App.show_confirm(App.close_tabs_message(ids.length), () => {
-    App.close_tab_or_tabs(ids)
-  }, undefined, force)
-}
-
-App.close_visible_tabs = () => {
-  let ids = App.get_visible(`tabs`).map(x => x.id)
-
-  if (!ids.length) {
-    App.show_alert(`Nothing to close`)
-    return
-  }
-
-  let force = App.check_force(`warn_on_close_visible_tabs`, ids.length)
-
-  App.show_confirm(App.close_tabs_message(ids.length), () => {
-    App.close_tab_or_tabs(ids)
-  }, undefined, force)
-}
-
-App.close_tabs_message = (count) => {
-  return `Close these tabs? (${count})`
-}
-
 App.empty_previous_tabs_debouncer = App.create_debouncer(() => {
   App.do_empty_previous_tabs()
 }, App.empty_previous_tabs_delay)
@@ -920,46 +792,6 @@ App.get_active_tab_item = () => {
       return item
     }
   }
-}
-
-App.close_duplicate_tabs = () => {
-  App.show_popup(`close_duplicates`)
-  DOM.el(`#close_duplicates_pins`).checked = false
-}
-
-App.close_duplicate_tabs_action = () => {
-  let close_pins = DOM.el(`#close_duplicates_pins`).checked
-  App.do_close_duplicate_tabs(close_pins)
-}
-
-App.do_close_duplicate_tabs = (close_pins = true) => {
-  let items = App.get_items(`tabs`)
-  let duplicates = App.find_duplicates(items, `url`)
-  let excess = App.get_excess(duplicates, `url`)
-
-  if (close_pins) {
-    excess = excess.filter(x => !x.playing)
-  }
-  else {
-    excess = excess.filter(x => !x.pinned && !x.playing)
-  }
-
-  let ids = excess.map(x => x.id)
-
-  if (!ids.length) {
-    App.hide_popup(`close_duplicates`)
-    App.show_alert(`No duplicates found`)
-    return
-  }
-
-  let force = App.check_force(`warn_on_close_duplicate_tabs`, ids.length)
-
-  App.show_confirm(App.close_tabs_message(ids.length), () => {
-    App.close_tab_or_tabs(ids)
-    App.hide_all_popups()
-  }, () => {
-    App.hide_popup(`close_duplicates`)
-  }, force)
 }
 
 App.focus_current_tab = async (scroll = `nearest`) => {
@@ -1070,47 +902,6 @@ App.browser_forward = () => {
   browser.tabs.goForward()
 }
 
-App.close_menu = () => {
-  let items = []
-
-  items.push({
-    text: `Close Normal Tabs`,
-    action: () => {
-      App.close_normal_tabs()
-    }
-  })
-
-  items.push({
-    text: `Close Playing Tabs`,
-    action: () => {
-      App.close_playing_tabs()
-    }
-  })
-
-  items.push({
-    text: `Close Unloaded Tabs`,
-    action: () => {
-      App.close_unloaded_tabs()
-    }
-  })
-
-  items.push({
-    text: `Close Duplicate Tabs`,
-    action: () => {
-      App.close_duplicate_tabs()
-    }
-  })
-
-  items.push({
-    text: `Close Visible Tabs`,
-    action: () => {
-      App.close_visible_tabs()
-    }
-  })
-
-  NeedContext.show_on_center(items)
-}
-
 App.check_tab_item = (item) => {
   if (item.mode === `tabs`) {
     App.check_tab_pinned(item)
@@ -1134,23 +925,6 @@ App.check_tab_pinned = (item) => {
     else {
       item.element.classList.add(`normal_item`)
     }
-  }
-}
-
-App.close_other_new_tabs = (id) => {
-  let items = App.get_items(`tabs`)
-  let ids = []
-
-  for (let item of items) {
-    if (App.is_new_tab(item.url)) {
-      if (item.id !== id) {
-        ids.push(item.id)
-      }
-    }
-  }
-
-  if (ids.length) {
-    App.close_tab_or_tabs(ids)
   }
 }
 

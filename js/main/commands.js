@@ -224,7 +224,7 @@ App.setup_commands = () => {
     }, info: `Close only selected tab`},
 
     {name: `Close Tabs Menu`, cmd: `show_close_tabs_menu`, mode: `items`, icon: tabs_icon, action: (args) => {
-      App.close_menu()
+      App.close_tabs_menu()
     }, info: `Open the menu with some tab closing options`},
 
     {name: `Close Normal Tabs`, cmd: `close_normal_tabs`, mode: `items`, icon: tabs_icon, action: (args) => {
@@ -232,19 +232,19 @@ App.setup_commands = () => {
     }, info: `Close normal tabs`},
 
     {name: `Close Playing Tabs`, cmd: `close_playing_tabs`, mode: `items`, icon: tabs_icon, action: (args) => {
-      App.close_playing_tabs()
+      App.close_tabs_popup(`playing`)
     }, info: `Close playing tabs`},
 
     {name: `Close Unloaded Tabs`, cmd: `close_unloaded_tabs`, mode: `items`, icon: tabs_icon, action: (args) => {
-      App.close_unloaded_tabs()
+      App.close_tabs_popup(`unloaded`)
     }, info: `Close unloaded tabs`},
 
     {name: `Close Duplicate Tabs`, cmd: `close_duplicate_tabs`, mode: `items`, icon: tabs_icon, action: (args) => {
-      App.close_duplicate_tabs()
+      App.close_tabs_popup(`duplicate`)
     }, info: `Close duplicate tabs`},
 
     {name: `Close Visible Tabs`, cmd: `close_visible_tabs`, mode: `items`, icon: tabs_icon, action: (args) => {
-      App.close_visible_tabs()
+      App.close_tabs_popup(`visible`)
     }, info: `Close visible tabs`},
 
     {name: `Go To Playing Tab`, cmd: `go_to_playing_tab`, icon: tabs_icon, action: (args) => {

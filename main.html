@@ -27,6 +27,7 @@
     <script src="js/main/footer.js"></script>
     <script src="js/main/scroller.js"></script>
     <script src="js/main/tabs.js"></script>
+    <script src="js/main/close_tabs.js"></script>
     <script src="js/main/bookmarks.js"></script>
     <script src="js/main/closed.js"></script>
     <script src="js/main/history.js"></script>
@@ -186,16 +187,16 @@
       </div>
     </template>
 
-    <template id="template_close_duplicates">
+    <template id="template_close_tabs">
       <div class="flex_column_center gap_2">
-        <div class="bigger">Close Duplicate Tabs</div>
+        <div id="close_tabs_title" class="bigger"></div>
 
         <div class="flex_row_center gap_1 self_start" title="Include pinned tabs">
-          <input id="close_duplicates_pins" class="settings_checkbox" type="checkbox">
+          <input id="close_tabs_include_pins" class="settings_checkbox" type="checkbox">
           <div>Include Pins</div>
         </div>
 
-        <div id="close_duplicates_button" class="button">Close</div>
+        <div id="close_tabs_button" class="button">Close</div>
       </div>
     </template>
 
