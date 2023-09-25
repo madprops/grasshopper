@@ -88,14 +88,6 @@ App.setup_tabs = () => {
   })
 
   App.create_popup({
-    id: `close_normal`, setup: () => {
-      DOM.ev(DOM.el(`#close_normal_button`), `click`, () => {
-        App.close_normal_tabs_action()
-      })
-    }
-  })
-
-  App.create_popup({
     id: `close_tabs`, setup: () => {
       DOM.ev(DOM.el(`#close_tabs_button`), `click`, () => {
         App.close_tabs_action()
