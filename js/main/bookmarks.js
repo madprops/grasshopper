@@ -78,7 +78,7 @@ App.get_bookmarks_folder = async () => {
   let bookmarks_folder = App.get_setting(`bookmarks_folder`)
 
   if (!bookmarks_folder) {
-    bookmarks_folder = App.setting_props.bookmarks_folder.value
+    bookmarks_folder = App.get_default_setting(`bookmarks_folder`)
   }
 
   let results = await browser.bookmarks.search({title: bookmarks_folder})
