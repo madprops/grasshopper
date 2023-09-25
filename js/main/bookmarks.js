@@ -75,7 +75,12 @@ App.bookmarks_action = (item) => {
 }
 
 App.get_bookmarks_folder = async () => {
-  let bookmarks_folder = App.get_setting(`bookmarks_folder`) || `Grasshopper`
+  let bookmarks_folder = App.get_setting(`bookmarks_folder`)
+
+  if (!bookmarks_folder) {
+    bookmarks_folder = App.setting_props.bookmarks_folder.value
+  }
+
   let results = await browser.bookmarks.search({title: bookmarks_folder})
   let folder
 
