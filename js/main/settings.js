@@ -128,6 +128,18 @@ App.settings_setup_texts = (category) => {
         },
       },
       {
+        name: `Copy`,  action: () => {
+          if (el.value === ``) {
+            return
+          }
+
+          App.copy_to_clipboard(el.value)
+        },
+      },
+    ]
+
+    if (!props.no_empty) {
+      menu.push({
         name: `Clear`,  action: () => {
           if (el.value === ``) {
             return
@@ -139,17 +151,8 @@ App.settings_setup_texts = (category) => {
             el.focus()
           })
         },
-      },
-      {
-        name: `Copy`,  action: () => {
-          if (el.value === ``) {
-            return
-          }
-
-          App.copy_to_clipboard(el.value)
-        },
-      },
-    ]
+      })
+    }
 
     DOM.evs(App.get_settings_label(key), [`click`, `contextmenu`], (e) => {
       App.settings_label_menu(e, menu)
