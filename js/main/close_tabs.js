@@ -24,34 +24,6 @@ App.close_tabs = (item, multiple = true) => {
   }, undefined, force)
 }
 
-App.close_normal_tabs = (close_unloaded = true) => {
-  let ids = []
-
-  for (let it of App.get_items(`tabs`)) {
-    if (!close_unloaded) {
-      if (it.discarded) {
-        continue
-      }
-    }
-
-    if (!it.pinned && !it.audible) {
-      ids.push(it.id)
-    }
-  }
-
-  if (!ids.length) {
-    App.show_alert(`Nothing to close`)
-    return
-  }
-
-  let force = App.check_force(`warn_on_close_normal_tabs`, ids.length)
-
-  App.show_confirm(App.close_tabs_message(ids.length), () => {
-    App.close_tab_or_tabs(ids)
-    App.hide_all_popups()
-  }, undefined, force)
-}
-
 App.close_tabs_popup = (type) => {
   App.close_tabs_type = type
   App.show_popup(`close_tabs`)
@@ -97,6 +69,34 @@ App.close_tabs_action = () => {
   }
 
   App[`close_${type}_tabs`](arg)
+}
+
+App.close_normal_tabs = (close_unloaded = false) => {
+  let ids = []
+
+  for (let it of App.get_items(`tabs`)) {
+    if (!close_unloaded) {
+      if (it.discarded) {
+        continue
+      }
+    }
+
+    if (!it.pinned && !it.audible) {
+      ids.push(it.id)
+    }
+  }
+
+  if (!ids.length) {
+    App.show_alert(`Nothing to close`)
+    return
+  }
+
+  let force = App.check_force(`warn_on_close_normal_tabs`, ids.length)
+
+  App.show_confirm(App.close_tabs_message(ids.length), () => {
+    App.close_tab_or_tabs(ids)
+    App.hide_all_popups()
+  }, undefined, force)
 }
 
 App.close_playing_tabs = (close_pins = false) => {
