@@ -95,7 +95,7 @@ App.build_settings = () => {
   props.auto_restore = {
     name: `Auto-Restore`,
     type: `menu`,
-    value: `1_seconds`,
+    value: `3_seconds`,
     info: `When to auto-restore after the mouse leaves the window. Or if it should restore instantly after an action.
     Restore means going back to the primary mode and clearing the filter`,
     category: category,
@@ -1295,6 +1295,7 @@ App.build_settings = () => {
       App.settings_make_menu(`auto_restore`, [
         {text: `Never`, value: `never`},
         {text: `1 Second`, value: `1_seconds`},
+        {text: `3 Seconds`, value: `3_seconds`},
         {text: `5 Seconds`, value: `5_seconds`},
         {text: `10 Seconds`, value: `10_seconds`},
         {text: `30 Seconds`, value: `30_seconds`},
