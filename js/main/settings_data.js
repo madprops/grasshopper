@@ -1,23 +1,18 @@
 App.build_settings = () => {
   // Setting Properties
   // ###################
+
   let props = {}
 
-  function add_category (category) {
-    for (let key in props) {
-      if (!props[key].category) {
-        props[key].category = category
-      }
-    }
-  }
-
-  // GENERAL
+  // ###################
+  let category = `general`
 
   props.wrap_text = {
     name: `Wrap Text`,
     type: `checkbox`,
     value: false,
     info: `Allow long lines to wrap`,
+    category: category,
     version: 1,
   }
 
@@ -30,6 +25,7 @@ App.build_settings = () => {
     min: 6,
     max: 28,
     info: `The font size in pixels to use for text. The interface scales accordingly`,
+    category: category,
     version: 1,
   }
 
@@ -38,6 +34,7 @@ App.build_settings = () => {
     type: `menu`,
     value: `sans-serif`,
     info: `The font to use for text`,
+    category: category,
     version: 1,
   }
 
@@ -46,6 +43,7 @@ App.build_settings = () => {
     type: `menu`,
     value: `title`,
     info: `What to show as the text for each item`,
+    category: category,
     version: 1,
   }
 
@@ -54,6 +52,7 @@ App.build_settings = () => {
     type: `menu`,
     value: `normal`,
     info: `How tall each item should be`,
+    category: category,
     version: 1,
   }
 
@@ -62,6 +61,7 @@ App.build_settings = () => {
     type: `menu`,
     value: `none`,
     info: `Border between each item`,
+    category: category,
     version: 2,
   }
 
@@ -70,6 +70,7 @@ App.build_settings = () => {
     type: `menu`,
     value: 75,
     info: `Width of the popup`,
+    category: category,
     version: 1,
   }
 
@@ -78,6 +79,7 @@ App.build_settings = () => {
     type: `menu`,
     value: 85,
     info: `Height of the popup`,
+    category: category,
     version: 1,
   }
 
@@ -86,6 +88,7 @@ App.build_settings = () => {
     type: `menu`,
     value: `tabs`,
     info: `The main preferred mode. This is shown at startup`,
+    category: category,
     version: 1,
   }
 
@@ -95,6 +98,7 @@ App.build_settings = () => {
     value: `3_seconds`,
     info: `When to auto-restore after the mouse leaves the window. Or if it should restore instantly after an action.
     Restore means going back to the primary mode and clearing the filter`,
+    category: category,
     version: 1,
   }
 
@@ -105,12 +109,12 @@ App.build_settings = () => {
     placeholder: `Folder Name`,
     no_empty: true,
     info: `Where to save bookmarks`,
+    category: category,
     version: 1,
   }
 
-  add_category(`general`)
-
-  // THEME
+  // ###################
+  category = `theme`
 
   props.background_color = {
     name: `Background Color`,
@@ -118,6 +122,7 @@ App.build_settings = () => {
     value: App.dark_colors.background,
     action: `theme`,
     info: `The background color`,
+    category: category,
     version: 1,
   }
 
@@ -127,6 +132,7 @@ App.build_settings = () => {
     value: App.dark_colors.text,
     action: `theme`,
     info: `The text color`,
+    category: category,
     version: 1,
   }
 
@@ -138,6 +144,7 @@ App.build_settings = () => {
     placeholder: `Image URL`,
     btns: [`pick`],
     info: `The background image. Pick from the buttons or enter a URL`,
+    category: category,
     version: 1,
   }
 
@@ -147,6 +154,7 @@ App.build_settings = () => {
     value: `none`,
     action: `theme`,
     info: `The effect on the background image`,
+    category: category,
     version: 1,
   }
 
@@ -156,12 +164,12 @@ App.build_settings = () => {
     value: `none`,
     action: `theme`,
     info: `The tile size of the background image`,
+    category: category,
     version: 1,
   }
 
-  add_category(`theme`)
-
-  // MEDIA
+  // ###################
+  category = `media`
 
   props.image_icon = {
     name: `View Image Icon`,
@@ -169,6 +177,7 @@ App.build_settings = () => {
     value: `🖼️`,
     placeholder: App.icon_placeholder,
     info: `Media icon for images`,
+    category: category,
     version: 1,
   }
 
@@ -177,6 +186,7 @@ App.build_settings = () => {
     type: `menu`,
     value: `icon`,
     info: `What to do when clicking on an image in tabs mode`,
+    category: category,
     version: 1,
   }
 
@@ -185,6 +195,7 @@ App.build_settings = () => {
     type: `menu`,
     value: `icon`,
     info: `What to do when clicking on an image in history mode`,
+    category: category,
     version: 1,
   }
 
@@ -193,6 +204,7 @@ App.build_settings = () => {
     type: `menu`,
     value: `icon`,
     info: `What to do when clicking on an image in bookmarks mode`,
+    category: category,
     version: 1,
   }
 
@@ -201,6 +213,7 @@ App.build_settings = () => {
     type: `menu`,
     value: `icon`,
     info: `What to do when clicking on an image in closed mode`,
+    category: category,
     version: 1,
   }
 
@@ -210,6 +223,7 @@ App.build_settings = () => {
     value: `▶️`,
     placeholder: App.icon_placeholder,
     info: `Media icon for videos`,
+    category: category,
     version: 1,
   }
 
@@ -218,6 +232,7 @@ App.build_settings = () => {
     type: `menu`,
     value: `icon`,
     info: `What to do when clicking on a video in tabs mode`,
+    category: category,
     version: 1,
   }
 
@@ -226,6 +241,7 @@ App.build_settings = () => {
     type: `menu`,
     value: `icon`,
     info: `What to do when clicking on a video in history mode`,
+    category: category,
     version: 1,
   }
 
@@ -234,6 +250,7 @@ App.build_settings = () => {
     type: `menu`,
     value: `icon`,
     info: `What to do when clicking on a video in bookmarks mode`,
+    category: category,
     version: 1,
   }
 
@@ -242,6 +259,7 @@ App.build_settings = () => {
     type: `menu`,
     value: `icon`,
     info: `What to do when clicking on a video in closed mode`,
+    category: category,
     version: 1,
   }
 
@@ -251,6 +269,7 @@ App.build_settings = () => {
     value: `🎵`,
     placeholder: App.icon_placeholder,
     info: `Media icon for audio`,
+    category: category,
     version: 1,
   }
 
@@ -259,6 +278,7 @@ App.build_settings = () => {
     type: `menu`,
     value: `icon`,
     info: `What to do when clicking on an audio in tabs mode`,
+    category: category,
     version: 1,
   }
 
@@ -267,6 +287,7 @@ App.build_settings = () => {
     type: `menu`,
     value: `icon`,
     info: `What to do when clicking on an audio in history mode`,
+    category: category,
     version: 1,
   }
 
@@ -275,6 +296,7 @@ App.build_settings = () => {
     type: `menu`,
     value: `icon`,
     info: `What to do when clicking on an audio in bookmarks mode`,
+    category: category,
     version: 1,
   }
 
@@ -283,12 +305,12 @@ App.build_settings = () => {
     type: `menu`,
     value: `icon`,
     info: `What to do when clicking on an audio in closed mode`,
+    category: category,
     version: 1,
   }
 
-  add_category(`media`)
-
-  // ICONS
+  // ###################
+  category = `icons`
 
   props.pin_icon = {
     name: `Pin Icon`,
@@ -296,6 +318,7 @@ App.build_settings = () => {
     value: ``,
     placeholder: App.icon_placeholder,
     info: `Icon for pinned tabs`,
+    category: category,
     version: 1,
   }
 
@@ -305,6 +328,7 @@ App.build_settings = () => {
     value: ``,
     placeholder: App.icon_placeholder,
     info: `Icon for normal tabs`,
+    category: category,
     version: 1,
   }
 
@@ -314,6 +338,7 @@ App.build_settings = () => {
     value: `🔊`,
     placeholder: App.icon_placeholder,
     info: `Icons for tabs emitting audio`,
+    category: category,
     version: 1,
   }
 
@@ -323,6 +348,7 @@ App.build_settings = () => {
     value: `🔇`,
     placeholder: App.icon_placeholder,
     info: `Icons for muted tabs`,
+    category: category,
     version: 1,
   }
 
@@ -332,6 +358,7 @@ App.build_settings = () => {
     value: `💤`,
     info: `Icons for unloaded tabs`,
     placeholder: App.icon_placeholder,
+    category: category,
     version: 1,
   }
 
@@ -341,6 +368,7 @@ App.build_settings = () => {
     value: `📜`,
     placeholder: App.icon_placeholder,
     info: `Icon for items with notes📜`,
+    category: category,
     version: 1,
   }
 
@@ -350,18 +378,19 @@ App.build_settings = () => {
     value: `x`,
     placeholder: App.icon_placeholder,
     info: `Icon for the close buttons`,
+    category: category,
     version: 1,
   }
 
-  add_category(`icons`)
-
-  // SHOW
+  // ###################
+  category = `show`
 
   props.show_pinline = {
     name: `Show Pinline`,
     type: `menu`,
     value: `normal`,
     info: `Show the widget between pinned and normal tabs`,
+    category: category,
     version: 2,
   }
 
@@ -370,6 +399,7 @@ App.build_settings = () => {
     type: `checkbox`,
     value: true,
     info: `Show tooltips when hovering items`,
+    category: category,
     version: 1,
   }
 
@@ -378,6 +408,7 @@ App.build_settings = () => {
     type: `checkbox`,
     value: true,
     info: `Show item icons`,
+    category: category,
     version: 1,
   }
 
@@ -386,6 +417,7 @@ App.build_settings = () => {
     type: `checkbox`,
     value: true,
     info: `Show the scroller widget when scrolling the lists`,
+    category: category,
     version: 1,
   }
 
@@ -394,6 +426,7 @@ App.build_settings = () => {
     type: `checkbox`,
     value: true,
     info: `Show the footer at the bottom`,
+    category: category,
     version: 1,
   }
 
@@ -402,6 +435,7 @@ App.build_settings = () => {
     type: `checkbox`,
     value: true,
     info: `Show the filter history when right clicking the filter`,
+    category: category,
     version: 1,
   }
 
@@ -410,6 +444,7 @@ App.build_settings = () => {
     type: `checkbox`,
     value: true,
     info: `Show feedback messages on certain actions`,
+    category: category,
     version: 1,
   }
 
@@ -418,6 +453,7 @@ App.build_settings = () => {
     type: `checkbox`,
     value: true,
     info: `Show the item count in the footer`,
+    category: category,
     version: 1,
   }
 
@@ -426,6 +462,7 @@ App.build_settings = () => {
     type: `checkbox`,
     value: false,
     info: `Show the regular scrollbars. Else scrollbars are disabled`,
+    category: category,
     version: 1,
   }
 
@@ -434,6 +471,7 @@ App.build_settings = () => {
     type: `checkbox`,
     value: false,
     info: `Reverse the scrolling percentage in the scroller`,
+    category: category,
     version: 1,
   }
 
@@ -442,18 +480,19 @@ App.build_settings = () => {
     type: `checkbox`,
     value: false,
     info: `Put the close icon on the left side`,
+    category: category,
     version: 1,
   }
 
-  add_category(`show`)
-
-  // GESTURES
+  // ###################
+  category = `gestures`
 
   props.gestures_enabled = {
     name: `Gestures Enabled`,
     type: `checkbox`,
     value: true,
     info: `Enable mouse gestures`,
+    category: category,
     version: 1,
   }
 
@@ -462,6 +501,7 @@ App.build_settings = () => {
     type: `menu`,
     value: 10,
     info: `How sensitive gestures are`,
+    category: category,
     version: 1,
   }
 
@@ -470,6 +510,7 @@ App.build_settings = () => {
     type: `menu`,
     value: `go_to_top`,
     info: `Up gesture`,
+    category: category,
     version: 1,
   }
 
@@ -478,6 +519,7 @@ App.build_settings = () => {
     type: `menu`,
     value: `go_to_bottom`,
     info: `Down gesture`,
+    category: category,
     version: 1,
   }
 
@@ -486,6 +528,7 @@ App.build_settings = () => {
     type: `menu`,
     value: `prev_mode`,
     info: `Left gesture`,
+    category: category,
     version: 1,
   }
 
@@ -494,6 +537,7 @@ App.build_settings = () => {
     type: `menu`,
     value: `next_mode`,
     info: `Right gesture`,
+    category: category,
     version: 1,
   }
 
@@ -502,6 +546,7 @@ App.build_settings = () => {
     type: `menu`,
     value: `show_all_items`,
     info: `Up and Down gesture`,
+    category: category,
     version: 1,
   }
 
@@ -510,18 +555,19 @@ App.build_settings = () => {
     type: `menu`,
     value: `filter_domain`,
     info: `Left and Right gesture`,
+    category: category,
     version: 1,
   }
 
-  add_category(`gestures`)
-
-  // AUXCLICK
+  // ###################
+  category = `auxclick`
 
   props.middle_click_tabs = {
     name: `Middle-Click Tabs`,
     type: `menu`,
     value: `close_tabs`,
     info: `Middle-click on tab items`,
+    category: category,
     version: 1,
   }
 
@@ -530,6 +576,7 @@ App.build_settings = () => {
     type: `menu`,
     value: `open_items`,
     info: `Middle-click on history items`,
+    category: category,
     version: 1,
   }
 
@@ -538,6 +585,7 @@ App.build_settings = () => {
     type: `menu`,
     value: `open_items`,
     info: `Middle-click on bookmark items`,
+    category: category,
     version: 1,
   }
 
@@ -546,6 +594,7 @@ App.build_settings = () => {
     type: `menu`,
     value: `open_items`,
     info: `Middle-click on closed items`,
+    category: category,
     version: 1,
   }
 
@@ -554,6 +603,7 @@ App.build_settings = () => {
     type: `menu`,
     value: `show_primary`,
     info: `Middle-click on the main menu`,
+    category: category,
     version: 1,
   }
 
@@ -562,6 +612,7 @@ App.build_settings = () => {
     type: `menu`,
     value: `show_all_items`,
     info: `Middle-click on the filter menu`,
+    category: category,
     version: 1,
   }
 
@@ -570,6 +621,7 @@ App.build_settings = () => {
     type: `menu`,
     value: `browser_back`,
     info: `Middle-click on the back button`,
+    category: category,
     version: 1,
   }
 
@@ -578,6 +630,7 @@ App.build_settings = () => {
     type: `menu`,
     value: `browser_reload`,
     info: `Middle-click on the actions menu`,
+    category: category,
     version: 1,
   }
 
@@ -586,6 +639,7 @@ App.build_settings = () => {
     type: `menu`,
     value: `copy_item_url`,
     info: `Middle-click on the footer`,
+    category: category,
     version: 1,
   }
 
@@ -594,6 +648,7 @@ App.build_settings = () => {
     type: `menu`,
     value: `close_normal_tabs`,
     info: `Middle-click on the pinline`,
+    category: category,
     version: 1,
   }
 
@@ -602,12 +657,12 @@ App.build_settings = () => {
     type: `menu`,
     value: `unload_tabs`,
     info: `Middle-click on the close buttons`,
+    category: category,
     version: 1,
   }
 
-  add_category(`auxclick`)
-
-  // MENUS
+  // ###################
+  category = `menus`
 
   props.tabs_actions = {
     name: `Tab Actions`,
@@ -622,6 +677,7 @@ App.build_settings = () => {
       {cmd: `show_close_tabs_menu`},
     ],
     info: `Tabs action menu`,
+    category: category,
     version: 1,
   }
 
@@ -633,6 +689,7 @@ App.build_settings = () => {
       {cmd: `search_media`},
     ],
     info: `History action menu`,
+    category: category,
     version: 1,
   }
 
@@ -645,6 +702,7 @@ App.build_settings = () => {
       {cmd: `search_media`},
     ],
     info: `Bookmarks action menu`,
+    category: category,
     version: 1,
   }
 
@@ -655,6 +713,7 @@ App.build_settings = () => {
       {cmd: `forget_closed`},
     ],
     info: `Closed action menu`,
+    category: category,
     version: 1,
   }
 
@@ -663,6 +722,7 @@ App.build_settings = () => {
     type: `list`,
     value: [],
     info: `If this has items an Extra menu is shown in the item menu when right clicking items`,
+    category: category,
     version: 4,
   }
 
@@ -674,6 +734,7 @@ App.build_settings = () => {
       {cmd: `select_normal_tabs`},
     ],
     info: `Menu when clicking the pinline`,
+    category: category,
     version: 4,
   }
 
@@ -685,6 +746,7 @@ App.build_settings = () => {
       {cmd: `select_all_items`},
     ],
     info: `Menu when right clicking empty space`,
+    category: category,
     version: 4,
   }
 
@@ -696,30 +758,31 @@ App.build_settings = () => {
       {cmd: `copy_item_title`},
     ],
     info: `Menu when right clicking the footer`,
+    category: category,
     version: 4,
   }
 
-  add_category(`menus`)
-
-  // KEYBOARD
+  // ###################
+  category = `keyboard`
 
   props.keyboard_shortcuts = {
     name: `Keyboard Shortcuts`,
     type: `list`,
     value: [],
     info: `Extra keyboard shortcuts. If these are triggered the default shortcuts get ignored`,
+    category: category,
     version: 4,
   }
 
-  add_category(`keyboard`)
-
-  // WARNS
+  // ###################
+  category = `warns`
 
   props.warn_on_close_tabs = {
     name: `Warn On Close Tabs`,
     type: `menu`,
     value: `special`,
     info: `When to warn on close tabs`,
+    category: category,
     version: 1,
   }
 
@@ -728,6 +791,7 @@ App.build_settings = () => {
     type: `menu`,
     value: `special`,
     info: `When to warn on unload tabs`,
+    category: category,
     version: 1,
   }
 
@@ -736,6 +800,7 @@ App.build_settings = () => {
     type: `checkbox`,
     value: true,
     info: `Warn when closing normal tabs using the close menu`,
+    category: category,
     version: 1,
   }
 
@@ -744,6 +809,7 @@ App.build_settings = () => {
     type: `checkbox`,
     value: true,
     info: `Warn when closing playing tabs using the close menu`,
+    category: category,
     version: 1,
   }
 
@@ -752,6 +818,7 @@ App.build_settings = () => {
     type: `checkbox`,
     value: true,
     info: `Warn when closing unloaded tabs using the close menu`,
+    category: category,
     version: 1,
   }
 
@@ -760,6 +827,7 @@ App.build_settings = () => {
     type: `checkbox`,
     value: true,
     info: `Warn when closing duplicate tabs using the close menu`,
+    category: category,
     version: 1,
   }
 
@@ -768,6 +836,7 @@ App.build_settings = () => {
     type: `checkbox`,
     value: true,
     info: `Warn when closing visible tabs using the close menu`,
+    category: category,
     version: 1,
   }
 
@@ -776,6 +845,7 @@ App.build_settings = () => {
     type: `checkbox`,
     value: true,
     info: `Warn when duplicating tabs`,
+    category: category,
     version: 1,
   }
 
@@ -784,6 +854,7 @@ App.build_settings = () => {
     type: `checkbox`,
     value: true,
     info: `Warn when opening items`,
+    category: category,
     version: 1,
   }
 
@@ -792,6 +863,7 @@ App.build_settings = () => {
     type: `checkbox`,
     value: true,
     info: `Warn when removing profiles`,
+    category: category,
     version: 1,
   }
 
@@ -800,6 +872,7 @@ App.build_settings = () => {
     type: `checkbox`,
     value: true,
     info: `Warn when adding bookmarks`,
+    category: category,
     version: 1,
   }
 
@@ -808,6 +881,7 @@ App.build_settings = () => {
     type: `checkbox`,
     value: true,
     info: `Warn when pinning tabs`,
+    category: category,
     version: 1,
   }
 
@@ -816,6 +890,7 @@ App.build_settings = () => {
     type: `checkbox`,
     value: true,
     info: `Warn when unpinning tabs`,
+    category: category,
     version: 1,
   }
 
@@ -824,6 +899,7 @@ App.build_settings = () => {
     type: `checkbox`,
     value: true,
     info: `Warn when loading tabs`,
+    category: category,
     version: 1,
   }
 
@@ -832,6 +908,7 @@ App.build_settings = () => {
     type: `checkbox`,
     value: true,
     info: `Warn when muting tabs`,
+    category: category,
     version: 1,
   }
 
@@ -840,6 +917,7 @@ App.build_settings = () => {
     type: `checkbox`,
     value: true,
     info: `Warn when unmuting tabs`,
+    category: category,
     version: 1,
   }
 
@@ -848,6 +926,7 @@ App.build_settings = () => {
     type: `checkbox`,
     value: false,
     info: `Warn when changing colors`,
+    category: category,
     version: 1,
   }
 
@@ -856,18 +935,19 @@ App.build_settings = () => {
     type: `checkbox`,
     value: false,
     info: `Warn when removing colors`,
+    category: category,
     version: 1,
   }
 
-  add_category(`warns`)
-
-  // COLORS
+  // ###################
+  category = `colors`
 
   props.color_mode = {
     name: `Color Mode`,
     type: `menu`,
     value: `border_icon`,
     info: `What color mode to use`,
+    category: category,
     version: 2,
   }
 
@@ -876,6 +956,7 @@ App.build_settings = () => {
     type: `color`,
     value: `rgb(172, 59, 59)`,
     info: `Color an item red`,
+    category: category,
     version: 1,
   }
 
@@ -884,6 +965,7 @@ App.build_settings = () => {
     type: `color`,
     value: `rgb(45, 115, 45)`,
     info: `Color an item green`,
+    category: category,
     version: 1,
   }
 
@@ -892,6 +974,7 @@ App.build_settings = () => {
     type: `color`,
     value: `rgb(59, 59, 147)`,
     info: `Color an item blue`,
+    category: category,
     version: 1,
   }
 
@@ -900,6 +983,7 @@ App.build_settings = () => {
     type: `color`,
     value: `rgb(200, 200, 88)`,
     info: `Color an item yellow`,
+    category: category,
     version: 1,
   }
 
@@ -908,6 +992,7 @@ App.build_settings = () => {
     type: `color`,
     value: `rgb(124, 35, 166)`,
     info: `Color an item purple`,
+    category: category,
     version: 1,
   }
 
@@ -916,18 +1001,19 @@ App.build_settings = () => {
     type: `color`,
     value: `rgb(189, 144, 74)`,
     info: `Color an item orange`,
+    category: category,
     version: 1,
   }
 
-  add_category(`colors`)
-
-  // MORE
+  // ###################
+  category = `more`
 
   props.aliases = {
     name: `Aliases`,
     type: `list`,
     value: [],
     info: `Aliases to use when filtering items`,
+    category: category,
     version: 3,
   }
 
@@ -939,6 +1025,7 @@ App.build_settings = () => {
       {filter: `re: ($month|$year)`},
     ],
     info: `Pre-made filters to use. These appear in the Custom section`,
+    category: category,
     version: 3,
   }
 
@@ -947,6 +1034,7 @@ App.build_settings = () => {
     type: `menu`,
     value: `glow`,
     info: `What effect to use when hoving items`,
+    category: category,
     version: 1,
   }
 
@@ -955,6 +1043,7 @@ App.build_settings = () => {
     type: `menu`,
     value: `background`,
     info: `What effect to use on selected items`,
+    category: category,
     version: 1,
   }
 
@@ -963,6 +1052,7 @@ App.build_settings = () => {
     type: `menu`,
     value: `none`,
     info: `What command to perform when double clicking an item`,
+    category: category,
     version: 1,
   }
 
@@ -971,6 +1061,7 @@ App.build_settings = () => {
     type: `checkbox`,
     value: false,
     info: `Clicking the the icons selects items`,
+    category: category,
     version: 1,
   }
 
@@ -979,6 +1070,7 @@ App.build_settings = () => {
     type: `checkbox`,
     value: false,
     info: `Require holding Ctrl to re-order tab items`,
+    category: category,
     version: 1,
   }
 
@@ -987,6 +1079,7 @@ App.build_settings = () => {
     type: `checkbox`,
     value: true,
     info: `Keep only one new tab at any time`,
+    category: category,
     version: 1,
   }
 
@@ -995,6 +1088,7 @@ App.build_settings = () => {
     type: `checkbox`,
     value: true,
     info: `Close the popup when focusing a tab`,
+    category: category,
     version: 1,
   }
 
@@ -1003,6 +1097,7 @@ App.build_settings = () => {
     type: `checkbox`,
     value: true,
     info: `Close the popup when opening a popup`,
+    category: category,
     version: 1,
   }
 
@@ -1011,6 +1106,7 @@ App.build_settings = () => {
     type: `checkbox`,
     value: true,
     info: `Make the filter case insensitive`,
+    category: category,
     version: 1,
   }
 
@@ -1019,6 +1115,7 @@ App.build_settings = () => {
     type: `checkbox`,
     value: true,
     info: `Un-Mute tabs when clicking on the mute icon`,
+    category: category,
     version: 1,
   }
 
@@ -1027,6 +1124,7 @@ App.build_settings = () => {
     type: `checkbox`,
     value: true,
     info: `Show notes when clicking the notes icon`,
+    category: category,
     version: 1,
   }
 
@@ -1035,6 +1133,7 @@ App.build_settings = () => {
     type: `checkbox`,
     value: true,
     info: `Open a new tab when double clicking empty space`,
+    category: category,
     version: 1,
   }
 
@@ -1043,6 +1142,7 @@ App.build_settings = () => {
     type: `checkbox`,
     value: true,
     info: `Allow rounded corners in some parts of the interface`,
+    category: category,
     version: 1,
   }
 
@@ -1051,6 +1151,7 @@ App.build_settings = () => {
     type: `checkbox`,
     value: true,
     info: `Go straight to General when clicking Settings. Else show a menu to pick a category`,
+    category: category,
     version: 1,
   }
 
@@ -1059,6 +1160,7 @@ App.build_settings = () => {
     type: `checkbox`,
     value: true,
     info: `Sort commands in the palette by recent use`,
+    category: category,
     version: 1,
   }
 
@@ -1067,6 +1169,7 @@ App.build_settings = () => {
     type: `checkbox`,
     value: true,
     info: `Show other bookmarks apart from the configured bookmarks folder`,
+    category: category,
     version: 1,
   }
 
@@ -1075,6 +1178,7 @@ App.build_settings = () => {
     type: `checkbox`,
     value: true,
     info: `Re-use the filter when moving across modes`,
+    category: category,
     version: 1,
   }
 
@@ -1086,6 +1190,7 @@ App.build_settings = () => {
     min: 1,
     max: 99999,
     info: `Max items to return on search modes like history and bookmarks`,
+    category: category,
     version: 1,
   }
 
@@ -1097,6 +1202,7 @@ App.build_settings = () => {
     min: 1,
     max: 99999,
     info: `Max search items to return in deep mode (more items)`,
+    category: category,
     version: 1,
   }
 
@@ -1108,6 +1214,7 @@ App.build_settings = () => {
     min: 1,
     max: 9999,
     info: `How many months back to consider when searching history`,
+    category: category,
     version: 1,
   }
 
@@ -1119,6 +1226,7 @@ App.build_settings = () => {
     min: 1,
     max: 9999,
     info: `How many months back to consider when searching history in deep mode (more months)`,
+    category: category,
     version: 1,
   }
 
@@ -1131,6 +1239,7 @@ App.build_settings = () => {
     min: 1,
     max: 9999,
     info: `The filter delay on instant modes like tabs and closed`,
+    category: category,
     version: 1,
   }
 
@@ -1143,6 +1252,7 @@ App.build_settings = () => {
     min: 1,
     max: 9999,
     info: `The filter delay on search modes like history and bookmarks`,
+    category: category,
     version: 1,
   }
 
@@ -1151,10 +1261,10 @@ App.build_settings = () => {
     type: `checkbox`,
     value: false,
     info: `Enable some data for developers`,
+    category: category,
     version: 1,
   }
 
-  add_category(`more`)
   App.setting_props = props
 
   // Category Properties
