@@ -118,7 +118,7 @@ App.settings_setup_texts = (category) => {
     let menu = [
       {
         name: `Reset`,  action: () => {
-          let force = App.check_setting_default(key)
+          let force = App.check_setting_default(key) || App.check_setting_empty(key)
 
           App.show_confirm(`Reset setting?`, () => {
             App.set_default_setting(key)
@@ -200,7 +200,7 @@ App.settings_setup_numbers = (category) => {
     let menu = [
       {
         name: `Reset`,  action: () => {
-          let force = App.check_setting_default(key)
+          let force = App.check_setting_default(key) || App.check_setting_empty(key)
 
           App.show_confirm(`Reset setting?`, () => {
             App.set_default_setting(key)
@@ -240,7 +240,7 @@ App.setting_setup_lists = (category) => {
       let menu = [
         {
           name: `Reset`,  action: () => {
-            let force = App.check_setting_default(key)
+            let force = App.check_setting_default(key) || App.check_setting_empty(key)
 
             App.show_confirm(`Reset setting?`, () => {
               App.set_default_setting(key)
@@ -799,6 +799,19 @@ App.is_default_setting = (setting) => {
 
 App.check_setting_default = (setting) => {
   return App.is_default_setting(setting)
+}
+
+App.check_setting_empty = (setting) => {
+  let props = App.setting_props[setting]
+  let value = App.get_setting(setting)
+  let text_types = [`text`, `text_smaller`, `number`]
+
+  if (text_types.includes(props.type)) {
+    return value === ``
+  }
+  else if (props.type === `list`) {
+    return App.str(value) === App.str([])
+  }
 }
 
 App.set_settings_menu = (setting, value, on_change) => {
