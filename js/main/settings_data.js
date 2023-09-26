@@ -8,108 +8,108 @@ App.build_settings = () => {
   let category = `general`
 
   props.wrap_text = {
-    value: false,
-    category: category,
-    type: `checkbox`,
     name: `Wrap Text`,
+    type: `checkbox`,
+    value: false,
     info: `Allow long lines to wrap`,
+    category: category,
     version: 1,
   }
 
   props.font_size = {
-    value: 16,
-    category: category,
-    type: `number`,
     name: `Font Size`,
+    type: `number`,
+    value: 16,
+    action: `theme`,
     placeholder: `Px`,
     min: 6,
     max: 28,
-    action: `theme`,
     info: `The font size in pixels to use for text. The interface scales accordingly`,
+    category: category,
     version: 1,
   }
 
   props.font = {
-    value: `sans-serif`,
-    category: category,
-    type: `menu`,
     name: `Font`,
+    type: `menu`,
+    value: `sans-serif`,
     info: `The font to use for text`,
+    category: category,
     version: 1,
   }
 
   props.text_mode = {
-    value: `title`,
-    category: category,
-    type: `menu`,
     name: `Text Mode`,
+    type: `menu`,
+    value: `title`,
     info: `What to show as the text for each item`,
+    category: category,
     version: 1,
   }
 
   props.item_height = {
-    value: `normal`,
-    category: category,
-    type: `menu`,
     name: `Item Height`,
+    type: `menu`,
+    value: `normal`,
     info: `How tall each item should be`,
+    category: category,
     version: 1,
   }
 
   props.item_border = {
-    value: `none`,
-    category: category,
-    type: `menu`,
     name: `Item Border`,
+    type: `menu`,
+    value: `none`,
     info: `Border between each item`,
+    category: category,
     version: 2,
   }
 
   props.width = {
-    value: 75,
-    category: category,
-    type: `menu`,
     name: `Width`,
+    type: `menu`,
+    value: 75,
     info: `Width of the popup`,
+    category: category,
     version: 1,
   }
 
   props.height = {
-    value: 85,
-    category: category,
-    type: `menu`,
     name: `Height`,
+    type: `menu`,
+    value: 85,
     info: `Height of the popup`,
+    category: category,
     version: 1,
   }
 
   props.primary_mode = {
-    value: `tabs`,
-    category: category,
-    type: `menu`,
     name: `Primary Mode`,
+    type: `menu`,
+    value: `tabs`,
     info: `The main preferred mode. This is shown at startup`,
+    category: category,
     version: 1,
   }
 
   props.auto_restore = {
-    value: `1_seconds`,
-    category: category,
-    type: `menu`,
     name: `Auto-Restore`,
+    type: `menu`,
+    value: `1_seconds`,
     info: `When to auto-restore after the mouse leaves the window. Or if it should restore instantly after an action.
     Restore means going back to the primary mode and clearing the filter`,
+    category: category,
     version: 1,
   }
 
   props.bookmarks_folder = {
-    value: `Grasshopper`,
-    category: category,
-    type: `text`,
     name: `Bookmarks Folder`,
+    type: `text`,
+    value: `Grasshopper`,
     placeholder: `Folder Name`,
     no_empty: true,
     info: `Where to save bookmarks`,
+    category: category,
     version: 1,
   }
 
@@ -117,54 +117,54 @@ App.build_settings = () => {
   category = `theme`
 
   props.background_color = {
-    value: App.dark_colors.background,
-    category: category,
-    type: `color`,
     name: `Background Color`,
+    type: `color`,
+    value: App.dark_colors.background,
     action: `theme`,
     info: `The background color`,
+    category: category,
     version: 1,
   }
 
   props.text_color = {
-    value: App.dark_colors.text,
-    category: category,
-    type: `color`,
     name: `Text Color`,
+    type: `color`,
+    value: App.dark_colors.text,
     action: `theme`,
     info: `The text color`,
+    category: category,
     version: 1,
   }
 
   props.background_image = {
-    value: `Background 1`,
-    category: category,
-    type: `text`,
     name: `Background Image`,
+    type: `text`,
+    value: `Background 1`,
     action: `theme`,
     placeholder: `Image URL`,
     btns: [`pick`],
     info: `The background image. Pick from the buttons or enter a URL`,
+    category: category,
     version: 1,
   }
 
   props.background_effect = {
-    value: `none`,
-    category: category,
-    type: `menu`,
     name: `Background Effect`,
+    type: `menu`,
+    value: `none`,
     action: `theme`,
     info: `The effect on the background image`,
+    category: category,
     version: 1,
   }
 
   props.background_tiles = {
-    value: `none`,
-    category: category,
-    type: `menu`,
     name: `Background Tiles`,
+    type: `menu`,
+    value: `none`,
     action: `theme`,
     info: `The tile size of the background image`,
+    category: category,
     version: 1,
   }
 
@@ -172,140 +172,140 @@ App.build_settings = () => {
   category = `media`
 
   props.image_icon = {
-    value: `🖼️`,
-    category: category,
-    type: `text_smaller`,
     name: `View Image Icon`,
+    type: `text_smaller`,
+    value: `🖼️`,
     placeholder: App.icon_placeholder,
     info: `Media icon for images`,
+    category: category,
     version: 1,
   }
 
   props.view_image_tabs = {
-    value: `icon`,
-    category: category,
-    type: `menu`,
     name: `View Image (Tabs)`,
+    type: `menu`,
+    value: `icon`,
     info: `What to do when clicking on an image in tabs mode`,
+    category: category,
     version: 1,
   }
 
   props.view_image_history = {
-    value: `icon`,
-    category: category,
-    type: `menu`,
     name: `View Image (History)`,
+    type: `menu`,
+    value: `icon`,
     info: `What to do when clicking on an image in history mode`,
+    category: category,
     version: 1,
   }
 
   props.view_image_bookmarks = {
-    value: `icon`,
-    category: category,
-    type: `menu`,
     name: `View Image (Bookmarks)`,
+    type: `menu`,
+    value: `icon`,
     info: `What to do when clicking on an image in bookmarks mode`,
+    category: category,
     version: 1,
   }
 
   props.view_image_closed = {
-    value: `icon`,
-    category: category,
-    type: `menu`,
     name: `View Image (Closed)`,
+    type: `menu`,
+    value: `icon`,
     info: `What to do when clicking on an image in closed mode`,
+    category: category,
     version: 1,
   }
 
   props.video_icon = {
-    value: `▶️`,
-    category: category,
-    type: `text_smaller`,
     name: `View Video Icon`,
+    type: `text_smaller`,
+    value: `▶️`,
     placeholder: App.icon_placeholder,
     info: `Media icon for videos`,
+    category: category,
     version: 1,
   }
 
   props.view_video_tabs = {
-    value: `icon`,
-    category: category,
-    type: `menu`,
     name: `View Video (Tabs)`,
+    type: `menu`,
+    value: `icon`,
     info: `What to do when clicking on a video in tabs mode`,
+    category: category,
     version: 1,
   }
 
   props.view_video_history = {
-    value: `icon`,
-    category: category,
-    type: `menu`,
     name: `View Video (History)`,
+    type: `menu`,
+    value: `icon`,
     info: `What to do when clicking on a video in history mode`,
+    category: category,
     version: 1,
   }
 
   props.view_video_bookmarks = {
-    value: `icon`,
-    category: category,
-    type: `menu`,
     name: `View Video (Bookmarks)`,
+    type: `menu`,
+    value: `icon`,
     info: `What to do when clicking on a video in bookmarks mode`,
+    category: category,
     version: 1,
   }
 
   props.view_video_closed = {
-    value: `icon`,
-    category: category,
-    type: `menu`,
     name: `View Video (Closed)`,
+    type: `menu`,
+    value: `icon`,
     info: `What to do when clicking on a video in closed mode`,
+    category: category,
     version: 1,
   }
 
   props.audio_icon = {
-    value: `🎵`,
-    category: category,
-    type: `text_smaller`,
     name: `View Audio Icon`,
+    type: `text_smaller`,
+    value: `🎵`,
     placeholder: App.icon_placeholder,
     info: `Media icon for audio`,
+    category: category,
     version: 1,
   }
 
   props.view_audio_tabs = {
-    value: `icon`,
-    category: category,
-    type: `menu`,
     name: `View Audio (Tabs)`,
+    type: `menu`,
+    value: `icon`,
     info: `What to do when clicking on an audio in tabs mode`,
+    category: category,
     version: 1,
   }
 
   props.view_audio_history = {
-    value: `icon`,
-    category: category,
-    type: `menu`,
     name: `View Audio (History)`,
+    type: `menu`,
+    value: `icon`,
     info: `What to do when clicking on an audio in history mode`,
+    category: category,
     version: 1,
   }
 
   props.view_audio_bookmarks = {
-    value: `icon`,
-    category: category,
-    type: `menu`,
     name: `View Audio (Bookmarks)`,
+    type: `menu`,
+    value: `icon`,
     info: `What to do when clicking on an audio in bookmarks mode`,
+    category: category,
     version: 1,
   }
 
   props.view_audio_closed = {
-    value: `icon`,
-    category: category,
-    type: `menu`,
     name: `View Audio (Closed)`,
+    type: `menu`,
+    value: `icon`,
     info: `What to do when clicking on an audio in closed mode`,
+    category: category,
     version: 1,
   }
 
@@ -313,72 +313,72 @@ App.build_settings = () => {
   category = `icons`
 
   props.pin_icon = {
-    value: ``,
-    category: category,
-    type: `text_smaller`,
     name: `Pin Icon`,
+    type: `text_smaller`,
+    value: ``,
     placeholder: App.icon_placeholder,
     info: `Icon for pinned tabs`,
+    category: category,
     version: 1,
   }
 
   props.normal_icon = {
-    value: ``,
-    category: category,
-    type: `text_smaller`,
     name: `Normal Icon`,
+    type: `text_smaller`,
+    value: ``,
     placeholder: App.icon_placeholder,
     info: `Icon for normal tabs`,
+    category: category,
     version: 1,
   }
 
   props.playing_icon = {
-    value: `🔊`,
-    category: category,
-    type: `text_smaller`,
     name: `Playing Icon`,
+    type: `text_smaller`,
+    value: `🔊`,
     placeholder: App.icon_placeholder,
     info: `Icons for tabs emitting audio`,
+    category: category,
     version: 1,
   }
 
   props.muted_icon = {
-    value: `🔇`,
-    category: category,
-    type: `text_smaller`,
     name: `Muted Icon`,
+    type: `text_smaller`,
+    value: `🔇`,
     placeholder: App.icon_placeholder,
     info: `Icons for muted tabs`,
+    category: category,
     version: 1,
   }
 
   props.unloaded_icon = {
-    value: `💤`,
-    category: category,
-    type: `text_smaller`,
     name: `Unloaded Icon`,
-    placeholder: App.icon_placeholder,
+    type: `text_smaller`,
+    value: `💤`,
     info: `Icons for unloaded tabs`,
+    placeholder: App.icon_placeholder,
+    category: category,
     version: 1,
   }
 
   props.notes_icon = {
-    value: `📜`,
-    category: category,
-    type: `text_smaller`,
     name: `Notes Icon`,
+    type: `text_smaller`,
+    value: `📜`,
     placeholder: App.icon_placeholder,
     info: `Icon for items with notes📜`,
+    category: category,
     version: 1,
   }
 
   props.close_icon = {
-    value: `x`,
-    category: category,
-    type: `text_smaller`,
     name: `Close Icon`,
+    type: `text_smaller`,
+    value: `x`,
     placeholder: App.icon_placeholder,
     info: `Icon for the close buttons`,
+    category: category,
     version: 1,
   }
 
@@ -386,101 +386,101 @@ App.build_settings = () => {
   category = `show`
 
   props.show_pinline = {
-    value: `normal`,
-    category: category,
-    type: `menu`,
     name: `Show Pinline`,
+    type: `menu`,
+    value: `normal`,
     info: `Show the widget between pinned and normal tabs`,
+    category: category,
     version: 2,
   }
 
   props.show_tooltips = {
-    value: true,
-    category: category,
-    type: `checkbox`,
     name: `Show Tooltips`,
+    type: `checkbox`,
+    value: true,
     info: `Show tooltips when hovering items`,
+    category: category,
     version: 1,
   }
 
   props.show_icons = {
-    value: true,
-    category: category,
-    type: `checkbox`,
     name: `Show Icons`,
+    type: `checkbox`,
+    value: true,
     info: `Show item icons`,
+    category: category,
     version: 1,
   }
 
   props.show_scroller = {
-    value: true,
-    category: category,
-    type: `checkbox`,
     name: `Show Scrollers`,
+    type: `checkbox`,
+    value: true,
     info: `Show the scroller widget when scrolling the lists`,
+    category: category,
     version: 1,
   }
 
   props.show_footer = {
-    value: true,
-    category: category,
-    type: `checkbox`,
     name: `Show Footer`,
+    type: `checkbox`,
+    value: true,
     info: `Show the footer at the bottom`,
+    category: category,
     version: 1,
   }
 
   props.show_filter_history = {
-    value: true,
-    category: category,
-    type: `checkbox`,
     name: `Show Filter History`,
+    type: `checkbox`,
+    value: true,
     info: `Show the filter history when right clicking the filter`,
+    category: category,
     version: 1,
   }
 
   props.show_feedback = {
-    value: true,
-    category: category,
-    type: `checkbox`,
     name: `Show Feedback`,
+    type: `checkbox`,
+    value: true,
     info: `Show feedback messages on certain actions`,
+    category: category,
     version: 1,
   }
 
   props.show_footer_count = {
-    value: true,
-    category: category,
-    type: `checkbox`,
     name: `Count In Footer`,
+    type: `checkbox`,
+    value: true,
     info: `Show the item count in the footer`,
+    category: category,
     version: 1,
   }
 
   props.show_scrollbars = {
-    value: false,
-    category: category,
-    type: `checkbox`,
     name: `Show Scrollbars`,
+    type: `checkbox`,
+    value: false,
     info: `Show the regular scrollbars. Else scrollbars are disabled`,
+    category: category,
     version: 1,
   }
 
   props.reverse_scroller_percentage = {
-    value: false,
-    category: category,
-    type: `checkbox`,
     name: `Reverse Scroller %`,
+    type: `checkbox`,
+    value: false,
     info: `Reverse the scrolling percentage in the scroller`,
+    category: category,
     version: 1,
   }
 
   props.close_icon_on_left = {
-    value: false,
-    category: category,
-    type: `checkbox`,
     name: `Close Icon On Left`,
+    type: `checkbox`,
+    value: false,
     info: `Put the close icon on the left side`,
+    category: category,
     version: 1,
   }
 
@@ -488,74 +488,74 @@ App.build_settings = () => {
   category = `gestures`
 
   props.gestures_enabled = {
-    value: true,
-    category: category,
-    type: `checkbox`,
     name: `Gestures Enabled`,
+    type: `checkbox`,
+    value: true,
     info: `Enable mouse gestures`,
+    category: category,
     version: 1,
   }
 
   props.gestures_threshold = {
-    value: 10,
-    category: category,
-    type: `menu`,
     name: `Gestures Threshold`,
+    type: `menu`,
+    value: 10,
     info: `How sensitive gestures are`,
+    category: category,
     version: 1,
   }
 
   props.gesture_up = {
-    value: `go_to_top`,
-    category: category,
-    type: `menu`,
     name: `Gesture Up`,
+    type: `menu`,
+    value: `go_to_top`,
     info: `Up gesture`,
+    category: category,
     version: 1,
   }
 
   props.gesture_down = {
-    value: `go_to_bottom`,
-    category: category,
-    type: `menu`,
     name: `Gesture Down`,
+    type: `menu`,
+    value: `go_to_bottom`,
     info: `Down gesture`,
+    category: category,
     version: 1,
   }
 
   props.gesture_left = {
-    value: `prev_mode`,
-    category: category,
-    type: `menu`,
     name: `Gesture Left`,
+    type: `menu`,
+    value: `prev_mode`,
     info: `Left gesture`,
+    category: category,
     version: 1,
   }
 
   props.gesture_right = {
-    value: `next_mode`,
-    category: category,
-    type: `menu`,
     name: `Gesture Right`,
+    type: `menu`,
+    value: `next_mode`,
     info: `Right gesture`,
+    category: category,
     version: 1,
   }
 
   props.gesture_up_and_down = {
-    value: `show_all_items`,
-    category: category,
-    type: `menu`,
     name: `Gesture Up Down`,
+    type: `menu`,
+    value: `show_all_items`,
     info: `Up and Down gesture`,
+    category: category,
     version: 1,
   }
 
   props.gesture_left_and_right = {
-    value: `filter_domain`,
-    category: category,
-    type: `menu`,
     name: `Gesture Left Right`,
+    type: `menu`,
+    value: `filter_domain`,
     info: `Left and Right gesture`,
+    category: category,
     version: 1,
   }
 
@@ -563,101 +563,101 @@ App.build_settings = () => {
   category = `auxclick`
 
   props.middle_click_tabs = {
-    value: `close_tabs`,
-    category: category,
-    type: `menu`,
     name: `Middle-Click Tabs`,
+    type: `menu`,
+    value: `close_tabs`,
     info: `Middle-click on tab items`,
+    category: category,
     version: 1,
   }
 
   props.middle_click_history = {
-    value: `open_items`,
-    category: category,
-    type: `menu`,
     name: `Middle-Click History`,
+    type: `menu`,
+    value: `open_items`,
     info: `Middle-click on history items`,
+    category: category,
     version: 1,
   }
 
   props.middle_click_bookmarks = {
-    value: `open_items`,
-    category: category,
-    type: `menu`,
     name: `Middle-Click Bookmarks`,
+    type: `menu`,
+    value: `open_items`,
     info: `Middle-click on bookmark items`,
+    category: category,
     version: 1,
   }
 
   props.middle_click_closed = {
-    value: `open_items`,
-    category: category,
-    type: `menu`,
     name: `Middle-Click Closed`,
+    type: `menu`,
+    value: `open_items`,
     info: `Middle-click on closed items`,
+    category: category,
     version: 1,
   }
 
   props.middle_click_main_menu = {
-    value: `show_primary`,
-    category: category,
-    type: `menu`,
     name: `Middle-Click Main Menu`,
+    type: `menu`,
+    value: `show_primary`,
     info: `Middle-click on the main menu`,
+    category: category,
     version: 1,
   }
 
   props.middle_click_filter_menu = {
-    value: `show_all_items`,
-    category: category,
-    type: `menu`,
     name: `Middle-Click Filter Menu`,
+    type: `menu`,
+    value: `show_all_items`,
     info: `Middle-click on the filter menu`,
+    category: category,
     version: 1,
   }
 
   props.middle_click_back_button = {
-    value: `browser_back`,
-    category: category,
-    type: `menu`,
     name: `Middle-Click Back Button`,
+    type: `menu`,
+    value: `browser_back`,
     info: `Middle-click on the back button`,
+    category: category,
     version: 1,
   }
 
   props.middle_click_actions_menu = {
-    value: `browser_reload`,
-    category: category,
-    type: `menu`,
     name: `Middle-Click Actions Menu`,
+    type: `menu`,
+    value: `browser_reload`,
     info: `Middle-click on the actions menu`,
+    category: category,
     version: 1,
   }
 
   props.middle_click_footer = {
-    value: `copy_item_url`,
-    category: category,
-    type: `menu`,
     name: `Middle-Click Footer`,
+    type: `menu`,
+    value: `copy_item_url`,
     info: `Middle-click on the footer`,
+    category: category,
     version: 1,
   }
 
   props.middle_click_pinline = {
-    value: `close_normal_tabs`,
-    category: category,
-    type: `menu`,
     name: `Middle-Click Pinline`,
+    type: `menu`,
+    value: `close_normal_tabs`,
     info: `Middle-click on the pinline`,
+    category: category,
     version: 1,
   }
 
   props.middle_click_close_icon = {
-    value: `unload_tabs`,
-    category: category,
-    type: `menu`,
     name: `Middle-Click Close Icon`,
+    type: `menu`,
+    value: `unload_tabs`,
     info: `Middle-click on the close buttons`,
+    category: category,
     version: 1,
   }
 
@@ -665,100 +665,100 @@ App.build_settings = () => {
   category = `menus`
 
   props.tabs_actions = {
-    value: [
-      { cmd: `new_tab` },
-      { cmd: `sort_tabs` },
-      { cmd: `reopen_tab` },
-      { cmd: `show_tabs_info` },
-      { cmd: `show_tab_urls` },
-      { cmd: `open_tab_urls` },
-      { cmd: `show_close_tabs_menu` },
-    ],
-    category: category,
-    type: `list`,
     name: `Tab Actions`,
+    type: `list`,
+    value: [
+      {cmd: `new_tab`},
+      {cmd: `sort_tabs`},
+      {cmd: `reopen_tab`},
+      {cmd: `show_tabs_info`},
+      {cmd: `show_tab_urls`},
+      {cmd: `open_tab_urls`},
+      {cmd: `show_close_tabs_menu`},
+    ],
     info: `Tabs action menu`,
+    category: category,
     version: 1,
   }
 
   props.history_actions = {
-    value: [
-      { cmd: `deep_search` },
-      { cmd: `search_media` },
-    ],
-    category: category,
-    type: `list`,
     name: `History Actions`,
+    type: `list`,
+    value: [
+      {cmd: `deep_search`},
+      {cmd: `search_media`},
+    ],
     info: `History action menu`,
+    category: category,
     version: 1,
   }
 
   props.bookmarks_actions = {
-    value: [
-      { cmd: `bookmark_page` },
-      { cmd: `deep_search` },
-      { cmd: `search_media` },
-    ],
-    category: category,
-    type: `list`,
     name: `Bookmark Actions`,
+    type: `list`,
+    value: [
+      {cmd: `bookmark_page`},
+      {cmd: `deep_search`},
+      {cmd: `search_media`},
+    ],
     info: `Bookmarks action menu`,
+    category: category,
     version: 1,
   }
 
   props.closed_actions = {
-    value: [
-      { cmd: `forget_closed` },
-    ],
-    category: category,
-    type: `list`,
     name: `Closed Actions`,
+    type: `list`,
+    value: [
+      {cmd: `forget_closed`},
+    ],
     info: `Closed action menu`,
+    category: category,
     version: 1,
   }
 
   props.extra_menu = {
-    value: [],
-    category: category,
-    type: `list`,
     name: `Extra Menu`,
+    type: `list`,
+    value: [],
     info: `If this has items an Extra menu is shown in the item menu when right clicking items`,
+    category: category,
     version: 4,
   }
 
   props.pinline_menu = {
-    value: [
-      { cmd: `select_pinned_tabs` },
-      { cmd: `select_normal_tabs` },
-    ],
-    category: category,
-    type: `list`,
     name: `Pinline Menu`,
+    type: `list`,
+    value: [
+      {cmd: `select_pinned_tabs`},
+      {cmd: `select_normal_tabs`},
+    ],
     info: `Menu when clicking the pinline`,
+    category: category,
     version: 4,
   }
 
   props.empty_menu = {
-    value: [
-      { cmd: `new_tab` },
-      { cmd: `select_all_items` },
-    ],
-    category: category,
-    type: `list`,
     name: `Empty Menu`,
+    type: `list`,
+    value: [
+      {cmd: `new_tab`},
+      {cmd: `select_all_items`},
+    ],
     info: `Menu when right clicking empty space`,
+    category: category,
     version: 4,
   }
 
   props.footer_menu = {
-    value: [
-      { cmd: `copy_item_url` },
-      { cmd: `copy_item_title` },
-    ],
-    category: category,
-    type: `list`,
     name: `Footer Menu`,
+    type: `list`,
+    value: [
+      {cmd: `copy_item_url`},
+      {cmd: `copy_item_title`},
+    ],
     info: `Menu when right clicking the footer`,
+    category: category,
     version: 4,
   }
 
@@ -766,11 +766,11 @@ App.build_settings = () => {
   category = `keyboard`
 
   props.keyboard_shortcuts = {
-    value: [],
-    category: category,
-    type: `list`,
     name: `Keyboard Shortcuts`,
+    type: `list`,
+    value: [],
     info: `Extra keyboard shortcuts. If these are triggered the default shortcuts get ignored`,
+    category: category,
     version: 4,
   }
 
@@ -778,164 +778,164 @@ App.build_settings = () => {
   category = `warns`
 
   props.warn_on_close_tabs = {
-    value: `special`,
-    category: category,
-    type: `menu`,
     name: `Warn On Close Tabs`,
+    type: `menu`,
+    value: `special`,
     info: `When to warn on close tabs`,
+    category: category,
     version: 1,
   }
 
   props.warn_on_unload_tabs = {
-    value: `special`,
-    category: category,
-    type: `menu`,
     name: `Warn On Unload Tabs`,
+    type: `menu`,
+    value: `special`,
     info: `When to warn on unload tabs`,
+    category: category,
     version: 1,
   }
 
   props.warn_on_close_normal_tabs = {
-    value: true,
-    category: category,
-    type: `checkbox`,
     name: `Warn On Close Normal`,
+    type: `checkbox`,
+    value: true,
     info: `Warn when closing normal tabs using the close menu`,
+    category: category,
     version: 1,
   }
 
   props.warn_on_close_playing_tabs = {
-    value: true,
-    category: category,
-    type: `checkbox`,
     name: `Warn On Close Playing`,
+    type: `checkbox`,
+    value: true,
     info: `Warn when closing playing tabs using the close menu`,
+    category: category,
     version: 1,
   }
 
   props.warn_on_close_unloaded_tabs = {
-    value: true,
-    category: category,
-    type: `checkbox`,
     name: `Warn On Close Unloaded`,
+    type: `checkbox`,
+    value: true,
     info: `Warn when closing unloaded tabs using the close menu`,
+    category: category,
     version: 1,
   }
 
   props.warn_on_close_duplicate_tabs = {
-    value: true,
-    category: category,
-    type: `checkbox`,
     name: `Warn On Close Duplicates`,
+    type: `checkbox`,
+    value: true,
     info: `Warn when closing duplicate tabs using the close menu`,
+    category: category,
     version: 1,
   }
 
   props.warn_on_close_visible_tabs = {
-    value: true,
-    category: category,
-    type: `checkbox`,
     name: `Warn On Close Visible`,
+    type: `checkbox`,
+    value: true,
     info: `Warn when closing visible tabs using the close menu`,
+    category: category,
     version: 1,
   }
 
   props.warn_on_duplicate_tabs = {
-    value: true,
-    category: category,
-    type: `checkbox`,
     name: `Warn Duplicate Tabs`,
+    type: `checkbox`,
+    value: true,
     info: `Warn when duplicating tabs`,
+    category: category,
     version: 1,
   }
 
   props.warn_on_open = {
-    value: true,
-    category: category,
-    type: `checkbox`,
     name: `Warn On Open`,
+    type: `checkbox`,
+    value: true,
     info: `Warn when opening items`,
+    category: category,
     version: 1,
   }
 
   props.warn_on_remove_profiles = {
-    value: true,
-    category: category,
-    type: `checkbox`,
     name: `Warn On Remove Profiles`,
+    type: `checkbox`,
+    value: true,
     info: `Warn when removing profiles`,
+    category: category,
     version: 1,
   }
 
   props.warn_on_bookmark = {
-    value: true,
-    category: category,
-    type: `checkbox`,
     name: `Warn On Bookmark`,
+    type: `checkbox`,
+    value: true,
     info: `Warn when adding bookmarks`,
+    category: category,
     version: 1,
   }
 
   props.warn_on_pin_tabs = {
-    value: true,
-    category: category,
-    type: `checkbox`,
     name: `Warn On Pin Tabs`,
+    type: `checkbox`,
+    value: true,
     info: `Warn when pinning tabs`,
+    category: category,
     version: 1,
   }
 
   props.warn_on_unpin_tabs = {
-    value: true,
-    category: category,
-    type: `checkbox`,
     name: `Warn On Unpin Tabs`,
+    type: `checkbox`,
+    value: true,
     info: `Warn when unpinning tabs`,
+    category: category,
     version: 1,
   }
 
   props.warn_on_load_tabs = {
-    value: true,
-    category: category,
-    type: `checkbox`,
     name: `Warn On Load Tabs`,
+    type: `checkbox`,
+    value: true,
     info: `Warn when loading tabs`,
+    category: category,
     version: 1,
   }
 
   props.warn_on_mute_tabs = {
-    value: true,
-    category: category,
-    type: `checkbox`,
     name: `Warn On Mute Tabs`,
+    type: `checkbox`,
+    value: true,
     info: `Warn when muting tabs`,
+    category: category,
     version: 1,
   }
 
   props.warn_on_unmute_tabs = {
-    value: true,
-    category: category,
-    type: `checkbox`,
     name: `Warn On Unmute Tabs`,
+    type: `checkbox`,
+    value: true,
     info: `Warn when unmuting tabs`,
+    category: category,
     version: 1,
   }
 
   props.warn_on_color = {
-    value: false,
-    category: category,
-    type: `checkbox`,
     name: `Warn On Color`,
+    type: `checkbox`,
+    value: false,
     info: `Warn when changing colors`,
+    category: category,
     version: 1,
   }
 
   props.warn_on_remove_color = {
-    value: false,
-    category: category,
-    type: `checkbox`,
     name: `Warn On Remove Color`,
+    type: `checkbox`,
+    value: false,
     info: `Warn when removing colors`,
+    category: category,
     version: 1,
   }
 
@@ -943,77 +943,65 @@ App.build_settings = () => {
   category = `colors`
 
   props.color_mode = {
-    value: `border_icon`,
-    category: category,
-    type: `menu`,
     name: `Color Mode`,
+    type: `menu`,
+    value: `border_icon`,
     info: `What color mode to use`,
+    category: category,
     version: 2,
   }
 
   props.color_red = {
-    value: `rgb(172,
-      59,
-      59)`,
-    category: category,
-    type: `color`,
     name: `Color Red`,
+    type: `color`,
+    value: `rgb(172, 59, 59)`,
     info: `Color an item red`,
+    category: category,
     version: 1,
   }
 
   props.color_green = {
-    value: `rgb(45,
-      115,
-      45)`,
-    category: category,
-    type: `color`,
     name: `Color Green`,
+    type: `color`,
+    value: `rgb(45, 115, 45)`,
     info: `Color an item green`,
+    category: category,
     version: 1,
   }
 
   props.color_blue = {
-    value: `rgb(59,
-      59,
-      147)`,
-    category: category,
-    type: `color`,
     name: `Color Blue`,
+    type: `color`,
+    value: `rgb(59, 59, 147)`,
     info: `Color an item blue`,
+    category: category,
     version: 1,
   }
 
   props.color_yellow = {
-    value: `rgb(200,
-      200,
-      88)`,
-    category: category,
-    type: `color`,
     name: `Color Yellow`,
+    type: `color`,
+    value: `rgb(200, 200, 88)`,
     info: `Color an item yellow`,
+    category: category,
     version: 1,
   }
 
   props.color_purple = {
-    value: `rgb(124,
-      35,
-      166)`,
-    category: category,
-    type: `color`,
     name: `Color Purple`,
+    type: `color`,
+    value: `rgb(124, 35, 166)`,
     info: `Color an item purple`,
+    category: category,
     version: 1,
   }
 
   props.color_orange = {
-    value: `rgb(189,
-      144,
-      74)`,
-    category: category,
-    type: `color`,
     name: `Color Orange`,
+    type: `color`,
+    value: `rgb(189, 144, 74)`,
     info: `Color an item orange`,
+    category: category,
     version: 1,
   }
 
@@ -1021,259 +1009,259 @@ App.build_settings = () => {
   category = `more`
 
   props.aliases = {
-    value: [],
-    category: category,
-    type: `list`,
     name: `Aliases`,
+    type: `list`,
+    value: [],
     info: `Aliases to use when filtering items`,
+    category: category,
     version: 3,
   }
 
   props.custom_filters = {
-    value: [
-      { filter: `re: (today|$day)` },
-      { filter: `re: ($month|$year)` },
-    ],
-    category: category,
-    type: `list`,
     name: `Custom Filters`,
+    type: `list`,
+    value: [
+      {filter: `re: (today|$day)`},
+      {filter: `re: ($month|$year)`},
+    ],
     info: `Pre-made filters to use. These appear in the Custom section`,
+    category: category,
     version: 3,
   }
 
   props.hover_effect = {
-    value: `glow`,
-    category: category,
-    type: `menu`,
     name: `Hover Effect`,
+    type: `menu`,
+    value: `glow`,
     info: `What effect to use when hoving items`,
+    category: category,
     version: 1,
   }
 
   props.selected_effect = {
-    value: `background`,
-    category: category,
-    type: `menu`,
     name: `Selected Effect`,
+    type: `menu`,
+    value: `background`,
     info: `What effect to use on selected items`,
+    category: category,
     version: 1,
   }
 
   props.double_click_command = {
-    value: `none`,
-    category: category,
-    type: `menu`,
     name: `Double Click Command`,
+    type: `menu`,
+    value: `none`,
     info: `What command to perform when double clicking an item`,
+    category: category,
     version: 1,
   }
 
   props.icon_pick = {
-    value: false,
-    category: category,
-    type: `checkbox`,
     name: `Icon Pick`,
+    type: `checkbox`,
+    value: false,
     info: `Clicking the the icons selects items`,
+    category: category,
     version: 1,
   }
 
   props.lock_drag = {
-    value: false,
-    category: category,
-    type: `checkbox`,
     name: `Lock Drag`,
+    type: `checkbox`,
+    value: false,
     info: `Require holding Ctrl to re-order tab items`,
+    category: category,
     version: 1,
   }
 
   props.single_new_tab = {
-    value: true,
-    category: category,
-    type: `checkbox`,
     name: `Single New Tab`,
+    type: `checkbox`,
+    value: true,
     info: `Keep only one new tab at any time`,
+    category: category,
     version: 1,
   }
 
   props.close_on_focus = {
-    value: true,
-    category: category,
-    type: `checkbox`,
     name: `Close On Focus`,
+    type: `checkbox`,
+    value: true,
     info: `Close the popup when focusing a tab`,
+    category: category,
     version: 1,
   }
 
   props.close_on_open = {
-    value: true,
-    category: category,
-    type: `checkbox`,
     name: `Close On Open`,
+    type: `checkbox`,
+    value: true,
     info: `Close the popup when opening a popup`,
+    category: category,
     version: 1,
   }
 
   props.case_insensitive = {
-    value: true,
-    category: category,
-    type: `checkbox`,
     name: `Case Insensitive`,
+    type: `checkbox`,
+    value: true,
     info: `Make the filter case insensitive`,
+    category: category,
     version: 1,
   }
 
   props.mute_click = {
-    value: true,
-    category: category,
-    type: `checkbox`,
     name: `Mute Click`,
+    type: `checkbox`,
+    value: true,
     info: `Un-Mute tabs when clicking on the mute icon`,
+    category: category,
     version: 1,
   }
 
   props.notes_click = {
-    value: true,
-    category: category,
-    type: `checkbox`,
     name: `Notes Click`,
+    type: `checkbox`,
+    value: true,
     info: `Show notes when clicking the notes icon`,
+    category: category,
     version: 1,
   }
 
   props.double_click_new = {
-    value: true,
-    category: category,
-    type: `checkbox`,
     name: `Double Click New`,
+    type: `checkbox`,
+    value: true,
     info: `Open a new tab when double clicking empty space`,
+    category: category,
     version: 1,
   }
 
   props.rounded_corners = {
-    value: true,
-    category: category,
-    type: `checkbox`,
     name: `Rounded Corners`,
+    type: `checkbox`,
+    value: true,
     info: `Allow rounded corners in some parts of the interface`,
+    category: category,
     version: 1,
   }
 
   props.direct_settings = {
-    value: true,
-    category: category,
-    type: `checkbox`,
     name: `Direct Settings`,
+    type: `checkbox`,
+    value: true,
     info: `Go straight to General when clicking Settings. Else show a menu to pick a category`,
+    category: category,
     version: 1,
   }
 
   props.sort_commands = {
-    value: true,
-    category: category,
-    type: `checkbox`,
     name: `Sort Commands`,
+    type: `checkbox`,
+    value: true,
     info: `Sort commands in the palette by recent use`,
+    category: category,
     version: 1,
   }
 
   props.all_bookmarks = {
-    value: true,
-    category: category,
-    type: `checkbox`,
     name: `All Bookmarks`,
+    type: `checkbox`,
+    value: true,
     info: `Show other bookmarks apart from the configured bookmarks folder`,
+    category: category,
     version: 1,
   }
 
   props.reuse_filter = {
-    value: true,
-    category: category,
-    type: `checkbox`,
     name: `Re-Use Filter`,
+    type: `checkbox`,
+    value: true,
     info: `Re-use the filter when moving across modes`,
+    category: category,
     version: 1,
   }
 
   props.max_search_items = {
-    value: 500,
-    category: category,
-    type: `number`,
     name: `Max Search Items`,
+    type: `number`,
+    value: 500,
     placeholder: `Number`,
     min: 1,
     max: 99999,
     info: `Max items to return on search modes like history and bookmarks`,
+    category: category,
     version: 1,
   }
 
   props.deep_max_search_items = {
-    value: 5000,
-    category: category,
-    type: `number`,
     name: `Deep Max Search Items`,
+    type: `number`,
+    value: 5000,
     placeholder: `Number`,
     min: 1,
     max: 99999,
     info: `Max search items to return in deep mode (more items)`,
+    category: category,
     version: 1,
   }
 
   props.history_max_months = {
-    value: 18,
-    category: category,
-    type: `number`,
     name: `History Max Months`,
+    type: `number`,
+    value: 18,
     placeholder: `Number`,
     min: 1,
     max: 9999,
     info: `How many months back to consider when searching history`,
+    category: category,
     version: 1,
   }
 
   props.deep_history_max_months = {
-    value: 54,
-    category: category,
-    type: `number`,
     name: `Deep History Max Months`,
+    type: `number`,
+    value: 54,
     placeholder: `Number`,
     min: 1,
     max: 9999,
     info: `How many months back to consider when searching history in deep mode (more months)`,
+    category: category,
     version: 1,
   }
 
   props.filter_delay = {
-    value: 50,
-    category: category,
-    type: `number`,
     name: `Filter Delay`,
+    type: `number`,
+    value: 50,
     action: `filter_debouncers`,
     placeholder: `Number`,
     min: 1,
     max: 9999,
     info: `The filter delay on instant modes like tabs and closed`,
+    category: category,
     version: 1,
   }
 
   props.filter_delay_search = {
-    value: 225,
-    category: category,
-    type: `number`,
     name: `Filter Delay (Search)`,
+    type: `number`,
+    value: 225,
     action: `filter_debouncers`,
     placeholder: `Number`,
     min: 1,
     max: 9999,
     info: `The filter delay on search modes like history and bookmarks`,
+    category: category,
     version: 1,
   }
 
   props.debug_mode = {
-    value: false,
-    category: category,
-    type: `checkbox`,
     name: `Debug Mode`,
+    type: `checkbox`,
+    value: false,
     info: `Enable some data for developers`,
+    category: category,
     version: 1,
   }
 
@@ -1289,52 +1277,52 @@ App.build_settings = () => {
           Clicking the labels shows menus. Use the top buttons to navigate and save/load data`,
     setup: () => {
       App.settings_make_menu(`text_mode`, [
-        { text: `Title`, value: `title` },
-        { text: `URL`, value: `url` },
-        { text: `Title / URL`, value: `title_url` },
-        { text: `URL / Title`, value: `url_title` },
+        {text: `Title`, value: `title`},
+        {text: `URL`, value: `url`},
+        {text: `Title / URL`, value: `title_url`},
+        {text: `URL / Title`, value: `url_title`},
       ])
 
       App.settings_make_menu(`font`, [
-        { text: `Sans`, value: `sans-serif` },
-        { text: `Serif`, value: `serif` },
-        { text: `Mono`, value: `monospace` },
-        { text: `Cursive`, value: `cursive` },
+        {text: `Sans`, value: `sans-serif`},
+        {text: `Serif`, value: `serif`},
+        {text: `Mono`, value: `monospace`},
+        {text: `Cursive`, value: `cursive`},
       ], () => {
         App.apply_theme()
       })
 
       App.settings_make_menu(`auto_restore`, [
-        { text: `Never`, value: `never` },
-        { text: `1 Second`, value: `1_seconds` },
-        { text: `5 Seconds`, value: `5_seconds` },
-        { text: `10 Seconds`, value: `10_seconds` },
-        { text: `30 Seconds`, value: `30_seconds` },
-        { text: `On Action`, value: `action` },
+        {text: `Never`, value: `never`},
+        {text: `1 Second`, value: `1_seconds`},
+        {text: `5 Seconds`, value: `5_seconds`},
+        {text: `10 Seconds`, value: `10_seconds`},
+        {text: `30 Seconds`, value: `30_seconds`},
+        {text: `On Action`, value: `action`},
       ], () => {
         clearTimeout(App.restore_timeout)
       })
 
       App.settings_make_menu(`item_height`, [
-        { text: `Tiny`, value: `tiny` },
-        { text: `Compact`, value: `compact` },
-        { text: `Normal`, value: `normal` },
-        { text: `Bigger`, value: `bigger` },
-        { text: `Huge`, value: `huge` },
+        {text: `Tiny`, value: `tiny`},
+        {text: `Compact`, value: `compact`},
+        {text: `Normal`, value: `normal`},
+        {text: `Bigger`, value: `bigger`},
+        {text: `Huge`, value: `huge`},
       ])
 
       App.settings_make_menu(`item_border`, [
-        { text: `None`, value: `none` },
-        { text: `Normal`, value: `normal` },
-        { text: `Bigger`, value: `bigger` },
-        { text: `Huge`, value: `huge` },
+        {text: `None`, value: `none`},
+        {text: `Normal`, value: `normal`},
+        {text: `Bigger`, value: `bigger`},
+        {text: `Huge`, value: `huge`},
       ])
 
       App.settings_make_menu(`primary_mode`, [
-        { text: `Tabs`, value: `tabs` },
-        { text: `History`, value: `history` },
-        { text: `Bookmarks`, value: `bookmarks` },
-        { text: `Closed`, value: `closed` },
+        {text: `Tabs`, value: `tabs`},
+        {text: `History`, value: `history`},
+        {text: `Bookmarks`, value: `bookmarks`},
+        {text: `Closed`, value: `closed`},
       ])
 
       App.settings_make_menu(`width`, App.get_size_options(), () => {
@@ -1358,17 +1346,17 @@ App.build_settings = () => {
       })
 
       App.settings_make_menu(`background_tiles`, [
-        { text: `None`, value: `none` },
-        { text: `50px`, value: `50px` },
-        { text: `100px`, value: `100px` },
-        { text: `150px`, value: `150px` },
-        { text: `200px`, value: `200px` },
-        { text: `250px`, value: `250px` },
-        { text: `300px`, value: `300px` },
-        { text: `350px`, value: `350px` },
-        { text: `400px`, value: `400px` },
-        { text: `450px`, value: `450px` },
-        { text: `500px`, value: `500px` },
+        {text: `None`, value: `none`},
+        {text: `50px`, value: `50px`},
+        {text: `100px`, value: `100px`},
+        {text: `150px`, value: `150px`},
+        {text: `200px`, value: `200px`},
+        {text: `250px`, value: `250px`},
+        {text: `300px`, value: `300px`},
+        {text: `350px`, value: `350px`},
+        {text: `400px`, value: `400px`},
+        {text: `450px`, value: `450px`},
+        {text: `500px`, value: `500px`},
       ], () => {
         App.apply_theme()
       })
@@ -1413,12 +1401,12 @@ App.build_settings = () => {
       }
 
       App.settings_make_menu(`color_mode`, [
-        { text: `None`, value: `none` },
-        { text: `Icon`, value: `icon` },
-        { text: `Icon 2`, value: `icon_2` },
-        { text: `Border`, value: `border` },
-        { text: `Border & Icon`, value: `border_icon` },
-        { text: `Border & Icon 2`, value: `border_icon_2` },
+        {text: `None`, value: `none`},
+        {text: `Icon`, value: `icon`},
+        {text: `Icon 2`, value: `icon_2`},
+        {text: `Border`, value: `border`},
+        {text: `Border & Icon`, value: `border_icon`},
+        {text: `Border & Icon 2`, value: `border_icon_2`},
       ])
     },
   }
@@ -1427,9 +1415,9 @@ App.build_settings = () => {
     info: `How to view media items. An icon appears to the left of items. You can make it view media when clicking the icons, the whole item, or never`,
     setup: () => {
       let opts = [
-        { text: `Never`, value: `never` },
-        { text: `On Icon Click`, value: `icon` },
-        { text: `On Item Click`, value: `item` },
+        {text: `Never`, value: `never`},
+        {text: `On Icon Click`, value: `icon`},
+        {text: `On Item Click`, value: `item`},
       ]
 
       for (let m of App.modes) {
@@ -1442,16 +1430,16 @@ App.build_settings = () => {
 
   catprops.icons = {
     info: `Customize the icons of items. You can leave them empty`,
-    setup: () => { },
+    setup: () => {},
   }
 
   catprops.show = {
     info: `Hide or show interface components. Set component behavior`,
     setup: () => {
       App.settings_make_menu(`show_pinline`, [
-        { text: `Never`, value: `never` },
-        { text: `Normal`, value: `normal` },
-        { text: `Always`, value: `always` },
+        {text: `Never`, value: `never`},
+        {text: `Normal`, value: `normal`},
+        {text: `Always`, value: `always`},
       ])
     },
   }
@@ -1464,8 +1452,8 @@ App.build_settings = () => {
       })
 
       App.settings_make_menu(`gestures_threshold`, [
-        { text: `Normal`, value: 10 },
-        { text: `Less Sensitive`, value: 100 },
+        {text: `Normal`, value: 10},
+        {text: `Less Sensitive`, value: 100},
       ], () => {
         App.refresh_gestures()
       })
@@ -1497,14 +1485,14 @@ App.build_settings = () => {
 
   catprops.menus = {
     info: `Customize context and action menus`,
-    setup: () => { },
+    setup: () => {},
   }
 
   catprops.keyboard = {
     info: `You can use these custom shortcuts to run commands. You can define if you need ctrl, shift, or alt`,
     image: `img/cewik.jpg`,
     image_title: `Cewik using his keyboard`,
-    setup: () => { },
+    setup: () => {},
   }
 
   catprops.warns = {
