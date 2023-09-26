@@ -2,41 +2,41 @@ App.profile_props = {
   url: {
     type: `text`,
     value: ``,
-    version: 1
+    version: 1,
   },
   exact: {
     type: `checkbox`,
     value: false,
-    version: 1
+    version: 1,
   },
   tags: {
     type: `list`,
     value: [],
     label: `Tag`,
     title: `Tags`,
-    version: 2
+    version: 2,
   },
   notes: {
     type: `list`,
     value: [],
     label: `Note`,
     title: `Notes`,
-    version: 2
+    version: 2,
   },
   title: {
     type: `text`,
     value: ``,
-    version: 1
+    version: 1,
   },
   color: {
     type: `menu`,
     value: `none`,
-    version: 1
+    version: 1,
   },
   icon: {
     type: `text`,
     value: ``,
-    version: 1
+    version: 1,
   },
 }
 
