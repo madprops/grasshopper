@@ -1,6 +1,5 @@
 App.build_settings = () => {
-  // Setting Propertie
-
+  // Setting Properties
   App.setting_props = {}
   let category, props
 
@@ -1054,7 +1053,6 @@ App.build_settings = () => {
   add_props()
 
   // Category Properties
-
   App.setting_catprops = {
     general: {
       info: `This is the main settings window with some general settings. There are various categories.
