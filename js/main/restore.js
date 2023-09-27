@@ -23,18 +23,21 @@ App.restore = () => {
   NeedContext.hide()
   App.hide_all_popups()
 
-  if (App.on_items()) {
-    let mode = App.active_mode
+  if (!App.on_items()) {
+    App.show_primary_mode()
+    return
+  }
 
-    if ((mode !== App.primary_mode()) || App.is_filtered(mode)) {
-      App.show_primary_mode()
-    }
-    else {
-      let item = App.get_selected(mode)
+  let mode = App.active_mode
 
-      if (item && !App.item_is_visible(item)) {
-        App.select_item({item: item, scroll: `center`})
-      }
+  if ((mode !== App.primary_mode()) || App.is_filtered(mode)) {
+    App.show_primary_mode()
+  }
+  else {
+    let item = App.get_selected(mode)
+
+    if (item && !App.item_is_visible(item)) {
+      App.select_item({item: item, scroll: `center`})
     }
   }
 }
