@@ -80,7 +80,7 @@ App.show_main_menu = (mode) => {
   items.push({
     text: `About`,
     action: () => {
-      App.show_window(`about`)
+      App.show_about()
     }
   })
 

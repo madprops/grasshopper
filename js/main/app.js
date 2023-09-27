@@ -44,6 +44,7 @@ App.settings_addlist_ready = false
 App.media_image_ready = false
 App.media_video_ready = false
 App.media_audio_ready = false
+App.about_ready = false
 
 App.settings_save_delay = 250
 App.double_tap_delay = 300

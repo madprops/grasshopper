@@ -16,7 +16,6 @@ App.init = async () => {
   App.setup_history()
   App.setup_closed()
   App.setup_settings()
-  App.setup_about()
   App.setup_keyboard()
   App.setup_popups()
   App.setup_dialog()

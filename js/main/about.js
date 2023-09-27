@@ -1,4 +1,4 @@
-App.setup_about = () => {
+App.start_about = () => {
   App.create_window({id: `about`, setup: () => {
     App.about_info_items = [
       `Up, Down, and Enter keys navigate and pick items`,
@@ -124,4 +124,13 @@ App.filter_about = () => {
 App.do_filter_about = () => {
   App.filter_about_debouncer.cancel()
   App.do_filter_2(`about`)
+}
+
+App.show_about = () => {
+  if (!App.about_ready) {
+    App.start_about()
+    App.about_ready = true
+  }
+
+  App.show_window(`about`)
 }

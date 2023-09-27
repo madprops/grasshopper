@@ -197,7 +197,7 @@ App.setup_commands = () => {
       name: `Show About`,
       cmd: `show_about`,
       action: (args) => {
-        App.show_window(`about`)
+        App.show_about()
       },
       info: `Show the about window`
     },
