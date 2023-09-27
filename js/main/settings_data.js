@@ -60,6 +60,13 @@ App.build_settings = () => {
       info: `Border between each item`,
       version: 2,
     },
+    icon_size: {
+      name: `Icon Size`,
+      type: `menu`,
+      value: `normal`,
+      info: `The size of the item icons`,
+      version: 1,
+    },
     width: {
       name: `Width`,
       type: `menu`,
@@ -334,13 +341,6 @@ App.build_settings = () => {
       value: `normal`,
       info: `Show the widget between pinned and normal tabs`,
       version: 2,
-    },
-    show_icons: {
-      name: `Show Icons`,
-      type: `checkbox`,
-      value: true,
-      info: `Show item icons`,
-      version: 1,
     },
     show_tooltips: {
       name: `Show Tooltips`,
@@ -1107,6 +1107,14 @@ App.build_settings = () => {
           {text: `History`, value: `history`},
           {text: `Bookmarks`, value: `bookmarks`},
           {text: `Closed`, value: `closed`},
+        ])
+
+        App.settings_make_menu(`icon_size`, [
+          {text: `None`, value: `none`},
+          {text: `Small`, value: `small`},
+          {text: `Normal`, value: `normal`},
+          {text: `Bigger`, value: `bigger`},
+          {text: `Huge`, value: `huge`},
         ])
 
         App.settings_make_menu(`width`, App.get_size_options(), () => {

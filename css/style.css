@@ -288,8 +288,8 @@ svg {
 }
 
 .item_icon {
-  width: 1.11rem;
-  height: 1.11rem;
+  width: var(--icon_size);
+  height: var(--icon_size);
   object-fit: contain;
   flex-grow: 0;
   flex-shrink: 0;

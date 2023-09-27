@@ -150,6 +150,22 @@ App.apply_theme = (args) => {
     else {
       main.classList.remove(`icon_pick`)
     }
+
+    let icon_size_setting = App.get_setting(`icon_size`)
+    let icon_size = 1.15
+    let icon_size_diff = 0.2
+
+    if (icon_size_setting === `small`) {
+      icon_size -= icon_size_diff
+    }
+    else if (icon_size_setting === `bigger`) {
+      icon_size += icon_size_diff
+    }
+    else if (icon_size_setting === `huge`) {
+      icon_size += (icon_size_diff * 2)
+    }
+
+    App.set_css_var(`icon_size`, `${icon_size}rem`)
   }
   catch (err) {
     App.error(err)

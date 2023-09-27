@@ -412,7 +412,7 @@ App.process_info = (args) => {
 }
 
 App.check_item_icon = (item) => {
-  if (App.get_setting(`show_icons`)) {
+  if (App.get_setting(`icon_size`) !== `none`) {
     let container = DOM.el(`.item_icon_container`, item.element)
     container.innerHTML = ``
     let icon
@@ -596,7 +596,7 @@ App.create_item_element = (item) => {
   item.element.dataset.id = item.id
   App.add_close_icon(item, `left`)
 
-  if (App.get_setting(`show_icons`)) {
+  if (App.get_setting(`icon_size`) !== `none`) {
     let icon_container = DOM.create(`div`, `item_icon_container item_node`)
     item.element.append(icon_container)
     App.check_item_icon(item)
@@ -690,8 +690,6 @@ App.get_text_icon = (icon_text) => {
 App.get_favicon = (item) => {
   let icon = DOM.create(`img`, `item_icon`)
   icon.loading = `lazy`
-  icon.width = App.icon_size
-  icon.height = App.icon_size
 
   DOM.ev(icon, `error`, () => {
     let icon_2 = App.get_jdenticon(item.hostname)
