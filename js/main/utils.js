@@ -178,7 +178,7 @@ App.log = (message, mode = `normal`, date = false) => {
     console.info(`🟢 ${message}`)
   }
   else if (mode === `debug`) {
-    if (App.settings_ready && !App.get_setting(`debug_mode`)) {
+    if (App.settings_done && !App.get_setting(`debug_mode`)) {
       return
     }
 
