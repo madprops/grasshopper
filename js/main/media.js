@@ -2,7 +2,7 @@ App.image_extensions = [`jpg`, `jpeg`, `png`, `gif`, `webp`, `bmp`]
 App.video_extensions = [`mp4`, `webm`]
 App.audio_extensions = [`mp3`, `ogg`, `flac`, `wav`]
 
-App.create_media_window = (what) => {
+App.start_media = (what) => {
   App.create_window({id: `media_${what}`, setup: () => {
     let media = DOM.el(`#media_${what}_player`)
     let buttons = DOM.el(`#media_${what}_buttons`)
@@ -105,7 +105,7 @@ App.view_media = (o_item) => {
   }
 
   if (!App[`media_${what}_ready`]) {
-    App.create_media_window(what)
+    App.start_media(what)
     App[`media_${what}_ready`] = true
   }
 
