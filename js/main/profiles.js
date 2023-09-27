@@ -40,7 +40,7 @@ App.profile_props = {
   },
 }
 
-App.setup_profile_editor = () => {
+App.start_profile_editor = () => {
   App.create_window({id: `profile_editor`, colored_top: true, setup: () => {
     DOM.ev(DOM.el(`#profile_editor_remove`), `click`, () => {
       App.profile_editor_remove()
@@ -100,8 +100,12 @@ App.get_profile_items = (item) => {
 }
 
 App.show_profile_editor = (item, action = `edit`) => {
+  if (!App.profile_editor_ready) {
+    App.start_profile_editor()
+    App.profile_editor_ready = true
+  }
+
   let new_edit = false
-  App.profile_editor_ready = false
   App.profile_urls = []
 
   if (action === `new`) {
@@ -154,7 +158,6 @@ App.show_profile_editor = (item, action = `edit`) => {
   }
 
   App.window_goto_top(`profile_editor`)
-  App.profile_editor_ready = true
   App.profile_addlist_counts()
 
   requestAnimationFrame(() => {

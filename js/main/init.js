@@ -11,7 +11,6 @@ App.init = async () => {
   App.stor_get_first_time()
   App.setup_commands()
   App.setup_tabs()
-  App.setup_profile_editor()
   App.setup_bookmarks()
   App.setup_history()
   App.setup_closed()
