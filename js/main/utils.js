@@ -477,30 +477,3 @@ App.clone = (obj) => {
 App.sep = (items) => {
   items.push({separator: true})
 }
-
-App.unique = (list, key, max) => {
-  let items = []
-
-  for (let item of list) {
-    let ok = true
-
-    for (let it of items) {
-      if (it[key] === item[key]) {
-        ok = false
-        break
-      }
-    }
-
-    if (ok) {
-      items.push(item)
-
-      if (max) {
-        if (items.length >= max) {
-          break
-        }
-      }
-    }
-  }
-
-  return items
-}
