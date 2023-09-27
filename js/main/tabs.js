@@ -131,6 +131,7 @@ App.get_tabs = async () => {
 App.focus_tab = async (args) => {
   let def_args = {
     method: `normal`,
+    show_tabs: false,
   }
 
   args = Object.assign(def_args, args)
