@@ -62,7 +62,10 @@ App.apply_theme = (args) => {
     let height_diff = 0.15
     let spacing = App.get_setting(`spacing`)
 
-    if (spacing === `small`) {
+    if (spacing === `tiny`) {
+      item_padding -= (height_diff * 2)
+    }
+    else if (spacing === `small`) {
       item_padding -= height_diff
     }
     else if (spacing === `big`) {
@@ -153,7 +156,10 @@ App.apply_theme = (args) => {
     let icon_size = 1.12
     let icon_size_diff = 0.18
 
-    if (icons === `small`) {
+    if (icons === `tiny`) {
+      icon_size -= (icon_size_diff * 2)
+    }
+    else if (icons === `small`) {
       icon_size -= icon_size_diff
     }
     else if (icons === `big`) {

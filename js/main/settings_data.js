@@ -1088,6 +1088,7 @@ App.build_settings = () => {
         })
 
         App.settings_make_menu(`spacing`, [
+          {text: `Tiny`, value: `tiny`},
           {text: `Small`, value: `small`},
           {text: `Normal`, value: `normal`},
           {text: `Big`, value: `big`},
@@ -1101,19 +1102,20 @@ App.build_settings = () => {
           {text: `Huge`, value: `huge`},
         ])
 
-        App.settings_make_menu(`primary_mode`, [
-          {text: `Tabs`, value: `tabs`},
-          {text: `History`, value: `history`},
-          {text: `Bookmarks`, value: `bookmarks`},
-          {text: `Closed`, value: `closed`},
-        ])
-
         App.settings_make_menu(`icons`, [
+          {text: `Tiny`, value: `tiny`},
           {text: `None`, value: `none`},
           {text: `Small`, value: `small`},
           {text: `Normal`, value: `normal`},
           {text: `Big`, value: `big`},
           {text: `Huge`, value: `huge`},
+        ])
+
+        App.settings_make_menu(`primary_mode`, [
+          {text: `Tabs`, value: `tabs`},
+          {text: `History`, value: `history`},
+          {text: `Bookmarks`, value: `bookmarks`},
+          {text: `Closed`, value: `closed`},
         ])
 
         App.settings_make_menu(`width`, App.get_size_options(), () => {
