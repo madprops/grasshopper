@@ -21,13 +21,13 @@ App.do_show_mode = async (args) => {
 
   args = Object.assign(def_args, args)
 
+  if (!App.get_setting(`reuse_filter`)) {
+    args.reuse_filter = false
+  }
+
   if (!App[`mode_${args.mode}_ready`]) {
     App.setup_item_window(args.mode)
     App[`mode_${args.mode}_ready`] = true
-  }
-
-  if (!App.get_setting(`reuse_filter`)) {
-    args.reuse_filter = false
   }
 
   let pre_show = App[`pre_show_${args.mode}`]
