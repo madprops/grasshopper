@@ -74,7 +74,7 @@ App.setup_commands = () => {
       App.step_back()
     }, info: `Trigger the back button`},
 
-    {name: `Select All Items`, cmd: `select_all_items`, mode: `items`, action: (args) => {
+    {name: `Select All`, cmd: `select_all_items`, mode: `items`, action: (args) => {
       App.select_all(args.mode, true)
     }, info: `Select all items`},
 
@@ -109,7 +109,7 @@ App.setup_commands = () => {
       App.show_item_menu_2(args.item)
     }, info: `Show the item menu`},
 
-    {name: `Show All Items`, cmd: `show_all_items`, mode: `items`, action: (args) => {
+    {name: `Show All`, cmd: `show_all_items`, mode: `items`, action: (args) => {
       App.show_all()
     }, info: `Show all items`},
 
@@ -135,11 +135,11 @@ App.setup_commands = () => {
       App.bookmark_active(args.item)
     }, info: `Bookmark the current page`},
 
-    {name: `Copy Item URL`, cmd: `copy_item_url`, mode: `items`, icon: App.clipboard_icon, action: (args) => {
+    {name: `Copy URL`, cmd: `copy_item_url`, mode: `items`, icon: App.clipboard_icon, action: (args) => {
       App.copy_url(args.item)
     }, info: `Copy the URL of an item`},
 
-    {name: `Copy Item Title`, cmd: `copy_item_title`, mode: `items`, icon: App.clipboard_icon, action: (args) => {
+    {name: `Copy Title`, cmd: `copy_item_title`, mode: `items`, icon: App.clipboard_icon, action: (args) => {
       App.copy_title(args.item)
     }, info: `Copy the title of an item`},
 
@@ -271,11 +271,11 @@ App.setup_commands = () => {
       App.reopen_tab()
     }, info: `Reopen the latest closed tab`},
 
-    {name: `Select Pinned Tabs`, cmd: `select_pinned_tabs`, mode: `tabs`, icon: tabs_icon, action: (args) => {
+    {name: `Select Pins`, cmd: `select_pinned_tabs`, mode: `tabs`, icon: tabs_icon, action: (args) => {
       App.select_tabs(`pins`)
     }, info: `Select all pinned tabs`},
 
-    {name: `Select Normal Tabs`, cmd: `select_normal_tabs`, mode: `tabs`, icon: tabs_icon, action: (args) => {
+    {name: `Select Normal`, cmd: `select_normal_tabs`, mode: `tabs`, icon: tabs_icon, action: (args) => {
       App.select_tabs(`normal`)
     }, info: `Select all normal tabs`},
 
@@ -358,7 +358,7 @@ App.setup_commands = () => {
 
     {name: App.separator_string},
 
-    {name: `Restart Extension`, cmd: `restart_extension`, icon: App.bot_icon, action: (args) => {
+    {name: `Restart`, cmd: `restart_extension`, icon: App.bot_icon, action: (args) => {
       App.restart_extension()
     }, info: `Restart the extension (For debugging)`},
   ]
