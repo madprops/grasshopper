@@ -225,7 +225,7 @@ App.close_other_new_tabs = (id) => {
   }
 }
 
-App.close_tabs_menu = () => {
+App.close_tabs_menu = (e) => {
   let items = []
 
   items.push({
@@ -263,5 +263,10 @@ App.close_tabs_menu = () => {
     }
   })
 
-  NeedContext.show_on_center(items)
+  if (e) {
+    NeedContext.show(e.clientX, e.clientY, items)
+  }
+  else {
+    NeedContext.show_on_center(items)
+  }
 }
