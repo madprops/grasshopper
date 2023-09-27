@@ -360,31 +360,6 @@ App.prepare_settings_category = (category) => {
 }
 
 App.setup_settings = () => {
-  App.cmdlist = App.settings_commands()
-  App.settings_categories = Object.keys(App.setting_catprops)
-
-  let common = {
-    persistent: false,
-    colored_top: true,
-    after_show: () => {
-      DOM.el(`#settings_${App.settings_category}_filter`).focus()
-    },
-    on_hide: async () => {
-      App.apply_theme()
-      App.clear_show()
-    },
-  }
-
-  for (let key in App.setting_catprops) {
-    let catprops = App.setting_catprops[key]
-
-    App.create_window(Object.assign({}, common, {id: `settings_${key}`,
-    element: App.settings_build_category(key), setup: () => {
-      App.prepare_settings_category(key)
-      catprops.setup()
-    }}))
-  }
-
   window.addEventListener(`storage`, (e) => {
     if (e.key === App.stor_settings_name) {
       App.debug(`Settings changed in another window`)
@@ -392,6 +367,37 @@ App.setup_settings = () => {
       App.restart_settings(`sync`)
     }
   })
+}
+
+App.start_settings = () => {
+  if (!App.settings_started) {
+    App.cmdlist = App.settings_commands()
+    App.settings_categories = Object.keys(App.setting_catprops)
+
+    let common = {
+      persistent: false,
+      colored_top: true,
+      after_show: () => {
+        DOM.el(`#settings_${App.settings_category}_filter`).focus()
+      },
+      on_hide: async () => {
+        App.apply_theme()
+        App.clear_show()
+      },
+    }
+
+    for (let key in App.setting_catprops) {
+      let catprops = App.setting_catprops[key]
+
+      App.create_window(Object.assign({}, common, {id: `settings_${key}`,
+      element: App.settings_build_category(key), setup: () => {
+        App.prepare_settings_category(key)
+        catprops.setup()
+      }}))
+    }
+
+    App.settings_started = true
+  }
 }
 
 App.add_settings_switchers = (category) => {
@@ -545,6 +551,7 @@ App.show_settings = () => {
 }
 
 App.show_settings_category = (category) => {
+  App.start_settings()
   App.get_settings_with_list()
   App.check_settings_addlist(category)
   App.settings_category = category
