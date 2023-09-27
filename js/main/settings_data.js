@@ -3,6 +3,7 @@ App.build_settings = () => {
   App.setting_props = {}
   let category, props
 
+  // Add category props to main object
   function add_props () {
     for (let key in props) {
       props[key].category = category
