@@ -1,6 +1,5 @@
 App.build_settings = () => {
-  // Setting Properties
-  // ###################
+  // Setting Propertie
 
   App.setting_props = {}
   let category, props
@@ -12,7 +11,6 @@ App.build_settings = () => {
     }
   }
 
-  // ###################
   category = `general`
 
   props = {
@@ -103,8 +101,6 @@ App.build_settings = () => {
   }
 
   add_props()
-
-  // ###################
   category = `theme`
 
   props = {
@@ -153,8 +149,6 @@ App.build_settings = () => {
   }
 
   add_props()
-
-  // ###################
   category = `media`
 
   props = {
@@ -269,8 +263,6 @@ App.build_settings = () => {
   }
 
   add_props()
-
-  // ###################
   category = `icons`
 
   props = {
@@ -333,8 +325,6 @@ App.build_settings = () => {
   }
 
   add_props()
-
-  // ###################
   category = `show`
 
   props = {
@@ -418,8 +408,6 @@ App.build_settings = () => {
   }
 
   add_props()
-
-  // ###################
   category = `gestures`
 
   props = {
@@ -482,8 +470,6 @@ App.build_settings = () => {
   }
 
   add_props()
-
-  // ###################
   category = `auxclick`
 
   props = {
@@ -567,8 +553,6 @@ App.build_settings = () => {
   }
 
   add_props()
-
-  // ###################
   category = `menus`
 
   props = {
@@ -657,8 +641,6 @@ App.build_settings = () => {
   }
 
   add_props()
-
-  // ###################
   category = `keyboard`
 
   props = {
@@ -672,8 +654,6 @@ App.build_settings = () => {
   }
 
   add_props()
-
-  // ###################
   category = `warns`
 
   props = {
@@ -806,8 +786,6 @@ App.build_settings = () => {
   }
 
   add_props()
-
-  // ###################
   category = `colors`
 
   props = {
@@ -863,8 +841,6 @@ App.build_settings = () => {
   }
 
   add_props()
-
-  // ###################
   category = `more`
 
   props = {
@@ -1078,7 +1054,6 @@ App.build_settings = () => {
   add_props()
 
   // Category Properties
-  // ###################
 
   App.setting_catprops = {
     general: {
