@@ -1,7 +1,7 @@
 App.setup_modes = () => {
   for (let mode of App.modes) {
     App[`${mode}_changed`] = false
-    App[`mode_${args.mode}_ready`] = false
+    App[`mode_${mode}_ready`] = false
   }
 }
 
