@@ -3,9 +3,10 @@ App.build_settings = () => {
   // ###################
 
   App.setting_props = {}
+  let category
 
   // ###################
-  let category = `general`
+  category = `general`
 
   App.setting_props.wrap_text = {
     name: `Wrap Text`,
