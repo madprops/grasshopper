@@ -60,18 +60,18 @@ App.apply_theme = (args) => {
     App.set_css_var(`height`, h)
     let item_padding = 0.42
     let height_diff = 0.15
-    let spacing = App.get_setting(`spacing`)
+    let item_height = App.get_setting(`item_height`)
 
-    if (spacing === `tiny`) {
+    if (item_height === `tiny`) {
       item_padding -= (height_diff * 2)
     }
-    else if (spacing === `small`) {
+    else if (item_height === `small`) {
       item_padding -= height_diff
     }
-    else if (spacing === `big`) {
+    else if (item_height === `big`) {
       item_padding += height_diff
     }
-    else if (spacing === `huge`) {
+    else if (item_height === `huge`) {
       item_padding += (height_diff * 2)
     }
 
@@ -106,7 +106,7 @@ App.apply_theme = (args) => {
       main.classList.remove(`borders_${b}`)
     }
 
-    let borders = App.get_setting(`borders`)
+    let borders = App.get_setting(`item_border`)
 
     if (borders_opts.includes(borders)) {
       main.classList.add(`borders_${borders}`)
