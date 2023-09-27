@@ -1089,7 +1089,7 @@ App.build_settings = () => {
 
         App.settings_make_menu(`item_height`, [
           {text: `Tiny`, value: `tiny`},
-          {text: `Compact`, value: `compact`},
+          {text: `Small`, value: `small`},
           {text: `Normal`, value: `normal`},
           {text: `Big`, value: `big`},
           {text: `Huge`, value: `huge`},

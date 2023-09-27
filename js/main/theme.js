@@ -64,7 +64,7 @@ App.apply_theme = (args) => {
     if (App.get_setting(`item_height`) === `tiny`) {
       item_padding -= (height_diff * 2)
     }
-    else if (App.get_setting(`item_height`) === `compact`) {
+    else if (App.get_setting(`item_height`) === `small`) {
       item_padding -= height_diff
     }
     else if (App.get_setting(`item_height`) === `big`) {
