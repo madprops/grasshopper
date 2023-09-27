@@ -74,6 +74,10 @@ App.setup_commands = () => {
       App.step_back()
     }, info: `Trigger the back button`},
 
+    {name: `Prev Tabs`, cmd: `prev_tabs_menu`, mode: `items`, action: (args) => {
+      App.prev_tabs_menu()
+    }, info: `Show the prev tabs menu`},
+
     {name: `Select All`, cmd: `select_all_items`, mode: `items`, action: (args) => {
       App.select_all(args.mode, true)
     }, info: `Select all items`},

@@ -1131,5 +1131,10 @@ App.prev_tabs_menu = (e) => {
     })
   }
 
-  NeedContext.show(e.clientX, e.clientY, items)
+  if (e) {
+    NeedContext.show(e.clientX, e.clientY, items)
+  }
+  else {
+    NeedContext.show_on_center(items)
+  }
 }
