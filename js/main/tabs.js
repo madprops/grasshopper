@@ -7,7 +7,6 @@ App.setup_tabs = () => {
     {type: `duplicate`, text:`Duplicate`, skip: false, info: `Show tabs that have duplicates`},
   ]
 
-  App.setup_item_window(`tabs`)
   App.debug_tabs = false
 
   browser.tabs.onCreated.addListener(async (info) => {

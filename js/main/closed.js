@@ -1,6 +1,4 @@
 App.setup_closed = () => {
-  App.setup_item_window(`closed`)
-
   browser.sessions.onChanged.addListener(() => {
     if (App.active_mode === `closed`) {
       App.closed_changed = true

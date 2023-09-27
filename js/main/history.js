@@ -1,6 +1,4 @@
 App.setup_history = () => {
-  App.setup_item_window(`history`)
-
   browser.history.onVisited.addListener((info) => {
     App.debug(`History Visited`)
 

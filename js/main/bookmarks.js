@@ -30,8 +30,6 @@ App.setup_bookmarks = () => {
       }
     }
   })
-
-  App.setup_item_window(`bookmarks`)
 }
 
 App.get_bookmarks = async (query = ``, deep = false) => {

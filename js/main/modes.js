@@ -18,6 +18,11 @@ App.do_show_mode = async (args) => {
     force: false,
   }
 
+  if (!App[`mode_${args.mode}_ready`]) {
+    App.setup_item_window(args.mode)
+    App[`mode_${args.mode}_ready`] = true
+  }
+
   args = Object.assign(def_args, args)
 
   if (!App.get_setting(`reuse_filter`)) {
