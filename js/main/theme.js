@@ -154,7 +154,7 @@ App.apply_theme = (args) => {
 
     let item_icon = App.get_setting(`item_icon`)
     let icon_size = 1.11
-    let icon_size_diff = 0.188
+    let icon_size_diff = 0.181
 
     if (item_icon === `tiny`) {
       icon_size -= (icon_size_diff * 2)
