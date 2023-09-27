@@ -21,7 +21,6 @@ App.init = async () => {
   App.setup_popups()
   App.setup_dialog()
   App.setup_prompt()
-  App.setup_media()
   App.setup_window()
   App.setup_gestures()
   App.setup_palette()

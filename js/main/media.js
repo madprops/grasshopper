@@ -2,13 +2,7 @@ App.image_extensions = [`jpg`, `jpeg`, `png`, `gif`, `webp`, `bmp`]
 App.video_extensions = [`mp4`, `webm`]
 App.audio_extensions = [`mp3`, `ogg`, `flac`, `wav`]
 
-App.setup_media = () => {
-  for (let type of App.media_types) {
-    App.create_media_windows(type)
-  }
-}
-
-App.create_media_windows = (what) => {
+App.create_media_window = (what) => {
   App.create_window({id: `media_${what}`, setup: () => {
     let media = DOM.el(`#media_${what}_player`)
     let buttons = DOM.el(`#media_${what}_buttons`)
@@ -108,6 +102,11 @@ App.view_media = (o_item) => {
 
   if (!what) {
     return
+  }
+
+  if (!App[`media_${what}_ready`]) {
+    App.create_media_window(what)
+    App[`media_${what}_ready`] = true
   }
 
   let item = App.soft_copy_item(o_item)
