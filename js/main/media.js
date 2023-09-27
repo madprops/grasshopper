@@ -299,7 +299,7 @@ App.show_media_menu = (what) => {
   NeedContext.show_on_element(btn, items)
 }
 
-App.search_media = (mode) => {
+App.search_media = (mode, e) => {
   let items = []
 
   for (let type of App.media_types) {
@@ -313,11 +313,21 @@ App.search_media = (mode) => {
     }
 
     items.push({text: App.capitalize(type), action: () => {
-      NeedContext.show_on_center(subitems)
+      if (e) {
+        NeedContext.show(e.clientX, e.clientY, subitems)
+      }
+      else {
+        NeedContext.show_on_center(subitems)
+      }
     }})
   }
 
-  NeedContext.show_on_center(items)
+  if (e) {
+    NeedContext.show(e.clientX, e.clientY, items)
+  }
+  else {
+    NeedContext.show_on_center(items)
+  }
 }
 
 App.scroll_media_up = (what = App.window_mode) => {

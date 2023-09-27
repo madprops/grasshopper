@@ -294,7 +294,7 @@ App.setup_commands = () => {
     }, info: `Do a deep search`},
 
     {name: `Search Media`, cmd: `search_media`, mode: `items`, action: (args) => {
-      App.search_media(args.mode)
+      App.search_media(args.mode, args.e)
     }, info: `Search for media`},
 
     {name: `Forget Closed`, cmd: `forget_closed`, icon: closed_icon, mode: `closed`, action: (args) => {
