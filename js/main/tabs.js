@@ -1121,8 +1121,9 @@ App.load_tabs = (item) => {
 App.prev_tabs = (e) => {
   let items = []
   App.get_previous_tabs()
+  let max = App.get_setting(`max_prev_tabs`)
 
-  for (let item of App.previous_tabs.slice(0, App.max_prev_tabs)) {
+  for (let item of App.previous_tabs.slice(0, max)) {
     items.push({
       image: item.favicon,
       text: App.get_title(item),

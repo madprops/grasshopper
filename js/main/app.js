@@ -39,8 +39,6 @@ App.filter_search_date = 0
 App.settings_addlist_ready = false
 App.backgrounds_dir = `/img/backgrounds/`
 App.num_backgrounds = 3
-App.max_filter_history = 10
-App.max_prev_tabs = 10
 
 App.settings_save_delay = 250
 App.double_tap_delay = 300

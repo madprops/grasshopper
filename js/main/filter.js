@@ -873,7 +873,8 @@ App.update_filter_history = (mode) => {
 
   App.filter_history = App.filter_history.filter(x => x !== value)
   App.filter_history.unshift(value)
-  App.filter_history = App.filter_history.slice(0, App.max_filter_history)
+  let max = App.get_setting(`max_filter_history`)
+  App.filter_history = App.filter_history.slice(0, max)
   App.stor_save_filter_history()
 }
 
