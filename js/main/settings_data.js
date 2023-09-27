@@ -14,7 +14,7 @@ App.build_settings = () => {
   category = `general`
 
   props = {
-    wrap: {
+    wrap_text: {
       name: `Wrap`,
       type: `checkbox`,
       value: false,
@@ -39,7 +39,7 @@ App.build_settings = () => {
       info: `The font to use for text`,
       version: 1,
     },
-    text: {
+    text_mode: {
       name: `Text`,
       type: `menu`,
       value: `title`,
@@ -1059,7 +1059,7 @@ App.build_settings = () => {
       info: `This is the main settings window with some general settings. There are various categories.
             Clicking the labels shows menus. Use the top buttons to navigate and save/load data`,
       setup: () => {
-        App.settings_make_menu(`text`, [
+        App.settings_make_menu(`text_mode`, [
           {text: `Title`, value: `title`},
           {text: `URL`, value: `url`},
           {text: `Title / URL`, value: `title_url`},

@@ -135,7 +135,7 @@ App.apply_theme = (args) => {
     let selected_effect = App.get_setting(`selected_effect`)
     main.classList.add(`selected_effect_${selected_effect}`)
 
-    if (App.get_setting(`wrap`)) {
+    if (App.get_setting(`wrap_text`)) {
       main.classList.remove(`no_wrap`)
     }
     else {

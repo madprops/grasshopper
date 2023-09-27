@@ -711,18 +711,18 @@ App.get_jdenticon = (hostname) => {
 App.set_item_text = (item) => {
   let content
   let path = decodeURI(item.path)
-  let text = App.get_setting(`text`)
+  let text_mode = App.get_setting(`text_mode`)
   let title = App.get_title(item)
 
-  if (text === `title`) {
+  if (text_mode === `title`) {
     content = title || path
     item.footer = path || title
   }
-  else if (text === `url`) {
+  else if (text_mode === `url`) {
     content = path || title
     item.footer = title || path
   }
-  else if (text === `title_url`) {
+  else if (text_mode === `title_url`) {
     content = title
 
     if (content) {
@@ -732,7 +732,7 @@ App.set_item_text = (item) => {
     content += path
     item.footer = path || title
   }
-  else if (text === `url_title`) {
+  else if (text_mode === `url_title`) {
     content = path
 
     if (content) {
@@ -744,7 +744,7 @@ App.set_item_text = (item) => {
   }
 
   if (App.get_setting(`show_tooltips`)) {
-    if (content === item.footer || text.includes(`_`)) {
+    if (content === item.footer || text_mode.includes(`_`)) {
       item.element.title = content
     }
     else {
