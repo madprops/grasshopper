@@ -266,21 +266,21 @@ svg {
   padding-right: var(--item_margin);
 }
 
-.item_border_normal .item {
+.borders_normal .item {
   border-top-width: 1px;
   border-bottom-width: 1px;
   border-color: var(--alt_color_1);
   margin-top: -1px;
 }
 
-.item_border_big .item {
+.borders_big .item {
   border-top-width: 2px;
   border-bottom-width: 2px;
   border-color: var(--alt_color_1);
   margin-top: -2px;
 }
 
-.item_border_huge .item {
+.borders_huge .item {
   border-top-width: 4px;
   border-bottom-width: 4px;
   border-color: var(--alt_color_1);

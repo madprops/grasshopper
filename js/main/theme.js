@@ -60,14 +60,15 @@ App.apply_theme = (args) => {
     App.set_css_var(`height`, h)
     let item_padding = 0.42
     let height_diff = 0.15
+    let spacing = App.get_setting(`spacing`)
 
-    if (App.get_setting(`item_height`) === `small`) {
+    if (spacing === `small`) {
       item_padding -= height_diff
     }
-    else if (App.get_setting(`item_height`) === `big`) {
+    else if (spacing === `big`) {
       item_padding += height_diff
     }
-    else if (App.get_setting(`item_height`) === `huge`) {
+    else if (spacing === `huge`) {
       item_padding += (height_diff * 2)
     }
 
@@ -96,16 +97,16 @@ App.apply_theme = (args) => {
       main.classList.add(`hide_scroller`)
     }
 
-    let item_border_opts = [`normal`, `big`, `huge`]
+    let borders_opts = [`normal`, `big`, `huge`]
 
-    for (let b of item_border_opts) {
-      main.classList.remove(`item_border_${b}`)
+    for (let b of borders_opts) {
+      main.classList.remove(`borders_${b}`)
     }
 
-    let item_border = App.get_setting(`item_border`)
+    let borders = App.get_setting(`borders`)
 
-    if (item_border_opts.includes(item_border)) {
-      main.classList.add(`item_border_${item_border}`)
+    if (borders_opts.includes(borders)) {
+      main.classList.add(`borders_${borders}`)
     }
 
     App.set_background(args.background_image)

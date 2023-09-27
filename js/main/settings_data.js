@@ -46,18 +46,18 @@ App.build_settings = () => {
       info: `What to show as the text for each item`,
       version: 1,
     },
-    item_height: {
-      name: `Item Height`,
+    spacing: {
+      name: `Spacing`,
       type: `menu`,
       value: `normal`,
-      info: `How tall each item should be`,
+      info: `The space between items`,
       version: 1,
     },
-    item_border: {
-      name: `Item Border`,
+    borders: {
+      name: `Borders`,
       type: `menu`,
       value: `none`,
-      info: `Border between each item`,
+      info: `Borders between items`,
       version: 2,
     },
     icon_size: {
@@ -1087,14 +1087,14 @@ App.build_settings = () => {
           clearTimeout(App.restore_timeout)
         })
 
-        App.settings_make_menu(`item_height`, [
+        App.settings_make_menu(`spacing`, [
           {text: `Small`, value: `small`},
           {text: `Normal`, value: `normal`},
           {text: `Big`, value: `big`},
           {text: `Huge`, value: `huge`},
         ])
 
-        App.settings_make_menu(`item_border`, [
+        App.settings_make_menu(`borders`, [
           {text: `None`, value: `none`},
           {text: `Normal`, value: `normal`},
           {text: `Big`, value: `big`},
