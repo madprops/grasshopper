@@ -154,7 +154,7 @@ App.focus_tab = async (args) => {
     App.check_playing()
   }
 
-  App.after_focus(args.method)
+  App.after_focus(args)
 }
 
 App.open_new_tab = async (url) => {
@@ -168,7 +168,7 @@ App.open_new_tab = async (url) => {
 
 App.new_tab = async () => {
   await App.open_new_tab()
-  App.after_focus()
+  App.after_focus({show_tabs: true})
 }
 
 App.get_tab_info = async (id) => {
@@ -1060,7 +1060,7 @@ App.do_sort_tabs = () => {
     App.tabs_locked = false
     App.hide_all_popups()
     App.clear_all_items()
-    await App.do_show_mode({mode: `tabs`})
+    await App.dodo__show_mode({mode: `tabs`})
   })
 }
 
@@ -1126,7 +1126,7 @@ App.prev_tabs = (e) => {
       image: item.favicon,
       text: App.get_title(item),
       action: () => {
-        App.focus_tab({item: item, scroll: `nearest`})
+        App.focus_tab({item: item, scroll: `nearest`, show_tabs: true})
       },
     })
   }

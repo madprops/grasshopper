@@ -1078,14 +1078,26 @@ App.selected_items = (mode = App.window_mode) => {
   return App.get_items(mode).filter(x => x.selected)
 }
 
-App.after_focus = (method = `normal`) => {
-  if (method === `load`) {
+App.after_focus = (args) => {
+  let def_args = {
+    method: `normal`,
+  }
+
+  args = Object.assign(def_args, args)
+
+  if (args.method === `load`) {
     return
   }
 
-  if (method === `normal`) {
+  if (args.method === `normal`) {
     if (App.get_setting(`close_on_focus`)) {
       App.close_window()
+    }
+  }
+
+  if (args.show_tabs) {
+    if (App.active_mode !== `tabs`) {
+      App.do_show_mode({mode: `tabs`})
     }
   }
 
