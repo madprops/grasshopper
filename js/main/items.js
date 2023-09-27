@@ -412,7 +412,7 @@ App.process_info = (args) => {
 }
 
 App.check_item_icon = (item) => {
-  if (App.get_setting(`icon_size`) !== `none`) {
+  if (App.get_setting(`item_icon`) !== `none`) {
     let container = DOM.el(`.item_icon_container`, item.element)
     container.innerHTML = ``
     let icon
@@ -596,7 +596,7 @@ App.create_item_element = (item) => {
   item.element.dataset.id = item.id
   App.add_close_icon(item, `left`)
 
-  if (App.get_setting(`icon_size`) !== `none`) {
+  if (App.get_setting(`item_icon`) !== `none`) {
     let icon_container = DOM.create(`div`, `item_icon_container item_node`)
     item.element.append(icon_container)
     App.check_item_icon(item)

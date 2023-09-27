@@ -152,20 +152,20 @@ App.apply_theme = (args) => {
       main.classList.remove(`icon_pick`)
     }
 
-    let s_icon_size = App.get_setting(`icon_size`)
+    let item_icon = App.get_setting(`item_icon`)
     let icon_size = 1.12
     let icon_size_diff = 0.18
 
-    if (s_icon_size === `tiny`) {
+    if (item_icon === `tiny`) {
       icon_size -= (icon_size_diff * 2)
     }
-    else if (s_icon_size === `small`) {
+    else if (item_icon === `small`) {
       icon_size -= icon_size_diff
     }
-    else if (s_icon_size === `big`) {
+    else if (item_icon === `big`) {
       icon_size += icon_size_diff
     }
-    else if (s_icon_size === `huge`) {
+    else if (item_icon === `huge`) {
       icon_size += (icon_size_diff * 2)
     }
 

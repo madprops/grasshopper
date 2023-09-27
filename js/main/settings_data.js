@@ -60,7 +60,7 @@ App.build_settings = () => {
       info: `Borders between items`,
       version: 2,
     },
-    icon_size: {
+    item_icon: {
       name: `Icons`,
       type: `menu`,
       value: `normal`,
@@ -1102,7 +1102,7 @@ App.build_settings = () => {
           {text: `Huge`, value: `huge`},
         ])
 
-        App.settings_make_menu(`icon_size`, [
+        App.settings_make_menu(`item_icon`, [
           {text: `None`, value: `none`},
           {text: `Tiny`, value: `tiny`},
           {text: `Small`, value: `small`},
