@@ -286,7 +286,7 @@ App.setup_commands = () => {
     {name: App.separator_string},
 
     {name: `Filter History`, cmd: `filter_history`, mode: `items`, action: (args) => {
-      App.show_filter_history(undefined, args.mode)
+      App.show_filter_history(args.mode, args.e)
     }, info: `Show the filter history`},
 
     {name: `Deep Search`, cmd: `deep_search`, mode: `search`, action: (args) => {

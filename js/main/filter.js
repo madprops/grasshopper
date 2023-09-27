@@ -636,7 +636,7 @@ App.create_filter = (mode) => {
 
   DOM.ev(filter, `contextmenu`, (e) => {
     if (App.get_setting(`show_filter_history`)) {
-      App.show_filter_history(e, mode)
+      App.show_filter_history(mode, e)
       e.preventDefault()
     }
   })
@@ -826,7 +826,7 @@ App.show_all = (mode = App.window_mode) => {
   }
 }
 
-App.show_filter_history = (e, mode) => {
+App.show_filter_history = (mode, e) => {
   let items = []
 
   for (let value of App.filter_history) {
