@@ -3,7 +3,7 @@ App.setup_history = () => {
     App.debug(`History Visited`)
 
     if (App.active_mode === `history`) {
-      App.history_changed = true
+      App.mode_history_changed = true
     }
   })
 }
