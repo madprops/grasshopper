@@ -67,7 +67,7 @@ App.apply_theme = (args) => {
     else if (App.get_setting(`item_height`) === `compact`) {
       item_padding -= height_diff
     }
-    else if (App.get_setting(`item_height`) === `bigger`) {
+    else if (App.get_setting(`item_height`) === `big`) {
       item_padding += height_diff
     }
     else if (App.get_setting(`item_height`) === `huge`) {
@@ -99,7 +99,7 @@ App.apply_theme = (args) => {
       main.classList.add(`hide_scroller`)
     }
 
-    let item_border_opts = [`normal`, `bigger`, `huge`]
+    let item_border_opts = [`normal`, `big`, `huge`]
 
     for (let b of item_border_opts) {
       main.classList.remove(`item_border_${b}`)
@@ -158,7 +158,7 @@ App.apply_theme = (args) => {
     if (icon_size_setting === `small`) {
       icon_size -= icon_size_diff
     }
-    else if (icon_size_setting === `bigger`) {
+    else if (icon_size_setting === `big`) {
       icon_size += icon_size_diff
     }
     else if (icon_size_setting === `huge`) {

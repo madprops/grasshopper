@@ -1091,14 +1091,14 @@ App.build_settings = () => {
           {text: `Tiny`, value: `tiny`},
           {text: `Compact`, value: `compact`},
           {text: `Normal`, value: `normal`},
-          {text: `Bigger`, value: `bigger`},
+          {text: `Big`, value: `big`},
           {text: `Huge`, value: `huge`},
         ])
 
         App.settings_make_menu(`item_border`, [
           {text: `None`, value: `none`},
           {text: `Normal`, value: `normal`},
-          {text: `Bigger`, value: `bigger`},
+          {text: `Big`, value: `big`},
           {text: `Huge`, value: `huge`},
         ])
 
@@ -1113,7 +1113,7 @@ App.build_settings = () => {
           {text: `None`, value: `none`},
           {text: `Small`, value: `small`},
           {text: `Normal`, value: `normal`},
-          {text: `Bigger`, value: `bigger`},
+          {text: `Big`, value: `big`},
           {text: `Huge`, value: `huge`},
         ])
 
