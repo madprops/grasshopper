@@ -15,7 +15,7 @@ App.build_settings = () => {
 
   props = {
     wrap_text: {
-      name: `Wrap Text`,
+      name: `Wrap`,
       type: `checkbox`,
       value: false,
       info: `Allow long lines to wrap`,
@@ -40,7 +40,7 @@ App.build_settings = () => {
       version: 1,
     },
     text_mode: {
-      name: `Text Mode`,
+      name: `Text`,
       type: `menu`,
       value: `title`,
       info: `What to show as the text for each item`,
