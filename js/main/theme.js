@@ -135,7 +135,7 @@ App.apply_theme = (args) => {
     let selected_effect = App.get_setting(`selected_effect`)
     main.classList.add(`selected_effect_${selected_effect}`)
 
-    if (App.get_setting(`wrap_text`)) {
+    if (App.get_setting(`wrap`)) {
       main.classList.remove(`no_wrap`)
     }
     else {
@@ -149,17 +149,17 @@ App.apply_theme = (args) => {
       main.classList.remove(`icon_pick`)
     }
 
-    let icon_size_setting = App.get_setting(`icon_size`)
+    let icons = App.get_setting(`icons`)
     let icon_size = 1.12
     let icon_size_diff = 0.18
 
-    if (icon_size_setting === `small`) {
+    if (icons === `small`) {
       icon_size -= icon_size_diff
     }
-    else if (icon_size_setting === `big`) {
+    else if (icons === `big`) {
       icon_size += icon_size_diff
     }
-    else if (icon_size_setting === `huge`) {
+    else if (icons === `huge`) {
       icon_size += (icon_size_diff * 2)
     }
 

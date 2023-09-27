@@ -412,7 +412,7 @@ App.process_info = (args) => {
 }
 
 App.check_item_icon = (item) => {
-  if (App.get_setting(`icon_size`) !== `none`) {
+  if (App.get_setting(`icons`) !== `none`) {
     let container = DOM.el(`.item_icon_container`, item.element)
     container.innerHTML = ``
     let icon
@@ -596,7 +596,7 @@ App.create_item_element = (item) => {
   item.element.dataset.id = item.id
   App.add_close_icon(item, `left`)
 
-  if (App.get_setting(`icon_size`) !== `none`) {
+  if (App.get_setting(`icons`) !== `none`) {
     let icon_container = DOM.create(`div`, `item_icon_container item_node`)
     item.element.append(icon_container)
     App.check_item_icon(item)
@@ -711,18 +711,18 @@ App.get_jdenticon = (hostname) => {
 App.set_item_text = (item) => {
   let content
   let path = decodeURI(item.path)
-  let text_mode = App.get_setting(`text_mode`)
+  let text = App.get_setting(`text`)
   let title = App.get_title(item)
 
-  if (text_mode === `title`) {
+  if (text === `title`) {
     content = title || path
     item.footer = path || title
   }
-  else if (text_mode === `url`) {
+  else if (text === `url`) {
     content = path || title
     item.footer = title || path
   }
-  else if (text_mode === `title_url`) {
+  else if (text === `title_url`) {
     content = title
 
     if (content) {
@@ -732,7 +732,7 @@ App.set_item_text = (item) => {
     content += path
     item.footer = path || title
   }
-  else if (text_mode === `url_title`) {
+  else if (text === `url_title`) {
     content = path
 
     if (content) {
@@ -744,7 +744,7 @@ App.set_item_text = (item) => {
   }
 
   if (App.get_setting(`show_tooltips`)) {
-    if (content === item.footer || text_mode.includes(`_`)) {
+    if (content === item.footer || text.includes(`_`)) {
       item.element.title = content
     }
     else {

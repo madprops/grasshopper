@@ -14,8 +14,8 @@ App.build_settings = () => {
   category = `general`
 
   props = {
-    wrap_text: {
-      name: `Wrap Text`,
+    wrap: {
+      name: `Wrap`,
       type: `checkbox`,
       value: false,
       info: `Allow long lines to wrap`,
@@ -39,8 +39,8 @@ App.build_settings = () => {
       info: `The font to use for text`,
       version: 1,
     },
-    text_mode: {
-      name: `Text Mode`,
+    text: {
+      name: `Text`,
       type: `menu`,
       value: `title`,
       info: `What to show as the text for each item`,
@@ -60,8 +60,8 @@ App.build_settings = () => {
       info: `Borders between items`,
       version: 2,
     },
-    icon_size: {
-      name: `Icon Size`,
+    icons: {
+      name: `Icons`,
       type: `menu`,
       value: `normal`,
       info: `The size of the item icons`,
@@ -1059,7 +1059,7 @@ App.build_settings = () => {
       info: `This is the main settings window with some general settings. There are various categories.
             Clicking the labels shows menus. Use the top buttons to navigate and save/load data`,
       setup: () => {
-        App.settings_make_menu(`text_mode`, [
+        App.settings_make_menu(`text`, [
           {text: `Title`, value: `title`},
           {text: `URL`, value: `url`},
           {text: `Title / URL`, value: `title_url`},
@@ -1108,7 +1108,7 @@ App.build_settings = () => {
           {text: `Closed`, value: `closed`},
         ])
 
-        App.settings_make_menu(`icon_size`, [
+        App.settings_make_menu(`icons`, [
           {text: `None`, value: `none`},
           {text: `Small`, value: `small`},
           {text: `Normal`, value: `normal`},
