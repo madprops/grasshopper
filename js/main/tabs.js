@@ -1117,7 +1117,7 @@ App.load_tabs = (item) => {
   }, undefined, force)
 }
 
-App.prev_tabs_menu = (e) => {
+App.prev_tabs = (e) => {
   let items = []
   App.get_previous_tabs()
 
