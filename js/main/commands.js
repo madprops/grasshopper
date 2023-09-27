@@ -142,7 +142,7 @@ App.setup_commands = () => {
       action: (args) => {
         App.prev_tabs()
       },
-      info: `Show the prev tabs list`
+      info: `Show the recent previous tabs`
     },
     {
       name: `Select All`,
