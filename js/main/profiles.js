@@ -1434,13 +1434,7 @@ App.color_menu_items = (item) => {
 
 App.show_color_menu = (item, e) => {
   let items = App.color_menu_items(item)
-
-  if (e) {
-    NeedContext.show(e.clientX, e.clientY, items)
-  }
-  else {
-    NeedContext.show_on_center(items)
-  }
+  App.show_center_context(items, e)
 }
 
 App.show_notes = (item) => {

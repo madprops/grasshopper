@@ -313,21 +313,11 @@ App.search_media = (mode, e) => {
     }
 
     items.push({text: App.capitalize(type), action: () => {
-      if (e) {
-        NeedContext.show(e.clientX, e.clientY, subitems)
-      }
-      else {
-        NeedContext.show_on_center(subitems)
-      }
+      App.show_center_context(subitems, e)
     }})
   }
 
-  if (e) {
-    NeedContext.show(e.clientX, e.clientY, items)
-  }
-  else {
-    NeedContext.show_on_center(items)
-  }
+  App.show_center_context(items, e)
 }
 
 App.scroll_media_up = (what = App.window_mode) => {

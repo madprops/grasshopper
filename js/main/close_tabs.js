@@ -263,10 +263,5 @@ App.close_tabs_menu = (e) => {
     }
   })
 
-  if (e) {
-    NeedContext.show(e.clientX, e.clientY, items)
-  }
-  else {
-    NeedContext.show_on_center(items)
-  }
+  App.show_center_context(items, e)
 }
