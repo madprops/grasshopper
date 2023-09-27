@@ -935,6 +935,11 @@ App.fill_settings = (category) => {
       widget.id = `settings_${key}`
       el.append(widget)
       el.title = App.single_space(props.info)
+
+      if (App.get_setting(`debug_mode`)) {
+        el.title += ` (${key})`
+      }
+
       c.append(el)
     }
   }
