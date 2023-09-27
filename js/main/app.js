@@ -40,6 +40,7 @@ App.settings_addlist_ready = false
 App.backgrounds_dir = `/img/backgrounds/`
 App.num_backgrounds = 3
 App.settings_started = false
+App.settings_addlist_ready = false
 
 App.settings_save_delay = 250
 App.double_tap_delay = 300
