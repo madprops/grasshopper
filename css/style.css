@@ -273,7 +273,7 @@ svg {
   margin-top: -1px;
 }
 
-.item_border_bigger .item {
+.item_border_big .item {
   border-top-width: 2px;
   border-bottom-width: 2px;
   border-color: var(--alt_color_1);
