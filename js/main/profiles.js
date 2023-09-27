@@ -381,7 +381,7 @@ App.get_profile = (url) => {
     if (!profile) {
       profile = pf
     }
-    else if (pf.url.length > profile.url.value.length) {
+    else if (pf.url.value.length > profile.url.value.length) {
       profile = pf
     }
   }
