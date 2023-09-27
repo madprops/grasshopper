@@ -36,7 +36,7 @@ App.setup_commands = () => {
   }, info: `Remove the current color of items`})
 
   color_changers.push({name: `Color Menu`, cmd: `show_color_menu`, mode: `items`, icon: theme_icon, action: (args) => {
-    App.show_color_menu(args.item)
+    App.show_color_menu(args.item, args.e)
   }, info: `Show the colors menu`})
 
   let media_filters = []

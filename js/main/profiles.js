@@ -1432,9 +1432,15 @@ App.color_menu_items = (item) => {
   return items
 }
 
-App.show_color_menu = (item) => {
+App.show_color_menu = (item, e) => {
   let items = App.color_menu_items(item)
-  NeedContext.show_on_center(items)
+
+  if (e) {
+    NeedContext.show(e.clientX, e.clientY, items)
+  }
+  else {
+    NeedContext.show_on_center(items)
+  }
 }
 
 App.show_notes = (item) => {
