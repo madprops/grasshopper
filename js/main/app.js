@@ -30,7 +30,6 @@ App.media_scroll = 33
 App.media_types = [`image`, `video`, `audio`]
 App.max_warn_limit = 20
 App.max_tag_filters = 50
-App.max_filter_history = 10
 App.colors = [`red`, `green`, `blue`, `yellow`, `purple`, `orange`]
 App.theme_safe_mode_msg = false
 App.persistent_modes = [`tabs`]
@@ -40,6 +39,7 @@ App.filter_search_date = 0
 App.settings_addlist_ready = false
 App.backgrounds_dir = `/img/backgrounds/`
 App.num_backgrounds = 3
+App.max_filter_history = 12
 App.max_prev_tabs = 12
 
 App.settings_save_delay = 250

@@ -1124,7 +1124,7 @@ App.prev_tabs_menu = (e) => {
   for (let item of App.previous_tabs.slice(0, App.max_prev_tabs)) {
     items.push({
       image: item.favicon,
-      text: item.title,
+      text: App.get_title(item),
       action: () => {
         App.focus_tab({item: item, scroll: `nearest`})
       },
