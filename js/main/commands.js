@@ -142,7 +142,7 @@ App.setup_commands = () => {
       action: (args) => {
         App.prev_tabs()
       },
-      info: `Show the prev tabs menu`
+      info: `Show the prev tabs list`
     },
     {
       name: `Select All`,
