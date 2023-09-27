@@ -715,11 +715,12 @@ App.setup_commands = () => {
     {
       name: `Filter Color`,
       cmd: `filter_color`,
-      mode: `items`, color: true,
+      mode: `items`,
+      color: true,
       action: (args) => {
         App.filter_color(args.mode, args.item.color)
       },
-     info: `Filter by color`
+      info: `Filter by color`
     },
     {
       name: `Filter Playing`,
