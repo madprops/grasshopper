@@ -156,6 +156,11 @@ NeedContext.show = (x, y, items, root = true) => {
 
       if (item.image) {
         let image = document.createElement(`img`)
+
+        image.addEventListener(`error`, (e) => {
+          e.target.classList.add(`needcontext-hidden`)
+        })
+
         image.classList.add(`needcontext-image`)
         image.src = item.image
         el.append(image)
@@ -487,8 +492,8 @@ NeedContext.init = () => {
     }
 
     .needcontext-image {
-      width: 1.5rem;
-      height: 1.5rem;
+      width: 1.25rem;
+      height: 1.25rem;
       object-fit: contain;
     }
   `

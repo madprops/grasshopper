@@ -725,7 +725,7 @@ App.do_empty_previous_tabs = () => {
   App.previous_tabs = []
 }
 
-App.get_previous_tabs = async () => {
+App.get_previous_tabs = () => {
   App.previous_tabs = App.get_items(`tabs`).slice(0)
   App.previous_tabs = App.previous_tabs.filter(x => !x.active)
 
@@ -736,9 +736,9 @@ App.get_previous_tabs = async () => {
   App.previous_tabs_index = 0
 }
 
-App.go_to_previous_tab = async () => {
+App.go_to_previous_tab = () => {
   if (!App.previous_tabs.length) {
-    await App.get_previous_tabs()
+    App.get_previous_tabs()
   }
 
   App.empty_previous_tabs()
@@ -1115,4 +1115,21 @@ App.load_tabs = (item) => {
       App.focus_tab({item: it, scroll: `none`, method: `load`})
     }
   }, undefined, force)
+}
+
+App.prev_tabs_menu = (e) => {
+  let items = []
+  App.get_previous_tabs()
+
+  for (let item of App.previous_tabs.slice(0, 10)) {
+    items.push({
+      image: item.favicon,
+      text: item.title,
+      action: () => {
+        App.focus_tab({item: item, scroll: `nearest`})
+      },
+    })
+  }
+
+  NeedContext.show(e.clientX, e.clientY, items)
 }

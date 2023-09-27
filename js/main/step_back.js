@@ -17,6 +17,11 @@ App.create_step_back_button = (mode) => {
     }
   })
 
+  DOM.ev(btn, `contextmenu`, (e) => {
+    e.preventDefault()
+    App.prev_tabs_menu(e)
+  })
+
   return btn
 }
 
