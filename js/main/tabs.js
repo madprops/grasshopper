@@ -1121,7 +1121,7 @@ App.prev_tabs_menu = (e) => {
   let items = []
   App.get_previous_tabs()
 
-  for (let item of App.previous_tabs.slice(0, 10)) {
+  for (let item of App.previous_tabs.slice(0, App.max_prev_tabs)) {
     items.push({
       image: item.favicon,
       text: item.title,

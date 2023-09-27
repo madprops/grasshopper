@@ -35,6 +35,7 @@ App.setup_about = () => {
       `To filter with regex by URL start with re_url:`,
       `Alt + Click selects items without triggering actions`,
       `Right Click on the filter shows recent filters used`,
+      `Right Click on the Step Back button for prev tabs`,
       `In the filter, $day resolves to the current week day`,
       `In the filter, $month resolves to the current month name`,
       `In the filter, $year resolves to the year number`,
