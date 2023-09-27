@@ -24,8 +24,13 @@ App.restore = () => {
   App.hide_all_popups()
 
   if (!App.on_items()) {
-    App.show_primary_mode()
-    return
+    if (App.on_settings()) {
+      App.hide_window()
+      return
+    }
+    else {
+      App.hide_window()
+    }
   }
 
   let mode = App.active_mode

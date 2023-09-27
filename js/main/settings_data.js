@@ -335,18 +335,18 @@ App.build_settings = () => {
       info: `Show the widget between pinned and normal tabs`,
       version: 2,
     },
-    show_tooltips: {
-      name: `Show Tooltips`,
-      type: `checkbox`,
-      value: true,
-      info: `Show tooltips when hovering items`,
-      version: 1,
-    },
     show_icons: {
       name: `Show Icons`,
       type: `checkbox`,
       value: true,
       info: `Show item icons`,
+      version: 1,
+    },
+    show_tooltips: {
+      name: `Show Tooltips`,
+      type: `checkbox`,
+      value: true,
+      info: `Show tooltips when hovering items`,
       version: 1,
     },
     show_scroller: {
