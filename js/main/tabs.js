@@ -1119,10 +1119,11 @@ App.load_tabs = (item) => {
 }
 
 App.prev_tabs = (e) => {
-  let items = []
   App.get_previous_tabs()
+  let tabs = App.unique(App.previous_tabs, `url`, App.max_prev_tabs)
+  let items = []
 
-  for (let item of App.previous_tabs.slice(0, App.max_prev_tabs)) {
+  for (let item of tabs) {
     items.push({
       image: item.favicon,
       text: App.get_title(item),
