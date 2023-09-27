@@ -21,6 +21,7 @@ App.start_auto_restore = () => {
 
 App.restore = () => {
   NeedContext.hide()
+  App.hide_all_popups()
 
   if (App.on_items()) {
     let mode = App.active_mode
