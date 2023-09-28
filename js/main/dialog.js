@@ -1,4 +1,4 @@
-App.setup_dialog = () => {
+App.start_dialog = () => {
   App.create_popup({
     id: `dialog`,
     on_dismiss: () => {
@@ -10,6 +10,11 @@ App.setup_dialog = () => {
 }
 
 App.show_dialog = (message, buttons, on_dismiss) => {
+  if (!App.dialog_ready) {
+    App.start_dialog()
+    App.dialog_ready = true
+  }
+
   if (App.popups[`dialog`].open) {
     return
   }

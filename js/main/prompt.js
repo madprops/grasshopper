@@ -1,4 +1,4 @@
-App.setup_prompt = () => {
+App.start_prompt = () => {
   App.create_popup({
     id: `prompt`,
     setup: () => {
@@ -10,6 +10,11 @@ App.setup_prompt = () => {
 }
 
 App.show_prompt = (placeholder, on_submit) => {
+  if (!App.prompt_ready) {
+    App.start_prompt()
+    App.prompt_ready = true
+  }
+
   App.show_popup(`prompt`)
   let input = DOM.el(`#prompt_input`)
   input.value = ``

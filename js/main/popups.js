@@ -1,4 +1,5 @@
 App.create_popup = (args) => {
+  console.log(args)
   let p = {}
   p.setup_done = false
 
@@ -91,7 +92,7 @@ App.setup_popup = (id) => {
   App.popups[id].setup()
 }
 
-App.setup_popups = () => {
+App.start_popups = () => {
   App.create_popup({
     id: `alert`
   })
@@ -113,7 +114,15 @@ App.setup_popups = () => {
   })
 }
 
+App.check_popups = () => {
+  if (!App.popups_ready) {
+    App.start_popups()
+    App.popups_ready = true
+  }
+}
+
 App.show_alert = (message, autohide_delay = 0, pre = true) => {
+  App.check_popups()
   let msg = DOM.el(`#alert_message`)
 
   if (pre) {
@@ -160,6 +169,7 @@ App.show_feedback_2 = (message, force = false) => {
 }
 
 App.show_textarea = (message, text) => {
+  App.check_popups()
   let textarea = DOM.el(`#textarea_text`)
   DOM.el(`#textarea_message`).textContent = message
   textarea.value = text
@@ -176,6 +186,7 @@ App.textarea_copy = () => {
 }
 
 App.show_input = (message, button, action, value = ``) => {
+  App.check_popups()
   App.input_action = action
   DOM.el(`#input_message`).textContent = message
   let textarea = DOM.el(`#input_text`)

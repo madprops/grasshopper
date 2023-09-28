@@ -1,4 +1,4 @@
-App.setup_palette = () => {
+App.start_palette = () => {
   App.create_popup({
     id: `palette`, setup: () => {
       App.fill_palette()
@@ -18,6 +18,11 @@ App.setup_palette = () => {
 }
 
 App.show_palette = () => {
+  if (!App.palette_ready) {
+    App.start_palette()
+    App.palette_ready = true
+  }
+
   // Create initial elements
   App.setup_popup(`palette`)
   let container = DOM.el(`#palette_commands`)

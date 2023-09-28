@@ -46,6 +46,11 @@ App.media_video_ready = false
 App.media_audio_ready = false
 App.profile_editor_ready = false
 App.about_ready = false
+App.popups_ready = false
+App.palette_ready = false
+App.tabs_popups_ready = false
+App.prompt_ready = false
+App.dialog_ready = false
 
 App.settings_save_delay = 250
 App.double_tap_delay = 300
