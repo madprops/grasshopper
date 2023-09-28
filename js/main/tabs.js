@@ -89,20 +89,22 @@ App.setup_tabs = () => {
 
 App.start_tabs_popups = () => {
   App.create_popup({
-    id: `close_tabs`, setup: () => {
+    id: `close_tabs`,
+    setup: () => {
       DOM.ev(DOM.el(`#close_tabs_button`), `click`, () => {
         App.close_tabs_action()
       })
-    }
+    },
   })
 
   App.create_popup({
-    id: `sort_tabs`, setup: () => {
+    id: `sort_tabs`,
+    setup: () => {
       DOM.ev(DOM.el(`#sort_tabs_button`), `click`, () => {
         let sort_pins = DOM.el(`#sort_tabs_pins`).checked
         App.do_sort_tabs(sort_pins)
       })
-    }
+    },
   })
 }
 

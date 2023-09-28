@@ -92,23 +92,25 @@ App.setup_popup = (id) => {
 
 App.start_popups = () => {
   App.create_popup({
-    id: `alert`
+    id: `alert`,
   })
 
   App.create_popup({
-    id: `textarea`, setup: () => {
+    id: `textarea`,
+    setup: () => {
       DOM.ev(DOM.el(`#textarea_copy`), `click`, () => {
         App.textarea_copy()
       })
-    }
+    },
   })
 
   App.create_popup({
-    id: `input`, setup: () => {
+    id: `input`,
+    setup: () => {
       DOM.ev(DOM.el(`#input_submit`), `click`, () => {
         App.input_enter()
       })
-    }
+    },
   })
 
   App.create_popup({
@@ -117,7 +119,7 @@ App.start_popups = () => {
       if (App.dialog_on_dismiss) {
         App.dialog_on_dismiss()
       }
-    }
+    },
   })
 
   App.create_popup({
