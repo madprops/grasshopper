@@ -1,7 +1,6 @@
 App.create_popup = (args) => {
   let p = {}
   p.setup_done = false
-
   let popup = DOM.create(`div`, `popup_main hidden`, `popup_${args.id}`)
   let container = DOM.create(`div`, `popup_container`, `popup_${args.id}_container`)
   container.tabIndex = 0
