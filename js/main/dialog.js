@@ -1,19 +1,5 @@
-App.start_dialog = () => {
-  App.create_popup({
-    id: `dialog`,
-    on_dismiss: () => {
-      if (App.dialog_on_dismiss) {
-        App.dialog_on_dismiss()
-      }
-    }
-  })
-}
-
 App.show_dialog = (message, buttons, on_dismiss) => {
-  if (!App.dialog_ready) {
-    App.start_dialog()
-    App.dialog_ready = true
-  }
+  App.check_popups()
 
   if (App.popups[`dialog`].open) {
     return

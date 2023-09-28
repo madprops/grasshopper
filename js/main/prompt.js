@@ -1,20 +1,5 @@
-App.start_prompt = () => {
-  App.create_popup({
-    id: `prompt`,
-    setup: () => {
-      DOM.ev(DOM.el(`#prompt_submit`), `click`, () => {
-        App.prompt_submit()
-      })
-    },
-  })
-}
-
 App.show_prompt = (placeholder, on_submit) => {
-  if (!App.prompt_ready) {
-    App.start_prompt()
-    App.prompt_ready = true
-  }
-
+  App.check_popups()
   App.show_popup(`prompt`)
   let input = DOM.el(`#prompt_input`)
   input.value = ``

@@ -112,6 +112,24 @@ App.start_popups = () => {
       })
     }
   })
+
+  App.create_popup({
+    id: `dialog`,
+    on_dismiss: () => {
+      if (App.dialog_on_dismiss) {
+        App.dialog_on_dismiss()
+      }
+    }
+  })
+
+  App.create_popup({
+    id: `prompt`,
+    setup: () => {
+      DOM.ev(DOM.el(`#prompt_submit`), `click`, () => {
+        App.prompt_submit()
+      })
+    },
+  })
 }
 
 App.check_popups = () => {
