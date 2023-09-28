@@ -388,11 +388,13 @@ App.start_settings = () => {
   for (let key in App.setting_catprops) {
     let catprops = App.setting_catprops[key]
 
-    App.create_window(Object.assign({}, common, {id: `settings_${key}`,
-    element: App.settings_build_category(key), setup: () => {
-      App.prepare_settings_category(key)
-      catprops.setup()
-    }}))
+    App.create_window(Object.assign({}, common, {
+      id: `settings_${key}`,
+      element: App.settings_build_category(key), setup: () => {
+        App.prepare_settings_category(key)
+        catprops.setup()
+      },
+    }))
   }
 }
 

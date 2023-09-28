@@ -41,45 +41,49 @@ App.profile_props = {
 }
 
 App.start_profile_editor = () => {
-  App.create_window({id: `profile_editor`, colored_top: true, setup: () => {
-    DOM.ev(DOM.el(`#profile_editor_remove`), `click`, () => {
-      App.profile_editor_remove()
-    })
+  App.create_window({
+    id: `profile_editor`,
+    setup: () => {
+      DOM.ev(DOM.el(`#profile_editor_remove`), `click`, () => {
+        App.profile_editor_remove()
+      })
 
-    let close_el = DOM.el(`#profile_editor_close`)
-    close_el.textContent = App.close_text
+      let close_el = DOM.el(`#profile_editor_close`)
+      close_el.textContent = App.close_text
 
-    DOM.evs(close_el, [`click`, `auxclick`], () => {
-      App.profile_editor_close()
-    })
+      DOM.evs(close_el, [`click`, `auxclick`], () => {
+        App.profile_editor_close()
+      })
 
-    DOM.el(`#profile_editor_icon`).placeholder = App.icon_placeholder
+      DOM.el(`#profile_editor_icon`).placeholder = App.icon_placeholder
 
-    DOM.ev(DOM.el(`#profile_editor_url_root`), `click`, (e) => {
-      App.profile_editor_root_url()
-    })
+      DOM.ev(DOM.el(`#profile_editor_url_root`), `click`, (e) => {
+        App.profile_editor_root_url()
+      })
 
-    DOM.ev(DOM.el(`#profile_editor_url_full`), `click`, (e) => {
-      App.profile_editor_full_url(e)
-    })
+      DOM.ev(DOM.el(`#profile_editor_url_full`), `click`, (e) => {
+        App.profile_editor_full_url(e)
+      })
 
-    App.profile_editor_color_opts = [{text: `None`, value: `none`}]
+      App.profile_editor_color_opts = [{text: `None`, value: `none`}]
 
-    for (let color of App.colors) {
-      let icon = App.color_icon(color)
-      let name = App.capitalize(color)
-      App.profile_editor_color_opts.push({text: name, value: color, icon: icon})
-    }
+      for (let color of App.colors) {
+        let icon = App.color_icon(color)
+        let name = App.capitalize(color)
+        App.profile_editor_color_opts.push({text: name, value: color, icon: icon})
+      }
 
-    App.profile_make_menu(`color`, App.profile_editor_color_opts)
-    App.profile_start_addlists()
+      App.profile_make_menu(`color`, App.profile_editor_color_opts)
+      App.profile_start_addlists()
 
-    DOM.ev(DOM.el(`#profile_editor_tags_add`), `click`, (e) => {
-      App.profile_tags_add(e)
-    })
+      DOM.ev(DOM.el(`#profile_editor_tags_add`), `click`, (e) => {
+        App.profile_tags_add(e)
+      })
 
-    App.profile_setup_labels()
-  }})
+      App.profile_setup_labels()
+    },
+    colored_top: true,
+  })
 }
 
 App.get_profile_items = (item) => {

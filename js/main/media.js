@@ -3,90 +3,96 @@ App.video_extensions = [`mp4`, `webm`]
 App.audio_extensions = [`mp3`, `ogg`, `flac`, `wav`]
 
 App.start_media = (what) => {
-  App.create_window({id: `media_${what}`, setup: () => {
-    let media = DOM.el(`#media_${what}_player`)
-    let buttons = DOM.el(`#media_${what}_buttons`)
+  App.create_window({
+    id: `media_${what}`,
+    setup: () => {
+      let media = DOM.el(`#media_${what}_player`)
+      let buttons = DOM.el(`#media_${what}_buttons`)
 
-    let prev = DOM.create(`div`, `button arrow_prev`, `media_${what}_prev`)
-    prev.textContent = `<`
-    prev.title = `Go To Previous (Left)`
-    buttons.append(prev)
+      let prev = DOM.create(`div`, `button arrow_prev`, `media_${what}_prev`)
+      prev.textContent = `<`
+      prev.title = `Go To Previous (Left)`
+      buttons.append(prev)
 
-    let open = DOM.create(`div`, `button`, `media_${what}_open`)
-    open.textContent = `Open`
-    open.title = `Open Tab (Enter)`
-    buttons.append(open)
+      let open = DOM.create(`div`, `button`, `media_${what}_open`)
+      open.textContent = `Open`
+      open.title = `Open Tab (Enter)`
+      buttons.append(open)
 
-    let menu = DOM.create(`div`, `button icon_button`, `media_${what}_menu`)
-    menu.title = `Menu (Space)`
-    menu.append(App.create_icon(`sun`))
-    buttons.append(menu)
+      let menu = DOM.create(`div`, `button icon_button`, `media_${what}_menu`)
+      menu.title = `Menu (Space)`
+      menu.append(App.create_icon(`sun`))
+      buttons.append(menu)
 
-    let close = DOM.create(`div`, `button`, `media_${what}_close`)
-    close.textContent = App.close_text
-    close.title = `Close this window`
-    buttons.append(close)
+      let close = DOM.create(`div`, `button`, `media_${what}_close`)
+      close.textContent = App.close_text
+      close.title = `Close this window`
+      buttons.append(close)
 
-    let next = DOM.create(`div`, `button arrow_next`, `media_${what}_next`)
-    next.textContent = `>`
-    next.title = `Go To Next (Right)`
-    buttons.append(next)
+      let next = DOM.create(`div`, `button arrow_next`, `media_${what}_next`)
+      next.textContent = `>`
+      next.title = `Go To Next (Right)`
+      buttons.append(next)
 
-    if (what === `image`) {
-      DOM.ev(media, `load`, () => {
-        App.stop_media_timeout(what)
-        media.classList.remove(`hidden`)
-        DOM.el(`#media_${what}_loading`).classList.add(`hidden`)
+      if (what === `image`) {
+        DOM.ev(media, `load`, () => {
+          App.stop_media_timeout(what)
+          media.classList.remove(`hidden`)
+          DOM.el(`#media_${what}_loading`).classList.add(`hidden`)
+        })
+      }
+      else if (what === `video` || what === `audio`) {
+        DOM.ev(media, `canplay`, () => {
+          App.stop_media_timeout(what)
+          media.classList.remove(`hidden`)
+          DOM.el(`#media_${what}_loading`).classList.add(`hidden`)
+          media.play()
+        })
+      }
+
+      DOM.ev(media, `error`, () => {
+        App.media_show_error(what)
       })
-    }
-    else if (what === `video` || what === `audio`) {
-      DOM.ev(media, `canplay`, () => {
-        App.stop_media_timeout(what)
-        media.classList.remove(`hidden`)
-        DOM.el(`#media_${what}_loading`).classList.add(`hidden`)
-        media.play()
+
+      DOM.ev(open, `click`, () => {
+        App.open_media(what)
       })
-    }
 
-    DOM.ev(media, `error`, () => {
-      App.media_show_error(what)
-    })
+      DOM.ev(menu, `click`, () => {
+        App.show_media_menu(what)
+      })
 
-    DOM.ev(open, `click`, () => {
-      App.open_media(what)
-    })
+      DOM.evs(close, [`click`, `auxclick`], () => {
+        App.hide_window()
+      })
 
-    DOM.ev(menu, `click`, () => {
-      App.show_media_menu(what)
-    })
+      DOM.ev(DOM.el(`#media_${what}_prev`), `click`, () => {
+        App.media_prev(what)
+      })
 
-    DOM.evs(close, [`click`, `auxclick`], () => {
-      App.hide_window()
-    })
+      DOM.ev(DOM.el(`#media_${what}_next`), `click`, () => {
+        App.media_next(what)
+      })
 
-    DOM.ev(DOM.el(`#media_${what}_prev`), `click`, () => {
-      App.media_prev(what)
-    })
+      DOM.ev(DOM.el(`#media_${what}_url`), `click`, () => {
+        App.media_copy(what)
+      })
 
-    DOM.ev(DOM.el(`#media_${what}_next`), `click`, () => {
-      App.media_next(what)
-    })
+      DOM.ev(buttons, `wheel`, (e) => {
+        App.media_wheel.call(e, what)
+      })
+    },
+    after_hide: () => {
+      if (what === `video` || what === `audio`) {
+        App.stop_media_player(what)
+      }
 
-    DOM.ev(DOM.el(`#media_${what}_url`), `click`, () => {
-      App.media_copy(what)
-    })
-
-    DOM.ev(buttons, `wheel`, (e) => {
-      App.media_wheel.call(e, what)
-    })
-  }, after_hide: () => {
-    if (what === `video` || what === `audio`) {
-      App.stop_media_player(what)
-    }
-
-    App.hide_media_elements(what)
-    App.stop_media_timeout(what)
-  }, colored_top: true, cls: `media`})
+      App.hide_media_elements(what)
+      App.stop_media_timeout(what)
+    },
+    colored_top: true,
+    cls: `media`,
+  })
 }
 
 App.get_media_type = (item) => {
