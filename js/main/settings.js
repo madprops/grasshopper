@@ -390,7 +390,8 @@ App.start_settings = () => {
 
     App.create_window(Object.assign({}, common, {
       id: `settings_${key}`,
-      element: App.settings_build_category(key), setup: () => {
+      element: App.settings_build_category(key),
+      setup: () => {
         App.prepare_settings_category(key)
         catprops.setup()
       },

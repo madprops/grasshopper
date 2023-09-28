@@ -1,6 +1,7 @@
 App.start_palette = () => {
   App.create_popup({
-    id: `palette`, setup: () => {
+    id: `palette`,
+    setup: () => {
       App.fill_palette()
       let container = DOM.el(`#palette_commands`)
 
@@ -13,7 +14,7 @@ App.start_palette = () => {
         s += ` You can also open this by tapping Ctrl twice in a row.`
         App.show_alert_2(s)
       })
-    }
+    },
   })
 }
 
