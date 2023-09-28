@@ -184,52 +184,6 @@ App.show_feedback_2 = (message, force = false) => {
   App.show_alert(message, App.alert_autohide_delay, false)
 }
 
-App.show_textarea = (message, text) => {
-  App.check_popups()
-  let textarea = DOM.el(`#textarea_text`)
-  DOM.el(`#textarea_message`).textContent = message
-  textarea.value = text
-  App.show_popup(`textarea`)
-
-  requestAnimationFrame(() => {
-    App.focus_textarea(textarea)
-  })
-}
-
-App.textarea_copy = () => {
-  App.hide_popup(`textarea`)
-  App.copy_to_clipboard(DOM.el(`#textarea_text`).value.trim())
-}
-
-App.show_input = (message, button, action, value = ``) => {
-  App.check_popups()
-  App.input_action = action
-  DOM.el(`#input_message`).textContent = message
-  let textarea = DOM.el(`#input_text`)
-  textarea.value = value
-  DOM.el(`#input_submit`).textContent = button
-  App.show_popup(`input`)
-
-  requestAnimationFrame(() => {
-    App.focus_textarea(textarea)
-  })
-}
-
-App.focus_textarea = (el) => {
-  el.focus()
-  el.selectionStart = 0
-  el.selectionEnd = 0
-  App.scroll_to_top(el)
-}
-
-App.input_enter = () => {
-  let ans = App.input_action(DOM.el(`#input_text`).value.trim())
-
-  if (ans) {
-    App.hide_popup(`input`)
-  }
-}
-
 App.hide_all_popups = () => {
   clearTimeout(App.alert_autohide)
 
