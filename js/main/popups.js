@@ -1,5 +1,4 @@
 App.create_popup = (args) => {
-  console.log(args)
   let p = {}
   p.setup_done = false
 
