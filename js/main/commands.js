@@ -667,13 +667,13 @@ App.setup_commands = () => {
       name: App.separator_string
     },
     {
-      name: `Edit Profiles`,
-      cmd: `edit_profiles`,
+      name: `Edit Profile`,
+      cmd: `edit_profile`,
       mode: `items`,
       action: (args) => {
         App.edit_profiles(args.item)
       },
-      info: `Edit the profile of URLs`
+      info: `Edit the profile of a URL`
     },
     {
       name: `Add Tag`,
