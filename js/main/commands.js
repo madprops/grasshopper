@@ -647,6 +647,7 @@ App.setup_commands = () => {
     {
       name: `Search Media`,
       cmd: `search_media`,
+      icon: App.get_setting(`audio_icon`),
       mode: `items`,
       action: (args) => {
         App.search_media(args.mode, args.e)
@@ -679,6 +680,7 @@ App.setup_commands = () => {
     {
       name: `Add Tag`,
       cmd: `add_tag`,
+      icon: App.memo_icon,
       mode: `items`,
       action: (args) => {
         App.add_tag(args.item)
@@ -688,11 +690,35 @@ App.setup_commands = () => {
     {
       name: `Add Note`,
       cmd: `add_note`,
+      icon: App.get_setting(`notes_icon`),
       mode: `items`,
       action: (args) => {
         App.add_note(args.item)
       },
       info: `Add notes to a profile`
+    },
+    {
+      name: `Edit Title`,
+      cmd: `edit_title`,
+      icon: App.memo_icon,
+      mode: `items`,
+      action: (args) => {
+        App.edit_title(args.item)
+      },
+      info: `Edit a profile's title`
+    },
+    {
+      name: `Edit Icon`,
+      cmd: `edit_icon`,
+      icon: App.memo_icon,
+      mode: `items`,
+      action: (args) => {
+        App.edit_icon(args.item)
+      },
+      info: `Edit a profile's icon`
+    },
+    {
+      name: App.separator_string
     },
 
     ...color_changers,
@@ -726,6 +752,7 @@ App.setup_commands = () => {
     {
       name: `Filter Playing`,
       cmd: `filter_playing`,
+      icon: App.get_setting(`playing_icon`),
       mode: `tabs`,
       action: (args) => {
         App.set_filter_mode({mode: args.mode, type: `playing`})
@@ -735,6 +762,7 @@ App.setup_commands = () => {
     {
       name: `Filter Edited`,
       cmd: `filter_edited`,
+      icon: App.memo_icon,
       mode: `items`,
       action: (args) => {
         App.set_filter_mode({mode: args.mode, type: `edited`})

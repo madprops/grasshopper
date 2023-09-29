@@ -953,7 +953,7 @@ App.get_edit_items = (item) => {
     icon: App.memo_icon,
     text: `Title`,
     action: () => {
-      App.profile_edit_text(`title`, `Title`, item)
+      App.edit_title(item)
     }
   })
 
@@ -961,7 +961,7 @@ App.get_edit_items = (item) => {
     icon: App.memo_icon,
     text: `Icon`,
     action: () => {
-      App.profile_edit_text(`icon`, `Icon`, item)
+      App.edit_icon(item)
     }
   })
 
@@ -1490,4 +1490,12 @@ App.profile_shared_value = (profiles, key) => {
   }
 
   return first
+}
+
+App.edit_title = (item) => {
+  App.profile_edit_text(`title`, `Title`, item)
+}
+
+App.edit_icon = (item) => {1
+  App.profile_edit_text(`icon`, `Icon`, item)
 }
