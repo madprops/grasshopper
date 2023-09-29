@@ -1,9 +1,7 @@
 App.start_palette = () => {
-  if (App.palette_ready) {
+  if (App.check_ready(`palette`)) {
     return
   }
-
-  App.palette_ready = true
 
   App.create_popup({
     id: `palette`,

@@ -41,11 +41,9 @@ App.profile_props = {
 }
 
 App.start_profile_editor = () => {
-  if (App.profile_editor_ready) {
+  if (App.check_ready(`profile_editor`)) {
     return
   }
-
-  App.profile_editor_ready = true
 
   App.create_window({
     id: `profile_editor`,
@@ -80,7 +78,6 @@ App.start_profile_editor = () => {
       }
 
       App.profile_make_menu(`color`, App.profile_editor_color_opts)
-      App.profile_start_addlists()
 
       DOM.ev(DOM.el(`#profile_editor_tags_add`), `click`, (e) => {
         App.profile_tags_add(e)
@@ -90,6 +87,8 @@ App.start_profile_editor = () => {
     },
     colored_top: true,
   })
+
+  App.profile_start_addlists()
 }
 
 App.get_profile_items = (item) => {
@@ -1003,7 +1002,6 @@ App.profile_addlist_on_set = (key, item, action) => {
 
 App.profile_add_to_list = (key, item) => {
   App.start_profile_editor()
-  App.profile_start_addlists()
   App.profile_set_value(key, [])
 
   Addlist.edit({id: `profile_editor_${key}`, items: {}, on_set: () => {
@@ -1464,7 +1462,6 @@ App.show_notes = (item) => {
 
   if (profile) {
     if (profile.notes.value.length) {
-      App.profile_start_addlists()
       App.profile_set_value(`notes`, profile.notes.value)
 
       Addlist.view({id: `profile_editor_notes`, index: 0, on_set: () => {

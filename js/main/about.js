@@ -1,9 +1,7 @@
 App.start_about = () => {
-  if (App.about_ready) {
+  if (App.check_ready(`about`)) {
     return
   }
-
-  App.about_ready = true
 
   App.create_window({
     id: `about`,

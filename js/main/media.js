@@ -3,11 +3,9 @@ App.video_extensions = [`mp4`, `webm`]
 App.audio_extensions = [`mp3`, `ogg`, `flac`, `wav`]
 
 App.start_media = (what) => {
-  if (App[`media_${what}_ready`]) {
+  if (App.check_ready(`media_${what}`)) {
     return
   }
-
-  App[`media_${what}_ready`] = true
 
   App.create_window({
     id: `media_${what}`,

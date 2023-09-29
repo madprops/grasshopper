@@ -70,3 +70,14 @@ App.show_center_context = (items, e) => {
     NeedContext.show_on_center(items)
   }
 }
+
+App.check_ready = (what) => {
+  let s = `${what}_ready`
+
+  if (App[s]) {
+    return true
+  }
+
+  App[s] = true
+  return false
+}

@@ -370,11 +370,10 @@ App.setup_settings = () => {
 }
 
 App.start_settings = () => {
-  if (App.settings_ready) {
+  if (App.check_ready(`settings`)) {
     return
   }
 
-  App.settings_ready = true
   App.cmdlist = App.settings_commands()
   App.settings_categories = Object.keys(App.setting_catprops)
 
@@ -402,6 +401,8 @@ App.start_settings = () => {
       },
     }))
   }
+
+  App.setup_settings_addlist()
 }
 
 App.add_settings_switchers = (category) => {
@@ -968,15 +969,6 @@ App.get_settings_with_list = () => {
           App.settings_with_list.push(props.category)
         }
       }
-    }
-  }
-}
-
-App.check_settings_addlist = (category) => {
-  if (!App.settings_addlist_ready) {
-    if (App.settings_with_list.includes(category)) {
-      App.setup_settings_addlist()
-      App.settings_addlist_ready = true
     }
   }
 }

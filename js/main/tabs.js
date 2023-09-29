@@ -88,11 +88,9 @@ App.setup_tabs = () => {
 }
 
 App.start_tab_popups = () => {
-  if (App.tab_popups_ready) {
+  if (App.check_ready(`tab_popups`)) {
     return
   }
-
-  App.tab_popups_ready = true
 
   App.create_popup({
     id: `close_tabs`,

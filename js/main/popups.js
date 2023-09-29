@@ -91,11 +91,9 @@ App.setup_popup = (id) => {
 }
 
 App.start_popups = () => {
-  if (App.popups_ready) {
+  if (App.check_ready(`popups`)) {
     return
   }
-
-  App.popups_ready = true
 
   App.create_popup({
     id: `alert`,
