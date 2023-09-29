@@ -792,6 +792,10 @@ App.get_item_by_url = (mode, url) => {
 }
 
 App.setup_item_window = (mode) => {
+  if (App.check_ready(mode)) {
+    return
+  }
+
   let args = {}
   args.id = mode
   args.close_button = false

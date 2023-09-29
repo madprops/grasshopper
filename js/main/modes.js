@@ -1,7 +1,7 @@
 App.setup_modes = () => {
   for (let mode of App.modes) {
-    App[`mode_${mode}_changed`] = false
-    App[`mode_${mode}_ready`] = false
+    App[`${mode}_changed`] = false
+    App[`${mode}_ready`] = false
   }
 }
 
@@ -25,10 +25,7 @@ App.do_show_mode = async (args) => {
     args.reuse_filter = false
   }
 
-  if (!App[`mode_${args.mode}_ready`]) {
-    App.setup_item_window(args.mode)
-    App[`mode_${args.mode}_ready`] = true
-  }
+  App.setup_item_window(args.mode)
 
   let pre_show = App[`pre_show_${args.mode}`]
 
@@ -42,7 +39,7 @@ App.do_show_mode = async (args) => {
   if (!args.force) {
     if ((App.active_mode === args.mode) &&
     (App[`${args.mode}_items`].length) &&
-    !was_filtered && !App[`mode_${args.mode}_changed`]) {
+    !was_filtered && !App[`${args.mode}_changed`]) {
       App.select_first_item(args.mode, true)
 
       if (args.mode === `tabs`) {
@@ -121,7 +118,7 @@ App.do_show_mode = async (args) => {
     App.select_first_item(args.mode, true, `center`)
   }
 
-  App[`mode_${args.mode}_changed`] = false
+  App[`${args.mode}_changed`] = false
   App.check_playing(args.mode)
 
   if (args.mode === `tabs`) {
