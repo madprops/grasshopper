@@ -1228,7 +1228,10 @@ App.profile_register_addlist = (key, label, title) => {
       set_data: (id, value) => {
         App[id] = value
       },
-    })
+    }),
+    on_hide: () => {
+      Addlist.hide()
+    },
   })
 
   let el = DOM.el(`#${id}`)
