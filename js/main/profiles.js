@@ -619,15 +619,6 @@ App.clear_profiles_items = () => {
   let items = []
   let count = App.get_profile_count()
 
-  if (App.profiles.length) {
-    items.push({
-      text: `All`,
-      action: () => {
-        App.remove_all_profiles()
-      }
-    })
-  }
-
   if (count.titles) {
     items.push({
       text: `Titles`,
@@ -669,6 +660,15 @@ App.clear_profiles_items = () => {
       text: `Icons`,
       action: () => {
         App.remove_all_icons()
+      }
+    })
+  }
+
+  if (App.profiles.length) {
+    items.push({
+      text: `All`,
+      action: () => {
+        App.remove_all_profiles()
       }
     })
   }
