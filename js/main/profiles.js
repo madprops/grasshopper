@@ -1012,8 +1012,15 @@ App.profile_add_to_list = (key, item) => {
 }
 
 App.profile_edit_text = (key, title, item) => {
-  App.show_prompt(title, (value) => {
-    let args = App.profile_change_args(item, key, value)
+  let value = ``
+  let profile = App.get_profile(item.url)
+
+  if (profile && profile[key]) {
+    value = profile[key].value
+  }
+
+  App.show_prompt(value, title, (ans) => {
+    let args = App.profile_change_args(item, key, ans)
     App.do_save_profile(args)
     App.profile_editor_close(false)
   })
