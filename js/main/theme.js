@@ -185,7 +185,7 @@ App.theme_safe_mode = () => {
   })
 
   if (!App.theme_safe_mode_msg) {
-    App.show_alert_2(`Theme settings are invalid. Using safe mode`)
+    App.alert(`Theme settings are invalid. Using safe mode`)
     App.theme_safe_mode_msg = true
   }
 }

@@ -9,7 +9,7 @@ App.check_first_time = () => {
 App.intro_message = () => {
   let s = `Hi there. The main menu is the top-left button. Check the settings for some customizations.
   I constantly experiment and change stuff, so expect things to break`
-  App.show_alert_2(App.single_space(s))
+  App.alert(App.single_space(s))
 }
 
 App.restart_extension = () => {

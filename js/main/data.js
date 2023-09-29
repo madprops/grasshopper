@@ -14,7 +14,7 @@ App.import_data = (action) => {
       json = App.obj(text)
     }
     catch (err) {
-      App.show_alert_2(`${err}`)
+      App.alert(`${err}`)
       return false
     }
 
