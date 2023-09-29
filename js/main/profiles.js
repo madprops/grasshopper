@@ -942,7 +942,7 @@ App.get_edit_items = (item) => {
   })
 
   items.push({
-    icon: App.memo_icon,
+    icon: App.tag_icon,
     text: `Tag`,
     action: () => {
       App.add_tag(item)

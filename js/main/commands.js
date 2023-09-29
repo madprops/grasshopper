@@ -690,7 +690,7 @@ App.setup_commands = () => {
     {
       name: `Add Tag`,
       cmd: `add_tag`,
-      icon: App.memo_icon,
+      icon: App.tag_icon,
       mode: `items`,
       action: (args) => {
         App.add_tag(args.item)
