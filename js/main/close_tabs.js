@@ -88,7 +88,7 @@ App.close_normal_tabs = (close_unloaded = false) => {
   }
 
   if (!ids.length) {
-    App.show_alert(`Nothing to close`)
+    App.alert(`Nothing to close`)
     return
   }
 
@@ -116,7 +116,7 @@ App.close_playing_tabs = (close_pins = false) => {
   }
 
   if (!ids.length) {
-    App.show_alert(`Nothing to close`)
+    App.alert(`Nothing to close`)
     return
   }
 
@@ -144,7 +144,7 @@ App.close_unloaded_tabs = (close_pins = false) => {
   }
 
   if (!ids.length) {
-    App.show_alert(`Nothing to close`)
+    App.alert(`Nothing to close`)
     return
   }
 
@@ -171,7 +171,7 @@ App.close_duplicate_tabs = (close_pins = false) => {
   let ids = excess.map(x => x.id)
 
   if (!ids.length) {
-    App.show_alert(`No duplicates found`)
+    App.alert(`No duplicates found`)
     return
   }
 
@@ -193,7 +193,7 @@ App.close_visible_tabs = (close_pins = false) => {
   let ids = visible.map(x => x.id)
 
   if (!ids.length) {
-    App.show_alert(`Nothing to close`)
+    App.alert(`Nothing to close`)
     return
   }
 

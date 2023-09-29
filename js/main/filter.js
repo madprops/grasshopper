@@ -855,7 +855,7 @@ App.show_filter_history = (mode, e) => {
     items.push({
       text: `Empty`,
       action: () => {
-        App.show_alert(`Filters you use appear here`)
+        App.alert(`Filters you use appear here`)
       }
     })
   }

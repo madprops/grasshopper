@@ -46,7 +46,7 @@ App.remove_protocol = (url) => {
 
 App.copy_to_clipboard = (text, what = `Text`) => {
   navigator.clipboard.writeText(text)
-  App.show_feedback(`${what} copied to clipboard`)
+  App.alert_autohide(`${what} copied to clipboard`)
 }
 
 App.plural = (n, singular, plural) => {

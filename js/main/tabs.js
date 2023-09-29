@@ -507,7 +507,7 @@ App.show_tabs_info = () => {
   s += `Muted: ${muted}\n`
   s += `Unloaded: ${unloaded}`
 
-  App.show_alert(s)
+  App.alert(s)
 }
 
 App.show_urls = () => {

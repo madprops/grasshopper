@@ -161,7 +161,7 @@ App.bookmark_items = async (item, active, feedback = true) => {
     }
 
     if (feedback) {
-      App.show_feedback(`Bookmarked`)
+      App.alert_autohide(`Bookmarked`)
     }
   }, undefined, force)
 }
