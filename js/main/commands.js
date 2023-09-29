@@ -678,16 +678,6 @@ App.setup_commands = () => {
       info: `Edit the profile of a URL`
     },
     {
-      name: `Add Tag`,
-      cmd: `add_tag`,
-      icon: App.memo_icon,
-      mode: `items`,
-      action: (args) => {
-        App.add_tag(args.item)
-      },
-      info: `Add tags to a profile`
-    },
-    {
       name: `Add Note`,
       cmd: `add_note`,
       icon: App.get_setting(`notes_icon`),
@@ -696,6 +686,16 @@ App.setup_commands = () => {
         App.add_note(args.item)
       },
       info: `Add notes to a profile`
+    },
+    {
+      name: `Add Tag`,
+      cmd: `add_tag`,
+      icon: App.memo_icon,
+      mode: `items`,
+      action: (args) => {
+        App.add_tag(args.item)
+      },
+      info: `Add tags to a profile`
     },
     {
       name: `Edit Title`,
