@@ -41,7 +41,18 @@ App.restore = () => {
   else {
     let item = App.get_selected(mode)
 
-    if (item && !App.item_is_visible(item)) {
+    if (!item) {
+      return
+    }
+
+    if (mode === `tabs`) {
+      if (!item.active) {
+        App.focus_current_tab()
+        return
+      }
+    }
+
+    if (!App.item_is_visible(item)) {
       App.select_item({item: item, scroll: `center`})
     }
   }
