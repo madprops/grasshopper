@@ -26,7 +26,6 @@ App.do_show_mode = async (args) => {
   }
 
   App.setup_item_window(args.mode)
-
   let pre_show = App[`pre_show_${args.mode}`]
 
   if (pre_show) {
