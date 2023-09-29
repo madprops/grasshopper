@@ -558,7 +558,6 @@ App.show_settings = () => {
 App.show_settings_category = (category) => {
   App.start_settings()
   App.get_settings_with_list()
-  App.check_settings_addlist(category)
   App.settings_category = category
   App.show_window(`settings_${category}`)
 }
