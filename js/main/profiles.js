@@ -567,6 +567,15 @@ App.get_tag_items = (mode, action = `filter`) => {
     }
   }
 
+  if (!items.length) {
+    items.push({
+      text: `No Tags`,
+      action: () => {
+        App.show_alert_2(`Add tags by right-clicking items and selecting Edit, or through commands`)
+      }
+    })
+  }
+
   return items
 }
 
@@ -690,7 +699,7 @@ App.remove_color = (color) => {
   }
 
   if (!profiles.length) {
-    App.show_alert(`No profiles found`)
+    App.show_alert_2(`No profiles found`)
     return
   }
 
@@ -1264,7 +1273,7 @@ App.profile_tags_add = (e) => {
     items.push({
       text: `No more tags`,
       action: () => {
-        App.show_feedback(`Add some tags manually`)
+        App.show_alert_2(`Add some tags manually`)
       }
     })
   }

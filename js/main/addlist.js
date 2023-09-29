@@ -674,7 +674,7 @@ Addlist.get_line = (id, items) => {
 }
 
 Addlist.no_items = () => {
-  App.show_feedback(`No items yet`, true)
+  App.show_alert_2(`No items yet`, true)
 }
 
 Addlist.add_buttons = (id) => {
