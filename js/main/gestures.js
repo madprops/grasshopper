@@ -13,7 +13,6 @@ App.setup_gestures = () => {
   }
 
   NiceGesture.start(DOM.el(`#main`), obj)
-  App.check_gestures()
 }
 
 App.gesture_action = (e, gesture) => {
@@ -27,12 +26,4 @@ App.gesture_action = (e, gesture) => {
 App.refresh_gestures = () => {
   NiceGesture.enabled = App.get_setting(`gestures_enabled`)
   NiceGesture.threshold = App.get_setting(`gestures_threshold`)
-}
-
-App.check_gestures = () => {
-  for (let gesture of App.gestures) {
-    if (!App.cmds.includes(App.get_setting(`gesture_${gesture}`))) {
-      App.set_setting(`gesture_${gesture}`, `none`)
-    }
-  }
 }
