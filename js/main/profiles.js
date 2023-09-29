@@ -1013,10 +1013,11 @@ App.profile_add_to_list = (key, item) => {
 
 App.profile_edit_text = (key, title, item) => {
   let value = ``
-  let profile = App.get_profile(item.url)
+  let items = App.get_profile_items(item)
+  let [profiles, added] = App.get_profiles(items)
 
-  if (profile && profile[key]) {
-    value = profile[key].value
+  if (profiles.length && !added.length) {
+    value = App.profile_shared_value(profiles, key) || ``
   }
 
   App.show_prompt(value, title, (ans) => {
@@ -1467,4 +1468,22 @@ App.show_notes = (item) => {
       }})
     }
   }
+}
+
+App.profile_shared_value = (profiles, key) => {
+  if (profiles[0][key] === undefined) {
+    return
+  }
+
+  let first = profiles[0][key].value
+
+  for (let profile of profiles) {
+    if (profile[key] !== undefined) {
+      if (profile[key].value !== first) {
+        return
+      }
+    }
+  }
+
+  return first
 }
