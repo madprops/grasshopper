@@ -87,12 +87,12 @@ App.setup_tabs = () => {
   })
 }
 
-App.start_tabs_popups = () => {
-  if (App.tabs_popups) {
+App.start_tab_popups = () => {
+  if (App.tab_popups_ready) {
     return
   }
 
-  App.tabs_popups = true
+  App.tab_popups_ready = true
 
   App.create_popup({
     id: `close_tabs`,
@@ -1022,7 +1022,7 @@ App.is_new_tab = (url) => {
 }
 
 App.sort_tabs = () => {
-  App.start_tabs_popups()
+  App.start_tab_popups()
   App.show_popup(`sort_tabs`)
   DOM.el(`#sort_tabs_pins`).checked = false
   DOM.el(`#sort_tabs_reverse`).checked = false

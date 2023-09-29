@@ -47,7 +47,7 @@ App.profile_editor_ready = false
 App.about_ready = false
 App.popups_ready = false
 App.palette_ready = false
-App.tabs_popups_ready = false
+App.tab_popups_ready = false
 
 App.settings_save_delay = 250
 App.double_tap_delay = 300
