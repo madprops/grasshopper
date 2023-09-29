@@ -1181,16 +1181,12 @@ App.profile_editor_full_url = () => {
 }
 
 App.profile_start_addlists = () => {
-  if (!App.profile_lists_ready) {
-    for (let key in App.profile_props) {
-      let props = App.profile_props[key]
+  for (let key in App.profile_props) {
+    let props = App.profile_props[key]
 
-      if (props.type === `list`) {
-        App.profile_register_addlist(key, props.label, props.title)
-      }
+    if (props.type === `list`) {
+      App.profile_register_addlist(key, props.label, props.title)
     }
-
-    App.profile_lists_ready = true
   }
 }
 
