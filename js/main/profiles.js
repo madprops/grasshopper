@@ -915,13 +915,6 @@ App.get_edit_items = (item) => {
       exact = profile.url.value === item.url
     }
 
-    items.push({
-      text: `Profile`,
-      action: () => {
-        App.show_profile_editor(item)
-      }
-    })
-
     if (profile && !exact) {
       items.push({
         text: `This URL`,
@@ -941,30 +934,44 @@ App.get_edit_items = (item) => {
   })
 
   items.push({
-    text: `Add Tag`,
-    action: () => {
-      App.add_tag(item)
-    }
-  })
-
-  items.push({
-    text: `Add Note`,
+    icon: App.get_setting(`notes_icon`),
+    text: `Note`,
     action: () => {
       App.add_note(item)
     }
   })
 
   items.push({
-    text: `Edit Title`,
+    icon: App.memo_icon,
+    text: `Tag`,
+    action: () => {
+      App.add_tag(item)
+    }
+  })
+
+  items.push({
+    icon: App.memo_icon,
+    text: `Title`,
     action: () => {
       App.profile_edit_text(`title`, `Title`, item)
     }
   })
 
   items.push({
-    text: `Edit Icon`,
+    icon: App.memo_icon,
+    text: `Icon`,
     action: () => {
       App.profile_edit_text(`icon`, `Icon`, item)
+    }
+  })
+
+  App.sep(items)
+
+  items.push({
+    icon: App.memo_icon,
+    text: `Profile`,
+    action: () => {
+      App.show_profile_editor(item)
     }
   })
 

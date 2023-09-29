@@ -85,6 +85,7 @@ App.mode_icons = {
 App.clipboard_icon = `📋`
 App.bot_icon = `🤖`
 App.icon_placeholder = `Icon`
+App.memo_icon = `📝`
 
 App.dark_colors = {
   background: `rgb(45, 45, 55)`,
