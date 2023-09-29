@@ -1456,6 +1456,7 @@ App.show_color_menu = (item, e) => {
 }
 
 App.show_notes = (item) => {
+  App.start_profile_editor()
   let profile = App.get_profile(item.url)
 
   if (profile) {

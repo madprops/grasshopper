@@ -679,7 +679,6 @@ Addlist.no_items = () => {
 
 Addlist.add_buttons = (id) => {
   let el = DOM.el(`#${id}`)
-  let oargs = Addlist.oargs(id)
   let cls = `action underline`
   let count = DOM.create(`div`, `action`, `addlist_button_${id}_count`)
   count.textContent = ``
