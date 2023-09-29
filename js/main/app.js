@@ -35,7 +35,6 @@ App.theme_safe_mode_msg = false
 App.persistent_modes = [`tabs`]
 App.close_text = `Close`
 App.filter_search_date = 0
-App.settings_addlist_ready = false
 App.backgrounds_dir = `/img/backgrounds/`
 App.num_backgrounds = 3
 App.settings_done = false
