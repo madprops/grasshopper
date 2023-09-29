@@ -669,6 +669,7 @@ App.setup_commands = () => {
     {
       name: `Edit Profile`,
       cmd: `edit_profile`,
+      icon: App.memo_icon,
       mode: `items`,
       action: (args) => {
         App.edit_profiles(args.item)
