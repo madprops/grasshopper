@@ -309,15 +309,17 @@ App.search_media = (mode, e) => {
 
   for (let type of App.media_types) {
     let subitems = []
+    let icon = App.get_setting(`${type}_icon`)
 
     for (let ext of App[`${type}_extensions`]) {
-      subitems.push({text: ext, action: () => {
+      subitems.push({text: ext, icon: icon, action: () => {
         App.set_filter_mode({mode: mode, type: type, filter: false})
         App.set_filter({mode: mode, text: `.${ext}`})
       }})
     }
 
-    items.push({text: App.capitalize(type), action: () => {
+    items.push({
+      text: App.capitalize(type), icon: icon, action: () => {
       App.show_center_context(subitems, e)
     }})
   }
