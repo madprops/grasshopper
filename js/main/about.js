@@ -1,4 +1,10 @@
 App.start_about = () => {
+  if (App.about_ready) {
+    return
+  }
+
+  App.about_ready = true
+
   App.create_window({
     id: `about`,
     setup: () => {
@@ -131,10 +137,6 @@ App.do_filter_about = () => {
 }
 
 App.show_about = () => {
-  if (!App.about_ready) {
-    App.start_about()
-    App.about_ready = true
-  }
-
+  App.start_about()
   App.show_window(`about`)
 }

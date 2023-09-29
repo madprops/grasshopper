@@ -370,6 +370,11 @@ App.setup_settings = () => {
 }
 
 App.start_settings = () => {
+  if (App.settings_ready) {
+    return
+  }
+
+  App.settings_ready = true
   App.cmdlist = App.settings_commands()
   App.settings_categories = Object.keys(App.setting_catprops)
 
@@ -550,11 +555,7 @@ App.show_settings = () => {
 }
 
 App.show_settings_category = (category) => {
-  if (!App.settings_ready) {
-    App.start_settings()
-    App.settings_ready = true
-  }
-
+  App.start_settings()
   App.get_settings_with_list()
   App.check_settings_addlist(category)
   App.settings_category = category

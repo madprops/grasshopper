@@ -1,5 +1,5 @@
 App.show_input = (message, button, action, value = ``) => {
-  App.check_popups()
+  App.start_popups()
   App.input_action = action
   DOM.el(`#input_message`).textContent = message
   let textarea = DOM.el(`#input_text`)

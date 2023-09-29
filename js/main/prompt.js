@@ -1,5 +1,5 @@
 App.show_prompt = (placeholder, on_submit) => {
-  App.check_popups()
+  App.start_popups()
   App.show_popup(`prompt`)
   let input = DOM.el(`#prompt_input`)
   input.value = ``

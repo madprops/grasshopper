@@ -1,4 +1,10 @@
 App.start_palette = () => {
+  if (App.palette_ready) {
+    return
+  }
+
+  App.palette_ready = true
+
   App.create_popup({
     id: `palette`,
     setup: () => {
@@ -19,11 +25,7 @@ App.start_palette = () => {
 }
 
 App.show_palette = () => {
-  if (!App.palette_ready) {
-    App.start_palette()
-    App.palette_ready = true
-  }
-
+  App.start_palette()
   // Create initial elements
   App.setup_popup(`palette`)
   let container = DOM.el(`#palette_commands`)

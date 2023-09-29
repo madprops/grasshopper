@@ -25,7 +25,7 @@ App.close_tabs = (item, multiple = true) => {
 }
 
 App.close_tabs_popup = (type) => {
-  App.check_tabs_popups()
+  App.start_tabs_popups()
   App.close_tabs_type = type
   App.show_popup(`close_tabs`)
   let title = App.capitalize_words(`Close ${type} tabs`)

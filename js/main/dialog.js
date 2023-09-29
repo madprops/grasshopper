@@ -1,5 +1,5 @@
 App.show_dialog = (message, buttons, on_dismiss) => {
-  App.check_popups()
+  App.start_popups()
 
   if (App.popups[`dialog`].open) {
     return

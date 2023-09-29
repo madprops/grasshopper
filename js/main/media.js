@@ -3,6 +3,12 @@ App.video_extensions = [`mp4`, `webm`]
 App.audio_extensions = [`mp3`, `ogg`, `flac`, `wav`]
 
 App.start_media = (what) => {
+  if (App[`media_${what}_ready`]) {
+    return
+  }
+
+  App[`media_${what}_ready`] = true
+
   App.create_window({
     id: `media_${what}`,
     setup: () => {
@@ -110,11 +116,7 @@ App.view_media = (o_item) => {
     return
   }
 
-  if (!App[`media_${what}_ready`]) {
-    App.start_media(what)
-    App[`media_${what}_ready`] = true
-  }
-
+  App.start_media(what)
   let item = App.soft_copy_item(o_item)
   App.hide_media_elements(what)
   App[`current_media_${what}_item`] = item

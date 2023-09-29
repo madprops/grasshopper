@@ -1,5 +1,5 @@
 App.show_alert = (message, autohide_delay = 0, pre = true) => {
-  App.check_popups()
+  App.start_popups()
   let msg = DOM.el(`#alert_message`)
 
   if (pre) {

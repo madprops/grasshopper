@@ -91,6 +91,12 @@ App.setup_popup = (id) => {
 }
 
 App.start_popups = () => {
+  if (App.popups_ready) {
+    return
+  }
+
+  App.popups_ready = true
+
   App.create_popup({
     id: `alert`,
   })
@@ -130,13 +136,6 @@ App.start_popups = () => {
       })
     },
   })
-}
-
-App.check_popups = () => {
-  if (!App.popups_ready) {
-    App.start_popups()
-    App.popups_ready = true
-  }
 }
 
 App.hide_all_popups = () => {

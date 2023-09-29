@@ -41,6 +41,12 @@ App.profile_props = {
 }
 
 App.start_profile_editor = () => {
+  if (App.profile_editor_ready) {
+    return
+  }
+
+  App.profile_editor_ready = true
+
   App.create_window({
     id: `profile_editor`,
     setup: () => {
@@ -104,11 +110,7 @@ App.get_profile_items = (item) => {
 }
 
 App.show_profile_editor = (item, action = `edit`) => {
-  if (!App.profile_editor_ready) {
-    App.start_profile_editor()
-    App.profile_editor_ready = true
-  }
-
+  App.start_profile_editor()
   let new_edit = false
   App.profile_urls = []
 
@@ -1000,6 +1002,7 @@ App.profile_addlist_on_set = (key, item, action) => {
 }
 
 App.profile_add_to_list = (key, item) => {
+  App.start_profile_editor()
   App.profile_start_addlists()
   App.profile_set_value(key, [])
 

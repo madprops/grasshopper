@@ -1,5 +1,5 @@
 App.show_textarea = (message, text) => {
-  App.check_popups()
+  App.start_popups()
   let textarea = DOM.el(`#textarea_text`)
   DOM.el(`#textarea_message`).textContent = message
   textarea.value = text

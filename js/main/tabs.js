@@ -88,6 +88,12 @@ App.setup_tabs = () => {
 }
 
 App.start_tabs_popups = () => {
+  if (App.tabs_popups) {
+    return
+  }
+
+  App.tabs_popups = true
+
   App.create_popup({
     id: `close_tabs`,
     setup: () => {
@@ -106,13 +112,6 @@ App.start_tabs_popups = () => {
       })
     },
   })
-}
-
-App.check_tabs_popups = () => {
-  if (!App.tabs_popups_ready) {
-    App.start_tabs_popups()
-    App.tabs_popups_ready = true
-  }
 }
 
 App.pre_show_tabs = () => {
@@ -1023,7 +1022,7 @@ App.is_new_tab = (url) => {
 }
 
 App.sort_tabs = () => {
-  App.check_tabs_popups()
+  App.start_tabs_popups()
   App.show_popup(`sort_tabs`)
   DOM.el(`#sort_tabs_pins`).checked = false
   DOM.el(`#sort_tabs_reverse`).checked = false
