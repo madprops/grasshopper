@@ -437,7 +437,7 @@ App.setup_commands = () => {
       info: `Unpin tabs`
     },
     {
-      name: `Toggle Pin Tabs`,
+      name: `Toggle Pin`,
       cmd: `toggle_pin_tabs`,
       mode: `tabs`,
       icon: tabs_icon,
@@ -467,7 +467,7 @@ App.setup_commands = () => {
       info: `Unmite tabs`
     },
     {
-      name: `Toggle Mute Tabs`,
+      name: `Toggle Mute`,
       cmd: `toggle_mute_tabs`,
       mode: `tabs`,
       icon: tabs_icon,
