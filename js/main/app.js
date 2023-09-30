@@ -72,6 +72,7 @@ App.settings_icons = {
   menus: `🖱️`,
   keyboard: `⌨️`,
   warns: `🚨`,
+  filter: `🔍`,
   more: `💠`,
 }
 

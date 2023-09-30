@@ -841,16 +841,9 @@ App.build_settings = () => {
   }
 
   add_props()
-  category = `more`
+  category = `filter`
 
   props = {
-    aliases: {
-      name: `Aliases`,
-      type: `list`,
-      value: [],
-      info: `Aliases to use when filtering items`,
-      version: 3,
-    },
     custom_filters: {
       name: `Custom Filters`,
       type: `list`,
@@ -860,62 +853,6 @@ App.build_settings = () => {
       ],
       info: `Pre-made filters to use. These appear in the Custom section`,
       version: 3,
-    },
-    hover_effect: {
-      name: `Hover Effect`,
-      type: `menu`,
-      value: `glow`,
-      info: `What effect to use when hoving items`,
-      version: 1,
-    },
-    selected_effect: {
-      name: `Selected Effect`,
-      type: `menu`,
-      value: `background`,
-      info: `What effect to use on selected items`,
-      version: 1,
-    },
-    double_click_command: {
-      name: `Double Click Command`,
-      type: `menu`,
-      value: `none`,
-      info: `What command to perform when double clicking an item`,
-      version: 1,
-    },
-    icon_pick: {
-      name: `Icon Pick`,
-      type: `checkbox`,
-      value: false,
-      info: `Clicking the the icons selects items`,
-      version: 1,
-    },
-    lock_drag: {
-      name: `Lock Drag`,
-      type: `checkbox`,
-      value: false,
-      info: `Require holding Ctrl to re-order tab items`,
-      version: 1,
-    },
-    single_new_tab: {
-      name: `Single New Tab`,
-      type: `checkbox`,
-      value: true,
-      info: `Keep only one new tab at any time`,
-      version: 1,
-    },
-    close_on_focus: {
-      name: `Close On Focus`,
-      type: `checkbox`,
-      value: true,
-      info: `Close the popup when focusing a tab`,
-      version: 1,
-    },
-    close_on_open: {
-      name: `Close On Open`,
-      type: `checkbox`,
-      value: true,
-      info: `Close the popup when opening a popup`,
-      version: 1,
     },
     clean_filter: {
       name: `Clean Filter`,
@@ -929,55 +866,6 @@ App.build_settings = () => {
       type: `checkbox`,
       value: true,
       info: `Make the filter case insensitive`,
-      version: 1,
-    },
-    mute_click: {
-      name: `Mute Click`,
-      type: `checkbox`,
-      value: true,
-      info: `Un-Mute tabs when clicking on the mute icon`,
-      version: 1,
-    },
-    notes_click: {
-      name: `Notes Click`,
-      type: `checkbox`,
-      value: true,
-      info: `Show notes when clicking the notes icon`,
-      version: 1,
-    },
-    double_click_new: {
-      name: `Double Click New`,
-      type: `checkbox`,
-      value: true,
-      info: `Open a new tab when double clicking empty space`,
-      version: 1,
-    },
-    rounded_corners: {
-      name: `Rounded Corners`,
-      type: `checkbox`,
-      value: true,
-      info: `Allow rounded corners in some parts of the interface`,
-      version: 1,
-    },
-    direct_settings: {
-      name: `Direct Settings`,
-      type: `checkbox`,
-      value: true,
-      info: `Go straight to General when clicking Settings. Else show a menu to pick a category`,
-      version: 1,
-    },
-    sort_commands: {
-      name: `Sort Commands`,
-      type: `checkbox`,
-      value: true,
-      info: `Sort commands in the palette by recent use`,
-      version: 1,
-    },
-    all_bookmarks: {
-      name: `All Bookmarks`,
-      type: `checkbox`,
-      value: true,
-      info: `Show other bookmarks apart from the configured bookmarks folder`,
       version: 1,
     },
     reuse_filter: {
@@ -1057,6 +945,124 @@ App.build_settings = () => {
       min: 1,
       max: 999,
       info: `Max items to show in the filter history`,
+      version: 1,
+    },
+  }
+
+  add_props()
+  category = `more`
+
+  props = {
+    aliases: {
+      name: `Aliases`,
+      type: `list`,
+      value: [],
+      info: `Aliases to use when filtering items`,
+      version: 3,
+    },
+    hover_effect: {
+      name: `Hover Effect`,
+      type: `menu`,
+      value: `glow`,
+      info: `What effect to use when hoving items`,
+      version: 1,
+    },
+    selected_effect: {
+      name: `Selected Effect`,
+      type: `menu`,
+      value: `background`,
+      info: `What effect to use on selected items`,
+      version: 1,
+    },
+    double_click_command: {
+      name: `Double Click Command`,
+      type: `menu`,
+      value: `none`,
+      info: `What command to perform when double clicking an item`,
+      version: 1,
+    },
+    icon_pick: {
+      name: `Icon Pick`,
+      type: `checkbox`,
+      value: false,
+      info: `Clicking the the icons selects items`,
+      version: 1,
+    },
+    lock_drag: {
+      name: `Lock Drag`,
+      type: `checkbox`,
+      value: false,
+      info: `Require holding Ctrl to re-order tab items`,
+      version: 1,
+    },
+    single_new_tab: {
+      name: `Single New Tab`,
+      type: `checkbox`,
+      value: true,
+      info: `Keep only one new tab at any time`,
+      version: 1,
+    },
+    close_on_focus: {
+      name: `Close On Focus`,
+      type: `checkbox`,
+      value: true,
+      info: `Close the popup when focusing a tab`,
+      version: 1,
+    },
+    close_on_open: {
+      name: `Close On Open`,
+      type: `checkbox`,
+      value: true,
+      info: `Close the popup when opening a popup`,
+      version: 1,
+    },
+    mute_click: {
+      name: `Mute Click`,
+      type: `checkbox`,
+      value: true,
+      info: `Un-Mute tabs when clicking on the mute icon`,
+      version: 1,
+    },
+    notes_click: {
+      name: `Notes Click`,
+      type: `checkbox`,
+      value: true,
+      info: `Show notes when clicking the notes icon`,
+      version: 1,
+    },
+    double_click_new: {
+      name: `Double Click New`,
+      type: `checkbox`,
+      value: true,
+      info: `Open a new tab when double clicking empty space`,
+      version: 1,
+    },
+    rounded_corners: {
+      name: `Rounded Corners`,
+      type: `checkbox`,
+      value: true,
+      info: `Allow rounded corners in some parts of the interface`,
+      version: 1,
+    },
+    direct_settings: {
+      name: `Direct Settings`,
+      type: `checkbox`,
+      value: true,
+      info: `Go straight to General when clicking Settings. Else show a menu to pick a category`,
+      version: 1,
+    },
+    sort_commands: {
+      name: `Sort Commands`,
+      type: `checkbox`,
+      value: true,
+      info: `Sort commands in the palette by recent use`,
+      version: 1,
+    },
+    all_bookmarks: {
+      name: `All Bookmarks`,
+      type: `checkbox`,
+      value: true,
+      info: `Show other bookmarks apart from the configured bookmarks folder`,
       version: 1,
     },
     max_prev_tabs: {
@@ -1311,6 +1317,10 @@ App.build_settings = () => {
         App.settings_make_menu(`warn_on_close_tabs`, App.tab_warn_opts)
         App.settings_make_menu(`warn_on_unload_tabs`, App.tab_warn_opts)
       },
+    },
+    filter: {
+      info: `Setting to adjust the filter and search`,
+      setup: () => {},
     },
     more: {
       info: `More advanced settings`,
