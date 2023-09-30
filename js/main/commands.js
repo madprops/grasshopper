@@ -487,7 +487,7 @@ App.setup_commands = () => {
       info: `Close tabs`
     },
     {
-      name: `Close Single Tab`,
+      name: `Close Single`,
       cmd: `close_single_tab`,
       mode: `tabs`,
       icon: tabs_icon,
@@ -497,7 +497,7 @@ App.setup_commands = () => {
       info: `Close only selected tab`
     },
     {
-      name: `Close Tabs Menu`,
+      name: `Close Menu`,
       cmd: `show_close_tabs_menu`,
       mode: `items`,
       icon: tabs_icon,
@@ -507,7 +507,7 @@ App.setup_commands = () => {
       info: `Open the menu with some tab closing options`
     },
     {
-      name: `Close Normal Tabs`,
+      name: `Close Normal`,
       cmd: `close_normal_tabs`,
       mode: `items`,
       icon: tabs_icon,
@@ -517,7 +517,7 @@ App.setup_commands = () => {
       info: `Close normal tabs`
     },
     {
-      name: `Close Playing Tabs`,
+      name: `Close Playing`,
       cmd: `close_playing_tabs`,
       mode: `items`,
       icon: tabs_icon,
@@ -527,7 +527,7 @@ App.setup_commands = () => {
       info: `Close playing tabs`
     },
     {
-      name: `Close Unloaded Tabs`,
+      name: `Close Unloaded`,
       cmd: `close_unloaded_tabs`,
       mode: `items`,
       icon: tabs_icon,
@@ -537,7 +537,7 @@ App.setup_commands = () => {
       info: `Close unloaded tabs`
     },
     {
-      name: `Close Duplicate Tabs`,
+      name: `Close Duplicate`,
       cmd: `close_duplicate_tabs`,
       mode: `items`,
       icon: tabs_icon,
@@ -547,7 +547,7 @@ App.setup_commands = () => {
       info: `Close duplicate tabs`
     },
     {
-      name: `Close Visible Tabs`,
+      name: `Close Visible`,
       cmd: `close_visible_tabs`,
       mode: `items`,
       icon: tabs_icon,
