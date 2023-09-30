@@ -36,7 +36,7 @@ App.do_filter = async (args) => {
   args = Object.assign(def_args, args)
   App.cancel_filter()
   App.debug(`Filter: ${args.mode}`)
-  let value = App.get_clean_filter(args.mode, false)
+  let value = App.get_filter(args.mode)
   value = App.remove_protocol(value)
 
   if (value.endsWith(`|`)) {
@@ -202,8 +202,9 @@ App.replace_filter_vars = (value) => {
 }
 
 App.make_filter_regex = (value, by_what) => {
-  value = App.replace_filter_vars(value)
   let regex
+  value = App.replace_filter_vars(value)
+
   if (by_what.startsWith(`re`)) {
     let cleaned = value.replace(/\\+$/, ``)
 
@@ -218,7 +219,7 @@ App.make_filter_regex = (value, by_what) => {
     catch (err) {}
   }
   else {
-    let cleaned = App.escape_regex(value)
+    let cleaned = App.escape_regex(App.clean_filter(value))
 
     if (App.get_setting(`case_insensitive`)) {
       regex = new RegExp(cleaned, `i`)
@@ -400,17 +401,6 @@ App.get_filter = (mode) => {
 
 App.filter_empty = (mode) => {
   return App.get_filter(mode) === ``
-}
-
-App.get_clean_filter = (mode, lowercase = true) => {
-  let value = App.get_filter(mode)
-  value = App.clean_filter(value)
-
-  if (lowercase) {
-    value = value.toLowerCase()
-  }
-
-  return value
 }
 
 App.show_filter_menu = (mode) => {
@@ -668,7 +658,7 @@ App.set_custom_filter = (mode, filter) => {
 }
 
 App.do_filter_2 = (mode) => {
-  let value = App.get_clean_filter(mode)
+  let value = App.clean_filter(App.get_filter(mode)).toLowerCase()
   let type = App.popup_open() ? `popup` : `window`
   let win = DOM.el(`#${type}_${mode}`)
   let container = DOM.el_or_self(`.filter_container`, win)
