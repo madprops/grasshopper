@@ -5,6 +5,13 @@ App.setup_commands = () => {
   let closed_icon = App.mode_icons.closed
   let theme_icon = App.settings_icons.theme
   let filter_icon = App.settings_icons.filter
+  let browser_icon = App.browser_icon
+  let clipboard_icon = App.clipboard_icon
+  let audio_icon = App.get_setting(`audio_icon`)
+  let memo_icon = App.memo_icon
+  let tag_icon = App.tag_icon
+  let playing_icon = App.get_setting(`playing_icon`)
+  let bot_icon = App.bot_icon
 
   for (let color of App.colors) {
     let icon = App.color_icon(color)
@@ -56,6 +63,7 @@ App.setup_commands = () => {
   color_changers.push({
     name: `Remove Color`,
     cmd: `remove_color`,
+    icon: theme_icon,
     mode: `items`,
     action: (args) => {
       App.change_color(args.item, `none`)
@@ -272,7 +280,7 @@ App.setup_commands = () => {
       name: `Copy URL`,
       cmd: `copy_item_url`,
       mode: `items`,
-      icon: App.clipboard_icon,
+      icon: clipboard_icon,
       action: (args) => {
         App.copy_url(args.item)
       },
@@ -282,7 +290,7 @@ App.setup_commands = () => {
       name: `Copy Title`,
       cmd: `copy_item_title`,
       mode: `items`,
-      icon: App.clipboard_icon,
+      icon: clipboard_icon,
       action: (args) => {
         App.copy_title(args.item)
       },
@@ -294,6 +302,7 @@ App.setup_commands = () => {
     {
       name: `Go Back`,
       cmd: `browser_back`,
+      icon: browser_icon,
       action: (args) => {
         App.browser_back()
       },
@@ -302,6 +311,7 @@ App.setup_commands = () => {
     {
       name: `Go Forward`,
       cmd: `browser_forward`,
+      icon: browser_icon,
       action: (args) => {
         App.browser_forward()
       },
@@ -310,6 +320,7 @@ App.setup_commands = () => {
     {
       name: `Reload Page`,
       cmd: `browser_reload`,
+      icon: browser_icon,
       action: (args) => {
         App.browser_reload()
       },
@@ -631,7 +642,7 @@ App.setup_commands = () => {
     {
       name: `Search Media`,
       cmd: `search_media`,
-      icon: App.get_setting(`audio_icon`),
+      icon: audio_icon,
       mode: `items`,
       action: (args) => {
         App.search_media(args.mode, args.e)
@@ -654,7 +665,7 @@ App.setup_commands = () => {
     {
       name: `Edit Profile`,
       cmd: `edit_profile`,
-      icon: App.memo_icon,
+      icon: memo_icon,
       mode: `items`,
       action: (args) => {
         App.edit_profiles(args.item)
@@ -674,7 +685,7 @@ App.setup_commands = () => {
     {
       name: `Add Tag`,
       cmd: `add_tag`,
-      icon: App.tag_icon,
+      icon: tag_icon,
       mode: `items`,
       action: (args) => {
         App.add_tag(args.item)
@@ -684,7 +695,7 @@ App.setup_commands = () => {
     {
       name: `Edit Title`,
       cmd: `edit_title`,
-      icon: App.memo_icon,
+      icon: memo_icon,
       mode: `items`,
       action: (args) => {
         App.edit_title(args.item)
@@ -694,7 +705,7 @@ App.setup_commands = () => {
     {
       name: `Edit Icon`,
       cmd: `edit_icon`,
-      icon: App.memo_icon,
+      icon: memo_icon,
       mode: `items`,
       action: (args) => {
         App.edit_icon(args.item)
@@ -738,7 +749,7 @@ App.setup_commands = () => {
     {
       name: `Filter Playing`,
       cmd: `filter_playing`,
-      icon: App.get_setting(`playing_icon`),
+      icon: playing_icon,
       mode: `tabs`,
       action: (args) => {
         App.set_filter_mode({mode: args.mode, type: `playing`})
@@ -748,7 +759,7 @@ App.setup_commands = () => {
     {
       name: `Filter Edited`,
       cmd: `filter_edited`,
-      icon: App.memo_icon,
+      icon: memo_icon,
       mode: `items`,
       action: (args) => {
         App.set_filter_mode({mode: args.mode, type: `edited`})
@@ -810,7 +821,7 @@ App.setup_commands = () => {
     {
       name: `Restart`,
       cmd: `restart_extension`,
-      icon: App.bot_icon,
+      icon: bot_icon,
       action: (args) => {
         App.restart_extension()
       },
