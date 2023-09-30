@@ -186,3 +186,38 @@ App.make_window_visible = () => {
 App.close_window = () => {
   window.close()
 }
+
+App.get_window_menu_items = async (item) => {
+  let items = []
+  let wins = await browser.windows.getAll({populate: false})
+
+  items.push({
+    text: `Detach`,
+    action: () => {
+      App.detach_tabs(item)
+    }
+  })
+
+  for (let win of wins) {
+    if (item.window_id === win.id) {
+      continue
+    }
+
+    let s = `${win.title.substring(0, 25).trim()} (ID: ${win.id})`
+    let text = `Move to: ${s}`
+
+    items.push({
+      text: text,
+      action: () => {
+        App.move_tabs(item, win.id)
+      }
+    })
+  }
+
+  return items
+}
+
+App.to_window = async (item) => {
+  let items = await App.get_window_menu_items(item)
+  NeedContext.show_on_center(items)
+}

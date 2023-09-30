@@ -102,36 +102,6 @@ App.show_item_menu_2 = (item) => {
   App.show_item_menu(item, rect.left, rect.top)
 }
 
-App.get_window_menu_items = async (item) => {
-  let items = []
-  let wins = await browser.windows.getAll({populate: false})
-
-  items.push({
-    text: `Detach`,
-    action: () => {
-      App.detach_tabs(item)
-    }
-  })
-
-  for (let win of wins) {
-    if (item.window_id === win.id) {
-      continue
-    }
-
-    let s = `${win.title.substring(0, 25).trim()} (ID: ${win.id})`
-    let text = `Move to: ${s}`
-
-    items.push({
-      text: text,
-      action: () => {
-        App.move_tabs(item, win.id)
-      }
-    })
-  }
-
-  return items
-}
-
 App.common_menu_items = (o_items, item, multiple) => {
   let items = []
 

@@ -387,6 +387,16 @@ App.setup_commands = () => {
       info: `Detach tabs to another window`
     },
     {
+      name: `To Window`,
+      cmd: `to_window`,
+      mode: `tabs`,
+      icon: tabs_icon,
+      action: (args) => {
+        App.to_window(args.item)
+      },
+      info: `Detach tabs to another window`
+    },
+    {
       name: `Move Tabs To Top`,
       cmd: `move_tabs_to_top`,
       mode: `tabs`,
