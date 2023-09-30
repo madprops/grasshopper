@@ -844,6 +844,13 @@ App.build_settings = () => {
   category = `filter`
 
   props = {
+    aliases: {
+      name: `Aliases`,
+      type: `list`,
+      value: [],
+      info: `Aliases to use when filtering items`,
+      version: 3,
+    },
     custom_filters: {
       name: `Custom Filters`,
       type: `list`,
@@ -953,13 +960,6 @@ App.build_settings = () => {
   category = `more`
 
   props = {
-    aliases: {
-      name: `Aliases`,
-      type: `list`,
-      value: [],
-      info: `Aliases to use when filtering items`,
-      version: 3,
-    },
     hover_effect: {
       name: `Hover Effect`,
       type: `menu`,
