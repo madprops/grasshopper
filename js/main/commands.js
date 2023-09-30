@@ -250,7 +250,7 @@ App.setup_commands = () => {
       info: `Open items`
     },
     {
-      name: `Open Single Item`,
+      name: `Open Item`,
       cmd: `open_single_item`,
       mode: `items`,
       action: (args) => {
@@ -347,7 +347,7 @@ App.setup_commands = () => {
       info: `Unload tabs`
     },
     {
-      name: `Unload Single Tab`,
+      name: `Unload Tab`,
       cmd: `unload_single_tab`,
       mode: `tabs`,
       icon: tabs_icon,
@@ -487,7 +487,7 @@ App.setup_commands = () => {
       info: `Close tabs`
     },
     {
-      name: `Close Single`,
+      name: `Close Tab`,
       cmd: `close_single_tab`,
       mode: `tabs`,
       icon: tabs_icon,
