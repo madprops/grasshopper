@@ -241,10 +241,6 @@ App.text_with_value_focused = () => {
   return false
 }
 
-App.only_chars = (s) => {
-  return s.replace(/[^\w]/g, ``)
-}
-
 App.no_space = (s) => {
   return s.replace(/\s+/g, ``)
 }

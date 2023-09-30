@@ -669,7 +669,7 @@ App.set_custom_filter = (mode, filter) => {
 
 App.do_filter_2 = (mode) => {
   let value = App.get_clean_filter(mode)
-  value = App.only_chars(value)
+  value = App.filter_string(value)
   let type = App.popup_open() ? `popup` : `window`
   let win = DOM.el(`#${type}_${mode}`)
   let container = DOM.el_or_self(`.filter_container`, win)
@@ -677,7 +677,7 @@ App.do_filter_2 = (mode) => {
 
   for (let item of items) {
     let text = DOM.el_or_self(`.filter_text`, item).textContent
-    text = App.only_chars(text).toLowerCase()
+    text = App.filter_string(text).toLowerCase()
 
     if (text.includes(value)) {
       item.classList.remove(`hidden`)
