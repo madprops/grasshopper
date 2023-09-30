@@ -250,7 +250,7 @@ App.single_space = (s) => {
 }
 
 App.remove_special = (s) => {
-  return s.replace(/[\'\"\-\!\?\@\#\$\%\^\&\*\+\<\>\[\]\(\)\|]/g, ``)
+  return s.replace(/[\'\"\-\!\?\@\#\$\%\^\&\*\+\<\>\[\]\(\)\|\_]/g, ``)
 }
 
 App.wheel_direction = (e) => {
