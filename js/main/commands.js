@@ -397,7 +397,7 @@ App.setup_commands = () => {
       info: `Detach tabs to another window`
     },
     {
-      name: `Move Tabs To Top`,
+      name: `Move To Top`,
       cmd: `move_tabs_to_top`,
       mode: `tabs`,
       icon: tabs_icon,
@@ -407,7 +407,7 @@ App.setup_commands = () => {
       info: ``
     },
     {
-      name: `Move Tabs To Bottom`,
+      name: `Move To Bottom`,
       cmd: `move_tabs_to_bottom`,
       mode: `tabs`,
       icon: tabs_icon,
