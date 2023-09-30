@@ -896,6 +896,13 @@ App.build_settings = () => {
       info: `Require holding Ctrl to re-order tab items`,
       version: 1,
     },
+    exact_filter: {
+      name: `Exact Filter`,
+      type: `checkbox`,
+      value: false,
+      info: `Filter using what you wrote exactly`,
+      version: 1,
+    },
     single_new_tab: {
       name: `Single New Tab`,
       type: `checkbox`,

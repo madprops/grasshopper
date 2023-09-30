@@ -240,7 +240,7 @@ App.filter_check = (args) => {
 
   if (!match) {
     let title = App.get_title(args.item)
-    title = App.remove_quotes(title).trim()
+    title = App.filter_string(title)
 
     for (let regex of args.regexes) {
       if (args.by_what === `all` || args.by_what === `re`) {
@@ -404,8 +404,7 @@ App.filter_empty = (mode) => {
 
 App.get_clean_filter = (mode, lowercase = true) => {
   let value = App.get_filter(mode)
-  value = App.single_space(value)
-  value = App.remove_quotes(value).trim()
+  value = App.filter_string(value)
 
   if (lowercase) {
     value = value.toLowerCase()
@@ -902,4 +901,16 @@ App.filter_at_end = (mode) => {
   let filter = App.get_filter_el(mode)
   return filter.selectionStart === filter.selectionEnd &&
   filter.selectionEnd === filter.value.length
+}
+
+App.filter_string = (s) => {
+  if (App.get_setting(`exact_filter`)) {
+    return s
+  }
+
+  s = App.no_space(s)
+  s = App.remove_quotes(s)
+  s = App.remove_hyphens(s)
+  s = s.trim()
+  return s
 }

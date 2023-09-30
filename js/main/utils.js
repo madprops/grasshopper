@@ -257,6 +257,10 @@ App.remove_quotes = (s) => {
   return s.replace(/'/g, ``)
 }
 
+App.remove_hyphens = (s) => {
+  return s.replace(/-/g, ``)
+}
+
 App.wheel_direction = (e) => {
   if (e.deltaY > 0) {
     return `down`
