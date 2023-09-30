@@ -556,7 +556,7 @@ App.setup_commands = () => {
       info: `Close visible tabs`
     },
     {
-      name: `Go To Playing Tab`,
+      name: `Go To Playing`,
       cmd: `go_to_playing_tab`,
       icon: tabs_icon,
       action: (args) => {
