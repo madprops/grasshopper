@@ -575,7 +575,7 @@ App.setup_commands = () => {
       info: `Open the sort tabs window`
     },
     {
-      name: `Show Tabs Info`,
+      name: `Show Info`,
       cmd: `show_tabs_info`,
       mode: `items`,
       icon: tabs_icon,
@@ -585,7 +585,7 @@ App.setup_commands = () => {
       info: `Show some tab info`
     },
     {
-      name: `Show Tab URLs`,
+      name: `Show URLs`,
       cmd: `show_tab_urls`,
       mode: `items`,
       icon: tabs_icon,
@@ -595,7 +595,7 @@ App.setup_commands = () => {
       info: `Show a list of open URLs`
     },
     {
-      name: `Open Tab URLs`,
+      name: `Open URLs`,
       cmd: `open_tab_urls`,
       mode: `items`,
       icon: tabs_icon,
