@@ -211,7 +211,7 @@ App.setup_commands = () => {
       info: `Show the palette`
     },
     {
-      name: `Show Item Menu`,
+      name: `Item Menu`,
       cmd: `show_item_menu`,
       mode: `items`,
       action: (args) => {
