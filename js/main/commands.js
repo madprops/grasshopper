@@ -250,15 +250,6 @@ App.setup_commands = () => {
       info: `Open items`
     },
     {
-      name: `Open Item`,
-      cmd: `open_single_item`,
-      mode: `items`,
-      action: (args) => {
-        App.open_items(args.item, false)
-      },
-      info: `Open only the selected item`
-    },
-    {
       name: `Bookmark Items`,
       cmd: `bookmark_items`,
       mode: `items`,
@@ -345,16 +336,6 @@ App.setup_commands = () => {
         App.unload_tabs(args.item)
       },
       info: `Unload tabs`
-    },
-    {
-      name: `Unload Tab`,
-      cmd: `unload_single_tab`,
-      mode: `tabs`,
-      icon: tabs_icon,
-      action: (args) => {
-        App.unload_tabs(args.item, false)
-      },
-      info: `Unload only the selected tab`
     },
     {
       name: `Load Tabs`,
@@ -485,16 +466,6 @@ App.setup_commands = () => {
         App.close_tabs(args.item)
       },
       info: `Close tabs`
-    },
-    {
-      name: `Close Tab`,
-      cmd: `close_single_tab`,
-      mode: `tabs`,
-      icon: tabs_icon,
-      action: (args) => {
-        App.close_tabs(args.item, false)
-      },
-      info: `Close only selected tab`
     },
     {
       name: `Close Menu`,
