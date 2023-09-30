@@ -4,6 +4,7 @@ App.setup_commands = () => {
   let bookmarks_icon = App.mode_icons.bookmarks
   let closed_icon = App.mode_icons.closed
   let theme_icon = App.settings_icons.theme
+  let filter_icon = App.settings_icons.filter
 
   for (let color of App.colors) {
     let icon = App.color_icon(color)
@@ -629,6 +630,7 @@ App.setup_commands = () => {
     {
       name: `Filter History`,
       cmd: `filter_history`,
+      icon: filter_icon,
       mode: `items`,
       action: (args) => {
         App.show_filter_history(args.mode, args.e)
@@ -638,6 +640,7 @@ App.setup_commands = () => {
     {
       name: `Deep Search`,
       cmd: `deep_search`,
+      icon: filter_icon,
       mode: `search`,
       action: (args) => {
         App.deep_search(args.mode)
@@ -733,6 +736,7 @@ App.setup_commands = () => {
     {
       name: `Filter Domain`,
       cmd: `filter_domain`,
+      icon: filter_icon,
       mode: `items`,
       action: (args) => {
         App.filter_domain(args.item)
@@ -742,6 +746,7 @@ App.setup_commands = () => {
     {
       name: `Filter Color`,
       cmd: `filter_color`,
+      icon: theme_icon,
       mode: `items`,
       color: true,
       action: (args) => {
