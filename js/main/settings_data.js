@@ -900,7 +900,7 @@ App.build_settings = () => {
       name: `Exact Filter`,
       type: `checkbox`,
       value: false,
-      info: `Filter using what you wrote exactly`,
+      info: `Filter using what you wrote exactly instead of removing special characters`,
       version: 1,
     },
     single_new_tab: {
