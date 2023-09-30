@@ -156,6 +156,7 @@ NeedContext.show = (x, y, items, root = true) => {
 
       if (item.image) {
         let image = document.createElement(`img`)
+        image.loading = `lazy`
 
         image.addEventListener(`error`, (e) => {
           e.target.classList.add(`needcontext-hidden`)
