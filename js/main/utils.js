@@ -249,12 +249,8 @@ App.single_space = (s) => {
   return s.replace(/\s+/g, ` `)
 }
 
-App.remove_quotes = (s) => {
-  return s.replace(/'/g, ``)
-}
-
-App.remove_hyphens = (s) => {
-  return s.replace(/-/g, ``)
+App.remove_special = (s) => {
+  return s.replace(/[\'\"\-\!\@\#\$\%\^\&\*\+\<\>\[\]\(\)\|]/g, ``)
 }
 
 App.wheel_direction = (e) => {

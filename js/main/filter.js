@@ -909,8 +909,7 @@ App.filter_string = (s) => {
   }
 
   s = App.no_space(s)
-  s = App.remove_quotes(s)
-  s = App.remove_hyphens(s)
+  s = App.remove_special(s)
   s = s.trim()
   return s
 }
