@@ -388,7 +388,7 @@ App.setup_commands = () => {
     },
     {
       name: `To Window`,
-      cmd: `to_window`,
+      cmd: `show_window_menu`,
       mode: `tabs`,
       icon: tabs_icon,
       action: (args) => {
