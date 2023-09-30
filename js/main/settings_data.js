@@ -896,13 +896,6 @@ App.build_settings = () => {
       info: `Require holding Ctrl to re-order tab items`,
       version: 1,
     },
-    exact_filter: {
-      name: `Exact Filter`,
-      type: `checkbox`,
-      value: false,
-      info: `Filter using what you wrote exactly instead of removing special characters`,
-      version: 1,
-    },
     single_new_tab: {
       name: `Single New Tab`,
       type: `checkbox`,
@@ -922,6 +915,13 @@ App.build_settings = () => {
       type: `checkbox`,
       value: true,
       info: `Close the popup when opening a popup`,
+      version: 1,
+    },
+    clean_filter: {
+      name: `Clean Filter`,
+      type: `checkbox`,
+      value: true,
+      info: `Remove special characters from the filter`,
       version: 1,
     },
     case_insensitive: {

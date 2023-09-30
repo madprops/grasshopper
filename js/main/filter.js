@@ -240,7 +240,7 @@ App.filter_check = (args) => {
 
   if (!match) {
     let title = App.get_title(args.item)
-    title = App.filter_string(title)
+    title = App.clean_filter(title)
 
     for (let regex of args.regexes) {
       if (args.by_what === `all` || args.by_what === `re`) {
@@ -404,7 +404,7 @@ App.filter_empty = (mode) => {
 
 App.get_clean_filter = (mode, lowercase = true) => {
   let value = App.get_filter(mode)
-  value = App.filter_string(value)
+  value = App.clean_filter(value)
 
   if (lowercase) {
     value = value.toLowerCase()
@@ -669,7 +669,6 @@ App.set_custom_filter = (mode, filter) => {
 
 App.do_filter_2 = (mode) => {
   let value = App.get_clean_filter(mode)
-  value = App.filter_string(value)
   let type = App.popup_open() ? `popup` : `window`
   let win = DOM.el(`#${type}_${mode}`)
   let container = DOM.el_or_self(`.filter_container`, win)
@@ -677,7 +676,7 @@ App.do_filter_2 = (mode) => {
 
   for (let item of items) {
     let text = DOM.el_or_self(`.filter_text`, item).textContent
-    text = App.filter_string(text).toLowerCase()
+    text = App.clean_filter(text).toLowerCase()
 
     if (text.includes(value)) {
       item.classList.remove(`hidden`)
@@ -903,8 +902,8 @@ App.filter_at_end = (mode) => {
   filter.selectionEnd === filter.value.length
 }
 
-App.filter_string = (s) => {
-  if (App.get_setting(`exact_filter`)) {
+App.clean_filter = (s) => {
+  if (!App.get_setting(`clean_filter`)) {
     return s
   }
 
