@@ -533,7 +533,9 @@ NeedContext.init = () => {
       }
     }
     else if (e.target.closest(`.needcontext-back`)) {
-      NeedContext.go_back()
+      if (e.button === 0) {
+        NeedContext.go_back()
+      }
     }
     else if (NeedContext.mousedown) {
       NeedContext.select_action(e)
