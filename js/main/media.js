@@ -66,7 +66,7 @@ App.start_media = (what) => {
         App.show_media_menu(what)
       })
 
-      DOM.evs(close, [`click`, `auxclick`], () => {
+      DOM.ev(close, `click`, () => {
         App.hide_window()
       })
 

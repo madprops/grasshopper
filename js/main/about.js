@@ -50,7 +50,7 @@ App.start_about = () => {
 
       let close = DOM.el(`#about_close`)
 
-      DOM.evs(close, [`click`, `auxclick`], () => {
+      DOM.ev(close, `click`, () => {
         App.hide_window()
       })
 

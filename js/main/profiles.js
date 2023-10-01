@@ -55,7 +55,7 @@ App.start_profile_editor = () => {
       let close_el = DOM.el(`#profile_editor_close`)
       close_el.textContent = App.close_text
 
-      DOM.evs(close_el, [`click`, `auxclick`], () => {
+      DOM.ev(close_el, `click`, () => {
         App.profile_editor_close()
       })
 
@@ -1314,9 +1314,8 @@ App.profile_setup_labels = () => {
       },
     })
 
-    DOM.evs(el, [`click`, `contextmenu`], (e) => {
+    DOM.ev(el, `click`, (e) => {
       NeedContext.show(e.clientX, e.clientY, items)
-      e.preventDefault()
     })
   }
 }

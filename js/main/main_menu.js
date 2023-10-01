@@ -3,9 +3,8 @@ App.create_main_menu = (mode) => {
   main_menu.textContent = App.get_mode_name(mode)
   main_menu.title = `Main Menu (Ctrl + Left)`
 
-  DOM.evs(main_menu, [`click`, `contextmenu`], (e) => {
+  DOM.ev(main_menu, `click`, () => {
     App.show_main_menu(mode)
-    e.preventDefault()
   })
 
   DOM.ev(main_menu, `auxclick`, (e) => {

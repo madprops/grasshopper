@@ -15,7 +15,7 @@ App.create_popup = (args) => {
 
   popup.append(container)
 
-  DOM.evs(popup, [`click`, `auxclick`], (e) => {
+  DOM.ev(popup, `click`, (e) => {
     if (e.target.isConnected && !e.target.closest(`.popup_container`)) {
       p.dismiss()
     }

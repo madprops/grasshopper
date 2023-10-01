@@ -39,7 +39,7 @@ App.do_check_pinline = () => {
   pinline_content.innerHTML = `${n1} ${s1}${sep}${n2} ${s2}`
   pinline_content.title = `Pins above. Normal below`
 
-  DOM.evs(pinline_content, [`click`, `contextmenu`], (e) => {
+  DOM.ev(pinline_content, `click`, (e) => {
     App.show_custom_menu(e, `pinline`)
   })
 

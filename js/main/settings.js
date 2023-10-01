@@ -64,7 +64,7 @@ App.settings_setup_checkboxes = (category) => {
         App.set_setting(key, el.checked)
       })
 
-      DOM.evs(App.get_settings_label(key), [`click`, `contextmenu`], (e) => {
+      DOM.ev(App.get_settings_label(key), `click`, (e) => {
         App.settings_label_menu(e,
         [
           {
@@ -154,7 +154,7 @@ App.settings_setup_texts = (category) => {
       })
     }
 
-    DOM.evs(App.get_settings_label(key), [`click`, `contextmenu`], (e) => {
+    DOM.ev(App.get_settings_label(key), `click`, (e) => {
       App.settings_label_menu(e, menu)
     })
   }
@@ -220,7 +220,7 @@ App.settings_setup_numbers = (category) => {
       },
     ]
 
-    DOM.evs(App.get_settings_label(key), [`click`, `contextmenu`], (e) => {
+    DOM.ev(App.get_settings_label(key), `click`, (e) => {
       App.settings_label_menu(e, menu)
     })
   }
@@ -250,7 +250,7 @@ App.setting_setup_lists = (category) => {
         },
       ]
 
-      DOM.evs(App.get_settings_label(key), [`click`, `contextmenu`], (e) => {
+      DOM.ev(App.get_settings_label(key), `click`, (e) => {
         App.settings_label_menu(e, menu)
       })
     }
@@ -271,7 +271,7 @@ App.settings_make_menu = (setting, opts, action = () => {}) => {
     },
   })
 
-  DOM.evs(App.get_settings_label(setting), [`click`, `contextmenu`], (e) => {
+  DOM.ev(App.get_settings_label(setting), `click`, (e) => {
     App.settings_label_menu(e,
     [
       {
@@ -487,7 +487,7 @@ App.start_color_picker = (setting, alpha = false) => {
     App.set_setting(setting, color)
   })
 
-  DOM.evs(App.get_settings_label(setting), [`click`, `contextmenu`], (e) => {
+  DOM.ev(App.get_settings_label(setting), `click`, (e) => {
     App.settings_label_menu(e,
     [
       {
@@ -660,7 +660,6 @@ App.settings_label_menu = (e, args) => {
   }
 
   NeedContext.show(e.clientX, e.clientY, items)
-  e.preventDefault()
 }
 
 App.settings_wheel = App.create_debouncer((e, direction) => {

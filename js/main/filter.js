@@ -581,9 +581,8 @@ App.create_filter_menu = (mode) => {
   fmodes.push({type: `custom`, text: `Custom`, skip: true, skip: `Pick a custom filter`})
   App[`${mode}_filter_modes`] = fmodes
 
-  DOM.evs(filter_menu, [`click`, `contextmenu`], (e) => {
+  DOM.ev(filter_menu, `click`, () => {
     App.show_filter_menu(mode)
-    e.preventDefault()
   })
 
   DOM.ev(filter_menu, `auxclick`, (e) => {
