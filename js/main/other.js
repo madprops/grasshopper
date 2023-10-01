@@ -81,3 +81,7 @@ App.check_ready = (what) => {
   App[s] = true
   return false
 }
+
+App.color_icon = (color) => {
+  return DOM.create(`div`, `color_icon background_${color}`)
+}

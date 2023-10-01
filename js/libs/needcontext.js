@@ -128,7 +128,7 @@ NeedContext.show = (x, y, items, root = true) => {
     let el = document.createElement(`div`)
     el.classList.add(`needcontext-back`)
     let icon = document.createElement(`div`)
-    icon.innerHTML = NeedContext.back_icon
+    icon.append(NeedContext.back_icon)
     let text = document.createElement(`div`)
     text.textContent = NeedContext.back_text
     el.append(icon)
@@ -169,7 +169,7 @@ NeedContext.show = (x, y, items, root = true) => {
 
       if (item.icon) {
         let icon = document.createElement(`div`)
-        icon.innerHTML = item.icon
+        icon.append(item.icon)
         el.append(icon)
       }
 

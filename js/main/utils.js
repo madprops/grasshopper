@@ -385,10 +385,6 @@ App.to_set = (array) => {
   return [...new Set(array)]
 }
 
-App.color_icon = (color) => {
-  return `<div class='color_icon background_${color}'></div>`
-}
-
 App.MINUTE = 60000
 App.HOUR = 3600000
 App.DAY = 86400000

@@ -1,5 +1,4 @@
 App.setup_commands = () => {
-  let color_filters = []
   let tabs_icon =  App.mode_icons.tabs
   let bookmarks_icon = App.mode_icons.bookmarks
   let closed_icon = App.mode_icons.closed
@@ -14,6 +13,8 @@ App.setup_commands = () => {
   let playing_icon = App.get_setting(`playing_icon`)
   let bot_icon = App.bot_icon
   let generic_icon = App.generic_icon
+  let color_filters = []
+  let color_changers = []
 
   for (let color of App.colors) {
     let icon = App.color_icon(color)
@@ -29,13 +30,9 @@ App.setup_commands = () => {
       },
       info: `Filter by color: ${color}`
     })
-  }
 
-  let color_changers = []
-
-  for (let color of App.colors) {
-    let icon = App.color_icon(color)
-    let name = `Color ${App.capitalize(color)}`
+    icon = App.color_icon(color)
+    name = `Color ${App.capitalize(color)}`
 
     color_changers.push({
       name: name,
@@ -48,6 +45,7 @@ App.setup_commands = () => {
       info: `Change color of profile: ${color}`
     })
 
+    icon = App.color_icon(color)
     name = `Toggle ${App.capitalize(color)}`
 
     color_changers.push({

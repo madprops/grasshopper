@@ -80,13 +80,17 @@ Menubutton.create = (args = {}) => {
 }
 
 Menubutton.set_text = (args, opt) => {
+  args.button.innerHTML = ``
+
   if (opt.icon) {
-    args.button.innerHTML = `<div>` + (opt.icon || ``) + `</div>` + opt.text
-  }
-  else {
-    args.button.textContent = opt.text
+    let icon = DOM.create(`div`)
+    icon.append(opt.icon)
+    args.button.append(icon)
   }
 
+  let text = DOM.create(`div`)
+  text.append(opt.text)
+  args.button.append(text)
   args.value = opt.value
 }
 
