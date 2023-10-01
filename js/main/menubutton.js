@@ -17,7 +17,7 @@ Menubutton.create = (args = {}) => {
   let next = DOM.create(`div`, `button`)
   next.textContent = `>`
 
-  DOM.ev(args.button, `click`, () => {
+  DOM.evs(args.button, [`click`, `contextmenu`], (e) => {
     let items = []
 
     for (let opt of args.opts) {
@@ -42,6 +42,7 @@ Menubutton.create = (args = {}) => {
     }
 
     NeedContext.show_on_element(args.button, items, true, args.button.clientHeight)
+    e.preventDefault()
   })
 
   args.set = (value, on_change = true) => {
