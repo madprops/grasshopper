@@ -1068,7 +1068,7 @@ App.build_settings = () => {
     max_prev_tabs: {
       name: `Max Prev Tabs`,
       type: `number`,
-      value: 10,
+      value: 11,
       placeholder: `Number`,
       min: 1,
       max: 999,
