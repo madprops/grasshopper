@@ -134,11 +134,6 @@ NeedContext.show = (x, y, items, root = true) => {
     el.append(icon)
     el.append(text)
     el.title = `Shortcut: Backspace`
-
-    el.addEventListener(`click`, () => {
-      NeedContext.go_back()
-    })
-
     c.append(el)
   }
 
@@ -523,6 +518,9 @@ NeedContext.init = () => {
       if (NeedContext.first_mousedown) {
         NeedContext.hide()
       }
+    }
+    else if (e.target.closest(`.needcontext-back`)) {
+      NeedContext.go_back()
     }
     else if (NeedContext.mousedown) {
       NeedContext.select_action(e)
