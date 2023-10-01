@@ -360,32 +360,45 @@ NeedContext.select_action = async (e, index = NeedContext.index, mode = `mouse`)
     NeedContext.show(x, y, items, false)
   }
 
-  if ((e.button === 0 || mode === `keyboard`) && item.action) {
-    NeedContext.hide()
-    item.action(e)
-  }
-  else if (e.button === 1 && item.alt_action) {
-    NeedContext.hide()
-    item.alt_action(e)
-  }
-  else if (item.items) {
-    if (item.items.length === 1 && item.direct) {
-      NeedContext.hide()
-      item.items[0].action(e)
-    }
-    else {
-      show_below(item.items)
-    }
-  }
-  else if (item.get_items) {
-    let items = await item.get_items()
-
+  function do_items (items) {
     if (items.length === 1 && item.direct) {
       NeedContext.hide()
       items[0].action(e)
     }
     else {
       show_below(items)
+    }
+
+    return
+  }
+
+  async function check_item () {
+    if (item.action) {
+      NeedContext.hide()
+      item.action(e)
+      return
+    }
+    else if (item.items) {
+      do_items(item.items)
+    }
+    else if (item.get_items) {
+      let items = await item.get_items()
+      do_items(items)
+    }
+  }
+
+  if (mode === `keyboard`) {
+    check_item()
+    return
+  }
+
+  if (e.button === 0) {
+    check_item()
+  }
+  else if (e.button === 1) {
+    if (item.alt_action) {
+      NeedContext.hide()
+      item.alt_action(e)
     }
   }
 }
