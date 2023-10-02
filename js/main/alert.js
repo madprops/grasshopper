@@ -7,7 +7,7 @@ App.alert = (message, autohide_delay = 0) => {
   App.show_popup(`alert`)
 
   if (autohide_delay > 0) {
-    App.alert_autohide = setTimeout(() => {
+    App.alert_timeout = setTimeout(() => {
       App.hide_popup(`alert`)
     }, autohide_delay)
   }

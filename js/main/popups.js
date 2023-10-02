@@ -69,7 +69,7 @@ App.create_popup = (args) => {
 }
 
 App.show_popup = (id) => {
-  clearTimeout(App.alert_autohide)
+  clearTimeout(App.alert_timeout)
   App.popups[id].show()
   App.popups[id].show_date = App.now()
   let open = App.open_popups()
@@ -137,7 +137,7 @@ App.start_popups = () => {
 }
 
 App.hide_all_popups = () => {
-  clearTimeout(App.alert_autohide)
+  clearTimeout(App.alert_timeout)
 
   for (let id of App.open_popup_list()) {
     App.popups[id].hide()
