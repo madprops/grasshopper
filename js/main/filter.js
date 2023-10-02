@@ -14,6 +14,11 @@ App.start_filter_debouncers = () => {
 }
 
 App.filter = (args) => {
+  if (args.from === `cycle`) {
+    App.filter_debouncer.call(args)
+    return
+  }
+
   if (App.search_modes.includes(args.mode)) {
     App.filter_debouncer_search.call(args)
   }
@@ -538,7 +543,7 @@ App.set_filter_mode = (args) => {
       App.do_filter({mode: args.mode})
     }
     else {
-      App.filter({mode: args.mode})
+      App.filter({mode: args.mode, from: `cycle`})
     }
   }
 }
