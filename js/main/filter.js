@@ -147,7 +147,6 @@ App.do_filter = async (args) => {
       }
 
       if (match) {
-        console.log(match)
         reg = App.make_filter_regex(match, by_what)
 
         if (reg) {
