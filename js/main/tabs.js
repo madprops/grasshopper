@@ -139,6 +139,7 @@ App.focus_tab = async (args) => {
   let def_args = {
     method: `normal`,
     show_tabs: false,
+    scroll: `center`,
   }
 
   args = Object.assign(def_args, args)

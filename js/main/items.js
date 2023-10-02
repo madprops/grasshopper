@@ -7,6 +7,7 @@ App.remove_selected_class = (mode) => {
 App.select_item = (args) => {
   let def_args = {
     deselect: true,
+    scroll: `center`,
   }
 
   args = Object.assign(def_args, args)

@@ -217,9 +217,8 @@ App.open_media = (what = App.window_mode) => {
   }
 
   let item = App[`current_media_${what}_item`]
-  App.check_bookmark(item)
-  App.focus_or_open_item(item)
   App.hide_window()
+  App.focus_or_open_item(item)
 }
 
 App.media_copy = (what) => {
@@ -229,7 +228,6 @@ App.media_copy = (what) => {
 App.media_background = (what = App.window_mode) => {
   if (what === `image`) {
     let item = App[`current_media_${what}_item`]
-    App.check_bookmark(item)
     App.change_background(item.url)
   }
 }
