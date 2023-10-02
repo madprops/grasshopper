@@ -58,7 +58,7 @@ App.scroller_delay = 100
 App.pinline_delay = 100
 App.wheel_delay = 100
 App.show_mode_delay = 100
-App.filter_cycle_delay = 100
+App.filter_cycle_delay = 50
 
 App.settings_icons = {
   general: `⚙️`,
