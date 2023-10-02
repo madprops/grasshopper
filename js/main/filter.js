@@ -11,15 +11,17 @@ App.start_filter_debouncers = () => {
   App.filter_debouncer_search = App.create_debouncer((args) => {
     App.do_filter(args)
   }, App.get_setting(`filter_delay_search`))
+
+  App.filter_debouncer_cycle = App.create_debouncer((args) => {
+    App.do_filter(args)
+  }, App.filter_cycle_delay)
 }
 
 App.filter = (args) => {
   if (args.from === `cycle`) {
-    App.filter_debouncer.call(args)
-    return
+    App.filter_debouncer_cycle.call(args)
   }
-
-  if (App.search_modes.includes(args.mode)) {
+  else if (App.search_modes.includes(args.mode)) {
     App.filter_debouncer_search.call(args)
   }
   else {
