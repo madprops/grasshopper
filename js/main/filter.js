@@ -118,16 +118,18 @@ App.do_filter = async (args) => {
     return
   }
 
-  let value_lower = value.toLowerCase()
   let insensitive = App.get_setting(`case_insensitive`)
 
   if (value && by_what === `all`) {
+    value = App.clean_filter(value)
     let aliases = App.get_setting(`aliases`)
 
     for (let alias of aliases) {
       let match
 
       if (insensitive) {
+        let value_lower = value.toLowerCase()
+
         if (alias.a.toLowerCase().startsWith(value_lower)) {
           match = alias.b
         }
@@ -145,6 +147,7 @@ App.do_filter = async (args) => {
       }
 
       if (match) {
+        console.log(match)
         reg = App.make_filter_regex(match, by_what)
 
         if (reg) {
