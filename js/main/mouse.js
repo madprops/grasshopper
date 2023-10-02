@@ -47,6 +47,10 @@ App.setup_window_mouse = (mode) => {
 }
 
 App.mouse_up_action = (mode, e) => {
+  if (!App.cursor_on_item(e, mode)) {
+    return
+  }
+
   if (e.button === 2) {
     App.mouse_context_action(mode, e)
   }
