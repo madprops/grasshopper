@@ -338,9 +338,9 @@ App.build_settings = () => {
     show_pinline: {
       name: `Show Pinline`,
       type: `menu`,
-      value: `normal`,
+      value: `auto`,
       info: `Show the widget between pinned and normal tabs`,
-      version: 2,
+      version: 3,
     },
     show_tooltips: {
       name: `Show Tooltips`,
@@ -1266,7 +1266,7 @@ App.build_settings = () => {
       setup: () => {
         App.settings_make_menu(`show_pinline`, [
           {text: `Never`, value: `never`},
-          {text: `Normal`, value: `normal`},
+          {text: `Auto`, value: `auto`},
           {text: `Always`, value: `always`},
         ])
       },

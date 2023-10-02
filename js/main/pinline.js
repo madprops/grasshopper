@@ -10,8 +10,9 @@ App.check_pinline = () => {
 
 App.do_check_pinline = () => {
   App.pinline_debouncer.cancel()
+  let show = App.get_setting(`show_pinline`)
 
-  if (App.get_setting(`show_pinline`) === `never`) {
+  if (show === `never`) {
     return
   }
 
@@ -23,7 +24,7 @@ App.do_check_pinline = () => {
     return
   }
 
-  if (App.get_setting(`show_pinline`) === `normal`) {
+  if (show === `auto`) {
     if ((!tabs.pinned_f.length) || (!tabs.normal_f.length)) {
       return
     }
