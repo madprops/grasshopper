@@ -515,28 +515,15 @@ NeedContext.init = () => {
       return
     }
 
-    e.preventDefault()
-    e.stopPropagation()
+    NeedContext.first_mousedown = true
 
-    if (e.button === 0) {
-      NeedContext.first_mousedown = true
-
-      if (e.target.closest(`#needcontext-container`)) {
-        NeedContext.mousedown = true
-      }
+    if (e.target.closest(`#needcontext-container`)) {
+      NeedContext.mousedown = true
     }
   })
 
   document.addEventListener(`mouseup`, (e) => {
     if (!NeedContext.open || !e.target) {
-      return
-    }
-
-    e.preventDefault()
-    e.stopPropagation()
-
-    if (e.button === 2) {
-      NeedContext.hide()
       return
     }
 

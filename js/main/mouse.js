@@ -18,7 +18,7 @@ App.setup_window_mouse = (mode) => {
   let container = DOM.el(`#${mode}_container`)
 
   DOM.ev(window, `mouseup`, (e) => {
-    App.mouse_up_action(mode, e)
+    App.mouse_up_action(e)
   })
 
   DOM.ev(container, `click`, (e) => {
@@ -30,7 +30,7 @@ App.setup_window_mouse = (mode) => {
   })
 
   DOM.ev(container, `contextmenu`, (e) => {
-    e.preventDefault()
+    App.mouse_context_action(mode, e)
   })
 
   DOM.ev(container, `wheel`, (e) => {
@@ -46,13 +46,9 @@ App.setup_window_mouse = (mode) => {
   })
 }
 
-App.mouse_up_action = (mode, e) => {
-  if (!App.cursor_on_item(e, mode)) {
+App.mouse_up_action = (e) => {
+  if (e.button !== 0) {
     return
-  }
-
-  if (e.button === 2) {
-    App.mouse_context_action(mode, e)
   }
 }
 
