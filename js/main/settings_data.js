@@ -981,6 +981,13 @@ App.build_settings = () => {
       info: `What command to perform when double clicking an item`,
       version: 1,
     },
+    click_select: {
+      name: `Click Select`,
+      type: `checkbox`,
+      value: false,
+      info: `Click to select without triggering an action`,
+      version: 1,
+    },
     icon_pick: {
       name: `Icon Pick`,
       type: `checkbox`,

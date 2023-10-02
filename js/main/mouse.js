@@ -134,7 +134,7 @@ App.mouse_click_action = (mode, e) => {
     return
   }
 
-  if (e.altKey) {
+  if (e.altKey || App.get_setting(`click_select`)) {
     return
   }
 
