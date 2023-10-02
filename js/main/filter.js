@@ -4,6 +4,10 @@ App.setup_filter = () => {
 }
 
 App.start_filter_debouncers = () => {
+  App.filter_debouncer_cycle = App.create_debouncer((args) => {
+    App.do_filter(args)
+  }, App.filter_cycle_delay)
+
   App.filter_debouncer = App.create_debouncer((args) => {
     App.do_filter(args)
   }, App.get_setting(`filter_delay`))
@@ -11,10 +15,6 @@ App.start_filter_debouncers = () => {
   App.filter_debouncer_search = App.create_debouncer((args) => {
     App.do_filter(args)
   }, App.get_setting(`filter_delay_search`))
-
-  App.filter_debouncer_cycle = App.create_debouncer((args) => {
-    App.do_filter(args)
-  }, App.filter_cycle_delay)
 }
 
 App.filter = (args) => {
