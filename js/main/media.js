@@ -97,6 +97,8 @@ App.start_media = (what) => {
     colored_top: true,
     cls: `media`,
   })
+
+  App.fill_media_window(what)
 }
 
 App.get_media_type = (item) => {
@@ -351,4 +353,32 @@ App.is_video = (src) => {
 App.is_audio = (src) => {
   let extension = App.get_extension(src).toLowerCase()
   return extension && App.audio_extensions.includes(extension)
+}
+
+App.fill_media_window = (what) => {
+  let c = DOM.create(`div`, `flex_column_center gap_2`)
+  let url = DOM.create(`div`, `media_url action`, `media_${what}_url`)
+  c.append(url)
+  let mc = DOM.create(`div`, `media_container`, `media_${what}_container`)
+  let loading = DOM.create(`div`, `media_loading hidden`, `media_${what}_loading`)
+  mc.append(loading)
+  let media
+
+  if (what === `image`) {
+    media = DOM.create(`img`, `media_player`, `media_${what}_player`)
+  }
+  else if (what === `video`) {
+    media = DOM.create(`video`, `media_player`, `media_${what}_player`)
+    media.controls = true
+  }
+  else if (what === `audio`) {
+    media = DOM.create(`audio`, `media_player`, `media_${what}_player`)
+    media.controls = true
+  }
+
+  mc.append(media)
+  c.append(mc)
+  DOM.el(`#window_content_media_${what}`).append(c)
+  let top = DOM.create(`div`, `flex_row_center gap_2 grow`, `media_${what}_buttons`)
+  DOM.el(`#window_top_media_${what}`).append(top)
 }
