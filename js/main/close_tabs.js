@@ -28,7 +28,7 @@ App.close_tabs_popup = (type) => {
   App.start_tab_popups()
   App.close_tabs_type = type
   App.show_popup(`close_tabs`)
-  let title = App.capitalize_words(`Close ${type} tabs`)
+  let title = App.capitalize_words(`Close ${type}`)
   DOM.el(`#close_tabs_title`).textContent = title
 
   if (type === `normal`) {
