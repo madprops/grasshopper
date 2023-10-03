@@ -230,35 +230,35 @@ App.close_tabs_menu = (e) => {
   let items = []
 
   items.push({
-    text: `Close Normal Tabs`,
+    text: `Close Normal`,
     action: () => {
       App.close_tabs_popup(`normal`)
     }
   })
 
   items.push({
-    text: `Close Playing Tabs`,
+    text: `Close Playing`,
     action: () => {
       App.close_tabs_popup(`playing`)
     }
   })
 
   items.push({
-    text: `Close Unloaded Tabs`,
+    text: `Close Unloaded`,
     action: () => {
       App.close_tabs_popup(`unloaded`)
     }
   })
 
   items.push({
-    text: `Close Duplicate Tabs`,
+    text: `Close Duplicate`,
     action: () => {
       App.close_tabs_popup(`duplicate`)
     }
   })
 
   items.push({
-    text: `Close Visible Tabs`,
+    text: `Close Visible`,
     action: () => {
       App.close_tabs_popup(`visible`)
     }
