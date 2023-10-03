@@ -44,6 +44,7 @@ App.do_filter = async (args) => {
   App.cancel_filter()
   App.debug(`Filter: ${args.mode}`)
   let value = App.get_filter(args.mode)
+  App[`last_${args.mode}_filter`] = value
   value = App.remove_protocol(value)
 
   if (value.endsWith(`|`)) {
@@ -639,6 +640,10 @@ App.create_filter = (mode) => {
   })
 
   DOM.ev(filter, `input`, () => {
+    if (App.get_setting(`filter_enter`)) {
+      return
+    }
+
     App.filter({mode: mode})
   })
 

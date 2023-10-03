@@ -882,6 +882,13 @@ App.build_settings = () => {
       info: `Re-use the filter when moving across modes`,
       version: 1,
     },
+    filter_enter: {
+      name: `Filter Enter`,
+      type: `checkbox`,
+      value: false,
+      info: `Require pressing Enter to use filter or search`,
+      version: 1,
+    },
     max_search_items: {
       name: `Max Search Items`,
       type: `number`,

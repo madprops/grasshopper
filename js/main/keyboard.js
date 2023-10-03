@@ -172,6 +172,18 @@ App.check_items_keyboard = (e) => {
       return
     }
     else if (e.key === `Enter`) {
+      if (filter_focus) {
+        if (App.get_setting(`filter_enter`)) {
+          let current = App.get_filter(mode)
+          let last = App[`last_${mode}_filter`]
+
+          if (current !== last) {
+            App.do_filter({mode: mode})
+            return
+          }
+        }
+      }
+
       App[`${mode}_action`](item)
       e.preventDefault()
       return
