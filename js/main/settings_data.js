@@ -1333,7 +1333,7 @@ App.build_settings = () => {
       },
     },
     filter: {
-      info: `Setting to adjust the filter and search`,
+      info: `Adjust the filter and search`,
       setup: () => {},
     },
     more: {
