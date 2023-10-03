@@ -263,7 +263,7 @@ App.setup_commands = () => {
       info: `Trigger the action for the selected item`
     },
     {
-      name: `Open Items`,
+      name: `Open`,
       cmd: `open_items`,
       mode: `items`,
       icon: generic_icon,
@@ -273,7 +273,7 @@ App.setup_commands = () => {
       info: `Open items`
     },
     {
-      name: `Bookmark Items`,
+      name: `Bookmark`,
       cmd: `bookmark_items`,
       mode: `items`,
       icon: bookmarks_icon,
@@ -345,7 +345,7 @@ App.setup_commands = () => {
       name: App.separator_string
     },
     {
-      name: `New Tab`,
+      name: `New`,
       cmd: `new_tab`,
       icon: tabs_icon,
       action: (args) => {
@@ -354,7 +354,7 @@ App.setup_commands = () => {
       info: `Open a new tab`
     },
     {
-      name: `Unload Tabs`,
+      name: `Unload`,
       cmd: `unload_tabs`,
       mode: `tabs`,
       icon: tabs_icon,
@@ -364,7 +364,7 @@ App.setup_commands = () => {
       info: `Unload tabs`
     },
     {
-      name: `Load Tabs`,
+      name: `Load`,
       cmd: `load_tabs`,
       mode: `tabs`,
       icon: tabs_icon,
@@ -374,7 +374,7 @@ App.setup_commands = () => {
       info: `Load tabs that are unloaded`
     },
     {
-      name: `Duplicate Tabs`,
+      name: `Duplicate`,
       cmd: `duplicate_tabs`,
       mode: `tabs`,
       icon: tabs_icon,
@@ -384,7 +384,7 @@ App.setup_commands = () => {
       info: `Duplicate tabs`
     },
     {
-      name: `Detach Tabs`,
+      name: `Detach`,
       cmd: `detach_tabs`,
       mode: `tabs`,
       icon: tabs_icon,
@@ -424,7 +424,7 @@ App.setup_commands = () => {
       info: `Move tabs to the top`
     },
     {
-      name: `Pin Tabs`,
+      name: `Pin`,
       cmd: `pin_tabs`,
       mode: `tabs`,
       icon: tabs_icon,
@@ -434,7 +434,7 @@ App.setup_commands = () => {
       info: `Pin tabs`
     },
     {
-      name: `Unpin Tabs`,
+      name: `Unpin`,
       cmd: `unpin_tabs`,
       mode: `tabs`,
       icon: tabs_icon,
@@ -454,7 +454,7 @@ App.setup_commands = () => {
       info: `Pin or unpin tabs`
     },
     {
-      name: `Mute Tabs`,
+      name: `Mute`,
       cmd: `mute_tabs`,
       mode: `tabs`,
       icon: tabs_icon,
@@ -464,7 +464,7 @@ App.setup_commands = () => {
       info: `Mute tabs`
     },
     {
-      name: `Unmute Tabs`,
+      name: `Unmute`,
       cmd: `unmute_tabs`,
       mode: `tabs`,
       icon: tabs_icon,
@@ -484,7 +484,7 @@ App.setup_commands = () => {
       info: `Mute or unmute tabs`
     },
     {
-      name: `Close Tabs`,
+      name: `Close`,
       cmd: `close_tabs`,
       mode: `tabs`,
       icon: tabs_icon,
@@ -563,7 +563,7 @@ App.setup_commands = () => {
       info: `Go the tab emitting sound`
     },
     {
-      name: `Sort Tabs`,
+      name: `Sort`,
       cmd: `sort_tabs`,
       mode: `items`,
       icon: tabs_icon,
@@ -603,7 +603,7 @@ App.setup_commands = () => {
       info: `Open a list of URLs`
     },
     {
-      name: `Reopen Tab`,
+      name: `Reopen`,
       cmd: `reopen_tab`,
       icon: tabs_icon,
       action: (args) => {
