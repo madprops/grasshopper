@@ -52,6 +52,7 @@ App.show_main_menu = (mode) => {
 
   if (App.get_setting(`direct_settings`)) {
     items.push({
+      icon: App.settings_icons.general,
       text: `Settings`,
       action: () => {
         App.show_settings()
@@ -60,6 +61,7 @@ App.show_main_menu = (mode) => {
   }
   else {
     items.push({
+      icon: App.settings_icons.general,
       text: `Settings`,
       get_items: () => {
         return App.settings_menu_items(`main_menu`)
@@ -68,6 +70,7 @@ App.show_main_menu = (mode) => {
   }
 
   items.push({
+    icon: App.profile_icon,
     text: `Profiles`,
     get_items: () => {
       return App.get_profile_menu_items()
@@ -75,6 +78,7 @@ App.show_main_menu = (mode) => {
   })
 
   items.push({
+    icon: App.pet_icon,
     text: `About`,
     action: () => {
       App.show_about()

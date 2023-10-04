@@ -959,7 +959,7 @@ App.get_edit_items = (item) => {
   })
 
   items.push({
-    icon: App.memo_icon,
+    icon: App.profile_icon,
     text: `Title`,
     action: () => {
       App.edit_title(item)
@@ -967,7 +967,7 @@ App.get_edit_items = (item) => {
   })
 
   items.push({
-    icon: App.memo_icon,
+    icon: App.profile_icon,
     text: `Icon`,
     action: () => {
       App.edit_icon(item)
@@ -977,7 +977,7 @@ App.get_edit_items = (item) => {
   App.sep(items)
 
   items.push({
-    icon: App.memo_icon,
+    icon: App.profile_icon,
     text: `Profile`,
     action: () => {
       App.show_profile_editor(item)

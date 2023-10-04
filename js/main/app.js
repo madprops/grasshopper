@@ -89,10 +89,11 @@ App.mode_icons = {
 App.clipboard_icon = `📋`
 App.bot_icon = `🤖`
 App.icon_placeholder = `Icon`
-App.memo_icon = `📝`
+App.profile_icon = `📝`
 App.tag_icon = `✝️`
 App.browser_icon = `🌐`
 App.generic_icon = `🔆`
+App.pet_icon = `🐸`
 
 App.dark_colors = {
   background: `rgb(45, 45, 55)`,

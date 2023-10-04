@@ -8,7 +8,7 @@ App.setup_commands = () => {
   let browser_icon = App.browser_icon
   let clipboard_icon = App.clipboard_icon
   let audio_icon = App.get_setting(`audio_icon`)
-  let memo_icon = App.memo_icon
+  let profile_icon = App.profile_icon
   let tag_icon = App.tag_icon
   let playing_icon = App.get_setting(`playing_icon`)
   let bot_icon = App.bot_icon
@@ -680,7 +680,7 @@ App.setup_commands = () => {
     {
       name: `Edit Profile`,
       cmd: `edit_profile`,
-      icon: memo_icon,
+      icon: profile_icon,
       mode: `items`,
       action: (args) => {
         App.edit_profiles(args.item)
@@ -710,7 +710,7 @@ App.setup_commands = () => {
     {
       name: `Edit Title`,
       cmd: `edit_title`,
-      icon: memo_icon,
+      icon: profile_icon,
       mode: `items`,
       action: (args) => {
         App.edit_title(args.item)
@@ -720,7 +720,7 @@ App.setup_commands = () => {
     {
       name: `Edit Icon`,
       cmd: `edit_icon`,
-      icon: memo_icon,
+      icon: profile_icon,
       mode: `items`,
       action: (args) => {
         App.edit_icon(args.item)
@@ -774,7 +774,7 @@ App.setup_commands = () => {
     {
       name: `Filter Edited`,
       cmd: `filter_edited`,
-      icon: memo_icon,
+      icon: profile_icon,
       mode: `items`,
       action: (args) => {
         App.set_filter_mode({mode: args.mode, type: `edited`})
