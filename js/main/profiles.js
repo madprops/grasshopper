@@ -453,13 +453,6 @@ App.get_profile_menu_items = () => {
   let items = []
 
   items.push({
-    text: `Remove`,
-    get_items: () => {
-      return App.clear_profiles_items()
-    }
-  })
-
-  items.push({
     text: `Export`,
     action: () => {
       App.export_profiles()
@@ -470,6 +463,13 @@ App.get_profile_menu_items = () => {
     text: `Import`,
     action: () => {
       App.import_profiles()
+    }
+  })
+
+  items.push({
+    text: `Remove`,
+    get_items: () => {
+      return App.clear_profiles_items()
     }
   })
 
