@@ -777,12 +777,6 @@ App.settings_commands = () => {
   return items
 }
 
-App.tab_warn_opts = [
-  {text: `Never`, value: `never`},
-  {text: `Always`, value: `always`},
-  {text: `Special`, value: `special`},
-]
-
 App.settings_menu_items = () => {
   let items = []
 

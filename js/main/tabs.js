@@ -321,21 +321,22 @@ App.unpin_tab = async (id) => {
 }
 
 App.pin_tabs = (item) => {
-  let ids = []
+  let items = []
 
   for (let it of App.get_active_items(`tabs`, item)) {
     if (it.pinned || it.discarded) {
       continue
     }
 
-    ids.push(it.id)
+    items.push(it)
   }
 
-  if (!ids.length) {
+  if (!items.length) {
     return
   }
 
-  let force = App.check_force(`warn_on_pin_tabs`, ids.length, true)
+  let force = App.check_tab_force(`warn_on_pin_tabs`, items)
+  let ids = items.map(x => x.id)
 
   App.show_confirm(`Pin items? (${ids.length})`, async () => {
     for (let id of ids) {
@@ -345,21 +346,22 @@ App.pin_tabs = (item) => {
 }
 
 App.unpin_tabs = (item) => {
-  let ids = []
+  let items = []
 
   for (let it of App.get_active_items(`tabs`, item)) {
     if (!it.pinned || it.discarded) {
       continue
     }
 
-    ids.push(it.id)
+    items.push(it)
   }
 
-  if (!ids.length) {
+  if (!items.length) {
     return
   }
 
-  let force = App.check_force(`warn_on_unpin_tabs`, ids.length, true)
+  let force = App.check_tab_force(`warn_on_unpin_tabs`, items)
+  let ids = items.map(x => x.id)
 
   App.show_confirm(`Unpin items? (${ids.length})`, async () => {
     for (let id of ids) {
@@ -436,10 +438,14 @@ App.check_tab_force = (warn_setting, items) => {
   else if (warn_on_action === `never`) {
     return true
   }
-
-  for (let item of items) {
-    if (item.pinned || item.audible) {
-      if (warn_on_action === `special`) {
+  else if (warn_on_action === `multiple`) {
+    if (items.length > 1) {
+      return false
+    }
+  }
+  else if (warn_on_action === `special`) {
+    for (let item of items) {
+      if (item.pinned || item.audible) {
         return false
       }
     }

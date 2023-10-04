@@ -671,6 +671,20 @@ App.build_settings = () => {
       info: `When to warn on unload tabs`,
       version: 1,
     },
+    warn_on_pin_tabs: {
+      name: `Warn On Pin Tabs`,
+      type: `menu`,
+      value: `multiple`,
+      info: `Warn when pinning tabs`,
+      version: 2,
+    },
+    warn_on_unpin_tabs: {
+      name: `Warn On Unpin Tabs`,
+      type: `menu`,
+      value: `multiple`,
+      info: `When to warn on unpin tabs`,
+      version: 2,
+    },
     warn_on_close_normal_tabs: {
       name: `Warn On Close Normal`,
       type: `checkbox`,
@@ -732,20 +746,6 @@ App.build_settings = () => {
       type: `checkbox`,
       value: true,
       info: `Warn when adding bookmarks`,
-      version: 1,
-    },
-    warn_on_pin_tabs: {
-      name: `Warn On Pin Tabs`,
-      type: `checkbox`,
-      value: true,
-      info: `Warn when pinning tabs`,
-      version: 1,
-    },
-    warn_on_unpin_tabs: {
-      name: `Warn On Unpin Tabs`,
-      type: `checkbox`,
-      value: true,
-      info: `Warn when unpinning tabs`,
       version: 1,
     },
     warn_on_load_tabs: {
@@ -1328,8 +1328,23 @@ App.build_settings = () => {
     warns: {
       info: `When to show the confirmation dialog on some actions`,
       setup: () => {
-        App.settings_make_menu(`warn_on_close_tabs`, App.tab_warn_opts)
-        App.settings_make_menu(`warn_on_unload_tabs`, App.tab_warn_opts)
+        let tab_warn_opts = [
+          {text: `Never`, value: `never`},
+          {text: `Special`, value: `special`},
+          {text: `Always`, value: `always`},
+        ]
+
+        App.settings_make_menu(`warn_on_close_tabs`, tab_warn_opts)
+        App.settings_make_menu(`warn_on_unload_tabs`, tab_warn_opts)
+
+        let tab_warn_opts_2 = [
+          {text: `Never`, value: `never`},
+          {text: `Multiple`, value: `multiple`},
+          {text: `Always`, value: `always`},
+        ]
+
+        App.settings_make_menu(`warn_on_pin_tabs`, tab_warn_opts_2)
+        App.settings_make_menu(`warn_on_unpin_tabs`, tab_warn_opts_2)
       },
     },
     filter: {
