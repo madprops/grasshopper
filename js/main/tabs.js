@@ -293,7 +293,7 @@ App.duplicate_tab = async (item) => {
 
 App.duplicate_tabs = (item) => {
   let items = App.get_active_items(`tabs`, item)
-  let force = App.check_action_force(`warn_on_duplicate_tabs`, items.length)
+  let force = App.check_force(`warn_on_duplicate_tabs`, items.length)
 
   App.show_confirm(`Duplicate tabs? (${items.length})`, () => {
     for (let it of items) {
@@ -335,7 +335,7 @@ App.pin_tabs = (item) => {
     return
   }
 
-  let force = App.check_action_force(`warn_on_pin_tabs`, items)
+  let force = App.check_force(`warn_on_pin_tabs`, items)
   let ids = items.map(x => x.id)
 
   App.show_confirm(`Pin items? (${ids.length})`, async () => {
@@ -360,7 +360,7 @@ App.unpin_tabs = (item) => {
     return
   }
 
-  let force = App.check_action_force(`warn_on_unpin_tabs`, items)
+  let force = App.check_force(`warn_on_unpin_tabs`, items)
   let ids = items.map(x => x.id)
 
   App.show_confirm(`Unpin items? (${ids.length})`, async () => {
@@ -390,7 +390,7 @@ App.unload_tabs = (item, multiple = true) => {
     return
   }
 
-  let force = App.check_action_force(`warn_on_unload_tabs`, items)
+  let force = App.check_force(`warn_on_unload_tabs`, items)
   let ids = items.map(x => x.id)
 
   App.show_confirm(`Unload items? (${ids.length})`, async () => {
@@ -438,7 +438,7 @@ App.mute_tabs = (item) => {
     return
   }
 
-  let force = App.check_action_force(`warn_on_mute_tabs`, items)
+  let force = App.check_force(`warn_on_mute_tabs`, items)
   let ids = items.map(x => x.id)
 
   App.show_confirm(`Mute items? (${ids.length})`, async () => {
@@ -461,7 +461,7 @@ App.unmute_tabs = (item) => {
     return
   }
 
-  let force = App.check_action_force(`warn_on_unmute_tabs`, items)
+  let force = App.check_force(`warn_on_unmute_tabs`, items)
   let ids = items.map(x => x.id)
 
   App.show_confirm(`Unmute items? (${ids.length})`, async () => {
@@ -1097,7 +1097,7 @@ App.load_tabs = (item) => {
     return
   }
 
-  let force = App.check_action_force(`warn_on_load_tabs`, items)
+  let force = App.check_force(`warn_on_load_tabs`, items)
 
   App.show_confirm(`Load items? (${items.length})`, async () => {
     for (let it of items) {

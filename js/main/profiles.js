@@ -344,7 +344,7 @@ App.remove_profiles = (items) => {
     return
   }
 
-  let force = App.check_action_force(`warn_on_remove_profiles`, profiles)
+  let force = App.check_force(`warn_on_remove_profiles`, profiles)
 
   App.show_confirm(`Remove profiles? (${profiles.length})`, () => {
     for (let profile of profiles) {
@@ -1089,10 +1089,10 @@ App.change_color = (item, color, toggle = false) => {
   let force
 
   if (color === `none`) {
-    force = App.check_action_force(`warn_on_remove_color`, items)
+    force = App.check_force(`warn_on_remove_color`, items)
   }
   else {
-    force = App.check_action_force(`warn_on_color`, items)
+    force = App.check_force(`warn_on_color`, items)
   }
 
   let msg

@@ -9,7 +9,7 @@ App.close_tab_or_tabs = async (id_or_ids) => {
 
 App.close_tabs = (item, multiple = true) => {
   let items = App.get_active_items(`tabs`, item, multiple)
-  let force = App.check_action_force(`warn_on_close_tabs`, items)
+  let force = App.check_force(`warn_on_close_tabs`, items)
   let ids = items.map(x => x.id)
 
   if (!ids.length) {
@@ -92,7 +92,7 @@ App.close_normal_tabs = (close_unloaded = false) => {
     return
   }
 
-  let force = App.check_action_force(`warn_on_close_normal_tabs`, items)
+  let force = App.check_force(`warn_on_close_normal_tabs`, items)
   let ids = items.map(x => x.id)
 
   App.show_confirm(App.close_tabs_message(ids.length), () => {
@@ -121,7 +121,7 @@ App.close_playing_tabs = (close_pins = false) => {
     return
   }
 
-  let force = App.check_action_force(`warn_on_close_playing_tabs`, items)
+  let force = App.check_force(`warn_on_close_playing_tabs`, items)
   let ids = items.map(x => x.id)
 
   App.show_confirm(App.close_tabs_message(ids.length), () => {
@@ -150,7 +150,7 @@ App.close_unloaded_tabs = (close_pins = false) => {
     return
   }
 
-  let force = App.check_action_force(`warn_on_close_unloaded_tabs`, items)
+  let force = App.check_force(`warn_on_close_unloaded_tabs`, items)
   let ids = items.map(x => x.id)
 
   App.show_confirm(App.close_tabs_message(ids.length), () => {
@@ -176,7 +176,7 @@ App.close_duplicate_tabs = (close_pins = false) => {
     return
   }
 
-  let force = App.check_action_force(`warn_on_close_duplicate_tabs`, excess)
+  let force = App.check_force(`warn_on_close_duplicate_tabs`, excess)
   let ids = excess.map(x => x.id)
 
   App.show_confirm(App.close_tabs_message(ids.length), () => {
@@ -197,7 +197,7 @@ App.close_visible_tabs = (close_pins = false) => {
     return
   }
 
-  let force = App.check_action_force(`warn_on_close_visible_tabs`, visible)
+  let force = App.check_force(`warn_on_close_visible_tabs`, visible)
   let ids = visible.map(x => x.id)
 
   App.show_confirm(App.close_tabs_message(ids.length), () => {

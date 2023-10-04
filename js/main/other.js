@@ -86,7 +86,7 @@ App.color_icon = (color) => {
   return DOM.create(`div`, `color_icon background_${color}`)
 }
 
-App.check_action_force = (warn_setting, items) => {
+App.check_force = (warn_setting, items) => {
   if (items.length >= App.max_warn_limit) {
     return false
   }
