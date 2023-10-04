@@ -1293,6 +1293,10 @@ App.container_is_scrolled = (mode) => {
 }
 
 App.scroll_to_item = (item, scroll = `nearest`) => {
+  if (scroll === `none`) {
+    return
+  }
+
   item.element.scrollIntoView({
     block: scroll,
     behavior: `instant`,
