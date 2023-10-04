@@ -607,15 +607,10 @@ NeedContext.init = () => {
       e.preventDefault()
     }
     else if (e.key === `Backspace`) {
-      if (NeedContext.filter.value) {
-        NeedContext.filter.value = ``
-        NeedContext.do_filter()
-      }
-      else {
+      if (!NeedContext.filter.value) {
         NeedContext.go_back()
+        e.preventDefault()
       }
-
-      e.preventDefault()
     }
   })
 
