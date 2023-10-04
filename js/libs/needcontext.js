@@ -45,7 +45,6 @@ NeedContext.do_filter = () => {
   let value = NeedContext.filter.value.toLowerCase()
   value = NeedContext.remove_spaces(value)
   let selected = false
-  let some_hidden = false
 
   for (let el of document.querySelectorAll(`.needcontext-separator`)) {
     if (value) {
@@ -71,14 +70,13 @@ NeedContext.do_filter = () => {
     }
     else {
       el.classList.add(`needcontext-hidden`)
-      some_hidden = true
     }
   }
 
   let back = document.querySelector(`#needcontext-back`)
   let clear = document.querySelector(`#needcontext-clear`)
 
-  if (some_hidden) {
+  if (value) {
     clear.classList.remove(`needcontext-hidden`)
 
     if (back) {
