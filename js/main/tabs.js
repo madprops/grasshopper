@@ -293,7 +293,7 @@ App.duplicate_tab = async (item) => {
 
 App.duplicate_tabs = (item) => {
   let items = App.get_active_items(`tabs`, item)
-  let force = App.check_force(`warn_on_duplicate_tabs`, items.length)
+  let force = App.check_force(`warn_on_duplicate_tabs`, items)
 
   App.show_confirm(`Duplicate tabs? (${items.length})`, () => {
     for (let it of items) {
