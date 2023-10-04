@@ -75,13 +75,22 @@ NeedContext.do_filter = () => {
     }
   }
 
+  let back = document.querySelector(`#needcontext-back`)
   let clear = document.querySelector(`#needcontext-clear`)
 
   if (some_hidden) {
     clear.classList.remove(`needcontext-hidden`)
+
+    if (back) {
+      back.classList.add(`needcontext-hidden`)
+    }
   }
   else {
     clear.classList.add(`needcontext-hidden`)
+
+    if (back) {
+      back.classList.remove(`needcontext-hidden`)
+    }
   }
 }
 
@@ -144,33 +153,10 @@ NeedContext.show = (x, y, items, root = true) => {
   let index = 0
 
   if (!root) {
-    let el = document.createElement(`div`)
-    el.classList.add(`needcontext-back`)
-    el.classList.add(`needcontext-button`)
-    let icon = document.createElement(`div`)
-    icon.append(NeedContext.back_icon)
-    let text = document.createElement(`div`)
-    text.textContent = NeedContext.back_text
-    el.append(icon)
-    el.append(text)
-    el.title = `Shortcut: Backspace`
-    c.append(el)
+    c.append(NeedContext.back_button())
   }
 
-  let clear = document.createElement(`div`)
-  clear.id = `needcontext-clear`
-  clear.classList.add(`needcontext-clear`)
-  clear.classList.add(`needcontext-button`)
-  clear.classList.add(`needcontext-hidden`)
-  let clear_icon = document.createElement(`div`)
-  clear_icon.append(NeedContext.back_icon)
-  let clear_text = document.createElement(`div`)
-  clear_text.textContent = NeedContext.clear_text
-  clear.append(clear_icon)
-  clear.append(clear_text)
-  clear.title = `Shortcut: Backspace`
-  c.append(clear)
-
+  c.append(NeedContext.clear_button())
   let normal_items = []
 
   for (let item of items) {
@@ -683,6 +669,39 @@ NeedContext.go_back = () => {
   let layer = NeedContext.prev_layer()
   NeedContext.level -= 1
   NeedContext.show(layer.x, layer.y, layer.items, layer.root)
+}
+
+// Create back button
+NeedContext.back_button = () => {
+  let el = document.createElement(`div`)
+  el.id = `needcontext-back`
+  el.classList.add(`needcontext-back`)
+  el.classList.add(`needcontext-button`)
+  let icon = document.createElement(`div`)
+  icon.append(NeedContext.back_icon)
+  let text = document.createElement(`div`)
+  text.textContent = NeedContext.back_text
+  el.append(icon)
+  el.append(text)
+  el.title = `Shortcut: Backspace`
+  return el
+}
+
+// Create clear button
+NeedContext.clear_button = () => {
+  let el = document.createElement(`div`)
+  el.id = `needcontext-clear`
+  el.classList.add(`needcontext-clear`)
+  el.classList.add(`needcontext-button`)
+  el.classList.add(`needcontext-hidden`)
+  let icon = document.createElement(`div`)
+  icon.append(NeedContext.back_icon)
+  let text = document.createElement(`div`)
+  text.textContent = NeedContext.clear_text
+  el.append(icon)
+  el.append(text)
+  el.title = `Shortcut: Backspace`
+  return el
 }
 
 // Start
