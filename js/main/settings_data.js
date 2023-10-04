@@ -790,8 +790,7 @@ App.build_settings = () => {
       placeholder: `Number`,
       min: App.number_min,
       max: App.number_max,
-      info: `Force a confirm after this many items regardless of warn settings.
-      This is to avoid accidents`,
+      info: `Force a confirm after this many items regardless of warn settings`,
       version: 1,
     },
   }
