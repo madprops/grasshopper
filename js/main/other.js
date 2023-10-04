@@ -87,7 +87,7 @@ App.color_icon = (color) => {
 }
 
 App.check_force = (warn_setting, items) => {
-  if (items.length >= App.max_warn_limit) {
+  if (items.length >= App.get_setting(`max_warn_limit`)) {
     return false
   }
 

@@ -28,7 +28,6 @@ App.new_tab_urls = [`about:newtab`]
 App.search_modes = [`history`, `bookmarks`]
 App.media_scroll = 33
 App.media_types = [`image`, `video`, `audio`]
-App.max_warn_limit = 20
 App.max_tag_filters = 50
 App.colors = [`red`, `green`, `blue`, `yellow`, `purple`, `orange`]
 App.theme_safe_mode_msg = false

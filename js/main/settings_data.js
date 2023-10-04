@@ -783,6 +783,16 @@ App.build_settings = () => {
       info: `Warn when removing colors`,
       version: 2,
     },
+    max_warn_limit: {
+      name: `Max Warn Limit`,
+      type: `number`,
+      value: 20,
+      placeholder: `Number`,
+      min: 1,
+      max: 999,
+      info: `Force a confirm after this many items`,
+      version: 1,
+    },
   }
 
   add_props()
