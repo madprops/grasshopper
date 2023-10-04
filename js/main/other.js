@@ -85,3 +85,32 @@ App.check_ready = (what) => {
 App.color_icon = (color) => {
   return DOM.create(`div`, `color_icon background_${color}`)
 }
+
+App.check_action_force = (warn_setting, items) => {
+  if (items.length >= App.max_warn_limit) {
+    return false
+  }
+
+  let warn_on_action = App.get_setting(warn_setting)
+
+  if (warn_on_action === `always`) {
+    return false
+  }
+  else if (warn_on_action === `never`) {
+    return true
+  }
+  else if (warn_on_action === `multiple`) {
+    if (items.length > 1) {
+      return false
+    }
+  }
+  else if (warn_on_action === `special`) {
+    for (let item of items) {
+      if (item.pinned || item.audible) {
+        return false
+      }
+    }
+  }
+
+  return true
+}

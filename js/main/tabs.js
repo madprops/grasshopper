@@ -293,7 +293,7 @@ App.duplicate_tab = async (item) => {
 
 App.duplicate_tabs = (item) => {
   let items = App.get_active_items(`tabs`, item)
-  let force = App.check_force(`warn_on_duplicate_tabs`, items.length, true)
+  let force = App.check_action_force(`warn_on_duplicate_tabs`, items.length)
 
   App.show_confirm(`Duplicate tabs? (${items.length})`, () => {
     for (let it of items) {
@@ -335,7 +335,7 @@ App.pin_tabs = (item) => {
     return
   }
 
-  let force = App.check_tab_force(`warn_on_pin_tabs`, items)
+  let force = App.check_action_force(`warn_on_pin_tabs`, items)
   let ids = items.map(x => x.id)
 
   App.show_confirm(`Pin items? (${ids.length})`, async () => {
@@ -360,7 +360,7 @@ App.unpin_tabs = (item) => {
     return
   }
 
-  let force = App.check_tab_force(`warn_on_unpin_tabs`, items)
+  let force = App.check_action_force(`warn_on_unpin_tabs`, items)
   let ids = items.map(x => x.id)
 
   App.show_confirm(`Unpin items? (${ids.length})`, async () => {
@@ -390,7 +390,7 @@ App.unload_tabs = (item, multiple = true) => {
     return
   }
 
-  let force = App.check_tab_force(`warn_on_unload_tabs`, items)
+  let force = App.check_action_force(`warn_on_unload_tabs`, items)
   let ids = items.map(x => x.id)
 
   App.show_confirm(`Unload items? (${ids.length})`, async () => {
@@ -423,35 +423,6 @@ App.do_unload_tabs = async (ids) => {
   catch (err) {
     App.error(err)
   }
-}
-
-App.check_tab_force = (warn_setting, items) => {
-  if (items.length >= App.max_warn_limit) {
-    return false
-  }
-
-  let warn_on_action = App.get_setting(warn_setting)
-
-  if (warn_on_action === `always`) {
-    return false
-  }
-  else if (warn_on_action === `never`) {
-    return true
-  }
-  else if (warn_on_action === `multiple`) {
-    if (items.length > 1) {
-      return false
-    }
-  }
-  else if (warn_on_action === `special`) {
-    for (let item of items) {
-      if (item.pinned || item.audible) {
-        return false
-      }
-    }
-  }
-
-  return true
 }
 
 App.mute_tabs = (item) => {

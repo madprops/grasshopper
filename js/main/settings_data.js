@@ -661,14 +661,14 @@ App.build_settings = () => {
       name: `Warn On Close Tabs`,
       type: `menu`,
       value: `special`,
-      info: `When to warn on close tabs`,
+      info: `Warn when closing tabs`,
       version: 1,
     },
     warn_on_unload_tabs: {
       name: `Warn On Unload Tabs`,
       type: `menu`,
       value: `special`,
-      info: `When to warn on unload tabs`,
+      info: `Warn when unloading tabs`,
       version: 1,
     },
     warn_on_pin_tabs: {
@@ -682,106 +682,106 @@ App.build_settings = () => {
       name: `Warn On Unpin Tabs`,
       type: `menu`,
       value: `multiple`,
-      info: `When to warn on unpin tabs`,
+      info: `Warn when unpinning tabs`,
       version: 2,
     },
     warn_on_close_normal_tabs: {
       name: `Warn On Close Normal`,
-      type: `checkbox`,
-      value: true,
+      type: `menu`,
+      value: `multiple`,
       info: `Warn when closing normal tabs using the close menu`,
-      version: 1,
+      version: 2,
     },
     warn_on_close_playing_tabs: {
       name: `Warn On Close Playing`,
-      type: `checkbox`,
-      value: true,
+      type: `menu`,
+      value: `multiple`,
       info: `Warn when closing playing tabs using the close menu`,
-      version: 1,
+      version: 2,
     },
     warn_on_close_unloaded_tabs: {
       name: `Warn On Close Unloaded`,
-      type: `checkbox`,
-      value: true,
+      type: `menu`,
+      value: `multiple`,
       info: `Warn when closing unloaded tabs using the close menu`,
-      version: 1,
+      version: 2,
     },
     warn_on_close_duplicate_tabs: {
       name: `Warn On Close Duplicates`,
-      type: `checkbox`,
-      value: true,
+      type: `menu`,
+      value: `multiple`,
       info: `Warn when closing duplicate tabs using the close menu`,
-      version: 1,
+      version: 2,
     },
     warn_on_close_visible_tabs: {
       name: `Warn On Close Visible`,
-      type: `checkbox`,
-      value: true,
+      type: `menu`,
+      value: `multiple`,
       info: `Warn when closing visible tabs using the close menu`,
-      version: 1,
+      version: 2,
     },
     warn_on_duplicate_tabs: {
       name: `Warn Duplicate Tabs`,
-      type: `checkbox`,
-      value: true,
+      type: `menu`,
+      value: `multiple`,
       info: `Warn when duplicating tabs`,
-      version: 1,
+      version: 2,
     },
     warn_on_open: {
       name: `Warn On Open`,
-      type: `checkbox`,
-      value: true,
+      type: `menu`,
+      value: `multiple`,
       info: `Warn when opening items`,
-      version: 1,
+      version: 2,
     },
     warn_on_remove_profiles: {
       name: `Warn On Remove Profiles`,
-      type: `checkbox`,
-      value: true,
+      type: `menu`,
+      value: `multiple`,
       info: `Warn when removing profiles`,
-      version: 1,
+      version: 2,
     },
     warn_on_bookmark: {
       name: `Warn On Bookmark`,
-      type: `checkbox`,
-      value: true,
+      type: `menu`,
+      value: `multiple`,
       info: `Warn when adding bookmarks`,
-      version: 1,
+      version: 2,
     },
     warn_on_load_tabs: {
       name: `Warn On Load Tabs`,
-      type: `checkbox`,
-      value: true,
+      type: `menu`,
+      value: `multiple`,
       info: `Warn when loading tabs`,
-      version: 1,
+      version: 2,
     },
     warn_on_mute_tabs: {
       name: `Warn On Mute Tabs`,
-      type: `checkbox`,
-      value: true,
+      type: `menu`,
+      value: `multiple`,
       info: `Warn when muting tabs`,
-      version: 1,
+      version: 2,
     },
     warn_on_unmute_tabs: {
       name: `Warn On Unmute Tabs`,
-      type: `checkbox`,
-      value: true,
+      type: `menu`,
+      value: `multiple`,
       info: `Warn when unmuting tabs`,
-      version: 1,
+      version: 2,
     },
     warn_on_color: {
       name: `Warn On Color`,
-      type: `checkbox`,
-      value: false,
+      type: `menu`,
+      value: `multiple`,
       info: `Warn when changing colors`,
-      version: 1,
+      version: 2,
     },
     warn_on_remove_color: {
       name: `Warn On Remove Color`,
-      type: `checkbox`,
-      value: false,
+      type: `menu`,
+      value: `multiple`,
       info: `Warn when removing colors`,
-      version: 1,
+      version: 2,
     },
   }
 
@@ -1345,6 +1345,20 @@ App.build_settings = () => {
 
         App.settings_make_menu(`warn_on_pin_tabs`, tab_warn_opts_2)
         App.settings_make_menu(`warn_on_unpin_tabs`, tab_warn_opts_2)
+        App.settings_make_menu(`warn_on_close_normal_tabs`, tab_warn_opts_2)
+        App.settings_make_menu(`warn_on_close_playing_tabs`, tab_warn_opts_2)
+        App.settings_make_menu(`warn_on_close_unloaded_tabs`, tab_warn_opts_2)
+        App.settings_make_menu(`warn_on_close_duplicate_tabs`, tab_warn_opts_2)
+        App.settings_make_menu(`warn_on_close_visible_tabs`, tab_warn_opts_2)
+        App.settings_make_menu(`warn_on_duplicate_tabs`, tab_warn_opts_2)
+        App.settings_make_menu(`warn_on_open`, tab_warn_opts_2)
+        App.settings_make_menu(`warn_on_remove_profiles`, tab_warn_opts_2)
+        App.settings_make_menu(`warn_on_bookmark`, tab_warn_opts_2)
+        App.settings_make_menu(`warn_on_load_tabs`, tab_warn_opts_2)
+        App.settings_make_menu(`warn_on_mute_tabs`, tab_warn_opts_2)
+        App.settings_make_menu(`warn_on_unmute_tabs`, tab_warn_opts_2)
+        App.settings_make_menu(`warn_on_color`, tab_warn_opts_2)
+        App.settings_make_menu(`warn_on_remove_color`, tab_warn_opts_2)
       },
     },
     filter: {
