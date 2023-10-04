@@ -128,7 +128,8 @@ App.palette_action = (el) => {
     return
   }
 
-  let cmd = el.dataset.command
+  let item = el.closest(`.palette_item`)
+  let cmd = item.dataset.command
 
   if (cmd) {
     App.hide_all_popups()
