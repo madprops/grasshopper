@@ -36,6 +36,9 @@ App.close_text = `Close`
 App.filter_search_date = 0
 App.backgrounds_dir = `/img/backgrounds/`
 App.num_backgrounds = 3
+App.number_min = 1
+App.number_max = 99999
+
 App.settings_done = false
 App.settings_ready = false
 App.media_image_ready = false
