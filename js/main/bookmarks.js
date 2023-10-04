@@ -141,15 +141,15 @@ App.bookmark_items = async (item, active, feedback = true) => {
     return
   }
 
-  let num = add.length + bump.length
+  let items = [...add, ...bump]
 
-  if (num === 0) {
+  if (!items.length) {
     return
   }
 
-  let force = App.check_force(`warn_on_bookmark`, num, true)
+  let force = App.check_action_force(`warn_on_bookmark`, items)
 
-  App.show_confirm(`Bookmark these items? (${num})`, async () => {
+  App.show_confirm(`Bookmark these items? (${items.length})`, async () => {
     for (let item of add) {
       let title = App.get_title(item)
       await browser.bookmarks.create({parentId: folder.id, title: title, url: item.url})

@@ -426,19 +426,20 @@ App.do_unload_tabs = async (ids) => {
 }
 
 App.mute_tabs = (item) => {
-  let ids = []
+  let items = []
 
   for (let it of App.get_active_items(`tabs`, item)) {
     if (!it.muted) {
-      ids.push(it.id)
+      items.push(it)
     }
   }
 
-  if (!ids.length) {
+  if (!items.length) {
     return
   }
 
-  let force = App.check_force(`warn_on_mute_tabs`, ids.length, true)
+  let force = App.check_action_force(`warn_on_mute_tabs`, items)
+  let ids = items.map(x => x.id)
 
   App.show_confirm(`Mute items? (${ids.length})`, async () => {
     for (let id of ids) {
@@ -448,19 +449,20 @@ App.mute_tabs = (item) => {
 }
 
 App.unmute_tabs = (item) => {
-  let ids = []
+  let items = []
 
   for (let it of App.get_active_items(`tabs`, item)) {
     if (it.muted) {
-      ids.push(it.id)
+      items.push(it)
     }
   }
 
-  if (!ids.length) {
+  if (!items.length) {
     return
   }
 
-  let force = App.check_force(`warn_on_unmute_tabs`, ids.length, true)
+  let force = App.check_action_force(`warn_on_unmute_tabs`, items)
+  let ids = items.map(x => x.id)
 
   App.show_confirm(`Unmute items? (${ids.length})`, async () => {
     for (let id of ids) {
@@ -1095,7 +1097,7 @@ App.load_tabs = (item) => {
     return
   }
 
-  let force = App.check_force(`warn_on_load_tabs`, items.length, true)
+  let force = App.check_action_force(`warn_on_load_tabs`, items)
 
   App.show_confirm(`Load items? (${items.length})`, async () => {
     for (let it of items) {

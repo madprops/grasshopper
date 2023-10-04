@@ -344,7 +344,7 @@ App.remove_profiles = (items) => {
     return
   }
 
-  let force = App.check_force(`warn_on_remove_profiles`, profiles.length)
+  let force = App.check_action_force(`warn_on_remove_profiles`, profiles)
 
   App.show_confirm(`Remove profiles? (${profiles.length})`, () => {
     for (let profile of profiles) {
@@ -1066,7 +1066,7 @@ App.change_color = (item, color, toggle = false) => {
   }
 
   args.color = color
-  let num_items = args.profiles.length + args.added.length
+  let items = [...args.profiles, ...args.added]
   let some = false
 
   if (args.added.length) {
@@ -1089,10 +1089,10 @@ App.change_color = (item, color, toggle = false) => {
   let force
 
   if (color === `none`) {
-    force = App.check_force(`warn_on_remove_color`, num_items, true)
+    force = App.check_action_force(`warn_on_remove_color`, items)
   }
   else {
-    force = App.check_force(`warn_on_color`, num_items, true)
+    force = App.check_action_force(`warn_on_color`, items)
   }
 
   let msg
@@ -1104,7 +1104,7 @@ App.change_color = (item, color, toggle = false) => {
     msg = `Color items ${color}?`
   }
 
-  msg += ` (${num_items})`
+  msg += ` (${items.length})`
 
   App.show_confirm(msg, () => {
     App.do_save_profile(args)

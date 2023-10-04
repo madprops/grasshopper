@@ -286,22 +286,6 @@ App.hostname_full = (item) => {
   return `${item.protocol}//${item.hostname}`
 }
 
-App.check_force = (warn_setting, num, force_single = false) => {
-  if (num === 1 && force_single) {
-    return true
-  }
-
-  if (num >= App.max_warn_limit) {
-    return false
-  }
-
-  if (warn_setting) {
-    return !App.get_setting(warn_setting)
-  }
-
-  return true
-}
-
 App.text_with_empty_lines = () => {
   if (document.activeElement.tagName === `TEXTAREA`) {
     return /\s*\n{1,}$/.test(document.activeElement.value)

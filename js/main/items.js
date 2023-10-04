@@ -1138,7 +1138,7 @@ App.open_items = (item, shift, multiple = true) => {
     App.after_open(shift)
   }
   else {
-    let force = App.check_force(`warn_on_open`, items.length)
+    let force = App.check_action_force(`warn_on_open`, items)
 
     App.show_confirm(`Open these items ${items.length}?`, () => {
       for (let item of items) {
