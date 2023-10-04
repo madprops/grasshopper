@@ -12,7 +12,7 @@ App.setup_commands = () => {
   let tag_icon = App.tag_icon
   let playing_icon = App.get_setting(`playing_icon`)
   let bot_icon = App.bot_icon
-  let generic_icon = App.generic_icon
+  let command_icon = App.command_icon
   let color_filters = []
   let color_changers = []
 
@@ -121,7 +121,7 @@ App.setup_commands = () => {
       name: `Go To Top`,
       cmd: `go_to_top`,
       mode: `items`,
-      icon: generic_icon,
+      icon: command_icon,
       action: (args) => {
         App.goto_top()
       },
@@ -131,7 +131,7 @@ App.setup_commands = () => {
       name: `Go To Bottom`,
       cmd: `go_to_bottom`,
       mode: `items`,
-      icon: generic_icon,
+      icon: command_icon,
       action: (args) => {
         App.goto_bottom()
       },
@@ -141,7 +141,7 @@ App.setup_commands = () => {
       name: `Step Back`,
       cmd: `step_back`,
       mode: `items`,
-      icon: generic_icon,
+      icon: command_icon,
       action: (args) => {
         App.step_back()
       },
@@ -161,7 +161,7 @@ App.setup_commands = () => {
       name: `Select All`,
       cmd: `select_all_items`,
       mode: `items`,
-      icon: generic_icon,
+      icon: command_icon,
       action: (args) => {
         App.select_all(args.mode, true)
       },
@@ -174,7 +174,7 @@ App.setup_commands = () => {
       name: `Prev Mode`,
       cmd: `prev_mode`,
       mode: `items`,
-      icon: generic_icon,
+      icon: command_icon,
       action: (args) => {
         App.cycle_modes(true)
       },
@@ -184,7 +184,7 @@ App.setup_commands = () => {
       name: `Next Mode`,
       cmd: `next_mode`,
       mode: `items`,
-      icon: generic_icon,
+      icon: command_icon,
       action: (args) => {
         App.cycle_modes()
       },
@@ -196,7 +196,7 @@ App.setup_commands = () => {
     {
       name: `Show Primary`,
       cmd: `show_primary`,
-      icon: generic_icon,
+      icon: command_icon,
       action: (args) => {
         App.show_primary_mode()
       },
@@ -214,7 +214,7 @@ App.setup_commands = () => {
     {
       name: `Show About`,
       cmd: `show_about`,
-      icon: generic_icon,
+      icon: command_icon,
       action: (args) => {
         App.show_about()
       },
@@ -223,7 +223,7 @@ App.setup_commands = () => {
     {
       name: `Show Palette`,
       cmd: `show_palette`,
-      icon: generic_icon,
+      icon: command_icon,
       action: (args) => {
         App.show_palette()
       },
@@ -233,7 +233,7 @@ App.setup_commands = () => {
       name: `Item Menu`,
       cmd: `show_item_menu`,
       mode: `items`,
-      icon: generic_icon,
+      icon: command_icon,
       action: (args) => {
         App.show_item_menu_2(args.item)
       },
@@ -243,7 +243,7 @@ App.setup_commands = () => {
       name: `Show All`,
       cmd: `show_all_items`,
       mode: `items`,
-      icon: generic_icon,
+      icon: command_icon,
       action: (args) => {
         App.show_all()
       },
@@ -256,7 +256,7 @@ App.setup_commands = () => {
       name: `Item Action`,
       cmd: `item_action`,
       mode: `items`,
-      icon: generic_icon,
+      icon: command_icon,
       action: (args) => {
         App[`${args.mode}_action`](args.item)
       },
@@ -266,7 +266,7 @@ App.setup_commands = () => {
       name: `Open`,
       cmd: `open_items`,
       mode: `items`,
-      icon: generic_icon,
+      icon: command_icon,
       action: (args) => {
         App.open_items(args.item, true)
       },

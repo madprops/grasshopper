@@ -92,7 +92,7 @@ App.icon_placeholder = `Icon`
 App.profile_icon = `📝`
 App.tag_icon = `✝️`
 App.browser_icon = `🌐`
-App.generic_icon = `🔆`
+App.command_icon = `🔆`
 App.pet_icon = `🐸`
 
 App.dark_colors = {

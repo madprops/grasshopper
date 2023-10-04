@@ -88,6 +88,7 @@ App.show_main_menu = (mode) => {
   App.sep(items)
 
   items.push({
+    icon: App.command_icon,
     text: `Cmd...`,
     action: () => {
       App.show_palette()
