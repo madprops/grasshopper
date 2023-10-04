@@ -77,6 +77,8 @@ NeedContext.do_filter = () => {
   let clear = document.querySelector(`#needcontext-clear`)
 
   if (value) {
+    let text = document.querySelector(`#needcontext-clear-text`)
+    text.textContent = value
     clear.classList.remove(`needcontext-hidden`)
 
     if (back) {
@@ -695,6 +697,7 @@ NeedContext.clear_button = () => {
   let icon = document.createElement(`div`)
   icon.append(NeedContext.back_icon)
   let text = document.createElement(`div`)
+  text.id = `needcontext-clear-text`
   text.textContent = NeedContext.clear_text
   el.append(icon)
   el.append(text)
