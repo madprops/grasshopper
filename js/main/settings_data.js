@@ -1326,7 +1326,8 @@ App.build_settings = () => {
       setup: () => {},
     },
     warns: {
-      info: `When to show the confirmation dialog on some actions`,
+      info: `When to show the confirmation dialog on some actions.
+      Special does action depending if tabs are pinned. Multiple warns if multiple items are selected`,
       setup: () => {
         let tab_warn_opts = [
           {text: `Never`, value: `never`},
