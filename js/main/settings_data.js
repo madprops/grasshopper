@@ -737,7 +737,7 @@ App.build_settings = () => {
     warn_on_remove_profiles: {
       name: `Warn On Remove Profiles`,
       type: `menu`,
-      value: `multiple`,
+      value: `always`,
       info: `Warn when removing profiles`,
       version: 2,
     },
