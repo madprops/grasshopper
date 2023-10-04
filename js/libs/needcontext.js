@@ -15,6 +15,7 @@ NeedContext.min_width = `25px`
 NeedContext.min_height = `25px`
 NeedContext.back_icon = `⬅️`
 NeedContext.back_text = `Back`
+NeedContext.clear_text = `Clear`
 NeedContext.item_sep = `4px`
 NeedContext.layers = {}
 NeedContext.level = 0
@@ -32,11 +33,19 @@ NeedContext.set_defaults = () => {
   NeedContext.layers = {}
 }
 
+// Clear the filter
+NeedContext.clear_filter = () => {
+  NeedContext.filter.value = ``
+  NeedContext.do_filter()
+  NeedContext.filter.focus()
+}
+
 // Filter from keyboard input
 NeedContext.do_filter = () => {
   let value = NeedContext.filter.value.toLowerCase()
   value = NeedContext.remove_spaces(value)
   let selected = false
+  let some_hidden = false
 
   for (let el of document.querySelectorAll(`.needcontext-separator`)) {
     if (value) {
@@ -62,7 +71,17 @@ NeedContext.do_filter = () => {
     }
     else {
       el.classList.add(`needcontext-hidden`)
+      some_hidden = true
     }
+  }
+
+  let clear = document.querySelector(`#needcontext-clear`)
+
+  if (some_hidden) {
+    clear.classList.remove(`needcontext-hidden`)
+  }
+  else {
+    clear.classList.add(`needcontext-hidden`)
   }
 }
 
@@ -127,6 +146,7 @@ NeedContext.show = (x, y, items, root = true) => {
   if (!root) {
     let el = document.createElement(`div`)
     el.classList.add(`needcontext-back`)
+    el.classList.add(`needcontext-button`)
     let icon = document.createElement(`div`)
     icon.append(NeedContext.back_icon)
     let text = document.createElement(`div`)
@@ -136,6 +156,20 @@ NeedContext.show = (x, y, items, root = true) => {
     el.title = `Shortcut: Backspace`
     c.append(el)
   }
+
+  let clear = document.createElement(`div`)
+  clear.id = `needcontext-clear`
+  clear.classList.add(`needcontext-clear`)
+  clear.classList.add(`needcontext-button`)
+  clear.classList.add(`needcontext-hidden`)
+  let clear_icon = document.createElement(`div`)
+  clear_icon.append(NeedContext.back_icon)
+  let clear_text = document.createElement(`div`)
+  clear_text.textContent = NeedContext.clear_text
+  clear.append(clear_icon)
+  clear.append(clear_text)
+  clear.title = `Shortcut: Backspace`
+  c.append(clear)
 
   let normal_items = []
 
@@ -471,7 +505,7 @@ NeedContext.init = () => {
       cursor: pointer;
     }
 
-    .needcontext-back {
+    .needcontext-button {
       padding-left: 10px;
       padding-right: 10px;
       padding-top: ${NeedContext.item_sep};
@@ -483,7 +517,7 @@ NeedContext.init = () => {
       cursor: pointer;
     }
 
-    .needcontext-back:hover {
+    .needcontext-button:hover {
       text-shadow: 0 0 1rem currentColor;
     }
 
@@ -535,6 +569,11 @@ NeedContext.init = () => {
     else if (e.target.closest(`.needcontext-back`)) {
       if (e.button === 0) {
         NeedContext.go_back()
+      }
+    }
+    else if (e.target.closest(`.needcontext-clear`)) {
+      if (e.button === 0) {
+        NeedContext.clear_filter()
       }
     }
     else if (NeedContext.mousedown) {
