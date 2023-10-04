@@ -1341,6 +1341,7 @@ App.build_settings = () => {
       setup: () => {
         let tab_warn_opts = [
           {text: `Never`, value: `never`},
+          {text: `Multiple`, value: `multiple`},
           {text: `Special`, value: `special`},
           {text: `Always`, value: `always`},
         ]
