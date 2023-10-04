@@ -67,8 +67,6 @@ App.show_main_menu = (mode) => {
     })
   }
 
-  App.sep(items)
-
   items.push({
     text: `Profiles`,
     get_items: () => {
