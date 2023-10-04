@@ -105,6 +105,10 @@ App.check_force = (warn_setting, items) => {
     }
   }
   else if (warn_on_action === `special`) {
+    if (items.length > 1) {
+      return false
+    }
+
     for (let item of items) {
       if (item.pinned || item.audible) {
         return false
