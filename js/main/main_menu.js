@@ -78,7 +78,7 @@ App.show_main_menu = (mode) => {
   })
 
   items.push({
-    icon: App.pet_icon,
+    icon: App.bot_icon,
     text: `About`,
     action: () => {
       App.show_about()
