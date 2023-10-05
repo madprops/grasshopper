@@ -713,9 +713,12 @@ App.do_empty_previous_tabs = () => {
   App.previous_tabs = []
 }
 
-App.get_previous_tabs = () => {
+App.get_previous_tabs = (include_active = false) => {
   App.previous_tabs = App.get_items(`tabs`).slice(0)
-  App.previous_tabs = App.previous_tabs.filter(x => !x.active)
+
+  if (!include_active) {
+    App.previous_tabs = App.previous_tabs.filter(x => !x.active)
+  }
 
   App.previous_tabs.sort((a, b) => {
     return a.last_accessed > b.last_accessed ? -1 : 1
@@ -1108,7 +1111,7 @@ App.load_tabs = (item) => {
 
 App.prev_tabs = (e) => {
   let items = []
-  App.get_previous_tabs()
+  App.get_previous_tabs(true)
   let max = App.get_setting(`max_prev_tabs`)
 
   for (let item of App.previous_tabs.slice(0, max)) {
