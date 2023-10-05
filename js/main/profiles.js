@@ -916,51 +916,33 @@ App.get_edit_items = (item) => {
   let its = App.get_profile_items(item)
   let [profiles, added] = App.get_profiles(its)
 
-  if (its.length === 1) {
-    let profile = profiles[0]
-    let exact = false
-
-    if (profile) {
-      exact = profile.url.value === item.url
-    }
-
-    if (profile && !exact) {
-      items.push({
-        text: `This URL`,
-        action: () => {
-          App.show_profile_editor(item, `new`)
-        }
-      })
-    }
-  }
-
-  items.push({
-    icon: App.settings_icons.theme,
-    text: `Color`,
-    get_items: () => {
-      return App.color_menu_items(item)
-    }
-  })
-
-  items.push({
-    icon: App.get_setting(`notes_icon`),
-    text: `Note`,
-    action: () => {
-      App.add_note(item)
-    }
-  })
-
   items.push({
     icon: App.tag_icon,
-    text: `Tag`,
+    text: `Add Tag`,
     action: () => {
       App.add_tag(item)
     }
   })
 
   items.push({
+    icon: App.get_setting(`notes_icon`),
+    text: `Add Note`,
+    action: () => {
+      App.add_note(item)
+    }
+  })
+
+  items.push({
+    icon: App.settings_icons.theme,
+    text: `Edit Color`,
+    get_items: () => {
+      return App.color_menu_items(item)
+    }
+  })
+
+  items.push({
     icon: App.profile_icon,
-    text: `Title`,
+    text: `Edit Title`,
     action: () => {
       App.edit_title(item)
     }
@@ -968,7 +950,7 @@ App.get_edit_items = (item) => {
 
   items.push({
     icon: App.profile_icon,
-    text: `Icon`,
+    text: `Edit Icon`,
     action: () => {
       App.edit_icon(item)
     }
@@ -984,11 +966,30 @@ App.get_edit_items = (item) => {
     }
   })
 
+  if (its.length === 1) {
+    let profile = profiles[0]
+    let exact = false
+
+    if (profile) {
+      exact = profile.url.value === item.url
+    }
+
+    if (profile && !exact) {
+      items.push({
+        icon: App.profile_icon,
+        text: `This URL`,
+        action: () => {
+          App.show_profile_editor(item, `new`)
+        }
+      })
+    }
+  }
+
   if (profiles.length) {
     App.sep(items)
 
     items.push({
-      text: `Remove`,
+      text: `Remove Edits`,
       action: () => {
         App.profile_remove_menu(item)
       }
