@@ -1132,6 +1132,12 @@ App.background_path = (num) => {
 
 // For devs to check once in a while
 App.check_dead_commands = () => {
+  function check (cmd, key) {
+    if (!App.get_command(cmd)) {
+      App.error(`Dead command: ${cmd} in ${key}`)
+    }
+  }
+
   for (let key in App.setting_props) {
     let value = App.setting_props[key].value
 
@@ -1140,14 +1146,24 @@ App.check_dead_commands = () => {
         if (typeof item === `object`) {
           for (let key2 in item) {
             if (key2 === `cmd`) {
-              let cmd = item[key2]
-
-              if (!App.get_command(cmd)) {
-                App.error(`Dead command: ${cmd} in ${key}`)
-              }
+              check(item[key2], key)
             }
           }
         }
+      }
+    }
+    else {
+      let value = App.setting_props[key].value
+
+      if (value === `none`) {
+        continue
+      }
+
+      if (key.startsWith(`middle_click`)) {
+        check(value, key)
+      }
+      else if (key === `double_click_command`) {
+        check(value, key)
       }
     }
   }
