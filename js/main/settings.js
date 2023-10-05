@@ -1151,4 +1151,12 @@ App.check_dead_commands = () => {
       }
     }
   }
+
+  for (let gesture of App.gestures) {
+    let g = App.get_setting(`gesture_${gesture}`)
+
+    if (!App.get_command(g)) {
+      App.error(`Gesture ${gesture} has a dead command`)
+    }
+  }
 }
