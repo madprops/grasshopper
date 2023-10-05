@@ -976,6 +976,10 @@ App.check_command = (command, args) => {
 // For devs to check once in a while
 App.check_dead_commands = () => {
   function check (cmd, key) {
+    if (cmd === `none`) {
+      return
+    }
+
     if (!App.get_command(cmd)) {
       App.error(`Dead command: ${cmd} in ${key}`)
     }
@@ -997,10 +1001,6 @@ App.check_dead_commands = () => {
     }
     else {
       let value = App.setting_props[key].value
-
-      if (value === `none`) {
-        continue
-      }
 
       if (key === `double_click_command`) {
         check(value, key)
