@@ -972,3 +972,50 @@ App.check_command = (command, args) => {
 
   return valid
 }
+
+// For devs to check once in a while
+App.check_dead_commands = () => {
+  function check (cmd, key) {
+    if (!App.get_command(cmd)) {
+      App.error(`Dead command: ${cmd} in ${key}`)
+    }
+  }
+
+  for (let key in App.setting_props) {
+    let value = App.setting_props[key].value
+
+    if (Array.isArray(value)) {
+      for (let item of value) {
+        if (typeof item === `object`) {
+          for (let key2 in item) {
+            if (key2 === `cmd`) {
+              check(item[key2], key)
+            }
+          }
+        }
+      }
+    }
+    else {
+      let value = App.setting_props[key].value
+
+      if (value === `none`) {
+        continue
+      }
+
+      if (key.startsWith(`middle_click`)) {
+        check(value, key)
+      }
+      else if (key === `double_click_command`) {
+        check(value, key)
+      }
+    }
+  }
+
+  for (let gesture of App.gestures) {
+    let g = App.get_setting(`gesture_${gesture}`)
+
+    if (!App.get_command(g)) {
+      App.error(`Gesture ${gesture} has a dead command`)
+    }
+  }
+}
