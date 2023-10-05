@@ -41,12 +41,12 @@ NeedContext.clear_filter = () => {
 
 // Filter from keyboard input
 NeedContext.do_filter = () => {
-  let value = NeedContext.filter.value.toLowerCase()
-  value = NeedContext.remove_spaces(value)
+  let value = NeedContext.filter.value
+  let cleaned = NeedContext.remove_spaces(value).toLowerCase()
   let selected = false
 
   for (let el of document.querySelectorAll(`.needcontext-separator`)) {
-    if (value) {
+    if (cleaned) {
       el.classList.add(`needcontext-hidden`)
     }
     else {
@@ -59,7 +59,7 @@ NeedContext.do_filter = () => {
     let text = text_el.textContent.toLowerCase()
     text = NeedContext.remove_spaces(text)
 
-    if (text.includes(value)) {
+    if (text.includes(cleaned)) {
       el.classList.remove(`needcontext-hidden`)
 
       if (!selected) {
@@ -74,7 +74,7 @@ NeedContext.do_filter = () => {
 
   let back = document.querySelector(`#needcontext-back`)
   let clear = document.querySelector(`#needcontext-clear`)
-  NeedContext.filtered = value !== ``
+  NeedContext.filtered = cleaned !== ``
 
   if (NeedContext.filtered) {
     let text = document.querySelector(`#needcontext-clear-text`)
