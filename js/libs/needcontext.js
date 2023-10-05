@@ -25,7 +25,6 @@ NeedContext.center_top = `50%`
 // Set defaults
 NeedContext.set_defaults = () => {
   NeedContext.open = false
-  NeedContext.keydown = false
   NeedContext.mousedown = false
   NeedContext.first_mousedown = false
   NeedContext.last_x = 0
@@ -575,8 +574,6 @@ NeedContext.init = () => {
       return
     }
 
-    NeedContext.keydown = true
-
     if (e.key === `ArrowUp`) {
       NeedContext.select_up()
       e.preventDefault()
@@ -591,21 +588,7 @@ NeedContext.init = () => {
         e.preventDefault()
       }
     }
-  })
-
-  document.addEventListener(`keyup`, (e) => {
-    if (!NeedContext.open) {
-      return
-    }
-
-    if (!NeedContext.keydown) {
-      return
-    }
-
-    e.stopPropagation()
-    NeedContext.keydown = false
-
-    if (e.key === `Escape`) {
+    else if (e.key === `Escape`) {
       NeedContext.hide()
       e.preventDefault()
     }
