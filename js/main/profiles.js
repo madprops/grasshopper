@@ -12,14 +12,14 @@ App.profile_props = {
   tags: {
     type: `list`,
     value: [],
-    label: `Tag`,
+    label: `Add Tag`,
     title: `Tags`,
     version: 2,
   },
   notes: {
     type: `list`,
     value: [],
-    label: `Note`,
+    label: `Add Note`,
     title: `Notes`,
     version: 2,
   },
