@@ -540,8 +540,7 @@ svg {
 }
 
 .pinline_content {
-  border: 1px solid var(--alt_color_1);
-  color: var(--alt_color_2);
+  border: 1px solid var(--alt_color_2);
   border-radius: var(--border_radius_2);
   margin-left: 0.11rem;
   padding-left: 0.5rem;
