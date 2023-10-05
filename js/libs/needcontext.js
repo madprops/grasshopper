@@ -75,8 +75,9 @@ NeedContext.do_filter = () => {
 
   let back = document.querySelector(`#needcontext-back`)
   let clear = document.querySelector(`#needcontext-clear`)
+  NeedContext.filtered = value !== ``
 
-  if (value) {
+  if (NeedContext.filtered) {
     let text = document.querySelector(`#needcontext-clear-text`)
     text.textContent = value
     clear.classList.remove(`needcontext-hidden`)
@@ -584,6 +585,12 @@ NeedContext.init = () => {
       NeedContext.select_down()
       e.preventDefault()
     }
+    else if (e.key === `Backspace`) {
+      if (!NeedContext.filtered) {
+        NeedContext.go_back()
+        e.preventDefault()
+      }
+    }
   })
 
   document.addEventListener(`keyup`, (e) => {
@@ -605,12 +612,6 @@ NeedContext.init = () => {
     else if (e.key === `Enter`) {
       NeedContext.select_action(e, undefined, `keyboard`)
       e.preventDefault()
-    }
-    else if (e.key === `Backspace`) {
-      if (!NeedContext.filter.value) {
-        NeedContext.go_back()
-        e.preventDefault()
-      }
     }
   })
 
