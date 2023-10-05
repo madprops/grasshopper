@@ -564,6 +564,20 @@ App.apply_color_mode = (item) => {
       item.element.classList.add(`border_${color}`)
     }
   }
+
+  if (color_mode === `background`) {
+    for (let color of App.colors) {
+      item.element.classList.remove(`colored`)
+      item.element.classList.remove(`colored_background`)
+      item.element.classList.remove(`background_${color}`)
+    }
+
+    if (color) {
+      item.element.classList.add(`colored`)
+      item.element.classList.add(`colored_background`)
+      item.element.classList.add(`background_${color}`)
+    }
+  }
 }
 
 App.add_close_icon = (item, side) => {

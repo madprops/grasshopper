@@ -926,9 +926,12 @@ a:visited, a:link, a:hover {
   background-color: var(--color_orange) !important;
 }
 
-.selected_effect_background.colored.selected {
-  background-color: var(--alt_color_1);
-  color: var(--text_color);
+.colored_background {
+  color: white !important;
+}
+
+.selected_effect_background .colored_background.selected {
+  text-decoration: underline;
 }
 
 .color_only_icon .item_icon_container {

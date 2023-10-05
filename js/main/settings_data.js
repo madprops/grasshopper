@@ -1255,6 +1255,7 @@ App.build_settings = () => {
           {text: `Border`, value: `border`},
           {text: `Border & Icon`, value: `border_icon`},
           {text: `Border & Icon 2`, value: `border_icon_2`},
+          {text: `Background`, value: `background`},
         ])
       },
     },
