@@ -490,7 +490,7 @@ App.show_tabs_info = () => {
   App.alert(s)
 }
 
-App.show_urls = () => {
+App.show_tab_urls = () => {
   let urls = []
 
   for (let item of App.get_items(`tabs`)) {
@@ -1053,7 +1053,7 @@ App.do_sort_tabs = () => {
   })
 }
 
-App.open_urls = () => {
+App.open_tab_urls = () => {
   App.show_input(`Open URLs`, `Open`, (text) => {
     let urls = text.split(`\n`).map(x => x.trim()).filter(x => x !== ``)
     let to_open = []

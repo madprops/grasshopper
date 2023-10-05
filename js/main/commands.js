@@ -22,7 +22,7 @@ App.setup_commands = () => {
 
     color_filters.push({
       name: name,
-      cmd: `filter_${color}`,
+      cmd: `filter_color_${color}`,
       mode: `items`,
       icon: icon,
       action: (args) => {
@@ -36,7 +36,7 @@ App.setup_commands = () => {
 
     color_changers.push({
       name: name,
-      cmd: `color_${color}`,
+      cmd: `change_color_${color}`,
       mode: `items`,
       icon: icon,
       action: (args) => {
@@ -50,7 +50,7 @@ App.setup_commands = () => {
 
     color_changers.push({
       name: name,
-      cmd: `toggle_${color}`,
+      cmd: `toggle_color_${color}`,
       mode: `items`,
       icon: icon,
       action: (args) => {
@@ -89,7 +89,7 @@ App.setup_commands = () => {
 
     media_filters.push({
       name: name,
-      cmd: `filter_${media}`,
+      cmd: `filter_media_${media}`,
       mode: `items`,
       icon: icon,
       action: (args) => {
@@ -107,7 +107,7 @@ App.setup_commands = () => {
 
     show_modes.push({
       name: name,
-      cmd: `show_${mode}`,
+      cmd: `show_mode_${mode}`,
       icon: icon,
       action: (args) => {
         App.show_mode({mode: mode})
@@ -139,7 +139,7 @@ App.setup_commands = () => {
     },
     {
       name: `Step Back`,
-      cmd: `step_back`,
+      cmd: `show_step_back`,
       mode: `items`,
       icon: command_icon,
       action: (args) => {
@@ -149,7 +149,7 @@ App.setup_commands = () => {
     },
     {
       name: `Prev Tabs`,
-      cmd: `prev_tabs`,
+      cmd: `show_prev_tabs`,
       mode: `items`,
       icon: tabs_icon,
       action: (args) => {
@@ -172,7 +172,7 @@ App.setup_commands = () => {
     },
     {
       name: `Prev Mode`,
-      cmd: `prev_mode`,
+      cmd: `show_prev_mode`,
       mode: `items`,
       icon: command_icon,
       action: (args) => {
@@ -182,7 +182,7 @@ App.setup_commands = () => {
     },
     {
       name: `Next Mode`,
-      cmd: `next_mode`,
+      cmd: `show_next_mode`,
       mode: `items`,
       icon: command_icon,
       action: (args) => {
@@ -195,7 +195,7 @@ App.setup_commands = () => {
 
     {
       name: `Show Primary`,
-      cmd: `show_primary`,
+      cmd: `show_primary_mode`,
       icon: command_icon,
       action: (args) => {
         App.show_primary_mode()
@@ -254,7 +254,7 @@ App.setup_commands = () => {
     },
     {
       name: `Item Action`,
-      cmd: `item_action`,
+      cmd: `do_item_action`,
       mode: `items`,
       icon: command_icon,
       action: (args) => {
@@ -346,7 +346,7 @@ App.setup_commands = () => {
     },
     {
       name: `New`,
-      cmd: `new_tab`,
+      cmd: `open_new_tab`,
       icon: tabs_icon,
       action: (args) => {
         App.new_tab()
@@ -395,7 +395,7 @@ App.setup_commands = () => {
     },
     {
       name: `To Window`,
-      cmd: `show_window_menu`,
+      cmd: `show_windows_menu`,
       mode: `tabs`,
       icon: tabs_icon,
       action: (args) => {
@@ -588,7 +588,7 @@ App.setup_commands = () => {
       mode: `items`,
       icon: tabs_icon,
       action: (args) => {
-        App.show_urls()
+        App.show_tab_urls()
       },
       info: `Show a list of open URLs`
     },
@@ -598,7 +598,7 @@ App.setup_commands = () => {
       mode: `items`,
       icon: tabs_icon,
       action: (args) => {
-        App.open_urls()
+        App.open_tab_urls()
       },
       info: `Open a list of URLs`
     },
@@ -636,7 +636,7 @@ App.setup_commands = () => {
     },
     {
       name: `Filter History`,
-      cmd: `filter_history`,
+      cmd: `show_filter_history`,
       icon: filter_icon,
       mode: `items`,
       action: (args) => {
@@ -646,7 +646,7 @@ App.setup_commands = () => {
     },
     {
       name: `Deep Search`,
-      cmd: `deep_search`,
+      cmd: `do_deep_search`,
       icon: filter_icon,
       mode: `search`,
       action: (args) => {
@@ -656,7 +656,7 @@ App.setup_commands = () => {
     },
     {
       name: `Search Media`,
-      cmd: `search_media`,
+      cmd: `show_search_media_menu`,
       icon: audio_icon,
       mode: `items`,
       action: (args) => {
@@ -689,7 +689,7 @@ App.setup_commands = () => {
     },
     {
       name: `Add Note`,
-      cmd: `add_note`,
+      cmd: `profiles_add_note`,
       icon: App.get_setting(`notes_icon`),
       mode: `items`,
       action: (args) => {
@@ -699,7 +699,7 @@ App.setup_commands = () => {
     },
     {
       name: `Add Tag`,
-      cmd: `add_tag`,
+      cmd: `profiles_add_tag`,
       icon: tag_icon,
       mode: `items`,
       action: (args) => {
@@ -709,7 +709,7 @@ App.setup_commands = () => {
     },
     {
       name: `Edit Title`,
-      cmd: `edit_title`,
+      cmd: `profiles_edit_title`,
       icon: profile_icon,
       mode: `items`,
       action: (args) => {
@@ -719,7 +719,7 @@ App.setup_commands = () => {
     },
     {
       name: `Edit Icon`,
-      cmd: `edit_icon`,
+      cmd: `profiles_edit_icon`,
       icon: profile_icon,
       mode: `items`,
       action: (args) => {
@@ -742,7 +742,7 @@ App.setup_commands = () => {
 
     {
       name: `Filter Domain`,
-      cmd: `filter_domain`,
+      cmd: `filter_by_domain`,
       icon: filter_icon,
       mode: `items`,
       action: (args) => {
@@ -752,7 +752,7 @@ App.setup_commands = () => {
     },
     {
       name: `Filter Color`,
-      cmd: `filter_color`,
+      cmd: `filter_by_color`,
       icon: theme_icon,
       mode: `items`,
       color: true,
@@ -763,7 +763,7 @@ App.setup_commands = () => {
     },
     {
       name: `Filter Playing`,
-      cmd: `filter_playing`,
+      cmd: `filter_by_playing`,
       icon: playing_icon,
       mode: `tabs`,
       action: (args) => {
@@ -773,7 +773,7 @@ App.setup_commands = () => {
     },
     {
       name: `Filter Edited`,
-      cmd: `filter_edited`,
+      cmd: `filter_by_edited`,
       icon: profile_icon,
       mode: `items`,
       action: (args) => {
@@ -786,7 +786,7 @@ App.setup_commands = () => {
     },
     {
       name: `Dark Colors`,
-      cmd: `dark_colors`,
+      cmd: `set_dark_colors`,
       icon: theme_icon,
       action: (args) => {
         App.set_dark_colors()
@@ -795,7 +795,7 @@ App.setup_commands = () => {
     },
     {
       name: `Light Colors`,
-      cmd: `light_colors`,
+      cmd: `set_light_colors`,
       icon: theme_icon,
       action: (args) => {
         App.set_light_colors()
@@ -804,7 +804,7 @@ App.setup_commands = () => {
     },
     {
       name: `Random Dark`,
-      cmd: `random_dark_colors`,
+      cmd: `set_random_dark_colors`,
       icon: theme_icon,
       action: (args) => {
         App.random_colors(`dark`)
@@ -813,7 +813,7 @@ App.setup_commands = () => {
     },
     {
       name: `Random Light`,
-      cmd: `random_light_colors`,
+      cmd: `set_random_light_colors`,
       icon: theme_icon,
       action: (args) => {
         App.random_colors(`light`)
@@ -822,7 +822,7 @@ App.setup_commands = () => {
     },
     {
       name: `Background`,
-      cmd: `change_background`,
+      cmd: `set_background_image`,
       media: `image`,
       icon: theme_icon,
       action: (args) => {

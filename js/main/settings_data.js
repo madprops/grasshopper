@@ -442,14 +442,14 @@ App.build_settings = () => {
     gesture_left: {
       name: `Gesture Left`,
       type: `menu`,
-      value: `prev_mode`,
+      value: `show_prev_mode`,
       info: `Left gesture`,
       version: 1,
     },
     gesture_right: {
       name: `Gesture Right`,
       type: `menu`,
-      value: `next_mode`,
+      value: `show_next_mode`,
       info: `Right gesture`,
       version: 1,
     },
@@ -560,7 +560,7 @@ App.build_settings = () => {
       name: `Tab Actions`,
       type: `list`,
       value: [
-        {cmd: `new_tab`},
+        {cmd: `open_new_tab`},
         {cmd: `sort_tabs`},
         {cmd: `reopen_tab`},
         {cmd: `show_tabs_info`},
@@ -575,7 +575,7 @@ App.build_settings = () => {
       name: `History Actions`,
       type: `list`,
       value: [
-        {cmd: `deep_search`},
+        {cmd: `do_deep_search`},
         {cmd: `search_media`},
       ],
       info: `History action menu`,
@@ -622,7 +622,7 @@ App.build_settings = () => {
       name: `Empty Menu`,
       type: `list`,
       value: [
-        {cmd: `new_tab`},
+        {cmd: `open_new_tab`},
         {cmd: `select_all_items`},
       ],
       info: `Menu when right clicking empty space`,
