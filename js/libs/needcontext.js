@@ -680,7 +680,7 @@ NeedContext.clear_button = () => {
   text.textContent = NeedContext.clear_text
   el.append(icon)
   el.append(text)
-  el.title = `Shortcut: Backspace`
+  el.title = `Type to filter. Click to clear`
   return el
 }
 
