@@ -582,6 +582,10 @@ NeedContext.init = () => {
       NeedContext.select_down()
       e.preventDefault()
     }
+    else if (e.key === `Enter`) {
+      NeedContext.select_action(e, undefined, `keyboard`)
+      e.preventDefault()
+    }
     else if (e.key === `Backspace`) {
       if (!NeedContext.filtered) {
         NeedContext.go_back()
@@ -590,10 +594,6 @@ NeedContext.init = () => {
     }
     else if (e.key === `Escape`) {
       NeedContext.hide()
-      e.preventDefault()
-    }
-    else if (e.key === `Enter`) {
-      NeedContext.select_action(e, undefined, `keyboard`)
       e.preventDefault()
     }
   })
