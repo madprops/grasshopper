@@ -22,7 +22,7 @@ App.setup_commands = () => {
 
     color_filters.push({
       name: name,
-      cmd: `filter_color_${color}`,
+      cmd: `filter_by_color_${color}`,
       mode: `items`,
       icon: icon,
       action: (args) => {
@@ -89,7 +89,7 @@ App.setup_commands = () => {
 
     media_filters.push({
       name: name,
-      cmd: `filter_media_${media}`,
+      cmd: `filter_by_media_${media}`,
       mode: `items`,
       icon: icon,
       action: (args) => {
