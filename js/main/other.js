@@ -1,12 +1,12 @@
 App.check_first_time = () => {
   if (!App.first_time.date) {
-    App.intro_message()
+    App.show_intro_message()
     App.first_time.date = App.now()
     App.stor_save_first_time()
   }
 }
 
-App.intro_message = () => {
+App.show_intro_message = () => {
   let s = `Hi there. The main menu is the top-left button. Check the settings for some customizations.
   I constantly experiment and change stuff, so expect things to break`
   App.alert(App.single_space(s))
