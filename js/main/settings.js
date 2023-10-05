@@ -1129,3 +1129,26 @@ App.do_pick_background = (num) => {
 App.background_path = (num) => {
   return App.backgrounds_dir + `background_${num}.jpg`
 }
+
+// For devs to check once in a while
+App.check_dead_commands = () => {
+  for (let key in App.setting_props) {
+    let value = App.setting_props[key].value
+
+    if (Array.isArray(value)) {
+      for (let item of value) {
+        if (typeof item === `object`) {
+          for (let key2 in item) {
+            if (key2 === `cmd`) {
+              let cmd = item[key2]
+
+              if (!App.get_command(cmd)) {
+                App.error(`Dead settings command: ${cmd} in ${key}`)
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

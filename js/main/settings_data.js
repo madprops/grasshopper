@@ -576,7 +576,7 @@ App.build_settings = () => {
       type: `list`,
       value: [
         {cmd: `do_deep_search`},
-        {cmd: `search_media`},
+        {cmd: `show_search_media_menu`},
       ],
       info: `History action menu`,
       version: 1,
@@ -586,8 +586,8 @@ App.build_settings = () => {
       type: `list`,
       value: [
         {cmd: `bookmark_page`},
-        {cmd: `deep_search`},
-        {cmd: `search_media`},
+        {cmd: `do_deep_search`},
+        {cmd: `show_search_media_menu`},
       ],
       info: `Bookmarks action menu`,
       version: 1,
