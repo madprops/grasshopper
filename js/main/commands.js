@@ -1005,7 +1005,7 @@ App.check_dead_commands = () => {
       if (key === `double_click_command`) {
         check(value, key)
       }
-      if (key.startsWith(`middle_click`)) {
+      else if (key.startsWith(`middle_click_`)) {
         check(value, key)
       }
       else if (key.startsWith(`gesture_`)) {
