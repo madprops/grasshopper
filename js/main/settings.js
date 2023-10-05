@@ -1143,7 +1143,7 @@ App.check_dead_commands = () => {
               let cmd = item[key2]
 
               if (!App.get_command(cmd)) {
-                App.error(`Dead settings command: ${cmd} in ${key}`)
+                App.error(`Dead command: ${cmd} in ${key}`)
               }
             }
           }
