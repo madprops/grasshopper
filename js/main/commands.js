@@ -139,7 +139,7 @@ App.setup_commands = () => {
     },
     {
       name: `Step Back`,
-      cmd: `show_step_back`,
+      cmd: `step_back`,
       mode: `items`,
       icon: command_icon,
       action: (args) => {
@@ -254,7 +254,7 @@ App.setup_commands = () => {
     },
     {
       name: `Item Action`,
-      cmd: `do_item_action`,
+      cmd: `item_action`,
       mode: `items`,
       icon: command_icon,
       action: (args) => {
@@ -646,7 +646,7 @@ App.setup_commands = () => {
     },
     {
       name: `Deep Search`,
-      cmd: `do_deep_search`,
+      cmd: `deep_search`,
       icon: filter_icon,
       mode: `search`,
       action: (args) => {
