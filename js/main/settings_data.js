@@ -585,9 +585,9 @@ App.build_settings = () => {
       name: `Bookmark Actions`,
       type: `list`,
       value: [
-        {cmd: `bookmark_page`},
         {cmd: `do_deep_search`},
         {cmd: `show_search_media_menu`},
+        {cmd: `bookmark_page`},
       ],
       info: `Bookmarks action menu`,
       version: 1,
