@@ -253,12 +253,15 @@ App.check_items_keyboard = (e) => {
     }
   }
 
-  let allowed = [`Backspace`]
+  if (!App.filter_is_focused(mode)) {
+    let allowed = [`Backspace`]
 
-  if (e.key.length === 1 || allowed.includes(e.key)) {
-    App.focus_filter(mode)
-    App.clear_restore()
+    if (e.key.length === 1 || allowed.includes(e.key)) {
+      App.focus_filter(mode)
+    }
   }
+
+  App.clear_restore()
 }
 
 App.setup_keyboard = () => {
