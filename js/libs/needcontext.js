@@ -27,6 +27,7 @@ NeedContext.set_defaults = () => {
   NeedContext.open = false
   NeedContext.mousedown = false
   NeedContext.first_mousedown = false
+  NeedContext.filtered = false
   NeedContext.last_x = 0
   NeedContext.last_y = 0
   NeedContext.layers = {}
