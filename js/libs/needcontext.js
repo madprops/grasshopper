@@ -576,6 +576,10 @@ NeedContext.init = () => {
       return
     }
 
+    if (NeedContext.modkey(e)) {
+      return
+    }
+
     NeedContext.keydown = true
 
     if (e.key === `ArrowUp`) {
@@ -600,6 +604,10 @@ NeedContext.init = () => {
     }
 
     if (!NeedContext.keydown) {
+      return
+    }
+
+    if (NeedContext.modkey(e)) {
       return
     }
 
@@ -699,6 +707,11 @@ NeedContext.clear_button = () => {
   el.append(text)
   el.title = `Type to filter. Click to clear`
   return el
+}
+
+// Return true if a mod key is pressed
+NeedContext.modkey = (e) => {
+  return e.ctrlKey || e.altKey || e.shiftKey || e.metaKey
 }
 
 // Start
