@@ -989,7 +989,7 @@ App.get_edit_items = (item) => {
     App.sep(items)
 
     items.push({
-      text: `Remove Edits`,
+      text: `Remove`,
       action: () => {
         App.profile_remove_menu(item)
       }
