@@ -27,6 +27,7 @@ NeedContext.set_defaults = () => {
   NeedContext.open = false
   NeedContext.mousedown = false
   NeedContext.first_mousedown = false
+  NeedContext.keydown = false
   NeedContext.filtered = false
   NeedContext.last_x = 0
   NeedContext.last_y = 0
@@ -575,6 +576,8 @@ NeedContext.init = () => {
       return
     }
 
+    NeedContext.keydown = true
+
     if (e.key === `ArrowUp`) {
       NeedContext.select_up()
       e.preventDefault()
@@ -583,18 +586,31 @@ NeedContext.init = () => {
       NeedContext.select_down()
       e.preventDefault()
     }
-    else if (e.key === `Enter`) {
-      NeedContext.select_action(e, undefined, `keyboard`)
-      e.preventDefault()
-    }
     else if (e.key === `Backspace`) {
       if (!NeedContext.filtered) {
         NeedContext.go_back()
         e.preventDefault()
       }
     }
-    else if (e.key === `Escape`) {
+  })
+
+  document.addEventListener(`keyup`, (e) => {
+    if (!NeedContext.open) {
+      return
+    }
+
+    if (!NeedContext.keydown) {
+      return
+    }
+
+    NeedContext.keydown = false
+
+    if (e.key === `Escape`) {
       NeedContext.hide()
+      e.preventDefault()
+    }
+    else if (e.key === `Enter`) {
+      NeedContext.select_action(e, undefined, `keyboard`)
       e.preventDefault()
     }
   })
