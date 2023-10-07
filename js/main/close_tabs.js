@@ -55,10 +55,9 @@ App.update_close_tabs_popup_button = (type) => {
 }
 
 App.close_tabs_action = () => {
-  let type = App.close_tabs_type
   let pins = DOM.el(`#close_tabs_include_pins`).checked
   let unloaded = DOM.el(`#close_tabs_include_unloaded`).checked
-  App[`close_${type}_tabs`](pins, unloaded)
+  App[`close_${App.close_tabs_type}_tabs`](pins, unloaded)
 }
 
 App.get_normal_tabs_items = (pins, unloaded) => {
