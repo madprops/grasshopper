@@ -123,7 +123,7 @@ App.build_settings = () => {
       name: `Icon Pick`,
       type: `checkbox`,
       value: false,
-      info: `Clicking the the icons on the left of items toggles select`,
+      info: `Clicking the icons on the left of items toggles select`,
       version: 1,
     },
     lock_drag: {
