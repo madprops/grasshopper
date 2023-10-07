@@ -371,6 +371,16 @@ App.setup_keyboard = () => {
           e.preventDefault()
           return
         }
+        else if (e.key === `ArrowLeft`) {
+          App.close_tabs_next(true)
+          e.preventDefault()
+          return
+        }
+        else if (e.key === `ArrowRight`) {
+          App.close_tabs_next()
+          e.preventDefault()
+          return
+        }
       }
       else if (Addlist.on_addlist()) {
         if (e.key === `Enter`) {
