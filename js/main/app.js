@@ -49,6 +49,7 @@ App.about_ready = false
 App.popups_ready = false
 App.palette_ready = false
 App.tab_popups_ready = false
+App.close_tabs_ready = false
 
 App.settings_save_delay = 250
 App.double_tap_delay = 300

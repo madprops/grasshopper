@@ -1,3 +1,40 @@
+App.start_close_tabs = () => {
+  if (App.check_ready(`close_tabs`)) {
+    return
+  }
+
+  App.create_popup({
+    id: `close_tabs`,
+    setup: () => {
+      App.close_tabs_types = [`normal`, `playing`, `unloaded`, `duplicate`, `visible`]
+
+      DOM.ev(DOM.el(`#close_tabs_include_pins`), `change`, () => {
+        App.update_close_tabs_popup_button(App.close_tabs_type)
+      })
+
+      DOM.ev(DOM.el(`#close_tabs_include_unloaded`), `change`, () => {
+        App.update_close_tabs_popup_button(App.close_tabs_type)
+      })
+
+      DOM.ev(DOM.el(`#close_tabs_button`), `click`, () => {
+        App.close_tabs_action()
+      })
+
+      DOM.ev(DOM.el(`#close_tabs_prev`), `click`, () => {
+        App.close_tabs_next(true)
+      })
+
+      DOM.ev(DOM.el(`#close_tabs_next`), `click`, () => {
+        App.close_tabs_next()
+      })
+
+      DOM.ev(DOM.el(`#close_tabs_title`), `click`, (e) => {
+        App.show_close_tabs_menu(e)
+      })
+    },
+  })
+}
+
 App.close_tab_or_tabs = async (id_or_ids) => {
   try {
     await browser.tabs.remove(id_or_ids)
@@ -25,7 +62,7 @@ App.close_tabs = (item, multiple = true) => {
 }
 
 App.close_tabs_popup = (type) => {
-  App.start_tab_popups()
+  App.start_close_tabs()
   App.close_tabs_type = type
   App.show_popup(`close_tabs`)
   let title = App.capitalize_words(`Close ${type}`)
@@ -266,7 +303,7 @@ App.close_other_new_tabs = (id) => {
   }
 }
 
-App.close_tabs_menu = (e) => {
+App.show_close_tabs_menu = (e) => {
   let items = []
 
   items.push({

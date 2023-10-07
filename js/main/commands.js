@@ -499,7 +499,7 @@ App.setup_commands = () => {
       mode: `items`,
       icon: tabs_icon,
       action: (args) => {
-        App.close_tabs_menu(args.e)
+        App.show_close_tabs_menu(args.e)
       },
       info: `Open the menu with some tab closing options`
     },

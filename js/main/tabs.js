@@ -93,33 +93,6 @@ App.start_tab_popups = () => {
   }
 
   App.create_popup({
-    id: `close_tabs`,
-    setup: () => {
-      App.close_tabs_types = [`normal`, `playing`, `unloaded`, `duplicate`, `visible`]
-
-      DOM.ev(DOM.el(`#close_tabs_include_pins`), `change`, () => {
-        App.update_close_tabs_popup_button(App.close_tabs_type)
-      })
-
-      DOM.ev(DOM.el(`#close_tabs_include_unloaded`), `change`, () => {
-        App.update_close_tabs_popup_button(App.close_tabs_type)
-      })
-
-      DOM.ev(DOM.el(`#close_tabs_button`), `click`, () => {
-        App.close_tabs_action()
-      })
-
-      DOM.ev(DOM.el(`#close_tabs_prev`), `click`, () => {
-        App.close_tabs_next(true)
-      })
-
-      DOM.ev(DOM.el(`#close_tabs_next`), `click`, () => {
-        App.close_tabs_next()
-      })
-    },
-  })
-
-  App.create_popup({
     id: `sort_tabs`,
     setup: () => {
       DOM.ev(DOM.el(`#sort_tabs_button`), `click`, () => {
