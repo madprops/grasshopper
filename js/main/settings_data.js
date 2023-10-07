@@ -25,7 +25,7 @@ App.build_settings = () => {
       name: `Wrap`,
       type: `checkbox`,
       value: false,
-      info: `Allow long lines to wrap`,
+      info: `Allow long lines to wrap into multiple lines, increasing the height of some items`,
       version: 1,
     },
     font_size: {
