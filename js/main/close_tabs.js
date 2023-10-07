@@ -44,9 +44,7 @@ App.close_tab_or_tabs = async (id_or_ids) => {
   }
 }
 
-App.close_tabs = (item, multiple = true) => {
-  let items = App.get_active_items(`tabs`, item, multiple)
-  let force = App.check_force(`warn_on_close_tabs`, items)
+App.close_tabs_method = (items, force) => {
   let ids = items.map(x => x.id)
 
   if (!ids.length) {
@@ -55,7 +53,19 @@ App.close_tabs = (item, multiple = true) => {
 
   App.show_confirm(`Close tabs? (${ids.length})`, () => {
     App.close_tab_or_tabs(ids)
+    App.hide_all_popups()
   }, undefined, force)
+}
+
+App.close_tabs = (item, multiple = true) => {
+  let items = App.get_active_items(`tabs`, item, multiple)
+
+  if (!items.length) {
+    return
+  }
+
+  let force = App.check_force(`warn_on_close_tabs`, items)
+  App.close_tabs_method(items, force)
 }
 
 App.close_tabs_popup = (type) => {
@@ -131,12 +141,7 @@ App.close_normal_tabs = (pins, unloaded) => {
   }
 
   let force = App.check_force(`warn_on_close_normal_tabs`, items)
-  let ids = items.map(x => x.id)
-
-  App.show_confirm(App.close_tabs_message(ids.length), () => {
-    App.close_tab_or_tabs(ids)
-    App.hide_all_popups()
-  }, undefined, force)
+  App.close_tabs_method(items, force)
 }
 
 App.get_playing_tabs_items = (pins, unloaded) => {
@@ -168,12 +173,7 @@ App.close_playing_tabs = (pins, unloaded) => {
   }
 
   let force = App.check_force(`warn_on_close_playing_tabs`, items)
-  let ids = items.map(x => x.id)
-
-  App.show_confirm(App.close_tabs_message(ids.length), () => {
-    App.close_tab_or_tabs(ids)
-    App.hide_all_popups()
-  }, undefined, force)
+  App.close_tabs_method(items, force)
 }
 
 App.get_unloaded_tabs_items = (pins, unloaded) => {
@@ -205,12 +205,7 @@ App.close_unloaded_tabs = (pins, unloaded) => {
   }
 
   let force = App.check_force(`warn_on_close_unloaded_tabs`, items)
-  let ids = items.map(x => x.id)
-
-  App.show_confirm(App.close_tabs_message(ids.length), () => {
-    App.close_tab_or_tabs(ids)
-    App.hide_all_popups()
-  }, undefined, force)
+  App.close_tabs_method(items, force)
 }
 
 App.get_duplicate_tabs_items = (pins, unloaded) => {
@@ -239,12 +234,7 @@ App.close_duplicate_tabs = (pins, unloaded) => {
   }
 
   let force = App.check_force(`warn_on_close_duplicate_tabs`, items)
-  let ids = items.map(x => x.id)
-
-  App.show_confirm(App.close_tabs_message(ids.length), () => {
-    App.close_tab_or_tabs(ids)
-    App.hide_all_popups()
-  }, undefined, force)
+  App.close_tabs_method(items, force)
 }
 
 App.get_visible_tabs_items = (pins, unloaded) => {
@@ -271,16 +261,7 @@ App.close_visible_tabs = (pins, unloaded) => {
   }
 
   let force = App.check_force(`warn_on_close_visible_tabs`, items)
-  let ids = items.map(x => x.id)
-
-  App.show_confirm(App.close_tabs_message(ids.length), () => {
-    App.close_tab_or_tabs(ids)
-    App.hide_all_popups()
-  }, undefined, force)
-}
-
-App.close_tabs_message = (count) => {
-  return `Close these tabs? (${count})`
+  App.close_tabs_method(items, force)
 }
 
 App.close_other_new_tabs = (id) => {
