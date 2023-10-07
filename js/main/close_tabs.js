@@ -61,7 +61,7 @@ App.close_tabs_action = () => {
   App[`close_${type}_tabs`](pins, unloaded)
 }
 
-App.get_normal_tabs_items = (unloaded) => {
+App.get_normal_tabs_items = (pins, unloaded) => {
   let items = []
 
   for (let it of App.get_items(`tabs`)) {
@@ -86,7 +86,7 @@ App.get_normal_tabs_items = (unloaded) => {
 }
 
 App.close_normal_tabs = (pins, unloaded) => {
-  let items = App.get_normal_tabs_items(unloaded)
+  let items = App.get_normal_tabs_items(pins, unloaded)
 
   if (!items.length) {
     App.alert(`Nothing to close`)
@@ -102,7 +102,7 @@ App.close_normal_tabs = (pins, unloaded) => {
   }, undefined, force)
 }
 
-App.get_playing_tabs_items = (pins) => {
+App.get_playing_tabs_items = (pins, unloaded) => {
   let items = []
 
   for (let it of App.get_items(`tabs`)) {
@@ -123,7 +123,7 @@ App.get_playing_tabs_items = (pins) => {
 }
 
 App.close_playing_tabs = (pins, unloaded) => {
-  let items = App.get_playing_tabs_items(pins)
+  let items = App.get_playing_tabs_items(pins, unloaded)
 
   if (!items.length) {
     App.alert(`Nothing to close`)
@@ -139,7 +139,7 @@ App.close_playing_tabs = (pins, unloaded) => {
   }, undefined, force)
 }
 
-App.get_unloaded_tabs_items = (pins) => {
+App.get_unloaded_tabs_items = (pins, unloaded) => {
   let items = []
 
   for (let it of App.get_items(`tabs`)) {
@@ -160,7 +160,7 @@ App.get_unloaded_tabs_items = (pins) => {
 }
 
 App.close_unloaded_tabs = (pins, unloaded) => {
-  let items = App.get_unloaded_tabs_items(pins)
+  let items = App.get_unloaded_tabs_items(pins, unloaded)
 
   if (!items.length) {
     App.alert(`Nothing to close`)
