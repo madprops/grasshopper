@@ -87,8 +87,8 @@ App.setup_tabs = () => {
   })
 }
 
-App.start_tab_popups = () => {
-  if (App.check_ready(`tab_popups`)) {
+App.start_sort_tabs = () => {
+  if (App.check_ready(`sort_tabs`)) {
     return
   }
 
@@ -994,7 +994,7 @@ App.is_new_tab = (url) => {
 }
 
 App.sort_tabs = () => {
-  App.start_tab_popups()
+  App.start_sort_tabs()
   App.show_popup(`sort_tabs`)
   DOM.el(`#sort_tabs_pins`).checked = false
   DOM.el(`#sort_tabs_reverse`).checked = false
