@@ -32,6 +32,15 @@ App.close_tabs_popup = (type) => {
   DOM.el(`#close_tabs_title`).textContent = title
   DOM.el(`#close_tabs_include_pins`).checked = false
   DOM.el(`#close_tabs_include_unloaded`).checked = false
+  let pins_c = DOM.el(`#close_tabs_include_pins_container`)
+  let unloaded_c = DOM.el(`#close_tabs_include_unloaded_container`)
+  pins_c.classList.remove(`disabled`)
+  unloaded_c.classList.remove(`disabled`)
+
+  if (type === `unloaded`) {
+    unloaded_c.classList.add(`disabled`)
+  }
+
   App.update_close_tabs_popup_button(type)
 }
 
