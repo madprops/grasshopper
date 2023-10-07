@@ -220,7 +220,7 @@ App.get_visible_tabs_items = (close_pins = false) => {
 }
 
 App.close_visible_tabs = (close_pins = false) => {
-  let items = App.get_visible(`tabs`)
+  let items = App.get_visible_tabs_items(close_pins)
 
   if (!items.length) {
     App.alert(`Nothing to close`)
