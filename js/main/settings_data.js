@@ -130,7 +130,7 @@ App.build_settings = () => {
       name: `Lock Drag`,
       type: `checkbox`,
       value: false,
-      info: `Require holding Ctrl to drag tab items, to avoid accidental re-ordering`,
+      info: `Require holding Ctrl to drag tab items vertically. This is to avoid re-ordering accidentally`,
       version: 1,
     },
   }
