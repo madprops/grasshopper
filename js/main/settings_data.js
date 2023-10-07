@@ -14,20 +14,6 @@ App.build_settings = () => {
   category = `general`
 
   props = {
-    click_select: {
-      name: `Click Select`,
-      type: `checkbox`,
-      value: false,
-      info: `Click to select without triggering an action. Double click to perform action`,
-      version: 1,
-    },
-    wrap_text: {
-      name: `Wrap`,
-      type: `checkbox`,
-      value: false,
-      info: `Allow long lines to wrap into multiple lines, increasing the height of some items`,
-      version: 1,
-    },
     font_size: {
       name: `Font Size`,
       type: `number`,
@@ -103,6 +89,13 @@ App.build_settings = () => {
       Restore means going back to the primary mode and clearing the filter`,
       version: 1,
     },
+    double_click_command: {
+      name: `On Double Click`,
+      type: `menu`,
+      value: `none`,
+      info: `What command to perform when double clicking an item`,
+      version: 1,
+    },
     bookmarks_folder: {
       name: `Bookmarks Folder`,
       type: `text`,
@@ -110,6 +103,34 @@ App.build_settings = () => {
       placeholder: `Folder Name`,
       no_empty: true,
       info: `Where to save bookmarks`,
+      version: 1,
+    },
+    click_select: {
+      name: `Click Select`,
+      type: `checkbox`,
+      value: false,
+      info: `Click to select without triggering an action. Double click to perform action`,
+      version: 1,
+    },
+    wrap_text: {
+      name: `Wrap Text`,
+      type: `checkbox`,
+      value: false,
+      info: `Allow long lines to wrap into multiple lines, increasing the height of some items`,
+      version: 1,
+    },
+    icon_pick: {
+      name: `Icon Pick`,
+      type: `checkbox`,
+      value: false,
+      info: `Clicking the the icons on the left of items toggles select`,
+      version: 1,
+    },
+    lock_drag: {
+      name: `Lock Drag`,
+      type: `checkbox`,
+      value: false,
+      info: `Require holding Ctrl to drag tab items, to avoid accidental re-ordering`,
       version: 1,
     },
   }
@@ -998,27 +1019,6 @@ App.build_settings = () => {
       info: `What effect to use on selected items`,
       version: 1,
     },
-    double_click_command: {
-      name: `Double Click Command`,
-      type: `menu`,
-      value: `none`,
-      info: `What command to perform when double clicking an item`,
-      version: 1,
-    },
-    icon_pick: {
-      name: `Icon Pick`,
-      type: `checkbox`,
-      value: false,
-      info: `Clicking the the icons selects items`,
-      version: 1,
-    },
-    lock_drag: {
-      name: `Lock Drag`,
-      type: `checkbox`,
-      value: false,
-      info: `Require holding Ctrl to re-order tab items`,
-      version: 1,
-    },
     single_new_tab: {
       name: `Single New Tab`,
       type: `checkbox`,
@@ -1182,6 +1182,8 @@ App.build_settings = () => {
         App.settings_make_menu(`height`, App.get_size_options(), () => {
           App.apply_theme()
         })
+
+        App.settings_make_menu(`double_click_command`, App.cmdlist)
       },
     },
     theme: {
@@ -1379,11 +1381,10 @@ App.build_settings = () => {
       setup: () => {},
     },
     more: {
-      info: `More advanced settings`,
+      info: `More settings`,
       setup: () => {
         App.settings_make_menu(`hover_effect`, App.effects)
         App.settings_make_menu(`selected_effect`, App.effects)
-        App.settings_make_menu(`double_click_command`, App.cmdlist)
       },
     },
   }
