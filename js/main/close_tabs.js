@@ -96,6 +96,10 @@ App.get_playing_tabs_items = (pins, unloaded) => {
   let items = []
 
   for (let it of App.get_items(`tabs`)) {
+    if (!it.audible) {
+      continue
+    }
+
     if (!pins) {
       if (it.pinned) {
         continue
@@ -108,9 +112,7 @@ App.get_playing_tabs_items = (pins, unloaded) => {
       }
     }
 
-    if (it.audible) {
-      items.push(it)
-    }
+    items.push(it)
   }
 
   return items
@@ -137,15 +139,17 @@ App.get_unloaded_tabs_items = (pins) => {
   let items = []
 
   for (let it of App.get_items(`tabs`)) {
+    if (!it.discarded) {
+      continue
+    }
+
     if (!pins) {
       if (it.pinned) {
         continue
       }
     }
 
-    if (it.discarded) {
-      items.push(it)
-    }
+    items.push(it)
   }
 
   return items
@@ -172,7 +176,7 @@ App.get_duplicate_tabs_items = (pins, unloaded) => {
   let tabs = App.get_items(`tabs`)
   let duplicates = App.find_duplicates(tabs, `url`)
   let items = App.get_excess(duplicates, `url`)
-  items = items.filter(x => !x.playing)
+  items = items.filter(x => !x.audible)
 
   if (!pins) {
     items = items.filter(x => !x.pinned)
@@ -204,6 +208,7 @@ App.close_duplicate_tabs = (pins, unloaded) => {
 
 App.get_visible_tabs_items = (pins, unloaded) => {
   let items = App.get_visible(`tabs`)
+  items = items.filter(x => !x.audible)
 
   if (!pins) {
     items = items.filter(x => !x.pinned)
