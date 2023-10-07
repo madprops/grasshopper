@@ -227,15 +227,6 @@ App.close_visible_tabs = (close_pins = false) => {
     return
   }
 
-  if (!close_pins) {
-    items = items.filter(x => !x.pinned)
-  }
-
-  if (!items.length) {
-    App.alert(`Nothing to close`)
-    return
-  }
-
   let force = App.check_force(`warn_on_close_visible_tabs`, items)
   let ids = items.map(x => x.id)
 
