@@ -1002,7 +1002,7 @@ App.build_settings = () => {
       name: `Click Select`,
       type: `checkbox`,
       value: false,
-      info: `Click to select without triggering an action`,
+      info: `Click to select without triggering an action. Double click to perform action`,
       version: 1,
     },
     icon_pick: {

@@ -159,6 +159,9 @@ App.mouse_double_click_action = (mode, e) => {
   if (cmd !== `none`) {
     App.run_command({cmd: cmd, item: item, from: `double_click`})
   }
+  else if (App.get_setting(`click_select`)) {
+    App[`${mode}_action`](item)
+  }
 }
 
 App.mouse_context_action = (mode, e) => {
