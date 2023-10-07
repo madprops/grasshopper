@@ -156,6 +156,12 @@ App.mouse_double_click_action = (mode, e) => {
   let item = App.get_cursor_item(mode, e)
   let cmd = App.get_setting(`double_click_command`)
 
+  if (cmd === `item_action`) {
+    if (!App.get_setting(`click_select`)) {
+      return
+    }
+  }
+
   if (cmd !== `none`) {
     App.run_command({cmd: cmd, item: item, from: `double_click`})
   }

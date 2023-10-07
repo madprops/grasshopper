@@ -92,7 +92,7 @@ App.build_settings = () => {
     double_click_command: {
       name: `On Double Click`,
       type: `menu`,
-      value: `none`,
+      value: `item_action`,
       info: `What command to perform when double clicking an item`,
       version: 1,
     },
@@ -1184,19 +1184,6 @@ App.build_settings = () => {
         })
 
         App.settings_make_menu(`double_click_command`, App.cmdlist)
-
-        DOM.ev(DOM.el(`#settings_click_select`), `click`, (e) => {
-          if (e.target.checked) {
-            let dbl = App.get_setting(`double_click_command`)
-
-            if (dbl === `none`) {
-              App.show_confirm(`Perform action on double click?`, () => {
-                App.set_setting(`double_click_command`, `item_action`)
-                App.set_settings_menu(`double_click_command`, undefined, false)
-              })
-            }
-          }
-        })
       },
     },
     theme: {
