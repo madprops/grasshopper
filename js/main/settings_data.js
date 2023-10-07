@@ -14,6 +14,13 @@ App.build_settings = () => {
   category = `general`
 
   props = {
+    click_select: {
+      name: `Click Select`,
+      type: `checkbox`,
+      value: false,
+      info: `Click to select without triggering an action. Double click to perform action`,
+      version: 1,
+    },
     wrap_text: {
       name: `Wrap`,
       type: `checkbox`,
@@ -996,13 +1003,6 @@ App.build_settings = () => {
       type: `menu`,
       value: `none`,
       info: `What command to perform when double clicking an item`,
-      version: 1,
-    },
-    click_select: {
-      name: `Click Select`,
-      type: `checkbox`,
-      value: false,
-      info: `Click to select without triggering an action. Double click to perform action`,
       version: 1,
     },
     icon_pick: {
