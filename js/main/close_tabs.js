@@ -72,11 +72,11 @@ App.close_tabs_action = () => {
   App[`close_${type}_tabs`](arg)
 }
 
-App.get_normal_tabs_items = (close_unloaded = false) => {
+App.get_normal_tabs_items = (include_unloaded = false) => {
   let items = []
 
   for (let it of App.get_items(`tabs`)) {
-    if (!close_unloaded) {
+    if (!include_unloaded) {
       if (it.discarded) {
         continue
       }
@@ -107,11 +107,11 @@ App.close_normal_tabs = (close_unloaded = false) => {
   }, undefined, force)
 }
 
-App.get_playing_tabs_items = (close_pins = false) => {
+App.get_playing_tabs_items = (include_pins = false) => {
   let items = []
 
   for (let it of App.get_items(`tabs`)) {
-    if (!close_pins) {
+    if (!include_pins) {
       if (it.pinned) {
         continue
       }
@@ -142,11 +142,11 @@ App.close_playing_tabs = (close_pins = false) => {
   }, undefined, force)
 }
 
-App.get_unloaded_tabs_items = (close_pins = false) => {
+App.get_unloaded_tabs_items = (include_pins = false) => {
   let items = []
 
   for (let it of App.get_items(`tabs`)) {
-    if (!close_pins) {
+    if (!include_pins) {
       if (it.pinned) {
         continue
       }
@@ -177,12 +177,12 @@ App.close_unloaded_tabs = (close_pins = false) => {
   }, undefined, force)
 }
 
-App.get_duplicate_tabs_items = (close_pins = false) => {
+App.get_duplicate_tabs_items = (include_pins = false) => {
   let tabs = App.get_items(`tabs`)
   let duplicates = App.find_duplicates(tabs, `url`)
   let items = App.get_excess(duplicates, `url`)
 
-  if (close_pins) {
+  if (include_pins) {
     items = items.filter(x => !x.playing)
   }
   else {
@@ -209,10 +209,10 @@ App.close_duplicate_tabs = (close_pins = false) => {
   }, undefined, force)
 }
 
-App.get_visible_tabs_items = (close_pins = false) => {
+App.get_visible_tabs_items = (include_pins = false) => {
   let items = App.get_visible(`tabs`)
 
-  if (!close_pins) {
+  if (!include_pins) {
     items = items.filter(x => !x.pinned)
   }
 
