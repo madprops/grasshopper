@@ -101,7 +101,7 @@ App.get_normal_tabs_items = (close_unloaded = false) => {
 }
 
 App.close_normal_tabs = (close_unloaded = false) => {
-  let items = App.get_close_normal_tabs_items(close_unloaded)
+  let items = App.get_normal_tabs_items(close_unloaded)
 
   if (!items.length) {
     App.alert(`Nothing to close`)
@@ -136,7 +136,7 @@ App.get_playing_tabs_items = (close_pins = false) => {
 }
 
 App.close_playing_tabs = (close_pins = false) => {
-  let items = App.get_close_playing_tabs_items(close_pins)
+  let items = App.get_playing_tabs_items(close_pins)
 
   if (!items.length) {
     App.alert(`Nothing to close`)
@@ -171,7 +171,7 @@ App.get_unloaded_tabs_items = (close_pins = false) => {
 }
 
 App.close_unloaded_tabs = (close_pins = false) => {
-  let items = App.get_close_unloaded_tabs_items(close_pins)
+  let items = App.get_unloaded_tabs_items(close_pins)
 
   if (!items.length) {
     App.alert(`Nothing to close`)
