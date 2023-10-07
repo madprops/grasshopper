@@ -95,6 +95,14 @@ App.start_tab_popups = () => {
   App.create_popup({
     id: `close_tabs`,
     setup: () => {
+      DOM.ev(DOM.el(`#close_tabs_include_pins`), `change`, () => {
+        App.update_close_tabs_popup_button(App.close_tabs_type)
+      })
+
+      DOM.ev(DOM.el(`#close_tabs_include_unloaded`), `change`, () => {
+        App.update_close_tabs_popup_button(App.close_tabs_type)
+      })
+
       DOM.ev(DOM.el(`#close_tabs_button`), `click`, () => {
         App.close_tabs_action()
       })
