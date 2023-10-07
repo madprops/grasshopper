@@ -37,7 +37,7 @@ App.close_tabs_popup = (type) => {
   pins_c.classList.remove(`disabled`)
   unloaded_c.classList.remove(`disabled`)
 
-  if (type === `unloaded`) {
+  if (type === `unloaded` || type === `playing`) {
     unloaded_c.classList.add(`disabled`)
   }
 
@@ -101,7 +101,7 @@ App.close_normal_tabs = (pins, unloaded) => {
   }, undefined, force)
 }
 
-App.get_playing_tabs_items = (pins, unloaded) => {
+App.get_playing_tabs_items = (pins) => {
   let items = []
 
   for (let it of App.get_items(`tabs`)) {
@@ -115,20 +115,14 @@ App.get_playing_tabs_items = (pins, unloaded) => {
       }
     }
 
-    if (!unloaded) {
-      if (it.discarded) {
-        continue
-      }
-    }
-
     items.push(it)
   }
 
   return items
 }
 
-App.close_playing_tabs = (pins, unloaded) => {
-  let items = App.get_playing_tabs_items(pins, unloaded)
+App.close_playing_tabs = (pins) => {
+  let items = App.get_playing_tabs_items(pins)
 
   if (!items.length) {
     App.alert(`Nothing to close`)
