@@ -38,6 +38,7 @@ App.setup_commands = () => {
       name: name,
       cmd: `change_color_${color}`,
       mode: `items`,
+      item: true,
       icon: icon,
       action: (args) => {
         App.change_color(args.item, color)
@@ -52,6 +53,7 @@ App.setup_commands = () => {
       name: name,
       cmd: `toggle_color_${color}`,
       mode: `items`,
+      item: true,
       icon: icon,
       action: (args) => {
         App.change_color(args.item, color, true)
@@ -64,6 +66,7 @@ App.setup_commands = () => {
     name: `Remove Color`,
     cmd: `remove_color`,
     mode: `items`,
+    item: true,
     icon: theme_icon,
     action: (args) => {
       App.change_color(args.item, `none`)
@@ -75,6 +78,7 @@ App.setup_commands = () => {
     name: `Color Menu`,
     cmd: `show_color_menu`,
     mode: `items`,
+    item: true,
     icon: theme_icon,
     action: (args) => {
       App.show_color_menu(args.item, args.e)
@@ -233,6 +237,7 @@ App.setup_commands = () => {
       name: `Item Menu`,
       cmd: `show_item_menu`,
       mode: `items`,
+      item: true,
       icon: command_icon,
       action: (args) => {
         App.show_item_menu_2(args.item)
@@ -256,6 +261,7 @@ App.setup_commands = () => {
       name: `Item Action`,
       cmd: `item_action`,
       mode: `items`,
+      item: true,
       icon: command_icon,
       action: (args) => {
         App[`${args.mode}_action`](args.item)
@@ -266,6 +272,7 @@ App.setup_commands = () => {
       name: `Open`,
       cmd: `open_items`,
       mode: `items`,
+      item: true,
       icon: command_icon,
       action: (args) => {
         App.open_items(args.item, true)
@@ -276,6 +283,7 @@ App.setup_commands = () => {
       name: `Bookmark`,
       cmd: `bookmark_items`,
       mode: `items`,
+      item: true,
       icon: bookmarks_icon,
       action: (args) => {
         App.bookmark_items(args.item)
@@ -285,6 +293,7 @@ App.setup_commands = () => {
     {
       name: `Bookmark Page`,
       cmd: `bookmark_page`,
+      item: true,
       icon: bookmarks_icon,
       action: (args) => {
         App.bookmark_active(args.item)
@@ -295,6 +304,7 @@ App.setup_commands = () => {
       name: `Copy URL`,
       cmd: `copy_item_url`,
       mode: `items`,
+      item: true,
       icon: clipboard_icon,
       action: (args) => {
         App.copy_url(args.item)
@@ -305,6 +315,7 @@ App.setup_commands = () => {
       name: `Copy Title`,
       cmd: `copy_item_title`,
       mode: `items`,
+      item: true,
       icon: clipboard_icon,
       action: (args) => {
         App.copy_title(args.item)
@@ -357,6 +368,7 @@ App.setup_commands = () => {
       name: `Unload`,
       cmd: `unload_tabs`,
       mode: `tabs`,
+      item: true,
       icon: tabs_icon,
       action: (args) => {
         App.unload_tabs(args.item)
@@ -367,6 +379,7 @@ App.setup_commands = () => {
       name: `Load`,
       cmd: `load_tabs`,
       mode: `tabs`,
+      item: true,
       icon: tabs_icon,
       action: (args) => {
         App.load_tabs(args.item)
@@ -377,6 +390,7 @@ App.setup_commands = () => {
       name: `Duplicate`,
       cmd: `duplicate_tabs`,
       mode: `tabs`,
+      item: true,
       icon: tabs_icon,
       action: (args) => {
         App.duplicate_tabs(args.item)
@@ -387,6 +401,7 @@ App.setup_commands = () => {
       name: `Detach`,
       cmd: `detach_tabs`,
       mode: `tabs`,
+      item: true,
       icon: tabs_icon,
       action: (args) => {
         App.detach_tabs(args.item)
@@ -397,6 +412,7 @@ App.setup_commands = () => {
       name: `To Window`,
       cmd: `show_windows_menu`,
       mode: `tabs`,
+      item: true,
       icon: tabs_icon,
       action: (args) => {
         App.to_window(args.item)
@@ -427,6 +443,7 @@ App.setup_commands = () => {
       name: `Pin`,
       cmd: `pin_tabs`,
       mode: `tabs`,
+      item: true,
       icon: tabs_icon,
       action: (args) => {
         App.pin_tabs(args.item)
@@ -437,6 +454,7 @@ App.setup_commands = () => {
       name: `Unpin`,
       cmd: `unpin_tabs`,
       mode: `tabs`,
+      item: true,
       icon: tabs_icon,
       action: (args) => {
         App.unpin_tabs(args.item)
@@ -447,6 +465,7 @@ App.setup_commands = () => {
       name: `Toggle Pin`,
       cmd: `toggle_pin_tabs`,
       mode: `tabs`,
+      item: true,
       icon: tabs_icon,
       action: (args) => {
         App.toggle_pin_tabs(args.item)
@@ -457,6 +476,7 @@ App.setup_commands = () => {
       name: `Mute`,
       cmd: `mute_tabs`,
       mode: `tabs`,
+      item: true,
       icon: tabs_icon,
       action: (args) => {
         App.mute_tabs(args.item)
@@ -467,6 +487,7 @@ App.setup_commands = () => {
       name: `Unmute`,
       cmd: `unmute_tabs`,
       mode: `tabs`,
+      item: true,
       icon: tabs_icon,
       action: (args) => {
         App.unmute_tabs(args.item)
@@ -477,6 +498,7 @@ App.setup_commands = () => {
       name: `Toggle Mute`,
       cmd: `toggle_mute_tabs`,
       mode: `tabs`,
+      item: true,
       icon: tabs_icon,
       action: (args) => {
         App.toggle_mute_tabs(args.item)
@@ -487,6 +509,7 @@ App.setup_commands = () => {
       name: `Close`,
       cmd: `close_tabs`,
       mode: `tabs`,
+      item: true,
       icon: tabs_icon,
       action: (args) => {
         App.close_tabs(args.item)
@@ -637,8 +660,8 @@ App.setup_commands = () => {
     {
       name: `Filter History`,
       cmd: `show_filter_history`,
-      icon: filter_icon,
       mode: `items`,
+      icon: filter_icon,
       action: (args) => {
         App.show_filter_history(args.mode, args.e)
       },
@@ -647,8 +670,8 @@ App.setup_commands = () => {
     {
       name: `Deep Search`,
       cmd: `deep_search`,
-      icon: filter_icon,
       mode: `search`,
+      icon: filter_icon,
       action: (args) => {
         App.deep_search(args.mode)
       },
@@ -657,8 +680,8 @@ App.setup_commands = () => {
     {
       name: `Search Media`,
       cmd: `show_search_media_menu`,
-      icon: audio_icon,
       mode: `items`,
+      icon: audio_icon,
       action: (args) => {
         App.search_media(args.mode, args.e)
       },
@@ -667,8 +690,8 @@ App.setup_commands = () => {
     {
       name: `Forget Closed`,
       cmd: `forget_closed`,
-      icon: closed_icon,
       mode: `closed`,
+      icon: closed_icon,
       action: (args) => {
         App.forget_closed()
       },
@@ -680,8 +703,9 @@ App.setup_commands = () => {
     {
       name: `Edit Profile`,
       cmd: `edit_profile`,
-      icon: profile_icon,
       mode: `items`,
+      item: true,
+      icon: profile_icon,
       action: (args) => {
         App.edit_profiles(args.item)
       },
@@ -690,8 +714,10 @@ App.setup_commands = () => {
     {
       name: `Add Note`,
       cmd: `profiles_add_note`,
-      icon: App.get_setting(`notes_icon`),
       mode: `items`,
+      item: true,
+      icon: App.get_setting(`notes_icon`),
+      item: true,
       action: (args) => {
         App.add_note(args.item)
       },
@@ -700,8 +726,9 @@ App.setup_commands = () => {
     {
       name: `Add Tag`,
       cmd: `profiles_add_tag`,
-      icon: tag_icon,
       mode: `items`,
+      item: true,
+      icon: tag_icon,
       action: (args) => {
         App.add_tag(args.item)
       },
@@ -710,8 +737,9 @@ App.setup_commands = () => {
     {
       name: `Edit Title`,
       cmd: `profiles_edit_title`,
-      icon: profile_icon,
       mode: `items`,
+      item: true,
+      icon: profile_icon,
       action: (args) => {
         App.edit_title(args.item)
       },
@@ -720,8 +748,9 @@ App.setup_commands = () => {
     {
       name: `Edit Icon`,
       cmd: `profiles_edit_icon`,
-      icon: profile_icon,
       mode: `items`,
+      item: true,
+      icon: profile_icon,
       action: (args) => {
         App.edit_icon(args.item)
       },
@@ -743,8 +772,9 @@ App.setup_commands = () => {
     {
       name: `Filter Domain`,
       cmd: `filter_by_domain`,
-      icon: filter_icon,
       mode: `items`,
+      item: true,
+      icon: filter_icon,
       action: (args) => {
         App.filter_domain(args.item)
       },
@@ -753,8 +783,9 @@ App.setup_commands = () => {
     {
       name: `Filter Color`,
       cmd: `filter_by_color`,
-      icon: theme_icon,
       mode: `items`,
+      item: true,
+      icon: theme_icon,
       color: true,
       action: (args) => {
         App.filter_color(args.mode, args.item.color)
@@ -764,8 +795,8 @@ App.setup_commands = () => {
     {
       name: `Filter Playing`,
       cmd: `filter_by_playing`,
-      icon: playing_icon,
       mode: `tabs`,
+      icon: playing_icon,
       action: (args) => {
         App.set_filter_mode({mode: args.mode, type: `playing`})
       },
@@ -774,8 +805,8 @@ App.setup_commands = () => {
     {
       name: `Filter Edited`,
       cmd: `filter_by_edited`,
-      icon: profile_icon,
       mode: `items`,
+      icon: profile_icon,
       action: (args) => {
         App.set_filter_mode({mode: args.mode, type: `edited`})
       },
@@ -824,6 +855,7 @@ App.setup_commands = () => {
       name: `Background`,
       cmd: `set_background_image`,
       media: `image`,
+      item: true,
       icon: theme_icon,
       action: (args) => {
         App.change_background(args.item.url)
@@ -935,6 +967,14 @@ App.check_command = (command, args) => {
   let valid = true
 
   if (command) {
+    if (valid) {
+      if (command.item) {
+        if (!args.item) {
+          valid = false
+        }
+      }
+    }
+
     if (valid) {
       if (command.media) {
         if (command.media !== args.media) {
