@@ -61,18 +61,16 @@ App.close_tabs_action = () => {
   App[`close_${type}_tabs`](pins, unloaded)
 }
 
-App.get_normal_tabs_items = (pins, unloaded) => {
+App.get_normal_tabs_items = (unloaded) => {
   let items = []
 
   for (let it of App.get_items(`tabs`)) {
-    if (it.audible) {
+    if (it.pinned) {
       continue
     }
 
-    if (!pins) {
-      if (it.pinned) {
-        continue
-      }
+    if (it.audible) {
+      continue
     }
 
     if (!unloaded) {
@@ -88,7 +86,7 @@ App.get_normal_tabs_items = (pins, unloaded) => {
 }
 
 App.close_normal_tabs = (pins, unloaded) => {
-  let items = App.get_normal_tabs_items(pins, unloaded)
+  let items = App.get_normal_tabs_items(unloaded)
 
   if (!items.length) {
     App.alert(`Nothing to close`)
@@ -124,7 +122,7 @@ App.get_playing_tabs_items = (pins) => {
   return items
 }
 
-App.close_playing_tabs = (pins) => {
+App.close_playing_tabs = (pins, unloaded) => {
   let items = App.get_playing_tabs_items(pins)
 
   if (!items.length) {
@@ -161,7 +159,7 @@ App.get_unloaded_tabs_items = (pins) => {
   return items
 }
 
-App.close_unloaded_tabs = (pins) => {
+App.close_unloaded_tabs = (pins, unloaded) => {
   let items = App.get_unloaded_tabs_items(pins)
 
   if (!items.length) {
