@@ -539,7 +539,7 @@ App.build_settings = () => {
     middle_click_pinline: {
       name: `Middle-Click Pinline`,
       type: `menu`,
-      value: `show_close_tabs_menu`,
+      value: `close_normal_tabs`,
       info: `Middle-click on the pinline`,
       version: 1,
     },
