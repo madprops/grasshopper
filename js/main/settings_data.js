@@ -612,7 +612,6 @@ App.build_settings = () => {
       name: `Pinline Menu`,
       type: `list`,
       value: [
-        {cmd: `select_all_items`},
         {cmd: `select_pinned_tabs`},
         {cmd: `select_normal_tabs`},
       ],
