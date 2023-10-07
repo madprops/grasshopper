@@ -61,6 +61,7 @@ App.close_tabs = (item, multiple = true) => {
   let items = App.get_active_items(`tabs`, item, multiple)
 
   if (!items.length) {
+    App.nothing_to_close()
     return
   }
 
@@ -136,7 +137,7 @@ App.close_normal_tabs = (pins, unloaded) => {
   let items = App.get_normal_tabs_items(pins, unloaded)
 
   if (!items.length) {
-    App.alert(`Nothing to close`)
+    App.nothing_to_close()
     return
   }
 
@@ -168,7 +169,7 @@ App.close_playing_tabs = (pins, unloaded) => {
   let items = App.get_playing_tabs_items(pins, unloaded)
 
   if (!items.length) {
-    App.alert(`Nothing to close`)
+    App.nothing_to_close()
     return
   }
 
@@ -200,7 +201,7 @@ App.close_unloaded_tabs = (pins, unloaded) => {
   let items = App.get_unloaded_tabs_items(pins, unloaded)
 
   if (!items.length) {
-    App.alert(`Nothing to close`)
+    App.nothing_to_close()
     return
   }
 
@@ -229,7 +230,7 @@ App.close_duplicate_tabs = (pins, unloaded) => {
   let items = App.get_duplicate_tabs_items(pins, unloaded)
 
   if (!items.length) {
-    App.alert(`No duplicates found`)
+    App.nothing_to_close()
     return
   }
 
@@ -256,7 +257,7 @@ App.close_visible_tabs = (pins, unloaded) => {
   let items = App.get_visible_tabs_items(pins, unloaded)
 
   if (!items.length) {
-    App.alert(`Nothing to close`)
+    App.nothing_to_close()
     return
   }
 
@@ -343,4 +344,8 @@ App.close_tabs_next = (reverse = false) => {
   }
 
   App.close_tabs_popup(types[0])
+}
+
+App.nothing_to_close = () => {
+  App.alert(`Nothing to close`)
 }
