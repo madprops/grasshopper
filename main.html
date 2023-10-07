@@ -179,7 +179,11 @@
 
     <template id="template_close_tabs">
       <div class="flex_column_center gap_2">
-        <div id="close_tabs_title" class="bigger"></div>
+        <div class="flex_row_center gap_2">
+          <div id="close_tabs_prev" class="button">&lt;</div>
+          <div id="close_tabs_title" class="flex_row_center bigger"></div>
+          <div id="close_tabs_next" class="button">&gt;</div>
+        </div>
 
         <div id="close_tabs_include_pins_container" class="flex_row_center gap_1 self_start hidden" title="Include pinned tabs">
           <input id="close_tabs_include_pins" class="settings_checkbox" type="checkbox">

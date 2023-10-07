@@ -957,3 +957,7 @@ a:visited, a:link, a:hover {
   align-items: center;
   justify-content: center;
 }
+
+#close_tabs_title {
+  min-width: 10rem;
+}

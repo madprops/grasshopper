@@ -306,3 +306,26 @@ App.close_tabs_menu = (e) => {
 
   App.show_center_context(items, e)
 }
+
+App.close_tabs_next = (reverse = false) => {
+  let types = App.close_tabs_types.slice(0)
+
+  if (reverse) {
+    types.reverse()
+  }
+
+  let waypoint = false
+
+  for (let type of types) {
+    if (waypoint) {
+      App.close_tabs_popup(type)
+      return
+    }
+
+    if (App.close_tabs_type === type) {
+      waypoint = true
+    }
+  }
+
+  App.close_tabs_popup(types[0])
+}
