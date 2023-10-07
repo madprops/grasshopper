@@ -47,17 +47,21 @@ App.close_tabs_popup = (type) => {
   App.update_close_tabs_popup_button(type)
 }
 
-App.update_close_tabs_popup_button = (type) => {
+App.close_tabs_args = () => {
   let pins = DOM.el(`#close_tabs_include_pins`).checked
   let unloaded = DOM.el(`#close_tabs_include_unloaded`).checked
-  let items = App[`get_${type}_tabs_items`](pins, unloaded)
+  return [pins, unloaded]
+}
+
+App.update_close_tabs_popup_button = (type) => {
+  let args = App.close_tabs_args()
+  let items = App[`get_${type}_tabs_items`](...args)
   DOM.el(`#close_tabs_button`).textContent = `Close (${items.length})`
 }
 
 App.close_tabs_action = () => {
-  let pins = DOM.el(`#close_tabs_include_pins`).checked
-  let unloaded = DOM.el(`#close_tabs_include_unloaded`).checked
-  App[`close_${App.close_tabs_type}_tabs`](pins, unloaded)
+  let args = App.close_tabs_args()
+  App[`close_${App.close_tabs_type}_tabs`](...args)
 }
 
 App.get_normal_tabs_items = (pins, unloaded) => {
