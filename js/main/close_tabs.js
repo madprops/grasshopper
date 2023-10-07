@@ -30,68 +30,53 @@ App.close_tabs_popup = (type) => {
   App.show_popup(`close_tabs`)
   let title = App.capitalize_words(`Close ${type}`)
   DOM.el(`#close_tabs_title`).textContent = title
-
-  if (type === `normal`) {
-    DOM.el(`#close_tabs_include_pins_container`).classList.add(`hidden`)
-    DOM.el(`#close_tabs_include_unloaded_container`).classList.remove(`hidden`)
-  }
-  else {
-    DOM.el(`#close_tabs_include_pins_container`).classList.remove(`hidden`)
-    DOM.el(`#close_tabs_include_unloaded_container`).classList.add(`hidden`)
-  }
-
   DOM.el(`#close_tabs_include_pins`).checked = false
   DOM.el(`#close_tabs_include_unloaded`).checked = false
   App.update_close_tabs_popup_button(type)
 }
 
 App.update_close_tabs_popup_button = (type) => {
-  let checked = App.get_close_tabs_popup_toggle(type).checked
-  let items = App[`get_${type}_tabs_items`](checked)
+  let pins = DOM.el(`#close_tabs_include_pins`).checked
+  let unloaded = DOM.el(`#close_tabs_include_unloaded`).checked
+  let items = App[`get_${type}_tabs_items`](pins, unloaded)
   DOM.el(`#close_tabs_button`).textContent = `Close (${items.length})`
-}
-
-App.get_close_tabs_popup_toggle = (type) => {
-  if (type === `normal`) {
-    return DOM.el(`#close_tabs_include_unloaded`)
-  }
-  else {
-    return DOM.el(`#close_tabs_include_pins`)
-  }
-}
-
-App.close_tabs_toggle = () => {
-  let type = App.close_tabs_type
-  let checkbox = App.get_close_tabs_popup_toggle(type)
-  checkbox.checked = !checkbox.checked
 }
 
 App.close_tabs_action = () => {
   let type = App.close_tabs_type
-  let arg = App.get_close_tabs_popup_toggle(type).checked
-  App[`close_${type}_tabs`](arg)
+  let pins = DOM.el(`#close_tabs_include_pins`).checked
+  let unloaded = DOM.el(`#close_tabs_include_unloaded`).checked
+  App[`close_${type}_tabs`](pins, unloaded)
 }
 
-App.get_normal_tabs_items = (include_unloaded = false) => {
+App.get_normal_tabs_items = (pins, unloaded) => {
   let items = []
 
   for (let it of App.get_items(`tabs`)) {
-    if (!include_unloaded) {
+    if (it.audible) {
+      continue
+    }
+
+    if (!pins) {
+      if (it.pinned) {
+        continue
+      }
+    }
+
+    if (!unloaded) {
       if (it.discarded) {
         continue
       }
     }
 
-    if (!it.pinned && !it.audible) {
-      items.push(it)
-    }
+    items.push(it)
   }
 
   return items
 }
 
-App.close_normal_tabs = (close_unloaded = false) => {
-  let items = App.get_normal_tabs_items(close_unloaded)
+App.close_normal_tabs = (pins, unloaded) => {
+  let items = App.get_normal_tabs_items(pins, unloaded)
 
   if (!items.length) {
     App.alert(`Nothing to close`)
@@ -107,12 +92,18 @@ App.close_normal_tabs = (close_unloaded = false) => {
   }, undefined, force)
 }
 
-App.get_playing_tabs_items = (include_pins = false) => {
+App.get_playing_tabs_items = (pins, unloaded) => {
   let items = []
 
   for (let it of App.get_items(`tabs`)) {
-    if (!include_pins) {
+    if (!pins) {
       if (it.pinned) {
+        continue
+      }
+    }
+
+    if (!unloaded) {
+      if (it.discarded) {
         continue
       }
     }
@@ -125,8 +116,8 @@ App.get_playing_tabs_items = (include_pins = false) => {
   return items
 }
 
-App.close_playing_tabs = (close_pins = false) => {
-  let items = App.get_playing_tabs_items(close_pins)
+App.close_playing_tabs = (pins, unloaded) => {
+  let items = App.get_playing_tabs_items(pins, unloaded)
 
   if (!items.length) {
     App.alert(`Nothing to close`)
@@ -142,11 +133,11 @@ App.close_playing_tabs = (close_pins = false) => {
   }, undefined, force)
 }
 
-App.get_unloaded_tabs_items = (include_pins = false) => {
+App.get_unloaded_tabs_items = (pins) => {
   let items = []
 
   for (let it of App.get_items(`tabs`)) {
-    if (!include_pins) {
+    if (!pins) {
       if (it.pinned) {
         continue
       }
@@ -160,8 +151,8 @@ App.get_unloaded_tabs_items = (include_pins = false) => {
   return items
 }
 
-App.close_unloaded_tabs = (close_pins = false) => {
-  let items = App.get_unloaded_tabs_items(close_pins)
+App.close_unloaded_tabs = (pins) => {
+  let items = App.get_unloaded_tabs_items(pins)
 
   if (!items.length) {
     App.alert(`Nothing to close`)
@@ -177,23 +168,25 @@ App.close_unloaded_tabs = (close_pins = false) => {
   }, undefined, force)
 }
 
-App.get_duplicate_tabs_items = (include_pins = false) => {
+App.get_duplicate_tabs_items = (pins, unloaded) => {
   let tabs = App.get_items(`tabs`)
   let duplicates = App.find_duplicates(tabs, `url`)
   let items = App.get_excess(duplicates, `url`)
+  items = items.filter(x => !x.playing)
 
-  if (include_pins) {
-    items = items.filter(x => !x.playing)
+  if (!pins) {
+    items = items.filter(x => !x.pinned)
   }
-  else {
-    items = items.filter(x => !x.pinned && !x.playing)
+
+  if (!unloaded) {
+    items = items.filter(x => !x.discarded)
   }
 
   return items
 }
 
-App.close_duplicate_tabs = (close_pins = false) => {
-  let items = App.get_duplicate_tabs_items(close_pins)
+App.close_duplicate_tabs = (pins, unloaded) => {
+  let items = App.get_duplicate_tabs_items(pins, unloaded)
 
   if (!items.length) {
     App.alert(`No duplicates found`)
@@ -209,18 +202,22 @@ App.close_duplicate_tabs = (close_pins = false) => {
   }, undefined, force)
 }
 
-App.get_visible_tabs_items = (include_pins = false) => {
+App.get_visible_tabs_items = (pins, unloaded) => {
   let items = App.get_visible(`tabs`)
 
-  if (!include_pins) {
+  if (!pins) {
     items = items.filter(x => !x.pinned)
+  }
+
+  if (!unloaded) {
+    items = items.filter(x => !x.discarded)
   }
 
   return items
 }
 
-App.close_visible_tabs = (close_pins = false) => {
-  let items = App.get_visible_tabs_items(close_pins)
+App.close_visible_tabs = (pins, unloaded) => {
+  let items = App.get_visible_tabs_items(pins, unloaded)
 
   if (!items.length) {
     App.alert(`Nothing to close`)
