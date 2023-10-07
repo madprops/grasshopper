@@ -53,13 +53,11 @@ App.update_close_tabs_popup_button = (type) => {
 
 App.get_close_tabs_popup_toggle = (type) => {
   if (type === `normal`) {
-    checkbox = DOM.el(`#close_tabs_include_unloaded`)
+    return DOM.el(`#close_tabs_include_unloaded`)
   }
   else {
-    checkbox = DOM.el(`#close_tabs_include_pins`)
+    return DOM.el(`#close_tabs_include_pins`)
   }
-
-  return checkbox
 }
 
 App.close_tabs_toggle = () => {
