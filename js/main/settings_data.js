@@ -109,7 +109,7 @@ App.build_settings = () => {
       name: `Click Select`,
       type: `checkbox`,
       value: false,
-      info: `Click to select without triggering an action. Double click to perform action`,
+      info: `Click to select without triggering an action`,
       version: 1,
     },
     wrap_text: {
@@ -1184,6 +1184,19 @@ App.build_settings = () => {
         })
 
         App.settings_make_menu(`double_click_command`, App.cmdlist)
+
+        DOM.ev(DOM.el(`#settings_click_select`), `click`, (e) => {
+          if (e.target.checked) {
+            let dbl = App.get_setting(`double_click_command`)
+
+            if (dbl === `none`) {
+              App.show_confirm(`Perform action on double click?`, () => {
+                App.set_setting(`double_click_command`, `item_action`)
+                App.set_settings_menu(`double_click_command`, undefined, false)
+              })
+            }
+          }
+        })
       },
     },
     theme: {
