@@ -926,6 +926,10 @@ App.get_command = (cmd) => {
 }
 
 App.run_command = (args) => {
+  if (!args.cmd || args.cmd === `none`) {
+    return
+  }
+
   let command = App.get_command(args.cmd)
 
   if (command) {

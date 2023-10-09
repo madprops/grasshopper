@@ -50,10 +50,7 @@ App.do_check_pinline = () => {
     }
 
     let cmd = App.get_setting(`middle_click_pinline`)
-
-    if (cmd !== `none`) {
-      App.run_command({cmd: cmd, from: `pinline`})
-    }
+    App.run_command({cmd: cmd, from: `pinline`})
   })
 
   pinline.append(pinline_content)
