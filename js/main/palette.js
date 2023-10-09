@@ -146,7 +146,6 @@ App.fill_palette = () => {
   for (let cmd of App.sorted_commands) {
     let el = DOM.create(`div`, `palette_item action filter_item filter_text`)
     el.dataset.command = cmd.cmd
-    el.title = cmd.info
 
     if (cmd.icon) {
       let icon = DOM.create(`div`)
@@ -157,6 +156,12 @@ App.fill_palette = () => {
     let name = DOM.create(`div`)
     name.append(cmd.name)
     el.append(name)
+    el.title = cmd.info
+
+    if (App.get_setting(`debug_mode`)) {
+      el.title += ` (${cmd.cmd})`
+    }
+
     container.append(el)
   }
 }
