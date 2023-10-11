@@ -1298,6 +1298,7 @@ App.insert_item = (mode, info) => {
   }
 
   App.update_footer_count(mode)
+  App.check_filter(mode)
   return item
 }
 

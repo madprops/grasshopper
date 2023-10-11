@@ -15,6 +15,16 @@ App.start_filter_debouncers = () => {
   App.filter_debouncer_search = App.create_debouncer((args) => {
     App.do_filter(args)
   }, App.get_setting(`filter_delay_search`))
+
+  App.check_filter_debouncer = App.create_debouncer((args) => {
+    if (App.is_filtered(args.mode)) {
+      App.do_filter(args)
+    }
+  }, App.check_filter_delay)
+}
+
+App.check_filter = (mode) => {
+  App.check_filter_debouncer.call({mode: mode})
 }
 
 App.filter = (args) => {
