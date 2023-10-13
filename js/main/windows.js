@@ -150,13 +150,13 @@ App.setup_window = () => {
       return
     }
 
-    if (App.get_setting(`auto_restore`)) {
+    if (App.get_setting(`auto_restore`) !== `never`) {
       App.start_auto_restore()
     }
   })
 
   DOM.ev(document.documentElement, `mouseenter`, () => {
-    if (App.get_setting(`auto_restore`)) {
+    if (App.get_setting(`auto_restore`) !== `never`) {
       App.clear_restore()
     }
   })
