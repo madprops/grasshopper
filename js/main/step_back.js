@@ -1,6 +1,6 @@
 App.create_step_back_button = (mode) => {
   let btn = DOM.create(`div`, `button icon_button`, `${mode}_back`)
-  btn.title = `Step Back (Esc) - Right Click to show Prev Tabs`
+  btn.title = `Step Back (Esc) - Right Click to show Recent Tabs`
   btn.append(App.create_icon(`back`))
 
   DOM.ev(btn, `click`, (e) => {
@@ -16,7 +16,7 @@ App.create_step_back_button = (mode) => {
 
   DOM.ev(btn, `contextmenu`, (e) => {
     e.preventDefault()
-    App.prev_tabs(e)
+    App.show_recent_tabs(e)
   })
 
   return btn

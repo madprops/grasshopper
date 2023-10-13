@@ -43,7 +43,7 @@ App.start_about = () => {
         `Right Click on the Main Menu button to show the palette`,
         `Right Click on the Filter button to show filter commands`,
         `Right Click on the Go To Playing button to filter by playing`,
-        `Right Click on the Step Back button to show Prev Tabs`,
+        `Right Click on the Step Back button to show Recent Tabs`,
         `Right Click on the Actions button to show the Browser Menu`,
         `Right Click on the Filter to show recent filters used`,
         `In the filter, $day resolves to the current week day`,

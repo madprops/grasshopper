@@ -470,7 +470,7 @@ App.build_settings = () => {
     gesture_left: {
       name: `Gesture Left`,
       type: `menu`,
-      value: `show_prev_mode`,
+      value: `show_previous_mode`,
       info: `Left gesture`,
       version: 1,
     },
@@ -1089,14 +1089,14 @@ App.build_settings = () => {
       info: `Show other bookmarks apart from the configured bookmarks folder`,
       version: 1,
     },
-    max_prev_tabs: {
-      name: `Max Prev Tabs`,
+    max_recent_tabs: {
+      name: `Max Recent Tabs`,
       type: `number`,
       value: 11,
       placeholder: `Number`,
       min: App.number_min,
       max: App.number_max,
-      info: `Max items to show in prev tabs`,
+      info: `Max items to show in Recent Tabs`,
       version: 1,
     },
     debug_mode: {

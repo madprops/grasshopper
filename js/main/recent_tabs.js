@@ -48,10 +48,10 @@ App.go_to_previous_tab = () => {
   }
 }
 
-App.prev_tabs = (e) => {
+App.show_recent_tabs = (e) => {
   let items = []
   App.get_previous_tabs(true)
-  let max = App.get_setting(`max_prev_tabs`)
+  let max = App.get_setting(`max_recent_tabs`)
   let playing = App.get_setting(`playing_icon`)
 
   for (let item of App.previous_tabs.slice(0, max)) {

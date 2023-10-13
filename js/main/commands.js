@@ -174,12 +174,12 @@ App.setup_commands = () => {
       info: `Trigger the back button`
     },
     {
-      name: `Prev Tabs`,
-      cmd: `show_prev_tabs`,
+      name: `Recent Tabs`,
+      cmd: `show_recent_tabs`,
       mode: `items`,
       icon: tabs_icon,
       action: (args) => {
-        App.prev_tabs()
+        App.show_recent_tabs()
       },
       info: `Show the recent previous tabs`
     },
@@ -197,8 +197,8 @@ App.setup_commands = () => {
       name: App.separator_string
     },
     {
-      name: `Prev Mode`,
-      cmd: `show_prev_mode`,
+      name: `Previous Mode`,
+      cmd: `show_previous_mode`,
       mode: `items`,
       icon: command_icon,
       action: (args) => {
