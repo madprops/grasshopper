@@ -950,3 +950,13 @@ App.clean_filter = (s) => {
   s = s.trim()
   return s
 }
+
+App.show_filter_tag_menu = (mode, e) => {
+  let items = App.get_tag_items(mode, `filter`)
+  App.show_center_context(items, e)
+}
+
+App.show_filter_color_menu = (mode, e) => {
+  let items = App.get_color_items(mode, `filter`)
+  App.show_center_context(items, e)
+}
