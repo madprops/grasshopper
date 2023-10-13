@@ -22,7 +22,7 @@ App.start_palette = () => {
   })
 }
 
-App.show_palette = () => {
+App.show_palette = (prefilter = ``) => {
   App.start_palette()
   // Create initial elements
   App.setup_popup(`palette`)
@@ -47,8 +47,12 @@ App.show_palette = () => {
   App.show_popup(`palette`)
   App.palette_select_first()
   container.scrollTop = 0
-  filter.value = ``
+  filter.value = prefilter
   filter.focus()
+
+  if (prefilter) {
+    App.do_filter_palette()
+  }
 }
 
 App.palette_select = (el) => {

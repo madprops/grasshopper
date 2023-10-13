@@ -39,7 +39,7 @@ App.create_filter_menu = (mode) => {
 
   DOM.ev(btn, `contextmenu`, (e) => {
     e.preventDefault()
-    App.show_all()
+    App.show_palette(`filter`)
   })
 
   DOM.ev(btn, `auxclick`, (e) => {

@@ -41,7 +41,7 @@ App.start_about = () => {
         `To filter with regex by URL start with re_url:`,
         `Alt + Click selects items without triggering actions`,
         `Right Click on the Main Menu button to show the palette`,
-        `Right Click on the Filter button to show all items`,
+        `Right Click on the Filter button to show filter commands`,
         `Right Click on the Go To Playing button to filter by playing`,
         `Right Click on the Step Back button to show Prev Tabs`,
         `Right Click on the Actions button to show the Browser Menu`,
