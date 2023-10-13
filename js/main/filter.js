@@ -18,6 +18,7 @@ App.start_filter_debouncers = () => {
 
   App.check_filter_debouncer = App.create_debouncer((args) => {
     if (App.is_filtered(args.mode)) {
+      args.select = false
       App.do_filter(args)
     }
   }, App.check_filter_delay)
@@ -48,6 +49,7 @@ App.do_filter = async (args) => {
   let def_args = {
     force: false,
     deep: false,
+    select: true,
   }
 
   args = Object.assign(def_args, args)
@@ -202,8 +204,11 @@ App.do_filter = async (args) => {
     }
   }
 
-  App.clear_selected(args.mode)
-  App.select_first_item(args.mode, !App.is_filtered(args.mode))
+  if (args.select) {
+    App.clear_selected(args.mode)
+    App.select_first_item(args.mode, !App.is_filtered(args.mode))
+  }
+
   App.update_footer_info(App.get_selected(args.mode))
   App.update_footer_count(args.mode)
   App.do_check_pinline()
