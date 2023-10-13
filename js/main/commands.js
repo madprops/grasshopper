@@ -18,7 +18,7 @@ App.setup_commands = () => {
 
   color_filters.push({
     name: `Filter All Colors`,
-    cmd: `filter_by_color_all`,
+    cmd: `filter_color_all`,
     mode: `items`,
     icon: theme_icon,
     action: (args) => {
@@ -33,7 +33,7 @@ App.setup_commands = () => {
 
     color_filters.push({
       name: name,
-      cmd: `filter_by_color_${color}`,
+      cmd: `filter_color_${color}`,
       mode: `items`,
       icon: icon,
       action: (args) => {
@@ -115,7 +115,7 @@ App.setup_commands = () => {
 
     media_filters.push({
       name: name,
-      cmd: `filter_by_media_${media}`,
+      cmd: `filter_media_${media}`,
       mode: `items`,
       icon: icon,
       action: (args) => {
@@ -802,7 +802,7 @@ App.setup_commands = () => {
 
     {
       name: `Filter Domain`,
-      cmd: `filter_by_domain`,
+      cmd: `filter_domain`,
       mode: `items`,
       item: true,
       icon: filter_icon,
@@ -813,7 +813,7 @@ App.setup_commands = () => {
     },
     {
       name: `Filter Color`,
-      cmd: `filter_by_color`,
+      cmd: `filter_color`,
       mode: `items`,
       item: true,
       icon: theme_icon,
@@ -825,7 +825,7 @@ App.setup_commands = () => {
     },
     {
       name: `Filter Playing`,
-      cmd: `filter_by_playing`,
+      cmd: `filter_playing`,
       mode: `tabs`,
       icon: playing_icon,
       action: (args) => {
@@ -845,7 +845,7 @@ App.setup_commands = () => {
     },
     {
       name: `Filter All Tags`,
-      cmd: `filter_by_tag_all`,
+      cmd: `filter_tag_all`,
       mode: `items`,
       icon: tag_icon,
       action: (args) => {
@@ -855,7 +855,7 @@ App.setup_commands = () => {
     },
     {
       name: `Filter Edited`,
-      cmd: `filter_by_edited`,
+      cmd: `filter_edited`,
       mode: `items`,
       icon: profile_icon,
       action: (args) => {

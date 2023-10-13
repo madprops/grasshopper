@@ -491,7 +491,7 @@ App.build_settings = () => {
     gesture_left_and_right: {
       name: `Gesture Left Right`,
       type: `menu`,
-      value: `filter_by_domain`,
+      value: `filter_domain`,
       info: `Left and Right gesture`,
       version: 1,
     },
