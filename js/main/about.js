@@ -42,6 +42,7 @@ App.start_about = () => {
         `Alt + Click selects items without triggering actions`,
         `Right Click on the filter shows recent filters used`,
         `Right Click on the Step Back button for prev tabs`,
+        `Right Click on the Playing button to filter playing`,
         `In the filter, $day resolves to the current week day`,
         `In the filter, $month resolves to the current month name`,
         `In the filter, $year resolves to the year number`,
