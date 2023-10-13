@@ -535,16 +535,21 @@ App.get_tag_items = (mode, action = `filter`) => {
 
   if (action === `remove`) {
     tags = App.get_tags()
-  }
-  else if (action === `filter`) {
-    tags = App.get_active_tags(mode)
-  }
 
-  if (action === `remove`) {
     items.push({
       text: `All`,
       action: () => {
         App.remove_all_tags()
+      }
+    })
+  }
+  else if (action === `filter`) {
+    tags = App.get_active_tags(mode)
+
+    items.push({
+      text: `All`,
+      action: () => {
+        App.filter_tag(mode, `all`)
       }
     })
   }

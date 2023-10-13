@@ -294,7 +294,12 @@ App.filter_check = (args) => {
       match = args.item.audio
     }
     else if (args.filter_mode === `tag`) {
-      match = args.item.tags.includes(args.f_value)
+      if (args.f_value === `all`) {
+        match = args.item.tags.length > 0
+      }
+      else {
+        match = args.item.tags.includes(args.f_value)
+      }
     }
     else if (args.filter_mode === `color`) {
       if (args.f_value === `all`) {
@@ -823,12 +828,30 @@ App.filter_domain = (item) => {
 }
 
 App.filter_tag = (mode, tag) => {
-  App.set_custom_filter_mode(mode, `tag_${tag}`, tag)
+  let s
+
+  if (tag === `all`) {
+    s = `All Tags`
+  }
+  else {
+    s = tag
+  }
+
+  App.set_custom_filter_mode(mode, `tag_${tag}`, s)
   App.set_filter({mode: mode})
 }
 
 App.filter_color = (mode, color) => {
-  App.set_custom_filter_mode(mode, `color_${color}`, App.capitalize(color))
+  let s
+
+  if (color === `all`) {
+    s = `All Colors`
+  }
+  else {
+    s = color
+  }
+
+  App.set_custom_filter_mode(mode, `color_${color}`, s)
   App.set_filter({mode: mode})
 }
 
