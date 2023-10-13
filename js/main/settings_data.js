@@ -975,7 +975,7 @@ App.build_settings = () => {
       placeholder: `Number`,
       min: App.number_min,
       max: App.number_max,
-      info: `The filter delay on instant modes like tabs and closed`,
+      info: `The filter delay on instant modes like tabs and closed (milliseconds)`,
       version: 1,
     },
     filter_delay_search: {
@@ -986,7 +986,7 @@ App.build_settings = () => {
       placeholder: `Number`,
       min: App.number_min,
       max: App.number_max,
-      info: `The filter delay on search modes like history and bookmarks`,
+      info: `The filter delay on search modes like history and bookmarks (milliseconds)`,
       version: 1,
     },
     max_filter_history: {
