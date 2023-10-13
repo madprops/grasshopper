@@ -848,7 +848,7 @@ App.filter_color = (mode, color) => {
     s = `All Colors`
   }
   else {
-    s = color
+    s = App.capitalize(color)
   }
 
   App.set_custom_filter_mode(mode, `color_${color}`, s)
