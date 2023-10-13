@@ -1,20 +1,25 @@
 App.create_main_menu = (mode) => {
-  let main_menu = DOM.create(`div`, `button icon_button`, `${mode}_main_menu`)
-  main_menu.textContent = App.get_mode_name(mode)
-  main_menu.title = `Main Menu (Ctrl + Left)`
+  let btn = DOM.create(`div`, `button icon_button`, `${mode}_main_menu`)
+  btn.textContent = App.get_mode_name(mode)
+  btn.title = `Main Menu (Ctrl + Left)`
 
-  DOM.ev(main_menu, `click`, () => {
+  DOM.ev(btn, `click`, () => {
     App.show_main_menu(mode)
   })
 
-  DOM.ev(main_menu, `auxclick`, (e) => {
+  DOM.ev(btn, `contextmenu`, (e) => {
+    e.preventDefault()
+    App.show_palette()
+  })
+
+  DOM.ev(btn, `auxclick`, (e) => {
     if (e.button === 1) {
       let cmd = App.get_setting(`middle_click_main_menu`)
       App.run_command({cmd: cmd, from: `main_menu`})
     }
   })
 
-  DOM.ev(main_menu, `wheel`, (e) => {
+  DOM.ev(btn, `wheel`, (e) => {
     let direction = App.wheel_direction(e)
 
     if (direction === `down`) {
@@ -25,7 +30,7 @@ App.create_main_menu = (mode) => {
     }
   })
 
-  return main_menu
+  return btn
 }
 
 App.show_main_menu = (mode) => {
