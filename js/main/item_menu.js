@@ -302,6 +302,7 @@ App.filter_menu_items = (item) => {
 
   if (item.color) {
     items.push({
+      icon: App.settings_icons.theme,
       text: `Color`,
       action: () => {
         App.filter_color(item.mode, item.color)
@@ -310,6 +311,7 @@ App.filter_menu_items = (item) => {
   }
 
   items.push({
+    icon: App.settings_icons.filter,
     text: `Domain`,
     action: () => {
       App.filter_domain(item)
