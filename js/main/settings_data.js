@@ -1261,6 +1261,10 @@ App.build_settings = () => {
         ])
       },
     },
+    filter: {
+      info: `Adjust the filter and search`,
+      setup: () => {},
+    },
     media: {
       info: `How to view media items. An icon appears to the left of items. You can make it view media when clicking the icons, the whole item, or never`,
       setup: () => {
@@ -1375,10 +1379,6 @@ App.build_settings = () => {
         App.settings_make_menu(`warn_on_color`, tab_warn_opts_2)
         App.settings_make_menu(`warn_on_remove_color`, tab_warn_opts_2)
       },
-    },
-    filter: {
-      info: `Adjust the filter and search`,
-      setup: () => {},
     },
     more: {
       info: `More settings`,
