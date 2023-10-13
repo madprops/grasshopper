@@ -1,6 +1,6 @@
 App.create_playing_icon = (mode) => {
   btn = DOM.create(`div`, `button icon_button hidden`, `playing_icon_${mode}`)
-  btn.title = `Go To Playing Tab (Ctrl + Dot)`
+  btn.title = `Go To Playing Tab (Ctrl + Dot) - Right click to filter by playing`
   let icon = App.create_icon(`speaker`)
 
   DOM.ev(btn, `click`, () => {

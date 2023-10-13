@@ -4,7 +4,7 @@ App.create_filter_menu = (mode) => {
   }
 
   let btn = DOM.create(`div`, `button icon_button filter_button`, `${mode}_filter_modes`)
-  btn.title = `Filters (Ctrl + F)`
+  btn.title = `Filters (Ctrl + F) - Right Click to show filter commands`
   btn.append(DOM.create(`div`, ``, `${mode}_filter_modes_text`))
   let fmodes = []
   fmodes.push({type: `all`, text: `All`})
