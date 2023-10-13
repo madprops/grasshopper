@@ -36,14 +36,18 @@ App.show_custom_menu = (e, what) => {
 }
 
 App.custom_menu_items = (name) => {
-  let items = []
-  let menu = App.get_setting(name)
+  let cmds = App.get_setting(name)
+  return App.show_cmds_menu(cmds, name)
+}
 
-  if (!menu.length) {
+App.show_cmds_menu = (cmds, from) => {
+  let items = []
+
+  if (!cmds.length) {
     return items
   }
 
-  for (let obj of menu) {
+  for (let obj of cmds) {
     let c = App.get_command(obj.cmd)
 
     if (!c) {
@@ -53,7 +57,7 @@ App.custom_menu_items = (name) => {
     items.push({
       text: c.name,
       action: (e) => {
-        App.run_command({cmd: c.cmd, from: name, e: e})
+        App.run_command({cmd: c.cmd, from: from, e: e})
       },
       icon: c.icon,
     })
