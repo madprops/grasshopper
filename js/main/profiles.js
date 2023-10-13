@@ -1520,3 +1520,13 @@ App.edit_title = (item) => {
 App.edit_icon = (item) => {1
   App.profile_edit_text(`icon`, `Icon`, item)
 }
+
+App.show_tag_filter_menu = (mode, e) => {
+  let items = App.get_tag_items(mode, `filter`)
+  App.show_center_context(items, e)
+}
+
+App.show_color_filter_menu = (mode, e) => {
+  let items = App.get_color_items(mode, `filter`)
+  App.show_center_context(items, e)
+}

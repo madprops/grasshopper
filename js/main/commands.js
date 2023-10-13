@@ -96,6 +96,17 @@ App.setup_commands = () => {
     }, info: `Show the colors menu`
   })
 
+  color_changers.push({
+    name: `Color Filter Menu`,
+    cmd: `show_color_filter_menu`,
+    mode: `items`,
+    item: true,
+    icon: theme_icon,
+    action: (args) => {
+      App.show_color_filter_menu(args.mode, args.e)
+    }, info: `Show the color filter menu`
+  })
+
   let media_filters = []
 
   for (let media of App.media_types) {
@@ -814,6 +825,16 @@ App.setup_commands = () => {
       info: `Filter by playing`
     },
     {
+      name: `Tag Filter Menu`,
+      cmd: `show_tag_filter_menu`,
+      mode: `items`,
+      icon: tag_icon,
+      action: (args) => {
+        App.show_tag_filter_menu(args.mode, args.e)
+      },
+      info: `Show the tag filter menu`
+    },
+    {
       name: `Filter All Tags`,
       cmd: `filter_by_tag_all`,
       mode: `items`,
@@ -821,7 +842,7 @@ App.setup_commands = () => {
       action: (args) => {
         App.filter_tag(args.mode, `all`)
       },
-      info: `Filter by edited`
+      info: `Filter by all tags`
     },
     {
       name: `Filter Edited`,
