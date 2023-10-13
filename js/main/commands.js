@@ -814,6 +814,16 @@ App.setup_commands = () => {
       info: `Filter by playing`
     },
     {
+      name: `Filter All Tags`,
+      cmd: `filter_by_tag_all`,
+      mode: `items`,
+      icon: tag_icon,
+      action: (args) => {
+        App.filter_tag(args.mode, `all`)
+      },
+      info: `Filter by edited`
+    },
+    {
       name: `Filter Edited`,
       cmd: `filter_by_edited`,
       mode: `items`,
