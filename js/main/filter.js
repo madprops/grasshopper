@@ -965,3 +965,7 @@ App.show_filter_color_menu = (mode, e) => {
   let items = App.get_color_items(mode, `filter`)
   App.show_center_context(items, e)
 }
+
+App.filter_playing = (mode) => {
+  App.set_filter_mode({mode: mode, type: `playing`})
+}

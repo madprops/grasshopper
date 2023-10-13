@@ -1,14 +1,19 @@
 App.create_playing_icon = (mode) => {
-  playing = DOM.create(`div`, `button icon_button hidden`, `playing_icon_${mode}`)
-  playing.title = `Go To Playing Tab (Ctrl + Dot)`
-  let playing_icon = App.create_icon(`speaker`)
+  btn = DOM.create(`div`, `button icon_button hidden`, `playing_icon_${mode}`)
+  btn.title = `Go To Playing Tab (Ctrl + Dot)`
+  let icon = App.create_icon(`speaker`)
 
-  DOM.ev(playing, `click`, () => {
+  DOM.ev(btn, `click`, () => {
     App.go_to_playing_tab()
   })
 
-  playing.append(playing_icon)
-  return playing
+  DOM.ev(btn, `contextmenu`, (e) => {
+    e.preventDefault()
+    App.filter_playing(mode)
+  })
+
+  btn.append(icon)
+  return btn
 }
 
 App.show_playing = (mode) => {

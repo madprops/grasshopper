@@ -820,7 +820,7 @@ App.setup_commands = () => {
       mode: `tabs`,
       icon: playing_icon,
       action: (args) => {
-        App.set_filter_mode({mode: args.mode, type: `playing`})
+        App.filter_playing(args.mode)
       },
       info: `Filter by playing`
     },
