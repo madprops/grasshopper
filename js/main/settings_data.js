@@ -84,7 +84,7 @@ App.build_settings = () => {
     auto_restore: {
       name: `Auto-Restore`,
       type: `menu`,
-      value: `3_seconds`,
+      value: `never`,
       info: `When to auto-restore after the mouse leaves the window. Or if it should restore instantly after an action.
       Restore means going back to the primary mode and clearing the filter`,
       version: 1,

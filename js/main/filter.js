@@ -297,7 +297,12 @@ App.filter_check = (args) => {
       match = args.item.tags.includes(args.f_value)
     }
     else if (args.filter_mode === `color`) {
-      match = args.item.color === args.f_value
+      if (args.f_value === `all`) {
+        match = args.item.color !== ``
+      }
+      else {
+        match = args.item.color === args.f_value
+      }
     }
     else if (args.filter_mode === `edited`) {
       match = args.item.has_profile

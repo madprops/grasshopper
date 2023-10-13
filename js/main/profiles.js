@@ -588,6 +588,13 @@ App.get_color_items = (mode, action = `filter`) => {
   }
   else if (action === `filter`) {
     count = App.get_active_colors(mode)
+
+    items.push({
+      text: `All`,
+      action: () => {
+        App.filter_color(mode, `all`)
+      }
+    })
   }
 
   if (action === `remove`) {

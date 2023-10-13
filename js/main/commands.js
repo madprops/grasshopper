@@ -16,6 +16,17 @@ App.setup_commands = () => {
   let color_filters = []
   let color_changers = []
 
+  color_filters.push({
+    name: `Filter All Colors`,
+    cmd: `filter_by_color_all`,
+    mode: `items`,
+    icon: theme_icon,
+    action: (args) => {
+      App.filter_color(args.mode, `all`)
+    },
+    info: `Filter by all colors`
+  })
+
   for (let color of App.colors) {
     let icon = App.color_icon(color)
     let name = `Filter ${App.capitalize(color)}`
