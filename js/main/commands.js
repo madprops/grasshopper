@@ -375,6 +375,15 @@ App.setup_commands = () => {
       info: `Reload the current page`
     },
     {
+      name: `Browser Menu`,
+      cmd: `show_browser_menu`,
+      icon: browser_icon,
+      action: (args) => {
+        App.show_browser_menu(args.e)
+      },
+      info: `Show the browser menu`
+    },
+    {
       name: App.separator_string
     },
     {

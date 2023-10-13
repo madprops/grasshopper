@@ -122,3 +122,14 @@ App.check_force = (warn_setting, items) => {
 
   return true
 }
+
+App.show_browser_menu = (e) => {
+  let cmds = [
+    {cmd: `browser_back`},
+    {cmd: `browser_forward`},
+    {cmd: `browser_reload`},
+  ]
+
+  let items = App.show_cmds_menu(cmds, `browser_commands`)
+  App.show_center_context(items, e)
+}
