@@ -1,4 +1,8 @@
 App.setup_commands = () => {
+  let command_icon = App.command_icon
+  let audio_icon = App.get_setting(`audio_icon`) || command_icon
+  let playing_icon = App.get_setting(`playing_icon`) || command_icon
+  let unloaded_icon = App.get_setting(`unloaded_icon`) || command_icon
   let tabs_icon =  App.mode_icons.tabs
   let bookmarks_icon = App.mode_icons.bookmarks
   let closed_icon = App.mode_icons.closed
@@ -7,12 +11,9 @@ App.setup_commands = () => {
   let filter_icon = App.settings_icons.filter
   let browser_icon = App.browser_icon
   let clipboard_icon = App.clipboard_icon
-  let audio_icon = App.get_setting(`audio_icon`)
   let profile_icon = App.profile_icon
   let tag_icon = App.tag_icon
-  let playing_icon = App.get_setting(`playing_icon`)
   let bot_icon = App.bot_icon
-  let command_icon = App.command_icon
   let color_filters = []
   let color_changers = []
 
@@ -857,7 +858,7 @@ App.setup_commands = () => {
       name: `Filter Unloaded`,
       cmd: `filter_unloaded`,
       mode: `tabs`,
-      icon: tabs_icon,
+      icon: unloaded_icon,
       action: (args) => {
         App.filter_unloaded(args.mode)
       },
