@@ -829,3 +829,7 @@ App.filter_pinned = (mode) => {
 App.filter_normal = (mode) => {
   App.set_filter_mode({mode: mode, type: `normal`})
 }
+
+App.filter_loaded = (mode) => {
+  App.set_filter_mode({mode: mode, type: `loaded`})
+}

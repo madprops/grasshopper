@@ -878,6 +878,16 @@ App.setup_commands = () => {
       info: `Filter: Show duplicate tabs`
     },
     {
+      name: `Filter Loaded`,
+      cmd: `filter_loaded`,
+      mode: `tabs`,
+      icon: command_icon,
+      action: (args) => {
+        App.filter_loaded(args.mode)
+      },
+      info: `Filter: Show loaded tabs`
+    },
+    {
       name: `Filter Tag Menu`,
       cmd: `show_filter_tag_menu`,
       mode: `items`,
