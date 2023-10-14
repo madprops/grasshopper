@@ -3,9 +3,9 @@ App.setup_tabs = () => {
     {type: `pinned`, text:`Pinned`, skip: false, info: `Show pinned tabs`},
     {type: `normal`, text:`Normal`, skip: false, info: `Show normal tabs`},
     {type: `playing`, text:`Playing`, skip: false, info: `Show tabs emitting sound`},
+    {type: `loaded`, text:`Loaded`, skip: false, info: `Show tabs that are loaded`},
     {type: `unloaded`, text:`Unloaded`, skip: false, info: `Show unloaded tabs`},
     {type: `duplicate`, text:`Duplicate`, skip: false, info: `Show tabs that have duplicates`},
-    {type: `loaded`, text:`Loaded`, skip: false, info: `Show tabs that are loaded`},
   ]
 
   App.debug_tabs = false
