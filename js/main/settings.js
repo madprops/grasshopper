@@ -385,6 +385,8 @@ App.start_settings = () => {
     },
     on_hide: async () => {
       App.apply_theme()
+      App.setup_commands()
+      App.fill_palette()
       App.clear_show()
     },
   }

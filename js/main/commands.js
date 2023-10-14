@@ -1,8 +1,11 @@
 App.setup_commands = () => {
   let command_icon = App.command_icon
-  let audio_icon = App.get_setting(`audio_icon`) || command_icon
+  let pin_icon = App.get_setting(`pin_icon`) || command_icon
+  let normal_icon = App.get_setting(`normal_icon`) || command_icon
   let playing_icon = App.get_setting(`playing_icon`) || command_icon
   let unloaded_icon = App.get_setting(`unloaded_icon`) || command_icon
+  let audio_icon = App.get_setting(`audio_icon`) || command_icon
+  let notes_icon = App.get_setting(`notes_icon`) || command_icon
   let tabs_icon =  App.mode_icons.tabs
   let bookmarks_icon = App.mode_icons.bookmarks
   let closed_icon = App.mode_icons.closed
@@ -111,7 +114,7 @@ App.setup_commands = () => {
   let media_filters = []
 
   for (let media of App.media_types) {
-    let icon = App.get_setting(`${media}_icon`) || ``
+    let icon = App.get_setting(`${media}_icon`) || command_icon
     let name = `Filter ${App.capitalize(media)}`.trim()
 
     media_filters.push({
@@ -748,7 +751,7 @@ App.setup_commands = () => {
       cmd: `profiles_add_note`,
       mode: `items`,
       item: true,
-      icon: App.get_setting(`notes_icon`),
+      icon: notes_icon,
       item: true,
       action: (args) => {
         App.add_note(args.item)
@@ -828,7 +831,7 @@ App.setup_commands = () => {
       name: `Filter Pins`,
       cmd: `filter_pinned`,
       mode: `tabs`,
-      icon: tabs_icon,
+      icon: pin_icon,
       action: (args) => {
         App.filter_pinned(args.mode)
       },
@@ -838,7 +841,7 @@ App.setup_commands = () => {
       name: `Filter Normal`,
       cmd: `filter_normal`,
       mode: `tabs`,
-      icon: tabs_icon,
+      icon: normal_icon,
       action: (args) => {
         App.filter_normal(args.mode)
       },
@@ -868,7 +871,7 @@ App.setup_commands = () => {
       name: `Filter Duplicate`,
       cmd: `filter_duplicate`,
       mode: `tabs`,
-      icon: tabs_icon,
+      icon: command_icon,
       action: (args) => {
         App.filter_duplicate(args.mode)
       },
