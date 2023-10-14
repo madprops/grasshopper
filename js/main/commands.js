@@ -4,7 +4,7 @@ App.setup_commands = () => {
   let normal_icon = App.get_setting(`normal_icon`) || command_icon
   let playing_icon = App.get_setting(`playing_icon`) || command_icon
   let unloaded_icon = App.get_setting(`unloaded_icon`) || command_icon
-  let audio_icon = App.get_setting(`audio_icon`) || command_icon
+  let media_icon = App.get_setting(`audio_icon`) || command_icon
   let notes_icon = App.get_setting(`notes_icon`) || command_icon
   let tabs_icon =  App.mode_icons.tabs
   let bookmarks_icon = App.mode_icons.bookmarks
@@ -716,7 +716,7 @@ App.setup_commands = () => {
       name: `Search Media`,
       cmd: `show_search_media_menu`,
       mode: `items`,
-      icon: audio_icon,
+      icon: media_icon,
       action: (args) => {
         App.search_media(args.mode, args.e)
       },
