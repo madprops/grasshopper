@@ -12,7 +12,6 @@ App.start_about = () => {
         `Cycle modes with the top-left menu or (Shift) Tab`,
         `Cycle with Left and Right if filter is not focused`,
         `Middle Click on tabs closes them`,
-        `Middle Click on others opens them`,
         `Esc does Step Back and closes windows`,
         `Shift + Up/Down selects multiple items`,
         `Shift + Home/End selects towards edges`,
