@@ -4,8 +4,8 @@ App.setup_commands = () => {
   let normal_icon = App.get_setting(`normal_icon`) || command_icon
   let playing_icon = App.get_setting(`playing_icon`) || command_icon
   let unloaded_icon = App.get_setting(`unloaded_icon`) || command_icon
-  let media_icon = App.get_setting(`audio_icon`) || command_icon
   let notes_icon = App.get_setting(`notes_icon`) || command_icon
+  let media_icon = App.settings_icons.media
   let tabs_icon =  App.mode_icons.tabs
   let bookmarks_icon = App.mode_icons.bookmarks
   let closed_icon = App.mode_icons.closed
