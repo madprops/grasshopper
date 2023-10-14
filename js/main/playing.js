@@ -44,7 +44,7 @@ App.go_to_playing_tab = async () => {
     await App.do_show_mode({mode: `tabs`})
   }
   else {
-    App.show_all(`tabs`)
+    App.filter_all(`tabs`)
   }
 
   let items = App.get_items(`tabs`)

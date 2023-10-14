@@ -699,7 +699,7 @@ App.filter_color = (mode, color) => {
   App.set_filter({mode: mode})
 }
 
-App.show_all = (mode = App.window_mode) => {
+App.filter_all = (mode = App.window_mode) => {
   if (App.is_filtered(mode)) {
     App.set_filter_mode({mode: mode, type: `all`, filter: false})
     App.set_filter({mode: mode})

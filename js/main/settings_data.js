@@ -484,7 +484,7 @@ App.build_settings = () => {
     gesture_up_and_down: {
       name: `Gesture Up Down`,
       type: `menu`,
-      value: `show_all_items`,
+      value: `filter_all`,
       info: `Up and Down gesture`,
       version: 1,
     },
@@ -539,7 +539,7 @@ App.build_settings = () => {
     middle_click_filter_menu: {
       name: `Middle-Click Filter Menu`,
       type: `menu`,
-      value: `show_all_items`,
+      value: `filter_all`,
       info: `Middle-click on the filter menu`,
       version: 1,
     },

@@ -267,14 +267,14 @@ App.setup_commands = () => {
       info: `Show the item menu`
     },
     {
-      name: `Show All`,
-      cmd: `show_all_items`,
+      name: `Filter All`,
+      cmd: `filter_all`,
       mode: `items`,
       icon: command_icon,
       action: (args) => {
-        App.show_all()
+        App.filter_all(args.mode)
       },
-      info: `Show all items`
+      info: `Filter: Show all items`
     },
     {
       name: App.separator_string

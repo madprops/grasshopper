@@ -32,7 +32,7 @@ App.step_back = (mode = App.window_mode, e) => {
     App.clear_filter(mode)
   }
   else if (App[`${mode}_filter_mode`] !== `all`) {
-    App.show_all()
+    App.filter_all()
   }
   else if (item && !App.item_is_visible(item)) {
     App.select_item({item: item, scroll: `center`})
