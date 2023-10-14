@@ -808,3 +808,7 @@ App.show_filter_color_menu = (mode, e) => {
 App.filter_playing = (mode) => {
   App.set_filter_mode({mode: mode, type: `playing`})
 }
+
+App.filter_duplicates = (mode) => {
+  App.set_filter_mode({mode: mode, type: `duplicate`})
+}

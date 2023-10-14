@@ -24,7 +24,7 @@ App.setup_commands = () => {
     action: (args) => {
       App.filter_color(args.mode, `all`)
     },
-    info: `Filter by all colors`
+    info: `Filter: Show all colors`
   })
 
   for (let color of App.colors) {
@@ -39,7 +39,7 @@ App.setup_commands = () => {
       action: (args) => {
         App.filter_color(args.mode, color)
       },
-      info: `Filter by color: ${color}`
+      info: `Filter: Show color (${color})`
     })
 
     icon = App.color_icon(color)
@@ -121,7 +121,7 @@ App.setup_commands = () => {
       action: (args) => {
         App.set_filter_mode({mode: args.mode, type: media})
       },
-      info: `Filter by media: ${media}`
+      info: `Filter: Show media items (${media})`
     })
   }
 
@@ -809,7 +809,7 @@ App.setup_commands = () => {
       action: (args) => {
         App.filter_domain(args.item)
       },
-      info: `Filter by domain`
+      info: `Filter: Show same domain`
     },
     {
       name: `Filter Color`,
@@ -821,7 +821,7 @@ App.setup_commands = () => {
       action: (args) => {
         App.filter_color(args.mode, args.item.color)
       },
-      info: `Filter by color`
+      info: `Filter: Show same color`
     },
     {
       name: `Filter Playing`,
@@ -831,7 +831,17 @@ App.setup_commands = () => {
       action: (args) => {
         App.filter_playing(args.mode)
       },
-      info: `Filter by playing`
+      info: `Filter: Show playing`
+    },
+    {
+      name: `Filter Duplicates`,
+      cmd: `filter_duplicates`,
+      mode: `tabs`,
+      icon: tabs_icon,
+      action: (args) => {
+        App.filter_duplicates(args.mode)
+      },
+      info: `Filter: Show duplicates`
     },
     {
       name: `Filter Tag Menu`,
@@ -851,7 +861,7 @@ App.setup_commands = () => {
       action: (args) => {
         App.filter_tag(args.mode, `all`)
       },
-      info: `Filter by all tags`
+      info: `Filter: Show all tags`
     },
     {
       name: `Filter Edited`,
@@ -861,7 +871,7 @@ App.setup_commands = () => {
       action: (args) => {
         App.set_filter_mode({mode: args.mode, type: `edited`})
       },
-      info: `Filter by edited`
+      info: `Filter: Show items with an edited profile`
     },
     {
       name: App.separator_string
