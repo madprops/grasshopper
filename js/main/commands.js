@@ -244,7 +244,7 @@ App.setup_commands = () => {
     {
       name: `Show About`,
       cmd: `show_about`,
-      icon: command_icon,
+      icon: bot_icon,
       action: (args) => {
         App.show_about()
       },
