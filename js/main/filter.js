@@ -25,7 +25,9 @@ App.start_filter_debouncers = () => {
 }
 
 App.check_filter = (mode) => {
-  App.check_filter_debouncer.call({mode: mode})
+  if (App.is_filtered(mode)) {
+    App.check_filter_debouncer.call({mode: mode})
+  }
 }
 
 App.filter = (args) => {
