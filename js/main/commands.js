@@ -824,6 +824,26 @@ App.setup_commands = () => {
       info: `Filter: Show same color`
     },
     {
+      name: `Filter Pins`,
+      cmd: `filter_pinned`,
+      mode: `tabs`,
+      icon: tabs_icon,
+      action: (args) => {
+        App.filter_pinned(args.mode)
+      },
+      info: `Filter: Show pinned tabs`
+    },
+    {
+      name: `Filter Normal`,
+      cmd: `filter_normal`,
+      mode: `tabs`,
+      icon: tabs_icon,
+      action: (args) => {
+        App.filter_normal(args.mode)
+      },
+      info: `Filter: Show normal tabs`
+    },
+    {
       name: `Filter Playing`,
       cmd: `filter_playing`,
       mode: `tabs`,
@@ -831,17 +851,27 @@ App.setup_commands = () => {
       action: (args) => {
         App.filter_playing(args.mode)
       },
-      info: `Filter: Show playing`
+      info: `Filter: Show playing tabs`
     },
     {
-      name: `Filter Duplicates`,
-      cmd: `filter_duplicates`,
+      name: `Filter Unloaded`,
+      cmd: `filter_unloaded`,
       mode: `tabs`,
       icon: tabs_icon,
       action: (args) => {
-        App.filter_duplicates(args.mode)
+        App.filter_unloaded(args.mode)
       },
-      info: `Filter: Show duplicates`
+      info: `Filter: Show unloaded tabs`
+    },
+    {
+      name: `Filter Duplicates`,
+      cmd: `filter_duplicate`,
+      mode: `tabs`,
+      icon: tabs_icon,
+      action: (args) => {
+        App.filter_duplicate(args.mode)
+      },
+      info: `Filter: Show duplicate tabs`
     },
     {
       name: `Filter Tag Menu`,

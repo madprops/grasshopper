@@ -809,6 +809,18 @@ App.filter_playing = (mode) => {
   App.set_filter_mode({mode: mode, type: `playing`})
 }
 
-App.filter_duplicates = (mode) => {
+App.filter_duplicate = (mode) => {
   App.set_filter_mode({mode: mode, type: `duplicate`})
+}
+
+App.filter_unloaded = (mode) => {
+  App.set_filter_mode({mode: mode, type: `unloaded`})
+}
+
+App.filter_pinned = (mode) => {
+  App.set_filter_mode({mode: mode, type: `pinned`})
+}
+
+App.filter_normal = (mode) => {
+  App.set_filter_mode({mode: mode, type: `normal`})
 }
