@@ -5,13 +5,13 @@ App.setup_commands = () => {
   let playing_icon = App.get_setting(`playing_icon`) || command_icon
   let unloaded_icon = App.get_setting(`unloaded_icon`) || command_icon
   let notes_icon = App.get_setting(`notes_icon`) || command_icon
+  let settings_icon = App.settings_icons.general
+  let theme_icon = App.settings_icons.theme
+  let filter_icon = App.settings_icons.filter
   let media_icon = App.settings_icons.media
   let tabs_icon =  App.mode_icons.tabs
   let bookmarks_icon = App.mode_icons.bookmarks
   let closed_icon = App.mode_icons.closed
-  let settings_icon = App.settings_icons.general
-  let theme_icon = App.settings_icons.theme
-  let filter_icon = App.settings_icons.filter
   let browser_icon = App.browser_icon
   let clipboard_icon = App.clipboard_icon
   let profile_icon = App.profile_icon
