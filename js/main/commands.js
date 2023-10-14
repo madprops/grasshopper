@@ -673,7 +673,7 @@ App.setup_commands = () => {
       name: `Select Pins`,
       cmd: `select_pinned_tabs`,
       mode: `tabs`,
-      icon: tabs_icon,
+      icon: pin_icon,
       action: (args) => {
         App.select_tabs(`pins`)
       },
@@ -683,7 +683,7 @@ App.setup_commands = () => {
       name: `Select Normal`,
       cmd: `select_normal_tabs`,
       mode: `tabs`,
-      icon: tabs_icon,
+      icon: normal_icon,
       action: (args) => {
         App.select_tabs(`normal`)
       },
