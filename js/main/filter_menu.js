@@ -31,6 +31,7 @@ App.create_filter_menu = (mode) => {
   fmodes.push({type: `edited`, text: `Edited`, skip: false, info: `Items that have a profile`, icon: profile_icon})
 
   if (mode !== `tabs`) {
+    fmodes.push(separator())
     fmodes.push({type: `notab`, text: `No Tab`, skip: false, info: `Items that are not open in a tab`})
   }
 
