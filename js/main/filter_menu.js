@@ -15,14 +15,20 @@ App.create_filter_menu = (mode) => {
     fmodes.push(...m_modes)
   }
 
+  let image_icon = App.get_setting(`image_icon`)
+  let video_icon = App.get_setting(`video_icon`)
+  let audio_icon = App.get_setting(`audio_icon`)
+  let profile_icon = App.profile_icon
+  let color_icon = App.settings_icons.theme
+  let tag_icon = App.tag_icon
   fmodes.push(separator())
-  fmodes.push({type: `image`, text: `Image`, skip: false, info: `Show image items`})
-  fmodes.push({type: `video`, text: `Video`, skip: false, info: `Show video items`})
-  fmodes.push({type: `audio`, text: `Audio`, skip: false, info: `Show audio items`})
+  fmodes.push({type: `image`, text: `Image`, skip: false, info: `Show image items`, icon: image_icon})
+  fmodes.push({type: `video`, text: `Video`, skip: false, info: `Show video items`, icon: video_icon})
+  fmodes.push({type: `audio`, text: `Audio`, skip: false, info: `Show audio items`, icon: audio_icon})
   fmodes.push(separator())
-  fmodes.push({type: `tag`, text: `Tag`, skip: true, skip: `Filter by a specific tag`})
-  fmodes.push({type: `color`, text: `Color`, skip: true, skip: `Filter by a specific color`})
-  fmodes.push({type: `edited`, text: `Edited`, skip: false, info: `Items that have a profile`})
+  fmodes.push({type: `tag`, text: `Tag`, skip: true, skip: `Filter by a specific tag`, icon: tag_icon})
+  fmodes.push({type: `color`, text: `Color`, skip: true, skip: `Filter by a specific color`, icon: color_icon})
+  fmodes.push({type: `edited`, text: `Edited`, skip: false, info: `Items that have a profile`, icon: profile_icon})
 
   if (mode !== `tabs`) {
     fmodes.push({type: `notab`, text: `No Tab`, skip: false, info: `Items that are not open in a tab`})
@@ -73,6 +79,7 @@ App.show_filter_menu = (mode) => {
     }
     else if (filter_mode.type === `tag`) {
       items.push({
+        icon: filter_mode.icon,
         text: filter_mode.text,
         get_items: () => {
           return App.get_tag_items(mode)
@@ -84,6 +91,7 @@ App.show_filter_menu = (mode) => {
     }
     else if (filter_mode.type === `color`) {
       items.push({
+        icon: filter_mode.icon,
         text: filter_mode.text,
         get_items: () => {
           return App.get_color_items(mode)
@@ -95,6 +103,7 @@ App.show_filter_menu = (mode) => {
     }
     else if (filter_mode.type === `custom`) {
       items.push({
+        icon: filter_mode.icon,
         text: `Custom`,
         get_items: () => {
           return App.get_custom_filters(mode)
@@ -106,6 +115,7 @@ App.show_filter_menu = (mode) => {
     }
     else if (filter_mode.type === `refine`) {
       items.push({
+        icon: filter_mode.icon,
         text: filter_mode.text,
         get_items: () => {
           return App.get_filter_refine(mode)
@@ -119,6 +129,7 @@ App.show_filter_menu = (mode) => {
     let selected = App.filter_mode(mode) === filter_mode.type
 
     items.push({
+      icon: filter_mode.icon,
       text: filter_mode.text,
       action: () => {
         App.set_filter_mode({mode: mode, type: filter_mode.type})
