@@ -144,6 +144,10 @@ App.palette_action = (el) => {
 }
 
 App.fill_palette = () => {
+  if (!App.palette_ready) {
+    return
+  }
+
   let container = DOM.el(`#palette_commands`)
   container.innerHTML = ``
 
