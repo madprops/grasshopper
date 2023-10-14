@@ -334,6 +334,9 @@ App.filter_check = (args) => {
     else if (args.filter_mode === `duplicate`) {
       match = args.duplicates.includes(args.item)
     }
+    else if (args.filter_mode === `loaded`) {
+      match = !args.item.discarded
+    }
     else if (args.filter_mode === `notab`) {
       let no_tab = true
 

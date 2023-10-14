@@ -5,6 +5,7 @@ App.setup_tabs = () => {
     {type: `playing`, text:`Playing`, skip: false, info: `Show tabs emitting sound`},
     {type: `unloaded`, text:`Unloaded`, skip: false, info: `Show unloaded tabs`},
     {type: `duplicate`, text:`Duplicate`, skip: false, info: `Show tabs that have duplicates`},
+    {type: `loaded`, text:`Loaded`, skip: false, info: `Show tabs that are loaded`},
   ]
 
   App.debug_tabs = false
