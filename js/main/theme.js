@@ -174,9 +174,10 @@ App.apply_theme = (args) => {
     let tbh = App.get_setting(`tab_box`)
     let tbh_rem = 10
     let tbh_diff = 3
+    let tbh_display = `flex`
 
     if (tbh === `none`) {
-      tbh_rem = 0
+      tbh_display = `none`
     }
     else if (tbh === `tiny`) {
       tbh_rem -= (tbh_diff * 2)
@@ -191,6 +192,7 @@ App.apply_theme = (args) => {
       tbh_rem += (tbh_diff * 2)
     }
 
+    App.set_css_var(`tab_box_display`, tbh_display)
     App.set_css_var(`tab_box_height`, `${tbh_rem}rem`)
   }
   catch (err) {
