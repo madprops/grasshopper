@@ -17,6 +17,8 @@ App.setup_commands = () => {
   let profile_icon = App.profile_icon
   let tag_icon = App.tag_icon
   let bot_icon = App.bot_icon
+  let up_icon = App.up_arrow
+  let down_icon = App.down_arrow
   let color_filters = []
   let color_changers = []
 
@@ -151,7 +153,7 @@ App.setup_commands = () => {
       name: `Go To Top`,
       cmd: `go_to_top`,
       mode: `items`,
-      icon: command_icon,
+      icon: up_icon,
       action: (args) => {
         App.goto_top()
       },
@@ -161,7 +163,7 @@ App.setup_commands = () => {
       name: `Go To Bottom`,
       cmd: `go_to_bottom`,
       mode: `items`,
-      icon: command_icon,
+      icon: down_icon,
       action: (args) => {
         App.goto_bottom()
       },
