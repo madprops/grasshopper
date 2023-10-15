@@ -1398,6 +1398,8 @@ App.build_settings = () => {
     },
     favorites: {
       info: `Button commands to place at the top`,
+      image: `img/button.jpg`,
+      image_title: `Press to reset the world`,
       setup: () => {},
     },
     keyboard: {
