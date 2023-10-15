@@ -6,7 +6,7 @@ App.start_close_tabs = () => {
   App.create_popup({
     id: `close_tabs`,
     setup: () => {
-      App.close_tabs_types = [`normal`, `playing`, `unloaded`, `duplicate`, `visible`]
+      App.close_tabs_types = [`normal`, `playing`, `unloaded`, `duplicate`, `visible`, `last_hour`, `12_hours`]
 
       DOM.ev(DOM.el(`#close_tabs_include_pins`), `change`, () => {
         App.update_close_tabs_popup_button(App.close_tabs_type)
@@ -73,7 +73,7 @@ App.close_tabs_popup = (type) => {
   App.start_close_tabs()
   App.close_tabs_type = type
   App.show_popup(`close_tabs`)
-  let title = App.capitalize_words(`Close ${type}`)
+  let title = App.capitalize_words(`Close ${type.replace(/_/, ` `)}`)
   DOM.el(`#close_tabs_title`).textContent = title
   DOM.el(`#close_tabs_include_pins`).checked = false
   DOM.el(`#close_tabs_include_unloaded`).checked = false
@@ -320,6 +320,20 @@ App.show_close_tabs_menu = (e) => {
     }
   })
 
+  items.push({
+    text: `Close Last Hour`,
+    action: () => {
+      App.close_tabs_popup(`last_hour`)
+    }
+  })
+
+  items.push({
+    text: `Close 12 Hours`,
+    action: () => {
+      App.close_tabs_popup(`12_hours`)
+    }
+  })
+
   App.show_center_context(items, e)
 }
 
@@ -348,4 +362,62 @@ App.close_tabs_next = (reverse = false) => {
 
 App.nothing_to_close = () => {
   App.alert(`Nothing to close`)
+}
+
+App.get_last_hour_tabs_items = (pins, unloaded) => {
+  let items = App.get_items(`tabs`)
+  let hour = 1000 * 60 * 60
+  let now = App.now()
+  items = items.filter(x => (now - x.last_accessed) >= hour)
+
+  if (!pins) {
+    items = items.filter(x => !x.pinned)
+  }
+
+  if (!unloaded) {
+    items = items.filter(x => !x.discarded)
+  }
+
+  return items
+}
+
+App.close_last_hour_tabs = (pins, unloaded) => {
+  let items = App.get_visible_tabs_items(pins, unloaded)
+
+  if (!items.length) {
+    App.nothing_to_close()
+    return
+  }
+
+  let force = App.check_force(`warn_on_close_last_hour_tabs`, items)
+  App.close_tabs_method(items, force)
+}
+
+App.get_12_hours_tabs_items = (pins, unloaded) => {
+  let items = App.get_items(`tabs`)
+  let hour = 1000 * 60 * 60 * 12
+  let now = App.now()
+  items = items.filter(x => (now - x.last_accessed) >= hour)
+
+  if (!pins) {
+    items = items.filter(x => !x.pinned)
+  }
+
+  if (!unloaded) {
+    items = items.filter(x => !x.discarded)
+  }
+
+  return items
+}
+
+App.close_12_hours_tabs = (pins, unloaded) => {
+  let items = App.get_visible_tabs_items(pins, unloaded)
+
+  if (!items.length) {
+    App.nothing_to_close()
+    return
+  }
+
+  let force = App.check_force(`warn_on_close_12_hours_tabs`, items)
+  App.close_tabs_method(items, force)
 }

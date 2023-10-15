@@ -612,6 +612,26 @@ App.setup_commands = () => {
       info: `Close visible tabs`
     },
     {
+      name: `Close Last Hour`,
+      cmd: `close_last_hour_tabs`,
+      mode: `items`,
+      icon: tabs_icon,
+      action: (args) => {
+        App.close_tabs_popup(`last_hour`)
+      },
+      info: `Close tabs not accessed in the last hour`
+    },
+    {
+      name: `Close 12 Hours`,
+      cmd: `close_12_hours_tabs`,
+      mode: `items`,
+      icon: tabs_icon,
+      action: (args) => {
+        App.close_tabs_popup(`12_hours`)
+      },
+      info: `Close tabs not accesssed in the last 12 hours`
+    },
+    {
       name: `Go To Playing`,
       cmd: `go_to_playing_tab`,
       icon: tabs_icon,

@@ -775,6 +775,20 @@ App.build_settings = () => {
       info: `Warn when closing visible tabs using the close menu`,
       version: 2,
     },
+    warn_on_last_hour_tabs: {
+      name: `Warn On Close Last Hour`,
+      type: `menu`,
+      value: `always`,
+      info: `Warn when closing tabs not accessed in the last hour`,
+      version: 2,
+    },
+    warn_on_12_hours_tabs: {
+      name: `Warn On Close 12 Hours`,
+      type: `menu`,
+      value: `always`,
+      info: `Warn when closing tabs not accessed in the last 12 hours`,
+      version: 2,
+    },
     warn_on_duplicate_tabs: {
       name: `Warn Duplicate Tabs`,
       type: `menu`,
