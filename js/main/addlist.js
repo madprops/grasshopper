@@ -51,7 +51,19 @@ Addlist.save = (id) => {
 
   let lines = Addlist.get_data(id)
   line._date_ = App.now()
-  lines.splice(data.index, 0, line)
+
+  if (data.index === undefined) {
+    if (oargs.append) {
+      lines.push(line)
+    }
+    else {
+      lines.unshift(line)
+    }
+  }
+  else {
+    lines.splice(data.index, 0, line)
+  }
+
   Addlist.after(id, lines)
   return true
 }
@@ -60,6 +72,7 @@ Addlist.register = (args = {}) => {
   let def_args = {
     labels: [],
     sources: [],
+    append: false,
   }
 
   args = Object.assign(def_args, args)

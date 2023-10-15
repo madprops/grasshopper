@@ -1097,6 +1097,7 @@ App.setup_settings_addlist = () => {
         return cmd_name(items.cmd)
       },
       title: props.name,
+      append: true,
     }))
   }))
 }
