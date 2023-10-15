@@ -20,6 +20,7 @@ App.update_tab_box = (new_active) => {
     text.textContent = item.title
     clone.append(icon)
     clone.append(text)
+    clone.title = item.url
 
     DOM.ev(clone, `click`, () => {
       App.tabs_action(item)
