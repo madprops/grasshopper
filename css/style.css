@@ -505,10 +505,6 @@ svg {
   height: 1.07rem;
 }
 
-.settings_image {
-  max-width: 90%;
-}
-
 .text_smaller {
   width: var(--widget_width_smaller);
   max-width: var(--widget_width_smaller);
