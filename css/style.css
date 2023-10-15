@@ -978,8 +978,8 @@ a:visited, a:link, a:hover {
   flex-direction: column;
   gap: 0.35rem;
   font-size: 1rem;
-  padding-top: 0.45rem;
-  padding-bottom: 0.45rem;
+  padding-top: 0.35rem;
+  padding-bottom: 0.35rem;
   overflow: auto;
   display: none;
 }
