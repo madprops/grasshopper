@@ -1080,6 +1080,25 @@ App.setup_settings_addlist = () => {
       }))
     }
   }
+
+  id = `settings_favorites`
+  props = App.setting_props[`favorites`]
+
+  App.create_popup(Object.assign({}, popobj, {
+    id: `addlist_${id}`,
+    element: Addlist.register(Object.assign({}, regobj, {
+      id: id,
+      pk: `cmd`,
+      widgets: [`menu`],
+      labels: [`Command`],
+      sources: [App.cmdlist.slice(0)],
+      keys: [`cmd`],
+      list_text: (items) => {
+        return cmd_name(items.cmd)
+      },
+      title: props.name,
+    }))
+  }))
 }
 
 App.settings_build_category = (key) => {

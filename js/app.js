@@ -76,6 +76,7 @@ App.settings_icons = {
   gestures: `🖱️`,
   auxclick: `🖱️`,
   menus: `🖱️`,
+  favorites: `🖱️`,
   keyboard: `⌨️`,
   warns: `🚨`,
   filter: `🔍`,

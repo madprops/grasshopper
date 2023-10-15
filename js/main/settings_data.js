@@ -683,6 +683,19 @@ App.build_settings = () => {
   }
 
   add_props()
+  category = `favorites`
+
+  props = {
+    favorites: {
+      name: `Favorites`,
+      type: `list`,
+      value: [],
+      info: `Command buttons to show at the top`,
+      version: 1,
+    },
+  }
+
+  add_props()
   category = `keyboard`
 
   props = {
@@ -1367,6 +1380,10 @@ App.build_settings = () => {
     },
     menus: {
       info: `Customize context and action menus`,
+      setup: () => {},
+    },
+    favorites: {
+      info: `Button commands to place at the top`,
       setup: () => {},
     },
     keyboard: {

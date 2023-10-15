@@ -831,6 +831,7 @@ App.setup_item_window = (mode) => {
     DOM.el(`#window_${mode}`).append(footer)
     let top = DOM.create(`div`, `item_top_container`, `${mode}_top_container`)
     DOM.el(`#window_top_${mode}`).append(top)
+    let favorites = App.create_favorites(mode)
     let container = DOM.create(`div`, `item_container`, `${mode}_container`)
     let scroller = App.create_scroller(mode)
 
@@ -838,6 +839,7 @@ App.setup_item_window = (mode) => {
       App.check_scroller(mode)
     })
 
+    win.before(favorites)
     win.append(scroller)
     win.append(container)
     App.setup_window_mouse(mode)
@@ -862,6 +864,9 @@ App.setup_item_window = (mode) => {
 
     top.append(left_top)
     top.append(right_top)
+  }
+  args.after_show = () => {
+    App.fill_favorites(mode)
   }
 
   App.create_window(args)
