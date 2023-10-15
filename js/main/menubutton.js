@@ -83,7 +83,7 @@ Menubutton.set_text = (args, opt) => {
   args.button.innerHTML = ``
 
   if (opt.icon) {
-    let icon = DOM.create(`div`)
+    let icon = DOM.create(`div`, `menupanel_icon`)
     icon.append(opt.icon)
     args.button.append(icon)
   }

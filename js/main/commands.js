@@ -19,6 +19,7 @@ App.setup_commands = () => {
   let bot_icon = App.bot_icon
   let up_icon = App.up_arrow
   let down_icon = App.down_arrow
+  let step_back_icon = App.create_icon(`back`)
   let color_filters = []
   let color_changers = []
 
@@ -173,7 +174,7 @@ App.setup_commands = () => {
       name: `Step Back`,
       cmd: `step_back`,
       mode: `items`,
-      icon: command_icon,
+      icon: step_back_icon,
       action: (args) => {
         App.step_back()
       },

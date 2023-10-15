@@ -1033,3 +1033,9 @@ a:visited, a:link, a:hover {
   justify-content: center;
   height: 100%;
 }
+
+.menupanel_icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
