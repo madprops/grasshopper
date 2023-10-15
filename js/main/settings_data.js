@@ -105,18 +105,18 @@ App.build_settings = () => {
       info: `Where to save bookmarks`,
       version: 1,
     },
-    click_select: {
-      name: `Click Select`,
-      type: `checkbox`,
-      value: false,
-      info: `Click to select without triggering an action`,
-      version: 1,
-    },
     wrap_text: {
       name: `Wrap Text`,
       type: `checkbox`,
       value: false,
       info: `Allow long lines to wrap into multiple lines, increasing the height of some items`,
+      version: 1,
+    },
+    click_select: {
+      name: `Click Select`,
+      type: `checkbox`,
+      value: false,
+      info: `Click to select without triggering an action`,
       version: 1,
     },
     icon_pick: {
@@ -419,6 +419,13 @@ App.build_settings = () => {
       info: `Show the item count in the footer`,
       version: 1,
     },
+    active_trace: {
+      name: `Active Trace`,
+      type: `checkbox`,
+      value: false,
+      info: `Show numbers as a trace on recently used tabs`,
+      version: 1,
+    },
     show_scrollbars: {
       name: `Show Scrollbars`,
       type: `checkbox`,
@@ -438,13 +445,6 @@ App.build_settings = () => {
       type: `checkbox`,
       value: false,
       info: `Put the close icon on the left side`,
-      version: 1,
-    },
-    active_trace: {
-      name: `Active Trace`,
-      type: `checkbox`,
-      value: false,
-      info: `Show numbers as a trace on recently used tabs`,
       version: 1,
     },
   }
