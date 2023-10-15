@@ -994,7 +994,16 @@ a:visited, a:link, a:hover {
   margin-right: 0.5rem;
 }
 
+.box_item_icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
 .box_item_text {
   white-space: nowrap;
   overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
 }
