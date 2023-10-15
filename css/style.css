@@ -1019,5 +1019,17 @@ a:visited, a:link, a:hover {
   align-items: center;
   justify-content: center;
   gap: 0.5rem;
-  padding-bottom: 0.5rem;
+  padding-bottom: 0.55rem;
+  height: 2rem;
+}
+
+.favorites_item {
+  height: 100%;
+}
+
+.favorites_icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
 }
