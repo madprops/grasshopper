@@ -223,6 +223,8 @@ App.refresh_tab = async (id, select, info) => {
       App.select_item({item: item, scroll: `nearest`})
     }
   }
+
+  return item
 }
 
 App.mute_tab = async (id) => {
@@ -655,7 +657,8 @@ App.on_tab_activated = async (info) => {
     select = false
   }
 
-  await App.refresh_tab(info.tabId, select)
+  let item = await App.refresh_tab(info.tabId, select)
+  App.update_active_history(item)
 }
 
 App.move_tabs = async (item, window_id) => {
@@ -1049,4 +1052,31 @@ App.load_tabs = (item) => {
       App.focus_tab({item: it, scroll: `none`, method: `load`})
     }
   }, undefined, force)
+}
+
+App.update_active_history = (item) => {
+  if (!App.get_setting(`active_trace`)) {
+    return
+  }
+
+  App.active_history.unshift(item)
+  App.active_history = [...new Set(App.active_history)]
+  App.active_history = App.active_history.slice(0, App.max_active_history)
+
+  for (let it of App.get_items(`tabs`)) {
+    it.element.classList.remove(`show_trace`)
+  }
+
+  let n = 1
+
+  for (let it of App.active_history) {
+    if (it === item) {
+      continue
+    }
+
+    it.element.classList.add(`show_trace`)
+    let trace = DOM.el(`.item_trace`, it.element)
+    trace.textContent = n
+    n += 1
+  }
 }

@@ -961,3 +961,13 @@ a:visited, a:link, a:hover {
 #close_tabs_title {
   min-width: 10rem;
 }
+
+.item_trace {
+  display: none;
+  flex-grow: 0;
+  flex-shrink: 0;
+}
+
+.item.show_trace .item_trace {
+  display: flex;
+}

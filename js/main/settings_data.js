@@ -133,6 +133,13 @@ App.build_settings = () => {
       info: `Require holding Ctrl to drag tab items vertically. This is to avoid accidental re-ordering`,
       version: 1,
     },
+    active_trace: {
+      name: `Active Trace`,
+      type: `checkbox`,
+      value: false,
+      info: `Show numbers as a trace on recently used tabs`,
+      version: 1,
+    },
   }
 
   add_props()

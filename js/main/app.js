@@ -38,6 +38,8 @@ App.backgrounds_dir = `/img/backgrounds/`
 App.num_backgrounds = 3
 App.number_min = 1
 App.number_max = 99999
+App.active_history = []
+App.max_active_history = 10
 
 App.settings_done = false
 App.settings_ready = false

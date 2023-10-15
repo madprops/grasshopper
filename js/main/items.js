@@ -612,6 +612,9 @@ App.create_item_element = (item) => {
   item.element.dataset.id = item.id
   App.add_close_icon(item, `left`)
 
+  let trace = DOM.create(`div`, `item_trace item_node`)
+  item.element.append(trace)
+
   if (App.get_setting(`item_icon`) !== `none`) {
     let icon_container = DOM.create(`div`, `item_icon_container item_node`)
     item.element.append(icon_container)
