@@ -386,7 +386,7 @@ App.get_last_hour_tabs_items = (pins, unloaded) => {
 }
 
 App.close_last_hour_tabs = (pins, unloaded) => {
-  let items = App.get_visible_tabs_items(pins, unloaded)
+  let items = App.get_last_hour_tabs_items(pins, unloaded)
 
   if (!items.length) {
     App.nothing_to_close()
@@ -402,7 +402,7 @@ App.get_12_hours_tabs_items = (pins, unloaded) => {
 }
 
 App.close_12_hours_tabs = (pins, unloaded) => {
-  let items = App.get_visible_tabs_items(pins, unloaded)
+  let items = App.get_12_hours_tabs_items(pins, unloaded)
 
   if (!items.length) {
     App.nothing_to_close()
