@@ -15,7 +15,14 @@ App.update_tab_box = (new_active) => {
     let clone = DOM.create(`div`, `box_item action`)
     let icon = DOM.create(`div`, `box_item_icon`)
     let o_icon = DOM.el(`.item_icon`, item.element).cloneNode(true)
-    icon.append(o_icon)
+
+    if (o_icon.tagName === `IMG`) {
+      icon.append(o_icon)
+    }
+    else if (o_icon.tagName === `CANVAS`) {
+      icon.append(App.get_jdenticon(item.hostname))
+    }
+
     let text = DOM.create(`div`, `box_item_text`)
     text.textContent = item.title
     clone.append(icon)
