@@ -306,10 +306,6 @@ App.add_settings_filter = (category) => {
   container.prepend(filter)
 }
 
-App.filter_settings_debouncer = App.create_debouncer(() => {
-  App.do_filter_settings()
-}, App.filter_delay_2)
-
 App.filter_settings = () => {
   App.filter_settings_debouncer.call()
 }
@@ -367,6 +363,10 @@ App.setup_settings = () => {
       App.restart_settings(`sync`)
     }
   })
+
+  App.save_settings_debouncer = App.create_debouncer(() => {
+    App.stor_save_settings()
+  }, App.settings_save_delay)
 }
 
 App.start_settings = () => {
@@ -405,6 +405,23 @@ App.start_settings = () => {
   }
 
   App.setup_settings_addlist()
+
+  App.settings_wheel = App.create_debouncer((e, direction) => {
+    if (!direction) {
+      direction = App.wheel_direction(e)
+    }
+
+    if (direction === `down`) {
+      App.show_next_settings()
+    }
+    else if (direction === `up`) {
+      App.show_prev_settings()
+    }
+  }, App.wheel_delay)
+
+  App.filter_settings_debouncer = App.create_debouncer(() => {
+    App.do_filter_settings()
+  }, App.filter_delay_2)
 }
 
 App.add_settings_switchers = (category) => {
@@ -664,19 +681,6 @@ App.settings_label_menu = (e, args) => {
   NeedContext.show(e.clientX, e.clientY, items)
 }
 
-App.settings_wheel = App.create_debouncer((e, direction) => {
-  if (!direction) {
-    direction = App.wheel_direction(e)
-  }
-
-  if (direction === `down`) {
-    App.show_next_settings()
-  }
-  else if (direction === `up`) {
-    App.show_prev_settings()
-  }
-}, App.wheel_delay)
-
 App.get_setting = (setting) => {
   let value = App.settings[setting].value
 
@@ -711,10 +715,6 @@ App.get_default_setting = (setting) => {
 
   return value
 }
-
-App.save_settings_debouncer = App.create_debouncer(() => {
-  App.stor_save_settings()
-}, App.settings_save_delay)
 
 App.check_settings = () => {
   let changed = false

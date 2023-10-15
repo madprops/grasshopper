@@ -1,6 +1,8 @@
-App.pinline_debouncer = App.create_debouncer(() => {
-  App.do_check_pinline()
-}, App.pinline_delay)
+App.setup_pinline = () => {
+  App.pinline_debouncer = App.create_debouncer(() => {
+    App.do_check_pinline()
+  }, App.pinline_delay)
+}
 
 App.check_pinline = () => {
   if (App.get_setting(`show_pinline`) !== `never`) {

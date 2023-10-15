@@ -3,11 +3,11 @@ App.setup_modes = () => {
     App[`${mode}_changed`] = false
     App[`${mode}_ready`] = false
   }
-}
 
-App.show_mode_debouncer = App.create_debouncer((args) => {
-  App.do_show_mode(args)
-}, App.show_mode_delay)
+  App.show_mode_debouncer = App.create_debouncer((args) => {
+    App.do_show_mode(args)
+  }, App.show_mode_delay)
+}
 
 App.show_mode = (args) => {
   App.show_mode_debouncer.call(args)

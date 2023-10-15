@@ -109,6 +109,10 @@ App.start_about = () => {
     },
     colored_top: true,
   })
+
+  App.filter_about_debouncer = App.create_debouncer(() => {
+    App.do_filter_about()
+  }, App.filter_delay_2)
 }
 
 App.about_filter_focused = () => {
@@ -123,10 +127,6 @@ App.clear_about_filter = () => {
     App.hide_window()
   }
 }
-
-App.filter_about_debouncer = App.create_debouncer(() => {
-  App.do_filter_about()
-}, App.filter_delay_2)
 
 App.filter_about = () => {
   App.filter_about_debouncer.call()

@@ -1,3 +1,9 @@
+App.setup_scroller = () => {
+  App.scroller_debouncer = App.create_debouncer((mode) => {
+    App.do_check_scroller(mode)
+  }, App.scroller_delay)
+}
+
 App.show_scroller = (mode) => {
   let scroller = DOM.el(`#${mode}_scroller`)
   scroller.classList.remove(`hidden`)
@@ -7,10 +13,6 @@ App.hide_scroller = (mode) => {
   let scroller = DOM.el(`#${mode}_scroller`)
   scroller.classList.add(`hidden`)
 }
-
-App.scroller_debouncer = App.create_debouncer((mode) => {
-  App.do_check_scroller(mode)
-}, App.scroller_delay)
 
 App.check_scroller = (mode) => {
   if (App.get_setting(`show_scroller`)) {

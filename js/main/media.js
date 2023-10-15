@@ -99,6 +99,17 @@ App.start_media = (what) => {
   })
 
   App.fill_media_window(what)
+
+  App.media_wheel = App.create_debouncer((e, what) => {
+    let direction = App.wheel_direction(e)
+
+    if (direction === `down`) {
+      App.media_next(what)
+    }
+    else if (direction === `up`) {
+      App.media_prev(what)
+    }
+  }, App.wheel_delay)
 }
 
 App.get_media_type = (item) => {
@@ -245,17 +256,6 @@ App.get_visible_media = (mode, what) => {
 
   return items
 }
-
-App.media_wheel = App.create_debouncer((e, what) => {
-  let direction = App.wheel_direction(e)
-
-  if (direction === `down`) {
-    App.media_next(what)
-  }
-  else if (direction === `up`) {
-    App.media_prev(what)
-  }
-}, App.wheel_delay)
 
 App.on_media = () => {
   return App.window_mode.startsWith(`media_`)

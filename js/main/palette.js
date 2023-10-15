@@ -20,6 +20,10 @@ App.start_palette = () => {
       })
     },
   })
+
+  App.filter_palette_debouncer = App.create_debouncer(() => {
+    App.do_filter_palette()
+  }, App.filter_delay_2)
 }
 
 App.show_palette = (prefilter = ``) => {
@@ -188,10 +192,6 @@ App.clear_palette_filter = () => {
     }
   }
 }
-
-App.filter_palette_debouncer = App.create_debouncer(() => {
-  App.do_filter_palette()
-}, App.filter_delay_2)
 
 App.filter_palette = () => {
   App.filter_palette_debouncer.call()
