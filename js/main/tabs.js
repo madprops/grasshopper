@@ -223,8 +223,6 @@ App.refresh_tab = async (id, select, info) => {
       App.select_item({item: item, scroll: `nearest`})
     }
   }
-
-  return item
 }
 
 App.mute_tab = async (id) => {
@@ -643,11 +641,14 @@ App.do_move_tab_index = async (id, index) => {
 }
 
 App.on_tab_activated = async (info) => {
+  let current = App.get_active_tab_item()
+  let new_active
+
   for (let item of App.get_items(`tabs`)) {
     item.active = item.id === info.tabId
 
     if (item.active) {
-      exit = true
+      new_active = item
     }
   }
 
@@ -657,8 +658,8 @@ App.on_tab_activated = async (info) => {
     select = false
   }
 
-  let item = await App.refresh_tab(info.tabId, select)
-  App.update_active_history(item)
+  await App.refresh_tab(info.tabId, select)
+  App.update_active_history(current, new_active)
 }
 
 App.move_tabs = async (item, window_id) => {
@@ -703,14 +704,6 @@ App.get_active_tab = async () => {
   }
   catch (err) {
     App.error(err)
-  }
-}
-
-App.get_active_tab_item = () => {
-  for (let item of App.get_items(`tabs`)) {
-    if (item.active) {
-      return item
-    }
   }
 }
 
@@ -1054,9 +1047,13 @@ App.load_tabs = (item) => {
   }, undefined, force)
 }
 
-App.update_active_history = (item) => {
+App.update_active_history = (current, item) => {
   if (!App.get_setting(`active_trace`)) {
     return
+  }
+
+  if (!App.active_history.length) {
+    App.active_history.push(current)
   }
 
   App.active_history.unshift(item)
