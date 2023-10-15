@@ -364,11 +364,11 @@ App.nothing_to_close = () => {
   App.alert(`Nothing to close`)
 }
 
-App.get_last_hour_tabs_items = (pins, unloaded) => {
+App.old_tabs = (hours, pins, unloaded) => {
   let items = App.get_items(`tabs`)
-  let hour = 1000 * 60 * 60
+  let d = 1000 * 60 * 60 * hours
   let now = App.now()
-  items = items.filter(x => (now - x.last_accessed) >= hour)
+  items = items.filter(x => (now - x.last_accessed) >= d)
 
   if (!pins) {
     items = items.filter(x => !x.pinned)
@@ -379,6 +379,10 @@ App.get_last_hour_tabs_items = (pins, unloaded) => {
   }
 
   return items
+}
+
+App.get_last_hour_tabs_items = (pins, unloaded) => {
+  return App.old_tabs(1, pins, unloaded)
 }
 
 App.close_last_hour_tabs = (pins, unloaded) => {
@@ -394,20 +398,7 @@ App.close_last_hour_tabs = (pins, unloaded) => {
 }
 
 App.get_12_hours_tabs_items = (pins, unloaded) => {
-  let items = App.get_items(`tabs`)
-  let hour = 1000 * 60 * 60 * 12
-  let now = App.now()
-  items = items.filter(x => (now - x.last_accessed) >= hour)
-
-  if (!pins) {
-    items = items.filter(x => !x.pinned)
-  }
-
-  if (!unloaded) {
-    items = items.filter(x => !x.discarded)
-  }
-
-  return items
+  return App.old_tabs(12, pins, unloaded)
 }
 
 App.close_12_hours_tabs = (pins, unloaded) => {
