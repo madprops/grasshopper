@@ -641,10 +641,13 @@ App.do_move_tab_index = async (id, index) => {
 }
 
 App.on_tab_activated = async (info) => {
-  let current = App.get_active_tab_item()
-  let new_active
+  let current, new_active
 
   for (let item of App.get_items(`tabs`)) {
+    if (item.active) {
+      current = item
+    }
+
     item.active = item.id === info.tabId
 
     if (item.active) {
@@ -1047,8 +1050,12 @@ App.load_tabs = (item) => {
   }, undefined, force)
 }
 
-App.update_active_history = (current, item) => {
+App.update_active_history = (current, new_active) => {
   if (!App.get_setting(`active_trace`)) {
+    return
+  }
+
+  if (current === new_active) {
     return
   }
 
@@ -1056,7 +1063,7 @@ App.update_active_history = (current, item) => {
     App.active_history.push(current)
   }
 
-  App.active_history.unshift(item)
+  App.active_history.unshift(new_active)
   App.active_history = [...new Set(App.active_history)]
   App.active_history = App.active_history.slice(0, App.max_active_history)
 
@@ -1067,7 +1074,7 @@ App.update_active_history = (current, item) => {
   let n = 1
 
   for (let it of App.active_history) {
-    if (it === item) {
+    if (it === new_active) {
       continue
     }
 
