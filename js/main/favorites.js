@@ -4,6 +4,11 @@ App.create_favorites = (mode) => {
 
 App.fill_favorites = (mode) => {
   let favorites = App.get_setting(`favorites`)
+
+  if (!favorites.length) {
+    return
+  }
+
   let c = DOM.el(`#favorites_${mode}`)
   c.innerHTML = ``
   let added = false
@@ -19,7 +24,10 @@ App.fill_favorites = (mode) => {
       btn.title = cmd.name
 
       DOM.ev(btn, `click`, () => {
-        App.run_command(cmd)
+        let args = {}
+        args.cmd = cmd.cmd
+        args.item = App.get_selected(mode)
+        App.run_command(args)
       })
 
       DOM.ev(btn, `contextmenu`, (e) => {
