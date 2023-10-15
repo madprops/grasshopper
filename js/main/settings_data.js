@@ -1398,14 +1398,10 @@ App.build_settings = () => {
     },
     favorites: {
       info: `Button commands to place at the top`,
-      image: `img/button.jpg`,
-      image_title: `Press to reset the world`,
       setup: () => {},
     },
     keyboard: {
       info: `You can use these custom shortcuts to run commands. You can define if you need ctrl, shift, or alt`,
-      image: `img/cewik.jpg`,
-      image_title: `Cewik using his keyboard`,
       setup: () => {},
     },
     warns: {

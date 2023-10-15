@@ -1109,18 +1109,6 @@ App.settings_build_category = (key) => {
   c.append(info)
   let sub = DOM.create(`div`, `settings_subcontainer`, `setting_${key}`)
   c.append(sub)
-
-  if (cat.image) {
-    let img = DOM.create(`img`, `settings_image`)
-    img.src = cat.image
-
-    if (cat.image_title) {
-      img.title = cat.image_title
-    }
-
-    c.append(img)
-  }
-
   return c
 }
 
