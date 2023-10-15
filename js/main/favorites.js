@@ -19,7 +19,13 @@ App.fill_favorites = (mode) => {
     if (cmd) {
       let btn = DOM.create(`div`, `favorites_item button`)
       let icon = DOM.create(`div`, `favorites_icon`)
-      icon.append(cmd.icon)
+      let icon_s = cmd.icon
+
+      if (icon_s instanceof Node) {
+        icon_s = icon_s.cloneNode(true)
+      }
+
+      icon.append(icon_s)
       btn.append(icon)
       btn.title = cmd.name
 
