@@ -133,13 +133,6 @@ App.build_settings = () => {
       info: `Require holding Ctrl to drag tab items vertically. This is to avoid accidental re-ordering`,
       version: 1,
     },
-    active_trace: {
-      name: `Active Trace`,
-      type: `checkbox`,
-      value: false,
-      info: `Show numbers as a trace on recently used tabs`,
-      version: 1,
-    },
   }
 
   add_props()
@@ -377,6 +370,13 @@ App.build_settings = () => {
       info: `Show the widget between pinned and normal tabs`,
       version: 3,
     },
+    tab_box: {
+      name: `Tab Box`,
+      type: `menu`,
+      value: `none`,
+      info: `The height of the tab box with recent tabs`,
+      version: 2,
+    },
     show_tooltips: {
       name: `Show Tooltips`,
       type: `checkbox`,
@@ -438,6 +438,13 @@ App.build_settings = () => {
       type: `checkbox`,
       value: false,
       info: `Put the close icon on the left side`,
+      version: 1,
+    },
+    active_trace: {
+      name: `Active Trace`,
+      type: `checkbox`,
+      value: false,
+      info: `Show numbers as a trace on recently used tabs`,
       version: 1,
     },
   }
@@ -1106,6 +1113,16 @@ App.build_settings = () => {
       info: `Max items to show in Recent Tabs`,
       version: 1,
     },
+    max_active_history: {
+      name: `Max Active History`,
+      type: `number`,
+      value: 20,
+      placeholder: `Number`,
+      min: App.number_min,
+      max: App.number_max,
+      info: `Max active tab history to remember`,
+      version: 1,
+    },
     debug_mode: {
       name: `Debug Mode`,
       type: `checkbox`,
@@ -1299,6 +1316,15 @@ App.build_settings = () => {
           {text: `Never`, value: `never`},
           {text: `Auto`, value: `auto`},
           {text: `Always`, value: `always`},
+        ])
+
+        App.settings_make_menu(`tab_box`, [
+          {text: `None`, value: `none`},
+          {text: `Tiny`, value: `tiny`},
+          {text: `Small`, value: `small`},
+          {text: `Normal`, value: `normal`},
+          {text: `Big`, value: `big`},
+          {text: `Huge`, value: `huge`},
         ])
       },
     },

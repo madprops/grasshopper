@@ -170,6 +170,28 @@ App.apply_theme = (args) => {
     }
 
     App.set_css_var(`icon_size`, `${icon_size}rem`)
+
+    let tbh = App.get_setting(`tab_box`)
+    let tbh_rem = 10
+    let tbh_diff = 3
+
+    if (tbh === `none`) {
+      tbh_rem = 0
+    }
+    else if (tbh === `tiny`) {
+      tbh_rem -= (tbh_diff * 2)
+    }
+    else if (tbh === `small`) {
+      tbh_rem -= tbh_diff
+    }
+    else if (tbh === `big`) {
+      tbh_rem += tbh_diff
+    }
+    else if (tbh === `huge`) {
+      tbh_rem += (tbh_diff * 2)
+    }
+
+    App.set_css_var(`tab_box_height`, `${tbh_rem}rem`)
   }
   catch (err) {
     App.error(err)

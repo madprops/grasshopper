@@ -971,3 +971,30 @@ a:visited, a:link, a:hover {
 .item.show_trace .item_trace {
   display: flex;
 }
+
+.box {
+  height: var(--tab_box_height);
+  background-color: var(--alt_background_2);
+  border-top: 1px solid var(--alt_color_1);
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+  font-size: 1rem;
+  padding-top: 0.5rem;
+  overflow: auto;
+}
+
+.box_item {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 0.5rem;
+  margin-left: 0.5rem;
+  margin-right: 0.5rem;
+}
+
+.box_item_text {
+  white-space: nowrap;
+  overflow: hidden;
+}

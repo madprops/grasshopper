@@ -611,7 +611,6 @@ App.create_item_element = (item) => {
   item.element = DOM.create(`div`, `grasshopper_item item ${item.mode}_item`)
   item.element.dataset.id = item.id
   App.add_close_icon(item, `left`)
-
   let trace = DOM.create(`div`, `item_trace item_node`)
   item.element.append(trace)
 
@@ -822,6 +821,12 @@ App.setup_item_window = (mode) => {
 
   args.setup = () => {
     let win = DOM.el(`#window_content_${mode}`)
+
+    if (mode === `tabs`) {
+      let box = App.create_box(mode)
+      DOM.el(`#window_${mode}`).append(box)
+    }
+
     let footer = App.create_footer(mode)
     DOM.el(`#window_${mode}`).append(footer)
     let top = DOM.create(`div`, `item_top_container`, `${mode}_top_container`)
