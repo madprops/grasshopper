@@ -186,10 +186,10 @@ App.apply_theme = (args) => {
       tbh_rem -= tbh_diff
     }
     else if (tbh === `big`) {
-      tbh_rem += tbh_diff
+      tbh_rem += (tbh_diff * 2)
     }
     else if (tbh === `huge`) {
-      tbh_rem += (tbh_diff * 2)
+      tbh_rem += (tbh_diff * 4)
     }
 
     App.set_css_var(`tab_box_display`, tbh_display)
