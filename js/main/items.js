@@ -225,6 +225,10 @@ App.remove_item = (item) => {
   item.element.remove()
   App.filter_item_by_id(mode, item.id)
   App.update_footer_count(mode)
+
+  if (mode === `tabs`) {
+    App.update_tab_box(true)
+  }
 }
 
 App.show_item = (it) => {

@@ -6,8 +6,10 @@ App.update_active_trace = (new_active) => {
   let n = 1
 
   for (let item of App.active_history) {
-    if (item === new_active) {
-      continue
+    if (new_active) {
+      if (item === new_active) {
+        continue
+      }
     }
 
     item.element.classList.add(`show_trace`)
