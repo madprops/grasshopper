@@ -705,6 +705,8 @@ NeedContext.dragenter_action = (e) => {
   else {
     list.insertBefore(dragged, e.target)
   }
+
+  NeedContext.select_item(index_target)
 }
 
 // Drag end
