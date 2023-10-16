@@ -1073,8 +1073,6 @@ App.check_command = (command, args) => {
     }
   }
 
-  console.log(args.item)
-
   if (args.item) {
     for (let media of App.media_types) {
       if (args.item[media]) {
