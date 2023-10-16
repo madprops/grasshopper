@@ -41,7 +41,6 @@ App.fill_favorites = (mode) => {
       DOM.ev(btn, `click`, () => {
         let args = {}
         args.cmd = cmd.cmd
-        args.item = App.get_selected(mode)
         App.run_command(args)
       })
 
