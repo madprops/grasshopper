@@ -115,10 +115,6 @@ NeedContext.show = (args = {}) => {
     let rect = args.element.getBoundingClientRect()
     args.x = rect.left
     args.y = rect.top + args.margin
-
-    if (args.expand) {
-      document.querySelector(`#needcontext-container`).style.minWidth = `${args.element.clientWidth}px`
-    }
   }
 
   if (args.root) {
@@ -277,7 +273,14 @@ NeedContext.show = (args = {}) => {
   NeedContext.filter.value = ``
   NeedContext.filter.focus()
   let container = document.querySelector(`#needcontext-container`)
-  container.style.minWidth = NeedContext.min_width
+
+  if (args.expand && args.element) {
+    container.style.minWidth = `${args.element.clientWidth}px`
+  }
+  else {
+    container.style.minWidth = NeedContext.min_width
+  }
+
   container.style.minHeight = NeedContext.min_height
   NeedContext.select_item(selected_index)
   NeedContext.open = true
