@@ -105,7 +105,13 @@ NeedContext.show_on_element = (args = {}) => {
 
   args = Object.assign(def_args, args)
   let rect = args.element.getBoundingClientRect()
-  NeedContext.show({x: rect.left, y: rect.top + args.margin, items: args.items})
+
+  NeedContext.show({
+    x: rect.left,
+    y: rect.top + args.margin,
+    items: args.items,
+    on_drag: args.on_drag
+  })
 
   if (args.expand) {
     document.querySelector(`#needcontext-container`).style.minWidth = `${args.element.clientWidth}px`
@@ -114,7 +120,7 @@ NeedContext.show_on_element = (args = {}) => {
 
 // Show on center of window
 NeedContext.show_on_center = (args = {}) => {
-  NeedContext.show({items: args.items})
+  NeedContext.show({items: args.items, on_drag: args.on_drag})
 }
 
 // Show the menu
@@ -232,7 +238,7 @@ NeedContext.show = (args = {}) => {
       normal_items.push(item)
     }
 
-    if (item.draggable) {
+    if (args.on_drag) {
       el.draggable = true
     }
 
@@ -290,6 +296,7 @@ NeedContext.show = (args = {}) => {
   NeedContext.select_item(selected_index)
   NeedContext.open = true
   NeedContext.after_show()
+  NeedContext.on_drag = args.on_drag
 }
 
 // Hide the menu
@@ -720,7 +727,8 @@ NeedContext.dragend_action = (e) => {
   let dragged = NeedContext.dragged_item
   let items = Array.from(list.querySelectorAll(`.needcontext-item`))
   let index_end = items.indexOf(dragged)
-  NeedContext.on_drag(NeedContext.index_dragged, index_end)
+  NeedContext.on_drag(NeedContext.dragged_index, index_end)
+  NeedContext.hide()
 }
 
 // Current layer

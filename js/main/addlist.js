@@ -639,7 +639,6 @@ Addlist.list = (args) => {
         args.index = i
         Addlist.view(args)
       },
-      draggable: true,
       info: info,
     })
   }
@@ -658,6 +657,10 @@ Addlist.list = (args) => {
     items: items,
     expand: true,
     margin: btn.clientHeight,
+    draggable: true,
+    on_drag: (start, end) => {
+      Addlist.move_item(args.id, start, end)
+    },
   })
 }
 
@@ -819,4 +822,12 @@ Addlist.data_menu = (id) => {
     expand: true,
     margin: btn.clientHeight,
   })
+}
+
+Addlist.move_item = (id, start, end) => {
+  let lines = Addlist.get_data(id)
+  let item = lines[start]
+  lines.splice(start, 1)
+  lines.splice(end, 0, item)
+  Addlist.after(id, lines)
 }
