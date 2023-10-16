@@ -41,7 +41,7 @@ Menubutton.create = (args = {}) => {
       })
     }
 
-    NeedContext.show_on_element({
+    NeedContext.show({
       element: args.button,
       items: items,
       expand: true,

@@ -611,7 +611,7 @@ App.show_settings_menu = () => {
   let category = App.settings_category
   let btn = DOM.el(`#settings_title_${category}`)
   let items = App.settings_menu_items()
-  NeedContext.show_on_element({element: btn, items: items})
+  NeedContext.show({element: btn, items: items})
 }
 
 App.export_settings = () => {
@@ -846,7 +846,7 @@ App.settings_actions = (category) => {
   })
 
   let btn = DOM.el(`#settings_actions_${category}`)
-  NeedContext.show_on_element({element: btn, items: items, expand: true, margin: btn.clientHeight})
+  NeedContext.show({element: btn, items: items, expand: true, margin: btn.clientHeight})
 }
 
 App.get_background_effect = (value) => {

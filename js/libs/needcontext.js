@@ -96,43 +96,29 @@ NeedContext.do_filter = () => {
   }
 }
 
-// Show based on an element
-NeedContext.show_on_element = (args = {}) => {
-  let def_args = {
-    expand: false,
-    margin: 0,
-  }
-
-  args = Object.assign(def_args, args)
-  let rect = args.element.getBoundingClientRect()
-
-  NeedContext.show({
-    x: rect.left,
-    y: rect.top + args.margin,
-    items: args.items,
-    on_drag: args.on_drag
-  })
-
-  if (args.expand) {
-    document.querySelector(`#needcontext-container`).style.minWidth = `${args.element.clientWidth}px`
-  }
-}
-
-// Show on center of window
-NeedContext.show_on_center = (args = {}) => {
-  NeedContext.show({items: args.items, on_drag: args.on_drag})
-}
-
 // Show the menu
 NeedContext.show = (args = {}) => {
   let def_args = {
     root: true,
+    expand: false,
+    margin: 0,
+    index: 0,
   }
 
   args = Object.assign(def_args, args)
 
   if (!NeedContext.created) {
     NeedContext.create()
+  }
+
+  if (args.element) {
+    let rect = args.element.getBoundingClientRect()
+    args.x = rect.left
+    args.y = rect.top + args.margin
+  }
+
+  if (args.expand) {
+    document.querySelector(`#needcontext-container`).style.minWidth = `${args.element.clientWidth}px`
   }
 
   if (args.root) {
@@ -156,7 +142,7 @@ NeedContext.show = (args = {}) => {
     selected_index = layer.last_index
   }
   else {
-    selected_index = 0
+    selected_index = args.index
   }
 
   for (let [i, item] of args.items.entries()) {
@@ -727,8 +713,8 @@ NeedContext.dragend_action = (e) => {
   let dragged = NeedContext.dragged_item
   let items = Array.from(list.querySelectorAll(`.needcontext-item`))
   let index_end = items.indexOf(dragged)
-  NeedContext.on_drag(NeedContext.dragged_index, index_end)
   NeedContext.hide()
+  NeedContext.on_drag(NeedContext.dragged_index, index_end)
 }
 
 // Current layer

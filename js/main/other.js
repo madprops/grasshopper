@@ -71,7 +71,7 @@ App.show_center_context = (items, e) => {
     NeedContext.show({x: e.clientX, y: e.clientY, items: items})
   }
   else {
-    NeedContext.show_on_center({items: items})
+    NeedContext.show({items: items})
   }
 }
 

@@ -100,7 +100,7 @@ App.show_main_menu = (mode) => {
 
   let btn = DOM.el(`#${mode}_main_menu`)
 
-  NeedContext.show_on_element({
+  NeedContext.show({
     element: btn,
     items: items,
     expand: true,

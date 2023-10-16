@@ -497,7 +497,7 @@ Addlist.menu = (e) => {
 
   let btn = DOM.el(`#addlist_menu_${id}`)
 
-  NeedContext.show_on_element({
+  NeedContext.show({
     element: btn,
     items: items,
     expand: true,
@@ -652,7 +652,7 @@ Addlist.list = (args) => {
     btn = DOM.el(`#${args.id}`)
   }
 
-  NeedContext.show_on_element({
+  NeedContext.show({
     element: btn,
     items: items,
     expand: true,
@@ -661,6 +661,7 @@ Addlist.list = (args) => {
     on_drag: (start, end) => {
       Addlist.move_item(args.id, start, end)
     },
+    index: args.index,
   })
 }
 
@@ -816,7 +817,7 @@ Addlist.data_menu = (id) => {
 
   let btn = DOM.el(`#addlist_button_${id}_data`)
 
-  NeedContext.show_on_element({
+  NeedContext.show({
     element: btn,
     items: items,
     expand: true,
@@ -830,4 +831,5 @@ Addlist.move_item = (id, start, end) => {
   lines.splice(start, 1)
   lines.splice(end, 0, item)
   Addlist.set_data(id, lines)
+  Addlist.list({id: id, index: end})
 }
