@@ -115,10 +115,10 @@ NeedContext.show = (args = {}) => {
     let rect = args.element.getBoundingClientRect()
     args.x = rect.left
     args.y = rect.top + args.margin
-  }
 
-  if (args.expand) {
-    document.querySelector(`#needcontext-container`).style.minWidth = `${args.element.clientWidth}px`
+    if (args.expand) {
+      document.querySelector(`#needcontext-container`).style.minWidth = `${args.element.clientWidth}px`
+    }
   }
 
   if (args.root) {
