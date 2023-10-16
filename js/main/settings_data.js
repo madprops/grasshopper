@@ -1390,7 +1390,7 @@ App.build_settings = () => {
       setup: () => {},
     },
     favorites: {
-      info: `Button commands at the top`,
+      info: `Command buttons at the top`,
       setup: () => {},
     },
     keyboard: {
