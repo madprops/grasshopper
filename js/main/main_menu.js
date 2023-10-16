@@ -99,5 +99,11 @@ App.show_main_menu = (mode) => {
   })
 
   let btn = DOM.el(`#${mode}_main_menu`)
-  NeedContext.show_on_element(btn, items, true, btn.clientHeight)
+
+  NeedContext.show_on_element({
+    element: btn,
+    items: items,
+    expand: true,
+    margin: btn.clientHeight,
+  })
 }

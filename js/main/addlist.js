@@ -496,7 +496,13 @@ Addlist.menu = (e) => {
   }
 
   let btn = DOM.el(`#addlist_menu_${id}`)
-  NeedContext.show_on_element(btn, items, true, btn.clientHeight)
+
+  NeedContext.show_on_element({
+    element: btn,
+    items: items,
+    expand: true,
+    margin: btn.clientHeight,
+  })
 }
 
 Addlist.move = (dir) => {
@@ -633,6 +639,7 @@ Addlist.list = (args) => {
         args.index = i
         Addlist.view(args)
       },
+      draggable: true,
       info: info,
     })
   }
@@ -646,7 +653,12 @@ Addlist.list = (args) => {
     btn = DOM.el(`#${args.id}`)
   }
 
-  NeedContext.show_on_element(btn, items, true, btn.clientHeight)
+  NeedContext.show_on_element({
+    element: btn,
+    items: items,
+    expand: true,
+    margin: btn.clientHeight,
+  })
 }
 
 Addlist.clear = (id, force = false) => {
@@ -800,5 +812,11 @@ Addlist.data_menu = (id) => {
   })
 
   let btn = DOM.el(`#addlist_button_${id}_data`)
-  NeedContext.show_on_element(btn, items, true, btn.clientHeight)
+
+  NeedContext.show_on_element({
+    element: btn,
+    items: items,
+    expand: true,
+    margin: btn.clientHeight,
+  })
 }

@@ -1291,7 +1291,7 @@ App.profile_tags_add = (e) => {
     })
   }
 
-  NeedContext.show(e.clientX, e.clientY, items)
+  NeedContext.show({x: e.clientX, y: e.clientY, items: items})
 }
 
 App.profile_addlist_counts = () => {
@@ -1328,7 +1328,7 @@ App.profile_setup_labels = () => {
     })
 
     DOM.ev(el, `click`, (e) => {
-      NeedContext.show(e.clientX, e.clientY, items)
+      NeedContext.show({x: e.clientX, y: e.clientY, itemns: items})
     })
   }
 }

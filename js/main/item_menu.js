@@ -90,7 +90,7 @@ App.show_item_menu = async (item, x, y) => {
     App.extra_menu_items(items)
   }
 
-  NeedContext.show(x, y, items)
+  NeedContext.show({x: x, y: y, items: items})
 }
 
 App.show_item_menu_2 = (item) => {

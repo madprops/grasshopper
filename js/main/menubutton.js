@@ -41,7 +41,12 @@ Menubutton.create = (args = {}) => {
       })
     }
 
-    NeedContext.show_on_element(args.button, items, true, args.button.clientHeight)
+    NeedContext.show_on_element({
+      element: args.button,
+      items: items,
+      expand: true,
+      margin: args.button.clientHeight,
+    })
   })
 
   args.set = (value, on_change = true) => {

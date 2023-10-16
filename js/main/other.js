@@ -31,7 +31,7 @@ App.print_intro = () => {
 
 App.show_custom_menu = (e, what) => {
   let items = App.custom_menu_items(`${what}_menu`)
-  NeedContext.show(e.clientX, e.clientY, items)
+  NeedContext.show({x: e.clientX, y: e.clientY, items: items})
   e.preventDefault()
 }
 
@@ -68,10 +68,10 @@ App.show_cmds_menu = (cmds, from) => {
 
 App.show_center_context = (items, e) => {
   if (e) {
-    NeedContext.show(e.clientX, e.clientY, items)
+    NeedContext.show({x: e.clientX, y: e.clientY, items: items})
   }
   else {
-    NeedContext.show_on_center(items)
+    NeedContext.show_on_center({items: items})
   }
 }
 

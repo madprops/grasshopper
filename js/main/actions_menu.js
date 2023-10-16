@@ -26,5 +26,5 @@ App.create_actions_menu = (mode) => {
 App.show_actions_menu = (mode) => {
   let items = App.custom_menu_items(`${mode}_actions`)
   let btn = DOM.el(`#${mode}_actions`)
-  NeedContext.show_on_element(btn, items, true, btn.clientHeight)
+  NeedContext.show_on_element({element: btn, items: items, expand: true, margin: btn.clientHeight})
 }

@@ -97,40 +97,52 @@ NeedContext.do_filter = () => {
 }
 
 // Show based on an element
-NeedContext.show_on_element = (el, items, expand = false, margin = 0) => {
-  let rect = el.getBoundingClientRect()
-  NeedContext.show(rect.left, rect.top + margin, items)
+NeedContext.show_on_element = (args = {}) => {
+  let def_args = {
+    expand: false,
+    margin: 0,
+  }
 
-  if (expand) {
-    document.querySelector(`#needcontext-container`).style.minWidth = `${el.clientWidth}px`
+  args = Object.assign(def_args, args)
+  let rect = args.element.getBoundingClientRect()
+  NeedContext.show({x: rect.left, y: rect.top + args.margin, items: args.items})
+
+  if (args.expand) {
+    document.querySelector(`#needcontext-container`).style.minWidth = `${args.element.clientWidth}px`
   }
 }
 
 // Show on center of window
-NeedContext.show_on_center = (items) => {
-  NeedContext.show(undefined, undefined, items)
+NeedContext.show_on_center = (args = {}) => {
+  NeedContext.show({items: args.items})
 }
 
 // Show the menu
-NeedContext.show = (x, y, items, root = true) => {
+NeedContext.show = (args = {}) => {
+  let def_args = {
+    root: true,
+  }
+
+  args = Object.assign(def_args, args)
+
   if (!NeedContext.created) {
     NeedContext.create()
   }
 
-  if (root) {
+  if (args.root) {
     NeedContext.level = 0
   }
 
   let center
 
-  if (x === undefined && y === undefined) {
+  if (args.x === undefined && args.y === undefined) {
     center = true
   }
   else {
     center = false
   }
 
-  items = items.slice(0)
+  args.items = args.items.slice(0)
   let selected_index
   let layer = NeedContext.get_layer()
 
@@ -141,7 +153,7 @@ NeedContext.show = (x, y, items, root = true) => {
     selected_index = 0
   }
 
-  for (let [i, item] of items.entries()) {
+  for (let [i, item] of args.items.entries()) {
     if (i === selected_index) {
       item.selected = true
     }
@@ -154,14 +166,14 @@ NeedContext.show = (x, y, items, root = true) => {
   c.innerHTML = ``
   let index = 0
 
-  if (!root) {
+  if (!args.root) {
     c.append(NeedContext.back_button())
   }
 
   c.append(NeedContext.clear_button())
   let normal_items = []
 
-  for (let item of items) {
+  for (let item of args.items) {
     let el = document.createElement(`div`)
     el.classList.add(`needcontext-item`)
 
@@ -220,17 +232,21 @@ NeedContext.show = (x, y, items, root = true) => {
       normal_items.push(item)
     }
 
+    if (item.draggable) {
+      el.draggable = true
+    }
+
     item.element = el
     c.append(el)
   }
 
   NeedContext.layers[NeedContext.level] = {
-    root: root,
-    items: items,
+    root: args.root,
+    items: args.items,
     normal_items: normal_items,
     last_index: selected_index,
-    x: x,
-    y: y,
+    x: args.x,
+    y: args.y,
   }
 
   NeedContext.main.classList.remove(`needcontext-hidden`)
@@ -241,30 +257,28 @@ NeedContext.show = (x, y, items, root = true) => {
     c.style.transform = `translate(-50%, -50%)`
   }
   else {
-    if (y < 5) {
-      y = 5
+    if (args.y < 5) {
+      args.y = 5
     }
 
-    if (x < 5) {
-      x = 5
+    if (args.x < 5) {
+      args.x = 5
     }
 
-    if ((y + c.offsetHeight) + 5 > window.innerHeight) {
-      y = window.innerHeight - c.offsetHeight - 5
+    if ((args.y + c.offsetHeight) + 5 > window.innerHeight) {
+      args.y = window.innerHeight - c.offsetHeight - 5
     }
 
-    if ((x + c.offsetWidth) + 5 > window.innerWidth) {
-      x = window.innerWidth - c.offsetWidth - 5
+    if ((args.x + c.offsetWidth) + 5 > window.innerWidth) {
+      args.x = window.innerWidth - c.offsetWidth - 5
     }
 
-    NeedContext.last_x = x
-    NeedContext.last_y = y
-
-    x = Math.max(x, 0)
-    y = Math.max(y, 0)
-
-    c.style.left = `${x}px`
-    c.style.top = `${y}px`
+    NeedContext.last_x = args.x
+    NeedContext.last_y = args.y
+    args.x = Math.max(args.x, 0)
+    args.y = Math.max(args.y, 0)
+    c.style.left = `${args.x}px`
+    c.style.top = `${args.y}px`
     c.style.transform = `unset`
   }
 
@@ -379,7 +393,7 @@ NeedContext.select_action = async (e, index = NeedContext.index, mode = `mouse`)
       y = e.clientY
     }
 
-    NeedContext.show(x, y, items, false)
+    NeedContext.show({x: x, y: y, items: items, root: false})
   }
 
   function do_items (items) {
@@ -648,10 +662,65 @@ NeedContext.create = () => {
     e.preventDefault()
   })
 
+  NeedContext.container.addEventListener(`dragstart`, (e) => {
+    NeedContext.dragstart_action(e)
+  })
+
+  NeedContext.container.addEventListener(`dragenter`, (e) => {
+    NeedContext.dragenter_action(e)
+  })
+
+  NeedContext.container.addEventListener(`dragend`, (e) => {
+    NeedContext.dragend_action(e)
+  })
+
   NeedContext.main.append(NeedContext.filter)
   NeedContext.main.append(NeedContext.container)
   document.body.appendChild(NeedContext.main)
   NeedContext.created = true
+}
+
+// Drag start
+NeedContext.dragstart_action = (e) => {
+  if (NeedContext)
+  NeedContext.dragged_item = e.target
+  let list = NeedContext.container
+  let items = Array.from(list.querySelectorAll(`.needcontext-item`))
+  NeedContext.dragged_index = items.indexOf(e.target)
+}
+
+// Drag enter
+NeedContext.dragenter_action = (e) => {
+  let dragged = NeedContext.dragged_item
+
+  if (dragged === e.target) {
+    return
+  }
+
+  let list = NeedContext.container
+  let items = Array.from(list.querySelectorAll(`.needcontext-item`))
+  let index_dragged = items.indexOf(dragged)
+  let index_target = items.indexOf(e.target)
+
+  if ((index_dragged < 0) || (index_target < 0)) {
+    return
+  }
+
+  if (index_dragged < index_target) {
+    list.insertBefore(dragged, e.target.nextSibling)
+  }
+  else {
+    list.insertBefore(dragged, e.target)
+  }
+}
+
+// Drag end
+NeedContext.dragend_action = (e) => {
+  let list = NeedContext.container
+  let dragged = NeedContext.dragged_item
+  let items = Array.from(list.querySelectorAll(`.needcontext-item`))
+  let index_end = items.indexOf(dragged)
+  NeedContext.on_drag(NeedContext.index_dragged, index_end)
 }
 
 // Current layer
@@ -672,7 +741,7 @@ NeedContext.go_back = () => {
 
   let layer = NeedContext.prev_layer()
   NeedContext.level -= 1
-  NeedContext.show(layer.x, layer.y, layer.items, layer.root)
+  NeedContext.show({x: layer.x, y: layer.y, items: layer.items, root: layer.root})
 }
 
 // Create back button

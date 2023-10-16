@@ -141,7 +141,7 @@ App.show_filter_menu = (mode) => {
   }
 
   let btn = DOM.el(`#${mode}_filter_modes`)
-  NeedContext.show_on_element(btn, items, false, btn.clientHeight)
+  NeedContext.show_on_element({element: btn, items: items, margin: btn.clientHeight})
 }
 
 App.cycle_filter_modes = (mode, reverse = true) => {
