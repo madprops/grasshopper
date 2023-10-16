@@ -699,15 +699,15 @@ Addlist.add_buttons = (id) => {
   let add = DOM.create(`div`, cls, `addlist_button_${id}_add`)
   add.textContent = `Add`
   el.append(add)
-  let list = DOM.create(`div`, cls, `addlist_button_${id}_list`)
-  list.textContent = `List`
-  el.append(list)
   let edit = DOM.create(`div`, cls, `addlist_button_${id}_edit`)
   edit.textContent = `Edit`
   el.append(edit)
-  let clear = DOM.create(`div`, cls, `addlist_button_${id}_clear`)
-  clear.textContent = `Clear`
-  el.append(clear)
+  let list = DOM.create(`div`, cls, `addlist_button_${id}_list`)
+  list.textContent = `List`
+  el.append(list)
+  let data = DOM.create(`div`, cls, `addlist_button_${id}_data`)
+  data.textContent = `Data`
+  el.append(data)
 
   DOM.ev(DOM.el(`#addlist_button_${id}_count`), `click`, () => {
     Addlist.list({id: id})
@@ -722,11 +722,11 @@ Addlist.add_buttons = (id) => {
   })
 
   DOM.ev(DOM.el(`#addlist_button_${id}_edit`), `click`, () => {
-    Addlist.edit_all(id)
+    Addlist.edit_first(id)
   })
 
-  DOM.ev(DOM.el(`#addlist_button_${id}_clear`), `click`, () => {
-    Addlist.clear(id)
+  DOM.ev(DOM.el(`#addlist_button_${id}_data`), `click`, () => {
+    Addlist.data_menu(id)
   })
 
   Addlist.update_count(id)
@@ -771,4 +771,34 @@ Addlist.update_count = (id) => {
   }
 
   DOM.el(`#addlist_button_${id}_count`).textContent = `(${lines.length})`
+}
+
+Addlist.edit_first = (id) => {
+  let args = {
+    id: id,
+    index: 0,
+  }
+
+  Addlist.view(args)
+}
+
+Addlist.data_menu = (id) => {
+  let items = []
+
+  items.push({
+    text: `Edit`,
+    action: () => {
+      Addlist.edit_all(id)
+    }
+  })
+
+  items.push({
+    text: `Clear`,
+    action: () => {
+      Addlist.clear(id)
+    }
+  })
+
+  let btn = DOM.el(`#addlist_button_${id}_data`)
+  NeedContext.show_on_element(btn, items, true, btn.clientHeight)
 }
