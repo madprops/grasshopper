@@ -8,7 +8,7 @@ App.update_tab_box = () => {
   c.innerHTML = ``
 
   for (let item of App.active_history) {
-    if (item.active) {
+    if (item === App.active_history_item) {
       continue
     }
 

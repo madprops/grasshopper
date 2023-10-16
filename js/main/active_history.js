@@ -32,6 +32,7 @@ App.update_active_history = (current, new_active) => {
   }
 
   App.active_history.unshift(new_active)
+  App.active_history_item = new_active
   App.clean_active_history()
   App.refresh_active_history()
 }
