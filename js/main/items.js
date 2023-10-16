@@ -227,7 +227,7 @@ App.remove_item = (item) => {
   App.update_footer_count(mode)
 
   if (mode === `tabs`) {
-    App.update_tab_box(true)
+    App.update_active_history(false)
   }
 }
 

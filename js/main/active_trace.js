@@ -1,4 +1,4 @@
-App.update_active_trace = (new_active) => {
+App.update_active_trace = () => {
   for (let it of App.get_items(`tabs`)) {
     it.element.classList.remove(`show_trace`)
   }
@@ -6,10 +6,8 @@ App.update_active_trace = (new_active) => {
   let n = 1
 
   for (let item of App.active_history) {
-    if (new_active) {
-      if (item === new_active) {
-        continue
-      }
+    if (item.active) {
+      continue
     }
 
     item.element.classList.add(`show_trace`)

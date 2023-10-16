@@ -1,23 +1,9 @@
-App.setup_box = () => {
-  App.update_tab_box_debouncer = App.create_debouncer((clean = false) => {
-    if (clean) {
-      App.clean_active_history()
-    }
-
-    App.do_update_tab_box()
-  }, App.tab_box_delay)
-}
-
 App.create_box = (mode) => {
   let box = DOM.create(`div`, `box`, `box_${mode}`)
   return box
 }
 
 App.update_tab_box = () => {
-  App.update_tab_box_debouncer.call()
-}
-
-App.do_update_tab_box = () => {
   let c = DOM.el(`#box_tabs`)
   c.innerHTML = ``
 
