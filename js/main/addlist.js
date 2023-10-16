@@ -829,5 +829,5 @@ Addlist.move_item = (id, start, end) => {
   let item = lines[start]
   lines.splice(start, 1)
   lines.splice(end, 0, item)
-  Addlist.after(id, lines)
+  Addlist.set_data(id, lines)
 }
