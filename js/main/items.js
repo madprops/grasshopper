@@ -223,11 +223,12 @@ App.remove_item = (item) => {
   }
 
   item.element.remove()
+  item.removed = true
   App.filter_item_by_id(mode, item.id)
   App.update_footer_count(mode)
 
   if (mode === `tabs`) {
-    App.update_active_history(false)
+    App.refresh_active_history(true)
   }
 }
 

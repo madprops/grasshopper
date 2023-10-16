@@ -6,7 +6,7 @@ App.update_active_trace = () => {
   let n = 1
 
   for (let item of App.active_history) {
-    if (item === App.active_history_item) {
+    if (item.active) {
       continue
     }
 
