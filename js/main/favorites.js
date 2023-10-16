@@ -41,7 +41,7 @@ App.fill_favorites = (mode) => {
       DOM.ev(btn, `click`, () => {
         let args = {}
         args.cmd = cmd.cmd
-        App.run_command(cmd)
+        App.run_command(args)
       })
 
       DOM.ev(btn, `contextmenu`, (e) => {
