@@ -686,10 +686,24 @@ App.build_settings = () => {
   category = `favorites`
 
   props = {
+    show_favorites: {
+      name: `Show Favorites`,
+      type: `checkbox`,
+      value: false,
+      info: `Show favorite buttons`,
+      version: 1,
+    },
     favorites: {
       name: `Favorites`,
       type: `list`,
-      value: [],
+      value: [
+        {cmd: `show_about`},
+        {cmd: `go_to_bottom`},
+        {cmd: `go_to_top`},
+        {cmd: `toggle_color_red`},
+        {cmd: `toggle_color_blue`},
+        {cmd: `toggle_color_green`},
+      ],
       info: `Command buttons to show at the top`,
       version: 1,
     },

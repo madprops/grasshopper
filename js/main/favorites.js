@@ -3,15 +3,24 @@ App.create_favorites = (mode) => {
 }
 
 App.fill_favorites = (mode) => {
+  let c = DOM.el(`#favorites_${mode}`)
+  let show = App.get_setting(`show_favorites`)
+
+  if (show) {
+    c.classList.remove(`hidden`)
+  }
+  else {
+    c.classList.add(`hidden`)
+    return
+  }
+
   let favorites = App.get_setting(`favorites`)
 
   if (!favorites.length) {
     return
   }
 
-  let c = DOM.el(`#favorites_${mode}`)
   c.innerHTML = ``
-  let added = false
 
   for (let fav of favorites) {
     let cmd = App.get_command(fav.cmd)
@@ -42,14 +51,6 @@ App.fill_favorites = (mode) => {
       })
 
       c.append(btn)
-      added = true
     }
-  }
-
-  if (added) {
-    c.classList.remove(`hidden`)
-  }
-  else {
-    c.classList.add(`hidden`)
   }
 }
