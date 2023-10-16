@@ -445,7 +445,7 @@ Addlist.menu = (e) => {
   let items = []
 
   items.push({
-    text: `New Item`,
+    text: `Add Item`,
     action: () => {
       data.items = {}
       data.edit = false
