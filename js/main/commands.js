@@ -585,6 +585,16 @@ App.setup_commands = () => {
       info: `Close playing tabs`
     },
     {
+      name: `Close Loaded`,
+      cmd: `close_loaded_tabs`,
+      mode: `items`,
+      icon: tabs_icon,
+      action: (args) => {
+        App.close_tabs_popup(`loaded`)
+      },
+      info: `Close loaded tabs`
+    },
+    {
       name: `Close Unloaded`,
       cmd: `close_unloaded_tabs`,
       mode: `items`,
