@@ -252,6 +252,10 @@ svg {
   margin-top: -1px;
 }
 
+.item:nth-child(1 of :not(.hidden))  {
+  border-top-width: 2px;
+}
+
 .item > div {
   height: 100%;
   padding-left: var(--item_gap);
