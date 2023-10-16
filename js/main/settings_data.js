@@ -754,6 +754,13 @@ App.build_settings = () => {
       info: `Warn when closing playing tabs using the close menu`,
       version: 2,
     },
+    warn_on_close_loaded_tabs: {
+      name: `Warn On Close Loaded`,
+      type: `menu`,
+      value: `always`,
+      info: `Warn when closing loaded tabs using the close menu`,
+      version: 2,
+    },
     warn_on_close_unloaded_tabs: {
       name: `Warn On Close Unloaded`,
       type: `menu`,
@@ -773,20 +780,6 @@ App.build_settings = () => {
       type: `menu`,
       value: `always`,
       info: `Warn when closing visible tabs using the close menu`,
-      version: 2,
-    },
-    warn_on_close_last_hour_tabs: {
-      name: `Warn On Close Last Hour`,
-      type: `menu`,
-      value: `always`,
-      info: `Warn when closing tabs not accessed in the last hour`,
-      version: 2,
-    },
-    warn_on_close_12_hours_tabs: {
-      name: `Warn On Close 12 Hours`,
-      type: `menu`,
-      value: `always`,
-      info: `Warn when closing tabs not accessed in the last 12 hours`,
       version: 2,
     },
     warn_on_duplicate_tabs: {
