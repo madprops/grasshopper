@@ -639,6 +639,9 @@ Addlist.list = (args) => {
         args.index = i
         Addlist.view(args)
       },
+      alt_action: () => {
+        Addlist.remove(args.id, line[oargs.pk])
+      },
       info: info,
     })
   }
