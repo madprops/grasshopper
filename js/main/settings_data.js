@@ -711,6 +711,8 @@ App.build_settings = () => {
         {cmd: `toggle_color_red`},
         {cmd: `toggle_color_green`},
         {cmd: `toggle_color_blue`},
+        {cmd: `set_random_light_colors`},
+        {cmd: `set_random_dark_colors`},
       ],
       info: `Command buttons to show at the top`,
       version: 1,
