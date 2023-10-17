@@ -70,22 +70,28 @@ App.create_window = (args) => {
     }
   }
 
-  w.clear = () => {
-    console.log(`clear`)
+  w.rebuild = () => {
     if (args.element) {
       content.innerHTML = ``
       content.append(args.element.cloneNode(true))
     }
     else {
-      content.innerHTML = content_html || ``
+      content.innerHTML = content_html
     }
 
-    top.innerHTML = top_html || ``
+    if (top_html) {
+      top.innerHTML = top_html
+    }
+  }
+
+  w.clear = () => {
+    content.innerHTML = ``
+    top.innerHTML = ``
   }
 
   w.show = (scroll = true) => {
     if (!args.persistent) {
-      w.clear()
+      w.rebuild()
     }
 
     w.check_setup()
