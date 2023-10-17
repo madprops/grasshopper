@@ -279,12 +279,20 @@ App.more_menu_items = (o_items, item, multiple, some_loaded, some_unmuted, some_
 
 App.extra_menu_items = (o_items) => {
   let items = App.custom_menu_items(`extra_menu`)
+  let flat = App.get_setting(`flat_extra_menu`)
 
-  if (items.length) {
-    o_items.push({
-      text: `Extra`,
-      items: items,
-    })
+  if (flat) {
+    for (let item of items) {
+      o_items.push(item)
+    }
+  }
+  else {
+    if (items.length) {
+      o_items.push({
+        text: `Extra`,
+        items: items,
+      })
+    }
   }
 }
 

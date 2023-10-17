@@ -612,6 +612,20 @@ App.build_settings = () => {
   category = `menus`
 
   props = {
+    flat_extra_menu: {
+      name: `Flat Extra`,
+      type: `checkbox`,
+      value: false,
+      info: `Show extra menu items on the same level as the main menu`,
+      version: 1,
+    },
+    extra_menu: {
+      name: `Extra Menu`,
+      type: `list`,
+      value: [],
+      info: `If this has items an Extra menu is shown in the item menu when right clicking items`,
+      version: 4,
+    },
     tabs_actions: {
       name: `Tab Actions`,
       type: `list`,
@@ -656,13 +670,6 @@ App.build_settings = () => {
       ],
       info: `Closed action menu`,
       version: 1,
-    },
-    extra_menu: {
-      name: `Extra Menu`,
-      type: `list`,
-      value: [],
-      info: `If this has items an Extra menu is shown in the item menu when right clicking items`,
-      version: 4,
     },
     pinline_menu: {
       name: `Pinline Menu`,
