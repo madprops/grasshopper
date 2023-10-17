@@ -71,17 +71,16 @@ App.create_window = (args) => {
   }
 
   w.clear = () => {
+    console.log(`clear`)
     if (args.element) {
       content.innerHTML = ``
       content.append(args.element.cloneNode(true))
     }
     else {
-      content.innerHTML = content_html
+      content.innerHTML = content_html || ``
     }
 
-    if (top_html) {
-      top.innerHTML = top_html
-    }
+    top.innerHTML = top_html || ``
   }
 
   w.show = (scroll = true) => {

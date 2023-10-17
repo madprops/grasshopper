@@ -1443,25 +1443,26 @@ App.build_item_window = (mode) => {
     box = App.create_box(mode)
   }
 
-  if (box && box_pos === `bottom`) {
-    main.append(box)
-  }
-
   let btns = DOM.create(`div`, `item_top_buttons`)
   let bar = DOM.create(`div`, `item_top_bar`)
   maintop.append(btns)
   maintop.append(bar)
+
+  if (box && box_pos === `top`) {
+    maintop.append(box)
+  }
+
   let favorites = App.create_favorites(mode)
   bar.append(favorites)
   let scroller = App.create_scroller(mode)
   let footer = App.create_footer(mode)
-
-  if (box && box_pos === `top`) {
-    main.before(box)
-  }
-
   main.append(scroller)
   main.append(container)
+
+  if (box && box_pos === `bottom`) {
+    main.append(box)
+  }
+
   main.append(footer)
   App.setup_window_mouse(mode)
   let main_menu = App.create_main_menu(mode)
