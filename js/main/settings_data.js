@@ -384,11 +384,11 @@ App.build_settings = () => {
       info: `What to show in the tab box`,
       version: 2,
     },
-    box_position: {
-      name: `Box Position`,
+    tab_box_position: {
+      name: `Tab Box Position`,
       type: `menu`,
       value: `bottom`,
-      info: `The position of boxes`,
+      info: `The position of the tab box`,
       version: 1,
     },
     show_tooltips: {
@@ -1389,7 +1389,7 @@ App.build_settings = () => {
           {text: `URL`, value: `url`},
         ])
 
-        App.settings_make_menu(`box_position`, [
+        App.settings_make_menu(`tab_box_position`, [
           {text: `Top`, value: `top`},
           {text: `Bottom`, value: `bottom`},
         ])

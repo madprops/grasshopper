@@ -1442,11 +1442,11 @@ App.build_item_window = (mode) => {
   DOM.el(`#window_top_${mode}`).append(maintop)
   let container = DOM.create(`div`, `item_container`, `${mode}_container`)
   main.append(container)
-  let box_pos = App.get_setting(`box_position`)
-  let box
+  let tab_box_pos = App.get_setting(`tab_box_position`)
+  let tab_box
 
   if (mode === `tabs`) {
-    box = App.create_box(mode)
+    tab_box = App.create_tab_box()
   }
 
   let btns = DOM.create(`div`, `item_top_buttons`)
@@ -1454,8 +1454,8 @@ App.build_item_window = (mode) => {
   maintop.append(btns)
   maintop.append(bar)
 
-  if (box && box_pos === `top`) {
-    maintop.append(box)
+  if (tab_box && tab_box_pos === `top`) {
+    maintop.append(tab_box)
   }
 
   let favorites = App.create_favorites(mode)
@@ -1465,8 +1465,8 @@ App.build_item_window = (mode) => {
   main.append(scroller)
   main.append(container)
 
-  if (box && box_pos === `bottom`) {
-    main.append(box)
+  if (tab_box && tab_box_pos === `bottom`) {
+    main.append(tab_box)
   }
 
   main.append(footer)

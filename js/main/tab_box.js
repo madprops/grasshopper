@@ -1,10 +1,11 @@
-App.create_box = (mode) => {
-  let box = DOM.create(`div`, `box`, `box_${mode}`)
-  return box
+App.create_tab_box = () => {
+  let tab_box = DOM.create(`div`, `box`, `tab_box`)
+  return tab_box
 }
 
 App.update_tab_box = () => {
-  let c = DOM.el(`#box_tabs`)
+  console.log(3)
+  let c = DOM.el(`#tab_box`)
   c.innerHTML = ``
 
   for (let item of App.active_history) {

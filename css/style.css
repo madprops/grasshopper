@@ -993,7 +993,7 @@ a:visited, a:link, a:hover {
   flex-grow: 0;
 }
 
-#box_tabs {
+#tab_box {
   display: var(--tab_box_display);
   height: var(--tab_box_height);
 }
