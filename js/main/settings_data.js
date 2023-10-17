@@ -616,7 +616,7 @@ App.build_settings = () => {
       name: `Extra Menu Mode`,
       type: `menu`,
       value: `normal`,
-      info: `How to show the extra menu`,
+      info: `How to show the extra menu. Either on it's own submenu, flat at the root level, or totally replace the menu`,
       version: 1,
     },
     extra_menu: {
