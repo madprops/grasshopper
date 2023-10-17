@@ -612,6 +612,14 @@ App.build_settings = () => {
   category = `menus`
 
   props = {
+    extra_menu_mode: {
+      name: `Extra Menu Mode`,
+      type: `menu`,
+      value: `none`,
+      info: `How to show the extra menu on right click. Either on its own submenu,
+      flat at the root level, or totally replace the item menu`,
+      version: 1,
+    },
     extra_menu: {
       name: `Extra Menu`,
       type: `list`,
@@ -623,14 +631,6 @@ App.build_settings = () => {
       ],
       info: `Extra menu to show when right clicking items`,
       version: 4,
-    },
-    extra_menu_mode: {
-      name: `Extra Menu Mode`,
-      type: `menu`,
-      value: `none`,
-      info: `How to show the extra menu on right click. Either on its own submenu,
-      flat at the root level, or totally replace the item menu`,
-      version: 1,
     },
     pinline_menu: {
       name: `Pinline Menu`,
