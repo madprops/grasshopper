@@ -1,16 +1,17 @@
 App.create_favorites = (mode) => {
-  return DOM.create(`div`, `favorites hidden`, `favorites_${mode}`)
+  return DOM.create(`div`, `favorites`, `favorites_${mode}`)
 }
 
 App.fill_favorites = (mode) => {
   let c = DOM.el(`#favorites_${mode}`)
+  let bar = DOM.el(`#item_top_bar_${mode}`)
   let show = App.get_setting(`show_favorites`)
 
   if (show) {
-    c.classList.remove(`hidden`)
+    bar.classList.remove(`hidden`)
   }
   else {
-    c.classList.add(`hidden`)
+    bar.classList.add(`hidden`)
     return
   }
 
