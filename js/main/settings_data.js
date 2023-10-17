@@ -615,7 +615,7 @@ App.build_settings = () => {
     extra_menu_mode: {
       name: `Extra Menu Mode`,
       type: `menu`,
-      value: `normal`,
+      value: `none`,
       info: `How to show the extra menu on right click. Either on its own submenu,
       flat at the root level, or totally replace the item menu`,
       version: 1,
