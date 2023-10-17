@@ -389,6 +389,10 @@ App.process_info = (args) => {
     item.muted = args.info.mutedInfo.muted
     item.discarded = args.info.discarded
     item.last_accessed = args.info.lastAccessed
+
+    if (item.active && !App.active_history.length) {
+      App.update_active_history(undefined, item)
+    }
   }
   else if (args.mode === `history`) {
     item.last_visit = args.info.lastVisitTime
