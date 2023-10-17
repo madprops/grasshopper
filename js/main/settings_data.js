@@ -1457,6 +1457,7 @@ App.build_settings = () => {
         App.settings_make_menu(`warn_on_unpin_tabs`, tab_warn_opts_2)
         App.settings_make_menu(`warn_on_close_normal_tabs`, tab_warn_opts_2)
         App.settings_make_menu(`warn_on_close_playing_tabs`, tab_warn_opts_2)
+        App.settings_make_menu(`warn_on_close_loaded_tabs`, tab_warn_opts_2)
         App.settings_make_menu(`warn_on_close_unloaded_tabs`, tab_warn_opts_2)
         App.settings_make_menu(`warn_on_close_duplicate_tabs`, tab_warn_opts_2)
         App.settings_make_menu(`warn_on_close_visible_tabs`, tab_warn_opts_2)
