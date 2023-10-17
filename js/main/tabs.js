@@ -257,6 +257,10 @@ App.get_muted_tabs = () => {
   return App.get_items(`tabs`).filter(x => x.muted)
 }
 
+App.get_loaded_tabs = () => {
+  return App.get_items(`tabs`).filter(x => !x.discarded)
+}
+
 App.get_unloaded_tabs = () => {
   return App.get_items(`tabs`).filter(x => x.discarded)
 }
@@ -471,6 +475,7 @@ App.show_tabs_info = () => {
   let normal = App.get_normal_tabs().length
   let playing = App.get_playing_tabs().length
   let muted = App.get_muted_tabs().length
+  let loaded = App.get_loaded_tabs().length
   let unloaded = App.get_unloaded_tabs().length
 
   let s = ``
@@ -479,6 +484,7 @@ App.show_tabs_info = () => {
   s += `Normal: ${normal}\n`
   s += `Playing: ${playing}\n`
   s += `Muted: ${muted}\n`
+  s += `Loaded: ${loaded}\n`
   s += `Unloaded: ${unloaded}`
 
   App.alert(s)
