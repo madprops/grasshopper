@@ -825,61 +825,7 @@ App.setup_item_window = (mode) => {
   args.align_top = `left`
 
   args.setup = () => {
-    let wmode = DOM.el(`#window_${mode}`)
-    let wcon = DOM.el(`#window_content_${mode}`)
-    let box_pos = App.get_setting(`box_position`)
-    let box
-
-    if (mode === `tabs`) {
-      box = App.create_box(mode)
-    }
-
-    if (box && box_pos === `bottom`) {
-      wmode.append(box)
-    }
-
-    let footer = App.create_footer(mode)
-    wmode.append(footer)
-    let top = DOM.create(`div`, `item_top_container`, `${mode}_top_container`)
-    DOM.el(`#window_top_${mode}`).append(top)
-    let favorites = App.create_favorites(mode)
-    let container = DOM.create(`div`, `item_container`, `${mode}_container`)
-    let scroller = App.create_scroller(mode)
-
-    DOM.ev(container, `scroll`, () => {
-      App.check_scroller(mode)
-    })
-
-    wcon.before(favorites)
-
-    if (box && box_pos === `top`) {
-      wcon.before(box)
-    }
-
-    wcon.append(scroller)
-    wcon.append(container)
-    App.setup_window_mouse(mode)
-    let main_menu = App.create_main_menu(mode)
-    let filter = App.create_filter(mode)
-    let filter_modes = App.create_filter_menu(mode)
-    let playing = App.create_playing_icon(mode)
-    let back = App.create_step_back_button(mode)
-    let actions_menu = App.create_actions_menu(mode)
-    App.setup_drag(mode, container)
-    let left_top = DOM.create(`div`, `item_top_left`)
-    let right_top = DOM.create(`div`, `item_top_right`)
-    left_top.append(main_menu)
-    left_top.append(filter_modes)
-    left_top.append(filter)
-    right_top.append(playing)
-    right_top.append(back)
-
-    if (actions_menu) {
-      right_top.append(actions_menu)
-    }
-
-    top.append(left_top)
-    top.append(right_top)
+    App.build_item_window(mode)
   }
   args.after_show = () => {
     App.fill_favorites(mode)
@@ -1482,4 +1428,74 @@ App.item_is_visible = (item) => {
   let top_visible = rect.top >= (top - extra)
   let bottom_visible = rect.bottom <= (container_rect.bottom + extra)
   return top_visible && bottom_visible
+}
+
+App.build_item_window = (mode) => {
+  let main = DOM.el(`#window_content_${mode}`)
+  let maintop = DOM.create(`div`, `item_main_top`)
+  DOM.el(`#window_top_${mode}`).append(maintop)
+  let container = DOM.create(`div`, `item_container`, `${mode}_container`)
+  main.append(container)
+  let box_pos = App.get_setting(`box_position`)
+  let box
+
+  if (mode === `tabs`) {
+    box = App.create_box(mode)
+  }
+
+  if (box && box_pos === `bottom`) {
+    main.append(box)
+  }
+
+  let btns = DOM.create(`div`, `item_top_buttons`)
+  let bar = DOM.create(`div`, `item_top_bar`)
+  maintop.append(btns)
+  maintop.append(bar)
+  let favorites = App.create_favorites(mode)
+  bar.append(favorites)
+  let scroller = App.create_scroller(mode)
+  let footer = App.create_footer(mode)
+
+  if (box && box_pos === `top`) {
+    main.before(box)
+  }
+
+  main.append(scroller)
+  main.append(container)
+  main.append(footer)
+  App.setup_window_mouse(mode)
+  let main_menu = App.create_main_menu(mode)
+  let filter = App.create_filter(mode)
+  let filter_modes = App.create_filter_menu(mode)
+  let playing = App.create_playing_icon(mode)
+  let back = App.create_step_back_button(mode)
+  let actions_menu = App.create_actions_menu(mode)
+  App.setup_drag(mode, container)
+  let left_btns = DOM.create(`div`, `item_top_left`)
+  let right_btns = DOM.create(`div`, `item_top_right`)
+  left_btns.append(main_menu)
+  left_btns.append(filter_modes)
+  left_btns.append(filter)
+  right_btns.append(playing)
+  right_btns.append(back)
+
+  if (actions_menu) {
+    right_btns.append(actions_menu)
+  }
+
+  btns.append(left_btns)
+  btns.append(right_btns)
+
+  DOM.ev(container, `scroll`, () => {
+    App.check_scroller(mode)
+  })
+}
+
+App.rebuild_items = () => {
+  for (let mode of App.modes) {
+    if (App[`${mode}_ready`]) {
+      App.windows[mode].clear()
+      App.build_item_window(mode)
+    }
+  }
 }

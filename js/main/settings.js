@@ -5,6 +5,9 @@ App.settings_do_action = (what) => {
   else if (what === `filter_debouncers`) {
     App.start_filter_debouncers()
   }
+  else if (what === `rebuild_items`) {
+    App.rebuild_items()
+  }
 }
 
 App.get_settings_label = (setting) => {

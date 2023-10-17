@@ -353,12 +353,18 @@ svg {
   font-size: var(--bigger_font);
 }
 
-.item_top_container {
+.item_main_top {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  gap: 1rem;
+}
+
+.item_top_buttons {
   margin-left: var(--item_margin);
   margin-right: var(--item_margin);
   display: flex;
   flex-direction: row;
-  width: 100%;
   gap: 0.66rem;
 }
 
@@ -809,6 +815,8 @@ a:visited, a:link, a:hover {
   border: 0px solid var(--alt_color_1);
   border-top-width: 1px;
   gap: 0.5rem;
+  flex-shrink: 0;
+  flex-grow: 0;
 }
 
 .footer:hover {
@@ -1019,7 +1027,6 @@ a:visited, a:link, a:hover {
   align-items: center;
   justify-content: center;
   gap: 0.5rem;
-  padding-bottom: 0.55rem;
   height: 2.2rem;
 }
 

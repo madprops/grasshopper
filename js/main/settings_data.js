@@ -381,6 +381,7 @@ App.build_settings = () => {
       name: `Box Position`,
       type: `menu`,
       value: `bottom`,
+      action: `rebuild_items`,
       info: `The position of boxes`,
       version: 1,
     },
