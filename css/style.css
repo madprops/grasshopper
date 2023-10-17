@@ -984,7 +984,6 @@ a:visited, a:link, a:hover {
   background-color: var(--alt_background_2);
   border-top: 1px solid var(--alt_color_1);
   flex-direction: column;
-  gap: 0.35rem;
   font-size: 1rem;
   padding-top: 0.35rem;
   padding-bottom: 0.35rem;
@@ -1007,6 +1006,8 @@ a:visited, a:link, a:hover {
   gap: 0.5rem;
   margin-left: 0.5rem;
   margin-right: 0.5rem;
+  padding-top: 0.35rem;
+  padding-bottom: 0.35rem;
 }
 
 .box_item_icon {
