@@ -389,6 +389,7 @@ App.start_settings = () => {
     },
     on_hide: async () => {
       App.apply_theme()
+      App.refresh_gestures()
       App.setup_commands()
       App.fill_palette()
       App.clear_show()
@@ -634,9 +635,6 @@ App.import_settings = () => {
 }
 
 App.restart_settings = (type = `normal`) => {
-  App.apply_theme()
-  App.refresh_gestures()
-
   if (App.on_items() || type === `sync`) {
     App.clear_show()
   }

@@ -1387,16 +1387,10 @@ App.build_settings = () => {
     gestures: {
       info: `You perform gestures by holding the middle mouse button, moving in a direction, and releasing the button`,
       setup: () => {
-        DOM.ev(DOM.el(`#settings_gestures_enabled`), `change`, () => {
-          App.refresh_gestures()
-        })
-
         App.settings_make_menu(`gestures_threshold`, [
           {text: `Normal`, value: 10},
           {text: `Less Sensitive`, value: 100},
-        ], () => {
-          App.refresh_gestures()
-        })
+        ])
 
         for (let key in App.setting_props) {
           let props = App.setting_props[key]
