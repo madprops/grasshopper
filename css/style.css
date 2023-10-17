@@ -985,8 +985,8 @@ a:visited, a:link, a:hover {
   border-top: 1px solid var(--alt_color_1);
   flex-direction: column;
   font-size: 1rem;
-  padding-top: 0.35rem;
-  padding-bottom: 0.35rem;
+  padding-top: 0.25rem;
+  padding-bottom: 0.25rem;
   overflow: auto;
   display: none;
   flex-shrink: 0;
