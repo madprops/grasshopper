@@ -52,3 +52,8 @@ App.active_history_enabled = () => {
   return App.get_setting(`active_trace`) ||
   (App.get_setting(`tab_box`) !== `none`)
 }
+
+App.clear_active_history = () => {
+  App.active_history = []
+  App.refresh_active_history()
+}

@@ -1444,6 +1444,7 @@ App.get_persistent_items = () => {
 // Clear but always have tabs available
 App.clear_show = async () => {
   App.clear_all_items()
+  App.clear_active_history()
   await App.do_show_mode({mode: `tabs`})
   App.show_primary_mode(false)
 }
