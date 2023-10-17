@@ -870,6 +870,7 @@ App.update_item = (mode, id, info) => {
     if (item.id === id) {
       App.process_info({mode: mode, info: info, o_item: item})
       App.check_filter(mode)
+      App.refresh_active_history(true)
       break
     }
   }
