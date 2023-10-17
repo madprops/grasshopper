@@ -612,18 +612,23 @@ App.build_settings = () => {
   category = `menus`
 
   props = {
-    flat_extra_menu: {
-      name: `Flat Extra`,
-      type: `checkbox`,
-      value: false,
-      info: `Show extra menu items on the same level as the main menu`,
+    extra_menu_mode: {
+      name: `Extra Menu Mode`,
+      type: `menu`,
+      value: `normal`,
+      info: `How to show the extra menu`,
       version: 1,
     },
     extra_menu: {
       name: `Extra Menu`,
       type: `list`,
-      value: [],
-      info: `If this has items an Extra menu is shown in the item menu when right clicking items`,
+      value: [
+        {cmd: `profiles_add_note`},
+        {cmd: `toggle_color_red`},
+        {cmd: `toggle_color_green`},
+        {cmd: `toggle_color_blue`},
+      ],
+      info: `Extra menu to show when right clicking items`,
       version: 4,
     },
     tabs_actions: {
@@ -1435,7 +1440,14 @@ App.build_settings = () => {
     },
     menus: {
       info: `Customize context and action menus`,
-      setup: () => {},
+      setup: () => {
+        App.settings_make_menu(`extra_menu_mode`, [
+          {text: `None`, value: `none`},
+          {text: `Normal`, value: `normal`},
+          {text: `Flat`, value: `flat`},
+          {text: `Total`, value: `total`},
+        ])
+      },
     },
     favorites: {
       info: `Command buttons at the top`,

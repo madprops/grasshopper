@@ -7,87 +7,92 @@ App.show_item_menu = async (item, x, y) => {
   let multiple = active.length > 1
   let items = []
 
-  if (item.mode === `tabs`) {
-    let some_pinned = false
-    let some_unpinned = false
-    let some_muted = false
-    let some_unmuted = false
-    let some_loaded = false
-    let some_unloaded = false
-
-    for (let it of active) {
-      if (it.pinned) {
-        some_pinned = true
-      }
-      else {
-        some_unpinned = true
-      }
-
-      if (it.muted) {
-        some_muted = true
-      }
-      else {
-        some_unmuted = true
-      }
-
-      if (it.discarded) {
-        some_unloaded = true
-      }
-      else {
-        some_loaded = true
-      }
-    }
-
-    if (some_unloaded) {
-      items.push({
-        text: `Load`,
-        action: () => {
-          App.load_tabs(item)
-        }
-      })
-    }
-
-    if (some_unpinned) {
-      items.push({
-        text: `Pin`,
-        action: () => {
-          App.pin_tabs(item)
-        }
-      })
-    }
-
-    if (some_pinned) {
-      items.push({
-        text: `Unpin`,
-        action: () => {
-          App.unpin_tabs(item)
-        }
-      })
-    }
-
-    App.common_menu_items(items, item, multiple)
-    App.more_menu_items(items, item, multiple, some_loaded, some_unmuted, some_muted)
-    App.extra_menu_items(items)
-    App.sep(items)
-
-    items.push({
-      text: `Close`,
-      action: () => {
-        App.close_tabs(item)
-      }
-    })
+  if (App.get_setting(`extra_menu_mode`) === `total`) {
+    items = App.custom_menu_items(`extra_menu`)
   }
   else {
-    items.push({
-      text: `Open`,
-      action: () => {
-        App.open_items(item, true)
-      }
-    })
+    if (item.mode === `tabs`) {
+      let some_pinned = false
+      let some_unpinned = false
+      let some_muted = false
+      let some_unmuted = false
+      let some_loaded = false
+      let some_unloaded = false
 
-    App.common_menu_items(items, item, multiple)
-    App.more_menu_items(items, item, multiple)
-    App.extra_menu_items(items)
+      for (let it of active) {
+        if (it.pinned) {
+          some_pinned = true
+        }
+        else {
+          some_unpinned = true
+        }
+
+        if (it.muted) {
+          some_muted = true
+        }
+        else {
+          some_unmuted = true
+        }
+
+        if (it.discarded) {
+          some_unloaded = true
+        }
+        else {
+          some_loaded = true
+        }
+      }
+
+      if (some_unloaded) {
+        items.push({
+          text: `Load`,
+          action: () => {
+            App.load_tabs(item)
+          }
+        })
+      }
+
+      if (some_unpinned) {
+        items.push({
+          text: `Pin`,
+          action: () => {
+            App.pin_tabs(item)
+          }
+        })
+      }
+
+      if (some_pinned) {
+        items.push({
+          text: `Unpin`,
+          action: () => {
+            App.unpin_tabs(item)
+          }
+        })
+      }
+
+      App.common_menu_items(items, item, multiple)
+      App.more_menu_items(items, item, multiple, some_loaded, some_unmuted, some_muted)
+      App.extra_menu_items(items)
+      App.sep(items)
+
+      items.push({
+        text: `Close`,
+        action: () => {
+          App.close_tabs(item)
+        }
+      })
+    }
+    else {
+      items.push({
+        text: `Open`,
+        action: () => {
+          App.open_items(item, true)
+        }
+      })
+
+      App.common_menu_items(items, item, multiple)
+      App.more_menu_items(items, item, multiple)
+      App.extra_menu_items(items)
+    }
   }
 
   NeedContext.show({x: x, y: y, items: items})
@@ -278,21 +283,29 @@ App.more_menu_items = (o_items, item, multiple, some_loaded, some_unmuted, some_
 }
 
 App.extra_menu_items = (o_items) => {
-  let items = App.custom_menu_items(`extra_menu`)
-  let flat = App.get_setting(`flat_extra_menu`)
+  let mode = App.get_setting(`extra_menu_mode`)
 
-  if (flat) {
-    for (let item of items) {
-      o_items.push(item)
-    }
+  if (mode === `none`) {
+    return
   }
-  else {
+
+  let items = App.custom_menu_items(`extra_menu`)
+
+  if (mode === `normal`) {
     if (items.length) {
       o_items.push({
         text: `Extra`,
         items: items,
       })
     }
+  }
+  else if (mode === `flat`) {
+    for (let item of items) {
+      o_items.push(item)
+    }
+  }
+  else if (mode === `total`) {
+    o_items = items
   }
 }
 
