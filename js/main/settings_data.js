@@ -1147,6 +1147,13 @@ App.build_settings = () => {
       info: `Show other bookmarks apart from the configured bookmarks folder`,
       version: 1,
     },
+    tab_box_active: {
+      name: `Tab Box Active`,
+      type: `checkbox`,
+      value: true,
+      info: `Show the active tab in the tab box`,
+      version: 1,
+    },
     max_recent_tabs: {
       name: `Max Recent Tabs`,
       type: `number`,

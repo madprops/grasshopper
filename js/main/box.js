@@ -9,6 +9,7 @@ App.update_tab_box = () => {
 
   for (let item of App.active_history) {
     if (item.active) {
+      if (!App.get_setting(`tab_box_active`))
       continue
     }
 
@@ -40,6 +41,11 @@ App.update_tab_box = () => {
 
       let cmd = App.get_setting(`middle_click_tabs`)
       App.run_command({cmd: cmd, item: item, from: `middle_click`})
+    })
+
+    DOM.ev(clone, `contextmenu`, (e) => {
+      e.preventDefault()
+      App.show_item_menu(item, e.clientX, e.clientY)
     })
 
     c.append(clone)
