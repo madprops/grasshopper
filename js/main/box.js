@@ -25,7 +25,7 @@ App.update_tab_box = () => {
     }
 
     let text = DOM.create(`div`, `box_item_text`)
-    text.textContent = item.title
+    text.textContent = App.get_title(item)
     clone.append(icon)
     clone.append(text)
     clone.title = item.url
