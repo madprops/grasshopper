@@ -1,4 +1,4 @@
-// NeedContext v3.0
+// NeedContext v4.0
 
 // Main object
 const NeedContext = {}
