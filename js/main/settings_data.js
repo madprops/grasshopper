@@ -377,6 +377,13 @@ App.build_settings = () => {
       info: `The height of the tab box with recent tabs`,
       version: 2,
     },
+    box_position: {
+      name: `Box Position`,
+      type: `menu`,
+      value: `bottom`,
+      info: `The position of boxes`,
+      version: 1,
+    },
     show_tooltips: {
       name: `Show Tooltips`,
       type: `checkbox`,
@@ -1359,6 +1366,11 @@ App.build_settings = () => {
           {text: `Normal`, value: `normal`},
           {text: `Big`, value: `big`},
           {text: `Huge`, value: `huge`},
+        ])
+
+        App.settings_make_menu(`box_position`, [
+          {text: `Top`, value: `top`},
+          {text: `Bottom`, value: `bottom`},
         ])
       },
     },

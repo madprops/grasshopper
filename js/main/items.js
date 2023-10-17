@@ -825,15 +825,21 @@ App.setup_item_window = (mode) => {
   args.align_top = `left`
 
   args.setup = () => {
-    let win = DOM.el(`#window_content_${mode}`)
+    let wmode = DOM.el(`#window_${mode}`)
+    let wcon = DOM.el(`#window_content_${mode}`)
+    let box_pos = App.get_setting(`box_position`)
+    let box
 
     if (mode === `tabs`) {
-      let box = App.create_box(mode)
-      DOM.el(`#window_${mode}`).append(box)
+      box = App.create_box(mode)
+    }
+
+    if (box && box_pos === `bottom`) {
+      wmode.append(box)
     }
 
     let footer = App.create_footer(mode)
-    DOM.el(`#window_${mode}`).append(footer)
+    wmode.append(footer)
     let top = DOM.create(`div`, `item_top_container`, `${mode}_top_container`)
     DOM.el(`#window_top_${mode}`).append(top)
     let favorites = App.create_favorites(mode)
@@ -844,9 +850,14 @@ App.setup_item_window = (mode) => {
       App.check_scroller(mode)
     })
 
-    win.before(favorites)
-    win.append(scroller)
-    win.append(container)
+    wcon.before(favorites)
+
+    if (box && box_pos === `top`) {
+      wcon.before(box)
+    }
+
+    wcon.append(scroller)
+    wcon.append(container)
     App.setup_window_mouse(mode)
     let main_menu = App.create_main_menu(mode)
     let filter = App.create_filter(mode)
