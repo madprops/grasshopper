@@ -1,3 +1,5 @@
+// NeedContext v4.0
+
 // Main object
 const NeedContext = {}
 NeedContext.created = false
