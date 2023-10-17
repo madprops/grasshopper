@@ -4,7 +4,6 @@ App.create_tab_box = () => {
 }
 
 App.update_tab_box = () => {
-  console.log(3)
   let c = DOM.el(`#tab_box`)
   c.innerHTML = ``
 

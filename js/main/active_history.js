@@ -8,7 +8,7 @@ App.setup_active_history = () => {
   }, App.active_history_delay)
 }
 
-App.refresh_active_history = (clean) => {
+App.refresh_active_history = (clean = false) => {
   if (!App.active_history_enabled()) {
     return
   }
