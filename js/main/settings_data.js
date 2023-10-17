@@ -632,6 +632,36 @@ App.build_settings = () => {
       info: `Extra menu to show when right clicking items`,
       version: 4,
     },
+    pinline_menu: {
+      name: `Pinline Menu`,
+      type: `list`,
+      value: [
+        {cmd: `select_pinned_tabs`},
+        {cmd: `select_normal_tabs`},
+      ],
+      info: `Menu when clicking the pinline`,
+      version: 4,
+    },
+    empty_menu: {
+      name: `Empty Menu`,
+      type: `list`,
+      value: [
+        {cmd: `open_new_tab`},
+        {cmd: `select_all_items`},
+      ],
+      info: `Menu when right clicking empty space`,
+      version: 4,
+    },
+    footer_menu: {
+      name: `Footer Menu`,
+      type: `list`,
+      value: [
+        {cmd: `copy_item_url`},
+        {cmd: `copy_item_title`},
+      ],
+      info: `Menu when right clicking the footer`,
+      version: 4,
+    },
     tabs_actions: {
       name: `Tab Actions`,
       type: `list`,
@@ -676,36 +706,6 @@ App.build_settings = () => {
       ],
       info: `Closed action menu`,
       version: 1,
-    },
-    pinline_menu: {
-      name: `Pinline Menu`,
-      type: `list`,
-      value: [
-        {cmd: `select_pinned_tabs`},
-        {cmd: `select_normal_tabs`},
-      ],
-      info: `Menu when clicking the pinline`,
-      version: 4,
-    },
-    empty_menu: {
-      name: `Empty Menu`,
-      type: `list`,
-      value: [
-        {cmd: `open_new_tab`},
-        {cmd: `select_all_items`},
-      ],
-      info: `Menu when right clicking empty space`,
-      version: 4,
-    },
-    footer_menu: {
-      name: `Footer Menu`,
-      type: `list`,
-      value: [
-        {cmd: `copy_item_url`},
-        {cmd: `copy_item_title`},
-      ],
-      info: `Menu when right clicking the footer`,
-      version: 4,
     },
   }
 
