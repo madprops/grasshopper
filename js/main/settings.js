@@ -367,6 +367,8 @@ App.setup_settings = () => {
   App.save_settings_debouncer = App.create_debouncer(() => {
     App.stor_save_settings()
   }, App.settings_save_delay)
+
+  App.settings_categories = Object.keys(App.setting_catprops)
 }
 
 App.start_settings = () => {
@@ -375,7 +377,6 @@ App.start_settings = () => {
   }
 
   App.cmdlist = App.settings_commands()
-  App.settings_categories = Object.keys(App.setting_catprops)
 
   let common = {
     persistent: false,

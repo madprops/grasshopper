@@ -1,6 +1,6 @@
 App.update_active_trace = () => {
-  for (let it of App.get_items(`tabs`)) {
-    it.element.classList.remove(`show_trace`)
+  for (let item of App.get_items(`tabs`)) {
+    item.element.classList.remove(`show_trace`)
   }
 
   let n = 1

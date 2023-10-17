@@ -223,6 +223,8 @@ App.refresh_tab = async (id, select, info) => {
       App.select_item({item: item, scroll: `nearest`})
     }
   }
+
+  return item
 }
 
 App.mute_tab = async (id) => {
@@ -641,7 +643,7 @@ App.do_move_tab_index = async (id, index) => {
 }
 
 App.on_tab_activated = async (info) => {
-  let current, new_active
+  let current
 
   for (let item of App.get_items(`tabs`)) {
     if (item.active) {
@@ -649,10 +651,6 @@ App.on_tab_activated = async (info) => {
     }
 
     item.active = item.id === info.tabId
-
-    if (item.active) {
-      new_active = item
-    }
   }
 
   let select = true
@@ -661,7 +659,7 @@ App.on_tab_activated = async (info) => {
     select = false
   }
 
-  await App.refresh_tab(info.tabId, select)
+  let new_active = await App.refresh_tab(info.tabId, select)
   App.update_active_history(current, new_active)
 }
 
