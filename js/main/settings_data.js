@@ -377,6 +377,13 @@ App.build_settings = () => {
       info: `The height of the tab box with recent tabs`,
       version: 2,
     },
+    tab_box_mode: {
+      name: `Tab Box Mode`,
+      type: `menu`,
+      value: `title`,
+      info: `What to show in the tab box`,
+      version: 2,
+    },
     box_position: {
       name: `Box Position`,
       type: `menu`,
@@ -1375,6 +1382,11 @@ App.build_settings = () => {
           {text: `Normal`, value: `normal`},
           {text: `Big`, value: `big`},
           {text: `Huge`, value: `huge`},
+        ])
+
+        App.settings_make_menu(`tab_box_mode`, [
+          {text: `Title`, value: `title`},
+          {text: `URL`, value: `url`},
         ])
 
         App.settings_make_menu(`box_position`, [

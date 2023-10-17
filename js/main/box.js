@@ -24,10 +24,21 @@ App.update_tab_box = () => {
       icon.append(App.get_jdenticon(item.hostname))
     }
 
-    let text = DOM.create(`div`, `box_item_text`)
-    text.textContent = App.get_title(item)
+    let text_el = DOM.create(`div`, `box_item_text`)
+    let tbm = App.get_setting(`tab_box_mode`)
+    let text
+
+    if (tbm === `title`) {
+      text = App.get_title(item)
+    }
+    else if (tbm === `url`) {
+      text = item.url
+    }
+
+    text = text.substring(0, App.max_text_length).trim()
+    text_el.textContent = text
     clone.append(icon)
-    clone.append(text)
+    clone.append(text_el)
     clone.title = item.url
 
     DOM.ev(clone, `click`, () => {
