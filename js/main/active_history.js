@@ -31,7 +31,7 @@ App.update_active_history = (current, new_active) => {
     return
   }
 
-  if (current !== new_active) {
+  if (current && (current !== new_active)) {
     if (!App.active_history.length) {
       App.active_history.push(current)
     }
