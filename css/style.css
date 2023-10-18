@@ -9,6 +9,7 @@
   --widget_width_smaller: 6rem;
   --text_input_width: 12.5rem;
   --action_effect: 0 0 0.5rem currentColor;
+  --text_glow: 0 0 0.25rem currentColor;
 }
 
 body, html {
@@ -51,6 +52,10 @@ select {
 
 .no_scrollbars .item_container {
 	scrollbar-width: none !important;
+}
+
+.text_glow {
+  text-shadow: var(--text_glow);
 }
 
 #cover {
