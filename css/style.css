@@ -9,7 +9,6 @@
   --widget_width_smaller: 6rem;
   --text_input_width: 12.5rem;
   --action_effect: 0 0 0.5rem currentColor;
-  --text_glow: 0 0 0.25rem currentColor;
 }
 
 body, html {
@@ -52,10 +51,6 @@ select {
 
 .no_scrollbars .item_container {
 	scrollbar-width: none !important;
-}
-
-.text_glow {
-  text-shadow: var(--text_glow);
 }
 
 #cover {
@@ -800,10 +795,6 @@ a:visited, a:link, a:hover {
   cursor: pointer;
   border: 1px solid var(--alt_color_1);
   padding: var(--scroller_padding);
-}
-
-.text_glow .scroller {
-  text-shadow: var(--text_glow);
 }
 
 .scroller:hover {
