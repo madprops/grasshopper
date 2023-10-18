@@ -902,6 +902,16 @@ App.setup_commands = () => {
       info: `Filter: Show duplicate tabs`
     },
     {
+      name: `Filter Unread`,
+      cmd: `filter_unread_tabs`,
+      modes: [`tabs`],
+      icon: filter_icon,
+      action: (args) => {
+        App.filter_unread(args.mode)
+      },
+      info: `Filter: Show unread tabs`
+    },
+    {
       name: `Filter No Tab`,
       cmd: `filter_no_tab`,
       modes: [`history`, `bookmarks`, `closed`],
