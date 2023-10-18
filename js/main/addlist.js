@@ -834,5 +834,11 @@ Addlist.move_item = (id, start, end) => {
   lines.splice(start, 1)
   lines.splice(end, 0, item)
   Addlist.set_data(id, lines)
-  Addlist.list({id: id, index: end})
+  let button
+
+  if (Addlist.data) {
+    button = Addlist.data.button
+  }
+
+  Addlist.list({id: id, index: end, button: button})
 }
