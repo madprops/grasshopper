@@ -5,6 +5,7 @@ App.setup_commands = () => {
   let playing_icon = App.get_setting(`playing_icon`)
   let unloaded_icon = App.get_setting(`unloaded_icon`)
   let notes_icon = App.get_setting(`notes_icon`)
+  let muted_icon = App.get_setting(`muted_icon`)
   let step_back_icon = App.create_icon(`back`)
   let settings_icon = App.settings_icons.general
   let theme_icon = App.settings_icons.theme
@@ -515,7 +516,7 @@ App.setup_commands = () => {
       cmd: `mute_tabs`,
       modes: [`tabs`],
       item: true,
-      icon: tabs_icon,
+      icon: muted_icon || command_icon,
       action: (args) => {
         App.mute_tabs(args.item)
       },
@@ -526,7 +527,7 @@ App.setup_commands = () => {
       cmd: `unmute_tabs`,
       modes: [`tabs`],
       item: true,
-      icon: tabs_icon,
+      icon: muted_icon || command_icon,
       action: (args) => {
         App.unmute_tabs(args.item)
       },
@@ -537,7 +538,7 @@ App.setup_commands = () => {
       cmd: `toggle_mute_tabs`,
       modes: [`tabs`],
       item: true,
-      icon: tabs_icon,
+      icon: muted_icon || command_icon,
       action: (args) => {
         App.toggle_mute_tabs(args.item)
       },
