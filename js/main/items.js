@@ -500,6 +500,31 @@ App.check_item_status = (item) => {
       pin.classList.add(`hidden`)
     }
   }
+
+  if (item.pinned) {
+    item.element.classList.add(`pinned_tab`)
+    item.element.classList.remove(`normal_tab`)
+  }
+  else {
+    item.element.classList.remove(`pinned_tab`)
+    item.element.classList.add(`normal_tab`)
+  }
+
+  if (item.discarded) {
+    item.element.classList.add(`unloaded_tab`)
+    item.element.classList.remove(`loaded_tab`)
+  }
+  else {
+    item.element.classList.remove(`unloaded_tab`)
+    item.element.classList.add(`loaded_tab`)
+  }
+
+  if (item.audible) {
+    item.element.classList.add(`playing_tab`)
+  }
+  else {
+    item.element.classList.remove(`playing_tab`)
+  }
 }
 
 App.check_item_notes = (item) => {

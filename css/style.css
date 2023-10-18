@@ -1053,3 +1053,23 @@ a:visited, a:link, a:hover {
   align-items: center;
   justify-content: center;
 }
+
+.pinned_tab {
+  color: var(--color_pins);
+}
+
+.normal_tab {
+  color: var(--color_normal);
+}
+
+.loaded_tab {
+  color: var(--color_loaded);
+}
+
+.unloaded_tab {
+  color: var(--color_unloaded);
+}
+
+.playing_tab {
+  color: var(--color_playing);
+}

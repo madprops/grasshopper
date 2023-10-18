@@ -195,6 +195,16 @@ App.apply_theme = (args) => {
 
     App.set_css_var(`tab_box_display`, tbh_display)
     App.set_css_var(`tab_box_height`, `${tbh_rem}rem`)
+    let tabc = [`pins`, `normal`, `playing`, `loaded`, `unloaded`]
+
+    for (let c of tabc) {
+      if (App.get_setting(`color_${c}_enabled`)) {
+        App.set_css_var(`color_${c}`, App.get_setting(`color_${c}`))
+      }
+      else {
+        App.set_css_var(`color_${c}`, `unset`)
+      }
+    }
   }
   catch (err) {
     App.error(err)

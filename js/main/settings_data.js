@@ -964,6 +964,76 @@ App.build_settings = () => {
       info: `Color an item orange`,
       version: 1,
     },
+    color_pins_enabled: {
+      name: `Pinned Tabs`,
+      type: `checkbox`,
+      value: false,
+      info: `Use custom text color for pins`,
+      version: 1,
+    },
+    color_pins: {
+      name: `Pinned Tabs`,
+      type: `color`,
+      value: `rgb(100, 100, 100)`,
+      info: `Custom text color for pins`,
+      version: 1,
+    },
+    color_normal_enabled: {
+      name: `Normal Tabs`,
+      type: `checkbox`,
+      value: false,
+      info: `Use custom text color for normal tabs`,
+      version: 1,
+    },
+    color_normal: {
+      name: `Normal Tabs`,
+      type: `color`,
+      value: `rgb(100, 100, 100)`,
+      info: `Custom text color for normal tabs`,
+      version: 1,
+    },
+    color_playing_enabled: {
+      name: `Playing Tabs`,
+      type: `checkbox`,
+      value: false,
+      info: `Use custom text color for playing tabs`,
+      version: 1,
+    },
+    color_playing: {
+      name: `Playing Tabs`,
+      type: `color`,
+      value: `rgb(100, 100, 100)`,
+      info: `Custom text color for playing tabs`,
+      version: 1,
+    },
+    color_loaded_enabled: {
+      name: `Loaded Tabs`,
+      type: `checkbox`,
+      value: false,
+      info: `Use custom text color for loaded tabs`,
+      version: 1,
+    },
+    color_loaded: {
+      name: `Loaded Tabs`,
+      type: `color`,
+      value: `rgb(100, 100, 100)`,
+      info: `Custom text color for loaded tabs`,
+      version: 1,
+    },
+    color_unloaded_enabled: {
+      name: `Unloaded Tabs`,
+      type: `checkbox`,
+      value: false,
+      info: `Use custom text color for unloaded tabs`,
+      version: 1,
+    },
+    color_unloaded: {
+      name: `Unloaded Tabs`,
+      type: `color`,
+      value: `rgb(100, 100, 100)`,
+      info: `Custom text color for unloaded tabs`,
+      version: 1,
+    },
   }
 
   add_props()
@@ -1353,6 +1423,12 @@ App.build_settings = () => {
       setup: () => {
         for (let color of App.colors) {
           App.start_color_picker(`color_${color}`)
+        }
+
+        let tabc = [`pins`, `normal`, `playing`, `loaded`, `unloaded`]
+
+        for (let c of tabc) {
+          App.start_color_picker(`color_${c}`)
         }
 
         App.settings_make_menu(`color_mode`, [
