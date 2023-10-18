@@ -27,6 +27,8 @@ App.do_refresh_active_history = () => {
 }
 
 App.update_active_history = (current, new_active) => {
+  new_active.read = true
+
   if (!App.active_history_enabled()) {
     return
   }

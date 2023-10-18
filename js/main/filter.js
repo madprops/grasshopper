@@ -328,14 +328,17 @@ App.filter_check = (args) => {
     else if (args.filter_mode === `playing`) {
       match = args.item.audible || args.item.muted
     }
+    else if (args.filter_mode === `loaded`) {
+      match = !args.item.discarded
+    }
     else if (args.filter_mode === `unloaded`) {
       match = args.item.discarded
     }
     else if (args.filter_mode === `duplicate`) {
       match = args.duplicates.includes(args.item)
     }
-    else if (args.filter_mode === `loaded`) {
-      match = !args.item.discarded
+    else if (args.filter_mode === `unread`) {
+      match = !args.item.read
     }
     else if (args.filter_mode === `notab`) {
       let no_tab = true
@@ -832,4 +835,8 @@ App.filter_loaded = (mode) => {
 
 App.filter_no_tab = (mode) => {
   App.set_filter_mode({mode: mode, type: `notab`})
+}
+
+App.filter_unread = (mode) => {
+  App.set_filter_mode({mode: mode, type: `unread`})
 }

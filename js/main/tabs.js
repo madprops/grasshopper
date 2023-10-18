@@ -6,6 +6,7 @@ App.setup_tabs = () => {
     {type: `loaded`, text:`Loaded`, skip: false, info: `Show tabs that are loaded`},
     {type: `unloaded`, text:`Unloaded`, skip: false, info: `Show unloaded tabs`},
     {type: `duplicate`, text:`Duplicate`, skip: false, info: `Show tabs that have duplicates`},
+    {type: `unread`, text:`Unread`, skip: false, info: `Show tabs that haven't been visited yet`},
   ]
 
   App.debug_tabs = false

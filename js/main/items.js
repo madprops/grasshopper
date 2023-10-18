@@ -411,6 +411,7 @@ App.process_info = (args) => {
     }
   }
   else {
+    item.read = false
     item.original_data = args.info
     item.id = args.info.id || App[`${args.mode}_idx`]
     item.visible = true
