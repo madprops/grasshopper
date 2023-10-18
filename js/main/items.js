@@ -1437,11 +1437,12 @@ App.item_is_visible = (item) => {
 }
 
 App.build_item_window = (mode) => {
-  let main = DOM.el(`#window_content_${mode}`)
+  let top = DOM.el(`#window_top_${mode}`)
   let maintop = DOM.create(`div`, `item_main_top`)
-  DOM.el(`#window_top_${mode}`).append(maintop)
+  top.append(maintop)
+  let content = DOM.el(`#window_content_${mode}`)
   let container = DOM.create(`div`, `item_container`, `${mode}_container`)
-  main.append(container)
+  content.append(container)
   let tab_box_pos = App.get_setting(`tab_box_position`)
   let tab_box
 
@@ -1462,18 +1463,18 @@ App.build_item_window = (mode) => {
   bar.append(favorites)
   let scroller = App.create_scroller(mode)
   let footer = App.create_footer(mode)
-  main.append(scroller)
-  main.append(container)
+  content.append(scroller)
+  content.append(container)
 
   if (tab_box && tab_box_pos === `bottom`) {
-    main.append(tab_box)
+    content.append(tab_box)
   }
 
-  main.append(footer)
+  content.append(footer)
   App.setup_window_mouse(mode)
   let main_menu = App.create_main_menu(mode)
   let filter = App.create_filter(mode)
-  let filter_modes = App.create_filter_menu(mode)
+  let filter_menu = App.create_filter_menu(mode)
   let playing = App.create_playing_icon(mode)
   let back = App.create_step_back_button(mode)
   let actions_menu = App.create_actions_menu(mode)
@@ -1481,7 +1482,7 @@ App.build_item_window = (mode) => {
   let left_btns = DOM.create(`div`, `item_top_left`)
   let right_btns = DOM.create(`div`, `item_top_right`)
   left_btns.append(main_menu)
-  left_btns.append(filter_modes)
+  left_btns.append(filter_menu)
   left_btns.append(filter)
   right_btns.append(playing)
   right_btns.append(back)

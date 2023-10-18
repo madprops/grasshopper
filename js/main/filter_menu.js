@@ -8,7 +8,7 @@ App.create_filter_menu = (mode) => {
   btn.append(DOM.create(`div`, ``, `${mode}_filter_modes_text`))
   let fmodes = []
   fmodes.push({type: `all`, text: `All`})
-  let m_modes = App.filter_modes(mode)
+  let m_modes = App[`${mode}_filter_modes`]
 
   if (m_modes) {
     fmodes.push(separator())
@@ -38,7 +38,7 @@ App.create_filter_menu = (mode) => {
   fmodes.push(separator())
   fmodes.push({type: `refine`, text: `Refine`, skip: true, skip: `Refine the filter`})
   fmodes.push({type: `custom`, text: `Custom`, skip: true, skip: `Pick a custom filter`})
-  App[`${mode}_filter_modes`] = fmodes
+  App[`${mode}_filter_modes_all`] = fmodes
 
   DOM.ev(btn, `click`, () => {
     App.show_filter_menu(mode)

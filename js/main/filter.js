@@ -444,7 +444,7 @@ App.filter_empty = (mode) => {
 }
 
 App.filter_modes = (mode) => {
-  return App[`${mode}_filter_modes`]
+  return App[`${mode}_filter_modes_all`] || []
 }
 
 App.filter_mode = (mode) => {
