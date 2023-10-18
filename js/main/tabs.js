@@ -658,6 +658,10 @@ App.on_tab_activated = async (info) => {
     }
 
     item.active = item.id === info.tabId
+
+    if (item.active) {
+      item.unread = false
+    }
   }
 
   let select = true
