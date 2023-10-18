@@ -1,10 +1,11 @@
 App.setup_commands = () => {
   let command_icon = App.command_icon
-  let pin_icon = App.get_setting(`pin_icon`) || command_icon
-  let normal_icon = App.get_setting(`normal_icon`) || command_icon
-  let playing_icon = App.get_setting(`playing_icon`) || command_icon
-  let unloaded_icon = App.get_setting(`unloaded_icon`) || command_icon
-  let notes_icon = App.get_setting(`notes_icon`) || command_icon
+  let pin_icon = App.get_setting(`pin_icon`)
+  let normal_icon = App.get_setting(`normal_icon`)
+  let playing_icon = App.get_setting(`playing_icon`)
+  let unloaded_icon = App.get_setting(`unloaded_icon`)
+  let notes_icon = App.get_setting(`notes_icon`)
+  let step_back_icon = App.create_icon(`back`)
   let settings_icon = App.settings_icons.general
   let theme_icon = App.settings_icons.theme
   let filter_icon = App.settings_icons.filter
@@ -19,7 +20,6 @@ App.setup_commands = () => {
   let bot_icon = App.bot_icon
   let up_icon = App.up_arrow
   let down_icon = App.down_arrow
-  let step_back_icon = App.create_icon(`back`)
   let color_filters = []
   let color_changers = []
 
@@ -277,7 +277,7 @@ App.setup_commands = () => {
       name: `Filter All`,
       cmd: `filter_all`,
       modes: [`items`],
-      icon: command_icon,
+      icon: filter_icon,
       action: (args) => {
         App.filter_all(args.mode)
       },
@@ -686,7 +686,7 @@ App.setup_commands = () => {
       name: `Select Pins`,
       cmd: `select_pinned_tabs`,
       modes: [`tabs`],
-      icon: pin_icon,
+      icon: pin_icon || command_icon,
       action: (args) => {
         App.select_tabs(`pins`)
       },
@@ -696,7 +696,7 @@ App.setup_commands = () => {
       name: `Select Normal`,
       cmd: `select_normal_tabs`,
       modes: [`tabs`],
-      icon: normal_icon,
+      icon: normal_icon || command_icon,
       action: (args) => {
         App.select_tabs(`normal`)
       },
@@ -764,7 +764,7 @@ App.setup_commands = () => {
       cmd: `profiles_add_note`,
       modes: [`items`],
       item: true,
-      icon: notes_icon,
+      icon: notes_icon || command_icon,
       item: true,
       action: (args) => {
         App.add_note(args.item)
@@ -844,7 +844,7 @@ App.setup_commands = () => {
       name: `Filter Pins`,
       cmd: `filter_pinned`,
       modes: [`tabs`],
-      icon: pin_icon,
+      icon: pin_icon || filter_icon,
       action: (args) => {
         App.filter_pinned(args.mode)
       },
@@ -854,7 +854,7 @@ App.setup_commands = () => {
       name: `Filter Normal`,
       cmd: `filter_normal`,
       modes: [`tabs`],
-      icon: normal_icon,
+      icon: normal_icon || filter_icon,
       action: (args) => {
         App.filter_normal(args.mode)
       },
@@ -864,7 +864,7 @@ App.setup_commands = () => {
       name: `Filter Playing`,
       cmd: `filter_playing`,
       modes: [`tabs`],
-      icon: playing_icon,
+      icon: playing_icon || filter_icon,
       action: (args) => {
         App.filter_playing(args.mode)
       },
@@ -884,7 +884,7 @@ App.setup_commands = () => {
       name: `Filter Unloaded`,
       cmd: `filter_unloaded`,
       modes: [`tabs`],
-      icon: unloaded_icon,
+      icon: unloaded_icon || filter_icon,
       action: (args) => {
         App.filter_unloaded(args.mode)
       },
