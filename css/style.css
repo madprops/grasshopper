@@ -9,7 +9,6 @@
   --widget_width_smaller: 6rem;
   --text_input_width: 12.5rem;
   --action_effect: 0 0 0.5rem currentColor;
-  --text_glow: 0 0 0.25rem currentColor;
 }
 
 body, html {
@@ -316,10 +315,6 @@ svg {
   overflow: hidden;
 }
 
-.text_glow .item_text {
-  text-shadow: var(--text_glow);
-}
-
 .no_wrap .item_text_1, .no_wrap .item_text_2 {
   white-space: nowrap;
   max-width: 100%;
@@ -548,10 +543,6 @@ svg {
   justify-content: flex-start;
 }
 
-.text_glow .pinline {
-  text-shadow: var(--text_glow);
-}
-
 .pinline_content {
   border: 1px solid var(--alt_color_2);
   border-radius: var(--border_radius_2);
@@ -571,10 +562,6 @@ svg {
   border-color: var(--alt_color_2) !important;
   font-size: var(--font_size) !important;
   font-family: var(--font) !important;
-}
-
-.text_glow .needcontext-text {
-  text-shadow: var(--text_glow);
 }
 
 .needcontext-item-selected {
@@ -771,10 +758,6 @@ a:visited, a:link, a:hover {
   width: 100%;
 }
 
-.text_glow #palette_items {
-  text-shadow: var(--text_glow);
-}
-
 .palette_item {
   width: 100%;
   padding: 0.25rem;
@@ -812,6 +795,10 @@ a:visited, a:link, a:hover {
   cursor: pointer;
   border: 1px solid var(--alt_color_1);
   padding: var(--scroller_padding);
+}
+
+.text_glow .scroller {
+  text-shadow: var(--text_glow);
 }
 
 .scroller:hover {
@@ -1043,10 +1030,6 @@ a:visited, a:link, a:hover {
   display: flex;
   align-items: center;
   justify-content: flex-start;
-}
-
-.text_glow .box_item_text {
-  text-shadow: var(--text_glow);
 }
 
 .favorites {
