@@ -44,23 +44,29 @@ App.show_cmds_menu = (cmds, from) => {
   let items = []
 
   if (!cmds.length) {
-    return items
-  }
-
-  for (let obj of cmds) {
-    let c = App.get_command(obj.cmd)
-
-    if (!c) {
-      continue
-    }
-
     items.push({
-      text: c.name,
+      text: `No items yet`,
       action: (e) => {
-        App.run_command({cmd: c.cmd, from: from, e: e})
+        App.alert(`Add some in Settings`)
       },
-      icon: c.icon,
     })
+  }
+  else {
+    for (let obj of cmds) {
+      let c = App.get_command(obj.cmd)
+
+      if (!c) {
+        continue
+      }
+
+      items.push({
+        text: c.name,
+        action: (e) => {
+          App.run_command({cmd: c.cmd, from: from, e: e})
+        },
+        icon: c.icon,
+      })
+    }
   }
 
   return items
