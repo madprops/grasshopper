@@ -25,6 +25,17 @@ App.build_settings = () => {
       info: `The font size in pixels to use for text. The interface scales accordingly`,
       version: 1,
     },
+    button_size: {
+      name: `Button Size`,
+      type: `number`,
+      value: 16,
+      action: `theme`,
+      placeholder: `Px`,
+      min: 1,
+      max: 100,
+      info: `Size in pixels used to scale the buttons`,
+      version: 1,
+    },
     font: {
       name: `Font`,
       type: `menu`,

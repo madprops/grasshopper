@@ -1,6 +1,4 @@
 :root {
-  --widget_padding_vert: 0.2rem;
-  --widget_padding_hor: 0.3rem;
   --item_margin: 0.45rem;
   --item_gap: 0.306rem;
   --scroller_shadow: inset 0 0 0.1rem currentColor;
@@ -152,10 +150,10 @@ select {
   color: var(--text_color);
   outline: 1px solid var(--alt_color_1);
   border-width: 0;
-  padding-top: var(--widget_padding_vert);
-  padding-bottom: var(--widget_padding_vert);
-  padding-left: var(--widget_padding_hor);
-  padding-right: var(--widget_padding_hor);
+  padding-top: 0.2rem;
+  padding-bottom: 0.2rem;
+  padding-left: 0.3rem;
+  padding-right: 0.3rem;
 }
 
 .filter {
@@ -188,13 +186,13 @@ select {
   color: var(--text_color);
   border-width: 0;
   text-align: center;
-  padding-top: var(--widget_padding_vert);
-  padding-bottom: var(--widget_padding_vert);
-  padding-left: var(--widget_padding_hor);
-  padding-right: var(--widget_padding_hor);
+  padding-top: calc(var(--button_size) * 0.2);
+  padding-bottom: calc(var(--button_size) * 0.2);
+  padding-left: calc(var(--button_size) * 0.3);
+  padding-right: calc(var(--button_size) * 0.3);
   user-select: none;
   outline: 1px solid var(--alt_color_1);
-  min-width: 1.6rem;
+  min-width: calc(var(--button_size) * 1.6);
   border-radius: var(--border_radius);
   max-width: 100%;
 }
@@ -1034,8 +1032,7 @@ a:visited, a:link, a:hover {
 }
 
 .favorites_item {
-  height: 100%;
-  height: 2rem;
+  height: calc(var(--button_size) * 2);
 }
 
 .favorites_icon {
