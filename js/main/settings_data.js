@@ -192,6 +192,14 @@ App.build_settings = () => {
       info: `The tile size of the background image`,
       version: 1,
     },
+    text_glow: {
+      name: `Text Glow`,
+      type: `checkbox`,
+      action: `theme`,
+      value: false,
+      info: `Add a glow effect to the text`,
+      version: 1,
+    },
   }
 
   add_props()

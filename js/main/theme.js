@@ -200,6 +200,13 @@ App.apply_theme = (args) => {
     for (let c of tabc) {
       App.set_css_var(`color_${c}`, App.get_setting(`color_${c}`))
     }
+
+    if (App.get_setting(`text_glow`)) {
+      document.body.classList.add(`text_glow`)
+    }
+    else {
+      document.body.classList.remove(`text_glow`)
+    }
   }
   catch (err) {
     App.error(err)
