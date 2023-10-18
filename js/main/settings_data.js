@@ -971,6 +971,12 @@ App.build_settings = () => {
       info: `Use custom text color for pins`,
       version: 1,
     },
+  }
+
+  add_props()
+  category = `colors_2`
+
+  props = {
     color_pins: {
       name: `Pinned Tabs`,
       type: `color`,
@@ -1454,6 +1460,16 @@ App.build_settings = () => {
           {text: `Border & Icon 2`, value: `border_icon_2`},
           {text: `Background`, value: `background`},
         ])
+      },
+    },
+    colors_2: {
+      info: `Custom text colors for tabs`,
+      setup: () => {
+        let tabc = [`pins`, `normal`, `playing`, `loaded`, `unloaded`, `unread`]
+
+        for (let c of tabc) {
+          App.start_color_picker(`color_${c}`)
+        }
       },
     },
     filter: {

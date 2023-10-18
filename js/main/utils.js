@@ -108,7 +108,7 @@ App.capitalize = (s) => {
     w = `URL`
   }
 
-  return w
+  return w.replace(/_/, ` `)
 }
 
 App.capitalize_words = (s) => {
