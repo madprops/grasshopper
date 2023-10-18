@@ -7,7 +7,7 @@ App.start_palette = () => {
     id: `palette`,
     setup: () => {
       App.fill_palette()
-      let container = DOM.el(`#palette_commands`)
+      let container = DOM.el(`#palette_items`)
 
       DOM.ev(container, `click`, (e) => {
         App.palette_action(e.target)
@@ -30,7 +30,7 @@ App.show_palette = (prefilter = ``) => {
   App.start_palette()
   // Create initial elements
   App.setup_popup(`palette`)
-  let container = DOM.el(`#palette_commands`)
+  let container = DOM.el(`#palette_items`)
   let filter = DOM.el(`#palette_filter`)
   let els = DOM.els(`.palette_item`, container)
 
@@ -60,7 +60,7 @@ App.show_palette = (prefilter = ``) => {
 }
 
 App.palette_select = (el) => {
-  let container = DOM.el(`#palette_commands`)
+  let container = DOM.el(`#palette_items`)
   let els = DOM.els(`.palette_item`, container)
 
   for (let el of els) {
@@ -77,7 +77,7 @@ App.palette_item_hidden = (el) => {
 }
 
 App.palette_select_first = () => {
-  let container = DOM.el(`#palette_commands`)
+  let container = DOM.el(`#palette_items`)
   let els = DOM.els(`.palette_item`, container)
 
   for (let el of els) {
@@ -89,7 +89,7 @@ App.palette_select_first = () => {
 }
 
 App.palette_next = (reverse = false) => {
-  let container = DOM.el(`#palette_commands`)
+  let container = DOM.el(`#palette_items`)
   let els = DOM.els(`.palette_item`, container)
 
   if (els.length < 2) {
@@ -152,7 +152,7 @@ App.fill_palette = () => {
     return
   }
 
-  let container = DOM.el(`#palette_commands`)
+  let container = DOM.el(`#palette_items`)
   container.innerHTML = ``
 
   for (let cmd of App.sorted_commands) {

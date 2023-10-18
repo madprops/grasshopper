@@ -202,10 +202,10 @@ App.apply_theme = (args) => {
     }
 
     if (App.get_setting(`text_glow`)) {
-      main.classList.add(`text_glow`)
+      document.body.classList.add(`text_glow`)
     }
     else {
-      main.classList.remove(`text_glow`)
+      document.body.classList.remove(`text_glow`)
     }
   }
   catch (err) {
