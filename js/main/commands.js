@@ -874,7 +874,7 @@ App.setup_commands = () => {
       name: `Filter Loaded`,
       cmd: `filter_loaded`,
       modes: [`tabs`],
-      icon: command_icon,
+      icon: filter_icon,
       action: (args) => {
         App.filter_loaded(args.mode)
       },
@@ -894,7 +894,7 @@ App.setup_commands = () => {
       name: `Filter Duplicate`,
       cmd: `filter_duplicate`,
       modes: [`tabs`],
-      icon: command_icon,
+      icon: filter_icon,
       action: (args) => {
         App.filter_duplicate(args.mode)
       },
@@ -904,7 +904,7 @@ App.setup_commands = () => {
       name: `Filter No Tab`,
       cmd: `filter_no_tab`,
       modes: [`history`, `bookmarks`, `closed`],
-      icon: command_icon,
+      icon: filter_icon,
       action: (args) => {
         App.filter_no_tab(args.mode)
       },
