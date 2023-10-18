@@ -423,13 +423,6 @@ App.build_settings = () => {
       info: `Show the footer at the bottom`,
       version: 1,
     },
-    show_filter_history: {
-      name: `Show Filter History`,
-      type: `checkbox`,
-      value: true,
-      info: `Show the filter history when right clicking the filter`,
-      version: 1,
-    },
     show_feedback: {
       name: `Show Feedback`,
       type: `checkbox`,
@@ -1109,6 +1102,13 @@ App.build_settings = () => {
       type: `checkbox`,
       value: true,
       info: `Re-use the filter when moving across modes`,
+      version: 1,
+    },
+    show_filter_history: {
+      name: `Show Filter History`,
+      type: `checkbox`,
+      value: true,
+      info: `Show the filter history when right clicking the filter`,
       version: 1,
     },
     max_search_items: {
