@@ -197,7 +197,7 @@ App.build_settings = () => {
       type: `checkbox`,
       action: `theme`,
       value: false,
-      info: `Add a glow effect to the text`,
+      info: `Add a glow effect to all text`,
       version: 1,
     },
   }
