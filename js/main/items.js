@@ -505,10 +505,10 @@ App.check_item_status = (item) => {
     }
   }
 
-  App.check_item_class(item)
+  App.check_text_color(item)
 }
 
-App.check_item_class = (item) => {
+App.check_text_color = (item) => {
   function enabled (type) {
     return App.get_setting(`color_${type}_enabled`)
   }
