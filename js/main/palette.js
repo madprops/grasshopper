@@ -160,7 +160,7 @@ App.fill_palette = () => {
     el.dataset.command = cmd.cmd
 
     if (cmd.icon) {
-      let icon = DOM.create(`div`)
+      let icon = DOM.create(`div`, `palette_icon`)
       icon.append(cmd.icon)
       el.append(icon)
     }

@@ -186,6 +186,7 @@ NeedContext.show = (args = {}) => {
 
       if (item.icon) {
         let icon = document.createElement(`div`)
+        icon.classList.add(`needcontext-icon`)
         icon.append(item.icon)
         el.append(icon)
       }
@@ -530,6 +531,12 @@ NeedContext.init = () => {
 
     .needcontext-item-selected {
       background-color: rgba(0, 0, 0, 0.18);
+    }
+
+    .needcontext-icon {
+      display: flex;
+      align-items: center;
+      justify-content: center;
     }
 
     .needcontext-image {
