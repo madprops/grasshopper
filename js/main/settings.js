@@ -906,6 +906,11 @@ App.fill_settings = (category) => {
       let label = DOM.create(`div`, `settings_label`)
       label.id = `settings_label_${key}`
       label.textContent = props.name
+
+      if (props.hide_name) {
+        label.classList.add(`hidden`)
+      }
+
       el.append(label)
       let widget
 

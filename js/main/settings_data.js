@@ -979,6 +979,7 @@ App.build_settings = () => {
     },
     color_pins: {
       name: `Pinned Tabs`,
+      hide_name: true,
       type: `color`,
       value: `rgb(100, 100, 100)`,
       info: `Custom text color for pins`,
@@ -993,6 +994,7 @@ App.build_settings = () => {
     },
     color_normal: {
       name: `Normal Tabs`,
+      hide_name: true,
       type: `color`,
       value: `rgb(100, 100, 100)`,
       info: `Custom text color for normal tabs`,
@@ -1007,6 +1009,7 @@ App.build_settings = () => {
     },
     color_playing: {
       name: `Playing Tabs`,
+      hide_name: true,
       type: `color`,
       value: `rgb(100, 100, 100)`,
       info: `Custom text color for playing tabs`,
@@ -1021,6 +1024,7 @@ App.build_settings = () => {
     },
     color_loaded: {
       name: `Loaded Tabs`,
+      hide_name: true,
       type: `color`,
       value: `rgb(100, 100, 100)`,
       info: `Custom text color for loaded tabs`,
@@ -1035,6 +1039,7 @@ App.build_settings = () => {
     },
     color_unloaded: {
       name: `Unloaded Tabs`,
+      hide_name: true,
       type: `color`,
       value: `rgb(100, 100, 100)`,
       info: `Custom text color for unloaded tabs`,
@@ -1049,6 +1054,7 @@ App.build_settings = () => {
     },
     color_unread: {
       name: `Unread Tabs`,
+      hide_name: true,
       type: `color`,
       value: `rgb(100, 100, 100)`,
       info: `Custom text color for unread tabs`,
