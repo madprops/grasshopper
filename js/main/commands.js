@@ -26,7 +26,7 @@ App.setup_commands = () => {
   color_filters.push({
     name: `Filter All Colors`,
     cmd: `filter_color_all`,
-    mode: `items`,
+    modes: [`items`],
     icon: theme_icon,
     action: (args) => {
       App.filter_color(args.mode, `all`)
@@ -41,7 +41,7 @@ App.setup_commands = () => {
     color_filters.push({
       name: name,
       cmd: `filter_color_${color}`,
-      mode: `items`,
+      modes: [`items`],
       icon: icon,
       action: (args) => {
         App.filter_color(args.mode, color)
@@ -55,7 +55,7 @@ App.setup_commands = () => {
     color_changers.push({
       name: name,
       cmd: `change_color_${color}`,
-      mode: `items`,
+      modes: [`items`],
       item: true,
       icon: icon,
       action: (args) => {
@@ -70,7 +70,7 @@ App.setup_commands = () => {
     color_changers.push({
       name: name,
       cmd: `toggle_color_${color}`,
-      mode: `items`,
+      modes: [`items`],
       item: true,
       icon: icon,
       action: (args) => {
@@ -83,7 +83,7 @@ App.setup_commands = () => {
   color_changers.push({
     name: `Remove Color`,
     cmd: `remove_color`,
-    mode: `items`,
+    modes: [`items`],
     item: true,
     icon: theme_icon,
     action: (args) => {
@@ -95,7 +95,7 @@ App.setup_commands = () => {
   color_changers.push({
     name: `Color Menu`,
     cmd: `show_color_menu`,
-    mode: `items`,
+    modes: [`items`],
     item: true,
     icon: theme_icon,
     action: (args) => {
@@ -106,7 +106,7 @@ App.setup_commands = () => {
   color_changers.push({
     name: `Filter Color Menu`,
     cmd: `show_filter_color_menu`,
-    mode: `items`,
+    modes: [`items`],
     item: true,
     icon: theme_icon,
     action: (args) => {
@@ -123,7 +123,7 @@ App.setup_commands = () => {
     media_filters.push({
       name: name,
       cmd: `filter_media_${media}`,
-      mode: `items`,
+      modes: [`items`],
       icon: icon,
       action: (args) => {
         App.set_filter_mode({mode: args.mode, type: media})
@@ -153,7 +153,7 @@ App.setup_commands = () => {
     {
       name: `Go To Top`,
       cmd: `go_to_top`,
-      mode: `items`,
+      modes: [`items`],
       icon: up_icon,
       action: (args) => {
         App.goto_top()
@@ -163,7 +163,7 @@ App.setup_commands = () => {
     {
       name: `Go To Bottom`,
       cmd: `go_to_bottom`,
-      mode: `items`,
+      modes: [`items`],
       icon: down_icon,
       action: (args) => {
         App.goto_bottom()
@@ -173,7 +173,7 @@ App.setup_commands = () => {
     {
       name: `Step Back`,
       cmd: `step_back`,
-      mode: `items`,
+      modes: [`items`],
       icon: step_back_icon,
       action: (args) => {
         App.step_back()
@@ -183,7 +183,7 @@ App.setup_commands = () => {
     {
       name: `Recent Tabs`,
       cmd: `show_recent_tabs`,
-      mode: `items`,
+      modes: [`items`],
       icon: tabs_icon,
       action: (args) => {
         App.show_recent_tabs()
@@ -193,7 +193,7 @@ App.setup_commands = () => {
     {
       name: `Select All`,
       cmd: `select_all_items`,
-      mode: `items`,
+      modes: [`items`],
       icon: command_icon,
       action: (args) => {
         App.select_all(args.mode, true)
@@ -206,7 +206,7 @@ App.setup_commands = () => {
     {
       name: `Previous Mode`,
       cmd: `show_previous_mode`,
-      mode: `items`,
+      modes: [`items`],
       icon: command_icon,
       action: (args) => {
         App.cycle_modes(true)
@@ -216,7 +216,7 @@ App.setup_commands = () => {
     {
       name: `Next Mode`,
       cmd: `show_next_mode`,
-      mode: `items`,
+      modes: [`items`],
       icon: command_icon,
       action: (args) => {
         App.cycle_modes()
@@ -265,7 +265,7 @@ App.setup_commands = () => {
     {
       name: `Item Menu`,
       cmd: `show_item_menu`,
-      mode: `items`,
+      modes: [`items`],
       item: true,
       icon: command_icon,
       action: (args) => {
@@ -276,7 +276,7 @@ App.setup_commands = () => {
     {
       name: `Filter All`,
       cmd: `filter_all`,
-      mode: `items`,
+      modes: [`items`],
       icon: command_icon,
       action: (args) => {
         App.filter_all(args.mode)
@@ -289,7 +289,7 @@ App.setup_commands = () => {
     {
       name: `Item Action`,
       cmd: `item_action`,
-      mode: `items`,
+      modes: [`items`],
       item: true,
       icon: command_icon,
       action: (args) => {
@@ -300,7 +300,7 @@ App.setup_commands = () => {
     {
       name: `Open`,
       cmd: `open_items`,
-      mode: `items`,
+      modes: [`items`],
       item: true,
       icon: command_icon,
       action: (args) => {
@@ -311,7 +311,7 @@ App.setup_commands = () => {
     {
       name: `Bookmark`,
       cmd: `bookmark_items`,
-      mode: `items`,
+      modes: [`items`],
       item: true,
       icon: bookmarks_icon,
       action: (args) => {
@@ -332,7 +332,7 @@ App.setup_commands = () => {
     {
       name: `Copy URL`,
       cmd: `copy_item_url`,
-      mode: `items`,
+      modes: [`items`],
       item: true,
       icon: clipboard_icon,
       action: (args) => {
@@ -343,7 +343,7 @@ App.setup_commands = () => {
     {
       name: `Copy Title`,
       cmd: `copy_item_title`,
-      mode: `items`,
+      modes: [`items`],
       item: true,
       icon: clipboard_icon,
       action: (args) => {
@@ -405,7 +405,7 @@ App.setup_commands = () => {
     {
       name: `Unload`,
       cmd: `unload_tabs`,
-      mode: `tabs`,
+      modes: [`tabs`],
       item: true,
       icon: tabs_icon,
       action: (args) => {
@@ -416,7 +416,7 @@ App.setup_commands = () => {
     {
       name: `Load`,
       cmd: `load_tabs`,
-      mode: `tabs`,
+      modes: [`tabs`],
       item: true,
       icon: tabs_icon,
       action: (args) => {
@@ -427,7 +427,7 @@ App.setup_commands = () => {
     {
       name: `Duplicate`,
       cmd: `duplicate_tabs`,
-      mode: `tabs`,
+      modes: [`tabs`],
       item: true,
       icon: tabs_icon,
       action: (args) => {
@@ -438,7 +438,7 @@ App.setup_commands = () => {
     {
       name: `Detach`,
       cmd: `detach_tabs`,
-      mode: `tabs`,
+      modes: [`tabs`],
       item: true,
       icon: tabs_icon,
       action: (args) => {
@@ -449,7 +449,7 @@ App.setup_commands = () => {
     {
       name: `To Window`,
       cmd: `show_windows_menu`,
-      mode: `tabs`,
+      modes: [`tabs`],
       item: true,
       icon: tabs_icon,
       action: (args) => {
@@ -460,7 +460,7 @@ App.setup_commands = () => {
     {
       name: `Move To Top`,
       cmd: `move_tabs_to_top`,
-      mode: `tabs`,
+      modes: [`tabs`],
       icon: up_icon,
       action: (args) => {
         App.move_tabs_vertically(`top`)
@@ -470,7 +470,7 @@ App.setup_commands = () => {
     {
       name: `Move To Bottom`,
       cmd: `move_tabs_to_bottom`,
-      mode: `tabs`,
+      modes: [`tabs`],
       icon: down_icon,
       action: (args) => {
         App.move_tabs_vertically(`bottom`)
@@ -480,7 +480,7 @@ App.setup_commands = () => {
     {
       name: `Pin`,
       cmd: `pin_tabs`,
-      mode: `tabs`,
+      modes: [`tabs`],
       item: true,
       icon: tabs_icon,
       action: (args) => {
@@ -491,7 +491,7 @@ App.setup_commands = () => {
     {
       name: `Unpin`,
       cmd: `unpin_tabs`,
-      mode: `tabs`,
+      modes: [`tabs`],
       item: true,
       icon: tabs_icon,
       action: (args) => {
@@ -502,7 +502,7 @@ App.setup_commands = () => {
     {
       name: `Toggle Pin`,
       cmd: `toggle_pin_tabs`,
-      mode: `tabs`,
+      modes: [`tabs`],
       item: true,
       icon: tabs_icon,
       action: (args) => {
@@ -513,7 +513,7 @@ App.setup_commands = () => {
     {
       name: `Mute`,
       cmd: `mute_tabs`,
-      mode: `tabs`,
+      modes: [`tabs`],
       item: true,
       icon: tabs_icon,
       action: (args) => {
@@ -524,7 +524,7 @@ App.setup_commands = () => {
     {
       name: `Unmute`,
       cmd: `unmute_tabs`,
-      mode: `tabs`,
+      modes: [`tabs`],
       item: true,
       icon: tabs_icon,
       action: (args) => {
@@ -535,7 +535,7 @@ App.setup_commands = () => {
     {
       name: `Toggle Mute`,
       cmd: `toggle_mute_tabs`,
-      mode: `tabs`,
+      modes: [`tabs`],
       item: true,
       icon: tabs_icon,
       action: (args) => {
@@ -546,7 +546,7 @@ App.setup_commands = () => {
     {
       name: `Close`,
       cmd: `close_tabs`,
-      mode: `tabs`,
+      modes: [`tabs`],
       item: true,
       icon: tabs_icon,
       action: (args) => {
@@ -557,7 +557,7 @@ App.setup_commands = () => {
     {
       name: `Close Menu`,
       cmd: `show_close_tabs_menu`,
-      mode: `items`,
+      modes: [`items`],
       icon: tabs_icon,
       action: (args) => {
         App.show_close_tabs_menu(args.e)
@@ -567,7 +567,7 @@ App.setup_commands = () => {
     {
       name: `Close Normal`,
       cmd: `close_normal_tabs`,
-      mode: `items`,
+      modes: [`items`],
       icon: tabs_icon,
       action: (args) => {
         App.close_tabs_popup(`normal`)
@@ -577,7 +577,7 @@ App.setup_commands = () => {
     {
       name: `Close Playing`,
       cmd: `close_playing_tabs`,
-      mode: `items`,
+      modes: [`items`],
       icon: tabs_icon,
       action: (args) => {
         App.close_tabs_popup(`playing`)
@@ -587,7 +587,7 @@ App.setup_commands = () => {
     {
       name: `Close Loaded`,
       cmd: `close_loaded_tabs`,
-      mode: `items`,
+      modes: [`items`],
       icon: tabs_icon,
       action: (args) => {
         App.close_tabs_popup(`loaded`)
@@ -597,7 +597,7 @@ App.setup_commands = () => {
     {
       name: `Close Unloaded`,
       cmd: `close_unloaded_tabs`,
-      mode: `items`,
+      modes: [`items`],
       icon: tabs_icon,
       action: (args) => {
         App.close_tabs_popup(`unloaded`)
@@ -607,7 +607,7 @@ App.setup_commands = () => {
     {
       name: `Close Duplicate`,
       cmd: `close_duplicate_tabs`,
-      mode: `items`,
+      modes: [`items`],
       icon: tabs_icon,
       action: (args) => {
         App.close_tabs_popup(`duplicate`)
@@ -617,7 +617,7 @@ App.setup_commands = () => {
     {
       name: `Close Visible`,
       cmd: `close_visible_tabs`,
-      mode: `items`,
+      modes: [`items`],
       icon: tabs_icon,
       action: (args) => {
         App.close_tabs_popup(`visible`)
@@ -636,7 +636,7 @@ App.setup_commands = () => {
     {
       name: `Sort`,
       cmd: `sort_tabs`,
-      mode: `items`,
+      modes: [`items`],
       icon: tabs_icon,
       action: (args) => {
         App.sort_tabs()
@@ -646,7 +646,7 @@ App.setup_commands = () => {
     {
       name: `Show Info`,
       cmd: `show_tabs_info`,
-      mode: `items`,
+      modes: [`items`],
       icon: tabs_icon,
       action: (args) => {
         App.show_tabs_info()
@@ -656,7 +656,7 @@ App.setup_commands = () => {
     {
       name: `Show URLs`,
       cmd: `show_tab_urls`,
-      mode: `items`,
+      modes: [`items`],
       icon: tabs_icon,
       action: (args) => {
         App.show_tab_urls()
@@ -666,7 +666,7 @@ App.setup_commands = () => {
     {
       name: `Open URLs`,
       cmd: `open_tab_urls`,
-      mode: `items`,
+      modes: [`items`],
       icon: tabs_icon,
       action: (args) => {
         App.open_tab_urls()
@@ -685,7 +685,7 @@ App.setup_commands = () => {
     {
       name: `Select Pins`,
       cmd: `select_pinned_tabs`,
-      mode: `tabs`,
+      modes: [`tabs`],
       icon: pin_icon,
       action: (args) => {
         App.select_tabs(`pins`)
@@ -695,7 +695,7 @@ App.setup_commands = () => {
     {
       name: `Select Normal`,
       cmd: `select_normal_tabs`,
-      mode: `tabs`,
+      modes: [`tabs`],
       icon: normal_icon,
       action: (args) => {
         App.select_tabs(`normal`)
@@ -708,7 +708,7 @@ App.setup_commands = () => {
     {
       name: `Filter History`,
       cmd: `show_filter_history`,
-      mode: `items`,
+      modes: [`items`],
       icon: filter_icon,
       action: (args) => {
         App.show_filter_history(args.mode, args.e)
@@ -718,7 +718,7 @@ App.setup_commands = () => {
     {
       name: `Deep Search`,
       cmd: `deep_search`,
-      mode: `search`,
+      modes: [`search`],
       icon: filter_icon,
       action: (args) => {
         App.deep_search(args.mode)
@@ -728,7 +728,7 @@ App.setup_commands = () => {
     {
       name: `Search Media`,
       cmd: `show_search_media_menu`,
-      mode: `items`,
+      modes: [`items`],
       icon: media_icon,
       action: (args) => {
         App.search_media(args.mode, args.e)
@@ -738,7 +738,7 @@ App.setup_commands = () => {
     {
       name: `Forget Closed`,
       cmd: `forget_closed`,
-      mode: `closed`,
+      modes: [`closed`],
       icon: closed_icon,
       action: (args) => {
         App.forget_closed()
@@ -751,7 +751,7 @@ App.setup_commands = () => {
     {
       name: `Edit Profile`,
       cmd: `edit_profile`,
-      mode: `items`,
+      modes: [`items`],
       item: true,
       icon: profile_icon,
       action: (args) => {
@@ -762,7 +762,7 @@ App.setup_commands = () => {
     {
       name: `Add Note`,
       cmd: `profiles_add_note`,
-      mode: `items`,
+      modes: [`items`],
       item: true,
       icon: notes_icon,
       item: true,
@@ -774,7 +774,7 @@ App.setup_commands = () => {
     {
       name: `Add Tag`,
       cmd: `profiles_add_tag`,
-      mode: `items`,
+      modes: [`items`],
       item: true,
       icon: tag_icon,
       action: (args) => {
@@ -785,7 +785,7 @@ App.setup_commands = () => {
     {
       name: `Edit Title`,
       cmd: `profiles_edit_title`,
-      mode: `items`,
+      modes: [`items`],
       item: true,
       icon: profile_icon,
       action: (args) => {
@@ -796,7 +796,7 @@ App.setup_commands = () => {
     {
       name: `Edit Icon`,
       cmd: `profiles_edit_icon`,
-      mode: `items`,
+      modes: [`items`],
       item: true,
       icon: profile_icon,
       action: (args) => {
@@ -820,7 +820,7 @@ App.setup_commands = () => {
     {
       name: `Filter Domain`,
       cmd: `filter_domain`,
-      mode: `items`,
+      modes: [`items`],
       item: true,
       icon: filter_icon,
       action: (args) => {
@@ -831,7 +831,7 @@ App.setup_commands = () => {
     {
       name: `Filter Color`,
       cmd: `filter_color`,
-      mode: `items`,
+      modes: [`items`],
       item: true,
       icon: theme_icon,
       color: true,
@@ -843,7 +843,7 @@ App.setup_commands = () => {
     {
       name: `Filter Pins`,
       cmd: `filter_pinned`,
-      mode: `tabs`,
+      modes: [`tabs`],
       icon: pin_icon,
       action: (args) => {
         App.filter_pinned(args.mode)
@@ -853,7 +853,7 @@ App.setup_commands = () => {
     {
       name: `Filter Normal`,
       cmd: `filter_normal`,
-      mode: `tabs`,
+      modes: [`tabs`],
       icon: normal_icon,
       action: (args) => {
         App.filter_normal(args.mode)
@@ -863,7 +863,7 @@ App.setup_commands = () => {
     {
       name: `Filter Playing`,
       cmd: `filter_playing`,
-      mode: `tabs`,
+      modes: [`tabs`],
       icon: playing_icon,
       action: (args) => {
         App.filter_playing(args.mode)
@@ -871,9 +871,19 @@ App.setup_commands = () => {
       info: `Filter: Show playing tabs`
     },
     {
+      name: `Filter Loaded`,
+      cmd: `filter_loaded`,
+      modes: [`tabs`],
+      icon: command_icon,
+      action: (args) => {
+        App.filter_loaded(args.mode)
+      },
+      info: `Filter: Show loaded tabs`
+    },
+    {
       name: `Filter Unloaded`,
       cmd: `filter_unloaded`,
-      mode: `tabs`,
+      modes: [`tabs`],
       icon: unloaded_icon,
       action: (args) => {
         App.filter_unloaded(args.mode)
@@ -883,7 +893,7 @@ App.setup_commands = () => {
     {
       name: `Filter Duplicate`,
       cmd: `filter_duplicate`,
-      mode: `tabs`,
+      modes: [`tabs`],
       icon: command_icon,
       action: (args) => {
         App.filter_duplicate(args.mode)
@@ -891,19 +901,19 @@ App.setup_commands = () => {
       info: `Filter: Show duplicate tabs`
     },
     {
-      name: `Filter Loaded`,
-      cmd: `filter_loaded`,
-      mode: `tabs`,
-      icon: command_icon,
+      name: `Filter No Tab`,
+      cmd: `filter_no_tab`,
+      modes: [`history`, `bookmarks`, `closed`],
+      icon: tabs_icon,
       action: (args) => {
-        App.filter_loaded(args.mode)
+        App.filter_no_tab(args.mode)
       },
-      info: `Filter: Show loaded tabs`
+      info: `Filter: Show duplicate tabs`
     },
     {
       name: `Filter Tag Menu`,
       cmd: `show_filter_tag_menu`,
-      mode: `items`,
+      modes: [`items`],
       icon: tag_icon,
       action: (args) => {
         App.show_filter_tag_menu(args.mode, args.e)
@@ -913,7 +923,7 @@ App.setup_commands = () => {
     {
       name: `Filter All Tags`,
       cmd: `filter_tag_all`,
-      mode: `items`,
+      modes: [`items`],
       icon: tag_icon,
       action: (args) => {
         App.filter_tag(args.mode, `all`)
@@ -923,7 +933,7 @@ App.setup_commands = () => {
     {
       name: `Filter Edited`,
       cmd: `filter_edited`,
-      mode: `items`,
+      modes: [`items`],
       icon: profile_icon,
       action: (args) => {
         App.set_filter_mode({mode: args.mode, type: `edited`})
@@ -1114,18 +1124,18 @@ App.check_command = (command, args) => {
     }
 
     if (valid) {
-      if (command.mode) {
-        if (command.mode === `items`) {
+      if (command.modes) {
+        if (command.modes.includes(`items`)) {
           if (!args.on_items) {
             valid = false
           }
         }
-        else if (command.mode === `search`) {
+        else if (command.modes.includes(`search`)) {
           if (!App.search_modes.includes(args.mode)) {
             valid = false
           }
         }
-        else if (command.mode !== args.mode) {
+        else if (!command.modes.includes(args.mode)) {
           valid = false
         }
       }

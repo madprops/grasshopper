@@ -829,3 +829,7 @@ App.filter_normal = (mode) => {
 App.filter_loaded = (mode) => {
   App.set_filter_mode({mode: mode, type: `loaded`})
 }
+
+App.filter_no_tab = (mode) => {
+  App.set_filter_mode({mode: mode, type: `notab`})
+}
