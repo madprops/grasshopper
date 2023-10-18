@@ -509,6 +509,10 @@ App.check_item_status = (item) => {
 }
 
 App.check_item_class = (item) => {
+  function enabled (type) {
+    return App.get_setting(`color_${type}_enabled`)
+  }
+
   item.element.classList.remove(`pinned_tab`)
   item.element.classList.remove(`normal_tab`)
   item.element.classList.remove(`loaded_tab`)
@@ -519,19 +523,19 @@ App.check_item_class = (item) => {
   if (false) {
     // Easy ordering
   }
-  else if (item.audible) {
+  else if (enabled(`playing`) && item.audible) {
     item.element.classList.add(`playing_tab`)
   }
-  else if (item.discarded) {
+  else if (enabled(`unloaded`) && item.discarded) {
     item.element.classList.add(`unloaded_tab`)
   }
-  else if (item.unread) {
+  else if (enabled(`unread`) && item.unread) {
     item.element.classList.add(`unread_tab`)
   }
-  else if (item.pinned) {
+  else if (enabled(`pins`) && item.pinned) {
     item.element.classList.add(`pinned_tab`)
   }
-  else if (!item.pinned) {
+  else if (enabled(`normal`) && !item.pinned) {
     item.element.classList.add(`normal_tab`)
   }
 }

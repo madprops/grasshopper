@@ -1445,12 +1445,6 @@ App.build_settings = () => {
           App.start_color_picker(`color_${color}`)
         }
 
-        let tabc = [`pins`, `normal`, `playing`, `loaded`, `unloaded`, `unread`]
-
-        for (let c of tabc) {
-          App.start_color_picker(`color_${c}`)
-        }
-
         App.settings_make_menu(`color_mode`, [
           {text: `None`, value: `none`},
           {text: `Icon`, value: `icon`},
