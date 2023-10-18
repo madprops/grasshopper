@@ -843,7 +843,7 @@ App.setup_commands = () => {
     },
     {
       name: `Filter Pins`,
-      cmd: `filter_pinned`,
+      cmd: `filter_pinned_tabs`,
       modes: [`tabs`],
       icon: pin_icon || filter_icon,
       action: (args) => {
@@ -853,7 +853,7 @@ App.setup_commands = () => {
     },
     {
       name: `Filter Normal`,
-      cmd: `filter_normal`,
+      cmd: `filter_normal_tabs`,
       modes: [`tabs`],
       icon: normal_icon || filter_icon,
       action: (args) => {
@@ -863,7 +863,7 @@ App.setup_commands = () => {
     },
     {
       name: `Filter Playing`,
-      cmd: `filter_playing`,
+      cmd: `filter_playing_tabs`,
       modes: [`tabs`],
       icon: playing_icon || filter_icon,
       action: (args) => {
@@ -873,7 +873,7 @@ App.setup_commands = () => {
     },
     {
       name: `Filter Loaded`,
-      cmd: `filter_loaded`,
+      cmd: `filter_loaded_tabs`,
       modes: [`tabs`],
       icon: filter_icon,
       action: (args) => {
@@ -883,7 +883,7 @@ App.setup_commands = () => {
     },
     {
       name: `Filter Unloaded`,
-      cmd: `filter_unloaded`,
+      cmd: `filter_unloaded_tabs`,
       modes: [`tabs`],
       icon: unloaded_icon || filter_icon,
       action: (args) => {
@@ -893,7 +893,7 @@ App.setup_commands = () => {
     },
     {
       name: `Filter Duplicate`,
-      cmd: `filter_duplicate`,
+      cmd: `filter_duplicate_tabs`,
       modes: [`tabs`],
       icon: filter_icon,
       action: (args) => {
