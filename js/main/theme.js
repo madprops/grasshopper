@@ -198,12 +198,14 @@ App.apply_theme = (args) => {
     let tabc = [`pins`, `normal`, `playing`, `loaded`, `unloaded`, `unread`]
 
     for (let c of tabc) {
-      if (App.get_setting(`color_${c}_enabled`)) {
-        App.set_css_var(`color_${c}`, App.get_setting(`color_${c}`))
-      }
-      else {
-        App.set_css_var(`color_${c}`, `unset`)
-      }
+      App.set_css_var(`color_${c}`, App.get_setting(`color_${c}`))
+    }
+
+    if (App.get_setting(`text_glow`)) {
+      main.classList.add(`text_glow`)
+    }
+    else {
+      main.classList.remove(`text_glow`)
     }
   }
   catch (err) {

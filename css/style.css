@@ -315,6 +315,10 @@ svg {
   overflow: hidden;
 }
 
+.text_glow .item_text {
+  text-shadow: var(--action_effect);
+}
+
 .no_wrap .item_text_1, .no_wrap .item_text_2 {
   white-space: nowrap;
   max-width: 100%;
