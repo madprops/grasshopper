@@ -505,36 +505,34 @@ App.check_item_status = (item) => {
     }
   }
 
-  if (item.pinned) {
-    item.element.classList.add(`pinned_tab`)
-    item.element.classList.remove(`normal_tab`)
-  }
-  else {
-    item.element.classList.remove(`pinned_tab`)
-    item.element.classList.add(`normal_tab`)
-  }
+  App.check_item_class(item)
+}
 
-  if (item.discarded) {
-    item.element.classList.add(`unloaded_tab`)
-    item.element.classList.remove(`loaded_tab`)
-  }
-  else {
-    item.element.classList.remove(`unloaded_tab`)
-    item.element.classList.add(`loaded_tab`)
-  }
+App.check_item_class = (item) => {
+  item.element.classList.remove(`pinned_tab`)
+  item.element.classList.remove(`normal_tab`)
+  item.element.classList.remove(`loaded_tab`)
+  item.element.classList.remove(`unloaded_tab`)
+  item.element.classList.remove(`playing_tab`)
+  item.element.classList.remove(`unread_tab`)
 
-  if (item.audible) {
+  if (false) {
+    // Easy ordering
+  }
+  else if (item.audible) {
     item.element.classList.add(`playing_tab`)
   }
-  else {
-    item.element.classList.remove(`playing_tab`)
+  else if (item.discarded) {
+    item.element.classList.add(`unloaded_tab`)
   }
-
-  if (item.unread) {
+  else if (item.unread) {
     item.element.classList.add(`unread_tab`)
   }
-  else {
-    item.element.classList.remove(`unread_tab`)
+  else if (item.pinned) {
+    item.element.classList.add(`pinned_tab`)
+  }
+  else if (!item.pinned) {
+    item.element.classList.add(`normal_tab`)
   }
 }
 
