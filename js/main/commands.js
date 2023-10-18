@@ -904,7 +904,7 @@ App.setup_commands = () => {
       name: `Filter No Tab`,
       cmd: `filter_no_tab`,
       modes: [`history`, `bookmarks`, `closed`],
-      icon: tabs_icon,
+      icon: command_icon,
       action: (args) => {
         App.filter_no_tab(args.mode)
       },
