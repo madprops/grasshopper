@@ -411,7 +411,7 @@ App.process_info = (args) => {
     }
   }
   else {
-    item.read = false
+    item.unread = true
     item.original_data = args.info
     item.id = args.info.id || App[`${args.mode}_idx`]
     item.visible = true
@@ -525,6 +525,13 @@ App.check_item_status = (item) => {
   }
   else {
     item.element.classList.remove(`playing_tab`)
+  }
+
+  if (!item.unread) {
+    item.element.classList.add(`unread_tab`)
+  }
+  else {
+    item.element.classList.remove(`unread_tab`)
   }
 }
 

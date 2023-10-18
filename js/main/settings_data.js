@@ -1034,6 +1034,20 @@ App.build_settings = () => {
       info: `Custom text color for unloaded tabs`,
       version: 1,
     },
+    color_unread_enabled: {
+      name: `Unread Tabs`,
+      type: `checkbox`,
+      value: false,
+      info: `Use custom text color for unread tabs`,
+      version: 1,
+    },
+    color_unread: {
+      name: `Unread Tabs`,
+      type: `color`,
+      value: `rgb(100, 100, 100)`,
+      info: `Custom text color for unread tabs`,
+      version: 1,
+    },
   }
 
   add_props()
@@ -1425,7 +1439,7 @@ App.build_settings = () => {
           App.start_color_picker(`color_${color}`)
         }
 
-        let tabc = [`pins`, `normal`, `playing`, `loaded`, `unloaded`]
+        let tabc = [`pins`, `normal`, `playing`, `loaded`, `unloaded`, `unread`]
 
         for (let c of tabc) {
           App.start_color_picker(`color_${c}`)

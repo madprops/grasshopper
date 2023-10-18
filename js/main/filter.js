@@ -338,7 +338,7 @@ App.filter_check = (args) => {
       match = args.duplicates.includes(args.item)
     }
     else if (args.filter_mode === `unread`) {
-      match = !args.item.read
+      match = args.item.unread
     }
     else if (args.filter_mode === `notab`) {
       let no_tab = true
