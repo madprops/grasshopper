@@ -996,7 +996,6 @@ a:visited, a:link, a:hover {
 .box {
   flex-direction: column;
   font-size: 1rem;
-  padding-bottom: 0.25rem;
   display: none;
   flex-shrink: 0;
   flex-grow: 0;
@@ -1018,6 +1017,8 @@ a:visited, a:link, a:hover {
 
 .box_container {
   overflow: auto;
+  padding-top: 0.2rem;
+  padding-bottom: 0.2rem;
 }
 
 .box_item {

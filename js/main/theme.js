@@ -185,8 +185,8 @@ App.do_apply_theme = (args) => {
     App.set_css_var(`icon_size`, `${icon_size}rem`)
 
     let tbh = App.get_setting(`tab_box`)
-    let tbh_rem = 11.11
-    let tbh_diff = 3.33
+    let tbh_rem = 12
+    let tbh_diff = 3.5
     let tbh_display = `flex`
 
     if (tbh === `none`) {
