@@ -6,6 +6,7 @@ App.setup_commands = () => {
   let unloaded_icon = App.get_setting(`unloaded_icon`)
   let notes_icon = App.get_setting(`notes_icon`)
   let muted_icon = App.get_setting(`muted_icon`)
+  let unread_icon = App.get_setting(`unread_icon`)
   let step_back_icon = App.create_icon(`back`)
   let settings_icon = App.settings_icons.general
   let theme_icon = App.settings_icons.theme
@@ -845,7 +846,7 @@ App.setup_commands = () => {
       name: `Filter Pins`,
       cmd: `filter_pinned_tabs`,
       modes: [`tabs`],
-      icon: pin_icon || filter_icon,
+      icon: pin_icon || tabs_icon,
       action: (args) => {
         App.filter_pinned(args.mode)
       },
@@ -855,7 +856,7 @@ App.setup_commands = () => {
       name: `Filter Normal`,
       cmd: `filter_normal_tabs`,
       modes: [`tabs`],
-      icon: normal_icon || filter_icon,
+      icon: normal_icon || tabs_icon,
       action: (args) => {
         App.filter_normal(args.mode)
       },
@@ -865,7 +866,7 @@ App.setup_commands = () => {
       name: `Filter Playing`,
       cmd: `filter_playing_tabs`,
       modes: [`tabs`],
-      icon: playing_icon || filter_icon,
+      icon: playing_icon || tabs_icon,
       action: (args) => {
         App.filter_playing(args.mode)
       },
@@ -875,7 +876,7 @@ App.setup_commands = () => {
       name: `Filter Loaded`,
       cmd: `filter_loaded_tabs`,
       modes: [`tabs`],
-      icon: filter_icon,
+      icon: tabs_icon,
       action: (args) => {
         App.filter_loaded(args.mode)
       },
@@ -885,7 +886,7 @@ App.setup_commands = () => {
       name: `Filter Unloaded`,
       cmd: `filter_unloaded_tabs`,
       modes: [`tabs`],
-      icon: unloaded_icon || filter_icon,
+      icon: unloaded_icon || tabs_icon,
       action: (args) => {
         App.filter_unloaded(args.mode)
       },
@@ -895,7 +896,7 @@ App.setup_commands = () => {
       name: `Filter Duplicate`,
       cmd: `filter_duplicate_tabs`,
       modes: [`tabs`],
-      icon: filter_icon,
+      icon: tabs_icon,
       action: (args) => {
         App.filter_duplicate(args.mode)
       },
@@ -905,7 +906,7 @@ App.setup_commands = () => {
       name: `Filter Unread`,
       cmd: `filter_unread_tabs`,
       modes: [`tabs`],
-      icon: filter_icon,
+      icon: unread_icon || tabs_icon,
       action: (args) => {
         App.filter_unread(args.mode)
       },

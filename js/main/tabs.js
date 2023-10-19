@@ -1,5 +1,5 @@
 App.setup_tabs = () => {
-  let def_icon = App.settings_icons.filter
+  let def_icon = App.mode_icons.tabs
 
   App.tabs_filter_modes = [
     {
