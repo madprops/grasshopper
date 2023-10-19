@@ -2,6 +2,7 @@ App.create_tab_box = () => {
   let tab_box = DOM.create(`div`, `box`, `tab_box`)
   let title = DOM.create(`div`, `box_title action`, `tab_box_title`)
   title.textContent = `Recent Tabs`
+  title.title = `This is the Tab Box`
 
   DOM.ev(title, `click`, () => {
     App.show_settings_category(`show`)
