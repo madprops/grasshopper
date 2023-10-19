@@ -389,6 +389,7 @@ App.start_settings = () => {
       App.refresh_gestures()
       App.setup_commands()
       App.fill_palette()
+      App.build_tab_filters()
       App.clear_show()
     },
   }

@@ -3,6 +3,7 @@ App.setup_commands = () => {
   let pin_icon = App.get_setting(`pin_icon`)
   let normal_icon = App.get_setting(`normal_icon`)
   let playing_icon = App.get_setting(`playing_icon`)
+  let loaded_icon = App.get_setting(`loaded_icon`)
   let unloaded_icon = App.get_setting(`unloaded_icon`)
   let notes_icon = App.get_setting(`notes_icon`)
   let muted_icon = App.get_setting(`muted_icon`)
@@ -876,7 +877,7 @@ App.setup_commands = () => {
       name: `Filter Loaded`,
       cmd: `filter_loaded_tabs`,
       modes: [`tabs`],
-      icon: tabs_icon,
+      icon: loaded_icon || tabs_icon,
       action: (args) => {
         App.filter_loaded(args.mode)
       },
