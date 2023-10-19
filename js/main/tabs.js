@@ -108,9 +108,11 @@ App.build_tab_filters = () => {
       type: `unread`, text:`Unread`, skip: false, info: `Show tabs that haven't been visited yet`,
       icon: App.get_setting(`unread_icon`) || def_icon
     },
+
+    {type: App.separator_string, skip: true},
+
     {
-      type: `duplicate`, text:`Duplicate`, skip: false, info: `Show tabs that have duplicates`,
-      icon: def_icon
+      type: `duplicate`, text:`Duplicates`, skip: false, info: `Show tabs that have duplicates`,
     },
   ]
 }
