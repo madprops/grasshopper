@@ -344,8 +344,6 @@ App.remove_profiles = (items) => {
     return
   }
 
-  let force = App.check_force(`warn_on_remove_profiles`, profiles)
-
   App.show_confirm(`Remove profiles? (${profiles.length})`, () => {
     for (let profile of profiles) {
       App.profiles = App.profiles.filter(x => x.url.value !== profile.url.value)
@@ -358,7 +356,7 @@ App.remove_profiles = (items) => {
     if (App.window_mode === `profile_editor`) {
       App.hide_window(true)
     }
-  }, undefined, force)
+  })
 }
 
 App.apply_profiles = (urls) => {
