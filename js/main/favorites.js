@@ -49,10 +49,34 @@ App.fill_favorites = (mode) => {
 
       DOM.ev(btn, `contextmenu`, (e) => {
         e.preventDefault()
-        App.show_settings_category(`favorites`)
+        App.show_favorite_menu(e)
       })
 
       c.append(btn)
     }
   }
+}
+
+App.show_favorite_menu = (e) => {
+  let items = []
+
+  for (let fav of App.get_setting(`favorites`)) {
+    let cmd = App.get_command(fav.cmd)
+
+    if (cmd) {
+      items.push({
+        text: cmd.name,
+        action: (e) => {
+          let args = {
+            cmd: cmd.cmd,
+          }
+
+          App.run_command(args)
+        },
+        icon: cmd.icon,
+      })
+    }
+  }
+
+  NeedContext.show({items: items, x: e.clientX, y: e.clientY})
 }

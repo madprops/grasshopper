@@ -426,6 +426,29 @@ App.build_settings = () => {
       info: `The position of the tab box`,
       version: 1,
     },
+    favorites: {
+      name: `Favorites`,
+      type: `list`,
+      value: [
+        {cmd: `show_about`},
+        {cmd: `go_to_bottom`},
+        {cmd: `go_to_top`},
+        {cmd: `toggle_color_red`},
+        {cmd: `toggle_color_green`},
+        {cmd: `toggle_color_blue`},
+        {cmd: `set_random_light_colors`},
+        {cmd: `set_random_dark_colors`},
+      ],
+      info: `Command buttons to show at the top`,
+      version: 1,
+    },
+    show_favorites: {
+      name: `Show Favorites`,
+      type: `checkbox`,
+      value: false,
+      info: `Show favorite buttons`,
+      version: 1,
+    },
     show_tooltips: {
       name: `Show Tooltips`,
       type: `checkbox`,
@@ -733,35 +756,6 @@ App.build_settings = () => {
         {cmd: `forget_closed`},
       ],
       info: `Closed action menu`,
-      version: 1,
-    },
-  }
-
-  add_props()
-  category = `favorites`
-
-  props = {
-    show_favorites: {
-      name: `Show Favorites`,
-      type: `checkbox`,
-      value: false,
-      info: `Show favorite buttons`,
-      version: 1,
-    },
-    favorites: {
-      name: `Favorites`,
-      type: `list`,
-      value: [
-        {cmd: `show_about`},
-        {cmd: `go_to_bottom`},
-        {cmd: `go_to_top`},
-        {cmd: `toggle_color_red`},
-        {cmd: `toggle_color_green`},
-        {cmd: `toggle_color_blue`},
-        {cmd: `set_random_light_colors`},
-        {cmd: `set_random_dark_colors`},
-      ],
-      info: `Command buttons to show at the top`,
       version: 1,
     },
   }
@@ -1571,10 +1565,6 @@ App.build_settings = () => {
           {text: `Total`, value: `total`},
         ])
       },
-    },
-    favorites: {
-      info: `Command buttons at the top`,
-      setup: () => {},
     },
     keyboard: {
       info: `You can use these custom shortcuts to run commands. You can define if you need ctrl, shift, or alt`,
