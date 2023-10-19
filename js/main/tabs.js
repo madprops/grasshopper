@@ -1,12 +1,33 @@
 App.setup_tabs = () => {
   App.tabs_filter_modes = [
-    {type: `pinned`, text:`Pinned`, skip: false, info: `Show pinned tabs`},
-    {type: `normal`, text:`Normal`, skip: false, info: `Show normal tabs`},
-    {type: `playing`, text:`Playing`, skip: false, info: `Show tabs emitting sound`},
-    {type: `loaded`, text:`Loaded`, skip: false, info: `Show tabs that are loaded`},
-    {type: `unloaded`, text:`Unloaded`, skip: false, info: `Show unloaded tabs`},
-    {type: `duplicate`, text:`Duplicate`, skip: false, info: `Show tabs that have duplicates`},
-    {type: `unread`, text:`Unread`, skip: false, info: `Show tabs that haven't been visited yet`},
+    {
+      type: `pinned`, text:`Pinned`, skip: false, info: `Show pinned tabs`,
+      icon: App.get_setting(`pin_icon`) || App.mode_icons.tabs
+    },
+    {
+      type: `normal`, text:`Normal`, skip: false, info: `Show normal tabs`,
+      icon: App.get_setting(`normal_icon`) || App.mode_icons.tabs
+    },
+    {
+      type: `playing`, text:`Playing`, skip: false, info: `Show tabs emitting sound`,
+      icon: App.get_setting(`playing_icon`) || App.mode_icons.tabs
+    },
+    {
+      type: `loaded`, text:`Loaded`, skip: false, info: `Show tabs that are loaded`,
+      icon: App.get_setting(`loaded_icon`) || App.mode_icons.tabs
+    },
+    {
+      type: `unloaded`, text:`Unloaded`, skip: false, info: `Show unloaded tabs`,
+      icon: App.get_setting(`unloaded_icon`) || App.mode_icons.tabs
+    },
+    {
+      type: `duplicate`, text:`Duplicate`, skip: false, info: `Show tabs that have duplicates`,
+      icon: App.mode_icons.tabs
+    },
+    {
+      type: `unread`, text:`Unread`, skip: false, info: `Show tabs that haven't been visited yet`,
+      icon: App.get_setting(`unread_icon`) || App.mode_icons.tabs
+    },
   ]
 
   App.debug_tabs = false
