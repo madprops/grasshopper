@@ -1088,7 +1088,10 @@ App.check_command = (command, args) => {
   args.on_media = App.on_media()
 
   if (!args.item) {
-    if (args.on_items) {
+    if (args.from === `extra_menu`) {
+      args.item = App.item_menu_item
+    }
+    else if (args.on_items) {
       args.item = App.get_selected()
     }
     else if (args.on_media) {

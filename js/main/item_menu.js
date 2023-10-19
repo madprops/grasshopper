@@ -1,9 +1,10 @@
-App.show_item_menu = async (item, x, y) => {
-  if (!item) {
+App.show_item_menu = async (args = {}) => {
+  if (!args.item) {
     return
   }
 
-  let active = App.get_active_items(item.mode, item)
+  App.item_menu_item = args.item
+  let active = App.get_active_items(args.item.mode, args.item)
   let multiple = active.length > 1
   let items = []
 
@@ -11,7 +12,7 @@ App.show_item_menu = async (item, x, y) => {
     items = App.custom_menu_items(`extra_menu`)
   }
   else {
-    if (item.mode === `tabs`) {
+    if (args.item.mode === `tabs`) {
       let some_pinned = false
       let some_unpinned = false
       let some_muted = false
@@ -46,7 +47,7 @@ App.show_item_menu = async (item, x, y) => {
         items.push({
           text: `Load`,
           action: () => {
-            App.load_tabs(item)
+            App.load_tabs(args.item)
           }
         })
       }
@@ -55,7 +56,7 @@ App.show_item_menu = async (item, x, y) => {
         items.push({
           text: `Pin`,
           action: () => {
-            App.pin_tabs(item)
+            App.pin_tabs(args.item)
           }
         })
       }
@@ -64,20 +65,20 @@ App.show_item_menu = async (item, x, y) => {
         items.push({
           text: `Unpin`,
           action: () => {
-            App.unpin_tabs(item)
+            App.unpin_tabs(args.item)
           }
         })
       }
 
-      App.common_menu_items(items, item, multiple)
-      App.more_menu_items(items, item, multiple, some_loaded, some_unmuted, some_muted)
+      App.common_menu_items(items, args.item, multiple)
+      App.more_menu_items(items, args.item, multiple, some_loaded, some_unmuted, some_muted)
       App.extra_menu_items(items)
       App.sep(items)
 
       items.push({
         text: `Close`,
         action: () => {
-          App.close_tabs(item)
+          App.close_tabs(args.item)
         }
       })
     }
@@ -85,17 +86,17 @@ App.show_item_menu = async (item, x, y) => {
       items.push({
         text: `Open`,
         action: () => {
-          App.open_items(item, true)
+          App.open_items(args.item, true)
         }
       })
 
-      App.common_menu_items(items, item, multiple)
-      App.more_menu_items(items, item, multiple)
+      App.common_menu_items(items, args.item, multiple)
+      App.more_menu_items(items, args.item, multiple)
       App.extra_menu_items(items)
     }
   }
 
-  NeedContext.show({x: x, y: y, items: items})
+  NeedContext.show({x: args.x, y: args.y, items: items})
 }
 
 App.show_item_menu_2 = (item) => {
@@ -104,7 +105,7 @@ App.show_item_menu_2 = (item) => {
   }
 
   let rect = item.element.getBoundingClientRect()
-  App.show_item_menu(item, rect.left, rect.top)
+  App.show_item_menu({item: item, x: rect.left, y: rect.top})
 }
 
 App.common_menu_items = (o_items, item, multiple) => {

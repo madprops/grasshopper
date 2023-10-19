@@ -56,7 +56,7 @@ App.update_tab_box = () => {
 
     DOM.ev(clone, `contextmenu`, (e) => {
       e.preventDefault()
-      App.show_item_menu(item, e.clientX, e.clientY)
+      App.show_item_menu({item: item, x: e.clientX, y: e.clientY})
     })
 
     c.append(clone)

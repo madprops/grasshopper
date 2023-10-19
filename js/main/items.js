@@ -218,7 +218,7 @@ App.remove_item = (item) => {
     let next_item = App.get_next_item(mode)
 
     if (next_item) {
-      App.select_item({item: next_item})
+      App.select_item({item: next_item, scroll: `nearest`})
     }
   }
 

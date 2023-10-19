@@ -175,7 +175,7 @@ App.mouse_context_action = (mode, e) => {
 
   let item = App.get_cursor_item(mode, e)
   App.select_item({item: item, scroll: `nearest`, deselect: !item.selected})
-  App.show_item_menu(item, e.clientX, e.clientY)
+  App.show_item_menu({item: item, x: e.clientX, y: e.clientY})
 }
 
 App.mouse_middle_action = (mode, e) => {
