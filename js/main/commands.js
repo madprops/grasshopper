@@ -21,8 +21,9 @@ App.setup_commands = () => {
   let profile_icon = App.profile_icon
   let tag_icon = App.tag_icon
   let bot_icon = App.bot_icon
-  let up_icon = App.up_arrow
-  let down_icon = App.down_arrow
+  let up_icon = App.up_arrow_icon
+  let down_icon = App.down_arrow_icon
+  let heart_icon = App.heart_icon
   let color_filters = []
   let color_changers = []
 
@@ -291,6 +292,17 @@ App.setup_commands = () => {
         App.show_item_menu_2(args.item)
       },
       info: `Show the item menu`
+    },
+    {
+      name: `Favorites`,
+      cmd: `show_favorites_menu`,
+      modes: [`items`],
+      item: true,
+      icon: heart_icon,
+      action: (args) => {
+        App.show_favorites_menu(args.item)
+      },
+      info: `Show the favorites menu`
     },
     {
       name: `Filter All`,

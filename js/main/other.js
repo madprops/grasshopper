@@ -120,7 +120,7 @@ App.check_force = (warn_setting, items) => {
     }
 
     for (let item of items) {
-      if (item.pinned || item.audible || item.has_profile) {
+      if (item.pinned || item.audible || item.has_profile || item.tab_color) {
         return false
       }
     }

@@ -53,11 +53,11 @@ App.fill_favorites = (mode) => {
 
   DOM.ev(c, `contextmenu`, (e) => {
     e.preventDefault()
-    App.show_favorite_menu(e)
+    App.show_favorites_menu(e)
   })
 }
 
-App.show_favorite_menu = (e) => {
+App.show_favorites_menu = (e) => {
   let items = []
 
   for (let fav of App.get_setting(`favorites`)) {
@@ -78,5 +78,5 @@ App.show_favorite_menu = (e) => {
     }
   }
 
-  NeedContext.show({items: items, x: e.clientX, y: e.clientY})
+  App.show_center_context(items, e)
 }

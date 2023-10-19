@@ -107,8 +107,9 @@ App.profile_icon = `📝`
 App.tag_icon = `✝️`
 App.browser_icon = `🌐`
 App.command_icon = `🔆`
-App.up_arrow = `⬆️`
-App.down_arrow = `⬇️`
+App.up_arrow_icon = `⬆️`
+App.down_arrow_icon = `⬇️`
+App.heart_icon = `❤️`
 
 App.dark_colors = {
   background: `rgb(45, 45, 55)`,
