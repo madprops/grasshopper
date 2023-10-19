@@ -1466,6 +1466,10 @@ App.color_menu_items = (item) => {
   items.push({
     text: `Remove Color`,
     action: () => {
+      if (item.mode === `tabs`) {
+        App.change_tab_color(item)
+      }
+
       App.change_color(item, `none`)
     }
   })

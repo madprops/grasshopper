@@ -81,6 +81,21 @@ App.setup_commands = () => {
       },
       info: `Toggle color on or off: ${color}`
     })
+
+    icon = App.color_icon(color)
+    name = `Tab ${App.capitalize(color)}`
+
+    color_changers.push({
+      name: name,
+      cmd: `tab_color_${color}`,
+      modes: [`tabs`],
+      item: true,
+      icon: icon,
+      action: (args) => {
+        App.change_tab_color(args.item, color)
+      },
+      info: `Apply a color that sticks to a tab. It disappears when the extension restarts`
+    })
   }
 
   color_changers.push({
@@ -90,6 +105,7 @@ App.setup_commands = () => {
     item: true,
     icon: theme_icon,
     action: (args) => {
+      App.change_tab_color(args.item)
       App.change_color(args.item, `none`)
     },
     info: `Remove the current color of items`

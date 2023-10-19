@@ -1086,3 +1086,12 @@ App.load_tabs = (item) => {
     }
   }, undefined, force)
 }
+
+App.change_tab_color = (item, color) => {
+  let active = App.get_active_items(item.mode, item)
+
+  for (let it of active) {
+    it.tab_color = color
+    App.update_item(it.mode, it.id, it)
+  }
+}
