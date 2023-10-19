@@ -1,32 +1,34 @@
 App.setup_tabs = () => {
+  let def_icon = App.settings_icons.filter
+
   App.tabs_filter_modes = [
     {
       type: `pinned`, text:`Pinned`, skip: false, info: `Show pinned tabs`,
-      icon: App.get_setting(`pin_icon`) || App.mode_icons.tabs
+      icon: App.get_setting(`pin_icon`) || def_icon
     },
     {
       type: `normal`, text:`Normal`, skip: false, info: `Show normal tabs`,
-      icon: App.get_setting(`normal_icon`) || App.mode_icons.tabs
+      icon: App.get_setting(`normal_icon`) || def_icon
     },
     {
       type: `playing`, text:`Playing`, skip: false, info: `Show tabs emitting sound`,
-      icon: App.get_setting(`playing_icon`) || App.mode_icons.tabs
+      icon: App.get_setting(`playing_icon`) || def_icon
     },
     {
       type: `loaded`, text:`Loaded`, skip: false, info: `Show tabs that are loaded`,
-      icon: App.get_setting(`loaded_icon`) || App.mode_icons.tabs
+      icon: App.get_setting(`loaded_icon`) || def_icon
     },
     {
       type: `unloaded`, text:`Unloaded`, skip: false, info: `Show unloaded tabs`,
-      icon: App.get_setting(`unloaded_icon`) || App.mode_icons.tabs
+      icon: App.get_setting(`unloaded_icon`) || def_icon
     },
     {
       type: `duplicate`, text:`Duplicate`, skip: false, info: `Show tabs that have duplicates`,
-      icon: App.mode_icons.tabs
+      icon: def_icon
     },
     {
       type: `unread`, text:`Unread`, skip: false, info: `Show tabs that haven't been visited yet`,
-      icon: App.get_setting(`unread_icon`) || App.mode_icons.tabs
+      icon: App.get_setting(`unread_icon`) || def_icon
     },
   ]
 
