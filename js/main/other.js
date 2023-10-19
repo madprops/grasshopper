@@ -120,8 +120,14 @@ App.check_force = (warn_setting, items) => {
     }
 
     for (let item of items) {
-      if (item.pinned || item.audible || item.has_profile || item.tab_color) {
+      if (item.pinned || item.audible) {
         return false
+      }
+
+      if (App.get_setting(`edited_special`)) {
+        if (item.has_profile || item.tab_color) {
+          return false
+        }
       }
     }
   }
