@@ -47,14 +47,14 @@ App.fill_favorites = (mode) => {
         App.run_command(args)
       })
 
-      DOM.ev(btn, `contextmenu`, (e) => {
-        e.preventDefault()
-        App.show_favorite_menu(e)
-      })
-
       c.append(btn)
     }
   }
+
+  DOM.ev(c, `contextmenu`, (e) => {
+    e.preventDefault()
+    App.show_favorite_menu(e)
+  })
 }
 
 App.show_favorite_menu = (e) => {
