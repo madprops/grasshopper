@@ -352,11 +352,27 @@ App.build_settings = () => {
       info: `Icons for muted tabs`,
       version: 1,
     },
+    loaded_icon: {
+      name: `Loaded Icon`,
+      type: `text_smaller`,
+      value: ``,
+      info: `Icons for loaded tabs`,
+      placeholder: App.icon_placeholder,
+      version: 1,
+    },
     unloaded_icon: {
       name: `Unloaded Icon`,
       type: `text_smaller`,
       value: `💤`,
       info: `Icons for unloaded tabs`,
+      placeholder: App.icon_placeholder,
+      version: 1,
+    },
+    unread_icon: {
+      name: `Unread Icon`,
+      type: `text_smaller`,
+      value: `⭕`,
+      info: `Icons for unread tabs`,
       placeholder: App.icon_placeholder,
       version: 1,
     },
@@ -1481,26 +1497,6 @@ App.build_settings = () => {
         }
       },
     },
-    filter: {
-      info: `Adjust the filter and search`,
-      setup: () => {},
-    },
-    media: {
-      info: `How to view media items. An icon appears to the left of items. You can make it view media when clicking the icons, the whole item, or never`,
-      setup: () => {
-        let opts = [
-          {text: `Never`, value: `never`},
-          {text: `On Icon Click`, value: `icon`},
-          {text: `On Item Click`, value: `item`},
-        ]
-
-        for (let m of App.modes) {
-          App.settings_make_menu(`view_image_${m}`, opts)
-          App.settings_make_menu(`view_video_${m}`, opts)
-          App.settings_make_menu(`view_audio_${m}`, opts)
-        }
-      },
-    },
     icons: {
       info: `Customize the icons of items. You can leave them empty`,
       setup: () => {},
@@ -1532,6 +1528,26 @@ App.build_settings = () => {
           {text: `Top`, value: `top`},
           {text: `Bottom`, value: `bottom`},
         ])
+      },
+    },
+    filter: {
+      info: `Adjust the filter and search`,
+      setup: () => {},
+    },
+    media: {
+      info: `How to view media items. An icon appears to the left of items. You can make it view media when clicking the icons, the whole item, or never`,
+      setup: () => {
+        let opts = [
+          {text: `Never`, value: `never`},
+          {text: `On Icon Click`, value: `icon`},
+          {text: `On Item Click`, value: `item`},
+        ]
+
+        for (let m of App.modes) {
+          App.settings_make_menu(`view_image_${m}`, opts)
+          App.settings_make_menu(`view_video_${m}`, opts)
+          App.settings_make_menu(`view_audio_${m}`, opts)
+        }
       },
     },
     gestures: {

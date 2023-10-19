@@ -453,6 +453,17 @@ App.check_item_status = (item) => {
     return
   }
 
+  if (App.get_setting(`loaded_icon`)) {
+    let loaded = DOM.el(`.loaded_icon`, item.element)
+
+    if (item.discarded) {
+      loaded.classList.remove(`hidden`)
+    }
+    else {
+      loaded.classList.add(`hidden`)
+    }
+  }
+
   if (App.get_setting(`unloaded_icon`)) {
     let unloaded = DOM.el(`.unloaded_icon`, item.element)
 
@@ -483,6 +494,17 @@ App.check_item_status = (item) => {
     }
     else {
       muted.classList.add(`hidden`)
+    }
+  }
+
+  if (App.get_setting(`unread_icon`)) {
+    let unread = DOM.el(`.unread_icon`, item.element)
+
+    if (item.unread) {
+      unread.classList.remove(`hidden`)
+    }
+    else {
+      unread.classList.add(`hidden`)
     }
   }
 
@@ -678,6 +700,14 @@ App.create_item_element = (item) => {
   App.check_view_media(item)
 
   if (item.mode === `tabs`) {
+    let loaded_icon = App.get_setting(`loaded_icon`)
+
+    if (loaded_icon) {
+      let loaded = DOM.create(`div`, `loaded_icon item_node hidden`)
+      loaded.textContent = loaded_icon
+      item.element.append(loaded)
+    }
+
     let unloaded_icon = App.get_setting(`unloaded_icon`)
 
     if (unloaded_icon) {
@@ -706,6 +736,14 @@ App.create_item_element = (item) => {
       let muted = DOM.create(`div`, `muted_icon item_node hidden${cls}`)
       muted.textContent = muted_icon
       item.element.append(muted)
+    }
+
+    let unread_icon = App.get_setting(`unread_icon`)
+
+    if (unread_icon) {
+      let unread = DOM.create(`div`, `unread_icon item_node hidden${cls}`)
+      unread.textContent = unread_icon
+      item.element.append(unread)
     }
   }
 
