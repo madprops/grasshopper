@@ -50,6 +50,8 @@ App.apply_theme = (args) => {
     for (let color of App.colors) {
       let rgb = App.get_setting(`color_${color}`)
       App.set_css_var(`color_${color}`, rgb)
+      let text = App.colorlib.get_lighter_or_darker(rgb, 0.77)
+      App.set_css_var(`text_${color}`, text)
     }
 
     App.set_css_var(`font_size`, App.get_setting(`font_size`) + `px`)
