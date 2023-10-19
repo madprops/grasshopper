@@ -1017,8 +1017,8 @@ a:visited, a:link, a:hover {
 
 .box_container {
   overflow: auto;
-  padding-top: 0.2rem;
-  padding-bottom: 0.2rem;
+  padding-top: 0.15rem;
+  padding-bottom: 0.15rem;
 }
 
 .box_item {
