@@ -377,6 +377,7 @@ App.start_settings = () => {
   }
 
   App.cmdlist = App.settings_commands()
+  App.cmdlist_2 = App.settings_commands(false)
 
   let common = {
     persistent: false,
@@ -761,11 +762,15 @@ App.on_settings = (mode = App.window_mode) => {
   return mode.startsWith(`settings_`)
 }
 
-App.settings_commands = () => {
-  let items = [
-    {text: `Do Nothing`, value: `none`},
-    {text: App.separator_string},
-  ]
+App.settings_commands = (include_none = true) => {
+  let items = []
+
+  if (include_none) {
+    items = [
+      {text: `Do Nothing`, value: `none`},
+      {text: App.separator_string},
+    ]
+  }
 
   for (let cmd of App.commands) {
     if (cmd.name === App.separator_string) {
@@ -1053,7 +1058,7 @@ App.setup_settings_addlist = () => {
       pk: `key`,
       widgets: [`key`, `menu`, `checkbox`, `checkbox`, `checkbox`],
       labels: [`Key`, `Command`, `Require Ctrl`, `Require Shift`, `Require Alt`],
-      sources: [undefined, App.cmdlist.slice(0), true, false, false],
+      sources: [undefined, App.cmdlist_2.slice(0), true, false, false],
       keys: [`key`, `cmd`, `ctrl`, `shift`, `alt`],
       list_text: (items) => {
         let cmd = cmd_name(items.cmd)
@@ -1075,7 +1080,7 @@ App.setup_settings_addlist = () => {
           pk: `cmd`,
           widgets: [`menu`],
           labels: [`Command`],
-          sources: [App.cmdlist.slice(0)],
+          sources: [App.cmdlist_2.slice(0)],
           keys: [`cmd`],
           list_text: (items) => {
             return cmd_name(items.cmd)
@@ -1096,7 +1101,7 @@ App.setup_settings_addlist = () => {
       pk: `cmd`,
       widgets: [`menu`],
       labels: [`Command`],
-      sources: [App.cmdlist.slice(0)],
+      sources: [App.cmdlist_2.slice(0)],
       keys: [`cmd`],
       list_text: (items) => {
         return cmd_name(items.cmd)
