@@ -269,7 +269,7 @@ App.process_info_list = (mode, info_list) => {
   let exclude = []
 
   for (let info of info_list) {
-    let item = App.process_info({mode: mode, info: info, exclude: exclude})
+    let item = App.process_info({mode: mode, info: info, exclude: exclude, list: true})
 
     if (!item) {
       continue
@@ -292,6 +292,7 @@ App.process_info_list = (mode, info_list) => {
 App.process_info = (args) => {
   let def_args = {
     exclude: [],
+    list: false,
   }
 
   args = Object.assign(def_args, args)
@@ -411,7 +412,7 @@ App.process_info = (args) => {
     }
   }
   else {
-    if (App.started) {
+    if (!args.list) {
       if ((args.mode === `tabs`) && !item.active) {
         item.unread = true
       }
