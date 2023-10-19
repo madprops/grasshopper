@@ -1,7 +1,12 @@
 App.create_tab_box = () => {
   let tab_box = DOM.create(`div`, `box`, `tab_box`)
-  let title = DOM.create(`div`, `box_title`, `tab_box_title`)
+  let title = DOM.create(`div`, `box_title action`, `tab_box_title`)
   title.textContent = `Recent Tabs`
+
+  DOM.ev(title, `click`, () => {
+    App.show_settings_category(`show`)
+  })
+
   tab_box.append(title)
   let container = DOM.create(`div`, `box_container`, `tab_box_container`)
   tab_box.append(container)
