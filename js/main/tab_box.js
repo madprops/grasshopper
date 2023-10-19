@@ -24,6 +24,13 @@ App.update_tab_box = () => {
       icon.append(App.get_jdenticon(item.hostname))
     }
 
+    clone.append(icon)
+
+    if (item.color) {
+      let c_icon = App.color_icon(item.color)
+      clone.append(c_icon)
+    }
+
     let text_el = DOM.create(`div`, `box_item_text`)
     let tbm = App.get_setting(`tab_box_mode`)
     let text
@@ -37,7 +44,6 @@ App.update_tab_box = () => {
 
     text = text.substring(0, App.max_text_length).trim()
     text_el.textContent = text
-    clone.append(icon)
     clone.append(text_el)
     clone.title = item.url
 
