@@ -411,8 +411,10 @@ App.process_info = (args) => {
     }
   }
   else {
-    if (!item.active) {
-      item.unread = true
+    if (App.started) {
+      if ((args.mode === `tabs`) && !item.active) {
+        item.unread = true
+      }
     }
 
     item.original_data = args.info
