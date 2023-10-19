@@ -4,8 +4,8 @@ App.create_tab_box = () => {
   title.textContent = `Recent Tabs`
   title.title = `This is the Tab Box`
 
-  DOM.ev(title, `click`, () => {
-    App.show_settings_category(`show`)
+  DOM.ev(title, `click`, (e) => {
+    App.tab_box_menu(e)
   })
 
   tab_box.append(title)
@@ -79,4 +79,20 @@ App.update_tab_box = () => {
     c.append(clone)
     App.scroll_to_top(c)
   }
+}
+
+App.tab_box_menu = (e) => {
+  let items = []
+
+  for (let size of App.sizes) {
+    items.push({
+      text: size.text,
+      action: (e) => {
+        App.set_setting(`tab_box`, size.value)
+        App.apply_theme()
+      },
+    })
+  }
+
+  NeedContext.show({items: items, x: e.clientX, y: e.clientY})
 }

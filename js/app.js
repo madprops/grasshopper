@@ -39,6 +39,13 @@ App.num_backgrounds = 3
 App.number_min = 1
 App.number_max = 99999
 App.active_history = []
+App.sizes = [
+  {text: `Tiny`, value: `tiny`},
+  {text: `Small`, value: `small`},
+  {text: `Normal`, value: `normal`},
+  {text: `Big`, value: `big`},
+  {text: `Huge`, value: `huge`},
+]
 
 App.settings_done = false
 App.settings_ready = false

@@ -1369,13 +1369,7 @@ App.build_settings = () => {
           clearTimeout(App.restore_timeout)
         })
 
-        App.settings_make_menu(`item_height`, [
-          {text: `Tiny`, value: `tiny`},
-          {text: `Small`, value: `small`},
-          {text: `Normal`, value: `normal`},
-          {text: `Big`, value: `big`},
-          {text: `Huge`, value: `huge`},
-        ])
+        App.settings_make_menu(`item_height`, App.sizes)
 
         App.settings_make_menu(`item_border`, [
           {text: `None`, value: `none`},
@@ -1384,14 +1378,7 @@ App.build_settings = () => {
           {text: `Huge`, value: `huge`},
         ])
 
-        App.settings_make_menu(`item_icon`, [
-          {text: `None`, value: `none`},
-          {text: `Tiny`, value: `tiny`},
-          {text: `Small`, value: `small`},
-          {text: `Normal`, value: `normal`},
-          {text: `Big`, value: `big`},
-          {text: `Huge`, value: `huge`},
-        ])
+        App.settings_make_menu(`item_icon`, [{text: `None`, value: `none`}, ...App.sizes])
 
         App.settings_make_menu(`primary_mode`, [
           {text: `Tabs`, value: `tabs`},
@@ -1510,14 +1497,7 @@ App.build_settings = () => {
           {text: `Always`, value: `always`},
         ])
 
-        App.settings_make_menu(`tab_box`, [
-          {text: `None`, value: `none`},
-          {text: `Tiny`, value: `tiny`},
-          {text: `Small`, value: `small`},
-          {text: `Normal`, value: `normal`},
-          {text: `Big`, value: `big`},
-          {text: `Huge`, value: `huge`},
-        ])
+        App.settings_make_menu(`tab_box`, [{text: `None`, value: `none`}, ...App.sizes])
 
         App.settings_make_menu(`tab_box_mode`, [
           {text: `Title`, value: `title`},
