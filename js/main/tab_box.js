@@ -1,10 +1,15 @@
 App.create_tab_box = () => {
   let tab_box = DOM.create(`div`, `box`, `tab_box`)
+  let title = DOM.create(`div`, `box_title`, `tab_box_title`)
+  title.textContent = `Recent Tabs`
+  tab_box.append(title)
+  let container = DOM.create(`div`, `box_container`, `tab_box_container`)
+  tab_box.append(container)
   return tab_box
 }
 
 App.update_tab_box = () => {
-  let c = DOM.el(`#tab_box`)
+  let c = DOM.el(`#tab_box_container`)
   c.innerHTML = ``
 
   for (let item of App.active_history) {
