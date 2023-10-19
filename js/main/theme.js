@@ -1,4 +1,14 @@
+App.setup_theme = () => {
+  App.apply_theme_debouncer = App.create_debouncer((args) => {
+    App.do_apply_theme(args)
+  }, App.apply_theme_delay)
+}
+
 App.apply_theme = (args) => {
+  App.apply_theme_debouncer.call(args)
+}
+
+App.do_apply_theme = (args) => {
   App.debug(`Apply Theme`)
 
   let def_args = {
