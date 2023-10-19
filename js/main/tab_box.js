@@ -42,6 +42,16 @@ App.update_tab_box = () => {
       clone.append(c_icon)
     }
 
+    if (item.audible) {
+      let playing_icon = App.get_setting(`playing_icon`)
+
+      if (playing_icon) {
+        let playing = DOM.create(`div`, `playing_icon`)
+        playing.textContent = playing_icon
+        clone.append(playing)
+      }
+    }
+
     let text_el = DOM.create(`div`, `box_item_text`)
     let tbm = App.get_setting(`tab_box_mode`)
     let text
