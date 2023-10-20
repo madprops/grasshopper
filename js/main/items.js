@@ -1492,6 +1492,7 @@ App.clear_show = async () => {
   App.reinsert_items(`tabs`)
   App.refresh_active_history(true)
   await App.do_show_mode({mode: `tabs`, force: true})
+  App.do_check_pinline()
   App.show_primary_mode(false)
 }
 
