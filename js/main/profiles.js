@@ -1137,10 +1137,28 @@ App.change_color = (item, color, toggle = false) => {
   }, undefined, force)
 }
 
-App.profile_make_menu = (key, opts,) => {
+App.profile_make_menu = (key, opts) => {
   App[`profile_menubutton_${key}`] = Menubutton.create({
     button: DOM.el(`#profile_editor_${key}`),
     opts: opts,
+    get_index: () => {
+      let index = 0
+      let sett = App.profile_get_value(key)
+
+      for (let o of opts) {
+        if (!o.value) {
+          continue
+        }
+
+        if (o.value === sett) {
+          return index
+        }
+
+        index += 1
+      }
+
+      return 0
+    }
   })
 }
 
