@@ -1,7 +1,7 @@
 {
     "manifest_version": 2,
     "name": "Grasshopper",
-    "version": "1016",
+    "version": "1017",
     "description": "Godspeed You Tab Emperor",
     "permissions": [
         "tabs",
@@ -36,6 +36,11 @@
                 "default": "Ctrl+Shift+Space"
             },
             "description": "Toggle the sidebar"
+        }
+    },
+    "applications": {
+        "gecko": {
+            "id": "grasshopper@tabmanager"
         }
     }
 }

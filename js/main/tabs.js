@@ -1087,11 +1087,23 @@ App.load_tabs = (item) => {
   }, undefined, force)
 }
 
-App.change_tab_color = (item, color) => {
+App.change_tab_color = async (item, color) => {
   let active = App.get_active_items(item.mode, item)
 
   for (let it of active) {
     it.tab_color = color
     App.update_item(it.mode, it.id, it)
+  }
+
+  await browser.sessions.setTabValue(item.id, `tab_color`, color)
+}
+
+App.check_tab_sessions = async () => {
+  for (let item of App.get_items(`tabs`)) {
+    let tab_color = await browser.sessions.getTabValue(item.id, `tab_color`)
+
+    if (tab_color) {
+      App.change_tab_color(item, tab_color)
+    }
   }
 }
