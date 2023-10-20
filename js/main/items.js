@@ -1489,7 +1489,7 @@ App.get_persistent_items = () => {
 App.clear_show = async () => {
   App.rebuild_items()
   App.clear_all_items()
-  App.reinsert_items(`tabs`)
+  App.remake_elements(`tabs`)
   App.refresh_active_history(true)
   await App.do_show_mode({mode: `tabs`, force: true})
   App.do_check_pinline()
@@ -1602,10 +1602,11 @@ App.rebuild_items = () => {
   }
 }
 
-App.reinsert_items = (mode) => {
+App.remake_elements = (mode) => {
   let container = DOM.el(`#${mode}_container`)
 
   for (let item of App.get_items(mode)) {
+    App.create_item_element(item)
     container.append(item.element)
   }
 }
