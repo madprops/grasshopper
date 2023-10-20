@@ -41,11 +41,18 @@ Menubutton.create = (args = {}) => {
       })
     }
 
+    let index = 0
+
+    if (args.get_index) {
+      index = args.get_index()
+    }
+
     NeedContext.show({
       element: args.button,
       items: items,
       expand: true,
       margin: args.button.clientHeight,
+      index: index,
     })
   })
 
