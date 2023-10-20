@@ -111,9 +111,11 @@ App.do_show_mode = async (args) => {
   }
 
   if (value || was_filtered) {
+    console.log(1)
     App.do_filter({mode: args.mode, force: true})
   }
   else {
+    console.log(2)
     App.select_first_item(args.mode, true, `center`)
   }
 

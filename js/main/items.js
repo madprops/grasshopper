@@ -243,7 +243,10 @@ App.hide_item = (it) => {
 }
 
 App.clear_items = (mode) => {
-  App[`${mode}_items`] = []
+  if (!App.persistent_modes.includes(mode) || !App[`${mode}_items`]) {
+    App[`${mode}_items`] = []
+  }
+
   let c = DOM.el(`#${mode}_container`)
 
   if (c) {
@@ -1486,8 +1489,9 @@ App.get_persistent_items = () => {
 App.clear_show = async () => {
   App.rebuild_items()
   App.clear_all_items()
-  App.clear_active_history()
-  await App.do_show_mode({mode: `tabs`})
+  App.reinsert_items(`tabs`)
+  App.refresh_active_history(true)
+  await App.do_show_mode({mode: `tabs`, force: true})
   App.show_primary_mode(false)
 }
 
@@ -1594,5 +1598,13 @@ App.rebuild_items = () => {
       App.windows[mode].clear()
       App.build_item_window(mode)
     }
+  }
+}
+
+App.reinsert_items = (mode) => {
+  let container = DOM.el(`#${mode}_container`)
+
+  for (let item of App.get_items(mode)) {
+    container.append(item.element)
   }
 }
