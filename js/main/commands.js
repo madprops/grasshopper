@@ -52,7 +52,6 @@ App.setup_commands = () => {
       info: `Filter: Show color (${color})`
     })
 
-    icon = App.color_icon(color)
     name = `Color ${App.capitalize(color)}`
 
     color_changers.push({
@@ -65,6 +64,20 @@ App.setup_commands = () => {
         App.edit_tab_color(args.item, color)
       },
       info: `Edit a custom color to tabs: ${color}`
+    })
+
+    name = `Toggle ${App.capitalize(color)}`
+
+    color_changers.push({
+      name: name,
+      cmd: `toggle_color_${color}`,
+      modes: [`tabs`],
+      item: true,
+      icon: icon,
+      action: (args) => {
+        App.edit_tab_color(args.item, color)
+      },
+      info: `Toggle color on tabs: ${color}`
     })
   }
 
@@ -756,7 +769,7 @@ App.setup_commands = () => {
       action: (args) => {
         App.edit_tab_title(args.item)
       },
-      info: `Edit a profile's title`
+      info: `Edit a tabs's title`
     },
     {
       name: App.separator_string

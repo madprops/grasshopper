@@ -72,14 +72,6 @@ App.show_main_menu = (mode) => {
   }
 
   items.push({
-    icon: App.edit_icon,
-    text: `Profiles`,
-    get_items: () => {
-      return App.get_profile_menu_items()
-    }
-  })
-
-  items.push({
     icon: App.bot_icon,
     text: `About`,
     action: () => {

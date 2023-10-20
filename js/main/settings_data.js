@@ -675,7 +675,6 @@ App.build_settings = () => {
       name: `Extra Menu`,
       type: `list`,
       value: [
-        {cmd: `profiles_add_note`},
         {cmd: `toggle_color_red`},
         {cmd: `toggle_color_green`},
         {cmd: `toggle_color_blue`},

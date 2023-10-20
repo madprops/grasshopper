@@ -1119,7 +1119,7 @@ App.prompt_tab_title = (item) => {
   let value = ``
 
   if (active.length === 1) {
-    value = item.title
+    value = App.get_title(item)
   }
 
   App.show_prompt(value, `Edit Title`, (title) => {

@@ -27,64 +27,6 @@
       <div id="main"></div>
     </div>
 
-    <template id="template_profile_editor">
-      <div class="flex_column_center gap_4" id="profile_editor_container">
-        <div id="profile_editor_exact_container" class="editor_container flex_column_center gap_1" title="Match exact URL. Else it uses startsWith">
-          <div class="profile_editor_label action" data-key="exact">Exact</div>
-          <input type="checkbox" id="profile_editor_exact" class="settings_checkbox editor_input">
-        </div>
-
-        <div id="profile_editor_url_container" class="editor_container flex_column_center gap_1" title="Match URLs that start with this">
-          <div class="flex_row_center gap_1">
-            <div class="profile_editor_label" data-key="url">URL</div>
-            <div>|</div>
-            <div id="profile_editor_url_root" class="action underline">Root</div>
-            <div>|</div>
-            <div id="profile_editor_url_full" class="action underline">Full</div>
-          </div>
-          <input type="text" autocomplete="off" spellcheck="false" id="profile_editor_url" class="text settings_text editor_input" placeholder="Domain Root URL">
-        </div>
-
-        <div id="profile_editor_title_container" class="editor_container flex_column_center gap_1" title="Override the title">
-          <div class="profile_editor_label action" data-key="title">Title</div>
-          <input type="text" autocomplete="off" spellcheck="false" id="profile_editor_title" class="text settings_text editor_input" placeholder="Set a fixed title">
-        </div>
-
-        <div id="profile_editor_color_container" class="editor_container flex_column_center gap_1" title="Give the item a color to find it easily">
-          <div class="profile_editor_label action" data-key="color">Color</div>
-          <div id="profile_editor_color" class="menubutton button editor_input"></div>
-        </div>
-
-        <div id="profile_editor_tags_container" class="editor_container flex_column_center gap_1" title="Add tags to find this item easily">
-          <div class="flex_row_center gap_1">
-            <div class="profile_editor_label action" data-key="tags">Tags</div>
-            <div>|</div>
-            <div id="profile_editor_tags_add" class="action underline">Add</div>
-          </div>
-
-          <div id="profile_editor_tags" class="addlist_control"></div>
-        </div>
-
-        <div id="profile_editor_notes_container" class="editor_container flex_column_center gap_1" title="Add useful notes about this item">
-          <div class="profile_editor_label action" data-key="notes">Notes</div>
-          <div id="profile_editor_notes" class="addlist_control"></div>
-        </div>
-
-        <div id="profile_editor_icon_container" class="editor_container flex_column_center gap_1" title="Override the icon">
-          <div class="profile_editor_label action" data-key="icon">Icon</div>
-          <input type="text" autocomplete="off" spellcheck="false" id="profile_editor_icon" class="text settings_text text_smaller editor_input">
-        </div>
-      </div>
-    </template>
-
-    <template id="template_profile_editor_top">
-      <div class="flex_row_center gap_2">
-        <div>Profile Editor</div>
-        <div id="profile_editor_remove" class="button">Remove</div>
-        <div id="profile_editor_close" class="button"></div>
-      </div>
-    </template>
-
     <template id="template_about">
       <div id="about_container" class="flex_column_center gap_2">
         <div id="about_links" class="flex_row_center gap_2">
