@@ -317,7 +317,6 @@ App.do_save_profile = (args) => {
       }
     }
 
-    console.log(profile)
     add_url(og_url)
     add_url(profile.url.value)
   }
