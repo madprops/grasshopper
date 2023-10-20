@@ -17,6 +17,8 @@ App.refresh_active_history = (clean = false) => {
 }
 
 App.do_refresh_active_history = () => {
+  App.refresh_active_history_debouncer.cancel()
+
   if (App.get_setting(`active_trace`)) {
     App.update_active_trace()
   }
