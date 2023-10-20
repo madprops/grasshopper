@@ -49,6 +49,7 @@ App.start_about = () => {
         `In the filter, $month resolves to the current month name`,
         `In the filter, $year resolves to the year number`,
         `Data like settings and profiles can be exported and imported`,
+        `Context menus support filtering, just start typing something`
       ]
 
       let close = DOM.el(`#about_close`)
