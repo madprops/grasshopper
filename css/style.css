@@ -1033,6 +1033,10 @@ a:visited, a:link, a:hover {
   padding-bottom: 0.35rem;
 }
 
+.box_item:first-child {
+  text-decoration: underline;
+}
+
 .box_item_icon {
   display: flex;
   align-items: center;
