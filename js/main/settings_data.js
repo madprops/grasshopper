@@ -1263,6 +1263,13 @@ App.build_settings = () => {
       info: `Enable 'Exact' by default when creating profiles`,
       version: 1,
     },
+    debug_mode: {
+      name: `Debug Mode`,
+      type: `checkbox`,
+      value: false,
+      info: `Enable some data for developers`,
+      version: 1,
+    },
     max_recent_tabs: {
       name: `Max Recent Tabs`,
       type: `number`,
@@ -1281,13 +1288,6 @@ App.build_settings = () => {
       min: App.number_min,
       max: App.number_max,
       info: `Max active tab history to remember`,
-      version: 1,
-    },
-    debug_mode: {
-      name: `Debug Mode`,
-      type: `checkbox`,
-      value: false,
-      info: `Enable some data for developers`,
       version: 1,
     },
   }
