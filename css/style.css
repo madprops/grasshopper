@@ -842,12 +842,6 @@ a:visited, a:link, a:hover {
   height: 100%;
 }
 
-#profile_editor_container {
-  padding-bottom: 2rem;
-  align-items: stretch;
-  justify-content: center;
-}
-
 .pre_text {
   white-space: pre;
 }

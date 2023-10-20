@@ -1255,13 +1255,6 @@ App.build_settings = () => {
       info: `Show the active tab in the tab box`,
       version: 1,
     },
-    exact_profiles: {
-      name: `Exact Profiles`,
-      type: `checkbox`,
-      value: false,
-      info: `Enable 'Exact' by default when creating profiles`,
-      version: 1,
-    },
     debug_mode: {
       name: `Debug Mode`,
       type: `checkbox`,
@@ -1414,7 +1407,7 @@ App.build_settings = () => {
       ]
     },
     colors: {
-      info: `These are the colors you assign to items by editing their profiles`,
+      info: `These are the colors you assign to tabs`,
       setup: () => {
         for (let color of App.colors) {
           App.start_color_picker(`color_${color}`)

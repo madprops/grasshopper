@@ -125,7 +125,7 @@ App.check_force = (warn_setting, items) => {
       }
 
       if (App.get_setting(`edited_special`)) {
-        if (item.has_profile || item.tab_color) {
+        if (item.custom_color || item.custom_title) {
           return false
         }
       }

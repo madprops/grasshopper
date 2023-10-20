@@ -4,7 +4,6 @@ NeedContext.min_width = `4.5rem`
 NeedContext.center_top = `22%`
 
 App.stor_settings_name = `settings_v100`
-App.stor_profiles_name = `profiles_v100`
 App.stor_command_history_name = `command_history_v1`
 App.stor_filter_history_name = `filter_history_v1`
 App.stor_first_time_name = `first_time_v1`
@@ -18,7 +17,6 @@ App.popups = {}
 App.previous_tabs = []
 App.max_closed = 25
 App.icon_size = 50
-App.max_profiles = 1000 * 5
 App.max_text_length = 200
 App.scroll_amount = 150
 App.double_tap_date = 0
