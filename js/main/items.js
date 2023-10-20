@@ -911,7 +911,7 @@ App.setup_item_window = (mode) => {
     App.build_item_window(mode)
   }
   args.after_show = () => {
-    App.fill_favorites(mode)
+    App.fill_favorites_bar(mode)
   }
 
   App.create_window(args)
@@ -1530,7 +1530,7 @@ App.build_item_window = (mode) => {
   }
 
   let btns = DOM.create(`div`, `item_top_buttons`)
-  let bar = DOM.create(`div`, `item_top_bar`, `item_top_bar_${mode}`)
+  let bar = DOM.create(`div`, `item_top_bar hidden`, `item_top_bar_${mode}`)
   maintop.append(btns)
   maintop.append(bar)
 
@@ -1538,8 +1538,13 @@ App.build_item_window = (mode) => {
     maintop.append(tab_box)
   }
 
-  let favorites = App.create_favorites(mode)
-  bar.append(favorites)
+  let favmode = App.get_setting(`favorites_mode`)
+
+  if (favmode === `bar`) {
+    let favorites = App.create_favorites_bar(mode)
+    bar.append(favorites)
+  }
+
   let scroller = App.create_scroller(mode)
   let footer = App.create_footer(mode)
   content.append(scroller)
@@ -1568,6 +1573,11 @@ App.build_item_window = (mode) => {
 
   if (actions_menu) {
     right_btns.append(actions_menu)
+  }
+
+  if (favmode === `button`) {
+    let fav_button = App.create_favorites_button(mode)
+    right_btns.append(fav_button)
   }
 
   btns.append(left_btns)

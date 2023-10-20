@@ -1,20 +1,28 @@
-App.create_favorites = (mode) => {
-  return DOM.create(`div`, `favorites`, `favorites_${mode}`)
+App.create_favorites_bar = (mode) => {
+  return DOM.create(`div`, `favorites_bar`, `favorites_bar_${mode}`)
 }
 
-App.fill_favorites = (mode) => {
-  let c = DOM.el(`#favorites_${mode}`)
-  let bar = DOM.el(`#item_top_bar_${mode}`)
-  let show = App.get_setting(`show_favorites`)
+App.create_favorites_button = (mode) => {
+  let btn = DOM.create(`div`, `favorites_button button`, `favorites_button_${mode}`)
+  btn.textContent = App.heart_icon
 
-  if (show) {
-    bar.classList.remove(`hidden`)
-  }
-  else {
+  DOM.ev(btn, `click`, (e) => {
+    App.show_favorites_menu(e)
+  })
+
+  return btn
+}
+
+App.fill_favorites_bar = (mode) => {
+  let bar = DOM.el(`#item_top_bar_${mode}`)
+
+  if (App.get_setting(`favorites_mode`) !== `bar`) {
     bar.classList.add(`hidden`)
     return
   }
 
+  bar.classList.remove(`hidden`)
+  let c = DOM.el(`#favorites_bar_${mode}`)
   let favorites = App.get_setting(`favorites`)
 
   if (!favorites.length) {
@@ -27,8 +35,8 @@ App.fill_favorites = (mode) => {
     let cmd = App.get_command(fav.cmd)
 
     if (cmd) {
-      let btn = DOM.create(`div`, `favorites_item button`)
-      let icon = DOM.create(`div`, `favorites_icon`)
+      let btn = DOM.create(`div`, `favorites_bar_item button`)
+      let icon = DOM.create(`div`, `favorites_bar_icon`)
       let icon_s = cmd.icon
 
       if (icon_s instanceof Node) {

@@ -1047,7 +1047,7 @@ a:visited, a:link, a:hover {
   justify-content: flex-start;
 }
 
-.favorites {
+.favorites_bar {
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
@@ -1056,11 +1056,11 @@ a:visited, a:link, a:hover {
   gap: 0.5rem;
 }
 
-.favorites_item {
+.favorites_bar_item {
   height: calc(var(--button_size) * 2);
 }
 
-.favorites_icon {
+.favorites_bar_icon {
   display: flex;
   align-items: center;
   justify-content: center;

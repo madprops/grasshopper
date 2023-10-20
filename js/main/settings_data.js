@@ -426,6 +426,13 @@ App.build_settings = () => {
       info: `The position of the tab box`,
       version: 1,
     },
+    favorites_mode: {
+      name: `Favorites Mode`,
+      type: `menu`,
+      value: `none`,
+      info: `How to show favorites`,
+      version: 1,
+    },
     favorites: {
       name: `Favorites`,
       type: `list`,
@@ -440,13 +447,6 @@ App.build_settings = () => {
         {cmd: `set_random_dark_colors`},
       ],
       info: `Command buttons to show at the top`,
-      version: 1,
-    },
-    show_favorites: {
-      name: `Show Favorites`,
-      type: `checkbox`,
-      value: false,
-      info: `Show favorite buttons`,
       version: 1,
     },
     show_tooltips: {
@@ -1459,6 +1459,12 @@ App.build_settings = () => {
         App.settings_make_menu(`tab_box_position`, [
           {text: `Top`, value: `top`},
           {text: `Bottom`, value: `bottom`},
+        ])
+
+        App.settings_make_menu(`favorites_mode`, [
+          {text: `None`, value: `none`},
+          {text: `Bar`, value: `bar`},
+          {text: `Button`, value: `button`},
         ])
       },
     },
