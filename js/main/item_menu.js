@@ -70,6 +70,20 @@ App.show_item_menu = async (args = {}) => {
         })
       }
 
+      items.push({
+        text: `Color`,
+        get_items: () => {
+          return App.color_menu_items(args.item)
+        }
+      })
+
+      items.push({
+        text: `Title`,
+        action: () => {
+          App.prompt_tab_title(args.item)
+        }
+      })
+
       App.common_menu_items(items, args.item, multiple)
       App.more_menu_items(items, args.item, multiple, some_loaded, some_unmuted, some_muted)
       App.extra_menu_items(items)
@@ -111,13 +125,6 @@ App.show_item_menu_2 = (item) => {
 App.common_menu_items = (o_items, item, multiple) => {
   let items = []
 
-  items.push({
-    text: `Edit`,
-    get_items: () => {
-      return App.get_edit_items(item)
-    }
-  })
-
   if (item.has_notes) {
     items.push({
       text: `Notes`,
@@ -137,7 +144,7 @@ App.common_menu_items = (o_items, item, multiple) => {
   }
 
   if (!multiple) {
-    if (item.color || item.tags.length) {
+    if (item.custom_color) {
       items.push({
         text: `Filter`,
         get_items: () => {
@@ -312,15 +319,6 @@ App.extra_menu_items = (o_items) => {
 
 App.filter_menu_items = (item) => {
   let items = []
-
-  if (item.tags.length) {
-    items.push({
-      text: `Tag`,
-      get_items: () => {
-        return App.get_item_tag_items(item)
-      }
-    })
-  }
 
   if (item.color) {
     items.push({

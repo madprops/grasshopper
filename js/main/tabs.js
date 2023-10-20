@@ -112,7 +112,12 @@ App.build_tab_filters = () => {
     {type: App.separator_string, skip: true},
 
     {
+      type: `edited`, text:`Edited`, skip: false, info: `Show tabs that are edited`,
+      icon: App.edit_icon
+    },
+    {
       type: `duplicate`, text:`Duplicates`, skip: false, info: `Show tabs that have duplicates`,
+      icon: def_icon
     },
   ]
 }
@@ -1087,11 +1092,87 @@ App.load_tabs = (item) => {
   }, undefined, force)
 }
 
-App.change_tab_color = (item, color) => {
+App.edit_tab_color = (item, color) => {
   let active = App.get_active_items(item.mode, item)
 
   for (let it of active) {
-    it.tab_color = color
+    it.custom_color = color
     App.update_item(it.mode, it.id, it)
   }
+
+  browser.sessions.setTabValue(item.id, `custom_color`, color)
+}
+
+App.edit_tab_title = (item, title) => {
+  let active = App.get_active_items(item.mode, item)
+
+  for (let it of active) {
+    it.custom_title = title
+    App.update_item(it.mode, it.id, it)
+  }
+
+  browser.sessions.setTabValue(item.id, `custom_title`, title)
+}
+
+App.prompt_tab_title = (item) => {
+  let active = App.get_active_items(item.mode, item)
+  let value = ``
+
+  if (active.length === 1) {
+    value = item.title
+  }
+
+  App.show_prompt(value, `Edit Title`, (title) => {
+    if (title) {
+      App.edit_tab_title(item, title)
+    }
+  })
+}
+
+App.check_tab_sessions = async () => {
+  for (let item of App.get_items(`tabs`)) {
+    let custom_color = await browser.sessions.getTabValue(item.id, `custom_color`)
+
+    if (custom_color) {
+      App.edit_tab_color(item, custom_color)
+    }
+
+    let custom_title = await browser.sessions.getTabValue(item.id, `custom_title`)
+
+    if (custom_title) {
+      App.edit_tab_title(item, custom_title)
+    }
+  }
+}
+
+App.color_menu_items = (item) => {
+  let items = []
+
+  for (let color of App.colors) {
+    let icon = App.color_icon(color)
+    let text = `Color ${App.capitalize(color)}`
+
+    items.push({
+      icon: icon,
+      text: text,
+      action: () => {
+        App.edit_tab_color(item, color)
+      }
+    })
+  }
+
+  App.sep(items)
+
+  items.push({
+    text: `Remove Color`,
+    action: () => {
+      App.edit_tab_color(item)
+    }
+  })
+
+  return items
+}
+
+App.tab_is_edited = (item) => {
+  return Boolean(item.custom_color || item.custom_title)
 }

@@ -72,7 +72,7 @@ App.show_main_menu = (mode) => {
   }
 
   items.push({
-    icon: App.profile_icon,
+    icon: App.edit_icon,
     text: `Profiles`,
     get_items: () => {
       return App.get_profile_menu_items()

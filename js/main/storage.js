@@ -37,17 +37,6 @@ App.stor_save_settings = () => {
   App.save_local_storage(App.stor_settings_name, App.settings)
 }
 
-App.stor_get_profiles = () => {
-  App.profiles = App.get_local_storage(App.stor_profiles_name, [])
-  App.check_profiles()
-  App.debug(`Stor: Got profiles`)
-}
-
-App.stor_save_profiles = () => {
-  App.debug(`Stor: Saving profiles`)
-  App.save_local_storage(App.stor_profiles_name, App.profiles)
-}
-
 App.stor_get_command_history = () => {
   App.command_history = App.get_local_storage(App.stor_command_history_name, [])
   App.debug(`Stor: Got command_history`)

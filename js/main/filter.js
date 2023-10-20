@@ -317,7 +317,7 @@ App.filter_check = (args) => {
       }
     }
     else if (args.filter_mode === `edited`) {
-      match = args.item.has_profile
+      match = App.tab_is_edited(args.item)
     }
     else if (args.filter_mode === `pinned`) {
       match = args.item.pinned

@@ -18,7 +18,6 @@ App.create_filter_menu = (mode) => {
   let image_icon = App.get_setting(`image_icon`)
   let video_icon = App.get_setting(`video_icon`)
   let audio_icon = App.get_setting(`audio_icon`)
-  let profile_icon = App.profile_icon
   let color_icon = App.settings_icons.theme
   let tag_icon = App.tag_icon
   fmodes.push(separator())
@@ -28,7 +27,6 @@ App.create_filter_menu = (mode) => {
   fmodes.push(separator())
   fmodes.push({type: `tag`, text: `Tag`, skip: true, skip: `Filter by a specific tag`, icon: tag_icon})
   fmodes.push({type: `color`, text: `Color`, skip: true, skip: `Filter by a specific color`, icon: color_icon})
-  fmodes.push({type: `edited`, text: `Edited`, skip: false, info: `Items that have a profile`, icon: profile_icon})
 
   if (mode !== `tabs`) {
     fmodes.push(separator())

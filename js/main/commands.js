@@ -5,7 +5,6 @@ App.setup_commands = () => {
   let playing_icon = App.get_setting(`playing_icon`)
   let loaded_icon = App.get_setting(`loaded_icon`)
   let unloaded_icon = App.get_setting(`unloaded_icon`)
-  let notes_icon = App.get_setting(`notes_icon`)
   let muted_icon = App.get_setting(`muted_icon`)
   let unread_icon = App.get_setting(`unread_icon`)
   let step_back_icon = App.create_icon(`back`)
@@ -18,7 +17,7 @@ App.setup_commands = () => {
   let closed_icon = App.mode_icons.closed
   let browser_icon = App.browser_icon
   let clipboard_icon = App.clipboard_icon
-  let profile_icon = App.profile_icon
+  let edit_icon = App.edit_icon
   let tag_icon = App.tag_icon
   let bot_icon = App.bot_icon
   let up_icon = App.up_arrow_icon
@@ -58,58 +57,27 @@ App.setup_commands = () => {
 
     color_changers.push({
       name: name,
-      cmd: `change_color_${color}`,
-      modes: [`items`],
-      item: true,
-      icon: icon,
-      action: (args) => {
-        App.change_color(args.item, color)
-      },
-      info: `Change color of profile: ${color}`
-    })
-
-    icon = App.color_icon(color)
-    name = `Toggle ${App.capitalize(color)}`
-
-    color_changers.push({
-      name: name,
-      cmd: `toggle_color_${color}`,
-      modes: [`items`],
-      item: true,
-      icon: icon,
-      action: (args) => {
-        App.change_color(args.item, color, true)
-      },
-      info: `Toggle color on or off: ${color}`
-    })
-
-    icon = App.color_icon(color)
-    name = `Tab ${App.capitalize(color)}`
-
-    color_changers.push({
-      name: name,
-      cmd: `tab_color_${color}`,
+      cmd: `edit_color_${color}`,
       modes: [`tabs`],
       item: true,
       icon: icon,
       action: (args) => {
-        App.change_tab_color(args.item, color)
+        App.edit_tab_color(args.item, color)
       },
-      info: `Apply a color that sticks to a tab. It disappears when the extension restarts`
+      info: `Edit a custom color to tabs: ${color}`
     })
   }
 
   color_changers.push({
     name: `Remove Color`,
     cmd: `remove_color`,
-    modes: [`items`],
+    modes: [`tabs`],
     item: true,
     icon: theme_icon,
     action: (args) => {
-      App.change_tab_color(args.item)
-      App.change_color(args.item, `none`)
+      App.edit_tab_color(args.item)
     },
-    info: `Remove the current color of items`
+    info: `Remove the custom color of tabs`
   })
 
   color_changers.push({
@@ -780,60 +748,15 @@ App.setup_commands = () => {
       name: App.separator_string
     },
     {
-      name: `Edit Profile`,
-      cmd: `edit_profile`,
-      modes: [`items`],
-      item: true,
-      icon: profile_icon,
-      action: (args) => {
-        App.edit_profiles(args.item)
-      },
-      info: `Edit the profile of a URL`
-    },
-    {
-      name: `Add Note`,
-      cmd: `profiles_add_note`,
-      modes: [`items`],
-      item: true,
-      icon: notes_icon || command_icon,
-      item: true,
-      action: (args) => {
-        App.add_note(args.item)
-      },
-      info: `Add notes to a profile`
-    },
-    {
-      name: `Add Tag`,
-      cmd: `profiles_add_tag`,
-      modes: [`items`],
-      item: true,
-      icon: tag_icon,
-      action: (args) => {
-        App.add_tag(args.item)
-      },
-      info: `Add tags to a profile`
-    },
-    {
       name: `Edit Title`,
-      cmd: `profiles_edit_title`,
+      cmd: `edit_tab_title`,
       modes: [`items`],
       item: true,
-      icon: profile_icon,
+      icon: edit_icon,
       action: (args) => {
-        App.edit_title(args.item)
+        App.edit_tab_title(args.item)
       },
       info: `Edit a profile's title`
-    },
-    {
-      name: `Edit Icon`,
-      cmd: `profiles_edit_icon`,
-      modes: [`items`],
-      item: true,
-      icon: profile_icon,
-      action: (args) => {
-        App.edit_icon(args.item)
-      },
-      info: `Edit a profile's icon`
     },
     {
       name: App.separator_string
@@ -970,16 +893,6 @@ App.setup_commands = () => {
         App.filter_tag(args.mode, `all`)
       },
       info: `Filter: Show all tags`
-    },
-    {
-      name: `Filter Edited`,
-      cmd: `filter_edited`,
-      modes: [`items`],
-      icon: profile_icon,
-      action: (args) => {
-        App.set_filter_mode({mode: args.mode, type: `edited`})
-      },
-      info: `Filter: Show items with an edited profile`
     },
     {
       name: App.separator_string

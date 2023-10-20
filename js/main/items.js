@@ -243,10 +243,7 @@ App.hide_item = (it) => {
 }
 
 App.clear_items = (mode) => {
-  if (!App.persistent_modes.includes(mode) || !App[`${mode}_items`]) {
-    App[`${mode}_items`] = []
-  }
-
+  App[`${mode}_items`] = []
   let c = DOM.el(`#${mode}_container`)
 
   if (c) {
@@ -290,6 +287,10 @@ App.process_info_list = (mode, info_list) => {
   App.update_footer_count(mode)
   App.do_check_pinline()
   App.check_new_tabs()
+
+  if (mode === `tabs`) {
+    App.check_tab_sessions()
+  }
 }
 
 App.process_info = (args) => {
@@ -332,57 +333,20 @@ App.process_info = (args) => {
   let image = App.is_image(url)
   let video = App.is_video(url)
   let audio = App.is_audio(url)
-  let profile = App.get_profile(url)
-  let has_profile = false
-  let custom_title = ``
-  let has_notes = false
-  let color = ``
-  let tags = []
-  let icon = ``
-
-  if (profile) {
-    has_profile = true
-
-    if (profile.title.value) {
-      custom_title = profile.title.value
-    }
-
-    if (profile.color.value !== `none`) {
-      color = profile.color.value
-    }
-
-    if (profile.tags.value.length) {
-      tags = profile.tags.value.map(x => x.value)
-    }
-
-    if (profile.notes.value.length) {
-      has_notes = true
-    }
-
-    if (profile.icon.value) {
-      icon = profile.icon.value
-    }
-  }
 
   let item = {
     title: title,
-    custom_title: custom_title,
     url: url,
     path: path,
     protocol: protocol,
     hostname: hostname,
     favicon: args.info.favIconUrl,
-    icon: icon,
     mode: args.mode,
     window_id: args.info.windowId,
     session_id: args.info.sessionId,
     image: image,
     video: video,
     audio: audio,
-    has_profile: has_profile,
-    tags: tags,
-    has_notes: has_notes,
-    color: color,
     is_item: true,
   }
 
@@ -419,6 +383,11 @@ App.process_info = (args) => {
       if ((args.mode === `tabs`) && !item.active) {
         item.unread = true
       }
+    }
+
+    if (args.mode === `tabs`) {
+      item.custom_color = ``
+      item.custom_title = ``
     }
 
     item.original_data = args.info
@@ -605,7 +574,7 @@ App.check_view_media = (item) => {
 
 App.apply_color_mode = (item) => {
   let color_mode = App.get_setting(`color_mode`)
-  let color = item.tab_color || item.color
+  let color = item.custom_color || item.color
 
   if (color_mode.includes(`icon`)) {
     let el = DOM.el(`.item_info_color`, item.element)
@@ -1488,16 +1457,15 @@ App.get_persistent_items = () => {
 // Clear but always have tabs available
 App.clear_show = async () => {
   App.clear_all_items()
+  App.rebuild_items()
 
-  if (App.tabs_ready) {
-    App.rebuild_items()
-    App.remake_elements(`tabs`)
-    App.refresh_active_history(true)
-  }
+  await App.do_show_mode({
+    mode: App.get_setting(`primary_mode`),
+    force: true
+  })
 
-  await App.do_show_mode({mode: `tabs`, force: true})
-  App.do_check_pinline()
   App.show_primary_mode(false)
+  App.refresh_active_history(true)
 }
 
 App.select_item_by_id = (mode, id) => {

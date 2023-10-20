@@ -1,7 +1,7 @@
 {
-    "manifest_version": 2,
+    "manifest_version": 3,
     "name": "Grasshopper",
-    "version": "1016",
+    "version": "1017",
     "description": "Godspeed You Tab Emperor",
     "permissions": [
         "tabs",
@@ -12,7 +12,7 @@
     "icons": {
         "128": "img/icon128.png"
     },
-    "browser_action": {
+    "action": {
         "default_icon": {
             "128": "img/icon128.png"
         },
@@ -38,9 +38,9 @@
             "description": "Toggle the sidebar"
         }
     },
-    "applications": {
+    "browser_specific_settings": {
         "gecko": {
-            "id": "grasshopper@tabmanager"
+          "id": "{23aee10d-1130-4694-80ef-428e287ba83d}"
         }
     }
 }

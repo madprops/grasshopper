@@ -501,26 +501,5 @@ App.setup_keyboard = () => {
         return
       }
     }
-    else if (mode === `profile_editor`) {
-      if (e.key === `Enter` || e.key === `Escape`) {
-        App.profile_editor_close()
-        e.preventDefault()
-        return
-      }
-      else if (e.key === `ArrowLeft`) {
-        if (!App.text_with_value_focused()) {
-          App.profile_editor_left()
-          e.preventDefault()
-          return
-        }
-      }
-      else if (e.key === `ArrowRight`) {
-        if (!App.text_with_value_focused()) {
-          App.profile_editor_right()
-          e.preventDefault()
-          return
-        }
-      }
-    }
   })
 }

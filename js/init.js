@@ -6,7 +6,6 @@ App.init = async () => {
   App.print_intro()
   App.build_settings()
   App.stor_get_settings()
-  App.stor_get_profiles()
   App.stor_get_command_history()
   App.stor_get_first_time()
   App.setup_commands()
