@@ -93,8 +93,13 @@ App.update_tab_box = () => {
 
 App.tab_box_menu = (e) => {
   let items = []
+  let index = 0
 
-  for (let size of App.sizes) {
+  for (let [i, size] of App.sizes.entries()) {
+    if (App.get_setting(`tab_box`) === size.value) {
+      index = i
+    }
+
     items.push({
       text: size.text,
       action: (e) => {
@@ -104,5 +109,5 @@ App.tab_box_menu = (e) => {
     })
   }
 
-  NeedContext.show({items: items, x: e.clientX, y: e.clientY})
+  NeedContext.show({items: items, x: e.clientX, y: e.clientY, index: index})
 }
