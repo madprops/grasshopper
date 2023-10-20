@@ -126,7 +126,11 @@ Addlist.register = (args = {}) => {
       label.textContent = args.labels[i] || `Select`
 
       App[`addlist_menubutton_${args.id}_${i}`] = Menubutton.create({
-        id: id, opts: args.sources[i],
+        id: id,
+        opts: args.sources[i],
+        get_value: () => {
+          return Addlist.get_value(i, w)
+        }
       })
 
       let mb = App[`addlist_menubutton_${args.id}_${i}`]
