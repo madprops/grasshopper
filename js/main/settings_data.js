@@ -1256,6 +1256,13 @@ App.build_settings = () => {
       info: `Show the active tab in the tab box`,
       version: 1,
     },
+    exact_profiles: {
+      name: `Exact Profiles`,
+      type: `checkbox`,
+      value: false,
+      info: `Enable 'Exact' by default when creating profiles`,
+      version: 1,
+    },
     max_recent_tabs: {
       name: `Max Recent Tabs`,
       type: `number`,

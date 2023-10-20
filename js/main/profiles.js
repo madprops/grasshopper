@@ -135,6 +135,11 @@ App.show_profile_editor = (item, action = `edit`) => {
   App.profile_editor_action = action
   App.show_window(`profile_editor`)
   App.profile_default_all()
+
+  if (App.get_setting(`exact_profiles`)) {
+    App.profile_set_value(`exact`, true)
+  }
+
   let remove_el = DOM.el(`#profile_editor_remove`)
 
   if (profiles.length) {
@@ -277,6 +282,15 @@ App.do_save_profile = (args) => {
         continue
       }
 
+      if (key === `exact`) {
+        if (args[key] === undefined) {
+          if (App.get_setting(`exact_profiles`)) {
+            profile[key].value = true
+            continue
+          }
+        }
+      }
+
       if (args.type === `all` || args.type === key) {
         let props = App.profile_props[key]
 
@@ -303,6 +317,7 @@ App.do_save_profile = (args) => {
       }
     }
 
+    console.log(profile)
     add_url(og_url)
     add_url(profile.url.value)
   }
