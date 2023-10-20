@@ -286,7 +286,7 @@ App.settings_make_menu = (setting, opts, action = () => {}) => {
       }
 
       return 0
-    }
+    },
   })
 
   DOM.ev(App.get_settings_label(setting), `click`, (e) => {

@@ -1158,7 +1158,7 @@ App.profile_make_menu = (key, opts) => {
       }
 
       return 0
-    }
+    },
   })
 }
 
