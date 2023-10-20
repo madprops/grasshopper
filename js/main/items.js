@@ -1487,10 +1487,14 @@ App.get_persistent_items = () => {
 
 // Clear but always have tabs available
 App.clear_show = async () => {
-  App.rebuild_items()
   App.clear_all_items()
-  App.remake_elements(`tabs`)
-  App.refresh_active_history(true)
+
+  if (App.tabs_ready) {
+    App.rebuild_items()
+    App.remake_elements(`tabs`)
+    App.refresh_active_history(true)
+  }
+
   await App.do_show_mode({mode: `tabs`, force: true})
   App.do_check_pinline()
   App.show_primary_mode(false)
@@ -1609,4 +1613,6 @@ App.remake_elements = (mode) => {
     App.create_item_element(item)
     container.append(item.element)
   }
+
+  App.do_filter({mode: mode, force: true})
 }
