@@ -269,23 +269,8 @@ App.settings_make_menu = (setting, opts, action = () => {}) => {
       App.set_setting(setting, opt.value)
       action()
     },
-    get_index: () => {
-      let index = 0
-      let sett = App.get_setting(setting)
-
-      for (let o of opts) {
-        if (!o.value) {
-          continue
-        }
-
-        if (o.value === sett) {
-          return index
-        }
-
-        index += 1
-      }
-
-      return 0
+    get_value: () => {
+      return App.get_setting(setting)
     },
   })
 

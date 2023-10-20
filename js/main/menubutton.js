@@ -43,8 +43,22 @@ Menubutton.create = (args = {}) => {
 
     let index = 0
 
-    if (args.get_index) {
-      index = args.get_index()
+    if (args.get_value) {
+      let i = 0
+      let value = args.get_value()
+
+      for (let o of args.opts) {
+        if (!o.value) {
+          continue
+        }
+
+        if (o.value === value) {
+          index = i
+          break
+        }
+
+        i += 1
+      }
     }
 
     NeedContext.show({
