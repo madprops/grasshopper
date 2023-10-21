@@ -38,21 +38,7 @@ App.setup_commands = () => {
 
   for (let color of App.colors) {
     let icon = App.color_icon(color)
-    let name = `Filter ${App.capitalize(color)}`
-
-    color_filters.push({
-      name: name,
-      cmd: `filter_color_${color}`,
-      modes: [`tabs`],
-      icon: icon,
-      action: (args) => {
-        App.filter_color(args.mode, color)
-      },
-      info: `Filter: Show color (${color})`
-    })
-
-    icon = App.color_icon(color)
-    name = `Color ${App.capitalize(color)}`
+    let name = `Color ${App.capitalize(color)}`
 
     color_changers.push({
       name: name,
@@ -63,7 +49,7 @@ App.setup_commands = () => {
       action: (args) => {
         App.edit_tab_color(args.item, color)
       },
-      info: `Edit a custom color to tabs: ${color}`
+      info: `Add a custom color to tabs (${color})`
     })
 
     icon = App.color_icon(color)
@@ -78,7 +64,49 @@ App.setup_commands = () => {
       action: (args) => {
         App.toggle_tab_color(args.item, color)
       },
-      info: `Toggle color on tab: ${color}`
+      info: `Toggle color on tab (${color})`
+    })
+
+    icon = App.color_icon(color)
+    name = `Filter ${App.capitalize(color)}`
+
+    color_filters.push({
+      name: name,
+      cmd: `filter_color_${color}`,
+      modes: [`tabs`],
+      icon: icon,
+      action: (args) => {
+        App.filter_color(args.mode, color)
+      },
+      info: `Filter tabs with this color (${color})`
+    })
+
+    icon = App.color_icon(color)
+    name = `Remove ${App.capitalize(color)}`
+
+    color_filters.push({
+      name: name,
+      cmd: `remove_color_${color}`,
+      modes: [`tabs`],
+      icon: icon,
+      action: (args) => {
+        App.remove_color(color)
+      },
+      info: `Remove color from tabs (${color})`
+    })
+
+    icon = App.color_icon(color)
+    name = `Close ${App.capitalize(color)}`
+
+    color_filters.push({
+      name: name,
+      cmd: `close_color_${color}`,
+      modes: [`tabs`],
+      icon: icon,
+      action: (args) => {
+        App.close_color(color)
+      },
+      info: `Close tabs with this color (${color})`
     })
   }
 

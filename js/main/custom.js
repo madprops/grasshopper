@@ -67,7 +67,7 @@ App.color_menu_items = (item) => {
       icon: icon,
       text: text,
       action: () => {
-        App.edit_tab_color(item, color, false)
+        App.edit_tab_color(item, color)
       }
     })
   }
@@ -77,7 +77,7 @@ App.color_menu_items = (item) => {
   items.push({
     text: `Remove Color`,
     action: () => {
-      App.edit_tab_color(item, false)
+      App.edit_tab_color(item)
     }
   })
 
@@ -145,6 +145,32 @@ App.remove_all_colors = () => {
       }
     }
   })
+}
+
+App.remove_color = (color) => {
+  App.show_confirm(`Remove ${color}?`, () => {
+    for (let item of App.get_items(`tabs`)) {
+      if (item.custom_color === color) {
+        App.edit_tab_color(item)
+      }
+    }
+  })
+}
+
+App.close_color = (color) => {
+  let items = []
+
+  for (let item of App.get_items(`tabs`)) {
+    if (item.custom_color === color) {
+      items.push(item)
+    }
+  }
+
+  if (!items.length) {
+    return
+  }
+
+  App.close_tabs_method(items)
 }
 
 App.remove_all_titles = () => {
