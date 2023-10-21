@@ -52,6 +52,7 @@ App.setup_commands = () => {
       info: `Filter: Show color (${color})`
     })
 
+    icon = App.color_icon(color)
     name = `Color ${App.capitalize(color)}`
 
     color_changers.push({
@@ -66,6 +67,7 @@ App.setup_commands = () => {
       info: `Edit a custom color to tabs: ${color}`
     })
 
+    icon = App.color_icon(color)
     name = `Toggle ${App.capitalize(color)}`
 
     color_changers.push({
