@@ -1556,14 +1556,3 @@ App.rebuild_items = () => {
     }
   }
 }
-
-App.remake_elements = (mode) => {
-  let container = DOM.el(`#${mode}_container`)
-
-  for (let item of App.get_items(mode)) {
-    App.create_item_element(item)
-    container.append(item.element)
-  }
-
-  App.do_filter({mode: mode, force: true})
-}
