@@ -615,7 +615,7 @@ App.setup_commands = () => {
     {
       name: `Close Menu`,
       cmd: `show_close_tabs_menu`,
-      modes: [`items`],
+      modes: [`tabs`],
       icon: close_icon,
       action: (args) => {
         App.show_close_tabs_menu(args.e)
@@ -625,7 +625,7 @@ App.setup_commands = () => {
     {
       name: `Close Normal`,
       cmd: `close_normal_tabs`,
-      modes: [`items`],
+      modes: [`tabs`],
       icon: close_icon,
       action: (args) => {
         App.close_tabs_popup(`normal`)
@@ -635,7 +635,7 @@ App.setup_commands = () => {
     {
       name: `Close Playing`,
       cmd: `close_playing_tabs`,
-      modes: [`items`],
+      modes: [`tabs`],
       icon: close_icon,
       action: (args) => {
         App.close_tabs_popup(`playing`)
@@ -645,7 +645,7 @@ App.setup_commands = () => {
     {
       name: `Close Loaded`,
       cmd: `close_loaded_tabs`,
-      modes: [`items`],
+      modes: [`tabs`],
       icon: close_icon,
       action: (args) => {
         App.close_tabs_popup(`loaded`)
@@ -655,7 +655,7 @@ App.setup_commands = () => {
     {
       name: `Close Unloaded`,
       cmd: `close_unloaded_tabs`,
-      modes: [`items`],
+      modes: [`tabs`],
       icon: close_icon,
       action: (args) => {
         App.close_tabs_popup(`unloaded`)
@@ -665,7 +665,7 @@ App.setup_commands = () => {
     {
       name: `Close Duplicate`,
       cmd: `close_duplicate_tabs`,
-      modes: [`items`],
+      modes: [`tabs`],
       icon: close_icon,
       action: (args) => {
         App.close_tabs_popup(`duplicate`)
@@ -675,12 +675,23 @@ App.setup_commands = () => {
     {
       name: `Close Visible`,
       cmd: `close_visible_tabs`,
-      modes: [`items`],
+      modes: [`tabs`],
       icon: close_icon,
       action: (args) => {
         App.close_tabs_popup(`visible`)
       },
       info: `Close visible tabs`
+    },
+    {
+      name: `Close Others`,
+      cmd: `close_other_tabs`,
+      modes: [`tabs`],
+      item: true,
+      icon: close_icon,
+      action: (args) => {
+        App.close_tabs_popup(`other`, args.item)
+      },
+      info: `Close other tabs`
     },
     {
       name: `Go To Playing`,

@@ -6,7 +6,7 @@ App.start_close_tabs = () => {
   App.create_popup({
     id: `close_tabs`,
     setup: () => {
-      App.close_tabs_types = [`normal`, `playing`, `unloaded`, `duplicate`, `loaded`, `visible`]
+      App.close_tabs_types = [`normal`, `playing`, `unloaded`, `duplicate`, `loaded`, `visible`, `other`]
 
       DOM.ev(DOM.el(`#close_tabs_include_pins`), `change`, () => {
         App.update_close_tabs_popup_button(App.close_tabs_type)
@@ -69,9 +69,10 @@ App.close_tabs = (item, multiple = true) => {
   App.close_tabs_method(items, force)
 }
 
-App.close_tabs_popup = (type) => {
+App.close_tabs_popup = (type, item) => {
   App.start_close_tabs()
   App.close_tabs_type = type
+  App.close_tabs_item = item
   App.show_popup(`close_tabs`)
   let title = App.capitalize_words(`Close ${type.replace(/_/, ` `)}`)
   DOM.el(`#close_tabs_title`).textContent = title
@@ -291,6 +292,40 @@ App.close_visible_tabs = (pins, unloaded) => {
   App.close_tabs_method(items)
 }
 
+App.get_other_tabs_items = (pins, unloaded) => {
+  let items = []
+  let active = App.get_active_items(`tabs`, App.close_tabs_item)
+
+  for (let item of App.get_items(`tabs`)) {
+    if (active.includes(item)) {
+      continue
+    }
+
+    items.push(item)
+  }
+
+  if (!pins) {
+    items = items.filter(x => !x.pinned)
+  }
+
+  if (!unloaded) {
+    items = items.filter(x => !x.discarded)
+  }
+
+  return items
+}
+
+App.close_other_tabs = (pins, unloaded) => {
+  let items = App.get_other_tabs_items(pins, unloaded)
+
+  if (!items.length) {
+    App.nothing_to_close()
+    return
+  }
+
+  App.close_tabs_method(items)
+}
+
 App.close_other_new_tabs = (id) => {
   let items = App.get_items(`tabs`)
   let ids = []
@@ -350,6 +385,13 @@ App.show_close_tabs_menu = (e) => {
     text: `Close Visible`,
     action: () => {
       App.close_tabs_popup(`visible`)
+    }
+  })
+
+  items.push({
+    text: `Close Others`,
+    action: () => {
+      App.close_tabs_popup(`other`)
     }
   })
 
