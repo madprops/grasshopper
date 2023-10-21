@@ -37,8 +37,8 @@ App.update_tab_box = () => {
 
     clone.append(icon)
 
-    if (item.color) {
-      let c_icon = App.color_icon(item.color)
+    if (item.custom_color) {
+      let c_icon = App.color_icon(item.custom_color)
       clone.append(c_icon)
     }
 

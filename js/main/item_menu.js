@@ -311,12 +311,12 @@ App.extra_menu_items = (o_items) => {
 App.filter_menu_items = (item) => {
   let items = []
 
-  if (item.color) {
+  if (item.custom_color) {
     items.push({
       icon: App.settings_icons.theme,
       text: `Color`,
       action: () => {
-        App.filter_color(item.mode, item.color)
+        App.filter_color(item.mode, item.custom_color)
       }
     })
   }

@@ -855,7 +855,7 @@ App.setup_commands = () => {
       icon: theme_icon,
       color: true,
       action: (args) => {
-        App.filter_color(args.mode, args.item.color)
+        App.filter_color(args.mode, args.item.custom_color)
       },
       info: `Filter: Show same color`
     },
@@ -1093,8 +1093,8 @@ App.check_command = (command, args) => {
       }
     }
 
-    if (args.item.color) {
-      args.color = args.item.color
+    if (args.item.custom_color) {
+      args.color = args.item.custom_color
     }
   }
 

@@ -562,7 +562,7 @@ App.check_view_media = (item) => {
 
 App.apply_color_mode = (item) => {
   let color_mode = App.get_setting(`color_mode`)
-  let color = item.custom_color || item.color
+  let color = item.custom_color
 
   if (color_mode.includes(`icon`)) {
     let el = DOM.el(`.item_info_color`, item.element)
