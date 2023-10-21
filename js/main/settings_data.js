@@ -446,8 +446,8 @@ App.build_settings = () => {
       info: `How to show the hover button on tabs`,
       version: 2,
     },
-    close_icon_side: {
-      name: `Close Icon Side`,
+    close_button: {
+      name: `Close Button`,
       type: `menu`,
       value: `right`,
       info: `How to show the close button on tabs`,
@@ -1456,7 +1456,8 @@ App.build_settings = () => {
           {text: `Right`, value: `right`},
         ])
 
-        App.settings_make_menu(`close_icon_side`, [
+        App.settings_make_menu(`close_button`, [
+          {text: `None`, value: `none`},
           {text: `Left`, value: `left`},
           {text: `Right`, value: `right`},
         ])

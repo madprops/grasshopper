@@ -613,8 +613,14 @@ App.apply_color_mode = (item) => {
 }
 
 App.add_close_icon = (item, side) => {
+  let close_button = App.get_setting(`close_button`)
+
+  if (close_button === `none`) {
+    return
+  }
+
   if (item.mode === `tabs` && App.get_setting(`close_icon`)) {
-    if (side !== App.get_setting(`close_icon_side`)) {
+    if (side !== close_button) {
       return
     }
 
