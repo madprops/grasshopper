@@ -810,7 +810,7 @@ App.setup_commands = () => {
       action: (args) => {
         App.prompt_tab_title(args.item)
       },
-      info: `Edit a tabs's title`
+      info: `Edit tab titles`
     },
     {
       name: `Remove All Titles`,
