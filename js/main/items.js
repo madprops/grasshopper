@@ -729,18 +729,18 @@ App.create_item_element = (item) => {
       item.element.append(normal_icon)
     }
 
-    App.add_close_icon(item, `right`)
-    App.check_tab_item(item)
-    App.check_item_status(item)
-  }
-
-  if (item.mode === `tabs`) {
     if (App.get_setting(`hover_button`)) {
       let hover_btn = DOM.create(`div`, `hover_button`)
       hover_btn.textContent = App.command_icon
       hover_btn.title = `Hover Button (It uses the Extra menu)`
       item.element.append(hover_btn)
     }
+    else {
+      App.add_close_icon(item, `right`)
+    }
+
+    App.check_tab_item(item)
+    App.check_item_status(item)
   }
 
   if (item.selected) {
