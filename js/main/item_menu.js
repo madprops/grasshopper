@@ -106,7 +106,6 @@ App.show_item_menu = async (args = {}) => {
 
       App.common_menu_items(items, args.item, multiple)
       App.more_menu_items(items, args.item, multiple)
-      App.extra_menu_items(items)
     }
   }
 
