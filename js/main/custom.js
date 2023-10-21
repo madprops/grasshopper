@@ -16,15 +16,7 @@ App.check_tab_sessions = async () => {
 
 App.edit_tab_color = (item, color = ``, save = true) => {
   let active = App.get_active_items(item.mode, item)
-  let s
-
-  if (color) {
-    s = `Color ${color}?`
-  }
-  else {
-    s = `Remove color?`
-  }
-
+  let s = color ? `Color ${color}?` : `Remove color?`
   let force = App.check_force(`warn_on_edit_tabs`, active)
 
   App.show_confirm(`${s} (${active.length})`, () => {
@@ -55,15 +47,7 @@ App.toggle_tab_color = (item, color) => {
 
 App.edit_tab_title = (item, title = ``, save = true) => {
   let active = App.get_active_items(item.mode, item)
-  let s
-
-  if (title) {
-    s = `Edit title?`
-  }
-  else {
-    s = `Remove title?`
-  }
-
+  let s = title ? `Edit title?` : `Remove title?`
   let force = App.check_force(`warn_on_edit_tabs`, active)
 
   App.show_confirm(`${s} (${active.length})`, () => {
