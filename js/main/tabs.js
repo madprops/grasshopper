@@ -1092,7 +1092,7 @@ App.load_tabs = (item) => {
   }, undefined, force)
 }
 
-App.edit_tab_color = (item, color) => {
+App.edit_tab_color = (item, color, save = true) => {
   let active = App.get_active_items(item.mode, item)
 
   for (let it of active) {
@@ -1100,10 +1100,12 @@ App.edit_tab_color = (item, color) => {
     App.update_item(it.mode, it.id, it)
   }
 
-  browser.sessions.setTabValue(item.id, `custom_color`, color)
+  if (save) {
+    browser.sessions.setTabValue(item.id, `custom_color`, color)
+  }
 }
 
-App.edit_tab_title = (item, title) => {
+App.edit_tab_title = (item, title, save = true) => {
   let active = App.get_active_items(item.mode, item)
 
   for (let it of active) {
@@ -1111,7 +1113,9 @@ App.edit_tab_title = (item, title) => {
     App.update_item(it.mode, it.id, it)
   }
 
-  browser.sessions.setTabValue(item.id, `custom_title`, title)
+  if (save) {
+    browser.sessions.setTabValue(item.id, `custom_title`, title)
+  }
 }
 
 App.prompt_tab_title = (item) => {
@@ -1123,9 +1127,7 @@ App.prompt_tab_title = (item) => {
   }
 
   App.show_prompt(value, `Edit Title`, (title) => {
-    if (title) {
-      App.edit_tab_title(item, title)
-    }
+    App.edit_tab_title(item, title)
   })
 }
 
@@ -1156,7 +1158,7 @@ App.color_menu_items = (item) => {
       icon: icon,
       text: text,
       action: () => {
-        App.edit_tab_color(item, color)
+        App.edit_tab_color(item, color, false)
       }
     })
   }
@@ -1166,7 +1168,7 @@ App.color_menu_items = (item) => {
   items.push({
     text: `Remove Color`,
     action: () => {
-      App.edit_tab_color(item)
+      App.edit_tab_color(item, false)
     }
   })
 

@@ -125,15 +125,6 @@ App.show_item_menu_2 = (item) => {
 App.common_menu_items = (o_items, item, multiple) => {
   let items = []
 
-  if (item.has_notes) {
-    items.push({
-      text: `Notes`,
-      action: () => {
-        return App.show_notes(item)
-      }
-    })
-  }
-
   if (App.get_media_type(item)) {
     items.push({
       text: `View`,
