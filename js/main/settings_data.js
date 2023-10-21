@@ -478,7 +478,7 @@ App.build_settings = () => {
       name: `Hover Button`,
       type: `checkbox`,
       value: false,
-      info: `Show a button on the right side when hovering an item that shows the extra menu`,
+      info: `Show a button on the right side when hovering an item that shows the Extra menu`,
       version: 1,
     },
     active_trace: {
