@@ -853,7 +853,7 @@ App.build_settings = () => {
     max_warn_limit: {
       name: `Max Warn Limit`,
       type: `number`,
-      value: 20,
+      value: 25,
       placeholder: `Number`,
       min: App.number_min,
       max: App.number_max,
