@@ -764,11 +764,11 @@ App.setup_commands = () => {
     {
       name: `Edit Title`,
       cmd: `edit_tab_title`,
-      modes: [`items`],
+      modes: [`tabs`],
       item: true,
       icon: edit_icon,
       action: (args) => {
-        App.edit_tab_title(args.item)
+        App.prompt_tab_title(args.item)
       },
       info: `Edit a tabs's title`
     },

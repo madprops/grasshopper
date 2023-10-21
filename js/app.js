@@ -101,7 +101,6 @@ App.clipboard_icon = `📋`
 App.bot_icon = `🤖`
 App.icon_placeholder = `Icon`
 App.edit_icon = `📝`
-App.tag_icon = `✝️`
 App.browser_icon = `🌐`
 App.command_icon = `🔆`
 App.up_arrow_icon = `⬆️`
