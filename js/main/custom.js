@@ -198,7 +198,7 @@ App.show_close_color_menu = (e) => {
       text: text,
       action: () => {
         App.close_color(color)
-      }
+      },
     })
   }
 

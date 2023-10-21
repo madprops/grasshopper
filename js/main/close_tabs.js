@@ -355,8 +355,8 @@ App.show_close_tabs_menu = (e) => {
 
   items.push({
     text: `Close Color`,
-    action: () => {
-      App.show_close_color_menu()
+    action: (e) => {
+      App.show_close_color_menu(e)
     }
   })
 
