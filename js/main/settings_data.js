@@ -1207,6 +1207,7 @@ App.build_settings = () => {
       name: `Rounded Corners`,
       type: `checkbox`,
       value: true,
+      action: `theme`,
       info: `Allow rounded corners in some parts of the interface`,
       version: 1,
     },
