@@ -465,6 +465,36 @@ App.do_unload_tabs = async (ids) => {
   }
 }
 
+App.unload_other_tabs = (item) => {
+  let active = App.get_active_items(`tabs`, item)
+
+  if (!active.length) {
+    return
+  }
+
+  let ids = []
+
+  for (let it of App.get_items(`tabs`)) {
+    if (active.includes(it)) {
+      continue
+    }
+
+    if (it.discarded) {
+      continue
+    }
+
+    ids.push(it.id)
+  }
+
+  if (!ids.length) {
+    return
+  }
+
+  App.show_confirm(`Unload other tabs? (${ids.length})`, () => {
+    App.do_unload_tabs(ids)
+  })
+}
+
 App.mute_tabs = (item) => {
   let items = []
 

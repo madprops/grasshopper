@@ -454,11 +454,22 @@ App.setup_commands = () => {
       cmd: `unload_tabs`,
       modes: [`tabs`],
       item: true,
-      icon: tabs_icon,
+      icon: unloaded_icon,
       action: (args) => {
         App.unload_tabs(args.item)
       },
       info: `Unload tabs`
+    },
+    {
+      name: `Unload Others`,
+      cmd: `unload_other_tabs`,
+      modes: [`tabs`],
+      item: true,
+      icon: unloaded_icon,
+      action: (args) => {
+        App.unload_other_tabs(args.item)
+      },
+      info: `Unload all tabs except the active one`
     },
     {
       name: `Load`,
