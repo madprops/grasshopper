@@ -1,21 +1,28 @@
+App.setup_custom = () => {
+  browser.runtime.onMessage.addListener((message) => {
+    if (message.action === `edit`) {
+      App.check_tab_sessions()
+    }
+  })
+}
+
 App.check_tab_sessions = async () => {
   for (let item of App.get_items(`tabs`)) {
     let custom_color = await browser.sessions.getTabValue(item.id, `custom_color`)
-
-    if (custom_color) {
-      App.apply_tab_color(item, custom_color)
-    }
+    App.apply_tab_color(item, custom_color || ``)
 
     let custom_title = await browser.sessions.getTabValue(item.id, `custom_title`)
-
-    if (custom_title) {
-      App.apply_tab_title(item, custom_title)
-    }
+    App.apply_tab_title(item, custom_title || ``)
   }
 }
 
 App.tab_is_edited = (item) => {
   return Boolean(item.custom_color || item.custom_title)
+}
+
+App.custom_save = async (id, name, value) => {
+  await browser.sessions.setTabValue(id, name, value)
+  browser.runtime.sendMessage({action: `edit`})
 }
 
 App.edit_tab_color = (item, color = ``) => {
@@ -25,18 +32,19 @@ App.edit_tab_color = (item, color = ``) => {
 
   App.show_confirm(`${s} (${active.length})`, () => {
     for (let it of active) {
-      App.apply_tab_color(it, color, true)
+      App.apply_tab_color(it, color)
+      App.custom_save(it.id, `custom_color`, color)
     }
   }, undefined, force)
 }
 
-App.apply_tab_color = (item, color = ``, save = true) => {
+App.apply_tab_color = (item, color = ``) => {
+  if (item.custom_color === color) {
+    return
+  }
+
   item.custom_color = color
   App.update_item(item.mode, item.id, item)
-
-  if (save) {
-    browser.sessions.setTabValue(item.id, `custom_color`, color)
-  }
 }
 
 App.toggle_tab_color = (item, color) => {
@@ -188,7 +196,6 @@ App.close_color = (color) => {
 }
 
 App.edit_tab_title = (item, title = ``) => {
-  console.log(item.title, title)
   let active = App.get_active_items(item.mode, item)
   let s = title ? `Edit title?` : `Remove title?`
   let force = App.check_force(`warn_on_edit_tabs`, active)
@@ -196,17 +203,18 @@ App.edit_tab_title = (item, title = ``) => {
   App.show_confirm(`${s} (${active.length})`, () => {
     for (let it of active) {
       App.apply_tab_title(it, title)
+      App.custom_save(it.id, `custom_title`, title)
     }
   }, undefined, force)
 }
 
-App.apply_tab_title = (item, title = ``, save = true) => {
+App.apply_tab_title = (item, title = ``) => {
+  if (item.custom_title === title) {
+    return
+  }
+
   item.custom_title = title
   App.update_item(item.mode, item.id, item)
-
-  if (save) {
-    browser.sessions.setTabValue(item.id, `custom_title`, title)
-  }
 }
 
 App.prompt_tab_title = (item) => {
