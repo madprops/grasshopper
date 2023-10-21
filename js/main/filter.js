@@ -310,10 +310,10 @@ App.filter_check = (args) => {
     }
     else if (args.filter_mode === `color`) {
       if (args.f_value === `all`) {
-        match = args.item.color !== ``
+        match = Boolean(args.item.custom_color)
       }
       else {
-        match = args.item.color === args.f_value
+        match = args.item.custom_color === args.f_value
       }
     }
     else if (args.filter_mode === `edited`) {
