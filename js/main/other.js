@@ -124,8 +124,8 @@ App.check_force = (warn_setting, items) => {
         return false
       }
 
-      if (App.get_setting(`edited_special`)) {
-        if (item.custom_color || item.custom_title) {
+      if (App.get_setting(`color_special`)) {
+        if (item.custom_color) {
           return false
         }
       }

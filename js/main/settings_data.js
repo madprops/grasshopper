@@ -776,11 +776,11 @@ App.build_settings = () => {
   category = `warns`
 
   props = {
-    edited_special: {
-      name: `Edited Special`,
+    color_special: {
+      name: `Color Special`,
       type: `checkbox`,
       value: true,
-      info: `Treat edited items as special`,
+      info: `Treat colored tabs as special`,
       version: 1,
     },
     warn_on_close_tabs: {
