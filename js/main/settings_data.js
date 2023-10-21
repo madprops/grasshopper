@@ -439,19 +439,19 @@ App.build_settings = () => {
       info: `Command buttons to show at the top`,
       version: 1,
     },
-    hover_button: {
-      name: `Hover Button`,
-      type: `menu`,
-      value: `none`,
-      info: `How to show the hover button on tabs`,
-      version: 2,
-    },
     close_button: {
       name: `Close Button`,
       type: `menu`,
       value: `right`,
       info: `How to show the close button on tabs`,
       version: 1,
+    },
+    hover_button: {
+      name: `Hover Button`,
+      type: `menu`,
+      value: `none`,
+      info: `How to show the hover button on tabs`,
+      version: 2,
     },
     show_tooltips: {
       name: `Show Tooltips`,
@@ -1450,13 +1450,13 @@ App.build_settings = () => {
           {text: `Button`, value: `button`},
         ])
 
-        App.settings_make_menu(`hover_button`, [
+        App.settings_make_menu(`close_button`, [
           {text: `None`, value: `none`},
           {text: `Left`, value: `left`},
           {text: `Right`, value: `right`},
         ])
 
-        App.settings_make_menu(`close_button`, [
+        App.settings_make_menu(`hover_button`, [
           {text: `None`, value: `none`},
           {text: `Left`, value: `left`},
           {text: `Right`, value: `right`},
