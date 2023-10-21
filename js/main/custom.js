@@ -101,7 +101,7 @@ App.color_menu_items = (item) => {
 
   for (let color of App.colors) {
     let icon = App.color_icon(color)
-    let text = `Color ${App.capitalize(color)}`
+    let text = App.capitalize(color)
 
     items.push({
       icon: icon,
@@ -115,7 +115,7 @@ App.color_menu_items = (item) => {
   App.sep(items)
 
   items.push({
-    text: `Remove Color`,
+    text: `Remove`,
     action: () => {
       App.edit_tab_color(item)
     }
