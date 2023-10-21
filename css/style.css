@@ -191,13 +191,13 @@ select {
   color: var(--text_color);
   border-width: 0;
   text-align: center;
-  padding-top: calc(var(--button_size) * 0.2);
-  padding-bottom: calc(var(--button_size) * 0.2);
-  padding-left: calc(var(--button_size) * 0.3);
-  padding-right: calc(var(--button_size) * 0.3);
+  padding-top: calc(var(--button_size) * 0.1);
+  padding-bottom: calc(var(--button_size) * 0.1);
+  padding-left: calc(var(--button_size) * 0.2);
+  padding-right: calc(var(--button_size) * 0.2);
   user-select: none;
   outline: 1px solid var(--alt_color_1);
-  min-width: calc(var(--button_size) * 1.6);
+  min-width: calc(var(--button_size) * 1.5);
   border-radius: var(--border_radius);
   max-width: 100%;
 }
