@@ -1,5 +1,9 @@
-App.check_tab_session = async () => {
-  for (let item of App.get_items(`tabs`)) {
+App.check_tab_session = async (items = []) => {
+  if (!items.length) {
+    items = App.get_items(`tabs`)
+  }
+
+  for (let item of items) {
     let custom_color = await browser.sessions.getTabValue(item.id, `custom_color`)
     App.apply_tab_color(item, custom_color || ``)
 

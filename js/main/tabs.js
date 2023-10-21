@@ -10,7 +10,11 @@ App.setup_tabs = () => {
     App.debug(`Tab Created: ID: ${info.id}`, App.debug_tabs)
 
     if (info.windowId === App.window_id) {
-      await App.refresh_tab(info.id, false, info)
+      let item = await App.refresh_tab(info.id, false, info)
+
+      if (item) {
+        App.check_tab_session(item)
+      }
     }
   })
 
