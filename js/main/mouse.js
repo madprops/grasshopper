@@ -94,7 +94,7 @@ App.mouse_click_action = (mode, e) => {
 
   if (App.get_setting(`hover_button`)) {
     if (e.target.closest(`.hover_button`)) {
-      App.show_extra_menu(e, item)
+      App.show_hover_menu(e, item)
       return
     }
   }

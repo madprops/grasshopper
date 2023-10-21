@@ -1091,7 +1091,10 @@ App.check_command = (command, args) => {
 
   if (!args.item) {
     if (args.from === `extra_menu`) {
-      args.item = App.item_menu_item
+      args.item = App.command_item
+    }
+    else if (args.from === `hover_menu`) {
+      args.item = App.command_item
     }
     else if (args.on_items) {
       args.item = App.get_selected()

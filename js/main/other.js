@@ -145,3 +145,9 @@ App.show_browser_menu = (e) => {
   let items = App.show_cmds_menu(cmds, `browser_commands`)
   App.show_center_context(items, e)
 }
+
+App.show_hover_menu = (e, item) => {
+  let items = App.custom_menu_items(`hover_menu`)
+  App.command_item = item
+  App.show_center_context(items, e)
+}

@@ -3,7 +3,7 @@ App.show_item_menu = async (args = {}) => {
     return
   }
 
-  App.item_menu_item = args.item
+  App.command_item = args.item
   let active = App.get_active_items(args.item.mode, args.item)
   let multiple = active.length > 1
   let items = []
@@ -329,10 +329,4 @@ App.filter_menu_items = (item) => {
   })
 
   return items
-}
-
-App.show_extra_menu = (e, item) => {
-  let items = App.custom_menu_items(`extra_menu`)
-  App.item_menu_item = item
-  App.show_center_context(items, e)
 }

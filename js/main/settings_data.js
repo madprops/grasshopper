@@ -679,6 +679,17 @@ App.build_settings = () => {
       info: `Extra menu to show when right clicking items`,
       version: 4,
     },
+    hover_menu: {
+      name: `Hover Menu`,
+      type: `list`,
+      value: [
+        {cmd: `color_red`},
+        {cmd: `color_green`},
+        {cmd: `color_blue`},
+      ],
+      info: `Menu to show when clicking the hover button`,
+      version: 1,
+    },
     pinline_menu: {
       name: `Pinline Menu`,
       type: `list`,
