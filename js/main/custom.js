@@ -3,7 +3,7 @@ App.check_tab_sessions = async () => {
     let custom_color = await browser.sessions.getTabValue(item.id, `custom_color`)
 
     if (custom_color) {
-      App.edit_tab_color(item, custom_color)
+      App.apply_tab_color(item, custom_color)
     }
 
     let custom_title = await browser.sessions.getTabValue(item.id, `custom_title`)
@@ -16,15 +16,35 @@ App.check_tab_sessions = async () => {
 
 App.edit_tab_color = (item, color = ``, save = true) => {
   let active = App.get_active_items(item.mode, item)
+  let force = true
 
-  for (let it of active) {
-    it.custom_color = color
-    App.update_item(it.mode, it.id, it)
-
-    if (save) {
-      browser.sessions.setTabValue(it.id, `custom_color`, color)
-    }
+  if (active.length > 1) {
+    force = false
   }
+
+  let s
+
+  if (color) {
+    s = `Color ${color}?`
+  }
+  else {
+    s = `Remove color?`
+  }
+
+  App.show_confirm(`${s} (${active.length})`, () => {
+    for (let it of active) {
+      App.apply_tab_color(it, color)
+
+      if (save) {
+        browser.sessions.setTabValue(it.id, `custom_color`, color)
+      }
+    }
+  }, undefined, force)
+}
+
+App.apply_tab_color = (item, color) => {
+  item.custom_color = color
+  App.update_item(item.mode, item.id, item)
 }
 
 App.toggle_tab_color = (item, color) => {
@@ -82,6 +102,11 @@ App.color_menu_items = (item) => {
   })
 
   return items
+}
+
+App.show_color_menu = (item, e) => {
+  let items = App.color_menu_items(item)
+  App.show_center_context(items, e)
 }
 
 App.tab_is_edited = (item) => {
