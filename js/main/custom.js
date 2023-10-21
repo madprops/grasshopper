@@ -38,7 +38,7 @@ App.edit_tab_color = (item, color = ``, save = true) => {
   }, undefined, force)
 }
 
-App.apply_tab_color = (item, color, save = true) => {
+App.apply_tab_color = (item, color = ``, save = true) => {
   item.custom_color = color
   App.update_item(item.mode, item.id, item)
 
@@ -77,17 +77,17 @@ App.edit_tab_title = (item, title = ``, save = true) => {
   App.show_confirm(`${s} (${active.length})`, () => {
     for (let it of active) {
       App.apply_tab_title(it, title)
-
-      if (save) {
-        browser.sessions.setTabValue(it.id, `custom_title`, title)
-      }
     }
   }, undefined, force)
 }
 
-App.apply_tab_title = (item, title) => {
+App.apply_tab_title = (item, title = ``, save = true) => {
   item.custom_title = title
   App.update_item(item.mode, item.id, item)
+
+  if (save) {
+    browser.sessions.setTabValue(it.id, `custom_title`, title)
+  }
 }
 
 App.prompt_tab_title = (item) => {
