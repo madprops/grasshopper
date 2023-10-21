@@ -654,17 +654,6 @@ App.build_settings = () => {
   category = `menus`
 
   props = {
-    extra_menu: {
-      name: `Extra Menu`,
-      type: `list`,
-      value: [
-        {cmd: `color_red`},
-        {cmd: `color_green`},
-        {cmd: `color_blue`},
-      ],
-      info: `Extra menu to show when right clicking items`,
-      version: 4,
-    },
     favorites: {
       name: `Favorites`,
       type: `list`,
@@ -678,6 +667,17 @@ App.build_settings = () => {
       ],
       info: `Command buttons to show at the top`,
       version: 1,
+    },
+    extra_menu: {
+      name: `Extra Menu`,
+      type: `list`,
+      value: [
+        {cmd: `color_red`},
+        {cmd: `color_green`},
+        {cmd: `color_blue`},
+      ],
+      info: `Extra menu to show when right clicking items`,
+      version: 4,
     },
     pinline_menu: {
       name: `Pinline Menu`,
