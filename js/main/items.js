@@ -614,12 +614,13 @@ App.apply_color_mode = (item) => {
 
 App.add_close_icon = (item, side) => {
   if (item.mode === `tabs` && App.get_setting(`close_icon`)) {
-    let on_left = App.get_setting(`close_icon_on_left`)
-
-    if (side === `left` && !on_left) {
+    if (side !== App.get_setting(`close_icon_side`)) {
       return
     }
-    else if (side === `right` && on_left) {
+
+    let hover_side = App.get_setting(`hover_button`)
+
+    if (side === hover_side) {
       return
     }
 
@@ -729,16 +730,14 @@ App.create_item_element = (item) => {
       item.element.append(normal_icon)
     }
 
-    if (App.get_setting(`hover_button`)) {
+    if (App.get_setting(`hover_button`) !== `none`) {
       let hover_btn = DOM.create(`div`, `hover_button`)
       hover_btn.textContent = App.command_icon
       hover_btn.title = `Hover Button (It uses the Extra menu)`
       item.element.append(hover_btn)
     }
-    else {
-      App.add_close_icon(item, `right`)
-    }
 
+    App.add_close_icon(item, `right`)
     App.check_tab_item(item)
     App.check_item_status(item)
   }

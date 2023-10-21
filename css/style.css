@@ -1097,7 +1097,6 @@ a:visited, a:link, a:hover {
 .hover_button {
   position: absolute;
   min-width: 1.8rem;
-  right: 0;
   z-index: 9;
   background-color: var(--alt_background_2);
   border: 1px solid var(--alt_color_1);
@@ -1105,6 +1104,14 @@ a:visited, a:link, a:hover {
   display: flex;
   align-items: center;
   justify-content: center;
+}
+
+.hover_button_left .hover_button {
+  left: 0;
+}
+
+.hover_button_right .hover_button {
+  right: 0;
 }
 
 .hover_button:hover {

@@ -219,6 +219,17 @@ App.do_apply_theme = (args) => {
     else {
       document.body.classList.remove(`text_glow`)
     }
+
+    let hb = App.get_setting(`hover_button`)
+
+    if (hb === `left`) {
+      main.classList.add(`hover_button_left`)
+      main.classList.remove(`hover_button_right`)
+    }
+    else if (hb === `right`) {
+      main.classList.remove(`hover_button_left`)
+      main.classList.add(`hover_button_right`)
+    }
   }
   catch (err) {
     App.error(err)

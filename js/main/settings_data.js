@@ -439,6 +439,20 @@ App.build_settings = () => {
       info: `Command buttons to show at the top`,
       version: 1,
     },
+    hover_button: {
+      name: `Hover Button`,
+      type: `menu`,
+      value: `none`,
+      info: `How to show the hover button on tabs`,
+      version: 2,
+    },
+    close_icon_side: {
+      name: `Close Icon Side`,
+      type: `menu`,
+      value: `right`,
+      info: `How to show the close button on tabs`,
+      version: 1,
+    },
     show_tooltips: {
       name: `Show Tooltips`,
       type: `checkbox`,
@@ -474,13 +488,6 @@ App.build_settings = () => {
       info: `Show the item count in the footer`,
       version: 1,
     },
-    hover_button: {
-      name: `Hover Button`,
-      type: `checkbox`,
-      value: false,
-      info: `Show a button on the right side when hovering an item that shows the Extra menu`,
-      version: 1,
-    },
     active_trace: {
       name: `Active Trace`,
       type: `checkbox`,
@@ -500,13 +507,6 @@ App.build_settings = () => {
       type: `checkbox`,
       value: false,
       info: `Reverse the scrolling percentage in the scroller`,
-      version: 1,
-    },
-    close_icon_on_left: {
-      name: `Close Icon On Left`,
-      type: `checkbox`,
-      value: false,
-      info: `Put the close icon on the left side`,
       version: 1,
     },
   }
@@ -1448,6 +1448,17 @@ App.build_settings = () => {
           {text: `None`, value: `none`},
           {text: `Bar`, value: `bar`},
           {text: `Button`, value: `button`},
+        ])
+
+        App.settings_make_menu(`hover_button`, [
+          {text: `None`, value: `none`},
+          {text: `Left`, value: `left`},
+          {text: `Right`, value: `right`},
+        ])
+
+        App.settings_make_menu(`close_icon_side`, [
+          {text: `Left`, value: `left`},
+          {text: `Right`, value: `right`},
         ])
       },
     },
