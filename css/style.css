@@ -257,9 +257,12 @@ svg {
 }
 
 .item > div {
-  height: 100%;
   padding-left: var(--item_gap);
   padding-right: var(--item_gap);
+}
+
+.item > div:not(.item_text) {
+  height: 100%;
 }
 
 .item > div:nth-child(1 of :not(.hidden))  {
@@ -309,7 +312,6 @@ svg {
   flex-direction: column;
   align-items: flex-start;
   justify-content: center;
-  height: 100%;
   flex-grow: 1;
   flex-shrink: 1;
   padding-top: var(--item_padding);
