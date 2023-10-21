@@ -468,7 +468,11 @@ App.do_unload_tabs = async (ids) => {
 App.unload_other_tabs = (item) => {
   let items = []
 
-  function proc () {
+  function proc (include_pins) {
+    if (!include_pins) {
+      items = items.filter(x => !x.pinned)
+    }
+
     let ids = items.map(x => x.id)
 
     App.show_confirm(`Unload other tabs? (${ids.length})`, () => {
@@ -499,10 +503,9 @@ App.unload_other_tabs = (item) => {
   }
 
   App.show_confirm(`Include pins?`, () => {
-    proc()
+    proc(true)
   }, () => {
-    items = items.filter(x => !x.pinned)
-    proc()
+    proc(false)
   })
 }
 
