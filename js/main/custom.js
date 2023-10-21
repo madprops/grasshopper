@@ -14,6 +14,10 @@ App.check_tab_sessions = async () => {
   }
 }
 
+App.tab_is_edited = (item) => {
+  return Boolean(item.custom_color || item.custom_title)
+}
+
 App.edit_tab_color = (item, color = ``) => {
   let active = App.get_active_items(item.mode, item)
   let s = color ? `Color ${color}?` : `Remove color?`
@@ -43,33 +47,6 @@ App.toggle_tab_color = (item, color) => {
   }
 
   App.edit_tab_color(item, value)
-}
-
-App.edit_tab_title = (item, title = ``) => {
-  let active = App.get_active_items(item.mode, item)
-  let s = title ? `Edit title?` : `Remove title?`
-  let force = App.check_force(`warn_on_edit_tabs`, active)
-
-  App.show_confirm(`${s} (${active.length})`, () => {
-    for (let it of active) {
-      App.apply_tab_title(it, title)
-    }
-  }, undefined, force)
-}
-
-App.apply_tab_title = (item, title = ``, save = true) => {
-  item.custom_title = title
-  App.update_item(item.mode, item.id, item)
-
-  if (save) {
-    browser.sessions.setTabValue(it.id, `custom_title`, title)
-  }
-}
-
-App.prompt_tab_title = (item) => {
-  App.show_prompt(item.custom_title, `Edit Title`, (title) => {
-    App.edit_tab_title(item, title)
-  })
 }
 
 App.color_menu_items = (item) => {
@@ -103,10 +80,6 @@ App.color_menu_items = (item) => {
 App.show_color_menu = (item, e) => {
   let items = App.color_menu_items(item)
   App.show_center_context(items, e)
-}
-
-App.tab_is_edited = (item) => {
-  return Boolean(item.custom_color || item.custom_title)
 }
 
 App.get_color_items = (mode) => {
@@ -214,6 +187,34 @@ App.close_color = (color) => {
   App.close_tabs_method(items)
 }
 
+App.edit_tab_title = (item, title = ``) => {
+  console.log(item.title, title)
+  let active = App.get_active_items(item.mode, item)
+  let s = title ? `Edit title?` : `Remove title?`
+  let force = App.check_force(`warn_on_edit_tabs`, active)
+
+  App.show_confirm(`${s} (${active.length})`, () => {
+    for (let it of active) {
+      App.apply_tab_title(it, title)
+    }
+  }, undefined, force)
+}
+
+App.apply_tab_title = (item, title = ``, save = true) => {
+  item.custom_title = title
+  App.update_item(item.mode, item.id, item)
+
+  if (save) {
+    browser.sessions.setTabValue(item.id, `custom_title`, title)
+  }
+}
+
+App.prompt_tab_title = (item) => {
+  App.show_prompt(item.custom_title, `Edit Title`, (title) => {
+    App.edit_tab_title(item, title)
+  })
+}
+
 App.remove_all_titles = () => {
   let items = []
 
@@ -229,7 +230,7 @@ App.remove_all_titles = () => {
 
   App.show_confirm(`Remove all titles?`, () => {
     for (let item of items) {
-      App.edit_tab_title(item)
+      App.apply_tab_title(item)
     }
   })
 }
