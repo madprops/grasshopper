@@ -130,7 +130,7 @@ App.setup_commands = () => {
 
   color_changers.push({
     name: `Close Color Menu`,
-    cmd: `show_color_menu`,
+    cmd: `show_close_color_menu`,
     modes: [`tabs`],
     item: true,
     icon: close_icon,
