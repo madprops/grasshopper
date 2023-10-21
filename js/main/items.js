@@ -734,6 +734,13 @@ App.create_item_element = (item) => {
     App.check_item_status(item)
   }
 
+  if (App.get_setting(`hover_button`)) {
+    let hover_btn = DOM.create(`div`, `hover_button`)
+    hover_btn.textContent = App.command_icon
+    hover_btn.title = `Extra Menu`
+    item.element.append(hover_btn)
+  }
+
   if (item.selected) {
     item.element.classList.add(`selected`)
   }

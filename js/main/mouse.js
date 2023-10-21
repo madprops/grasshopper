@@ -92,6 +92,13 @@ App.mouse_click_action = (mode, e) => {
     }
   }
 
+  if (App.get_setting(`hover_button`)) {
+    if (e.target.closest(`.hover_button`)) {
+      App.show_extra_menu(e, item)
+      return
+    }
+  }
+
   App.select_item({item: item, scroll: `nearest`})
 
   if (mode === `tabs`) {

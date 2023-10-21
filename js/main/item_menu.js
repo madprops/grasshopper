@@ -331,3 +331,9 @@ App.filter_menu_items = (item) => {
 
   return items
 }
+
+App.show_extra_menu = (e, item) => {
+  let items = App.custom_menu_items(`extra_menu`)
+  App.item_menu_item = item
+  App.show_center_context(items, e)
+}

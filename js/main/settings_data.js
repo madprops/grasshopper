@@ -474,6 +474,13 @@ App.build_settings = () => {
       info: `Show the item count in the footer`,
       version: 1,
     },
+    hover_button: {
+      name: `Hover Button`,
+      type: `checkbox`,
+      value: false,
+      info: `Show a button on the right side when hovering an item that shows the extra menu`,
+      version: 1,
+    },
     active_trace: {
       name: `Active Trace`,
       type: `checkbox`,

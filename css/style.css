@@ -1093,3 +1093,20 @@ a:visited, a:link, a:hover {
 .unread_tab {
   color: var(--color_unread);
 }
+
+.hover_button {
+  position: absolute;
+  min-width: 1.8rem;
+  right: 0;
+  z-index: 9;
+  background-color: var(--alt_background_2);
+  border: 1px solid var(--alt_color_1);
+  opacity: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.hover_button:hover {
+  opacity: 1;
+}
