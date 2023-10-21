@@ -112,6 +112,10 @@ App.build_tab_filters = () => {
     {type: App.separator_string, skip: true},
 
     {
+      type: `color`, text:`Color`, skip: false, info: `Filter by a specific color`,
+      icon: App.settings_icons.theme
+    },
+    {
       type: `edited`, text:`Edited`, skip: false, info: `Show tabs that are edited`,
       icon: App.edit_icon
     },
