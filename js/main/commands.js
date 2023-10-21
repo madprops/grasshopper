@@ -30,7 +30,7 @@ App.setup_commands = () => {
     name: `Filter All Colors`,
     cmd: `filter_color_all`,
     modes: [`items`],
-    icon: theme_icon,
+    icon: filter_icon,
     action: (args) => {
       App.filter_color(args.mode, `all`)
     },
@@ -43,7 +43,7 @@ App.setup_commands = () => {
 
     color_changers.push({
       name: name,
-      cmd: `edit_color_${color}`,
+      cmd: `color_${color}`,
       modes: [`tabs`],
       item: true,
       icon: icon,
@@ -53,29 +53,13 @@ App.setup_commands = () => {
       info: `Add a custom color to tabs (${color})`
     })
 
-    icon = App.color_icon(color)
-    name = `Toggle ${App.capitalize(color)}`
-
-    color_changers.push({
-      name: name,
-      cmd: `toggle_color_${color}`,
-      modes: [`tabs`],
-      item: true,
-      icon: icon,
-      action: (args) => {
-        App.toggle_tab_color(args.item, color)
-      },
-      info: `Toggle color on tab (${color})`
-    })
-
-    icon = App.color_icon(color)
     name = `Filter ${App.capitalize(color)}`
 
     color_filters.push({
       name: name,
       cmd: `filter_color_${color}`,
       modes: [`tabs`],
-      icon: icon,
+      icon: filter_icon,
       action: (args) => {
         App.filter_color(args.mode, color)
       },
@@ -149,7 +133,7 @@ App.setup_commands = () => {
     cmd: `show_filter_color_menu`,
     modes: [`items`],
     item: true,
-    icon: theme_icon,
+    icon: filter_icon,
     action: (args) => {
       App.show_filter_color_menu(args.mode, args.e)
     }, info: `Show the filter color menu`

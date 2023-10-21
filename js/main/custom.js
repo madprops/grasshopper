@@ -18,6 +18,12 @@ App.custom_save = (id, name, value) => {
 }
 
 App.edit_tab_color = (item, color = ``) => {
+  if (item.custom_color) {
+    if (item.custom_color === color) {
+      color = ``
+    }
+  }
+
   let active = App.get_active_items(item.mode, item)
   let s = color ? `Color ${color}?` : `Remove color?`
   let force = App.check_force(`warn_on_edit_tabs`, active)
@@ -37,16 +43,6 @@ App.apply_tab_color = (item, color = ``) => {
 
   item.custom_color = color
   App.update_item(item.mode, item.id, item)
-}
-
-App.toggle_tab_color = (item, color) => {
-  let value
-
-  if (item.custom_color !== color) {
-    value = color
-  }
-
-  App.edit_tab_color(item, value)
 }
 
 App.color_menu_items = (item) => {
