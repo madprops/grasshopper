@@ -51,14 +51,7 @@ App.edit_tab_title = (item, title, save = true) => {
 }
 
 App.prompt_tab_title = (item) => {
-  let active = App.get_active_items(item.mode, item)
-  let value = ``
-
-  if (active.length === 1) {
-    value = App.get_title(item)
-  }
-
-  App.show_prompt(value, `Edit Title`, (title) => {
+  App.show_prompt(item.custom_title, `Edit Title`, (title) => {
     App.edit_tab_title(item, title)
   })
 }
