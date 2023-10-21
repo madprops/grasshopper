@@ -425,20 +425,6 @@ App.build_settings = () => {
       info: `How to show favorites`,
       version: 1,
     },
-    favorites: {
-      name: `Favorites`,
-      type: `list`,
-      value: [
-        {cmd: `show_about`},
-        {cmd: `color_red`},
-        {cmd: `color_green`},
-        {cmd: `color_blue`},
-        {cmd: `set_random_light_colors`},
-        {cmd: `set_random_dark_colors`},
-      ],
-      info: `Command buttons to show at the top`,
-      version: 1,
-    },
     close_button: {
       name: `Close Button`,
       type: `menu`,
@@ -452,6 +438,14 @@ App.build_settings = () => {
       value: `none`,
       info: `How to show the hover button on tabs`,
       version: 2,
+    },
+    extra_menu_mode: {
+      name: `Extra Menu Mode`,
+      type: `menu`,
+      value: `none`,
+      info: `How to show the extra menu on right click. Either on its own submenu,
+      flat at the root level, or totally replace the item menu. This menu only appears in tabs mode`,
+      version: 1,
     },
     show_tooltips: {
       name: `Show Tooltips`,
@@ -660,14 +654,6 @@ App.build_settings = () => {
   category = `menus`
 
   props = {
-    extra_menu_mode: {
-      name: `Extra Menu Mode`,
-      type: `menu`,
-      value: `none`,
-      info: `How to show the extra menu on right click. Either on its own submenu,
-      flat at the root level, or totally replace the item menu. This menu only appears in tabs mode`,
-      version: 1,
-    },
     extra_menu: {
       name: `Extra Menu`,
       type: `list`,
@@ -678,6 +664,20 @@ App.build_settings = () => {
       ],
       info: `Extra menu to show when right clicking items`,
       version: 4,
+    },
+    favorites: {
+      name: `Favorites`,
+      type: `list`,
+      value: [
+        {cmd: `show_about`},
+        {cmd: `color_red`},
+        {cmd: `color_green`},
+        {cmd: `color_blue`},
+        {cmd: `set_random_light_colors`},
+        {cmd: `set_random_dark_colors`},
+      ],
+      info: `Command buttons to show at the top`,
+      version: 1,
     },
     pinline_menu: {
       name: `Pinline Menu`,
@@ -1461,6 +1461,13 @@ App.build_settings = () => {
           {text: `Left`, value: `left`},
           {text: `Right`, value: `right`},
         ])
+
+        App.settings_make_menu(`extra_menu_mode`, [
+          {text: `None`, value: `none`},
+          {text: `Normal`, value: `normal`},
+          {text: `Flat`, value: `flat`},
+          {text: `Total`, value: `total`},
+        ])
       },
     },
     filter: {
@@ -1516,14 +1523,7 @@ App.build_settings = () => {
     },
     menus: {
       info: `Customize context and action menus`,
-      setup: () => {
-        App.settings_make_menu(`extra_menu_mode`, [
-          {text: `None`, value: `none`},
-          {text: `Normal`, value: `normal`},
-          {text: `Flat`, value: `flat`},
-          {text: `Total`, value: `total`},
-        ])
-      },
+      setup: () => {},
     },
     keyboard: {
       info: `You can use these custom shortcuts to run commands. You can define if you need ctrl, shift, or alt`,
