@@ -13,7 +13,6 @@ App.tab_is_edited = (item) => {
 }
 
 App.custom_save = (id, name, value) => {
-  console.log(`save`)
   browser.sessions.setTabValue(id, name, value)
 }
 
@@ -185,6 +184,25 @@ App.close_color = (color) => {
   }
 
   App.close_tabs_method(items)
+}
+
+App.show_close_color_menu = (e) => {
+  let items = []
+
+  for (let color of App.colors) {
+    let icon = App.color_icon(color)
+    let text = App.capitalize(color)
+
+    items.push({
+      icon: icon,
+      text: text,
+      action: () => {
+        App.close_color(color)
+      }
+    })
+  }
+
+  App.show_center_context(items, e)
 }
 
 App.edit_tab_title = (item, title = ``) => {

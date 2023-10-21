@@ -353,6 +353,13 @@ App.show_close_tabs_menu = (e) => {
     }
   })
 
+  items.push({
+    text: `Close Color`,
+    action: () => {
+      App.show_close_color_menu()
+    }
+  })
+
   App.show_center_context(items, e)
 }
 

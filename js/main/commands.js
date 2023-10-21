@@ -120,12 +120,23 @@ App.setup_commands = () => {
   color_changers.push({
     name: `Color Menu`,
     cmd: `show_color_menu`,
-    modes: [`items`],
+    modes: [`tabs`],
     item: true,
     icon: theme_icon,
     action: (args) => {
       App.show_color_menu(args.item, args.e)
     }, info: `Show the colors menu`
+  })
+
+  color_changers.push({
+    name: `Close Color Menu`,
+    cmd: `show_color_menu`,
+    modes: [`tabs`],
+    item: true,
+    icon: close_icon,
+    action: (args) => {
+      App.show_close_color_menu(args.item, args.e)
+    }, info: `Show the close color menu`
   })
 
   color_changers.push({
