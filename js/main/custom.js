@@ -13,6 +13,7 @@ App.tab_is_edited = (item) => {
 }
 
 App.custom_save = (id, name, value) => {
+  console.log(`save`)
   browser.sessions.setTabValue(id, name, value)
 }
 
