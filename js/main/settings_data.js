@@ -843,18 +843,11 @@ App.build_settings = () => {
       info: `Warn when unmuting tabs`,
       version: 2,
     },
-    warn_on_color: {
-      name: `Warn On Color`,
+    warn_on_edit_tabs: {
+      name: `Warn On Edit Tabs`,
       type: `menu`,
       value: `multiple`,
-      info: `Warn when changing colors`,
-      version: 2,
-    },
-    warn_on_remove_color: {
-      name: `Warn On Remove Color`,
-      type: `menu`,
-      value: `multiple`,
-      info: `Warn when removing colors`,
+      info: `Warn when changing colors or titles`,
       version: 2,
     },
     max_warn_limit: {
@@ -1545,8 +1538,7 @@ App.build_settings = () => {
         App.settings_make_menu(`warn_on_load_tabs`, tab_warn_opts_2)
         App.settings_make_menu(`warn_on_mute_tabs`, tab_warn_opts_2)
         App.settings_make_menu(`warn_on_unmute_tabs`, tab_warn_opts_2)
-        App.settings_make_menu(`warn_on_color`, tab_warn_opts_2)
-        App.settings_make_menu(`warn_on_remove_color`, tab_warn_opts_2)
+        App.settings_make_menu(`warn_on_edit_tabs`, tab_warn_opts_2)
       },
     },
     more: {
