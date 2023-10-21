@@ -1,16 +1,3 @@
-App.setup_custom = () => {
-  App.check_tab_session_debouncer = App.create_debouncer(() => {
-    App.check_tab_session()
-  }, App.check_tab_session_delay)
-
-  browser.runtime.onMessage.addListener((message) => {
-    if (message.action === `edit`) {
-      App.debug(`Edit message passed`, true)
-      App.check_tab_session_debouncer.call()
-    }
-  })
-}
-
 App.check_tab_session = async () => {
   for (let item of App.get_items(`tabs`)) {
     let custom_color = await browser.sessions.getTabValue(item.id, `custom_color`)
@@ -25,9 +12,8 @@ App.tab_is_edited = (item) => {
   return Boolean(item.custom_color || item.custom_title)
 }
 
-App.custom_save = async (id, name, value) => {
-  await browser.sessions.setTabValue(id, name, value)
-  browser.runtime.sendMessage({action: `edit`})
+App.custom_save = (id, name, value) => {
+  browser.sessions.setTabValue(id, name, value)
 }
 
 App.edit_tab_color = (item, color = ``) => {
