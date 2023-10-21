@@ -138,21 +138,41 @@ App.get_active_colors = (mode) => {
 }
 
 App.remove_all_colors = () => {
+  let items = []
+
+  for (let item of App.get_items(`tabs`)) {
+    if (item.custom_color) {
+      items.push(item)
+    }
+  }
+
+  if (!items.length) {
+    return
+  }
+
   App.show_confirm(`Remove all colors?`, () => {
-    for (let item of App.get_items(`tabs`)) {
-      if (item.custom_color) {
-        App.edit_tab_color(item)
-      }
+    for (let item of items) {
+      App.edit_tab_color(item)
     }
   })
 }
 
 App.remove_color = (color) => {
-  App.show_confirm(`Remove ${color}?`, () => {
-    for (let item of App.get_items(`tabs`)) {
-      if (item.custom_color === color) {
-        App.edit_tab_color(item)
-      }
+  let items = []
+
+  for (let item of App.get_items(`tabs`)) {
+    if (item.custom_color === color) {
+      items.push(item)
+    }
+  }
+
+  if (!items.length) {
+    return
+  }
+
+  App.show_confirm(`Remove ${color}? (${items.length})`, () => {
+    for (let item of items) {
+      App.edit_tab_color(item)
     }
   })
 }
@@ -174,11 +194,21 @@ App.close_color = (color) => {
 }
 
 App.remove_all_titles = () => {
+  let items = []
+
+  for (let item of App.get_items(`tabs`)) {
+    if (item.custom_title) {
+      items.push(item)
+    }
+  }
+
+  if (!items.length) {
+    return
+  }
+
   App.show_confirm(`Remove all titles?`, () => {
-    for (let item of App.get_items(`tabs`)) {
-      if (item.custom_title) {
-        App.edit_tab_title(item)
-      }
+    for (let item of items) {
+      App.edit_tab_title(item)
     }
   })
 }
