@@ -14,16 +14,16 @@ App.check_tab_sessions = async () => {
   }
 }
 
-App.edit_tab_color = (item, color, save = true) => {
+App.edit_tab_color = (item, color = ``, save = true) => {
   let active = App.get_active_items(item.mode, item)
 
   for (let it of active) {
     it.custom_color = color
     App.update_item(it.mode, it.id, it)
-  }
 
-  if (save) {
-    browser.sessions.setTabValue(item.id, `custom_color`, color)
+    if (save) {
+      browser.sessions.setTabValue(it.id, `custom_color`, color)
+    }
   }
 }
 
@@ -37,16 +37,16 @@ App.toggle_tab_color = (item, color) => {
   App.edit_tab_color(item, value)
 }
 
-App.edit_tab_title = (item, title, save = true) => {
+App.edit_tab_title = (item, title = ``, save = true) => {
   let active = App.get_active_items(item.mode, item)
 
   for (let it of active) {
     it.custom_title = title
     App.update_item(it.mode, it.id, it)
-  }
 
-  if (save) {
-    browser.sessions.setTabValue(item.id, `custom_title`, title)
+    if (save) {
+      browser.sessions.setTabValue(it.id, `custom_title`, title)
+    }
   }
 }
 
@@ -135,4 +135,24 @@ App.get_active_colors = (mode) => {
   }
 
   return count
+}
+
+App.remove_all_colors = () => {
+  App.show_confirm(`Remove all colors?`, () => {
+    for (let item of App.get_items(`tabs`)) {
+      if (item.custom_color) {
+        App.edit_tab_color(item)
+      }
+    }
+  })
+}
+
+App.remove_all_titles = () => {
+  App.show_confirm(`Remove all titles?`, () => {
+    for (let item of App.get_items(`tabs`)) {
+      if (item.custom_title) {
+        App.edit_tab_title(item)
+      }
+    }
+  })
 }

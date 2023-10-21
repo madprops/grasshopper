@@ -43,7 +43,7 @@ App.setup_commands = () => {
     color_filters.push({
       name: name,
       cmd: `filter_color_${color}`,
-      modes: [`items`],
+      modes: [`tabs`],
       icon: icon,
       action: (args) => {
         App.filter_color(args.mode, color)
@@ -92,6 +92,18 @@ App.setup_commands = () => {
       App.edit_tab_color(args.item)
     },
     info: `Remove the custom color of tabs`
+  })
+
+  color_changers.push({
+    name: `Remove All Colors`,
+    cmd: `remove_all_colors`,
+    modes: [`tabs`],
+    item: true,
+    icon: theme_icon,
+    action: (args) => {
+      App.remove_all_colors()
+    },
+    info: `Remove all colors from tabs`
   })
 
   color_changers.push({
@@ -771,6 +783,17 @@ App.setup_commands = () => {
         App.prompt_tab_title(args.item)
       },
       info: `Edit a tabs's title`
+    },
+    {
+      name: `Remove All Titles`,
+      cmd: `remove_all_titles`,
+      modes: [`tabs`],
+      item: true,
+      icon: edit_icon,
+      action: (args) => {
+        App.remove_all_titles()
+      },
+      info: `Remove all titles from tabs`
     },
     {
       name: App.separator_string
