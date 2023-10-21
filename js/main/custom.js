@@ -9,7 +9,7 @@ App.check_tab_sessions = async () => {
     let custom_title = await browser.sessions.getTabValue(item.id, `custom_title`)
 
     if (custom_title) {
-      App.edit_tab_title(item, custom_title)
+      App.apply_tab_title(item, custom_title)
     }
   }
 }
@@ -59,15 +59,35 @@ App.toggle_tab_color = (item, color) => {
 
 App.edit_tab_title = (item, title = ``, save = true) => {
   let active = App.get_active_items(item.mode, item)
+  let force = true
 
-  for (let it of active) {
-    it.custom_title = title
-    App.update_item(it.mode, it.id, it)
-
-    if (save) {
-      browser.sessions.setTabValue(it.id, `custom_title`, title)
-    }
+  if (active.length > 1) {
+    force = false
   }
+
+  let s
+
+  if (title) {
+    s = `Edit title?`
+  }
+  else {
+    s = `Remove title?`
+  }
+
+  App.show_confirm(`${s} (${active.length})`, () => {
+    for (let it of active) {
+      App.apply_tab_title(it, title)
+
+      if (save) {
+        browser.sessions.setTabValue(it.id, `custom_title`, title)
+      }
+    }
+  }, undefined, force)
+}
+
+App.apply_tab_title = (item, title) => {
+  item.custom_title = title
+  App.update_item(item.mode, item.id, item)
 }
 
 App.prompt_tab_title = (item) => {
