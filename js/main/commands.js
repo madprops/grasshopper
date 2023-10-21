@@ -82,14 +82,13 @@ App.setup_commands = () => {
       info: `Filter tabs with this color (${color})`
     })
 
-    icon = App.color_icon(color)
     name = `Remove ${App.capitalize(color)}`
 
     color_filters.push({
       name: name,
       cmd: `remove_color_${color}`,
       modes: [`tabs`],
-      icon: icon,
+      icon: theme_icon,
       action: (args) => {
         App.remove_color(color)
       },
