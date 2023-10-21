@@ -93,10 +93,11 @@ App.get_color_items = (mode) => {
   let count = App.get_active_colors(mode)
 
   items.push({
+    icon: App.settings_icons.colors,
     text: `All`,
     action: () => {
       App.filter_color(mode, `all`)
-    }
+    },
   })
 
   for (let color of App.colors) {
