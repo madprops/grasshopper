@@ -430,8 +430,6 @@ App.build_settings = () => {
       type: `list`,
       value: [
         {cmd: `show_about`},
-        {cmd: `go_to_bottom`},
-        {cmd: `go_to_top`},
         {cmd: `toggle_color_red`},
         {cmd: `toggle_color_green`},
         {cmd: `toggle_color_blue`},
