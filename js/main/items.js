@@ -612,7 +612,7 @@ App.apply_color_mode = (item) => {
   }
 }
 
-App.add_close_icon = (item, side) => {
+App.add_close_button = (item, side) => {
   let close_button = App.get_setting(`close_button`)
 
   if (close_button === `none`) {
@@ -648,7 +648,7 @@ App.refresh_item_element = (item) => {
 App.create_item_element = (item) => {
   item.element = DOM.create(`div`, `grasshopper_item item ${item.mode}_item`)
   item.element.dataset.id = item.id
-  App.add_close_icon(item, `left`)
+  App.add_close_button(item, `left`)
   let trace = DOM.create(`div`, `item_trace item_node`)
   item.element.append(trace)
 
@@ -743,7 +743,7 @@ App.create_item_element = (item) => {
       item.element.append(hover_btn)
     }
 
-    App.add_close_icon(item, `right`)
+    App.add_close_button(item, `right`)
     App.check_tab_item(item)
     App.check_item_status(item)
   }
