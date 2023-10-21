@@ -19,13 +19,11 @@ App.create_filter_menu = (mode) => {
   let video_icon = App.get_setting(`video_icon`)
   let audio_icon = App.get_setting(`audio_icon`)
   let color_icon = App.settings_icons.theme
-  let tag_icon = App.tag_icon
   fmodes.push(separator())
   fmodes.push({type: `image`, text: `Image`, skip: false, info: `Show image items`, icon: image_icon})
   fmodes.push({type: `video`, text: `Video`, skip: false, info: `Show video items`, icon: video_icon})
   fmodes.push({type: `audio`, text: `Audio`, skip: false, info: `Show audio items`, icon: audio_icon})
   fmodes.push(separator())
-  fmodes.push({type: `tag`, text: `Tag`, skip: true, skip: `Filter by a specific tag`, icon: tag_icon})
   fmodes.push({type: `color`, text: `Color`, skip: true, skip: `Filter by a specific color`, icon: color_icon})
 
   if (mode !== `tabs`) {
@@ -74,18 +72,6 @@ App.show_filter_menu = (mode) => {
   for (let filter_mode of App.filter_modes(mode)) {
     if (filter_mode.type === App.separator_string) {
       App.sep(items)
-      continue
-    }
-    else if (filter_mode.type === `tag`) {
-      items.push({
-        icon: filter_mode.icon,
-        text: filter_mode.text,
-        get_items: () => {
-          return App.get_tag_items(mode)
-        },
-        info: filter_mode.info,
-      })
-
       continue
     }
     else if (filter_mode.type === `color`) {

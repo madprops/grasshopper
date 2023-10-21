@@ -113,15 +113,6 @@ App.mouse_click_action = (mode, e) => {
     }
   }
 
-  if (App.get_setting(`notes_click`)) {
-    if (App.get_setting(`notes_icon`)) {
-      if (e.target.classList.contains(`notes_icon`)) {
-        App.show_notes(item)
-        return
-      }
-    }
-  }
-
   if (media_type) {
     if (App.get_setting(`view_${media_type}_${mode}`) === `item`) {
       App.select_item({item: item, scroll: `nearest`})

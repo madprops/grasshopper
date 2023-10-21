@@ -300,14 +300,6 @@ App.filter_check = (args) => {
     else if (args.filter_mode === `audio`) {
       match = args.item.audio
     }
-    else if (args.filter_mode === `tag`) {
-      if (args.f_value === `all`) {
-        match = args.item.tags.length > 0
-      }
-      else {
-        match = args.item.tags.includes(args.f_value)
-      }
-    }
     else if (args.filter_mode === `color`) {
       if (args.f_value === `all`) {
         match = Boolean(args.item.custom_color)
@@ -679,20 +671,6 @@ App.filter_domain = (item) => {
   App.set_filter({mode: item.mode, text: hostname})
 }
 
-App.filter_tag = (mode, tag) => {
-  let s
-
-  if (tag === `all`) {
-    s = `All Tags`
-  }
-  else {
-    s = tag
-  }
-
-  App.set_custom_filter_mode(mode, `tag_${tag}`, s)
-  App.set_filter({mode: mode})
-}
-
 App.filter_color = (mode, color) => {
   let s
 
@@ -797,11 +775,6 @@ App.clean_filter = (s) => {
   s = App.remove_special(s)
   s = s.trim()
   return s
-}
-
-App.show_filter_tag_menu = (mode, e) => {
-  let items = App.get_tag_items(mode, `filter`)
-  App.show_center_context(items, e)
 }
 
 App.show_filter_color_menu = (mode, e) => {

@@ -537,15 +537,6 @@ App.check_text_color = (item) => {
   }
 }
 
-App.check_item_notes = (item) => {
-  if (item.has_notes) {
-    DOM.el(`.notes_icon`, item.element).classList.remove(`hidden`)
-  }
-  else {
-    DOM.el(`.notes_icon`, item.element).classList.add(`hidden`)
-  }
-}
-
 App.check_view_media = (item) => {
   let type = App.get_media_type(item)
   let view_media = DOM.el(`.view_media_button`, item.element)
@@ -645,7 +636,6 @@ App.refresh_item_element = (item) => {
   App.check_tab_item(item)
   App.check_item_icon(item)
   App.check_view_media(item)
-  App.check_item_notes(item)
   App.check_item_status(item)
   App.set_item_text(item)
   App.apply_color_mode(item)
@@ -726,10 +716,6 @@ App.create_item_element = (item) => {
   text.append(text_2)
   item.element.append(text)
   App.set_item_text(item)
-  let notes = DOM.create(`div`, `notes_icon item_node action hidden`)
-  notes.textContent = App.get_setting(`notes_icon`)
-  item.element.append(notes)
-  App.check_item_notes(item)
 
   if (item.mode === `tabs`) {
     item.element.draggable = true

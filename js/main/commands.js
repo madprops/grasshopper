@@ -18,7 +18,6 @@ App.setup_commands = () => {
   let browser_icon = App.browser_icon
   let clipboard_icon = App.clipboard_icon
   let edit_icon = App.edit_icon
-  let tag_icon = App.tag_icon
   let bot_icon = App.bot_icon
   let up_icon = App.up_arrow_icon
   let down_icon = App.down_arrow_icon
@@ -888,26 +887,6 @@ App.setup_commands = () => {
         App.filter_no_tab(args.mode)
       },
       info: `Filter: Show duplicate tabs`
-    },
-    {
-      name: `Filter Tag Menu`,
-      cmd: `show_filter_tag_menu`,
-      modes: [`items`],
-      icon: tag_icon,
-      action: (args) => {
-        App.show_filter_tag_menu(args.mode, args.e)
-      },
-      info: `Show the filter tags menu`
-    },
-    {
-      name: `Filter All Tags`,
-      cmd: `filter_tag_all`,
-      modes: [`items`],
-      icon: tag_icon,
-      action: (args) => {
-        App.filter_tag(args.mode, `all`)
-      },
-      info: `Filter: Show all tags`
     },
     {
       name: App.separator_string
