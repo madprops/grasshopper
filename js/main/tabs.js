@@ -466,13 +466,21 @@ App.do_unload_tabs = async (ids) => {
 }
 
 App.unload_other_tabs = (item) => {
+  let items = []
+
+  function proc () {
+    let ids = items.map(x => x.id)
+
+    App.show_confirm(`Unload other tabs? (${ids.length})`, () => {
+      App.do_unload_tabs(ids)
+    })
+  }
+
   let active = App.get_active_items(`tabs`, item)
 
   if (!active.length) {
     return
   }
-
-  let ids = []
 
   for (let it of App.get_items(`tabs`)) {
     if (active.includes(it)) {
@@ -483,15 +491,18 @@ App.unload_other_tabs = (item) => {
       continue
     }
 
-    ids.push(it.id)
+    items.push(it)
   }
 
-  if (!ids.length) {
+  if (!items.length) {
     return
   }
 
-  App.show_confirm(`Unload other tabs? (${ids.length})`, () => {
-    App.do_unload_tabs(ids)
+  App.show_confirm(`Include pins?`, () => {
+    proc()
+  }, () => {
+    items = items.filter(x => !x.pinned)
+    proc()
   })
 }
 
