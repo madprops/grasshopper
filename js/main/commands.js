@@ -77,9 +77,9 @@ App.setup_commands = () => {
       item: true,
       icon: icon,
       action: (args) => {
-        App.edit_tab_color(args.item, color)
+        App.toggle_tab_color(args.item, color)
       },
-      info: `Toggle color on tabs: ${color}`
+      info: `Toggle color on tab: ${color}`
     })
   }
 

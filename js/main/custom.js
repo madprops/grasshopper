@@ -27,6 +27,16 @@ App.edit_tab_color = (item, color, save = true) => {
   }
 }
 
+App.toggle_tab_color = (item, color) => {
+  let value
+
+  if (item.custom_color !== color) {
+    value = color
+  }
+
+  App.edit_tab_color(item, value)
+}
+
 App.edit_tab_title = (item, title, save = true) => {
   let active = App.get_active_items(item.mode, item)
 
