@@ -33,18 +33,18 @@ App.edit_tab_color = (item, color = ``, save = true) => {
 
   App.show_confirm(`${s} (${active.length})`, () => {
     for (let it of active) {
-      App.apply_tab_color(it, color)
-
-      if (save) {
-        browser.sessions.setTabValue(it.id, `custom_color`, color)
-      }
+      App.apply_tab_color(it, color, true)
     }
   }, undefined, force)
 }
 
-App.apply_tab_color = (item, color) => {
+App.apply_tab_color = (item, color, save = true) => {
   item.custom_color = color
   App.update_item(item.mode, item.id, item)
+
+  if (save) {
+    browser.sessions.setTabValue(item.id, `custom_color`, color)
+  }
 }
 
 App.toggle_tab_color = (item, color) => {
@@ -197,7 +197,7 @@ App.remove_all_colors = () => {
 
   App.show_confirm(`Remove all colors?`, () => {
     for (let item of items) {
-      App.edit_tab_color(item)
+      App.apply_tab_color(item)
     }
   })
 }
@@ -217,7 +217,7 @@ App.remove_color = (color) => {
 
   App.show_confirm(`Remove ${color}? (${items.length})`, () => {
     for (let item of items) {
-      App.edit_tab_color(item)
+      App.apply_tab_color(item)
     }
   })
 }
