@@ -22,6 +22,7 @@ App.setup_commands = () => {
   let up_icon = App.up_arrow_icon
   let down_icon = App.down_arrow_icon
   let heart_icon = App.heart_icon
+  let close_icon = App.close_icon
   let color_filters = []
   let color_changers = []
 
@@ -95,14 +96,13 @@ App.setup_commands = () => {
       info: `Remove color from tabs (${color})`
     })
 
-    icon = App.color_icon(color)
     name = `Close ${App.capitalize(color)}`
 
     color_filters.push({
       name: name,
       cmd: `close_color_${color}`,
       modes: [`tabs`],
-      icon: icon,
+      icon: App.close_icon,
       action: (args) => {
         App.close_color(color)
       },
@@ -601,7 +601,7 @@ App.setup_commands = () => {
       cmd: `close_tabs`,
       modes: [`tabs`],
       item: true,
-      icon: tabs_icon,
+      icon: close_icon,
       action: (args) => {
         App.close_tabs(args.item)
       },
@@ -611,7 +611,7 @@ App.setup_commands = () => {
       name: `Close Menu`,
       cmd: `show_close_tabs_menu`,
       modes: [`items`],
-      icon: tabs_icon,
+      icon: close_icon,
       action: (args) => {
         App.show_close_tabs_menu(args.e)
       },
@@ -621,7 +621,7 @@ App.setup_commands = () => {
       name: `Close Normal`,
       cmd: `close_normal_tabs`,
       modes: [`items`],
-      icon: tabs_icon,
+      icon: close_icon,
       action: (args) => {
         App.close_tabs_popup(`normal`)
       },
@@ -631,7 +631,7 @@ App.setup_commands = () => {
       name: `Close Playing`,
       cmd: `close_playing_tabs`,
       modes: [`items`],
-      icon: tabs_icon,
+      icon: close_icon,
       action: (args) => {
         App.close_tabs_popup(`playing`)
       },
@@ -641,7 +641,7 @@ App.setup_commands = () => {
       name: `Close Loaded`,
       cmd: `close_loaded_tabs`,
       modes: [`items`],
-      icon: tabs_icon,
+      icon: close_icon,
       action: (args) => {
         App.close_tabs_popup(`loaded`)
       },
@@ -651,7 +651,7 @@ App.setup_commands = () => {
       name: `Close Unloaded`,
       cmd: `close_unloaded_tabs`,
       modes: [`items`],
-      icon: tabs_icon,
+      icon: close_icon,
       action: (args) => {
         App.close_tabs_popup(`unloaded`)
       },
@@ -661,7 +661,7 @@ App.setup_commands = () => {
       name: `Close Duplicate`,
       cmd: `close_duplicate_tabs`,
       modes: [`items`],
-      icon: tabs_icon,
+      icon: close_icon,
       action: (args) => {
         App.close_tabs_popup(`duplicate`)
       },
@@ -671,7 +671,7 @@ App.setup_commands = () => {
       name: `Close Visible`,
       cmd: `close_visible_tabs`,
       modes: [`items`],
-      icon: tabs_icon,
+      icon: close_icon,
       action: (args) => {
         App.close_tabs_popup(`visible`)
       },
