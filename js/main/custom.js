@@ -187,9 +187,14 @@ App.close_color = (color) => {
 }
 
 App.show_close_color_menu = (e) => {
+  let count = App.get_active_colors(`tabs`)
   let items = []
 
   for (let color of App.colors) {
+    if (!count[color]) {
+      continue
+    }
+
     let icon = App.color_icon(color)
     let text = App.capitalize(color)
 
@@ -199,6 +204,13 @@ App.show_close_color_menu = (e) => {
       action: () => {
         App.close_color(color)
       },
+    })
+  }
+
+  if (!items.length) {
+    items.push({
+      text: `No colors in use`,
+      action: () => {},
     })
   }
 
