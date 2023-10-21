@@ -406,10 +406,7 @@ App.check_item_icon = (item) => {
     container.innerHTML = ``
     let icon
 
-    if (item.icon) {
-      icon = App.get_text_icon(item.icon)
-    }
-    else if (item.favicon) {
+    if (item.favicon) {
       icon = App.get_favicon(item)
     }
     else {
