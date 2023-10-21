@@ -289,7 +289,7 @@ App.process_info_list = (mode, info_list) => {
   App.check_new_tabs()
 
   if (mode === `tabs`) {
-    App.check_tab_sessions()
+    App.check_tab_session()
   }
 }
 

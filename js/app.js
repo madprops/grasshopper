@@ -70,6 +70,7 @@ App.filter_cycle_delay = 50
 App.check_filter_delay = 100
 App.active_history_delay = 50
 App.apply_theme_delay = 100
+App.check_tab_session_delay = 100
 
 App.settings_icons = {
   general: `⚙️`,

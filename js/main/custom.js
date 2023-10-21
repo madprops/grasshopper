@@ -1,12 +1,17 @@
 App.setup_custom = () => {
+  App.check_tab_session_debouncer = App.create_debouncer(() => {
+    App.check_tab_session()
+  }, App.check_tab_session_delay)
+
   browser.runtime.onMessage.addListener((message) => {
     if (message.action === `edit`) {
-      App.check_tab_sessions()
+      App.debug(`Edit message passed`, true)
+      App.check_tab_session_debouncer.call()
     }
   })
 }
 
-App.check_tab_sessions = async () => {
+App.check_tab_session = async () => {
   for (let item of App.get_items(`tabs`)) {
     let custom_color = await browser.sessions.getTabValue(item.id, `custom_color`)
     App.apply_tab_color(item, custom_color || ``)
@@ -154,7 +159,9 @@ App.remove_all_colors = () => {
 
   App.show_confirm(`Remove all colors?`, () => {
     for (let item of items) {
-      App.apply_tab_color(item)
+      let color = ``
+      App.apply_tab_color(item, color)
+      App.custom_save(item.id, `custom_color`, color)
     }
   })
 }
@@ -174,7 +181,9 @@ App.remove_color = (color) => {
 
   App.show_confirm(`Remove ${color}? (${items.length})`, () => {
     for (let item of items) {
-      App.apply_tab_color(item)
+      let color = ``
+      App.apply_tab_color(item, color)
+      App.custom_save(item.id, `custom_color`, color)
     }
   })
 }
@@ -238,7 +247,9 @@ App.remove_all_titles = () => {
 
   App.show_confirm(`Remove all titles?`, () => {
     for (let item of items) {
-      App.apply_tab_title(item)
+      let title = ``
+      App.apply_tab_title(item, title)
+      App.custom_save(item.id, `custom_title`, title)
     }
   })
 }
