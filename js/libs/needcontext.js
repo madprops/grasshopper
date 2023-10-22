@@ -234,7 +234,6 @@ NeedContext.show = (args = {}) => {
   NeedContext.layers[NeedContext.level] = {
     root: args.root,
     items: args.items,
-    direct: args.direct,
     normal_items: normal_items,
     last_index: selected_index,
     x: args.x,
@@ -383,12 +382,10 @@ NeedContext.select_action = async (e, index = NeedContext.index, mode = `mouse`)
 
   let x = NeedContext.last_x
   let y = NeedContext.last_y
-  let layer = NeedContext.get_layer()
-  let item = layer.normal_items[index]
-  let direct = layer.direct
+  let item = NeedContext.get_layer().normal_items[index]
 
   function show_below (items) {
-    layer.last_index = index
+    NeedContext.get_layer().last_index = index
     NeedContext.level += 1
 
     if (e.clientY) {
@@ -399,7 +396,7 @@ NeedContext.select_action = async (e, index = NeedContext.index, mode = `mouse`)
   }
 
   function do_items (items) {
-    if (items.length === 1 && direct) {
+    if (items.length === 1 && items[0].direct) {
       NeedContext.hide()
       items[0].action(e)
     }

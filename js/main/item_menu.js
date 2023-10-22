@@ -77,7 +77,7 @@ App.show_item_menu = async (args = {}) => {
     }
   }
 
-  NeedContext.show({x: args.x, y: args.y, items: items, direct: true})
+  NeedContext.show({x: args.x, y: args.y, items: items})
 }
 
 App.show_item_menu_2 = (item) => {
@@ -236,8 +236,9 @@ App.item_menu_cmd = (cmd, item, short = true) => {
       App.run_command({
         cmd: cmd.cmd,
         item: item,
-        from: `item_menu`,
+        from: `item_menu`
       })
     },
+    direct: true,
   }
 }
