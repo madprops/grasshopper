@@ -76,14 +76,7 @@ App.show_item_menu = async (args = {}) => {
       items.push(App.item_menu_cmd(App.get_command(`close_tabs`), args.item))
     }
     else {
-      items.push({
-        icon: App.mode_icons.tabs,
-        text: `Open`,
-        action: () => {
-          App.open_items(args.item, true)
-        }
-      })
-
+      items.push(App.item_menu_cmd(App.get_command(`open_items`), args.item))
       App.common_menu_items(items, args.item, multiple)
       App.more_menu_items(items, args.item, multiple)
     }
@@ -105,13 +98,7 @@ App.common_menu_items = (o_items, item, multiple) => {
   let items = []
 
   if (App.get_media_type(item)) {
-    items.push({
-      icon: App.settings_icons.media,
-      text: `View`,
-      action: () => {
-        App.view_media(item)
-      }
-    })
+    items.push(App.item_menu_cmd(App.get_command(`view_media`), item))
   }
 
   if (!multiple) {

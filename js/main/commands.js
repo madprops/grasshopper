@@ -356,6 +356,17 @@ App.setup_commands = () => {
       info: `Open items`
     },
     {
+      name: `View`,
+      cmd: `view_media`,
+      modes: [`items`],
+      item: true,
+      icon: media_icon,
+      action: (args) => {
+        App.view_media(args.item)
+      },
+      info: `View media item`
+    },
+    {
       name: `Bookmark`,
       cmd: `bookmark_items`,
       modes: [`items`],
