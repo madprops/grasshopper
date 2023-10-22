@@ -1350,10 +1350,10 @@ App.scroll_to_item = (item, scroll = `nearest`) => {
   if (App.get_setting(`smooth_scroll`)) {
     let ch = App.container_change_date
 
-    if (ch !== 0) {
+    if (ch > 0) {
       // Only consider smooth some time after last container change
       // This is to avoid scroll issues caused by element heights
-      if (Date.now() - ch > App.container_change_min) {
+      if ((Date.now() - ch) > App.container_change_min) {
         behavior = `smooth`
       }
     }
