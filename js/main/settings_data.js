@@ -390,12 +390,12 @@ App.build_settings = () => {
   category = `show`
 
   props = {
-    show_pinline: {
-      name: `Show Pinline`,
+    favorites_mode: {
+      name: `Favorites Mode`,
       type: `menu`,
-      value: `auto`,
-      info: `Show the widget between pinned and normal tabs`,
-      version: 3,
+      value: `none`,
+      info: `How to show favorites`,
+      version: 1,
     },
     tab_box: {
       name: `Tab Box`,
@@ -418,12 +418,12 @@ App.build_settings = () => {
       info: `The position of the tab box`,
       version: 1,
     },
-    favorites_mode: {
-      name: `Favorites Mode`,
+    show_pinline: {
+      name: `Show Pinline`,
       type: `menu`,
-      value: `none`,
-      info: `How to show favorites`,
-      version: 1,
+      value: `auto`,
+      info: `Show the widget between pinned and normal tabs`,
+      version: 3,
     },
     close_button: {
       name: `Close Button`,
