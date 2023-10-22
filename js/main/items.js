@@ -25,13 +25,13 @@ App.select_item = (args) => {
   App.toggle_selected(args.item, true)
 
   if (prev) {
-    App.scroll_to_item(args.item, args.scroll)
+    App.scroll_to_item({item: args.item, scroll: args.scroll})
   }
   else {
     // Elements just got created
     // Give them time to render
     requestAnimationFrame(() => {
-      App.scroll_to_item(args.item, args.scroll)
+      App.scroll_to_item({item: args.item, scroll: args.scroll})
     })
   }
 }
@@ -936,7 +936,7 @@ App.move_item = (mode, from_index, to_index) => {
   App.move_item_element(mode, item.element, to_index)
 
   if (App.get_selected(mode) === item) {
-    App.scroll_to_item(App.get_selected(mode), `center`)
+    App.scroll_to_item({item: App.get_selected(mode), scroll: `center`})
   }
 }
 
@@ -1035,7 +1035,7 @@ App.select_range = (item) => {
     }
   }
 
-  App.scroll_to_item(item, `nearest`)
+  App.scroll_to_item({item: item, scroll: `nearest`})
 }
 
 App.deselect = (mode = App.window_mode, select = `none`) => {

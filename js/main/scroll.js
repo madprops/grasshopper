@@ -1,7 +1,57 @@
 App.setup_scroll = () => {
-  App.scroll_debouncer = App.create_debouncer((item, scroll) => {
-    App.do_scroll_to_item(item, scroll)
+  App.scroll_debouncer = App.create_debouncer((args) => {
+    App.do_scroll_to_item(args)
   }, App.scroll_delay)
+}
+
+App.scroll_to_item = (args) => {
+  App.scroll_debouncer.call(args)
+}
+
+App.do_scroll_to_item = (args = {}) => {
+  let def_args = {
+    scroll: `nearest`,
+    behavior: `auto`,
+  }
+
+  args = Object.assign(def_args, args)
+  App.scroll_debouncer.cancel()
+
+  if (args.scroll === `none`) {
+    return
+  }
+
+  if (args.behavior === `auto`) {
+    args.behavior = `instant`
+
+    if (App.get_setting(`smooth_scroll`)) {
+      let ch = App.container_change_date
+
+      if (ch > 0) {
+        // Only consider smooth some time after last container change
+        // This is to avoid scroll issues caused by element heights
+        if ((Date.now() - ch) > App.container_change_min) {
+          args.behavior = `smooth`
+        }
+      }
+    }
+  }
+
+  args.item.element.scrollIntoView({
+    block: args.scroll,
+    behavior: args.behavior,
+  })
+
+  if (args.behavior === `instant`) {
+    App.do_check_scroller(args.item.mode)
+  }
+  else if (args.behavior === `smooth`) {
+    let index = App.get_item_element_index(args.item.mode, args.item.element)
+
+    if (index === 0) {
+      App.hide_scroller(args.item.mode)
+    }
+  }
 }
 
 App.scroll = (mode, direction) => {
@@ -12,48 +62,6 @@ App.scroll = (mode, direction) => {
   }
   else if (direction === `down`) {
     el.scrollTop += App.scroll_amount
-  }
-}
-
-App.scroll_to_item = (item, scroll) => {
-  App.scroll_debouncer.call(item, scroll)
-}
-
-App.do_scroll_to_item = (item, scroll = `nearest`) => {
-  App.scroll_debouncer.cancel()
-
-  if (scroll === `none`) {
-    return
-  }
-
-  let behavior = `instant`
-
-  if (App.get_setting(`smooth_scroll`)) {
-    let ch = App.container_change_date
-
-    if (ch > 0) {
-      // Only consider smooth some time after last container change
-      // This is to avoid scroll issues caused by element heights
-      if ((Date.now() - ch) > App.container_change_min) {
-        behavior = `smooth`
-      }
-    }
-  }
-
-  item.element.scrollIntoView({
-    block: scroll,
-    behavior: behavior,
-  })
-
-  if (behavior === `instant`) {
-    App.do_check_scroller(item.mode)
-  }
-  else if (behavior === `smooth`) {
-    let index = App.get_item_element_index(item.mode, item.element)
-
-    if (index === 0) {
-      App.hide_scroller(item.mode)
-    }
   }
 }
 
