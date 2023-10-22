@@ -1533,6 +1533,6 @@ App.rebuild_items = () => {
   }
 }
 
-App.container_changed = () => {
-  App.container_change_date = Date.now()
+App.container_changed = (mode) => {
+  App.container_change[mode] = Date.now()
 }

@@ -36,8 +36,7 @@ App.backgrounds_dir = `/img/backgrounds/`
 App.num_backgrounds = 3
 App.number_min = 1
 App.number_max = 99999
-App.container_change_date = 0
-App.container_change_min = 800
+App.container_change = {}
 App.active_history = []
 App.sizes = [
   {text: `Tiny`, value: `tiny`},
@@ -73,6 +72,7 @@ App.filter_cycle_delay = 50
 App.check_filter_delay = 100
 App.active_history_delay = 50
 App.apply_theme_delay = 100
+App.min_smooth_delay = 800
 
 App.settings_icons = {
   general: `⚙️`,

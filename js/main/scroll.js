@@ -25,12 +25,12 @@ App.do_scroll_to_item = (args = {}) => {
     args.behavior = `instant`
 
     if (App.get_setting(`smooth_scroll`)) {
-      let ch = App.container_change_date
+      let change_date = App.container_change[args.item.mode]
 
-      if (ch > 0) {
+      if (change_date) {
         // Only consider smooth some time after last container change
         // This is to avoid scroll issues caused by element heights
-        if ((Date.now() - ch) > App.container_change_min) {
+        if ((Date.now() - change_date) > App.min_smooth_delay) {
           args.behavior = `smooth`
         }
       }
