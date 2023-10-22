@@ -18,7 +18,7 @@ App.setup_tabs = () => {
     }
   })
 
-  browser.tabs.onUpdated.addListener(async (id, cinfo, info) => {
+  browser.tabs.onUpdated.addListener(async (id, changed, info) => {
     if (App.tabs_locked) {
       return
     }
@@ -26,7 +26,7 @@ App.setup_tabs = () => {
     App.debug(`Tab Updated: ID: ${id}`, App.debug_tabs)
 
     if (info.windowId === App.window_id) {
-      await App.refresh_tab(id, false, info)
+      await App.refresh_tab(id, false, info, changed)
       App.check_playing()
     }
   })
@@ -225,7 +225,7 @@ App.get_tab_info = async (id) => {
   }
 }
 
-App.refresh_tab = async (id, select, info) => {
+App.refresh_tab = async (id, select, info, changed) => {
   if (!info) {
     try {
       info = await App.get_tab_info(id)
@@ -247,6 +247,14 @@ App.refresh_tab = async (id, select, info) => {
   }
 
   let item = App.get_item_by_id(`tabs`, id)
+
+  if (changed && changed.title) {
+    if (Object.keys(changed).length === 1) {
+      if (item.custom_title) {
+        return item
+      }
+    }
+  }
 
   if (item) {
     if (item.pinned !== info.pinned) {
