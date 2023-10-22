@@ -54,6 +54,7 @@ App.show_item_menu = async (args = {}) => {
 
       if (some_unpinned) {
         items.push({
+          icon: App.mode_icons.tabs,
           text: `Pin`,
           action: () => {
             App.pin_tabs(args.item)
@@ -63,6 +64,7 @@ App.show_item_menu = async (args = {}) => {
 
       if (some_pinned) {
         items.push({
+          icon: App.mode_icons.tabs,
           text: `Unpin`,
           action: () => {
             App.unpin_tabs(args.item)
@@ -71,6 +73,7 @@ App.show_item_menu = async (args = {}) => {
       }
 
       items.push({
+        icon: App.settings_icons.colors,
         text: `Color`,
         get_items: () => {
           return App.color_menu_items(args.item)
@@ -78,6 +81,7 @@ App.show_item_menu = async (args = {}) => {
       })
 
       items.push({
+        icon: App.edit_icon,
         text: `Title`,
         action: () => {
           App.prompt_tab_title(args.item)
@@ -85,11 +89,12 @@ App.show_item_menu = async (args = {}) => {
       })
 
       App.common_menu_items(items, args.item, multiple)
-      App.more_menu_items(items, args.item, multiple, some_loaded, some_unmuted, some_muted)
       App.extra_menu_items(items)
+      App.more_menu_items(items, args.item, multiple, some_loaded, some_unmuted, some_muted)
       App.sep(items)
 
       items.push({
+        icon: App.close_icon,
         text: `Close`,
         action: () => {
           App.close_tabs(args.item)
@@ -98,6 +103,7 @@ App.show_item_menu = async (args = {}) => {
     }
     else {
       items.push({
+        icon: App.mode_icons.tabs,
         text: `Open`,
         action: () => {
           App.open_items(args.item, true)
@@ -126,6 +132,7 @@ App.common_menu_items = (o_items, item, multiple) => {
 
   if (App.get_media_type(item)) {
     items.push({
+      icon: App.settings_icons.media,
       text: `View`,
       action: () => {
         App.view_media(item)
@@ -136,6 +143,7 @@ App.common_menu_items = (o_items, item, multiple) => {
   if (!multiple) {
     if (item.custom_color) {
       items.push({
+        icon: App.settings_icons.filter,
         text: `Filter`,
         get_items: () => {
           return App.filter_menu_items(item)
@@ -144,6 +152,7 @@ App.common_menu_items = (o_items, item, multiple) => {
     }
     else {
       items.push({
+        icon: App.settings_icons.filter,
         text: `Filter`,
         action: () => {
           App.filter_domain(item)
@@ -154,6 +163,7 @@ App.common_menu_items = (o_items, item, multiple) => {
 
   if (!multiple) {
     items.push({
+      icon: App.clipboard_icon,
       text: `Copy`,
       items: [
       {
@@ -184,6 +194,7 @@ App.more_menu_items = (o_items, item, multiple, some_loaded, some_unmuted, some_
   if (item.mode === `tabs`) {
     if (some_unmuted) {
       items.push({
+        icon: App.get_setting(`muted_icon`) || App.command_icon,
         text: `Mute`,
         action: () => {
           App.mute_tabs(item)
@@ -193,6 +204,7 @@ App.more_menu_items = (o_items, item, multiple, some_loaded, some_unmuted, some_
 
     if (some_muted) {
       items.push({
+        icon: App.get_setting(`muted_icon`) || App.command_icon,
         text: `Unmute`,
         action: () => {
           App.unmute_tabs(item)
@@ -202,6 +214,7 @@ App.more_menu_items = (o_items, item, multiple, some_loaded, some_unmuted, some_
 
     if (some_loaded) {
       items.push({
+        icon: App.get_setting(`unloaded_icon`) || App.command_icon,
         text: `Unload`,
         action: () => {
           App.unload_tabs(item)
@@ -210,6 +223,7 @@ App.more_menu_items = (o_items, item, multiple, some_loaded, some_unmuted, some_
     }
 
     items.push({
+      icon: App.mode_icons.tabs,
       text: `Duplicate`,
       action: () => {
         App.duplicate_tabs(item)
@@ -218,6 +232,7 @@ App.more_menu_items = (o_items, item, multiple, some_loaded, some_unmuted, some_
   }
 
   items.push({
+    icon: App.mode_icons.bookmarks,
     text: `Bookmark`,
     action: () => {
       App.bookmark_items(item)
@@ -240,6 +255,7 @@ App.more_menu_items = (o_items, item, multiple, some_loaded, some_unmuted, some_
     }
 
     items.push({
+      icon: App.up_arrow_icon,
       text: `To Top`,
       action: () => {
         App.move_tabs_vertically(`top`, item)
@@ -247,6 +263,7 @@ App.more_menu_items = (o_items, item, multiple, some_loaded, some_unmuted, some_
     })
 
     items.push({
+      icon: App.down_arrow_icon,
       text: `To Bottom`,
       action: () => {
         App.move_tabs_vertically(`bottom`, item)
@@ -254,6 +271,7 @@ App.more_menu_items = (o_items, item, multiple, some_loaded, some_unmuted, some_
     })
 
     items.push({
+      icon: App.command_icon,
       text: `To Window`,
       get_items: async () => {
         return await App.get_window_menu_items(item)
@@ -273,6 +291,7 @@ App.more_menu_items = (o_items, item, multiple, some_loaded, some_unmuted, some_
 
   if (items.length) {
     o_items.push({
+      icon: App.command_icon,
       text: `More`,
       items: items,
     })
@@ -291,6 +310,7 @@ App.extra_menu_items = (o_items) => {
   if (mode === `normal`) {
     if (items.length) {
       o_items.push({
+        icon: App.command_icon,
         text: `Extra`,
         items: items,
       })
