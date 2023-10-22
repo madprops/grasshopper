@@ -2,6 +2,10 @@ App.setup_scroll = () => {
   App.scroll_debouncer = App.create_debouncer((args) => {
     App.do_scroll_to_item(args)
   }, App.scroll_delay)
+
+  App.scroller_debouncer = App.create_debouncer((mode) => {
+    App.do_check_scroller(mode)
+  }, App.scroller_delay)
 }
 
 App.scroll_to_item = (args) => {
@@ -63,12 +67,6 @@ App.scroll = (mode, direction) => {
   else if (direction === `down`) {
     el.scrollTop += App.scroll_amount
   }
-}
-
-App.setup_scroller = () => {
-  App.scroller_debouncer = App.create_debouncer((mode) => {
-    App.do_check_scroller(mode)
-  }, App.scroller_delay)
 }
 
 App.show_scroller = (mode) => {

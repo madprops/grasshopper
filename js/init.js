@@ -24,7 +24,6 @@ App.init = async () => {
   App.do_apply_theme()
   App.setup_pinline()
   App.setup_footer()
-  App.setup_scroller()
   App.setup_recent_tabs()
   App.setup_active_history()
   await App.clear_show()
