@@ -44,12 +44,7 @@ App.show_item_menu = async (args = {}) => {
       }
 
       if (some_unloaded) {
-        items.push({
-          text: `Load`,
-          action: () => {
-            App.load_tabs(args.item)
-          }
-        })
+        items.push(App.item_menu_cmd(App.get_command(`load_tabs`), args.item))
       }
 
       if (some_unpinned) {
