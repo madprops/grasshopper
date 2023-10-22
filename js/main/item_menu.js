@@ -167,12 +167,14 @@ App.common_menu_items = (o_items, item, multiple) => {
       text: `Copy`,
       items: [
       {
+        icon: App.clipboard_icon,
         text: `Copy URL`,
         action: () => {
           App.copy_url(item)
         }
       },
       {
+        icon: App.clipboard_icon,
         text: `Copy Title`,
         action: () => {
           App.copy_title(item)
