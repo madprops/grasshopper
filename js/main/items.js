@@ -1230,17 +1230,6 @@ App.goto_bottom = (mode = App.window_mode, select = false) => {
   App.do_check_scroller(mode)
 }
 
-App.scroll = (mode, direction) => {
-  let el = DOM.el(`#${mode}_container`)
-
-  if (direction === `up`) {
-    el.scrollTop -= App.scroll_amount
-  }
-  else if (direction === `down`) {
-    el.scrollTop += App.scroll_amount
-  }
-}
-
 App.select_all = (mode = App.window_mode, toggle = false) => {
   let items = App.get_items(mode)
 
@@ -1333,58 +1322,6 @@ App.insert_item = (mode, info) => {
   App.update_footer_count(mode)
   App.check_filter(mode)
   return item
-}
-
-App.container_is_scrolled = (mode) => {
-  let container = DOM.el(`#${mode}_container`)
-  return container.scrollHeight > container.clientHeight
-}
-
-App.setup_scroll = () => {
-  App.scroll_debouncer = App.create_debouncer((item, scroll) => {
-    App.do_scroll_to_item(item, scroll)
-  }, App.scroll_delay)
-}
-
-App.scroll_to_item = (item, scroll) => {
-  App.scroll_debouncer.call(item, scroll)
-}
-
-App.do_scroll_to_item = (item, scroll = `nearest`) => {
-  App.scroll_debouncer.cancel()
-  let behavior = `instant`
-
-  if (scroll === `none`) {
-    return
-  }
-
-  if (App.get_setting(`smooth_scroll`)) {
-    let ch = App.container_change_date
-
-    if (ch > 0) {
-      // Only consider smooth some time after last container change
-      // This is to avoid scroll issues caused by element heights
-      if ((Date.now() - ch) > App.container_change_min) {
-        behavior = `smooth`
-      }
-    }
-  }
-
-  item.element.scrollIntoView({
-    block: scroll,
-    behavior: behavior,
-  })
-
-  if (behavior === `instant`) {
-    App.do_check_scroller(item.mode)
-  }
-  else if (behavior === `smooth`) {
-    let index = App.get_item_element_index(item.mode, item.element)
-
-    if (index === 0) {
-      App.hide_scroller(item.mode)
-    }
-  }
 }
 
 App.copy_url = (item) => {
