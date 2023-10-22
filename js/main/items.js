@@ -1451,7 +1451,6 @@ App.get_persistent_items = () => {
   return items
 }
 
-// Clear but always have tabs available
 App.clear_show = async () => {
   App.clear_all_items()
   App.rebuild_items()
