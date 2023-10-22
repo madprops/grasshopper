@@ -882,7 +882,6 @@ App.setup_commands = () => {
 
     {
       name: `Filter Domain`,
-      short_name: `Filter`,
       cmd: `filter_domain`,
       modes: [`items`],
       item: true,

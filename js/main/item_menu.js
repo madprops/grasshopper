@@ -97,18 +97,13 @@ App.common_menu_items = (o_items, item, multiple) => {
   }
 
   if (!multiple) {
-    if (item.custom_color) {
-      items.push({
-        icon: App.settings_icons.filter,
-        text: `Filter`,
-        get_items: () => {
-          return App.filter_menu_items(item)
-        }
-      })
-    }
-    else {
-      items.push(App.item_menu_cmd(App.get_command(`filter_domain`), item))
-    }
+    items.push({
+      icon: App.settings_icons.filter,
+      text: `Filter`,
+      get_items: () => {
+        return App.filter_menu_items(item)
+      }
+    })
   }
 
   if (!multiple) {
@@ -217,36 +212,33 @@ App.filter_menu_items = (item) => {
   let items = []
 
   if (item.custom_color) {
-    items.push({
-      icon: App.settings_icons.theme,
-      text: `Color`,
-      action: () => {
-        App.filter_color(item.mode, item.custom_color)
-      }
-    })
+    items.push(App.item_menu_cmd(App.get_command(`filter_color`), item, false))
   }
 
-  items.push({
-    icon: App.settings_icons.filter,
-    text: `Domain`,
-    action: () => {
-      App.filter_domain(item)
-    }
-  })
-
+  items.push(App.item_menu_cmd(App.get_command(`filter_domain`), item, false))
   return items
 }
 
-App.item_menu_cmd = (cmd, item) => {
+App.item_menu_cmd = (cmd, item, short = true) => {
+  let name
+
+  if (short) {
+    name = cmd.short_name || cmd.name
+  }
+  else {
+    name = cmd.name
+  }
+
   return {
     icon: cmd.icon,
-    text: cmd.short_name || cmd.name,
+    text: name,
     action: () => {
       App.run_command({
         cmd: cmd.cmd,
         item: item,
-        from: `item_menu`
+        from: `item_menu`,
       })
     },
+    direct: true,
   }
 }
