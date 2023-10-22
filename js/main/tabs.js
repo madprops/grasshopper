@@ -248,6 +248,8 @@ App.refresh_tab = async (id, select, info, changed) => {
 
   let item = App.get_item_by_id(`tabs`, id)
 
+  // If it's only a title update
+  // Ignore if tab has a custom title
   if (changed && changed.title) {
     if (Object.keys(changed).length === 1) {
       if (item.custom_title) {
