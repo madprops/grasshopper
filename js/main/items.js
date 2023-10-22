@@ -1364,7 +1364,16 @@ App.scroll_to_item = (item, scroll = `nearest`) => {
     behavior: behavior,
   })
 
-  App.do_check_scroller(item.mode)
+  if (behavior === `instant`) {
+    App.do_check_scroller(item.mode)
+  }
+  else if (behavior === `smooth`) {
+    let index = App.get_item_element_index(item.mode, item.element)
+
+    if (index === 0) {
+      App.hide_scroller(item.mode)
+    }
+  }
 }
 
 App.copy_url = (item) => {
@@ -1451,12 +1460,6 @@ App.pick = (item) => {
   else {
     App.select_item({item: item, scroll: `nearest`, deselect: false})
   }
-}
-
-App.get_index_diff = (item_1, item_2) => {
-  let i = App.get_item_element_index(item_1.mode, item_1.element)
-  let ii = App.get_item_element_index(item_2.mode, item_2.element)
-  return Math.abs(i - ii)
 }
 
 App.get_persistent_items = () => {
