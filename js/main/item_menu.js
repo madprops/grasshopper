@@ -53,23 +53,11 @@ App.show_item_menu = async (args = {}) => {
       }
 
       if (some_unpinned) {
-        items.push({
-          icon: App.mode_icons.tabs,
-          text: `Pin`,
-          action: () => {
-            App.pin_tabs(args.item)
-          }
-        })
+        items.push(App.item_menu_cmd(App.get_command(`pin_tabs`), args.item))
       }
 
       if (some_pinned) {
-        items.push({
-          icon: App.mode_icons.tabs,
-          text: `Unpin`,
-          action: () => {
-            App.unpin_tabs(args.item)
-          }
-        })
+        items.push(App.item_menu_cmd(App.get_command(`unpin_tabs`), args.item))
       }
 
       items.push({
@@ -80,26 +68,12 @@ App.show_item_menu = async (args = {}) => {
         }
       })
 
-      items.push({
-        icon: App.edit_icon,
-        text: `Title`,
-        action: () => {
-          App.prompt_tab_title(args.item)
-        }
-      })
-
+      items.push(App.item_menu_cmd(App.get_command(`edit_tab_title`), args.item))
       App.common_menu_items(items, args.item, multiple)
       App.extra_menu_items(items)
       App.more_menu_items(items, args.item, multiple, some_loaded, some_unmuted, some_muted)
       App.sep(items)
-
-      items.push({
-        icon: App.close_icon,
-        text: `Close`,
-        action: () => {
-          App.close_tabs(args.item)
-        }
-      })
+      items.push(App.item_menu_cmd(App.get_command(`close_tabs`), args.item))
     }
     else {
       items.push({
@@ -151,35 +125,19 @@ App.common_menu_items = (o_items, item, multiple) => {
       })
     }
     else {
-      items.push({
-        icon: App.settings_icons.filter,
-        text: `Filter`,
-        action: () => {
-          App.filter_domain(item)
-        }
-      })
+      items.push(App.item_menu_cmd(App.get_command(`filter_domain`), item))
     }
   }
 
   if (!multiple) {
+    let copy_items = []
+    copy_items.push(App.item_menu_cmd(App.get_command(`copy_item_url`), item))
+    copy_items.push(App.item_menu_cmd(App.get_command(`copy_item_title`), item))
+
     items.push({
       icon: App.clipboard_icon,
       text: `Copy`,
-      items: [
-      {
-        icon: App.clipboard_icon,
-        text: `Copy URL`,
-        action: () => {
-          App.copy_url(item)
-        }
-      },
-      {
-        icon: App.clipboard_icon,
-        text: `Copy Title`,
-        action: () => {
-          App.copy_title(item)
-        }
-      }]
+      items: copy_items,
     })
   }
 
@@ -195,60 +153,24 @@ App.more_menu_items = (o_items, item, multiple, some_loaded, some_unmuted, some_
 
   if (item.mode === `tabs`) {
     if (some_unmuted) {
-      items.push({
-        icon: App.get_setting(`muted_icon`) || App.command_icon,
-        text: `Mute`,
-        action: () => {
-          App.mute_tabs(item)
-        }
-      })
+      items.push(App.item_menu_cmd(App.get_command(`mute_tabs`), item))
     }
 
     if (some_muted) {
-      items.push({
-        icon: App.get_setting(`muted_icon`) || App.command_icon,
-        text: `Unmute`,
-        action: () => {
-          App.unmute_tabs(item)
-        }
-      })
+      items.push(App.item_menu_cmd(App.get_command(`unmute_tabs`), item))
     }
 
     if (some_loaded) {
-      items.push({
-        icon: App.get_setting(`unloaded_icon`) || App.command_icon,
-        text: `Unload`,
-        action: () => {
-          App.unload_tabs(item)
-        }
-      })
+      items.push(App.item_menu_cmd(App.get_command(`unload_tabs`), item))
     }
 
-    items.push({
-      icon: App.mode_icons.tabs,
-      text: `Duplicate`,
-      action: () => {
-        App.duplicate_tabs(item)
-      }
-    })
+    items.push(App.item_menu_cmd(App.get_command(`duplicate_tabs`), item))
   }
 
-  items.push({
-    icon: App.mode_icons.bookmarks,
-    text: `Bookmark`,
-    action: () => {
-      App.bookmark_items(item)
-    }
-  })
+  items.push(App.item_menu_cmd(App.get_command(`bookmark_items`), item))
 
   if (item.image && !multiple) {
-    items.push({
-      icon: App.settings_icons.theme,
-      text: `Background`,
-      action: () => {
-        App.change_background(item.url)
-      }
-    })
+    items.push(App.item_menu_cmd(App.get_command(`set_background_image`), item))
   }
 
   if (item.mode === `tabs`) {
@@ -256,21 +178,8 @@ App.more_menu_items = (o_items, item, multiple, some_loaded, some_unmuted, some_
       App.sep(items)
     }
 
-    items.push({
-      icon: App.up_arrow_icon,
-      text: `To Top`,
-      action: () => {
-        App.move_tabs_vertically(`top`, item)
-      }
-    })
-
-    items.push({
-      icon: App.down_arrow_icon,
-      text: `To Bottom`,
-      action: () => {
-        App.move_tabs_vertically(`bottom`, item)
-      }
-    })
+    items.push(App.item_menu_cmd(App.get_command(`move_tabs_to_top`), item))
+    items.push(App.item_menu_cmd(App.get_command(`move_tabs_to_bottom`), item))
 
     items.push({
       icon: App.command_icon,
@@ -282,13 +191,7 @@ App.more_menu_items = (o_items, item, multiple, some_loaded, some_unmuted, some_
   }
 
   if (item.mode === `closed`) {
-    items.push({
-      icon: App.mode_icons.closed,
-      text: `Forget`,
-      action: () => {
-        App.forget_closed_item(item)
-      }
-    })
+    items.push(App.item_menu_cmd(App.get_command(`forget_closed_item`), item))
   }
 
   if (items.length) {
@@ -350,4 +253,18 @@ App.filter_menu_items = (item) => {
   })
 
   return items
+}
+
+App.item_menu_cmd = (cmd, item) => {
+  return {
+    icon: cmd.icon,
+    text: cmd.short_name || cmd.name,
+    action: () => {
+      App.run_command({
+        cmd: cmd.cmd,
+        item: item,
+        from: `item_menu`
+      })
+    },
+  }
 }

@@ -517,6 +517,7 @@ App.setup_commands = () => {
     },
     {
       name: `Move To Top`,
+      short_name: `To Top`,
       cmd: `move_tabs_to_top`,
       modes: [`tabs`],
       icon: up_icon,
@@ -527,6 +528,7 @@ App.setup_commands = () => {
     },
     {
       name: `Move To Bottom`,
+      short_name: `To Bottom`,
       cmd: `move_tabs_to_bottom`,
       modes: [`tabs`],
       icon: down_icon,
@@ -815,10 +817,23 @@ App.setup_commands = () => {
       info: `Forget closed items`
     },
     {
+      name: `Forget Closed Item`,
+      short_name: `Forget`,
+      cmd: `forget_closed_item`,
+      modes: [`closed`],
+      item: true,
+      icon: closed_icon,
+      action: (args) => {
+        App.forget_closed_item(args.item)
+      },
+      info: `Forget a single closed item`
+    },
+    {
       name: App.separator_string
     },
     {
       name: `Edit Title`,
+      short_name: `Title`,
       cmd: `edit_tab_title`,
       modes: [`tabs`],
       item: true,
@@ -854,6 +869,7 @@ App.setup_commands = () => {
 
     {
       name: `Filter Domain`,
+      short_name: `Filter`,
       cmd: `filter_domain`,
       modes: [`items`],
       item: true,

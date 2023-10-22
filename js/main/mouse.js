@@ -182,7 +182,6 @@ App.mouse_context_action = (mode, e) => {
     }
   }
 
-  App.select_item({item: item, scroll: `nearest`, deselect: !item.selected})
   App.show_item_menu({item: item, x: e.clientX, y: e.clientY})
 }
 
