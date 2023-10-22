@@ -218,7 +218,6 @@ App.more_menu_items = (o_items, item, multiple, some_loaded, some_unmuted, some_
   }
 
   items.push({
-    icon: App.mode_icons.bookmarks,
     text: `Bookmark`,
     action: () => {
       App.bookmark_items(item)
