@@ -13,7 +13,7 @@ App.setup_tabs = () => {
       let item = await App.refresh_tab(info.id, false, info)
 
       if (item) {
-        App.check_tab_session(item)
+        App.check_tab_session([item])
       }
     }
   })
