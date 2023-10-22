@@ -1264,6 +1264,13 @@ App.build_settings = () => {
       info: `Pick items when right clicking the hover button`,
       version: 1,
     },
+    item_menu_select: {
+      name: `Item Menu Select`,
+      type: `checkbox`,
+      value: false,
+      info: `Select items when right clicking them to show the item menu`,
+      version: 1,
+    },
     debug_mode: {
       name: `Debug Mode`,
       type: `checkbox`,
