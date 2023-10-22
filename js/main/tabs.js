@@ -250,7 +250,7 @@ App.refresh_tab = async (id, select, info, changed) => {
 
   // If it's only a title update
   // Ignore if the tab has a custom title
-  if (changed && changed.title && item.custom_title) {
+  if (item.custom_title && changed && changed.title) {
     if (Object.keys(changed).length === 1) {
       return item
     }
