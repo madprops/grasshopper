@@ -21,11 +21,12 @@ App.scroll_to_item = (item, scroll) => {
 
 App.do_scroll_to_item = (item, scroll = `nearest`) => {
   App.scroll_debouncer.cancel()
-  let behavior = `instant`
 
   if (scroll === `none`) {
     return
   }
+
+  let behavior = `instant`
 
   if (App.get_setting(`smooth_scroll`)) {
     let ch = App.container_change_date
