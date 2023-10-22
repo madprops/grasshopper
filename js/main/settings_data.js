@@ -390,13 +390,6 @@ App.build_settings = () => {
   category = `show`
 
   props = {
-    favorites_mode: {
-      name: `Favorites Mode`,
-      type: `menu`,
-      value: `none`,
-      info: `How to show favorites`,
-      version: 1,
-    },
     tab_box: {
       name: `Tab Box`,
       type: `menu`,
@@ -418,12 +411,20 @@ App.build_settings = () => {
       info: `The position of the tab box`,
       version: 1,
     },
-    show_pinline: {
-      name: `Show Pinline`,
+    favorites_mode: {
+      name: `Favorites Mode`,
       type: `menu`,
-      value: `auto`,
-      info: `Show the widget between pinned and normal tabs`,
-      version: 3,
+      value: `none`,
+      info: `How to show favorites`,
+      version: 1,
+    },
+    extra_menu_mode: {
+      name: `Extra Menu Mode`,
+      type: `menu`,
+      value: `none`,
+      info: `How to show the extra menu on right click. Either on its own submenu,
+      flat at the root level, or totally replace the item menu. This menu only appears in tabs mode`,
+      version: 1,
     },
     close_button: {
       name: `Close Button`,
@@ -439,13 +440,12 @@ App.build_settings = () => {
       info: `How to show the hover button on tabs`,
       version: 2,
     },
-    extra_menu_mode: {
-      name: `Extra Menu Mode`,
+    show_pinline: {
+      name: `Show Pinline`,
       type: `menu`,
-      value: `none`,
-      info: `How to show the extra menu on right click. Either on its own submenu,
-      flat at the root level, or totally replace the item menu. This menu only appears in tabs mode`,
-      version: 1,
+      value: `auto`,
+      info: `Show the widget between pinned and normal tabs`,
+      version: 3,
     },
     show_tooltips: {
       name: `Show Tooltips`,
