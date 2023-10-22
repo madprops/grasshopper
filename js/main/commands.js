@@ -520,9 +520,10 @@ App.setup_commands = () => {
       short_name: `To Top`,
       cmd: `move_tabs_to_top`,
       modes: [`tabs`],
+      item: true,
       icon: up_icon,
       action: (args) => {
-        App.move_tabs_vertically(`top`)
+        App.move_tabs_vertically(`top`, args.item)
       },
       info: ``
     },
@@ -531,9 +532,10 @@ App.setup_commands = () => {
       short_name: `To Bottom`,
       cmd: `move_tabs_to_bottom`,
       modes: [`tabs`],
+      item: true,
       icon: down_icon,
       action: (args) => {
-        App.move_tabs_vertically(`bottom`)
+        App.move_tabs_vertically(`bottom`, args.item)
       },
       info: `Move tabs to the top`
     },
