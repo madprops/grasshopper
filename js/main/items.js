@@ -1340,7 +1340,18 @@ App.container_is_scrolled = (mode) => {
   return container.scrollHeight > container.clientHeight
 }
 
-App.scroll_to_item = (item, scroll = `nearest`) => {
+App.setup_scroll = () => {
+  App.scroll_debouncer = App.create_debouncer((item, scroll) => {
+    App.do_scroll_to_item(item, scroll)
+  }, App.scroll_delay)
+}
+
+App.scroll_to_item = (item, scroll) => {
+  App.scroll_debouncer.call(item, scroll)
+}
+
+App.do_scroll_to_item = (item, scroll = `nearest`) => {
+  App.scroll_debouncer.cancel()
   let behavior = `instant`
 
   if (scroll === `none`) {

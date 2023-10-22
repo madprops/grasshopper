@@ -19,6 +19,7 @@ App.init = async () => {
   App.setup_gestures()
   App.setup_filter()
   App.setup_modes()
+  App.setup_scroll()
   App.setup_theme()
   App.do_apply_theme()
   App.setup_pinline()
