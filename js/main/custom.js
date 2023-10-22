@@ -85,29 +85,41 @@ App.get_color_items = (mode) => {
   let items = []
   let count = App.get_active_colors(mode)
 
-  items.push({
-    icon: App.settings_icons.colors,
-    text: `All`,
-    action: () => {
-      App.filter_color(mode, `all`)
-    },
-  })
-
-  for (let color of App.colors) {
-    if (!count[color]) {
-      continue
-    }
-
-    let icon = App.color_icon(color)
-    let name = App.capitalize(color)
-
+  if (!count.colors) {
     items.push({
-      icon: icon,
-      text: name,
+      text: `No colors in use`,
       action: () => {
-        App.filter_color(mode, color)
+        App.alert(`You can give tabs a color`)
       },
     })
+  }
+  else {
+    if (count.colors > 1) {
+      items.push({
+        icon: App.settings_icons.colors,
+        text: `All`,
+        action: () => {
+          App.filter_color(mode, `all`)
+        },
+      })
+    }
+
+    for (let color of App.colors) {
+      if (!count[color]) {
+        continue
+      }
+
+      let icon = App.color_icon(color)
+      let name = App.capitalize(color)
+
+      items.push({
+        icon: icon,
+        text: name,
+        action: () => {
+          App.filter_color(mode, color)
+        },
+      })
+    }
   }
 
   return items
