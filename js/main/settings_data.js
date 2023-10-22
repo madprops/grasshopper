@@ -116,6 +116,13 @@ App.build_settings = () => {
       info: `Where to save bookmarks`,
       version: 1,
     },
+    smooth_scroll: {
+      name: `Smooth Scroll`,
+      type: `checkbox`,
+      value: true,
+      info: `Enable smooth list scrolling in some cases`,
+      version: 1,
+    },
     wrap_text: {
       name: `Wrap Text`,
       type: `checkbox`,

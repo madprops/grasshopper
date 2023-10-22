@@ -224,6 +224,7 @@ App.remove_item = (item) => {
 
   item.element.remove()
   item.removed = true
+  App.container_changed(mode)
   App.filter_item_by_id(mode, item.id)
   App.update_footer_count(mode)
 
@@ -287,6 +288,7 @@ App.process_info_list = (mode, info_list) => {
   App.update_footer_count(mode)
   App.do_check_pinline()
   App.check_new_tabs()
+  App.container_changed(mode)
 
   if (mode === `tabs`) {
     App.check_tab_session()
@@ -1313,6 +1315,7 @@ App.insert_item = (mode, info) => {
   if (mode === `tabs`) {
     App.get_items(mode).splice(info.index, 0, item)
     container.append(item.element)
+    App.container_changed(mode)
     App.move_item_element(`tabs`, item.element, info.index)
   }
   else {
@@ -1324,6 +1327,7 @@ App.insert_item = (mode, info) => {
 
     App.get_items(mode).unshift(item)
     container.prepend(item.element)
+    App.container_changed(mode)
   }
 
   App.update_footer_count(mode)
@@ -1337,13 +1341,27 @@ App.container_is_scrolled = (mode) => {
 }
 
 App.scroll_to_item = (item, scroll = `nearest`) => {
+  let behavior = `instant`
+
   if (scroll === `none`) {
     return
   }
 
+  if (App.get_setting(`smooth_scroll`)) {
+    let ch = App.container_change_date
+
+    if (ch !== 0) {
+      // Only consider smooth some time after last container change
+      // This is to avoid scroll issues caused by element heights
+      if (Date.now() - ch > App.container_change_min) {
+        behavior = `smooth`
+      }
+    }
+  }
+
   item.element.scrollIntoView({
     block: scroll,
-    behavior: `instant`,
+    behavior: behavior,
   })
 
   App.do_check_scroller(item.mode)
@@ -1562,4 +1580,8 @@ App.rebuild_items = () => {
       App.build_item_window(mode)
     }
   }
+}
+
+App.container_changed = () => {
+  App.container_change_date = Date.now()
 }
