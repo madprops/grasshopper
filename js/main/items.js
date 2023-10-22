@@ -1455,14 +1455,7 @@ App.get_persistent_items = () => {
 App.clear_show = async () => {
   App.clear_all_items()
   App.rebuild_items()
-
-  await App.do_show_mode({
-    mode: App.get_setting(`primary_mode`),
-    force: true
-  })
-
-  App.show_primary_mode(false)
-  App.refresh_active_history(true)
+  App.show_primary_mode()
 }
 
 App.select_item_by_id = (mode, id) => {
