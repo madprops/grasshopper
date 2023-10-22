@@ -1257,6 +1257,13 @@ App.build_settings = () => {
       info: `Show the active tab in the tab box`,
       version: 1,
     },
+    hover_button_pick: {
+      name: `Hover Button Pick`,
+      type: `checkbox`,
+      value: true,
+      info: `Pick items when right clicking the hover button`,
+      version: 1,
+    },
     debug_mode: {
       name: `Debug Mode`,
       type: `checkbox`,

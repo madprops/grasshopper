@@ -174,9 +174,11 @@ App.mouse_context_action = (mode, e) => {
   let item = App.get_cursor_item(mode, e)
 
   if (App.get_setting(`hover_button`)) {
-    if (e.target.closest(`.hover_button`)) {
-      App.pick(item)
-      return
+    if (App.get_setting(`hover_button_pick`)) {
+      if (e.target.closest(`.hover_button`)) {
+        App.pick(item)
+        return
+      }
     }
   }
 
