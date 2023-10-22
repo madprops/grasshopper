@@ -648,6 +648,13 @@ App.build_settings = () => {
       info: `Middle-click on the close buttons`,
       version: 1,
     },
+    middle_click_hover_button: {
+      name: `Middle-Click Hover Button`,
+      type: `menu`,
+      value: `close_tabs`,
+      info: `Middle-click on the hover button of tab items`,
+      version: 1,
+    },
   }
 
   add_props()

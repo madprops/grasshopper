@@ -172,6 +172,14 @@ App.mouse_context_action = (mode, e) => {
   }
 
   let item = App.get_cursor_item(mode, e)
+
+  if (App.get_setting(`hover_button`)) {
+    if (e.target.closest(`.hover_button`)) {
+      App.pick(item)
+      return
+    }
+  }
+
   App.select_item({item: item, scroll: `nearest`, deselect: !item.selected})
   App.show_item_menu({item: item, x: e.clientX, y: e.clientY})
 }
@@ -186,6 +194,12 @@ App.mouse_middle_action = (mode, e) => {
   if (e.target.classList.contains(`close_icon`)) {
     let cmd = App.get_setting(`middle_click_close_icon`)
     App.run_command({cmd: cmd, item: item, from: `close_button`})
+    return
+  }
+
+  if (e.target.classList.contains(`hover_button`)) {
+    let cmd = App.get_setting(`middle_click_hover_button`)
+    App.run_command({cmd: cmd, item: item, from: `hover_button`})
     return
   }
 
