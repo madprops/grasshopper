@@ -59,5 +59,4 @@ App.active_history_enabled = () => {
 
 App.clear_active_history = () => {
   App.active_history = []
-  App.refresh_active_history()
 }
