@@ -141,6 +141,8 @@ NeedContext.show = (args = {}) => {
     selected_index = args.index
   }
 
+  selected_index = selected_index || 0
+
   for (let [i, item] of args.items.entries()) {
     if (i === selected_index) {
       item.selected = true
