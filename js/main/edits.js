@@ -26,7 +26,7 @@ App.edit_tab_color = (args = {}) => {
     toggle: false,
   }
 
-  args = Object.assign(def_args, args)
+  App.def_args(def_args, args)
 
   if (args.toggle) {
     if (args.item.custom_color) {
@@ -259,7 +259,7 @@ App.edit_tab_title = (args = {}) => {
     title: ``,
   }
 
-  args = Object.assign(def_args, args)
+  App.def_args(def_args, args)
   let active = App.get_active_items({mode: args.item.mode, item: args.item})
   let s = args.title ? `Edit title?` : `Remove title?`
   let to_change = []

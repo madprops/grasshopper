@@ -41,7 +41,7 @@ App.process_info = (args = {}) => {
     list: false,
   }
 
-  args = Object.assign(def_args, args)
+  App.def_args(def_args, args)
 
   if (!args.info) {
     return false

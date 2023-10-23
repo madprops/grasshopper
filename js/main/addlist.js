@@ -75,7 +75,7 @@ Addlist.register = (args = {}) => {
     append: false,
   }
 
-  args = Object.assign(def_args, args)
+  App.def_args(def_args, args)
   let container = DOM.create(`div`, `addlist_container`, `addlist_container_${args.id}`)
   container.tabIndex = 0
   let top = DOM.create(`div`, `addlist_top`)
@@ -199,7 +199,7 @@ Addlist.register = (args = {}) => {
 
 Addlist.edit = (args = {}) => {
   let def_args = Addlist.def_args()
-  args = Object.assign(def_args, args)
+  App.def_args(def_args, args)
   let oargs = Addlist.oargs(args.id)
   App.show_popup(Addlist.popup(args.id))
   Addlist.check_buttons(args)

@@ -5,7 +5,7 @@ Menubutton.create = (args = {}) => {
     wrap: true,
   }
 
-  args = Object.assign(def_args, args)
+  App.def_args(def_args, args)
 
   if (!args.button) {
     args.button = DOM.create(`div`, `menubutton button`, args.id)

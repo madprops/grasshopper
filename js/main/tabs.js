@@ -182,7 +182,7 @@ App.focus_tab = async (args = {}) => {
     scroll: `center`,
   }
 
-  args = Object.assign(def_args, args)
+  App.def_args(def_args, args)
 
   if (!args.item) {
     return

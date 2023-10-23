@@ -10,7 +10,7 @@ App.select_item = (args = {}) => {
     scroll: `center`,
   }
 
-  args = Object.assign(def_args, args)
+  App.def_args(def_args, args)
 
   if (!args.item) {
     return
@@ -105,7 +105,7 @@ App.get_other_item = (args = {}, reverse = false) => {
     wrap: true,
   }
 
-  args = Object.assign(def_args, args)
+  App.def_args(def_args, args)
   let waypoint = false
 
   if (!App.get_selected(args.mode)) {
@@ -996,7 +996,7 @@ App.after_focus = (args = {}) => {
     method: `normal`,
   }
 
-  args = Object.assign(def_args, args)
+  App.def_args(def_args, args)
 
   if (args.method === `load`) {
     return
@@ -1140,7 +1140,7 @@ App.get_active_items = (args = {}) => {
     multiple: true,
   }
 
-  args = Object.assign(def_args, args)
+  App.def_args(def_args, args)
 
   if (!args.multiple) {
     if (args.item) {
@@ -1230,7 +1230,7 @@ App.get_next_item = (mode, args = {}) => {
     wrap: false,
   }
 
-  args = Object.assign(def_args, args)
+  App.def_args(def_args, args)
   return App.get_other_item(args) || App.get_other_item(args, true)
 }
 

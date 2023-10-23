@@ -58,7 +58,7 @@ App.do_filter = async (args = {}) => {
     select: true,
   }
 
-  args = Object.assign(def_args, args)
+  App.def_args(def_args, args)
   App.debug(`Filter: ${args.mode}`)
   let value = App.get_filter(args.mode)
   App[`last_${args.mode}_filter`] = value
@@ -382,7 +382,7 @@ App.set_filter = (args = {}) => {
     instant: true,
   }
 
-  args = Object.assign(def_args, args)
+  App.def_args(def_args, args)
   App.get_filter_el(args.mode).value = args.text
 
   if (args.filter) {
@@ -472,7 +472,7 @@ App.set_filter_mode = (args = {}) => {
     instant: true,
   }
 
-  args = Object.assign(def_args, args)
+  App.def_args(def_args, args)
   let filter_mode = App.get_filter_mode(args.mode, args.type)
   App[`${args.mode}_filter_mode`] = filter_mode.type
   DOM.el(`#${args.mode}_filter_modes_text`).textContent = filter_mode.text

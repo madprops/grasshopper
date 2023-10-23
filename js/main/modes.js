@@ -21,7 +21,7 @@ App.do_show_mode = async (args = {}) => {
     force: false,
   }
 
-  args = Object.assign(def_args, args)
+  App.def_args(def_args, args)
 
   if (!App.get_setting(`reuse_filter`)) {
     args.reuse_filter = false

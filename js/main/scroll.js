@@ -20,7 +20,7 @@ App.do_scroll_to_item = (args = {}) => {
     behavior: `auto`,
   }
 
-  args = Object.assign(def_args, args)
+  App.def_args(def_args, args)
 
   if (args.scroll === `none`) {
     return

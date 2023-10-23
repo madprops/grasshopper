@@ -453,3 +453,11 @@ App.clone = (obj) => {
 App.sep = (items) => {
   items.push({separator: true})
 }
+
+App.def_args = (def, args) => {
+  for (let key in def) {
+    if ((args[key] === undefined) && (def[key] !== undefined)) {
+      args[key] = def[key]
+    }
+  }
+}

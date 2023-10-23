@@ -15,7 +15,7 @@ App.do_apply_theme = (args = {}) => {
     safe_mode: false,
   }
 
-  args = Object.assign(def_args, args)
+  App.def_args(def_args, args)
 
   try {
     if (!args.background_color) {
