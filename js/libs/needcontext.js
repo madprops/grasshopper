@@ -80,7 +80,7 @@ NeedContext.do_filter = () => {
 
   if (NeedContext.filtered) {
     let text = document.querySelector(`#needcontext-clear-text`)
-    text.textContent = value
+    text.textContent = value.trim()
     clear.classList.remove(`needcontext-hidden`)
 
     if (back) {
@@ -205,12 +205,12 @@ NeedContext.show = (args = {}) => {
       if (item.text) {
         let text = document.createElement(`div`)
         text.classList.add(`needcontext-text`)
-        text.textContent = item.text
+        text.textContent = item.text.trim()
         el.append(text)
       }
 
       if (item.info) {
-        el.title = item.info
+        el.title = item.info.trim()
       }
 
       el.dataset.index = index
@@ -770,7 +770,7 @@ NeedContext.back_button = () => {
   let icon = document.createElement(`div`)
   icon.append(NeedContext.back_icon)
   let text = document.createElement(`div`)
-  text.textContent = NeedContext.back_text
+  text.textContent = NeedContext.back_text.trim()
   el.append(icon)
   el.append(text)
   el.title = `Shortcut: Backspace`
@@ -788,7 +788,7 @@ NeedContext.clear_button = () => {
   icon.append(NeedContext.back_icon)
   let text = document.createElement(`div`)
   text.id = `needcontext-clear-text`
-  text.textContent = NeedContext.clear_text
+  text.textContent = NeedContext.clear_text.trim()
   el.append(icon)
   el.append(text)
   el.title = `Type to filter. Click to clear`
