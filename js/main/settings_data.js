@@ -898,8 +898,8 @@ App.build_settings = () => {
   category = `colors`
 
   props = {
-    toggle_color: {
-      name: `Toggle Color`,
+    toggle_colors: {
+      name: `Toggle Colors`,
       type: `checkbox`,
       value: false,
       info: `If the same color is applied then remove the color`,

@@ -21,7 +21,7 @@ App.custom_save = (id, name, value) => {
 }
 
 App.edit_tab_color = (item, color = ``) => {
-  if (App.get_setting(`toggle_color`)) {
+  if (App.get_setting(`toggle_colors`)) {
     if (item.custom_color) {
       if (item.custom_color === color) {
         color = ``
