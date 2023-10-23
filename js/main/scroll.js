@@ -118,6 +118,7 @@ App.do_check_scroller = (mode) => {
 
 App.create_scroller = (mode) => {
   let scroller = DOM.create(`div`, `scroller`, `${mode}_scroller`)
+  scroller.title = `This is the Scroller`
   let text = DOM.create(`div`)
   text.textContent = `Go To Top`
   let percentage = DOM.create(`div`, ``, `${mode}_scroller_percentage`)
