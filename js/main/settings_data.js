@@ -1275,7 +1275,7 @@ App.build_settings = () => {
       name: `All Caps`,
       type: `checkbox`,
       value: false,
-      info: `ALL CAPS when you spell the man name`,
+      info: `ALL CAPS when you spell the tab name`,
       version: 1,
     },
     item_menu_select: {
