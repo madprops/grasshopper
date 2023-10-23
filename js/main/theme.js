@@ -8,7 +8,7 @@ App.apply_theme = (args) => {
   App.apply_theme_debouncer.call(args)
 }
 
-App.do_apply_theme = (args) => {
+App.do_apply_theme = (args = {}) => {
   App.apply_theme_debouncer.cancel()
 
   let def_args = {

@@ -13,7 +13,7 @@ App.show_mode = (args) => {
   App.show_mode_debouncer.call(args)
 }
 
-App.do_show_mode = async (args) => {
+App.do_show_mode = async (args = {}) => {
   App.show_mode_debouncer.cancel()
 
   let def_args = {

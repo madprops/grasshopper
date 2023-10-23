@@ -58,7 +58,7 @@ App.close_tabs_method = (items, force = false) => {
 }
 
 App.close_tabs = (item, multiple = true) => {
-  let items = App.get_active_items(`tabs`, item, multiple)
+  let items = App.get_active_items({mode: `tabs`, item: item, multiple: multiple})
 
   if (!items.length) {
     App.nothing_to_close()
@@ -294,7 +294,7 @@ App.close_visible_tabs = (pins, unloaded) => {
 
 App.get_other_tabs_items = (pins, unloaded) => {
   let items = []
-  let active = App.get_active_items(`tabs`, App.close_tabs_item)
+  let active = App.get_active_items({mode: `tabs`, item: App.close_tabs_item})
 
   for (let item of App.get_items(`tabs`)) {
     if (active.includes(item)) {

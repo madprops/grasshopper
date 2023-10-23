@@ -97,7 +97,7 @@ App.get_bookmarks_folder = async () => {
 
 App.bookmark_items = async (item, active, feedback = true) => {
   if (!active) {
-    active = App.get_active_items(item.mode, item)
+    active = App.get_active_items({mode: item.mode, item: item})
   }
 
   let folder = await App.get_bookmarks_folder()

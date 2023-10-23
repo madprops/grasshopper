@@ -4,7 +4,7 @@ App.show_item_menu = async (args = {}) => {
   }
 
   App.command_item = args.item
-  let active = App.get_active_items(args.item.mode, args.item)
+  let active = App.get_active_items({mode: args.item.mode, item: args.item})
   let multiple = active.length > 1
   let items = []
 

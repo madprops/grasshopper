@@ -29,7 +29,7 @@ App.edit_tab_color = (item, color = ``) => {
     }
   }
 
-  let active = App.get_active_items(item.mode, item)
+  let active = App.get_active_items({mode: item.mode, item: item})
   let s = color ? `Color ${color}?` : `Remove color?`
   let to_change = []
 
@@ -248,7 +248,7 @@ App.show_close_color_menu = (e) => {
 }
 
 App.edit_tab_title = (item, title = ``) => {
-  let active = App.get_active_items(item.mode, item)
+  let active = App.get_active_items({mode: item.mode, item: item})
   let s = title ? `Edit title?` : `Remove title?`
   let to_change = []
 
@@ -282,7 +282,7 @@ App.apply_tab_title = (item, title = ``) => {
 }
 
 App.prompt_tab_title = (item) => {
-  let active = App.get_active_items(item.mode, item)
+  let active = App.get_active_items({mode: item.mode, item: item})
   let value = active.length === 1 ? active[0].custom_title : ``
 
   App.show_prompt(value, `Edit Title`, (title) => {

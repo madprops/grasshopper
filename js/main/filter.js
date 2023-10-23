@@ -49,7 +49,7 @@ App.cancel_filter = () => {
   App.filter_debouncer_cycle.cancel()
 }
 
-App.do_filter = async (args) => {
+App.do_filter = async (args = {}) => {
   App.cancel_filter()
 
   let def_args = {
@@ -375,7 +375,7 @@ App.clear_filter = (mode = App.window_mode) => {
   }
 }
 
-App.set_filter = (args) => {
+App.set_filter = (args = {}) => {
   let def_args = {
     text: ``,
     filter: true,
@@ -466,7 +466,7 @@ App.get_filter_mode = (mode, type) => {
   }
 }
 
-App.set_filter_mode = (args) => {
+App.set_filter_mode = (args = {}) => {
   let def_args = {
     filter: true,
     instant: true,

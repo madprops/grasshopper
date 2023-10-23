@@ -4,7 +4,7 @@ App.remove_selected_class = (mode) => {
   }
 }
 
-App.select_item = (args) => {
+App.select_item = (args = {}) => {
   let def_args = {
     deselect: true,
     scroll: `center`,
@@ -97,7 +97,7 @@ App.select_to_edge = (mode, dir) => {
   App.select_range(items[0])
 }
 
-App.get_other_item = (args, reverse = false) => {
+App.get_other_item = (args = {}, reverse = false) => {
   let def_args = {
     only_visible: true,
     no_selected: false,
@@ -301,7 +301,7 @@ App.process_info_list = (mode, info_list) => {
   }
 }
 
-App.process_info = (args) => {
+App.process_info = (args = {}) => {
   let def_args = {
     exclude: [],
     list: false,
@@ -1135,7 +1135,7 @@ App.selected_items = (mode = App.window_mode) => {
   return App.get_items(mode).filter(x => x.selected)
 }
 
-App.after_focus = (args) => {
+App.after_focus = (args = {}) => {
   let def_args = {
     method: `normal`,
   }
@@ -1178,7 +1178,7 @@ App.open_items = (item, shift, multiple = true) => {
   let items
 
   if (multiple) {
-    items = App.get_active_items(mode, item)
+    items = App.get_active_items({mode: mode, item: item})
   }
   else {
     items = [item]
@@ -1279,37 +1279,43 @@ App.create_icon = (name, type = 1) => {
   return icon
 }
 
-App.get_active_items = (mode, item, multiple = true) => {
-  if (!multiple) {
-    if (item) {
-      return [item]
+App.get_active_items = (args = {}) => {
+  let def_args = {
+    multiple: true,
+  }
+
+  args = Object.assign(def_args, args)
+
+  if (!args.multiple) {
+    if (args.item) {
+      return [args.item]
     }
     else {
       return []
     }
   }
 
-  let selected = App.selected_items(mode)
+  let selected = App.selected_items(args.mode)
 
   if (selected.length === 0) {
-    if (item) {
-      return [item]
+    if (args.item) {
+      return [args.item]
     }
     else {
       return []
     }
   }
   else if (selected.length === 1) {
-    if (item) {
-      return [item]
+    if (args.item) {
+      return [args.item]
     }
     else {
       return [selected[0]]
     }
   }
   else {
-    if (item && !selected.includes(item)) {
-      selected.push(item)
+    if (args.item && !selected.includes(args.item)) {
+      selected.push(args.item)
     }
 
     return selected
