@@ -321,7 +321,7 @@ App.filter_check = (args) => {
       match = args.item.custom_title
     }
     else if (args.filter_mode === `edited`) {
-      match = args.item.custom_color || args.item.custom_title
+      match = App.tab_is_edited(args.item)
     }
     else if (args.filter_mode === `pinned`) {
       match = args.item.pinned
