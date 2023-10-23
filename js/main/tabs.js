@@ -325,7 +325,7 @@ App.remove_closed_tab = (id) => {
 App.tabs_action = async (item) => {
   App.on_action(`tabs`)
   App.do_empty_previous_tabs()
-  await App.focus_tab({item: item, scroll: `nearest_smooth`})
+  await App.focus_tab({item: item, scroll: `nearest`})
 }
 
 App.duplicate_tab = async (item) => {
