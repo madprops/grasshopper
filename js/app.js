@@ -62,7 +62,6 @@ App.empty_previous_tabs_delay = 2000
 App.alert_autohide_delay = 1500
 App.filter_delay_2 = 50
 App.footer_delay = 50
-App.scroll_delay = 20
 App.scroller_delay = 50
 App.pinline_delay = 100
 App.wheel_delay = 100
