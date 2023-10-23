@@ -72,7 +72,7 @@ App.filter_cycle_delay = 50
 App.check_filter_delay = 100
 App.active_history_delay = 50
 App.apply_theme_delay = 100
-App.min_smooth_delay = 800
+App.min_smooth_delay = 1000
 
 App.settings_icons = {
   general: `⚙️`,

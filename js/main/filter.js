@@ -212,6 +212,8 @@ App.do_filter = async (args = {}) => {
     }
   }
 
+  App.container_changed(args.mode)
+
   if (args.select) {
     App.clear_selected(args.mode)
 
