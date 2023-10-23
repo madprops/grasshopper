@@ -320,6 +320,9 @@ App.filter_check = (args) => {
     else if (args.filter_mode === `titled`) {
       match = args.item.custom_title
     }
+    else if (args.filter_mode === `edited`) {
+      match = args.item.custom_color || args.item.custom_title
+    }
     else if (args.filter_mode === `pinned`) {
       match = args.item.pinned
     }
@@ -825,4 +828,8 @@ App.filter_unread = (mode) => {
 
 App.filter_titled = (mode) => {
   App.set_filter_mode({mode: mode, type: `titled`})
+}
+
+App.filter_edited = (mode) => {
+  App.set_filter_mode({mode: mode, type: `edited`})
 }

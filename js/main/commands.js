@@ -975,13 +975,23 @@ App.setup_commands = () => {
     },
     {
       name: `Filter Titled`,
-      cmd: `filter_titled`,
+      cmd: `filter_titled_tabs`,
       modes: [`tabs`],
       icon: edit_icon,
       action: (args) => {
         App.filter_titled(args.mode)
       },
       info: `Filter: Show tabs that have a custom title`
+    },
+    {
+      name: `Filter Edited`,
+      cmd: `filter_edited_tabs`,
+      modes: [`tabs`],
+      icon: edit_icon,
+      action: (args) => {
+        App.filter_titled(args.mode)
+      },
+      info: `Filter: Show tabs that have custom properties`
     },
     {
       name: `Filter No Tab`,

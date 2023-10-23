@@ -124,6 +124,10 @@ App.build_tab_filters = () => {
       icon: App.edit_icon
     },
     {
+      type: `edited`, text:`Edited`, skip: false, info: `Show tabs that have custom properties`,
+      icon: App.edit_icon
+    },
+    {
       type: `duplicate`, text:`Duplicates`, skip: false, info: `Show tabs that have duplicates`,
       icon: def_icon
     },
