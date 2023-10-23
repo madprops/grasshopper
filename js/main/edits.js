@@ -31,10 +31,22 @@ App.edit_tab_color = (item, color = ``) => {
 
   let active = App.get_active_items(item.mode, item)
   let s = color ? `Color ${color}?` : `Remove color?`
-  let force = App.check_force(`warn_on_edit_tabs`, active)
+  let to_change = []
 
-  App.show_confirm(`${s} (${active.length})`, () => {
-    for (let it of active) {
+  for (let it of active) {
+    if (it.custom_color !== color) {
+      to_change.push(it)
+    }
+  }
+
+  if (!to_change.length) {
+    return
+  }
+
+  let force = App.check_force(`warn_on_edit_tabs`, to_change)
+
+  App.show_confirm(`${s} (${to_change.length})`, () => {
+    for (let it of to_change) {
       App.apply_tab_color(it, color)
       App.custom_save(it.id, `custom_color`, color)
     }
@@ -157,7 +169,7 @@ App.remove_all_colors = () => {
     return
   }
 
-  App.show_confirm(`Remove all colors?`, () => {
+  App.show_confirm(`Remove all colors? (${items.length})`, () => {
     for (let item of items) {
       let color = ``
       App.apply_tab_color(item, color)
@@ -238,10 +250,22 @@ App.show_close_color_menu = (e) => {
 App.edit_tab_title = (item, title = ``) => {
   let active = App.get_active_items(item.mode, item)
   let s = title ? `Edit title?` : `Remove title?`
-  let force = App.check_force(`warn_on_edit_tabs`, active)
+  let to_change = []
 
-  App.show_confirm(`${s} (${active.length})`, () => {
-    for (let it of active) {
+  for (let it of active) {
+    if (it.custom_title !== title) {
+      to_change.push(it)
+    }
+  }
+
+  if (!to_change.length) {
+    return
+  }
+
+  let force = App.check_force(`warn_on_edit_tabs`, to_change)
+
+  App.show_confirm(`${s} (${to_change.length})`, () => {
+    for (let it of to_change) {
       App.apply_tab_title(it, title)
       App.custom_save(it.id, `custom_title`, title)
     }
@@ -279,11 +303,36 @@ App.remove_all_titles = () => {
     return
   }
 
-  App.show_confirm(`Remove all titles?`, () => {
+  App.show_confirm(`Remove all titles? (${items.length})`, () => {
     for (let item of items) {
       let title = ``
       App.apply_tab_title(item, title)
       App.custom_save(item.id, `custom_title`, title)
+    }
+  })
+}
+
+App.remove_all_edits = () => {
+  let items = []
+
+  for (let item of App.get_items(`tabs`)) {
+    if (item.custom_color || item.custom_title) {
+      items.push(item)
+    }
+  }
+
+  if (!items.length) {
+    return
+  }
+
+  App.show_confirm(`Remove all edits? (${items.length})`, () => {
+    for (let item of items) {
+      let title = ``
+      App.apply_tab_title(item, title)
+      App.custom_save(item.id, `custom_title`, title)
+      let color = ``
+      App.apply_tab_color(item, color)
+      App.custom_save(item.id, `custom_color`, color)
     }
   })
 }

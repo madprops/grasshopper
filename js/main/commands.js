@@ -860,12 +860,21 @@ App.setup_commands = () => {
       name: `Remove All Titles`,
       cmd: `remove_all_titles`,
       modes: [`tabs`],
-      item: true,
       icon: edit_icon,
       action: (args) => {
         App.remove_all_titles()
       },
       info: `Remove all titles from tabs`
+    },
+    {
+      name: `Remove All Edits`,
+      cmd: `remove_all_edits`,
+      modes: [`tabs`],
+      icon: edit_icon,
+      action: (args) => {
+        App.remove_all_edits()
+      },
+      info: `Remove all edits from tabs like color and title`
     },
     {
       name: App.separator_string
