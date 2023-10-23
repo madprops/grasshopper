@@ -87,7 +87,7 @@ App.show_main_menu = (mode) => {
     action: () => {
       App.show_palette()
     },
-    title: `You can also double tap Ctrl to open this`
+    info: `You can also double tap Ctrl to open this`
   })
 
   let btn = DOM.el(`#${mode}_main_menu`)

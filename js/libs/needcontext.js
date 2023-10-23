@@ -216,10 +216,6 @@ NeedContext.show = (args = {}) => {
       el.dataset.index = index
       item.index = index
 
-      if (item.title) {
-        el.title = item.title
-      }
-
       el.addEventListener(`mousemove`, () => {
         let index = parseInt(el.dataset.index)
 
