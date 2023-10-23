@@ -26,7 +26,7 @@ App.setup_tabs = () => {
     App.debug(`Tab Updated: ID: ${id}`, App.debug_tabs)
 
     if (info.windowId === App.window_id) {
-      await App.refresh_tab(id, false, info, changed)
+      await App.refresh_tab(id, false, info)
       App.check_playing()
     }
   })
@@ -225,7 +225,7 @@ App.get_tab_info = async (id) => {
   }
 }
 
-App.refresh_tab = async (id, select, info, changed) => {
+App.refresh_tab = async (id, select, info) => {
   if (!info) {
     try {
       info = await App.get_tab_info(id)
@@ -247,14 +247,6 @@ App.refresh_tab = async (id, select, info, changed) => {
   }
 
   let item = App.get_item_by_id(`tabs`, id)
-
-  // If it's only a title update
-  // Ignore if the tab has a custom title
-  if (item && item.custom_title && changed && changed.title) {
-    if (Object.keys(changed).length === 1) {
-      return item
-    }
-  }
 
   if (item) {
     if (item.pinned !== info.pinned) {
