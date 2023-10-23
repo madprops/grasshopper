@@ -1384,7 +1384,11 @@ App.soft_copy_item = (o_item) => {
 }
 
 App.get_title = (item) => {
-  return item.custom_title || item.title
+  let title = item.custom_title || item.title
+
+  if (App.get_setting(`all_caps`)) {
+    return title.toUpperCase()
+  }
 }
 
 App.remove_duplicates = (items) => {

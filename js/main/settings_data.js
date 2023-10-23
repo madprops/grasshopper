@@ -1271,6 +1271,13 @@ App.build_settings = () => {
       info: `Pick items when right clicking the hover button`,
       version: 1,
     },
+    all_caps: {
+      name: `All Caps`,
+      type: `checkbox`,
+      value: false,
+      info: `ALL CAPS when you spell the man name`,
+      version: 1,
+    },
     item_menu_select: {
       name: `Item Menu Select`,
       type: `checkbox`,
