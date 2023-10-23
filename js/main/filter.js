@@ -305,14 +305,14 @@ App.filter_check = (args) => {
     }
     else if (args.filter_mode === `color`) {
       if (args.f_value === `all`) {
-        match = Boolean(args.item.custom_color)
+        match = args.item.custom_color
       }
       else {
         match = args.item.custom_color === args.f_value
       }
     }
-    else if (args.filter_mode === `edited`) {
-      match = App.tab_is_edited(args.item)
+    else if (args.filter_mode === `titled`) {
+      match = args.item.custom_title
     }
     else if (args.filter_mode === `pinned`) {
       match = args.item.pinned
@@ -349,7 +349,7 @@ App.filter_check = (args) => {
     }
   }
 
-  return match
+  return Boolean(match)
 }
 
 App.focus_filter = (mode) => {
@@ -815,4 +815,8 @@ App.filter_no_tab = (mode) => {
 
 App.filter_unread = (mode) => {
   App.set_filter_mode({mode: mode, type: `unread`})
+}
+
+App.filter_titled = (mode) => {
+  App.set_filter_mode({mode: mode, type: `titled`})
 }

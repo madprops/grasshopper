@@ -974,6 +974,16 @@ App.setup_commands = () => {
       info: `Filter: Show unread tabs`
     },
     {
+      name: `Filter Titled`,
+      cmd: `filter_titled`,
+      modes: [`tabs`],
+      icon: edit_icon,
+      action: (args) => {
+        App.filter_titled(args.mode)
+      },
+      info: `Filter: Show tabs that have a custom title`
+    },
+    {
       name: `Filter No Tab`,
       cmd: `filter_no_tab`,
       modes: [`history`, `bookmarks`, `closed`],

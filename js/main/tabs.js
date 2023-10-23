@@ -120,7 +120,7 @@ App.build_tab_filters = () => {
       icon: App.settings_icons.theme
     },
     {
-      type: `edited`, text:`Edited`, skip: false, info: `Show tabs that are edited`,
+      type: `titled`, text:`Titled`, skip: false, info: `Show tabs that have a custom title`,
       icon: App.edit_icon
     },
     {
