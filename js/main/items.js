@@ -1304,7 +1304,7 @@ App.get_active_items = (mode, item, multiple = true) => {
       return [item]
     }
     else {
-      return [App.get_selected(mode)]
+      return [selected[0]]
     }
   }
   else {
