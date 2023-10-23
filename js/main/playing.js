@@ -58,7 +58,7 @@ App.go_to_playing_tab = async () => {
       }
 
       if (waypoint) {
-        App.focus_tab({item: item, scroll: `center`, method: `playing`})
+        App.focus_tab({item: item, scroll: `center_smooth`, method: `playing`})
         return
       }
     }
@@ -71,6 +71,6 @@ App.go_to_playing_tab = async () => {
 
   // If none found then pick the first one
   if (first) {
-    App.focus_tab({item: first, scroll: `center`, method: `playing`})
+    App.focus_tab({item: first, scroll: `center_smooth`, method: `playing`})
   }
 }

@@ -35,7 +35,7 @@ App.step_back = (mode = App.window_mode, e) => {
     App.filter_all()
   }
   else if (item && !App.item_is_visible(item)) {
-    App.select_item({item: item, scroll: `center`})
+    App.select_item({item: item, scroll: `center_smooth`})
   }
   else if (mode === `tabs` && !item.active) {
     App.focus_current_tab()

@@ -28,7 +28,6 @@ App.process_info_list = (mode, info_list) => {
   App.update_footer_count(mode)
   App.do_check_pinline()
   App.check_new_tabs()
-  App.container_changed(mode)
 
   if (mode === `tabs`) {
     App.check_tab_session()

@@ -230,7 +230,6 @@ App.remove_item = (item) => {
 
   item.element.remove()
   item.removed = true
-  App.container_changed(mode)
   App.filter_item_by_id(mode, item.id)
   App.update_footer_count(mode)
 
@@ -1185,7 +1184,6 @@ App.insert_item = (mode, info) => {
   if (mode === `tabs`) {
     App.get_items(mode).splice(info.index, 0, item)
     container.append(item.element)
-    App.container_changed(mode)
     App.move_item_element(`tabs`, item.element, info.index)
   }
   else {
@@ -1197,7 +1195,6 @@ App.insert_item = (mode, info) => {
 
     App.get_items(mode).unshift(item)
     container.prepend(item.element)
-    App.container_changed(mode)
   }
 
   App.update_footer_count(mode)
@@ -1418,8 +1415,4 @@ App.rebuild_items = () => {
       App.build_item_window(mode)
     }
   }
-}
-
-App.container_changed = (mode) => {
-  App.container_change[mode] = Date.now()
 }

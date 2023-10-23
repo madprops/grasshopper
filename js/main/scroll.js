@@ -17,7 +17,6 @@ App.do_scroll_to_item = (args = {}) => {
 
   let def_args = {
     scroll: `nearest`,
-    behavior: `auto`,
   }
 
   App.def_args(def_args, args)
@@ -26,31 +25,26 @@ App.do_scroll_to_item = (args = {}) => {
     return
   }
 
-  if (args.behavior === `auto`) {
-    args.behavior = `instant`
+  let behavior
 
-    if (App.get_setting(`smooth_scroll`)) {
-      let change_date = App.container_change[args.item.mode]
-
-      if (change_date) {
-        // Only consider smooth some time after last container change
-        // This is to avoid scroll issues caused by element heights
-        if ((Date.now() - change_date) > App.min_smooth_delay) {
-          args.behavior = `smooth`
-        }
-      }
-    }
+  if (args.scroll.includes(`_`)) {
+    let split = args.scroll.split(`_`)
+    args.scroll = split[0]
+    behavior = split[1]
+  }
+  else {
+    behavior = `instant`
   }
 
   args.item.element.scrollIntoView({
     block: args.scroll,
-    behavior: args.behavior,
+    behavior: behavior,
   })
 
-  if (args.behavior === `instant`) {
+  if (behavior === `instant`) {
     App.do_check_scroller(args.item.mode)
   }
-  else if (args.behavior === `smooth`) {
+  else if (behavior === `smooth`) {
     let index = App.get_item_element_index(args.item.mode, args.item.element)
 
     if (index === 0) {
