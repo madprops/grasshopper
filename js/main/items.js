@@ -1387,8 +1387,10 @@ App.get_title = (item) => {
   let title = item.custom_title || item.title
 
   if (App.get_setting(`all_caps`)) {
-    return title.toUpperCase()
+    title = title.toUpperCase()
   }
+
+  return title
 }
 
 App.remove_duplicates = (items) => {
