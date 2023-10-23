@@ -4,10 +4,6 @@ App.setup_filter = () => {
 }
 
 App.start_filter_debouncers = () => {
-  App.filter_debouncer_cycle = App.create_debouncer((args) => {
-    App.do_filter(args)
-  }, App.filter_cycle_delay)
-
   App.filter_debouncer = App.create_debouncer((args) => {
     App.do_filter(args)
   }, App.get_setting(`filter_delay`))
@@ -22,6 +18,10 @@ App.start_filter_debouncers = () => {
       App.do_filter(args)
     }
   }, App.check_filter_delay)
+
+  App.filter_debouncer_cycle = App.create_debouncer((args) => {
+    App.do_filter(args)
+  }, App.filter_cycle_delay)
 }
 
 App.check_filter = (mode) => {
@@ -45,9 +45,13 @@ App.filter = (args) => {
 App.cancel_filter = () => {
   App.filter_debouncer.cancel()
   App.filter_debouncer_search.cancel()
+  App.check_filter_debouncer.cancel()
+  App.filter_debouncer_cycle.cancel()
 }
 
 App.do_filter = async (args) => {
+  App.cancel_filter()
+
   let def_args = {
     force: false,
     deep: false,
@@ -55,7 +59,6 @@ App.do_filter = async (args) => {
   }
 
   args = Object.assign(def_args, args)
-  App.cancel_filter()
   App.debug(`Filter: ${args.mode}`)
   let value = App.get_filter(args.mode)
   App[`last_${args.mode}_filter`] = value

@@ -14,6 +14,8 @@ App.show_mode = (args) => {
 }
 
 App.do_show_mode = async (args) => {
+  App.show_mode_debouncer.cancel()
+
   let def_args = {
     reuse_filter: false,
     force: false,

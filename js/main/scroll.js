@@ -13,13 +13,14 @@ App.scroll_to_item = (args) => {
 }
 
 App.do_scroll_to_item = (args = {}) => {
+  App.scroll_debouncer.cancel()
+
   let def_args = {
     scroll: `nearest`,
     behavior: `auto`,
   }
 
   args = Object.assign(def_args, args)
-  App.scroll_debouncer.cancel()
 
   if (args.scroll === `none`) {
     return

@@ -9,7 +9,7 @@ App.apply_theme = (args) => {
 }
 
 App.do_apply_theme = (args) => {
-  App.debug(`Apply Theme`)
+  App.apply_theme_debouncer.cancel()
 
   let def_args = {
     safe_mode: false,

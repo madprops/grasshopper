@@ -9,6 +9,7 @@ App.empty_previous_tabs = () => {
 }
 
 App.do_empty_previous_tabs = () => {
+  App.empty_previous_tabs_debouncer.cancel()
   App.previous_tabs = []
 }
 
