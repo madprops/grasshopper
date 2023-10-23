@@ -77,7 +77,7 @@ App.show_item_menu = async (args = {}) => {
     }
   }
 
-  NeedContext.show({x: args.x, y: args.y, items: items})
+  App.show_center_context(items, args.e)
 }
 
 App.show_item_menu_2 = (item) => {
