@@ -1066,13 +1066,6 @@ App.build_settings = () => {
       info: `Pre-made filters to use. These appear in the Custom section`,
       version: 3,
     },
-    filter_enter: {
-      name: `Filter Enter`,
-      type: `checkbox`,
-      value: false,
-      info: `Require pressing Enter to use filter or search`,
-      version: 1,
-    },
     clean_filter: {
       name: `Clean Filter`,
       type: `checkbox`,
@@ -1099,6 +1092,13 @@ App.build_settings = () => {
       type: `checkbox`,
       value: true,
       info: `Show the filter history when right clicking the filter`,
+      version: 1,
+    },
+    filter_enter: {
+      name: `Filter Enter`,
+      type: `checkbox`,
+      value: false,
+      info: `Require pressing Enter to use filter or search`,
       version: 1,
     },
     max_search_items: {
