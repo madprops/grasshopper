@@ -989,7 +989,7 @@ App.setup_commands = () => {
       modes: [`tabs`],
       icon: edit_icon,
       action: (args) => {
-        App.filter_titled(args.mode)
+        App.filter_edited(args.mode)
       },
       info: `Filter: Show tabs that have custom properties`
     },
