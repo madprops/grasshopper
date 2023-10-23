@@ -48,7 +48,7 @@ App.setup_commands = () => {
       item: true,
       icon: icon,
       action: (args) => {
-        App.edit_tab_color(args.item, color)
+        App.edit_tab_color({item: args.item, color: color})
       },
       info: `Add a custom color to tabs (${color})`
     })
@@ -63,7 +63,7 @@ App.setup_commands = () => {
       item: true,
       icon: icon,
       action: (args) => {
-        App.edit_tab_color(args.item, color, true)
+        App.edit_tab_color({item: args.item, color: color, toggle: true})
       },
       info: `Toggle color on or off (${color})`
     })
@@ -115,7 +115,7 @@ App.setup_commands = () => {
     item: true,
     icon: theme_icon,
     action: (args) => {
-      App.edit_tab_color(args.item)
+      App.edit_tab_color({item: args.item})
     },
     info: `Remove the custom color of tabs`
   })

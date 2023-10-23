@@ -20,21 +20,28 @@ App.custom_save = (id, name, value) => {
   browser.sessions.setTabValue(id, name, value)
 }
 
-App.edit_tab_color = (item, color = ``, toggle = false) => {
-  if (toggle) {
-    if (item.custom_color) {
-      if (item.custom_color === color) {
-        color = ``
+App.edit_tab_color = (args = {}) => {
+  let def_args = {
+    color: ``,
+    toggle: false,
+  }
+
+  args = Object.assign(def_args, args)
+
+  if (args.toggle) {
+    if (args.item.custom_color) {
+      if (args.item.custom_color === args.color) {
+        args.color = ``
       }
     }
   }
 
-  let active = App.get_active_items({mode: item.mode, item: item})
-  let s = color ? `Color ${color}?` : `Remove color?`
+  let active = App.get_active_items({mode: args.item.mode, item: args.item})
+  let s = args.color ? `Color ${args.color}?` : `Remove color?`
   let to_change = []
 
   for (let it of active) {
-    if (it.custom_color !== color) {
+    if (it.custom_color !== args.color) {
       to_change.push(it)
     }
   }
@@ -47,8 +54,8 @@ App.edit_tab_color = (item, color = ``, toggle = false) => {
 
   App.show_confirm(`${s} (${to_change.length})`, () => {
     for (let it of to_change) {
-      App.apply_tab_color(it, color)
-      App.custom_save(it.id, `custom_color`, color)
+      App.apply_tab_color(it, args.color)
+      App.custom_save(it.id, `custom_color`, args.color)
     }
   }, undefined, force)
 }
@@ -73,7 +80,7 @@ App.color_menu_items = (item) => {
       icon: icon,
       text: text,
       action: () => {
-        App.edit_tab_color(item, color)
+        App.edit_tab_color({item: item, color: color})
       }
     })
   }
@@ -83,7 +90,7 @@ App.color_menu_items = (item) => {
   items.push({
     text: `Remove`,
     action: () => {
-      App.edit_tab_color(item)
+      App.edit_tab_color({item: item})
     }
   })
 
@@ -247,13 +254,18 @@ App.show_close_color_menu = (e) => {
   App.show_center_context(items, e)
 }
 
-App.edit_tab_title = (item, title = ``) => {
-  let active = App.get_active_items({mode: item.mode, item: item})
-  let s = title ? `Edit title?` : `Remove title?`
+App.edit_tab_title = (args = {}) => {
+  let def_args = {
+    title: ``,
+  }
+
+  args = Object.assign(def_args, args)
+  let active = App.get_active_items({mode: args.item.mode, item: args.item})
+  let s = args.title ? `Edit title?` : `Remove title?`
   let to_change = []
 
   for (let it of active) {
-    if (it.custom_title !== title) {
+    if (it.custom_title !== args.title) {
       to_change.push(it)
     }
   }
@@ -266,8 +278,8 @@ App.edit_tab_title = (item, title = ``) => {
 
   App.show_confirm(`${s} (${to_change.length})`, () => {
     for (let it of to_change) {
-      App.apply_tab_title(it, title)
-      App.custom_save(it.id, `custom_title`, title)
+      App.apply_tab_title(it, args.title)
+      App.custom_save(it.id, `custom_title`, args.title)
     }
   }, undefined, force)
 }
@@ -283,10 +295,23 @@ App.apply_tab_title = (item, title = ``) => {
 
 App.prompt_tab_title = (item) => {
   let active = App.get_active_items({mode: item.mode, item: item})
-  let value = active.length === 1 ? active[0].custom_title : ``
+  let value = item.custom_title || ``
+
+  if (value) {
+    for (let it of active) {
+      if (it === item) {
+        continue
+      }
+
+      if (it.custom_title !== value) {
+        value = ``
+        break
+      }
+    }
+  }
 
   App.show_prompt(value, `Edit Title`, (title) => {
-    App.edit_tab_title(item, title)
+    App.edit_tab_title({item: item, title: title})
   })
 }
 
