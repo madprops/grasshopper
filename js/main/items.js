@@ -1280,8 +1280,13 @@ App.create_icon = (name, type = 1) => {
 }
 
 App.get_active_items = (mode, item, multiple = true) => {
-  if (!multiple && item) {
-    return [item]
+  if (!multiple) {
+    if (item) {
+      return [item]
+    }
+    else {
+      return []
+    }
   }
 
   let selected = App.selected_items(mode)
