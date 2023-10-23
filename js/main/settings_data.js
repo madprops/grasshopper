@@ -180,7 +180,7 @@ App.build_settings = () => {
       action: `theme`,
       placeholder: `Image URL`,
       btns: [`pick`],
-      info: `The background image. Pick from the buttons or enter a URL`,
+      info: `The background image. Pick from the list or enter a URL`,
       version: 1,
     },
     background_effect: {
