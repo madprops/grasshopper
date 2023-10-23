@@ -896,8 +896,8 @@ App.setup_commands = () => {
       cmd: `filter_color`,
       modes: [`items`],
       item: true,
-      icon: theme_icon,
       color: true,
+      icon: theme_icon,
       action: (args) => {
         App.filter_color(args.mode, args.item.custom_color)
       },
