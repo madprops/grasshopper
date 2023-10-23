@@ -96,6 +96,15 @@ NeedContext.do_filter = () => {
   }
 }
 
+// Fill arg objects
+NeedContext.def_args = (def, args) => {
+  for (let key in def) {
+    if ((args[key] === undefined) && (def[key] !== undefined)) {
+      args[key] = def[key]
+    }
+  }
+}
+
 // Show the menu
 NeedContext.show = (args = {}) => {
   let def_args = {
@@ -105,7 +114,7 @@ NeedContext.show = (args = {}) => {
     index: 0,
   }
 
-  args = Object.assign(def_args, args)
+  NeedContext.def_args(def_args, args)
 
   if (!NeedContext.created) {
     NeedContext.create()
