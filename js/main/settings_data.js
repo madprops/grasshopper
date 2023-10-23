@@ -898,6 +898,13 @@ App.build_settings = () => {
   category = `colors`
 
   props = {
+    toggle_color: {
+      name: `Toggle Color`,
+      type: `checkbox`,
+      value: false,
+      info: `If the same color is applied then remove the color`,
+      version: 1,
+    },
     color_mode: {
       name: `Color Mode`,
       type: `menu`,
@@ -1437,7 +1444,8 @@ App.build_settings = () => {
       ]
     },
     colors: {
-      info: `These are the colors you assign to tabs`,
+      info: `These are the colors you assign to tabs.
+      The colors can be presented in different ways`,
       setup: () => {
         for (let color of App.colors) {
           App.start_color_picker(`color_${color}`)
