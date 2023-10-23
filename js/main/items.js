@@ -1280,7 +1280,7 @@ App.create_icon = (name, type = 1) => {
 }
 
 App.get_active_items = (mode, item, multiple = true) => {
-  if (!multiple) {
+  if (!multiple && item) {
     return [item]
   }
 
