@@ -20,8 +20,8 @@ App.custom_save = (id, name, value) => {
   browser.sessions.setTabValue(id, name, value)
 }
 
-App.edit_tab_color = (item, color = ``) => {
-  if (App.get_setting(`toggle_colors`)) {
+App.edit_tab_color = (item, color = ``, toggle = false) => {
+  if (toggle) {
     if (item.custom_color) {
       if (item.custom_color === color) {
         color = ``

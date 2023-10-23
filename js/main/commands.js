@@ -53,6 +53,21 @@ App.setup_commands = () => {
       info: `Add a custom color to tabs (${color})`
     })
 
+    icon = App.color_icon(color)
+    name = `Toggle ${App.capitalize(color)}`
+
+    color_changers.push({
+      name: name,
+      cmd: `toggle_color_${color}`,
+      modes: [`tabs`],
+      item: true,
+      icon: icon,
+      action: (args) => {
+        App.edit_tab_color(args.item, color, true)
+      },
+      info: `Toggle color on or off (${color})`
+    })
+
     name = `Filter ${App.capitalize(color)}`
 
     color_filters.push({
