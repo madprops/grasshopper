@@ -325,7 +325,6 @@ App.remove_closed_tab = (id) => {
 App.tabs_action = async (item) => {
   App.on_action(`tabs`)
   App.do_empty_previous_tabs()
-  console.log(item)
   await App.focus_tab({item: item, scroll: `nearest_smooth`})
 }
 

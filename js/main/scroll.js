@@ -36,6 +36,10 @@ App.do_scroll_to_item = (args = {}) => {
     behavior = `instant`
   }
 
+  if (!App.get_setting(`smooth_scroll`)) {
+    behavior = `instant`
+  }
+
   args.item.element.scrollIntoView({
     block: args.scroll,
     behavior: behavior,
