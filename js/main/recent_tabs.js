@@ -55,16 +55,13 @@ App.show_recent_tabs = (e) => {
   let items = []
   App.get_previous_tabs(true)
   let max = App.get_setting(`max_recent_tabs`)
+  let playing_icon = App.get_setting(`playing_icon`)
 
   for (let item of App.previous_tabs.slice(0, max)) {
     let title = App.get_title(item)
 
-    if (item.audible) {
-      let playing_icon = App.get_setting(`playing_icon`)
-
-      if (playing_icon) {
-        title = `${playing_icon} ${title}`
-      }
+    if (item.audible && playing_icon) {
+      title = `${playing_icon} ${title}`
     }
 
     items.push({

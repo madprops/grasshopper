@@ -27,6 +27,7 @@ App.update_tab_box = () => {
     let clone = DOM.create(`div`, `box_item action`)
     let icon = DOM.create(`div`, `box_item_icon`)
     let o_icon = DOM.el(`.item_icon`, item.element).cloneNode(true)
+    let playing_icon = App.get_setting(`playing_icon`)
 
     if (o_icon.tagName === `IMG`) {
       icon.append(o_icon)
@@ -42,14 +43,10 @@ App.update_tab_box = () => {
       clone.append(c_icon)
     }
 
-    if (item.audible) {
-      let playing_icon = App.get_setting(`playing_icon`)
-
-      if (playing_icon) {
-        let playing = DOM.create(`div`, `playing_icon`)
-        playing.textContent = playing_icon
-        clone.append(playing)
-      }
+    if (item.audible && playing_icon) {
+      let playing = DOM.create(`div`, `playing_icon`)
+      playing.textContent = playing_icon
+      clone.append(playing)
     }
 
     let text_el = DOM.create(`div`, `box_item_text`)
