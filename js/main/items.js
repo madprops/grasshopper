@@ -175,6 +175,12 @@ App.set_selected = (item) => {
 
 App.clear_selected = (mode) => {
   App[`last_selected_${mode}`] = undefined
+
+  for (let item of App.get_items(mode)) {
+    if (item.selected) {
+      App.toggle_selected(item, false, false)
+    }
+  }
 }
 
 App.get_items = (mode) => {
@@ -1280,7 +1286,15 @@ App.get_active_items = (mode, item, multiple = true) => {
 
   let selected = App.selected_items(mode)
 
-  if (selected.length === 1) {
+  if (selected.length === 0) {
+    if (item) {
+      return [item]
+    }
+    else {
+      return []
+    }
+  }
+  else if (selected.length === 1) {
     if (item) {
       return [item]
     }
@@ -1289,7 +1303,7 @@ App.get_active_items = (mode, item, multiple = true) => {
     }
   }
   else {
-    if (!selected.includes(item)) {
+    if (item && !selected.includes(item)) {
       selected.push(item)
     }
 

@@ -196,6 +196,8 @@ App.do_filter = async (args) => {
     return App.filter_check(args)
   }
 
+  let some_matched = false
+
   for (let item of items) {
     if (!item.element) {
       continue
@@ -203,6 +205,7 @@ App.do_filter = async (args) => {
 
     if (skip || matched(item)) {
       App.show_item(item)
+      some_matched = true
     }
     else {
       App.hide_item(item)
@@ -211,7 +214,10 @@ App.do_filter = async (args) => {
 
   if (args.select) {
     App.clear_selected(args.mode)
-    App.select_first_item(args.mode, !App.is_filtered(args.mode))
+
+    if (some_matched) {
+      App.select_first_item(args.mode, !App.is_filtered(args.mode))
+    }
   }
 
   App.update_footer_info(App.get_selected(args.mode))
