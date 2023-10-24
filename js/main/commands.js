@@ -921,7 +921,18 @@ App.setup_commands = () => {
       action: (args) => {
         App.remove_all_edits()
       },
-      info: `Remove all edits from tabs like color and title`
+      info: `Remove all edits from tabs`
+    },
+    {
+      name: `Remove Edits`,
+      cmd: `remove_item_edits`,
+      modes: [`tabs`],
+      item: true,
+      icon: edit_icon,
+      action: (args) => {
+        App.remove_item_edits(args.item)
+      },
+      info: `Remove all edits from specific items`
     },
     {
       name: App.separator_string

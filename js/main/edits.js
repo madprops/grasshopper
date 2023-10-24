@@ -49,26 +49,33 @@ App.edit_prompt = (item, what) => {
   })
 }
 
-App.remove_edits = (what, force = false) => {
-  let items = []
+App.remove_edits = (args = {}) => {
+  let def_args = {
+    force: false,
+    items: [],
+  }
 
-  for (let item of App.get_items(`tabs`)) {
-    if (item[`custom_${what}`]) {
-      items.push(item)
+  App.def_args(def_args, args)
+
+  if (!args.items.length) {
+    for (let item of App.get_items(`tabs`)) {
+      if (item[`custom_${args.what}`]) {
+        args.items.push(item)
+      }
     }
   }
 
-  if (!items.length) {
+  if (!args.items.length) {
     return
   }
 
-  App.show_confirm(`Remove all edits? (${what}) (${items.length})`, () => {
-    for (let item of items) {
+  App.show_confirm(`Remove all edits? (${args.what}) (${args.items.length})`, () => {
+    for (let item of args.items) {
       let value = ``
-      App[`apply_tab_${what}`](item, value)
-      App.custom_save(item.id, `custom_${what}`, value)
+      App[`apply_tab_${args.what}`](item, value)
+      App.custom_save(item.id, `custom_${args.what}`, value)
     }
-  }, undefined, force)
+  }, undefined, args.force)
 }
 
 App.remove_all_edits = () => {
@@ -85,9 +92,30 @@ App.remove_all_edits = () => {
   }
 
   App.show_confirm(`Remove all edits? (${items.length})`, () => {
-    App.remove_edits(`color`, true)
-    App.remove_edits(`title`, true)
-    App.remove_edits(`tags`, true)
+    for (let edit of App.edits) {
+      App.remove_edits({what: edit, force: true, items: items})
+    }
+  })
+}
+
+App.remove_item_edits = (item) => {
+  let active = App.get_active_items({mode: item.mode, item: item})
+  let items = []
+
+  for (let it of active) {
+    if (App.tab_is_edited(it)) {
+      items.push(it)
+    }
+  }
+
+  if (!items.length) {
+    return
+  }
+
+  App.show_confirm(`Remove edits? (${items.length})`, () => {
+    for (let edit of App.edits) {
+      App.remove_edits({what: edit, force: true, items: items})
+    }
   })
 }
 

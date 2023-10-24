@@ -28,6 +28,7 @@ App.media_scroll = 33
 App.media_types = [`image`, `video`, `audio`]
 App.max_tag_filters = 50
 App.colors = [`red`, `green`, `blue`, `yellow`, `purple`, `orange`]
+App.edits = [`color`, `title`, `tags`]
 App.theme_safe_mode_msg = false
 App.persistent_modes = [`tabs`]
 App.close_text = `Close`

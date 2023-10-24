@@ -143,6 +143,10 @@ App.more_menu_items = (o_items, item, multiple, some_loaded, some_unmuted, some_
     }
 
     items.push(App.item_menu_cmd(App.get_command(`duplicate_tabs`), item))
+
+    if (App.tab_is_edited(item)) {
+      items.push(App.item_menu_cmd(App.get_command(`remove_item_edits`), item))
+    }
   }
 
   items.push(App.item_menu_cmd(App.get_command(`bookmark_items`), item))
