@@ -511,7 +511,6 @@ App.add_close_button = (item, side) => {
 }
 
 App.refresh_item_element = (item) => {
-  App.check_tab_item(item)
   App.check_item_icon(item)
   App.check_view_media(item)
   App.check_item_status(item)
@@ -535,11 +534,20 @@ App.create_item_element = (item) => {
   let color_icon = DOM.create(`div`, `item_info_color item_node hidden`)
   item.element.append(color_icon)
   App.apply_color_mode(item)
-  let view_media = DOM.create(`div`, `view_media_button hidden`)
-  item.element.append(view_media)
-  App.check_view_media(item)
 
   if (item.mode === `tabs`) {
+    if (App.get_setting(`pin_icon`)) {
+      let icon = DOM.create(`div`, `pin_icon item_node hidden`)
+      icon.textContent = App.get_setting(`pin_icon`)
+      item.element.append(icon)
+    }
+
+    if (App.get_setting(`normal_icon`)) {
+      let icon = DOM.create(`div`, `normal_icon item_node hidden`)
+      icon.textContent = App.get_setting(`normal_icon`)
+      item.element.append(icon)
+    }
+
     if (App.get_setting(`loaded_icon`)) {
       let icon = DOM.create(`div`, `loaded_icon item_node hidden`)
       icon.textContent = App.get_setting(`loaded_icon`)
@@ -581,6 +589,20 @@ App.create_item_element = (item) => {
       icon.textContent = App.get_setting(`edited_icon`)
       item.element.append(icon)
     }
+
+    if (App.get_setting(`hover_button`) !== `none`) {
+      let btn = DOM.create(`div`, `hover_button`)
+      btn.textContent = App.command_icon
+      btn.title = `Hover Button`
+      item.element.append(btn)
+    }
+
+    let view_media = DOM.create(`div`, `view_media_button hidden`)
+    item.element.append(view_media)
+
+    item.element.draggable = true
+    App.check_item_status(item)
+    App.check_view_media(item)
   }
 
   let text = DOM.create(`div`, `item_text`)
@@ -592,30 +614,7 @@ App.create_item_element = (item) => {
   App.set_item_text(item)
 
   if (item.mode === `tabs`) {
-    item.element.draggable = true
-
-    if (App.get_setting(`pin_icon`)) {
-      let icon = DOM.create(`div`, `pin_icon item_node hidden`)
-      icon.textContent = App.get_setting(`pin_icon`)
-      item.element.append(icon)
-    }
-
-    if (App.get_setting(`normal_icon`)) {
-      let icon = DOM.create(`div`, `normal_icon item_node hidden`)
-      icon.textContent = App.get_setting(`normal_icon`)
-      item.element.append(icon)
-    }
-
-    if (App.get_setting(`hover_button`) !== `none`) {
-      let btn = DOM.create(`div`, `hover_button`)
-      btn.textContent = App.command_icon
-      btn.title = `Hover Button`
-      item.element.append(btn)
-    }
-
     App.add_close_button(item, `right`)
-    App.check_tab_item(item)
-    App.check_item_status(item)
   }
 
   if (item.selected) {

@@ -926,32 +926,6 @@ App.browser_forward = () => {
   browser.tabs.goForward()
 }
 
-App.check_tab_item = (item) => {
-  if (item.mode === `tabs`) {
-    App.check_tab_pinned(item)
-  }
-}
-
-App.check_tab_pinned = (item) => {
-  if (App.get_setting(`pin_icon`)) {
-    if (item.pinned) {
-      item.element.classList.add(`pin_item`)
-    }
-    else {
-      item.element.classList.remove(`pin_item`)
-    }
-  }
-
-  if (App.get_setting(`normal_icon`)) {
-    if (item.pinned) {
-      item.element.classList.remove(`normal_item`)
-    }
-    else {
-      item.element.classList.add(`normal_item`)
-    }
-  }
-}
-
 App.check_new_tabs = () => {
   if (!App.get_setting(`single_new_tab`)) {
     return
