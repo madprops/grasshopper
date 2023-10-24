@@ -9,6 +9,9 @@ App.check_tab_session = async (items = []) => {
 
     let custom_title = await browser.sessions.getTabValue(item.id, `custom_title`)
     App.apply_tab_title(item, custom_title || ``)
+
+    let custom_tags = await browser.sessions.getTabValue(item.id, `custom_tags`)
+    App.apply_tab_tags(item, custom_tags || ``)
   }
 }
 
@@ -360,4 +363,69 @@ App.remove_all_edits = () => {
       App.custom_save(item.id, `custom_color`, color)
     }
   })
+}
+
+App.edit_tab_tags = (args = {}) => {
+  let def_args = {
+    tags: ``,
+  }
+
+  App.def_args(def_args, args)
+  let active = App.get_active_items({mode: args.item.mode, item: args.item})
+  let s = args.tags ? `Edit tags?` : `Remove tags?`
+  let to_change = []
+
+  for (let it of active) {
+    if (it.custom_tags !== args.tags) {
+      to_change.push(it)
+    }
+  }
+
+  if (!to_change.length) {
+    return
+  }
+
+  let force = App.check_force(`warn_on_edit_tabs`, to_change)
+
+  App.show_confirm(`${s} (${to_change.length})`, () => {
+    for (let it of to_change) {
+      App.apply_tab_tags(it, args.tags)
+      App.custom_save(it.id, `custom_tags`, args.tags)
+    }
+  }, undefined, force)
+}
+
+App.apply_tab_tags = (item, tags = ``) => {
+  if (item.custom_tags === tags) {
+    return
+  }
+
+  item.tag_list = App.get_taglist(tags)
+  item.custom_tags = item.tag_list.join(` `)
+}
+
+App.prompt_tab_tags = (item) => {
+  let active = App.get_active_items({mode: item.mode, item: item})
+  let value = item.custom_tags || ``
+
+  if (value) {
+    for (let it of active) {
+      if (it === item) {
+        continue
+      }
+
+      if (it.custom_tags !== value) {
+        value = ``
+        break
+      }
+    }
+  }
+
+  App.show_prompt(value, `Edit Tags`, (tags) => {
+    App.edit_tab_tags({item: item, tags: tags})
+  })
+}
+
+App.get_taglist = (tags) => {
+  return tags.split(/[, ]+/).map(x => x.trim())
 }

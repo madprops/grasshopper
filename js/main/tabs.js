@@ -124,6 +124,10 @@ App.build_tab_filters = () => {
       icon: App.edit_icon
     },
     {
+      type: `tagged`, text:`Tagged`, skip: false, info: `Show tabs that have custom tags`,
+      icon: App.tag_icon
+    },
+    {
       type: `edited`, text:`Edited`, skip: false, info: `Show tabs that have custom properties`,
       icon: App.edit_icon
     },

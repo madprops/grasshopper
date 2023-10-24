@@ -129,6 +129,8 @@ App.process_info = (args = {}) => {
     if (args.mode === `tabs`) {
       item.custom_color = ``
       item.custom_title = ``
+      item.custom_tags = ``
+      item.tag_list = []
     }
 
     item.original_data = args.info

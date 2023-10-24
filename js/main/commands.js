@@ -23,6 +23,7 @@ App.setup_commands = () => {
   let down_icon = App.down_arrow_icon
   let heart_icon = App.heart_icon
   let close_icon = App.close_icon
+  let tag_icon = App.tag_icon
   let color_filters = []
   let color_changers = []
 
@@ -872,6 +873,18 @@ App.setup_commands = () => {
       info: `Edit tab titles`
     },
     {
+      name: `Edit Tags`,
+      short_name: `Tags`,
+      cmd: `edit_tab_tags`,
+      modes: [`tabs`],
+      item: true,
+      icon: tag_icon,
+      action: (args) => {
+        App.prompt_tab_tags(args.item)
+      },
+      info: `Edit tab tags`
+    },
+    {
       name: `Remove All Titles`,
       cmd: `remove_all_titles`,
       modes: [`tabs`],
@@ -1006,6 +1019,16 @@ App.setup_commands = () => {
         App.filter_titled(args.mode)
       },
       info: `Filter: Show tabs that have a custom title`
+    },
+    {
+      name: `Filter Tagged`,
+      cmd: `filter_tagged_tabs`,
+      modes: [`tabs`],
+      icon: tag_icon,
+      action: (args) => {
+        App.filter_tagged(args.mode)
+      },
+      info: `Filter: Show tabs that have custom tags`
     },
     {
       name: `Filter Edited`,

@@ -290,6 +290,16 @@ App.filter_check = (args) => {
         match = regex.test(args.item.path)
       }
 
+      if (!match && args.item.tag_list.length) {
+        for (let tag of args.item.tag_list) {
+          match = regex.test(tag)
+
+          if (match) {
+            break
+          }
+        }
+      }
+
       if (match) {
         break
       }
@@ -319,6 +329,9 @@ App.filter_check = (args) => {
     }
     else if (args.filter_mode === `titled`) {
       match = args.item.custom_title
+    }
+    else if (args.filter_mode === `tagged`) {
+      match = args.item.custom_tags
     }
     else if (args.filter_mode === `edited`) {
       match = App.tab_is_edited(args.item)
@@ -828,6 +841,10 @@ App.filter_unread = (mode) => {
 
 App.filter_titled = (mode) => {
   App.set_filter_mode({mode: mode, type: `titled`})
+}
+
+App.filter_tagged = (mode) => {
+  App.set_filter_mode({mode: mode, type: `tagged`})
 }
 
 App.filter_edited = (mode) => {
