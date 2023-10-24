@@ -15,6 +15,12 @@ App.scroll_to_item = (args = {}) => {
     return
   }
 
+  if (args.item.last_scroll > 0) {
+    if ((Date.now() - args.item.last_scroll) < App.last_scroll_delay) {
+      return
+    }
+  }
+
   let behavior
 
   if (args.scroll.includes(`_`)) {
@@ -45,6 +51,8 @@ App.scroll_to_item = (args = {}) => {
       App.hide_scroller(args.item.mode)
     }
   }
+
+  args.item.last_scroll = Date.now()
 }
 
 App.scroll = (mode, direction) => {

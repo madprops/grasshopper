@@ -99,7 +99,7 @@ App.mouse_click_action = (mode, e) => {
     }
   }
 
-  App.select_item({item: item, scroll: `nearest`})
+  App.select_item({item: item, scroll: `nearest_smooth`})
 
   if (mode === `tabs`) {
     if (App.get_setting(`close_icon`)) {

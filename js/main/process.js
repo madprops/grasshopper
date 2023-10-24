@@ -137,6 +137,7 @@ App.process_info = (args = {}) => {
     item.id = args.info.id || App[`${args.mode}_idx`]
     item.visible = true
     item.selected = false
+    item.last_scroll = 0
     App.create_item_element(item)
     App[`${args.mode}_idx`] += 1
     return item
