@@ -345,7 +345,7 @@ App.show_close_tabs_menu = (e) => {
   let items = []
 
   for (let type of App.close_tabs_types) {
-    items.push(App.cmd_item({cmd: `close_${type}_tabs`}))
+    items.push(App.cmd_item({cmd: `close_${type}_tabs`, from: `close_tabs`}))
   }
 
   App.show_center_context(items, e)

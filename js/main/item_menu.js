@@ -44,15 +44,15 @@ App.show_item_menu = async (args = {}) => {
       }
 
       if (some_unloaded) {
-        items.push(App.cmd_item({cmd: `load_tabs`, item: args.item}))
+        items.push(App.item_menu_item({cmd: `load_tabs`, item: args.item}))
       }
 
       if (some_unpinned) {
-        items.push(App.cmd_item({cmd: `pin_tabs`, item: args.item}))
+        items.push(App.item_menu_item({cmd: `pin_tabs`, item: args.item}))
       }
 
       if (some_pinned) {
-        items.push(App.cmd_item({cmd: `unpin_tabs`, item: args.item}))
+        items.push(App.item_menu_item({cmd: `unpin_tabs`, item: args.item}))
       }
 
       items.push({
@@ -63,16 +63,16 @@ App.show_item_menu = async (args = {}) => {
         }
       })
 
-      items.push(App.cmd_item({cmd: `edit_tab_title`, item: args.item}))
-      items.push(App.cmd_item({cmd: `edit_tab_tags`, item: args.item}))
+      items.push(App.item_menu_item({cmd: `edit_tab_title`, item: args.item}))
+      items.push(App.item_menu_item({cmd: `edit_tab_tags`, item: args.item}))
       App.common_menu_items(items, args.item, multiple)
       App.extra_menu_items(items)
       App.more_menu_items(items, args.item, multiple, some_loaded, some_unmuted, some_muted)
       App.sep(items)
-      items.push(App.cmd_item({cmd: `close_tabs`, item: args.item}))
+      items.push(App.item_menu_item({cmd: `close_tabs`, item: args.item}))
     }
     else {
-      items.push(App.cmd_item({cmd: `open_items`, item: args.item}))
+      items.push(App.item_menu_item({cmd: `open_items`, item: args.item}))
       App.common_menu_items(items, args.item, multiple)
       App.more_menu_items(items, args.item, multiple)
     }
@@ -94,7 +94,7 @@ App.common_menu_items = (o_items, item, multiple) => {
   let items = []
 
   if (App.get_media_type(item)) {
-    items.push(App.cmd_item({cmd: `view_media`, item: item}))
+    items.push(App.item_menu_item({cmd: `view_media`, item: item}))
   }
 
   if (!multiple) {
@@ -109,8 +109,8 @@ App.common_menu_items = (o_items, item, multiple) => {
 
   if (!multiple) {
     let copy_items = []
-    copy_items.push(App.cmd_item({cmd: `copy_item_url`, item: item}))
-    copy_items.push(App.cmd_item({cmd: `copy_item_title`, item: item}))
+    copy_items.push(App.item_menu_item({cmd: `copy_item_url`, item: item}))
+    copy_items.push(App.item_menu_item({cmd: `copy_item_title`, item: item}))
 
     items.push({
       icon: App.clipboard_icon,
@@ -131,28 +131,28 @@ App.more_menu_items = (o_items, item, multiple, some_loaded, some_unmuted, some_
 
   if (item.mode === `tabs`) {
     if (some_unmuted) {
-      items.push(App.cmd_item({cmd: `mute_tabs`, item: item}))
+      items.push(App.item_menu_item({cmd: `mute_tabs`, item: item}))
     }
 
     if (some_muted) {
-      items.push(App.cmd_item({cmd: `unmute_tabs`, item: item}))
+      items.push(App.item_menu_item({cmd: `unmute_tabs`, item: item}))
     }
 
     if (some_loaded) {
-      items.push(App.cmd_item({cmd: `unload_tabs`, item: item}))
+      items.push(App.item_menu_item({cmd: `unload_tabs`, item: item}))
     }
 
-    items.push(App.cmd_item({cmd: `duplicate_tabs`, item: item}))
+    items.push(App.item_menu_item({cmd: `duplicate_tabs`, item: item}))
 
     if (App.tab_is_edited(item)) {
-      items.push(App.cmd_item({cmd: `remove_item_edits`, item: item}))
+      items.push(App.item_menu_item({cmd: `remove_item_edits`, item: item}))
     }
   }
 
-  items.push(App.cmd_item({cmd: `bookmark_items`, item: item}))
+  items.push(App.item_menu_item({cmd: `bookmark_items`, item: item}))
 
   if (item.image && !multiple) {
-    items.push(App.cmd_item({cmd: `set_background_image`, item: item}))
+    items.push(App.item_menu_item({cmd: `set_background_image`, item: item}))
   }
 
   if (item.mode === `tabs`) {
@@ -160,8 +160,8 @@ App.more_menu_items = (o_items, item, multiple, some_loaded, some_unmuted, some_
       App.sep(items)
     }
 
-    items.push(App.cmd_item({cmd: `move_tabs_to_top`, item: item}))
-    items.push(App.cmd_item({cmd: `move_tabs_to_bottom`, item: item}))
+    items.push(App.item_menu_item({cmd: `move_tabs_to_top`, item: item}))
+    items.push(App.item_menu_item({cmd: `move_tabs_to_bottom`, item: item}))
 
     items.push({
       icon: App.command_icon,
@@ -173,7 +173,7 @@ App.more_menu_items = (o_items, item, multiple, some_loaded, some_unmuted, some_
   }
 
   if (item.mode === `closed`) {
-    items.push(App.cmd_item({cmd: `forget_closed_item`, item: item}))
+    items.push(App.item_menu_item({cmd: `forget_closed_item`, item: item}))
   }
 
   if (items.length) {
@@ -217,9 +217,14 @@ App.filter_menu_items = (item) => {
   let items = []
 
   if (item.custom_color) {
-    items.push(App.cmd_item({cmd: `filter_color`, item: item, short: false}))
+    items.push(App.item_menu_item({cmd: `filter_color`, item: item, short: false}))
   }
 
-  items.push(App.cmd_item({cmd: `filter_domain`, item: item, short: false}))
+  items.push(App.item_menu_item({cmd: `filter_domain`, item: item, short: false}))
   return items
+}
+
+App.item_menu_item = (obj) => {
+  obj.from = `item_menu`
+  return App.cmd_item(obj)
 }
