@@ -1033,7 +1033,7 @@ App.setup_commands = () => {
       info: `Filter: Show unloaded tabs`
     },
     {
-      name: `Filter Duplicates`,
+      name: `Filter Duplicate`,
       cmd: `filter_duplicate_tabs`,
       modes: [`tabs`],
       icon: tabs_icon,
