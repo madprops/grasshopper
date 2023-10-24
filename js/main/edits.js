@@ -428,7 +428,22 @@ App.prompt_tab_tags = (item) => {
 }
 
 App.get_taglist = (tags) => {
-  return tags.split(/[, ]+/).map(x => x.trim())
+  let cleaned = tags.split(/[, ]+/).map(x => x.trim())
+  let unique = []
+
+  for (let tag of cleaned) {
+    if (!tag) {
+      continue
+    }
+
+    if (unique.includes(tag)) {
+      continue
+    }
+
+    unique.push(tag)
+  }
+
+  return unique
 }
 
 App.remove_all_tags = () => {
