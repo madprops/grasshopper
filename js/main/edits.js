@@ -402,6 +402,7 @@ App.apply_tab_tags = (item, tags = ``) => {
 
   item.tag_list = App.get_taglist(tags)
   item.custom_tags = item.tag_list.join(` `)
+  App.update_item(item.mode, item.id, item)
 }
 
 App.prompt_tab_tags = (item) => {
