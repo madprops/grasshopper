@@ -211,6 +211,11 @@ select {
   background-color: transparent;
 }
 
+.no_background {
+  background-color: transparent;
+  outline: none;
+}
+
 .icon_button {
   display: flex;
   flex-direction: row;

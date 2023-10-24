@@ -36,7 +36,7 @@ App.fill_favorites_bar = (mode) => {
     let cmd = App.get_command(fav.cmd)
 
     if (cmd) {
-      let btn = DOM.create(`div`, `favorites_bar_item button`)
+      let btn = DOM.create(`div`, `favorites_bar_item button no_background`)
       let icon = DOM.create(`div`, `favorites_bar_icon`)
       let icon_s = cmd.icon
 
