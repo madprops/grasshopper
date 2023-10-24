@@ -383,6 +383,14 @@ App.build_settings = () => {
       placeholder: App.icon_placeholder,
       version: 1,
     },
+    edited_icon: {
+      name: `Edited Icon`,
+      type: `text_smaller`,
+      value: ``,
+      placeholder: App.icon_placeholder,
+      info: `Icon for edited tabs`,
+      version: 1,
+    },
     close_icon: {
       name: `Close Icon`,
       type: `text_smaller`,

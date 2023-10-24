@@ -286,79 +286,90 @@ App.check_item_status = (item) => {
   }
 
   if (App.get_setting(`loaded_icon`)) {
-    let loaded = DOM.el(`.loaded_icon`, item.element)
+    let icon = DOM.el(`.loaded_icon`, item.element)
 
     if (item.discarded) {
-      loaded.classList.remove(`hidden`)
+      icon.classList.remove(`hidden`)
     }
     else {
-      loaded.classList.add(`hidden`)
+      icon.classList.add(`hidden`)
     }
   }
 
   if (App.get_setting(`unloaded_icon`)) {
-    let unloaded = DOM.el(`.unloaded_icon`, item.element)
+    let icon = DOM.el(`.unloaded_icon`, item.element)
 
     if (item.discarded) {
-      unloaded.classList.remove(`hidden`)
+      icon.classList.remove(`hidden`)
     }
     else {
-      unloaded.classList.add(`hidden`)
+      icon.classList.add(`hidden`)
     }
   }
 
   if (App.get_setting(`playing_icon`)) {
-    let playing = DOM.el(`.playing_icon`, item.element)
+    let icon = DOM.el(`.playing_icon`, item.element)
 
     if (item.audible && !item.muted) {
-      playing.classList.remove(`hidden`)
+      icon.classList.remove(`hidden`)
     }
     else {
-      playing.classList.add(`hidden`)
+      icon.classList.add(`hidden`)
     }
   }
 
   if (App.get_setting(`muted_icon`)) {
-    let muted = DOM.el(`.muted_icon`, item.element)
+    let icon = DOM.el(`.muted_icon`, item.element)
 
     if (item.muted) {
-      muted.classList.remove(`hidden`)
+      icon.classList.remove(`hidden`)
     }
     else {
-      muted.classList.add(`hidden`)
+      icon.classList.add(`hidden`)
     }
   }
 
   if (App.get_setting(`unread_icon`)) {
-    let unread = DOM.el(`.unread_icon`, item.element)
+    let icon = DOM.el(`.unread_icon`, item.element)
 
     if (item.unread) {
-      unread.classList.remove(`hidden`)
+      icon.classList.remove(`hidden`)
     }
     else {
-      unread.classList.add(`hidden`)
+      icon.classList.add(`hidden`)
+    }
+  }
+
+  if (App.get_setting(`edited_icon`)) {
+    let icon = DOM.el(`.edited_icon`, item.element)
+
+    if (App.tab_is_edited(item)) {
+      icon.classList.remove(`hidden`)
+    }
+    else {
+      icon.classList.add(`hidden`)
     }
   }
 
   if (App.get_setting(`pin_icon`)) {
-    let pin = DOM.el(`.pin_icon`, item.element)
+    let icon = DOM.el(`.pin_icon`, item.element)
 
     if (item.pinned) {
-      pin.classList.remove(`hidden`)
+      icon.classList.remove(`hidden`)
     }
     else {
-      pin.classList.add(`hidden`)
+      icon.classList.add(`hidden`)
     }
   }
 
   if (App.get_setting(`normal_icon`)) {
-    let pin = DOM.el(`.normal_icon`, item.element)
+    let icon = DOM.el(`.normal_icon`, item.element)
 
     if (!item.pinned) {
-      pin.classList.remove(`hidden`)
+      icon.classList.remove(`hidden`)
     }
     else {
-      pin.classList.add(`hidden`)
+      icon.classList.add(`hidden`)
     }
   }
 
@@ -529,20 +540,16 @@ App.create_item_element = (item) => {
   App.check_view_media(item)
 
   if (item.mode === `tabs`) {
-    let loaded_icon = App.get_setting(`loaded_icon`)
-
-    if (loaded_icon) {
-      let loaded = DOM.create(`div`, `loaded_icon item_node hidden`)
-      loaded.textContent = loaded_icon
-      item.element.append(loaded)
+    if (App.get_setting(`loaded_icon`)) {
+      let icon = DOM.create(`div`, `loaded_icon item_node hidden`)
+      icon.textContent = App.get_setting(`loaded_icon`)
+      item.element.append(icon)
     }
 
-    let unloaded_icon = App.get_setting(`unloaded_icon`)
-
-    if (unloaded_icon) {
-      let unloaded = DOM.create(`div`, `unloaded_icon item_node hidden`)
-      unloaded.textContent = unloaded_icon
-      item.element.append(unloaded)
+    if (App.get_setting(`unloaded_icon`)) {
+      let icon = DOM.create(`div`, `unloaded_icon item_node hidden`)
+      icon.textContent = App.get_setting(`unloaded_icon`)
+      item.element.append(icon)
     }
 
     let cls = ``
@@ -551,28 +558,28 @@ App.create_item_element = (item) => {
       cls += ` action`
     }
 
-    let playing_icon = App.get_setting(`playing_icon`)
-
-    if (playing_icon) {
-      let playing = DOM.create(`div`, `playing_icon item_node hidden${cls}`)
-      playing.textContent = playing_icon
-      item.element.append(playing)
+    if (App.get_setting(`playing_icon`)) {
+      let icon = DOM.create(`div`, `playing_icon item_node hidden${cls}`)
+      icon.textContent = App.get_setting(`playing_icon`)
+      item.element.append(icon)
     }
 
-    let muted_icon = App.get_setting(`muted_icon`)
-
-    if (muted_icon) {
-      let muted = DOM.create(`div`, `muted_icon item_node hidden${cls}`)
-      muted.textContent = muted_icon
-      item.element.append(muted)
+    if (App.get_setting(`muted_icon`)) {
+      let icon = DOM.create(`div`, `muted_icon item_node hidden${cls}`)
+      icon.textContent = App.get_setting(`muted_icon`)
+      item.element.append(icon)
     }
 
-    let unread_icon = App.get_setting(`unread_icon`)
+    if (App.get_setting(`unread_icon`)) {
+      let icon = DOM.create(`div`, `unread_icon item_node hidden${cls}`)
+      icon.textContent = App.get_setting(`unread_icon`)
+      item.element.append(icon)
+    }
 
-    if (unread_icon) {
-      let unread = DOM.create(`div`, `unread_icon item_node hidden${cls}`)
-      unread.textContent = unread_icon
-      item.element.append(unread)
+    if (App.get_setting(`edited_icon`)) {
+      let icon = DOM.create(`div`, `edited_icon item_node hidden`)
+      icon.textContent = App.get_setting(`edited_icon`)
+      item.element.append(icon)
     }
   }
 
@@ -588,22 +595,22 @@ App.create_item_element = (item) => {
     item.element.draggable = true
 
     if (App.get_setting(`pin_icon`)) {
-      let pin_icon = DOM.create(`div`, `pin_icon item_node hidden`)
-      pin_icon.textContent = App.get_setting(`pin_icon`)
-      item.element.append(pin_icon)
+      let icon = DOM.create(`div`, `pin_icon item_node hidden`)
+      icon.textContent = App.get_setting(`pin_icon`)
+      item.element.append(icon)
     }
 
     if (App.get_setting(`normal_icon`)) {
-      let normal_icon = DOM.create(`div`, `normal_icon item_node hidden`)
-      normal_icon.textContent = App.get_setting(`normal_icon`)
-      item.element.append(normal_icon)
+      let icon = DOM.create(`div`, `normal_icon item_node hidden`)
+      icon.textContent = App.get_setting(`normal_icon`)
+      item.element.append(icon)
     }
 
     if (App.get_setting(`hover_button`) !== `none`) {
-      let hover_btn = DOM.create(`div`, `hover_button`)
-      hover_btn.textContent = App.command_icon
-      hover_btn.title = `Hover Button`
-      item.element.append(hover_btn)
+      let btn = DOM.create(`div`, `hover_button`)
+      btn.textContent = App.command_icon
+      btn.title = `Hover Button`
+      item.element.append(btn)
     }
 
     App.add_close_button(item, `right`)
