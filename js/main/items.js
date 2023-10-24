@@ -745,6 +745,7 @@ App.setup_item_window = (mode) => {
   args.id = mode
   args.close_button = false
   args.align_top = `left`
+  args.cls = `mode`
 
   args.setup = () => {
     App.build_item_window(mode)

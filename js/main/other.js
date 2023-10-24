@@ -151,3 +151,14 @@ App.show_hover_menu = (e, item) => {
   App.command_item = item
   App.show_center_context(items, e)
 }
+
+App.toggle_header = () => {
+  let main = DOM.el(`#main`)
+
+  if (main.classList.contains(`no_header`)) {
+    main.classList.remove(`no_header`)
+  }
+  else {
+    main.classList.add(`no_header`)
+  }
+}

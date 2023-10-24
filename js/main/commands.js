@@ -315,6 +315,15 @@ App.setup_commands = () => {
       info: `Show the palette`
     },
     {
+      name: `Toggle Header`,
+      cmd: `toggle_header`,
+      icon: command_icon,
+      action: (args) => {
+        App.toggle_header()
+      },
+      info: `Show or hide the header`
+    },
+    {
       name: `Item Menu`,
       cmd: `show_item_menu`,
       modes: [`items`],
