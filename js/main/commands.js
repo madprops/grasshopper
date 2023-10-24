@@ -868,7 +868,7 @@ App.setup_commands = () => {
       item: true,
       icon: edit_icon,
       action: (args) => {
-        App.prompt_tab_title(args.item)
+        App.edit_prompt(args.item, `title`)
       },
       info: `Edit tab titles`
     },
@@ -880,7 +880,7 @@ App.setup_commands = () => {
       item: true,
       icon: tag_icon,
       action: (args) => {
-        App.prompt_tab_tags(args.item)
+        App.edit_prompt(args.item, `tags`)
       },
       info: `Edit tab tags`
     },

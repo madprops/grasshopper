@@ -274,28 +274,6 @@ App.apply_tab_title = (item, title = ``) => {
   App.update_item(item.mode, item.id, item)
 }
 
-App.prompt_tab_title = (item) => {
-  let active = App.get_active_items({mode: item.mode, item: item})
-  let value = item.custom_title || ``
-
-  if (value) {
-    for (let it of active) {
-      if (it === item) {
-        continue
-      }
-
-      if (it.custom_title !== value) {
-        value = ``
-        break
-      }
-    }
-  }
-
-  App.show_prompt(value, `Edit Title`, (title) => {
-    App.edit_tab_title({item: item, title: title})
-  })
-}
-
 App.edit_tab_tags = (args = {}) => {
   let def_args = {
     tags: ``,
@@ -336,9 +314,9 @@ App.apply_tab_tags = (item, tags = ``) => {
   App.update_item(item.mode, item.id, item)
 }
 
-App.prompt_tab_tags = (item) => {
+App.edit_prompt = (item, what) => {
   let active = App.get_active_items({mode: item.mode, item: item})
-  let value = item.custom_tags || ``
+  let value = item[`custom_${what}`] || ``
 
   if (value) {
     for (let it of active) {
@@ -353,8 +331,12 @@ App.prompt_tab_tags = (item) => {
     }
   }
 
-  App.show_prompt(value, `Edit Tags`, (tags) => {
-    App.edit_tab_tags({item: item, tags: tags})
+  let name = App.capitalize(what)
+
+  App.show_prompt(value, `Edit ${name}`, (ans) => {
+    let obj = {item: item}
+    obj[what] = ans
+    App[`edit_tab_${what}`](obj)
   })
 }
 
