@@ -131,7 +131,7 @@ App.build_tab_filters = () => {
     },
     {type: App.separator_string, skip: true},
     {
-      type: `duplicate`, text:`Duplicates`, skip: false, info: `Show tabs that have duplicates`,
+      type: `duplicate`, text:`Duplicate`, skip: false, info: `Show tabs that have duplicates`,
     },
   ]
 }
