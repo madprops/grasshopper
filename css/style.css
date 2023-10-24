@@ -279,6 +279,10 @@ svg {
   padding-right: var(--item_margin);
 }
 
+.item .close_icon {
+  padding-left: calc(var(--item_gap) * 2);
+}
+
 .borders_normal .item {
   border-top-width: 1px;
   border-bottom-width: 1px;
