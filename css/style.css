@@ -1119,5 +1119,6 @@ a:visited, a:link, a:hover {
 }
 
 .no_header .window_top_mode {
-  display: none;
+  position: fixed;
+  top: -20rem;
 }
