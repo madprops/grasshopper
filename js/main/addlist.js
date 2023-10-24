@@ -40,13 +40,13 @@ Addlist.save = (id) => {
   }
 
   if (v1) {
-    Addlist.remove(id, v1, true)
+    Addlist.remove({id: id, value: v1, force: true})
   }
 
   let v2 = line[oargs.pk]
 
   if (v2 && (v1 !== v2)) {
-    Addlist.remove(id, v2, true)
+    Addlist.remove({id: id, value: v2, force: true})
   }
 
   let lines = Addlist.get_data(id)
@@ -229,18 +229,25 @@ Addlist.edit = (args = {}) => {
   Addlist.check_focus(args.id)
 }
 
-Addlist.remove = (id, value, force) => {
-  if (!value) {
+Addlist.remove = (args = {}) => {
+  let def_args = {
+    force: false,
+    show_list: false,
+  }
+
+  App.def_args(def_args, args)
+
+  if (!args.value) {
     return
   }
 
-  let lines = Addlist.get_data(id)
+  let lines = Addlist.get_data(args.id)
 
   if (!lines.length) {
     return
   }
 
-  let oargs = Addlist.oargs(id)
+  let oargs = Addlist.oargs(args.id)
 
   App.show_confirm(`Remove item?`, () => {
     let new_lines = []
@@ -250,15 +257,19 @@ Addlist.remove = (id, value, force) => {
         continue
       }
 
-      if (line[oargs.pk] === value) {
+      if (line[oargs.pk] === args.value) {
         continue
       }
 
       new_lines.push(line)
     }
 
-    Addlist.after(id, new_lines)
-  }, undefined, force)
+    Addlist.after(args.id, new_lines)
+
+    if (args.show_list) {
+      Addlist.list({id: args.id})
+    }
+  }, undefined, args.force)
 }
 
 Addlist.view = (args = {}) => {
@@ -429,7 +440,7 @@ Addlist.modified = (id) => {
   return false
 }
 
-Addlist.menu = (e) => {
+Addlist.menu = () => {
   let id = Addlist.data.id
   let data = Addlist.data
   let oargs = Addlist.oargs(id)
@@ -439,7 +450,7 @@ Addlist.menu = (e) => {
     text: `Remove`,
     action: () => {
       if (data.edit && Object.keys(data.items).length) {
-        Addlist.remove(id, data.items[oargs.pk])
+        Addlist.remove({id: id, value: data.items[oargs.pk]})
       }
     }
   })
@@ -640,7 +651,7 @@ Addlist.list = (args) => {
         Addlist.view(args)
       },
       alt_action: () => {
-        Addlist.remove(args.id, line[oargs.pk])
+        Addlist.remove({id: args.id, value: line[oargs.pk], show_list: true})
       },
       info: info,
     })
