@@ -895,6 +895,16 @@ App.setup_commands = () => {
       info: `Remove all titles from tabs`
     },
     {
+      name: `Remove All Tags`,
+      cmd: `remove_all_tags`,
+      modes: [`tabs`],
+      icon: tag_icon,
+      action: (args) => {
+        App.remove_all_tags()
+      },
+      info: `Remove all tags from tabs`
+    },
+    {
       name: `Remove All Edits`,
       cmd: `remove_all_edits`,
       modes: [`tabs`],

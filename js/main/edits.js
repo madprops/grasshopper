@@ -430,3 +430,25 @@ App.prompt_tab_tags = (item) => {
 App.get_taglist = (tags) => {
   return tags.split(/[, ]+/).map(x => x.trim())
 }
+
+App.remove_all_tags = () => {
+  let items = []
+
+  for (let item of App.get_items(`tabs`)) {
+    if (item.custom_tags) {
+      items.push(item)
+    }
+  }
+
+  if (!items.length) {
+    return
+  }
+
+  App.show_confirm(`Remove all tags? (${items.length})`, () => {
+    for (let item of items) {
+      let tags = ``
+      App.apply_tab_tags(item, tags)
+      App.custom_save(item.id, `custom_tags`, tags)
+    }
+  })
+}
