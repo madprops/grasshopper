@@ -166,30 +166,19 @@ Addlist.register = (args = {}) => {
 
   container.append(...els)
   let btns = DOM.create(`div`, `addlist_buttons`)
-  let remove = DOM.create(`div`, `button`, `addlist_remove_${args.id}`)
-  remove.textContent = `Rem`
   let save = DOM.create(`div`, `button`, `addlist_save_${args.id}`)
   save.textContent = `Save`
   let menu = DOM.create(`div`, `button icon_button`, `addlist_menu_${args.id}`)
-  menu.append(App.create_icon(`sun`))
+  menu.textContent = `Menu`
 
   DOM.ev(save, `click`, () => {
     Addlist.save(args.id)
-  })
-
-  DOM.ev(remove, `click`, () => {
-    let data = Addlist.data
-
-    if (data.edit && Object.keys(data.items).length) {
-      Addlist.remove(args.id, data.items[args.pk])
-    }
   })
 
   DOM.ev(menu, `click`, () => {
     Addlist.menu()
   })
 
-  btns.append(remove)
   btns.append(menu)
   btns.append(save)
   container.append(btns)
@@ -322,12 +311,10 @@ Addlist.after = (id, lines) => {
 }
 
 Addlist.check_buttons = (args) => {
-  let remove_el = DOM.el(`#addlist_remove_${args.id}`)
   let menu_el = DOM.el(`#addlist_menu_${args.id}`)
   let prev_el = DOM.el(`#addlist_prev_${args.id}`)
   let next_el = DOM.el(`#addlist_next_${args.id}`)
   let date_el = DOM.el(`#addlist_date_${args.id}`)
-  remove_el.classList.add(`hidden`)
   menu_el.classList.add(`hidden`)
   prev_el.classList.add(`hidden`)
   next_el.classList.add(`hidden`)
@@ -335,7 +322,6 @@ Addlist.check_buttons = (args) => {
 
   if (args.edit) {
     let num = Addlist.get_data(args.id).length
-    remove_el.classList.remove(`hidden`)
     menu_el.classList.remove(`hidden`)
 
     if (args.items._date_) {
@@ -446,10 +432,20 @@ Addlist.modified = (id) => {
 Addlist.menu = (e) => {
   let id = Addlist.data.id
   let data = Addlist.data
+  let oargs = Addlist.oargs(id)
   let items = []
 
   items.push({
-    text: `Add Item`,
+    text: `Remove`,
+    action: () => {
+      if (data.edit && Object.keys(data.items).length) {
+        Addlist.remove(id, data.items[oargs.pk])
+      }
+    }
+  })
+
+  items.push({
+    text: `Add New`,
     action: () => {
       data.items = {}
       data.edit = false
