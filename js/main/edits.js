@@ -23,6 +23,74 @@ App.custom_save = (id, name, value) => {
   browser.sessions.setTabValue(id, name, value)
 }
 
+App.edit_prompt = (item, what) => {
+  let active = App.get_active_items({mode: item.mode, item: item})
+  let value = item[`custom_${what}`] || ``
+
+  if (value) {
+    for (let it of active) {
+      if (it === item) {
+        continue
+      }
+
+      if (it.custom_tags !== value) {
+        value = ``
+        break
+      }
+    }
+  }
+
+  let name = App.capitalize(what)
+
+  App.show_prompt(value, `Edit ${name}`, (ans) => {
+    let obj = {item: item}
+    obj[what] = ans
+    App[`edit_tab_${what}`](obj)
+  })
+}
+
+App.remove_edits = (what, force = false) => {
+  let items = []
+
+  for (let item of App.get_items(`tabs`)) {
+    if (item[`custom_${what}`]) {
+      items.push(item)
+    }
+  }
+
+  if (!items.length) {
+    return
+  }
+
+  App.show_confirm(`Remove all edits? (${what}) (${items.length})`, () => {
+    for (let item of items) {
+      let value = ``
+      App[`apply_tab_${what}`](item, value)
+      App.custom_save(item.id, `custom_${what}`, value)
+    }
+  }, undefined, force)
+}
+
+App.remove_all_edits = () => {
+  let items = []
+
+  for (let item of App.get_items(`tabs`)) {
+    if (App.tab_is_edited(item)) {
+      items.push(item)
+    }
+  }
+
+  if (!items.length) {
+    return
+  }
+
+  App.show_confirm(`Remove all edits? (${items.length})`, () => {
+    App.remove_edits(`color`, true)
+    App.remove_edits(`title`, true)
+    App.remove_edits(`tags`, true)
+  })
+}
+
 App.edit_tab_color = (args = {}) => {
   let def_args = {
     color: ``,
@@ -314,32 +382,6 @@ App.apply_tab_tags = (item, tags = ``) => {
   App.update_item(item.mode, item.id, item)
 }
 
-App.edit_prompt = (item, what) => {
-  let active = App.get_active_items({mode: item.mode, item: item})
-  let value = item[`custom_${what}`] || ``
-
-  if (value) {
-    for (let it of active) {
-      if (it === item) {
-        continue
-      }
-
-      if (it.custom_tags !== value) {
-        value = ``
-        break
-      }
-    }
-  }
-
-  let name = App.capitalize(what)
-
-  App.show_prompt(value, `Edit ${name}`, (ans) => {
-    let obj = {item: item}
-    obj[what] = ans
-    App[`edit_tab_${what}`](obj)
-  })
-}
-
 App.get_taglist = (tags) => {
   let cleaned = tags.split(/[, ]+/).map(x => x.trim())
   let unique = []
@@ -357,46 +399,4 @@ App.get_taglist = (tags) => {
   }
 
   return unique
-}
-
-App.remove_edits = (what, force = false) => {
-  let items = []
-
-  for (let item of App.get_items(`tabs`)) {
-    if (item[`custom_${what}`]) {
-      items.push(item)
-    }
-  }
-
-  if (!items.length) {
-    return
-  }
-
-  App.show_confirm(`Remove all edits? (${what}) (${items.length})`, () => {
-    for (let item of items) {
-      let value = ``
-      App[`apply_tab_${what}`](item, value)
-      App.custom_save(item.id, `custom_${what}`, value)
-    }
-  }, undefined, force)
-}
-
-App.remove_all_edits = () => {
-  let items = []
-
-  for (let item of App.get_items(`tabs`)) {
-    if (App.tab_is_edited(item)) {
-      items.push(item)
-    }
-  }
-
-  if (!items.length) {
-    return
-  }
-
-  App.show_confirm(`Remove all edits? (${items.length})`, () => {
-    App.remove_edits(`color`, true)
-    App.remove_edits(`title`, true)
-    App.remove_edits(`tags`, true)
-  })
 }
