@@ -10,6 +10,7 @@ App.stor_first_time_name = `first_time_v1`
 
 App.modes = [`tabs`, `history`, `bookmarks`, `closed`]
 App.gestures = [`up`, `down`, `left`, `right`, `up_and_down`, `left_and_right`]
+App.close_tabs_types = [`normal`, `playing`, `unloaded`, `duplicate`, `loaded`, `visible`, `other`]
 App.default_setting_string = `__default__`
 App.separator_string = `--separator--`
 App.windows = {}

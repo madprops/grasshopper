@@ -709,7 +709,7 @@ App.setup_commands = () => {
       info: `Close unloaded tabs`
     },
     {
-      name: `Close Duplicate`,
+      name: `Close Duplicates`,
       cmd: `close_duplicate_tabs`,
       modes: [`tabs`],
       icon: close_icon,
@@ -1342,5 +1342,42 @@ App.check_dead_commands = () => {
         check(value, key)
       }
     }
+  }
+}
+
+App.cmd_item = (args = {}) => {
+  let def_args = {
+    short: true,
+    from: `unknown`,
+  }
+
+  App.def_args(def_args, args)
+  let cmd = App.get_command(args.cmd)
+
+  if (!cmd) {
+    App.error(`${from} -> No command: ${cmd_name}`)
+    return
+  }
+
+  let name
+
+  if (args.short) {
+    name = cmd.short_name || cmd.name
+  }
+  else {
+    name = cmd.name
+  }
+
+  return {
+    icon: cmd.icon,
+    text: name,
+    action: () => {
+      App.run_command({
+        cmd: cmd.cmd,
+        item: args.item,
+        from: args.from
+      })
+    },
+    direct: true,
   }
 }

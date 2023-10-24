@@ -6,8 +6,6 @@ App.start_close_tabs = () => {
   App.create_popup({
     id: `close_tabs`,
     setup: () => {
-      App.close_tabs_types = [`normal`, `playing`, `unloaded`, `duplicate`, `loaded`, `visible`, `other`]
-
       DOM.ev(DOM.el(`#close_tabs_include_pins`), `change`, () => {
         App.update_close_tabs_popup_button(App.close_tabs_type)
       })
@@ -346,61 +344,9 @@ App.close_other_new_tabs = (id) => {
 App.show_close_tabs_menu = (e) => {
   let items = []
 
-  items.push({
-    text: `Close Normal`,
-    action: () => {
-      App.close_tabs_popup(`normal`)
-    }
-  })
-
-  items.push({
-    text: `Close Playing`,
-    action: () => {
-      App.close_tabs_popup(`playing`)
-    }
-  })
-
-  items.push({
-    text: `Close Loaded`,
-    action: () => {
-      App.close_tabs_popup(`loaded`)
-    }
-  })
-
-  items.push({
-    text: `Close Unloaded`,
-    action: () => {
-      App.close_tabs_popup(`unloaded`)
-    }
-  })
-
-  items.push({
-    text: `Close Duplicate`,
-    action: () => {
-      App.close_tabs_popup(`duplicate`)
-    }
-  })
-
-  items.push({
-    text: `Close Visible`,
-    action: () => {
-      App.close_tabs_popup(`visible`)
-    }
-  })
-
-  items.push({
-    text: `Close Others`,
-    action: () => {
-      App.close_tabs_popup(`other`)
-    }
-  })
-
-  items.push({
-    text: `Close Color`,
-    action: (e) => {
-      App.show_close_color_menu(e)
-    }
-  })
+  for (let type of App.close_tabs_types) {
+    items.push(App.cmd_item({cmd: `close_${type}_tabs`}))
+  }
 
   App.show_center_context(items, e)
 }
