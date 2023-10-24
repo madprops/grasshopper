@@ -285,6 +285,28 @@ App.check_item_status = (item) => {
     return
   }
 
+  if (App.get_setting(`pin_icon`)) {
+    let icon = DOM.el(`.pin_icon`, item.element)
+
+    if (item.pinned) {
+      icon.classList.remove(`hidden`)
+    }
+    else {
+      icon.classList.add(`hidden`)
+    }
+  }
+
+  if (App.get_setting(`normal_icon`)) {
+    let icon = DOM.el(`.normal_icon`, item.element)
+
+    if (!item.pinned) {
+      icon.classList.remove(`hidden`)
+    }
+    else {
+      icon.classList.add(`hidden`)
+    }
+  }
+
   if (App.get_setting(`loaded_icon`)) {
     let icon = DOM.el(`.loaded_icon`, item.element)
 
@@ -344,28 +366,6 @@ App.check_item_status = (item) => {
     let icon = DOM.el(`.edited_icon`, item.element)
 
     if (App.tab_is_edited(item)) {
-      icon.classList.remove(`hidden`)
-    }
-    else {
-      icon.classList.add(`hidden`)
-    }
-  }
-
-  if (App.get_setting(`pin_icon`)) {
-    let icon = DOM.el(`.pin_icon`, item.element)
-
-    if (item.pinned) {
-      icon.classList.remove(`hidden`)
-    }
-    else {
-      icon.classList.add(`hidden`)
-    }
-  }
-
-  if (App.get_setting(`normal_icon`)) {
-    let icon = DOM.el(`.normal_icon`, item.element)
-
-    if (!item.pinned) {
       icon.classList.remove(`hidden`)
     }
     else {
