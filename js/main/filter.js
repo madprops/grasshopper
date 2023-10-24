@@ -71,7 +71,7 @@ App.do_filter = async (args = {}) => {
   let by_what
   let cmd
 
-  for (let c of [`title`, `url`, `re`, `re_title`, `re_url`]) {
+  for (let c of [`title`, `url`, `re`, `re_title`, `re_url`, `tag`]) {
     if (value.startsWith(`${c}:`)) {
       cmd = [c, value.replace(`${c}:`, ``).trim()]
     }
@@ -618,6 +618,13 @@ App.get_filter_refine = (mode) => {
     text: `Regex All`,
     action: () => {
       App.filter_cmd(mode, `re`)
+    },
+  })
+
+  items.push({
+    text: `Tag`,
+    action: () => {
+      App.filter_cmd(mode, `tag`)
     },
   })
 
