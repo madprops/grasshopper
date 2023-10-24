@@ -128,7 +128,7 @@ App.setup_commands = () => {
     item: true,
     icon: theme_icon,
     action: (args) => {
-      App.remove_all_colors()
+      App.remove_edits(`color`)
     },
     info: `Remove all colors from tabs`
   })
@@ -890,7 +890,7 @@ App.setup_commands = () => {
       modes: [`tabs`],
       icon: edit_icon,
       action: (args) => {
-        App.remove_all_titles()
+        App.remove_edits(`title`)
       },
       info: `Remove all titles from tabs`
     },
@@ -900,7 +900,7 @@ App.setup_commands = () => {
       modes: [`tabs`],
       icon: tag_icon,
       action: (args) => {
-        App.remove_all_tags()
+        App.remove_edits(`tags`)
       },
       info: `Remove all tags from tabs`
     },

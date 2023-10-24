@@ -137,6 +137,11 @@ App.palette_action = (el) => {
   }
 
   let item = el.closest(`.palette_item`)
+
+  if (!item) {
+    return
+  }
+
   let cmd = item.dataset.command
 
   if (cmd) {

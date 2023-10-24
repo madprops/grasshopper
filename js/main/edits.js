@@ -166,28 +166,6 @@ App.get_active_colors = (mode) => {
   return count
 }
 
-App.remove_all_colors = () => {
-  let items = []
-
-  for (let item of App.get_items(`tabs`)) {
-    if (item.custom_color) {
-      items.push(item)
-    }
-  }
-
-  if (!items.length) {
-    return
-  }
-
-  App.show_confirm(`Remove all colors? (${items.length})`, () => {
-    for (let item of items) {
-      let color = ``
-      App.apply_tab_color(item, color)
-      App.custom_save(item.id, `custom_color`, color)
-    }
-  })
-}
-
 App.remove_color = (color) => {
   let items = []
 
@@ -318,53 +296,6 @@ App.prompt_tab_title = (item) => {
   })
 }
 
-App.remove_all_titles = () => {
-  let items = []
-
-  for (let item of App.get_items(`tabs`)) {
-    if (item.custom_title) {
-      items.push(item)
-    }
-  }
-
-  if (!items.length) {
-    return
-  }
-
-  App.show_confirm(`Remove all titles? (${items.length})`, () => {
-    for (let item of items) {
-      let title = ``
-      App.apply_tab_title(item, title)
-      App.custom_save(item.id, `custom_title`, title)
-    }
-  })
-}
-
-App.remove_all_edits = () => {
-  let items = []
-
-  for (let item of App.get_items(`tabs`)) {
-    if (item.custom_color || item.custom_title) {
-      items.push(item)
-    }
-  }
-
-  if (!items.length) {
-    return
-  }
-
-  App.show_confirm(`Remove all edits? (${items.length})`, () => {
-    for (let item of items) {
-      let title = ``
-      App.apply_tab_title(item, title)
-      App.custom_save(item.id, `custom_title`, title)
-      let color = ``
-      App.apply_tab_color(item, color)
-      App.custom_save(item.id, `custom_color`, color)
-    }
-  })
-}
-
 App.edit_tab_tags = (args = {}) => {
   let def_args = {
     tags: ``,
@@ -446,11 +377,11 @@ App.get_taglist = (tags) => {
   return unique
 }
 
-App.remove_all_tags = () => {
+App.remove_edits = (what, force = false) => {
   let items = []
 
   for (let item of App.get_items(`tabs`)) {
-    if (item.custom_tags) {
+    if (item[`custom_${what}`]) {
       items.push(item)
     }
   }
@@ -459,11 +390,31 @@ App.remove_all_tags = () => {
     return
   }
 
-  App.show_confirm(`Remove all tags? (${items.length})`, () => {
+  App.show_confirm(`Remove all edits? (${what}) (${items.length})`, () => {
     for (let item of items) {
-      let tags = ``
-      App.apply_tab_tags(item, tags)
-      App.custom_save(item.id, `custom_tags`, tags)
+      let value = ``
+      App[`apply_tab_${what}`](item, value)
+      App.custom_save(item.id, `custom_${what}`, value)
     }
+  }, undefined, force)
+}
+
+App.remove_all_edits = () => {
+  let items = []
+
+  for (let item of App.get_items(`tabs`)) {
+    if (App.tab_is_edited(item)) {
+      items.push(item)
+    }
+  }
+
+  if (!items.length) {
+    return
+  }
+
+  App.show_confirm(`Remove all edits? (${items.length})`, () => {
+    App.remove_edits(`color`, true)
+    App.remove_edits(`title`, true)
+    App.remove_edits(`tags`, true)
   })
 }
