@@ -599,7 +599,6 @@ App.create_item_element = (item) => {
 
     let view_media = DOM.create(`div`, `view_media_button hidden`)
     item.element.append(view_media)
-
     item.element.draggable = true
     App.check_item_status(item)
     App.check_view_media(item)
