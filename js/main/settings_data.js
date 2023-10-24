@@ -1409,25 +1409,25 @@ App.build_settings = () => {
       buttons: [
         [
           {
-            text: `Dark Colors`, action: () => {
-              App.set_dark_colors()
+            text: `Light Colors`, action: () => {
+              App.set_light_colors()
             }
           },
           {
-            text: `Light Colors`, action: () => {
-              App.set_light_colors()
+            text: `Dark Colors`, action: () => {
+              App.set_dark_colors()
             }
           },
         ],
         [
           {
-            text: `Random Dark`, action: () => {
-              App.random_colors(`dark`)
+            text: `Random Light`, action: () => {
+              App.random_colors(`light`)
             }
           },
           {
-            text: `Random Light`, action: () => {
-              App.random_colors(`light`)
+            text: `Random Dark`, action: () => {
+              App.random_colors(`dark`)
             }
           },
         ],
