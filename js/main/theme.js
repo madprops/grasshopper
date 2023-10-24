@@ -65,7 +65,6 @@ App.do_apply_theme = (args = {}) => {
     }
 
     App.set_css_var(`font_size`, App.get_setting(`font_size`) + `px`)
-    App.set_css_var(`button_size`, App.get_setting(`button_size`) + `px`)
     App.set_css_var(`font`, `${App.get_setting(`font`)}, sans-serif`)
     let w = `${(App.get_setting(`width`) / 100) * 800}px`
     App.set_css_var(`width`, w)
