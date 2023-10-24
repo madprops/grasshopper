@@ -92,7 +92,7 @@ App.remove_all_edits = () => {
   }
 
   App.show_confirm(`Remove all edits? (${items.length})`, () => {
-    for (let edit of App.edits) {
+    for (let edit of App.tab_edits) {
       App.remove_edits({what: edit, force: true, items: items})
     }
   })
@@ -113,7 +113,7 @@ App.remove_item_edits = (item) => {
   }
 
   App.show_confirm(`Remove edits? (${items.length})`, () => {
-    for (let edit of App.edits) {
+    for (let edit of App.tab_edits) {
       App.remove_edits({what: edit, force: true, items: items})
     }
   })
