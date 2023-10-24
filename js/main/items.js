@@ -579,7 +579,7 @@ App.create_item_element = (item) => {
     }
 
     if (App.get_setting(`unread_icon`)) {
-      let icon = DOM.create(`div`, `unread_icon item_node hidden${cls}`)
+      let icon = DOM.create(`div`, `unread_icon item_node hidden`)
       icon.textContent = App.get_setting(`unread_icon`)
       item.element.append(icon)
     }
