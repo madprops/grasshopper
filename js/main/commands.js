@@ -26,6 +26,8 @@ App.setup_commands = () => {
   let tag_icon = App.tag_icon
   let color_filters = []
   let color_changers = []
+  let color_removers = []
+  let color_closers = []
 
   color_filters.push({
     name: `Filter All Colors`,
@@ -39,8 +41,23 @@ App.setup_commands = () => {
   })
 
   for (let color of App.colors) {
-    let icon = App.color_icon(color)
-    let name = `Color ${App.capitalize(color)}`
+    let icon, name
+    icon = filter_icon
+    name = `Filter ${App.capitalize(color)}`
+
+    color_filters.push({
+      name: name,
+      cmd: `filter_color_${color}`,
+      modes: [`tabs`],
+      icon: icon,
+      action: (args) => {
+        App.filter_color(args.mode, color)
+      },
+      info: `Filter tabs with this color (${color})`
+    })
+
+    icon = App.color_icon(color)
+    name = `Color ${App.capitalize(color)}`
 
     color_changers.push({
       name: name,
@@ -69,39 +86,28 @@ App.setup_commands = () => {
       info: `Toggle color on or off (${color})`
     })
 
-    name = `Filter ${App.capitalize(color)}`
-
-    color_filters.push({
-      name: name,
-      cmd: `filter_color_${color}`,
-      modes: [`tabs`],
-      icon: filter_icon,
-      action: (args) => {
-        App.filter_color(args.mode, color)
-      },
-      info: `Filter tabs with this color (${color})`
-    })
-
+    icon = theme_icon
     name = `Remove ${App.capitalize(color)}`
 
-    color_filters.push({
+    color_removers.push({
       name: name,
       cmd: `remove_color_${color}`,
       modes: [`tabs`],
-      icon: theme_icon,
+      icon: icon,
       action: (args) => {
         App.remove_color(color)
       },
       info: `Remove color from tabs (${color})`
     })
 
+    icon = App.close_icon
     name = `Close ${App.capitalize(color)}`
 
-    color_filters.push({
+    color_closers.push({
       name: name,
       cmd: `close_color_${color}`,
       modes: [`tabs`],
-      icon: App.close_icon,
+      icon: icon,
       action: (args) => {
         App.close_color(color)
       },
@@ -109,28 +115,15 @@ App.setup_commands = () => {
     })
   }
 
-  color_changers.push({
-    name: `Remove Color`,
-    cmd: `remove_color`,
-    modes: [`tabs`],
+  color_filters.push({
+    name: `Filter Color Menu`,
+    cmd: `show_filter_color_menu`,
+    modes: [`items`],
     item: true,
-    icon: theme_icon,
+    icon: filter_icon,
     action: (args) => {
-      App.edit_tab_color({item: args.item})
-    },
-    info: `Remove the custom color of tabs`
-  })
-
-  color_changers.push({
-    name: `Remove All Colors`,
-    cmd: `remove_all_colors`,
-    modes: [`tabs`],
-    item: true,
-    icon: theme_icon,
-    action: (args) => {
-      App.remove_edits(`color`)
-    },
-    info: `Remove all colors from tabs`
+      App.show_filter_color_menu(args.mode, args.e)
+    }, info: `Show the filter color menu`
   })
 
   color_changers.push({
@@ -144,7 +137,31 @@ App.setup_commands = () => {
     }, info: `Show the colors menu`
   })
 
-  color_changers.push({
+  color_removers.push({
+    name: `Remove Color`,
+    cmd: `remove_color`,
+    modes: [`tabs`],
+    item: true,
+    icon: theme_icon,
+    action: (args) => {
+      App.edit_tab_color({item: args.item})
+    },
+    info: `Remove the custom color of tabs`
+  })
+
+  color_removers.push({
+    name: `Remove All Colors`,
+    cmd: `remove_all_colors`,
+    modes: [`tabs`],
+    item: true,
+    icon: theme_icon,
+    action: (args) => {
+      App.remove_edits(`color`)
+    },
+    info: `Remove all colors from tabs`
+  })
+
+  color_closers.push({
     name: `Close Color Menu`,
     cmd: `show_close_color_menu`,
     modes: [`tabs`],
@@ -153,17 +170,6 @@ App.setup_commands = () => {
     action: (args) => {
       App.show_close_color_menu(args.item, args.e)
     }, info: `Show the close color menu`
-  })
-
-  color_changers.push({
-    name: `Filter Color Menu`,
-    cmd: `show_filter_color_menu`,
-    modes: [`items`],
-    item: true,
-    icon: filter_icon,
-    action: (args) => {
-      App.show_filter_color_menu(args.mode, args.e)
-    }, info: `Show the filter color menu`
   })
 
   let media_filters = []
@@ -733,6 +739,9 @@ App.setup_commands = () => {
       },
       info: `Close other tabs`
     },
+
+    ...color_closers,
+
     {
       name: `Go To Playing`,
       cmd: `go_to_playing_tab`,
@@ -893,6 +902,9 @@ App.setup_commands = () => {
       },
       info: `Edit tab tags`
     },
+
+    ...color_removers,
+
     {
       name: `Remove All Titles`,
       cmd: `remove_all_titles`,
