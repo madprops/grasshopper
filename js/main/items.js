@@ -288,7 +288,7 @@ App.check_item_status = (item) => {
   if (App.get_setting(`loaded_icon`)) {
     let icon = DOM.el(`.loaded_icon`, item.element)
 
-    if (item.discarded) {
+    if (!item.discarded) {
       icon.classList.remove(`hidden`)
     }
     else {
@@ -512,8 +512,8 @@ App.add_close_button = (item, side) => {
 
 App.refresh_item_element = (item) => {
   App.check_item_icon(item)
-  App.check_view_media(item)
   App.check_item_status(item)
+  App.check_view_media(item)
   App.set_item_text(item)
   App.apply_color_mode(item)
 }
