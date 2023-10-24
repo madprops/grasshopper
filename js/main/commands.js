@@ -1084,15 +1084,6 @@ App.setup_commands = () => {
       name: App.separator_string
     },
     {
-      name: `Dark Colors`,
-      cmd: `set_dark_colors`,
-      icon: theme_icon,
-      action: (args) => {
-        App.set_dark_colors()
-      },
-      info: `Change to the dark color theme`
-    },
-    {
       name: `Light Colors`,
       cmd: `set_light_colors`,
       icon: theme_icon,
@@ -1102,11 +1093,11 @@ App.setup_commands = () => {
       info: `Change to the light color theme`
     },
     {
-      name: `Random Dark`,
-      cmd: `set_random_dark_colors`,
+      name: `Dark Colors`,
+      cmd: `set_dark_colors`,
       icon: theme_icon,
       action: (args) => {
-        App.random_colors(`dark`)
+        App.set_dark_colors()
       },
       info: `Change to the dark color theme`
     },
@@ -1118,6 +1109,15 @@ App.setup_commands = () => {
         App.random_colors(`light`)
       },
       info: `Change to the light color theme`
+    },
+    {
+      name: `Random Dark`,
+      cmd: `set_random_dark_colors`,
+      icon: theme_icon,
+      action: (args) => {
+        App.random_colors(`dark`)
+      },
+      info: `Change to the dark color theme`
     },
     {
       name: `Background`,
