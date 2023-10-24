@@ -129,7 +129,7 @@ App.build_tab_filters = () => {
     },
     {
       type: `edited`, text:`Edited`, skip: false, info: `Show tabs that have custom properties`,
-      icon: App.edit_icon
+      icon: App.get_setting(`edited_icon`) || App.edit_icon
     },
 
     {type: App.separator_string, skip: true},
