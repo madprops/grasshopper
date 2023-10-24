@@ -493,7 +493,7 @@ App.add_close_button = (item, side) => {
     return
   }
 
-  if (item.mode === `tabs` && App.get_setting(`close_icon`)) {
+  if (item.mode === `tabs`) {
     if (side !== close_button) {
       return
     }
@@ -505,7 +505,7 @@ App.add_close_button = (item, side) => {
     }
 
     let close = DOM.create(`div`, `close_icon item_node action`)
-    close.textContent = App.get_setting(`close_icon`)
+    close.textContent = App.close_tab_icon
     item.element.append(close)
   }
 }

@@ -102,7 +102,7 @@ App.mouse_click_action = (mode, e) => {
   App.select_item({item: item, scroll: `nearest_smooth`})
 
   if (mode === `tabs`) {
-    if (App.get_setting(`close_icon`)) {
+    if (App.get_setting(`close_button`) !== `none`) {
       if (e.target.classList.contains(`close_icon`)) {
         App.close_tabs(item, false, false)
         return

@@ -380,14 +380,6 @@ App.build_settings = () => {
       info: `Icon for edited tabs`,
       version: 1,
     },
-    close_icon: {
-      name: `Close Icon`,
-      type: `text_smaller`,
-      value: `x`,
-      placeholder: App.icon_placeholder,
-      info: `Icon for the close buttons`,
-      version: 1,
-    },
   }
 
   add_props()
