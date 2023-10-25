@@ -140,15 +140,18 @@ App.apply_edit = (what, item, obj) => {
   }
 
   let props = App.edit_props[what]
+  item[`custom_${what}`] = obj
+
+  if (obj.value) {
+    if (props.type === `list`) {
+      if (!obj.value.length) {
+        item[`custom_${what}`] = {}
+      }
+    }
+  }
 
   if (obj.value === undefined) {
     item[`custom_${what}`] = {}
-  }
-  else if ((props.type === `list`) && !obj.value.length) {
-    item[`custom_${what}`] = {}
-  }
-  else {
-    item[`custom_${what}`] = obj
   }
 
   App.update_item(item.mode, item.id, item)
