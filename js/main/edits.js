@@ -35,27 +35,36 @@ App.custom_save = (id, name, value) => {
   browser.sessions.setTabValue(id, name, value)
 }
 
-App.edit_prompt = (what, item) => {
-  let active = App.get_active_items({mode: item.mode, item: item})
-  let value = App.edit_to_string(what, active[0])
+App.edit_prompt = (args = {}) => {
+  let active = App.get_active_items({mode: args.item.mode, item: args.item})
+  let value = App.edit_to_string(args.what, active[0])
 
-  for (let item of active) {
-    if (item === active[0]) {
+  for (let it of active) {
+    if (it === active[0]) {
       continue
     }
 
-    if (App.edit_to_string(what, item) !== value) {
+    if (App.edit_to_string(args.what, it) !== value) {
       value = ``
       break
     }
   }
 
-  let name = App.capitalize(what)
+  let name = App.capitalize(args.what)
+  let suggestions = []
+
+  if (args.what === `tags`) {
+    suggestions = App.get_all_tags()
+  }
+
+  App.set_prompt_list(suggestions)
 
   App.show_prompt(value, `Edit ${name}`, (ans) => {
-    let obj = {item: item}
-    obj[what] = ans
-    App[`edit_tab_${what}`](obj)
+    let obj = {}
+    obj[args.what] = ans
+    obj.item = args.item
+    obj.add = args.add
+    App[`edit_tab_${args.what}`](obj)
   })
 }
 
@@ -430,12 +439,19 @@ App.new_custom_title = (value) => {
   }
 }
 
+App.edit_title = (item) => {
+  App.edit_prompt(`title`, item)
+}
+
 App.edit_tab_tags = (args = {}) => {
   let def_args = {
     tags: ``,
+    add: false,
   }
 
   App.def_args(def_args, args)
+  console.log(args)
+  return
   let active = App.get_active_items({mode: args.item.mode, item: args.item})
   let s = args.tags ? `Edit tags?` : `Remove tags?`
   let tag_list = App.get_taglist(args.tags)
@@ -486,6 +502,10 @@ App.new_custom_tags = (tags) => {
     value: tags,
     date: Date.now(),
   }
+}
+
+App.edit_tags = (item) => {
+  App.edit_prompt(`tags`, item)
 }
 
 App.get_taglist = (value) => {
@@ -555,4 +575,24 @@ App.close_tag_all = () => {
 
     App.close_tabs_method(items)
   })
+}
+
+App.get_all_tags = () => {
+  let tags = []
+
+  for (let item of App.get_items(`tabs`)) {
+    if (item.custom_tags.value) {
+      for (let tag of item.custom_tags.value) {
+        if (!tags.includes(tag)) {
+          tags.push(tag)
+        }
+      }
+    }
+  }
+
+  return tags
+}
+
+App.add_tags = (item) => {
+  App.edit_prompt({what: `tags`, item: item, add: true})
 }

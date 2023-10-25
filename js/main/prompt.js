@@ -13,3 +13,14 @@ App.prompt_submit = () => {
   App.hide_popup(`prompt`)
   App.prompt_on_submit(value)
 }
+
+App.set_prompt_list = (suggestions) => {
+  let prompt_list = DOM.el(`#prompt_list`)
+  prompt_list.innerHTML = ``
+
+  for (let suggestion of suggestions) {
+    let option = DOM.create(`option`)
+    option.innerHTML = suggestion
+    prompt_list.append(option)
+  }
+}

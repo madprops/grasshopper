@@ -881,26 +881,38 @@ App.setup_commands = () => {
     {
       name: `Edit Title`,
       short_name: `Title`,
-      cmd: `edit_tab_title`,
+      cmd: `edit_title`,
       modes: [`tabs`],
       item: true,
       icon: edit_icon,
       action: (args) => {
-        App.edit_prompt(`title`, args.item)
+        App.edit_title(args.item)
       },
       info: `Edit tab titles`
     },
     {
       name: `Edit Tags`,
       short_name: `Tags`,
-      cmd: `edit_tab_tags`,
+      cmd: `edit_tags`,
       modes: [`tabs`],
       item: true,
       icon: tag_icon,
       action: (args) => {
-        App.edit_prompt(`tags`, args.item)
+        App.edit_tags(args.item)
       },
       info: `Edit tab tags`
+    },
+    {
+      name: `Add Tags`,
+      short_name: `Tags`,
+      cmd: `add_tags`,
+      modes: [`tabs`],
+      item: true,
+      icon: tag_icon,
+      action: (args) => {
+        App.add_tags(args.item)
+      },
+      info: `Add tags to tabs`
     },
 
     ...color_removers,
@@ -1375,7 +1387,7 @@ App.cmd_item = (args = {}) => {
   let cmd = App.get_command(args.cmd)
 
   if (!cmd) {
-    App.error(`${from} -> No command: ${cmd_name}`)
+    App.error(`${args.from} -> No command: ${args.cmd}`)
     return
   }
 

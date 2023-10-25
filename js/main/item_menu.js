@@ -63,8 +63,8 @@ App.show_item_menu = async (args = {}) => {
         }
       })
 
-      items.push(App.item_menu_item({cmd: `edit_tab_title`, item: args.item}))
-      items.push(App.item_menu_item({cmd: `edit_tab_tags`, item: args.item}))
+      items.push(App.item_menu_item({cmd: `edit_title`, item: args.item}))
+      items.push(App.item_menu_item({cmd: `edit_tags`, item: args.item}))
       App.common_menu_items(items, args.item, multiple)
       App.extra_menu_items(items)
       App.more_menu_items(items, args.item, multiple, some_loaded, some_unmuted, some_muted)
@@ -217,10 +217,10 @@ App.filter_menu_items = (item) => {
   let items = []
 
   if (item.custom_color.value) {
-    items.push(App.item_menu_item({cmd: `filter_color`, item: item, short: false}))
+    items.push(App.item_menu_item({cmd: `filter_color`, item: item}))
   }
 
-  items.push(App.item_menu_item({cmd: `filter_domain`, item: item, short: false}))
+  items.push(App.item_menu_item({cmd: `filte_domain`, item: item}))
   return items
 }
 

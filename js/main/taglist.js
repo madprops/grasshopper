@@ -39,7 +39,7 @@ App.taglist_action = (e, item) => {
     App.taglist_filter(item, tag)
   }
   else if (mode === `edit`) {
-    App.edit_prompt(`tags`, item)
+    App.edit_tags(item)
   }
   else if (mode === `remove`) {
     App.remove_tag(item, tag)
