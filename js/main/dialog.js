@@ -1,15 +1,15 @@
-App.show_dialog = (message, buttons, on_dismiss) => {
+App.show_dialog = (args = {}) => {
   App.start_popups()
 
   if (App.popups[`dialog`].open) {
     return
   }
 
-  DOM.el(`#dialog_message`).textContent = message
+  DOM.el(`#dialog_message`).textContent = args.message
   let btns = DOM.el(`#dialog_buttons`)
   btns.innerHTML = ``
 
-  for (let button of buttons) {
+  for (let button of args.buttons) {
     let btn = DOM.create(`div`, `button`)
     btn.textContent = button[0]
     DOM.ev(btn, `click`, () => {
@@ -25,9 +25,9 @@ App.show_dialog = (message, buttons, on_dismiss) => {
     button.element = btn
   }
 
-  App.dialog_buttons = buttons
-  App.dialog_on_dismiss = on_dismiss
-  App.focus_dialog_button(buttons.length - 1)
+  App.dialog_buttons = args.buttons
+  App.dialog_on_dismiss = args.on_dismiss
+  App.focus_dialog_button(args.buttons.length - 1)
   App.show_popup(`dialog`)
 }
 
@@ -88,5 +88,9 @@ App.show_confirm = (args = {}) => {
     }
   }
 
-  App.show_dialog(args.message, buttons, on_dismiss)
+  App.show_dialog({
+    message: args.message,
+    buttons: buttons,
+    on_dismiss: on_dismiss
+  })
 }
