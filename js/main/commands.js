@@ -886,7 +886,7 @@ App.setup_commands = () => {
       item: true,
       icon: edit_icon,
       action: (args) => {
-        App.edit_prompt(args.item, `title`)
+        App.edit_prompt(`title`, args.item)
       },
       info: `Edit tab titles`
     },
@@ -898,7 +898,7 @@ App.setup_commands = () => {
       item: true,
       icon: tag_icon,
       action: (args) => {
-        App.edit_prompt(args.item, `tags`)
+        App.edit_prompt(`tags`, args.item)
       },
       info: `Edit tab tags`
     },
@@ -978,7 +978,7 @@ App.setup_commands = () => {
       color: true,
       icon: theme_icon,
       action: (args) => {
-        App.filter_color(args.mode, args.item.custom_color)
+        App.filter_color(args.mode, args.item.custom_color.value)
       },
       info: `Filter: Show same color`
     },
@@ -1249,8 +1249,8 @@ App.check_command = (command, args) => {
       }
     }
 
-    if (args.item.custom_color) {
-      args.color = args.item.custom_color
+    if (args.item.custom_color.value) {
+      args.color = args.item.custom_color.value
     }
   }
 

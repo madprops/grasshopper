@@ -436,7 +436,7 @@ App.check_view_media = (item) => {
 
 App.apply_color_mode = (item) => {
   let color_mode = App.get_setting(`color_mode`)
-  let color = item.custom_color
+  let color = item.custom_color.value
 
   if (color_mode.includes(`icon`)) {
     let el = DOM.el(`.item_info_color`, item.element)
@@ -1268,7 +1268,7 @@ App.soft_copy_item = (o_item) => {
 }
 
 App.get_title = (item) => {
-  let title = item.custom_title || item.title
+  let title = item.custom_title.value || item.title
 
   if (App.get_setting(`all_caps`)) {
     title = title.toUpperCase()

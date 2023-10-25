@@ -216,7 +216,7 @@ App.extra_menu_items = (o_items) => {
 App.filter_menu_items = (item) => {
   let items = []
 
-  if (item.custom_color) {
+  if (item.custom_color.value) {
     items.push(App.item_menu_item({cmd: `filter_color`, item: item, short: false}))
   }
 

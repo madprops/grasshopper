@@ -5,38 +5,36 @@ App.check_tab_session = async (items = []) => {
 
   for (let item of items) {
     let custom_color = await browser.sessions.getTabValue(item.id, `custom_color`)
-    App.apply_tab_color(item, custom_color || ``)
+    App.apply_edit(`color`, item, custom_color)
 
     let custom_title = await browser.sessions.getTabValue(item.id, `custom_title`)
-    App.apply_tab_title(item, custom_title || ``)
+    App.apply_edit(`title`, item, custom_title)
 
     let custom_tags = await browser.sessions.getTabValue(item.id, `custom_tags`)
-    App.apply_tab_tags(item, custom_tags || ``)
+    App.apply_edit(`tags`, item, custom_tags)
   }
 }
 
 App.tab_is_edited = (item) => {
-  return Boolean(item.custom_color || item.custom_title || item.custom_tags)
+  return Boolean(item.custom_color.value || item.custom_title.value || item.custom_tags.value)
 }
 
 App.custom_save = (id, name, value) => {
   browser.sessions.setTabValue(id, name, value)
 }
 
-App.edit_prompt = (item, what) => {
+App.edit_prompt = (what, item) => {
   let active = App.get_active_items({mode: item.mode, item: item})
-  let value = item[`custom_${what}`] || ``
+  let value = App.edit_to_string(what, active[0])
 
-  if (value) {
-    for (let it of active) {
-      if (it === item) {
-        continue
-      }
+  for (let item of active) {
+    if (item === active[0]) {
+      continue
+    }
 
-      if (it.custom_tags !== value) {
-        value = ``
-        break
-      }
+    if (App.edit_to_string(what, item) !== value) {
+      value = ``
+      break
     }
   }
 
@@ -71,9 +69,8 @@ App.remove_edits = (args = {}) => {
 
   App.show_confirm(`Remove all edits? (${args.what}) (${args.items.length})`, () => {
     for (let item of args.items) {
-      let value = ``
-      App[`apply_tab_${args.what}`](item, value)
-      App.custom_save(item.id, `custom_${args.what}`, value)
+      App.apply_edit(args.what, item, {})
+      App.custom_save(item.id, `custom_${args.what}`, {})
     }
   }, undefined, args.force)
 }
@@ -119,6 +116,41 @@ App.remove_item_edits = (item) => {
   })
 }
 
+App.apply_edit = (what, item, obj) => {
+  if (typeof obj !== `object`) {
+    return
+  }
+
+  if (item[`custom_${what}`].value === undefined) {
+    if (obj.value === undefined) {
+      return
+    }
+  }
+
+  item[`custom_${what}`] = obj
+  App.update_item(item.mode, item.id, item)
+}
+
+App.edit_to_string = (what, item) => {
+  if (what === `color`) {
+    if (item.custom_color.value) {
+      return item.custom_color.value
+    }
+  }
+  else if (what === `title`) {
+    if (item.custom_title.value) {
+      return item.custom_title.value
+    }
+  }
+  else if (what === `tags`) {
+    if (item.custom_tags.value) {
+      return item.custom_tags.value.join(` `)
+    }
+  }
+
+  return ``
+}
+
 App.edit_tab_color = (args = {}) => {
   let def_args = {
     color: ``,
@@ -128,8 +160,8 @@ App.edit_tab_color = (args = {}) => {
   App.def_args(def_args, args)
 
   if (args.toggle) {
-    if (args.item.custom_color) {
-      if (args.item.custom_color === args.color) {
+    if (args.item.custom_color.value) {
+      if (args.item.custom_color.value === args.color) {
         args.color = ``
       }
     }
@@ -140,7 +172,7 @@ App.edit_tab_color = (args = {}) => {
   let to_change = []
 
   for (let it of active) {
-    if (it.custom_color !== args.color) {
+    if (it.custom_color.value !== args.color) {
       to_change.push(it)
     }
   }
@@ -153,19 +185,18 @@ App.edit_tab_color = (args = {}) => {
 
   App.show_confirm(`${s} (${to_change.length})`, () => {
     for (let it of to_change) {
-      App.apply_tab_color(it, args.color)
-      App.custom_save(it.id, `custom_color`, args.color)
+      let obj = App.new_custom_color(args.color)
+      App.apply_edit(`color`, it, obj)
+      App.custom_save(it.id, `custom_color`, obj)
     }
   }, undefined, force)
 }
 
-App.apply_tab_color = (item, color = ``) => {
-  if (item.custom_color === color) {
-    return
+App.new_custom_color = (value) => {
+  return {
+    value: value,
+    date: Date.now(),
   }
-
-  item.custom_color = color
-  App.update_item(item.mode, item.id, item)
 }
 
 App.color_menu_items = (item) => {
@@ -249,12 +280,12 @@ App.get_active_colors = (mode) => {
   let count = {colors: 0}
 
   for (let item of App.get_items(mode)) {
-    if (item.custom_color) {
-      if (!count[item.custom_color]) {
-        count[item.custom_color] = 0
+    if (item.custom_color.value) {
+      if (!count[item.custom_color.value]) {
+        count[item.custom_color.value] = 0
       }
 
-      count[item.custom_color] += 1
+      count[item.custom_color.value] += 1
       count.colors += 1
     }
   }
@@ -266,7 +297,7 @@ App.remove_color = (color) => {
   let items = []
 
   for (let item of App.get_items(`tabs`)) {
-    if (item.custom_color === color) {
+    if (item.custom_color.value === color) {
       items.push(item)
     }
   }
@@ -278,7 +309,7 @@ App.remove_color = (color) => {
   App.show_confirm(`Remove ${color}? (${items.length})`, () => {
     for (let item of items) {
       let color = ``
-      App.apply_tab_color(item, color)
+      App.apply_edit(`color`, item, color)
       App.custom_save(item.id, `custom_color`, color)
     }
   })
@@ -288,7 +319,7 @@ App.close_color = (color) => {
   let items = []
 
   for (let item of App.get_items(`tabs`)) {
-    if (item.custom_color === color) {
+    if (item.custom_color.value === color) {
       items.push(item)
     }
   }
@@ -342,7 +373,7 @@ App.edit_tab_title = (args = {}) => {
   let to_change = []
 
   for (let it of active) {
-    if (it.custom_title !== args.title) {
+    if (it.custom_title.value !== args.title) {
       to_change.push(it)
     }
   }
@@ -355,19 +386,18 @@ App.edit_tab_title = (args = {}) => {
 
   App.show_confirm(`${s} (${to_change.length})`, () => {
     for (let it of to_change) {
-      App.apply_tab_title(it, args.title)
-      App.custom_save(it.id, `custom_title`, args.title)
+      let obj = App.new_custom_title(args.title)
+      App.apply_edit(`title`, it, obj)
+      App.custom_save(it.id, `custom_title`, obj)
     }
   }, undefined, force)
 }
 
-App.apply_tab_title = (item, title = ``) => {
-  if (item.custom_title === title) {
-    return
+App.new_custom_title = (value) => {
+  return {
+    value: value,
+    date: Date.now(),
   }
-
-  item.custom_title = title
-  App.update_item(item.mode, item.id, item)
 }
 
 App.edit_tab_tags = (args = {}) => {
@@ -378,10 +408,20 @@ App.edit_tab_tags = (args = {}) => {
   App.def_args(def_args, args)
   let active = App.get_active_items({mode: args.item.mode, item: args.item})
   let s = args.tags ? `Edit tags?` : `Remove tags?`
+  let tag_list = App.get_taglist(args.tags)
   let to_change = []
 
   for (let it of active) {
-    if (it.custom_tags !== args.tags) {
+    let add = false
+
+    for (let tag of tag_list) {
+      if (!it.custom_tags.includes(tag)) {
+        add = true
+        break
+      }
+    }
+
+    if (add) {
       to_change.push(it)
     }
   }
@@ -394,24 +434,31 @@ App.edit_tab_tags = (args = {}) => {
 
   App.show_confirm(`${s} (${to_change.length})`, () => {
     for (let it of to_change) {
-      App.apply_tab_tags(it, args.tags)
-      App.custom_save(it.id, `custom_tags`, args.tags)
+      let obj = App.new_custom_tags(tag_list)
+      App.apply_edit(`tags`, it, obj)
+      App.custom_save(it.id, `custom_tags`, obj)
     }
   }, undefined, force)
 }
 
-App.apply_tab_tags = (item, tags = ``) => {
-  if (item.custom_tags === tags) {
-    return
+App.new_custom_tags = (tag_list) => {
+  let tags = []
+
+  for (let tag of tag_list) {
+    tags.push({
+      value: tag,
+      date: Date.now(),
+    })
   }
 
-  item.tag_list = App.get_taglist(tags)
-  item.custom_tags = item.tag_list.join(` `)
-  App.update_item(item.mode, item.id, item)
+  return {
+    value: tags,
+    date: Date.now(),
+  }
 }
 
-App.get_taglist = (tags) => {
-  let cleaned = tags.split(/[, ]+/).map(x => x.trim())
+App.get_taglist = (value) => {
+  let cleaned = value.split(/[, ]+/).map(x => x.trim())
   let unique = []
 
   for (let tag of cleaned) {
