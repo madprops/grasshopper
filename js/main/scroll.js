@@ -85,6 +85,10 @@ App.check_scroller = (mode) => {
 App.do_check_scroller = (mode) => {
   App.scroller_debouncer.cancel()
 
+  if (!App.get_setting(`show_scroller`)) {
+    return
+  }
+
   if (App.dragging) {
     return
   }

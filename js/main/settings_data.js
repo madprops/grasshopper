@@ -474,7 +474,7 @@ App.build_settings = () => {
       version: 1,
     },
     show_scroller: {
-      name: `Show Scrollers`,
+      name: `Show Scroller`,
       type: `checkbox`,
       value: true,
       info: `Show the scroller widget when scrolling the lists`,

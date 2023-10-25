@@ -1356,7 +1356,9 @@ App.build_item_window = (mode) => {
   let tab_box
 
   if (mode === `tabs`) {
-    tab_box = App.create_tab_box()
+    if (App.get_setting(`tab_box`) !== `none`) {
+      tab_box = App.create_tab_box()
+    }
   }
 
   let btns = DOM.create(`div`, `item_top_buttons`)
@@ -1375,16 +1377,30 @@ App.build_item_window = (mode) => {
     bar.append(favorites)
   }
 
-  let scroller = App.create_scroller(mode)
-  let footer = App.create_footer(mode)
-  content.append(scroller)
+  let scroller, footer
+
+  if (App.get_setting(`show_scroller`)) {
+    scroller = App.create_scroller(mode)
+  }
+
+  if (App.get_setting(`show_footer`)) {
+    footer = App.create_footer(mode)
+  }
+
+  if (scroller) {
+    content.append(scroller)
+  }
+
   content.append(container)
 
   if (tab_box && tab_box_pos === `bottom`) {
     content.append(tab_box)
   }
 
-  content.append(footer)
+  if (footer) {
+    content.append(footer)
+  }
+
   App.setup_window_mouse(mode)
   let main_menu = App.create_main_menu(mode)
   let filter = App.create_filter(mode)

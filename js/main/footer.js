@@ -84,6 +84,11 @@ App.update_footer_count = (mode) => {
 
 App.do_update_footer_count = (mode) => {
   App.footer_count_debouncer.cancel()
+
+  if (!App.get_setting(`show_footer`)) {
+    return
+  }
+
   let el = DOM.el(`#${mode}_footer_count`)
 
   if (App.get_setting(`show_footer_count`)) {
