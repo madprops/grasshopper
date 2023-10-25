@@ -604,3 +604,9 @@ App.get_all_tags = () => {
 App.add_tags = (item) => {
   App.edit_prompt({what: `tags`, item: item, add: true})
 }
+
+App.remove_item_tags = (item) => {
+  App.show_confirm(`Remove all tags?`, () => {
+    App.remove_edits({what: `tags`, force: true, items: [item]})
+  })
+}

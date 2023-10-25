@@ -81,6 +81,13 @@ App.show_taglist_menu = (e, item) => {
     },
   })
 
+  items.push({
+    text: `Remove All`,
+    action: () => {
+      App.remove_item_tags(item)
+    },
+  })
+
   App.show_center_context(items, e)
 }
 
