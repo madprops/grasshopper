@@ -105,19 +105,26 @@ App.remove_edits = (args = {}) => {
     return
   }
 
-  App.show_confirm(`Remove all edits? (${args.what}) (${args.items.length})`, () => {
-    for (let item of args.items) {
-      App.apply_edit(args.what, item, undefined)
-      App.custom_save(item.id, `custom_${args.what}`, undefined)
-    }
-  }, undefined, args.force)
+  App.show_confirm({
+    message: `Remove all edits? (${args.what}) (${args.items.length})`,
+    confirm_action: () => {
+      for (let item of args.items) {
+        App.apply_edit(args.what, item, undefined)
+        App.custom_save(item.id, `custom_${args.what}`, undefined)
+      }
+    },
+    force: args.force,
+  })
 }
 
 App.remove_all_edits = () => {
-  App.show_confirm(`Remove all edits?`, () => {
-    for (let key in App.edit_props) {
-      App.remove_edits({what: key, force: true, items: App.get_items(`tabs`)})
-    }
+  App.show_confirm({
+    message: `Remove all edits?`,
+    confirm_action: () => {
+      for (let key in App.edit_props) {
+        App.remove_edits({what: key, force: true, items: App.get_items(`tabs`)})
+      }
+    },
   })
 }
 
@@ -135,10 +142,13 @@ App.remove_item_edits = (item) => {
     return
   }
 
-  App.show_confirm(`Remove edits? (${items.length})`, () => {
-    for (let key in App.edit_props) {
-      App.remove_edits({what: key, force: true, items: items})
-    }
+  App.show_confirm({
+    message: `Remove edits? (${items.length})`,
+    confirm_action: () => {
+      for (let key in App.edit_props) {
+        App.remove_edits({what: key, force: true, items: items})
+      }
+    },
   })
 }
 
@@ -209,12 +219,16 @@ App.edit_tab_color = (args = {}) => {
 
   let force = App.check_force(`warn_on_edit_tabs`, to_change)
 
-  App.show_confirm(`${s} (${to_change.length})`, () => {
-    for (let it of to_change) {
-      App.apply_edit(`color`, it, args.color)
-      App.custom_save(it.id, `custom_color`, args.color)
-    }
-  }, undefined, force)
+  App.show_confirm({
+    message: `${s} (${to_change.length})`,
+    confirm_action: () => {
+      for (let it of to_change) {
+        App.apply_edit(`color`, it, args.color)
+        App.custom_save(it.id, `custom_color`, args.color)
+      }
+    },
+    force: force,
+  })
 }
 
 App.color_menu_items = (item) => {
@@ -324,8 +338,11 @@ App.remove_color = (color) => {
     return
   }
 
-  App.show_confirm(`Remove ${color}? (${items.length})`, () => {
-    App.remove_edits({what: `color`, force: true, items: items})
+  App.show_confirm({
+    message: `Remove ${color}? (${items.length})`,
+    confirm_action: () => {
+      App.remove_edits({what: `color`, force: true, items: items})
+    },
   })
 }
 
@@ -398,12 +415,16 @@ App.edit_tab_title = (args = {}) => {
 
   let force = App.check_force(`warn_on_edit_tabs`, to_change)
 
-  App.show_confirm(`${s} (${to_change.length})`, () => {
-    for (let it of to_change) {
-      App.apply_edit(`title`, it, args.title)
-      App.custom_save(it.id, `custom_title`, args.title)
-    }
-  }, undefined, force)
+  App.show_confirm({
+    message: `${s} (${to_change.length})`,
+    confirm_action: () => {
+      for (let it of to_change) {
+        App.apply_edit(`title`, it, args.title)
+        App.custom_save(it.id, `custom_title`, args.title)
+      }
+    },
+    force: force,
+  })
 }
 
 App.edit_title = (item) => {
@@ -450,21 +471,25 @@ App.edit_tab_tags = (args = {}) => {
 
   let force = App.check_force(`warn_on_edit_tabs`, to_change)
 
-  App.show_confirm(`${s} (${to_change.length})`, () => {
-    for (let it of to_change) {
-      let tags = tag_list
+  App.show_confirm({
+    message: `${s} (${to_change.length})`,
+    confirm_action: () => {
+      for (let it of to_change) {
+        let tags = tag_list
 
-      if (args.add) {
-        if (it.custom_tags) {
-          let new_tags = tag_list.filter(x => !it.custom_tags.includes(x))
-          tags = [...it.custom_tags, ...new_tags]
+        if (args.add) {
+          if (it.custom_tags) {
+            let new_tags = tag_list.filter(x => !it.custom_tags.includes(x))
+            tags = [...it.custom_tags, ...new_tags]
+          }
         }
-      }
 
-      App.apply_edit(`tags`, it, tags)
-      App.custom_save(it.id, `custom_tags`, tags)
-    }
-  }, undefined, force)
+        App.apply_edit(`tags`, it, tags)
+        App.custom_save(it.id, `custom_tags`, tags)
+      }
+    },
+    force: force,
+  })
 }
 
 App.edit_tags = (item) => {
@@ -513,10 +538,13 @@ App.remove_tag_all = () => {
       return
     }
 
-    App.show_confirm(`Remove tag? (${tag}) (${items.length})`, () => {
-      for (let item of items) {
-        App.remove_tag(item, tag)
-      }
+    App.show_confirm({
+      message: `Remove tag? (${tag}) (${items.length})`,
+      confirm_action: () => {
+        for (let item of items) {
+          App.remove_tag(item, tag)
+        }
+      },
     })
   }})
 }
@@ -563,7 +591,10 @@ App.add_tags = (item) => {
 }
 
 App.remove_item_tags = (item) => {
-  App.show_confirm(`Remove all tags?`, () => {
-    App.remove_edits({what: `tags`, force: true, items: [item]})
+  App.show_confirm({
+    message: `Remove all tags?`,
+    confirm_action: () => {
+      App.remove_edits({what: `tags`, force: true, items: [item]})
+    },
   })
 }

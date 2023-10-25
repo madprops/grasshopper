@@ -49,10 +49,14 @@ App.close_tabs_method = (items, force = false) => {
     return
   }
 
-  App.show_confirm(`Close tabs? (${ids.length})`, () => {
-    App.close_tab_or_tabs(ids)
-    App.hide_all_popups()
-  }, undefined, force)
+  App.show_confirm({
+    message: `Close tabs? (${ids.length})`,
+    confirm_action: () => {
+      App.close_tab_or_tabs(ids)
+      App.hide_all_popups()
+    },
+    force: force,
+  })
 }
 
 App.close_tabs = (item, multiple = true) => {
