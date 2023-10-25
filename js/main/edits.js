@@ -483,3 +483,9 @@ App.get_taglist = (value) => {
 
   return unique
 }
+
+App.remove_tag = (item, tag) => {
+  item.custom_tags.value = item.custom_tags.value.filter(x => x !== tag)
+  App.update_item(item.mode, item.id, item)
+  App.custom_save(item.id, `custom_tags`, item.custom_tags)
+}

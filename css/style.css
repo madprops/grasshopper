@@ -1139,7 +1139,7 @@ a:visited, a:link, a:hover {
   align-items: center;
   justify-content: flex-start;
   width: 100%;
-  gap: 1rem;
+  gap: 0.8rem;
 }
 
 .taglist_item {
