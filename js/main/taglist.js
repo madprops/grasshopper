@@ -58,16 +58,18 @@ App.taglist_action = (e, item) => {
   }
 }
 
-App.show_taglist_menu = (e, item) => {
+App.show_taglist_menu = (e, item, limited = false) => {
   let items = []
   let tag = e.target.textContent
 
-  items.push({
-    text: `Filter Tag`,
-    action: () => {
-      App.set_filter({mode: item.mode, text: `tag: ${tag}`})
-    },
-  })
+  if (!limited) {
+    items.push({
+      text: `Filter Tag`,
+      action: () => {
+        App.set_filter({mode: item.mode, text: `tag: ${tag}`})
+      },
+    })
+  }
 
   items.push({
     text: `Edit Tags`,
@@ -83,12 +85,14 @@ App.show_taglist_menu = (e, item) => {
     },
   })
 
-  items.push({
-    text: `Remove`,
-    action: () => {
-      App.remove_tag(item, tag)
-    },
-  })
+  if (!limited) {
+    items.push({
+      text: `Remove`,
+      action: () => {
+        App.remove_tag(item, tag)
+      },
+    })
+  }
 
   items.push({
     text: `Remove All`,
