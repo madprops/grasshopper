@@ -639,14 +639,16 @@ App.create_item_element = (item) => {
     App.check_view_media(item)
   }
 
+  let content = DOM.create(`div`, `item_content`)
   let text = DOM.create(`div`, `item_text`)
   let text_1 = DOM.create(`div`, `item_text_1`)
   let text_2 = DOM.create(`div`, `item_text_2 hidden`)
-  let taglist = DOM.create(`div`, `item_taglist hidden`)
+  let taglist = DOM.create(`div`, `taglist hidden`)
   text.append(text_1)
   text.append(text_2)
-  text.append(taglist)
-  item.element.append(text)
+  content.append(text)
+  content.append(taglist)
+  item.element.append(content)
   App.set_item_text(item)
   App.check_taglist(item)
 

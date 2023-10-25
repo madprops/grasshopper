@@ -3,13 +3,17 @@ App.check_taglist = (item) => {
     return
   }
 
-  let taglist = DOM.el(`.item_taglist`, item.element)
+  let taglist = DOM.el(`.taglist`, item.element)
 
   if (!item.custom_tags || !item.custom_tags.length) {
     taglist.classList.add(`hidden`)
   }
   else {
     taglist.innerHTML = ``
+    let btn = DOM.create(`div`, `taglist_btn`)
+    btn.textContent = `Tags:`
+    btn.title = `This is the Taglist`
+    taglist.append(btn)
 
     for (let tag of item.custom_tags) {
       let item = DOM.create(`div`, `taglist_item`)
