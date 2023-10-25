@@ -91,7 +91,6 @@ App.remove_edits = (args = {}) => {
     items: [],
   }
 
-
   App.def_args(def_args, args)
   if (!args.items.length) {
     for (let item of App.get_items(`tabs`)) {
