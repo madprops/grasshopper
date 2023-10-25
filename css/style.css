@@ -1138,7 +1138,6 @@ a:visited, a:link, a:hover {
   flex-direction: row;
   align-items: center;
   justify-content: flex-start;
-  width: 100%;
   gap: 0.8rem;
 }
 
