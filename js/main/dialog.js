@@ -61,26 +61,32 @@ App.dialog_enter = () => {
   App.dialog_buttons[App.dialog_index][1]()
 }
 
-App.show_confirm = (message, confirm_action, cancel_action, force = false) => {
-  if (force) {
-    confirm_action()
+App.show_confirm = (args = {}) => {
+  let def_args = {
+    force: false,
+  }
+
+  App.def_args(def_args, args)
+
+  if (args.force) {
+    args.confirm_action()
     return
   }
 
-  if (!cancel_action) {
-    cancel_action = () => {}
+  if (!args.cancel_action) {
+    args.cancel_action = () => {}
   }
 
   let buttons = [
-    [`Cancel`, cancel_action, true],
-    [`Confirm`, confirm_action]
+    [`Cancel`, args.cancel_action, true],
+    [`Confirm`, args.confirm_action]
   ]
 
   let on_dismiss = () => {
-    if (cancel_action) {
-      cancel_action()
+    if (args.cancel_action) {
+     args. cancel_action()
     }
   }
 
-  App.show_dialog(message, buttons, on_dismiss)
+  App.show_dialog(args.message, buttons, on_dismiss)
 }

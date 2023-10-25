@@ -341,11 +341,15 @@ App.duplicate_tabs = (item) => {
   let items = App.get_active_items({mode: `tabs`, item: item})
   let force = App.check_force(`warn_on_duplicate_tabs`, items)
 
-  App.show_confirm(`Duplicate tabs? (${items.length})`, () => {
-    for (let it of items) {
-      App.duplicate_tab(it)
-    }
-  }, undefined, force)
+  App.show_confirm({
+    message:`Duplicate tabs? (${items.length})`,
+    confirm_action: () => {
+      for (let it of items) {
+        App.duplicate_tab(it)
+      }
+    },
+    force: force,
+  })
 }
 
 App.pin_tab = async (id) => {
@@ -384,11 +388,15 @@ App.pin_tabs = (item) => {
   let force = App.check_force(`warn_on_pin_tabs`, items)
   let ids = items.map(x => x.id)
 
-  App.show_confirm(`Pin items? (${ids.length})`, async () => {
-    for (let id of ids) {
-      App.pin_tab(id)
-    }
-  }, undefined, force)
+  App.show_confirm({
+    message: `Pin items? (${ids.length})`,
+    confirm_action: async () => {
+      for (let id of ids) {
+        App.pin_tab(id)
+      }
+    },
+    force: force,
+  })
 }
 
 App.unpin_tabs = (item) => {
@@ -409,11 +417,15 @@ App.unpin_tabs = (item) => {
   let force = App.check_force(`warn_on_unpin_tabs`, items)
   let ids = items.map(x => x.id)
 
-  App.show_confirm(`Unpin items? (${ids.length})`, async () => {
-    for (let id of ids) {
-      App.unpin_tab(id)
-    }
-  }, undefined, force)
+  App.show_confirm({
+    message: `Unpin items? (${ids.length})`,
+    confirm_action: async () => {
+      for (let id of ids) {
+        App.unpin_tab(id)
+      }
+    },
+    force: force,
+  })
 }
 
 App.unload_tabs = (item, multiple = true) => {
@@ -439,27 +451,31 @@ App.unload_tabs = (item, multiple = true) => {
   let force = App.check_force(`warn_on_unload_tabs`, items)
   let ids = items.map(x => x.id)
 
-  App.show_confirm(`Unload tabs? (${ids.length})`, async () => {
-    if (active) {
-      let next
+  App.show_confirm({
+    message: `Unload tabs? (${ids.length})`,
+    confirm_action: async () => {
+      if (active) {
+        let next
 
-      if (ids.length > 1) {
-        next = App.get_next_item(`tabs`, {mode: `tabs`, no_selected: true, no_discarded: true})
-      }
-      else {
-        next = App.get_next_item(`tabs`, {mode: `tabs`, no_discarded: true, item: item})
+        if (ids.length > 1) {
+          next = App.get_next_item(`tabs`, {mode: `tabs`, no_selected: true, no_discarded: true})
+        }
+        else {
+          next = App.get_next_item(`tabs`, {mode: `tabs`, no_discarded: true, item: item})
+        }
+
+        if (next) {
+          await App.focus_tab({item: next, scroll: `nearest`, method: `unload`})
+        }
+        else {
+          await App.open_new_tab(`about:blank`)
+        }
       }
 
-      if (next) {
-        await App.focus_tab({item: next, scroll: `nearest`, method: `unload`})
-      }
-      else {
-        await App.open_new_tab(`about:blank`)
-      }
-    }
-
-    App.do_unload_tabs(ids)
-  }, undefined, force)
+      App.do_unload_tabs(ids)
+    },
+    force: force,
+  })
 }
 
 App.do_unload_tabs = async (ids) => {
@@ -481,8 +497,11 @@ App.unload_other_tabs = (item) => {
 
     let ids = items.map(x => x.id)
 
-    App.show_confirm(`Unload other tabs? (${ids.length})`, () => {
-      App.do_unload_tabs(ids)
+    App.show_confirm({
+      message: `Unload other tabs? (${ids.length})`,
+      confirm_action: () => {
+        App.do_unload_tabs(ids)
+      },
     })
   }
 
@@ -508,10 +527,14 @@ App.unload_other_tabs = (item) => {
     return
   }
 
-  App.show_confirm(`Include pins?`, () => {
-    proc(true)
-  }, () => {
-    proc(false)
+  App.show_confirm({
+    message: `Include pins?`,
+    confirm_action: () => {
+      proc(true)
+    },
+    cancel_action: () => {
+      proc(false)
+    },
   })
 }
 
@@ -531,11 +554,15 @@ App.mute_tabs = (item) => {
   let force = App.check_force(`warn_on_mute_tabs`, items)
   let ids = items.map(x => x.id)
 
-  App.show_confirm(`Mute items? (${ids.length})`, async () => {
-    for (let id of ids) {
-      App.mute_tab(id)
-    }
-  }, undefined, force)
+  App.show_confirm({
+    message: `Mute items? (${ids.length})`,
+    confirm_action: async () => {
+      for (let id of ids) {
+        App.mute_tab(id)
+      }
+    },
+    force: force,
+  })
 }
 
 App.unmute_tabs = (item) => {
@@ -554,11 +581,15 @@ App.unmute_tabs = (item) => {
   let force = App.check_force(`warn_on_unmute_tabs`, items)
   let ids = items.map(x => x.id)
 
-  App.show_confirm(`Unmute items? (${ids.length})`, async () => {
-    for (let id of ids) {
-      App.unmute_tab(id)
-    }
-  }, undefined, force)
+  App.show_confirm({
+    message: `Unmute items? (${ids.length})`,
+      confirm_action: async () => {
+      for (let id of ids) {
+        App.unmute_tab(id)
+      }
+    },
+    force: force,
+  })
 }
 
 App.show_tabs_info = () => {
@@ -1040,34 +1071,37 @@ App.do_sort_tabs = () => {
     })
   }
 
-  App.show_confirm(`Sort tabs?`, async () => {
-    let items = App.get_items(`tabs`).slice(0)
+  App.show_confirm({
+    message: `Sort tabs?`,
+    confirm_action: async () => {
+      let items = App.get_items(`tabs`).slice(0)
 
-    if (!items.length) {
-      return
-    }
+      if (!items.length) {
+        return
+      }
 
-    let include_pins = DOM.el(`#sort_tabs_pins`).checked
-    let reverse = DOM.el(`#sort_tabs_reverse`).checked
-    let normal = items.filter(x => !x.pinned)
-    let pins = items.filter(x => x.pinned)
-    sort(normal, reverse)
+      let include_pins = DOM.el(`#sort_tabs_pins`).checked
+      let reverse = DOM.el(`#sort_tabs_reverse`).checked
+      let normal = items.filter(x => !x.pinned)
+      let pins = items.filter(x => x.pinned)
+      sort(normal, reverse)
 
-    if (include_pins) {
-      sort(pins, reverse)
-    }
+      if (include_pins) {
+        sort(pins, reverse)
+      }
 
-    let all = [...pins, ...normal]
-    App.tabs_locked = true
+      let all = [...pins, ...normal]
+      App.tabs_locked = true
 
-    for (let [i, item] of all.entries()) {
-      await App.do_move_tab_index(item.id, i)
-    }
+      for (let [i, item] of all.entries()) {
+        await App.do_move_tab_index(item.id, i)
+      }
 
-    App.tabs_locked = false
-    App.hide_all_popups()
-    App.clear_all_items()
-    await App.do_show_mode({mode: `tabs`})
+      App.tabs_locked = false
+      App.hide_all_popups()
+      App.clear_all_items()
+      await App.do_show_mode({mode: `tabs`})
+    },
   })
 }
 
@@ -1089,10 +1123,13 @@ App.open_tab_urls = () => {
     }
 
     if (to_open.length) {
-      App.show_confirm(`Open URLs? (${to_open.length})`, () => {
-        for (let url of to_open) {
-          App.open_tab({url: url})
-        }
+      App.show_confirm({
+        message: `Open URLs? (${to_open.length})`,
+        confirm_action: () => {
+          for (let url of to_open) {
+            App.open_tab({url: url})
+          }
+        },
       })
     }
 
@@ -1117,9 +1154,13 @@ App.load_tabs = (item) => {
 
   let force = App.check_force(`warn_on_load_tabs`, items)
 
-  App.show_confirm(`Load items? (${items.length})`, async () => {
-    for (let it of items) {
-      App.focus_tab({item: it, scroll: `none`, method: `load`})
-    }
-  }, undefined, force)
+  App.show_confirm({
+    message: `Load items? (${items.length})`,
+    confirm_action: async () => {
+      for (let it of items) {
+        App.focus_tab({item: it, scroll: `none`, method: `load`})
+      }
+    },
+    force: force,
+  })
 }

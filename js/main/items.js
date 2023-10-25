@@ -1090,16 +1090,21 @@ App.open_items = (item, shift, multiple = true) => {
   else {
     let force = App.check_force(`warn_on_open`, items)
 
-    App.show_confirm(`Open these items ${items.length}?`, () => {
-      for (let item of items) {
-        App.open_tab(item)
-      }
+    App.show_confirm({
+      message: `Open these items ${items.length}?`,
+      confirm_action: () => {
+        for (let item of items) {
+          App.open_tab(item)
+        }
 
-      App.deselect(mode, `selected`)
-      App.after_open(shift)
-    }, () => {
-      App.deselect(mode, `selected`)
-    }, force)
+        App.deselect(mode, `selected`)
+        App.after_open(shift)
+      },
+      cancel_action: () => {
+        App.deselect(mode, `selected`)
+      },
+      force: force,
+    })
   }
 }
 

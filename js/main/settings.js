@@ -71,10 +71,14 @@ App.settings_setup_checkboxes = (category) => {
             name: `Reset`, action: () => {
               let force = App.check_setting_default(key)
 
-              App.show_confirm(`Reset setting?`, () => {
-                App.set_default_setting(key)
-                el.checked = App.get_setting(key)
-              }, undefined, force)
+              App.show_confirm({
+                message: `Reset setting?`,
+                confirm_action: () => {
+                  App.set_default_setting(key)
+                  el.checked = App.get_setting(key)
+                },
+                force: force,
+              })
             }
           },
         ])
@@ -120,11 +124,15 @@ App.settings_setup_texts = (category) => {
         name: `Reset`,  action: () => {
           let force = App.check_setting_default(key) || App.check_setting_empty(key)
 
-          App.show_confirm(`Reset setting?`, () => {
-            App.set_default_setting(key)
-            el.value = App.get_setting(key)
-            App.scroll_to_top(el)
-          }, undefined, force)
+          App.show_confirm({
+            message: `Reset setting?`,
+            confirm_action: () => {
+              App.set_default_setting(key)
+              el.value = App.get_setting(key)
+              App.scroll_to_top(el)
+            },
+            force: force,
+          })
         },
       },
       {
@@ -145,10 +153,13 @@ App.settings_setup_texts = (category) => {
             return
           }
 
-          App.show_confirm(`Clear setting?`, () => {
-            el.value = ``
-            App.set_setting(key, ``)
-            el.focus()
+          App.show_confirm({
+            message: `Clear setting?`,
+            confirm_action: () => {
+              el.value = ``
+              App.set_setting(key, ``)
+              el.focus()
+            },
           })
         },
       })
@@ -202,11 +213,15 @@ App.settings_setup_numbers = (category) => {
         name: `Reset`,  action: () => {
           let force = App.check_setting_default(key) || App.check_setting_empty(key)
 
-          App.show_confirm(`Reset setting?`, () => {
-            App.set_default_setting(key)
-            let value = App.get_setting(key)
-            el.value = value
-          }, undefined, force)
+          App.show_confirm({
+            message:`Reset setting?`,
+            confirm_action: () => {
+              App.set_default_setting(key)
+              let value = App.get_setting(key)
+              el.value = value
+            },
+            force: force,
+          })
         },
       },
       {
@@ -242,10 +257,14 @@ App.setting_setup_lists = (category) => {
           name: `Reset`,  action: () => {
             let force = App.check_setting_default(key) || App.check_setting_empty(key)
 
-            App.show_confirm(`Reset setting?`, () => {
-              App.set_default_setting(key)
-              Addlist.update_count(`settings_${key}`)
-            }, undefined, force)
+            App.show_confirm({
+              message: `Reset setting?`,
+              confirm_action: () => {
+                App.set_default_setting(key)
+                Addlist.update_count(`settings_${key}`)
+              },
+              force: force,
+            })
           },
         },
       ]
@@ -281,11 +300,15 @@ App.settings_make_menu = (setting, opts, action = () => {}) => {
         name: `Reset`, action: () => {
           let force = App.check_setting_default(setting)
 
-          App.show_confirm(`Reset setting?`, () => {
-            App.set_default_setting(setting)
-            App.set_settings_menu(setting, undefined, false)
-            action()
-          }, undefined, force)
+          App.show_confirm({
+            message: `Reset setting?`,
+            confirm_action: () => {
+              App.set_default_setting(setting)
+              App.set_settings_menu(setting, undefined, false)
+              action()
+            },
+            force: force,
+          })
         }
       },
     ])
@@ -520,10 +543,14 @@ App.start_color_picker = (setting, alpha = false) => {
         name: `Reset`, action: () => {
           let force = App.check_setting_default(setting)
 
-          App.show_confirm(`Reset setting?`, () => {
-            App[setting].setColor(App.get_default_setting(setting))
-            App.set_default_setting(setting)
-          }, undefined, force)
+          App.show_confirm({
+            message: `Reset setting?`,
+            confirm_action: () => {
+              App[setting].setColor(App.get_default_setting(setting))
+              App.set_default_setting(setting)
+            },
+            force: force,
+          })
         }
       },
     ])
@@ -545,25 +572,31 @@ App.set_default_setting = (setting, do_action) => {
 }
 
 App.reset_settings = (category) => {
-  App.show_confirm(`Reset settings? (${App.capitalize(category)})`, () => {
-    App.settings_default_category(category)
+  App.show_confirm({
+    message: `Reset settings? (${App.capitalize(category)})`,
+    confirm_action: () => {
+      App.settings_default_category(category)
 
-    if (category === `gestures`) {
-      App.refresh_gestures()
-    }
+      if (category === `gestures`) {
+        App.refresh_gestures()
+      }
 
-    App.apply_theme()
-    App.show_settings_category(category)
+      App.apply_theme()
+      App.show_settings_category(category)
+    },
   })
 }
 
 App.reset_all_settings = () => {
-  App.show_confirm(`Reset all settings?`, () => {
-    for (let key in App.setting_props) {
-      App.set_default_setting(key)
-    }
+  App.show_confirm({
+    message: `Reset all settings?`,
+    confirm_action: () => {
+      for (let key in App.setting_props) {
+        App.set_default_setting(key)
+      }
 
-    App.restart_settings()
+      App.restart_settings()
+    },
   })
 }
 
