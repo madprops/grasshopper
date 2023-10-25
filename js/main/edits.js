@@ -1,3 +1,15 @@
+App.edit_props = {
+  color: {
+    type: `string`,
+  },
+  title: {
+    type: `string`,
+  },
+  tags: {
+    type: `list`,
+  },
+}
+
 App.check_tab_session = async (items = []) => {
   if (!items.length) {
     items = App.get_items(`tabs`)
@@ -89,8 +101,8 @@ App.remove_all_edits = () => {
   }
 
   App.show_confirm(`Remove all edits? (${items.length})`, () => {
-    for (let edit of App.tab_edits) {
-      App.remove_edits({what: edit, force: true, items: items})
+    for (let key in App.edit_props) {
+      App.remove_edits({what: key, force: true, items: items})
     }
   })
 }
@@ -110,8 +122,8 @@ App.remove_item_edits = (item) => {
   }
 
   App.show_confirm(`Remove edits? (${items.length})`, () => {
-    for (let edit of App.tab_edits) {
-      App.remove_edits({what: edit, force: true, items: items})
+    for (let key in App.edit_props) {
+      App.remove_edits({what: key, force: true, items: items})
     }
   })
 }
@@ -127,7 +139,12 @@ App.apply_edit = (what, item, obj) => {
     }
   }
 
+  let props = App.edit_props[what]
+
   if (obj.value === undefined) {
+    item[`custom_${what}`] = {}
+  }
+  else if ((props.type === `list`) && !obj.value.length) {
     item[`custom_${what}`] = {}
   }
   else {
@@ -489,7 +506,7 @@ App.get_taglist = (value) => {
 
 App.remove_tag = (item, tag) => {
   item.custom_tags.value = item.custom_tags.value.filter(x => x !== tag)
-  App.update_item(item.mode, item.id, item)
+  App.apply_edit(`tags`, item, item.custom_tags)
   App.custom_save(item.id, `custom_tags`, item.custom_tags)
 }
 
