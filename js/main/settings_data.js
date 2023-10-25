@@ -1537,6 +1537,7 @@ App.build_settings = () => {
           {text: `Menu`, value: `menu`},
           {text: `Filter`, value: `filter`},
           {text: `Edit`, value: `edit`},
+          {text: `Add`, value: `add`},
           {text: `Remove`, value: `remove`},
         ])
       },

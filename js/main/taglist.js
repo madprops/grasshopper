@@ -41,6 +41,9 @@ App.taglist_action = (e, item) => {
   else if (mode === `edit`) {
     App.edit_tags(item)
   }
+  else if (mode === `add`) {
+    App.add_tags(item)
+  }
   else if (mode === `remove`) {
     App.remove_tag(item, tag)
   }
@@ -65,6 +68,13 @@ App.show_taglist_menu = (e, item) => {
   })
 
   items.push({
+    text: `Add Tag`,
+    action: () => {
+      App.add_tags(item)
+    },
+  })
+
+  items.push({
     text: `Remove`,
     action: () => {
       App.remove_tag(item, tag)
@@ -72,4 +82,9 @@ App.show_taglist_menu = (e, item) => {
   })
 
   App.show_center_context(items, e)
+}
+
+App.taglist_remove = (e, item) => {
+  let tag = e.target.textContent
+  App.remove_tag(item, tag)
 }
