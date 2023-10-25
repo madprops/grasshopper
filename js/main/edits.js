@@ -150,7 +150,8 @@ App.edit_to_string = (what, item) => {
   }
   else if (what === `tags`) {
     if (item.custom_tags.value) {
-      return item.custom_tags.value.join(` `)
+      let tags = item.custom_tags.value.map(x => x.value)
+      return tags.join(` `)
     }
   }
 
@@ -424,10 +425,17 @@ App.edit_tab_tags = (args = {}) => {
   for (let it of active) {
     let add = false
 
-    for (let tag of tag_list) {
-      if (!it.custom_tags.includes(tag)) {
-        add = true
-        break
+    if (!it.custom_tags.value) {
+      add = true
+    }
+    else {
+      let tags = it.custom_tags.value.map(x => x.value)
+
+      for (let tag of tag_list) {
+        if (!tags.includes(tag)) {
+          add = true
+          break
+        }
       }
     }
 
