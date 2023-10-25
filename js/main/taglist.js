@@ -10,10 +10,6 @@ App.check_taglist = (item) => {
   }
   else {
     taglist.innerHTML = ``
-    let btn = DOM.create(`div`, `taglist_btn`)
-    btn.textContent = `Tags:`
-    btn.title = `This is the Taglist`
-    taglist.append(btn)
 
     for (let tag of item.custom_tags) {
       let item = DOM.create(`div`, `taglist_item`)
@@ -25,7 +21,6 @@ App.check_taglist = (item) => {
     plus.textContent = `+`
     plus.title = `Add Tag`
     taglist.append(plus)
-
     taglist.classList.remove(`hidden`)
   }
 }
@@ -58,18 +53,16 @@ App.taglist_action = (e, item) => {
   }
 }
 
-App.show_taglist_menu = (e, item, limited = false) => {
+App.show_taglist_menu = (e, item) => {
   let items = []
   let tag = e.target.textContent
 
-  if (!limited) {
-    items.push({
-      text: `Filter Tag`,
-      action: () => {
-        App.set_filter({mode: item.mode, text: `tag: ${tag}`})
-      },
-    })
-  }
+  items.push({
+    text: `Filter Tag`,
+    action: () => {
+      App.set_filter({mode: item.mode, text: `tag: ${tag}`})
+    },
+  })
 
   items.push({
     text: `Edit Tags`,
@@ -85,14 +78,12 @@ App.show_taglist_menu = (e, item, limited = false) => {
     },
   })
 
-  if (!limited) {
-    items.push({
-      text: `Remove`,
-      action: () => {
-        App.remove_tag(item, tag)
-      },
-    })
-  }
+  items.push({
+    text: `Remove`,
+    action: () => {
+      App.remove_tag(item, tag)
+    },
+  })
 
   items.push({
     text: `Remove All`,
