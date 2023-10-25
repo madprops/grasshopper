@@ -440,7 +440,7 @@ App.new_custom_title = (value) => {
 }
 
 App.edit_title = (item) => {
-  App.edit_prompt(`title`, item)
+  App.edit_prompt({what: `title`, item: item})
 }
 
 App.edit_tab_tags = (args = {}) => {
@@ -450,8 +450,6 @@ App.edit_tab_tags = (args = {}) => {
   }
 
   App.def_args(def_args, args)
-  console.log(args)
-  return
   let active = App.get_active_items({mode: args.item.mode, item: args.item})
   let s = args.tags ? `Edit tags?` : `Remove tags?`
   let tag_list = App.get_taglist(args.tags)
@@ -505,7 +503,7 @@ App.new_custom_tags = (tags) => {
 }
 
 App.edit_tags = (item) => {
-  App.edit_prompt(`tags`, item)
+  App.edit_prompt({what: `tags`, item: item})
 }
 
 App.get_taglist = (value) => {
