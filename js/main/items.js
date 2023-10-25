@@ -362,6 +362,28 @@ App.check_item_status = (item) => {
     }
   }
 
+  if (App.get_setting(`titled_icon`)) {
+    let icon = DOM.el(`.titled_icon`, item.element)
+
+    if (item.custom_title) {
+      icon.classList.remove(`hidden`)
+    }
+    else {
+      icon.classList.add(`hidden`)
+    }
+  }
+
+  if (App.get_setting(`tagged_icon`)) {
+    let icon = DOM.el(`.tagged_icon`, item.element)
+
+    if (item.custom_tags && item.custom_tags.length) {
+      icon.classList.remove(`hidden`)
+    }
+    else {
+      icon.classList.add(`hidden`)
+    }
+  }
+
   if (App.get_setting(`edited_icon`)) {
     let icon = DOM.el(`.edited_icon`, item.element)
 
@@ -582,6 +604,18 @@ App.create_item_element = (item) => {
     if (App.get_setting(`unread_icon`)) {
       let icon = DOM.create(`div`, `unread_icon item_node hidden`)
       icon.textContent = App.get_setting(`unread_icon`)
+      item.element.append(icon)
+    }
+
+    if (App.get_setting(`titled_icon`)) {
+      let icon = DOM.create(`div`, `titled_icon item_node hidden`)
+      icon.textContent = App.get_setting(`titled_icon`)
+      item.element.append(icon)
+    }
+
+    if (App.get_setting(`tagged_icon`)) {
+      let icon = DOM.create(`div`, `tagged_icon item_node hidden`)
+      icon.textContent = App.get_setting(`tagged_icon`)
       item.element.append(icon)
     }
 

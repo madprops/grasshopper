@@ -381,6 +381,22 @@ App.build_settings = () => {
       placeholder: App.icon_placeholder,
       version: 1,
     },
+    titled_icon: {
+      name: `Titled Icon`,
+      type: `text_smaller`,
+      value: ``,
+      placeholder: App.icon_placeholder,
+      info: `Icon for titled tabs`,
+      version: 1,
+    },
+    tagged_icon: {
+      name: `Tagged Icon`,
+      type: `text_smaller`,
+      value: ``,
+      placeholder: App.icon_placeholder,
+      info: `Icon for tagged tabs`,
+      version: 1,
+    },
     edited_icon: {
       name: `Edited Icon`,
       type: `text_smaller`,
