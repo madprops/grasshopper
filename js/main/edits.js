@@ -66,23 +66,23 @@ App.edit_prompt = (args = {}) => {
     suggestions = App.get_all_tags()
   }
 
-  App.set_prompt_list(suggestions)
-  let prompt
+  let placeholder
 
   if (args.add) {
-    prompt = `Add ${name}`
+    placeholder = `Add ${name}`
   }
   else {
-    prompt = `Edit ${name}`
+    placeholder = `Edit ${name}`
   }
 
-  App.show_prompt(value, prompt, (ans) => {
+  App.show_prompt({value: value, placeholder: placeholder,
+  suggestions: suggestions, on_submit: (ans) => {
     let obj = {}
     obj[args.what] = ans
     obj.item = args.item
     obj.add = args.add
     App[`edit_tab_${args.what}`](obj)
-  })
+  }})
 }
 
 App.remove_edits = (args = {}) => {
@@ -497,7 +497,8 @@ App.remove_tag = (item, tag) => {
 }
 
 App.remove_tag_all = () => {
-  App.show_prompt(``, `Remove Tag`, (tag) => {
+  App.show_prompt({placeholder: `Remove Tag`,
+  suggestions: App.get_all_tags(), on_submit: (tag) => {
     let items = []
 
     for (let tab of App.get_items(`tabs`)) {
@@ -517,11 +518,12 @@ App.remove_tag_all = () => {
         App.remove_tag(item, tag)
       }
     })
-  })
+  }})
 }
 
 App.close_tag_all = () => {
-  App.show_prompt(``, `Close Tag`, (tag) => {
+  App.show_prompt({placeholder: `Close Tag`,
+  suggestions: App.get_all_tags(), on_submit: (tag) => {
     let items = []
 
     for (let tab of App.get_items(`tabs`)) {
@@ -537,7 +539,7 @@ App.close_tag_all = () => {
     }
 
     App.close_tabs_method(items)
-  })
+  }})
 }
 
 App.get_all_tags = () => {

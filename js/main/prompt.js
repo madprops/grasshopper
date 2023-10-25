@@ -8,13 +8,20 @@ App.setup_prompt = () => {
   })
 }
 
-App.show_prompt = (value, placeholder, on_submit) => {
+App.show_prompt = (args = {}) => {
+  let def_args = {
+    value: ``,
+    suggestions: [],
+  }
+
+  App.def_args(def_args, args)
   App.start_popups()
+  App.set_prompt_list(args.suggestions)
   App.show_popup(`prompt`)
   let input = DOM.el(`#prompt_input`)
-  input.value = value || ``
-  input.placeholder = placeholder
-  App.prompt_on_submit = on_submit
+  input.value = args.value
+  input.placeholder = args.placeholder
+  App.prompt_on_submit = args.on_submit
   input.focus()
 }
 
