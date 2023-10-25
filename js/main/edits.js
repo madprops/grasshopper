@@ -492,3 +492,39 @@ App.remove_tag = (item, tag) => {
   App.update_item(item.mode, item.id, item)
   App.custom_save(item.id, `custom_tags`, item.custom_tags)
 }
+
+App.remove_tag_all = () => {
+  App.show_prompt(``, `Remove Tag`, (tag) => {
+    let items = []
+
+    for (let tab of App.get_items(`tabs`)) {
+      if (tab.custom_tags.value) {
+        if (tab.custom_tags.value.includes(tag)) {
+          items.push(tab)
+        }
+      }
+    }
+
+    App.show_confirm(`Remove tag? (${tag}) (${items.length})`, () => {
+      for (let item of items) {
+        App.remove_tag(item, tag)
+      }
+    })
+  })
+}
+
+App.close_tag_all = () => {
+  App.show_prompt(``, `Close Tag`, (tag) => {
+    let items = []
+
+    for (let tab of App.get_items(`tabs`)) {
+      if (tab.custom_tags.value) {
+        if (tab.custom_tags.value.includes(tag)) {
+          items.push(tab)
+        }
+      }
+    }
+
+    App.close_tabs_method(items)
+  })
+}

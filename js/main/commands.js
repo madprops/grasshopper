@@ -916,6 +916,26 @@ App.setup_commands = () => {
       info: `Remove all titles from tabs`
     },
     {
+      name: `Remove Tag`,
+      cmd: `remove_tag`,
+      modes: [`tabs`],
+      icon: tag_icon,
+      action: (args) => {
+        App.remove_tag_all()
+      },
+      info: `Remove a specific tag from tabs`
+    },
+    {
+      name: `Close Tag`,
+      cmd: `close_tag`,
+      modes: [`tabs`],
+      icon: tag_icon,
+      action: (args) => {
+        App.close_tag_all()
+      },
+      info: `Close tabs with this tag`
+    },
+    {
       name: `Remove All Tags`,
       cmd: `remove_all_tags`,
       modes: [`tabs`],
