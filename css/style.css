@@ -1150,7 +1150,7 @@ a:visited, a:link, a:hover {
 }
 
 .taglist > div:hover {
-  font-weight: bold;
+  text-shadow: var(--text_glow);
 }
 
 .taglist_item {
