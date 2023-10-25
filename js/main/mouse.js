@@ -189,6 +189,13 @@ App.mouse_context_action = (mode, e) => {
     }
   }
 
+  if (App.get_setting(`show_taglist`)) {
+    if (e.target.classList.contains(`taglist_item`)) {
+      App.show_taglist_menu(e, item, e.target)
+      return
+    }
+  }
+
   if (App.get_setting(`item_menu_select`)) {
     App.select_item({item: item, scroll: `nearest`, deselect: !item.selected})
   }
