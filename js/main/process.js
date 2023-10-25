@@ -126,12 +126,6 @@ App.process_info = (args = {}) => {
       }
     }
 
-    if (args.mode === `tabs`) {
-      item.custom_color = {}
-      item.custom_title = {}
-      item.custom_tags = {}
-    }
-
     item.original_data = args.info
     item.id = args.info.id || App[`${args.mode}_idx`]
     item.visible = true

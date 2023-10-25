@@ -290,8 +290,8 @@ App.filter_check = (args) => {
         match = regex.test(args.item.path)
       }
 
-      if (!match && args.item.custom_tags.value) {
-        for (let tag of args.item.custom_tags.value) {
+      if (!match && args.item.custom_tags) {
+        for (let tag of args.item.custom_tags) {
           match = regex.test(tag)
 
           if (match) {
@@ -321,17 +321,17 @@ App.filter_check = (args) => {
     }
     else if (args.filter_mode === `color`) {
       if (args.f_value === `all`) {
-        match = args.item.custom_color.value
+        match = args.item.custom_color
       }
       else {
-        match = args.item.custom_color.value === args.f_value
+        match = args.item.custom_color === args.f_value
       }
     }
     else if (args.filter_mode === `titled`) {
-      match = args.item.custom_title.value
+      match = args.item.custom_title
     }
     else if (args.filter_mode === `tagged`) {
-      match = args.item.custom_tags.value
+      match = args.item.custom_tags
     }
     else if (args.filter_mode === `edited`) {
       match = App.tab_is_edited(args.item)

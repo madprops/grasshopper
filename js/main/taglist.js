@@ -5,13 +5,13 @@ App.check_taglist = (item) => {
 
   let taglist = DOM.el(`.item_taglist`, item.element)
 
-  if (!item.custom_tags.value || !item.custom_tags.value.length) {
+  if (!item.custom_tags || !item.custom_tags.length) {
     taglist.classList.add(`hidden`)
   }
   else {
     taglist.innerHTML = ``
 
-    for (let tag of item.custom_tags.value) {
+    for (let tag of item.custom_tags) {
       let item = DOM.create(`div`, `taglist_item`)
       item.textContent = tag
       taglist.append(item)
