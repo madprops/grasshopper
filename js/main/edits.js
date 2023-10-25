@@ -150,8 +150,7 @@ App.edit_to_string = (what, item) => {
   }
   else if (what === `tags`) {
     if (item.custom_tags.value) {
-      let tags = item.custom_tags.value.map(x => x.value)
-      return tags.join(` `)
+      return item.custom_tags.value.join(` `)
     }
   }
 
@@ -429,7 +428,7 @@ App.edit_tab_tags = (args = {}) => {
       add = true
     }
     else {
-      let tags = it.custom_tags.value.map(x => x.value)
+      let tags = it.custom_tags.value
 
       for (let tag of tag_list) {
         if (!tags.includes(tag)) {
@@ -459,16 +458,7 @@ App.edit_tab_tags = (args = {}) => {
   }, undefined, force)
 }
 
-App.new_custom_tags = (tag_list) => {
-  let tags = []
-
-  for (let tag of tag_list) {
-    tags.push({
-      value: tag,
-      date: Date.now(),
-    })
-  }
-
+App.new_custom_tags = (tags) => {
   return {
     value: tags,
     date: Date.now(),

@@ -292,7 +292,7 @@ App.filter_check = (args) => {
 
       if (!match && args.item.custom_tags.value) {
         for (let tag of args.item.custom_tags.value) {
-          match = regex.test(tag.value)
+          match = regex.test(tag)
 
           if (match) {
             break
