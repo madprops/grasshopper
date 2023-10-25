@@ -977,7 +977,7 @@ App.fill_settings = (category) => {
         widget = input(`text`, `settings_text text_smaller`, props.placeholder)
       }
       else if (props.type === `textarea`) {
-        widget = input(`textarea`, `settings_text`, props.placeholder)
+        widget = input(`textarea`, `settings_textarea`, props.placeholder)
       }
       else if (props.type === `number`) {
         widget = input(`number`, `settings_number`, props.placeholder)
