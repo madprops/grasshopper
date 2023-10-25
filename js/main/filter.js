@@ -777,9 +777,12 @@ App.update_filter_history = (mode) => {
 }
 
 App.forget_filter_history = () => {
-  App.show_confirm(`Forget filter history?`, () => {
-    App.filter_history = []
-    App.stor_save_filter_history()
+  App.show_confirm({
+    message: `Forget filter history?`,
+    confirm_action: () => {
+      App.filter_history = []
+      App.stor_save_filter_history()
+    },
   })
 }
 

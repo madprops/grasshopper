@@ -149,20 +149,24 @@ App.bookmark_items = async (item, active, feedback = true) => {
 
   let force = App.check_force(`warn_on_bookmark`, items)
 
-  App.show_confirm(`Bookmark these items? (${items.length})`, async () => {
-    for (let item of add) {
-      let title = App.get_title(item)
-      await browser.bookmarks.create({parentId: folder.id, title: title, url: item.url})
-    }
+  App.show_confirm({
+    message: `Bookmark these items? (${items.length})`,
+    confirm_action: async () => {
+      for (let item of add) {
+        let title = App.get_title(item)
+        await browser.bookmarks.create({parentId: folder.id, title: title, url: item.url})
+      }
 
-    for (let id of bump) {
-      await browser.bookmarks.move(id, {index: bookmarks.length - 1})
-    }
+      for (let id of bump) {
+        await browser.bookmarks.move(id, {index: bookmarks.length - 1})
+      }
 
-    if (feedback) {
-      App.alert_autohide(`Bookmarked`)
-    }
-  }, undefined, force)
+      if (feedback) {
+        App.alert_autohide(`Bookmarked`)
+      }
+    },
+    force: force,
+  })
 }
 
 App.bookmark_active = async () => {

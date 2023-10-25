@@ -249,27 +249,31 @@ Addlist.remove = (args = {}) => {
 
   let oargs = Addlist.oargs(args.id)
 
-  App.show_confirm(`Remove item?`, () => {
-    let new_lines = []
+  App.show_confirm({
+    message: `Remove item?`,
+    confirm_action: () => {
+      let new_lines = []
 
-    for (let line of lines) {
-      if (!Object.keys(line).length) {
-        continue
+      for (let line of lines) {
+        if (!Object.keys(line).length) {
+          continue
+        }
+
+        if (line[oargs.pk] === args.value) {
+          continue
+        }
+
+        new_lines.push(line)
       }
 
-      if (line[oargs.pk] === args.value) {
-        continue
+      Addlist.after(args.id, new_lines)
+
+      if (args.show_list) {
+        Addlist.list({id: args.id})
       }
-
-      new_lines.push(line)
-    }
-
-    Addlist.after(args.id, new_lines)
-
-    if (args.show_list) {
-      Addlist.list({id: args.id})
-    }
-  }, undefined, args.force)
+    },
+    force: args.force,
+  })
 }
 
 Addlist.view = (args = {}) => {
@@ -596,10 +600,14 @@ Addlist.hide = (check = true, from = `normal`) => {
   let p_id = Addlist.popup(data.id)
 
   if (check && modified) {
-    App.show_confirm(`Save changes?`, () => {
-      Addlist.save(data.id)
-    }, () => {
-      App.hide_popup(p_id, true)
+    App.show_confirm({
+      message: `Save changes?`,
+      confirm_action: () => {
+        Addlist.save(data.id)
+      },
+      cancel_action: () => {
+        App.hide_popup(p_id, true)
+      },
     })
   }
   else {
@@ -690,9 +698,13 @@ Addlist.clear = (id, force = false) => {
     return
   }
 
-  App.show_confirm(`Clear this list?`, () => {
-    Addlist.after(id, [])
-  }, undefined, force)
+  App.show_confirm({
+    message: `Clear this list?`,
+    confirm_action: () => {
+      Addlist.after(id, [])
+    },
+    force: force,
+  })
 }
 
 Addlist.get_line = (id, items) => {

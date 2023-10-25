@@ -40,25 +40,32 @@ App.reopen_tab = async () => {
 App.forget_closed = () => {
   let items = App.get_items(`closed`)
 
-  App.show_confirm(`Forget closed tabs? (${items.length})`, async () => {
-    for (let item of items) {
-      await browser.sessions.forgetClosedTab(item.window_id, item.session_id)
-    }
+  App.show_confirm({
+    message: `Forget closed tabs? (${items.length})`,
+    confirm_action: async () => {
+      for (let item of items) {
+        await browser.sessions.forgetClosedTab(item.window_id, item.session_id)
+      }
 
-    App.after_forget()
+      App.after_forget()
+    },
   })
 }
 
 App.forget_closed_item = (item) => {
   let active = App.get_active_items({mode: `closed`, item: item})
 
-  App.show_confirm(`Forget closed tabs? (${active.length})`, async () => {
-    for (let item of active) {
-      await browser.sessions.forgetClosedTab(item.window_id, item.session_id)
-    }
+  App.show_confirm({
+    message: `Forget closed tabs? (${active.length})`,
+    confirm_action: async () => {
+      for (let item of active) {
+        await browser.sessions.forgetClosedTab(item.window_id, item.session_id)
+      }
 
-    App.after_forget()
-  }, undefined, active.length <= 1)
+      App.after_forget()
+    },
+    force: active.length <= 1,
+  })
 }
 
 App.after_forget = () => {

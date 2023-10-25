@@ -19,8 +19,11 @@ App.import_data = (action) => {
     }
 
     if (json) {
-      App.show_confirm(`Use this data?`, () => {
-        action(json)
+      App.show_confirm({
+        message: `Use this data?`,
+        confirm_action: () => {
+          action(json)
+        },
       })
     }
 
