@@ -210,24 +210,12 @@ App.edit_tab_color = (args = {}) => {
 
   let active = App.get_active_items({mode: args.item.mode, item: args.item})
   let s = args.color ? `Color ${args.color}?` : `Remove color?`
-  let to_change = []
-
-  for (let it of active) {
-    if (it.custom_color !== args.color) {
-      to_change.push(it)
-    }
-  }
-
-  if (!to_change.length) {
-    return
-  }
-
-  let force = App.check_force(`warn_on_edit_tabs`, to_change)
+  let force = App.check_force(`warn_on_edit_tabs`, active)
 
   App.show_confirm({
-    message: `${s} (${to_change.length})`,
+    message: `${s} (${active.length})`,
     confirm_action: () => {
-      for (let it of to_change) {
+      for (let it of active) {
         App.apply_edit(`color`, it, args.color)
         App.custom_save(it.id, `custom_color`, args.color)
       }
@@ -406,24 +394,12 @@ App.edit_tab_title = (args = {}) => {
   App.def_args(def_args, args)
   let active = App.get_active_items({mode: args.item.mode, item: args.item})
   let s = args.title ? `Edit title?` : `Remove title?`
-  let to_change = []
-
-  for (let it of active) {
-    if (it.custom_title !== args.title) {
-      to_change.push(it)
-    }
-  }
-
-  if (!to_change.length) {
-    return
-  }
-
-  let force = App.check_force(`warn_on_edit_tabs`, to_change)
+  let force = App.check_force(`warn_on_edit_tabs`, active)
 
   App.show_confirm({
-    message: `${s} (${to_change.length})`,
+    message: `${s} (${active.length})`,
     confirm_action: () => {
-      for (let it of to_change) {
+      for (let it of active) {
         App.apply_edit(`title`, it, args.title)
         App.custom_save(it.id, `custom_title`, args.title)
       }
@@ -446,40 +422,12 @@ App.edit_tab_tags = (args = {}) => {
   let active = App.get_active_items({mode: args.item.mode, item: args.item})
   let s = args.tags ? `Edit tags?` : `Remove tags?`
   let tag_list = App.get_taglist(args.tags)
-  let to_change = []
-
-  for (let it of active) {
-    let add = false
-
-    if (!it.custom_tags) {
-      add = true
-    }
-    else if (!args.add && (tag_list.length !== it.custom_tags.length)) {
-      add = true
-    }
-    else {
-      let new_tags = tag_list.filter(x => !it.custom_tags.includes(x))
-
-      if (new_tags.length) {
-        add = true
-      }
-    }
-
-    if (add) {
-      to_change.push(it)
-    }
-  }
-
-  if (!to_change.length) {
-    return
-  }
-
-  let force = App.check_force(`warn_on_edit_tabs`, to_change)
+  let force = App.check_force(`warn_on_edit_tabs`, active)
 
   App.show_confirm({
-    message: `${s} (${to_change.length})`,
+    message: `${s} (${active.length})`,
     confirm_action: () => {
-      for (let it of to_change) {
+      for (let it of active) {
         let tags = tag_list
 
         if (args.add) {
