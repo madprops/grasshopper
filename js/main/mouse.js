@@ -191,7 +191,7 @@ App.mouse_context_action = (mode, e) => {
 
   if (App.get_setting(`taglist`) !== `none`) {
     if (e.target.classList.contains(`taglist_item`)) {
-      App.taglist_action(e, item)
+      App.show_taglist_menu(e, item)
       return
     }
   }
