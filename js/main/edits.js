@@ -525,6 +525,10 @@ App.remove_tag_all = () => {
       }
     }
 
+    if (!items.length) {
+      return
+    }
+
     App.show_confirm(`Remove tag? (${tag}) (${items.length})`, () => {
       for (let item of items) {
         App.remove_tag(item, tag)
@@ -543,6 +547,10 @@ App.close_tag_all = () => {
           items.push(tab)
         }
       }
+    }
+
+    if (!items.length) {
+      return
     }
 
     App.close_tabs_method(items)
