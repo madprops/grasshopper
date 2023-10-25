@@ -67,8 +67,16 @@ App.edit_prompt = (args = {}) => {
   }
 
   App.set_prompt_list(suggestions)
+  let prompt
 
-  App.show_prompt(value, `Edit ${name}`, (ans) => {
+  if (args.add) {
+    prompt = `Add ${name}`
+  }
+  else {
+    prompt = `Edit ${name}`
+  }
+
+  App.show_prompt(value, prompt, (ans) => {
     let obj = {}
     obj[args.what] = ans
     obj.item = args.item

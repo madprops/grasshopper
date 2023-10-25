@@ -17,6 +17,11 @@ App.check_taglist = (item) => {
       taglist.append(item)
     }
 
+    let plus = DOM.create(`div`, `taglist_add`)
+    plus.textContent = `+`
+    plus.title = `Add Tag`
+    taglist.append(plus)
+
     taglist.classList.remove(`hidden`)
   }
 }
