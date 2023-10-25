@@ -92,6 +92,7 @@ App.remove_edits = (args = {}) => {
   }
 
   App.def_args(def_args, args)
+
   if (!args.items.length) {
     for (let item of App.get_items(`tabs`)) {
       if (item[`custom_${args.what}`]) {
@@ -129,23 +130,12 @@ App.remove_all_edits = () => {
 
 App.remove_item_edits = (item) => {
   let active = App.get_active_items({mode: item.mode, item: item})
-  let items = []
-
-  for (let it of active) {
-    if (App.tab_is_edited(it)) {
-      items.push(it)
-    }
-  }
-
-  if (!items.length) {
-    return
-  }
 
   App.show_confirm({
-    message: `Remove edits? (${items.length})`,
+    message: `Remove edits? (${active.length})`,
     confirm_action: () => {
       for (let key in App.edit_props) {
-        App.remove_edits({what: key, force: true, items: items})
+        App.remove_edits({what: key, force: true, items: active})
       }
     },
   })
