@@ -516,6 +516,7 @@ App.refresh_item_element = (item) => {
   App.check_view_media(item)
   App.set_item_text(item)
   App.apply_color_mode(item)
+  App.check_taglist(item)
 }
 
 App.create_item_element = (item) => {
@@ -607,10 +608,13 @@ App.create_item_element = (item) => {
   let text = DOM.create(`div`, `item_text`)
   let text_1 = DOM.create(`div`, `item_text_1`)
   let text_2 = DOM.create(`div`, `item_text_2 hidden`)
+  let taglist = DOM.create(`div`, `item_taglist hidden`)
   text.append(text_1)
   text.append(text_2)
+  text.append(taglist)
   item.element.append(text)
   App.set_item_text(item)
+  App.check_taglist(item)
 
   if (item.mode === `tabs`) {
     App.add_close_button(item, `right`)
@@ -1421,4 +1425,41 @@ App.rebuild_items = () => {
       App.build_item_window(mode)
     }
   }
+}
+
+App.check_taglist = (item) => {
+  if (!App.get_setting(`show_taglist`)) {
+    return
+  }
+
+  let taglist = DOM.el(`.item_taglist`, item.element)
+
+  if (!item.custom_tags.value || !item.custom_tags.value.length) {
+    taglist.classList.add(`hidden`)
+  }
+  else {
+    taglist.innerHTML = ``
+
+    for (let tag of item.custom_tags.value) {
+      let item = DOM.create(`div`, `taglist_item`)
+      item.textContent = tag
+      taglist.append(item)
+    }
+
+    taglist.classList.remove(`hidden`)
+  }
+}
+
+App.show_taglist_menu = (e, item) => {
+  let items = []
+
+  items.push({
+    text: `Filter`,
+    action: () => {
+      let tag = e.target.textContent
+      App.set_filter({mode: item.mode, text: `tag: ${tag}`})
+    },
+  })
+
+  App.show_center_context(items, e)
 }

@@ -478,6 +478,13 @@ App.build_settings = () => {
       info: `Show the item count in the footer`,
       version: 1,
     },
+    show_scrollbars: {
+      name: `Show Scrollbars`,
+      type: `checkbox`,
+      value: false,
+      info: `Show the regular scrollbars. Else scrollbars are disabled`,
+      version: 1,
+    },
     active_trace: {
       name: `Active Trace`,
       type: `checkbox`,
@@ -485,11 +492,11 @@ App.build_settings = () => {
       info: `Show numbers as a trace on recently used tabs`,
       version: 1,
     },
-    show_scrollbars: {
-      name: `Show Scrollbars`,
+    show_taglist: {
+      name: `Show Taglist`,
       type: `checkbox`,
       value: false,
-      info: `Show the regular scrollbars. Else scrollbars are disabled`,
+      info: `Show tags below tabs`,
       version: 1,
     },
     reverse_scroller_percentage: {

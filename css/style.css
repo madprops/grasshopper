@@ -1132,3 +1132,20 @@ a:visited, a:link, a:hover {
   position: fixed;
   top: -25rem;
 }
+
+.item_taglist {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: flex-start;
+  width: 100%;
+  gap: 1rem;
+}
+
+.taglist_item {
+  text-decoration: underline;
+}
+
+.taglist_item:hover {
+  font-weight: bold;
+}

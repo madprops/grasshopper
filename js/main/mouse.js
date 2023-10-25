@@ -99,8 +99,6 @@ App.mouse_click_action = (mode, e) => {
     }
   }
 
-  App.select_item({item: item, scroll: `nearest_smooth`})
-
   if (mode === `tabs`) {
     if (App.get_setting(`close_button`) !== `none`) {
       if (e.target.classList.contains(`close_icon`)) {
@@ -118,7 +116,16 @@ App.mouse_click_action = (mode, e) => {
         }
       }
     }
+
+    if (App.get_setting(`show_taglist`)) {
+      if (e.target.classList.contains(`taglist_item`)) {
+        App.show_taglist_menu(e, item, e.target)
+        return
+      }
+    }
   }
+
+  App.select_item({item: item, scroll: `nearest_smooth`})
 
   if (media_type) {
     if (App.get_setting(`view_${media_type}_${mode}`) === `item`) {
