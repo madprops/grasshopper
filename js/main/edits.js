@@ -427,6 +427,9 @@ App.edit_tab_tags = (args = {}) => {
     if (!it.custom_tags.value) {
       add = true
     }
+    else if (tag_list.length !== it.custom_tags.value.length) {
+      add = true
+    }
     else {
       let tags = it.custom_tags.value
 
