@@ -1452,12 +1452,19 @@ App.check_taglist = (item) => {
 
 App.show_taglist_menu = (e, item) => {
   let items = []
+  let tag = e.target.textContent
 
   items.push({
     text: `Filter`,
     action: () => {
-      let tag = e.target.textContent
       App.set_filter({mode: item.mode, text: `tag: ${tag}`})
+    },
+  })
+
+  items.push({
+    text: `Edit`,
+    action: () => {
+      App.edit_prompt(`tags`, item)
     },
   })
 
