@@ -455,7 +455,7 @@ App.build_settings = () => {
     taglist_mode: {
       name: `Taglist Mode`,
       type: `menu`,
-      value: `menu`,
+      value: `filter`,
       info: `What to do when clicking the taglist items`,
       version: 1,
     },
