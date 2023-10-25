@@ -163,6 +163,12 @@ App.apply_edit = (what, item, value) => {
     item[`custom_${what}`] = value
   }
 
+  if (what === `tags`) {
+    if (App.get_setting(`sort_tags`)) {
+      item.custom_tags.sort()
+    }
+  }
+
   App.update_item(item.mode, item.id, item)
 }
 
