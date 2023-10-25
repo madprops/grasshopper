@@ -196,6 +196,15 @@ App.build_settings = () => {
       info: `Add a glow effect to all text`,
       version: 1,
     },
+    custom_css: {
+      name: `Custom CSS`,
+      type: `textarea`,
+      action: `theme`,
+      value: ``,
+      placeholder: `Paste CSS here`,
+      info: `Add custom CSS to override the default style`,
+      version: 1,
+    },
   }
 
   add_props()

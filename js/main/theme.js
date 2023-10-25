@@ -229,6 +229,16 @@ App.do_apply_theme = (args = {}) => {
       main.classList.remove(`hover_button_left`)
       main.classList.add(`hover_button_right`)
     }
+
+    for (let style of DOM.els(`.custom_css`)) {
+      style.remove()
+    }
+
+    if (App.get_setting(`custom_css`)) {
+      let style = DOM.create(`style`, `custom_css`)
+      style.textContent = App.get_setting(`custom_css`)
+      document.head.appendChild(style)
+    }
   }
   catch (err) {
     App.error(err)
