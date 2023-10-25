@@ -445,6 +445,20 @@ App.build_settings = () => {
       info: `How to show the hover button on tabs`,
       version: 2,
     },
+    taglist: {
+      name: `Taglist`,
+      type: `menu`,
+      value: `none`,
+      info: `Tags get displayed at the bottom of tabs`,
+      version: 1,
+    },
+    taglist_mode: {
+      name: `Taglist Mode`,
+      type: `menu`,
+      value: `menu`,
+      info: `What to do when clicking the taglist items`,
+      version: 1,
+    },
     show_pinline: {
       name: `Show Pinline`,
       type: `menu`,
@@ -499,13 +513,6 @@ App.build_settings = () => {
       type: `checkbox`,
       value: false,
       info: `Show numbers as a trace on recently used tabs`,
-      version: 1,
-    },
-    show_taglist: {
-      name: `Show Taglist`,
-      type: `checkbox`,
-      value: false,
-      info: `Show tags below tabs`,
       version: 1,
     },
     reverse_scroller_percentage: {
@@ -1519,6 +1526,18 @@ App.build_settings = () => {
           {text: `Normal`, value: `normal`},
           {text: `Flat`, value: `flat`},
           {text: `Total`, value: `total`},
+        ])
+
+        App.settings_make_menu(`taglist`, [
+          {text: `None`, value: `none`},
+          {text: `Normal`, value: `normal`},
+        ])
+
+        App.settings_make_menu(`taglist_mode`, [
+          {text: `Menu`, value: `menu`},
+          {text: `Filter`, value: `filter`},
+          {text: `Edit`, value: `edit`},
+          {text: `Remove`, value: `remove`},
         ])
       },
     },

@@ -1,5 +1,5 @@
 App.check_taglist = (item) => {
-  if (!App.get_setting(`show_taglist`)) {
+  if (App.get_setting(`taglist`) === `none`) {
     return
   }
 
@@ -18,6 +18,31 @@ App.check_taglist = (item) => {
     }
 
     taglist.classList.remove(`hidden`)
+  }
+}
+
+App.taglist_filter = (item, tag) => {
+  App.set_filter({mode: item.mode, text: `tag: ${tag}`})
+}
+
+App.taglist_action = (e, item) => {
+  let mode = App.get_setting(`taglist_mode`)
+  let tag = e.target.textContent
+
+  if (mode === `none`) {
+    return
+  }
+  else if (mode === `menu`) {
+    App.show_taglist_menu(e, item)
+  }
+  else if (mode === `filter`) {
+    App.taglist_filter(item, tag)
+  }
+  else if (mode === `edit`) {
+    App.edit_prompt(`tags`, item)
+  }
+  else if (mode === `remove`) {
+    App.remove_tag(item, tag)
   }
 }
 
