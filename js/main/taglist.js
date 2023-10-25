@@ -60,7 +60,7 @@ App.show_taglist_menu = (e, item) => {
   items.push({
     text: `Edit Tags`,
     action: () => {
-      App.edit_prompt(`tags`, item)
+      App.edit_tags(item)
     },
   })
 

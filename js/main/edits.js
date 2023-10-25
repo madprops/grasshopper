@@ -37,16 +37,20 @@ App.custom_save = (id, name, value) => {
 
 App.edit_prompt = (args = {}) => {
   let active = App.get_active_items({mode: args.item.mode, item: args.item})
-  let value = App.edit_to_string(args.what, active[0])
+  let value = ``
 
-  for (let it of active) {
-    if (it === active[0]) {
-      continue
-    }
+  if (!args.add) {
+    value = App.edit_to_string(args.what, active[0])
 
-    if (App.edit_to_string(args.what, it) !== value) {
-      value = ``
-      break
+    for (let it of active) {
+      if (it === active[0]) {
+        continue
+      }
+
+      if (App.edit_to_string(args.what, it) !== value) {
+        value = ``
+        break
+      }
     }
   }
 
@@ -461,17 +465,14 @@ App.edit_tab_tags = (args = {}) => {
     if (!it.custom_tags.value) {
       add = true
     }
-    else if (tag_list.length !== it.custom_tags.value.length) {
+    else if (!args.add && (tag_list.length !== it.custom_tags.value.length)) {
       add = true
     }
     else {
-      let tags = it.custom_tags.value
+      let new_tags = tag_list.filter(x => !it.custom_tags.value.includes(x))
 
-      for (let tag of tag_list) {
-        if (!tags.includes(tag)) {
-          add = true
-          break
-        }
+      if (new_tags.length) {
+        add = true
       }
     }
 
@@ -488,14 +489,23 @@ App.edit_tab_tags = (args = {}) => {
 
   App.show_confirm(`${s} (${to_change.length})`, () => {
     for (let it of to_change) {
-      let obj = App.new_custom_tags(tag_list)
+      let tags = tag_list
+
+      if (args.add) {
+        if (it.custom_tags.value) {
+          let new_tags = tag_list.filter(x => !it.custom_tags.value.includes(x))
+          tags = [...it.custom_tags.value, ...new_tags]
+        }
+      }
+
+      let obj = App.new_custom_tags(tags)
       App.apply_edit(`tags`, it, obj)
       App.custom_save(it.id, `custom_tags`, obj)
     }
   }, undefined, force)
 }
 
-App.new_custom_tags = (tags) => {
+App.new_custom_tags = (tags, add = false) => {
   return {
     value: tags,
     date: Date.now(),
