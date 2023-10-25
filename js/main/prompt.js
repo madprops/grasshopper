@@ -1,3 +1,13 @@
+App.setup_prompt = () => {
+  DOM.ev(DOM.el(`#prompt_submit`), `click`, () => {
+    App.prompt_submit()
+  })
+
+  DOM.ev(DOM.el(`#prompt_clear`), `click`, () => {
+    App.prompt_clear()
+  })
+}
+
 App.show_prompt = (value, placeholder, on_submit) => {
   App.start_popups()
   App.show_popup(`prompt`)
@@ -23,4 +33,8 @@ App.set_prompt_list = (suggestions) => {
     option.innerHTML = suggestion
     prompt_list.append(option)
   }
+}
+
+App.prompt_clear = () => {
+  DOM.el(`#prompt_input`).value = ``
 }

@@ -129,9 +129,7 @@ App.start_popups = () => {
   App.create_popup({
     id: `prompt`,
     setup: () => {
-      DOM.ev(DOM.el(`#prompt_submit`), `click`, () => {
-        App.prompt_submit()
-      })
+      App.setup_prompt()
     },
   })
 }
