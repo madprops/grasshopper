@@ -17,6 +17,10 @@ App.update_footer_info = (item) => {
 App.do_update_footer_info = (item) => {
   App.update_footer_info_debouncer.cancel()
 
+  if (!App.get_setting(`show_footer`)) {
+    return
+  }
+
   if (item) {
     App.footer_item = item
     App.set_footer_info(item.mode, item.footer)
