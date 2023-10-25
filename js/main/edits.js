@@ -127,7 +127,13 @@ App.apply_edit = (what, item, obj) => {
     }
   }
 
-  item[`custom_${what}`] = obj
+  if (obj.value === undefined) {
+    item[`custom_${what}`] = {}
+  }
+  else {
+    item[`custom_${what}`] = obj
+  }
+
   App.update_item(item.mode, item.id, item)
 }
 
@@ -185,7 +191,15 @@ App.edit_tab_color = (args = {}) => {
 
   App.show_confirm(`${s} (${to_change.length})`, () => {
     for (let it of to_change) {
-      let obj = App.new_custom_color(args.color)
+      let obj
+
+      if (args.obj) {
+        obj = args.obj
+      }
+      else {
+        obj = App.new_custom_color(args.color)
+      }
+
       App.apply_edit(`color`, it, obj)
       App.custom_save(it.id, `custom_color`, obj)
     }
@@ -220,7 +234,7 @@ App.color_menu_items = (item) => {
   items.push({
     text: `Remove`,
     action: () => {
-      App.edit_tab_color({item: item})
+      App.edit_tab_color({item: item, obj: {}})
     }
   })
 
@@ -307,11 +321,7 @@ App.remove_color = (color) => {
   }
 
   App.show_confirm(`Remove ${color}? (${items.length})`, () => {
-    for (let item of items) {
-      let color = ``
-      App.apply_edit(`color`, item, color)
-      App.custom_save(item.id, `custom_color`, color)
-    }
+    App.remove_edits({what: `color`, force: true, items: items})
   })
 }
 
