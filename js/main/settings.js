@@ -403,6 +403,14 @@ App.setup_settings = () => {
   App.settings_categories = Object.keys(App.setting_catprops)
 }
 
+App.refresh_settings = () => {
+  App.apply_theme()
+  App.refresh_gestures()
+  App.setup_commands()
+  App.fill_palette()
+  App.build_tab_filters()
+}
+
 App.start_settings = () => {
   if (App.check_ready(`settings`)) {
     return
@@ -418,11 +426,7 @@ App.start_settings = () => {
       DOM.el(`#settings_${App.settings_category}_filter`).focus()
     },
     on_hide: async () => {
-      App.apply_theme()
-      App.refresh_gestures()
-      App.setup_commands()
-      App.fill_palette()
-      App.build_tab_filters()
+      App.refresh_settings()
       App.clear_show()
     },
   }
@@ -676,11 +680,12 @@ App.import_settings = () => {
 }
 
 App.restart_settings = (type = `normal`) => {
+  App.refresh_settings()
+
   if (App.on_items() || type === `sync`) {
     App.clear_show()
   }
   else {
-    App.apply_theme()
     App.show_settings()
   }
 }
