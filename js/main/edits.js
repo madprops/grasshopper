@@ -568,11 +568,7 @@ App.replace_tag = (value = ``) => {
 }
 
 App.do_replace_tag = (tag_1, tag_2) => {
-  if (tag_1.includes(` `) || tag_2.includes(` `)) {
-    return
-  }
-
-  if (tag_1 === tag_2) {
+  if (App.check_tag_edit(tag_1, tag_2)) {
     return
   }
 
@@ -599,11 +595,7 @@ App.edit_tag = (item, tag) => {
 }
 
 App.do_edit_tag = (item, tag_1, tag_2) => {
-  if (tag_1.includes(` `) || tag_2.includes(` `)) {
-    return
-  }
-
-  if (tag_1 === tag_2) {
+  if (App.check_tag_edit(tag_1, tag_2)) {
     return
   }
 
@@ -611,4 +603,20 @@ App.do_edit_tag = (item, tag_1, tag_2) => {
   item.custom_tags.push(tag_2)
   App.apply_edit(`tags`, item, item.custom_tags)
   App.custom_save(item.id, `custom_tags`, item.custom_tags)
+}
+
+App.check_tag_edit = (tag_1, tag_2) => {
+  if (!tag_1 || !tag_2) {
+    return true
+  }
+
+  if (tag_1 === tag_2) {
+    return true
+  }
+
+  if (tag_1.includes(` `) || tag_2.includes(` `)) {
+    return true
+  }
+
+  return false
 }
