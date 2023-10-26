@@ -73,7 +73,6 @@ App.show_item_menu = async (args = {}) => {
           return [
             App.item_menu_item({cmd: `edit_tags`, item: args.item, short: false}),
             App.item_menu_item({cmd: `add_tags`, item: args.item, short: false}),
-            App.item_menu_item({cmd: `pick_tag`, item: args.item, short: false}),
           ]
         }
       })
