@@ -1035,6 +1035,17 @@ App.setup_commands = () => {
       info: `Filter: Show same color`
     },
     {
+      name: `Filter Tag`,
+      cmd: `filter_tag`,
+      modes: [`items`],
+      item: true,
+      icon: theme_icon,
+      action: (args) => {
+        App.filter_tag(args.item)
+      },
+      info: `Filter by picking a tab`
+    },
+    {
       name: `Filter Pins`,
       cmd: `filter_pinned_tabs`,
       modes: [`tabs`],

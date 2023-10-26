@@ -670,3 +670,7 @@ App.pick_tag = (item, e) => {
 
   App.show_center_context(items, e)
 }
+
+App.filter_tag = () => {
+
+}

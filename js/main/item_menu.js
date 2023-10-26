@@ -224,6 +224,7 @@ App.filter_menu_items = (item) => {
     items.push(App.item_menu_item({cmd: `filter_color`, item: item}))
   }
 
+  items.push(App.item_menu_item({cmd: `filter_tag`, item: item}))
   items.push(App.item_menu_item({cmd: `filter_domain`, item: item}))
   return items
 }
