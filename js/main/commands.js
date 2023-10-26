@@ -955,7 +955,7 @@ App.setup_commands = () => {
       action: (args) => {
         App.replace_tag()
       },
-      info: `Replace tag with another tag`
+      info: `Replace tag with another tag among all tabs`
     },
     {
       name: `Close Tag`,
