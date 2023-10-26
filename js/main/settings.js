@@ -680,6 +680,7 @@ App.restart_settings = (type = `normal`) => {
     App.clear_show()
   }
   else {
+    App.apply_theme()
     App.show_settings()
   }
 }
