@@ -651,3 +651,22 @@ App.push_to_tag_history = (tags) => {
 
   App.stor_save_tag_history()
 }
+
+App.pick_tag = (item) => {
+  let items = []
+
+  for (let tag of App.tag_history) {
+    items.push({
+      text: tag,
+      action: () => {
+        let obj = {}
+        obj.tags = tag
+        obj.item = item
+        obj.add = true
+        App.edit_tab_tags(obj)
+      },
+    })
+  }
+
+  App.show_center_context(items)
+}
