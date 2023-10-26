@@ -1190,12 +1190,15 @@ App.edit_text_setting = (setting) => {
     message: props.name,
     button: `Save`,
     action: (text) => {
-      if (!text.trim()) {
+      let value = text.trim()
+
+      if (!value) {
         return true
       }
 
-      console.log(text)
+      App.set_setting(setting, value)
       return true
     },
+    value: App.get_setting(setting),
   })
 }
