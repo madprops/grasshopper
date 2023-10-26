@@ -290,12 +290,14 @@ App.filter_check = (args) => {
         match = regex.test(args.item.path)
       }
 
-      if (!match && args.item.custom_tags) {
-        for (let tag of args.item.custom_tags) {
-          match = regex.test(tag)
+      if (App.get_setting(`filter_tags`)) {
+        if (!match && args.item.custom_tags) {
+          for (let tag of args.item.custom_tags) {
+            match = regex.test(tag)
 
-          if (match) {
-            break
+            if (match) {
+              break
+            }
           }
         }
       }

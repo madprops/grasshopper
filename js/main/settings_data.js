@@ -1129,6 +1129,13 @@ App.build_settings = () => {
       info: `Show the filter history when right clicking the filter`,
       version: 1,
     },
+    filter_tags: {
+      name: `Filter Tags`,
+      type: `checkbox`,
+      value: true,
+      info: `Consider tags when using the filter normally`,
+      version: 1,
+    },
     filter_enter: {
       name: `Filter Enter`,
       type: `checkbox`,
