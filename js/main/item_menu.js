@@ -61,7 +61,7 @@ App.show_item_menu = async (args = {}) => {
         text: `Color`,
         get_items: () => {
           return App.color_menu_items(args.item)
-        }
+        },
       })
 
       items.push(App.item_menu_item({cmd: `edit_title`, item: args.item}))
@@ -74,7 +74,7 @@ App.show_item_menu = async (args = {}) => {
             App.item_menu_item({cmd: `edit_tags`, item: args.item, short: false}),
             App.item_menu_item({cmd: `add_tags`, item: args.item, short: false}),
           ]
-        }
+        },
       })
 
       App.common_menu_items(items, args.item, multiple)
@@ -106,7 +106,7 @@ App.common_menu_items = (o_items, item, multiple) => {
       text: `Filter`,
       get_items: () => {
         return App.filter_menu_items(item)
-      }
+      },
     })
   }
 
@@ -171,7 +171,7 @@ App.more_menu_items = (o_items, item, multiple, some_loaded, some_unmuted, some_
       text: `To Window`,
       get_items: async () => {
         return await App.get_window_menu_items(item)
-      }
+      },
     })
   }
 
