@@ -938,16 +938,6 @@ App.setup_commands = () => {
       info: `Remove a specific tag from tabs`
     },
     {
-      name: `Close Tag`,
-      cmd: `close_tag`,
-      modes: [`tabs`],
-      icon: tag_icon,
-      action: (args) => {
-        App.close_tag_all()
-      },
-      info: `Close tabs with this tag`
-    },
-    {
       name: `Remove All Tags`,
       cmd: `remove_all_tags`,
       modes: [`tabs`],
@@ -956,6 +946,26 @@ App.setup_commands = () => {
         App.remove_edits({what: `tags`})
       },
       info: `Remove all tags from tabs`
+    },
+    {
+      name: `Replace Tag`,
+      cmd: `replace_tag`,
+      modes: [`tabs`],
+      icon: tag_icon,
+      action: (args) => {
+        App.replace_tag()
+      },
+      info: `Replace tag with another tag`
+    },
+    {
+      name: `Close Tag`,
+      cmd: `close_tag`,
+      modes: [`tabs`],
+      icon: tag_icon,
+      action: (args) => {
+        App.close_tag_all()
+      },
+      info: `Close tabs with this tag`
     },
     {
       name: `Remove All Edits`,

@@ -11,7 +11,11 @@ App.setup_prompt = () => {
 App.show_prompt = (args = {}) => {
   let def_args = {
     value: ``,
+    value_2: ``,
+    placeholder: ``,
+    placeholder_2: ``,
     suggestions: [],
+    focus: 1,
   }
 
   App.def_args(def_args, args)
@@ -19,16 +23,34 @@ App.show_prompt = (args = {}) => {
   App.set_prompt_list(args.suggestions)
   App.show_popup(`prompt`)
   let input = DOM.el(`#prompt_input`)
+  let input_2 = DOM.el(`#prompt_input_2`)
   input.value = args.value
   input.placeholder = args.placeholder
+
+  if (args.double) {
+    input_2.classList.remove(`hidden`)
+    input_2.value = args.value_2
+    input_2.placeholder = args.placeholder_2
+  }
+  else {
+    input_2.classList.add(`hidden`)
+  }
+
   App.prompt_on_submit = args.on_submit
-  input.focus()
+
+  if (args.focus === 1) {
+    input.focus()
+  }
+  else if (args.focus === 2) {
+    input_2.focus()
+  }
 }
 
 App.prompt_submit = () => {
   let value = DOM.el(`#prompt_input`).value.trim()
+  let value_2 = DOM.el(`#prompt_input_2`).value.trim()
   App.hide_popup(`prompt`)
-  App.prompt_on_submit(value)
+  App.prompt_on_submit(value, value_2)
 }
 
 App.set_prompt_list = (suggestions) => {

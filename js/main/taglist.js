@@ -49,6 +49,9 @@ App.taglist_action = (e, item) => {
   else if (mode === `edit`) {
     App.edit_tags(item)
   }
+  else if (mode === `replace`) {
+    App.replace_tag(tag)
+  }
   else if (mode === `add`) {
     App.add_tags(item)
   }
@@ -79,6 +82,13 @@ App.show_taglist_menu = (e, item) => {
     text: `Add Tag`,
     action: () => {
       App.add_tags(item)
+    },
+  })
+
+  items.push({
+    text: `Replace`,
+    action: () => {
+      App.replace_tag(tag)
     },
   })
 

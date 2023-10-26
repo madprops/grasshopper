@@ -541,3 +541,42 @@ App.remove_item_tags = (item) => {
     },
   })
 }
+
+App.replace_tag = (value = ``) => {
+  let focus
+
+  if (value) {
+    focus = 2
+  }
+  else {
+    focus = 1
+  }
+
+  App.show_prompt({
+    suggestions: App.get_all_tags(),
+    placeholder: `Original Tag`,
+    placeholder_2: `New Tag`,
+    double: true,
+    value: value,
+    focus: focus,
+    on_submit: (ans, ans_2) => {
+      App.do_replace_tag(ans, ans_2)
+    },
+  })
+}
+
+App.do_replace_tag = (tag_1, tag_2) => {
+  if (tag_1.includes(` `) || tag_2.includes(` `)) {
+    return
+  }
+
+  for (let item of App.get_items(`tabs`)) {
+    if (item.custom_tags) {
+      if (item.custom_tags.includes(tag_1)) {
+        item.custom_tags = item.custom_tags.map(x => x === tag_1 ? tag_2 : x)
+        App.apply_edit(`tags`, item, item.custom_tags)
+        App.custom_save(item.id, `custom_tags`, item.custom_tags)
+      }
+    }
+  }
+}
