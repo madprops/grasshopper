@@ -1191,11 +1191,6 @@ App.edit_text_setting = (setting) => {
     button: `Save`,
     action: (text) => {
       let value = text.trim()
-
-      if (!value) {
-        return true
-      }
-
       App.set_setting(setting, value)
       return true
     },
