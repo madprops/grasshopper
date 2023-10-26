@@ -142,6 +142,14 @@ App.remove_item_edits = (item) => {
 }
 
 App.apply_edit = (what, item, value) => {
+  if (what === `tags` && value) {
+    value = Array.from(new Set(value))
+
+    if (App.get_setting(`sort_tags`)) {
+      value.sort()
+    }
+  }
+
   if (value === undefined) {
     if (item[`custom_${what}`] === undefined) {
       return
@@ -151,12 +159,6 @@ App.apply_edit = (what, item, value) => {
   }
   else {
     item[`custom_${what}`] = value
-  }
-
-  if (what === `tags` && value) {
-    if (App.get_setting(`sort_tags`)) {
-      item.custom_tags.sort()
-    }
   }
 
   App.update_item(item.mode, item.id, item)
