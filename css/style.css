@@ -1114,7 +1114,6 @@ a:visited, a:link, a:hover {
 
 .hover_button {
   position: absolute;
-  min-width: 1rem;
   z-index: 9;
   background-color: var(--alt_background_2);
   border: 1px solid var(--alt_color_1);
