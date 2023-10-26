@@ -39,27 +39,37 @@ App.stor_save_settings = () => {
 
 App.stor_get_command_history = () => {
   App.command_history = App.get_local_storage(App.stor_command_history_name, [])
-  App.debug(`Stor: Got command_history`)
+  App.debug(`Stor: Got command history`)
 }
 
 App.stor_save_command_history = () => {
-  App.debug(`Stor: Saving command_history`)
+  App.debug(`Stor: Saving command history`)
   App.save_local_storage(App.stor_command_history_name, App.command_history)
 }
 
 App.stor_get_filter_history = () => {
   App.filter_history = App.get_local_storage(App.stor_filter_history_name, [])
-  App.debug(`Stor: Got filter_history`)
+  App.debug(`Stor: Got filter history`)
 }
 
 App.stor_save_filter_history = () => {
-  App.debug(`Stor: Saving filter_history`)
+  App.debug(`Stor: Saving filter history`)
   App.save_local_storage(App.stor_filter_history_name, App.filter_history)
+}
+
+App.stor_get_tag_history = () => {
+  App.tag_history = App.get_local_storage(App.stor_tag_history_name, [])
+  App.debug(`Stor: Got tag history`)
+}
+
+App.stor_save_tag_history = () => {
+  App.debug(`Stor: Saving tag history`)
+  App.save_local_storage(App.stor_tag_history_name, App.tag_history)
 }
 
 App.stor_get_first_time = () => {
   App.first_time = App.get_local_storage(App.stor_first_time_name, {})
-  App.debug(`Stor: Got first_time`)
+  App.debug(`Stor: Got first time`)
 }
 
 App.stor_save_first_time = () => {

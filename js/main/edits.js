@@ -75,14 +75,25 @@ App.edit_prompt = (args = {}) => {
     placeholder = `Edit ${name}`
   }
 
-  App.show_prompt({value: value, placeholder: placeholder,
-  suggestions: suggestions, on_submit: (ans) => {
-    let obj = {}
-    obj[args.what] = ans
-    obj.item = args.item
-    obj.add = args.add
-    App[`edit_tab_${args.what}`](obj)
-  }})
+  let list = []
+
+  if (args.what === `tags`) {
+    list = App.tag_history
+  }
+
+  App.show_prompt({
+    value: value,
+    placeholder: placeholder,
+    suggestions: suggestions,
+    on_submit: (ans) => {
+      let obj = {}
+      obj[args.what] = ans
+      obj.item = args.item
+      obj.add = args.add
+      App[`edit_tab_${args.what}`](obj)
+    },
+    list: list,
+  })
 }
 
 App.remove_edits = (args = {}) => {
@@ -421,16 +432,22 @@ App.edit_tab_tags = (args = {}) => {
     confirm_action: () => {
       for (let it of active) {
         let tags = tag_list
+        let new_tags
 
-        if (args.add) {
-          if (it.custom_tags) {
-            let new_tags = tag_list.filter(x => !it.custom_tags.includes(x))
+        if (it.custom_tags) {
+          new_tags = tags.filter(x => !it.custom_tags.includes(x))
+
+          if (args.add) {
             tags = [...it.custom_tags, ...new_tags]
           }
+        }
+        else {
+          new_tags = tags
         }
 
         App.apply_edit(`tags`, it, tags)
         App.custom_save(it.id, `custom_tags`, tags)
+        App.push_to_tag_history(new_tags)
       }
     },
     force: force,
@@ -619,4 +636,18 @@ App.check_tag_edit = (tag_1, tag_2) => {
   }
 
   return false
+}
+
+App.push_to_tag_history = (tags) => {
+  if (!tags.length) {
+    return
+  }
+
+  for (let tag of tags) {
+    App.tag_history = App.tag_history.filter(x => x !== tag)
+    App.tag_history.unshift(tag)
+    App.tag_history = App.tag_history.slice(0, App.tag_history_max)
+  }
+
+  App.stor_save_tag_history()
 }

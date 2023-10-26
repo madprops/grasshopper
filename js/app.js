@@ -6,6 +6,7 @@ NeedContext.center_top = `22%`
 App.stor_settings_name = `settings_v100`
 App.stor_command_history_name = `command_history_v1`
 App.stor_filter_history_name = `filter_history_v1`
+App.stor_tag_history_name = `tag_history_v1`
 App.stor_first_time_name = `first_time_v1`
 
 App.modes = [`tabs`, `history`, `bookmarks`, `closed`]
@@ -37,6 +38,7 @@ App.backgrounds_dir = `/img/backgrounds/`
 App.num_backgrounds = 3
 App.number_min = 1
 App.number_max = 99999
+App.tag_history_max = 10
 App.active_history = []
 App.sizes = [
   {text: `Tiny`, value: `tiny`},

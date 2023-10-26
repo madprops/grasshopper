@@ -126,8 +126,15 @@
     </template>
 
     <template id="template_prompt">
-      <input type="text" id="prompt_input" class="prompt_input text" list="prompt_list">
-      <input type="text" id="prompt_input_2" class="prompt_input text hidden" list="prompt_list">
+      <div id="prompt_container" class="flex_row_center gap_1">
+        <input type="text" id="prompt_input_1" class="prompt_input text" list="prompt_suggestions">
+        <div id="prompt_list" class="button">😀</div>
+      </div>
+
+      <div id="prompt_container_2" class="flex_row_center gap_1">
+        <input type="text" id="prompt_input_2" class="prompt_input text hidden" list="prompt_suggestions">
+        <div id="prompt_list_2" class="button">😀</div>
+      </div>
 
       <div class="flex_row_center gap_2">
         <div id="prompt_clear" class="button button_2">Clear</div>
@@ -135,7 +142,7 @@
       </div>
     </template>
 
-    <datalist id="prompt_list"></datalist>
+    <datalist id="prompt_suggestions"></datalist>
     <script src="js/init.js"></script>
   </body>
 </html>
