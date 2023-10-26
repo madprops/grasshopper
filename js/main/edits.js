@@ -153,7 +153,7 @@ App.apply_edit = (what, item, value) => {
     item[`custom_${what}`] = value
   }
 
-  if (what === `tags`) {
+  if (what === `tags` && value) {
     if (App.get_setting(`sort_tags`)) {
       item.custom_tags.sort()
     }
