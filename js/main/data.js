@@ -3,30 +3,34 @@ App.export_data = (obj) => {
 }
 
 App.import_data = (action) => {
-  App.show_input(`Paste data text here`, `Import`, (text) => {
-    if (!text.trim()) {
+  App.show_input({
+    message: `Paste data text here`,
+    button: `Import`,
+    action: (text) => {
+      if (!text.trim()) {
+        return true
+      }
+
+      let json
+
+      try {
+        json = App.obj(text)
+      }
+      catch (err) {
+        App.alert(`${err}`)
+        return false
+      }
+
+      if (json) {
+        App.show_confirm({
+          message: `Use this data?`,
+          confirm_action: () => {
+            action(json)
+          },
+        })
+      }
+
       return true
-    }
-
-    let json
-
-    try {
-      json = App.obj(text)
-    }
-    catch (err) {
-      App.alert(`${err}`)
-      return false
-    }
-
-    if (json) {
-      App.show_confirm({
-        message: `Use this data?`,
-        confirm_action: () => {
-          action(json)
-        },
-      })
-    }
-
-    return true
+    },
   })
 }

@@ -1106,34 +1106,38 @@ App.do_sort_tabs = () => {
 }
 
 App.open_tab_urls = () => {
-  App.show_input(`Open URLs`, `Open`, (text) => {
-    let urls = text.split(`\n`).map(x => x.trim()).filter(x => x !== ``)
-    let to_open = []
+  App.show_input({
+    message: `Open URLs`,
+    button: `Open`,
+    action: (text) => {
+      let urls = text.split(`\n`).map(x => x.trim()).filter(x => x !== ``)
+      let to_open = []
 
-    if (urls.length) {
-      for (let url of urls) {
-        if (App.is_url(url)) {
-          if (App.get_item_by_url(`tabs`, url)) {
-            continue
+      if (urls.length) {
+        for (let url of urls) {
+          if (App.is_url(url)) {
+            if (App.get_item_by_url(`tabs`, url)) {
+              continue
+            }
+
+            to_open.push(url)
           }
-
-          to_open.push(url)
         }
       }
-    }
 
-    if (to_open.length) {
-      App.show_confirm({
-        message: `Open URLs? (${to_open.length})`,
-        confirm_action: () => {
-          for (let url of to_open) {
-            App.open_tab({url: url})
-          }
-        },
-      })
-    }
+      if (to_open.length) {
+        App.show_confirm({
+          message: `Open URLs? (${to_open.length})`,
+          confirm_action: () => {
+            for (let url of to_open) {
+              App.open_tab({url: url})
+            }
+          },
+        })
+      }
 
-    return true
+      return true
+    },
   })
 }
 

@@ -146,6 +146,12 @@ App.settings_setup_texts = (category) => {
       },
     ]
 
+    menu.push({
+      name: `Edit`,  action: () => {
+        App.edit_text_setting(key)
+      },
+    })
+
     if (!props.no_empty) {
       menu.push({
         name: `Clear`,  action: () => {
@@ -1175,4 +1181,21 @@ App.do_pick_background = (num) => {
 
 App.background_path = (num) => {
   return App.backgrounds_dir + `background_${num}.jpg`
+}
+
+App.edit_text_setting = (setting) => {
+  let props = App.setting_props[setting]
+
+  App.show_input({
+    message: props.name,
+    button: `Save`,
+    action: (text) => {
+      if (!text.trim()) {
+        return true
+      }
+
+      console.log(text)
+      return true
+    },
+  })
 }

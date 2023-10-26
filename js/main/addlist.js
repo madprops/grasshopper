@@ -793,16 +793,21 @@ Addlist.edit_all = (id) => {
   let sett = Addlist.get_data(id)
   let value = App.str(sett, true)
 
-  App.show_input(id, `Save`, (text) => {
-    try {
-      Addlist.after(id, App.obj(text))
-      return true
-    }
-    catch (err) {
-      App.alert(`${err}`)
-      return false
-    }
-  }, value)
+  App.show_input({
+    message: id,
+    button: `Save`,
+    action: (text) => {
+      try {
+        Addlist.after(id, App.obj(text))
+        return true
+      }
+      catch (err) {
+        App.alert(`${err}`)
+        return false
+      }
+    },
+    value: value,
+  })
 }
 
 Addlist.update_count = (id) => {
