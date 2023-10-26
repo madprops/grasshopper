@@ -117,7 +117,7 @@ App.mouse_click_action = (mode, e) => {
       }
     }
 
-    if (App.get_setting(`taglist`) !== `none`) {
+    if (App.taglist_active()) {
       if (e.target.classList.contains(`taglist_item`)) {
         App.taglist_action(e, item)
         return
@@ -194,7 +194,7 @@ App.mouse_context_action = (mode, e) => {
     }
   }
 
-  if (App.get_setting(`taglist`) !== `none`) {
+  if (App.taglist_active()) {
     if (e.target.classList.contains(`taglist_item`)) {
       App.show_taglist_menu(e, item)
       return
@@ -227,7 +227,7 @@ App.mouse_middle_action = (mode, e) => {
     return
   }
 
-  if (App.get_setting(`taglist`) !== `none`) {
+  if (App.taglist_active()) {
     if (e.target.classList.contains(`taglist_item`)) {
       App.taglist_remove(e, item)
       return

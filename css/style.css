@@ -1148,10 +1148,6 @@ a:visited, a:link, a:hover {
   gap: 0.8rem;
 }
 
-.taglist > div:hover {
-  text-shadow: var(--text_glow);
-}
-
 .taglist_item {
   text-decoration: underline;
 }

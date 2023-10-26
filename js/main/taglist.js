@@ -8,23 +8,32 @@ App.check_taglist = (item) => {
   }
 
   let taglist = DOM.el(`.taglist`, item.element)
+  let mode = App.get_setting(`taglist_mode`)
 
   if (!item.custom_tags || !item.custom_tags.length) {
     taglist.classList.add(`hidden`)
   }
   else {
     taglist.innerHTML = ``
+    let item_cls = `taglist_item`
+
+    if (mode !== `none`) {
+      item_cls += ` action`
+    }
 
     for (let tag of item.custom_tags) {
-      let item = DOM.create(`div`, `taglist_item`)
+      let item = DOM.create(`div`, item_cls)
       item.textContent = tag
       taglist.append(item)
     }
 
-    let plus = DOM.create(`div`, `taglist_add`)
-    plus.textContent = `+`
-    plus.title = `Add Tag`
-    taglist.append(plus)
+    if (mode !== `none`) {
+      let plus = DOM.create(`div`, `taglist_add action`)
+      plus.textContent = `+`
+      plus.title = `Add Tag`
+      taglist.append(plus)
+    }
+
     taglist.classList.remove(`hidden`)
   }
 }
@@ -85,4 +94,16 @@ App.show_taglist_menu = (e, item) => {
 App.taglist_remove = (e, item) => {
   let tag = e.target.textContent
   App.remove_tag(item, tag)
+}
+
+App.taglist_active = () => {
+  if (App.get_setting(`taglist`) === `none`) {
+    return false
+  }
+
+  if (App.get_setting(`taglist_mode`) === `none`) {
+    return false
+  }
+
+  return true
 }
