@@ -336,7 +336,7 @@ App.setup_commands = () => {
       item: true,
       icon: command_icon,
       action: (args) => {
-        App.show_item_menu_2(args.item)
+        App.show_item_menu({item: args.item, e: args.e})
       },
       info: `Show the item menu`
     },
@@ -1427,7 +1427,8 @@ App.cmd_item = (args = {}) => {
       App.run_command({
         cmd: cmd.cmd,
         item: args.item,
-        from: args.from
+        from: args.from,
+        e: args.e,
       })
     },
     direct: true,

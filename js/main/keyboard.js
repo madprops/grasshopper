@@ -124,7 +124,7 @@ App.check_items_keyboard = (e) => {
 
   if (e.shiftKey && !e.ctrlKey) {
     if (e.key === `Enter`) {
-      App.show_item_menu_2(item)
+      App.show_item_menu({item: item})
       e.preventDefault()
       return
     }

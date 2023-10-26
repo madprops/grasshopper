@@ -4,6 +4,7 @@ App.show_item_menu = async (args = {}) => {
   }
 
   App.command_item = args.item
+  App.item_menu_args = args
   let active = App.get_active_items({mode: args.item.mode, item: args.item})
   let multiple = active.length > 1
   let items = []
@@ -91,15 +92,6 @@ App.show_item_menu = async (args = {}) => {
   }
 
   App.show_center_context(items, args.e)
-}
-
-App.show_item_menu_2 = (item) => {
-  if (!item) {
-    return
-  }
-
-  let rect = item.element.getBoundingClientRect()
-  App.show_item_menu({item: item, x: rect.left, y: rect.top})
 }
 
 App.common_menu_items = (o_items, item, multiple) => {
@@ -238,5 +230,6 @@ App.filter_menu_items = (item) => {
 
 App.item_menu_item = (obj) => {
   obj.from = `item_menu`
+  obj.e = App.item_menu_args.e
   return App.cmd_item(obj)
 }
