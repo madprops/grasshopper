@@ -1437,12 +1437,12 @@ App.cmd_item = (args = {}) => {
   return {
     icon: cmd.icon,
     text: name,
-    action: () => {
+    action: (e) => {
       App.run_command({
         cmd: cmd.cmd,
         item: args.item,
         from: args.from,
-        e: args.e,
+        e: e,
       })
     },
     direct: true,
