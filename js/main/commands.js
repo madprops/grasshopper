@@ -920,7 +920,7 @@ App.setup_commands = () => {
       item: true,
       icon: tag_icon,
       action: (args) => {
-        App.pick_tag(args.item)
+        App.pick_tag(args.item, args.e)
       },
       info: `Add a tag by selecting from a quick list`
     },

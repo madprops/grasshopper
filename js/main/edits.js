@@ -652,7 +652,7 @@ App.push_to_tag_history = (tags) => {
   App.stor_save_tag_history()
 }
 
-App.pick_tag = (item) => {
+App.pick_tag = (item, e) => {
   let items = []
 
   for (let tag of App.tag_history) {
@@ -668,5 +668,5 @@ App.pick_tag = (item) => {
     })
   }
 
-  App.show_center_context(items)
+  App.show_center_context(items, e)
 }

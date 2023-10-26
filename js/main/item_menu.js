@@ -64,7 +64,19 @@ App.show_item_menu = async (args = {}) => {
       })
 
       items.push(App.item_menu_item({cmd: `edit_title`, item: args.item}))
-      items.push(App.item_menu_item({cmd: `edit_tags`, item: args.item}))
+
+      items.push({
+        icon: App.tag_icon,
+        text: `Tags`,
+        get_items: () => {
+          return [
+            App.item_menu_item({cmd: `edit_tags`, item: args.item, short: false}),
+            App.item_menu_item({cmd: `add_tags`, item: args.item, short: false}),
+            App.item_menu_item({cmd: `pick_tag`, item: args.item, short: false}),
+          ]
+        }
+      })
+
       App.common_menu_items(items, args.item, multiple)
       App.extra_menu_items(items)
       App.more_menu_items(items, args.item, multiple, some_loaded, some_unmuted, some_muted)
