@@ -56,14 +56,7 @@ App.show_item_menu = async (args = {}) => {
         items.push(App.item_menu_item({cmd: `unpin_tabs`, item: args.item}))
       }
 
-      items.push({
-        icon: App.settings_icons.colors,
-        text: `Color`,
-        get_items: () => {
-          return App.color_menu_items(args.item)
-        }
-      })
-
+      items.push(App.item_menu_item({cmd: `show_color_menu`, item: args.item}))
       items.push(App.item_menu_item({cmd: `edit_title`, item: args.item}))
 
       items.push({
