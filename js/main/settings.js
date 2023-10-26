@@ -1183,17 +1183,20 @@ App.background_path = (num) => {
   return App.backgrounds_dir + `background_${num}.jpg`
 }
 
-App.edit_text_setting = (setting) => {
-  let props = App.setting_props[setting]
+App.edit_text_setting = (key) => {
+  let props = App.setting_props[key]
+  let el = DOM.el(`#settings_${key}`)
 
   App.show_input({
     message: props.name,
     button: `Save`,
     action: (text) => {
       let value = text.trim()
-      App.set_setting(setting, value)
+      App.set_setting(key, value)
+      el.value = App.get_setting(key)
+      App.scroll_to_top(el)
       return true
     },
-    value: App.get_setting(setting),
+    value: App.get_setting(key),
   })
 }
