@@ -106,7 +106,7 @@ App.remove_edits = (args = {}) => {
   }
 
   App.show_confirm({
-    message: `Remove all edits? (${args.what}) (${args.items.length})`,
+    message: `Remove edits? (${args.what}) (${args.items.length})`,
     confirm_action: () => {
       for (let item of args.items) {
         App.apply_edit(args.what, item, undefined)
