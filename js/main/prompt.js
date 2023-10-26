@@ -100,6 +100,10 @@ App.prompt_clear = () => {
 App.show_prompt_list = (num, e) => {
   let list
   let items = []
+  let input = DOM.el(`#prompt_input_${num}`)
+  let words = input.value.split(` `).map(x => x.trim())
+  let args = App.prompt_args
+  let valid = []
 
   if (num === 1) {
     list = App.prompt_args.list
@@ -109,12 +113,19 @@ App.show_prompt_list = (num, e) => {
   }
 
   for (let item of list) {
+    if (words.includes(item)) {
+      continue
+    }
+
+    valid.push(item)
+  }
+
+  for (let item of valid) {
     items.push({
       text: item,
       action: () => {
-        let input = DOM.el(`#prompt_input_${num}`)
         input.value += ` ${item}`
-        input.value = input.value.trim()
+        input.value = App.single_space(input.value).trim()
       },
     })
   }
