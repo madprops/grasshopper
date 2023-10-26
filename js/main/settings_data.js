@@ -1553,12 +1553,11 @@ App.build_settings = () => {
         ])
 
         App.settings_make_menu(`taglist_mode`, [
+          {text: `None`, value: `none`},
           {text: `Menu`, value: `menu`},
-          {text: `Filter`, value: `filter`},
           {text: `Edit`, value: `edit`},
-          {text: `Replace`, value: `replace`},
+          {text: `Filter`, value: `filter`},
           {text: `Remove`, value: `remove`},
-          {text: `Add`, value: `add`},
         ])
       },
     },

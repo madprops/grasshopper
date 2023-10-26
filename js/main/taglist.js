@@ -43,17 +43,11 @@ App.taglist_action = (e, item) => {
   else if (mode === `menu`) {
     App.show_taglist_menu(e, item)
   }
+  else if (mode === `edit`) {
+    App.edit_tag(item, tag)
+  }
   else if (mode === `filter`) {
     App.taglist_filter(item, tag)
-  }
-  else if (mode === `edit`) {
-    App.edit_tags(item)
-  }
-  else if (mode === `replace`) {
-    App.replace_tag(tag)
-  }
-  else if (mode === `add`) {
-    App.add_tags(item)
   }
   else if (mode === `remove`) {
     App.remove_tag(item, tag)
@@ -65,30 +59,16 @@ App.show_taglist_menu = (e, item) => {
   let tag = e.target.textContent
 
   items.push({
-    text: `Filter Tag`,
+    text: `Edit`,
+    action: () => {
+      App.edit_tag(item, tag)
+    },
+  })
+
+  items.push({
+    text: `Filter`,
     action: () => {
       App.set_filter({mode: item.mode, text: `tag: ${tag}`})
-    },
-  })
-
-  items.push({
-    text: `Edit Tags`,
-    action: () => {
-      App.edit_tags(item)
-    },
-  })
-
-  items.push({
-    text: `Add Tag`,
-    action: () => {
-      App.add_tags(item)
-    },
-  })
-
-  items.push({
-    text: `Replace`,
-    action: () => {
-      App.replace_tag(tag)
     },
   })
 
@@ -96,13 +76,6 @@ App.show_taglist_menu = (e, item) => {
     text: `Remove`,
     action: () => {
       App.remove_tag(item, tag)
-    },
-  })
-
-  items.push({
-    text: `Remove All`,
-    action: () => {
-      App.remove_item_tags(item)
     },
   })
 

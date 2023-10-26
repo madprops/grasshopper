@@ -572,6 +572,10 @@ App.do_replace_tag = (tag_1, tag_2) => {
     return
   }
 
+  if (tag_1 === tag_2) {
+    return
+  }
+
   for (let item of App.get_items(`tabs`)) {
     if (item.custom_tags) {
       if (item.custom_tags.includes(tag_1)) {
@@ -581,4 +585,30 @@ App.do_replace_tag = (tag_1, tag_2) => {
       }
     }
   }
+}
+
+App.edit_tag = (item, tag) => {
+  App.show_prompt({
+    suggestions: App.get_all_tags(),
+    placeholder: `New Tag`,
+    value: tag,
+    on_submit: (ans) => {
+      App.do_edit_tag(item, tag, ans)
+    },
+  })
+}
+
+App.do_edit_tag = (item, tag_1, tag_2) => {
+  if (tag_1.includes(` `) || tag_2.includes(` `)) {
+    return
+  }
+
+  if (tag_1 === tag_2) {
+    return
+  }
+
+  item.custom_tags = item.custom_tags.filter(x => x !== tag_1)
+  item.custom_tags.push(tag_2)
+  App.apply_edit(`tags`, item, item.custom_tags)
+  App.custom_save(item.id, `custom_tags`, item.custom_tags)
 }
