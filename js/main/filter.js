@@ -862,3 +862,7 @@ App.filter_tagged = (mode) => {
 App.filter_edited = (mode) => {
   App.set_filter_mode({mode: mode, type: `edited`})
 }
+
+App.filter_tag = (mode, tag) => {
+  App.set_filter({mode: mode, text: `tag: ${tag}`})
+}

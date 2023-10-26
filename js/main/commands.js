@@ -1039,9 +1039,9 @@ App.setup_commands = () => {
       cmd: `filter_tag`,
       modes: [`items`],
       item: true,
-      icon: theme_icon,
+      icon: tag_icon,
       action: (args) => {
-        App.filter_tag(args.item)
+        App.filter_tag_pick(args.item, args.e)
       },
       info: `Filter by picking a tab`
     },

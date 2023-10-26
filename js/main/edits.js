@@ -671,6 +671,25 @@ App.pick_tag = (item, e) => {
   App.show_center_context(items, e)
 }
 
-App.filter_tag = () => {
+App.filter_tag_pick = (item, e) => {
+  if (!item.custom_tags || !item.custom_tags.length) {
+    return
+  }
 
+  let items = []
+
+  for (let tag of App.tag_history) {
+    if (!item.custom_tags.includes(tag)) {
+      continue
+    }
+
+    items.push({
+      text: tag,
+      action: () => {
+        App.filter_tag(item.mode, tag)
+      },
+    })
+  }
+
+  App.show_center_context(items, e)
 }

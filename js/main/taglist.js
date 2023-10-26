@@ -39,7 +39,7 @@ App.check_taglist = (item) => {
 }
 
 App.taglist_filter = (item, tag) => {
-  App.set_filter({mode: item.mode, text: `tag: ${tag}`})
+  App.filter_tag(item.mode, tag)
 }
 
 App.taglist_action = (e, item) => {
@@ -77,7 +77,7 @@ App.show_taglist_menu = (e, item) => {
   items.push({
     text: `Filter`,
     action: () => {
-      App.set_filter({mode: item.mode, text: `tag: ${tag}`})
+      App.filter_tag(item.mode, tag)
     },
   })
 
