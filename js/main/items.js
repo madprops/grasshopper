@@ -643,11 +643,20 @@ App.create_item_element = (item) => {
   let text = DOM.create(`div`, `item_text`)
   let text_1 = DOM.create(`div`, `item_text_1`)
   let text_2 = DOM.create(`div`, `item_text_2 hidden`)
-  let taglist = DOM.create(`div`, `taglist hidden`)
+  let taglist
+
+  if (App.get_setting(`taglist`) !== `none`) {
+    taglist = App.create_taglist()
+  }
+
   text.append(text_1)
   text.append(text_2)
   content.append(text)
-  content.append(taglist)
+
+  if (taglist) {
+    content.append(taglist)
+  }
+
   item.element.append(content)
   App.set_item_text(item)
   App.check_taglist(item)

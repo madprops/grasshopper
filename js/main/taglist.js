@@ -1,3 +1,7 @@
+App.create_taglist = () => {
+  return DOM.create(`div`, `taglist hidden`)
+}
+
 App.check_taglist = (item) => {
   if (App.get_setting(`taglist`) === `none`) {
     return
