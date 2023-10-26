@@ -1501,10 +1501,6 @@ App.build_settings = () => {
         }
       },
     },
-    icons: {
-      info: `Customize the icons of items. You can leave them empty`,
-      setup: () => {},
-    },
     show: {
       info: `Hide or show interface components. Set component behavior`,
       setup: () => {
@@ -1564,6 +1560,10 @@ App.build_settings = () => {
           {text: `Remove`, value: `remove`},
         ])
       },
+    },
+    icons: {
+      info: `Customize the icons of items. You can leave them empty`,
+      setup: () => {},
     },
     filter: {
       info: `Adjust the filter and search`,
