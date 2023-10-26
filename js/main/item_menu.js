@@ -159,14 +159,7 @@ App.more_menu_items = (o_items, item, multiple, some_loaded, some_unmuted, some_
 
     items.push(App.item_menu_item({cmd: `move_tabs_to_top`, item: item}))
     items.push(App.item_menu_item({cmd: `move_tabs_to_bottom`, item: item}))
-
-    items.push({
-      icon: App.command_icon,
-      text: `To Window`,
-      get_items: async () => {
-        return await App.get_window_menu_items(item)
-      }
-    })
+    items.push(App.item_menu_item({cmd: `show_windows_menu`, item: item}))
   }
 
   if (item.mode === `closed`) {
