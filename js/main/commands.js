@@ -37,7 +37,7 @@ App.setup_commands = () => {
     action: (args) => {
       App.filter_color(args.mode, `all`)
     },
-    info: `Filter: Show all colors`
+    info: `Filter: Show all colors`,
   })
 
   for (let color of App.colors) {
@@ -53,7 +53,7 @@ App.setup_commands = () => {
       action: (args) => {
         App.filter_color(args.mode, color)
       },
-      info: `Filter tabs with this color (${color})`
+      info: `Filter tabs with this color (${color})`,
     })
 
     icon = App.color_icon(color)
@@ -68,7 +68,7 @@ App.setup_commands = () => {
       action: (args) => {
         App.edit_tab_color({item: args.item, color: color})
       },
-      info: `Add a custom color to tabs (${color})`
+      info: `Add a custom color to tabs (${color})`,
     })
 
     icon = App.color_icon(color)
@@ -83,7 +83,7 @@ App.setup_commands = () => {
       action: (args) => {
         App.edit_tab_color({item: args.item, color: color, toggle: true})
       },
-      info: `Toggle color on or off (${color})`
+      info: `Toggle color on or off (${color})`,
     })
 
     icon = theme_icon
@@ -97,7 +97,7 @@ App.setup_commands = () => {
       action: (args) => {
         App.remove_color(color)
       },
-      info: `Remove color from tabs (${color})`
+      info: `Remove color from tabs (${color})`,
     })
 
     icon = App.close_icon
@@ -111,7 +111,7 @@ App.setup_commands = () => {
       action: (args) => {
         App.close_color(color)
       },
-      info: `Close tabs with this color (${color})`
+      info: `Close tabs with this color (${color})`,
     })
   }
 
@@ -123,7 +123,8 @@ App.setup_commands = () => {
     icon: filter_icon,
     action: (args) => {
       App.show_filter_color_menu(args.mode, args.e)
-    }, info: `Show the filter color menu`
+    },
+    info: `Show the filter color menu`,
   })
 
   color_changers.push({
@@ -134,7 +135,8 @@ App.setup_commands = () => {
     icon: theme_icon,
     action: (args) => {
       App.show_color_menu(args.item, args.e)
-    }, info: `Show the colors menu`
+    },
+    info: `Show the colors menu`,
   })
 
   color_removers.push({
@@ -146,7 +148,7 @@ App.setup_commands = () => {
     action: (args) => {
       App.edit_tab_color({item: args.item})
     },
-    info: `Remove the custom color of tabs`
+    info: `Remove the custom color of tabs`,
   })
 
   color_removers.push({
@@ -158,7 +160,7 @@ App.setup_commands = () => {
     action: (args) => {
       App.remove_edits({what: `color`})
     },
-    info: `Remove all colors from tabs`
+    info: `Remove all colors from tabs`,
   })
 
   color_closers.push({
@@ -169,7 +171,8 @@ App.setup_commands = () => {
     icon: close_icon,
     action: (args) => {
       App.show_close_color_menu(args.item, args.e)
-    }, info: `Show the close color menu`
+    },
+    info: `Show the close color menu`,
   })
 
   let media_filters = []
@@ -186,7 +189,7 @@ App.setup_commands = () => {
       action: (args) => {
         App.set_filter_mode({mode: args.mode, type: media})
       },
-      info: `Filter: Show media items (${media})`
+      info: `Filter: Show media items (${media})`,
     })
   }
 
@@ -203,7 +206,7 @@ App.setup_commands = () => {
       action: (args) => {
         App.show_mode({mode: mode})
       },
-      info: `Show mode: ${mode}`
+      info: `Show mode: ${mode}`,
     })
   }
 
@@ -216,7 +219,7 @@ App.setup_commands = () => {
       action: (args) => {
         App.goto_top()
       },
-      info: `Go to the top of the list`
+      info: `Go to the top of the list`,
     },
     {
       name: `Go To Bottom`,
@@ -226,7 +229,7 @@ App.setup_commands = () => {
       action: (args) => {
         App.goto_bottom()
       },
-      info: `Go to the bottom of the list`
+      info: `Go to the bottom of the list`,
     },
     {
       name: `Step Back`,
@@ -236,7 +239,7 @@ App.setup_commands = () => {
       action: (args) => {
         App.step_back()
       },
-      info: `Trigger the back button`
+      info: `Trigger the back button`,
     },
     {
       name: `Recent Tabs`,
@@ -246,7 +249,7 @@ App.setup_commands = () => {
       action: (args) => {
         App.show_recent_tabs()
       },
-      info: `Show the recent previous tabs`
+      info: `Show the recent previous tabs`,
     },
     {
       name: `Select All`,
@@ -256,7 +259,7 @@ App.setup_commands = () => {
       action: (args) => {
         App.select_all(args.mode, true)
       },
-      info: `Select all items`
+      info: `Select all items`,
     },
     {
       name: App.separator_string
@@ -269,7 +272,7 @@ App.setup_commands = () => {
       action: (args) => {
         App.cycle_modes(true)
       },
-      info: `Go to the previous mode`
+      info: `Go to the previous mode`,
     },
     {
       name: `Next Mode`,
@@ -279,7 +282,7 @@ App.setup_commands = () => {
       action: (args) => {
         App.cycle_modes()
       },
-      info: `Go to the next mode`
+      info: `Go to the next mode`,
     },
 
     ...show_modes,
@@ -291,7 +294,7 @@ App.setup_commands = () => {
       action: (args) => {
         App.show_primary_mode()
       },
-      info: `Show the primary mode`
+      info: `Show the primary mode`,
     },
     {
       name: `Show Settings`,
@@ -300,7 +303,7 @@ App.setup_commands = () => {
       action: (args) => {
         App.show_settings()
       },
-      info: `Show the settings`
+      info: `Show the settings`,
     },
     {
       name: `Show About`,
@@ -309,7 +312,7 @@ App.setup_commands = () => {
       action: (args) => {
         App.show_about()
       },
-      info: `Show the about window`
+      info: `Show the about window`,
     },
     {
       name: `Show Palette`,
@@ -318,7 +321,7 @@ App.setup_commands = () => {
       action: (args) => {
         App.show_palette()
       },
-      info: `Show the palette`
+      info: `Show the palette`,
     },
     {
       name: `Toggle Header`,
@@ -327,7 +330,7 @@ App.setup_commands = () => {
       action: (args) => {
         App.toggle_header()
       },
-      info: `Show or hide the header`
+      info: `Show or hide the header`,
     },
     {
       name: `Item Menu`,
@@ -338,7 +341,7 @@ App.setup_commands = () => {
       action: (args) => {
         App.show_item_menu({item: args.item, e: args.e})
       },
-      info: `Show the item menu`
+      info: `Show the item menu`,
     },
     {
       name: `Favorites`,
@@ -349,7 +352,7 @@ App.setup_commands = () => {
       action: (args) => {
         App.show_favorites_menu(args.item)
       },
-      info: `Show the favorites menu`
+      info: `Show the favorites menu`,
     },
     {
       name: `Filter All`,
@@ -359,7 +362,7 @@ App.setup_commands = () => {
       action: (args) => {
         App.filter_all(args.mode)
       },
-      info: `Filter: Show all items`
+      info: `Filter: Show all items`,
     },
     {
       name: App.separator_string
@@ -373,7 +376,7 @@ App.setup_commands = () => {
       action: (args) => {
         App[`${args.mode}_action`](args.item)
       },
-      info: `Trigger the action for the selected item`
+      info: `Trigger the action for the selected item`,
     },
     {
       name: `Open`,
@@ -384,7 +387,7 @@ App.setup_commands = () => {
       action: (args) => {
         App.open_items(args.item, true)
       },
-      info: `Open items`
+      info: `Open items`,
     },
     {
       name: `View`,
@@ -395,7 +398,7 @@ App.setup_commands = () => {
       action: (args) => {
         App.view_media(args.item)
       },
-      info: `View media item`
+      info: `View media item`,
     },
     {
       name: `Bookmark`,
@@ -406,7 +409,7 @@ App.setup_commands = () => {
       action: (args) => {
         App.bookmark_items(args.item)
       },
-      info: `Bookmark this item`
+      info: `Bookmark this item`,
     },
     {
       name: `Bookmark Page`,
@@ -416,7 +419,7 @@ App.setup_commands = () => {
       action: (args) => {
         App.bookmark_active(args.item)
       },
-      info: `Bookmark the current page`
+      info: `Bookmark the current page`,
     },
     {
       name: `Copy URL`,
@@ -427,7 +430,7 @@ App.setup_commands = () => {
       action: (args) => {
         App.copy_url(args.item)
       },
-      info: `Copy the URL of an item`
+      info: `Copy the URL of an item`,
     },
     {
       name: `Copy Title`,
@@ -438,7 +441,7 @@ App.setup_commands = () => {
       action: (args) => {
         App.copy_title(args.item)
       },
-      info: `Copy the title of an item`
+      info: `Copy the title of an item`,
     },
     {
       name: App.separator_string
@@ -450,7 +453,7 @@ App.setup_commands = () => {
       action: (args) => {
         App.browser_back()
       },
-      info: `Go back in browser history`
+      info: `Go back in browser history`,
     },
     {
       name: `Go Forward`,
@@ -459,7 +462,7 @@ App.setup_commands = () => {
       action: (args) => {
         App.browser_forward()
       },
-      info: `Go forward in browser history`
+      info: `Go forward in browser history`,
     },
     {
       name: `Reload Page`,
@@ -468,7 +471,7 @@ App.setup_commands = () => {
       action: (args) => {
         App.browser_reload()
       },
-      info: `Reload the current page`
+      info: `Reload the current page`,
     },
     {
       name: `Browser Menu`,
@@ -477,7 +480,7 @@ App.setup_commands = () => {
       action: (args) => {
         App.show_browser_menu(args.e)
       },
-      info: `Show the browser menu`
+      info: `Show the browser menu`,
     },
     {
       name: App.separator_string
@@ -489,7 +492,7 @@ App.setup_commands = () => {
       action: (args) => {
         App.new_tab()
       },
-      info: `Open a new tab`
+      info: `Open a new tab`,
     },
     {
       name: `Unload`,
@@ -500,7 +503,7 @@ App.setup_commands = () => {
       action: (args) => {
         App.unload_tabs(args.item)
       },
-      info: `Unload tabs`
+      info: `Unload tabs`,
     },
     {
       name: `Unload Others`,
@@ -511,7 +514,7 @@ App.setup_commands = () => {
       action: (args) => {
         App.unload_other_tabs(args.item)
       },
-      info: `Unload all tabs except the active one`
+      info: `Unload all tabs except the active one`,
     },
     {
       name: `Load`,
@@ -522,7 +525,7 @@ App.setup_commands = () => {
       action: (args) => {
         App.load_tabs(args.item)
       },
-      info: `Load tabs that are unloaded`
+      info: `Load tabs that are unloaded`,
     },
     {
       name: `Duplicate`,
@@ -533,7 +536,7 @@ App.setup_commands = () => {
       action: (args) => {
         App.duplicate_tabs(args.item)
       },
-      info: `Duplicate tabs`
+      info: `Duplicate tabs`,
     },
     {
       name: `Detach`,
@@ -544,7 +547,7 @@ App.setup_commands = () => {
       action: (args) => {
         App.detach_tabs(args.item)
       },
-      info: `Detach tabs to another window`
+      info: `Detach tabs to another window`,
     },
     {
       name: `To Window`,
@@ -555,7 +558,7 @@ App.setup_commands = () => {
       action: (args) => {
         App.to_window(args.item)
       },
-      info: `Detach tabs to another window`
+      info: `Detach tabs to another window`,
     },
     {
       name: `Move To Top`,
@@ -567,7 +570,7 @@ App.setup_commands = () => {
       action: (args) => {
         App.move_tabs_vertically(`top`, args.item)
       },
-      info: ``
+      info: ``,
     },
     {
       name: `Move To Bottom`,
@@ -579,7 +582,7 @@ App.setup_commands = () => {
       action: (args) => {
         App.move_tabs_vertically(`bottom`, args.item)
       },
-      info: `Move tabs to the top`
+      info: `Move tabs to the top`,
     },
     {
       name: `Pin`,
@@ -590,7 +593,7 @@ App.setup_commands = () => {
       action: (args) => {
         App.pin_tabs(args.item)
       },
-      info: `Pin tabs`
+      info: `Pin tabs`,
     },
     {
       name: `Unpin`,
@@ -601,7 +604,7 @@ App.setup_commands = () => {
       action: (args) => {
         App.unpin_tabs(args.item)
       },
-      info: `Unpin tabs`
+      info: `Unpin tabs`,
     },
     {
       name: `Toggle Pin`,
@@ -612,7 +615,7 @@ App.setup_commands = () => {
       action: (args) => {
         App.toggle_pin_tabs(args.item)
       },
-      info: `Pin or unpin tabs`
+      info: `Pin or unpin tabs`,
     },
     {
       name: `Mute`,
@@ -623,7 +626,7 @@ App.setup_commands = () => {
       action: (args) => {
         App.mute_tabs(args.item)
       },
-      info: `Mute tabs`
+      info: `Mute tabs`,
     },
     {
       name: `Unmute`,
@@ -634,7 +637,7 @@ App.setup_commands = () => {
       action: (args) => {
         App.unmute_tabs(args.item)
       },
-      info: `Unmite tabs`
+      info: `Unmite tabs`,
     },
     {
       name: `Toggle Mute`,
@@ -645,7 +648,7 @@ App.setup_commands = () => {
       action: (args) => {
         App.toggle_mute_tabs(args.item)
       },
-      info: `Mute or unmute tabs`
+      info: `Mute or unmute tabs`,
     },
     {
       name: `Close`,
@@ -656,7 +659,7 @@ App.setup_commands = () => {
       action: (args) => {
         App.close_tabs(args.item)
       },
-      info: `Close tabs`
+      info: `Close tabs`,
     },
     {
       name: `Close Menu`,
@@ -666,7 +669,7 @@ App.setup_commands = () => {
       action: (args) => {
         App.show_close_tabs_menu(args.e)
       },
-      info: `Open the menu with some tab closing options`
+      info: `Open the menu with some tab closing options`,
     },
     {
       name: `Close Normal`,
@@ -676,7 +679,7 @@ App.setup_commands = () => {
       action: (args) => {
         App.close_tabs_popup(`normal`)
       },
-      info: `Close normal tabs`
+      info: `Close normal tabs`,
     },
     {
       name: `Close Playing`,
@@ -686,7 +689,7 @@ App.setup_commands = () => {
       action: (args) => {
         App.close_tabs_popup(`playing`)
       },
-      info: `Close playing tabs`
+      info: `Close playing tabs`,
     },
     {
       name: `Close Loaded`,
@@ -696,7 +699,7 @@ App.setup_commands = () => {
       action: (args) => {
         App.close_tabs_popup(`loaded`)
       },
-      info: `Close loaded tabs`
+      info: `Close loaded tabs`,
     },
     {
       name: `Close Unloaded`,
@@ -706,7 +709,7 @@ App.setup_commands = () => {
       action: (args) => {
         App.close_tabs_popup(`unloaded`)
       },
-      info: `Close unloaded tabs`
+      info: `Close unloaded tabs`,
     },
     {
       name: `Close Duplicate`,
@@ -716,7 +719,7 @@ App.setup_commands = () => {
       action: (args) => {
         App.close_tabs_popup(`duplicate`)
       },
-      info: `Close duplicate tabs`
+      info: `Close duplicate tabs`,
     },
     {
       name: `Close Visible`,
@@ -726,7 +729,7 @@ App.setup_commands = () => {
       action: (args) => {
         App.close_tabs_popup(`visible`)
       },
-      info: `Close visible tabs`
+      info: `Close visible tabs`,
     },
     {
       name: `Close Others`,
@@ -737,7 +740,7 @@ App.setup_commands = () => {
       action: (args) => {
         App.close_tabs_popup(`other`, args.item)
       },
-      info: `Close other tabs`
+      info: `Close other tabs`,
     },
 
     ...color_closers,
@@ -749,7 +752,7 @@ App.setup_commands = () => {
       action: (args) => {
         App.go_to_playing_tab()
       },
-      info: `Go the tab emitting sound`
+      info: `Go the tab emitting sound`,
     },
     {
       name: `Sort`,
@@ -759,7 +762,7 @@ App.setup_commands = () => {
       action: (args) => {
         App.sort_tabs()
       },
-      info: `Open the sort tabs window`
+      info: `Open the sort tabs window`,
     },
     {
       name: `Show Info`,
@@ -769,7 +772,7 @@ App.setup_commands = () => {
       action: (args) => {
         App.show_tabs_info()
       },
-      info: `Show some tab info`
+      info: `Show some tab info`,
     },
     {
       name: `Show URLs`,
@@ -779,7 +782,7 @@ App.setup_commands = () => {
       action: (args) => {
         App.show_tab_urls()
       },
-      info: `Show a list of open URLs`
+      info: `Show a list of open URLs`,
     },
     {
       name: `Open URLs`,
@@ -789,7 +792,7 @@ App.setup_commands = () => {
       action: (args) => {
         App.open_tab_urls()
       },
-      info: `Open a list of URLs`
+      info: `Open a list of URLs`,
     },
     {
       name: `Reopen`,
@@ -798,7 +801,7 @@ App.setup_commands = () => {
       action: (args) => {
         App.reopen_tab()
       },
-      info: `Reopen the latest closed tab`
+      info: `Reopen the latest closed tab`,
     },
     {
       name: `Select Pins`,
@@ -808,7 +811,7 @@ App.setup_commands = () => {
       action: (args) => {
         App.select_tabs(`pins`)
       },
-      info: `Select all pinned tabs`
+      info: `Select all pinned tabs`,
     },
     {
       name: `Select Normal`,
@@ -818,7 +821,7 @@ App.setup_commands = () => {
       action: (args) => {
         App.select_tabs(`normal`)
       },
-      info: `Select all normal tabs`
+      info: `Select all normal tabs`,
     },
     {
       name: App.separator_string
@@ -831,7 +834,7 @@ App.setup_commands = () => {
       action: (args) => {
         App.show_filter_history(args.mode, args.e)
       },
-      info: `Show the filter history`
+      info: `Show the filter history`,
     },
     {
       name: `Deep Search`,
@@ -841,7 +844,7 @@ App.setup_commands = () => {
       action: (args) => {
         App.deep_search(args.mode)
       },
-      info: `Do a deep search`
+      info: `Do a deep search`,
     },
     {
       name: `Search Media`,
@@ -851,7 +854,7 @@ App.setup_commands = () => {
       action: (args) => {
         App.search_media(args.mode, args.e)
       },
-      info: `Search for media`
+      info: `Search for media`,
     },
     {
       name: `Forget Closed`,
@@ -861,7 +864,7 @@ App.setup_commands = () => {
       action: (args) => {
         App.forget_closed()
       },
-      info: `Forget closed items`
+      info: `Forget closed items`,
     },
     {
       name: `Forget Closed Item`,
@@ -873,7 +876,7 @@ App.setup_commands = () => {
       action: (args) => {
         App.forget_closed_item(args.item)
       },
-      info: `Forget a single closed item`
+      info: `Forget a single closed item`,
     },
     {
       name: App.separator_string
@@ -888,7 +891,7 @@ App.setup_commands = () => {
       action: (args) => {
         App.edit_title(args.item)
       },
-      info: `Edit tab titles`
+      info: `Edit tab titles`,
     },
     {
       name: `Edit Tags`,
@@ -900,7 +903,7 @@ App.setup_commands = () => {
       action: (args) => {
         App.edit_tags(args.item)
       },
-      info: `Edit tab tags`
+      info: `Edit tab tags`,
     },
     {
       name: `Add Tags`,
@@ -911,7 +914,7 @@ App.setup_commands = () => {
       action: (args) => {
         App.add_tags(args.item)
       },
-      info: `Add tags to tabs`
+      info: `Add tags to tabs`,
     },
     {
       name: `Pick Tag`,
@@ -922,7 +925,7 @@ App.setup_commands = () => {
       action: (args) => {
         App.pick_tag(args.item, args.e)
       },
-      info: `Add a tag by selecting from a quick list`
+      info: `Add a tag by selecting from a quick list`,
     },
 
     ...color_removers,
@@ -935,7 +938,7 @@ App.setup_commands = () => {
       action: (args) => {
         App.remove_edits({what: `title`})
       },
-      info: `Remove all titles from tabs`
+      info: `Remove all titles from tabs`,
     },
     {
       name: `Remove Tag`,
@@ -945,7 +948,7 @@ App.setup_commands = () => {
       action: (args) => {
         App.remove_tag_all()
       },
-      info: `Remove a specific tag from tabs`
+      info: `Remove a specific tag from tabs`,
     },
     {
       name: `Remove All Tags`,
@@ -955,7 +958,7 @@ App.setup_commands = () => {
       action: (args) => {
         App.remove_edits({what: `tags`})
       },
-      info: `Remove all tags from tabs`
+      info: `Remove all tags from tabs`,
     },
     {
       name: `Replace Tag`,
@@ -965,7 +968,7 @@ App.setup_commands = () => {
       action: (args) => {
         App.replace_tag()
       },
-      info: `Replace tag with another tag among all tabs`
+      info: `Replace tag with another tag among all tabs`,
     },
     {
       name: `Close Tag`,
@@ -975,7 +978,7 @@ App.setup_commands = () => {
       action: (args) => {
         App.close_tag_all()
       },
-      info: `Close tabs with this tag`
+      info: `Close tabs with this tag`,
     },
     {
       name: `Remove All Edits`,
@@ -985,7 +988,7 @@ App.setup_commands = () => {
       action: (args) => {
         App.remove_all_edits()
       },
-      info: `Remove all edits from tabs`
+      info: `Remove all edits from tabs`,
     },
     {
       name: `Remove Edits`,
@@ -996,7 +999,7 @@ App.setup_commands = () => {
       action: (args) => {
         App.remove_item_edits(args.item)
       },
-      info: `Remove all edits from specific items`
+      info: `Remove all edits from specific items`,
     },
     {
       name: App.separator_string
@@ -1020,7 +1023,7 @@ App.setup_commands = () => {
       action: (args) => {
         App.filter_domain(args.item)
       },
-      info: `Filter: Show same domain`
+      info: `Filter: Show same domain`,
     },
     {
       name: `Filter Color`,
@@ -1032,7 +1035,7 @@ App.setup_commands = () => {
       action: (args) => {
         App.filter_color(args.mode, args.item.custom_color)
       },
-      info: `Filter: Show same color`
+      info: `Filter: Show same color`,
     },
     {
       name: `Filter Tag`,
@@ -1043,7 +1046,7 @@ App.setup_commands = () => {
       action: (args) => {
         App.filter_tag_pick(args.item, args.e)
       },
-      info: `Filter by picking a tab`
+      info: `Filter by picking a tab`,
     },
     {
       name: `Filter Pins`,
@@ -1053,7 +1056,7 @@ App.setup_commands = () => {
       action: (args) => {
         App.filter_pinned(args.mode)
       },
-      info: `Filter: Show pinned tabs`
+      info: `Filter: Show pinned tabs`,
     },
     {
       name: `Filter Normal`,
@@ -1063,7 +1066,7 @@ App.setup_commands = () => {
       action: (args) => {
         App.filter_normal(args.mode)
       },
-      info: `Filter: Show normal tabs`
+      info: `Filter: Show normal tabs`,
     },
     {
       name: `Filter Playing`,
@@ -1073,7 +1076,7 @@ App.setup_commands = () => {
       action: (args) => {
         App.filter_playing(args.mode)
       },
-      info: `Filter: Show playing tabs`
+      info: `Filter: Show playing tabs`,
     },
     {
       name: `Filter Loaded`,
@@ -1083,7 +1086,7 @@ App.setup_commands = () => {
       action: (args) => {
         App.filter_loaded(args.mode)
       },
-      info: `Filter: Show loaded tabs`
+      info: `Filter: Show loaded tabs`,
     },
     {
       name: `Filter Unloaded`,
@@ -1093,7 +1096,7 @@ App.setup_commands = () => {
       action: (args) => {
         App.filter_unloaded(args.mode)
       },
-      info: `Filter: Show unloaded tabs`
+      info: `Filter: Show unloaded tabs`,
     },
     {
       name: `Filter Duplicate`,
@@ -1103,7 +1106,7 @@ App.setup_commands = () => {
       action: (args) => {
         App.filter_duplicate(args.mode)
       },
-      info: `Filter: Show duplicate tabs`
+      info: `Filter: Show duplicate tabs`,
     },
     {
       name: `Filter Unread`,
@@ -1113,7 +1116,7 @@ App.setup_commands = () => {
       action: (args) => {
         App.filter_unread(args.mode)
       },
-      info: `Filter: Show unread tabs`
+      info: `Filter: Show unread tabs`,
     },
     {
       name: `Filter Titled`,
@@ -1123,7 +1126,7 @@ App.setup_commands = () => {
       action: (args) => {
         App.filter_titled(args.mode)
       },
-      info: `Filter: Show tabs that have a custom title`
+      info: `Filter: Show tabs that have a custom title`,
     },
     {
       name: `Filter Tagged`,
@@ -1133,7 +1136,7 @@ App.setup_commands = () => {
       action: (args) => {
         App.filter_tagged(args.mode)
       },
-      info: `Filter: Show tabs that have custom tags`
+      info: `Filter: Show tabs that have custom tags`,
     },
     {
       name: `Filter Edited`,
@@ -1143,7 +1146,7 @@ App.setup_commands = () => {
       action: (args) => {
         App.filter_edited(args.mode)
       },
-      info: `Filter: Show tabs that have custom properties`
+      info: `Filter: Show tabs that have custom properties`,
     },
     {
       name: `Filter No Tab`,
@@ -1153,7 +1156,7 @@ App.setup_commands = () => {
       action: (args) => {
         App.filter_no_tab(args.mode)
       },
-      info: `Filter: Show duplicate tabs`
+      info: `Filter: Show duplicate tabs`,
     },
     {
       name: App.separator_string
@@ -1165,7 +1168,7 @@ App.setup_commands = () => {
       action: (args) => {
         App.set_light_colors()
       },
-      info: `Change to the light color theme`
+      info: `Change to the light color theme`,
     },
     {
       name: `Dark Colors`,
@@ -1174,7 +1177,7 @@ App.setup_commands = () => {
       action: (args) => {
         App.set_dark_colors()
       },
-      info: `Change to the dark color theme`
+      info: `Change to the dark color theme`,
     },
     {
       name: `Random Light`,
@@ -1183,7 +1186,7 @@ App.setup_commands = () => {
       action: (args) => {
         App.random_colors(`light`)
       },
-      info: `Change to the light color theme`
+      info: `Change to the light color theme`,
     },
     {
       name: `Random Dark`,
@@ -1192,7 +1195,7 @@ App.setup_commands = () => {
       action: (args) => {
         App.random_colors(`dark`)
       },
-      info: `Change to the dark color theme`
+      info: `Change to the dark color theme`,
     },
     {
       name: `Background`,
@@ -1203,7 +1206,7 @@ App.setup_commands = () => {
       action: (args) => {
         App.change_background(args.item.url)
       },
-      info: `Change the background to the selected image`
+      info: `Change the background to the selected image`,
     },
     {
       name: App.separator_string
@@ -1215,7 +1218,7 @@ App.setup_commands = () => {
       action: (args) => {
         App.restart_extension()
       },
-      info: `Restart the extension (For debugging)`
+      info: `Restart the extension (For debugging)`,
     }
   ]
 
