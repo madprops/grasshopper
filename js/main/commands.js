@@ -128,7 +128,6 @@ App.setup_commands = () => {
 
   color_changers.push({
     name: `Color Menu`,
-    short_name: `Color`,
     cmd: `show_color_menu`,
     modes: [`tabs`],
     item: true,
