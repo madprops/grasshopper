@@ -75,10 +75,12 @@ App.show_prompt = (args = {}) => {
 }
 
 App.prompt_submit = () => {
-  let value = DOM.el(`#prompt_input_1`).value.trim()
-  let value_2 = DOM.el(`#prompt_input_2`).value.trim()
+  let value_1 = DOM.el(`#prompt_input_1`).value
+  value_1 = App.single_space(value_1).trim()
+  let value_2 = DOM.el(`#prompt_input_2`).value
+  value_2 = App.single_space(value_2).trim()
   App.hide_popup(`prompt`)
-  App.prompt_args.on_submit(value, value_2)
+  App.prompt_args.on_submit(value_1, value_2)
 }
 
 App.set_prompt_suggestions = (suggestions) => {
@@ -102,7 +104,6 @@ App.show_prompt_list = (num, e) => {
   let items = []
   let input = DOM.el(`#prompt_input_${num}`)
   let words = input.value.split(` `).map(x => x.trim())
-  let args = App.prompt_args
   let valid = []
 
   if (num === 1) {
