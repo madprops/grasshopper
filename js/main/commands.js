@@ -129,6 +129,7 @@ App.setup_commands = () => {
 
   color_changers.push({
     name: `Color Menu`,
+    short_name: `Color`,
     cmd: `show_color_menu`,
     modes: [`tabs`],
     item: true,
@@ -556,7 +557,7 @@ App.setup_commands = () => {
       item: true,
       icon: tabs_icon,
       action: (args) => {
-        App.to_window(args.item)
+        App.show_windows_menu(args.item, args.e)
       },
       info: `Detach tabs to another window`,
     },

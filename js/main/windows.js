@@ -226,7 +226,7 @@ App.get_window_menu_items = async (item) => {
   return items
 }
 
-App.to_window = async (item) => {
+App.show_windows_menu = async (item, e) => {
   let items = await App.get_window_menu_items(item)
-  NeedContext.show({items: items})
+  App.show_center_context(items, e)
 }
