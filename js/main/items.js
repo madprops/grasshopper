@@ -750,6 +750,10 @@ App.set_item_text = (item) => {
     if (item.date_added) {
       item.element.title += `\nDate Added: ${App.nice_date(item.date_added)}`
     }
+
+    if (item.custom_tags) {
+      item.element.title += `\nTags: ${item.custom_tags.join(`, `)}`
+    }
   }
 
   content = content || `Empty`
