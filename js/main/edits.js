@@ -775,19 +775,19 @@ App.filter_tag_pick = (item, e) => {
 
 App.get_tag_items = (mode) => {
   let items = []
-  let tags = App.get_all_tags()
-  tags.sort()
+  let tags = []
+
+  for (let tab of App.get_items(`tabs`)) {
+    if (App.tab_has_tags(tab)) {
+      for (let tag of tab.custom_tags) {
+        if (!tags.includes(tag)) {
+          tags.push(tag)
+        }
+      }
+    }
+  }
 
   if (tags.length) {
-    if (tags.length > 1) {
-      items.push({
-        text: `All`,
-        action: () => {
-          App.filter_tag(mode, `all`)
-        },
-      })
-    }
-
     for (let tag of tags) {
       items.push({
         text: tag,
