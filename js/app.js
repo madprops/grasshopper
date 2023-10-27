@@ -39,6 +39,7 @@ App.num_backgrounds = 3
 App.number_min = 1
 App.number_max = 99999
 App.tag_history_max = 10
+App.title_history_max = 10
 App.active_history = []
 App.sizes = [
   {text: `Tiny`, value: `tiny`},
