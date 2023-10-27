@@ -917,17 +917,6 @@ App.setup_commands = () => {
       },
       info: `Add tags to tabs`,
     },
-    {
-      name: `Pick Tag`,
-      cmd: `pick_tag`,
-      modes: [`tabs`],
-      item: true,
-      icon: tag_icon,
-      action: (args) => {
-        App.pick_tag(args.item, args.e)
-      },
-      info: `Add a tag by selecting from a quick list`,
-    },
 
     ...color_removers,
 

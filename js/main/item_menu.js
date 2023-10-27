@@ -63,14 +63,10 @@ App.show_item_menu = async (args = {}) => {
         icon: App.tag_icon,
         text: `Tags`,
         get_items: () => {
-          let f_items = []
-          f_items.push(App.item_menu_item({cmd: `edit_tags`, item: args.item, short: false}))
-
-          if (App.tab_has_tags(args.item)) {
-            f_items.push(App.item_menu_item({cmd: `add_tags`, item: args.item, short: false}))
-          }
-
-          return f_items
+          return [
+            App.item_menu_item({cmd: `edit_tags`, item: args.item, short: false}),
+            App.item_menu_item({cmd: `add_tags`, item: args.item, short: false}),
+          ]
         }
       })
 

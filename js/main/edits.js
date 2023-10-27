@@ -81,6 +81,12 @@ App.edit_prompt = (args = {}) => {
     list = App.tag_history
   }
 
+  let show_list = 0
+
+  if (args.add) {
+    show_list = 1
+  }
+
   App.show_prompt({
     value: value,
     placeholder: placeholder,
@@ -93,6 +99,7 @@ App.edit_prompt = (args = {}) => {
       App[`edit_tab_${args.what}`](obj)
     },
     list: list,
+    show_list: show_list,
   })
 }
 
@@ -657,36 +664,6 @@ App.push_to_tag_history = (tags) => {
   App.stor_save_tag_history()
 }
 
-App.pick_tag = (item, e) => {
-  let items = []
-  let tags = App.get_tag_picks(item)
-
-  if (tags.length) {
-    for (let tag of tags) {
-      items.push({
-        text: tag,
-        action: () => {
-          let obj = {}
-          obj.tags = tag
-          obj.item = item
-          obj.add = true
-          App.edit_tab_tags(obj)
-        },
-      })
-    }
-  }
-  else {
-    items.push({
-      text: `No tags to pick`,
-      action: () => {
-        App.alert(`Try adding new tags`)
-      },
-    })
-  }
-
-  App.show_center_context(items, e)
-}
-
 App.filter_tag_pick = (item, e) => {
   if (!App.tab_has_tags(item)) {
     return
@@ -744,33 +721,6 @@ App.get_tag_items = (mode) => {
   }
 
   return items
-}
-
-App.get_tag_picks = (item) => {
-  let active = App.get_active_items({mode: item.mode, item: item})
-  let list = []
-
-  for (let tag of App.tag_history) {
-    let add = false
-
-    for (let it of active) {
-      if (!App.tab_has_tags(it)) {
-        add = true
-        break
-      }
-
-      if (!it.custom_tags.includes(tag)) {
-        add = true
-        break
-      }
-    }
-
-    if (add) {
-      list.push(tag)
-    }
-  }
-
-  return list
 }
 
 App.tab_has_tags = (item) => {

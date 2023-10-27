@@ -24,6 +24,7 @@ App.show_prompt = (args = {}) => {
     placeholder_2: ``,
     suggestions: [],
     focus: 1,
+    show_list: 0,
   }
 
   App.def_args(def_args, args)
@@ -71,6 +72,10 @@ App.show_prompt = (args = {}) => {
   }
   else if (args.focus === 2) {
     input_2.focus()
+  }
+
+  if (args.show_list !== 0) {
+    App.show_prompt_list(args.show_list)
   }
 }
 
