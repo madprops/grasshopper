@@ -99,6 +99,15 @@ App.edit_prompt = (args = {}) => {
     list_submit = 1
   }
 
+  let word_mode
+
+  if (args.what === `tags`) {
+    word_mode = true
+  }
+  else {
+    word_mode = false
+  }
+
   App.show_prompt({
     value: value,
     placeholder: placeholder,
@@ -113,6 +122,7 @@ App.edit_prompt = (args = {}) => {
     list: list,
     show_list: show_list,
     list_submit: list_submit,
+    word_mode: word_mode,
   })
 }
 
@@ -442,6 +452,10 @@ App.push_to_title_history = (titles) => {
   }
 
   for (let title of titles) {
+    if (!title) {
+      continue
+    }
+
     App.title_history = App.title_history.filter(x => x !== title)
     App.title_history.unshift(title)
     App.title_history = App.title_history.slice(0, App.title_history_max)
@@ -710,6 +724,10 @@ App.push_to_tag_history = (tags) => {
   }
 
   for (let tag of tags) {
+    if (!tag) {
+      continue
+    }
+
     App.tag_history = App.tag_history.filter(x => x !== tag)
     App.tag_history.unshift(tag)
     App.tag_history = App.tag_history.slice(0, App.tag_history_max)
