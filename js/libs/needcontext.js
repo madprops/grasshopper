@@ -110,7 +110,7 @@ NeedContext.show = (args = {}) => {
   let def_args = {
     root: true,
     expand: false,
-    hide_on_action: true,
+    picker_mode: true,
     margin: 0,
     index: 0,
   }
@@ -238,6 +238,7 @@ NeedContext.show = (args = {}) => {
     }
 
     item.element = el
+    item.picked = false
     c.append(el)
   }
 
@@ -298,7 +299,10 @@ NeedContext.show = (args = {}) => {
   NeedContext.select_item(selected_index)
   NeedContext.open = true
   NeedContext.after_show()
-  NeedContext.args = args
+
+  if (args.root) {
+    NeedContext.args = args
+  }
 }
 
 // Hide the menu
@@ -812,12 +816,25 @@ NeedContext.modkey = (e) => {
 NeedContext.action = (item, e) => {
   let args = NeedContext.args
 
-  if (args.hide_on_action) {
-    NeedContext.hide()
-  }
-  else {
+  if (args.picker_mode) {
     item.element.classList.add(`needcontext-picked`)
     NeedContext.filter.focus()
+    item.picked = true
+    let all_picked = true
+
+    for (let item of args.items) {
+      if (!item.picked) {
+        all_picked = false
+        break
+      }
+    }
+
+    if (all_picked) {
+      NeedContext.hide()
+    }
+  }
+  else {
+    NeedContext.hide()
   }
 
   item.action(e)

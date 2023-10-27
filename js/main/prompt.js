@@ -25,7 +25,7 @@ App.show_prompt = (args = {}) => {
     highlight: false,
     append: false,
     show_list: false,
-    pick_multiple: false,
+    picker_mode: false,
     list: []
   }
 
@@ -138,21 +138,12 @@ App.show_prompt_list = () => {
     })
   }
 
-  let hide_on_action
-
-  if (args.pick_multiple) {
-    hide_on_action = false
-  }
-  else {
-    hide_on_action = true
-  }
-
   let btn = DOM.el(`#prompt_list`)
 
   App.show_context({
     items: items,
     element: btn,
-    hide_on_action: hide_on_action,
+    picker_mode: args.picker_mode,
     after_hide: () => {
       input.focus()
     },

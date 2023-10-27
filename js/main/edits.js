@@ -105,7 +105,7 @@ App.edit_prompt = (args = {}) => {
   let ignore_words = []
   let append = false
   let show_list = false
-  let pick_multiple = false
+  let picker_mode = false
 
   if (args.what === `tags`) {
     if (args.add) {
@@ -117,7 +117,7 @@ App.edit_prompt = (args = {}) => {
     }
 
     append = true
-    pick_multiple = true
+    picker_mode = true
   }
 
   App.show_prompt({
@@ -130,7 +130,7 @@ App.edit_prompt = (args = {}) => {
     ignore_words: ignore_words,
     append: append,
     show_list: show_list,
-    pick_multiple: pick_multiple,
+    picker_mode: picker_mode,
     on_submit: (ans) => {
       let obj = {}
       obj[args.what] = ans
