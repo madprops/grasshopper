@@ -686,6 +686,7 @@ App.do_replace_tag = (tag_1, tag_2) => {
     if (item.custom_tags) {
       if (item.custom_tags.includes(tag_1)) {
         item.custom_tags = item.custom_tags.map(x => x === tag_1 ? tag_2 : x)
+        App.push_to_tag_history([tag_2])
         App.apply_edit(`tags`, item, item.custom_tags)
         App.custom_save(item.id, `custom_tags`, item.custom_tags)
       }
@@ -715,6 +716,7 @@ App.do_edit_tag = (item, tag_1, tag_2) => {
 
   item.custom_tags = item.custom_tags.filter(x => x !== tag_1)
   item.custom_tags.push(tag_2)
+  App.push_to_tag_history([tag_2])
   App.apply_edit(`tags`, item, item.custom_tags)
   App.custom_save(item.id, `custom_tags`, item.custom_tags)
 }
