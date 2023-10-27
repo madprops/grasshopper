@@ -130,7 +130,6 @@ App.show_prompt_list = () => {
         }
 
         input.value = App.single_space(input.value).trim()
-        input.focus()
 
         if (args.list_submit) {
           App.prompt_submit()

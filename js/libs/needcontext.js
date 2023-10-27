@@ -817,6 +817,7 @@ NeedContext.action = (item, e) => {
   }
   else {
     item.element.classList.add(`needcontext-picked`)
+    NeedContext.filter.focus()
   }
 
   item.action(e)
