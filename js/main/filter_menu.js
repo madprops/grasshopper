@@ -83,6 +83,18 @@ App.show_filter_menu = (mode) => {
 
       continue
     }
+    else if (filter_mode.type === `tag`) {
+      items.push({
+        icon: filter_mode.icon,
+        text: filter_mode.text,
+        get_items: () => {
+          return App.get_tag_items(mode)
+        },
+        info: filter_mode.info,
+      })
+
+      continue
+    }
     else if (filter_mode.type === `custom`) {
       items.push({
         icon: filter_mode.icon,

@@ -512,24 +512,27 @@ App.remove_tag_all = () => {
 }
 
 App.close_tag_all = () => {
-  App.show_prompt({placeholder: `Close Tag`,
-  suggestions: App.get_all_tags(), on_submit: (tag) => {
-    let items = []
+  App.show_prompt({
+    placeholder: `Close Tag`,
+    suggestions: App.get_all_tags(),
+    on_submit: (tag) => {
+      let items = []
 
-    for (let tab of App.get_items(`tabs`)) {
-      if (tab.custom_tags) {
-        if (tab.custom_tags.includes(tag)) {
-          items.push(tab)
+      for (let tab of App.get_items(`tabs`)) {
+        if (tab.custom_tags) {
+          if (tab.custom_tags.includes(tag)) {
+            items.push(tab)
+          }
         }
       }
-    }
 
-    if (!items.length) {
-      return
-    }
+      if (!items.length) {
+        return
+      }
 
-    App.close_tabs_method(items)
-  }})
+      App.close_tabs_method(items)
+    },
+  })
 }
 
 App.get_all_tags = () => {
@@ -692,4 +695,40 @@ App.filter_tag_pick = (item, e) => {
   }
 
   App.show_center_context(items, e)
+}
+
+App.get_tag_items = (mode) => {
+  let items = []
+  let tags = App.get_all_tags()
+  tags.sort()
+
+  if (!tags.length) {
+    items.push({
+      text: `No tags in use`,
+      action: () => {
+        App.alert(`You can give tabs tags`)
+      },
+    })
+  }
+  else {
+    if (tags.length > 1) {
+      items.push({
+        text: `All`,
+        action: () => {
+          App.filter_tag(mode, `all`)
+        },
+      })
+    }
+
+    for (let tag of tags) {
+      items.push({
+        text: tag,
+        action: () => {
+          App.filter_tag(mode, tag)
+        },
+      })
+    }
+  }
+
+  return items
 }
