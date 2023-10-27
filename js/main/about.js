@@ -38,6 +38,8 @@ App.start_about = () => {
         `To filter with regex start with re:`,
         `To filter with regex by title start with re_title:`,
         `To filter with regex by URL start with re_url:`,
+        `To filter by color start with color:`,
+        `To filter by tag start with tag:`,
         `Alt + Click selects items without triggering actions`,
         `Right Click on the Main Menu button to show the palette`,
         `Right Click on the Filter button to show filter commands`,
