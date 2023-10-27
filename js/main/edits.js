@@ -78,7 +78,9 @@ App.edit_prompt = (args = {}) => {
   let list = []
 
   if (args.what === `tags`) {
-    list = App.tag_history
+    if (active.length === 1 && args.add) {
+      list = App.get_tag_prompt_list(active[0])
+    }
   }
 
   App.show_prompt({
@@ -264,15 +266,7 @@ App.get_color_items = (mode) => {
   let items = []
   let count = App.get_active_colors(mode)
 
-  if (!count.colors) {
-    items.push({
-      text: `No colors in use`,
-      action: () => {
-        App.alert(`You can give tabs a color`)
-      },
-    })
-  }
-  else {
+  if (count.colors) {
     if (count.colors > 1) {
       items.push({
         icon: App.settings_icons.colors,
@@ -299,6 +293,14 @@ App.get_color_items = (mode) => {
         },
       })
     }
+  }
+  else {
+    items.push({
+      text: `No colors in use`,
+      action: () => {
+        App.alert(`You can give tabs a color`)
+      },
+    })
   }
 
   return items
@@ -657,16 +659,27 @@ App.push_to_tag_history = (tags) => {
 
 App.pick_tag = (item, e) => {
   let items = []
+  let tags = App.get_tag_prompt_list(item)
 
-  for (let tag of App.tag_history) {
+  if (tags.length) {
+    for (let tag of tags) {
+      items.push({
+        text: tag,
+        action: () => {
+          let obj = {}
+          obj.tags = tag
+          obj.item = item
+          obj.add = true
+          App.edit_tab_tags(obj)
+        },
+      })
+    }
+  }
+  else {
     items.push({
-      text: tag,
+      text: `No tags to pick`,
       action: () => {
-        let obj = {}
-        obj.tags = tag
-        obj.item = item
-        obj.add = true
-        App.edit_tab_tags(obj)
+        App.alert(`Try adding new tags`)
       },
     })
   }
@@ -702,15 +715,7 @@ App.get_tag_items = (mode) => {
   let tags = App.get_all_tags()
   tags.sort()
 
-  if (!tags.length) {
-    items.push({
-      text: `No tags in use`,
-      action: () => {
-        App.alert(`You can give tabs tags`)
-      },
-    })
-  }
-  else {
+  if (tags.length) {
     if (tags.length > 1) {
       items.push({
         text: `All`,
@@ -729,6 +734,31 @@ App.get_tag_items = (mode) => {
       })
     }
   }
+  else {
+    items.push({
+      text: `No tags in use`,
+      action: () => {
+        App.alert(`You can give tabs tags`)
+      },
+    })
+  }
 
   return items
+}
+
+App.get_tag_prompt_list = (item) => {
+  let list = []
+
+  if (item.custom_tags && item.custom_tags.length) {
+      for (let tag of App.tag_history) {
+        if (!item.custom_tags.includes(tag)) {
+          list.push(tag)
+        }
+      }
+    }
+  else {
+    list = App.tag_history
+  }
+
+  return list
 }
