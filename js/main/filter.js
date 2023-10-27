@@ -71,7 +71,7 @@ App.do_filter = async (args = {}) => {
   let by_what
   let cmd
 
-  for (let c of [`title`, `url`, `re`, `re_title`, `re_url`]) {
+  for (let c of [`title`, `url`, `re`, `re_title`, `re_url`, `color`, `tag`]) {
     if (value.startsWith(`${c}:`)) {
       cmd = [c, value.replace(`${c}:`, ``).trim()]
     }
@@ -288,6 +288,13 @@ App.filter_check = (args) => {
       }
       else if (args.by_what === `url` || args.by_what === `re_url`) {
         match = regex.test(args.item.path)
+      }
+      else if (args.by_what === `color`) {
+        match = args.item.custom_color === args.value
+      }
+      else if (args.by_what === `tag`) {
+        match = App.tab_has_tags(args.item) &&
+        args.item.custom_tags.includes(args.value)
       }
 
       if (App.get_setting(`filter_tags`)) {
@@ -626,6 +633,20 @@ App.get_filter_refine = (mode) => {
     text: `Regex All`,
     action: () => {
       App.filter_cmd(mode, `re`)
+    },
+  })
+
+  items.push({
+    text: `By Color`,
+    action: () => {
+      App.filter_cmd(mode, `color`)
+    },
+  })
+
+  items.push({
+    text: `By Tag`,
+    action: () => {
+      App.filter_cmd(mode, `tag`)
     },
   })
 
