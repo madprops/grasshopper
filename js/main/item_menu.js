@@ -63,11 +63,15 @@ App.show_item_menu = async (args = {}) => {
         icon: App.tag_icon,
         text: `Tags`,
         get_items: () => {
-          return [
-            App.item_menu_item({cmd: `edit_tags`, item: args.item, short: false}),
-            App.item_menu_item({cmd: `add_tags`, item: args.item, short: false}),
-          ]
-        },
+          let f_items = []
+          f_items.push(App.item_menu_item({cmd: `edit_tags`, item: args.item, short: false}))
+
+          if (App.tab_has_tags(args.item)) {
+            f_items.push(App.item_menu_item({cmd: `add_tags`, item: args.item, short: false}))
+          }
+
+          return f_items
+        }
       })
 
       App.common_menu_items(items, args.item, multiple)
@@ -209,7 +213,7 @@ App.filter_menu_items = (item) => {
     items.push(App.item_menu_item({cmd: `filter_color`, item: item}))
   }
 
-  if (item.custom_tags && item.custom_tags.length) {
+  if (App.tab_has_tags(item)) {
     items.push(App.item_menu_item({cmd: `filter_tag`, item: item}))
   }
 

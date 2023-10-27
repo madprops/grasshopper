@@ -688,7 +688,7 @@ App.pick_tag = (item, e) => {
 }
 
 App.filter_tag_pick = (item, e) => {
-  if (!item.custom_tags || !item.custom_tags.length) {
+  if (!App.tab_has_tags(item)) {
     return
   }
 
@@ -754,7 +754,7 @@ App.get_tag_picks = (item) => {
     let add = false
 
     for (let it of active) {
-      if (!it.custom_tags || !it.custom_tags.length) {
+      if (!App.tab_has_tags(it)) {
         add = true
         break
       }
@@ -771,4 +771,8 @@ App.get_tag_picks = (item) => {
   }
 
   return list
+}
+
+App.tab_has_tags = (item) => {
+  return item.custom_tags && item.custom_tags.length
 }

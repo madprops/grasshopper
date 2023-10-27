@@ -331,12 +331,10 @@ App.filter_check = (args) => {
     }
     else if (args.filter_mode === `tag`) {
       if (args.f_value === `all`) {
-        match = args.item.custom_tags &&
-        args.item.custom_tags.length
+        match = App.tab_has_tags(args.item)
       }
       else {
-        match = args.item.custom_tags &&
-        args.item.custom_tags.length &&
+        match = App.tab_has_tags(args.item) &&
         args.item.custom_tags.includes(args.f_value)
       }
     }
