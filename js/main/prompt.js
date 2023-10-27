@@ -136,5 +136,12 @@ App.show_prompt_list = () => {
   }
 
   let btn = DOM.el(`#prompt_list`)
-  App.show_context({items: items, element: btn})
+
+  App.show_context({
+    items: items,
+    element: btn,
+    after_hide: () => {
+      input.focus()
+    },
+  })
 }

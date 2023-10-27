@@ -297,7 +297,7 @@ NeedContext.show = (args = {}) => {
   NeedContext.select_item(selected_index)
   NeedContext.open = true
   NeedContext.after_show()
-  NeedContext.on_drag = args.on_drag
+  NeedContext.args = args
 }
 
 // Hide the menu
@@ -306,6 +306,10 @@ NeedContext.hide = () => {
     NeedContext.main.classList.add(`needcontext-hidden`)
     NeedContext.set_defaults()
     NeedContext.after_hide()
+
+    if (NeedContext.args.after_hide) {
+      NeedContext.args.after_hide()
+    }
   }
 }
 
@@ -737,7 +741,7 @@ NeedContext.dragend_action = (e) => {
   let items = Array.from(list.querySelectorAll(`.needcontext-item`))
   let index_end = items.indexOf(dragged)
   NeedContext.hide()
-  NeedContext.on_drag(NeedContext.dragged_index, index_end)
+  NeedContext.args.on_drag(NeedContext.dragged_index, index_end)
 }
 
 // Current layer
