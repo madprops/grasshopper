@@ -14,6 +14,9 @@ App.setup_prompt = () => {
   DOM.ev(DOM.el(`#prompt_list_2`), `click`, (e) => {
     App.show_prompt_list(2)
   })
+
+  DOM.el(`#prompt_list_1`).textContent = App.smiley_icon
+  DOM.el(`#prompt_list_2`).textContent = App.smiley_icon
 }
 
 App.show_prompt = (args = {}) => {

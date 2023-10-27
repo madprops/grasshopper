@@ -114,6 +114,7 @@ App.heart_icon = `❤️`
 App.close_icon = `❌`
 App.tag_icon = `✝️`
 App.close_tab_icon = `x`
+App.smiley_icon = `😀`
 
 App.dark_colors = {
   background: `rgb(45, 45, 55)`,
