@@ -81,6 +81,9 @@ App.edit_prompt = (args = {}) => {
     if (active.length === 1 && args.add) {
       list = App.get_tag_prompt_list(active[0])
     }
+    else {
+      list = App.tag_history
+    }
   }
 
   App.show_prompt({
