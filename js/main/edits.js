@@ -87,16 +87,10 @@ App.edit_prompt = (args = {}) => {
     list = App.title_history
   }
 
-  let show_list = 0
-
-  if (args.add) {
-    show_list = 1
-  }
-
-  let list_submit = 0
+  let list_submit = false
 
   if (args.what === `title`) {
-    list_submit = 1
+    list_submit = true
   }
 
   let word_mode
@@ -109,6 +103,7 @@ App.edit_prompt = (args = {}) => {
   }
 
   let ignore_words = []
+  let append = false
 
   if (args.what === `tags`) {
     if (args.add) {
@@ -116,12 +111,19 @@ App.edit_prompt = (args = {}) => {
         ignore_words = args.item.custom_tags
       }
     }
+
+    append = true
   }
 
   App.show_prompt({
     value: value,
     placeholder: placeholder,
     suggestions: suggestions,
+    list: list,
+    list_submit: list_submit,
+    word_mode: word_mode,
+    ignore_words: ignore_words,
+    append: append,
     on_submit: (ans) => {
       let obj = {}
       obj[args.what] = ans
@@ -129,11 +131,6 @@ App.edit_prompt = (args = {}) => {
       obj.add = args.add
       App[`edit_tab_${args.what}`](obj)
     },
-    list: list,
-    show_list: show_list,
-    list_submit: list_submit,
-    word_mode: word_mode,
-    ignore_words: ignore_words
   })
 }
 
@@ -564,31 +561,34 @@ App.remove_tag = (item, tag) => {
 }
 
 App.remove_tag_all = () => {
-  App.show_prompt({placeholder: `Remove Tag`,
-  suggestions: App.get_all_tags(), on_submit: (tag) => {
-    let items = []
+  App.show_prompt({
+    placeholder: `Remove Tag`,
+    suggestions: App.get_all_tags(),
+    on_submit: (tag) => {
+      let items = []
 
-    for (let tab of App.get_items(`tabs`)) {
-      if (tab.custom_tags) {
-        if (tab.custom_tags.includes(tag)) {
-          items.push(tab)
+      for (let tab of App.get_items(`tabs`)) {
+        if (tab.custom_tags) {
+          if (tab.custom_tags.includes(tag)) {
+            items.push(tab)
+          }
         }
       }
-    }
 
-    if (!items.length) {
-      return
-    }
+      if (!items.length) {
+        return
+      }
 
-    App.show_confirm({
-      message: `Remove tag? (${tag}) (${items.length})`,
-      confirm_action: () => {
-        for (let item of items) {
-          App.remove_tag(item, tag)
-        }
-      },
-    })
-  }})
+      App.show_confirm({
+        message: `Remove tag? (${tag}) (${items.length})`,
+        confirm_action: () => {
+          for (let item of items) {
+            App.remove_tag(item, tag)
+          }
+        },
+      })
+    },
+  })
 }
 
 App.close_tag_all = () => {
@@ -650,28 +650,23 @@ App.remove_item_tags = (item) => {
   })
 }
 
-App.replace_tag = (value = ``) => {
-  let focus
-
-  if (value) {
-    focus = 2
-  }
-  else {
-    focus = 1
-  }
+App.replace_tag = () => {
+  let suggestions = App.get_all_tags()
 
   App.show_prompt({
-    suggestions: App.get_all_tags(),
+    suggestions: suggestions,
     placeholder: `Original Tag`,
-    placeholder_2: `New Tag`,
-    double: true,
-    value: value,
-    focus: focus,
-    on_submit: (ans, ans_2) => {
-      App.do_replace_tag(ans, ans_2)
-    },
     list: App.tag_history,
-    list_2: App.tag_history,
+    on_submit: (tag_1) => {
+      App.show_prompt({
+        suggestions: suggestions,
+        placeholder: `New Tag`,
+        list: App.tag_history,
+        on_submit: (tag_2) => {
+          App.do_replace_tag(tag_1, tag_2)
+        },
+      })
+    },
   })
 }
 
@@ -696,10 +691,12 @@ App.edit_tag = (item, tag) => {
     suggestions: App.get_all_tags(),
     placeholder: `Edit Tag`,
     value: tag,
+    list: App.tag_history,
+    highlight: true,
+    list_submit: true,
     on_submit: (ans) => {
       App.do_edit_tag(item, tag, ans)
     },
-    list: App.tag_history,
   })
 }
 

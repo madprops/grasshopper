@@ -7,97 +7,62 @@ App.setup_prompt = () => {
     App.prompt_clear()
   })
 
-  DOM.ev(DOM.el(`#prompt_list_1`), `click`, (e) => {
-    App.show_prompt_list(1)
+  DOM.ev(DOM.el(`#prompt_list`), `click`, (e) => {
+    App.show_prompt_list()
   })
 
-  DOM.ev(DOM.el(`#prompt_list_2`), `click`, (e) => {
-    App.show_prompt_list(2)
-  })
-
-  DOM.el(`#prompt_list_1`).textContent = App.smiley_icon
-  DOM.el(`#prompt_list_2`).textContent = App.smiley_icon
+  DOM.el(`#prompt_list`).textContent = App.smiley_icon
 }
 
 App.show_prompt = (args = {}) => {
   let def_args = {
     value: ``,
-    value_2: ``,
     placeholder: ``,
-    placeholder_2: ``,
     suggestions: [],
-    suggestions_2: [],
-    focus: 1,
-    show_list: 0,
-    list_submit: 0,
+    list_submit: false,
     word_mode: false,
     ignore_words: [],
+    highlight: false,
+    append: false,
   }
 
   App.def_args(def_args, args)
   App.start_popups()
-  App.set_prompt_suggestions(1, args.suggestions)
-  App.set_prompt_suggestions(2, args.suggestions_2)
+  App.set_prompt_suggestions(args.suggestions)
   App.show_popup(`prompt`)
-  let input = DOM.el(`#prompt_input_1`)
-  let input_2 = DOM.el(`#prompt_input_2`)
+  let input = DOM.el(`#prompt_input`)
   input.value = args.value
   input.placeholder = args.placeholder
-  let container_2 = DOM.el(`#prompt_container_2`)
-
-  if (args.double) {
-    input_2.classList.remove(`hidden`)
-    input_2.value = args.value_2
-    input_2.placeholder = args.placeholder_2
-    container_2.classList.remove(`hidden`)
-  }
-  else {
-    input_2.classList.add(`hidden`)
-    container_2.classList.add(`hidden`)
-  }
-
-  let list_1 = DOM.el(`#prompt_list_1`)
-  let list_2 = DOM.el(`#prompt_list_2`)
+  let list = DOM.el(`#prompt_list`)
 
   if (args.list && args.list.length) {
-    list_1.classList.remove(`hidden`)
+    list.classList.remove(`hidden`)
   }
   else {
-    list_1.classList.add(`hidden`)
-  }
-
-  if (args.list_2 && args.list_2.length) {
-    list_2.classList.remove(`hidden`)
-  }
-  else {
-    list_2.classList.add(`hidden`)
+    list.classList.add(`hidden`)
   }
 
   App.prompt_args = args
-
-  if (args.focus === 1) {
-    input.focus()
-  }
-  else if (args.focus === 2) {
-    input_2.focus()
-  }
+  input.focus()
 
   if (args.show_list !== 0) {
-    App.show_prompt_list(args.show_list)
+    App.show_prompt_list()
+  }
+
+  if (args.highlight) {
+    input.select()
   }
 }
 
 App.prompt_submit = () => {
-  let value_1 = DOM.el(`#prompt_input_1`).value
-  value_1 = App.single_space(value_1).trim()
-  let value_2 = DOM.el(`#prompt_input_2`).value
-  value_2 = App.single_space(value_2).trim()
+  let value = DOM.el(`#prompt_input`).value
+  value = App.single_space(value).trim()
   App.hide_popup(`prompt`)
-  App.prompt_args.on_submit(value_1, value_2)
+  App.prompt_args.on_submit(value)
 }
 
-App.set_prompt_suggestions = (num, suggestions) => {
-  let c = DOM.el(`#prompt_suggestions_${num}`)
+App.set_prompt_suggestions = (suggestions) => {
+  let c = DOM.el(`#prompt_suggestions`)
   c.innerHTML = ``
 
   for (let suggestion of suggestions) {
@@ -108,23 +73,15 @@ App.set_prompt_suggestions = (num, suggestions) => {
 }
 
 App.prompt_clear = () => {
-  DOM.el(`#prompt_input_1`).value = ``
-  DOM.el(`#prompt_input_2`).value = ``
+  DOM.el(`#prompt_input`).value = ``
 }
 
-App.show_prompt_list = (num) => {
-  let list
+App.show_prompt_list = () => {
   let items = []
-  let input = DOM.el(`#prompt_input_${num}`)
+  let input = DOM.el(`#prompt_input`)
   let args = App.prompt_args
   let valid = []
-
-  if (num === 1) {
-    list = args.list
-  }
-  else if (num === 2) {
-    list = args.list_2
-  }
+  let list = args.list
 
   if (args.word_mode) {
     let words = input.value.split(` `).map(x => x.trim())
@@ -159,7 +116,7 @@ App.show_prompt_list = (num) => {
     items.push({
       text: item,
       action: () => {
-        if (args.word_mode) {
+        if (args.append) {
           input.value += ` ${item}`
         }
         else {
@@ -169,13 +126,13 @@ App.show_prompt_list = (num) => {
         input.value = App.single_space(input.value).trim()
         input.focus()
 
-        if (args.list_submit === num) {
+        if (args.list_submit) {
           App.prompt_submit()
         }
       },
     })
   }
 
-  let btn = DOM.el(`#prompt_list_${num}`)
+  let btn = DOM.el(`#prompt_list`)
   App.show_context({items: items, element: btn})
 }
