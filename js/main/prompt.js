@@ -132,6 +132,7 @@ App.show_prompt_list = (num, e) => {
       action: () => {
         input.value += ` ${item}`
         input.value = App.single_space(input.value).trim()
+        input.focus()
       },
     })
   }
