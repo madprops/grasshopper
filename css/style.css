@@ -1147,16 +1147,12 @@ a:visited, a:link, a:hover {
   justify-content: flex-start;
 }
 
-.taglist_item {
+.taglist > div {
   text-decoration: underline;
-  padding-left: 0.66rem;
+  padding-left: 0.33rem;
+  padding-right: 0.33rem;
 }
 
-.taglist_item:first-child {
+.taglist > div:first-child {
   padding-left: 0;
-}
-
-.taglist_add {
-  padding-left: 0.66rem;
-  padding-right: 0.66rem;
 }
