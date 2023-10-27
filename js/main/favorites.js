@@ -1,5 +1,7 @@
 App.create_favorites_bar = (mode) => {
-  return DOM.create(`div`, `favorites_bar`, `favorites_bar_${mode}`)
+  let el = DOM.create(`div`, `favorites_bar`, `favorites_bar_${mode}`)
+  el.title = `Favorites. You can edit this in the Menu settings`
+  return el
 }
 
 App.create_favorites_button = (mode) => {
