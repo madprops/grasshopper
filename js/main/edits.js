@@ -622,6 +622,12 @@ App.close_tag_all = () => {
 App.get_all_tags = () => {
   let tags = []
 
+  for (let tag of App.tag_history) {
+    if (!tags.includes(tag)) {
+      tags.push(tag)
+    }
+  }
+
   for (let item of App.get_items(`tabs`)) {
     if (item.custom_tags) {
       for (let tag of item.custom_tags) {
@@ -629,12 +635,6 @@ App.get_all_tags = () => {
           tags.push(tag)
         }
       }
-    }
-  }
-
-  for (let tag of App.tag_history) {
-    if (!tags.includes(tag)) {
-      tags.push(tag)
     }
   }
 
