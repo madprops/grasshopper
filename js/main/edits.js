@@ -589,6 +589,8 @@ App.replace_tag = (value = ``) => {
     on_submit: (ans, ans_2) => {
       App.do_replace_tag(ans, ans_2)
     },
+    list: App.tag_history,
+    list_2: App.tag_history,
   })
 }
 
