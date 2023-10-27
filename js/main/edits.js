@@ -32,6 +32,12 @@ App.tab_is_edited = (item) => {
 }
 
 App.custom_save = (id, name, value) => {
+  if (Array.isArray(value)) {
+    if (!value.length) {
+      value = undefined
+    }
+  }
+
   if (value) {
     browser.sessions.setTabValue(id, name, value)
   }
@@ -199,6 +205,12 @@ App.remove_item_edits = (item) => {
 
 App.apply_edit = (what, item, value) => {
   if (what === `tags` && value) {
+    if (!value.length) {
+      if (item[`custom_${what}`] === undefined) {
+        return
+      }
+    }
+
     value = Array.from(new Set(value))
 
     if (App.get_setting(`sort_tags`)) {
@@ -531,7 +543,10 @@ App.edit_tab_tags = (args = {}) => {
 
         App.apply_edit(`tags`, it, tags)
         App.custom_save(it.id, `custom_tags`, tags)
-        App.push_to_tag_history(new_tags)
+
+        if (new_tags.length) {
+          App.push_to_tag_history(new_tags)
+        }
       }
     },
     force: force,
