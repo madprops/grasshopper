@@ -110,7 +110,7 @@ NeedContext.show = (args = {}) => {
   let def_args = {
     root: true,
     expand: false,
-    picker_mode: true,
+    picker_mode: false,
     margin: 0,
     index: 0,
   }
