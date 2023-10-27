@@ -1145,9 +1145,18 @@ a:visited, a:link, a:hover {
   flex-direction: row;
   align-items: center;
   justify-content: flex-start;
-  gap: 0.8rem;
 }
 
 .taglist_item {
   text-decoration: underline;
+  padding-left: 0.66rem;
+}
+
+.taglist_item:first-child {
+  padding-left: 0;
+}
+
+.taglist_add {
+  padding-left: 0.66rem;
+  padding-right: 0.66rem;
 }
