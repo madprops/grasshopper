@@ -1,13 +1,13 @@
 App.create_favorites_bar = (mode) => {
   let el = DOM.create(`div`, `favorites_bar`, `favorites_bar_${mode}`)
-  el.title = `Favorites. You can edit this in the Menu settings`
+  el.title = App.favorites_title
   return el
 }
 
 App.create_favorites_button = (mode) => {
   let btn = DOM.create(`div`, `favorites_button button`, `favorites_button_${mode}`)
   btn.textContent = App.heart_icon
-  btn.title = `Favorites`
+  btn.title = App.favorites_title
 
   DOM.ev(btn, `click`, (e) => {
     App.show_favorites_menu(e)

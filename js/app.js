@@ -145,3 +145,5 @@ App.background_effects = [
   {text: `Rotate 3`, value: `rotate_3`},
   {text: `Blur`, value: `blur`},
 ]
+
+App.favorites_title = `Favorites. You can edit this in the Menu settings`
