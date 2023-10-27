@@ -114,16 +114,16 @@ App.build_tab_filters = () => {
     },
     {type: App.separator_string, skip: true},
     {
+      type: `tag`, text:`Tag`, skip: true, info: `Filter a specific tag`,
+      icon: App.tag_icon
+    },
+    {
       type: `color`, text:`Color`, skip: true, info: `Filter by a specific color`,
       icon: App.settings_icons.theme
     },
     {
       type: `titled`, text:`Titled`, skip: false, info: `Show tabs that have a custom title`,
       icon: App.edit_icon
-    },
-    {
-      type: `tagged`, text:`Tagged`, skip: false, info: `Show tabs that have custom tags`,
-      icon: App.tag_icon
     },
     {
       type: `edited`, text:`Edited`, skip: false, info: `Show tabs that have custom properties`,

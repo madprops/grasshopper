@@ -751,7 +751,7 @@ App.set_item_text = (item) => {
       item.element.title += `\nDate Added: ${App.nice_date(item.date_added)}`
     }
 
-    if (item.custom_tags) {
+    if (item.custom_tags && item.custom_tags.length) {
       item.element.title += `\nTags: ${item.custom_tags.join(`, `)}`
     }
   }

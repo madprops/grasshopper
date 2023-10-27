@@ -71,7 +71,7 @@ App.do_filter = async (args = {}) => {
   let by_what
   let cmd
 
-  for (let c of [`title`, `url`, `re`, `re_title`, `re_url`, `tag`]) {
+  for (let c of [`title`, `url`, `re`, `re_title`, `re_url`]) {
     if (value.startsWith(`${c}:`)) {
       cmd = [c, value.replace(`${c}:`, ``).trim()]
     }
@@ -329,11 +329,19 @@ App.filter_check = (args) => {
         match = args.item.custom_color === args.f_value
       }
     }
+    else if (args.filter_mode === `tag`) {
+      if (args.f_value === `all`) {
+        match = args.item.custom_tags &&
+        args.item.custom_tags.length
+      }
+      else {
+        match = args.item.custom_tags &&
+        args.item.custom_tags.length &&
+        args.item.custom_tags.includes(args.f_value)
+      }
+    }
     else if (args.filter_mode === `titled`) {
       match = args.item.custom_title
-    }
-    else if (args.filter_mode === `tagged`) {
-      match = args.item.custom_tags
     }
     else if (args.filter_mode === `edited`) {
       match = App.tab_is_edited(args.item)
@@ -623,13 +631,6 @@ App.get_filter_refine = (mode) => {
     },
   })
 
-  items.push({
-    text: `Tag`,
-    action: () => {
-      App.filter_cmd(mode, `tag`)
-    },
-  })
-
   return items
 }
 
@@ -855,14 +856,20 @@ App.filter_titled = (mode) => {
   App.set_filter_mode({mode: mode, type: `titled`})
 }
 
-App.filter_tagged = (mode) => {
-  App.set_filter_mode({mode: mode, type: `tagged`})
-}
-
 App.filter_edited = (mode) => {
   App.set_filter_mode({mode: mode, type: `edited`})
 }
 
 App.filter_tag = (mode, tag) => {
-  App.set_filter({mode: mode, text: `tag: ${tag}`})
+  let s
+
+  if (tag === `all`) {
+    s = `All Tags`
+  }
+  else {
+    s = tag
+  }
+
+  App.set_custom_filter_mode(mode, `tag_${tag}`, s)
+  App.set_filter({mode: mode})
 }

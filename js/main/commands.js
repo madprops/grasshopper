@@ -1050,6 +1050,17 @@ App.setup_commands = () => {
       info: `Filter by picking a tab`,
     },
     {
+      name: `Filter All Tags`,
+      cmd: `filter_tag_all`,
+      modes: [`items`],
+      item: true,
+      icon: tag_icon,
+      action: (args) => {
+        App.filter_tag(args.mode, `all`)
+      },
+      info: `Filter all tagged tabs`,
+    },
+    {
       name: `Filter Pins`,
       cmd: `filter_pinned_tabs`,
       modes: [`tabs`],
@@ -1128,16 +1139,6 @@ App.setup_commands = () => {
         App.filter_titled(args.mode)
       },
       info: `Filter: Show tabs that have a custom title`,
-    },
-    {
-      name: `Filter Tagged`,
-      cmd: `filter_tagged_tabs`,
-      modes: [`tabs`],
-      icon: tag_icon,
-      action: (args) => {
-        App.filter_tagged(args.mode)
-      },
-      info: `Filter: Show tabs that have custom tags`,
     },
     {
       name: `Filter Edited`,
