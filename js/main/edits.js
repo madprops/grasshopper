@@ -108,6 +108,16 @@ App.edit_prompt = (args = {}) => {
     word_mode = false
   }
 
+  let ignore_words = []
+
+  if (args.what === `tags`) {
+    if (args.add) {
+      if (App.tab_has_tags(args.item)) {
+        ignore_words = args.item.custom_tags
+      }
+    }
+  }
+
   App.show_prompt({
     value: value,
     placeholder: placeholder,
@@ -123,6 +133,7 @@ App.edit_prompt = (args = {}) => {
     show_list: show_list,
     list_submit: list_submit,
     word_mode: word_mode,
+    ignore_words: ignore_words
   })
 }
 

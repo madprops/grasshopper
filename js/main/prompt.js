@@ -27,6 +27,7 @@ App.show_prompt = (args = {}) => {
     show_list: 0,
     list_submit: 0,
     word_mode: false,
+    ignore_words: [],
   }
 
   App.def_args(def_args, args)
@@ -125,6 +126,10 @@ App.show_prompt_list = (num, e) => {
 
     for (let item of list) {
       if (words.includes(item)) {
+        continue
+      }
+
+      if (args.ignore_words.includes(item)) {
         continue
       }
 
