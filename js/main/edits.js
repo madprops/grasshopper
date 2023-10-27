@@ -78,12 +78,7 @@ App.edit_prompt = (args = {}) => {
   let list = []
 
   if (args.what === `tags`) {
-    if (active.length === 1 && args.add) {
-      list = App.get_tag_prompt_list(active[0])
-    }
-    else {
-      list = App.tag_history
-    }
+    list = App.tag_history
   }
 
   App.show_prompt({
@@ -664,7 +659,7 @@ App.push_to_tag_history = (tags) => {
 
 App.pick_tag = (item, e) => {
   let items = []
-  let tags = App.get_tag_prompt_list(item)
+  let tags = App.tag_history
 
   if (tags.length) {
     for (let tag of tags) {
@@ -749,21 +744,4 @@ App.get_tag_items = (mode) => {
   }
 
   return items
-}
-
-App.get_tag_prompt_list = (item) => {
-  let list = []
-
-  if (item.custom_tags && item.custom_tags.length) {
-      for (let tag of App.tag_history) {
-        if (!item.custom_tags.includes(tag)) {
-          list.push(tag)
-        }
-      }
-    }
-  else {
-    list = App.tag_history
-  }
-
-  return list
 }
