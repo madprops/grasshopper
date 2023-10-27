@@ -751,15 +751,16 @@ App.get_tag_picks = (item) => {
   let list = []
 
   for (let tag of App.tag_history) {
-    let add = true
+    let add = false
 
     for (let it of active) {
       if (!it.custom_tags || !it.custom_tags.length) {
+        add = true
         break
       }
 
-      if (it.custom_tags.includes(tag)) {
-        add = false
+      if (!it.custom_tags.includes(tag)) {
+        add = true
         break
       }
     }
