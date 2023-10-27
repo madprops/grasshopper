@@ -696,9 +696,8 @@ App.edit_tag = (item, tag) => {
     value: tag,
     list: App.tag_history,
     list_submit: true,
-    highlight: true,
-    list_submit: true,
     show_list: true,
+    highlight: true,
     on_submit: (ans) => {
       App.do_edit_tag(item, tag, ans)
     },
