@@ -1148,11 +1148,14 @@ a:visited, a:link, a:hover {
 }
 
 .taglist > div {
-  text-decoration: underline;
   padding-left: 0.33rem;
   padding-right: 0.33rem;
 }
 
 .taglist > div:first-child {
   padding-left: 0;
+}
+
+.taglist_item {
+  text-decoration: underline;
 }
