@@ -297,13 +297,23 @@ App.filter_check = (args) => {
         args.item.custom_tags.includes(args.value)
       }
 
-      if (App.get_setting(`filter_tags`)) {
-        if (!match && args.item.custom_tags) {
-          for (let tag of args.item.custom_tags) {
-            match = regex.test(tag)
+      if (!match) {
+        if (App.get_setting(`filter_colors`)) {
+          if (args.item.custom_color) {
+            match = args.item.custom_color === args.value
+          }
+        }
+      }
 
-            if (match) {
-              break
+      if (!match) {
+        if (App.get_setting(`filter_tags`)) {
+          if (args.item.custom_tags) {
+            for (let tag of args.item.custom_tags) {
+              match = tag === args.value
+
+              if (match) {
+                break
+              }
             }
           }
         }
