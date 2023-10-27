@@ -24,6 +24,7 @@ App.show_prompt = (args = {}) => {
     ignore_words: [],
     highlight: false,
     append: false,
+    show_list: false,
   }
 
   App.def_args(def_args, args)
@@ -45,7 +46,7 @@ App.show_prompt = (args = {}) => {
   App.prompt_args = args
   input.focus()
 
-  if (args.show_list !== 0) {
+  if (args.show_list) {
     App.show_prompt_list()
   }
 
