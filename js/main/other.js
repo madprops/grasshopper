@@ -72,18 +72,6 @@ App.show_cmds_menu = (cmds, from) => {
   return items
 }
 
-App.show_context = (args = {}) => {
-  NeedContext.show(args)
-}
-
-App.hide_context = () => {
-  NeedContext.hide()
-}
-
-App.context_open = () => {
-  return NeedContext.open
-}
-
 App.check_ready = (what) => {
   let s = `${what}_ready`
 
