@@ -104,11 +104,13 @@ App.edit_prompt = (args = {}) => {
 
   let ignore_words = []
   let append = false
+  let show_list = false
 
   if (args.what === `tags`) {
     if (args.add) {
       if (App.tab_has_tags(args.item)) {
         ignore_words = args.item.custom_tags
+        show_list = true
       }
     }
 
@@ -124,6 +126,7 @@ App.edit_prompt = (args = {}) => {
     word_mode: word_mode,
     ignore_words: ignore_words,
     append: append,
+    show_list: show_list,
     on_submit: (ans) => {
       let obj = {}
       obj[args.what] = ans
@@ -694,6 +697,7 @@ App.edit_tag = (item, tag) => {
     list: App.tag_history,
     highlight: true,
     list_submit: true,
+    show_list: true,
     on_submit: (ans) => {
       App.do_edit_tag(item, tag, ans)
     },
