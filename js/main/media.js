@@ -320,11 +320,11 @@ App.search_media = (mode, e) => {
 
     items.push({
       text: App.capitalize(type), icon: icon, action: () => {
-      App.show_center_context(subitems, e)
+      App.show_context({items: subitems, e: e })
     }})
   }
 
-  App.show_center_context(items, e)
+  App.show_context({items: items, e: e})
 }
 
 App.scroll_media_up = (what = App.window_mode) => {

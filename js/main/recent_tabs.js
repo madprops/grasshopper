@@ -73,5 +73,5 @@ App.show_recent_tabs = (e) => {
     })
   }
 
-  App.show_center_context(items, e)
+  App.show_context({items: items, e: e})
 }

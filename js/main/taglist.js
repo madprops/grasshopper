@@ -88,7 +88,7 @@ App.show_taglist_menu = (e, item) => {
     },
   })
 
-  App.show_center_context(items, e)
+  App.show_context({items: items, e: e})
 }
 
 App.taglist_remove = (e, item) => {

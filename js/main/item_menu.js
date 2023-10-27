@@ -83,7 +83,7 @@ App.show_item_menu = async (args = {}) => {
     }
   }
 
-  App.show_center_context(items, args.e)
+  App.show_context({items: items, e: args.e})
 }
 
 App.common_menu_items = (o_items, item, multiple) => {

@@ -7,12 +7,12 @@ App.setup_prompt = () => {
     App.prompt_clear()
   })
 
-  DOM.ev(DOM.el(`#prompt_list`), `click`, (e) => {
-    App.show_prompt_list(1, e)
+  DOM.ev(DOM.el(`#prompt_list_1`), `click`, (e) => {
+    App.show_prompt_list(1)
   })
 
   DOM.ev(DOM.el(`#prompt_list_2`), `click`, (e) => {
-    App.show_prompt_list(2, e)
+    App.show_prompt_list(2)
   })
 }
 
@@ -23,6 +23,7 @@ App.show_prompt = (args = {}) => {
     placeholder: ``,
     placeholder_2: ``,
     suggestions: [],
+    suggestions_2: [],
     focus: 1,
     show_list: 0,
     list_submit: 0,
@@ -32,7 +33,8 @@ App.show_prompt = (args = {}) => {
 
   App.def_args(def_args, args)
   App.start_popups()
-  App.set_prompt_suggestions(args.suggestions)
+  App.set_prompt_suggestions(1, args.suggestions)
+  App.set_prompt_suggestions(2, args.suggestions_2)
   App.show_popup(`prompt`)
   let input = DOM.el(`#prompt_input_1`)
   let input_2 = DOM.el(`#prompt_input_2`)
@@ -51,14 +53,14 @@ App.show_prompt = (args = {}) => {
     container_2.classList.add(`hidden`)
   }
 
-  let list = DOM.el(`#prompt_list`)
+  let list_1 = DOM.el(`#prompt_list_1`)
   let list_2 = DOM.el(`#prompt_list_2`)
 
   if (args.list && args.list.length) {
-    list.classList.remove(`hidden`)
+    list_1.classList.remove(`hidden`)
   }
   else {
-    list.classList.add(`hidden`)
+    list_1.classList.add(`hidden`)
   }
 
   if (args.list_2 && args.list_2.length) {
@@ -91,8 +93,8 @@ App.prompt_submit = () => {
   App.prompt_args.on_submit(value_1, value_2)
 }
 
-App.set_prompt_suggestions = (suggestions) => {
-  let c = DOM.el(`#prompt_suggestions`)
+App.set_prompt_suggestions = (num, suggestions) => {
+  let c = DOM.el(`#prompt_suggestions_${num}`)
   c.innerHTML = ``
 
   for (let suggestion of suggestions) {
@@ -107,7 +109,7 @@ App.prompt_clear = () => {
   DOM.el(`#prompt_input_2`).value = ``
 }
 
-App.show_prompt_list = (num, e) => {
+App.show_prompt_list = (num) => {
   let list
   let items = []
   let input = DOM.el(`#prompt_input_${num}`)
@@ -171,5 +173,6 @@ App.show_prompt_list = (num, e) => {
     })
   }
 
-  App.show_center_context(items, e)
+  let btn = DOM.el(`#prompt_list_${num}`)
+  App.show_context({items: items, element: btn})
 }

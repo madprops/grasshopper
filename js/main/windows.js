@@ -228,5 +228,5 @@ App.get_window_menu_items = async (item) => {
 
 App.show_windows_menu = async (item, e) => {
   let items = await App.get_window_menu_items(item)
-  App.show_center_context(items, e)
+  App.show_context({items: items, e: e})
 }

@@ -72,12 +72,15 @@ App.show_cmds_menu = (cmds, from) => {
   return items
 }
 
-App.show_center_context = (items, e) => {
-  if (e) {
-    NeedContext.show({x: e.clientX, y: e.clientY, items: items})
+App.show_context = (args = {}) => {
+  if (args.e) {
+    NeedContext.show({x: args.e.clientX, y: args.e.clientY, items: args.items})
+  }
+  else if (args.element) {
+    NeedContext.show({element: args.element, items: args.items})
   }
   else {
-    NeedContext.show({items: items})
+    NeedContext.show({items: args.items})
   }
 }
 
@@ -143,13 +146,13 @@ App.show_browser_menu = (e) => {
   ]
 
   let items = App.show_cmds_menu(cmds, `browser_commands`)
-  App.show_center_context(items, e)
+  App.show_context({items: items, e: e})
 }
 
 App.show_hover_menu = (e, item) => {
   let items = App.custom_menu_items(`hover_menu`)
   App.command_item = item
-  App.show_center_context(items, e)
+  App.show_context({items: items, e: e})
 }
 
 App.toggle_header = () => {

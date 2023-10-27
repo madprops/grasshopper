@@ -352,7 +352,7 @@ App.show_close_tabs_menu = (e) => {
     items.push(App.cmd_item({cmd: `close_${type}_tabs`, from: `close_tabs`}))
   }
 
-  App.show_center_context(items, e)
+  App.show_context({items: items, e: e})
 }
 
 App.close_tabs_next = (reverse = false) => {

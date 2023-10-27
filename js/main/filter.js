@@ -790,7 +790,7 @@ App.show_filter_history = (mode, e) => {
     })
   }
 
-  App.show_center_context(items, e)
+  App.show_context({items: items, e: e})
 }
 
 App.update_filter_history = (mode) => {
@@ -846,7 +846,7 @@ App.clean_filter = (s) => {
 
 App.show_filter_color_menu = (mode, e) => {
   let items = App.get_color_items(mode, `filter`)
-  App.show_center_context(items, e)
+  App.show_context({items: items, e: e})
 }
 
 App.filter_playing = (mode) => {

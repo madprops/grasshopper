@@ -298,7 +298,7 @@ App.color_menu_items = (item) => {
 
 App.show_color_menu = (item, e) => {
   let items = App.color_menu_items(item)
-  App.show_center_context(items, e)
+  App.show_context({items: items, e: e})
 }
 
 App.get_color_items = (mode) => {
@@ -427,7 +427,7 @@ App.show_close_color_menu = (e) => {
     })
   }
 
-  App.show_center_context(items, e)
+  App.show_context({items: items, e: e})
 }
 
 App.edit_tab_title = (args = {}) => {
@@ -768,7 +768,7 @@ App.filter_tag_pick = (item, e) => {
     })
   }
 
-  App.show_center_context(items, e)
+  App.show_context({items: items, e: e})
 }
 
 App.get_tag_items = (mode) => {

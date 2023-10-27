@@ -127,12 +127,12 @@
 
     <template id="template_prompt">
       <div id="prompt_container" class="flex_row_center gap_1">
-        <input type="text" id="prompt_input_1" class="prompt_input text" list="prompt_suggestions">
-        <div id="prompt_list" class="button" title="Pick from a list">😀</div>
+        <input type="text" id="prompt_input_1" class="prompt_input text" list="prompt_suggestions_1">
+        <div id="prompt_list_1" class="button" title="Pick from a list">😀</div>
       </div>
 
       <div id="prompt_container_2" class="flex_row_center gap_1">
-        <input type="text" id="prompt_input_2" class="prompt_input text hidden" list="prompt_suggestions">
+        <input type="text" id="prompt_input_2" class="prompt_input text hidden" list="prompt_suggestions_2">
         <div id="prompt_list_2" class="button" title="Pick from a list">😀</div>
       </div>
 
@@ -142,7 +142,8 @@
       </div>
     </template>
 
-    <datalist id="prompt_suggestions"></datalist>
+    <datalist id="prompt_suggestions_1"></datalist>
+    <datalist id="prompt_suggestions_2"></datalist>
     <script src="js/init.js"></script>
   </body>
 </html>
