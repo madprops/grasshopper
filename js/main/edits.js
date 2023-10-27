@@ -694,11 +694,12 @@ App.do_replace_tag = (tag_1, tag_2) => {
 App.edit_tag = (item, tag) => {
   App.show_prompt({
     suggestions: App.get_all_tags(),
-    placeholder: `New Tag`,
+    placeholder: `Edit Tag`,
     value: tag,
     on_submit: (ans) => {
       App.do_edit_tag(item, tag, ans)
     },
+    list: App.tag_history,
   })
 }
 
