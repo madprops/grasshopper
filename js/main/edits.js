@@ -695,6 +695,7 @@ App.edit_tag = (item, tag) => {
     placeholder: `Edit Tag`,
     value: tag,
     list: App.tag_history,
+    list_submit: true,
     highlight: true,
     list_submit: true,
     show_list: true,
