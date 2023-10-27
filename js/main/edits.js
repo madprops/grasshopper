@@ -743,7 +743,7 @@ App.get_tag_items = (mode) => {
     items.push({
       text: `No tags in use`,
       action: () => {
-        App.alert(`You can give tabs tags`)
+        App.alert(`You can add tags to tabs`)
       },
     })
   }
