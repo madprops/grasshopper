@@ -93,6 +93,12 @@ App.edit_prompt = (args = {}) => {
     show_list = 1
   }
 
+  let list_submit = 0
+
+  if (args.what === `title`) {
+    list_submit = 1
+  }
+
   App.show_prompt({
     value: value,
     placeholder: placeholder,
@@ -106,6 +112,7 @@ App.edit_prompt = (args = {}) => {
     },
     list: list,
     show_list: show_list,
+    list_submit: list_submit,
   })
 }
 

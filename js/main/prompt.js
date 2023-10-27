@@ -25,6 +25,7 @@ App.show_prompt = (args = {}) => {
     suggestions: [],
     focus: 1,
     show_list: 0,
+    list_submit: 0,
   }
 
   App.def_args(def_args, args)
@@ -109,13 +110,14 @@ App.show_prompt_list = (num, e) => {
   let items = []
   let input = DOM.el(`#prompt_input_${num}`)
   let words = input.value.split(` `).map(x => x.trim())
+  let args = App.prompt_args
   let valid = []
 
   if (num === 1) {
-    list = App.prompt_args.list
+    list = args.list
   }
   else if (num === 2) {
-    list = App.prompt_args.list_2
+    list = args.list_2
   }
 
   for (let item of list) {
@@ -133,6 +135,10 @@ App.show_prompt_list = (num, e) => {
         input.value += ` ${item}`
         input.value = App.single_space(input.value).trim()
         input.focus()
+
+        if (args.list_submit === num) {
+          App.prompt_submit()
+        }
       },
     })
   }
