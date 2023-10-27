@@ -54,6 +54,9 @@ App.show_prompt = (args = {}) => {
   if (args.highlight) {
     input.select()
   }
+  else {
+    App.input_deselect(input)
+  }
 }
 
 App.prompt_submit = () => {

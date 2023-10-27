@@ -461,3 +461,7 @@ App.def_args = (def, args) => {
     }
   }
 }
+
+App.input_deselect = (input) => {
+  input.selectionStart = input.selectionEnd
+}
