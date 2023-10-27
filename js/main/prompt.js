@@ -25,6 +25,7 @@ App.show_prompt = (args = {}) => {
     highlight: false,
     append: false,
     show_list: false,
+    list: []
   }
 
   App.def_args(def_args, args)
@@ -36,7 +37,7 @@ App.show_prompt = (args = {}) => {
   input.placeholder = args.placeholder
   let list = DOM.el(`#prompt_list`)
 
-  if (args.list && args.list.length) {
+  if (args.list.length) {
     list.classList.remove(`hidden`)
   }
   else {
@@ -78,16 +79,14 @@ App.prompt_clear = () => {
 }
 
 App.show_prompt_list = () => {
-  let items = []
-  let input = DOM.el(`#prompt_input`)
   let args = App.prompt_args
+  let input = DOM.el(`#prompt_input`)
   let valid = []
-  let list = args.list
 
   if (args.word_mode) {
     let words = input.value.split(` `).map(x => x.trim())
 
-    for (let item of list) {
+    for (let item of args.list) {
       if (words.includes(item)) {
         continue
       }
@@ -100,7 +99,7 @@ App.show_prompt_list = () => {
     }
   }
   else {
-    for (let item of list) {
+    for (let item of args.list) {
       if (input.value === item) {
         continue
       }
@@ -112,6 +111,8 @@ App.show_prompt_list = () => {
   if (!valid.length) {
     return
   }
+
+  let items = []
 
   for (let item of valid) {
     items.push({
