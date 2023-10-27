@@ -659,7 +659,7 @@ App.push_to_tag_history = (tags) => {
 
 App.pick_tag = (item, e) => {
   let items = []
-  let tags = App.tag_history
+  let tags = App.get_tag_picks(item)
 
   if (tags.length) {
     for (let tag of tags) {
@@ -744,4 +744,30 @@ App.get_tag_items = (mode) => {
   }
 
   return items
+}
+
+App.get_tag_picks = (item) => {
+  let active = App.get_active_items({mode: item.mode, item: item})
+  let list = []
+
+  for (let tag of App.tag_history) {
+    let add = true
+
+    for (let it of active) {
+      if (!it.custom_tags || !it.custom_tags.length) {
+        break
+      }
+
+      if (it.custom_tags.includes(tag)) {
+        add = false
+        break
+      }
+    }
+
+    if (add) {
+      list.push(tag)
+    }
+  }
+
+  return list
 }
