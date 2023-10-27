@@ -67,6 +67,16 @@ App.stor_save_tag_history = () => {
   App.save_local_storage(App.stor_tag_history_name, App.tag_history)
 }
 
+App.stor_get_title_history = () => {
+  App.title_history = App.get_local_storage(App.stor_title_history_name, [])
+  App.debug(`Stor: Got title history`)
+}
+
+App.stor_save_title_history = () => {
+  App.debug(`Stor: Saving title history`)
+  App.save_local_storage(App.stor_title_history_name, App.title_history)
+}
+
 App.stor_get_first_time = () => {
   App.first_time = App.get_local_storage(App.stor_first_time_name, {})
   App.debug(`Stor: Got first time`)

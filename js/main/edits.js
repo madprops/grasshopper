@@ -65,6 +65,9 @@ App.edit_prompt = (args = {}) => {
   if (args.what === `tags`) {
     suggestions = App.get_all_tags()
   }
+  else if (args.what === `title`) {
+    suggestions = App.get_all_titles()
+  }
 
   let placeholder
 
@@ -79,6 +82,9 @@ App.edit_prompt = (args = {}) => {
 
   if (args.what === `tags`) {
     list = App.tag_history
+  }
+  else if (args.what === `title`) {
+    list = App.title_history
   }
 
   let show_list = 0
@@ -412,6 +418,7 @@ App.edit_tab_title = (args = {}) => {
       for (let it of active) {
         App.apply_edit(`title`, it, args.title)
         App.custom_save(it.id, `custom_title`, args.title)
+        App.push_to_title_history([args.title])
       }
     },
     force: force,
@@ -420,6 +427,40 @@ App.edit_tab_title = (args = {}) => {
 
 App.edit_title = (item) => {
   App.edit_prompt({what: `title`, item: item})
+}
+
+App.push_to_title_history = (titles) => {
+  if (!titles.length) {
+    return
+  }
+
+  for (let title of titles) {
+    App.title_history = App.title_history.filter(x => x !== title)
+    App.title_history.unshift(title)
+    App.title_history = App.title_history.slice(0, App.title_history_max)
+  }
+
+  App.stor_save_title_history()
+}
+
+App.get_all_titles = () => {
+  let titles = []
+
+  for (let item of App.get_items(`tabs`)) {
+    if (item.custom_title) {
+      if (!titles.includes(item.custom_title)) {
+        titles.push(item.custom_title)
+      }
+    }
+  }
+
+  for (let title of App.title_history) {
+    if (!titles.includes(title)) {
+      titles.push(title)
+    }
+  }
+
+  return titles
 }
 
 App.edit_tab_tags = (args = {}) => {
@@ -552,6 +593,12 @@ App.get_all_tags = () => {
           tags.push(tag)
         }
       }
+    }
+  }
+
+  for (let tag of App.tag_history) {
+    if (!tags.includes(tag)) {
+      tags.push(tag)
     }
   }
 
