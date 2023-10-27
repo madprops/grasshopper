@@ -807,5 +807,5 @@ App.get_tag_items = (mode) => {
 }
 
 App.tab_has_tags = (item) => {
-  return item.custom_tags && item.custom_tags.length
+  return Boolean(item.custom_tags && item.custom_tags.length)
 }

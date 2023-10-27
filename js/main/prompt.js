@@ -146,6 +146,10 @@ App.show_prompt_list = (num, e) => {
     }
   }
 
+  if (!valid.length) {
+    return
+  }
+
   for (let item of valid) {
     items.push({
       text: item,
