@@ -301,7 +301,7 @@ App.show_media_menu = (what) => {
   }
 
   let btn = DOM.el(`#media_${what}_menu`)
-  NeedContext.show({element: btn, items: items})
+  App.show_context({element: btn, items: items})
 }
 
 App.search_media = (mode, e) => {

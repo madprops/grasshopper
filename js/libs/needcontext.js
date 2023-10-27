@@ -120,7 +120,11 @@ NeedContext.show = (args = {}) => {
     NeedContext.create()
   }
 
-  if (args.element) {
+  if (args.e) {
+    args.x = args.e.clientX
+    args.y = args.e.clientY
+  }
+  else if (args.element) {
     let rect = args.element.getBoundingClientRect()
     args.x = rect.left
     args.y = rect.top + args.margin

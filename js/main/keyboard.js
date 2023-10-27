@@ -279,21 +279,21 @@ App.setup_keyboard = () => {
       App.double_tap_date = App.now()
     }
 
-    if (NeedContext.open) {
+    if (App.context_open()) {
       if (e.shiftKey && e.key === `Enter`) {
-        NeedContext.hide()
+        App.hide_context()
         e.preventDefault()
       }
       else if (e.ctrlKey && e.key === `ArrowLeft`) {
-        NeedContext.hide()
+        App.hide_context()
         e.preventDefault()
       }
       else if (e.ctrlKey && e.key === `ArrowDown`) {
-        NeedContext.hide()
+        App.hide_context()
         e.preventDefault()
       }
       else if (e.ctrlKey && e.key === `ArrowRight`) {
-        NeedContext.hide()
+        App.hide_context()
         e.preventDefault()
       }
     }

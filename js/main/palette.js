@@ -47,7 +47,7 @@ App.show_palette = (prefilter = ``) => {
     }
   }
 
-  NeedContext.hide()
+  App.hide_context()
   App.show_popup(`palette`)
   App.palette_select_first()
   container.scrollTop = 0

@@ -31,7 +31,7 @@ App.print_intro = () => {
 
 App.show_custom_menu = (e, what) => {
   let items = App.custom_menu_items(`${what}_menu`)
-  NeedContext.show({x: e.clientX, y: e.clientY, items: items})
+  App.show_context({x: e.clientX, y: e.clientY, items: items})
   e.preventDefault()
 }
 
@@ -73,15 +73,15 @@ App.show_cmds_menu = (cmds, from) => {
 }
 
 App.show_context = (args = {}) => {
-  if (args.e) {
-    NeedContext.show({x: args.e.clientX, y: args.e.clientY, items: args.items})
-  }
-  else if (args.element) {
-    NeedContext.show({element: args.element, items: args.items})
-  }
-  else {
-    NeedContext.show({items: args.items})
-  }
+  NeedContext.show(args)
+}
+
+App.hide_context = () => {
+  NeedContext.hide()
+}
+
+App.context_open = () => {
+  return NeedContext.open
 }
 
 App.check_ready = (what) => {

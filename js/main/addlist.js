@@ -512,7 +512,7 @@ Addlist.menu = () => {
 
   let btn = DOM.el(`#addlist_menu_${id}`)
 
-  NeedContext.show({
+  App.show_context({
     element: btn,
     items: items,
     expand: true,
@@ -674,7 +674,7 @@ Addlist.list = (args) => {
     btn = DOM.el(`#${args.id}`)
   }
 
-  NeedContext.show({
+  App.show_context({
     element: btn,
     items: items,
     expand: true,
@@ -848,7 +848,7 @@ Addlist.data_menu = (id) => {
 
   let btn = DOM.el(`#addlist_button_${id}_data`)
 
-  NeedContext.show({
+  App.show_context({
     element: btn,
     items: items,
     expand: true,

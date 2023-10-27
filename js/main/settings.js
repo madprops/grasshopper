@@ -661,7 +661,7 @@ App.show_settings_menu = () => {
   let category = App.settings_category
   let btn = DOM.el(`#settings_title_${category}`)
   let items = App.settings_menu_items()
-  NeedContext.show({element: btn, items: items})
+  App.show_context({element: btn, items: items})
 }
 
 App.export_settings = () => {
@@ -727,7 +727,7 @@ App.settings_label_menu = (e, args) => {
     })
   }
 
-  NeedContext.show({x: e.clientX, y: e.clientY, items: items})
+  App.show_context({x: e.clientX, y: e.clientY, items: items})
 }
 
 App.get_setting = (setting) => {
@@ -899,7 +899,7 @@ App.settings_actions = (category) => {
   })
 
   let btn = DOM.el(`#settings_actions_${category}`)
-  NeedContext.show({element: btn, items: items, expand: true, margin: btn.clientHeight})
+  App.show_context({element: btn, items: items, expand: true, margin: btn.clientHeight})
 }
 
 App.get_background_effect = (value) => {
@@ -1175,7 +1175,7 @@ App.pick_background = (e) => {
     })
   }
 
-  NeedContext.show({x: e.clientX, y: e.clientY, items: items})
+  App.show_context({x: e.clientX, y: e.clientY, items: items})
 }
 
 App.do_pick_background = (num) => {
