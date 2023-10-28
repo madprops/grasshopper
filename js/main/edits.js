@@ -643,6 +643,8 @@ App.close_tag_all = () => {
     placeholder: `Close Tag`,
     suggestions: App.get_all_tags(),
     list: App.get_all_tags(),
+    show_list: true,
+    list_submit: true,
     on_submit: (tag) => {
       let items = []
 
