@@ -170,29 +170,3 @@ App.check_rules = (item) => {
     }
   }
 }
-
-App.get_color = (item) => {
-  return item.custom_color || item.rule_color
-}
-
-App.get_title = (item) => {
-  let title = item.custom_title || item.rule_title || item.title
-
-  if (App.get_setting(`all_caps`)) {
-    title = title.toUpperCase()
-  }
-
-  return title
-}
-
-App.get_tags = (item) => {
-  if (item.custom_tags && item.custom_tags.length) {
-    return item.custom_tags
-  }
-  else if (item.rule_tags && item.rule_tags.length) {
-    return item.rule_tags
-  }
-  else {
-    return []
-  }
-}
