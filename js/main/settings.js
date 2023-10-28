@@ -1222,6 +1222,18 @@ App.setup_settings_addlist = () => {
           return App.get_path(value)
         }
       },
+      validate: (values) => {
+        if (!values[`domain`]) {
+          return false
+        }
+
+        if ((values[`color`] === `none`) &&
+        !values[`title`] && !values[`tags`]) {
+          return false
+        }
+
+        return true
+      },
       tooltips: {
         exact: `Match exact URL`
       },

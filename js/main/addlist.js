@@ -17,6 +17,8 @@ Addlist.values = (id) => {
 
 Addlist.save = (id) => {
   let data = Addlist.data
+  let oargs = Addlist.oargs(id)
+  let values = Addlist.values(id)
 
   if (data.edit) {
     let modified = Addlist.modified(id)
@@ -27,12 +29,17 @@ Addlist.save = (id) => {
     }
   }
 
-  if (!Addlist.filled(id)) {
-    return false
+  if (oargs.validate) {
+    if (!oargs.validate(values)) {
+      return false
+    }
+  }
+  else {
+    if (!Addlist.filled(id)) {
+      return false
+    }
   }
 
-  let line = Addlist.values(id)
-  let oargs = Addlist.oargs(id)
   let v1 = ``
 
   if (data.edit && Object.keys(data.items).length) {
@@ -43,25 +50,25 @@ Addlist.save = (id) => {
     Addlist.remove({id: id, value: v1, force: true})
   }
 
-  let v2 = line[oargs.pk]
+  let v2 = values[oargs.pk]
 
   if (v2 && (v1 !== v2)) {
     Addlist.remove({id: id, value: v2, force: true})
   }
 
   let lines = Addlist.get_data(id)
-  line._date_ = App.now()
+  values._date_ = App.now()
 
   if (data.index === undefined) {
     if (oargs.append) {
-      lines.push(line)
+      lines.push(values)
     }
     else {
-      lines.unshift(line)
+      lines.unshift(values)
     }
   }
   else {
-    lines.splice(data.index, 0, line)
+    lines.splice(data.index, 0, values)
   }
 
   Addlist.after(id, lines)
