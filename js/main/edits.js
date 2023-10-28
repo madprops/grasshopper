@@ -368,12 +368,12 @@ App.get_active_colors = (mode) => {
   let count = {colors: 0}
 
   for (let item of App.get_items(mode)) {
-    if (item.custom_color) {
-      if (!count[item.custom_color]) {
-        count[item.custom_color] = 0
+    if (App.get_color(item)) {
+      if (!count[App.get_color(item)]) {
+        count[App.get_color(item)] = 0
       }
 
-      count[item.custom_color] += 1
+      count[App.get_color(item)] += 1
       count.colors += 1
     }
   }

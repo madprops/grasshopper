@@ -290,7 +290,7 @@ App.filter_check = (args) => {
         match = regex.test(args.item.path)
       }
       else if (args.by_what === `color`) {
-        match = args.item.custom_color === args.value
+        match = App.get_color(args.item) === args.value
       }
       else if (args.by_what === `tag`) {
         match = App.tab_has_tags(args.item) &&
@@ -299,8 +299,8 @@ App.filter_check = (args) => {
 
       if (!match) {
         if (App.get_setting(`filter_colors`)) {
-          if (args.item.custom_color) {
-            match = args.item.custom_color === args.value
+          if (App.get_color(args.item)) {
+            match = App.get_color(args.item) === args.value
           }
         }
       }
@@ -342,10 +342,10 @@ App.filter_check = (args) => {
     }
     else if (args.filter_mode === `color`) {
       if (args.f_value === `all`) {
-        match = args.item.custom_color
+        match = App.get_color(args.item)
       }
       else {
-        match = args.item.custom_color === args.f_value
+        match = App.get_color(args.item) === args.f_value
       }
     }
     else if (args.filter_mode === `tag`) {
