@@ -20,7 +20,7 @@ NeedContext.item_sep = `4px`
 NeedContext.layers = {}
 NeedContext.level = 0
 NeedContext.gap = `0.45rem`
-NeedContext.center_top = `50%`
+NeedContext.center_top = 20
 
 // Set defaults
 NeedContext.set_defaults = () => {
@@ -135,15 +135,7 @@ NeedContext.show = (args = {}) => {
     NeedContext.level = 0
   }
 
-  let center
-
-  if (args.x === undefined && args.y === undefined) {
-    center = true
-  }
-  else {
-    center = false
-  }
-
+  let center = args.x === undefined && args.y === undefined
   args.items = args.items.slice(0)
   let selected_index
   let layer = NeedContext.get_layer()
@@ -255,32 +247,34 @@ NeedContext.show = (args = {}) => {
 
   if (center) {
     c.style.left = `50%`
-    c.style.top = NeedContext.center_top
-    c.style.transform = `translate(-50%, -50%)`
+    c.style.transform = `translateX(-50%)`
+    args.y = NeedContext.center_top
   }
-  else {
-    if (args.y < 5) {
-      args.y = 5
-    }
 
-    if (args.x < 5) {
-      args.x = 5
-    }
+  if (args.y < 5) {
+    args.y = 5
+  }
 
-    if ((args.y + c.offsetHeight) + 5 > window.innerHeight) {
-      args.y = window.innerHeight - c.offsetHeight - 5
-    }
+  if (args.x < 5) {
+    args.x = 5
+  }
 
-    if ((args.x + c.offsetWidth) + 5 > window.innerWidth) {
-      args.x = window.innerWidth - c.offsetWidth - 5
-    }
+  if ((args.y + c.offsetHeight) + 5 > window.innerHeight) {
+    args.y = window.innerHeight - c.offsetHeight - 5
+  }
 
-    NeedContext.last_x = args.x
-    NeedContext.last_y = args.y
-    args.x = Math.max(args.x, 0)
-    args.y = Math.max(args.y, 0)
+  if ((args.x + c.offsetWidth) + 5 > window.innerWidth) {
+    args.x = window.innerWidth - c.offsetWidth - 5
+  }
+
+  NeedContext.last_x = args.x
+  NeedContext.last_y = args.y
+  args.x = Math.max(args.x, 0)
+  args.y = Math.max(args.y, 0)
+  c.style.top = `${args.y}px`
+
+  if (!center) {
     c.style.left = `${args.x}px`
-    c.style.top = `${args.y}px`
     c.style.transform = `unset`
   }
 
