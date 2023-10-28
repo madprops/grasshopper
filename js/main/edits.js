@@ -867,6 +867,11 @@ App.filter_tag_pick = (item, e) => {
   App.show_context({items: items, e: e})
 }
 
+App.show_filter_tag_menu = (mode, e) => {
+  let items = App.get_tag_items(mode)
+  App.show_context({items: items, e: e})
+}
+
 App.get_tag_items = (mode) => {
   let items = []
   let tags = []

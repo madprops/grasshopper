@@ -33,7 +33,7 @@ App.setup_commands = () => {
     name: `Filter All Colors`,
     cmd: `filter_color_all`,
     modes: [`items`],
-    icon: filter_icon,
+    icon: theme_icon,
     action: (args) => {
       App.filter_color(args.mode, `all`)
     },
@@ -42,7 +42,7 @@ App.setup_commands = () => {
 
   for (let color of App.colors) {
     let icon, name
-    icon = filter_icon
+    icon = theme_icon
     name = `Filter ${App.capitalize(color)}`
 
     color_filters.push({
@@ -120,7 +120,7 @@ App.setup_commands = () => {
     cmd: `show_filter_color_menu`,
     modes: [`items`],
     item: true,
-    icon: filter_icon,
+    icon: theme_icon,
     action: (args) => {
       App.show_filter_color_menu(args.mode, args.e)
     },
@@ -1037,7 +1037,17 @@ App.setup_commands = () => {
       action: (args) => {
         App.filter_tag_pick(args.item, args.e)
       },
-      info: `Filter by picking a tab`,
+      info: `Filter by picking a tag from the current item`,
+    },
+    {
+      name: `Filter Tag Menu`,
+      cmd: `show_filter_tag_menu`,
+      modes: [`items`],
+      icon: tag_icon,
+      action: (args) => {
+        App.show_filter_tag_menu(args.mode, args.e)
+      },
+      info: `Filter all items by picking a tag`,
     },
     {
       name: `Filter All Tags`,
