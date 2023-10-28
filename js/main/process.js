@@ -186,5 +186,13 @@ App.get_title = (item) => {
 }
 
 App.get_tags = (item) => {
-  return item.custom_tags || item.rule_tags
+  if (item.custom_tags && item.custom_tags.length) {
+    return item.custom_tags
+  }
+  else if (item.rule_tags && item.rule_tags.length) {
+    return item.rule_tags
+  }
+  else {
+    return []
+  }
 }

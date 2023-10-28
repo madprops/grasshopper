@@ -21,6 +21,7 @@ App.check_taglist = (item) => {
       item_cls += ` action`
     }
 
+    console.log(App.get_tags(item))
     for (let tag of App.get_tags(item)) {
       let item = DOM.create(`div`, item_cls)
       item.textContent = tag

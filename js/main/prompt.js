@@ -26,7 +26,6 @@ App.show_prompt = (args = {}) => {
     highlight: false,
     append: false,
     show_list: false,
-    picker_mode: false,
     list: []
   }
 
@@ -150,7 +149,6 @@ App.show_prompt_list = () => {
   App.show_context({
     items: items,
     element: btn,
-    picker_mode: args.picker_mode,
     after_hide: () => {
       input.focus()
     },

@@ -96,10 +96,13 @@ App.edit_prompt = (args = {}) => {
     list = titles
   }
 
-  let list_submit = false
+  let list_submit
 
-  if (args.what === `title`) {
+  if (args.what === `title` || args.what === `tags`) {
     list_submit = true
+  }
+  else {
+    list_submit = false
   }
 
   let word_mode
@@ -114,7 +117,6 @@ App.edit_prompt = (args = {}) => {
   let ignore_words = []
   let append = false
   let show_list = false
-  let picker_mode = false
   let unique_words = false
 
   if (args.what === `tags`) {
@@ -127,7 +129,6 @@ App.edit_prompt = (args = {}) => {
     }
 
     append = true
-    picker_mode = true
     unique_words = true
   }
 
@@ -142,7 +143,6 @@ App.edit_prompt = (args = {}) => {
     ignore_words: ignore_words,
     append: append,
     show_list: show_list,
-    picker_mode: picker_mode,
     on_submit: (ans) => {
       let obj = {}
       obj[args.what] = ans
@@ -221,6 +221,12 @@ App.apply_edit = (what, item, value) => {
 
     if (App.get_setting(`sort_tags`)) {
       value.sort()
+    }
+  }
+
+  if (Array.isArray(value)) {
+    if (!value.length) {
+      value = undefined
     }
   }
 
