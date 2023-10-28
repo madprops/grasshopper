@@ -50,9 +50,10 @@ App.fill_favorites_bar = (mode) => {
       btn.append(icon)
       btn.title = cmd.name
 
-      DOM.ev(btn, `click`, () => {
+      DOM.ev(btn, `click`, (e) => {
         let args = {
           cmd: cmd.cmd,
+          e: e,
         }
 
         App.run_command(args)
@@ -80,6 +81,7 @@ App.show_favorites_menu = (e) => {
         action: (e) => {
           let args = {
             cmd: cmd.cmd,
+            e: e,
           }
 
           App.run_command(args)

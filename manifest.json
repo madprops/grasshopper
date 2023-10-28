@@ -1,7 +1,7 @@
 {
     "manifest_version": 3,
     "name": "Grasshopper",
-    "version": "2037",
+    "version": "2038",
     "description": "Godspeed You Tab Emperor",
     "permissions": [
         "tabs",
