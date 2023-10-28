@@ -67,12 +67,15 @@ App.edit_prompt = (args = {}) => {
 
   let name = App.capitalize(args.what)
   let suggestions = []
+  let tags, titles
 
   if (args.what === `tags`) {
-    suggestions = App.get_all_tags()
+    tags = App.get_all_tags()
+    suggestions = tags
   }
   else if (args.what === `title`) {
-    suggestions = App.get_all_titles()
+    titles = App.get_all_titles()
+    suggestions = titles
   }
 
   let placeholder
@@ -87,10 +90,10 @@ App.edit_prompt = (args = {}) => {
   let list = []
 
   if (args.what === `tags`) {
-    list = App.tag_history
+    list = tags
   }
   else if (args.what === `title`) {
-    list = App.title_history
+    list = titles
   }
 
   let list_submit = false
@@ -497,17 +500,23 @@ App.push_to_title_history = (titles) => {
 App.get_all_titles = () => {
   let titles = []
 
+  for (let title of App.title_history) {
+    if (!titles.includes(title)) {
+      titles.push(title)
+    }
+  }
+
   for (let item of App.get_items(`tabs`)) {
     if (item.custom_title) {
       if (!titles.includes(item.custom_title)) {
         titles.push(item.custom_title)
       }
     }
-  }
 
-  for (let title of App.title_history) {
-    if (!titles.includes(title)) {
-      titles.push(title)
+    if (item.rule_title) {
+      if (!titles.includes(item.rule_title)) {
+        titles.push(item.rule_title)
+      }
     }
   }
 
@@ -620,6 +629,7 @@ App.close_tag_all = () => {
   App.show_prompt({
     placeholder: `Close Tag`,
     suggestions: App.get_all_tags(),
+    list: App.get_all_tags(),
     on_submit: (tag) => {
       let items = []
 
@@ -692,17 +702,17 @@ App.remove_item_tags = (item) => {
 }
 
 App.replace_tag = () => {
-  let suggestions = App.get_all_tags()
+  let tags = App.get_all_tags()
 
   App.show_prompt({
-    suggestions: suggestions,
+    suggestions: tags,
     placeholder: `Original Tag`,
-    list: App.tag_history,
+    list: tags,
     on_submit: (tag_1) => {
       App.show_prompt({
-        suggestions: suggestions,
+        suggestions: tags,
         placeholder: `New Tag`,
-        list: App.tag_history,
+        list: tags,
         on_submit: (tag_2) => {
           App.do_replace_tag(tag_1, tag_2)
         },
@@ -729,11 +739,13 @@ App.do_replace_tag = (tag_1, tag_2) => {
 }
 
 App.edit_tag = (item, tag) => {
+  let tags = App.get_all_tags()
+
   App.show_prompt({
-    suggestions: App.get_all_tags(),
+    suggestions: tags,
     placeholder: `Edit Tag`,
     value: tag,
-    list: App.tag_history,
+    list: tags,
     list_submit: true,
     show_list: true,
     highlight: true,
@@ -796,11 +808,7 @@ App.filter_tag_pick = (item, e) => {
 
   let items = []
 
-  for (let tag of App.tag_history) {
-    if (!item.custom_tags.includes(tag)) {
-      continue
-    }
-
+  for (let tag of App.get_tags(item)) {
     items.push({
       text: tag,
       action: () => {
