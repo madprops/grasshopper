@@ -609,6 +609,8 @@ App.remove_tag_all = () => {
     placeholder: `Remove Tag`,
     suggestions: tags,
     list: tags,
+    show_list: true,
+    list_submit: true,
     on_submit: (tag) => {
       let items = []
 
@@ -721,11 +723,14 @@ App.replace_tag = () => {
     suggestions: tags,
     placeholder: `Original Tag`,
     list: tags,
+    show_list: true,
+    list_submit: true,
     on_submit: (tag_1) => {
       App.show_prompt({
         suggestions: tags,
         placeholder: `New Tag`,
         list: tags,
+        list_submit: true,
         on_submit: (tag_2) => {
           App.do_replace_tag(tag_1, tag_2)
         },
