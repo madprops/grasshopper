@@ -167,7 +167,7 @@ App.check_rules = (item) => {
         item.ruled = true
       }
 
-      if (rule.tags) {
+      if (rule.tags && rule.tags.length) {
         item.rule_tags = App.taglist(rule.tags)
         item.ruled = true
       }
