@@ -121,7 +121,7 @@ NeedContext.show = (args = {}) => {
     NeedContext.create()
   }
 
-  if (args.e && args.e.clientX && args.e.clientY) {
+  if (args.e && args.e.clientX !== undefined && args.e.clientY !== undefined) {
     args.x = args.e.clientX
     args.y = args.e.clientY
   }
