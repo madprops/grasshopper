@@ -1080,14 +1080,23 @@ App.setup_settings_addlist = () => {
     id: `addlist_${id}`,
     element: Addlist.register(Object.assign({}, regobj, {
       id: id,
-      pk: `a`,
-      widgets: [`text`, `text`],
-      labels: [`Term A`, `Term B`],
       keys: [`a`, `b`],
+      pk: `a`,
+      widgets: {
+        a: `text`,
+        b: `text`,
+      },
+      labels: {
+        a: `Term A`,
+        b: `Term B`,
+      },
       list_text: (items) => {
         return `${items.a} = ${items.b}`
       },
       title: props.name,
+      required: {
+        b: true,
+      },
     }))
   }))
 
@@ -1098,10 +1107,14 @@ App.setup_settings_addlist = () => {
     id: `addlist_${id}`,
     element: Addlist.register(Object.assign({}, regobj, {
       id: id,
-      pk: `filter`,
-      widgets: [`text`],
-      labels: [`Filter`],
       keys: [`filter`],
+      pk: `filter`,
+      widgets: {
+        filter: `text`,
+      },
+      labels: {
+        filter: `Filter`,
+      },
       list_text: (items) => {
         return items.filter
       },
@@ -1116,16 +1129,36 @@ App.setup_settings_addlist = () => {
     id: `addlist_${id}`,
     element: Addlist.register(Object.assign({}, regobj, {
       id: id,
-      pk: `key`,
-      widgets: [`key`, `menu`, `checkbox`, `checkbox`, `checkbox`],
-      labels: [`Key`, `Command`, `Require Ctrl`, `Require Shift`, `Require Alt`],
-      sources: [undefined, App.cmdlist_2.slice(0), true, false, false],
       keys: [`key`, `cmd`, `ctrl`, `shift`, `alt`],
+      pk: `key`,
+      widgets: {
+        key: `text`,
+        cmd: `menu`,
+        ctrl: `checkbox`,
+        shift: `checkbox`,
+        alt: `checkbox`,
+      },
+      labels: {
+        key: `Key`,
+        cmd: `Command`,
+        ctrl: `Require Ctrl`,
+        shift: `Require Shift`,
+        alt: `Require Alt`,
+      },
+      sources: {
+        cmd: App.cmdlist_2.slice(0),
+        ctrl: true,
+        shift: false,
+        alt: false,
+      },
       list_text: (items) => {
         let cmd = cmd_name(items.cmd)
         return `${items.key} = ${cmd}`
       },
       title: props.name,
+      required: {
+        cmd: true,
+      },
     }))
   }))
 
@@ -1138,11 +1171,17 @@ App.setup_settings_addlist = () => {
         id: `addlist_${id}`,
         element: Addlist.register(Object.assign({}, regobj, {
           id: id,
-          pk: `cmd`,
-          widgets: [`menu`],
-          labels: [`Command`],
-          sources: [App.cmdlist_2.slice(0)],
           keys: [`cmd`],
+          pk: `cmd`,
+          widgets: {
+            cmd: `menu`,
+          },
+          labels: {
+            cmd: `Command`,
+          },
+          sources: {
+            cmd: App.cmdlist_2.slice(0),
+          },
           list_text: (items) => {
             return cmd_name(items.cmd)
           },
@@ -1151,6 +1190,37 @@ App.setup_settings_addlist = () => {
       }))
     }
   }
+
+  id = `settings_domain_colors`
+  props = App.setting_props[`domain_colors`]
+
+  App.create_popup(Object.assign({}, popobj, {
+    id: `addlist_${id}`,
+    element: Addlist.register(Object.assign({}, regobj, {
+      id: id,
+      keys: [`domain`, `color`, `title`, `tags`],
+      pk: `domain`,
+      widgets: {
+        domain: `text`,
+        color: `menu`,
+        title: `text`,
+        tags: `text`,
+      },
+      labels: {
+        domain: `Domain`,
+        color: `Color`,
+        title: `Title`,
+        tags: `Tags`,
+      },
+      sources: {
+        color: App.color_menu_items(),
+      },
+      list_text: (items) => {
+        return items.domain
+      },
+      title: props.name,
+    }))
+  }))
 }
 
 App.settings_build_category = (key) => {
@@ -1207,4 +1277,23 @@ App.edit_text_setting = (key) => {
     },
     value: App.get_setting(key),
   })
+}
+
+App.color_menu_items = () => {
+  let items = []
+
+  items.push({
+    text: `None`,
+    value: `none`,
+  })
+
+  for (let color of App.colors) {
+    items.push({
+      icon: App.color_icon(color),
+      text: App.capitalize(color),
+      value: color,
+    })
+  }
+
+  return items
 }

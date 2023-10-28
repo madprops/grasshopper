@@ -4,10 +4,8 @@ Addlist.values = (id) => {
   let oargs = Addlist.oargs(id)
   let values = {}
 
-  for (let [i, key] of oargs.keys.entries()) {
-    let w = oargs.widgets[i]
-    let value = Addlist.get_value(i, w)
-    values[key] = value
+  for (let key of oargs.keys) {
+    values[key] = Addlist.get_value(key)
   }
 
   return values
@@ -26,7 +24,7 @@ Addlist.save = (id) => {
   }
 
   let line = Addlist.values(id)
-  let filled = Addlist.filled(line)
+  let filled = Addlist.filled(id)
 
   if (!filled) {
     return false
@@ -102,38 +100,39 @@ Addlist.register = (args = {}) => {
   container.append(date)
   let els = []
 
-  for (let [i, w] of args.widgets.entries()) {
-    let id = `addlist_widget_${args.id}_${i}`
+  for (let key of args.keys) {
+    let w = args.widgets[key]
+    let id = `addlist_widget_${args.id}_${key}`
 
     if (w === `text`) {
       let el = DOM.create(`input`, `text addlist_text`, id)
       el.type = `text`
       el.spellcheck = false
       el.autocomplete = false
-      el.placeholder = args.labels[i] || `Value`
+      el.placeholder = args.labels[key] || `Value`
       els.push(el)
     }
     else if (w === `textarea`) {
       let el = DOM.create(`textarea`, `text addlist_textarea`, id)
       el.spellcheck = false
       el.autocomplete = false
-      el.placeholder = args.labels[i] || `Value`
+      el.placeholder = args.labels[key] || `Value`
       els.push(el)
     }
     else if (w === `menu`) {
       let el = DOM.create(`div`, `addlist_menu`)
       let label = DOM.create(`div`)
-      label.textContent = args.labels[i] || `Select`
+      label.textContent = args.labels[key] || `Select`
 
-      App[`addlist_menubutton_${args.id}_${i}`] = Menubutton.create({
+      App[`addlist_menubutton_${args.id}_${key}`] = Menubutton.create({
         id: id,
-        opts: args.sources[i],
+        opts: args.sources[key],
         get_value: () => {
-          return Addlist.get_value(i, w)
+          return Addlist.get_value(key)
         }
       })
 
-      let mb = App[`addlist_menubutton_${args.id}_${i}`]
+      let mb = App[`addlist_menubutton_${args.id}_${key}`]
       el.append(label)
       el.append(mb.container)
       els.push(el)
@@ -143,7 +142,7 @@ Addlist.register = (args = {}) => {
       el.type = `text`
       el.spellcheck = false
       el.autocomplete = false
-      el.placeholder = args.labels[i] || `Key`
+      el.placeholder = args.labels[key] || `Key`
 
       DOM.ev(el, `keydown`, (e) => {
         el.value = e.code
@@ -157,7 +156,7 @@ Addlist.register = (args = {}) => {
       let checkbox = DOM.create(`input`, `checkbox addlist_checkbox`, id)
       checkbox.type = `checkbox`
       let label = DOM.create(`div`)
-      label.textContent = args.labels[i] || `Checkbox`
+      label.textContent = args.labels[key] || `Checkbox`
       el.append(label)
       el.append(checkbox)
       els.push(el)
@@ -194,10 +193,10 @@ Addlist.edit = (args = {}) => {
   Addlist.check_buttons(args)
   let widgets = oargs.widgets
 
-  for (let [i, key] of oargs.keys.entries()) {
+  for (key of oargs.keys) {
     let value = args.items[key]
-    let el = Addlist.widget(args.id, i)
-    let w = widgets[i]
+    let el = Addlist.widget(args.id, key)
+    let w = widgets[key]
 
     if (w === `text` || w === `textarea` || w === `key`) {
       if (value) {
@@ -209,10 +208,10 @@ Addlist.edit = (args = {}) => {
     }
     else if (w === `menu`) {
       if (value) {
-        App[`addlist_menubutton_${args.id}_${i}`].set(value)
+        App[`addlist_menubutton_${args.id}_${key}`].set(value)
       }
       else {
-        App[`addlist_menubutton_${args.id}_${i}`].set(oargs.sources[i][0].value)
+        App[`addlist_menubutton_${args.id}_${key}`].set(oargs.sources[key][0].value)
       }
     }
     else if (w === `checkbox`) {
@@ -220,7 +219,7 @@ Addlist.edit = (args = {}) => {
         el.checked = value
       }
       else {
-        el.checked = oargs.sources[i]
+        el.checked = oargs.sources[key]
       }
     }
   }
@@ -358,8 +357,8 @@ Addlist.def_args = () => {
   }
 }
 
-Addlist.widget = (id, i = 0) => {
-  return DOM.el(`#addlist_widget_${id}_${i}`)
+Addlist.widget = (id, key) => {
+  return DOM.el(`#addlist_widget_${id}_${key}`)
 }
 
 Addlist.next = (id, reverse = false) => {
@@ -408,8 +407,8 @@ Addlist.check_focus = (id) => {
   let oargs = Addlist.oargs(id)
   let data = Addlist.data
 
-  for (let [i, w] of oargs.widgets.entries()) {
-    let el = Addlist.widget(id, i)
+  for (let key of oargs.keys) {
+    let el = Addlist.widget(id, key)
 
     if (data.edit) {
       DOM.el(`#addlist_container_${id}`).focus()
@@ -445,8 +444,8 @@ Addlist.modified = (id) => {
 }
 
 Addlist.menu = () => {
-  let id = Addlist.data.id
   let data = Addlist.data
+  let id = data.id
   let oargs = Addlist.oargs(id)
   let items = []
 
@@ -557,10 +556,11 @@ Addlist.move = (dir) => {
   }
 }
 
-Addlist.get_value = (i, w) => {
+Addlist.get_value = (key) => {
   let id = Addlist.data.id
   let oargs = Addlist.oargs(id)
-  let el = Addlist.widget(id, i)
+  let w = oargs.widgets[key]
+  let el = Addlist.widget(id, key)
   let value
 
   if (w === `text` || w === `textarea` || w === `key`) {
@@ -571,7 +571,7 @@ Addlist.get_value = (i, w) => {
     }
   }
   else if (w === `menu`) {
-    value = App[`addlist_menubutton_${id}_${i}`].value
+    value = App[`addlist_menubutton_${id}_${key}`].value
   }
   else if (w === `checkbox`) {
     value = el.checked
@@ -623,10 +623,32 @@ Addlist.popup = (id) => {
   return `addlist_${id}`
 }
 
-Addlist.filled = (values) => {
-  for (let key in values) {
-    if (values[key] === ``) {
-      return false
+Addlist.filled = (id) => {
+  let oargs = Addlist.oargs(id)
+
+  for(let key of oargs.keys) {
+    let w = oargs.widgets[key]
+
+    if (w === `checkbox`) {
+      continue
+    }
+
+    let required
+
+    if (key === oargs.pk) {
+      required = true
+    }
+    else if (oargs.required && oargs.required[key]) {
+      required = true
+    }
+    else {
+      required = false
+    }
+
+    if (required) {
+      if (!Addlist.get_value(key)) {
+        return false
+      }
     }
   }
 

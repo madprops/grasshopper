@@ -985,9 +985,16 @@ App.build_settings = () => {
   }
 
   add_props()
-  category = `colors_2`
+  category = `colorz`
 
   props = {
+    domain_colors: {
+      name: `Domain Colors`,
+      type: `list`,
+      value: [],
+      info: `Auto-color tabs based on domain`,
+      version: 1,
+    },
     color_pins_enabled: {
       name: `Pinned Tabs`,
       type: `checkbox`,
@@ -1504,7 +1511,7 @@ App.build_settings = () => {
         ])
       },
     },
-    colors_2: {
+    colorz: {
       info: `Custom text colors for tabs. You can enable/disable each color and set the color for different kinds of tabs.
       Some colors take precendence over others`,
       setup: () => {
