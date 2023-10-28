@@ -272,11 +272,17 @@ App.check_item_icon = (item) => {
     if (item.favicon) {
       icon = App.get_favicon(item)
     }
-    else {
+    else if (App.get_setting(`generate_icons`)) {
       icon = App.get_jdenticon(item.hostname)
     }
 
-    container.append(icon)
+    if (icon) {
+      container.append(icon)
+      container.classList.remove(`hidden`)
+    }
+    else {
+      container.classList.add(`hidden`)
+    }
   }
 }
 
@@ -684,8 +690,10 @@ App.get_favicon = (item) => {
   icon.loading = `lazy`
 
   DOM.ev(icon, `error`, () => {
-    let icon_2 = App.get_jdenticon(item.hostname)
-    icon.replaceWith(icon_2)
+    if (App.get_setting(`generate_icons`)) {
+      let icon_2 = App.get_jdenticon(item.hostname)
+      icon.replaceWith(icon_2)
+    }
   })
 
   icon.src = item.favicon

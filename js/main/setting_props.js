@@ -1327,6 +1327,13 @@ App.build_settings = () => {
       info: `Pick items when right clicking the hover button`,
       version: 1,
     },
+    generate_icons: {
+      name: `Generate Icons`,
+      type: `checkbox`,
+      value: true,
+      info: `Generate icons if favicons are not found`,
+      version: 1,
+    },
     all_caps: {
       name: `All Caps`,
       type: `checkbox`,
