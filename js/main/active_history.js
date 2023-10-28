@@ -48,7 +48,7 @@ App.update_active_history = (current, new_active) => {
 
 App.clean_active_history = () => {
   App.active_history = App.active_history.filter(x => x !== undefined && !x.removed)
-  App.active_history = [...new Set(App.active_history)]
+  App.active_history = Array.from(new Set(App.active_history))
   App.active_history = App.active_history.slice(0, App.get_setting(`max_active_history`))
 }
 

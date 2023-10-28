@@ -38,13 +38,6 @@ App.number_max = 99999
 App.tag_history_max = 10
 App.title_history_max = 10
 App.active_history = []
-App.sizes = [
-  {text: `Tiny`, value: `tiny`},
-  {text: `Small`, value: `small`},
-  {text: `Normal`, value: `normal`},
-  {text: `Big`, value: `big`},
-  {text: `Huge`, value: `huge`},
-]
 
 App.settings_done = false
 App.settings_ready = false
@@ -112,6 +105,14 @@ App.close_icon = `❌`
 App.tag_icon = `✝️`
 App.close_tab_icon = `x`
 App.smiley_icon = `😀`
+
+App.sizes = [
+  {text: `Tiny`, value: `tiny`},
+  {text: `Small`, value: `small`},
+  {text: `Normal`, value: `normal`},
+  {text: `Big`, value: `big`},
+  {text: `Huge`, value: `huge`},
+]
 
 App.dark_colors = {
   background: `rgb(45, 45, 55)`,

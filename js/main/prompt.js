@@ -133,7 +133,7 @@ App.show_prompt_list = () => {
 
         if (args.unique_words) {
           let words = input.value.split(` `).map(x => x.trim())
-          let unique = [...new Set(words)]
+          let unique = Array.from(new Set(words))
           input.value = unique.join(` `)
         }
 

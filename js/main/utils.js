@@ -370,7 +370,7 @@ App.scroll_to_right = (el) => {
 }
 
 App.to_set = (array) => {
-  return [...new Set(array)]
+  return Array.from(new Set(array))
 }
 
 App.MINUTE = 60000
