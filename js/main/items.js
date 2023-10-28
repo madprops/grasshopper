@@ -393,7 +393,7 @@ App.check_item_status = (item) => {
   if (App.get_setting(`edited_icon`)) {
     let icon = DOM.el(`.edited_icon`, item.element)
 
-    if (App.tab_is_edited(item)) {
+    if (App.edited(item)) {
       icon.classList.remove(`hidden`)
     }
     else {

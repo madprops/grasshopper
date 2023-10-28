@@ -358,10 +358,10 @@ App.filter_check = (args) => {
       }
     }
     else if (args.filter_mode === `titled`) {
-      match = App.get_title(args.item)
+      match = args.item.custom_title || args.item.rule_title
     }
     else if (args.filter_mode === `edited`) {
-      match = App.tab_is_edited(args.item)
+      match = App.edited(args.item)
     }
     else if (args.filter_mode === `pinned`) {
       match = args.item.pinned

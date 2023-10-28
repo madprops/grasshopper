@@ -116,7 +116,7 @@ App.check_force = (warn_setting, items) => {
       }
 
       if (App.get_setting(`edited_special`)) {
-        if (App.tab_is_edited(item)) {
+        if (App.edited(item)) {
           return false
         }
       }

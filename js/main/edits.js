@@ -27,8 +27,8 @@ App.check_tab_session = async (items = []) => {
   }
 }
 
-App.tab_is_edited = (item) => {
-  return Boolean(item.custom_color || item.custom_title || item.custom_tags)
+App.edited = (item) => {
+  return Boolean(item.ruled || item.custom_color || item.custom_title || item.custom_tags)
 }
 
 App.custom_save = (id, name, value) => {

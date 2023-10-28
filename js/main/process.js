@@ -144,6 +144,7 @@ App.check_rules = (item) => {
   item.rule_color = undefined
   item.rule_title = undefined
   item.rule_tags = undefined
+  item.ruled = false
 
   for (let rule of rules) {
     let match = false
@@ -156,17 +157,24 @@ App.check_rules = (item) => {
     }
 
     if (match) {
+      let ruled = false
+
       if (rule.color && rule.color !== `none`) {
         item.rule_color = rule.color
+        ruled = true
       }
 
       if (rule.title) {
         item.rule_title = rule.title
+        ruled = true
       }
 
       if (rule.tags) {
         item.rule_tags = App.taglist(rule.tags)
+        ruled = true
       }
+
+      item.ruled = ruled
     }
   }
 }

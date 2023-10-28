@@ -140,7 +140,7 @@ App.more_menu_items = (o_items, item, multiple, some_loaded, some_unmuted, some_
 
     items.push(App.item_menu_item({cmd: `duplicate_tabs`, item: item}))
 
-    if (App.tab_is_edited(item)) {
+    if (App.edited(item)) {
       items.push(App.item_menu_item({cmd: `remove_item_edits`, item: item}))
     }
   }
