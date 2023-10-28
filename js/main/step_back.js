@@ -46,4 +46,7 @@ App.step_back = (mode = App.window_mode, e) => {
   else if (mode !== App.primary_mode()) {
     App.show_primary_mode()
   }
+  else {
+    App.focus_items(mode)
+  }
 }

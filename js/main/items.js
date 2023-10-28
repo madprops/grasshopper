@@ -1496,3 +1496,7 @@ App.rebuild_items = () => {
     }
   }
 }
+
+App.focus_items = (mode) => {
+  DOM.el(`#${mode}_container`).focus()
+}
