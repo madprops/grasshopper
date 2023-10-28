@@ -28,6 +28,7 @@ App.init = async () => {
   App.setup_footer()
   App.setup_recent_tabs()
   App.setup_active_history()
+  App.setup_context()
   await App.clear_show()
   App.make_window_visible()
   App.check_first_time()
