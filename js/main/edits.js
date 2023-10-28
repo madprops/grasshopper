@@ -497,7 +497,7 @@ App.push_to_title_history = (titles) => {
   App.stor_save_title_history()
 }
 
-App.get_all_titles = () => {
+App.get_all_titles = (include_rules = true) => {
   let titles = []
 
   for (let title of App.title_history) {
@@ -513,9 +513,11 @@ App.get_all_titles = () => {
       }
     }
 
-    if (item.rule_title) {
-      if (!titles.includes(item.rule_title)) {
-        titles.push(item.rule_title)
+    if (include_rules) {
+      if (item.rule_title) {
+        if (!titles.includes(item.rule_title)) {
+          titles.push(item.rule_title)
+        }
       }
     }
   }
@@ -595,9 +597,12 @@ App.remove_tag = (item, tag) => {
 }
 
 App.remove_tag_all = () => {
+  let tags =  App.get_all_tags(false)
+
   App.show_prompt({
     placeholder: `Remove Tag`,
-    suggestions: App.get_all_tags(),
+    suggestions: tags,
+    list: tags,
     on_submit: (tag) => {
       let items = []
 
@@ -658,7 +663,7 @@ App.close_tag_all = () => {
   })
 }
 
-App.get_all_tags = () => {
+App.get_all_tags = (include_rules = true) => {
   let tags = []
 
   for (let tag of App.tag_history) {
@@ -676,10 +681,12 @@ App.get_all_tags = () => {
       }
     }
 
-    if (item.rule_tags) {
-      for (let tag of item.rule_tags) {
-        if (!tags.includes(tag)) {
-          tags.push(tag)
+    if (include_rules) {
+      if (item.rule_tags) {
+        for (let tag of item.rule_tags) {
+          if (!tags.includes(tag)) {
+            tags.push(tag)
+          }
         }
       }
     }
