@@ -92,6 +92,14 @@ App.tab_box_menu = (e) => {
   let items = []
   let index = 0
 
+  items.push({
+    text: `None`,
+    action: (e) => {
+      App.set_setting(`tab_box`, `none`)
+      App.apply_theme()
+    },
+  })
+
   for (let [i, size] of App.sizes.entries()) {
     if (App.get_setting(`tab_box`) === size.value) {
       index = i
