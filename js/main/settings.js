@@ -1222,6 +1222,9 @@ App.setup_settings_addlist = () => {
           return App.get_path(value)
         }
       },
+      tooltips: {
+        exact: `Match exact URL`
+      },
       list_text: (items) => {
         return items.domain
       },

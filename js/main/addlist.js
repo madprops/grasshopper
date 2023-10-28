@@ -77,6 +77,7 @@ Addlist.register = (args = {}) => {
     labels: {},
     widgets: {},
     required: {},
+    tooltips: {},
     lowercase: false,
     list_text: () => {
       return `Item`
@@ -115,26 +116,25 @@ Addlist.register = (args = {}) => {
   let els = []
 
   for (let key of args.keys) {
+    let el
     let w = args.widgets[key]
     let id = `addlist_widget_${args.id}_${key}`
 
     if (w === `text`) {
-      let el = DOM.create(`input`, `text addlist_text`, id)
+      el = DOM.create(`input`, `text addlist_text`, id)
       el.type = `text`
       el.spellcheck = false
       el.autocomplete = false
       el.placeholder = args.labels[key] || `Value`
-      els.push(el)
     }
     else if (w === `textarea`) {
-      let el = DOM.create(`textarea`, `text addlist_textarea`, id)
+      el = DOM.create(`textarea`, `text addlist_textarea`, id)
       el.spellcheck = false
       el.autocomplete = false
       el.placeholder = args.labels[key] || `Value`
-      els.push(el)
     }
     else if (w === `menu`) {
-      let el = DOM.create(`div`, `addlist_menu`)
+      el = DOM.create(`div`, `addlist_menu`)
       let label = DOM.create(`div`)
       label.textContent = args.labels[key] || `Select`
 
@@ -149,10 +149,9 @@ Addlist.register = (args = {}) => {
       let mb = App[`addlist_menubutton_${args.id}_${key}`]
       el.append(label)
       el.append(mb.container)
-      els.push(el)
     }
     else if (w === `key`) {
-      let el = DOM.create(`input`, `text addlist_text addlist_key`, id)
+      el = DOM.create(`input`, `text addlist_text addlist_key`, id)
       el.type = `text`
       el.spellcheck = false
       el.autocomplete = false
@@ -162,17 +161,24 @@ Addlist.register = (args = {}) => {
         el.value = e.code
         e.preventDefault()
       })
-
-      els.push(el)
     }
     else if (w === `checkbox`) {
-      let el = DOM.create(`div`, `addlist_checkbox`)
+      el = DOM.create(`div`, `addlist_checkbox`)
       let checkbox = DOM.create(`input`, `checkbox addlist_checkbox`, id)
       checkbox.type = `checkbox`
       let label = DOM.create(`div`)
       label.textContent = args.labels[key] || `Checkbox`
       el.append(label)
       el.append(checkbox)
+    }
+
+    if (el) {
+      let tooltip = args.tooltips[key]
+
+      if (tooltip) {
+        el.title = tooltip
+      }
+
       els.push(el)
     }
   }
