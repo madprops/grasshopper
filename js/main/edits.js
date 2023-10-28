@@ -709,7 +709,7 @@ App.remove_item_tags = (item) => {
 }
 
 App.replace_tag = () => {
-  let tags = App.get_all_tags()
+  let tags = App.get_all_tags(false)
 
   App.show_prompt({
     suggestions: tags,
