@@ -137,12 +137,12 @@ App.edit_prompt = (args = {}) => {
     placeholder: placeholder,
     suggestions: suggestions,
     list: list,
+    show_list: show_list,
     list_submit: list_submit,
     word_mode: word_mode,
     unique_words: unique_words,
     ignore_words: ignore_words,
     append: append,
-    show_list: show_list,
     on_submit: (ans) => {
       let obj = {}
       obj[args.what] = ans
@@ -774,8 +774,8 @@ App.edit_tag = (item, tag) => {
     placeholder: `Edit Tag`,
     value: tag,
     list: tags,
-    list_submit: true,
     show_list: true,
+    list_submit: true,
     highlight: true,
     on_submit: (ans) => {
       App.do_edit_tag(item, tag, ans)
