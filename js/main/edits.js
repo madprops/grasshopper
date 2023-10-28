@@ -112,6 +112,7 @@ App.edit_prompt = (args = {}) => {
   let append = false
   let show_list = false
   let picker_mode = false
+  let unique_words = false
 
   if (args.what === `tags`) {
     if (args.add) {
@@ -124,6 +125,7 @@ App.edit_prompt = (args = {}) => {
 
     append = true
     picker_mode = true
+    unique_words = true
   }
 
   App.show_prompt({
@@ -133,6 +135,7 @@ App.edit_prompt = (args = {}) => {
     list: list,
     list_submit: list_submit,
     word_mode: word_mode,
+    unique_words: unique_words,
     ignore_words: ignore_words,
     append: append,
     show_list: show_list,

@@ -21,6 +21,7 @@ App.show_prompt = (args = {}) => {
     suggestions: [],
     list_submit: false,
     word_mode: false,
+    unique_words: false,
     ignore_words: [],
     highlight: false,
     append: false,
@@ -130,6 +131,12 @@ App.show_prompt_list = () => {
         }
 
         input.value = App.single_space(input.value).trim()
+
+        if (args.unique_words) {
+          let words = input.value.split(` `).map(x => x.trim())
+          let unique = [...new Set(words)]
+          input.value = unique.join(` `)
+        }
 
         if (args.list_submit) {
           App.prompt_submit()
