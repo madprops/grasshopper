@@ -70,14 +70,18 @@ App.check_items_keyboard = (e) => {
       return
     }
     else if (e.key === `ArrowLeft`) {
-      App.show_main_menu(mode)
-      e.preventDefault()
-      return
+      if (!filter_focus) {
+        App.show_main_menu(mode)
+        e.preventDefault()
+        return
+      }
     }
     else if (e.key === `ArrowRight`) {
-      App.show_actions_menu(mode)
-      e.preventDefault()
-      return
+      if (!filter_focus) {
+        App.show_actions_menu(mode)
+        e.preventDefault()
+        return
+      }
     }
     else if (e.key === `a`) {
       if (!filter_focus) {
@@ -129,14 +133,18 @@ App.check_items_keyboard = (e) => {
       return
     }
     else if (e.key === `Home`) {
-      App.select_to_edge(mode, `up`)
-      e.preventDefault()
-      return
+      if (!filter_focus) {
+        App.select_to_edge(mode, `up`)
+        e.preventDefault()
+        return
+      }
     }
     else if (e.key === `End`) {
-      App.select_to_edge(mode, `down`)
-      e.preventDefault()
-      return
+      if (!filter_focus) {
+        App.select_to_edge(mode, `down`)
+        e.preventDefault()
+        return
+      }
     }
     else if (e.key === `ArrowUp`) {
       App.select_next(mode, `above`)
