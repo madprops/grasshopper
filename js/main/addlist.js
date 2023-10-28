@@ -73,6 +73,18 @@ Addlist.register = (args = {}) => {
     labels: [],
     sources: [],
     append: false,
+    process: {},
+    labels: {},
+    widgets: {},
+    required: {},
+    lowercase: false,
+    list_text: () => {
+      return `Item`
+    },
+    get_data: () => {
+      return []
+    },
+    set_data: () => {},
   }
 
   App.def_args(def_args, args)
