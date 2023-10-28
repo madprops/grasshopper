@@ -102,6 +102,8 @@ App.process_info = (args = {}) => {
     if (item.active && !App.active_history.length) {
       App.update_active_history(undefined, item)
     }
+
+    App.check_rules(item)
   }
   else if (args.mode === `history`) {
     item.last_visit = args.info.lastVisitTime
@@ -126,24 +128,6 @@ App.process_info = (args = {}) => {
       }
     }
 
-    let rules = App.get_setting(`domain_rules`)
-
-    for (let rule of rules) {
-      if (item.path.startsWith(rule.domain)) {
-        if (rule.color && rule.color !== `none`) {
-          item.rule_color = rule.color
-        }
-
-        if (rule.title) {
-          item.rule_title = rule.title
-        }
-
-        if (rule.tags) {
-          item.rule_tags = App.taglist(rule.tags)
-        }
-      }
-    }
-
     item.original_data = args.info
     item.id = args.info.id || App[`${args.mode}_idx`]
     item.visible = true
@@ -152,5 +136,28 @@ App.process_info = (args = {}) => {
     App.create_item_element(item)
     App[`${args.mode}_idx`] += 1
     return item
+  }
+}
+
+App.check_rules = (item) => {
+  let rules = App.get_setting(`domain_rules`)
+  item.rule_color = undefined
+  item.rule_title = undefined
+  item.rule_tags = undefined
+
+  for (let rule of rules) {
+    if (item.path.startsWith(rule.domain)) {
+      if (rule.color && rule.color !== `none`) {
+        item.rule_color = rule.color
+      }
+
+      if (rule.title) {
+        item.rule_title = rule.title
+      }
+
+      if (rule.tags) {
+        item.rule_tags = App.taglist(rule.tags)
+      }
+    }
   }
 }
