@@ -406,7 +406,7 @@ App.close_color = (color) => {
   let items = []
 
   for (let item of App.get_items(`tabs`)) {
-    if (item.custom_color === color) {
+    if (App.get_color(item) === color) {
       items.push(item)
     }
   }

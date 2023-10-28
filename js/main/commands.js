@@ -165,7 +165,7 @@ App.setup_commands = () => {
   })
 
   color_closers.push({
-    name: `Close Color Menu`,
+    name: `Close Color`,
     cmd: `show_close_color_menu`,
     modes: [`tabs`],
     item: true,
