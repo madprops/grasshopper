@@ -299,10 +299,11 @@ App.setup_commands = () => {
     },
     {
       name: `Show Settings`,
+      short_name: `Settings`,
       cmd: `show_settings`,
       icon: settings_icon,
       action: (args) => {
-        App.show_settings()
+        App.show_settings_resolve(args.e)
       },
       info: `Show the settings`,
     },

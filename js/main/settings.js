@@ -509,13 +509,8 @@ App.add_settings_switchers = (category) => {
     App.show_next_settings()
   })
 
-  DOM.ev(title, `click`, () => {
-    App.show_settings_menu()
-  })
-
-  DOM.ev(title, `contextmenu`, (e) => {
-    App.show_settings_menu()
-    e.preventDefault()
+  DOM.ev(title, `click`, (e) => {
+    App.show_settings_menu(e)
   })
 
   DOM.ev(title, `auxclick`, (e) => {
@@ -624,6 +619,15 @@ App.show_settings = () => {
   App.show_settings_category(`general`)
 }
 
+App.show_settings_resolve = (e) => {
+  if (App.get_setting(`direct_settings`)) {
+    App.show_settings()
+  }
+  else {
+    App.show_settings_menu(e)
+  }
+}
+
 App.show_settings_category = (category) => {
   App.start_settings()
   App.get_settings_with_list()
@@ -657,11 +661,9 @@ App.settings_index = () => {
   return App.settings_categories.indexOf(App.settings_category)
 }
 
-App.show_settings_menu = () => {
-  let category = App.settings_category
-  let btn = DOM.el(`#settings_title_${category}`)
+App.show_settings_menu = (e) => {
   let items = App.settings_menu_items()
-  App.show_context({element: btn, items: items})
+  App.show_context({items: items, e: e})
 }
 
 App.export_settings = () => {

@@ -51,25 +51,7 @@ App.show_main_menu = (mode) => {
   }
 
   App.sep(items)
-
-  if (App.get_setting(`direct_settings`)) {
-    items.push({
-      icon: App.settings_icons.general,
-      text: `Settings`,
-      action: () => {
-        App.show_settings()
-      }
-    })
-  }
-  else {
-    items.push({
-      icon: App.settings_icons.general,
-      text: `Settings`,
-      get_items: () => {
-        return App.settings_menu_items(`main_menu`)
-      }
-    })
-  }
+  items.push(App.cmd_item({cmd: `show_settings`}))
 
   items.push({
     icon: App.bot_icon,
