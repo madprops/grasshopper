@@ -729,7 +729,7 @@ App.settings_label_menu = (e, args) => {
     })
   }
 
-  App.show_context({x: e.clientX, y: e.clientY, items: items})
+  App.show_context({e: e, items: items})
 }
 
 App.get_setting = (setting) => {
@@ -1177,7 +1177,7 @@ App.pick_background = (e) => {
     })
   }
 
-  App.show_context({x: e.clientX, y: e.clientY, items: items})
+  App.show_context({e: e, items: items})
 }
 
 App.do_pick_background = (num) => {

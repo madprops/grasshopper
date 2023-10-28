@@ -106,5 +106,5 @@ App.tab_box_menu = (e) => {
     })
   }
 
-  App.show_context({items: items, x: e.clientX, y: e.clientY, index: index})
+  App.show_context({items: items, index: index, e: e})
 }
