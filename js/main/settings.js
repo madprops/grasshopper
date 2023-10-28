@@ -1191,8 +1191,8 @@ App.setup_settings_addlist = () => {
     }
   }
 
-  id = `settings_domain_colors`
-  props = App.setting_props[`domain_colors`]
+  id = `settings_domain_rules`
+  props = App.setting_props[`domain_rules`]
 
   App.create_popup(Object.assign({}, popobj, {
     id: `addlist_${id}`,
@@ -1214,6 +1214,11 @@ App.setup_settings_addlist = () => {
       },
       sources: {
         color: App.color_menu_items(),
+      },
+      process: {
+        domain: (value) => {
+          return App.remove_protocol(value)
+        }
       },
       list_text: (items) => {
         return items.domain

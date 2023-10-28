@@ -126,6 +126,24 @@ App.process_info = (args = {}) => {
       }
     }
 
+    let rules = App.get_setting(`domain_rules`)
+
+    for (let rule of rules) {
+      if (item.path.startsWith(rule.domain)) {
+        if (rule.color && rule.color !== `none`) {
+          item.rule_color = rule.color
+        }
+
+        if (rule.title) {
+          item.rule_title = rule.title
+        }
+
+        if (rule.tags) {
+          item.rule_tags = App.taglist(rule.tags)
+        }
+      }
+    }
+
     item.original_data = args.info
     item.id = args.info.id || App[`${args.mode}_idx`]
     item.visible = true

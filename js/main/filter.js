@@ -294,7 +294,7 @@ App.filter_check = (args) => {
       }
       else if (args.by_what === `tag`) {
         match = App.tab_has_tags(args.item) &&
-        args.item.custom_tags.includes(args.value)
+        App.get_tags(args.item).includes(args.value)
       }
 
       if (!match) {
@@ -307,8 +307,10 @@ App.filter_check = (args) => {
 
       if (!match) {
         if (App.get_setting(`filter_tags`)) {
-          if (args.item.custom_tags) {
-            for (let tag of args.item.custom_tags) {
+          let tags = App.get_tags(args.item)
+
+          if (tags) {
+            for (let tag of tags) {
               match = tag === args.value
 
               if (match) {
@@ -352,7 +354,7 @@ App.filter_check = (args) => {
       }
       else {
         match = App.tab_has_tags(args.item) &&
-        args.item.custom_tags.includes(args.f_value)
+        App.get_tags(args.item).includes(args.f_value)
       }
     }
     else if (args.filter_mode === `titled`) {

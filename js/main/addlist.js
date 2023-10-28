@@ -6,6 +6,10 @@ Addlist.values = (id) => {
 
   for (let key of oargs.keys) {
     values[key] = Addlist.get_value(key)
+
+    if (oargs.process[key]) {
+      values[key] = oargs.process[key](values[key])
+    }
   }
 
   return values
@@ -23,13 +27,11 @@ Addlist.save = (id) => {
     }
   }
 
-  let line = Addlist.values(id)
-  let filled = Addlist.filled(id)
-
-  if (!filled) {
+  if (!Addlist.filled(id)) {
     return false
   }
 
+  let line = Addlist.values(id)
   let oargs = Addlist.oargs(id)
   let v1 = ``
 

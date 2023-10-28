@@ -988,11 +988,11 @@ App.build_settings = () => {
   category = `colorz`
 
   props = {
-    domain_colors: {
-      name: `Domain Colors`,
+    domain_rules: {
+      name: `Domain Rules`,
       type: `list`,
       value: [],
-      info: `Auto-color tabs based on domain`,
+      info: `Apply rules to domains`,
       version: 1,
     },
     color_pins_enabled: {

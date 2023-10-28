@@ -561,7 +561,7 @@ App.edit_tags = (item) => {
 }
 
 App.get_taglist = (value) => {
-  let cleaned = value.split(/[, ]+/).map(x => x.trim())
+  let cleaned = App.taglist(value)
   let unique = []
 
   for (let tag of cleaned) {
@@ -833,5 +833,6 @@ App.get_tag_items = (mode) => {
 }
 
 App.tab_has_tags = (item) => {
-  return Boolean(item.custom_tags && item.custom_tags.length)
+  return Boolean((item.custom_tags && item.custom_tags.length) ||
+  item.rule_tags && item.rule_tags.length)
 }

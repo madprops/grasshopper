@@ -21,7 +21,7 @@ App.check_taglist = (item) => {
       item_cls += ` action`
     }
 
-    for (let tag of item.custom_tags) {
+    for (let tag of App.get_tags(item)) {
       let item = DOM.create(`div`, item_cls)
       item.textContent = tag
       taglist.append(item)

@@ -148,6 +148,7 @@ select {
   overflow-x: hidden;
   overflow-y: auto;
   padding-bottom: 2rem;
+  outline: none;
 }
 
 .text {

@@ -462,6 +462,10 @@ App.def_args = (def, args) => {
   }
 }
 
+App.taglist = (s) => {
+  return s.split(/[, ]+/).map(x => x.trim())
+}
+
 App.input_deselect = (input) => {
   input.selectionStart = input.selectionEnd
 }
