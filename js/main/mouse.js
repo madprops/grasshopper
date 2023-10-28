@@ -172,7 +172,7 @@ App.mouse_double_click_action = (mode, e) => {
     }
   }
 
-  App.run_command({cmd: cmd, item: item, from: `double_click`})
+  App.run_command({cmd: cmd, item: item, from: `double_click`, e: e})
 }
 
 App.mouse_context_action = (mode, e) => {
@@ -217,13 +217,13 @@ App.mouse_middle_action = (mode, e) => {
 
   if (e.target.classList.contains(`close_icon`)) {
     let cmd = App.get_setting(`middle_click_close_icon`)
-    App.run_command({cmd: cmd, item: item, from: `close_button`})
+    App.run_command({cmd: cmd, item: item, from: `close_button`, e: e})
     return
   }
 
   if (e.target.classList.contains(`hover_button`)) {
     let cmd = App.get_setting(`middle_click_hover_button`)
-    App.run_command({cmd: cmd, item: item, from: `hover_button`})
+    App.run_command({cmd: cmd, item: item, from: `hover_button`, e: e})
     return
   }
 
@@ -235,7 +235,7 @@ App.mouse_middle_action = (mode, e) => {
   }
 
   let cmd = App.get_setting(`middle_click_${item.mode}`)
-  App.run_command({cmd: cmd, item: item, from: `middle_click`})
+  App.run_command({cmd: cmd, item: item, from: `middle_click`, e: e})
 }
 
 App.mouse_wheel_action = (mode, e) => {

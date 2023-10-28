@@ -16,7 +16,7 @@ App.create_actions_menu = (mode) => {
   DOM.ev(btn, `auxclick`, (e) => {
     if (e.button === 1) {
       let cmd = App.get_setting(`middle_click_actions_menu`)
-      App.run_command({cmd: cmd, from: `actions_menu`})
+      App.run_command({cmd: cmd, from: `actions_menu`, e: e})
     }
   })
 

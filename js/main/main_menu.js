@@ -15,7 +15,7 @@ App.create_main_menu = (mode) => {
   DOM.ev(btn, `auxclick`, (e) => {
     if (e.button === 1) {
       let cmd = App.get_setting(`middle_click_main_menu`)
-      App.run_command({cmd: cmd, from: `main_menu`})
+      App.run_command({cmd: cmd, from: `main_menu`, e: e})
     }
   })
 

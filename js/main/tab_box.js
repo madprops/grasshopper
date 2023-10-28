@@ -75,7 +75,7 @@ App.update_tab_box = () => {
       }
 
       let cmd = App.get_setting(`middle_click_tabs`)
-      App.run_command({cmd: cmd, item: item, from: `middle_click`})
+      App.run_command({cmd: cmd, item: item, from: `middle_click`, e: e})
     })
 
     DOM.ev(clone, `contextmenu`, (e) => {

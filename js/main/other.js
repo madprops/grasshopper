@@ -31,7 +31,7 @@ App.print_intro = () => {
 
 App.show_custom_menu = (e, what) => {
   let items = App.custom_menu_items(`${what}_menu`)
-  App.show_context({x: e.clientX, y: e.clientY, items: items})
+  App.show_context({items: items, e: e})
   e.preventDefault()
 }
 

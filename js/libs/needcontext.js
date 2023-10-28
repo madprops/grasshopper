@@ -121,7 +121,7 @@ NeedContext.show = (args = {}) => {
     NeedContext.create()
   }
 
-  if (args.e) {
+  if (args.e.clientX && args.e.clientY) {
     args.x = args.e.clientX
     args.y = args.e.clientY
   }
@@ -135,7 +135,7 @@ NeedContext.show = (args = {}) => {
     NeedContext.level = 0
   }
 
-  let center = args.x === undefined && args.y === undefined
+  let center = args.x === undefined || args.y === undefined
   args.items = args.items.slice(0)
   let selected_index
   let layer = NeedContext.get_layer()
