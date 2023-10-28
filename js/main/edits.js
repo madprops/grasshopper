@@ -627,6 +627,14 @@ App.close_tag_all = () => {
         if (tab.custom_tags) {
           if (tab.custom_tags.includes(tag)) {
             items.push(tab)
+            continue
+          }
+        }
+
+        if (tab.rule_tags) {
+          if (tab.rule_tags.includes(tag)) {
+            items.push(tab)
+            continue
           }
         }
       }
@@ -652,6 +660,14 @@ App.get_all_tags = () => {
   for (let item of App.get_items(`tabs`)) {
     if (item.custom_tags) {
       for (let tag of item.custom_tags) {
+        if (!tags.includes(tag)) {
+          tags.push(tag)
+        }
+      }
+    }
+
+    if (item.rule_tags) {
+      for (let tag of item.rule_tags) {
         if (!tags.includes(tag)) {
           tags.push(tag)
         }

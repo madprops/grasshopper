@@ -965,7 +965,7 @@ App.setup_commands = () => {
       name: `Close Tag`,
       cmd: `close_tag`,
       modes: [`tabs`],
-      icon: tag_icon,
+      icon: close_icon,
       action: (args) => {
         App.close_tag_all()
       },
