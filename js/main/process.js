@@ -157,24 +157,20 @@ App.check_rules = (item) => {
     }
 
     if (match) {
-      let ruled = false
-
       if (rule.color && rule.color !== `none`) {
         item.rule_color = rule.color
-        ruled = true
+        item.ruled = true
       }
 
       if (rule.title) {
         item.rule_title = rule.title
-        ruled = true
+        item.ruled = true
       }
 
       if (rule.tags) {
         item.rule_tags = App.taglist(rule.tags)
-        ruled = true
+        item.ruled = true
       }
-
-      item.ruled = ruled
     }
   }
 }
