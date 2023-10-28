@@ -1215,7 +1215,7 @@ App.setup_settings_addlist = () => {
         exact: `Exact`,
       },
       sources: {
-        color: App.color_menu_items(),
+        color: App.color_values(),
       },
       process: {
         domain: (value) => {
@@ -1286,7 +1286,7 @@ App.edit_text_setting = (key) => {
   })
 }
 
-App.color_menu_items = () => {
+App.color_values = () => {
   let items = []
 
   items.push({

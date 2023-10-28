@@ -652,7 +652,7 @@ Addlist.filled = (id) => {
     if (key === oargs.pk) {
       required = true
     }
-    else if (oargs.required && oargs.required[key]) {
+    else if (oargs.required[key]) {
       required = true
     }
     else {
