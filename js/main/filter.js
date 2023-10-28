@@ -358,7 +358,7 @@ App.filter_check = (args) => {
       }
     }
     else if (args.filter_mode === `titled`) {
-      match = args.item.custom_title
+      match = App.get_title(args.item)
     }
     else if (args.filter_mode === `edited`) {
       match = App.tab_is_edited(args.item)

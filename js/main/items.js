@@ -371,7 +371,7 @@ App.check_item_status = (item) => {
   if (App.get_setting(`titled_icon`)) {
     let icon = DOM.el(`.titled_icon`, item.element)
 
-    if (item.custom_title || item.rule_title) {
+    if (App.get_title(item)) {
       icon.classList.remove(`hidden`)
     }
     else {
