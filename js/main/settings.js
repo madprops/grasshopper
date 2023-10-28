@@ -1198,26 +1198,28 @@ App.setup_settings_addlist = () => {
     id: `addlist_${id}`,
     element: Addlist.register(Object.assign({}, regobj, {
       id: id,
-      keys: [`domain`, `color`, `title`, `tags`],
+      keys: [`domain`, `color`, `title`, `tags`, `exact`],
       pk: `domain`,
       widgets: {
         domain: `text`,
         color: `menu`,
         title: `text`,
         tags: `text`,
+        exact: `checkbox`,
       },
       labels: {
         domain: `Domain`,
         color: `Color`,
         title: `Title`,
         tags: `Tags`,
+        exact: `Exact`,
       },
       sources: {
         color: App.color_menu_items(),
       },
       process: {
         domain: (value) => {
-          return App.remove_protocol(value)
+          return App.get_path(value)
         }
       },
       list_text: (items) => {

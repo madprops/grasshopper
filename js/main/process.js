@@ -67,7 +67,7 @@ App.process_info = (args = {}) => {
     return false
   }
 
-  let path = App.remove_protocol(url)
+  let path = App.get_path(url)
   let protocol = App.get_protocol(url)
   let hostname = App.get_hostname(url)
   let title = args.info.title || ``
@@ -146,7 +146,16 @@ App.check_rules = (item) => {
   item.rule_tags = undefined
 
   for (let rule of rules) {
-    if (item.path.startsWith(rule.domain)) {
+    let match = false
+
+    if (rule.exact) {
+      match = item.path === rule.domain
+    }
+    else {
+      match = item.path.startsWith(rule.domain)
+    }
+
+    if (match) {
       if (rule.color && rule.color !== `none`) {
         item.rule_color = rule.color
       }

@@ -100,6 +100,10 @@ App.format_url = (url) => {
   return App.remove_slashes_end(App.remove_hash(url))
 }
 
+App.get_path = (url) => {
+  return App.remove_slashes_end(App.remove_protocol(url))
+}
+
 App.capitalize = (s) => {
   let w = s.charAt(0).toUpperCase() + s.slice(1)
   let lower = w.toLowerCase()

@@ -802,7 +802,7 @@ App.get_tag_items = (mode) => {
 
   for (let tab of App.get_items(`tabs`)) {
     if (App.tab_has_tags(tab)) {
-      for (let tag of tab.custom_tags) {
+      for (let tag of App.get_tags(tab)) {
         if (!tags.includes(tag)) {
           tags.push(tag)
         }

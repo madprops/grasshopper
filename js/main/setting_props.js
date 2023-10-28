@@ -96,6 +96,13 @@ App.build_settings = () => {
       info: `What command to perform when double clicking an item`,
       version: 1,
     },
+    domain_rules: {
+      name: `Domain Rules`,
+      type: `list`,
+      value: [],
+      info: `Apply rules to domains automatically, like color, title, and tags`,
+      version: 1,
+    },
     bookmarks_folder: {
       name: `Bookmarks Folder`,
       type: `text`,
@@ -988,13 +995,6 @@ App.build_settings = () => {
   category = `colorz`
 
   props = {
-    domain_rules: {
-      name: `Domain Rules`,
-      type: `list`,
-      value: [],
-      info: `Apply rules to domains`,
-      version: 1,
-    },
     color_pins_enabled: {
       name: `Pinned Tabs`,
       type: `checkbox`,
