@@ -27,8 +27,16 @@ App.check_tab_session = async (items = []) => {
   }
 }
 
-App.edited = (item) => {
-  return Boolean(item.ruled || item.custom_color || item.custom_title || item.custom_tags)
+App.edited = (item, include_ruled =  true) => {
+  let edited = Boolean(item.custom_color || item.custom_title || item.custom_tags)
+
+  if (!edited) {
+    if (include_ruled) {
+      edited = item.ruled
+    }
+  }
+
+  return edited
 }
 
 App.custom_save = (id, name, value) => {
@@ -160,7 +168,6 @@ App.remove_edits = (args = {}) => {
   }
 
   App.def_args(def_args, args)
-
   if (!args.items.length) {
     for (let item of App.get_items(`tabs`)) {
       if (item[`custom_${args.what}`]) {
@@ -597,6 +604,10 @@ App.get_taglist = (value) => {
 }
 
 App.remove_tag = (item, tag) => {
+  if (App.check_tag_rule(item)) {
+    return
+  }
+
   item.custom_tags = item.custom_tags.filter(x => x !== tag)
   App.apply_edit(`tags`, item, item.custom_tags)
   App.custom_save(item.id, `custom_tags`, item.custom_tags)
@@ -758,12 +769,20 @@ App.do_replace_tag = (tag_1, tag_2) => {
   }
 }
 
-App.edit_tag = (item, tag) => {
+App.check_tag_rule = (item) => {
   if (!item.custom_tags || !item.custom_tags.length) {
     if (item.rule_tags) {
-      App.alert(`These are set by domain rules`)
+      App.alert(`Tag is set by domain rules`)
     }
 
+    return true
+  }
+
+  return false
+}
+
+App.edit_tag = (item, tag) => {
+  if (App.check_tag_rule(item)) {
     return
   }
 
