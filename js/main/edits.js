@@ -739,6 +739,14 @@ App.do_replace_tag = (tag_1, tag_2) => {
 }
 
 App.edit_tag = (item, tag) => {
+  if (!item.custom_tags || !item.custom_tags.length) {
+    if (item.rule_tags) {
+      App.alert(`These are set by domain rules`)
+    }
+
+    return
+  }
+
   let tags = App.get_all_tags()
 
   App.show_prompt({
