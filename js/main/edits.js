@@ -130,7 +130,7 @@ App.edit_prompt = (args = {}) => {
   if (args.what === `tags`) {
     if (args.add) {
       if (App.tab_has_tags(args.item)) {
-        ignore_words = args.item.custom_tags
+        ignore_words = App.get_tags(args.item)
       }
 
       show_list = true
