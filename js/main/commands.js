@@ -352,7 +352,7 @@ App.setup_commands = () => {
       item: true,
       icon: heart_icon,
       action: (args) => {
-        App.show_favorites_menu(args.item)
+        App.show_favorites_menu(args.e)
       },
       info: `Show the favorites menu`,
     },
