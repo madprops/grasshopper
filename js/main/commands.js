@@ -828,7 +828,7 @@ App.setup_commands = () => {
       name: `Select Unloaded`,
       cmd: `select_unloaded_tabs`,
       modes: [`tabs`],
-      icon: normal_icon || tabs_icon,
+      icon: unloaded_icon || tabs_icon,
       action: (args) => {
         App.select_tabs(`unloaded`)
       },
