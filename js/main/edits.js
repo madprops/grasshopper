@@ -553,7 +553,7 @@ App.edit_tab_tags = (args = {}) => {
         let tags = tag_list
         let new_tags
 
-        if (it.custom_tags) {
+        if (it.custom_tags && it.custom_tags.length) {
           new_tags = tags.filter(x => !it.custom_tags.includes(x))
 
           if (args.add) {
@@ -562,6 +562,10 @@ App.edit_tab_tags = (args = {}) => {
         }
         else {
           new_tags = tags
+        }
+
+        if (it.rule_tags && it.rule_tags.length) {
+          tags = tags.filter(x => !it.rule_tags.includes(x))
         }
 
         App.apply_edit(`tags`, it, tags)
