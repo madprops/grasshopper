@@ -50,7 +50,7 @@ App.fill_favorites_bar = (mode) => {
       btn.append(icon)
       btn.title = cmd.name
 
-      DOM.evs(btn, [`click`, `auxclick`], (e) => {
+      DOM.ev(btn, `click`, (e) => {
         let args = {
           cmd: cmd.cmd,
           e: e,
