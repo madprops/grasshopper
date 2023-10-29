@@ -19,5 +19,5 @@ if ans_2.length > 0
 end
 
 if ans_1.length == 0 && ans_2.length == 0
-  puts "All good!"
+  puts "\e[32mAll good!\e[0m"
 end
