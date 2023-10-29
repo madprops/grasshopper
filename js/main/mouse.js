@@ -21,6 +21,12 @@ App.setup_window_mouse = (mode) => {
     App.mouse_up_action(e)
   })
 
+  DOM.ev(window, `mousedown`, (e) => {
+    if (e.button === 1) {
+      e.preventDefault()
+    }
+  })
+
   DOM.ev(container, `click`, (e) => {
     App.mouse_click_action(mode, e)
   })
