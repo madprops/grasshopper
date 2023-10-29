@@ -275,7 +275,11 @@ App.check_items_keyboard = (e) => {
 App.setup_keyboard = () => {
   DOM.ev(document, `keydown`, (e) => {
     if (e.repeat) {
-      return
+      let ok = (e.key === `ArrowUp`) || (e.key === `ArrowDown`)
+
+      if (!ok) {
+        return
+      }
     }
 
     let mode = App.window_mode
