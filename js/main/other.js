@@ -59,10 +59,17 @@ App.show_cmds_menu = (cmds, from) => {
         continue
       }
 
+      function proc (e) {
+        App.run_command({cmd: c.cmd, from: from, e: e})
+      }
+
       items.push({
         text: c.name,
         action: (e) => {
-          App.run_command({cmd: c.cmd, from: from, e: e})
+          proc(e)
+        },
+        alt_action: (e) => {
+          proc(e)
         },
         icon: c.icon,
       })
