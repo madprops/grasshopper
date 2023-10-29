@@ -489,13 +489,6 @@ App.build_settings = () => {
       info: `Show the widget between pinned and normal tabs`,
       version: 3,
     },
-    sort_tags: {
-      name: `Sort Tags`,
-      type: `checkbox`,
-      value: true,
-      info: `Sort tags alphabetically`,
-      version: 1,
-    },
     show_tooltips: {
       name: `Show Tooltips`,
       type: `checkbox`,

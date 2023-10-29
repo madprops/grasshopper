@@ -225,10 +225,6 @@ App.apply_edit = (what, item, value) => {
     }
 
     value = Array.from(new Set(value))
-
-    if (App.get_setting(`sort_tags`)) {
-      value.sort()
-    }
   }
 
   if (Array.isArray(value)) {
