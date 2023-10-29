@@ -165,6 +165,7 @@ Addlist.register = (args = {}) => {
       el.placeholder = args.labels[key] || `Key`
 
       DOM.ev(el, `keydown`, (e) => {
+        console.log(e.code)
         el.value = e.code
         e.preventDefault()
       })

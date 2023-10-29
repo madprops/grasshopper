@@ -1132,7 +1132,7 @@ App.setup_settings_addlist = () => {
       keys: [`key`, `cmd`, `ctrl`, `shift`, `alt`],
       pk: `key`,
       widgets: {
-        key: `text`,
+        key: `key`,
         cmd: `menu`,
         ctrl: `checkbox`,
         shift: `checkbox`,
