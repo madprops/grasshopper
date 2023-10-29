@@ -604,7 +604,7 @@ App.get_taglist = (value) => {
 }
 
 App.remove_tag = (item, tag) => {
-  if (App.check_tag_rule(item)) {
+  if (App.check_tag_rule(item, tag)) {
     return
   }
 
@@ -769,12 +769,11 @@ App.do_replace_tag = (tag_1, tag_2) => {
   }
 }
 
-App.check_tag_rule = (item) => {
-  if (!item.custom_tags || !item.custom_tags.length) {
-    if (item.rule_tags) {
-      App.alert(`This tag is set by domain rules`)
-    }
-
+App.check_tag_rule = (item, tag) => {
+  if (item.rule_tags &&
+  item.rule_tags.length &&
+  item.rule_tags.includes(tag)) {
+    App.alert(`This tag is set by domain rules`)
     return true
   }
 
@@ -782,7 +781,7 @@ App.check_tag_rule = (item) => {
 }
 
 App.edit_tag = (item, tag) => {
-  if (App.check_tag_rule(item)) {
+  if (App.check_tag_rule(item, tag)) {
     return
   }
 
