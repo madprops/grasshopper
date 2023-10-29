@@ -67,11 +67,19 @@ App.scroll = (mode, direction) => {
 }
 
 App.show_scroller = (mode) => {
+  if (!App.get_setting(`show_scroller`)) {
+    return
+  }
+
   let scroller = DOM.el(`#${mode}_scroller`)
   scroller.classList.remove(`hidden`)
 }
 
 App.hide_scroller = (mode) => {
+  if (!App.get_setting(`show_scroller`)) {
+    return
+  }
+
   let scroller = DOM.el(`#${mode}_scroller`)
   scroller.classList.add(`hidden`)
 }
