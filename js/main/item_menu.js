@@ -70,6 +70,7 @@ App.show_item_menu = async (args = {}) => {
         }
       })
 
+      items.push(App.item_menu_item({cmd: `edit_notes`, item: args.item}))
       App.common_menu_items(items, args.item, multiple)
       App.extra_menu_items(items)
       App.more_menu_items(items, args.item, multiple, some_loaded, some_unmuted, some_muted)

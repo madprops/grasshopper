@@ -917,6 +917,18 @@ App.setup_commands = () => {
       info: `Edit tab tags`,
     },
     {
+      name: `Edit Notes`,
+      short_name: `Notes`,
+      cmd: `edit_notes`,
+      modes: [`tabs`],
+      item: true,
+      icon: edit_icon,
+      action: (args) => {
+        App.edit_notes(args.item)
+      },
+      info: `Add notes to a tab`,
+    },
+    {
       name: `Add Tags`,
       cmd: `add_tags`,
       modes: [`tabs`],
@@ -959,6 +971,16 @@ App.setup_commands = () => {
         App.remove_edits({what: `tags`})
       },
       info: `Remove all tags from tabs`,
+    },
+    {
+      name: `Remove All Notes`,
+      cmd: `remove_all_notes`,
+      modes: [`tabs`],
+      icon: edit_icon,
+      action: (args) => {
+        App.remove_edits({what: `notes`})
+      },
+      info: `Remove all notes from tabs`,
     },
     {
       name: `Replace Tag`,

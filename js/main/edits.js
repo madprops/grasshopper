@@ -8,6 +8,9 @@ App.edit_props = {
   tags: {
     type: `list`,
   },
+  notes: {
+    type: `string`,
+  },
 }
 
 App.check_tab_session = async (items = []) => {
@@ -16,27 +19,11 @@ App.check_tab_session = async (items = []) => {
   }
 
   for (let item of items) {
-    let custom_color = await browser.sessions.getTabValue(item.id, `custom_color`)
-    App.apply_edit(`color`, item, custom_color)
-
-    let custom_title = await browser.sessions.getTabValue(item.id, `custom_title`)
-    App.apply_edit(`title`, item, custom_title)
-
-    let custom_tags = await browser.sessions.getTabValue(item.id, `custom_tags`)
-    App.apply_edit(`tags`, item, custom_tags)
-  }
-}
-
-App.edited = (item, include_ruled =  true) => {
-  let edited = Boolean(item.custom_color || item.custom_title || item.custom_tags)
-
-  if (!edited) {
-    if (include_ruled) {
-      edited = item.ruled
+    for (let key in App.edit_props) {
+      let value = await browser.sessions.getTabValue(item.id, `custom_${key}`)
+      App.apply_edit(key, item, value)
     }
   }
-
-  return edited
 }
 
 App.custom_save = (id, name, value) => {
@@ -52,6 +39,25 @@ App.custom_save = (id, name, value) => {
   else {
     browser.sessions.removeTabValue(id, name)
   }
+}
+
+App.edited = (item, include_ruled =  true) => {
+  let edited = false
+
+  for (let key in App.edit_props) {
+    if (Boolean(item[`custom_${key}`])) {
+      edited = true
+      break
+    }
+  }
+
+  if (!edited) {
+    if (include_ruled) {
+      edited = item.ruled
+    }
+  }
+
+  return edited
 }
 
 App.edit_prompt = (args = {}) => {
@@ -910,4 +916,17 @@ App.get_tag_items = (mode) => {
 App.tagged = (item) => {
   return Boolean((item.custom_tags && item.custom_tags.length) ||
   item.rule_tags && item.rule_tags.length)
+}
+
+App.edit_notes = (item) => {
+  App.show_input({
+    message: `Notes`,
+    button: `Save`,
+    action: (text) => {
+      App.apply_edit(`notes`, item, text)
+      App.custom_save(item.id, `custom_notes`, text)
+      return true
+    },
+    value: item.custom_notes || ``,
+  })
 }
