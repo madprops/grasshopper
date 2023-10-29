@@ -52,7 +52,7 @@ App.show_prompt = (args = {}) => {
     App.show_prompt_list()
   }
 
-  if (args.highlight) {
+  if (args.highlight && !args.show_list) {
     input.select()
   }
   else {
@@ -151,6 +151,10 @@ App.show_prompt_list = () => {
     element: btn,
     after_hide: () => {
       input.focus()
+
+      if (args.highlight) {
+        input.select()
+      }
     },
   })
 }
