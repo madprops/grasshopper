@@ -751,7 +751,8 @@ App.build_settings = () => {
       type: `list`,
       value: [
         {cmd: `select_pinned_tabs`},
-        {cmd: `select_normal_tabs`},
+        {cmd: `select_pinned_tabs`},
+        {cmd: `select_all_items`},
       ],
       info: `Menu when clicking the pinline`,
       version: 4,
