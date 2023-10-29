@@ -68,6 +68,9 @@ App.setup_commands = () => {
       action: (args) => {
         App.edit_tab_color({item: args.item, color: color})
       },
+      alt_action: (args) => {
+        App.edit_tab_color({item: args.item})
+      },
       info: `Add a custom color to tabs (${color})`,
     })
 
@@ -1285,7 +1288,12 @@ App.run_command = (args) => {
       return
     }
 
-    command.action(args)
+    if (args.alt) {
+      command.alt_action(args)
+    }
+    else {
+      command.action(args)
+    }
   }
 }
 
@@ -1362,6 +1370,14 @@ App.check_command = (command, args) => {
           }
         }
         else if (!command.modes.includes(args.mode)) {
+          valid = false
+        }
+      }
+    }
+
+    if (valid) {
+      if (args.alt) {
+        if (!command.alt_action) {
           valid = false
         }
       }
