@@ -70,26 +70,6 @@ App.fill_favorites_bar = (mode) => {
 }
 
 App.show_favorites_menu = (e) => {
-  let items = []
-
-  for (let fav of App.get_setting(`favorites`)) {
-    let cmd = App.get_command(fav.cmd)
-
-    if (cmd) {
-      items.push({
-        text: cmd.name,
-        action: (e) => {
-          let args = {
-            cmd: cmd.cmd,
-            e: e,
-          }
-
-          App.run_command(args)
-        },
-        icon: cmd.icon,
-      })
-    }
-  }
-
+  let items = App.custom_menu_items(`favorites`)
   App.show_context({items: items, e: e})
 }
