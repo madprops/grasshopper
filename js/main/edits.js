@@ -772,7 +772,7 @@ App.do_replace_tag = (tag_1, tag_2) => {
 App.check_tag_rule = (item) => {
   if (!item.custom_tags || !item.custom_tags.length) {
     if (item.rule_tags) {
-      App.alert(`Tag is set by domain rules`)
+      App.alert(`This tag is set by domain rules`)
     }
 
     return true
