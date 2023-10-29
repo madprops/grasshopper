@@ -176,14 +176,13 @@ App.mouse_double_click_action = (mode, e) => {
 }
 
 App.mouse_context_action = (mode, e) => {
-  e.preventDefault()
-
   if (!App.cursor_on_item(e, mode)) {
     App.show_custom_menu(e, `empty`)
     return
   }
 
   let item = App.get_cursor_item(mode, e)
+  e.preventDefault()
 
   if (App.get_setting(`hover_button`)) {
     if (App.get_setting(`hover_button_pick`)) {
@@ -214,6 +213,7 @@ App.mouse_middle_action = (mode, e) => {
   }
 
   let item = App.get_cursor_item(mode, e)
+  e.preventDefault()
 
   if (e.target.classList.contains(`close_icon`)) {
     let cmd = App.get_setting(`middle_click_close_icon`)
