@@ -668,7 +668,7 @@ App.setup_commands = () => {
       modes: [`tabs`],
       icon: close_icon,
       action: (args) => {
-        App.show_close_tabs_menu(args.e)
+        App.show_close_tabs_menu(args.e, args.item)
       },
       info: `Open the menu with some tab closing options`,
     },
