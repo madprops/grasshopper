@@ -35,12 +35,12 @@ App.show_custom_menu = (e, what) => {
   e.preventDefault()
 }
 
-App.custom_menu_items = (name) => {
+App.custom_menu_items = (name, item) => {
   let cmds = App.get_setting(name)
-  return App.show_cmds_menu(cmds, name)
+  return App.show_cmds_menu(cmds, name, item)
 }
 
-App.show_cmds_menu = (cmds, from) => {
+App.show_cmds_menu = (cmds, from, item) => {
   let items = []
 
   if (!cmds.length) {
@@ -62,7 +62,12 @@ App.show_cmds_menu = (cmds, from) => {
       items.push({
         text: c.name,
         action: (e) => {
-          App.run_command({cmd: c.cmd, from: from, e: e})
+          App.run_command({
+            cmd: c.cmd,
+            from: from,
+            e: e,
+            item: item,
+          })
         },
         icon: c.icon,
       })

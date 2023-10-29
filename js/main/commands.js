@@ -349,10 +349,9 @@ App.setup_commands = () => {
       name: `Favorites`,
       cmd: `show_favorites_menu`,
       modes: [`items`],
-      item: true,
       icon: heart_icon,
       action: (args) => {
-        App.show_favorites_menu(args.e)
+        App.show_favorites_menu(args.e, args.item)
       },
       info: `Show the favorites menu`,
     },
