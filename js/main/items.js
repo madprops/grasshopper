@@ -638,13 +638,13 @@ App.create_item_element = (item) => {
       item.element.append(btn)
     }
 
-    let view_media = DOM.create(`div`, `view_media_button hidden`)
-    item.element.append(view_media)
     item.element.draggable = true
     App.check_item_status(item)
-    App.check_view_media(item)
   }
 
+  let view_media = DOM.create(`div`, `view_media_button hidden`)
+  item.element.append(view_media)
+  App.check_view_media(item)
   let content = DOM.create(`div`, `item_content`)
   let text = DOM.create(`div`, `item_text`)
   let text_1 = DOM.create(`div`, `item_text_1`)
