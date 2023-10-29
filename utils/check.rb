@@ -1,4 +1,9 @@
 #!/usr/bin/env ruby
+
+def green(text)
+  puts "\e[32m#{text}\e[0m"
+end
+
 ans_1 = `cd js/main && goldie "console.log" && goldie '/(?<!\\\\)"/'`
 ans_2 = `cd js/main && find . -type f -exec awk 'BEGIN { prev = "" } NR > 1 && prev == "" && $0 == "" { print FILENAME ":" NR - 1 } { prev = $0 }' {} \\;`
 ans_1 = ans_1.gsub(/^\s*$/, "").strip
@@ -19,5 +24,5 @@ if ans_2.length > 0
 end
 
 if ans_1.length == 0 && ans_2.length == 0
-  puts "\e[32mAll good!\e[0m"
+  green("All good!")
 end

@@ -1,6 +1,10 @@
 #!/usr/bin/env ruby
 require "fileutils"
 
+def blue(text)
+  puts "\e[34m#{text}\e[0m"
+end
+
 def bundle(what)
   directory = "js/#{what}"
   content = []
@@ -12,7 +16,7 @@ def bundle(what)
   bundle = content.join("\n")
   output = File.join("js", "bundle.#{what}.js")
   File.open(output, 'w') { |file| file.write(bundle) }
-  puts "\e[34mBundled #{what} to #{output}\e[0m"
+  blue("Bundled #{what} to #{output}")
 end
 
 bundle("libs")
