@@ -21,7 +21,13 @@ App.check_taglist = (item) => {
       item_cls += ` action`
     }
 
-    for (let tag of App.get_tags(item)) {
+    let tags = App.get_tags(item).slice(0)
+
+    if (App.get_setting(`sort_taglist`)) {
+      tags.sort()
+    }
+
+    for (let tag of tags) {
       let item = DOM.create(`div`, item_cls)
       item.textContent = tag
       taglist.append(item)

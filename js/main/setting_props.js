@@ -538,6 +538,13 @@ App.build_settings = () => {
       info: `Show numbers as a trace on recently used tabs`,
       version: 1,
     },
+    sort_taglist: {
+      name: `Sort Taglist`,
+      type: `checkbox`,
+      value: false,
+      info: `Sort tags alphabetically in the taglist`,
+      version: 1,
+    },
     reverse_scroller_percentage: {
       name: `Reverse Scroller %`,
       type: `checkbox`,
