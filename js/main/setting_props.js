@@ -549,7 +549,7 @@ App.build_settings = () => {
       name: `Reverse Scroller %`,
       type: `checkbox`,
       value: false,
-      info: `Reverse the scrolling percentage in the scroller`,
+      info: `Reverse the scroll percentage displayed on the scroller`,
       version: 1,
     },
   }
