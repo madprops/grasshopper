@@ -825,6 +825,16 @@ App.setup_commands = () => {
       info: `Select all normal tabs`,
     },
     {
+      name: `Select Unloaded`,
+      cmd: `select_unloaded_tabs`,
+      modes: [`tabs`],
+      icon: normal_icon || tabs_icon,
+      action: (args) => {
+        App.select_tabs(`unloaded`)
+      },
+      info: `Select all unloaded tabs`,
+    },
+    {
       name: App.separator_string
     },
     {

@@ -1022,6 +1022,9 @@ App.select_tabs = (type = `pins`) => {
     else if (type === `normal`) {
       valid = !item.pinned
     }
+    else if (type === `unloaded`) {
+      valid = item.discarded
+    }
 
     if (item.visible && valid) {
       if (!first) {

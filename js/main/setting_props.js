@@ -752,6 +752,7 @@ App.build_settings = () => {
       value: [
         {cmd: `select_pinned_tabs`},
         {cmd: `select_normal_tabs`},
+        {cmd: `select_unloaded_tabs`},
         {cmd: `select_all_items`},
       ],
       info: `Menu when clicking the pinline`,
