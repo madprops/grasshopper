@@ -10,7 +10,7 @@ App.check_taglist = (item) => {
   let taglist = DOM.el(`.taglist`, item.element)
   let mode = App.get_setting(`taglist_mode`)
 
-  if (!App.tab_has_tags(item)) {
+  if (!App.tagged(item)) {
     taglist.classList.add(`hidden`)
   }
   else {

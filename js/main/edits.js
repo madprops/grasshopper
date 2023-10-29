@@ -129,7 +129,7 @@ App.edit_prompt = (args = {}) => {
 
   if (args.what === `tags`) {
     if (args.add) {
-      if (App.tab_has_tags(args.item)) {
+      if (App.tagged(args.item)) {
         ignore_words = App.get_tags(args.item)
       }
 
@@ -849,7 +849,7 @@ App.push_to_tag_history = (tags) => {
 }
 
 App.filter_tag_pick = (item, e) => {
-  if (!App.tab_has_tags(item)) {
+  if (!App.tagged(item)) {
     return
   }
 
@@ -877,7 +877,7 @@ App.get_tag_items = (mode) => {
   let tags = []
 
   for (let tab of App.get_items(`tabs`)) {
-    if (App.tab_has_tags(tab)) {
+    if (App.tagged(tab)) {
       for (let tag of App.get_tags(tab)) {
         if (!tags.includes(tag)) {
           tags.push(tag)
@@ -908,7 +908,7 @@ App.get_tag_items = (mode) => {
   return items
 }
 
-App.tab_has_tags = (item) => {
+App.tagged = (item) => {
   return Boolean((item.custom_tags && item.custom_tags.length) ||
   item.rule_tags && item.rule_tags.length)
 }

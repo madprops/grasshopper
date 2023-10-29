@@ -382,7 +382,7 @@ App.check_item_status = (item) => {
   if (App.get_setting(`tagged_icon`)) {
     let icon = DOM.el(`.tagged_icon`, item.element)
 
-    if (App.tab_has_tags(item)) {
+    if (App.tagged(item)) {
       icon.classList.remove(`hidden`)
     }
     else {
@@ -759,7 +759,7 @@ App.set_item_text = (item) => {
       item.element.title += `\nDate Added: ${App.nice_date(item.date_added)}`
     }
 
-    if (App.tab_has_tags(item)) {
+    if (App.tagged(item)) {
       let tags = App.get_tags(item)
       item.element.title += `\nTags: ${tags.join(`, `)}`
     }

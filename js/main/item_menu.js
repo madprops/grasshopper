@@ -209,7 +209,7 @@ App.filter_menu_items = (item) => {
     items.push(App.item_menu_item({cmd: `filter_color`, item: item}))
   }
 
-  if (App.tab_has_tags(item)) {
+  if (App.tagged(item)) {
     items.push(App.item_menu_item({cmd: `filter_tag`, item: item}))
   }
 

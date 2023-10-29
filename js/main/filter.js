@@ -293,7 +293,7 @@ App.filter_check = (args) => {
         match = App.get_color(args.item) === args.value
       }
       else if (args.by_what === `tag`) {
-        match = App.tab_has_tags(args.item) &&
+        match = App.tagged(args.item) &&
         App.get_tags(args.item).includes(args.value)
       }
 
@@ -350,10 +350,10 @@ App.filter_check = (args) => {
     }
     else if (args.filter_mode === `tag`) {
       if (args.f_value === `all`) {
-        match = App.tab_has_tags(args.item)
+        match = App.tagged(args.item)
       }
       else {
-        match = App.tab_has_tags(args.item) &&
+        match = App.tagged(args.item) &&
         App.get_tags(args.item).includes(args.f_value)
       }
     }
