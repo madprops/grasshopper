@@ -1288,7 +1288,7 @@ App.run_command = (args) => {
       return
     }
 
-    if (args.e && args.e.button === 1) {
+    if (args.alt) {
       command.alt_action(args)
     }
     else {
@@ -1315,6 +1315,10 @@ App.check_command = (command, args) => {
     else if (args.on_media) {
       args.item = App.current_media_item()
     }
+  }
+
+  if (args.e && args.e.button === 1 && !args.no_alt) {
+    args.alt = true
   }
 
   if (args.item) {
@@ -1376,7 +1380,7 @@ App.check_command = (command, args) => {
     }
 
     if (valid) {
-      if (args.e && args.e.button === 1) {
+      if (args.alt) {
         if (!command.alt_action) {
           valid = false
         }
