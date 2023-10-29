@@ -1288,7 +1288,7 @@ App.run_command = (args) => {
       return
     }
 
-    if (args.alt) {
+    if (args.e && args.e.button === 1) {
       command.alt_action(args)
     }
     else {
@@ -1376,7 +1376,7 @@ App.check_command = (command, args) => {
     }
 
     if (valid) {
-      if (args.alt) {
+      if (args.e && args.e.button === 1) {
         if (!command.alt_action) {
           valid = false
         }
