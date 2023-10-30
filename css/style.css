@@ -680,6 +680,10 @@ a:visited, a:link, a:hover {
   white-space: pre;
 }
 
+.wrap {
+  white-space: normal;
+}
+
 .full_width {
   width: 100%;
 }

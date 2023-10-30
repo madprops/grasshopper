@@ -1202,13 +1202,14 @@ App.setup_settings_addlist = () => {
     id: `addlist_${id}`,
     element: Addlist.register(Object.assign({}, regobj, {
       id: id,
-      keys: [`domain`, `color`, `title`, `tags`, `exact`],
+      keys: [`domain`, `color`, `title`, `tags`, `notes`, `exact`],
       pk: `domain`,
       widgets: {
         domain: `text`,
         color: `menu`,
         title: `text`,
         tags: `text`,
+        notes: `textarea`,
         exact: `checkbox`,
       },
       labels: {
@@ -1216,6 +1217,7 @@ App.setup_settings_addlist = () => {
         color: `Color`,
         title: `Title`,
         tags: `Tags`,
+        notes: `Notes`,
         exact: `Exact`,
       },
       sources: {
@@ -1232,7 +1234,9 @@ App.setup_settings_addlist = () => {
         }
 
         if ((values[`color`] === `none`) &&
-        !values[`title`] && !values[`tags`]) {
+        !values[`title`] &&
+        !values[`tags`] &&
+        !values[`notes`]) {
           return false
         }
 

@@ -928,8 +928,9 @@ App.edit_notes = (item) => {
       App.custom_save(item.id, `custom_notes`, notes)
       return true
     },
-    value: item.custom_notes || ``,
+    value: App.get_notes(item) || ``,
     autosave: true,
     bottom: true,
+    wrap: true,
   })
 }

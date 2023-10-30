@@ -27,5 +27,5 @@ App.get_tags = (item) => {
 }
 
 App.get_notes = (item) => {
-  return item.custom_notes
+  return item.custom_notes || item.rule_notes
 }

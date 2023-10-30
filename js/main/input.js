@@ -9,6 +9,7 @@ App.show_input = (args = {}) => {
     value: ``,
     autosave: false,
     bottom: false,
+    wrap: false,
   }
 
   App.def_args(def_args, args)
@@ -28,6 +29,13 @@ App.show_input = (args = {}) => {
   App.show_popup(`input`)
 
   requestAnimationFrame(() => {
+    if (args.wrap) {
+      textarea.classList.add(`wrap`)
+    }
+    else {
+      textarea.classList.remove(`wrap`)
+    }
+
     App.focus_textarea(textarea)
 
     if (args.bottom) {

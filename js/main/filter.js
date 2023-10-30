@@ -361,7 +361,7 @@ App.filter_check = (args) => {
       match = args.item.custom_title || args.item.rule_title
     }
     else if (args.filter_mode === `notes`) {
-      match = args.item.custom_notes
+      match = App.get_notes(args.item)
     }
     else if (args.filter_mode === `edited`) {
       match = App.edited(args.item)
