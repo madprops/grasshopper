@@ -15,7 +15,7 @@ Addlist.values = (id) => {
   return values
 }
 
-Addlist.save = (id) => {
+Addlist.save = (id, hide = true) => {
   let data = Addlist.data
   let oargs = Addlist.oargs(id)
   let values = Addlist.values(id)
@@ -24,7 +24,10 @@ Addlist.save = (id) => {
     let modified = Addlist.modified(id)
 
     if (!modified) {
-      Addlist.hide(false)
+      if (hide) {
+        Addlist.hide(false)
+      }
+
       return false
     }
   }
@@ -71,7 +74,7 @@ Addlist.save = (id) => {
     lines.splice(data.index, 0, values)
   }
 
-  Addlist.after(id, lines)
+  Addlist.after(id, lines, hide)
   return true
 }
 
@@ -338,16 +341,24 @@ Addlist.enter = () => {
 }
 
 Addlist.left = () => {
-  Addlist.next(Addlist.data.id, true)
+  let id = Addlist.data.id
+  Addlist.save(id, false)
+  Addlist.next(id, true)
 }
 
 Addlist.right = () => {
-  Addlist.next(Addlist.data.id)
+  let id = Addlist.data.id
+  Addlist.save(id, false)
+  Addlist.next(id)
 }
 
-Addlist.after = (id, lines) => {
+Addlist.after = (id, lines, hide = true) => {
   Addlist.set_data(id, lines)
-  Addlist.hide(false)
+
+  if (hide) {
+    Addlist.hide(false)
+  }
+
   Addlist.update_count(id)
 }
 
