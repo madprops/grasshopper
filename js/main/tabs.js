@@ -257,7 +257,6 @@ App.refresh_tab = async (id, select, info) => {
   }
 
   let item = App.get_item_by_id(`tabs`, id)
-
   if (item) {
     if (item.pinned !== info.pinned) {
       App.check_pinline()
@@ -789,11 +788,19 @@ App.do_move_tab_index = async (id, index) => {
 }
 
 App.on_tab_activated = async (info) => {
+  let old_active = []
+
+  function add (item) {
+    if (!old_active.includes(item)) {
+      old_active.push(item)
+    }
+  }
+
   let current
 
   for (let item of App.get_items(`tabs`)) {
     if (item.active) {
-      current = item
+      add(item)
     }
 
     item.active = item.id === info.tabId
@@ -811,6 +818,10 @@ App.on_tab_activated = async (info) => {
 
   let new_active = await App.refresh_tab(info.tabId, select)
   App.update_active_history(current, new_active)
+
+  for (let item of old_active) {
+    App.update_item(`tabs`, item.id, item)
+  }
 }
 
 App.move_tabs = async (item, window_id) => {

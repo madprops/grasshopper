@@ -88,10 +88,6 @@ App.check_ready = (what) => {
   return false
 }
 
-App.color_icon = (color) => {
-  return DOM.create(`div`, `color_icon background_${color}`)
-}
-
 App.check_force = (warn_setting, items) => {
   if (items.length >= App.get_setting(`max_warn_limit`)) {
     return false

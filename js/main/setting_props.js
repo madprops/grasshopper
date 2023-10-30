@@ -412,6 +412,14 @@ App.build_settings = () => {
       info: `Icon for tabs with notes`,
       version: 1,
     },
+    active_icon: {
+      name: `Active Icon`,
+      type: `text_smaller`,
+      value: ``,
+      placeholder: App.icon_placeholder,
+      info: `Icon for active tabs`,
+      version: 1,
+    },
     edited_icon: {
       name: `Edited Icon`,
       type: `text_smaller`,

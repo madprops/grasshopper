@@ -1,0 +1,308 @@
+App.add_tab_icons = (item) => {
+  if (App.get_setting(`pin_icon`)) {
+    let icon = DOM.create(`div`, `pin_icon item_node hidden`)
+    icon.textContent = App.get_setting(`pin_icon`)
+    item.element.append(icon)
+  }
+
+  if (App.get_setting(`normal_icon`)) {
+    let icon = DOM.create(`div`, `normal_icon item_node hidden`)
+    icon.textContent = App.get_setting(`normal_icon`)
+    item.element.append(icon)
+  }
+
+  if (App.get_setting(`loaded_icon`)) {
+    let icon = DOM.create(`div`, `loaded_icon item_node hidden`)
+    icon.textContent = App.get_setting(`loaded_icon`)
+    item.element.append(icon)
+  }
+
+  if (App.get_setting(`unloaded_icon`)) {
+    let icon = DOM.create(`div`, `unloaded_icon item_node hidden`)
+    icon.textContent = App.get_setting(`unloaded_icon`)
+    item.element.append(icon)
+  }
+
+  let cls = ``
+
+  if (App.get_setting(`mute_click`)) {
+    cls += ` action`
+  }
+
+  if (App.get_setting(`playing_icon`)) {
+    let icon = DOM.create(`div`, `playing_icon item_node hidden${cls}`)
+    icon.textContent = App.get_setting(`playing_icon`)
+    item.element.append(icon)
+  }
+
+  if (App.get_setting(`muted_icon`)) {
+    let icon = DOM.create(`div`, `muted_icon item_node hidden${cls}`)
+    icon.textContent = App.get_setting(`muted_icon`)
+    item.element.append(icon)
+  }
+
+  if (App.get_setting(`unread_icon`)) {
+    let icon = DOM.create(`div`, `unread_icon item_node hidden`)
+    icon.textContent = App.get_setting(`unread_icon`)
+    item.element.append(icon)
+  }
+
+  if (App.get_setting(`active_icon`)) {
+    let icon = DOM.create(`div`, `active_icon item_node hidden`)
+    icon.textContent = App.get_setting(`active_icon`)
+    item.element.append(icon)
+  }
+
+  if (App.get_setting(`titled_icon`)) {
+    let icon = DOM.create(`div`, `titled_icon item_node hidden`)
+    icon.textContent = App.get_setting(`titled_icon`)
+    item.element.append(icon)
+  }
+
+  if (App.get_setting(`tagged_icon`)) {
+    let icon = DOM.create(`div`, `tagged_icon item_node hidden`)
+    icon.textContent = App.get_setting(`tagged_icon`)
+    item.element.append(icon)
+  }
+
+  cls = ``
+
+  if (App.get_setting(`notes_click`)) {
+    cls += ` action`
+  }
+
+  if (App.get_setting(`notes_icon`)) {
+    let icon = DOM.create(`div`, `notes_icon item_node hidden${cls}`)
+    icon.textContent = App.get_setting(`notes_icon`)
+    item.element.append(icon)
+  }
+
+  if (App.get_setting(`edited_icon`)) {
+    let icon = DOM.create(`div`, `edited_icon item_node hidden`)
+    icon.textContent = App.get_setting(`edited_icon`)
+    item.element.append(icon)
+  }
+
+  if (App.get_setting(`hover_button`) !== `none`) {
+    let btn = DOM.create(`div`, `hover_button`)
+    btn.textContent = App.command_icon
+    btn.title = `Hover Button`
+    item.element.append(btn)
+  }
+}
+
+App.check_tab_icons = (item) => {
+  if (item.mode !== `tabs`) {
+    return
+  }
+  if (App.get_setting(`pin_icon`)) {
+    let icon = DOM.el(`.pin_icon`, item.element)
+    icon.title = `Pin`
+
+    if (item.pinned) {
+      icon.classList.remove(`hidden`)
+    }
+    else {
+      icon.classList.add(`hidden`)
+    }
+  }
+
+  if (App.get_setting(`normal_icon`)) {
+    let icon = DOM.el(`.normal_icon`, item.element)
+    icon.title = `Normal`
+
+    if (!item.pinned) {
+      icon.classList.remove(`hidden`)
+    }
+    else {
+      icon.classList.add(`hidden`)
+    }
+  }
+
+  if (App.get_setting(`loaded_icon`)) {
+    let icon = DOM.el(`.loaded_icon`, item.element)
+    icon.title = `Loaded`
+
+    if (!item.discarded) {
+      icon.classList.remove(`hidden`)
+    }
+    else {
+      icon.classList.add(`hidden`)
+    }
+  }
+
+  if (App.get_setting(`unloaded_icon`)) {
+    let icon = DOM.el(`.unloaded_icon`, item.element)
+    icon.title = `Unloaded`
+
+    if (item.discarded) {
+      icon.classList.remove(`hidden`)
+    }
+    else {
+      icon.classList.add(`hidden`)
+    }
+  }
+
+  if (App.get_setting(`playing_icon`)) {
+    let icon = DOM.el(`.playing_icon`, item.element)
+    icon.title = `Playing`
+
+    if (item.audible && !item.muted) {
+      icon.classList.remove(`hidden`)
+    }
+    else {
+      icon.classList.add(`hidden`)
+    }
+  }
+
+  if (App.get_setting(`muted_icon`)) {
+    let icon = DOM.el(`.muted_icon`, item.element)
+    icon.title = `Muted`
+
+    if (item.muted) {
+      icon.classList.remove(`hidden`)
+    }
+    else {
+      icon.classList.add(`hidden`)
+    }
+  }
+
+  if (App.get_setting(`unread_icon`)) {
+    let icon = DOM.el(`.unread_icon`, item.element)
+    icon.title = `Unread`
+
+    if (item.unread) {
+      icon.classList.remove(`hidden`)
+    }
+    else {
+      icon.classList.add(`hidden`)
+    }
+  }
+
+  if (App.get_setting(`active_icon`)) {
+    let icon = DOM.el(`.active_icon`, item.element)
+    icon.title = `Active`
+
+    if (item.active) {
+      icon.classList.remove(`hidden`)
+    }
+    else {
+      icon.classList.add(`hidden`)
+    }
+  }
+
+  if (App.get_setting(`titled_icon`)) {
+    let icon = DOM.el(`.titled_icon`, item.element)
+    icon.title = `Titled`
+
+    if (item.custom_title || item.rule_title) {
+      icon.classList.remove(`hidden`)
+    }
+    else {
+      icon.classList.add(`hidden`)
+    }
+  }
+
+  if (App.get_setting(`tagged_icon`)) {
+    let icon = DOM.el(`.tagged_icon`, item.element)
+    icon.title = `Tagged`
+
+    if (App.tagged(item)) {
+      icon.classList.remove(`hidden`)
+    }
+    else {
+      icon.classList.add(`hidden`)
+    }
+  }
+
+  if (App.get_setting(`notes_icon`)) {
+    let icon = DOM.el(`.notes_icon`, item.element)
+    icon.title = `Notes`
+
+    if (App.get_notes(item)) {
+      icon.classList.remove(`hidden`)
+    }
+    else {
+      icon.classList.add(`hidden`)
+    }
+  }
+
+  if (App.get_setting(`edited_icon`)) {
+    let icon = DOM.el(`.edited_icon`, item.element)
+    icon.title = `Edited`
+
+    if (App.edited(item)) {
+      icon.classList.remove(`hidden`)
+    }
+    else {
+      icon.classList.add(`hidden`)
+    }
+  }
+
+  App.check_text_color(item)
+}
+
+App.check_item_icon = (item) => {
+  if (App.get_setting(`item_icon`) !== `none`) {
+    let container = DOM.el(`.item_icon_container`, item.element)
+    container.innerHTML = ``
+    let icon
+
+    if (item.favicon) {
+      icon = App.get_favicon(item)
+    }
+    else if (App.get_setting(`generate_icons`)) {
+      icon = App.get_jdenticon(item.hostname)
+    }
+
+    if (icon) {
+      container.append(icon)
+      container.classList.remove(`hidden`)
+    }
+    else {
+      container.classList.add(`hidden`)
+    }
+  }
+}
+
+App.create_icon = (name, type = 1) => {
+  let icon = document.createElementNS(`http://www.w3.org/2000/svg`, `svg`)
+  icon.classList.add(`icon_${type}`)
+  let icon_use = document.createElementNS(`http://www.w3.org/2000/svg`, `use`)
+  icon_use.href.baseVal = `#${name}_icon`
+  icon.append(icon_use)
+  return icon
+}
+
+App.get_text_icon = (icon_text) => {
+  let icon = DOM.create(`div`, `item_icon`)
+  icon.textContent = icon_text
+  return icon
+}
+
+App.get_favicon = (item) => {
+  let icon = DOM.create(`img`, `item_icon`)
+  icon.loading = `lazy`
+
+  DOM.ev(icon, `error`, () => {
+    if (App.get_setting(`generate_icons`)) {
+      let icon_2 = App.get_jdenticon(item.hostname)
+      icon.replaceWith(icon_2)
+    }
+  })
+
+  icon.src = item.favicon
+  return icon
+}
+
+App.get_jdenticon = (hostname) => {
+  let icon = DOM.create(`canvas`, `item_icon`)
+  icon.width = App.icon_size
+  icon.height = App.icon_size
+  jdenticon.update(icon, hostname || `hostname`)
+  return icon
+}
+
+App.color_icon = (color) => {
+  return DOM.create(`div`, `color_icon background_${color}`)
+}
