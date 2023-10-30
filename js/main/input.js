@@ -30,10 +30,10 @@ App.show_input = (args = {}) => {
 
   requestAnimationFrame(() => {
     if (args.wrap) {
-      textarea.classList.add(`wrap`)
+      textarea.classList.add(`pre_wrap`)
     }
     else {
-      textarea.classList.remove(`wrap`)
+      textarea.classList.remove(`pre_wrap`)
     }
 
     App.focus_textarea(textarea)
