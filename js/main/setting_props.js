@@ -332,6 +332,14 @@ App.build_settings = () => {
   category = `icons`
 
   props = {
+    active_icon: {
+      name: `Active Icon`,
+      type: `text_smaller`,
+      value: ``,
+      placeholder: App.icon_placeholder,
+      info: `Icon for active tabs`,
+      version: 1,
+    },
     pin_icon: {
       name: `Pin Icon`,
       type: `text_smaller`,
@@ -410,14 +418,6 @@ App.build_settings = () => {
       value: `📝`,
       placeholder: App.icon_placeholder,
       info: `Icon for tabs with notes`,
-      version: 1,
-    },
-    active_icon: {
-      name: `Active Icon`,
-      type: `text_smaller`,
-      value: ``,
-      placeholder: App.icon_placeholder,
-      info: `Icon for active tabs`,
       version: 1,
     },
     edited_icon: {
