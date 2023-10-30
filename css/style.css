@@ -4,7 +4,7 @@
   --scroller_shadow: inset 0 0 0.1rem currentColor;
   --scroller_padding: 0.29rem;
   --color_border: 1px solid black;
-  --bigger_font: 1.16rem;
+  --bigger_font: 1.1rem;
   --widget_width: 15rem;
   --widget_width_smaller: 6rem;
   --text_input_width: 12.5rem;
@@ -711,10 +711,6 @@ a:visited, a:link, a:hover {
   margin-bottom: 1.6rem;
 }
 
-.media_loading {
-  font-size: 1.1rem;
-}
-
 .media_player {
   position: relative;
   width: 95%;
@@ -869,7 +865,7 @@ a:visited, a:link, a:hover {
 }
 
 .bigger {
-  font-size: 1.1rem;
+  font-size: var(--bigger_font);
 }
 
 /* Effects */

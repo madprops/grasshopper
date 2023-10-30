@@ -360,7 +360,7 @@ App.fill_media_window = (what) => {
   let url = DOM.create(`div`, `media_url action`, `media_${what}_url`)
   c.append(url)
   let mc = DOM.create(`div`, `media_container`, `media_${what}_container`)
-  let loading = DOM.create(`div`, `media_loading hidden`, `media_${what}_loading`)
+  let loading = DOM.create(`div`, `media_loading bigger hidden`, `media_${what}_loading`)
   mc.append(loading)
   let media
 
