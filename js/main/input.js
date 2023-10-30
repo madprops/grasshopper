@@ -1,6 +1,14 @@
+App.setup_input = () => {
+  DOM.ev(DOM.el(`#input_submit`), `click`, () => {
+    App.input_enter()
+  })
+}
+
 App.show_input = (args = {}) => {
   let def_args = {
     value: ``,
+    autosave: false,
+    bottom: false,
   }
 
   App.def_args(def_args, args)
@@ -10,10 +18,15 @@ App.show_input = (args = {}) => {
   let textarea = DOM.el(`#input_text`)
   textarea.value = args.value
   DOM.el(`#input_submit`).textContent = args.button
+  App.input_args = args
   App.show_popup(`input`)
 
   requestAnimationFrame(() => {
     App.focus_textarea(textarea)
+
+    if (args.bottom) {
+      App.cursor_at_end(textarea)
+    }
   })
 }
 
@@ -22,5 +35,11 @@ App.input_enter = () => {
 
   if (ans) {
     App.hide_popup(`input`)
+  }
+}
+
+App.on_input_dismiss = () => {
+  if (App.input_args.autosave) {
+    App.input_enter()
   }
 }

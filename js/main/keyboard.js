@@ -336,6 +336,13 @@ App.setup_keyboard = () => {
           return
         }
       }
+      if (pmode === `input`) {
+        if (e.key === `Escape`) {
+          App.dismiss_popup(`input`)
+          e.preventDefault()
+          return
+        }
+      }
       else if (pmode === `prompt`) {
         if (e.key === `Enter`) {
           App.prompt_submit()

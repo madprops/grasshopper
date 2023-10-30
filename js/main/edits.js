@@ -929,5 +929,7 @@ App.edit_notes = (item) => {
       return true
     },
     value: item.custom_notes || ``,
+    autosave: true,
+    bottom: true,
   })
 }

@@ -111,10 +111,11 @@ App.start_popups = () => {
   App.create_popup({
     id: `input`,
     setup: () => {
-      DOM.ev(DOM.el(`#input_submit`), `click`, () => {
-        App.input_enter()
-      })
+      App.setup_input()
     },
+    on_dismiss: () => {
+      App.on_input_dismiss()
+    }
   })
 
   App.create_popup({
