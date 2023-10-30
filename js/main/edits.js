@@ -919,18 +919,20 @@ App.tagged = (item) => {
 }
 
 App.edit_notes = (item) => {
-  let readonly
+  let readonly, button
 
   if (item.rule_notes) {
     readonly = true
+    button = `Close`
   }
   else {
     readonly = false
+    button = `Save`
   }
 
   App.show_input({
     message: `Notes`,
-    button: `Save`,
+    button: button,
     action: (text) => {
       if (readonly) {
         return true
