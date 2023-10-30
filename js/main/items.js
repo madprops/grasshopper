@@ -293,6 +293,7 @@ App.check_item_status = (item) => {
 
   if (App.get_setting(`pin_icon`)) {
     let icon = DOM.el(`.pin_icon`, item.element)
+    icon.title = `Pin`
 
     if (item.pinned) {
       icon.classList.remove(`hidden`)
@@ -304,6 +305,7 @@ App.check_item_status = (item) => {
 
   if (App.get_setting(`normal_icon`)) {
     let icon = DOM.el(`.normal_icon`, item.element)
+    icon.title = `Normal`
 
     if (!item.pinned) {
       icon.classList.remove(`hidden`)
@@ -315,6 +317,7 @@ App.check_item_status = (item) => {
 
   if (App.get_setting(`loaded_icon`)) {
     let icon = DOM.el(`.loaded_icon`, item.element)
+    icon.title = `Loaded`
 
     if (!item.discarded) {
       icon.classList.remove(`hidden`)
@@ -326,6 +329,7 @@ App.check_item_status = (item) => {
 
   if (App.get_setting(`unloaded_icon`)) {
     let icon = DOM.el(`.unloaded_icon`, item.element)
+    icon.title = `Unloaded`
 
     if (item.discarded) {
       icon.classList.remove(`hidden`)
@@ -337,6 +341,7 @@ App.check_item_status = (item) => {
 
   if (App.get_setting(`playing_icon`)) {
     let icon = DOM.el(`.playing_icon`, item.element)
+    icon.title = `Playing`
 
     if (item.audible && !item.muted) {
       icon.classList.remove(`hidden`)
@@ -348,6 +353,7 @@ App.check_item_status = (item) => {
 
   if (App.get_setting(`muted_icon`)) {
     let icon = DOM.el(`.muted_icon`, item.element)
+    icon.title = `Muted`
 
     if (item.muted) {
       icon.classList.remove(`hidden`)
@@ -359,6 +365,7 @@ App.check_item_status = (item) => {
 
   if (App.get_setting(`unread_icon`)) {
     let icon = DOM.el(`.unread_icon`, item.element)
+    icon.title = `Unread`
 
     if (item.unread) {
       icon.classList.remove(`hidden`)
@@ -370,6 +377,7 @@ App.check_item_status = (item) => {
 
   if (App.get_setting(`titled_icon`)) {
     let icon = DOM.el(`.titled_icon`, item.element)
+    icon.title = `Titled`
 
     if (item.custom_title || item.rule_title) {
       icon.classList.remove(`hidden`)
@@ -381,6 +389,7 @@ App.check_item_status = (item) => {
 
   if (App.get_setting(`tagged_icon`)) {
     let icon = DOM.el(`.tagged_icon`, item.element)
+    icon.title = `Tagged`
 
     if (App.tagged(item)) {
       icon.classList.remove(`hidden`)
@@ -392,6 +401,7 @@ App.check_item_status = (item) => {
 
   if (App.get_setting(`notes_icon`)) {
     let icon = DOM.el(`.notes_icon`, item.element)
+    icon.title = `Notes`
 
     if (App.get_notes(item)) {
       icon.classList.remove(`hidden`)
@@ -403,6 +413,7 @@ App.check_item_status = (item) => {
 
   if (App.get_setting(`edited_icon`)) {
     let icon = DOM.el(`.edited_icon`, item.element)
+    icon.title = `Edited`
 
     if (App.edited(item)) {
       icon.classList.remove(`hidden`)
@@ -578,6 +589,7 @@ App.create_item_element = (item) => {
   }
 
   let color_icon = DOM.create(`div`, `item_info_color item_node hidden${cls}`)
+  color_icon.title = `Color`
   item.element.append(color_icon)
   App.apply_color_mode(item)
 
