@@ -1173,6 +1173,16 @@ App.setup_commands = () => {
       info: `Filter: Show tabs that have a custom title`,
     },
     {
+      name: `Filter Notes`,
+      cmd: `filter_notes_tabs`,
+      modes: [`tabs`],
+      icon: notes_icon || edit_icon,
+      action: (args) => {
+        App.filter_notes(args.mode)
+      },
+      info: `Filter: Show tabs that have notes`,
+    },
+    {
       name: `Filter Edited`,
       cmd: `filter_edited_tabs`,
       modes: [`tabs`],

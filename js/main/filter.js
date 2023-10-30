@@ -360,6 +360,9 @@ App.filter_check = (args) => {
     else if (args.filter_mode === `titled`) {
       match = args.item.custom_title || args.item.rule_title
     }
+    else if (args.filter_mode === `notes`) {
+      match = args.item.custom_notes
+    }
     else if (args.filter_mode === `edited`) {
       match = App.edited(args.item)
     }
@@ -885,6 +888,10 @@ App.filter_unread = (mode) => {
 
 App.filter_titled = (mode) => {
   App.set_filter_mode({mode: mode, type: `titled`})
+}
+
+App.filter_notes = (mode) => {
+  App.set_filter_mode({mode: mode, type: `notes`})
 }
 
 App.filter_edited = (mode) => {

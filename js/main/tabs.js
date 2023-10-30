@@ -126,6 +126,10 @@ App.build_tab_filters = () => {
       icon: App.edit_icon
     },
     {
+      type: `notes`, text:`Notes`, skip: false, info: `Show tabs that have notes`,
+      icon: App.edit_icon
+    },
+    {
       type: `edited`, text:`Edited`, skip: false, info: `Show tabs that have custom properties`,
       icon: App.get_setting(`edited_icon`) || App.edit_icon
     },
