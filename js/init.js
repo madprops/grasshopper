@@ -23,6 +23,7 @@ App.init = async () => {
   App.setup_modes()
   App.setup_scroll()
   App.setup_theme()
+  App.setup_edits()
   App.do_apply_theme()
   App.setup_pinline()
   App.setup_footer()

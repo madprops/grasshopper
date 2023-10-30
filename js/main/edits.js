@@ -13,6 +13,18 @@ App.edit_props = {
   },
 }
 
+App.setup_edits = () => {
+  browser.runtime.onMessage.addListener((message, sender, sendResponse) => {
+    if (message.action === `tab_edited`) {
+      let item = App.get_item_by_id(`tabs`, message.id)
+
+      if (item) {
+        App.check_tab_session([item])
+      }
+    }
+  })
+}
+
 App.check_tab_session = async (items = []) => {
   if (!items.length) {
     items = App.get_items(`tabs`)
@@ -26,7 +38,7 @@ App.check_tab_session = async (items = []) => {
   }
 }
 
-App.custom_save = (id, name, value) => {
+App.custom_save = async (id, name, value) => {
   if (Array.isArray(value)) {
     if (!value.length) {
       value = undefined
@@ -39,6 +51,11 @@ App.custom_save = (id, name, value) => {
   else {
     browser.sessions.removeTabValue(id, name)
   }
+
+  try {
+    await browser.runtime.sendMessage({action: `tab_edited`, id: id})
+  }
+  catch (err) {}
 }
 
 App.edited = (item, include_ruled =  true) => {
