@@ -338,7 +338,7 @@ svg {
   overflow: hidden;
 }
 
-.no_wrap .item_text_1, .no_wrap .item_text_2 {
+.no_wrap .item_text_line {
   white-space: nowrap;
   max-width: 100%;
   overflow: hidden;

@@ -358,8 +358,8 @@ App.create_item_element = (item) => {
   App.check_view_media(item)
   let content = DOM.create(`div`, `item_content`)
   let text = DOM.create(`div`, `item_text`)
-  let text_1 = DOM.create(`div`, `item_text_1`)
-  let text_2 = DOM.create(`div`, `item_text_2 hidden`)
+  let text_1 = DOM.create(`div`, `item_text_line item_text_1`)
+  let text_2 = DOM.create(`div`, `item_text_line item_text_2 hidden`)
   let taglist
 
   if (App.get_setting(`taglist`) !== `none`) {
