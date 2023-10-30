@@ -607,11 +607,9 @@ App.get_taglist = (value) => {
 
 App.remove_tag = (item, tag) => {
   if (App.check_tag_rule(item, tag)) {
-    console.log(1)
     return
   }
 
-  console.log(2)
   item.custom_tags = item.custom_tags.filter(x => x !== tag)
   App.apply_edit(`tags`, item, item.custom_tags)
   App.custom_save(item.id, `custom_tags`, item.custom_tags)
