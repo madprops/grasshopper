@@ -223,8 +223,6 @@ App.remove_item_edits = (item) => {
 }
 
 App.apply_edit = (what, item, value) => {
-  let new_value
-
   if (what === `tags` && value) {
     if (!value.length) {
       if (item[`custom_${what}`] === undefined) {
@@ -245,30 +243,9 @@ App.apply_edit = (what, item, value) => {
     if (item[`custom_${what}`] === undefined) {
       return false
     }
-
-    new_value = undefined
-  }
-  else {
-    new_value = value
   }
 
-  if (new_value) {
-    let nv = new_value.toString()
-
-    if (item[`custom_${what}`]) {
-      if (item[`custom_${what}`].toString() === nv) {
-        return false
-      }
-    }
-
-    if (item[`rule_${what}`]) {
-      if (item[`rule_${what}`].toString() === nv) {
-        return false
-      }
-    }
-  }
-
-  item[`custom_${what}`] = new_value
+  item[`custom_${what}`] = value
   App.update_item(item.mode, item.id, item)
   return true
 }
@@ -631,9 +608,11 @@ App.get_taglist = (value) => {
 
 App.remove_tag = (item, tag) => {
   if (App.check_tag_rule(item, tag)) {
+    console.log(1)
     return
   }
 
+  console.log(2)
   item.custom_tags = item.custom_tags.filter(x => x !== tag)
   App.apply_edit(`tags`, item, item.custom_tags)
   App.custom_save(item.id, `custom_tags`, item.custom_tags)
