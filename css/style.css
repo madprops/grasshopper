@@ -912,6 +912,10 @@ a:visited, a:link, a:hover {
   flex-grow: 0;
 }
 
+.item .item_info_color.effect:hover .color_icon {
+  outline: 1px solid var(--text_color);
+}
+
 .border_red {
   border-color: var(--color_red) !important;
 }

@@ -571,7 +571,13 @@ App.create_item_element = (item) => {
     App.check_item_icon(item)
   }
 
-  let color_icon = DOM.create(`div`, `item_info_color item_node hidden`)
+  let cls = ``
+
+  if (App.get_setting(`color_icon_click`)) {
+    cls += ` effect`
+  }
+
+  let color_icon = DOM.create(`div`, `item_info_color item_node hidden${cls}`)
   item.element.append(color_icon)
   App.apply_color_mode(item)
 
