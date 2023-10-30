@@ -110,11 +110,11 @@ Addlist.register = (args = {}) => {
   btn_next.textContent = `>`
 
   DOM.ev(btn_prev, `click`, () => {
-    Addlist.next(args.id, true)
+    Addlist.left()
   })
 
   DOM.ev(btn_next, `click`, () => {
-    Addlist.next(args.id)
+    Addlist.right()
   })
 
   top.append(btn_prev)
