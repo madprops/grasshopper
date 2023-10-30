@@ -36,6 +36,13 @@ App.show_input = (args = {}) => {
       textarea.classList.remove(`pre_wrap`)
     }
 
+    if (args.readonly) {
+      textarea.setAttribute(`readonly`, `readonly`)
+    }
+    else {
+      textarea.removeAttribute(`readonly`)
+    }
+
     App.focus_textarea(textarea)
 
     if (args.bottom) {

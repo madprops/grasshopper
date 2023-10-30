@@ -919,10 +919,23 @@ App.tagged = (item) => {
 }
 
 App.edit_notes = (item) => {
+  let readonly
+
+  if (item.rule_notes) {
+    readonly = true
+  }
+  else {
+    readonly = false
+  }
+
   App.show_input({
     message: `Notes`,
     button: `Save`,
     action: (text) => {
+      if (readonly) {
+        return true
+      }
+
       let notes = App.single_linebreak(text)
       App.apply_edit(`notes`, item, notes)
       App.custom_save(item.id, `custom_notes`, notes)
@@ -932,5 +945,6 @@ App.edit_notes = (item) => {
     autosave: true,
     bottom: true,
     wrap: true,
+    readonly: readonly,
   })
 }
