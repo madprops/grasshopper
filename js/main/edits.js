@@ -923,8 +923,9 @@ App.edit_notes = (item) => {
     message: `Notes`,
     button: `Save`,
     action: (text) => {
-      App.apply_edit(`notes`, item, text)
-      App.custom_save(item.id, `custom_notes`, text)
+      let notes = App.single_linebreak(text)
+      App.apply_edit(`notes`, item, notes)
+      App.custom_save(item.id, `custom_notes`, notes)
       return true
     },
     value: item.custom_notes || ``,
