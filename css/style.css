@@ -372,6 +372,7 @@ svg {
 .hover_effect_bigger .item:hover .item_text,
 .selected_effect_bigger .selected .item_text {
   font-size: var(--bigger_font);
+  font-weight: bold;
 }
 
 .item_main_top {
