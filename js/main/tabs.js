@@ -317,6 +317,14 @@ App.get_unloaded_tabs = () => {
   return App.get_items(`tabs`).filter(x => x.discarded)
 }
 
+App.get_unread_tabs = () => {
+  return App.get_items(`tabs`).filter(x => x.unread)
+}
+
+App.get_edited_tabs = () => {
+  return App.get_items(`tabs`).filter(x => App.edited(x))
+}
+
 App.remove_closed_tab = (id) => {
   let item = App.get_item_by_id(`tabs`, id)
 
@@ -604,17 +612,22 @@ App.show_tabs_info = () => {
   let muted = App.get_muted_tabs().length
   let loaded = App.get_loaded_tabs().length
   let unloaded = App.get_unloaded_tabs().length
+  let unread = App.get_unread_tabs().length
+  let edited = App.get_edited_tabs().length
 
-  let s = ``
-  s += `All: ${all}\n`
-  s += `Pins: ${pins}\n`
-  s += `Normal: ${normal}\n`
-  s += `Playing: ${playing}\n`
-  s += `Muted: ${muted}\n`
-  s += `Loaded: ${loaded}\n`
-  s += `Unloaded: ${unloaded}`
+  let items = [
+    `All: ${all}`,
+    `Pins: ${pins}`,
+    `Normal: ${normal}`,
+    `Playing: ${playing}`,
+    `Muted: ${muted}`,
+    `Loaded: ${loaded}`,
+    `Unloaded: ${unloaded}`,
+    `Unread: ${unread}`,
+    `Edited: ${edited}`,
+  ]
 
-  App.alert(s)
+  App.alert(items.join(`\n`))
 }
 
 App.show_tab_urls = () => {
