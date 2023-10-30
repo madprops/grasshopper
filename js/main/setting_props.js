@@ -957,6 +957,13 @@ App.build_settings = () => {
       info: `What color mode to use`,
       version: 2,
     },
+    color_icon_click: {
+      name: `Color Icon Click`,
+      type: `checkbox`,
+      value: true,
+      info: `Show the color menu by clicking a color icon`,
+      version: 1,
+    },
     color_red: {
       name: `Color Red`,
       type: `color`,

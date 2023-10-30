@@ -132,6 +132,13 @@ App.mouse_click_action = (mode, e) => {
       }
     }
 
+    if (App.get_setting(`color_icon_click`)) {
+      if (e.target.closest(`.item_info_color`)) {
+        App.show_color_menu(item, e)
+        return
+      }
+    }
+
     if (App.taglist_active()) {
       if (e.target.classList.contains(`taglist_item`)) {
         App.taglist_action(e, item)
