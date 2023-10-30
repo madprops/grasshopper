@@ -223,10 +223,12 @@ App.remove_item_edits = (item) => {
 }
 
 App.apply_edit = (what, item, value) => {
+  let new_value
+
   if (what === `tags` && value) {
     if (!value.length) {
       if (item[`custom_${what}`] === undefined) {
-        return
+        return false
       }
     }
 
@@ -241,16 +243,34 @@ App.apply_edit = (what, item, value) => {
 
   if (value === undefined) {
     if (item[`custom_${what}`] === undefined) {
-      return
+      return false
     }
 
-    item[`custom_${what}`] = undefined
+    new_value = undefined
   }
   else {
-    item[`custom_${what}`] = value
+    new_value = value
   }
 
+  if (new_value) {
+    let nv = new_value.toString()
+
+    if (item[`custom_${what}`]) {
+      if (item[`custom_${what}`].toString() === nv) {
+        return false
+      }
+    }
+
+    if (item[`rule_${what}`]) {
+      if (item[`rule_${what}`].toString() === nv) {
+        return false
+      }
+    }
+  }
+
+  item[`custom_${what}`] = new_value
   App.update_item(item.mode, item.id, item)
+  return true
 }
 
 App.edit_to_string = (what, item) => {
@@ -919,34 +939,21 @@ App.tagged = (item) => {
 }
 
 App.edit_notes = (item) => {
-  let readonly, button
-
-  if (item.rule_notes) {
-    readonly = true
-    button = `Close`
-  }
-  else {
-    readonly = false
-    button = `Save`
-  }
-
   App.show_input({
     message: `Notes`,
-    button: button,
+    button: `Save`,
     action: (text) => {
-      if (readonly) {
-        return true
+      let notes = App.single_linebreak(text)
+
+      if (App.apply_edit(`notes`, item, notes)) {
+        App.custom_save(item.id, `custom_notes`, notes)
       }
 
-      let notes = App.single_linebreak(text)
-      App.apply_edit(`notes`, item, notes)
-      App.custom_save(item.id, `custom_notes`, notes)
       return true
     },
-    value: App.get_notes(item) || ``,
+    value: App.get_notes(item),
     autosave: true,
     bottom: true,
     wrap: true,
-    readonly: readonly,
   })
 }
