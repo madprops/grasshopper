@@ -262,6 +262,7 @@ Addlist.remove = (args = {}) => {
   let def_args = {
     force: false,
     show_list: false,
+    hide: true,
   }
 
   App.def_args(def_args, args)
@@ -295,10 +296,21 @@ Addlist.remove = (args = {}) => {
         new_lines.push(line)
       }
 
-      Addlist.after(args.id, new_lines)
+      Addlist.after(args.id, new_lines, args.hide)
 
       if (args.show_list) {
         Addlist.list({id: args.id, feedback: false})
+      }
+
+      if (!args.hide) {
+        let lines = Addlist.get_data(args.id)
+
+        if (lines.length) {
+          Addlist.right(false)
+        }
+        else {
+          Addlist.hide(false)
+        }
       }
     },
     force: args.force,
@@ -340,15 +352,23 @@ Addlist.enter = () => {
   }
 }
 
-Addlist.left = () => {
+Addlist.left = (save = true) => {
   let id = Addlist.data.id
-  Addlist.save(id, false)
+
+  if (save) {
+    Addlist.save(id, false)
+  }
+
   Addlist.next(id, true)
 }
 
-Addlist.right = () => {
+Addlist.right = (save = true) => {
   let id = Addlist.data.id
-  Addlist.save(id, false)
+
+  if (save) {
+    Addlist.save(id, false)
+  }
+
   Addlist.next(id)
 }
 
@@ -407,11 +427,6 @@ Addlist.next = (id, reverse = false) => {
   }
 
   let lines = Addlist.get_data(id).slice(0)
-
-  if (lines.length <= 1) {
-    return
-  }
-
   let index
 
   if (reverse) {
@@ -491,7 +506,12 @@ Addlist.menu = () => {
     text: `Remove`,
     action: () => {
       if (data.edit && Object.keys(data.items).length) {
-        Addlist.remove({id: id, value: data.items[oargs.pk]})
+        Addlist.remove({
+          id: id,
+          value: data.items[oargs.pk],
+          hide: false,
+          force: true,
+        })
       }
     }
   })
