@@ -45,7 +45,7 @@ select {
   background-color: var(--alt_color_1);
   color: var(--text_color);
   border: 0;
-  outline: 0;
+  outline: none;
   min-width: 8rem;
   text-align: center;
 }

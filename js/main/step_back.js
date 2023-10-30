@@ -47,6 +47,6 @@ App.step_back = (mode = App.window_mode, e) => {
     App.show_primary_mode()
   }
   else {
-    App.focus_items(mode)
+    App.blur_filter(mode)
   }
 }

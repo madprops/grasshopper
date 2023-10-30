@@ -911,3 +911,7 @@ App.filter_tag = (mode, tag) => {
   App.set_custom_filter_mode(mode, `tag_${tag}`, s)
   App.set_filter({mode: mode})
 }
+
+App.blur_filter = (mode) => {
+  DOM.el(`#${mode}_filter`).blur()
+}
