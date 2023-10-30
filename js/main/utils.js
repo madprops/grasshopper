@@ -477,3 +477,9 @@ App.input_deselect = (input) => {
 App.cursor_at_end = (input) => {
   input.setSelectionRange(input.value.length, input.value.length)
 }
+
+App.sort_alpha = (array) => {
+  array.sort((a, b) => {
+    return a.localeCompare(b, undefined, {numeric: true, sensitivity: `base`})
+  })
+}

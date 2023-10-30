@@ -24,7 +24,7 @@ App.check_taglist = (item) => {
     let tags = App.get_tags(item).slice(0)
 
     if (App.get_setting(`sort_taglist`)) {
-      tags.sort()
+      App.sort_alpha(tags)
     }
 
     for (let tag of tags) {
