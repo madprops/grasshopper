@@ -1413,7 +1413,7 @@ App.build_settings = () => {
       placeholder: `Number`,
       min: App.number_min,
       max: App.number_max,
-      info: `Max active tab history to remember`,
+      info: `Max active tab history to remember. This aftects Active Trace and the Tab Box`,
       version: 1,
     },
   }
