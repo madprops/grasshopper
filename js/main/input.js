@@ -2,6 +2,10 @@ App.setup_input = () => {
   DOM.ev(DOM.el(`#input_submit`), `click`, () => {
     App.input_enter()
   })
+
+  DOM.ev(DOM.el(`#input_clear`), `click`, () => {
+    App.clear_input()
+  })
 }
 
 App.show_input = (args = {}) => {
@@ -63,4 +67,10 @@ App.on_input_dismiss = () => {
   if (App.input_args.autosave) {
     App.input_enter()
   }
+}
+
+App.clear_input = () => {
+  let textarea = DOM.el(`#input_text`)
+  textarea.value = ``
+  App.focus_textarea(textarea)
 }
