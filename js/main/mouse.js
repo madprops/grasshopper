@@ -123,6 +123,15 @@ App.mouse_click_action = (mode, e) => {
       }
     }
 
+    if (App.get_setting(`notes_click`)) {
+      if (App.get_setting(`notes_icon`)) {
+        if (e.target.classList.contains(`notes_icon`)) {
+          App.edit_notes(item)
+          return
+        }
+      }
+    }
+
     if (App.taglist_active()) {
       if (e.target.classList.contains(`taglist_item`)) {
         App.taglist_action(e, item)

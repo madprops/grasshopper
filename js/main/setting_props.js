@@ -404,6 +404,14 @@ App.build_settings = () => {
       info: `Icon for tagged tabs`,
       version: 1,
     },
+    notes_icon: {
+      name: `Notes Icon`,
+      type: `text_smaller`,
+      value: `📝`,
+      placeholder: App.icon_placeholder,
+      info: `Icon for tabs with notes`,
+      version: 1,
+    },
     edited_icon: {
       name: `Edited Icon`,
       type: `text_smaller`,
@@ -1277,6 +1285,13 @@ App.build_settings = () => {
       type: `checkbox`,
       value: true,
       info: `Un-Mute tabs when clicking on the mute icon`,
+      version: 1,
+    },
+    notes_click: {
+      name: `Notes Click`,
+      type: `checkbox`,
+      value: true,
+      info: `Click the notes icon to open the notes`,
       version: 1,
     },
     double_click_new: {

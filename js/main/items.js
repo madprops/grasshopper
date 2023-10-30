@@ -390,6 +390,17 @@ App.check_item_status = (item) => {
     }
   }
 
+  if (App.get_setting(`notes_icon`)) {
+    let icon = DOM.el(`.notes_icon`, item.element)
+
+    if (App.get_notes(item)) {
+      icon.classList.remove(`hidden`)
+    }
+    else {
+      icon.classList.add(`hidden`)
+    }
+  }
+
   if (App.get_setting(`edited_icon`)) {
     let icon = DOM.el(`.edited_icon`, item.element)
 
@@ -622,6 +633,18 @@ App.create_item_element = (item) => {
     if (App.get_setting(`tagged_icon`)) {
       let icon = DOM.create(`div`, `tagged_icon item_node hidden`)
       icon.textContent = App.get_setting(`tagged_icon`)
+      item.element.append(icon)
+    }
+
+    cls = ``
+
+    if (App.get_setting(`notes_click`)) {
+      cls += ` action`
+    }
+
+    if (App.get_setting(`notes_icon`)) {
+      let icon = DOM.create(`div`, `notes_icon item_node hidden${cls}`)
+      icon.textContent = App.get_setting(`notes_icon`)
       item.element.append(icon)
     }
 

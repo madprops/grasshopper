@@ -7,6 +7,7 @@ App.setup_commands = () => {
   let unloaded_icon = App.get_setting(`unloaded_icon`)
   let muted_icon = App.get_setting(`muted_icon`)
   let unread_icon = App.get_setting(`unread_icon`)
+  let notes_icon = App.get_setting(`notes_icon`)
   let step_back_icon = App.create_icon(`back`)
   let settings_icon = App.settings_icons.general
   let theme_icon = App.settings_icons.theme
@@ -922,7 +923,7 @@ App.setup_commands = () => {
       cmd: `edit_notes`,
       modes: [`tabs`],
       item: true,
-      icon: edit_icon,
+      icon: notes_icon || edit_icon,
       action: (args) => {
         App.edit_notes(args.item)
       },
@@ -976,7 +977,7 @@ App.setup_commands = () => {
       name: `Remove All Notes`,
       cmd: `remove_all_notes`,
       modes: [`tabs`],
-      icon: edit_icon,
+      icon: notes_icon || edit_icon,
       action: (args) => {
         App.remove_edits({what: `notes`})
       },

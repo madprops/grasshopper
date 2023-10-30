@@ -25,3 +25,7 @@ App.get_tags = (item) => {
 
   return Array.from(new Set(tags))
 }
+
+App.get_notes = (item) => {
+  return item.custom_notes
+}
