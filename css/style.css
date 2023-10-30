@@ -1122,6 +1122,10 @@ a:visited, a:link, a:hover {
   color: var(--color_unread);
 }
 
+.active_tab {
+  color: var(--color_active);
+}
+
 .hover_button {
   position: absolute;
   z-index: 9;

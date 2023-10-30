@@ -1020,6 +1020,21 @@ App.build_settings = () => {
   category = `colorz`
 
   props = {
+    color_active_enabled: {
+      name: `Active Tabs`,
+      type: `checkbox`,
+      value: false,
+      info: `Use custom text color for active tabs`,
+      version: 1,
+    },
+    color_active: {
+      name: `Active Tabs`,
+      hide_name: true,
+      type: `color`,
+      value: `rgb(100, 100, 100)`,
+      info: `Custom text color for active tabs`,
+      version: 1,
+    },
     color_pins_enabled: {
       name: `Pinned Tabs`,
       type: `checkbox`,
@@ -1554,10 +1569,8 @@ App.build_settings = () => {
       info: `Custom text colors for tabs. You can enable/disable each color and set the color for different kinds of tabs.
       Some colors take precendence over others`,
       setup: () => {
-        let tabc = [`pins`, `normal`, `playing`, `loaded`, `unloaded`, `unread`]
-
-        for (let c of tabc) {
-          App.start_color_picker(`color_${c}`)
+        for (let key of App.get_tab_color_keys()) {
+          App.start_color_picker(key)
         }
       },
     },

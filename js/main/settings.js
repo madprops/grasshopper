@@ -1327,3 +1327,23 @@ App.color_values = () => {
 
   return items
 }
+
+App.get_tab_color_keys = () => {
+  let keys = []
+
+  for (let key in App.setting_props) {
+    let props = App.setting_props[key]
+
+    if (props.category !== `colorz`) {
+      continue
+    }
+
+    if (!key.startsWith(`color_`) || key.endsWith(`_enabled`)) {
+      continue
+    }
+
+    keys.push(key)
+  }
+
+  return keys
+}

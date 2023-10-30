@@ -1,4 +1,10 @@
 App.add_tab_icons = (item) => {
+  if (App.get_setting(`active_icon`)) {
+    let icon = DOM.create(`div`, `active_icon item_node hidden`)
+    icon.textContent = App.get_setting(`active_icon`)
+    item.element.append(icon)
+  }
+
   if (App.get_setting(`pin_icon`)) {
     let icon = DOM.create(`div`, `pin_icon item_node hidden`)
     icon.textContent = App.get_setting(`pin_icon`)
@@ -47,12 +53,6 @@ App.add_tab_icons = (item) => {
     item.element.append(icon)
   }
 
-  if (App.get_setting(`active_icon`)) {
-    let icon = DOM.create(`div`, `active_icon item_node hidden`)
-    icon.textContent = App.get_setting(`active_icon`)
-    item.element.append(icon)
-  }
-
   if (App.get_setting(`titled_icon`)) {
     let icon = DOM.create(`div`, `titled_icon item_node hidden`)
     icon.textContent = App.get_setting(`titled_icon`)
@@ -95,6 +95,19 @@ App.check_tab_icons = (item) => {
   if (item.mode !== `tabs`) {
     return
   }
+
+  if (App.get_setting(`active_icon`)) {
+    let icon = DOM.el(`.active_icon`, item.element)
+    icon.title = `Active`
+
+    if (item.active) {
+      icon.classList.remove(`hidden`)
+    }
+    else {
+      icon.classList.add(`hidden`)
+    }
+  }
+
   if (App.get_setting(`pin_icon`)) {
     let icon = DOM.el(`.pin_icon`, item.element)
     icon.title = `Pin`
@@ -172,18 +185,6 @@ App.check_tab_icons = (item) => {
     icon.title = `Unread`
 
     if (item.unread) {
-      icon.classList.remove(`hidden`)
-    }
-    else {
-      icon.classList.add(`hidden`)
-    }
-  }
-
-  if (App.get_setting(`active_icon`)) {
-    let icon = DOM.el(`.active_icon`, item.element)
-    icon.title = `Active`
-
-    if (item.active) {
       icon.classList.remove(`hidden`)
     }
     else {
@@ -301,8 +302,4 @@ App.get_jdenticon = (hostname) => {
   icon.height = App.icon_size
   jdenticon.update(icon, hostname || `hostname`)
   return icon
-}
-
-App.color_icon = (color) => {
-  return DOM.create(`div`, `color_icon background_${color}`)
 }

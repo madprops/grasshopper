@@ -206,10 +206,9 @@ App.do_apply_theme = (args = {}) => {
 
     App.set_css_var(`tab_box_display`, tbh_display)
     App.set_css_var(`tab_box_height`, `${tbh_rem}rem`)
-    let tabc = [`pins`, `normal`, `playing`, `loaded`, `unloaded`, `unread`]
 
-    for (let c of tabc) {
-      App.set_css_var(`color_${c}`, App.get_setting(`color_${c}`))
+    for (let key of App.get_tab_color_keys()) {
+      App.set_css_var(key, App.get_setting(key))
     }
 
     if (App.get_setting(`text_glow`)) {
