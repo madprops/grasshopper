@@ -74,6 +74,20 @@ App.build_settings = () => {
       info: `Height of the popup`,
       version: 1,
     },
+    hover_effect: {
+      name: `Hover Effect`,
+      type: `menu`,
+      value: `glow`,
+      info: `What effect to use when hoving items`,
+      version: 1,
+    },
+    selected_effect: {
+      name: `Selected Effect`,
+      type: `menu`,
+      value: `background`,
+      info: `What effect to use on selected items`,
+      version: 1,
+    },
     primary_mode: {
       name: `Primary Mode`,
       type: `menu`,
@@ -1275,20 +1289,6 @@ App.build_settings = () => {
   category = `more`
 
   props = {
-    hover_effect: {
-      name: `Hover Effect`,
-      type: `menu`,
-      value: `glow`,
-      info: `What effect to use when hoving items`,
-      version: 1,
-    },
-    selected_effect: {
-      name: `Selected Effect`,
-      type: `menu`,
-      value: `background`,
-      info: `What effect to use on selected items`,
-      version: 1,
-    },
     single_new_tab: {
       name: `Single New Tab`,
       type: `checkbox`,
@@ -1477,6 +1477,9 @@ App.build_settings = () => {
           {text: `Bookmarks`, value: `bookmarks`},
           {text: `Closed`, value: `closed`},
         ])
+
+        App.settings_make_menu(`hover_effect`, App.effects)
+        App.settings_make_menu(`selected_effect`, App.effects)
 
         App.settings_make_menu(`width`, App.get_size_options(), () => {
           App.apply_theme()
@@ -1729,11 +1732,8 @@ App.build_settings = () => {
       },
     },
     more: {
-      info: `More settings`,
-      setup: () => {
-        App.settings_make_menu(`hover_effect`, App.effects)
-        App.settings_make_menu(`selected_effect`, App.effects)
-      },
+      info: `Even more settings`,
+      setup: () => {},
     },
   }
 }
