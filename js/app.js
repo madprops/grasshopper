@@ -79,7 +79,6 @@ App.settings_icons = {
   auxclick: `🖱️`,
   menus: `🖱️`,
   favorites: `🖱️`,
-  keyboard: `⌨️`,
   warns: `🚨`,
   filter: `🔍`,
   more: `💠`,

@@ -117,6 +117,13 @@ App.build_settings = () => {
       info: `Apply rules to domains automatically, like color, title, and tags`,
       version: 1,
     },
+    keyboard_shortcuts: {
+      name: `Keyboard Shortcuts`,
+      type: `list`,
+      value: [],
+      info: `Extra keyboard shortcuts. If these are triggered the default shortcuts get ignored`,
+      version: 4,
+    },
     bookmarks_folder: {
       name: `Bookmarks Folder`,
       type: `text`,
@@ -852,19 +859,6 @@ App.build_settings = () => {
       ],
       info: `Closed action menu`,
       version: 1,
-    },
-  }
-
-  add_props()
-  category = `keyboard`
-
-  props = {
-    keyboard_shortcuts: {
-      name: `Keyboard Shortcuts`,
-      type: `list`,
-      value: [],
-      info: `Extra keyboard shortcuts. If these are triggered the default shortcuts get ignored`,
-      version: 4,
     },
   }
 
@@ -1694,10 +1688,6 @@ App.build_settings = () => {
     },
     menus: {
       info: `Customize context and action menus`,
-      setup: () => {},
-    },
-    keyboard: {
-      info: `You can use these custom shortcuts to run commands. You can define if you need ctrl, shift, or alt`,
       setup: () => {},
     },
     warns: {
