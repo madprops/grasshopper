@@ -540,6 +540,7 @@ App.create_filter = (mode) => {
   filter.type = `text`
   filter.autocomplete = `off`
   filter.spellcheck = false
+  filter.tabIndex = 0
 
   if (App.search_modes.includes(mode)) {
     filter.placeholder = `Search`

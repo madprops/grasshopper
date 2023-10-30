@@ -1080,6 +1080,7 @@ App.build_item_window = (mode) => {
   top.append(maintop)
   let content = DOM.el(`#window_content_${mode}`)
   let container = DOM.create(`div`, `item_container`, `${mode}_container`)
+  container.tabIndex = 1
   content.append(container)
   let tab_box_pos = App.get_setting(`tab_box_position`)
   let tab_box
@@ -1170,4 +1171,8 @@ App.rebuild_items = () => {
       App.build_item_window(mode)
     }
   }
+}
+
+App.focus_items = (mode) => {
+  DOM.el(`#${mode}_container`).focus()
 }
