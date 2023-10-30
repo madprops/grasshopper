@@ -344,35 +344,34 @@ svg {
   overflow: hidden;
 }
 
-.hover_effect_background .item_text:hover,
+.hover_effect_background .item:hover,
 .selected_effect_background .selected {
   background-color: var(--alt_color_1);
 }
 
-.hover_effect_glow .item_text:hover,
+.hover_effect_glow .item:hover .item_text,
 .selected_effect_glow .selected .item_text  {
   text-shadow: var(--action_effect);
 }
 
-.hover_effect_opacity .item_text:hover,
+.hover_effect_opacity .item:hover,
 .selected_effect_opacity .selected {
   opacity: 0.8;
 }
 
-.hover_effect_underline .item_text:hover,
+.hover_effect_underline .item:hover .item_text,
 .selected_effect_underline .selected .item_text {
   text-decoration: underline;
 }
 
-.hover_effect_bold .item_text:hover,
+.hover_effect_bold .item:hover .item_text,
 .selected_effect_bold .selected .item_text {
   font-weight: bold;
 }
 
-.hover_effect_bigger .item_text:hover,
+.hover_effect_bigger .item:hover .item_text,
 .selected_effect_bigger .selected .item_text {
   font-size: var(--bigger_font);
-  font-weight: bold;
 }
 
 .item_main_top {
