@@ -226,7 +226,7 @@ App.apply_edit = (what, item, value) => {
   if (what === `tags` && value) {
     if (!value.length) {
       if (item[`custom_${what}`] === undefined) {
-        return false
+        return
       }
     }
 
@@ -241,13 +241,12 @@ App.apply_edit = (what, item, value) => {
 
   if (value === undefined) {
     if (item[`custom_${what}`] === undefined) {
-      return false
+      return
     }
   }
 
   item[`custom_${what}`] = value
   App.update_item(item.mode, item.id, item)
-  return true
 }
 
 App.edit_to_string = (what, item) => {
@@ -924,10 +923,14 @@ App.edit_notes = (item) => {
     action: (text) => {
       let notes = App.single_linebreak(text)
 
-      if (App.apply_edit(`notes`, item, notes)) {
-        App.custom_save(item.id, `custom_notes`, notes)
+      if (item.rule_notes) {
+        if (item.rule_notes === notes) {
+          return
+        }
       }
 
+      App.apply_edit(`notes`, item, notes)
+      App.custom_save(item.id, `custom_notes`, notes)
       return true
     },
     value: App.get_notes(item),
