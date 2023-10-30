@@ -788,19 +788,12 @@ App.do_move_tab_index = async (id, index) => {
 }
 
 App.on_tab_activated = async (info) => {
-  let old_active = []
-
-  function add (item) {
-    if (!old_active.includes(item)) {
-      old_active.push(item)
-    }
-  }
-
   let current
+  let old_active = []
 
   for (let item of App.get_items(`tabs`)) {
     if (item.active) {
-      add(item)
+      old_active.push(item)
     }
 
     item.active = item.id === info.tabId
