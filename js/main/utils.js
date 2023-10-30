@@ -475,6 +475,5 @@ App.input_deselect = (input) => {
 }
 
 App.cursor_at_end = (input) => {
-  input.focus()
   input.setSelectionRange(input.value.length, input.value.length)
 }
