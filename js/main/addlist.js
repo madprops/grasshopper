@@ -298,7 +298,7 @@ Addlist.remove = (args = {}) => {
       Addlist.after(args.id, new_lines)
 
       if (args.show_list) {
-        Addlist.list({id: args.id})
+        Addlist.list({id: args.id, feedback: false})
       }
     },
     force: args.force,
@@ -698,10 +698,18 @@ Addlist.key = () => {
 }
 
 Addlist.list = (args) => {
+  let def_args = {
+    feedback: true,
+  }
+
+  App.def_args(def_args, args)
   let lines = Addlist.get_data(args.id)
 
   if (!lines.length) {
-    Addlist.no_items()
+    if (args.feedback) {
+      Addlist.no_items()
+    }
+
     return
   }
 
@@ -719,7 +727,12 @@ Addlist.list = (args) => {
         Addlist.view(args)
       },
       alt_action: () => {
-        Addlist.remove({id: args.id, value: line[oargs.pk], show_list: true})
+        Addlist.remove({
+          id: args.id,
+          value: line[oargs.pk],
+          show_list: true,
+          force: true,
+        })
       },
       info: info,
     })
