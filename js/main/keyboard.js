@@ -456,10 +456,6 @@ App.setup_keyboard = () => {
           return
         }
       }
-      else if (App.settings_filter_focused()) {
-        App.filter_settings()
-        return
-      }
     }
     else if (App.on_media()) {
       if (e.key === `Escape`) {
@@ -510,10 +506,6 @@ App.setup_keyboard = () => {
           e.preventDefault()
         }
 
-        return
-      }
-      else if (App.about_filter_focused()) {
-        App.filter_about()
         return
       }
     }

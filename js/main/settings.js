@@ -334,6 +334,10 @@ App.add_settings_filter = (category) => {
     s = ` (${items.length})`
   }
 
+  DOM.ev(filter, `input`, () => {
+    App.filter_settings()
+  })
+
   filter.placeholder = `Filter${s}`
   container.prepend(filter)
 }

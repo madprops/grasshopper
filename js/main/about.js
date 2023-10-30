@@ -92,6 +92,11 @@ App.start_about = () => {
 
       let s = `${App.manifest.name} v${App.manifest.version}`
       DOM.el(`#about_name`).textContent = s
+      let filter = DOM.el(`#about_filter`)
+
+      DOM.ev(filter, `input`, () => {
+        App.filter_about()
+      })
     },
     after_show: () => {
       let filter = DOM.el(`#about_filter`)
