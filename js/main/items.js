@@ -555,6 +555,7 @@ App.add_close_button = (item, side) => {
     }
 
     let close = DOM.create(`div`, `close_icon item_node action`)
+    close.title = `Close`
     close.textContent = App.close_tab_icon
     item.element.append(close)
   }
