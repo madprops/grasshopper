@@ -7,6 +7,7 @@ App.setup_scroll = () => {
 App.scroll_to_item = (args = {}) => {
   let def_args = {
     scroll: `nearest`,
+    force: false,
   }
 
   App.def_args(def_args, args)
@@ -15,9 +16,11 @@ App.scroll_to_item = (args = {}) => {
     return
   }
 
-  if (args.item.last_scroll > 0) {
-    if ((Date.now() - args.item.last_scroll) < App.last_scroll_delay) {
-      return
+  if (!args.force) {
+    if (args.item.last_scroll > 0) {
+      if ((Date.now() - args.item.last_scroll) < App.last_scroll_delay) {
+        return
+      }
     }
   }
 

@@ -823,6 +823,10 @@ App.on_tab_activated = async (info) => {
 
   if (App.get_setting(`tab_sort`) === `recent`) {
     App.make_item_first(new_active)
+
+    requestAnimationFrame(() => {
+      App.scroll_to_item({item: new_active, scroll: `nearest`, force: true})
+    })
   }
 
   for (let item of old_active) {
