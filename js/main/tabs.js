@@ -193,6 +193,7 @@ App.focus_tab = async (args = {}) => {
     method: `normal`,
     show_tabs: false,
     scroll: `center`,
+    select: true,
   }
 
   App.def_args(def_args, args)
@@ -201,7 +202,9 @@ App.focus_tab = async (args = {}) => {
     return
   }
 
-  App.select_item({item: args.item, scroll: args.scroll})
+  if (args.select) {
+    App.select_item({item: args.item, scroll: args.scroll})
+  }
 
   if (args.item.window_id) {
     await browser.windows.update(args.item.window_id, {focused: true})
@@ -345,7 +348,20 @@ App.remove_closed_tab = (id) => {
 App.tabs_action = async (item) => {
   App.on_action(`tabs`)
   App.do_empty_previous_tabs()
-  await App.focus_tab({item: item, scroll: `nearest_smooth`})
+  let select
+
+  if (App.get_setting(`tab_sort`) === `normal`) {
+    select = true
+  }
+  else {
+    select = false
+  }
+
+  await App.focus_tab({
+    item: item,
+    scroll: `nearest_smooth`,
+    select: select,
+  })
 }
 
 App.duplicate_tab = async (item) => {

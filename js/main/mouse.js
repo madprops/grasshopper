@@ -152,8 +152,6 @@ App.mouse_click_action = (mode, e) => {
     }
   }
 
-  App.select_item({item: item, scroll: `nearest_smooth`})
-
   if (media_type) {
     if (App.get_setting(`view_${media_type}_${mode}`) === `item`) {
       App.select_item({item: item, scroll: `nearest`})
@@ -168,6 +166,18 @@ App.mouse_click_action = (mode, e) => {
 
   if (e.altKey || App.get_setting(`click_select`)) {
     return
+  }
+
+  let select = true
+
+  if (mode === `tabs`) {
+    if (App.get_setting(`tab_sort`) !== `normal`) {
+      select = false
+    }
+  }
+
+  if (select) {
+    App.select_item({item: item, scroll: `nearest_smooth`})
   }
 
   App[`${mode}_action`](item)
