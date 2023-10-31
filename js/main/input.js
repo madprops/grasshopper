@@ -21,13 +21,7 @@ App.show_input = (args = {}) => {
   App.input_action = args.action
   DOM.el(`#input_message`).textContent = args.message
   let textarea = DOM.el(`#input_text`)
-  let value = args.value
-
-  if (value) {
-    value += `\n`
-  }
-
-  textarea.value = value
+  textarea.value = args.value
   DOM.el(`#input_submit`).textContent = args.button
   App.input_args = args
   App.show_popup(`input`)
