@@ -171,9 +171,7 @@ App.mouse_click_action = (mode, e) => {
   let select = true
 
   if (mode === `tabs`) {
-    if (App.get_setting(`tab_sort`) !== `normal`) {
-      select = false
-    }
+    select = App.check_tab_select()
   }
 
   if (select) {

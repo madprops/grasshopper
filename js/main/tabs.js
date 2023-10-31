@@ -348,19 +348,11 @@ App.remove_closed_tab = (id) => {
 App.tabs_action = async (item) => {
   App.on_action(`tabs`)
   App.do_empty_previous_tabs()
-  let select
-
-  if (App.get_setting(`tab_sort`) === `normal`) {
-    select = true
-  }
-  else {
-    select = false
-  }
 
   await App.focus_tab({
     item: item,
     scroll: `nearest_smooth`,
-    select: select,
+    select: App.check_tab_select(),
   })
 }
 
@@ -1221,4 +1213,17 @@ App.load_tabs = (item) => {
     },
     force: force,
   })
+}
+
+App.check_tab_select = () => {
+  let select
+
+  if (App.get_setting(`tab_sort`) === `normal`) {
+    select = true
+  }
+  else {
+    select = false
+  }
+
+  return select
 }
