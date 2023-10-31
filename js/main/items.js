@@ -1182,7 +1182,7 @@ App.focus_items = (mode) => {
 
 App.make_item_first = (item) => {
   let c = DOM.el(`#${item.mode}_container`)
-  let first = c.firstChild
+  let first = DOM.el(`.item`, c)
 
   if (item.element === first) {
     return
