@@ -169,9 +169,7 @@ App.mouse_click_action = (mode, e) => {
   }
 
   if (mode === `tabs`) {
-    if (App.get_setting(`tab_sort`) === `recent`) {
-      App.make_item_first(item)
-    }
+    App.check_tab_first(item)
   }
 
   App.select_item({item: item, scroll: `nearest_smooth`})

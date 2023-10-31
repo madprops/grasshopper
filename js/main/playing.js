@@ -58,6 +58,8 @@ App.go_to_playing_tab = async () => {
       }
 
       if (waypoint) {
+        App.check_tab_first(item)
+
         App.focus_tab({
           item: item,
           scroll: `center_smooth`,

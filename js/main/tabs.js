@@ -1209,15 +1209,8 @@ App.load_tabs = (item) => {
   })
 }
 
-App.check_tab_select = () => {
-  let select
-
-  if (App.get_setting(`tab_sort`) === `normal`) {
-    select = true
+App.check_tab_first = (item) => {
+  if (App.get_setting(`tab_sort`) === `recent`) {
+    App.make_item_first(item)
   }
-  else {
-    select = false
-  }
-
-  return select
 }
