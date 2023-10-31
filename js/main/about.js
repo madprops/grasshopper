@@ -30,7 +30,6 @@ App.start_about = () => {
         `Ctrl + Comma goes to the previous tab`,
         `Delete closes selected tabs`,
         `Double click on empty tabs space opens a new tab`,
-        `Double tap Ctrl to show the command palette`,
         `Command palette commands take into account selected items`,
         `To filter by title start with title:`,
         `To filter by URL start with url:`,

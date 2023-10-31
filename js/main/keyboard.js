@@ -300,7 +300,7 @@ App.setup_keyboard = () => {
 
     if (e.key === `Control`) {
       if (App.now() - App.double_tap_date < App.double_tap_delay) {
-        App.show_palette()
+        App.double_tap_action()
         e.preventDefault()
         return
       }
@@ -389,10 +389,6 @@ App.setup_keyboard = () => {
         else if (e.key === `ArrowDown`) {
           App.palette_next()
           e.preventDefault()
-          return
-        }
-        else if (App.palette_filter_focused()) {
-          App.filter_palette()
           return
         }
       }
@@ -554,4 +550,9 @@ App.press_action = () => {
     let cmd = App.get_setting(`ctrl_press_command`)
     App.run_command({cmd: cmd, from: `ctrl_press`})
   }
+}
+
+App.double_tap_action = () => {
+  let cmd = App.get_setting(`double_ctrl_command`)
+  App.run_command({cmd: cmd, from: `double_ctrl`})
 }

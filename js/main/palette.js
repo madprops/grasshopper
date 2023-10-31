@@ -13,10 +13,8 @@ App.start_palette = () => {
         App.palette_action(e.target)
       })
 
-      DOM.ev(DOM.el(`#palette_info`), `click`, () => {
-        let s = `You can use this palette to run commands.`
-        s += ` You can also open this by tapping Ctrl twice in a row`
-        App.alert(s)
+      DOM.ev(DOM.el(`#palette_filter`), `input`, () => {
+        App.filter_palette()
       })
     },
   })

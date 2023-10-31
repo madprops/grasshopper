@@ -117,10 +117,17 @@ App.build_settings = () => {
       info: `What command to run when double clicking an item`,
       version: 1,
     },
+    double_ctrl_command: {
+      name: `On Double Ctrl`,
+      type: `menu`,
+      value: `show_palette`,
+      info: `What command to run when pressing Ctrl twice quickly`,
+      version: 1,
+    },
     ctrl_press_command: {
       name: `On Ctrl Press`,
       type: `menu`,
-      value: `item_action`,
+      value: `show_favorites_menu`,
       info: `What command to run when pressing and holding the Ctrl key for a short time`,
       version: 1,
     },
@@ -1503,6 +1510,7 @@ App.build_settings = () => {
         })
 
         App.settings_make_menu(`double_click_command`, App.cmdlist)
+        App.settings_make_menu(`double_ctrl_command`, App.cmdlist)
         App.settings_make_menu(`ctrl_press_command`, App.cmdlist)
       },
     },
