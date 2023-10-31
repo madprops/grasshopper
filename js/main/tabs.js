@@ -348,10 +348,19 @@ App.remove_closed_tab = (id) => {
 App.tabs_action = async (item) => {
   App.on_action(`tabs`)
   App.do_empty_previous_tabs()
+  let select
+
+  if (App.get_setting(`tab_sort`) === `normal`) {
+    select = true
+  }
+  else {
+    select = false
+  }
 
   await App.focus_tab({
     item: item,
     scroll: `nearest_smooth`,
+    select: select,
   })
 }
 
@@ -828,6 +837,14 @@ App.on_tab_activated = async (info) => {
   let new_active = await App.refresh_tab(info.tabId, select)
   App.update_active_history(current, new_active)
 
+  if (App.get_setting(`tab_sort`) === `recent`) {
+    App.make_item_first(new_active)
+
+    requestAnimationFrame(() => {
+      App.scroll_to_item({item: new_active, scroll: `nearest`, force: true})
+    })
+  }
+
   for (let item of old_active) {
     App.update_item(`tabs`, item.id, item)
   }
@@ -1207,21 +1224,4 @@ App.load_tabs = (item) => {
     },
     force: force,
   })
-}
-
-App.tabs_sort_action = () => {
-  if (App.get_setting(`tab_sort`) === `recent`) {
-    let item = App.get_active_tab_item()
-
-    if (item.selected) {
-      let selected = App.selected_items(`tabs`)
-
-      if (selected.length > 1) {
-        return
-      }
-
-      App.make_item_first(item)
-      App.scroll_to_item({item: item, scroll: `nearest`, force: true})
-    }
-  }
 }
