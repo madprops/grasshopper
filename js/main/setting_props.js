@@ -1266,7 +1266,7 @@ App.build_settings = () => {
     filter_delay_search: {
       name: `Filter Delay (Search)`,
       type: `number`,
-      value: 225,
+      value: 200,
       action: `filter_debouncers`,
       placeholder: `Number`,
       min: App.number_min,
