@@ -202,6 +202,10 @@ App.focus_tab = async (args = {}) => {
     return
   }
 
+  if (App.get_setting(`tab_sort`) === `recent`) {
+    App.make_item_first(args.item)
+  }
+
   if (args.select) {
     App.select_item({item: args.item, scroll: args.scroll})
   }
@@ -1207,10 +1211,4 @@ App.load_tabs = (item) => {
     },
     force: force,
   })
-}
-
-App.check_tab_first = (item) => {
-  if (App.get_setting(`tab_sort`) === `recent`) {
-    App.make_item_first(item)
-  }
 }

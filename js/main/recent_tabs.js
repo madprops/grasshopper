@@ -42,8 +42,6 @@ App.go_to_previous_tab = () => {
   let item = App.get_item_by_id(`tabs`, prev_tab.id)
 
   if (item) {
-    App.check_tab_first(item)
-
     App.focus_tab({
       item: item,
       scroll: `center_smooth`,

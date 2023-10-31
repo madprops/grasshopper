@@ -25,6 +25,7 @@ App.get_closed = async () => {
 }
 
 App.closed_action = (item) => {
+  App.select_item({item: item, scroll: `nearest_smooth`})
   App.on_action(`closed`)
   App.focus_or_open_item(item)
 }

@@ -168,11 +168,6 @@ App.mouse_click_action = (mode, e) => {
     return
   }
 
-  if (mode === `tabs`) {
-    App.check_tab_first(item)
-  }
-
-  App.select_item({item: item, scroll: `nearest_smooth`})
   App[`${mode}_action`](item)
 }
 
