@@ -128,7 +128,7 @@ App.build_settings = () => {
       name: `On Ctrl Press`,
       type: `menu`,
       value: `show_favorites_menu`,
-      info: `What command to run when pressing and holding the Ctrl key for a short time`,
+      info: `What command to run when pressing and holding Ctrl for a short time`,
       version: 1,
     },
     domain_rules: {
