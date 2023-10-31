@@ -820,6 +820,10 @@ App.on_tab_activated = async (info) => {
 
     if (item.active) {
       item.unread = false
+
+      if (App.get_setting(`tab_sort`) === `recent`) {
+        App.make_item_first(item)
+      }
     }
   }
 
