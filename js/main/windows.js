@@ -162,6 +162,8 @@ App.setup_window = () => {
     if (App.get_setting(`auto_restore`) !== `never`) {
       App.start_auto_restore()
     }
+
+    App.tabs_sort_action()
   })
 
   DOM.ev(document.documentElement, `mouseenter`, () => {
