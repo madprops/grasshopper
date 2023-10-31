@@ -60,3 +60,11 @@ App.active_history_enabled = () => {
 App.clear_active_history = () => {
   App.active_history = []
 }
+
+App.pick_active_history = (num) => {
+  let item = App.active_history[num]
+
+  if (item) {
+    App.focus_tab({item: item, scroll: `nearest_smooth`})
+  }
+}

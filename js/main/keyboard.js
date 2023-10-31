@@ -124,6 +124,12 @@ App.check_items_keyboard = (e) => {
       e.preventDefault()
       return
     }
+
+    if (!isNaN(e.key)) {
+      App.pick_active_history(parseInt(e.key))
+      e.preventDefault()
+      return
+    }
   }
 
   if (e.shiftKey && !e.ctrlKey) {
