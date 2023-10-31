@@ -99,7 +99,7 @@ App.build_settings = () => {
       name: `Tab Sort`,
       type: `menu`,
       value: `normal`,
-      info: `How to sort the tabs`,
+      info: `How to sort the tabs. Either normally by index order, or by having the most recently visited tabs at the top`,
       version: 1,
     },
     auto_restore: {
