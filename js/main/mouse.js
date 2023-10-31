@@ -165,6 +165,7 @@ App.mouse_click_action = (mode, e) => {
   }
 
   if (e.altKey || App.get_setting(`click_select`)) {
+    App.select_item({item: item, scroll: `nearest_smooth`})
     return
   }
 
