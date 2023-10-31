@@ -168,16 +168,13 @@ App.mouse_click_action = (mode, e) => {
     return
   }
 
-  let select = true
-
   if (mode === `tabs`) {
-    select = App.check_tab_select()
+    if (App.get_setting(`tab_sort`) === `recent`) {
+      App.make_item_first(item)
+    }
   }
 
-  if (select) {
-    App.select_item({item: item, scroll: `nearest_smooth`})
-  }
-
+  App.select_item({item: item, scroll: `nearest_smooth`})
   App[`${mode}_action`](item)
 }
 

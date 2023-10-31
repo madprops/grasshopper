@@ -62,7 +62,6 @@ App.go_to_playing_tab = async () => {
           item: item,
           scroll: `center_smooth`,
           method: `playing`,
-          select: App.check_tab_select(),
         })
 
         return

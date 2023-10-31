@@ -352,7 +352,6 @@ App.tabs_action = async (item) => {
   await App.focus_tab({
     item: item,
     scroll: `nearest_smooth`,
-    select: App.check_tab_select(),
   })
 }
 
@@ -828,11 +827,6 @@ App.on_tab_activated = async (info) => {
 
   let new_active = await App.refresh_tab(info.tabId, select)
   App.update_active_history(current, new_active)
-
-  if (App.get_setting(`tab_sort`) === `recent`) {
-    App.make_item_first(new_active)
-    App.scroll_to_item({item: new_active, scroll: `nearest`, force: true})
-  }
 
   for (let item of old_active) {
     App.update_item(`tabs`, item.id, item)

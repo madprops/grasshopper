@@ -46,7 +46,6 @@ App.go_to_previous_tab = () => {
       item: item,
       scroll: `center_smooth`,
       method: `previous`,
-      select: App.check_tab_select(),
     })
 
     App.previous_tabs_index += 1
