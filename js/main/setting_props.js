@@ -114,7 +114,14 @@ App.build_settings = () => {
       name: `On Double Click`,
       type: `menu`,
       value: `item_action`,
-      info: `What command to perform when double clicking an item`,
+      info: `What command to run when double clicking an item`,
+      version: 1,
+    },
+    ctrl_press_command: {
+      name: `On Ctrl Press`,
+      type: `menu`,
+      value: `item_action`,
+      info: `What command to run when pressing and holding the Ctrl key for a short time`,
       version: 1,
     },
     domain_rules: {
@@ -1496,6 +1503,7 @@ App.build_settings = () => {
         })
 
         App.settings_make_menu(`double_click_command`, App.cmdlist)
+        App.settings_make_menu(`ctrl_press_command`, App.cmdlist)
       },
     },
     theme: {

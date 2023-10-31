@@ -288,6 +288,13 @@ App.setup_keyboard = () => {
       }
     }
 
+    if (e.key === `Control`) {
+      App.reset_keyboard()
+      App.pressed_key = e.key
+      App.pressed_date = Date.now()
+      App.start_press_timeout()
+    }
+
     let mode = App.window_mode
     let pmode = App.popup_mode()
 
@@ -523,4 +530,28 @@ App.setup_keyboard = () => {
       }
     }
   })
+
+  DOM.ev(document, `keyup`, (e) => {
+    App.reset_keyboard()
+  })
+}
+
+App.reset_keyboard = () => {
+  clearTimeout(App.press_timeout)
+  App.pressed_key = undefined
+}
+
+App.start_press_timeout = () => {
+  clearTimeout(App.press_timeout)
+
+  setTimeout(() => {
+    App.press_action()
+  }, App.press_delay)
+}
+
+App.press_action = () => {
+  if (App.pressed_key === `Control`) {
+    let cmd = App.get_setting(`ctrl_press_command`)
+    App.run_command({cmd: cmd, from: `ctrl_press`})
+  }
 }
