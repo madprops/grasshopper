@@ -350,7 +350,10 @@ App.create_item_element = (item) => {
   if (item.mode === `tabs`) {
     App.add_tab_icons(item)
     App.check_tab_icons(item)
-    item.element.draggable = true
+
+    if (App.get_setting(`tab_sort`) === `normal`) {
+      item.element.draggable = true
+    }
   }
 
   let view_media = DOM.create(`div`, `view_media_button hidden`)
@@ -1175,4 +1178,22 @@ App.rebuild_items = () => {
 
 App.focus_items = (mode) => {
   DOM.el(`#${mode}_container`).focus()
+}
+
+App.make_item_first = (item) => {
+  let c = DOM.el(`#${item.mode}_container`)
+  let first = c.firstChild
+
+  if (item.element === first) {
+    return
+  }
+
+  c.insertBefore(item.element, first)
+  let items = App.get_items(item.mode)
+  let index = items.indexOf(item)
+
+  if (index > 0) {
+    items.splice(index, 1)
+    items.unshift(item)
+  }
 }

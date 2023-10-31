@@ -172,9 +172,18 @@ App.get_tabs = async () => {
     return
   }
 
-  tabs.sort((a, b) => {
-    return a.index < b.index ? -1 : 1
-  })
+  let sort = App.get_setting(`tab_sort`)
+
+  if (sort === `normal`) {
+    tabs.sort((a, b) => {
+      return a.index < b.index ? -1 : 1
+    })
+  }
+  else if (sort === `recent`) {
+    tabs.sort((a, b) => {
+      return a.lastAccessed > b.lastAccessed ? -1 : 1
+    })
+  }
 
   return tabs
 }
@@ -811,6 +820,10 @@ App.on_tab_activated = async (info) => {
 
   let new_active = await App.refresh_tab(info.tabId, select)
   App.update_active_history(current, new_active)
+
+  if (App.get_setting(`tab_sort`) === `recent`) {
+    App.make_item_first(new_active)
+  }
 
   for (let item of old_active) {
     App.update_item(`tabs`, item.id, item)

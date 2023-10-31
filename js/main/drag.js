@@ -30,6 +30,10 @@ App.dragstart_action = (mode, e) => {
     return false
   }
 
+  if (App.get_setting(`tab_sort`) !== `normal`) {
+    return false
+  }
+
   App.drag_element = e.target.closest(`.grasshopper_item`)
 
   if (!App.drag_element) {

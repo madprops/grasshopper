@@ -4,20 +4,32 @@ App.setup_pinline = () => {
   }, App.pinline_delay)
 }
 
+App.pinline_enabled = () => {
+  if (App.get_setting(`show_pinline`) === `never`) {
+    return false
+  }
+
+  if (App.get_setting(`tab_sort`) !== `normal`) {
+    return false
+  }
+
+  return true
+}
+
 App.check_pinline = () => {
-  if (App.get_setting(`show_pinline`) !== `never`) {
+  if (App.pinline_enabled()) {
     App.pinline_debouncer.call()
   }
 }
 
 App.do_check_pinline = () => {
   App.pinline_debouncer.cancel()
-  let show = App.get_setting(`show_pinline`)
 
-  if (show === `never`) {
+  if (!App.pinline_enabled()) {
     return
   }
 
+  let show = App.get_setting(`show_pinline`)
   App.debug(`Checking pinline`)
   App.remove_pinline()
   let tabs = App.divide_tabs(`visible`)

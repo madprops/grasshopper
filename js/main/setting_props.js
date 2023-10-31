@@ -95,6 +95,13 @@ App.build_settings = () => {
       info: `The main preferred mode. This is shown at startup`,
       version: 1,
     },
+    tab_sort: {
+      name: `Tab Sort`,
+      type: `menu`,
+      value: `normal`,
+      info: `How to sort the tabs`,
+      version: 1,
+    },
     auto_restore: {
       name: `Auto-Restore`,
       type: `menu`,
@@ -1470,6 +1477,11 @@ App.build_settings = () => {
           {text: `History`, value: `history`},
           {text: `Bookmarks`, value: `bookmarks`},
           {text: `Closed`, value: `closed`},
+        ])
+
+        App.settings_make_menu(`tab_sort`, [
+          {text: `Normal`, value: `normal`},
+          {text: `Recent`, value: `recent`},
         ])
 
         App.settings_make_menu(`hover_effect`, App.effects)
