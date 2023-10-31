@@ -9,11 +9,9 @@ App.setup_active_history = () => {
 }
 
 App.refresh_active_history = (clean = false) => {
-  if (!App.active_history_enabled()) {
-    return
+  if (App.get_setting(`active_trace`) || (App.get_setting(`tab_box`) !== `none`)) {
+    App.refresh_active_history_debouncer.call(clean)
   }
-
-  App.refresh_active_history_debouncer.call(clean)
 }
 
 App.do_refresh_active_history = () => {
@@ -31,10 +29,6 @@ App.do_refresh_active_history = () => {
 App.update_active_history = (current, new_active) => {
   new_active.unread = false
 
-  if (!App.active_history_enabled()) {
-    return
-  }
-
   if (current && (current !== new_active)) {
     if (!App.active_history.length) {
       App.active_history.push(current)
@@ -50,11 +44,6 @@ App.clean_active_history = () => {
   App.active_history = App.active_history.filter(x => x !== undefined && !x.removed)
   App.active_history = Array.from(new Set(App.active_history))
   App.active_history = App.active_history.slice(0, App.get_setting(`max_active_history`))
-}
-
-App.active_history_enabled = () => {
-  return App.get_setting(`active_trace`) ||
-  (App.get_setting(`tab_box`) !== `none`)
 }
 
 App.clear_active_history = () => {
