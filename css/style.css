@@ -1173,7 +1173,3 @@ a:visited, a:link, a:hover {
 .taglist_item:hover {
   text-decoration-style: double;
 }
-
-#input_text {
-  max-width: 25rem;
-}
