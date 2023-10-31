@@ -535,6 +535,7 @@ App.setup_keyboard = () => {
 App.reset_keyboard = () => {
   clearTimeout(App.press_timeout)
   App.pressed_key = undefined
+  App.pressed_date = undefined
 }
 
 App.start_press_timeout = () => {
