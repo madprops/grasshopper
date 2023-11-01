@@ -1556,14 +1556,14 @@ App.build_settings = () => {
       info: `Max active tab history to remember. This aftects Active Trace and the Tab Box`,
       version: 1,
     },
-    double_ctrl_delay: {
-      name: `Double Ctrl Delay`,
+    double_key_delay: {
+      name: `Double Key Delay`,
       type: `number`,
       value: 350,
       placeholder: `Number`,
       min: App.number_min,
       max: App.number_max,
-      info: `Delay to trigger double Ctrl Press (ms).
+      info: `Delay to trigger action when double tapping a key like Ctrl (ms).
       The bigger the delay the easier it is to trigger`,
       version: 1,
     },
