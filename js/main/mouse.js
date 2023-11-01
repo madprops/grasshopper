@@ -1,4 +1,4 @@
-App.get_cursor_item = (mode, e) => {
+App.direction = (mode, e) => {
   let el = e.target.closest(`.${mode}_item`)
   let item = App.get_item_by_id(mode, el.dataset.id)
 
@@ -10,7 +10,7 @@ App.get_cursor_item = (mode, e) => {
   return item
 }
 
-App.cursor_on_item = (e, mode) => {
+App.cursor_on_item = (mode, e) => {
   return e.target.closest(`.${mode}_item`)
 }
 
@@ -25,9 +25,23 @@ App.setup_window_mouse = (mode) => {
     if (e.button === 1) {
       e.preventDefault()
     }
+
+    App.reset_mouse()
+
+    if (e.button === 0) {
+      App.click_press_button = `left`
+      App.click_press_done = false
+      App.start_click_press_timeout(mode, e)
+    }
   })
 
   DOM.ev(container, `click`, (e) => {
+    if (App.click_press_done) {
+      App.reset_mouse()
+      return
+    }
+
+    App.reset_mouse()
     App.mouse_click_action(mode, e)
   })
 
@@ -62,11 +76,11 @@ App.mouse_up_action = (e) => {
 // For instance can't move a tab without selecting it
 // And in a popup it would close the popup on selection
 App.mouse_click_action = (mode, e) => {
-  if (!App.cursor_on_item(e, mode)) {
+  if (!App.cursor_on_item(mode, e)) {
     return
   }
 
-  let item = App.get_cursor_item(mode, e)
+  let item = App.direction(mode, e)
   let media_type = App.get_media_type(item)
 
   if (e.target.classList.contains(`view_media_button`)) {
@@ -180,11 +194,11 @@ App.mouse_double_click_action = (mode, e) => {
     }
   }
 
-  if (!App.cursor_on_item(e, mode)) {
+  if (!App.cursor_on_item(mode, e)) {
     return
   }
 
-  let item = App.get_cursor_item(mode, e)
+  let item = App.direction(mode, e)
   let cmd = App.get_setting(`double_click_command`)
 
   if (cmd === `item_action`) {
@@ -197,12 +211,12 @@ App.mouse_double_click_action = (mode, e) => {
 }
 
 App.mouse_context_action = (mode, e) => {
-  if (!App.cursor_on_item(e, mode)) {
+  if (!App.cursor_on_item(mode, e)) {
     App.show_custom_menu(e, `empty`)
     return
   }
 
-  let item = App.get_cursor_item(mode, e)
+  let item = App.direction(mode, e)
   e.preventDefault()
 
   if (App.get_setting(`hover_button`)) {
@@ -229,11 +243,11 @@ App.mouse_context_action = (mode, e) => {
 }
 
 App.mouse_middle_action = (mode, e) => {
-  if (!App.cursor_on_item(e, mode)) {
+  if (!App.cursor_on_item(mode, e)) {
     return
   }
 
-  let item = App.get_cursor_item(mode, e)
+  let item = App.direction(mode, e)
   e.preventDefault()
 
   if (e.target.classList.contains(`close_icon`)) {
@@ -282,11 +296,11 @@ App.mouse_wheel_action = (mode, e) => {
 }
 
 App.mouse_over_action = (mode, e) => {
-  if (!App.cursor_on_item(e, mode)) {
+  if (!App.cursor_on_item(mode, e)) {
     return
   }
 
-  let item = App.get_cursor_item(mode, e)
+  let item = App.direction(mode, e)
   App.update_footer_info(item)
 }
 
@@ -305,4 +319,32 @@ App.right_button_action = (item) => {
   else {
     App.open_items(item, true, false)
   }
+}
+
+App.reset_mouse = () => {
+  clearTimeout(App.click_press_timeout)
+  App.click_press_item = undefined
+  App.click_press_button = undefined
+  App.click_press_date = undefined
+  App.click_press_done = false
+}
+
+App.start_click_press_timeout = (mode, e) => {
+  clearTimeout(App.click_press_timeout)
+
+  App.click_press_timeout = setTimeout(() => {
+    App.click_press_action(mode, e)
+    App.click_press_done = true
+  }, App.click_press_delay)
+}
+
+App.click_press_action = (mode, e) => {
+  if (!App.cursor_on_item(mode, e)) {
+    return
+  }
+
+  let item = App.direction(mode, e)
+  let btn = App.click_press_button
+  let cmd = App.get_setting(`${btn}_click_press_command`)
+  App.run_command({cmd: cmd, from: `click_press`, item: item, e: e})
 }

@@ -156,6 +156,7 @@ App.raise_window = (mode) => {
 App.setup_window = () => {
   DOM.ev(document.documentElement, `mouseleave`, () => {
     App.reset_keyboard()
+    App.reset_mouse()
 
     if (App.dragging) {
       return

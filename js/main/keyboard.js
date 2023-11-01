@@ -301,7 +301,6 @@ App.setup_keyboard = () => {
     if (e.key === `Control`) {
       App.reset_keyboard()
       App.pressed_key = e.key
-      App.pressed_date = Date.now()
       App.start_press_timeout()
     }
     else {
@@ -555,13 +554,12 @@ App.setup_keyboard = () => {
 App.reset_keyboard = () => {
   clearTimeout(App.press_timeout)
   App.pressed_key = undefined
-  App.pressed_date = undefined
 }
 
 App.start_press_timeout = () => {
   clearTimeout(App.press_timeout)
 
-  setTimeout(() => {
+  App.press_timeout = setTimeout(() => {
     App.press_action()
   }, App.press_delay)
 }

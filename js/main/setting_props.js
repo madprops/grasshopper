@@ -131,6 +131,13 @@ App.build_settings = () => {
       info: `What command to run when pressing and holding Ctrl for a short time`,
       version: 1,
     },
+    left_click_press_command: {
+      name: `Left Click Press`,
+      type: `menu`,
+      value: `none`,
+      info: `What command to run when pressing the left mouse button on an item for a short time`,
+      version: 1,
+    },
     domain_rules: {
       name: `Domain Rules`,
       type: `list`,
@@ -476,6 +483,13 @@ App.build_settings = () => {
   category = `show`
 
   props = {
+    favorites_mode: {
+      name: `Favorites Mode`,
+      type: `menu`,
+      value: `none`,
+      info: `How to show favorites`,
+      version: 1,
+    },
     tab_box: {
       name: `Tab Box`,
       type: `menu`,
@@ -495,13 +509,6 @@ App.build_settings = () => {
       type: `menu`,
       value: `bottom`,
       info: `The position of the tab box`,
-      version: 1,
-    },
-    favorites_mode: {
-      name: `Favorites Mode`,
-      type: `menu`,
-      value: `none`,
-      info: `How to show favorites`,
       version: 1,
     },
     extra_menu_mode: {
@@ -1177,6 +1184,13 @@ App.build_settings = () => {
       info: `Pre-made filters to use. These appear in the Custom section`,
       version: 3,
     },
+    filter_menu: {
+      name: `Filter Menu`,
+      type: `list`,
+      value: [],
+      info: `Menu to show when right clicking the filters button`,
+      version: 1,
+    },
     clean_filter: {
       name: `Clean Filter`,
       type: `checkbox`,
@@ -1512,6 +1526,7 @@ App.build_settings = () => {
         App.settings_make_menu(`double_click_command`, App.cmdlist)
         App.settings_make_menu(`double_ctrl_command`, App.cmdlist)
         App.settings_make_menu(`ctrl_press_command`, App.cmdlist)
+        App.settings_make_menu(`left_click_press_command`, App.cmdlist)
       },
     },
     theme: {

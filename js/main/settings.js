@@ -422,6 +422,7 @@ App.start_settings = () => {
 
   App.cmdlist = App.settings_commands()
   App.cmdlist_2 = App.settings_commands(false)
+  App.filter_list = App.cmdlist_2.filter(x => x.text.includes(`Filter`))
 
   let common = {
     persistent: false,
@@ -1170,7 +1171,16 @@ App.setup_settings_addlist = () => {
     let id = `settings_${key}`
     props = App.setting_props[key]
 
-    if (props.category === `menus`) {
+    if (props.category === `menus` || key === `filter_menu`) {
+      let cmds
+
+      if (key === `filter_menu`) {
+        cmds = App.filter_list.slice(0)
+      }
+      else {
+        cmds = App.cmdlist_2.slice(0)
+      }
+
       App.create_popup(Object.assign({}, popobj, {
         id: `addlist_${id}`,
         element: Addlist.register(Object.assign({}, regobj, {
@@ -1184,7 +1194,7 @@ App.setup_settings_addlist = () => {
             cmd: `Command`,
           },
           sources: {
-            cmd: App.cmdlist_2.slice(0),
+            cmd: cmds,
           },
           list_text: (items) => {
             return cmd_name(items.cmd)
