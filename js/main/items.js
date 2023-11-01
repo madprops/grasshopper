@@ -351,7 +351,7 @@ App.create_item_element = (item) => {
     App.add_tab_icons(item)
     App.check_tab_icons(item)
 
-    if (App.get_setting(`tab_sort`) === `normal`) {
+    if (App.tabs_normal()) {
       item.element.draggable = true
     }
   }

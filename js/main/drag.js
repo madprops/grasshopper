@@ -30,7 +30,7 @@ App.dragstart_action = (mode, e) => {
     return false
   }
 
-  if (App.get_setting(`tab_sort`) !== `normal`) {
+  if (!App.tabs_normal()) {
     return false
   }
 

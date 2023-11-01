@@ -9,7 +9,7 @@ App.pinline_enabled = () => {
     return false
   }
 
-  if (App.get_setting(`tab_sort`) !== `normal`) {
+  if (!App.tabs_normal()) {
     return false
   }
 

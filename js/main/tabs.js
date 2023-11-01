@@ -201,9 +201,7 @@ App.focus_tab = async (args = {}) => {
     return
   }
 
-  if (App.get_setting(`tab_sort`) === `recent`) {
-    App.make_item_first(args.item)
-  }
+  App.check_tab_first(args.item)
 
   if (args.select) {
     App.select_item({item: args.item, scroll: args.scroll})
@@ -819,10 +817,7 @@ App.on_tab_activated = async (info) => {
 
     if (item.active) {
       item.unread = false
-
-      if (App.get_setting(`tab_sort`) === `recent`) {
-        App.make_item_first(item)
-      }
+      App.check_tab_first(item)
     }
   }
 
@@ -910,7 +905,7 @@ App.move_tabs_vertically = (direction, item) => {
     return
   }
 
-  if (App.get_setting(`tab_sort`) !== `normal`) {
+  if (!App.tabs_normal()) {
     return
   }
 
@@ -1151,7 +1146,7 @@ App.do_sort_tabs = () => {
       App.tabs_locked = false
       App.hide_all_popups()
 
-      if (App.get_setting(`tab_sort`) === `normal`) {
+      if (App.tabs_normal()) {
         App.clear_all_items()
         await App.do_show_mode({mode: `tabs`})
       }
@@ -1226,4 +1221,14 @@ App.load_tabs = (item) => {
 App.sort_tabs_action = () => {
   let sort_pins = DOM.el(`#sort_tabs_pins`).checked
   App.do_sort_tabs(sort_pins)
+}
+
+App.tabs_normal = () => {
+  return App.get_setting(`tab_sort`) === `normal`
+}
+
+App.check_tab_first = (item) => {
+  if (App.get_setting(`tab_sort`) === `recent`) {
+    App.make_item_first(item)
+  }
 }

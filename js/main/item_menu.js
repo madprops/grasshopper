@@ -157,7 +157,7 @@ App.more_menu_items = (o_items, item, multiple, some_loaded, some_unmuted, some_
       App.sep(items)
     }
 
-    if (App.get_setting(`tab_sort`) === `normal`) {
+    if (App.tabs_normal()) {
       items.push(App.item_menu_item({cmd: `move_tabs_to_top`, item: item}))
       items.push(App.item_menu_item({cmd: `move_tabs_to_bottom`, item: item}))
     }
