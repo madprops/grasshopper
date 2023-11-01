@@ -910,6 +910,10 @@ App.move_tabs_vertically = (direction, item) => {
     return
   }
 
+  if (App.get_setting(`tab_sort`) !== `normal`) {
+    return
+  }
+
   let items = App.get_active_items({mode: item.mode, item: item})
 
   if (items[0].pinned) {
