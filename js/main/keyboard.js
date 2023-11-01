@@ -409,6 +409,13 @@ App.setup_keyboard = () => {
           return
         }
       }
+      else if (pmode === `sort_tabs`) {
+        if (e.key === `Enter`) {
+          App.sort_tabs_action()
+          e.preventDefault()
+          return
+        }
+      }
       else if (Addlist.on_addlist()) {
         if (e.key === `Enter`) {
           Addlist.enter()

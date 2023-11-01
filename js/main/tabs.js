@@ -149,8 +149,7 @@ App.start_sort_tabs = () => {
     id: `sort_tabs`,
     setup: () => {
       DOM.ev(DOM.el(`#sort_tabs_button`), `click`, () => {
-        let sort_pins = DOM.el(`#sort_tabs_pins`).checked
-        App.do_sort_tabs(sort_pins)
+        App.sort_tabs_action()
       })
     },
   })
@@ -1147,8 +1146,11 @@ App.do_sort_tabs = () => {
 
       App.tabs_locked = false
       App.hide_all_popups()
-      App.clear_all_items()
-      await App.do_show_mode({mode: `tabs`})
+
+      if (App.get_setting(`tab_sort`) === `normal`) {
+        App.clear_all_items()
+        await App.do_show_mode({mode: `tabs`})
+      }
     },
   })
 }
@@ -1215,4 +1217,9 @@ App.load_tabs = (item) => {
     },
     force: force,
   })
+}
+
+App.sort_tabs_action = () => {
+  let sort_pins = DOM.el(`#sort_tabs_pins`).checked
+  App.do_sort_tabs(sort_pins)
 }
