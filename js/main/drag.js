@@ -91,7 +91,7 @@ App.dragenter_action = (mode, e) => {
   let direction = e.clientY > App.drag_y ? `down` : `up`
   App.drag_y = e.clientY
 
-  if (App.cursor_on_item(e, mode)) {
+  if (App.cursor_on_item(mode, e)) {
     if (App.drag_els.includes(el)) {
       e.preventDefault()
       return false
