@@ -42,7 +42,7 @@ App.setup_commands = () => {
 
   for (let color of App.colors) {
     let icon, name
-    icon = theme_icon
+    icon = App.color_icon(color)
     name = `Filter ${App.capitalize(color)}`
 
     color_filters.push({
