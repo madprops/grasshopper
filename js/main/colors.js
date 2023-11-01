@@ -35,10 +35,6 @@ App.check_text_color = (item) => {
     item.element.classList.add(`playing_tab`)
   }
 
-  if (item.discarded) {
-    item.element.classList.add(`unloaded_tab`)
-  }
-
   if (item.unread) {
     item.element.classList.add(`unread_tab`)
   }
