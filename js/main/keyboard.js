@@ -277,7 +277,7 @@ App.check_items_keyboard = (e) => {
     }
   }
 
-  if (!App.filter_is_focused(mode)) {
+  if (!filter_focus) {
     let allowed = [`Backspace`]
 
     if (e.key.length === 1 || allowed.includes(e.key)) {
