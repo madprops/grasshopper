@@ -171,14 +171,12 @@ App.get_tabs = async () => {
     return
   }
 
-  let sort = App.get_setting(`tab_sort`)
-
-  if (sort === `normal`) {
+  if (App.tabs_normal()) {
     tabs.sort((a, b) => {
       return a.index < b.index ? -1 : 1
     })
   }
-  else if (sort === `recent`) {
+  else if (App.tabs_recent()) {
     tabs.sort((a, b) => {
       return a.lastAccessed > b.lastAccessed ? -1 : 1
     })
@@ -1227,8 +1225,12 @@ App.tabs_normal = () => {
   return App.get_setting(`tab_sort`) === `normal`
 }
 
+App.tabs_recent = () => {
+  return App.get_setting(`tab_sort`) === `recent`
+}
+
 App.check_tab_first = (item) => {
-  if (App.get_setting(`tab_sort`) === `recent`) {
+  if (App.tabs_recent()) {
     App.make_item_first(item)
   }
 }
