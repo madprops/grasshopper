@@ -51,7 +51,6 @@ App.sort_tabs_ready = false
 App.close_tabs_ready = false
 
 App.settings_save_delay = 250
-App.double_tap_delay = 300
 App.empty_previous_tabs_delay = 2000
 App.alert_autohide_delay = 1250
 App.filter_delay_2 = 50
@@ -65,8 +64,6 @@ App.check_filter_delay = 100
 App.active_history_delay = 50
 App.apply_theme_delay = 100
 App.last_scroll_delay = 100
-App.press_delay = 500
-App.click_press_delay = 500
 
 App.settings_icons = {
   general: `⚙️`,

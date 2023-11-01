@@ -117,8 +117,8 @@ App.build_settings = () => {
       info: `What command to run when double clicking an item`,
       version: 1,
     },
-    left_click_press_command: {
-      name: `Left Click Press`,
+    click_press_command: {
+      name: `On Click Press`,
       type: `menu`,
       value: `none`,
       info: `What command to run when pressing the left mouse button on an item for a short time`,
@@ -1556,6 +1556,36 @@ App.build_settings = () => {
       info: `Max active tab history to remember. This aftects Active Trace and the Tab Box`,
       version: 1,
     },
+    click_press_delay: {
+      name: `Click Press Delay`,
+      type: `number`,
+      value: 500,
+      placeholder: `Number`,
+      min: App.number_min,
+      max: App.number_max,
+      info: `Delay to trigger the Click Press command (ms)`,
+      version: 1,
+    },
+    ctrl_press_delay: {
+      name: `Ctrl Press Delay`,
+      type: `number`,
+      value: 500,
+      placeholder: `Number`,
+      min: App.number_min,
+      max: App.number_max,
+      info: `Delay to trigger the Ctrl Press command (ms)`,
+      version: 1,
+    },
+    double_ctrl_delay: {
+      name: `Ctrl Press Delay`,
+      type: `number`,
+      value: 300,
+      placeholder: `Number`,
+      min: App.number_min,
+      max: App.number_max,
+      info: `Delay to trigger doublec Ctrl Press (ms)`,
+      version: 1,
+    },
   }
 
   add_props()
@@ -1631,7 +1661,7 @@ App.build_settings = () => {
         App.settings_make_menu(`double_click_command`, App.cmdlist)
         App.settings_make_menu(`double_ctrl_command`, App.cmdlist)
         App.settings_make_menu(`ctrl_press_command`, App.cmdlist)
-        App.settings_make_menu(`left_click_press_command`, App.cmdlist)
+        App.settings_make_menu(`click_press_command`, App.cmdlist)
       },
     },
     theme: {

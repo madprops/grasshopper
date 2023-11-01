@@ -311,7 +311,7 @@ App.setup_keyboard = () => {
     let pmode = App.popup_mode()
 
     if (e.key === `Control`) {
-      if (App.now() - App.double_tap_date < App.double_tap_delay) {
+      if (App.now() - App.double_tap_date < App.get_setting(`double_ctrl_delay`)) {
         App.double_tap_action()
         e.preventDefault()
         return
@@ -561,7 +561,7 @@ App.start_press_timeout = () => {
 
   App.press_timeout = setTimeout(() => {
     App.press_action()
-  }, App.press_delay)
+  }, App.get_setting(`ctrl_press_delay`))
 }
 
 App.press_action = () => {

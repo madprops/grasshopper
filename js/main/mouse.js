@@ -30,7 +30,6 @@ App.setup_window_mouse = (mode) => {
 
     if (e.button === 0) {
       if (App.cursor_on_item(mode, e)) {
-        App.click_press_button = `left`
         App.click_press_done = false
         App.start_click_press_timeout(mode, e)
       }
@@ -325,7 +324,6 @@ App.right_button_action = (item) => {
 
 App.reset_mouse = () => {
   clearTimeout(App.click_press_timeout)
-  App.click_press_button = undefined
   App.click_press_done = false
 }
 
@@ -335,7 +333,7 @@ App.start_click_press_timeout = (mode, e) => {
   App.click_press_timeout = setTimeout(() => {
     App.click_press_action(mode, e)
     App.click_press_done = true
-  }, App.click_press_delay)
+  }, App.get_setting(`click_press_delay`))
 }
 
 App.click_press_action = (mode, e) => {
@@ -344,7 +342,6 @@ App.click_press_action = (mode, e) => {
   }
 
   let item = App.direction(mode, e)
-  let btn = App.click_press_button
-  let cmd = App.get_setting(`${btn}_click_press_command`)
+  let cmd = App.get_setting(`click_press_command`)
   App.run_command({cmd: cmd, from: `click_press`, item: item, e: e})
 }
