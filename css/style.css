@@ -1094,21 +1094,7 @@ a:visited, a:link, a:hover {
   justify-content: center;
 }
 
-.pinned_tab.colored_text_pinned {
-  color: var(--text_color_pinned);
-}
-
-.pinned_tab.colored_background_pinned {
-  background-color: var(--background_color_pinned);
-}
-
-.normal_tab.colored_text_normal {
-  color: var(--text_color_normal);
-}
-
-.normal_tab.colored_background_normal {
-  background-color: var(--background_color_normal);
-}
+/* Lower priority go at the top */
 
 .loaded_tab.colored_text_loaded {
   color: var(--text_color_loaded);
@@ -1126,12 +1112,20 @@ a:visited, a:link, a:hover {
   background-color: var(--background_color_unloaded);
 }
 
-.playing_tab.colored_text_playing {
-  color: var(--text_color_playing);
+.pinned_tab.colored_text_pinned {
+  color: var(--text_color_pinned);
 }
 
-.playing_tab.colored_background_playing {
-  background-color: var(--background_color_playing);
+.pinned_tab.colored_background_pinned {
+  background-color: var(--background_color_pinned);
+}
+
+.normal_tab.colored_text_normal {
+  color: var(--text_color_normal);
+}
+
+.normal_tab.colored_background_normal {
+  background-color: var(--background_color_normal);
 }
 
 .unread_tab.colored_text_unread {
@@ -1142,6 +1136,14 @@ a:visited, a:link, a:hover {
   background-color: var(--background_color_unread);
 }
 
+.playing_tab.colored_text_playing {
+  color: var(--text_color_playing);
+}
+
+.playing_tab.colored_background_playing {
+  background-color: var(--background_color_playing);
+}
+
 .active_tab.colored_text_active {
   color: var(--text_color_active);
 }
@@ -1149,6 +1151,8 @@ a:visited, a:link, a:hover {
 .active_tab.colored_background_active {
   background-color: var(--background_color_active);
 }
+
+/*  */
 
 .hover_button {
   position: absolute;
