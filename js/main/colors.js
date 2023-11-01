@@ -7,6 +7,10 @@ App.check_text_color = (item) => {
     return App.get_setting(`background_color_${type}_enabled`)
   }
 
+  function enabled (type) {
+    return text_enabled(type) || background_enabled(type)
+  }
+
   function proc (type) {
     if (text_enabled(type)) {
       item.element.style.color = App.get_setting(`text_color_${type}`)
@@ -23,25 +27,25 @@ App.check_text_color = (item) => {
   if (false) {
     // Top = Higher Priority
   }
-  else if (item.active) {
+  else if (item.active && enabled(`active`)) {
     proc(`active`)
   }
-  else if (item.audible) {
+  else if (item.audible && enabled(`playing`)) {
     proc(`playing`)
   }
-  else if (item.unread) {
+  else if (item.unread && enabled(`unread`)) {
     proc(`unread`)
   }
-  else if (item.pinned) {
+  else if (item.pinned && enabled(`pinned`)) {
     proc(`pinned`)
   }
-  else if (!item.pinned) {
+  else if (!item.pinned && enabled(`normal`)) {
     proc(`normal`)
   }
-  else if (item.discarded) {
+  else if (item.discarded && enabled(`unloaded`)) {
     proc(`unloaded`)
   }
-  else if (!item.discarded) {
+  else if (!item.discarded && enabled(`loaded`)) {
     proc(`loaded`)
   }
 }
