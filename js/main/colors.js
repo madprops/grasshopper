@@ -7,50 +7,42 @@ App.check_text_color = (item) => {
     return App.get_setting(`background_color_${type}_enabled`)
   }
 
-  let types = [`active`, `pinned`, `normal`, `loaded`, `unloaded`, `playing`, `unread`]
-
-  for (let type of types) {
-    item.element.classList.remove(`${type}_tab`)
-
+  function proc (type) {
     if (text_enabled(type)) {
-      item.element.classList.add(`colored_text_${type}`)
-    }
-    else {
-      item.element.classList.remove(`colored_text_${type}`)
+      item.element.style.color = App.get_setting(`text_color_${type}`)
     }
 
     if (background_enabled(type)) {
-      item.element.classList.add(`colored_background_${type}`)
-    }
-    else {
-      item.element.classList.remove(`colored_background_${type}`)
+      item.element.style.backgroundColor = App.get_setting(`background_color_${type}`)
     }
   }
 
-  if (item.active) {
-    item.element.classList.add(`active_tab`)
-  }
+  item.element.style.color = ``
+  item.element.style.backgroundColor = ``
 
-  if (item.audible) {
-    item.element.classList.add(`playing_tab`)
+  if (false) {
+    // Top = Higher Priority
   }
-
-  if (item.unread) {
-    item.element.classList.add(`unread_tab`)
+  else if (item.active) {
+    proc(`active`)
   }
-
-  if (item.pinned) {
-    item.element.classList.add(`pinned_tab`)
+  else if (item.audible) {
+    proc(`playing`)
   }
-  else {
-    item.element.classList.add(`normal_tab`)
+  else if (item.unread) {
+    proc(`unread`)
   }
-
-  if (item.discarded) {
-    item.element.classList.add(`unloaded_tab`)
+  else if (item.pinned) {
+    proc(`pinned`)
   }
-  else {
-    item.element.classList.add(`loaded_tab`)
+  else if (!item.pinned) {
+    proc(`normal`)
+  }
+  else if (item.discarded) {
+    proc(`unloaded`)
+  }
+  else if (!item.discarded) {
+    proc(`loaded`)
   }
 }
 

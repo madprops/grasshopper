@@ -1094,66 +1094,6 @@ a:visited, a:link, a:hover {
   justify-content: center;
 }
 
-/* Lower priority go at the top */
-
-.loaded_tab.colored_text_loaded {
-  color: var(--text_color_loaded);
-}
-
-.loaded_tab.colored_background_loaded {
-  background-color: var(--background_color_loaded);
-}
-
-.unloaded_tab.colored_text_unloaded {
-  color: var(--text_color_unloaded);
-}
-
-.unloaded_tab.colored_background_unloaded {
-  background-color: var(--background_color_unloaded);
-}
-
-.pinned_tab.colored_text_pinned {
-  color: var(--text_color_pinned);
-}
-
-.pinned_tab.colored_background_pinned {
-  background-color: var(--background_color_pinned);
-}
-
-.normal_tab.colored_text_normal {
-  color: var(--text_color_normal);
-}
-
-.normal_tab.colored_background_normal {
-  background-color: var(--background_color_normal);
-}
-
-.unread_tab.colored_text_unread {
-  color: var(--text_color_unread);
-}
-
-.unread_tab.colored_background_unread {
-  background-color: var(--background_color_unread);
-}
-
-.playing_tab.colored_text_playing {
-  color: var(--text_color_playing);
-}
-
-.playing_tab.colored_background_playing {
-  background-color: var(--background_color_playing);
-}
-
-.active_tab.colored_text_active {
-  color: var(--text_color_active);
-}
-
-.active_tab.colored_background_active {
-  background-color: var(--background_color_active);
-}
-
-/*  */
-
 .hover_button {
   position: absolute;
   z-index: 9;
