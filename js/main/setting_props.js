@@ -1564,7 +1564,7 @@ App.build_settings = () => {
       min: App.number_min,
       max: App.number_max,
       info: `Delay to trigger action when double tapping a key like Ctrl (ms).
-      The bigger the delay the easier it is to trigger`,
+      The bigger the delay the easier it is to trigger a command`,
       version: 1,
     },
     key_press_delay: {
@@ -1575,7 +1575,7 @@ App.build_settings = () => {
       min: App.number_min,
       max: App.number_max,
       info: `Delay to trigger action when long pressing a key like Ctrl (ms).
-      This is the amount of time to hold the Ctrl key down to trigger the command`,
+      This is the amount of time to hold the key down to trigger a command`,
       version: 1,
     },
     click_press_delay: {
@@ -1586,7 +1586,7 @@ App.build_settings = () => {
       min: App.number_min,
       max: App.number_max,
       info: `Delay to trigger action when long pressing a mouse button (ms).
-      This is the amount of time to hold the mouse button down to trigger the command`,
+      This is the amount of time to hold the mouse button down to trigger a command`,
       version: 1,
     },
   }
