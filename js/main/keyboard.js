@@ -3,6 +3,8 @@ App.check_items_keyboard = (e) => {
   let item = App.get_selected(mode)
   let filter_focus = App.filter_is_focused(mode)
   let filter_highlighted = App.filter_is_highlighted(mode)
+  let filter_filled = App.filter_has_value(mode)
+  let filter_end = App.filter_at_end(mode)
 
   function arrow (direction, e) {
     if (!item) {
@@ -147,14 +149,14 @@ App.check_items_keyboard = (e) => {
       return
     }
     else if (e.key === `Home`) {
-      if (!filter_focus) {
+      if (!filter_focus || !filter_filled) {
         App.select_to_edge(mode, `up`)
         e.preventDefault()
         return
       }
     }
     else if (e.key === `End`) {
-      if (!filter_focus) {
+      if (!filter_focus || !filter_filled) {
         App.select_to_edge(mode, `down`)
         e.preventDefault()
         return
@@ -251,7 +253,7 @@ App.check_items_keyboard = (e) => {
     }
     else if (e.key === `Delete`) {
       if (item && mode === `tabs`) {
-        if (!filter_focus || !App.filter_has_value(mode) || App.filter_at_end(mode)) {
+        if (!filter_focus || !filter_filled || filter_end) {
           App.close_tabs(item)
           e.preventDefault()
         }
@@ -260,14 +262,14 @@ App.check_items_keyboard = (e) => {
       return
     }
     else if (e.key === `Home`) {
-      if (!filter_focus) {
+      if (!filter_focus || !filter_filled) {
         App.goto_top(mode, true)
         e.preventDefault()
         return
       }
     }
     else if (e.key === `End`) {
-      if (!filter_focus) {
+      if (!filter_focus || !filter_filled) {
         App.goto_bottom(mode, true)
         e.preventDefault()
         return

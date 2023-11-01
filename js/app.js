@@ -65,7 +65,7 @@ App.check_filter_delay = 100
 App.active_history_delay = 50
 App.apply_theme_delay = 100
 App.last_scroll_delay = 100
-App.press_delay = 300
+App.press_delay = 500
 
 App.settings_icons = {
   general: `⚙️`,
