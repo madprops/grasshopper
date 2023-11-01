@@ -1559,7 +1559,7 @@ App.build_settings = () => {
     double_ctrl_delay: {
       name: `Double Ctrl Delay`,
       type: `number`,
-      value: 500,
+      value: 350,
       placeholder: `Number`,
       min: App.number_min,
       max: App.number_max,
