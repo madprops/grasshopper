@@ -2,6 +2,7 @@ App.check_items_keyboard = (e) => {
   let mode = App.window_mode
   let item = App.get_selected(mode)
   let filter_focus = App.filter_is_focused(mode)
+  let filter_highlighted = App.filter_is_highlighted(mode)
 
   function arrow (direction, e) {
     if (!item) {
@@ -123,6 +124,13 @@ App.check_items_keyboard = (e) => {
 
       e.preventDefault()
       return
+    }
+    else if (e.key === `c`) {
+      if (item && !filter_highlighted) {
+        App.copy_url(item)
+        e.preventDefault()
+        return
+      }
     }
 
     if (!isNaN(e.key)) {
