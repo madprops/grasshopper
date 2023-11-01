@@ -404,7 +404,7 @@ App.filter_check = (args) => {
   return Boolean(match)
 }
 
-App.focus_filter = (mode) => {
+App.focus_filter = (mode = App.window_mode) => {
   App.get_filter_el(mode).focus()
 }
 
