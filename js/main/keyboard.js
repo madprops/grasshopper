@@ -561,7 +561,7 @@ App.start_press_timeout = () => {
 
   App.press_timeout = setTimeout(() => {
     App.press_action()
-  }, App.get_setting(`ctrl_press_delay`))
+  }, App.get_setting(`key_press_delay`))
 }
 
 App.press_action = () => {

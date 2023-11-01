@@ -1567,14 +1567,14 @@ App.build_settings = () => {
       The bigger the delay the easier it is to trigger`,
       version: 1,
     },
-    ctrl_press_delay: {
-      name: `Ctrl Press Delay`,
+    key_press_delay: {
+      name: `Key Press Delay`,
       type: `number`,
       value: 500,
       placeholder: `Number`,
       min: App.number_min,
       max: App.number_max,
-      info: `Delay to trigger the Ctrl Press command (ms).
+      info: `Delay to trigger action when long pressing a key like Ctrl (ms).
       This is the amount of time to hold the Ctrl key down to trigger the command`,
       version: 1,
     },
@@ -1585,7 +1585,7 @@ App.build_settings = () => {
       placeholder: `Number`,
       min: App.number_min,
       max: App.number_max,
-      info: `Delay to trigger the Click Press command (ms).
+      info: `Delay to trigger action when long pressing a mouse button (ms).
       This is the amount of time to hold the mouse button down to trigger the command`,
       version: 1,
     },
