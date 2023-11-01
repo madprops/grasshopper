@@ -117,7 +117,7 @@ App.build_settings = () => {
       info: `What command to run when double clicking an item`,
       version: 1,
     },
-    click_press_command: {
+    left_click_press_command: {
       name: `On Click Press`,
       type: `menu`,
       value: `none`,
@@ -1664,7 +1664,7 @@ App.build_settings = () => {
         App.settings_make_menu(`double_click_command`, App.cmdlist)
         App.settings_make_menu(`double_ctrl_command`, App.cmdlist)
         App.settings_make_menu(`ctrl_press_command`, App.cmdlist)
-        App.settings_make_menu(`click_press_command`, App.cmdlist)
+        App.settings_make_menu(`left_click_press_command`, App.cmdlist)
       },
     },
     theme: {

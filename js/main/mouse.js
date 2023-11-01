@@ -346,7 +346,7 @@ App.click_press_action = (mode, e) => {
   let item = App.direction(mode, e)
 
   if (App.click_press_button === 0) {
-    let cmd = App.get_setting(`click_press_command`)
+    let cmd = App.get_setting(`left_click_press_command`)
     App.run_command({cmd: cmd, from: `click_press`, item: item, e: e})
   }
 }
