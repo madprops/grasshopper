@@ -50,11 +50,11 @@ App.check_text_color = (item) => {
     item.element.classList.add(`normal_tab`)
   }
 
-  if (item.loaded) {
-    item.element.classList.add(`loaded_tab`)
+  if (item.discarded) {
+    item.element.classList.add(`unloaded_tab`)
   }
   else {
-    item.element.classList.add(`unloaded_tab`)
+    item.element.classList.add(`loaded_tab`)
   }
 }
 
