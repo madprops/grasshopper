@@ -564,6 +564,7 @@ App.press_action = () => {
 }
 
 App.double_tap_action = () => {
+  App.reset_keyboard()
   let cmd = App.get_setting(`double_ctrl_command`)
   App.run_command({cmd: cmd, from: `double_ctrl`})
 }
