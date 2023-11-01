@@ -294,6 +294,9 @@ App.setup_keyboard = () => {
       App.pressed_date = Date.now()
       App.start_press_timeout()
     }
+    else {
+      App.reset_keyboard()
+    }
 
     let mode = App.window_mode
     let pmode = App.popup_mode()
