@@ -14,24 +14,26 @@ App.cursor_on_item = (mode, e) => {
   return e.target.closest(`.${mode}_item`)
 }
 
-App.setup_window_mouse = (mode) => {
-  let container = DOM.el(`#${mode}_container`)
-
-  DOM.ev(window, `mouseup`, (e) => {
-    App.mouse_up_action(e)
-  })
-
+App.setup_mouse = () => {
   DOM.ev(window, `mousedown`, (e) => {
     if (e.button === 1) {
       e.preventDefault()
     }
+  })
+}
 
+App.setup_window_mouse = (mode) => {
+  let container = DOM.el(`#${mode}_container`)
+
+  DOM.ev(container, `mousedown`, (e) => {
     App.reset_mouse()
 
     if (e.button === 0) {
-      App.click_press_button = `left`
-      App.click_press_done = false
-      App.start_click_press_timeout(mode, e)
+      if (App.cursor_on_item(mode, e)) {
+        App.click_press_button = `left`
+        App.click_press_done = false
+        App.start_click_press_timeout(mode, e)
+      }
     }
   })
 
