@@ -117,6 +117,13 @@ App.build_settings = () => {
       info: `What command to run when double clicking an item`,
       version: 1,
     },
+    left_click_press_command: {
+      name: `Left Click Press`,
+      type: `menu`,
+      value: `none`,
+      info: `What command to run when pressing the left mouse button on an item for a short time`,
+      version: 1,
+    },
     double_ctrl_command: {
       name: `On Double Ctrl`,
       type: `menu`,
@@ -129,13 +136,6 @@ App.build_settings = () => {
       type: `menu`,
       value: `none`,
       info: `What command to run when pressing and holding Ctrl for a short time`,
-      version: 1,
-    },
-    left_click_press_command: {
-      name: `Left Click Press`,
-      type: `menu`,
-      value: `none`,
-      info: `What command to run when pressing the left mouse button on an item for a short time`,
       version: 1,
     },
     domain_rules: {
