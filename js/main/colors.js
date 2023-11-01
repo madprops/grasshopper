@@ -1,36 +1,60 @@
 App.check_text_color = (item) => {
-  function enabled (type) {
-    return App.get_setting(`color_${type}_enabled`)
+  function text_enabled (type) {
+    return App.get_setting(`text_color_${type}_enabled`)
   }
 
-  item.element.classList.remove(`active_tab`)
-  item.element.classList.remove(`pinned_tab`)
-  item.element.classList.remove(`normal_tab`)
-  item.element.classList.remove(`loaded_tab`)
-  item.element.classList.remove(`unloaded_tab`)
-  item.element.classList.remove(`playing_tab`)
-  item.element.classList.remove(`unread_tab`)
-
-  if (false) {
-    // Easy ordering
+  function background_enabled (type) {
+    return App.get_setting(`background_color_${type}_enabled`)
   }
-  else if (enabled(`active`) && item.active) {
+
+  let types = [`active`, `pinned`, `normal`, `loaded`, `unloaded`, `playing`, `unread`]
+
+  for (let type of types) {
+    item.element.classList.remove(`${type}_tab`)
+
+    if (text_enabled(type)) {
+      item.element.classList.add(`colored_text_${type}`)
+    }
+    else {
+      item.element.classList.remove(`colored_text_${type}`)
+    }
+
+    if (background_enabled(type)) {
+      item.element.classList.add(`colored_background_${type}`)
+    }
+    else {
+      item.element.classList.remove(`colored_background_${type}`)
+    }
+  }
+
+  if (item.active) {
     item.element.classList.add(`active_tab`)
   }
-  else if (enabled(`playing`) && item.audible) {
+
+  if (item.audible) {
     item.element.classList.add(`playing_tab`)
   }
-  else if (enabled(`unloaded`) && item.discarded) {
+
+  if (item.discarded) {
     item.element.classList.add(`unloaded_tab`)
   }
-  else if (enabled(`unread`) && item.unread) {
+
+  if (item.unread) {
     item.element.classList.add(`unread_tab`)
   }
-  else if (enabled(`pins`) && item.pinned) {
+
+  if (item.pinned) {
     item.element.classList.add(`pinned_tab`)
   }
-  else if (enabled(`normal`) && !item.pinned) {
+  else {
     item.element.classList.add(`normal_tab`)
+  }
+
+  if (item.loaded) {
+    item.element.classList.add(`loaded_tab`)
+  }
+  else {
+    item.element.classList.add(`unloaded_tab`)
   }
 }
 

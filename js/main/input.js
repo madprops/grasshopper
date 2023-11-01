@@ -65,6 +65,16 @@ App.on_input_dismiss = () => {
 
 App.clear_input = () => {
   let textarea = DOM.el(`#input_text`)
-  textarea.value = ``
-  App.focus_textarea(textarea)
+
+  if (!textarea.value) {
+    return
+  }
+
+  App.show_confirm({
+    message: `Clear input?`,
+    confirm_action: () => {
+      textarea.value = ``
+      App.focus_textarea(textarea)
+    },
+  })
 }

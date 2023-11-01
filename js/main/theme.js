@@ -208,7 +208,8 @@ App.do_apply_theme = (args = {}) => {
     App.set_css_var(`tab_box_height`, `${tbh_rem}rem`)
 
     for (let key of App.get_tab_color_keys()) {
-      App.set_css_var(key, App.get_setting(key))
+      let color = App.get_setting(key)
+      App.set_css_var(key, color)
     }
 
     if (App.get_setting(`text_glow`)) {

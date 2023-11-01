@@ -1348,7 +1348,7 @@ App.get_tab_color_keys = () => {
       continue
     }
 
-    if (!key.startsWith(`color_`) || key.endsWith(`_enabled`)) {
+    if (!key.includes(`_color_`) || key.endsWith(`_enabled`)) {
       continue
     }
 
