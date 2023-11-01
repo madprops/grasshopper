@@ -311,13 +311,13 @@ App.setup_keyboard = () => {
     let pmode = App.popup_mode()
 
     if (e.key === `Control`) {
-      if (App.now() - App.double_tap_date < App.get_setting(`double_ctrl_delay`)) {
-        App.double_tap_action()
+      if (App.now() - App.double_ctrl_date < App.get_setting(`double_ctrl_delay`)) {
+        App.double_ctrl_action()
         e.preventDefault()
         return
       }
 
-      App.double_tap_date = App.now()
+      App.double_ctrl_date = App.now()
     }
 
     if (App.context_open()) {
@@ -571,7 +571,7 @@ App.press_action = () => {
   }
 }
 
-App.double_tap_action = () => {
+App.double_ctrl_action = () => {
   App.reset_keyboard()
   let cmd = App.get_setting(`double_ctrl_command`)
   App.run_command({cmd: cmd, from: `double_ctrl`})
