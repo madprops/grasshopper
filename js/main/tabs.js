@@ -1054,6 +1054,7 @@ App.divide_tabs = (filter) => {
 App.select_tabs = (type = `pins`) => {
   let first
   let selected = false
+  let prev_selected = App.get_selected(`tabs`)
 
   for (let item of App.get_items(`tabs`)) {
     let valid
@@ -1090,8 +1091,8 @@ App.select_tabs = (type = `pins`) => {
     App.set_selected(first)
   }
 
-  if (!selected) {
-    App.select_first_item(`tabs`)
+  if (!selected && prev_selected) {
+    App.toggle_selected(prev_selected, true, false)
   }
 }
 
