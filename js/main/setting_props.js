@@ -1556,6 +1556,17 @@ App.build_settings = () => {
       info: `Max active tab history to remember. This aftects Active Trace and the Tab Box`,
       version: 1,
     },
+    double_ctrl_delay: {
+      name: `Double Ctrl Delay`,
+      type: `number`,
+      value: 500,
+      placeholder: `Number`,
+      min: App.number_min,
+      max: App.number_max,
+      info: `Delay to trigger double Ctrl Press (ms).
+      The bigger the delay the easier it is to trigger`,
+      version: 1,
+    },
     click_press_delay: {
       name: `Click Press Delay`,
       type: `number`,
@@ -1563,7 +1574,8 @@ App.build_settings = () => {
       placeholder: `Number`,
       min: App.number_min,
       max: App.number_max,
-      info: `Delay to trigger the Click Press command (ms)`,
+      info: `Delay to trigger the Click Press command (ms).
+      This is the amount of time to hold the mouse button down to trigger the command`,
       version: 1,
     },
     ctrl_press_delay: {
@@ -1573,17 +1585,8 @@ App.build_settings = () => {
       placeholder: `Number`,
       min: App.number_min,
       max: App.number_max,
-      info: `Delay to trigger the Ctrl Press command (ms)`,
-      version: 1,
-    },
-    double_ctrl_delay: {
-      name: `Ctrl Press Delay`,
-      type: `number`,
-      value: 300,
-      placeholder: `Number`,
-      min: App.number_min,
-      max: App.number_max,
-      info: `Delay to trigger doublec Ctrl Press (ms)`,
+      info: `Delay to trigger the Ctrl Press command (ms).
+      This is the amount of time to hold the Ctrl key down to trigger the command`,
       version: 1,
     },
   }
