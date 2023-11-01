@@ -323,9 +323,7 @@ App.right_button_action = (item) => {
 
 App.reset_mouse = () => {
   clearTimeout(App.click_press_timeout)
-  App.click_press_item = undefined
   App.click_press_button = undefined
-  App.click_press_date = undefined
   App.click_press_done = false
 }
 
