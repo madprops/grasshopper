@@ -1458,7 +1458,7 @@ App.build_settings = () => {
     key_press_delay: {
       name: `Key Press Delay`,
       type: `number`,
-      value: 450,
+      value: 500,
       placeholder: `Number`,
       min: App.number_min,
       max: App.number_max,
@@ -1469,7 +1469,7 @@ App.build_settings = () => {
     click_press_delay: {
       name: `Click Press Delay`,
       type: `number`,
-      value: 450,
+      value: 500,
       placeholder: `Number`,
       min: App.number_min,
       max: App.number_max,

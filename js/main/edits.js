@@ -666,11 +666,11 @@ App.remove_tag = (item, tag) => {
   App.custom_save(item.id, `custom_tags`, item.custom_tags)
 }
 
-App.remove_tag_all = () => {
+App.wipe_tag = () => {
   let tags =  App.get_all_tags(false)
 
   App.show_prompt({
-    placeholder: `Remove Tag`,
+    placeholder: `Wipe Tag`,
     suggestions: tags,
     list: tags,
     show_list: true,
@@ -691,7 +691,7 @@ App.remove_tag_all = () => {
       }
 
       App.show_confirm({
-        message: `Remove tag? (${tag}) (${items.length})`,
+        message: `Wipe tag? (${tag}) (${items.length})`,
         confirm_action: () => {
           for (let item of items) {
             App.remove_tag(item, tag)
