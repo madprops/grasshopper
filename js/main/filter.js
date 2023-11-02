@@ -931,3 +931,7 @@ App.filter_tag = (mode, tag) => {
 App.blur_filter = (mode) => {
   DOM.el(`#${mode}_filter`).blur()
 }
+
+App.filter_filters = () => {
+  App.show_palette(`filter`)
+}

@@ -168,7 +168,3 @@ App.cycle_filter_modes = (mode, reverse = true) => {
 
   App.set_filter_mode({mode: mode, type: first.type, instant: false})
 }
-
-App.filter_filters = () => {
-  App.show_palette(`filter`)
-}
