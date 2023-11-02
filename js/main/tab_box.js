@@ -57,7 +57,7 @@ App.update_tab_box = () => {
       text = App.get_title(item)
     }
     else if (tbm === `url`) {
-      text = item.url
+      text = item.path
     }
 
     text = text.substring(0, App.max_text_length).trim()
