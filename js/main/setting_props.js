@@ -117,13 +117,6 @@ App.build_settings = () => {
       info: `Apply rules to domains automatically, like color, title, and tags`,
       version: 1,
     },
-    keyboard_shortcuts: {
-      name: `Keyboard Shortcuts`,
-      type: `list`,
-      value: [],
-      info: `Extra keyboard shortcuts. If these are triggered the default shortcuts get ignored`,
-      version: 4,
-    },
     bookmarks_folder: {
       name: `Bookmarks Folder`,
       type: `text`,
@@ -1395,6 +1388,13 @@ App.build_settings = () => {
   category = `triggers`
 
   props = {
+    keyboard_shortcuts: {
+      name: `Keyboard Shortcuts`,
+      type: `list`,
+      value: [],
+      info: `Extra keyboard shortcuts. If these are triggered the default shortcuts get ignored`,
+      version: 4,
+    },
     double_click_command: {
       name: `On Double Click`,
       type: `menu`,
@@ -1860,7 +1860,7 @@ App.build_settings = () => {
       },
     },
     triggers: {
-      info: `Perform actions when double pressing or long pressing keys or mouse buttons`,
+      info: `Run commands on certain keyboard and mouse actions`,
       setup: () => {
         App.settings_make_menu(`double_click_command`, App.cmdlist)
         App.settings_make_menu(`double_ctrl_command`, App.cmdlist)
