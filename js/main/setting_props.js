@@ -541,20 +541,20 @@ App.build_settings = () => {
       separator: true,
       version: 1,
     },
-    close_button: {
-      name: `Close Button`,
-      type: `menu`,
-      value: `right`,
-      info: `How to show the close button on tabs`,
-      version: 1,
-    },
     show_pinline: {
       name: `Show Pinline`,
       type: `menu`,
       value: `auto`,
       info: `Show the widget between pinned and normal tabs`,
-      separator: true,
       version: 3,
+    },
+    close_button: {
+      name: `Close Button`,
+      type: `menu`,
+      value: `right`,
+      info: `How to show the close button on tabs`,
+      separator: true,
+      version: 1,
     },
     show_tooltips: {
       name: `Show Tooltips`,
