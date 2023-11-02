@@ -836,7 +836,6 @@ NeedContext.action = (item, e) => {
 
 // Dismissed by clicking the overlay or Escape
 NeedContext.dismiss = () => {
-  console.log(NeedContext.args.after_dismiss)
   if (NeedContext.args.after_dismiss) {
     NeedContext.args.after_dismiss()
   }
