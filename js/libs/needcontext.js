@@ -808,11 +808,7 @@ NeedContext.modkey = (e) => {
 // Do an action
 NeedContext.action = (item, e) => {
   let args = NeedContext.args
-  item.action(e)
-
-  if (NeedContext.args.after_action) {
-    NeedContext.args.after_action(e)
-  }
+  let after_action = NeedContext.args.after_action
 
   if (args.picker_mode) {
     item.element.classList.add(`needcontext-picked`)
@@ -833,6 +829,12 @@ NeedContext.action = (item, e) => {
   }
   else {
     NeedContext.hide(e)
+  }
+
+  item.action(e)
+
+  if (after_action) {
+    after_action(e)
   }
 }
 
