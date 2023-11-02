@@ -160,6 +160,9 @@ Addlist.register = (args = {}) => {
             Addlist.hide(false)
           }
         },
+        after_action: () => {
+          Addlist.save(args.id)
+        },
       })
 
       let mb = App[`addlist_menubutton_${args.id}_${key}`]

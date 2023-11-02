@@ -89,11 +89,9 @@ Menubutton.create = (args = {}) => {
       index: index,
       margin: args.button.clientHeight,
       after_dismiss: args.after_dismiss,
-      after_hide: () => {
-        if (args.after_hide) {
-          args.after_hide()
-        }
-      },
+      after_hide: args.after_hide,
+      after_action: args.after_action,
+      after_alt_action: args.after_alt_action,
     })
   }
 
