@@ -1676,8 +1676,10 @@ App.build_settings = () => {
           }
 
           if (!key.includes(`_color_`) || key.endsWith(`_enabled`)) {
-            App.start_color_picker(key)
+            continue
           }
+
+          App.start_color_picker(key)
         }
       },
     },
