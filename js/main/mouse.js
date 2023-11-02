@@ -246,8 +246,6 @@ App.mouse_context_action = (mode, e) => {
 }
 
 App.mouse_middle_action = (mode, e) => {
-  e.preventDefault()
-
   if (App.click_press_done) {
     App.reset_triggers()
     return

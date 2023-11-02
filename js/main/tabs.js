@@ -1252,3 +1252,24 @@ App.check_tab_first = (item) => {
     App.make_item_first(item)
   }
 }
+
+App.mute_playing_tabs = () => {
+  let items = App.get_playing_tabs()
+
+  if (!items.length) {
+    return
+  }
+
+  let force = App.check_force(`warn_on_mute_tabs`, items)
+  let ids = items.map(x => x.id)
+
+  App.show_confirm({
+    message: `Mute items? (${ids.length})`,
+    confirm_action: async () => {
+      for (let id of ids) {
+        App.mute_tab(id)
+      }
+    },
+    force: force,
+  })
+}

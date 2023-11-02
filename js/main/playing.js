@@ -12,6 +12,13 @@ App.create_playing_icon = (mode) => {
     App.filter_playing(mode)
   })
 
+  DOM.ev(btn, `auxclick`, (e) => {
+    if (e.button === 1) {
+      let cmd = App.get_setting(`middle_click_playing`)
+      App.run_command({cmd: cmd, from: `playing_aux`, e: e})
+    }
+  })
+
   btn.append(icon)
   return btn
 }

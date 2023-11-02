@@ -652,6 +652,17 @@ App.setup_commands = () => {
       info: `Mute or unmute tabs`,
     },
     {
+      name: `Mute Playing`,
+      cmd: `mute_playing_tabs`,
+      modes: [`tabs`],
+      item: true,
+      icon: muted_icon || command_icon,
+      action: (args) => {
+        App.mute_playing_tabs(args.item)
+      },
+      info: `Mute tabs that are playing audio`,
+    },
+    {
       name: `Close`,
       cmd: `close_tabs`,
       modes: [`tabs`],
