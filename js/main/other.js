@@ -129,12 +129,12 @@ App.check_force = (warn_setting, items) => {
 
 App.show_browser_menu = (e) => {
   let cmds = [
-    {cmd: `browser_back`},
-    {cmd: `browser_forward`},
-    {cmd: `browser_reload`},
+    `browser_back`,
+    `browser_forward`,
+    `browser_reload`,
   ]
 
-  let items = App.show_cmds_menu(cmds, `browser_commands`)
+  let items = App.cmd_list(cmds)
   App.show_context({items: items, e: e})
 }
 
