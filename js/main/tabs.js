@@ -1273,3 +1273,24 @@ App.mute_playing_tabs = () => {
     force: force,
   })
 }
+
+App.unmute_all_tabs = () => {
+  let items = App.get_muted_tabs()
+
+  if (!items.length) {
+    return
+  }
+
+  let force = App.check_force(`warn_on_unmute_tabs`, items)
+  let ids = items.map(x => x.id)
+
+  App.show_confirm({
+    message: `Unmute items? (${ids.length})`,
+    confirm_action: async () => {
+      for (let id of ids) {
+        App.unmute_tab(id)
+      }
+    },
+    force: force,
+  })
+}

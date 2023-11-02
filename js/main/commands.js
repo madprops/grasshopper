@@ -663,6 +663,17 @@ App.setup_commands = () => {
       info: `Mute tabs that are playing audio`,
     },
     {
+      name: `Unmute All`,
+      cmd: `mute_all_tabs`,
+      modes: [`tabs`],
+      item: true,
+      icon: muted_icon || command_icon,
+      action: (args) => {
+        App.unmute_all_tabs(args.item)
+      },
+      info: `Unmute all muted tabs`,
+    },
+    {
       name: `Close`,
       cmd: `close_tabs`,
       modes: [`tabs`],
