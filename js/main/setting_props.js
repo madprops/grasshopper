@@ -551,6 +551,7 @@ App.build_settings = () => {
       type: `menu`,
       value: `auto`,
       info: `Show the widget between pinned and normal tabs`,
+      separator: true,
       version: 3,
     },
     show_tooltips: {
