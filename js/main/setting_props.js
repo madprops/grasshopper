@@ -1668,7 +1668,8 @@ App.build_settings = () => {
       },
     },
     theme: {
-      info: `Here you can change the color theme and background image. Colors can be randomized. The background image can have an effect and/or tile mode`,
+      info: `Here you can change the color theme and background image. Colors can be randomized.
+      The background image can have an effect and/or tile mode. You can also override the CSS`,
       setup: () => {
         App.start_color_picker(`background_color`)
         App.start_color_picker(`text_color`)
@@ -1837,7 +1838,8 @@ App.build_settings = () => {
       },
     },
     gestures: {
-      info: `You perform gestures by holding the middle mouse button, moving in a direction, and releasing the button`,
+      info: `You perform gestures by holding the middle mouse button, moving in a direction, and releasing the button.
+      Each gesture runs a specified command. You can also set the sensitivity of the gestures`,
       setup: () => {
         App.settings_make_menu(`gestures_threshold`, [
           {text: `Normal`, value: 10},
@@ -1856,7 +1858,7 @@ App.build_settings = () => {
       },
     },
     auxclick: {
-      info: `Perform actions on middle-click`,
+      info: `Run commands when middle-clicking various components`,
       setup: () => {
         for (let key in App.setting_props) {
           let props = App.setting_props[key]
@@ -1868,12 +1870,13 @@ App.build_settings = () => {
       },
     },
     menus: {
-      info: `Customize context and action menus`,
+      info: `Edit the lists of commands that appear in different places`,
       setup: () => {},
     },
     warns: {
-      info: `When to show the confirmation dialog on some actions.
-      Special does action depending if tabs are pinned. Multiple warns if multiple items are selected`,
+      info: `When to show the confirmation dialog on actions.
+      'Special' forces a confirm depending if tabs have a certain state like pinned, playing, or colored.
+      'Multiple' forces a confirm if multiple items are selected`,
       setup: () => {
         let tab_warn_opts = [
           {text: `Never`, value: `never`},
