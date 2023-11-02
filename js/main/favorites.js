@@ -26,7 +26,7 @@ App.fill_favorites_bar = (mode) => {
 
   bar.classList.remove(`hidden`)
   let c = DOM.el(`#favorites_bar_${mode}`)
-  let favorites = App.get_setting(`favorites`)
+  let favorites = App.get_setting(`favorites_menu`)
 
   if (!favorites.length) {
     return
@@ -70,6 +70,6 @@ App.fill_favorites_bar = (mode) => {
 }
 
 App.show_favorites_menu = (e, item) => {
-  let items = App.custom_menu_items(`favorites`, item)
+  let items = App.custom_menu_items(`favorites_menu`, item)
   App.show_context({items: items, e: e})
 }

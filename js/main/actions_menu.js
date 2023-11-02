@@ -24,7 +24,7 @@ App.create_actions_menu = (mode) => {
 }
 
 App.show_actions_menu = (mode) => {
-  let items = App.custom_menu_items(`${mode}_actions`)
+  let items = App.cmd_list(App[`${mode}_actions`])
   let btn = DOM.el(`#${mode}_actions`)
 
   App.show_context({

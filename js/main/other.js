@@ -159,3 +159,13 @@ App.reset_triggers = () => {
   App.reset_keyboard()
   App.reset_mouse()
 }
+
+App.show_empty_menu = (e) => {
+  let cmds = [
+    `open_new_tab`,
+    `select_all_items`,
+  ]
+
+  let items = App.cmd_list(cmds)
+  App.show_context({items: items, e: e})
+}

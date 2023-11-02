@@ -67,7 +67,15 @@ App.create_footer = (mode) => {
   })
 
   DOM.ev(footer, `contextmenu`, (e) => {
-    App.show_custom_menu(e, `footer`)
+    e.preventDefault()
+
+    let cmds = [
+      `copy_item_url`,
+      `copy_item_title`,
+    ]
+
+    let items = App.cmd_list(cmds)
+    App.show_context({items: items, e: e})
   })
 
   DOM.ev(footer, `auxclick`, (e) => {

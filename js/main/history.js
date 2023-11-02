@@ -6,6 +6,11 @@ App.setup_history = () => {
       App.history_changed = true
     }
   })
+
+  App.history_actions = [
+    `deep_search`,
+    `show_search_media_menu`,
+  ]
 }
 
 App.history_time = (deep = false) => {

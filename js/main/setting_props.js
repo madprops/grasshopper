@@ -446,6 +446,21 @@ App.build_settings = () => {
       type: `menu`,
       value: `none`,
       info: `How to show favorites`,
+      separator: true,
+      version: 1,
+    },
+    favorites_menu: {
+      name: `Favorites Menu`,
+      type: `list`,
+      value: [
+        {cmd: `color_red`},
+        {cmd: `color_green`},
+        {cmd: `color_blue`},
+        {cmd: `color_yellow`},
+        {cmd: `set_random_light_colors`},
+        {cmd: `set_random_dark_colors`},
+      ],
+      info: `List of commands that can appear in various forms`,
       version: 1,
     },
     tab_box: {
@@ -477,6 +492,18 @@ App.build_settings = () => {
       flat at the root level, or totally replace the item menu. This menu only appears in tabs mode`,
       version: 1,
     },
+    extra_menu: {
+      name: `Extra Menu`,
+      type: `list`,
+      value: [
+        {cmd: `color_red`},
+        {cmd: `color_green`},
+        {cmd: `color_blue`},
+      ],
+      separator: true,
+      info: `Extra menu to show when right clicking items`,
+      version: 4,
+    },
     close_button: {
       name: `Close Button`,
       type: `menu`,
@@ -490,6 +517,17 @@ App.build_settings = () => {
       value: `none`,
       info: `How to show the hover button on tabs`,
       version: 2,
+    },
+    hover_menu: {
+      name: `Hover Menu`,
+      type: `list`,
+      value: [
+        {cmd: `color_red`},
+        {cmd: `color_green`},
+        {cmd: `color_blue`},
+      ],
+      info: `Menu to show when clicking the hover button`,
+      version: 1,
     },
     taglist: {
       name: `Taglist`,
@@ -725,125 +763,6 @@ App.build_settings = () => {
       type: `menu`,
       value: `close_tabs`,
       info: `Middle-click on the hover button of tab items`,
-      version: 1,
-    },
-  }
-
-  add_props()
-  category = `menus`
-
-  props = {
-    favorites: {
-      name: `Favorites`,
-      type: `list`,
-      value: [
-        {cmd: `color_red`},
-        {cmd: `color_green`},
-        {cmd: `color_blue`},
-        {cmd: `color_yellow`},
-        {cmd: `set_random_light_colors`},
-        {cmd: `set_random_dark_colors`},
-      ],
-      info: `List of commands that can appear in various forms`,
-      version: 1,
-    },
-    extra_menu: {
-      name: `Extra Menu`,
-      type: `list`,
-      value: [
-        {cmd: `color_red`},
-        {cmd: `color_green`},
-        {cmd: `color_blue`},
-      ],
-      info: `Extra menu to show when right clicking items`,
-      version: 4,
-    },
-    hover_menu: {
-      name: `Hover Menu`,
-      type: `list`,
-      value: [
-        {cmd: `color_red`},
-        {cmd: `color_green`},
-        {cmd: `color_blue`},
-      ],
-      info: `Menu to show when clicking the hover button`,
-      version: 1,
-    },
-    pinline_menu: {
-      name: `Pinline Menu`,
-      type: `list`,
-      value: [
-        {cmd: `select_pinned_tabs`},
-        {cmd: `select_normal_tabs`},
-        {cmd: `select_unloaded_tabs`},
-        {cmd: `select_all_items`},
-      ],
-      info: `Menu when clicking the pinline`,
-      version: 4,
-    },
-    empty_menu: {
-      name: `Empty Menu`,
-      type: `list`,
-      value: [
-        {cmd: `open_new_tab`},
-        {cmd: `select_all_items`},
-      ],
-      info: `Menu when right clicking empty space`,
-      version: 4,
-    },
-    footer_menu: {
-      name: `Footer Menu`,
-      type: `list`,
-      value: [
-        {cmd: `copy_item_url`},
-        {cmd: `copy_item_title`},
-      ],
-      info: `Menu when right clicking the footer`,
-      version: 4,
-    },
-    tabs_actions: {
-      name: `Tab Actions`,
-      type: `list`,
-      value: [
-        {cmd: `open_new_tab`},
-        {cmd: `sort_tabs`},
-        {cmd: `reopen_tab`},
-        {cmd: `show_tabs_info`},
-        {cmd: `show_tab_urls`},
-        {cmd: `open_tab_urls`},
-        {cmd: `show_close_tabs_menu`},
-      ],
-      info: `Tabs action menu`,
-      version: 1,
-    },
-    history_actions: {
-      name: `History Actions`,
-      type: `list`,
-      value: [
-        {cmd: `deep_search`},
-        {cmd: `show_search_media_menu`},
-      ],
-      info: `History action menu`,
-      version: 1,
-    },
-    bookmarks_actions: {
-      name: `Bookmark Actions`,
-      type: `list`,
-      value: [
-        {cmd: `deep_search`},
-        {cmd: `show_search_media_menu`},
-        {cmd: `bookmark_page`},
-      ],
-      info: `Bookmarks action menu`,
-      version: 1,
-    },
-    closed_actions: {
-      name: `Closed Actions`,
-      type: `list`,
-      value: [
-        {cmd: `forget_closed`},
-      ],
-      info: `Closed action menu`,
       version: 1,
     },
   }
@@ -1737,8 +1656,16 @@ App.build_settings = () => {
       info: `Custom colors for tabs. You can enable/disable each color for different kinds of tabs.
       Some colors take precendence over others`,
       setup: () => {
-        for (let key of App.get_tab_color_keys()) {
-          App.start_color_picker(key)
+        for (let key in App.setting_props) {
+          let props = App.setting_props[key]
+
+          if (props.category !== `colors`) {
+            continue
+          }
+
+          if (!key.includes(`_color_`) || key.endsWith(`_enabled`)) {
+            App.start_color_picker(key)
+          }
         }
       },
     },
@@ -1888,10 +1815,6 @@ App.build_settings = () => {
           }
         }
       },
-    },
-    menus: {
-      info: `Edit the lists of commands that appear in different places`,
-      setup: () => {},
     },
     warns: {
       info: `When to show the confirmation dialog on certain actions.

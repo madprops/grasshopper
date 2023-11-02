@@ -1171,7 +1171,7 @@ App.setup_settings_addlist = () => {
     let id = `settings_${key}`
     props = App.setting_props[key]
 
-    if (props.category === `menus` || key === `filter_menu`) {
+    if (key === `filter_menu` || key === `favorites_menu` || key === `extra_menu` || key === `hover_menu`) {
       let cmds
 
       if (key === `filter_menu`) {
@@ -1336,24 +1336,4 @@ App.color_values = () => {
   }
 
   return items
-}
-
-App.get_tab_color_keys = () => {
-  let keys = []
-
-  for (let key in App.setting_props) {
-    let props = App.setting_props[key]
-
-    if (props.category !== `colors`) {
-      continue
-    }
-
-    if (!key.includes(`_color_`) || key.endsWith(`_enabled`)) {
-      continue
-    }
-
-    keys.push(key)
-  }
-
-  return keys
 }

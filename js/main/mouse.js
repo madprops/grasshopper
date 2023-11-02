@@ -213,13 +213,14 @@ App.mouse_double_click_action = (mode, e) => {
 }
 
 App.mouse_context_action = (mode, e) => {
+  e.preventDefault()
+
   if (!App.cursor_on_item(mode, e)) {
-    App.show_custom_menu(e, `empty`)
+    App.show_empty_menu(e)
     return
   }
 
   let item = App.direction(mode, e)
-  e.preventDefault()
 
   if (App.get_setting(`hover_button`)) {
     if (App.get_setting(`hover_button_pick`)) {

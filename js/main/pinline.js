@@ -55,7 +55,15 @@ App.do_check_pinline = () => {
   pinline_content.title = `Pins above. Normal below. This is the Pinline`
 
   DOM.ev(pinline_content, `click`, (e) => {
-    App.show_custom_menu(e, `pinline`)
+    let cmds = [
+      `select_pinned_tabs`,
+      `select_normal_tabs`,
+      `select_unloaded_tabs`,
+      `select_all_items`,
+    ]
+
+    let items = App.cmd_list(cmds)
+    App.show_context({items: items, e: e})
   })
 
   DOM.ev(pinline_content, `auxclick`, (e) => {

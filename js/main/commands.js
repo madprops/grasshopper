@@ -1513,3 +1513,13 @@ App.cmd_item = (args = {}) => {
     direct: true,
   }
 }
+
+App.cmd_list = (cmds) => {
+  let items = []
+
+  for (let cmd of cmds) {
+    items.push(App.cmd_item({cmd: cmd}))
+  }
+
+  return items
+}
