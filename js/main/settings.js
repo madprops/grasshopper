@@ -422,7 +422,7 @@ App.start_settings = () => {
 
   App.cmdlist = App.settings_commands()
   App.cmdlist_2 = App.settings_commands(false)
-  App.filter_list = App.cmdlist_2.filter(x => x.text.includes(`Filter`))
+  App.filter_cmds = App.cmdlist_2.filter(x => x.text.includes(`Filter`))
 
   let common = {
     persistent: false,
@@ -1175,7 +1175,7 @@ App.setup_settings_addlist = () => {
       let cmds
 
       if (key === `filter_menu`) {
-        cmds = App.filter_list.slice(0)
+        cmds = App.filter_cmds.slice(0)
       }
       else {
         cmds = App.cmdlist_2.slice(0)
