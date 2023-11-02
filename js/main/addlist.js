@@ -161,7 +161,9 @@ Addlist.register = (args = {}) => {
           }
         },
         after_action: () => {
-          Addlist.save(args.id)
+          if (args.automenu) {
+            Addlist.save(args.id)
+          }
         },
       })
 
