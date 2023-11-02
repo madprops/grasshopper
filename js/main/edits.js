@@ -262,7 +262,21 @@ App.apply_edit = (what, item, value) => {
     }
   }
 
-  item[`custom_${what}`] = value
+  let change = true
+
+  if (item[`rule_${what}`]) {
+    if (item[`rule_${what}`] === value) {
+      change = false
+    }
+  }
+
+  if (change) {
+    item[`custom_${what}`] = value
+  }
+  else {
+    item[`custom_${what}`] = undefined
+  }
+
   App.update_item(item.mode, item.id, item)
 }
 
@@ -318,12 +332,6 @@ App.edit_tab_color = (args = {}) => {
     message: `${s} (${active.length})`,
     confirm_action: () => {
       for (let it of active) {
-        if (it.rule_color) {
-          if (it.rule_color === args.color) {
-            continue
-          }
-        }
-
         App.apply_edit(`color`, it, args.color)
         App.custom_save(it.id, `custom_color`, args.color)
       }
