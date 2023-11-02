@@ -26,7 +26,7 @@ App.setup_window_mouse = (mode) => {
   let container = DOM.el(`#${mode}_container`)
 
   DOM.ev(container, `mousedown`, (e) => {
-    App.reset_mouse()
+    App.reset_triggers()
 
     if (e.button === 0 || e.button === 1) {
       if (App.cursor_on_item(mode, e)) {
@@ -39,11 +39,11 @@ App.setup_window_mouse = (mode) => {
 
   DOM.ev(container, `click`, (e) => {
     if (App.click_press_done) {
-      App.reset_mouse()
+      App.reset_triggers()
       return
     }
 
-    App.reset_mouse()
+    App.reset_triggers()
     App.mouse_click_action(mode, e)
   })
 
@@ -246,11 +246,11 @@ App.mouse_context_action = (mode, e) => {
 
 App.mouse_middle_action = (mode, e) => {
   if (App.click_press_done) {
-    App.reset_mouse()
+    App.reset_triggers()
     return
   }
 
-  App.reset_mouse()
+  App.reset_triggers()
 
   if (!App.cursor_on_item(mode, e)) {
     return

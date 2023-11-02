@@ -299,12 +299,12 @@ App.setup_keyboard = () => {
     }
 
     if (e.key === `Control` || e.key === `Shift`) {
-      App.reset_keyboard()
+      App.reset_triggers()
       App.pressed_key = e.key
       App.start_press_timeout()
     }
     else {
-      App.reset_keyboard()
+      App.reset_triggers()
     }
 
     let mode = App.window_mode
@@ -548,7 +548,7 @@ App.setup_keyboard = () => {
   })
 
   DOM.ev(document, `keyup`, (e) => {
-    App.reset_keyboard()
+    App.reset_triggers()
   })
 }
 
@@ -577,7 +577,7 @@ App.press_action = () => {
 }
 
 App.double_key_action = (key) => {
-  App.reset_keyboard()
+  App.reset_triggers()
 
   if (key === `Control`) {
     let cmd = App.get_setting(`double_ctrl_command`)

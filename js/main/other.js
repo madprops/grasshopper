@@ -154,3 +154,8 @@ App.toggle_header = () => {
     main.classList.add(`no_header`)
   }
 }
+
+App.reset_triggers = () => {
+  App.reset_keyboard()
+  App.reset_mouse()
+}
