@@ -1293,7 +1293,7 @@ App.build_settings = () => {
       name: `Filter Menu`,
       type: `list`,
       value: [],
-      info: `Menu to show when right clicking the filters button`,
+      info: `Menu to show when right clicking the Filter Menu at the top`,
       version: 1,
     },
     clean_filter: {
