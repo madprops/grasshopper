@@ -160,20 +160,20 @@ App.build_settings = () => {
   category = `theme`
 
   props = {
-    background_color: {
-      name: `Background Color`,
-      type: `color`,
-      value: App.dark_colors.background,
-      action: `theme`,
-      info: `The background color`,
-      version: 1,
-    },
     text_color: {
       name: `Text Color`,
       type: `color`,
       value: App.dark_colors.text,
       action: `theme`,
       info: `The text color`,
+      version: 1,
+    },
+    background_color: {
+      name: `Background Color`,
+      type: `color`,
+      value: App.dark_colors.background,
+      action: `theme`,
+      info: `The background color`,
       version: 1,
     },
     background_image: {
