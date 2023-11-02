@@ -38,6 +38,7 @@ App.number_max = 99999
 App.tag_history_max = 10
 App.title_history_max = 10
 App.active_history = []
+App.click_press_done = false
 
 App.settings_done = false
 App.settings_ready = false

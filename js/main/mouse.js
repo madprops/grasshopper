@@ -250,6 +250,8 @@ App.mouse_middle_action = (mode, e) => {
     return
   }
 
+  App.reset_mouse()
+
   if (!App.cursor_on_item(mode, e)) {
     return
   }
