@@ -767,7 +767,7 @@ App.build_settings = () => {
       name: `Middle Click Favorites`,
       type: `menu`,
       value: `none`,
-      info: `Middle-click on the favorites bar or button`,
+      info: `Middle-click on the favorites button`,
       version: 1,
     },
     middle_click_hover_button: {

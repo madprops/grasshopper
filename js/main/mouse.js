@@ -261,12 +261,6 @@ App.mouse_middle_action = (mode, e) => {
     return
   }
 
-  if (e.target.closest(`.favorites_bar`)) {
-    let cmd = App.get_setting(`middle_click_favorites`)
-    App.run_command({cmd: cmd, from: `favorites_bar`, e: e})
-    return
-  }
-
   if (!App.cursor_on_item(mode, e)) {
     return
   }
