@@ -80,6 +80,7 @@ App.settings_icons = {
   favorites: `🖱️`,
   warns: `🚨`,
   filter: `🔍`,
+  triggers: `🔮`,
   more: `💠`,
 }
 

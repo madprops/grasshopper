@@ -110,34 +110,6 @@ App.build_settings = () => {
       Restore means going back to the primary mode and clearing the filter`,
       version: 1,
     },
-    double_click_command: {
-      name: `On Double Click`,
-      type: `menu`,
-      value: `item_action`,
-      info: `What command to run when double clicking an item`,
-      version: 1,
-    },
-    left_click_press_command: {
-      name: `On Click Press`,
-      type: `menu`,
-      value: `none`,
-      info: `What command to run when pressing the left mouse button on an item for a short time`,
-      version: 1,
-    },
-    double_ctrl_command: {
-      name: `On Double Ctrl`,
-      type: `menu`,
-      value: `show_palette`,
-      info: `What command to run when pressing Ctrl twice quickly`,
-      version: 1,
-    },
-    ctrl_press_command: {
-      name: `On Ctrl Press`,
-      type: `menu`,
-      value: `none`,
-      info: `What command to run when pressing and holding Ctrl for a short time`,
-      version: 1,
-    },
     domain_rules: {
       name: `Domain Rules`,
       type: `list`,
@@ -1420,6 +1392,87 @@ App.build_settings = () => {
   }
 
   add_props()
+  category = `triggers`
+
+  props = {
+    double_click_command: {
+      name: `On Double Click`,
+      type: `menu`,
+      value: `item_action`,
+      info: `What command to run when double clicking an item`,
+      version: 1,
+    },
+    left_click_press_command: {
+      name: `On Click Press`,
+      type: `menu`,
+      value: `none`,
+      info: `What command to run when pressing the left mouse button on an item for a short time`,
+      version: 1,
+    },
+    double_ctrl_command: {
+      name: `On Double Ctrl`,
+      type: `menu`,
+      value: `show_palette`,
+      info: `What command to run when pressing Ctrl twice quickly`,
+      version: 1,
+    },
+    double_shift_command: {
+      name: `On Double Shift`,
+      type: `menu`,
+      value: `none`,
+      info: `What command to run when pressing Shift twice quickly`,
+      version: 1,
+    },
+    ctrl_press_command: {
+      name: `On Ctrl Press`,
+      type: `menu`,
+      value: `none`,
+      info: `What command to run when pressing and holding Ctrl for a short time`,
+      version: 1,
+    },
+    shift_press_command: {
+      name: `On Shift Press`,
+      type: `menu`,
+      value: `none`,
+      info: `What command to run when pressing and holding Shift for a short time`,
+      version: 1,
+    },
+    double_key_delay: {
+      name: `Double Key Delay`,
+      type: `number`,
+      value: 350,
+      placeholder: `Number`,
+      min: App.number_min,
+      max: App.number_max,
+      info: `Delay to trigger action when double tapping a key like Ctrl (ms).
+      The bigger the delay the easier it is to trigger a command`,
+      version: 1,
+    },
+    key_press_delay: {
+      name: `Key Press Delay`,
+      type: `number`,
+      value: 450,
+      placeholder: `Number`,
+      min: App.number_min,
+      max: App.number_max,
+      info: `Delay to trigger action when long pressing a key like Ctrl (ms).
+      This is the amount of time to hold the key down to trigger a command`,
+      version: 1,
+    },
+    click_press_delay: {
+      name: `Click Press Delay`,
+      type: `number`,
+      value: 450,
+      placeholder: `Number`,
+      min: App.number_min,
+      max: App.number_max,
+      info: `Delay to trigger action when long pressing a mouse button (ms).
+      This is the amount of time to hold the mouse button down to trigger a command`,
+      version: 1,
+    },
+  }
+
+  add_props()
   category = `more`
 
   props = {
@@ -1556,39 +1609,6 @@ App.build_settings = () => {
       info: `Max active tab history to remember. This aftects Active Trace and the Tab Box`,
       version: 1,
     },
-    double_key_delay: {
-      name: `Double Key Delay`,
-      type: `number`,
-      value: 350,
-      placeholder: `Number`,
-      min: App.number_min,
-      max: App.number_max,
-      info: `Delay to trigger action when double tapping a key like Ctrl (ms).
-      The bigger the delay the easier it is to trigger a command`,
-      version: 1,
-    },
-    key_press_delay: {
-      name: `Key Press Delay`,
-      type: `number`,
-      value: 500,
-      placeholder: `Number`,
-      min: App.number_min,
-      max: App.number_max,
-      info: `Delay to trigger action when long pressing a key like Ctrl (ms).
-      This is the amount of time to hold the key down to trigger a command`,
-      version: 1,
-    },
-    click_press_delay: {
-      name: `Click Press Delay`,
-      type: `number`,
-      value: 500,
-      placeholder: `Number`,
-      min: App.number_min,
-      max: App.number_max,
-      info: `Delay to trigger action when long pressing a mouse button (ms).
-      This is the amount of time to hold the mouse button down to trigger a command`,
-      version: 1,
-    },
   }
 
   add_props()
@@ -1660,11 +1680,6 @@ App.build_settings = () => {
         App.settings_make_menu(`height`, App.get_size_options(), () => {
           App.apply_theme()
         })
-
-        App.settings_make_menu(`double_click_command`, App.cmdlist)
-        App.settings_make_menu(`double_ctrl_command`, App.cmdlist)
-        App.settings_make_menu(`ctrl_press_command`, App.cmdlist)
-        App.settings_make_menu(`left_click_press_command`, App.cmdlist)
       },
     },
     theme: {
@@ -1835,6 +1850,17 @@ App.build_settings = () => {
           App.settings_make_menu(`view_video_${m}`, opts)
           App.settings_make_menu(`view_audio_${m}`, opts)
         }
+      },
+    },
+    triggers: {
+      info: `Perform actions when double pressing or long pressing keys or mouse buttons`,
+      setup: () => {
+        App.settings_make_menu(`double_click_command`, App.cmdlist)
+        App.settings_make_menu(`double_ctrl_command`, App.cmdlist)
+        App.settings_make_menu(`double_shift_command`, App.cmdlist)
+        App.settings_make_menu(`ctrl_press_command`, App.cmdlist)
+        App.settings_make_menu(`shift_press_command`, App.cmdlist)
+        App.settings_make_menu(`left_click_press_command`, App.cmdlist)
       },
     },
     gestures: {

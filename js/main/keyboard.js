@@ -298,7 +298,7 @@ App.setup_keyboard = () => {
       }
     }
 
-    if (e.key === `Control`) {
+    if (e.key === `Control` || e.key === `Shift`) {
       App.reset_keyboard()
       App.pressed_key = e.key
       App.start_press_timeout()
@@ -310,10 +310,11 @@ App.setup_keyboard = () => {
     let mode = App.window_mode
     let pmode = App.popup_mode()
 
-    if (e.key === `Control`) {
+    if (e.key === `Control` || e.key === `Shift`) {
+      e.preventDefault()
+
       if (App.now() - App.double_key_date < App.get_setting(`double_key_delay`)) {
         App.double_key_action(e.key)
-        e.preventDefault()
         return
       }
 
@@ -569,6 +570,10 @@ App.press_action = () => {
     let cmd = App.get_setting(`ctrl_press_command`)
     App.run_command({cmd: cmd, from: `ctrl_press`})
   }
+  else if (App.pressed_key === `Shift`) {
+    let cmd = App.get_setting(`shift_press_command`)
+    App.run_command({cmd: cmd, from: `shift_press`})
+  }
 }
 
 App.double_key_action = (key) => {
@@ -577,5 +582,9 @@ App.double_key_action = (key) => {
   if (key === `Control`) {
     let cmd = App.get_setting(`double_ctrl_command`)
     App.run_command({cmd: cmd, from: `double_ctrl`})
+  }
+  else if (key === `Shift`) {
+    let cmd = App.get_setting(`double_shift_command`)
+    App.run_command({cmd: cmd, from: `double_shift`})
   }
 }
