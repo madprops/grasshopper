@@ -1675,7 +1675,7 @@ App.build_settings = () => {
       },
     },
     show: {
-      info: `Hide or show interface components. Set component behavior`,
+      info: `Hide or show interface components. Set component behavior and their menus`,
       setup: () => {
         App.settings_make_menu(`show_pinline`, [
           {text: `Never`, value: `never`},
