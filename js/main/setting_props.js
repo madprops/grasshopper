@@ -1315,7 +1315,7 @@ App.build_settings = () => {
     double_click_command: {
       name: `On Double Click`,
       type: `menu`,
-      value: `item_action`,
+      value: `none`,
       info: `What command to run when double clicking an item`,
       version: 1,
     },
