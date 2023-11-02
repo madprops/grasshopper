@@ -1821,8 +1821,8 @@ App.build_settings = () => {
       setup: () => {},
     },
     edits: {
-      info: `These are the colors you assign to tabs.
-      The colors can be presented in different ways`,
+      info: `Settings regarding edits you can apply to tabs.
+      This also includes Domain Rules which apply automatically based on URL`,
       setup: () => {
         for (let color of App.colors) {
           App.start_color_picker(`color_${color}`)
