@@ -497,6 +497,7 @@ App.build_settings = () => {
       value: [
         {cmd: `filter_domain`},
         {cmd: `filter_color`},
+        {cmd: `duplicate_tabs`},
         {cmd: `unload_tabs`},
       ],
       info: `Menu to show when clicking the hover button`,
