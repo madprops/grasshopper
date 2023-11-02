@@ -1744,7 +1744,7 @@ App.build_settings = () => {
       },
     },
     colorz: {
-      info: `Custom text colors for tabs. You can enable/disable each color and set the color for different kinds of tabs.
+      info: `Custom colors for tabs. You can enable/disable each color for different kinds of tabs.
       Some colors take precendence over others`,
       setup: () => {
         for (let key of App.get_tab_color_keys()) {
