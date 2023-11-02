@@ -263,10 +263,13 @@ App.apply_edit = (what, item, value) => {
   }
 
   let change = true
+  let props = App.edit_props[what]
 
-  if (item[`rule_${what}`]) {
-    if (item[`rule_${what}`] === value) {
-      change = false
+  if (props.type === `string`) {
+    if (item[`rule_${what}`]) {
+      if (item[`rule_${what}`] === value) {
+        change = false
+      }
     }
   }
 
