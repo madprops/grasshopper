@@ -1023,6 +1023,10 @@ App.fill_settings = (category) => {
       }
 
       c.append(el)
+
+      if (props.separator) {
+        c.append(DOM.create(`div`, `settings_separator filter_ignore`))
+      }
     }
   }
 }

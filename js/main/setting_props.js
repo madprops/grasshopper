@@ -446,7 +446,6 @@ App.build_settings = () => {
       type: `menu`,
       value: `none`,
       info: `How to show favorites`,
-      separator: true,
       version: 1,
     },
     favorites_menu: {
@@ -461,6 +460,7 @@ App.build_settings = () => {
         {cmd: `set_random_dark_colors`},
       ],
       info: `List of commands that can appear in various forms`,
+      separator: true,
       version: 1,
     },
     tab_box: {
@@ -482,6 +482,7 @@ App.build_settings = () => {
       type: `menu`,
       value: `bottom`,
       info: `The position of the tab box`,
+      separator: true,
       version: 1,
     },
     extra_menu_mode: {
@@ -500,16 +501,9 @@ App.build_settings = () => {
         {cmd: `color_green`},
         {cmd: `color_blue`},
       ],
-      separator: true,
       info: `Extra menu to show when right clicking items`,
+      separator: true,
       version: 4,
-    },
-    close_button: {
-      name: `Close Button`,
-      type: `menu`,
-      value: `right`,
-      info: `How to show the close button on tabs`,
-      version: 1,
     },
     hover_button: {
       name: `Hover Button`,
@@ -527,6 +521,7 @@ App.build_settings = () => {
         {cmd: `color_blue`},
       ],
       info: `Menu to show when clicking the hover button`,
+      separator: true,
       version: 1,
     },
     taglist: {
@@ -541,6 +536,14 @@ App.build_settings = () => {
       type: `menu`,
       value: `filter`,
       info: `What to do when clicking the taglist items`,
+      separator: true,
+      version: 1,
+    },
+    close_button: {
+      name: `Close Button`,
+      type: `menu`,
+      value: `right`,
+      info: `How to show the close button on tabs`,
       version: 1,
     },
     show_pinline: {

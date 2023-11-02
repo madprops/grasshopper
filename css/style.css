@@ -1145,3 +1145,11 @@ a:visited, a:link, a:hover {
 .taglist_item:hover {
   text-decoration-style: double;
 }
+
+.settings_separator {
+  width: 100%;
+  height: 1px;
+  background-color: var(--alt_color_1);
+  margin-top: 0.5rem;
+  margin-bottom: 0.5rem;
+}

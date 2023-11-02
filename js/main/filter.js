@@ -593,6 +593,16 @@ App.do_filter_2 = (mode) => {
   let win = DOM.el(`#${type}_${mode}`)
   let container = DOM.el_or_self(`.filter_container`, win)
   let items = DOM.els(`.filter_item`, container)
+  let ignore = DOM.els(`.filter_ignore`, container)
+
+  for (let item of ignore) {
+    if (value) {
+      item.classList.add(`hidden`)
+    }
+    else {
+      item.classList.remove(`hidden`)
+    }
+  }
 
   for (let item of items) {
     let text = DOM.el_or_self(`.filter_text`, item).textContent
