@@ -246,6 +246,8 @@ App.mouse_context_action = (mode, e) => {
 }
 
 App.mouse_middle_action = (mode, e) => {
+  e.preventDefault()
+
   if (App.click_press_done) {
     App.reset_triggers()
     return
@@ -253,12 +255,23 @@ App.mouse_middle_action = (mode, e) => {
 
   App.reset_triggers()
 
+  if (e.target.classList.contains(`favorites_button`)) {
+    let cmd = App.get_setting(`middle_click_favorites`)
+    App.run_command({cmd: cmd, from: `favorites_button`, e: e})
+    return
+  }
+
+  if (e.target.closest(`.favorites_bar`)) {
+    let cmd = App.get_setting(`middle_click_favorites`)
+    App.run_command({cmd: cmd, from: `favorites_bar`, e: e})
+    return
+  }
+
   if (!App.cursor_on_item(mode, e)) {
     return
   }
 
   let item = App.direction(mode, e)
-  e.preventDefault()
 
   if (e.target.classList.contains(`close_icon`)) {
     let cmd = App.get_setting(`middle_click_close_icon`)
