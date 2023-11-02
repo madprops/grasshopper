@@ -786,7 +786,7 @@ App.build_settings = () => {
         {cmd: `set_random_light_colors`},
         {cmd: `set_random_dark_colors`},
       ],
-      info: `Command buttons to show at the top`,
+      info: `List of commands that can appear in various forms`,
       version: 1,
     },
     extra_menu: {
