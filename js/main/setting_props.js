@@ -737,10 +737,10 @@ App.build_settings = () => {
       name: `Favorites`,
       type: `list`,
       value: [
-        {cmd: `show_about`},
         {cmd: `color_red`},
         {cmd: `color_green`},
         {cmd: `color_blue`},
+        {cmd: `color_yellow`},
         {cmd: `set_random_light_colors`},
         {cmd: `set_random_dark_colors`},
       ],
