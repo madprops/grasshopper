@@ -306,7 +306,7 @@ App.edit_tab_color = (args = {}) => {
 
   if (active.length === 1 && !args.color) {
     if (active[0].rule_color && !args.item.custom_color) {
-      App.alert(`This color is set by domain rules`)
+      App.alert_autohide(`This color is set by domain rules`)
       return
     }
   }
@@ -574,7 +574,7 @@ App.remove_item_title = (item) => {
     let it = active[0]
 
     if (it.rule_title && !it.custom_title) {
-      App.alert(`This title is set by domain rules`)
+      App.alert_autohide(`This title is set by domain rules`)
       return
     }
   }
@@ -828,7 +828,7 @@ App.check_tag_rule = (item, tag) => {
   if (item.rule_tags &&
   item.rule_tags.length &&
   item.rule_tags.includes(tag)) {
-    App.alert(`This tag is set by domain rules`)
+    App.alert_autohide(`This tag is set by domain rules`)
     return true
   }
 
