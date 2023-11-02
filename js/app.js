@@ -70,7 +70,7 @@ App.settings_icons = {
   general: `⚙️`,
   theme: `🎨`,
   colors: `🎨`,
-  colorz: `🎨`,
+  edits: `📝`,
   icons: `🖼️`,
   media: `📷`,
   icons: `👁️`,

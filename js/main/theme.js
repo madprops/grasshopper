@@ -60,7 +60,7 @@ App.do_apply_theme = (args = {}) => {
     for (let color of App.colors) {
       let rgb = App.get_setting(`color_${color}`)
       App.set_css_var(`color_${color}`, rgb)
-      let text = App.colorlib.get_lighter_or_darker(rgb, 0.77)
+      let text = App.colorlib.get_lighter_or_darker(rgb, 0.8)
       App.set_css_var(`text_${color}`, text)
     }
 

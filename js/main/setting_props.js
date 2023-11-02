@@ -110,13 +110,6 @@ App.build_settings = () => {
       Restore means going back to the primary mode and clearing the filter`,
       version: 1,
     },
-    domain_rules: {
-      name: `Domain Rules`,
-      type: `list`,
-      value: [],
-      info: `Apply rules to domains automatically, like color, title, and tags`,
-      version: 1,
-    },
     bookmarks_folder: {
       name: `Bookmarks Folder`,
       type: `text`,
@@ -956,9 +949,16 @@ App.build_settings = () => {
   }
 
   add_props()
-  category = `colors`
+  category = `edits`
 
   props = {
+    domain_rules: {
+      name: `Domain Rules`,
+      type: `list`,
+      value: [],
+      info: `Apply rules to domains automatically, like color, title, and tags`,
+      version: 1,
+    },
     color_mode: {
       name: `Color Mode`,
       type: `menu`,
@@ -1018,7 +1018,7 @@ App.build_settings = () => {
   }
 
   add_props()
-  category = `colorz`
+  category = `colors`
 
   props = {
     text_color_active_enabled: {
@@ -1748,25 +1748,6 @@ App.build_settings = () => {
       ]
     },
     colors: {
-      info: `These are the colors you assign to tabs.
-      The colors can be presented in different ways`,
-      setup: () => {
-        for (let color of App.colors) {
-          App.start_color_picker(`color_${color}`)
-        }
-
-        App.settings_make_menu(`color_mode`, [
-          {text: `None`, value: `none`},
-          {text: `Icon`, value: `icon`},
-          {text: `Icon 2`, value: `icon_2`},
-          {text: `Border`, value: `border`},
-          {text: `Border & Icon`, value: `border_icon`},
-          {text: `Border & Icon 2`, value: `border_icon_2`},
-          {text: `Background`, value: `background`},
-        ])
-      },
-    },
-    colorz: {
       info: `Custom colors for tabs. You can enable/disable each color for different kinds of tabs.
       Some colors take precendence over others`,
       setup: () => {
@@ -1838,6 +1819,25 @@ App.build_settings = () => {
     icons: {
       info: `Customize the icons of items. You can leave them empty`,
       setup: () => {},
+    },
+    edits: {
+      info: `These are the colors you assign to tabs.
+      The colors can be presented in different ways`,
+      setup: () => {
+        for (let color of App.colors) {
+          App.start_color_picker(`color_${color}`)
+        }
+
+        App.settings_make_menu(`color_mode`, [
+          {text: `None`, value: `none`},
+          {text: `Icon`, value: `icon`},
+          {text: `Icon 2`, value: `icon_2`},
+          {text: `Border`, value: `border`},
+          {text: `Border & Icon`, value: `border_icon`},
+          {text: `Border & Icon 2`, value: `border_icon_2`},
+          {text: `Background`, value: `background`},
+        ])
+      },
     },
     filter: {
       info: `Adjust the filter and search`,

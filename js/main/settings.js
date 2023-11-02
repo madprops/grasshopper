@@ -1344,7 +1344,7 @@ App.get_tab_color_keys = () => {
   for (let key in App.setting_props) {
     let props = App.setting_props[key]
 
-    if (props.category !== `colorz`) {
+    if (props.category !== `colors`) {
       continue
     }
 
