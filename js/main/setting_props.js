@@ -1908,7 +1908,7 @@ App.build_settings = () => {
       setup: () => {},
     },
     warns: {
-      info: `When to show the confirmation dialog on actions.
+      info: `When to show the confirmation dialog on certain actions.
       'Special' forces a confirm depending if tabs have a certain state like pinned, playing, or colored.
       'Multiple' forces a confirm if multiple items are selected`,
       setup: () => {
