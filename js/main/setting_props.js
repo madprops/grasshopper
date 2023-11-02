@@ -1403,10 +1403,17 @@ App.build_settings = () => {
       version: 1,
     },
     left_click_press_command: {
-      name: `On Click Press`,
+      name: `On Left Click Press`,
       type: `menu`,
       value: `none`,
       info: `What command to run when pressing the left mouse button on an item for a short time`,
+      version: 1,
+    },
+    middle_click_press_command: {
+      name: `On Middle Click Press`,
+      type: `menu`,
+      value: `none`,
+      info: `What command to run when pressing the middle mouse button on an item for a short time`,
       version: 1,
     },
     double_ctrl_command: {
@@ -1861,6 +1868,7 @@ App.build_settings = () => {
         App.settings_make_menu(`ctrl_press_command`, App.cmdlist)
         App.settings_make_menu(`shift_press_command`, App.cmdlist)
         App.settings_make_menu(`left_click_press_command`, App.cmdlist)
+        App.settings_make_menu(`middle_click_press_command`, App.cmdlist)
       },
     },
     gestures: {
