@@ -725,7 +725,7 @@ App.build_settings = () => {
     middle_click_filter_menu: {
       name: `Middle Click Filter Menu`,
       type: `menu`,
-      value: `filter_filters`,
+      value: `filter_all`,
       info: `Middle-click on the filter menu`,
       version: 1,
     },
@@ -1178,18 +1178,6 @@ App.build_settings = () => {
       ],
       info: `Pre-made filters to use. These appear in the Custom section`,
       version: 3,
-    },
-    filter_menu: {
-      name: `Filter Menu`,
-      type: `list`,
-      value: [
-        {cmd: `filter_color_red`},
-        {cmd: `filter_color_green`},
-        {cmd: `filter_color_blue`},
-        {cmd: `filter_color_yellow`},
-      ],
-      info: `Menu to show when right clicking the Filter Menu at the top`,
-      version: 1,
     },
     clean_filter: {
       name: `Clean Filter`,

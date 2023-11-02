@@ -870,16 +870,6 @@ App.setup_commands = () => {
       info: `Show the filter history`,
     },
     {
-      name: `Filter Filters`,
-      cmd: `filter_filters`,
-      modes: [`items`],
-      icon: filter_icon,
-      action: (args) => {
-        App.filter_filters(args.mode, args.e)
-      },
-      info: `Show the palette with filter commands`,
-    },
-    {
       name: `Deep Search`,
       cmd: `deep_search`,
       modes: [`search`],
