@@ -71,7 +71,7 @@ App.clear_input = () => {
   }
 
   App.show_confirm({
-    message: `Clear input?`,
+    message: `Clear text?`,
     confirm_action: () => {
       textarea.value = ``
       App.focus_textarea(textarea)
