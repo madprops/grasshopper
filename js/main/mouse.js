@@ -123,7 +123,7 @@ App.mouse_click_action = (mode, e) => {
 
   if (mode === `tabs`) {
     if (App.get_setting(`close_button`) !== `none`) {
-      if (e.target.classList.contains(`close_icon`)) {
+      if (e.target.classList.contains(`close_button`)) {
         App.close_tabs(item, false, false)
         return
       }
@@ -267,8 +267,8 @@ App.mouse_middle_action = (mode, e) => {
 
   let item = App.direction(mode, e)
 
-  if (e.target.classList.contains(`close_icon`)) {
-    let cmd = App.get_setting(`middle_click_close_icon`)
+  if (e.target.classList.contains(`close_button`)) {
+    let cmd = App.get_setting(`middle_click_close_button`)
     App.run_command({cmd: cmd, item: item, from: `close_button`, e: e})
     return
   }

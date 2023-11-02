@@ -757,18 +757,18 @@ App.build_settings = () => {
       info: `Middle-click on the pinline`,
       version: 1,
     },
-    middle_click_close_icon: {
-      name: `Middle Click Close Icon`,
-      type: `menu`,
-      value: `unload_tabs`,
-      info: `Middle-click on the close buttons`,
-      version: 1,
-    },
     middle_click_favorites: {
       name: `Middle Click Favorites`,
       type: `menu`,
       value: `none`,
       info: `Middle-click on the favorites button`,
+      version: 1,
+    },
+    middle_click_close_button: {
+      name: `Middle Click Close Button`,
+      type: `menu`,
+      value: `unload_tabs`,
+      info: `Middle-click on the close buttons`,
       version: 1,
     },
     middle_click_hover_button: {

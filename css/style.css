@@ -280,7 +280,7 @@ svg {
   padding-right: var(--item_margin);
 }
 
-.item .close_icon {
+.item .close_button {
   padding-left: calc(var(--item_gap) * 2);
 }
 
