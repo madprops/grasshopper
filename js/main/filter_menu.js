@@ -39,14 +39,7 @@ App.create_filter_menu = (mode) => {
 
   DOM.ev(btn, `contextmenu`, (e) => {
     e.preventDefault()
-    let items = App.get_setting(`filter_menu`)
-
-    if (items && items.length) {
-      App.show_custom_menu(e, `filter`)
-    }
-    else {
-      App.show_palette(`filter`)
-    }
+    App.show_custom_menu(e, `filter`)
   })
 
   DOM.ev(btn, `auxclick`, (e) => {
@@ -174,4 +167,8 @@ App.cycle_filter_modes = (mode, reverse = true) => {
   }
 
   App.set_filter_mode({mode: mode, type: first.type, instant: false})
+}
+
+App.filter_filters = () => {
+  App.show_palette(`filter`)
 }
