@@ -318,6 +318,12 @@ App.edit_tab_color = (args = {}) => {
     message: `${s} (${active.length})`,
     confirm_action: () => {
       for (let it of active) {
+        if (it.rule_color) {
+          if (it.rule_color === args.color) {
+            continue
+          }
+        }
+
         App.apply_edit(`color`, it, args.color)
         App.custom_save(it.id, `custom_color`, args.color)
       }
@@ -561,6 +567,26 @@ App.get_all_titles = (include_rules = true) => {
   return titles
 }
 
+App.remove_item_title = (item) => {
+  let active = App.get_active_items({mode: item.mode, item: item})
+
+  if (active.length === 1) {
+    let it = active[0]
+
+    if (it.rule_title && !it.custom_title) {
+      App.alert(`This title is set by domain rules`)
+      return
+    }
+  }
+
+  App.show_confirm({
+    message: `Remove title?`,
+    confirm_action: () => {
+      App.remove_edits({what: `title`, force: true, items: active})
+    },
+  })
+}
+
 App.edit_tab_tags = (args = {}) => {
   let def_args = {
     tags: ``,
@@ -748,10 +774,12 @@ App.add_tags = (item) => {
 }
 
 App.remove_item_tags = (item) => {
+  let active = App.get_active_items({mode: item.mode, item: item})
+
   App.show_confirm({
-    message: `Remove all tags?`,
+    message: `Remove tags?`,
     confirm_action: () => {
-      App.remove_edits({what: `tags`, force: true, items: [item]})
+      App.remove_edits({what: `tags`, force: true, items: active})
     },
   })
 }

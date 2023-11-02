@@ -943,6 +943,17 @@ App.setup_commands = () => {
     ...color_removers,
 
     {
+      name: `Remove Title`,
+      cmd: `remove_title`,
+      modes: [`tabs`],
+      item: true,
+      icon: edit_icon,
+      action: (args) => {
+        App.remove_item_title(args.item)
+      },
+      info: `Remove a specific tag from tabs`,
+    },
+    {
       name: `Remove All Titles`,
       cmd: `remove_all_titles`,
       modes: [`tabs`],
