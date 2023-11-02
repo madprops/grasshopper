@@ -585,7 +585,7 @@ NeedContext.init = () => {
 
     if (!e.target.closest(`#needcontext-container`)) {
       if (NeedContext.first_mousedown) {
-        NeedContext.hide()
+        NeedContext.dismiss()
       }
     }
     else if (e.target.closest(`.needcontext-back`)) {
@@ -648,7 +648,7 @@ NeedContext.init = () => {
     NeedContext.keydown = false
 
     if (e.key === `Escape`) {
-      NeedContext.hide()
+      NeedContext.dismiss()
       e.preventDefault()
     }
     else if (e.key === `Enter`) {
@@ -832,6 +832,16 @@ NeedContext.action = (item, e) => {
   }
 
   item.action(e)
+}
+
+// Dismissed by clicking the overlay or Escape
+NeedContext.dismiss = () => {
+  console.log(NeedContext.args.after_dismiss)
+  if (NeedContext.args.after_dismiss) {
+    NeedContext.args.after_dismiss()
+  }
+
+  NeedContext.hide()
 }
 
 // Start

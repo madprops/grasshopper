@@ -89,6 +89,7 @@ Addlist.register = (args = {}) => {
     required: {},
     tooltips: {},
     lowercase: false,
+    automenu: false,
     list_text: () => {
       return `Item`
     },
@@ -153,7 +154,12 @@ Addlist.register = (args = {}) => {
         opts: args.sources[key],
         get_value: () => {
           return Addlist.get_value(key)
-        }
+        },
+        after_dismiss: () => {
+          if (args.automenu) {
+            Addlist.hide(false)
+          }
+        },
       })
 
       let mb = App[`addlist_menubutton_${args.id}_${key}`]
@@ -222,6 +228,7 @@ Addlist.edit = (args = {}) => {
   App.show_popup(Addlist.popup(args.id))
   Addlist.check_buttons(args)
   let widgets = oargs.widgets
+  let first_menu
 
   for (key of oargs.keys) {
     let value = args.items[key]
@@ -243,6 +250,8 @@ Addlist.edit = (args = {}) => {
       else {
         App[`addlist_menubutton_${args.id}_${key}`].set(oargs.sources[key][0].value)
       }
+
+      first_menu = key
     }
     else if (w === `checkbox`) {
       if (value !== undefined) {
@@ -256,6 +265,10 @@ Addlist.edit = (args = {}) => {
 
   Addlist.data = args
   Addlist.check_focus(args.id)
+
+  if (oargs.automenu && first_menu) {
+    App[`addlist_menubutton_${args.id}_${first_menu}`].show()
+  }
 }
 
 Addlist.remove = (args = {}) => {

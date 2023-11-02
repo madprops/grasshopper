@@ -18,6 +18,27 @@ Menubutton.create = (args = {}) => {
   next.textContent = `>`
 
   DOM.ev(args.button, `click`, () => {
+    args.show()
+  })
+
+  args.set = (value, on_change = true) => {
+    let opt = Menubutton.opt(args, value)
+    Menubutton.set_text(args, opt)
+
+    if (on_change && args.on_change) {
+      args.on_change(args, opt)
+    }
+  }
+
+  args.prev = () => {
+    Menubutton.cycle(args, `prev`)
+  }
+
+  args.next = () => {
+    Menubutton.cycle(args, `next`)
+  }
+
+  args.show = () => {
     let items = []
 
     for (let opt of args.opts) {
@@ -65,26 +86,15 @@ Menubutton.create = (args = {}) => {
       element: args.button,
       items: items,
       expand: true,
-      margin: args.button.clientHeight,
       index: index,
+      margin: args.button.clientHeight,
+      after_dismiss: args.after_dismiss,
+      after_hide: () => {
+        if (args.after_hide) {
+          args.after_hide()
+        }
+      },
     })
-  })
-
-  args.set = (value, on_change = true) => {
-    let opt = Menubutton.opt(args, value)
-    Menubutton.set_text(args, opt)
-
-    if (on_change && args.on_change) {
-      args.on_change(args, opt)
-    }
-  }
-
-  args.prev = () => {
-    Menubutton.cycle(args, `prev`)
-  }
-
-  args.next = () => {
-    Menubutton.cycle(args, `next`)
   }
 
   if (args.selected) {

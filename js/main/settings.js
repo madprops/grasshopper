@@ -1171,11 +1171,18 @@ App.setup_settings_addlist = () => {
     }))
   }))
 
+  let menukeys = [
+    `filter_menu`,
+    `favorites_menu`,
+    `extra_menu`,
+    `hover_menu`,
+  ]
+
   for (let key in App.setting_props) {
     let id = `settings_${key}`
     props = App.setting_props[key]
 
-    if (key === `filter_menu` || key === `favorites_menu` || key === `extra_menu` || key === `hover_menu`) {
+    if (menukeys.includes(key)) {
       let cmds
 
       if (key === `filter_menu`) {
@@ -1204,6 +1211,7 @@ App.setup_settings_addlist = () => {
             return cmd_name(items.cmd)
           },
           title: props.name,
+          automenu: true,
         }))
       }))
     }
