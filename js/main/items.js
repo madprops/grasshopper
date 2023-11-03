@@ -193,7 +193,7 @@ App.get_items = (mode) => {
   return App[item_string] || []
 }
 
-App.select_first_item = (mode, by_active = false, scroll = `nearest`) => {
+App.select_first_item = (mode, by_active = false, scroll = `center`) => {
   if (mode === `tabs` && by_active) {
     for (let item of App.get_items(mode)) {
       if (item.visible && item.active) {
