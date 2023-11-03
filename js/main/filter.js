@@ -71,9 +71,9 @@ App.do_filter = async (args = {}) => {
   let by_what
   let cmd
 
-  for (let c of [`title`, `url`, `re`, `re_title`, `re_url`, `color`, `tag`]) {
-    if (value.startsWith(`${c}:`)) {
-      cmd = [c, value.replace(`${c}:`, ``).trim()]
+  for (let what of App.filter_whats) {
+    if (value.startsWith(`${what}:`)) {
+      cmd = [what, value.replace(`${what}:`, ``).trim()]
     }
   }
 
@@ -280,7 +280,7 @@ App.filter_check = (args) => {
   if (!match && (words.length === 1)) {
     let word_lower = words[0].toLowerCase()
 
-    if (args.by_what === `color` || App.get_setting(`filter_colors`)) {
+    if (args.by_what === `color` || args.by_what === `colors` || App.get_setting(`filter_colors`)) {
       let color = App.get_color(args.item)
 
       if (color) {
@@ -289,7 +289,7 @@ App.filter_check = (args) => {
     }
 
     if (!match) {
-      if (args.by_what === `tag` || App.get_setting(`filter_tags`)) {
+      if (args.by_what === `tag` || args.by_what === `tags` || App.get_setting(`filter_tags`)) {
         for (let tag of App.get_tags(args.item)) {
           if (tag.toLowerCase().startsWith(word_lower)) {
             match = true

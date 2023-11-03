@@ -143,3 +143,15 @@ App.background_effects = [
 ]
 
 App.favorites_title = `Favorites. You can edit this in the Menu settings`
+
+App.filter_whats = [
+  `title`,
+  `url`,
+  `re`,
+  `re_title`,
+  `re_url`,
+  `color`,
+  `colors`,
+  `tag`,
+  `tags`,
+]
