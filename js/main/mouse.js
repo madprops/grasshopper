@@ -31,14 +31,14 @@ App.setup_window_mouse = (mode) => {
     if (e.button === 0 || e.button === 1) {
       if (App.cursor_on_item(mode, e)) {
         App.click_press_button = e.button
-        App.click_press_done = false
+        App.click_press_triggered = false
         App.start_click_press_timeout(mode, e)
       }
     }
   })
 
   DOM.ev(container, `click`, (e) => {
-    if (App.click_press_done) {
+    if (App.click_press_triggered) {
       App.reset_triggers()
       return
     }
@@ -246,7 +246,7 @@ App.mouse_context_action = (mode, e) => {
 }
 
 App.mouse_middle_action = (mode, e) => {
-  if (App.click_press_done) {
+  if (App.click_press_triggered) {
     App.reset_triggers()
     return
   }
@@ -339,7 +339,7 @@ App.right_button_action = (item) => {
 App.reset_mouse = () => {
   clearTimeout(App.click_press_timeout)
   App.click_press_button = undefined
-  App.click_press_done = false
+  App.click_press_triggered = false
 }
 
 App.start_click_press_timeout = (mode, e) => {
@@ -356,14 +356,18 @@ App.click_press_action = (mode, e) => {
   }
 
   let item = App.direction(mode, e)
-  App.click_press_done = true
+  let cmd
 
   if (App.click_press_button === 0) {
-    let cmd = App.get_setting(`left_click_press_command`)
-    App.run_command({cmd: cmd, from: `click_press`, item: item, e: e})
+    cmd = App.get_setting(`left_click_press_command`)
   }
   else if (App.click_press_button === 1) {
-    let cmd = App.get_setting(`middle_click_press_command`)
-    App.run_command({cmd: cmd, from: `click_press`, item: item, e: e})
+    cmd = App.get_setting(`middle_click_press_command`)
+  }
+
+  if (cmd) {
+    if (App.run_command({cmd: cmd, from: `click_press`, item: item, e: e})) {
+      App.click_press_triggered = true
+    }
   }
 }

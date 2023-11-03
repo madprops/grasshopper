@@ -1360,7 +1360,7 @@ App.get_command = (cmd) => {
 
 App.run_command = (args) => {
   if (!args.cmd || args.cmd === `none`) {
-    return
+    return false
   }
 
   let command = App.get_command(args.cmd)
@@ -1372,6 +1372,8 @@ App.run_command = (args) => {
 
     command.action(args)
   }
+
+  return true
 }
 
 App.check_command = (command, args) => {
