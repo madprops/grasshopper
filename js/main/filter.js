@@ -752,7 +752,12 @@ App.filter_domain = (item) => {
 }
 
 App.filter_color = (mode, color) => {
-  let s
+  let name = `color_${color}`
+
+  if (App[`${mode}_filter_mode`] === name) {
+    App.filter_all(mode)
+    return
+  }
 
   if (color === `all`) {
     s = `All Colors`
@@ -761,7 +766,7 @@ App.filter_color = (mode, color) => {
     s = App.capitalize(color)
   }
 
-  App.set_custom_filter_mode(mode, `color_${color}`, s)
+  App.set_custom_filter_mode(mode, name, s)
   App.set_filter({mode: mode})
 }
 
