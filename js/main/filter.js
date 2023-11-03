@@ -275,6 +275,30 @@ App.filter_check = (args) => {
     match = true
   }
 
+  let words = args.value.split(` `)
+  let word_lower = words[0].toLowerCase()
+
+  if (!match && (words.length === 1)) {
+    if (args.by_what === `color` || App.get_setting(`filter_colors`)) {
+      let color = App.get_color(args.item)
+
+      if (color) {
+        match = App.get_color(args.item).startsWith(word_lower)
+      }
+    }
+
+    if (!match) {
+      if (args.by_what === `tag` || App.get_setting(`filter_colors`)) {
+        for (let tag of App.get_tags(args.item)) {
+          if (tag.toLowerCase().startsWith(word_lower)) {
+            match = true
+            break
+          }
+        }
+      }
+    }
+  }
+
   if (!match) {
     let title = App.get_title(args.item)
     title = App.clean_filter(title)
@@ -288,43 +312,6 @@ App.filter_check = (args) => {
       }
       else if (args.by_what === `url` || args.by_what === `re_url`) {
         match = regex.test(args.item.path)
-      }
-      else if (args.by_what === `color`) {
-        match = App.get_color(args.item) === args.value
-      }
-      else if (args.by_what === `tag`) {
-        match = App.tagged(args.item) &&
-        App.get_tags(args.item).includes(args.value)
-      }
-    }
-  }
-
-  if (!match) {
-    let words = args.value.split(` `)
-
-    if (words.length === 1) {
-      let word_lower = words[0].toLowerCase()
-
-      if (App.get_setting(`filter_colors`)) {
-        if (App.get_color(args.item)) {
-          match = App.get_color(args.item).startsWith(word_lower)
-        }
-      }
-
-      if (!match) {
-        if (App.get_setting(`filter_tags`)) {
-          let tags = App.get_tags(args.item)
-
-          if (tags) {
-            for (let tag of tags) {
-              match = tag.toLowerCase().startsWith(word_lower)
-
-              if (match) {
-                break
-              }
-            }
-          }
-        }
       }
     }
   }
