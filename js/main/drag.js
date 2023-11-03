@@ -15,6 +15,8 @@ App.setup_drag = (mode) => {
 }
 
 App.dragstart_action = (mode, e) => {
+  App.reset_triggers()
+
   if (e.shiftKey) {
     e.preventDefault()
     return false
