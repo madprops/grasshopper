@@ -288,7 +288,7 @@ App.filter_check = (args) => {
     }
 
     if (!match) {
-      if (args.by_what === `tag` || App.get_setting(`filter_colors`)) {
+      if (args.by_what === `tag` || App.get_setting(`filter_tags`)) {
         for (let tag of App.get_tags(args.item)) {
           if (tag.toLowerCase().startsWith(word_lower)) {
             match = true
