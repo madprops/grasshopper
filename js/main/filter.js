@@ -147,13 +147,13 @@ App.do_filter = async (args = {}) => {
 
   if (value && by_what === `all`) {
     value = App.clean_filter(value)
+    let value_lower = value.toLowerCase()
     let aliases = App.get_setting(`aliases`)
 
     for (let alias of aliases) {
       let match
 
       if (insensitive) {
-        let value_lower = value.toLowerCase()
 
         if (alias.a.toLowerCase().startsWith(value_lower)) {
           match = alias.b
@@ -298,23 +298,28 @@ App.filter_check = (args) => {
       }
 
       if (!match) {
-        if (App.get_setting(`filter_colors`)) {
-          if (App.get_color(args.item)) {
-            match = App.get_color(args.item) === args.value
+        let words = args.value.split(` `)
+
+        if (words.length === 1) {
+          if (App.get_setting(`filter_colors`)) {
+            if (App.get_color(args.item)) {
+              match = App.get_color(args.item).startsWith(words[0])
+            }
           }
-        }
-      }
 
-      if (!match) {
-        if (App.get_setting(`filter_tags`)) {
-          let tags = App.get_tags(args.item)
+          if (!match) {
+            if (App.get_setting(`filter_tags`)) {
+              let tags = App.get_tags(args.item)
 
-          if (tags) {
-            for (let tag of tags) {
-              match = tag === args.value
+              if (tags) {
 
-              if (match) {
-                break
+                for (let tag of tags) {
+                  match = tag.startsWith(words[0])
+
+                  if (match) {
+                    break
+                  }
+                }
               }
             }
           }

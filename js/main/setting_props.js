@@ -1167,7 +1167,9 @@ App.build_settings = () => {
     aliases: {
       name: `Aliases`,
       type: `list`,
-      value: [],
+      value: [
+        {a: `planet`, b: `earth`}
+      ],
       info: `Aliases to use when filtering items`,
       version: 3,
     },
@@ -1381,7 +1383,7 @@ App.build_settings = () => {
     key_press_delay: {
       name: `Key Press Delay`,
       type: `number`,
-      value: 450,
+      value: 480,
       placeholder: `Number`,
       min: App.number_min,
       max: App.number_max,
@@ -1392,7 +1394,7 @@ App.build_settings = () => {
     click_press_delay: {
       name: `Click Press Delay`,
       type: `number`,
-      value: 450,
+      value: 480,
       placeholder: `Number`,
       min: App.number_min,
       max: App.number_max,
