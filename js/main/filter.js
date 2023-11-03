@@ -301,9 +301,11 @@ App.filter_check = (args) => {
         let words = args.value.split(` `)
 
         if (words.length === 1) {
+          let word_lower = words[0].toLowerCase()
+
           if (App.get_setting(`filter_colors`)) {
             if (App.get_color(args.item)) {
-              match = App.get_color(args.item).startsWith(words[0])
+              match = App.get_color(args.item).startsWith(word_lower)
             }
           }
 
@@ -314,7 +316,7 @@ App.filter_check = (args) => {
               if (tags) {
 
                 for (let tag of tags) {
-                  match = tag.startsWith(words[0])
+                  match = tag.toLowerCase().startsWith(word_lower)
 
                   if (match) {
                     break
