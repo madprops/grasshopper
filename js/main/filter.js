@@ -296,40 +296,35 @@ App.filter_check = (args) => {
         match = App.tagged(args.item) &&
         App.get_tags(args.item).includes(args.value)
       }
+    }
+  }
+
+  if (!match) {
+    let words = args.value.split(` `)
+
+    if (words.length === 1) {
+      let word_lower = words[0].toLowerCase()
+
+      if (App.get_setting(`filter_colors`)) {
+        if (App.get_color(args.item)) {
+          match = App.get_color(args.item).startsWith(word_lower)
+        }
+      }
 
       if (!match) {
-        let words = args.value.split(` `)
+        if (App.get_setting(`filter_tags`)) {
+          let tags = App.get_tags(args.item)
 
-        if (words.length === 1) {
-          let word_lower = words[0].toLowerCase()
+          if (tags) {
+            for (let tag of tags) {
+              match = tag.toLowerCase().startsWith(word_lower)
 
-          if (App.get_setting(`filter_colors`)) {
-            if (App.get_color(args.item)) {
-              match = App.get_color(args.item).startsWith(word_lower)
-            }
-          }
-
-          if (!match) {
-            if (App.get_setting(`filter_tags`)) {
-              let tags = App.get_tags(args.item)
-
-              if (tags) {
-
-                for (let tag of tags) {
-                  match = tag.toLowerCase().startsWith(word_lower)
-
-                  if (match) {
-                    break
-                  }
-                }
+              if (match) {
+                break
               }
             }
           }
         }
-      }
-
-      if (match) {
-        break
       }
     }
   }
