@@ -1764,10 +1764,8 @@ App.build_settings = () => {
         App.settings_make_menu(`color_mode`, [
           {text: `None`, value: `none`},
           {text: `Icon`, value: `icon`},
-          {text: `Icon 2`, value: `icon_2`},
           {text: `Border`, value: `border`},
           {text: `Border & Icon`, value: `border_icon`},
-          {text: `Border & Icon 2`, value: `border_icon_2`},
           {text: `Background`, value: `background`},
         ])
       },

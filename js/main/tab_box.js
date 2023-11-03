@@ -96,9 +96,9 @@ App.update_tab_box = () => {
 
 App.tab_box_menu = (e) => {
   let items = []
-  let index = 0
+  let sizes = []
 
-  items.push({
+  sizes.push({
     text: `None`,
     action: (e) => {
       App.set_setting(`tab_box`, `none`)
@@ -111,7 +111,7 @@ App.tab_box_menu = (e) => {
       index = i
     }
 
-    items.push({
+    sizes.push({
       text: size.text,
       action: (e) => {
         App.set_setting(`tab_box`, size.value)
@@ -120,5 +120,50 @@ App.tab_box_menu = (e) => {
     })
   }
 
-  App.show_context({items: items, index: index, e: e})
+  items.push({
+    text: `Size`,
+    items: sizes,
+  })
+
+  items.push({
+    text: `Position`,
+    items: [
+      {
+        text: `Top`,
+        action: (e) => {
+          App.set_setting(`tab_box_position`, `top`)
+          App.clear_show()
+        },
+      },
+      {
+        text: `Bottom`,
+        action: (e) => {
+          App.set_setting(`tab_box_position`, `bottom`)
+          App.clear_show()
+        },
+      },
+    ],
+  })
+
+  items.push({
+    text: `Mode`,
+    items: [
+      {
+        text: `Title`,
+        action: (e) => {
+          App.set_setting(`tab_box_mode`, `title`)
+          App.update_tab_box()
+        },
+      },
+      {
+        text: `URL`,
+        action: (e) => {
+          App.set_setting(`tab_box_mode`, `url`)
+          App.update_tab_box()
+        },
+      },
+    ],
+  })
+
+  App.show_context({items: items, e: e})
 }

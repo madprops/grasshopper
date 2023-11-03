@@ -983,10 +983,6 @@ a:visited, a:link, a:hover {
   text-decoration: underline;
 }
 
-.color_only_icon .item_icon_container {
-  display: none;
-}
-
 .pointer {
   cursor: pointer;
 }

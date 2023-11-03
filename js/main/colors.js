@@ -61,13 +61,6 @@ App.apply_color_mode = (item) => {
       el.innerHTML = ``
       el.append(App.color_icon(color))
       el.classList.remove(`hidden`)
-
-      if (color_mode.includes(`icon_2`)) {
-        item.element.classList.add(`color_only_icon`)
-      }
-      else {
-        item.element.classList.remove(`color_only_icon`)
-      }
     }
     else {
       el.textContent = ``
@@ -87,7 +80,7 @@ App.apply_color_mode = (item) => {
     }
   }
 
-  if (color_mode === `background`) {
+  if (color_mode.includes(`background`)) {
     for (let color of App.colors) {
       item.element.classList.remove(`colored`)
       item.element.classList.remove(`colored_background`)
