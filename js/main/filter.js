@@ -308,10 +308,10 @@ App.filter_check = (args) => {
       if (args.by_what === `all` || args.by_what === `re`) {
         match = regex.test(title) || regex.test(args.item.path)
       }
-      else if (args.by_what.startsWith(`title`)) {
+      else if (args.by_what.includes(`title`)) {
         match = regex.test(title)
       }
-      else if (args.by_what.startsWith(`url`)) {
+      else if (args.by_what.includes(`url`)) {
         match = regex.test(args.item.path)
       }
     }
