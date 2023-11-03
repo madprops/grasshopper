@@ -276,9 +276,10 @@ App.filter_check = (args) => {
   }
 
   let words = args.value.split(` `)
-  let word_lower = words[0].toLowerCase()
 
   if (!match && (words.length === 1)) {
+    let word_lower = words[0].toLowerCase()
+
     if (args.by_what === `color` || App.get_setting(`filter_colors`)) {
       let color = App.get_color(args.item)
 
