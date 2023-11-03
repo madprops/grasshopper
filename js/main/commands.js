@@ -1367,7 +1367,7 @@ App.run_command = (args) => {
 
   if (command) {
     if (!App.check_command(command, args)) {
-      return
+      return false
     }
 
     command.action(args)
