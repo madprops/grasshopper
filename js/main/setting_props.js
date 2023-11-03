@@ -713,6 +713,7 @@ App.build_settings = () => {
       type: `menu`,
       value: `open_items`,
       info: `Middle-click on closed items`,
+      separator: true,
       version: 1,
     },
     middle_click_main_menu: {
@@ -748,6 +749,7 @@ App.build_settings = () => {
       type: `menu`,
       value: `browser_reload`,
       info: `Middle-click on the actions menu`,
+      separator: true,
       version: 1,
     },
     middle_click_footer: {
@@ -1311,6 +1313,7 @@ App.build_settings = () => {
       type: `list`,
       value: [],
       info: `Extra keyboard shortcuts. If these are triggered the default shortcuts get ignored`,
+      separator: true,
       version: 4,
     },
     double_click_command: {
@@ -1332,6 +1335,7 @@ App.build_settings = () => {
       type: `menu`,
       value: `none`,
       info: `What command to run when pressing the middle mouse button on an item for a short time`,
+      separator: true,
       version: 1,
     },
     double_ctrl_command: {
@@ -1360,6 +1364,7 @@ App.build_settings = () => {
       type: `menu`,
       value: `none`,
       info: `What command to run when pressing and holding Shift for a short time`,
+      separator: true,
       version: 1,
     },
     double_key_delay: {
