@@ -1394,6 +1394,10 @@ App.run_command = (args) => {
 }
 
 App.check_command = (command, args) => {
+  if (!command) {
+    return false
+  }
+
   args.mode = App.window_mode
   args.on_items = App.on_items()
   args.on_media = App.on_media()
@@ -1426,48 +1430,54 @@ App.check_command = (command, args) => {
     }
   }
 
+  if (args.alt) {
+    command = App.get_command(command.alt)
+
+    if (!command) {
+      return false
+    }
+  }
+
   let valid = true
 
-  if (command) {
-    if (valid) {
-      if (command.item) {
-        if (!args.item) {
+  if (valid) {
+    if (command.item) {
+      if (!args.item) {
+        valid = false
+      }
+    }
+  }
+
+  if (valid) {
+    if (command.media) {
+      if (command.media !== args.media) {
+        valid = false
+      }
+    }
+  }
+
+  if (valid) {
+    if (command.color) {
+      if (!args.color) {
+        valid = false
+      }
+    }
+  }
+
+  if (valid) {
+    if (command.modes) {
+      if (command.modes.includes(`items`)) {
+        if (!args.on_items) {
           valid = false
         }
       }
-    }
-
-    if (valid) {
-      if (command.media) {
-        if (command.media !== args.media) {
+      else if (command.modes.includes(`search`)) {
+        if (!App.search_modes.includes(args.mode)) {
           valid = false
         }
       }
-    }
-
-    if (valid) {
-      if (command.color) {
-        if (!args.color) {
-          valid = false
-        }
-      }
-    }
-
-    if (valid) {
-      if (command.modes) {
-        if (command.modes.includes(`items`)) {
-          if (!args.on_items) {
-            valid = false
-          }
-        }
-        else if (command.modes.includes(`search`)) {
-          if (!App.search_modes.includes(args.mode)) {
-            valid = false
-          }
-        }
-        else if (!command.modes.includes(args.mode)) {
-          valid = false
-        }
+      else if (!command.modes.includes(args.mode)) {
+        valid = false
       }
     }
   }
