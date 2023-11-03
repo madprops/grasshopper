@@ -280,7 +280,7 @@ App.filter_check = (args) => {
   if (!match && (words.length === 1)) {
     let word_lower = words[0].toLowerCase()
 
-    if (args.by_what === `color` || args.by_what === `colors` || App.get_setting(`filter_colors`)) {
+    if (args.by_what.startsWith(`color`) || App.get_setting(`filter_colors`)) {
       let color = App.get_color(args.item)
 
       if (color) {
@@ -289,7 +289,7 @@ App.filter_check = (args) => {
     }
 
     if (!match) {
-      if (args.by_what === `tag` || args.by_what === `tags` || App.get_setting(`filter_tags`)) {
+      if (args.by_what.startsWith(`tag`) || App.get_setting(`filter_tags`)) {
         for (let tag of App.get_tags(args.item)) {
           if (tag.toLowerCase().startsWith(word_lower)) {
             match = true
@@ -308,10 +308,10 @@ App.filter_check = (args) => {
       if (args.by_what === `all` || args.by_what === `re`) {
         match = regex.test(title) || regex.test(args.item.path)
       }
-      else if (args.by_what === `title` || args.by_what === `re_title`) {
+      else if (args.by_what.startsWith(`title`)) {
         match = regex.test(title)
       }
-      else if (args.by_what === `url` || args.by_what === `re_url`) {
+      else if (args.by_what.startsWith(`url`)) {
         match = regex.test(args.item.path)
       }
     }

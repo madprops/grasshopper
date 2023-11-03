@@ -146,10 +146,14 @@ App.favorites_title = `Favorites. You can edit this in the Menu settings`
 
 App.filter_whats = [
   `title`,
+  `titles`,
   `url`,
+  `urls`,
   `re`,
   `re_title`,
+  `re_titles`,
   `re_url`,
+  `re_urls`,
   `color`,
   `colors`,
   `tag`,
