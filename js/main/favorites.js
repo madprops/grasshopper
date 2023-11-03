@@ -64,6 +64,7 @@ App.fill_favorites_bar = (mode) => {
           let args = {
             cmd: cmd.cmd,
             e: e,
+            alt: true,
           }
 
           App.run_command(args)

@@ -68,6 +68,7 @@ App.setup_commands = () => {
       action: (args) => {
         App.edit_tab_color({item: args.item, color: color})
       },
+      alt: `filter_color_${color}`,
       info: `Add a custom color to tabs (${color})`,
     })
 
@@ -83,6 +84,7 @@ App.setup_commands = () => {
       action: (args) => {
         App.edit_tab_color({item: args.item, color: color, toggle: true})
       },
+      alt: `filter_color_${color}`,
       info: `Toggle color on or off (${color})`,
     })
 
@@ -1255,6 +1257,7 @@ App.setup_commands = () => {
       action: (args) => {
         App.set_light_colors()
       },
+      alt: `set_random_light_colors`,
       info: `Change to the light color theme`,
     },
     {
@@ -1264,6 +1267,7 @@ App.setup_commands = () => {
       action: (args) => {
         App.set_dark_colors()
       },
+      alt: `set_random_dark_colors`,
       info: `Change to the dark color theme`,
     },
     {
@@ -1273,6 +1277,7 @@ App.setup_commands = () => {
       action: (args) => {
         App.random_colors(`light`)
       },
+      alt: `set_light_colors`,
       info: `Change to the light color theme`,
     },
     {
@@ -1282,6 +1287,7 @@ App.setup_commands = () => {
       action: (args) => {
         App.random_colors(`dark`)
       },
+      alt: `set_dark_colors`,
       info: `Change to the dark color theme`,
     },
     {
@@ -1370,7 +1376,18 @@ App.run_command = (args) => {
       return false
     }
 
-    command.action(args)
+    if (args.alt) {
+      if (!command.alt) {
+        return false
+      }
+
+      args.cmd = command.alt
+      args.alt = false
+      App.run_command(args)
+    }
+    else {
+      command.action(args)
+    }
   }
 
   return true
