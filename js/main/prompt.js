@@ -49,7 +49,7 @@ App.show_prompt = (args = {}) => {
   input.focus()
 
   if (args.show_list) {
-    App.show_prompt_list()
+    App.show_prompt_list(`show_list`)
   }
 
   if (args.highlight && !args.show_list) {
@@ -82,7 +82,7 @@ App.prompt_clear = () => {
   DOM.el(`#prompt_input`).value = ``
 }
 
-App.show_prompt_list = () => {
+App.show_prompt_list = (from = `click`) => {
   let args = App.prompt_args
   let input = DOM.el(`#prompt_input`)
   let valid = []
@@ -113,6 +113,10 @@ App.show_prompt_list = () => {
   }
 
   if (!valid.length) {
+    if (from === `click`) {
+      App.alert_autohide(`No more items to add`)
+    }
+
     return
   }
 
