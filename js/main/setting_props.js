@@ -903,7 +903,7 @@ App.build_settings = () => {
     color_mode: {
       name: `Color Mode`,
       type: `menu`,
-      value: `border_icon`,
+      value: `icon`,
       info: `How to display the colors`,
       version: 2,
     },
