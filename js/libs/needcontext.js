@@ -442,7 +442,7 @@ NeedContext.select_action = async (e, index = NeedContext.index, mode = `mouse`)
   }
   else if (e.button === 1) {
     if (item.alt_action) {
-      NeedContext.alt_action(e)
+      NeedContext.alt_action(item, e)
     }
   }
 }
@@ -848,7 +848,7 @@ NeedContext.dismiss = (e) => {
 }
 
 // Alternative action
-NeedContext.alt_action = (e) => {
+NeedContext.alt_action = (item, e) => {
   if (NeedContext.args.after_alt_action) {
     NeedContext.args.after_alt_action(e)
   }
