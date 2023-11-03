@@ -98,14 +98,6 @@ App.tab_box_menu = (e) => {
   let items = []
   let sizes = []
 
-  sizes.push({
-    text: `None`,
-    action: (e) => {
-      App.set_setting(`tab_box`, `none`)
-      App.apply_theme()
-    },
-  })
-
   for (let [i, size] of App.sizes.entries()) {
     if (App.get_setting(`tab_box`) === size.value) {
       index = i
@@ -163,6 +155,19 @@ App.tab_box_menu = (e) => {
         },
       },
     ],
+  })
+
+  items.push({
+    text: `Hide`,
+    action: (e) => {
+      App.show_confirm({
+        message: `Hide the Tab Box?`,
+        confirm_action: () => {
+          App.set_setting(`tab_box`, `none`)
+          App.apply_theme()
+        },
+      })
+    },
   })
 
   App.show_context({items: items, e: e})
