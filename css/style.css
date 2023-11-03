@@ -1030,6 +1030,10 @@ a:visited, a:link, a:hover {
   flex-grow: 0;
 }
 
+.box_top {
+  border-bottom: 1px solid var(--alt_color_1);
+}
+
 #tab_box {
   display: var(--tab_box_display);
   height: var(--tab_box_height);

@@ -8,6 +8,12 @@ App.create_tab_box = () => {
     App.tab_box_menu(e)
   })
 
+  let pos = App.get_setting(`tab_box_position`)
+
+  if (pos === `top`) {
+    tab_box.classList.add(`box_top`)
+  }
+
   tab_box.append(title)
   let container = DOM.create(`div`, `box_container`, `tab_box_container`)
   tab_box.append(container)
