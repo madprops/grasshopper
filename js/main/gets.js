@@ -15,11 +15,11 @@ App.get_title = (item) => {
 App.get_tags = (item) => {
   let tags = []
 
-  if (item.rule_tags.length) {
+  if (item.rule_tags) {
     tags.push(...item.rule_tags)
   }
 
-  if (item.custom_tags.length) {
+  if (item.custom_tags) {
     tags.push(...item.custom_tags)
   }
 
