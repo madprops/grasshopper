@@ -977,6 +977,17 @@ App.setup_commands = () => {
       info: `Remove all titles from tabs`,
     },
     {
+      name: `Remove Notes`,
+      cmd: `remove_notes`,
+      modes: [`tabs`],
+      item: true,
+      icon: edit_icon,
+      action: (args) => {
+        App.remove_item_notes(args.item)
+      },
+      info: `Remove notes from tabs`,
+    },
+    {
       name: `Wipe Tag`,
       cmd: `wipe_tag`,
       modes: [`tabs`],

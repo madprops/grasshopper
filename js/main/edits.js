@@ -209,7 +209,7 @@ App.remove_edits = (args = {}) => {
     message: `Remove edits? (${args.what}) (${args.items.length})`,
     confirm_action: () => {
       for (let item of args.items) {
-        App.apply_edit(args.what, item, undefined)
+        App.apply_edit(args.what, item, App.edit_default(args.what))
         App.custom_save(item.id, `custom_${args.what}`, undefined)
       }
     },
@@ -587,7 +587,7 @@ App.remove_item_title = (item) => {
   }
 
   App.show_confirm({
-    message: `Remove title?`,
+    message: `Remove title? (${active.length})`,
     confirm_action: () => {
       App.remove_edits({what: `title`, force: true, items: active})
     },
@@ -998,16 +998,34 @@ App.edit_default = (what) => {
   }
 }
 
-App.remove_notes = (item) => {
-  if (!item.custom_notes) {
-    return
+App.remove_item_notes = (item, single = false) => {
+  let active
+
+  if (single) {
+    active = [item]
+  }
+  else {
+    active = App.get_active_items({mode: item.mode, item: item})
+    console.log(active)
+
+    if (active.length === 1) {
+      let it = active[0]
+
+      if (it.rule_notes && !it.custom_notes) {
+        App.alert_autohide(`These notes are set by domain rules`)
+        return
+      }
+    }
   }
 
   App.show_confirm({
-    message: `Remove notes?`,
+    message: `Remove notes? (${active.length})`,
     confirm_action: () => {
-      App.apply_edit(`notes`, item, App.edit_default(`notes`))
-      App.custom_save(item.id, `custom_notes`, undefined)
+      App.remove_edits({what: `notes`, force: true, items: active})
     },
   })
+}
+
+App.remove_notes = (item) => {
+  App.remove_item_notes(item, true)
 }
