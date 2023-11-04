@@ -343,8 +343,7 @@ App.filter_check = (args) => {
         match = App.tagged(args.item)
       }
       else {
-        match = App.tagged(args.item) &&
-        App.get_tags(args.item).includes(args.f_value)
+        match = App.get_tags(args.item).includes(args.f_value)
       }
     }
     else if (args.filter_mode === `titled`) {

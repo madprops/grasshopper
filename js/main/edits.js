@@ -157,10 +157,7 @@ App.edit_prompt = (args = {}) => {
 
   if (args.what === `tags`) {
     if (args.add) {
-      if (App.tagged(args.item)) {
-        ignore_words = App.get_tags(args.item)
-      }
-
+      ignore_words = App.get_tags(args.item)
       show_list = true
     }
 
@@ -939,11 +936,9 @@ App.get_tag_items = (mode) => {
   let tags = []
 
   for (let tab of App.get_items(`tabs`)) {
-    if (App.tagged(tab)) {
-      for (let tag of App.get_tags(tab)) {
-        if (!tags.includes(tag)) {
-          tags.push(tag)
-        }
+    for (let tag of App.get_tags(tab)) {
+      if (!tags.includes(tag)) {
+        tags.push(tag)
       }
     }
   }
