@@ -154,6 +154,13 @@ App.build_settings = () => {
       info: `Require holding Ctrl to drag tab items vertically. This is to avoid accidental re-ordering`,
       version: 1,
     },
+    auto_blur: {
+      name: `Auto Blur`,
+      type: `checkbox`,
+      value: false,
+      info: `Blur the sidebar automatically for privacy`,
+      version: 1,
+    },
   }
 
   add_props()

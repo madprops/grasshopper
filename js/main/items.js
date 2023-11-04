@@ -1197,3 +1197,15 @@ App.make_item_first = (item) => {
     items.unshift(item)
   }
 }
+
+App.auto_blur = () => {
+  if (App.get_setting(`auto_blur`)) {
+    DOM.el(`#main`).classList.add(`auto_blur`)
+  }
+}
+
+App.remove_auto_blur = () => {
+  if (App.get_setting(`auto_blur`)) {
+    DOM.el(`#main`).classList.remove(`auto_blur`)
+  }
+}

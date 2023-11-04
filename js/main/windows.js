@@ -164,13 +164,18 @@ App.setup_window = () => {
     if (App.get_setting(`auto_restore`) !== `never`) {
       App.start_auto_restore()
     }
+
+    App.auto_blur()
   })
 
   DOM.ev(document.documentElement, `mouseenter`, () => {
     if (App.get_setting(`auto_restore`) !== `never`) {
       App.clear_restore()
     }
+
+    App.remove_auto_blur()
   })
+
 }
 
 App.window_goto_top = (mode) => {

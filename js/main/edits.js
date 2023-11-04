@@ -952,7 +952,8 @@ App.get_tag_items = (mode) => {
 }
 
 App.tagged = (item) => {
-  return Boolean((item.custom_tags.length) || item.rule_tags.length)
+  return Boolean((item.custom_tags && item.custom_tags.length) ||
+  item.rule_tags && item.rule_tags.length)
 }
 
 App.edit_notes = (item) => {
