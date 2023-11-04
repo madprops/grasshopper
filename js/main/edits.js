@@ -242,14 +242,6 @@ App.remove_item_edits = (item) => {
 }
 
 App.apply_edit = (what, item, value) => {
-  if (App.edit_to_string(what, item) === value) {
-    return
-  }
-
-  if (App.edit_to_string(what, item, `rule`) === value) {
-    return
-  }
-
   item[`custom_${what}`] = value
   App.update_item(item.mode, item.id, item)
 }
