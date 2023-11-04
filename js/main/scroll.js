@@ -105,17 +105,8 @@ App.do_check_scroller = (mode) => {
   }
 
   let container = DOM.el(`#${mode}_container`)
-  let percentage
-
-  if (App.get_setting(`reverse_scroller_percentage`)) {
-    percentage = (container.scrollTop /
-    (container.scrollHeight - container.clientHeight)) * 100
-  }
-  else {
-    percentage = 100 - ((container.scrollTop /
-    (container.scrollHeight - container.clientHeight)) * 100)
-  }
-
+  let percentage = 100 - ((container.scrollTop /
+  (container.scrollHeight - container.clientHeight)) * 100)
   let per = parseInt(percentage)
   DOM.el(`#${mode}_scroller_percentage`).textContent = `(${per}%)`
 

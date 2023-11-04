@@ -619,13 +619,6 @@ App.build_settings = () => {
       info: `Sort tags alphabetically in the taglist`,
       version: 1,
     },
-    reverse_scroller_percentage: {
-      name: `Reverse Scroller %`,
-      type: `checkbox`,
-      value: false,
-      info: `Reverse the scroll percentage displayed on the scroller`,
-      version: 1,
-    },
   }
 
   add_props()
