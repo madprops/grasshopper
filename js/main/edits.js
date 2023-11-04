@@ -242,50 +242,30 @@ App.remove_item_edits = (item) => {
 }
 
 App.apply_edit = (what, item, value) => {
-  if (what === `tags` && value) {
-    if (!value.length && !item[`custom_${what}`].length) {
-      return
-    }
-
-    value = Array.from(new Set(value))
+  if (App.edit_to_string(what, item) === value) {
+    return
   }
 
-  let change = true
-  let props = App.edit_props[what]
-
-  if (props.type === `string`) {
-    if (item[`rule_${what}`]) {
-      if (item[`rule_${what}`] === value) {
-        change = false
-      }
-    }
+  if (App.edit_to_string(what, item, `rule`) === value) {
+    return
   }
 
-  if (change) {
-    item[`custom_${what}`] = value
-  }
-  else {
-    item[`custom_${what}`] = App.edit_default(what)
-  }
-
+  item[`custom_${what}`] = value
   App.update_item(item.mode, item.id, item)
 }
 
-App.edit_to_string = (what, item) => {
+App.edit_to_string = (what, item, kind = `custom`) => {
   if (what === `color`) {
-    if (item.custom_color) {
-      return item.custom_color
-    }
+    return item[`${kind}_color`]
   }
   else if (what === `title`) {
-    if (item.custom_title) {
-      return item.custom_title
-    }
+    return item[`${kind}_title`]
   }
   else if (what === `tags`) {
-    if (item.custom_tags.length) {
-      return item.custom_tags.join(` `)
-    }
+    return item[`${kind}_tags`].join(` `)
+  }
+  else if (what === `notes`) {
+    return item[`${kind}_notes`]
   }
 
   return ``
