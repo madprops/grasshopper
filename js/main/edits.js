@@ -997,3 +997,16 @@ App.edit_default = (what) => {
     return []
   }
 }
+
+App.remove_notes = (item) => {
+  if (!item.custom_notes) {
+    return
+  }
+
+  App.show_confirm({
+    message: `Remove notes?`,
+    confirm_action: () => {
+      App.apply_edit(`notes`, item, App.edit_default(`notes`))
+    },
+  })
+}

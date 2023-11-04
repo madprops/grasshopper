@@ -914,6 +914,13 @@ App.build_settings = () => {
       info: `Show the color menu by clicking a color icon`,
       version: 1,
     },
+    notes_icon_click: {
+      name: `Notes Icon Click`,
+      type: `checkbox`,
+      value: true,
+      info: `Show the notes when clicking the notes icon`,
+      version: 1,
+    },
     color_red: {
       name: `Color Red`,
       type: `color`,
@@ -1434,13 +1441,6 @@ App.build_settings = () => {
       type: `checkbox`,
       value: true,
       info: `Un-Mute tabs when clicking on the mute icon`,
-      version: 1,
-    },
-    notes_click: {
-      name: `Notes Click`,
-      type: `checkbox`,
-      value: true,
-      info: `Click the notes icon to open the notes`,
       version: 1,
     },
     double_click_new: {

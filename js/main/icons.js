@@ -67,7 +67,7 @@ App.add_tab_icons = (item) => {
 
   cls = ``
 
-  if (App.get_setting(`notes_click`)) {
+  if (App.get_setting(`notes_icon_click`)) {
     cls += ` action`
   }
 

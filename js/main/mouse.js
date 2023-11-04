@@ -139,7 +139,7 @@ App.mouse_click_action = (mode, e) => {
       }
     }
 
-    if (App.get_setting(`notes_click`)) {
+    if (App.get_setting(`notes_icon_click`)) {
       if (App.get_setting(`notes_icon`)) {
         if (e.target.classList.contains(`notes_icon`)) {
           App.edit_notes(item)
@@ -149,7 +149,7 @@ App.mouse_click_action = (mode, e) => {
     }
 
     if (App.get_setting(`color_icon_click`)) {
-      if (e.target.closest(`.item_info_color`)) {
+      if (e.target.closest(`.color_icon`)) {
         App.show_color_menu(item, e)
         return
       }
@@ -278,8 +278,15 @@ App.mouse_middle_action = (mode, e) => {
   }
 
   if (App.get_setting(`color_icon_click`)) {
-    if (e.target.closest(`.item_info_color`)) {
+    if (e.target.closest(`.color_icon`)) {
       App.edit_tab_color({item: item})
+      return
+    }
+  }
+
+  if (App.get_setting(`notes_icon_click`)) {
+    if (e.target.closest(`.notes_icon`)) {
+      App.remove_notes(item)
       return
     }
   }

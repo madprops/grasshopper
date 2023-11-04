@@ -55,7 +55,7 @@ App.apply_color_mode = (item) => {
   let color = App.get_color(item)
 
   if (color_mode.includes(`icon`)) {
-    let el = DOM.el(`.item_info_color`, item.element)
+    let el = DOM.el(`.color_icon`, item.element)
 
     if (color) {
       el.innerHTML = ``

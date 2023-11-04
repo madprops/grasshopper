@@ -342,7 +342,7 @@ App.create_item_element = (item) => {
     cls += ` effect`
   }
 
-  let color_icon = DOM.create(`div`, `item_info_color item_node hidden${cls}`)
+  let color_icon = DOM.create(`div`, `color_icon item_node hidden${cls}`)
   color_icon.title = `Color`
   item.element.append(color_icon)
   App.apply_color_mode(item)
