@@ -243,19 +243,11 @@ App.remove_item_edits = (item) => {
 
 App.apply_edit = (what, item, value) => {
   if (what === `tags` && value) {
-    if (!value.length) {
-      if (item[`custom_${what}`] === undefined) {
-        return
-      }
+    if (!value.length && !item[`custom_${what}`].length) {
+      return
     }
 
     value = Array.from(new Set(value))
-  }
-
-  if (value === undefined) {
-    if (item[`custom_${what}`] === undefined) {
-      return
-    }
   }
 
   let change = true
