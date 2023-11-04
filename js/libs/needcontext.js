@@ -807,6 +807,10 @@ NeedContext.modkey = (e) => {
 
 // Do an action
 NeedContext.action = (item, e) => {
+  if (NeedContext.item_is_hidden(item)) {
+    return
+  }
+
   let args = NeedContext.args
   let after_action = NeedContext.args.after_action
 
@@ -849,12 +853,21 @@ NeedContext.dismiss = (e) => {
 
 // Alternative action
 NeedContext.alt_action = (item, e) => {
+  if (NeedContext.item_is_hidden(item)) {
+    return
+  }
+
   if (NeedContext.args.after_alt_action) {
     NeedContext.args.after_alt_action(e)
   }
 
   NeedContext.hide(e)
   item.alt_action(e)
+}
+
+// Check if the element of an item is hidden
+NeedContext.item_is_hidden = (item) => {
+  return item.element.classList.contains(`needcontext-hidden`)
 }
 
 // Start
