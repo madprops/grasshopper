@@ -291,7 +291,7 @@ App.edit_to_string = (what, item) => {
     }
   }
   else if (what === `tags`) {
-    if (item.custom_tags) {
+    if (item.custom_tags.length) {
       return item.custom_tags.join(` `)
     }
   }
@@ -754,11 +754,9 @@ App.get_all_tags = (include_rules = true) => {
   }
 
   for (let item of App.get_items(`tabs`)) {
-    if (item.custom_tags) {
-      for (let tag of item.custom_tags) {
-        if (!tags.includes(tag)) {
-          tags.push(tag)
-        }
+    for (let tag of item.custom_tags) {
+      if (!tags.includes(tag)) {
+        tags.push(tag)
       }
     }
 
@@ -820,13 +818,11 @@ App.do_replace_tag = (tag_1, tag_2) => {
   }
 
   for (let item of App.get_items(`tabs`)) {
-    if (item.custom_tags) {
-      if (item.custom_tags.includes(tag_1)) {
-        item.custom_tags = item.custom_tags.map(x => x === tag_1 ? tag_2 : x)
-        App.apply_edit(`tags`, item, item.custom_tags)
-        App.custom_save(item.id, `custom_tags`, item.custom_tags)
-        App.push_to_tag_history([tag_2])
-      }
+    if (item.custom_tags.includes(tag_1)) {
+      item.custom_tags = item.custom_tags.map(x => x === tag_1 ? tag_2 : x)
+      App.apply_edit(`tags`, item, item.custom_tags)
+      App.custom_save(item.id, `custom_tags`, item.custom_tags)
+      App.push_to_tag_history([tag_2])
     }
   }
 }
