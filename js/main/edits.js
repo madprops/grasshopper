@@ -1007,6 +1007,7 @@ App.remove_notes = (item) => {
     message: `Remove notes?`,
     confirm_action: () => {
       App.apply_edit(`notes`, item, App.edit_default(`notes`))
+      App.custom_save(item.id, `custom_notes`, undefined)
     },
   })
 }
