@@ -371,17 +371,6 @@ App.setup_commands = () => {
       name: App.separator_string
     },
     {
-      name: `Item Action`,
-      cmd: `item_action`,
-      modes: [`items`],
-      item: true,
-      icon: command_icon,
-      action: (args) => {
-        App[`${args.mode}_action`](args.item)
-      },
-      info: `Trigger the action for the selected item`,
-    },
-    {
       name: `Open`,
       cmd: `open_items`,
       modes: [`items`],

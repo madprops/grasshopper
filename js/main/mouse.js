@@ -176,10 +176,6 @@ App.mouse_click_action = (mode, e) => {
     }
   }
 
-  if (App.get_setting(`double_click_command`) === `action`) {
-    return
-  }
-
   if (e.altKey || App.get_setting(`click_select`)) {
     App.select_item({item: item, scroll: `nearest_smooth`})
     return
