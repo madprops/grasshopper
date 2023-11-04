@@ -86,6 +86,12 @@ App.do_filter = async (args = {}) => {
     by_what = `all`
   }
 
+  if (by_what !== `all`) {
+    if (!value) {
+      return
+    }
+  }
+
   let search = false
 
   // This check is to avoid re-fetching items
