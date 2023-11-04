@@ -1,5 +1,11 @@
 App.create_taglist = () => {
-  return DOM.create(`div`, `taglist hidden`)
+  let taglist = DOM.create(`div`, `taglist hidden`)
+
+  if (App.get_setting(`taglist`) === `hover`) {
+    taglist.classList.add(`hover`)
+  }
+
+  return taglist
 }
 
 App.check_taglist = (item) => {

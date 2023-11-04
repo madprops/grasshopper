@@ -1144,6 +1144,20 @@ a:visited, a:link, a:hover {
   justify-content: flex-start;
 }
 
+.taglist.hover {
+  position: absolute;
+  display: none;
+  right: 0;
+  background-color: var(--alt_background);
+  border: 2px solid var(--alt_color_1);
+  height: 100%;
+  padding-left: 0.8rem;
+}
+
+.item:hover .taglist.hover {
+  display: flex;
+}
+
 .taglist > div {
   padding-left: 0.33rem;
   padding-right: 0.33rem;
