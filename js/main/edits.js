@@ -761,11 +761,9 @@ App.get_all_tags = (include_rules = true) => {
     }
 
     if (include_rules) {
-      if (item.rule_tags) {
-        for (let tag of item.rule_tags) {
-          if (!tags.includes(tag)) {
-            tags.push(tag)
-          }
+      for (let tag of item.rule_tags) {
+        if (!tags.includes(tag)) {
+          tags.push(tag)
         }
       }
     }

@@ -27,12 +27,5 @@ App.get_tags = (item) => {
 }
 
 App.get_notes = (item) => {
-  if (item.custom_notes.length) {
-    return item.custom_notes
-  }
-  else if (item.rule_notes.length) {
-    return item.rule_notes
-  }
-
-  return []
+  return item.custom_notes || item.rule_notes || ``
 }
