@@ -1746,6 +1746,7 @@ App.build_settings = () => {
 
         App.settings_make_menu(`taglist`, [
           {text: `None`, value: `none`},
+          {text: `Above`, value: `above`},
           {text: `Below`, value: `below`},
           {text: `Hover`, value: `hover`},
         ])
