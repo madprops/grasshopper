@@ -1006,14 +1006,14 @@ App.remove_item_notes = (item, single = false) => {
   }
   else {
     active = App.get_active_items({mode: item.mode, item: item})
+  }
 
-    if (active.length === 1) {
-      let it = active[0]
+  if (active.length === 1) {
+    let it = active[0]
 
-      if (it.rule_notes && !it.custom_notes) {
-        App.alert_autohide(`These notes are set by domain rules`)
-        return
-      }
+    if (it.rule_notes && !it.custom_notes) {
+      App.alert_autohide(`These notes are set by domain rules`)
+      return
     }
   }
 
