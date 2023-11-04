@@ -19,6 +19,7 @@
   padding: 0.5rem;
   background-color: var(--alt_color_0);
   min-width: var(--widget_width);
+  box-sizing: border-box;
   gap: 0.8rem;
 }
 
@@ -41,15 +42,17 @@
 }
 
 .addlist_text {
-  width: var(--text_input_width);
-  max-width: var(--text_input_width);
+  min-width: var(--widget_width);
+  max-width: var(--widget_width);
   text-align: center;
+  box-sizing: border-box;
 }
 
 .addlist_textarea {
-  width: var(--text_input_width);
-  max-width: var(--text_input_width);
+  min-width: var(--widget_width);
+  max-width: var(--widget_width);
   text-align: center;
+  box-sizing: border-box;
 }
 
 .addlist_menu {

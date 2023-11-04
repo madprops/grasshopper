@@ -5,9 +5,8 @@
   --scroller_padding: 0.29rem;
   --color_border: 1px solid black;
   --bigger_font: 1.1rem;
-  --widget_width: 15rem;
+  --widget_width: 14rem;
   --widget_width_smaller: 6rem;
-  --text_input_width: 12.5rem;
   --action_effect: 0 0 0.5rem currentColor;
   --text_glow: 0 0 0.25rem currentColor;
 }
@@ -994,8 +993,8 @@ a:visited, a:link, a:hover {
 
 .prompt_input {
   text-align: center;
-  width: var(--text_input_width);
-  max-width: var(--text_input_width);
+  width: var(--widget_width);
+  max-width: var(--widget_width);
 }
 
 .item_node {
