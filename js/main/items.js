@@ -424,21 +424,24 @@ App.set_item_text = (item) => {
   }
 
   if (App.get_setting(`show_tooltips`)) {
-    item.element.title = `Title: ${title}`
-    item.element.title += `\nURL: ${path}`
+    let tips = []
+    tips.push(`Title: ${title}`)
+    tips.push(`URL: ${path}`)
 
     if (item.last_visit) {
-      item.element.title += `\nLast Visit: ${App.nice_date(item.last_visit)}`
+      tips.push(`Last Visit: ${App.nice_date(item.last_visit)}`)
     }
 
     if (item.date_added) {
-      item.element.title += `\nDate Added: ${App.nice_date(item.date_added)}`
+      tips.push(`Date Added: ${App.nice_date(item.date_added)}`)
     }
 
     if (App.tagged(item)) {
       let tags = App.get_tags(item)
-      item.element.title += `\nTags: ${tags.join(`, `)}`
+      tips.push(`Tags: ${tags.join(`, `)}`)
     }
+
+    item.element.title = tips.join(`\n`)
   }
 
   for (let [i, line] of lines.entries()) {
