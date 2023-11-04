@@ -434,12 +434,8 @@ App.set_item_text = (item) => {
   }
 
   if (App.get_setting(`show_tooltips`)) {
-    if (content === item.footer || text_mode.includes(`_`)) {
-      item.element.title = content
-    }
-    else {
-      item.element.title = `${content}\n${item.footer}`
-    }
+    item.element.title = `Title: ${title}`
+    item.element.title += `\nURL: ${path}`
 
     if (item.last_visit) {
       item.element.title += `\nLast Visit: ${App.nice_date(item.last_visit)}`
