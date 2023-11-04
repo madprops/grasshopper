@@ -102,8 +102,6 @@ App.process_info = (args = {}) => {
     if (item.active && !App.active_history.length) {
       App.update_active_history(undefined, item)
     }
-
-    App.check_rules(item)
   }
   else if (args.mode === `history`) {
     item.last_visit = args.info.lastVisitTime
@@ -128,12 +126,11 @@ App.process_info = (args = {}) => {
       }
     }
 
-    if (args.mode === `tabs`) {
-      for (let key in App.edit_props) {
-        item[`custom_${key}`] = App.edit_default(key)
-      }
+    for (let key in App.edit_props) {
+      item[`custom_${key}`] = App.edit_default(key)
     }
 
+    App.check_rules(item)
     item.original_data = args.info
     item.id = args.info.id || App[`${args.mode}_idx`]
     item.visible = true

@@ -283,7 +283,7 @@ App.edit_to_string = (what, item) => {
     }
   }
   else if (what === `tags`) {
-    if (item.custom_tags && item.custom_tags.length) {
+    if (item.custom_tags.length) {
       return item.custom_tags.join(` `)
     }
   }
@@ -605,7 +605,7 @@ App.edit_tab_tags = (args = {}) => {
         let tags = tag_list
         let new_tags
 
-        if (it.custom_tags && it.custom_tags.length) {
+        if (it.custom_tags.length) {
           new_tags = tags.filter(x => !it.custom_tags.includes(x))
 
           if (args.add) {
@@ -616,7 +616,7 @@ App.edit_tab_tags = (args = {}) => {
           new_tags = tags
         }
 
-        if (it.rule_tags && it.rule_tags.length) {
+        if (it.rule_tags.length) {
           tags = tags.filter(x => !it.rule_tags.includes(x))
         }
 
@@ -712,14 +712,18 @@ App.close_tag_all = () => {
       let items = []
 
       for (let tab of App.get_items(`tabs`)) {
-        if (tab.custom_tags && tab.custom_tags.includes(tag)) {
-          items.push(tab)
-          continue
+        if (tab.custom_tags) {
+          if (tab.custom_tags.includes(tag)) {
+            items.push(tab)
+            continue
+          }
         }
 
-        if (tab.rule_tags && tab.rule_tags.includes(tag)) {
-          items.push(tab)
-          continue
+        if (tab.rule_tags) {
+          if (tab.rule_tags.includes(tag)) {
+            items.push(tab)
+            continue
+          }
         }
       }
 
@@ -742,19 +746,13 @@ App.get_all_tags = (include_rules = true) => {
   }
 
   for (let item of App.get_items(`tabs`)) {
-    if (!App.tagged(item)) {
-      continue
-    }
-
-    if (item.custom_tags) {
-      for (let tag of item.custom_tags) {
-        if (!tags.includes(tag)) {
-          tags.push(tag)
-        }
+    for (let tag of item.custom_tags) {
+      if (!tags.includes(tag)) {
+        tags.push(tag)
       }
     }
 
-    if (include_rules && item.rule_tags) {
+    if (include_rules) {
       for (let tag of item.rule_tags) {
         if (!tags.includes(tag)) {
           tags.push(tag)
@@ -820,7 +818,7 @@ App.do_replace_tag = (tag_1, tag_2) => {
 }
 
 App.check_tag_rule = (item, tag) => {
-  if (item.rule_tags && item.rule_tags.includes(tag)) {
+  if (item.rule_tags.includes(tag)) {
     App.alert_autohide(`This tag is set by domain rules`)
     return true
   }
@@ -954,8 +952,7 @@ App.get_tag_items = (mode) => {
 }
 
 App.tagged = (item) => {
-  return Boolean((item.custom_tags && item.custom_tags.length) ||
-  item.rule_tags && item.rule_tags.length)
+  return Boolean((item.custom_tags.length) || item.rule_tags.length)
 }
 
 App.edit_notes = (item) => {
