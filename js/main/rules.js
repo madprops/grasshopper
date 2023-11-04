@@ -5,10 +5,6 @@ App.check_rules = (item) => {
     item[`rule_${key}`] = App.edit_default(key)
   }
 
-  if (item.mode !== `tabs`) {
-    return
-  }
-
   let rules = App.get_setting(`domain_rules`)
 
   for (let rule of rules) {

@@ -22,6 +22,13 @@ App.create_filter_menu = (mode) => {
   fmodes.push({type: `image`, text: `Image`, skip: false, info: `Show image items`, icon: image_icon})
   fmodes.push({type: `video`, text: `Video`, skip: false, info: `Show video items`, icon: video_icon})
   fmodes.push({type: `audio`, text: `Audio`, skip: false, info: `Show audio items`, icon: audio_icon})
+  fmodes.push(separator())
+  fmodes.push({type: `tag`, text: `Tag`, skip: true, info: `Filter a specific tag`, icon: App.tag_icon})
+  fmodes.push({type: `color`, text: `Color`, skip: true, info: `Filter a specific color`, icon: App.settings_icons.theme})
+  fmodes.push({type: `titled`, text: `Titled`, skip: false, info: `Show tabs that have a custom title`, icon: App.edit_icon})
+  fmodes.push({type: `notes`, text: `Notes`, skip: false, info: `Show tabs that have notes`, icon: App.edit_icon})
+  fmodes.push({type: `edited`, text: `Edited`, skip: false, info: `Show tabs that have custom properties`,
+  icon: App.get_setting(`edited_icon`) || App.edit_icon})
 
   if (mode !== `tabs`) {
     fmodes.push(separator())
