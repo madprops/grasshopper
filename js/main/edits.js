@@ -210,7 +210,7 @@ App.remove_edits = (args = {}) => {
     confirm_action: () => {
       for (let item of args.items) {
         App.apply_edit(args.what, item, App.edit_default(args.what))
-        App.custom_save(item.id, `custom_${args.what}`, undefined)
+        App.custom_save(item.id, `custom_${args.what}`)
       }
     },
     force: args.force,
