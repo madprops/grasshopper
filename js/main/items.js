@@ -399,37 +399,27 @@ App.create_item_element = (item) => {
 }
 
 App.set_item_text = (item) => {
-  let content
+  let lines = []
   let path = decodeURI(item.path)
   let text_mode = App.get_setting(`text_mode`)
   let title = App.get_title(item)
 
   if (text_mode === `title`) {
-    content = title || path
+    lines.push(title || path)
     item.footer = path || title
   }
   else if (text_mode === `url`) {
-    content = path || title
+    lines.push(path || title)
     item.footer = title || path
   }
   else if (text_mode === `title_url`) {
-    content = title
-
-    if (content) {
-      content += `\n`
-    }
-
-    content += path
+    lines.push(title)
+    lines.push(path)
     item.footer = path || title
   }
   else if (text_mode === `url_title`) {
-    content = path
-
-    if (content) {
-      content += `\n`
-    }
-
-    content += title
+    lines.push(path)
+    lines.push(title)
     item.footer = title || path
   }
 
@@ -451,10 +441,11 @@ App.set_item_text = (item) => {
     }
   }
 
-  content = content || `Empty`
-  let lines = content.split(`\n`)
-
   for (let [i, line] of lines.entries()) {
+    if (!line) {
+      line = `Empty`
+    }
+
     let text = line.substring(0, App.max_text_length).trim()
     let text_el = DOM.el(`.item_text_${i + 1}`, item.element)
     text_el.classList.remove(`hidden`)
