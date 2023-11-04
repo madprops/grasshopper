@@ -220,7 +220,7 @@ App.check_tab_icons = (item) => {
     let icon = DOM.el(`.notes_icon`, item.element)
     icon.title = `Notes`
 
-    if (App.get_notes(item)) {
+    if (App.get_notes(item).length) {
       icon.classList.remove(`hidden`)
     }
     else {

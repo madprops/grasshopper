@@ -1,9 +1,9 @@
 App.get_color = (item) => {
-  return item.custom_color || item.rule_color
+  return item.custom_color || item.rule_color || ``
 }
 
 App.get_title = (item) => {
-  let title = item.custom_title || item.rule_title || item.title
+  let title = item.custom_title || item.rule_title || item.title || ``
 
   if (App.get_setting(`all_caps`)) {
     title = title.toUpperCase()
@@ -27,5 +27,12 @@ App.get_tags = (item) => {
 }
 
 App.get_notes = (item) => {
-  return item.custom_notes || item.rule_notes
+  if (item.custom_notes.length) {
+    return item.custom_notes
+  }
+  else if (item.rule_notes.length) {
+    return item.rule_notes
+  }
+
+  return []
 }
