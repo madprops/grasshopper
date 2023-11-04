@@ -1,9 +1,10 @@
 App.check_rules = (item) => {
   let rules = App.get_setting(`domain_rules`)
-  item.rule_color = undefined
-  item.rule_title = undefined
-  item.rule_tags = undefined
-  item.rule_notes = undefined
+
+  for (let key in App.edit_props) {
+    item[`rule_${key}`] = App.edit_default(key)
+  }
+
   item.ruled = false
 
   for (let rule of rules) {
@@ -27,7 +28,7 @@ App.check_rules = (item) => {
         item.ruled = true
       }
 
-      if (rule.tags && rule.tags.length) {
+      if (rule.tags.length) {
         item.rule_tags = App.taglist(rule.tags)
         item.ruled = true
       }

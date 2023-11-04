@@ -33,6 +33,11 @@ App.check_tab_session = async (items = []) => {
   for (let item of items) {
     for (let key in App.edit_props) {
       let value = await browser.sessions.getTabValue(item.id, `custom_${key}`)
+
+      if (value === undefined) {
+        continue
+      }
+
       App.apply_edit(key, item, value)
     }
   }
@@ -250,12 +255,6 @@ App.apply_edit = (what, item, value) => {
     value = Array.from(new Set(value))
   }
 
-  if (Array.isArray(value)) {
-    if (!value.length) {
-      value = undefined
-    }
-  }
-
   if (value === undefined) {
     if (item[`custom_${what}`] === undefined) {
       return
@@ -277,7 +276,7 @@ App.apply_edit = (what, item, value) => {
     item[`custom_${what}`] = value
   }
   else {
-    item[`custom_${what}`] = undefined
+    item[`custom_${what}`] = App.edit_default(what)
   }
 
   App.update_item(item.mode, item.id, item)
@@ -314,7 +313,7 @@ App.edit_tab_color = (args = {}) => {
   if (args.toggle) {
     if (args.item.custom_color) {
       if (args.item.custom_color === args.color) {
-        args.color = undefined
+        args.color = ``
       }
     }
   }
@@ -617,7 +616,7 @@ App.edit_tab_tags = (args = {}) => {
         let tags = tag_list
         let new_tags
 
-        if (it.custom_tags && it.custom_tags.length) {
+        if (it.custom_tags.length) {
           new_tags = tags.filter(x => !it.custom_tags.includes(x))
 
           if (args.add) {
@@ -628,7 +627,7 @@ App.edit_tab_tags = (args = {}) => {
           new_tags = tags
         }
 
-        if (it.rule_tags && it.rule_tags.length) {
+        if (it.rule_tags.length) {
           tags = tags.filter(x => !it.rule_tags.includes(x))
         }
 
@@ -836,9 +835,7 @@ App.do_replace_tag = (tag_1, tag_2) => {
 }
 
 App.check_tag_rule = (item, tag) => {
-  if (item.rule_tags &&
-  item.rule_tags.length &&
-  item.rule_tags.includes(tag)) {
+  if (item.rule_tags.includes(tag)) {
     App.alert_autohide(`This tag is set by domain rules`)
     return true
   }
@@ -974,8 +971,7 @@ App.get_tag_items = (mode) => {
 }
 
 App.tagged = (item) => {
-  return Boolean((item.custom_tags && item.custom_tags.length) ||
-  item.rule_tags && item.rule_tags.length)
+  return Boolean((item.custom_tags.length) || item.rule_tags.length)
 }
 
 App.edit_notes = (item) => {
@@ -1000,4 +996,15 @@ App.edit_notes = (item) => {
     bottom: true,
     wrap: true,
   })
+}
+
+App.edit_default = (what) => {
+  let props = App.edit_props[what]
+
+  if (props.type === `string`) {
+    return ``
+  }
+  else if (props.type === `list`) {
+    return []
+  }
 }
