@@ -1006,7 +1006,6 @@ App.remove_item_notes = (item, single = false) => {
   }
   else {
     active = App.get_active_items({mode: item.mode, item: item})
-    console.log(active)
 
     if (active.length === 1) {
       let it = active[0]
