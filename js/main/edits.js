@@ -67,16 +67,14 @@ App.edited = (item, include_ruled =  true) => {
   let edited = false
 
   for (let key in App.edit_props) {
-    if (Boolean(item[`custom_${key}`])) {
+    if (!App.edit_is_default(key, item)) {
       edited = true
       break
     }
   }
 
-  if (!edited) {
-    if (include_ruled) {
-      edited = item.ruled
-    }
+  if (!edited && include_ruled) {
+    edited = item.ruled
   }
 
   return edited
@@ -960,6 +958,10 @@ App.edit_default = (what) => {
   else if (props.type === `list`) {
     return []
   }
+}
+
+App.edit_is_default = (what, item, kind = `custom`) => {
+  return App.str(App.edit_default(what)) === App.str(item[`${kind}_${what}`])
 }
 
 App.remove_item_notes = (item, single = false) => {
