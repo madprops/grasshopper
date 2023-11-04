@@ -807,7 +807,7 @@ NeedContext.modkey = (e) => {
 
 // Do an action
 NeedContext.action = (item, e) => {
-  if (NeedContext.item_is_hidden(item)) {
+  if (!NeedContext.is_visible(item.element)) {
     return
   }
 
@@ -853,7 +853,7 @@ NeedContext.dismiss = (e) => {
 
 // Alternative action
 NeedContext.alt_action = (item, e) => {
-  if (NeedContext.item_is_hidden(item)) {
+  if (!NeedContext.is_visible(item.element)) {
     return
   }
 
@@ -863,11 +863,6 @@ NeedContext.alt_action = (item, e) => {
 
   NeedContext.hide(e)
   item.alt_action(e)
-}
-
-// Check if the element of an item is hidden
-NeedContext.item_is_hidden = (item) => {
-  return item.element.classList.contains(`needcontext-hidden`)
 }
 
 // Start
