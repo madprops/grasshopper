@@ -1561,7 +1561,6 @@ App.cmd_item = (args = {}) => {
         e: e,
       })
     },
-    direct: true,
   }
 }
 
