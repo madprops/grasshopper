@@ -993,8 +993,8 @@ a:visited, a:link, a:hover {
 
 .prompt_input {
   text-align: center;
-  width: var(--widget_width);
-  max-width: var(--widget_width);
+  width: 12.9rem;
+  max-width: 12.9rem;
 }
 
 .item_node {
