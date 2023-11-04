@@ -32,7 +32,7 @@ App.setup_commands = () => {
   color_filters.push({
     name: `Filter All Colors`,
     cmd: `filter_color_all`,
-    modes: [`tabs`],
+    modes: [`items`],
     icon: theme_icon,
     action: (args) => {
       App.filter_color(args.mode, `all`)
@@ -48,7 +48,7 @@ App.setup_commands = () => {
     color_filters.push({
       name: name,
       cmd: `filter_color_${color}`,
-      modes: [`tabs`],
+      modes: [`items`],
       icon: icon,
       action: (args) => {
         App.filter_color(args.mode, color)
@@ -120,7 +120,7 @@ App.setup_commands = () => {
   color_filters.push({
     name: `Filter Color Menu`,
     cmd: `show_filter_color_menu`,
-    modes: [`tabs`],
+    modes: [`items`],
     item: true,
     icon: theme_icon,
     action: (args) => {
@@ -1108,7 +1108,7 @@ App.setup_commands = () => {
     {
       name: `Filter Tag`,
       cmd: `filter_tag`,
-      modes: [`tabs`],
+      modes: [`items`],
       item: true,
       icon: tag_icon,
       action: (args) => {
@@ -1119,7 +1119,7 @@ App.setup_commands = () => {
     {
       name: `Filter Tag Menu`,
       cmd: `show_filter_tag_menu`,
-      modes: [`tabs`],
+      modes: [`items`],
       icon: tag_icon,
       action: (args) => {
         App.show_filter_tag_menu(args.mode, args.e)
@@ -1129,7 +1129,7 @@ App.setup_commands = () => {
     {
       name: `Filter All Tags`,
       cmd: `filter_tag_all`,
-      modes: [`tabs`],
+      modes: [`items`],
       item: true,
       icon: tag_icon,
       action: (args) => {
@@ -1210,7 +1210,7 @@ App.setup_commands = () => {
     {
       name: `Filter Titled`,
       cmd: `filter_titled_tabs`,
-      modes: [`tabs`],
+      modes: [`items`],
       icon: edit_icon,
       action: (args) => {
         App.filter_titled(args.mode)
@@ -1220,7 +1220,7 @@ App.setup_commands = () => {
     {
       name: `Filter Notes`,
       cmd: `filter_notes_tabs`,
-      modes: [`tabs`],
+      modes: [`items`],
       icon: edit_icon,
       action: (args) => {
         App.filter_notes(args.mode)
@@ -1230,7 +1230,7 @@ App.setup_commands = () => {
     {
       name: `Filter Edited`,
       cmd: `filter_edited_tabs`,
-      modes: [`tabs`],
+      modes: [`items`],
       icon: edit_icon,
       action: (args) => {
         App.filter_edited(args.mode)
