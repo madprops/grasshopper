@@ -275,6 +275,7 @@ App.setup_commands = () => {
       action: (args) => {
         App.cycle_modes(true)
       },
+      alt: `show_next_mode`,
       info: `Go to the previous mode`,
     },
     {
@@ -285,6 +286,7 @@ App.setup_commands = () => {
       action: (args) => {
         App.cycle_modes()
       },
+      alt: `show_previous_mode`,
       info: `Go to the next mode`,
     },
 
@@ -589,6 +591,7 @@ App.setup_commands = () => {
       action: (args) => {
         App.pin_tabs(args.item)
       },
+      alt: `unpin_tabs`,
       info: `Pin tabs`,
     },
     {
@@ -602,6 +605,7 @@ App.setup_commands = () => {
       action: (args) => {
         App.unpin_tabs(args.item)
       },
+      alt: `pin_tabs`,
       info: `Unpin tabs`,
     },
     {
@@ -626,6 +630,7 @@ App.setup_commands = () => {
       action: (args) => {
         App.mute_tabs(args.item)
       },
+      alt: `unmute_tabs`,
       info: `Mute tabs`,
     },
     {
@@ -638,6 +643,7 @@ App.setup_commands = () => {
       action: (args) => {
         App.unmute_tabs(args.item)
       },
+      alt: `mute_tabs`,
       info: `Unmite tabs`,
     },
     {
