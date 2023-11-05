@@ -232,16 +232,25 @@ App.check_icons = (item) => {
 
 App.check_item_icon = (item) => {
   if (App.get_setting(`item_icon`) !== `none`) {
-    let container = DOM.el(`.item_icon_container`, item.element)
-    container.innerHTML = ``
-    let icon
-
     if (item.favicon) {
+      if (item.favicon_used === item.favicon) {
+        return
+      }
+
       icon = App.get_favicon(item)
+      item.favicon_used = item.favicon
     }
     else if (App.get_setting(`generate_icons`)) {
-      icon = App.get_jdenticon(item.hostname)
+      if (item.generated_icon === item.hostname) {
+        return
+      }
+
+      icon = App.generate_icon(item.hostname)
+      item.generated_icon = item.hostname
     }
+
+    let container = DOM.el(`.item_icon_container`, item.element)
+    container.innerHTML = ``
 
     if (icon) {
       container.append(icon)
@@ -274,7 +283,7 @@ App.get_favicon = (item) => {
 
   DOM.ev(icon, `error`, () => {
     if (App.get_setting(`generate_icons`)) {
-      let icon_2 = App.get_jdenticon(item.hostname)
+      let icon_2 = App.generate_icon(item.hostname)
       icon.replaceWith(icon_2)
     }
   })
@@ -283,7 +292,7 @@ App.get_favicon = (item) => {
   return icon
 }
 
-App.get_jdenticon = (hostname) => {
+App.generate_icon = (hostname) => {
   let icon = DOM.create(`canvas`, `item_icon`)
   icon.width = App.icon_size
   icon.height = App.icon_size
