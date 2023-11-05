@@ -239,6 +239,7 @@ App.check_item_icon = (item) => {
 
       icon = App.get_favicon(item)
       item.favicon_used = item.favicon
+      item.generated_icon = undefined
     }
     else if (App.get_setting(`generate_icons`)) {
       if (item.generated_icon === item.hostname) {
@@ -247,6 +248,7 @@ App.check_item_icon = (item) => {
 
       icon = App.generate_icon(item.hostname)
       item.generated_icon = item.hostname
+      item.favicon_used = undefined
     }
 
     let container = DOM.el(`.item_icon_container`, item.element)
