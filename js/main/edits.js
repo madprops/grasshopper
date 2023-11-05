@@ -207,8 +207,9 @@ App.remove_edits = (args = {}) => {
     message: `Remove edits? (${args.what}) (${args.items.length})`,
     confirm_action: () => {
       for (let item of args.items) {
-        App.apply_edit(args.what, item, App.edit_default(args.what))
-        App.custom_save(item.id, `custom_${args.what}`)
+        if (App.apply_edit(args.what, item, App.edit_default(args.what))) {
+          App.custom_save(item.id, `custom_${args.what}`)
+        }
       }
     },
     force: args.force,
@@ -240,14 +241,22 @@ App.remove_item_edits = (item) => {
 }
 
 App.apply_edit = (what, item, value) => {
-  if (App.check_edit_rule(item, what, value)) {
-    item[`custom_${what}`] = value
+  let new_value
+
+  if (App.same_edit(what, item, value, `rule`)) {
+    new_value = App.edit_default(what)
   }
   else {
-    item[`custom_${what}`] = App.edit_default(what)
+    new_value = value
   }
 
-  App.update_item(item.mode, item.id, item)
+  if (!App.same_edit(what, item, new_value, `custom`)) {
+    item[`custom_${what}`] = new_value
+    App.update_item(item.mode, item.id, item)
+    return true
+  }
+
+  return false
 }
 
 App.edit_to_string = (what, item, kind = `custom`) => {
@@ -484,9 +493,10 @@ App.edit_tab_title = (args = {}) => {
     message: `${s} (${active.length})`,
     confirm_action: () => {
       for (let it of active) {
-        App.apply_edit(`title`, it, args.title)
-        App.custom_save(it.id, `custom_title`, args.title)
-        App.push_to_title_history([args.title])
+        if (App.apply_edit(`title`, it, args.title)) {
+          App.custom_save(it.id, `custom_title`, args.title)
+          App.push_to_title_history([args.title])
+        }
       }
     },
     force: force,
@@ -597,11 +607,12 @@ App.edit_tab_tags = (args = {}) => {
           tags = tags.filter(x => !it.rule_tags.includes(x))
         }
 
-        App.apply_edit(`tags`, it, tags)
-        App.custom_save(it.id, `custom_tags`, tags)
+        if (App.apply_edit(`tags`, it, tags)) {
+          App.custom_save(it.id, `custom_tags`, tags)
 
-        if (new_tags.length) {
-          App.push_to_tag_history(new_tags)
+          if (new_tags.length) {
+            App.push_to_tag_history(new_tags)
+          }
         }
       }
     },
@@ -637,9 +648,11 @@ App.remove_tag = (item, tag) => {
     return
   }
 
-  item.custom_tags = item.custom_tags.filter(x => x !== tag)
-  App.apply_edit(`tags`, item, item.custom_tags)
-  App.custom_save(item.id, `custom_tags`, item.custom_tags)
+  let tags = item.custom_tags.filter(x => x !== tag)
+
+  if (App.apply_edit(`tags`, item, tags)) {
+    App.custom_save(item.id, `custom_tags`, tags)
+  }
 }
 
 App.wipe_tag = () => {
@@ -787,9 +800,11 @@ App.do_replace_tag = (tag_1, tag_2) => {
   for (let item of App.get_items(`tabs`)) {
     if (item.custom_tags.includes(tag_1)) {
       item.custom_tags = item.custom_tags.map(x => x === tag_1 ? tag_2 : x)
-      App.apply_edit(`tags`, item, item.custom_tags)
-      App.custom_save(item.id, `custom_tags`, item.custom_tags)
-      App.push_to_tag_history([tag_2])
+
+      if (App.apply_edit(`tags`, item, item.custom_tags)) {
+        App.custom_save(item.id, `custom_tags`, item.custom_tags)
+        App.push_to_tag_history([tag_2])
+      }
     }
   }
 }
@@ -831,9 +846,11 @@ App.do_edit_tag = (item, tag_1, tag_2) => {
 
   item.custom_tags = item.custom_tags.filter(x => x !== tag_1)
   item.custom_tags.push(tag_2)
-  App.apply_edit(`tags`, item, item.custom_tags)
-  App.custom_save(item.id, `custom_tags`, item.custom_tags)
-  App.push_to_tag_history([tag_2])
+
+  if (App.apply_edit(`tags`, item, item.custom_tags)) {
+    App.custom_save(item.id, `custom_tags`, item.custom_tags)
+    App.push_to_tag_history([tag_2])
+  }
 }
 
 App.check_tag_edit = (tag_1, tag_2) => {
@@ -945,8 +962,10 @@ App.edit_notes = (item) => {
         }
       }
 
-      App.apply_edit(`notes`, item, notes)
-      App.custom_save(item.id, `custom_notes`, notes)
+      if (App.apply_edit(`notes`, item, notes)) {
+        App.custom_save(item.id, `custom_notes`, notes)
+      }
+
       return true
     },
     value: App.get_notes(item),
@@ -1003,31 +1022,20 @@ App.remove_notes = (item) => {
   App.remove_item_notes(item, true)
 }
 
-App.check_edit_rule = (item, what, value) => {
+App.same_edit = (what, item, value, type = `custom`) => {
   let props = App.edit_props[what]
+  let ovalue = item[`${type}_${what}`]
 
   if (props.type === `string`) {
-    if (value) {
-      let str = item[`rule_${what}`]
-
-      if (str) {
-        if (str === value) {
-          return false
-        }
-      }
+    if (ovalue === value) {
+      return true
     }
   }
   else if (props.type === `list`) {
-    if (value.length) {
-      let rule_list = item[`rule_${what}`]
-
-      if (rule_list.length) {
-        if (App.same_arrays(rule_list, value)) {
-          return false
-        }
-      }
+    if (App.same_arrays(ovalue, value)) {
+      return true
     }
   }
 
-  return true
+  return false
 }
