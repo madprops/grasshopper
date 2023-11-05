@@ -296,6 +296,10 @@ svg {
   padding-left: calc(var(--item_gap) * 3);
 }
 
+.close_button:hover {
+  background-color: var(--alt_color_0);
+}
+
 .borders_normal .item {
   border-top-width: 1px;
   border-bottom-width: 1px;
