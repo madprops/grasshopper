@@ -544,22 +544,26 @@ App.setup_keyboard = () => {
   })
 
   DOM.ev(document, `keyup`, (e) => {
-    clearTimeout(App.press_timeout)
+    App.stop_press_timeout()
   })
 }
 
 App.reset_keyboard = () => {
-  clearTimeout(App.press_timeout)
+  App.stop_press_timeout()
   App.pressed_key = undefined
   App.double_key_date = 0
 }
 
 App.start_press_timeout = () => {
-  clearTimeout(App.press_timeout)
+  App.stop_press_timeout()
 
   App.press_timeout = setTimeout(() => {
     App.press_action()
   }, App.get_setting(`key_press_delay`))
+}
+
+App.stop_press_timeout = () => {
+  clearTimeout(App.press_timeout)
 }
 
 App.press_action = () => {
