@@ -67,20 +67,6 @@ App.build_settings = () => {
       info: `Effect for icons when multiple items are selected`,
       version: 1,
     },
-    width: {
-      name: `Width`,
-      type: `menu`,
-      value: 75,
-      info: `Width of the popup`,
-      version: 1,
-    },
-    height: {
-      name: `Height`,
-      type: `menu`,
-      value: 85,
-      info: `Height of the popup`,
-      version: 1,
-    },
     hover_effect: {
       name: `Hover Effect`,
       type: `menu`,
@@ -115,6 +101,20 @@ App.build_settings = () => {
       value: `never`,
       info: `When to auto-restore after the mouse leaves the window. Or if it should restore instantly after an action.
       Restore means going back to the primary mode and clearing the filter`,
+      version: 1,
+    },
+    width: {
+      name: `Width`,
+      type: `menu`,
+      value: 75,
+      info: `Width of the popup`,
+      version: 1,
+    },
+    height: {
+      name: `Height`,
+      type: `menu`,
+      value: 85,
+      info: `Height of the popup`,
       version: 1,
     },
     bookmarks_folder: {
