@@ -1,6 +1,6 @@
 App.setup_items = () => {
-  App.check_selected_debouncer = App.create_debouncer(() => {
-    App.do_check_selected()
+  App.check_selected_debouncer = App.create_debouncer((mode) => {
+    App.do_check_selected(mode)
   }, App.check_selected_delay)
 }
 
@@ -19,6 +19,10 @@ App.select_item = (args = {}) => {
   App.def_args(def_args, args)
 
   if (!args.item) {
+    return
+  }
+
+  if (args.item.mode !== App.active_mode) {
     return
   }
 
@@ -738,11 +742,8 @@ App.check_selected = (mode) => {
   App.check_selected_debouncer.call(mode)
 }
 
-App.do_check_selected = () => {
+App.do_check_selected = (mode) => {
   App.check_selected_debouncer.cancel()
-  // Mode is defined here because when clicking on History etc
-  // when it focuses a tab item the mode is `tabs` which is incorrect
-  let mode = App.active_mode
   let num = App.selected_items(mode).length
   let c = DOM.el(`#${mode}_container`)
 
