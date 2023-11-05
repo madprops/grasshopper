@@ -581,6 +581,8 @@ App.setup_commands = () => {
       cmd: `pin_tabs`,
       modes: [`tabs`],
       item: true,
+      some_loaded: true,
+      some_unpinned: true,
       icon: tabs_icon,
       action: (args) => {
         App.pin_tabs(args.item)
@@ -592,6 +594,8 @@ App.setup_commands = () => {
       cmd: `unpin_tabs`,
       modes: [`tabs`],
       item: true,
+      some_loaded: true,
+      some_pinned: true,
       icon: tabs_icon,
       action: (args) => {
         App.unpin_tabs(args.item)
@@ -1428,6 +1432,26 @@ App.check_command = (command, args) => {
     if (App.get_color(args.item)) {
       args.color = App.get_color(args.item)
     }
+
+    if (args.mode === `tabs`) {
+      let active = App.get_active_items({mode: args.mode, item: args.item})
+
+      for (let item of active) {
+        if (item.pinned) {
+          args.some_pinned = true
+        }
+        else {
+          args.some_unpinned = true
+        }
+
+        if (item.discarded) {
+          args.some_unloaded = true
+        }
+        else {
+          args.some_loaded = true
+        }
+      }
+    }
   }
 
   if (args.alt) {
@@ -1459,6 +1483,38 @@ App.check_command = (command, args) => {
   if (valid) {
     if (command.color) {
       if (!args.color) {
+        valid = false
+      }
+    }
+  }
+
+  if (valid) {
+    if (command.some_pinned) {
+      if (!args.some_pinned) {
+        valid = false
+      }
+    }
+  }
+
+  if (valid) {
+    if (command.some_unpinned) {
+      if (!args.some_unpinned) {
+        valid = false
+      }
+    }
+  }
+
+  if (valid) {
+    if (command.some_loaded) {
+      if (!args.some_loaded) {
+        valid = false
+      }
+    }
+  }
+
+  if (valid) {
+    if (command.some_unloaded) {
+      if (!args.some_unloaded) {
         valid = false
       }
     }
