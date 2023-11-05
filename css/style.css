@@ -1150,8 +1150,8 @@ a:visited, a:link, a:hover {
   background-color: var(--alt_background);
   border: 2px solid var(--alt_color_1);
   height: 100%;
-  padding-left: 0.77rem;
-  padding-right: 0.77rem;
+  padding-left: 0.7rem;
+  padding-right: 0.7rem;
 }
 
 .taglist.left {
