@@ -490,6 +490,7 @@ App.setup_commands = () => {
       name: `Unload`,
       cmd: `unload_tabs`,
       modes: [`tabs`],
+      some_loaded: true,
       item: true,
       icon: unloaded_icon,
       action: (args) => {
@@ -512,6 +513,7 @@ App.setup_commands = () => {
       name: `Load`,
       cmd: `load_tabs`,
       modes: [`tabs`],
+      some_unloaded: true,
       item: true,
       icon: tabs_icon,
       action: (args) => {
