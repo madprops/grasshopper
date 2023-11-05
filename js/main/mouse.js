@@ -273,24 +273,26 @@ App.mouse_middle_action = (mode, e) => {
     return
   }
 
-  if (App.get_setting(`color_icon_click`)) {
-    if (e.target.closest(`.color_icon`)) {
-      App.edit_tab_color({item: item})
-      return
+  if (mode === `tabs`) {
+    if (App.get_setting(`color_icon_click`)) {
+      if (e.target.closest(`.color_icon`)) {
+        App.edit_tab_color({item: item})
+        return
+      }
     }
-  }
 
-  if (App.get_setting(`notes_icon_click`)) {
-    if (e.target.closest(`.notes_icon`)) {
-      App.remove_notes(item)
-      return
+    if (App.get_setting(`notes_icon_click`)) {
+      if (e.target.closest(`.notes_icon`)) {
+        App.remove_notes(item)
+        return
+      }
     }
-  }
 
-  if (App.taglist_active()) {
-    if (e.target.classList.contains(`taglist_item`)) {
-      App.taglist_remove(e, item)
-      return
+    if (App.taglist_active()) {
+      if (e.target.classList.contains(`taglist_item`)) {
+        App.taglist_remove(e, item)
+        return
+      }
     }
   }
 
