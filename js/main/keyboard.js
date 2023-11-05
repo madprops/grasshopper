@@ -563,7 +563,6 @@ App.start_press_timeout = () => {
 }
 
 App.press_action = () => {
-
   if (App.pressed_key === `Control`) {
     let cmd = App.get_setting(`ctrl_press_command`)
     App.run_command({cmd: cmd, from: `ctrl_press`})
