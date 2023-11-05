@@ -38,19 +38,6 @@ App.check_tab_session = async (items = []) => {
         continue
       }
 
-      let props = App.edit_props[key]
-
-      if (props.type === `string`) {
-        if (typeof value !== `string`) {
-          continue
-        }
-      }
-      else if (props.type === `list`) {
-        if (!Array.isArray(value)) {
-          continue
-        }
-      }
-
       App.apply_edit(key, item, value)
     }
   }
@@ -254,6 +241,19 @@ App.remove_item_edits = (item) => {
 }
 
 App.apply_edit = (what, item, value) => {
+  let props = App.edit_props[what]
+
+  if (props.type === `string`) {
+    if (typeof value !== `string`) {
+      return false
+    }
+  }
+  else if (props.type === `list`) {
+    if (!Array.isArray(value)) {
+      return false
+    }
+  }
+
   let new_value
 
   if (App.same_edit(what, item, value, `rule`)) {
