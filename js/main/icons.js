@@ -2,30 +2,35 @@ App.add_tab_icons = (item) => {
   if (App.get_setting(`active_icon`)) {
     let icon = DOM.create(`div`, `active_icon item_node hidden`)
     icon.textContent = App.get_setting(`active_icon`)
+    icon.title = `Active`
     item.element.append(icon)
   }
 
   if (App.get_setting(`pin_icon`)) {
     let icon = DOM.create(`div`, `pin_icon item_node hidden`)
     icon.textContent = App.get_setting(`pin_icon`)
+    icon.title = `Pinned`
     item.element.append(icon)
   }
 
   if (App.get_setting(`normal_icon`)) {
     let icon = DOM.create(`div`, `normal_icon item_node hidden`)
     icon.textContent = App.get_setting(`normal_icon`)
+    icon.title = `Normal`
     item.element.append(icon)
   }
 
   if (App.get_setting(`loaded_icon`)) {
     let icon = DOM.create(`div`, `loaded_icon item_node hidden`)
     icon.textContent = App.get_setting(`loaded_icon`)
+    icon.title = `Loaded`
     item.element.append(icon)
   }
 
   if (App.get_setting(`unloaded_icon`)) {
     let icon = DOM.create(`div`, `unloaded_icon item_node hidden`)
     icon.textContent = App.get_setting(`unloaded_icon`)
+    icon.title = `Unloaded`
     item.element.append(icon)
   }
 
@@ -38,36 +43,42 @@ App.add_tab_icons = (item) => {
   if (App.get_setting(`playing_icon`)) {
     let icon = DOM.create(`div`, `playing_icon item_node hidden${cls}`)
     icon.textContent = App.get_setting(`playing_icon`)
+    icon.title = `Playing`
     item.element.append(icon)
   }
 
   if (App.get_setting(`muted_icon`)) {
     let icon = DOM.create(`div`, `muted_icon item_node hidden${cls}`)
     icon.textContent = App.get_setting(`muted_icon`)
+    icon.title = `Muted`
     item.element.append(icon)
   }
 
   if (App.get_setting(`unread_icon`)) {
     let icon = DOM.create(`div`, `unread_icon item_node hidden`)
     icon.textContent = App.get_setting(`unread_icon`)
+    icon.title = `Unread`
     item.element.append(icon)
   }
 
   if (App.get_setting(`titled_icon`)) {
     let icon = DOM.create(`div`, `titled_icon item_node hidden`)
     icon.textContent = App.get_setting(`titled_icon`)
+    icon.title = `Titled`
     item.element.append(icon)
   }
 
   if (App.get_setting(`tagged_icon`)) {
     let icon = DOM.create(`div`, `tagged_icon item_node hidden`)
     icon.textContent = App.get_setting(`tagged_icon`)
+    icon.title = `Tagged`
     item.element.append(icon)
   }
 
   if (App.get_setting(`edited_icon`)) {
     let icon = DOM.create(`div`, `edited_icon item_node hidden`)
     icon.textContent = App.get_setting(`edited_icon`)
+    icon.title = `Edited`
     item.element.append(icon)
   }
 
