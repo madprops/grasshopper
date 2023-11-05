@@ -6,6 +6,10 @@ App.setup_input = () => {
   DOM.ev(DOM.el(`#input_clear`), `click`, () => {
     App.clear_input()
   })
+
+  DOM.ev(DOM.el(`#input_close`), `click`, () => {
+    App.hide_input()
+  })
 }
 
 App.show_input = (args = {}) => {
@@ -26,6 +30,9 @@ App.show_input = (args = {}) => {
   DOM.el(`#input_submit`).textContent = args.button
   App.input_args = args
   App.show_popup(`input`)
+  let clear_btn = DOM.el(`#input_clear`)
+  let submit_btn = DOM.el(`#input_submit`)
+  let close_btn = DOM.el(`#input_close`)
 
   requestAnimationFrame(() => {
     if (args.wrap) {
@@ -37,9 +44,15 @@ App.show_input = (args = {}) => {
 
     if (args.readonly) {
       textarea.setAttribute(`readonly`, `readonly`)
+      clear_btn.classList.add(`hidden`)
+      submit_btn.classList.add(`hidden`)
+      close_btn.classList.remove(`hidden`)
     }
     else {
       textarea.removeAttribute(`readonly`)
+      clear_btn.classList.remove(`hidden`)
+      submit_btn.classList.remove(`hidden`)
+      close_btn.classList.add(`hidden`)
     }
 
     App.focus_textarea(textarea)
@@ -58,7 +71,7 @@ App.input_enter = () => {
   let ans = App.input_action(DOM.el(`#input_text`).value.trim())
 
   if (ans) {
-    App.hide_popup(`input`)
+    App.hide_input()
   }
 }
 
@@ -86,4 +99,8 @@ App.clear_input = () => {
       App.focus_textarea(textarea)
     },
   })
+}
+
+App.hide_input = () => {
+  App.hide_popup(`input`)
 }
