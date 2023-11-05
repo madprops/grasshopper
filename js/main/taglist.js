@@ -17,6 +17,10 @@ App.create_taglist = () => {
 }
 
 App.check_taglist = (item) => {
+  if (item.mode !== `tabs`) {
+    return
+  }
+
   if (App.get_setting(`taglist`) === `none`) {
     return
   }
