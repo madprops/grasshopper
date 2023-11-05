@@ -399,6 +399,11 @@ svg {
   font-weight: bold;
 }
 
+.hover_effect_border .item:hover .item_text,
+.selected_effect_border .selected .item_text {
+  outline: 1px solid var(--text_color);
+}
+
 .item_main_top {
   display: flex;
   flex-direction: column;

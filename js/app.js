@@ -131,6 +131,7 @@ App.effects = [
   {text: `Underline`, value: `underline`},
   {text: `Bold`, value: `bold`},
   {text: `Bigger`, value: `bigger`},
+  {text: `Border`, value: `border`},
 ]
 
 App.background_effects = [
