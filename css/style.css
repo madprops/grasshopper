@@ -330,8 +330,12 @@ svg {
   border-radius: 50%;
 }
 
-.spin_icons .multiple_selected .item.selected .item_icon {
+.icon_effect_spin .multiple_selected .item.selected .item_icon {
   animation: spin 1s linear infinite;
+}
+
+.icon_effect_invert .multiple_selected .item.selected .item_icon {
+  filter: invert(1);
 }
 
 .item_content {

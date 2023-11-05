@@ -60,6 +60,13 @@ App.build_settings = () => {
       info: `The size of the item icons`,
       version: 1,
     },
+    icon_effect: {
+      name: `Icon Efect`,
+      type: `menu`,
+      value: `spin`,
+      info: `Effect for icons when multiple items are selected`,
+      version: 1,
+    },
     width: {
       name: `Width`,
       type: `menu`,
@@ -1500,13 +1507,6 @@ App.build_settings = () => {
       info: `Generate icons if favicons are not found`,
       version: 1,
     },
-    spin_icons: {
-      name: `Spin Icons`,
-      type: `checkbox`,
-      value: true,
-      info: `Spin icons when multiple items are selected`,
-      version: 1,
-    },
     all_caps: {
       name: `All Caps`,
       type: `checkbox`,
@@ -1596,6 +1596,12 @@ App.build_settings = () => {
         ])
 
         App.settings_make_menu(`item_icon`, [{text: `None`, value: `none`}, ...App.sizes])
+
+        App.settings_make_menu(`icon_effect`, [
+          {text: `None`, value: `none`},
+          {text: `Spin`, value: `spin`},
+          {text: `Invert`, value: `invert`},
+        ])
 
         App.settings_make_menu(`primary_mode`, [
           {text: `Tabs`, value: `tabs`},

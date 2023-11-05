@@ -237,12 +237,14 @@ App.do_apply_theme = (args = {}) => {
       document.head.appendChild(style)
     }
 
-    if (App.get_setting(`spin_icons`)) {
-      main.classList.add(`spin_icons`)
+    let ie = App.get_setting(`icon_effect`)
+    let ies = [`spin`, `invert`]
+
+    for (let eff of ies) {
+      main.classList.remove(`icon_effect_${eff}`)
     }
-    else {
-      main.classList.remove(`spin_icons`)
-    }
+
+    main.classList.add(`icon_effect_${ie}`)
   }
   catch (err) {
     App.error(err)
