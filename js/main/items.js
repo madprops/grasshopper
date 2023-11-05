@@ -165,7 +165,7 @@ App.get_selected = (mode = App.window_mode) => {
 
 App.set_selected = (item) => {
   if (!item) {
-    App.remove_selected_class(mode)
+    App.remove_selected_class(item.mode)
     return
   }
 
@@ -725,6 +725,19 @@ App.toggle_selected = (item, what, select = true) => {
   }
 
   App.update_footer_count(item.mode)
+  App.check_selected(item.mode)
+}
+
+App.check_selected = (mode) => {
+  let num = App.selected_items(mode).length
+  let c = DOM.el(`#${mode}_container`)
+
+  if (num > 1) {
+    c.classList.add(`multiple_selected`)
+  }
+  else {
+    c.classList.remove(`multiple_selected`)
+  }
 }
 
 App.selected_items = (mode = App.window_mode) => {

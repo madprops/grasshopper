@@ -1500,6 +1500,13 @@ App.build_settings = () => {
       info: `Generate icons if favicons are not found`,
       version: 1,
     },
+    spin_icons: {
+      name: `Spin Icons`,
+      type: `checkbox`,
+      value: true,
+      info: `Spin icons when multiple items are selected`,
+      version: 1,
+    },
     all_caps: {
       name: `All Caps`,
       type: `checkbox`,

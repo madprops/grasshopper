@@ -236,6 +236,13 @@ App.do_apply_theme = (args = {}) => {
       style.textContent = App.get_setting(`custom_css`)
       document.head.appendChild(style)
     }
+
+    if (App.get_setting(`spin_icons`)) {
+      main.classList.add(`spin_icons`)
+    }
+    else {
+      main.classList.remove(`spin_icons`)
+    }
   }
   catch (err) {
     App.error(err)
