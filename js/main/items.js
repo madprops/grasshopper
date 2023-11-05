@@ -337,7 +337,7 @@ App.create_item_element = (item) => {
   item.element = DOM.create(`div`, `grasshopper_item item ${item.mode}_item`)
   item.element.dataset.id = item.id
   App.add_close_button(item, `left`)
-  let trace = DOM.create(`div`, `item_trace item_node`)
+  let trace = App.create_active_trace()
   item.element.append(trace)
 
   if (App.get_setting(`item_icon`) !== `none`) {
