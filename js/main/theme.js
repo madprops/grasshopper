@@ -238,7 +238,7 @@ App.do_apply_theme = (args = {}) => {
     }
 
     let ie = App.get_setting(`icon_effect`)
-    let ies = [`spin`, `invert`]
+    let ies = [`none`, `spin`, `invert`, `border`]
 
     for (let eff of ies) {
       main.classList.remove(`icon_effect_${eff}`)

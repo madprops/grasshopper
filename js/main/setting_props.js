@@ -1601,6 +1601,7 @@ App.build_settings = () => {
           {text: `None`, value: `none`},
           {text: `Spin`, value: `spin`},
           {text: `Invert`, value: `invert`},
+          {text: `Border`, value: `border`},
         ])
 
         App.settings_make_menu(`primary_mode`, [

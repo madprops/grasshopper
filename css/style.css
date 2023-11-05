@@ -338,6 +338,10 @@ svg {
   filter: invert(1);
 }
 
+.icon_effect_border .multiple_selected .item.selected .item_icon {
+  outline: 1px solid var(--text_color);
+}
+
 .item_content {
   display: flex;
   flex-direction: column;
