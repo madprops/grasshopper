@@ -1175,7 +1175,6 @@ a:visited, a:link, a:hover {
   position: absolute;
   display: none;
   background-color: var(--alt_background);
-  border: 2px solid var(--alt_color_1);
   height: 100%;
 }
 
