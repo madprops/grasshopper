@@ -620,6 +620,7 @@ App.setup_commands = () => {
       name: `Mute`,
       cmd: `mute_tabs`,
       modes: [`tabs`],
+      some_unmuted: true,
       item: true,
       icon: muted_icon || command_icon,
       action: (args) => {
@@ -631,6 +632,7 @@ App.setup_commands = () => {
       name: `Unmute`,
       cmd: `unmute_tabs`,
       modes: [`tabs`],
+      some_muted: true,
       item: true,
       icon: muted_icon || command_icon,
       action: (args) => {
@@ -1447,6 +1449,13 @@ App.check_command = (command, args) => {
           args.some_unpinned = true
         }
 
+        if (item.muted) {
+          args.some_muted = true
+        }
+        else {
+          args.some_unmuted = true
+        }
+
         if (item.discarded) {
           args.some_unloaded = true
         }
@@ -1502,6 +1511,22 @@ App.check_command = (command, args) => {
   if (valid) {
     if (command.some_unpinned) {
       if (!args.some_unpinned) {
+        valid = false
+      }
+    }
+  }
+
+  if (valid) {
+    if (command.some_muted) {
+      if (!args.some_muted) {
+        valid = false
+      }
+    }
+  }
+
+  if (valid) {
+    if (command.some_unmuted) {
+      if (!args.some_unmuted) {
         valid = false
       }
     }
