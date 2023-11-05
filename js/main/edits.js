@@ -925,11 +925,30 @@ App.show_filter_tag_menu = (mode, e) => {
 }
 
 App.get_tag_items = (mode) => {
+  function fav_sort(a, b) {
+    let ai = App.tag_history.indexOf(a)
+    let bi = App.tag_history.indexOf(b)
+    if (ai === -1) ai = App.tag_history.length
+    if (bi === -1) bi = App.tag_history.length
+    return ai - bi
+  }
+
   let items = []
-  let tags = App.get_all_tags()
+  let tags = []
+
+  for (let tab of App.get_items(`tabs`)) {
+    for (let tag of App.get_tags(tab)) {
+      if (!tags.includes(tag)) {
+        tags.push(tag)
+      }
+    }
+  }
 
   if (tags.length) {
-    for (let tag of tags) {
+    tags.sort(fav_sort)
+    console.log(tags)
+
+    for (let tag of tags.slice(0, App.max_tag_picks)) {
       items.push({
         text: tag,
         action: () => {
