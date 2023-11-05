@@ -764,7 +764,7 @@ App.get_all_tags = (include_rules = true) => {
     }
   }
 
-  return tags
+  return tags.slice(0, App.max_tag_picks)
 }
 
 App.add_tags = (item) => {
@@ -926,15 +926,7 @@ App.show_filter_tag_menu = (mode, e) => {
 
 App.get_tag_items = (mode) => {
   let items = []
-  let tags = []
-
-  for (let tab of App.get_items(`tabs`)) {
-    for (let tag of App.get_tags(tab)) {
-      if (!tags.includes(tag)) {
-        tags.push(tag)
-      }
-    }
-  }
+  let tags = App.get_all_tags()
 
   if (tags.length) {
     for (let tag of tags) {
