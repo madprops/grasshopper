@@ -946,7 +946,6 @@ App.get_tag_items = (mode) => {
 
   if (tags.length) {
     tags.sort(fav_sort)
-    console.log(tags)
 
     for (let tag of tags.slice(0, App.max_tag_picks)) {
       items.push({
