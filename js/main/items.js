@@ -378,7 +378,7 @@ App.create_item_element = (item) => {
   text.append(text_2)
   content.append(text)
 
-  if (taglist_pos === `below` || taglist_pos === `hover`) {
+  if (taglist_pos !== `none` && taglist_pos !== `above`) {
     content.append(taglist)
   }
 

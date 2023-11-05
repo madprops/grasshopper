@@ -1147,11 +1147,19 @@ a:visited, a:link, a:hover {
 .taglist.hover {
   position: absolute;
   display: none;
-  right: 0;
   background-color: var(--alt_background);
   border: 2px solid var(--alt_color_1);
   height: 100%;
-  padding-left: 0.8rem;
+  padding-left: 0.77rem;
+  padding-right: 0.77rem;
+}
+
+.taglist.left {
+  left: 0;
+}
+
+.taglist.right {
+  right: 0;
 }
 
 .item:hover .taglist.hover {
@@ -1165,6 +1173,14 @@ a:visited, a:link, a:hover {
 
 .taglist > div:first-child {
   padding-left: 0;
+}
+
+.taglist > div:last-child {
+  padding-right: 0;
+}
+
+.taglist.normal .taglist_add {
+  padding-right: 0.33rem;
 }
 
 .taglist_item {
