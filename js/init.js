@@ -22,6 +22,7 @@ App.init = async () => {
   App.setup_filter()
   App.setup_modes()
   App.setup_scroll()
+  App.setup_items()
   App.setup_theme()
   App.setup_edits()
   App.setup_mouse()

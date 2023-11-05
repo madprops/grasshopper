@@ -1,3 +1,9 @@
+App.setup_items = () => {
+  App.check_selected_debouncer = App.create_debouncer(() => {
+    App.do_check_selected()
+  }, App.check_selected_delay)
+}
+
 App.remove_selected_class = (mode) => {
   for (let el of DOM.els(`.selected`, DOM.el(`#${mode}_container`))) {
     el.classList.remove(`selected`)
@@ -729,6 +735,12 @@ App.toggle_selected = (item, what, select = true) => {
 }
 
 App.check_selected = (mode) => {
+  App.check_selected_debouncer.call(mode)
+}
+
+App.do_check_selected = () => {
+  let mode = App.active_mode
+  App.check_selected_debouncer.cancel()
   let num = App.selected_items(mode).length
   let c = DOM.el(`#${mode}_container`)
 
