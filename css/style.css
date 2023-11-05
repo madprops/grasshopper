@@ -519,6 +519,7 @@ svg {
   width: var(--widget_width);
   max-width: var(--widget_width);
   text-align: center;
+  box-sizing: border-box;
 }
 
 .settings_number {
