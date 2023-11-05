@@ -100,7 +100,7 @@ select {
   box-sizing: border-box;
 }
 
-.auto_blur .window_main {
+.auto_blur .window_content, .auto_blur .window_top {
   filter: blur(3px);
 }
 
