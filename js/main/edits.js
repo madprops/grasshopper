@@ -799,10 +799,10 @@ App.do_replace_tag = (tag_1, tag_2) => {
 
   for (let item of App.get_items(`tabs`)) {
     if (item.custom_tags.includes(tag_1)) {
-      item.custom_tags = item.custom_tags.map(x => x === tag_1 ? tag_2 : x)
+      let tags = item.custom_tags.map(x => x === tag_1 ? tag_2 : x)
 
-      if (App.apply_edit(`tags`, item, item.custom_tags)) {
-        App.custom_save(item.id, `custom_tags`, item.custom_tags)
+      if (App.apply_edit(`tags`, item, tags)) {
+        App.custom_save(item.id, `custom_tags`, tags)
         App.push_to_tag_history([tag_2])
       }
     }
@@ -844,11 +844,11 @@ App.do_edit_tag = (item, tag_1, tag_2) => {
     return
   }
 
-  item.custom_tags = item.custom_tags.filter(x => x !== tag_1)
-  item.custom_tags.push(tag_2)
+  let tags = item.custom_tags.filter(x => x !== tag_1)
+  tags.push(tag_2)
 
-  if (App.apply_edit(`tags`, item, item.custom_tags)) {
-    App.custom_save(item.id, `custom_tags`, item.custom_tags)
+  if (App.apply_edit(`tags`, item, tags)) {
+    App.custom_save(item.id, `custom_tags`, tags)
     App.push_to_tag_history([tag_2])
   }
 }
