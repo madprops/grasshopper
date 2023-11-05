@@ -48,11 +48,11 @@ App.show_item_menu = async (args = {}) => {
         items.push(App.item_menu_item({cmd: `load_tabs`, item: args.item}))
       }
 
-      if (some_unpinned) {
+      if (some_unpinned && some_loaded) {
         items.push(App.item_menu_item({cmd: `pin_tabs`, item: args.item}))
       }
 
-      if (some_pinned) {
+      if (some_pinned && some_loaded) {
         items.push(App.item_menu_item({cmd: `unpin_tabs`, item: args.item}))
       }
 
