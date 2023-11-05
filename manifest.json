@@ -12,7 +12,7 @@
     "icons": {
         "128": "img/icon128.png"
     },
-    "action": {
+    "browser_action": {
         "default_icon": {
             "128": "img/icon128.png"
         },
