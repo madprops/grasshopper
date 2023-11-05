@@ -746,25 +746,6 @@ App.filter_domain = (item) => {
   App.set_filter({mode: item.mode, text: hostname})
 }
 
-App.filter_color = (mode, color) => {
-  let name = `color_${color}`
-
-  if (App[`${mode}_filter_mode`] === name) {
-    App.filter_all(mode)
-    return
-  }
-
-  if (color === `all`) {
-    s = `All Colors`
-  }
-  else {
-    s = App.capitalize(color)
-  }
-
-  App.set_custom_filter_mode(mode, name, s)
-  App.set_filter({mode: mode})
-}
-
 App.filter_all = (mode = App.window_mode) => {
   if (App.is_filtered(mode)) {
     App.set_filter_mode({mode: mode, type: `all`, filter: false})
@@ -870,51 +851,68 @@ App.show_filter_color_menu = (mode, e) => {
   App.show_context({items: items, e: e})
 }
 
+App.toggle_filter = (mode, type) => {
+  if (App[`${mode}_filter_mode`] === type) {
+    App.filter_all(mode)
+    return
+  }
+  else {
+    App.set_filter_mode({mode: mode, type: type})
+  }
+}
+
 App.filter_playing = (mode) => {
-  App.set_filter_mode({mode: mode, type: `playing`})
+  App.toggle_filter(mode, `playing`)
 }
 
 App.filter_duplicate = (mode) => {
-  App.set_filter_mode({mode: mode, type: `duplicate`})
+  App.toggle_filter(mode, `duplicate`)
 }
 
 App.filter_unloaded = (mode) => {
-  App.set_filter_mode({mode: mode, type: `unloaded`})
+  App.toggle_filter(mode, `unloaded`)
 }
 
 App.filter_pinned = (mode) => {
-  App.set_filter_mode({mode: mode, type: `pinned`})
+  App.toggle_filter(mode, `pinned`)
 }
 
 App.filter_normal = (mode) => {
-  App.set_filter_mode({mode: mode, type: `normal`})
+  App.toggle_filter(mode, `normal`)
 }
 
 App.filter_loaded = (mode) => {
-  App.set_filter_mode({mode: mode, type: `loaded`})
+  App.toggle_filter(mode, `loaded`)
 }
 
 App.filter_no_tab = (mode) => {
-  App.set_filter_mode({mode: mode, type: `notab`})
+  App.toggle_filter(mode, `notab`)
 }
 
 App.filter_unread = (mode) => {
-  App.set_filter_mode({mode: mode, type: `unread`})
+  App.toggle_filter(mode, `unread`)
 }
 
 App.filter_titled = (mode) => {
-  App.set_filter_mode({mode: mode, type: `titled`})
+  App.toggle_filter(mode, `titled`)
 }
 
 App.filter_notes = (mode) => {
-  App.set_filter_mode({mode: mode, type: `notes`})
+  App.toggle_filter(mode, `notes`)
 }
 
 App.filter_edited = (mode) => {
-  App.set_filter_mode({mode: mode, type: `edited`})
+  App.toggle_filter(mode, `edited`)
 }
 
 App.filter_tag = (mode, tag) => {
+  let name = `tag_${tag}`
+
+  if (App[`${mode}_filter_mode`] === name) {
+    App.filter_all(mode)
+    return
+  }
+
   let s
 
   if (tag === `all`) {
@@ -924,7 +922,28 @@ App.filter_tag = (mode, tag) => {
     s = tag
   }
 
-  App.set_custom_filter_mode(mode, `tag_${tag}`, s)
+  App.set_custom_filter_mode(mode, name, s)
+  App.set_filter({mode: mode})
+}
+
+App.filter_color = (mode, color) => {
+  let name = `color_${color}`
+
+  if (App[`${mode}_filter_mode`] === name) {
+    App.filter_all(mode)
+    return
+  }
+
+  let s
+
+  if (color === `all`) {
+    s = `All Colors`
+  }
+  else {
+    s = App.capitalize(color)
+  }
+
+  App.set_custom_filter_mode(mode, name, s)
   App.set_filter({mode: mode})
 }
 
