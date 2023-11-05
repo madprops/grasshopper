@@ -293,7 +293,7 @@ svg {
 }
 
 .item .close_button {
-  padding-left: calc(var(--item_gap) * 2);
+  padding-left: calc(var(--item_gap) * 3);
 }
 
 .borders_normal .item {
