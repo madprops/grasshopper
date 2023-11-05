@@ -14,6 +14,7 @@ App.show_input = (args = {}) => {
     autosave: false,
     bottom: false,
     wrap: false,
+    readonly: false,
   }
 
   App.def_args(def_args, args)
@@ -50,6 +51,10 @@ App.show_input = (args = {}) => {
 }
 
 App.input_enter = () => {
+  if (App.input_args.readonly) {
+    return
+  }
+
   let ans = App.input_action(DOM.el(`#input_text`).value.trim())
 
   if (ans) {
@@ -64,6 +69,10 @@ App.on_input_dismiss = () => {
 }
 
 App.clear_input = () => {
+  if (App.input_args.readonly) {
+    return
+  }
+
   let textarea = DOM.el(`#input_text`)
 
   if (!textarea.value) {

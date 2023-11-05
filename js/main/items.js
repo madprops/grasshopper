@@ -316,7 +316,7 @@ App.add_close_button = (item, side) => {
 
 App.refresh_item_element = (item) => {
   App.check_item_icon(item)
-  App.check_tab_icons(item)
+  App.check_icons(item)
   App.check_view_media(item)
   App.set_item_text(item)
   App.apply_color_mode(item)
@@ -336,26 +336,19 @@ App.create_item_element = (item) => {
     App.check_item_icon(item)
   }
 
-  let cls = ``
-
-  if (App.get_setting(`color_icon_click`)) {
-    cls += ` effect`
-  }
-
-  let color_icon = DOM.create(`div`, `color_icon item_node hidden${cls}`)
-  color_icon.title = `Color`
-  item.element.append(color_icon)
+  App.get_color_icon(item)
+  App.get_notes_icon(item)
   App.apply_color_mode(item)
 
   if (item.mode === `tabs`) {
     App.add_tab_icons(item)
-    App.check_tab_icons(item)
 
     if (App.tabs_normal()) {
       item.element.draggable = true
     }
   }
 
+  App.check_icons(item)
   let view_media = DOM.create(`div`, `view_media_button hidden`)
   item.element.append(view_media)
   App.check_view_media(item)

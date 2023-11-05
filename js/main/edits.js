@@ -946,6 +946,7 @@ App.edit_notes = (item) => {
     autosave: true,
     bottom: true,
     wrap: true,
+    readonly: item.mode !== `tabs`,
   })
 }
 
