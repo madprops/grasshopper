@@ -338,7 +338,6 @@ App.create_item_element = (item) => {
 
   App.get_color_icon(item)
   App.get_notes_icon(item)
-  App.apply_color_mode(item)
 
   if (item.mode === `tabs`) {
     App.add_tab_icons(item)
@@ -349,6 +348,7 @@ App.create_item_element = (item) => {
   }
 
   App.check_icons(item)
+  App.apply_color_mode(item)
   let view_media = DOM.create(`div`, `view_media_button hidden`)
   item.element.append(view_media)
   App.check_view_media(item)
