@@ -240,7 +240,13 @@ App.remove_item_edits = (item) => {
 }
 
 App.apply_edit = (what, item, value) => {
-  item[`custom_${what}`] = value
+  if (App.check_edit_rule(item, what, value)) {
+    item[`custom_${what}`] = value
+  }
+  else {
+    item[`custom_${what}`] = App.edit_default(what)
+  }
+
   App.update_item(item.mode, item.id, item)
 }
 
@@ -293,8 +299,9 @@ App.edit_tab_color = (args = {}) => {
     message: `${s} (${active.length})`,
     confirm_action: () => {
       for (let it of active) {
-        App.apply_edit(`color`, it, args.color)
-        App.custom_save(it.id, `custom_color`, args.color)
+        if (App.apply_edit(`color`, it, args.color)) {
+          App.custom_save(it.id, `custom_color`, args.color)
+        }
       }
     },
     force: force,
@@ -994,4 +1001,33 @@ App.remove_item_notes = (item, single = false) => {
 
 App.remove_notes = (item) => {
   App.remove_item_notes(item, true)
+}
+
+App.check_edit_rule = (item, what, value) => {
+  let props = App.edit_props[what]
+
+  if (props.type === `string`) {
+    if (value) {
+      let str = item[`rule_${what}`]
+
+      if (str) {
+        if (str === value) {
+          return false
+        }
+      }
+    }
+  }
+  else if (props.type === `list`) {
+    if (value.length) {
+      let rule_list = item[`rule_${what}`]
+
+      if (rule_list.length) {
+        if (App.same_arrays(rule_list, value)) {
+          return false
+        }
+      }
+    }
+  }
+
+  return true
 }

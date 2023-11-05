@@ -483,3 +483,7 @@ App.sort_alpha = (array) => {
     return a.localeCompare(b, undefined, {numeric: true, sensitivity: `base`})
   })
 }
+
+App.same_arrays = (a, b) => {
+  return a.length === b.length && a.every(el => b.includes(el))
+}
