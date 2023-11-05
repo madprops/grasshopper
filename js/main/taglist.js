@@ -52,10 +52,12 @@ App.check_taglist = (item) => {
     }
 
     if (mode !== `none`) {
-      let plus = DOM.create(`div`, `taglist_add action`)
-      plus.textContent = `+`
-      plus.title = `Add Tag`
-      taglist.append(plus)
+      if (App.get_setting(`taglist_add`)) {
+        let add = DOM.create(`div`, `taglist_add action`)
+        add.textContent = `+`
+        add.title = `Add Tag`
+        taglist.append(add)
+      }
     }
 
     taglist.classList.remove(`hidden`)

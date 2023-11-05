@@ -605,11 +605,18 @@ App.build_settings = () => {
       info: `Show the item count in the footer`,
       version: 1,
     },
-    show_scrollbars: {
-      name: `Show Scrollbars`,
+    taglist_add: {
+      name: `Taglist Add`,
+      type: `checkbox`,
+      value: true,
+      info: `Show the taglist add button`,
+      version: 1,
+    },
+    sort_taglist: {
+      name: `Sort Taglist`,
       type: `checkbox`,
       value: false,
-      info: `Show the regular scrollbars. Else scrollbars are disabled`,
+      info: `Sort tags alphabetically in the taglist`,
       version: 1,
     },
     active_trace: {
@@ -619,11 +626,11 @@ App.build_settings = () => {
       info: `Show numbers as a trace on recently used tabs`,
       version: 1,
     },
-    sort_taglist: {
-      name: `Sort Taglist`,
+    show_scrollbars: {
+      name: `Show Scrollbars`,
       type: `checkbox`,
       value: false,
-      info: `Sort tags alphabetically in the taglist`,
+      info: `Show the regular scrollbars. Else scrollbars are disabled`,
       version: 1,
     },
   }
