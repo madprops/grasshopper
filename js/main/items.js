@@ -739,10 +739,10 @@ App.check_selected = (mode) => {
 }
 
 App.do_check_selected = () => {
+  App.check_selected_debouncer.cancel()
   // Mode is defined here because when clicking on History etc
   // when it focuses a tab item the mode is `tabs` which is incorrect
   let mode = App.active_mode
-  App.check_selected_debouncer.cancel()
   let num = App.selected_items(mode).length
   let c = DOM.el(`#${mode}_container`)
 
