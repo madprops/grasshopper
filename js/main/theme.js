@@ -48,6 +48,8 @@ App.do_apply_theme = (args = {}) => {
     App.set_css_var(`alt_color_1`, alt_color_1)
     let alt_color_2 = App.colorlib.rgb_to_rgba(args.text_color, 0.50)
     App.set_css_var(`alt_color_2`, alt_color_2)
+    let text_color_darker = App.colorlib.get_lighter_or_darker(args.text_color, 0.2)
+    App.set_css_var(`text_color_darker`, text_color_darker)
     let overlay_color = App.colorlib.rgb_to_rgba(args.background_color, 0.6)
     App.set_css_var(`overlay_color`, overlay_color)
     let alt_background = App.colorlib.get_lighter_or_darker(args.background_color, 0.06)

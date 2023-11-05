@@ -1174,7 +1174,8 @@ a:visited, a:link, a:hover {
 .taglist.hover {
   position: absolute;
   display: none;
-  background-color: var(--alt_background);
+  background-color: var(--text_color_darker);
+  color: var(--background_color);
   height: 100%;
   max-width: 62%;
   overflow: hidden;
