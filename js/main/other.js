@@ -53,24 +53,41 @@ App.show_cmds_menu = (cmds, from, item) => {
   }
   else {
     for (let obj of cmds) {
-      let c = App.get_command(obj.cmd)
+      let cmd = App.get_command(obj.cmd)
 
-      if (!c) {
+      if (!cmd) {
         continue
       }
 
-      items.push({
-        text: c.name,
+      let item_obj = {
+        text: cmd.name,
         action: (e) => {
           App.run_command({
-            cmd: c.cmd,
+            cmd: cmd.cmd,
             from: from,
-            e: e,
             item: item,
+            e: e,
           })
         },
-        icon: c.icon,
-      })
+        icon: cmd.icon,
+      }
+
+      if (obj.alt) {
+        let alt = App.get_command(obj.alt)
+
+        if (alt) {
+          item_obj.alt_action = (e) => {
+            App.run_command({
+              cmd: alt.cmd,
+              from: from,
+              item: item,
+              e: e,
+            })
+          }
+        }
+      }
+
+      items.push(item_obj)
     }
   }
 
