@@ -1,13 +1,10 @@
 App.create_taglist = () => {
+  let setting = App.get_setting(`taglist`)
   let taglist = DOM.create(`div`, `taglist hidden`)
 
-  if (App.get_setting(`taglist`) === `left`) {
+  if (setting === `left` || setting === `right`) {
     taglist.classList.add(`hover`)
-    taglist.classList.add(`left`)
-  }
-  else if (App.get_setting(`taglist`) === `right`) {
-    taglist.classList.add(`hover`)
-    taglist.classList.add(`right`)
+    taglist.classList.add(setting)
   }
   else {
     taglist.classList.add(`normal`)
