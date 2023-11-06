@@ -12,8 +12,5 @@
   justify-content: center;
   gap: 0.5rem;
   flex-grow: 1;
-}
-
-.menubutton_container .button {
   border-radius: unset;
 }

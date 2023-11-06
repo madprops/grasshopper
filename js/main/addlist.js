@@ -34,11 +34,13 @@ Addlist.save = (id, hide = true) => {
 
   if (oargs.validate) {
     if (!oargs.validate(values)) {
+      Addlist.check_remove()
       return false
     }
   }
   else {
     if (!Addlist.filled(id)) {
+      Addlist.check_remove()
       return false
     }
   }
@@ -980,4 +982,26 @@ Addlist.move_item = (id, start, end) => {
   }
 
   Addlist.list({id: id, index: end, button: button})
+}
+
+Addlist.check_remove = () => {
+  let data = Addlist.data
+
+  if (!data.edit) {
+    return
+  }
+
+  let oargs = Addlist.oargs(data.id)
+
+  App.show_confirm({
+    message: `Remove item?`,
+    confirm_action: () => {
+      Addlist.remove({
+        id: data.id,
+        value: data.items[oargs.pk],
+        hide: true,
+        force: true,
+      })
+    },
+  })
 }
