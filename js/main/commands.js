@@ -1360,6 +1360,10 @@ App.sort_commands = () => {
 }
 
 App.get_command = (cmd) => {
+  if (!cmd || cmd === `none`) {
+    return
+  }
+
   for (let c of App.commands) {
     if (c.cmd === cmd) {
       return c
