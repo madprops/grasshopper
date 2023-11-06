@@ -1205,7 +1205,7 @@ App.setup_settings_addlist = () => {
           },
           title: props.name,
           tooltips: {
-            alt: `When middle-clicking icons in the bar`
+            alt: `Command on middle click`
           },
         }))
       }))
