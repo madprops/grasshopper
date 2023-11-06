@@ -7,7 +7,7 @@
   --bigger_font: 1.1rem;
   --widget_width: 14rem;
   --widget_width_smaller: 6rem;
-  --action_effect: 0 0 0.5rem currentColor;
+  --action_effect: 0 0 0.1rem currentColor;
   --text_glow: 0 0 0.25rem currentColor;
 }
 
