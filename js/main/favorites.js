@@ -59,6 +59,21 @@ App.fill_favorites_bar = (mode) => {
         App.run_command(args)
       })
 
+      let alt = App.get_command(fav.alt)
+
+      if (alt && alt !== `none`) {
+        DOM.ev(btn, `auxclick`, (e) => {
+          if (e.button === 1) {
+            let args = {
+              cmd: alt.cmd,
+              e: e,
+            }
+
+            App.run_command(args)
+          }
+        })
+      }
+
       c.append(btn)
     }
   }
