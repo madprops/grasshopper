@@ -133,12 +133,11 @@ App.dragenter_action = (mode, e) => {
 
 App.dragend_action = (mode, e) => {
   App.dragging = false
+  App.do_check_scroller(mode)
 
   if (App.get_setting(`lock_drag`) && !e.ctrlKey) {
     return
   }
-
-  App.do_check_scroller(mode)
 
   if (!App.drag_element) {
     App.drag_element = undefined
