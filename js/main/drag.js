@@ -27,11 +27,6 @@ App.dragstart_action = (mode, e) => {
     return false
   }
 
-  if (App.get_setting(`lock_drag`) && !e.ctrlKey) {
-    e.preventDefault()
-    return false
-  }
-
   if (!App.tabs_normal()) {
     return false
   }
@@ -51,6 +46,11 @@ App.dragstart_action = (mode, e) => {
   App.drag_start_index = App.get_item_element_index(mode, App.drag_element)
   e.dataTransfer.setDragImage(new Image(), 0, 0)
   e.dataTransfer.setData(`text/plain`, App.drag_item.url)
+
+  if (App.get_setting(`lock_drag`) && !e.ctrlKey) {
+    return
+  }
+
   App.drag_items = []
 
   if (App.drag_item.selected) {
@@ -78,6 +78,10 @@ App.dragstart_action = (mode, e) => {
 }
 
 App.dragenter_action = (mode, e) => {
+  if (App.get_setting(`lock_drag`) && !e.ctrlKey) {
+    return
+  }
+
   if (!App.drag_element) {
     e.preventDefault()
     return false
@@ -129,6 +133,11 @@ App.dragenter_action = (mode, e) => {
 
 App.dragend_action = (mode, e) => {
   App.dragging = false
+
+  if (App.get_setting(`lock_drag`) && !e.ctrlKey) {
+    return
+  }
+
   App.do_check_scroller(mode)
 
   if (!App.drag_element) {
