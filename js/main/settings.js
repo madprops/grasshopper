@@ -1172,7 +1172,7 @@ App.setup_settings_addlist = () => {
   }))
 
   let menukeys = [
-    `filter_menu`,
+    `favorites_menu`,
     `extra_menu`,
     `hover_menu`,
   ]
@@ -1182,70 +1182,35 @@ App.setup_settings_addlist = () => {
     props = App.setting_props[key]
 
     if (menukeys.includes(key)) {
-      let cmds
-
-      if (key === `filter_menu`) {
-        cmds = App.filter_cmds.slice(0)
-      }
-      else {
-        cmds = App.cmdlist_2.slice(0)
-      }
-
       App.create_popup(Object.assign({}, popobj, {
         id: `addlist_${id}`,
         element: Addlist.register(Object.assign({}, regobj, {
           id: id,
-          keys: [`cmd`],
+          keys: [`cmd`, `alt`],
           pk: `cmd`,
           widgets: {
             cmd: `menu`,
+            alt: `menu`,
           },
           labels: {
             cmd: `Command`,
+            alt: `Alternative`,
           },
           sources: {
-            cmd: cmds,
+            cmd: App.cmdlist_2.slice(0),
+            alt: App.cmdlist.slice(0),
           },
           list_text: (items) => {
             return cmd_name(items.cmd)
           },
           title: props.name,
-          automenu: true,
+          tooltips: {
+            alt: `When middle-clicking icons in the bar`
+          },
         }))
       }))
     }
   }
-
-  id = `settings_favorites_menu`
-  props = App.setting_props.favorites_menu
-
-  App.create_popup(Object.assign({}, popobj, {
-    id: `addlist_${id}`,
-    element: Addlist.register(Object.assign({}, regobj, {
-      id: id,
-      keys: [`cmd`, `alt`],
-      pk: `cmd`,
-      widgets: {
-        cmd: `menu`,
-        alt: `menu`,
-      },
-      labels: {
-        cmd: `Command`,
-        alt: `Alternative`,
-      },
-      sources: {
-        cmd: App.cmdlist_2.slice(0),
-        alt: App.cmdlist.slice(0),
-      },
-      list_text: (items) => {
-        return cmd_name(items.cmd)
-      },
-      title: props.name,
-      tooltips: {
-        alt: `When middle-clicking icons in the bar`
-      },
-    }))
-  }))
 
   id = `settings_domain_rules`
   props = App.setting_props.domain_rules
