@@ -68,7 +68,6 @@ App.setup_commands = () => {
       action: (args) => {
         App.edit_tab_color({item: args.item, color: color})
       },
-      alt: `filter_color_${color}`,
       info: `Add a custom color to tabs (${color})`,
     })
 
@@ -84,7 +83,6 @@ App.setup_commands = () => {
       action: (args) => {
         App.edit_tab_color({item: args.item, color: color, toggle: true})
       },
-      alt: `filter_color_${color}`,
       info: `Toggle color on or off (${color})`,
     })
 
@@ -275,7 +273,6 @@ App.setup_commands = () => {
       action: (args) => {
         App.cycle_modes(true)
       },
-      alt: `show_next_mode`,
       info: `Go to the previous mode`,
     },
     {
@@ -286,7 +283,6 @@ App.setup_commands = () => {
       action: (args) => {
         App.cycle_modes()
       },
-      alt: `show_previous_mode`,
       info: `Go to the next mode`,
     },
 
@@ -591,7 +587,6 @@ App.setup_commands = () => {
       action: (args) => {
         App.pin_tabs(args.item)
       },
-      alt: `unpin_tabs`,
       info: `Pin tabs`,
     },
     {
@@ -605,7 +600,6 @@ App.setup_commands = () => {
       action: (args) => {
         App.unpin_tabs(args.item)
       },
-      alt: `pin_tabs`,
       info: `Unpin tabs`,
     },
     {
@@ -630,7 +624,6 @@ App.setup_commands = () => {
       action: (args) => {
         App.mute_tabs(args.item)
       },
-      alt: `unmute_tabs`,
       info: `Mute tabs`,
     },
     {
@@ -643,7 +636,6 @@ App.setup_commands = () => {
       action: (args) => {
         App.unmute_tabs(args.item)
       },
-      alt: `mute_tabs`,
       info: `Unmite tabs`,
     },
     {
@@ -1272,7 +1264,6 @@ App.setup_commands = () => {
       action: (args) => {
         App.set_light_colors()
       },
-      alt: `set_random_light_colors`,
       info: `Change to the light color theme`,
     },
     {
@@ -1282,7 +1273,6 @@ App.setup_commands = () => {
       action: (args) => {
         App.set_dark_colors()
       },
-      alt: `set_random_dark_colors`,
       info: `Change to the dark color theme`,
     },
     {
@@ -1292,7 +1282,6 @@ App.setup_commands = () => {
       action: (args) => {
         App.random_colors(`light`)
       },
-      alt: `set_light_colors`,
       info: `Change to the light color theme`,
     },
     {
@@ -1302,7 +1291,6 @@ App.setup_commands = () => {
       action: (args) => {
         App.random_colors(`dark`)
       },
-      alt: `set_dark_colors`,
       info: `Change to the dark color theme`,
     },
     {
@@ -1391,18 +1379,7 @@ App.run_command = (args) => {
       return false
     }
 
-    if (args.alt) {
-      if (!command.alt) {
-        return false
-      }
-
-      args.cmd = command.alt
-      args.alt = false
-      App.run_command(args)
-    }
-    else {
-      command.action(args)
-    }
+    command.action(args)
   }
 
   return true
@@ -1469,14 +1446,6 @@ App.check_command = (command, args) => {
           args.some_loaded = true
         }
       }
-    }
-  }
-
-  if (args.alt) {
-    command = App.get_command(command.alt)
-
-    if (!command) {
-      return false
     }
   }
 
