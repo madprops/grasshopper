@@ -292,11 +292,11 @@ svg {
   padding-right: var(--item_margin);
 }
 
-.item .close_button_right {
-  padding-left: calc(var(--item_gap) * 3);
+.item .close_button.right {
+  padding-left: calc(var(--item_gap) * 2);
 }
 
-.item .close_button_left {
+.item .close_button.left {
   padding-right: calc(var(--item_gap) * 2);
 }
 
