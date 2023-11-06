@@ -48,7 +48,7 @@ App.fill_favorites_bar = (mode) => {
 
       icon.append(icon_s)
       btn.append(icon)
-      btn.title = cmd.name
+      btn.title = `Click: ${cmd.name}`
 
       DOM.ev(btn, `click`, (e) => {
         let args = {
@@ -62,6 +62,7 @@ App.fill_favorites_bar = (mode) => {
       let alt = App.get_command(fav.alt)
 
       if (alt && alt !== `none`) {
+        btn.title += `\nMiddle Click: ${alt.name}`
         DOM.ev(btn, `auxclick`, (e) => {
           if (e.button === 1) {
             let args = {
