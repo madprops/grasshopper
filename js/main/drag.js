@@ -39,7 +39,6 @@ App.dragstart_action = (mode, e) => {
   }
 
   App.dragging = true
-  App.hide_scroller(mode)
   App.drag_y = e.clientY
   let id = App.drag_element.dataset.id
   App.drag_item = App.get_item_by_id(mode, id)
@@ -51,6 +50,7 @@ App.dragstart_action = (mode, e) => {
     return
   }
 
+  App.hide_scroller(mode)
   App.drag_items = []
 
   if (App.drag_item.selected) {
@@ -133,11 +133,12 @@ App.dragenter_action = (mode, e) => {
 
 App.dragend_action = (mode, e) => {
   App.dragging = false
-  App.do_check_scroller(mode)
 
   if (App.get_setting(`lock_drag`) && !e.ctrlKey) {
     return
   }
+
+  App.do_check_scroller(mode)
 
   if (!App.drag_element) {
     App.drag_element = undefined
