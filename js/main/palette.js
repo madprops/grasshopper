@@ -159,7 +159,7 @@ App.fill_palette = () => {
   container.innerHTML = ``
 
   for (let cmd of App.sorted_commands) {
-    let el = DOM.create(`div`, `palette_item action filter_item filter_text`)
+    let el = DOM.create(`div`, `palette_item linkbutton filter_item filter_text`)
     el.dataset.command = cmd.cmd
 
     if (cmd.icon) {
