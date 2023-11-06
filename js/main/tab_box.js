@@ -1,6 +1,6 @@
 App.create_tab_box = () => {
   let tab_box = DOM.create(`div`, `box`, `tab_box`)
-  let title = DOM.create(`div`, `box_title action`, `tab_box_title`)
+  let title = DOM.create(`div`, `box_title`, `tab_box_title`)
   title.textContent = `Recent Tabs`
   title.title = `This is the Tab Box`
 
@@ -30,7 +30,7 @@ App.update_tab_box = () => {
       continue
     }
 
-    let clone = DOM.create(`div`, `box_item action`)
+    let clone = DOM.create(`div`, `box_item linkbutton`)
     let icon = DOM.create(`div`, `box_item_icon`)
     let o_icon = DOM.el(`.item_icon`, item.element).cloneNode(true)
     let playing_icon = App.get_setting(`playing_icon`)

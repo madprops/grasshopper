@@ -30,12 +30,6 @@ App.check_taglist = (item) => {
   }
   else {
     taglist.innerHTML = ``
-    let item_cls = `taglist_item`
-
-    if (mode !== `none`) {
-      item_cls += ` action`
-    }
-
     let tags = App.get_tags(item).slice(0)
 
     if (App.get_setting(`sort_taglist`)) {
@@ -43,7 +37,7 @@ App.check_taglist = (item) => {
     }
 
     for (let tag of tags) {
-      let item = DOM.create(`div`, item_cls)
+      let item = DOM.create(`div`, `taglist_item`)
       item.textContent = tag
       taglist.append(item)
     }
