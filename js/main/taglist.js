@@ -37,7 +37,7 @@ App.check_taglist = (item) => {
     }
 
     for (let tag of tags) {
-      let item = DOM.create(`div`, `taglist_item`)
+      let item = DOM.create(`div`, `taglist_item doubleline`)
       item.textContent = tag
       taglist.append(item)
     }

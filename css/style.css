@@ -1164,10 +1164,11 @@ a:visited, a:link, a:hover {
   padding-left: 0;
 }
 
-.taglist_item {
+.doubleline {
+  cursor: pointer;
   text-decoration: underline;
 }
 
-.taglist_item:hover {
+.doubleline:hover {
   text-decoration-style: double;
 }

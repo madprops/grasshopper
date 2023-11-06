@@ -17,13 +17,12 @@ App.get_settings_label = (setting) => {
 App.settings_setup_labels = (category) => {
   function proc (item, btns) {
     let bc = DOM.create(`div`, `flex_row_center gap_1`)
-    let cls = `action underline`
 
     for (let btn of btns) {
       let c = DOM.create(`div`, `flex_row_center gap_1`)
       let d = DOM.create(`div`)
       d.textContent = `|`
-      let a = DOM.create(`div`, cls)
+      let a = DOM.create(`div`, `doubleline`)
       a.id = btn[0]
       a.textContent = btn[1]
       c.append(d)
@@ -387,7 +386,7 @@ App.prepare_settings_category = (category) => {
 
   for (let el of DOM.els(`.settings_label`, container)) {
     el.classList.add(`filter_text`)
-    el.classList.add(`action`)
+    el.classList.add(`linkbutton`)
   }
 }
 
