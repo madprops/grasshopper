@@ -229,16 +229,6 @@ App.do_apply_theme = (args = {}) => {
       main.classList.add(`hover_button_right`)
     }
 
-    for (let style of DOM.els(`.custom_css`)) {
-      style.remove()
-    }
-
-    if (App.get_setting(`custom_css`)) {
-      let style = DOM.create(`style`, `custom_css`)
-      style.textContent = App.get_setting(`custom_css`)
-      document.head.appendChild(style)
-    }
-
     let ie = App.get_setting(`icon_effect`)
     let ies = [`none`, `spin`, `invert`, `border`]
 
@@ -247,6 +237,8 @@ App.do_apply_theme = (args = {}) => {
     }
 
     main.classList.add(`icon_effect_${ie}`)
+    App.insert_color_css()
+    App.insert_custom_css()
   }
   catch (err) {
     App.error(err)
@@ -406,5 +398,40 @@ App.apply_background_effects = (effect, tiles) => {
   else {
     bg.style.backgroundSize = `cover`
     bg_rem(`tiles`)
+  }
+}
+
+App.insert_color_css = () => {
+  let css = ``
+
+  for (let color of App.colors) {
+    css += `.border_${color} {
+      border-color: var(--color_${color}) !important;
+    }`
+
+    css += `.background_${color} {
+      background-color: var(--color_${color}) !important;
+      color: var(--text_${color}) !important;
+    }`
+  }
+
+  for (let style of DOM.els(`.color_css`)) {
+    style.remove()
+  }
+
+  let style = DOM.create(`style`, `color_css`)
+  style.textContent = css
+  document.head.appendChild(style)
+}
+
+App.insert_custom_css = () => {
+  for (let style of DOM.els(`.custom_css`)) {
+    style.remove()
+  }
+
+  if (App.get_setting(`custom_css`)) {
+    let style = DOM.create(`style`, `custom_css`)
+    style.textContent = App.get_setting(`custom_css`)
+    document.head.appendChild(style)
   }
 }
