@@ -44,7 +44,7 @@ App.check_taglist = (item) => {
       cls = `linkbutton`
     }
     else if (setting === `above` || setting === `below`) {
-      cls = `dotline`
+      cls = `doubleline`
     }
 
     for (let tag of tags) {
