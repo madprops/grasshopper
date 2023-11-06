@@ -68,9 +68,9 @@ App.do_apply_theme = (args = {}) => {
 
     App.set_css_var(`font_size`, App.get_setting(`font_size`) + `px`)
     App.set_css_var(`font`, `${App.get_setting(`font`)}, sans-serif`)
-    let w = `${(App.get_setting(`width`) / 100) * 800}px`
+    let w = `${(App.get_setting(`width`) / 100) * App.popup_width}px`
     App.set_css_var(`width`, w)
-    let h = `${(App.get_setting(`height`) / 100) * 600}px`
+    let h = `${(App.get_setting(`height`) / 100) * App.popup_height}px`
     App.set_css_var(`height`, h)
     let item_padding = 0.42
     let height_diff = 0.15

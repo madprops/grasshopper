@@ -40,6 +40,8 @@ App.title_history_max = 10
 App.active_history = []
 App.click_press_done = false
 App.max_tag_picks = 10
+App.popup_width = 800
+App.popup_height = 600
 
 App.settings_done = false
 App.settings_ready = false
