@@ -61,8 +61,9 @@ App.fill_favorites_bar = (mode) => {
 
       let alt = App.get_command(fav.alt)
 
-      if (alt && alt !== `none`) {
+      if (alt) {
         btn.title += `\nMiddle Click: ${alt.name}`
+
         DOM.ev(btn, `auxclick`, (e) => {
           if (e.button === 1) {
             let args = {
