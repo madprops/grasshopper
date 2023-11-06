@@ -1563,7 +1563,7 @@ App.check_dead_commands = () => {
       for (let item of value) {
         if (typeof item === `object`) {
           for (let key2 in item) {
-            if (key2 === `cmd`) {
+            if (key2 === `cmd` || key2 === `alt`) {
               check(item[key2], key)
             }
           }
