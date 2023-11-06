@@ -1172,3 +1172,13 @@ a:visited, a:link, a:hover {
 .doubleline:hover {
   text-decoration-style: double;
 }
+
+.dotline {
+  cursor: pointer;
+  text-decoration: underline;
+  text-decoration-style: dotted;
+}
+
+.dotline:hover {
+  text-decoration-style: unset;
+}

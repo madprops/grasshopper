@@ -18,7 +18,9 @@ App.check_taglist = (item) => {
     return
   }
 
-  if (App.get_setting(`taglist`) === `none`) {
+  let setting = App.get_setting(`taglist`)
+
+  if (setting === `none`) {
     return
   }
 
@@ -36,8 +38,17 @@ App.check_taglist = (item) => {
       App.sort_alpha(tags)
     }
 
+    let cls
+
+    if (setting === `left` || setting === `right`) {
+      cls = `linkbutton`
+    }
+    else if (setting === `above` || setting === `below`) {
+      cls = `dotline`
+    }
+
     for (let tag of tags) {
-      let item = DOM.create(`div`, `taglist_item doubleline`)
+      let item = DOM.create(`div`, `taglist_item ${cls}`)
       item.textContent = tag
       taglist.append(item)
     }
