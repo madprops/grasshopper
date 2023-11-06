@@ -292,8 +292,12 @@ svg {
   padding-right: var(--item_margin);
 }
 
-.item .close_button {
+.item .close_button_right {
   padding-left: calc(var(--item_gap) * 3);
+}
+
+.item .close_button_left {
+  padding-right: calc(var(--item_gap) * 2);
 }
 
 .close_button:hover {
@@ -349,7 +353,6 @@ svg {
 .item_content {
   display: flex;
   flex-direction: column;
-  align-items: flex-start;
   justify-content: center;
   padding-top: var(--item_padding);
   padding-bottom: var(--item_padding);

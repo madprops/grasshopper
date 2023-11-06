@@ -300,14 +300,14 @@ App.check_view_media = (item) => {
 }
 
 App.add_close_button = (item, side) => {
-  let close_button = App.get_setting(`close_button`)
+  let cb_setting = App.get_setting(`close_button`)
 
-  if (close_button === `none`) {
+  if (cb_setting === `none`) {
     return
   }
 
   if (item.mode === `tabs`) {
-    if (side !== close_button) {
+    if (side !== cb_setting) {
       return
     }
 
@@ -317,10 +317,11 @@ App.add_close_button = (item, side) => {
       return
     }
 
-    let close = DOM.create(`div`, `close_button item_node action`)
-    close.title = `Close`
-    close.textContent = App.close_tab_icon
-    item.element.append(close)
+    let cls = `close_button_${cb_setting}`
+    let btn = DOM.create(`div`, `close_button ${cls} item_node action`)
+    btn.title = `Close`
+    btn.textContent = App.close_tab_icon
+    item.element.append(btn)
   }
 }
 
