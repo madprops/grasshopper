@@ -2,7 +2,9 @@ App.check_rules = (item) => {
   item.ruled = false
 
   for (let key in App.edit_props) {
-    item[`rule_${key}`] = App.edit_default(key)
+    if (item[`rule_${key}`] === undefined) {
+      item[`rule_${key}`] = App.edit_default(key)
+    }
   }
 
   let rules = App.get_setting(`domain_rules`)
@@ -38,5 +40,7 @@ App.check_rules = (item) => {
         item.ruled = true
       }
     }
+
+    break
   }
 }
