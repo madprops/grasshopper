@@ -84,6 +84,8 @@ App.show_cmds_menu = (cmds, from, item) => {
               e: e,
             })
           }
+
+          item_obj.info = `Middle Click: ${alt.name}`
         }
       }
 
