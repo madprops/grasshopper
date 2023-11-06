@@ -38,28 +38,28 @@ App.check_taglist = (item) => {
       App.sort_alpha(tags)
     }
 
-    let cls
+    let cls = ``
 
-    if (setting === `left` || setting === `right`) {
-      cls = `linkbutton`
-    }
-    else if (setting === `above` || setting === `below`) {
-      cls = `doubleline`
+    if (mode !== `none`) {
+      if (setting === `left` || setting === `right`) {
+        cls += ` linkbutton`
+      }
+      else if (setting === `above` || setting === `below`) {
+        cls += ` doubleline`
+      }
     }
 
     for (let tag of tags) {
-      let item = DOM.create(`div`, `taglist_item ${cls}`)
+      let item = DOM.create(`div`, `taglist_item${cls}`)
       item.textContent = tag
       taglist.append(item)
     }
 
-    if (mode !== `none`) {
-      if (App.get_setting(`taglist_add`)) {
-        let add = DOM.create(`div`, `taglist_add action`)
-        add.textContent = `+`
-        add.title = `Add Tag`
-        taglist.append(add)
-      }
+    if (App.get_setting(`taglist_add`)) {
+      let add = DOM.create(`div`, `taglist_add action`)
+      add.textContent = `+`
+      add.title = `Add Tag`
+      taglist.append(add)
     }
 
     taglist.classList.remove(`hidden`)
@@ -130,6 +130,18 @@ App.taglist_active = () => {
   }
 
   if (App.get_setting(`taglist_mode`) === `none`) {
+    return false
+  }
+
+  return true
+}
+
+App.taglist_add_active = () => {
+  if (App.get_setting(`taglist`) === `none`) {
+    return false
+  }
+
+  if (!App.get_setting(`taglist_add`)) {
     return false
   }
 

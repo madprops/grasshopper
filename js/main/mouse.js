@@ -151,7 +151,9 @@ App.mouse_click_action = (mode, e) => {
         App.taglist_action(e, item)
         return
       }
+    }
 
+    if (App.taglist_add_active()) {
       if (e.target.classList.contains(`taglist_add`)) {
         App.add_tags(item)
         return
