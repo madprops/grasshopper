@@ -111,6 +111,8 @@ App.process_info = (args = {}) => {
     item.date_added = args.info.dateAdded
   }
 
+  App.check_rules(item)
+
   if (args.o_item) {
     args.o_item = Object.assign(args.o_item, item)
     App.refresh_item_element(args.o_item)
@@ -130,7 +132,6 @@ App.process_info = (args = {}) => {
       item[`custom_${key}`] = App.edit_default(key)
     }
 
-    App.check_rules(item)
     item.original_data = args.info
     item.id = args.info.id || App[`${args.mode}_idx`]
     item.visible = true
