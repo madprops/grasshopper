@@ -326,12 +326,9 @@ App.create_item_element = (item) => {
 
   if (item.mode === `tabs`) {
     App.add_tab_icons(item)
-
-    if (App.tabs_normal()) {
-      item.element.draggable = true
-    }
   }
 
+  item.element.draggable = true
   App.check_icons(item)
   App.apply_color_mode(item)
   let view_media = DOM.create(`div`, `view_media_button hidden`)

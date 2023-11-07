@@ -14,20 +14,23 @@ App.setup_drag = (mode) => {
   })
 }
 
+App.drag_active = () => {
+  if (App.get_setting(`lock_drag`) && !e.ctrlKey) {
+    return false
+  }
+
+  if (mode !== `tabs` || !App.tabs_normal()) {
+    return false
+  }
+
+  return true
+}
+
 App.dragstart_action = (mode, e) => {
   App.reset_triggers()
 
   if (e.shiftKey) {
     e.preventDefault()
-    return false
-  }
-
-  if (mode !== `tabs`) {
-    e.preventDefault()
-    return false
-  }
-
-  if (!App.tabs_normal()) {
     return false
   }
 
@@ -48,7 +51,7 @@ App.dragstart_action = (mode, e) => {
   e.dataTransfer.setData(`text/uri-list`, App.drag_item.url)
   e.dataTransfer.setData(`text/x-moz-url`, `${App.drag_item.url}\n${App.drag_item.title}`)
 
-  if (App.get_setting(`lock_drag`) && !e.ctrlKey) {
+  if (!App.drag_active()) {
     return
   }
 
@@ -80,7 +83,7 @@ App.dragstart_action = (mode, e) => {
 }
 
 App.dragenter_action = (mode, e) => {
-  if (App.get_setting(`lock_drag`) && !e.ctrlKey) {
+  if (!App.drag_active()) {
     return
   }
 
@@ -136,7 +139,7 @@ App.dragenter_action = (mode, e) => {
 App.dragend_action = (mode, e) => {
   App.dragging = false
 
-  if (App.get_setting(`lock_drag`) && !e.ctrlKey) {
+  if (!App.drag_active()) {
     return
   }
 
