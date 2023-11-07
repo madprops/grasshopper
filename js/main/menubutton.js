@@ -21,6 +21,12 @@ Menubutton.create = (args = {}) => {
     args.show()
   })
 
+  DOM.ev(args.button, `auxclick`, (e) => {
+    if (e.button === 1) {
+      args.select_first()
+    }
+  })
+
   args.set = (value, on_change = true) => {
     let opt = Menubutton.opt(args, value)
     Menubutton.set_text(args, opt)
@@ -38,6 +44,22 @@ Menubutton.create = (args = {}) => {
     Menubutton.cycle(args, `next`)
   }
 
+  args.select_first = () => {
+    args.action(args.opts[0])
+  }
+
+  args.action = (opt) => {
+    if (!opt) {
+      return
+    }
+
+    Menubutton.set_text(args, opt)
+
+    if (args.on_change) {
+      args.on_change(args, opt)
+    }
+  }
+
   args.show = () => {
     let items = []
 
@@ -53,11 +75,7 @@ Menubutton.create = (args = {}) => {
         info: opt.info,
         image: opt.image,
         action: () => {
-          Menubutton.set_text(args, opt)
-
-          if (args.on_change) {
-            args.on_change(args, opt)
-          }
+          args.action(opt)
         },
       })
     }
