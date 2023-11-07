@@ -27,7 +27,7 @@ App.start_about = () => {
         `Ctrl + Down moves tabs to the bottom`,
         `Ctrl + F shows the filters`,
         `Ctrl + Dot goes to the playing tab`,
-        `Ctrl + Comma goes to the previous tab`,
+        `Ctrl + Comma shows Recent Tabs`,
         `Delete closes selected tabs`,
         `Double click on empty tabs space opens a new tab`,
         `Command palette commands take into account selected items`,

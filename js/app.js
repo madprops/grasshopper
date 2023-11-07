@@ -14,7 +14,6 @@ App.default_setting_string = `__default__`
 App.separator_string = `--separator--`
 App.windows = {}
 App.popups = {}
-App.previous_tabs = []
 App.max_closed = 25
 App.icon_size = 50
 App.max_text_length = 200
@@ -55,7 +54,6 @@ App.sort_tabs_ready = false
 App.close_tabs_ready = false
 
 App.settings_save_delay = 250
-App.empty_previous_tabs_delay = 2000
 App.alert_autohide_delay = 1350
 App.filter_delay_2 = 50
 App.footer_delay = 50
