@@ -28,12 +28,7 @@ Menubutton.create = (args = {}) => {
   })
 
   args.set = (value, on_change = true) => {
-    let opt = Menubutton.opt(args, value)
-    Menubutton.set_text(args, opt)
-
-    if (on_change && args.on_change) {
-      args.on_change(args, opt)
-    }
+    args.action(Menubutton.opt(args, value))
   }
 
   args.prev = () => {
@@ -182,11 +177,7 @@ Menubutton.cycle = (args, dir) => {
   }
 
   if (opt) {
-    Menubutton.set_text(args, opt)
-
-    if (args.on_change) {
-      args.on_change(args, opt)
-    }
+    args.action(opt)
   }
 }
 
