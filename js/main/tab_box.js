@@ -23,6 +23,7 @@ App.create_tab_box = () => {
 App.update_tab_box = () => {
   let c = DOM.el(`#tab_box_container`)
   c.innerHTML = ``
+  let first = false
 
   for (let item of App.active_history) {
     if (item.active) {
@@ -31,6 +32,12 @@ App.update_tab_box = () => {
     }
 
     let clone = DOM.create(`div`, `tab_box_item box_item`)
+
+    if (!first) {
+      clone.classList.add(`active_tab_box_item`)
+      first = true
+    }
+
     let icon = DOM.create(`div`, `box_item_icon`)
     let o_icon = DOM.el(`.item_icon`, item.element).cloneNode(true)
     let playing_icon = App.get_setting(`playing_icon`)

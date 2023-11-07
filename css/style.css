@@ -377,42 +377,48 @@ svg {
 
 .hover_effect_background .item:hover,
 .selected_effect_background .selected,
-.tab_box_hover_effect_background .tab_box_item:hover
+.tab_box_hover_effect_background .tab_box_item:hover,
+.tab_box_active_effect_background .active_tab_box_item
 {
   background-color: var(--alt_color_1);
 }
 
 .hover_effect_glow .item:hover .item_text,
 .selected_effect_glow .selected .item_text,
-.tab_box_hover_effect_glow .tab_box_item:hover .box_item_text
+.tab_box_hover_effect_glow .tab_box_item:hover .box_item_text,
+.tab_box_active_effect_glow .active_tab_box_item .box_item_text
 {
   text-shadow: var(--action_effect);
 }
 
 .hover_effect_opacity .item:hover,
 .selected_effect_opacity .selected,
-.tab_box_hover_effect_opacity .tab_box_item:hover
+.tab_box_hover_effect_opacity .tab_box_item:hover,
+.tab_box_active_effect_opacity .active_tab_box_item
 {
   opacity: 0.8;
 }
 
 .hover_effect_underline .item:hover .item_text,
 .selected_effect_underline .selected .item_text,
-.tab_box_hover_effect_underline .tab_box_item:hover .box_item_text
+.tab_box_hover_effect_underline .tab_box_item:hover .box_item_text,
+.tab_box_active_effect_underline .active_tab_box_item .box_item_text
 {
   text-decoration: underline;
 }
 
 .hover_effect_bold .item:hover .item_text,
 .selected_effect_bold .selected .item_text,
-.tab_box_hover_effect_bold .tab_box_item:hover .box_item_text
+.tab_box_hover_effect_bold .tab_box_item:hover .box_item_text,
+.tab_box_active_effect_bold .active_tab_box_item .box_item_text
 {
   font-weight: bold;
 }
 
 .hover_effect_bigger .item:hover .item_text,
 .selected_effect_bigger .selected .item_text,
-.tab_box_hover_effect_bigger .tab_box_item:hover .box_item_text
+.tab_box_hover_effect_bigger .tab_box_item:hover .box_item_text,
+.tab_box_active_effect_bigger .active_tab_box_item .box_item_text
 {
   font-size: var(--bigger_font);
   font-weight: bold;
@@ -420,7 +426,8 @@ svg {
 
 .hover_effect_border .item:hover .item_text,
 .selected_effect_border .selected .item_text,
-.tab_box_hover_effect_border .tab_box_item:hover .box_item_text
+.tab_box_hover_effect_border .tab_box_item:hover .box_item_text,
+.tab_box_active_effect_border .active_tab_box_item .box_item_text
 {
   outline: 1px solid var(--text_color);
 }
@@ -1059,10 +1066,6 @@ a:visited, a:link, a:hover {
   padding-top: 0.35rem;
   padding-bottom: 0.35rem;
   cursor: pointer;
-}
-
-.tab_box_active #tab_box .box_item:first-child .box_item_text {
-  font-weight: bold;
 }
 
 .box_item_icon {

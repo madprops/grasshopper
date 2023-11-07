@@ -161,6 +161,13 @@ App.do_apply_theme = (args = {}) => {
     let tab_box_hover_effect = App.get_setting(`tab_box_hover_effect`)
     main.classList.add(`tab_box_hover_effect_${tab_box_hover_effect}`)
 
+    for (let eff of App.effects) {
+      main.classList.remove(`tab_box_active_effect_${eff.value}`)
+    }
+
+    let tab_box_active_effect = App.get_setting(`tab_box_active_effect`)
+    main.classList.add(`tab_box_active_effect_${tab_box_active_effect}`)
+
     if (App.get_setting(`wrap_text`)) {
       main.classList.remove(`no_wrap`)
     }

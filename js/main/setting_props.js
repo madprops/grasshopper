@@ -546,8 +546,15 @@ App.build_settings = () => {
       info: `The position of the tab box`,
       version: 1,
     },
+    tab_box_active_effect: {
+      name: `Tab Box Active Effect`,
+      type: `menu`,
+      value: `bold`,
+      info: `Effect on the active Tab Box item`,
+      version: 1,
+    },
     tab_box_hover_effect: {
-      name: `Tab Box Hover`,
+      name: `Tab Box Hover Effect`,
       type: `menu`,
       value: `glow`,
       info: `Effect when hovering Tab Box items`,
@@ -1781,6 +1788,7 @@ App.build_settings = () => {
           {text: `Remove`, value: `remove`},
         ])
 
+        App.settings_make_menu(`tab_box_active_effect`, App.effects)
         App.settings_make_menu(`tab_box_hover_effect`, App.effects)
       },
     },
