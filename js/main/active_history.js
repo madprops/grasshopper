@@ -9,13 +9,19 @@ App.setup_active_history = () => {
 }
 
 App.fill_active_history = () => {
-  let max = App.get_setting(`max_active_history`)
-  App.active_history = App.get_recent_tabs(max)
-  App.refresh_active_history(false)
+  if (App.active_history_widgets()) {
+    let max = App.get_setting(`max_active_history`)
+    App.active_history = App.get_recent_tabs(max)
+    App.refresh_active_history(false)
+  }
+}
+
+App.active_history_widgets = () => {
+  return App.get_setting(`active_trace`) || (App.get_setting(`tab_box`) !== `none`)
 }
 
 App.refresh_active_history = (clean = false) => {
-  if (App.get_setting(`active_trace`) || (App.get_setting(`tab_box`) !== `none`)) {
+  if (App.active_history_widgets()) {
     App.refresh_active_history_debouncer.call(clean)
   }
 }
