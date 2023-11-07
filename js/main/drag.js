@@ -46,6 +46,7 @@ App.dragstart_action = (mode, e) => {
   e.dataTransfer.setDragImage(new Image(), 0, 0)
   e.dataTransfer.setData(`text/plain`, App.drag_item.url)
   e.dataTransfer.setData(`text/uri-list`, App.drag_item.url)
+  e.dataTransfer.setData(`text/x-moz-url`, `${App.drag_item.url}\n${App.drag_item.title}`)
 
   if (App.get_setting(`lock_drag`) && !e.ctrlKey) {
     return
