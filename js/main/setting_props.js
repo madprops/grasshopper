@@ -1793,7 +1793,9 @@ App.build_settings = () => {
       },
     },
     icons: {
-      info: `Customize the icons of items. You can leave them empty`,
+      info: `Customize the icons used by items.
+      These are the icons used for various states.
+      You can leave them empty to not show anything`,
       setup: () => {},
     },
     edits: {
