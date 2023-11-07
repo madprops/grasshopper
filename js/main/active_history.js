@@ -11,7 +11,7 @@ App.setup_active_history = () => {
 App.fill_active_history = () => {
   if (App.active_history_widgets()) {
     let max = App.get_setting(`max_active_history`)
-    App.active_history = App.get_recent_tabs(max)
+    App.active_history = App.get_recent_tabs({max: max})
     App.refresh_active_history(false)
   }
 }

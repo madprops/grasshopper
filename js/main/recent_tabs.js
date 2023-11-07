@@ -13,27 +13,32 @@ App.do_empty_previous_tabs = () => {
   App.previous_tabs = []
 }
 
-App.get_recent_tabs = (max) => {
+App.get_recent_tabs = (args = {}) => {
+  let def_args = {
+    active: true,
+    max: 0,
+  }
+
+  App.def_args(def_args, args)
   let tabs = App.get_items(`tabs`).slice(0)
 
   tabs.sort((a, b) => {
     return a.last_accessed > b.last_accessed ? -1 : 1
   })
 
-  return tabs.slice(0, max)
-}
-
-App.get_previous_tabs = (include_active = false) => {
-  App.previous_tabs = App.get_recent_tabs()
-
-  if (!include_active) {
-    App.previous_tabs = App.previous_tabs.filter(x => !x.active)
+  if (!args.active) {
+    tabs = tabs.filter(x => !x.active)
   }
 
-  App.previous_tabs.sort((a, b) => {
-    return a.last_accessed > b.last_accessed ? -1 : 1
-  })
+  if (args.max > 0) {
+    tabs = tabs.slice(0, args.max)
+  }
 
+  return tabs
+}
+
+App.get_previous_tabs = () => {
+  App.previous_tabs = App.get_recent_tabs({active: false})
   App.previous_tabs_index = 0
 }
 
@@ -69,7 +74,7 @@ App.go_to_previous_tab = () => {
 App.show_recent_tabs = (e) => {
   let items = []
   let max = App.get_setting(`max_recent_tabs`)
-  let tabs = App.get_recent_tabs(max)
+  let tabs = App.get_recent_tabs({max: max})
   let playing_icon = App.get_setting(`playing_icon`)
 
   for (let item of tabs) {
