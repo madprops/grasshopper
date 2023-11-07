@@ -237,6 +237,14 @@ App.do_apply_theme = (args = {}) => {
     }
 
     main.classList.add(`icon_effect_${ie}`)
+
+    if (App.get_setting(`tab_box_active`)) {
+      main.classList.add(`tab_box_active`)
+    }
+    else {
+      main.classList.remove(`tab_box_active`)
+    }
+
     App.insert_color_css()
     App.insert_custom_css()
   }

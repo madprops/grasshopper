@@ -39,7 +39,7 @@ App.update_tab_box = () => {
       icon.append(o_icon)
     }
     else if (o_icon.tagName === `CANVAS`) {
-      icon.append(App.get_jdenticon(item.hostname))
+      icon.append(App.generate_icon(item.hostname))
     }
 
     clone.append(icon)
