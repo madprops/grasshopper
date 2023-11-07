@@ -30,7 +30,7 @@ App.update_tab_box = () => {
       continue
     }
 
-    let clone = DOM.create(`div`, `box_item linkbutton`)
+    let clone = DOM.create(`div`, `tab_box_item box_item`)
     let icon = DOM.create(`div`, `box_item_icon`)
     let o_icon = DOM.el(`.item_icon`, item.element).cloneNode(true)
     let playing_icon = App.get_setting(`playing_icon`)

@@ -546,6 +546,13 @@ App.build_settings = () => {
       info: `The position of the tab box`,
       version: 1,
     },
+    tab_box_hover_effect: {
+      name: `Tab Box Hover`,
+      type: `menu`,
+      value: `glow`,
+      info: `Effect when hovering Tab Box items`,
+      version: 1,
+    },
     tab_box_active: {
       name: `Tab Box Active`,
       type: `checkbox`,
@@ -1773,6 +1780,8 @@ App.build_settings = () => {
           {text: `Filter`, value: `filter`},
           {text: `Remove`, value: `remove`},
         ])
+
+        App.settings_make_menu(`tab_box_hover_effect`, App.effects)
       },
     },
     icons: {
