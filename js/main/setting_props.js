@@ -1535,6 +1535,13 @@ App.build_settings = () => {
       info: `Show the active tab at the top when showing Recent Tabs`,
       version: 1,
     },
+    step_back_recent: {
+      name: `Step Back Recent`,
+      type: `checkbox`,
+      value: false,
+      info: `Show Recent Tabs when using Step Back instead of jumping to previous tabs`,
+      version: 1,
+    },
     all_caps: {
       name: `All Caps`,
       type: `checkbox`,
