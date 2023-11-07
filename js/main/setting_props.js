@@ -805,7 +805,7 @@ App.build_settings = () => {
       name: `Middle Click Pinline`,
       type: `menu`,
       value: `close_normal_tabs`,
-      info: `Middle-click on the pinline`,
+      info: `Middle-click on the Pinline`,
       version: 1,
     },
     middle_click_favorites: {
