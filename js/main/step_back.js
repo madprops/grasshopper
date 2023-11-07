@@ -14,11 +14,6 @@ App.create_step_back_button = (mode) => {
     }
   })
 
-  DOM.ev(btn, `contextmenu`, (e) => {
-    e.preventDefault()
-    App.show_recent_tabs(e)
-  })
-
   return btn
 }
 
@@ -41,7 +36,7 @@ App.step_back = (mode = App.window_mode, e) => {
     App.focus_current_tab()
   }
   else if (mode === `tabs` && (e && e.key !== `Escape`)) {
-    App.go_to_previous_tab()
+    App.show_recent_tabs(e)
   }
   else if (mode !== App.primary_mode()) {
     App.show_primary_mode()
