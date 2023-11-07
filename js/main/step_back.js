@@ -1,15 +1,10 @@
 App.create_step_back_button = (mode) => {
   let btn = DOM.create(`div`, `button icon_button`, `${mode}_back`)
-  btn.title = `Step Back (Esc)`
+  btn.title = `Step Back (Esc) - Right Click to show Recent Tabs`
   btn.append(App.create_icon(`back`))
 
   DOM.ev(btn, `click`, (e) => {
     App.step_back(mode, e)
-  })
-
-  DOM.ev(btn, `contextmenu`, (e) => {
-    e.preventDefault()
-    App.show_recent_tabs(e)
   })
 
   DOM.ev(btn, `auxclick`, (e) => {
@@ -17,6 +12,11 @@ App.create_step_back_button = (mode) => {
       let cmd = App.get_setting(`middle_click_step_back`)
       App.run_command({cmd: cmd, from: `step_back_aux`, e: e})
     }
+  })
+
+  DOM.ev(btn, `contextmenu`, (e) => {
+    e.preventDefault()
+    App.show_recent_tabs(e)
   })
 
   return btn
@@ -41,7 +41,7 @@ App.step_back = (mode = App.window_mode, e) => {
     App.focus_current_tab()
   }
   else if (mode === `tabs` && (e && e.key !== `Escape`)) {
-    App.show_recent_tabs(e)
+    App.go_to_previous_tab()
   }
   else if (mode !== App.primary_mode()) {
     App.show_primary_mode()

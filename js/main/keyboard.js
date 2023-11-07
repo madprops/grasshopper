@@ -105,7 +105,7 @@ App.check_items_keyboard = (e) => {
       return
     }
     else if (e.key === `,`) {
-      App.show_recent_tabs(e)
+      App.go_to_previous_tab()
       e.preventDefault()
       return
     }
