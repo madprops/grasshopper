@@ -1528,6 +1528,13 @@ App.build_settings = () => {
       info: `Generate icons if favicons are not found`,
       version: 1,
     },
+    recent_active: {
+      name: `Recent Active`,
+      type: `checkbox`,
+      value: true,
+      info: `Show the active tab at the top when showing Recent Tabs`,
+      version: 1,
+    },
     all_caps: {
       name: `All Caps`,
       type: `checkbox`,

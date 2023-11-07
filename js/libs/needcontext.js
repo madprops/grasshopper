@@ -210,6 +210,10 @@ NeedContext.show = (args = {}) => {
         el.title = item.info.trim()
       }
 
+      if (item.bold) {
+        el.classList.add(`needcontext-bold`)
+      }
+
       el.dataset.index = index
       item.index = index
 
@@ -559,6 +563,10 @@ NeedContext.init = () => {
       width: 1.25rem;
       height: 1.25rem;
       object-fit: contain;
+    }
+
+    .needcontext-bold {
+      font-weight: bold;
     }
   `
 

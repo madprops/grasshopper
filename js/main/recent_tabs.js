@@ -74,7 +74,8 @@ App.go_to_previous_tab = () => {
 App.show_recent_tabs = (e) => {
   let items = []
   let max = App.get_setting(`max_recent_tabs`)
-  let tabs = App.get_recent_tabs({max: max})
+  let active = App.get_setting(`recent_active`)
+  let tabs = App.get_recent_tabs({max: max, active: active})
   let playing_icon = App.get_setting(`playing_icon`)
 
   for (let item of tabs) {
@@ -84,13 +85,19 @@ App.show_recent_tabs = (e) => {
       title = `${playing_icon} ${title}`
     }
 
-    items.push({
+    let obj = {
       image: item.favicon,
       text: title,
       action: () => {
         App.tabs_action(item)
       },
-    })
+    }
+
+    if (item.active) {
+      obj.bold = true
+    }
+
+    items.push(obj)
   }
 
   App.show_context({items: items, e: e})
