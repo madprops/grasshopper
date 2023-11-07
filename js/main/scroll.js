@@ -47,6 +47,9 @@ App.scroll_to_item = (args = {}) => {
   if (behavior === `instant`) {
     App.do_check_scroller(args.item.mode)
   }
+  else {
+    App.check_scroller(args.item.mode)
+  }
 
   args.item.last_scroll = Date.now()
 }
