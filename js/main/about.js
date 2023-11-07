@@ -40,7 +40,7 @@ App.start_about = () => {
         `To filter by tag start with tag:`,
         `Alt + Click selects items without triggering actions`,
         `Right Click on the Main Menu button to show the palette`,
-        `Right Click on the Filter button to show filter commands`,
+        `Right Click on the Filter Menu to show filter commands`,
         `Right Click on the Go To Playing button to filter by playing`,
         `Right Click on the Step Back button to show Recent Tabs`,
         `Right Click on the Actions button to show the Browser Menu`,

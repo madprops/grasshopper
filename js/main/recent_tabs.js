@@ -13,6 +13,16 @@ App.do_empty_previous_tabs = () => {
   App.previous_tabs = []
 }
 
+App.get_recent_tabs = (max) => {
+  let tabs = App.get_items(`tabs`).slice(0)
+
+  tabs.sort((a, b) => {
+    return a.last_accessed > b.last_accessed ? -1 : 1
+  })
+
+  return tabs.slice(0, max)
+}
+
 App.get_previous_tabs = (include_active = false) => {
   App.previous_tabs = App.get_items(`tabs`).slice(0)
 

@@ -31,6 +31,7 @@ App.process_info_list = (mode, info_list) => {
 
   if (mode === `tabs`) {
     App.check_tab_session()
+    App.fill_active_history()
   }
 }
 
