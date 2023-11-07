@@ -24,7 +24,7 @@ App.get_recent_tabs = (max) => {
 }
 
 App.get_previous_tabs = (include_active = false) => {
-  App.previous_tabs = App.get_items(`tabs`).slice(0)
+  App.previous_tabs = App.get_recent_tabs()
 
   if (!include_active) {
     App.previous_tabs = App.previous_tabs.filter(x => !x.active)
@@ -68,11 +68,11 @@ App.go_to_previous_tab = () => {
 
 App.show_recent_tabs = (e) => {
   let items = []
-  App.get_previous_tabs(true)
   let max = App.get_setting(`max_recent_tabs`)
+  let tabs = App.get_recent_tabs(max)
   let playing_icon = App.get_setting(`playing_icon`)
 
-  for (let item of App.previous_tabs.slice(0, max)) {
+  for (let item of tabs) {
     let title = App.get_title(item)
 
     if (item.audible && playing_icon) {
