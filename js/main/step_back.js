@@ -7,6 +7,11 @@ App.create_step_back_button = (mode) => {
     App.step_back(mode, e)
   })
 
+  DOM.ev(btn, `contextmenu`, (e) => {
+    e.preventDefault()
+    App.show_recent_tabs(e)
+  })
+
   DOM.ev(btn, `auxclick`, (e) => {
     if (e.button === 1) {
       let cmd = App.get_setting(`middle_click_step_back`)

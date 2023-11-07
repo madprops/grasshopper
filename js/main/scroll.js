@@ -44,17 +44,6 @@ App.scroll_to_item = (args = {}) => {
     behavior: behavior,
   })
 
-  if (behavior === `instant`) {
-    App.do_check_scroller(args.item.mode)
-  }
-  else if (behavior === `smooth`) {
-    let index = App.get_item_element_index(args.item.mode, args.item.element)
-
-    if (index === 0) {
-      App.hide_scroller(args.item.mode)
-    }
-  }
-
   args.item.last_scroll = Date.now()
 }
 
