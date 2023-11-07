@@ -45,6 +45,7 @@ App.dragstart_action = (mode, e) => {
   App.drag_start_index = App.get_item_element_index(mode, App.drag_element)
   e.dataTransfer.setDragImage(new Image(), 0, 0)
   e.dataTransfer.setData(`text/plain`, App.drag_item.url)
+  e.dataTransfer.setData(`text/uri-list`, App.drag_item.url)
 
   if (App.get_setting(`lock_drag`) && !e.ctrlKey) {
     return
