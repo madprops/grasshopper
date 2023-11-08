@@ -42,6 +42,8 @@ App.check_tab_session = async (items = []) => {
     items = App.get_items(`tabs`)
   }
 
+  let has_split = false
+
   for (let item of items) {
     for (let key in App.edit_props) {
       let value = await browser.sessions.getTabValue(item.id, `custom_${key}`)
@@ -50,7 +52,17 @@ App.check_tab_session = async (items = []) => {
         continue
       }
 
+      if (key.includes(`split`)) {
+        has_split = true
+      }
+
       App.apply_edit(key, item, value)
+    }
+  }
+
+  if (has_split) {
+    if (App.active_mode === `tabs`) {
+      App.scroll_to_item({item: App.get_selected(`tabs`), force: true})
     }
   }
 }

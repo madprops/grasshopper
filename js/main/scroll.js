@@ -5,53 +5,55 @@ App.setup_scroll = () => {
 }
 
 App.scroll_to_item = (args = {}) => {
-  let def_args = {
-    scroll: `nearest`,
-    force: false,
-  }
+  requestAnimationFrame(() => {
+    let def_args = {
+      scroll: `nearest`,
+      force: false,
+    }
 
-  App.def_args(def_args, args)
+    App.def_args(def_args, args)
 
-  if (args.scroll === `none`) {
-    return
-  }
+    if (args.scroll === `none`) {
+      return
+    }
 
-  if (!args.force) {
-    if (args.item.last_scroll > 0) {
-      if ((Date.now() - args.item.last_scroll) < App.last_scroll_delay) {
-        return
+    if (!args.force) {
+      if (args.item.last_scroll > 0) {
+        if ((Date.now() - args.item.last_scroll) < App.last_scroll_delay) {
+          return
+        }
       }
     }
-  }
 
-  let behavior
+    let behavior
 
-  if (args.scroll.includes(`_`)) {
-    let split = args.scroll.split(`_`)
-    args.scroll = split[0]
-    behavior = split[1]
-  }
-  else {
-    behavior = `instant`
-  }
+    if (args.scroll.includes(`_`)) {
+      let split = args.scroll.split(`_`)
+      args.scroll = split[0]
+      behavior = split[1]
+    }
+    else {
+      behavior = `instant`
+    }
 
-  if (!App.get_setting(`smooth_scroll`)) {
-    behavior = `instant`
-  }
+    if (!App.get_setting(`smooth_scroll`)) {
+      behavior = `instant`
+    }
 
-  args.item.element.scrollIntoView({
-    block: args.scroll,
-    behavior: behavior,
+    args.item.element.scrollIntoView({
+      block: args.scroll,
+      behavior: behavior,
+    })
+
+    if (behavior === `instant`) {
+      App.do_check_scroller(args.item.mode)
+    }
+    else {
+      App.check_scroller(args.item.mode)
+    }
+
+    args.item.last_scroll = Date.now()
   })
-
-  if (behavior === `instant`) {
-    App.do_check_scroller(args.item.mode)
-  }
-  else {
-    App.check_scroller(args.item.mode)
-  }
-
-  args.item.last_scroll = Date.now()
 }
 
 App.scroll = (mode, direction) => {

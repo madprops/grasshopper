@@ -38,11 +38,7 @@ App.select_item = (args = {}) => {
     App.scroll_to_item({item: args.item, scroll: args.scroll})
   }
   else {
-    // Elements just got created
-    // Give them time to render
-    requestAnimationFrame(() => {
-      App.scroll_to_item({item: args.item, scroll: args.scroll})
-    })
+    App.scroll_to_item({item: args.item, scroll: args.scroll})
   }
 }
 
