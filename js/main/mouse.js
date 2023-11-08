@@ -229,6 +229,13 @@ App.mouse_context_action = (mode, e) => {
     }
   }
 
+  if (App.get_setting(`icon_pick`)) {
+    if (e.target.closest(`.item_icon_container`)) {
+      App.select_item({item: item, scroll: `nearest`, deselect: true})
+      return
+    }
+  }
+
   if (App.taglist_active()) {
     if (e.target.classList.contains(`taglist_item`)) {
       App.show_taglist_menu(e, item)
