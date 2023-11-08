@@ -88,7 +88,8 @@ App.show_recent_tabs = (e) => {
     let obj = {
       image: item.favicon,
       text: title,
-      action: () => {
+      action: async () => {
+        await App.check_on_tabs()
         App.tabs_action(item)
       },
     }

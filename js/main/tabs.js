@@ -1273,3 +1273,12 @@ App.unmute_all_tabs = () => {
     force: force,
   })
 }
+
+App.check_on_tabs = async () => {
+  if (App.active_mode !== `tabs`) {
+    await App.do_show_mode({mode: `tabs`})
+  }
+  else {
+    App.filter_all(`tabs`)
+  }
+}

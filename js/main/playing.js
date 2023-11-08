@@ -47,13 +47,7 @@ App.get_playing_tabs = () => {
 }
 
 App.go_to_playing_tab = async () => {
-  if (App.active_mode !== `tabs`) {
-    await App.do_show_mode({mode: `tabs`})
-  }
-  else {
-    App.filter_all(`tabs`)
-  }
-
+  await App.check_on_tabs()
   let items = App.get_items(`tabs`)
   let waypoint = false
   let first
