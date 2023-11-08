@@ -90,7 +90,10 @@ App.show_recent_tabs = (e) => {
       text: title,
       action: async () => {
         await App.check_on_tabs()
-        App.tabs_action(item)
+
+        requestAnimationFrame(() => {
+          App.tabs_action(item)
+        })
       },
     }
 

@@ -47,7 +47,6 @@ App.get_playing_tabs = () => {
 }
 
 App.go_to_playing_tab = async () => {
-  await App.check_on_tabs()
   let items = App.get_items(`tabs`)
   let waypoint = false
   let first
@@ -59,10 +58,14 @@ App.go_to_playing_tab = async () => {
       }
 
       if (waypoint) {
-        App.focus_tab({
-          item: item,
-          scroll: `center_smooth`,
-          method: `playing`,
+        await App.check_on_tabs()
+
+        requestAnimationFrame(() => {
+          App.focus_tab({
+            item: item,
+            scroll: `center_smooth`,
+            method: `playing`,
+          })
         })
 
         return
