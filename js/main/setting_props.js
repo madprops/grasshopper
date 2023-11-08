@@ -15,28 +15,28 @@ App.build_settings = () => {
 
   props = {
     text_mode: {
-      name: `Text`,
+      name: `Text Mode`,
       type: `menu`,
       value: `title`,
       info: `What to show as the text for each item`,
       version: 1,
     },
     item_height: {
-      name: `Spacing`,
+      name: `Item Height`,
       type: `menu`,
       value: `normal`,
-      info: `The space between items`,
+      info: `How big each item is`,
       version: 1,
     },
     item_border: {
-      name: `Borders`,
+      name: `Item Border`,
       type: `menu`,
       value: `none`,
       info: `Borders between items`,
       version: 2,
     },
     item_icon: {
-      name: `Icons`,
+      name: `Item Icons`,
       type: `menu`,
       value: `normal`,
       info: `The size of the item icons`,
@@ -86,14 +86,14 @@ App.build_settings = () => {
       version: 1,
     },
     width: {
-      name: `Width`,
+      name: `Popup Width`,
       type: `menu`,
       value: 75,
       info: `Width of the popup`,
       version: 1,
     },
     height: {
-      name: `Height`,
+      name: `Popup Height`,
       type: `menu`,
       value: 85,
       info: `Height of the popup`,
