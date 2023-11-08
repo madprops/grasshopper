@@ -269,10 +269,8 @@ App.do_apply_theme = (args = {}) => {
       else if (App.is_url(font)) {
         App.insert_font_css()
         font_str = `custom_font, sans-serif`
-        console.log(1)
       }
       else {
-        console.log(2)
         let font_link = document.getElementById('custom_font')
         font_link.href = `https://fonts.googleapis.com/css?family=${font}`
         font_str = `${font}, sans-serif`
@@ -476,8 +474,6 @@ App.insert_font_css = () => {
       src: url('${font}') format('truetype');
     }
   `
-
-  console.log(css)
 
   for (let style of DOM.els(`.font_css`)) {
     style.remove()
