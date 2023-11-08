@@ -260,16 +260,17 @@ App.do_apply_theme = (args = {}) => {
 
     let font_name = App.get_setting(`font_name`)
     let font_link = document.getElementById('custom_font')
+    let font_str = `${App.get_setting(`font`)}, sans-serif`
 
     if (font_name) {
       font_link.href = `https://fonts.googleapis.com/css?family=${font_name}`
+      font_str = `${font_name}, ${font_str}`
     }
     else {
       font_link.href = ``
     }
 
-    console.log(font_name)
-    App.set_css_var(`font`, `${font_name}, ${App.get_setting(`font`)}, sans-serif`)
+    App.set_css_var(`font`, font_str)
     App.insert_color_css()
     App.insert_custom_css()
   }
