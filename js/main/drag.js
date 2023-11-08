@@ -128,7 +128,6 @@ App.dragenter_action = (mode, e) => {
       el.before(...App.drag_els)
     }
 
-    App.scroll_to_item({item: App[`drag_leader_${leader}`], scroll: `nearest`})
     App.drag_moved = true
   }
 
