@@ -36,7 +36,7 @@ App.build_settings = () => {
       version: 2,
     },
     item_icon: {
-      name: `Item Icons`,
+      name: `Item Icon`,
       type: `menu`,
       value: `normal`,
       info: `The size of the item icons`,
