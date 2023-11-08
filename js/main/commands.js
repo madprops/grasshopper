@@ -962,23 +962,23 @@ App.setup_commands = () => {
     },
     {
       name: `Split Top`,
-      cmd: `toggle_split_top`,
+      cmd: `add_split_top`,
       modes: [`tabs`],
       item: true,
       icon: split_icon,
       action: (args) => {
-        App.toggle_split(args.item, `top`)
+        App.edit_tab_split({item: args.item, which: `top`})
       },
       info: `Add a split above the tab`,
     },
     {
       name: `Split Bottom`,
-      cmd: `toggle_split_bottom`,
+      cmd: `add_split_bottom`,
       modes: [`tabs`],
       item: true,
       icon: split_icon,
       action: (args) => {
-        App.toggle_split(args.item, `bottom`)
+        App.edit_tab_split({item: args.item, which: `bottom`})
       },
       info: `Add a split below the tab`,
     },

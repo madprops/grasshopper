@@ -1089,25 +1089,26 @@ App.same_edit = (what, item, value, type = `custom`) => {
   return false
 }
 
-App.toggle_split = (item, what) => {
-  let split = item[`custom_split_${what}`]
-  let value
-
-  if (split !== undefined) {
-    value = !split
-  }
-  else {
-    value = true
+App.edit_tab_split = (args = {}) => {
+  let def_args = {
+    which: `top`,
   }
 
-  App.apply_edit(`split_${what}`, item, value)
-  App.custom_save(item.id, `custom_split_${what}`, value)
+  App.def_args(def_args, args)
+  let active = App.get_active_items({mode: args.item.mode, item: args.item})
+  let force = App.check_force(`warn_on_edit_tabs`, active)
 
-  if (value) {
-    let other = what === `top` ? `bottom` : `top`
-    App.apply_edit(`split_${other}`, item, false)
-    App.custom_save(item.id, `custom_split_${other}`, false)
-  }
+  App.show_confirm({
+    message: `Add splits (${active.length})`,
+    confirm_action: () => {
+      for (let it of active) {
+        if (App.apply_edit(`split_${args.which}`, it, true)) {
+          App.custom_save(it.id, `custom_split_${args.which}`, true)
+        }
+      }
+    },
+    force: force,
+  })
 }
 
 App.remove_all_splits = () => {
