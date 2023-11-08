@@ -1301,11 +1301,30 @@ App.do_pick_background = (num) => {
   let value = `Background ${num}`
   DOM.el(`#settings_background_image`).value = value
   App.set_setting(`background_image`, value)
-  App.apply_theme()
 }
 
 App.background_path = (num) => {
   return App.backgrounds_dir + `background_${num}.jpg`
+}
+
+App.pick_font = (e) => {
+  let items = []
+
+  for (let font of App.local_fonts) {
+    items.push({
+      text: font,
+      action: () => {
+        App.do_pick_font(font)
+      },
+    })
+  }
+
+  App.show_context({e: e, items: items})
+}
+
+App.do_pick_font = (font) => {
+  DOM.el(`#settings_font`).value = font
+  App.set_setting(`font`, font)
 }
 
 App.edit_text_setting = (key) => {

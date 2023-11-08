@@ -258,16 +258,25 @@ App.do_apply_theme = (args = {}) => {
       main.classList.remove(`tab_box_active`)
     }
 
-    let font_name = App.get_setting(`font_name`)
-    let font_link = document.getElementById('custom_font')
-    let font_str = `${App.get_setting(`font`)}, sans-serif`
+    let local_fonts = App.local_fonts
+    let font = App.get_setting(`font`)
+    let font_str = `sans-serif`
 
-    if (font_name) {
-      font_link.href = `https://fonts.googleapis.com/css?family=${font_name}`
-      font_str = `${font_name}, ${font_str}`
-    }
-    else {
-      font_link.href = ``
+    if (font) {
+      if (local_fonts.includes(font)) {
+        font_str = `${font}, sans-serif`
+      }
+      else if (App.is_url(font)) {
+        App.insert_font_css()
+        font_str = `custom_font, sans-serif`
+        console.log(1)
+      }
+      else {
+        console.log(2)
+        let font_link = document.getElementById('custom_font')
+        font_link.href = `https://fonts.googleapis.com/css?family=${font}`
+        font_str = `${font}, sans-serif`
+      }
     }
 
     App.set_css_var(`font`, font_str)
@@ -454,6 +463,27 @@ App.insert_color_css = () => {
   }
 
   let style = DOM.create(`style`, `color_css`)
+  style.textContent = css
+  document.head.appendChild(style)
+}
+
+App.insert_font_css = () => {
+  let font = App.get_setting(`font`)
+
+  let css = `
+    @font-face {
+      font-family: 'custom_font';
+      src: url('${font}') format('truetype');
+    }
+  `
+
+  console.log(css)
+
+  for (let style of DOM.els(`.font_css`)) {
+    style.remove()
+  }
+
+  let style = DOM.create(`style`, `font_css`)
   style.textContent = css
   document.head.appendChild(style)
 }

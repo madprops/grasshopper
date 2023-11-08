@@ -14,24 +14,6 @@ App.build_settings = () => {
   category = `general`
 
   props = {
-    font_size: {
-      name: `Font Size`,
-      type: `number`,
-      value: 16,
-      action: `theme`,
-      placeholder: `Px`,
-      min: 6,
-      max: 28,
-      info: `The font size in pixels to use for text. The interface scales accordingly`,
-      version: 1,
-    },
-    font: {
-      name: `Font`,
-      type: `menu`,
-      value: `sans-serif`,
-      info: `The font to use for all text. In the Theme category you can specify a font name`,
-      version: 1,
-    },
     text_mode: {
       name: `Text`,
       type: `menu`,
@@ -188,6 +170,7 @@ App.build_settings = () => {
       value: App.dark_colors.background,
       action: `theme`,
       info: `The background color`,
+      separator: true,
       version: 1,
     },
     background_image: {
@@ -214,15 +197,29 @@ App.build_settings = () => {
       value: `none`,
       action: `theme`,
       info: `The tile size of the background image`,
+      separator: true,
       version: 1,
     },
-    font_name: {
-      name: `Font Name`,
+    font: {
+      name: `Font`,
       type: `text`,
       action: `theme`,
       value: ``,
-      placeholder: `Google Font Name`,
-      info: `Use a font from Google Fonts by using the font's name`,
+      placeholder: `Font Name`,
+      btns: [`pick`],
+      info: `Pick from the list or enter a Google Font name`,
+      version: 1,
+    },
+    font_size: {
+      name: `Font Size`,
+      type: `number`,
+      value: 16,
+      action: `theme`,
+      placeholder: `Px`,
+      min: 6,
+      max: 28,
+      info: `The font size in pixels to use for text. The interface scales accordingly`,
+      separator: true,
       version: 1,
     },
     custom_css: {
@@ -1609,15 +1606,6 @@ App.build_settings = () => {
           {text: `URL / Title`, value: `url_title`},
         ])
 
-        App.settings_make_menu(`font`, [
-          {text: `Sans`, value: `sans-serif`},
-          {text: `Serif`, value: `serif`},
-          {text: `Mono`, value: `monospace`},
-          {text: `Cursive`, value: `cursive`},
-        ], () => {
-          App.apply_theme()
-        })
-
         App.settings_make_menu(`auto_restore`, [
           {text: `Never`, value: `never`},
           {text: `1 Second`, value: `1_seconds`},
@@ -1701,6 +1689,10 @@ App.build_settings = () => {
 
         DOM.ev(DOM.el(`#settings_background_image_pick`), `click`, (e) => {
           App.pick_background(e)
+        })
+
+        DOM.ev(DOM.el(`#settings_font_pick`), `click`, (e) => {
+          App.pick_font(e)
         })
       },
       buttons: [

@@ -164,3 +164,10 @@ App.filter_whats = [
   `tag`,
   `tags`,
 ]
+
+App.local_fonts = [
+  `sans-serif`,
+  `serif`,
+  `monospace`,
+  `cursive`,
+]
