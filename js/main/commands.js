@@ -1059,8 +1059,8 @@ App.setup_commands = () => {
       info: `Remove all notes from tabs`,
     },
     {
-      name: `Remove Splits`,
-      cmd: `remove_splits`,
+      name: `Remove Split`,
+      cmd: `remove_split`,
       modes: [`tabs`],
       item: true,
       icon: split_icon,
