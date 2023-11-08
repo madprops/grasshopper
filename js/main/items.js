@@ -1204,12 +1204,12 @@ App.apply_splits = (item) => {
   let has_split = false
 
   for (let what of [`top`, `bottom`]) {
-    if (item[`custom_${what}_split`]) {
-      item.element.classList.add(`${what}_split`)
+    if (item[`custom_split_${what}`]) {
+      item.element.classList.add(`split_${what}`)
       has_split = true
     }
     else {
-      item.element.classList.remove(`${what}_split`)
+      item.element.classList.remove(`split_${what}`)
     }
   }
 

@@ -160,7 +160,7 @@ App.setup_commands = () => {
     item: true,
     icon: theme_icon,
     action: (args) => {
-      App.remove_edits({what: `color`})
+      App.remove_edits({what: [`color`]})
     },
     info: `Remove all colors from tabs`,
   })
@@ -961,8 +961,8 @@ App.setup_commands = () => {
       info: `Add tags to tabs`,
     },
     {
-      name: `Top Split`,
-      cmd: `toggle_top_split`,
+      name: `Split Top`,
+      cmd: `toggle_split_top`,
       modes: [`tabs`],
       item: true,
       icon: split_icon,
@@ -972,8 +972,8 @@ App.setup_commands = () => {
       info: `Add a split above the tab`,
     },
     {
-      name: `Bottom Split`,
-      cmd: `toggle_bottom_split`,
+      name: `Split Bottom`,
+      cmd: `toggle_split_bottom`,
       modes: [`tabs`],
       item: true,
       icon: split_icon,
@@ -1002,7 +1002,7 @@ App.setup_commands = () => {
       modes: [`tabs`],
       icon: edit_icon,
       action: (args) => {
-        App.remove_edits({what: `title`})
+        App.remove_edits({what: [`title`]})
       },
       info: `Remove all titles from tabs`,
     },
@@ -1044,7 +1044,7 @@ App.setup_commands = () => {
       modes: [`tabs`],
       icon: tag_icon,
       action: (args) => {
-        App.remove_edits({what: `tags`})
+        App.remove_edits({what: [`tags`]})
       },
       info: `Remove all tags from tabs`,
     },
@@ -1054,9 +1054,20 @@ App.setup_commands = () => {
       modes: [`tabs`],
       icon: edit_icon,
       action: (args) => {
-        App.remove_edits({what: `notes`})
+        App.remove_edits({what: [`notes`]})
       },
       info: `Remove all notes from tabs`,
+    },
+    {
+      name: `Remove Splits`,
+      cmd: `remove_splits`,
+      modes: [`tabs`],
+      item: true,
+      icon: split_icon,
+      action: (args) => {
+        App.remove_edits({what: [`split_top`, `split_bottom`]})
+      },
+      info: `Remove the splits from tabs`,
     },
     {
       name: `Remove All Splits`,

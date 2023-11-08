@@ -15,11 +15,11 @@ App.edit_props = {
     type: `string`,
     rule: true,
   },
-  top_split: {
+  split_top: {
     type: `bool`,
     rule: false,
   },
-  bottom_split: {
+  split_bottom: {
     type: `bool`,
     rule: false,
   },
@@ -203,10 +203,14 @@ App.remove_edits = (args = {}) => {
   }
 
   App.def_args(def_args, args)
+
   if (!args.items.length) {
     for (let item of App.get_items(`tabs`)) {
-      if (item[`custom_${args.what}`]) {
-        args.items.push(item)
+      for (let what of args.what) {
+        if (item[`custom_${what}`]) {
+          args.items.push(item)
+          break
+        }
       }
     }
   }
@@ -216,11 +220,13 @@ App.remove_edits = (args = {}) => {
   }
 
   App.show_confirm({
-    message: `Remove edits? (${args.what}) (${args.items.length})`,
+    message: `Remove edits? (${args.items.length})`,
     confirm_action: () => {
       for (let item of args.items) {
-        if (App.apply_edit(args.what, item, App.edit_default(args.what))) {
-          App.custom_save(item.id, `custom_${args.what}`)
+        for (let what of args.what) {
+          if (App.apply_edit(what, item, App.edit_default(what))) {
+            App.custom_save(item.id, `custom_${what}`)
+          }
         }
       }
     },
@@ -233,7 +239,7 @@ App.remove_all_edits = () => {
     message: `Remove all edits?`,
     confirm_action: () => {
       for (let key in App.edit_props) {
-        App.remove_edits({what: key, force: true, items: App.get_items(`tabs`)})
+        App.remove_edits({what: [key], force: true, items: App.get_items(`tabs`)})
       }
     },
   })
@@ -246,7 +252,7 @@ App.remove_item_edits = (item) => {
     message: `Remove edits? (${active.length})`,
     confirm_action: () => {
       for (let key in App.edit_props) {
-        App.remove_edits({what: key, force: true, items: active})
+        App.remove_edits({what: [key], force: true, items: active})
       }
     },
   })
@@ -457,7 +463,7 @@ App.remove_color = (color) => {
   App.show_confirm({
     message: `Remove ${color}? (${items.length})`,
     confirm_action: () => {
-      App.remove_edits({what: `color`, force: true, items: items})
+      App.remove_edits({what: [`color`], force: true, items: items})
     },
   })
 }
@@ -598,7 +604,7 @@ App.remove_item_title = (item) => {
   App.show_confirm({
     message: `Remove title? (${active.length})`,
     confirm_action: () => {
-      App.remove_edits({what: `title`, force: true, items: active})
+      App.remove_edits({what: [`title`], force: true, items: active})
     },
   })
 }
@@ -794,7 +800,7 @@ App.remove_item_tags = (item) => {
   App.show_confirm({
     message: `Remove tags?`,
     confirm_action: () => {
-      App.remove_edits({what: `tags`, force: true, items: active})
+      App.remove_edits({what: [`tags`], force: true, items: active})
     },
   })
 }
@@ -1056,7 +1062,7 @@ App.remove_item_notes = (item, single = false) => {
   App.show_confirm({
     message: `Remove notes? (${active.length})`,
     confirm_action: () => {
-      App.remove_edits({what: `notes`, force: true, items: active})
+      App.remove_edits({what: [`notes`], force: true, items: active})
     },
   })
 }
@@ -1084,7 +1090,7 @@ App.same_edit = (what, item, value, type = `custom`) => {
 }
 
 App.toggle_split = (item, what) => {
-  let split = item[`custom_${what}_split`]
+  let split = item[`custom_split_${what}`]
   let value
 
   if (split !== undefined) {
@@ -1094,22 +1100,16 @@ App.toggle_split = (item, what) => {
     value = true
   }
 
-  App.apply_edit(`${what}_split`, item, value)
-  App.custom_save(item.id, `custom_${what}_split`, value)
+  App.apply_edit(`split_${what}`, item, value)
+  App.custom_save(item.id, `custom_split_${what}`, value)
 
   if (value) {
     let other = what === `top` ? `bottom` : `top`
-    App.apply_edit(`${other}_split`, item, false)
-    App.custom_save(item.id, `custom_${other}_split`, false)
+    App.apply_edit(`split_${other}`, item, false)
+    App.custom_save(item.id, `custom_split_${other}`, false)
   }
 }
 
 App.remove_all_splits = () => {
-  App.show_confirm({
-    message: `Remove all splits?`,
-    confirm_action: () => {
-      App.remove_edits({what: `bottom_split`, force: true})
-      App.remove_edits({what: `top_split`, force: true})
-    },
-  })
+  App.remove_edits({what: [`split_top`, `split_bottom`], force: true})
 }

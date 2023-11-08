@@ -1200,12 +1200,12 @@ a:visited, a:link, a:hover {
   border-right: var(--split_border) !important;
 }
 
-.not_filtered .top_split {
+.not_filtered .split_top {
   border-top: var(--split_border) !important;
   margin-top: 1.2rem;
 }
 
-.not_filtered .bottom_split {
+.not_filtered .split_bottom {
   border-bottom: var(--split_border) !important;
   margin-bottom: 1.2rem;
 }
