@@ -1096,6 +1096,12 @@ App.toggle_split = (item, what) => {
 
   App.apply_edit(`${what}_split`, item, value)
   App.custom_save(item.id, `custom_${what}_split`, value)
+
+  if (value) {
+    let other = what === `top` ? `bottom` : `top`
+    App.apply_edit(`${other}_split`, item, false)
+    App.custom_save(item.id, `custom_${other}_split`, false)
+  }
 }
 
 App.remove_all_splits = () => {
