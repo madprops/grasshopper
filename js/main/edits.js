@@ -355,6 +355,18 @@ App.edit_tab_color = (args = {}) => {
 
 App.color_menu_items = (item) => {
   let items = []
+  let item_color = App.get_color(item)
+
+  if (item_color) {
+    items.push({
+      text: `Filter`,
+      action: () => {
+        App.filter_color(item.mode, item_color)
+      }
+    })
+
+    App.sep(items)
+  }
 
   for (let color of App.colors) {
     let icon = App.color_icon(color)
