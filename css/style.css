@@ -1166,6 +1166,10 @@ a:visited, a:link, a:hover {
 }
 
 .taglist > div {
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   padding-left: 0.33rem;
   padding-right: 0.33rem;
 }
