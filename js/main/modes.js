@@ -36,7 +36,6 @@ App.do_show_mode = async (args = {}) => {
 
   App.windows[args.mode].show()
   let was_filtered = App.was_filtered(args.mode)
-  App.check_filtered(args.mode)
 
   if (!args.force) {
     if ((App.active_mode === args.mode) &&
@@ -46,6 +45,7 @@ App.do_show_mode = async (args = {}) => {
 
       if (args.mode === `tabs`) {
         App.check_pinline()
+        App.check_filtered(args.mode)
       }
 
       return
@@ -125,6 +125,7 @@ App.do_show_mode = async (args = {}) => {
 
   if (args.mode === `tabs`) {
     App.check_pinline()
+    App.check_filtered(args.mode)
   }
 }
 

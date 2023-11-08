@@ -231,6 +231,10 @@ App.remove_edits = (args = {}) => {
     return
   }
 
+  if (!args.force) {
+    args.force = App.check_force(`warn_on_edit_tabs`, args.items)
+  }
+
   App.show_confirm({
     message: `Remove edits? (${args.items.length})`,
     confirm_action: () => {
