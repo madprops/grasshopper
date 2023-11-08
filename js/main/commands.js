@@ -1058,6 +1058,16 @@ App.setup_commands = () => {
       info: `Remove all notes from tabs`,
     },
     {
+      name: `Remove All Splits`,
+      cmd: `remove_all_splits`,
+      modes: [`tabs`],
+      icon: edit_icon,
+      action: (args) => {
+        App.remove_all_splits()
+      },
+      info: `Remove all splits from tabs`,
+    },
+    {
       name: `Replace Tag`,
       cmd: `replace_tag`,
       modes: [`tabs`],

@@ -1097,3 +1097,13 @@ App.toggle_split = (item, what) => {
   App.apply_edit(`${what}_split`, item, value)
   App.custom_save(item.id, `custom_${what}_split`, value)
 }
+
+App.remove_all_splits = () => {
+  App.show_confirm({
+    message: `Remove all splits?`,
+    confirm_action: () => {
+      App.remove_edits({what: `bottom_split`, force: true})
+      App.remove_edits({what: `top_split`, force: true})
+    },
+  })
+}
