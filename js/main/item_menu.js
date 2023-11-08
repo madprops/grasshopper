@@ -20,7 +20,10 @@ App.show_item_menu = async (args = {}) => {
       let some_unmuted = false
       let some_loaded = false
       let some_unloaded = false
-      let some_splitted = false
+      let some_split_top = false
+      let some_not_split_top = false
+      let some_split_bottom = false
+      let some_not_split_bottom = false
 
       for (let it of active) {
         if (it.pinned) {
@@ -44,8 +47,18 @@ App.show_item_menu = async (args = {}) => {
           some_loaded = true
         }
 
-        if (it.custom_split_top || it.custom_split_bottom) {
-          some_splitted = true
+        if (it.custom_split_top) {
+          some_split_top = true
+        }
+        else {
+          some_not_split_top = true
+        }
+
+        if (it.custom_split_bottom) {
+          some_split_bottom = true
+        }
+        else {
+          some_not_split_bottom = true
         }
       }
 
@@ -93,7 +106,10 @@ App.show_item_menu = async (args = {}) => {
         some_loaded: some_loaded,
         some_unmuted: some_unmuted,
         some_muted: some_muted,
-        some_splitted: some_splitted,
+        some_split_top: some_split_top,
+        some_not_split_top: some_not_split_top,
+        some_split_bottom: some_split_bottom,
+        some_not_split_bottom: some_not_split_bottom,
       }
 
       App.more_menu_items(more_obj)
@@ -194,14 +210,26 @@ App.more_menu_items = (args = {}) => {
       App.sep(items)
     }
 
-    items.push(App.item_menu_item({cmd: `add_split_top`, item: args.item}))
-    items.push(App.item_menu_item({cmd: `add_split_bottom`, item: args.item}))
+    let split_used = false
 
-    if (args.some_splitted) {
-      items.push(App.item_menu_item({cmd: `remove_split`, item: args.item}))
+    if (args.some_not_split_top) {
+      items.push(App.item_menu_item({cmd: `add_split_top`, item: args.item}))
+      split_used = true
     }
 
-    App.sep(items)
+    if (args.some_not_split_bottom) {
+      items.push(App.item_menu_item({cmd: `add_split_bottom`, item: args.item}))
+      split_used = true
+    }
+
+    if (args.some_split_top || args.some_split_bottom) {
+      items.push(App.item_menu_item({cmd: `remove_split`, item: args.item}))
+      split_used = true
+    }
+
+    if (split_used) {
+      App.sep(items)
+    }
 
     if (App.tabs_normal()) {
       items.push(App.item_menu_item({cmd: `move_tabs_to_top`, item: args.item}))
