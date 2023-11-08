@@ -107,6 +107,7 @@ App.close_icon = `❌`
 App.tag_icon = `✝️`
 App.close_tab_icon = `x`
 App.smiley_icon = `😀`
+App.split_icon = `🚥`
 
 App.sizes = [
   {text: `Tiny`, value: `tiny`},

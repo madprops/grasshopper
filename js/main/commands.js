@@ -24,6 +24,7 @@ App.setup_commands = () => {
   let heart_icon = App.heart_icon
   let close_icon = App.close_icon
   let tag_icon = App.tag_icon
+  let split_icon = App.split_icon
   let color_filters = []
   let color_changers = []
   let color_removers = []
@@ -964,7 +965,7 @@ App.setup_commands = () => {
       cmd: `toggle_top_split`,
       modes: [`tabs`],
       item: true,
-      icon: edit_icon,
+      icon: split_icon,
       action: (args) => {
         App.toggle_split(args.item, `top`)
       },
@@ -975,7 +976,7 @@ App.setup_commands = () => {
       cmd: `toggle_bottom_split`,
       modes: [`tabs`],
       item: true,
-      icon: edit_icon,
+      icon: split_icon,
       action: (args) => {
         App.toggle_split(args.item, `bottom`)
       },
@@ -1061,7 +1062,7 @@ App.setup_commands = () => {
       name: `Remove All Splits`,
       cmd: `remove_all_splits`,
       modes: [`tabs`],
-      icon: edit_icon,
+      icon: split_icon,
       action: (args) => {
         App.remove_all_splits()
       },
