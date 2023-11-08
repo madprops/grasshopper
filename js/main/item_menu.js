@@ -76,7 +76,14 @@ App.show_item_menu = async (args = {}) => {
       })
 
       items.push(App.item_menu_item({cmd: `edit_notes`, item: args.item}))
-      App.common_menu_items(items, args.item, multiple)
+
+      let common_obj = {
+        o_items: items,
+        item: args.item,
+        multiple: multiple,
+      }
+
+      App.common_menu_items(common_obj)
       App.extra_menu_items(items)
 
       let more_obj = {
@@ -95,7 +102,14 @@ App.show_item_menu = async (args = {}) => {
     }
     else {
       items.push(App.item_menu_item({cmd: `open_items`, item: args.item}))
-      App.common_menu_items(items, args.item, multiple)
+
+      let common_obj = {
+        o_items: items,
+        item: args.item,
+        multiple: multiple,
+      }
+
+      App.common_menu_items(common_obj)
 
       let more_obj = {
         o_items: items,
@@ -110,27 +124,27 @@ App.show_item_menu = async (args = {}) => {
   App.show_context({items: items, e: args.e})
 }
 
-App.common_menu_items = (o_items, item, multiple) => {
+App.common_menu_items = (args = {}) => {
   let items = []
 
-  if (App.get_media_type(item)) {
-    items.push(App.item_menu_item({cmd: `view_media`, item: item}))
+  if (App.get_media_type(args.item)) {
+    items.push(App.item_menu_item({cmd: `view_media`, item: args.item}))
   }
 
-  if (!multiple) {
+  if (!args.multiple) {
     items.push({
       icon: App.settings_icons.filter,
       text: `Filter`,
       get_items: () => {
-        return App.filter_menu_items(item)
+        return App.filter_menu_items(args.item)
       },
     })
   }
 
-  if (!multiple) {
+  if (!args.multiple) {
     let copy_items = []
-    copy_items.push(App.item_menu_item({cmd: `copy_item_url`, item: item}))
-    copy_items.push(App.item_menu_item({cmd: `copy_item_title`, item: item}))
+    copy_items.push(App.item_menu_item({cmd: `copy_item_url`, item: args.item}))
+    copy_items.push(App.item_menu_item({cmd: `copy_item_title`, item: args.item}))
 
     items.push({
       icon: App.clipboard_icon,
@@ -141,7 +155,7 @@ App.common_menu_items = (o_items, item, multiple) => {
 
   if (items.length) {
     for (let c of items) {
-      o_items.push(c)
+      args.o_items.push(c)
     }
   }
 }
