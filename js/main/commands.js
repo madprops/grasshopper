@@ -959,6 +959,28 @@ App.setup_commands = () => {
       },
       info: `Add tags to tabs`,
     },
+    {
+      name: `Top Split`,
+      cmd: `toggle_top_split`,
+      modes: [`tabs`],
+      item: true,
+      icon: edit_icon,
+      action: (args) => {
+        App.toggle_split(args.item, `top`)
+      },
+      info: `Add a split above the tab`,
+    },
+    {
+      name: `Bottom Split`,
+      cmd: `toggle_bottom_split`,
+      modes: [`tabs`],
+      item: true,
+      icon: edit_icon,
+      action: (args) => {
+        App.toggle_split(args.item, `bottom`)
+      },
+      info: `Add a split below the tab`,
+    },
 
     ...color_removers,
 

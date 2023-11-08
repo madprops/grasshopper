@@ -140,6 +140,8 @@ App.more_menu_items = (o_items, item, multiple, some_loaded, some_unmuted, some_
     }
 
     items.push(App.item_menu_item({cmd: `duplicate_tabs`, item: item}))
+    items.push(App.item_menu_item({cmd: `toggle_top_split`, item: item}))
+    items.push(App.item_menu_item({cmd: `toggle_bottom_split`, item: item}))
 
     if (App.edited(item, false)) {
       items.push(App.item_menu_item({cmd: `remove_item_edits`, item: item}))

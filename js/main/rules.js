@@ -2,7 +2,9 @@ App.check_rules = (item) => {
   item.ruled = false
 
   for (let key in App.edit_props) {
-    if (item[`rule_${key}`] === undefined) {
+    let p = item[`rule_${key}`]
+
+    if (p === undefined || !p.rule) {
       item[`rule_${key}`] = App.edit_default(key)
     }
   }

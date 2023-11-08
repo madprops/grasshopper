@@ -306,6 +306,7 @@ App.refresh_item_element = (item) => {
   App.set_item_text(item)
   App.apply_color_mode(item)
   App.check_taglist(item)
+  App.apply_splits(item)
 }
 
 App.create_item_element = (item) => {
@@ -331,6 +332,7 @@ App.create_item_element = (item) => {
   item.element.draggable = true
   App.check_icons(item)
   App.apply_color_mode(item)
+  App.apply_splits(item)
   let view_media = DOM.create(`div`, `view_media_button hidden`)
   item.element.append(view_media)
   App.check_view_media(item)
@@ -1195,5 +1197,30 @@ App.auto_blur = () => {
 App.remove_auto_blur = () => {
   if (App.get_setting(`auto_blur`)) {
     DOM.el(`#main`).classList.remove(`auto_blur`)
+  }
+}
+
+App.apply_splits = (item) => {
+  if (item.mode !== `tabs`) {
+    return
+  }
+
+  let has_split = false
+
+  for (let what of [`top`, `bottom`]) {
+    if (item[`custom_${what}_split`]) {
+      item.element.classList.add(`${what}_split`)
+      has_split = true
+    }
+    else {
+      item.element.classList.remove(`${what}_split`)
+    }
+  }
+
+  if (has_split) {
+    item.element.classList.add(`split`)
+  }
+  else {
+    item.element.classList.remove(`split`)
   }
 }

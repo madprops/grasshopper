@@ -9,6 +9,7 @@
   --widget_width_smaller: 6rem;
   --action_effect: 0 0 0.1rem currentColor;
   --text_glow: 0 0 0.2rem currentColor;
+  --split_border: 3px solid var(--text_color);
 }
 
 @keyframes spin {
@@ -1193,4 +1194,19 @@ a:visited, a:link, a:hover {
 
 .doubleline:hover {
   text-decoration-style: double;
+}
+
+.split {
+  border-right: 2px solid var(--text_color) !important;
+}
+
+.top_split {
+  border-top: var(--split_border) !important;
+  padding-top: 1rem;
+}
+
+
+.bottom_split {
+  border-bottom: var(--split_border) !important;
+  padding-bottom: 1rem;
 }

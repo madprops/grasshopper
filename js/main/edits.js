@@ -1,15 +1,27 @@
 App.edit_props = {
   color: {
     type: `string`,
+    rule: true,
   },
   title: {
     type: `string`,
+    rule: true,
   },
   tags: {
     type: `list`,
+    rule: true,
   },
   notes: {
     type: `string`,
+    rule: true,
+  },
+  top_split: {
+    type: `bool`,
+    rule: false,
+  },
+  bottom_split: {
+    type: `bool`,
+    rule: false,
   },
 }
 
@@ -250,6 +262,11 @@ App.apply_edit = (what, item, value) => {
   }
   else if (props.type === `list`) {
     if (!Array.isArray(value)) {
+      return false
+    }
+  }
+  else if (props.type === `bool`) {
+    if (value !== true && value !== false) {
       return false
     }
   }
@@ -1008,6 +1025,9 @@ App.edit_default = (what) => {
   else if (props.type === `list`) {
     return []
   }
+  else if (props.type === `bool`) {
+    return false
+  }
 }
 
 App.edit_is_default = (what, item, kind = `custom`) => {
@@ -1049,7 +1069,7 @@ App.same_edit = (what, item, value, type = `custom`) => {
   let props = App.edit_props[what]
   let ovalue = item[`${type}_${what}`]
 
-  if (props.type === `string`) {
+  if (props.type === `string` || props.type === `bool`) {
     if (ovalue === value) {
       return true
     }
@@ -1061,4 +1081,19 @@ App.same_edit = (what, item, value, type = `custom`) => {
   }
 
   return false
+}
+
+App.toggle_split = (item, what) => {
+  let split = item[`custom_${what}_split`]
+  let value
+
+  if (split !== undefined) {
+    value = !split
+  }
+  else {
+    value = true
+  }
+
+  App.apply_edit(`${what}_split`, item, value)
+  App.custom_save(item.id, `custom_${what}_split`, value)
 }
