@@ -67,7 +67,6 @@ App.do_apply_theme = (args = {}) => {
     }
 
     App.set_css_var(`font_size`, App.get_setting(`font_size`) + `px`)
-    App.set_css_var(`font`, `${App.get_setting(`font`)}, sans-serif`)
     let w = `${(App.get_setting(`width`) / 100) * App.popup_width}px`
     App.set_css_var(`width`, w)
     let h = `${(App.get_setting(`height`) / 100) * App.popup_height}px`
@@ -259,6 +258,18 @@ App.do_apply_theme = (args = {}) => {
       main.classList.remove(`tab_box_active`)
     }
 
+    let font_name = App.get_setting(`font_name`)
+    let font_link = document.getElementById('custom_font')
+
+    if (font_name) {
+      font_link.href = `https://fonts.googleapis.com/css?family=${font_name}`
+    }
+    else {
+      font_link.href = ``
+    }
+
+    console.log(font_name)
+    App.set_css_var(`font`, `${font_name}, ${App.get_setting(`font`)}, sans-serif`)
     App.insert_color_css()
     App.insert_custom_css()
   }

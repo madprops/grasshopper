@@ -29,7 +29,7 @@ App.build_settings = () => {
       name: `Font`,
       type: `menu`,
       value: `sans-serif`,
-      info: `The font to use for text`,
+      info: `The font to use for all text. In the Theme category you can specify a font name`,
       version: 1,
     },
     text_mode: {
@@ -214,6 +214,15 @@ App.build_settings = () => {
       value: `none`,
       action: `theme`,
       info: `The tile size of the background image`,
+      version: 1,
+    },
+    font_name: {
+      name: `Font Name`,
+      type: `text`,
+      action: `theme`,
+      value: ``,
+      placeholder: `Google Font Name`,
+      info: `Use a font from Google Fonts by using the font's name`,
       version: 1,
     },
     custom_css: {
