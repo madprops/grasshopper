@@ -1196,16 +1196,16 @@ a:visited, a:link, a:hover {
   text-decoration-style: double;
 }
 
-.split {
+.not_filtered .split {
   border-right: var(--split_border) !important;
 }
 
-.top_split {
+.not_filtered .top_split {
   border-top: var(--split_border) !important;
   margin-top: 1.2rem;
 }
 
-.bottom_split {
+.not_filtered .bottom_split {
   border-bottom: var(--split_border) !important;
   margin-bottom: 1.2rem;
 }

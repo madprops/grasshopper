@@ -61,6 +61,7 @@ App.do_filter = async (args = {}) => {
   App.def_args(def_args, args)
   App.debug(`Filter: ${args.mode}`)
   let value = App.get_filter(args.mode)
+  App.check_filtered(args.mode)
   App[`last_${args.mode}_filter`] = value
   value = App.remove_protocol(value)
 
@@ -953,4 +954,16 @@ App.filter_color = (mode, color) => {
 
 App.blur_filter = (mode) => {
   DOM.el(`#${mode}_filter`).blur()
+}
+
+App.check_filtered = (mode) => {
+  let value = App.get_filter(mode)
+  let container = DOM.el(`#${mode}_container`)
+
+  if (!value) {
+    container.classList.add(`not_filtered`)
+  }
+  else {
+    container.classList.remove(`not_filtered`)
+  }
 }
