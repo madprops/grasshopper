@@ -1197,16 +1197,16 @@ a:visited, a:link, a:hover {
 }
 
 .split {
-  border-right: 2px solid var(--text_color) !important;
+  border-right: 3px solid var(--text_color) !important;
 }
 
 .top_split {
   border-top: var(--split_border) !important;
-  padding-top: 0.8rem;
+  margin-top: 1.2rem;
 }
 
 
 .bottom_split {
   border-bottom: var(--split_border) !important;
-  padding-bottom: 0.8rem;
+  margin-bottom: 1.2rem;
 }
