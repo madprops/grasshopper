@@ -140,8 +140,6 @@ App.more_menu_items = (o_items, item, multiple, some_loaded, some_unmuted, some_
     }
 
     items.push(App.item_menu_item({cmd: `duplicate_tabs`, item: item}))
-    items.push(App.item_menu_item({cmd: `toggle_top_split`, item: item}))
-    items.push(App.item_menu_item({cmd: `toggle_bottom_split`, item: item}))
 
     if (App.edited(item, false)) {
       items.push(App.item_menu_item({cmd: `remove_item_edits`, item: item}))
@@ -159,9 +157,14 @@ App.more_menu_items = (o_items, item, multiple, some_loaded, some_unmuted, some_
       App.sep(items)
     }
 
+    items.push(App.item_menu_item({cmd: `toggle_top_split`, item: item}))
+    items.push(App.item_menu_item({cmd: `toggle_bottom_split`, item: item}))
+    App.sep(items)
+
     if (App.tabs_normal()) {
       items.push(App.item_menu_item({cmd: `move_tabs_to_top`, item: item}))
       items.push(App.item_menu_item({cmd: `move_tabs_to_bottom`, item: item}))
+      App.sep(items)
     }
 
     items.push(App.item_menu_item({cmd: `show_windows_menu`, item: item}))
