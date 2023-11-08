@@ -207,7 +207,7 @@ App.build_settings = () => {
       value: ``,
       placeholder: `Font Name`,
       btns: [`pick`],
-      info: `Pick from the list or enter a Google Font name`,
+      info: `Pick from the list, or enter a Google Font name, or enter a font URL`,
       version: 1,
     },
     font_size: {
