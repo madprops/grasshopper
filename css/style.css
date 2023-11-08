@@ -1202,11 +1202,11 @@ a:visited, a:link, a:hover {
 
 .top_split {
   border-top: var(--split_border) !important;
-  padding-top: 1rem;
+  padding-top: 0.8rem;
 }
 
 
 .bottom_split {
   border-bottom: var(--split_border) !important;
-  padding-bottom: 1rem;
+  padding-bottom: 0.8rem;
 }

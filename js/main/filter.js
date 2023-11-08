@@ -178,7 +178,7 @@ App.do_filter = async (args = {}) => {
       }
 
       if (match) {
-        reg = App.make_filter_regex(match, by_what)
+        let reg = App.make_filter_regex(match, by_what)
 
         if (reg) {
           regexes.push(reg)
@@ -319,6 +319,10 @@ App.filter_check = (args) => {
       }
       else if (args.by_what.includes(`url`)) {
         match = regex.test(args.item.path)
+      }
+
+      if (match) {
+        break
       }
     }
   }
