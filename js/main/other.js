@@ -34,68 +34,6 @@ App.custom_menu_items = (name, item) => {
   return App.show_cmds_menu(cmds, name, item)
 }
 
-App.show_cmds_menu = (cmds, from, item) => {
-  let items = []
-
-  if (!cmds.length) {
-    items.push({
-      text: `No items yet`,
-      action: (e) => {
-        App.alert(`Add some in Settings`)
-      },
-    })
-  }
-  else {
-    for (let obj of cmds) {
-      let cmd = App.get_command(obj.cmd)
-
-      if (!cmd) {
-        continue
-      }
-
-      let cmd_obj = {
-        from: from,
-        item: item,
-      }
-
-      if (!App.check_command(cmd, cmd_obj)) {
-        continue
-      }
-
-      let item_obj = {
-        text: cmd.name,
-        action: (e) => {
-          cmd_obj.e = e
-          cmd_obj.cmd = cmd.cmd
-          App.run_command(cmd_obj)
-        },
-        icon: cmd.icon,
-      }
-
-      if (obj.alt) {
-        let alt = App.get_command(obj.alt)
-
-        if (alt) {
-          item_obj.alt_action = (e) => {
-            App.run_command({
-              cmd: alt.cmd,
-              from: from,
-              item: item,
-              e: e,
-            })
-          }
-
-          item_obj.info = `Middle Click: ${alt.name}`
-        }
-      }
-
-      items.push(item_obj)
-    }
-  }
-
-  return items
-}
-
 App.check_ready = (what) => {
   let s = `${what}_ready`
 

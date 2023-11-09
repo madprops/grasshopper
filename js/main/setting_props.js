@@ -1604,6 +1604,13 @@ App.build_settings = () => {
       info: `Show the active tab at the top when showing Recent Tabs`,
       version: 1,
     },
+    short_commands: {
+      name: `Short Commands`,
+      type: `checkbox`,
+      value: false,
+      info: `Prefer short command name versions when displaying them`,
+      version: 1,
+    },
     step_back_recent: {
       name: `Step Back Recent`,
       type: `checkbox`,

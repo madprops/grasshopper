@@ -42,9 +42,10 @@ App.setup_commands = () => {
   })
 
   for (let color of App.colors) {
-    let icon, name
+    let icon, name, short
+    let cname = App.capitalize(color)
     icon = App.color_icon(color)
-    name = `Filter ${App.capitalize(color)}`
+    name = `Filter ${cname}`
 
     color_filters.push({
       name: name,
@@ -58,10 +59,12 @@ App.setup_commands = () => {
     })
 
     icon = App.color_icon(color)
-    name = `Color ${App.capitalize(color)}`
+    name = `Color ${cname}`
+    short = cname
 
     color_changers.push({
       name: name,
+      short_name: short,
       cmd: `color_${color}`,
       modes: [`tabs`],
       item: true,
@@ -73,10 +76,12 @@ App.setup_commands = () => {
     })
 
     icon = App.color_icon(color)
-    name = `Toggle ${App.capitalize(color)}`
+    name = `Toggle ${cname}`
+    short = cname
 
     color_changers.push({
       name: name,
+      short_name: short,
       cmd: `toggle_color_${color}`,
       modes: [`tabs`],
       item: true,
@@ -88,7 +93,7 @@ App.setup_commands = () => {
     })
 
     icon = theme_icon
-    name = `Remove ${App.capitalize(color)}`
+    name = `Remove ${cname}`
 
     color_removers.push({
       name: name,
@@ -102,7 +107,7 @@ App.setup_commands = () => {
     })
 
     icon = App.close_icon
-    name = `Close ${App.capitalize(color)}`
+    name = `Close ${cname}`
 
     color_closers.push({
       name: name,
@@ -1805,18 +1810,9 @@ App.cmd_item = (args = {}) => {
     return
   }
 
-  let name
-
-  if (args.short) {
-    name = args.command.short_name || args.command.name
-  }
-  else {
-    name = args.command.name
-  }
-
   return {
     icon: args.command.icon,
-    text: name,
+    text: App.command_name(args.command, args.short),
     action: (e) => {
       App.run_command({
         cmd: args.command.cmd,
@@ -1836,4 +1832,78 @@ App.cmd_list = (cmds) => {
   }
 
   return items
+}
+
+App.show_cmds_menu = (cmds, from, item) => {
+  let items = []
+
+  if (!cmds.length) {
+    items.push({
+      text: `No items yet`,
+      action: (e) => {
+        App.alert(`Add some in Settings`)
+      },
+    })
+  }
+  else {
+    for (let obj of cmds) {
+      let cmd = App.get_command(obj.cmd)
+
+      if (!cmd) {
+        continue
+      }
+
+      let cmd_obj = {
+        from: from,
+        item: item,
+      }
+
+      if (!App.check_command(cmd, cmd_obj)) {
+        continue
+      }
+
+      let item_obj = {
+        text: App.command_name(cmd),
+        action: (e) => {
+          cmd_obj.e = e
+          cmd_obj.cmd = cmd.cmd
+          App.run_command(cmd_obj)
+        },
+        icon: cmd.icon,
+      }
+
+      if (obj.alt) {
+        let alt = App.get_command(obj.alt)
+
+        if (alt) {
+          item_obj.alt_action = (e) => {
+            App.run_command({
+              cmd: alt.cmd,
+              from: from,
+              item: item,
+              e: e,
+            })
+          }
+
+          item_obj.info = `Middle Click: ${alt.name}`
+        }
+      }
+
+      items.push(item_obj)
+    }
+  }
+
+  return items
+}
+
+App.command_name = (command, force_short) => {
+  if (command.short_name && App.get_setting(`short_commands`)) {
+    return command.short_name
+  }
+  else if (command.short_name && force_short) {
+    return command.short_name
+  }
+  else {
+    return command.name
+  }
 }
