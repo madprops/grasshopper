@@ -479,7 +479,7 @@ App.add_settings_switchers = (category) => {
   top.append(container)
   let title = DOM.create(`div`, `settings_title button`)
   title.id = `settings_title_${category}`
-  title.textContent = App.capitalize(category)
+  title.textContent = App.category_string(category)
   container.append(title)
   let actions = DOM.create(`div`, `button icon_button`)
   actions.id = `settings_actions_${category}`
@@ -580,9 +580,13 @@ App.set_default_setting = (setting, do_action) => {
   App.set_setting(setting, App.default_setting_string, do_action)
 }
 
+App.category_string = (category) => {
+  return App.capitalize_words(category)
+}
+
 App.reset_settings = (category) => {
   App.show_confirm({
-    message: `Reset settings? (${App.capitalize(category)})`,
+    message: `Reset settings? (${App.category_string(category)})`,
     confirm_action: () => {
       App.settings_default_category(category)
 
@@ -843,7 +847,7 @@ App.settings_menu_items = () => {
 
   for (let c of App.settings_categories) {
     let icon = App.settings_icons[c]
-    let name = App.capitalize(c)
+    let name = App.category_string(c)
 
     items.push({
       icon: icon,

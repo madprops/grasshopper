@@ -1071,7 +1071,7 @@ App.build_settings = () => {
   }
 
   add_props()
-  category = `colors`
+  category = `tab_colors`
 
   props = {
     text_color_active_enabled: {
@@ -1814,25 +1814,6 @@ App.build_settings = () => {
         ],
       ]
     },
-    colors: {
-      info: `Custom colors for tabs. You can enable/disable each color for different kinds of tabs.
-      Some colors take precendence over others`,
-      setup: () => {
-        for (let key in App.setting_props) {
-          let props = App.setting_props[key]
-
-          if (props.category !== `colors`) {
-            continue
-          }
-
-          if (!key.includes(`_color_`) || key.endsWith(`_enabled`)) {
-            continue
-          }
-
-          App.start_color_picker(key)
-        }
-      },
-    },
     show: {
       info: `Hide or show interface components. Set component behavior and their menus`,
       setup: () => {
@@ -1941,6 +1922,25 @@ App.build_settings = () => {
           {text: `Center`, value: `center`},
           {text: `Right`, value: `right`},
         ])
+      },
+    },
+    tab_colors: {
+      info: `Custom colors for tabs. You can enable/disable each color for different kinds of tabs.
+      Some colors take precendence over others`,
+      setup: () => {
+        for (let key in App.setting_props) {
+          let props = App.setting_props[key]
+
+          if (props.category !== `colors`) {
+            continue
+          }
+
+          if (!key.includes(`_color_`) || key.endsWith(`_enabled`)) {
+            continue
+          }
+
+          App.start_color_picker(key)
+        }
       },
     },
     filter: {

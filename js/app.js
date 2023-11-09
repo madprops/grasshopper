@@ -74,8 +74,8 @@ App.check_selected_delay = 50
 App.settings_icons = {
   general: `⚙️`,
   theme: `🎨`,
-  colors: `🎨`,
   edits: `📝`,
+  tab_colors: `📚`,
   icons: `🖼️`,
   media: `📷`,
   icons: `👁️`,

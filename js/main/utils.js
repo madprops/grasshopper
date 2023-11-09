@@ -116,7 +116,7 @@ App.capitalize = (s) => {
 }
 
 App.capitalize_words = (s) => {
-  let words = s.split(` `)
+  let words = s.split(/[_\s]+/)
 
   let capitalized = words.map(word => {
     return App.capitalize(word)
