@@ -1292,10 +1292,14 @@ App.check_tab_loading = (item) => {
     return
   }
 
-  if (item.status !== `complete`) {
-    item.element.classList.add(`loading`)
+  if (item.status === `loading`) {
+    if (item.last_status !== `loading`) {
+      item.element.classList.add(`loading`)
+    }
   }
   else {
     item.element.classList.remove(`loading`)
   }
+
+  item.last_status = item.status
 }
