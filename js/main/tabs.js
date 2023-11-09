@@ -1288,14 +1288,26 @@ App.check_tab_loading = (item) => {
     return
   }
 
-  if (!App.get_setting(`loading_effect`)) {
+  let effect = App.get_setting(`loading_effect`)
+
+  if (effect === `none`) {
     return
   }
 
-  if (item.status === `loading`) {
-    item.element.classList.add(`loading`)
+  if (effect === `fade`) {
+    if (item.status === `loading`) {
+      item.element.classList.add(`fade_effect`)
+    }
+    else {
+      item.element.classList.remove(`fade_effect`)
+    }
   }
-  else {
-    item.element.classList.remove(`loading`)
+  else if (effect === `spin`) {
+    if (item.status === `loading`) {
+      item.element.classList.add(`spin_effect`)
+    }
+    else {
+      item.element.classList.remove(`spin_effect`)
+    }
   }
 }

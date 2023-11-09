@@ -320,8 +320,12 @@ svg {
   padding-right: calc(var(--item_gap) * 2);
 }
 
-.item.loading {
+.item.fade_effect {
   animation: fade 1s linear 60;
+}
+
+.item.spin_effect .item_icon {
+  animation: spin 1s linear infinite;
 }
 
 .close_button:hover {

@@ -63,6 +63,13 @@ App.build_settings = () => {
       info: `What effect to use on selected items`,
       version: 1,
     },
+    loading_effect: {
+      name: `Loading Effect`,
+      type: `menu`,
+      value: `fade`,
+      info: `Which effect to show on loading tabs`,
+      version: 1,
+    },
     primary_mode: {
       name: `Primary Mode`,
       type: `menu`,
@@ -106,13 +113,6 @@ App.build_settings = () => {
       placeholder: `Folder Name`,
       no_empty: true,
       info: `Where to save bookmarks`,
-      version: 1,
-    },
-    loading_effect: {
-      name: `Loading Effect`,
-      type: `checkbox`,
-      value: true,
-      info: `Show a loading effect on tabs`,
       version: 1,
     },
     smooth_scroll: {
@@ -1713,6 +1713,12 @@ App.build_settings = () => {
 
         App.settings_make_menu(`hover_effect`, App.effects)
         App.settings_make_menu(`selected_effect`, App.effects)
+
+        App.settings_make_menu(`loading_effect`, [
+          {text: `None`, value: `none`},
+          {text: `Fade`, value: `fade`},
+          {text: `Spin`, value: `spin`},
+        ])
 
         App.settings_make_menu(`width`, App.get_size_options(), () => {
           App.apply_theme()
