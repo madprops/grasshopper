@@ -1288,6 +1288,10 @@ App.check_tab_loading = (item) => {
     return
   }
 
+  if (!App.get_setting(`loading_effect`)) {
+    return
+  }
+
   if (item.status !== `complete`) {
     item.element.classList.add(`loading`)
   }
