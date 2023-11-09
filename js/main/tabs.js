@@ -1294,20 +1294,18 @@ App.check_tab_loading = (item) => {
     return
   }
 
-  if (effect === `fade`) {
-    if (item.status === `loading`) {
+  let loading = item.status === `loading`
+
+  if (loading) {
+    if (effect === `fade`) {
       item.element.classList.add(`fade_effect`)
     }
-    else {
-      item.element.classList.remove(`fade_effect`)
-    }
-  }
-  else if (effect === `spin`) {
-    if (item.status === `loading`) {
+    else if (effect === `spin`) {
       item.element.classList.add(`spin_effect`)
     }
-    else {
-      item.element.classList.remove(`spin_effect`)
-    }
+  }
+  else {
+    item.element.classList.remove(`fade_effect`)
+    item.element.classList.remove(`spin_effect`)
   }
 }

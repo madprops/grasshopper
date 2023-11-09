@@ -1162,8 +1162,13 @@ App.edit_tab_split = (args = {}) => {
           if (App.apply_edit(`split_${other}`, it, false)) {
             App.custom_save(it.id, `custom_split_${other}`, false)
           }
+
+          if (App.apply_edit(`split_title`, it, false)) {
+            App.custom_save(it.id, `custom_split_title`, )
+          }
         }
 
+        App.remove_split_title(active)
         check_title()
       },
       force: force,
@@ -1204,7 +1209,11 @@ App.edit_tab_split = (args = {}) => {
       App.custom_save(it_2.id, `custom_split_bottom`, what)
     }
 
-    check_title()
+    App.remove_split_title(active)
+
+    if (what) {
+      check_title()
+    }
   }
 }
 
@@ -1227,6 +1236,16 @@ App.edit_tab_split_title = (item) => {
       }
     },
   })
+}
+
+App.remove_split_title = (items) => {
+  let title = App.edit_default(`split_title`)
+
+  for (let item of items) {
+    if (App.apply_edit(`split_title`, item, title)) {
+      App.custom_save(item.id, `custom_split_title`, title)
+    }
+  }
 }
 
 App.remove_item_split = (item) => {
