@@ -325,7 +325,7 @@ svg {
 }
 
 .item.spin_effect .item_icon {
-  animation: spin 1s linear infinite;
+  animation: spin 1s linear 60;
 }
 
 .close_button:hover {
@@ -367,7 +367,7 @@ svg {
 }
 
 .icon_effect_spin .multiple_selected .item.selected .item_icon {
-  animation: spin 1s linear infinite;
+  animation: spin 1s linear 60;
 }
 
 .icon_effect_invert .multiple_selected .item.selected .item_icon {
