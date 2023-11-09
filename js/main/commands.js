@@ -1001,11 +1001,10 @@ App.setup_commands = () => {
       cmd: `edit_split_title`,
       modes: [`tabs`],
       item: true,
-      single: true,
       some_split_top: true,
       icon: split_icon,
       action: (args) => {
-        App.edit_tab_split({item: args.item, which: `top`, title: true})
+        App.edit_tab_split_title(args.item)
       },
       info: `Edit the split title`,
     },
