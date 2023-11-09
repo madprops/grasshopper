@@ -949,12 +949,13 @@ App.build_settings = () => {
       info: `Apply rules to domains automatically, like color, title, and tags`,
       version: 1,
     },
-    color_mode: {
-      name: `Color Mode`,
-      type: `menu`,
-      value: `icon`,
-      info: `How to display the colors`,
-      version: 2,
+    notes_icon_click: {
+      name: `Notes Icon Click`,
+      type: `checkbox`,
+      value: true,
+      info: `Show the notes when clicking the notes icon`,
+      separator: true,
+      version: 1,
     },
     color_icon_click: {
       name: `Color Icon Click`,
@@ -963,13 +964,12 @@ App.build_settings = () => {
       info: `Show the color menu by clicking a color icon`,
       version: 1,
     },
-    notes_icon_click: {
-      name: `Notes Icon Click`,
-      type: `checkbox`,
-      value: true,
-      info: `Show the notes when clicking the notes icon`,
-      separator: true,
-      version: 1,
+    color_mode: {
+      name: `Color Mode`,
+      type: `menu`,
+      value: `icon`,
+      info: `How to display the colors`,
+      version: 2,
     },
     color_red: {
       name: `Color Red`,
