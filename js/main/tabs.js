@@ -1294,9 +1294,7 @@ App.check_tab_loading = (item) => {
     return
   }
 
-  let loading = item.status === `loading`
-
-  if (loading) {
+  if (item.status === `loading`) {
     item.element.classList.add(`${effect}_effect`)
   }
   else {
