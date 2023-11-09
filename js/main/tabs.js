@@ -1300,8 +1300,10 @@ App.check_tab_loading = (item) => {
     item.element.classList.add(`${effect}_effect`)
   }
   else {
-    item.element.classList.remove(`fade_effect`)
-    item.element.classList.remove(`spin_effect`)
-    item.element.classList.remove(`icon_effect`)
+    let effects = [`fade`, `spin`, `icon`]
+
+    for (let effect of effects) {
+      item.element.classList.remove(`${effect}_effect`)
+    }
   }
 }
