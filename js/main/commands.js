@@ -995,16 +995,17 @@ App.setup_commands = () => {
       info: `Add a split below the tab`,
     },
     {
-      name: `Split Title`,
-      cmd: `add_split_title`,
+      name: `Edit Split Title`,
+      cmd: `edit_split_title`,
       modes: [`tabs`],
       item: true,
-      icon: split_icon,
       single: true,
+      some_split_top: true,
+      icon: split_icon,
       action: (args) => {
         App.edit_tab_split({item: args.item, which: `top`})
       },
-      info: `Add a split above the tab`,
+      info: `Edit the split title`,
     },
 
     ...color_removers,
@@ -1162,6 +1163,7 @@ App.setup_commands = () => {
       cmd: `filter_domain`,
       modes: [`items`],
       item: true,
+      single: true,
       icon: filter_icon,
       action: (args) => {
         App.filter_domain(args.item)
@@ -1173,6 +1175,7 @@ App.setup_commands = () => {
       cmd: `filter_color`,
       modes: [`items`],
       item: true,
+      single: true,
       color: true,
       icon: theme_icon,
       action: (args) => {
@@ -1634,8 +1637,24 @@ App.check_command = (command, args = {}) => {
   }
 
   if (valid) {
-    if (command.some_not_split_top) {
-      if (!args.some_not_split_top) {
+    if (command.some_split_top) {
+      if (!args.some_split_top) {
+        valid = false
+      }
+    }
+  }
+
+  if (valid) {
+    if (command.some_split_bottom) {
+      if (!args.some_split_bottom) {
+        valid = false
+      }
+    }
+  }
+
+  if (valid) {
+    if (command.some_tagged) {
+      if (!args.some_tagged) {
         valid = false
       }
     }
