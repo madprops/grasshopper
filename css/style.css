@@ -1208,8 +1208,16 @@ a:visited, a:link, a:hover {
   margin-top: 1.2rem;
 }
 
+.split_top:nth-child(1 of :not(.hidden))  {
+  margin-top: unset;
+}
+
 .not_filtered .split_bottom {
   border-bottom: var(--split_border) !important;
+}
+
+.split_bottom:nth-last-child(1 of :not(.hidden))  {
+  margin-bottom: unset;
 }
 
 .split_padding .split_bottom {
