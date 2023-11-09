@@ -1183,6 +1183,7 @@ App.edit_tab_split = (args = {}) => {
   }
   else if (args.which === `auto`) {
     if (active.length < 2) {
+      App.alert_autohide(`Need at least 2 tabs`)
       return
     }
 
