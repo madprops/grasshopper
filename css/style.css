@@ -21,6 +21,18 @@
   }
 }
 
+@keyframes fader {
+  100% {
+    opacity: 0.25;
+  }
+  50% {
+    opacity: 1;
+  }
+  0% {
+    opacity: 0.25;
+  }
+}
+
 body, html {
   font-family: var(--font);
   font-size: var(--font_size);
@@ -270,6 +282,7 @@ svg {
   border-style: solid;
   border-color: transparent;
   margin-top: -1px;
+  opacity: 1;
 }
 
 .item:nth-child(1 of :not(.hidden))  {
@@ -299,6 +312,10 @@ svg {
 
 .item .close_button.left {
   padding-right: calc(var(--item_gap) * 2);
+}
+
+.item.loading {
+  animation: fader 1s linear 60;
 }
 
 .close_button:hover {

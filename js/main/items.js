@@ -296,6 +296,7 @@ App.check_view_media = (item) => {
 }
 
 App.refresh_item_element = (item) => {
+  App.check_tab_loading(item)
   App.check_item_icon(item)
   App.check_icons(item)
   App.check_view_media(item)
@@ -361,6 +362,7 @@ App.create_item_element = (item) => {
 
   if (item.mode === `tabs`) {
     App.add_close_button(item, `right`)
+    App.check_tab_loading(item)
   }
 
   if (item.selected) {

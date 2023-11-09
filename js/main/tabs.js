@@ -1282,3 +1282,16 @@ App.check_on_tabs = async () => {
     App.filter_all(`tabs`)
   }
 }
+
+App.check_tab_loading = (item) => {
+  if (item.mode !== `tabs`) {
+    return
+  }
+
+  if (item.status !== `complete`) {
+    item.element.classList.add(`loading`)
+  }
+  else {
+    item.element.classList.remove(`loading`)
+  }
+}
