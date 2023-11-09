@@ -1181,6 +1181,11 @@ App.edit_tab_split = (args = {}) => {
   }
 }
 
+App.remove_item_split = (item) => {
+  let active = App.get_active_items({mode: item.mode, item: item})
+  App.remove_edits({what: [`split_top`, `split_bottom`], items: active})
+}
+
 App.remove_all_splits = () => {
   App.remove_edits({what: [`split_top`, `split_bottom`], force: true})
 }

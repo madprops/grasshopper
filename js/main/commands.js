@@ -1078,7 +1078,7 @@ App.setup_commands = () => {
       item: true,
       icon: split_icon,
       action: (args) => {
-        App.remove_edits({what: [`split_top`, `split_bottom`]})
+        App.remove_item_split(args.item)
       },
       info: `Remove the splits from tabs`,
     },
