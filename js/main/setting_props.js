@@ -1071,7 +1071,7 @@ App.build_settings = () => {
   }
 
   add_props()
-  category = `tab_colors`
+  category = `colors`
 
   props = {
     text_color_active_enabled: {
@@ -1924,7 +1924,7 @@ App.build_settings = () => {
         ])
       },
     },
-    tab_colors: {
+    colors: {
       info: `Custom colors for tabs. You can enable/disable each color for different kinds of tabs.
       Some colors take precendence over others`,
       setup: () => {

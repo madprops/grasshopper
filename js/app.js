@@ -75,7 +75,7 @@ App.settings_icons = {
   general: `⚙️`,
   theme: `🎨`,
   edits: `📝`,
-  tab_colors: `📚`,
+  colors: `📚`,
   icons: `🖼️`,
   media: `📷`,
   icons: `👁️`,
