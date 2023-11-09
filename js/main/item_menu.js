@@ -162,7 +162,7 @@ App.extra_menu_items = (o_items) => {
   if (mode === `normal`) {
     if (items.length) {
       o_items.push({
-        icon: App.command_icon,
+        icon: App.extra_icon,
         text: `Extra`,
         items: items,
       })
