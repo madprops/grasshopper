@@ -1204,7 +1204,7 @@ App.apply_splits = (item) => {
       item.element.classList.add(`split_${what}`)
 
       if (what === `top`) {
-        item.element.dataset.split_title = item[`custom_split_title`] || ""
+        item.element.dataset.split_title = item[`custom_split_title`] || ``
       }
 
       has_split = true

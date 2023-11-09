@@ -1124,10 +1124,16 @@ App.remove_notes = (item) => {
 App.edit_tab_split = (args = {}) => {
   let def_args = {
     which: `top`,
+    title: false,
   }
 
   App.def_args(def_args, args)
   let active = App.get_active_items({mode: args.item.mode, item: args.item})
+  let og_title
+
+  if (args.title) {
+    og_title = active[0].custom_split_title
+  }
 
   function apply_title (item, title) {
     if (!title) {
@@ -1148,7 +1154,17 @@ App.edit_tab_split = (args = {}) => {
       return
     }
 
+    let value
+
+    if (args.title && og_title) {
+      value = og_title
+    }
+    else {
+      value = ``
+    }
+
     App.show_prompt({
+      value: value,
       placeholder: `Enter Title`,
       on_submit: (ans) => {
         apply_title(active[0], ans)

@@ -996,7 +996,7 @@ App.setup_commands = () => {
       info: `Add a split below the tab`,
     },
     {
-      name: `Edit Split Title`,
+      name: `Split Title`,
       cmd: `edit_split_title`,
       modes: [`tabs`],
       item: true,
@@ -1004,7 +1004,7 @@ App.setup_commands = () => {
       some_split_top: true,
       icon: split_icon,
       action: (args) => {
-        App.edit_tab_split({item: args.item, which: `top`})
+        App.edit_tab_split({item: args.item, which: `top`, title: true})
       },
       info: `Edit the split title`,
     },
