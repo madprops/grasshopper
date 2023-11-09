@@ -554,6 +554,10 @@ App.insert_split_css = () => {
     background-color: var(--alt_background);
     font-size: var(--bigger_font);
     display: ${display};
+  }
+
+  .split_top:nth-child(1 of :not(.hidden))::before {
+    top: 0;
   }`
 
   for (let style of DOM.els(`.split_css`)) {
