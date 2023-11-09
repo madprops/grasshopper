@@ -1242,6 +1242,13 @@ App.edit_tab_split = (args = {}) => {
 
 App.remove_item_split = (item) => {
   let active = App.get_active_items({mode: item.mode, item: item})
+
+  if (active.length === 1) {
+    if (item.rule_split_top || item.rule_split_bottom) {
+      App.alert_autohide(`Some splits are set by domain rules`)
+    }
+  }
+
   App.remove_edits({what: [`split_top`, `split_bottom`, `split_title`], items: active})
 }
 
