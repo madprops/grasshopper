@@ -1281,9 +1281,7 @@ App.do_replace_split = (item) => {
   App.remove_item_split(App.split_pick_original)
   App.edit_tab_split({item: item, which: App.split_pick_which, prompt_title: false})
 
-  if (title) {
-    if (App.apply_edit(`split_title`, item, title)) {
-      App.custom_save(item.id, `custom_split_title`, title)
-    }
+  if (App.apply_edit(`split_title`, item, title)) {
+    App.custom_save(item.id, `custom_split_title`, title)
   }
 }
