@@ -407,19 +407,27 @@ App.build_settings = () => {
       info: `Icons for muted tabs`,
       version: 1,
     },
-    loaded_icon: {
-      name: `Loaded Icon`,
-      type: `text_smaller`,
-      value: ``,
-      info: `Icons for loaded tabs`,
-      placeholder: App.icon_placeholder,
-      version: 1,
-    },
     unloaded_icon: {
       name: `Unloaded Icon`,
       type: `text_smaller`,
       value: `💤`,
       info: `Icons for unloaded tabs`,
+      placeholder: App.icon_placeholder,
+      version: 1,
+    },
+    loading_icon: {
+      name: `Loading Icon`,
+      type: `text_smaller`,
+      value: `⏳`,
+      placeholder: App.icon_placeholder,
+      info: `Icon for tabs that are still loading`,
+      version: 1,
+    },
+    loaded_icon: {
+      name: `Loaded Icon`,
+      type: `text_smaller`,
+      value: ``,
+      info: `Icons for loaded tabs`,
       placeholder: App.icon_placeholder,
       version: 1,
     },
@@ -1725,6 +1733,7 @@ App.build_settings = () => {
           {text: `None`, value: `none`},
           {text: `Fade`, value: `fade`},
           {text: `Spin`, value: `spin`},
+          {text: `Icon`, value: `icon`},
         ])
 
         App.settings_make_menu(`width`, App.get_size_options(), () => {

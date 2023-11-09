@@ -82,6 +82,13 @@ App.add_tab_icons = (item) => {
     item.element.append(icon)
   }
 
+  if (App.get_setting(`loading_icon`)) {
+    let icon = DOM.create(`div`, `loading_icon item_node hidden`)
+    icon.textContent = App.get_setting(`loading_icon`)
+    icon.title = `Edited`
+    item.element.append(icon)
+  }
+
   if (App.get_setting(`hover_button`) !== `none`) {
     let btn = App.create_hover_button()
     item.element.append(btn)

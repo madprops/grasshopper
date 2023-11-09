@@ -1303,9 +1303,13 @@ App.check_tab_loading = (item) => {
     else if (effect === `spin`) {
       item.element.classList.add(`spin_effect`)
     }
+    else if (effect === `icon`) {
+      item.element.classList.add(`icon_effect`)
+    }
   }
   else {
     item.element.classList.remove(`fade_effect`)
     item.element.classList.remove(`spin_effect`)
+    item.element.classList.remove(`icon_effect`)
   }
 }

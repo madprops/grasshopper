@@ -328,6 +328,10 @@ svg {
   animation: spin 1s linear 60;
 }
 
+.item.icon_effect .loading_icon {
+  display: flex !important;
+}
+
 .close_button:hover {
   background-color: var(--alt_color_0);
 }
