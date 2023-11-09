@@ -1541,14 +1541,14 @@ App.check_command = (command, args = {}) => {
           args.some_loaded = true
         }
 
-        if (item.custom_split_top) {
+        if (App.get_split(item, `top`)) {
           args.some_split_top = true
         }
         else {
           args.some_not_split_top = true
         }
 
-        if (item.custom_split_bottom) {
+        if (App.get_split(item, `bottom`)) {
           args.some_split_bottom = true
         }
         else {
