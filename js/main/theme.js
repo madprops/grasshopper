@@ -298,7 +298,6 @@ App.do_apply_theme = (args = {}) => {
 
     let sw = App.get_setting(`split_width`)
     App.set_css_var(`split_width`, `${sw}px`)
-    App.set_css_var(`split_width_num`, sw)
     let split_sides = [`left`, `right`, `both`]
 
     for (let side of split_sides) {
