@@ -85,7 +85,7 @@ App.add_tab_icons = (item) => {
   if (App.get_setting(`loading_icon`)) {
     let icon = DOM.create(`div`, `loading_icon item_node hidden`)
     icon.textContent = App.get_setting(`loading_icon`)
-    icon.title = `Edited`
+    icon.title = `Loading`
     item.element.append(icon)
   }
 

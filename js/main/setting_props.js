@@ -66,7 +66,7 @@ App.build_settings = () => {
     loading_effect: {
       name: `Loading Effect`,
       type: `menu`,
-      value: `fade`,
+      value: `icon`,
       info: `Which effect to show on loading tabs`,
       version: 1,
     },
@@ -1731,9 +1731,9 @@ App.build_settings = () => {
 
         App.settings_make_menu(`loading_effect`, [
           {text: `None`, value: `none`},
+          {text: `Icon`, value: `icon`},
           {text: `Fade`, value: `fade`},
           {text: `Spin`, value: `spin`},
-          {text: `Icon`, value: `icon`},
         ])
 
         App.settings_make_menu(`width`, App.get_size_options(), () => {
