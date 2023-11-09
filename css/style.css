@@ -322,7 +322,6 @@ svg {
 
 .item.loading {
   animation: fade 1s linear 60;
-  animation-delay: 1s;
 }
 
 .close_button:hover {
