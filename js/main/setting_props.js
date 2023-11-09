@@ -1032,6 +1032,13 @@ App.build_settings = () => {
       info: `The width of the split borders`,
       version: 1,
     },
+    split_side: {
+      name: `Split Side`,
+      type: `menu`,
+      value: `right`,
+      info: `Which side to show the split side border`,
+      version: 1,
+    },
   }
 
   add_props()
@@ -1864,6 +1871,13 @@ App.build_settings = () => {
           {text: `Border`, value: `border`},
           {text: `Border & Icon`, value: `border_icon`},
           {text: `Background`, value: `background`},
+        ])
+
+        App.settings_make_menu(`split_side`, [
+          {text: `None`, value: `none`},
+          {text: `Left`, value: `left`},
+          {text: `Right`, value: `right`},
+          {text: `Both`, value: `both`},
         ])
       },
     },

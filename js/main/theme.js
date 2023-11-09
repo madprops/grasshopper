@@ -298,6 +298,14 @@ App.do_apply_theme = (args = {}) => {
 
     let split_width = `${App.get_setting(`split_width`)}px`
     App.set_css_var(`split_width`, split_width)
+    let split_sides = [`left`, `right`, `both`]
+
+    for (let side of split_sides) {
+      main.classList.remove(`split_side_${side}`)
+    }
+
+    let split_side = App.get_setting(`split_side`)
+    main.classList.add(`split_side_${split_side}`)
     App.insert_color_css()
     App.insert_custom_css()
   }
