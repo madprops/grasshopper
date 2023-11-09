@@ -564,7 +564,7 @@ App.insert_split_css = () => {
     `
   }
 
-  let css = `.split_top${hover}::before {
+  let css = `.not_filtered .split_top${hover}::before {
     content: attr(data-split_title);
     position: absolute;
     top: calc(0px - 1rem);

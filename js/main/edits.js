@@ -1285,3 +1285,33 @@ App.do_replace_split = (item) => {
     App.custom_save(item.id, `custom_split_title`, title)
   }
 }
+
+App.apply_splits = (item) => {
+  if (item.mode !== `tabs`) {
+    return
+  }
+
+  let has_split = false
+
+  for (let what of [`top`, `bottom`]) {
+    if (App.get_split(item, what)) {
+      item.element.classList.add(`split_${what}`)
+
+      if (what === `top`) {
+        item.element.dataset.split_title = App.get_split_title(item) || ``
+      }
+
+      has_split = true
+    }
+    else {
+      item.element.classList.remove(`split_${what}`)
+    }
+  }
+
+  if (has_split) {
+    item.element.classList.add(`split`)
+  }
+  else {
+    item.element.classList.remove(`split`)
+  }
+}
