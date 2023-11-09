@@ -125,7 +125,9 @@ App.more_menu_items = (args = {}) => {
 
     App.item_menu_item(items, `add_split_auto`, {item: args.item})
     App.item_menu_item(items, `add_split_top`, {item: args.item})
+    App.item_menu_item(items, `replace_split_top`, {item: args.item})
     App.item_menu_item(items, `add_split_bottom`, {item: args.item})
+    App.item_menu_item(items, `replace_split_bottom`, {item: args.item})
     App.item_menu_item(items, `edit_split_title`, {item: args.item})
     App.item_menu_item(items, `remove_split`, {item: args.item})
     App.sep(items)

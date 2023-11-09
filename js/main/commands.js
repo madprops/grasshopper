@@ -1003,6 +1003,7 @@ App.setup_commands = () => {
     },
     {
       name: `Replace Split Top`,
+      short_name: `Replace Split`,
       cmd: `replace_split_top`,
       modes: [`tabs`],
       single: true,
@@ -1016,6 +1017,7 @@ App.setup_commands = () => {
     },
     {
       name: `Replace Split Bottom`,
+      short_name: `Replace Split`,
       cmd: `replace_split_bottom`,
       modes: [`tabs`],
       single: true,
