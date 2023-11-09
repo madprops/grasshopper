@@ -55,7 +55,6 @@ App.dragstart_action = (mode, e) => {
     return
   }
 
-  App.hide_scroller(mode)
   App.drag_items = []
 
   if (App.drag_item.selected) {
@@ -141,8 +140,6 @@ App.dragend_action = (mode, e) => {
   if (!App.drag_active(mode)) {
     return
   }
-
-  App.do_check_scroller(mode)
 
   if (!App.drag_element) {
     App.drag_element = undefined

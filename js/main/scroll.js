@@ -98,10 +98,6 @@ App.do_check_scroller = (mode) => {
     return
   }
 
-  if (App.dragging) {
-    return
-  }
-
   let container = DOM.el(`#${mode}_container`)
   let percentage = 100 - ((container.scrollTop /
   (container.scrollHeight - container.clientHeight)) * 100)
