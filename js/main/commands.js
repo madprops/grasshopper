@@ -977,6 +977,7 @@ App.setup_commands = () => {
       cmd: `add_split_top`,
       modes: [`tabs`],
       item: true,
+      some_not_split_top: true,
       icon: split_icon,
       action: (args) => {
         App.edit_tab_split({item: args.item, which: `top`})
@@ -1654,8 +1655,8 @@ App.check_command = (command, args = {}) => {
   }
 
   if (valid) {
-    if (command.some_tagged) {
-      if (!args.some_tagged) {
+    if (command.some_not_split_top) {
+      if (!args.some_not_split_top) {
         valid = false
       }
     }
@@ -1688,6 +1689,14 @@ App.check_command = (command, args = {}) => {
   if (valid) {
     if (command.multiple) {
       if (!args.multiple) {
+        valid = false
+      }
+    }
+  }
+
+  if (valid) {
+    if (command.some_tagged) {
+      if (!args.some_tagged) {
         valid = false
       }
     }
