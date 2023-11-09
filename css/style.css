@@ -9,7 +9,7 @@
   --widget_width_smaller: 6rem;
   --action_effect: 0 0 0.1rem currentColor;
   --text_glow: 0 0 0.2rem currentColor;
-  --split_border: 3px solid var(--text_color);
+  --split_border: 3px solid var(--split_color);
 }
 
 @keyframes spin {

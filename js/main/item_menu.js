@@ -5,8 +5,7 @@ App.show_item_menu = async (args = {}) => {
 
   App.command_item = args.item
   App.item_menu_args = args
-  let active = App.get_active_items({mode: args.item.mode, item: args.item})
-  let multiple = active.length > 1
+  App.item_menu_active = App.get_active_items({mode: args.item.mode, item: args.item})
   let items = []
 
   if (App.get_setting(`extra_menu_mode`) === `total`) {
@@ -14,86 +13,28 @@ App.show_item_menu = async (args = {}) => {
   }
   else {
     if (args.item.mode === `tabs`) {
-      let some_pinned = false
-      let some_unpinned = false
-      let some_muted = false
-      let some_unmuted = false
-      let some_loaded = false
-      let some_unloaded = false
-      let some_split_top = false
-      let some_not_split_top = false
-      let some_split_bottom = false
-      let some_not_split_bottom = false
-
-      for (let it of active) {
-        if (it.pinned) {
-          some_pinned = true
-        }
-        else {
-          some_unpinned = true
-        }
-
-        if (it.muted) {
-          some_muted = true
-        }
-        else {
-          some_unmuted = true
-        }
-
-        if (it.discarded) {
-          some_unloaded = true
-        }
-        else {
-          some_loaded = true
-        }
-
-        if (it.custom_split_top) {
-          some_split_top = true
-        }
-        else {
-          some_not_split_top = true
-        }
-
-        if (it.custom_split_bottom) {
-          some_split_bottom = true
-        }
-        else {
-          some_not_split_bottom = true
-        }
-      }
-
-      if (some_unloaded) {
-        items.push(App.item_menu_item({cmd: `load_tabs`, item: args.item}))
-      }
-
-      if (some_unpinned && some_loaded) {
-        items.push(App.item_menu_item({cmd: `pin_tabs`, item: args.item}))
-      }
-
-      if (some_pinned && some_loaded) {
-        items.push(App.item_menu_item({cmd: `unpin_tabs`, item: args.item}))
-      }
-
-      items.push(App.item_menu_item({cmd: `show_color_menu`, item: args.item}))
-      items.push(App.item_menu_item({cmd: `edit_title`, item: args.item}))
+      App.item_menu_item(items, `load_tabs`, {item: args.item})
+      App.item_menu_item(items, `pin_tabs`, {item: args.item})
+      App.item_menu_item(items, `unpin_tabs`, {item: args.item})
+      App.item_menu_item(items, `show_color_menu`, {item: args.item})
+      App.item_menu_item(items, `edit_title`, {item: args.item})
 
       items.push({
         icon: App.tag_icon,
         text: `Tags`,
         get_items: () => {
           return [
-            App.item_menu_item({cmd: `edit_tags`, item: args.item, short: false}),
-            App.item_menu_item({cmd: `add_tags`, item: args.item, short: false}),
+            App.item_menu_item(`edit_tags`, {item: args.item, short: false}),
+            App.item_menu_item(`add_tags`, {item: args.item, short: false}),
           ]
         }
       })
 
-      items.push(App.item_menu_item({cmd: `edit_notes`, item: args.item}))
+      App.item_menu_item(items, `edit_notes`, {item: args.item})
 
       let common_obj = {
         o_items: items,
         item: args.item,
-        multiple: multiple,
       }
 
       App.common_menu_items(common_obj)
@@ -102,27 +43,18 @@ App.show_item_menu = async (args = {}) => {
       let more_obj = {
         o_items: items,
         item: args.item,
-        multiple: multiple,
-        some_loaded: some_loaded,
-        some_unmuted: some_unmuted,
-        some_muted: some_muted,
-        some_split_top: some_split_top,
-        some_not_split_top: some_not_split_top,
-        some_split_bottom: some_split_bottom,
-        some_not_split_bottom: some_not_split_bottom,
       }
 
       App.more_menu_items(more_obj)
       App.sep(items)
-      items.push(App.item_menu_item({cmd: `close_tabs`, item: args.item}))
+      App.item_menu_item(items, `close_tabs`, {item: args.item})
     }
     else {
-      items.push(App.item_menu_item({cmd: `open_items`, item: args.item}))
+      App.item_menu_item(items, `open_items`, {item: args.item})
 
       let common_obj = {
         o_items: items,
         item: args.item,
-        multiple: multiple,
       }
 
       App.common_menu_items(common_obj)
@@ -130,7 +62,6 @@ App.show_item_menu = async (args = {}) => {
       let more_obj = {
         o_items: items,
         item: args.item,
-        multiple: multiple,
       }
 
       App.more_menu_items(more_obj)
@@ -144,30 +75,26 @@ App.common_menu_items = (args = {}) => {
   let items = []
 
   if (App.get_media_type(args.item)) {
-    items.push(App.item_menu_item({cmd: `view_media`, item: args.item}))
+    App.item_menu_item(items, `view_media`, {item: args.item})
   }
 
-  if (!args.multiple) {
-    items.push({
-      icon: App.settings_icons.filter,
-      text: `Filter`,
-      get_items: () => {
-        return App.filter_menu_items(args.item)
-      },
-    })
-  }
+  items.push({
+    icon: App.settings_icons.filter,
+    text: `Filter`,
+    get_items: () => {
+      return App.filter_menu_items(args.item)
+    },
+  })
 
-  if (!args.multiple) {
-    let copy_items = []
-    copy_items.push(App.item_menu_item({cmd: `copy_item_url`, item: args.item}))
-    copy_items.push(App.item_menu_item({cmd: `copy_item_title`, item: args.item}))
+  let copy_items = []
+  App.item_menu_item(copy_items, `copy_item_url`, {item: args.item})
+  App.item_menu_item(copy_items, `copy_item_title`, {item: args.item})
 
-    items.push({
-      icon: App.clipboard_icon,
-      text: `Copy`,
-      items: copy_items,
-    })
-  }
+  items.push({
+    icon: App.clipboard_icon,
+    text: `Copy`,
+    items: copy_items,
+  })
 
   if (items.length) {
     for (let c of items) {
@@ -180,68 +107,34 @@ App.more_menu_items = (args = {}) => {
   let items = []
 
   if (args.item.mode === `tabs`) {
-    if (args.some_unmuted) {
-      items.push(App.item_menu_item({cmd: `mute_tabs`, item: args.item}))
-    }
-
-    if (args.some_muted) {
-      items.push(App.item_menu_item({cmd: `unmute_tabs`, item: args.item}))
-    }
-
-    if (args.some_loaded) {
-      items.push(App.item_menu_item({cmd: `unload_tabs`, item: args.item}))
-    }
-
-    items.push(App.item_menu_item({cmd: `duplicate_tabs`, item: args.item}))
-
-    if (App.edited(args.item, false)) {
-      items.push(App.item_menu_item({cmd: `remove_item_edits`, item: args.item}))
-    }
+    App.item_menu_item(items, `mute_tabs`, {item: args.item})
+    App.item_menu_item(items, `unmute_tabs`, {item: args.item})
+    App.item_menu_item(items, `unload_tabs`, {item: args.item})
+    App.item_menu_item(items, `duplicate_tabs`, {item: args.item})
+    App.item_menu_item(items, `remove_item_edits`, {item: args.item})
   }
 
-  items.push(App.item_menu_item({cmd: `bookmark_items`, item: args.item}))
-
-  if (args.item.image && !args.multiple) {
-    items.push(App.item_menu_item({cmd: `set_background_image`, item: args.item}))
-  }
+  App.item_menu_item(items, `bookmark_items`, {item: args.item})
+  App.item_menu_item(items, `set_background_image`, {item: args.item})
 
   if (args.item.mode === `tabs`) {
     if (items.length) {
       App.sep(items)
     }
 
-    let split_used = false
-
-    if (args.some_not_split_top) {
-      items.push(App.item_menu_item({cmd: `add_split_top`, item: args.item}))
-      split_used = true
-    }
-
-    if (args.some_not_split_bottom) {
-      items.push(App.item_menu_item({cmd: `add_split_bottom`, item: args.item}))
-      split_used = true
-    }
-
-    if (args.some_split_top || args.some_split_bottom) {
-      items.push(App.item_menu_item({cmd: `remove_split`, item: args.item}))
-      split_used = true
-    }
-
-    if (split_used) {
-      App.sep(items)
-    }
-
-    if (App.tabs_normal()) {
-      items.push(App.item_menu_item({cmd: `move_tabs_to_top`, item: args.item}))
-      items.push(App.item_menu_item({cmd: `move_tabs_to_bottom`, item: args.item}))
-      App.sep(items)
-    }
-
-    items.push(App.item_menu_item({cmd: `show_windows_menu`, item: args.item}))
+    App.item_menu_item(items, `add_split_auto`, {item: args.item})
+    App.item_menu_item(items, `add_split_top`, {item: args.item})
+    App.item_menu_item(items, `add_split_bottom`, {item: args.item})
+    App.item_menu_item(items, `remove_split`, {item: args.item})
+    App.sep(items)
+    App.item_menu_item(items, `move_tabs_to_top`, {item: args.item})
+    App.item_menu_item(items, `move_tabs_to_bottom`, {item: args.item})
+    App.sep(items)
+    App.item_menu_item(items, `show_windows_menu`, {item: args.item})
   }
 
   if (args.item.mode === `closed`) {
-    items.push(App.item_menu_item({cmd: `forget_closed_item`, item: args.item}))
+    App.item_menu_item(items, `forget_closed_item`, {item: args.item})
   }
 
   if (items.length) {
@@ -283,21 +176,21 @@ App.extra_menu_items = (o_items) => {
 
 App.filter_menu_items = (item) => {
   let items = []
-
-  if (App.get_color(item)) {
-    items.push(App.item_menu_item({cmd: `filter_color`, item: item}))
-  }
-
-  if (App.tagged(item)) {
-    items.push(App.item_menu_item({cmd: `filter_tag`, item: item}))
-  }
-
-  items.push(App.item_menu_item({cmd: `filter_domain`, item: item}))
+  App.item_menu_item(items, `filter_color`, {item: item})
+  App.item_menu_item(items, `filter_tag`, {item: item})
+  App.item_menu_item(items, `filter_domain`, {item: item})
   return items
 }
 
-App.item_menu_item = (obj) => {
-  obj.from = `item_menu`
-  obj.e = App.item_menu_args.e
-  return App.cmd_item(obj)
+App.item_menu_item = (items, cmd, obj) => {
+  let command = App.get_command(cmd)
+
+  if (command && App.check_command(command, obj)) {
+    obj.from = `item_menu`
+    obj.e = App.item_menu_args.e
+    obj.mode = App.item_menu_args.item.mode
+    obj.active = App.item_menu_active
+    obj.command = command
+    items.push(App.cmd_item(obj))
+  }
 }

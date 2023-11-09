@@ -278,6 +278,16 @@ App.do_apply_theme = (args = {}) => {
     }
 
     App.set_css_var(`font`, font_str)
+    let scv
+
+    if (App.get_setting(`split_color_enabled`)) {
+      scv = App.get_setting(`split_color`)
+    }
+    else {
+      scv = args.text_color
+    }
+
+    App.set_css_var(`split_color`, scv)
     App.insert_color_css()
     App.insert_custom_css()
   }

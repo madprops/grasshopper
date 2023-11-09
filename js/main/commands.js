@@ -961,6 +961,17 @@ App.setup_commands = () => {
       info: `Add tags to tabs`,
     },
     {
+      name: `Split Auto`,
+      cmd: `add_split_auto`,
+      modes: [`tabs`],
+      item: true,
+      icon: split_icon,
+      action: (args) => {
+        App.edit_tab_split({item: args.item, which: `auto`})
+      },
+      info: `Add a split above the tab`,
+    },
+    {
       name: `Split Top`,
       cmd: `add_split_top`,
       modes: [`tabs`],
@@ -1433,11 +1444,16 @@ App.run_command = (args) => {
   return true
 }
 
-App.check_command = (command, args) => {
+App.check_command = (command, args = {}) => {
   if (!command) {
     return false
   }
 
+  let def_args = {
+    active: [],
+  }
+
+  App.def_args(def_args, args)
   args.mode = App.window_mode
   args.on_items = App.on_items()
   args.on_media = App.on_media()
@@ -1470,9 +1486,11 @@ App.check_command = (command, args) => {
     }
 
     if (args.mode === `tabs`) {
-      let active = App.get_active_items({mode: args.mode, item: args.item})
+      if (!args.active.length) {
+        args.active = App.get_active_items({mode: args.mode, item: args.item})
+      }
 
-      for (let item of active) {
+      for (let item of args.active) {
         if (item.pinned) {
           args.some_pinned = true
         }
@@ -1641,9 +1659,12 @@ App.cmd_item = (args = {}) => {
   }
 
   App.def_args(def_args, args)
-  let cmd = App.get_command(args.cmd)
 
-  if (!cmd) {
+  if (!args.command) {
+    args.command = App.get_command(args.cmd)
+  }
+
+  if (!args.command) {
     App.error(`${args.from} -> No command: ${args.cmd}`)
     return
   }
@@ -1651,18 +1672,18 @@ App.cmd_item = (args = {}) => {
   let name
 
   if (args.short) {
-    name = cmd.short_name || cmd.name
+    name = args.command.short_name || args.command.name
   }
   else {
-    name = cmd.name
+    name = args.command.name
   }
 
   return {
-    icon: cmd.icon,
+    icon: args.command.icon,
     text: name,
     action: (e) => {
       App.run_command({
-        cmd: cmd.cmd,
+        cmd: args.command.cmd,
         item: args.item,
         from: args.from,
         e: e,

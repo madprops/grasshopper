@@ -28,9 +28,11 @@ App.check_taglist = (item) => {
   let mode = App.get_setting(`taglist_mode`)
 
   if (!App.tagged(item)) {
+    item.element.classList.remove(`tagged`)
     taglist.classList.add(`hidden`)
   }
   else {
+    item.element.classList.add(`tagged`)
     taglist.innerHTML = ``
     let tags = App.get_tags(item).slice(0)
 

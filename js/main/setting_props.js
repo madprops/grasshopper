@@ -974,28 +974,43 @@ App.build_settings = () => {
       name: `Color Red`,
       type: `color`,
       value: `rgb(255, 0, 153)`,
-      info: `Color an item red`,
+      info: `The red to use when coloring items red`,
       version: 1,
     },
     color_green: {
       name: `Color Green`,
       type: `color`,
       value: `rgb(102, 204, 0)`,
-      info: `Color an item green`,
+      info: `The green to use when coloring items green`,
       version: 1,
     },
     color_blue: {
       name: `Color Blue`,
       type: `color`,
       value: `rgb(0, 153, 255)`,
-      info: `Color an item blue`,
+      info: `The blue to use when coloring items blue`,
       version: 1,
     },
     color_yellow: {
       name: `Color Yellow`,
       type: `color`,
       value: `rgb(255, 153, 0)`,
-      info: `Color an item yellow`,
+      info: `The yellow to use when coloring items yellow`,
+      version: 1,
+    },
+    split_color_enabled: {
+      name: `Split Color`,
+      type: `checkbox`,
+      value: false,
+      info: `Use the split custom color. Else use a proper color automatically`,
+      version: 1,
+    },
+    split_color: {
+      name: `Split Color`,
+      hide_name: true,
+      type: `color`,
+      value: `rgb(102, 204, 0)`,
+      info: `The color of the splits between tabs`,
       version: 1,
     },
   }
@@ -1821,6 +1836,8 @@ App.build_settings = () => {
         for (let color of App.colors) {
           App.start_color_picker(`color_${color}`)
         }
+
+        App.start_color_picker(`split_color`)
 
         App.settings_make_menu(`color_mode`, [
           {text: `None`, value: `none`},
