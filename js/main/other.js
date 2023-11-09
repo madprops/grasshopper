@@ -29,12 +29,6 @@ App.print_intro = () => {
   App.log(`${App.nice_date(d, true)} | ${d}`)
 }
 
-App.show_custom_menu = (e, what, item) => {
-  let items = App.custom_menu_items(`${what}_menu`, item)
-  App.show_context({items: items, e: e})
-  e.preventDefault()
-}
-
 App.custom_menu_items = (name, item) => {
   let cmds = App.get_setting(name)
   return App.show_cmds_menu(cmds, name, item)
@@ -160,12 +154,6 @@ App.show_browser_menu = (e) => {
   ]
 
   let items = App.cmd_list(cmds)
-  App.show_context({items: items, e: e})
-}
-
-App.show_hover_menu = (e, item) => {
-  let items = App.custom_menu_items(`hover_menu`)
-  App.command_item = item
   App.show_context({items: items, e: e})
 }
 

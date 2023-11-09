@@ -83,9 +83,7 @@ App.add_tab_icons = (item) => {
   }
 
   if (App.get_setting(`hover_button`) !== `none`) {
-    let btn = DOM.create(`div`, `hover_button`)
-    btn.textContent = App.command_icon
-    btn.title = `Hover Button`
+    let btn = App.create_hover_button()
     item.element.append(btn)
   }
 }
