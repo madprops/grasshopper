@@ -1032,7 +1032,7 @@ App.build_settings = () => {
     split_width: {
       name: `Split Width`,
       type: `number`,
-      value: 3,
+      value: 2,
       placeholder: `Number`,
       min: 1,
       max: 99,
