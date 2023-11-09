@@ -1150,18 +1150,6 @@ App.edit_tab_split = (args = {}) => {
       return
     }
 
-    let it = active.at(0)
-
-    if (App.apply_edit(`split_top`, it, true)) {
-      App.custom_save(it.id, `custom_split_top`, true)
-    }
-
-    it = active.at(-1)
-
-    if (App.apply_edit(`split_bottom`, it, true)) {
-      App.custom_save(it.id, `custom_split_bottom`, true)
-    }
-
     for (let it of active.slice(1, -1)) {
       if (App.apply_edit(`split_top`, it, false)) {
         App.custom_save(it.id, `custom_split_top`, false)
@@ -1170,6 +1158,25 @@ App.edit_tab_split = (args = {}) => {
       if (App.apply_edit(`split_bottom`, it, false)) {
         App.custom_save(it.id, `custom_split_bottom`, false)
       }
+    }
+
+    let it = active.at(0)
+    let it_2 = active.at(-1)
+    let what
+
+    if (it.custom_split_top && it_2.custom_split_bottom) {
+      what = false
+    }
+    else {
+      what = true
+    }
+
+    if (App.apply_edit(`split_top`, it, what)) {
+      App.custom_save(it.id, `custom_split_top`, what)
+    }
+
+    if (App.apply_edit(`split_bottom`, it_2, what)) {
+      App.custom_save(it_2.id, `custom_split_bottom`, what)
     }
   }
 }
