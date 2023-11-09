@@ -1232,7 +1232,3 @@ a:visited, a:link, a:hover {
 .split_bottom:nth-last-child(1 of :not(.hidden)) {
   margin-bottom: unset;
 }
-
-.tagged_below > div:not(.item_content) {
-  margin-top: -20px;
-}

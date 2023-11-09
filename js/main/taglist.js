@@ -32,7 +32,7 @@ App.check_taglist = (item) => {
     taglist.classList.add(`hidden`)
   }
   else {
-    item.element.classList.add(`tagged_${setting}`)
+    item.element.classList.add(`using_taglist_${setting}`)
     taglist.innerHTML = ``
     let tags = App.get_tags(item).slice(0)
 
