@@ -1046,6 +1046,13 @@ App.build_settings = () => {
       info: `How to display the title of splits`,
       version: 1,
     },
+    split_title_align: {
+      name: `Split Title Align`,
+      type: `menu`,
+      value: `center`,
+      info: `Where to display the split title`,
+      version: 1,
+    },
   }
 
   add_props()
@@ -1891,6 +1898,12 @@ App.build_settings = () => {
           {text: `None`, value: `none`},
           {text: `Normal`, value: `normal`},
           {text: `Hover`, value: `hover`},
+        ])
+
+        App.settings_make_menu(`split_title_align`, [
+          {text: `Left`, value: `left`},
+          {text: `Center`, value: `center`},
+          {text: `Right`, value: `right`},
         ])
       },
     },

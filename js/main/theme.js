@@ -544,12 +544,31 @@ App.insert_split_css = () => {
     display = `block`
   }
 
+  let translate
+  let title_align = App.get_setting(`split_title_align`)
+
+  if (title_align === `center`) {
+    translate = `
+      left: 50%;
+      transform: translateX(-50%);
+    `
+  }
+  else if (title_align === `right`) {
+    translate = `
+      right: 0.5rem;
+    `
+  }
+  else if (title_align === `left`) {
+    translate = `
+      left: 0.5rem;
+    `
+  }
+
   let css = `.split_top${hover}::before {
     content: attr(data-split_title);
     position: absolute;
     top: calc(0px - 1rem);
-    left: 50%;
-    transform: translateX(-50%);
+    ${translate}
     color: var(--text_color);
     background-color: var(--alt_background);
     font-size: var(--bigger_font);
