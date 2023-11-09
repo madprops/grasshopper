@@ -1187,5 +1187,5 @@ App.remove_item_split = (item) => {
 }
 
 App.remove_all_splits = () => {
-  App.remove_edits({what: [`split_top`, `split_bottom`], force: true})
+  App.remove_edits({what: [`split_top`, `split_bottom`]})
 }
