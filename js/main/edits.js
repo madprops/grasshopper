@@ -1129,6 +1129,16 @@ App.edit_tab_split = (args = {}) => {
   App.def_args(def_args, args)
   let active = App.get_active_items({mode: args.item.mode, item: args.item})
 
+  function apply_title (item, title) {
+    if (!title) {
+      title = App.edit_default(`split_title`)
+    }
+
+    if (App.apply_edit(`split_title`, item, title)) {
+      App.custom_save(item.id, `custom_split_title`, title)
+    }
+  }
+
   function check_title () {
     if (args.which === `bottom`) {
       return
@@ -1138,21 +1148,10 @@ App.edit_tab_split = (args = {}) => {
       return
     }
 
-    let item = active[0]
-
-    function apply (title) {
-      if (App.apply_edit(`split_title`, item, title)) {
-        App.custom_save(item.id, `custom_split_title`, title)
-      }
-    }
-
     App.show_prompt({
       placeholder: `Enter Title`,
       on_submit: (ans) => {
-        apply(ans)
-      },
-      on_dismiss: () => {
-        apply(App.edit_default(`split_title`))
+        apply_title(active[0], ans)
       },
     })
   }
@@ -1166,6 +1165,8 @@ App.edit_tab_split = (args = {}) => {
       message: `Add splits (${active.length})`,
       confirm_action: () => {
         for (let it of active) {
+          apply_title(it)
+
           if (App.apply_edit(`split_${args.which}`, it, true)) {
             App.custom_save(it.id, `custom_split_${args.which}`, true)
           }

@@ -994,6 +994,18 @@ App.setup_commands = () => {
       },
       info: `Add a split below the tab`,
     },
+    {
+      name: `Split Title`,
+      cmd: `add_split_title`,
+      modes: [`tabs`],
+      item: true,
+      icon: split_icon,
+      single: true,
+      action: (args) => {
+        App.edit_tab_split({item: args.item, which: `top`})
+      },
+      info: `Add a split above the tab`,
+    },
 
     ...color_removers,
 
@@ -1491,6 +1503,15 @@ App.check_command = (command, args = {}) => {
       args.active = App.get_active_items({mode: args.mode, item: args.item})
     }
 
+    if (args.active.length === 1) {
+      args.single = true
+      args.multiple = false
+    }
+    else {
+      args.single = false
+      args.multiple = true
+    }
+
     for (let item of args.active) {
       if (args.mode === `tabs`) {
         if (item.pinned) {
@@ -1631,6 +1652,22 @@ App.check_command = (command, args = {}) => {
   if (valid) {
     if (command.some_tagged) {
       if (!args.some_tagged) {
+        valid = false
+      }
+    }
+  }
+
+  if (valid) {
+    if (command.single) {
+      if (!args.single) {
+        valid = false
+      }
+    }
+  }
+
+  if (valid) {
+    if (command.multiple) {
+      if (!args.multiple) {
         valid = false
       }
     }
