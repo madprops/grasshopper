@@ -1150,7 +1150,11 @@ App.edit_tab_split = (args = {}) => {
       return
     }
 
-    if (args.which === `top` && active.length !== 1) {
+    if ((args.which === `top`) && (active.length !== 1)) {
+      return
+    }
+
+    if ((active.length === 1) && (active[0].rule_split_title)) {
       return
     }
 
