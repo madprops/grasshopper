@@ -183,6 +183,12 @@ App.mouse_click_action = (mode, e) => {
     return
   }
 
+  if (App.split_pick) {
+    App.do_replace_split(item)
+    App.split_pick = false
+    return
+  }
+
   App[`${mode}_action`](item)
 }
 

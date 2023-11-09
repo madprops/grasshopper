@@ -1124,13 +1124,17 @@ App.remove_notes = (item) => {
 App.edit_tab_split = (args = {}) => {
   let def_args = {
     which: `top`,
-    title: false,
+    prompt_title: true,
   }
 
   App.def_args(def_args, args)
   let active = App.get_active_items({mode: args.item.mode, item: args.item})
 
   function check_title () {
+    if (!args.prompt_title) {
+      return
+    }
+
     if (args.which === `bottom`) {
       return
     }
@@ -1262,4 +1266,21 @@ App.remove_item_split = (item) => {
 
 App.remove_all_splits = () => {
   App.remove_edits({what: [`split_top`, `split_bottom`, `split_title`]})
+}
+
+App.replace_split = (item, which) => {
+  App.alert_autohide(`Click on a tab`)
+  App.split_pick = true
+  App.split_pick_original = item
+  App.split_pick_which = which
+}
+
+App.do_replace_split = (item) => {
+  let title = App.split_pick_original.custom_split_title
+  App.remove_item_split(App.split_pick_original)
+  App.edit_tab_split({item: item, which: App.split_pick_which, prompt_title: false})
+
+  if (App.apply_edit(`split_title`, item, title)) {
+    App.custom_save(item.id, `custom_split_title`, title)
+  }
 }
