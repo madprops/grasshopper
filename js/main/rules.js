@@ -41,6 +41,21 @@ App.check_rules = (item) => {
         item.rule_notes = rule.notes
         item.ruled = true
       }
+
+      if (rule.split_top) {
+        item.rule_split_top = true
+        item.ruled = true
+      }
+
+      if (rule.split_bottom) {
+        item.rule_split_bottom = true
+        item.ruled = true
+      }
+
+      if (rule.split_title) {
+        item.rule_split_title = rule.split_title
+        item.ruled = true
+      }
     }
 
     break

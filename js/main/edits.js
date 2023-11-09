@@ -17,15 +17,15 @@ App.edit_props = {
   },
   split_top: {
     type: `bool`,
-    rule: false,
+    rule: true,
   },
   split_bottom: {
     type: `bool`,
-    rule: false,
+    rule: true,
   },
   split_title: {
     type: `string`,
-    rule: false,
+    rule: true,
   },
 }
 

@@ -1219,7 +1219,17 @@ App.setup_settings_addlist = () => {
     id: `addlist_${id}`,
     element: Addlist.register(Object.assign({}, regobj, {
       id: id,
-      keys: [`domain`, `color`, `title`, `tags`, `notes`, `exact`],
+      keys: [
+        `domain`,
+        `exact`,
+        `color`,
+        `title`,
+        `tags`,
+        `notes`,
+        `split_top`,
+        `split_bottom`,
+        `split_title`,
+      ],
       pk: `domain`,
       widgets: {
         domain: `text`,
@@ -1227,6 +1237,9 @@ App.setup_settings_addlist = () => {
         title: `text`,
         tags: `text`,
         notes: `textarea`,
+        split_top: `checkbox`,
+        split_bottom: `checkbox`,
+        split_title: `text`,
         exact: `checkbox`,
       },
       labels: {
@@ -1235,6 +1248,9 @@ App.setup_settings_addlist = () => {
         title: `Title`,
         tags: `Tags`,
         notes: `Notes`,
+        split_top: `Split Top`,
+        split_bottom: `Split Bottom`,
+        split_title: `Split Title`,
         exact: `Exact`,
       },
       sources: {
@@ -1253,6 +1269,9 @@ App.setup_settings_addlist = () => {
         if ((values[`color`] === `none`) &&
         !values[`title`] &&
         !values[`tags`] &&
+        !values[`split_top`] &&
+        !values[`split_bottom`] &&
+        !values[`split_title`] &&
         !values[`notes`]) {
           return false
         }

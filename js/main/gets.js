@@ -22,3 +22,11 @@ App.get_tags = (item) => {
 App.get_notes = (item) => {
   return item.custom_notes || item.rule_notes || ``
 }
+
+App.get_split = (item, what) => {
+  return item[`custom_split_${what}`] || item[`rule_split_${what}`] || false
+}
+
+App.get_split_title = (item) => {
+  return item[`custom_split_title`] || item[`rule_split_title`] || ``
+}

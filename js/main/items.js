@@ -1200,11 +1200,11 @@ App.apply_splits = (item) => {
   let has_split = false
 
   for (let what of [`top`, `bottom`]) {
-    if (item[`custom_split_${what}`]) {
+    if (App.get_split(item, what)) {
       item.element.classList.add(`split_${what}`)
 
       if (what === `top`) {
-        item.element.dataset.split_title = item[`custom_split_title`] || ``
+        item.element.dataset.split_title = App.get_split_title(item) || ``
       }
 
       has_split = true
