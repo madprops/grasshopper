@@ -1089,6 +1089,7 @@ App.setup_commands = () => {
       name: `Remove Split`,
       cmd: `remove_split`,
       modes: [`tabs`],
+      some_split: true,
       item: true,
       icon: split_icon,
       action: (args) => {
@@ -1553,6 +1554,13 @@ App.check_command = (command, args = {}) => {
         else {
           args.some_not_split_bottom = true
         }
+
+        if (args.some_split_top || args.some_split_bottom) {
+          args.some_split = true
+        }
+        else {
+          args.some_not_split = true
+        }
       }
 
       if (App.get_tags(item).length) {
@@ -1633,6 +1641,22 @@ App.check_command = (command, args = {}) => {
   if (valid) {
     if (command.some_unloaded) {
       if (!args.some_unloaded) {
+        valid = false
+      }
+    }
+  }
+
+  if (valid) {
+    if (command.some_split) {
+      if (!args.some_split) {
+        valid = false
+      }
+    }
+  }
+
+  if (valid) {
+    if (command.some_not_split) {
+      if (!args.some_not_split) {
         valid = false
       }
     }
