@@ -104,6 +104,42 @@ App.edited = (item, include_ruled =  true) => {
   return edited
 }
 
+App.same_edit = (what, item, value, type = `custom`) => {
+  let props = App.edit_props[what]
+  let ovalue = item[`${type}_${what}`]
+
+  if (props.type === `string` || props.type === `bool`) {
+    if (ovalue === value) {
+      return true
+    }
+  }
+  else if (props.type === `list`) {
+    if (App.same_arrays(ovalue, value)) {
+      return true
+    }
+  }
+
+  return false
+}
+
+App.edit_default = (what) => {
+  let props = App.edit_props[what]
+
+  if (props.type === `string`) {
+    return ``
+  }
+  else if (props.type === `list`) {
+    return []
+  }
+  else if (props.type === `bool`) {
+    return false
+  }
+}
+
+App.edit_is_default = (what, item, kind = `custom`) => {
+  return App.str(App.edit_default(what)) === App.str(item[`${kind}_${what}`])
+}
+
 App.edit_prompt = (args = {}) => {
   let active = App.get_active_items({mode: args.item.mode, item: args.item})
   let value = ``
@@ -1050,24 +1086,6 @@ App.edit_notes = (item) => {
   })
 }
 
-App.edit_default = (what) => {
-  let props = App.edit_props[what]
-
-  if (props.type === `string`) {
-    return ``
-  }
-  else if (props.type === `list`) {
-    return []
-  }
-  else if (props.type === `bool`) {
-    return false
-  }
-}
-
-App.edit_is_default = (what, item, kind = `custom`) => {
-  return App.str(App.edit_default(what)) === App.str(item[`${kind}_${what}`])
-}
-
 App.remove_item_notes = (item, single = false) => {
   let active
 
@@ -1097,24 +1115,6 @@ App.remove_item_notes = (item, single = false) => {
 
 App.remove_notes = (item) => {
   App.remove_item_notes(item, true)
-}
-
-App.same_edit = (what, item, value, type = `custom`) => {
-  let props = App.edit_props[what]
-  let ovalue = item[`${type}_${what}`]
-
-  if (props.type === `string` || props.type === `bool`) {
-    if (ovalue === value) {
-      return true
-    }
-  }
-  else if (props.type === `list`) {
-    if (App.same_arrays(ovalue, value)) {
-      return true
-    }
-  }
-
-  return false
 }
 
 App.edit_tab_split = (args = {}) => {

@@ -976,6 +976,7 @@ App.setup_commands = () => {
       cmd: `add_split_top`,
       modes: [`tabs`],
       item: true,
+      some_not_split_top: true,
       icon: split_icon,
       action: (args) => {
         App.edit_tab_split({item: args.item, which: `top`})
@@ -987,6 +988,7 @@ App.setup_commands = () => {
       cmd: `add_split_bottom`,
       modes: [`tabs`],
       item: true,
+      some_not_split_bottom: true,
       icon: split_icon,
       action: (args) => {
         App.edit_tab_split({item: args.item, which: `bottom`})
@@ -1511,6 +1513,20 @@ App.check_command = (command, args = {}) => {
         else {
           args.some_loaded = true
         }
+
+        if (item.custom_split_top) {
+          args.some_split_top = true
+        }
+        else {
+          args.some_not_split_top = true
+        }
+
+        if (item.custom_split_bottom) {
+          args.some_split_bottom = true
+        }
+        else {
+          args.some_not_split_bottom = true
+        }
       }
     }
   }
@@ -1584,6 +1600,22 @@ App.check_command = (command, args = {}) => {
   if (valid) {
     if (command.some_unloaded) {
       if (!args.some_unloaded) {
+        valid = false
+      }
+    }
+  }
+
+  if (valid) {
+    if (command.some_not_split_top) {
+      if (!args.some_not_split_top) {
+        valid = false
+      }
+    }
+  }
+
+  if (valid) {
+    if (command.some_not_split_bottom) {
+      if (!args.some_not_split_bottom) {
         valid = false
       }
     }
