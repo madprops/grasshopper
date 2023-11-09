@@ -1187,6 +1187,8 @@ App.edit_tab_split = (args = {}) => {
     }
 
     for (let it of active.slice(1, -1)) {
+      apply_title(it)
+
       if (App.apply_edit(`split_top`, it, false)) {
         App.custom_save(it.id, `custom_split_top`, false)
       }
@@ -1215,6 +1217,8 @@ App.edit_tab_split = (args = {}) => {
       App.custom_save(it_2.id, `custom_split_bottom`, what)
     }
 
+    apply_title(it)
+    apply_title(it_2)
     check_title()
   }
 }
