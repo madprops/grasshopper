@@ -1039,6 +1039,13 @@ App.build_settings = () => {
       info: `Which side to show the split side border`,
       version: 1,
     },
+    split_title: {
+      name: `Split Title`,
+      type: `menu`,
+      value: `normal`,
+      info: `How to display the title of splits`,
+      version: 1,
+    },
   }
 
   add_props()
@@ -1878,6 +1885,12 @@ App.build_settings = () => {
           {text: `Left`, value: `left`},
           {text: `Right`, value: `right`},
           {text: `Both`, value: `both`},
+        ])
+
+        App.settings_make_menu(`split_title`, [
+          {text: `None`, value: `none`},
+          {text: `Normal`, value: `normal`},
+          {text: `Hover`, value: `hover`},
         ])
       },
     },

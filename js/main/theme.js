@@ -308,6 +308,7 @@ App.do_apply_theme = (args = {}) => {
     let split_side = App.get_setting(`split_side`)
     main.classList.add(`split_side_${split_side}`)
     App.insert_color_css()
+    App.insert_split_css()
     App.insert_custom_css()
   }
   catch (err) {
@@ -471,6 +472,18 @@ App.apply_background_effects = (effect, tiles) => {
   }
 }
 
+App.insert_custom_css = () => {
+  for (let style of DOM.els(`.custom_css`)) {
+    style.remove()
+  }
+
+  if (App.get_setting(`custom_css`)) {
+    let style = DOM.create(`style`, `custom_css`)
+    style.textContent = App.get_setting(`custom_css`)
+    document.head.appendChild(style)
+  }
+}
+
 App.insert_color_css = () => {
   let css = ``
 
@@ -513,14 +526,42 @@ App.insert_font_css = () => {
   document.head.appendChild(style)
 }
 
-App.insert_custom_css = () => {
-  for (let style of DOM.els(`.custom_css`)) {
+App.insert_split_css = () => {
+  let hover
+
+  if (App.get_setting(`split_title`) === `hover`) {
+    hover = `:hover`
+  }
+  else {
+    hover = ``
+  }
+
+  let display
+
+  if (App.get_setting(`split_title`) === `none`) {
+    display = `none`
+  }
+  else {
+    display = `block`
+  }
+
+  let css = `.split_top${hover}::before {
+    content: attr(data-split_title);
+    position: absolute;
+    top: calc(0px - 1rem);
+    left: 50%;
+    transform: translateX(-50%);
+    color: var(--text_color);
+    background-color: var(--alt_background);
+    font-size: var(--bigger_font);
+    display: ${display};
+  }`
+
+  for (let style of DOM.els(`.split_css`)) {
     style.remove()
   }
 
-  if (App.get_setting(`custom_css`)) {
-    let style = DOM.create(`style`, `custom_css`)
-    style.textContent = App.get_setting(`custom_css`)
-    document.head.appendChild(style)
-  }
+  let style = DOM.create(`style`, `split_css`)
+  style.textContent = css
+  document.head.appendChild(style)
 }
