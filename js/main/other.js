@@ -29,8 +29,8 @@ App.print_intro = () => {
   App.log(`${App.nice_date(d, true)} | ${d}`)
 }
 
-App.show_custom_menu = (e, what) => {
-  let items = App.custom_menu_items(`${what}_menu`)
+App.show_custom_menu = (e, what, item) => {
+  let items = App.custom_menu_items(`${what}_menu`, item)
   App.show_context({items: items, e: e})
   e.preventDefault()
 }
@@ -59,15 +59,21 @@ App.show_cmds_menu = (cmds, from, item) => {
         continue
       }
 
+      let cmd_obj = {
+        from: from,
+        item: item,
+      }
+
+      if (!App.check_command(cmd, cmd_obj)) {
+        continue
+      }
+
       let item_obj = {
         text: cmd.name,
         action: (e) => {
-          App.run_command({
-            cmd: cmd.cmd,
-            from: from,
-            item: item,
-            e: e,
-          })
+          cmd_obj.e = e
+          cmd_obj.cmd = cmd.cmd
+          App.run_command(cmd_obj)
         },
         icon: cmd.icon,
       }
