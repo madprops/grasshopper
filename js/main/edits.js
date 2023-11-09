@@ -1276,6 +1276,7 @@ App.replace_split = (item, which) => {
 }
 
 App.do_replace_split = (item) => {
+  App.split_pick = false
   let title = App.split_pick_original.custom_split_title
   App.remove_item_split(App.split_pick_original)
   App.edit_tab_split({item: item, which: App.split_pick_which, prompt_title: false})

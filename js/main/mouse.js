@@ -185,7 +185,6 @@ App.mouse_click_action = (mode, e) => {
 
   if (App.split_pick) {
     App.do_replace_split(item)
-    App.split_pick = false
     return
   }
 
