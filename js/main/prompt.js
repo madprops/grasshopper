@@ -67,6 +67,12 @@ App.prompt_submit = () => {
   App.prompt_args.on_submit(value)
 }
 
+App.on_prompt_dismiss = () => {
+  if (App.prompt_args.on_dismiss) {
+    App.prompt_args.on_dismiss()
+  }
+}
+
 App.set_prompt_suggestions = (suggestions) => {
   let c = DOM.el(`#prompt_suggestions`)
   c.innerHTML = ``

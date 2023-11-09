@@ -132,6 +132,9 @@ App.start_popups = () => {
     setup: () => {
       App.setup_prompt()
     },
+    on_dismiss: () => {
+      App.on_prompt_dismiss()
+    }
   })
 }
 

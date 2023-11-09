@@ -23,6 +23,10 @@ App.edit_props = {
     type: `bool`,
     rule: false,
   },
+  split_title: {
+    type: `string`,
+    rule: false,
+  },
 }
 
 App.setup_edits = () => {
@@ -1124,6 +1128,35 @@ App.edit_tab_split = (args = {}) => {
 
   App.def_args(def_args, args)
   let active = App.get_active_items({mode: args.item.mode, item: args.item})
+
+  function check_title () {
+    if (args.which === `bottom`) {
+      return
+    }
+
+    if (args.which === `top` && active.length !== 1) {
+      return
+    }
+
+    let item = active[0]
+
+    function apply (title) {
+      if (App.apply_edit(`split_title`, item, title)) {
+        App.custom_save(item.id, `custom_split_title`, title)
+      }
+    }
+
+    App.show_prompt({
+      placeholder: `Enter Title`,
+      on_submit: (ans) => {
+        apply(ans)
+      },
+      on_dismiss: () => {
+        apply(App.edit_default(`split_title`))
+      },
+    })
+  }
+
   let force = App.check_force(`warn_on_edit_tabs`, active)
 
   if (args.which === `top` || args.which === `bottom`) {
@@ -1141,6 +1174,8 @@ App.edit_tab_split = (args = {}) => {
             App.custom_save(it.id, `custom_split_${other}`, false)
           }
         }
+
+        check_title()
       },
       force: force,
     })
@@ -1178,6 +1213,8 @@ App.edit_tab_split = (args = {}) => {
     if (App.apply_edit(`split_bottom`, it_2, what)) {
       App.custom_save(it_2.id, `custom_split_bottom`, what)
     }
+
+    check_title()
   }
 }
 

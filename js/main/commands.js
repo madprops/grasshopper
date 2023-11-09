@@ -976,7 +976,6 @@ App.setup_commands = () => {
       cmd: `add_split_top`,
       modes: [`tabs`],
       item: true,
-      some_not_split_top: true,
       icon: split_icon,
       action: (args) => {
         App.edit_tab_split({item: args.item, which: `top`})

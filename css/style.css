@@ -1232,3 +1232,14 @@ a:visited, a:link, a:hover {
 .split_bottom:nth-last-child(1 of :not(.hidden)) {
   margin-bottom: unset;
 }
+
+.split_top::before {
+  content: attr(data-split_title);
+  position: absolute;
+  top: calc(0px - 1rem);
+  left: 50%;
+  transform: translateX(-50%);
+  color: var(--text_color);
+  background-color: var(--alt_background);
+  font-size: var(--bigger_font);
+}
