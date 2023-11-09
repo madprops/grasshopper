@@ -18,16 +18,14 @@ App.show_item_menu = async (args = {}) => {
       App.item_menu_item(items, `unpin_tabs`, {item: args.item})
       App.item_menu_item(items, `show_color_menu`, {item: args.item})
       App.item_menu_item(items, `edit_title`, {item: args.item})
+      let tag_items = []
+      App.item_menu_item(tag_items, `edit_tags`, {item: args.item, short: false}),
+      App.item_menu_item(tag_items, `add_tags`, {item: args.item, short: false}),
 
       items.push({
         icon: App.tag_icon,
         text: `Tags`,
-        get_items: () => {
-          return [
-            App.item_menu_item(`edit_tags`, {item: args.item, short: false}),
-            App.item_menu_item(`add_tags`, {item: args.item, short: false}),
-          ]
-        }
+        items: tag_items,
       })
 
       App.item_menu_item(items, `edit_notes`, {item: args.item})
@@ -78,12 +76,15 @@ App.common_menu_items = (args = {}) => {
     App.item_menu_item(items, `view_media`, {item: args.item})
   }
 
+  let filter_items = []
+  App.item_menu_item(filter_items, `filter_color`, {item: args.item})
+  App.item_menu_item(filter_items, `filter_tag`, {item: args.item})
+  App.item_menu_item(filter_items, `filter_domain`, {item: args.item})
+
   items.push({
     icon: App.settings_icons.filter,
     text: `Filter`,
-    get_items: () => {
-      return App.filter_menu_items(args.item)
-    },
+    items: filter_items,
   })
 
   let copy_items = []
@@ -172,14 +173,6 @@ App.extra_menu_items = (o_items) => {
   else if (mode === `total`) {
     o_items = items
   }
-}
-
-App.filter_menu_items = (item) => {
-  let items = []
-  App.item_menu_item(items, `filter_color`, {item: item})
-  App.item_menu_item(items, `filter_tag`, {item: item})
-  App.item_menu_item(items, `filter_domain`, {item: item})
-  return items
 }
 
 App.item_menu_item = (items, cmd, obj) => {

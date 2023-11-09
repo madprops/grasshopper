@@ -1173,6 +1173,7 @@ App.setup_commands = () => {
       name: `Filter Tag`,
       cmd: `filter_tag`,
       modes: [`items`],
+      some_tagged: true,
       item: true,
       icon: tag_icon,
       action: (args) => {
@@ -1487,12 +1488,12 @@ App.check_command = (command, args = {}) => {
       args.color = App.get_color(args.item)
     }
 
-    if (args.mode === `tabs`) {
-      if (!args.active.length) {
-        args.active = App.get_active_items({mode: args.mode, item: args.item})
-      }
+    if (!args.active.length) {
+      args.active = App.get_active_items({mode: args.mode, item: args.item})
+    }
 
-      for (let item of args.active) {
+    for (let item of args.active) {
+      if (args.mode === `tabs`) {
         if (item.pinned) {
           args.some_pinned = true
         }
@@ -1527,6 +1528,13 @@ App.check_command = (command, args = {}) => {
         else {
           args.some_not_split_bottom = true
         }
+      }
+
+      if (App.get_tags(item).length) {
+        args.some_tagged = true
+      }
+      else {
+        args.some_untagged = true
       }
     }
   }
@@ -1616,6 +1624,14 @@ App.check_command = (command, args = {}) => {
   if (valid) {
     if (command.some_not_split_bottom) {
       if (!args.some_not_split_bottom) {
+        valid = false
+      }
+    }
+  }
+
+  if (valid) {
+    if (command.some_tagged) {
+      if (!args.some_tagged) {
         valid = false
       }
     }
