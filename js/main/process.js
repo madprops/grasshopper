@@ -52,10 +52,12 @@ App.process_info = (args = {}) => {
     args.o_item.original_data = args.info
   }
 
+  let decoded_url
+
   if (args.info.url) {
     try {
       // Check if valid URL
-      decodeURI(args.info.url)
+      decoded_url = decodeURI(args.info.url)
     }
     catch (err) {
       return false
@@ -68,7 +70,7 @@ App.process_info = (args = {}) => {
     return false
   }
 
-  let path = App.get_path(url)
+  let path = App.get_path(decoded_url)
   let protocol = App.get_protocol(url)
   let hostname = App.get_hostname(url)
   let title = args.info.title || ``
@@ -86,6 +88,7 @@ App.process_info = (args = {}) => {
     mode: args.mode,
     window_id: args.info.windowId,
     session_id: args.info.sessionId,
+    decoded_url: decoded_url,
     image: image,
     video: video,
     audio: audio,

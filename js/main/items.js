@@ -375,33 +375,41 @@ App.create_item_element = (item) => {
 
 App.set_item_text = (item) => {
   let lines = []
-  let path = decodeURI(item.path)
+  let url
+
+  if (App.get_setting(`show_protocol`)) {
+    url = item.decoded_url
+  }
+  else {
+    url = item.path
+  }
+
   let text_mode = App.get_setting(`text_mode`)
   let title = App.get_title(item)
 
   if (text_mode === `title`) {
-    lines.push(title || path)
-    item.footer = path || title
+    lines.push(title || url)
+    item.footer = url || title
   }
   else if (text_mode === `url`) {
-    lines.push(path || title)
-    item.footer = title || path
+    lines.push(url || title)
+    item.footer = title || url
   }
   else if (text_mode === `title_url`) {
     lines.push(title)
-    lines.push(path)
-    item.footer = path || title
+    lines.push(url)
+    item.footer = url || title
   }
   else if (text_mode === `url_title`) {
-    lines.push(path)
+    lines.push(url)
     lines.push(title)
-    item.footer = title || path
+    item.footer = title || url
   }
 
   if (App.get_setting(`show_tooltips`)) {
     let tips = []
     tips.push(`Title: ${title}`)
-    tips.push(`URL: ${path}`)
+    tips.push(`URL: ${url}`)
 
     if (item.last_visit) {
       tips.push(`Last Visit: ${App.nice_date(item.last_visit)}`)

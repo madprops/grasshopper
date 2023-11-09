@@ -1612,6 +1612,13 @@ App.build_settings = () => {
       info: `Show the active tab at the top when showing Recent Tabs`,
       version: 1,
     },
+    show_protocol: {
+      name: `Show Protocol`,
+      type: `checkbox`,
+      value: false,
+      info: `Show the protocol when URLs are displayed`,
+      version: 1,
+    },
     short_commands: {
       name: `Short Commands`,
       type: `checkbox`,
