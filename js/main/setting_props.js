@@ -108,6 +108,13 @@ App.build_settings = () => {
       info: `Where to save bookmarks`,
       version: 1,
     },
+    loading_effect: {
+      name: `Loading Effect`,
+      type: `checkbox`,
+      value: true,
+      info: `Show a loading effect on tabs`,
+      version: 1,
+    },
     smooth_scroll: {
       name: `Smooth Scroll`,
       type: `checkbox`,
@@ -1519,13 +1526,6 @@ App.build_settings = () => {
   category = `more`
 
   props = {
-    loading_effect: {
-      name: `Loading Effect`,
-      type: `checkbox`,
-      value: true,
-      info: `Show a loading effect on tabs`,
-      version: 1,
-    },
     single_new_tab: {
       name: `Single New Tab`,
       type: `checkbox`,
