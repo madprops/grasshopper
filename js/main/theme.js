@@ -288,6 +288,16 @@ App.do_apply_theme = (args = {}) => {
     }
 
     App.set_css_var(`split_color`, scv)
+
+    if (App.get_setting(`split_padding`)) {
+      main.classList.add(`split_padding`)
+    }
+    else {
+      main.classList.remove(`split_padding`)
+    }
+
+    let split_width = `${App.get_setting(`split_width`)}px`
+    App.set_css_var(`split_width`, split_width)
     App.insert_color_css()
     App.insert_custom_css()
   }

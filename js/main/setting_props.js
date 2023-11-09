@@ -968,6 +968,7 @@ App.build_settings = () => {
       type: `checkbox`,
       value: true,
       info: `Show the notes when clicking the notes icon`,
+      separator: true,
       version: 1,
     },
     color_red: {
@@ -996,6 +997,7 @@ App.build_settings = () => {
       type: `color`,
       value: `rgb(255, 153, 0)`,
       info: `The yellow to use when coloring items yellow`,
+      separator: true,
       version: 1,
     },
     split_color_enabled: {
@@ -1011,6 +1013,23 @@ App.build_settings = () => {
       type: `color`,
       value: `rgb(102, 204, 0)`,
       info: `The color of the splits between tabs`,
+      version: 1,
+    },
+    split_padding: {
+      name: `Split Padding`,
+      type: `checkbox`,
+      value: true,
+      info: `Add padding to the splits between tabs`,
+      version: 1,
+    },
+    split_width: {
+      name: `Split Width`,
+      type: `number`,
+      value: 3,
+      placeholder: `Number`,
+      min: 1,
+      max: 99,
+      info: `The width of the split borders`,
       version: 1,
     },
   }

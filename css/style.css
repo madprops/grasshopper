@@ -9,7 +9,7 @@
   --widget_width_smaller: 6rem;
   --action_effect: 0 0 0.1rem currentColor;
   --text_glow: 0 0 0.2rem currentColor;
-  --split_border: 3px solid var(--split_color);
+  --split_border: var(--split_width) solid var(--split_color);
 }
 
 @keyframes spin {
@@ -1202,10 +1202,16 @@ a:visited, a:link, a:hover {
 
 .not_filtered .split_top {
   border-top: var(--split_border) !important;
+}
+
+.split_padding .split_top {
   margin-top: 1.2rem;
 }
 
 .not_filtered .split_bottom {
   border-bottom: var(--split_border) !important;
+}
+
+.split_padding .split_bottom {
   margin-bottom: 1.2rem;
 }
