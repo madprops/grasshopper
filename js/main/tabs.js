@@ -1297,15 +1297,7 @@ App.check_tab_loading = (item) => {
   let loading = item.status === `loading`
 
   if (loading) {
-    if (effect === `fade`) {
-      item.element.classList.add(`fade_effect`)
-    }
-    else if (effect === `spin`) {
-      item.element.classList.add(`spin_effect`)
-    }
-    else if (effect === `icon`) {
-      item.element.classList.add(`icon_effect`)
-    }
+    item.element.classList.add(`${effect}_effect`)
   }
   else {
     item.element.classList.remove(`fade_effect`)
