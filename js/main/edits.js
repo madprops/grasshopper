@@ -1127,12 +1127,18 @@ App.edit_tab_split = (args = {}) => {
   let force = App.check_force(`warn_on_edit_tabs`, active)
 
   if (args.which === `top` || args.which === `bottom`) {
+    let other = args.which === `top` ? `bottom` : `top`
+
     App.show_confirm({
       message: `Add splits (${active.length})`,
       confirm_action: () => {
         for (let it of active) {
           if (App.apply_edit(`split_${args.which}`, it, true)) {
             App.custom_save(it.id, `custom_split_${args.which}`, true)
+          }
+
+          if (App.apply_edit(`split_${other}`, it, false)) {
+            App.custom_save(it.id, `custom_split_${other}`, false)
           }
         }
       },
