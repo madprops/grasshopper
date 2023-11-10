@@ -27,7 +27,11 @@ App.edit_tab_split = (args = {}) => {
       force: force,
     })
   }
-  else if (args.which === `auto`) {
+  else if (args.which === `both`) {
+    if (active.length < 2) {
+      return
+    }
+
     for (let it of active.slice(1, -1)) {
       if (App.apply_edit(`split_top`, it, false)) {
         App.custom_save(it.id, `custom_split_top`, false)

@@ -989,15 +989,16 @@ App.setup_commands = () => {
       info: `Add tags to tabs`,
     },
     {
-      name: `Split Auto`,
-      cmd: `add_split_auto`,
+      name: `Split Both`,
+      cmd: `add_split_both`,
       modes: [`tabs`],
       item: true,
+      multiple: true,
       icon: split_icon,
       action: (args) => {
-        App.edit_tab_split({item: args.item, which: `auto`})
+        App.edit_tab_split({item: args.item, which: `both`})
       },
-      info: `Add a split above the tab`,
+      info: `Add a split above and below the selected tabs`,
     },
     {
       name: `Split Top`,
