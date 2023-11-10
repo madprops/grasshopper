@@ -481,7 +481,7 @@ App.build_settings = () => {
     blank_icon: {
       name: `Blank Icon`,
       type: `text_smaller`,
-      value: ``,
+      value: `🔽`,
       placeholder: App.icon_placeholder,
       info: `Icon for blank tabs`,
       version: 1,

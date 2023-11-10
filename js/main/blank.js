@@ -1,34 +1,10 @@
-App.open_blank_tab = (args = {}) => {
+App.open_blank_tab = async (args = {}) => {
   let url = {
-    url: App.blank_url
+    url: `${App.blank_id}.html`,
   }
 
   let obj = Object.assign({}, url, args)
   browser.tabs.create(obj)
-}
-
-App.start_blank = (item) => {
-  let title = App.get_title(item, false)
-
-  if (!title) {
-    let word_1 = App.capitalize(App.random_word(4))
-    let word_2 = App.capitalize(App.random_word(4))
-    let title = `${word_1} ${word_2}`
-
-    if (App.apply_edit(`title`, item, title)) {
-      App.custom_save(item.id, `custom_title`, title)
-    }
-  }
-
-  let icon = App.get_icon(item) || App.get_setting(`blank_icon`)
-
-  if (!icon) {
-    let color = App.random_choice(App.colors)
-
-    if (App.apply_edit(`color`, item, color)) {
-      App.custom_save(item.id, `custom_color`, color)
-    }
-  }
 }
 
 App.insert_blank = (item) => {
@@ -128,4 +104,8 @@ App.remove_all_blanks = () => {
 
 App.special_blank = (item) => {
   return item.blank && App.get_setting(`special_blanks`)
+}
+
+App.blank_url = (url) => {
+  return url.includes(App.blank_id)
 }

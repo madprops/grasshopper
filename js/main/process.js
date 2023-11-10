@@ -77,7 +77,11 @@ App.process_info = (args = {}) => {
   let image = App.is_image(url)
   let video = App.is_video(url)
   let audio = App.is_audio(url)
-  let blank = url === App.blank_url
+  let blank = App.blank_url(url)
+
+  if (blank) {
+    title = `Give me a title`
+  }
 
   let item = {
     title: title,
@@ -144,6 +148,7 @@ App.process_info = (args = {}) => {
     item.visible = true
     item.selected = false
     item.last_scroll = 0
+    item.blank_started = false
     App.create_item_element(item)
     App[`${args.mode}_idx`] += 1
     return item

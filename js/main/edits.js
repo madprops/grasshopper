@@ -42,8 +42,6 @@ App.check_tab_session = async (items = []) => {
   let has_split = false
 
   for (let item of items) {
-    let had_edits = false
-
     for (let key in App.edit_props) {
       let value = await browser.sessions.getTabValue(item.id, `custom_${key}`)
 
@@ -55,14 +53,7 @@ App.check_tab_session = async (items = []) => {
         has_split = true
       }
 
-      had_edits = true
       App.apply_edit(key, item, value)
-    }
-
-    if (!had_edits) {
-      if (App.special_blank(item)) {
-        App.start_blank(item)
-      }
     }
   }
 
