@@ -1144,6 +1144,16 @@ App.setup_commands = () => {
       info: `Remove all splits from tabs`,
     },
     {
+      name: `Remove All Blanks`,
+      cmd: `remove_all_blanks`,
+      modes: [`tabs`],
+      icon: split_icon,
+      action: (args) => {
+        App.remove_all_blanks(args.item)
+      },
+      info: `Remove all Blank items`,
+    },
+    {
       name: `Replace Tag`,
       cmd: `replace_tag`,
       modes: [`tabs`],

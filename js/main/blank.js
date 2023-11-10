@@ -73,3 +73,17 @@ App.on_blank_click = (item) => {
     }
   }
 }
+
+App.get_blank_tabs = () => {
+  return App.get_items(`tabs`).filter(x => x.blank)
+}
+
+App.remove_all_blanks = () => {
+  let items = App.get_blank_tabs()
+
+  if (!items.length) {
+    return
+  }
+
+  App.close_tabs_method(items)
+}
