@@ -833,11 +833,24 @@ App.setup_commands = () => {
     {
       name: `Open Blank`,
       cmd: `open_blank_tab`,
+      modes: [`tabs`],
       icon: tabs_icon,
       action: (args) => {
         App.open_blank_tab()
       },
       info: `Open a Blank tab`,
+    },
+    {
+      name: `Blank Above`,
+      cmd: `add_blank_above_tab`,
+      modes: [`tabs`],
+      item: true,
+      single: true,
+      icon: tabs_icon,
+      action: (args) => {
+        App.add_blank_above(args.item)
+      },
+      info: `Add a Blank tab above a tab`,
     },
     {
       name: `Select Pins`,

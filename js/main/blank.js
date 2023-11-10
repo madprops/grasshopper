@@ -1,7 +1,10 @@
-App.open_blank_tab = () => {
-  browser.tabs.create({
+App.open_blank_tab = (args = {}) => {
+  let url = {
     url: App.blank_url
-  })
+  }
+
+  let obj = Object.assign({}, url, args)
+  browser.tabs.create(obj)
 }
 
 App.start_blank = (item) => {
@@ -18,4 +21,9 @@ App.start_blank = (item) => {
   if (App.apply_edit(`color`, item, color)) {
     App.custom_save(item.id, `custom_color`, color)
   }
+}
+
+App.add_blank_above = (item) => {
+  let index = App.get_item_element_index(item.mode, item.element)
+  App.open_blank_tab({index: index, pinned: item.pinned})
 }
