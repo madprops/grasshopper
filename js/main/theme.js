@@ -488,6 +488,10 @@ App.insert_color_css = () => {
       background-color: var(--color_${color}) !important;
       color: var(--text_${color}) !important;
     }`
+
+    css += `.text_${color} {
+      color: var(--color_${color}) !important;
+    }`
   }
 
   for (let style of DOM.els(`.color_css`)) {
