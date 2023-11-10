@@ -1264,6 +1264,6 @@ a:visited, a:link, a:hover {
   margin-bottom: unset;
 }
 
-.not_filtered .split_bottom + .split_top {
+.not_filtered .split_bottom:not(.hidden) + .split_top:not(.hidden) {
   margin-top: 0.25rem;
 }
