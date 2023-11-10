@@ -48,7 +48,7 @@ App.insert_blank = (item) => {
   }
 }
 
-App.on_blank_click = (item) => {
+App.on_blank_click = async (item) => {
   let waypoint = false
   let select = false
   let selected = []
@@ -86,10 +86,16 @@ App.on_blank_click = (item) => {
   }
 
   if (select) {
-    App.deselect(item.mode, `none`)
+    if (App.is_filtered(item.mode)) {
+      App.filter_all(`tabs`)
+      App.select_item({item: item, scroll: `center`})
+    }
+    else {
+      App.deselect(item.mode, `none`)
 
-    for (let it of selected) {
-      App.toggle_selected(it, true)
+      for (let it of selected) {
+        App.toggle_selected(it, true)
+      }
     }
   }
 }

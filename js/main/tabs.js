@@ -334,6 +334,11 @@ App.remove_closed_tab = (id) => {
 }
 
 App.tabs_action = async (item) => {
+  if (App.special_blank(item)) {
+    App.on_blank_click(item)
+    return
+  }
+
   App.on_action(`tabs`)
   App.do_empty_previous_tabs()
 

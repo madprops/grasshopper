@@ -177,11 +177,6 @@ App.mouse_click_action = (mode, e) => {
     return
   }
 
-  if (App.special_blank(item)) {
-    App.on_blank_click(item)
-    return
-  }
-
   App[`${mode}_action`](item)
 }
 
