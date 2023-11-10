@@ -27,3 +27,48 @@ App.open_blank_above_tab = (item) => {
   let index = App.get_item_element_index(item.mode, item.element)
   App.open_blank_tab({index: index, pinned: item.pinned})
 }
+
+App.on_blank_click = (item) => {
+  let waypoint = false
+  let select = false
+  let selected = []
+  let items = App.get_items(item.mode)
+
+  for (let [i, it] of items.entries()) {
+    if (waypoint) {
+      if (it.blank) {
+        select = true
+        break
+      }
+      else if (App.get_split(it, `top`)) {
+        break
+      }
+      else if (App.get_split(it, `bottom`)) {
+        selected.push(it)
+        select = true
+        break
+      }
+      else {
+        selected.push(it)
+      }
+
+      if (i === (items.length - 1)) {
+        select = true
+      }
+    }
+
+    if (it === item) {
+      selected.push(it)
+      waypoint = true
+      continue
+    }
+  }
+
+  if (select) {
+    App.deselect(item.mode, `none`)
+
+    for (let it of selected) {
+      App.toggle_selected(it, true)
+    }
+  }
+}
