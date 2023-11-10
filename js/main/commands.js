@@ -17,7 +17,7 @@ App.setup_commands = () => {
   let closed_icon = App.mode_icons.closed
   let browser_icon = App.browser_icon
   let clipboard_icon = App.clipboard_icon
-  let edit_icon = App.edit_icon
+  let notepad_icon = App.notepad_icon
   let bot_icon = App.bot_icon
   let up_icon = App.up_arrow_icon
   let down_icon = App.down_arrow_icon
@@ -946,11 +946,23 @@ App.setup_commands = () => {
       cmd: `edit_title`,
       modes: [`tabs`],
       item: true,
-      icon: edit_icon,
+      icon: notepad_icon,
       action: (args) => {
         App.edit_title(args.item)
       },
       info: `Edit tab titles`,
+    },
+    {
+      name: `Edit Icon`,
+      short_name: `Icon`,
+      cmd: `edit_icon`,
+      modes: [`tabs`],
+      item: true,
+      icon: notepad_icon,
+      action: (args) => {
+        App.edit_icon(args.item)
+      },
+      info: `Edit tab icons`,
     },
     {
       name: `Edit Tags`,
@@ -970,7 +982,7 @@ App.setup_commands = () => {
       cmd: `edit_notes`,
       modes: [`tabs`],
       item: true,
-      icon: edit_icon,
+      icon: notepad_icon,
       action: (args) => {
         App.edit_notes(args.item)
       },
@@ -1071,7 +1083,7 @@ App.setup_commands = () => {
       cmd: `remove_title`,
       modes: [`tabs`],
       item: true,
-      icon: edit_icon,
+      icon: notepad_icon,
       action: (args) => {
         App.remove_item_title(args.item)
       },
@@ -1081,7 +1093,7 @@ App.setup_commands = () => {
       name: `Remove All Titles`,
       cmd: `remove_all_titles`,
       modes: [`tabs`],
-      icon: edit_icon,
+      icon: notepad_icon,
       action: (args) => {
         App.remove_edits({what: [`title`]})
       },
@@ -1092,7 +1104,7 @@ App.setup_commands = () => {
       cmd: `remove_notes`,
       modes: [`tabs`],
       item: true,
-      icon: edit_icon,
+      icon: notepad_icon,
       action: (args) => {
         App.remove_item_notes(args.item)
       },
@@ -1133,7 +1145,7 @@ App.setup_commands = () => {
       name: `Remove All Notes`,
       cmd: `remove_all_notes`,
       modes: [`tabs`],
-      icon: edit_icon,
+      icon: notepad_icon,
       action: (args) => {
         App.remove_edits({what: [`notes`]})
       },
@@ -1185,7 +1197,7 @@ App.setup_commands = () => {
       name: `Remove All Edits`,
       cmd: `remove_all_edits`,
       modes: [`tabs`],
-      icon: edit_icon,
+      icon: notepad_icon,
       action: (args) => {
         App.remove_all_edits()
       },
@@ -1196,7 +1208,7 @@ App.setup_commands = () => {
       cmd: `remove_item_edits`,
       modes: [`tabs`],
       item: true,
-      icon: edit_icon,
+      icon: notepad_icon,
       action: (args) => {
         App.remove_item_edits(args.item)
       },
@@ -1347,7 +1359,7 @@ App.setup_commands = () => {
       name: `Filter Titled`,
       cmd: `filter_titled_tabs`,
       modes: [`items`],
-      icon: edit_icon,
+      icon: notepad_icon,
       action: (args) => {
         App.filter_titled(args.mode)
       },
@@ -1357,7 +1369,7 @@ App.setup_commands = () => {
       name: `Filter Notes`,
       cmd: `filter_notes_tabs`,
       modes: [`items`],
-      icon: edit_icon,
+      icon: notepad_icon,
       action: (args) => {
         App.filter_notes(args.mode)
       },
@@ -1367,7 +1379,7 @@ App.setup_commands = () => {
       name: `Filter Edited`,
       cmd: `filter_edited_tabs`,
       modes: [`items`],
-      icon: edit_icon,
+      icon: notepad_icon,
       action: (args) => {
         App.filter_edited(args.mode)
       },

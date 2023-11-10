@@ -27,6 +27,10 @@ App.edit_props = {
     type: `string`,
     rule: true,
   },
+  icon: {
+    type: `string`,
+    rule: true,
+  },
 }
 
 App.setup_edits = () => {
@@ -174,7 +178,7 @@ App.edit_prompt = (args = {}) => {
 
   let name = App.capitalize(args.what)
   let suggestions = []
-  let tags, titles
+  let tags, titles, icons
 
   if (args.what === `tags`) {
     tags = App.get_all_tags()
@@ -183,6 +187,10 @@ App.edit_prompt = (args = {}) => {
   else if (args.what === `title`) {
     titles = App.get_all_titles()
     suggestions = titles
+  }
+  else if (args.what === `icon`) {
+    icons = App.get_all_icons()
+    suggestions = icons
   }
 
   let placeholder
@@ -202,10 +210,13 @@ App.edit_prompt = (args = {}) => {
   else if (args.what === `title`) {
     list = titles
   }
+  else if (args.what === `icon`) {
+    list = icons
+  }
 
   let list_submit
 
-  if (args.what === `title` || args.what === `tags`) {
+  if (args.what === `title` || args.what === `tags` || args.what === `icon`) {
     list_submit = true
   }
   else {

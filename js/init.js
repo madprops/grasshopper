@@ -10,6 +10,7 @@ App.init = async () => {
   App.stor_get_command_history()
   App.stor_get_tag_history()
   App.stor_get_title_history()
+  App.stor_get_icon_history()
   App.stor_get_first_time()
   App.setup_commands()
   App.setup_tabs()

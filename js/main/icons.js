@@ -339,3 +339,77 @@ App.get_notes_icon = (item) => {
     item.element.append(icon)
   }
 }
+
+App.edit_tab_icon = (args = {}) => {
+  let def_args = {
+    icon: ``,
+  }
+
+  App.def_args(def_args, args)
+  let active = App.get_active_items({mode: args.item.mode, item: args.item})
+  let s = args.icon ? `Edit icon?` : `Remove icon?`
+  let force = App.check_force(`warn_on_edit_tabs`, active)
+
+  App.show_confirm({
+    message: `${s} (${active.length})`,
+    confirm_action: () => {
+      for (let it of active) {
+        if (App.apply_edit(`icon`, it, args.icon)) {
+          App.custom_save(it.id, `custom_icon`, args.icon)
+          App.push_to_icon_history([args.icon])
+        }
+      }
+    },
+    force: force,
+  })
+}
+
+App.edit_icon = (item) => {
+  App.edit_prompt({what: `icon`, item: item})
+}
+
+App.get_all_icons = (include_rules = true) => {
+  let icons = []
+
+  for (let icon of App.icon_history) {
+    if (!icons.includes(icon)) {
+      icons.push(icon)
+    }
+  }
+
+  for (let item of App.get_items(`tabs`)) {
+    if (item.custom_icon) {
+      if (!icons.includes(item.custom_icon)) {
+        icons.push(item.custom_icon)
+      }
+    }
+
+    if (include_rules) {
+      if (item.rule_icon) {
+        if (!icons.includes(item.rule_icon)) {
+          icons.push(item.rule_icon)
+        }
+      }
+    }
+  }
+
+  return icons
+}
+
+App.push_to_icon_history = (icons) => {
+  if (!icons.length) {
+    return
+  }
+
+  for (let icon of icons) {
+    if (!icon) {
+      continue
+    }
+
+    App.icon_history = App.icon_history.filter(x => x !== icon)
+    App.icon_history.unshift(icon)
+    App.icon_history = App.icon_history.slice(0, App.icon_history_max)
+  }
+
+  App.stor_save_icon_history()
+}

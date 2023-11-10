@@ -17,7 +17,6 @@ App.show_item_menu = async (args = {}) => {
       App.item_menu_item(items, `pin_tabs`, {item: args.item})
       App.item_menu_item(items, `unpin_tabs`, {item: args.item})
       App.item_menu_item(items, `show_color_menu`, {item: args.item})
-      App.item_menu_item(items, `edit_title`, {item: args.item})
       let tag_items = []
       App.item_menu_item(tag_items, `edit_tags`, {item: args.item, short: false}),
       App.item_menu_item(tag_items, `add_tags`, {item: args.item, short: false}),
@@ -28,7 +27,9 @@ App.show_item_menu = async (args = {}) => {
         items: tag_items,
       })
 
+      App.item_menu_item(items, `edit_title`, {item: args.item})
       App.item_menu_item(items, `edit_notes`, {item: args.item})
+      App.item_menu_item(items, `edit_icon`, {item: args.item})
 
       let common_obj = {
         o_items: items,

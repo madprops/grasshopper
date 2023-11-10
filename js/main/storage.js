@@ -77,6 +77,16 @@ App.stor_save_title_history = () => {
   App.save_local_storage(App.stor_title_history_name, App.title_history)
 }
 
+App.stor_get_icon_history = () => {
+  App.icon_history = App.get_local_storage(App.stor_icon_history_name, [])
+  App.debug(`Stor: Got icon history`)
+}
+
+App.stor_save_icon_history = () => {
+  App.debug(`Stor: Saving icon history`)
+  App.save_local_storage(App.stor_icon_history_name, App.icon_history)
+}
+
 App.stor_get_first_time = () => {
   App.first_time = App.get_local_storage(App.stor_first_time_name, {})
   App.debug(`Stor: Got first time`)
