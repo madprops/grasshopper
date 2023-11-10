@@ -115,6 +115,13 @@ App.build_settings = () => {
       info: `Where to save bookmarks`,
       version: 1,
     },
+    special_blanks: {
+      name: `Special Blanks`,
+      type: `checkbox`,
+      value: true,
+      info: `Treat blank tabs as special items meant for organizing tabs below them`,
+      version: 1,
+    },
     smooth_scroll: {
       name: `Smooth Scroll`,
       type: `checkbox`,

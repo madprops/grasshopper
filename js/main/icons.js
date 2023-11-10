@@ -236,7 +236,7 @@ App.check_icons = (item) => {
 }
 
 App.check_item_icon = (item) => {
-  if (item.blank) {
+  if (App.special_blank(item)) {
     return
   }
 

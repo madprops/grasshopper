@@ -314,7 +314,7 @@ App.create_item_element = (item) => {
   item.element.append(trace)
 
   if (App.get_setting(`item_icon`) !== `none`) {
-    if (!item.blank) {
+    if (!App.special_blank(item)) {
       let icon_container = DOM.create(`div`, `item_icon_container item_node`)
       item.element.append(icon_container)
       App.check_item_icon(item)
@@ -328,7 +328,7 @@ App.create_item_element = (item) => {
     App.add_tab_icons(item)
   }
 
-  if (item.blank) {
+  if (App.special_blank(item)) {
     item.element.classList.add(`blank_item`)
   }
 

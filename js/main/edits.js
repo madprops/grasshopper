@@ -60,7 +60,7 @@ App.check_tab_session = async (items = []) => {
     }
 
     if (!had_edits) {
-      if (item.blank) {
+      if (App.special_blank(item)) {
         App.start_blank(item)
       }
     }

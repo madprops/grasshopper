@@ -107,3 +107,7 @@ App.remove_all_blanks = () => {
 
   App.close_tabs_method(items)
 }
+
+App.special_blank = (item) => {
+  return item.blank && App.get_setting(`special_blanks`)
+}
