@@ -1004,7 +1004,6 @@ App.setup_commands = () => {
       cmd: `add_split_auto`,
       modes: [`tabs`],
       item: true,
-      multiple: true,
       icon: split_icon,
       action: (args) => {
         App.edit_tab_split({item: args.item, which: `auto`})

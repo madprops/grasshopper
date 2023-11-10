@@ -290,14 +290,6 @@ App.do_apply_theme = (args = {}) => {
     }
 
     App.set_css_var(`split_color`, scv)
-
-    if (App.get_setting(`split_padding`)) {
-      main.classList.add(`split_padding`)
-    }
-    else {
-      main.classList.remove(`split_padding`)
-    }
-
     let sw = App.get_setting(`split_width`)
     App.set_css_var(`split_width`, `${sw}px`)
     let split_sides = [`left`, `right`, `both`]

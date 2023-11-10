@@ -1023,13 +1023,6 @@ App.build_settings = () => {
       info: `The color of the splits between tabs`,
       version: 1,
     },
-    split_padding: {
-      name: `Split Padding`,
-      type: `checkbox`,
-      value: true,
-      info: `Add padding to the splits between tabs`,
-      version: 1,
-    },
     split_width: {
       name: `Split Width`,
       type: `number`,

@@ -1247,20 +1247,12 @@ a:visited, a:link, a:hover {
   border-top: var(--split_border) !important;
 }
 
-.split_padding .not_filtered .split_top {
-  margin-top: 1.1rem;
-}
-
 .not_filtered .split_top:nth-child(1 of :not(.hidden)) {
   margin-top: unset;
 }
 
 .not_filtered .split_bottom {
   border-bottom: var(--split_border) !important;
-}
-
-.split_padding .not_filtered .split_bottom {
-  margin-bottom: 1.1rem;
 }
 
 .not_filtered .split_bottom:nth-last-child(1 of :not(.hidden)) {
