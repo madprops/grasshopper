@@ -177,6 +177,13 @@ App.mouse_click_action = (mode, e) => {
     return
   }
 
+  if (App.is_filtered(mode)) {
+    if (App.is_header(item)) {
+      App.clean_select(item)
+      return
+    }
+  }
+
   App[`${mode}_action`](item, `click`)
 }
 
@@ -195,7 +202,7 @@ App.mouse_double_click_action = (mode, e) => {
   let item = App.direction(mode, e)
 
   if (App.is_header(item)) {
-    App.header_action(item)
+    App.header_double_click(item)
     return
   }
 

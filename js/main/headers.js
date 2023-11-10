@@ -32,7 +32,7 @@ App.insert_header = (item) => {
   }
 }
 
-App.header_action = async (item) => {
+App.header_group = (item) => {
   let waypoint = false
   let select = false
   let selected = []
@@ -74,16 +74,21 @@ App.header_action = async (item) => {
   }
 
   if (select) {
-    if (App.is_filtered(item.mode)) {
-      App.filter_all(`tabs`)
-      App.select_item({item: item, scroll: `center`})
-    }
-    else {
-      App.deselect(item.mode, `none`)
+    return selected
+  }
+  else {
+    return []
+  }
+}
 
-      for (let it of selected) {
-        App.toggle_selected(it, true)
-      }
+App.header_double_click = (item) => {
+  let group = App.header_group(item)
+
+  if (group.length) {
+    App.deselect(item.mode, `none`)
+
+    for (let item of group) {
+      App.toggle_selected(item, true)
     }
   }
 }
