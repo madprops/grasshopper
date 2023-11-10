@@ -372,17 +372,13 @@ App.apply_edit = (what, item, value) => {
 }
 
 App.edit_to_string = (what, item, kind = `custom`) => {
-  if (what === `color`) {
-    return item[`${kind}_color`]
+  let props = App.edit_props[what]
+
+  if (props.type === `string`) {
+    return item[`${kind}_${what}`]
   }
-  else if (what === `title`) {
-    return item[`${kind}_title`]
-  }
-  else if (what === `tags`) {
-    return item[`${kind}_tags`].join(` `)
-  }
-  else if (what === `notes`) {
-    return item[`${kind}_notes`]
+  else if (props.type === `list`) {
+    return item[`${kind}_${what}`].join(` `)
   }
 
   return ``

@@ -12,6 +12,10 @@ App.get_title = (item) => {
   return title
 }
 
+App.get_icon = (item) => {
+  return item.custom_icon || item.rule_icon || ``
+}
+
 App.get_tags = (item) => {
   let tags = []
   tags.push(...item.rule_tags)

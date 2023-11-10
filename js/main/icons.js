@@ -241,7 +241,10 @@ App.check_item_icon = (item) => {
   }
 
   if (App.get_setting(`item_icon`) !== `none`) {
-    if (item.favicon) {
+    if (App.get_icon(item)) {
+      icon = App.get_text_icon(item)
+    }
+    else if (item.favicon) {
       if (item.favicon_used === item.favicon) {
         return
       }
@@ -282,9 +285,9 @@ App.create_icon = (name, type = 1) => {
   return icon
 }
 
-App.get_text_icon = (icon_text) => {
+App.get_text_icon = (item) => {
   let icon = DOM.create(`div`, `item_icon`)
-  icon.textContent = icon_text
+  icon.textContent = App.get_icon(item)
   return icon
 }
 
