@@ -1255,7 +1255,6 @@ a:visited, a:link, a:hover {
 
 .not_filtered .blank_item {
   font-size: var(--bigger_font);
-  outline: 1px solid var(--alt_color_2);
   background-color: var(--slight_shade);
-  margin-top: 1px;
+  box-shadow: inset 0 0 0 1px var(--alt_color_2);
 }
