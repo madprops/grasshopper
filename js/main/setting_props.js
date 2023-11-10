@@ -1038,6 +1038,7 @@ App.build_settings = () => {
       type: `menu`,
       value: `right`,
       info: `Which side to show the split side border`,
+      separator: true,
       version: 1,
     },
     notes_icon_click: {
