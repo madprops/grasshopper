@@ -394,6 +394,7 @@ App.set_item_text = (item) => {
 
   if (App.is_header(item)) {
     text_mode = `title`
+    title = App.get_title(item, false) || `Give me a title`
   }
 
   if (text_mode === `title`) {
