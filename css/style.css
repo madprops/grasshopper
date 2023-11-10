@@ -332,7 +332,7 @@ svg {
   display: flex !important;
 }
 
-.not_filtered .blank_item {
+.not_filtered .header_item {
   font-size: var(--bigger_font);
   background-color: var(--slight_shade);
   box-shadow: inset 0 0 0 1px var(--alt_color_2);

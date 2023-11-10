@@ -832,6 +832,7 @@ App.setup_commands = () => {
     },
     {
       name: `Insert Header`,
+      short_name: `Header`,
       cmd: `insert_header`,
       modes: [`tabs`],
       item: true,
