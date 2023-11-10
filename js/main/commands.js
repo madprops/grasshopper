@@ -831,22 +831,12 @@ App.setup_commands = () => {
       info: `Reopen the latest closed tab`,
     },
     {
-      name: `Open Blank`,
-      cmd: `open_blank_tab`,
-      modes: [`tabs`],
-      icon: tabs_icon,
-      action: (args) => {
-        App.open_blank_tab()
-      },
-      info: `Open a Blank tab`,
-    },
-    {
       name: `Blank Above`,
       cmd: `open_blank_above_tab`,
       modes: [`tabs`],
       item: true,
       single: true,
-      icon: tabs_icon,
+      icon: split_icon,
       action: (args) => {
         App.open_blank_above_tab(args.item)
       },
