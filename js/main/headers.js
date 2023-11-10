@@ -107,9 +107,17 @@ App.is_header = (item) => {
     return false
   }
 
-  return (item.mode === `tabs`) && App.tab_ready(item) && item.header
-}
+  if (item.mode !== `tabs`) {
+    return false
+  }
 
-App.is_header_url = (url) => {
-  return url === App.header_url
+  if (item.url !== App.header_url) {
+    return false
+  }
+
+  if (!App.tab_ready(item)) {
+    return false
+  }
+
+  return true
 }
