@@ -392,6 +392,10 @@ App.set_item_text = (item) => {
   let text_mode = App.get_setting(`text_mode`)
   let title = App.get_title(item)
 
+  if (App.special_blank(item)) {
+    text_mode = `title`
+  }
+
   if (text_mode === `title`) {
     lines.push(title || url)
     item.footer = url || title
