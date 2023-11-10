@@ -23,7 +23,7 @@ App.start_blank = (item) => {
   }
 }
 
-App.add_blank_above = (item) => {
+App.open_blank_above_tab = (item) => {
   let index = App.get_item_element_index(item.mode, item.element)
   App.open_blank_tab({index: index, pinned: item.pinned})
 }

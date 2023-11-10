@@ -842,13 +842,13 @@ App.setup_commands = () => {
     },
     {
       name: `Blank Above`,
-      cmd: `add_blank_above_tab`,
+      cmd: `open_blank_above_tab`,
       modes: [`tabs`],
       item: true,
       single: true,
       icon: tabs_icon,
       action: (args) => {
-        App.add_blank_above(args.item)
+        App.open_blank_above_tab(args.item)
       },
       info: `Add a Blank tab above a tab`,
     },

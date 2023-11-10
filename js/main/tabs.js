@@ -87,7 +87,6 @@ App.setup_tabs = () => {
     `open_new_tab`,
     `sort_tabs`,
     `reopen_tab`,
-    `open_blank_tab`,
     `show_tabs_info`,
     `show_tab_urls`,
     `open_tab_urls`,
