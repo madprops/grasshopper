@@ -44,12 +44,7 @@ App.remove_item_notes = (item, single = false) => {
     }
   }
 
-  App.show_confirm({
-    message: `Remove notes? (${active.length})`,
-    confirm_action: () => {
-      App.remove_edits({what: [`notes`], force: true, items: active})
-    },
-  })
+  App.remove_edits({what: [`notes`], items: active})
 }
 
 App.remove_notes = (item) => {

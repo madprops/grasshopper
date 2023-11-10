@@ -84,10 +84,5 @@ App.remove_item_title = (item) => {
     }
   }
 
-  App.show_confirm({
-    message: `Remove title? (${active.length})`,
-    confirm_action: () => {
-      App.remove_edits({what: [`title`], force: true, items: active})
-    },
-  })
+  App.remove_edits({what: [`title`], items: active})
 }

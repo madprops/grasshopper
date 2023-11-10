@@ -416,3 +416,18 @@ App.push_to_icon_history = (icons) => {
 
   App.stor_save_icon_history()
 }
+
+App.remove_item_icon = (item) => {
+  let active = App.get_active_items({mode: item.mode, item: item})
+
+  if (active.length === 1) {
+    let it = active[0]
+
+    if (it.rule_icon && !it.custom_icon) {
+      App.alert_autohide(`This icon is set by domain rules`)
+      return
+    }
+  }
+
+  App.remove_edits({what: [`icon`], items: active})
+}

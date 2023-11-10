@@ -1087,7 +1087,7 @@ App.setup_commands = () => {
       action: (args) => {
         App.remove_item_title(args.item)
       },
-      info: `Remove a specific tag from tabs`,
+      info: `Remove the title from tabs`,
     },
     {
       name: `Remove All Titles`,
@@ -1098,6 +1098,27 @@ App.setup_commands = () => {
         App.remove_edits({what: [`title`]})
       },
       info: `Remove all titles from tabs`,
+    },
+    {
+      name: `Remove Icon`,
+      cmd: `remove_icon`,
+      modes: [`tabs`],
+      item: true,
+      icon: notepad_icon,
+      action: (args) => {
+        App.remove_item_icon(args.item)
+      },
+      info: `Remove the icon from tabs`,
+    },
+    {
+      name: `Remove All Icons`,
+      cmd: `remove_all_icons`,
+      modes: [`tabs`],
+      icon: notepad_icon,
+      action: (args) => {
+        App.remove_edits({what: [`icon`]})
+      },
+      info: `Remove all icons from tabs`,
     },
     {
       name: `Remove Notes`,
