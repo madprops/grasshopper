@@ -471,12 +471,12 @@ App.build_settings = () => {
       info: `Icon for edited tabs`,
       version: 1,
     },
-    blank_icon: {
-      name: `Blank Icon`,
+    header_icon: {
+      name: `Header Icon`,
       type: `text_smaller`,
       value: `🔽`,
       placeholder: App.icon_placeholder,
-      info: `Icon for blank tabs`,
+      info: `Icon for header tabs`,
       version: 1,
     },
   }
@@ -1062,34 +1062,34 @@ App.build_settings = () => {
   category = `colors`
 
   props = {
-    text_color_blank_enabled: {
-      name: `Blank Tabs (Text)`,
+    text_color_header_enabled: {
+      name: `Header Tabs (Text)`,
       type: `checkbox`,
       value: false,
-      info: `Use custom text color for blank tabs`,
+      info: `Use custom text color for header tabs`,
       version: 1,
     },
-    text_color_blank: {
-      name: `Blank Tabs (Text)`,
+    text_color_header: {
+      name: `Header Tabs (Text)`,
       hide_name: true,
       type: `color`,
       value: `rgb(100, 100, 100)`,
-      info: `Custom text color for blank tabs`,
+      info: `Custom text color for header tabs`,
       version: 1,
     },
-    background_color_blank_enabled: {
-      name: `Blank Tabs (Background)`,
+    background_color_header_enabled: {
+      name: `Header Tabs (Background)`,
       type: `checkbox`,
       value: false,
-      info: `Use custom background color for blank tabs`,
+      info: `Use custom background color for header tabs`,
       version: 1,
     },
-    background_color_blank: {
-      name: `Blank Tabs (Background)`,
+    background_color_header: {
+      name: `Header Tabs (Background)`,
       hide_name: true,
       type: `color`,
       value: `rgb(100, 100, 100)`,
-      info: `Custom background color for blank tabs`,
+      info: `Custom background color for header tabs`,
       version: 1,
     },
     text_color_active_enabled: {
@@ -1630,11 +1630,11 @@ App.build_settings = () => {
       info: `Show the active tab at the top when showing Recent Tabs`,
       version: 1,
     },
-    double_click_blank: {
-      name: `Double Click Blank`,
+    double_click_header: {
+      name: `Double Click Header`,
       type: `checkbox`,
       value: false,
-      info: `Require a double click to select a Blank's tabs`,
+      info: `Require a double click to select a Header's tabs`,
       version: 1,
     },
     show_protocol: {

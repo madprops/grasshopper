@@ -1,17 +1,17 @@
-App.open_blank_tab = async (args = {}) => {
+App.open_header_tab = async (args = {}) => {
   let url = {
-    url: `${App.blank_id}.html`,
+    url: App.header_url,
   }
 
   let obj = Object.assign({}, url, args)
   browser.tabs.create(obj)
 }
 
-App.insert_blank = (item) => {
+App.insert_header = (item) => {
   let active = App.get_active_items({mode: item.mode, item: item})
   let first = active.at(0)
   let index = App.get_item_element_index(first.mode, first.element)
-  App.open_blank_tab({index: index, pinned: item.pinned})
+  App.open_header_tab({index: index, pinned: item.pinned})
 
   if (active.length > 1) {
     for (let it of active.slice(1, -1)) {
@@ -32,7 +32,7 @@ App.insert_blank = (item) => {
   }
 }
 
-App.on_blank_click = async (item) => {
+App.on_header_click = async (item) => {
   let waypoint = false
   let select = false
   let selected = []
@@ -40,7 +40,7 @@ App.on_blank_click = async (item) => {
 
   for (let [i, it] of items.entries()) {
     if (waypoint) {
-      if (it.blank) {
+      if (it.header) {
         select = true
         break
       }
@@ -88,12 +88,12 @@ App.on_blank_click = async (item) => {
   }
 }
 
-App.get_blank_tabs = () => {
-  return App.get_items(`tabs`).filter(x => x.blank)
+App.get_header_tabs = () => {
+  return App.get_items(`tabs`).filter(x => x.header)
 }
 
-App.remove_all_blanks = () => {
-  let items = App.get_blank_tabs()
+App.remove_all_headers = () => {
+  let items = App.get_header_tabs()
 
   if (!items.length) {
     return
@@ -102,10 +102,10 @@ App.remove_all_blanks = () => {
   App.close_tabs_method(items)
 }
 
-App.special_blank = (item) => {
-  return item.blank
+App.is_header = (item) => {
+  return item.header
 }
 
-App.blank_url = (url) => {
-  return url.includes(App.blank_id)
+App.is_header_url = (url) => {
+  return url === App.header_url
 }

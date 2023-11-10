@@ -194,9 +194,9 @@ App.mouse_double_click_action = (mode, e) => {
 
   let item = App.direction(mode, e)
 
-  if (App.special_blank(item)) {
-    if (App.get_setting(`double_click_blank`)) {
-      App.on_blank_click(item)
+  if (App.is_header(item)) {
+    if (App.get_setting(`double_click_header`)) {
+      App.on_header_click(item)
       return
     }
   }

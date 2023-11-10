@@ -831,15 +831,15 @@ App.setup_commands = () => {
       info: `Reopen the latest closed tab`,
     },
     {
-      name: `Insert Blank`,
-      cmd: `insert_blank`,
+      name: `Insert Header`,
+      cmd: `insert_header`,
       modes: [`tabs`],
       item: true,
       icon: split_icon,
       action: (args) => {
-        App.insert_blank(args.item)
+        App.insert_header(args.item)
       },
-      info: `Add a Blank tab above a tab`,
+      info: `Add a Header tab above a tab`,
     },
     {
       name: `Select Pins`,
@@ -1144,14 +1144,14 @@ App.setup_commands = () => {
       info: `Remove all splits from tabs`,
     },
     {
-      name: `Remove All Blanks`,
-      cmd: `remove_all_blanks`,
+      name: `Remove All Headers`,
+      cmd: `remove_all_headers`,
       modes: [`tabs`],
       icon: split_icon,
       action: (args) => {
-        App.remove_all_blanks(args.item)
+        App.remove_all_headers(args.item)
       },
-      info: `Remove all Blank items`,
+      info: `Remove all Header items`,
     },
     {
       name: `Replace Tag`,
@@ -1366,14 +1366,14 @@ App.setup_commands = () => {
       info: `Filter: Show tabs that have custom properties`,
     },
     {
-      name: `Filter Blank`,
-      cmd: `filter_blank_tabs`,
+      name: `Filter Header`,
+      cmd: `filter_header_tabs`,
       modes: [`items`],
       icon: split_icon,
       action: (args) => {
-        App.filter_blank(args.mode)
+        App.filter_header(args.mode)
       },
-      info: `Filter: Show blank tabs`,
+      info: `Filter: Show header tabs`,
     },
     {
       name: `Filter No Tab`,

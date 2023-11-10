@@ -44,7 +44,7 @@ App.click_press_done = false
 App.max_tag_picks = 10
 App.popup_width = 800
 App.popup_height = 600
-App.blank_id = `123_blank_123`
+App.header_url = `about:blank`
 
 App.settings_done = false
 App.settings_ready = false

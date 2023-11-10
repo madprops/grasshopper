@@ -238,12 +238,12 @@ App.check_item_icon = (item) => {
     let container = DOM.el(`.item_icon_container`, item.element)
     let text_icon = App.get_icon(item)
 
-    if (App.special_blank(item)) {
+    if (App.is_header(item)) {
       if (!text_icon) {
-        let blank_icon = App.get_setting(`blank_icon`)
+        let header_icon = App.get_setting(`header_icon`)
 
-        if (blank_icon) {
-          text_icon = blank_icon
+        if (header_icon) {
+          text_icon = header_icon
         }
         else {
           container.classList.add(`hidden`)

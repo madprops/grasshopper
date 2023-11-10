@@ -31,8 +31,8 @@ App.check_tab_colors = (item) => {
   if (false) {
     // Top = Higher Priority
   }
-  else if (item.blank && enabled(`blank`)) {
-    proc(`blank`)
+  else if (App.is_header(item) && enabled(`header`)) {
+    proc(`header`)
   }
   else if (item.active && enabled(`active`)) {
     proc(`active`)

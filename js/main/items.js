@@ -327,8 +327,8 @@ App.create_item_element = (item) => {
     App.add_tab_icons(item)
   }
 
-  if (App.special_blank(item)) {
-    item.element.classList.add(`blank_item`)
+  if (App.is_header(item)) {
+    item.element.classList.add(`header_item`)
   }
 
   item.element.draggable = true
@@ -392,7 +392,7 @@ App.set_item_text = (item) => {
   let text_mode = App.get_setting(`text_mode`)
   let title = App.get_title(item)
 
-  if (App.special_blank(item)) {
+  if (App.is_header(item)) {
     text_mode = `title`
   }
 

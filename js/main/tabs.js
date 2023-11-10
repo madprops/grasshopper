@@ -123,7 +123,7 @@ App.build_tab_filters = () => {
       icon: App.get_setting(`unread_icon`) || def_icon
     },
     {
-      type: `blank`, text:`Blank`, skip: false, info: `Show tabs that haven't been visited yet`,
+      type: `header`, text:`Header`, skip: false, info: `Show tabs that haven't been visited yet`,
       icon: App.split_icon
     },
     {type: App.separator_string, skip: true},
@@ -338,17 +338,17 @@ App.remove_closed_tab = (id) => {
 }
 
 App.tabs_action = async (item, from) => {
-  if (App.special_blank(item)) {
-    let on_blank = true
+  if (App.is_header(item)) {
+    let on_header = true
 
     if (from === `click`) {
-      if (App.get_setting(`double_click_blank`)) {
-        on_blank = false
+      if (App.get_setting(`double_click_header`)) {
+        on_header = false
       }
     }
 
-    if (on_blank) {
-      App.on_blank_click(item)
+    if (on_header) {
+      App.on_header_click(item)
       return
     }
   }

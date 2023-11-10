@@ -77,9 +77,9 @@ App.process_info = (args = {}) => {
   let image = App.is_image(url)
   let video = App.is_video(url)
   let audio = App.is_audio(url)
-  let blank = App.blank_url(url)
+  let header = App.is_header_url(url)
 
-  if (blank) {
+  if (header) {
     title = `Give me a title`
   }
 
@@ -98,7 +98,7 @@ App.process_info = (args = {}) => {
     video: video,
     audio: audio,
     is_item: true,
-    blank: blank,
+    header: header,
   }
 
   if (args.mode === `tabs`) {
@@ -148,7 +148,6 @@ App.process_info = (args = {}) => {
     item.visible = true
     item.selected = false
     item.last_scroll = 0
-    item.blank_started = false
     App.create_item_element(item)
     App[`${args.mode}_idx`] += 1
     return item
