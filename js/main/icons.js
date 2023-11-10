@@ -238,10 +238,17 @@ App.check_item_icon = (item) => {
     let container = DOM.el(`.item_icon_container`, item.element)
     let text_icon = App.get_icon(item)
 
-    if (!text_icon) {
-      if (App.special_blank(item)) {
-        container.classList.add(`hidden`)
-        return
+    if (App.special_blank(item)) {
+      if (!text_icon) {
+        let blank_icon = App.get_setting(`blank_icon`)
+
+        if (blank_icon) {
+          text_icon = blank_icon
+        }
+        else {
+          container.classList.add(`hidden`)
+          return
+        }
       }
     }
 

@@ -8,22 +8,21 @@ App.open_blank_tab = (args = {}) => {
 }
 
 App.start_blank = (item) => {
-  let word_1 = App.capitalize(App.random_word(4))
-  let word_2 = App.capitalize(App.random_word(4))
-  let title = `${word_1} ${word_2}`
+  let title = App.get_title(item, false)
 
-  if (App.apply_edit(`title`, item, title)) {
-    App.custom_save(item.id, `custom_title`, title)
-  }
+  if (!title) {
+    let word_1 = App.capitalize(App.random_word(4))
+    let word_2 = App.capitalize(App.random_word(4))
+    let title = `${word_1} ${word_2}`
 
-  let icon = App.get_setting(`blank_icon`)
-
-  if (icon) {
-    if (App.apply_edit(`icon`, item, icon)) {
-      App.custom_save(item.id, `custom_icon`, icon)
+    if (App.apply_edit(`title`, item, title)) {
+      App.custom_save(item.id, `custom_title`, title)
     }
   }
-  else {
+
+  let icon = App.get_icon(item) || App.get_setting(`blank_icon`)
+
+  if (!icon) {
     let color = App.random_choice(App.colors)
 
     if (App.apply_edit(`color`, item, color)) {
