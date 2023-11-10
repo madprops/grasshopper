@@ -1,35 +1,27 @@
 App.edit_props = {
   color: {
     type: `string`,
-    rule: true,
   },
   title: {
     type: `string`,
-    rule: true,
   },
   tags: {
     type: `list`,
-    rule: true,
   },
   notes: {
     type: `string`,
-    rule: true,
   },
   split_top: {
     type: `bool`,
-    rule: true,
   },
   split_bottom: {
     type: `bool`,
-    rule: true,
   },
   split_title: {
     type: `string`,
-    rule: true,
   },
   icon: {
     type: `string`,
-    rule: true,
   },
 }
 

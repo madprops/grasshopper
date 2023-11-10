@@ -4,7 +4,7 @@ App.check_rules = (item) => {
   for (let key in App.edit_props) {
     let p = item[`rule_${key}`]
 
-    if (p === undefined || !p.rule) {
+    if (p === undefined) {
       item[`rule_${key}`] = App.edit_default(key)
     }
   }
@@ -22,39 +22,25 @@ App.check_rules = (item) => {
     }
 
     if (match) {
-      if (rule.color && rule.color !== `none`) {
-        item.rule_color = rule.color
-        item.ruled = true
-      }
-
-      if (rule.title) {
-        item.rule_title = rule.title
-        item.ruled = true
-      }
-
-      if (rule.tags.length) {
-        item.rule_tags = App.taglist(rule.tags)
-        item.ruled = true
-      }
-
-      if (rule.notes) {
-        item.rule_notes = rule.notes
-        item.ruled = true
-      }
-
-      if (rule.split_top) {
-        item.rule_split_top = true
-        item.ruled = true
-      }
-
-      if (rule.split_bottom) {
-        item.rule_split_bottom = true
-        item.ruled = true
-      }
-
-      if (rule.split_title) {
-        item.rule_split_title = rule.split_title
-        item.ruled = true
+      for (let key in App.edit_props) {
+        if (key === `tags`) {
+          if (rule[key].length) {
+            item[`rule_${key}`] = App.taglist(rule[key])
+            item.ruled = true
+          }
+        }
+        else if (key === `color`) {
+          if (rule[key] && (rule[key] !== `none`)) {
+            item[`rule_${key}`] = rule[key]
+            item.ruled = true
+          }
+        }
+        else {
+          if (rule[key]) {
+            item[`rule_${key}`] = rule[key]
+            item.ruled = true
+          }
+        }
       }
     }
 

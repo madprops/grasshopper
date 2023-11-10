@@ -1228,6 +1228,7 @@ App.setup_settings_addlist = () => {
         `exact`,
         `color`,
         `title`,
+        `icon`,
         `tags`,
         `notes`,
         `split_top`,
@@ -1239,6 +1240,7 @@ App.setup_settings_addlist = () => {
         domain: `text`,
         color: `menu`,
         title: `text`,
+        icon: `text`,
         tags: `text`,
         notes: `textarea`,
         split_top: `checkbox`,
@@ -1250,6 +1252,7 @@ App.setup_settings_addlist = () => {
         domain: `Domain`,
         color: `Color`,
         title: `Title`,
+        icon: `Icon`,
         tags: `Tags`,
         notes: `Notes`,
         split_top: `Split Top`,
@@ -1272,6 +1275,7 @@ App.setup_settings_addlist = () => {
 
         if ((values[`color`] === `none`) &&
         !values[`title`] &&
+        !values[`icon`] &&
         !values[`tags`] &&
         !values[`split_top`] &&
         !values[`split_bottom`] &&
