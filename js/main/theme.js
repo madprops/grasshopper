@@ -42,6 +42,8 @@ App.do_apply_theme = (args = {}) => {
     App.set_css_var(`text_color`, args.text_color)
     let main_background = App.colorlib.rgb_to_rgba(args.background_color, 0.93)
     App.set_css_var(`main_background`, main_background)
+    let slight_shade = App.colorlib.rgb_to_rgba(args.text_color, 0.08)
+    App.set_css_var(`slight_shade`, slight_shade)
     let alt_color_0 = App.colorlib.rgb_to_rgba(args.text_color, 0.15)
     App.set_css_var(`alt_color_0`, alt_color_0)
     let alt_color_1 = App.colorlib.rgb_to_rgba(args.text_color, 0.20)
