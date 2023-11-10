@@ -1366,6 +1366,16 @@ App.setup_commands = () => {
       info: `Filter: Show tabs that have custom properties`,
     },
     {
+      name: `Filter Blank`,
+      cmd: `filter_blank_tabs`,
+      modes: [`items`],
+      icon: split_icon,
+      action: (args) => {
+        App.filter_blank(args.mode)
+      },
+      info: `Filter: Show blank tabs`,
+    },
+    {
       name: `Filter No Tab`,
       cmd: `filter_no_tab`,
       modes: [`history`, `bookmarks`, `closed`],

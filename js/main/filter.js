@@ -366,6 +366,9 @@ App.filter_check = (args) => {
     else if (args.filter_mode === `edited`) {
       match = App.edited(args.item)
     }
+    else if (args.filter_mode === `blank`) {
+      match = args.item.blank
+    }
     else if (args.filter_mode === `pinned`) {
       match = args.item.pinned
     }
@@ -908,6 +911,10 @@ App.filter_notes = (mode) => {
 
 App.filter_edited = (mode) => {
   App.toggle_filter(mode, `edited`)
+}
+
+App.filter_blank = (mode) => {
+  App.toggle_filter(mode, `blank`)
 }
 
 App.filter_tag = (mode, tag) => {

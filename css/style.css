@@ -1251,7 +1251,7 @@ a:visited, a:link, a:hover {
   border-bottom: var(--split_border) !important;
 }
 
-.blank_item {
+.not_filtered .blank_item {
   font-size: var(--bigger_font);
   outline: 1px solid var(--alt_color_2);
   background-color: var(--slight_shade);
