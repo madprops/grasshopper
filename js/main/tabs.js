@@ -337,10 +337,20 @@ App.remove_closed_tab = (id) => {
   }
 }
 
-App.tabs_action = async (item) => {
+App.tabs_action = async (item, from) => {
   if (App.special_blank(item)) {
-    App.on_blank_click(item)
-    return
+    let on_blank = true
+
+    if (from === `click`) {
+      if (App.get_setting(`double_click_blank`)) {
+        on_blank = false
+      }
+    }
+
+    if (on_blank) {
+      App.on_blank_click(item)
+      return
+    }
   }
 
   App.on_action(`tabs`)

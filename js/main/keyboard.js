@@ -208,7 +208,7 @@ App.check_items_keyboard = (e) => {
         }
       }
 
-      App[`${mode}_action`](item)
+      App[`${mode}_action`](item, `enter`)
       e.preventDefault()
       return
     }

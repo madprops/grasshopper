@@ -1629,6 +1629,13 @@ App.build_settings = () => {
       info: `Show the active tab at the top when showing Recent Tabs`,
       version: 1,
     },
+    double_click_blank: {
+      name: `Double Click Blank`,
+      type: `checkbox`,
+      value: false,
+      info: `Require a double click to select a Blank's tabs`,
+      version: 1,
+    },
     show_protocol: {
       name: `Show Protocol`,
       type: `checkbox`,

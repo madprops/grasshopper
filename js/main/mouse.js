@@ -177,7 +177,7 @@ App.mouse_click_action = (mode, e) => {
     return
   }
 
-  App[`${mode}_action`](item)
+  App[`${mode}_action`](item, `click`)
 }
 
 App.mouse_double_click_action = (mode, e) => {
@@ -193,6 +193,14 @@ App.mouse_double_click_action = (mode, e) => {
   }
 
   let item = App.direction(mode, e)
+
+  if (App.special_blank(item)) {
+    if (App.get_setting(`double_click_blank`)) {
+      App.on_blank_click(item)
+      return
+    }
+  }
+
   let cmd = App.get_setting(`double_click_command`)
 
   if (cmd === `item_action`) {
