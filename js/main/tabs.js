@@ -92,9 +92,6 @@ App.setup_tabs = () => {
     `open_tab_urls`,
     `show_close_tabs_menu`,
   ]
-
-  let id = App.extension_id
-  App.dummy_url = `moz-extension://${id}/dummy.html`
 }
 
 App.build_tab_filters = () => {
