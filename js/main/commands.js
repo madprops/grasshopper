@@ -1063,18 +1063,6 @@ App.setup_commands = () => {
       },
       info: `Give the split bottom to another tab`,
     },
-    {
-      name: `Split Title`,
-      cmd: `edit_split_title`,
-      modes: [`tabs`],
-      item: true,
-      some_split_top: true,
-      icon: split_icon,
-      action: (args) => {
-        App.edit_tab_split_title(args.item)
-      },
-      info: `Edit the split title`,
-    },
 
     ...color_removers,
 

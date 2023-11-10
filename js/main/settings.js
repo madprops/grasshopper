@@ -1233,7 +1233,6 @@ App.setup_settings_addlist = () => {
         `notes`,
         `split_top`,
         `split_bottom`,
-        `split_title`,
       ],
       pk: `domain`,
       widgets: {
@@ -1245,7 +1244,6 @@ App.setup_settings_addlist = () => {
         notes: `textarea`,
         split_top: `checkbox`,
         split_bottom: `checkbox`,
-        split_title: `text`,
         exact: `checkbox`,
       },
       labels: {
@@ -1257,7 +1255,6 @@ App.setup_settings_addlist = () => {
         notes: `Notes`,
         split_top: `Split Top`,
         split_bottom: `Split Bottom`,
-        split_title: `Split Title`,
         exact: `Exact`,
       },
       sources: {
@@ -1279,7 +1276,6 @@ App.setup_settings_addlist = () => {
         !values[`tags`] &&
         !values[`split_top`] &&
         !values[`split_bottom`] &&
-        !values[`split_title`] &&
         !values[`notes`]) {
           return false
         }

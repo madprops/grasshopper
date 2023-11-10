@@ -17,9 +17,6 @@ App.edit_props = {
   split_bottom: {
     type: `bool`,
   },
-  split_title: {
-    type: `string`,
-  },
   icon: {
     type: `string`,
   },

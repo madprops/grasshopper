@@ -30,7 +30,3 @@ App.get_notes = (item) => {
 App.get_split = (item, what) => {
   return item[`custom_split_${what}`] || item[`rule_split_${what}`] || false
 }
-
-App.get_split_title = (item) => {
-  return item[`custom_split_title`] || item[`rule_split_title`] || ``
-}

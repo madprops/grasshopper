@@ -1047,21 +1047,6 @@ App.build_settings = () => {
       info: `Which side to show the split side border`,
       version: 1,
     },
-    split_title: {
-      name: `Split Title`,
-      type: `menu`,
-      value: `normal`,
-      info: `How to display the title of splits`,
-      version: 1,
-    },
-    split_title_align: {
-      name: `Split Title Align`,
-      type: `menu`,
-      value: `center`,
-      info: `Where to display the split title`,
-      separator: true,
-      version: 1,
-    },
     notes_icon_click: {
       name: `Notes Icon Click`,
       type: `checkbox`,
@@ -1910,18 +1895,6 @@ App.build_settings = () => {
           {text: `Left`, value: `left`},
           {text: `Right`, value: `right`},
           {text: `Both`, value: `both`},
-        ])
-
-        App.settings_make_menu(`split_title`, [
-          {text: `None`, value: `none`},
-          {text: `Normal`, value: `normal`},
-          {text: `Hover`, value: `hover`},
-        ])
-
-        App.settings_make_menu(`split_title_align`, [
-          {text: `Left`, value: `left`},
-          {text: `Center`, value: `center`},
-          {text: `Right`, value: `right`},
         ])
       },
     },

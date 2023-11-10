@@ -6,27 +6,6 @@ App.edit_tab_split = (args = {}) => {
 
   App.def_args(def_args, args)
   let active = App.get_active_items({mode: args.item.mode, item: args.item})
-
-  function check_title () {
-    if (!args.prompt_title) {
-      return
-    }
-
-    if (args.which === `bottom`) {
-      return
-    }
-
-    if ((args.which === `top`) && (active.length !== 1)) {
-      return
-    }
-
-    if ((active.length === 1) && (active[0].rule_split_title)) {
-      return
-    }
-
-    App.edit_tab_split_title(args.item)
-  }
-
   let force = App.check_force(`warn_on_edit_tabs`, active)
 
   if (args.which === `top` || args.which === `bottom`) {
@@ -43,14 +22,7 @@ App.edit_tab_split = (args = {}) => {
           if (App.apply_edit(`split_${other}`, it, false)) {
             App.custom_save(it.id, `custom_split_${other}`, false)
           }
-
-          if (App.apply_edit(`split_title`, it, false)) {
-            App.custom_save(it.id, `custom_split_title`, )
-          }
         }
-
-        App.remove_split_title(active)
-        check_title()
       },
       force: force,
     })
@@ -89,43 +61,6 @@ App.edit_tab_split = (args = {}) => {
     if (App.apply_edit(`split_bottom`, it_2, what)) {
       App.custom_save(it_2.id, `custom_split_bottom`, what)
     }
-
-    App.remove_split_title(active)
-
-    if (what) {
-      check_title()
-    }
-  }
-}
-
-App.edit_tab_split_title = (item) => {
-  let active = App.get_active_items({mode: item.mode, item: item})
-  let value = App.get_split_title(item)
-
-  App.show_prompt({
-    value: value,
-    placeholder: `Enter Title`,
-    on_submit: (title) => {
-      if (!title) {
-        title = App.edit_default(`split_title`)
-      }
-
-      for (let it of active) {
-        if (App.apply_edit(`split_title`, it, title)) {
-          App.custom_save(it.id, `custom_split_title`, title)
-        }
-      }
-    },
-  })
-}
-
-App.remove_split_title = (items) => {
-  let title = App.edit_default(`split_title`)
-
-  for (let item of items) {
-    if (App.apply_edit(`split_title`, item, title)) {
-      App.custom_save(item.id, `custom_split_title`, title)
-    }
   }
 }
 
@@ -138,11 +73,11 @@ App.remove_item_split = (item) => {
     }
   }
 
-  App.remove_edits({what: [`split_top`, `split_bottom`, `split_title`], items: active})
+  App.remove_edits({what: [`split_top`, `split_bottom`], items: active})
 }
 
 App.remove_all_splits = () => {
-  App.remove_edits({what: [`split_top`, `split_bottom`, `split_title`]})
+  App.remove_edits({what: [`split_top`, `split_bottom`]})
 }
 
 App.replace_split = (item, which) => {
@@ -154,13 +89,8 @@ App.replace_split = (item, which) => {
 
 App.do_replace_split = (item) => {
   App.split_pick = false
-  let title = App.split_pick_original.custom_split_title
   App.remove_item_split(App.split_pick_original)
   App.edit_tab_split({item: item, which: App.split_pick_which, prompt_title: false})
-
-  if (App.apply_edit(`split_title`, item, title)) {
-    App.custom_save(item.id, `custom_split_title`, title)
-  }
 }
 
 App.apply_splits = (item) => {
@@ -173,11 +103,6 @@ App.apply_splits = (item) => {
   for (let what of [`top`, `bottom`]) {
     if (App.get_split(item, what)) {
       item.element.classList.add(`split_${what}`)
-
-      if (what === `top`) {
-        item.element.dataset.split_title = App.get_split_title(item) || ``
-      }
-
       has_split = true
     }
     else {
