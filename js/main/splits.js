@@ -146,7 +146,7 @@ App.remove_all_splits = () => {
 }
 
 App.replace_split = (item, which) => {
-  App.alert_autohide(`Click on a tab`)
+  App.alert(`Click on a tab`)
   App.split_pick = true
   App.split_pick_original = item
   App.split_pick_which = which
