@@ -314,9 +314,11 @@ App.create_item_element = (item) => {
   item.element.append(trace)
 
   if (App.get_setting(`item_icon`) !== `none`) {
-    let icon_container = DOM.create(`div`, `item_icon_container item_node`)
-    item.element.append(icon_container)
-    App.check_item_icon(item)
+    if (!item.blank) {
+      let icon_container = DOM.create(`div`, `item_icon_container item_node`)
+      item.element.append(icon_container)
+      App.check_item_icon(item)
+    }
   }
 
   App.get_color_icon(item)
@@ -324,6 +326,10 @@ App.create_item_element = (item) => {
 
   if (item.mode === `tabs`) {
     App.add_tab_icons(item)
+  }
+
+  if (item.blank) {
+    item.element.classList.add(`blank_item`)
   }
 
   item.element.draggable = true

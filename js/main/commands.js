@@ -831,6 +831,15 @@ App.setup_commands = () => {
       info: `Reopen the latest closed tab`,
     },
     {
+      name: `Open Blank`,
+      cmd: `open_blank_tab`,
+      icon: tabs_icon,
+      action: (args) => {
+        App.open_blank_tab()
+      },
+      info: `Open a Blank tab`,
+    },
+    {
       name: `Select Pins`,
       cmd: `select_pinned_tabs`,
       modes: [`tabs`],

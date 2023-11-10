@@ -487,3 +487,31 @@ App.sort_alpha = (array) => {
 App.same_arrays = (a, b) => {
   return a.length === b.length && a.every(el => b.includes(el))
 }
+
+App.random_choice = (list, rand) => {
+  return list[App.random_int(0, list.length - 1, undefined, rand)]
+}
+
+App.random_word = (n = 4) => {
+  let i = 0
+  let s = ``
+  let cons = true
+
+  while (i < n) {
+    if (cons) {
+      s += App.random_choice(App.consonants)
+    }
+    else {
+      s += App.random_choice(App.vowels)
+    }
+
+    cons = !cons
+    i += 1
+  }
+
+  return s
+}
+
+App.consonants = [`b`, `c`, `d`, `f`, `g`, `h`, `j`, `k`,
+`l`, `m`, `n`, `p`, `q`, `r`, `s`, `t`, `v`, `w`, `x`, `y`, `z`]
+App.vowels = [`a`, `e`, `i`, `o`, `u`]

@@ -236,6 +236,10 @@ App.check_icons = (item) => {
 }
 
 App.check_item_icon = (item) => {
+  if (item.blank) {
+    return
+  }
+
   if (App.get_setting(`item_icon`) !== `none`) {
     if (item.favicon) {
       if (item.favicon_used === item.favicon) {

@@ -77,6 +77,7 @@ App.process_info = (args = {}) => {
   let image = App.is_image(url)
   let video = App.is_video(url)
   let audio = App.is_audio(url)
+  let blank = url === App.blank_url
 
   let item = {
     title: title,
@@ -93,6 +94,7 @@ App.process_info = (args = {}) => {
     video: video,
     audio: audio,
     is_item: true,
+    blank: blank,
   }
 
   if (args.mode === `tabs`) {
