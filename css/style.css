@@ -1265,7 +1265,6 @@ a:visited, a:link, a:hover {
 
 .blank_item {
   font-size: var(--bigger_font);
-  outline: 1px solid var(--alt_color_1);
-  outline-style: dashed;
+  outline: 1px solid var(--alt_color_2);
   background-color: var(--slight_shade);
 }
