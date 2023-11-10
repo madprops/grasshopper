@@ -81,7 +81,7 @@ App.header_group = (item) => {
   }
 }
 
-App.header_double_click = (item) => {
+App.select_header_group = (item) => {
   let group = App.header_group(item)
 
   if (group.length) {

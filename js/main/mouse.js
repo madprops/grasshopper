@@ -202,7 +202,7 @@ App.mouse_double_click_action = (mode, e) => {
   let item = App.direction(mode, e)
 
   if (App.is_header(item)) {
-    App.header_double_click(item)
+    App.select_header_group(item)
     return
   }
 
