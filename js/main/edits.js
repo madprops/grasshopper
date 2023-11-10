@@ -267,6 +267,10 @@ App.remove_edits = (args = {}) => {
 
   if (!args.items.length) {
     for (let item of App.get_items(`tabs`)) {
+      if (App.special_blank(item)) {
+        continue
+      }
+
       for (let what of args.what) {
         if (item[`custom_${what}`]) {
           args.items.push(item)
