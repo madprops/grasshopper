@@ -41,6 +41,7 @@ App.on_blank_click = (item) => {
         break
       }
       else if (App.get_split(it, `top`)) {
+        select = true
         break
       }
       else if (App.get_split(it, `bottom`)) {
