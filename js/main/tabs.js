@@ -1313,14 +1313,18 @@ App.check_tab_loading = (item) => {
     return
   }
 
-  if (item.status === `loading`) {
-    item.element.classList.add(`${effect}_effect`)
-  }
-  else {
+  if (App.tab_ready(item)) {
     let effects = [`fade`, `spin`, `icon`]
 
     for (let effect of effects) {
       item.element.classList.remove(`${effect}_effect`)
     }
   }
+  else {
+    item.element.classList.add(`${effect}_effect`)
+  }
+}
+
+App.tab_ready = (item) => {
+  return item.status === `complete`
 }

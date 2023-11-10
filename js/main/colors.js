@@ -3,6 +3,8 @@ App.check_tab_colors = (item) => {
     return
   }
 
+  if (item.status)
+
   function text_enabled (type) {
     return App.get_setting(`text_color_${type}_enabled`)
   }

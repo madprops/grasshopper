@@ -89,7 +89,7 @@ App.on_header_click = async (item) => {
 }
 
 App.get_header_tabs = () => {
-  return App.get_items(`tabs`).filter(x => x.header)
+  return App.get_items(`tabs`).filter(x => App.is_header(x))
 }
 
 App.remove_all_headers = () => {
@@ -103,7 +103,7 @@ App.remove_all_headers = () => {
 }
 
 App.is_header = (item) => {
-  return item.header
+  return (item.mode === `tabs`) && App.tab_ready(item) && item.header
 }
 
 App.is_header_url = (url) => {
