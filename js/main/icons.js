@@ -332,7 +332,7 @@ App.get_color_icon = (item) => {
     }
   }
 
-  let icon = DOM.create(`div`, `color_icon item_node hidden${cls}`)
+  let icon = DOM.create(`div`, `color_icon_container item_node hidden${cls}`)
   icon.title = `Color`
   item.element.append(icon)
 }

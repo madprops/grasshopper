@@ -1014,7 +1014,11 @@ a:visited, a:link, a:hover {
   flex-grow: 0;
 }
 
-.item .color_icon.effect:hover .color_icon {
+.item .color_icon_container.effect:hover .color_icon {
+  outline: 1px solid var(--text_color);
+}
+
+.colored_background .color_icon {
   outline: 1px solid var(--text_color);
 }
 

@@ -1921,6 +1921,7 @@ App.build_settings = () => {
           {text: `Text`, value: `text`},
           {text: `Text & Icon`, value: `text_icon`},
           {text: `Background`, value: `background`},
+          {text: `BG & Icon`, value: `background_icon`},
         ])
 
         App.settings_make_menu(`split_side`, [
