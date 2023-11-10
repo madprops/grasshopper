@@ -40,21 +40,13 @@ App.edit_tab_split = (args = {}) => {
 
     let top = active.at(0)
     let bottom = active.at(-1)
-    let what
 
-    if (bottom.custom_split_bottom) {
-      what = false
-    }
-    else {
-      what = true
+    if (App.apply_edit(`split_top`, top, true)) {
+      App.custom_save(top.id, `custom_split_top`, true)
     }
 
-    if (App.apply_edit(`split_top`, top, what)) {
-      App.custom_save(top.id, `custom_split_top`, what)
-    }
-
-    if (App.apply_edit(`split_bottom`, bottom, what)) {
-      App.custom_save(bottom.id, `custom_split_bottom`, what)
+    if (App.apply_edit(`split_bottom`, bottom, true)) {
+      App.custom_save(bottom.id, `custom_split_bottom`, true)
     }
   }
 }

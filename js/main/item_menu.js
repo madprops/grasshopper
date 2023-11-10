@@ -124,7 +124,7 @@ App.more_menu_items = (args = {}) => {
       App.sep(items)
     }
 
-    App.item_menu_item(items, `open_blank_above_tab`, {item: args.item})
+    App.item_menu_item(items, `insert_blank`, {item: args.item})
     App.item_menu_item(items, `add_split_auto`, {item: args.item})
     App.item_menu_item(items, `add_split_top`, {item: args.item})
     App.item_menu_item(items, `add_split_bottom`, {item: args.item})

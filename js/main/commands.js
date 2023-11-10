@@ -831,14 +831,13 @@ App.setup_commands = () => {
       info: `Reopen the latest closed tab`,
     },
     {
-      name: `Blank Above`,
-      cmd: `open_blank_above_tab`,
+      name: `Insert Blank`,
+      cmd: `insert_blank`,
       modes: [`tabs`],
       item: true,
-      single: true,
       icon: split_icon,
       action: (args) => {
-        App.open_blank_above_tab(args.item)
+        App.insert_blank(args.item)
       },
       info: `Add a Blank tab above a tab`,
     },

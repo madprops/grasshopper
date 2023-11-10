@@ -23,9 +23,29 @@ App.start_blank = (item) => {
   }
 }
 
-App.open_blank_above_tab = (item) => {
-  let index = App.get_item_element_index(item.mode, item.element)
+App.insert_blank = (item) => {
+  let active = App.get_active_items({mode: item.mode, item: item})
+  let first = active.at(0)
+  let index = App.get_item_element_index(first.mode, first.element)
   App.open_blank_tab({index: index, pinned: item.pinned})
+
+  if (active.length > 1) {
+    for (let it of active.slice(1, -1)) {
+      if (App.apply_edit(`split_top`, it, false)) {
+        App.custom_save(it.id, `custom_split_top`, false)
+      }
+
+      if (App.apply_edit(`split_bottom`, it, false)) {
+        App.custom_save(it.id, `custom_split_bottom`, false)
+      }
+    }
+
+    let bottom = active.at(-1)
+
+    if (App.apply_edit(`split_bottom`, bottom, true)) {
+      App.custom_save(bottom.id, `custom_split_bottom`, true)
+    }
+  }
 }
 
 App.on_blank_click = (item) => {
