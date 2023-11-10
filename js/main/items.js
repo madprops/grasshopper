@@ -299,6 +299,7 @@ App.refresh_item_element = (item) => {
   App.check_tab_loading(item)
   App.check_item_icon(item)
   App.check_icons(item)
+  App.check_tab_colors(item)
   App.check_view_media(item)
   App.set_item_text(item)
   App.apply_color_mode(item)

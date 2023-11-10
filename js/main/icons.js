@@ -231,8 +231,6 @@ App.check_icons = (item) => {
       icon.classList.add(`hidden`)
     }
   }
-
-  App.check_text_color(item)
 }
 
 App.check_item_icon = (item) => {

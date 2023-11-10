@@ -1061,6 +1061,36 @@ App.build_settings = () => {
   category = `colors`
 
   props = {
+    text_color_blank_enabled: {
+      name: `Blank Tabs (Text)`,
+      type: `checkbox`,
+      value: false,
+      info: `Use custom text color for blank tabs`,
+      version: 1,
+    },
+    text_color_blank: {
+      name: `Blank Tabs (Text)`,
+      hide_name: true,
+      type: `color`,
+      value: `rgb(100, 100, 100)`,
+      info: `Custom text color for blank tabs`,
+      version: 1,
+    },
+    background_color_blank_enabled: {
+      name: `Blank Tabs (Background)`,
+      type: `checkbox`,
+      value: false,
+      info: `Use custom background color for blank tabs`,
+      version: 1,
+    },
+    background_color_blank: {
+      name: `Blank Tabs (Background)`,
+      hide_name: true,
+      type: `color`,
+      value: `rgb(100, 100, 100)`,
+      info: `Custom background color for blank tabs`,
+      version: 1,
+    },
     text_color_active_enabled: {
       name: `Active Tabs (Text)`,
       type: `checkbox`,
