@@ -241,8 +241,17 @@ App.check_item_icon = (item) => {
   }
 
   if (App.get_setting(`item_icon`) !== `none`) {
-    if (App.get_icon(item)) {
-      icon = App.get_text_icon(item)
+    let text_icon = App.get_icon(item)
+
+    if (text_icon) {
+      if (item.text_icon_used === text_icon) {
+        return
+      }
+
+      icon = App.get_text_icon(text_icon)
+      item.text_icon_used = text_icon
+      item.favicon_used = undefined
+      item.generated_icon = undefined
     }
     else if (item.favicon) {
       if (item.favicon_used === item.favicon) {
@@ -252,6 +261,7 @@ App.check_item_icon = (item) => {
       icon = App.get_favicon(item)
       item.favicon_used = item.favicon
       item.generated_icon = undefined
+      item.text_icon_used = undefined
     }
     else if (App.get_setting(`generate_icons`)) {
       if (item.generated_icon === item.hostname) {
@@ -261,6 +271,7 @@ App.check_item_icon = (item) => {
       icon = App.generate_icon(item.hostname)
       item.generated_icon = item.hostname
       item.favicon_used = undefined
+      item.text_icon_used = undefined
     }
 
     let container = DOM.el(`.item_icon_container`, item.element)
@@ -285,9 +296,9 @@ App.create_icon = (name, type = 1) => {
   return icon
 }
 
-App.get_text_icon = (item) => {
+App.get_text_icon = (text_icon) => {
   let icon = DOM.create(`div`, `item_icon`)
-  icon.textContent = App.get_icon(item)
+  icon.textContent = text_icon
   return icon
 }
 
