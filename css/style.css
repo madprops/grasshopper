@@ -1247,20 +1247,8 @@ a:visited, a:link, a:hover {
   border-top: var(--split_border) !important;
 }
 
-.not_filtered .split_top:nth-child(1 of :not(.hidden)) {
-  margin-top: unset;
-}
-
 .not_filtered .split_bottom {
   border-bottom: var(--split_border) !important;
-}
-
-.not_filtered .split_bottom:nth-last-child(1 of :not(.hidden)) {
-  margin-bottom: unset;
-}
-
-.not_filtered .split_bottom:not(.hidden) + .split_top:not(.hidden) {
-  margin-top: 0.25rem;
 }
 
 .blank_item {
