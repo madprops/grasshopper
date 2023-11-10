@@ -103,7 +103,7 @@ App.remove_all_blanks = () => {
 }
 
 App.special_blank = (item) => {
-  return item.blank && App.get_setting(`special_blanks`)
+  return item.blank
 }
 
 App.blank_url = (url) => {
