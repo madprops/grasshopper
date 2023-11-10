@@ -60,6 +60,10 @@ App.on_blank_click = async (item) => {
         select = true
         break
       }
+      else if (item.pinned && !it.pinned) {
+        select = true
+        break
+      }
       else if (App.get_split(it, `top`)) {
         select = true
         break
