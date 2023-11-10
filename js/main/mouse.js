@@ -177,11 +177,6 @@ App.mouse_click_action = (mode, e) => {
     return
   }
 
-  if (App.split_pick) {
-    App.do_replace_split(item)
-    return
-  }
-
   if (item.blank) {
     App.on_blank_click(item)
     return

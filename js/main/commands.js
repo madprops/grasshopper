@@ -1035,34 +1035,6 @@ App.setup_commands = () => {
       },
       info: `Add a split below the tab`,
     },
-    {
-      name: `Replace Split Top`,
-      short_name: `Replace Split`,
-      cmd: `replace_split_top`,
-      modes: [`tabs`],
-      single: true,
-      some_split_top: true,
-      item: true,
-      icon: split_icon,
-      action: (args) => {
-        App.replace_split(args.item, `top`)
-      },
-      info: `Give the split top to another tab`,
-    },
-    {
-      name: `Replace Split Bottom`,
-      short_name: `Replace Split`,
-      cmd: `replace_split_bottom`,
-      modes: [`tabs`],
-      single: true,
-      some_split_bottom: true,
-      item: true,
-      icon: split_icon,
-      action: (args) => {
-        App.replace_split(args.item, `bottom`)
-      },
-      info: `Give the split bottom to another tab`,
-    },
 
     ...color_removers,
 

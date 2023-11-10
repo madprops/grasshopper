@@ -80,19 +80,6 @@ App.remove_all_splits = () => {
   App.remove_edits({what: [`split_top`, `split_bottom`]})
 }
 
-App.replace_split = (item, which) => {
-  App.alert(`Click on a tab`)
-  App.split_pick = true
-  App.split_pick_original = item
-  App.split_pick_which = which
-}
-
-App.do_replace_split = (item) => {
-  App.split_pick = false
-  App.remove_item_split(App.split_pick_original)
-  App.edit_tab_split({item: item, which: App.split_pick_which, prompt_title: false})
-}
-
 App.apply_splits = (item) => {
   if (item.mode !== `tabs`) {
     return
