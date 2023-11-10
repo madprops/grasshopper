@@ -478,6 +478,14 @@ App.build_settings = () => {
       info: `Icon for edited tabs`,
       version: 1,
     },
+    blank_icon: {
+      name: `Blank Icon`,
+      type: `text_smaller`,
+      value: ``,
+      placeholder: App.icon_placeholder,
+      info: `Icon for blank tabs`,
+      version: 1,
+    },
   }
 
   add_props()

@@ -234,12 +234,18 @@ App.check_icons = (item) => {
 }
 
 App.check_item_icon = (item) => {
-  if (App.special_blank(item)) {
-    return
-  }
-
   if (App.get_setting(`item_icon`) !== `none`) {
+    let container = DOM.el(`.item_icon_container`, item.element)
     let text_icon = App.get_icon(item)
+
+    if (!text_icon) {
+      if (App.special_blank(item)) {
+        container.classList.add(`hidden`)
+        return
+      }
+    }
+
+    container.classList.remove(`hidden`)
 
     if (text_icon) {
       if (item.text_icon_used === text_icon) {
@@ -272,7 +278,6 @@ App.check_item_icon = (item) => {
       item.text_icon_used = undefined
     }
 
-    let container = DOM.el(`.item_icon_container`, item.element)
     container.innerHTML = ``
 
     if (icon) {

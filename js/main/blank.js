@@ -16,10 +16,19 @@ App.start_blank = (item) => {
     App.custom_save(item.id, `custom_title`, title)
   }
 
-  let color = App.random_choice(App.colors)
+  let icon = App.get_setting(`blank_icon`)
 
-  if (App.apply_edit(`color`, item, color)) {
-    App.custom_save(item.id, `custom_color`, color)
+  if (icon) {
+    if (App.apply_edit(`icon`, item, icon)) {
+      App.custom_save(item.id, `custom_icon`, icon)
+    }
+  }
+  else {
+    let color = App.random_choice(App.colors)
+
+    if (App.apply_edit(`color`, item, color)) {
+      App.custom_save(item.id, `custom_color`, color)
+    }
   }
 }
 
