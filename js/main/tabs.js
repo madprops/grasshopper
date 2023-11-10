@@ -338,21 +338,6 @@ App.remove_closed_tab = (id) => {
 }
 
 App.tabs_action = async (item, from) => {
-  if (App.is_header(item)) {
-    let on_header = true
-
-    if (from === `click`) {
-      if (App.get_setting(`double_click_header`)) {
-        on_header = false
-      }
-    }
-
-    if (on_header) {
-      App.on_header_click(item)
-      return
-    }
-  }
-
   App.on_action(`tabs`)
   App.do_empty_previous_tabs()
 

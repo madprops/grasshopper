@@ -32,7 +32,7 @@ App.insert_header = (item) => {
   }
 }
 
-App.on_header_click = async (item) => {
+App.header_action = async (item) => {
   let waypoint = false
   let select = false
   let selected = []

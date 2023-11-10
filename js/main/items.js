@@ -391,8 +391,9 @@ App.set_item_text = (item) => {
 
   let text_mode = App.get_setting(`text_mode`)
   let title = App.get_title(item)
+  let is_header = App.is_header(item)
 
-  if (App.is_header(item)) {
+  if (is_header) {
     text_mode = `title`
     title = App.get_title(item, false) || `Give me a title`
   }
@@ -418,20 +419,27 @@ App.set_item_text = (item) => {
 
   if (App.get_setting(`show_tooltips`)) {
     let tips = []
-    tips.push(`Title: ${title}`)
-    tips.push(`URL: ${url}`)
 
-    if (item.last_visit) {
-      tips.push(`Last Visit: ${App.nice_date(item.last_visit)}`)
+    if (is_header) {
+      tips.push(`This is a Header Tab`)
+      tips.push(`Double Click to select group`)
     }
+    else {
+      tips.push(`Title: ${title}`)
+      tips.push(`URL: ${url}`)
 
-    if (item.date_added) {
-      tips.push(`Date Added: ${App.nice_date(item.date_added)}`)
-    }
+      if (item.last_visit) {
+        tips.push(`Last Visit: ${App.nice_date(item.last_visit)}`)
+      }
 
-    if (App.tagged(item)) {
-      let tags = App.get_tags(item)
-      tips.push(`Tags: ${tags.join(`, `)}`)
+      if (item.date_added) {
+        tips.push(`Date Added: ${App.nice_date(item.date_added)}`)
+      }
+
+      if (App.tagged(item)) {
+        let tags = App.get_tags(item)
+        tips.push(`Tags: ${tags.join(`, `)}`)
+      }
     }
 
     item.element.title = tips.join(`\n`)

@@ -1637,13 +1637,6 @@ App.build_settings = () => {
       info: `Show the active tab at the top when showing Recent Tabs`,
       version: 1,
     },
-    double_click_header: {
-      name: `Double Click Header`,
-      type: `checkbox`,
-      value: false,
-      info: `Require a double click to select a Header's tabs`,
-      version: 1,
-    },
     show_protocol: {
       name: `Show Protocol`,
       type: `checkbox`,
