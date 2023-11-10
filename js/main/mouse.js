@@ -68,12 +68,6 @@ App.setup_window_mouse = (mode) => {
   })
 }
 
-App.mouse_up_action = (e) => {
-  if (e.button !== 0) {
-    return
-  }
-}
-
 // Using this on mousedown instead causes some problems
 // For instance can't move a tab without selecting it
 // And in a popup it would close the popup on selection
