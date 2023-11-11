@@ -2,7 +2,8 @@
   --item_margin: 0.45rem;
   --item_gap: 0.306rem;
   --scroller_shadow: inset 0 0 0.1rem currentColor;
-  --scroller_padding: 0.29rem;
+  --scroller_padding: 0.22rem;
+  --footer_padding: 0.29rem;
   --color_border: 1px solid black;
   --bigger_font: 1.1rem;
   --widget_width: 14rem;
@@ -345,8 +346,8 @@ svg {
 }
 
 .not_filtered .header_item .item_content {
-  padding-top: 0.2rem;
-  padding-bottom: 0.2rem;
+  padding-top: 0;
+  padding-bottom: 0;
 }
 
 .not_filtered .header_item .item_text {
@@ -965,8 +966,8 @@ a:visited, a:link, a:hover {
   white-space: nowrap;
   cursor: pointer;
   background-color: var(--alt_background);
-  padding-top: var(--scroller_padding);
-  padding-bottom: var(--scroller_padding);
+  padding-top: var(--footer_padding);
+  padding-bottom: var(--footer_padding);
   padding-left: 0.25rem;
   border: 0px solid var(--alt_color_1);
   border-top-width: 1px;
