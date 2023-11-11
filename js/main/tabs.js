@@ -214,7 +214,7 @@ App.focus_tab = async (args = {}) => {
   App.after_focus(args)
 }
 
-App.open_new_tab = async (args) => {
+App.open_new_tab = async (args = {}) => {
   let def_args = {
     active: true,
   }
