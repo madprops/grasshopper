@@ -108,6 +108,13 @@ App.mouse_click_action = (mode, e) => {
     }
   }
 
+  if (e.target.closest(`.item_icon_container`)) {
+    if (App.is_header(item)) {
+      App.select_header_group(item)
+      return
+    }
+  }
+
   if (App.get_setting(`hover_button`)) {
     if (e.target.closest(`.hover_button`)) {
       App.show_hover_menu(e, item)

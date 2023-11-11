@@ -85,10 +85,15 @@ App.select_header_group = (item) => {
   let group = App.header_group(item)
 
   if (group.length) {
-    App.deselect(item.mode, `none`)
+    if ((group.at(0).selected) && (group.at(-1).selected)) {
+      App.deselect(item.mode, `up`)
+    }
+    else {
+      App.deselect(item.mode, `none`)
 
-    for (let item of group) {
-      App.toggle_selected(item, true)
+      for (let item of group) {
+        App.toggle_selected(item, true)
+      }
     }
   }
 }
