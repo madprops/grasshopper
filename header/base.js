@@ -109,7 +109,7 @@ App.init = () => {
 App.set_color = (color) => {
   App.set_reference(color)
   let color_1 = App.get_reference()
-  let color_2 = App.colorlib.get_lighter_or_darker(color_1, 0.5)
+  let color_2 = App.colorlib.get_lighter_or_darker(color_1, 0.66)
   document.documentElement.style.setProperty(`--color_1`, color_1)
   document.documentElement.style.setProperty(`--color_2`, color_2)
   App.save_local_storage(App.ls_state, {color: color_1})
