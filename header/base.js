@@ -6,7 +6,7 @@ App.visible = false
 App.timeout_delay = 250
 
 App.init = () => {
-  App.el(`#fullscreen_button`).addEventListener(`click`, () => {
+  DOM.ev(DOM.el(`#fullscreen_button`), `click`, () => {
     if (!App.visible) {
       return
     }
@@ -14,7 +14,7 @@ App.init = () => {
     App.toggle_fullscreen()
   })
 
-  App.el(`#random_button`).addEventListener(`click`, () => {
+  DOM.ev(DOM.el(`#random_button`), `click`, () => {
     if (!App.visible) {
       return
     }
@@ -22,7 +22,7 @@ App.init = () => {
     App.set_color(App.colorlib.get_random_hex())
   })
 
-  App.el(`#darker_button`).addEventListener(`click`, () => {
+  DOM.ev(DOM.el(`#darker_button`), `click`, () => {
     if (!App.visible) {
       return
     }
@@ -30,7 +30,7 @@ App.init = () => {
     App.set_color(App.colorlib.get_darker(App.get_reference(), 0.15))
   })
 
-  App.el(`#lighter_button`).addEventListener(`click`, () => {
+  DOM.ev(DOM.el(`#lighter_button`), `click`, () => {
     if (!App.visible) {
       return
     }
@@ -38,7 +38,7 @@ App.init = () => {
     App.set_color(App.colorlib.get_lighter(App.get_reference(), 0.15))
   })
 
-  App.el(`#exact_button`).addEventListener(`click`, () => {
+  DOM.ev(DOM.el(`#exact_button`), `click`, () => {
     if (!App.visible) {
       return
     }
@@ -46,7 +46,7 @@ App.init = () => {
     App.get_exact_color()
   })
 
-  App.el(`#red_button`).addEventListener(`click`, () => {
+  DOM.ev(DOM.el(`#red_button`), `click`, () => {
     if (!App.visible) {
       return
     }
@@ -54,7 +54,7 @@ App.init = () => {
     App.set_color(`rgb(255, 0, 0)`)
   })
 
-  App.el(`#green_button`).addEventListener(`click`, () => {
+  DOM.ev(DOM.el(`#green_button`), `click`, () => {
     if (!App.visible) {
       return
     }
@@ -62,7 +62,7 @@ App.init = () => {
     App.set_color(`rgb(0, 255, 0)`)
   })
 
-  App.el(`#blue_button`).addEventListener(`click`, () => {
+  DOM.ev(DOM.el(`#blue_button`), `click`, () => {
     if (!App.visible) {
       return
     }
@@ -70,7 +70,7 @@ App.init = () => {
     App.set_color(`rgb(0, 0, 255)`)
   })
 
-  App.el(`#black_button`).addEventListener(`click`, () => {
+  DOM.ev(DOM.el(`#black_button`), `click`, () => {
     if (!App.visible) {
       return
     }
@@ -78,7 +78,7 @@ App.init = () => {
     App.set_color(`rgb(0, 0, 0)`)
   })
 
-  App.el(`#white_button`).addEventListener(`click`, () => {
+  DOM.ev(DOM.el(`#white_button`), `click`, () => {
     if (!App.visible) {
       return
     }
@@ -86,28 +86,24 @@ App.init = () => {
     App.set_color(`rgb(255, 255, 255)`)
   })
 
-  App.el(`#buttons`).addEventListener(`mouseenter`, () => {
+  DOM.ev(DOM.el(`#buttons`), `mouseenter`, () => {
     clearTimeout(App.show_timeout)
 
     App.show_timeout = setTimeout(() => {
-      App.el(`#buttons`).classList.add(`visible`)
+      DOM.el(`#buttons`).classList.add(`visible`)
       App.visible = true
     }, App.timeout_delay)
   })
 
-  App.el(`#buttons`).addEventListener(`mouseleave`, () => {
+  DOM.ev(DOM.el(`#buttons`), `mouseleave`, () => {
     clearTimeout(App.show_timeout)
 
-    App.el(`#buttons`).classList.remove(`visible`)
+    DOM.el(`#buttons`).classList.remove(`visible`)
     App.visible = false
   })
 
   App.state = App.get_local_storage(App.ls_state) || {}
   App.set_color(App.state.color || App.default_color)
-}
-
-App.el = (query, root = document) => {
-  return root.querySelector(query)
 }
 
 App.set_color = (color) => {
@@ -117,7 +113,7 @@ App.set_color = (color) => {
   document.documentElement.style.setProperty(`--color_1`, color_1)
   document.documentElement.style.setProperty(`--color_2`, color_2)
   App.save_local_storage(App.ls_state, {color: color_1})
-  App.el(`#color_info`).textContent = color_1
+  DOM.el(`#color_info`).textContent = color_1
 }
 
 App.toggle_fullscreen = () => {
@@ -130,11 +126,11 @@ App.toggle_fullscreen = () => {
 }
 
 App.set_reference = (color) => {
-  App.el(`#reference`).style.color = color
+  DOM.el(`#reference`).style.color = color
 }
 
 App.get_reference = () => {
-  return window.getComputedStyle(App.el(`#reference`)).color
+  return window.getComputedStyle(DOM.el(`#reference`)).color
 }
 
 App.get_exact_color = () => {
