@@ -368,6 +368,7 @@ App.create_item_element = (item) => {
   if (item.mode === `tabs`) {
     App.add_close_button(item, `right`)
     App.check_tab_loading(item)
+    App.check_tab_colors(item)
   }
 
   if (item.selected) {
@@ -379,6 +380,11 @@ App.create_item_element = (item) => {
 }
 
 App.set_item_text = (item) => {
+  if (App.is_header(item)) {
+    App.set_header_text(item)
+    return
+  }
+
   let lines = []
   let url
 
@@ -391,12 +397,6 @@ App.set_item_text = (item) => {
 
   let text_mode = App.get_setting(`text_mode`)
   let title = App.get_title(item)
-  let is_header = App.is_header(item)
-
-  if (is_header) {
-    text_mode = `title`
-    title = App.get_title(item, false) || `Give me a title`
-  }
 
   if (text_mode === `title`) {
     lines.push(title || url)
@@ -419,27 +419,20 @@ App.set_item_text = (item) => {
 
   if (App.get_setting(`show_tooltips`)) {
     let tips = []
+    tips.push(`Title: ${title}`)
+    tips.push(`URL: ${url}`)
 
-    if (is_header) {
-      tips.push(`This is a Header Tab`)
-      tips.push(`Double Click to select group`)
+    if (item.last_visit) {
+      tips.push(`Last Visit: ${App.nice_date(item.last_visit)}`)
     }
-    else {
-      tips.push(`Title: ${title}`)
-      tips.push(`URL: ${url}`)
 
-      if (item.last_visit) {
-        tips.push(`Last Visit: ${App.nice_date(item.last_visit)}`)
-      }
+    if (item.date_added) {
+      tips.push(`Date Added: ${App.nice_date(item.date_added)}`)
+    }
 
-      if (item.date_added) {
-        tips.push(`Date Added: ${App.nice_date(item.date_added)}`)
-      }
-
-      if (App.tagged(item)) {
-        let tags = App.get_tags(item)
-        tips.push(`Tags: ${tags.join(`, `)}`)
-      }
+    if (App.tagged(item)) {
+      let tags = App.get_tags(item)
+      tips.push(`Tags: ${tags.join(`, `)}`)
     }
 
     item.element.title = tips.join(`\n`)
