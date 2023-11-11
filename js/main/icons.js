@@ -96,10 +96,6 @@ App.add_tab_icons = (item) => {
 }
 
 App.check_icons = (item) => {
-  if (App.is_header(item)) {
-    return
-  }
-
   if (App.get_setting(`notes_icon`)) {
     let icon = DOM.el(`.notes_icon`, item.element)
 
@@ -239,10 +235,6 @@ App.check_icons = (item) => {
 
 App.check_item_icon = (item) => {
   if (App.get_setting(`item_icon`) !== `none`) {
-    if (App.is_header(item)) {
-      return
-    }
-
     let container = DOM.el(`.item_icon_container`, item.element)
     let text_icon = App.get_icon(item)
     container.classList.remove(`hidden`)

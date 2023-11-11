@@ -190,6 +190,7 @@ App.header_menu_items = (items, item) => {
   App.item_menu_item(items, `show_color_menu`, {item: item})
   App.item_menu_item(items, `edit_title`, {item: item})
   App.item_menu_item(items, `edit_notes`, {item: item})
+  App.item_menu_item(items, `edit_icon`, {item: item})
   App.item_menu_tags(items, item)
 }
 

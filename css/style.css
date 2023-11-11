@@ -1246,6 +1246,10 @@ a:visited, a:link, a:hover {
   padding-left: 0;
 }
 
+.not_filtered .header_item .taglist.normal {
+  justify-content: center;
+}
+
 .doubleline {
   cursor: pointer;
   text-decoration: underline;

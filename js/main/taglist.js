@@ -24,10 +24,6 @@ App.check_taglist = (item) => {
     return
   }
 
-  if (App.is_header(item)) {
-    return
-  }
-
   let taglist = DOM.el(`.taglist`, item.element)
   let mode = App.get_setting(`taglist_mode`)
 

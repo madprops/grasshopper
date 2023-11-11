@@ -69,7 +69,7 @@ App.apply_color_mode = (item) => {
   let color = App.get_color(item)
 
   if (App.is_header(item)) {
-    color_mode = `text`
+    color_mode = `icon`
   }
 
   if (color_mode.includes(`icon`)) {
