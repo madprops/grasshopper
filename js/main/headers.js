@@ -2,7 +2,7 @@ App.insert_header = (item) => {
   let active = App.get_active_items({mode: item.mode, item: item})
   let first = active.at(0)
   let index = App.get_item_element_index(first.mode, first.element)
-  App.open_new_tab({index: index, pinned: item.pinned})
+  App.open_new_tab({url: App.header_file, index: index, pinned: item.pinned})
 
   if (active.length > 1) {
     for (let it of active.slice(1, -1)) {
@@ -133,7 +133,11 @@ App.is_header = (item) => {
     return false
   }
 
-  if (!App.is_new_tab(item.url)) {
+  if (!item.url.startsWith(`moz-extension://`)) {
+    return false
+  }
+
+  if (!item.url.endsWith(App.header_file)) {
     return false
   }
 
