@@ -125,7 +125,7 @@ App.mouse_click_action = (mode, e) => {
   if (mode === `tabs`) {
     if (App.get_setting(`close_button`) !== `none`) {
       if (e.target.classList.contains(`close_button`)) {
-        App.close_tabs(item, false, false)
+        App.close_tabs(item)
         return
       }
     }
@@ -349,15 +349,6 @@ App.mouse_out_action = (mode, e) => {
 
   if (selected) {
     App.update_footer_info(selected)
-  }
-}
-
-App.right_button_action = (item) => {
-  if (item.mode === `tabs`) {
-    App.close_tabs(item, false, false)
-  }
-  else {
-    App.open_items(item, true, false)
   }
 }
 

@@ -192,6 +192,7 @@ App.header_menu_items = (items, item) => {
   App.item_menu_tags(items, item)
   App.item_menu_item(items, `pin_tabs`, {item: item})
   App.item_menu_item(items, `unpin_tabs`, {item: item})
+  App.item_menu_item(items, `close_tabs`, {item: item})
 }
 
 App.item_menu_tags = (items, item) => {
