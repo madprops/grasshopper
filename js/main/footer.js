@@ -21,9 +21,18 @@ App.do_update_footer_info = (item) => {
     return
   }
 
+  let info
+
+  if (App.is_header(item)) {
+    info = `Header: ${item.header_title}`
+  }
+  else {
+    info = item.footer
+  }
+
   if (item) {
     App.footer_item = item
-    App.set_footer_info(item.mode, item.footer)
+    App.set_footer_info(item.mode, info)
   }
   else {
     App.empty_footer_info()
