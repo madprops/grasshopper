@@ -125,10 +125,6 @@ App.remove_all_headers = () => {
 }
 
 App.is_header = (item) => {
-  if (!App.get_setting(`enable_headers`)) {
-    return false
-  }
-
   if (item.mode !== `tabs`) {
     return false
   }

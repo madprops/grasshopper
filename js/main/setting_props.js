@@ -115,13 +115,6 @@ App.build_settings = () => {
       info: `Where to save bookmarks`,
       version: 1,
     },
-    enable_headers: {
-      name: `Enable Headers`,
-      type: `checkbox`,
-      value: true,
-      info: `Treat certain browser tabs as headers meant for organizing tabs below them`,
-      version: 1,
-    },
     smooth_scroll: {
       name: `Smooth Scroll`,
       type: `checkbox`,
