@@ -235,23 +235,12 @@ App.check_icons = (item) => {
 
 App.check_item_icon = (item) => {
   if (App.get_setting(`item_icon`) !== `none`) {
-    let container = DOM.el(`.item_icon_container`, item.element)
-    let text_icon = App.get_icon(item)
-
     if (App.is_header(item)) {
-      if (!text_icon) {
-        let header_icon = App.get_setting(`header_icon`)
-
-        if (header_icon) {
-          text_icon = header_icon
-        }
-        else {
-          container.classList.add(`hidden`)
-          return
-        }
-      }
+      return
     }
 
+    let container = DOM.el(`.item_icon_container`, item.element)
+    let text_icon = App.get_icon(item)
     container.classList.remove(`hidden`)
 
     if (text_icon) {

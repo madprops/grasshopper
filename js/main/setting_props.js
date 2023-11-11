@@ -478,14 +478,6 @@ App.build_settings = () => {
       info: `Icon for edited tabs`,
       version: 1,
     },
-    header_icon: {
-      name: `Header Icon`,
-      type: `text_smaller`,
-      value: `🔽`,
-      placeholder: App.icon_placeholder,
-      info: `Icon for header tabs`,
-      version: 1,
-    },
   }
 
   add_props()
