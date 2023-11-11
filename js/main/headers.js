@@ -16,6 +16,27 @@ App.insert_header = (item) => {
     }
 
     let bottom = active.at(-1)
+    let next = App.get_other_item({mode: item.mode, item: bottom, wrap: false})
+
+    if (!next) {
+      return
+    }
+
+    if (bottom.pinned && !next.pinned) {
+      return
+    }
+
+    if (App.is_header(next)) {
+      return
+    }
+
+    if (App.get_split(next, `top`)) {
+      return
+    }
+
+    if (App.get_split(next, `bottom`)) {
+      return
+    }
 
     if (App.apply_edit(`split_bottom`, bottom, true)) {
       App.custom_save(bottom.id, `custom_split_bottom`, true)
