@@ -141,7 +141,7 @@ App.mouse_click_action = (mode, e) => {
     }
 
     if (App.get_setting(`color_icon_click`)) {
-      if (e.target.closest(`.color_icon`)) {
+      if (e.target.closest(`.color_icon_container`)) {
         App.show_color_menu(item, e)
         return
       }
