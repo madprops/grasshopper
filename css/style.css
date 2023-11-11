@@ -335,7 +335,7 @@ svg {
 .not_filtered .header_item {
   font-size: var(--bigger_font);
   background-color: var(--slight_shade);
-  box-shadow: inset 0 0 0 1px var(--alt_color_2);
+  box-shadow: inset 0 0 0 1px var(--alt_color_1);
 }
 
 .close_button:hover {
@@ -376,7 +376,7 @@ svg {
 
 .icon_pick .item_icon_container:hover .item_icon,
 .header_item .item_icon_container:hover .item_icon
- {
+{
   outline: 2px solid var(--text_color);
   border-radius: 50%;
 }
