@@ -112,7 +112,7 @@ App.is_header = (item) => {
     return false
   }
 
-  if (item.url !== App.new_tab_url) {
+  if (!App.is_new_tab(item.url)) {
     return false
   }
 
