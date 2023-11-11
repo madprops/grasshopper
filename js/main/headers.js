@@ -17,37 +17,14 @@ App.insert_header = async (item) => {
     }
 
     let bottom = active.at(-1)
-    let next = App.get_other_item({mode: item.mode, item: bottom, wrap: false})
-    let save_bottom = true
 
-    if (!next) {
-      save_bottom = false
-    }
-
-    if (bottom.pinned && !next.pinned) {
-      save_bottom = false
-    }
-
-    if (App.is_header(next)) {
-      save_bottom = false
-    }
-
-    if (App.get_split(next, `top`)) {
-      save_bottom = false
-    }
-
-    if (App.get_split(next, `bottom`)) {
-      save_bottom = false
-    }
-
-    if (save_bottom) {
-      if (App.apply_edit(`split_bottom`, bottom, true)) {
-        App.custom_save(bottom.id, `custom_split_bottom`, true)
-      }
+    if (App.apply_edit(`split_bottom`, bottom, true)) {
+      App.custom_save(bottom.id, `custom_split_bottom`, true)
     }
   }
 
   if (header) {
+    App.select_item({item: header, scroll: `nearest`})
     App.edit_title(header)
   }
 }
