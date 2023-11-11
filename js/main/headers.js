@@ -31,7 +31,7 @@ App.header_group = (item) => {
 
   for (let [i, it] of items.entries()) {
     if (waypoint) {
-      if (it.header) {
+      if (App.is_header(it)) {
         select = true
         break
       }
