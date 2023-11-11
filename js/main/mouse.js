@@ -295,7 +295,7 @@ App.mouse_middle_action = (mode, e) => {
 
   if (mode === `tabs`) {
     if (App.get_setting(`color_icon_click`)) {
-      if (e.target.closest(`.color_icon`)) {
+      if (e.target.closest(`.color_icon_container`)) {
         App.edit_tab_color({item: item})
         return
       }
