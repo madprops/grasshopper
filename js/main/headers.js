@@ -137,7 +137,7 @@ App.is_header = (item) => {
     return false
   }
 
-  if (!item.url.startsWith(`moz-extension://`)) {
+  if (!item.url.startsWith(App.browser_protocol)) {
     return false
   }
 

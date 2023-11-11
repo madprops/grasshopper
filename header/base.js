@@ -3,6 +3,7 @@ App.ls_state = `colorscreen_state_v1`
 App.colorlib = ColorLib()
 App.default_color = `#252933`
 App.visible = false
+App.timeout_delay = 250
 
 App.init = () => {
   App.el(`#fullscreen_button`).addEventListener(`click`, () => {
@@ -91,7 +92,7 @@ App.init = () => {
     App.show_timeout = setTimeout(() => {
       App.el(`#buttons`).classList.add(`visible`)
       App.visible = true
-    }, 1)
+    }, App.timeout_delay)
   })
 
   App.el(`#buttons`).addEventListener(`mouseleave`, () => {
