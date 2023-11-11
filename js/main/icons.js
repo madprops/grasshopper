@@ -96,6 +96,10 @@ App.add_tab_icons = (item) => {
 }
 
 App.check_icons = (item) => {
+  if (App.is_header(item)) {
+    return
+  }
+
   if (App.get_setting(`notes_icon`)) {
     let icon = DOM.el(`.notes_icon`, item.element)
 
