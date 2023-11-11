@@ -1,8 +1,4 @@
 App.add_close_button = (item, side) => {
-  if (App.is_header(item)) {
-    return
-  }
-
   let cb_setting = App.get_setting(`close_button`)
 
   if (cb_setting === `none`) {
