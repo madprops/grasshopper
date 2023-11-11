@@ -1,8 +1,9 @@
-App.insert_header = (item) => {
+App.insert_header = async (item) => {
   let active = App.get_active_items({mode: item.mode, item: item})
   let first = active.at(0)
   let index = App.get_item_element_index(first.mode, first.element)
-  App.open_new_tab({url: App.header_file, index: index, pinned: item.pinned})
+  let tab = await App.open_new_tab({url: App.header_file, index: index, pinned: item.pinned, active: false})
+  let header = App.get_item_by_id(item.mode, tab.id)
 
   if (active.length > 1) {
     for (let it of active.slice(1, -1)) {
@@ -17,30 +18,37 @@ App.insert_header = (item) => {
 
     let bottom = active.at(-1)
     let next = App.get_other_item({mode: item.mode, item: bottom, wrap: false})
+    let save_bottom = true
 
     if (!next) {
-      return
+      save_bottom = false
     }
 
     if (bottom.pinned && !next.pinned) {
-      return
+      save_bottom = false
     }
 
     if (App.is_header(next)) {
-      return
+      save_bottom = false
     }
 
     if (App.get_split(next, `top`)) {
-      return
+      save_bottom = false
     }
 
     if (App.get_split(next, `bottom`)) {
-      return
+      save_bottom = false
     }
 
-    if (App.apply_edit(`split_bottom`, bottom, true)) {
-      App.custom_save(bottom.id, `custom_split_bottom`, true)
+    if (save_bottom) {
+      if (App.apply_edit(`split_bottom`, bottom, true)) {
+        App.custom_save(bottom.id, `custom_split_bottom`, true)
+      }
     }
+  }
+
+  if (header) {
+    App.edit_title(header)
   }
 }
 
@@ -158,6 +166,7 @@ App.set_header_text = (item) => {
 App.check_header = (item) => {
   if (App.is_header(item)) {
     item.element.classList.add(`header_item`)
+    item.unread = false
   }
   else {
     item.element.classList.remove(`header_item`)

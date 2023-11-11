@@ -11,9 +11,6 @@ App.show_item_menu = async (args = {}) => {
   if (App.get_setting(`extra_menu_mode`) === `total`) {
     items = App.custom_menu_items(`extra_menu`, App.command_item)
   }
-  else if (App.is_header(args.item)) {
-    App.header_menu_items(items, args.item)
-  }
   else {
     if (args.item.mode === `tabs`) {
       App.item_menu_item(items, `load_tabs`, {item: args.item})
@@ -182,17 +179,6 @@ App.item_menu_item = (items, cmd, obj) => {
     obj.command = command
     items.push(App.cmd_item(obj))
   }
-}
-
-App.header_menu_items = (items, item) => {
-  App.item_menu_item(items, `edit_title`, {item: item})
-  App.item_menu_item(items, `show_color_menu`, {item: item})
-  App.item_menu_item(items, `edit_notes`, {item: item})
-  App.item_menu_item(items, `edit_icon`, {item: item})
-  App.item_menu_tags(items, item)
-  App.item_menu_item(items, `pin_tabs`, {item: item})
-  App.item_menu_item(items, `unpin_tabs`, {item: item})
-  App.item_menu_item(items, `close_tabs`, {item: item})
 }
 
 App.item_menu_tags = (items, item) => {

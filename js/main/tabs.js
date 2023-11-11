@@ -222,7 +222,7 @@ App.open_new_tab = async (args = {}) => {
   App.def_args(def_args, args)
 
   try {
-    await browser.tabs.create(args)
+    return await browser.tabs.create(args)
   }
   catch (err) {
     App.error(err)
