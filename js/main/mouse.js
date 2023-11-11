@@ -208,9 +208,11 @@ App.mouse_double_click_action = (mode, e) => {
 
   let item = App.direction(mode, e)
 
-  if (App.is_header(item)) {
-    App.select_header_group(item)
-    return
+  if (App.get_setting(`double_click_header`)) {
+    if (App.is_header(item)) {
+      App.select_header_group(item)
+      return
+    }
   }
 
   let cmd = App.get_setting(`double_click_command`)
