@@ -14,7 +14,7 @@ App.setup_drag = (mode) => {
   })
 }
 
-App.drag_active = (mode) => {
+App.drag_active = (mode, e) => {
   if (App.get_setting(`lock_drag`) && !e.ctrlKey) {
     return false
   }
@@ -51,7 +51,7 @@ App.dragstart_action = (mode, e) => {
   e.dataTransfer.setData(`text/uri-list`, App.drag_item.url)
   e.dataTransfer.setData(`text/x-moz-url`, `${App.drag_item.url}\n${App.drag_item.title}`)
 
-  if (!App.drag_active(mode)) {
+  if (!App.drag_active(mode, e)) {
     return
   }
 
@@ -82,7 +82,7 @@ App.dragstart_action = (mode, e) => {
 }
 
 App.dragenter_action = (mode, e) => {
-  if (!App.drag_active(mode)) {
+  if (!App.drag_active(mode, e)) {
     return
   }
 
@@ -137,7 +137,7 @@ App.dragenter_action = (mode, e) => {
 App.dragend_action = (mode, e) => {
   App.dragging = false
 
-  if (!App.drag_active(mode)) {
+  if (!App.drag_active(mode, e)) {
     return
   }
 
