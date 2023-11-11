@@ -338,6 +338,15 @@ App.remove_closed_tab = (id) => {
 }
 
 App.tabs_action = async (item, from) => {
+  if (from === `click` || from === `enter`) {
+    if (App.is_filtered(item.mode)) {
+      if (App.is_header(item)) {
+        App.clean_select(item)
+        return
+      }
+    }
+  }
+
   App.on_action(`tabs`)
   App.do_empty_previous_tabs()
 

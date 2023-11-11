@@ -119,7 +119,7 @@ App.build_settings = () => {
       name: `Enable Headers`,
       type: `checkbox`,
       value: true,
-      info: `Treat blank tabs as headers meant for organizing tabs below them`,
+      info: `Treat certain browser tabs as headers meant for organizing tabs below them`,
       version: 1,
     },
     smooth_scroll: {

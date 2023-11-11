@@ -184,13 +184,6 @@ App.mouse_click_action = (mode, e) => {
     return
   }
 
-  if (App.is_filtered(mode)) {
-    if (App.is_header(item)) {
-      App.clean_select(item)
-      return
-    }
-  }
-
   App[`${mode}_action`](item, `click`)
 }
 
