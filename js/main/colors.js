@@ -30,11 +30,16 @@ App.check_tab_colors = (item) => {
   item.element.style.color = ``
   item.element.style.backgroundColor = ``
 
+  if (App.is_header(item)) {
+    if (enabled(`header`)) {
+      proc(`header`)
+    }
+
+    return
+  }
+
   if (false) {
     // Top = Higher Priority
-  }
-  else if (App.is_header(item) && enabled(`header`)) {
-    proc(`header`)
   }
   else if (item.active && enabled(`active`)) {
     proc(`active`)
