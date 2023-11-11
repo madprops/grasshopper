@@ -1551,13 +1551,6 @@ App.build_settings = () => {
   category = `more`
 
   props = {
-    single_new_tab: {
-      name: `Single New Tab`,
-      type: `checkbox`,
-      value: true,
-      info: `Keep only one new tab at any time`,
-      version: 1,
-    },
     close_on_focus: {
       name: `Close On Focus`,
       type: `checkbox`,

@@ -1,17 +1,8 @@
-App.open_header_tab = async (args = {}) => {
-  let url = {
-    url: App.header_url,
-  }
-
-  let obj = Object.assign({}, url, args)
-  browser.tabs.create(obj)
-}
-
 App.insert_header = (item) => {
   let active = App.get_active_items({mode: item.mode, item: item})
   let first = active.at(0)
   let index = App.get_item_element_index(first.mode, first.element)
-  App.open_header_tab({index: index, pinned: item.pinned})
+  App.open_new_tab({index: index, pinned: item.pinned})
 
   if (active.length > 1) {
     for (let it of active.slice(1, -1)) {
@@ -121,7 +112,7 @@ App.is_header = (item) => {
     return false
   }
 
-  if (item.url !== App.header_url) {
+  if (item.url !== App.new_tab_url) {
     return false
   }
 
@@ -140,4 +131,13 @@ App.set_header_text = (item) => {
   tips.push(`This is a Header Tab`)
   tips.push(`Double Click to select group`)
   item.element.title = tips.join(`\n`)
+}
+
+App.check_header = (item) => {
+  if (App.is_header(item)) {
+    item.element.classList.add(`header_item`)
+  }
+  else {
+    item.element.classList.remove(`header_item`)
+  }
 }

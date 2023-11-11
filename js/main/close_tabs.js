@@ -328,23 +328,6 @@ App.close_other_tabs = (pins, unloaded) => {
   App.close_tabs_method(items)
 }
 
-App.close_other_new_tabs = (id) => {
-  let items = App.get_items(`tabs`)
-  let ids = []
-
-  for (let item of items) {
-    if (App.is_new_tab(item.url)) {
-      if (item.id !== id) {
-        ids.push(item.id)
-      }
-    }
-  }
-
-  if (ids.length) {
-    App.close_tab_or_tabs(ids)
-  }
-}
-
 App.show_close_tabs_menu = (e, item) => {
   let items = []
 

@@ -23,7 +23,7 @@ App.scroll_amount = 150
 App.double_key_date = 0
 App.scroller_max_top = 8
 App.dragging = false
-App.new_tab_urls = [`about:newtab`]
+App.new_tab_url = `about:newtab`
 App.search_modes = [`history`, `bookmarks`]
 App.media_scroll = 33
 App.media_types = [`image`, `video`, `audio`]
@@ -44,7 +44,6 @@ App.click_press_done = false
 App.max_tag_picks = 10
 App.popup_width = 800
 App.popup_height = 600
-App.header_url = `about:blank`
 
 App.settings_done = false
 App.settings_ready = false

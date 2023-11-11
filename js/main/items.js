@@ -305,6 +305,7 @@ App.refresh_item_element = (item) => {
   App.apply_color_mode(item)
   App.check_taglist(item)
   App.apply_splits(item)
+  App.check_header(item)
 }
 
 App.create_item_element = (item) => {
@@ -327,14 +328,11 @@ App.create_item_element = (item) => {
     App.add_tab_icons(item)
   }
 
-  if (App.is_header(item)) {
-    item.element.classList.add(`header_item`)
-  }
-
   item.element.draggable = true
   App.check_icons(item)
   App.apply_color_mode(item)
   App.apply_splits(item)
+  App.check_header(item)
   let view_media = DOM.create(`div`, `view_media_button hidden`)
   item.element.append(view_media)
   App.check_view_media(item)

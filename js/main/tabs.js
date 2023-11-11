@@ -214,9 +214,15 @@ App.focus_tab = async (args = {}) => {
   App.after_focus(args)
 }
 
-App.open_new_tab = async (url) => {
+App.open_new_tab = async (args) => {
+  let def_args = {
+    active: true,
+  }
+
+  App.def_args(def_args, args)
+
   try {
-    await browser.tabs.create({url: url, active: true})
+    await browser.tabs.create(args)
   }
   catch (err) {
     App.error(err)
@@ -252,12 +258,6 @@ App.refresh_tab = async (id, select, info) => {
 
   if (!info) {
     return
-  }
-
-  if (App.get_setting(`single_new_tab`)) {
-    if (App.is_new_tab(info.url)) {
-      App.close_other_new_tabs(info.id)
-    }
   }
 
   let item = App.get_item_by_id(`tabs`, id)
@@ -496,7 +496,7 @@ App.unload_tabs = (item, multiple = true) => {
           await App.focus_tab({item: next, scroll: `nearest`, method: `unload`})
         }
         else {
-          await App.open_new_tab(`about:blank`)
+          await App.open_new_tab({url: `about:blank`})
         }
       }
 
@@ -1000,31 +1000,6 @@ App.browser_forward = () => {
   browser.tabs.goForward()
 }
 
-App.check_new_tabs = () => {
-  if (!App.get_setting(`single_new_tab`)) {
-    return
-  }
-
-  let items = App.get_items(`tabs`)
-  let first = false
-  let ids = []
-
-  for (let item of items) {
-    if (App.is_new_tab(item.url)) {
-      if (first) {
-        ids.push(item.id)
-      }
-      else {
-        first = true
-      }
-    }
-  }
-
-  if (ids.length) {
-    App.close_tab_or_tabs(ids)
-  }
-}
-
 App.divide_tabs = (filter) => {
   let pinned = []
   let normal = []
@@ -1099,7 +1074,7 @@ App.select_tabs = (type = `pins`) => {
 }
 
 App.is_new_tab = (url) => {
-  return App.new_tab_urls.includes(url)
+  return App.new_tab_url === url
 }
 
 App.sort_tabs = () => {
