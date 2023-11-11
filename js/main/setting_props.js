@@ -1061,36 +1061,6 @@ App.build_settings = () => {
   category = `colors`
 
   props = {
-    text_color_header_enabled: {
-      name: `Header Tabs (Text)`,
-      type: `checkbox`,
-      value: false,
-      info: `Use custom text color for header tabs`,
-      version: 1,
-    },
-    text_color_header: {
-      name: `Header Tabs (Text)`,
-      hide_name: true,
-      type: `color`,
-      value: `rgb(100, 100, 100)`,
-      info: `Custom text color for header tabs`,
-      version: 1,
-    },
-    background_color_header_enabled: {
-      name: `Header Tabs (Background)`,
-      type: `checkbox`,
-      value: false,
-      info: `Use custom background color for header tabs`,
-      version: 1,
-    },
-    background_color_header: {
-      name: `Header Tabs (Background)`,
-      hide_name: true,
-      type: `color`,
-      value: `rgb(100, 100, 100)`,
-      info: `Custom background color for header tabs`,
-      version: 1,
-    },
     text_color_active_enabled: {
       name: `Active Tabs (Text)`,
       type: `checkbox`,
@@ -1299,6 +1269,36 @@ App.build_settings = () => {
       type: `color`,
       value: `rgb(100, 100, 100)`,
       info: `Custom background color for unloaded tabs`,
+      version: 1,
+    },
+    text_color_header_enabled: {
+      name: `Header Tabs (Text)`,
+      type: `checkbox`,
+      value: false,
+      info: `Use custom text color for header tabs`,
+      version: 1,
+    },
+    text_color_header: {
+      name: `Header Tabs (Text)`,
+      hide_name: true,
+      type: `color`,
+      value: `rgb(100, 100, 100)`,
+      info: `Custom text color for header tabs`,
+      version: 1,
+    },
+    background_color_header_enabled: {
+      name: `Header Tabs (Background)`,
+      type: `checkbox`,
+      value: false,
+      info: `Use custom background color for header tabs`,
+      version: 1,
+    },
+    background_color_header: {
+      name: `Header Tabs (Background)`,
+      hide_name: true,
+      type: `color`,
+      value: `rgb(100, 100, 100)`,
+      info: `Custom background color for header tabs`,
       version: 1,
     },
   }
