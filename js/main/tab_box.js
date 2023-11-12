@@ -88,6 +88,10 @@ App.get_tab_box_els = (items) => {
   let item_mode = App.get_setting(`tab_box_items`)
 
   for (let item of items) {
+    if (!item || !item.element) {
+      continue
+    }
+
     let clone = DOM.create(`div`, `tab_box_item box_item`)
 
     if (item.active) {
@@ -100,6 +104,11 @@ App.get_tab_box_els = (items) => {
 
     if (o_icon.tagName === `IMG`) {
       icon.append(o_icon)
+
+      DOM.ev(o_icon, `error`, () => {
+        let icon_2 = App.generate_icon(item.hostname)
+        icon.replaceWith(icon_2)
+      })
     }
     else if (o_icon.tagName === `CANVAS`) {
       icon.append(App.generate_icon(item.hostname))
