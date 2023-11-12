@@ -30,6 +30,8 @@ App.get_recent_tabs = (args = {}) => {
     tabs = tabs.filter(x => !x.active)
   }
 
+  tabs = tabs.filter(x => !x.header)
+
   if (args.max > 0) {
     tabs = tabs.slice(0, args.max)
   }
