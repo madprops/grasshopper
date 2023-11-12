@@ -69,11 +69,7 @@ App.check_force = (warn_setting, items) => {
     }
 
     for (let item of items) {
-      if (item.header) {
-        return false
-      }
-
-      if (item.pinned || item.audible) {
+      if (item.pinned || item.audible || item.header) {
         return false
       }
 
