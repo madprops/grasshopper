@@ -235,9 +235,8 @@ App.check_icons = (item) => {
 
 App.check_item_icon = (item) => {
   if (App.get_setting(`item_icon`) !== `none`) {
-    let container = DOM.el(`.item_icon_container`, item.element)
+    let icon
     let text_icon = App.get_icon(item)
-    container.classList.remove(`hidden`)
 
     if (text_icon) {
       if (item.text_icon_used === text_icon) {
@@ -270,9 +269,10 @@ App.check_item_icon = (item) => {
       item.text_icon_used = undefined
     }
 
-    container.innerHTML = ``
+    let container = DOM.el(`.item_icon_container`, item.element)
 
     if (icon) {
+      container.innerHTML = ``
       container.append(icon)
       container.classList.remove(`hidden`)
     }
