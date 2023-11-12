@@ -828,6 +828,7 @@ App.on_tab_activated = async (info) => {
   }
 
   let new_active = await App.refresh_tab(info.tabId, select)
+  new_active.unread = false
   App.update_active_history(current, new_active)
 
   for (let item of old_active) {

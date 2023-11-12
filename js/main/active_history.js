@@ -39,17 +39,26 @@ App.do_refresh_active_history = () => {
 }
 
 App.update_active_history = (current, new_active) => {
-  new_active.unread = false
+  let added = false
 
   if (current && (current !== new_active)) {
-    if (!App.active_history.length) {
-      App.active_history.push(current)
+    if (!current.header) {
+      if (!App.active_history.length) {
+        App.active_history.push(current)
+        added = true
+      }
     }
   }
 
-  App.active_history.unshift(new_active)
-  App.clean_active_history()
-  App.refresh_active_history()
+  if (!new_active.header) {
+    App.active_history.unshift(new_active)
+    added = true
+  }
+
+  if (added) {
+    App.clean_active_history()
+    App.refresh_active_history()
+  }
 }
 
 App.clean_active_history = () => {
