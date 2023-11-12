@@ -7,7 +7,17 @@ App.fill_active_history = () => {
 }
 
 App.active_history_widgets = () => {
-  return App.get_setting(`active_trace`) || (App.get_setting(`tab_box`) !== `none`)
+  if (App.get_setting(`active_trace`)) {
+    return true
+  }
+
+  if (App.get_setting(`tab_box`) !== `none`) {
+    if (App.get_setting(`tab_box_items`) === `recent`) {
+      return true
+    }
+  }
+
+  return false
 }
 
 App.refresh_active_history = () => {
