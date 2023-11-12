@@ -337,12 +337,11 @@ App.remove_closed_tab = (id) => {
   }
 }
 
-App.tabs_action = async (item, from) => {
+App.tabs_action = async (item, from, scroll = `nearest_smooth`) => {
   if (from === `click` || from === `enter`) {
     if (App.is_filtered(item.mode)) {
       if (item.header) {
-        App.clean_select(item)
-        return
+        App.filter_all(item.mode)
       }
     }
   }
@@ -357,7 +356,7 @@ App.tabs_action = async (item, from) => {
 
   await App.focus_tab({
     item: item,
-    scroll: `nearest_smooth`,
+    scroll: scroll,
   })
 }
 

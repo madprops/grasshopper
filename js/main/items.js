@@ -1186,8 +1186,3 @@ App.remove_auto_blur = () => {
     DOM.el(`#main`).classList.remove(`auto_blur`)
   }
 }
-
-App.clean_select = (item, scroll = `center`) => {
-  App.filter_all(item.mode)
-  App.select_item({item: item, scroll: scroll})
-}

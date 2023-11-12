@@ -157,6 +157,9 @@ App.select_header_first = (item) => {
   let next = App.get_other_item({mode: item.mode, item: item, wrap: false})
 
   if (next && !next.header) {
-    App.tabs_action(next)
+    App.tabs_action(next, `header`, `center_smooth`)
+    return true
   }
+
+  return false
 }

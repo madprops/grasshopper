@@ -135,7 +135,7 @@ App.get_tab_box_els = (items) => {
         App.tabs_action(item)
       }
       else if (item_mode === `headers`) {
-        App.clean_select(item, `center_smooth`)
+        App.tabs_action(item)
       }
     })
 
