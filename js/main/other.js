@@ -95,14 +95,14 @@ App.show_browser_menu = (e) => {
   App.show_context({items: items, e: e})
 }
 
-App.toggle_header = () => {
+App.toggle_fullscreen = () => {
   let main = DOM.el(`#main`)
 
-  if (main.classList.contains(`no_header`)) {
-    main.classList.remove(`no_header`)
+  if (main.classList.contains(`fullscreen`)) {
+    main.classList.remove(`fullscreen`)
   }
   else {
-    main.classList.add(`no_header`)
+    main.classList.add(`fullscreen`)
   }
 }
 

@@ -332,13 +332,13 @@ App.setup_commands = () => {
       info: `Show the palette`,
     },
     {
-      name: `Toggle Header`,
-      cmd: `toggle_header`,
+      name: `Fullscreen`,
+      cmd: `toggle_fullscreen`,
       icon: command_icon,
       action: (args) => {
-        App.toggle_header()
+        App.toggle_fullscreen()
       },
-      info: `Show or hide the header`,
+      info: `Show only the items`,
     },
     {
       name: `Item Menu`,
