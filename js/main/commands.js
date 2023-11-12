@@ -332,6 +332,16 @@ App.setup_commands = () => {
       info: `Show the palette`,
     },
     {
+      name: `Toggle Taglist`,
+      cmd: `toggle_taglist`,
+      modes: [`items`],
+      icon: tag_icon,
+      action: (args) => {
+        App.toggle_taglist(args.mode)
+      },
+      info: `Show or hide the Taglist`,
+    },
+    {
       name: `Fullscreen`,
       cmd: `toggle_fullscreen`,
       icon: command_icon,

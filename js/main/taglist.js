@@ -149,3 +149,22 @@ App.taglist_add_active = () => {
 
   return true
 }
+
+App.toggle_taglist = (mode) => {
+  let setting = App.get_setting(`taglist`)
+
+  if (setting === `none`) {
+    return
+  }
+
+  for (let item of App.get_items(mode)) {
+    let taglist = DOM.el(`.taglist`, item.element)
+
+    if (taglist.classList.contains(`hidden`)) {
+      taglist.classList.remove(`hidden`)
+    }
+    else {
+      taglist.classList.add(`hidden`)
+    }
+  }
+}
