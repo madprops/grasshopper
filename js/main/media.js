@@ -382,3 +382,29 @@ App.fill_media_window = (what) => {
   let top = DOM.create(`div`, `flex_row_center gap_2 grow`, `media_${what}_buttons`)
   DOM.el(`#window_top_media_${what}`).append(top)
 }
+
+App.check_view_media = (item) => {
+  let type = App.get_media_type(item)
+  let view_media = DOM.el(`.view_media_button`, item.element)
+  let icon
+
+  if (type) {
+    icon = App.get_setting(`${type}_icon`)
+  }
+
+  if (icon) {
+    view_media.textContent = icon
+    view_media.title = App.capitalize(type)
+    view_media.classList.remove(`hidden`)
+
+    if (App.get_setting(`view_${type}_${item.mode}`) !== `never`) {
+      view_media.classList.add(`action`)
+    }
+    else {
+      view_media.classList.remove(`action`)
+    }
+  }
+  else {
+    view_media.classList.add(`hidden`)
+  }
+}
