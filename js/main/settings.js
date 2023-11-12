@@ -68,16 +68,8 @@ App.settings_setup_checkboxes = (category) => {
         [
           {
             name: `Reset`, action: () => {
-              let force = App.check_setting_default(key)
-
-              App.show_confirm({
-                message: `Reset setting?`,
-                confirm_action: () => {
-                  App.set_default_setting(key)
-                  el.checked = App.get_setting(key)
-                },
-                force: force,
-              })
+              App.set_default_setting(key)
+              el.checked = App.get_setting(key)
             }
           },
         ])
@@ -121,17 +113,9 @@ App.settings_setup_texts = (category) => {
     let menu = [
       {
         name: `Reset`,  action: () => {
-          let force = App.check_setting_default(key) || App.check_setting_empty(key)
-
-          App.show_confirm({
-            message: `Reset setting?`,
-            confirm_action: () => {
-              App.set_default_setting(key)
-              el.value = App.get_setting(key)
-              App.scroll_to_top(el)
-            },
-            force: force,
-          })
+          App.set_default_setting(key)
+          el.value = App.get_setting(key)
+          App.scroll_to_top(el)
         },
       },
       {
@@ -154,18 +138,9 @@ App.settings_setup_texts = (category) => {
     if (!props.no_empty) {
       menu.push({
         name: `Clear`,  action: () => {
-          if (el.value === ``) {
-            return
-          }
-
-          App.show_confirm({
-            message: `Clear setting?`,
-            confirm_action: () => {
-              el.value = ``
-              App.set_setting(key, ``)
-              el.focus()
-            },
-          })
+          el.value = ``
+          App.set_setting(key, ``)
+          el.focus()
         },
       })
     }
@@ -216,17 +191,9 @@ App.settings_setup_numbers = (category) => {
     let menu = [
       {
         name: `Reset`,  action: () => {
-          let force = App.check_setting_default(key) || App.check_setting_empty(key)
-
-          App.show_confirm({
-            message:`Reset setting?`,
-            confirm_action: () => {
-              App.set_default_setting(key)
-              let value = App.get_setting(key)
-              el.value = value
-            },
-            force: force,
-          })
+          App.set_default_setting(key)
+          let value = App.get_setting(key)
+          el.value = value
         },
       },
       {
@@ -260,16 +227,8 @@ App.setting_setup_lists = (category) => {
       let menu = [
         {
           name: `Reset`,  action: () => {
-            let force = App.check_setting_default(key) || App.check_setting_empty(key)
-
-            App.show_confirm({
-              message: `Reset setting?`,
-              confirm_action: () => {
-                App.set_default_setting(key)
-                Addlist.update_count(`settings_${key}`)
-              },
-              force: force,
-            })
+            App.set_default_setting(key)
+            Addlist.update_count(`settings_${key}`)
           },
         },
       ]
@@ -303,17 +262,9 @@ App.settings_make_menu = (setting, opts, action = () => {}) => {
     [
       {
         name: `Reset`, action: () => {
-          let force = App.check_setting_default(setting)
-
-          App.show_confirm({
-            message: `Reset setting?`,
-            confirm_action: () => {
-              App.set_default_setting(setting)
-              App.set_settings_menu(setting, undefined, false)
-              action()
-            },
-            force: force,
-          })
+          App.set_default_setting(setting)
+          App.set_settings_menu(setting, undefined, false)
+          action()
         }
       },
     ])
@@ -550,16 +501,8 @@ App.start_color_picker = (setting, alpha = false) => {
     [
       {
         name: `Reset`, action: () => {
-          let force = App.check_setting_default(setting)
-
-          App.show_confirm({
-            message: `Reset setting?`,
-            confirm_action: () => {
-              App[setting].setColor(App.get_default_setting(setting))
-              App.set_default_setting(setting)
-            },
-            force: force,
-          })
+          App[setting].setColor(App.get_default_setting(setting))
+          App.set_default_setting(setting)
         }
       },
     ])
@@ -859,28 +802,6 @@ App.settings_menu_items = () => {
   }
 
   return items
-}
-
-App.is_default_setting = (setting) => {
-  return (App.settings[setting].value === App.default_setting_string) ||
-  (App.str(App.settings[setting].value) === App.str(App.get_default_setting(setting)))
-}
-
-App.check_setting_default = (setting) => {
-  return App.is_default_setting(setting)
-}
-
-App.check_setting_empty = (setting) => {
-  let props = App.setting_props[setting]
-  let value = App.get_setting(setting)
-  let text_types = [`text`, `text_smaller`, `textarea`, `number`]
-
-  if (text_types.includes(props.type)) {
-    return value === ``
-  }
-  else if (props.type === `list`) {
-    return App.str(value) === App.str([])
-  }
 }
 
 App.set_settings_menu = (setting, value, on_change) => {
