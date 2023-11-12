@@ -11,10 +11,8 @@ App.active_history_widgets = () => {
     return true
   }
 
-  if (App.get_setting(`tab_box`) !== `none`) {
-    if (App.get_setting(`tab_box_items`) === `recent`) {
-      return true
-    }
+  if (App.tab_box_recent()) {
+    return true
   }
 
   return false
@@ -25,10 +23,8 @@ App.refresh_active_history = () => {
     App.update_active_trace()
   }
 
-  if (App.get_setting(`tab_box`) !== `none`) {
-    if (App.get_setting(`tab_box_items`) === `recent`) {
-      App.update_tab_box_recent()
-    }
+  if (App.tab_box_recent()) {
+    App.update_tab_box_recent()
   }
 }
 

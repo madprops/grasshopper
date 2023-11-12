@@ -46,7 +46,7 @@ App.do_update_tab_box = (what) => {
 }
 
 App.update_tab_box_recent = () => {
-  if (App.get_setting(`tab_box_items`) !== `recent`) {
+  if (!App.tab_box_recent()) {
     return
   }
 
@@ -62,7 +62,7 @@ App.update_tab_box_recent = () => {
 }
 
 App.update_tab_box_headers = () => {
-  if (App.get_setting(`tab_box_items`) !== `headers`) {
+  if (!App.tab_box_headers()) {
     return
   }
 
@@ -292,4 +292,24 @@ App.check_tab_box_item = (item) => {
   if (item.header) {
     App.update_tab_box(`headers`)
   }
+}
+
+App.tab_box_recent = () => {
+  if (App.get_setting(`tab_box`) !== `none`) {
+    if (App.get_setting(`tab_box_items`) === `recent`) {
+      return true
+    }
+  }
+
+  return false
+}
+
+App.tab_box_headers = () => {
+  if (App.get_setting(`tab_box`) !== `none`) {
+    if (App.get_setting(`tab_box_items`) === `headers`) {
+      return true
+    }
+  }
+
+  return false
 }
