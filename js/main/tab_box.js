@@ -42,6 +42,7 @@ App.do_update_tab_box = (what) => {
     return
   }
 
+  App.check_tab_box()
   App[`update_tab_box_${what}`]()
 }
 
@@ -50,7 +51,6 @@ App.update_tab_box_recent = () => {
     return
   }
 
-  App.check_tab_box()
   let items = App.active_history
 
   if (!App.get_setting(`tab_box_active`)) {
@@ -66,7 +66,6 @@ App.update_tab_box_headers = () => {
     return
   }
 
-  App.check_tab_box()
   let items = App.get_header_tabs()
   let els = App.get_tab_box_els(items)
   App.fill_tab_box(els)

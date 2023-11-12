@@ -497,7 +497,6 @@ App.update_item = (mode, id, info) => {
       App.process_info({mode: mode, info: info, o_item: item})
       App.check_filter(mode)
       App.refresh_active_history()
-      App.check_tab_box_item(item)
       break
     }
   }
@@ -911,6 +910,7 @@ App.insert_item = (mode, info) => {
     App.get_items(mode).splice(info.index, 0, item)
     container.append(item.element)
     App.move_item_element(`tabs`, item.element, info.index)
+    App.check_tab_box_item(item)
   }
   else {
     let old = App.get_item_by_url(mode, item.url)
