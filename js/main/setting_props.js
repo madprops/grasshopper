@@ -968,7 +968,7 @@ App.build_settings = () => {
   }
 
   add_props()
-  category = `headers`
+  category = `zones`
 
   props = {
     split_width: {
@@ -1925,7 +1925,7 @@ App.build_settings = () => {
       You can leave them empty to not show anything`,
       setup: () => {},
     },
-    headers: {
+    zones: {
       info: `Customize headers and splits`,
       setup: () => {
         App.settings_make_menu(`split_side`, [
@@ -1935,7 +1935,7 @@ App.build_settings = () => {
           {text: `Both`, value: `both`},
         ])
 
-        App.start_setting_colors(`headers`)
+        App.start_setting_colors(`zones`)
       },
     },
     filter: {
