@@ -467,7 +467,7 @@ App.unload_tabs = (item, multiple = true) => {
   let active = false
 
   for (let it of App.get_active_items({mode: `tabs`, item: item, multiple: multiple})) {
-    if (it.discarded || App.is_new_tab(it.url)) {
+    if (it.discarded || App.is_new_tab(it.url) || it.header) {
       continue
     }
 
@@ -495,7 +495,7 @@ App.unload_tabs = (item, multiple = true) => {
           next = App.get_next_item(`tabs`, {mode: `tabs`, no_selected: true, no_discarded: true})
         }
         else {
-          next = App.get_next_item(`tabs`, {mode: `tabs`, no_discarded: true, item: item})
+          next = App.get_next_item(`tabs`, {mode: `tabs`, no_discarded: true, item: items[0]})
         }
 
         if (next) {

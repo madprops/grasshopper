@@ -129,6 +129,10 @@ App.get_other_item = (args = {}, reverse = false) => {
   }
 
   for (let item of items) {
+    if (item.header) {
+      continue
+    }
+
     if (waypoint) {
       if (args.only_visible) {
         if (!item.visible) {

@@ -111,6 +111,10 @@ App.check_icons = (item) => {
     return
   }
 
+  if (item.header) {
+    return
+  }
+
   if (App.get_setting(`active_icon`)) {
     let icon = DOM.el(`.active_icon`, item.element)
 
