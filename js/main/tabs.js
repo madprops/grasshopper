@@ -348,6 +348,7 @@ App.tabs_action = async (item, from) => {
   }
 
   if (item.header) {
+    App.select_header_first(item)
     return
   }
 

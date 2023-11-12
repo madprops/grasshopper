@@ -152,3 +152,11 @@ App.check_header = (item) => {
     item.element.classList.remove(`header_item`)
   }
 }
+
+App.select_header_first = (item) => {
+  let next = App.get_other_item({mode: item.mode, item: item, wrap: false})
+
+  if (next && !next.header) {
+    App.tabs_action(next)
+  }
+}
