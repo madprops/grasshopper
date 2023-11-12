@@ -31,6 +31,7 @@ App.process_info_list = (mode, info_list) => {
   if (mode === `tabs`) {
     App.check_tab_session()
     App.fill_active_history()
+    App.start_tab_box()
   }
 }
 
@@ -140,6 +141,7 @@ App.process_info = (args = {}) => {
     item.id = args.info.id || App[`${args.mode}_idx`]
     item.visible = true
     item.selected = false
+    item.header = false
     item.last_scroll = 0
     App.create_item_element(item)
     App[`${args.mode}_idx`] += 1

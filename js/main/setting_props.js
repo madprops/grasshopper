@@ -554,6 +554,13 @@ App.build_settings = () => {
       info: `The height of the Tab Box with recent tabs`,
       version: 2,
     },
+    tab_box_items: {
+      name: `Tab Box Items`,
+      type: `menu`,
+      value: `recent`,
+      info: `Show recent tabs, or headers, in the Tab Box`,
+      version: 2,
+    },
     tab_box_mode: {
       name: `Tab Box Mode`,
       type: `menu`,
@@ -1838,6 +1845,11 @@ App.build_settings = () => {
         App.settings_make_menu(`tab_box_mode`, [
           {text: `Title`, value: `title`},
           {text: `URL`, value: `url`},
+        ])
+
+        App.settings_make_menu(`tab_box_items`, [
+          {text: `Recent`, value: `recent`},
+          {text: `Headers`, value: `headers`},
         ])
 
         App.settings_make_menu(`tab_box_position`, [
