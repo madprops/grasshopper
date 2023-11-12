@@ -11,7 +11,7 @@ App.active_history_widgets = () => {
     return true
   }
 
-  if (App.tab_box_recent()) {
+  if (App.tab_box_recent() || App.tab_box_headers()) {
     return true
   }
 
