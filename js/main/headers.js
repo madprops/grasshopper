@@ -160,6 +160,9 @@ App.select_header_first = (item, scroll) => {
     App.tabs_action(next, `header`, scroll)
     return true
   }
+  else {
+    App.scroll_to_item({item: item, scroll:`center_smooth`})
+  }
 
   return false
 }

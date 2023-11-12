@@ -131,12 +131,7 @@ App.get_tab_box_els = (items) => {
     clone.title = item.url
 
     DOM.ev(clone, `click`, () => {
-      if (item_mode === `recent`) {
-        App.tabs_action(item)
-      }
-      else if (item_mode === `headers`) {
-        App.tabs_action(item)
-      }
+      App.tabs_action(item, `tab_box`)
     })
 
     DOM.ev(clone, `auxclick`, (e) => {

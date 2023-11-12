@@ -108,6 +108,7 @@ App.get_other_item = (args = {}, reverse = false) => {
     only_visible: true,
     no_selected: false,
     no_discarded: false,
+    no_header: true,
     wrap: true,
   }
 
@@ -129,11 +130,13 @@ App.get_other_item = (args = {}, reverse = false) => {
   }
 
   for (let item of items) {
-    if (item.header) {
-      continue
-    }
-
     if (waypoint) {
+      if (args.no_header) {
+        if (item.header) {
+          continue
+        }
+      }
+
       if (args.only_visible) {
         if (!item.visible) {
           continue
