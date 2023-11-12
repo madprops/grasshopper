@@ -115,6 +115,13 @@ App.build_settings = () => {
       info: `Where to save bookmarks`,
       version: 1,
     },
+    domain_rules: {
+      name: `Domain Rules`,
+      type: `list`,
+      value: [],
+      info: `Apply rules to domains automatically, like color, title, and tags`,
+      version: 1,
+    },
     smooth_scroll: {
       name: `Smooth Scroll`,
       type: `checkbox`,
@@ -961,17 +968,78 @@ App.build_settings = () => {
   }
 
   add_props()
-  category = `edits`
+  category = `headers`
 
   props = {
-    domain_rules: {
-      name: `Domain Rules`,
-      type: `list`,
-      value: [],
-      info: `Apply rules to domains automatically, like color, title, and tags`,
+    split_width: {
+      name: `Split Width`,
+      type: `number`,
+      value: 2,
+      placeholder: `Number`,
+      min: 1,
+      max: 99,
+      info: `The width of the split borders`,
+      version: 1,
+    },
+    split_color_enabled: {
+      name: `Split Color`,
+      type: `checkbox`,
+      value: false,
+      info: `Use the split custom color. Else use a proper color automatically`,
+      version: 1,
+    },
+    split_color: {
+      name: `Split Color`,
+      hide_name: true,
+      type: `color`,
+      value: `rgb(102, 204, 0)`,
+      info: `The color of the splits between tabs`,
+      version: 1,
+    },
+    split_side: {
+      name: `Split Side`,
+      type: `menu`,
+      value: `right`,
+      info: `Which side to show the split side border`,
       separator: true,
       version: 1,
     },
+    text_color_header_enabled: {
+      name: `Header Text Color`,
+      type: `checkbox`,
+      value: false,
+      info: `Use custom text color for header tabs`,
+      version: 1,
+    },
+    text_color_header: {
+      name: `Header Text Color`,
+      hide_name: true,
+      type: `color`,
+      value: `rgb(100, 100, 100)`,
+      info: `Custom text color for header tabs`,
+      version: 1,
+    },
+    background_color_header_enabled: {
+      name: `Header Background Color`,
+      type: `checkbox`,
+      value: false,
+      info: `Use custom background color for header tabs`,
+      version: 1,
+    },
+    background_color_header: {
+      name: `Header Background Color`,
+      hide_name: true,
+      type: `color`,
+      value: `rgb(100, 100, 100)`,
+      info: `Custom background color for header tabs`,
+      version: 1,
+    },
+  }
+
+  add_props()
+  category = `colors`
+
+  props = {
     color_mode: {
       name: `Color Mode`,
       type: `menu`,
@@ -1005,62 +1073,9 @@ App.build_settings = () => {
       type: `color`,
       value: `rgb(255, 153, 0)`,
       info: `The yellow to use when coloring items yellow`,
-      version: 1,
-    },
-    color_icon_click: {
-      name: `Color Icon Click`,
-      type: `checkbox`,
-      value: true,
-      info: `Show the color menu by clicking a color icon`,
       separator: true,
       version: 1,
     },
-    split_color_enabled: {
-      name: `Split Color`,
-      type: `checkbox`,
-      value: false,
-      info: `Use the split custom color. Else use a proper color automatically`,
-      version: 1,
-    },
-    split_color: {
-      name: `Split Color`,
-      hide_name: true,
-      type: `color`,
-      value: `rgb(102, 204, 0)`,
-      info: `The color of the splits between tabs`,
-      version: 1,
-    },
-    split_width: {
-      name: `Split Width`,
-      type: `number`,
-      value: 2,
-      placeholder: `Number`,
-      min: 1,
-      max: 99,
-      info: `The width of the split borders`,
-      version: 1,
-    },
-    split_side: {
-      name: `Split Side`,
-      type: `menu`,
-      value: `right`,
-      info: `Which side to show the split side border`,
-      separator: true,
-      version: 1,
-    },
-    notes_icon_click: {
-      name: `Notes Icon Click`,
-      type: `checkbox`,
-      value: true,
-      info: `Show the notes when clicking the notes icon`,
-      version: 1,
-    },
-  }
-
-  add_props()
-  category = `colors`
-
-  props = {
     text_color_active_enabled: {
       name: `Active Tabs (Text)`,
       type: `checkbox`,
@@ -1269,36 +1284,6 @@ App.build_settings = () => {
       type: `color`,
       value: `rgb(100, 100, 100)`,
       info: `Custom background color for unloaded tabs`,
-      version: 1,
-    },
-    text_color_header_enabled: {
-      name: `Header Tabs (Text)`,
-      type: `checkbox`,
-      value: false,
-      info: `Use custom text color for header tabs`,
-      version: 1,
-    },
-    text_color_header: {
-      name: `Header Tabs (Text)`,
-      hide_name: true,
-      type: `color`,
-      value: `rgb(100, 100, 100)`,
-      info: `Custom text color for header tabs`,
-      version: 1,
-    },
-    background_color_header_enabled: {
-      name: `Header Tabs (Background)`,
-      type: `checkbox`,
-      value: false,
-      info: `Use custom background color for header tabs`,
-      version: 1,
-    },
-    background_color_header: {
-      name: `Header Tabs (Background)`,
-      hide_name: true,
-      type: `color`,
-      value: `rgb(100, 100, 100)`,
-      info: `Custom background color for header tabs`,
       version: 1,
     },
   }
@@ -1629,6 +1614,20 @@ App.build_settings = () => {
       info: `Require a double click to select a Header's tabs`,
       version: 1,
     },
+    color_icon_click: {
+      name: `Color Icon Click`,
+      type: `checkbox`,
+      value: true,
+      info: `Show the color menu by clicking a color icon`,
+      version: 1,
+    },
+    notes_icon_click: {
+      name: `Notes Icon Click`,
+      type: `checkbox`,
+      value: true,
+      info: `Show the notes when clicking the notes icon`,
+      version: 1,
+    },
     show_protocol: {
       name: `Show Protocol`,
       type: `checkbox`,
@@ -1831,6 +1830,24 @@ App.build_settings = () => {
         ],
       ]
     },
+    colors: {
+      info: `Custom colors for tabs. You can enable/disable each color for different kinds of tabs.
+      Some colors take precendence over others`,
+      setup: () => {
+        App.start_setting_colors(`colors`)
+
+        App.settings_make_menu(`color_mode`, [
+          {text: `None`, value: `none`},
+          {text: `Icon`, value: `icon`},
+          {text: `Border`, value: `border`},
+          {text: `Border & Icon`, value: `border_icon`},
+          {text: `Text`, value: `text`},
+          {text: `Text & Icon`, value: `text_icon`},
+          {text: `Background`, value: `background`},
+          {text: `BG & Icon`, value: `background_icon`},
+        ])
+      },
+    },
     show: {
       info: `Hide or show interface components. Set component behavior and their menus`,
       setup: () => {
@@ -1908,52 +1925,17 @@ App.build_settings = () => {
       You can leave them empty to not show anything`,
       setup: () => {},
     },
-    edits: {
-      info: `Settings regarding edits you can apply to tabs.
-      This also includes Domain Rules which apply automatically based on URL`,
+    headers: {
+      info: `Customize headers and splits`,
       setup: () => {
-        for (let color of App.colors) {
-          App.start_color_picker(`color_${color}`)
-        }
-
-        App.start_color_picker(`split_color`)
-
-        App.settings_make_menu(`color_mode`, [
-          {text: `None`, value: `none`},
-          {text: `Icon`, value: `icon`},
-          {text: `Border`, value: `border`},
-          {text: `Border & Icon`, value: `border_icon`},
-          {text: `Text`, value: `text`},
-          {text: `Text & Icon`, value: `text_icon`},
-          {text: `Background`, value: `background`},
-          {text: `BG & Icon`, value: `background_icon`},
-        ])
-
         App.settings_make_menu(`split_side`, [
           {text: `None`, value: `none`},
           {text: `Left`, value: `left`},
           {text: `Right`, value: `right`},
           {text: `Both`, value: `both`},
         ])
-      },
-    },
-    colors: {
-      info: `Custom colors for tabs. You can enable/disable each color for different kinds of tabs.
-      Some colors take precendence over others`,
-      setup: () => {
-        for (let key in App.setting_props) {
-          let props = App.setting_props[key]
 
-          if (props.category !== `colors`) {
-            continue
-          }
-
-          if (!key.includes(`_color_`) || key.endsWith(`_enabled`)) {
-            continue
-          }
-
-          App.start_color_picker(key)
-        }
+        App.start_setting_colors(`headers`)
       },
     },
     filter: {

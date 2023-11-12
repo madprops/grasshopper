@@ -1307,3 +1307,19 @@ App.color_values = () => {
 
   return items
 }
+
+App.start_setting_colors = (category) => {
+  for (let key in App.setting_props) {
+    let props = App.setting_props[key]
+
+    if (props.category !== category) {
+      continue
+    }
+
+    if (props.type !== `color`) {
+      continue
+    }
+
+    App.start_color_picker(key)
+  }
+}

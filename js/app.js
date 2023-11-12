@@ -78,8 +78,9 @@ App.update_active_trace_delay = 100
 App.settings_icons = {
   general: `⚙️`,
   theme: `🎨`,
+  colors: `🎨`,
+  headers: `🚥`,
   edits: `📝`,
-  colors: `📚`,
   icons: `🖼️`,
   media: `📷`,
   icons: `👁️`,
