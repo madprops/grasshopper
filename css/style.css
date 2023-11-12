@@ -8,7 +8,8 @@
   --bigger_font: 1.1rem;
   --widget_width: 14rem;
   --widget_width_smaller: 6rem;
-  --action_effect: 0 0 0.1rem currentColor;
+  --action_effect: 0 0 0.2rem currentColor;
+  --glow_effect: 0 0 0.1rem currentColor;
   --text_glow: 0 0 0.2rem currentColor;
   --split_border: var(--split_width) solid var(--split_color);
 }
@@ -446,7 +447,7 @@ svg {
 .tab_box_hover_effect_glow .tab_box_item:hover .box_item_text,
 .tab_box_active_effect_glow .active_tab_box_item .box_item_text
 {
-  text-shadow: var(--action_effect);
+  text-shadow: var(--glow_effect);
 }
 
 .hover_effect_opacity .item:hover,
