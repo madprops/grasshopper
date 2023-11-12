@@ -347,6 +347,10 @@ App.tabs_action = async (item, from) => {
     }
   }
 
+  if (item.header) {
+    return
+  }
+
   App.on_action(`tabs`)
   App.do_empty_previous_tabs()
 
