@@ -342,12 +342,14 @@ App.tabs_action = async (item, from, scroll = `nearest_smooth`) => {
     if (App.is_filtered(item.mode)) {
       if (item.header) {
         App.filter_all(item.mode)
+        App.select_header_first(item, `center_instant`)
+        return
       }
     }
   }
 
   if (item.header) {
-    App.select_header_first(item)
+    App.select_header_first(item, `center_smooth`)
     return
   }
 

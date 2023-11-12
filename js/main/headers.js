@@ -153,11 +153,11 @@ App.check_header = (item) => {
   }
 }
 
-App.select_header_first = (item) => {
+App.select_header_first = (item, scroll) => {
   let next = App.get_other_item({mode: item.mode, item: item, wrap: false})
 
   if (next && !next.header) {
-    App.tabs_action(next, `header`, `center_smooth`)
+    App.tabs_action(next, `header`, scroll)
     return true
   }
 
