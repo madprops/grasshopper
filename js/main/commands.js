@@ -1387,6 +1387,16 @@ App.setup_commands = () => {
       info: `Filter: Show duplicate tabs`,
     },
     {
+      name: `Custom Filters`,
+      cmd: `show_custom_filters`,
+      modes: [`items`],
+      icon: filter_icon,
+      action: (args) => {
+        App.show_custom_filters(args.mode, args.e)
+      },
+      info: `Show the Custom Filters`,
+    },
+    {
       name: App.separator_string
     },
     {

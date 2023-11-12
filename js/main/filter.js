@@ -585,6 +585,11 @@ App.get_custom_filters = (mode) => {
   return items
 }
 
+App.show_custom_filters = (mode, e) => {
+  let items = App.get_custom_filters(mode)
+  App.show_context({items: items, e: e})
+}
+
 App.set_custom_filter = (mode, filter) => {
   App.set_filter_mode({mode: mode, type: `all`, filter: false})
   App.set_filter({mode: mode, text: filter})
