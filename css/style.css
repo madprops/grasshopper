@@ -352,7 +352,6 @@ svg {
 }
 
 .not_filtered .header_item {
-  font-size: var(--bigger_font);
   background-color: var(--slight_shade);
   margin-top: 0.5rem;
   margin-bottom: 0.5rem;
