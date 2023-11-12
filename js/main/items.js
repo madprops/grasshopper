@@ -311,6 +311,7 @@ App.refresh_item_element = (item) => {
 App.create_item_element = (item) => {
   item.element = DOM.create(`div`, `grasshopper_item item ${item.mode}_item`)
   item.element.dataset.id = item.id
+  App.check_header(item)
   App.add_close_button(item, `left`)
   let trace = App.create_active_trace()
   item.element.append(trace)
@@ -332,7 +333,6 @@ App.create_item_element = (item) => {
   App.check_icons(item)
   App.apply_color_mode(item)
   App.apply_splits(item)
-  App.check_header(item)
   let view_media = DOM.create(`div`, `view_media_button hidden`)
   item.element.append(view_media)
   App.check_view_media(item)
