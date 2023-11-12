@@ -1119,8 +1119,8 @@ a:visited, a:link, a:hover {
   background-color: var(--alt_background);
   border-top: 1px solid var(--alt_color_1);
   border-bottom: 1px solid var(--alt_color_1);
-  padding-top: 0.2rem;
-  padding-bottom: 0.2rem;
+  padding-top: 0.18rem;
+  padding-bottom: 0.18rem;
   cursor: pointer;
 }
 
