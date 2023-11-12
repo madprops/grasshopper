@@ -259,14 +259,14 @@ App.tab_box_menu = (e) => {
         text: `Title`,
         action: (e) => {
           App.set_setting(`tab_box_mode`, `title`)
-          App.update_tab_box_recent()
+          App.update_tab_box(`recent`)
         },
       },
       {
         text: `URL`,
         action: (e) => {
           App.set_setting(`tab_box_mode`, `url`)
-          App.update_tab_box_recent()
+          App.update_tab_box(`recent`)
         },
       },
     ],

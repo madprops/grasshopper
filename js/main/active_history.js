@@ -24,7 +24,7 @@ App.refresh_active_history = () => {
   }
 
   if (App.tab_box_recent()) {
-    App.update_tab_box_recent()
+    App.update_tab_box(`recent`)
   }
 }
 
