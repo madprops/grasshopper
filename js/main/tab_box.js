@@ -168,7 +168,7 @@ App.set_tab_box_items = () => {
   let title = DOM.el(`#tab_box_title`)
 
   if (item_mode === `recent`) {
-    title.textContent = `Recent Tabs`
+    title.textContent = `Recent`
   }
   else if (item_mode === `headers`) {
     title.textContent = `Headers`
