@@ -340,7 +340,7 @@ App.remove_closed_tab = (id) => {
 App.tabs_action = async (item, from) => {
   if (from === `click` || from === `enter`) {
     if (App.is_filtered(item.mode)) {
-      if (App.is_header(item)) {
+      if (item.header) {
         App.clean_select(item)
         return
       }

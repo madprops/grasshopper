@@ -378,7 +378,7 @@ App.create_item_element = (item) => {
 }
 
 App.set_item_text = (item) => {
-  if (App.is_header(item)) {
+  if (item.header) {
     App.set_header_text(item)
     return
   }

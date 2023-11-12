@@ -37,7 +37,7 @@ App.header_group = (item) => {
 
   for (let [i, it] of items.entries()) {
     if (waypoint) {
-      if (App.is_header(it)) {
+      if (it.header) {
         select = true
         break
       }
@@ -96,7 +96,7 @@ App.select_header_group = (item) => {
 }
 
 App.get_header_tabs = () => {
-  return App.get_items(`tabs`).filter(x => App.is_header(x))
+  return App.get_items(`tabs`).filter(x => x.header)
 }
 
 App.remove_all_headers = () => {
@@ -107,26 +107,6 @@ App.remove_all_headers = () => {
   }
 
   App.close_tabs_method(items)
-}
-
-App.is_header = (item) => {
-  if (item.mode !== `tabs`) {
-    return false
-  }
-
-  if (!item.url.startsWith(App.browser_protocol)) {
-    return false
-  }
-
-  if (!item.url.endsWith(App.header_file)) {
-    return false
-  }
-
-  if (!App.tab_ready(item)) {
-    return false
-  }
-
-  return true
 }
 
 App.set_header_text = (item) => {
@@ -140,12 +120,30 @@ App.set_header_text = (item) => {
   item.element.title = tips.join(`\n`)
 }
 
+App.is_header = (item) => {
+  if (!item.url.startsWith(App.browser_protocol)) {
+    return false
+  }
+
+  if (!item.url.endsWith(App.header_file)) {
+    return false
+  }
+
+  return true
+}
+
 App.check_header = (item) => {
+  if (item.mode !== `tabs`) {
+    return
+  }
+
   if (App.is_header(item)) {
-    item.element.classList.add(`header_item`)
+    item.header = true
     item.unread = false
+    item.element.classList.add(`header_item`)
   }
   else {
+    item.header = false
     item.element.classList.remove(`header_item`)
   }
 }

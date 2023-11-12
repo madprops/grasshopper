@@ -30,7 +30,7 @@ App.check_tab_colors = (item) => {
   item.element.style.color = ``
   item.element.style.backgroundColor = ``
 
-  if (App.is_header(item)) {
+  if (item.header) {
     if (enabled(`header`)) {
       proc(`header`)
     }
@@ -68,7 +68,7 @@ App.apply_color_mode = (item) => {
   let color_mode = App.get_setting(`color_mode`)
   let color = App.get_color(item)
 
-  if (App.is_header(item)) {
+  if (item.header) {
     color_mode = `icon`
   }
 

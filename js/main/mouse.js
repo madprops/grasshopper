@@ -109,7 +109,7 @@ App.mouse_click_action = (mode, e) => {
   }
 
   if (e.target.closest(`.item_icon_container`)) {
-    if (App.is_header(item)) {
+    if (item.header) {
       App.select_header_group(item)
       return
     }
@@ -203,7 +203,7 @@ App.mouse_double_click_action = (mode, e) => {
 
   if (App.get_setting(`double_click_header`)) {
     if (e.target.closest(`.item_text`)) {
-      if (App.is_header(item)) {
+      if (item.header) {
         App.select_header_group(item)
         return
       }

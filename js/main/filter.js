@@ -367,7 +367,7 @@ App.filter_check = (args) => {
       match = App.edited(args.item)
     }
     else if (args.filter_mode === `header`) {
-      match = App.is_header(args.item)
+      match = args.item.header
     }
     else if (args.filter_mode === `pinned`) {
       match = args.item.pinned

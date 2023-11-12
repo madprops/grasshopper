@@ -23,7 +23,7 @@ App.do_update_footer_info = (item) => {
 
   let info
 
-  if (App.is_header(item)) {
+  if (item.header) {
     info = `Header: ${item.header_title}`
   }
   else {
