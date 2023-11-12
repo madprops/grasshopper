@@ -272,7 +272,7 @@ select {
   align-self: stretch;
 }
 
-.border_button {
+.animated_border {
   border: 1px solid var(--alt_color_2);
   animation: color_fade 1s infinite;
 }

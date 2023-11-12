@@ -1,5 +1,5 @@
 App.create_playing_icon = (mode) => {
-  btn = DOM.create(`div`, `button icon_button border_button playing_icon hidden`, `playing_icon_${mode}`)
+  btn = DOM.create(`div`, `button icon_button playing_icon hidden`, `playing_icon_${mode}`)
   btn.title = `Go To Playing Tab (Ctrl + Dot) - Right Click to filter playing tabs`
   let icon = App.create_icon(`speaker`)
 
@@ -31,11 +31,27 @@ App.hide_playing = (mode) => {
   DOM.el(`#playing_icon_${mode}`).classList.add(`hidden`)
 }
 
+App.animate_playing = (mode) => {
+  DOM.el(`#playing_icon_${mode}`).classList.add(`animated_border`)
+}
+
+App.stop_animate_playing = (mode) => {
+  DOM.el(`#playing_icon_${mode}`).classList.remove(`animated_border`)
+}
+
 App.check_playing = (mode = App.active_mode) => {
   let playing = App.get_playing_tabs()
 
   if (playing.length) {
     App.show_playing(mode)
+    let selected = App.get_selected(mode)
+
+    if (selected && (!selected.audible)) {
+      App.animate_playing(mode)
+    }
+    else {
+      App.stop_animate_playing(mode)
+    }
   }
   else {
     App.hide_playing(mode)
