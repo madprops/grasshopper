@@ -97,23 +97,11 @@ App.get_tab_box_els = (items) => {
       clone.classList.add(`active_tab_box_item`)
     }
 
-    let icon = DOM.create(`div`, `box_item_icon`)
-    let o_icon = DOM.el(`.item_icon`, item.element).cloneNode(true)
-    let playing_icon = App.get_setting(`playing_icon`)
+    let ans = App.make_item_icon(item, false)
 
-    if (o_icon.tagName === `IMG`) {
-      icon.append(o_icon)
-
-      DOM.ev(o_icon, `error`, () => {
-        let icon_2 = App.generate_icon(item.hostname)
-        icon.replaceWith(icon_2)
-      })
+    if (ans.icon) {
+      clone.append(ans.icon)
     }
-    else if (o_icon.tagName === `CANVAS`) {
-      icon.append(App.generate_icon(item.hostname))
-    }
-
-    clone.append(icon)
 
     if (App.get_color(item)) {
       let c_icon = App.color_icon(App.get_color(item))

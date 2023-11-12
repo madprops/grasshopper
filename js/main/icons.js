@@ -235,50 +235,82 @@ App.check_icons = (item) => {
 
 App.check_item_icon = (item) => {
   if (App.get_setting(`item_icon`) !== `none`) {
-    let icon
-    let text_icon = App.get_icon(item)
+    let ans = App.make_item_icon(item)
 
-    if (text_icon) {
-      if (item.text_icon_used === text_icon) {
-        return
-      }
-
-      icon = App.get_text_icon(text_icon)
-      item.text_icon_used = text_icon
-      item.favicon_used = undefined
-      item.generated_icon = undefined
-    }
-    else if (item.favicon) {
-      if (item.favicon_used === item.favicon) {
-        return
-      }
-
-      icon = App.get_favicon(item)
-      item.favicon_used = item.favicon
-      item.generated_icon = undefined
-      item.text_icon_used = undefined
-    }
-    else if (App.get_setting(`generate_icons`)) {
-      if (item.generated_icon === item.hostname) {
-        return
-      }
-
-      icon = App.generate_icon(item.hostname)
-      item.generated_icon = item.hostname
-      item.favicon_used = undefined
-      item.text_icon_used = undefined
+    if (!ans.add) {
+      return
     }
 
     let container = DOM.el(`.item_icon_container`, item.element)
 
-    if (icon) {
+    if (ans.icon) {
       container.innerHTML = ``
-      container.append(icon)
+      container.append(ans.icon)
       container.classList.remove(`hidden`)
     }
     else {
       container.classList.add(`hidden`)
     }
+  }
+}
+
+App.make_item_icon = (item, normal = true) => {
+  let icon
+  let text_icon = App.get_icon(item)
+
+  if (!text_icon && item.header) {
+    text_icon = App.zone_icon
+  }
+
+  if (text_icon) {
+    if (normal) {
+      if (item.text_icon_used === text_icon) {
+        return {add: false}
+      }
+    }
+
+    icon = App.get_text_icon(text_icon)
+
+    if (normal) {
+      item.text_icon_used = text_icon
+      item.favicon_used = undefined
+      item.generated_icon = undefined
+    }
+  }
+  else if (item.favicon) {
+    if (normal) {
+      if (item.favicon_used === item.favicon) {
+        return {add: false}
+      }
+    }
+
+    icon = App.get_favicon(item)
+
+    if (normal) {
+      item.favicon_used = item.favicon
+      item.generated_icon = undefined
+      item.text_icon_used = undefined
+    }
+  }
+  else if (App.get_setting(`generate_icons`)) {
+    if (normal) {
+      if (item.generated_icon === item.hostname) {
+        return {add: false}
+      }
+    }
+
+    icon = App.generate_icon(item.hostname)
+
+    if (normal) {
+      item.generated_icon = item.hostname
+      item.favicon_used = undefined
+      item.text_icon_used = undefined
+    }
+  }
+
+  return {
+    add: true,
+    icon: icon,
   }
 }
 

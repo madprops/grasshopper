@@ -24,7 +24,7 @@ App.setup_commands = () => {
   let heart_icon = App.heart_icon
   let close_icon = App.close_icon
   let tag_icon = App.tag_icon
-  let split_icon = App.split_icon
+  let zone_icon = App.zone_icon
   let color_filters = []
   let color_changers = []
   let color_removers = []
@@ -846,7 +846,7 @@ App.setup_commands = () => {
       cmd: `insert_header`,
       modes: [`tabs`],
       item: true,
-      icon: split_icon,
+      icon: zone_icon,
       action: (args) => {
         App.insert_header(args.item)
       },
@@ -1005,7 +1005,7 @@ App.setup_commands = () => {
       modes: [`tabs`],
       item: true,
       multiple: true,
-      icon: split_icon,
+      icon: zone_icon,
       action: (args) => {
         App.edit_tab_split({item: args.item, which: `both`})
       },
@@ -1017,7 +1017,7 @@ App.setup_commands = () => {
       modes: [`tabs`],
       item: true,
       some_not_split_top: true,
-      icon: split_icon,
+      icon: zone_icon,
       action: (args) => {
         App.edit_tab_split({item: args.item, which: `top`})
       },
@@ -1029,7 +1029,7 @@ App.setup_commands = () => {
       modes: [`tabs`],
       item: true,
       some_not_split_bottom: true,
-      icon: split_icon,
+      icon: zone_icon,
       action: (args) => {
         App.edit_tab_split({item: args.item, which: `bottom`})
       },
@@ -1138,7 +1138,7 @@ App.setup_commands = () => {
       modes: [`tabs`],
       some_split: true,
       item: true,
-      icon: split_icon,
+      icon: zone_icon,
       action: (args) => {
         App.remove_item_split(args.item)
       },
@@ -1148,7 +1148,7 @@ App.setup_commands = () => {
       name: `Remove All Splits`,
       cmd: `remove_all_splits`,
       modes: [`tabs`],
-      icon: split_icon,
+      icon: zone_icon,
       action: (args) => {
         App.remove_all_splits()
       },
@@ -1158,7 +1158,7 @@ App.setup_commands = () => {
       name: `Remove All Headers`,
       cmd: `remove_all_headers`,
       modes: [`tabs`],
-      icon: split_icon,
+      icon: zone_icon,
       action: (args) => {
         App.remove_all_headers(args.item)
       },
@@ -1380,7 +1380,7 @@ App.setup_commands = () => {
       name: `Filter Header`,
       cmd: `filter_header_tabs`,
       modes: [`items`],
-      icon: split_icon,
+      icon: zone_icon,
       action: (args) => {
         App.filter_header(args.mode)
       },

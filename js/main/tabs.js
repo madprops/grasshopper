@@ -124,7 +124,7 @@ App.build_tab_filters = () => {
     },
     {
       type: `header`, text:`Header`, skip: false, info: `Show tabs that haven't been visited yet`,
-      icon: App.split_icon
+      icon: App.zone_icon
     },
     {type: App.separator_string, skip: true},
     {
