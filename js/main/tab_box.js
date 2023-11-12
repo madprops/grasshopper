@@ -289,7 +289,7 @@ App.check_tab_box_item = (item) => {
     return
   }
 
-  if (item.header) {
+  if (App.tab_box_headers()) {
     App.update_tab_box(`headers`)
   }
 }

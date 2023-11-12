@@ -113,7 +113,7 @@ App.set_header_text = (item) => {
   let title = App.get_title(item, false) || `Give me a title`
   let text_el = DOM.el(`.item_text_1`, item.element)
   text_el.textContent = title
-  item.header_title = title
+  item.title = title
   let tips = []
   tips.push(`This is a Header Tab`)
   tips.push(`Double Click to select group`)
