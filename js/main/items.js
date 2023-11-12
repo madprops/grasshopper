@@ -1185,7 +1185,7 @@ App.remove_auto_blur = () => {
   }
 }
 
-App.clean_select = (item) => {
+App.clean_select = (item, scroll = `center`) => {
   App.filter_all(item.mode)
-  App.select_item({item: item, scroll: `center`})
+  App.select_item({item: item, scroll: scroll})
 }

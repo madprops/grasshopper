@@ -34,7 +34,7 @@ App.do_refresh_active_history = () => {
   }
 
   if (App.get_setting(`tab_box`) !== `none`) {
-    App.update_tab_box()
+    App.update_tab_box_recent()
   }
 }
 

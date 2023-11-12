@@ -3,6 +3,7 @@ App.create_tab_box = () => {
   let title = DOM.create(`div`, `box_title`, `tab_box_title`)
   title.textContent = `Recent Tabs`
   title.title = `This is the Tab Box`
+  App.tab_box_items = `recent`
 
   DOM.ev(title, `click`, (e) => {
     App.tab_box_menu(e)
@@ -20,16 +21,47 @@ App.create_tab_box = () => {
   return tab_box
 }
 
-App.update_tab_box = () => {
+App.update_tab_box_recent = () => {
+  if (App.tab_box_items !== `recent`) {
+    return
+  }
+
+  let items = App.active_history
+
+  if (!App.get_setting(`tab_box_active`)) {
+    items = items.filter(x => !x.active)
+  }
+
+  let els = App.get_tab_box_els(items)
+  App.update_tab_box(els)
+}
+
+App.update_tab_box_headers = () => {
+  if (App.tab_box_items !== `headers`) {
+    return
+  }
+
+  let items = App.get_header_tabs()
+  let els = App.get_tab_box_els(items)
+  App.update_tab_box(els)
+}
+
+App.update_tab_box = (els) => {
   let c = DOM.el(`#tab_box_container`)
   c.innerHTML = ``
-  let show_active = App.get_setting(`tab_box_active`)
 
-  for (let item of App.active_history) {
-    if (item.active && !show_active) {
-      continue
-    }
+  for (let el of els) {
+    c.append(el)
+  }
 
+  App.scroll_to_top(c)
+}
+
+App.get_tab_box_els = (items) => {
+  let els = []
+  let item_mode = App.tab_box_items
+
+  for (let item of items) {
     let clone = DOM.create(`div`, `tab_box_item box_item`)
 
     if (item.active) {
@@ -77,7 +109,13 @@ App.update_tab_box = () => {
     clone.title = item.url
 
     DOM.ev(clone, `click`, () => {
-      App.tabs_action(item)
+      if (item_mode === `recent`) {
+        App.tabs_action(item)
+      }
+      else if (item_mode === `headers`) {
+        App.clean_select(item, `center_smooth`)
+        App.change_tab_box_items(`recent`)
+      }
     })
 
     DOM.ev(clone, `auxclick`, (e) => {
@@ -94,14 +132,49 @@ App.update_tab_box = () => {
       App.show_item_menu({item: item, e: e})
     })
 
-    c.append(clone)
-    App.scroll_to_top(c)
+    els.push(clone)
+  }
+
+  return els
+}
+
+App.change_tab_box_items = (what) => {
+  if (what === `recent`) {
+    let title = DOM.el(`#tab_box_title`)
+    title.textContent = `Recent Tabs`
+    App.tab_box_items = `recent`
+    App.update_tab_box_recent()
+  }
+  else if (what === `headers`) {
+    let title = DOM.el(`#tab_box_title`)
+    title.textContent = `Headers`
+    App.tab_box_items = `headers`
+    App.update_tab_box_headers()
   }
 }
 
 App.tab_box_menu = (e) => {
   let items = []
   let sizes = []
+
+  if (App.tab_box_items === `recent`) {
+    items.push({
+      text: `Headers`,
+      action: () => {
+        App.change_tab_box_items(`headers`)
+      }
+    })
+  }
+  else {
+    items.push({
+      text: `Recent`,
+      action: () => {
+        App.change_tab_box_items(`recent`)
+      }
+    })
+  }
+
+  App.sep(items)
 
   for (let [i, size] of App.sizes.entries()) {
     if (App.get_setting(`tab_box`) === size.value) {
@@ -149,14 +222,14 @@ App.tab_box_menu = (e) => {
         text: `Title`,
         action: (e) => {
           App.set_setting(`tab_box_mode`, `title`)
-          App.update_tab_box()
+          App.update_tab_box_recent()
         },
       },
       {
         text: `URL`,
         action: (e) => {
           App.set_setting(`tab_box_mode`, `url`)
-          App.update_tab_box()
+          App.update_tab_box_recent()
         },
       },
     ],
