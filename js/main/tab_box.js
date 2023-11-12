@@ -288,7 +288,7 @@ App.tab_box_menu = (e) => {
   App.show_context({items: items, e: e})
 }
 
-App.start_tab_box = () => {
+App.refresh_tab_box = () => {
   App.update_tab_box(App.get_setting(`tab_box_items`))
 }
 
