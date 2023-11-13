@@ -349,7 +349,16 @@ App.tabs_action = async (item, from, scroll = `nearest_smooth`) => {
   }
 
   if (item.header) {
-    App.select_header_first(item, `center_smooth`)
+    let s_scroll
+
+    if (from === `tab_box`) {
+      s_scroll = `center_smooth`
+    }
+    else {
+      s_scroll = `nearest_smooth`
+    }
+
+    App.select_header_first(item, s_scroll)
     return
   }
 
