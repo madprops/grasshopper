@@ -568,19 +568,19 @@ App.build_settings = () => {
       info: `Show recent tabs, or headers, in the Tab Box`,
       version: 4,
     },
-    tab_box_text: {
-      name: `Tab Box Text`,
-      type: `menu`,
-      value: `title`,
-      info: `What text to show in the Tab Box items`,
-      version: 4,
-    },
     tab_box_position: {
       name: `Tab Box Position`,
       type: `menu`,
       value: `bottom`,
       info: `The position of the Tab Box`,
       version: 1,
+    },
+    tab_box_text: {
+      name: `Tab Box Text`,
+      type: `menu`,
+      value: `title`,
+      info: `What text to show in the Tab Box items`,
+      version: 4,
     },
     tab_box_active_effect: {
       name: `Tab Box Active Effect`,
