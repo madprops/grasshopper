@@ -12,7 +12,7 @@
   --glow_effect: 0 0 0.1rem currentColor;
   --text_glow: 0 0 0.2rem currentColor;
   --split_border: var(--split_width) solid var(--split_color);
-  --split_margin: 1rem;
+  --split_margin: 0.88rem;
 }
 
 @keyframes spin {
