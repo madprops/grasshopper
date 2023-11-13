@@ -273,7 +273,7 @@ select {
   align-self: stretch;
 }
 
-.animated_border {
+.animated_border:not(:hover) {
   border: 1px solid var(--alt_color_2);
   animation: color_fade 1s infinite;
 }
