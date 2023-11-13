@@ -338,17 +338,15 @@ App.remove_closed_tab = (id) => {
 }
 
 App.tabs_action = async (item, from, scroll = `nearest_smooth`) => {
-  if (from === `click` || from === `enter` || from == `tab_box`) {
-    if (App.is_filtered(item.mode)) {
-      if (item.header) {
+  if (item.header) {
+    if (from === `click` || from === `enter` || from == `tab_box`) {
+      if (App.is_filtered(item.mode)) {
         App.filter_all(item.mode)
         App.select_header_first(item, `center_instant`)
         return
       }
     }
-  }
 
-  if (item.header) {
     let s_scroll
 
     if (from === `tab_box`) {
