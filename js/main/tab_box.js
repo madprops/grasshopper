@@ -121,13 +121,13 @@ App.get_tab_box_els = (items) => {
     let text
 
     if (item_mode === `headers`) {
-      tbm = `title`
+      tbm = `titles`
     }
 
-    if (tbm === `title`) {
+    if (tbm === `titles`) {
       text = App.get_title(item)
     }
-    else if (tbm === `url`) {
+    else if (tbm === `urls`) {
       text = item.path
     }
 
@@ -204,7 +204,7 @@ App.tab_box_menu = (e) => {
 
   for (let [i, size] of App.sizes.entries()) {
     if (App.get_setting(`tab_box`) === size.value) {
-      index = i
+      continue
     }
 
     sizes.push({
@@ -221,44 +221,60 @@ App.tab_box_menu = (e) => {
     items: sizes,
   })
 
+  let positions = []
+  let position = App.get_setting(`tab_box_position`)
+
+  if (position !== `top`) {
+    positions.push({
+      text: `Top`,
+      action: (e) => {
+        App.set_setting(`tab_box_position`, `top`)
+        App.clear_show()
+      },
+    })
+  }
+
+  if (position !== `bottom`) {
+    positions.push({
+      text: `Bottom`,
+      action: (e) => {
+        App.set_setting(`tab_box_position`, `bottom`)
+        App.clear_show()
+      },
+    })
+  }
+
   items.push({
     text: `Position`,
-    items: [
-      {
-        text: `Top`,
-        action: (e) => {
-          App.set_setting(`tab_box_position`, `top`)
-          App.clear_show()
-        },
-      },
-      {
-        text: `Bottom`,
-        action: (e) => {
-          App.set_setting(`tab_box_position`, `bottom`)
-          App.clear_show()
-        },
-      },
-    ],
+    items: positions,
   })
+
+  let modes = []
+  let mode = App.get_setting(`tab_box_mode`)
+
+  if (mode !== `titles`) {
+    modes.push({
+      text: `Titles`,
+      action: (e) => {
+        App.set_setting(`tab_box_mode`, `titles`)
+        App.refresh_tab_box()
+      },
+    })
+  }
+
+  if (mode !== `urls`) {
+    modes.push({
+      text: `URLs`,
+      action: (e) => {
+        App.set_setting(`tab_box_mode`, `urls`)
+        App.refresh_tab_box()
+      },
+    })
+  }
 
   items.push({
     text: `Mode`,
-    items: [
-      {
-        text: `Title`,
-        action: (e) => {
-          App.set_setting(`tab_box_mode`, `title`)
-          App.refresh_tab_box()
-        },
-      },
-      {
-        text: `URL`,
-        action: (e) => {
-          App.set_setting(`tab_box_mode`, `url`)
-          App.refresh_tab_box()
-        },
-      },
-    ],
+    items: modes,
   })
 
   items.push({

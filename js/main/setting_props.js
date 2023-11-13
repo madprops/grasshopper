@@ -571,9 +571,9 @@ App.build_settings = () => {
     tab_box_mode: {
       name: `Tab Box Mode`,
       type: `menu`,
-      value: `title`,
+      value: `titles`,
       info: `What to show in the Tab Box`,
-      version: 2,
+      version: 3,
     },
     tab_box_position: {
       name: `Tab Box Position`,
@@ -1860,8 +1860,8 @@ App.build_settings = () => {
         App.settings_make_menu(`tab_box`, [{text: `None`, value: `none`}, ...App.sizes])
 
         App.settings_make_menu(`tab_box_mode`, [
-          {text: `Title`, value: `title`},
-          {text: `URL`, value: `url`},
+          {text: `Titles`, value: `titles`},
+          {text: `URLs`, value: `urls`},
         ])
 
         App.settings_make_menu(`tab_box_items`, [
