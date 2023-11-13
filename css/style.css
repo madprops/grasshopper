@@ -352,8 +352,11 @@ svg {
   display: flex !important;
 }
 
-.not_filtered .header_item {
+.header_item {
   background-color: var(--slight_shade);
+}
+
+.not_filtered .header_item {
   margin-top: 0.5rem;
   margin-bottom: 0.5rem;
 }
