@@ -1034,6 +1034,13 @@ App.build_settings = () => {
       info: `Custom background color for header tabs`,
       version: 1,
     },
+    double_click_header: {
+      name: `Double Click Header`,
+      type: `checkbox`,
+      value: true,
+      info: `Select tab group by double clicking on headers`,
+      version: 1,
+    },
   }
 
   add_props()
@@ -1605,13 +1612,6 @@ App.build_settings = () => {
       type: `checkbox`,
       value: true,
       info: `Show the active tab at the top when showing Recent Tabs`,
-      version: 1,
-    },
-    double_click_header: {
-      name: `Double Click Header`,
-      type: `checkbox`,
-      value: true,
-      info: `Require a double click to select a Header's tabs`,
       version: 1,
     },
     color_icon_click: {
