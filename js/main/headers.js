@@ -119,9 +119,7 @@ App.set_header_text = (item) => {
   let text_el = DOM.el(`.item_text_1`, item.element)
   text_el.textContent = title
   item.title = title
-  let tips = []
-  tips.push(`This is a Header Tab`)
-  item.element.title = tips.join(`\n`)
+  item.element.title = `This is a Header Tab`
 }
 
 App.is_header = (item) => {
