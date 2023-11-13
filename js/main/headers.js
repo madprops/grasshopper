@@ -161,7 +161,7 @@ App.select_header_first = (item, scroll) => {
     return true
   }
   else {
-    App.scroll_to_item({item: item, scroll: `center_smooth`})
+    App.scroll_to_item({item: item, scroll: scroll})
   }
 
   return false
