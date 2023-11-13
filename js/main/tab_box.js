@@ -6,7 +6,7 @@ App.setup_tab_box = () => {
 
 App.create_tab_box = () => {
   let tab_box = DOM.create(`div`, `box`, `tab_box`)
-  let title = DOM.create(`div`, `box_title`, `tab_box_title`)
+  let title = DOM.create(`div`, `box_title glow`, `tab_box_title`)
   title.title = `This is the Tab Box`
 
   DOM.ev(title, `click`, (e) => {

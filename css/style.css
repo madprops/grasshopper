@@ -563,6 +563,15 @@ svg {
   text-shadow: var(--action_effect);
 }
 
+.glow {
+  cursor: pointer;
+  transition: text-shadow 171ms;
+}
+
+.glow:hover {
+  text-shadow: var(--glow_effect);
+}
+
 .flex_column_center {
   display: flex;
   flex-direction: column;

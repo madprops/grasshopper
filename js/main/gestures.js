@@ -16,6 +16,7 @@ App.setup_gestures = () => {
 }
 
 App.gesture_action = (e, gesture) => {
+  App.reset_triggers()
   let cmd = App.get_setting(`gesture_${gesture}`)
   App.run_command({cmd: cmd, from: `gesture`, e: e})
 }
