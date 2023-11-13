@@ -121,7 +121,6 @@ App.set_header_text = (item) => {
   item.title = title
   let tips = []
   tips.push(`This is a Header Tab`)
-  tips.push(`Double Click to select group`)
   item.element.title = tips.join(`\n`)
 }
 
