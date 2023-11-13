@@ -343,7 +343,11 @@ App.filter_check = (args) => {
 
     for (let regex of args.regexes) {
       if (args.by_what === `all` || args.by_what === `re`) {
-        match = regex.test(title) || regex.test(args.item.path)
+        match = regex.test(title)
+
+        if (!match && !args.item.header) {
+          regex.test(args.item.path)
+        }
       }
       else if (args.by_what.includes(`title`)) {
         match = regex.test(title)
