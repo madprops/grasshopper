@@ -43,16 +43,8 @@ App.select_item = (args = {}) => {
 }
 
 App.select_up_down = (mode, direction = `down`) => {
-  let no_header
-
-  if (App.is_filtered(mode)) {
-    no_header = false
-  }
-  else {
-    no_header = true
-  }
-
   let up = direction === `up`
+  let no_header = App.is_filtered(mode) ? false : true
   let item = App.get_other_item({mode: mode, no_header: no_header}, up)
 
   if (item) {
