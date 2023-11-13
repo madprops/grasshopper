@@ -118,6 +118,10 @@ App.get_tab_box_els = (items) => {
     let tbm = App.get_setting(`tab_box_mode`)
     let text
 
+    if (item_mode === `headers`) {
+      tbm = `title`
+    }
+
     if (tbm === `title`) {
       text = App.get_title(item)
     }
@@ -242,14 +246,14 @@ App.tab_box_menu = (e) => {
         text: `Title`,
         action: (e) => {
           App.set_setting(`tab_box_mode`, `title`)
-          App.update_tab_box(`recent`)
+          App.refresh_tab_box()
         },
       },
       {
         text: `URL`,
         action: (e) => {
           App.set_setting(`tab_box_mode`, `url`)
-          App.update_tab_box(`recent`)
+          App.refresh_tab_box()
         },
       },
     ],
