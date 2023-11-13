@@ -188,7 +188,7 @@ App.do_filter = async (args = {}) => {
     }
   }
 
-  function matched (item) {
+  function check_match (item) {
     let args = {
       item: item,
       regexes: regexes,
@@ -204,15 +204,45 @@ App.do_filter = async (args = {}) => {
   }
 
   let some_matched = false
+  let prev_header_match = false
+  let headers = filter_mode === `header`
 
   for (let item of items) {
     if (!item.element) {
       continue
     }
 
-    if (skip || matched(item)) {
+    let match = false
+
+    if (skip) {
+      match = true
+    }
+
+    if (!match) {
+      if (headers) {
+        if (!item.header) {
+          if (prev_header_match) {
+            match = true
+          }
+        }
+      }
+    }
+
+    if (!match) {
+      match = check_match(item)
+    }
+
+    prev_header_match = false
+
+    if (match) {
       App.show_item(item)
       some_matched = true
+
+      if (headers) {
+        if (item.header) {
+          prev_header_match = true
+        }
+      }
     }
     else {
       App.hide_item(item)
