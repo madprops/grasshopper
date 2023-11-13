@@ -575,7 +575,7 @@ App.build_settings = () => {
       info: `The position of the Tab Box`,
       version: 1,
     },
-    tab_box_text: {
+    tab_box_text_mode: {
       name: `Tab Box Text`,
       type: `menu`,
       value: `title`,
@@ -1864,7 +1864,7 @@ App.build_settings = () => {
           {text: `Headers`, value: `headers`},
         ])
 
-        App.settings_make_menu(`tab_box_text`, [
+        App.settings_make_menu(`tab_box_text_mode`, [
           {text: `Titles`, value: `title`},
           {text: `URLs`, value: `url`},
         ])

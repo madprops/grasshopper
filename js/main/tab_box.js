@@ -85,6 +85,8 @@ App.fill_tab_box = (els) => {
 App.get_tab_box_els = (items) => {
   let els = []
   let mode = App.get_setting(`tab_box_mode`)
+  let text_mode = App.get_setting(`tab_box_text_mode`)
+  let playing_icon = App.get_setting(`playing_icon`)
 
   for (let item of items) {
     if (!item || !item.element) {
@@ -108,8 +110,6 @@ App.get_tab_box_els = (items) => {
       clone.append(c_icon)
     }
 
-    let playing_icon = App.get_setting(`playing_icon`)
-
     if (item.audible && playing_icon) {
       let playing = DOM.create(`div`, `playing_icon`)
       playing.textContent = playing_icon
@@ -117,7 +117,6 @@ App.get_tab_box_els = (items) => {
     }
 
     let text_el = DOM.create(`div`, `box_item_text`)
-    let text_mode = App.get_setting(`tab_box_text`)
     let text
 
     if (mode === `headers`) {
@@ -249,24 +248,24 @@ App.tab_box_menu = (e) => {
     items: positions,
   })
 
-  let texts = []
-  let text = App.get_setting(`tab_box_text`)
+  let text_modes = []
+  let text_mode = App.get_setting(`tab_box_text_mode`)
 
-  if (text !== `title`) {
-    texts.push({
+  if (text_mode !== `title`) {
+    text_modes.push({
       text: `Title`,
       action: (e) => {
-        App.set_setting(`tab_box_text`, `title`)
+        App.set_setting(`tab_box_text_mode`, `title`)
         App.refresh_tab_box()
       },
     })
   }
 
-  if (text !== `url`) {
-    texts.push({
+  if (text_mode !== `url`) {
+    text_modes.push({
       text: `URL`,
       action: (e) => {
-        App.set_setting(`tab_box_text`, `url`)
+        App.set_setting(`tab_box_text_mode`, `url`)
         App.refresh_tab_box()
       },
     })
@@ -274,7 +273,7 @@ App.tab_box_menu = (e) => {
 
   items.push({
     text: `Text`,
-    items: texts,
+    items: text_modes,
   })
 
   items.push({
