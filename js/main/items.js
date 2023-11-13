@@ -272,6 +272,7 @@ App.clear_all_items = () => {
 }
 
 App.refresh_item_element = (item) => {
+  App.check_header(item)
   App.check_tab_loading(item)
   App.check_item_icon(item)
   App.check_icons(item)
@@ -281,7 +282,6 @@ App.refresh_item_element = (item) => {
   App.apply_color_mode(item)
   App.check_taglist(item)
   App.apply_splits(item)
-  App.check_header(item)
 }
 
 App.create_item_element = (item) => {
