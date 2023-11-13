@@ -1074,6 +1074,10 @@ a:visited, a:link, a:hover {
   text-decoration: underline;
 }
 
+.selected_effect_background .colored_background:hover {
+  text-decoration: underline;
+}
+
 .pointer {
   cursor: pointer;
 }

@@ -220,8 +220,8 @@ App.do_filter = async (args = {}) => {
 
     if (!match) {
       if (headers) {
-        if (!item.header) {
-          if (prev_header_match) {
+        if (prev_header_match) {
+          if (App.check_header_first(item)) {
             match = true
           }
         }

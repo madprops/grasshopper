@@ -162,10 +162,26 @@ App.check_header = (item) => {
   }
 }
 
+App.check_header_first = (item) => {
+  if (!item) {
+    return false
+  }
+
+  if (item.header) {
+    return false
+  }
+
+  if (App.get_split(item, `top`)) {
+    return false
+  }
+
+  return true
+}
+
 App.select_header_first = (item, scroll) => {
   let next = App.get_other_item({mode: item.mode, item: item, wrap: false})
 
-  if (next && !next.header) {
+  if (App.check_header_first(next)) {
     App.tabs_action(next, `header`, scroll)
     return true
   }
