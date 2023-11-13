@@ -84,7 +84,7 @@ App.fill_tab_box = (els) => {
 
 App.get_tab_box_els = (items) => {
   let els = []
-  let item_mode = App.get_setting(`tab_box_items`)
+  let mode = App.get_setting(`tab_box_mode`)
 
   for (let item of items) {
     if (!item || !item.element) {
@@ -117,17 +117,17 @@ App.get_tab_box_els = (items) => {
     }
 
     let text_el = DOM.create(`div`, `box_item_text`)
-    let tbm = App.get_setting(`tab_box_mode`)
+    let text_mode = App.get_setting(`tab_box_text`)
     let text
 
-    if (item_mode === `headers`) {
-      tbm = `titles`
+    if (mode === `headers`) {
+      text_mode = `title`
     }
 
-    if (tbm === `titles`) {
+    if (text_mode === `title`) {
       text = App.get_title(item)
     }
-    else if (tbm === `urls`) {
+    else if (text_mode === `url`) {
       text = item.path
     }
 
@@ -161,46 +161,46 @@ App.get_tab_box_els = (items) => {
 }
 
 App.set_tab_box_items = () => {
-  let item_mode = App.get_setting(`tab_box_items`)
+  let mode = App.get_setting(`tab_box_mode`)
   let title = DOM.el(`#tab_box_title`)
 
-  if (item_mode === `recent`) {
+  if (mode === `recent`) {
     title.textContent = `Recent`
   }
-  else if (item_mode === `headers`) {
+  else if (mode === `headers`) {
     title.textContent = `Headers`
   }
 }
 
-App.change_tab_box_items = (what) => {
-  App.set_setting(`tab_box_items`, what)
+App.change_tab_box_mode = (what) => {
+  App.set_setting(`tab_box_mode`, what)
   App.set_tab_box_items()
   App.update_tab_box(what)
 }
 
 App.tab_box_menu = (e) => {
   let items = []
-  let sizes = []
-  let item_mode = App.get_setting(`tab_box_items`)
+  let mode = App.get_setting(`tab_box_mode`)
 
-  if (item_mode === `recent`) {
+  if (mode === `recent`) {
     items.push({
       text: `Headers`,
       action: () => {
-        App.change_tab_box_items(`headers`)
+        App.change_tab_box_mode(`headers`)
       }
     })
   }
-  else if (item_mode === `headers`) {
+  else if (mode === `headers`) {
     items.push({
       text: `Recent`,
       action: () => {
-        App.change_tab_box_items(`recent`)
+        App.change_tab_box_mode(`recent`)
       }
     })
   }
 
   App.sep(items)
+  let sizes = []
 
   for (let [i, size] of App.sizes.entries()) {
     if (App.get_setting(`tab_box`) === size.value) {
@@ -249,32 +249,32 @@ App.tab_box_menu = (e) => {
     items: positions,
   })
 
-  let modes = []
-  let mode = App.get_setting(`tab_box_mode`)
+  let texts = []
+  let text = App.get_setting(`tab_box_text`)
 
-  if (mode !== `titles`) {
-    modes.push({
-      text: `Titles`,
+  if (text !== `title`) {
+    texts.push({
+      text: `Title`,
       action: (e) => {
-        App.set_setting(`tab_box_mode`, `titles`)
+        App.set_setting(`tab_box_text`, `title`)
         App.refresh_tab_box()
       },
     })
   }
 
-  if (mode !== `urls`) {
-    modes.push({
-      text: `URLs`,
+  if (text !== `url`) {
+    texts.push({
+      text: `URL`,
       action: (e) => {
-        App.set_setting(`tab_box_mode`, `urls`)
+        App.set_setting(`tab_box_text`, `url`)
         App.refresh_tab_box()
       },
     })
   }
 
   items.push({
-    text: `Mode`,
-    items: modes,
+    text: `Text`,
+    items: texts,
   })
 
   items.push({
@@ -294,7 +294,7 @@ App.tab_box_menu = (e) => {
 }
 
 App.refresh_tab_box = () => {
-  App.update_tab_box(App.get_setting(`tab_box_items`))
+  App.update_tab_box(App.get_setting(`tab_box_mode`))
 }
 
 App.check_tab_box_item = (item) => {
@@ -309,7 +309,7 @@ App.check_tab_box_item = (item) => {
 
 App.tab_box_recent = () => {
   if (App.get_setting(`tab_box`) !== `none`) {
-    if (App.get_setting(`tab_box_items`) === `recent`) {
+    if (App.get_setting(`tab_box_mode`) === `recent`) {
       return true
     }
   }
@@ -319,7 +319,7 @@ App.tab_box_recent = () => {
 
 App.tab_box_headers = () => {
   if (App.get_setting(`tab_box`) !== `none`) {
-    if (App.get_setting(`tab_box_items`) === `headers`) {
+    if (App.get_setting(`tab_box_mode`) === `headers`) {
       return true
     }
   }
