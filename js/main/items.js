@@ -42,16 +42,18 @@ App.select_item = (args = {}) => {
   }
 }
 
-App.select_above = (mode) => {
-  let item = App.get_other_item({mode: mode}, true)
+App.select_up_down = (mode, direction = `down`) => {
+  let no_header
 
-  if (item) {
-    App.select_item({item: item, scroll: `nearest`})
+  if (App.is_filtered(mode)) {
+    no_header = false
   }
-}
+  else {
+    no_header = true
+  }
 
-App.select_below = (mode) => {
-  let item = App.get_other_item({mode: mode})
+  let up = direction === `up`
+  let item = App.get_other_item({mode: mode, no_header: no_header}, up)
 
   if (item) {
     App.select_item({item: item, scroll: `nearest`})

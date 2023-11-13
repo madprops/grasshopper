@@ -21,12 +21,7 @@ App.check_items_keyboard = (e) => {
         return
       }
 
-      if (direction === `up`) {
-        App.select_above(mode)
-      }
-      else if (direction === `down`) {
-        App.select_below(mode)
-      }
+      App.select_up_down(mode, direction)
     }
 
     e.preventDefault()
