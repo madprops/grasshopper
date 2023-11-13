@@ -108,6 +108,8 @@ App.get_tab_box_els = (items) => {
       clone.append(c_icon)
     }
 
+    let playing_icon = App.get_setting(`playing_icon`)
+
     if (item.audible && playing_icon) {
       let playing = DOM.create(`div`, `playing_icon`)
       playing.textContent = playing_icon
