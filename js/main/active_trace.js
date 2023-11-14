@@ -13,6 +13,8 @@ App.update_active_trace = () => {
 }
 
 App.do_update_active_trace = () => {
+  App.clean_active_history()
+
   for (let item of App.get_items(`tabs`)) {
     let trace = DOM.el(`.item_trace`, item.element)
     trace.classList.add(`hidden`)
