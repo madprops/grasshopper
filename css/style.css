@@ -473,7 +473,7 @@ svg {
 }
 
 .hover_effect_underline .item:hover .item_text,
-.selected_effect_underline ..item_container selected .item_text
+.selected_effect_underline .item_container selected .item_text
 {
   text-decoration: underline;
 }

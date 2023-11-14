@@ -516,7 +516,7 @@ App.setup_commands = () => {
       modes: [`tabs`],
       some_loaded: true,
       item: true,
-      icon: unloaded_icon,
+      icon: unloaded_icon || tabs_icon,
       action: (args) => {
         App.unload_tabs(args.item)
       },
@@ -527,7 +527,7 @@ App.setup_commands = () => {
       cmd: `unload_other_tabs`,
       modes: [`tabs`],
       item: true,
-      icon: unloaded_icon,
+      icon: unloaded_icon || tabs_icon,
       action: (args) => {
         App.unload_other_tabs(args.item)
       },
@@ -646,7 +646,7 @@ App.setup_commands = () => {
       modes: [`tabs`],
       some_unmuted: true,
       item: true,
-      icon: muted_icon || command_icon,
+      icon: muted_icon || tabs_icon,
       action: (args) => {
         App.mute_tabs(args.item)
       },
@@ -658,7 +658,7 @@ App.setup_commands = () => {
       modes: [`tabs`],
       some_muted: true,
       item: true,
-      icon: muted_icon || command_icon,
+      icon: muted_icon || tabs_icon,
       action: (args) => {
         App.unmute_tabs(args.item)
       },
@@ -669,7 +669,7 @@ App.setup_commands = () => {
       cmd: `toggle_mute_tabs`,
       modes: [`tabs`],
       item: true,
-      icon: muted_icon || command_icon,
+      icon: muted_icon || tabs_icon,
       action: (args) => {
         App.toggle_mute_tabs(args.item)
       },
@@ -680,7 +680,7 @@ App.setup_commands = () => {
       cmd: `mute_playing_tabs`,
       modes: [`tabs`],
       item: true,
-      icon: muted_icon || command_icon,
+      icon: muted_icon || tabs_icon,
       action: (args) => {
         App.mute_playing_tabs(args.item)
       },
@@ -691,7 +691,7 @@ App.setup_commands = () => {
       cmd: `mute_all_tabs`,
       modes: [`tabs`],
       item: true,
-      icon: muted_icon || command_icon,
+      icon: muted_icon || tabs_icon,
       action: (args) => {
         App.unmute_all_tabs(args.item)
       },
