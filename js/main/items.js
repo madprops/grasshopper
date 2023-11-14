@@ -242,7 +242,7 @@ App.remove_item = (item) => {
 
   if (mode === `tabs`) {
     App.refresh_active_history()
-    App.check_tab_box_item(item)
+    App.check_tab_box_headers(item)
   }
 }
 
@@ -273,6 +273,7 @@ App.clear_all_items = () => {
 
 App.refresh_item_element = (item) => {
   App.check_header(item)
+  App.check_pins(item)
   App.check_tab_loading(item)
   App.check_item_icon(item)
   App.check_icons(item)
@@ -343,6 +344,7 @@ App.create_item_element = (item) => {
     App.add_close_button(item, `right`)
     App.check_tab_loading(item)
     App.check_tab_colors(item)
+    App.check_pins(item)
   }
 
   if (item.selected) {
@@ -911,7 +913,7 @@ App.insert_item = (mode, info) => {
     App.get_items(mode).splice(info.index, 0, item)
     container.append(item.element)
     App.move_item_element(`tabs`, item.element, info.index)
-    App.check_tab_box_item(item)
+    App.check_tab_box_headers(item)
   }
   else {
     let old = App.get_item_by_url(mode, item.url)

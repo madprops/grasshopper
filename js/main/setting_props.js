@@ -683,6 +683,13 @@ App.build_settings = () => {
       info: `Show the item count in the footer`,
       version: 1,
     },
+    hide_pins: {
+      name: `Hide Pins`,
+      type: `checkbox`,
+      value: false,
+      info: `Don't show the pins. Might be used in combination with the Tab Box`,
+      version: 1,
+    },
     active_trace: {
       name: `Active Trace`,
       type: `checkbox`,
@@ -1871,6 +1878,7 @@ App.build_settings = () => {
         App.settings_make_menu(`tab_box_mode`, [
           {text: `Recent`, value: `recent`},
           {text: `Headers`, value: `headers`},
+          {text: `Pins`, value: `pins`},
         ])
 
         App.settings_make_menu(`tab_box_text_mode`, [

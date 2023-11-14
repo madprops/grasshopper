@@ -26,7 +26,7 @@ App.setup_tabs = () => {
     App.debug(`Tab Updated: ID: ${id}`, App.debug_tabs)
 
     if (info.windowId === App.window_id) {
-      await App.refresh_tab(id, false, info)
+      await App.refresh_tab(id, false, info, changed)
       App.check_playing()
     }
   })
@@ -245,7 +245,7 @@ App.get_tab_info = async (id) => {
   }
 }
 
-App.refresh_tab = async (id, select, info) => {
+App.refresh_tab = async (id, select, info, changed) => {
   if (!info) {
     try {
       info = await App.get_tab_info(id)
@@ -261,12 +261,19 @@ App.refresh_tab = async (id, select, info) => {
   }
 
   let item = App.get_item_by_id(`tabs`, id)
+
   if (item) {
     if (item.pinned !== info.pinned) {
       App.check_pinline()
     }
 
     App.update_item(`tabs`, item.id, info)
+
+    if (changed) {
+      if (changed.pinned !== undefined) {
+        App.check_tab_box_pins(item)
+      }
+    }
   }
   else {
     item = App.insert_item(`tabs`, info)
@@ -1310,4 +1317,17 @@ App.check_tab_loading = (item) => {
 
 App.tab_ready = (item) => {
   return item.status === `complete`
+}
+
+App.check_pins = (item) => {
+  if (App.get_setting(`hide_pins`)) {
+    if (item.pinned) {
+      item.element.classList.add(`hidden_2`)
+      item.visible = false
+    }
+    else {
+      item.element.classList.remove(`hidden_2`)
+      item.visible = true
+    }
+  }
 }

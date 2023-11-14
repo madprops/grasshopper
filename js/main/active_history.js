@@ -11,7 +11,7 @@ App.active_history_widgets = () => {
     return true
   }
 
-  if (App.tab_box_recent() || App.tab_box_headers()) {
+  if (App.tab_box_enabled()) {
     return true
   }
 
@@ -48,6 +48,12 @@ App.update_active_history = (current, new_active) => {
   if (added) {
     App.clean_active_history()
     App.refresh_active_history()
+  }
+
+  if (new_active.pinned) {
+    if (App.tab_box_pins()) {
+      App.update_tab_box(`pins`)
+    }
   }
 }
 

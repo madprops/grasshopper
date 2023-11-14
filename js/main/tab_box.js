@@ -71,6 +71,17 @@ App.update_tab_box_headers = () => {
   App.fill_tab_box(els)
 }
 
+App.update_tab_box_pins = () => {
+  if (!App.tab_box_pins()) {
+    return
+  }
+
+  console.log(`update pins`)
+  let items = App.get_pinned_tabs()
+  let els = App.get_tab_box_els(items)
+  App.fill_tab_box(els)
+}
+
 App.fill_tab_box = (els) => {
   let c = DOM.el(`#tab_box_container`)
   c.innerHTML = ``
@@ -169,11 +180,15 @@ App.set_tab_box_items = () => {
   else if (mode === `headers`) {
     title.textContent = `Headers`
   }
+  else if (mode === `pins`) {
+    title.textContent = `Pins`
+  }
 }
 
 App.change_tab_box_mode = (what) => {
   App.set_setting(`tab_box_mode`, what)
   App.set_tab_box_items()
+  console.log(99)
   App.update_tab_box(what)
 }
 
@@ -181,7 +196,16 @@ App.tab_box_menu = (e) => {
   let items = []
   let mode = App.get_setting(`tab_box_mode`)
 
-  if (mode === `recent`) {
+  if (mode !== `recent`) {
+    items.push({
+      text: `Recent`,
+      action: () => {
+        App.change_tab_box_mode(`recent`)
+      }
+    })
+  }
+
+  if (mode !== `headers`) {
     items.push({
       text: `Headers`,
       action: () => {
@@ -189,11 +213,12 @@ App.tab_box_menu = (e) => {
       }
     })
   }
-  else if (mode === `headers`) {
+
+  if (mode !== `pins`) {
     items.push({
-      text: `Recent`,
+      text: `Pins`,
       action: () => {
-        App.change_tab_box_mode(`recent`)
+        App.change_tab_box_mode(`pins`)
       }
     })
   }
@@ -296,7 +321,18 @@ App.refresh_tab_box = () => {
   App.update_tab_box(App.get_setting(`tab_box_mode`))
 }
 
-App.check_tab_box_item = (item) => {
+App.check_tab_box_pins = (item) => {
+  if (item.mode !== `tabs`) {
+    return
+  }
+
+  console.log(item.title)
+  if (App.tab_box_pins()) {
+    App.update_tab_box(`pins`)
+  }
+}
+
+App.check_tab_box_headers = (item) => {
   if (item.mode !== `tabs`) {
     return
   }
@@ -316,6 +352,16 @@ App.tab_box_recent = () => {
   return false
 }
 
+App.tab_box_pins = () => {
+  if (App.get_setting(`tab_box`) !== `none`) {
+    if (App.get_setting(`tab_box_mode`) === `pins`) {
+      return true
+    }
+  }
+
+  return false
+}
+
 App.tab_box_headers = () => {
   if (App.get_setting(`tab_box`) !== `none`) {
     if (App.get_setting(`tab_box_mode`) === `headers`) {
@@ -324,4 +370,8 @@ App.tab_box_headers = () => {
   }
 
   return false
+}
+
+App.tab_box_enabled = () => {
+  return App.get_setting(`tab_box`) !== `none`
 }
