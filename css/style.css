@@ -461,38 +461,38 @@ svg {
 }
 
 .hover_effect_glow .item:hover .item_text,
-.selected_effect_glow .selec.item_container ted .item_text
+.selected_effect_glow .item_container .selected .item_text
 {
   text-shadow: var(--glow_effect);
 }
 
 .hover_effect_opacity .item:hover,
-.selected_effect_opacity .se.item_container lected
+.selected_effect_opacity .item_container .selected
 {
   opacity: 0.8;
 }
 
 .hover_effect_underline .item:hover .item_text,
-.selected_effect_underline .item_container selected .item_text
+.selected_effect_underline .item_container .selected .item_text
 {
   text-decoration: underline;
 }
 
 .hover_effect_bold .item:hover .item_text,
-.selected_effect_bold .selec.item_container ted .item_text
+.selected_effect_bold .item_container .selected .item_text
 {
   font-weight: bold;
 }
 
 .hover_effect_bigger .item:hover .item_text,
-.selected_effect_bigger .sel.item_container ected .item_text
+.selected_effect_bigger .item_container .selected .item_text
 {
   font-size: var(--bigger_font);
   font-weight: bold;
 }
 
 .hover_effect_border .item:hover .item_text,
-.selected_effect_border .sel.item_container ected .item_text
+.selected_effect_border .item_container .selected .item_text
 {
   outline: 1px solid var(--text_color);
 }
