@@ -249,7 +249,7 @@ App.build_settings = () => {
     background_opacity: {
       name: `Background Opacity`,
       type: `number`,
-      value: 90,
+      value: 92,
       action: `theme`,
       placeholder: `Opacity`,
       min: 0,
