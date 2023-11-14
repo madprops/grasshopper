@@ -1851,6 +1851,7 @@ App.build_settings = () => {
           {text: `Recent`, value: `recent`},
           {text: `Pins`, value: `pins`},
           {text: `Headers`, value: `headers`},
+          {text: `Colors`, value: `colors`},
         ])
 
         App.settings_make_menu(`tab_box_position`, [

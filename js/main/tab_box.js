@@ -78,6 +78,16 @@ App.update_tab_box_pins = () => {
   App.fill_tab_box(items, false)
 }
 
+App.update_tab_box_colors = () => {
+  if (!App.tab_box_mode(`colors`)) {
+    return
+  }
+
+  let o_items = App.get_colored_items(`tabs`)
+  let items = App.get_tab_box_items(o_items)
+  App.fill_tab_box(items, false)
+}
+
 App.fill_tab_box = (items, scroll = true) => {
   let c = DOM.el(`#tab_box_container`)
   c.innerHTML = ``
@@ -111,16 +121,7 @@ App.get_tab_box_items = (o_items) => {
 App.set_tab_box_items = () => {
   let mode = App.get_setting(`tab_box_mode`)
   let title = DOM.el(`#tab_box_title`)
-
-  if (mode === `recent`) {
-    title.textContent = `Recent`
-  }
-  else if (mode === `headers`) {
-    title.textContent = `Headers`
-  }
-  else if (mode === `pins`) {
-    title.textContent = `Pins`
-  }
+  title.textContent = App.capitalize(mode)
 }
 
 App.change_tab_box_mode = (what) => {
@@ -156,6 +157,15 @@ App.tab_box_menu = (e) => {
       text: `Headers`,
       action: () => {
         App.change_tab_box_mode(`headers`)
+      }
+    })
+  }
+
+  if (mode !== `colors`) {
+    items.push({
+      text: `Colors`,
+      action: () => {
+        App.change_tab_box_mode(`colors`)
       }
     })
   }

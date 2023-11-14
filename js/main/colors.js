@@ -345,3 +345,15 @@ App.show_close_color_menu = (e) => {
 
   App.show_context({items: items, e: e})
 }
+
+App.get_colored_items = (mode) => {
+  let items = []
+
+  for (let item of App.get_items(mode)) {
+    if (App.get_color(item)) {
+      items.push(item)
+    }
+  }
+
+  return items
+}
