@@ -68,7 +68,7 @@ App.update_tab_box_headers = () => {
 
   let items = App.get_header_tabs()
   let els = App.get_tab_box_els(items)
-  App.fill_tab_box(els)
+  App.fill_tab_box(els, false)
 }
 
 App.update_tab_box_pins = () => {
@@ -78,10 +78,10 @@ App.update_tab_box_pins = () => {
 
   let items = App.get_pinned_tabs()
   let els = App.get_tab_box_els(items)
-  App.fill_tab_box(els)
+  App.fill_tab_box(els, false)
 }
 
-App.fill_tab_box = (els) => {
+App.fill_tab_box = (els, scroll = true) => {
   let c = DOM.el(`#tab_box_container`)
   c.innerHTML = ``
 
@@ -89,7 +89,9 @@ App.fill_tab_box = (els) => {
     c.append(el)
   }
 
-  App.scroll_to_top(c)
+  if (scroll) {
+    App.scroll_to_top(c)
+  }
 }
 
 App.get_tab_box_els = (items) => {
