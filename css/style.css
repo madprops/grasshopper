@@ -952,7 +952,7 @@ a:visited, a:link, a:hover {
   position: absolute;
   top: 0;
   width: 100%;
-  background-color: var(--alt_background);
+  background-color: var(--slight_shade);
   display: flex;
   flex-direction: row;
   align-items: center;
@@ -963,6 +963,7 @@ a:visited, a:link, a:hover {
   cursor: pointer;
   border: 1px solid var(--alt_color_1);
   padding: var(--scroller_padding);
+  backdrop-filter: blur(8px);
 }
 
 .scroller:hover {
@@ -1119,7 +1120,7 @@ a:visited, a:link, a:hover {
   display: flex;
   align-items: center;
   justify-content: center;
-  background-color: var(--alt_background);
+  background-color: var(--slight_shade);
   border-top: 1px solid var(--alt_color_1);
   border-bottom: 1px solid var(--alt_color_1);
   padding-top: 0.188rem;
