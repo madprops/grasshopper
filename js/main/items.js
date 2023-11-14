@@ -241,9 +241,7 @@ App.remove_item = (item) => {
   App.update_footer_count(mode)
 
   if (mode === `tabs`) {
-    App.clean_active_history()
-    App.refresh_active_history()
-    App.check_tab_box_item(item, `headers`)
+    App.refresh_tab_box()
   }
 }
 
@@ -500,7 +498,8 @@ App.update_item = (mode, id, info) => {
     if (item.id === id) {
       App.process_info({mode: mode, info: info, o_item: item})
       App.check_filter(mode)
-      App.check_tab_box_item(item, `recent`)
+      App.update_active_trace()
+      App.refresh_tab_box()
       break
     }
   }
@@ -914,7 +913,8 @@ App.insert_item = (mode, info) => {
     App.get_items(mode).splice(info.index, 0, item)
     container.append(item.element)
     App.move_item_element(`tabs`, item.element, info.index)
-    App.check_tab_box_item(item, `headers`)
+    App.update_active_trace()
+    App.refresh_tab_box()
   }
   else {
     let old = App.get_item_by_url(mode, item.url)

@@ -1852,11 +1852,6 @@ App.build_settings = () => {
           {text: `Headers`, value: `headers`},
         ])
 
-        App.settings_make_menu(`tab_box_text_mode`, [
-          {text: `Titles`, value: `title`},
-          {text: `URLs`, value: `url`},
-        ])
-
         App.settings_make_menu(`tab_box_position`, [
           {text: `Top`, value: `top`},
           {text: `Bottom`, value: `bottom`},

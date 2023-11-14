@@ -1,31 +1,6 @@
 App.fill_active_history = () => {
-  if (App.active_history_widgets()) {
-    let max = App.get_setting(`max_active_history`)
-    App.active_history = App.get_recent_tabs({max: max})
-    App.refresh_active_history()
-  }
-}
-
-App.active_history_widgets = () => {
-  if (App.get_setting(`active_trace`)) {
-    return true
-  }
-
-  if (App.tab_box_enabled()) {
-    return true
-  }
-
-  return false
-}
-
-App.refresh_active_history = () => {
-  if (App.get_setting(`active_trace`)) {
-    App.update_active_trace()
-  }
-
-  if (App.tab_box_mode(`recent`)) {
-    App.update_tab_box(`recent`)
-  }
+  let max = App.get_setting(`max_active_history`)
+  App.active_history = App.get_recent_tabs({max: max})
 }
 
 App.update_active_history = (current, new_active) => {
@@ -47,7 +22,6 @@ App.update_active_history = (current, new_active) => {
 
   if (added) {
     App.clean_active_history()
-    App.refresh_active_history()
   }
 
   if (new_active.pinned) {
