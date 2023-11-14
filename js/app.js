@@ -46,6 +46,7 @@ App.max_tag_picks = 10
 App.popup_width = 800
 App.popup_height = 600
 App.browser_protocol = `moz-extension://`
+App.tab_session_first = false
 
 App.settings_done = false
 App.settings_ready = false

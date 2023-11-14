@@ -51,9 +51,13 @@ App.check_tab_session = async (items = []) => {
     }
   }
 
-  if (App.active_mode === `tabs`) {
-    App.scroll_to_item({item: App.get_selected(`tabs`), force: true})
-    App.refresh_tab_box()
+  if (!App.tab_session_first) {
+    App.tab_session_first = true
+
+    if (App.active_mode === `tabs`) {
+      App.scroll_to_item({item: App.get_selected(`tabs`), force: true})
+      App.refresh_tab_box()
+    }
   }
 }
 
