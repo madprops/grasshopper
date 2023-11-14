@@ -43,7 +43,7 @@ App.update_tab_box = (what) => {
 }
 
 App.do_update_tab_box = (what) => {
-  if (App.get_setting(`tab_box`) === `none`) {
+  if (!App.tab_box_enabled()) {
     return
   }
 
