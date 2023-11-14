@@ -76,7 +76,6 @@ App.update_tab_box_pins = () => {
     return
   }
 
-  console.log(`update pins`)
   let items = App.get_pinned_tabs()
   let els = App.get_tab_box_els(items)
   App.fill_tab_box(els)
@@ -188,7 +187,6 @@ App.set_tab_box_items = () => {
 App.change_tab_box_mode = (what) => {
   App.set_setting(`tab_box_mode`, what)
   App.set_tab_box_items()
-  console.log(99)
   App.update_tab_box(what)
 }
 
@@ -326,7 +324,6 @@ App.check_tab_box_pins = (item) => {
     return
   }
 
-  console.log(item.title)
   if (App.tab_box_pins()) {
     App.update_tab_box(`pins`)
   }
