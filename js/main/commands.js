@@ -55,7 +55,7 @@ App.setup_commands = () => {
       action: (args) => {
         App.filter_color(args.mode, color)
       },
-      info: `Filter tabs with this color (${color})`,
+      info: `Filter items with this color (${color})`,
     })
 
     icon = App.color_icon(color)
@@ -246,7 +246,7 @@ App.setup_commands = () => {
       action: (args) => {
         App.step_back()
       },
-      info: `Trigger the back button`,
+      info: `Do the Step Back action. What it does depend on the current state`,
     },
     {
       name: `Recent Tabs`,
@@ -311,7 +311,7 @@ App.setup_commands = () => {
       action: (args) => {
         App.show_settings_resolve(args.e)
       },
-      info: `Show the settings`,
+      info: `Show the Settings window`,
     },
     {
       name: `Show About`,
@@ -320,7 +320,7 @@ App.setup_commands = () => {
       action: (args) => {
         App.show_about()
       },
-      info: `Show the about window`,
+      info: `Show the About window`,
     },
     {
       name: `Show Palette`,
@@ -329,7 +329,7 @@ App.setup_commands = () => {
       action: (args) => {
         App.show_palette()
       },
-      info: `Show the palette`,
+      info: `Show the Palette`,
     },
     {
       name: `Toggle Taglist`,
@@ -348,7 +348,7 @@ App.setup_commands = () => {
       action: (args) => {
         App.toggle_fullscreen()
       },
-      info: `Show only the items`,
+      info: `Hide some interface components`,
     },
     {
       name: `Item Menu`,
@@ -359,7 +359,7 @@ App.setup_commands = () => {
       action: (args) => {
         App.show_item_menu({item: args.item, e: args.e})
       },
-      info: `Show the item menu`,
+      info: `Show the Item Menu`,
     },
     {
       name: `Favorites`,
@@ -369,7 +369,7 @@ App.setup_commands = () => {
       action: (args) => {
         App.show_favorites_menu(args.e, args.item)
       },
-      info: `Show the favorites menu`,
+      info: `Show the Favorites menu`,
     },
     {
       name: `Filter All`,
@@ -380,6 +380,16 @@ App.setup_commands = () => {
         App.filter_all(args.mode)
       },
       info: `Filter: Show all items`,
+    },
+    {
+      name: `Previous Filter`,
+      cmd: `previous_filter`,
+      modes: [`items`],
+      icon: filter_icon,
+      action: (args) => {
+        App.previous_filter(args.mode)
+      },
+      info: `Show the previous filter used before going back to All`,
     },
     {
       name: App.separator_string
@@ -521,7 +531,7 @@ App.setup_commands = () => {
       action: (args) => {
         App.unload_other_tabs(args.item)
       },
-      info: `Unload all tabs except the active one`,
+      info: `Unload all tabs except the selected one`,
     },
     {
       name: `Load`,
@@ -566,7 +576,7 @@ App.setup_commands = () => {
       action: (args) => {
         App.show_windows_menu(args.item, args.e)
       },
-      info: `Detach tabs to another window`,
+      info: `Move tabs to another window`,
     },
     {
       name: `Move To Top`,
@@ -578,7 +588,7 @@ App.setup_commands = () => {
       action: (args) => {
         App.move_tabs_vertically(`top`, args.item)
       },
-      info: ``,
+      info: `Move tabs to the top`,
     },
     {
       name: `Move To Bottom`,
@@ -590,7 +600,7 @@ App.setup_commands = () => {
       action: (args) => {
         App.move_tabs_vertically(`bottom`, args.item)
       },
-      info: `Move tabs to the top`,
+      info: `Move tabs to the bottom`,
     },
     {
       name: `Pin`,
@@ -652,7 +662,7 @@ App.setup_commands = () => {
       action: (args) => {
         App.unmute_tabs(args.item)
       },
-      info: `Unmite tabs`,
+      info: `Unmute tabs`,
     },
     {
       name: `Toggle Mute`,
@@ -850,7 +860,7 @@ App.setup_commands = () => {
       action: (args) => {
         App.insert_header(args.item)
       },
-      info: `Add a Header tab above a tab`,
+      info: `Add a header tab above a tab`,
     },
     {
       name: `Select Pins`,
@@ -893,7 +903,7 @@ App.setup_commands = () => {
       action: (args) => {
         App.show_filter_history(args.mode, args.e)
       },
-      info: `Show the filter history`,
+      info: `Show the Filter History`,
     },
     {
       name: `Deep Search`,
@@ -986,7 +996,7 @@ App.setup_commands = () => {
       action: (args) => {
         App.edit_notes(args.item)
       },
-      info: `Add notes to a tab`,
+      info: `Edit tab notes`,
     },
     {
       name: `Add Tags`,
@@ -1162,7 +1172,7 @@ App.setup_commands = () => {
       action: (args) => {
         App.remove_all_headers(args.item)
       },
-      info: `Remove all Header items`,
+      info: `Remove all header tabs`,
     },
     {
       name: `Replace Tag`,
@@ -1394,7 +1404,7 @@ App.setup_commands = () => {
       action: (args) => {
         App.filter_no_tab(args.mode)
       },
-      info: `Filter: Show duplicate tabs`,
+      info: `Filter: Show items that are not open in a tab`,
     },
     {
       name: `Custom Filters`,
@@ -1434,7 +1444,7 @@ App.setup_commands = () => {
       action: (args) => {
         App.random_colors(`light`)
       },
-      info: `Change to the light color theme`,
+      info: `Set a random light color theme`,
     },
     {
       name: `Random Dark`,
@@ -1443,7 +1453,7 @@ App.setup_commands = () => {
       action: (args) => {
         App.random_colors(`dark`)
       },
-      info: `Change to the dark color theme`,
+      info: `Set a random dark color theme`,
     },
     {
       name: `Background`,
