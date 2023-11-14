@@ -819,7 +819,6 @@ App.do_move_tab_index = async (id, index) => {
 }
 
 App.on_tab_activated = async (info) => {
-  let current
   let old_active = []
 
   for (let item of App.get_items(`tabs`)) {
