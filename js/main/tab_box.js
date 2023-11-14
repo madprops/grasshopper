@@ -205,20 +205,20 @@ App.tab_box_menu = (e) => {
     })
   }
 
-  if (mode !== `headers`) {
-    items.push({
-      text: `Headers`,
-      action: () => {
-        App.change_tab_box_mode(`headers`)
-      }
-    })
-  }
-
   if (mode !== `pins`) {
     items.push({
       text: `Pins`,
       action: () => {
         App.change_tab_box_mode(`pins`)
+      }
+    })
+  }
+
+  if (mode !== `headers`) {
+    items.push({
+      text: `Headers`,
+      action: () => {
+        App.change_tab_box_mode(`headers`)
       }
     })
   }

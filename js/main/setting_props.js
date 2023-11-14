@@ -1877,8 +1877,8 @@ App.build_settings = () => {
 
         App.settings_make_menu(`tab_box_mode`, [
           {text: `Recent`, value: `recent`},
-          {text: `Headers`, value: `headers`},
           {text: `Pins`, value: `pins`},
+          {text: `Headers`, value: `headers`},
         ])
 
         App.settings_make_menu(`tab_box_text_mode`, [
