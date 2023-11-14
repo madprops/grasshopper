@@ -561,13 +561,6 @@ App.build_settings = () => {
       info: `The height of the Tab Box with recent tabs`,
       version: 2,
     },
-    tab_box_mode: {
-      name: `Tab Box Mode`,
-      type: `menu`,
-      value: `recent`,
-      info: `Show recent tabs, or headers, in the Tab Box`,
-      version: 4,
-    },
     tab_box_position: {
       name: `Tab Box Position`,
       type: `menu`,
@@ -575,34 +568,12 @@ App.build_settings = () => {
       info: `The position of the Tab Box`,
       version: 1,
     },
-    tab_box_text_mode: {
-      name: `Tab Box Text`,
+    tab_box_mode: {
+      name: `Tab Box Mode`,
       type: `menu`,
-      value: `title`,
-      info: `What text to show in the Tab Box items`,
+      value: `recent`,
+      info: `Show recent tabs, or headers, in the Tab Box`,
       version: 4,
-    },
-    tab_box_active_effect: {
-      name: `Tab Box Active Effect`,
-      type: `menu`,
-      value: `bold`,
-      info: `Effect on the active Tab Box item`,
-      version: 1,
-    },
-    tab_box_hover_effect: {
-      name: `Tab Box Hover Effect`,
-      type: `menu`,
-      value: `glow`,
-      info: `Effect when hovering Tab Box items`,
-      version: 1,
-    },
-    tab_box_active: {
-      name: `Tab Box Active`,
-      type: `checkbox`,
-      value: true,
-      info: `Show the active tab at the top of the Tab Box`,
-      separator: true,
-      version: 1,
     },
     taglist: {
       name: `Taglist`,
@@ -1931,9 +1902,6 @@ App.build_settings = () => {
           {text: `Filter`, value: `filter`},
           {text: `Remove`, value: `remove`},
         ])
-
-        App.settings_make_menu(`tab_box_active_effect`, App.effects)
-        App.settings_make_menu(`tab_box_hover_effect`, App.effects)
       },
     },
     icons: {

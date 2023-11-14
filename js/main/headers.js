@@ -124,7 +124,7 @@ App.remove_all_headers = () => {
 App.set_header_text = (item) => {
   let title = App.get_title(item, false) || `Give me a title`
 
-  if (item.title === title) {
+  if (!item.mirror && (item.title === title)) {
     return
   }
 

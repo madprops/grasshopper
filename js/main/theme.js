@@ -155,20 +155,6 @@ App.do_apply_theme = (args = {}) => {
     let selected_effect = App.get_setting(`selected_effect`)
     main.classList.add(`selected_effect_${selected_effect}`)
 
-    for (let eff of App.effects) {
-      main.classList.remove(`tab_box_hover_effect_${eff.value}`)
-    }
-
-    let tab_box_hover_effect = App.get_setting(`tab_box_hover_effect`)
-    main.classList.add(`tab_box_hover_effect_${tab_box_hover_effect}`)
-
-    for (let eff of App.effects) {
-      main.classList.remove(`tab_box_active_effect_${eff.value}`)
-    }
-
-    let tab_box_active_effect = App.get_setting(`tab_box_active_effect`)
-    main.classList.add(`tab_box_active_effect_${tab_box_active_effect}`)
-
     if (App.get_setting(`wrap_text`)) {
       main.classList.remove(`no_wrap`)
     }
@@ -252,14 +238,6 @@ App.do_apply_theme = (args = {}) => {
     }
 
     main.classList.add(`icon_effect_${ie}`)
-
-    if (App.get_setting(`tab_box_active`)) {
-      main.classList.add(`tab_box_active`)
-    }
-    else {
-      main.classList.remove(`tab_box_active`)
-    }
-
     let local_fonts = App.local_fonts
     let font = App.get_setting(`font`)
     let font_str = `sans-serif`

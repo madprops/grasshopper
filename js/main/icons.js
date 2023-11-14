@@ -258,6 +258,10 @@ App.make_item_icon = (item, normal = true) => {
   let icon
   let text_icon = App.get_icon(item)
 
+  if (item.mirror) {
+    normal = false
+  }
+
   if (!text_icon && item.header) {
     text_icon = App.zone_icon
   }

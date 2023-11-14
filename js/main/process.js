@@ -39,6 +39,7 @@ App.process_info = (args = {}) => {
   let def_args = {
     exclude: [],
     list: false,
+    mirror: false,
   }
 
   App.def_args(def_args, args)
@@ -131,6 +132,10 @@ App.process_info = (args = {}) => {
       if ((args.mode === `tabs`) && !item.active) {
         item.unread = true
       }
+    }
+
+    if (args.mirror) {
+      item.unread = false
     }
 
     for (let key in App.edit_props) {
