@@ -183,7 +183,7 @@ select {
   justify-content: start;
 }
 
-.item_container {
+.item_container, .box_container {
   margin-bottom: var(--item_margin);
   display: flex;
   flex-direction: column;
@@ -1133,7 +1133,6 @@ a:visited, a:link, a:hover {
 }
 
 .box_container {
-  overflow: auto;
   padding-top: 0.15rem;
   padding-bottom: 0.15rem;
 }
