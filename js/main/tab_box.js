@@ -92,7 +92,6 @@ App.fill_tab_box = (items, scroll = true) => {
 
 App.get_tab_box_items = (o_items) => {
   let items = []
-  let mode = App.get_setting(`tab_box_mode`)
 
   for (let o_item of o_items) {
     if (!o_item || !o_item.element) {
@@ -102,25 +101,6 @@ App.get_tab_box_items = (o_items) => {
     let {element, ...item} = o_item
     item.mirror = true
     App.create_item_element(item)
-
-    // DOM.ev(item.element, `click`, () => {
-    //   App.tabs_action(item, `tab_box`)
-    // })
-
-    // DOM.ev(item.element, `auxclick`, (e) => {
-    //   if (e.button !== 1) {
-    //     return
-    //   }
-
-    //   let cmd = App.get_setting(`middle_click_tabs`)
-    //   App.run_command({cmd: cmd, item: item, from: `middle_click`, e: e})
-    // })
-
-    // DOM.ev(el, `contextmenu`, (e) => {
-    //   e.preventDefault()
-    //   App.show_item_menu({item: item, e: e})
-    // })
-
     items.push(item)
   }
 
