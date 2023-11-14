@@ -458,6 +458,7 @@ App.is_filtered = (mode) => {
 
 App.clear_filter = (mode = App.window_mode) => {
   if (App.filter_has_value(mode)) {
+    App.save_previous_filter(mode)
     App.set_filter({mode: mode})
   }
 }
@@ -560,11 +561,6 @@ App.set_filter_mode = (args = {}) => {
   }
 
   App.def_args(def_args, args)
-
-  if (args.type === `all`) {
-    App.save_previous_filter(args.mode)
-  }
-
   let filter_mode = App.get_filter_mode(args.mode, args.type)
   App[`${args.mode}_filter_mode`] = filter_mode.type
   DOM.el(`#${args.mode}_filter_modes_text`).textContent = filter_mode.text
@@ -807,6 +803,7 @@ App.filter_domain = (item) => {
 
 App.filter_all = (mode = App.window_mode) => {
   if (App.is_filtered(mode)) {
+    App.save_previous_filter(mode)
     App.set_filter_mode({mode: mode, type: `all`, filter: false})
     App.set_filter({mode: mode})
   }
@@ -823,7 +820,8 @@ App.previous_filter = (mode) => {
       App.set_filter_mode({mode: mode, type: App.prev_filter_mode, filter: false})
     }
 
-    App.set_filter({mode: mode, text: App.prev_filter_text || ``})
+    let filter = App.prev_filter_text || ``
+    App.set_filter({mode: mode, text: filter})
   }
 }
 
