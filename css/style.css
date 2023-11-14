@@ -981,7 +981,8 @@ a:visited, a:link, a:hover {
   overflow: hidden;
   white-space: nowrap;
   cursor: pointer;
-  background-color: var(--alt_background);
+  background-color: var(--slight_shade);
+  backdrop-filter: blur(8px);
   padding-top: var(--footer_padding);
   padding-bottom: var(--footer_padding);
   padding-left: 0.25rem;
@@ -1193,7 +1194,7 @@ a:visited, a:link, a:hover {
 .hover_button {
   position: absolute;
   z-index: 9;
-  background-color: var(--alt_background);
+  background-color: var(--background_color);
   border: 1px solid var(--alt_color_1);
   opacity: 0;
   display: flex;
