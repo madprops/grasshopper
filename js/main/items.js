@@ -1115,7 +1115,7 @@ App.build_item_window = (mode) => {
     content.append(footer)
   }
 
-  App.setup_window_mouse(mode)
+  App.setup_mode_mouse(mode)
   let main_menu = App.create_main_menu(mode)
   let filter = App.create_filter(mode)
   let filter_menu = App.create_filter_menu(mode)

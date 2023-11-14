@@ -22,7 +22,7 @@ App.create_tab_box = () => {
   tab_box.append(title)
   let container = DOM.create(`div`, `box_container`, `tab_box_container`)
   tab_box.append(container)
-  App.setup_tab_box_mouse(tab_box)
+  App.setup_container_mouse(`tabs`, tab_box)
   App.tab_box_ready = false
   return tab_box
 }

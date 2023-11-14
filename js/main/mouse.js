@@ -22,9 +22,12 @@ App.setup_mouse = () => {
   })
 }
 
-App.setup_window_mouse = (mode) => {
+App.setup_mode_mouse = (mode) => {
   let container = DOM.el(`#${mode}_container`)
+  App.setup_container_mouse(mode, container)
+}
 
+App.setup_container_mouse = (mode, container) => {
   DOM.ev(container, `mousedown`, (e) => {
     App.reset_triggers()
 
@@ -49,32 +52,12 @@ App.setup_window_mouse = (mode) => {
     App.mouse_context_action(mode, e)
   })
 
-  DOM.ev(container, `wheel`, (e) => {
-    App.mouse_wheel_action(mode, e)
-  })
-
   DOM.ev(container, `mouseover`, (e) => {
     App.mouse_over_action(mode, e)
   })
 
   DOM.ev(container, `mouseout`, (e) => {
     App.mouse_out_action(mode, e)
-  })
-}
-
-App.setup_tab_box_mouse = (tab_box) => {
-  let mode = `tabs`
-
-  DOM.ev(tab_box, `click`, (e) => {
-    App.mouse_click_action(mode, e, `click_tab_box`)
-  })
-
-  DOM.ev(tab_box, `dblclick`, (e) => {
-    App.mouse_double_click_action(mode, e)
-  })
-
-  DOM.ev(tab_box, `contextmenu`, (e) => {
-    App.mouse_context_action(mode, e)
   })
 }
 
@@ -352,21 +335,6 @@ App.mouse_middle_action = (mode, e) => {
 
   let cmd = App.get_setting(`middle_click_${item.mode}`)
   App.run_command({cmd: cmd, item: item, from: `middle_click`, e: e})
-}
-
-App.mouse_wheel_action = (mode, e) => {
-  if (e.shiftKey) {
-    let direction = App.wheel_direction(e)
-
-    if (direction === `up`) {
-      App.scroll(mode, `up`, true)
-    }
-    else if (direction === `down`) {
-      App.scroll(mode, `down`, true)
-    }
-
-    e.preventDefault()
-  }
 }
 
 App.mouse_over_action = (mode, e) => {
