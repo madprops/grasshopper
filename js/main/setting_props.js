@@ -1032,6 +1032,7 @@ App.build_settings = () => {
       type: `color`,
       value: `rgb(100, 100, 100)`,
       info: `Custom background color for header tabs`,
+      separator: true,
       version: 1,
     },
     double_click_header: {
@@ -1039,6 +1040,16 @@ App.build_settings = () => {
       type: `checkbox`,
       value: true,
       info: `Select tab group by double clicking on headers`,
+      version: 1,
+    },
+    header_filter_context: {
+      name: `Header Filter Context`,
+      type: `number`,
+      value: 2,
+      placeholder: `Number`,
+      min: App.number_min,
+      max: App.number_max,
+      info: `How many tabs from each header to show in header filter mode`,
       version: 1,
     },
   }
@@ -1437,16 +1448,6 @@ App.build_settings = () => {
       min: App.number_min,
       max: App.number_max,
       info: `Max items to show in the filter history`,
-      version: 1,
-    },
-    header_filter_context: {
-      name: `Header Filter Context`,
-      type: `number`,
-      value: 2,
-      placeholder: `Number`,
-      min: App.number_min,
-      max: App.number_max,
-      info: `How many tabs from each header to show in header filter mode`,
       version: 1,
     },
   }
