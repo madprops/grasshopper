@@ -102,6 +102,7 @@ App.process_info = (args = {}) => {
     item.muted = args.info.mutedInfo.muted
     item.discarded = args.info.discarded
     item.last_accessed = args.info.lastAccessed
+    item.opener = args.info.openerTabId
     item.status = args.info.status
   }
   else if (args.mode === `history`) {
@@ -124,13 +125,9 @@ App.process_info = (args = {}) => {
   }
   else {
     if (!args.list) {
-      if ((args.mode === `tabs`) && !item.active) {
+      if ((args.mode === `tabs`) && !item.active && item.opener) {
         item.unread = true
       }
-    }
-
-    if (args.mirror) {
-      item.unread = false
     }
 
     for (let key in App.edit_props) {
