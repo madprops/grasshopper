@@ -1439,6 +1439,16 @@ App.build_settings = () => {
       info: `Max items to show in the filter history`,
       version: 1,
     },
+    header_filter_context: {
+      name: `Header Filter Context`,
+      type: `number`,
+      value: 2,
+      placeholder: `Number`,
+      min: App.number_min,
+      max: App.number_max,
+      info: `How many tabs from each header to show in header filter mode`,
+      version: 1,
+    },
   }
 
   add_props()

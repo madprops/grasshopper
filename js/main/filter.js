@@ -204,8 +204,9 @@ App.do_filter = async (args = {}) => {
   }
 
   let some_matched = false
-  let prev_header_match = false
   let headers = filter_mode === `header`
+  let header_match = 0
+  let max_header = App.get_setting(`header_filter_context`)
 
   for (let item of items) {
     if (!item.element) {
@@ -220,9 +221,17 @@ App.do_filter = async (args = {}) => {
 
     if (!match) {
       if (headers) {
-        if (prev_header_match) {
+        if (header_match >= 1) {
           if (App.check_header_first(item)) {
+            header_match += 1
             match = true
+
+            if (header_match > max_header) {
+              header_match = 0
+            }
+          }
+          else {
+            header_match = 0
           }
         }
       }
@@ -232,15 +241,13 @@ App.do_filter = async (args = {}) => {
       match = check_match(item)
     }
 
-    prev_header_match = false
-
     if (match) {
       App.show_item(item)
       some_matched = true
 
       if (headers) {
         if (item.header) {
-          prev_header_match = true
+          header_match = 1
         }
       }
     }
