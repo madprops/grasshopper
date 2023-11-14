@@ -252,7 +252,7 @@ App.build_settings = () => {
       value: 92,
       action: `theme`,
       placeholder: `Opacity`,
-      min: 10,
+      min: 20,
       max: 100,
       info: `The lower the number, the more the background image is shown`,
       version: 1,
