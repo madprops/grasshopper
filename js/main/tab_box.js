@@ -35,6 +35,10 @@ App.check_tab_box = () => {
 }
 
 App.update_tab_box = (what) => {
+  if (!App.tab_box_enabled()) {
+    return
+  }
+
   App.update_tab_box_debouncer.call(what)
 }
 
@@ -84,6 +88,16 @@ App.update_tab_box_colors = () => {
   }
 
   let o_items = App.get_colored_items(`tabs`)
+  let items = App.get_tab_box_items(o_items)
+  App.fill_tab_box(items, false)
+}
+
+App.update_tab_box_playing = () => {
+  if (!App.tab_box_mode(`playing`)) {
+    return
+  }
+
+  let o_items = App.get_playing_tabs()
   let items = App.get_tab_box_items(o_items)
   App.fill_tab_box(items, false)
 }
@@ -152,20 +166,29 @@ App.tab_box_menu = (e) => {
     })
   }
 
-  if (mode !== `headers`) {
-    items.push({
-      text: `Headers`,
-      action: () => {
-        App.change_tab_box_mode(`headers`)
-      }
-    })
-  }
-
   if (mode !== `colors`) {
     items.push({
       text: `Colors`,
       action: () => {
         App.change_tab_box_mode(`colors`)
+      }
+    })
+  }
+
+  if (mode !== `playing`) {
+    items.push({
+      text: `Playing`,
+      action: () => {
+        App.change_tab_box_mode(`playing`)
+      }
+    })
+  }
+
+  if (mode !== `headers`) {
+    items.push({
+      text: `Headers`,
+      action: () => {
+        App.change_tab_box_mode(`headers`)
       }
     })
   }

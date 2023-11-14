@@ -9,10 +9,18 @@ App.create_active_trace = () => {
 }
 
 App.update_active_trace = () => {
+  if (!App.get_setting(`active_trace`)) {
+    return
+  }
+
   App.update_active_trace_debouncer.call()
 }
 
 App.do_update_active_trace = () => {
+  if (!App.get_setting(`active_trace`)) {
+    return
+  }
+
   App.clean_active_history()
 
   for (let item of App.get_items(`tabs`)) {
