@@ -45,3 +45,12 @@ App.do_update_active_trace = () => {
     n += 1
   }
 }
+
+App.pick_active_trace = (index) => {
+  let items = App.get_recent_tabs({max: 9})
+  let tab = items[index]
+
+  if (tab) {
+    App.tabs_action(tab)
+  }
+}
