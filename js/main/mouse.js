@@ -1,4 +1,4 @@
-App.direction = (mode, e) => {
+App.get_mouse_item = (mode, e) => {
   let el = e.target.closest(`.${mode}_item`)
   let item = App.get_item_by_id(mode, el.dataset.id)
 
@@ -88,7 +88,12 @@ App.mouse_click_action = (mode, e, from) => {
     return
   }
 
-  let item = App.direction(mode, e)
+  let item = App.get_mouse_item(mode, e)
+
+  if (!item) {
+    return
+  }
+
   let media_type = App.get_media_type(item)
 
   if (e.target.classList.contains(`view_media_button`)) {
@@ -211,7 +216,11 @@ App.mouse_double_click_action = (mode, e) => {
     return
   }
 
-  let item = App.direction(mode, e)
+  let item = App.get_mouse_item(mode, e)
+
+  if (!item) {
+    return
+  }
 
   if (App.get_setting(`double_click_header`)) {
     if (e.target.closest(`.item_text`)) {
@@ -241,7 +250,11 @@ App.mouse_context_action = (mode, e) => {
     return
   }
 
-  let item = App.direction(mode, e)
+  let item = App.get_mouse_item(mode, e)
+
+  if (!item) {
+    return
+  }
 
   if (App.get_setting(`hover_button`)) {
     if (App.get_setting(`hover_button_pick`)) {
@@ -291,7 +304,11 @@ App.mouse_middle_action = (mode, e) => {
     return
   }
 
-  let item = App.direction(mode, e)
+  let item = App.get_mouse_item(mode, e)
+
+  if (!item) {
+    return
+  }
 
   if (e.target.classList.contains(`close_button`)) {
     let cmd = App.get_setting(`middle_click_close_button`)
@@ -352,7 +369,12 @@ App.mouse_over_action = (mode, e) => {
     return
   }
 
-  let item = App.direction(mode, e)
+  let item = App.get_mouse_item(mode, e)
+
+  if (!item) {
+    return
+  }
+
   App.update_footer_info(item)
 }
 
@@ -383,7 +405,12 @@ App.click_press_action = (mode, e) => {
     return
   }
 
-  let item = App.direction(mode, e)
+  let item = App.get_mouse_item(mode, e)
+
+  if (!item) {
+    return
+  }
+
   let cmd
 
   if (App.click_press_button === 0) {
