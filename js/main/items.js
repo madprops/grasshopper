@@ -513,6 +513,7 @@ App.move_item = (mode, from_index, to_index) => {
   let item = App.get_items(mode).splice(from_index, 1)[0]
   App.get_items(mode).splice(to_index, 0, item)
   App.move_item_element(mode, item.element, to_index)
+  App.refresh_tab_box()
 }
 
 App.move_item_element = (mode, el, to_index) => {
