@@ -23,7 +23,7 @@ App.refresh_active_history = () => {
     App.update_active_trace()
   }
 
-  if (App.tab_box_recent()) {
+  if (App.tab_box_mode(`recent`)) {
     App.update_tab_box(`recent`)
   }
 }
@@ -51,7 +51,7 @@ App.update_active_history = (current, new_active) => {
   }
 
   if (new_active.pinned) {
-    if (App.tab_box_pins()) {
+    if (App.tab_box_mode(`pins`)) {
       App.update_tab_box(`pins`)
     }
   }

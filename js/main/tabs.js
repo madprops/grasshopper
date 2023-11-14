@@ -271,7 +271,7 @@ App.refresh_tab = async (id, select, info, changed) => {
 
     if (changed) {
       if (changed.pinned !== undefined) {
-        App.check_tab_box_pins(item)
+        App.check_tab_box_item(item, `pins`)
       }
     }
   }

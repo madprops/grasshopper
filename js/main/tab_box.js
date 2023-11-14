@@ -47,7 +47,7 @@ App.do_update_tab_box = (what) => {
 }
 
 App.update_tab_box_recent = () => {
-  if (!App.tab_box_recent()) {
+  if (!App.tab_box_mode(`recent`)) {
     return
   }
 
@@ -62,7 +62,7 @@ App.update_tab_box_recent = () => {
 }
 
 App.update_tab_box_headers = () => {
-  if (!App.tab_box_headers()) {
+  if (!App.tab_box_mode(`headers`)) {
     return
   }
 
@@ -72,7 +72,7 @@ App.update_tab_box_headers = () => {
 }
 
 App.update_tab_box_pins = () => {
-  if (!App.tab_box_pins()) {
+  if (!App.tab_box_mode(`pins`)) {
     return
   }
 
@@ -321,49 +321,19 @@ App.refresh_tab_box = () => {
   App.update_tab_box(App.get_setting(`tab_box_mode`))
 }
 
-App.check_tab_box_pins = (item) => {
+App.check_tab_box_item = (item, what) => {
   if (item.mode !== `tabs`) {
     return
   }
 
-  if (App.tab_box_pins()) {
-    App.update_tab_box(`pins`)
+  if (App.tab_box_mode(what)) {
+    App.update_tab_box(what)
   }
 }
 
-App.check_tab_box_headers = (item) => {
-  if (item.mode !== `tabs`) {
-    return
-  }
-
-  if (App.tab_box_headers()) {
-    App.update_tab_box(`headers`)
-  }
-}
-
-App.tab_box_recent = () => {
+App.tab_box_mode = (what) => {
   if (App.get_setting(`tab_box`) !== `none`) {
-    if (App.get_setting(`tab_box_mode`) === `recent`) {
-      return true
-    }
-  }
-
-  return false
-}
-
-App.tab_box_pins = () => {
-  if (App.get_setting(`tab_box`) !== `none`) {
-    if (App.get_setting(`tab_box_mode`) === `pins`) {
-      return true
-    }
-  }
-
-  return false
-}
-
-App.tab_box_headers = () => {
-  if (App.get_setting(`tab_box`) !== `none`) {
-    if (App.get_setting(`tab_box_mode`) === `headers`) {
+    if (App.get_setting(`tab_box_mode`) === what) {
       return true
     }
   }

@@ -242,7 +242,7 @@ App.remove_item = (item) => {
 
   if (mode === `tabs`) {
     App.refresh_active_history()
-    App.check_tab_box_headers(item)
+    App.check_tab_box_item(item, `headers`)
   }
 }
 
@@ -913,7 +913,7 @@ App.insert_item = (mode, info) => {
     App.get_items(mode).splice(info.index, 0, item)
     container.append(item.element)
     App.move_item_element(`tabs`, item.element, info.index)
-    App.check_tab_box_headers(item)
+    App.check_tab_box_item(item, `headers`)
   }
   else {
     let old = App.get_item_by_url(mode, item.url)
