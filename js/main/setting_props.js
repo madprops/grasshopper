@@ -573,6 +573,7 @@ App.build_settings = () => {
       type: `menu`,
       value: `recent`,
       info: `Show recent tabs, or headers, in the Tab Box`,
+      separator: true,
       version: 4,
     },
     taglist: {
