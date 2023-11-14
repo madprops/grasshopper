@@ -40,7 +40,8 @@ App.do_apply_theme = (args = {}) => {
 
     App.set_css_var(`background_color`, args.background_color)
     App.set_css_var(`text_color`, args.text_color)
-    let main_background = App.colorlib.rgb_to_rgba(args.background_color, 0.93)
+    let bg_opacity = App.get_setting(`background_opacity`) / 100
+    let main_background = App.colorlib.rgb_to_rgba(args.background_color, bg_opacity)
     App.set_css_var(`main_background`, main_background)
     let slight_shade = App.colorlib.rgb_to_rgba(args.text_color, 0.08)
     App.set_css_var(`slight_shade`, slight_shade)

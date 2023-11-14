@@ -246,6 +246,17 @@ App.build_settings = () => {
       info: `Add custom CSS to override the default style`,
       version: 1,
     },
+    background_opacity: {
+      name: `Background Opacity`,
+      type: `number`,
+      value: 90,
+      action: `theme`,
+      placeholder: `Opacity`,
+      min: 0,
+      max: 100,
+      info: `The lower the number, the more the background image is shown`,
+      version: 1,
+    },
     text_glow: {
       name: `Text Glow`,
       type: `checkbox`,
