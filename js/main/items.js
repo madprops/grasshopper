@@ -241,6 +241,7 @@ App.remove_item = (item) => {
   App.update_footer_count(mode)
 
   if (mode === `tabs`) {
+    App.clean_active_history()
     App.refresh_active_history()
     App.check_tab_box_item(item, `headers`)
   }
@@ -499,7 +500,7 @@ App.update_item = (mode, id, info) => {
     if (item.id === id) {
       App.process_info({mode: mode, info: info, o_item: item})
       App.check_filter(mode)
-      App.refresh_active_history()
+      App.check_tab_box_item(item, `recent`)
       break
     }
   }
