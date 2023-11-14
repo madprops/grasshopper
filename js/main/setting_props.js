@@ -1679,16 +1679,6 @@ App.build_settings = () => {
       info: `Max items to show in Recent Tabs`,
       version: 1,
     },
-    max_active_history: {
-      name: `Max Active History`,
-      type: `number`,
-      value: 20,
-      placeholder: `Number`,
-      min: App.number_min,
-      max: App.number_max,
-      info: `Max active tab history to remember. This aftects Active Trace and the Tab Box`,
-      version: 1,
-    },
   }
 
   add_props()

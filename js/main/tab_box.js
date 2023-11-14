@@ -56,8 +56,7 @@ App.update_tab_box_recent = () => {
     return
   }
 
-  App.clean_active_history()
-  let o_items = App.active_history
+  let o_items = App.get_recent_tabs({max: App.tab_box_max})
   let items = App.get_tab_box_items(o_items)
   App.fill_tab_box(items)
 }

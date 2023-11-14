@@ -1027,7 +1027,6 @@ App.get_persistent_items = () => {
 App.clear_show = async () => {
   App.clear_all_items()
   App.rebuild_items()
-  App.clear_active_history()
   App.show_primary_mode()
 }
 

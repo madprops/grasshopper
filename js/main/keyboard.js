@@ -131,7 +131,7 @@ App.check_items_keyboard = (e) => {
     }
 
     if (!isNaN(e.key)) {
-      App.pick_active_history(parseInt(e.key))
+      App.xxx(parseInt(e.key))
       e.preventDefault()
       return
     }

@@ -26,7 +26,7 @@ App.setup_tabs = () => {
     App.debug(`Tab Updated: ID: ${id}`, App.debug_tabs)
 
     if (info.windowId === App.window_id) {
-      await App.refresh_tab(id, false, info, changed)
+      await App.refresh_tab(id, false, info)
       App.check_playing()
     }
   })
@@ -245,7 +245,7 @@ App.get_tab_info = async (id) => {
   }
 }
 
-App.refresh_tab = async (id, select, info, changed) => {
+App.refresh_tab = async (id, select, info) => {
   if (!info) {
     try {
       info = await App.get_tab_info(id)
@@ -268,12 +268,6 @@ App.refresh_tab = async (id, select, info, changed) => {
     }
 
     App.update_item(`tabs`, item.id, info)
-
-    if (changed) {
-      if (changed.pinned !== undefined) {
-        App.check_tab_box_item(item, `pins`)
-      }
-    }
   }
   else {
     item = App.insert_item(`tabs`, info)
@@ -849,7 +843,6 @@ App.on_tab_activated = async (info) => {
 
   let new_active = await App.refresh_tab(info.tabId, select)
   new_active.unread = false
-  App.update_active_history(current, new_active)
 
   for (let item of old_active) {
     App.update_item(`tabs`, item.id, item)

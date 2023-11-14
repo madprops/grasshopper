@@ -30,7 +30,6 @@ App.process_info_list = (mode, info_list) => {
 
   if (mode === `tabs`) {
     App.check_tab_session()
-    App.fill_active_history()
     App.refresh_tab_box()
   }
 }
@@ -104,10 +103,6 @@ App.process_info = (args = {}) => {
     item.discarded = args.info.discarded
     item.last_accessed = args.info.lastAccessed
     item.status = args.info.status
-
-    if (item.active && !App.active_history.length) {
-      App.update_active_history(undefined, item)
-    }
   }
   else if (args.mode === `history`) {
     item.last_visit = args.info.lastVisitTime

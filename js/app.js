@@ -47,6 +47,8 @@ App.popup_width = 800
 App.popup_height = 600
 App.browser_protocol = `moz-extension://`
 App.tab_session_first = false
+App.force_debug = false
+App.tab_box_max = 20
 
 App.settings_done = false
 App.settings_ready = false

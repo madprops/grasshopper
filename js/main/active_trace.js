@@ -21,16 +21,15 @@ App.do_update_active_trace = () => {
     return
   }
 
-  App.clean_active_history()
-
   for (let item of App.get_items(`tabs`)) {
     let trace = DOM.el(`.item_trace`, item.element)
     trace.classList.add(`hidden`)
   }
 
   let n = 1
+  let items = App.get_recent_tabs({max: 9})
 
-  for (let item of App.active_history) {
+  for (let item of items) {
     if (item.active) {
       continue
     }
