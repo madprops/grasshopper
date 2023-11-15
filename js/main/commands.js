@@ -7,7 +7,6 @@ App.setup_commands = () => {
   let unloaded_icon = App.get_setting(`unloaded_icon`)
   let muted_icon = App.get_setting(`muted_icon`)
   let unread_icon = App.get_setting(`unread_icon`)
-  let step_back_icon = App.create_icon(`back`)
   let settings_icon = App.settings_icons.general
   let theme_icon = App.settings_icons.theme
   let filter_icon = App.settings_icons.filter
@@ -21,6 +20,7 @@ App.setup_commands = () => {
   let bot_icon = App.bot_icon
   let up_icon = App.up_arrow_icon
   let down_icon = App.down_arrow_icon
+  let left_icon = App.left_arrow_icon
   let heart_icon = App.heart_icon
   let close_icon = App.close_icon
   let tag_icon = App.tag_icon
@@ -242,7 +242,7 @@ App.setup_commands = () => {
       name: `Step Back`,
       cmd: `step_back`,
       modes: [`items`],
-      icon: step_back_icon,
+      icon: left_icon,
       action: (args) => {
         App.step_back()
       },

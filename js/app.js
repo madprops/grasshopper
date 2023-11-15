@@ -111,6 +111,7 @@ App.browser_icon = `🌐`
 App.command_icon = `🔆`
 App.up_arrow_icon = `⬆️`
 App.down_arrow_icon = `⬇️`
+App.left_arrow_icon = `⬅️`
 App.heart_icon = `❤️`
 App.close_icon = `❌`
 App.tag_icon = `✝️`
