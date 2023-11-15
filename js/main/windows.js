@@ -213,6 +213,13 @@ App.get_window_menu_items = async (item) => {
 
   let items = []
 
+  items.push({
+    text: `Detach`,
+    action: () => {
+      App.detach_tabs(item)
+    }
+  })
+
   for (let win of wins) {
     if (item.window_id === win.id) {
       continue
