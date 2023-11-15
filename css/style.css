@@ -1247,9 +1247,12 @@ a:visited, a:link, a:hover {
   flex-direction: row;
   align-items: center;
   justify-content: flex-start;
-  flex-wrap: wrap;
   height: 100%;
   gap: 0.2rem;
+}
+
+.taglist.normal .taglist_container {
+  flex-wrap: wrap;
 }
 
 .taglist_left,
