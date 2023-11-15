@@ -64,6 +64,7 @@ App.do_filter = async (args = {}) => {
   App.check_filtered(args.mode)
   App[`last_${args.mode}_filter`] = value
   value = App.remove_protocol(value)
+  App.save_previous_filter(args.mode)
 
   if (value.endsWith(`|`)) {
     return
@@ -458,7 +459,6 @@ App.is_filtered = (mode) => {
 
 App.clear_filter = (mode = App.window_mode) => {
   if (App.filter_has_value(mode)) {
-    App.save_previous_filter(mode)
     App.set_filter({mode: mode})
   }
 }
@@ -821,15 +821,21 @@ App.filter_title = (item) => {
 
 App.filter_all = (mode = App.window_mode) => {
   if (App.is_filtered(mode)) {
-    App.save_previous_filter(mode)
     App.set_filter_mode({mode: mode, type: `all`, filter: false})
     App.set_filter({mode: mode})
   }
 }
 
 App.save_previous_filter = (mode) => {
-  App.prev_filter_mode = App.filter_mode(mode)
-  App.prev_filter_text = App.get_filter(mode)
+  let pmode = App.filter_mode(mode)
+  let ptext = App.get_filter(mode)
+
+  if ((pmode === `all`) && !ptext) {
+    return
+  }
+
+  App.prev_filter_mode = pmode
+  App.prev_filter_text = ptext
 }
 
 App.previous_filter = (mode) => {
