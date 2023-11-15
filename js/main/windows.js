@@ -231,7 +231,7 @@ App.get_window_menu_items = async (item) => {
     items.push({
       text: text,
       action: () => {
-        App.move_tabs(item, win.id)
+        App.move_tabs_to_window(item, win.id)
       }
     })
   }

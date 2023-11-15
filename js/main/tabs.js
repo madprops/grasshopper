@@ -848,7 +848,7 @@ App.on_tab_activated = async (info) => {
   }
 }
 
-App.move_tabs = async (item, window_id) => {
+App.move_tabs_to_window = async (item, window_id) => {
   for (let it of App.get_active_items({mode: `tabs`, item: item})) {
     let index = it.pinned ? 0 : -1
 
@@ -865,7 +865,7 @@ App.move_tabs_to_new_window = async (item) => {
   let info = await browser.windows.create({focused: false})
 
   setTimeout(() => {
-    App.move_tabs(item, info.id)
+    App.move_tabs_to_window(item, info.id)
   }, 250)
 }
 
