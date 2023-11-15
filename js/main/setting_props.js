@@ -1800,8 +1800,7 @@ App.build_settings = () => {
       },
     },
     theme: {
-      info: `Here you can change the color theme and background image. Colors can be randomized.
-      The background image can have an effect and/or tile mode. You can also override the CSS`,
+      info: `Here you can change the appearance of the interface`,
       setup: () => {
         App.start_color_picker(`background_color`)
         App.start_color_picker(`text_color`)
@@ -1862,8 +1861,8 @@ App.build_settings = () => {
       ]
     },
     colors: {
-      info: `Custom colors for tabs. You can enable/disable each color for different kinds of tabs.
-      Some colors take precendence over others`,
+      info: `Set the colors for different kinds of items.
+      This includes the edit colors and tab colors`,
       setup: () => {
         App.start_setting_colors(`colors`)
 
