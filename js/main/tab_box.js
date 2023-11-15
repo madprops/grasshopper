@@ -123,7 +123,7 @@ App.get_tab_box_items = (o_items) => {
     }
 
     let {element, ...item} = o_item
-    item.mirror = true
+    item.tab_box = true
     App.create_item_element(item)
     items.push(item)
   }

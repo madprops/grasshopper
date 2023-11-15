@@ -96,6 +96,12 @@ App.add_tab_icons = (item) => {
 }
 
 App.check_icons = (item) => {
+  if (item.tab_box) {
+    if (!App.get_setting(`tab_box_icons`)) {
+      return
+    }
+  }
+
   if (App.get_setting(`notes_icon`)) {
     let icon = DOM.el(`.notes_icon`, item.element)
 
@@ -258,7 +264,7 @@ App.make_item_icon = (item, normal = true) => {
   let icon
   let text_icon = App.get_icon(item)
 
-  if (item.mirror) {
+  if (item.tab_box) {
     normal = false
   }
 

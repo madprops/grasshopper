@@ -38,7 +38,6 @@ App.process_info = (args = {}) => {
   let def_args = {
     exclude: [],
     list: false,
-    mirror: false,
   }
 
   App.def_args(def_args, args)
@@ -139,6 +138,7 @@ App.process_info = (args = {}) => {
     item.visible = true
     item.selected = false
     item.header = false
+    item.tab_box = false
     item.last_scroll = 0
     App.create_item_element(item)
     App[`${args.mode}_idx`] += 1

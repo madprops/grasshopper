@@ -3,6 +3,12 @@ App.check_tab_colors = (item) => {
     return
   }
 
+  if (item.tab_box) {
+    if (!App.get_setting(`tab_box_tab_colors`)) {
+      return
+    }
+  }
+
   function text_enabled (type) {
     return App.get_setting(`text_color_${type}_enabled`)
   }
@@ -63,6 +69,12 @@ App.check_tab_colors = (item) => {
 }
 
 App.apply_color_mode = (item) => {
+  if (item.tab_box) {
+    if (!App.get_setting(`tab_box_colors`)) {
+      return
+    }
+  }
+
   let color_mode = App.get_setting(`color_mode`)
   let color = App.get_color(item)
 
