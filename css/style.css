@@ -1247,6 +1247,9 @@ a:visited, a:link, a:hover {
   flex-direction: row;
   align-items: center;
   justify-content: flex-start;
+  flex-wrap: wrap;
+  height: 100%;
+  gap: 0.2rem;
 }
 
 .taglist_left,
@@ -1298,8 +1301,7 @@ a:visited, a:link, a:hover {
   display: flex;
   align-items: center;
   justify-content: center;
-  padding-left: 0.33rem;
-  padding-right: 0.33rem;
+  padding-right: 0.5rem;
 }
 
 .taglist_container > div:first-child {
