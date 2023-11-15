@@ -1,5 +1,4 @@
 App.setup_commands = () => {
-  let command_icon = App.command_icon
   let pin_icon = App.get_setting(`pin_icon`)
   let normal_icon = App.get_setting(`normal_icon`)
   let playing_icon = App.get_setting(`playing_icon`)
@@ -7,6 +6,7 @@ App.setup_commands = () => {
   let unloaded_icon = App.get_setting(`unloaded_icon`)
   let muted_icon = App.get_setting(`muted_icon`)
   let unread_icon = App.get_setting(`unread_icon`)
+  let command_icon = App.command_icon
   let settings_icon = App.settings_icons.general
   let theme_icon = App.settings_icons.theme
   let filter_icon = App.settings_icons.filter
