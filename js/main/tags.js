@@ -381,6 +381,16 @@ App.show_filter_tag_menu = (mode, e) => {
 App.create_taglist = () => {
   let setting = App.get_setting(`taglist`)
   let taglist = DOM.create(`div`, `taglist hidden`)
+  let left = DOM.create(`div`, `taglist_left action`)
+  left.textContent = `<`
+  left.title = `Scroll the Taglist to the left`
+  let right = DOM.create(`div`, `taglist_right action`)
+  right.textContent = `>`
+  right.title = `Scroll the Taglist to the right`
+  let container = DOM.create(`div`, `taglist_container`)
+  taglist.append(left)
+  taglist.append(container)
+  taglist.append(right)
 
   if (setting === `left` || setting === `right`) {
     taglist.classList.add(`hover`)
@@ -418,8 +428,9 @@ App.check_taglist = (item) => {
     taglist.classList.add(`hidden`)
   }
   else {
+    let container = DOM.el(`.taglist_container`, taglist)
     item.element.classList.add(`using_taglist_${setting}`)
-    taglist.innerHTML = ``
+    container.innerHTML = ``
     let tags = App.get_tags(item).slice(0)
 
     if (App.get_setting(`sort_taglist`)) {
@@ -440,14 +451,14 @@ App.check_taglist = (item) => {
     for (let tag of tags) {
       let item = DOM.create(`div`, `taglist_item${cls}`)
       item.textContent = tag
-      taglist.append(item)
+      container.append(item)
     }
 
     if (App.get_setting(`taglist_add`)) {
       let add = DOM.create(`div`, `taglist_add action`)
       add.textContent = `+`
       add.title = `Add Tag`
-      taglist.append(add)
+      container.append(add)
     }
 
     taglist.classList.remove(`hidden`)
@@ -552,5 +563,18 @@ App.toggle_taglist = (mode) => {
     else {
       taglist.classList.add(`hidden`)
     }
+  }
+}
+
+App.taglist_scroll = (item, direction) => {
+  let taglist = DOM.el(`.taglist`, item.element)
+  let container = DOM.el(`.taglist_container`, taglist)
+  let amount = 25
+
+  if (direction === `left`) {
+    container.scrollLeft -= amount
+  }
+  else if (direction === `right`) {
+    container.scrollLeft += amount
   }
 }

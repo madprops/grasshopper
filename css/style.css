@@ -92,7 +92,10 @@ select {
   text-align: center;
 }
 
-.no_scrollbars .item_container, .no_scrollbars .box_container {
+.no_scrollbars .item_container,
+.no_scrollbars .box_container,
+.taglist_container
+{
 	scrollbar-width: none !important;
 }
 
@@ -1237,18 +1240,45 @@ a:visited, a:link, a:hover {
 .taglist {
   display: flex;
   flex-direction: row;
+}
+
+.taglist_container {
+  display: flex;
+  flex-direction: row;
   align-items: center;
   justify-content: flex-start;
 }
 
-.taglist.hover {
-  position: absolute;
+.taglist_left,
+.taglist_right {
   display: none;
+  flex-grow: 0;
+  flex-shrink: 0;
+  align-items: center;
+  justify-content: center;
+  background-color: var(--alt_color_2);
+  padding-left: 0.5rem;
+  padding-right: 0.5rem;
+  height: 100%;
+  cursor: pointer;
+}
+
+.taglist.hover {
+  display: none;
+  position: absolute;
   background-color: var(--text_color_darker);
   color: var(--background_color);
   height: 100%;
   max-width: 60%;
-  overflow: hidden;
+}
+
+.taglist.hover .taglist_container {
+  overflow: auto;
+}
+
+.taglist.hover .taglist_left,
+.taglist.hover .taglist_right {
+  display: flex;
 }
 
 .taglist.left {
@@ -1263,7 +1293,7 @@ a:visited, a:link, a:hover {
   display: flex;
 }
 
-.taglist > div {
+.taglist_container > div {
   height: 100%;
   display: flex;
   align-items: center;
@@ -1272,19 +1302,19 @@ a:visited, a:link, a:hover {
   padding-right: 0.33rem;
 }
 
-.taglist > div:first-child {
+.taglist_container > div:first-child {
   padding-left: 0.66rem;
 }
 
-.taglist > div:last-child {
+.taglist_container > div:last-child {
   padding-right: 0.66rem;
 }
 
-.taglist.normal > div:first-child {
+.taglist.normal .taglist_container > div:first-child {
   padding-left: 0;
 }
 
-.not_filtered .header_item .taglist.normal {
+.not_filtered .header_item .taglist.normal .taglist_container {
   justify-content: center;
 }
 

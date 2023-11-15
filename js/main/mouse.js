@@ -157,6 +157,16 @@ App.mouse_click_action = (mode, e, from) => {
         App.taglist_action(e, item)
         return
       }
+
+      if (e.target.classList.contains(`taglist_left`)) {
+        App.taglist_scroll(item, `left`)
+        return
+      }
+
+      if (e.target.classList.contains(`taglist_right`)) {
+        App.taglist_scroll(item, `right`)
+        return
+      }
     }
 
     if (App.taglist_add_active()) {
@@ -207,6 +217,10 @@ App.mouse_double_click_action = (mode, e) => {
   let item = App.get_mouse_item(mode, e)
 
   if (!item) {
+    return
+  }
+
+  if (e.target.closest(`.taglist`)) {
     return
   }
 
