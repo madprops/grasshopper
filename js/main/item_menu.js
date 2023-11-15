@@ -69,8 +69,9 @@ App.common_menu_items = (args = {}) => {
   }
 
   let filter_items = []
-  App.item_menu_item(filter_items, `filter_color`, {item: args.item})
   App.item_menu_item(filter_items, `filter_tag`, {item: args.item})
+  App.item_menu_item(filter_items, `filter_color`, {item: args.item})
+  App.item_menu_item(filter_items, `filter_title`, {item: args.item})
   App.item_menu_item(filter_items, `filter_domain`, {item: args.item})
 
   items.push({

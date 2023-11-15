@@ -214,7 +214,7 @@ App.get_window_menu_items = async (item) => {
   let items = []
 
   items.push({
-    text: `Detach`,
+    text: `New Window`,
     action: () => {
       App.detach_tabs(item)
     }
@@ -226,7 +226,7 @@ App.get_window_menu_items = async (item) => {
     }
 
     let s = `${win.title.substring(0, 25).trim()} (ID: ${win.id})`
-    let text = `Move to: ${s}`
+    let text = `Move To: ${s}`
 
     items.push({
       text: text,

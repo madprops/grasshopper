@@ -1241,6 +1241,18 @@ App.setup_commands = () => {
       info: `Filter: Show same domain`,
     },
     {
+      name: `Filter Title`,
+      cmd: `filter_title`,
+      modes: [`items`],
+      item: true,
+      single: true,
+      icon: filter_icon,
+      action: (args) => {
+        App.filter_title(args.item)
+      },
+      info: `Filter: Show same title`,
+    },
+    {
       name: `Filter Color`,
       cmd: `filter_color`,
       modes: [`items`],
