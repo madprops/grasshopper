@@ -1662,6 +1662,13 @@ App.build_settings = () => {
       info: `Show the notes when clicking the notes icon`,
       version: 1,
     },
+    clear_on_all: {
+      name: `Clear On All`,
+      type: `checkbox`,
+      value: true,
+      info: `Clear the filter when clicking All`,
+      version: 1,
+    },
     show_protocol: {
       name: `Show Protocol`,
       type: `checkbox`,

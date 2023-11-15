@@ -1170,7 +1170,12 @@ App.show_filter_menu = (mode) => {
         icon: filter_mode.icon,
         text: `All`,
         action: () => {
-          return App.filter_all(mode)
+          if (App.get_setting(`clear_on_all`)) {
+            App.filter_all(mode)
+          }
+          else {
+            App.set_filter_mode({mode: mode, type: `all`})
+          }
         },
         info: filter_mode.info,
       })
