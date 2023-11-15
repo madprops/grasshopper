@@ -557,17 +557,6 @@ App.setup_commands = () => {
       info: `Duplicate tabs`,
     },
     {
-      name: `New Window`,
-      cmd: `move_tabs_to_new_window`,
-      modes: [`tabs`],
-      item: true,
-      icon: tabs_icon,
-      action: (args) => {
-        App.move_tabs_to_new_window(args.item)
-      },
-      info: `Move tabs to a new window`,
-    },
-    {
       name: `To Window`,
       cmd: `show_windows_menu`,
       modes: [`tabs`],
