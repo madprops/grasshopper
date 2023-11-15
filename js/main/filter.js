@@ -833,13 +833,36 @@ App.save_previous_filter = (mode) => {
 }
 
 App.previous_filter = (mode) => {
-  if (App.prev_filter_mode || App.prev_filter_text) {
-    if (App.prev_filter_mode) {
-      App.set_filter_mode({mode: mode, type: App.prev_filter_mode, filter: false})
-    }
+  let pmode = App.prev_filter_mode
+  let ptext = App.prev_filter_text
 
-    let filter = App.prev_filter_text || ``
-    App.set_filter({mode: mode, text: filter})
+  if (pmode || ptext) {
+    if ((pmode === App.filter_mode(mode)) && (ptext === App.get_filter(mode))) {
+      App.filter_all(mode)
+    }
+    else {
+      if (pmode) {
+        if (pmode.includes(`_`)) {
+          if (pmode.startsWith(`color`)) {
+            let color = pmode.replace(`color_`, ``)
+            App.filter_color(mode, color)
+          }
+          else if (pmode.startsWith(`tag`)) {
+            let tag = pmode.replace(`tag_`, ``)
+            App.filter_tag(mode, tag)
+          }
+        }
+        else {
+          App.set_filter_mode({mode: mode, type: pmode, filter: false})
+        }
+      }
+
+      let filter = ptext || ``
+      App.set_filter({mode: mode, text: filter})
+    }
+  }
+  else {
+    App.filter_all(mode)
   }
 }
 
@@ -1134,6 +1157,18 @@ App.show_filter_menu = (mode) => {
   for (let filter_mode of App.filter_modes(mode)) {
     if (filter_mode.type === App.separator_string) {
       App.sep(items)
+      continue
+    }
+    else if (filter_mode.type === `all`) {
+      items.push({
+        icon: filter_mode.icon,
+        text: `All`,
+        action: () => {
+          return App.filter_all(mode)
+        },
+        info: filter_mode.info,
+      })
+
       continue
     }
     else if (filter_mode.type === `color`) {

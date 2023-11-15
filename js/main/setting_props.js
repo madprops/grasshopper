@@ -829,7 +829,7 @@ App.build_settings = () => {
     middle_click_filter_menu: {
       name: `Middle Click Filter Menu`,
       type: `menu`,
-      value: `filter_all`,
+      value: `previous_filter`,
       info: `Command to run when middle clicking the Filter Menu`,
       version: 1,
     },
