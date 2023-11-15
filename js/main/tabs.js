@@ -861,12 +861,26 @@ App.move_tabs_to_window = async (item, window_id) => {
   }
 }
 
-App.move_tabs_to_new_window = async (item) => {
-  let info = await browser.windows.create({focused: false})
+App.detach_tab = async (item) => {
+  try {
+    await browser.windows.create({tabId: item.id, focused: false})
+  }
+  catch (err) {
+    App.error(err)
+  }
+}
 
-  setTimeout(() => {
-    App.move_tabs_to_window(item, info.id)
-  }, 250)
+App.move_tabs_to_new_window = async (item) => {
+  if (App.get_active_items({mode: `tabs`, item: item}).length === 1) {
+    await App.detach_tab(item)
+  }
+  else {
+    let info = await browser.windows.create({focused: false})
+
+    setTimeout(() => {
+      App.move_tabs_to_window(item, info.id)
+    }, 250)
+  }
 }
 
 App.get_active_tab = async () => {

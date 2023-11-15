@@ -207,7 +207,7 @@ App.get_window_menu_items = async (item) => {
   let wins = await browser.windows.getAll({populate: false})
 
   if (wins.length === 1) {
-    App.move_tabs_to_new_window(item)
+    App.detach_tab(item)
     return
   }
 
@@ -216,7 +216,7 @@ App.get_window_menu_items = async (item) => {
   items.push({
     text: `New Window`,
     action: () => {
-      App.move_tabs_to_new_window(item)
+      App.detach_tab(item)
     }
   })
 
