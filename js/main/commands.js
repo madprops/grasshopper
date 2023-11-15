@@ -557,15 +557,15 @@ App.setup_commands = () => {
       info: `Duplicate tabs`,
     },
     {
-      name: `Detach`,
-      cmd: `detach_tabs`,
+      name: `New Window`,
+      cmd: `move_tabs_to_new_window`,
       modes: [`tabs`],
       item: true,
       icon: tabs_icon,
       action: (args) => {
-        App.detach_tabs(args.item)
+        App.move_tabs_to_new_window(args.item)
       },
-      info: `Detach tabs to another window`,
+      info: `Move tabs to a new window`,
     },
     {
       name: `To Window`,
