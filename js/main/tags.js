@@ -381,10 +381,10 @@ App.show_filter_tag_menu = (mode, e) => {
 App.create_taglist = () => {
   let setting = App.get_setting(`taglist`)
   let taglist = DOM.create(`div`, `taglist hidden`)
-  let left = DOM.create(`div`, `taglist_left action`)
+  let left = DOM.create(`div`, `taglist_left boldover`)
   left.textContent = `<`
   left.title = `Scroll the Taglist to the left`
-  let right = DOM.create(`div`, `taglist_right action`)
+  let right = DOM.create(`div`, `taglist_right boldover`)
   right.textContent = `>`
   right.title = `Scroll the Taglist to the right`
   let container = DOM.create(`div`, `taglist_container`)
