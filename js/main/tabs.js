@@ -1323,3 +1323,12 @@ App.check_pins = (item) => {
     }
   }
 }
+
+App.check_tab_active = (item) => {
+  if (item.active) {
+    item.element.classList.add(`active_tab`)
+  }
+  else {
+    item.element.classList.remove(`active_tab`)
+  }
+}
