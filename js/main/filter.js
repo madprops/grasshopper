@@ -353,7 +353,7 @@ App.filter_check = (args) => {
         match = regex.test(title)
 
         if (!match && !args.item.header) {
-          regex.test(args.item.path)
+          match = regex.test(args.item.path)
         }
       }
       else if (args.by_what.includes(`title`)) {
