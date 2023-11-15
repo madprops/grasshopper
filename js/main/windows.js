@@ -204,15 +204,14 @@ App.close_window = () => {
 }
 
 App.get_window_menu_items = async (item) => {
-  let items = []
   let wins = await browser.windows.getAll({populate: false})
 
-  items.push({
-    text: `Detach`,
-    action: () => {
-      App.detach_tabs(item)
-    }
-  })
+  if (wins.length === 1) {
+    App.detach_tabs(item)
+    return
+  }
+
+  let items = []
 
   for (let win of wins) {
     if (item.window_id === win.id) {
