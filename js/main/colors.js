@@ -355,3 +355,17 @@ App.get_colored_items = (mode) => {
 
   return items
 }
+
+App.get_color_icon = (item) => {
+  let cls = ``
+
+  if (item.mode === `tabs`) {
+    if (App.get_setting(`color_icon_click`)) {
+      cls += ` effect`
+    }
+  }
+
+  let icon = DOM.create(`div`, `color_icon_container item_node hidden${cls}`)
+  icon.title = `Color`
+  item.element.append(icon)
+}

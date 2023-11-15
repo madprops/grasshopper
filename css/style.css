@@ -295,7 +295,6 @@ svg {
   display: flex;
   position: relative;
   flex-direction: row;
-  cursor: pointer;
   align-items: center;
   direction: ltr;
   flex-shrink: 0;
@@ -375,6 +374,7 @@ svg {
 }
 
 .close_button:hover {
+  cursor: pointer;
   background-color: var(--alt_color_0);
 }
 
@@ -408,6 +408,10 @@ svg {
   display: flex;
   align-items: center;
   justify-content: center;
+}
+
+.icon_pick .item_icon_container {
+  cursor: pointer;
 }
 
 .icon_pick .item_icon_container:hover .item_icon,
@@ -1051,6 +1055,10 @@ a:visited, a:link, a:hover {
   border-radius: 50%;
   flex-shrink: 0;
   flex-grow: 0;
+}
+
+.item .color_icon_container.effect:hover {
+  cursor: pointer;
 }
 
 .item .color_icon_container.effect:hover .color_icon {
