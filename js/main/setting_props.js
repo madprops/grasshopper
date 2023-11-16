@@ -1388,7 +1388,7 @@ App.build_settings = () => {
       name: `Filter Colors`,
       type: `checkbox`,
       value: true,
-      info: `Consider colors when using the filter normally. Like typing "red"`,
+      info: `Consider colors when using the filter normally. Like typing 'red'`,
       version: 1,
     },
     filter_tags: {
@@ -1701,7 +1701,7 @@ App.build_settings = () => {
       name: `Short Commands`,
       type: `checkbox`,
       value: false,
-      info: `Prefer short command name versions when displaying them. Like "Red" instead of "Color Red"`,
+      info: `Prefer short command name versions when displaying them. Like 'Red' instead of 'Color Red'`,
       version: 1,
     },
     step_back_recent: {
