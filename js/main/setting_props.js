@@ -1381,28 +1381,28 @@ App.build_settings = () => {
       name: `Show Filter History`,
       type: `checkbox`,
       value: true,
-      info: `Show the filter history when right clicking the filter`,
+      info: `Show the filter history when right clicking the Filter`,
       version: 1,
     },
     filter_colors: {
       name: `Filter Colors`,
       type: `checkbox`,
       value: true,
-      info: `Consider colors when using the filter normally`,
+      info: `Consider colors when using the filter normally. Like typing "red"`,
       version: 1,
     },
     filter_tags: {
       name: `Filter Tags`,
       type: `checkbox`,
       value: true,
-      info: `Consider tags when using the filter normally`,
+      info: `Consider tags when using the filter normally, by typing a tag name`,
       version: 1,
     },
     filter_enter: {
       name: `Filter Enter`,
       type: `checkbox`,
       value: false,
-      info: `Require pressing Enter to use filter or search`,
+      info: `Require pressing Enter to trigger the filter`,
       version: 1,
     },
     max_search_items: {
@@ -1412,7 +1412,7 @@ App.build_settings = () => {
       placeholder: `Number`,
       min: App.number_min,
       max: App.number_max,
-      info: `Max items to return on search modes like history and bookmarks`,
+      info: `Max items to return on search modes, like History and Bookmarks`,
       version: 1,
     },
     deep_max_search_items: {
@@ -1422,7 +1422,7 @@ App.build_settings = () => {
       placeholder: `Number`,
       min: App.number_min,
       max: App.number_max,
-      info: `Max search items to return in deep mode (more items)`,
+      info: `Max search items to return in Deep Mode (more items)`,
       version: 1,
     },
     history_max_months: {
@@ -1432,7 +1432,7 @@ App.build_settings = () => {
       placeholder: `Number`,
       min: App.number_min,
       max: App.number_max,
-      info: `How many months back to consider when searching history`,
+      info: `How many months back to consider when searching History`,
       version: 1,
     },
     deep_history_max_months: {
@@ -1442,7 +1442,7 @@ App.build_settings = () => {
       placeholder: `Number`,
       min: App.number_min,
       max: App.number_max,
-      info: `How many months back to consider when searching history in deep mode (more months)`,
+      info: `How many months back to consider when searching History in Deep Mode (more months)`,
       version: 1,
     },
     filter_delay: {
@@ -1453,7 +1453,7 @@ App.build_settings = () => {
       placeholder: `Number`,
       min: App.number_min,
       max: App.number_max,
-      info: `The filter delay on instant modes like tabs and closed (milliseconds)`,
+      info: `The filter delay on instant modes like Tabs and Closed (milliseconds)`,
       version: 1,
     },
     filter_delay_search: {
@@ -1464,7 +1464,7 @@ App.build_settings = () => {
       placeholder: `Number`,
       min: App.number_min,
       max: App.number_max,
-      info: `The filter delay on search modes like history and bookmarks (milliseconds)`,
+      info: `The filter delay on search modes like History and Bookmarks (milliseconds)`,
       version: 1,
     },
     max_filter_history: {
@@ -1474,7 +1474,7 @@ App.build_settings = () => {
       placeholder: `Number`,
       min: App.number_min,
       max: App.number_max,
-      info: `Max items to show in the filter history`,
+      info: `Max items to show in the Filter History`,
       version: 1,
     },
     header_filter_context: {
@@ -1484,7 +1484,7 @@ App.build_settings = () => {
       placeholder: `Number`,
       min: App.number_min,
       max: App.number_max,
-      info: `How many tabs from each header to show in header filter mode`,
+      info: `How many tabs from each header to show when using the Header filter mode`,
       version: 1,
     },
   }
