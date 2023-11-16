@@ -31,27 +31,11 @@ App.hide_playing = (mode) => {
   DOM.el(`#playing_icon_${mode}`).classList.add(`hidden`)
 }
 
-App.animate_playing = (mode) => {
-  DOM.el(`#playing_icon_${mode}`).classList.add(`animated_border`)
-}
-
-App.stop_animate_playing = (mode) => {
-  DOM.el(`#playing_icon_${mode}`).classList.remove(`animated_border`)
-}
-
 App.check_playing = (mode = App.active_mode) => {
   let playing = App.get_playing_tabs()
 
   if (playing.length) {
     App.show_playing(mode)
-    let selected = App.get_selected(mode)
-
-    if (selected && (!selected.audible)) {
-      App.animate_playing(mode)
-    }
-    else {
-      App.stop_animate_playing(mode)
-    }
   }
   else {
     App.hide_playing(mode)

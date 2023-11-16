@@ -43,18 +43,6 @@
   }
 }
 
-@keyframes color_fade {
-  0% {
-    border-color: var(--alt_color_2);
-  }
-  50% {
-    border-color: var(--slight_shade);
-  }
-  100% {
-    border-color: var(--alt_color_2);
-  }
-}
-
 body, html {
   font-family: var(--font);
   font-size: var(--font_size);
@@ -275,11 +263,6 @@ select {
   justify-content: center;
   gap: 0.35rem;
   align-self: stretch;
-}
-
-.animated_border:not(:hover) {
-  border: 1px solid var(--alt_color_2);
-  animation: color_fade 1s infinite;
 }
 
 .icon_1 {
