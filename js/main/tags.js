@@ -381,16 +381,16 @@ App.show_filter_tag_menu = (mode, e) => {
 App.create_taglist = () => {
   let setting = App.get_setting(`taglist`)
   let taglist = DOM.create(`div`, `taglist hidden`)
-  let left = DOM.create(`div`, `taglist_left boldover`)
-  left.textContent = `<`
-  left.title = `Scroll the Taglist to the left`
-  let right = DOM.create(`div`, `taglist_right boldover`)
-  right.textContent = `>`
-  right.title = `Scroll the Taglist to the right`
+  let left_scroll = DOM.create(`div`, `taglist_left_scroll boldover`)
+  left_scroll.textContent = `<`
+  left_scroll.title = `Scroll the Taglist to the left`
+  let right_scroll = DOM.create(`div`, `taglist_right_scroll boldover`)
+  right_scroll.textContent = `>`
+  right_scroll.title = `Scroll the Taglist to the right`
   let container = DOM.create(`div`, `taglist_container`)
-  taglist.append(left)
+  taglist.append(left_scroll)
   taglist.append(container)
-  taglist.append(right)
+  taglist.append(right_scroll)
 
   if (setting === `left` || setting === `right`) {
     taglist.classList.add(`hover`)

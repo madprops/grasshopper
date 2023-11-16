@@ -158,13 +158,13 @@ App.mouse_click_action = (mode, e, from) => {
         return
       }
 
-      if (e.target.classList.contains(`taglist_left`)) {
+      if (e.target.classList.contains(`taglist_left_scroll`)) {
         let taglist = DOM.el(`.taglist`, item.element)
         App.taglist_scroll(taglist, `left`)
         return
       }
 
-      if (e.target.classList.contains(`taglist_right`)) {
+      if (e.target.classList.contains(`taglist_right_scroll`)) {
         let taglist = DOM.el(`.taglist`, item.element)
         App.taglist_scroll(taglist, `right`)
         return
