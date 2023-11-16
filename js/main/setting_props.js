@@ -1559,8 +1559,8 @@ App.build_settings = () => {
       placeholder: `Number`,
       min: App.number_min,
       max: App.number_max,
-      info: `Delay to trigger action when double tapping a key like Ctrl (ms).
-      The bigger the delay the easier it is to trigger a command`,
+      info: `Delay to trigger a command when double pressing a key like Ctrl (milliseconds).
+      The bigger the delay the easier it is to trigger the command`,
       version: 1,
     },
     key_press_delay: {
@@ -1570,8 +1570,8 @@ App.build_settings = () => {
       placeholder: `Number`,
       min: App.number_min,
       max: App.number_max,
-      info: `Delay to trigger action when long pressing a key like Ctrl (ms).
-      This is the amount of time to hold the key down to trigger a command`,
+      info: `Delay to trigger a command when long pressing a key like Ctrl (milliseconds).
+      This is the amount of time to hold the key down to trigger the command`,
       version: 1,
     },
     click_press_delay: {
@@ -1581,8 +1581,8 @@ App.build_settings = () => {
       placeholder: `Number`,
       min: App.number_min,
       max: App.number_max,
-      info: `Delay to trigger action when long pressing a mouse button (ms).
-      This is the amount of time to hold the mouse button down to trigger a command`,
+      info: `Delay to trigger action when long pressing a mouse button (milliseconds).
+      This is the amount of time to hold the mouse button down to trigger the command`,
       version: 1,
     },
   }
@@ -1602,7 +1602,7 @@ App.build_settings = () => {
       name: `Close On Open`,
       type: `checkbox`,
       value: true,
-      info: `Close the popup when opening a popup`,
+      info: `Close the popup when opening a tab`,
       version: 1,
     },
     mute_click: {
