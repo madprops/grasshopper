@@ -615,7 +615,7 @@ App.build_settings = () => {
       type: `menu`,
       value: `none`,
       info: `How to show the Extra Menu on right click. Either on its own submenu,
-      flat at the root level, or totally replace the item menu. This menu only appears in tabs mode`,
+      flat at the root level, or totally replace the Item Menu. This menu only appears in Tabs mode`,
       version: 1,
     },
     extra_menu: {
@@ -635,7 +635,7 @@ App.build_settings = () => {
       name: `Hover Button`,
       type: `menu`,
       value: `none`,
-      info: `How to show the Hover Button on tabs`,
+      info: `This is a button that appears on the side of items, to run commands`,
       version: 2,
     },
     hover_menu: {
@@ -662,7 +662,7 @@ App.build_settings = () => {
       name: `Show Pinline`,
       type: `menu`,
       value: `auto`,
-      info: `Show the widget between pinned and normal tabs`,
+      info: `Show a separator between pinned and normal tabs`,
       version: 3,
     },
     close_button: {
@@ -684,14 +684,14 @@ App.build_settings = () => {
       name: `Show Scroller`,
       type: `checkbox`,
       value: true,
-      info: `Show the scroller widget when scrolling the lists`,
+      info: `Show a button at the top of a scrolled list to return to the top`,
       version: 1,
     },
     show_footer: {
       name: `Show Footer`,
       type: `checkbox`,
       value: true,
-      info: `Show the footer at the bottom`,
+      info: `Show a footer at the bottom with some information. Clicking this scrolls the item list to the bottom`,
       version: 1,
     },
     show_feedback: {
@@ -705,7 +705,7 @@ App.build_settings = () => {
       name: `Count In Footer`,
       type: `checkbox`,
       value: true,
-      info: `Show the item count in the footer`,
+      info: `Show the item count on the Footer`,
       version: 1,
     },
     hide_pins: {
@@ -719,7 +719,7 @@ App.build_settings = () => {
       name: `Active Trace`,
       type: `checkbox`,
       value: false,
-      info: `Show numbers as a trace on recently used tabs`,
+      info: `Show numbers as a trace on recently used tabs. It goes from 1 to 9`,
       version: 1,
     },
     show_scrollbars: {
@@ -844,21 +844,21 @@ App.build_settings = () => {
       name: `Middle Click Playing`,
       type: `menu`,
       value: `mute_playing_tabs`,
-      info: `Command to run when middle clicking the Playing button`,
+      info: `Command to run when middle clicking the Playing Button`,
       version: 1,
     },
     middle_click_step_back: {
       name: `Middle Click Step Back`,
       type: `menu`,
       value: `browser_back`,
-      info: `Command to run when middle clicking the Step Back button`,
+      info: `Command to run when middle clicking the Step Back Button`,
       version: 1,
     },
     middle_click_actions_menu: {
       name: `Middle Click Actions Menu`,
       type: `menu`,
       value: `browser_reload`,
-      info: `Command to run when middle clicking the Actions menu`,
+      info: `Command to run when middle clicking the Actions Menu`,
       separator: true,
       version: 1,
     },
@@ -880,7 +880,7 @@ App.build_settings = () => {
       name: `Middle Click Favorites`,
       type: `menu`,
       value: `none`,
-      info: `Command to run when middle clicking the Favorites button`,
+      info: `Command to run when middle clicking the Favorites Button`,
       version: 1,
     },
     middle_click_hover_button: {
@@ -984,7 +984,7 @@ App.build_settings = () => {
       name: `Warn On Edit Tabs`,
       type: `menu`,
       value: `multiple`,
-      info: `Warn when changing colors or titles`,
+      info: `Warn when changing custom tab properties, like color, title, etc`,
       version: 2,
     },
     max_warn_limit: {
@@ -1032,7 +1032,7 @@ App.build_settings = () => {
       name: `Header Text Color`,
       type: `checkbox`,
       value: false,
-      info: `Use custom text color for header tabs`,
+      info: `Use a custom text color for Header Tabs`,
       version: 1,
     },
     text_color_header: {
@@ -1040,14 +1040,14 @@ App.build_settings = () => {
       hide_name: true,
       type: `color`,
       value: `rgb(100, 100, 100)`,
-      info: `Custom text color for header tabs`,
+      info: `Custom text color for Header Tabs`,
       version: 1,
     },
     background_color_header_enabled: {
       name: `Header Background Color`,
       type: `checkbox`,
       value: false,
-      info: `Use custom background color for header tabs`,
+      info: `Use a custom background color for Header Tabs`,
       version: 1,
     },
     background_color_header: {
@@ -1055,7 +1055,7 @@ App.build_settings = () => {
       hide_name: true,
       type: `color`,
       value: `rgb(100, 100, 100)`,
-      info: `Custom background color for header tabs`,
+      info: `Custom background color for Header Tabs`,
       version: 1,
     },
     split_side: {
@@ -1076,7 +1076,7 @@ App.build_settings = () => {
       name: `Double Click Header`,
       type: `checkbox`,
       value: true,
-      info: `Select tab group by double clicking on headers`,
+      info: `Select the tab group of a header by double clicking on headers`,
       version: 1,
     },
   }
