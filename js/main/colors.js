@@ -9,6 +9,8 @@ App.check_tab_colors = (item) => {
     }
   }
 
+  let content = DOM.el(`.item_content`, item.element)
+
   function text_enabled (type) {
     return App.get_setting(`text_color_${type}_enabled`)
   }
@@ -23,16 +25,16 @@ App.check_tab_colors = (item) => {
 
   function proc (type) {
     if (text_enabled(type)) {
-      item.element.style.color = App.get_setting(`text_color_${type}`)
+      content.style.color = App.get_setting(`text_color_${type}`)
     }
 
     if (background_enabled(type)) {
-      item.element.style.backgroundColor = App.get_setting(`background_color_${type}`)
+      content.style.backgroundColor = App.get_setting(`background_color_${type}`)
     }
   }
 
-  item.element.style.color = ``
-  item.element.style.backgroundColor = ``
+  content.style.color = ``
+  content.style.backgroundColor = ``
 
   if (item.header) {
     if (enabled(`header`)) {
