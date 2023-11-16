@@ -1288,7 +1288,7 @@ a:hover
   background-color: var(--text_color_darker);
   color: var(--background_color);
   height: 100%;
-  max-width: 51%;
+  max-width: 52%;
   opacity: 0;
 }
 
