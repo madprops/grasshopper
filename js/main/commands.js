@@ -1,11 +1,11 @@
 App.setup_commands = () => {
   let pin_icon = App.get_setting(`pin_icon`) || App.pin_icon
-  let normal_icon = App.get_setting(`normal_icon`)
-  let playing_icon = App.get_setting(`playing_icon`)
-  let loaded_icon = App.get_setting(`loaded_icon`)
-  let unloaded_icon = App.get_setting(`unloaded_icon`)
-  let muted_icon = App.get_setting(`muted_icon`)
-  let unread_icon = App.get_setting(`unread_icon`)
+  let normal_icon = App.get_setting(`normal_icon`) || App.mode_icons.tabs
+  let playing_icon = App.get_setting(`playing_icon`) || App.audio_icon
+  let loaded_icon = App.get_setting(`loaded_icon`) || App.mode_icons.tabs
+  let unloaded_icon = App.get_setting(`unloaded_icon`) || App.sleeping_icon
+  let muted_icon = App.get_setting(`muted_icon`) || App.muted_icon
+  let unread_icon = App.get_setting(`unread_icon`) || App.circle_icon
   let command_icon = App.command_icon
   let settings_icon = App.settings_icons.general
   let theme_icon = App.settings_icons.theme
@@ -516,7 +516,7 @@ App.setup_commands = () => {
       modes: [`tabs`],
       some_loaded: true,
       item: true,
-      icon: unloaded_icon || tabs_icon,
+      icon: unloaded_icon,
       action: (args) => {
         App.unload_tabs(args.item)
       },
@@ -527,7 +527,7 @@ App.setup_commands = () => {
       cmd: `unload_other_tabs`,
       modes: [`tabs`],
       item: true,
-      icon: unloaded_icon || tabs_icon,
+      icon: unloaded_icon,
       action: (args) => {
         App.unload_other_tabs(args.item)
       },
@@ -635,7 +635,7 @@ App.setup_commands = () => {
       modes: [`tabs`],
       some_unmuted: true,
       item: true,
-      icon: muted_icon || tabs_icon,
+      icon: muted_icon,
       action: (args) => {
         App.mute_tabs(args.item)
       },
@@ -647,7 +647,7 @@ App.setup_commands = () => {
       modes: [`tabs`],
       some_muted: true,
       item: true,
-      icon: muted_icon || tabs_icon,
+      icon: muted_icon,
       action: (args) => {
         App.unmute_tabs(args.item)
       },
@@ -658,7 +658,7 @@ App.setup_commands = () => {
       cmd: `toggle_mute_tabs`,
       modes: [`tabs`],
       item: true,
-      icon: muted_icon || tabs_icon,
+      icon: muted_icon,
       action: (args) => {
         App.toggle_mute_tabs(args.item)
       },
@@ -669,7 +669,7 @@ App.setup_commands = () => {
       cmd: `mute_playing_tabs`,
       modes: [`tabs`],
       item: true,
-      icon: muted_icon || tabs_icon,
+      icon: muted_icon,
       action: (args) => {
         App.mute_playing_tabs(args.item)
       },
@@ -680,7 +680,7 @@ App.setup_commands = () => {
       cmd: `mute_all_tabs`,
       modes: [`tabs`],
       item: true,
-      icon: muted_icon || tabs_icon,
+      icon: muted_icon,
       action: (args) => {
         App.unmute_all_tabs(args.item)
       },
@@ -865,7 +865,7 @@ App.setup_commands = () => {
       name: `Select Normal`,
       cmd: `select_normal_tabs`,
       modes: [`tabs`],
-      icon: normal_icon || tabs_icon,
+      icon: normal_icon,
       action: (args) => {
         App.select_tabs(`normal`)
       },
@@ -875,7 +875,7 @@ App.setup_commands = () => {
       name: `Select Unloaded`,
       cmd: `select_unloaded_tabs`,
       modes: [`tabs`],
-      icon: unloaded_icon || tabs_icon,
+      icon: unloaded_icon,
       action: (args) => {
         App.select_tabs(`unloaded`)
       },
@@ -1301,7 +1301,7 @@ App.setup_commands = () => {
       name: `Filter Normal`,
       cmd: `filter_normal_tabs`,
       modes: [`tabs`],
-      icon: normal_icon || tabs_icon,
+      icon: normal_icon,
       action: (args) => {
         App.filter_normal(args.mode)
       },
@@ -1311,7 +1311,7 @@ App.setup_commands = () => {
       name: `Filter Playing`,
       cmd: `filter_playing_tabs`,
       modes: [`tabs`],
-      icon: playing_icon || tabs_icon,
+      icon: playing_icon,
       action: (args) => {
         App.filter_playing(args.mode)
       },
@@ -1321,7 +1321,7 @@ App.setup_commands = () => {
       name: `Filter Loaded`,
       cmd: `filter_loaded_tabs`,
       modes: [`tabs`],
-      icon: loaded_icon || tabs_icon,
+      icon: loaded_icon,
       action: (args) => {
         App.filter_loaded(args.mode)
       },
@@ -1331,7 +1331,7 @@ App.setup_commands = () => {
       name: `Filter Unloaded`,
       cmd: `filter_unloaded_tabs`,
       modes: [`tabs`],
-      icon: unloaded_icon || tabs_icon,
+      icon: unloaded_icon,
       action: (args) => {
         App.filter_unloaded(args.mode)
       },
@@ -1351,7 +1351,7 @@ App.setup_commands = () => {
       name: `Filter Unread`,
       cmd: `filter_unread_tabs`,
       modes: [`tabs`],
-      icon: unread_icon || tabs_icon,
+      icon: unread_icon,
       action: (args) => {
         App.filter_unread(args.mode)
       },

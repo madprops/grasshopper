@@ -188,7 +188,7 @@ App.tab_box_menu = (e) => {
   if (mode !== `playing`) {
     items.push({
       text: `Playing`,
-      icon: App.get_setting(`playing_icon`) || App.mode_icons.tabs,
+      icon: App.get_setting(`playing_icon`) || App.audio_icon,
       action: () => {
         App.change_tab_box_mode(`playing`)
       }

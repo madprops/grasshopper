@@ -120,6 +120,10 @@ App.smiley_icon = `😀`
 App.zone_icon = `🚥`
 App.extra_icon = `✳️`
 App.pin_icon = `📌`
+App.audio_icon = `🔊`
+App.muted_icon = `🔇`
+App.sleeping_icon = `💤`
+App.circle_icon = `⭕`
 
 App.sizes = [
   {text: `Tiny`, value: `tiny`},
