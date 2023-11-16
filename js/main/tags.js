@@ -400,6 +400,21 @@ App.create_taglist = () => {
     taglist.classList.add(`normal`)
   }
 
+  DOM.ev(taglist, `wheel`, (e) => {
+    if (taglist.classList.contains(`overflow`)) {
+      e.stopPropagation()
+      e.preventDefault()
+      let direction = App.wheel_direction(e)
+
+      if (direction === `down`) {
+        App.taglist_scroll(taglist, `right`)
+      }
+      else if (direction === `up`) {
+        App.taglist_scroll(taglist, `left`)
+      }
+    }
+  })
+
   return taglist
 }
 
@@ -573,8 +588,7 @@ App.toggle_taglist = (mode) => {
   }
 }
 
-App.taglist_scroll = (item, direction) => {
-  let taglist = DOM.el(`.taglist`, item.element)
+App.taglist_scroll = (taglist, direction) => {
   let container = DOM.el(`.taglist_container`, taglist)
   let amount = 25
 
