@@ -573,6 +573,12 @@ svg {
   text-shadow: var(--glow_effect);
 }
 
+.glowbox:hover {
+  text-shadow: var(--glow_effect);
+  box-shadow: var(--scroller_shadow);
+  cursor: pointer;
+}
+
 .grower:hover {
   cursor: pointer;
   transform: scale(1.1);
@@ -723,13 +729,8 @@ svg {
 .pinline {
   margin-top: 0.7rem;
   margin-bottom: 0.7rem;
-  display: flex;
-  align-items: center;
-  justify-content: flex-start;
-}
-
-.pinline_content {
-  border: 1px solid var(--alt_color_1);
+  border-top: 1px solid var(--alt_color_1);
+  border-bottom: 1px solid var(--alt_color_1);
   border-radius: var(--border_radius);
   background-color: var(--slight_shade);
   text-align: center;
@@ -986,14 +987,9 @@ a:hover
   gap: 0.7rem;
   left: 0;
   z-index: 9;
-  cursor: pointer;
   border: 1px solid var(--alt_color_1);
   padding: var(--scroller_padding);
   backdrop-filter: var(--backdrop);
-}
-
-.scroller:hover {
-  box-shadow: var(--scroller_shadow);
 }
 
 .hide_scroller .scroller {
@@ -1006,7 +1002,6 @@ a:hover
   align-items: center;
   overflow: hidden;
   white-space: nowrap;
-  cursor: pointer;
   background-color: var(--slight_shade);
   backdrop-filter: var(--backdrop);
   padding-top: var(--footer_padding);
@@ -1017,10 +1012,6 @@ a:hover
   gap: 0.5rem;
   flex-shrink: 0;
   flex-grow: 0;
-}
-
-.footer:hover {
-  box-shadow: var(--scroller_shadow);
 }
 
 .hide_footer .footer {
@@ -1156,11 +1147,6 @@ a:hover
   border-bottom: 1px solid var(--alt_color_1);
   padding-top: 0.188rem;
   padding-bottom: 0.188rem;
-  cursor: pointer;
-}
-
-.box_title:hover {
-  box-shadow: var(--scroller_shadow);
 }
 
 .box_container {

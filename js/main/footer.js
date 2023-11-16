@@ -59,7 +59,7 @@ App.get_footer = (mode) => {
 }
 
 App.create_footer = (mode) => {
-  let footer = DOM.create(`div`, `footer glow`, `${mode}_footer`)
+  let footer = DOM.create(`div`, `footer glowbox`, `${mode}_footer`)
   let footer_count = DOM.create(`div`, `footer_count`, `${mode}_footer_count`)
   footer.append(footer_count)
   let footer_info = DOM.create(`div`, `footer_info`, `${mode}_footer_info`)
