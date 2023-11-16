@@ -37,7 +37,7 @@ App.add_tab_icons = (item) => {
   let cls = ``
 
   if (App.get_setting(`mute_click`)) {
-    cls += ` action`
+    cls += ` grower`
   }
 
   if (App.get_setting(`playing_icon`)) {
@@ -366,7 +366,7 @@ App.get_notes_icon = (item) => {
   let cls = ``
 
   if (App.get_setting(`notes_icon_click`)) {
-    cls += ` action`
+    cls += ` grower`
   }
 
   if (App.get_setting(`notes_icon`)) {

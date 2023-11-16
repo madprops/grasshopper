@@ -583,6 +583,11 @@ svg {
   text-shadow: var(--glow_effect);
 }
 
+.grower:hover {
+  cursor: pointer;
+  transform: scale(1.1);
+}
+
 .flex_column_center {
   display: flex;
   flex-direction: column;
