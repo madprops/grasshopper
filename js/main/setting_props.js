@@ -1683,6 +1683,13 @@ App.build_settings = () => {
       info: `Clear the filter when clicking All`,
       version: 1,
     },
+    button_icons: {
+      name: `Button Icons`,
+      type: `checkbox`,
+      value: true,
+      info: `Show icons in the buttons like on the Main Menu or Settings`,
+      version: 1,
+    },
     show_protocol: {
       name: `Show Protocol`,
       type: `checkbox`,
@@ -1850,26 +1857,30 @@ App.build_settings = () => {
       buttons: [
         [
           {
-            text: `Light Colors`, action: () => {
+            text: `Light Colors`,
+            action: () => {
               App.set_light_colors()
-            }
+            },
           },
           {
-            text: `Dark Colors`, action: () => {
+            text: `Dark Colors`,
+            action: () => {
               App.set_dark_colors()
-            }
+            },
           },
         ],
         [
           {
-            text: `Random Light`, action: () => {
+            text: `Random Light`,
+            action: () => {
               App.random_colors(`light`)
-            }
+            },
           },
           {
-            text: `Random Dark`, action: () => {
+            text: `Random Dark`,
+            action: () => {
               App.random_colors(`dark`)
-            }
+            },
           },
         ],
       ]

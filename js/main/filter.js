@@ -598,11 +598,7 @@ App.filter_mode_text = (filter_mode, custom_name, custom_title) => {
     text = custom_title
   }
 
-  if (icon) {
-    text = `${icon} ${text}`
-  }
-
-  return text
+  return App.button_text(icon, text)
 }
 
 App.create_filter = (mode) => {

@@ -120,3 +120,14 @@ App.show_empty_menu = (e) => {
   let items = App.cmd_list(cmds)
   App.show_context({items: items, e: e})
 }
+
+App.button_text = (icon, text) => {
+  let use_icon = App.get_setting(`button_icons`)
+
+  if (use_icon && icon) {
+    return `${icon} ${text}`
+  }
+  else {
+    return text
+  }
+}
