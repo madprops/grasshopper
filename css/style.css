@@ -1266,20 +1266,25 @@ a:visited, a:link, a:hover {
 }
 
 .taglist.hover {
-  display: none;
+  display: flex;
   position: absolute;
   background-color: var(--text_color_darker);
   color: var(--background_color);
   height: 100%;
   max-width: 60%;
+  opacity: 0;
+}
+
+.taglist.hover:hover {
+  opacity: 1;
 }
 
 .taglist.hover .taglist_container {
   overflow: auto;
 }
 
-.taglist.hover .taglist_left,
-.taglist.hover .taglist_right {
+.taglist.hover.overflow .taglist_left,
+.taglist.hover.overflow .taglist_right {
   display: flex;
 }
 
@@ -1289,10 +1294,6 @@ a:visited, a:link, a:hover {
 
 .taglist.right {
   right: 0;
-}
-
-.item:hover .taglist.hover {
-  display: flex;
 }
 
 .taglist_container > div {

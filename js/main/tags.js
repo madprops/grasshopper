@@ -462,6 +462,14 @@ App.check_taglist = (item) => {
     }
 
     taglist.classList.remove(`hidden`)
+    let overflowed = container.scrollWidth > container.clientWidth
+
+    if (overflowed) {
+      taglist.classList.add(`overflow`)
+    }
+    else {
+      taglist.classList.remove(`overflow`)
+    }
   }
 }
 
