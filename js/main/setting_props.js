@@ -556,21 +556,21 @@ App.build_settings = () => {
       name: `Tab Box Icons`,
       type: `checkbox`,
       value: true,
-      info: `Enable icons in the items of the Tab Box`,
+      info: `Enable icons in the items of the Tab Box. This means icons like muted, or notes`,
       version: 1,
     },
     tab_box_colors: {
       name: `Tab Box Colors`,
       type: `checkbox`,
       value: true,
-      info: `Enable colors in the items of the Tab Box`,
+      info: `Enable colors in the items of the Tab Box. Like green, red, etc`,
       version: 1,
     },
     tab_box_tab_colors: {
       name: `Tab Box Tab Colors`,
       type: `checkbox`,
       value: true,
-      info: `Enable tab colors in the items of the Tab Box`,
+      info: `Enable tab colors in the items of the Tab Box. Like active color, etc`,
       version: 1,
     },
     tab_box_taglist: {
@@ -585,7 +585,7 @@ App.build_settings = () => {
       name: `Taglist`,
       type: `menu`,
       value: `none`,
-      info: `Tags get displayed at the bottom of tabs`,
+      info: `A special widget to display the tags of a tab`,
       version: 1,
     },
     taglist_mode: {
