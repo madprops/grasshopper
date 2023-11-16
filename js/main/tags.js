@@ -401,16 +401,18 @@ App.create_taglist = () => {
   }
 
   DOM.ev(taglist, `wheel`, (e) => {
-    if (taglist.classList.contains(`overflow`)) {
-      e.stopPropagation()
-      e.preventDefault()
-      let direction = App.wheel_direction(e)
+    if (setting === `left` || setting === `right`) {
+      if (taglist.classList.contains(`overflow`)) {
+        e.stopPropagation()
+        e.preventDefault()
+        let direction = App.wheel_direction(e)
 
-      if (direction === `down`) {
-        App.taglist_scroll(taglist, `right`)
-      }
-      else if (direction === `up`) {
-        App.taglist_scroll(taglist, `left`)
+        if (direction === `down`) {
+          App.taglist_scroll(taglist, `right`)
+        }
+        else if (direction === `up`) {
+          App.taglist_scroll(taglist, `left`)
+        }
       }
     }
   })
@@ -478,11 +480,13 @@ App.check_taglist = (item) => {
 
     taglist.classList.remove(`hidden`)
 
-    if (container.scrollWidth > container.clientWidth) {
-      taglist.classList.add(`overflow`)
-    }
-    else {
-      taglist.classList.remove(`overflow`)
+    if (setting === `left` || setting === `right`) {
+      if (container.scrollWidth > container.clientWidth) {
+        taglist.classList.add(`overflow`)
+      }
+      else {
+        taglist.classList.remove(`overflow`)
+      }
     }
   }
 }
