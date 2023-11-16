@@ -521,7 +521,7 @@ App.build_settings = () => {
       name: `Tab Box`,
       type: `menu`,
       value: `none`,
-      info: `The height of the Tab Box with recent tabs`,
+      info: `How to present the Tab Box`,
       version: 2,
     },
     tab_box_position: {
@@ -535,7 +535,7 @@ App.build_settings = () => {
       name: `Tab Box Mode`,
       type: `menu`,
       value: `recent`,
-      info: `Show recent tabs, or headers, in the Tab Box`,
+      info: `What to show in the Tab Box`,
       version: 4,
     },
     tab_box_hover_effect: {
