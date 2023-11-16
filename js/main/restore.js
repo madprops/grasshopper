@@ -53,7 +53,7 @@ App.restore = () => {
     }
 
     if (!App.item_is_visible(item)) {
-      App.select_item({item: item, scroll: `center`})
+      App.select_item({item: item, scroll: `nearest`})
     }
   }
 }
