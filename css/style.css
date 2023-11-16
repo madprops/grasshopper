@@ -367,6 +367,10 @@ svg {
   align-items: center;
 }
 
+.close_button {
+  color: var(--text_color);
+}
+
 .close_button:hover {
   cursor: pointer;
   background-color: var(--alt_color_0);
