@@ -168,7 +168,7 @@ App.tab_box_menu = (e) => {
   if (mode !== `pins`) {
     items.push({
       text: `Pins`,
-      icon: App.get_setting(`pin_icon`) || App.mode_icons.tabs,
+      icon: App.get_setting(`pin_icon`) || App.pin_icon,
       action: () => {
         App.change_tab_box_mode(`pins`)
       }

@@ -119,6 +119,7 @@ App.close_tab_icon = `x`
 App.smiley_icon = `😀`
 App.zone_icon = `🚥`
 App.extra_icon = `✳️`
+App.pin_icon = `📌`
 
 App.sizes = [
   {text: `Tiny`, value: `tiny`},

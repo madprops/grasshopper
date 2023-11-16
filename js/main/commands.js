@@ -1,5 +1,5 @@
 App.setup_commands = () => {
-  let pin_icon = App.get_setting(`pin_icon`)
+  let pin_icon = App.get_setting(`pin_icon`) || App.pin_icon
   let normal_icon = App.get_setting(`normal_icon`)
   let playing_icon = App.get_setting(`playing_icon`)
   let loaded_icon = App.get_setting(`loaded_icon`)
@@ -598,7 +598,7 @@ App.setup_commands = () => {
       item: true,
       some_loaded: true,
       some_unpinned: true,
-      icon: tabs_icon,
+      icon: pin_icon,
       action: (args) => {
         App.pin_tabs(args.item)
       },
@@ -611,7 +611,7 @@ App.setup_commands = () => {
       item: true,
       some_loaded: true,
       some_pinned: true,
-      icon: tabs_icon,
+      icon: pin_icon,
       action: (args) => {
         App.unpin_tabs(args.item)
       },
@@ -623,7 +623,7 @@ App.setup_commands = () => {
       modes: [`tabs`],
       item: true,
       some_loaded: true,
-      icon: tabs_icon,
+      icon: pin_icon,
       action: (args) => {
         App.toggle_pin_tabs(args.item)
       },
@@ -855,7 +855,7 @@ App.setup_commands = () => {
       name: `Select Pins`,
       cmd: `select_pinned_tabs`,
       modes: [`tabs`],
-      icon: pin_icon || tabs_icon,
+      icon: pin_icon,
       action: (args) => {
         App.select_tabs(`pins`)
       },
@@ -1291,7 +1291,7 @@ App.setup_commands = () => {
       name: `Filter Pins`,
       cmd: `filter_pinned_tabs`,
       modes: [`tabs`],
-      icon: pin_icon || tabs_icon,
+      icon: pin_icon,
       action: (args) => {
         App.filter_pinned(args.mode)
       },
