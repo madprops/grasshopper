@@ -664,6 +664,14 @@ App.show_tab_urls = () => {
   let urls = []
 
   for (let item of App.get_items(`tabs`)) {
+    if (item.header) {
+      continue
+    }
+
+    if (!App.is_url(item.url)) {
+      continue
+    }
+
     urls.push(item.url)
   }
 
