@@ -1087,6 +1087,7 @@ App.select_tabs = (type = `pins`) => {
 
   if (first) {
     App.set_selected(first)
+    App.scroll_to_item({item: first, scroll: `center_smooth`})
   }
 
   if (!selected && prev_selected) {
