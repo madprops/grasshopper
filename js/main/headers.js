@@ -131,7 +131,7 @@ App.set_header_text = (item) => {
   let text_el = DOM.el(`.item_text_1`, item.element)
   text_el.textContent = title
   item.title = title
-  item.element.title = title
+  item.element.title = `Header: ${title}`
 }
 
 App.is_header = (item) => {
