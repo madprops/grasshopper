@@ -131,12 +131,10 @@ App.do_apply_theme = (args = {}) => {
 
     if (App.get_setting(`rounded_corners`)) {
       App.set_css_var(`border_radius`, `3px`)
-      App.set_css_var(`border_radius_2`, `20px`)
       document.body.classList.remove(`no_rounded`)
     }
     else {
       App.set_css_var(`border_radius`, `0`)
-      App.set_css_var(`border_radius_2`, `0`)
       document.body.classList.add(`no_rounded`)
     }
 

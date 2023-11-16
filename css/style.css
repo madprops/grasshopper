@@ -729,11 +729,13 @@ svg {
 }
 
 .pinline_content {
-  border: 1px solid var(--alt_color_2);
-  border-radius: var(--border_radius_2);
-  margin-left: 0.11rem;
-  padding-left: 0.5rem;
-  padding-right: 0.5rem;
+  border: 1px solid var(--alt_color_1);
+  border-radius: var(--border_radius);
+  background-color: var(--slight_shade);
+  margin-left: 0.35rem;
+  margin-right: 0.35rem;
+  text-align: center;
+  width: 100%;
 }
 
 #needcontext-main {
