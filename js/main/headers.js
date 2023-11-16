@@ -80,6 +80,7 @@ App.header_group = (item) => {
 
 App.select_header_group = (item) => {
   let group = App.header_group(item)
+  console.log(group)
 
   if (group.length) {
     if ((group.at(0).selected) && (group.at(-1).selected)) {

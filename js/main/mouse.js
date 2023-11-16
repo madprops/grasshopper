@@ -106,16 +106,16 @@ App.mouse_click_action = (mode, e, from) => {
     return
   }
 
-  if (App.get_setting(`icon_pick`)) {
-    if (e.target.closest(`.item_icon_container`)) {
-      App.pick(item)
+  if (e.target.closest(`.item_icon_container`)) {
+    if (item.header) {
+      App.select_header_group(item)
       return
     }
   }
 
-  if (e.target.closest(`.item_icon_container`)) {
-    if (item.header) {
-      App.select_header_group(item)
+  if (App.get_setting(`icon_pick`)) {
+    if (e.target.closest(`.item_icon_container`)) {
+      App.pick(item)
       return
     }
   }
@@ -221,6 +221,10 @@ App.mouse_double_click_action = (mode, e) => {
   }
 
   if (e.target.closest(`.taglist`)) {
+    return
+  }
+
+  if (e.target.closest(`.item_icon_container`)) {
     return
   }
 
