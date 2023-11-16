@@ -733,6 +733,8 @@ svg {
   border-radius: var(--border_radius);
   background-color: var(--slight_shade);
   text-align: center;
+  padding-top: 0.1rem;
+  padding-bottom: 0.1rem;
   width: 100%;
 }
 
