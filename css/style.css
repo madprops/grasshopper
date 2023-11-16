@@ -463,6 +463,7 @@ svg {
 
 .hover_effect_background .item_container .item:hover,
 .selected_effect_background .item_container .selected,
+.tab_box_hover_effect_background #tab_box_container .item:hover,
 .tab_box_active_effect_background #tab_box_container .active_tab
 {
   background-color: var(--alt_color_1);
@@ -470,6 +471,7 @@ svg {
 
 .hover_effect_glow .item_container .item:hover .item_text,
 .selected_effect_glow .item_container .selected .item_text,
+.tab_box_hover_effect_glow #tab_box_container .item:hover .item_text,
 .tab_box_active_effect_glow #tab_box_container .active_tab .item_text
 {
   text-shadow: var(--glow_effect);
@@ -477,6 +479,7 @@ svg {
 
 .hover_effect_opacity .item_container .item:hover,
 .selected_effect_opacity .item_container .selected,
+.tab_box_hover_effect_opacity #tab_box_container .item:hover,
 .tab_box_active_effect_opacity #tab_box_container .active_tab
 {
   opacity: 0.8;
@@ -484,6 +487,7 @@ svg {
 
 .hover_effect_underline .item_container .item:hover .item_text,
 .selected_effect_underline .item_container .selected .item_text,
+.tab_box_hover_effect_underline #tab_box_container .item:hover .item_text,
 .tab_box_active_effect_underline #tab_box_container .active_tab .item_text
 {
   text-decoration: underline;
@@ -491,6 +495,7 @@ svg {
 
 .hover_effect_bold .item_container .item:hover .item_text,
 .selected_effect_bold .item_container .selected .item_text,
+.tab_box_hover_effect_bold #tab_box_container .item:hover .item_text,
 .tab_box_active_effect_bold #tab_box_container .active_tab .item_text
 {
   font-weight: bold;
@@ -498,6 +503,7 @@ svg {
 
 .hover_effect_bigger .item_container .item:hover .item_text,
 .selected_effect_bigger .item_container .selected .item_text,
+.tab_box_hover_effect_bigger #tab_box_container .item:hover .item_text,
 .tab_box_active_effect_bigger #tab_box_container .active_tab .item_text
 {
   font-size: var(--bigger_font);
@@ -506,6 +512,7 @@ svg {
 
 .hover_effect_border .item_container .item:hover .item_text,
 .selected_effect_border .item_container .selected .item_text,
+.tab_box_hover_effect_border #tab_box_container .item:hover .item_text,
 .tab_box_active_effect_border #tab_box_container .active_tab .item_text
 {
   outline: 1px solid var(--text_color);

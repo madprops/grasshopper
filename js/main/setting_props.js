@@ -538,6 +538,13 @@ App.build_settings = () => {
       info: `Show recent tabs, or headers, in the Tab Box`,
       version: 4,
     },
+    tab_box_hover_effect: {
+      name: `Tab Box Hover Effect`,
+      type: `menu`,
+      value: `glow`,
+      info: `What effect to show on hovered items in the Tab Box`,
+      version: 4,
+    },
     tab_box_active_effect: {
       name: `Tab Box Active Effect`,
       type: `menu`,
@@ -1943,6 +1950,7 @@ App.build_settings = () => {
           {text: `Remove`, value: `remove`},
         ])
 
+        App.settings_make_menu(`tab_box_hover_effect`, App.effects)
         App.settings_make_menu(`tab_box_active_effect`, App.effects)
       },
     },
