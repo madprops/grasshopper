@@ -1687,7 +1687,7 @@ App.build_settings = () => {
       name: `Button Icons`,
       type: `checkbox`,
       value: true,
-      info: `Show icons in the buttons like on the Main Menu or Settings`,
+      info: `Show icons on the buttons like on the Main Menu or Settings`,
       version: 1,
     },
     show_protocol: {
