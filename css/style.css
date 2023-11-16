@@ -43,7 +43,9 @@
   }
 }
 
-body, html {
+body,
+html
+{
   font-family: var(--font);
   font-size: var(--font_size);
   color: var(--text_color);
@@ -57,7 +59,8 @@ body, html {
 
 input[type=text],
 textarea,
-select {
+select
+{
 	font-family: var(--font);
 	font-size: 1rem;
 }
@@ -135,7 +138,9 @@ select {
   box-sizing: border-box;
 }
 
-.auto_blur .window_content, .auto_blur .window_top {
+.auto_blur .window_content,
+.auto_blur .window_top
+{
   filter: blur(3px);
 }
 
@@ -175,7 +180,9 @@ select {
   justify-content: start;
 }
 
-.item_container, .box_container {
+.item_container,
+.box_container
+{
   margin-bottom: var(--item_margin);
   display: flex;
   flex-direction: column;
@@ -603,7 +610,9 @@ svg {
   align-self: flex-start;
 }
 
-.settings_container, .settings_subcontainer {
+.settings_container,
+.settings_subcontainer
+{
   display: flex;
   flex-direction: column;
   gap: 1.8rem;
@@ -635,7 +644,9 @@ svg {
   min-width: 10rem;
 }
 
-.settings_text, .settings_textarea {
+.settings_text,
+.settings_textarea
+{
   flex-grow: 0;
   width: var(--widget_width);
   max-width: var(--widget_width);
@@ -784,7 +795,10 @@ svg {
   cursor: pointer;
 }
 
-a:visited, a:link, a:hover {
+a:visited,
+a:link,
+a:hover
+{
 	color: var(--text_color);
 }
 
@@ -1252,7 +1266,8 @@ a:visited, a:link, a:hover {
 }
 
 .taglist_left,
-.taglist_right {
+.taglist_right
+{
   display: none;
   flex-grow: 0;
   flex-shrink: 0;
@@ -1284,7 +1299,8 @@ a:visited, a:link, a:hover {
 }
 
 .taglist.hover.overflow .taglist_left,
-.taglist.hover.overflow .taglist_right {
+.taglist.hover.overflow .taglist_right
+{
   display: flex;
 }
 
@@ -1294,6 +1310,14 @@ a:visited, a:link, a:hover {
 
 .taglist.right {
   right: 0;
+}
+
+.close_button_left .taglist.left {
+  left: 1.77rem;
+}
+
+.close_button_right .taglist.right {
+  right: 1.77rem;
 }
 
 .taglist_container > div {
@@ -1342,7 +1366,9 @@ a:visited, a:link, a:hover {
   border-right: var(--split_border) !important;
 }
 
-.not_filtered .split_top, .not_filtered .header_item {
+.not_filtered .split_top,
+.not_filtered .header_item
+{
   border-top: var(--split_border) !important;
 }
 

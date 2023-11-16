@@ -297,6 +297,14 @@ App.do_apply_theme = (args = {}) => {
 
     let split_side = App.get_setting(`split_side`)
     main.classList.add(`split_side_${split_side}`)
+    let close_btns = [`none`, `left`, `right`]
+
+    for (let cb of close_btns) {
+      main.classList.remove(`close_button_${cb}`)
+    }
+
+    let cb = App.get_setting(`close_button`)
+    main.classList.add(`close_button_${cb}`)
     App.insert_color_css()
     App.insert_custom_css()
   }
