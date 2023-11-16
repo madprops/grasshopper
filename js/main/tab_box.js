@@ -128,6 +128,8 @@ App.set_tab_box_items = () => {
   let mode = App.get_setting(`tab_box_mode`)
   let title = DOM.el(`#tab_box_title`)
   title.textContent = App.capitalize(mode)
+  let c = DOM.el(`#tab_box_container`)
+  App.scroll_to_top(c)
 }
 
 App.fill_tab_box = (items, scroll = true) => {
