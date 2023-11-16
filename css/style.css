@@ -1345,20 +1345,23 @@ a:visited, a:link, a:hover {
   border-top: var(--split_border) !important;
 }
 
-.not_filtered .split_top {
+.split_padding .not_filtered .split_top {
   margin-top: var(--split_margin);
 }
 
-.not_filtered .split_top:nth-child(1 of :not(.hidden))  {
+.split_padding .not_filtered .split_top:nth-child(1 of :not(.hidden))  {
   margin-top: unset;
 }
 
 .not_filtered .split_bottom {
   border-bottom: var(--split_border) !important;
+}
+
+.split_padding .not_filtered .split_bottom {
   margin-bottom: var(--split_margin);
 }
 
-.not_filtered .split_bottom:nth-last-child(1 of :not(.hidden))  {
+.split_padding .not_filtered .split_bottom:nth-last-child(1 of :not(.hidden))  {
   margin-bottom: unset;
 }
 

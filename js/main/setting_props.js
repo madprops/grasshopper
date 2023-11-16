@@ -1065,6 +1065,13 @@ App.build_settings = () => {
       info: `Which side to show the split side border`,
       version: 1,
     },
+    split_padding: {
+      name: `Split Padding`,
+      type: `checkbox`,
+      value: true,
+      info: `Add padding above or below splits`,
+      version: 1,
+    },
     double_click_header: {
       name: `Double Click Header`,
       type: `checkbox`,

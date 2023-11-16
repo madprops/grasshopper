@@ -563,7 +563,7 @@ App.set_filter_mode = (args = {}) => {
   App.def_args(def_args, args)
   let filter_mode = App.get_filter_mode(args.mode, args.type)
   App[`${args.mode}_filter_mode`] = filter_mode.type
-  DOM.el(`#${args.mode}_filter_modes_text`).textContent = filter_mode.text
+  DOM.el(`#${args.mode}_filter_modes_text`).textContent = App.filter_mode_text(filter_mode)
 
   if (args.filter) {
     if (args.instant) {
@@ -577,7 +577,32 @@ App.set_filter_mode = (args = {}) => {
 
 App.set_custom_filter_mode = (mode, name, title) => {
   App[`${mode}_filter_mode`] = name
-  DOM.el(`#${mode}_filter_modes_text`).textContent = title
+  DOM.el(`#${mode}_filter_modes_text`).textContent = App.filter_mode_text(undefined, name, title)
+}
+
+App.filter_mode_text = (filter_mode, custom_name, custom_title) => {
+  let icon, text
+
+  if (filter_mode) {
+    icon = filter_mode.icon
+    text = filter_mode.text
+  }
+  else if (custom_name) {
+    if (custom_name.startsWith(`tag_`)) {
+      icon = App.tag_icon
+    }
+    else if (custom_name.startsWith(`color_`)) {
+      icon = App.settings_icons.theme
+    }
+
+    text = custom_title
+  }
+
+  if (icon) {
+    text = `${icon} ${text}`
+  }
+
+  return text
 }
 
 App.create_filter = (mode) => {

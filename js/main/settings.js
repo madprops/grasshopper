@@ -430,7 +430,8 @@ App.add_settings_switchers = (category) => {
   top.append(container)
   let title = DOM.create(`div`, `settings_title button`)
   title.id = `settings_title_${category}`
-  title.textContent = App.category_string(category)
+  let icon = App.settings_icons[category]
+  title.textContent = `${icon} ${App.category_string(category)}`
   container.append(title)
   let actions = DOM.create(`div`, `button icon_button`)
   actions.id = `settings_actions_${category}`
