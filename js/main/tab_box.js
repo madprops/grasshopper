@@ -57,7 +57,7 @@ App.update_tab_box_recent = () => {
   }
 
   let o_items = App.get_recent_tabs({max: App.tab_box_max})
-  let items = App.get_tab_box_items(o_items)
+  let items = App.get_tab_box_items(o_items, `recent`)
   App.fill_tab_box(items)
 }
 
@@ -67,7 +67,7 @@ App.update_tab_box_headers = () => {
   }
 
   let o_items = App.get_header_tabs()
-  let items = App.get_tab_box_items(o_items)
+  let items = App.get_tab_box_items(o_items, `headers`)
   App.fill_tab_box(items, false)
 }
 
@@ -77,7 +77,7 @@ App.update_tab_box_pins = () => {
   }
 
   let o_items = App.get_pinned_tabs()
-  let items = App.get_tab_box_items(o_items)
+  let items = App.get_tab_box_items(o_items, `pins`)
   App.fill_tab_box(items, false)
 }
 
@@ -87,7 +87,7 @@ App.update_tab_box_colors = () => {
   }
 
   let o_items = App.get_colored_items(`tabs`)
-  let items = App.get_tab_box_items(o_items)
+  let items = App.get_tab_box_items(o_items, `colors`)
   App.fill_tab_box(items, false)
 }
 
@@ -97,29 +97,22 @@ App.update_tab_box_playing = () => {
   }
 
   let o_items = App.get_playing_tabs()
-  let items = App.get_tab_box_items(o_items)
+  let items = App.get_tab_box_items(o_items, `playing`)
   App.fill_tab_box(items, false)
 }
 
-App.fill_tab_box = (items, scroll = true) => {
-  let c = DOM.el(`#tab_box_container`)
-  c.innerHTML = ``
-
-  for (let item of items) {
-    c.append(item.element)
-  }
-
-  if (scroll) {
-    App.scroll_to_top(c)
-  }
-}
-
-App.get_tab_box_items = (o_items) => {
+App.get_tab_box_items = (o_items, mode) => {
   let items = []
 
   for (let o_item of o_items) {
     if (!o_item || !o_item.element) {
       continue
+    }
+
+    if (mode !== `headers`) {
+      if (o_item.header) {
+        continue
+      }
     }
 
     let {element, ...item} = o_item
@@ -137,6 +130,19 @@ App.set_tab_box_items = () => {
   title.textContent = App.capitalize(mode)
 }
 
+App.fill_tab_box = (items, scroll = true) => {
+  let c = DOM.el(`#tab_box_container`)
+  c.innerHTML = ``
+
+  for (let item of items) {
+    c.append(item.element)
+  }
+
+  if (scroll) {
+    App.scroll_to_top(c)
+  }
+}
+
 App.change_tab_box_mode = (what) => {
   App.set_setting(`tab_box_mode`, what)
   App.set_tab_box_items()
@@ -150,6 +156,7 @@ App.tab_box_menu = (e) => {
   if (mode !== `recent`) {
     items.push({
       text: `Recent`,
+      icon: App.mode_icons.tabs,
       action: () => {
         App.change_tab_box_mode(`recent`)
       }
@@ -159,6 +166,7 @@ App.tab_box_menu = (e) => {
   if (mode !== `pins`) {
     items.push({
       text: `Pins`,
+      icon: App.get_setting(`pin_icon`) || App.mode_icons.tabs,
       action: () => {
         App.change_tab_box_mode(`pins`)
       }
@@ -168,6 +176,7 @@ App.tab_box_menu = (e) => {
   if (mode !== `colors`) {
     items.push({
       text: `Colors`,
+      icon: App.settings_icons.theme,
       action: () => {
         App.change_tab_box_mode(`colors`)
       }
@@ -177,6 +186,7 @@ App.tab_box_menu = (e) => {
   if (mode !== `playing`) {
     items.push({
       text: `Playing`,
+      icon: App.get_setting(`playing_icon`) || App.mode_icons.tabs,
       action: () => {
         App.change_tab_box_mode(`playing`)
       }
@@ -186,6 +196,7 @@ App.tab_box_menu = (e) => {
   if (mode !== `headers`) {
     items.push({
       text: `Headers`,
+      icon: App.zone_icon,
       action: () => {
         App.change_tab_box_mode(`headers`)
       }
