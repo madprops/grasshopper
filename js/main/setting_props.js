@@ -1089,35 +1089,35 @@ App.build_settings = () => {
       name: `Color Mode`,
       type: `menu`,
       value: `icon`,
-      info: `How to display the colors`,
+      info: `How to display the colors (green, red, etc) you assign to tabs`,
       version: 2,
     },
     color_red: {
       name: `Color Red`,
       type: `color`,
       value: `rgb(255, 0, 153)`,
-      info: `The red to use when coloring items red`,
+      info: `The color to use when coloring items Red`,
       version: 1,
     },
     color_green: {
       name: `Color Green`,
       type: `color`,
       value: `rgb(102, 204, 0)`,
-      info: `The green to use when coloring items green`,
+      info: `The color to use when coloring items Green`,
       version: 1,
     },
     color_blue: {
       name: `Color Blue`,
       type: `color`,
       value: `rgb(0, 153, 255)`,
-      info: `The blue to use when coloring items blue`,
+      info: `The color to use when coloring items Blue`,
       version: 1,
     },
     color_yellow: {
       name: `Color Yellow`,
       type: `color`,
       value: `rgb(255, 153, 0)`,
-      info: `The yellow to use when coloring items yellow`,
+      info: `The color to use when coloring items Yellow`,
       separator: true,
       version: 1,
     },
@@ -1125,7 +1125,7 @@ App.build_settings = () => {
       name: `Active Tabs (Text)`,
       type: `checkbox`,
       value: false,
-      info: `Use custom text color for active tabs`,
+      info: `Use a custom text color for active tabs`,
       version: 1,
     },
     text_color_active: {
@@ -1140,7 +1140,7 @@ App.build_settings = () => {
       name: `Active Tabs (Background)`,
       type: `checkbox`,
       value: false,
-      info: `Use custom background color for active tabs`,
+      info: `Use a custom background color for active tabs`,
       version: 1,
     },
     background_color_active: {
@@ -1155,7 +1155,7 @@ App.build_settings = () => {
       name: `Playing Tabs (Text)`,
       type: `checkbox`,
       value: false,
-      info: `Use custom text color for playing tabs`,
+      info: `Use a custom text color for playing tabs`,
       version: 1,
     },
     text_color_playing: {
@@ -1170,7 +1170,7 @@ App.build_settings = () => {
       name: `Playing Tabs (Background)`,
       type: `checkbox`,
       value: false,
-      info: `Use custom background color for playing tabs`,
+      info: `Use a custom background color for playing tabs`,
       version: 1,
     },
     background_color_playing: {
@@ -1185,7 +1185,7 @@ App.build_settings = () => {
       name: `Unread Tabs (Text)`,
       type: `checkbox`,
       value: false,
-      info: `Use custom text color for unread tabs`,
+      info: `Use a custom text color for unread tabs`,
       version: 1,
     },
     text_color_unread: {
@@ -1200,7 +1200,7 @@ App.build_settings = () => {
       name: `Unread Tabs (Background)`,
       type: `checkbox`,
       value: false,
-      info: `Use custom background color for unread tabs`,
+      info: `Use a custom background color for unread tabs`,
       version: 1,
     },
     background_color_unread: {
@@ -1215,7 +1215,7 @@ App.build_settings = () => {
       name: `Pinned Tabs (Text)`,
       type: `checkbox`,
       value: false,
-      info: `Use custom text color for pins`,
+      info: `Use a custom text color for pins`,
       version: 1,
     },
     text_color_pinned: {
@@ -1230,7 +1230,7 @@ App.build_settings = () => {
       name: `Pinned Tabs (Background)`,
       type: `checkbox`,
       value: false,
-      info: `Use custom background color for pins`,
+      info: `Use a custom background color for pins`,
       version: 1,
     },
     background_color_pinned: {
@@ -1245,7 +1245,7 @@ App.build_settings = () => {
       name: `Normal Tabs (Text)`,
       type: `checkbox`,
       value: false,
-      info: `Use custom text color for normal tabs`,
+      info: `Use a custom text color for normal tabs`,
       version: 1,
     },
     text_color_normal: {
@@ -1260,7 +1260,7 @@ App.build_settings = () => {
       name: `Normal Tabs (Background)`,
       type: `checkbox`,
       value: false,
-      info: `Use custom background color for normal tabs`,
+      info: `Use a custom background color for normal tabs`,
       version: 1,
     },
     background_color_normal: {
@@ -1275,7 +1275,7 @@ App.build_settings = () => {
       name: `Loaded Tabs (Text)`,
       type: `checkbox`,
       value: false,
-      info: `Use custom text color for loaded tabs`,
+      info: `Use a custom text color for loaded tabs`,
       version: 1,
     },
     text_color_loaded: {
@@ -1290,7 +1290,7 @@ App.build_settings = () => {
       name: `Loaded Tabs (Background)`,
       type: `checkbox`,
       value: false,
-      info: `Use custom background color for loaded tabs`,
+      info: `Use a custom background color for loaded tabs`,
       version: 1,
     },
     background_color_loaded: {
@@ -1305,7 +1305,7 @@ App.build_settings = () => {
       name: `Unloaded Tabs (Text)`,
       type: `checkbox`,
       value: false,
-      info: `Use custom text color for unloaded tabs`,
+      info: `Use a custom text color for unloaded tabs`,
       version: 1,
     },
     text_color_unloaded: {
@@ -1320,7 +1320,7 @@ App.build_settings = () => {
       name: `Unloaded Tabs (Background)`,
       type: `checkbox`,
       value: false,
-      info: `Use custom background color for unloaded tabs`,
+      info: `Use a custom background color for unloaded tabs`,
       version: 1,
     },
     background_color_unloaded: {
@@ -1343,7 +1343,7 @@ App.build_settings = () => {
       value: [
         {a: `planet`, b: `earth`}
       ],
-      info: `Aliases to use when filtering items`,
+      info: `Aliases to use when filtering items. Searching for one will return results if the other matches`,
       version: 3,
     },
     custom_filters: {
@@ -1353,7 +1353,7 @@ App.build_settings = () => {
         {filter: `re: (today|$day)`},
         {filter: `re: ($month|$year)`},
       ],
-      info: `Pre-made filters to use. These appear in the Custom section`,
+      info: `Pre-made filters to use. These appear in the Custom section or by using the command`,
       version: 3,
     },
     clean_filter: {
