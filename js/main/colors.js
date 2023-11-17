@@ -429,3 +429,22 @@ App.get_color_by_id = (id) => {
     }
   }
 }
+
+App.color_values = () => {
+  let items = []
+
+  items.push({
+    text: `None`,
+    value: `none`,
+  })
+
+  for (let color of App.colors()) {
+    items.push({
+      icon: App.color_icon(color.id),
+      text: color.name,
+      value: color.id,
+    })
+  }
+
+  return items
+}

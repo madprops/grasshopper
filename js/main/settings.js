@@ -1400,25 +1400,6 @@ App.edit_text_setting = (key) => {
   })
 }
 
-App.color_values = () => {
-  let items = []
-
-  items.push({
-    text: `None`,
-    value: `none`,
-  })
-
-  for (let color of App.colors()) {
-    items.push({
-      icon: App.color_icon(color.id),
-      text: color.name,
-      value: color,
-    })
-  }
-
-  return items
-}
-
 App.start_setting_colors = (category) => {
   for (let key in App.setting_props) {
     let props = App.setting_props[key]
