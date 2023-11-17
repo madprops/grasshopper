@@ -677,7 +677,8 @@ Addlist.get_value = (key) => {
     value = el.checked
   }
   else if (w === `color`) {
-    value = App[`addlist_color_${id}_${key}`].color
+    let picker = App[`addlist_color_${id}_${key}`]
+    value = AColorPicker.parseColor(picker.color, `rgbcss`)
   }
 
   return value
