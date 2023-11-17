@@ -1368,4 +1368,9 @@ App.paste_tabs = async (item) => {
   }
 
   App.check_pinline()
+  App.deselect(`tabs`)
+
+  for (let tab of App.copied_tabs) {
+    App.toggle_selected(tab, true, false)
+  }
 }
