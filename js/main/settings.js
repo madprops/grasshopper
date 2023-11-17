@@ -227,8 +227,16 @@ App.setting_setup_lists = (category) => {
       let menu = [
         {
           name: `Reset`,  action: () => {
-            App.set_default_setting(key)
-            Addlist.update_count(`settings_${key}`)
+            let force = App.check_setting_default(key) || App.check_setting_empty(key)
+
+            App.show_confirm({
+              message: `Reset setting?`,
+              confirm_action: () => {
+                App.set_default_setting(key)
+                Addlist.update_count(`settings_${key}`)
+              },
+              force: force,
+            })
           },
         },
       ]
@@ -1362,5 +1370,27 @@ App.start_setting_colors = (category) => {
     }
 
     App.start_color_picker(key)
+  }
+}
+
+App.is_default_setting = (setting) => {
+  return (App.settings[setting].value === App.default_setting_string) ||
+  (App.str(App.settings[setting].value) === App.str(App.get_default_setting(setting)))
+}
+
+App.check_setting_default = (setting) => {
+  return App.is_default_setting(setting)
+}
+
+App.check_setting_empty = (setting) => {
+  let props = App.setting_props[setting]
+  let value = App.get_setting(setting)
+  let text_types = [`text`, `text_smaller`, `textarea`, `number`]
+
+  if (text_types.includes(props.type)) {
+    return value === ``
+  }
+  else if (props.type === `list`) {
+    return App.str(value) === App.str([])
   }
 }
