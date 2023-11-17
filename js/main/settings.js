@@ -1327,7 +1327,7 @@ App.setup_settings_addlist = () => {
         value: true,
       },
       info: {
-        name: `Name of the color, like red, green, blue`,
+        name: `Name of the color, like red, green, blue. Single lowercase word`,
       },
     }))
   }))
