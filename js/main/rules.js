@@ -10,20 +10,9 @@ App.check_rules = (item) => {
   }
 
   let rules = App.get_setting(`domain_rules`)
-  let path = item.path.toLowerCase()
 
   for (let rule of rules) {
-    let match = false
-    let domain = rule.domain.toLowerCase()
-
-    if (rule.exact) {
-      match = path === domain
-    }
-    else {
-      match = path.startsWith(domain)
-    }
-
-    if (match) {
+    if (App.wildcard(rule.domain, item.path, rule.exact)) {
       for (let key in App.edit_props) {
         if (key === `tags`) {
           if (rule[key].length) {

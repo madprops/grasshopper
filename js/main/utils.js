@@ -489,3 +489,10 @@ App.sort_alpha = (array) => {
 App.same_arrays = (a, b) => {
   return a.length === b.length && a.every(el => b.includes(el))
 }
+
+App.wildcard = (pattern, str, exact = false) => {
+  let w = pattern.replace(/[.+^${}()|[\]\\]/g, `\\$&`)
+  let end = exact ? `$` : ``
+  let re = new RegExp(`^${w.replace(/\*/g, `.*`).replace(/\?/g,`.`)}${end}`, `i`)
+  return re.test(str)
+}
