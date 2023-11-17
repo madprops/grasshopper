@@ -171,12 +171,12 @@ App.setup_commands = () => {
 
   color_closers.push({
     name: `Close Color`,
-    cmd: `show_close_color_menu`,
+    cmd: `close_color_all`,
     modes: [`tabs`],
     item: true,
     icon: close_icon,
     action: (args) => {
-      App.show_close_color_menu(args.item, args.e)
+      App.close_color_all(args.item, args.e)
     },
     info: `Show the close color menu`,
   })
@@ -1198,7 +1198,7 @@ App.setup_commands = () => {
     },
     {
       name: `Close Tag`,
-      cmd: `close_tag`,
+      cmd: `close_tag_all`,
       modes: [`tabs`],
       icon: close_icon,
       action: (args) => {

@@ -344,7 +344,7 @@ App.close_color = (color) => {
   App.close_tabs_method(items)
 }
 
-App.show_close_color_menu = (e) => {
+App.close_color_all = (e) => {
   let count = App.get_active_colors(`tabs`)
   let items = []
 

@@ -339,6 +339,20 @@ App.show_close_tabs_menu = (e, item) => {
     }))
   }
 
+  App.sep(items)
+
+  items.push(App.cmd_item({
+    cmd: `close_color_all`,
+    from: `close_tabs`,
+    item: item,
+  }))
+
+  items.push(App.cmd_item({
+    cmd: `close_tag_all`,
+    from: `close_tabs`,
+    item: item,
+  }))
+
   App.show_context({items: items, e: e})
 }
 
