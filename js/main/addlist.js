@@ -672,6 +672,12 @@ Addlist.get_value = (key) => {
   }
   else if (w === `menu`) {
     value = App[`addlist_menubutton_${id}_${key}`].value
+
+    if (value === `none`) {
+      value = undefined
+    }
+
+    return value
   }
   else if (w === `checkbox`) {
     value = el.checked
