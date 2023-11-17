@@ -95,11 +95,13 @@ App.apply_color_mode = (item) => {
       el.classList.add(`hidden`)
     }
 
+    let name = App.capitalize(color)
+
     if (App.color_exists(color)) {
-      el.title = `Color: ${App.capitalize(color)}`
+      el.title = `Color: ${name}`
     }
     else {
-      el.title = `Color doesn't exist`
+      el.title = `Color doesn't exist (${name})`
     }
   }
 
