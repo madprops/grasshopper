@@ -783,10 +783,17 @@ Addlist.list = (args) => {
   let oargs = Addlist.oargs(args.id)
 
   for (let [i, line] of lines.entries()) {
+    let icon
+
+    if (oargs.list_icon) {
+      icon = oargs.list_icon(line)
+    }
+
     let title = oargs.list_text(line)
     let info = line._date_ ? App.nice_date(line._date_) : ``
 
     items.push({
+      icon: icon,
       text: title,
       action: () => {
         args.index = i

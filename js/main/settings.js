@@ -993,6 +993,17 @@ App.setup_settings_addlist = () => {
     }
   }
 
+  function cmd_icon (cmd) {
+    let c = App.get_command(cmd)
+
+    if (c) {
+      return c.icon
+    }
+    else {
+      return ``
+    }
+  }
+
   function on_hide () {
     Addlist.hide()
   }
@@ -1134,6 +1145,9 @@ App.setup_settings_addlist = () => {
             cmd: App.cmdlist_2.slice(0),
             alt: App.cmdlist.slice(0),
           },
+          list_icon: (items) => {
+            return cmd_icon(items.cmd)
+          },
           list_text: (items) => {
             return cmd_name(items.cmd)
           },
@@ -1242,6 +1256,9 @@ App.setup_settings_addlist = () => {
       labels: {
         name: `Name`,
         value: `Value`,
+      },
+      list_icon: (items) => {
+        return App.color_icon(items.name)
       },
       list_text: (items) => {
         return App.capitalize(items.name)
