@@ -982,17 +982,6 @@ App.get_settings_with_list = () => {
 }
 
 App.setup_settings_addlist = () => {
-  function cmd_name (cmd) {
-    let c = App.get_command(cmd)
-
-    if (c) {
-      return c.name
-    }
-    else {
-      return `None`
-    }
-  }
-
   function cmd_icon (cmd) {
     let c = App.get_command(cmd)
 
@@ -1001,6 +990,17 @@ App.setup_settings_addlist = () => {
     }
     else {
       return ``
+    }
+  }
+
+  function cmd_name (cmd) {
+    let c = App.get_command(cmd)
+
+    if (c) {
+      return c.name
+    }
+    else {
+      return `None`
     }
   }
 
@@ -1104,6 +1104,9 @@ App.setup_settings_addlist = () => {
         ctrl: true,
         shift: false,
         alt: false,
+      },
+      list_icon: (items) => {
+        return cmd_icon(items.cmd)
       },
       list_text: (items) => {
         let cmd = cmd_name(items.cmd)
