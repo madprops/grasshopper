@@ -139,6 +139,13 @@ Addlist.register = (args = {}) => {
       el.spellcheck = false
       el.autocomplete = false
       el.placeholder = args.labels[key] || `Value`
+
+      DOM.ev(el, `input`, (e) => {
+        if (args.on_change[key]) {
+          let ans = args.on_change[key](e.target.value)
+          e.target.value = ans
+        }
+      })
     }
     else if (w === `textarea`) {
       el = DOM.create(`textarea`, `text addlist_textarea`, id)
@@ -193,6 +200,16 @@ Addlist.register = (args = {}) => {
       label.textContent = args.labels[key] || `Checkbox`
       el.append(label)
       el.append(checkbox)
+    }
+    else if (w === `color`) {
+      el = DOM.create(`div`, `addlist_color`)
+
+      App[`addlist_color_${args.id}_${key}`] = AColorPicker.createPicker(el, {
+        showAlpha: false,
+        showHSL: false,
+        showHEX: false,
+        showRGB: true,
+      })
     }
 
     if (el) {
@@ -266,6 +283,11 @@ Addlist.edit = (args = {}) => {
       }
       else {
         el.checked = oargs.sources[key]
+      }
+    }
+    else if (w === `color`) {
+      if (value) {
+        App[`addlist_color_${args.id}_${key}`].setColor(value)
       }
     }
   }
@@ -653,6 +675,9 @@ Addlist.get_value = (key) => {
   }
   else if (w === `checkbox`) {
     value = el.checked
+  }
+  else if (w === `color`) {
+    value = App[`addlist_color_${id}_${key}`].color
   }
 
   return value

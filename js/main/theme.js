@@ -60,8 +60,9 @@ App.do_apply_theme = (args = {}) => {
       return
     }
 
-    for (let color of App.colors) {
-      let rgb = App.get_setting(`color_${color}`)
+    for (let c of App.colors()) {
+      let color = c.name
+      let rgb = c.value
       App.set_css_var(`color_${color}`, rgb)
       let text = App.colorlib.get_lighter_or_darker(rgb, 0.8)
       App.set_css_var(`text_${color}`, text)
@@ -484,7 +485,9 @@ App.insert_custom_css = () => {
 App.insert_color_css = () => {
   let css = ``
 
-  for (let color of App.colors) {
+  for (let c of App.colors()) {
+    let color = c.name
+
     css += `.border_${color} {
       border-color: var(--color_${color}) !important;
     }`

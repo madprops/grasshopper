@@ -1189,17 +1189,19 @@ App.setup_settings_addlist = () => {
         }
       },
       validate: (values) => {
-        if (!values[`domain`]) {
+        if (!values.domain) {
           return false
         }
 
-        if ((values[`color`] === `none`) &&
-        !values[`title`] &&
-        !values[`icon`] &&
-        !values[`tags`] &&
-        !values[`split_top`] &&
-        !values[`split_bottom`] &&
-        !values[`notes`]) {
+        if (
+          (values.color === `none`) &&
+          !values.title &&
+          !values.icon &&
+          !values.tags &&
+          !values.split_top &&
+          !values.split_bottom &&
+          !values.notes
+        ) {
           return false
         }
 
@@ -1213,6 +1215,40 @@ App.setup_settings_addlist = () => {
         return items.domain
       },
       title: props.name,
+    }))
+  }))
+
+  id = `settings_colors`
+  props = App.setting_props.colors
+
+  App.create_popup(Object.assign({}, popobj, {
+    id: `addlist_${id}`,
+    element: Addlist.register(Object.assign({}, regobj, {
+      id: id,
+      keys: [`name`, `value`],
+      pk: `name`,
+      widgets: {
+        name: `text`,
+        value: `color`,
+      },
+      labels: {
+        name: `Name`,
+        value: `Value`,
+      },
+      list_text: (items) => {
+        return App.capitalize(items.name)
+      },
+      on_change: {
+        name: (value) => {
+          return value.replace(/\s/g, ``).toLowerCase()
+        }
+      },
+      required: {
+        value: true,
+      },
+      info: {
+        name: `Name of the color, like red, green, blue`,
+      },
     }))
   }))
 }
@@ -1300,7 +1336,9 @@ App.color_values = () => {
     value: `none`,
   })
 
-  for (let color of App.colors) {
+  for (let c of App.colors()) {
+    let color = c.name
+
     items.push({
       icon: App.color_icon(color),
       text: App.capitalize(color),

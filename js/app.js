@@ -28,7 +28,6 @@ App.header_file = "header/index.html"
 App.search_modes = [`history`, `bookmarks`]
 App.media_scroll = 33
 App.media_types = [`image`, `video`, `audio`]
-App.colors = [`red`, `green`, `blue`, `yellow`]
 App.theme_safe_mode_msg = false
 App.persistent_modes = [`tabs`]
 App.close_text = `Close`

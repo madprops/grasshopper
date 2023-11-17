@@ -97,9 +97,9 @@ App.apply_color_mode = (item) => {
   }
 
   if (color_mode.includes(`border`)) {
-    for (let color of App.colors) {
+    for (let c of App.colors()) {
       item.element.classList.remove(`colored`)
-      item.element.classList.remove(`border_${color}`)
+      item.element.classList.remove(`border_${c.name}`)
     }
 
     if (color) {
@@ -109,10 +109,10 @@ App.apply_color_mode = (item) => {
   }
 
   if (color_mode.includes(`background`)) {
-    for (let color of App.colors) {
+    for (let c of App.colors()) {
       item.element.classList.remove(`colored`)
       item.element.classList.remove(`colored_background`)
-      item.element.classList.remove(`background_${color}`)
+      item.element.classList.remove(`background_${c.name}`)
     }
 
     if (color) {
@@ -123,10 +123,10 @@ App.apply_color_mode = (item) => {
   }
 
   if (color_mode.includes(`text`)) {
-    for (let color of App.colors) {
+    for (let c of App.colors()) {
       item.element.classList.remove(`colored`)
       item.element.classList.remove(`colored_text`)
-      item.element.classList.remove(`text_${color}`)
+      item.element.classList.remove(`text_${c.name}`)
     }
 
     if (color) {
@@ -197,7 +197,8 @@ App.color_menu_items = (item) => {
     App.sep(items)
   }
 
-  for (let color of App.colors) {
+  for (let c of App.colors()) {
+    let color = c.name
     let icon = App.color_icon(color)
     let text = App.capitalize(color)
 
@@ -242,7 +243,9 @@ App.get_color_items = (mode) => {
       })
     }
 
-    for (let color of App.colors) {
+    for (let c of App.colors()) {
+      let color = c.name
+
       if (!count[color]) {
         continue
       }
@@ -329,7 +332,9 @@ App.show_close_color_menu = (e) => {
   let count = App.get_active_colors(`tabs`)
   let items = []
 
-  for (let color of App.colors) {
+  for (let c of App.colors()) {
+    let color = c.name
+
     if (!count[color]) {
       continue
     }
@@ -380,4 +385,8 @@ App.get_color_icon = (item) => {
   let icon = DOM.create(`div`, `color_icon_container item_node hidden${cls}`)
   icon.title = `Color`
   item.element.append(icon)
+}
+
+App.colors = () => {
+  return App.get_setting(`colors`)
 }

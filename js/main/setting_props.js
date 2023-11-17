@@ -1085,41 +1085,25 @@ App.build_settings = () => {
   category = `colors`
 
   props = {
+    colors: {
+      name: `Colors`,
+      type: `list`,
+      value: [
+        {name: `red`, value: `rgb(255, 0, 153)`},
+        {name: `green`, value: `rgb(102, 204, 0)`},
+        {name: `blue`, value: `rgb(0, 153, 255)`},
+        {name: `yellow`, value: `rgb(255, 153, 0)`},
+      ],
+      info: `The color to use when coloring items Red`,
+      version: 1,
+    },
     color_mode: {
       name: `Color Mode`,
       type: `menu`,
       value: `icon`,
       info: `How to display the colors (green, red, etc) you assign to tabs`,
-      version: 2,
-    },
-    color_red: {
-      name: `Color Red`,
-      type: `color`,
-      value: `rgb(255, 0, 153)`,
-      info: `The color to use when coloring items Red`,
-      version: 1,
-    },
-    color_green: {
-      name: `Color Green`,
-      type: `color`,
-      value: `rgb(102, 204, 0)`,
-      info: `The color to use when coloring items Green`,
-      version: 1,
-    },
-    color_blue: {
-      name: `Color Blue`,
-      type: `color`,
-      value: `rgb(0, 153, 255)`,
-      info: `The color to use when coloring items Blue`,
-      version: 1,
-    },
-    color_yellow: {
-      name: `Color Yellow`,
-      type: `color`,
-      value: `rgb(255, 153, 0)`,
-      info: `The color to use when coloring items Yellow`,
       separator: true,
-      version: 1,
+      version: 2,
     },
     text_color_active_enabled: {
       name: `Active Tabs (Text)`,

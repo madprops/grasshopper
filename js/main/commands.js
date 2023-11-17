@@ -41,7 +41,8 @@ App.setup_commands = () => {
     info: `Filter: Show all colors`,
   })
 
-  for (let color of App.colors) {
+  for (let c of App.colors()) {
+    let color = c.name
     let icon, name, short
     let cname = App.capitalize(color)
     icon = App.color_icon(color)
