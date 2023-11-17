@@ -94,6 +94,13 @@ App.apply_color_mode = (item) => {
       el.textContent = ``
       el.classList.add(`hidden`)
     }
+
+    if (App.color_exists(color)) {
+      el.title = `Color: ${App.capitalize(color)}`
+    }
+    else {
+      el.title = `Color doesn't exist`
+    }
   }
 
   if (color_mode.includes(`border`)) {
@@ -138,7 +145,16 @@ App.apply_color_mode = (item) => {
 }
 
 App.color_icon = (color) => {
-  return DOM.create(`div`, `color_icon background_${color}`)
+  let s
+
+  if (App.color_exists(color)) {
+    s = `color_icon background_${color}`
+  }
+  else {
+    s = `color_icon background_fallback_color`
+  }
+
+  return DOM.create(`div`, s)
 }
 
 App.edit_tab_color = (args = {}) => {
@@ -383,10 +399,13 @@ App.get_color_icon = (item) => {
   }
 
   let icon = DOM.create(`div`, `color_icon_container item_node hidden${cls}`)
-  icon.title = `Color`
   item.element.append(icon)
 }
 
 App.colors = () => {
   return App.get_setting(`colors`)
+}
+
+App.color_exists = (color) => {
+  return App.colors().map(x => x.name).includes(color)
 }

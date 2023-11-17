@@ -485,6 +485,19 @@ App.insert_custom_css = () => {
 App.insert_color_css = () => {
   let css = ``
 
+  css += `.border_fallback_color {
+    border-color: grey !important;
+  }`
+
+  css += `.background_fallback_color {
+    background-color: grey !important;
+    color: grey !important;
+  }`
+
+  css += `.text_fallback_color {
+    color: grey !important;
+  }`
+
   for (let c of App.colors()) {
     let color = c.name
 
