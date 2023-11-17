@@ -122,9 +122,16 @@ App.check_items_keyboard = (e) => {
       e.preventDefault()
       return
     }
-    else if (e.key === `c`) {
+    else if (e.key === `c` || e.key === `x`) {
       if (item && !filter_highlighted) {
-        App.copy_url(item)
+        App.copy_tabs(item)
+        e.preventDefault()
+        return
+      }
+    }
+    else if (e.key === `v`) {
+      if (item && !filter_highlighted) {
+        App.paste_tabs(item)
         e.preventDefault()
         return
       }

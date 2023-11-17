@@ -1341,3 +1341,31 @@ App.check_tab_active = (item) => {
     item.element.classList.remove(`active_tab`)
   }
 }
+
+App.copy_tabs = (item) => {
+  let active = App.get_active_items({mode: `tabs`, item: item})
+  App.copied_tabs = active
+}
+
+App.paste_tabs = async (item) => {
+  if (!App.copied_tabs.length) {
+    return
+  }
+
+  for (let tab of App.copied_tabs) {
+    if (item.pinned) {
+      await App.pin_tab(tab.id)
+    }
+    else {
+      await App.unpin_tab(tab.id)
+    }
+  }
+
+  let index = App.get_item_element_index(`tabs`, item.element)
+
+  for (let tab of App.copied_tabs) {
+    await App.do_move_tab_index(tab.id, index)
+  }
+
+  App.check_pinline()
+}

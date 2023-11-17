@@ -270,6 +270,28 @@ App.setup_commands = () => {
       info: `Select all items`,
     },
     {
+      name: `Copy Tabs`,
+      cmd: `copy_tabs`,
+      modes: [`tabs`],
+      item: true,
+      icon: tabs_icon,
+      action: (args) => {
+        App.copy_tabs(args.item)
+      },
+      info: `Copy tabs to paste later at another position`,
+    },
+    {
+      name: `Paste Tabs`,
+      cmd: `paste_tabs`,
+      modes: [`tabs`],
+      item: true,
+      icon: tabs_icon,
+      action: (args) => {
+        App.paste_tabs(args.item)
+      },
+      info: `Paste tabs at the current position`,
+    },
+    {
       name: App.separator_string
     },
     {

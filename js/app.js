@@ -48,6 +48,7 @@ App.browser_protocol = `moz-extension://`
 App.tab_session_first = false
 App.force_debug = false
 App.tab_box_max = 20
+App.copied_tabs = []
 
 App.settings_done = false
 App.settings_ready = false
