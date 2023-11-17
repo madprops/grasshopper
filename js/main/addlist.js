@@ -268,11 +268,14 @@ Addlist.edit = (args = {}) => {
       }
     }
     else if (w === `menu`) {
+      let mb = App[`addlist_menubutton_${args.id}_${key}`]
+      mb.refresh_button()
+
       if (value) {
-        App[`addlist_menubutton_${args.id}_${key}`].set(value)
+        mb.set(value)
       }
       else {
-        App[`addlist_menubutton_${args.id}_${key}`].set(oargs.sources[key]()[0].value)
+        mb.set(oargs.sources[key]()[0].value)
       }
 
       first_menu = key

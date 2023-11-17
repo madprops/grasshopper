@@ -11,10 +11,6 @@ Menubutton.create = (args = {}) => {
     args.button = DOM.create(`div`, `menubutton button`, args.id)
   }
 
-  if (args.source) {
-    args.opts = args.source()
-  }
-
   args.container = DOM.create(`div`, `menubutton_container`)
   let prev = DOM.create(`div`, `button`)
   prev.textContent = `<`
@@ -31,6 +27,14 @@ Menubutton.create = (args = {}) => {
     }
   })
 
+  args.refresh_opts = () => {
+    if (args.source) {
+      args.opts = args.source()
+    }
+  }
+
+  args.refresh_opts()
+
   args.set = (value, on_change = true) => {
     args.action(Menubutton.opt(args, value))
   }
@@ -44,6 +48,7 @@ Menubutton.create = (args = {}) => {
   }
 
   args.select_first = () => {
+    args.refresh_opts()
     args.action(args.opts[0])
   }
 
@@ -60,10 +65,7 @@ Menubutton.create = (args = {}) => {
   }
 
   args.show = () => {
-    if (args.source) {
-      args.opts = args.source()
-    }
-
+    args.refresh_opts()
     let items = []
 
     for (let opt of args.opts) {
@@ -116,15 +118,18 @@ Menubutton.create = (args = {}) => {
     })
   }
 
-  if (args.selected) {
-    for (let opt of args.opts) {
-      if (args.selected === opt.value) {
-        Menubutton.set_text(args, opt)
-        break
+  args.refresh_button = () => {
+    if (args.selected) {
+      for (let opt of args.opts) {
+        if (args.selected === opt.value) {
+          Menubutton.set_text(args, opt)
+          break
+        }
       }
     }
   }
 
+  args.refresh_button()
   DOM.ev(prev, `click`, args.prev)
   DOM.ev(next, `click`, args.next)
   args.container.append(prev)
