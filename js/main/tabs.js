@@ -1365,12 +1365,13 @@ App.paste_tabs = async (item) => {
 
   for (let tab of App.copied_tabs) {
     await App.do_move_tab_index(tab.id, index)
+    index += 1
   }
 
   App.check_pinline()
   App.deselect(`tabs`)
 
-  for (let tab of App.copied_tabs.slice(0).reverse()) {
+  for (let tab of App.copied_tabs) {
     App.toggle_selected(tab, true, false)
   }
 }
