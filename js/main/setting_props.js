@@ -1095,7 +1095,7 @@ App.build_settings = () => {
         {name: `yellow`, value: `rgb(255, 153, 0)`},
       ],
       actions: [`theme`, `commands`],
-      info: `The color to use when coloring items Red`,
+      info: `The list of colors that you can assign to items`,
       version: 1,
     },
     color_mode: {
