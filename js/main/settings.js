@@ -119,9 +119,21 @@ App.settings_setup_texts = (category) => {
     let menu = [
       {
         name: `Reset`,  action: () => {
-          App.set_default_setting(key)
-          el.value = App.get_setting(key)
-          App.scroll_to_top(el)
+          let force = App.check_setting_default(key) || App.check_setting_empty(key)
+
+          if (props.type !== `textarea`) {
+            force = true
+          }
+
+          App.show_confirm({
+            message: `Reset setting?`,
+            confirm_action: () => {
+              App.set_default_setting(key)
+              el.value = App.get_setting(key)
+              App.scroll_to_top(el)
+            },
+            force: force,
+          })
         },
       },
       {
@@ -144,9 +156,25 @@ App.settings_setup_texts = (category) => {
     if (!props.no_empty) {
       menu.push({
         name: `Clear`,  action: () => {
-          el.value = ``
-          App.set_setting(key, ``)
-          el.focus()
+          if (el.value === ``) {
+            return
+          }
+
+          let force = false
+
+          if (props.type !== `textarea`) {
+            force = true
+          }
+
+          App.show_confirm({
+            message: `Clear setting?`,
+            confirm_action: () => {
+              el.value = ``
+              App.set_setting(key, ``)
+              el.focus()
+            },
+            force: force,
+          })
         },
       })
     }
