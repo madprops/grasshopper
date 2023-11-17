@@ -184,7 +184,8 @@ App.edit_tab_color = (args = {}) => {
     }
   }
 
-  let s = args.color ? `Color ${args.color}?` : `Remove color?`
+  let c_obj = App.get_color_by_id(args.color)
+  let s = args.color ? `Color ${c_obj.name}?` : `Remove color?`
   let force = App.check_force(`warn_on_edit_tabs`, active)
 
   App.show_confirm({
