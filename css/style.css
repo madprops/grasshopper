@@ -727,13 +727,15 @@ svg {
 }
 
 .pinline {
+  display: flex;
+  align-items: center;
+  justify-content: center;
   margin-top: 0.7rem;
   margin-bottom: 0.7rem;
   border-top: 1px solid var(--alt_color_1);
   border-bottom: 1px solid var(--alt_color_1);
   border-radius: var(--border_radius);
   background-color: var(--slight_shade);
-  text-align: center;
   padding-top: 0.1rem;
   padding-bottom: 0.1rem;
   width: 100%;
