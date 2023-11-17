@@ -1920,6 +1920,7 @@ App.cmd_item = (args = {}) => {
   return {
     icon: args.command.icon,
     text: App.command_name(args.command, args.short),
+    info: args.command.info,
     action: (e) => {
       App.run_command({
         cmd: args.command.cmd,
