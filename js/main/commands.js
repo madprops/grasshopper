@@ -465,6 +465,7 @@ App.setup_commands = () => {
       cmd: `copy_item_url`,
       modes: [`items`],
       item: true,
+      single: true,
       icon: clipboard_icon,
       action: (args) => {
         App.copy_url(args.item)
@@ -476,6 +477,7 @@ App.setup_commands = () => {
       cmd: `copy_item_title`,
       modes: [`items`],
       item: true,
+      single: true,
       icon: clipboard_icon,
       action: (args) => {
         App.copy_title(args.item)
