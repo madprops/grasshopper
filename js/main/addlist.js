@@ -265,7 +265,12 @@ Addlist.edit = (args = {}) => {
         el.value = value
       }
       else {
-        el.value = ``
+        if (oargs.sources[key]) {
+          el.value = oargs.sources[key]()
+        }
+        else {
+          el.value = ``
+        }
       }
     }
     else if (w === `menu`) {
@@ -276,7 +281,9 @@ Addlist.edit = (args = {}) => {
         mb.set(value)
       }
       else {
-        mb.set(oargs.sources[key]()[0].value)
+        if (oargs.sources[key]) {
+          mb.set(oargs.sources[key]()[0].value)
+        }
       }
 
       first_menu = key
@@ -286,12 +293,24 @@ Addlist.edit = (args = {}) => {
         el.checked = value
       }
       else {
-        el.checked = oargs.sources[key]()
+        if (oargs.sources[key]) {
+          el.checked = oargs.sources[key]()
+        }
+        else {
+          el.checked = false
+        }
       }
     }
     else if (w === `color`) {
+      let picker = App[`addlist_color_${args.id}_${key}`]
+
       if (value) {
-        App[`addlist_color_${args.id}_${key}`].setColor(value)
+        picker.setColor(value)
+      }
+      else {
+        if (oargs.sources[key]) {
+          picker.setColor(oargs.sources[key]())
+        }
       }
     }
   }
