@@ -812,12 +812,18 @@ a:hover
   position: fixed;
   top: 0;
   left: 0;
-  z-index: 999;
+  z-index: 1000;
   height: 100vh;
   width: 100vw;
-  background-color: var(--overlay_color);
   overflow-y: auto;
   justify-content: center;
+}
+
+.popup_overlay {
+  background-color: var(--overlay_color);
+  z-index: 1001;
+  width: 100%;
+  height: 100%;
 }
 
 .popup_container {
@@ -834,6 +840,7 @@ a:hover
   color: var(--text_color);
   max-width: 90%;
   outline: none;
+  z-index: 1002;
 }
 
 #popup_alert {
