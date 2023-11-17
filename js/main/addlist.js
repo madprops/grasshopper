@@ -160,7 +160,7 @@ Addlist.register = (args = {}) => {
 
       App[`addlist_menubutton_${args.id}_${key}`] = Menubutton.create({
         id: id,
-        opts: args.sources[key],
+        source: args.sources[key],
         get_value: () => {
           return Addlist.get_value(key)
         },
@@ -272,7 +272,7 @@ Addlist.edit = (args = {}) => {
         App[`addlist_menubutton_${args.id}_${key}`].set(value)
       }
       else {
-        App[`addlist_menubutton_${args.id}_${key}`].set(oargs.sources[key][0].value)
+        App[`addlist_menubutton_${args.id}_${key}`].set(oargs.sources[key]()[0].value)
       }
 
       first_menu = key
@@ -282,7 +282,7 @@ Addlist.edit = (args = {}) => {
         el.checked = value
       }
       else {
-        el.checked = oargs.sources[key]
+        el.checked = oargs.sources[key]()
       }
     }
     else if (w === `color`) {

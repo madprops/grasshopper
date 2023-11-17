@@ -1,9 +1,15 @@
-App.settings_do_action = (what) => {
-  if (what === `theme`) {
-    App.apply_theme()
-  }
-  else if (what === `filter_debouncers`) {
-    App.start_filter_debouncers()
+App.settings_do_actions = (actions) => {
+  for (let action of actions) {
+    if (action === `theme`) {
+      App.apply_theme()
+    }
+    else if (action === `commands`) {
+      App.setup_commands()
+      App.build_setting_cmds()
+    }
+    else if (action === `filters`) {
+      App.start_filter_debouncers()
+    }
   }
 }
 
@@ -373,14 +379,18 @@ App.refresh_settings = () => {
   App.build_tab_filters()
 }
 
+App.build_setting_cmds = () => {
+  App.cmdlist = App.settings_commands()
+  App.cmdlist_2 = App.settings_commands(false)
+  App.filter_cmds = App.cmdlist_2.filter(x => x.text.includes(`Filter`))
+}
+
 App.start_settings = () => {
   if (App.check_ready(`settings`)) {
     return
   }
 
-  App.cmdlist = App.settings_commands()
-  App.cmdlist_2 = App.settings_commands(false)
-  App.filter_cmds = App.cmdlist_2.filter(x => x.text.includes(`Filter`))
+  App.build_setting_cmds()
 
   let common = {
     persistent: false,
@@ -711,8 +721,8 @@ App.set_setting = (setting, value, do_action = true) => {
     if (do_action) {
       let props = App.setting_props[setting]
 
-      if (props.action) {
-        App.settings_do_action(props.action)
+      if (props.actions) {
+        App.settings_do_actions(props.actions)
       }
     }
   }
@@ -1100,10 +1110,18 @@ App.setup_settings_addlist = () => {
         alt: `Require Alt`,
       },
       sources: {
-        cmd: App.cmdlist_2.slice(0),
-        ctrl: true,
-        shift: false,
-        alt: false,
+        cmd: () => {
+          return App.cmdlist_2.slice(0)
+        },
+        ctrl: () => {
+          return true
+        },
+        shift: () => {
+          return false
+        },
+        alt: () => {
+          return false
+        },
       },
       list_icon: (items) => {
         return cmd_icon(items.cmd)
@@ -1145,8 +1163,12 @@ App.setup_settings_addlist = () => {
             alt: `Alternative`,
           },
           sources: {
-            cmd: App.cmdlist_2.slice(0),
-            alt: App.cmdlist.slice(0),
+            cmd: () => {
+              return App.cmdlist_2.slice(0)
+            },
+            alt: () => {
+              return App.cmdlist.slice(0)
+            },
           },
           list_icon: (items) => {
             return cmd_icon(items.cmd)
@@ -1206,7 +1228,9 @@ App.setup_settings_addlist = () => {
         exact: `Exact`,
       },
       sources: {
-        color: App.color_values(),
+        color: () => {
+          return App.color_values()
+        },
       },
       process: {
         domain: (value) => {

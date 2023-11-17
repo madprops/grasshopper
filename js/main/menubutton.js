@@ -11,6 +11,10 @@ Menubutton.create = (args = {}) => {
     args.button = DOM.create(`div`, `menubutton button`, args.id)
   }
 
+  if (args.source) {
+    args.opts = args.source()
+  }
+
   args.container = DOM.create(`div`, `menubutton_container`)
   let prev = DOM.create(`div`, `button`)
   prev.textContent = `<`
@@ -56,6 +60,10 @@ Menubutton.create = (args = {}) => {
   }
 
   args.show = () => {
+    if (args.source) {
+      args.opts = args.source()
+    }
+
     let items = []
 
     for (let opt of args.opts) {
