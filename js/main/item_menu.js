@@ -83,6 +83,8 @@ App.common_menu_items = (args = {}) => {
   let copy_items = []
   App.item_menu_item(copy_items, `copy_item_url`, {item: args.item})
   App.item_menu_item(copy_items, `copy_item_title`, {item: args.item})
+  App.item_menu_item(copy_items, `copy_tabs`, {item: args.item})
+  App.item_menu_item(copy_items, `paste_tabs`, {item: args.item})
 
   items.push({
     icon: App.clipboard_icon,

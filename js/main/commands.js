@@ -274,7 +274,7 @@ App.setup_commands = () => {
       cmd: `copy_tabs`,
       modes: [`tabs`],
       item: true,
-      icon: tabs_icon,
+      icon: clipboard_icon,
       action: (args) => {
         App.copy_tabs(args.item)
       },
@@ -285,7 +285,7 @@ App.setup_commands = () => {
       cmd: `paste_tabs`,
       modes: [`tabs`],
       item: true,
-      icon: tabs_icon,
+      icon: clipboard_icon,
       action: (args) => {
         App.paste_tabs(args.item)
       },
