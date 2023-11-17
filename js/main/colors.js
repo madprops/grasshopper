@@ -261,7 +261,7 @@ App.get_color_items = (mode) => {
     }
 
     for (let color of App.colors()) {
-      if (!count[color]) {
+      if (!count[color.id]) {
         continue
       }
 
@@ -272,7 +272,7 @@ App.get_color_items = (mode) => {
         icon: icon,
         text: name,
         action: () => {
-          App.filter_color(mode, color)
+          App.filter_color(mode, color.id)
         },
       })
     }
@@ -348,7 +348,7 @@ App.show_close_color_menu = (e) => {
   let items = []
 
   for (let color of App.colors()) {
-    if (!count[color]) {
+    if (!count[color.id]) {
       continue
     }
 
@@ -359,7 +359,7 @@ App.show_close_color_menu = (e) => {
       icon: icon,
       text: text,
       action: () => {
-        App.close_color(color)
+        App.close_color(color.id)
       },
     })
   }
