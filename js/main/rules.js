@@ -33,8 +33,8 @@ App.check_rules = (item) => {
           }
         }
       }
-    }
 
-    break
+      break
+    }
   }
 }
