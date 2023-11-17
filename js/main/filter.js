@@ -129,9 +129,9 @@ App.do_filter = async (args = {}) => {
   let filter_mode_split = filter_mode.split(`_`)
   let f_value
 
-  if (filter_mode_split.length === 2) {
+  if (filter_mode_split.length >= 2) {
     filter_mode = filter_mode_split[0]
-    f_value = filter_mode_split[1]
+    f_value = filter_mode_split.slice(1).join(`_`)
   }
 
   let skip = !value && filter_mode === `all`
@@ -152,10 +152,11 @@ App.do_filter = async (args = {}) => {
   }
 
   let insensitive = App.get_setting(`case_insensitive`)
+  let value_lower
 
   if (value && by_what === `all`) {
     value = App.clean_filter(value)
-    let value_lower = value.toLowerCase()
+    value_lower = value.toLowerCase()
     let aliases = App.get_setting(`aliases`)
 
     for (let alias of aliases) {
@@ -197,6 +198,7 @@ App.do_filter = async (args = {}) => {
       filter_mode: filter_mode,
       duplicates: duplicates,
       value: value,
+      value_lower: value_lower,
       f_value: f_value,
       search: search,
     }
@@ -320,23 +322,19 @@ App.filter_check = (args) => {
     match = true
   }
 
-  let words = args.value.split(` `)
-
-  if (!match && (words.length === 1)) {
-    let word_lower = words[0].toLowerCase()
-
+  if (!match) {
     if (args.by_what.startsWith(`color`) || App.get_setting(`filter_colors`)) {
       let color = App.get_color(args.item)
 
       if (color) {
-        match = App.get_color(args.item).startsWith(word_lower)
+        match = App.clean_filter(color).toLowerCase().startsWith(args.value_lower)
       }
     }
 
     if (!match) {
       if (args.by_what.startsWith(`tag`) || App.get_setting(`filter_tags`)) {
         for (let tag of App.get_tags(args.item)) {
-          if (tag.toLowerCase().startsWith(word_lower)) {
+          if (App.clean_filter(tag).toLowerCase().startsWith(args.value_lower)) {
             match = true
             break
           }
@@ -1079,12 +1077,13 @@ App.filter_color = (mode, color) => {
   }
 
   let s
+  let c_obj = App.get_color_by_id(color)
 
   if (color === `all`) {
     s = `All Colors`
   }
   else {
-    s = App.capitalize(color)
+    s = c_obj.name
   }
 
   App.set_custom_filter_mode(mode, name, s)
