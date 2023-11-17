@@ -1326,7 +1326,7 @@ App.setup_settings_addlist = () => {
       required: {
         value: true,
       },
-      info: {
+      tooltips: {
         name: `Name of the color, like red, green, blue. Single lowercase word`,
       },
     }))
