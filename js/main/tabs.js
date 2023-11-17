@@ -99,7 +99,7 @@ App.build_tab_filters = () => {
 
   App.tabs_filter_modes = [
     {
-      type: `pinned`, text:`Pinned`, skip: false, info: `Show pinned tabs`,
+      type: `pinned`, text:`Pins`, skip: false, info: `Show pinned tabs`,
       icon: App.get_setting(`pin_icon`) || App.pin_icon
     },
     {
