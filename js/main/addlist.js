@@ -64,6 +64,14 @@ Addlist.save = (id, hide = true) => {
   let lines = Addlist.get_data(id)
   values._date_ = App.now()
 
+  if (oargs.on_save) {
+    for (let key in values) {
+      if (oargs.on_save[key]) {
+        values[key] = oargs.on_save[key](values[key])
+      }
+    }
+  }
+
   if (data.index === undefined) {
     if (oargs.append) {
       lines.push(values)
@@ -139,13 +147,6 @@ Addlist.register = (args = {}) => {
       el.spellcheck = false
       el.autocomplete = false
       el.placeholder = args.labels[key] || `Value`
-
-      DOM.ev(el, `input`, (e) => {
-        if (args.on_change[key]) {
-          let ans = args.on_change[key](e.target.value)
-          e.target.value = ans
-        }
-      })
     }
     else if (w === `textarea`) {
       el = DOM.create(`textarea`, `text addlist_textarea`, id)

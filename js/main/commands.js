@@ -41,84 +41,82 @@ App.setup_commands = () => {
     info: `Filter: Show all colors`,
   })
 
-  for (let c of App.colors()) {
-    let color = c.name
+  for (let color of App.colors()) {
     let icon, name, short
-    let cname = App.capitalize(color)
-    icon = App.color_icon(color)
-    name = `Filter ${cname}`
+    icon = App.color_icon(color.id)
+    name = `Filter ${color.name}`
 
     color_filters.push({
       name: name,
-      cmd: `filter_color_${color}`,
+      cmd: `filter_color_${color.id}`,
       modes: [`items`],
       icon: icon,
       action: (args) => {
-        App.filter_color(args.mode, color)
+        App.filter_color(args.mode, color.id)
       },
-      info: `Filter items with this color (${color})`,
+      info: `Filter items with this color (${color.name})`,
     })
 
-    icon = App.color_icon(color)
-    name = `Color ${cname}`
-    short = cname
+    icon = App.color_icon(color.id)
+    name = `Color ${color.name}`
+    short = color.name
 
     color_changers.push({
       name: name,
       short_name: short,
-      cmd: `color_${color}`,
+      cmd: `color_${color.id}`,
       modes: [`tabs`],
       item: true,
       icon: icon,
       action: (args) => {
-        App.edit_tab_color({item: args.item, color: color})
+        App.edit_tab_color({item: args.item, color: color.id})
       },
-      info: `Add a custom color to tabs (${color})`,
+      info: `Add a custom color to tabs (${color.name})`,
     })
 
-    icon = App.color_icon(color)
-    name = `Toggle ${cname}`
-    short = cname
+    icon = App.color_icon(color.id)
+    name = `Toggle ${color.name}`
+    short = color.name
 
     color_changers.push({
       name: name,
       short_name: short,
-      cmd: `toggle_color_${color}`,
+      cmd: `toggle_color_${color.id}`,
       modes: [`tabs`],
       item: true,
       icon: icon,
       action: (args) => {
-        App.edit_tab_color({item: args.item, color: color, toggle: true})
+        App.edit_tab_color({item: args.item, color: color.id, toggle: true})
       },
-      info: `Toggle color on or off (${color})`,
+      info: `Toggle color on or off (${color.name})`,
     })
 
     icon = theme_icon
-    name = `Remove ${cname}`
+    name = `Remove ${color.name}`
 
     color_removers.push({
       name: name,
-      cmd: `remove_color_${color}`,
+      cmd: `remove_color_${color.id}`,
       modes: [`tabs`],
       icon: icon,
       action: (args) => {
-        App.remove_color(color)
+        App.remove_color(color.id)
       },
-      info: `Remove color from tabs (${color})`,
+      info: `Remove color from tabs (${color.name})`,
     })
 
     icon = App.close_icon
-    name = `Close ${cname}`
+    name = `Close ${color.name}`
 
     color_closers.push({
       name: name,
-      cmd: `close_color_${color}`,
+      cmd: `close_color_${color.id}`,
       modes: [`tabs`],
       icon: icon,
       action: (args) => {
-        App.close_color(color)
+        App.close_color(color.id)
       },
-      info: `Close tabs with this color (${color})`,
+      info: `Close tabs with this color (${color.name})`,
     })
   }
 

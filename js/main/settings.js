@@ -1313,21 +1313,13 @@ App.setup_settings_addlist = () => {
         value: `Value`,
       },
       list_icon: (items) => {
-        return App.color_icon(items.name)
+        return App.color_icon(App.color_id(items.name))
       },
       list_text: (items) => {
-        return App.capitalize(items.name)
-      },
-      on_change: {
-        name: (value) => {
-          return value.replace(/\s/g, ``).toLowerCase()
-        }
+        return items.name
       },
       required: {
         value: true,
-      },
-      tooltips: {
-        name: `Name of the color, like red, green, blue. Single lowercase word`,
       },
     }))
   }))
@@ -1416,12 +1408,10 @@ App.color_values = () => {
     value: `none`,
   })
 
-  for (let c of App.colors()) {
-    let color = c.name
-
+  for (let color of App.colors()) {
     items.push({
-      icon: App.color_icon(color),
-      text: App.capitalize(color),
+      icon: App.color_icon(color.id),
+      text: color.name,
       value: color,
     })
   }

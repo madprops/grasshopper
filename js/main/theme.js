@@ -60,14 +60,6 @@ App.do_apply_theme = (args = {}) => {
       return
     }
 
-    for (let c of App.colors()) {
-      let color = c.name
-      let rgb = c.value
-      App.set_css_var(`color_${color}`, rgb)
-      let text = App.colorlib.get_lighter_or_darker(rgb, 0.8)
-      App.set_css_var(`text_${color}`, text)
-    }
-
     App.set_css_var(`font_size`, App.get_setting(`font_size`) + `px`)
     let w = `${(App.get_setting(`width`) / 100) * App.popup_width}px`
     App.set_css_var(`width`, w)
@@ -498,20 +490,22 @@ App.insert_color_css = () => {
     color: grey !important;
   }`
 
-  for (let c of App.colors()) {
-    let color = c.name
+  for (let color of App.colors()) {
+    App.set_css_var(`color_${color.id}`, color.value)
+    let text = App.colorlib.get_lighter_or_darker(color.value, 0.8)
+    App.set_css_var(`text_${color.id}`, text)
 
-    css += `.border_${color} {
-      border-color: var(--color_${color}) !important;
+    css += `.border_${color.id} {
+      border-color: var(--color_${color.id}) !important;
     }`
 
-    css += `.background_${color} {
-      background-color: var(--color_${color}) !important;
-      color: var(--text_${color}) !important;
+    css += `.background_${color.id} {
+      background-color: var(--color_${color.id}) !important;
+      color: var(--text_${color.id}) !important;
     }`
 
-    css += `.text_${color} {
-      color: var(--color_${color}) !important;
+    css += `.text_${color.id} {
+      color: var(--color_${color.id}) !important;
     }`
   }
 

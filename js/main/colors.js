@@ -95,20 +95,20 @@ App.apply_color_mode = (item) => {
       el.classList.add(`hidden`)
     }
 
-    let name = App.capitalize(color)
+    let c_obj = App.get_color_by_id(color)
 
-    if (App.color_exists(color)) {
-      el.title = `Color: ${name}`
+    if (c_obj) {
+      el.title = `Color: ${c_obj.name}`
     }
     else {
-      el.title = `Color doesn't exist (${name})`
+      el.title = `Color doesn't exist (${color})`
     }
   }
 
   if (color_mode.includes(`border`)) {
-    for (let c of App.colors()) {
+    for (let color of App.colors()) {
       item.element.classList.remove(`colored`)
-      item.element.classList.remove(`border_${c.name}`)
+      item.element.classList.remove(`border_${color.id}`)
     }
 
     if (color) {
@@ -118,10 +118,10 @@ App.apply_color_mode = (item) => {
   }
 
   if (color_mode.includes(`background`)) {
-    for (let c of App.colors()) {
+    for (let color of App.colors()) {
       item.element.classList.remove(`colored`)
       item.element.classList.remove(`colored_background`)
-      item.element.classList.remove(`background_${c.name}`)
+      item.element.classList.remove(`background_${color.id}`)
     }
 
     if (color) {
@@ -132,10 +132,10 @@ App.apply_color_mode = (item) => {
   }
 
   if (color_mode.includes(`text`)) {
-    for (let c of App.colors()) {
+    for (let color of App.colors()) {
       item.element.classList.remove(`colored`)
       item.element.classList.remove(`colored_text`)
-      item.element.classList.remove(`text_${c.name}`)
+      item.element.classList.remove(`text_${color.id}`)
     }
 
     if (color) {
@@ -146,11 +146,11 @@ App.apply_color_mode = (item) => {
   }
 }
 
-App.color_icon = (color) => {
+App.color_icon = (id) => {
   let s
 
-  if (App.color_exists(color)) {
-    s = `color_icon background_${color}`
+  if (App.color_exists(id)) {
+    s = `color_icon background_${id}`
   }
   else {
     s = `color_icon background_fallback_color`
@@ -215,16 +215,15 @@ App.color_menu_items = (item) => {
     App.sep(items)
   }
 
-  for (let c of App.colors()) {
-    let color = c.name
-    let icon = App.color_icon(color)
-    let text = App.capitalize(color)
+  for (let color of App.colors()) {
+    let icon = App.color_icon(color.id)
+    let text = color.name
 
     items.push({
       icon: icon,
       text: text,
       action: () => {
-        App.edit_tab_color({item: item, color: color})
+        App.edit_tab_color({item: item, color: color.id})
       }
     })
   }
@@ -261,15 +260,13 @@ App.get_color_items = (mode) => {
       })
     }
 
-    for (let c of App.colors()) {
-      let color = c.name
-
+    for (let color of App.colors()) {
       if (!count[color]) {
         continue
       }
 
-      let icon = App.color_icon(color)
-      let name = App.capitalize(color)
+      let icon = App.color_icon(color.id)
+      let name = color.name
 
       items.push({
         icon: icon,
@@ -350,15 +347,13 @@ App.show_close_color_menu = (e) => {
   let count = App.get_active_colors(`tabs`)
   let items = []
 
-  for (let c of App.colors()) {
-    let color = c.name
-
+  for (let color of App.colors()) {
     if (!count[color]) {
       continue
     }
 
-    let icon = App.color_icon(color)
-    let text = App.capitalize(color)
+    let icon = App.color_icon(color.id)
+    let text = App.capitalize(color.name)
 
     items.push({
       icon: icon,
@@ -405,9 +400,31 @@ App.get_color_icon = (item) => {
 }
 
 App.colors = () => {
-  return App.get_setting(`colors`)
+  let colors = []
+
+  for (let color of App.get_setting(`colors`)) {
+    colors.push({
+      id: App.color_id(color.name),
+      name: color.name,
+      value: color.value,
+    })
+  }
+
+  return colors
+}
+
+App.color_id = (name) => {
+  return name.replace(/\s+/g, `_`).toLowerCase()
 }
 
 App.color_exists = (color) => {
-  return App.colors().map(x => x.name).includes(color)
+  return App.colors().map(x => x.id).includes(color)
+}
+
+App.get_color_by_id = (id) => {
+  for (let color of App.colors()) {
+    if (color.id === id) {
+      return color
+    }
+  }
 }
