@@ -354,7 +354,7 @@ App.show_close_color_menu = (e) => {
     }
 
     let icon = App.color_icon(color.id)
-    let text = App.capitalize(color.name)
+    let text = color.name
 
     items.push({
       icon: icon,
