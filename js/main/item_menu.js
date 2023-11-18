@@ -107,6 +107,7 @@ App.more_menu_items = (args = {}) => {
     App.item_menu_item(items, `unmute_tabs`, {item: args.item})
     App.item_menu_item(items, `unload_tabs`, {item: args.item})
     App.item_menu_item(items, `duplicate_tabs`, {item: args.item})
+    App.item_menu_item(items, `edit_domain_rule`, {item: args.item})
     App.item_menu_item(items, `remove_item_edits`, {item: args.item})
   }
 
