@@ -250,7 +250,7 @@ select {
   outline: 1px solid var(--alt_color_1);
   border-radius: var(--border_radius);
   min-width: 1.7rem;
-  max-width: 100%;
+  box-sizing: content-box;
 }
 
 .button:hover {
