@@ -23,6 +23,21 @@ App.do_show_mode = async (args = {}) => {
 
   App.def_args(def_args, args)
 
+  if (args.mode === `history`) {
+    let perm = await App.ask_permission(`history`)
+
+    if (!perm) {
+      return
+    }
+  }
+  else if (args.mode === `bookmarks`) {
+    let perm = await App.ask_permission(`bookmarks`)
+
+    if (!perm) {
+      return
+    }
+  }
+
   if (!App.get_setting(`reuse_filter`)) {
     args.reuse_filter = false
   }

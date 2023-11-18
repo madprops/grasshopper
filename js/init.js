@@ -14,8 +14,6 @@ App.init = async () => {
   App.stor_get_first_time()
   App.setup_commands()
   App.setup_tabs()
-  App.setup_bookmarks()
-  App.setup_history()
   App.setup_closed()
   App.setup_settings()
   App.setup_tab_box()

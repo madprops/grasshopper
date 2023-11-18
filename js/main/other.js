@@ -152,6 +152,7 @@ App.ask_permission = async (what) => {
     return await browser.permissions.request({permissions: [what]})
   }
   catch (err) {
+    App.error(err)
     return false
   }
 }

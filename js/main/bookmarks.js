@@ -1,4 +1,8 @@
 App.setup_bookmarks = () => {
+  if (App.setup_boomarks_ready) {
+    return
+  }
+
   browser.bookmarks.onCreated.addListener((id, info) => {
     App.debug(`Bookmark Created: ID: ${id}`)
 
@@ -36,6 +40,8 @@ App.setup_bookmarks = () => {
     `show_search_media_menu`,
     `bookmark_page`,
   ]
+
+  App.setup_bookmarks_ready = true
 }
 
 App.get_bookmarks = async (query = ``, deep = false) => {
@@ -103,6 +109,12 @@ App.get_bookmarks_folder = async () => {
 }
 
 App.bookmark_items = async (item, active, feedback = true) => {
+  let perm = await App.ask_permission(`bookmarks`)
+
+  if (!perm) {
+    return
+  }
+
   if (!active) {
     active = App.get_active_items({mode: item.mode, item: item})
   }
@@ -177,6 +189,12 @@ App.bookmark_items = async (item, active, feedback = true) => {
 }
 
 App.bookmark_active = async () => {
+  let perm = await App.ask_permission(`bookmarks`)
+
+  if (!perm) {
+    return
+  }
+
   let tab = await App.get_active_tab()
 
   let item = {

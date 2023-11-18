@@ -459,6 +459,10 @@ App.setup_item_window = (mode) => {
   args.cls = `mode`
 
   args.setup = () => {
+    if (App.optional_modes.includes(mode)) {
+      App[`setup_${mode}`]()
+    }
+
     App.build_item_window(mode)
   }
   args.after_show = () => {

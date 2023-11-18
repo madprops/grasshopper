@@ -1,4 +1,8 @@
 App.setup_history = () => {
+  if (App.setup_history_ready) {
+    return
+  }
+
   browser.history.onVisited.addListener((info) => {
     App.debug(`History Visited`)
 
@@ -11,6 +15,8 @@ App.setup_history = () => {
     `deep_search`,
     `show_search_media_menu`,
   ]
+
+  App.setup_history_ready = true
 }
 
 App.history_time = (deep = false) => {
