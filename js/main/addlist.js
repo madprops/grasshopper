@@ -1067,3 +1067,19 @@ Addlist.check_remove = () => {
     },
   })
 }
+
+Addlist.resolve = (id, pk) => {
+  let oargs = Addlist.oargs(id)
+  let data = Addlist.get_data(id)
+
+  for (let line of data) {
+    if (line[oargs.pk] === pk) {
+      Addlist.edit({id: id, items: line})
+      return
+    }
+  }
+
+  let items = {}
+  items[oargs.pk] = pk
+  Addlist.edit({id: id, items: items})
+}

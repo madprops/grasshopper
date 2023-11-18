@@ -1414,6 +1414,17 @@ App.setup_commands = () => {
       info: `Show the Custom Filters`,
     },
     {
+      name: `Add Domain Rule`,
+      cmd: `add_domain_rule`,
+      modes: [`items`],
+      single: true,
+      icon: notepad_icon,
+      action: (args) => {
+        App.add_domain_rule(args.item)
+      },
+      info: `Shortcut to edit a domain rule`,
+    },
+    {
       name: `Light Colors`,
       cmd: `set_light_colors`,
       icon: theme_icon,

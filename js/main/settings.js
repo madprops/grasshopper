@@ -627,11 +627,15 @@ App.show_settings_resolve = (e) => {
   }
 }
 
-App.show_settings_category = (category) => {
+App.show_settings_category = (category, after_show) => {
   App.start_settings()
   App.get_settings_with_list()
   App.settings_category = category
   App.show_window(`settings_${category}`)
+
+  if (after_show) {
+    after_show()
+  }
 }
 
 App.show_prev_settings = () => {
