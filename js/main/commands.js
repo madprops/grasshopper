@@ -1414,13 +1414,13 @@ App.setup_commands = () => {
       info: `Show the Custom Filters`,
     },
     {
-      name: `Add Domain Rule`,
-      cmd: `add_domain_rule`,
+      name: `Domain Rule`,
+      cmd: `edit_domain_rule`,
       modes: [`items`],
       single: true,
       icon: notepad_icon,
       action: (args) => {
-        App.add_domain_rule(args.item)
+        App.edit_domain_rule(args.item)
       },
       info: `Shortcut to edit a domain rule`,
     },

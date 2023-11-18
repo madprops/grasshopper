@@ -55,7 +55,7 @@ App.domain_rule_message = () => {
   App.alert_autohide(`This is set by domain rules`)
 }
 
-App.add_domain_rule = (item) => {
+App.edit_domain_rule = (item) => {
   App.show_settings_category(`general`, () => {
     Addlist.resolve(`settings_domain_rules`, item.hostname)
   })
