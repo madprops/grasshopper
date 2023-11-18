@@ -19,27 +19,24 @@ App.do_show_mode = async (args = {}) => {
   let def_args = {
     reuse_filter: false,
     force: false,
-    check_permission: true,
   }
 
   App.def_args(def_args, args)
 
-  if (args.check_permission) {
-    if (args.mode === `history`) {
-      let perm = await App.ask_permission(`history`)
+  if (args.mode === `history`) {
+    let perm = await App.ask_permission(`history`)
 
-      if (!perm) {
-        App.alert(`History permission is required`)
-        return
-      }
+    if (!perm) {
+      App.permission_msg(`History`)
+      return
     }
-    else if (args.mode === `bookmarks`) {
-      let perm = await App.ask_permission(`bookmarks`)
+  }
+  else if (args.mode === `bookmarks`) {
+    let perm = await App.ask_permission(`bookmarks`)
 
-      if (!perm) {
-        App.alert(`Bookmarks permission is required`)
-        return
-      }
+    if (!perm) {
+      App.permission_msg(`Bookmarks`)
+      return
     }
   }
 
@@ -209,7 +206,7 @@ App.cycle_modes = async (reverse, reuse_filter = true) => {
     }
   }
 
-  App.show_mode({mode: new_mode, reuse_filter: reuse_filter, check_permission: false})
+  App.show_mode({mode: new_mode, reuse_filter: reuse_filter})
 }
 
 App.show_primary_mode = (allow_same = true) => {

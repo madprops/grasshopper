@@ -152,7 +152,10 @@ App.ask_permission = async (what) => {
     return await browser.permissions.request({permissions: [what]})
   }
   catch (err) {
-    App.error(err)
-    return false
+    return await browser.permissions.contains({permissions: [what]})
   }
+}
+
+App.permission_msg = (what) => {
+  App.alert(`${what} permission is required. Open the top left menu and click on the mode you want to enable`)
 }
