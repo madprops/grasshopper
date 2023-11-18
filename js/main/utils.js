@@ -280,6 +280,11 @@ App.double_linebreak = (s) => {
   return s.replace(/(\n\s*){3,}/g, `\n\n`).replace(/ +/g, ` `).trim()
 }
 
+App.clean_lines = (s) => {
+  let split = s.split(`\n`).map(x => x.trim()).filter(x => x)
+  return split.join(`\n`)
+}
+
 App.contains_number = (str) => {
   return /\d/.test(str)
 }

@@ -217,7 +217,7 @@ Addlist.register = (args = {}) => {
       let tooltip = args.tooltips[key]
 
       if (tooltip) {
-        el.title = App.single_space(tooltip).trim()
+        el.title = App.clean_lines(App.single_space(tooltip))
       }
 
       els.push(el)
