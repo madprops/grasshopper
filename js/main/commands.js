@@ -105,7 +105,7 @@ App.setup_commands = () => {
       info: `Remove color from tabs (${color.name})`,
     })
 
-    icon = App.close_icon
+    icon = App.color_icon(color.id)
     name = `Close ${color.name}`
 
     color_closers.push({
