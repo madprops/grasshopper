@@ -347,9 +347,19 @@ App.get_tag_items = (mode) => {
 
   if (tags.length) {
     tags.sort(fav_sort)
+    let icon = App.tag_icon
+
+    items.push({
+      icon: icon,
+      text: `All`,
+      action: () => {
+        App.filter_tag(mode, `all`)
+      },
+    })
 
     for (let tag of tags.slice(0, App.max_tag_picks)) {
       items.push({
+        icon: icon,
         text: tag,
         action: () => {
           App.filter_tag(mode, tag)
