@@ -12,7 +12,19 @@ App.check_rules = (item) => {
   let rules = App.get_setting(`domain_rules`)
 
   for (let rule of rules) {
-    if (App.wildcard(rule.domain, item.path, rule.exact)) {
+    let match = false
+
+    if (App.is_regex(rule.domain)) {
+      let regstr = rule.domain.slice(1, -1)
+      let regex = new RegExp(regstr)
+      console.log(regex)
+      match = regex.test(item.path)
+    }
+    else if (App.wildcard(rule.domain, item.path, rule.exact)) {
+      match = true
+    }
+
+    if (match) {
       for (let key in App.edit_props) {
         if (key === `tags`) {
           if (rule[key].length) {

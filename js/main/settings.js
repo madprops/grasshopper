@@ -988,7 +988,7 @@ App.fill_settings = (category) => {
 
       widget.id = `settings_${key}`
       el.append(widget)
-      el.title = App.single_space(props.info)
+      el.title = App.single_space(props.info).trim()
 
       if (App.get_setting(`debug_mode`)) {
         el.title += ` (${key})`
@@ -1262,6 +1262,10 @@ App.setup_settings_addlist = () => {
       },
       process: {
         domain: (value) => {
+          if (App.is_regex(value)) {
+            return value
+          }
+
           return App.get_path(value)
         }
       },
@@ -1285,7 +1289,9 @@ App.setup_settings_addlist = () => {
         return true
       },
       tooltips: {
-        domain: `The domain name to check. Wildcards (*) are allowed`,
+        domain: `The domain name to check
+        Wildcards (*) are allowed
+        Regex is allowed by starting and ending with /`,
         exact: `Match exact URL`
       },
       list_text: (items) => {

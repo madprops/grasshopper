@@ -252,7 +252,7 @@ App.no_space = (s) => {
 }
 
 App.single_space = (s) => {
-  return s.replace(/\s+/g, ` `)
+  return s.replace(/ +/g, ` `)
 }
 
 App.remove_special = (s) => {
@@ -495,4 +495,8 @@ App.wildcard = (pattern, str, exact = false) => {
   let end = exact ? `$` : ``
   let re = new RegExp(`^${w.replace(/\*/g, `.*`).replace(/\?/g,`.`)}${end}`, `i`)
   return re.test(str)
+}
+
+App.is_regex = (str) => {
+  return str.startsWith(`/`) && str.endsWith(`/`)
 }
