@@ -1328,6 +1328,7 @@ App.setup_settings_addlist = () => {
       required: {
         value: true,
       },
+      title: props.name,
     }))
   }))
 }
