@@ -173,10 +173,9 @@ App.setup_commands = () => {
     name: `Close Color`,
     cmd: `close_color_all`,
     modes: [`tabs`],
-    item: true,
     icon: close_icon,
     action: (args) => {
-      App.close_color_all(args.item, args.e)
+      App.close_color_all(args.e)
     },
     info: `Show the close color menu`,
   })
@@ -1918,6 +1917,7 @@ App.cmd_item = (args = {}) => {
   }
 
   return {
+    e: args.e,
     icon: args.command.icon,
     text: App.command_name(args.command, args.short),
     info: args.command.info,
