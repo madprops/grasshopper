@@ -91,7 +91,7 @@ App.setup_commands = () => {
       info: `Toggle color on or off (${color.name})`,
     })
 
-    icon = theme_icon
+    icon = App.color_icon(color.id)
     name = `Remove ${color.name}`
 
     color_removers.push({
