@@ -13,6 +13,17 @@ App.create_tab_box = () => {
     App.tab_box_menu(e)
   })
 
+  DOM.ev(title, `wheel`, (e) => {
+    let dir = App.wheel_direction(e)
+
+    if (dir === `up`) {
+      App.cycle_tab_box_mode(`prev`)
+    }
+    else if (dir === `down`) {
+      App.cycle_tab_box_mode(`next`)
+    }
+  })
+
   let pos = App.get_setting(`tab_box_position`)
 
   if (pos === `top`) {
@@ -321,4 +332,28 @@ App.tab_box_mode = (what) => {
 
 App.tab_box_enabled = () => {
   return App.get_setting(`tab_box`) !== `none`
+}
+
+App.cycle_tab_box_mode = (dir) => {
+  let waypoint = false
+  let current = App.get_setting(`tab_box_mode`)
+  let modes = App.tab_box_modes.slice(0)
+
+  if (dir === `prev`) {
+    modes.reverse()
+  }
+
+  for (let mode of modes) {
+    if (waypoint) {
+      App.change_tab_box_mode(mode)
+      return
+    }
+
+    if (mode === current) {
+      waypoint = true
+      continue
+    }
+  }
+
+  App.change_tab_box_mode(modes[0])
 }
