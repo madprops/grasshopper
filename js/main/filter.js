@@ -908,7 +908,7 @@ App.show_filter_history = (mode, e) => {
 
   for (let value of App.filter_history) {
     items.push({
-      text: value,
+      text: value.substring(0, 25).trim(),
       action: () => {
         App.set_filter({mode: mode, text: value})
       },
@@ -944,6 +944,14 @@ App.show_filter_history = (mode, e) => {
     text: `Paste`,
     action: () => {
       App.paste_filter(mode)
+    }
+  })
+
+  items.push({
+    icon: App.notepad_icon,
+    text: `Clear`,
+    action: () => {
+      App.clear_filter(mode)
     }
   })
 
