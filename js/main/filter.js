@@ -665,6 +665,7 @@ App.show_custom_filters = (mode, e) => {
 
 App.set_custom_filter = (mode, filter) => {
   App.set_filter({mode: mode, text: filter})
+  App.focus_filter(mode)
 }
 
 App.do_filter_2 = (mode) => {
