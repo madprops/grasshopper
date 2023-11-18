@@ -123,11 +123,16 @@ App.show_empty_menu = (e) => {
 
 App.button_text = (icon, text) => {
   let use_icon = App.get_setting(`button_icons`)
+  let c = DOM.create(`div`, `button_text`)
 
   if (use_icon && icon) {
-    return `${icon} ${text}`
+    let icon_el = DOM.create(`div`, `flex_row_center`)
+    icon_el.textContent = icon
+    c.append(icon_el)
   }
-  else {
-    return text
-  }
+
+  let text_el = DOM.create(`div`, `flex_row_center`)
+  text_el.textContent = text
+  c.append(text_el)
+  return c
 }

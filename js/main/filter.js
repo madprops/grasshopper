@@ -561,7 +561,9 @@ App.set_filter_mode = (args = {}) => {
   App.def_args(def_args, args)
   let filter_mode = App.get_filter_mode(args.mode, args.type)
   App[`${args.mode}_filter_mode`] = filter_mode.type
-  DOM.el(`#${args.mode}_filter_modes_text`).textContent = App.filter_mode_text(filter_mode)
+  let mode_text = DOM.el(`#${args.mode}_filter_modes_text`)
+  mode_text.innerHTML = ``
+  mode_text.append(App.filter_mode_text(filter_mode))
 
   if (args.filter) {
     if (args.instant) {
@@ -575,7 +577,9 @@ App.set_filter_mode = (args = {}) => {
 
 App.set_custom_filter_mode = (mode, name, title) => {
   App[`${mode}_filter_mode`] = name
-  DOM.el(`#${mode}_filter_modes_text`).textContent = App.filter_mode_text(undefined, name, title)
+  let mode_text = DOM.el(`#${mode}_filter_modes_text`)
+  mode_text.innerHTML = ``
+  mode_text.append(App.filter_mode_text(undefined, name, title))
 }
 
 App.filter_mode_text = (filter_mode, custom_name, custom_title) => {
