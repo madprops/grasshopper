@@ -79,7 +79,7 @@ App.update_tab_box_delay = 100
 App.update_active_trace_delay = 100
 
 App.settings_icons = {
-  general: `⚙️`,
+  general: `⚡`,
   theme: `🎨`,
   colors: `🎨`,
   zones: `🚥`,
