@@ -127,9 +127,33 @@ App.get_tab_box_items = (o_items, mode) => {
 App.set_tab_box_items = () => {
   let mode = App.get_setting(`tab_box_mode`)
   let title = DOM.el(`#tab_box_title`)
-  title.textContent = App.capitalize(mode)
+  title.innerHTML = ``
+  let icon = App.tab_box_icon(mode)
+  let text = App.capitalize(mode)
+  title.append(App.button_text(icon, text))
   let c = DOM.el(`#tab_box_container`)
   App.scroll_to_top(c)
+}
+
+App.tab_box_icon = (mode) => {
+  if (mode === `recent`) {
+    return App.mode_icons.tabs
+  }
+  else if (mode === `pins`) {
+    return App.get_setting(`pin_icon`) || App.pin_icon
+  }
+  else if (mode === `colors`) {
+    return App.settings_icons.theme
+  }
+  else if (mode === `playing`) {
+    return App.get_setting(`playing_icon`) || App.audio_icon
+  }
+  else if (mode === `headers`) {
+    return App.zone_icon
+  }
+  else {
+    return App.mode_icons.tabs
+  }
 }
 
 App.fill_tab_box = (items, scroll = true) => {
@@ -158,7 +182,7 @@ App.tab_box_menu = (e) => {
   if (mode !== `recent`) {
     items.push({
       text: `Recent`,
-      icon: App.mode_icons.tabs,
+      icon: App.tab_box_icon(`recent`),
       action: () => {
         App.change_tab_box_mode(`recent`)
       }
@@ -168,7 +192,7 @@ App.tab_box_menu = (e) => {
   if (mode !== `pins`) {
     items.push({
       text: `Pins`,
-      icon: App.get_setting(`pin_icon`) || App.pin_icon,
+      icon: App.tab_box_icon(`pins`),
       action: () => {
         App.change_tab_box_mode(`pins`)
       }
@@ -178,7 +202,7 @@ App.tab_box_menu = (e) => {
   if (mode !== `colors`) {
     items.push({
       text: `Colors`,
-      icon: App.settings_icons.theme,
+      icon: App.tab_box_icon(`colors`),
       action: () => {
         App.change_tab_box_mode(`colors`)
       }
@@ -188,7 +212,7 @@ App.tab_box_menu = (e) => {
   if (mode !== `playing`) {
     items.push({
       text: `Playing`,
-      icon: App.get_setting(`playing_icon`) || App.audio_icon,
+      icon: App.tab_box_icon(`playing`),
       action: () => {
         App.change_tab_box_mode(`playing`)
       }
@@ -198,7 +222,7 @@ App.tab_box_menu = (e) => {
   if (mode !== `headers`) {
     items.push({
       text: `Headers`,
-      icon: App.zone_icon,
+      icon: App.tab_box_icon(`headers`),
       action: () => {
         App.change_tab_box_mode(`headers`)
       }
