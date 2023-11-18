@@ -122,20 +122,6 @@ App.check_items_keyboard = (e) => {
       e.preventDefault()
       return
     }
-    else if (e.key === `c` || e.key === `x`) {
-      if (item && !filter_highlighted) {
-        App.copy_tabs(item)
-        e.preventDefault()
-        return
-      }
-    }
-    else if (e.key === `v`) {
-      if (item && !filter_highlighted) {
-        App.paste_tabs(item)
-        e.preventDefault()
-        return
-      }
-    }
 
     if (!isNaN(e.key)) {
       App.pick_active_trace(parseInt(e.key))
