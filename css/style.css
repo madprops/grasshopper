@@ -14,7 +14,6 @@
   --split_border: var(--split_width) solid var(--split_color);
   --split_margin: 0.88rem;
   --backdrop: blur(8px);
-  --arrow_font: sans-serif;
 }
 
 @keyframes spin {
@@ -910,7 +909,7 @@ a:hover
 }
 
 .arrow_btn {
-  font-family: var(--arrow_font);
+  font-family: sans-serif;
 }
 
 .arrow_prev {
