@@ -18,4 +18,5 @@
 .menubutton_arrow {
   padding-left: var(--arrow_padding);
   padding-right: var(--arrow_padding);
+  font-family: sans-serif;
 }
