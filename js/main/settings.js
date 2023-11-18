@@ -1291,7 +1291,7 @@ App.setup_settings_addlist = () => {
       tooltips: {
         domain: `The domain root to match
         Wildcards (*) are allowed
-        Regex is allowed by starting and ending with /`,
+        Regex is allowed by using /this/`,
         exact: `Match exact URL`
       },
       list_text: (items) => {
