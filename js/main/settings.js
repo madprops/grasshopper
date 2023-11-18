@@ -615,7 +615,12 @@ App.get_size_options = () => {
 }
 
 App.show_settings = (e) => {
-  App.show_settings_menu(e)
+  if (App.get_setting(`direct_settings`)) {
+    App.show_settings_category(`general`)
+  }
+  else {
+    App.show_settings_menu(e)
+  }
 }
 
 App.show_settings_category = (category, after_show) => {

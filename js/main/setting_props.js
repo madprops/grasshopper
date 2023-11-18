@@ -1693,6 +1693,14 @@ App.build_settings = () => {
       info: `Show icons next to the text on the buttons, like on the Main Menu or Settings`,
       version: 1,
     },
+    direct_settings: {
+      name: `Direct Settings`,
+      type: `checkbox`,
+      value: false,
+      info: `Go straight to General when clicking Settings
+      Else show a menu to pick a category`,
+      version: 1,
+    },
     show_protocol: {
       name: `Show Protocol`,
       type: `checkbox`,
