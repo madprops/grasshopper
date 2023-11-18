@@ -922,6 +922,15 @@ App.show_filter_history = (mode, e) => {
     App.sep(items)
 
     items.push({
+      text: `Forget`,
+      action: () => {
+        App.forget_filter_history()
+      }
+    })
+
+    App.sep(items)
+
+    items.push({
       icon: App.clipboard_icon,
       text: `Copy`,
       action: () => {
@@ -934,15 +943,6 @@ App.show_filter_history = (mode, e) => {
       text: `Paste`,
       action: () => {
         App.paste_filter(mode)
-      }
-    })
-
-    App.sep(items)
-
-    items.push({
-      text: `Forget`,
-      action: () => {
-        App.forget_filter_history()
       }
     })
   }
