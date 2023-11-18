@@ -1074,7 +1074,7 @@ Addlist.resolve = (id, pk) => {
 
   for (let line of data) {
     if (line[oargs.pk] === pk) {
-      Addlist.edit({id: id, items: line})
+      Addlist.edit({id: id, items: line, edit: true})
       return
     }
   }
