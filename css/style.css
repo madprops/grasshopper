@@ -244,6 +244,7 @@ select {
   user-select: none;
   outline: 1px solid var(--alt_color_1);
   border-radius: var(--border_radius);
+  max-width: 100%;
 }
 
 .button:hover {
