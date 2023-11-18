@@ -1392,11 +1392,11 @@ App.build_settings = () => {
       info: `Re-use the filter when moving across modes`,
       version: 1,
     },
-    show_filter_history: {
-      name: `Show Filter History`,
+    filter_context_menu: {
+      name: `Filter Context`,
       type: `checkbox`,
       value: true,
-      info: `Show the filter history when right clicking the Filter`,
+      info: `Show a special menu when using right click on the Filter input`,
       version: 1,
     },
     filter_colors: {

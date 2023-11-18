@@ -626,8 +626,8 @@ App.create_filter = (mode) => {
   }
 
   DOM.ev(filter, `contextmenu`, (e) => {
-    if (App.get_setting(`show_filter_history`)) {
-      App.show_filter_history(mode, e)
+    if (App.get_setting(`filter_context_menu`)) {
+      App.show_filter_context_menu(mode, e)
       e.preventDefault()
     }
   })
@@ -903,8 +903,9 @@ App.previous_filter = (mode) => {
   }
 }
 
-App.show_filter_history = (mode, e) => {
+App.show_filter_context_menu = (mode, e) => {
   let items = []
+  let value = App.get_filter(mode)
 
   for (let value of App.filter_history) {
     items.push({
@@ -931,13 +932,15 @@ App.show_filter_history = (mode, e) => {
     App.sep(items)
   }
 
-  items.push({
-    icon: App.clipboard_icon,
-    text: `Copy`,
-    action: () => {
-      App.copy_filter(mode)
-    }
-  })
+  if (value) {
+    items.push({
+      icon: App.clipboard_icon,
+      text: `Copy`,
+      action: () => {
+        App.copy_filter(mode)
+      }
+    })
+  }
 
   items.push({
     icon: App.clipboard_icon,
@@ -947,13 +950,17 @@ App.show_filter_history = (mode, e) => {
     }
   })
 
-  items.push({
-    icon: App.notepad_icon,
-    text: `Clear`,
-    action: () => {
-      App.clear_filter(mode)
-    }
-  })
+  if (value) {
+    App.sep(items)
+
+    items.push({
+      icon: App.notepad_icon,
+      text: `Clear`,
+      action: () => {
+        App.clear_filter(mode)
+      }
+    })
+  }
 
   App.show_context({items: items, e: e})
 }
