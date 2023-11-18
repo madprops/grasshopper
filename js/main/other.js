@@ -127,12 +127,12 @@ App.button_text = (icon, text) => {
 
   if (use_icon && icon) {
     let icon_el = DOM.create(`div`, `flex_row_center`)
-    icon_el.textContent = icon
+    icon_el.append(icon)
     c.append(icon_el)
   }
 
   let text_el = DOM.create(`div`, `flex_row_center`)
-  text_el.textContent = text
+  text_el.append(text)
   c.append(text_el)
   return c
 }

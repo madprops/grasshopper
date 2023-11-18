@@ -563,7 +563,7 @@ App.set_filter_mode = (args = {}) => {
   App[`${args.mode}_filter_mode`] = filter_mode.type
   let mode_text = DOM.el(`#${args.mode}_filter_modes_text`)
   mode_text.innerHTML = ``
-  mode_text.append(App.filter_mode_text(filter_mode))
+  mode_text.append(App.filter_mode_text({filter_mode: filter_mode}))
 
   if (args.filter) {
     if (args.instant) {
@@ -579,25 +579,26 @@ App.set_custom_filter_mode = (mode, name, title) => {
   App[`${mode}_filter_mode`] = name
   let mode_text = DOM.el(`#${mode}_filter_modes_text`)
   mode_text.innerHTML = ``
-  mode_text.append(App.filter_mode_text(undefined, name, title))
+  mode_text.append(App.filter_mode_text({name: name, title: title}))
 }
 
-App.filter_mode_text = (filter_mode, custom_name, custom_title) => {
+App.filter_mode_text = (args = {}) => {
   let icon, text
 
-  if (filter_mode) {
-    icon = filter_mode.icon
-    text = filter_mode.text
+  if (args.filter_mode) {
+    icon = args.filter_mode.icon
+    text = args.filter_mode.text
   }
-  else if (custom_name) {
-    if (custom_name.startsWith(`tag_`)) {
+  else if (args.name) {
+    if (args.name.startsWith(`tag_`)) {
       icon = App.tag_icon
     }
-    else if (custom_name.startsWith(`color_`)) {
-      icon = App.settings_icons.theme
+    else if (args.name.startsWith(`color_`)) {
+      let color = args.name.replace(`color_`, ``)
+      icon = App.color_icon(color)
     }
 
-    text = custom_title
+    text = args.title
   }
 
   return App.button_text(icon, text)
