@@ -907,15 +907,15 @@ a:hover
 .arrow_prev {
   margin-right: auto;
   margin-left: 0.5rem;
-  padding-left: 0.35rem;
-  padding-right: 0.35rem;
+  padding-left: 0.42rem;
+  padding-right: 0.42rem;
 }
 
 .arrow_next {
   margin-left: auto;
   margin-right: 0.5rem;
-  padding-left: 0.35rem;
-  padding-right: 0.35rem;
+  padding-left: 0.42rem;
+  padding-right: 0.42rem;
 }
 
 .window_top_media {
