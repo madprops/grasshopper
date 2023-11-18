@@ -249,7 +249,7 @@ select {
   user-select: none;
   outline: 1px solid var(--alt_color_1);
   border-radius: var(--border_radius);
-  min-width: 1.7rem;
+  min-width: 1.2rem;
   box-sizing: content-box;
 }
 
