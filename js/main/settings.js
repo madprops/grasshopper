@@ -1289,7 +1289,7 @@ App.setup_settings_addlist = () => {
         return true
       },
       tooltips: {
-        domain: `The domain name to check
+        domain: `The domain root to match
         Wildcards (*) are allowed
         Regex is allowed by starting and ending with /`,
         exact: `Match exact URL`
