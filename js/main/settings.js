@@ -1334,7 +1334,7 @@ App.settings_build_category = (key) => {
   let cat = App.setting_catprops[key]
   let c = DOM.create(`div`, `settings_container`, `settings_${key}_container`)
   let info = DOM.create(`div`, `settings_info`)
-  info.textContent = cat.info
+  info.textContent = App.periods(cat.info)
   c.append(info)
   let sub = DOM.create(`div`, `settings_subcontainer`, `setting_${key}`)
   c.append(sub)

@@ -142,3 +142,7 @@ App.button_text = (icon, text) => {
 App.tooltip = (str) => {
   return App.clean_lines(App.single_space(str))
 }
+
+App.periods = (str) => {
+  return App.tooltip(str).split(`\n`).join(`. `)
+}

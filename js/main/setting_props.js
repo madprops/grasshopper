@@ -1761,8 +1761,10 @@ App.build_settings = () => {
   // Category Properties
   App.setting_catprops = {
     general: {
-      info: `This is the main settings window with some general settings. There are various categories.
-            Clicking the labels shows menus. Use the top buttons to navigate and save/load data`,
+      info: `This is the main settings window with some general settings
+      There are various categories
+      Clicking the labels shows menus
+      Use the top buttons to navigate and save/load data`,
       setup: () => {
         App.settings_make_menu(`text_mode`, [
           {text: `Title`, value: `title`},
@@ -1898,7 +1900,7 @@ App.build_settings = () => {
       ]
     },
     colors: {
-      info: `Set the colors for different kinds of items.
+      info: `Set the colors for different kinds of items
       This includes the edit colors and tab colors`,
       setup: () => {
         App.start_setting_colors(`colors`)
@@ -1916,7 +1918,8 @@ App.build_settings = () => {
       },
     },
     show: {
-      info: `Hide or show interface components. Set component behavior and their menus`,
+      info: `Hide or show interface components
+      Set component behavior and their menus`,
       setup: () => {
         App.settings_make_menu(`show_pinline`, [
           {text: `Never`, value: `never`},
@@ -1985,8 +1988,8 @@ App.build_settings = () => {
       },
     },
     icons: {
-      info: `Customize the icons used by items.
-      These are the icons used for various states.
+      info: `Customize the icons used by items
+      These are the icons used for various states
       You can leave them empty to not show anything`,
       setup: () => {},
     },
@@ -2008,7 +2011,9 @@ App.build_settings = () => {
       setup: () => {},
     },
     media: {
-      info: `How to view media items. An icon appears to the left of items. You can make it view media when clicking the icons, the whole item, or never`,
+      info: `How to view media items
+      An icon appears to the left of items
+      You can make it view media when clicking the icons, the whole item, or never`,
       setup: () => {
         let opts = [
           {text: `Never`, value: `never`},
@@ -2036,8 +2041,9 @@ App.build_settings = () => {
       },
     },
     gestures: {
-      info: `You perform gestures by holding the middle mouse button, moving in a direction, and releasing the button.
-      Each gesture runs a specified command. You can also set the sensitivity of the gestures`,
+      info: `You perform gestures by holding the middle mouse button, moving in a direction, and releasing the button
+      Each gesture runs a specified command
+      You can also set the sensitivity of the gestures`,
       setup: () => {
         App.settings_make_menu(`gestures_threshold`, [
           {text: `Normal`, value: 10},
@@ -2068,8 +2074,8 @@ App.build_settings = () => {
       },
     },
     warns: {
-      info: `When to show the confirmation dialog on certain actions.
-      'Special' forces a confirm depending if tabs have a certain state like pinned, playing, or colored.
+      info: `When to show the confirmation dialog on certain actions
+      'Special' forces a confirm depending if tabs have a certain state like pinned, playing, or colored
       'Multiple' forces a confirm if multiple items are selected`,
       setup: () => {
         let tab_warn_opts = [
