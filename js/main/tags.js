@@ -315,6 +315,7 @@ App.filter_tag_pick = (item, e) => {
 
   for (let tag of App.get_tags(item)) {
     items.push({
+      icon: App.tag_icon,
       text: tag,
       action: () => {
         App.filter_tag(item.mode, tag)
