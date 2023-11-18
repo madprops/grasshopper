@@ -19,22 +19,27 @@ App.do_show_mode = async (args = {}) => {
   let def_args = {
     reuse_filter: false,
     force: false,
+    check_permission: true,
   }
 
   App.def_args(def_args, args)
 
-  if (args.mode === `history`) {
-    let perm = await App.ask_permission(`history`)
+  if (args.check_permission) {
+    if (args.mode === `history`) {
+      let perm = await App.ask_permission(`history`)
 
-    if (!perm) {
-      return
+      if (!perm) {
+        App.alert(`History permission is required`)
+        return
+      }
     }
-  }
-  else if (args.mode === `bookmarks`) {
-    let perm = await App.ask_permission(`bookmarks`)
+    else if (args.mode === `bookmarks`) {
+      let perm = await App.ask_permission(`bookmarks`)
 
-    if (!perm) {
-      return
+      if (!perm) {
+        App.alert(`Bookmarks permission is required`)
+        return
+      }
     }
   }
 
@@ -162,8 +167,25 @@ App.show_primary_mode = () => {
   App.do_show_mode({mode: App.primary_mode})
 }
 
-App.cycle_modes = (reverse, reuse_filter = true) => {
-  let index = App.modes.indexOf(App.window_mode)
+App.cycle_modes = async (reverse, reuse_filter = true) => {
+  let modes = App.modes
+  let history_perm = await browser.permissions.contains({permissions: [`history`]})
+
+  if (!history_perm) {
+    modes = modes.filter((x) => {
+      return x !== `history`
+    })
+  }
+
+  let bookmarks_perm = await browser.permissions.contains({permissions: [`bookmarks`]})
+
+  if (!bookmarks_perm) {
+    modes = modes.filter((x) => {
+      return x !== `bookmarks`
+    })
+  }
+
+  let index = modes.indexOf(App.window_mode)
   let new_mode
 
   if (index === -1) {
@@ -172,22 +194,22 @@ App.cycle_modes = (reverse, reuse_filter = true) => {
 
   if (reverse) {
     if (index === 0) {
-      new_mode = App.modes.slice(-1)[0]
+      new_mode = modes.slice(-1)[0]
     }
     else {
-      new_mode = App.modes[index - 1]
+      new_mode = modes[index - 1]
     }
   }
   else {
-    if (index === App.modes.length - 1) {
-      new_mode = App.modes[0]
+    if (index === modes.length - 1) {
+      new_mode = modes[0]
     }
     else {
-      new_mode = App.modes[index + 1]
+      new_mode = modes[index + 1]
     }
   }
 
-  App.show_mode({mode: new_mode, reuse_filter: reuse_filter})
+  App.show_mode({mode: new_mode, reuse_filter: reuse_filter, check_permission: false})
 }
 
 App.show_primary_mode = (allow_same = true) => {

@@ -312,15 +312,6 @@ App.setup_commands = () => {
     ...show_modes,
 
     {
-      name: `Show Primary`,
-      cmd: `show_primary_mode`,
-      icon: command_icon,
-      action: (args) => {
-        App.show_primary_mode()
-      },
-      info: `Show the primary mode`,
-    },
-    {
       name: `Show Settings`,
       short_name: `Settings`,
       cmd: `show_settings`,
