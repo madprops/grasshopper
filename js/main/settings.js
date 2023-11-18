@@ -496,7 +496,7 @@ App.add_settings_switchers = (category) => {
     App.hide_window()
   })
 
-  let prev = DOM.create(`div`, `button arrow_prev`)
+  let prev = DOM.create(`div`, `button arrow_btn arrow_prev`)
   prev.textContent = `<`
   container.prepend(prev)
 
@@ -504,7 +504,7 @@ App.add_settings_switchers = (category) => {
     App.show_prev_settings()
   })
 
-  let next = DOM.create(`div`, `button arrow_next`)
+  let next = DOM.create(`div`, `button arrow_btn arrow_next`)
   next.textContent = `>`
   container.append(next)
 

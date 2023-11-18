@@ -14,7 +14,3 @@
   flex-grow: 1;
   border-radius: unset;
 }
-
-.menubutton_arrow {
-  font-family: var(--arrow_font);
-}

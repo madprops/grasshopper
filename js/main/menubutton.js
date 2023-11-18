@@ -12,9 +12,9 @@ Menubutton.create = (args = {}) => {
   }
 
   args.container = DOM.create(`div`, `menubutton_container`)
-  let prev = DOM.create(`div`, `menubutton_arrow button`)
+  let prev = DOM.create(`div`, `button arrow_btn`)
   prev.textContent = `<`
-  let next = DOM.create(`div`, `menubutton_arrow button`)
+  let next = DOM.create(`div`, `button arrow_btn`)
   next.textContent = `>`
 
   DOM.ev(args.button, `click`, () => {
