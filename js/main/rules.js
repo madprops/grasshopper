@@ -29,21 +29,23 @@ App.check_rules = (item) => {
         if (key === `tags`) {
           if (rule[key].length) {
             item[`rule_${key}`] = App.taglist(rule[key])
+            item.ruled = true
           }
         }
         else if (key === `color`) {
           if (rule[key] && (rule[key] !== `none`)) {
             item[`rule_${key}`] = rule[key]
+            item.ruled = true
           }
         }
         else {
           if (rule[key]) {
             item[`rule_${key}`] = rule[key]
+            item.ruled = true
           }
         }
       }
 
-      item.ruled = true
       break
     }
   }
