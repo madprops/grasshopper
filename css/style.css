@@ -15,6 +15,7 @@
   --split_margin: 0.88rem;
   --backdrop: blur(8px);
   --arrow_padding: 0.42rem;
+  --arrow_font: sans-serif;
 }
 
 @keyframes spin {
@@ -910,6 +911,7 @@ a:hover
   margin-left: 0.5rem;
   padding-left: var(--arrow_padding);
   padding-right: var(--arrow_padding);
+  font-family: var(--arrow_font);
 }
 
 .arrow_next {
@@ -917,6 +919,7 @@ a:hover
   margin-right: 0.5rem;
   padding-left: var(--arrow_padding);
   padding-right: var(--arrow_padding);
+  font-family: var(--arrow_font);
 }
 
 .window_top_media {
