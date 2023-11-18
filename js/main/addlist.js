@@ -194,7 +194,7 @@ Addlist.register = (args = {}) => {
       })
     }
     else if (w === `checkbox`) {
-      el = DOM.create(`div`, `addlist_checkbox`)
+      el = DOM.create(`div`, `addlist_checkbox_container`)
       let checkbox = DOM.create(`input`, `checkbox addlist_checkbox`, id)
       checkbox.type = `checkbox`
       let label = DOM.create(`div`)
