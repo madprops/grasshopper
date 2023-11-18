@@ -16,6 +16,6 @@
 }
 
 .menubutton_arrow {
-  padding-left: 0.42rem;
-  padding-right: 0.42rem;
+  padding-left: var(--arrow_padding);
+  padding-right: var(--arrow_padding);
 }
