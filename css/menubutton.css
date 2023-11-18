@@ -14,3 +14,8 @@
   flex-grow: 1;
   border-radius: unset;
 }
+
+.menubutton_arrow {
+  padding-left: 0.35rem;
+  padding-right: 0.35rem;
+}
