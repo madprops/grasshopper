@@ -5,9 +5,9 @@
     "description": "Godspeed You Tab Emperor",
     "permissions": [
         "tabs",
-        "sessions",
         "history",
         "bookmarks",
+        "sessions",
         "clipboardRead"
     ],
     "icons": {
