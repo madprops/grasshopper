@@ -16,7 +16,7 @@ App.check_rules = (item) => {
 
     if (App.is_regex(rule.domain)) {
       let regstr = rule.domain.slice(1, -1)
-      let regex = new RegExp(regstr)
+      let regex = new RegExp(regstr, `i`)
       match = regex.test(item.path)
     }
     else if (App.wildcard(rule.domain, item.path, rule.exact)) {
