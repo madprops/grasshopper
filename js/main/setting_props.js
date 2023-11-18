@@ -1103,8 +1103,15 @@ App.build_settings = () => {
       type: `menu`,
       value: `icon`,
       info: `How to display the colors (green, red, etc) you assign to tabs`,
-      separator: true,
       version: 2,
+    },
+    color_icon_click: {
+      name: `Color Icon Click`,
+      type: `checkbox`,
+      value: true,
+      info: `Show the color menu by clicking a color icon`,
+      separator: true,
+      version: 1,
     },
     text_color_active_enabled: {
       name: `Active Tabs (Text)`,
@@ -1645,13 +1652,6 @@ App.build_settings = () => {
       type: `checkbox`,
       value: true,
       info: `Show the active tab at the top when showing Recent Tabs`,
-      version: 1,
-    },
-    color_icon_click: {
-      name: `Color Icon Click`,
-      type: `checkbox`,
-      value: true,
-      info: `Show the color menu by clicking a color icon`,
       version: 1,
     },
     notes_icon_click: {
