@@ -35,7 +35,7 @@ App.restore = () => {
 
   let mode = App.active_mode
 
-  if ((mode !== App.primary_mode()) || App.is_filtered(mode)) {
+  if ((mode !== App.primary_mode) || App.is_filtered(mode)) {
     App.show_primary_mode()
   }
   else {

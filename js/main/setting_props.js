@@ -70,14 +70,6 @@ App.build_settings = () => {
       info: `Which effect to show on loading tabs`,
       version: 1,
     },
-    primary_mode: {
-      name: `Primary Mode`,
-      type: `menu`,
-      value: `tabs`,
-      info: `The main preferred mode
-      This is shown at startup`,
-      version: 1,
-    },
     tab_sort: {
       name: `Tab Sort`,
       type: `menu`,
@@ -1801,13 +1793,6 @@ App.build_settings = () => {
           {text: `Spin`, value: `spin`},
           {text: `Invert`, value: `invert`},
           {text: `Border`, value: `border`},
-        ])
-
-        App.settings_make_menu(`primary_mode`, [
-          {text: `Tabs`, value: `tabs`},
-          {text: `History`, value: `history`},
-          {text: `Bookmarks`, value: `bookmarks`},
-          {text: `Closed`, value: `closed`},
         ])
 
         App.settings_make_menu(`tab_sort`, [

@@ -14,6 +14,7 @@ App.close_tabs_types = [`normal`, `playing`, `unloaded`, `duplicate`, `loaded`, 
 App.tab_box_modes = [`recent`, `pins`, `colors`, `playing`, `headers`]
 App.local_fonts = [`serif`, `sans-serif`, `monospace`]
 App.optional_modes = [`history`, `bookmarks`]
+App.primary_mode = `tabs`
 App.default_setting_string = `__default__`
 App.separator_string = `--separator--`
 App.windows = {}

@@ -159,7 +159,7 @@ App.get_mode_name = (mode) => {
 }
 
 App.show_primary_mode = () => {
-  App.do_show_mode({mode: App.primary_mode()})
+  App.do_show_mode({mode: App.primary_mode})
 }
 
 App.cycle_modes = (reverse, reuse_filter = true) => {
@@ -190,12 +190,8 @@ App.cycle_modes = (reverse, reuse_filter = true) => {
   App.show_mode({mode: new_mode, reuse_filter: reuse_filter})
 }
 
-App.primary_mode = () => {
-  return App.get_setting(`primary_mode`)
-}
-
 App.show_primary_mode = (allow_same = true) => {
-  let mode = App.primary_mode()
+  let mode = App.primary_mode
 
   if (!allow_same) {
     if (App.active_mode === mode) {
