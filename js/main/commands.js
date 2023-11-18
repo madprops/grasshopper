@@ -1246,7 +1246,7 @@ App.setup_commands = () => {
       color: true,
       icon: theme_icon,
       action: (args) => {
-        App.filter_color(args.mode, App.get_color(args.item))
+        App.filter_color(args.mode, App.get_color(args.item), true)
       },
       info: `Filter: Show same color`,
     },

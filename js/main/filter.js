@@ -1058,12 +1058,14 @@ App.filter_header = (mode) => {
   App.toggle_filter(mode, `header`)
 }
 
-App.filter_tag = (mode, tag) => {
+App.filter_tag = (mode, tag, toggle = false) => {
   let name = `tag_${tag}`
 
-  if (App[`${mode}_filter_mode`] === name) {
-    App.filter_all(mode)
-    return
+  if (toggle) {
+    if (App[`${mode}_filter_mode`] === name) {
+      App.filter_all(mode)
+      return
+    }
   }
 
   let s
@@ -1076,15 +1078,17 @@ App.filter_tag = (mode, tag) => {
   }
 
   App.set_custom_filter_mode(mode, name, s)
-  App.set_filter({mode: mode})
+  App.do_filter({mode: mode})
 }
 
-App.filter_color = (mode, color) => {
+App.filter_color = (mode, color, toggle = false) => {
   let name = `color_${color}`
 
-  if (App[`${mode}_filter_mode`] === name) {
-    App.filter_all(mode)
-    return
+  if (toggle) {
+    if (App[`${mode}_filter_mode`] === name) {
+      App.filter_all(mode)
+      return
+    }
   }
 
   let s
@@ -1098,7 +1102,7 @@ App.filter_color = (mode, color) => {
   }
 
   App.set_custom_filter_mode(mode, name, s)
-  App.set_filter({mode: mode})
+  App.do_filter({mode: mode})
 }
 
 App.blur_filter = (mode) => {
