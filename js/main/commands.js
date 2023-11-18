@@ -326,7 +326,7 @@ App.setup_commands = () => {
       cmd: `show_settings`,
       icon: settings_icon,
       action: (args) => {
-        App.show_settings_resolve(args.e)
+        App.show_settings(args.e)
       },
       info: `Show the Settings window`,
     },

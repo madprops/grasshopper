@@ -1643,14 +1643,6 @@ App.build_settings = () => {
       info: `Allow rounded corners in some parts of the interface`,
       version: 1,
     },
-    direct_settings: {
-      name: `Direct Settings`,
-      type: `checkbox`,
-      value: true,
-      info: `Go straight to General when clicking Settings
-      Else show a menu to pick a category`,
-      version: 1,
-    },
     sort_commands: {
       name: `Sort Commands`,
       type: `checkbox`,
