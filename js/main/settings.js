@@ -834,10 +834,12 @@ App.settings_menu_items = () => {
   for (let c of App.settings_categories) {
     let icon = App.settings_icons[c]
     let name = App.category_string(c)
+    let props =  App.setting_catprops[c]
 
     items.push({
       icon: icon,
       text: name,
+      info: App.tooltip(props.info),
       action: () => {
         App.show_settings_category(c)
       },
@@ -983,7 +985,7 @@ App.fill_settings = (category) => {
 
       widget.id = `settings_${key}`
       el.append(widget)
-      el.title = App.clean_lines(App.single_space(props.info))
+      el.title = App.tooltip(props.info)
 
       if (App.get_setting(`debug_mode`)) {
         el.title += ` (${key})`

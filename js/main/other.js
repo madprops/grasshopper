@@ -138,3 +138,7 @@ App.button_text = (icon, text) => {
 
   return container
 }
+
+App.tooltip = (str) => {
+  return App.clean_lines(App.single_space(str))
+}
