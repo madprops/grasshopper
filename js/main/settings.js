@@ -822,12 +822,7 @@ App.settings_commands = (include_none = true) => {
   }
 
   for (let cmd of App.commands) {
-    if (cmd.name === App.separator_string) {
-      items.push({text: App.separator_string})
-    }
-    else {
-      items.push({text: cmd.name, value: cmd.cmd, icon: cmd.icon, info: cmd.info})
-    }
+    items.push({text: cmd.name, value: cmd.cmd, icon: cmd.icon, info: cmd.info})
   }
 
   return items

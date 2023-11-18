@@ -289,9 +289,6 @@ App.setup_commands = () => {
       info: `Paste tabs at the current position`,
     },
     {
-      name: App.separator_string
-    },
-    {
       name: `Previous Mode`,
       cmd: `show_previous_mode`,
       modes: [`items`],
@@ -412,9 +409,6 @@ App.setup_commands = () => {
       info: `Show the previous filter used before going back to All`,
     },
     {
-      name: App.separator_string
-    },
-    {
       name: `Open`,
       cmd: `open_items`,
       modes: [`items`],
@@ -482,9 +476,6 @@ App.setup_commands = () => {
       info: `Copy the title of an item`,
     },
     {
-      name: App.separator_string
-    },
-    {
       name: `Go Back`,
       cmd: `browser_back`,
       icon: browser_icon,
@@ -519,9 +510,6 @@ App.setup_commands = () => {
         App.show_browser_menu(args.e)
       },
       info: `Show the browser menu`,
-    },
-    {
-      name: App.separator_string
     },
     {
       name: `New`,
@@ -904,9 +892,6 @@ App.setup_commands = () => {
       info: `Select all unloaded tabs`,
     },
     {
-      name: App.separator_string
-    },
-    {
       name: `Filter History`,
       cmd: `show_filter_history`,
       modes: [`items`],
@@ -957,9 +942,6 @@ App.setup_commands = () => {
         App.forget_closed_item(args.item)
       },
       info: `Forget a single closed item`,
-    },
-    {
-      name: App.separator_string
     },
     {
       name: `Edit Title`,
@@ -1226,16 +1208,8 @@ App.setup_commands = () => {
       },
       info: `Remove all edits from specific items`,
     },
-    {
-      name: App.separator_string
-    },
 
     ...color_changers,
-
-    {
-      name: App.separator_string
-    },
-
     ...media_filters,
     ...color_filters,
 
@@ -1440,9 +1414,6 @@ App.setup_commands = () => {
       info: `Show the Custom Filters`,
     },
     {
-      name: App.separator_string
-    },
-    {
       name: `Light Colors`,
       cmd: `set_light_colors`,
       icon: theme_icon,
@@ -1490,9 +1461,6 @@ App.setup_commands = () => {
       info: `Change the background to the selected image`,
     },
     {
-      name: App.separator_string
-    },
-    {
       name: `Restart`,
       cmd: `restart_extension`,
       icon: bot_icon,
@@ -1520,7 +1488,7 @@ App.update_command_history = (cmd) => {
 }
 
 App.sort_commands = () => {
-  App.sorted_commands = App.commands.filter(x => !x.name.startsWith(`--`)).slice(0)
+  App.sorted_commands = App.commands.slice(0)
 
   if (!App.get_setting(`sort_commands`)) {
     return

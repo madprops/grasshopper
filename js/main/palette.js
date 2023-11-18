@@ -26,13 +26,11 @@ App.start_palette = () => {
 
 App.show_palette = (prefilter = ``) => {
   App.start_palette()
-  // Create initial elements
   App.setup_popup(`palette`)
   let container = DOM.el(`#palette_items`)
   let filter = DOM.el(`#palette_filter`)
   let els = DOM.els(`.palette_item`, container)
 
-  // Hide all commands that are not available in the current mode
   for (let el of els) {
     el.classList.remove(`hidden`)
     let command = App.get_command(el.dataset.command)
