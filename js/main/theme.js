@@ -298,6 +298,14 @@ App.do_apply_theme = (args = {}) => {
 
     let cb = App.get_setting(`close_button`)
     main.classList.add(`close_button_${cb}`)
+
+    if (App.get_setting(`button_icons`)) {
+      main.classList.add(`button_text_icon_enabled`)
+    }
+    else {
+      main.classList.remove(`button_text_icon_enabled`)
+    }
+
     App.insert_color_css()
     App.insert_custom_css()
   }

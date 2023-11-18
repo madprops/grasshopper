@@ -1394,3 +1394,11 @@ a:hover
   justify-content: center;
   gap: 0.35rem;
 }
+
+.button_text_icon {
+  display: none;
+}
+
+.button_text_icon_enabled .button_text_icon {
+  display: flex;
+}

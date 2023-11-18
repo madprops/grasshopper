@@ -1672,6 +1672,7 @@ App.build_settings = () => {
       name: `Button Icons`,
       type: `checkbox`,
       value: true,
+      actions: [`theme`],
       info: `Show icons next to the text on the buttons, like on the Main Menu or Settings`,
       version: 1,
     },
