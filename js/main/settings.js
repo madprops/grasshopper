@@ -1285,7 +1285,7 @@ App.setup_settings_addlist = () => {
         return true
       },
       tooltips: {
-        domain: `The domain name to check. Wildcards (*) are allowed.`,
+        domain: `The domain name to check. Wildcards (*) are allowed`,
         exact: `Match exact URL`
       },
       list_text: (items) => {
