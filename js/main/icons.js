@@ -458,7 +458,7 @@ App.remove_item_icon = (item) => {
     let it = active[0]
 
     if (it.rule_icon && !it.custom_icon) {
-      App.alert_autohide(`This icon is set by domain rules`)
+      App.domain_rule_message()
       return
     }
   }

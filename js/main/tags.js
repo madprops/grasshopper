@@ -230,7 +230,7 @@ App.do_replace_tag = (tag_1, tag_2) => {
 
 App.check_tag_rule = (item, tag) => {
   if (item.rule_tags.includes(tag)) {
-    App.alert_autohide(`This tag is set by domain rules`)
+    App.domain_rule_message()
     return true
   }
 

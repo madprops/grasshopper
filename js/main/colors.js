@@ -179,7 +179,7 @@ App.edit_tab_color = (args = {}) => {
 
   if (active.length === 1 && !args.color) {
     if (active[0].rule_color && !args.item.custom_color) {
-      App.alert_autohide(`This color is set by domain rules`)
+      App.domain_rule_message()
       return
     }
   }

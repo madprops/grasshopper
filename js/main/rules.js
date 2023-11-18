@@ -50,3 +50,7 @@ App.check_rules = (item) => {
     }
   }
 }
+
+App.domain_rule_message = () => {
+  App.alert_autohide(`This is set by domain rules`)
+}

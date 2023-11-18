@@ -60,7 +60,7 @@ App.remove_item_split = (item) => {
 
   if (active.length === 1) {
     if (item.rule_split_top || item.rule_split_bottom) {
-      App.alert_autohide(`Some splits are set by domain rules`)
+      App.domain_rule_message()
     }
   }
 

@@ -79,7 +79,7 @@ App.remove_item_title = (item) => {
     let it = active[0]
 
     if (it.rule_title && !it.custom_title) {
-      App.alert_autohide(`This title is set by domain rules`)
+      App.domain_rule_message()
       return
     }
   }

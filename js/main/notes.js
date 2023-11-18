@@ -39,7 +39,7 @@ App.remove_item_notes = (item, single = false) => {
     let it = active[0]
 
     if (it.rule_notes && !it.custom_notes) {
-      App.alert_autohide(`These notes are set by domain rules`)
+      App.domain_rule_message()
       return
     }
   }
