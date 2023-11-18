@@ -470,6 +470,7 @@ App.set_filter = (args = {}) => {
 
   App.def_args(def_args, args)
   App.get_filter_el(args.mode).value = args.text
+  App.update_filter_history(args.mode)
 
   if (args.filter) {
     if (App.on_items(args.mode)) {
