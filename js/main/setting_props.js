@@ -74,21 +74,24 @@ App.build_settings = () => {
       name: `Primary Mode`,
       type: `menu`,
       value: `tabs`,
-      info: `The main preferred mode. This is shown at startup`,
+      info: `The main preferred mode
+      This is shown at startup`,
       version: 1,
     },
     tab_sort: {
       name: `Tab Sort`,
       type: `menu`,
       value: `normal`,
-      info: `How to sort the tabs. Either normally by index order, or by having the most recently visited tabs at the top`,
+      info: `How to sort the tabs
+      Either by index or by recent use`,
       version: 1,
     },
     auto_restore: {
       name: `Auto-Restore`,
       type: `menu`,
       value: `never`,
-      info: `When to auto-restore after the mouse leaves the window. Or if it should restore instantly after an action.
+      info: `When to auto-restore after the mouse leaves the window
+      Or if it should restore instantly after an action
       Restore means going back to the primary mode and clearing the filter`,
       version: 1,
     },
@@ -96,14 +99,16 @@ App.build_settings = () => {
       name: `Popup Width`,
       type: `menu`,
       value: 75,
-      info: `Width of the popup. It doesn't affect the sidebar`,
+      info: `Width of the popup
+      It doesn't affect the sidebar`,
       version: 1,
     },
     height: {
       name: `Popup Height`,
       type: `menu`,
       value: 85,
-      info: `Height of the popup. It doesn't affect the sidebar`,
+      info: `Height of the popup
+      It doesn't affect the sidebar`,
       version: 1,
     },
     domain_rules: {
@@ -147,7 +152,7 @@ App.build_settings = () => {
       name: `Icon Pick`,
       type: `checkbox`,
       value: false,
-      info: `Clicking the icons (favicon) of items toggles select.
+      info: `Clicking the icons (favicon) of items toggles select
       Right clicking the icon on an item deselects all items except that one`,
       version: 1,
     },
@@ -155,7 +160,8 @@ App.build_settings = () => {
       name: `Lock Drag`,
       type: `checkbox`,
       value: false,
-      info: `Require holding Ctrl to drag tab items vertically. This is to avoid accidental re-ordering`,
+      info: `Require holding Ctrl to drag tab items vertically
+      This is to avoid accidental re-ordering`,
       version: 1,
     },
     auto_blur: {
@@ -195,7 +201,8 @@ App.build_settings = () => {
       actions: [`theme`],
       placeholder: `Image URL`,
       btns: [`pick`],
-      info: `The background image below the background color. Pick from the list or enter a URL`,
+      info: `The background image below the background color
+      Pick from the list or enter a URL`,
       version: 1,
     },
     background_effect: {
@@ -222,7 +229,8 @@ App.build_settings = () => {
       value: ``,
       placeholder: `Font Name`,
       btns: [`pick`],
-      info: `Font to use for the text. Pick from the list, or enter a Google Font name, or enter a font URL`,
+      info: `Font to use for the text
+      Pick from the list, or enter a Google Font name, or enter a font URL`,
       version: 1,
     },
     font_size: {
@@ -233,7 +241,8 @@ App.build_settings = () => {
       placeholder: `Px`,
       min: 6,
       max: 28,
-      info: `The font size in pixels to use for text. The interface scales accordingly`,
+      info: `The font size in pixels to use for text
+      The interface scales accordingly`,
       separator: true,
       version: 1,
     },
@@ -390,7 +399,8 @@ App.build_settings = () => {
       type: `text_smaller`,
       value: ``,
       placeholder: App.icon_placeholder,
-      info: `Icon for active tabs. Active means the current visible tab in the browser`,
+      info: `Icon for active tabs
+      Active means the current visible tab in the browser`,
       version: 1,
     },
     pin_icon: {
@@ -486,7 +496,8 @@ App.build_settings = () => {
       type: `text_smaller`,
       value: ``,
       placeholder: App.icon_placeholder,
-      info: `Icon for edited tabs. Edits include color, tags, notes, etc`,
+      info: `Icon for edited tabs
+      Edits include color, tags, notes, etc`,
       version: 1,
     },
   }
@@ -499,7 +510,8 @@ App.build_settings = () => {
       name: `Favorites Mode`,
       type: `menu`,
       value: `none`,
-      info: `How to show the Favorites Menu. A bar near the top, or a button at the top right`,
+      info: `How to show the Favorites Menu
+      A bar near the top, or a button at the top right`,
       version: 1,
     },
     favorites_menu: {
@@ -556,21 +568,24 @@ App.build_settings = () => {
       name: `Tab Box Icons`,
       type: `checkbox`,
       value: true,
-      info: `Enable icons in the items of the Tab Box. This means icons like muted, or notes`,
+      info: `Enable icons in the items of the Tab Box
+      This means icons like muted, or notes`,
       version: 1,
     },
     tab_box_colors: {
       name: `Tab Box Colors`,
       type: `checkbox`,
       value: true,
-      info: `Enable colors in the items of the Tab Box. Like green, red, etc`,
+      info: `Enable colors in the items of the Tab Box
+      Like green, red, etc`,
       version: 1,
     },
     tab_box_tab_colors: {
       name: `Tab Box Tab Colors`,
       type: `checkbox`,
       value: true,
-      info: `Enable tab colors in the items of the Tab Box. Like active color, etc`,
+      info: `Enable tab colors in the items of the Tab Box
+      Like active color, etc`,
       version: 1,
     },
     tab_box_taglist: {
@@ -614,8 +629,9 @@ App.build_settings = () => {
       name: `Extra Menu Mode`,
       type: `menu`,
       value: `none`,
-      info: `How to show the Extra Menu on right click. Either on its own submenu,
-      flat at the root level, or totally replace the Item Menu. This menu only appears in Tabs mode`,
+      info: `How to show the Extra Menu on right click
+      Either on its own submenu, flat at the root level, or totally replace the Item Menu
+      This menu only appears in Tabs mode`,
       version: 1,
     },
     extra_menu: {
@@ -691,7 +707,8 @@ App.build_settings = () => {
       name: `Show Footer`,
       type: `checkbox`,
       value: true,
-      info: `Show a footer at the bottom with some information. Clicking this scrolls the item list to the bottom`,
+      info: `Show a footer at the bottom with some information
+      Clicking this scrolls the item list to the bottom`,
       version: 1,
     },
     show_feedback: {
@@ -712,21 +729,24 @@ App.build_settings = () => {
       name: `Hide Pins`,
       type: `checkbox`,
       value: false,
-      info: `Don't show the pins. Might be used in combination with the Tab Box`,
+      info: `Don't show the pins
+      Might be used in combination with the Tab Box`,
       version: 1,
     },
     active_trace: {
       name: `Active Trace`,
       type: `checkbox`,
       value: false,
-      info: `Show numbers as a trace on recently used tabs. It goes from 1 to 9`,
+      info: `Show numbers as a trace on recently used tabs
+      It goes from 1 to 9`,
       version: 1,
     },
     show_scrollbars: {
       name: `Show Scrollbars`,
       type: `checkbox`,
       value: false,
-      info: `Show the regular scrollbars. Else scrollbars are disabled`,
+      info: `Show the regular scrollbars
+      Else scrollbars are disabled`,
       version: 1,
     },
   }
@@ -1017,7 +1037,8 @@ App.build_settings = () => {
       name: `Split Color`,
       type: `checkbox`,
       value: false,
-      info: `Use the split custom color. Else use a proper color automatically`,
+      info: `Use the split custom color
+      Else use a proper color automatically`,
       version: 1,
     },
     split_color: {
@@ -1335,7 +1356,8 @@ App.build_settings = () => {
       value: [
         {a: `planet`, b: `earth`}
       ],
-      info: `Aliases to use when filtering items. Searching for one will return results if the other matches`,
+      info: `Aliases to use when filtering items
+      Searching for one will return results if the other matches`,
       version: 3,
     },
     custom_filters: {
@@ -1345,7 +1367,8 @@ App.build_settings = () => {
         {filter: `re: (today|$day)`},
         {filter: `re: ($month|$year)`},
       ],
-      info: `Pre-made filters to use. These appear in the Custom section or by using the command`,
+      info: `Pre-made filters to use
+      These appear in the Custom section or by using the command`,
       version: 3,
     },
     clean_filter: {
@@ -1380,7 +1403,7 @@ App.build_settings = () => {
       name: `Filter Colors`,
       type: `checkbox`,
       value: true,
-      info: `Consider colors when using the filter normally. Like typing 'red'`,
+      info: `Consider colors when using the filter normally, like typing 'red'`,
       version: 1,
     },
     filter_tags: {
@@ -1489,7 +1512,8 @@ App.build_settings = () => {
       name: `Keyboard Shortcuts`,
       type: `list`,
       value: [],
-      info: `Extra keyboard shortcuts. If these are triggered the default shortcuts get ignored`,
+      info: `Extra keyboard shortcuts
+      If these are triggered the default shortcuts get ignored`,
       separator: true,
       version: 4,
     },
@@ -1551,7 +1575,7 @@ App.build_settings = () => {
       placeholder: `Number`,
       min: App.number_min,
       max: App.number_max,
-      info: `Delay to trigger a command when double pressing a key like Ctrl (milliseconds).
+      info: `Delay to trigger a command when double pressing a key like Ctrl (milliseconds)
       The bigger the delay the easier it is to trigger the command`,
       version: 1,
     },
@@ -1562,7 +1586,7 @@ App.build_settings = () => {
       placeholder: `Number`,
       min: App.number_min,
       max: App.number_max,
-      info: `Delay to trigger a command when long pressing a key like Ctrl (milliseconds).
+      info: `Delay to trigger a command when long pressing a key like Ctrl (milliseconds)
       This is the amount of time to hold the key down to trigger the command`,
       version: 1,
     },
@@ -1573,7 +1597,7 @@ App.build_settings = () => {
       placeholder: `Number`,
       min: App.number_min,
       max: App.number_max,
-      info: `Delay to trigger action when long pressing a mouse button (milliseconds).
+      info: `Delay to trigger action when long pressing a mouse button (milliseconds)
       This is the amount of time to hold the mouse button down to trigger the command`,
       version: 1,
     },
@@ -1623,7 +1647,8 @@ App.build_settings = () => {
       name: `Direct Settings`,
       type: `checkbox`,
       value: true,
-      info: `Go straight to General when clicking Settings. Else show a menu to pick a category`,
+      info: `Go straight to General when clicking Settings
+      Else show a menu to pick a category`,
       version: 1,
     },
     sort_commands: {
@@ -1687,7 +1712,8 @@ App.build_settings = () => {
       name: `Short Commands`,
       type: `checkbox`,
       value: false,
-      info: `Prefer short command name versions when displaying them. Like 'Red' instead of 'Color Red'`,
+      info: `Prefer short command name versions when displaying them
+      Like 'Red' instead of 'Color Red'`,
       version: 1,
     },
     step_back_recent: {
