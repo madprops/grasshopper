@@ -1249,6 +1249,7 @@ a:hover
 }
 
 .hover_button:hover {
+  cursor: pointer;
   opacity: 1;
 }
 
