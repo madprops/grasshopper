@@ -45,6 +45,10 @@ App.remove_protocol = (url) => {
 }
 
 App.copy_to_clipboard = (text, what = `Text`) => {
+  if (!text) {
+    return
+  }
+
   navigator.clipboard.writeText(text)
   App.alert_autohide(`${what} copied to clipboard`)
 }
