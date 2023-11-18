@@ -1335,7 +1335,11 @@ App.cycle_filter_modes = (mode, reverse = true) => {
 }
 
 App.copy_filter = (mode) => {
-  App.copy_to_clipboard(App.get_filter(mode), `Filter`)
+  let filter = App.get_filter(mode)
+
+  if (filter) {
+    App.copy_to_clipboard(filter, `Filter`)
+  }
 }
 
 App.paste_filter = async (mode) => {
