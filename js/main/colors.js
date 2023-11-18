@@ -98,7 +98,7 @@ App.apply_color_mode = (item) => {
     let c_obj = App.get_color_by_id(color)
 
     if (c_obj) {
-      el.title = `Color: ${c_obj.name}`
+      el.title = c_obj.name
     }
     else {
       el.title = `Color doesn't exist (${color})`

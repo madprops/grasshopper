@@ -595,7 +595,13 @@ App.filter_mode_text = (args = {}) => {
     }
     else if (args.name.startsWith(`color_`)) {
       let color = args.name.replace(`color_`, ``)
-      icon = App.color_icon(color)
+
+      if (color === `all`) {
+        icon = App.settings_icons.theme
+      }
+      else {
+        icon = App.color_icon(color)
+      }
     }
 
     text = args.title
