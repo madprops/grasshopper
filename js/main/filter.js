@@ -922,6 +922,24 @@ App.show_filter_history = (mode, e) => {
     App.sep(items)
 
     items.push({
+      icon: App.clipboard_icon,
+      text: `Copy`,
+      action: () => {
+        App.copy_filter(mode)
+      }
+    })
+
+    items.push({
+      icon: App.clipboard_icon,
+      text: `Paste`,
+      action: () => {
+        App.paste_filter(mode)
+      }
+    })
+
+    App.sep(items)
+
+    items.push({
       text: `Forget`,
       action: () => {
         App.forget_filter_history()
@@ -1314,4 +1332,16 @@ App.cycle_filter_modes = (mode, reverse = true) => {
   }
 
   App.set_filter_mode({mode: mode, type: first.type, instant: false})
+}
+
+App.copy_filter = (mode) => {
+  App.copy_to_clipboard(App.get_filter(mode), `Filter`)
+}
+
+App.paste_filter = async (mode) => {
+  let filter = await navigator.clipboard.readText()
+
+  if (filter) {
+    App.set_filter({mode: mode, text: filter})
+  }
 }
