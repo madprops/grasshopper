@@ -1292,7 +1292,8 @@ App.setup_settings_addlist = () => {
         domain: `The domain root to match
         Wildcards (*) are allowed
         Regex is allowed by using /this/`,
-        exact: `Match exact URL`
+        exact: `Match exact URL instead of startsWith
+        If in regex mode it makes the case sensitive`
       },
       list_text: (items) => {
         return items.domain
