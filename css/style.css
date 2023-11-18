@@ -14,7 +14,6 @@
   --split_border: var(--split_width) solid var(--split_color);
   --split_margin: 0.88rem;
   --backdrop: blur(8px);
-  --arrow_padding: 0.42rem;
   --arrow_font: sans-serif;
 }
 
@@ -246,6 +245,7 @@ select {
   user-select: none;
   outline: 1px solid var(--alt_color_1);
   border-radius: var(--border_radius);
+  min-width: 1.7rem;
   max-width: 100%;
 }
 
@@ -909,16 +909,12 @@ a:hover
 .arrow_prev {
   margin-right: auto;
   margin-left: 0.5rem;
-  padding-left: var(--arrow_padding);
-  padding-right: var(--arrow_padding);
   font-family: var(--arrow_font);
 }
 
 .arrow_next {
   margin-left: auto;
   margin-right: 0.5rem;
-  padding-left: var(--arrow_padding);
-  padding-right: var(--arrow_padding);
   font-family: var(--arrow_font);
 }
 
