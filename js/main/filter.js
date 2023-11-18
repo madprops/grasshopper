@@ -663,7 +663,6 @@ App.show_custom_filters = (mode, e) => {
 }
 
 App.set_custom_filter = (mode, filter) => {
-  App.set_filter_mode({mode: mode, type: `all`, filter: false})
   App.set_filter({mode: mode, text: filter})
 }
 
