@@ -7,7 +7,9 @@
         "tabs",
         "history",
         "bookmarks",
-        "sessions",
+        "sessions"
+    ],
+    "optional_permissions": [
         "clipboardRead"
     ],
     "icons": {

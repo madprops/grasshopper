@@ -146,3 +146,12 @@ App.tooltip = (str) => {
 App.periods = (str) => {
   return App.tooltip(str).split(`\n`).join(`. `)
 }
+
+App.ask_permission = async (what) => {
+  try {
+    return await browser.permissions.request({permissions: [what]})
+  }
+  catch (err) {
+    return false
+  }
+}

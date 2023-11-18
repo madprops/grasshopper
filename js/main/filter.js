@@ -929,31 +929,23 @@ App.show_filter_history = (mode, e) => {
     })
 
     App.sep(items)
-
-    items.push({
-      icon: App.clipboard_icon,
-      text: `Copy`,
-      action: () => {
-        App.copy_filter(mode)
-      }
-    })
-
-    items.push({
-      icon: App.clipboard_icon,
-      text: `Paste`,
-      action: () => {
-        App.paste_filter(mode)
-      }
-    })
   }
-  else {
-    items.push({
-      text: `Empty`,
-      action: () => {
-        App.alert(`Filters you use appear here`)
-      }
-    })
-  }
+
+  items.push({
+    icon: App.clipboard_icon,
+    text: `Copy`,
+    action: () => {
+      App.copy_filter(mode)
+    }
+  })
+
+  items.push({
+    icon: App.clipboard_icon,
+    text: `Paste`,
+    action: () => {
+      App.paste_filter(mode)
+    }
+  })
 
   App.show_context({items: items, e: e})
 }
@@ -1339,6 +1331,12 @@ App.copy_filter = (mode) => {
 }
 
 App.paste_filter = async (mode) => {
+  let perm = await App.ask_permission(`clipboardRead`)
+
+  if (!perm) {
+    return
+  }
+
   let filter = await navigator.clipboard.readText()
 
   if (filter) {
