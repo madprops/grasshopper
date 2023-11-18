@@ -237,12 +237,13 @@ select {
   color: var(--text_color);
   border-width: 0;
   text-align: center;
-  padding: 0.18rem;
+  padding-top: 0.18rem;
+  padding-bottom: 0.18rem;
+  padding-left: 0.26rem;
+  padding-right: 0.26rem;
   user-select: none;
   outline: 1px solid var(--alt_color_1);
-  min-width: 1.5rem;
   border-radius: var(--border_radius);
-  max-width: 100%;
 }
 
 .button:hover {
