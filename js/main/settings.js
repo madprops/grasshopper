@@ -1274,7 +1274,7 @@ App.setup_settings_addlist = () => {
         }
 
         if (
-          (values.color === `none`) &&
+          !values.color &&
           !values.title &&
           !values.icon &&
           !values.tags &&
