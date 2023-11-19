@@ -30,7 +30,7 @@ App.step_back = (mode = App.window_mode, e) => {
       App.focus_current_tab(`nearest_smooth`)
     }
     else {
-      App.deselect({mode: mode, select: selected, scroll: `nearest_smooth`})
+      App.deselect({mode: mode, select: `selected`, scroll: `nearest_smooth`})
     }
   }
   else if (App.filter_has_value(mode)) {
