@@ -29,7 +29,7 @@ App.select_item = (args = {}) => {
   let prev = App.get_selected(args.item.mode)
 
   if (args.deselect) {
-    App.deselect(args.item.mode)
+    App.deselect({mode: args.item.mode})
   }
 
   App.toggle_selected(args.item, true)
@@ -620,11 +620,18 @@ App.select_range = (item) => {
   App.scroll_to_item({item: item, scroll: `nearest`})
 }
 
-App.deselect = (mode = App.window_mode, select = `none`) => {
+App.deselect = (args = {}) => {
+  let def_args = {
+    mode: App.window_mode,
+    select: `none`,
+    scroll: `nearest`,
+  }
+
+  App.def_args(def_args, args)
   let num = 0
   let first, last
 
-  for (let item of App.selected_items(mode)) {
+  for (let item of App.selected_items(args.mode)) {
     App.toggle_selected(item, false, false)
 
     if (!first) {
@@ -637,26 +644,33 @@ App.deselect = (mode = App.window_mode, select = `none`) => {
 
   let next_item
 
-  if (select === `up`) {
+  if (args.select === `up`) {
     if (first) {
       next_item = first
     }
   }
-  else if (select === `down`) {
+  else if (args.select === `down`) {
     if (last) {
       next_item = last
     }
   }
-  else if (select === `selected`) {
-    let selected = App.get_selected(mode)
+  else if (args.select === `selected`) {
+    let selected = App.get_selected(args.mode)
 
     if (selected) {
       next_item = selected
     }
   }
+  else if (args.select === `active`) {
+    let active = App.get_active_tab_item()
+
+    if (active) {
+      next_item = active
+    }
+  }
 
   if (next_item) {
-    App.select_item({item: next_item, scroll: `nearest`, deselect: false})
+    App.select_item({item: next_item, scroll: args.scroll, deselect: false})
   }
 
   return num
@@ -792,11 +806,11 @@ App.open_items = (item, shift, multiple = true) => {
           App.open_tab(item)
         }
 
-        App.deselect(mode, `selected`)
+        App.deselect({mode: mode, select: `selected`})
         App.after_open(shift)
       },
       cancel_action: () => {
-        App.deselect(mode, `selected`)
+        App.deselect({mode: mode, select: `selected`})
       },
       force: force,
     })
@@ -849,7 +863,7 @@ App.select_all = (mode = App.window_mode, toggle = false) => {
     }
 
     if (all_selected) {
-      App.deselect(mode, `selected`)
+      App.deselect({mode: mode, select: `selected`})
       return
     }
   }

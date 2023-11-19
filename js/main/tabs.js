@@ -343,7 +343,7 @@ App.tabs_action = async (item, from, scroll = `nearest_smooth`) => {
     if (from === `click_items` || from === `enter` || from == `click_tab_box`) {
       if (App.is_filtered(item.mode)) {
         App.filter_all(item.mode)
-        App.select_header_first(item, `center_instant`)
+        App.select_header_first(item, `center`)
         return
       }
     }
@@ -1379,7 +1379,7 @@ App.paste_tabs = async (item) => {
   }
 
   App.check_pinline()
-  App.deselect(`tabs`)
+  App.deselect({mode: `tabs`})
 
   for (let tab of tabs) {
     App.toggle_selected(tab, true, false)

@@ -26,7 +26,16 @@ App.step_back = (mode = App.window_mode, e) => {
   let item = App.get_selected(mode)
 
   if (App.multiple_selected(mode)) {
-    App.deselect(mode, `selected`)
+    let dmode
+
+    if (mode === `tabs`) {
+      dmode = `active`
+    }
+    else {
+      dmode = `selected`
+    }
+
+    App.deselect({mode: mode, select: dmode, scroll: `nearest_smooth`})
   }
   else if (App.filter_has_value(mode)) {
     App.clear_filter(mode)
