@@ -57,7 +57,7 @@ App.domain_rule_message = () => {
 
 App.edit_domain_rule = (item) => {
   App.show_settings_category(`general`, () => {
-    Addlist.resolve(`settings_domain_rules`, item.hostname, () => {
+    Addlist.resolve(`settings_domain_rules`, item.hostname || item.path, () => {
       App.hide_window()
     })
   })
