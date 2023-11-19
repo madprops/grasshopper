@@ -810,7 +810,7 @@ App.get_last_filter_value = (cycle) => {
   return value
 }
 
-App.filter_domain = (item) => {
+App.filter_domain = (item, toggle = false) => {
   if (!item) {
     item = App.get_selected(mode)
   }
@@ -827,6 +827,13 @@ App.filter_domain = (item) => {
 
   if (!hostname) {
     return
+  }
+
+  if (toggle) {
+    if (App.get_filter(item.mode) === hostname) {
+      App.filter_all(item.mode)
+      return
+    }
   }
 
   App.set_filter({mode: item.mode, text: hostname})

@@ -36,7 +36,7 @@ App.setup_commands = () => {
     modes: [`items`],
     icon: theme_icon,
     action: (args) => {
-      App.filter_color(args.mode, `all`)
+      App.filter_color(args.mode, `all`, true)
     },
     info: `Filter: Show all colors`,
   })
@@ -52,7 +52,7 @@ App.setup_commands = () => {
       modes: [`items`],
       icon: icon,
       action: (args) => {
-        App.filter_color(args.mode, color.id)
+        App.filter_color(args.mode, color.id, true)
       },
       info: `Filter items with this color (${color.name})`,
     })
@@ -1212,7 +1212,7 @@ App.setup_commands = () => {
       single: true,
       icon: filter_icon,
       action: (args) => {
-        App.filter_domain(args.item)
+        App.filter_domain(args.item, true)
       },
       info: `Filter: Show same domain`,
     },
