@@ -732,6 +732,14 @@ Addlist.hide = (check = true, from = `normal`) => {
   let modified = Addlist.modified(data.id)
   let p_id = Addlist.popup(data.id)
 
+  function hide () {
+    App.hide_popup(p_id, true)
+
+    if (data.on_hide) {
+      data.on_hide()
+    }
+  }
+
   if (check && modified) {
     App.show_confirm({
       message: `Save changes?`,
@@ -739,12 +747,12 @@ Addlist.hide = (check = true, from = `normal`) => {
         Addlist.save(data.id)
       },
       cancel_action: () => {
-        App.hide_popup(p_id, true)
+        hide()
       },
     })
   }
   else {
-    App.hide_popup(p_id, true)
+    hide()
   }
 }
 
@@ -1068,18 +1076,18 @@ Addlist.check_remove = () => {
   })
 }
 
-Addlist.resolve = (id, pk) => {
+Addlist.resolve = (id, pk, on_hide) => {
   let oargs = Addlist.oargs(id)
   let data = Addlist.get_data(id)
 
   for (let line of data) {
     if (line[oargs.pk] === pk) {
-      Addlist.edit({id: id, items: line, edit: true})
+      Addlist.edit({id: id, items: line, edit: true, on_hide: on_hide})
       return
     }
   }
 
   let items = {}
   items[oargs.pk] = pk
-  Addlist.edit({id: id, items: items})
+  Addlist.edit({id: id, items: items, on_hide: on_hide})
 }
