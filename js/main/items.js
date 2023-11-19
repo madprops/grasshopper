@@ -661,13 +661,6 @@ App.deselect = (args = {}) => {
       next_item = selected
     }
   }
-  else if (args.select === `active`) {
-    let active = App.get_active_tab_item()
-
-    if (active) {
-      next_item = active
-    }
-  }
 
   if (next_item) {
     App.select_item({item: next_item, scroll: args.scroll, deselect: false})
