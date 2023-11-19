@@ -883,14 +883,14 @@ App.setup_commands = () => {
       info: `Select all unloaded tabs`,
     },
     {
-      name: `Filter History`,
-      cmd: `show_filter_history`,
+      name: `Filter Context`,
+      cmd: `show_filter_context_menu`,
       modes: [`items`],
       icon: filter_icon,
       action: (args) => {
-        App.show_filter_history(args.mode, args.e)
+        App.show_filter_context_menu(args.mode, args.e)
       },
-      info: `Show the Filter History`,
+      info: `Show the Filter Context Menu`,
     },
     {
       name: `Deep Search`,
