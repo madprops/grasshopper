@@ -2,7 +2,6 @@ App.check_items_keyboard = (e) => {
   let mode = App.window_mode
   let item = App.get_selected(mode)
   let filter_focus = App.filter_is_focused(mode)
-  let filter_highlighted = App.filter_is_highlighted(mode)
   let filter_filled = App.filter_has_value(mode)
   let filter_end = App.filter_at_end(mode)
 

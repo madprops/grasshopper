@@ -999,11 +999,6 @@ App.filter_is_focused = (mode) => {
   return App.get_filter_el(mode) === document.activeElement
 }
 
-App.filter_is_highlighted = (mode) => {
-  let filter = App.get_filter_el(mode)
-  return filter.selectionStart !== filter.selectionEnd
-}
-
 App.filter_at_end = (mode) => {
   let filter = App.get_filter_el(mode)
   return filter.selectionStart === filter.selectionEnd &&
