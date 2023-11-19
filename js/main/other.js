@@ -157,5 +157,7 @@ App.ask_permission = async (what) => {
 }
 
 App.permission_msg = (what) => {
-  App.alert(`${what} permission is required. Open the top left menu and click on the mode you want to enable`)
+  let s1 = `${what} permission is required.`
+  let s2 = `Open the top left menu and click on the mode you want to enable`
+  App.alert(`${s1} ${s2}`)
 }
