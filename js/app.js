@@ -64,6 +64,8 @@ App.popups_ready = false
 App.palette_ready = false
 App.sort_tabs_ready = false
 App.close_tabs_ready = false
+App.setup_history_ready = false
+App.setup_bookmarks_ready = false
 
 App.settings_save_delay = 250
 App.empty_previous_tabs_delay = 2000
