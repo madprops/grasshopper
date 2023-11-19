@@ -1,5 +1,5 @@
 App.setup_bookmarks = () => {
-  if (App.setup_boomarks_ready) {
+  if (App.setup_bookmarks_ready) {
     return
   }
 
