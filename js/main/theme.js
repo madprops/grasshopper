@@ -6,6 +6,14 @@ App.setup_theme = () => {
   }, App.apply_theme_delay)
 }
 
+App.opacity = (color, amount) => {
+  return App.colorlib.rgb_to_rgba(color, amount)
+}
+
+App.contrast = (color, amount) => {
+  return App.colorlib.get_lighter_or_darker(color, amount)
+}
+
 App.apply_theme = (args) => {
   App.apply_theme_debouncer.call(args)
 }
@@ -43,19 +51,19 @@ App.do_apply_theme = (args = {}) => {
     App.set_css_var(`background_color`, args.background_color)
     App.set_css_var(`text_color`, args.text_color)
     let bg_opacity = App.get_setting(`background_opacity`) / 100
-    let main_background = App.colorlib.rgb_to_rgba(args.background_color, bg_opacity)
+    let main_background = App.opacity(args.background_color, bg_opacity)
     App.set_css_var(`main_background`, main_background)
-    let slight_shade = App.colorlib.rgb_to_rgba(args.text_color, 0.1)
+    let slight_shade = App.opacity(args.text_color, 0.1)
     App.set_css_var(`slight_shade`, slight_shade)
-    let alt_color_0 = App.colorlib.rgb_to_rgba(args.text_color, 0.15)
+    let alt_color_0 = App.opacity(args.text_color, 0.15)
     App.set_css_var(`alt_color_0`, alt_color_0)
-    let alt_color_1 = App.colorlib.rgb_to_rgba(args.text_color, 0.20)
+    let alt_color_1 = App.opacity(args.text_color, 0.20)
     App.set_css_var(`alt_color_1`, alt_color_1)
-    let alt_color_2 = App.colorlib.rgb_to_rgba(args.text_color, 0.50)
+    let alt_color_2 = App.opacity(args.text_color, 0.50)
     App.set_css_var(`alt_color_2`, alt_color_2)
-    let text_color_darker = App.colorlib.get_lighter_or_darker(args.text_color, 0.2)
+    let text_color_darker = App.contrast(args.text_color, 0.2)
     App.set_css_var(`text_color_darker`, text_color_darker)
-    let overlay_color = App.colorlib.rgb_to_rgba(args.background_color, 0.6)
+    let overlay_color = App.opacity(args.background_color, 0.6)
     App.set_css_var(`overlay_color`, overlay_color)
 
     if (args.safe_mode) {
@@ -502,7 +510,7 @@ App.insert_color_css = () => {
 
   for (let color of App.colors()) {
     App.set_css_var(`color_${color.id}`, color.value)
-    let text = App.colorlib.get_lighter_or_darker(color.value, 0.8)
+    let text = App.contrast(color.value, 0.8)
     App.set_css_var(`text_${color.id}`, text)
 
     css += `.border_${color.id} {
