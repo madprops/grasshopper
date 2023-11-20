@@ -28,6 +28,7 @@ App.modes = [`tabs`, `history`, `bookmarks`, `closed`]
 App.gestures = [`up`, `down`, `left`, `right`, `up_and_down`, `left_and_right`]
 App.close_tabs_types = [`normal`, `playing`, `unloaded`, `duplicate`, `loaded`, `visible`, `other`]
 App.tab_box_modes = [`recent`, `pins`, `colors`, `playing`, `headers`]
+App.no_favicons = [`history`, `bookmarks`]
 App.local_fonts = [`serif`, `sans-serif`, `monospace`]
 App.optional_modes = [`history`, `bookmarks`]
 App.primary_mode = `tabs`

@@ -119,6 +119,13 @@ App.build_settings = () => {
       info: `Where to save bookmarks`,
       version: 1,
     },
+    fetch_favicons: {
+      name: `Fetch Favicons`,
+      type: `checkbox`,
+      value: true,
+      info: `Fetch favicons from a public server on modes without local favicons`,
+      version: 1,
+    },
     smooth_scroll: {
       name: `Smooth Scroll`,
       type: `checkbox`,

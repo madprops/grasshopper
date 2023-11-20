@@ -272,6 +272,9 @@ App.make_item_icon = (item, normal = true) => {
     text_icon = App.zone_icon
   }
 
+  let no_favicon = App.no_favicons.includes(item.mode)
+  let get_favicon = no_favicon && App.get_setting(`fetch_favicons`)
+
   if (text_icon) {
     if (normal) {
       if (item.text_icon_used === text_icon) {
@@ -287,7 +290,11 @@ App.make_item_icon = (item, normal = true) => {
       item.generated_icon = undefined
     }
   }
-  else if (item.favicon) {
+  else if (item.favicon || get_favicon) {
+    if (!item.favicon) {
+      item.favicon = App.get_favicon_url(item)
+    }
+
     if (normal) {
       if (item.favicon_used === item.favicon) {
         return {add: false}
@@ -464,4 +471,8 @@ App.remove_item_icon = (item) => {
   }
 
   App.remove_edits({what: [`icon`], items: active})
+}
+
+App.get_favicon_url = (item) => {
+  return `https://www.google.com/s2/favicons?sz=64&domain=${item.hostname}`
 }
