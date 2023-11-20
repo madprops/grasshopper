@@ -8,6 +8,20 @@ App.stor_title_history_name = `title_history_v200`
 App.stor_icon_history_name = `icon_history_v200`
 App.stor_first_time_name = `first_time_v200`
 
+// Backwards compatibility check
+App.stor_compat_check_name = `compat_check_v1`
+
+// Empty array to disable compat check
+App.stor_compat = [
+  {old: `settings_v100`, new: App.stor_settings_name},
+  {old: `command_history_v1`, new: App.stor_command_history_name},
+  {old: `filter_history_v1`, new: App.stor_filter_history_name},
+  {old: `tag_history_v1`, new: App.stor_tag_history_name},
+  {old: `title_history_v1`, new: App.stor_title_history_name},
+  {old: `icon_history_v1`, new: App.stor_icon_history_name},
+  {old: `first_time_v1`, new: App.stor_first_time_name},
+]
+
 App.modes = [`tabs`, `history`, `bookmarks`, `closed`]
 App.gestures = [`up`, `down`, `left`, `right`, `up_and_down`, `left_and_right`]
 App.close_tabs_types = [`normal`, `playing`, `unloaded`, `duplicate`, `loaded`, `visible`, `other`]

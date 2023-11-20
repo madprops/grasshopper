@@ -1,3 +1,16 @@
+App.get_local_storage_old = (ls_name) => {
+  let obj
+
+  if (localStorage[ls_name]) {
+    try {
+      obj = App.obj(localStorage.getItem(ls_name))
+    }
+    catch (err) {}
+  }
+
+  return obj
+}
+
 App.get_local_storage = async (ls_name, fallback) => {
   let keys = {}
   keys[ls_name] = fallback
@@ -9,6 +22,28 @@ App.save_local_storage = async (ls_name, obj) => {
   let keys = {}
   keys[ls_name] = obj
   await browser.storage.local.set(keys)
+}
+
+App.stor_compat_check = async () => {
+  if (!App.stor_compat.length) {
+    return
+  }
+
+  let checked = await App.get_local_storage(App.stor_compat_check_name, false)
+
+  if (!checked) {
+    App.debug(`Stor: Compat`)
+
+    for (let item of App.stor_compat) {
+      let obj = App.get_local_storage_old(item.old)
+
+      if (obj) {
+        await App.save_local_storage(item.new, obj)
+      }
+    }
+
+    await App.save_local_storage(App.stor_compat_check_name, true)
+  }
 }
 
 App.stor_get_settings = async () => {

@@ -5,6 +5,7 @@ App.init = async () => {
   App.extension_id = browser.runtime.id
   App.print_intro()
   App.build_settings()
+  await App.stor_compat_check()
   await App.stor_get_settings()
   await App.stor_get_command_history()
   await App.stor_get_tag_history()
