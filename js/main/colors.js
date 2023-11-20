@@ -450,3 +450,37 @@ App.color_values = () => {
 
   return items
 }
+
+App.replace_color = () => {
+  let colors = App.colors()
+  let names = colors.map(x => x.name)
+
+  App.show_prompt({
+    suggestions: names,
+    placeholder: `Original Color`,
+    list: names,
+    show_list: false,
+    list_submit: false,
+    on_submit: (color_1) => {
+      App.show_prompt({
+        suggestions: names,
+        placeholder: `New Color`,
+        list: names,
+        list_submit: true,
+        on_submit: (color_2) => {
+          App.do_replace_color(App.color_id(color_1), App.color_id(color_2))
+        },
+      })
+    },
+  })
+}
+
+App.do_replace_color = (color_1, color_2) => {
+  for (let item of App.get_items(`tabs`)) {
+    if (item.custom_color === color_1) {
+      if (App.apply_edit(`color`, item, color_2)) {
+        App.custom_save(item.id, `custom_color`, color_2)
+      }
+    }
+  }
+}

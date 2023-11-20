@@ -170,6 +170,17 @@ App.setup_commands = () => {
   })
 
   color_closers.push({
+    name: `Replace Color`,
+    cmd: `replace_color`,
+    modes: [`tabs`],
+    icon: theme_icon,
+    action: (args) => {
+      App.replace_color(args.e)
+    },
+    info: `Replace a color with another one`,
+  })
+
+  color_closers.push({
     name: `Close Color`,
     cmd: `close_color_all`,
     modes: [`tabs`],
