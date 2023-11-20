@@ -220,7 +220,7 @@ App.setup_commands = () => {
       cmd: `show_mode_${mode}`,
       icon: icon,
       action: (args) => {
-        App.show_mode({mode: mode})
+        App.show_mode({mode: mode, reuse_filter: true})
       },
       info: `Show mode: ${mode}`,
     })
