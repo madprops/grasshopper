@@ -1076,22 +1076,6 @@ Addlist.check_remove = () => {
   })
 }
 
-Addlist.resolve = (id, pk, on_hide) => {
-  let oargs = Addlist.oargs(id)
-  let data = Addlist.get_data(id)
-
-  for (let line of data) {
-    if (line[oargs.pk] === pk) {
-      Addlist.edit({id: id, items: line, edit: true, on_hide: on_hide})
-      return
-    }
-  }
-
-  let items = {}
-  items[oargs.pk] = pk
-  Addlist.edit({id: id, items: items, on_hide: on_hide})
-}
-
-Addlist.edit_object = (id, object, on_hide) => {
-  Addlist.edit({id: id, items: object, on_hide: on_hide})
+Addlist.edit_object = (id, obj, on_hide) => {
+  Addlist.edit({id: id, items: obj, on_hide: on_hide})
 }

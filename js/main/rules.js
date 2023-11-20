@@ -60,20 +60,23 @@ App.domain_rule_message = () => {
 }
 
 App.edit_domain_rule = (item, e) => {
-  function add (value) {
+  function edit (obj) {
     App.show_settings_category(`general`, () => {
-      Addlist.resolve(`settings_domain_rules`, value, () => {
+      Addlist.edit_object(`settings_domain_rules`, obj, () => {
         App.hide_window()
       })
     })
   }
 
-  function edit (rule, edit = false) {
-    App.show_settings_category(`general`, () => {
-      Addlist.edit_object(`settings_domain_rules`, rule, () => {
-        App.hide_window()
-      })
-    })
+  function add (value, by_title = false) {
+    let obj = {}
+    obj.domain = value
+
+    if (by_title) {
+      obj.by_title = true
+    }
+
+    edit(obj)
   }
 
   if (item.ruled) {
@@ -93,7 +96,7 @@ App.edit_domain_rule = (item, e) => {
   items.push({
     text: `By Title`,
     action: () => {
-      add(App.get_title(item))
+      add(App.get_title(item), true)
     }
   })
 
