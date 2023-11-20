@@ -113,6 +113,7 @@ App.update_tab_box_playing = () => {
 }
 
 App.get_tab_box_items = (o_items, mode) => {
+  o_items = o_items.slice(0, App.tab_box_max)
   let items = []
 
   for (let o_item of o_items) {
