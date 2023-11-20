@@ -1222,6 +1222,7 @@ App.create_filter_menu = (mode) => {
 
 App.show_filter_menu = (mode) => {
   let items = []
+  let f_mode = App.filter_mode(mode)
 
   for (let filter_mode of App.filter_modes(mode)) {
     if (filter_mode.type === App.separator_string) {
@@ -1233,7 +1234,7 @@ App.show_filter_menu = (mode) => {
         icon: filter_mode.icon,
         text: `All`,
         action: () => {
-          if (App.get_setting(`clear_on_all`)) {
+          if (App.get_setting(`clear_on_all`) || (f_mode === `all`)) {
             App.filter_all(mode)
           }
           else {
@@ -1294,7 +1295,7 @@ App.show_filter_menu = (mode) => {
       continue
     }
 
-    let selected = App.filter_mode(mode) === filter_mode.type
+    let selected = f_mode === filter_mode.type
 
     items.push({
       icon: filter_mode.icon,
