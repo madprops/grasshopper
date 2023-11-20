@@ -1398,18 +1398,18 @@ App.build_settings = () => {
       info: `Consider tags when using the filter normally, by typing a tag name`,
       version: 1,
     },
-    clear_on_all: {
-      name: `Clear On All`,
-      type: `checkbox`,
-      value: true,
-      info: `Clear the filter when clicking All`,
-      version: 1,
-    },
     reuse_filter: {
       name: `Re-Use Filter`,
       type: `checkbox`,
-      value: false,
+      value: true,
       info: `Re-use the filter when moving across modes`,
+      version: 1,
+    },
+    clear_on_all: {
+      name: `Clear On All`,
+      type: `checkbox`,
+      value: false,
+      info: `Clear the filter when clicking All`,
       version: 1,
     },
     filter_enter: {
