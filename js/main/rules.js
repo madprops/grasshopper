@@ -31,18 +31,21 @@ App.check_rules = (item) => {
           if (rule[key].length) {
             item[`rule_${key}`] = App.taglist(rule[key])
             item.ruled = true
+            item.rule = rule
           }
         }
         else if (key === `color`) {
           if (rule[key] && (rule[key] !== `none`)) {
             item[`rule_${key}`] = rule[key]
             item.ruled = true
+            item.rule = rule
           }
         }
         else {
           if (rule[key]) {
             item[`rule_${key}`] = rule[key]
             item.ruled = true
+            item.rule = rule
           }
         }
       }
@@ -56,10 +59,43 @@ App.domain_rule_message = () => {
   App.alert_autohide(`This is set by a domain rule`)
 }
 
-App.edit_domain_rule = (item) => {
-  App.show_settings_category(`general`, () => {
-    Addlist.resolve(`settings_domain_rules`, item.hostname || item.path, () => {
-      App.hide_window()
+App.edit_domain_rule = (item, e) => {
+  function add (value) {
+    App.show_settings_category(`general`, () => {
+      Addlist.resolve(`settings_domain_rules`, value, () => {
+        App.hide_window()
+      })
     })
+  }
+
+  function edit (rule, edit = false) {
+    App.show_settings_category(`general`, () => {
+      Addlist.edit_object(`settings_domain_rules`, rule, () => {
+        App.hide_window()
+      })
+    })
+  }
+
+  if (item.ruled) {
+    edit(item.rule)
+    return
+  }
+
+  let items = []
+
+  items.push({
+    text: `By URL`,
+    action: () => {
+      add(item.hostname || item.path)
+    }
   })
+
+  items.push({
+    text: `By Title`,
+    action: () => {
+      add(App.get_title(item))
+    }
+  })
+
+  App.show_context({items: items, e: e})
 }

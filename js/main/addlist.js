@@ -1091,3 +1091,7 @@ Addlist.resolve = (id, pk, on_hide) => {
   items[oargs.pk] = pk
   Addlist.edit({id: id, items: items, on_hide: on_hide})
 }
+
+Addlist.edit_object = (id, object, on_hide) => {
+  Addlist.edit({id: id, items: object, on_hide: on_hide})
+}

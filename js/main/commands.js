@@ -1422,7 +1422,7 @@ App.setup_commands = () => {
       single: true,
       icon: notepad_icon,
       action: (args) => {
-        App.edit_domain_rule(args.item)
+        App.edit_domain_rule(args.item, args.e)
       },
       info: `Shortcut to edit a domain rule`,
     },
