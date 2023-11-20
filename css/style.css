@@ -1414,3 +1414,7 @@ a:hover
 .button_text_icon_enabled .button_text_icon {
   display: flex;
 }
+
+.a-color-picker-rgb, .a-color-picker-rgbhex {
+  padding: 2px !important;
+}
