@@ -13,14 +13,15 @@ App.check_rules = (item) => {
 
   for (let rule of rules) {
     let match = false
+    let value = rule.by_title ? item.title : item.path
 
     if (App.is_regex(rule.domain)) {
       let regstr = rule.domain.slice(1, -1)
       let flag = rule.exact ? `` : `i`
       let regex = new RegExp(regstr, flag)
-      match = regex.test(item.path)
+      match = regex.test(value)
     }
-    else if (App.wildcard(rule.domain, item.path, rule.exact)) {
+    else if (App.wildcard(rule.domain, value, rule.exact)) {
       match = true
     }
 

@@ -1221,6 +1221,7 @@ App.setup_settings_addlist = () => {
       id: id,
       keys: [
         `domain`,
+        `by_title`,
         `exact`,
         `color`,
         `title`,
@@ -1241,6 +1242,7 @@ App.setup_settings_addlist = () => {
         split_top: `checkbox`,
         split_bottom: `checkbox`,
         exact: `checkbox`,
+        by_title: `checkbox`,
       },
       labels: {
         domain: `Domain`,
@@ -1251,7 +1253,8 @@ App.setup_settings_addlist = () => {
         notes: `Notes`,
         split_top: `Split Top`,
         split_bottom: `Split Bottom`,
-        exact: `Exact`,
+        exact: `Exact Match`,
+        by_title: `By Title`,
       },
       sources: {
         color: () => {
@@ -1291,7 +1294,8 @@ App.setup_settings_addlist = () => {
         Wildcards (*) are allowed
         Regex is allowed by using /this/`,
         exact: `Match exact URL instead of startsWith
-        If in regex mode it makes the case sensitive`
+        If in regex mode it makes the case sensitive`,
+        by_title: `Match by title instead of URL`,
       },
       list_text: (items) => {
         return items.domain
