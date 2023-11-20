@@ -195,8 +195,8 @@ App.replace_tag = () => {
     suggestions: tags,
     placeholder: `Original Tag`,
     list: tags,
-    show_list: true,
-    list_submit: true,
+    show_list: false,
+    list_submit: false,
     on_submit: (tag_1) => {
       App.show_prompt({
         suggestions: tags,
