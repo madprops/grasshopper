@@ -411,7 +411,9 @@ svg {
   justify-content: center;
 }
 
-.icon_pick .item_icon_container {
+.icon_pick .item_icon_container,
+.header_item .item_icon_container
+{
   cursor: pointer;
 }
 
