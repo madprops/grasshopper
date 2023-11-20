@@ -529,19 +529,20 @@ App.add_settings_switchers = (category) => {
   DOM.dataset(top, `done`, true)
 }
 
-App.start_color_picker = (setting, alpha = false) => {
+App.start_color_picker = (setting) => {
   let el = DOM.el(`#settings_${setting}`)
 
   App[setting] = AColorPicker.createPicker(el, {
-    showAlpha: alpha,
+    showAlpha: false,
     showHSL: false,
-    showHEX: false,
     showRGB: true,
+    showHEX: true,
     color: App.get_setting(setting)
   })
 
   App[setting].on(`change`, (picker, color) => {
-    App.set_setting(setting, color)
+    let rgb = AColorPicker.parseColor(color, `rgbcss`)
+    App.set_setting(setting, rgb)
   })
 
   DOM.ev(App.get_settings_label(setting), `click`, (e) => {

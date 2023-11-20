@@ -6,6 +6,15 @@ App.setup_theme = () => {
   }, App.apply_theme_delay)
 }
 
+App.check_color = (color) => {
+  if (color.startsWith(`#`)) {
+    return App.colorlib.hex_to_rgb(color)
+  }
+  else {
+    return color
+  }
+}
+
 App.opacity = (color, amount) => {
   return App.colorlib.rgb_to_rgba(color, amount)
 }
@@ -32,9 +41,13 @@ App.do_apply_theme = (args = {}) => {
       args.background_color = App.get_setting(`background_color`)
     }
 
+    args.background_color = App.check_color(args.background_color)
+
     if (!args.text_color) {
       args.text_color = App.get_setting(`text_color`)
     }
+
+    args.text_color = App.check_color(args.text_color)
 
     if (!args.background_image) {
       args.background_image = App.get_setting(`background_image`)
