@@ -9,9 +9,11 @@ App.stor_icon_history_name = `icon_history_v200`
 App.stor_first_time_name = `first_time_v200`
 
 // Backwards compatibility check
+// This should only be used if the structure of the objects have not changed
+// Like when moving from one storage method to another
+// Empty array to disable compat check
 App.stor_compat_check_name = `compat_check_v1`
 
-// Empty array to disable compat check
 App.stor_compat = [
   {old: `settings_v100`, new: App.stor_settings_name},
   {old: `command_history_v1`, new: App.stor_command_history_name},
