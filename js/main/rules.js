@@ -128,7 +128,7 @@ App.start_domain_rules = () => {
     return
   }
 
-  App.debug(`Start domain rules`, true)
+  App.debug(`Start domain rules`)
   let popobj, regobj = App.get_setting_addlist_objects()
   let id = `settings_domain_rules`
   let props = App.setting_props.domain_rules
