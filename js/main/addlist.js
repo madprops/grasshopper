@@ -70,7 +70,8 @@ Addlist.save = (id, hide = true) => {
   values._date_ = App.now()
 
   if (!data.edit) {
-    let id = values._date_.slice(0, 6) + `_` + App.random_string(5)
+    let sdate = values._date_.toString()
+    let id = sdate + `_` + App.random_string(5)
     values._id_ = id
   }
 
