@@ -82,6 +82,7 @@ App.mouse_click_action = (mode, e, from) => {
     return
   }
 
+  let item_container = e.target.closest(`.item_container`)
   let media_type = App.get_media_type(item)
 
   if (e.target.classList.contains(`view_media_button`)) {
@@ -106,17 +107,16 @@ App.mouse_click_action = (mode, e, from) => {
     return
   }
 
-  if (e.target.closest(`.item_icon_container`)) {
-    if (item.header) {
-      App.select_header_group(item)
-      return
-    }
-  }
-
-  if (App.get_setting(`icon_pick`)) {
+  if (item_container) {
     if (e.target.closest(`.item_icon_container`)) {
-      App.pick(item)
-      return
+      if (item.header) {
+        App.select_header_group(item)
+        return
+      }
+      else if (App.get_setting(`icon_pick`)) {
+        App.pick(item)
+        return
+      }
     }
   }
 
@@ -264,6 +264,8 @@ App.mouse_context_action = (mode, e) => {
     return
   }
 
+  let item_container = e.target.closest(`.item_container`)
+
   if (App.get_setting(`hover_button`)) {
     if (App.get_setting(`hover_button_pick`)) {
       if (e.target.closest(`.hover_button`)) {
@@ -273,10 +275,12 @@ App.mouse_context_action = (mode, e) => {
     }
   }
 
-  if (App.get_setting(`icon_pick`)) {
-    if (e.target.closest(`.item_icon_container`)) {
-      App.select_item({item: item, scroll: `nearest`, deselect: true})
-      return
+  if (item_container)  {
+    if (App.get_setting(`icon_pick`)) {
+      if (e.target.closest(`.item_icon_container`)) {
+        App.select_item({item: item, scroll: `nearest`, deselect: true})
+        return
+      }
     }
   }
 

@@ -412,14 +412,14 @@ svg {
   justify-content: center;
 }
 
-.icon_pick .item_icon_container,
-.header_item .item_icon_container
+.icon_pick .item_container .item_icon_container,
+.item_container .header_item .item_icon_container
 {
   cursor: pointer;
 }
 
-.icon_pick .item_icon_container:hover .item_icon,
-.header_item .item_icon_container:hover .item_icon
+.icon_pick .item_container .item_icon_container:hover .item_icon,
+.item_container .header_item .item_icon_container:hover .item_icon
 {
   outline: 2px solid var(--text_color);
   border-radius: 50%;
