@@ -277,6 +277,7 @@ select {
   justify-content: center;
   gap: 0.35rem;
   align-self: stretch;
+  max-width: 100%;
 }
 
 .icon_1 {
