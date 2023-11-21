@@ -475,7 +475,7 @@ App.replace_color = () => {
       App.show_prompt({
         suggestions: names,
         placeholder: `New Color`,
-        list: names,
+        list: names.filter(x => x !== color_1),
         show_list: true,
         list_submit: true,
         on_submit: (color_2) => {
