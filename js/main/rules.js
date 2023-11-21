@@ -71,7 +71,6 @@ App.refresh_rules = (mode) => {
   for (let item of App.get_items(mode)) {
     App.check_rules(item)
     App.refresh_item_element(item)
-    return
   }
 }
 
