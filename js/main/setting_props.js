@@ -1922,11 +1922,11 @@ App.build_settings = () => {
         App.settings_make_menu(`tab_box`, [{text: `None`, value: `none`}, ...App.sizes])
 
         App.settings_make_menu(`tab_box_mode`, [
-          {text: `Recent`, value: `recent`},
-          {text: `Pins`, value: `pins`},
-          {text: `Colors`, value: `colors`},
-          {text: `Playing`, value: `playing`},
-          {text: `Headers`, value: `headers`},
+          {text: `Recent`, value: `recent`, icon: App.tab_box_icon(`recent`)},
+          {text: `Pins`, value: `pins`, icon: App.tab_box_icon(`pins`)},
+          {text: `Colors`, value: `colors`, icon: App.tab_box_icon(`colors`)},
+          {text: `Playing`, value: `playing`, icon: App.tab_box_icon(`playing`)},
+          {text: `Headers`, value: `headers`, icon: App.tab_box_icon(`headers`)},
         ])
 
         App.settings_make_menu(`tab_box_position`, [
