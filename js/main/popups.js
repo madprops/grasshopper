@@ -18,6 +18,10 @@ App.create_popup = (args) => {
     p.dismiss()
   })
 
+  DOM.ev(overlay, `contextmenu`, (e) => {
+    e.preventDefault()
+  })
+
   popup.append(overlay)
   popup.append(container)
   DOM.el(`#main`).append(popup)
