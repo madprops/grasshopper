@@ -559,7 +559,7 @@ App.build_settings = () => {
     tab_box_active_effect: {
       name: `Tab Box Active Effect`,
       type: `menu`,
-      value: `none`,
+      value: `underline`,
       info: `What effect to show on active items in the Tab Box`,
       version: 4,
     },
