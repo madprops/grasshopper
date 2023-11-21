@@ -64,14 +64,6 @@ Addlist.save = (id, hide = true) => {
   let lines = Addlist.get_data(id)
   values._date_ = App.now()
 
-  if (oargs.on_save) {
-    for (let key in values) {
-      if (oargs.on_save[key]) {
-        values[key] = oargs.on_save[key](values[key])
-      }
-    }
-  }
-
   if (data.index === undefined) {
     if (oargs.append) {
       lines.push(values)
@@ -82,6 +74,10 @@ Addlist.save = (id, hide = true) => {
   }
   else {
     lines.splice(data.index, 0, values)
+  }
+
+  if (data.after_save) {
+    data.after_save(values)
   }
 
   Addlist.after(id, lines, hide)
@@ -734,10 +730,6 @@ Addlist.hide = (check = true, from = `normal`) => {
 
   function hide () {
     App.hide_popup(p_id, true)
-
-    if (data.on_hide) {
-      data.on_hide()
-    }
   }
 
   if (check && modified) {
@@ -1000,7 +992,11 @@ Addlist.update_count = (id) => {
     return
   }
 
-  DOM.el(`#addlist_button_${id}_count`).textContent = `(${lines.length})`
+  let count = DOM.el(`#addlist_button_${id}_count`)
+
+  if (count) {
+    count.textContent = `(${lines.length})`
+  }
 }
 
 Addlist.edit_first = (id) => {
@@ -1076,6 +1072,6 @@ Addlist.check_remove = () => {
   })
 }
 
-Addlist.edit_object = (id, obj, on_hide) => {
-  Addlist.edit({id: id, items: obj, on_hide: on_hide})
+Addlist.edit_object = (id, obj, after_save) => {
+  Addlist.edit({id: id, items: obj, after_save: after_save})
 }

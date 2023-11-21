@@ -1040,29 +1040,7 @@ App.setup_settings_addlist = () => {
     }
   }
 
-  function on_hide () {
-    Addlist.hide()
-  }
-
-  let popobj = {
-    on_hide: on_hide,
-  }
-
-  let get_data = (id) => {
-    let key = id.replace(`settings_`, ``)
-    return App.get_setting(key)
-  }
-
-  let set_data = (id, value) => {
-    let key = id.replace(`settings_`, ``)
-    App.set_setting(key, value)
-  }
-
-  let regobj = {
-    get_data: get_data,
-    set_data: set_data,
-  }
-
+  let popobj, regobj = App.get_setting_addlist_objects()
   let id = `settings_aliases`
   let props = App.setting_props.aliases
 
@@ -1212,97 +1190,7 @@ App.setup_settings_addlist = () => {
     }
   }
 
-  id = `settings_domain_rules`
-  props = App.setting_props.domain_rules
-
-  App.create_popup(Object.assign({}, popobj, {
-    id: `addlist_${id}`,
-    element: Addlist.register(Object.assign({}, regobj, {
-      id: id,
-      keys: [
-        `domain`,
-        `by_title`,
-        `exact`,
-        `color`,
-        `title`,
-        `icon`,
-        `tags`,
-        `notes`,
-        `split_top`,
-        `split_bottom`,
-      ],
-      pk: `domain`,
-      widgets: {
-        domain: `text`,
-        color: `menu`,
-        title: `text`,
-        icon: `text`,
-        tags: `text`,
-        notes: `textarea`,
-        split_top: `checkbox`,
-        split_bottom: `checkbox`,
-        exact: `checkbox`,
-        by_title: `checkbox`,
-      },
-      labels: {
-        domain: `Domain`,
-        color: `Color`,
-        title: `Title`,
-        icon: `Icon`,
-        tags: `Tags`,
-        notes: `Notes`,
-        split_top: `Split Top`,
-        split_bottom: `Split Bottom`,
-        exact: `Exact Match`,
-        by_title: `By Title`,
-      },
-      sources: {
-        color: () => {
-          return App.color_values()
-        },
-      },
-      process: {
-        domain: (value) => {
-          if (App.is_regex(value)) {
-            return value
-          }
-
-          return App.get_path(value)
-        }
-      },
-      validate: (values) => {
-        if (!values.domain) {
-          return false
-        }
-
-        if (
-          !values.color &&
-          !values.title &&
-          !values.icon &&
-          !values.tags &&
-          !values.split_top &&
-          !values.split_bottom &&
-          !values.notes
-        ) {
-          return false
-        }
-
-        return true
-      },
-      tooltips: {
-        domain: `The domain root to match
-        Wildcards (*) are allowed
-        Regex is allowed by using /this/`,
-        exact: `Match exact URL instead of startsWith
-        If in regex mode it makes the case sensitive`,
-        by_title: `Match by title instead of URL`,
-      },
-      list_text: (items) => {
-        return items.domain
-      },
-      title: props.name,
-    }))
-  }))
+  App.start_domain_rules()
 
   id = `settings_colors`
   props = App.setting_props.colors
@@ -1446,4 +1334,31 @@ App.check_setting_empty = (setting) => {
   else if (props.type === `list`) {
     return App.str(value) === App.str([])
   }
+}
+
+App.get_setting_addlist_objects = () => {
+  function on_hide () {
+    Addlist.hide()
+  }
+
+  let popobj = {
+    on_hide: on_hide,
+  }
+
+  let get_data = (id) => {
+    let key = id.replace(`settings_`, ``)
+    return App.get_setting(key)
+  }
+
+  let set_data = (id, value) => {
+    let key = id.replace(`settings_`, ``)
+    App.set_setting(key, value)
+  }
+
+  let regobj = {
+    get_data: get_data,
+    set_data: set_data,
+  }
+
+  return popobj, regobj
 }
