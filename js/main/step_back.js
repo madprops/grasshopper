@@ -25,9 +25,10 @@ App.create_step_back_button = (mode) => {
 App.step_back = (mode = App.window_mode, e) => {
   let item = App.get_selected(mode)
   let scroll = `center_smooth`
+  let tabs = mode === `tabs`
 
   if (App.multiple_selected(mode)) {
-    if (mode === `tabs`) {
+    if (tabs) {
       App.focus_current_tab(scroll)
     }
     else {
@@ -41,17 +42,17 @@ App.step_back = (mode = App.window_mode, e) => {
     App.filter_all()
   }
   else if (item && !App.item_is_visible(item)) {
-    if (mode === `tabs`) {
+    if (tabs) {
       App.focus_current_tab(scroll)
     }
     else {
       App.select_item({item: item, scroll: scroll})
     }
   }
-  else if (mode === `tabs` && !item.active) {
+  else if (tabs && !item.active) {
     App.focus_current_tab(scroll)
   }
-  else if (mode === `tabs` && (e && e.key !== `Escape`)) {
+  else if (tabs && (e && e.key !== `Escape`)) {
     if (App.get_setting(`step_back_recent`)) {
       App.show_recent_tabs(e)
     }
