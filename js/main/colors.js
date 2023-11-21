@@ -476,6 +476,17 @@ App.replace_color = () => {
 }
 
 App.do_replace_color = (color_1, color_2) => {
+  if (!color_1 || !color_2) {
+    return
+  }
+
+  let colors = App.colors().map(x => x.id)
+
+  if (!colors.includes(color_2)) {
+    App.alert(`The second color must exist`)
+    return
+  }
+
   for (let item of App.get_items(`tabs`)) {
     if (item.custom_color === color_1) {
       if (App.apply_edit(`color`, item, color_2)) {
