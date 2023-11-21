@@ -101,7 +101,7 @@ App.apply_color_mode = (item) => {
       el.title = c_obj.name
     }
     else {
-      el.title = `Color doesn't exist (${color})`
+      el.title = `Color doesn't exist`
     }
   }
 
@@ -436,6 +436,14 @@ App.get_color_by_id = (id) => {
   }
 }
 
+App.get_color_by_name = (name) => {
+  for (let color of App.colors()) {
+    if (color.name === name) {
+      return color
+    }
+  }
+}
+
 App.color_values = () => {
   let items = []
 
@@ -463,13 +471,14 @@ App.replace_color = () => {
     suggestions: names,
     placeholder: `Original Color`,
     list: names,
-    show_list: false,
-    list_submit: false,
+    show_list: true,
+    list_submit: true,
     on_submit: (color_1) => {
       App.show_prompt({
         suggestions: names,
         placeholder: `New Color`,
         list: names,
+        show_list: true,
         list_submit: true,
         on_submit: (color_2) => {
           App.do_replace_color(color_1, color_2)
@@ -484,17 +493,18 @@ App.do_replace_color = (color_1, color_2) => {
     return
   }
 
-  let colors = App.colors().map(x => x.id)
+  let c_obj_1 = App.get_color_by_name(color_1)
+  let c_obj_2 = App.get_color_by_name(color_2)
 
-  if (!colors.includes(color_2)) {
-    App.alert(`New color must already exist`)
+  if (!c_obj_1 || !c_obj_2) {
+    App.alert(`Both colors must exist`)
     return
   }
 
   for (let item of App.get_items(`tabs`)) {
-    if (item.custom_color === color_1) {
-      if (App.apply_edit(`color`, item, color_2)) {
-        App.custom_save(item.id, `custom_color`, color_2)
+    if (item.custom_color === c_obj_1.id) {
+      if (App.apply_edit(`color`, item, c_obj_2.id)) {
+        App.custom_save(item.id, `custom_color`, c_obj_2.id)
       }
     }
   }
