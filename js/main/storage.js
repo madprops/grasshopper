@@ -11,10 +11,6 @@ App.get_local_storage_old = (ls_name) => {
   return obj
 }
 
-App.remove_local_storage_old = (ls_name) => {
-  localStorage.removeItem(ls_name)
-}
-
 App.get_local_storage = async (ls_name, fallback) => {
   let keys = {}
   keys[ls_name] = fallback
@@ -44,7 +40,13 @@ App.stor_compat_check = async () => {
       if (obj !== null) {
         App.debug(`Stor: Converting ${item.old} to ${item.new}`)
         await App.save_local_storage(item.new, obj)
-        await App.remove_local_storage_old(item.old)
+
+        try {
+          localStorage.setItem(`${item.old}_backup`, JSON.stringify(obj))
+        }
+        catch (err) {}
+
+        localStorage.removeItem(item.old)
       }
     }
 
