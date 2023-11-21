@@ -328,10 +328,8 @@ App.remove_color = (color) => {
     return
   }
 
-  let c_obj = App.get_color_by_id(color)
-
   App.show_confirm({
-    message: `Remove ${c_obj.name}? (${items.length})`,
+    message: `Remove color? (${items.length})`,
     confirm_action: () => {
       App.remove_edits({what: [`color`], force: true, items: items})
     },
