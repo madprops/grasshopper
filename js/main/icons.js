@@ -273,7 +273,7 @@ App.make_item_icon = (item, normal = true) => {
   }
 
   let no_favicon = App.no_favicons.includes(item.mode)
-  let get_favicon = no_favicon && App.get_setting(`fetch_favicons`)
+  let fetch = no_favicon && App.get_setting(`fetch_favicons`)
 
   if (text_icon) {
     if (normal) {
@@ -290,9 +290,9 @@ App.make_item_icon = (item, normal = true) => {
       item.generated_icon = undefined
     }
   }
-  else if (item.favicon || get_favicon) {
+  else if (item.favicon || fetch) {
     if (!item.favicon) {
-      item.favicon = App.get_favicon_url(item)
+      item.favicon = App.fetch_favicon_url(item)
     }
 
     if (normal) {
@@ -301,7 +301,7 @@ App.make_item_icon = (item, normal = true) => {
       }
     }
 
-    icon = App.get_favicon(item)
+    icon = App.make_favicon(item)
 
     if (normal) {
       item.favicon_used = item.favicon
@@ -346,7 +346,7 @@ App.get_text_icon = (text_icon) => {
   return icon
 }
 
-App.get_favicon = (item) => {
+App.make_favicon = (item) => {
   let icon = DOM.create(`img`, `item_icon`)
   icon.loading = `lazy`
 
@@ -473,6 +473,6 @@ App.remove_item_icon = (item) => {
   App.remove_edits({what: [`icon`], items: active})
 }
 
-App.get_favicon_url = (item) => {
+App.fetch_favicon_url = (item) => {
   return `https://www.google.com/s2/favicons?sz=64&domain=${item.hostname}`
 }
