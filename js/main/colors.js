@@ -483,7 +483,7 @@ App.do_replace_color = (color_1, color_2) => {
   let colors = App.colors().map(x => x.id)
 
   if (!colors.includes(color_2)) {
-    App.alert(`The second color must exist`)
+    App.alert(`New color must already exist`)
     return
   }
 
