@@ -72,6 +72,8 @@ App.refresh_rules = (mode) => {
     App.check_rules(item)
     App.refresh_item_element(item)
   }
+
+  App.refresh_tab_box()
 }
 
 App.edit_domain_rule = (item, e) => {

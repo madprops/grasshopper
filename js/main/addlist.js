@@ -77,6 +77,11 @@ Addlist.save = (id, hide = true) => {
   }
 
   Addlist.after(id, lines, hide)
+
+  if (data.after_done) {
+    data.after_done()
+  }
+
   return true
 }
 
@@ -436,11 +441,6 @@ Addlist.after = (id, lines, hide = true) => {
   }
 
   Addlist.update_count(id)
-  let data = Addlist.data
-
-  if (data.after_action) {
-    data.after_action()
-  }
 }
 
 Addlist.check_buttons = (args) => {
@@ -570,9 +570,13 @@ Addlist.menu = () => {
         Addlist.remove({
           id: id,
           value: data.items[oargs.pk],
-          hide: false,
+          hide: true,
           force: true,
         })
+
+        if (data.after_done) {
+          data.after_done()
+        }
       }
     }
   })
@@ -1068,10 +1072,14 @@ Addlist.check_remove = () => {
         hide: true,
         force: true,
       })
+
+      if (data.after_done) {
+        data.after_done()
+      }
     },
   })
 }
 
-Addlist.edit_object = (id, obj, edit, after_action) => {
-  Addlist.edit({id: id, items: obj, edit: edit, after_action: after_action})
+Addlist.edit_object = (id, obj, edit, after_done) => {
+  Addlist.edit({id: id, items: obj, edit: edit, after_done: after_done})
 }
