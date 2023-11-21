@@ -367,16 +367,7 @@ Addlist.remove = (args = {}) => {
         Addlist.list({id: args.id, feedback: false})
       }
 
-      if (!args.hide) {
-        let lines = Addlist.get_data(args.id)
-
-        if (lines.length) {
-          Addlist.right(false)
-        }
-        else {
-          Addlist.hide(false)
-        }
-      }
+      Addlist.hide(false)
     },
     force: args.force,
   })
@@ -445,6 +436,11 @@ Addlist.after = (id, lines, hide = true) => {
   }
 
   Addlist.update_count(id)
+  let data = Addlist.data
+
+  if (data.after_action) {
+    data.after_action()
+  }
 }
 
 Addlist.check_buttons = (args) => {
@@ -734,11 +730,6 @@ Addlist.hide = (check = true, from = `normal`) => {
 
   function hide () {
     App.hide_popup(p_id, true)
-
-    if (data.after_hide) {
-      let values = Addlist.values(data.id)
-      data.after_hide(values)
-    }
   }
 
   if (check && modified) {
@@ -1081,6 +1072,6 @@ Addlist.check_remove = () => {
   })
 }
 
-Addlist.edit_object = (id, obj, edit, after_hide) => {
-  Addlist.edit({id: id, items: obj, edit: edit, after_hide: after_hide})
+Addlist.edit_object = (id, obj, edit, after_action) => {
+  Addlist.edit({id: id, items: obj, edit: edit, after_action: after_action})
 }

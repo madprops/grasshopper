@@ -2,11 +2,7 @@ App.check_rules = (item, rule) => {
   item.ruled = false
 
   for (let key in App.edit_props) {
-    let p = item[`rule_${key}`]
-
-    if (p === undefined) {
-      item[`rule_${key}`] = App.edit_default(key)
-    }
+    item[`rule_${key}`] = App.edit_default(key)
   }
 
   let rules
@@ -71,11 +67,11 @@ App.domain_rule_message = () => {
   App.alert_autohide(`This is set by a domain rule`)
 }
 
-App.refresh_rule = (mode, rule) => {
+App.refresh_rules = (mode) => {
   for (let item of App.get_items(mode)) {
-    if (App.check_rules(item, rule)) {
-      App.refresh_item_element(item)
-    }
+    App.check_rules(item)
+    App.refresh_item_element(item)
+    return
   }
 }
 
@@ -83,8 +79,8 @@ App.edit_domain_rule = (item, e) => {
   function edit (obj, edit = true) {
     App.start_domain_rules()
 
-    Addlist.edit_object(`settings_domain_rules`, obj, edit, (rule) => {
-      App.refresh_rule(item.mode, rule)
+    Addlist.edit_object(`settings_domain_rules`, obj, edit, () => {
+      App.refresh_rules(item.mode)
     })
   }
 
