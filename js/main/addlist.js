@@ -332,7 +332,6 @@ Addlist.remove = (args = {}) => {
   let def_args = {
     force: false,
     show_list: false,
-    hide: true,
   }
 
   App.def_args(def_args, args)
@@ -366,7 +365,7 @@ Addlist.remove = (args = {}) => {
         new_lines.push(line)
       }
 
-      Addlist.after(args.id, new_lines, args.hide)
+      Addlist.after(args.id, new_lines)
 
       if (args.show_list) {
         Addlist.list({id: args.id, feedback: false})
@@ -570,7 +569,6 @@ Addlist.menu = () => {
         Addlist.remove({
           id: id,
           value: data.items[oargs.pk],
-          hide: true,
           force: true,
         })
 
