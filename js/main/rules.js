@@ -80,10 +80,10 @@ App.refresh_rule = (mode, rule) => {
 }
 
 App.edit_domain_rule = (item, e) => {
-  function edit (obj) {
+  function edit (obj, edit = true) {
     App.start_domain_rules()
 
-    Addlist.edit_object(`settings_domain_rules`, obj, (rule) => {
+    Addlist.edit_object(`settings_domain_rules`, obj, edit, (rule) => {
       App.refresh_rule(item.mode, rule)
     })
   }
@@ -96,7 +96,7 @@ App.edit_domain_rule = (item, e) => {
       obj.by_title = true
     }
 
-    edit(obj)
+    edit(obj, false)
   }
 
   if (item.ruled) {

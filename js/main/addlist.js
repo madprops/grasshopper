@@ -76,10 +76,6 @@ Addlist.save = (id, hide = true) => {
     lines.splice(data.index, 0, values)
   }
 
-  if (data.after_save) {
-    data.after_save(values)
-  }
-
   Addlist.after(id, lines, hide)
   return true
 }
@@ -738,6 +734,11 @@ Addlist.hide = (check = true, from = `normal`) => {
 
   function hide () {
     App.hide_popup(p_id, true)
+
+    if (data.after_hide) {
+      let values = Addlist.values(data.id)
+      data.after_hide(values)
+    }
   }
 
   if (check && modified) {
@@ -1080,6 +1081,6 @@ Addlist.check_remove = () => {
   })
 }
 
-Addlist.edit_object = (id, obj, after_save) => {
-  Addlist.edit({id: id, items: obj, after_save: after_save})
+Addlist.edit_object = (id, obj, edit, after_hide) => {
+  Addlist.edit({id: id, items: obj, edit: edit, after_hide: after_hide})
 }
