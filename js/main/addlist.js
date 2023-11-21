@@ -132,6 +132,14 @@ Addlist.register = (args = {}) => {
   container.append(date)
   let els = []
 
+  function add_label (el, key) {
+    if (args.labels[key]) {
+      let label = DOM.create(`div`)
+      label.textContent = args.labels[key]
+      el.append(label)
+    }
+  }
+
   for (let key of args.keys) {
     let el
     let w = args.widgets[key]
@@ -142,18 +150,16 @@ Addlist.register = (args = {}) => {
       el.type = `text`
       el.spellcheck = false
       el.autocomplete = false
-      el.placeholder = args.labels[key] || `Value`
+      el.placeholder = args.labels[key]
     }
     else if (w === `textarea`) {
       el = DOM.create(`textarea`, `text addlist_textarea`, id)
       el.spellcheck = false
       el.autocomplete = false
-      el.placeholder = args.labels[key] || `Value`
+      el.placeholder = args.labels[key]
     }
     else if (w === `menu`) {
       el = DOM.create(`div`, `addlist_menu`)
-      let label = DOM.create(`div`)
-      label.textContent = args.labels[key] || `Select`
 
       App[`addlist_menubutton_${args.id}_${key}`] = Menubutton.create({
         id: id,
@@ -174,7 +180,7 @@ Addlist.register = (args = {}) => {
       })
 
       let mb = App[`addlist_menubutton_${args.id}_${key}`]
-      el.append(label)
+      add_label(el, key)
       el.append(mb.container)
     }
     else if (w === `key`) {
@@ -182,7 +188,7 @@ Addlist.register = (args = {}) => {
       el.type = `text`
       el.spellcheck = false
       el.autocomplete = false
-      el.placeholder = args.labels[key] || `Key`
+      el.placeholder = args.labels[key]
 
       DOM.ev(el, `keydown`, (e) => {
         el.value = e.code
@@ -193,20 +199,22 @@ Addlist.register = (args = {}) => {
       el = DOM.create(`div`, `addlist_checkbox_container`)
       let checkbox = DOM.create(`input`, `checkbox addlist_checkbox`, id)
       checkbox.type = `checkbox`
-      let label = DOM.create(`div`)
-      label.textContent = args.labels[key] || `Checkbox`
-      el.append(label)
+      add_label(el, key)
       el.append(checkbox)
     }
     else if (w === `color`) {
-      el = DOM.create(`div`, `addlist_color`)
+      el = DOM.create(`div`, `addlist_color_container`)
+      let color = DOM.create(`div`, `addlist_color`)
 
-      App[`addlist_color_${args.id}_${key}`] = AColorPicker.createPicker(el, {
+      App[`addlist_color_${args.id}_${key}`] = AColorPicker.createPicker(color, {
         showAlpha: false,
         showHSL: false,
         showHEX: false,
         showRGB: true,
       })
+
+      add_label(el, key)
+      el.append(color)
     }
 
     if (el) {

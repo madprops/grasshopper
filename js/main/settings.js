@@ -1207,7 +1207,6 @@ App.setup_settings_addlist = () => {
       },
       labels: {
         name: `Name`,
-        value: `Value`,
       },
       list_icon: (items) => {
         return App.color_icon(App.color_id(items.name))
