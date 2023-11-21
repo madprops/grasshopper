@@ -526,16 +526,16 @@ App.insert_color_css = () => {
     let text = App.contrast(color.value, 0.8)
     App.set_css_var(`text_${color.id}`, text)
 
-    css += `.border_${color.id} {
+    css += `.border_color_${color.id} {
       border-color: var(--color_${color.id}) !important;
     }`
 
-    css += `.background_${color.id} {
+    css += `.background_color_${color.id} {
       background-color: var(--color_${color.id}) !important;
       color: var(--text_${color.id}) !important;
     }`
 
-    css += `.text_${color.id} {
+    css += `.text_color_${color.id} {
       color: var(--color_${color.id}) !important;
     }`
   }

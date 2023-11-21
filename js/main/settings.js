@@ -1209,7 +1209,7 @@ App.setup_settings_addlist = () => {
         name: `Name`,
       },
       list_icon: (items) => {
-        return App.color_icon(App.color_id(items.name))
+        return App.color_icon(items._id_)
       },
       list_text: (items) => {
         return items.name

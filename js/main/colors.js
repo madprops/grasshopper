@@ -150,7 +150,7 @@ App.color_icon = (id) => {
   let s
 
   if (App.color_exists(id)) {
-    s = `color_icon background_${id}`
+    s = `color_icon background_color_${id}`
   }
   else {
     s = `color_icon background_fallback_color`
@@ -187,13 +187,21 @@ App.edit_tab_color = (args = {}) => {
   let c_obj = App.get_color_by_id(args.color)
   let s = args.color ? `Color ${c_obj.name}?` : `Remove color?`
   let force = App.check_force(`warn_on_edit_tabs`, active)
+  let value
+
+  if (c_obj) {
+    value = c_obj.id
+  }
+  else {
+    value = ``
+  }
 
   App.show_confirm({
     message: `${s} (${active.length})`,
     confirm_action: () => {
       for (let it of active) {
-        if (App.apply_edit(`color`, it, args.color)) {
-          App.custom_save(it.id, `custom_color`, args.color)
+        if (App.apply_edit(`color`, it, value)) {
+          App.custom_save(it.id, `custom_color`, value)
         }
       }
     },
@@ -407,17 +415,13 @@ App.colors = () => {
 
   for (let color of App.get_setting(`colors`)) {
     colors.push({
-      id: App.color_id(color.name),
+      id: color._id_,
       name: color.name,
       value: color.value,
     })
   }
 
   return colors
-}
-
-App.color_id = (name) => {
-  return name.replace(/\s+/g, `_`).toLowerCase()
 }
 
 App.color_exists = (color) => {
@@ -468,7 +472,7 @@ App.replace_color = () => {
         list: names,
         list_submit: true,
         on_submit: (color_2) => {
-          App.do_replace_color(App.color_id(color_1), App.color_id(color_2))
+          App.do_replace_color(color_1, color_2)
         },
       })
     },

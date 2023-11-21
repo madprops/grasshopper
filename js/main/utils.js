@@ -349,6 +349,18 @@ App.random_int = (min, max, exclude = undefined, random_function) => {
   return num
 }
 
+App.random_string = (n) => {
+  let text = ``
+
+  let possible = `ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789`
+
+  for (let i=0; i<n; i++) {
+    text += possible[App.random_int(0, possible.length - 1)]
+  }
+
+  return text
+}
+
 App.parse_delay = (s) => {
   let delay
   let split = s.split(`_`)

@@ -1,8 +1,13 @@
 const Addlist = {}
 
 Addlist.values = (id) => {
+  let data = Addlist.data
   let oargs = Addlist.oargs(id)
   let values = {}
+
+  if (data.items._id_) {
+    values._id_ = data.items._id_
+  }
 
   for (let key of oargs.keys) {
     values[key] = Addlist.get_value(key)
@@ -63,6 +68,11 @@ Addlist.save = (id, hide = true) => {
 
   let lines = Addlist.get_data(id)
   values._date_ = App.now()
+
+  if (!data.edit) {
+    let id = values._date_.slice(0, 6) + `_` + App.random_string(5)
+    values._id_ = id
+  }
 
   if (data.index === undefined) {
     if (oargs.append) {
