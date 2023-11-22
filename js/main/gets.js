@@ -22,9 +22,13 @@ App.get_icon = (item) => {
   return item.custom_icon || item.rule_icon || ``
 }
 
-App.get_tags = (item) => {
+App.get_tags = (item, include_rules = true) => {
   let tags = []
-  tags.push(...item.rule_tags)
+
+  if (include_rules) {
+    tags.push(...item.rule_tags)
+  }
+
   tags.push(...item.custom_tags)
   return Array.from(new Set(tags))
 }

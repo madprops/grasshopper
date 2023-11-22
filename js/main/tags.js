@@ -531,13 +531,17 @@ App.taglist_action = (e, item) => {
 App.show_taglist_menu = (e, item) => {
   let items = []
   let tag = e.target.textContent
+  let custom = App.get_tags(item, false)
+  let is_custom = custom.includes(tag)
 
-  items.push({
-    text: `Edit`,
-    action: () => {
-      App.edit_tag(item, tag)
-    },
-  })
+  if (is_custom) {
+    items.push({
+      text: `Edit`,
+      action: () => {
+        App.edit_tag(item, tag)
+      },
+    })
+  }
 
   items.push({
     text: `Filter`,
@@ -546,12 +550,14 @@ App.show_taglist_menu = (e, item) => {
     },
   })
 
-  items.push({
-    text: `Remove`,
-    action: () => {
-      App.remove_tag(item, tag)
-    },
-  })
+  if (is_custom) {
+    items.push({
+      text: `Remove`,
+      action: () => {
+        App.remove_tag(item, tag)
+      },
+    })
+  }
 
   App.show_context({items: items, e: e})
 }
