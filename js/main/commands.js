@@ -1294,6 +1294,19 @@ App.setup_commands = () => {
       info: `Filter all tagged tabs`,
     },
     {
+      name: `Filter Icon`,
+      cmd: `filter_icon`,
+      modes: [`items`],
+      item: true,
+      single: true,
+      some_icon: true,
+      icon: bot_icon,
+      action: (args) => {
+        App.filter_by_icon(args.item)
+      },
+      info: `Filter by the item's icon`,
+    },
+    {
       name: `Filter Pins`,
       cmd: `filter_pinned_tabs`,
       modes: [`tabs`],
@@ -1671,6 +1684,13 @@ App.check_command = (command, args = {}) => {
       else {
         args.some_untagged = true
       }
+
+      if (App.get_icon(item)) {
+        args.some_icon = true
+      }
+      else {
+        args.some_no_icon = true
+      }
     }
   }
 
@@ -1799,6 +1819,30 @@ App.check_command = (command, args = {}) => {
   if (valid) {
     if (command.some_tagged) {
       if (!args.some_tagged) {
+        valid = false
+      }
+    }
+  }
+
+  if (valid) {
+    if (command.some_untagged) {
+      if (!args.some_untagged) {
+        valid = false
+      }
+    }
+  }
+
+  if (valid) {
+    if (command.some_icon) {
+      if (!args.some_icon) {
+        valid = false
+      }
+    }
+  }
+
+  if (valid) {
+    if (command.some_no_icon) {
+      if (!args.some_no_icon) {
         valid = false
       }
     }

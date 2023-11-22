@@ -397,6 +397,14 @@ App.filter_check = (args) => {
         match = App.get_tags(args.item).includes(args.f_value)
       }
     }
+    else if (args.filter_mode === `icon`) {
+      if (args.f_value === `all`) {
+        match = App.get_icon(args.item)
+      }
+      else {
+        match = App.get_icon(args.item) === args.f_value
+      }
+    }
     else if (args.filter_mode === `titled`) {
       match = args.item.custom_title || args.item.rule_title
     }
@@ -1109,6 +1117,29 @@ App.filter_tag = (mode, tag, toggle = false) => {
   App.do_filter({mode: mode})
 }
 
+App.filter_icon = (mode, icon, toggle = false) => {
+  let name = `icon_${icon}`
+
+  if (toggle) {
+    if (App[`${mode}_filter_mode`] === name) {
+      App.filter_all(mode)
+      return
+    }
+  }
+
+  let s
+
+  if (icon === `all`) {
+    s = `All Icons`
+  }
+  else {
+    s = icon
+  }
+
+  App.set_custom_filter_mode(mode, name, s)
+  App.do_filter({mode: mode})
+}
+
 App.filter_color = (mode, color, toggle = false) => {
   let name = `color_${color}`
 
@@ -1189,6 +1220,8 @@ App.create_filter_menu = (mode) => {
   fmodes.push(separator())
   fmodes.push({type: `tag`, text: `Tag`, skip: true, info: `Filter a specific tag`, icon: App.tag_icon})
   fmodes.push({type: `color`, text: `Color`, skip: true, info: `Filter a specific color`, icon: App.settings_icons.theme})
+  fmodes.push({type: `icon`, text: `Icon`, skip: true, info: `Filter a specific icon`, icon: App.bot_icon})
+  fmodes.push(separator())
   fmodes.push({type: `titled`, text: `Titled`, skip: false, info: `Show tabs that have a custom title`, icon: App.notepad_icon})
   fmodes.push({type: `notes`, text: `Notes`, skip: false, info: `Show tabs that have notes`, icon: App.notepad_icon})
   fmodes.push({type: `edited`, text: `Edited`, skip: false, info: `Show tabs that have custom properties`,
@@ -1278,6 +1311,18 @@ App.show_filter_menu = (mode) => {
         text: filter_mode.text,
         get_items: () => {
           return App.get_tag_items(mode)
+        },
+        info: filter_mode.info,
+      })
+
+      continue
+    }
+    else if (filter_mode.type === `icon`) {
+      items.push({
+        icon: filter_mode.icon,
+        text: filter_mode.text,
+        get_items: () => {
+          return App.get_icon_items(mode)
         },
         info: filter_mode.info,
       })

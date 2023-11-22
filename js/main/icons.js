@@ -493,3 +493,54 @@ App.add_custom_icon = (item) => {
   icon.title = `Custom Icon. Middle Click to remove`
   item.element.append(icon)
 }
+
+App.get_icon_items = (mode) => {
+  let items = []
+  let icons = []
+
+  for (let tab of App.get_items(`tabs`)) {
+    let icon = App.get_icon(tab)
+
+    if (icon) {
+      if (!icons.includes(icon)) {
+        icons.push(icon)
+      }
+    }
+  }
+
+  if (icons.length) {
+    items.push({
+      text: `All`,
+      action: () => {
+        App.filter_icon(mode, `all`)
+      },
+    })
+
+    for (let icon of icons.slice(0, App.max_icon_picks)) {
+      items.push({
+        text: icon,
+        action: () => {
+          App.filter_icon(mode, icon)
+        },
+      })
+    }
+  }
+  else {
+    items.push({
+      text: `No icons in use`,
+      action: () => {
+        App.alert(`You can add icons to tabs`)
+      },
+    })
+  }
+
+  return items
+}
+
+App.filter_by_icon = (item) => {
+  let icon = App.get_icon(item)
+
+  if (icon) {
+    App.filter_icon(item.mode, icon)
+  }
+}

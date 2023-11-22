@@ -63,6 +63,7 @@ App.icon_history_max = 10
 App.active_history = []
 App.click_press_done = false
 App.max_tag_picks = 10
+App.max_icon_picks = 10
 App.popup_width = 800
 App.popup_height = 600
 App.browser_protocol = `moz-extension://`
