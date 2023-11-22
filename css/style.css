@@ -371,7 +371,7 @@ svg {
   margin-top: unset;
 }
 
-.not_filtered .header_item .item_content {
+.header_item .item_content {
   padding-top: 0.22rem;
   padding-bottom: 0.22rem;
 }
