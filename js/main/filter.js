@@ -1139,12 +1139,15 @@ App.blur_filter = (mode) => {
 
 App.check_filtered = (mode) => {
   let container = DOM.el(`#${mode}_container`)
+  let filtered = App.is_filtered(mode)
 
-  if (App.is_filtered(mode)) {
+  if (filtered) {
     container.classList.remove(`not_filtered`)
+    container.classList.add(`filtered`)
   }
   else {
     container.classList.add(`not_filtered`)
+    container.classList.remove(`filtered`)
   }
 }
 
