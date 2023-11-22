@@ -1179,18 +1179,6 @@ a:hover
   padding-bottom: 0.188rem;
 }
 
-.box_title_text {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  flex-grow: 1;
-}
-
-.box_title_icon {
-  margin-left: var(--item_margin);
-  margin-right: var(--item_margin);
-}
-
 .box_container {
   padding-top: 0.15rem;
   padding-bottom: 0.15rem;
@@ -1425,6 +1413,10 @@ a:hover
   align-items: center;
   justify-content: center;
   gap: 0.35rem;
+}
+
+.button_text_bigger {
+  gap: 0.7rem;
 }
 
 .button_text_icon {

@@ -87,7 +87,7 @@ App.domain_rules_ready = false
 
 App.settings_save_delay = 250
 App.empty_previous_tabs_delay = 2000
-App.alert_autohide_delay = 1350
+App.alert_autohide_delay = 1500
 App.filter_delay_2 = 100
 App.footer_delay = 100
 App.scroller_delay = 100

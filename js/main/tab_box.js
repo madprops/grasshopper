@@ -139,24 +139,9 @@ App.set_tab_box_items = () => {
   let mode = App.get_setting(`tab_box_mode`)
   let title = DOM.el(`#tab_box_title`)
   title.innerHTML = ``
-  let icon_el = DOM.create(`div`, `box_title_icon`)
-  icon_el.innerHTML = App.tab_box_icon(mode)
-  let text_el = DOM.create(`div`, `box_title_text`)
-  text_el.innerHTML = App.capitalize(mode)
-  let icon_el_2 = DOM.create(`div`, `box_title_icon`)
-  icon_el_2.innerHTML = App.tab_box_icon(mode)
-  let icons = App.get_setting(`tab_box_title_icons`)
-
-  if (icons) {
-    title.append(icon_el)
-  }
-
-  title.append(text_el)
-
-  if (icons) {
-    title.append(icon_el_2)
-  }
-
+  let icon = App.tab_box_icon(mode)
+  let text = App.capitalize(mode)
+  title.append(App.button_text(icon, text, true))
   let c = DOM.el(`#tab_box_container`)
   App.scroll_to_top(c)
 }

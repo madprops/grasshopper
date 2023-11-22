@@ -123,8 +123,14 @@ App.show_empty_menu = (e) => {
   App.show_context({items: items, e: e})
 }
 
-App.button_text = (icon, text) => {
-  let container = DOM.create(`div`, `button_text`)
+App.button_text = (icon, text, bigger = false) => {
+  let cls = `button_text`
+
+  if (bigger) {
+    cls += ` button_text_bigger`
+  }
+
+  let container = DOM.create(`div`, cls)
 
   if (icon) {
     let icon_el = DOM.create(`div`, `button_text_icon flex_row_center`)
