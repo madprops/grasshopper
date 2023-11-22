@@ -237,14 +237,16 @@ App.color_menu_items = (item) => {
     })
   }
 
-  App.sep(items)
+  if (item.custom_color) {
+    App.sep(items)
 
-  items.push({
-    text: `Remove`,
-    action: () => {
-      App.edit_tab_color({item: item})
-    }
-  })
+    items.push({
+      text: `Remove`,
+      action: () => {
+        App.edit_tab_color({item: item})
+      }
+    })
+  }
 
   return items
 }
