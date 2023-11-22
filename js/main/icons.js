@@ -495,7 +495,7 @@ App.add_custom_icon = (item) => {
   }
 
   let icon = DOM.create(`div`, cls)
-  icon.title = `Custom Icon. Middle Click to remove`
+  icon.title = `Custom Icon`
   item.element.append(icon)
 }
 
