@@ -367,7 +367,7 @@ svg {
   margin-bottom: 0.5rem;
 }
 
-.not_filtered .header_item:nth-child(1 of :not(.hidden)) {
+.header_item:nth-child(1 of :not(.hidden)) {
   margin-top: unset;
 }
 
