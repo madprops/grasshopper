@@ -244,6 +244,8 @@ App.edit_tag = (item, tag) => {
   }
 
   let tags = App.get_all_tags()
+  let rule_tags = item.rule_tags || []
+  tags = tags.filter(x => !rule_tags.includes(x))
 
   App.show_prompt({
     suggestions: tags,
@@ -262,6 +264,16 @@ App.edit_tag = (item, tag) => {
 App.do_edit_tag = (item, tag_1, tag_2) => {
   if (App.check_tag_edit(tag_1, tag_2)) {
     return
+  }
+
+  if (item.rule_tags && item.rule_tags.length) {
+    if (item.rule_tags.includes(tag_1)) {
+      return
+    }
+
+    if (item.rule_tags.includes(tag_2)) {
+      return
+    }
   }
 
   let tags = item.custom_tags.filter(x => x !== tag_1)
