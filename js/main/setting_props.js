@@ -1412,6 +1412,13 @@ App.build_settings = () => {
       info: `Re-use the filter when moving across modes`,
       version: 1,
     },
+    filter_effect: {
+      name: `Filter Effect`,
+      type: `checkbox`,
+      value: true,
+      info: `Make it clear that a filter is active`,
+      version: 1,
+    },
     clear_on_all: {
       name: `Clear On All`,
       type: `checkbox`,

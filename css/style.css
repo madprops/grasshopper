@@ -214,6 +214,11 @@ select {
   width: 0;
 }
 
+.filter.invert {
+  color: var(--text_color);
+  background-color: var(--background_color);
+}
+
 .small_filter {
   width: 11rem;
   text-align: center;

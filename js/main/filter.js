@@ -1149,6 +1149,17 @@ App.check_filtered = (mode) => {
     container.classList.add(`not_filtered`)
     container.classList.remove(`filtered`)
   }
+
+  if (App.get_setting(`filter_effect`)) {
+    let filter = App.get_filter_el(mode)
+
+    if (filtered) {
+      filter.classList.add(`invert`)
+    }
+    else {
+      filter.classList.remove(`invert`)
+    }
+  }
 }
 
 App.create_filter_menu = (mode) => {
