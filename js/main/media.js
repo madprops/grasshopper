@@ -93,6 +93,7 @@ App.start_media = (what) => {
 
       App.hide_media_elements(what)
       App.stop_media_timeout(what)
+      App.do_check_scroller()
     },
     colored_top: true,
     cls: `media`,
