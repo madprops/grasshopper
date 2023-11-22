@@ -967,7 +967,7 @@ App.setup_commands = () => {
       cmd: `edit_icon`,
       modes: [`tabs`],
       item: true,
-      icon: notepad_icon,
+      icon: bot_icon,
       action: (args) => {
         App.edit_icon(args.item)
       },
@@ -1075,7 +1075,7 @@ App.setup_commands = () => {
       cmd: `remove_icon`,
       modes: [`tabs`],
       item: true,
-      icon: notepad_icon,
+      icon: bot_icon,
       action: (args) => {
         App.remove_item_icon(args.item)
       },
@@ -1085,11 +1085,22 @@ App.setup_commands = () => {
       name: `Remove All Icons`,
       cmd: `remove_all_icons`,
       modes: [`tabs`],
-      icon: notepad_icon,
+      icon: bot_icon,
       action: (args) => {
         App.remove_edits({what: [`icon`]})
       },
       info: `Remove all icons from tabs`,
+    },
+    {
+      name: `Change Icon`,
+      cmd: `change_icon`,
+      modes: [`tabs`],
+      item: true,
+      icon: bot_icon,
+      action: (args) => {
+        App.change_icon(args.item)
+      },
+      info: `Change the icon of tabs`,
     },
     {
       name: `Remove Notes`,

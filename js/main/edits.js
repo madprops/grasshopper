@@ -224,6 +224,10 @@ App.edit_prompt = (args = {}) => {
     unique_words = true
   }
 
+  if (args.what === `icon`) {
+    show_list = true
+  }
+
   App.show_prompt({
     value: value,
     placeholder: placeholder,

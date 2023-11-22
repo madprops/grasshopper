@@ -560,6 +560,13 @@ App.custom_icon_menu_items = (item) => {
     }
   })
 
+  items.push({
+    text: `Change`,
+    action: () => {
+      App.change_icon(item)
+    }
+  })
+
   if (item.custom_icon) {
     items.push({
       text: `Remove`,
@@ -575,4 +582,8 @@ App.custom_icon_menu_items = (item) => {
 App.custom_icon_menu = (e, item) => {
   let items = App.custom_icon_menu_items(item)
   App.show_context({items: items, e: e})
+}
+
+App.change_icon = (item) => {
+  App.edit_prompt({what: `icon`, item: item})
 }
