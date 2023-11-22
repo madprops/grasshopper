@@ -357,6 +357,11 @@ App.mouse_middle_action = (mode, e) => {
     }
   }
 
+  if (e.target.classList.contains(`custom_icon`)) {
+    App.remove_item_icon(item)
+    return
+  }
+
   let cmd = App.get_setting(`middle_click_${item.mode}`)
   App.run_command({cmd: cmd, item: item, from: `middle_click`, e: e})
 }

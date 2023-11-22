@@ -299,6 +299,7 @@ App.create_item_element = (item) => {
     App.check_item_icon(item)
   }
 
+  App.add_custom_icon(item)
   App.get_color_icon(item)
   App.get_notes_icon(item)
 

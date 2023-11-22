@@ -237,6 +237,17 @@ App.check_icons = (item) => {
       icon.classList.add(`hidden`)
     }
   }
+
+  let custom_icon = App.get_icon(item)
+  let custom_icon_el = DOM.el(`.custom_icon`, item.element)
+
+  if (custom_icon) {
+    custom_icon_el.innerHTML = custom_icon
+    custom_icon_el.classList.remove(`hidden`)
+  }
+  else {
+    custom_icon_el.classList.add(`hidden`)
+  }
 }
 
 App.check_item_icon = (item) => {
@@ -261,8 +272,7 @@ App.check_item_icon = (item) => {
 }
 
 App.make_item_icon = (item, normal = true) => {
-  let icon
-  let text_icon = App.get_icon(item)
+  let icon, text_icon
 
   if (item.tab_box) {
     normal = false
@@ -475,4 +485,11 @@ App.remove_item_icon = (item) => {
 
 App.fetch_favicon_url = (item) => {
   return `https://www.google.com/s2/favicons?sz=64&domain=${item.hostname}`
+}
+
+App.add_custom_icon = (item) => {
+  let cls = `custom_icon item_node hidden`
+  let icon = DOM.create(`div`, cls)
+  icon.title = `Custom Icon. Middle Click to remove`
+  item.element.append(icon)
 }
