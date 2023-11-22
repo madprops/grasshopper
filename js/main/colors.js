@@ -108,12 +108,12 @@ App.apply_color_mode = (item) => {
   if (color_mode.includes(`border`)) {
     for (let color of App.colors()) {
       item.element.classList.remove(`colored`)
-      item.element.classList.remove(`border_${color.id}`)
+      item.element.classList.remove(`border_color_${color.id}`)
     }
 
     if (color) {
       item.element.classList.add(`colored`)
-      item.element.classList.add(`border_${color}`)
+      item.element.classList.add(`border_color_${color}`)
     }
   }
 
@@ -121,13 +121,13 @@ App.apply_color_mode = (item) => {
     for (let color of App.colors()) {
       item.element.classList.remove(`colored`)
       item.element.classList.remove(`colored_background`)
-      item.element.classList.remove(`background_${color.id}`)
+      item.element.classList.remove(`background_color_${color.id}`)
     }
 
     if (color) {
       item.element.classList.add(`colored`)
       item.element.classList.add(`colored_background`)
-      item.element.classList.add(`background_${color}`)
+      item.element.classList.add(`background_color_${color}`)
     }
   }
 
@@ -135,13 +135,13 @@ App.apply_color_mode = (item) => {
     for (let color of App.colors()) {
       item.element.classList.remove(`colored`)
       item.element.classList.remove(`colored_text`)
-      item.element.classList.remove(`text_${color.id}`)
+      item.element.classList.remove(`text_color${color.id}`)
     }
 
     if (color) {
       item.element.classList.add(`colored`)
       item.element.classList.add(`colored_text`)
-      item.element.classList.add(`text_${color}`)
+      item.element.classList.add(`text_color${color}`)
     }
   }
 }
