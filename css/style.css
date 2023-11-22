@@ -1378,7 +1378,7 @@ a:hover
 }
 
 .not_filtered .split_top,
-.not_filtered .header_item
+.header_item
 {
   border-top: var(--split_border) !important;
 }
