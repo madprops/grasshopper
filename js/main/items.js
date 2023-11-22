@@ -302,11 +302,7 @@ App.create_item_element = (item) => {
   App.add_custom_icon(item)
   App.get_color_icon(item)
   App.get_notes_icon(item)
-
-  if (item.mode === `tabs`) {
-    App.add_tab_icons(item)
-  }
-
+  App.add_icons(item)
   item.element.draggable = true
   App.check_icons(item)
   App.apply_color_mode(item)
