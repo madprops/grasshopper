@@ -592,6 +592,13 @@ App.build_settings = () => {
       type: `checkbox`,
       value: true,
       info: `Enable the Taglist in the items of the Tab Box`,
+      version: 1,
+    },
+    tab_box_title_icons: {
+      name: `Tab Box Title Icons`,
+      type: `checkbox`,
+      value: true,
+      info: `Show the icons on the title of the Tab Box`,
       separator: true,
       version: 1,
     },
