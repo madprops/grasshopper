@@ -1691,6 +1691,13 @@ App.build_settings = () => {
       info: `Show the notes when clicking the notes icon`,
       version: 1,
     },
+    custom_icon_click: {
+      name: `Custom Icon Click`,
+      type: `checkbox`,
+      value: true,
+      info: `Show a menu when clicking the custom icons`,
+      version: 1,
+    },
     button_icons: {
       name: `Button Icons`,
       type: `checkbox`,

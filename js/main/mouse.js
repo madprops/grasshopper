@@ -188,6 +188,13 @@ App.mouse_click_action = (mode, e, from) => {
     }
   }
 
+  if (App.get_setting(`custom_icon_click`)) {
+    if (e.target.classList.contains(`custom_icon`)) {
+      App.custom_icon_menu(e, item)
+      return
+    }
+  }
+
   if (media_type) {
     if (App.get_setting(`view_${media_type}_${mode}`) === `item`) {
       App.select_item({item: item, scroll: `nearest`})

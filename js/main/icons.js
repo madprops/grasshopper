@@ -489,6 +489,11 @@ App.fetch_favicon_url = (item) => {
 
 App.add_custom_icon = (item) => {
   let cls = `custom_icon item_node hidden`
+
+  if (App.get_setting(`custom_icon_click`)) {
+    cls += ` grower`
+  }
+
   let icon = DOM.create(`div`, cls)
   icon.title = `Custom Icon. Middle Click to remove`
   item.element.append(icon)
@@ -543,4 +548,31 @@ App.filter_by_icon = (item) => {
   if (icon) {
     App.filter_icon(item.mode, icon)
   }
+}
+
+App.custom_icon_menu_items = (item) => {
+  let items = []
+
+  items.push({
+    text: `Filter`,
+    action: () => {
+      App.filter_by_icon(item)
+    }
+  })
+
+  if (item.custom_icon) {
+    items.push({
+      text: `Remove`,
+      action: () => {
+        App.remove_item_icon(item)
+      }
+    })
+  }
+
+  return items
+}
+
+App.custom_icon_menu = (e, item) => {
+  let items = App.custom_icon_menu_items(item)
+  App.show_context({items: items, e: e})
 }
