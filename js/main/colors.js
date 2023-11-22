@@ -135,13 +135,13 @@ App.apply_color_mode = (item) => {
     for (let color of App.colors()) {
       item.element.classList.remove(`colored`)
       item.element.classList.remove(`colored_text`)
-      item.element.classList.remove(`text_color${color.id}`)
+      item.element.classList.remove(`text_color_${color.id}`)
     }
 
     if (color) {
       item.element.classList.add(`colored`)
       item.element.classList.add(`colored_text`)
-      item.element.classList.add(`text_color${color}`)
+      item.element.classList.add(`text_color_${color}`)
     }
   }
 }

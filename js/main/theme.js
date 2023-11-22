@@ -524,7 +524,7 @@ App.insert_color_css = () => {
   for (let color of App.colors()) {
     App.set_css_var(`color_${color.id}`, color.value)
     let text = App.contrast(color.value, 0.8)
-    App.set_css_var(`text_${color.id}`, text)
+    App.set_css_var(`text_color_${color.id}`, text)
 
     css += `.border_color_${color.id} {
       border-color: var(--color_${color.id}) !important;
@@ -532,7 +532,7 @@ App.insert_color_css = () => {
 
     css += `.background_color_${color.id} {
       background-color: var(--color_${color.id}) !important;
-      color: var(--text_${color.id}) !important;
+      color: var(--text_color_${color.id}) !important;
     }`
 
     css += `.text_color_${color.id} {
