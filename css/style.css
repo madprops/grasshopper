@@ -168,7 +168,7 @@ select {
 }
 
 .colored_top {
-  background-color: var(--alt_color_0);
+  background-color: var(--lighter_background);
   margin-bottom: 1.8rem;
 }
 
