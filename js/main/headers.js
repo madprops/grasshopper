@@ -134,12 +134,12 @@ App.set_header_text = (item) => {
   item.element.title = `Header: ${title}`
 }
 
-App.is_header = (item) => {
-  if (!item.url.startsWith(App.browser_protocol)) {
+App.is_header = (url) => {
+  if (!url.startsWith(App.browser_protocol)) {
     return false
   }
 
-  if (!item.url.endsWith(App.header_file)) {
+  if (!url.endsWith(App.header_file)) {
     return false
   }
 
@@ -151,7 +151,7 @@ App.check_header = (item) => {
     return
   }
 
-  if (App.is_header(item)) {
+  if (App.is_header(item.url)) {
     item.header = true
     item.unread = false
     item.discarded = false

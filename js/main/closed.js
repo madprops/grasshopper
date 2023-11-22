@@ -25,7 +25,9 @@ App.get_closed = async () => {
   }
 
   results = results.filter(x => x.tab)
-  return results.map(x => x.tab)
+  let tabs = results.map(x => x.tab)
+  tabs = tabs.filter(x => !App.is_header(x.url))
+  return tabs
 }
 
 App.closed_action = (item) => {
