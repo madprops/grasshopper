@@ -6,6 +6,12 @@ App.edit_tab_split = (args = {}) => {
 
   App.def_args(def_args, args)
   let active = App.get_active_items({mode: args.item.mode, item: args.item})
+  active = active.filter(x => !x.header)
+
+  if (!active.length) {
+    return
+  }
+
   let force = App.check_force(`warn_on_edit_tabs`, active)
 
   if (args.which === `top` || args.which === `bottom`) {

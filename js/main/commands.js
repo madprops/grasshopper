@@ -437,6 +437,7 @@ App.setup_commands = () => {
       cmd: `bookmark_items`,
       modes: [`items`],
       item: true,
+      no_header: true,
       icon: bookmarks_icon,
       action: (args) => {
         App.bookmark_items(args.item)
@@ -446,10 +447,9 @@ App.setup_commands = () => {
     {
       name: `Bookmark Page`,
       cmd: `bookmark_page`,
-      item: true,
       icon: bookmarks_icon,
       action: (args) => {
-        App.bookmark_active(args.item)
+        App.bookmark_active()
       },
       info: `Bookmark the current page`,
     },
@@ -527,6 +527,7 @@ App.setup_commands = () => {
       cmd: `unload_tabs`,
       modes: [`tabs`],
       some_loaded: true,
+      no_header: true,
       item: true,
       icon: unloaded_icon,
       action: (args) => {
@@ -646,6 +647,7 @@ App.setup_commands = () => {
       cmd: `mute_tabs`,
       modes: [`tabs`],
       some_unmuted: true,
+      no_header: true,
       item: true,
       icon: muted_icon,
       action: (args) => {
@@ -658,6 +660,7 @@ App.setup_commands = () => {
       cmd: `unmute_tabs`,
       modes: [`tabs`],
       some_muted: true,
+      no_header: true,
       item: true,
       icon: muted_icon,
       action: (args) => {
@@ -1022,6 +1025,7 @@ App.setup_commands = () => {
       modes: [`tabs`],
       item: true,
       some_not_split_top: true,
+      no_header: true,
       icon: zone_icon,
       action: (args) => {
         App.edit_tab_split({item: args.item, which: `top`})
@@ -1034,6 +1038,7 @@ App.setup_commands = () => {
       modes: [`tabs`],
       item: true,
       some_not_split_bottom: true,
+      no_header: true,
       icon: zone_icon,
       action: (args) => {
         App.edit_tab_split({item: args.item, which: `bottom`})
@@ -1142,6 +1147,7 @@ App.setup_commands = () => {
       cmd: `remove_split`,
       modes: [`tabs`],
       some_split: true,
+      no_header: true,
       item: true,
       icon: zone_icon,
       action: (args) => {
@@ -1221,6 +1227,7 @@ App.setup_commands = () => {
       modes: [`items`],
       item: true,
       single: true,
+      no_header: true,
       icon: filter_icon,
       action: (args) => {
         App.filter_domain(args.item, true)
@@ -1420,6 +1427,7 @@ App.setup_commands = () => {
       cmd: `edit_domain_rule`,
       modes: [`items`],
       single: true,
+      no_header: true,
       icon: notepad_icon,
       action: (args) => {
         App.edit_domain_rule(args.item, args.e)
@@ -1652,6 +1660,8 @@ App.check_command = (command, args = {}) => {
         else {
           args.some_not_split = true
         }
+
+        args.header = item.header
       }
 
       if (App.get_tags(item).length) {
@@ -1812,6 +1822,14 @@ App.check_command = (command, args = {}) => {
   if (valid) {
     if (command.some_tagged) {
       if (!args.some_tagged) {
+        valid = false
+      }
+    }
+  }
+
+  if (valid) {
+    if (command.no_header) {
+      if (args.header) {
         valid = false
       }
     }
