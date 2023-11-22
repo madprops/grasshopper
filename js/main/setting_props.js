@@ -1562,7 +1562,7 @@ App.build_settings = () => {
     double_shift_command: {
       name: `On Double Shift`,
       type: `menu`,
-      value: `none`,
+      value: `previous_filter`,
       info: `What command to run when pressing Shift twice quickly`,
       version: 1,
     },

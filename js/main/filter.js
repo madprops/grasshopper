@@ -903,6 +903,10 @@ App.previous_filter = (mode) => {
             let tag = pmode.replace(`tag_`, ``)
             App.filter_tag(mode, tag)
           }
+          else if (pmode.startsWith(`icon`)) {
+            let icon = pmode.replace(`icon_`, ``)
+            App.filter_icon(mode, icon)
+          }
         }
         else {
           App.set_filter_mode({mode: mode, type: pmode, filter: false})
