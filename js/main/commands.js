@@ -563,6 +563,7 @@ App.setup_commands = () => {
       cmd: `duplicate_tabs`,
       modes: [`tabs`],
       item: true,
+      no_header: true,
       icon: tabs_icon,
       action: (args) => {
         App.duplicate_tabs(args.item)
