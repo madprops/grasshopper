@@ -513,7 +513,7 @@ App.set_filter = (args = {}) => {
   }
 }
 
-App.filter_cmd = (mode, cmd) => {
+App.filter_by = (mode, cmd) => {
   let new_text
 
   if (cmd === `all`) {
@@ -730,56 +730,56 @@ App.get_filter_refine = (mode) => {
   items.push({
     text: `By Title`,
     action: () => {
-      App.filter_cmd(mode, `title`)
+      App.filter_by(mode, `title`)
     },
   })
 
   items.push({
     text: `By URL`,
     action: () => {
-      App.filter_cmd(mode, `url`)
+      App.filter_by(mode, `url`)
     },
   })
 
   items.push({
     text: `By All`,
     action: () => {
-      App.filter_cmd(mode, `all`)
+      App.filter_by(mode, `all`)
     },
   })
 
   items.push({
     text: `Regex Title`,
     action: () => {
-      App.filter_cmd(mode, `re_title`)
+      App.filter_by(mode, `re_title`)
     },
   })
 
   items.push({
     text: `Regex URL`,
     action: () => {
-      App.filter_cmd(mode, `re_url`)
+      App.filter_by(mode, `re_url`)
     },
   })
 
   items.push({
     text: `Regex All`,
     action: () => {
-      App.filter_cmd(mode, `re`)
+      App.filter_by(mode, `re`)
     },
   })
 
   items.push({
     text: `By Color`,
     action: () => {
-      App.filter_cmd(mode, `color`)
+      App.filter_by(mode, `color`)
     },
   })
 
   items.push({
     text: `By Tag`,
     action: () => {
-      App.filter_cmd(mode, `tag`)
+      App.filter_by(mode, `tag`)
     },
   })
 
