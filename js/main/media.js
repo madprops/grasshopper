@@ -399,10 +399,7 @@ App.check_view_media = (item) => {
     view_media.classList.remove(`hidden`)
 
     if (App.get_setting(`view_${type}_${item.mode}`) !== `never`) {
-      view_media.classList.add(`action`)
-    }
-    else {
-      view_media.classList.remove(`action`)
+      view_media.classList.add(`grower`)
     }
   }
   else {

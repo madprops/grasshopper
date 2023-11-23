@@ -502,6 +502,14 @@ App.add_custom_icon = (item) => {
 }
 
 App.get_icon_items = (mode) => {
+  function icon_sort(a, b) {
+    let ai = App.icon_history.indexOf(a)
+    let bi = App.icon_history.indexOf(b)
+    if (ai === -1) ai = App.icon_history.length
+    if (bi === -1) bi = App.icon_history.length
+    return ai - bi
+  }
+
   let items = []
   let icons = []
 
@@ -516,6 +524,8 @@ App.get_icon_items = (mode) => {
   }
 
   if (icons.length) {
+    icons.sort(icon_sort)
+
     items.push({
       text: `All`,
       action: () => {
