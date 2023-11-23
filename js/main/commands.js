@@ -210,7 +210,7 @@ App.setup_commands = () => {
       icon: icon,
       filter_mode: true,
       action: (args) => {
-        App.filter_type(args.mode, media)
+        App.filter_cmd(args.mode, args.self.cmd)
       },
       info: `Show media items (${media})`,
     })
@@ -1358,7 +1358,7 @@ App.setup_commands = () => {
       icon: pin_icon,
       filter_mode: true,
       action: (args) => {
-        App.filter_type(args.mode, `pinned`)
+        App.filter_cmd(args.mode, args.self.cmd)
       },
       info: `Show pinned tabs`,
     },
@@ -1370,7 +1370,7 @@ App.setup_commands = () => {
       icon: normal_icon,
       filter_mode: true,
       action: (args) => {
-        App.filter_type(args.mode, `normal`)
+        App.filter_cmd(args.mode, args.self.cmd)
       },
       info: `Show normal tabs`,
     },
@@ -1382,7 +1382,7 @@ App.setup_commands = () => {
       icon: playing_icon,
       filter_mode: true,
       action: (args) => {
-        App.filter_type(args.mode, `playing`)
+        App.filter_cmd(args.mode, args.self.cmd)
       },
       info: `Show playing tabs`,
     },
@@ -1394,7 +1394,7 @@ App.setup_commands = () => {
       icon: loaded_icon,
       filter_mode: true,
       action: (args) => {
-        App.filter_type(args.mode, `loaded`)
+        App.filter_cmd(args.mode, args.self.cmd)
       },
       info: `Show loaded tabs`,
     },
@@ -1406,7 +1406,7 @@ App.setup_commands = () => {
       icon: unloaded_icon,
       filter_mode: true,
       action: (args) => {
-        App.filter_type(args.mode, `unloaded`)
+        App.filter_cmd(args.mode, args.self.cmd)
       },
       info: `Show unloaded tabs`,
     },
@@ -1418,7 +1418,7 @@ App.setup_commands = () => {
       icon: tabs_icon,
       filter_mode: true,
       action: (args) => {
-        App.filter_type(args.mode, `duplicates`)
+        App.filter_cmd(args.mode, args.self.cmd)
       },
       info: `Show duplicate tabs`,
     },
@@ -1430,7 +1430,7 @@ App.setup_commands = () => {
       icon: unread_icon,
       filter_mode: true,
       action: (args) => {
-        App.filter_type(args.mode, `unread`)
+        App.filter_cmd(args.mode, args.self.cmd)
       },
       info: `Show unread tabs`,
     },
@@ -1442,7 +1442,7 @@ App.setup_commands = () => {
       icon: notepad_icon,
       filter_mode: true,
       action: (args) => {
-        App.filter_type(args.mode, `titled`)
+        App.filter_cmd(args.mode, args.self.cmd)
       },
       info: `Show tabs that have a custom title`,
     },
@@ -1454,7 +1454,7 @@ App.setup_commands = () => {
       icon: notes_icon,
       filter_mode: true,
       action: (args) => {
-        App.filter_type(args.mode, `notes`)
+        App.filter_cmd(args.mode, args.self.cmd)
       },
       info: `Show tabs that have notes`,
     },
@@ -1466,7 +1466,7 @@ App.setup_commands = () => {
       icon: notepad_icon,
       filter_mode: true,
       action: (args) => {
-        App.filter_type(args.mode, `edited`)
+        App.filter_cmd(args.mode, args.self.cmd)
       },
       info: `Show tabs that have custom properties`,
     },
@@ -1478,7 +1478,7 @@ App.setup_commands = () => {
       icon: zone_icon,
       filter_mode: true,
       action: (args) => {
-        App.filter_type(args.mode, `headers`)
+        App.filter_cmd(args.mode, args.self.cmd)
       },
       info: `Show header tabs`,
     },
@@ -1490,7 +1490,7 @@ App.setup_commands = () => {
       icon: filter_icon,
       filter_mode: true,
       action: (args) => {
-        App.filter_type(args.mode, `notab`)
+        App.filter_cmd(args.mode, args.self.cmd)
       },
       info: `Show items that are not open in a tab`,
     },
@@ -1639,6 +1639,7 @@ App.run_command = (args) => {
       return false
     }
 
+    args.self = command
     command.action(args)
   }
 

@@ -126,12 +126,12 @@ App.do_filter = async (args = {}) => {
   }
 
   let filter_mode = App.filter_mode(args.mode)
-  let filter_mode_split = filter_mode.split(`_`)
+  let filter_mode_split = filter_mode.split(`-`)
   let f_value
 
   if (filter_mode_split.length >= 2) {
     filter_mode = filter_mode_split[0]
-    f_value = filter_mode_split.slice(1).join(`_`)
+    f_value = filter_mode_split.slice(1).join(`-`)
   }
 
   let skip = !value && filter_mode === `all`
@@ -372,13 +372,13 @@ App.filter_check = (args) => {
     if (args.filter_mode === `all`) {
       match = true
     }
-    else if (args.filter_mode === `image`) {
+    else if (args.filter_mode === `filter_media_image`) {
       match = args.item.image
     }
-    else if (args.filter_mode === `video`) {
+    else if (args.filter_mode === `filter_media_video`) {
       match = args.item.video
     }
-    else if (args.filter_mode === `audio`) {
+    else if (args.filter_mode === `filter_media_audio`) {
       match = args.item.audio
     }
     else if (args.filter_mode === `color`) {
@@ -413,37 +413,37 @@ App.filter_check = (args) => {
         match = args.item.custom_title || args.item.rule_title
       }
     }
-    else if (args.filter_mode === `notes`) {
-      match = App.get_notes(args.item)
-    }
-    else if (args.filter_mode === `edited`) {
-      match = App.edited(args.item)
-    }
-    else if (args.filter_mode === `headers`) {
-      match = args.item.header
-    }
-    else if (args.filter_mode === `pinned`) {
+    else if (args.filter_mode === `filter_pinned_tabs`) {
       match = args.item.pinned
     }
-    else if (args.filter_mode === `normal`) {
+    else if (args.filter_mode === `filter_normal_tabs`) {
       match = !args.item.pinned
     }
-    else if (args.filter_mode === `playing`) {
+    else if (args.filter_mode === `filter_playing_tabs`) {
       match = args.item.audible || args.item.muted
     }
-    else if (args.filter_mode === `loaded`) {
+    else if (args.filter_mode === `filter_loaded_tabs`) {
       match = !args.item.discarded && !args.item.header
     }
-    else if (args.filter_mode === `unloaded`) {
+    else if (args.filter_mode === `filter_unloaded_tabs`) {
       match = args.item.discarded
     }
-    else if (args.filter_mode === `duplicates`) {
+    else if (args.filter_mode === `filter_duplicate_tabs`) {
       match = args.duplicates.includes(args.item)
     }
-    else if (args.filter_mode === `unread`) {
+    else if (args.filter_mode === `filter_unread_tabs`) {
       match = args.item.unread
     }
-    else if (args.filter_mode === `notab`) {
+    else if (args.filter_mode === `filter_notes_tabs`) {
+      match = App.get_notes(args.item)
+    }
+    else if (args.filter_mode === `filter_edited_tabs`) {
+      match = App.edited(args.item)
+    }
+    else if (args.filter_mode === `filter_header_tabs`) {
+      match = args.item.header
+    }
+    else if (args.filter_mode === `filter_no_tab`) {
       let no_tab = true
 
       for (let tab of App.get_items(`tabs`)) {
@@ -558,17 +558,15 @@ App.filter_mode = (mode) => {
   return App[`${mode}_filter_mode`]
 }
 
-App.get_filter_mode = (mode, type) => {
+App.get_filter_mode = (mode, cmd) => {
   for (let filter_mode of App.filter_modes(mode)) {
-    if (filter_mode.type === type) {
+    if (filter_mode.cmd === cmd) {
       return filter_mode
     }
   }
 
-  let cmd = App.get_command(type)
-
-  if (cmd) {
-    return {cmd: type, type: type, skip: false}
+  if (App.get_command(cmd)) {
+    return {cmd: cmd, skip: false}
   }
 }
 
@@ -579,8 +577,8 @@ App.set_filter_mode = (args = {}) => {
   }
 
   App.def_args(def_args, args)
-  let filter_mode = App.get_filter_mode(args.mode, args.type)
-  App[`${args.mode}_filter_mode`] = args.type
+  let filter_mode = App.get_filter_mode(args.mode, args.cmd)
+  App[`${args.mode}_filter_mode`] = args.cmd
   let mode_text = DOM.el(`#${args.mode}_filter_modes_text`)
   mode_text.innerHTML = ``
   mode_text.append(App.filter_mode_text({filter_mode: filter_mode}))
@@ -606,7 +604,7 @@ App.filter_mode_text = (args = {}) => {
   let icon, text
 
   if (args.filter_mode) {
-    if (args.filter_mode.type === `all`) {
+    if (args.filter_mode.cmd === `all`) {
       text = `All`
     }
     else {
@@ -619,11 +617,11 @@ App.filter_mode_text = (args = {}) => {
     }
   }
   else if (args.name) {
-    if (args.name.startsWith(`tag_`)) {
+    if (args.name.startsWith(`tag-`)) {
       icon = App.tag_icon
     }
-    else if (args.name.startsWith(`color_`)) {
-      let color = args.name.replace(`color_`, ``)
+    else if (args.name.startsWith(`color-`)) {
+      let color = args.name.replace(`color-`, ``)
 
       if (color === `all`) {
         icon = App.settings_icons.theme
@@ -887,7 +885,7 @@ App.filter_title = (item) => {
 
 App.filter_all = (mode = App.window_mode) => {
   if (App.is_filtered(mode)) {
-    App.set_filter_mode({mode: mode, type: `all`, filter: false})
+    App.set_filter_mode({mode: mode, cmd: `all`, filter: false})
     App.set_filter({mode: mode})
   }
 }
@@ -914,22 +912,22 @@ App.previous_filter = (mode) => {
     }
     else {
       if (pmode) {
-        if (pmode.includes(`_`)) {
+        if (pmode.includes(`-`)) {
           if (pmode.startsWith(`color`)) {
-            let color = pmode.replace(`color_`, ``)
+            let color = pmode.replace(`color-`, ``)
             App.filter_color(mode, color)
           }
           else if (pmode.startsWith(`tag`)) {
-            let tag = pmode.replace(`tag_`, ``)
+            let tag = pmode.replace(`tag-`, ``)
             App.filter_tag(mode, tag)
           }
           else if (pmode.startsWith(`icon`)) {
-            let icon = pmode.replace(`icon_`, ``)
+            let icon = pmode.replace(`icon-`, ``)
             App.filter_icon(mode, icon)
           }
         }
         else {
-          App.set_filter_mode({mode: mode, type: pmode, filter: false})
+          App.set_filter_mode({mode: mode, cmd: pmode, filter: false})
         }
       }
 
@@ -1060,22 +1058,22 @@ App.show_filter_color_menu = (mode, e) => {
   App.show_context({items: items, e: e})
 }
 
-App.toggle_filter = (mode, type) => {
-  if (App[`${mode}_filter_mode`] === type) {
+App.toggle_filter = (mode, cmd) => {
+  if (App[`${mode}_filter_mode`] === cmd) {
     App.filter_all(mode)
     return
   }
   else {
-    App.set_filter_mode({mode: mode, type: type})
+    App.set_filter_mode({mode: mode, cmd: cmd})
   }
 }
 
-App.filter_type = (mode, type) => {
-  App.toggle_filter(mode, type)
+App.filter_cmd = (mode, cmd) => {
+  App.toggle_filter(mode, cmd)
 }
 
 App.filter_tag = (mode, tag, toggle = false) => {
-  let name = `tag_${tag}`
+  let name = `tag-${tag}`
 
   if (toggle) {
     if (App[`${mode}_filter_mode`] === name) {
@@ -1098,7 +1096,7 @@ App.filter_tag = (mode, tag, toggle = false) => {
 }
 
 App.filter_icon = (mode, icon, toggle = false) => {
-  let name = `icon_${icon}`
+  let name = `icon-${icon}`
 
   if (toggle) {
     if (App[`${mode}_filter_mode`] === name) {
@@ -1121,7 +1119,7 @@ App.filter_icon = (mode, icon, toggle = false) => {
 }
 
 App.filter_color = (mode, color, toggle = false) => {
-  let name = `color_${color}`
+  let name = `color-${color}`
 
   if (toggle) {
     if (App[`${mode}_filter_mode`] === name) {
@@ -1175,14 +1173,14 @@ App.check_filtered = (mode) => {
 
 App.create_filter_menu = (mode) => {
   function separator () {
-    return {type: App.separator_string, skip: true}
+    return {cmd: App.separator_string, skip: true}
   }
 
   let btn = DOM.create(`div`, `button icon_button filter_button`, `${mode}_filter_modes`)
   btn.title = `Filters (Ctrl + F) - Right Click to show filter commands`
   btn.append(DOM.create(`div`, ``, `${mode}_filter_modes_text`))
   let fmodes = []
-  fmodes.push({type: `all`, text: `All`, info: `Show all items`})
+  fmodes.push({cmd: `all`, text: `All`, info: `Show all items`})
   let m_modes = App[`${mode}_filter_modes`]
 
   if (m_modes) {
@@ -1191,26 +1189,26 @@ App.create_filter_menu = (mode) => {
   }
 
   fmodes.push(separator())
-  fmodes.push({cmd: `filter_media_image`, type: `image`, skip: false})
-  fmodes.push({cmd: `filter_media_video`, type: `video`, skip: false})
-  fmodes.push({cmd: `filter_media_audio`, type: `audio`, skip: false})
+  fmodes.push({cmd: `filter_media_image`, skip: false})
+  fmodes.push({cmd: `filter_media_video`, skip: false})
+  fmodes.push({cmd: `filter_media_audio`, skip: false})
   fmodes.push(separator())
   fmodes.push({cmd: `show_filter_tag_menu`, skip: true})
   fmodes.push({cmd: `show_filter_color_menu`, skip: true})
   fmodes.push({cmd: `show_filter_icon_menu`, skip: true})
   fmodes.push(separator())
-  fmodes.push({cmd: `filter_titled_tabs`, type: `titled`, skip: false})
-  fmodes.push({cmd: `filter_notes_tabs`, type: `notes`, skip: false})
-  fmodes.push({cmd: `filter_edited_tabs`, type: `edited`, skip: false})
+  fmodes.push({cmd: `filter_titled_tabs`, tskip: false})
+  fmodes.push({cmd: `filter_notes_tabs`, skip: false})
+  fmodes.push({cmd: `filter_edited_tabs`, tskip: false})
 
   if (mode !== `tabs`) {
     fmodes.push(separator())
-    fmodes.push({cmd: `filter_no_tab`, type: `notab`, skip: false})
+    fmodes.push({cmd: `filter_no_tab`, skip: false})
   }
 
   fmodes.push(separator())
-  fmodes.push({type: `refine`, text: `Refine`, skip: true, info: `Refine the filter`})
-  fmodes.push({type: `custom`, text: `Custom`, skip: true, info: `Pick a custom filter`})
+  fmodes.push({cmd: `refine`, text: `Refine`, skip: true, info: `Refine the filter`})
+  fmodes.push({cmd: `custom`, text: `Custom`, skip: true, info: `Pick a custom filter`})
   App[`${mode}_filter_modes_all`] = fmodes
 
   DOM.ev(btn, `click`, () => {
@@ -1248,7 +1246,7 @@ App.show_filter_menu = (mode) => {
   let f_mode = App.filter_mode(mode)
 
   for (let filter_mode of App.filter_modes(mode)) {
-    if (filter_mode.type === App.separator_string) {
+    if (filter_mode.cmd === App.separator_string) {
       App.sep(items)
       continue
     }
@@ -1256,8 +1254,7 @@ App.show_filter_menu = (mode) => {
     let cmd = App.get_command(filter_mode.cmd)
 
     if (cmd) {
-      let f_type = App.get_filter_type(mode, filter_mode.cmd)
-      let selected = f_mode === f_type
+      let selected = f_mode === filter_mode.cmd
 
       items.push({
         icon: cmd.icon,
@@ -1269,7 +1266,7 @@ App.show_filter_menu = (mode) => {
         info: cmd.info,
       })
     }
-    else if (filter_mode.type === `all`) {
+    else if (filter_mode.cmd === `all`) {
       items.push({
         icon: filter_mode.icon,
         text: filter_mode.text,
@@ -1278,13 +1275,13 @@ App.show_filter_menu = (mode) => {
             App.filter_all(mode)
           }
           else {
-            App.set_filter_mode({mode: mode, type: `all`})
+            App.set_filter_mode({mode: mode, cmd: `all`})
           }
         },
         info: filter_mode.info,
       })
     }
-    else if (filter_mode.type === `custom`) {
+    else if (filter_mode.cmd === `custom`) {
       items.push({
         icon: filter_mode.icon,
         text: `Custom`,
@@ -1296,7 +1293,7 @@ App.show_filter_menu = (mode) => {
 
       continue
     }
-    else if (filter_mode.type === `refine`) {
+    else if (filter_mode.cmd === `refine`) {
       items.push({
         icon: filter_mode.icon,
         text: filter_mode.text,
@@ -1324,12 +1321,12 @@ App.cycle_filter_modes = (mode, reverse = true) => {
     for (let cmd_name of cmd_names) {
       modes.push({
         cmd: cmd_name,
-        type: App.get_filter_type(mode, cmd_name),
         skip: false,
       })
     }
   }
-  else {
+
+  if (!modes.length) {
     modes = f_modes
   }
 
@@ -1351,16 +1348,16 @@ App.cycle_filter_modes = (mode, reverse = true) => {
     }
 
     if (waypoint) {
-      App.set_filter_mode({mode: mode, type: filter_mode.type, instant: false})
+      App.set_filter_mode({mode: mode, cmd: filter_mode.cmd, instant: false})
       return
     }
 
-    if (filter_mode.type === App.filter_mode(mode)) {
+    if (filter_mode.cmd === App.filter_mode(mode)) {
       waypoint = true
     }
   }
 
-  App.set_filter_mode({mode: mode, type: first.type, instant: false})
+  App.set_filter_mode({mode: mode, cmd: first.cmd, instant: false})
 }
 
 App.copy_filter = (mode) => {
@@ -1379,14 +1376,4 @@ App.paste_filter = async (mode) => {
   if (filter) {
     App.set_filter({mode: mode, text: filter})
   }
-}
-
-App.get_filter_type = (mode, cmd_name) => {
-  for (let f_mode of App.filter_modes(mode)) {
-    if (f_mode.cmd === cmd_name) {
-      return f_mode.type
-    }
-  }
-
-  return cmd_name
 }
