@@ -96,15 +96,15 @@ App.setup_tabs = () => {
 
 App.build_tab_filters = () => {
   App.tabs_filter_modes = [
-    {cmd: `filter_pinned_tabs`, type: `pinned`, skip: false},
-    {cmd: `filter_normal_tabs`, type: `normal`, skip: false},
-    {cmd: `filter_playing_tabs`, type: `playing`, skip: false},
-    {cmd: `filter_loaded_tabs`, type: `loaded`, skip: false},
-    {cmd: `filter_unloaded_tabs`, type: `unloaded`, skip: false},
-    {cmd: `filter_unread_tabs`, type: `unread`, skip: false},
-    {cmd: `filter_header_tabs`, type: `headers`, skip: false},
+    {cmd: `filter_pinned_tabs`},
+    {cmd: `filter_normal_tabs`},
+    {cmd: `filter_playing_tabs`},
+    {cmd: `filter_loaded_tabs`},
+    {cmd: `filter_unloaded_tabs`},
+    {cmd: `filter_unread_tabs`},
+    {cmd: `filter_header_tabs`},
     {type: App.separator_string, skip: true},
-    {cmd: `filter_duplicate_tabs`, type: `duplicates`, skip: false},
+    {cmd: `filter_duplicate_tabs`},
   ]
 }
 

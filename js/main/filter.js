@@ -566,7 +566,7 @@ App.get_filter_mode = (mode, cmd) => {
   }
 
   if (App.get_command(cmd)) {
-    return {cmd: cmd, skip: false}
+    return {cmd: cmd}
   }
 }
 
@@ -1189,21 +1189,21 @@ App.create_filter_menu = (mode) => {
   }
 
   fmodes.push(separator())
-  fmodes.push({cmd: `filter_media_image`, skip: false})
-  fmodes.push({cmd: `filter_media_video`, skip: false})
-  fmodes.push({cmd: `filter_media_audio`, skip: false})
+  fmodes.push({cmd: `filter_media_image`})
+  fmodes.push({cmd: `filter_media_video`})
+  fmodes.push({cmd: `filter_media_audio`})
   fmodes.push(separator())
   fmodes.push({cmd: `show_filter_tag_menu`, skip: true})
   fmodes.push({cmd: `show_filter_color_menu`, skip: true})
   fmodes.push({cmd: `show_filter_icon_menu`, skip: true})
   fmodes.push(separator())
-  fmodes.push({cmd: `filter_titled_tabs`, tskip: false})
-  fmodes.push({cmd: `filter_notes_tabs`, skip: false})
-  fmodes.push({cmd: `filter_edited_tabs`, tskip: false})
+  fmodes.push({cmd: `filter_titled_tabs`})
+  fmodes.push({cmd: `filter_notes_tabs`})
+  fmodes.push({cmd: `filter_edited_tabs`})
 
   if (mode !== `tabs`) {
     fmodes.push(separator())
-    fmodes.push({cmd: `filter_no_tab`, skip: false})
+    fmodes.push({cmd: `filter_no_tab`})
   }
 
   fmodes.push(separator())
@@ -1323,10 +1323,7 @@ App.cycle_filter_modes = (mode, reverse = true) => {
 
       if (cmd) {
         if (App.check_command(cmd)) {
-          modes.push({
-            cmd: cmd_name,
-            skip: false,
-          })
+          modes.push({cmd: cmd_name})
         }
       }
     }
