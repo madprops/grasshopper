@@ -98,8 +98,8 @@ App.build_tab_filters = () => {
   let def_icon = App.mode_icons.tabs
 
   App.tabs_filter_modes = [
-    {cmd: `filter_pinned_tabs`, type: `pinned`, skip: false},
-    {cmd: `filter_normal_tabs`, type: `normal`, skip: false},
+    {cmd: `filter_pinned_tabs`, skip: false},
+    {cmd: `filter_normal_tabs`, skip: false},
     // {
     //   type: `playing`, text:`Playing`, skip: false, info: `Show tabs emitting sound`,
     //   icon: App.get_setting(`playing_icon`) || def_icon

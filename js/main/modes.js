@@ -76,9 +76,7 @@ App.do_show_mode = async (args = {}) => {
   App.empty_footer_info()
   App.cancel_filter()
   App.set_filter({mode: args.mode, text: value, filter: false})
-  let filter_mode = App.filter_modes(args.mode)[0]
-  App.set_filter_mode({mode: args.mode, type: filter_mode.type, filter: false})
-  App[`${args.mode}_filter_mode`] = filter_mode.type
+  App.set_filter_mode({mode: args.mode, cmd: `all`, filter: false})
   App[`last_${args.mode}_query`] = undefined
   let persistent = App.persistent_modes.includes(args.mode)
   let search = App.search_modes.includes(args.mode)

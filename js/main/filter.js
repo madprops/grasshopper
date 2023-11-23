@@ -568,11 +568,10 @@ App.set_filter_mode = (args = {}) => {
   }
 
   App.def_args(def_args, args)
-  let filter_mode = App.get_filter_mode(args.mode, args.type)
-  App[`${args.mode}_filter_mode`] = filter_mode.type
+  App[`${args.mode}_filter_mode`] = args.cmd
   let mode_text = DOM.el(`#${args.mode}_filter_modes_text`)
   mode_text.innerHTML = ``
-  mode_text.append(App.filter_mode_text({filter_mode: filter_mode}))
+  mode_text.append(App.filter_mode_text({cmd: args.cmd}))
 
   if (args.filter) {
     if (args.instant) {
@@ -594,16 +593,16 @@ App.set_custom_filter_mode = (mode, name, title) => {
 App.filter_mode_text = (args = {}) => {
   let icon, text
 
-  if (args.filter_mode) {
-    if (args.filter_mode.type === `all`) {
+  if (args.cmd) {
+    if (args.cmd === `all`) {
       text = `All`
     }
     else {
-      let cmd = App.get_command(args.filter_mode.cmd)
+      let c = App.get_command(args.filter_mode.cmd)
 
-      if (cmd) {
-        icon = cmd.icon
-        text = cmd.short_name || cmd.name
+      if (c) {
+        icon = c.icon
+        text = c.short_name || c.name
       }
     }
   }
@@ -876,7 +875,7 @@ App.filter_title = (item) => {
 
 App.filter_all = (mode = App.window_mode) => {
   if (App.is_filtered(mode)) {
-    App.set_filter_mode({mode: mode, type: `all`, filter: false})
+    App.set_filter_mode({mode: mode, cmd: `all`, filter: false})
     App.set_filter({mode: mode})
   }
 }
@@ -918,7 +917,7 @@ App.previous_filter = (mode) => {
           }
         }
         else {
-          App.set_filter_mode({mode: mode, type: pmode, filter: false})
+          App.set_filter_mode({mode: mode, cmd: pmode, filter: false})
         }
       }
 
@@ -1049,13 +1048,13 @@ App.show_filter_color_menu = (mode, e) => {
   App.show_context({items: items, e: e})
 }
 
-App.toggle_filter = (mode, type) => {
-  if (App[`${mode}_filter_mode`] === type) {
+App.toggle_filter = (mode, cmd) => {
+  if (App[`${mode}_filter_mode`] === cmd) {
     App.filter_all(mode)
     return
   }
   else {
-    App.set_filter_mode({mode: mode, type: type})
+    App.set_filter_mode({mode: mode, cmd: cmd})
   }
 }
 
@@ -1212,14 +1211,14 @@ App.check_filtered = (mode) => {
 
 App.create_filter_menu = (mode) => {
   function separator () {
-    return {type: App.separator_string, skip: true}
+    return {cmd: App.separator_string, skip: true}
   }
 
   let btn = DOM.create(`div`, `button icon_button filter_button`, `${mode}_filter_modes`)
   btn.title = `Filters (Ctrl + F) - Right Click to show filter commands`
   btn.append(DOM.create(`div`, ``, `${mode}_filter_modes_text`))
   let fmodes = []
-  fmodes.push({type: `all`, text: `All`})
+  fmodes.push({cmd: `all`, text: `All`, info: `Show all items`})
   let m_modes = App[`${mode}_filter_modes`]
 
   if (m_modes) {
@@ -1228,17 +1227,17 @@ App.create_filter_menu = (mode) => {
   }
 
   fmodes.push(separator())
-  fmodes.push({cmd: `filter_media_image`, type: `image`, skip: false})
-  fmodes.push({cmd: `filter_media_video`, type: `video`, skip: false})
-  fmodes.push({cmd: `filter_media_audio`, type: `audio`, skip: false})
+  fmodes.push({cmd: `filter_media_image`, skip: false})
+  fmodes.push({cmd: `filter_media_video`, skip: false})
+  fmodes.push({cmd: `filter_media_audio`, skip: false})
   fmodes.push(separator())
   fmodes.push({cmd: `show_filter_tag_menu`, skip: true})
   fmodes.push({cmd: `show_filter_color_menu`, skip: true})
   fmodes.push({cmd: `show_filter_icon_menu`, skip: true})
   fmodes.push(separator())
-  fmodes.push({cmd: `filter_titled_tabs`, type: `titled`, skip: false})
-  fmodes.push({cmd: `filter_notes_tabs`, type: `notes`, skip: false})
-  fmodes.push({cmd: `filter_edited_tabs`, type: `edited`, skip: false})
+  fmodes.push({cmd: `filter_titled_tabs`, skip: false})
+  fmodes.push({cmd: `filter_notes_tabs`, skip: false})
+  fmodes.push({cmd: `filter_edited_tabs`, skip: false})
 
   if (mode !== `tabs`) {
     fmodes.push(separator())
@@ -1246,8 +1245,8 @@ App.create_filter_menu = (mode) => {
   }
 
   fmodes.push(separator())
-  fmodes.push({type: `refine`, text: `Refine`, skip: true, info: `Refine the filter`})
-  fmodes.push({type: `custom`, text: `Custom`, skip: true, info: `Pick a custom filter`})
+  fmodes.push({cmd: `refine`, text: `Refine`, skip: true, info: `Refine the filter`})
+  fmodes.push({cmd: `custom`, text: `Custom`, skip: true, info: `Pick a custom filter`})
   App[`${mode}_filter_modes_all`] = fmodes
 
   DOM.ev(btn, `click`, () => {
@@ -1299,7 +1298,7 @@ App.show_filter_menu = (mode) => {
             App.filter_all(mode)
           }
           else {
-            App.set_filter_mode({mode: mode, type: `all`})
+            App.set_filter_mode({mode: mode, cmd: `all`})
           }
         },
         info: filter_mode.info,
@@ -1351,17 +1350,21 @@ App.show_filter_menu = (mode) => {
 }
 
 App.cycle_filter_modes = (mode, reverse = true) => {
-  let o_modes = App.filter_modes(mode)
-  let cycle_modes = App.get_setting(`cycle_filters`)
+  let f_modes = App.filter_modes(mode)
+  let cycle_filters = App.get_setting(`cycle_filters`).map(x => x.cmd)
   let modes = []
 
-  if (cycle_modes.length) {
-    for (let md of o_modes) {
-
+  if (cycle_filters.length) {
+    for (let cmd_name of cycle_filters) {
+      modes.push({
+        cmd: cmd_name,
+        type: cmd_name,
+        skip: false,
+      })
     }
   }
   else {
-    modes = o_modes
+    modes = f_modes
   }
 
   let waypoint = false
@@ -1372,26 +1375,26 @@ App.cycle_filter_modes = (mode, reverse = true) => {
 
   let first
 
-  for (let filter_mode of modes.slice(0).reverse()) {
-    if (filter_mode.skip) {
+  for (let f_mode of modes.slice(0).reverse()) {
+    if (f_mode.skip) {
       continue
     }
 
     if (!first) {
-      first = filter_mode
+      first = f_mode
     }
 
     if (waypoint) {
-      App.set_filter_mode({mode: mode, type: filter_mode.type, instant: false})
+      App.set_filter_mode({mode: mode, cmd: f_mode.cmd, instant: false})
       return
     }
 
-    if (filter_mode.type === App.filter_mode(mode)) {
+    if (f_mode.cmd === App.filter_mode(mode)) {
       waypoint = true
     }
   }
 
-  App.set_filter_mode({mode: mode, type: first.type, instant: false})
+  App.set_filter_mode({mode: mode, cmd: first.cmd, instant: false})
 }
 
 App.copy_filter = (mode) => {
