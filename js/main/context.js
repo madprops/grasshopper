@@ -1,5 +1,5 @@
 App.setup_context = () => {
-  NeedContext.min_width = `4.5rem`
+  NeedContext.min_width = `1rem`
   NeedContext.center_top = 50
 }
 
