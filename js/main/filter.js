@@ -1309,7 +1309,7 @@ App.show_filter_menu = (mode) => {
   App.show_context({element: btn, items: items, margin: btn.clientHeight})
 }
 
-App.cycle_filter_modes = (mode, reverse = true, e) => {
+App.cycle_filter_modes = (mode, reverse, e) => {
   let f_modes = App.filter_modes(mode)
   let cycle_filters = App.get_setting(`cycle_filters`)
   let modes = []
