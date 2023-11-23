@@ -1343,7 +1343,7 @@ App.setup_commands = () => {
       cmd: `show_filter_icon_menu`,
       modes: [`items`],
       item: true,
-      icon: tag_icon,
+      icon: bot_icon,
       action: (args) => {
         App.show_filter_icon_menu(args.mode, args.e)
       },
