@@ -1339,11 +1339,7 @@ App.cycle_filter_modes = (mode, reverse, e) => {
   }
 
   if (cycle_filters.length && !e.shiftKey) {
-    modes.push({
-      cmd: `all`,
-      name: `all`,
-    })
-
+    modes.push({cmd: `all`})
     let cmd_names = cycle_filters.map(x => x.cmd)
 
     for (let cmd_name of cmd_names) {
@@ -1386,7 +1382,9 @@ App.cycle_filter_modes = (mode, reverse, e) => {
       return
     }
 
-    if (filter_mode.name === App.filter_mode(mode)) {
+    let name = filter_mode.name || filter_mode.cmd
+
+    if (name === App.filter_mode(mode)) {
       waypoint = true
     }
   }
