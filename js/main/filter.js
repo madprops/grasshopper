@@ -137,7 +137,7 @@ App.do_filter = async (args = {}) => {
   let skip = !value && filter_mode === `all`
   let duplicates
 
-  if (filter_mode === `duplicates`) {
+  if (filter_mode === `filter_duplicate_tabs`) {
     duplicates = App.find_duplicates(items, `url`)
   }
 
