@@ -1370,11 +1370,11 @@ App.build_settings = () => {
       These appear in the Custom section or by using the command`,
       version: 3,
     },
-    cycle_filters: {
-      name: `Cycle Filters`,
+    favorite_filters: {
+      name: `Favorite Filters`,
       type: `list`,
       value: [],
-      info: `Use these when cycling the Filter Menu`,
+      info: `Use these when cycling the Filter Menu with the mousewheel, or right clicking the Filter Menu`,
       separator: true,
       version: 1,
     },

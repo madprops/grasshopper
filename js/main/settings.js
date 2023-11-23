@@ -1203,7 +1203,7 @@ App.setup_settings_addlist = () => {
   }
 
   menukeys = [
-    `cycle_filters`,
+    `favorite_filters`,
   ]
 
   for (let key in App.setting_props) {

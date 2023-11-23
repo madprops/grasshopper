@@ -1237,7 +1237,7 @@ App.create_filter_menu = (mode) => {
 
   DOM.ev(btn, `contextmenu`, (e) => {
     e.preventDefault()
-    App.show_palette(`filter`)
+    App.filter_menu_context(e)
   })
 
   DOM.ev(btn, `auxclick`, (e) => {
@@ -1331,7 +1331,7 @@ App.show_filter_menu = (mode) => {
 
 App.cycle_filter_modes = (mode, reverse, e) => {
   let f_modes = App.filter_modes(mode)
-  let cycle_filters = App.get_setting(`cycle_filters`)
+  let favorites = App.get_setting(`favorite_filters`)
   let modes = []
 
   function proc (cmd) {
@@ -1342,14 +1342,14 @@ App.cycle_filter_modes = (mode, reverse, e) => {
       let c = App.get_command(cmd)
 
       if (c) {
-        App.run_command({cmd: c.cmd, from: `cycle_filters`, e: e})
+        App.run_command({cmd: c.cmd, from: `favorite_filters`, e: e})
       }
     }
   }
 
-  if (cycle_filters.length && !e.shiftKey) {
+  if (favorites.length && !e.shiftKey) {
     modes.push({cmd: `all`})
-    let cmd_names = cycle_filters.map(x => x.cmd)
+    let cmd_names = favorites.map(x => x.cmd)
 
     for (let cmd_name of cmd_names) {
       let cmd = App.get_command(cmd_name)
@@ -1453,5 +1453,34 @@ App.filter_cmd_name = (cmd) => {
 
 App.show_filter_refine = (mode, e) => {
   let items = App.get_filter_refine(mode)
+  App.show_context({items: items, e: e})
+}
+
+App.filter_menu_context = (e) => {
+  if (App.get_setting(`favorite_filters`).length) {
+    App.show_favorite_filters(e)
+  }
+  else {
+    App.show_palette(`filter`)
+  }
+}
+
+App.show_favorite_filters = (e) => {
+  let items = []
+
+  for (let cmd of App.get_setting(`favorite_filters`)) {
+    let c = App.get_command(cmd.cmd)
+
+    if (c) {
+      items.push({
+        icon: c.icon,
+        text: c.short_name || c.name,
+        action: () => {
+          App.run_command({cmd: c.cmd, from: `favorite_filters`})
+        },
+      })
+    }
+  }
+
   App.show_context({items: items, e: e})
 }
