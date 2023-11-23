@@ -373,15 +373,6 @@ App.filter_check = (args) => {
     if (args.filter_mode === `all`) {
       match = true
     }
-    else if (args.filter_mode === `filter_media_image`) {
-      match = args.item.image
-    }
-    else if (args.filter_mode === `filter_media_video`) {
-      match = args.item.video
-    }
-    else if (args.filter_mode === `filter_media_audio`) {
-      match = args.item.audio
-    }
     else if (args.filter_mode === `color`) {
       if (args.f_value === `all`) {
         match = App.get_color(args.item)
@@ -406,7 +397,16 @@ App.filter_check = (args) => {
         match = App.get_icon(args.item) === args.f_value
       }
     }
-    else if (args.filter_mode === `titled`) {
+    else if (args.filter_mode === `filter_media_image`) {
+      match = args.item.image
+    }
+    else if (args.filter_mode === `filter_media_video`) {
+      match = args.item.video
+    }
+    else if (args.filter_mode === `filter_media_audio`) {
+      match = args.item.audio
+    }
+    else if (args.filter_mode === `filter_titled_tabs`) {
       if (args.item.header) {
         match = false
       }
