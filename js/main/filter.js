@@ -1319,10 +1319,16 @@ App.cycle_filter_modes = (mode, reverse = true) => {
     let cmd_names = cycle_filters.map(x => x.cmd)
 
     for (let cmd_name of cmd_names) {
-      modes.push({
-        cmd: cmd_name,
-        skip: false,
-      })
+      let cmd = App.get_command(cmd_name)
+
+      if (cmd) {
+        if (App.check_command(cmd)) {
+          modes.push({
+            cmd: cmd_name,
+            skip: false,
+          })
+        }
+      }
     }
   }
 
