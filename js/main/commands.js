@@ -1758,6 +1758,13 @@ App.check_command = (command, args = {}) => {
     }
   }
 
+  if (args.some_split_top || args.some_split_bottom) {
+    args.some_split = true
+  }
+  else {
+    args.some_no_split = true
+  }
+
   let valid = true
 
   function check (what) {
