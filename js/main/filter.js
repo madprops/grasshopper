@@ -1237,7 +1237,7 @@ App.create_filter_menu = (mode) => {
 
   DOM.ev(btn, `contextmenu`, (e) => {
     e.preventDefault()
-    App.filter_menu_context(e)
+    App.filter_menu_context(mode, e)
   })
 
   DOM.ev(btn, `auxclick`, (e) => {
@@ -1456,17 +1456,24 @@ App.show_filter_refine = (mode, e) => {
   App.show_context({items: items, e: e})
 }
 
-App.filter_menu_context = (e) => {
+App.filter_menu_context = (mode, e) => {
   if (App.get_setting(`favorite_filters`).length) {
-    App.show_favorite_filters(e)
+    App.show_favorite_filters(mode, e)
   }
   else {
     App.show_palette(`filter`)
   }
 }
 
-App.show_favorite_filters = (e) => {
+App.show_favorite_filters = (mode, e) => {
   let items = []
+
+  items.push({
+    text: `All`,
+    action: () => {
+      App.filter_all(mode)
+    },
+  })
 
   for (let cmd of App.get_setting(`favorite_filters`)) {
     let c = App.get_command(cmd.cmd)
