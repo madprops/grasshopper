@@ -103,7 +103,6 @@ App.build_tab_filters = () => {
     {cmd: `filter_unloaded_tabs`},
     {cmd: `filter_unread_tabs`},
     {cmd: `filter_header_tabs`},
-    {type: App.separator_string, skip: true},
     {cmd: `filter_duplicate_tabs`},
   ]
 }
