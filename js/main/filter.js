@@ -137,7 +137,7 @@ App.do_filter = async (args = {}) => {
   let skip = !value && filter_mode === `all`
   let duplicates
 
-  if (filter_mode === `duplicate`) {
+  if (filter_mode === `duplicates`) {
     duplicates = App.find_duplicates(items, `url`)
   }
 
@@ -432,7 +432,7 @@ App.filter_check = (args) => {
     else if (args.filter_mode === `unloaded`) {
       match = args.item.discarded
     }
-    else if (args.filter_mode === `duplicate`) {
+    else if (args.filter_mode === `duplicates`) {
       match = args.duplicates.includes(args.item)
     }
     else if (args.filter_mode === `unread`) {

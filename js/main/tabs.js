@@ -104,7 +104,7 @@ App.build_tab_filters = () => {
     {cmd: `filter_unread_tabs`, type: `unread`, skip: false},
     {cmd: `filter_headers`, type: `headers`, skip: false},
     {type: App.separator_string, skip: true},
-    {cmd: `filter_duplicate_tabs`, type: `duplicate`, skip: false},
+    {cmd: `filter_duplicate_tabs`, type: `duplicates`, skip: false},
   ]
 }
 

@@ -1403,7 +1403,7 @@ App.setup_commands = () => {
       icon: tabs_icon,
       filter_mode: true,
       action: (args) => {
-        App.filter_type(args.mode, `duplicate`)
+        App.filter_type(args.mode, `duplicates`)
       },
       info: `Filter: Show duplicate tabs`,
     },
