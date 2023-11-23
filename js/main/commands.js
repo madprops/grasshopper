@@ -6,6 +6,7 @@ App.setup_commands = () => {
   let unloaded_icon = App.get_setting(`unloaded_icon`) || App.sleeping_icon
   let muted_icon = App.get_setting(`muted_icon`) || App.muted_icon
   let unread_icon = App.get_setting(`unread_icon`) || App.circle_icon
+  let notes_icon = App.get_setting(`notes_icon`) || App.notepad_icon
   let command_icon = App.command_icon
   let settings_icon = App.settings_icons.general
   let theme_icon = App.settings_icons.theme
@@ -997,7 +998,7 @@ App.setup_commands = () => {
       cmd: `edit_notes`,
       modes: [`tabs`],
       item: true,
-      icon: notepad_icon,
+      icon: notes_icon,
       action: (args) => {
         App.edit_notes(args.item)
       },
@@ -1113,7 +1114,7 @@ App.setup_commands = () => {
       cmd: `remove_notes`,
       modes: [`tabs`],
       item: true,
-      icon: notepad_icon,
+      icon: notes_icon,
       action: (args) => {
         App.remove_item_notes(args.item)
       },
@@ -1154,7 +1155,7 @@ App.setup_commands = () => {
       name: `Remove All Notes`,
       cmd: `remove_all_notes`,
       modes: [`tabs`],
-      icon: notepad_icon,
+      icon: notes_icon,
       action: (args) => {
         App.remove_edits({what: [`notes`]})
       },
@@ -1450,7 +1451,7 @@ App.setup_commands = () => {
       short_name: `Notes`,
       cmd: `filter_notes_tabs`,
       modes: [`items`],
-      icon: notepad_icon,
+      icon: notes_icon,
       filter_mode: true,
       action: (args) => {
         App.filter_type(args.mode, `notes`)
