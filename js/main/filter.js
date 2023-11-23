@@ -1200,7 +1200,7 @@ App.create_filter_menu = (mode) => {
 
   if (mode !== `tabs`) {
     fmodes.push(separator())
-    fmodes.push({cmd: `filter_no_tab`, skip: false})
+    fmodes.push({cmd: `filter_no_tab`, type: `notab`, skip: false})
   }
 
   fmodes.push(separator())
