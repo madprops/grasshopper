@@ -1235,20 +1235,19 @@ App.create_filter_menu = (mode) => {
   fmodes.push({cmd: `show_filter_tag_menu`, skip: true})
   fmodes.push({cmd: `show_filter_color_menu`, skip: true})
   fmodes.push({cmd: `show_filter_icon_menu`, skip: true})
-  // fmodes.push(separator())
-  // fmodes.push({type: `titled`, text: `Titled`, skip: false, info: `Show tabs that have a custom title`, icon: App.notepad_icon})
-  // fmodes.push({type: `notes`, text: `Notes`, skip: false, info: `Show tabs that have notes`, icon: App.notepad_icon})
-  // fmodes.push({type: `edited`, text: `Edited`, skip: false, info: `Show tabs that have custom properties`,
-  // icon: App.get_setting(`edited_icon`) || App.notepad_icon})
+  fmodes.push(separator())
+  fmodes.push({cmd: `filter_titled_tabs`, type: `titled`, skip: false})
+  fmodes.push({cmd: `filter_notes_tabs`, type: `notes`, skip: false})
+  fmodes.push({cmd: `filter_edited_tabs`, type: `edited`, skip: false})
 
-  // if (mode !== `tabs`) {
-  //   fmodes.push(separator())
-  //   fmodes.push({type: `notab`, text: `No Tab`, skip: false, info: `Items that are not open in a tab`})
-  // }
+  if (mode !== `tabs`) {
+    fmodes.push(separator())
+    fmodes.push({cmd: `filter_no_tab`, skip: false})
+  }
 
-  // fmodes.push(separator())
-  // fmodes.push({type: `refine`, text: `Refine`, skip: true, skip: `Refine the filter`})
-  // fmodes.push({type: `custom`, text: `Custom`, skip: true, skip: `Pick a custom filter`})
+  fmodes.push(separator())
+  fmodes.push({type: `refine`, text: `Refine`, skip: true, info: `Refine the filter`})
+  fmodes.push({type: `custom`, text: `Custom`, skip: true, info: `Pick a custom filter`})
   App[`${mode}_filter_modes_all`] = fmodes
 
   DOM.ev(btn, `click`, () => {
@@ -1294,7 +1293,7 @@ App.show_filter_menu = (mode) => {
     if (filter_mode.type === `all`) {
       items.push({
         icon: filter_mode.icon,
-        text: `All`,
+        text: filter_mode.text,
         action: () => {
           if (App.get_setting(`clear_on_all`) || (f_mode === `all`)) {
             App.filter_all(mode)
@@ -1305,42 +1304,6 @@ App.show_filter_menu = (mode) => {
         },
         info: filter_mode.info,
       })
-    }
-    else if (filter_mode.type === `color`) {
-      items.push({
-        icon: filter_mode.icon,
-        text: filter_mode.text,
-        get_items: () => {
-          return App.get_color_items(mode)
-        },
-        info: filter_mode.info,
-      })
-
-      continue
-    }
-    else if (filter_mode.type === `tag`) {
-      items.push({
-        icon: filter_mode.icon,
-        text: filter_mode.text,
-        get_items: () => {
-          return App.get_tag_items(mode)
-        },
-        info: filter_mode.info,
-      })
-
-      continue
-    }
-    else if (filter_mode.type === `icon`) {
-      items.push({
-        icon: filter_mode.icon,
-        text: filter_mode.text,
-        get_items: () => {
-          return App.get_icon_items(mode)
-        },
-        info: filter_mode.info,
-      })
-
-      continue
     }
     else if (filter_mode.type === `custom`) {
       items.push({
