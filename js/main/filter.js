@@ -595,8 +595,17 @@ App.filter_mode_text = (args = {}) => {
   let icon, text
 
   if (args.filter_mode) {
-    icon = args.filter_mode.icon
-    text = args.filter_mode.text
+    if (args.filter_mode.type === `all`) {
+      text = `All`
+    }
+    else {
+      let cmd = App.get_command(args.filter_mode.cmd)
+
+      if (cmd) {
+        icon = cmd.icon
+        text = cmd.short_name || cmd.name
+      }
+    }
   }
   else if (args.name) {
     if (args.name.startsWith(`tag_`)) {
@@ -1098,6 +1107,10 @@ App.filter_header = (mode) => {
   App.toggle_filter(mode, `header`)
 }
 
+App.filter_media = (mode, media) => {
+  App.toggle_filter(mode, media)
+}
+
 App.filter_tag = (mode, tag, toggle = false) => {
   let name = `tag_${tag}`
 
@@ -1214,31 +1227,31 @@ App.create_filter_menu = (mode) => {
     fmodes.push(...m_modes)
   }
 
-  let image_icon = App.get_setting(`image_icon`)
-  let video_icon = App.get_setting(`video_icon`)
-  let audio_icon = App.get_setting(`audio_icon`)
-  fmodes.push(separator())
-  fmodes.push({type: `image`, text: `Image`, skip: false, info: `Show image items`, icon: image_icon})
-  fmodes.push({type: `video`, text: `Video`, skip: false, info: `Show video items`, icon: video_icon})
-  fmodes.push({type: `audio`, text: `Audio`, skip: false, info: `Show audio items`, icon: audio_icon})
-  fmodes.push(separator())
-  fmodes.push({type: `tag`, text: `Tag`, skip: true, info: `Filter a specific tag`, icon: App.tag_icon})
-  fmodes.push({type: `color`, text: `Color`, skip: true, info: `Filter a specific color`, icon: App.settings_icons.theme})
-  fmodes.push({type: `icon`, text: `Icon`, skip: true, info: `Filter a specific icon`, icon: App.bot_icon})
-  fmodes.push(separator())
-  fmodes.push({type: `titled`, text: `Titled`, skip: false, info: `Show tabs that have a custom title`, icon: App.notepad_icon})
-  fmodes.push({type: `notes`, text: `Notes`, skip: false, info: `Show tabs that have notes`, icon: App.notepad_icon})
-  fmodes.push({type: `edited`, text: `Edited`, skip: false, info: `Show tabs that have custom properties`,
-  icon: App.get_setting(`edited_icon`) || App.notepad_icon})
+  // let image_icon = App.get_setting(`image_icon`)
+  // let video_icon = App.get_setting(`video_icon`)
+  // let audio_icon = App.get_setting(`audio_icon`)
+  // fmodes.push(separator())
+  fmodes.push({cmd: `filter_media_image`, type: `image`, skip: false})
+  fmodes.push({cmd: `filter_media_video`, type: `video`, skip: false})
+  fmodes.push({cmd: `filter_media_audio`, type: `audio`, skip: false})
+  // fmodes.push(separator())
+  // fmodes.push({type: `tag`, text: `Tag`, skip: true, info: `Filter a specific tag`, icon: App.tag_icon})
+  // fmodes.push({type: `color`, text: `Color`, skip: true, info: `Filter a specific color`, icon: App.settings_icons.theme})
+  // fmodes.push({type: `icon`, text: `Icon`, skip: true, info: `Filter a specific icon`, icon: App.bot_icon})
+  // fmodes.push(separator())
+  // fmodes.push({type: `titled`, text: `Titled`, skip: false, info: `Show tabs that have a custom title`, icon: App.notepad_icon})
+  // fmodes.push({type: `notes`, text: `Notes`, skip: false, info: `Show tabs that have notes`, icon: App.notepad_icon})
+  // fmodes.push({type: `edited`, text: `Edited`, skip: false, info: `Show tabs that have custom properties`,
+  // icon: App.get_setting(`edited_icon`) || App.notepad_icon})
 
-  if (mode !== `tabs`) {
-    fmodes.push(separator())
-    fmodes.push({type: `notab`, text: `No Tab`, skip: false, info: `Items that are not open in a tab`})
-  }
+  // if (mode !== `tabs`) {
+  //   fmodes.push(separator())
+  //   fmodes.push({type: `notab`, text: `No Tab`, skip: false, info: `Items that are not open in a tab`})
+  // }
 
-  fmodes.push(separator())
-  fmodes.push({type: `refine`, text: `Refine`, skip: true, skip: `Refine the filter`})
-  fmodes.push({type: `custom`, text: `Custom`, skip: true, skip: `Pick a custom filter`})
+  // fmodes.push(separator())
+  // fmodes.push({type: `refine`, text: `Refine`, skip: true, skip: `Refine the filter`})
+  // fmodes.push({type: `custom`, text: `Custom`, skip: true, skip: `Pick a custom filter`})
   App[`${mode}_filter_modes_all`] = fmodes
 
   DOM.ev(btn, `click`, () => {
@@ -1280,7 +1293,8 @@ App.show_filter_menu = (mode) => {
       App.sep(items)
       continue
     }
-    else if (filter_mode.type === `all`) {
+
+    if (filter_mode.type === `all`) {
       items.push({
         icon: filter_mode.icon,
         text: `All`,
@@ -1294,8 +1308,6 @@ App.show_filter_menu = (mode) => {
         },
         info: filter_mode.info,
       })
-
-      continue
     }
     else if (filter_mode.type === `color`) {
       items.push({
@@ -1358,16 +1370,19 @@ App.show_filter_menu = (mode) => {
       continue
     }
 
-    let selected = f_mode === filter_mode.type
+    let cmd = App.get_command(filter_mode.cmd)
+
+    if (!cmd) {
+      continue
+    }
 
     items.push({
-      icon: filter_mode.icon,
-      text: filter_mode.text,
+      icon: cmd.icon,
+      text: cmd.short_name || cmd.name,
       action: () => {
-        App.set_filter_mode({mode: mode, type: filter_mode.type})
+        App.run_command({cmd: cmd.cmd, from: `filter_menu`})
       },
-      selected: selected,
-      info: filter_mode.info,
+      info: cmd.info,
     })
   }
 
@@ -1376,7 +1391,19 @@ App.show_filter_menu = (mode) => {
 }
 
 App.cycle_filter_modes = (mode, reverse = true) => {
-  let modes = App.filter_modes(mode)
+  let o_modes = App.filter_modes(mode)
+  let cycle_modes = App.get_setting(`cycle_filters`)
+  let modes = []
+
+  if (cycle_modes.length) {
+    for (let md of o_modes) {
+
+    }
+  }
+  else {
+    modes = o_modes
+  }
+
   let waypoint = false
 
   if (reverse) {

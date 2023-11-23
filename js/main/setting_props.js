@@ -1370,6 +1370,14 @@ App.build_settings = () => {
       These appear in the Custom section or by using the command`,
       version: 3,
     },
+    cycle_filters: {
+      name: `Wheel Filters`,
+      type: `list`,
+      value: [],
+      info: `Use these when cycling the Filter Menu`,
+      separator: true,
+      version: 1,
+    },
     clean_filter: {
       name: `Clean Filter`,
       type: `checkbox`,

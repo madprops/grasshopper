@@ -54,6 +54,7 @@ App.setup_commands = () => {
       action: (args) => {
         App.filter_color(args.mode, color.id, true)
       },
+      filter_mode: true,
       info: `Filter items with this color (${color.name})`,
     })
 
@@ -194,17 +195,20 @@ App.setup_commands = () => {
   let media_filters = []
 
   for (let media of App.media_types) {
+    let cap = App.capitalize(media)
     let icon = App.get_setting(`${media}_icon`) || command_icon
-    let name = `Filter ${App.capitalize(media)}`.trim()
+    let name = `Filter ${cap}`.trim()
 
     media_filters.push({
       name: name,
+      short_name: cap,
       cmd: `filter_media_${media}`,
       modes: [`items`],
       icon: icon,
       action: (args) => {
-        App.set_filter_mode({mode: args.mode, type: media})
+        App.filter_media(args.mode, media)
       },
+      filter_mode: true,
       info: `Filter: Show media items (${media})`,
     })
   }
@@ -1319,112 +1323,134 @@ App.setup_commands = () => {
     },
     {
       name: `Filter Pins`,
+      short_name: `Pins`,
       cmd: `filter_pinned_tabs`,
       modes: [`tabs`],
       icon: pin_icon,
       action: (args) => {
         App.filter_pinned(args.mode)
       },
+      filter_mode: true,
       info: `Filter: Show pinned tabs`,
     },
     {
       name: `Filter Normal`,
+      short_name: `Normal`,
       cmd: `filter_normal_tabs`,
       modes: [`tabs`],
       icon: normal_icon,
       action: (args) => {
         App.filter_normal(args.mode)
       },
+      filter_mode: true,
       info: `Filter: Show normal tabs`,
     },
     {
       name: `Filter Playing`,
+      short_name: `Playing`,
       cmd: `filter_playing_tabs`,
       modes: [`tabs`],
       icon: playing_icon,
       action: (args) => {
         App.filter_playing(args.mode)
       },
+      filter_mode: true,
       info: `Filter: Show playing tabs`,
     },
     {
       name: `Filter Loaded`,
+      short_name: `Loaded`,
       cmd: `filter_loaded_tabs`,
       modes: [`tabs`],
       icon: loaded_icon,
       action: (args) => {
         App.filter_loaded(args.mode)
       },
+      filter_mode: true,
       info: `Filter: Show loaded tabs`,
     },
     {
       name: `Filter Unloaded`,
+      short_name: `Unloaded`,
       cmd: `filter_unloaded_tabs`,
       modes: [`tabs`],
       icon: unloaded_icon,
       action: (args) => {
         App.filter_unloaded(args.mode)
       },
+      filter_mode: true,
       info: `Filter: Show unloaded tabs`,
     },
     {
       name: `Filter Duplicate`,
+      short_name: `Duplicates`,
       cmd: `filter_duplicate_tabs`,
       modes: [`tabs`],
       icon: tabs_icon,
       action: (args) => {
         App.filter_duplicate(args.mode)
       },
+      filter_mode: true,
       info: `Filter: Show duplicate tabs`,
     },
     {
       name: `Filter Unread`,
+      short_name: `Unread`,
       cmd: `filter_unread_tabs`,
       modes: [`tabs`],
       icon: unread_icon,
       action: (args) => {
         App.filter_unread(args.mode)
       },
+      filter_mode: true,
       info: `Filter: Show unread tabs`,
     },
     {
       name: `Filter Titled`,
+      short_name: `Titled`,
       cmd: `filter_titled_tabs`,
       modes: [`items`],
       icon: notepad_icon,
       action: (args) => {
         App.filter_titled(args.mode)
       },
+      filter_mode: true,
       info: `Filter: Show tabs that have a custom title`,
     },
     {
       name: `Filter Notes`,
+      short_name: `Notes`,
       cmd: `filter_notes_tabs`,
       modes: [`items`],
       icon: notepad_icon,
       action: (args) => {
         App.filter_notes(args.mode)
       },
+      filter_mode: true,
       info: `Filter: Show tabs that have notes`,
     },
     {
       name: `Filter Edited`,
+      short_name: `Edited`,
       cmd: `filter_edited_tabs`,
       modes: [`items`],
       icon: notepad_icon,
       action: (args) => {
         App.filter_edited(args.mode)
       },
+      filter_mode: true,
       info: `Filter: Show tabs that have custom properties`,
     },
     {
       name: `Filter Header`,
+      short_name: `Headers`,
       cmd: `filter_header_tabs`,
       modes: [`items`],
       icon: zone_icon,
       action: (args) => {
         App.filter_header(args.mode)
       },
+      filter_mode: true,
       info: `Filter: Show header tabs`,
     },
     {
@@ -1435,6 +1461,7 @@ App.setup_commands = () => {
       action: (args) => {
         App.filter_no_tab(args.mode)
       },
+      filter_mode: true,
       info: `Filter: Show items that are not open in a tab`,
     },
     {

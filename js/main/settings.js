@@ -410,7 +410,7 @@ App.refresh_settings = () => {
 App.build_setting_cmds = () => {
   App.cmdlist = App.settings_commands()
   App.cmdlist_2 = App.settings_commands(false)
-  App.filter_cmds = App.cmdlist_2.filter(x => x.text.includes(`Filter`))
+  App.filter_cmds = App.get_filter_cmds()
 }
 
 App.start_settings = () => {
@@ -829,6 +829,18 @@ App.settings_commands = (include_none = true) => {
   return items
 }
 
+App.get_filter_cmds = () => {
+  let items = []
+
+  for (let cmd of App.commands) {
+    if (cmd.filter_mode) {
+      items.push({text: cmd.name, value: cmd.cmd, icon: cmd.icon, info: cmd.info})
+    }
+  }
+
+  return items
+}
+
 App.settings_menu_items = () => {
   let items = []
 
@@ -1148,10 +1160,10 @@ App.setup_settings_addlist = () => {
   ]
 
   for (let key in App.setting_props) {
-    let id = `settings_${key}`
-    props = App.setting_props[key]
-
     if (menukeys.includes(key)) {
+      let id = `settings_${key}`
+      let props = App.setting_props[key]
+
       App.create_popup(Object.assign({}, popobj, {
         id: `addlist_${id}`,
         element: Addlist.register(Object.assign({}, regobj, {
@@ -1185,6 +1197,44 @@ App.setup_settings_addlist = () => {
             cmd: `Command on click`,
             alt: `Command on middle click`
           },
+        }))
+      }))
+    }
+  }
+
+  menukeys = [
+    `cycle_filters`,
+  ]
+
+  for (let key in App.setting_props) {
+    if (menukeys.includes(key)) {
+      let id = `settings_${key}`
+      let props = App.setting_props[key]
+
+      App.create_popup(Object.assign({}, popobj, {
+        id: `addlist_${id}`,
+        element: Addlist.register(Object.assign({}, regobj, {
+          id: id,
+          keys: [`cmd`],
+          pk: `cmd`,
+          widgets: {
+            cmd: `menu`,
+          },
+          labels: {
+            cmd: `Command`,
+          },
+          sources: {
+            cmd: () => {
+              return App.filter_cmds.slice(0)
+            },
+          },
+          list_icon: (items) => {
+            return cmd_icon(items.cmd)
+          },
+          list_text: (items) => {
+            return cmd_name(items.cmd)
+          },
+          title: props.name,
         }))
       }))
     }
