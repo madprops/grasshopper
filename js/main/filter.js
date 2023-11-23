@@ -621,6 +621,9 @@ App.filter_mode_text = (args = {}) => {
     if (args.name.startsWith(`tag-`)) {
       icon = App.tag_icon
     }
+    else if (args.name.startsWith(`icon-`)) {
+      icon = App.bot_icon
+    }
     else if (args.name.startsWith(`color-`)) {
       let color = args.name.replace(`color-`, ``)
 
