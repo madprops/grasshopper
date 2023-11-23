@@ -406,7 +406,12 @@ App.filter_check = (args) => {
       }
     }
     else if (args.filter_mode === `titled`) {
-      match = args.item.custom_title || args.item.rule_title
+      if (args.item.header) {
+        match = false
+      }
+      else {
+        match = args.item.custom_title || args.item.rule_title
+      }
     }
     else if (args.filter_mode === `notes`) {
       match = App.get_notes(args.item)
