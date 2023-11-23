@@ -521,3 +521,11 @@ App.wildcard = (pattern, str, exact = false) => {
 App.is_regex = (str) => {
   return str.startsWith(`/`) && str.endsWith(`/`)
 }
+
+App.some = (value) => {
+  if (Array.isArray(value)) {
+    return Boolean(value.length)
+  }
+
+  return Boolean(value)
+}

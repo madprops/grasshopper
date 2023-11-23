@@ -1235,6 +1235,7 @@ App.setup_commands = () => {
       cmd: `remove_item_edits`,
       modes: [`tabs`],
       item: true,
+      some_edits: true,
       icon: notepad_icon,
       action: (args) => {
         App.remove_item_edits(args.item)
@@ -1706,6 +1707,8 @@ App.check_command = (command, args = {}) => {
       args.multiple = true
     }
 
+    args.some_edits = false
+
     for (let item of args.active) {
       if (args.mode === `tabs`) {
         if (item.pinned) {
@@ -1741,14 +1744,15 @@ App.check_command = (command, args = {}) => {
         `color`, `tags`, `icon`, `title`,
         `notes`, `split_top`, `split_bottom`,
       ]) {
-        if (App.get_edit(item, prop)) {
+        if (App.some(App.get_edit(item, prop))) {
           args[`some_${prop}`] = true
+          args.some_edits = true
         }
         else {
           args[`some_no_${prop}`] = true
         }
 
-        if (App.get_edit(item, prop, false)) {
+        if (App.some(App.get_edit(item, prop, false))) {
           args[`some_custom_${prop}`] = true
         }
         else {
@@ -1812,6 +1816,7 @@ App.check_command = (command, args = {}) => {
   check(`some_header`)
   check(`some_no_header`)
   //
+  check(`some_edits`)
   check(`some_color`)
   check(`some_no_color`)
   check(`some_custom_color`)
