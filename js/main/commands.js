@@ -123,6 +123,7 @@ App.setup_commands = () => {
 
   color_filters.push({
     name: `Filter Color Menu`,
+    short_name: `Colors`,
     cmd: `show_filter_color_menu`,
     modes: [`items`],
     item: true,
@@ -1289,6 +1290,7 @@ App.setup_commands = () => {
     },
     {
       name: `Filter Tag Menu`,
+      short_name: `Tags`,
       cmd: `show_filter_tag_menu`,
       modes: [`items`],
       icon: tag_icon,
@@ -1320,6 +1322,18 @@ App.setup_commands = () => {
         App.filter_by_icon(args.item)
       },
       info: `Filter by the item's icon`,
+    },
+    {
+      name: `Filter Icon Menu`,
+      short_name: `Icons`,
+      cmd: `show_filter_icon_menu`,
+      modes: [`items`],
+      item: true,
+      icon: tag_icon,
+      action: (args) => {
+        App.show_filter_icon_menu(args.mode, args.e)
+      },
+      info: `Show the Filter Icon Menu`,
     },
     {
       name: `Filter Pins`,

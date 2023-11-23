@@ -591,11 +591,16 @@ App.custom_icon_menu_items = (item) => {
   return items
 }
 
-App.custom_icon_menu = (e, item) => {
+App.custom_icon_menu = (item, e) => {
   let items = App.custom_icon_menu_items(item)
   App.show_context({items: items, e: e})
 }
 
 App.change_icon = (item) => {
   App.edit_prompt({what: `icon`, item: item})
+}
+
+App.show_filter_icon_menu = (mode, e) => {
+  let items = App.get_icon_items(mode)
+  App.show_context({items: items, e: e})
 }

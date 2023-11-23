@@ -1227,17 +1227,14 @@ App.create_filter_menu = (mode) => {
     fmodes.push(...m_modes)
   }
 
-  // let image_icon = App.get_setting(`image_icon`)
-  // let video_icon = App.get_setting(`video_icon`)
-  // let audio_icon = App.get_setting(`audio_icon`)
-  // fmodes.push(separator())
+  fmodes.push(separator())
   fmodes.push({cmd: `filter_media_image`, type: `image`, skip: false})
   fmodes.push({cmd: `filter_media_video`, type: `video`, skip: false})
   fmodes.push({cmd: `filter_media_audio`, type: `audio`, skip: false})
-  // fmodes.push(separator())
-  // fmodes.push({type: `tag`, text: `Tag`, skip: true, info: `Filter a specific tag`, icon: App.tag_icon})
-  // fmodes.push({type: `color`, text: `Color`, skip: true, info: `Filter a specific color`, icon: App.settings_icons.theme})
-  // fmodes.push({type: `icon`, text: `Icon`, skip: true, info: `Filter a specific icon`, icon: App.bot_icon})
+  fmodes.push(separator())
+  fmodes.push({cmd: `show_filter_tag_menu`, skip: true})
+  fmodes.push({cmd: `show_filter_color_menu`, skip: true})
+  fmodes.push({cmd: `show_filter_icon_menu`, skip: true})
   // fmodes.push(separator())
   // fmodes.push({type: `titled`, text: `Titled`, skip: false, info: `Show tabs that have a custom title`, icon: App.notepad_icon})
   // fmodes.push({type: `notes`, text: `Notes`, skip: false, info: `Show tabs that have notes`, icon: App.notepad_icon})
@@ -1379,8 +1376,8 @@ App.show_filter_menu = (mode) => {
     items.push({
       icon: cmd.icon,
       text: cmd.short_name || cmd.name,
-      action: () => {
-        App.run_command({cmd: cmd.cmd, from: `filter_menu`})
+      action: (e) => {
+        App.run_command({cmd: cmd.cmd, from: `filter_menu`, e: e})
       },
       info: cmd.info,
     })

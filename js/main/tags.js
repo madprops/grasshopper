@@ -519,7 +519,7 @@ App.taglist_filter = (item, tag) => {
   App.filter_tag(item.mode, tag)
 }
 
-App.taglist_action = (e, item) => {
+App.taglist_action = (item, e) => {
   let mode = App.get_setting(`taglist_mode`)
   let tag = e.target.textContent
 

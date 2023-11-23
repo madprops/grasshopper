@@ -154,7 +154,7 @@ App.mouse_click_action = (mode, e, from) => {
 
     if (App.taglist_active()) {
       if (e.target.classList.contains(`taglist_item`)) {
-        App.taglist_action(e, item)
+        App.taglist_action(item, e)
         return
       }
 
@@ -190,7 +190,7 @@ App.mouse_click_action = (mode, e, from) => {
 
   if (App.get_setting(`custom_icon_click`)) {
     if (e.target.classList.contains(`custom_icon`)) {
-      App.custom_icon_menu(e, item)
+      App.custom_icon_menu(item, e)
       return
     }
   }
