@@ -112,7 +112,6 @@ NeedContext.show = (args = {}) => {
     expand: false,
     picker_mode: false,
     margin: 0,
-    index: 0,
   }
 
   NeedContext.def_args(def_args, args)
@@ -137,6 +136,22 @@ NeedContext.show = (args = {}) => {
 
   let center = args.x === undefined || args.y === undefined
   args.items = args.items.slice(0)
+
+  if (args.index === undefined) {
+    let items = args.items.filter(x => !x.separator)
+
+    for (let [i, item] of items.entries()) {
+      if (item.selected) {
+        args.index = i
+        break
+      }
+    }
+  }
+
+  if (args.index === undefined) {
+    args.index = 0
+  }
+
   let selected_index
   let layer = NeedContext.get_layer()
 

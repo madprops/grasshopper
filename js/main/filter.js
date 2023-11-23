@@ -1248,7 +1248,23 @@ App.show_filter_menu = (mode) => {
       continue
     }
 
-    if (filter_mode.type === `all`) {
+    let cmd = App.get_command(filter_mode.cmd)
+
+    if (cmd) {
+      let f_type = App.get_filter_type(mode, filter_mode.cmd)
+      let selected = f_mode === f_type
+
+      items.push({
+        icon: cmd.icon,
+        text: cmd.short_name || cmd.name,
+        action: (e) => {
+          App.run_command({cmd: cmd.cmd, from: `filter_menu`, e: e})
+        },
+        selected: selected,
+        info: cmd.info,
+      })
+    }
+    else if (filter_mode.type === `all`) {
       items.push({
         icon: filter_mode.icon,
         text: filter_mode.text,
@@ -1284,24 +1300,7 @@ App.show_filter_menu = (mode) => {
         },
         info: filter_mode.info,
       })
-
-      continue
     }
-
-    let cmd = App.get_command(filter_mode.cmd)
-
-    if (!cmd) {
-      continue
-    }
-
-    items.push({
-      icon: cmd.icon,
-      text: cmd.short_name || cmd.name,
-      action: (e) => {
-        App.run_command({cmd: cmd.cmd, from: `filter_menu`, e: e})
-      },
-      info: cmd.info,
-    })
   }
 
   let btn = DOM.el(`#${mode}_filter_modes`)
@@ -1347,7 +1346,6 @@ App.cycle_filter_modes = (mode, reverse = true) => {
     }
 
     if (waypoint) {
-      console.log(filter_mode)
       App.set_filter_mode({mode: mode, type: filter_mode.type, instant: false})
       return
     }
