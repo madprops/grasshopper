@@ -208,7 +208,7 @@ App.setup_commands = () => {
       icon: icon,
       filter_mode: true,
       action: (args) => {
-        App.filter_media(args.mode, media)
+        App.filter_type(args.mode, media)
       },
       info: `Filter: Show media items (${media})`,
     })

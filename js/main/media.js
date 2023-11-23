@@ -314,7 +314,7 @@ App.search_media = (mode, e) => {
 
     for (let ext of App[`${type}_extensions`]) {
       subitems.push({text: ext, icon: icon, action: () => {
-        App.set_filter_mode({mode: mode, cmd: type, filter: false})
+        App.set_filter_mode({mode: mode, type: type, filter: false})
         App.set_filter({mode: mode, text: `.${ext}`})
       }})
     }
