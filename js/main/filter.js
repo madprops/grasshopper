@@ -207,7 +207,7 @@ App.do_filter = async (args = {}) => {
   }
 
   let some_matched = false
-  let headers = filter_mode === `header`
+  let headers = filter_mode === `headers`
   let header_match = 0
   let max_header = App.get_setting(`header_filter_context`)
 
@@ -414,7 +414,7 @@ App.filter_check = (args) => {
     else if (args.filter_mode === `edited`) {
       match = App.edited(args.item)
     }
-    else if (args.filter_mode === `header`) {
+    else if (args.filter_mode === `headers`) {
       match = args.item.header
     }
     else if (args.filter_mode === `pinned`) {
@@ -1347,6 +1347,7 @@ App.cycle_filter_modes = (mode, reverse = true) => {
     }
 
     if (waypoint) {
+      console.log(filter_mode)
       App.set_filter_mode({mode: mode, type: filter_mode.type, instant: false})
       return
     }
