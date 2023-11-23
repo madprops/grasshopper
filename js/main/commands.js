@@ -1172,7 +1172,7 @@ App.setup_commands = () => {
       name: `Remove Split`,
       cmd: `remove_split`,
       modes: [`tabs`],
-      some_split: true,
+      some_custom_split: true,
       some_no_header: true,
       item: true,
       icon: zone_icon,
@@ -1769,6 +1769,13 @@ App.check_command = (command, args = {}) => {
   }
   else {
     args.some_no_split = true
+  }
+
+  if (args.some_custom_split_top || args.some_custom_split_bottom) {
+    args.some_custom_split = true
+  }
+  else {
+    args.some_no_custom_split = true
   }
 
   let valid = true
