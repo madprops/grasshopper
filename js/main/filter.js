@@ -1426,5 +1426,20 @@ App.filter_cmd_name = (cmd) => {
     return `${split[1]}-${split[2]}`
   }
 
+  if (cmd.startsWith(`filter_color_`)) {
+    let color = cmd.replace(`filter_color_`, ``)
+    return `color-${color}`
+  }
+
+  if (cmd.startsWith(`filter_tag_`)) {
+    let tag = cmd.replace(`filter_tag_`, ``)
+    return `tag-${tag}`
+  }
+
+  if (cmd.startsWith(`filter_icon_`)) {
+    let icon = cmd.replace(`filter_icon_`, ``)
+    return `icon-${icon}`
+  }
+
   return cmd
 }
